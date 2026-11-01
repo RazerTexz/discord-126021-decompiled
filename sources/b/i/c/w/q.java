@@ -15,9 +15,9 @@ public class q {
 
     static {
         b.i.c.p.h.e eVar = new b.i.c.p.h.e();
-        eVar.f1761b.put(m$b.class, new m$c());
-        eVar.c.remove(m$b.class);
-        eVar.f1761b.put(m.class, new m$a());
+        eVar.f1761b.put(m.b.class, new m.c());
+        eVar.c.remove(m.b.class);
+        eVar.f1761b.put(m.class, new m.a());
         eVar.c.remove(m.class);
         a = new b.i.c.p.h.d(eVar);
     }

@@ -9,14 +9,14 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: WidgetChangeGuildIdentity.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChangeGuildIdentity$configureNickname$$inlined$also$lambda$1 extends o implements Function1<Editable, Unit> {
-    public final /* synthetic */ WidgetChangeGuildIdentityViewModel$ViewState$Loaded $viewState$inlined;
+    public final /* synthetic */ WidgetChangeGuildIdentityViewModel.ViewState.Loaded $viewState$inlined;
     public final /* synthetic */ WidgetChangeGuildIdentity this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetChangeGuildIdentity$configureNickname$$inlined$also$lambda$1(WidgetChangeGuildIdentity widgetChangeGuildIdentity, WidgetChangeGuildIdentityViewModel$ViewState$Loaded widgetChangeGuildIdentityViewModel$ViewState$Loaded) {
+    public WidgetChangeGuildIdentity$configureNickname$$inlined$also$lambda$1(WidgetChangeGuildIdentity widgetChangeGuildIdentity, WidgetChangeGuildIdentityViewModel.ViewState.Loaded loaded) {
         super(1);
         this.this$0 = widgetChangeGuildIdentity;
-        this.$viewState$inlined = widgetChangeGuildIdentityViewModel$ViewState$Loaded;
+        this.$viewState$inlined = loaded;
     }
 
     @Override // kotlin.jvm.functions.Function1

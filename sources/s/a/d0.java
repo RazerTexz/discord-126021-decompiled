@@ -135,8 +135,8 @@ public final class d0 extends r0 implements Runnable {
             return o1.j;
         }
         long jNanoTime = System.nanoTime();
-        r0$b r0_b = new r0$b(jA + jNanoTime, runnable);
-        W(jNanoTime, r0_b);
-        return r0_b;
+        r0.b bVar = new r0.b(jA + jNanoTime, runnable);
+        W(jNanoTime, bVar);
+        return bVar;
     }
 }

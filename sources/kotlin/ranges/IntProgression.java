@@ -4,20 +4,34 @@ import d0.d0.b;
 import d0.x.c;
 import d0.z.d.g0.a;
 import java.util.Iterator;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: Progressions.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class IntProgression implements Iterable<Integer>, a {
 
+    /* JADX INFO: renamed from: j, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
+
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public final int first;
-    public static final IntProgression$a j = new IntProgression$a(null);
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final int last;
 
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public final int step;
+
+    /* JADX INFO: renamed from: kotlin.ranges.IntProgression$a, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: Progressions.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final IntProgression fromClosedRange(int i, int i2, int i3) {
+            return new IntProgression(i, i2, i3);
+        }
+    }
 
     public IntProgression(int i, int i2, int i3) {
         if (i3 == 0) {

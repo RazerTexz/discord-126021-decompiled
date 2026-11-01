@@ -2,8 +2,7 @@ package d0.e0.p.d.m0.b.q;
 
 import d0.e0.p.d.m0.c.c0;
 import d0.e0.p.d.m0.c.d0;
-import d0.e0.p.d.m0.l.b.q$a;
-import d0.e0.p.d.m0.l.b.t$a;
+import d0.e0.p.d.m0.l.b.t;
 
 /* JADX INFO: compiled from: JvmBuiltInsPackageFragmentProvider.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -23,10 +22,10 @@ public final class o extends d0.e0.p.d.m0.l.b.a {
         d0.e0.p.d.m0.l.b.m mVar = new d0.e0.p.d.m0.l.b.m(this);
         d0.e0.p.d.m0.l.b.d0.a aVar3 = d0.e0.p.d.m0.l.b.d0.a.m;
         d0.e0.p.d.m0.l.b.d dVar = new d0.e0.p.d.m0.l.b.d(c0Var, d0Var, aVar3);
-        t$a t_a = t$a.a;
+        t.a aVar4 = t.a.a;
         d0.e0.p.d.m0.l.b.p pVar = d0.e0.p.d.m0.l.b.p.a;
         d0.z.d.m.checkNotNullExpressionValue(pVar, "DO_NOTHING");
-        d0.e0.p.d.m0.l.b.j jVar = new d0.e0.p.d.m0.l.b.j(oVar, c0Var, kVar, mVar, dVar, this, t_a, pVar, d0.e0.p.d.m0.d.b.c$a.a, q$a.a, d0.t.n.listOf((Object[]) new d0.e0.p.d.m0.c.h1.b[]{new d0.e0.p.d.m0.b.p.a(oVar, c0Var), new e(oVar, c0Var, null, 4, null)}), d0Var, d0.e0.p.d.m0.l.b.i.a.getDEFAULT(), aVar, cVar, aVar3.getExtensionRegistry(), lVar, aVar2, null, 262144, null);
+        d0.e0.p.d.m0.l.b.j jVar = new d0.e0.p.d.m0.l.b.j(oVar, c0Var, kVar, mVar, dVar, this, aVar4, pVar, d0.e0.p.d.m0.d.b.c.a.a, d0.e0.p.d.m0.l.b.q.a.a, d0.t.n.listOf((Object[]) new d0.e0.p.d.m0.c.h1.b[]{new d0.e0.p.d.m0.b.p.a(oVar, c0Var), new e(oVar, c0Var, null, 4, null)}), d0Var, d0.e0.p.d.m0.l.b.i.a.getDEFAULT(), aVar, cVar, aVar3.getExtensionRegistry(), lVar, aVar2, null, 262144, null);
         d0.z.d.m.checkNotNullParameter(jVar, "<set-?>");
         this.d = jVar;
     }

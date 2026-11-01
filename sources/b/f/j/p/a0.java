@@ -12,12 +12,23 @@ import java.util.concurrent.Executors;
 
 /* JADX INFO: compiled from: HttpUrlConnectionNetworkFetcher.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class a0 extends c<a0$a> {
+public class a0 extends c<a> {
     public int a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final ExecutorService f604b;
     public final b.f.d.k.b c;
+
+    /* JADX INFO: compiled from: HttpUrlConnectionNetworkFetcher.java */
+    public class a extends x {
+        public long d;
+        public long e;
+        public long f;
+
+        public a(l<b.f.j.j.e> lVar, x0 x0Var) {
+            super(lVar, x0Var);
+        }
+    }
 
     public a0(int i) {
         RealtimeSinceBootClock realtimeSinceBootClock = RealtimeSinceBootClock.get();

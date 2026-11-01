@@ -1,14 +1,14 @@
 package b.i.a.f.h.l;
 
 import java.util.Iterator;
-import java.util.Map$Entry;
+import java.util.Map;
 
 /* JADX INFO: Add missing generic type declarations: [V, K] */
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class x6<K, V> implements Iterator<Map$Entry<K, V>> {
+public final class x6<K, V> implements Iterator<Map.Entry<K, V>> {
     public boolean k;
-    public Iterator<Map$Entry<K, V>> l;
+    public Iterator<Map.Entry<K, V>> l;
     public final /* synthetic */ r6 m;
     public int j = -1;
 
@@ -16,7 +16,7 @@ public final class x6<K, V> implements Iterator<Map$Entry<K, V>> {
         this.m = r6Var;
     }
 
-    public final Iterator<Map$Entry<K, V>> a() {
+    public final Iterator<Map.Entry<K, V>> a() {
         if (this.l == null) {
             this.l = this.m.m.entrySet().iterator();
         }

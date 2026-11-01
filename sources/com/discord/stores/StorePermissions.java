@@ -1,5 +1,6 @@
 package com.discord.stores;
 
+import androidx.core.app.NotificationCompat;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.permission.Permission;
@@ -8,12 +9,12 @@ import com.discord.api.stageinstance.StageInstance;
 import com.discord.api.thread.AugmentedThreadMember;
 import com.discord.api.thread.ThreadMemberUpdate;
 import com.discord.api.thread.ThreadMembersUpdate;
+import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.guild.Guild;
 import com.discord.models.member.GuildMember;
 import com.discord.models.message.Message;
 import com.discord.models.thread.dto.ModelThreadListSync;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.utilities.collections.CollectionExtensionsKt;
 import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.utilities.persister.Persister;
@@ -22,9 +23,10 @@ import d0.d0.f;
 import d0.t.g0;
 import d0.t.h0;
 import d0.t.n;
-import d0.t.o;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -34,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import kotlin.Pair;
+import kotlin.jvm.functions.Function0;
 import rx.Observable;
 
 /* JADX INFO: compiled from: StorePermissions.kt */
@@ -52,6 +55,115 @@ public final class StorePermissions extends StoreV2 {
     private final StoreStageInstances storeStageInstances;
     private final StoreThreadsJoined storeThreadsJoined;
     private final StoreUser storeUser;
+
+    /* JADX INFO: renamed from: com.discord.stores.StorePermissions$observeAllPermissions$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StorePermissions.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Map<Long, ? extends Long>>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Map<Long, ? extends Long>> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Map<Long, ? extends Long>> invoke2() {
+            return StorePermissions.access$getPermissionsForChannels$p(StorePermissions.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StorePermissions$observeChannelPermissionsForGuild$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StorePermissions.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Map<Long, ? extends Long>>, Map<Long, ? extends Long>> {
+        public final /* synthetic */ long $guildId;
+
+        public AnonymousClass1(long j) {
+            this.$guildId = j;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Long> call(Map<Long, ? extends Map<Long, ? extends Long>> map) {
+            return call2((Map<Long, ? extends Map<Long, Long>>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Map<Long, Long> call2(Map<Long, ? extends Map<Long, Long>> map) {
+            m.checkNotNullExpressionValue(map, ModelAuditLogEntry.CHANGE_KEY_PERMISSIONS);
+            Map<Long, Long> mapEmptyMap = map.get(Long.valueOf(this.$guildId));
+            if (mapEmptyMap == null) {
+                mapEmptyMap = h0.emptyMap();
+            }
+            return mapEmptyMap;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StorePermissions$observePermissionsForAllChannels$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StorePermissions.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Long>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Long> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Long> invoke2() {
+            return StorePermissions.access$getPermissionsForChannelsFlattenedSnapshot$p(StorePermissions.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StorePermissions$observePermissionsForChannel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StorePermissions.kt */
+    public final class AnonymousClass1 extends o implements Function0<Long> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Long invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final Long invoke() {
+            return (Long) StorePermissions.access$getPermissionsForChannelsFlattenedSnapshot$p(StorePermissions.this).get(Long.valueOf(this.$channelId));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StorePermissions$observePermissionsForGuild$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StorePermissions.kt */
+    public final class AnonymousClass1 extends o implements Function0<Long> {
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$guildId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Long invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final Long invoke() {
+            return (Long) StorePermissions.access$getPermissionsForGuildsSnapshot$p(StorePermissions.this).get(Long.valueOf(this.$guildId));
+        }
+    }
 
     public StorePermissions(StoreUser storeUser, StoreChannels storeChannels, StoreGuilds storeGuilds, StoreThreadsJoined storeThreadsJoined, StoreStageInstances storeStageInstances, ObservationDeck observationDeck) {
         m.checkNotNullParameter(storeUser, "storeUser");
@@ -104,7 +216,7 @@ public final class StorePermissions extends StoreV2 {
         Map<Long, GuildMember> map = this.storeGuilds.getGuildMembersComputedInternal$app_productionGoogleRelease().get(Long.valueOf(guildId));
         Map<Long, GuildRole> map2 = this.storeGuilds.getGuildRolesInternal$app_productionGoogleRelease().get(Long.valueOf(guildId));
         Map<Long, StageInstance> stageInstancesForGuildInternal = this.storeStageInstances.getStageInstancesForGuildInternal(guildId);
-        LinkedHashMap linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(o.collectionSizeOrDefault(channels, 10)), 16));
+        LinkedHashMap linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(d0.t.o.collectionSizeOrDefault(channels, 10)), 16));
         for (Channel channel : channels) {
             boolean zHasJoinedInternal = this.storeThreadsJoined.hasJoinedInternal(channel.getId());
             Pair pair = d0.o.to(Long.valueOf(channel.getId()), Long.valueOf(ChannelUtils.B(channel) ? Permission.ALL : PermissionUtils.computePermissions(getMeId(), channel, this.storeChannels.getGuildChannelInternal$app_productionGoogleRelease(channel.getGuildId(), channel.getParentId()), guild.getOwnerId(), map != null ? map.get(Long.valueOf(getMeId())) : null, map2, stageInstancesForGuildInternal, zHasJoinedInternal)));
@@ -214,7 +326,7 @@ public final class StorePermissions extends StoreV2 {
         }
         List<Message> hits = searchState.getHits();
         if (hits != null) {
-            ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(hits, 10));
+            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(hits, 10));
             Iterator<T> it = hits.iterator();
             while (it.hasNext()) {
                 arrayList.add(((Message) it.next()).getThread());
@@ -303,27 +415,27 @@ public final class StorePermissions extends StoreV2 {
     }
 
     public final Observable<Map<Long, Map<Long, Long>>> observeAllPermissions() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StorePermissions$observeAllPermissions$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     public final Observable<Map<Long, Long>> observeChannelPermissionsForGuild(long guildId) {
-        Observable<Map<Long, Long>> observableR = observeAllPermissions().G(new StorePermissions$observeChannelPermissionsForGuild$1(guildId)).r();
+        Observable<Map<Long, Long>> observableR = observeAllPermissions().G(new AnonymousClass1(guildId)).r();
         m.checkNotNullExpressionValue(observableR, "observeAllPermissions()\n…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Map<Long, Long>> observePermissionsForAllChannels() {
-        Observable<Map<Long, Long>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StorePermissions$observePermissionsForAllChannels$1(this), 14, null).r();
+        Observable<Map<Long, Long>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Long> observePermissionsForChannel(long channelId) {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StorePermissions$observePermissionsForChannel$1(this, channelId), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(channelId), 14, null);
     }
 
     public final Observable<Long> observePermissionsForGuild(long guildId) {
-        Observable<Long> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StorePermissions$observePermissionsForGuild$1(this, guildId), 14, null).r();
+        Observable<Long> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(guildId), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
         return observableR;
     }

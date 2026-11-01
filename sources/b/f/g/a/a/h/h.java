@@ -1,13 +1,12 @@
 package b.f.g.a.a.h;
 
-import b.f.h.b.a.b$a;
 import com.facebook.imagepipeline.image.ImageInfo;
 import com.facebook.imagepipeline.request.ImageRequest;
 
 /* JADX INFO: compiled from: ImagePerfState.java */
 /* JADX INFO: loaded from: classes.dex */
 public class h {
-    public b$a A;
+    public b.f.h.b.a.b.a A;
     public String a;
     public ImageRequest c;
     public Object d;

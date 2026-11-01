@@ -2,6 +2,7 @@ package com.discord.stores;
 
 import b.d.b.a.a;
 import com.discord.models.commands.ApplicationCommand;
+import d0.t.n;
 import d0.z.d.m;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -9,7 +10,9 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: StoreApplicationCommands.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class DiscoverCommands {
-    public static final DiscoverCommands$Companion Companion = new DiscoverCommands$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final List<ApplicationCommand> commands;
     private final int currentEndOffset;
     private final int currentStartOffset;
@@ -18,6 +21,20 @@ public final /* data */ class DiscoverCommands {
     private final Long jumpedApplicationId;
     private final int jumpedSequenceId;
     private final LoadState loadState;
+
+    /* JADX INFO: compiled from: StoreApplicationCommands.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final DiscoverCommands getDefaultModelDiscoveryCommands() {
+            return new DiscoverCommands(n.emptyList(), 0, 0, false, false, 0, null, null, 128, null);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     /* JADX WARN: Multi-variable type inference failed */
     public DiscoverCommands(List<? extends ApplicationCommand> list, int i, int i2, boolean z2, boolean z3, int i3, Long l, LoadState loadState) {
@@ -172,6 +189,6 @@ public final /* data */ class DiscoverCommands {
     }
 
     public /* synthetic */ DiscoverCommands(List list, int i, int i2, boolean z2, boolean z3, int i3, Long l, LoadState loadState, int i4, DefaultConstructorMarker defaultConstructorMarker) {
-        this(list, i, i2, z2, z3, i3, l, (i4 & 128) != 0 ? LoadState$None.INSTANCE : loadState);
+        this(list, i, i2, z2, z3, i3, l, (i4 & 128) != 0 ? LoadState.None.INSTANCE : loadState);
     }
 }

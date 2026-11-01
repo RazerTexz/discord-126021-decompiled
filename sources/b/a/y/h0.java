@@ -1,7 +1,6 @@
 package b.a.y;
 
 import com.discord.views.VoiceUserView;
-import com.discord.views.VoiceUserView$a;
 import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: VoiceUserView.kt */
@@ -18,6 +17,6 @@ public final class h0 extends d0.z.d.o implements Function0<Boolean> {
     @Override // kotlin.jvm.functions.Function0
     public Boolean invoke() {
         VoiceUserView voiceUserView = this.this$0;
-        return Boolean.valueOf(voiceUserView.displayVoiceState == VoiceUserView$a.RINGING && voiceUserView.animateAvatarWhenRinging);
+        return Boolean.valueOf(voiceUserView.displayVoiceState == VoiceUserView.a.RINGING && voiceUserView.animateAvatarWhenRinging);
     }
 }

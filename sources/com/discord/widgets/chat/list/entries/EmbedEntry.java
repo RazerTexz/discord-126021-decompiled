@@ -4,7 +4,7 @@ import a0.a.a.b;
 import b.d.b.a.a;
 import com.discord.api.message.embed.MessageEmbed;
 import com.discord.models.message.Message;
-import com.discord.stores.StoreMessageState$State;
+import com.discord.stores.StoreMessageState;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: EmbedEntry.kt */
@@ -19,16 +19,16 @@ public final /* data */ class EmbedEntry extends ChatListEntry {
     private final boolean isThreadStarterMessage;
     private final String key;
     private final Message message;
-    private final StoreMessageState$State messageState;
+    private final StoreMessageState.State messageState;
     private final int type;
 
-    public EmbedEntry(int i, long j, Message message, StoreMessageState$State storeMessageState$State, MessageEmbed messageEmbed, boolean z2, boolean z3, boolean z4, boolean z5) {
+    public EmbedEntry(int i, long j, Message message, StoreMessageState.State state, MessageEmbed messageEmbed, boolean z2, boolean z3, boolean z4, boolean z5) {
         m.checkNotNullParameter(message, "message");
         m.checkNotNullParameter(messageEmbed, "embed");
         this.embedIndex = i;
         this.guildId = j;
         this.message = message;
-        this.messageState = storeMessageState$State;
+        this.messageState = state;
         this.embed = messageEmbed;
         this.isBlockedExpanded = z2;
         this.allowAnimatedEmojis = z3;
@@ -38,11 +38,11 @@ public final /* data */ class EmbedEntry extends ChatListEntry {
         this.key = "" + getType() + message.getId();
     }
 
-    public static /* synthetic */ EmbedEntry copy$default(EmbedEntry embedEntry, int i, long j, Message message, StoreMessageState$State storeMessageState$State, MessageEmbed messageEmbed, boolean z2, boolean z3, boolean z4, boolean z5, int i2, Object obj) {
-        return embedEntry.copy((i2 & 1) != 0 ? embedEntry.embedIndex : i, (i2 & 2) != 0 ? embedEntry.guildId : j, (i2 & 4) != 0 ? embedEntry.message : message, (i2 & 8) != 0 ? embedEntry.messageState : storeMessageState$State, (i2 & 16) != 0 ? embedEntry.embed : messageEmbed, (i2 & 32) != 0 ? embedEntry.isBlockedExpanded : z2, (i2 & 64) != 0 ? embedEntry.allowAnimatedEmojis : z3, (i2 & 128) != 0 ? embedEntry.autoPlayGifs : z4, (i2 & 256) != 0 ? embedEntry.isThreadStarterMessage : z5);
+    public static /* synthetic */ EmbedEntry copy$default(EmbedEntry embedEntry, int i, long j, Message message, StoreMessageState.State state, MessageEmbed messageEmbed, boolean z2, boolean z3, boolean z4, boolean z5, int i2, Object obj) {
+        return embedEntry.copy((i2 & 1) != 0 ? embedEntry.embedIndex : i, (i2 & 2) != 0 ? embedEntry.guildId : j, (i2 & 4) != 0 ? embedEntry.message : message, (i2 & 8) != 0 ? embedEntry.messageState : state, (i2 & 16) != 0 ? embedEntry.embed : messageEmbed, (i2 & 32) != 0 ? embedEntry.isBlockedExpanded : z2, (i2 & 64) != 0 ? embedEntry.allowAnimatedEmojis : z3, (i2 & 128) != 0 ? embedEntry.autoPlayGifs : z4, (i2 & 256) != 0 ? embedEntry.isThreadStarterMessage : z5);
     }
 
-    public final EmbedEntry copy(int embedIndex, long guildId, Message message, StoreMessageState$State messageState, MessageEmbed embed, boolean isBlockedExpanded, boolean allowAnimatedEmojis, boolean autoPlayGifs, boolean isThreadStarterMessage) {
+    public final EmbedEntry copy(int embedIndex, long guildId, Message message, StoreMessageState.State messageState, MessageEmbed embed, boolean isBlockedExpanded, boolean allowAnimatedEmojis, boolean autoPlayGifs, boolean isThreadStarterMessage) {
         m.checkNotNullParameter(message, "message");
         m.checkNotNullParameter(embed, "embed");
         return new EmbedEntry(embedIndex, guildId, message, messageState, embed, isBlockedExpanded, allowAnimatedEmojis, autoPlayGifs, isThreadStarterMessage);
@@ -129,11 +129,11 @@ public final /* data */ class EmbedEntry extends ChatListEntry {
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
-    public final StoreMessageState$State getMessageState() {
+    public final StoreMessageState.State getMessageState() {
         return this.messageState;
     }
 
-    public final StoreMessageState$State getMessageState() {
+    public final StoreMessageState.State getMessageState() {
         return this.messageState;
     }
 
@@ -163,8 +163,8 @@ public final /* data */ class EmbedEntry extends ChatListEntry {
         int iA = (b.a(this.guildId) + (this.embedIndex * 31)) * 31;
         Message message = this.message;
         int iHashCode = (iA + (message != null ? message.hashCode() : 0)) * 31;
-        StoreMessageState$State storeMessageState$State = this.messageState;
-        int iHashCode2 = (iHashCode + (storeMessageState$State != null ? storeMessageState$State.hashCode() : 0)) * 31;
+        StoreMessageState.State state = this.messageState;
+        int iHashCode2 = (iHashCode + (state != null ? state.hashCode() : 0)) * 31;
         MessageEmbed messageEmbed = this.embed;
         int iHashCode3 = (iHashCode2 + (messageEmbed != null ? messageEmbed.hashCode() : 0)) * 31;
         boolean z2 = this.isBlockedExpanded;

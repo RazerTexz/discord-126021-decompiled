@@ -1,7 +1,6 @@
 package b.k.a.a;
 
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
@@ -51,7 +50,7 @@ public class a extends Drawable {
         if (getBounds().width() <= 0 || getBounds().height() <= 0) {
             return;
         }
-        this.g = Bitmap.createBitmap(getBounds().width(), getBounds().height(), Bitmap$Config.ARGB_8888);
+        this.g = Bitmap.createBitmap(getBounds().width(), getBounds().height(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(this.g);
         Rect rect2 = new Rect();
         boolean z2 = true;

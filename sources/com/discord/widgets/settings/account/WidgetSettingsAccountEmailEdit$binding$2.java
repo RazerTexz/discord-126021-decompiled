@@ -3,7 +3,7 @@ package com.discord.widgets.settings.account;
 import android.view.View;
 import android.widget.Button;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetSettingsAccountEmailEditBinding;
 import com.discord.utilities.dimmer.DimmerView;
 import com.discord.utilities.view.text.LinkifiedTextView;
@@ -30,20 +30,20 @@ public final /* synthetic */ class WidgetSettingsAccountEmailEdit$binding$2 exte
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSettingsAccountEmailEditBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = 2131363051;
-        DimmerView dimmerView = (DimmerView) view.findViewById(2131363051);
+        int i = R.id.dimmer_view;
+        DimmerView dimmerView = (DimmerView) view.findViewById(R.id.dimmer_view);
         if (dimmerView != null) {
-            i = R$id.edit_account_email_description;
-            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R$id.edit_account_email_description);
+            i = R.id.edit_account_email_description;
+            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R.id.edit_account_email_description);
             if (linkifiedTextView != null) {
-                i = R$id.edit_account_email_wrap;
-                TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.edit_account_email_wrap);
+                i = R.id.edit_account_email_wrap;
+                TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.edit_account_email_wrap);
                 if (textInputLayout != null) {
-                    i = R$id.settings_account_next;
-                    Button button = (Button) view.findViewById(R$id.settings_account_next);
+                    i = R.id.settings_account_next;
+                    Button button = (Button) view.findViewById(R.id.settings_account_next);
                     if (button != null) {
-                        i = R$id.settings_account_save;
-                        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R$id.settings_account_save);
+                        i = R.id.settings_account_save;
+                        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.settings_account_save);
                         if (floatingActionButton != null) {
                             return new WidgetSettingsAccountEmailEditBinding((CoordinatorLayout) view, dimmerView, linkifiedTextView, textInputLayout, button, floatingActionButton);
                         }

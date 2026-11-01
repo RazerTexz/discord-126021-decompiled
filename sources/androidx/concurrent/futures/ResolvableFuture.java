@@ -2,11 +2,10 @@ package androidx.concurrent.futures;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import b.i.b.d.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public final class ResolvableFuture<V> extends AbstractResolvableFuture<V> {
     private ResolvableFuture() {
     }

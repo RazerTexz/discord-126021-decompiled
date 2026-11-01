@@ -8,7 +8,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: ArgUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetGuildCreate$$special$$inlined$args$1 extends o implements Function0<WidgetGuildCreate$Options> {
+public final class WidgetGuildCreate$$special$$inlined$args$1 extends o implements Function0<WidgetGuildCreate.Options> {
     public final /* synthetic */ String $argsKey;
     public final /* synthetic */ AppFragment $this_args;
 
@@ -22,25 +22,25 @@ public final class WidgetGuildCreate$$special$$inlined$args$1 extends o implemen
     /* JADX WARN: Can't rename method to resolve collision */
     /* JADX WARN: Multi-variable type inference failed */
     @Override // kotlin.jvm.functions.Function0
-    public final WidgetGuildCreate$Options invoke() {
+    public final WidgetGuildCreate.Options invoke() {
         Bundle arguments = this.$this_args.getArguments();
         Object obj = arguments != null ? arguments.get(this.$argsKey) : null;
-        WidgetGuildCreate$Options widgetGuildCreate$Options = (WidgetGuildCreate$Options) (obj instanceof WidgetGuildCreate$Options ? obj : null);
-        WidgetGuildCreate$Options parcelableExtra = widgetGuildCreate$Options;
-        if (widgetGuildCreate$Options == null) {
+        WidgetGuildCreate.Options options = (WidgetGuildCreate.Options) (obj instanceof WidgetGuildCreate.Options ? obj : null);
+        WidgetGuildCreate.Options parcelableExtra = options;
+        if (options == null) {
             parcelableExtra = this.$this_args.getMostRecentIntent().getParcelableExtra(this.$argsKey);
         }
         if (parcelableExtra != 0) {
             return parcelableExtra;
         }
         StringBuilder sbU = a.U("Missing args for class type ");
-        a.l0(WidgetGuildCreate$Options.class, sbU, " + key ");
+        a.l0(WidgetGuildCreate.Options.class, sbU, " + key ");
         throw new IllegalStateException(a.H(sbU, this.$argsKey, '!'));
     }
 
     /* JADX WARN: Type inference failed for: r0v0, types: [android.os.Parcelable, com.discord.widgets.guilds.create.WidgetGuildCreate$Options] */
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ WidgetGuildCreate$Options invoke() {
+    public /* bridge */ /* synthetic */ WidgetGuildCreate.Options invoke() {
         return invoke();
     }
 }

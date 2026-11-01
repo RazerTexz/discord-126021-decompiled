@@ -11,12 +11,10 @@ import com.discord.models.commands.ApplicationCommandOption;
 import com.discord.stores.StoreApplicationCommandsKt;
 import com.discord.widgets.chat.input.MentionUtilsKt;
 import com.discord.widgets.chat.input.autocomplete.InputEditTextAction;
-import com.discord.widgets.chat.input.autocomplete.InputEditTextAction$InsertText;
-import com.discord.widgets.chat.input.autocomplete.InputEditTextAction$None;
 import com.discord.widgets.chat.input.models.AutocompleteApplicationCommands;
 import com.discord.widgets.chat.input.models.CommandOptionValue;
 import com.discord.widgets.chat.input.models.InputCommandContext;
-import com.discord.widgets.chat.input.models.MentionInputModel$VerifiedCommandInputModel;
+import com.discord.widgets.chat.input.models.MentionInputModel;
 import com.discord.widgets.chat.input.models.OptionRange;
 import com.lytefast.flexinput.model.Attachment;
 import d0.g0.e;
@@ -45,10 +43,62 @@ import kotlin.text.Regex;
 public final class AutocompleteCommandUtils {
     public static final AutocompleteCommandUtils INSTANCE = new AutocompleteCommandUtils();
 
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$2;
+
+        static {
+            ApplicationCommandType.values();
+            int[] iArr = new int[12];
+            $EnumSwitchMapping$0 = iArr;
+            ApplicationCommandType applicationCommandType = ApplicationCommandType.USER;
+            iArr[applicationCommandType.ordinal()] = 1;
+            ApplicationCommandType applicationCommandType2 = ApplicationCommandType.CHANNEL;
+            iArr[applicationCommandType2.ordinal()] = 2;
+            ApplicationCommandType applicationCommandType3 = ApplicationCommandType.ROLE;
+            iArr[applicationCommandType3.ordinal()] = 3;
+            ApplicationCommandType applicationCommandType4 = ApplicationCommandType.MENTIONABLE;
+            iArr[applicationCommandType4.ordinal()] = 4;
+            ApplicationCommandType.values();
+            int[] iArr2 = new int[12];
+            $EnumSwitchMapping$1 = iArr2;
+            iArr2[ApplicationCommandType.SUBCOMMAND.ordinal()] = 1;
+            iArr2[ApplicationCommandType.SUBCOMMAND_GROUP.ordinal()] = 2;
+            ApplicationCommandType applicationCommandType5 = ApplicationCommandType.STRING;
+            iArr2[applicationCommandType5.ordinal()] = 3;
+            ApplicationCommandType applicationCommandType6 = ApplicationCommandType.INTEGER;
+            iArr2[applicationCommandType6.ordinal()] = 4;
+            ApplicationCommandType applicationCommandType7 = ApplicationCommandType.NUMBER;
+            iArr2[applicationCommandType7.ordinal()] = 5;
+            ApplicationCommandType applicationCommandType8 = ApplicationCommandType.BOOLEAN;
+            iArr2[applicationCommandType8.ordinal()] = 6;
+            iArr2[applicationCommandType.ordinal()] = 7;
+            iArr2[applicationCommandType2.ordinal()] = 8;
+            iArr2[applicationCommandType3.ordinal()] = 9;
+            iArr2[applicationCommandType4.ordinal()] = 10;
+            iArr2[ApplicationCommandType.UNKNOWN.ordinal()] = 11;
+            ApplicationCommandType applicationCommandType9 = ApplicationCommandType.ATTACHMENT;
+            iArr2[applicationCommandType9.ordinal()] = 12;
+            ApplicationCommandType.values();
+            int[] iArr3 = new int[12];
+            $EnumSwitchMapping$2 = iArr3;
+            iArr3[applicationCommandType5.ordinal()] = 1;
+            iArr3[applicationCommandType6.ordinal()] = 2;
+            iArr3[applicationCommandType7.ordinal()] = 3;
+            iArr3[applicationCommandType8.ordinal()] = 4;
+            iArr3[applicationCommandType.ordinal()] = 5;
+            iArr3[applicationCommandType2.ordinal()] = 6;
+            iArr3[applicationCommandType3.ordinal()] = 7;
+            iArr3[applicationCommandType4.ordinal()] = 8;
+            iArr3[applicationCommandType9.ordinal()] = 9;
+        }
+    }
+
     private AutocompleteCommandUtils() {
     }
 
-    public static /* synthetic */ InputEditTextAction$InsertText appendParam$default(AutocompleteCommandUtils autocompleteCommandUtils, CharSequence charSequence, ApplicationCommandOption applicationCommandOption, Integer num, int i, Object obj) {
+    public static /* synthetic */ InputEditTextAction.InsertText appendParam$default(AutocompleteCommandUtils autocompleteCommandUtils, CharSequence charSequence, ApplicationCommandOption applicationCommandOption, Integer num, int i, Object obj) {
         if ((i & 4) != 0) {
             num = null;
         }
@@ -57,7 +107,7 @@ public final class AutocompleteCommandUtils {
 
     /* JADX WARN: Code duplicated, block: B:17:0x004f  */
     @MainThread
-    public final InputEditTextAction$InsertText appendParam(CharSequence input, ApplicationCommandOption applicationCommandsOption, Integer insertIndex) {
+    public final InputEditTextAction.InsertText appendParam(CharSequence input, ApplicationCommandOption applicationCommandsOption, Integer insertIndex) {
         m.checkNotNullParameter(input, "input");
         m.checkNotNullParameter(applicationCommandsOption, "applicationCommandsOption");
         input.length();
@@ -76,11 +126,11 @@ public final class AutocompleteCommandUtils {
         }
         String strW = a.w(string, str);
         int iIntValue = insertIndex != null ? insertIndex.intValue() : input.length();
-        return new InputEditTextAction$InsertText(input, strW, new IntRange(iIntValue, iIntValue), strW.length() + input.length());
+        return new InputEditTextAction.InsertText(input, strW, new IntRange(iIntValue, iIntValue), strW.length() + input.length());
     }
 
     @MainThread
-    public final InputEditTextAction appendTextForCommandForInput(MentionInputModel$VerifiedCommandInputModel model) {
+    public final InputEditTextAction appendTextForCommandForInput(MentionInputModel.VerifiedCommandInputModel model) {
         m.checkNotNullParameter(model, "model");
         ApplicationCommand selectedCommand = model.getInputCommandContext().getSelectedCommand();
         if (selectedCommand != null && selectedCommand.getOptions().size() == 1) {
@@ -93,7 +143,7 @@ public final class AutocompleteCommandUtils {
                 return appendParam(model.getInput(), applicationCommandOption, Integer.valueOf(string.length()));
             }
         }
-        return new InputEditTextAction$None(model.getInput());
+        return new InputEditTextAction.None(model.getInput());
     }
 
     private final Number asSafeNumberOrNull(Number number) {

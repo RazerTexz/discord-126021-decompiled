@@ -16,10 +16,42 @@ public class b extends AbstractExecutorService {
     public final Executor l;
     public volatile int m;
     public final BlockingQueue<Runnable> n;
-    public final b$b o;
+    public final RunnableC0066b o;
     public final AtomicInteger p;
     public final AtomicInteger q;
     public static final Class<?> j = b.class;
+
+    /* JADX INFO: renamed from: b.f.d.b.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: ConstrainedExecutorService.java */
+    public class RunnableC0066b implements Runnable {
+        public RunnableC0066b(a aVar) {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            try {
+                Runnable runnablePoll = b.this.n.poll();
+                if (runnablePoll != null) {
+                    runnablePoll.run();
+                } else {
+                    Class<?> cls = b.j;
+                    Class<?> cls2 = b.j;
+                    String str = b.this.k;
+                    int i = b.f.d.e.a.a;
+                }
+            } finally {
+                b.this.p.decrementAndGet();
+                if (b.this.n.isEmpty()) {
+                    Class<?> cls3 = b.j;
+                    Class<?> cls4 = b.j;
+                    String str2 = b.this.k;
+                    int i2 = b.f.d.e.a.a;
+                } else {
+                    b.this.a();
+                }
+            }
+        }
+    }
 
     public b(String str, int i, Executor executor, BlockingQueue<Runnable> blockingQueue) {
         if (i <= 0) {
@@ -29,7 +61,7 @@ public class b extends AbstractExecutorService {
         this.l = executor;
         this.m = i;
         this.n = blockingQueue;
-        this.o = new b$b(this, null);
+        this.o = new RunnableC0066b(null);
         this.p = new AtomicInteger(0);
         this.q = new AtomicInteger(0);
     }

@@ -3,9 +3,10 @@ package com.discord.widgets.contact_sync;
 import android.view.View;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppDialog;
 import com.discord.databinding.ViewDialogConfirmationBinding;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
@@ -14,20 +15,56 @@ import com.google.android.material.button.MaterialButton;
 import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: AddFriendsFailed.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class AddFriendsFailed extends AppDialog {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(AddFriendsFailed.class, "binding", "getBinding()Lcom/discord/databinding/ViewDialogConfirmationBinding;", 0)};
-    public static final AddFriendsFailed$Companion Companion = new AddFriendsFailed$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
     private Function0<Unit> onClose;
 
+    /* JADX INFO: renamed from: com.discord.widgets.contact_sync.AddFriendsFailed$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AddFriendsFailed.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            AddFriendsFailed.this.dismiss();
+            Function0<Unit> onClose = AddFriendsFailed.this.getOnClose();
+            if (onClose != null) {
+                onClose.invoke();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: AddFriendsFailed.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final AddFriendsFailed show(FragmentManager fragmentManager) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            AddFriendsFailed addFriendsFailed = new AddFriendsFailed();
+            addFriendsFailed.show(fragmentManager, AddFriendsFailed.class.getSimpleName());
+            return addFriendsFailed;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public AddFriendsFailed() {
-        super(R$layout.view_dialog_confirmation);
+        super(R.layout.view_dialog_confirmation);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, AddFriendsFailed$binding$2.INSTANCE, null, 2, null);
     }
 
@@ -45,14 +82,14 @@ public final class AddFriendsFailed extends AppDialog {
         super.onViewBound(view);
         TextView textView = getBinding().d;
         m.checkNotNullExpressionValue(textView, "binding.viewDialogConfirmationHeader");
-        textView.setText(b.k(this, 2131889458, new Object[0], null, 4));
+        textView.setText(b.k(this, R.string.friend_request_failed_header, new Object[0], null, 4));
         TextView textView2 = getBinding().e;
         m.checkNotNullExpressionValue(textView2, "binding.viewDialogConfirmationText");
-        textView2.setText(b.k(this, 2131889456, new Object[0], null, 4));
+        textView2.setText(b.k(this, R.string.friend_request_failed_body, new Object[0], null, 4));
         MaterialButton materialButton = getBinding().c;
         m.checkNotNullExpressionValue(materialButton, "binding.viewDialogConfirmationConfirm");
-        materialButton.setText(b.k(this, 2131893499, new Object[0], null, 4));
-        getBinding().c.setOnClickListener(new AddFriendsFailed$onViewBound$1(this));
+        materialButton.setText(b.k(this, R.string.okay, new Object[0], null, 4));
+        getBinding().c.setOnClickListener(new AnonymousClass1());
         MaterialButton materialButton2 = getBinding().f2185b;
         m.checkNotNullExpressionValue(materialButton2, "binding.viewDialogConfirmationCancel");
         materialButton2.setVisibility(8);

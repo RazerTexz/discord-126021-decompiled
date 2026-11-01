@@ -66,7 +66,7 @@ public abstract class d implements Closeable, Flushable {
         }
     }
 
-    public abstract d b(d$a d_a);
+    public abstract d b(a aVar);
 
     public void b0(Object obj, int i) throws IOException {
         W();
@@ -80,7 +80,7 @@ public abstract class d implements Closeable, Flushable {
     @Override // java.io.Closeable, java.lang.AutoCloseable
     public abstract void close() throws IOException;
 
-    public abstract boolean d(d$a d_a);
+    public abstract boolean d(a aVar);
 
     public void d0(Object obj) throws IOException {
         c0();
@@ -94,7 +94,7 @@ public abstract class d implements Closeable, Flushable {
         }
     }
 
-    public abstract int f(a aVar, InputStream inputStream, int i) throws IOException;
+    public abstract int f(b.g.a.b.a aVar, InputStream inputStream, int i) throws IOException;
 
     public void f0(Object obj, int i) throws IOException {
         c0();
@@ -107,7 +107,7 @@ public abstract class d implements Closeable, Flushable {
 
     public abstract void m0(char[] cArr, int i, int i2) throws IOException;
 
-    public abstract void n(a aVar, byte[] bArr, int i, int i2) throws IOException;
+    public abstract void n(b.g.a.b.a aVar, byte[] bArr, int i, int i2) throws IOException;
 
     public void q(byte[] bArr) throws IOException {
         n(b.f656b, bArr, 0, bArr.length);
@@ -122,4 +122,45 @@ public abstract class d implements Closeable, Flushable {
     public abstract void x(k kVar) throws IOException;
 
     public abstract void y(String str) throws IOException;
+
+    /* JADX INFO: compiled from: JsonGenerator.java */
+    public enum a {
+        AUTO_CLOSE_TARGET(true),
+        AUTO_CLOSE_JSON_CONTENT(true),
+        FLUSH_PASSED_TO_STREAM(true),
+        QUOTE_FIELD_NAMES(true),
+        QUOTE_NON_NUMERIC_NUMBERS(true),
+        ESCAPE_NON_ASCII(false),
+        WRITE_NUMBERS_AS_STRINGS(false),
+        WRITE_BIGDECIMAL_AS_PLAIN(false),
+        STRICT_DUPLICATE_DETECTION(false),
+        IGNORE_UNKNOWN(false);
+
+        private final boolean _defaultState;
+        private final int _mask = 1 << ordinal();
+
+        a(boolean z2) {
+            this._defaultState = z2;
+        }
+
+        public static int f() {
+            a[] aVarArrValues = values();
+            int i = 0;
+            for (int i2 = 0; i2 < 10; i2++) {
+                a aVar = aVarArrValues[i2];
+                if (aVar._defaultState) {
+                    i |= aVar._mask;
+                }
+            }
+            return i;
+        }
+
+        public boolean g(int i) {
+            return (i & this._mask) != 0;
+        }
+
+        public int h() {
+            return this._mask;
+        }
+    }
 }

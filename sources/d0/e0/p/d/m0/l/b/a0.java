@@ -1,13 +1,28 @@
 package d0.e0.p.d.m0.l.b;
 
-import d0.e0.p.d.m0.c.b$a;
-
 /* JADX INFO: compiled from: ProtoEnumFlagsUtils.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class a0 {
+
+    /* JADX INFO: compiled from: ProtoEnumFlagsUtils.kt */
+    public final /* synthetic */ class a {
+        public static final /* synthetic */ int[] a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public static final /* synthetic */ int[] f3482b;
+
+        static {
+            d0.e0.p.d.m0.f.j.values();
+            a = new int[]{1, 2, 3, 4};
+            d0.e0.p.d.m0.c.b.a.values();
+            d0.e0.p.d.m0.f.x.values();
+            f3482b = new int[]{1, 2, 4, 5, 3, 6};
+        }
+    }
+
     public static final d0.e0.p.d.m0.c.u descriptorVisibility(z zVar, d0.e0.p.d.m0.f.x xVar) {
         d0.z.d.m.checkNotNullParameter(zVar, "<this>");
-        switch (xVar == null ? -1 : a0$a.f3482b[xVar.ordinal()]) {
+        switch (xVar == null ? -1 : a.f3482b[xVar.ordinal()]) {
             case 1:
                 d0.e0.p.d.m0.c.u uVar = d0.e0.p.d.m0.c.t.d;
                 d0.z.d.m.checkNotNullExpressionValue(uVar, "INTERNAL");
@@ -39,19 +54,19 @@ public final class a0 {
         }
     }
 
-    public static final b$a memberKind(z zVar, d0.e0.p.d.m0.f.j jVar) {
-        b$a b_a = b$a.DECLARATION;
+    public static final d0.e0.p.d.m0.c.b.a memberKind(z zVar, d0.e0.p.d.m0.f.j jVar) {
+        d0.e0.p.d.m0.c.b.a aVar = d0.e0.p.d.m0.c.b.a.DECLARATION;
         d0.z.d.m.checkNotNullParameter(zVar, "<this>");
-        int i = jVar == null ? -1 : a0$a.a[jVar.ordinal()];
+        int i = jVar == null ? -1 : a.a[jVar.ordinal()];
         if (i == 1) {
-            return b_a;
+            return aVar;
         }
         if (i == 2) {
-            return b$a.FAKE_OVERRIDE;
+            return d0.e0.p.d.m0.c.b.a.FAKE_OVERRIDE;
         }
         if (i != 3) {
-            return i != 4 ? b_a : b$a.SYNTHESIZED;
+            return i != 4 ? aVar : d0.e0.p.d.m0.c.b.a.SYNTHESIZED;
         }
-        return b$a.DELEGATION;
+        return d0.e0.p.d.m0.c.b.a.DELEGATION;
     }
 }

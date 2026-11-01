@@ -3,45 +3,264 @@ package b.a.a.d;
 import android.content.Context;
 import androidx.annotation.StringRes;
 import b.a.d.d0;
+import com.discord.R;
+import com.discord.models.member.GuildMember;
 import com.discord.models.user.User;
 import com.discord.stores.StoreChannels;
 import com.discord.stores.StoreGuilds;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import com.discord.stores.StoreUser;
 import com.discord.stores.StoreUserRelationships;
+import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.z.d.m;
+import d0.z.d.o;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
 import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class f extends d0<f$d> {
-    public static final f$a j = new f$a(null);
-    public final PublishSubject<f$b> k;
+public final class f extends d0<d> {
+    public static final a j = new a(null);
+    public final PublishSubject<b> k;
     public final long l;
     public final RestAPI m;
+
+    /* JADX INFO: renamed from: b.a.a.d.f$f, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
+    public final class C0023f extends o implements Function1<Error, Unit> {
+        public C0023f() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public Unit invoke(Error error) {
+            m.checkNotNullParameter(error, "it");
+            PublishSubject<b> publishSubject = f.this.k;
+            publishSubject.k.onNext(new b.a(R.string.default_failure_to_perform_action_message));
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
+    public abstract class b {
+
+        /* JADX INFO: renamed from: b.a.a.d.f$b$b, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
+        public final class C0022b extends b {
+            public final int a;
+
+            public C0022b(int i) {
+                super(null);
+                this.a = i;
+            }
+
+            public boolean equals(Object obj) {
+                if (this != obj) {
+                    return (obj instanceof C0022b) && this.a == ((C0022b) obj).a;
+                }
+                return true;
+            }
+
+            public int hashCode() {
+                return this.a;
+            }
+
+            public String toString() {
+                return b.d.b.a.a.B(b.d.b.a.a.U("Success(successMessageStringRes="), this.a, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
+        public final class a extends b {
+            public final int a;
+
+            public a(int i) {
+                super(null);
+                this.a = i;
+            }
+
+            public boolean equals(Object obj) {
+                if (this != obj) {
+                    return (obj instanceof a) && this.a == ((a) obj).a;
+                }
+                return true;
+            }
+
+            public int hashCode() {
+                return this.a;
+            }
+
+            public String toString() {
+                return b.d.b.a.a.B(b.d.b.a.a.U("Failure(failureMessageStringRes="), this.a, ")");
+            }
+        }
+
+        public b() {
+        }
+
+        public b(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
+    public final class c {
+        public final User a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final Integer f46b;
+        public final GuildMember c;
+
+        public c(User user, Integer num, GuildMember guildMember) {
+            this.a = user;
+            this.f46b = num;
+            this.c = guildMember;
+        }
+    }
+
+    /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
+    public abstract class d {
+
+        /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
+        public final class a extends d {
+            public final User a;
+
+            /* JADX INFO: renamed from: b, reason: collision with root package name */
+            public final String f47b;
+            public final boolean c;
+            public final boolean d;
+            public final boolean e;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public a(User user, String str, boolean z2, boolean z3, boolean z4) {
+                super(null);
+                m.checkNotNullParameter(user, "user");
+                this.a = user;
+                this.f47b = str;
+                this.c = z2;
+                this.d = z3;
+                this.e = z4;
+            }
+
+            public boolean equals(Object obj) {
+                if (this == obj) {
+                    return true;
+                }
+                if (!(obj instanceof a)) {
+                    return false;
+                }
+                a aVar = (a) obj;
+                return m.areEqual(this.a, aVar.a) && m.areEqual(this.f47b, aVar.f47b) && this.c == aVar.c && this.d == aVar.d && this.e == aVar.e;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            /* JADX WARN: Type inference failed for: r0v10, types: [int] */
+            /* JADX WARN: Type inference failed for: r0v6, types: [int] */
+            /* JADX WARN: Type inference failed for: r0v8, types: [int] */
+            /* JADX WARN: Type inference failed for: r1v10 */
+            /* JADX WARN: Type inference failed for: r1v11 */
+            /* JADX WARN: Type inference failed for: r1v3, types: [int] */
+            /* JADX WARN: Type inference failed for: r1v5, types: [int] */
+            /* JADX WARN: Type inference failed for: r1v7 */
+            /* JADX WARN: Type inference failed for: r1v8 */
+            /* JADX WARN: Type inference failed for: r2v1 */
+            /* JADX WARN: Type inference failed for: r2v2, types: [int] */
+            /* JADX WARN: Type inference failed for: r2v3 */
+            public int hashCode() {
+                User user = this.a;
+                int iHashCode = (user != null ? user.hashCode() : 0) * 31;
+                String str = this.f47b;
+                int iHashCode2 = (iHashCode + (str != null ? str.hashCode() : 0)) * 31;
+                boolean z2 = this.c;
+                ?? r1 = z2;
+                if (z2) {
+                    r1 = 1;
+                }
+                int i = (iHashCode2 + r1) * 31;
+                boolean z3 = this.d;
+                ?? r2 = z3;
+                if (z3) {
+                    r2 = 1;
+                }
+                int i2 = (i + r2) * 31;
+                boolean z4 = this.e;
+                return i2 + (z4 ? 1 : z4);
+            }
+
+            public String toString() {
+                StringBuilder sbU = b.d.b.a.a.U("Loaded(user=");
+                sbU.append(this.a);
+                sbU.append(", userNickname=");
+                sbU.append(this.f47b);
+                sbU.append(", showBlockItem=");
+                sbU.append(this.c);
+                sbU.append(", showUnblockItem=");
+                sbU.append(this.d);
+                sbU.append(", showRemoveFriendItem=");
+                return b.d.b.a.a.O(sbU, this.e, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
+        public final class b extends d {
+            public static final b a = new b();
+
+            public b() {
+                super(null);
+            }
+        }
+
+        public d(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    /* JADX INFO: compiled from: UserActionsDialogViewModel.kt */
+    public final class e extends o implements Function1<Void, Unit> {
+        public final /* synthetic */ int $successMessageStringRes;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public e(int i) {
+            super(1);
+            this.$successMessageStringRes = i;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public Unit invoke(Void r3) {
+            f fVar = f.this;
+            int i = this.$successMessageStringRes;
+            PublishSubject<b> publishSubject = fVar.k;
+            publishSubject.k.onNext(new b.C0022b(i));
+            return Unit.a;
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public f(long j2, long j3, RestAPI restAPI, Observable observable, int i) {
         Observable observableR;
-        super(f$d$b.a);
-        RestAPI api = (i & 4) != 0 ? RestAPI.Companion.getApi() : null;
+        super(d.b.a);
+        RestAPI api = (i & 4) != 0 ? RestAPI.INSTANCE.getApi() : null;
         if ((i & 8) != 0) {
-            StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-            StoreUser users = storeStream$Companion.getUsers();
-            StoreUserRelationships userRelationships = storeStream$Companion.getUserRelationships();
-            StoreGuilds guilds = storeStream$Companion.getGuilds();
-            StoreChannels channels = storeStream$Companion.getChannels();
+            StoreStream.Companion companion = StoreStream.INSTANCE;
+            StoreUser users = companion.getUsers();
+            StoreUserRelationships userRelationships = companion.getUserRelationships();
+            StoreGuilds guilds = companion.getGuilds();
+            StoreChannels channels = companion.getChannels();
             Observable<User> observableObserveUser = users.observeUser(j2);
             Observable<Integer> observableObserve = userRelationships.observe(j2);
-            Observable observableR2 = channels.observeChannel(j3).Y(new d(guilds, j2)).r();
+            Observable observableR2 = channels.observeChannel(j3).Y(new b.a.a.d.d(guilds, j2)).r();
             m.checkNotNullExpressionValue(observableR2, "storeChannels\n          …  .distinctUntilChanged()");
-            observableR = Observable.i(observableObserveUser, observableObserve, observableR2, e.a).r();
+            observableR = Observable.i(observableObserveUser, observableObserve, observableR2, b.a.a.d.e.a).r();
             m.checkNotNullExpressionValue(observableR, "Observable.combineLatest…  .distinctUntilChanged()");
         } else {
             observableR = null;
@@ -51,10 +270,10 @@ public final class f extends d0<f$d> {
         this.l = j2;
         this.m = api;
         this.k = PublishSubject.k0();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableR), this, null, 2, null), f.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new b(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableR), this, null, 2, null), f.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new b.a.a.d.b(this), 62, (Object) null);
     }
 
     public final void removeRelationship(@StringRes int i) {
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.m.removeRelationship("User Profile", this.l), false, 1, null), this, null, 2, null), f.class, (Context) null, (Function1) null, new f$f(this), (Function0) null, (Function0) null, new f$e(this, i), 54, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.m.removeRelationship("User Profile", this.l), false, 1, null), this, null, 2, null), f.class, (Context) null, (Function1) null, new C0023f(), (Function0) null, (Function0) null, new e(i), 54, (Object) null);
     }
 }

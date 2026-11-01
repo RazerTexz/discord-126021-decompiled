@@ -3,32 +3,56 @@ package me.dm7.barcodescanner.zxing;
 import android.content.Context;
 import android.graphics.Rect;
 import android.hardware.Camera;
-import android.hardware.Camera$Size;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.AttributeSet;
 import android.util.Log;
 import b.i.a.f.e.o.f;
 import b.i.e.c;
-import b.i.e.d;
 import b.i.e.e;
 import b.i.e.g;
 import b.i.e.h;
 import com.google.zxing.NotFoundException;
 import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
-import e0.a.a.a.a;
+import e0.a.a.a.d;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes3.dex */
-public class ZXingScannerView extends a {
+public class ZXingScannerView extends e0.a.a.a.a {
     public static final List<b.i.e.a> D;
     public g E;
     public List<b.i.e.a> F;
-    public ZXingScannerView$b G;
+    public b G;
+
+    public class a implements Runnable {
+        public final /* synthetic */ Result j;
+
+        public a(Result result) {
+            this.j = result;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            ZXingScannerView zXingScannerView = ZXingScannerView.this;
+            b bVar = zXingScannerView.G;
+            zXingScannerView.G = null;
+            d dVar = zXingScannerView.k;
+            if (dVar != null) {
+                dVar.e();
+            }
+            if (bVar != null) {
+                bVar.handleResult(this.j);
+            }
+        }
+    }
+
+    public interface b {
+        void handleResult(Result result);
+    }
 
     static {
         ArrayList arrayList = new ArrayList();
@@ -94,8 +118,8 @@ public class ZXingScannerView extends a {
     }
 
     public final void c() {
-        EnumMap enumMap = new EnumMap(d.class);
-        enumMap.put(d.POSSIBLE_FORMATS, getFormats());
+        EnumMap enumMap = new EnumMap(b.i.e.d.class);
+        enumMap.put(b.i.e.d.POSSIBLE_FORMATS, getFormats());
         g gVar = new g();
         this.E = gVar;
         gVar.c(enumMap);
@@ -106,7 +130,7 @@ public class ZXingScannerView extends a {
         return list == null ? D : list;
     }
 
-    @Override // android.hardware.Camera$PreviewCallback
+    @Override // android.hardware.Camera.PreviewCallback
     public void onPreviewFrame(byte[] bArr, Camera camera) {
         byte[] bArr2;
         Result resultB;
@@ -114,7 +138,7 @@ public class ZXingScannerView extends a {
             return;
         }
         try {
-            Camera$Size previewSize = camera.getParameters().getPreviewSize();
+            Camera.Size previewSize = camera.getParameters().getPreviewSize();
             int i = previewSize.width;
             int i2 = previewSize.height;
             if (f.q0(getContext()) != 1) {
@@ -128,7 +152,7 @@ public class ZXingScannerView extends a {
                     i = i2;
                     i2 = i;
                 }
-                Camera$Size previewSize2 = camera.getParameters().getPreviewSize();
+                Camera.Size previewSize2 = camera.getParameters().getPreviewSize();
                 int i4 = previewSize2.width;
                 int i5 = previewSize2.height;
                 int rotationCount2 = getRotationCount();
@@ -198,7 +222,7 @@ public class ZXingScannerView extends a {
                 }
             }
             if (resultB2 != null) {
-                new Handler(Looper.getMainLooper()).post(new ZXingScannerView$a(this, resultB2));
+                new Handler(Looper.getMainLooper()).post(new a(resultB2));
             } else {
                 camera.setOneShotPreviewCallback(this);
             }
@@ -212,7 +236,7 @@ public class ZXingScannerView extends a {
         c();
     }
 
-    public void setResultHandler(ZXingScannerView$b zXingScannerView$b) {
-        this.G = zXingScannerView$b;
+    public void setResultHandler(b bVar) {
+        this.G = bVar;
     }
 }

@@ -4,23 +4,71 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.IInterface;
 import android.os.RemoteException;
-import b.i.a.d.a.a;
 import com.android.installreferrer.commons.InstallReferrerCommons;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
 public class InstallReferrerClientImpl extends InstallReferrerClient {
     public int a = 0;
-    public a c;
+    public b.i.a.d.a.a c;
     public ServiceConnection d;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final Context f2007b;
+
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface ClientState {
+        public static final int CLOSED = 3;
+        public static final int CONNECTED = 2;
+        public static final int CONNECTING = 1;
+        public static final int DISCONNECTED = 0;
+    }
+
+    public final class b implements ServiceConnection {
+        public final InstallReferrerStateListener j;
+
+        public b(InstallReferrerStateListener installReferrerStateListener, a aVar) {
+            if (installReferrerStateListener == null) {
+                throw new RuntimeException("Please specify a listener to know when setup is done.");
+            }
+            this.j = installReferrerStateListener;
+        }
+
+        @Override // android.content.ServiceConnection
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            b.i.a.d.a.a c0108a;
+            InstallReferrerCommons.logVerbose("InstallReferrerClient", "Install Referrer service connected.");
+            InstallReferrerClientImpl installReferrerClientImpl = InstallReferrerClientImpl.this;
+            int i = b.i.a.d.a.a.AbstractBinderC0107a.a;
+            if (iBinder == null) {
+                c0108a = null;
+            } else {
+                IInterface iInterfaceQueryLocalInterface = iBinder.queryLocalInterface("com.google.android.finsky.externalreferrer.IGetInstallReferrerService");
+                c0108a = iInterfaceQueryLocalInterface instanceof b.i.a.d.a.a ? (b.i.a.d.a.a) iInterfaceQueryLocalInterface : new b.i.a.d.a.a.AbstractBinderC0107a.C0108a(iBinder);
+            }
+            installReferrerClientImpl.c = c0108a;
+            InstallReferrerClientImpl.this.a = 2;
+            this.j.onInstallReferrerSetupFinished(0);
+        }
+
+        @Override // android.content.ServiceConnection
+        public void onServiceDisconnected(ComponentName componentName) {
+            InstallReferrerCommons.logWarn("InstallReferrerClient", "Install Referrer service disconnected.");
+            InstallReferrerClientImpl installReferrerClientImpl = InstallReferrerClientImpl.this;
+            installReferrerClientImpl.c = null;
+            installReferrerClientImpl.a = 0;
+            this.j.onInstallReferrerServiceDisconnected();
+        }
+    }
 
     public InstallReferrerClientImpl(Context context) {
         this.f2007b = context.getApplicationContext();
@@ -93,14 +141,14 @@ public class InstallReferrerClientImpl extends InstallReferrerClient {
         if ("com.android.vending".equals(str) && str2 != null) {
             try {
                 z2 = this.f2007b.getPackageManager().getPackageInfo("com.android.vending", 128).versionCode >= 80837300;
-            } catch (PackageManager$NameNotFoundException unused) {
+            } catch (PackageManager.NameNotFoundException unused) {
             }
             if (z2) {
                 Intent intent2 = new Intent(intent);
-                InstallReferrerClientImpl$b installReferrerClientImpl$b = new InstallReferrerClientImpl$b(this, installReferrerStateListener, null);
-                this.d = installReferrerClientImpl$b;
+                b bVar = new b(installReferrerStateListener, null);
+                this.d = bVar;
                 try {
-                    if (this.f2007b.bindService(intent2, installReferrerClientImpl$b, 1)) {
+                    if (this.f2007b.bindService(intent2, bVar, 1)) {
                         InstallReferrerCommons.logVerbose("InstallReferrerClient", "Service was bonded successfully.");
                         return;
                     }

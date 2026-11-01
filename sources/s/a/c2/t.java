@@ -1,10 +1,8 @@
 package s.a.c2;
 
 import com.discord.widgets.chat.input.MentionUtilsKt;
-import d0.k$a;
 import kotlin.Unit;
 import kotlinx.coroutines.CancellableContinuation;
-import s.a.a.k$b;
 
 /* JADX INFO: compiled from: AbstractChannel.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -32,12 +30,12 @@ public class t<E> extends r {
     public void s(i<?> iVar) {
         CancellableContinuation<Unit> cancellableContinuation = this.n;
         Throwable thW = iVar.w();
-        k$a k_a = d0.k.j;
+        d0.k.a aVar = d0.k.j;
         cancellableContinuation.resumeWith(d0.k.m97constructorimpl(d0.l.createFailure(thW)));
     }
 
     @Override // s.a.c2.r
-    public s.a.a.t t(k$b k_b) {
+    public s.a.a.t t(s.a.a.k.b bVar) {
         if (this.n.c(Unit.a, null) != null) {
             return s.a.m.a;
         }

@@ -6,20 +6,20 @@ public final class o {
     public static final p findKotlinClass(n nVar, d0.e0.p.d.m0.g.a aVar) {
         d0.z.d.m.checkNotNullParameter(nVar, "<this>");
         d0.z.d.m.checkNotNullParameter(aVar, "classId");
-        n$a n_aFindKotlinClassOrContent = nVar.findKotlinClassOrContent(aVar);
-        if (n_aFindKotlinClassOrContent == null) {
+        n.a aVarFindKotlinClassOrContent = nVar.findKotlinClassOrContent(aVar);
+        if (aVarFindKotlinClassOrContent == null) {
             return null;
         }
-        return n_aFindKotlinClassOrContent.toKotlinJvmBinaryClass();
+        return aVarFindKotlinClassOrContent.toKotlinJvmBinaryClass();
     }
 
     public static final p findKotlinClass(n nVar, d0.e0.p.d.m0.e.a.k0.g gVar) {
         d0.z.d.m.checkNotNullParameter(nVar, "<this>");
         d0.z.d.m.checkNotNullParameter(gVar, "javaClass");
-        n$a n_aFindKotlinClassOrContent = nVar.findKotlinClassOrContent(gVar);
-        if (n_aFindKotlinClassOrContent == null) {
+        n.a aVarFindKotlinClassOrContent = nVar.findKotlinClassOrContent(gVar);
+        if (aVarFindKotlinClassOrContent == null) {
             return null;
         }
-        return n_aFindKotlinClassOrContent.toKotlinJvmBinaryClass();
+        return aVarFindKotlinClassOrContent.toKotlinJvmBinaryClass();
     }
 }

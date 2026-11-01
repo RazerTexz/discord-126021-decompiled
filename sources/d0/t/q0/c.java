@@ -4,9 +4,12 @@ import d0.t.j;
 import d0.z.d.m;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
-import java.util.Map$Entry;
+import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Set;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: MapBuilder.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -14,18 +17,267 @@ public final class c<K, V> implements Map<K, V>, d0.z.d.g0.d {
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public int[] f3583s;
-    public static final c$a j = new c$a(null);
+    public static final a j = new a(null);
     public int k;
     public int l;
-    public e<K> m;
-    public f<V> n;
-    public d<K, V> o;
+    public d0.t.q0.e<K> m;
+    public d0.t.q0.f<V> n;
+    public d0.t.q0.d<K, V> o;
     public boolean p;
     public K[] q;
     public V[] r;
     public int[] t;
     public int u;
     public int v;
+
+    /* JADX INFO: renamed from: d0.t.q0.c$c, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: MapBuilder.kt */
+    public final class C0596c<K, V> implements Map.Entry<K, V>, d0.z.d.g0.a {
+        public final c<K, V> j;
+        public final int k;
+
+        public C0596c(c<K, V> cVar, int i) {
+            m.checkNotNullParameter(cVar, "map");
+            this.j = cVar;
+            this.k = i;
+        }
+
+        @Override // java.util.Map.Entry
+        public boolean equals(Object obj) {
+            if (obj instanceof Map.Entry) {
+                Map.Entry entry = (Map.Entry) obj;
+                if (m.areEqual(entry.getKey(), getKey()) && m.areEqual(entry.getValue(), getValue())) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        @Override // java.util.Map.Entry
+        public K getKey() {
+            return (K) c.access$getKeysArray$p(this.j)[this.k];
+        }
+
+        @Override // java.util.Map.Entry
+        public V getValue() {
+            Object[] objArrAccess$getValuesArray$p = c.access$getValuesArray$p(this.j);
+            m.checkNotNull(objArrAccess$getValuesArray$p);
+            return (V) objArrAccess$getValuesArray$p[this.k];
+        }
+
+        @Override // java.util.Map.Entry
+        public int hashCode() {
+            K key = getKey();
+            int iHashCode = key != null ? key.hashCode() : 0;
+            V value = getValue();
+            return iHashCode ^ (value != null ? value.hashCode() : 0);
+        }
+
+        @Override // java.util.Map.Entry
+        public V setValue(V v) {
+            this.j.checkIsMutable$kotlin_stdlib();
+            Object[] objArrAccess$allocateValuesArray = c.access$allocateValuesArray(this.j);
+            int i = this.k;
+            V v2 = (V) objArrAccess$allocateValuesArray[i];
+            objArrAccess$allocateValuesArray[i] = v;
+            return v2;
+        }
+
+        public String toString() {
+            return "" + getKey() + '=' + getValue();
+        }
+    }
+
+    /* JADX INFO: compiled from: MapBuilder.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public static final int access$computeHashSize(a aVar, int i) {
+            Objects.requireNonNull(aVar);
+            return Integer.highestOneBit(d0.d0.f.coerceAtLeast(i, 1) * 3);
+        }
+
+        public static final int access$computeShift(a aVar, int i) {
+            Objects.requireNonNull(aVar);
+            return Integer.numberOfLeadingZeros(i) + 1;
+        }
+    }
+
+    /* JADX INFO: compiled from: MapBuilder.kt */
+    public final class b<K, V> extends d<K, V> implements Iterator<Map.Entry<K, V>>, d0.z.d.g0.a {
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public b(c<K, V> cVar) {
+            super(cVar);
+            m.checkNotNullParameter(cVar, "map");
+        }
+
+        @Override // java.util.Iterator
+        public /* bridge */ /* synthetic */ Object next() {
+            return next();
+        }
+
+        public final void nextAppendString(StringBuilder sb) {
+            m.checkNotNullParameter(sb, "sb");
+            if (getIndex$kotlin_stdlib() >= c.access$getLength$p(getMap$kotlin_stdlib())) {
+                throw new NoSuchElementException();
+            }
+            int index$kotlin_stdlib = getIndex$kotlin_stdlib();
+            setIndex$kotlin_stdlib(index$kotlin_stdlib + 1);
+            setLastIndex$kotlin_stdlib(index$kotlin_stdlib);
+            Object obj = c.access$getKeysArray$p(getMap$kotlin_stdlib())[getLastIndex$kotlin_stdlib()];
+            if (m.areEqual(obj, getMap$kotlin_stdlib())) {
+                sb.append("(this Map)");
+            } else {
+                sb.append(obj);
+            }
+            sb.append('=');
+            Object[] objArrAccess$getValuesArray$p = c.access$getValuesArray$p(getMap$kotlin_stdlib());
+            m.checkNotNull(objArrAccess$getValuesArray$p);
+            Object obj2 = objArrAccess$getValuesArray$p[getLastIndex$kotlin_stdlib()];
+            if (m.areEqual(obj2, getMap$kotlin_stdlib())) {
+                sb.append("(this Map)");
+            } else {
+                sb.append(obj2);
+            }
+            initNext$kotlin_stdlib();
+        }
+
+        public final int nextHashCode$kotlin_stdlib() {
+            if (getIndex$kotlin_stdlib() >= c.access$getLength$p(getMap$kotlin_stdlib())) {
+                throw new NoSuchElementException();
+            }
+            int index$kotlin_stdlib = getIndex$kotlin_stdlib();
+            setIndex$kotlin_stdlib(index$kotlin_stdlib + 1);
+            setLastIndex$kotlin_stdlib(index$kotlin_stdlib);
+            Object obj = c.access$getKeysArray$p(getMap$kotlin_stdlib())[getLastIndex$kotlin_stdlib()];
+            int iHashCode = obj != null ? obj.hashCode() : 0;
+            Object[] objArrAccess$getValuesArray$p = c.access$getValuesArray$p(getMap$kotlin_stdlib());
+            m.checkNotNull(objArrAccess$getValuesArray$p);
+            Object obj2 = objArrAccess$getValuesArray$p[getLastIndex$kotlin_stdlib()];
+            int iHashCode2 = iHashCode ^ (obj2 != null ? obj2.hashCode() : 0);
+            initNext$kotlin_stdlib();
+            return iHashCode2;
+        }
+
+        @Override // java.util.Iterator
+        public C0596c<K, V> next() {
+            if (getIndex$kotlin_stdlib() >= c.access$getLength$p(getMap$kotlin_stdlib())) {
+                throw new NoSuchElementException();
+            }
+            int index$kotlin_stdlib = getIndex$kotlin_stdlib();
+            setIndex$kotlin_stdlib(index$kotlin_stdlib + 1);
+            setLastIndex$kotlin_stdlib(index$kotlin_stdlib);
+            C0596c<K, V> c0596c = new C0596c<>(getMap$kotlin_stdlib(), getLastIndex$kotlin_stdlib());
+            initNext$kotlin_stdlib();
+            return c0596c;
+        }
+    }
+
+    /* JADX INFO: compiled from: MapBuilder.kt */
+    public class d<K, V> {
+        public int j;
+        public int k;
+        public final c<K, V> l;
+
+        public d(c<K, V> cVar) {
+            m.checkNotNullParameter(cVar, "map");
+            this.l = cVar;
+            this.k = -1;
+            initNext$kotlin_stdlib();
+        }
+
+        public final int getIndex$kotlin_stdlib() {
+            return this.j;
+        }
+
+        public final int getLastIndex$kotlin_stdlib() {
+            return this.k;
+        }
+
+        public final c<K, V> getMap$kotlin_stdlib() {
+            return this.l;
+        }
+
+        public final boolean hasNext() {
+            return this.j < c.access$getLength$p(this.l);
+        }
+
+        public final void initNext$kotlin_stdlib() {
+            while (this.j < c.access$getLength$p(this.l)) {
+                int[] iArrAccess$getPresenceArray$p = c.access$getPresenceArray$p(this.l);
+                int i = this.j;
+                if (iArrAccess$getPresenceArray$p[i] >= 0) {
+                    return;
+                } else {
+                    this.j = i + 1;
+                }
+            }
+        }
+
+        public final void remove() {
+            if (!(this.k != -1)) {
+                throw new IllegalStateException("Call next() before removing element from the iterator.".toString());
+            }
+            this.l.checkIsMutable$kotlin_stdlib();
+            c.access$removeKeyAt(this.l, this.k);
+            this.k = -1;
+        }
+
+        public final void setIndex$kotlin_stdlib(int i) {
+            this.j = i;
+        }
+
+        public final void setLastIndex$kotlin_stdlib(int i) {
+            this.k = i;
+        }
+    }
+
+    /* JADX INFO: compiled from: MapBuilder.kt */
+    public final class e<K, V> extends d<K, V> implements Iterator<K>, d0.z.d.g0.a {
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public e(c<K, V> cVar) {
+            super(cVar);
+            m.checkNotNullParameter(cVar, "map");
+        }
+
+        @Override // java.util.Iterator
+        public K next() {
+            if (getIndex$kotlin_stdlib() >= c.access$getLength$p(getMap$kotlin_stdlib())) {
+                throw new NoSuchElementException();
+            }
+            int index$kotlin_stdlib = getIndex$kotlin_stdlib();
+            setIndex$kotlin_stdlib(index$kotlin_stdlib + 1);
+            setLastIndex$kotlin_stdlib(index$kotlin_stdlib);
+            K k = (K) c.access$getKeysArray$p(getMap$kotlin_stdlib())[getLastIndex$kotlin_stdlib()];
+            initNext$kotlin_stdlib();
+            return k;
+        }
+    }
+
+    /* JADX INFO: compiled from: MapBuilder.kt */
+    public final class f<K, V> extends d<K, V> implements Iterator<V>, d0.z.d.g0.a {
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public f(c<K, V> cVar) {
+            super(cVar);
+            m.checkNotNullParameter(cVar, "map");
+        }
+
+        @Override // java.util.Iterator
+        public V next() {
+            if (getIndex$kotlin_stdlib() >= c.access$getLength$p(getMap$kotlin_stdlib())) {
+                throw new NoSuchElementException();
+            }
+            int index$kotlin_stdlib = getIndex$kotlin_stdlib();
+            setIndex$kotlin_stdlib(index$kotlin_stdlib + 1);
+            setLastIndex$kotlin_stdlib(index$kotlin_stdlib);
+            Object[] objArrAccess$getValuesArray$p = c.access$getValuesArray$p(getMap$kotlin_stdlib());
+            m.checkNotNull(objArrAccess$getValuesArray$p);
+            V v = (V) objArrAccess$getValuesArray$p[getLastIndex$kotlin_stdlib()];
+            initNext$kotlin_stdlib();
+            return v;
+        }
+    }
 
     public c() {
         this(8);
@@ -36,7 +288,7 @@ public final class c<K, V> implements Map<K, V>, d0.z.d.g0.d {
         if (vArr != null) {
             return vArr;
         }
-        V[] vArr2 = (V[]) b.arrayOfUninitializedElements(this.q.length);
+        V[] vArr2 = (V[]) d0.t.q0.b.arrayOfUninitializedElements(this.q.length);
         this.r = vArr2;
         return vArr2;
     }
@@ -120,13 +372,13 @@ public final class c<K, V> implements Map<K, V>, d0.z.d.g0.d {
         if (i3 <= length) {
             i3 = length;
         }
-        this.q = (K[]) b.copyOfUninitializedElements(kArr, i3);
+        this.q = (K[]) d0.t.q0.b.copyOfUninitializedElements(kArr, i3);
         V[] vArr = this.r;
-        this.r = vArr != null ? (V[]) b.copyOfUninitializedElements(vArr, i3) : null;
+        this.r = vArr != null ? (V[]) d0.t.q0.b.copyOfUninitializedElements(vArr, i3) : null;
         int[] iArrCopyOf = Arrays.copyOf(this.f3583s, i3);
         m.checkNotNullExpressionValue(iArrCopyOf, "java.util.Arrays.copyOf(this, newSize)");
         this.f3583s = iArrCopyOf;
-        int iAccess$computeHashSize = c$a.access$computeHashSize(j, i3);
+        int iAccess$computeHashSize = a.access$computeHashSize(j, i3);
         if (iAccess$computeHashSize > this.t.length) {
             f(iAccess$computeHashSize);
         }
@@ -186,10 +438,10 @@ public final class c<K, V> implements Map<K, V>, d0.z.d.g0.d {
                 }
             }
         }
-        b.resetRange(this.q, 0, this.v);
+        d0.t.q0.b.resetRange(this.q, 0, this.v);
         V[] vArr = this.r;
         if (vArr != null) {
-            b.resetRange(vArr, 0, this.v);
+            d0.t.q0.b.resetRange(vArr, 0, this.v);
         }
         this.l = 0;
         this.v = 0;
@@ -200,7 +452,7 @@ public final class c<K, V> implements Map<K, V>, d0.z.d.g0.d {
         for (Object obj : collection) {
             if (obj != null) {
                 try {
-                    if (!containsEntry$kotlin_stdlib((Map$Entry) obj)) {
+                    if (!containsEntry$kotlin_stdlib((Map.Entry) obj)) {
                     }
                 } catch (ClassCastException unused) {
                 }
@@ -210,15 +462,15 @@ public final class c<K, V> implements Map<K, V>, d0.z.d.g0.d {
         return true;
     }
 
-    public final boolean containsEntry$kotlin_stdlib(Map$Entry<? extends K, ? extends V> map$Entry) {
-        m.checkNotNullParameter(map$Entry, "entry");
-        int iC = c(map$Entry.getKey());
+    public final boolean containsEntry$kotlin_stdlib(Map.Entry<? extends K, ? extends V> entry) {
+        m.checkNotNullParameter(entry, "entry");
+        int iC = c(entry.getKey());
         if (iC < 0) {
             return false;
         }
         V[] vArr = this.r;
         m.checkNotNull(vArr);
-        return m.areEqual(vArr[iC], map$Entry.getValue());
+        return m.areEqual(vArr[iC], entry.getValue());
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -254,12 +506,12 @@ public final class c<K, V> implements Map<K, V>, d0.z.d.g0.d {
         return ((k != null ? k.hashCode() : 0) * (-1640531527)) >>> this.k;
     }
 
-    public final c$b<K, V> entriesIterator$kotlin_stdlib() {
-        return new c$b<>(this);
+    public final b<K, V> entriesIterator$kotlin_stdlib() {
+        return new b<>(this);
     }
 
     @Override // java.util.Map
-    public final /* bridge */ Set<Map$Entry<K, V>> entrySet() {
+    public final /* bridge */ Set<Map.Entry<K, V>> entrySet() {
         return getEntries();
     }
 
@@ -299,16 +551,16 @@ public final class c<K, V> implements Map<K, V>, d0.z.d.g0.d {
                 }
                 i3++;
             }
-            b.resetRange(this.q, i4, i2);
+            d0.t.q0.b.resetRange(this.q, i4, i2);
             if (vArr != null) {
-                b.resetRange(vArr, i4, this.v);
+                d0.t.q0.b.resetRange(vArr, i4, this.v);
             }
             this.v = i4;
         }
         int[] iArr = this.t;
         if (i != iArr.length) {
             this.t = new int[i];
-            this.k = c$a.access$computeShift(j, i);
+            this.k = a.access$computeShift(j, i);
         } else {
             j.fill(iArr, 0, 0, iArr.length);
         }
@@ -341,7 +593,7 @@ public final class c<K, V> implements Map<K, V>, d0.z.d.g0.d {
     }
 
     public final void g(int i) {
-        b.resetAt(this.q, i);
+        d0.t.q0.b.resetAt(this.q, i);
         int length = this.f3583s[i];
         int iCoerceAtMost = d0.d0.f.coerceAtMost(this.u * 2, this.t.length / 2);
         int i2 = 0;
@@ -394,22 +646,22 @@ public final class c<K, V> implements Map<K, V>, d0.z.d.g0.d {
         return vArr[iC];
     }
 
-    public Set<Map$Entry<K, V>> getEntries() {
-        d<K, V> dVar = this.o;
+    public Set<Map.Entry<K, V>> getEntries() {
+        d0.t.q0.d<K, V> dVar = this.o;
         if (dVar != null) {
             return dVar;
         }
-        d<K, V> dVar2 = new d<>(this);
+        d0.t.q0.d<K, V> dVar2 = new d0.t.q0.d<>(this);
         this.o = dVar2;
         return dVar2;
     }
 
     public Set<K> getKeys() {
-        e<K> eVar = this.m;
+        d0.t.q0.e<K> eVar = this.m;
         if (eVar != null) {
             return eVar;
         }
-        e<K> eVar2 = new e<>(this);
+        d0.t.q0.e<K> eVar2 = new d0.t.q0.e<>(this);
         this.m = eVar2;
         return eVar2;
     }
@@ -419,21 +671,21 @@ public final class c<K, V> implements Map<K, V>, d0.z.d.g0.d {
     }
 
     public Collection<V> getValues() {
-        f<V> fVar = this.n;
+        d0.t.q0.f<V> fVar = this.n;
         if (fVar != null) {
             return fVar;
         }
-        f<V> fVar2 = new f<>(this);
+        d0.t.q0.f<V> fVar2 = new d0.t.q0.f<>(this);
         this.n = fVar2;
         return fVar2;
     }
 
     @Override // java.util.Map
     public int hashCode() {
-        c$b<K, V> c_bEntriesIterator$kotlin_stdlib = entriesIterator$kotlin_stdlib();
+        b<K, V> bVarEntriesIterator$kotlin_stdlib = entriesIterator$kotlin_stdlib();
         int iNextHashCode$kotlin_stdlib = 0;
-        while (c_bEntriesIterator$kotlin_stdlib.hasNext()) {
-            iNextHashCode$kotlin_stdlib += c_bEntriesIterator$kotlin_stdlib.nextHashCode$kotlin_stdlib();
+        while (bVarEntriesIterator$kotlin_stdlib.hasNext()) {
+            iNextHashCode$kotlin_stdlib += bVarEntriesIterator$kotlin_stdlib.nextHashCode$kotlin_stdlib();
         }
         return iNextHashCode$kotlin_stdlib;
     }
@@ -448,8 +700,8 @@ public final class c<K, V> implements Map<K, V>, d0.z.d.g0.d {
         return getKeys();
     }
 
-    public final c$e<K, V> keysIterator$kotlin_stdlib() {
-        return new c$e<>(this);
+    public final e<K, V> keysIterator$kotlin_stdlib() {
+        return new e<>(this);
     }
 
     @Override // java.util.Map
@@ -471,20 +723,20 @@ public final class c<K, V> implements Map<K, V>, d0.z.d.g0.d {
     public void putAll(Map<? extends K, ? extends V> map) {
         m.checkNotNullParameter(map, "from");
         checkIsMutable$kotlin_stdlib();
-        Set<Map$Entry<? extends K, ? extends V>> setEntrySet = map.entrySet();
+        Set<Map.Entry<? extends K, ? extends V>> setEntrySet = map.entrySet();
         if (setEntrySet.isEmpty()) {
             return;
         }
         b(setEntrySet.size());
-        for (Map$Entry<? extends K, ? extends V> map$Entry : setEntrySet) {
-            int iAddKey$kotlin_stdlib = addKey$kotlin_stdlib(map$Entry.getKey());
+        for (Map.Entry<? extends K, ? extends V> entry : setEntrySet) {
+            int iAddKey$kotlin_stdlib = addKey$kotlin_stdlib(entry.getKey());
             V[] vArrA = a();
             if (iAddKey$kotlin_stdlib >= 0) {
-                vArrA[iAddKey$kotlin_stdlib] = map$Entry.getValue();
+                vArrA[iAddKey$kotlin_stdlib] = entry.getValue();
             } else {
                 int i = (-iAddKey$kotlin_stdlib) - 1;
-                if (!m.areEqual(map$Entry.getValue(), vArrA[i])) {
-                    vArrA[i] = map$Entry.getValue();
+                if (!m.areEqual(entry.getValue(), vArrA[i])) {
+                    vArrA[i] = entry.getValue();
                 }
             }
         }
@@ -500,20 +752,20 @@ public final class c<K, V> implements Map<K, V>, d0.z.d.g0.d {
         V[] vArr = this.r;
         m.checkNotNull(vArr);
         V v = vArr[iRemoveKey$kotlin_stdlib];
-        b.resetAt(vArr, iRemoveKey$kotlin_stdlib);
+        d0.t.q0.b.resetAt(vArr, iRemoveKey$kotlin_stdlib);
         return v;
     }
 
-    public final boolean removeEntry$kotlin_stdlib(Map$Entry<? extends K, ? extends V> map$Entry) {
-        m.checkNotNullParameter(map$Entry, "entry");
+    public final boolean removeEntry$kotlin_stdlib(Map.Entry<? extends K, ? extends V> entry) {
+        m.checkNotNullParameter(entry, "entry");
         checkIsMutable$kotlin_stdlib();
-        int iC = c(map$Entry.getKey());
+        int iC = c(entry.getKey());
         if (iC < 0) {
             return false;
         }
         V[] vArr = this.r;
         m.checkNotNull(vArr);
-        if (!m.areEqual(vArr[iC], map$Entry.getValue())) {
+        if (!m.areEqual(vArr[iC], entry.getValue())) {
             return false;
         }
         g(iC);
@@ -548,13 +800,13 @@ public final class c<K, V> implements Map<K, V>, d0.z.d.g0.d {
     public String toString() {
         StringBuilder sb = new StringBuilder((size() * 3) + 2);
         sb.append("{");
-        c$b<K, V> c_bEntriesIterator$kotlin_stdlib = entriesIterator$kotlin_stdlib();
+        b<K, V> bVarEntriesIterator$kotlin_stdlib = entriesIterator$kotlin_stdlib();
         int i = 0;
-        while (c_bEntriesIterator$kotlin_stdlib.hasNext()) {
+        while (bVarEntriesIterator$kotlin_stdlib.hasNext()) {
             if (i > 0) {
                 sb.append(", ");
             }
-            c_bEntriesIterator$kotlin_stdlib.nextAppendString(sb);
+            bVarEntriesIterator$kotlin_stdlib.nextAppendString(sb);
             i++;
         }
         sb.append("}");
@@ -568,21 +820,21 @@ public final class c<K, V> implements Map<K, V>, d0.z.d.g0.d {
         return getValues();
     }
 
-    public final c$f<K, V> valuesIterator$kotlin_stdlib() {
-        return new c$f<>(this);
+    public final f<K, V> valuesIterator$kotlin_stdlib() {
+        return new f<>(this);
     }
 
     public c(int i) {
-        K[] kArr = (K[]) b.arrayOfUninitializedElements(i);
+        K[] kArr = (K[]) d0.t.q0.b.arrayOfUninitializedElements(i);
         int[] iArr = new int[i];
-        c$a c_a = j;
-        int iAccess$computeHashSize = c$a.access$computeHashSize(c_a, i);
+        a aVar = j;
+        int iAccess$computeHashSize = a.access$computeHashSize(aVar, i);
         this.q = kArr;
         this.r = null;
         this.f3583s = iArr;
         this.t = new int[iAccess$computeHashSize];
         this.u = 2;
         this.v = 0;
-        this.k = c$a.access$computeShift(c_a, iAccess$computeHashSize);
+        this.k = a.access$computeShift(aVar, iAccess$computeHashSize);
     }
 }

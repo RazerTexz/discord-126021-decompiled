@@ -8,7 +8,8 @@ import android.util.AttributeSet;
 import androidx.annotation.IntRange;
 import androidx.annotation.Nullable;
 import b.i.a.f.e.o.f;
-import com.yalantis.ucrop.UCropActivity$a;
+import com.yalantis.ucrop.UCropActivity;
+import java.lang.ref.WeakReference;
 import java.util.Arrays;
 
 /* JADX INFO: compiled from: CropImageView.java */
@@ -76,10 +77,10 @@ public class a extends c {
         if (cVar != null) {
             ((d) cVar).a.k.setTargetAspectRatio(this.A);
         }
-        c$a c_a = this.p;
-        if (c_a != null) {
-            ((UCropActivity$a) c_a).b(getCurrentScale());
-            ((UCropActivity$a) this.p).a(getCurrentAngle());
+        c.a aVar = this.p;
+        if (aVar != null) {
+            ((UCropActivity.a) aVar).b(getCurrentScale());
+            ((UCropActivity.a) this.p).a(getCurrentAngle());
         }
     }
 
@@ -228,9 +229,9 @@ public class a extends c {
             f3 = fCenterY;
         }
         if (z2) {
-            a$a a_a = new a$a(this, this.J, f4, f5, f2, f3, f, fMax, zJ);
-            this.D = a_a;
-            post(a_a);
+            RunnableC0182a runnableC0182a = new RunnableC0182a(this, this.J, f4, f5, f2, f3, f, fMax, zJ);
+            this.D = runnableC0182a;
+            post(runnableC0182a);
         } else {
             g(f2, f3);
             if (zJ) {
@@ -285,5 +286,97 @@ public class a extends c {
         this.H = 0;
         this.I = 0;
         this.J = 500L;
+    }
+
+    /* JADX INFO: compiled from: CropImageView.java */
+    public class b implements Runnable {
+        public final WeakReference<a> j;
+        public final long k;
+        public final float m;
+        public final float n;
+        public final float o;
+        public final float p;
+        public final long l = System.currentTimeMillis();
+
+        public b(a aVar, long j, float f, float f2, float f3, float f4) {
+            this.j = new WeakReference<>(aVar);
+            this.k = j;
+            this.m = f;
+            this.n = f2;
+            this.o = f3;
+            this.p = f4;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            a aVar = this.j.get();
+            if (aVar == null) {
+                return;
+            }
+            float fMin = Math.min(this.k, System.currentTimeMillis() - this.l);
+            float fT = f.T(fMin, 0.0f, this.n, this.k);
+            if (fMin >= this.k) {
+                aVar.setImageToWrapCropBounds(true);
+            } else {
+                aVar.l(this.m + fT, this.o, this.p);
+                aVar.post(this);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: b.q.a.l.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: CropImageView.java */
+    public class RunnableC0182a implements Runnable {
+
+        /* JADX INFO: renamed from: s, reason: collision with root package name */
+        public final boolean f1989s;
+        public final WeakReference<a> j;
+        public final long k;
+        public final float m;
+        public final float n;
+        public final float o;
+        public final float p;
+        public final float q;
+        public final float r;
+        public final long l = System.currentTimeMillis();
+
+        public RunnableC0182a(a aVar, long j, float f, float f2, float f3, float f4, float f5, float f6, boolean z2) {
+            this.j = new WeakReference<>(aVar);
+            this.k = j;
+            this.m = f;
+            this.n = f2;
+            this.o = f3;
+            this.p = f4;
+            this.q = f5;
+            this.r = f6;
+            this.f1989s = z2;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            a aVar = this.j.get();
+            if (aVar == null) {
+                return;
+            }
+            float fMin = Math.min(this.k, System.currentTimeMillis() - this.l);
+            float f = this.o;
+            float f2 = this.k;
+            float f3 = (fMin / f2) - 1.0f;
+            float f4 = (f3 * f3 * f3) + 1.0f;
+            float f5 = (f * f4) + 0.0f;
+            float f6 = (f4 * this.p) + 0.0f;
+            float fT = f.T(fMin, 0.0f, this.r, f2);
+            if (fMin < this.k) {
+                float[] fArr = aVar.k;
+                aVar.g(f5 - (fArr[0] - this.m), f6 - (fArr[1] - this.n));
+                if (!this.f1989s) {
+                    aVar.l(this.q + fT, aVar.f1987y.centerX(), aVar.f1987y.centerY());
+                }
+                if (aVar.j(aVar.j)) {
+                    return;
+                }
+                aVar.post(this);
+            }
+        }
     }
 }

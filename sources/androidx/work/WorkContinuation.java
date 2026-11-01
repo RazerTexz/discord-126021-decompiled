@@ -2,7 +2,6 @@ package androidx.work;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.view.LiveData;
 import b.i.b.d.a.a;
 import java.util.Collections;
@@ -16,7 +15,7 @@ public abstract class WorkContinuation {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public abstract WorkContinuation combineInternal(@NonNull List<WorkContinuation> list);
 
     @NonNull

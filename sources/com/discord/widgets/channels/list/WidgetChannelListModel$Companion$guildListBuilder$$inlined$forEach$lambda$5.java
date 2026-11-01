@@ -3,7 +3,6 @@ package com.discord.widgets.channels.list;
 import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.guild.GuildMaxVideoChannelUsers;
-import com.discord.api.guild.GuildMaxVideoChannelUsers$Unlimited;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
 import com.discord.api.guildscheduledevent.GuildScheduledEventStatus;
 import com.discord.models.guild.Guild;
@@ -101,10 +100,10 @@ public final class WidgetChannelListModel$Companion$guildListBuilder$$inlined$fo
         GuildMaxVideoChannelUsers maxVideoChannelUsers;
         boolean z3;
         boolean z4;
-        WidgetChannelListModel$Companion$VocalChannelData widgetChannelListModel$Companion$VocalChannelDataInvoke2 = this.$getVocalChannelData$2.invoke2(this.$channel);
+        WidgetChannelListModel.Companion.VocalChannelData vocalChannelDataInvoke2 = this.$getVocalChannelData$2.invoke2(this.$channel);
         ChannelListItemVoiceChannel channelListItemVoiceChannel = null;
         Object obj = null;
-        if (widgetChannelListModel$Companion$VocalChannelDataInvoke2 != null) {
+        if (vocalChannelDataInvoke2 != null) {
             for (Object obj2 : this.$guildScheduledEvents$inlined) {
                 GuildScheduledEvent guildScheduledEvent = (GuildScheduledEvent) obj2;
                 if (guildScheduledEvent.getStatus() == GuildScheduledEventStatus.ACTIVE) {
@@ -150,19 +149,19 @@ public final class WidgetChannelListModel$Companion$guildListBuilder$$inlined$fo
                 }
             }
             Channel channel = this.$channel;
-            boolean textChannelSelected = widgetChannelListModel$Companion$VocalChannelDataInvoke2.getTextChannelSelected();
-            boolean voiceChannelSelected = widgetChannelListModel$Companion$VocalChannelDataInvoke2.getVoiceChannelSelected();
+            boolean textChannelSelected = vocalChannelDataInvoke2.getTextChannelSelected();
+            boolean voiceChannelSelected = vocalChannelDataInvoke2.getVoiceChannelSelected();
             Long l = this.$permissions;
-            int mentionCount = widgetChannelListModel$Companion$VocalChannelDataInvoke2.getMentionCount();
-            boolean unread = widgetChannelListModel$Companion$VocalChannelDataInvoke2.getUnread();
-            int numUsersConnected = widgetChannelListModel$Companion$VocalChannelDataInvoke2.getNumUsersConnected();
-            boolean locked = widgetChannelListModel$Companion$VocalChannelDataInvoke2.getLocked();
-            boolean nsfw = widgetChannelListModel$Companion$VocalChannelDataInvoke2.getNsfw();
+            int mentionCount = vocalChannelDataInvoke2.getMentionCount();
+            boolean unread = vocalChannelDataInvoke2.getUnread();
+            int numUsersConnected = vocalChannelDataInvoke2.getNumUsersConnected();
+            boolean locked = vocalChannelDataInvoke2.getLocked();
+            boolean nsfw = vocalChannelDataInvoke2.getNsfw();
             Guild guild = this.$guild$inlined.getGuild();
             if (guild == null || (maxVideoChannelUsers = guild.getMaxVideoChannelUsers()) == null) {
-                maxVideoChannelUsers = GuildMaxVideoChannelUsers$Unlimited.INSTANCE;
+                maxVideoChannelUsers = GuildMaxVideoChannelUsers.Unlimited.INSTANCE;
             }
-            channelListItemVoiceChannel = new ChannelListItemVoiceChannel(channel, textChannelSelected, voiceChannelSelected, l, mentionCount, unread, numUsersConnected, locked, nsfw, z2, maxVideoChannelUsers, widgetChannelListModel$Companion$VocalChannelDataInvoke2.isGuildRoleSubscriptionLockedChannel(), widgetChannelListModel$Companion$VocalChannelDataInvoke2.isGuildRoleSubscriptionChannel(), guildScheduledEvent2);
+            channelListItemVoiceChannel = new ChannelListItemVoiceChannel(channel, textChannelSelected, voiceChannelSelected, l, mentionCount, unread, numUsersConnected, locked, nsfw, z2, maxVideoChannelUsers, vocalChannelDataInvoke2.isGuildRoleSubscriptionLockedChannel(), vocalChannelDataInvoke2.isGuildRoleSubscriptionChannel(), guildScheduledEvent2);
         }
         return channelListItemVoiceChannel;
     }

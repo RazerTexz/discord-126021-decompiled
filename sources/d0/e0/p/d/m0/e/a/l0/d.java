@@ -23,20 +23,78 @@ import kotlin.jvm.functions.Function1;
 public final class d {
     public final d0.e0.p.d.m0.e.a.i0.c a;
 
+    /* JADX INFO: compiled from: typeEnhancement.kt */
+    public class a {
+        public final c0 a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f3343b;
+        public final boolean c;
+
+        public a(c0 c0Var, int i, boolean z2) {
+            d0.z.d.m.checkNotNullParameter(c0Var, "type");
+            this.a = c0Var;
+            this.f3343b = i;
+            this.c = z2;
+        }
+
+        public final int getSubtreeSize() {
+            return this.f3343b;
+        }
+
+        public c0 getType() {
+            return this.a;
+        }
+
+        public final c0 getTypeIfChanged() {
+            c0 type = getType();
+            if (getWereChanges()) {
+                return type;
+            }
+            return null;
+        }
+
+        public final boolean getWereChanges() {
+            return this.c;
+        }
+    }
+
+    /* JADX INFO: compiled from: typeEnhancement.kt */
+    public final class b extends a {
+        public final j0 d;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public b(j0 j0Var, int i, boolean z2) {
+            super(j0Var, i, z2);
+            d0.z.d.m.checkNotNullParameter(j0Var, "type");
+            this.d = j0Var;
+        }
+
+        @Override // d0.e0.p.d.m0.e.a.l0.d.a
+        public /* bridge */ /* synthetic */ c0 getType() {
+            return getType();
+        }
+
+        @Override // d0.e0.p.d.m0.e.a.l0.d.a
+        public j0 getType() {
+            return this.d;
+        }
+    }
+
     public d(d0.e0.p.d.m0.e.a.i0.c cVar) {
         d0.z.d.m.checkNotNullParameter(cVar, "javaResolverSettings");
         this.a = cVar;
     }
 
-    public final d$b a(j0 j0Var, Function1<? super Integer, e> function1, int i, t tVar, boolean z2) {
+    public final b a(j0 j0Var, Function1<? super Integer, e> function1, int i, t tVar, boolean z2) {
         int subtreeSize;
         w0 w0VarCreateProjection;
         if (!u.shouldEnhance(tVar) && j0Var.getArguments().isEmpty()) {
-            return new d$b(j0Var, 1, false);
+            return new b(j0Var, 1, false);
         }
         d0.e0.p.d.m0.c.h declarationDescriptor = j0Var.getConstructor().getDeclarationDescriptor();
         if (declarationDescriptor == null) {
-            return new d$b(j0Var, 1, false);
+            return new b(j0Var, 1, false);
         }
         e eVarInvoke = function1.invoke(Integer.valueOf(i));
         c cVarAccess$enhanceMutability = x.access$enhanceMutability(declarationDescriptor, eVarInvoke, tVar);
@@ -67,10 +125,10 @@ public final class d {
                     w0VarCreateProjection = d0.e0.p.d.m0.n.o1.a.createProjection(c0VarMakeNotNullable, projectionKind, typeConstructor.getParameters().get(i3));
                 }
             } else {
-                d$a d_aB = b(w0Var.getType().unwrap(), function1, i2);
-                z3 = z3 || d_aB.getWereChanges();
-                subtreeSize = d_aB.getSubtreeSize() + i2;
-                c0 type = d_aB.getType();
+                a aVarB = b(w0Var.getType().unwrap(), function1, i2);
+                z3 = z3 || aVarB.getWereChanges();
+                subtreeSize = aVarB.getSubtreeSize() + i2;
+                c0 type = aVarB.getType();
                 j1 projectionKind2 = w0Var.getProjectionKind();
                 d0.z.d.m.checkNotNullExpressionValue(projectionKind2, "arg.projectionKind");
                 w0VarCreateProjection = d0.e0.p.d.m0.n.o1.a.createProjection(type, projectionKind2, typeConstructor.getParameters().get(i3));
@@ -84,7 +142,7 @@ public final class d {
         d0.e0.p.d.m0.c.g1.g gVarComponent3 = cVarAccess$getEnhancedNullability.component2();
         int i5 = i2 - i;
         if (!(z3 || gVarComponent3 != null)) {
-            return new d$b(j0Var, i5, false);
+            return new b(j0Var, i5, false);
         }
         boolean z4 = false;
         d0.e0.p.d.m0.c.g1.g gVarAccess$compositeAnnotationsOrSingle = x.access$compositeAnnotationsOrSingle(d0.t.n.listOfNotNull((Object[]) new d0.e0.p.d.m0.c.g1.g[]{j0Var.getAnnotations(), gVarComponent2, gVarComponent3}));
@@ -100,14 +158,14 @@ public final class d {
         if (z4) {
             i1VarWrapEnhancement = g1.wrapEnhancement(j0Var, i1VarWrapEnhancement);
         }
-        return new d$b((j0) i1VarWrapEnhancement, i5, true);
+        return new b((j0) i1VarWrapEnhancement, i5, true);
     }
 
     /* JADX WARN: Code duplicated, block: B:20:0x005e  */
-    public final d$a b(i1 i1Var, Function1<? super Integer, e> function1, int i) {
+    public final a b(i1 i1Var, Function1<? super Integer, e> function1, int i) {
         i1 i1VarFlexibleType;
         if (e0.isError(i1Var)) {
-            return new d$a(i1Var, 1, false);
+            return new a(i1Var, 1, false);
         }
         if (!(i1Var instanceof d0.e0.p.d.m0.n.v)) {
             if (i1Var instanceof j0) {
@@ -117,13 +175,13 @@ public final class d {
         }
         boolean z2 = i1Var instanceof i0;
         d0.e0.p.d.m0.n.v vVar = (d0.e0.p.d.m0.n.v) i1Var;
-        d$b d_bA = a(vVar.getLowerBound(), function1, i, t.FLEXIBLE_LOWER, z2);
-        d$b d_bA2 = a(vVar.getUpperBound(), function1, i, t.FLEXIBLE_UPPER, z2);
-        d_bA.getSubtreeSize();
-        d_bA2.getSubtreeSize();
-        boolean z3 = d_bA.getWereChanges() || d_bA2.getWereChanges();
-        j0 type = d_bA.getType();
-        c0 enhancement = g1.getEnhancement(d_bA2.getType());
+        b bVarA = a(vVar.getLowerBound(), function1, i, t.FLEXIBLE_LOWER, z2);
+        b bVarA2 = a(vVar.getUpperBound(), function1, i, t.FLEXIBLE_UPPER, z2);
+        bVarA.getSubtreeSize();
+        bVarA2.getSubtreeSize();
+        boolean z3 = bVarA.getWereChanges() || bVarA2.getWereChanges();
+        j0 type = bVarA.getType();
+        c0 enhancement = g1.getEnhancement(bVarA2.getType());
         c0 enhancement2 = g1.getEnhancement(type);
         if (enhancement2 != null) {
             if (enhancement != null) {
@@ -141,14 +199,14 @@ public final class d {
         }
         if (z3) {
             if (i1Var instanceof d0.e0.p.d.m0.e.a.i0.m.g) {
-                i1VarFlexibleType = new d0.e0.p.d.m0.e.a.i0.m.g(d_bA.getType(), d_bA2.getType());
+                i1VarFlexibleType = new d0.e0.p.d.m0.e.a.i0.m.g(bVarA.getType(), bVarA2.getType());
             } else {
                 d0 d0Var3 = d0.a;
-                i1VarFlexibleType = d0.flexibleType(d_bA.getType(), d_bA2.getType());
+                i1VarFlexibleType = d0.flexibleType(bVarA.getType(), bVarA2.getType());
             }
             i1Var = g1.wrapEnhancement(i1VarFlexibleType, enhancement2);
         }
-        return new d$a(i1Var, d_bA.getSubtreeSize(), z3);
+        return new a(i1Var, bVarA.getSubtreeSize(), z3);
     }
 
     public final c0 enhance(c0 c0Var, Function1<? super Integer, e> function1) {

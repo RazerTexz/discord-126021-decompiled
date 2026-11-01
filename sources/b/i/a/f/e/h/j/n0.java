@@ -3,8 +3,6 @@ package b.i.a.f.e.h.j;
 import android.os.RemoteException;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import b.i.a.f.e.h.a$b;
-import b.i.a.f.e.h.a$f;
 import com.google.android.gms.common.Feature;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.Objects;
@@ -25,28 +23,28 @@ public final class n0 extends e0<Void> {
 
     @Override // b.i.a.f.e.h.j.m0
     @Nullable
-    public final Feature[] f(g$a<?> g_a) {
+    public final Feature[] f(g.a<?> aVar) {
         Objects.requireNonNull(this.c.a);
         return null;
     }
 
     @Override // b.i.a.f.e.h.j.m0
-    public final boolean g(g$a<?> g_a) {
+    public final boolean g(g.a<?> aVar) {
         Objects.requireNonNull(this.c.a);
         return false;
     }
 
     @Override // b.i.a.f.e.h.j.e0
-    public final void h(g$a<?> g_a) throws RemoteException {
-        m<a$b, ?> mVar = this.c.a;
-        a$f a_f = g_a.f1361b;
+    public final void h(g.a<?> aVar) throws RemoteException {
+        m<b.i.a.f.e.h.a.b, ?> mVar = this.c.a;
+        b.i.a.f.e.h.a.f fVar = aVar.f1361b;
         TaskCompletionSource<T> taskCompletionSource = this.f1357b;
         b.i.a.f.j.b.e.v vVar = (b.i.a.f.j.b.e.v) mVar;
         Objects.requireNonNull(vVar);
-        vVar.f1586b.a((b.i.a.f.j.b.e.f) a_f, b.i.a.f.j.b.e.i.j(vVar.c, taskCompletionSource));
-        k$a<?> k_a = this.c.a.a.c;
-        if (k_a != null) {
-            g_a.g.put(k_a, this.c);
+        vVar.f1586b.a((b.i.a.f.j.b.e.f) fVar, b.i.a.f.j.b.e.i.j(vVar.c, taskCompletionSource));
+        k.a<?> aVar2 = this.c.a.a.c;
+        if (aVar2 != null) {
+            aVar.g.put(aVar2, this.c);
         }
     }
 }

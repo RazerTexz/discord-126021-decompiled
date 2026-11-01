@@ -2,15 +2,33 @@ package com.discord.models.gifpicker.dto;
 
 import b.d.b.a.a;
 import d0.z.d.m;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ModelGif.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class ModelGif {
-    public static final ModelGif$Companion Companion = new ModelGif$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final String gifImageUrl;
     private final int height;
     private final String tenorGifUrl;
     private final int width;
+
+    /* JADX INFO: compiled from: ModelGif.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final ModelGif createFromGifDto(GifDto gifDto) {
+            m.checkNotNullParameter(gifDto, "gifDto");
+            return new ModelGif(gifDto.getSrc(), gifDto.getUrl(), gifDto.getWidth(), gifDto.getHeight());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public ModelGif(String str, String str2, int i, int i2) {
         m.checkNotNullParameter(str, "gifImageUrl");

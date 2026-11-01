@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Executor;
@@ -106,10 +105,10 @@ public class k extends a {
             d<?> dVar3 = (d) it5.next();
             this.f1665b.put(dVar3, new r<>(new h(this, dVar3)));
         }
-        for (Map$Entry<d<?>, r<?>> map$Entry : this.f1665b.entrySet()) {
-            d<?> key = map$Entry.getKey();
+        for (Map.Entry<d<?>, r<?>> entry : this.f1665b.entrySet()) {
+            d<?> key = entry.getKey();
             if (key.b()) {
-                r<?> value = map$Entry.getValue();
+                r<?> value = entry.getValue();
                 Iterator<Class<? super Object>> it6 = key.a.iterator();
                 while (it6.hasNext()) {
                     this.c.put(it6.next(), value);
@@ -124,10 +123,10 @@ public class k extends a {
             }
         }
         HashMap map2 = new HashMap();
-        for (Map$Entry<d<?>, r<?>> map$Entry2 : this.f1665b.entrySet()) {
-            d<?> key2 = map$Entry2.getKey();
+        for (Map.Entry<d<?>, r<?>> entry2 : this.f1665b.entrySet()) {
+            d<?> key2 = entry2.getKey();
             if (!key2.b()) {
-                r<?> value2 = map$Entry2.getValue();
+                r<?> value2 = entry2.getValue();
                 for (Class<? super Object> cls2 : key2.a) {
                     if (!map2.containsKey(cls2)) {
                         map2.put(cls2, new HashSet());
@@ -136,8 +135,8 @@ public class k extends a {
                 }
             }
         }
-        for (Map$Entry map$Entry3 : map2.entrySet()) {
-            this.d.put((Class) map$Entry3.getKey(), new r<>(new i((Set) map$Entry3.getValue())));
+        for (Map.Entry entry3 : map2.entrySet()) {
+            this.d.put((Class) entry3.getKey(), new r<>(new i((Set) entry3.getValue())));
         }
     }
 

@@ -23,7 +23,7 @@ public final class x extends n implements f, d0.e0.p.d.m0.e.a.k0.y {
 
     @Override // d0.e0.p.d.m0.e.a.k0.d
     public c findAnnotation(d0.e0.p.d.m0.g.b bVar) {
-        return f$a.findAnnotation(this, bVar);
+        return f.a.findAnnotation(this, bVar);
     }
 
     @Override // d0.e0.p.d.m0.e.a.k0.d
@@ -58,7 +58,7 @@ public final class x extends n implements f, d0.e0.p.d.m0.e.a.k0.y {
 
     @Override // d0.e0.p.d.m0.e.a.k0.d
     public boolean isDeprecatedInJavaDoc() {
-        return f$a.isDeprecatedInJavaDoc(this);
+        return f.a.isDeprecatedInJavaDoc(this);
     }
 
     public String toString() {
@@ -75,7 +75,7 @@ public final class x extends n implements f, d0.e0.p.d.m0.e.a.k0.y {
 
     @Override // d0.e0.p.d.m0.e.a.k0.d
     public List<c> getAnnotations() {
-        return f$a.getAnnotations(this);
+        return f.a.getAnnotations(this);
     }
 
     @Override // d0.e0.p.d.m0.e.a.k0.y

@@ -7,11 +7,11 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Build$VERSION;
 import android.os.LocaleList;
 import android.os.Looper;
-import android.provider.Settings$Secure;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import b.d.b.a.a;
@@ -21,7 +21,6 @@ import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.NotSerializableException;
 import java.io.ObjectInputStream;
-import java.io.ObjectInputStream$GetField;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -33,7 +32,6 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.Callable;
@@ -49,6 +47,116 @@ public class Util {
     private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'Z";
     public static final SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_FORMAT, Locale.US);
     private static volatile SingleThreadFutureScheduler playAdIdScheduler = null;
+
+    /* JADX INFO: renamed from: com.adjust.sdk.Util$1, reason: invalid class name */
+    public final class AnonymousClass1 implements Callable<Object> {
+        public final /* synthetic */ Context val$context;
+
+        public AnonymousClass1(Context context) {
+            this.val$context = context;
+        }
+
+        @Override // java.util.concurrent.Callable
+        public Object call() {
+            try {
+                return Reflection.getAdvertisingInfoObject(this.val$context);
+            } catch (Exception unused) {
+                return null;
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.Util$2, reason: invalid class name */
+    public final class AnonymousClass2 implements Callable<String> {
+        public final /* synthetic */ Object val$advertisingInfoObject;
+        public final /* synthetic */ Context val$context;
+
+        public AnonymousClass2(Context context, Object obj) {
+            this.val$context = context;
+            this.val$advertisingInfoObject = obj;
+        }
+
+        @Override // java.util.concurrent.Callable
+        public /* bridge */ /* synthetic */ String call() throws Exception {
+            return call2();
+        }
+
+        @Override // java.util.concurrent.Callable
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public String call2() {
+            return Reflection.getPlayAdId(this.val$context, this.val$advertisingInfoObject);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.Util$3, reason: invalid class name */
+    public final class AnonymousClass3 implements Callable<Boolean> {
+        public final /* synthetic */ Object val$advertisingInfoObject;
+        public final /* synthetic */ Context val$context;
+
+        public AnonymousClass3(Context context, Object obj) {
+            this.val$context = context;
+            this.val$advertisingInfoObject = obj;
+        }
+
+        @Override // java.util.concurrent.Callable
+        public /* bridge */ /* synthetic */ Boolean call() throws Exception {
+            return call();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // java.util.concurrent.Callable
+        public Boolean call() {
+            return Reflection.isPlayTrackingEnabled(this.val$context, this.val$advertisingInfoObject);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.Util$4, reason: invalid class name */
+    public final class AnonymousClass4 extends AsyncTask<Object, Void, Void> {
+        @Override // android.os.AsyncTask
+        public /* bridge */ /* synthetic */ Void doInBackground(Object[] objArr) {
+            return doInBackground2(objArr);
+        }
+
+        @Override // android.os.AsyncTask
+        /* JADX INFO: renamed from: doInBackground, reason: avoid collision after fix types in other method */
+        public Void doInBackground2(Object... objArr) {
+            ((Runnable) objArr[0]).run();
+            return null;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.Util$5, reason: invalid class name */
+    public final class AnonymousClass5 extends AsyncTask<Context, Void, String> {
+        public final /* synthetic */ OnDeviceIdsRead val$onDeviceIdRead;
+
+        public AnonymousClass5(OnDeviceIdsRead onDeviceIdsRead) {
+            this.val$onDeviceIdRead = onDeviceIdsRead;
+        }
+
+        @Override // android.os.AsyncTask
+        public /* bridge */ /* synthetic */ String doInBackground(Context[] contextArr) {
+            return doInBackground2(contextArr);
+        }
+
+        @Override // android.os.AsyncTask
+        public /* bridge */ /* synthetic */ void onPostExecute(String str) {
+            onPostExecute2(str);
+        }
+
+        /* JADX INFO: renamed from: doInBackground, reason: avoid collision after fix types in other method */
+        public String doInBackground2(Context... contextArr) {
+            ILogger logger = AdjustFactory.getLogger();
+            String strAccess$000 = Util.access$000(contextArr[0]);
+            logger.debug(a.w("GoogleAdId read ", strAccess$000), new Object[0]);
+            return strAccess$000;
+        }
+
+        /* JADX INFO: renamed from: onPostExecute, reason: avoid collision after fix types in other method */
+        public void onPostExecute2(String str) {
+            AdjustFactory.getLogger();
+            this.val$onDeviceIdRead.onGoogleAdIdRead(str);
+        }
+    }
 
     public static /* synthetic */ String access$000(Context context) {
         return getGoogleAdId(context);
@@ -110,7 +218,7 @@ public class Util {
     }
 
     public static Object getAdvertisingInfoObject(Context context, long j) {
-        return runSyncInPlayAdIdSchedulerWithTimeout(context, new Util$1(context), j);
+        return runSyncInPlayAdIdSchedulerWithTimeout(context, new AnonymousClass1(context), j);
     }
 
     public static String getAndroidId(Context context) {
@@ -124,7 +232,7 @@ public class Util {
             if (connectivityManager == null) {
                 return -1;
             }
-            int i = Build$VERSION.SDK_INT;
+            int i = Build.VERSION.SDK_INT;
             if (i < 23) {
                 return connectivityManager.getActiveNetworkInfo().getType();
             }
@@ -168,7 +276,7 @@ public class Util {
             return null;
         }
         try {
-            return Settings$Secure.getString(contentResolver, "advertising_id");
+            return Settings.Secure.getString(contentResolver, "advertising_id");
         } catch (Exception unused) {
             return null;
         }
@@ -176,7 +284,7 @@ public class Util {
 
     public static Boolean getFireTrackingEnabled(ContentResolver contentResolver) {
         try {
-            return Boolean.valueOf(Settings$Secure.getInt(contentResolver, "limit_ad_tracking") == 0);
+            return Boolean.valueOf(Settings.Secure.getInt(contentResolver, "limit_ad_tracking") == 0);
         } catch (Exception unused) {
             return null;
         }
@@ -186,7 +294,7 @@ public class Util {
         ILogger logger = AdjustFactory.getLogger();
         if (Looper.myLooper() == Looper.getMainLooper()) {
             logger.debug("GoogleAdId being read in the foreground", new Object[0]);
-            new Util$5(onDeviceIdsRead).execute(context);
+            new AnonymousClass5(onDeviceIdsRead).execute(context);
         } else {
             logger.debug("GoogleAdId being read in the background", new Object[0]);
             String googleAdId = getGoogleAdId(context);
@@ -197,7 +305,7 @@ public class Util {
 
     public static Locale getLocale(Configuration configuration) {
         LocaleList locales;
-        int i = Build$VERSION.SDK_INT;
+        int i = Build.VERSION.SDK_INT;
         if (i >= 24 && (locales = configuration.getLocales()) != null && !locales.isEmpty()) {
             return locales.get(0);
         }
@@ -253,7 +361,7 @@ public class Util {
     }
 
     public static String getPlayAdId(Context context, Object obj, long j) {
-        return (String) runSyncInPlayAdIdSchedulerWithTimeout(context, new Util$2(context, obj), j);
+        return (String) runSyncInPlayAdIdSchedulerWithTimeout(context, new AnonymousClass2(context, obj), j);
     }
 
     public static String getReasonString(String str, Throwable th) {
@@ -357,7 +465,7 @@ public class Util {
     }
 
     public static Boolean isPlayTrackingEnabled(Context context, Object obj, long j) {
-        return (Boolean) runSyncInPlayAdIdSchedulerWithTimeout(context, new Util$3(context, obj), j);
+        return (Boolean) runSyncInPlayAdIdSchedulerWithTimeout(context, new AnonymousClass3(context, obj), j);
     }
 
     public static boolean isUrlFilteredOut(Uri uri) {
@@ -390,10 +498,10 @@ public class Util {
         }
         HashMap map3 = new HashMap(map);
         ILogger logger = getLogger();
-        for (Map$Entry<String, String> map$Entry : map2.entrySet()) {
-            String str2 = (String) map3.put(map$Entry.getKey(), map$Entry.getValue());
+        for (Map.Entry<String, String> entry : map2.entrySet()) {
+            String str2 = (String) map3.put(entry.getKey(), entry.getValue());
             if (str2 != null) {
-                logger.warn("Key %s with value %s from %s parameter was replaced by value %s", map$Entry.getKey(), str2, str, map$Entry.getValue());
+                logger.warn("Key %s with value %s from %s parameter was replaced by value %s", entry.getKey(), str2, str, entry.getValue());
             }
         }
         return map3;
@@ -414,27 +522,27 @@ public class Util {
         return (new Random().nextDouble() * (d2 - d)) + d;
     }
 
-    public static boolean readBooleanField(ObjectInputStream$GetField objectInputStream$GetField, String str, boolean z2) {
+    public static boolean readBooleanField(ObjectInputStream.GetField getField, String str, boolean z2) {
         try {
-            return objectInputStream$GetField.get(str, z2);
+            return getField.get(str, z2);
         } catch (Exception e) {
             getLogger().debug(fieldReadErrorMessage, str, e.getMessage());
             return z2;
         }
     }
 
-    public static int readIntField(ObjectInputStream$GetField objectInputStream$GetField, String str, int i) {
+    public static int readIntField(ObjectInputStream.GetField getField, String str, int i) {
         try {
-            return objectInputStream$GetField.get(str, i);
+            return getField.get(str, i);
         } catch (Exception e) {
             getLogger().debug(fieldReadErrorMessage, str, e.getMessage());
             return i;
         }
     }
 
-    public static long readLongField(ObjectInputStream$GetField objectInputStream$GetField, String str, long j) {
+    public static long readLongField(ObjectInputStream.GetField getField, String str, long j) {
         try {
-            return objectInputStream$GetField.get(str, j);
+            return getField.get(str, j);
         } catch (Exception e) {
             getLogger().debug(fieldReadErrorMessage, str, e.getMessage());
             return j;
@@ -512,17 +620,17 @@ public class Util {
         return tCast;
     }
 
-    public static <T> T readObjectField(ObjectInputStream$GetField objectInputStream$GetField, String str, T t) {
+    public static <T> T readObjectField(ObjectInputStream.GetField getField, String str, T t) {
         try {
-            return (T) objectInputStream$GetField.get(str, t);
+            return (T) getField.get(str, t);
         } catch (Exception e) {
             getLogger().debug(fieldReadErrorMessage, str, e.getMessage());
             return t;
         }
     }
 
-    public static String readStringField(ObjectInputStream$GetField objectInputStream$GetField, String str, String str2) {
-        return (String) readObjectField(objectInputStream$GetField, str, str2);
+    public static String readStringField(ObjectInputStream.GetField getField, String str, String str2) {
+        return (String) readObjectField(getField, str, str2);
     }
 
     public static boolean resolveContentProvider(Context context, String str) {
@@ -537,7 +645,7 @@ public class Util {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             runnable.run();
         } else {
-            new Util$4().execute(runnable);
+            new AnonymousClass4().execute(runnable);
         }
     }
 
@@ -620,7 +728,7 @@ public class Util {
         Object advertisingInfoObject;
         String gpsAdid = null;
         try {
-            GooglePlayServicesClient$GooglePlayServicesInfo googlePlayServicesInfo = GooglePlayServicesClient.getGooglePlayServicesInfo(context, 11000L);
+            GooglePlayServicesClient.GooglePlayServicesInfo googlePlayServicesInfo = GooglePlayServicesClient.getGooglePlayServicesInfo(context, 11000L);
             if (googlePlayServicesInfo != null) {
                 gpsAdid = googlePlayServicesInfo.getGpsAdid();
             }

@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import kotlin.Pair;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.ranges.IntRange;
 import kotlin.sequences.Sequence;
@@ -17,14 +19,67 @@ import kotlin.sequences.Sequence;
 /* JADX INFO: compiled from: _Arrays.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class k extends j {
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: Iterables.kt */
+    public final class a<T> implements Iterable<T>, d0.z.d.g0.a {
+        public final /* synthetic */ Object[] j;
+
+        public a(Object[] objArr) {
+            this.j = objArr;
+        }
+
+        @Override // java.lang.Iterable
+        public Iterator<T> iterator() {
+            return d0.z.d.c.iterator(this.j);
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: Sequences.kt */
+    public final class b<T> implements Sequence<T> {
+        public final /* synthetic */ Object[] a;
+
+        public b(Object[] objArr) {
+            this.a = objArr;
+        }
+
+        @Override // kotlin.sequences.Sequence
+        public Iterator<T> iterator() {
+            return d0.z.d.c.iterator(this.a);
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: _Arrays.kt */
+    public final class c<T> extends d0.z.d.o implements Function0<Iterator<? extends T>> {
+        public final /* synthetic */ Object[] $this_withIndex;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public c(Object[] objArr) {
+            super(0);
+            this.$this_withIndex = objArr;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Object invoke() {
+            return invoke();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final Iterator<T> invoke() {
+            return d0.z.d.c.iterator(this.$this_withIndex);
+        }
+    }
+
     public static final <T> Iterable<T> asIterable(T[] tArr) {
         d0.z.d.m.checkNotNullParameter(tArr, "$this$asIterable");
-        return tArr.length == 0 ? n.emptyList() : new k$a(tArr);
+        return tArr.length == 0 ? n.emptyList() : new a(tArr);
     }
 
     public static final <T> Sequence<T> asSequence(T[] tArr) {
         d0.z.d.m.checkNotNullParameter(tArr, "$this$asSequence");
-        return tArr.length == 0 ? d0.f0.n.emptySequence() : new k$b(tArr);
+        return tArr.length == 0 ? d0.f0.n.emptySequence() : new b(tArr);
     }
 
     public static final <T> boolean contains(T[] tArr, T t) {
@@ -37,15 +92,15 @@ public class k extends j {
         return (List) filterNotNullTo(tArr, new ArrayList());
     }
 
-    public static final <C extends Collection<? super T>, T> C filterNotNullTo(T[] tArr, C c) {
+    public static final <C extends Collection<? super T>, T> C filterNotNullTo(T[] tArr, C c2) {
         d0.z.d.m.checkNotNullParameter(tArr, "$this$filterNotNullTo");
-        d0.z.d.m.checkNotNullParameter(c, "destination");
+        d0.z.d.m.checkNotNullParameter(c2, "destination");
         for (T t : tArr) {
             if (t != null) {
-                c.add(t);
+                c2.add(t);
             }
         }
-        return c;
+        return c2;
     }
 
     public static final <T> T first(T[] tArr) {
@@ -109,30 +164,30 @@ public class k extends j {
         return joinTo(objArr, appendable, (i2 & 2) != 0 ? ", " : charSequence, (i2 & 4) != 0 ? "" : charSequence2, (i2 & 8) == 0 ? charSequence3 : "", (i2 & 16) != 0 ? -1 : i, (i2 & 32) != 0 ? "..." : charSequence4, (i2 & 64) != 0 ? null : function1);
     }
 
-    public static final <T, A extends Appendable> A joinTo(T[] tArr, A a, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1<? super T, ? extends CharSequence> function1) throws IOException {
+    public static final <T, A extends Appendable> A joinTo(T[] tArr, A a2, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1<? super T, ? extends CharSequence> function1) throws IOException {
         d0.z.d.m.checkNotNullParameter(tArr, "$this$joinTo");
-        d0.z.d.m.checkNotNullParameter(a, "buffer");
+        d0.z.d.m.checkNotNullParameter(a2, "buffer");
         d0.z.d.m.checkNotNullParameter(charSequence, "separator");
         d0.z.d.m.checkNotNullParameter(charSequence2, "prefix");
         d0.z.d.m.checkNotNullParameter(charSequence3, "postfix");
         d0.z.d.m.checkNotNullParameter(charSequence4, "truncated");
-        a.append(charSequence2);
+        a2.append(charSequence2);
         int i2 = 0;
         for (T t : tArr) {
             i2++;
             if (i2 > 1) {
-                a.append(charSequence);
+                a2.append(charSequence);
             }
             if (i >= 0 && i2 > i) {
                 break;
             }
-            d0.g0.l.appendElement(a, t, function1);
+            d0.g0.l.appendElement(a2, t, function1);
         }
         if (i >= 0 && i2 > i) {
-            a.append(charSequence4);
+            a2.append(charSequence4);
         }
-        a.append(charSequence3);
-        return a;
+        a2.append(charSequence3);
+        return a2;
     }
 
     public static /* synthetic */ String joinToString$default(Object[] objArr, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1 function1, int i2, Object obj) {
@@ -247,13 +302,13 @@ public class k extends j {
         return i;
     }
 
-    public static final <T, C extends Collection<? super T>> C toCollection(T[] tArr, C c) {
+    public static final <T, C extends Collection<? super T>> C toCollection(T[] tArr, C c2) {
         d0.z.d.m.checkNotNullParameter(tArr, "$this$toCollection");
-        d0.z.d.m.checkNotNullParameter(c, "destination");
+        d0.z.d.m.checkNotNullParameter(c2, "destination");
         for (T t : tArr) {
-            c.add(t);
+            c2.add(t);
         }
-        return c;
+        return c2;
     }
 
     public static final int[] toIntArray(Integer[] numArr) {
@@ -291,7 +346,7 @@ public class k extends j {
 
     public static final <T> Iterable<z<T>> withIndex(T[] tArr) {
         d0.z.d.m.checkNotNullParameter(tArr, "$this$withIndex");
-        return new a0(new k$c(tArr));
+        return new a0(new c(tArr));
     }
 
     public static final <T, R> List<Pair<T, R>> zip(T[] tArr, R[] rArr) {
@@ -360,9 +415,9 @@ public class k extends j {
         return arrayList;
     }
 
-    public static final boolean contains(char[] cArr, char c) {
+    public static final boolean contains(char[] cArr, char c2) {
         d0.z.d.m.checkNotNullParameter(cArr, "$this$contains");
-        return indexOf(cArr, c) >= 0;
+        return indexOf(cArr, c2) >= 0;
     }
 
     public static final List<Short> toMutableList(short[] sArr) {
@@ -418,45 +473,45 @@ public class k extends j {
         return arrayList;
     }
 
-    public static final int indexOf(char[] cArr, char c) {
+    public static final int indexOf(char[] cArr, char c2) {
         d0.z.d.m.checkNotNullParameter(cArr, "$this$indexOf");
         int length = cArr.length;
         for (int i = 0; i < length; i++) {
-            if (c == cArr[i]) {
+            if (c2 == cArr[i]) {
                 return i;
             }
         }
         return -1;
     }
 
-    public static final <A extends Appendable> A joinTo(byte[] bArr, A a, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1<? super Byte, ? extends CharSequence> function1) throws IOException {
+    public static final <A extends Appendable> A joinTo(byte[] bArr, A a2, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1<? super Byte, ? extends CharSequence> function1) throws IOException {
         d0.z.d.m.checkNotNullParameter(bArr, "$this$joinTo");
-        d0.z.d.m.checkNotNullParameter(a, "buffer");
+        d0.z.d.m.checkNotNullParameter(a2, "buffer");
         d0.z.d.m.checkNotNullParameter(charSequence, "separator");
         d0.z.d.m.checkNotNullParameter(charSequence2, "prefix");
         d0.z.d.m.checkNotNullParameter(charSequence3, "postfix");
         d0.z.d.m.checkNotNullParameter(charSequence4, "truncated");
-        a.append(charSequence2);
+        a2.append(charSequence2);
         int i2 = 0;
         for (byte b2 : bArr) {
             i2++;
             if (i2 > 1) {
-                a.append(charSequence);
+                a2.append(charSequence);
             }
             if (i >= 0 && i2 > i) {
                 break;
             }
             if (function1 != null) {
-                a.append(function1.invoke(Byte.valueOf(b2)));
+                a2.append(function1.invoke(Byte.valueOf(b2)));
             } else {
-                a.append(String.valueOf((int) b2));
+                a2.append(String.valueOf((int) b2));
             }
         }
         if (i >= 0 && i2 > i) {
-            a.append(charSequence4);
+            a2.append(charSequence4);
         }
-        a.append(charSequence3);
-        return a;
+        a2.append(charSequence3);
+        return a2;
     }
 
     public static final List<Long> toMutableList(long[] jArr) {
@@ -522,8 +577,8 @@ public class k extends j {
     public static final List<Character> toMutableList(char[] cArr) {
         d0.z.d.m.checkNotNullParameter(cArr, "$this$toMutableList");
         ArrayList arrayList = new ArrayList(cArr.length);
-        for (char c : cArr) {
-            arrayList.add(Character.valueOf(c));
+        for (char c2 : cArr) {
+            arrayList.add(Character.valueOf(c2));
         }
         return arrayList;
     }

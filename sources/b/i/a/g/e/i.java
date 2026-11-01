@@ -6,12 +6,12 @@ import android.animation.ObjectAnimator;
 import android.animation.StateListAnimator;
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RippleDrawable;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.util.Property;
 import android.view.View;
 import androidx.annotation.NonNull;
@@ -21,10 +21,11 @@ import androidx.constraintlayout.motion.widget.Key;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.util.Preconditions;
-import com.google.android.material.R$color;
+import com.google.android.material.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.ripple.RippleUtils;
 import com.google.android.material.shadow.ShadowViewDelegate;
+import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.ShapeAppearanceModel;
 import java.util.ArrayList;
 
@@ -32,6 +33,19 @@ import java.util.ArrayList;
 /* JADX INFO: loaded from: classes3.dex */
 @RequiresApi(21)
 public class i extends f {
+
+    /* JADX INFO: compiled from: FloatingActionButtonImplLollipop.java */
+    public class a extends MaterialShapeDrawable {
+        public a(ShapeAppearanceModel shapeAppearanceModel) {
+            super(shapeAppearanceModel);
+        }
+
+        @Override // com.google.android.material.shape.MaterialShapeDrawable, android.graphics.drawable.Drawable
+        public boolean isStateful() {
+            return true;
+        }
+    }
+
     public i(FloatingActionButton floatingActionButton, ShadowViewDelegate shadowViewDelegate) {
         super(floatingActionButton, shadowViewDelegate);
     }
@@ -54,22 +68,22 @@ public class i extends f {
     }
 
     @Override // b.i.a.g.e.f
-    public void f(ColorStateList colorStateList, @Nullable PorterDuff$Mode porterDuff$Mode, ColorStateList colorStateList2, int i) {
+    public void f(ColorStateList colorStateList, @Nullable PorterDuff.Mode mode, ColorStateList colorStateList2, int i) {
         Drawable layerDrawable;
-        i$a i_a = new i$a((ShapeAppearanceModel) Preconditions.checkNotNull(this.h));
-        this.i = i_a;
-        i_a.setTintList(colorStateList);
-        if (porterDuff$Mode != null) {
-            this.i.setTintMode(porterDuff$Mode);
+        a aVar = new a((ShapeAppearanceModel) Preconditions.checkNotNull(this.h));
+        this.i = aVar;
+        aVar.setTintList(colorStateList);
+        if (mode != null) {
+            this.i.setTintMode(mode);
         }
         this.i.initializeElevationOverlay(this.F.getContext());
         if (i > 0) {
             Context context = this.F.getContext();
             c cVar = new c((ShapeAppearanceModel) Preconditions.checkNotNull(this.h));
-            int color = ContextCompat.getColor(context, R$color.design_fab_stroke_top_outer_color);
-            int color2 = ContextCompat.getColor(context, R$color.design_fab_stroke_top_inner_color);
-            int color3 = ContextCompat.getColor(context, R$color.design_fab_stroke_end_inner_color);
-            int color4 = ContextCompat.getColor(context, R$color.design_fab_stroke_end_outer_color);
+            int color = ContextCompat.getColor(context, R.color.design_fab_stroke_top_outer_color);
+            int color2 = ContextCompat.getColor(context, R.color.design_fab_stroke_top_inner_color);
+            int color3 = ContextCompat.getColor(context, R.color.design_fab_stroke_end_inner_color);
+            int color4 = ContextCompat.getColor(context, R.color.design_fab_stroke_end_outer_color);
             cVar.i = color;
             cVar.j = color2;
             cVar.k = color3;
@@ -104,7 +118,7 @@ public class i extends f {
 
     @Override // b.i.a.g.e.f
     public void k(int[] iArr) {
-        if (Build$VERSION.SDK_INT == 21) {
+        if (Build.VERSION.SDK_INT == 21) {
             if (!this.F.isEnabled()) {
                 this.F.setElevation(0.0f);
                 this.F.setTranslationZ(0.0f);
@@ -123,7 +137,7 @@ public class i extends f {
 
     @Override // b.i.a.g.e.f
     public void l(float f, float f2, float f3) {
-        int i = Build$VERSION.SDK_INT;
+        int i = Build.VERSION.SDK_INT;
         if (i == 21) {
             this.F.refreshDrawableState();
         } else {

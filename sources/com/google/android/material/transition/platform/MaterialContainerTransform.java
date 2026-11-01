@@ -1,36 +1,59 @@
 package com.google.android.material.transition.platform;
 
-import android.R$id;
+import android.R;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PathMeasure;
+import android.graphics.PointF;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.os.Build$VERSION;
+import android.graphics.Region;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.transition.ArcMotion;
 import android.transition.PathMotion;
 import android.transition.Transition;
 import android.transition.TransitionValues;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import androidx.annotation.ColorInt;
+import androidx.annotation.FloatRange;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.RestrictTo;
 import androidx.annotation.StyleRes;
+import androidx.core.util.Preconditions;
+import androidx.core.view.InputDeviceCompat;
 import androidx.core.view.ViewCompat;
-import b.i.a.g.l.l.a;
-import b.i.a.g.l.l.b;
-import b.i.a.g.l.l.d;
 import b.i.a.g.l.l.e;
+import b.i.a.g.l.l.f;
+import b.i.a.g.l.l.g;
+import b.i.a.g.l.l.i;
 import b.i.a.g.l.l.j;
 import b.i.a.g.l.l.k;
-import com.google.android.material.R$attr;
 import com.google.android.material.animation.AnimationUtils;
+import com.google.android.material.internal.ViewUtils;
+import com.google.android.material.shape.AbsoluteCornerSize;
+import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.ShapeAppearanceModel;
 import com.google.android.material.shape.Shapeable;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.util.Objects;
 
 /* JADX INFO: loaded from: classes3.dex */
 @RequiresApi(21)
@@ -58,16 +81,16 @@ public final class MaterialContainerTransform extends Transition {
     private View endView;
 
     @Nullable
-    private MaterialContainerTransform$ProgressThresholds fadeProgressThresholds;
+    private ProgressThresholds fadeProgressThresholds;
 
     @Nullable
-    private MaterialContainerTransform$ProgressThresholds scaleMaskProgressThresholds;
+    private ProgressThresholds scaleMaskProgressThresholds;
 
     @Nullable
-    private MaterialContainerTransform$ProgressThresholds scaleProgressThresholds;
+    private ProgressThresholds scaleProgressThresholds;
 
     @Nullable
-    private MaterialContainerTransform$ProgressThresholds shapeMaskProgressThresholds;
+    private ProgressThresholds shapeMaskProgressThresholds;
     private float startElevation;
 
     @Nullable
@@ -78,17 +101,17 @@ public final class MaterialContainerTransform extends Transition {
     private static final String TAG = MaterialContainerTransform.class.getSimpleName();
     private static final String[] TRANSITION_PROPS = {PROP_BOUNDS, PROP_SHAPE_APPEARANCE};
     private boolean drawDebugEnabled = false;
-    private static final MaterialContainerTransform$c DEFAULT_ENTER_THRESHOLDS = new MaterialContainerTransform$c(new MaterialContainerTransform$ProgressThresholds(0.0f, 0.25f), new MaterialContainerTransform$ProgressThresholds(0.0f, 1.0f), new MaterialContainerTransform$ProgressThresholds(0.0f, 1.0f), new MaterialContainerTransform$ProgressThresholds(0.0f, 0.75f), null);
+    private static final c DEFAULT_ENTER_THRESHOLDS = new c(new ProgressThresholds(0.0f, 0.25f), new ProgressThresholds(0.0f, 1.0f), new ProgressThresholds(0.0f, 1.0f), new ProgressThresholds(0.0f, 0.75f), null);
     private boolean holdAtEndEnabled = false;
-    private static final MaterialContainerTransform$c DEFAULT_RETURN_THRESHOLDS = new MaterialContainerTransform$c(new MaterialContainerTransform$ProgressThresholds(0.6f, 0.9f), new MaterialContainerTransform$ProgressThresholds(0.0f, 1.0f), new MaterialContainerTransform$ProgressThresholds(0.0f, 0.9f), new MaterialContainerTransform$ProgressThresholds(0.3f, 0.9f), null);
+    private static final c DEFAULT_RETURN_THRESHOLDS = new c(new ProgressThresholds(0.6f, 0.9f), new ProgressThresholds(0.0f, 1.0f), new ProgressThresholds(0.0f, 0.9f), new ProgressThresholds(0.3f, 0.9f), null);
 
     @IdRes
-    private int drawingViewId = R$id.content;
-    private static final MaterialContainerTransform$c DEFAULT_ENTER_THRESHOLDS_ARC = new MaterialContainerTransform$c(new MaterialContainerTransform$ProgressThresholds(0.1f, 0.4f), new MaterialContainerTransform$ProgressThresholds(0.1f, 1.0f), new MaterialContainerTransform$ProgressThresholds(0.1f, 1.0f), new MaterialContainerTransform$ProgressThresholds(0.1f, 0.9f), null);
+    private int drawingViewId = R.id.content;
+    private static final c DEFAULT_ENTER_THRESHOLDS_ARC = new c(new ProgressThresholds(0.1f, 0.4f), new ProgressThresholds(0.1f, 1.0f), new ProgressThresholds(0.1f, 1.0f), new ProgressThresholds(0.1f, 0.9f), null);
 
     @IdRes
     private int startViewId = -1;
-    private static final MaterialContainerTransform$c DEFAULT_RETURN_THRESHOLDS_ARC = new MaterialContainerTransform$c(new MaterialContainerTransform$ProgressThresholds(0.6f, 0.9f), new MaterialContainerTransform$ProgressThresholds(0.0f, 0.9f), new MaterialContainerTransform$ProgressThresholds(0.0f, 0.9f), new MaterialContainerTransform$ProgressThresholds(0.2f, 0.9f), null);
+    private static final c DEFAULT_RETURN_THRESHOLDS_ARC = new c(new ProgressThresholds(0.6f, 0.9f), new ProgressThresholds(0.0f, 0.9f), new ProgressThresholds(0.0f, 0.9f), new ProgressThresholds(0.2f, 0.9f), null);
 
     @IdRes
     private int endViewId = -1;
@@ -108,8 +131,461 @@ public final class MaterialContainerTransform extends Transition {
     private int fadeMode = 0;
     private int fitMode = 0;
 
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface FadeMode {
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface FitMode {
+    }
+
+    public class ProgressThresholds {
+
+        @FloatRange(from = 0.0d, to = 1.0d)
+        private final float end;
+
+        @FloatRange(from = 0.0d, to = 1.0d)
+        private final float start;
+
+        public ProgressThresholds(@FloatRange(from = 0.0d, to = 1.0d) float f, @FloatRange(from = 0.0d, to = 1.0d) float f2) {
+            this.start = f;
+            this.end = f2;
+        }
+
+        public static /* synthetic */ float access$1000(ProgressThresholds progressThresholds) {
+            return progressThresholds.start;
+        }
+
+        public static /* synthetic */ float access$1100(ProgressThresholds progressThresholds) {
+            return progressThresholds.end;
+        }
+
+        @FloatRange(from = 0.0d, to = 1.0d)
+        public float getEnd() {
+            return this.end;
+        }
+
+        @FloatRange(from = 0.0d, to = 1.0d)
+        public float getStart() {
+            return this.start;
+        }
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface TransitionDirection {
+    }
+
+    public class a implements ValueAnimator.AnimatorUpdateListener {
+        public final /* synthetic */ d a;
+
+        public a(MaterialContainerTransform materialContainerTransform, d dVar) {
+            this.a = dVar;
+        }
+
+        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            d dVar = this.a;
+            float animatedFraction = valueAnimator.getAnimatedFraction();
+            if (dVar.L != animatedFraction) {
+                dVar.e(animatedFraction);
+            }
+        }
+    }
+
+    public class b extends i {
+        public final /* synthetic */ View a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final /* synthetic */ d f3099b;
+        public final /* synthetic */ View c;
+        public final /* synthetic */ View d;
+
+        public b(View view, d dVar, View view2, View view3) {
+            this.a = view;
+            this.f3099b = dVar;
+            this.c = view2;
+            this.d = view3;
+        }
+
+        @Override // b.i.a.g.l.l.i, android.transition.Transition.TransitionListener
+        public void onTransitionEnd(@NonNull Transition transition) {
+            MaterialContainerTransform.this.removeListener(this);
+            if (MaterialContainerTransform.access$300(MaterialContainerTransform.this)) {
+                return;
+            }
+            this.c.setAlpha(1.0f);
+            this.d.setAlpha(1.0f);
+            ViewUtils.getOverlay(this.a).remove(this.f3099b);
+        }
+
+        @Override // b.i.a.g.l.l.i, android.transition.Transition.TransitionListener
+        public void onTransitionStart(@NonNull Transition transition) {
+            ViewUtils.getOverlay(this.a).add(this.f3099b);
+            this.c.setAlpha(0.0f);
+            this.d.setAlpha(0.0f);
+        }
+    }
+
+    public class c {
+
+        @NonNull
+        public final ProgressThresholds a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        @NonNull
+        public final ProgressThresholds f3100b;
+
+        @NonNull
+        public final ProgressThresholds c;
+
+        @NonNull
+        public final ProgressThresholds d;
+
+        public c(ProgressThresholds progressThresholds, ProgressThresholds progressThresholds2, ProgressThresholds progressThresholds3, ProgressThresholds progressThresholds4, a aVar) {
+            this.a = progressThresholds;
+            this.f3100b = progressThresholds2;
+            this.c = progressThresholds3;
+            this.d = progressThresholds4;
+        }
+    }
+
+    public final class d extends Drawable {
+        public final c A;
+        public final b.i.a.g.l.l.a B;
+        public final b.i.a.g.l.l.d C;
+        public final boolean D;
+        public final Paint E;
+        public final Path F;
+        public b.i.a.g.l.l.c G;
+        public f H;
+        public RectF I;
+        public float J;
+        public float K;
+        public float L;
+        public final View a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final RectF f3101b;
+        public final ShapeAppearanceModel c;
+        public final float d;
+        public final View e;
+        public final RectF f;
+        public final ShapeAppearanceModel g;
+        public final float h;
+        public final Paint i;
+        public final Paint j;
+        public final Paint k;
+        public final Paint l;
+        public final Paint m;
+        public final g n;
+        public final PathMeasure o;
+        public final float p;
+        public final float[] q;
+        public final boolean r;
+
+        /* JADX INFO: renamed from: s, reason: collision with root package name */
+        public final float f3102s;
+        public final float t;
+        public final boolean u;
+        public final MaterialShapeDrawable v;
+        public final RectF w;
+
+        /* JADX INFO: renamed from: x, reason: collision with root package name */
+        public final RectF f3103x;
+
+        /* JADX INFO: renamed from: y, reason: collision with root package name */
+        public final RectF f3104y;
+
+        /* JADX INFO: renamed from: z, reason: collision with root package name */
+        public final RectF f3105z;
+
+        public class a implements k.a {
+            public a() {
+            }
+
+            @Override // b.i.a.g.l.l.k.a
+            public void a(Canvas canvas) {
+                d.this.a.draw(canvas);
+            }
+        }
+
+        public class b implements k.a {
+            public b() {
+            }
+
+            @Override // b.i.a.g.l.l.k.a
+            public void a(Canvas canvas) {
+                d.this.e.draw(canvas);
+            }
+        }
+
+        public d(PathMotion pathMotion, View view, RectF rectF, ShapeAppearanceModel shapeAppearanceModel, float f, View view2, RectF rectF2, ShapeAppearanceModel shapeAppearanceModel2, float f2, int i, int i2, int i3, int i4, boolean z2, boolean z3, b.i.a.g.l.l.a aVar, b.i.a.g.l.l.d dVar, c cVar, boolean z4, a aVar2) {
+            Paint paint = new Paint();
+            this.i = paint;
+            Paint paint2 = new Paint();
+            this.j = paint2;
+            Paint paint3 = new Paint();
+            this.k = paint3;
+            this.l = new Paint();
+            Paint paint4 = new Paint();
+            this.m = paint4;
+            this.n = new g();
+            this.q = new float[]{rectF.centerX(), rectF.top};
+            MaterialShapeDrawable materialShapeDrawable = new MaterialShapeDrawable();
+            this.v = materialShapeDrawable;
+            Paint paint5 = new Paint();
+            this.E = paint5;
+            this.F = new Path();
+            this.a = view;
+            this.f3101b = rectF;
+            this.c = shapeAppearanceModel;
+            this.d = f;
+            this.e = view2;
+            this.f = rectF2;
+            this.g = shapeAppearanceModel2;
+            this.h = f2;
+            this.r = z2;
+            this.u = z3;
+            this.B = aVar;
+            this.C = dVar;
+            this.A = cVar;
+            this.D = z4;
+            WindowManager windowManager = (WindowManager) view.getContext().getSystemService("window");
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+            this.f3102s = displayMetrics.widthPixels;
+            this.t = displayMetrics.heightPixels;
+            paint.setColor(i);
+            paint2.setColor(i2);
+            paint3.setColor(i3);
+            materialShapeDrawable.setFillColor(ColorStateList.valueOf(0));
+            materialShapeDrawable.setShadowCompatibilityMode(2);
+            materialShapeDrawable.setShadowBitmapDrawingEnable(false);
+            materialShapeDrawable.setShadowColor(-7829368);
+            RectF rectF3 = new RectF(rectF);
+            this.w = rectF3;
+            this.f3103x = new RectF(rectF3);
+            RectF rectF4 = new RectF(rectF3);
+            this.f3104y = rectF4;
+            this.f3105z = new RectF(rectF4);
+            PointF pointFC = c(rectF);
+            PointF pointFC2 = c(rectF2);
+            PathMeasure pathMeasure = new PathMeasure(pathMotion.getPath(pointFC.x, pointFC.y, pointFC2.x, pointFC2.y), false);
+            this.o = pathMeasure;
+            this.p = pathMeasure.getLength();
+            paint4.setStyle(Paint.Style.FILL);
+            RectF rectF5 = k.a;
+            paint4.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, 0.0f, i4, i4, Shader.TileMode.CLAMP));
+            paint5.setStyle(Paint.Style.STROKE);
+            paint5.setStrokeWidth(10.0f);
+            e(0.0f);
+        }
+
+        public final void a(Canvas canvas) {
+            d(canvas, this.k);
+            Rect bounds = getBounds();
+            RectF rectF = this.f3104y;
+            k.h(canvas, bounds, rectF.left, rectF.top, this.H.f1639b, this.G.f1637b, new b());
+        }
+
+        public final void b(Canvas canvas) {
+            d(canvas, this.j);
+            Rect bounds = getBounds();
+            RectF rectF = this.w;
+            k.h(canvas, bounds, rectF.left, rectF.top, this.H.a, this.G.a, new a());
+        }
+
+        public static PointF c(RectF rectF) {
+            return new PointF(rectF.centerX(), rectF.top);
+        }
+
+        public final void d(Canvas canvas, Paint paint) {
+            if (paint.getColor() == 0 || paint.getAlpha() <= 0) {
+                return;
+            }
+            canvas.drawRect(getBounds(), paint);
+        }
+
+        @Override // android.graphics.drawable.Drawable
+        public void draw(@NonNull Canvas canvas) {
+            if (this.m.getAlpha() > 0) {
+                canvas.drawRect(getBounds(), this.m);
+            }
+            int iSave = this.D ? canvas.save() : -1;
+            if (this.u && this.J > 0.0f) {
+                canvas.save();
+                canvas.clipPath(this.n.a, Region.Op.DIFFERENCE);
+                if (Build.VERSION.SDK_INT > 28) {
+                    ShapeAppearanceModel shapeAppearanceModel = this.n.e;
+                    if (shapeAppearanceModel.isRoundRect(this.I)) {
+                        float cornerSize = shapeAppearanceModel.getTopLeftCornerSize().getCornerSize(this.I);
+                        canvas.drawRoundRect(this.I, cornerSize, cornerSize, this.l);
+                    } else {
+                        canvas.drawPath(this.n.a, this.l);
+                    }
+                } else {
+                    MaterialShapeDrawable materialShapeDrawable = this.v;
+                    RectF rectF = this.I;
+                    materialShapeDrawable.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+                    this.v.setElevation(this.J);
+                    this.v.setShadowVerticalOffset((int) this.K);
+                    this.v.setShapeAppearanceModel(this.n.e);
+                    this.v.draw(canvas);
+                }
+                canvas.restore();
+            }
+            g gVar = this.n;
+            if (Build.VERSION.SDK_INT >= 23) {
+                canvas.clipPath(gVar.a);
+            } else {
+                canvas.clipPath(gVar.f1640b);
+                canvas.clipPath(gVar.c, Region.Op.UNION);
+            }
+            d(canvas, this.i);
+            if (this.G.c) {
+                b(canvas);
+                a(canvas);
+            } else {
+                a(canvas);
+                b(canvas);
+            }
+            if (this.D) {
+                canvas.restoreToCount(iSave);
+                RectF rectF2 = this.w;
+                Path path = this.F;
+                PointF pointFC = c(rectF2);
+                if (this.L == 0.0f) {
+                    path.reset();
+                    path.moveTo(pointFC.x, pointFC.y);
+                } else {
+                    path.lineTo(pointFC.x, pointFC.y);
+                    this.E.setColor(-65281);
+                    canvas.drawPath(path, this.E);
+                }
+                RectF rectF3 = this.f3103x;
+                this.E.setColor(InputDeviceCompat.SOURCE_ANY);
+                canvas.drawRect(rectF3, this.E);
+                RectF rectF4 = this.w;
+                this.E.setColor(-16711936);
+                canvas.drawRect(rectF4, this.E);
+                RectF rectF5 = this.f3105z;
+                this.E.setColor(-16711681);
+                canvas.drawRect(rectF5, this.E);
+                RectF rectF6 = this.f3104y;
+                this.E.setColor(-16776961);
+                canvas.drawRect(rectF6, this.E);
+            }
+        }
+
+        public final void e(float f) {
+            float f2;
+            float f3;
+            this.L = f;
+            this.m.setAlpha((int) (this.r ? k.d(0.0f, 255.0f, f) : k.d(255.0f, 0.0f, f)));
+            this.o.getPosTan(this.p * f, this.q, null);
+            float[] fArr = this.q;
+            float fA = fArr[0];
+            float fA2 = fArr[1];
+            if (f > 1.0f || f < 0.0f) {
+                if (f > 1.0f) {
+                    f2 = 0.99f;
+                    f3 = (f - 1.0f) / 0.00999999f;
+                } else {
+                    f2 = 0.01f;
+                    f3 = (f / 0.01f) * (-1.0f);
+                }
+                this.o.getPosTan(this.p * f2, fArr, null);
+                float[] fArr2 = this.q;
+                float f4 = fArr2[0];
+                float f5 = fArr2[1];
+                fA = b.d.b.a.a.a(fA, f4, f3, fA);
+                fA2 = b.d.b.a.a.a(fA2, f5, f3, fA2);
+            }
+            float f6 = fA;
+            float f7 = fA2;
+            f fVarA = this.C.a(f, ((Float) Preconditions.checkNotNull(Float.valueOf(ProgressThresholds.access$1000(this.A.f3100b)))).floatValue(), ((Float) Preconditions.checkNotNull(Float.valueOf(ProgressThresholds.access$1100(this.A.f3100b)))).floatValue(), this.f3101b.width(), this.f3101b.height(), this.f.width(), this.f.height());
+            this.H = fVarA;
+            RectF rectF = this.w;
+            float f8 = fVarA.c / 2.0f;
+            rectF.set(f6 - f8, f7, f8 + f6, fVarA.d + f7);
+            RectF rectF2 = this.f3104y;
+            f fVar = this.H;
+            float f9 = fVar.e / 2.0f;
+            rectF2.set(f6 - f9, f7, f9 + f6, fVar.f + f7);
+            this.f3103x.set(this.w);
+            this.f3105z.set(this.f3104y);
+            float fFloatValue = ((Float) Preconditions.checkNotNull(Float.valueOf(ProgressThresholds.access$1000(this.A.c)))).floatValue();
+            float fFloatValue2 = ((Float) Preconditions.checkNotNull(Float.valueOf(ProgressThresholds.access$1100(this.A.c)))).floatValue();
+            boolean zB = this.C.b(this.H);
+            RectF rectF3 = zB ? this.f3103x : this.f3105z;
+            float fE = k.e(0.0f, 1.0f, fFloatValue, fFloatValue2, f);
+            if (!zB) {
+                fE = 1.0f - fE;
+            }
+            this.C.c(rectF3, fE, this.H);
+            this.I = new RectF(Math.min(this.f3103x.left, this.f3105z.left), Math.min(this.f3103x.top, this.f3105z.top), Math.max(this.f3103x.right, this.f3105z.right), Math.max(this.f3103x.bottom, this.f3105z.bottom));
+            g gVar = this.n;
+            ShapeAppearanceModel shapeAppearanceModelBuild = this.c;
+            ShapeAppearanceModel shapeAppearanceModel = this.g;
+            RectF rectF4 = this.w;
+            RectF rectF5 = this.f3103x;
+            RectF rectF6 = this.f3105z;
+            ProgressThresholds progressThresholds = this.A.d;
+            Objects.requireNonNull(gVar);
+            float start = progressThresholds.getStart();
+            float end = progressThresholds.getEnd();
+            RectF rectF7 = k.a;
+            if (f >= start) {
+                if (f > end) {
+                    shapeAppearanceModelBuild = shapeAppearanceModel;
+                } else {
+                    shapeAppearanceModelBuild = ((shapeAppearanceModelBuild.getTopLeftCornerSize().getCornerSize(rectF4) == 0.0f && shapeAppearanceModelBuild.getTopRightCornerSize().getCornerSize(rectF4) == 0.0f && shapeAppearanceModelBuild.getBottomRightCornerSize().getCornerSize(rectF4) == 0.0f && shapeAppearanceModelBuild.getBottomLeftCornerSize().getCornerSize(rectF4) == 0.0f) ? false : true ? shapeAppearanceModelBuild : shapeAppearanceModel).toBuilder().setTopLeftCornerSize(new AbsoluteCornerSize(k.e(shapeAppearanceModelBuild.getTopLeftCornerSize().getCornerSize(rectF4), shapeAppearanceModel.getTopLeftCornerSize().getCornerSize(rectF6), start, end, f))).setTopRightCornerSize(new AbsoluteCornerSize(k.e(shapeAppearanceModelBuild.getTopRightCornerSize().getCornerSize(rectF4), shapeAppearanceModel.getTopRightCornerSize().getCornerSize(rectF6), start, end, f))).setBottomLeftCornerSize(new AbsoluteCornerSize(k.e(shapeAppearanceModelBuild.getBottomLeftCornerSize().getCornerSize(rectF4), shapeAppearanceModel.getBottomLeftCornerSize().getCornerSize(rectF6), start, end, f))).setBottomRightCornerSize(new AbsoluteCornerSize(k.e(shapeAppearanceModelBuild.getBottomRightCornerSize().getCornerSize(rectF4), shapeAppearanceModel.getBottomRightCornerSize().getCornerSize(rectF6), start, end, f))).build();
+                }
+            }
+            gVar.e = shapeAppearanceModelBuild;
+            gVar.d.calculatePath(shapeAppearanceModelBuild, 1.0f, rectF5, gVar.f1640b);
+            gVar.d.calculatePath(gVar.e, 1.0f, rectF6, gVar.c);
+            if (Build.VERSION.SDK_INT >= 23) {
+                gVar.a.op(gVar.f1640b, gVar.c, Path.Op.UNION);
+            }
+            this.J = k.d(this.d, this.h, f);
+            float fCenterX = ((this.I.centerX() / (this.f3102s / 2.0f)) - 1.0f) * 0.3f;
+            float fCenterY = (this.I.centerY() / this.t) * 1.5f;
+            float f10 = this.J;
+            float f11 = (int) (fCenterY * f10);
+            this.K = f11;
+            this.l.setShadowLayer(f10, (int) (fCenterX * f10), f11, 754974720);
+            this.G = this.B.a(f, ((Float) Preconditions.checkNotNull(Float.valueOf(ProgressThresholds.access$1000(this.A.a)))).floatValue(), ((Float) Preconditions.checkNotNull(Float.valueOf(ProgressThresholds.access$1100(this.A.a)))).floatValue());
+            if (this.j.getColor() != 0) {
+                this.j.setAlpha(this.G.a);
+            }
+            if (this.k.getColor() != 0) {
+                this.k.setAlpha(this.G.f1637b);
+            }
+            invalidateSelf();
+        }
+
+        @Override // android.graphics.drawable.Drawable
+        public int getOpacity() {
+            return -3;
+        }
+
+        @Override // android.graphics.drawable.Drawable
+        public void setAlpha(int i) {
+            throw new UnsupportedOperationException("Setting alpha on is not supported");
+        }
+
+        @Override // android.graphics.drawable.Drawable
+        public void setColorFilter(@Nullable ColorFilter colorFilter) {
+            throw new UnsupportedOperationException("Setting a color filter is not supported");
+        }
+    }
+
     public MaterialContainerTransform() {
-        this.elevationShadowEnabled = Build$VERSION.SDK_INT >= 28;
+        this.elevationShadowEnabled = Build.VERSION.SDK_INT >= 28;
         this.startElevation = -1.0f;
         this.endElevation = -1.0f;
         setInterpolator(AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
@@ -119,7 +595,7 @@ public final class MaterialContainerTransform extends Transition {
         return materialContainerTransform.holdAtEndEnabled;
     }
 
-    private MaterialContainerTransform$c buildThresholdsGroup(boolean z2) {
+    private c buildThresholdsGroup(boolean z2) {
         PathMotion pathMotion = getPathMotion();
         return ((pathMotion instanceof ArcMotion) || (pathMotion instanceof MaterialArcMotion)) ? getThresholdsOrDefault(z2, DEFAULT_ENTER_THRESHOLDS_ARC, DEFAULT_RETURN_THRESHOLDS_ARC) : getThresholdsOrDefault(z2, DEFAULT_ENTER_THRESHOLDS, DEFAULT_RETURN_THRESHOLDS);
     }
@@ -163,7 +639,7 @@ public final class MaterialContainerTransform extends Transition {
             transitionValues.view = view;
         } else {
             View view3 = transitionValues.view;
-            int i2 = com.google.android.material.R$id.mtrl_motion_snapshot_view;
+            int i2 = com.google.android.material.R.id.mtrl_motion_snapshot_view;
             if (view3.getTag(i2) instanceof View) {
                 View view4 = (View) transitionValues.view.getTag(i2);
                 transitionValues.view.setTag(i2, null);
@@ -188,8 +664,8 @@ public final class MaterialContainerTransform extends Transition {
     @Nullable
     public Animator createAnimator(@NonNull ViewGroup viewGroup, @Nullable TransitionValues transitionValues, @Nullable TransitionValues transitionValues2) {
         View viewB;
-        a aVar;
-        d dVar;
+        b.i.a.g.l.l.a aVar;
+        b.i.a.g.l.l.d dVar;
         if (transitionValues != null && transitionValues2 != null) {
             RectF rectF = (RectF) transitionValues.values.get(PROP_BOUNDS);
             ShapeAppearanceModel shapeAppearanceModel = (ShapeAppearanceModel) transitionValues.values.get(PROP_SHAPE_APPEARANCE);
@@ -228,18 +704,18 @@ public final class MaterialContainerTransform extends Transition {
                 int i5 = this.fadeMode;
                 boolean z3 = true;
                 if (i5 == 0) {
-                    aVar = zIsEntering ? b.a : b.f1636b;
+                    aVar = zIsEntering ? b.i.a.g.l.l.b.a : b.i.a.g.l.l.b.f1636b;
                 } else if (i5 == 1) {
-                    aVar = zIsEntering ? b.f1636b : b.a;
+                    aVar = zIsEntering ? b.i.a.g.l.l.b.f1636b : b.i.a.g.l.l.b.a;
                 } else if (i5 == 2) {
-                    aVar = b.c;
+                    aVar = b.i.a.g.l.l.b.c;
                 } else {
                     if (i5 != 3) {
                         throw new IllegalArgumentException(b.d.b.a.a.q("Invalid fade mode: ", i5));
                     }
-                    aVar = b.d;
+                    aVar = b.i.a.g.l.l.b.d;
                 }
-                a aVar2 = aVar;
+                b.i.a.g.l.l.a aVar2 = aVar;
                 int i6 = this.fitMode;
                 if (i6 == 0) {
                     float fWidth = rectF.width();
@@ -260,11 +736,11 @@ public final class MaterialContainerTransform extends Transition {
                     }
                     dVar = e.f1638b;
                 }
-                MaterialContainerTransform$d materialContainerTransform$d = new MaterialContainerTransform$d(pathMotion, view, rectF, shapeAppearanceModel, elevationOrDefault, view2, rectF2, shapeAppearanceModel2, elevationOrDefault2, i, i2, i3, i4, zIsEntering, z2, aVar2, dVar, buildThresholdsGroup(zIsEntering), this.drawDebugEnabled, null);
-                materialContainerTransform$d.setBounds(Math.round(rectFCalculateDrawableBounds.left), Math.round(rectFCalculateDrawableBounds.top), Math.round(rectFCalculateDrawableBounds.right), Math.round(rectFCalculateDrawableBounds.bottom));
+                d dVar2 = new d(pathMotion, view, rectF, shapeAppearanceModel, elevationOrDefault, view2, rectF2, shapeAppearanceModel2, elevationOrDefault2, i, i2, i3, i4, zIsEntering, z2, aVar2, dVar, buildThresholdsGroup(zIsEntering), this.drawDebugEnabled, null);
+                dVar2.setBounds(Math.round(rectFCalculateDrawableBounds.left), Math.round(rectFCalculateDrawableBounds.top), Math.round(rectFCalculateDrawableBounds.right), Math.round(rectFCalculateDrawableBounds.bottom));
                 ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                valueAnimatorOfFloat.addUpdateListener(new MaterialContainerTransform$a(this, materialContainerTransform$d));
-                addListener(new MaterialContainerTransform$b(this, view4, materialContainerTransform$d, view, view2));
+                valueAnimatorOfFloat.addUpdateListener(new a(this, dVar2));
+                addListener(new b(view4, dVar2, view, view2));
                 return valueAnimatorOfFloat;
             }
             Log.w(TAG, "Skipping due to null start bounds. Ensure start view is laid out and measured.");
@@ -315,7 +791,7 @@ public final class MaterialContainerTransform extends Transition {
     }
 
     @Nullable
-    public MaterialContainerTransform$ProgressThresholds getFadeProgressThresholds() {
+    public ProgressThresholds getFadeProgressThresholds() {
         return this.fadeProgressThresholds;
     }
 
@@ -324,12 +800,12 @@ public final class MaterialContainerTransform extends Transition {
     }
 
     @Nullable
-    public MaterialContainerTransform$ProgressThresholds getScaleMaskProgressThresholds() {
+    public ProgressThresholds getScaleMaskProgressThresholds() {
         return this.scaleMaskProgressThresholds;
     }
 
     @Nullable
-    public MaterialContainerTransform$ProgressThresholds getScaleProgressThresholds() {
+    public ProgressThresholds getScaleProgressThresholds() {
         return this.scaleProgressThresholds;
     }
 
@@ -343,7 +819,7 @@ public final class MaterialContainerTransform extends Transition {
         if (shapeAppearanceModel != null) {
             return shapeAppearanceModel;
         }
-        int i = com.google.android.material.R$id.mtrl_motion_snapshot_view;
+        int i = com.google.android.material.R.id.mtrl_motion_snapshot_view;
         if (view.getTag(i) instanceof ShapeAppearanceModel) {
             return (ShapeAppearanceModel) view.getTag(i);
         }
@@ -356,7 +832,7 @@ public final class MaterialContainerTransform extends Transition {
     }
 
     @Nullable
-    public MaterialContainerTransform$ProgressThresholds getShapeMaskProgressThresholds() {
+    public ProgressThresholds getShapeMaskProgressThresholds() {
         return this.shapeMaskProgressThresholds;
     }
 
@@ -384,11 +860,11 @@ public final class MaterialContainerTransform extends Transition {
         return this.startViewId;
     }
 
-    private MaterialContainerTransform$c getThresholdsOrDefault(boolean z2, MaterialContainerTransform$c materialContainerTransform$c, MaterialContainerTransform$c materialContainerTransform$c2) {
+    private c getThresholdsOrDefault(boolean z2, c cVar, c cVar2) {
         if (!z2) {
-            materialContainerTransform$c = materialContainerTransform$c2;
+            cVar = cVar2;
         }
-        return new MaterialContainerTransform$c((MaterialContainerTransform$ProgressThresholds) k.a(this.fadeProgressThresholds, materialContainerTransform$c.a), (MaterialContainerTransform$ProgressThresholds) k.a(this.scaleProgressThresholds, materialContainerTransform$c.f3100b), (MaterialContainerTransform$ProgressThresholds) k.a(this.scaleMaskProgressThresholds, materialContainerTransform$c.c), (MaterialContainerTransform$ProgressThresholds) k.a(this.shapeMaskProgressThresholds, materialContainerTransform$c.d), null);
+        return new c((ProgressThresholds) k.a(this.fadeProgressThresholds, cVar.a), (ProgressThresholds) k.a(this.scaleProgressThresholds, cVar.f3100b), (ProgressThresholds) k.a(this.scaleMaskProgressThresholds, cVar.c), (ProgressThresholds) k.a(this.shapeMaskProgressThresholds, cVar.d), null);
     }
 
     public int getTransitionDirection() {
@@ -403,7 +879,7 @@ public final class MaterialContainerTransform extends Transition {
 
     @StyleRes
     private static int getTransitionShapeAppearanceResId(Context context) {
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(new int[]{R$attr.transitionShapeAppearance});
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(new int[]{com.google.android.material.R.attr.transitionShapeAppearance});
         int resourceId = typedArrayObtainStyledAttributes.getResourceId(0, -1);
         typedArrayObtainStyledAttributes.recycle();
         return resourceId;
@@ -484,8 +960,8 @@ public final class MaterialContainerTransform extends Transition {
         this.fadeMode = i;
     }
 
-    public void setFadeProgressThresholds(@Nullable MaterialContainerTransform$ProgressThresholds materialContainerTransform$ProgressThresholds) {
-        this.fadeProgressThresholds = materialContainerTransform$ProgressThresholds;
+    public void setFadeProgressThresholds(@Nullable ProgressThresholds progressThresholds) {
+        this.fadeProgressThresholds = progressThresholds;
     }
 
     public void setFitMode(int i) {
@@ -496,20 +972,20 @@ public final class MaterialContainerTransform extends Transition {
         this.holdAtEndEnabled = z2;
     }
 
-    public void setScaleMaskProgressThresholds(@Nullable MaterialContainerTransform$ProgressThresholds materialContainerTransform$ProgressThresholds) {
-        this.scaleMaskProgressThresholds = materialContainerTransform$ProgressThresholds;
+    public void setScaleMaskProgressThresholds(@Nullable ProgressThresholds progressThresholds) {
+        this.scaleMaskProgressThresholds = progressThresholds;
     }
 
-    public void setScaleProgressThresholds(@Nullable MaterialContainerTransform$ProgressThresholds materialContainerTransform$ProgressThresholds) {
-        this.scaleProgressThresholds = materialContainerTransform$ProgressThresholds;
+    public void setScaleProgressThresholds(@Nullable ProgressThresholds progressThresholds) {
+        this.scaleProgressThresholds = progressThresholds;
     }
 
     public void setScrimColor(@ColorInt int i) {
         this.scrimColor = i;
     }
 
-    public void setShapeMaskProgressThresholds(@Nullable MaterialContainerTransform$ProgressThresholds materialContainerTransform$ProgressThresholds) {
-        this.shapeMaskProgressThresholds = materialContainerTransform$ProgressThresholds;
+    public void setShapeMaskProgressThresholds(@Nullable ProgressThresholds progressThresholds) {
+        this.shapeMaskProgressThresholds = progressThresholds;
     }
 
     public void setStartContainerColor(@ColorInt int i) {

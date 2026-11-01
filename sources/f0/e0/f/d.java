@@ -1,49 +1,163 @@
 package f0.e0.f;
 
 import androidx.recyclerview.widget.RecyclerView;
+import b.i.a.f.e.o.f;
 import com.discord.models.domain.ModelAuditLogEntry;
 import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: TaskRunner.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class d {
     public static final d a;
-    public static final d$b c = new d$b(null);
+    public static final b c = new b(null);
     public int d;
     public boolean e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final Logger f3611b;
     public long f;
-    public final List<c> g;
-    public final List<c> h;
+    public final List<f0.e0.f.c> g;
+    public final List<f0.e0.f.c> h;
     public final Runnable i;
-    public final d$a j;
+    public final a j;
+
+    /* JADX INFO: renamed from: f0.e0.f.d$d, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: TaskRunner.kt */
+    public final class RunnableC0605d implements Runnable {
+        public RunnableC0605d() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            f0.e0.f.a aVarC;
+            while (true) {
+                synchronized (d.this) {
+                    aVarC = d.this.c();
+                }
+                if (aVarC == null) {
+                    return;
+                }
+                f0.e0.f.c cVar = aVarC.a;
+                if (cVar == null) {
+                    m.throwNpe();
+                }
+                long jC = -1;
+                b bVar = d.c;
+                boolean zIsLoggable = d.f3611b.isLoggable(Level.FINE);
+                if (zIsLoggable) {
+                    jC = cVar.e.j.c();
+                    f.e(aVarC, cVar, "starting");
+                }
+                try {
+                    d.a(d.this, aVarC);
+                    if (zIsLoggable) {
+                        long jC2 = cVar.e.j.c() - jC;
+                        StringBuilder sbU = b.d.b.a.a.U("finished run in ");
+                        sbU.append(f.a0(jC2));
+                        f.e(aVarC, cVar, sbU.toString());
+                    }
+                } catch (Throwable th) {
+                    try {
+                        d.this.j.execute(this);
+                        throw th;
+                    } catch (Throwable th2) {
+                        if (zIsLoggable) {
+                            long jC3 = cVar.e.j.c() - jC;
+                            StringBuilder sbU2 = b.d.b.a.a.U("failed a run in ");
+                            sbU2.append(f.a0(jC3));
+                            f.e(aVarC, cVar, sbU2.toString());
+                        }
+                        throw th2;
+                    }
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: TaskRunner.kt */
+    public interface a {
+        void a(d dVar);
+
+        void b(d dVar, long j);
+
+        long c();
+
+        void execute(Runnable runnable);
+    }
+
+    /* JADX INFO: compiled from: TaskRunner.kt */
+    public final class b {
+        public b(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    /* JADX INFO: compiled from: TaskRunner.kt */
+    public final class c implements a {
+        public final ThreadPoolExecutor a;
+
+        public c(ThreadFactory threadFactory) {
+            m.checkParameterIsNotNull(threadFactory, "threadFactory");
+            this.a = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS, new SynchronousQueue(), threadFactory);
+        }
+
+        @Override // f0.e0.f.d.a
+        public void a(d dVar) {
+            m.checkParameterIsNotNull(dVar, "taskRunner");
+            dVar.notify();
+        }
+
+        @Override // f0.e0.f.d.a
+        public void b(d dVar, long j) throws InterruptedException {
+            m.checkParameterIsNotNull(dVar, "taskRunner");
+            long j2 = j / 1000000;
+            long j3 = j - (1000000 * j2);
+            if (j2 > 0 || j > 0) {
+                dVar.wait(j2, (int) j3);
+            }
+        }
+
+        @Override // f0.e0.f.d.a
+        public long c() {
+            return System.nanoTime();
+        }
+
+        @Override // f0.e0.f.d.a
+        public void execute(Runnable runnable) {
+            m.checkParameterIsNotNull(runnable, "runnable");
+            this.a.execute(runnable);
+        }
+    }
 
     static {
         String str = f0.e0.c.g + " TaskRunner";
         m.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        a = new d(new d$c(new f0.e0.b(str, true)));
+        a = new d(new c(new f0.e0.b(str, true)));
         Logger logger = Logger.getLogger(d.class.getName());
         m.checkExpressionValueIsNotNull(logger, "Logger.getLogger(TaskRunner::class.java.name)");
         f3611b = logger;
     }
 
-    public d(d$a d_a) {
-        m.checkParameterIsNotNull(d_a, "backend");
-        this.j = d_a;
+    public d(a aVar) {
+        m.checkParameterIsNotNull(aVar, "backend");
+        this.j = aVar;
         this.d = 10000;
         this.g = new ArrayList();
         this.h = new ArrayList();
-        this.i = new d$d(this);
+        this.i = new RunnableC0605d();
     }
 
-    public static final void a(d dVar, a aVar) {
+    public static final void a(d dVar, f0.e0.f.a aVar) {
         Objects.requireNonNull(dVar);
         byte[] bArr = f0.e0.c.a;
         Thread threadCurrentThread = Thread.currentThread();
@@ -63,9 +177,9 @@ public final class d {
         }
     }
 
-    public final void b(a aVar, long j) {
+    public final void b(f0.e0.f.a aVar, long j) {
         byte[] bArr = f0.e0.c.a;
-        c cVar = aVar.a;
+        f0.e0.f.c cVar = aVar.a;
         if (cVar == null) {
             m.throwNpe();
         }
@@ -84,20 +198,20 @@ public final class d {
         }
     }
 
-    public final a c() {
+    public final f0.e0.f.a c() {
         boolean z2;
         byte[] bArr = f0.e0.c.a;
         while (!this.h.isEmpty()) {
             long jC = this.j.c();
             long jMin = RecyclerView.FOREVER_NS;
-            Iterator<c> it = this.h.iterator();
-            a aVar = null;
+            Iterator<f0.e0.f.c> it = this.h.iterator();
+            f0.e0.f.a aVar = null;
             while (true) {
                 if (!it.hasNext()) {
                     z2 = false;
                     break;
                 }
-                a aVar2 = it.next().c.get(0);
+                f0.e0.f.a aVar2 = it.next().c.get(0);
                 long jMax = Math.max(0L, aVar2.f3609b - jC);
                 if (jMax > 0) {
                     jMin = Math.min(jMax, jMin);
@@ -112,7 +226,7 @@ public final class d {
             if (aVar != null) {
                 byte[] bArr2 = f0.e0.c.a;
                 aVar.f3609b = -1L;
-                c cVar = aVar.a;
+                f0.e0.f.c cVar = aVar.a;
                 if (cVar == null) {
                     m.throwNpe();
                 }
@@ -153,7 +267,7 @@ public final class d {
             this.g.get(size).b();
         }
         for (int size2 = this.h.size() - 1; size2 >= 0; size2--) {
-            c cVar = this.h.get(size2);
+            f0.e0.f.c cVar = this.h.get(size2);
             cVar.b();
             if (cVar.c.isEmpty()) {
                 this.h.remove(size2);
@@ -161,12 +275,12 @@ public final class d {
         }
     }
 
-    public final void e(c cVar) {
+    public final void e(f0.e0.f.c cVar) {
         m.checkParameterIsNotNull(cVar, "taskQueue");
         byte[] bArr = f0.e0.c.a;
         if (cVar.f3610b == null) {
             if (!cVar.c.isEmpty()) {
-                List<c> list = this.h;
+                List<f0.e0.f.c> list = this.h;
                 m.checkParameterIsNotNull(list, "$this$addIfAbsent");
                 if (!list.contains(cVar)) {
                     list.add(cVar);
@@ -182,12 +296,12 @@ public final class d {
         }
     }
 
-    public final c f() {
+    public final f0.e0.f.c f() {
         int i;
         synchronized (this) {
             i = this.d;
             this.d = i + 1;
         }
-        return new c(this, "" + 'Q' + i);
+        return new f0.e0.f.c(this, "" + 'Q' + i);
     }
 }

@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 public final class n {
     public final SparseBooleanArray a;
 
-    public n(SparseBooleanArray sparseBooleanArray, n$a n_a) {
+    public n(SparseBooleanArray sparseBooleanArray, a aVar) {
         this.a = sparseBooleanArray;
     }
 
@@ -56,5 +56,25 @@ public final class n {
             iC = (iC * 31) + b(i);
         }
         return iC;
+    }
+
+    /* JADX INFO: compiled from: FlagSet.java */
+    public final class b {
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public boolean f972b;
+        public final SparseBooleanArray a = new SparseBooleanArray();
+
+        public b a(int i) {
+            b.c.a.a0.d.D(!this.f972b);
+            this.a.append(i, true);
+            return this;
+        }
+
+        public n b() {
+            b.c.a.a0.d.D(!this.f972b);
+            this.f972b = true;
+            return new n(this.a, null);
+        }
     }
 }

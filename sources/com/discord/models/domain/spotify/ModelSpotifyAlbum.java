@@ -10,10 +10,58 @@ import java.util.List;
 public final /* data */ class ModelSpotifyAlbum {
     private final String albumType;
     private final String id;
-    private final List<ModelSpotifyAlbum$AlbumImage> images;
+    private final List<AlbumImage> images;
     private final String name;
 
-    public ModelSpotifyAlbum(String str, String str2, List<ModelSpotifyAlbum$AlbumImage> list, String str3) {
+    /* JADX INFO: compiled from: ModelSpotifyAlbum.kt */
+    public final /* data */ class AlbumImage {
+        private final String url;
+
+        public AlbumImage(String str) {
+            this.url = str;
+        }
+
+        public static /* synthetic */ AlbumImage copy$default(AlbumImage albumImage, String str, int i, Object obj) {
+            if ((i & 1) != 0) {
+                str = albumImage.url;
+            }
+            return albumImage.copy(str);
+        }
+
+        public final AlbumImage copy(String url) {
+            return new AlbumImage(url);
+        }
+
+        public boolean equals(Object other) {
+            if (this != other) {
+                return (other instanceof AlbumImage) && m.areEqual(this.url, ((AlbumImage) other).url);
+            }
+            return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getUrl() {
+            return this.url;
+        }
+
+        public final String getUrl() {
+            return this.url;
+        }
+
+        public int hashCode() {
+            String str = this.url;
+            if (str != null) {
+                return str.hashCode();
+            }
+            return 0;
+        }
+
+        public String toString() {
+            return a.J(a.U("AlbumImage(url="), this.url, ")");
+        }
+    }
+
+    public ModelSpotifyAlbum(String str, String str2, List<AlbumImage> list, String str3) {
         m.checkNotNullParameter(str, "albumType");
         m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_ID);
         m.checkNotNullParameter(list, "images");
@@ -24,7 +72,7 @@ public final /* data */ class ModelSpotifyAlbum {
         this.name = str3;
     }
 
-    public final List<ModelSpotifyAlbum$AlbumImage> component3() {
+    public final List<AlbumImage> component3() {
         return this.images;
     }
 
@@ -45,7 +93,7 @@ public final /* data */ class ModelSpotifyAlbum {
         return modelSpotifyAlbum.copy(str, str2, list, str3);
     }
 
-    public final ModelSpotifyAlbum copy(String albumType, String id2, List<ModelSpotifyAlbum$AlbumImage> images, String name) {
+    public final ModelSpotifyAlbum copy(String albumType, String id2, List<AlbumImage> images, String name) {
         m.checkNotNullParameter(albumType, "albumType");
         m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
         m.checkNotNullParameter(images, "images");
@@ -82,7 +130,7 @@ public final /* data */ class ModelSpotifyAlbum {
         return this.id;
     }
 
-    public final List<ModelSpotifyAlbum$AlbumImage> getImages() {
+    public final List<AlbumImage> getImages() {
         return this.images;
     }
 
@@ -100,7 +148,7 @@ public final /* data */ class ModelSpotifyAlbum {
         int iHashCode = (str != null ? str.hashCode() : 0) * 31;
         String str2 = this.id;
         int iHashCode2 = (iHashCode + (str2 != null ? str2.hashCode() : 0)) * 31;
-        List<ModelSpotifyAlbum$AlbumImage> list = this.images;
+        List<AlbumImage> list = this.images;
         int iHashCode3 = (iHashCode2 + (list != null ? list.hashCode() : 0)) * 31;
         String str3 = this.name;
         return iHashCode3 + (str3 != null ? str3.hashCode() : 0);

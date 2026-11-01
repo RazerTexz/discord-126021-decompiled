@@ -2,13 +2,20 @@ package b.f.l.a;
 
 /* JADX INFO: compiled from: TransformGestureDetector.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class b implements a$a {
-    public final a a;
+public class b implements b.f.l.a.a.InterfaceC0076a {
+    public final b.f.l.a.a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public b$a f648b = null;
+    public a f648b = null;
 
-    public b(a aVar) {
+    /* JADX INFO: compiled from: TransformGestureDetector.java */
+    public interface a {
+        void b(b bVar);
+
+        void c(b bVar);
+    }
+
+    public b(b.f.l.a.a aVar) {
         this.a = aVar;
         aVar.h = this;
     }
@@ -25,17 +32,17 @@ public class b implements a$a {
     }
 
     public float b() {
-        a aVar = this.a;
+        b.f.l.a.a aVar = this.a;
         return a(aVar.d, aVar.f647b);
     }
 
     public float c() {
-        a aVar = this.a;
+        b.f.l.a.a aVar = this.a;
         return a(aVar.e, aVar.f647b);
     }
 
     public void d() {
-        a aVar = this.a;
+        b.f.l.a.a aVar = this.a;
         if (aVar.a) {
             aVar.c();
             for (int i = 0; i < 2; i++) {

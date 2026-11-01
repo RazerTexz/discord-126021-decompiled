@@ -25,13 +25,19 @@ public final class AssetDataSource extends g {
     public long h;
     public boolean i;
 
+    public final class AssetDataSourceException extends DataSourceException {
+        public AssetDataSourceException(@Nullable Throwable th, int i) {
+            super(th, i);
+        }
+    }
+
     public AssetDataSource(Context context) {
         super(false);
         this.e = context.getAssets();
     }
 
     @Override // b.i.a.c.e3.l
-    public long a(n nVar) throws AssetDataSource$AssetDataSourceException {
+    public long a(n nVar) throws AssetDataSourceException {
         try {
             Uri uri = nVar.a;
             this.f = uri;
@@ -46,7 +52,7 @@ public final class AssetDataSource extends g {
             InputStream inputStreamOpen = this.e.open(path, 1);
             this.g = inputStreamOpen;
             if (inputStreamOpen.skip(nVar.f) < nVar.f) {
-                throw new AssetDataSource$AssetDataSourceException(null, 2008);
+                throw new AssetDataSourceException(null, 2008);
             }
             long j = nVar.g;
             if (j != -1) {
@@ -61,10 +67,10 @@ public final class AssetDataSource extends g {
             this.i = true;
             s(nVar);
             return this.h;
-        } catch (AssetDataSource$AssetDataSourceException e) {
+        } catch (AssetDataSourceException e) {
             throw e;
         } catch (IOException e2) {
-            throw new AssetDataSource$AssetDataSourceException(e2, e2 instanceof FileNotFoundException ? 2005 : 2000);
+            throw new AssetDataSourceException(e2, e2 instanceof FileNotFoundException ? 2005 : 2000);
         }
     }
 
@@ -73,7 +79,7 @@ public final class AssetDataSource extends g {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    public void close() throws AssetDataSource$AssetDataSourceException {
+    public void close() throws AssetDataSourceException {
         this.f = null;
         try {
             InputStream inputStream = this.g;
@@ -86,7 +92,7 @@ public final class AssetDataSource extends g {
                 q();
             }
         } catch (IOException e) {
-            throw new AssetDataSource$AssetDataSourceException(e, 2000);
+            throw new AssetDataSourceException(e, 2000);
         }
     }
 
@@ -97,7 +103,7 @@ public final class AssetDataSource extends g {
     }
 
     @Override // b.i.a.c.e3.h
-    public int read(byte[] bArr, int i, int i2) throws AssetDataSource$AssetDataSourceException {
+    public int read(byte[] bArr, int i, int i2) throws AssetDataSourceException {
         if (i2 == 0) {
             return 0;
         }
@@ -109,7 +115,7 @@ public final class AssetDataSource extends g {
             try {
                 i2 = (int) Math.min(j, i2);
             } catch (IOException e) {
-                throw new AssetDataSource$AssetDataSourceException(e, 2000);
+                throw new AssetDataSourceException(e, 2000);
             }
         }
         InputStream inputStream = this.g;

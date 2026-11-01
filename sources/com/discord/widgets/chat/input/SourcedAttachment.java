@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Parcel;
 import androidx.annotation.CallSuper;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import androidx.exifinterface.media.ExifInterface;
 import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
@@ -19,7 +19,7 @@ public final class SourcedAttachment<T> extends Attachment<T> {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public SourcedAttachment(long j, Uri uri, String str, T t, String str2) {
         super(j, uri, str, t, false, 16, null);
-        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         m.checkNotNullParameter(str, "displayName");
         m.checkNotNullParameter(str2, "source");
         this.source = str2;

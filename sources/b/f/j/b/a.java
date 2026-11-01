@@ -2,7 +2,6 @@ package b.f.j.b;
 
 import android.annotation.TargetApi;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
 import b.f.j.l.d;
 import com.facebook.common.references.CloseableReference;
 import com.facebook.imagepipeline.bitmaps.PlatformBitmapFactory;
@@ -22,10 +21,10 @@ public class a extends PlatformBitmapFactory {
     }
 
     @Override // com.facebook.imagepipeline.bitmaps.PlatformBitmapFactory
-    public CloseableReference<Bitmap> b(int i, int i2, Bitmap$Config bitmap$Config) {
-        Bitmap bitmap = this.a.get(b.f.k.a.c(i, i2, bitmap$Config));
-        b.c.a.a0.d.i(Boolean.valueOf(bitmap.getAllocationByteCount() >= b.f.k.a.b(bitmap$Config) * (i * i2)));
-        bitmap.reconfigure(i, i2, bitmap$Config);
+    public CloseableReference<Bitmap> b(int i, int i2, Bitmap.Config config) {
+        Bitmap bitmap = this.a.get(b.f.k.a.c(i, i2, config));
+        b.c.a.a0.d.i(Boolean.valueOf(bitmap.getAllocationByteCount() >= b.f.k.a.b(config) * (i * i2)));
+        bitmap.reconfigure(i, i2, config);
         return CloseableReference.H(bitmap, this.a, this.f552b.a);
     }
 }

@@ -1,7 +1,7 @@
 package com.discord.utilities.rx;
 
 import android.app.Activity;
-import android.app.Application$ActivityLifecycleCallbacks;
+import android.app.Application;
 import android.os.Bundle;
 import androidx.appcompat.widget.ActivityChooserModel;
 import com.discord.app.AppActivity;
@@ -10,10 +10,10 @@ import java.lang.ref.WeakReference;
 
 /* JADX INFO: compiled from: ActivityLifecycleCallbacks.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public abstract class ActivityLifecycleCallbacks implements Application$ActivityLifecycleCallbacks {
+public abstract class ActivityLifecycleCallbacks implements Application.ActivityLifecycleCallbacks {
     private WeakReference<AppActivity> onActivityCreatedInvoked;
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivityCreated(Activity activity, Bundle savedInstanceState) {
         m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
         if (activity instanceof AppActivity) {
@@ -25,7 +25,7 @@ public abstract class ActivityLifecycleCallbacks implements Application$Activity
         m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivityDestroyed(Activity activity) {
         m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
         if (activity instanceof AppActivity) {
@@ -37,7 +37,7 @@ public abstract class ActivityLifecycleCallbacks implements Application$Activity
         m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivityPaused(Activity activity) {
         m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
         if (activity instanceof AppActivity) {
@@ -49,7 +49,7 @@ public abstract class ActivityLifecycleCallbacks implements Application$Activity
         m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivityResumed(Activity activity) {
         m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
         if (activity instanceof AppActivity) {
@@ -57,7 +57,7 @@ public abstract class ActivityLifecycleCallbacks implements Application$Activity
         }
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivitySaveInstanceState(Activity activity, Bundle outState) {
         m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
         m.checkNotNullParameter(outState, "outState");
@@ -71,7 +71,7 @@ public abstract class ActivityLifecycleCallbacks implements Application$Activity
         m.checkNotNullParameter(outState, "outState");
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivityStarted(Activity activity) {
         m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
         if (activity instanceof AppActivity) {
@@ -83,7 +83,7 @@ public abstract class ActivityLifecycleCallbacks implements Application$Activity
         m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivityStopped(Activity activity) {
         m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
         if (activity instanceof AppActivity) {

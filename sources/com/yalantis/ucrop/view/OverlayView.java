@@ -4,9 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Path$Direction;
 import android.graphics.RectF;
-import android.graphics.Region$Op;
+import android.graphics.Region;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,7 +15,7 @@ import androidx.annotation.NonNull;
 import b.i.a.f.e.o.f;
 import b.q.a.h.d;
 import b.q.a.l.e;
-import com.yalantis.ucrop.R$b;
+import com.yalantis.ucrop.R;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class OverlayView extends View {
@@ -70,9 +69,9 @@ public class OverlayView extends View {
         this.C = -1.0f;
         this.D = -1.0f;
         this.E = -1;
-        this.F = getResources().getDimensionPixelSize(R$b.ucrop_default_crop_rect_corner_touch_threshold);
-        this.G = getResources().getDimensionPixelSize(R$b.ucrop_default_crop_rect_min_size);
-        this.H = getResources().getDimensionPixelSize(R$b.ucrop_default_crop_rect_corner_touch_area_line_length);
+        this.F = getResources().getDimensionPixelSize(R.b.ucrop_default_crop_rect_corner_touch_threshold);
+        this.G = getResources().getDimensionPixelSize(R.b.ucrop_default_crop_rect_min_size);
+        this.H = getResources().getDimensionPixelSize(R.b.ucrop_default_crop_rect_corner_touch_area_line_length);
     }
 
     public final void a() {
@@ -80,7 +79,7 @@ public class OverlayView extends View {
         f.d0(this.j);
         this.r = null;
         this.w.reset();
-        this.w.addCircle(this.j.centerX(), this.j.centerY(), Math.min(this.j.width(), this.j.height()) / 2.0f, Path$Direction.CW);
+        this.w.addCircle(this.j.centerX(), this.j.centerY(), Math.min(this.j.width(), this.j.height()) / 2.0f, Path.Direction.CW);
     }
 
     @NonNull
@@ -101,9 +100,9 @@ public class OverlayView extends View {
         super.onDraw(canvas);
         canvas.save();
         if (this.u) {
-            canvas.clipPath(this.w, Region$Op.DIFFERENCE);
+            canvas.clipPath(this.w, Region.Op.DIFFERENCE);
         } else {
-            canvas.clipRect(this.j, Region$Op.DIFFERENCE);
+            canvas.clipRect(this.j, Region.Op.DIFFERENCE);
         }
         canvas.drawColor(this.v);
         canvas.restore();
@@ -162,12 +161,12 @@ public class OverlayView extends View {
             RectF rectF5 = this.k;
             int i10 = this.H;
             rectF5.inset(i10, -i10);
-            canvas.clipRect(this.k, Region$Op.DIFFERENCE);
+            canvas.clipRect(this.k, Region.Op.DIFFERENCE);
             this.k.set(this.j);
             RectF rectF6 = this.k;
             int i11 = this.H;
             rectF6.inset(-i11, i11);
-            canvas.clipRect(this.k, Region$Op.DIFFERENCE);
+            canvas.clipRect(this.k, Region.Op.DIFFERENCE);
             canvas.drawRect(this.j, this.A);
             canvas.restore();
         }

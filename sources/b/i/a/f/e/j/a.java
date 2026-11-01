@@ -3,14 +3,14 @@ package b.i.a.f.e.j;
 import android.database.CursorWindow;
 import android.os.Bundle;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import com.google.android.gms.common.data.DataHolder;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class a implements Parcelable$Creator<DataHolder> {
-    @Override // android.os.Parcelable$Creator
+public final class a implements Parcelable.Creator<DataHolder> {
+    @Override // android.os.Parcelable.Creator
     public final DataHolder createFromParcel(Parcel parcel) {
         int iM2 = d.m2(parcel);
         int i = 0;
@@ -61,7 +61,7 @@ public final class a implements Parcelable$Creator<DataHolder> {
         }
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ DataHolder[] newArray(int i) {
         return new DataHolder[i];
     }

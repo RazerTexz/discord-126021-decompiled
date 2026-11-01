@@ -19,22 +19,46 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 import kotlin.TypeCastException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import org.conscrypt.Conscrypt;
+import org.conscrypt.ConscryptHostnameVerifier;
 
 /* JADX INFO: compiled from: ConscryptPlatform.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class d extends h {
     public static final boolean d;
-    public static final d$a e;
+    public static final a e;
     public final Provider f;
 
+    /* JADX INFO: compiled from: ConscryptPlatform.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final boolean a(int i, int i2, int i3) {
+            Conscrypt.Version version = Conscrypt.version();
+            if (version.major() != i) {
+                return version.major() > i;
+            }
+            if (version.minor() != i2) {
+                return version.minor() > i2;
+            }
+            return version.patch() >= i3;
+        }
+    }
+
+    /* JADX INFO: compiled from: ConscryptPlatform.kt */
+    public final class b implements ConscryptHostnameVerifier {
+        public static final b a = new b();
+    }
+
     static {
-        d$a d_a = new d$a(null);
-        e = d_a;
+        a aVar = new a(null);
+        e = aVar;
         boolean z2 = false;
         try {
-            Class.forName("org.conscrypt.Conscrypt$Version", false, d_a.getClass().getClassLoader());
-            if (Conscrypt.isAvailable() && d_a.a(2, 1, 0)) {
+            Class.forName("org.conscrypt.Conscrypt$Version", false, aVar.getClass().getClassLoader());
+            if (Conscrypt.isAvailable() && aVar.a(2, 1, 0)) {
                 z2 = true;
             }
         } catch (ClassNotFoundException | NoClassDefFoundError unused) {
@@ -132,7 +156,7 @@ public final class d extends h {
             throw new TypeCastException("null cannot be cast to non-null type javax.net.ssl.X509TrustManager");
         }
         X509TrustManager x509TrustManager = (X509TrustManager) trustManager;
-        Conscrypt.setHostnameVerifier(x509TrustManager, d$b.a);
+        Conscrypt.setHostnameVerifier(x509TrustManager, b.a);
         return x509TrustManager;
     }
 }

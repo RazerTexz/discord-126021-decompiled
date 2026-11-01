@@ -1,7 +1,6 @@
 package b.i.a.c.b3;
 
 import android.os.Handler;
-import android.os.Handler$Callback;
 import android.os.Looper;
 import android.os.Message;
 import androidx.annotation.Nullable;
@@ -20,7 +19,7 @@ import java.util.Objects;
 
 /* JADX INFO: compiled from: TextRenderer.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class m extends v0 implements Handler$Callback {
+public final class m extends v0 implements Handler.Callback {
     public boolean A;
     public int B;
 
@@ -160,7 +159,7 @@ public final class m extends v0 implements Handler$Callback {
         i iVar = this.w;
         j1 j1Var = this.C;
         Objects.requireNonNull(j1Var);
-        Objects.requireNonNull((i$a) iVar);
+        Objects.requireNonNull((i.a) iVar);
         String str = j1Var.w;
         if (str != null) {
             switch (str.hashCode()) {
@@ -320,7 +319,7 @@ public final class m extends v0 implements Handler$Callback {
 
     @Override // b.i.a.c.g2
     public int a(j1 j1Var) {
-        Objects.requireNonNull((i$a) this.w);
+        Objects.requireNonNull((i.a) this.w);
         String str = j1Var.w;
         if ("text/vtt".equals(str) || "text/x-ssa".equals(str) || "application/ttml+xml".equals(str) || "application/x-mp4-vtt".equals(str) || "application/x-subrip".equals(str) || "application/x-quicktime-tx3g".equals(str) || "application/cea-608".equals(str) || "application/x-mp4-cea-608".equals(str) || "application/cea-708".equals(str) || "application/dvbsubs".equals(str) || "application/pgs".equals(str) || "text/x-exoplayer-cues".equals(str)) {
             return (j1Var.P == 0 ? 4 : 2) | 0 | 0;
@@ -343,7 +342,7 @@ public final class m extends v0 implements Handler$Callback {
         return "TextRenderer";
     }
 
-    @Override // android.os.Handler$Callback
+    @Override // android.os.Handler.Callback
     public boolean handleMessage(Message message) {
         if (message.what != 0) {
             throw new IllegalStateException();

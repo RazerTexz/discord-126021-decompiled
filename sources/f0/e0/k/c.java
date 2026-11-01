@@ -18,6 +18,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 import kotlin.TypeCastException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import org.bouncycastle.jsse.BCSSLParameters;
 import org.bouncycastle.jsse.BCSSLSocket;
 import org.bouncycastle.jsse.provider.BouncyCastleJsseProvider;
@@ -26,15 +27,21 @@ import org.bouncycastle.jsse.provider.BouncyCastleJsseProvider;
 /* JADX INFO: loaded from: classes3.dex */
 public final class c extends h {
     public static final boolean d;
-    public static final c$a e;
+    public static final a e;
     public final Provider f = new BouncyCastleJsseProvider();
 
+    /* JADX INFO: compiled from: BouncyCastlePlatform.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     static {
-        c$a c_a = new c$a(null);
-        e = c_a;
+        a aVar = new a(null);
+        e = aVar;
         boolean z2 = false;
         try {
-            Class.forName("org.bouncycastle.jsse.provider.BouncyCastleJsseProvider", false, c_a.getClass().getClassLoader());
+            Class.forName("org.bouncycastle.jsse.provider.BouncyCastleJsseProvider", false, aVar.getClass().getClassLoader());
             z2 = true;
         } catch (ClassNotFoundException unused) {
         }

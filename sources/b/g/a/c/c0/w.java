@@ -1,9 +1,14 @@
 package b.g.a.c.c0;
 
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
 /* JADX INFO: compiled from: DefaultAccessorNamingStrategy.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class w extends a {
-    public final w$a a;
+public class w extends b.g.a.c.c0.a {
+    public final a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final boolean f695b;
@@ -11,12 +16,58 @@ public class w extends a {
     public final String d;
     public final String e;
 
-    public w(b.g.a.c.z.l<?> lVar, c cVar, String str, String str2, String str3, w$a w_a) {
+    /* JADX INFO: compiled from: DefaultAccessorNamingStrategy.java */
+    public interface a {
+        boolean a(char c, String str, int i);
+    }
+
+    /* JADX INFO: compiled from: DefaultAccessorNamingStrategy.java */
+    public class c extends w {
+        public final Set<String> f;
+
+        public c(b.g.a.c.z.l<?> lVar, b.g.a.c.c0.c cVar) {
+            super(lVar, cVar, null, "get", "is", null);
+            this.f = new HashSet();
+            Class<?> cls = cVar.l;
+            RuntimeException runtimeException = b.g.a.c.d0.a.f697b;
+            if (runtimeException != null) {
+                throw runtimeException;
+            }
+            b.g.a.c.d0.a aVar = b.g.a.c.d0.a.a;
+            Objects.requireNonNull(aVar);
+            try {
+                Object[] objArr = (Object[]) aVar.c.invoke(cls, new Object[0]);
+                int length = objArr.length;
+                String[] strArr = new String[length];
+                for (int i = 0; i < objArr.length; i++) {
+                    try {
+                        strArr[i] = (String) aVar.d.invoke(objArr[i], new Object[0]);
+                    } catch (Exception e) {
+                        throw new IllegalArgumentException(String.format("Failed to access name of field #%d (of %d) of Record type %s", Integer.valueOf(i), Integer.valueOf(objArr.length), b.g.a.c.i0.d.u(cls)), e);
+                    }
+                }
+                for (int i2 = 0; i2 < length; i2++) {
+                    this.f.add(strArr[i2]);
+                }
+            } catch (Exception unused) {
+                StringBuilder sbU = b.d.b.a.a.U("Failed to access RecordComponents of type ");
+                sbU.append(b.g.a.c.i0.d.u(cls));
+                throw new IllegalArgumentException(sbU.toString());
+            }
+        }
+
+        @Override // b.g.a.c.c0.w, b.g.a.c.c0.a
+        public String c(j jVar, String str) {
+            return this.f.contains(str) ? str : super.c(jVar, str);
+        }
+    }
+
+    public w(b.g.a.c.z.l<?> lVar, b.g.a.c.c0.c cVar, String str, String str2, String str3, a aVar) {
         this.f695b = lVar.q(b.g.a.c.p.USE_STD_BEAN_NAMING);
         this.e = str;
         this.c = str2;
         this.d = str3;
-        this.a = w_a;
+        this.a = aVar;
     }
 
     @Override // b.g.a.c.c0.a
@@ -70,8 +121,8 @@ public class w extends a {
             return null;
         }
         char cCharAt = str.charAt(i);
-        w$a w_a = this.a;
-        if (w_a != null && !w_a.a(cCharAt, str, i)) {
+        a aVar = this.a;
+        if (aVar != null && !aVar.a(cCharAt, str, i)) {
             return null;
         }
         char lowerCase = Character.toLowerCase(cCharAt);
@@ -102,8 +153,8 @@ public class w extends a {
             return null;
         }
         char cCharAt = str.charAt(i);
-        w$a w_a = this.a;
-        if (w_a != null && !w_a.a(cCharAt, str, i)) {
+        a aVar = this.a;
+        if (aVar != null && !aVar.a(cCharAt, str, i)) {
             return null;
         }
         char lowerCase = Character.toLowerCase(cCharAt);
@@ -118,5 +169,15 @@ public class w extends a {
         sb.append(lowerCase);
         sb.append((CharSequence) str, i2, length);
         return sb.toString();
+    }
+
+    /* JADX INFO: compiled from: DefaultAccessorNamingStrategy.java */
+    public class b extends b.g.a.c.c0.a.AbstractC0083a implements Serializable {
+        private static final long serialVersionUID = 1;
+        public final String _setterPrefix = "set";
+        public final String _withPrefix = "with";
+        public final String _getterPrefix = "get";
+        public final String _isGetterPrefix = "is";
+        public final a _baseNameValidator = null;
     }
 }

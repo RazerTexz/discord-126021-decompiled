@@ -1,10 +1,55 @@
 package d0.e0.p.d.m0.c;
 
 import java.util.Collection;
+import java.util.List;
 
 /* JADX INFO: compiled from: FunctionDescriptor.java */
 /* JADX INFO: loaded from: classes3.dex */
 public interface x extends b {
+
+    /* JADX INFO: compiled from: FunctionDescriptor.java */
+    public interface a<D extends x> {
+        D build();
+
+        a<D> setAdditionalAnnotations(d0.e0.p.d.m0.c.g1.g gVar);
+
+        a<D> setCopyOverrides(boolean z2);
+
+        a<D> setDispatchReceiverParameter(q0 q0Var);
+
+        a<D> setDropOriginalInContainingParts();
+
+        a<D> setExtensionReceiverParameter(q0 q0Var);
+
+        a<D> setHiddenForResolutionEverywhereBesideSupercalls();
+
+        a<D> setHiddenToOvercomeSignatureClash();
+
+        a<D> setKind(b.a aVar);
+
+        a<D> setModality(z zVar);
+
+        a<D> setName(d0.e0.p.d.m0.g.e eVar);
+
+        a<D> setOriginal(b bVar);
+
+        a<D> setOwner(m mVar);
+
+        a<D> setPreserveSourceElement();
+
+        a<D> setReturnType(d0.e0.p.d.m0.n.c0 c0Var);
+
+        a<D> setSignatureChange();
+
+        a<D> setSubstitution(d0.e0.p.d.m0.n.z0 z0Var);
+
+        a<D> setTypeParameters(List<z0> list);
+
+        a<D> setValueParameters(List<c1> list);
+
+        a<D> setVisibility(u uVar);
+    }
+
     @Override // d0.e0.p.d.m0.c.n, d0.e0.p.d.m0.c.m
     m getContainingDeclaration();
 
@@ -30,7 +75,7 @@ public interface x extends b {
 
     boolean isTailrec();
 
-    x$a<? extends x> newCopyBuilder();
+    a<? extends x> newCopyBuilder();
 
     x substitute(d0.e0.p.d.m0.n.c1 c1Var);
 }

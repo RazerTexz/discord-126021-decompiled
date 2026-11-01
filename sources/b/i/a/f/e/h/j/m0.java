@@ -11,7 +11,7 @@ public abstract class m0 extends s {
     }
 
     @Nullable
-    public abstract Feature[] f(g$a<?> g_a);
+    public abstract Feature[] f(g.a<?> aVar);
 
-    public abstract boolean g(g$a<?> g_a);
+    public abstract boolean g(g.a<?> aVar);
 }

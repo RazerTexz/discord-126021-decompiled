@@ -1,7 +1,6 @@
 package b.a.z.a.a;
 
 import com.discord.widgets.channels.permissions.WidgetChannelSettingsPermissionsAddRole;
-import com.discord.widgets.channels.permissions.WidgetChannelSettingsPermissionsAddRole$Model;
 import rx.functions.Action1;
 
 /* JADX INFO: compiled from: lambda */
@@ -15,6 +14,6 @@ public final /* synthetic */ class p implements Action1 {
 
     @Override // rx.functions.Action1
     public final void call(Object obj) {
-        WidgetChannelSettingsPermissionsAddRole.g(this.j, (WidgetChannelSettingsPermissionsAddRole$Model) obj);
+        WidgetChannelSettingsPermissionsAddRole.g(this.j, (WidgetChannelSettingsPermissionsAddRole.Model) obj);
     }
 }

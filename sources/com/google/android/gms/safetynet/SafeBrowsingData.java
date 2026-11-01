@@ -2,14 +2,14 @@ package com.google.android.gms.safetynet;
 
 import android.os.Parcel;
 import android.os.ParcelFileDescriptor;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.i.a.f.k.g;
 import com.google.android.gms.common.data.DataHolder;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class SafeBrowsingData extends AbstractSafeParcelable {
-    public static final Parcelable$Creator<SafeBrowsingData> CREATOR = new g();
+    public static final Parcelable.Creator<SafeBrowsingData> CREATOR = new g();
     public String j;
     public DataHolder k;
     public ParcelFileDescriptor l;

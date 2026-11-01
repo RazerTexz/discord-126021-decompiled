@@ -3,7 +3,6 @@ package b.c.a.y;
 import androidx.annotation.CheckResult;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +23,7 @@ public class f {
     }
 
     @CheckResult
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public f a(String str) {
         f fVar = new f(this);
         fVar.f408b.add(str);
@@ -36,7 +35,7 @@ public class f {
         return list.get(list.size() - 1).equals("**");
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public boolean c(String str, int i) {
         if (i >= this.f408b.size()) {
             return false;
@@ -59,7 +58,7 @@ public class f {
         return this.f408b.get(i2).equals(str);
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public int d(String str, int i) {
         if ("__container".equals(str)) {
             return 0;
@@ -70,7 +69,7 @@ public class f {
         return 1;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public boolean e(String str, int i) {
         if ("__container".equals(str)) {
             return true;
@@ -81,12 +80,12 @@ public class f {
         return this.f408b.get(i).equals(str) || this.f408b.get(i).equals("**") || this.f408b.get(i).equals("*");
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public boolean f(String str, int i) {
         return "__container".equals(str) || i < this.f408b.size() - 1 || this.f408b.get(i).equals("**");
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public f g(g gVar) {
         f fVar = new f(this);
         fVar.c = gVar;

@@ -11,22 +11,137 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import androidx.annotation.NonNull;
+import androidx.annotation.RestrictTo;
 import androidx.core.content.res.TypedArrayUtils;
+import androidx.core.view.ViewCompat;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import org.xmlpull.v1.XmlPullParser;
 
 /* JADX INFO: loaded from: classes.dex */
 public class Slide extends Visibility {
     private static final String PROPNAME_SCREEN_POSITION = "android:slide:screenPosition";
-    private Slide$CalculateSlide mSlideCalculator;
+    private CalculateSlide mSlideCalculator;
     private int mSlideEdge;
     private static final TimeInterpolator sDecelerate = new DecelerateInterpolator();
     private static final TimeInterpolator sAccelerate = new AccelerateInterpolator();
-    private static final Slide$CalculateSlide sCalculateLeft = new Slide$1();
-    private static final Slide$CalculateSlide sCalculateStart = new Slide$2();
-    private static final Slide$CalculateSlide sCalculateTop = new Slide$3();
-    private static final Slide$CalculateSlide sCalculateRight = new Slide$4();
-    private static final Slide$CalculateSlide sCalculateEnd = new Slide$5();
-    private static final Slide$CalculateSlide sCalculateBottom = new Slide$6();
+    private static final CalculateSlide sCalculateLeft = new AnonymousClass1();
+    private static final CalculateSlide sCalculateStart = new AnonymousClass2();
+    private static final CalculateSlide sCalculateTop = new AnonymousClass3();
+    private static final CalculateSlide sCalculateRight = new AnonymousClass4();
+    private static final CalculateSlide sCalculateEnd = new AnonymousClass5();
+    private static final CalculateSlide sCalculateBottom = new AnonymousClass6();
+
+    /* JADX INFO: renamed from: androidx.transition.Slide$1, reason: invalid class name */
+    public final class AnonymousClass1 extends CalculateSlideHorizontal {
+        public AnonymousClass1() {
+            super(null);
+        }
+
+        @Override // androidx.transition.Slide.CalculateSlide
+        public float getGoneX(ViewGroup viewGroup, View view) {
+            return view.getTranslationX() - viewGroup.getWidth();
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.Slide$2, reason: invalid class name */
+    public final class AnonymousClass2 extends CalculateSlideHorizontal {
+        public AnonymousClass2() {
+            super(null);
+        }
+
+        @Override // androidx.transition.Slide.CalculateSlide
+        public float getGoneX(ViewGroup viewGroup, View view) {
+            return ViewCompat.getLayoutDirection(viewGroup) == 1 ? view.getTranslationX() + viewGroup.getWidth() : view.getTranslationX() - viewGroup.getWidth();
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.Slide$3, reason: invalid class name */
+    public final class AnonymousClass3 extends CalculateSlideVertical {
+        public AnonymousClass3() {
+            super(null);
+        }
+
+        @Override // androidx.transition.Slide.CalculateSlide
+        public float getGoneY(ViewGroup viewGroup, View view) {
+            return view.getTranslationY() - viewGroup.getHeight();
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.Slide$4, reason: invalid class name */
+    public final class AnonymousClass4 extends CalculateSlideHorizontal {
+        public AnonymousClass4() {
+            super(null);
+        }
+
+        @Override // androidx.transition.Slide.CalculateSlide
+        public float getGoneX(ViewGroup viewGroup, View view) {
+            return view.getTranslationX() + viewGroup.getWidth();
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.Slide$5, reason: invalid class name */
+    public final class AnonymousClass5 extends CalculateSlideHorizontal {
+        public AnonymousClass5() {
+            super(null);
+        }
+
+        @Override // androidx.transition.Slide.CalculateSlide
+        public float getGoneX(ViewGroup viewGroup, View view) {
+            return ViewCompat.getLayoutDirection(viewGroup) == 1 ? view.getTranslationX() - viewGroup.getWidth() : view.getTranslationX() + viewGroup.getWidth();
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.Slide$6, reason: invalid class name */
+    public final class AnonymousClass6 extends CalculateSlideVertical {
+        public AnonymousClass6() {
+            super(null);
+        }
+
+        @Override // androidx.transition.Slide.CalculateSlide
+        public float getGoneY(ViewGroup viewGroup, View view) {
+            return view.getTranslationY() + viewGroup.getHeight();
+        }
+    }
+
+    public interface CalculateSlide {
+        float getGoneX(ViewGroup viewGroup, View view);
+
+        float getGoneY(ViewGroup viewGroup, View view);
+    }
+
+    public abstract class CalculateSlideHorizontal implements CalculateSlide {
+        private CalculateSlideHorizontal() {
+        }
+
+        @Override // androidx.transition.Slide.CalculateSlide
+        public float getGoneY(ViewGroup viewGroup, View view) {
+            return view.getTranslationY();
+        }
+
+        public /* synthetic */ CalculateSlideHorizontal(AnonymousClass1 anonymousClass1) {
+            this();
+        }
+    }
+
+    public abstract class CalculateSlideVertical implements CalculateSlide {
+        private CalculateSlideVertical() {
+        }
+
+        @Override // androidx.transition.Slide.CalculateSlide
+        public float getGoneX(ViewGroup viewGroup, View view) {
+            return view.getTranslationX();
+        }
+
+        public /* synthetic */ CalculateSlideVertical(AnonymousClass1 anonymousClass1) {
+            this();
+        }
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public @interface GravityFlag {
+    }
 
     public Slide() {
         this.mSlideCalculator = sCalculateBottom;

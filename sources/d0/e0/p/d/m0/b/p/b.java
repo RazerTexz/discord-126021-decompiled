@@ -4,16 +4,20 @@ import d0.e0.p.d.m0.b.k;
 import d0.e0.p.d.m0.c.e0;
 import d0.e0.p.d.m0.c.f;
 import d0.e0.p.d.m0.c.g1.g;
+import d0.e0.p.d.m0.c.h;
 import d0.e0.p.d.m0.c.i1.k0;
 import d0.e0.p.d.m0.c.t;
 import d0.e0.p.d.m0.c.u0;
+import d0.e0.p.d.m0.c.w;
+import d0.e0.p.d.m0.c.x0;
 import d0.e0.p.d.m0.c.z;
 import d0.e0.p.d.m0.c.z0;
 import d0.e0.p.d.m0.k.a0.i;
-import d0.e0.p.d.m0.k.a0.i$b;
 import d0.e0.p.d.m0.m.o;
+import d0.e0.p.d.m0.n.c0;
+import d0.e0.p.d.m0.n.d0;
 import d0.e0.p.d.m0.n.j1;
-import d0.t.c0;
+import d0.e0.p.d.m0.n.y0;
 import d0.t.n;
 import d0.t.u;
 import d0.z.d.m;
@@ -21,7 +25,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import kotlin.NoWhenBranchMatchedException;
 import kotlin.Unit;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.ranges.IntRange;
 
 /* JADX INFO: compiled from: FunctionClassDescriptor.kt */
@@ -35,12 +41,98 @@ public final class b extends d0.e0.p.d.m0.c.i1.a {
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public final c f3234s;
     public final int t;
-    public final b$b u;
+    public final C0508b u;
     public final d v;
     public final List<z0> w;
 
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.b.p.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: FunctionClassDescriptor.kt */
+    public final class C0508b extends d0.e0.p.d.m0.n.b {
+        public final /* synthetic */ b c;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C0508b(b bVar) {
+            super(b.access$getStorageManager$p(bVar));
+            m.checkNotNullParameter(bVar, "this$0");
+            this.c = bVar;
+        }
+
+        @Override // d0.e0.p.d.m0.n.g
+        public Collection<c0> a() {
+            List<d0.e0.p.d.m0.g.a> listListOf;
+            int iOrdinal = this.c.getFunctionKind().ordinal();
+            if (iOrdinal == 0 || iOrdinal == 1) {
+                listListOf = d0.t.m.listOf(b.access$getFunctionClassId$cp());
+            } else if (iOrdinal == 2) {
+                listListOf = n.listOf((Object[]) new d0.e0.p.d.m0.g.a[]{b.access$getKFunctionClassId$cp(), new d0.e0.p.d.m0.g.a(k.l, c.k.numberedClassName(this.c.getArity()))});
+            } else {
+                if (iOrdinal != 3) {
+                    throw new NoWhenBranchMatchedException();
+                }
+                listListOf = n.listOf((Object[]) new d0.e0.p.d.m0.g.a[]{b.access$getKFunctionClassId$cp(), new d0.e0.p.d.m0.g.a(k.d, c.l.numberedClassName(this.c.getArity()))});
+            }
+            d0.e0.p.d.m0.c.c0 containingDeclaration = b.access$getContainingDeclaration$p(this.c).getContainingDeclaration();
+            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(listListOf, 10));
+            for (d0.e0.p.d.m0.g.a aVar : listListOf) {
+                d0.e0.p.d.m0.c.e eVarFindClassAcrossModuleDependencies = w.findClassAcrossModuleDependencies(containingDeclaration, aVar);
+                if (eVarFindClassAcrossModuleDependencies == null) {
+                    throw new IllegalStateException(("Built-in class " + aVar + " not found").toString());
+                }
+                List listTakeLast = u.takeLast(getParameters(), eVarFindClassAcrossModuleDependencies.getTypeConstructor().getParameters().size());
+                ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(listTakeLast, 10));
+                Iterator it = listTakeLast.iterator();
+                while (it.hasNext()) {
+                    arrayList2.add(new y0(((z0) it.next()).getDefaultType()));
+                }
+                d0 d0Var = d0.a;
+                arrayList.add(d0.simpleNotNullType(g.f.getEMPTY(), eVarFindClassAcrossModuleDependencies, arrayList2));
+            }
+            return u.toList(arrayList);
+        }
+
+        @Override // d0.e0.p.d.m0.n.g
+        public x0 d() {
+            return x0.a.a;
+        }
+
+        @Override // d0.e0.p.d.m0.n.b, d0.e0.p.d.m0.n.g, d0.e0.p.d.m0.n.u0
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.e getDeclarationDescriptor() {
+            return getDeclarationDescriptor();
+        }
+
+        @Override // d0.e0.p.d.m0.n.u0
+        public List<z0> getParameters() {
+            return b.access$getParameters$p(this.c);
+        }
+
+        @Override // d0.e0.p.d.m0.n.u0
+        public boolean isDenotable() {
+            return true;
+        }
+
+        public String toString() {
+            return getDeclarationDescriptor().toString();
+        }
+
+        @Override // d0.e0.p.d.m0.n.g, d0.e0.p.d.m0.n.u0
+        public /* bridge */ /* synthetic */ h getDeclarationDescriptor() {
+            return getDeclarationDescriptor();
+        }
+
+        @Override // d0.e0.p.d.m0.n.b, d0.e0.p.d.m0.n.g, d0.e0.p.d.m0.n.u0
+        public b getDeclarationDescriptor() {
+            return this.c;
+        }
+    }
+
+    /* JADX INFO: compiled from: FunctionClassDescriptor.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     static {
-        new b$a(null);
+        new a(null);
         o = new d0.e0.p.d.m0.g.a(k.l, d0.e0.p.d.m0.g.e.identifier("Function"));
         p = new d0.e0.p.d.m0.g.a(k.i, d0.e0.p.d.m0.g.e.identifier("KFunction"));
     }
@@ -55,14 +147,14 @@ public final class b extends d0.e0.p.d.m0.c.i1.a {
         this.r = e0Var;
         this.f3234s = cVar;
         this.t = i;
-        this.u = new b$b(this);
+        this.u = new C0508b(this);
         this.v = new d(oVar, this);
         ArrayList arrayList = new ArrayList();
         IntRange intRange = new IntRange(1, i);
         ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(intRange, 10));
         Iterator<Integer> it = intRange.iterator();
         while (it.hasNext()) {
-            b(arrayList, this, j1.IN_VARIANCE, m.stringPlus("P", Integer.valueOf(((c0) it).nextInt())));
+            b(arrayList, this, j1.IN_VARIANCE, m.stringPlus("P", Integer.valueOf(((d0.t.c0) it).nextInt())));
             arrayList2.add(Unit.a);
         }
         b(arrayList, this, j1.OUT_VARIANCE, "R");
@@ -253,7 +345,7 @@ public final class b extends d0.e0.p.d.m0.c.i1.a {
     }
 
     @Override // d0.e0.p.d.m0.c.e
-    public i$b getStaticScope() {
-        return i$b.f3461b;
+    public i.b getStaticScope() {
+        return i.b.f3461b;
     }
 }

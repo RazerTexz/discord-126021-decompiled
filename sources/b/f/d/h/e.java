@@ -1,14 +1,13 @@
 package b.f.d.h;
 
 import com.facebook.common.references.CloseableReference;
-import com.facebook.common.references.CloseableReference$c;
 import com.facebook.common.references.SharedReference;
 
 /* JADX INFO: compiled from: RefCountCloseableReference.java */
 /* JADX INFO: loaded from: classes.dex */
 public class e<T> extends CloseableReference<T> {
-    public e(SharedReference<T> sharedReference, CloseableReference$c closeableReference$c, Throwable th) {
-        super(sharedReference, closeableReference$c, th);
+    public e(SharedReference<T> sharedReference, CloseableReference.c cVar, Throwable th) {
+        super(sharedReference, cVar, th);
     }
 
     @Override // com.facebook.common.references.CloseableReference
@@ -22,7 +21,7 @@ public class e<T> extends CloseableReference<T> {
         return b();
     }
 
-    public e(T t, f<T> fVar, CloseableReference$c closeableReference$c, Throwable th) {
-        super(t, fVar, closeableReference$c, th);
+    public e(T t, f<T> fVar, CloseableReference.c cVar, Throwable th) {
+        super(t, fVar, cVar, th);
     }
 }

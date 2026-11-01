@@ -4,37 +4,53 @@ import com.adjust.sdk.Constants;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.FileDialog;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.font.TextAttribute;
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.regex.Pattern;
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.Scrollable;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
+import javax.swing.filechooser.FileFilter;
 import lombok.core.Version;
+import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI.SCL.lombok */
 public class InstallerGUI {
@@ -61,12 +77,12 @@ public class InstallerGUI {
     private List<IdeLocation> toUninstall;
     private Component uninstallArea;
     private Box uninstallBox;
-    private InstallerGUI$JHyperLink uninstallButton;
+    private JHyperLink uninstallButton;
     private JLabel uninstallPlaceholder;
     static final AtomicReference<Integer> exitMarker = new AtomicReference<>();
     private final Set<String> installSpecificMessages = new LinkedHashSet();
     private JFrame appWindow = new JFrame(String.format("Project Lombok v%s - Installer", Version.getVersion()));
-    private InstallerGUI$IdesList idesList = new InstallerGUI$IdesList(this);
+    private IdesList idesList = new IdesList();
 
     static /* synthetic */ JFrame access$0(InstallerGUI installerGUI) {
         return installerGUI.appWindow;
@@ -125,12 +141,29 @@ public class InstallerGUI {
         }
     }
 
+    /* JADX INFO: renamed from: lombok.installer.InstallerGUI$1, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$1.SCL.lombok */
+    class AnonymousClass1 implements Runnable {
+        private final /* synthetic */ Throwable val$t;
+
+        AnonymousClass1(Throwable th) {
+            this.val$t = th;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            JOptionPane.showMessageDialog(InstallerGUI.access$0(InstallerGUI.this), "There was a problem during the installation process:\n" + this.val$t, "Uh Oh!", 0);
+            this.val$t.printStackTrace();
+            System.exit(1);
+        }
+    }
+
     static /* synthetic */ void access$8(InstallerGUI installerGUI, Throwable th) {
         installerGUI.handleException(th);
     }
 
     private void handleException(Throwable t) {
-        SwingUtilities.invokeLater(new InstallerGUI$1(this, t));
+        SwingUtilities.invokeLater(new AnonymousClass1(t));
     }
 
     private Component buildHowIWorkArea() {
@@ -146,12 +179,27 @@ public class InstallerGUI {
         JButton backButton = new JButton("Okay - Good to know!");
         buttonBar.add(Box.createHorizontalGlue());
         buttonBar.add(backButton);
-        backButton.addActionListener(new InstallerGUI$2(this));
+        backButton.addActionListener(new AnonymousClass2());
         constraints.gridy = 2;
         container.add(buttonBar, constraints);
         container.setPreferredSize(new Dimension(INSTALLER_WINDOW_WIDTH, 415));
         container.setMinimumSize(new Dimension(INSTALLER_WINDOW_WIDTH, 415));
         return container;
+    }
+
+    /* JADX INFO: renamed from: lombok.installer.InstallerGUI$2, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$2.SCL.lombok */
+    class AnonymousClass2 implements ActionListener {
+        AnonymousClass2() {
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            InstallerGUI.access$1(InstallerGUI.this).setVisible(false);
+            InstallerGUI.access$2(InstallerGUI.this).setVisible(true);
+            InstallerGUI.access$3(InstallerGUI.this).setVisible(true);
+            InstallerGUI.access$4(InstallerGUI.this).setVisible(false);
+            InstallerGUI.access$0(InstallerGUI.this).pack();
+        }
     }
 
     static /* synthetic */ void access$14(InstallerGUI installerGUI, String str) {
@@ -255,13 +303,38 @@ public class InstallerGUI {
         buttonBar.add(Box.createHorizontalGlue());
         JButton yesButton = new JButton("Yes - uninstall Lombok");
         buttonBar.add(yesButton);
-        noButton.addActionListener(new InstallerGUI$3(this));
-        yesButton.addActionListener(new InstallerGUI$4(this));
+        noButton.addActionListener(new AnonymousClass3());
+        yesButton.addActionListener(new AnonymousClass4());
         constraints.gridy = 4;
         container.add(buttonBar, constraints);
         container.setPreferredSize(new Dimension(INSTALLER_WINDOW_WIDTH, 415));
         container.setMinimumSize(new Dimension(INSTALLER_WINDOW_WIDTH, 415));
         return container;
+    }
+
+    /* JADX INFO: renamed from: lombok.installer.InstallerGUI$3, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$3.SCL.lombok */
+    class AnonymousClass3 implements ActionListener {
+        AnonymousClass3() {
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            InstallerGUI.access$5(InstallerGUI.this).setVisible(false);
+            InstallerGUI.access$2(InstallerGUI.this).setVisible(true);
+            InstallerGUI.access$3(InstallerGUI.this).setVisible(true);
+            InstallerGUI.access$0(InstallerGUI.this).pack();
+        }
+    }
+
+    /* JADX INFO: renamed from: lombok.installer.InstallerGUI$4, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$4.SCL.lombok */
+    class AnonymousClass4 implements ActionListener {
+        AnonymousClass4() {
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            InstallerGUI.access$6(InstallerGUI.this);
+        }
     }
 
     private Component buildJavacArea() {
@@ -300,39 +373,231 @@ public class InstallerGUI {
         constraints.weightx = 1.0d;
         constraints.gridy = 3;
         constraints.fill = 2;
-        this.idesList = new InstallerGUI$IdesList(this);
+        this.idesList = new IdesList();
         JScrollPane idesListScroll = new JScrollPane(this.idesList);
         idesListScroll.setBackground(Color.WHITE);
         idesListScroll.getViewport().setBackground(Color.WHITE);
         container.add(idesListScroll, constraints);
-        Thread findIdesThread = new InstallerGUI$5(this);
+        Thread findIdesThread = new AnonymousClass5();
         findIdesThread.start();
         Box buttonBar = Box.createHorizontalBox();
         JButton specifyIdeLocationButton = new JButton("Specify location...");
         buttonBar.add(specifyIdeLocationButton);
-        specifyIdeLocationButton.addActionListener(new InstallerGUI$6(this));
+        specifyIdeLocationButton.addActionListener(new AnonymousClass6());
         buttonBar.add(Box.createHorizontalGlue());
         this.installButton = new JButton("Install / Update");
         buttonBar.add(this.installButton);
-        this.installButton.addActionListener(new InstallerGUI$7(this));
+        this.installButton.addActionListener(new AnonymousClass7());
         constraints.gridy = 4;
         constraints.weightx = 0.0d;
         container.add(buttonBar, constraints);
         constraints.gridy = 5;
         constraints.fill = 0;
-        InstallerGUI$JHyperLink showMe = new InstallerGUI$JHyperLink("Show me what this installer will do to my IDE installation.");
+        JHyperLink showMe = new JHyperLink("Show me what this installer will do to my IDE installation.");
         container.add(showMe, constraints);
-        showMe.addActionListener(new InstallerGUI$8(this));
+        showMe.addActionListener(new AnonymousClass8());
         constraints.gridy = 6;
-        this.uninstallButton = new InstallerGUI$JHyperLink("Uninstall lombok from selected IDE installations.");
+        this.uninstallButton = new JHyperLink("Uninstall lombok from selected IDE installations.");
         this.uninstallPlaceholder = new JLabel("<html>&nbsp;</html>");
-        this.uninstallButton.addActionListener(new InstallerGUI$9(this));
+        this.uninstallButton.addActionListener(new AnonymousClass9());
         container.add(this.uninstallButton, constraints);
         this.uninstallPlaceholder.setVisible(false);
         container.add(this.uninstallPlaceholder, constraints);
         container.setPreferredSize(new Dimension(INSTALLER_WINDOW_WIDTH, 296));
         container.setMinimumSize(new Dimension(INSTALLER_WINDOW_WIDTH, 296));
         return container;
+    }
+
+    /* JADX INFO: renamed from: lombok.installer.InstallerGUI$5, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$5.SCL.lombok */
+    class AnonymousClass5 extends Thread {
+        AnonymousClass5() {
+        }
+
+        static /* synthetic */ InstallerGUI access$0(AnonymousClass5 anonymousClass5) {
+            return InstallerGUI.this;
+        }
+
+        @Override // java.lang.Thread, java.lang.Runnable
+        public void run() {
+            try {
+                List<IdeLocation> locations = new ArrayList<>();
+                List<CorruptedIdeLocationException> problems = new ArrayList<>();
+                Installer.autoDiscover(locations, problems);
+                SwingUtilities.invokeLater(new AnonymousClass1(locations, problems));
+            } catch (Throwable t) {
+                InstallerGUI.access$8(InstallerGUI.this, t);
+            }
+        }
+
+        /* JADX INFO: renamed from: lombok.installer.InstallerGUI$5$1, reason: invalid class name */
+        /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$5$1.SCL.lombok */
+        class AnonymousClass1 implements Runnable {
+            private final /* synthetic */ List val$locations;
+            private final /* synthetic */ List val$problems;
+
+            AnonymousClass1(List list, List list2) {
+                this.val$locations = list;
+                this.val$problems = list2;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                for (IdeLocation location : this.val$locations) {
+                    try {
+                        InstallerGUI.access$7(AnonymousClass5.access$0(AnonymousClass5.this)).addLocation(location);
+                    } catch (Throwable t) {
+                        InstallerGUI.access$8(AnonymousClass5.access$0(AnonymousClass5.this), t);
+                    }
+                }
+                for (CorruptedIdeLocationException problem : this.val$problems) {
+                    problem.showDialog(InstallerGUI.access$0(AnonymousClass5.access$0(AnonymousClass5.this)));
+                }
+                InstallerGUI.access$9(AnonymousClass5.access$0(AnonymousClass5.this)).setVisible(false);
+                if (this.val$locations.size() + this.val$problems.size() == 0) {
+                    JOptionPane.showMessageDialog(InstallerGUI.access$0(AnonymousClass5.access$0(AnonymousClass5.this)), "I can't find any IDEs on your computer.\nIf you have IDEs installed on this computer, please use the 'Specify Location...' button to manually point out the \nlocation of your IDE installation to me. Thanks!", "Can't find IDE", 1);
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: lombok.installer.InstallerGUI$6, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$6.SCL.lombok */
+    class AnonymousClass6 implements ActionListener {
+        AnonymousClass6() {
+        }
+
+        public void actionPerformed(ActionEvent event) {
+            List<Pattern> exeNames = Installer.getIdeExecutableNames();
+            String file = null;
+            if (OsUtils.getOS() == OsUtils.OS.MAC_OS_X) {
+                FileDialog chooser = new FileDialog(InstallerGUI.access$0(InstallerGUI.this));
+                chooser.setMode(0);
+                chooser.setFilenameFilter(new AnonymousClass1(exeNames));
+                chooser.setVisible(true);
+                if (chooser.getDirectory() != null && chooser.getFile() != null) {
+                    file = new File(chooser.getDirectory(), chooser.getFile()).getAbsolutePath();
+                }
+            } else {
+                JFileChooser chooser2 = new JFileChooser();
+                chooser2.setAcceptAllFileFilterUsed(false);
+                chooser2.setFileSelectionMode(2);
+                chooser2.setFileFilter(new AnonymousClass2(exeNames));
+                switch (chooser2.showDialog(InstallerGUI.access$0(InstallerGUI.this), "Select")) {
+                    case 0:
+                        file = chooser2.getSelectedFile().getAbsolutePath();
+                        break;
+                }
+            }
+            if (file != null) {
+                try {
+                    IdeLocation loc = Installer.tryAllProviders(file);
+                    if (loc != null) {
+                        InstallerGUI.access$7(InstallerGUI.this).addLocation(loc);
+                    } else {
+                        JOptionPane.showMessageDialog(InstallerGUI.access$0(InstallerGUI.this), "I can't find any IDE that lombok supports at location: " + file, "No IDE found", 2);
+                    }
+                } catch (CorruptedIdeLocationException e) {
+                    e.showDialog(InstallerGUI.access$0(InstallerGUI.this));
+                } catch (Throwable t) {
+                    InstallerGUI.access$8(InstallerGUI.this, t);
+                }
+            }
+        }
+
+        /* JADX INFO: renamed from: lombok.installer.InstallerGUI$6$1, reason: invalid class name */
+        /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$6$1.SCL.lombok */
+        class AnonymousClass1 implements FilenameFilter {
+            private final /* synthetic */ List val$exeNames;
+
+            AnonymousClass1(List list) {
+                this.val$exeNames = list;
+            }
+
+            @Override // java.io.FilenameFilter
+            public boolean accept(File dir, String fileName) {
+                for (Pattern exeName : this.val$exeNames) {
+                    if (exeName.matcher(fileName).matches()) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+        /* JADX INFO: renamed from: lombok.installer.InstallerGUI$6$2, reason: invalid class name */
+        /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$6$2.SCL.lombok */
+        class AnonymousClass2 extends FileFilter {
+            private final /* synthetic */ List val$exeNames;
+
+            AnonymousClass2(List list) {
+                this.val$exeNames = list;
+            }
+
+            public boolean accept(File f) {
+                if (f.isDirectory()) {
+                    return true;
+                }
+                for (Pattern exeName : this.val$exeNames) {
+                    if (exeName.matcher(f.getName()).matches()) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            public String getDescription() {
+                return "IDE Installation";
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: lombok.installer.InstallerGUI$7, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$7.SCL.lombok */
+    class AnonymousClass7 implements ActionListener {
+        AnonymousClass7() {
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            List<IdeLocation> locationsToInstall = new ArrayList<>(InstallerGUI.access$7(InstallerGUI.this).getSelectedIdes());
+            if (locationsToInstall.isEmpty()) {
+                JOptionPane.showMessageDialog(InstallerGUI.access$0(InstallerGUI.this), "You haven't selected any IDE installations!.", "No Selection", 2);
+            } else {
+                InstallerGUI.access$10(InstallerGUI.this, locationsToInstall);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: lombok.installer.InstallerGUI$8, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$8.SCL.lombok */
+    class AnonymousClass8 implements ActionListener {
+        AnonymousClass8() {
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            InstallerGUI.access$11(InstallerGUI.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: lombok.installer.InstallerGUI$9, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$9.SCL.lombok */
+    class AnonymousClass9 implements ActionListener {
+        AnonymousClass9() {
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            List<IdeLocation> locationsToUninstall = new ArrayList<>();
+            for (IdeLocation location : InstallerGUI.access$7(InstallerGUI.this).getSelectedIdes()) {
+                if (location.hasLombok()) {
+                    locationsToUninstall.add(location);
+                }
+            }
+            if (locationsToUninstall.isEmpty()) {
+                JOptionPane.showMessageDialog(InstallerGUI.access$0(InstallerGUI.this), "You haven't selected any IDE installations that have been lombok-enabled.", "No Selection", 2);
+            } else {
+                InstallerGUI.access$12(InstallerGUI.this, locationsToUninstall);
+            }
+        }
     }
 
     static /* synthetic */ void access$11(InstallerGUI installerGUI) {
@@ -380,7 +645,142 @@ public class InstallerGUI {
         this.appWindow.setContentPane(spinner);
         AtomicInteger successes = new AtomicInteger();
         AtomicBoolean failure = new AtomicBoolean();
-        new InstallerGUI$10(this, toInstall, successes, failure, appWindowContent).start();
+        new AnonymousClass10(toInstall, successes, failure, appWindowContent).start();
+    }
+
+    /* JADX INFO: renamed from: lombok.installer.InstallerGUI$10, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$10.SCL.lombok */
+    class AnonymousClass10 extends Thread {
+        private final /* synthetic */ List val$toInstall;
+        private final /* synthetic */ AtomicInteger val$successes;
+        private final /* synthetic */ AtomicBoolean val$failure;
+        private final /* synthetic */ Container val$appWindowContent;
+
+        AnonymousClass10(List list, AtomicInteger atomicInteger, AtomicBoolean atomicBoolean, Container container) {
+            this.val$toInstall = list;
+            this.val$successes = atomicInteger;
+            this.val$failure = atomicBoolean;
+            this.val$appWindowContent = container;
+        }
+
+        static /* synthetic */ InstallerGUI access$0(AnonymousClass10 anonymousClass10) {
+            return InstallerGUI.this;
+        }
+
+        @Override // java.lang.Thread, java.lang.Runnable
+        public void run() {
+            for (IdeLocation loc : this.val$toInstall) {
+                try {
+                    InstallerGUI.access$13(InstallerGUI.this).add(loc.install());
+                    this.val$successes.incrementAndGet();
+                } catch (InstallException e) {
+                    if (e.isWarning()) {
+                        try {
+                            SwingUtilities.invokeAndWait(new AnonymousClass1(e));
+                        } catch (Exception e2) {
+                            e2.printStackTrace();
+                            throw new RuntimeException(e2);
+                        }
+                    } else {
+                        this.val$failure.set(true);
+                        try {
+                            SwingUtilities.invokeAndWait(new AnonymousClass2(e));
+                        } catch (Exception e3) {
+                            e3.printStackTrace();
+                            throw new RuntimeException(e3);
+                        }
+                    }
+                }
+            }
+            if (this.val$successes.get() > 0) {
+                try {
+                    SwingUtilities.invokeAndWait(new AnonymousClass3(this.val$appWindowContent));
+                    return;
+                } catch (Exception e4) {
+                    throw new RuntimeException(e4);
+                }
+            }
+            SwingUtilities.invokeLater(new AnonymousClass4(this.val$failure));
+        }
+
+        /* JADX INFO: renamed from: lombok.installer.InstallerGUI$10$1, reason: invalid class name */
+        /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$10$1.SCL.lombok */
+        class AnonymousClass1 implements Runnable {
+            private final /* synthetic */ InstallException val$e;
+
+            AnonymousClass1(InstallException installException) {
+                this.val$e = installException;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                JOptionPane.showMessageDialog(InstallerGUI.access$0(AnonymousClass10.access$0(AnonymousClass10.this)), this.val$e.getMessage(), "Install Problem", 2);
+            }
+        }
+
+        /* JADX INFO: renamed from: lombok.installer.InstallerGUI$10$2, reason: invalid class name */
+        /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$10$2.SCL.lombok */
+        class AnonymousClass2 implements Runnable {
+            private final /* synthetic */ InstallException val$e;
+
+            AnonymousClass2(InstallException installException) {
+                this.val$e = installException;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                JOptionPane.showMessageDialog(InstallerGUI.access$0(AnonymousClass10.access$0(AnonymousClass10.this)), this.val$e.getMessage(), "Install Problem", 0);
+            }
+        }
+
+        /* JADX INFO: renamed from: lombok.installer.InstallerGUI$10$3, reason: invalid class name */
+        /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$10$3.SCL.lombok */
+        class AnonymousClass3 implements Runnable {
+            private final /* synthetic */ Container val$appWindowContent;
+
+            AnonymousClass3(Container container) {
+                this.val$appWindowContent = container;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                InstallerGUI.access$0(AnonymousClass10.access$0(AnonymousClass10.this)).setContentPane(this.val$appWindowContent);
+                InstallerGUI.access$0(AnonymousClass10.access$0(AnonymousClass10.this)).pack();
+                StringBuilder installSpecific = new StringBuilder();
+                for (String installSpecificMessage : InstallerGUI.access$13(AnonymousClass10.access$0(AnonymousClass10.this))) {
+                    installSpecific.append("<br>").append(installSpecificMessage);
+                }
+                InstallerGUI.access$14(AnonymousClass10.access$0(AnonymousClass10.this), installSpecific.toString());
+            }
+        }
+
+        /* JADX INFO: renamed from: lombok.installer.InstallerGUI$10$4, reason: invalid class name */
+        /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$10$4.SCL.lombok */
+        class AnonymousClass4 implements Runnable {
+            private final /* synthetic */ AtomicBoolean val$failure;
+
+            AnonymousClass4(AtomicBoolean atomicBoolean) {
+                this.val$failure = atomicBoolean;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            /* JADX WARN: Type inference failed for: r0v0, types: [java.util.concurrent.atomic.AtomicReference<java.lang.Integer>] */
+            /* JADX WARN: Type inference failed for: r0v1, types: [java.lang.Throwable] */
+            /* JADX WARN: Type inference failed for: r0v4 */
+            @Override // java.lang.Runnable
+            public void run() {
+                ?? r0 = InstallerGUI.exitMarker;
+                synchronized (r0) {
+                    try {
+                        InstallerGUI.exitMarker.set(Integer.valueOf(this.val$failure.get() ? 1 : 0));
+                        InstallerGUI.exitMarker.notifyAll();
+                        r0 = r0;
+                    } catch (Throwable th) {
+                        throw r0;
+                    }
+                }
+            }
+        }
     }
 
     static /* synthetic */ void access$6(InstallerGUI installerGUI) {
@@ -395,10 +795,106 @@ public class InstallerGUI {
         Container originalContentPane = this.appWindow.getContentPane();
         this.appWindow.setContentPane(spinner);
         AtomicInteger successes = new AtomicInteger();
-        new Thread(new InstallerGUI$11(this, successes, originalContentPane)).start();
+        new Thread(new AnonymousClass11(successes, originalContentPane)).start();
     }
 
-    static /* synthetic */ InstallerGUI$IdesList access$7(InstallerGUI installerGUI) {
+    /* JADX INFO: renamed from: lombok.installer.InstallerGUI$11, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$11.SCL.lombok */
+    class AnonymousClass11 implements Runnable {
+        private final /* synthetic */ AtomicInteger val$successes;
+        private final /* synthetic */ Container val$originalContentPane;
+
+        AnonymousClass11(AtomicInteger atomicInteger, Container container) {
+            this.val$successes = atomicInteger;
+            this.val$originalContentPane = container;
+        }
+
+        static /* synthetic */ InstallerGUI access$0(AnonymousClass11 anonymousClass11) {
+            return InstallerGUI.this;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            for (IdeLocation loc : InstallerGUI.access$15(InstallerGUI.this)) {
+                try {
+                    loc.uninstall();
+                    this.val$successes.incrementAndGet();
+                } catch (UninstallException e) {
+                    if (e.isWarning()) {
+                        try {
+                            SwingUtilities.invokeAndWait(new AnonymousClass1(e));
+                        } catch (Exception e2) {
+                            e2.printStackTrace();
+                            throw new RuntimeException(e2);
+                        }
+                    } else {
+                        try {
+                            SwingUtilities.invokeAndWait(new AnonymousClass2(e));
+                        } catch (Exception e3) {
+                            e3.printStackTrace();
+                            throw new RuntimeException(e3);
+                        }
+                    }
+                }
+            }
+            SwingUtilities.invokeLater(new AnonymousClass3(this.val$successes, this.val$originalContentPane));
+        }
+
+        /* JADX INFO: renamed from: lombok.installer.InstallerGUI$11$1, reason: invalid class name */
+        /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$11$1.SCL.lombok */
+        class AnonymousClass1 implements Runnable {
+            private final /* synthetic */ UninstallException val$e;
+
+            AnonymousClass1(UninstallException uninstallException) {
+                this.val$e = uninstallException;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                JOptionPane.showMessageDialog(InstallerGUI.access$0(AnonymousClass11.access$0(AnonymousClass11.this)), this.val$e.getMessage(), "Uninstall Problem", 2);
+            }
+        }
+
+        /* JADX INFO: renamed from: lombok.installer.InstallerGUI$11$2, reason: invalid class name */
+        /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$11$2.SCL.lombok */
+        class AnonymousClass2 implements Runnable {
+            private final /* synthetic */ UninstallException val$e;
+
+            AnonymousClass2(UninstallException uninstallException) {
+                this.val$e = uninstallException;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                JOptionPane.showMessageDialog(InstallerGUI.access$0(AnonymousClass11.access$0(AnonymousClass11.this)), this.val$e.getMessage(), "Uninstall Problem", 0);
+            }
+        }
+
+        /* JADX INFO: renamed from: lombok.installer.InstallerGUI$11$3, reason: invalid class name */
+        /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$11$3.SCL.lombok */
+        class AnonymousClass3 implements Runnable {
+            private final /* synthetic */ AtomicInteger val$successes;
+            private final /* synthetic */ Container val$originalContentPane;
+
+            AnonymousClass3(AtomicInteger atomicInteger, Container container) {
+                this.val$successes = atomicInteger;
+                this.val$originalContentPane = container;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                if (this.val$successes.get() > 0) {
+                    JOptionPane.showMessageDialog(InstallerGUI.access$0(AnonymousClass11.access$0(AnonymousClass11.this)), "Lombok has been removed from the selected IDE installations.", "Uninstall successful", 1);
+                    InstallerGUI.access$0(AnonymousClass11.access$0(AnonymousClass11.this)).setVisible(false);
+                    System.exit(0);
+                    return;
+                }
+                InstallerGUI.access$0(AnonymousClass11.access$0(AnonymousClass11.this)).setContentPane(this.val$originalContentPane);
+            }
+        }
+    }
+
+    static /* synthetic */ IdesList access$7(InstallerGUI installerGUI) {
         return installerGUI.idesList;
     }
 
@@ -414,6 +910,90 @@ public class InstallerGUI {
         this.uninstallButton.setVisible(uninstallAvailable);
         this.uninstallPlaceholder.setVisible(!uninstallAvailable);
         this.installButton.setEnabled(installAvailable);
+    }
+
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$IdesList.SCL.lombok */
+    class IdesList extends JPanel implements Scrollable {
+        private static final long serialVersionUID = 1;
+        List<IdeLocation> locations = new ArrayList();
+
+        IdesList() {
+            setLayout(new BoxLayout(this, 1));
+            setBackground(Color.WHITE);
+        }
+
+        List<IdeLocation> getSelectedIdes() {
+            List<IdeLocation> list = new ArrayList<>();
+            for (IdeLocation loc : this.locations) {
+                if (loc.selected) {
+                    list.add(loc);
+                }
+            }
+            return list;
+        }
+
+        void fireSelectionChange() {
+            InstallerGUI.this.selectedLomboksChanged(getSelectedIdes());
+        }
+
+        void addLocation(IdeLocation location) {
+            if (this.locations.contains(location)) {
+                return;
+            }
+            Box box = Box.createHorizontalBox();
+            box.setBackground(Color.WHITE);
+            JCheckBox checkbox = new JCheckBox(location.getName());
+            checkbox.setBackground(Color.WHITE);
+            box.add(new JLabel(new ImageIcon(location.getIdeIcon())));
+            box.add(checkbox);
+            checkbox.setSelected(true);
+            checkbox.addActionListener(new AnonymousClass1(location, checkbox));
+            if (location.hasLombok()) {
+                box.add(new JLabel(new ImageIcon(Installer.class.getResource("lombokIcon.png"))));
+            }
+            box.add(Box.createHorizontalGlue());
+            this.locations.add(location);
+            add(box);
+            getParent().doLayout();
+            fireSelectionChange();
+        }
+
+        /* JADX INFO: renamed from: lombok.installer.InstallerGUI$IdesList$1, reason: invalid class name */
+        /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$IdesList$1.SCL.lombok */
+        class AnonymousClass1 implements ActionListener {
+            private final /* synthetic */ IdeLocation val$location;
+            private final /* synthetic */ JCheckBox val$checkbox;
+
+            AnonymousClass1(IdeLocation ideLocation, JCheckBox jCheckBox) {
+                this.val$location = ideLocation;
+                this.val$checkbox = jCheckBox;
+            }
+
+            public void actionPerformed(ActionEvent e) {
+                this.val$location.selected = this.val$checkbox.isSelected();
+                IdesList.this.fireSelectionChange();
+            }
+        }
+
+        public Dimension getPreferredScrollableViewportSize() {
+            return new Dimension(1, 100);
+        }
+
+        public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
+            return 12;
+        }
+
+        public boolean getScrollableTracksViewportHeight() {
+            return false;
+        }
+
+        public boolean getScrollableTracksViewportWidth() {
+            return true;
+        }
+
+        public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
+            return 1;
+        }
     }
 
     private void buildChrome(Container appWindowContainer) {
@@ -454,7 +1034,7 @@ public class InstallerGUI {
 
     private Box buildButtonBar() {
         Box buttonBar = Box.createHorizontalBox();
-        InstallerGUI$JHyperLink aboutLink = new InstallerGUI$JHyperLink(Installer.ABOUT_LOMBOK_URL.toString());
+        JHyperLink aboutLink = new JHyperLink(Installer.ABOUT_LOMBOK_URL.toString());
         aboutLink.addActionListener(openBrowser(aboutLink, Installer.ABOUT_LOMBOK_URL));
         buttonBar.add(aboutLink);
         buttonBar.add(Box.createRigidArea(new Dimension(16, 1)));
@@ -462,27 +1042,116 @@ public class InstallerGUI {
         versionLabel.setText("v" + Version.getVersion());
         buttonBar.add(versionLabel);
         buttonBar.add(Box.createRigidArea(new Dimension(16, 1)));
-        InstallerGUI$JHyperLink changelogLink = new InstallerGUI$JHyperLink("View full changelog");
+        JHyperLink changelogLink = new JHyperLink("View full changelog");
         changelogLink.addActionListener(openBrowser(changelogLink, Installer.ABOUT_LOMBOK_URL.resolve("/changelog.html")));
         buttonBar.add(changelogLink);
         buttonBar.add(Box.createHorizontalGlue());
         JButton quitButton = new JButton("Quit Installer");
-        quitButton.addActionListener(new InstallerGUI$12(this));
+        quitButton.addActionListener(new AnonymousClass12());
         buttonBar.add(quitButton);
         return buttonBar;
     }
 
-    private ActionListener openBrowser(InstallerGUI$JHyperLink hyperlink, URI location) {
-        return new InstallerGUI$13(this, hyperlink, location);
+    /* JADX INFO: renamed from: lombok.installer.InstallerGUI$12, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$12.SCL.lombok */
+    class AnonymousClass12 implements ActionListener {
+        AnonymousClass12() {
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            InstallerGUI.access$0(InstallerGUI.this).setVisible(false);
+            System.exit(0);
+        }
+    }
+
+    /* JADX INFO: renamed from: lombok.installer.InstallerGUI$13, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$13.SCL.lombok */
+    class AnonymousClass13 implements ActionListener {
+        private final /* synthetic */ JHyperLink val$hyperlink;
+        private final /* synthetic */ URI val$location;
+        private static /* synthetic */ int[] $SWITCH_TABLE$lombok$installer$OsUtils$OS;
+
+        static /* synthetic */ int[] $SWITCH_TABLE$lombok$installer$OsUtils$OS() {
+            int[] iArr = $SWITCH_TABLE$lombok$installer$OsUtils$OS;
+            if (iArr != null) {
+                return iArr;
+            }
+            int[] iArr2 = new int[OsUtils.OS.valuesCustom().length];
+            try {
+                iArr2[OsUtils.OS.MAC_OS_X.ordinal()] = 1;
+            } catch (NoSuchFieldError unused) {
+            }
+            try {
+                iArr2[OsUtils.OS.UNIX.ordinal()] = 3;
+            } catch (NoSuchFieldError unused2) {
+            }
+            try {
+                iArr2[OsUtils.OS.WINDOWS.ordinal()] = 2;
+            } catch (NoSuchFieldError unused3) {
+            }
+            $SWITCH_TABLE$lombok$installer$OsUtils$OS = iArr2;
+            return iArr2;
+        }
+
+        AnonymousClass13(JHyperLink jHyperLink, URI uri) {
+            this.val$hyperlink = jHyperLink;
+            this.val$location = uri;
+        }
+
+        public void actionPerformed(ActionEvent event) {
+            this.val$hyperlink.setForeground(new Color(85, Opcodes.I2B, 90));
+            try {
+                Object desktop = Class.forName("java.awt.Desktop").getMethod("getDesktop", new Class[0]).invoke(null, new Object[0]);
+                Class.forName("java.awt.Desktop").getMethod("browse", URI.class).invoke(desktop, this.val$location);
+            } catch (Exception unused) {
+                Runtime rt = Runtime.getRuntime();
+                try {
+                    switch ($SWITCH_TABLE$lombok$installer$OsUtils$OS()[OsUtils.getOS().ordinal()]) {
+                        case 1:
+                            rt.exec("open " + this.val$location.toString());
+                            break;
+                        case 2:
+                            String[] cmd = {"cmd.exe", "/C", "start", this.val$location.toString()};
+                            rt.exec(cmd);
+                            break;
+                        case 3:
+                        default:
+                            rt.exec("firefox " + this.val$location.toString());
+                            break;
+                    }
+                } catch (Exception unused2) {
+                    JOptionPane.showMessageDialog(InstallerGUI.access$0(InstallerGUI.this), "Well, this is embarrassing. I don't know how to open a webbrowser.\nI guess you'll have to open it. Browse to:\n" + this.val$location + " for more information about Lombok.", "I'm embarrassed", 1);
+                }
+            }
+        }
+    }
+
+    private ActionListener openBrowser(JHyperLink hyperlink, URI location) {
+        return new AnonymousClass13(hyperlink, location);
     }
 
     public void show() {
         this.appWindow.setVisible(true);
-        if (OsUtils.getOS() == OsUtils$OS.MAC_OS_X) {
+        if (OsUtils.getOS() == OsUtils.OS.MAC_OS_X) {
             try {
                 AppleNativeLook.go();
             } catch (Throwable unused) {
             }
+        }
+    }
+
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$JHyperLink.SCL.lombok */
+    class JHyperLink extends JButton {
+        private static final long serialVersionUID = 1;
+
+        public JHyperLink(String text) {
+            setFont(getFont().deriveFont(Collections.singletonMap(TextAttribute.UNDERLINE, 1)));
+            setText(text);
+            setBorder(null);
+            setContentAreaFilled(false);
+            setForeground(Color.BLUE);
+            setCursor(Cursor.getPredefinedCursor(12));
+            setMargin(new Insets(0, 0, 0, 0));
         }
     }
 }

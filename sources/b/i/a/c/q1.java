@@ -2,7 +2,6 @@ package b.i.a.c;
 
 import android.util.Pair;
 import androidx.annotation.Nullable;
-import b.i.a.c.a3.a0$a;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import java.util.Objects;
 
@@ -34,8 +33,8 @@ public final class q1 {
         this.o = j;
         this.j = qVar;
         this.k = u1Var;
-        a0$a a0_a = r1Var.a;
-        this.f1056b = a0_a.a;
+        b.i.a.c.a3.a0.a aVar = r1Var.a;
+        this.f1056b = aVar.a;
         this.f = r1Var;
         this.m = b.i.a.c.a3.o0.j;
         this.n = rVar;
@@ -44,19 +43,19 @@ public final class q1 {
         long j2 = r1Var.f1058b;
         long j3 = r1Var.d;
         Objects.requireNonNull(u1Var);
-        Pair pair = (Pair) a0_a.a;
+        Pair pair = (Pair) aVar.a;
         Object obj = pair.first;
-        a0$a a0_aB = a0_a.b(pair.second);
-        u1$c u1_c = u1Var.c.get(obj);
-        Objects.requireNonNull(u1_c);
-        u1Var.h.add(u1_c);
-        u1$b u1_b = u1Var.g.get(u1_c);
-        if (u1_b != null) {
-            u1_b.a.m(u1_b.f1138b);
+        b.i.a.c.a3.a0.a aVarB = aVar.b(pair.second);
+        u1.c cVar = u1Var.c.get(obj);
+        Objects.requireNonNull(cVar);
+        u1Var.h.add(cVar);
+        u1.b bVar = u1Var.g.get(cVar);
+        if (bVar != null) {
+            bVar.a.m(bVar.f1138b);
         }
-        u1_c.c.add(a0_aB);
-        b.i.a.c.a3.x xVarU = u1_c.a.u(a0_aB, oVar, j2);
-        u1Var.f1137b.put(xVarU, u1_c);
+        cVar.c.add(aVarB);
+        b.i.a.c.a3.x xVarU = cVar.a.u(aVarB, oVar, j2);
+        u1Var.f1137b.put(xVarU, cVar);
         u1Var.d();
         this.a = j3 != -9223372036854775807L ? new b.i.a.c.a3.n(xVarU, true, 0L, j3) : xVarU;
     }

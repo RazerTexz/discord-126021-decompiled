@@ -1,11 +1,10 @@
 package f0.e0.g;
 
-import f0.e0.n.d$c;
 import okio.BufferedSink;
 
 /* JADX INFO: compiled from: RealConnection.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class i extends d$c {
+public final class i extends f0.e0.n.d.c {
     public final /* synthetic */ c m;
     public final /* synthetic */ g0.g n;
     public final /* synthetic */ BufferedSink o;

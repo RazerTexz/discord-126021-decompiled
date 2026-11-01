@@ -6,7 +6,7 @@ import android.icu.text.DateFormat;
 import android.icu.util.TimeZone;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.google.android.material.R$string;
+import com.google.android.material.R;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -61,7 +61,7 @@ public class l {
 
     public static String f(Resources resources, SimpleDateFormat simpleDateFormat) {
         String localizedPattern = simpleDateFormat.toLocalizedPattern();
-        return localizedPattern.replaceAll("d", resources.getString(R$string.mtrl_picker_text_input_day_abbr)).replaceAll("M", resources.getString(R$string.mtrl_picker_text_input_month_abbr)).replaceAll("y", resources.getString(R$string.mtrl_picker_text_input_year_abbr));
+        return localizedPattern.replaceAll("d", resources.getString(R.string.mtrl_picker_text_input_day_abbr)).replaceAll("M", resources.getString(R.string.mtrl_picker_text_input_month_abbr)).replaceAll("y", resources.getString(R.string.mtrl_picker_text_input_year_abbr));
     }
 
     public static java.util.TimeZone g() {

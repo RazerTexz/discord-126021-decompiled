@@ -1,7 +1,6 @@
 package b.i.a.f.a.a;
 
 import android.net.Uri;
-import android.net.Uri$Builder;
 import android.util.Log;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -23,11 +22,11 @@ public final class a extends Thread {
         String str;
         Exception exc;
         Map map = this.j;
-        Uri$Builder uri$BuilderBuildUpon = Uri.parse("https://pagead2.googlesyndication.com/pagead/gen_204?id=gmob-apps").buildUpon();
+        Uri.Builder builderBuildUpon = Uri.parse("https://pagead2.googlesyndication.com/pagead/gen_204?id=gmob-apps").buildUpon();
         for (String str2 : map.keySet()) {
-            uri$BuilderBuildUpon.appendQueryParameter(str2, (String) map.get(str2));
+            builderBuildUpon.appendQueryParameter(str2, (String) map.get(str2));
         }
-        String string = uri$BuilderBuildUpon.build().toString();
+        String string = builderBuildUpon.build().toString();
         try {
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(string).openConnection();
             try {

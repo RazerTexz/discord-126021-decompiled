@@ -12,19 +12,37 @@ import java.util.Objects;
 /* JADX INFO: compiled from: ImageHeaderParser.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class b {
-    public final b$a c;
+    public final a c;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final int[] f1985b = {0, 1, 1, 2, 4, 8, 1, 1, 2, 4, 8, 4, 8};
     public static final byte[] a = "Exif\u0000\u0000".getBytes(Charset.forName(Constants.ENCODING));
 
+    /* JADX INFO: renamed from: b.q.a.k.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: ImageHeaderParser.java */
+    public class C0181b implements a {
+        public final InputStream a;
+
+        public C0181b(InputStream inputStream) {
+            this.a = inputStream;
+        }
+
+        public int a() throws IOException {
+            return ((this.a.read() << 8) & 65280) | (this.a.read() & 255);
+        }
+    }
+
+    /* JADX INFO: compiled from: ImageHeaderParser.java */
+    public interface a {
+    }
+
     public b(InputStream inputStream) {
-        this.c = new b$b(inputStream);
+        this.c = new C0181b(inputStream);
     }
 
     public int a() throws IOException {
         int iA;
-        int iA2 = ((b$b) this.c).a();
+        int iA2 = ((C0181b) this.c).a();
         if (!((iA2 & 65496) == 65496 || iA2 == 19789 || iA2 == 18761)) {
             if (Log.isLoggable("ImageHeaderParser", 3)) {
                 b.d.b.a.a.n0("Parser doesn't handle magic number: ", iA2, "ImageHeaderParser");
@@ -32,25 +50,25 @@ public class b {
             return -1;
         }
         while (true) {
-            short s2 = (short) (((b$b) this.c).a.read() & 255);
+            short s2 = (short) (((C0181b) this.c).a.read() & 255);
             if (s2 == 255) {
-                short s3 = (short) (((b$b) this.c).a.read() & 255);
+                short s3 = (short) (((C0181b) this.c).a.read() & 255);
                 if (s3 != 218) {
                     if (s3 != 217) {
-                        iA = ((b$b) this.c).a() - 2;
+                        iA = ((C0181b) this.c).a() - 2;
                         if (s3 == 225) {
                             break;
                         }
                         long j = iA;
-                        b$b b_b = (b$b) this.c;
-                        Objects.requireNonNull(b_b);
+                        C0181b c0181b = (C0181b) this.c;
+                        Objects.requireNonNull(c0181b);
                         long j2 = 0;
                         if (j >= 0) {
                             long j3 = j;
                             while (j3 > 0) {
-                                long jSkip = b_b.a.skip(j3);
+                                long jSkip = c0181b.a.skip(j3);
                                 if (jSkip <= 0) {
-                                    if (b_b.a.read() == -1) {
+                                    if (c0181b.a.read() == -1) {
                                         break;
                                     }
                                     jSkip = 1;
@@ -83,11 +101,11 @@ public class b {
             return -1;
         }
         byte[] bArr = new byte[iA];
-        b$b b_b2 = (b$b) this.c;
-        Objects.requireNonNull(b_b2);
+        C0181b c0181b2 = (C0181b) this.c;
+        Objects.requireNonNull(c0181b2);
         int i = iA;
         while (i > 0) {
-            int i2 = b_b2.a.read(bArr, iA - i, i);
+            int i2 = c0181b2.a.read(bArr, iA - i, i);
             if (i2 == -1) {
                 break;
             }

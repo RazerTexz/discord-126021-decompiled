@@ -1,6 +1,6 @@
 package b.i.a.f.i.b;
 
-import android.content.SharedPreferences$Editor;
+import android.content.SharedPreferences;
 import androidx.annotation.WorkerThread;
 import java.util.Objects;
 
@@ -30,10 +30,10 @@ public final class k4 {
         this.e.b();
         Objects.requireNonNull((b.i.a.f.e.o.c) this.e.a.o);
         long jCurrentTimeMillis = System.currentTimeMillis();
-        SharedPreferences$Editor sharedPreferences$EditorEdit = this.e.w().edit();
-        sharedPreferences$EditorEdit.remove(this.f1541b);
-        sharedPreferences$EditorEdit.remove(this.c);
-        sharedPreferences$EditorEdit.putLong(this.a, jCurrentTimeMillis);
-        sharedPreferences$EditorEdit.apply();
+        SharedPreferences.Editor editorEdit = this.e.w().edit();
+        editorEdit.remove(this.f1541b);
+        editorEdit.remove(this.c);
+        editorEdit.putLong(this.a, jCurrentTimeMillis);
+        editorEdit.apply();
     }
 }

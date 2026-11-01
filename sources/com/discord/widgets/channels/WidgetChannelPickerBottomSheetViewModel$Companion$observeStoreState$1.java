@@ -7,12 +7,11 @@ import d0.t.u;
 import d0.z.d.o;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map$Entry;
 import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetChannelPickerBottomSheetViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetChannelPickerBottomSheetViewModel$Companion$observeStoreState$1 extends o implements Function0<WidgetChannelPickerBottomSheetViewModel$StoreState> {
+public final class WidgetChannelPickerBottomSheetViewModel$Companion$observeStoreState$1 extends o implements Function0<WidgetChannelPickerBottomSheetViewModel.StoreState> {
     public final /* synthetic */ long $guildId;
     public final /* synthetic */ boolean $hideAnnouncementChannels;
     public final /* synthetic */ StoreChannels $storeChannels;
@@ -26,25 +25,25 @@ public final class WidgetChannelPickerBottomSheetViewModel$Companion$observeStor
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ WidgetChannelPickerBottomSheetViewModel$StoreState invoke() {
+    public /* bridge */ /* synthetic */ WidgetChannelPickerBottomSheetViewModel.StoreState invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final WidgetChannelPickerBottomSheetViewModel$StoreState invoke() {
+    public final WidgetChannelPickerBottomSheetViewModel.StoreState invoke() {
         Map<Long, Channel> channelsForGuild = this.$storeChannels.getChannelsForGuild(this.$guildId);
         LinkedHashMap linkedHashMap = new LinkedHashMap();
-        for (Map$Entry<Long, Channel> map$Entry : channelsForGuild.entrySet()) {
-            Channel value = map$Entry.getValue();
+        for (Map.Entry<Long, Channel> entry : channelsForGuild.entrySet()) {
+            Channel value = entry.getValue();
             boolean z2 = false;
             if (!ChannelUtils.k(value) && (!this.$hideAnnouncementChannels || !ChannelUtils.i(value))) {
                 z2 = true;
             }
             if (z2) {
-                linkedHashMap.put(map$Entry.getKey(), map$Entry.getValue());
+                linkedHashMap.put(entry.getKey(), entry.getValue());
             }
         }
-        return new WidgetChannelPickerBottomSheetViewModel$StoreState$Loaded(u.toList(linkedHashMap.values()));
+        return new WidgetChannelPickerBottomSheetViewModel.StoreState.Loaded(u.toList(linkedHashMap.values()));
     }
 }

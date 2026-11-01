@@ -5,13 +5,18 @@ import androidx.annotation.Nullable;
 /* JADX INFO: compiled from: HandlerWrapper.java */
 /* JADX INFO: loaded from: classes3.dex */
 public interface o {
-    o$a a(int i, int i2, int i3);
+
+    /* JADX INFO: compiled from: HandlerWrapper.java */
+    public interface a {
+    }
+
+    a a(int i, int i2, int i3);
 
     boolean b(Runnable runnable);
 
-    o$a c(int i);
+    a c(int i);
 
-    boolean d(o$a o_a);
+    boolean d(a aVar);
 
     boolean e(int i);
 
@@ -21,7 +26,7 @@ public interface o {
 
     void h(int i);
 
-    o$a i(int i, @Nullable Object obj);
+    a i(int i, @Nullable Object obj);
 
     void j(@Nullable Object obj);
 }

@@ -4,12 +4,20 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
+import android.text.style.TypefaceSpan;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: TypefaceSpanCompat.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class TypefaceSpanCompat extends MetricAffectingSpan {
     private final Typeface typeface;
+
+    /* JADX INFO: compiled from: TypefaceSpanCompat.kt */
+    public final class Monospace extends TypefaceSpan {
+        public Monospace() {
+            super("monospace");
+        }
+    }
 
     public TypefaceSpanCompat(Typeface typeface) {
         m.checkNotNullParameter(typeface, "typeface");

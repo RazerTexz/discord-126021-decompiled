@@ -4,16 +4,14 @@ import android.annotation.TargetApi;
 import android.app.AppOpsManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.content.res.Resources$NotFoundException;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.hardware.Camera;
-import android.hardware.Camera$Parameters;
 import android.opengl.EGL14;
 import android.opengl.EGLConfig;
 import android.opengl.EGLContext;
@@ -21,7 +19,7 @@ import android.opengl.EGLDisplay;
 import android.opengl.EGLSurface;
 import android.opengl.GLES20;
 import android.os.Binder;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -48,7 +46,6 @@ import b.i.a.f.h.l.q6;
 import b.i.a.f.h.l.s3;
 import b.i.a.f.h.l.t3;
 import b.i.a.f.h.l.u4;
-import b.i.a.f.h.l.u4$d;
 import b.i.a.f.h.l.w4;
 import b.i.a.f.h.l.x4;
 import b.i.a.f.h.l.z2;
@@ -57,16 +54,14 @@ import b.i.a.f.i.b.ga;
 import b.i.a.f.i.b.q3;
 import b.i.a.f.n.c0;
 import b.i.a.f.n.d0;
-import b.i.a.f.n.j;
-import b.i.b.b.h$a;
 import b.i.b.b.n0;
 import b.i.c.l.o;
 import b.i.c.m.d.k.s0;
 import b.i.c.m.d.k.t0;
-import b.o.a.x.k;
+import b.o.a.x.j;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.widgets.chat.input.MentionUtilsKt;
-import com.google.android.gms.common.R$a;
+import com.google.android.gms.common.R;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.internal.measurement.zzij;
 import com.google.android.gms.tasks.Task;
@@ -91,8 +86,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.MalformedJsonException;
 import com.lytefast.flexinput.viewmodel.FlexInputViewModel;
 import d0.g0.t;
-import d0.k$a;
-import d0.w.d$b;
+import d0.k;
+import d0.l;
 import d0.z.d.e0;
 import d0.z.d.m;
 import g0.n;
@@ -129,7 +124,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
@@ -141,7 +135,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.ThreadPoolExecutor$DiscardPolicy;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicLong;
@@ -153,11 +146,9 @@ import kotlin.TypeCastException;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
-import kotlin.coroutines.CoroutineContext$Element;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
 import kotlinx.coroutines.CoroutineExceptionHandler;
-import kotlinx.coroutines.CoroutineExceptionHandler$a;
 import kotlinx.coroutines.CoroutineScope;
 import kotlinx.coroutines.CoroutineStart;
 import kotlinx.coroutines.Job;
@@ -173,7 +164,6 @@ import s.a.a.r;
 import s.a.b0;
 import s.a.c2.q;
 import s.a.c2.s;
-import s.a.d$a;
 import s.a.f0;
 import s.a.f1;
 import s.a.g0;
@@ -184,7 +174,6 @@ import s.a.j0;
 import s.a.j1;
 import s.a.k0;
 import s.a.k1;
-import s.a.l;
 import s.a.m0;
 import s.a.t1;
 import s.a.u1;
@@ -202,6 +191,143 @@ public final class f {
     public static Boolean f1397b;
     public static ga c;
 
+    /* JADX INFO: renamed from: b.i.a.f.e.o.f$f, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: Channels.kt */
+    @d0.w.i.a.e(c = "kotlinx.coroutines.flow.FlowKt__ChannelsKt", f = "Channels.kt", l = {50, 61}, m = "emitAllImpl$FlowKt__ChannelsKt")
+    public final class C0116f extends d0.w.i.a.d {
+        public Object L$0;
+        public Object L$1;
+        public Object L$2;
+        public Object L$3;
+        public boolean Z$0;
+        public int label;
+        public /* synthetic */ Object result;
+
+        public C0116f(Continuation continuation) {
+            super(continuation);
+        }
+
+        @Override // d0.w.i.a.a
+        public final Object invokeSuspend(Object obj) {
+            this.result = obj;
+            this.label |= Integer.MIN_VALUE;
+            return f.U(null, null, false, this);
+        }
+    }
+
+    /* JADX INFO: compiled from: SizeSelectors.java */
+    public class a implements j {
+        public final /* synthetic */ int a;
+
+        public a(int i) {
+            this.a = i;
+        }
+
+        @Override // b.o.a.x.j
+        public boolean a(@NonNull b.o.a.x.b bVar) {
+            return bVar.j <= this.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: SizeSelectors.java */
+    public class b implements j {
+        public final /* synthetic */ int a;
+
+        public b(int i) {
+            this.a = i;
+        }
+
+        @Override // b.o.a.x.j
+        public boolean a(@NonNull b.o.a.x.b bVar) {
+            return bVar.j >= this.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: SizeSelectors.java */
+    public class c implements j {
+        public final /* synthetic */ int a;
+
+        public c(int i) {
+            this.a = i;
+        }
+
+        @Override // b.o.a.x.j
+        public boolean a(@NonNull b.o.a.x.b bVar) {
+            return bVar.k <= this.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: SizeSelectors.java */
+    public class d implements j {
+        public final /* synthetic */ int a;
+
+        public d(int i) {
+            this.a = i;
+        }
+
+        @Override // b.o.a.x.j
+        public boolean a(@NonNull b.o.a.x.b bVar) {
+            return bVar.k >= this.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: Await.kt */
+    @d0.w.i.a.e(c = "kotlinx.coroutines.AwaitKt", f = "Await.kt", l = {26}, m = "awaitAll")
+    public final class e extends d0.w.i.a.d {
+        public Object L$0;
+        public int label;
+        public /* synthetic */ Object result;
+
+        public e(Continuation continuation) {
+            super(continuation);
+        }
+
+        @Override // d0.w.i.a.a
+        public final Object invokeSuspend(Object obj) {
+            this.result = obj;
+            this.label |= Integer.MIN_VALUE;
+            return f.l(null, this);
+        }
+    }
+
+    /* JADX INFO: compiled from: KotlinExtensions.kt */
+    public final class g implements Runnable {
+        public final /* synthetic */ Continuation j;
+        public final /* synthetic */ Exception k;
+
+        public g(Continuation continuation, Exception exc) {
+            this.j = continuation;
+            this.k = exc;
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            Continuation continuationIntercepted = d0.w.h.b.intercepted(this.j);
+            Exception exc = this.k;
+            k.a aVar = k.j;
+            continuationIntercepted.resumeWith(k.m97constructorimpl(l.createFailure(exc)));
+        }
+    }
+
+    /* JADX INFO: compiled from: KotlinExtensions.kt */
+    @d0.w.i.a.e(c = "retrofit2.KotlinExtensions", f = "KotlinExtensions.kt", l = {113}, m = "suspendAndThrow")
+    public final class h extends d0.w.i.a.d {
+        public Object L$0;
+        public int label;
+        public /* synthetic */ Object result;
+
+        public h(Continuation continuation) {
+            super(continuation);
+        }
+
+        @Override // d0.w.i.a.a
+        public final Object invokeSuspend(Object obj) {
+            this.result = obj;
+            this.label |= Integer.MIN_VALUE;
+            return f.i1(null, this);
+        }
+    }
+
     @CanIgnoreReturnValue
     public static int A(int i, String str) {
         if (i >= 0) {
@@ -211,7 +337,7 @@ public final class f {
     }
 
     public static boolean A0() {
-        return Build$VERSION.SDK_INT >= 26;
+        return Build.VERSION.SDK_INT >= 26;
     }
 
     public static boolean A1(long j) {
@@ -241,7 +367,7 @@ public final class f {
             Objects.requireNonNull(it.next(), "null tasks are not accepted");
         }
         c0 c0Var = new c0();
-        j jVar = new j(collection.size(), c0Var);
+        b.i.a.f.n.j jVar = new b.i.a.f.n.j(collection.size(), c0Var);
         Iterator<? extends Task<?>> it2 = collection.iterator();
         while (it2.hasNext()) {
             p2(it2.next(), jVar);
@@ -260,7 +386,7 @@ public final class f {
     public static boolean C0(Camera camera) {
         List<String> supportedFlashModes;
         if (camera != null) {
-            Camera$Parameters parameters = camera.getParameters();
+            Camera.Parameters parameters = camera.getParameters();
             if (parameters.getFlashMode() != null && (supportedFlashModes = parameters.getSupportedFlashModes()) != null && !supportedFlashModes.isEmpty() && (supportedFlashModes.size() != 1 || !supportedFlashModes.get(0).equals("off"))) {
                 return true;
             }
@@ -273,7 +399,7 @@ public final class f {
         Object objA;
         CoroutineContext context = continuation.getContext();
         CoroutineContext coroutineContextPlus = context.plus(coroutineContext);
-        Job job = (Job) coroutineContextPlus.get(Job.h);
+        Job job = (Job) coroutineContextPlus.get(Job.INSTANCE);
         if (job != null && !job.a()) {
             throw job.q();
         }
@@ -282,8 +408,8 @@ public final class f {
             objA = g1(rVar, rVar, function2);
         } else {
             int i = d0.w.d.e;
-            d$b d_b = d$b.a;
-            if (m.areEqual((d0.w.d) coroutineContextPlus.get(d_b), (d0.w.d) context.get(d_b))) {
+            d0.w.d.b bVar = d0.w.d.b.a;
+            if (m.areEqual((d0.w.d) coroutineContextPlus.get(bVar), (d0.w.d) context.get(bVar))) {
                 z1 z1Var = new z1(coroutineContextPlus, continuation);
                 Object objB = s.a.a.a.b(coroutineContextPlus, null);
                 try {
@@ -361,7 +487,7 @@ public final class f {
                 }
             }
             return true;
-        } catch (PackageManager$NameNotFoundException unused) {
+        } catch (PackageManager.NameNotFoundException unused) {
             if (Log.isLoggable("UidVerifier", 3)) {
                 Log.d("UidVerifier", "Package manager can't find google play services package, defaulting to false");
             }
@@ -370,8 +496,8 @@ public final class f {
     }
 
     @NonNull
-    public static b.o.a.x.c D1(@NonNull b.o.a.x.j jVar) {
-        return new k(jVar, null);
+    public static b.o.a.x.c D1(@NonNull j jVar) {
+        return new b.o.a.x.k(jVar, null);
     }
 
     public static void E(boolean z2) {
@@ -563,10 +689,10 @@ public final class f {
             Object obj = objArr[i2];
             try {
                 strValueOf = String.valueOf(obj);
-            } catch (Exception e) {
+            } catch (Exception e2) {
                 String str2 = obj.getClass().getName() + MentionUtilsKt.MENTIONS_CHAR + Integer.toHexString(System.identityHashCode(obj));
-                Logger.getLogger("com.google.common.base.Strings").log(Level.WARNING, "Exception during lenientFormat for " + str2, (Throwable) e);
-                strValueOf = "<" + str2 + " threw " + e.getClass().getName() + ">";
+                Logger.getLogger("com.google.common.base.Strings").log(Level.WARNING, "Exception during lenientFormat for " + str2, (Throwable) e2);
+                strValueOf = "<" + str2 + " threw " + e2.getClass().getName() + ">";
             }
             objArr[i2] = strValueOf;
         }
@@ -793,7 +919,7 @@ public final class f {
 
     @NonNull
     public static b.o.a.x.c K0(int i) {
-        return D1(new f$c(i));
+        return D1(new c(i));
     }
 
     public static int K1(q6<?> q6Var, int i, byte[] bArr, int i2, int i3, b5<?> b5Var, s3 s3Var) throws IOException {
@@ -835,7 +961,7 @@ public final class f {
 
     @NonNull
     public static b.o.a.x.c L0(int i) {
-        return D1(new f$a(i));
+        return D1(new a(i));
     }
 
     public static int L1(q6 q6Var, byte[] bArr, int i, int i2, int i3, s3 s3Var) throws IOException {
@@ -858,7 +984,7 @@ public final class f {
 
     @NonNull
     public static b.o.a.x.c M0(int i) {
-        return D1(new f$d(i));
+        return D1(new d(i));
     }
 
     public static int M1(q6 q6Var, byte[] bArr, int i, int i2, s3 s3Var) throws IOException {
@@ -882,15 +1008,15 @@ public final class f {
 
     public static b.i.c.l.d<?> N(String str, String str2) {
         b.i.c.x.a aVar = new b.i.c.x.a(str, str2);
-        b.i.c.l.d$b d_bA = b.i.c.l.d.a(b.i.c.x.e.class);
-        d_bA.d = 1;
-        d_bA.c(new b.i.c.l.c(aVar));
-        return d_bA.b();
+        b.i.c.l.d.b bVarA = b.i.c.l.d.a(b.i.c.x.e.class);
+        bVarA.d = 1;
+        bVarA.c(new b.i.c.l.c(aVar));
+        return bVarA.b();
     }
 
     @NonNull
     public static b.o.a.x.c N0(int i) {
-        return D1(new f$b(i));
+        return D1(new b(i));
     }
 
     public static int N1(byte[] bArr, int i) {
@@ -1063,7 +1189,7 @@ public final class f {
         if (j <= 0) {
             return Unit.a;
         }
-        l lVar = new l(d0.w.h.b.intercepted(continuation), 1);
+        s.a.l lVar = new s.a.l(d0.w.h.b.intercepted(continuation), 1);
         lVar.A();
         if (j < RecyclerView.FOREVER_NS) {
             i0(lVar.o).c(j, lVar);
@@ -1185,23 +1311,23 @@ public final class f {
                 z2 = false;
                 try {
                     return TypeAdapters.X.read(jsonReader);
-                } catch (EOFException e) {
-                    e = e;
+                } catch (EOFException e2) {
+                    e = e2;
                     if (z2) {
                         return b.i.d.j.a;
                     }
                     throw new JsonSyntaxException(e);
                 }
-            } catch (EOFException e2) {
-                e = e2;
+            } catch (EOFException e3) {
+                e = e3;
                 z2 = true;
             }
-        } catch (MalformedJsonException e3) {
-            throw new JsonSyntaxException(e3);
-        } catch (IOException e4) {
-            throw new JsonIOException(e4);
-        } catch (NumberFormatException e5) {
-            throw new JsonSyntaxException(e5);
+        } catch (MalformedJsonException e4) {
+            throw new JsonSyntaxException(e4);
+        } catch (IOException e5) {
+            throw new JsonIOException(e5);
+        } catch (NumberFormatException e6) {
+            throw new JsonSyntaxException(e6);
         }
     }
 
@@ -1226,17 +1352,17 @@ public final class f {
         return (((f7 * f7 * f7) + 2.0f) * f6) + f2;
     }
 
-    public static final Object T0(Object obj, E e) {
+    public static final Object T0(Object obj, E e2) {
         if (obj == null) {
-            return e;
+            return e2;
         }
         if (obj instanceof ArrayList) {
-            ((ArrayList) obj).add(e);
+            ((ArrayList) obj).add(e2);
             return obj;
         }
         ArrayList arrayList = new ArrayList(4);
         arrayList.add(obj);
-        arrayList.add(e);
+        arrayList.add(e2);
         return arrayList;
     }
 
@@ -1333,11 +1459,11 @@ public final class f {
         try {
             Objects.requireNonNull(context, "null reference");
             Resources resources = context.getResources();
-            int identifier = resources.getIdentifier(str, "string", resources.getResourcePackageName(R$a.common_google_play_services_unknown_issue));
+            int identifier = resources.getIdentifier(str, "string", resources.getResourcePackageName(R.a.common_google_play_services_unknown_issue));
             if (identifier != 0) {
                 return resources.getString(identifier);
             }
-        } catch (Resources$NotFoundException unused) {
+        } catch (Resources.NotFoundException unused) {
         }
         return null;
     }
@@ -1453,11 +1579,11 @@ public final class f {
 
     public static final <T> Object X0(Object obj, Continuation<? super T> continuation) {
         if (obj instanceof w) {
-            k$a k_a = d0.k.j;
-            return d0.k.m97constructorimpl(d0.l.createFailure(((w) obj).f3846b));
+            k.a aVar = k.j;
+            return k.m97constructorimpl(l.createFailure(((w) obj).f3846b));
         }
-        k$a k_a2 = d0.k.j;
-        return d0.k.m97constructorimpl(obj);
+        k.a aVar2 = k.j;
+        return k.m97constructorimpl(obj);
     }
 
     public static final String X1(String str) {
@@ -1484,13 +1610,13 @@ public final class f {
         Object objM = j0Var.m();
         Throwable thE = j0Var.e(objM);
         if (thE != null) {
-            k$a k_a = d0.k.j;
-            objJ = d0.l.createFailure(thE);
+            k.a aVar = k.j;
+            objJ = l.createFailure(thE);
         } else {
-            k$a k_a2 = d0.k.j;
+            k.a aVar2 = k.j;
             objJ = j0Var.j(objM);
         }
-        Object objM97constructorimpl = d0.k.m97constructorimpl(objJ);
+        Object objM97constructorimpl = k.m97constructorimpl(objJ);
         if (!z2) {
             continuation.resumeWith(objM97constructorimpl);
             return;
@@ -1625,7 +1751,7 @@ public final class f {
         if (i == -2) {
             if (eVar == eVar2) {
                 Objects.requireNonNull(s.a.c2.f.i);
-                i4 = s.a.c2.f$a.a;
+                i4 = s.a.c2.f.a.a;
             }
             return new s.a.c2.d(i4, eVar, null);
         }
@@ -1645,11 +1771,11 @@ public final class f {
     }
 
     public static b.i.c.l.d<?> b0(String str, b.i.c.x.g<Context> gVar) {
-        b.i.c.l.d$b d_bA = b.i.c.l.d.a(b.i.c.x.e.class);
-        d_bA.d = 1;
-        d_bA.a(new o(Context.class, 1, 0));
-        d_bA.c(new b.i.c.x.f(str, gVar));
-        return d_bA.b();
+        b.i.c.l.d.b bVarA = b.i.c.l.d.a(b.i.c.x.e.class);
+        bVarA.d = 1;
+        bVarA.a(new o(Context.class, 1, 0));
+        bVarA.c(new b.i.c.x.f(str, gVar));
+        return bVarA.b();
     }
 
     public static final v b1(Socket socket) throws IOException {
@@ -1670,7 +1796,7 @@ public final class f {
     }
 
     public static final CoroutineScope c(CoroutineContext coroutineContext) {
-        if (coroutineContext.get(Job.h) == null) {
+        if (coroutineContext.get(Job.INSTANCE) == null) {
             coroutineContext = coroutineContext.plus(new f1(null));
         }
         return new s.a.a.f(coroutineContext);
@@ -1725,7 +1851,7 @@ public final class f {
     }
 
     public static final void e(f0.e0.f.a aVar, f0.e0.f.c cVar, String str) {
-        f0.e0.f.d$b d_b = f0.e0.f.d.c;
+        f0.e0.f.d.b bVar = f0.e0.f.d.c;
         Logger logger = f0.e0.f.d.f3611b;
         StringBuilder sb = new StringBuilder();
         sb.append(cVar.f);
@@ -1745,11 +1871,11 @@ public final class f {
     public static final void e1(Continuation<? super Unit> continuation, Continuation<?> continuation2) {
         try {
             Continuation continuationIntercepted = d0.w.h.b.intercepted(continuation);
-            k$a k_a = d0.k.j;
-            s.a.a.h.b(continuationIntercepted, d0.k.m97constructorimpl(Unit.a), null, 2);
+            k.a aVar = k.j;
+            s.a.a.h.b(continuationIntercepted, k.m97constructorimpl(Unit.a), null, 2);
         } catch (Throwable th) {
-            k$a k_a2 = d0.k.j;
-            ((s.a.b) continuation2).resumeWith(d0.k.m97constructorimpl(d0.l.createFailure(th)));
+            k.a aVar2 = k.j;
+            ((s.a.b) continuation2).resumeWith(k.m97constructorimpl(l.createFailure(th)));
         }
     }
 
@@ -1849,8 +1975,8 @@ public final class f {
                 }
             }
         }
-        if (c6Var instanceof u4$d) {
-            Iterator<Map$Entry<T, Object>> itL = ((u4$d) c6Var).zzc.l();
+        if (c6Var instanceof u4.d) {
+            Iterator<Map.Entry<T, Object>> itL = ((u4.d) c6Var).zzc.l();
             if (itL.hasNext()) {
                 throw new NoSuchMethodError();
             }
@@ -1880,11 +2006,11 @@ public final class f {
         int i2 = i & 4;
         try {
             Continuation continuationIntercepted = d0.w.h.b.intercepted(d0.w.h.b.createCoroutineUnintercepted(function2, obj, continuation));
-            k$a k_a = d0.k.j;
-            s.a.a.h.a(continuationIntercepted, d0.k.m97constructorimpl(Unit.a), null);
+            k.a aVar = k.j;
+            s.a.a.h.a(continuationIntercepted, k.m97constructorimpl(Unit.a), null);
         } catch (Throwable th) {
-            k$a k_a2 = d0.k.j;
-            continuation.resumeWith(d0.k.m97constructorimpl(d0.l.createFailure(th)));
+            k.a aVar2 = k.j;
+            continuation.resumeWith(k.m97constructorimpl(l.createFailure(th)));
         }
     }
 
@@ -1956,8 +2082,8 @@ public final class f {
                 }
                 throw th;
             }
-        } catch (SQLiteException e) {
-            q3Var.i.c("Error querying for table", str, e);
+        } catch (SQLiteException e2) {
+            q3Var.i.c("Error querying for table", str, e2);
             if (cursorQuery != null) {
                 cursorQuery.close();
             }
@@ -1989,9 +2115,9 @@ public final class f {
                 return;
             }
             q3Var.i.c("Table has extra columns. table, columns", str, TextUtils.join(", ", setZ1));
-        } catch (SQLiteException e2) {
+        } catch (SQLiteException e3) {
             q3Var.f.b("Failed to verify columns on table that was just created", str);
-            throw e2;
+            throw e3;
         }
     }
 
@@ -2035,7 +2161,7 @@ public final class f {
         if (obj instanceof Map) {
             Iterator it2 = ((Map) obj).entrySet().iterator();
             while (it2.hasNext()) {
-                h2(sb, i, str, (Map$Entry) it2.next());
+                h2(sb, i, str, (Map.Entry) it2.next());
             }
             return;
         }
@@ -2069,16 +2195,16 @@ public final class f {
             sb.append("}");
             return;
         }
-        if (!(obj instanceof Map$Entry)) {
+        if (!(obj instanceof Map.Entry)) {
             sb.append(": ");
             sb.append(obj.toString());
             return;
         }
         sb.append(" {");
-        Map$Entry map$Entry = (Map$Entry) obj;
+        Map.Entry entry = (Map.Entry) obj;
         int i4 = i + 2;
-        h2(sb, i4, "key", map$Entry.getKey());
-        h2(sb, i4, "value", map$Entry.getValue());
+        h2(sb, i4, "key", entry.getKey());
+        h2(sb, i4, "value", entry.getValue());
         sb.append("\n");
         while (i2 < i) {
             sb.append(' ');
@@ -2099,39 +2225,39 @@ public final class f {
 
     public static final h0 i0(CoroutineContext coroutineContext) {
         int i = d0.w.d.e;
-        CoroutineContext$Element coroutineContext$Element = coroutineContext.get(d$b.a);
-        if (!(coroutineContext$Element instanceof h0)) {
-            coroutineContext$Element = null;
+        CoroutineContext.Element element = coroutineContext.get(d0.w.d.b.a);
+        if (!(element instanceof h0)) {
+            element = null;
         }
-        h0 h0Var = (h0) coroutineContext$Element;
+        h0 h0Var = (h0) element;
         return h0Var != null ? h0Var : s.a.e0.a;
     }
 
     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
     public static final Object i1(Exception exc, Continuation<?> continuation) {
-        f$h f_h;
-        if (continuation instanceof f$h) {
-            f_h = (f$h) continuation;
-            int i = f_h.label;
+        h hVar;
+        if (continuation instanceof h) {
+            hVar = (h) continuation;
+            int i = hVar.label;
             if ((i & Integer.MIN_VALUE) != 0) {
-                f_h.label = i - Integer.MIN_VALUE;
+                hVar.label = i - Integer.MIN_VALUE;
             } else {
-                f_h = new f$h(continuation);
+                hVar = new h(continuation);
             }
         } else {
-            f_h = new f$h(continuation);
+            hVar = new h(continuation);
         }
-        Object obj = f_h.result;
+        Object obj = hVar.result;
         Object coroutine_suspended = d0.w.h.c.getCOROUTINE_SUSPENDED();
-        int i2 = f_h.label;
+        int i2 = hVar.label;
         if (i2 == 0) {
-            d0.l.throwOnFailure(obj);
-            f_h.L$0 = exc;
-            f_h.label = 1;
-            k0.a.dispatch(f_h.getContext(), new f$g(f_h, exc));
+            l.throwOnFailure(obj);
+            hVar.L$0 = exc;
+            hVar.label = 1;
+            k0.a.dispatch(hVar.getContext(), new g(hVar, exc));
             Object coroutine_suspended2 = d0.w.h.c.getCOROUTINE_SUSPENDED();
             if (coroutine_suspended2 == d0.w.h.c.getCOROUTINE_SUSPENDED()) {
-                d0.w.i.a.g.probeCoroutineSuspended(f_h);
+                d0.w.i.a.g.probeCoroutineSuspended(hVar);
             }
             if (coroutine_suspended2 == coroutine_suspended) {
                 return coroutine_suspended;
@@ -2140,7 +2266,7 @@ public final class f {
             if (i2 != 1) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
             }
-            d0.l.throwOnFailure(obj);
+            l.throwOnFailure(obj);
         }
         return Unit.a;
     }
@@ -2208,7 +2334,7 @@ public final class f {
 
     @NullableDecl
     public static <T> T k0(Iterable<? extends T> iterable, @NullableDecl T t) {
-        n0 n0Var = new n0((h$a) iterable);
+        n0 n0Var = new n0((b.i.b.b.h.a) iterable);
         return n0Var.hasNext() ? (T) n0Var.next() : t;
     }
 
@@ -2238,52 +2364,52 @@ public final class f {
 
     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
     public static final <T> Object l(f0<? extends T>[] f0VarArr, Continuation<? super List<? extends T>> continuation) {
-        f$e f_e;
-        if (continuation instanceof f$e) {
-            f_e = (f$e) continuation;
-            int i = f_e.label;
+        e eVar;
+        if (continuation instanceof e) {
+            eVar = (e) continuation;
+            int i = eVar.label;
             if ((i & Integer.MIN_VALUE) != 0) {
-                f_e.label = i - Integer.MIN_VALUE;
+                eVar.label = i - Integer.MIN_VALUE;
             } else {
-                f_e = new f$e(continuation);
+                eVar = new e(continuation);
             }
         } else {
-            f_e = new f$e(continuation);
+            eVar = new e(continuation);
         }
-        Object objU = f_e.result;
+        Object objU = eVar.result;
         Object coroutine_suspended = d0.w.h.c.getCOROUTINE_SUSPENDED();
-        int i2 = f_e.label;
+        int i2 = eVar.label;
         if (i2 == 0) {
-            d0.l.throwOnFailure(objU);
+            l.throwOnFailure(objU);
             if (f0VarArr.length == 0) {
                 return d0.t.n.emptyList();
             }
             s.a.d dVar = new s.a.d(f0VarArr);
-            f_e.L$0 = f0VarArr;
-            f_e.label = 1;
-            l lVar = new l(d0.w.h.b.intercepted(f_e), 1);
+            eVar.L$0 = f0VarArr;
+            eVar.label = 1;
+            s.a.l lVar = new s.a.l(d0.w.h.b.intercepted(eVar), 1);
             lVar.A();
             int length = f0VarArr.length;
-            d$a[] d_aArr = new d$a[length];
+            s.a.d.a[] aVarArr = new s.a.d.a[length];
             for (int i3 = 0; i3 < length; i3++) {
                 f0<T> f0Var = dVar.f3836b[d0.w.i.a.b.boxInt(i3).intValue()];
                 f0Var.start();
-                d$a d_a = new d$a(dVar, lVar, f0Var);
-                d_a.n = f0Var.u(d_a);
-                d_aArr[i3] = d_a;
+                s.a.d.a aVar = new s.a.d.a(lVar, f0Var);
+                aVar.n = f0Var.u(aVar);
+                aVarArr[i3] = aVar;
             }
-            s.a.d$b d_b = new s.a.d$b(dVar, d_aArr);
+            s.a.d.b bVar = new s.a.d.b(dVar, aVarArr);
             for (int i4 = 0; i4 < length; i4++) {
-                d_aArr[i4]._disposer = d_b;
+                aVarArr[i4]._disposer = bVar;
             }
             if (lVar.v()) {
-                d_b.b();
+                bVar.b();
             } else {
-                lVar.f(d_b);
+                lVar.f(bVar);
             }
             objU = lVar.u();
             if (objU == d0.w.h.c.getCOROUTINE_SUSPENDED()) {
-                d0.w.i.a.g.probeCoroutineSuspended(f_e);
+                d0.w.i.a.g.probeCoroutineSuspended(eVar);
             }
             if (objU == coroutine_suspended) {
                 return coroutine_suspended;
@@ -2292,7 +2418,7 @@ public final class f {
             if (i2 != 1) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
             }
-            d0.l.throwOnFailure(objU);
+            l.throwOnFailure(objU);
         }
         return (List) objU;
     }
@@ -2329,7 +2455,7 @@ public final class f {
             } else {
                 try {
                     string = obj.toString();
-                } catch (Exception e) {
+                } catch (Exception e2) {
                     String name = obj.getClass().getName();
                     String hexString = Integer.toHexString(System.identityHashCode(obj));
                     StringBuilder sb = new StringBuilder(name.length() + 1 + String.valueOf(hexString).length());
@@ -2340,8 +2466,8 @@ public final class f {
                     Logger logger = Logger.getLogger("com.google.common.base.Strings");
                     Level level = Level.WARNING;
                     String strValueOf = String.valueOf(string2);
-                    logger.logp(level, "com.google.common.base.Strings", "lenientToString", strValueOf.length() != 0 ? "Exception during lenientFormat for ".concat(strValueOf) : new String("Exception during lenientFormat for "), (Throwable) e);
-                    String name2 = e.getClass().getName();
+                    logger.logp(level, "com.google.common.base.Strings", "lenientToString", strValueOf.length() != 0 ? "Exception during lenientFormat for ".concat(strValueOf) : new String("Exception during lenientFormat for "), (Throwable) e2);
+                    String name2 = e2.getClass().getName();
                     StringBuilder sb2 = new StringBuilder(String.valueOf(string2).length() + 9 + name2.length());
                     b.d.b.a.a.s0(sb2, "<", string2, " threw ", name2);
                     sb2.append(">");
@@ -2427,13 +2553,13 @@ public final class f {
     }
 
     public static ExecutorService n(String str) {
-        ExecutorService executorServiceUnconfigurableExecutorService = Executors.unconfigurableExecutorService(new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue(), new s0(str, new AtomicLong(1L)), new ThreadPoolExecutor$DiscardPolicy()));
+        ExecutorService executorServiceUnconfigurableExecutorService = Executors.unconfigurableExecutorService(new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue(), new s0(str, new AtomicLong(1L)), new ThreadPoolExecutor.DiscardPolicy()));
         Runtime.getRuntime().addShutdownHook(new Thread(new t0(str, executorServiceUnconfigurableExecutorService, 2L, TimeUnit.SECONDS), b.d.b.a.a.w("Crashlytics Shutdown Hook for ", str)));
         return executorServiceUnconfigurableExecutorService;
     }
 
     public static String n0(long j, Locale locale) {
-        if (Build$VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= 24) {
             return b.i.a.g.d.l.c("MMMd", locale).format(new Date(j));
         }
         AtomicReference<b.i.a.g.d.k> atomicReference = b.i.a.g.d.l.a;
@@ -2500,10 +2626,10 @@ public final class f {
         return c0Var;
     }
 
-    public static final <T> l<T> o0(Continuation<? super T> continuation) {
-        l<T> lVar;
+    public static final <T> s.a.l<T> o0(Continuation<? super T> continuation) {
+        s.a.l<T> lVar;
         if (!(continuation instanceof s.a.a.g)) {
-            return new l<>(continuation, 2);
+            return new s.a.l<>(continuation, 2);
         }
         s.a.a.g gVar = (s.a.a.g) continuation;
         while (true) {
@@ -2513,11 +2639,11 @@ public final class f {
                 lVar = null;
                 break;
             }
-            if (!(obj instanceof l)) {
+            if (!(obj instanceof s.a.l)) {
                 throw new IllegalStateException(b.d.b.a.a.v("Inconsistent state ", obj).toString());
             }
             if (s.a.a.g.m.compareAndSet(gVar, obj, s.a.a.h.f3827b)) {
-                lVar = (l) obj;
+                lVar = (s.a.l) obj;
                 break;
             }
         }
@@ -2531,12 +2657,12 @@ public final class f {
             } else {
                 lVar.q();
             }
-            l<T> lVar2 = z2 ? lVar : null;
+            s.a.l<T> lVar2 = z2 ? lVar : null;
             if (lVar2 != null) {
                 return lVar2;
             }
         }
-        return new l<>(continuation, 2);
+        return new s.a.l<>(continuation, 2);
     }
 
     public static void o1(Throwable th) {
@@ -2565,12 +2691,12 @@ public final class f {
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    public static final <E> UndeliveredElementException p(Function1<? super E, Unit> function1, E e, UndeliveredElementException undeliveredElementException) {
+    public static final <E> UndeliveredElementException p(Function1<? super E, Unit> function1, E e2, UndeliveredElementException undeliveredElementException) {
         try {
-            function1.invoke(e);
+            function1.invoke(e2);
         } catch (Throwable th) {
             if (undeliveredElementException == null || undeliveredElementException.getCause() == th) {
-                return new UndeliveredElementException(b.d.b.a.a.v("Exception in undelivered element handler for ", e), th);
+                return new UndeliveredElementException(b.d.b.a.a.v("Exception in undelivered element handler for ", e2), th);
             }
             d0.b.addSuppressed(undeliveredElementException, th);
         }
@@ -2674,7 +2800,7 @@ public final class f {
     }
 
     public static final void r(CoroutineScope coroutineScope, CancellationException cancellationException) {
-        Job job = (Job) coroutineScope.getCoroutineContext().get(Job.h);
+        Job job = (Job) coroutineScope.getCoroutineContext().get(Job.INSTANCE);
         if (job != null) {
             job.b(cancellationException);
             return;
@@ -2811,14 +2937,14 @@ public final class f {
 
     public static void s(CoroutineContext coroutineContext, CancellationException cancellationException, int i, Object obj) {
         int i2 = i & 1;
-        Job job = (Job) coroutineContext.get(Job.h);
+        Job job = (Job) coroutineContext.get(Job.INSTANCE);
         if (job != null) {
             job.b(null);
         }
     }
 
     public static String s0(long j, Locale locale) {
-        if (Build$VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= 24) {
             return b.i.a.g.d.l.c("yMMMd", locale).format(new Date(j));
         }
         AtomicReference<b.i.a.g.d.k> atomicReference = b.i.a.g.d.l.a;
@@ -2833,13 +2959,13 @@ public final class f {
             return continuation.toString();
         }
         try {
-            k$a k_a = d0.k.j;
-            objM97constructorimpl = d0.k.m97constructorimpl("" + continuation + MentionUtilsKt.MENTIONS_CHAR + l0(continuation));
+            k.a aVar = k.j;
+            objM97constructorimpl = k.m97constructorimpl("" + continuation + MentionUtilsKt.MENTIONS_CHAR + l0(continuation));
         } catch (Throwable th) {
-            k$a k_a2 = d0.k.j;
-            objM97constructorimpl = d0.k.m97constructorimpl(d0.l.createFailure(th));
+            k.a aVar2 = k.j;
+            objM97constructorimpl = k.m97constructorimpl(l.createFailure(th));
         }
-        if (d0.k.m99exceptionOrNullimpl(objM97constructorimpl) != null) {
+        if (k.m99exceptionOrNullimpl(objM97constructorimpl) != null) {
             objM97constructorimpl = continuation.getClass().getName() + MentionUtilsKt.MENTIONS_CHAR + l0(continuation);
         }
         return (String) objM97constructorimpl;
@@ -2921,7 +3047,7 @@ public final class f {
     public static final void u0(CoroutineContext coroutineContext, Throwable th) {
         try {
             int i = CoroutineExceptionHandler.g;
-            CoroutineExceptionHandler coroutineExceptionHandler = (CoroutineExceptionHandler) coroutineContext.get(CoroutineExceptionHandler$a.a);
+            CoroutineExceptionHandler coroutineExceptionHandler = (CoroutineExceptionHandler) coroutineContext.get(CoroutineExceptionHandler.a.a);
             if (coroutineExceptionHandler != null) {
                 coroutineExceptionHandler.handleException(coroutineContext, th);
             } else {
@@ -2979,7 +3105,7 @@ public final class f {
     }
 
     public static final <T> Object v1(Object obj, Function1<? super Throwable, Unit> function1) {
-        Throwable thM99exceptionOrNullimpl = d0.k.m99exceptionOrNullimpl(obj);
+        Throwable thM99exceptionOrNullimpl = k.m99exceptionOrNullimpl(obj);
         if (thM99exceptionOrNullimpl == null) {
             return function1 != null ? new s.a.x(obj, function1) : obj;
         }
@@ -3086,7 +3212,7 @@ public final class f {
     }
 
     public static final boolean y0(CoroutineScope coroutineScope) {
-        Job job = (Job) coroutineScope.getCoroutineContext().get(Job.h);
+        Job job = (Job) coroutineScope.getCoroutineContext().get(Job.INSTANCE);
         if (job != null) {
             return job.a();
         }

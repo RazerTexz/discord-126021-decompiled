@@ -3,6 +3,7 @@ package com.discord.utilities.guilds;
 import android.content.Context;
 import androidx.annotation.ColorInt;
 import androidx.core.view.ViewCompat;
+import com.discord.R;
 import com.discord.api.role.GuildRole;
 import com.discord.api.role.GuildRoleTags;
 import com.discord.models.member.GuildMember;
@@ -93,7 +94,7 @@ public final class RoleUtils {
         m.checkNotNullParameter(guildRole, "$this$getRoleColor");
         m.checkNotNullParameter(context, "context");
         if (isDefaultColor(guildRole)) {
-            return num != null ? num.intValue() : ColorCompat.getColor(context, 2131100171);
+            return num != null ? num.intValue() : ColorCompat.getColor(context, R.color.primary_300);
         }
         return getOpaqueColor(guildRole);
     }

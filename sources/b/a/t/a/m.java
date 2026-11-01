@@ -14,7 +14,7 @@ public final class m<RC, S> extends Rule<RC, Node<RC>, S> {
     public final /* synthetic */ f a;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public m(k$c$a k_c_a, f fVar, Pattern pattern) {
+    public m(k.c.a aVar, f fVar, Pattern pattern) {
         super(pattern);
         this.a = fVar;
     }
@@ -29,8 +29,8 @@ public final class m<RC, S> extends Rule<RC, Node<RC>, S> {
         d0.z.d.m.checkNotNull(strGroup);
         d0.z.d.m.checkNotNull(strGroup2);
         d0.z.d.m.checkNotNull(strGroup3);
-        k$c k_c = new k$c(strGroup, strGroup2, strGroup3, this.a);
-        d0.z.d.m.checkNotNullParameter(k_c, "node");
-        return new ParseSpec<>(k_c, s2);
+        k.c cVar = new k.c(strGroup, strGroup2, strGroup3, this.a);
+        d0.z.d.m.checkNotNullParameter(cVar, "node");
+        return new ParseSpec<>(cVar, s2);
     }
 }

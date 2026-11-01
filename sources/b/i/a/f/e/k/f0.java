@@ -1,7 +1,7 @@
 package b.i.a.f.e.k;
 
 import android.content.Context;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.annotation.Nullable;
@@ -31,7 +31,7 @@ public final class f0 {
                 }
                 c = bundle.getString("com.google.app.id");
                 d = bundle.getInt("com.google.android.gms.version");
-            } catch (PackageManager$NameNotFoundException e) {
+            } catch (PackageManager.NameNotFoundException e) {
                 Log.wtf("MetadataValueReader", "This should never happen.", e);
             }
         }

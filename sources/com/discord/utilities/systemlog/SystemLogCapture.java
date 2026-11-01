@@ -2,21 +2,62 @@ package com.discord.utilities.systemlog;
 
 import com.discord.utilities.collections.FixedSizeLineBuffer;
 import d0.g0.c;
+import d0.g0.w;
 import d0.v.a;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: SystemLogCapture.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class SystemLogCapture {
-    public static final SystemLogCapture$Companion Companion = new SystemLogCapture$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final FixedSizeLineBuffer buffer = new FixedSizeLineBuffer(524288);
     private final FixedSizeLineBuffer tombstoneBuffer = new FixedSizeLineBuffer(102400);
+
+    /* JADX INFO: renamed from: com.discord.utilities.systemlog.SystemLogCapture$startThread$1, reason: invalid class name */
+    /* JADX INFO: compiled from: SystemLogCapture.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() throws InterruptedException {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() throws InterruptedException {
+            SystemLogCapture.access$start(SystemLogCapture.this);
+        }
+    }
+
+    /* JADX INFO: compiled from: SystemLogCapture.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final boolean shouldIncludeLogLine$app_productionGoogleRelease(String line) {
+            m.checkNotNullParameter(line, "line");
+            return !w.contains$default((CharSequence) line, (CharSequence) "chatty  : uid=", false, 2, (Object) null);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public static final /* synthetic */ void access$start(SystemLogCapture systemLogCapture) throws InterruptedException {
         systemLogCapture.start();
@@ -56,7 +97,7 @@ public final class SystemLogCapture {
                         if (line == null) {
                             break;
                         }
-                        if (Companion.shouldIncludeLogLine$app_productionGoogleRelease(line)) {
+                        if (INSTANCE.shouldIncludeLogLine$app_productionGoogleRelease(line)) {
                             this.buffer.addLine(line);
                         }
                         if (SystemLogUtils.INSTANCE.getRegexExtractTombstone$app_productionGoogleRelease().matches(line)) {
@@ -84,6 +125,6 @@ public final class SystemLogCapture {
     }
 
     public final Thread startThread() {
-        return a.thread$default(true, true, null, SystemLogCapture.class.getSimpleName(), 0, new SystemLogCapture$startThread$1(this), 20, null);
+        return a.thread$default(true, true, null, SystemLogCapture.class.getSimpleName(), 0, new AnonymousClass1(), 20, null);
     }
 }

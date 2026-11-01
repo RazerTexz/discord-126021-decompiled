@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetGuildFolderSettingsBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -29,20 +29,20 @@ public final /* synthetic */ class WidgetGuildFolderSettings$binding$2 extends k
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGuildFolderSettingsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.edit_guild_folder_name;
-        TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.edit_guild_folder_name);
+        int i = R.id.edit_guild_folder_name;
+        TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.edit_guild_folder_name);
         if (textInputLayout != null) {
-            i = R$id.guild_folder_color_name;
-            TextView textView = (TextView) view.findViewById(R$id.guild_folder_color_name);
+            i = R.id.guild_folder_color_name;
+            TextView textView = (TextView) view.findViewById(R.id.guild_folder_color_name);
             if (textView != null) {
-                i = R$id.guild_folder_settings_color;
-                RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R$id.guild_folder_settings_color);
+                i = R.id.guild_folder_settings_color;
+                RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.guild_folder_settings_color);
                 if (relativeLayout != null) {
-                    i = R$id.guild_folder_settings_color_display;
-                    View viewFindViewById = view.findViewById(R$id.guild_folder_settings_color_display);
+                    i = R.id.guild_folder_settings_color_display;
+                    View viewFindViewById = view.findViewById(R.id.guild_folder_settings_color_display);
                     if (viewFindViewById != null) {
-                        i = R$id.guild_folder_settings_save;
-                        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R$id.guild_folder_settings_save);
+                        i = R.id.guild_folder_settings_save;
+                        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.guild_folder_settings_save);
                         if (floatingActionButton != null) {
                             return new WidgetGuildFolderSettingsBinding((CoordinatorLayout) view, textInputLayout, textView, relativeLayout, viewFindViewById, floatingActionButton);
                         }

@@ -25,6 +25,80 @@ public class State {
     public HashMap<Object, Reference> mReferences = new HashMap<>();
     public HashMap<Object, HelperReference> mHelperReferences = new HashMap<>();
 
+    /* JADX INFO: renamed from: androidx.constraintlayout.solver.state.State$1, reason: invalid class name */
+    public /* synthetic */ class AnonymousClass1 {
+        public static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$state$State$Helper;
+
+        static {
+            Helper.values();
+            int[] iArr = new int[7];
+            $SwitchMap$androidx$constraintlayout$solver$state$State$Helper = iArr;
+            try {
+                iArr[Helper.HORIZONTAL_CHAIN.ordinal()] = 1;
+            } catch (NoSuchFieldError unused) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Helper[Helper.VERTICAL_CHAIN.ordinal()] = 2;
+            } catch (NoSuchFieldError unused2) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Helper[Helper.ALIGN_HORIZONTALLY.ordinal()] = 3;
+            } catch (NoSuchFieldError unused3) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Helper[Helper.ALIGN_VERTICALLY.ordinal()] = 4;
+            } catch (NoSuchFieldError unused4) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$state$State$Helper[Helper.BARRIER.ordinal()] = 5;
+            } catch (NoSuchFieldError unused5) {
+            }
+        }
+    }
+
+    public enum Chain {
+        SPREAD,
+        SPREAD_INSIDE,
+        PACKED
+    }
+
+    public enum Constraint {
+        LEFT_TO_LEFT,
+        LEFT_TO_RIGHT,
+        RIGHT_TO_LEFT,
+        RIGHT_TO_RIGHT,
+        START_TO_START,
+        START_TO_END,
+        END_TO_START,
+        END_TO_END,
+        TOP_TO_TOP,
+        TOP_TO_BOTTOM,
+        BOTTOM_TO_TOP,
+        BOTTOM_TO_BOTTOM,
+        BASELINE_TO_BASELINE,
+        CENTER_HORIZONTALLY,
+        CENTER_VERTICALLY
+    }
+
+    public enum Direction {
+        LEFT,
+        RIGHT,
+        START,
+        END,
+        TOP,
+        BOTTOM
+    }
+
+    public enum Helper {
+        HORIZONTAL_CHAIN,
+        VERTICAL_CHAIN,
+        ALIGN_HORIZONTALLY,
+        ALIGN_VERTICALLY,
+        BARRIER,
+        LAYER,
+        FLOW
+    }
+
     public State() {
         ConstraintReference constraintReference = new ConstraintReference(this);
         this.mParent = constraintReference;
@@ -77,20 +151,20 @@ public class State {
         }
     }
 
-    public BarrierReference barrier(Object obj, State$Direction state$Direction) {
-        BarrierReference barrierReference = (BarrierReference) helper(obj, State$Helper.BARRIER);
-        barrierReference.setBarrierDirection(state$Direction);
+    public BarrierReference barrier(Object obj, Direction direction) {
+        BarrierReference barrierReference = (BarrierReference) helper(obj, Helper.BARRIER);
+        barrierReference.setBarrierDirection(direction);
         return barrierReference;
     }
 
     public AlignHorizontallyReference centerHorizontally(Object... objArr) {
-        AlignHorizontallyReference alignHorizontallyReference = (AlignHorizontallyReference) helper(null, State$Helper.ALIGN_HORIZONTALLY);
+        AlignHorizontallyReference alignHorizontallyReference = (AlignHorizontallyReference) helper(null, Helper.ALIGN_HORIZONTALLY);
         alignHorizontallyReference.add(objArr);
         return alignHorizontallyReference;
     }
 
     public AlignVerticallyReference centerVertically(Object... objArr) {
-        AlignVerticallyReference alignVerticallyReference = (AlignVerticallyReference) helper(null, State$Helper.ALIGN_VERTICALLY);
+        AlignVerticallyReference alignVerticallyReference = (AlignVerticallyReference) helper(null, Helper.ALIGN_VERTICALLY);
         alignVerticallyReference.add(objArr);
         return alignVerticallyReference;
     }
@@ -152,14 +226,14 @@ public class State {
         return setHeight(dimension);
     }
 
-    public HelperReference helper(Object obj, State$Helper state$Helper) {
+    public HelperReference helper(Object obj, Helper helper) {
         HelperReference horizontalChainReference;
         if (obj == null) {
             obj = createHelperKey();
         }
         HelperReference helperReference = this.mHelperReferences.get(obj);
         if (helperReference == null) {
-            int iOrdinal = state$Helper.ordinal();
+            int iOrdinal = helper.ordinal();
             if (iOrdinal == 0) {
                 horizontalChainReference = new HorizontalChainReference(this);
             } else if (iOrdinal == 1) {
@@ -168,7 +242,7 @@ public class State {
                 horizontalChainReference = new AlignHorizontallyReference(this);
             } else if (iOrdinal != 3) {
                 if (iOrdinal != 4) {
-                    helperReference = new HelperReference(this, state$Helper);
+                    helperReference = new HelperReference(this, helper);
                 } else {
                     horizontalChainReference = new BarrierReference(this);
                 }
@@ -183,7 +257,7 @@ public class State {
     }
 
     public HorizontalChainReference horizontalChain(Object... objArr) {
-        HorizontalChainReference horizontalChainReference = (HorizontalChainReference) helper(null, State$Helper.HORIZONTAL_CHAIN);
+        HorizontalChainReference horizontalChainReference = (HorizontalChainReference) helper(null, Helper.HORIZONTAL_CHAIN);
         horizontalChainReference.add(objArr);
         return horizontalChainReference;
     }
@@ -215,7 +289,7 @@ public class State {
     }
 
     public VerticalChainReference verticalChain(Object... objArr) {
-        VerticalChainReference verticalChainReference = (VerticalChainReference) helper(null, State$Helper.VERTICAL_CHAIN);
+        VerticalChainReference verticalChainReference = (VerticalChainReference) helper(null, Helper.VERTICAL_CHAIN);
         verticalChainReference.add(objArr);
         return verticalChainReference;
     }

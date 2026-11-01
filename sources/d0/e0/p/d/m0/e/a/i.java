@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 import kotlin.Pair;
 
@@ -23,16 +22,16 @@ public final class i {
     public static final Map<d0.e0.p.d.m0.g.b, d0.e0.p.d.m0.g.e> f3319b;
 
     static {
-        d0.e0.p.d.m0.g.c cVar = d0.e0.p.d.m0.b.k$a.r;
-        d0.e0.p.d.m0.g.b bVar = d0.e0.p.d.m0.b.k$a.N;
-        Map<d0.e0.p.d.m0.g.b, d0.e0.p.d.m0.g.e> mapMapOf = h0.mapOf(d0.o.to(j.access$childSafe(cVar, ModelAuditLogEntry.CHANGE_KEY_NAME), d0.e0.p.d.m0.g.e.identifier(ModelAuditLogEntry.CHANGE_KEY_NAME)), d0.o.to(j.access$childSafe(cVar, "ordinal"), d0.e0.p.d.m0.g.e.identifier("ordinal")), d0.o.to(j.access$child(d0.e0.p.d.m0.b.k$a.J, "size"), d0.e0.p.d.m0.g.e.identifier("size")), d0.o.to(j.access$child(bVar, "size"), d0.e0.p.d.m0.g.e.identifier("size")), d0.o.to(j.access$childSafe(d0.e0.p.d.m0.b.k$a.f, "length"), d0.e0.p.d.m0.g.e.identifier("length")), d0.o.to(j.access$child(bVar, "keys"), d0.e0.p.d.m0.g.e.identifier("keySet")), d0.o.to(j.access$child(bVar, "values"), d0.e0.p.d.m0.g.e.identifier("values")), d0.o.to(j.access$child(bVar, "entries"), d0.e0.p.d.m0.g.e.identifier("entrySet")));
+        d0.e0.p.d.m0.g.c cVar = d0.e0.p.d.m0.b.k.a.r;
+        d0.e0.p.d.m0.g.b bVar = d0.e0.p.d.m0.b.k.a.N;
+        Map<d0.e0.p.d.m0.g.b, d0.e0.p.d.m0.g.e> mapMapOf = h0.mapOf(d0.o.to(j.access$childSafe(cVar, ModelAuditLogEntry.CHANGE_KEY_NAME), d0.e0.p.d.m0.g.e.identifier(ModelAuditLogEntry.CHANGE_KEY_NAME)), d0.o.to(j.access$childSafe(cVar, "ordinal"), d0.e0.p.d.m0.g.e.identifier("ordinal")), d0.o.to(j.access$child(d0.e0.p.d.m0.b.k.a.J, "size"), d0.e0.p.d.m0.g.e.identifier("size")), d0.o.to(j.access$child(bVar, "size"), d0.e0.p.d.m0.g.e.identifier("size")), d0.o.to(j.access$childSafe(d0.e0.p.d.m0.b.k.a.f, "length"), d0.e0.p.d.m0.g.e.identifier("length")), d0.o.to(j.access$child(bVar, "keys"), d0.e0.p.d.m0.g.e.identifier("keySet")), d0.o.to(j.access$child(bVar, "values"), d0.e0.p.d.m0.g.e.identifier("values")), d0.o.to(j.access$child(bVar, "entries"), d0.e0.p.d.m0.g.e.identifier("entrySet")));
         f3319b = mapMapOf;
-        Set<Map$Entry<d0.e0.p.d.m0.g.b, d0.e0.p.d.m0.g.e>> setEntrySet = mapMapOf.entrySet();
+        Set<Map.Entry<d0.e0.p.d.m0.g.b, d0.e0.p.d.m0.g.e>> setEntrySet = mapMapOf.entrySet();
         ArrayList<Pair> arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(setEntrySet, 10));
         Iterator<T> it = setEntrySet.iterator();
         while (it.hasNext()) {
-            Map$Entry map$Entry = (Map$Entry) it.next();
-            arrayList.add(new Pair(((d0.e0.p.d.m0.g.b) map$Entry.getKey()).shortName(), map$Entry.getValue()));
+            Map.Entry entry = (Map.Entry) it.next();
+            arrayList.add(new Pair(((d0.e0.p.d.m0.g.b) entry.getKey()).shortName(), entry.getValue()));
         }
         LinkedHashMap linkedHashMap = new LinkedHashMap();
         for (Pair pair : arrayList) {

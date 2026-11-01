@@ -7,6 +7,7 @@ import lombok.patcher.PatchScript;
 import lombok.patcher.TransplantMapper;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/AddFieldScript.SCL.lombok */
@@ -75,9 +76,37 @@ public class AddFieldScript extends PatchScript {
         return null;
     }
 
+    /* JADX INFO: renamed from: lombok.patcher.scripts.AddFieldScript$1, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/AddFieldScript$1.SCL.lombok */
+    class AnonymousClass1 extends ClassVisitor {
+        private boolean alreadyAdded;
+
+        AnonymousClass1(int $anonymous0, ClassVisitor $anonymous1) {
+            super($anonymous0, $anonymous1);
+            this.alreadyAdded = false;
+        }
+
+        @Override // org.objectweb.asm.ClassVisitor
+        public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) {
+            if (name != null && name.equals(AddFieldScript.access$0(AddFieldScript.this))) {
+                this.alreadyAdded = true;
+            }
+            return super.visitField(access, name, desc, signature, value);
+        }
+
+        @Override // org.objectweb.asm.ClassVisitor
+        public void visitEnd() {
+            if (!this.alreadyAdded) {
+                FieldVisitor fv = this.cv.visitField(AddFieldScript.access$1(AddFieldScript.this), AddFieldScript.access$0(AddFieldScript.this), AddFieldScript.access$2(AddFieldScript.this), null, AddFieldScript.access$3(AddFieldScript.this));
+                fv.visitEnd();
+            }
+            super.visitEnd();
+        }
+    }
+
     @Override // lombok.patcher.PatchScript
     protected ClassVisitor createClassVisitor(ClassWriter writer, String classSpec, TransplantMapper transplantMapper) {
-        return new AddFieldScript$1(this, Opcodes.ASM7, writer);
+        return new AnonymousClass1(Opcodes.ASM7, writer);
     }
 
     @Override // lombok.patcher.PatchScript

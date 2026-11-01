@@ -1,26 +1,32 @@
 package com.discord.widgets.channels.permissions;
 
 import android.content.Context;
+import androidx.core.os.BundleKt;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.d.i0;
 import b.d.b.a.a;
-import com.discord.R$layout;
-import com.discord.api.permission.PermissionOverwrite$Type;
+import com.discord.R;
+import com.discord.api.permission.PermissionOverwrite;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetChannelSettingsAddMemberBinding;
+import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import d0.g;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function2;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 import rx.Observable;
 import rx.subjects.BehaviorSubject;
@@ -29,7 +35,9 @@ import rx.subjects.BehaviorSubject;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetChannelSettingsAddMemberFragment.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChannelSettingsAddMemberBinding;", 0)};
-    public static final WidgetChannelSettingsAddMemberFragment$Companion Companion = new WidgetChannelSettingsAddMemberFragment$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: adapter$delegate, reason: from kotlin metadata */
     private final Lazy adapter;
@@ -40,7 +48,7 @@ public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
     /* JADX INFO: renamed from: channelId$delegate, reason: from kotlin metadata */
     private final Lazy channelId;
     private final BehaviorSubject<String> querySubject;
-    private final BehaviorSubject<Map<Long, PermissionOverwrite$Type>> selectedSubject;
+    private final BehaviorSubject<Map<Long, PermissionOverwrite.Type>> selectedSubject;
 
     /* JADX INFO: renamed from: showRolesWithGuildPermission$delegate, reason: from kotlin metadata */
     private final Lazy showRolesWithGuildPermission;
@@ -49,8 +57,105 @@ public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
     private final Lazy viewModel;
     private static final String EXTRA_SHOW_ROLES_WITH_GUILD_PERMISSION = "EXTRA_SHOW_ROLES_WITH_GUILD_PERMISSION";
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragment.kt */
+    public final class AnonymousClass1 extends o implements Function1<String, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            WidgetChannelSettingsAddMemberFragmentViewModel widgetChannelSettingsAddMemberFragmentViewModelAccess$getViewModel$p = WidgetChannelSettingsAddMemberFragment.access$getViewModel$p(WidgetChannelSettingsAddMemberFragment.this);
+            m.checkNotNullExpressionValue(str, "it");
+            widgetChannelSettingsAddMemberFragmentViewModelAccess$getViewModel$p.updateQuery(str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragment.kt */
+    public final class AnonymousClass2 extends o implements Function1<String, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            m.checkNotNullParameter(str, "it");
+            WidgetChannelSettingsAddMemberFragment.access$getQuerySubject$p(WidgetChannelSettingsAddMemberFragment.this).onNext(str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragment.kt */
+    public final class AnonymousClass3 extends o implements Function2<Long, PermissionOverwrite.Type, Unit> {
+        public AnonymousClass3() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Long l, PermissionOverwrite.Type type) {
+            invoke(l.longValue(), type);
+            return Unit.a;
+        }
+
+        public final void invoke(long j, PermissionOverwrite.Type type) {
+            m.checkNotNullParameter(type, "type");
+            WidgetChannelSettingsAddMemberFragment.access$getViewModel$p(WidgetChannelSettingsAddMemberFragment.this).toggleItem(j, type);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragment.kt */
+    public final class AnonymousClass4 extends o implements Function1<WidgetChannelSettingsAddMemberFragmentViewModel.ViewState, Unit> {
+        public AnonymousClass4() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetChannelSettingsAddMemberFragmentViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetChannelSettingsAddMemberFragmentViewModel.ViewState viewState) {
+            m.checkNotNullParameter(viewState, "viewState");
+            WidgetChannelSettingsAddMemberFragment.access$configureUI(WidgetChannelSettingsAddMemberFragment.this, viewState);
+            WidgetChannelSettingsAddMemberFragment.access$getSelectedSubject$p(WidgetChannelSettingsAddMemberFragment.this).onNext(viewState.getSelected());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragment.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final WidgetChannelSettingsAddMemberFragment create(long channelId, boolean showRolesWithGuildPermission) {
+            WidgetChannelSettingsAddMemberFragment widgetChannelSettingsAddMemberFragment = new WidgetChannelSettingsAddMemberFragment();
+            widgetChannelSettingsAddMemberFragment.setArguments(BundleKt.bundleOf(d0.o.to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(channelId)), d0.o.to(WidgetChannelSettingsAddMemberFragment.access$getEXTRA_SHOW_ROLES_WITH_GUILD_PERMISSION$cp(), Boolean.valueOf(showRolesWithGuildPermission))));
+            return widgetChannelSettingsAddMemberFragment;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetChannelSettingsAddMemberFragment() {
-        super(R$layout.widget_channel_settings_add_member);
+        super(R.layout.widget_channel_settings_add_member);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetChannelSettingsAddMemberFragment$binding$2.INSTANCE, null, 2, null);
         this.adapter = g.lazy(new WidgetChannelSettingsAddMemberFragment$adapter$2(this));
         this.channelId = g.lazy(new WidgetChannelSettingsAddMemberFragment$channelId$2(this));
@@ -61,8 +166,8 @@ public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
         this.selectedSubject = BehaviorSubject.l0(Collections.emptyMap());
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetChannelSettingsAddMemberFragment widgetChannelSettingsAddMemberFragment, WidgetChannelSettingsAddMemberFragmentViewModel$ViewState widgetChannelSettingsAddMemberFragmentViewModel$ViewState) {
-        widgetChannelSettingsAddMemberFragment.configureUI(widgetChannelSettingsAddMemberFragmentViewModel$ViewState);
+    public static final /* synthetic */ void access$configureUI(WidgetChannelSettingsAddMemberFragment widgetChannelSettingsAddMemberFragment, WidgetChannelSettingsAddMemberFragmentViewModel.ViewState viewState) {
+        widgetChannelSettingsAddMemberFragment.configureUI(viewState);
     }
 
     public static final /* synthetic */ WidgetChannelSettingsAddMemberBinding access$getBinding$p(WidgetChannelSettingsAddMemberFragment widgetChannelSettingsAddMemberFragment) {
@@ -93,7 +198,7 @@ public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
         return widgetChannelSettingsAddMemberFragment.getViewModel();
     }
 
-    private final void configureUI(WidgetChannelSettingsAddMemberFragmentViewModel$ViewState viewState) {
+    private final void configureUI(WidgetChannelSettingsAddMemberFragmentViewModel.ViewState viewState) {
         getAdapter().setData(viewState.getItems());
     }
 
@@ -109,7 +214,7 @@ public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
         return ((Number) this.channelId.getValue()).longValue();
     }
 
-    public final BehaviorSubject<Map<Long, PermissionOverwrite$Type>> getSelectedItemsSubject() {
+    public final BehaviorSubject<Map<Long, PermissionOverwrite.Type>> getSelectedItemsSubject() {
         return this.selectedSubject;
     }
 
@@ -126,10 +231,10 @@ public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
         super.onViewBoundOrOnResume();
         Observable<String> observableR = this.querySubject.p(200L, TimeUnit.MILLISECONDS).r();
         m.checkNotNullExpressionValue(observableR, "querySubject\n        .de…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableR, this, null, 2, null), WidgetChannelSettingsAddMemberFragment.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableR, this, null, 2, null), WidgetChannelSettingsAddMemberFragment.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
         getBinding().c.setText(getViewModel().getQuery());
-        getBinding().c.a(this, new WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$2(this));
-        getAdapter().setOnClickListener(new WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$3(this));
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetChannelSettingsAddMemberFragment.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$4(this), 62, (Object) null);
+        getBinding().c.a(this, new AnonymousClass2());
+        getAdapter().setOnClickListener(new AnonymousClass3());
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetChannelSettingsAddMemberFragment.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass4(), 62, (Object) null);
     }
 }

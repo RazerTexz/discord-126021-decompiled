@@ -1,30 +1,32 @@
 package f0;
 
-import f0.e0.k.h$a;
+import com.discord.api.permission.Permission;
 import java.net.ProtocolException;
 import java.net.Proxy;
 import java.net.ProxySelector;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import javax.net.SocketFactory;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.X509TrustManager;
 import kotlin.TypeCastException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import okhttp3.Interceptor;
 import okhttp3.Request;
-import okhttp3.Request$a;
 import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
 
 /* JADX INFO: compiled from: OkHttpClient.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public class x implements Cloneable, e$a {
+public class x implements Cloneable, e.a {
     public final SocketFactory A;
     public final SSLSocketFactory B;
     public final X509TrustManager C;
@@ -53,12 +55,12 @@ public class x implements Cloneable, e$a {
     /* JADX INFO: renamed from: z, reason: collision with root package name */
     public final c f3686z;
     public static final List<y> j = f0.e0.c.m(y.HTTP_2, y.HTTP_1_1);
-    public static final x$b l = new x$b(null);
+    public static final b l = new b(null);
     public final q m;
     public final l n;
     public final List<Interceptor> o;
     public final List<Interceptor> p;
-    public final t$b q;
+    public final t.b q;
     public final boolean r;
     public final boolean t;
     public final boolean u;
@@ -66,47 +68,53 @@ public class x implements Cloneable, e$a {
     public final s w;
     public static final List<m> k = f0.e0.c.m(m.c, m.d);
 
-    public x(x$a x_a) throws NoSuchAlgorithmException, KeyStoreException {
+    /* JADX INFO: compiled from: OkHttpClient.kt */
+    public final class b {
+        public b(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    public x(a aVar) throws NoSuchAlgorithmException, KeyStoreException {
         ProxySelector proxySelector;
         boolean z2;
         boolean z3;
-        d0.z.d.m.checkParameterIsNotNull(x_a, "builder");
-        this.m = x_a.a;
-        this.n = x_a.f3687b;
-        this.o = f0.e0.c.z(x_a.c);
-        this.p = f0.e0.c.z(x_a.d);
-        this.q = x_a.e;
-        this.r = x_a.f;
-        this.f3683s = x_a.g;
-        this.t = x_a.h;
-        this.u = x_a.i;
-        this.v = x_a.j;
-        this.w = x_a.k;
-        Proxy proxy = x_a.l;
+        d0.z.d.m.checkParameterIsNotNull(aVar, "builder");
+        this.m = aVar.a;
+        this.n = aVar.f3687b;
+        this.o = f0.e0.c.z(aVar.c);
+        this.p = f0.e0.c.z(aVar.d);
+        this.q = aVar.e;
+        this.r = aVar.f;
+        this.f3683s = aVar.g;
+        this.t = aVar.h;
+        this.u = aVar.i;
+        this.v = aVar.j;
+        this.w = aVar.k;
+        Proxy proxy = aVar.l;
         this.f3684x = proxy;
         if (proxy != null) {
             proxySelector = f0.e0.l.a.a;
         } else {
-            proxySelector = x_a.m;
+            proxySelector = aVar.m;
             proxySelector = proxySelector == null ? ProxySelector.getDefault() : proxySelector;
             if (proxySelector == null) {
                 proxySelector = f0.e0.l.a.a;
             }
         }
         this.f3685y = proxySelector;
-        this.f3686z = x_a.n;
-        this.A = x_a.o;
-        List<m> list = x_a.r;
+        this.f3686z = aVar.n;
+        this.A = aVar.o;
+        List<m> list = aVar.r;
         this.D = list;
-        this.E = x_a.f3688s;
-        this.F = x_a.t;
-        this.I = x_a.w;
-        this.J = x_a.f3689x;
-        this.K = x_a.f3690y;
-        this.L = x_a.f3691z;
-        this.M = x_a.A;
-        this.N = x_a.B;
-        f0.e0.g.l lVar = x_a.C;
+        this.E = aVar.f3688s;
+        this.F = aVar.t;
+        this.I = aVar.w;
+        this.J = aVar.f3689x;
+        this.K = aVar.f3690y;
+        this.L = aVar.f3691z;
+        this.M = aVar.A;
+        this.N = aVar.B;
+        f0.e0.g.l lVar = aVar.C;
         this.O = lVar == null ? new f0.e0.g.l() : lVar;
         if (!(list instanceof Collection) || !list.isEmpty()) {
             Iterator<T> it = list.iterator();
@@ -129,26 +137,26 @@ public class x implements Cloneable, e$a {
             this.C = null;
             this.G = g.a;
         } else {
-            SSLSocketFactory sSLSocketFactory = x_a.p;
+            SSLSocketFactory sSLSocketFactory = aVar.p;
             if (sSLSocketFactory != null) {
                 this.B = sSLSocketFactory;
-                f0.e0.m.c cVar = x_a.v;
+                f0.e0.m.c cVar = aVar.v;
                 if (cVar == null) {
                     d0.z.d.m.throwNpe();
                 }
                 this.H = cVar;
-                X509TrustManager x509TrustManager = x_a.q;
+                X509TrustManager x509TrustManager = aVar.q;
                 if (x509TrustManager == null) {
                     d0.z.d.m.throwNpe();
                 }
                 this.C = x509TrustManager;
-                g gVar = x_a.u;
+                g gVar = aVar.u;
                 if (cVar == null) {
                     d0.z.d.m.throwNpe();
                 }
                 this.G = gVar.b(cVar);
             } else {
-                h$a h_a = f0.e0.k.h.c;
+                f0.e0.k.h.a aVar2 = f0.e0.k.h.c;
                 X509TrustManager x509TrustManagerN = f0.e0.k.h.a.n();
                 this.C = x509TrustManagerN;
                 f0.e0.k.h hVar = f0.e0.k.h.a;
@@ -162,7 +170,7 @@ public class x implements Cloneable, e$a {
                 d0.z.d.m.checkParameterIsNotNull(x509TrustManagerN, "trustManager");
                 f0.e0.m.c cVarB = f0.e0.k.h.a.b(x509TrustManagerN);
                 this.H = cVarB;
-                g gVar2 = x_a.u;
+                g gVar2 = aVar.u;
                 if (cVarB == null) {
                     d0.z.d.m.throwNpe();
                 }
@@ -229,7 +237,7 @@ public class x implements Cloneable, e$a {
         }
     }
 
-    @Override // f0.e$a
+    @Override // f0.e.a
     public e b(Request request) {
         d0.z.d.m.checkParameterIsNotNull(request, "request");
         return new f0.e0.g.e(this, request, false);
@@ -239,39 +247,39 @@ public class x implements Cloneable, e$a {
         return super.clone();
     }
 
-    public x$a f() {
+    public a f() {
         d0.z.d.m.checkParameterIsNotNull(this, "okHttpClient");
-        x$a x_a = new x$a();
-        x_a.a = this.m;
-        x_a.f3687b = this.n;
-        d0.t.r.addAll(x_a.c, this.o);
-        d0.t.r.addAll(x_a.d, this.p);
-        x_a.e = this.q;
-        x_a.f = this.r;
-        x_a.g = this.f3683s;
-        x_a.h = this.t;
-        x_a.i = this.u;
-        x_a.j = this.v;
-        x_a.k = this.w;
-        x_a.l = this.f3684x;
-        x_a.m = this.f3685y;
-        x_a.n = this.f3686z;
-        x_a.o = this.A;
-        x_a.p = this.B;
-        x_a.q = this.C;
-        x_a.r = this.D;
-        x_a.f3688s = this.E;
-        x_a.t = this.F;
-        x_a.u = this.G;
-        x_a.v = this.H;
-        x_a.w = this.I;
-        x_a.f3689x = this.J;
-        x_a.f3690y = this.K;
-        x_a.f3691z = this.L;
-        x_a.A = this.M;
-        x_a.B = this.N;
-        x_a.C = this.O;
-        return x_a;
+        a aVar = new a();
+        aVar.a = this.m;
+        aVar.f3687b = this.n;
+        d0.t.r.addAll(aVar.c, this.o);
+        d0.t.r.addAll(aVar.d, this.p);
+        aVar.e = this.q;
+        aVar.f = this.r;
+        aVar.g = this.f3683s;
+        aVar.h = this.t;
+        aVar.i = this.u;
+        aVar.j = this.v;
+        aVar.k = this.w;
+        aVar.l = this.f3684x;
+        aVar.m = this.f3685y;
+        aVar.n = this.f3686z;
+        aVar.o = this.A;
+        aVar.p = this.B;
+        aVar.q = this.C;
+        aVar.r = this.D;
+        aVar.f3688s = this.E;
+        aVar.t = this.F;
+        aVar.u = this.G;
+        aVar.v = this.H;
+        aVar.w = this.I;
+        aVar.f3689x = this.J;
+        aVar.f3690y = this.K;
+        aVar.f3691z = this.L;
+        aVar.A = this.M;
+        aVar.B = this.N;
+        aVar.C = this.O;
+        return aVar;
     }
 
     public WebSocket g(Request request, WebSocketListener webSocketListener) {
@@ -282,12 +290,12 @@ public class x implements Cloneable, e$a {
         if (dVar.u.b("Sec-WebSocket-Extensions") != null) {
             dVar.i(new ProtocolException("Request header not permitted: 'Sec-WebSocket-Extensions'"), null);
         } else {
-            x$a x_aF = f();
+            a aVarF = f();
             t tVar = t.a;
             d0.z.d.m.checkParameterIsNotNull(tVar, "eventListener");
             byte[] bArr = f0.e0.c.a;
             d0.z.d.m.checkParameterIsNotNull(tVar, "$this$asFactory");
-            x_aF.e = new f0.e0.a(tVar);
+            aVarF.e = new f0.e0.a(tVar);
             List<y> list = f0.e0.n.d.a;
             d0.z.d.m.checkParameterIsNotNull(list, "protocols");
             List mutableList = d0.t.u.toMutableList((Collection) list);
@@ -305,20 +313,20 @@ public class x implements Cloneable, e$a {
                 throw new IllegalArgumentException("protocols must not contain null".toString());
             }
             mutableList.remove(y.SPDY_3);
-            if (!d0.z.d.m.areEqual(mutableList, x_aF.f3688s)) {
-                x_aF.C = null;
+            if (!d0.z.d.m.areEqual(mutableList, aVarF.f3688s)) {
+                aVarF.C = null;
             }
             List<? extends y> listUnmodifiableList = Collections.unmodifiableList(mutableList);
             d0.z.d.m.checkExpressionValueIsNotNull(listUnmodifiableList, "Collections.unmodifiableList(protocolsCopy)");
-            x_aF.f3688s = listUnmodifiableList;
-            x xVar = new x(x_aF);
-            Request$a request$a = new Request$a(dVar.u);
-            request$a.b("Upgrade", "websocket");
-            request$a.b("Connection", "Upgrade");
-            request$a.b("Sec-WebSocket-Key", dVar.f3656b);
-            request$a.b("Sec-WebSocket-Version", "13");
-            request$a.b("Sec-WebSocket-Extensions", "permessage-deflate");
-            Request requestA = request$a.a();
+            aVarF.f3688s = listUnmodifiableList;
+            x xVar = new x(aVarF);
+            Request.a aVar = new Request.a(dVar.u);
+            aVar.b("Upgrade", "websocket");
+            aVar.b("Connection", "Upgrade");
+            aVar.b("Sec-WebSocket-Key", dVar.f3656b);
+            aVar.b("Sec-WebSocket-Version", "13");
+            aVar.b("Sec-WebSocket-Extensions", "permessage-deflate");
+            Request requestA = aVar.a();
             f0.e0.g.e eVar = new f0.e0.g.e(xVar, requestA, true);
             dVar.c = eVar;
             eVar.e(new f0.e0.n.e(dVar, requestA));
@@ -326,7 +334,96 @@ public class x implements Cloneable, e$a {
         return dVar;
     }
 
+    /* JADX INFO: compiled from: OkHttpClient.kt */
+    public final class a {
+        public int A;
+        public long B;
+        public f0.e0.g.l C;
+        public t.b e;
+
+        /* JADX INFO: renamed from: s, reason: collision with root package name */
+        public List<? extends y> f3688s;
+
+        /* JADX INFO: renamed from: x, reason: collision with root package name */
+        public int f3689x;
+
+        /* JADX INFO: renamed from: y, reason: collision with root package name */
+        public int f3690y;
+
+        /* JADX INFO: renamed from: z, reason: collision with root package name */
+        public int f3691z;
+        public boolean f;
+        public c g;
+        public boolean h;
+        public boolean i;
+        public p j;
+        public s k;
+        public Proxy l;
+        public ProxySelector m;
+        public c n;
+        public SocketFactory o;
+        public SSLSocketFactory p;
+        public X509TrustManager q;
+        public List<m> r;
+        public HostnameVerifier t;
+        public g u;
+        public f0.e0.m.c v;
+        public int w;
+        public q a = new q();
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public l f3687b = new l();
+        public final List<Interceptor> c = new ArrayList();
+        public final List<Interceptor> d = new ArrayList();
+
+        public a() {
+            t tVar = t.a;
+            d0.z.d.m.checkParameterIsNotNull(tVar, "$this$asFactory");
+            this.e = new f0.e0.a(tVar);
+            this.f = true;
+            c cVar = c.a;
+            this.g = cVar;
+            this.h = true;
+            this.i = true;
+            this.j = p.a;
+            this.k = s.a;
+            this.n = cVar;
+            SocketFactory socketFactory = SocketFactory.getDefault();
+            d0.z.d.m.checkExpressionValueIsNotNull(socketFactory, "SocketFactory.getDefault()");
+            this.o = socketFactory;
+            b bVar = x.l;
+            this.r = x.k;
+            this.f3688s = x.j;
+            this.t = f0.e0.m.d.a;
+            this.u = g.a;
+            this.f3689x = 10000;
+            this.f3690y = 10000;
+            this.f3691z = 10000;
+            this.B = Permission.VIEW_CHANNEL;
+        }
+
+        public final a a(long j, TimeUnit timeUnit) {
+            d0.z.d.m.checkParameterIsNotNull(timeUnit, "unit");
+            this.f3690y = f0.e0.c.b("timeout", j, timeUnit);
+            return this;
+        }
+
+        public final a b(SSLSocketFactory sSLSocketFactory, X509TrustManager x509TrustManager) {
+            d0.z.d.m.checkParameterIsNotNull(sSLSocketFactory, "sslSocketFactory");
+            d0.z.d.m.checkParameterIsNotNull(x509TrustManager, "trustManager");
+            if ((!d0.z.d.m.areEqual(sSLSocketFactory, this.p)) || (!d0.z.d.m.areEqual(x509TrustManager, this.q))) {
+                this.C = null;
+            }
+            this.p = sSLSocketFactory;
+            d0.z.d.m.checkParameterIsNotNull(x509TrustManager, "trustManager");
+            f0.e0.k.h.a aVar = f0.e0.k.h.c;
+            this.v = f0.e0.k.h.a.b(x509TrustManager);
+            this.q = x509TrustManager;
+            return this;
+        }
+    }
+
     public x() {
-        this(new x$a());
+        this(new a());
     }
 }

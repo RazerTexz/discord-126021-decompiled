@@ -1,12 +1,10 @@
 package s.a.b2;
 
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.Handler;
-import android.os.Handler$Callback;
 import android.os.Looper;
 import androidx.annotation.VisibleForTesting;
 import d0.k;
-import d0.k$a;
 import d0.l;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
@@ -17,10 +15,10 @@ public final class c {
     static {
         Object objM97constructorimpl;
         try {
-            k$a k_a = k.j;
+            k.a aVar = k.j;
             objM97constructorimpl = k.m97constructorimpl(new a(a(Looper.getMainLooper(), true), null, false));
         } catch (Throwable th) {
-            k$a k_a2 = k.j;
+            k.a aVar2 = k.j;
             objM97constructorimpl = k.m97constructorimpl(l.createFailure(th));
         }
     }
@@ -30,9 +28,9 @@ public final class c {
         if (!z2) {
             return new Handler(looper);
         }
-        if (Build$VERSION.SDK_INT < 28) {
+        if (Build.VERSION.SDK_INT < 28) {
             try {
-                return (Handler) Handler.class.getDeclaredConstructor(Looper.class, Handler$Callback.class, Boolean.TYPE).newInstance(looper, null, Boolean.TRUE);
+                return (Handler) Handler.class.getDeclaredConstructor(Looper.class, Handler.Callback.class, Boolean.TYPE).newInstance(looper, null, Boolean.TRUE);
             } catch (NoSuchMethodException unused) {
                 return new Handler(looper);
             }

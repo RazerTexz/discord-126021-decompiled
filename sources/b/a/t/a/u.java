@@ -14,7 +14,7 @@ public final class u<RC, S> extends Rule<RC, Node<RC>, S> {
     public final /* synthetic */ f a;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public u(r$d$a r_d_a, f fVar, Pattern pattern) {
+    public u(r.d.a aVar, f fVar, Pattern pattern) {
         super(pattern);
         this.a = fVar;
     }
@@ -30,8 +30,8 @@ public final class u<RC, S> extends Rule<RC, Node<RC>, S> {
         d0.z.d.m.checkNotNull(strGroup);
         d0.z.d.m.checkNotNull(strGroup3);
         d0.z.d.m.checkNotNull(strGroup4);
-        r$d r_d = new r$d(strGroup, strGroup2, strGroup3, strGroup4, this.a);
-        d0.z.d.m.checkNotNullParameter(r_d, "node");
-        return new ParseSpec<>(r_d, s2);
+        r.d dVar = new r.d(strGroup, strGroup2, strGroup3, strGroup4, this.a);
+        d0.z.d.m.checkNotNullParameter(dVar, "node");
+        return new ParseSpec<>(dVar, s2);
     }
 }

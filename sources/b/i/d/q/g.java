@@ -22,6 +22,44 @@ public final class g {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final b.i.d.q.y.b f1808b = b.i.d.q.y.b.a;
 
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: ConstructorConstructor.java */
+    public class a<T> implements r<T> {
+        public final /* synthetic */ b.i.d.f a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final /* synthetic */ Type f1809b;
+
+        public a(g gVar, b.i.d.f fVar, Type type) {
+            this.a = fVar;
+            this.f1809b = type;
+        }
+
+        @Override // b.i.d.q.r
+        public T a() {
+            return (T) this.a.a(this.f1809b);
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: ConstructorConstructor.java */
+    public class b<T> implements r<T> {
+        public final /* synthetic */ b.i.d.f a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final /* synthetic */ Type f1810b;
+
+        public b(g gVar, b.i.d.f fVar, Type type) {
+            this.a = fVar;
+            this.f1810b = type;
+        }
+
+        @Override // b.i.d.q.r
+        public T a() {
+            return (T) this.a.a(this.f1810b);
+        }
+    }
+
     public g(Map<Type, b.i.d.f<?>> map) {
         this.a = map;
     }
@@ -32,11 +70,11 @@ public final class g {
         Class<? super T> rawType = typeToken.getRawType();
         b.i.d.f<?> fVar = this.a.get(type);
         if (fVar != null) {
-            return new g$a(this, fVar, type);
+            return new a(this, fVar, type);
         }
         b.i.d.f<?> fVar2 = this.a.get(rawType);
         if (fVar2 != null) {
-            return new g$b(this, fVar2, type);
+            return new b(this, fVar2, type);
         }
         r<T> eVar = null;
         try {
@@ -65,7 +103,7 @@ public final class g {
             if (ConcurrentNavigableMap.class.isAssignableFrom(rawType)) {
                 eVar = new n<>(this);
             } else if (ConcurrentMap.class.isAssignableFrom(rawType)) {
-                eVar = new b<>(this);
+                eVar = new b.i.d.q.b<>(this);
             } else if (SortedMap.class.isAssignableFrom(rawType)) {
                 eVar = new c<>(this);
             } else {

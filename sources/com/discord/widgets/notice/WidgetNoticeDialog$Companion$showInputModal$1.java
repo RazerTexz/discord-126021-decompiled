@@ -3,7 +3,7 @@ package com.discord.widgets.notice;
 import android.content.Context;
 import android.view.View;
 import b.i.c.m.d.k.h;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.google.android.material.textfield.TextInputLayout;
 import d0.z.d.m;
@@ -37,7 +37,7 @@ public final class WidgetNoticeDialog$Companion$showInputModal$1 extends o imple
         Function2 function2 = this.$onOKClicked;
         Context context = view.getContext();
         m.checkNotNullExpressionValue(context, "view.context");
-        View viewFindViewById = view.findViewById(R$id.view_input);
+        View viewFindViewById = view.findViewById(R.id.view_input);
         m.checkNotNullExpressionValue(viewFindViewById, "view.findViewById<TextIn…tLayout>(R.id.view_input)");
         function2.invoke(context, ViewExtensions.getTextOrEmpty((TextInputLayout) viewFindViewById));
         if (this.$shouldHideKeyboard) {

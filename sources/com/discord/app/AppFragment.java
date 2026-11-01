@@ -1,13 +1,14 @@
 package com.discord.app;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View$OnClickListener;
 import androidx.annotation.CallSuper;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
@@ -15,20 +16,20 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.MenuRes;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.Toolbar;
-import androidx.appcompat.widget.Toolbar$LayoutParams;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
-import b.a.d.b;
+import com.discord.R;
 import com.discord.media_picker.MediaPicker;
-import com.discord.media_picker.MediaPicker$Provider;
 import com.discord.media_picker.RequestType;
 import com.discord.models.domain.ModelAuditLogEntry;
+import com.discord.utilities.attachments.AttachmentUtilsKt;
 import com.discord.utilities.display.DisplayUtils;
 import com.discord.utilities.view.text.TextWatcher;
 import com.discord.views.ToolbarTitleLayout;
 import com.lytefast.flexinput.managers.FileManager;
 import d0.g;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
@@ -47,7 +48,7 @@ import rx.subjects.Subject;
 
 /* JADX INFO: compiled from: AppFragment.kt */
 /* JADX INFO: loaded from: classes.dex */
-public abstract class AppFragment extends Fragment implements AppComponent, AppPermissionsRequests, MediaPicker$Provider, AppLogger$a {
+public abstract class AppFragment extends Fragment implements AppComponent, AppPermissionsRequests, MediaPicker.Provider, AppLogger.a {
 
     /* JADX INFO: renamed from: appLogger$delegate, reason: from kotlin metadata */
     private final Lazy appLogger;
@@ -59,12 +60,112 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
     private boolean onViewBoundOrOnResumeInvoked;
     private final Subject<Void, Void> unsubscribeSignal;
 
+    /* JADX INFO: compiled from: AppFragment.kt */
+    public final class a extends o implements Function0<AppLogger> {
+        public a() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public AppLogger invoke() {
+            return new AppLogger(AppFragment.this, null, false, 6);
+        }
+    }
+
+    /* JADX INFO: compiled from: AppFragment.kt */
+    public final class b extends o implements Function0<b.b.a.f.b> {
+        public b() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public b.b.a.f.b invoke() {
+            return new b.b.a.f.b(AppFragment.this.requireContext(), null, null, 6);
+        }
+    }
+
+    /* JADX INFO: compiled from: AppFragment.kt */
+    public final class c implements MediaPicker.a {
+        public c() {
+        }
+
+        @Override // com.discord.media_picker.MediaPicker.a
+        public void a(Exception exc) {
+            m.checkNotNullParameter(exc, "e");
+            b.a.d.m.h(AppFragment.this.getContext(), b.a.k.b.k(AppFragment.this, R.string.upload_open_file_failed, new Object[]{exc.getMessage()}, null, 4), 0, null, 12);
+        }
+
+        @Override // com.discord.media_picker.MediaPicker.a
+        public void b(Uri uri, RequestType requestType) {
+            m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
+            m.checkNotNullParameter(requestType, "request");
+            String mimeType$default = AttachmentUtilsKt.getMimeType$default(AppFragment.this.requireContext().getContentResolver(), uri, null, 4, null);
+            if (requestType.ordinal() != 3) {
+                AppFragment.this.onImageChosen(uri, mimeType$default);
+            } else {
+                AppFragment.this.onImageCropped(uri, mimeType$default);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: AppFragment.kt */
+    public final class d extends o implements Function0<Unit> {
+        public d() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public Unit invoke() {
+            MediaPicker mediaPicker = MediaPicker.a;
+            AppFragment appFragment = AppFragment.this;
+            CharSequence charSequenceK = b.a.k.b.k(appFragment, R.string.choose_an_application, new Object[0], null, 4);
+            b.a.d.e eVar = new b.a.d.e(this);
+            m.checkNotNullParameter(appFragment, "provider");
+            m.checkNotNullParameter(charSequenceK, "chooserTitle");
+            m.checkNotNullParameter("image/*", "mimeType");
+            m.checkNotNullParameter(eVar, "onError");
+            try {
+                Uri uriA = mediaPicker.a(appFragment);
+                PackageManager packageManager = appFragment.requireContext().getPackageManager();
+                m.checkNotNullExpressionValue(packageManager, "provider.requireContext().packageManager");
+                Intent intentB = b.a.l.b.b(packageManager, charSequenceK, uriA, "image/*");
+                mediaPicker.c(appFragment.requireContext(), new Intent("android.media.action.IMAGE_CAPTURE"), uriA);
+                try {
+                    appFragment.startActivityForResult(intentB, RequestType.CHOOSER.getCode$media_picker_release());
+                } catch (ActivityNotFoundException unused) {
+                    throw new IOException("No application available for media picker.");
+                }
+            } catch (IOException e) {
+                eVar.invoke(e);
+            }
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: AppFragment.kt */
+    public final class e extends o implements Function0<Boolean> {
+        public final /* synthetic */ Func0 $onBackAction;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public e(Func0 func0) {
+            super(0);
+            this.$onBackAction = func0;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public Boolean invoke() {
+            Object objCall = this.$onBackAction.call();
+            m.checkNotNullExpressionValue(objCall, "onBackAction.call()");
+            return Boolean.valueOf(((Boolean) objCall).booleanValue());
+        }
+    }
+
     public AppFragment() {
         PublishSubject publishSubjectK0 = PublishSubject.k0();
         m.checkNotNullExpressionValue(publishSubjectK0, "PublishSubject.create()");
         this.unsubscribeSignal = publishSubjectK0;
-        this.fileManager = g.lazy(new AppFragment$b(this));
-        this.appLogger = g.lazy(new AppFragment$a(this));
+        this.fileManager = g.lazy(new b());
+        this.appLogger = g.lazy(new a());
     }
 
     public static /* synthetic */ Unit bindToolbar$default(AppFragment appFragment, View view, int i, Object obj) {
@@ -109,7 +210,7 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
         return (FileManager) this.fileManager.getValue();
     }
 
-    @Override // com.discord.media_picker.MediaPicker$Provider
+    @Override // com.discord.media_picker.MediaPicker.Provider
     public File getImageFile() {
         return getFileManager().b();
     }
@@ -119,7 +220,7 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
         return this.isRecreated;
     }
 
-    @Override // com.discord.app.AppLogger$a
+    @Override // com.discord.app.AppLogger.a
     public LoggingConfig getLoggingConfig() {
         return this.loggingConfig;
     }
@@ -167,10 +268,10 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
         super.onActivityResult(requestCode, resultCode, data);
         MediaPicker mediaPicker = MediaPicker.a;
         Context contextRequireContext = requireContext();
-        AppFragment$c appFragment$c = new AppFragment$c(this);
+        c cVar = new c();
         m.checkNotNullParameter(contextRequireContext, "context");
-        m.checkNotNullParameter(appFragment$c, "result");
-        Objects.requireNonNull(RequestType.Companion);
+        m.checkNotNullParameter(cVar, "result");
+        Objects.requireNonNull(RequestType.INSTANCE);
         if (requestCode == 800) {
             requestType = RequestType.CROP;
         } else if (requestCode != 801) {
@@ -196,15 +297,15 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
                 if (resultCode == -1) {
                     Uri uriD = mediaPicker.d(contextRequireContext, requestType, data);
                     contextRequireContext.sendBroadcast(new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE", uriD));
-                    appFragment$c.b(uriD, requestType);
+                    cVar.b(uriD, requestType);
                 } else {
                     if (resultCode == 0) {
                         return;
                     }
                     throw new IOException("Bad activity result code: " + resultCode + ", for request code: " + requestCode);
                 }
-            } catch (IOException e) {
-                appFragment$c.a(e);
+            } catch (IOException e2) {
+                cVar.a(e2);
             }
         }
     }
@@ -223,7 +324,7 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
                 ((HashMap) it.next()).remove(name);
             }
         }
-        TextWatcher.Companion.reset(this);
+        TextWatcher.INSTANCE.reset(this);
         super.onDestroyView();
     }
 
@@ -238,12 +339,12 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
     }
 
     public void onImageChosen(Uri uri, String mimeType) {
-        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         m.checkNotNullParameter(mimeType, "mimeType");
     }
 
     public void onImageCropped(Uri uri, String mimeType) {
-        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         m.checkNotNullParameter(mimeType, "mimeType");
     }
 
@@ -289,7 +390,7 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
     }
 
     public final void openMediaChooser() {
-        requestMedia(new AppFragment$d(this));
+        requestMedia(new d());
     }
 
     @Override // com.discord.app.AppPermissionsRequests
@@ -384,7 +485,7 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
             menu.clear();
         }
         toolbar.inflateMenu(menuResId);
-        toolbar.setOnMenuItemClickListener(new b(toolbar, menuResId, onSelected, onConfigured));
+        toolbar.setOnMenuItemClickListener(new b.a.d.b(toolbar, menuResId, onSelected, onConfigured));
         Menu menu2 = toolbar.getMenu();
         if (menu2 != null && onConfigured != null) {
             onConfigured.call(menu2);
@@ -420,7 +521,7 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
         return Unit.a;
     }
 
-    public final Unit setActionBarTitleClick(View$OnClickListener onClickListener) {
+    public final Unit setActionBarTitleClick(View.OnClickListener onClickListener) {
         m.checkNotNullParameter(onClickListener, "onClickListener");
         AppActivity appActivity = getAppActivity();
         if (appActivity == null) {
@@ -452,7 +553,7 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
         }
         ToolbarTitleLayout toolbarTitleLayoutE = appActivity.e();
         if (toolbarTitleLayoutE != null) {
-            toolbarTitleLayoutE.setLayoutParams(new Toolbar$LayoutParams(-1, -1));
+            toolbarTitleLayoutE.setLayoutParams(new Toolbar.LayoutParams(-1, -1));
         }
         return Unit.a;
     }
@@ -464,7 +565,7 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
         }
         ToolbarTitleLayout toolbarTitleLayoutE = appActivity.e();
         if (toolbarTitleLayoutE != null) {
-            toolbarTitleLayoutE.setLayoutParams(new Toolbar$LayoutParams(-2, -2));
+            toolbarTitleLayoutE.setLayoutParams(new Toolbar.LayoutParams(-2, -2));
         }
         return Unit.a;
     }
@@ -487,16 +588,16 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
         m.checkNotNullParameter(onBackAction, "onBackAction");
         AppActivity appActivity = getAppActivity();
         if (appActivity != null) {
-            AppFragment$e appFragment$e = new AppFragment$e(onBackAction);
+            e eVar = new e(onBackAction);
             String name = getClass().getName();
             m.checkNotNullExpressionValue(name, "javaClass.name");
-            m.checkNotNullParameter(appFragment$e, "handler");
+            m.checkNotNullParameter(eVar, "handler");
             m.checkNotNullParameter(name, "key");
             HashMap<String, Function0<Boolean>> map = appActivity.l.get(Integer.valueOf(priority));
             if (map == null) {
                 map = new HashMap<>();
             }
-            map.put(name, appFragment$e);
+            map.put(name, eVar);
             appActivity.l.put(Integer.valueOf(priority), map);
         }
     }
@@ -521,7 +622,7 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
 
     private final Unit bindToolbar(AppActivity appActivity, View view) {
         Toolbar toolbar;
-        if (view == null || (toolbar = (Toolbar) view.findViewById(2131361878)) == null) {
+        if (view == null || (toolbar = (Toolbar) view.findViewById(R.id.action_bar_toolbar)) == null) {
             return null;
         }
         if (!m.areEqual(appActivity.toolbar, toolbar)) {
@@ -589,8 +690,8 @@ public abstract class AppFragment extends Fragment implements AppComponent, AppP
         PublishSubject publishSubjectK0 = PublishSubject.k0();
         m.checkNotNullExpressionValue(publishSubjectK0, "PublishSubject.create()");
         this.unsubscribeSignal = publishSubjectK0;
-        this.fileManager = g.lazy(new AppFragment$b(this));
-        this.appLogger = g.lazy(new AppFragment$a(this));
+        this.fileManager = g.lazy(new b());
+        this.appLogger = g.lazy(new a());
     }
 
     public final Unit setActionBarTitle(@StringRes int titleResId) {

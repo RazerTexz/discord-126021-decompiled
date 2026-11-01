@@ -10,14 +10,12 @@ import d0.e0.p.d.m0.c.x;
 import d0.e0.p.d.m0.c.z;
 import d0.e0.p.d.m0.c.z0;
 import d0.e0.p.d.m0.e.a.f0;
-import d0.e0.p.d.m0.e.a.g0.g$a;
-import d0.e0.p.d.m0.e.b.u;
 import d0.e0.p.d.m0.k.v.w;
-import d0.e0.p.d.m0.m.f$m;
 import d0.e0.p.d.m0.n.c0;
 import d0.e0.p.d.m0.n.e1;
 import d0.t.g0;
 import d0.t.h0;
+import d0.t.u;
 import d0.z.d.a0;
 import d0.z.d.y;
 import java.util.ArrayList;
@@ -29,6 +27,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import kotlin.Pair;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
@@ -42,7 +41,7 @@ public abstract class k extends d0.e0.p.d.m0.k.a0.j {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final /* synthetic */ KProperty<Object>[] f3335b = {a0.property1(new y(a0.getOrCreateKotlinClass(k.class), "functionNamesLazy", "getFunctionNamesLazy()Ljava/util/Set;")), a0.property1(new y(a0.getOrCreateKotlinClass(k.class), "propertyNamesLazy", "getPropertyNamesLazy()Ljava/util/Set;")), a0.property1(new y(a0.getOrCreateKotlinClass(k.class), "classNamesLazy", "getClassNamesLazy()Ljava/util/Set;"))};
-    public final d0.e0.p.d.m0.m.j<b> f;
+    public final d0.e0.p.d.m0.m.j<d0.e0.p.d.m0.e.a.i0.l.b> f;
     public final d0.e0.p.d.m0.m.h<d0.e0.p.d.m0.g.e, Collection<t0>> g;
     public final d0.e0.p.d.m0.m.i<d0.e0.p.d.m0.g.e, n0> h;
     public final d0.e0.p.d.m0.m.h<d0.e0.p.d.m0.g.e, Collection<t0>> i;
@@ -51,8 +50,346 @@ public abstract class k extends d0.e0.p.d.m0.k.a0.j {
     public final d0.e0.p.d.m0.m.j l;
     public final d0.e0.p.d.m0.m.h<d0.e0.p.d.m0.g.e, List<n0>> m;
 
-    public /* synthetic */ k(d0.e0.p.d.m0.e.a.i0.g gVar, k kVar, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(gVar, (i & 2) != 0 ? null : kVar);
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.k$k, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: LazyJavaScope.kt */
+    public final class C0526k extends d0.z.d.o implements Function0<Set<? extends d0.e0.p.d.m0.g.e>> {
+        public C0526k() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Set<? extends d0.e0.p.d.m0.g.e> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Set<? extends d0.e0.p.d.m0.g.e> invoke2() {
+            return k.this.h(d0.e0.p.d.m0.k.a0.d.q, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaScope.kt */
+    public final class a {
+        public final c0 a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final c0 f3336b;
+        public final List<c1> c;
+        public final List<z0> d;
+        public final boolean e;
+        public final List<String> f;
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public a(c0 c0Var, c0 c0Var2, List<? extends c1> list, List<? extends z0> list2, boolean z2, List<String> list3) {
+            d0.z.d.m.checkNotNullParameter(c0Var, "returnType");
+            d0.z.d.m.checkNotNullParameter(list, "valueParameters");
+            d0.z.d.m.checkNotNullParameter(list2, "typeParameters");
+            d0.z.d.m.checkNotNullParameter(list3, "errors");
+            this.a = c0Var;
+            this.f3336b = c0Var2;
+            this.c = list;
+            this.d = list2;
+            this.e = z2;
+            this.f = list3;
+        }
+
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof a)) {
+                return false;
+            }
+            a aVar = (a) obj;
+            return d0.z.d.m.areEqual(this.a, aVar.a) && d0.z.d.m.areEqual(this.f3336b, aVar.f3336b) && d0.z.d.m.areEqual(this.c, aVar.c) && d0.z.d.m.areEqual(this.d, aVar.d) && this.e == aVar.e && d0.z.d.m.areEqual(this.f, aVar.f);
+        }
+
+        public final List<String> getErrors() {
+            return this.f;
+        }
+
+        public final boolean getHasStableParameterNames() {
+            return this.e;
+        }
+
+        public final c0 getReceiverType() {
+            return this.f3336b;
+        }
+
+        public final c0 getReturnType() {
+            return this.a;
+        }
+
+        public final List<z0> getTypeParameters() {
+            return this.d;
+        }
+
+        public final List<c1> getValueParameters() {
+            return this.c;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v9, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v12 */
+        /* JADX WARN: Type inference failed for: r1v14 */
+        /* JADX WARN: Type inference failed for: r1v8, types: [int] */
+        public int hashCode() {
+            int iHashCode = this.a.hashCode() * 31;
+            c0 c0Var = this.f3336b;
+            int iHashCode2 = (this.d.hashCode() + ((this.c.hashCode() + ((iHashCode + (c0Var == null ? 0 : c0Var.hashCode())) * 31)) * 31)) * 31;
+            boolean z2 = this.e;
+            ?? r1 = z2;
+            if (z2) {
+                r1 = 1;
+            }
+            return this.f.hashCode() + ((iHashCode2 + r1) * 31);
+        }
+
+        public String toString() {
+            StringBuilder sbU = b.d.b.a.a.U("MethodSignatureData(returnType=");
+            sbU.append(this.a);
+            sbU.append(", receiverType=");
+            sbU.append(this.f3336b);
+            sbU.append(", valueParameters=");
+            sbU.append(this.c);
+            sbU.append(", typeParameters=");
+            sbU.append(this.d);
+            sbU.append(", hasStableParameterNames=");
+            sbU.append(this.e);
+            sbU.append(", errors=");
+            sbU.append(this.f);
+            sbU.append(')');
+            return sbU.toString();
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaScope.kt */
+    public final class b {
+        public final List<c1> a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final boolean f3337b;
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public b(List<? extends c1> list, boolean z2) {
+            d0.z.d.m.checkNotNullParameter(list, "descriptors");
+            this.a = list;
+            this.f3337b = z2;
+        }
+
+        public final List<c1> getDescriptors() {
+            return this.a;
+        }
+
+        public final boolean getHasSynthesizedNames() {
+            return this.f3337b;
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaScope.kt */
+    public final class c extends d0.z.d.o implements Function0<Collection<? extends d0.e0.p.d.m0.c.m>> {
+        public c() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Collection<? extends d0.e0.p.d.m0.c.m> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Collection<? extends d0.e0.p.d.m0.c.m> invoke2() {
+            k kVar = k.this;
+            d0.e0.p.d.m0.k.a0.d dVar = d0.e0.p.d.m0.k.a0.d.m;
+            Function1<d0.e0.p.d.m0.g.e, Boolean> all_name_filter = d0.e0.p.d.m0.k.a0.i.a.getALL_NAME_FILTER();
+            Objects.requireNonNull(kVar);
+            d0.z.d.m.checkNotNullParameter(dVar, "kindFilter");
+            d0.z.d.m.checkNotNullParameter(all_name_filter, "nameFilter");
+            d0.e0.p.d.m0.d.b.d dVar2 = d0.e0.p.d.m0.d.b.d.WHEN_GET_ALL_DESCRIPTORS;
+            LinkedHashSet linkedHashSet = new LinkedHashSet();
+            if (dVar.acceptsKinds(d0.e0.p.d.m0.k.a0.d.a.getCLASSIFIERS_MASK())) {
+                for (d0.e0.p.d.m0.g.e eVar : kVar.a(dVar, all_name_filter)) {
+                    if (all_name_filter.invoke(eVar).booleanValue()) {
+                        d0.e0.p.d.m0.p.a.addIfNotNull(linkedHashSet, kVar.getContributedClassifier(eVar, dVar2));
+                    }
+                }
+            }
+            if (dVar.acceptsKinds(d0.e0.p.d.m0.k.a0.d.a.getFUNCTIONS_MASK()) && !dVar.getExcludes().contains(d0.e0.p.d.m0.k.a0.c.a.a)) {
+                for (d0.e0.p.d.m0.g.e eVar2 : kVar.b(dVar, all_name_filter)) {
+                    if (all_name_filter.invoke(eVar2).booleanValue()) {
+                        linkedHashSet.addAll(kVar.getContributedFunctions(eVar2, dVar2));
+                    }
+                }
+            }
+            if (dVar.acceptsKinds(d0.e0.p.d.m0.k.a0.d.a.getVARIABLES_MASK()) && !dVar.getExcludes().contains(d0.e0.p.d.m0.k.a0.c.a.a)) {
+                for (d0.e0.p.d.m0.g.e eVar3 : kVar.h(dVar, all_name_filter)) {
+                    if (all_name_filter.invoke(eVar3).booleanValue()) {
+                        linkedHashSet.addAll(kVar.getContributedVariables(eVar3, dVar2));
+                    }
+                }
+            }
+            return u.toList(linkedHashSet);
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaScope.kt */
+    public final class d extends d0.z.d.o implements Function0<Set<? extends d0.e0.p.d.m0.g.e>> {
+        public d() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Set<? extends d0.e0.p.d.m0.g.e> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Set<? extends d0.e0.p.d.m0.g.e> invoke2() {
+            return k.this.a(d0.e0.p.d.m0.k.a0.d.o, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaScope.kt */
+    public final class e extends d0.z.d.o implements Function1<d0.e0.p.d.m0.g.e, n0> {
+        public e() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ n0 invoke(d0.e0.p.d.m0.g.e eVar) {
+            return invoke2(eVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final n0 invoke2(d0.e0.p.d.m0.g.e eVar) {
+            d0.z.d.m.checkNotNullParameter(eVar, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            k kVar = k.this;
+            k kVar2 = kVar.d;
+            if (kVar2 != null) {
+                return (n0) k.access$getDeclaredField$p(kVar2).invoke(eVar);
+            }
+            d0.e0.p.d.m0.e.a.k0.n nVarFindFieldByName = kVar.f.invoke().findFieldByName(eVar);
+            if (nVarFindFieldByName == null || nVarFindFieldByName.isEnumEntry()) {
+                return null;
+            }
+            return k.access$resolveProperty(k.this, nVarFindFieldByName);
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaScope.kt */
+    public final class f extends d0.z.d.o implements Function1<d0.e0.p.d.m0.g.e, Collection<? extends t0>> {
+        public f() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Collection<? extends t0> invoke(d0.e0.p.d.m0.g.e eVar) {
+            return invoke2(eVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Collection<t0> invoke2(d0.e0.p.d.m0.g.e eVar) {
+            d0.z.d.m.checkNotNullParameter(eVar, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            k kVar = k.this.d;
+            if (kVar != null) {
+                return (Collection) ((d0.e0.p.d.m0.m.f.m) k.access$getDeclaredFunctions$p(kVar)).invoke(eVar);
+            }
+            ArrayList arrayList = new ArrayList();
+            for (d0.e0.p.d.m0.e.a.k0.r rVar : k.this.f.invoke().findMethodsByName(eVar)) {
+                d0.e0.p.d.m0.e.a.h0.f fVarM = k.this.m(rVar);
+                if (k.this.k(fVarM)) {
+                    ((d0.e0.p.d.m0.e.a.g0.g.a) k.this.c.getComponents().getJavaResolverCache()).recordMethod(rVar, fVarM);
+                    arrayList.add(fVarM);
+                }
+            }
+            k.this.c(arrayList, eVar);
+            return arrayList;
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaScope.kt */
+    public final class g extends d0.z.d.o implements Function0<d0.e0.p.d.m0.e.a.i0.l.b> {
+        public g() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.e.a.i0.l.b invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final d0.e0.p.d.m0.e.a.i0.l.b invoke() {
+            return k.this.d();
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaScope.kt */
+    public final class h extends d0.z.d.o implements Function0<Set<? extends d0.e0.p.d.m0.g.e>> {
+        public h() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Set<? extends d0.e0.p.d.m0.g.e> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Set<? extends d0.e0.p.d.m0.g.e> invoke2() {
+            return k.this.b(d0.e0.p.d.m0.k.a0.d.p, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaScope.kt */
+    public final class i extends d0.z.d.o implements Function1<d0.e0.p.d.m0.g.e, Collection<? extends t0>> {
+        public i() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Collection<? extends t0> invoke(d0.e0.p.d.m0.g.e eVar) {
+            return invoke2(eVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Collection<t0> invoke2(d0.e0.p.d.m0.g.e eVar) {
+            d0.z.d.m.checkNotNullParameter(eVar, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            LinkedHashSet linkedHashSet = new LinkedHashSet((Collection) ((d0.e0.p.d.m0.m.f.m) k.access$getDeclaredFunctions$p(k.this)).invoke(eVar));
+            k.access$retainMostSpecificMethods(k.this, linkedHashSet);
+            k.this.f(linkedHashSet, eVar);
+            return u.toList(k.this.c.getComponents().getSignatureEnhancement().enhanceSignatures(k.this.c, linkedHashSet));
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaScope.kt */
+    public final class j extends d0.z.d.o implements Function1<d0.e0.p.d.m0.g.e, List<? extends n0>> {
+        public j() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ List<? extends n0> invoke(d0.e0.p.d.m0.g.e eVar) {
+            return invoke2(eVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<n0> invoke2(d0.e0.p.d.m0.g.e eVar) {
+            d0.z.d.m.checkNotNullParameter(eVar, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            ArrayList arrayList = new ArrayList();
+            d0.e0.p.d.m0.p.a.addIfNotNull(arrayList, k.access$getDeclaredField$p(k.this).invoke(eVar));
+            k.this.g(eVar, arrayList);
+            return d0.e0.p.d.m0.k.e.isAnnotationClass(k.this.j()) ? u.toList(arrayList) : u.toList(k.this.c.getComponents().getSignatureEnhancement().enhanceSignatures(k.this.c, arrayList));
+        }
+    }
+
+    public /* synthetic */ k(d0.e0.p.d.m0.e.a.i0.g gVar, k kVar, int i2, DefaultConstructorMarker defaultConstructorMarker) {
+        this(gVar, (i2 & 2) != 0 ? null : kVar);
     }
 
     public abstract Set<d0.e0.p.d.m0.g.e> a(d0.e0.p.d.m0.k.a0.d dVar, Function1<? super d0.e0.p.d.m0.g.e, Boolean> function1);
@@ -84,7 +421,7 @@ public abstract class k extends d0.e0.p.d.m0.k.a0.j {
         if (d0.e0.p.d.m0.k.e.shouldRecordInitializerForProperty(gVarCreate, gVarCreate.getType())) {
             gVarCreate.setCompileTimeInitializer(kVar.c.getStorageManager().createNullableLazyValue(new l(kVar, nVar, gVarCreate)));
         }
-        ((g$a) kVar.c.getComponents().getJavaResolverCache()).recordField(nVar, gVarCreate);
+        ((d0.e0.p.d.m0.e.a.g0.g.a) kVar.c.getComponents().getJavaResolverCache()).recordField(nVar, gVarCreate);
         return gVarCreate;
     }
 
@@ -92,7 +429,7 @@ public abstract class k extends d0.e0.p.d.m0.k.a0.j {
         Objects.requireNonNull(kVar);
         LinkedHashMap linkedHashMap = new LinkedHashMap();
         for (Object obj : set) {
-            String strComputeJvmDescriptor$default = u.computeJvmDescriptor$default((t0) obj, false, false, 2, null);
+            String strComputeJvmDescriptor$default = d0.e0.p.d.m0.e.b.u.computeJvmDescriptor$default((t0) obj, false, false, 2, null);
             Object arrayList = linkedHashMap.get(strComputeJvmDescriptor$default);
             if (arrayList == null) {
                 arrayList = new ArrayList();
@@ -116,7 +453,7 @@ public abstract class k extends d0.e0.p.d.m0.k.a0.j {
         d0.z.d.m.checkNotNullParameter(eVar, ModelAuditLogEntry.CHANGE_KEY_NAME);
     }
 
-    public abstract b d();
+    public abstract d0.e0.p.d.m0.e.a.i0.l.b d();
 
     public final c0 e(d0.e0.p.d.m0.e.a.k0.r rVar, d0.e0.p.d.m0.e.a.i0.g gVar) {
         d0.z.d.m.checkNotNullParameter(rVar, "method");
@@ -144,14 +481,14 @@ public abstract class k extends d0.e0.p.d.m0.k.a0.j {
     public Collection<t0> getContributedFunctions(d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.d.b.b bVar) {
         d0.z.d.m.checkNotNullParameter(eVar, ModelAuditLogEntry.CHANGE_KEY_NAME);
         d0.z.d.m.checkNotNullParameter(bVar, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        return !getFunctionNames().contains(eVar) ? d0.t.n.emptyList() : (Collection) ((f$m) this.i).invoke(eVar);
+        return !getFunctionNames().contains(eVar) ? d0.t.n.emptyList() : (Collection) ((d0.e0.p.d.m0.m.f.m) this.i).invoke(eVar);
     }
 
     @Override // d0.e0.p.d.m0.k.a0.j, d0.e0.p.d.m0.k.a0.i
     public Collection<n0> getContributedVariables(d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.d.b.b bVar) {
         d0.z.d.m.checkNotNullParameter(eVar, ModelAuditLogEntry.CHANGE_KEY_NAME);
         d0.z.d.m.checkNotNullParameter(bVar, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        return !getVariableNames().contains(eVar) ? d0.t.n.emptyList() : (Collection) ((f$m) this.m).invoke(eVar);
+        return !getVariableNames().contains(eVar) ? d0.t.n.emptyList() : (Collection) ((d0.e0.p.d.m0.m.f.m) this.m).invoke(eVar);
     }
 
     @Override // d0.e0.p.d.m0.k.a0.j, d0.e0.p.d.m0.k.a0.i
@@ -175,7 +512,7 @@ public abstract class k extends d0.e0.p.d.m0.k.a0.j {
         return true;
     }
 
-    public abstract k$a l(d0.e0.p.d.m0.e.a.k0.r rVar, List<? extends z0> list, c0 c0Var, List<? extends c1> list2);
+    public abstract a l(d0.e0.p.d.m0.e.a.k0.r rVar, List<? extends z0> list, c0 c0Var, List<? extends c1> list2);
 
     public final d0.e0.p.d.m0.e.a.h0.f m(d0.e0.p.d.m0.e.a.k0.r rVar) {
         d0.z.d.m.checkNotNullParameter(rVar, "method");
@@ -190,13 +527,13 @@ public abstract class k extends d0.e0.p.d.m0.k.a0.j {
             d0.z.d.m.checkNotNull(z0VarResolveTypeParameter);
             arrayList.add(z0VarResolveTypeParameter);
         }
-        k$b k_bN = n(gVarChildForMethod$default, fVarCreateJavaMethod, rVar.getValueParameters());
-        k$a k_aL = l(rVar, arrayList, e(rVar, gVarChildForMethod$default), k_bN.getDescriptors());
-        c0 receiverType = k_aL.getReceiverType();
-        fVarCreateJavaMethod.initialize(receiverType == null ? null : d0.e0.p.d.m0.k.d.createExtensionReceiverParameterForCallable(fVarCreateJavaMethod, receiverType, d0.e0.p.d.m0.c.g1.g.f.getEMPTY()), i(), k_aL.getTypeParameters(), k_aL.getValueParameters(), k_aL.getReturnType(), z.j.convertFromFlags(false, rVar.isAbstract(), !rVar.isFinal()), f0.toDescriptorVisibility(rVar.getVisibility()), k_aL.getReceiverType() != null ? g0.mapOf(d0.o.to(d0.e0.p.d.m0.e.a.h0.f.M, d0.t.u.first((List) k_bN.getDescriptors()))) : h0.emptyMap());
-        fVarCreateJavaMethod.setParameterNamesStatus(k_aL.getHasStableParameterNames(), k_bN.getHasSynthesizedNames());
-        if (!k_aL.getErrors().isEmpty()) {
-            ((d0.e0.p.d.m0.e.a.g0.j$a) gVarChildForMethod$default.getComponents().getSignaturePropagator()).reportSignatureErrors(fVarCreateJavaMethod, k_aL.getErrors());
+        b bVarN = n(gVarChildForMethod$default, fVarCreateJavaMethod, rVar.getValueParameters());
+        a aVarL = l(rVar, arrayList, e(rVar, gVarChildForMethod$default), bVarN.getDescriptors());
+        c0 receiverType = aVarL.getReceiverType();
+        fVarCreateJavaMethod.initialize(receiverType == null ? null : d0.e0.p.d.m0.k.d.createExtensionReceiverParameterForCallable(fVarCreateJavaMethod, receiverType, d0.e0.p.d.m0.c.g1.g.f.getEMPTY()), i(), aVarL.getTypeParameters(), aVarL.getValueParameters(), aVarL.getReturnType(), z.j.convertFromFlags(false, rVar.isAbstract(), !rVar.isFinal()), f0.toDescriptorVisibility(rVar.getVisibility()), aVarL.getReceiverType() != null ? g0.mapOf(d0.o.to(d0.e0.p.d.m0.e.a.h0.f.M, u.first((List) bVarN.getDescriptors()))) : h0.emptyMap());
+        fVarCreateJavaMethod.setParameterNamesStatus(aVarL.getHasStableParameterNames(), bVarN.getHasSynthesizedNames());
+        if (!aVarL.getErrors().isEmpty()) {
+            ((d0.e0.p.d.m0.e.a.g0.j.a) gVarChildForMethod$default.getComponents().getSignaturePropagator()).reportSignatureErrors(fVarCreateJavaMethod, aVarL.getErrors());
         }
         return fVarCreateJavaMethod;
     }
@@ -207,7 +544,7 @@ public abstract class k extends d0.e0.p.d.m0.k.a0.j {
     /* JADX WARN: Code duplicated, block: B:48:0x0122  */
     /* JADX WARN: Code duplicated, block: B:57:0x0135 A[SYNTHETIC] */
     /* JADX WARN: Multi-variable type inference failed */
-    public final k$b n(d0.e0.p.d.m0.e.a.i0.g gVar, x xVar, List<? extends d0.e0.p.d.m0.e.a.k0.a0> list) {
+    public final b n(d0.e0.p.d.m0.e.a.i0.g gVar, x xVar, List<? extends d0.e0.p.d.m0.e.a.k0.a0> list) {
         String value;
         Pair pair;
         d0.e0.p.d.m0.g.e name;
@@ -216,7 +553,7 @@ public abstract class k extends d0.e0.p.d.m0.k.a0.j {
         d0.z.d.m.checkNotNullParameter(xVar, "function");
         d0.z.d.m.checkNotNullParameter(list, "jValueParameters");
         LinkedHashSet linkedHashSet = new LinkedHashSet();
-        Iterable<d0.t.z> iterableWithIndex = d0.t.u.withIndex(list);
+        Iterable<d0.t.z> iterableWithIndex = u.withIndex(list);
         ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(iterableWithIndex, 10));
         boolean z2 = false;
         boolean z3 = false;
@@ -287,7 +624,7 @@ public abstract class k extends d0.e0.p.d.m0.k.a0.j {
             z2 = false;
             gVar2 = gVar;
         }
-        return new k$b(d0.t.u.toList(arrayList), z3);
+        return new b(u.toList(arrayList), z3);
     }
 
     public String toString() {
@@ -298,14 +635,14 @@ public abstract class k extends d0.e0.p.d.m0.k.a0.j {
         d0.z.d.m.checkNotNullParameter(gVar, "c");
         this.c = gVar;
         this.d = kVar;
-        this.e = gVar.getStorageManager().createRecursionTolerantLazyValue(new k$c(this), d0.t.n.emptyList());
-        this.f = gVar.getStorageManager().createLazyValue(new k$g(this));
-        this.g = gVar.getStorageManager().createMemoizedFunction(new k$f(this));
-        this.h = gVar.getStorageManager().createMemoizedFunctionWithNullableValues(new k$e(this));
-        this.i = gVar.getStorageManager().createMemoizedFunction(new k$i(this));
-        this.j = gVar.getStorageManager().createLazyValue(new k$h(this));
-        this.k = gVar.getStorageManager().createLazyValue(new k$k(this));
-        this.l = gVar.getStorageManager().createLazyValue(new k$d(this));
-        this.m = gVar.getStorageManager().createMemoizedFunction(new k$j(this));
+        this.e = gVar.getStorageManager().createRecursionTolerantLazyValue(new c(), d0.t.n.emptyList());
+        this.f = gVar.getStorageManager().createLazyValue(new g());
+        this.g = gVar.getStorageManager().createMemoizedFunction(new f());
+        this.h = gVar.getStorageManager().createMemoizedFunctionWithNullableValues(new e());
+        this.i = gVar.getStorageManager().createMemoizedFunction(new i());
+        this.j = gVar.getStorageManager().createLazyValue(new h());
+        this.k = gVar.getStorageManager().createLazyValue(new C0526k());
+        this.l = gVar.getStorageManager().createLazyValue(new d());
+        this.m = gVar.getStorageManager().createMemoizedFunction(new j());
     }
 }

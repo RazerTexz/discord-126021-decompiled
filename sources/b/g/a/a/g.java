@@ -10,5 +10,14 @@ import java.lang.annotation.Target;
 @Target({ElementType.ANNOTATION_TYPE, ElementType.METHOD, ElementType.CONSTRUCTOR})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface g {
-    g$a mode() default g$a.DEFAULT;
+
+    /* JADX INFO: compiled from: JsonCreator.java */
+    public enum a {
+        DEFAULT,
+        DELEGATING,
+        PROPERTIES,
+        DISABLED
+    }
+
+    a mode() default a.DEFAULT;
 }

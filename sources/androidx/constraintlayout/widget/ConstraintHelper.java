@@ -2,14 +2,13 @@ package androidx.constraintlayout.widget;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.content.res.Resources$NotFoundException;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup;
 import android.view.ViewParent;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import androidx.constraintlayout.solver.widgets.ConstraintWidgetContainer;
@@ -86,8 +85,8 @@ public abstract class ConstraintHelper extends View {
         int childCount = constraintLayout.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = constraintLayout.getChildAt(i);
-            ViewGroup$LayoutParams layoutParams = childAt.getLayoutParams();
-            if ((layoutParams instanceof ConstraintLayout$LayoutParams) && strTrim.equals(((ConstraintLayout$LayoutParams) layoutParams).constraintTag)) {
+            ViewGroup.LayoutParams layoutParams = childAt.getLayoutParams();
+            if ((layoutParams instanceof ConstraintLayout.LayoutParams) && strTrim.equals(((ConstraintLayout.LayoutParams) layoutParams).constraintTag)) {
                 if (childAt.getId() == -1) {
                     StringBuilder sbU = a.U("to use ConstraintTag view ");
                     sbU.append(childAt.getClass().getSimpleName());
@@ -160,7 +159,7 @@ public abstract class ConstraintHelper extends View {
         }
         if (iFindId == 0) {
             try {
-                iFindId = R$id.class.getField(str).getInt(null);
+                iFindId = R.id.class.getField(str).getInt(null);
             } catch (Exception unused) {
             }
         }
@@ -184,15 +183,15 @@ public abstract class ConstraintHelper extends View {
 
     public void init(AttributeSet attributeSet) {
         if (attributeSet != null) {
-            TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R$styleable.ConstraintLayout_Layout);
+            TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.styleable.ConstraintLayout_Layout);
             int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
             for (int i = 0; i < indexCount; i++) {
                 int index = typedArrayObtainStyledAttributes.getIndex(i);
-                if (index == R$styleable.ConstraintLayout_Layout_constraint_referenced_ids) {
+                if (index == R.styleable.ConstraintLayout_Layout_constraint_referenced_ids) {
                     String string = typedArrayObtainStyledAttributes.getString(index);
                     this.mReferenceIds = string;
                     setIds(string);
-                } else if (index == R$styleable.ConstraintLayout_Layout_constraint_referenced_tags) {
+                } else if (index == R.styleable.ConstraintLayout_Layout_constraint_referenced_tags) {
                     String string2 = typedArrayObtainStyledAttributes.getString(index);
                     this.mReferenceTags = string2;
                     setReferenceTags(string2);
@@ -202,25 +201,25 @@ public abstract class ConstraintHelper extends View {
         }
     }
 
-    public void loadParameters(ConstraintSet$Constraint constraintSet$Constraint, HelperWidget helperWidget, ConstraintLayout$LayoutParams constraintLayout$LayoutParams, SparseArray<ConstraintWidget> sparseArray) {
-        ConstraintSet$Layout constraintSet$Layout = constraintSet$Constraint.layout;
-        int[] iArr = constraintSet$Layout.mReferenceIds;
+    public void loadParameters(ConstraintSet.Constraint constraint, HelperWidget helperWidget, ConstraintLayout.LayoutParams layoutParams, SparseArray<ConstraintWidget> sparseArray) {
+        ConstraintSet.Layout layout = constraint.layout;
+        int[] iArr = layout.mReferenceIds;
         if (iArr != null) {
             setReferencedIds(iArr);
         } else {
-            String str = constraintSet$Layout.mReferenceIdString;
+            String str = layout.mReferenceIdString;
             if (str != null && str.length() > 0) {
-                ConstraintSet$Layout constraintSet$Layout2 = constraintSet$Constraint.layout;
-                constraintSet$Layout2.mReferenceIds = convertReferenceString(this, constraintSet$Layout2.mReferenceIdString);
+                ConstraintSet.Layout layout2 = constraint.layout;
+                layout2.mReferenceIds = convertReferenceString(this, layout2.mReferenceIdString);
             }
         }
         helperWidget.removeAllIds();
-        if (constraintSet$Constraint.layout.mReferenceIds == null) {
+        if (constraint.layout.mReferenceIds == null) {
             return;
         }
         int i = 0;
         while (true) {
-            int[] iArr2 = constraintSet$Constraint.layout.mReferenceIds;
+            int[] iArr2 = constraint.layout.mReferenceIds;
             if (i >= iArr2.length) {
                 return;
             }
@@ -386,9 +385,9 @@ public abstract class ConstraintHelper extends View {
         if (this.mHelperWidget == null) {
             return;
         }
-        ViewGroup$LayoutParams layoutParams = getLayoutParams();
-        if (layoutParams instanceof ConstraintLayout$LayoutParams) {
-            ((ConstraintLayout$LayoutParams) layoutParams).widget = (ConstraintWidget) this.mHelperWidget;
+        ViewGroup.LayoutParams layoutParams = getLayoutParams();
+        if (layoutParams instanceof ConstraintLayout.LayoutParams) {
+            ((ConstraintLayout.LayoutParams) layoutParams).widget = (ConstraintWidget) this.mHelperWidget;
         }
     }
 
@@ -422,7 +421,7 @@ public abstract class ConstraintHelper extends View {
                 String resourceEntryName = null;
                 try {
                     resourceEntryName = resources.getResourceEntryName(childAt.getId());
-                } catch (Resources$NotFoundException unused) {
+                } catch (Resources.NotFoundException unused) {
                 }
                 if (str.equals(resourceEntryName)) {
                     return childAt.getId();

@@ -10,6 +10,6 @@ public final /* synthetic */ class d implements Comparator {
     @Override // java.util.Comparator
     public final int compare(Object obj, Object obj2) {
         int i = x.a;
-        return ((x$b) obj).a - ((x$b) obj2).a;
+        return ((x.b) obj).a - ((x.b) obj2).a;
     }
 }

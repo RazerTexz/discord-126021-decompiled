@@ -3,16 +3,15 @@ package androidx.work.impl.background.systemjob;
 import android.app.Application;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.PersistableBundle;
 import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.work.Logger;
-import androidx.work.WorkerParameters$RuntimeExtras;
+import androidx.work.WorkerParameters;
 import androidx.work.impl.ExecutionListener;
 import androidx.work.impl.WorkManagerImpl;
 import java.util.Arrays;
@@ -21,7 +20,7 @@ import java.util.Map;
 
 /* JADX INFO: loaded from: classes.dex */
 @RequiresApi(23)
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class SystemJobService extends JobService implements ExecutionListener {
     private WorkManagerImpl mWorkManagerImpl;
     private static final String TAG = Logger.tagWithPrefix("SystemJobService");
@@ -95,21 +94,21 @@ public class SystemJobService extends JobService implements ExecutionListener {
             }
             Logger.get().debug(TAG, String.format("onStartJob for %s", workSpecIdFromJobParameters), new Throwable[0]);
             this.mJobParameters.put(workSpecIdFromJobParameters, jobParameters);
-            WorkerParameters$RuntimeExtras workerParameters$RuntimeExtras = null;
-            int i = Build$VERSION.SDK_INT;
+            WorkerParameters.RuntimeExtras runtimeExtras = null;
+            int i = Build.VERSION.SDK_INT;
             if (i >= 24) {
-                workerParameters$RuntimeExtras = new WorkerParameters$RuntimeExtras();
+                runtimeExtras = new WorkerParameters.RuntimeExtras();
                 if (jobParameters.getTriggeredContentUris() != null) {
-                    workerParameters$RuntimeExtras.triggeredContentUris = Arrays.asList(jobParameters.getTriggeredContentUris());
+                    runtimeExtras.triggeredContentUris = Arrays.asList(jobParameters.getTriggeredContentUris());
                 }
                 if (jobParameters.getTriggeredContentAuthorities() != null) {
-                    workerParameters$RuntimeExtras.triggeredContentAuthorities = Arrays.asList(jobParameters.getTriggeredContentAuthorities());
+                    runtimeExtras.triggeredContentAuthorities = Arrays.asList(jobParameters.getTriggeredContentAuthorities());
                 }
                 if (i >= 28) {
-                    workerParameters$RuntimeExtras.network = jobParameters.getNetwork();
+                    runtimeExtras.network = jobParameters.getNetwork();
                 }
             }
-            this.mWorkManagerImpl.startWork(workSpecIdFromJobParameters, workerParameters$RuntimeExtras);
+            this.mWorkManagerImpl.startWork(workSpecIdFromJobParameters, runtimeExtras);
             return true;
         }
     }

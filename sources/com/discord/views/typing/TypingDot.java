@@ -5,8 +5,9 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import com.discord.R$anim;
+import com.discord.R;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
@@ -23,22 +24,76 @@ public final class TypingDot extends View {
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public Function0<Unit> onScaleDownCompleteListener;
 
+    /* JADX INFO: compiled from: kotlin-style lambda group */
+    public final class a extends o implements Function0<Unit> {
+        public final /* synthetic */ int j;
+        public final /* synthetic */ Object k;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(int i, Object obj) {
+            super(0);
+            this.j = i;
+            this.k = obj;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final Unit invoke() {
+            int i = this.j;
+            if (i == 0) {
+                TypingDot typingDot = (TypingDot) this.k;
+                typingDot.startAnimation(typingDot.scaleAndFadeDownAnimation);
+                return Unit.a;
+            }
+            if (i != 1) {
+                throw null;
+            }
+            Function0<Unit> onScaleDownCompleteListener = ((TypingDot) this.k).getOnScaleDownCompleteListener();
+            if (onScaleDownCompleteListener != null) {
+                onScaleDownCompleteListener.invoke();
+            }
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: TypingDot.kt */
+    public class b implements Animation.AnimationListener {
+        public final Function0<Unit> j;
+
+        public b(Function0<Unit> function0) {
+            m.checkNotNullParameter(function0, "onComplete");
+            this.j = function0;
+        }
+
+        @Override // android.view.animation.Animation.AnimationListener
+        public void onAnimationEnd(Animation animation) {
+            this.j.invoke();
+        }
+
+        @Override // android.view.animation.Animation.AnimationListener
+        public void onAnimationRepeat(Animation animation) {
+        }
+
+        @Override // android.view.animation.Animation.AnimationListener
+        public void onAnimationStart(Animation animation) {
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public TypingDot(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
         m.checkNotNullParameter(context, "context");
-        Animation animationLoadAnimation = AnimationUtils.loadAnimation(context, R$anim.anim_typing_dots_scale_up);
+        Animation animationLoadAnimation = AnimationUtils.loadAnimation(context, R.anim.anim_typing_dots_scale_up);
         m.checkNotNullExpressionValue(animationLoadAnimation, "AnimationUtils.loadAnima…nim_typing_dots_scale_up)");
         this.scaleAndFadeUpAnimation = animationLoadAnimation;
-        Animation animationLoadAnimation2 = AnimationUtils.loadAnimation(context, R$anim.anim_typing_dots_scale_down);
+        Animation animationLoadAnimation2 = AnimationUtils.loadAnimation(context, R.anim.anim_typing_dots_scale_down);
         m.checkNotNullExpressionValue(animationLoadAnimation2, "AnimationUtils.loadAnima…m_typing_dots_scale_down)");
         this.scaleAndFadeDownAnimation = animationLoadAnimation2;
     }
 
     public final void a(long delay) {
         this.scaleAndFadeUpAnimation.setStartOffset(delay);
-        this.scaleAndFadeUpAnimation.setAnimationListener(new TypingDot$b(new TypingDot$a(0, this)));
-        this.scaleAndFadeDownAnimation.setAnimationListener(new TypingDot$b(new TypingDot$a(1, this)));
+        this.scaleAndFadeUpAnimation.setAnimationListener(new b(new a(0, this)));
+        this.scaleAndFadeDownAnimation.setAnimationListener(new b(new a(1, this)));
         startAnimation(this.scaleAndFadeUpAnimation);
     }
 

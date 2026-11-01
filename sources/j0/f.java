@@ -7,21 +7,28 @@ public final class f<T> {
     public final T d;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final f$a f3768b;
-    public static final f<Void> a = new f<>(f$a.OnCompleted, null, null);
+    public final a f3768b;
+    public static final f<Void> a = new f<>(a.OnCompleted, null, null);
 
-    public f(f$a f_a, T t, Throwable th) {
+    /* JADX INFO: compiled from: Notification.java */
+    public enum a {
+        OnNext,
+        OnError,
+        OnCompleted
+    }
+
+    public f(a aVar, T t, Throwable th) {
         this.d = t;
         this.c = th;
-        this.f3768b = f_a;
+        this.f3768b = aVar;
     }
 
     public boolean a() {
-        return (this.f3768b == f$a.OnError) && this.c != null;
+        return (this.f3768b == a.OnError) && this.c != null;
     }
 
     public boolean b() {
-        return (this.f3768b == f$a.OnNext) && this.d != null;
+        return (this.f3768b == a.OnNext) && this.d != null;
     }
 
     public boolean equals(Object obj) {

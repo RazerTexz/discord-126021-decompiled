@@ -1,6 +1,6 @@
 package com.discord.utilities.debug;
 
-import android.os.Build$VERSION;
+import android.os.Build;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.logging.LoggingProvider;
 import d0.z.d.m;
@@ -8,17 +8,34 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map$Entry;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: DebugPrintable.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class DebugPrintableCollection {
-    public static final DebugPrintableCollection$Companion Companion = new DebugPrintableCollection$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static String libdiscordVersion = null;
     private static final int maxDebugPrintableStringLength = 524288;
     private long idCounter = 1;
     private final Map<Long, DebugPrintableRef> collection = new LinkedHashMap();
     private final Object sync = new Object();
+
+    /* JADX INFO: compiled from: DebugPrintable.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void initialize(String libdiscordVersion) {
+            m.checkNotNullParameter(libdiscordVersion, "libdiscordVersion");
+            DebugPrintableCollection.access$setLibdiscordVersion$cp(libdiscordVersion);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public static final /* synthetic */ String access$getLibdiscordVersion$cp() {
         return libdiscordVersion;
@@ -59,7 +76,7 @@ public final class DebugPrintableCollection {
     private final void addSystemEntry(DebugPrintBuilder dp) {
         dp.appendLine("System:");
         dp.appendKeyValue("libdiscordVersion", libdiscordVersion);
-        dp.appendKeyValue("SDK_INT", Integer.valueOf(Build$VERSION.SDK_INT));
+        dp.appendKeyValue("SDK_INT", Integer.valueOf(Build.VERSION.SDK_INT));
         dp.append("\n");
     }
 
@@ -68,9 +85,9 @@ public final class DebugPrintableCollection {
         DebugPrintBuilder debugPrintBuilder = new DebugPrintBuilder(sb);
         synchronized (this.sync) {
             addSystemEntry(debugPrintBuilder);
-            for (Map$Entry<Long, DebugPrintableRef> map$Entry : this.collection.entrySet()) {
-                long jLongValue = map$Entry.getKey().longValue();
-                DebugPrintableRef value = map$Entry.getValue();
+            for (Map.Entry<Long, DebugPrintableRef> entry : this.collection.entrySet()) {
+                long jLongValue = entry.getKey().longValue();
+                DebugPrintableRef value = entry.getValue();
                 DebugPrintable debugPrintable = value.getReference().get();
                 if (debugPrintable != null) {
                     m.checkNotNullExpressionValue(debugPrintable, "printableRef.reference.get() ?: continue");
@@ -106,9 +123,9 @@ public final class DebugPrintableCollection {
 
     private final void removeDeadReferencesLocked() {
         ArrayList arrayList = new ArrayList();
-        for (Map$Entry<Long, DebugPrintableRef> map$Entry : this.collection.entrySet()) {
-            long jLongValue = map$Entry.getKey().longValue();
-            if (map$Entry.getValue().getReference().get() == null) {
+        for (Map.Entry<Long, DebugPrintableRef> entry : this.collection.entrySet()) {
+            long jLongValue = entry.getKey().longValue();
+            if (entry.getValue().getReference().get() == null) {
                 arrayList.add(Long.valueOf(jLongValue));
             }
         }

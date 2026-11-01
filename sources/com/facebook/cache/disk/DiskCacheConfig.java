@@ -1,8 +1,6 @@
 package com.facebook.cache.disk;
 
 import android.content.Context;
-import b.f.b.a.a;
-import b.f.b.a.b;
 import b.f.b.a.d;
 import b.f.b.a.e;
 import b.f.b.b.g;
@@ -22,32 +20,43 @@ public class DiskCacheConfig {
     public final long e;
     public final long f;
     public final g g;
-    public final a h;
-    public final b i;
+    public final b.f.b.a.a h;
+    public final b.f.b.a.b i;
     public final b.f.d.a.a j;
     public final Context k;
 
-    public DiskCacheConfig(DiskCacheConfig$b diskCacheConfig$b) {
+    public class a implements Supplier<File> {
+        public a() {
+        }
+
+        @Override // com.facebook.common.internal.Supplier
+        public File get() {
+            Objects.requireNonNull(DiskCacheConfig.this.k);
+            return DiskCacheConfig.this.k.getApplicationContext().getCacheDir();
+        }
+    }
+
+    public DiskCacheConfig(b bVar) {
         d dVar;
         e eVar;
-        b.f.d.a.b bVar;
-        Context context = diskCacheConfig$b.e;
+        b.f.d.a.b bVar2;
+        Context context = bVar.e;
         this.k = context;
-        b.c.a.a0.d.C((diskCacheConfig$b.f2883b == null && context == null) ? false : true, "Either a non-null context or a base directory path or supplier must be provided.");
-        if (diskCacheConfig$b.f2883b == null && context != null) {
-            diskCacheConfig$b.f2883b = new DiskCacheConfig$a(this);
+        b.c.a.a0.d.C((bVar.f2883b == null && context == null) ? false : true, "Either a non-null context or a base directory path or supplier must be provided.");
+        if (bVar.f2883b == null && context != null) {
+            bVar.f2883b = new a();
         }
         this.a = 1;
-        String str = diskCacheConfig$b.a;
+        String str = bVar.a;
         Objects.requireNonNull(str);
         this.f2882b = str;
-        Supplier<File> supplier = diskCacheConfig$b.f2883b;
+        Supplier<File> supplier = bVar.f2883b;
         Objects.requireNonNull(supplier);
         this.c = supplier;
-        this.d = diskCacheConfig$b.c;
+        this.d = bVar.c;
         this.e = 10485760L;
         this.f = Permission.SPEAK;
-        g gVar = diskCacheConfig$b.d;
+        g gVar = bVar.d;
         Objects.requireNonNull(gVar);
         this.g = gVar;
         synchronized (d.class) {
@@ -68,8 +77,22 @@ public class DiskCacheConfig {
             if (b.f.d.a.b.a == null) {
                 b.f.d.a.b.a = new b.f.d.a.b();
             }
-            bVar = b.f.d.a.b.a;
+            bVar2 = b.f.d.a.b.a;
         }
-        this.j = bVar;
+        this.j = bVar2;
+    }
+
+    public class b {
+        public final Context e;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public Supplier<File> f2883b;
+        public String a = "image_cache";
+        public long c = 41943040;
+        public g d = new b.f.b.b.b();
+
+        public b(Context context, a aVar) {
+            this.e = context;
+        }
     }
 }

@@ -6,6 +6,7 @@ import com.esotericsoftware.kryo.Serializer;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import java.io.IOException;
+import java.io.OutputStream;
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
@@ -15,6 +16,17 @@ import javax.crypto.spec.SecretKeySpec;
 public class BlowfishSerializer extends Serializer {
     private static SecretKeySpec keySpec;
     private final Serializer serializer;
+
+    /* JADX INFO: renamed from: com.esotericsoftware.kryo.serializers.BlowfishSerializer$1, reason: invalid class name */
+    public class AnonymousClass1 extends Output {
+        public AnonymousClass1(OutputStream outputStream, int i) {
+            super(outputStream, i);
+        }
+
+        @Override // com.esotericsoftware.kryo.io.Output, java.io.OutputStream, java.io.Closeable, java.lang.AutoCloseable
+        public void close() throws KryoException {
+        }
+    }
 
     public BlowfishSerializer(Serializer serializer, byte[] bArr) {
         this.serializer = serializer;
@@ -44,9 +56,9 @@ public class BlowfishSerializer extends Serializer {
     @Override // com.esotericsoftware.kryo.Serializer
     public void write(Kryo kryo, Output output, Object obj) {
         CipherOutputStream cipherOutputStream = new CipherOutputStream(output, getCipher(1));
-        BlowfishSerializer$1 blowfishSerializer$1 = new BlowfishSerializer$1(this, cipherOutputStream, 256);
-        this.serializer.write(kryo, blowfishSerializer$1, obj);
-        blowfishSerializer$1.flush();
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1(cipherOutputStream, 256);
+        this.serializer.write(kryo, anonymousClass1, obj);
+        anonymousClass1.flush();
         try {
             cipherOutputStream.close();
         } catch (IOException e) {

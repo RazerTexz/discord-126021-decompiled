@@ -4,7 +4,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.views.ScreenTitleView;
 import com.google.android.material.button.MaterialButton;
 
@@ -33,14 +33,14 @@ public final class WidgetEndStageBottomSheetBinding implements ViewBinding {
 
     @NonNull
     public static WidgetEndStageBottomSheetBinding a(@NonNull View view) {
-        int i = R$id.cancel;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.cancel);
+        int i = R.id.cancel;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.cancel);
         if (materialButton != null) {
-            i = R$id.confirm;
-            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.confirm);
+            i = R.id.confirm;
+            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.confirm);
             if (materialButton2 != null) {
-                i = 2131365869;
-                ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(2131365869);
+                i = R.id.title;
+                ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(R.id.title);
                 if (screenTitleView != null) {
                     return new WidgetEndStageBottomSheetBinding((NestedScrollView) view, materialButton, materialButton2, screenTitleView);
                 }

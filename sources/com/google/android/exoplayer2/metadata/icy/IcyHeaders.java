@@ -1,20 +1,19 @@
 package com.google.android.exoplayer2.metadata.icy;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import b.c.a.a0.d;
 import b.i.a.c.f3.e0;
 import b.i.a.c.j1;
-import b.i.a.c.p1$b;
-import b.i.a.c.z2.a;
-import com.google.android.exoplayer2.metadata.Metadata$Entry;
+import b.i.a.c.p1;
+import com.google.android.exoplayer2.metadata.Metadata;
 import java.util.List;
 import java.util.Map;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class IcyHeaders implements Metadata$Entry {
+public final class IcyHeaders implements Metadata.Entry {
     public final int j;
 
     @Nullable
@@ -27,7 +26,19 @@ public final class IcyHeaders implements Metadata$Entry {
     public final String m;
     public final boolean n;
     public final int o;
-    public static final Parcelable$Creator<IcyHeaders> CREATOR = new IcyHeaders$a();
+    public static final Parcelable.Creator<IcyHeaders> CREATOR = new a();
+
+    public class a implements Parcelable.Creator<IcyHeaders> {
+        @Override // android.os.Parcelable.Creator
+        public IcyHeaders createFromParcel(Parcel parcel) {
+            return new IcyHeaders(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public IcyHeaders[] newArray(int i) {
+            return new IcyHeaders[i];
+        }
+    }
 
     public IcyHeaders(int i, @Nullable String str, @Nullable String str2, @Nullable String str3, boolean z2, int i2) {
         d.j(i2 == -1 || i2 > 0);
@@ -160,14 +171,14 @@ public final class IcyHeaders implements Metadata$Entry {
         return ((((iHashCode2 + (str3 != null ? str3.hashCode() : 0)) * 31) + (this.n ? 1 : 0)) * 31) + this.o;
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
-    public /* synthetic */ void n(p1$b p1_b) {
-        a.c(this, p1_b);
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
+    public /* synthetic */ void n(p1.b bVar) {
+        b.i.a.c.z2.a.c(this, bVar);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     public /* synthetic */ byte[] o0() {
-        return a.a(this);
+        return b.i.a.c.z2.a.a(this);
     }
 
     public String toString() {
@@ -195,9 +206,9 @@ public final class IcyHeaders implements Metadata$Entry {
         parcel.writeInt(this.o);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     public /* synthetic */ j1 y() {
-        return a.b(this);
+        return b.i.a.c.z2.a.b(this);
     }
 
     public IcyHeaders(Parcel parcel) {

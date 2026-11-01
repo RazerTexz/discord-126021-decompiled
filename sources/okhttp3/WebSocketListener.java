@@ -1,6 +1,6 @@
 package okhttp3;
 
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import com.discord.models.domain.ModelAuditLogEntry;
 import d0.z.d.m;
 import okio.ByteString;
@@ -25,7 +25,7 @@ public abstract class WebSocketListener {
 
     public void onMessage(WebSocket webSocket, String text) {
         m.checkParameterIsNotNull(webSocket, "webSocket");
-        m.checkParameterIsNotNull(text, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkParameterIsNotNull(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
     }
 
     public void onMessage(WebSocket webSocket, ByteString bytes) {

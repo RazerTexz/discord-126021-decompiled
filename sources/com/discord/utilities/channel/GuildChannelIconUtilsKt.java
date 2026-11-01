@@ -1,7 +1,7 @@
 package com.discord.utilities.channel;
 
 import androidx.annotation.DrawableRes;
-import com.discord.R$drawable;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.permission.Permission;
@@ -17,12 +17,12 @@ public final class GuildChannelIconUtilsKt {
     public static final GuildChannelIconType getChannelType(Channel channel) {
         PermissionOverwrite permissionOverwrite;
         if (channel == null) {
-            return GuildChannelIconType$Text.INSTANCE;
+            return GuildChannelIconType.Text.INSTANCE;
         }
         Object obj = null;
         if (ChannelUtils.s(channel, null, 1)) {
             if (channel.getNsfw()) {
-                return GuildChannelIconType$NSFW$ForumPost.INSTANCE;
+                return GuildChannelIconType.NSFW.ForumPost.INSTANCE;
             }
             List<PermissionOverwrite> listV = channel.v();
             if (listV != null) {
@@ -34,18 +34,18 @@ public final class GuildChannelIconUtilsKt {
                 }
                 PermissionOverwrite permissionOverwrite2 = (PermissionOverwrite) obj;
                 if (permissionOverwrite2 != null && PermissionOverwriteUtilsKt.denies(permissionOverwrite2, Permission.VIEW_CHANNEL)) {
-                    return GuildChannelIconType$Locked$ForumPost.INSTANCE;
+                    return GuildChannelIconType.Locked.ForumPost.INSTANCE;
                 }
             }
-            return GuildChannelIconType$ForumPost.INSTANCE;
+            return GuildChannelIconType.ForumPost.INSTANCE;
         }
         int type = channel.getType();
         if (type == 2) {
-            return channel.getNsfw() ? GuildChannelIconType$NSFW$Voice.INSTANCE : GuildChannelIconType$Voice.INSTANCE;
+            return channel.getNsfw() ? GuildChannelIconType.NSFW.Voice.INSTANCE : GuildChannelIconType.Voice.INSTANCE;
         }
         if (type == 5) {
             if (channel.getNsfw()) {
-                return GuildChannelIconType$NSFW$Announcements.INSTANCE;
+                return GuildChannelIconType.NSFW.Announcements.INSTANCE;
             }
             List<PermissionOverwrite> listV2 = channel.v();
             if (listV2 != null) {
@@ -57,17 +57,17 @@ public final class GuildChannelIconUtilsKt {
                 }
                 PermissionOverwrite permissionOverwrite3 = (PermissionOverwrite) obj;
                 if (permissionOverwrite3 != null && PermissionOverwriteUtilsKt.denies(permissionOverwrite3, Permission.VIEW_CHANNEL)) {
-                    return GuildChannelIconType$Locked$Announcements.INSTANCE;
+                    return GuildChannelIconType.Locked.Announcements.INSTANCE;
                 }
             }
-            return GuildChannelIconType$Announcements.INSTANCE;
+            return GuildChannelIconType.Announcements.INSTANCE;
         }
         if (type == 14) {
-            return GuildChannelIconType$Directory.INSTANCE;
+            return GuildChannelIconType.Directory.INSTANCE;
         }
         if (type == 15) {
             if (channel.getNsfw()) {
-                return GuildChannelIconType$NSFW$Forum.INSTANCE;
+                return GuildChannelIconType.NSFW.Forum.INSTANCE;
             }
             List<PermissionOverwrite> listV3 = channel.v();
             if (listV3 != null) {
@@ -79,21 +79,21 @@ public final class GuildChannelIconUtilsKt {
                 }
                 PermissionOverwrite permissionOverwrite4 = (PermissionOverwrite) obj;
                 if (permissionOverwrite4 != null && PermissionOverwriteUtilsKt.denies(permissionOverwrite4, Permission.VIEW_CHANNEL)) {
-                    return GuildChannelIconType$Locked$Forum.INSTANCE;
+                    return GuildChannelIconType.Locked.Forum.INSTANCE;
                 }
             }
-            return GuildChannelIconType$Forum.INSTANCE;
+            return GuildChannelIconType.Forum.INSTANCE;
         }
         switch (type) {
             case 10:
-                return channel.getNsfw() ? GuildChannelIconType$NSFW$Thread.INSTANCE : GuildChannelIconType$Thread.INSTANCE;
+                return channel.getNsfw() ? GuildChannelIconType.NSFW.Thread.INSTANCE : GuildChannelIconType.Thread.INSTANCE;
             case 11:
-                return channel.getNsfw() ? GuildChannelIconType$NSFW$Thread.INSTANCE : GuildChannelIconType$Thread.INSTANCE;
+                return channel.getNsfw() ? GuildChannelIconType.NSFW.Thread.INSTANCE : GuildChannelIconType.Thread.INSTANCE;
             case 12:
-                return GuildChannelIconType$Locked$Thread.INSTANCE;
+                return GuildChannelIconType.Locked.Thread.INSTANCE;
             default:
                 if (channel.getNsfw()) {
-                    return GuildChannelIconType$NSFW$Text.INSTANCE;
+                    return GuildChannelIconType.NSFW.Text.INSTANCE;
                 }
                 List<PermissionOverwrite> listV4 = channel.v();
                 if (listV4 != null) {
@@ -102,16 +102,16 @@ public final class GuildChannelIconUtilsKt {
                             obj = obj5;
                             permissionOverwrite = (PermissionOverwrite) obj;
                             if (permissionOverwrite != null && PermissionOverwriteUtilsKt.denies(permissionOverwrite, Permission.VIEW_CHANNEL)) {
-                                return GuildChannelIconType$Locked$Text.INSTANCE;
+                                return GuildChannelIconType.Locked.Text.INSTANCE;
                             }
                         }
                     }
                     permissionOverwrite = (PermissionOverwrite) obj;
                     if (permissionOverwrite != null) {
-                        return GuildChannelIconType$Locked$Text.INSTANCE;
+                        return GuildChannelIconType.Locked.Text.INSTANCE;
                     }
                 }
-                return GuildChannelIconType$Text.INSTANCE;
+                return GuildChannelIconType.Text.INSTANCE;
         }
     }
 
@@ -122,58 +122,58 @@ public final class GuildChannelIconUtilsKt {
     @DrawableRes
     public static final int mapGuildChannelTypeToIcon(GuildChannelIconType guildChannelIconType) {
         m.checkNotNullParameter(guildChannelIconType, "guildChannelIconType");
-        if (m.areEqual(guildChannelIconType, GuildChannelIconType$Text.INSTANCE)) {
-            return 2131231630;
+        if (m.areEqual(guildChannelIconType, GuildChannelIconType.Text.INSTANCE)) {
+            return R.drawable.ic_channel_text;
         }
-        if (guildChannelIconType instanceof GuildChannelIconType$Thread) {
-            return 2131232193;
+        if (guildChannelIconType instanceof GuildChannelIconType.Thread) {
+            return R.drawable.ic_thread;
         }
-        if (guildChannelIconType instanceof GuildChannelIconType$Announcements) {
-            return 2131231611;
+        if (guildChannelIconType instanceof GuildChannelIconType.Announcements) {
+            return R.drawable.ic_channel_announcements;
         }
-        if (guildChannelIconType instanceof GuildChannelIconType$Forum) {
-            return R$drawable.ic_channel_forum;
+        if (guildChannelIconType instanceof GuildChannelIconType.Forum) {
+            return R.drawable.ic_channel_forum;
         }
-        if (!(guildChannelIconType instanceof GuildChannelIconType$ForumPost)) {
-            if (guildChannelIconType instanceof GuildChannelIconType$NSFW$Text) {
-                return 2131231635;
+        if (!(guildChannelIconType instanceof GuildChannelIconType.ForumPost)) {
+            if (guildChannelIconType instanceof GuildChannelIconType.NSFW.Text) {
+                return R.drawable.ic_channel_text_nsfw;
             }
-            if (guildChannelIconType instanceof GuildChannelIconType$NSFW$Announcements) {
-                return 2131231614;
+            if (guildChannelIconType instanceof GuildChannelIconType.NSFW.Announcements) {
+                return R.drawable.ic_channel_announcements_nsfw;
             }
-            if (guildChannelIconType instanceof GuildChannelIconType$NSFW$Thread) {
-                return 2131232196;
+            if (guildChannelIconType instanceof GuildChannelIconType.NSFW.Thread) {
+                return R.drawable.ic_thread_locked;
             }
-            if (guildChannelIconType instanceof GuildChannelIconType$NSFW$Voice) {
-                return 2131232254;
+            if (guildChannelIconType instanceof GuildChannelIconType.NSFW.Voice) {
+                return R.drawable.ic_voice_nsfw;
             }
-            if (guildChannelIconType instanceof GuildChannelIconType$NSFW$Forum) {
-                return R$drawable.ic_channel_forum_nsfw;
+            if (guildChannelIconType instanceof GuildChannelIconType.NSFW.Forum) {
+                return R.drawable.ic_channel_forum_nsfw;
             }
-            if (!(guildChannelIconType instanceof GuildChannelIconType$NSFW$ForumPost)) {
-                if (guildChannelIconType instanceof GuildChannelIconType$Locked$Text) {
-                    return 2131231634;
+            if (!(guildChannelIconType instanceof GuildChannelIconType.NSFW.ForumPost)) {
+                if (guildChannelIconType instanceof GuildChannelIconType.Locked.Text) {
+                    return R.drawable.ic_channel_text_locked;
                 }
-                if (guildChannelIconType instanceof GuildChannelIconType$Locked$Announcements) {
-                    return 2131231613;
+                if (guildChannelIconType instanceof GuildChannelIconType.Locked.Announcements) {
+                    return R.drawable.ic_channel_announcements_locked;
                 }
-                if (guildChannelIconType instanceof GuildChannelIconType$Locked$Thread) {
-                    return 2131232196;
+                if (guildChannelIconType instanceof GuildChannelIconType.Locked.Thread) {
+                    return R.drawable.ic_thread_locked;
                 }
-                if (guildChannelIconType instanceof GuildChannelIconType$Locked$Forum) {
-                    return R$drawable.ic_channel_forum_locked;
+                if (guildChannelIconType instanceof GuildChannelIconType.Locked.Forum) {
+                    return R.drawable.ic_channel_forum_locked;
                 }
-                if (!(guildChannelIconType instanceof GuildChannelIconType$Locked$ForumPost)) {
-                    if (guildChannelIconType instanceof GuildChannelIconType$Directory) {
-                        return 2131231874;
+                if (!(guildChannelIconType instanceof GuildChannelIconType.Locked.ForumPost)) {
+                    if (guildChannelIconType instanceof GuildChannelIconType.Directory) {
+                        return R.drawable.ic_hub_24dp;
                     }
-                    if (guildChannelIconType instanceof GuildChannelIconType$Voice) {
-                        return 2131231642;
+                    if (guildChannelIconType instanceof GuildChannelIconType.Voice) {
+                        return R.drawable.ic_channel_voice_grey_header_24dp;
                     }
                     throw new NoWhenBranchMatchedException();
                 }
             }
         }
-        return R$drawable.ic_channel_forum_post;
+        return R.drawable.ic_channel_forum_post;
     }
 }

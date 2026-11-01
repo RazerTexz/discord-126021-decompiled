@@ -1,23 +1,16 @@
 package com.discord.rtcconnection;
 
-import b.a.q.c;
 import b.a.q.e;
-import b.a.q.e$c;
 import b.a.q.h;
-import b.a.q.m0.a;
 import co.discord.media_engine.StreamParameters;
 import com.discord.rtcconnection.mediaengine.MediaEngineConnection;
-import com.discord.rtcconnection.mediaengine.MediaEngineConnection$ConnectionState;
-import com.discord.rtcconnection.mediaengine.MediaEngineConnection$FailedConnectionException;
-import com.discord.rtcconnection.mediaengine.MediaEngineConnection$TransportInfo;
-import com.discord.rtcconnection.mediaengine.MediaEngineConnection$d;
 import com.discord.utilities.logging.Logger;
-import d0.o;
 import d0.t.g0;
 import d0.t.h0;
 import d0.t.n;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -25,47 +18,154 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Future;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.subjects.BehaviorSubject;
 
 /* JADX INFO: compiled from: MediaSinkWantsManager.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class MediaSinkWantsManager implements MediaEngineConnection$d {
+public final class MediaSinkWantsManager implements MediaEngineConnection.d {
     public final Map<Long, Long> a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final Map<Long, List<MediaSinkWantsManager$b>> f2771b;
+    public final Map<Long, List<b>> f2771b;
     public final Set<Long> c;
     public MediaEngineConnection d;
     public Long e;
     public final BehaviorSubject<Map<String, EncodeQuality>> f;
     public Map<String, ? extends EncodeQuality> g;
     public final long h;
-    public final c i;
+    public final b.a.q.c i;
     public final e j;
     public final Logger k;
-    public final MediaSinkWantsManager$a l;
+    public final a l;
 
-    public MediaSinkWantsManager(long j, c cVar, e eVar, Logger logger, MediaSinkWantsManager$a mediaSinkWantsManager$a) {
+    /* JADX INFO: compiled from: MediaSinkWantsManager.kt */
+    public enum VideoQualityMode {
+        AUTO(1),
+        FULL(2);
+
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
+        private final int numeral;
+
+        /* JADX INFO: renamed from: com.discord.rtcconnection.MediaSinkWantsManager$VideoQualityMode$a, reason: from kotlin metadata */
+        /* JADX INFO: compiled from: MediaSinkWantsManager.kt */
+        public final class Companion {
+            public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            }
+
+            public final VideoQualityMode a(Integer num) {
+                if (num != null && num.intValue() == 1) {
+                    return VideoQualityMode.AUTO;
+                }
+                return (num != null && num.intValue() == 2) ? VideoQualityMode.FULL : VideoQualityMode.AUTO;
+            }
+        }
+
+        VideoQualityMode(int i) {
+            this.numeral = i;
+        }
+
+        public final int getNumeral() {
+            return this.numeral;
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaSinkWantsManager.kt */
+    public interface a {
+        void a(long j, long j2, long j3, VideoMetadata videoMetadata);
+    }
+
+    /* JADX INFO: compiled from: MediaSinkWantsManager.kt */
+    public final class b {
+        public final EncodeQuality a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final long f2772b;
+        public final VideoMetadata c;
+
+        public b(EncodeQuality encodeQuality, long j, VideoMetadata videoMetadata) {
+            m.checkNotNullParameter(encodeQuality, "encodeQuality");
+            this.a = encodeQuality;
+            this.f2772b = j;
+            this.c = videoMetadata;
+        }
+
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof b)) {
+                return false;
+            }
+            b bVar = (b) obj;
+            return m.areEqual(this.a, bVar.a) && this.f2772b == bVar.f2772b && m.areEqual(this.c, bVar.c);
+        }
+
+        public int hashCode() {
+            EncodeQuality encodeQuality = this.a;
+            int iA = (a0.a.a.b.a(this.f2772b) + ((encodeQuality != null ? encodeQuality.hashCode() : 0) * 31)) * 31;
+            VideoMetadata videoMetadata = this.c;
+            return iA + (videoMetadata != null ? videoMetadata.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = b.d.b.a.a.U("VideoStreamDescriptor(encodeQuality=");
+            sbU.append(this.a);
+            sbU.append(", ssrc=");
+            sbU.append(this.f2772b);
+            sbU.append(", metadata=");
+            sbU.append(this.c);
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaSinkWantsManager.kt */
+    public final class c extends o implements Function0<Unit> {
+        public final /* synthetic */ Long $ssrc;
+        public final /* synthetic */ long $userId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public c(Long l, long j) {
+            super(0);
+            this.$ssrc = l;
+            this.$userId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public Unit invoke() {
+            if (this.$ssrc != null) {
+                MediaSinkWantsManager.this.a.put(Long.valueOf(this.$userId), this.$ssrc);
+            } else {
+                MediaSinkWantsManager.this.a.remove(Long.valueOf(this.$userId));
+            }
+            MediaSinkWantsManager.e(MediaSinkWantsManager.this, null, 1);
+            return Unit.a;
+        }
+    }
+
+    public MediaSinkWantsManager(long j, b.a.q.c cVar, e eVar, Logger logger, a aVar) {
         m.checkNotNullParameter(cVar, "mediaEngineThreadExecutor");
         m.checkNotNullParameter(eVar, "ladder");
         m.checkNotNullParameter(logger, "logger");
-        m.checkNotNullParameter(mediaSinkWantsManager$a, "listener");
+        m.checkNotNullParameter(aVar, "listener");
         this.h = j;
         this.i = cVar;
         this.j = eVar;
         this.k = logger;
-        this.l = mediaSinkWantsManager$a;
+        this.l = aVar;
         this.a = new LinkedHashMap();
         this.f2771b = new LinkedHashMap();
         new LinkedHashMap();
         this.c = new LinkedHashSet();
-        this.f = BehaviorSubject.l0(g0.mapOf(o.to("any", EncodeQuality.Hundred)));
+        this.f = BehaviorSubject.l0(g0.mapOf(d0.o.to("any", EncodeQuality.Hundred)));
         this.g = h0.emptyMap();
     }
 
@@ -74,12 +174,12 @@ public final class MediaSinkWantsManager implements MediaEngineConnection$d {
     }
 
     public final Future<?> b(Function0<Unit> function0) {
-        c cVar = this.i;
+        b.a.q.c cVar = this.i;
         return cVar.l.submit(new b.a.q.m(function0));
     }
 
     public final Future<?> c(long j, Long l) {
-        return b(new MediaSinkWantsManager$c(this, l, j));
+        return b(new c(l, j));
     }
 
     /* JADX WARN: Code duplicated, block: B:147:0x0173 A[SYNTHETIC] */
@@ -88,22 +188,9 @@ public final class MediaSinkWantsManager implements MediaEngineConnection$d {
     /* JADX WARN: Code duplicated, block: B:80:0x014a  */
     /* JADX WARN: Code duplicated, block: B:82:0x0151  */
     /* JADX WARN: Code duplicated, block: B:85:0x015b  */
-    /* JADX WARN: Failed to analyze thrown exceptions
-    java.util.ConcurrentModificationException
-    	at java.base/java.util.ArrayList$Itr.checkForComodification(ArrayList.java:1013)
-    	at java.base/java.util.ArrayList$Itr.next(ArrayList.java:967)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:119)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.checkInsn(MethodThrowsVisitor.java:180)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:133)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.checkInsn(MethodThrowsVisitor.java:180)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:133)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
-     */
     public final void d(List<String> list) {
         int i;
-        e$c e_cPrevious;
+        e.c cVarPrevious;
         EncodeQuality encodeQuality;
         long j;
         EncodeQuality encodeQuality2;
@@ -131,81 +218,81 @@ public final class MediaSinkWantsManager implements MediaEngineConnection$d {
             if (i < 0) {
                 encodeQuality = EncodeQuality.Hundred;
             } else {
-                List<e$c> list2 = eVar.d;
-                ListIterator<e$c> listIterator = list2.listIterator(list2.size());
+                List<e.c> list2 = eVar.d;
+                ListIterator<e.c> listIterator = list2.listIterator(list2.size());
                 do {
                     if (!listIterator.hasPrevious()) {
-                        e_cPrevious = null;
+                        cVarPrevious = null;
                         break;
                     }
-                    e_cPrevious = listIterator.previous();
-                } while (!(e_cPrevious.f259b * i <= eVar.f257b));
-                e$c e_c = e_cPrevious;
-                if (e_c == null) {
-                    e_c = (e$c) u.first((List) eVar.d);
+                    cVarPrevious = listIterator.previous();
+                } while (!(cVarPrevious.f259b * i <= eVar.f257b));
+                e.c cVar = cVarPrevious;
+                if (cVar == null) {
+                    cVar = (e.c) u.first((List) eVar.d);
                 }
-                encodeQuality = e_c.c;
+                encodeQuality = cVar.c;
             }
-            Map<String, EncodeQuality> mapMutableMapOf = h0.mutableMapOf(o.to("any", encodeQuality));
-            Iterator<Map$Entry<Long, List<MediaSinkWantsManager$b>>> it2 = this.f2771b.entrySet().iterator();
+            Map<String, EncodeQuality> mapMutableMapOf = h0.mutableMapOf(d0.o.to("any", encodeQuality));
+            Iterator<Map.Entry<Long, List<b>>> it2 = this.f2771b.entrySet().iterator();
             while (it2.hasNext()) {
-                Map$Entry<Long, List<MediaSinkWantsManager$b>> next = it2.next();
+                Map.Entry<Long, List<b>> next = it2.next();
                 long jLongValue = next.getKey().longValue();
-                List<MediaSinkWantsManager$b> value = next.getValue();
-                MediaSinkWantsManager$b mediaSinkWantsManager$b = (MediaSinkWantsManager$b) u.firstOrNull((List) value);
-                if (mediaSinkWantsManager$b != null) {
+                List<b> value = next.getValue();
+                b bVar = (b) u.firstOrNull((List) value);
+                if (bVar != null) {
                     Long l = this.e;
                     if (l != null) {
                         long j2 = this.h;
                         if (l != null && l.longValue() == j2) {
                             if (value.size() > 1) {
-                                for (MediaSinkWantsManager$b mediaSinkWantsManager$b2 : value) {
-                                    if (mediaSinkWantsManager$b2.a == EncodeQuality.Hundred) {
-                                        mapMutableMapOf.put(String.valueOf(mediaSinkWantsManager$b2.f2772b), EncodeQuality.Zero);
+                                for (b bVar2 : value) {
+                                    if (bVar2.a == EncodeQuality.Hundred) {
+                                        mapMutableMapOf.put(String.valueOf(bVar2.f2772b), EncodeQuality.Zero);
                                     } else {
-                                        mediaSinkWantsManager$b = mediaSinkWantsManager$b2;
+                                        bVar = bVar2;
                                     }
                                 }
                             }
                         } else if (value.size() > i2) {
                             Long l2 = this.e;
                             if (l2 != null && jLongValue == l2.longValue()) {
-                                for (MediaSinkWantsManager$b mediaSinkWantsManager$b3 : value) {
-                                    EncodeQuality encodeQuality3 = mediaSinkWantsManager$b3.a;
+                                for (b bVar3 : value) {
+                                    EncodeQuality encodeQuality3 = bVar3.a;
                                     EncodeQuality encodeQuality4 = EncodeQuality.Hundred;
                                     if (encodeQuality3 == encodeQuality4) {
-                                        mapMutableMapOf.put(String.valueOf(mediaSinkWantsManager$b3.f2772b), encodeQuality4);
-                                        mediaSinkWantsManager$b = mediaSinkWantsManager$b3;
+                                        mapMutableMapOf.put(String.valueOf(bVar3.f2772b), encodeQuality4);
+                                        bVar = bVar3;
                                     } else {
-                                        mapMutableMapOf.put(String.valueOf(mediaSinkWantsManager$b3.f2772b), EncodeQuality.Zero);
+                                        mapMutableMapOf.put(String.valueOf(bVar3.f2772b), EncodeQuality.Zero);
                                     }
                                 }
                             } else {
-                                for (MediaSinkWantsManager$b mediaSinkWantsManager$b4 : value) {
-                                    if (mediaSinkWantsManager$b4.a == EncodeQuality.Hundred) {
-                                        mapMutableMapOf.put(String.valueOf(mediaSinkWantsManager$b4.f2772b), EncodeQuality.Zero);
+                                for (b bVar4 : value) {
+                                    if (bVar4.a == EncodeQuality.Hundred) {
+                                        mapMutableMapOf.put(String.valueOf(bVar4.f2772b), EncodeQuality.Zero);
                                     } else {
-                                        mediaSinkWantsManager$b = mediaSinkWantsManager$b4;
+                                        bVar = bVar4;
                                     }
                                 }
                             }
                         } else {
                             Long l3 = this.e;
                             if (l3 != null && jLongValue == l3.longValue() && encodeQuality != (encodeQuality2 = EncodeQuality.Hundred)) {
-                                mapMutableMapOf.put(String.valueOf(mediaSinkWantsManager$b.f2772b), encodeQuality2);
+                                mapMutableMapOf.put(String.valueOf(bVar.f2772b), encodeQuality2);
                             }
                         }
                     } else if (value.size() > 1) {
                         while (r3.hasNext()) {
-                            if (mediaSinkWantsManager$b2.a == EncodeQuality.Hundred) {
-                                mapMutableMapOf.put(String.valueOf(mediaSinkWantsManager$b2.f2772b), EncodeQuality.Zero);
+                            if (bVar2.a == EncodeQuality.Hundred) {
+                                mapMutableMapOf.put(String.valueOf(bVar2.f2772b), EncodeQuality.Zero);
                             } else {
-                                mediaSinkWantsManager$b = mediaSinkWantsManager$b2;
+                                bVar = bVar2;
                             }
                         }
                     }
                     if (mediaEngineConnection.g(jLongValue) || mediaEngineConnection.p(jLongValue)) {
-                        Iterator<MediaSinkWantsManager$b> it3 = value.iterator();
+                        Iterator<b> it3 = value.iterator();
                         while (it3.hasNext()) {
                             mapMutableMapOf.put(String.valueOf(it3.next().f2772b), EncodeQuality.Zero);
                         }
@@ -214,7 +301,7 @@ public final class MediaSinkWantsManager implements MediaEngineConnection$d {
                         Long l4 = this.a.get(Long.valueOf(jLongValue));
                         if (l4 != null) {
                             j = jLongValue;
-                            this.l.a(jLongValue, l4.longValue(), mediaSinkWantsManager$b.f2772b, mediaSinkWantsManager$b.c);
+                            this.l.a(jLongValue, l4.longValue(), bVar.f2772b, bVar.c);
                         } else {
                             j = jLongValue;
                             a("Missing audioSsrc for user " + j + ", can't update video ssrc!");
@@ -222,21 +309,21 @@ public final class MediaSinkWantsManager implements MediaEngineConnection$d {
                     } else {
                         j = jLongValue;
                     }
-                    EncodeQuality encodeQuality5 = this.g.get(String.valueOf(mediaSinkWantsManager$b.f2772b));
+                    EncodeQuality encodeQuality5 = this.g.get(String.valueOf(bVar.f2772b));
                     EncodeQuality encodeQuality6 = EncodeQuality.Zero;
-                    if (encodeQuality5 == encodeQuality6 && mapMutableMapOf.get(String.valueOf(mediaSinkWantsManager$b.f2772b)) != encodeQuality6) {
+                    if (encodeQuality5 == encodeQuality6 && mapMutableMapOf.get(String.valueOf(bVar.f2772b)) != encodeQuality6) {
                         mediaEngineConnection.i(j, false);
                     }
-                    if (encodeQuality5 != encodeQuality6 && mapMutableMapOf.get(String.valueOf(mediaSinkWantsManager$b.f2772b)) == encodeQuality6) {
+                    if (encodeQuality5 != encodeQuality6 && mapMutableMapOf.get(String.valueOf(bVar.f2772b)) == encodeQuality6) {
                         mediaEngineConnection.i(j, true);
                     }
                     it2 = it2;
                 }
                 i2 = 1;
             }
-            for (Map$Entry<Long, Long> map$Entry : this.a.entrySet()) {
-                long jLongValue2 = map$Entry.getKey().longValue();
-                long jLongValue3 = map$Entry.getValue().longValue();
+            for (Map.Entry<Long, Long> entry : this.a.entrySet()) {
+                long jLongValue2 = entry.getKey().longValue();
+                long jLongValue3 = entry.getValue().longValue();
                 if (mediaEngineConnection.u(jLongValue2)) {
                     mapMutableMapOf.put(String.valueOf(jLongValue3), EncodeQuality.Zero);
                 }
@@ -250,59 +337,59 @@ public final class MediaSinkWantsManager implements MediaEngineConnection$d {
         mediaSinkWantsManager.d((i & 1) != 0 ? n.emptyList() : null);
     }
 
-    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection$d
-    public void onConnected(MediaEngineConnection mediaEngineConnection, MediaEngineConnection$TransportInfo mediaEngineConnection$TransportInfo, List<a> list) {
+    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
+    public void onConnected(MediaEngineConnection mediaEngineConnection, MediaEngineConnection.TransportInfo transportInfo, List<b.a.q.m0.a> list) {
         m.checkNotNullParameter(mediaEngineConnection, "connection");
-        m.checkNotNullParameter(mediaEngineConnection$TransportInfo, "transportInfo");
+        m.checkNotNullParameter(transportInfo, "transportInfo");
         m.checkNotNullParameter(list, "supportedVideoCodecs");
     }
 
-    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection$d
-    public void onConnectionStateChange(MediaEngineConnection mediaEngineConnection, MediaEngineConnection$ConnectionState mediaEngineConnection$ConnectionState) {
+    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
+    public void onConnectionStateChange(MediaEngineConnection mediaEngineConnection, MediaEngineConnection.ConnectionState connectionState) {
         m.checkNotNullParameter(mediaEngineConnection, "connection");
-        m.checkNotNullParameter(mediaEngineConnection$ConnectionState, "connectionState");
+        m.checkNotNullParameter(connectionState, "connectionState");
     }
 
-    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection$d
+    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
     public void onDestroy(MediaEngineConnection mediaEngineConnection) {
         m.checkNotNullParameter(mediaEngineConnection, "connection");
     }
 
-    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection$d
-    public void onError(MediaEngineConnection mediaEngineConnection, MediaEngineConnection$FailedConnectionException mediaEngineConnection$FailedConnectionException) {
+    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
+    public void onError(MediaEngineConnection mediaEngineConnection, MediaEngineConnection.FailedConnectionException failedConnectionException) {
         m.checkNotNullParameter(mediaEngineConnection, "connection");
-        m.checkNotNullParameter(mediaEngineConnection$FailedConnectionException, "exception");
+        m.checkNotNullParameter(failedConnectionException, "exception");
     }
 
-    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection$d
-    public void onKrispStatus(MediaEngineConnection mediaEngineConnection, KrispOveruseDetector$Status krispOveruseDetector$Status) {
+    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
+    public void onKrispStatus(MediaEngineConnection mediaEngineConnection, KrispOveruseDetector.Status status) {
         m.checkNotNullParameter(mediaEngineConnection, "connection");
-        m.checkNotNullParameter(krispOveruseDetector$Status, "status");
+        m.checkNotNullParameter(status, "status");
     }
 
-    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection$d
+    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
     public void onLocalMute(long j, boolean z2) {
         b(new h(this));
     }
 
-    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection$d
+    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
     public void onLocalVideoOffScreen(long j, boolean z2) {
         b(new h(this));
     }
 
-    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection$d
+    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
     public void onSpeaking(long j, int i, boolean z2) {
     }
 
-    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection$d
+    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
     public void onTargetBitrate(int i) {
     }
 
-    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection$d
+    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
     public void onTargetFrameRate(int i) {
     }
 
-    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection$d
+    @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
     public void onVideo(long j, Integer num, int i, int i2, int i3, StreamParameters[] streamParametersArr) {
         m.checkNotNullParameter(streamParametersArr, "streams");
     }

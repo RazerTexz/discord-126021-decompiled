@@ -26,12 +26,12 @@ public final class LinkifiedTextView$ClickableSpanOnTouchListener$onTouch$newJob
     public final /* synthetic */ WeakReference $weakView;
     private /* synthetic */ Object L$0;
     public int label;
-    public final /* synthetic */ LinkifiedTextView$ClickableSpanOnTouchListener this$0;
+    public final /* synthetic */ LinkifiedTextView.ClickableSpanOnTouchListener this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public LinkifiedTextView$ClickableSpanOnTouchListener$onTouch$newJob$1(LinkifiedTextView$ClickableSpanOnTouchListener linkifiedTextView$ClickableSpanOnTouchListener, WeakReference weakReference, Ref$ObjectRef ref$ObjectRef, Continuation continuation) {
+    public LinkifiedTextView$ClickableSpanOnTouchListener$onTouch$newJob$1(LinkifiedTextView.ClickableSpanOnTouchListener clickableSpanOnTouchListener, WeakReference weakReference, Ref$ObjectRef ref$ObjectRef, Continuation continuation) {
         super(2, continuation);
-        this.this$0 = linkifiedTextView$ClickableSpanOnTouchListener;
+        this.this$0 = clickableSpanOnTouchListener;
         this.$weakView = weakReference;
         this.$clickableSpan = ref$ObjectRef;
     }
@@ -58,7 +58,7 @@ public final class LinkifiedTextView$ClickableSpanOnTouchListener$onTouch$newJob
         if (i == 0) {
             l.throwOnFailure(obj);
             CoroutineScope coroutineScope2 = (CoroutineScope) this.L$0;
-            long jAccess$getLongPressDelayInMs$p = LinkifiedTextView$ClickableSpanOnTouchListener.access$getLongPressDelayInMs$p(this.this$0);
+            long jAccess$getLongPressDelayInMs$p = LinkifiedTextView.ClickableSpanOnTouchListener.access$getLongPressDelayInMs$p(this.this$0);
             this.L$0 = coroutineScope2;
             this.label = 1;
             if (f.P(jAccess$getLongPressDelayInMs$p, this) == coroutine_suspended) {
@@ -73,7 +73,7 @@ public final class LinkifiedTextView$ClickableSpanOnTouchListener$onTouch$newJob
             l.throwOnFailure(obj);
             coroutineScope = coroutineScope3;
         }
-        if (!LinkifiedTextView$ClickableSpanOnTouchListener.access$isClickHandled$p(this.this$0).getAndSet(true) && f.y0(coroutineScope) && (view = (View) this.$weakView.get()) != null) {
+        if (!LinkifiedTextView.ClickableSpanOnTouchListener.access$isClickHandled$p(this.this$0).getAndSet(true) && f.y0(coroutineScope) && (view = (View) this.$weakView.get()) != null) {
             CoroutineDispatcher coroutineDispatcher = k0.a;
             f.H0(coroutineScope, n.f3830b, null, new LinkifiedTextView$ClickableSpanOnTouchListener$onTouch$newJob$1$invokeSuspend$$inlined$also$lambda$1(view, null, this, coroutineScope), 2, null);
         }

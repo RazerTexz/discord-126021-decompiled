@@ -6,5 +6,10 @@ import java.io.Serializable;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class z extends b.g.a.c.b implements Serializable {
     private static final long serialVersionUID = 1;
-    public static final z j = new z$a();
+    public static final z j = new a();
+
+    /* JADX INFO: compiled from: NopAnnotationIntrospector.java */
+    public final class a extends z {
+        private static final long serialVersionUID = 1;
+    }
 }

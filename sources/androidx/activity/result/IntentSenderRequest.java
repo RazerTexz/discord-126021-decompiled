@@ -1,11 +1,11 @@
 package androidx.activity.result;
 
 import android.annotation.SuppressLint;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -22,7 +22,32 @@ public final class IntentSenderRequest implements Parcelable {
     private final IntentSender mIntentSender;
 
     @NonNull
-    public static final Parcelable$Creator<IntentSenderRequest> CREATOR = new IntentSenderRequest$1();
+    public static final Parcelable.Creator<IntentSenderRequest> CREATOR = new AnonymousClass1();
+
+    /* JADX INFO: renamed from: androidx.activity.result.IntentSenderRequest$1, reason: invalid class name */
+    public class AnonymousClass1 implements Parcelable.Creator<IntentSenderRequest> {
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ IntentSenderRequest createFromParcel(Parcel parcel) {
+            return createFromParcel(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ IntentSenderRequest[] newArray(int i) {
+            return newArray(i);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public IntentSenderRequest createFromParcel(Parcel parcel) {
+            return new IntentSenderRequest(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public IntentSenderRequest[] newArray(int i) {
+            return new IntentSenderRequest[i];
+        }
+    }
 
     public IntentSenderRequest(@NonNull IntentSender intentSender, @Nullable Intent intent, int i, int i2) {
         this.mIntentSender = intentSender;
@@ -60,6 +85,39 @@ public final class IntentSenderRequest implements Parcelable {
         parcel.writeParcelable(this.mFillInIntent, i);
         parcel.writeInt(this.mFlagsMask);
         parcel.writeInt(this.mFlagsValues);
+    }
+
+    public final class Builder {
+        private Intent mFillInIntent;
+        private int mFlagsMask;
+        private int mFlagsValues;
+        private IntentSender mIntentSender;
+
+        public Builder(@NonNull IntentSender intentSender) {
+            this.mIntentSender = intentSender;
+        }
+
+        @NonNull
+        public IntentSenderRequest build() {
+            return new IntentSenderRequest(this.mIntentSender, this.mFillInIntent, this.mFlagsMask, this.mFlagsValues);
+        }
+
+        @NonNull
+        public Builder setFillInIntent(@Nullable Intent intent) {
+            this.mFillInIntent = intent;
+            return this;
+        }
+
+        @NonNull
+        public Builder setFlags(int i, int i2) {
+            this.mFlagsValues = i;
+            this.mFlagsMask = i2;
+            return this;
+        }
+
+        public Builder(@NonNull PendingIntent pendingIntent) {
+            this(pendingIntent.getIntentSender());
+        }
     }
 
     public IntentSenderRequest(@NonNull Parcel parcel) {

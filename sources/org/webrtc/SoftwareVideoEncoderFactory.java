@@ -20,7 +20,7 @@ public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
     }
 
     @Override // org.webrtc.VideoEncoderFactory
-    public /* synthetic */ VideoEncoderFactory$VideoEncoderSelector getEncoderSelector() {
+    public /* synthetic */ VideoEncoderFactory.VideoEncoderSelector getEncoderSelector() {
         return s0.a(this);
     }
 

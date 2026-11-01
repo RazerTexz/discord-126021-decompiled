@@ -9,12 +9,12 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChatListAdapterEventsHandler$UserReactionHandler$requestReactionUpdate$1 extends o implements Function1<Void, Unit> {
     public final /* synthetic */ MessageReaction $reaction;
-    public final /* synthetic */ WidgetChatListAdapterEventsHandler$UserReactionHandler this$0;
+    public final /* synthetic */ WidgetChatListAdapterEventsHandler.UserReactionHandler this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetChatListAdapterEventsHandler$UserReactionHandler$requestReactionUpdate$1(WidgetChatListAdapterEventsHandler$UserReactionHandler widgetChatListAdapterEventsHandler$UserReactionHandler, MessageReaction messageReaction) {
+    public WidgetChatListAdapterEventsHandler$UserReactionHandler$requestReactionUpdate$1(WidgetChatListAdapterEventsHandler.UserReactionHandler userReactionHandler, MessageReaction messageReaction) {
         super(1);
-        this.this$0 = widgetChatListAdapterEventsHandler$UserReactionHandler;
+        this.this$0 = userReactionHandler;
         this.$reaction = messageReaction;
     }
 
@@ -29,6 +29,6 @@ public final class WidgetChatListAdapterEventsHandler$UserReactionHandler$reques
         if (this.$reaction.getMe()) {
             return;
         }
-        WidgetChatListAdapterEventsHandler$UserReactionHandler.access$getStoreEmoji$p(this.this$0).onEmojiUsed(this.$reaction.getEmoji().c());
+        WidgetChatListAdapterEventsHandler.UserReactionHandler.access$getStoreEmoji$p(this.this$0).onEmojiUsed(this.$reaction.getEmoji().c());
     }
 }

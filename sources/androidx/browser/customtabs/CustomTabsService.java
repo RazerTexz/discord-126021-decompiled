@@ -1,17 +1,22 @@
 package androidx.browser.customtabs;
 
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.IBinder$DeathRecipient;
+import android.os.RemoteException;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
 import androidx.collection.SimpleArrayMap;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.List;
 import java.util.NoSuchElementException;
-import x.a.a.b$a;
+import x.a.a.a;
+import x.a.a.b;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class CustomTabsService extends Service {
@@ -30,8 +35,106 @@ public abstract class CustomTabsService extends Service {
     public static final int RESULT_FAILURE_REMOTE_ERROR = -2;
     public static final int RESULT_SUCCESS = 0;
     public static final String TRUSTED_WEB_ACTIVITY_CATEGORY = "androidx.browser.trusted.category.TrustedWebActivities";
-    public final SimpleArrayMap<IBinder, IBinder$DeathRecipient> mDeathRecipientMap = new SimpleArrayMap<>();
-    private b$a mBinder = new CustomTabsService$1(this);
+    public final SimpleArrayMap<IBinder, IBinder.DeathRecipient> mDeathRecipientMap = new SimpleArrayMap<>();
+    private b.a mBinder = new AnonymousClass1();
+
+    /* JADX INFO: renamed from: androidx.browser.customtabs.CustomTabsService$1, reason: invalid class name */
+    public class AnonymousClass1 extends b.a {
+        public AnonymousClass1() {
+        }
+
+        @Override // x.a.a.b
+        public Bundle extraCommand(@NonNull String str, @Nullable Bundle bundle) {
+            return CustomTabsService.this.extraCommand(str, bundle);
+        }
+
+        @Nullable
+        private PendingIntent getSessionIdFromBundle(@Nullable Bundle bundle) {
+            if (bundle == null) {
+                return null;
+            }
+            PendingIntent pendingIntent = (PendingIntent) bundle.getParcelable(CustomTabsIntent.EXTRA_SESSION_ID);
+            bundle.remove(CustomTabsIntent.EXTRA_SESSION_ID);
+            return pendingIntent;
+        }
+
+        @Override // x.a.a.b
+        public boolean mayLaunchUrl(@Nullable a aVar, @Nullable Uri uri, @Nullable Bundle bundle, @Nullable List<Bundle> list) {
+            return CustomTabsService.this.mayLaunchUrl(new CustomTabsSessionToken(aVar, getSessionIdFromBundle(bundle)), uri, bundle, list);
+        }
+
+        @Override // x.a.a.b
+        public boolean newSession(@NonNull a aVar) {
+            return newSessionInternal(aVar, null);
+        }
+
+        private boolean newSessionInternal(@NonNull a aVar, @Nullable PendingIntent pendingIntent) {
+            CustomTabsSessionToken customTabsSessionToken = new CustomTabsSessionToken(aVar, pendingIntent);
+            try {
+                y.a.a.a aVar2 = new y.a.a.a(this, customTabsSessionToken);
+                synchronized (CustomTabsService.this.mDeathRecipientMap) {
+                    aVar.asBinder().linkToDeath(aVar2, 0);
+                    CustomTabsService.this.mDeathRecipientMap.put(aVar.asBinder(), aVar2);
+                }
+                return CustomTabsService.this.newSession(customTabsSessionToken);
+            } catch (RemoteException unused) {
+                return false;
+            }
+        }
+
+        @Override // x.a.a.b
+        public boolean newSessionWithExtras(@NonNull a aVar, @Nullable Bundle bundle) {
+            return newSessionInternal(aVar, getSessionIdFromBundle(bundle));
+        }
+
+        @Override // x.a.a.b
+        public int postMessage(@NonNull a aVar, @NonNull String str, @Nullable Bundle bundle) {
+            return CustomTabsService.this.postMessage(new CustomTabsSessionToken(aVar, getSessionIdFromBundle(bundle)), str, bundle);
+        }
+
+        @Override // x.a.a.b
+        public boolean receiveFile(@NonNull a aVar, @NonNull Uri uri, int i, @Nullable Bundle bundle) {
+            return CustomTabsService.this.receiveFile(new CustomTabsSessionToken(aVar, getSessionIdFromBundle(bundle)), uri, i, bundle);
+        }
+
+        @Override // x.a.a.b
+        public boolean requestPostMessageChannel(@NonNull a aVar, @NonNull Uri uri) {
+            return CustomTabsService.this.requestPostMessageChannel(new CustomTabsSessionToken(aVar, null), uri);
+        }
+
+        @Override // x.a.a.b
+        public boolean requestPostMessageChannelWithExtras(@NonNull a aVar, @NonNull Uri uri, @NonNull Bundle bundle) {
+            return CustomTabsService.this.requestPostMessageChannel(new CustomTabsSessionToken(aVar, getSessionIdFromBundle(bundle)), uri);
+        }
+
+        @Override // x.a.a.b
+        public boolean updateVisuals(@NonNull a aVar, @Nullable Bundle bundle) {
+            return CustomTabsService.this.updateVisuals(new CustomTabsSessionToken(aVar, getSessionIdFromBundle(bundle)), bundle);
+        }
+
+        @Override // x.a.a.b
+        public boolean validateRelationship(@NonNull a aVar, int i, @NonNull Uri uri, @Nullable Bundle bundle) {
+            return CustomTabsService.this.validateRelationship(new CustomTabsSessionToken(aVar, getSessionIdFromBundle(bundle)), i, uri, bundle);
+        }
+
+        @Override // x.a.a.b
+        public boolean warmup(long j) {
+            return CustomTabsService.this.warmup(j);
+        }
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    public @interface FilePurpose {
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface Relation {
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface Result {
+    }
 
     public boolean cleanUpSession(@NonNull CustomTabsSessionToken customTabsSessionToken) {
         try {

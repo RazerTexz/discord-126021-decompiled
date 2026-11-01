@@ -1,8 +1,6 @@
 package d0.e0.p.d.m0.e.a.h0;
 
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.e0.p.d.m0.c.a$a;
-import d0.e0.p.d.m0.c.b$a;
 import d0.e0.p.d.m0.c.c1;
 import d0.e0.p.d.m0.c.i1.g0;
 import d0.e0.p.d.m0.c.i1.q;
@@ -21,14 +19,41 @@ import kotlin.Pair;
 
 /* JADX INFO: compiled from: JavaMethodDescriptor.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class f extends g0 implements b {
-    public f$b N;
+public class f extends g0 implements d0.e0.p.d.m0.e.a.h0.b {
+    public b N;
     public final boolean O;
-    public static final a$a<c1> M = new f$a();
+    public static final d0.e0.p.d.m0.c.a.InterfaceC0511a<c1> M = new a();
+
+    /* JADX INFO: compiled from: JavaMethodDescriptor.java */
+    public final class a implements d0.e0.p.d.m0.c.a.InterfaceC0511a<c1> {
+    }
+
+    /* JADX INFO: compiled from: JavaMethodDescriptor.java */
+    public enum b {
+        NON_STABLE_DECLARED(false, false),
+        STABLE_DECLARED(true, false),
+        NON_STABLE_SYNTHESIZED(false, true),
+        STABLE_SYNTHESIZED(true, true);
+
+        public final boolean isStable;
+        public final boolean isSynthesized;
+
+        b(boolean z2, boolean z3) {
+            this.isStable = z2;
+            this.isSynthesized = z3;
+        }
+
+        public static b get(boolean z2, boolean z3) {
+            if (z2) {
+                return z3 ? STABLE_SYNTHESIZED : STABLE_DECLARED;
+            }
+            return z3 ? NON_STABLE_SYNTHESIZED : NON_STABLE_DECLARED;
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public f(m mVar, t0 t0Var, d0.e0.p.d.m0.c.g1.g gVar, d0.e0.p.d.m0.g.e eVar, b$a b_a, u0 u0Var, boolean z2) {
-        super(mVar, t0Var, gVar, eVar, b_a, u0Var);
+    public f(m mVar, t0 t0Var, d0.e0.p.d.m0.c.g1.g gVar, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.b.a aVar, u0 u0Var, boolean z2) {
+        super(mVar, t0Var, gVar, eVar, aVar, u0Var);
         if (mVar == null) {
             a(0);
             throw null;
@@ -41,7 +66,7 @@ public class f extends g0 implements b {
             a(2);
             throw null;
         }
-        if (b_a == null) {
+        if (aVar == null) {
             a(3);
             throw null;
         }
@@ -150,12 +175,12 @@ public class f extends g0 implements b {
     }
 
     @Override // d0.e0.p.d.m0.c.i1.g0, d0.e0.p.d.m0.c.i1.q
-    public q b(m mVar, x xVar, b$a b_a, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.g1.g gVar, u0 u0Var) {
+    public q b(m mVar, x xVar, d0.e0.p.d.m0.c.b.a aVar, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.g1.g gVar, u0 u0Var) {
         if (mVar == null) {
             a(13);
             throw null;
         }
-        if (b_a == null) {
+        if (aVar == null) {
             a(14);
             throw null;
         }
@@ -167,7 +192,7 @@ public class f extends g0 implements b {
         if (eVar == null) {
             eVar = getName();
         }
-        f fVar = new f(mVar, t0Var, gVar, eVar, b_a, u0Var, this.O);
+        f fVar = new f(mVar, t0Var, gVar, eVar, aVar, u0Var, this.O);
         fVar.setParameterNamesStatus(hasStableParameterNames(), hasSynthesizedParameterNames());
         return fVar;
     }
@@ -186,15 +211,15 @@ public class f extends g0 implements b {
             throw null;
         }
         if (u0Var != null) {
-            return new f(mVar, null, gVar, eVar, b$a.DECLARATION, u0Var, z2);
+            return new f(mVar, null, gVar, eVar, d0.e0.p.d.m0.c.b.a.DECLARATION, u0Var, z2);
         }
         a(8);
         throw null;
     }
 
     @Override // d0.e0.p.d.m0.e.a.h0.b
-    public /* bridge */ /* synthetic */ b enhance(c0 c0Var, List list, c0 c0Var2, Pair pair) {
-        return enhance(c0Var, (List<l>) list, c0Var2, (Pair<a$a<?>, ?>) pair);
+    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.e.a.h0.b enhance(c0 c0Var, List list, c0 c0Var2, Pair pair) {
+        return enhance(c0Var, (List<l>) list, c0Var2, (Pair<d0.e0.p.d.m0.c.a.InterfaceC0511a<?>, ?>) pair);
     }
 
     @Override // d0.e0.p.d.m0.c.i1.q
@@ -208,7 +233,7 @@ public class f extends g0 implements b {
     }
 
     @Override // d0.e0.p.d.m0.c.i1.g0
-    public g0 initialize(q0 q0Var, q0 q0Var2, List<? extends z0> list, List<c1> list2, c0 c0Var, z zVar, u uVar, Map<? extends a$a<?>, ?> map) {
+    public g0 initialize(q0 q0Var, q0 q0Var2, List<? extends z0> list, List<c1> list2, c0 c0Var, z zVar, u uVar, Map<? extends d0.e0.p.d.m0.c.a.InterfaceC0511a<?>, ?> map) {
         if (list == null) {
             a(9);
             throw null;
@@ -231,11 +256,11 @@ public class f extends g0 implements b {
     }
 
     public void setParameterNamesStatus(boolean z2, boolean z3) {
-        this.N = f$b.get(z2, z3);
+        this.N = b.get(z2, z3);
     }
 
     @Override // d0.e0.p.d.m0.e.a.h0.b
-    public f enhance(c0 c0Var, List<l> list, c0 c0Var2, Pair<a$a<?>, ?> pair) {
+    public f enhance(c0 c0Var, List<l> list, c0 c0Var2, Pair<d0.e0.p.d.m0.c.a.InterfaceC0511a<?>, ?> pair) {
         if (list == null) {
             a(18);
             throw null;

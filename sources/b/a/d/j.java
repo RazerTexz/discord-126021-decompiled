@@ -1,6 +1,6 @@
 package b.a.d;
 
-import android.R$id;
+import android.R;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import com.discord.app.AppActivity;
 import com.discord.app.AppComponent;
 import com.discord.app.AppFragment;
 import com.discord.app.AppLog;
-import com.discord.stores.StoreNavigation$PanelAction;
+import com.discord.stores.StoreNavigation;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreTabsNavigation;
 import com.discord.widgets.auth.WidgetAgeVerify;
@@ -110,7 +110,7 @@ public final class j {
         Class cls;
         d0.z.d.m.checkNotNullParameter(context, "context");
         if (z2) {
-            StoreTabsNavigation.selectHomeTab$default(StoreStream.Companion.getTabsNavigation(), intent != null ? intent.getBooleanExtra("com.discord.intent.extra.EXTRA_OPEN_PANEL", false) : false ? StoreNavigation$PanelAction.OPEN : StoreNavigation$PanelAction.CLOSE, false, 2, null);
+            StoreTabsNavigation.selectHomeTab$default(StoreStream.INSTANCE.getTabsNavigation(), intent != null ? intent.getBooleanExtra("com.discord.intent.extra.EXTRA_OPEN_PANEL", false) : false ? StoreNavigation.PanelAction.OPEN : StoreNavigation.PanelAction.CLOSE, false, 2, null);
             cls = WidgetTabsHost.class;
         } else {
             cls = WidgetAuthLanding.class;
@@ -170,7 +170,7 @@ public final class j {
 
     public static void g(j jVar, FragmentManager fragmentManager, Context context, Class cls, int i, boolean z2, String str, Parcelable parcelable, int i2) {
         if ((i2 & 8) != 0) {
-            i = R$id.content;
+            i = R.id.content;
         }
         if ((i2 & 16) != 0) {
             z2 = false;

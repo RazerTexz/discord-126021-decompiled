@@ -1,11 +1,8 @@
 package b.a.t.a;
 
 import com.discord.simpleast.code.CodeNode;
-import com.discord.simpleast.code.CodeNode$a;
-import com.discord.simpleast.code.CodeNode$a$a;
-import com.discord.simpleast.code.CodeNode$a$b;
 import com.discord.simpleast.core.node.Node;
-import com.discord.simpleast.core.node.StyleNode$a;
+import com.discord.simpleast.core.node.StyleNode;
 import com.discord.simpleast.core.parser.ParseSpec;
 import com.discord.simpleast.core.parser.Parser;
 import com.discord.simpleast.core.parser.Rule;
@@ -23,21 +20,21 @@ public final class a<R, S> extends Rule<R, Node<R>, S> {
     public final /* synthetic */ Map a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final /* synthetic */ StyleNode$a f287b;
+    public final /* synthetic */ StyleNode.a f287b;
     public final /* synthetic */ Function3 c;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public a(e eVar, Map map, StyleNode$a styleNode$a, Function3 function3, Pattern pattern) {
+    public a(e eVar, Map map, StyleNode.a aVar, Function3 function3, Pattern pattern) {
         super(pattern);
         this.a = map;
-        this.f287b = styleNode$a;
+        this.f287b = aVar;
         this.c = function3;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
     @Override // com.discord.simpleast.core.parser.Rule
     public ParseSpec<R, S> parse(Matcher matcher, Parser<R, ? super Node<R>, S> parser, S s2) {
-        CodeNode$a codeNode$a$b;
+        CodeNode.a bVar;
         d0.z.d.m.checkNotNullParameter(matcher, "matcher");
         d0.z.d.m.checkNotNullParameter(parser, "parser");
         String strGroup = matcher.group(1);
@@ -51,11 +48,11 @@ public final class a<R, S> extends Rule<R, Node<R>, S> {
         if (list != 0) {
             List<T> list2 = parser.parse(strGroup2, s2, list);
             Objects.requireNonNull(list2, "null cannot be cast to non-null type kotlin.collections.List<com.discord.simpleast.core.node.Node<R>>");
-            codeNode$a$b = new CodeNode$a$a(strGroup2, list2);
+            bVar = new CodeNode.a.C0188a(strGroup2, list2);
         } else {
-            codeNode$a$b = new CodeNode$a$b(strGroup2);
+            bVar = new CodeNode.a.b(strGroup2);
         }
-        Node node = (Node) this.c.invoke(new CodeNode(codeNode$a$b, strGroup, this.f287b), Boolean.valueOf(zContains$default), s2);
+        Node node = (Node) this.c.invoke(new CodeNode(bVar, strGroup, this.f287b), Boolean.valueOf(zContains$default), s2);
         d0.z.d.m.checkNotNullParameter(node, "node");
         return new ParseSpec<>(node, s2);
     }

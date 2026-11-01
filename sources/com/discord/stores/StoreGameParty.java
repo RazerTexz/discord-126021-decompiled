@@ -12,16 +12,20 @@ import com.discord.api.thread.ThreadMembersUpdate;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.user.User;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
+import d0.t.g0;
 import d0.t.n;
+import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
+import java.util.Objects;
+import java.util.SortedMap;
+import kotlin.jvm.functions.Function0;
 import rx.Observable;
 
 /* JADX INFO: compiled from: StoreGameParty.kt */
@@ -33,6 +37,37 @@ public final class StoreGameParty extends StoreV2 {
     private final StoreUser storeUser;
     private final StoreUserPresence storeUserPresence;
     private final HashMap<Long, HashMap<Long, String>> userParties;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGameParty$observeUsersForPartyId$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGameParty.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends User>> {
+        public final /* synthetic */ String $partyId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(String str) {
+            super(0);
+            this.$partyId = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends User> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends User> invoke2() {
+            List listEmptyList;
+            HashSet hashSet = (HashSet) StoreGameParty.access$getPartiesSnapshot$p(StoreGameParty.this).get(this.$partyId);
+            StoreUser storeUser = StoreGameParty.this.getStoreUser();
+            if (hashSet == null || (listEmptyList = u.toList(hashSet)) == null) {
+                listEmptyList = n.emptyList();
+            }
+            SortedMap sortedMap = g0.toSortedMap(storeUser.getUsers(listEmptyList, false));
+            Objects.requireNonNull(sortedMap, "null cannot be cast to non-null type kotlin.collections.Map<com.discord.primitives.UserId /* = kotlin.Long */, com.discord.models.user.User>");
+            return sortedMap;
+        }
+    }
 
     public StoreGameParty(ObservationDeck observationDeck, StoreUserPresence storeUserPresence, StoreUser storeUser) {
         m.checkNotNullParameter(observationDeck, "observationDeck");
@@ -185,7 +220,7 @@ public final class StoreGameParty extends StoreV2 {
     }
 
     public final Observable<Map<Long, User>> observeUsersForPartyId(String partyId) {
-        Observable<Map<Long, User>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this, StoreUser.Companion.getUsersUpdate()}, false, null, null, new StoreGameParty$observeUsersForPartyId$1(this, partyId), 14, null).r();
+        Observable<Map<Long, User>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this, StoreUser.INSTANCE.getUsersUpdate()}, false, null, null, new AnonymousClass1(partyId), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
         return observableR;
     }
@@ -217,8 +252,8 @@ public final class StoreGameParty extends StoreV2 {
     public void snapshotData() {
         super.snapshotData();
         this.partiesSnapshot = new HashMap<>();
-        for (Map$Entry<String, HashSet<Long>> map$Entry : this.parties.entrySet()) {
-            this.partiesSnapshot.put(map$Entry.getKey(), new HashSet<>(map$Entry.getValue()));
+        for (Map.Entry<String, HashSet<Long>> entry : this.parties.entrySet()) {
+            this.partiesSnapshot.put(entry.getKey(), new HashSet<>(entry.getValue()));
         }
     }
 

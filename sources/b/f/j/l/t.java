@@ -2,7 +2,6 @@ package b.f.j.l;
 
 import androidx.annotation.VisibleForTesting;
 import com.facebook.common.memory.PooledByteBuffer;
-import com.facebook.common.memory.PooledByteBuffer$ClosedException;
 import com.facebook.common.references.CloseableReference;
 import java.nio.ByteBuffer;
 
@@ -28,7 +27,7 @@ public class t implements PooledByteBuffer {
             throw th;
         }
         if (!CloseableReference.y(this.k)) {
-            throw new PooledByteBuffer$ClosedException();
+            throw new PooledByteBuffer.ClosedException();
         }
     }
 

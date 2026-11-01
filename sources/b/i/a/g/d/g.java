@@ -1,7 +1,7 @@
 package b.i.a.g.d;
 
 import android.content.Context;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.google.android.material.R$layout;
+import com.google.android.material.R;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateSelector;
 import com.google.android.material.datepicker.MaterialCalendarGridView;
@@ -123,7 +123,7 @@ public class g extends BaseAdapter {
         }
         TextView textView = (TextView) view;
         if (view == null) {
-            textView = (TextView) LayoutInflater.from(viewGroup.getContext()).inflate(R$layout.mtrl_calendar_day, viewGroup, false);
+            textView = (TextView) LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mtrl_calendar_day, viewGroup, false);
         }
         int iB = i - b();
         if (iB >= 0) {
@@ -138,7 +138,7 @@ public class g extends BaseAdapter {
                 long jK = this.k.k(i2);
                 if (this.k.l == Month.i().l) {
                     Locale locale = Locale.getDefault();
-                    if (Build$VERSION.SDK_INT >= 24) {
+                    if (Build.VERSION.SDK_INT >= 24) {
                         charSequence2 = l.c("MMMEd", locale).format(new Date(jK));
                     } else {
                         AtomicReference<k> atomicReference = l.a;
@@ -149,7 +149,7 @@ public class g extends BaseAdapter {
                     textView.setContentDescription(charSequence2);
                 } else {
                     Locale locale2 = Locale.getDefault();
-                    if (Build$VERSION.SDK_INT >= 24) {
+                    if (Build.VERSION.SDK_INT >= 24) {
                         charSequence = l.c("yMMMEd", locale2).format(new Date(jK));
                     } else {
                         AtomicReference<k> atomicReference2 = l.a;

@@ -7,6 +7,21 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: ModuleDescriptor.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public interface c0 extends m {
+
+    /* JADX INFO: compiled from: ModuleDescriptor.kt */
+    public final class a {
+        public static <R, D> R accept(c0 c0Var, o<R, D> oVar, D d) {
+            d0.z.d.m.checkNotNullParameter(c0Var, "this");
+            d0.z.d.m.checkNotNullParameter(oVar, "visitor");
+            return oVar.visitModuleDeclaration(c0Var, d);
+        }
+
+        public static m getContainingDeclaration(c0 c0Var) {
+            d0.z.d.m.checkNotNullParameter(c0Var, "this");
+            return null;
+        }
+    }
+
     d0.e0.p.d.m0.b.h getBuiltIns();
 
     <T> T getCapability(b0<T> b0Var);

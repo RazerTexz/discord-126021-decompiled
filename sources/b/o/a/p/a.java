@@ -8,12 +8,17 @@ import java.util.concurrent.LinkedBlockingQueue;
 /* JADX INFO: loaded from: classes3.dex */
 public class a extends c<byte[]> {
     public LinkedBlockingQueue<byte[]> i;
-    public a$a j;
+    public InterfaceC0175a j;
     public final int k;
 
-    public a(int i, @Nullable a$a a_a) {
+    /* JADX INFO: renamed from: b.o.a.p.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: ByteBufferFrameManager.java */
+    public interface InterfaceC0175a {
+    }
+
+    public a(int i, @Nullable InterfaceC0175a interfaceC0175a) {
         super(i, byte[].class);
-        this.j = a_a;
+        this.j = interfaceC0175a;
         this.k = 0;
     }
 

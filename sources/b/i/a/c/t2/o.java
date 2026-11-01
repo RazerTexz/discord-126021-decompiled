@@ -1,7 +1,6 @@
 package b.i.a.c.t2;
 
 import android.media.AudioAttributes;
-import android.media.AudioAttributes$Builder;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import b.i.a.c.w0;
@@ -18,7 +17,7 @@ public final class o implements w0 {
     public AudioAttributes o;
     public static final o j = new o(0, 0, 1, 1, null);
 
-    public o(int i, int i2, int i3, int i4, o$a o_a) {
+    public o(int i, int i2, int i3, int i4, a aVar) {
         this.k = i;
         this.l = i2;
         this.m = i3;
@@ -28,7 +27,7 @@ public final class o implements w0 {
     @RequiresApi(21)
     public AudioAttributes a() {
         if (this.o == null) {
-            AudioAttributes$Builder usage = new AudioAttributes$Builder().setContentType(this.k).setFlags(this.l).setUsage(this.m);
+            AudioAttributes.Builder usage = new AudioAttributes.Builder().setContentType(this.k).setFlags(this.l).setUsage(this.m);
             if (b.i.a.c.f3.e0.a >= 29) {
                 usage.setAllowedCapturePolicy(this.n);
             }

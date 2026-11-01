@@ -42,7 +42,7 @@ public final class a implements d0.e0.p.d.m0.c.h1.b {
         }
         d0.e0.p.d.m0.g.b packageFqName = aVar.getPackageFqName();
         m.checkNotNullExpressionValue(packageFqName, "classId.packageFqName");
-        c$a$a className = c.j.parseClassName(strAsString, packageFqName);
+        c.a.C0509a className = c.j.parseClassName(strAsString, packageFqName);
         if (className == null) {
             return null;
         }

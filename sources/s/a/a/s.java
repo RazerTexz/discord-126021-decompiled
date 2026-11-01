@@ -12,10 +12,10 @@ public final class s {
         Object objM97constructorimpl;
         Object objM97constructorimpl2;
         try {
-            d0.k$a k_a = d0.k.j;
+            d0.k.a aVar = d0.k.j;
             objM97constructorimpl = d0.k.m97constructorimpl(Class.forName("d0.w.i.a.a").getCanonicalName());
         } catch (Throwable th) {
-            d0.k$a k_a2 = d0.k.j;
+            d0.k.a aVar2 = d0.k.j;
             objM97constructorimpl = d0.k.m97constructorimpl(d0.l.createFailure(th));
         }
         if (d0.k.m99exceptionOrNullimpl(objM97constructorimpl) != null) {
@@ -23,10 +23,10 @@ public final class s {
         }
         a = (String) objM97constructorimpl;
         try {
-            d0.k$a k_a3 = d0.k.j;
+            d0.k.a aVar3 = d0.k.j;
             objM97constructorimpl2 = d0.k.m97constructorimpl(Class.forName("s.a.a.s").getCanonicalName());
         } catch (Throwable th2) {
-            d0.k$a k_a4 = d0.k.j;
+            d0.k.a aVar4 = d0.k.j;
             objM97constructorimpl2 = d0.k.m97constructorimpl(d0.l.createFailure(th2));
         }
         if (d0.k.m99exceptionOrNullimpl(objM97constructorimpl2) != null) {

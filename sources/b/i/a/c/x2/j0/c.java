@@ -1,10 +1,12 @@
 package b.i.a.c.x2.j0;
 
 import androidx.annotation.Nullable;
+import b.i.a.c.f3.e0;
 import b.i.a.c.f3.x;
 import b.i.a.c.x2.m;
+import b.i.a.c.x2.n;
 import b.i.a.c.x2.o;
-import b.i.a.c.x2.o$a;
+import b.i.a.c.x2.t;
 import java.util.Arrays;
 import java.util.Objects;
 import org.checkerframework.checker.nullness.qual.EnsuresNonNullIf;
@@ -17,7 +19,7 @@ public final class c extends i {
     public o n;
 
     @Nullable
-    public c$a o;
+    public a o;
 
     @Override // b.i.a.c.x2.j0.i
     public long c(x xVar) {
@@ -37,31 +39,31 @@ public final class c extends i {
 
     @Override // b.i.a.c.x2.j0.i
     @EnsuresNonNullIf(expression = {"#3.format"}, result = false)
-    public boolean d(x xVar, long j, i$b i_b) {
+    public boolean d(x xVar, long j, i.b bVar) {
         byte[] bArr = xVar.a;
         o oVar = this.n;
         if (oVar == null) {
             o oVar2 = new o(bArr, 17);
             this.n = oVar2;
-            i_b.a = oVar2.e(Arrays.copyOfRange(bArr, 9, xVar.c), null);
+            bVar.a = oVar2.e(Arrays.copyOfRange(bArr, 9, xVar.c), null);
             return true;
         }
         if ((bArr[0] & 127) == 3) {
-            o$a o_aL1 = b.c.a.a0.d.L1(xVar);
-            o oVarB = oVar.b(o_aL1);
+            o.a aVarL1 = b.c.a.a0.d.L1(xVar);
+            o oVarB = oVar.b(aVarL1);
             this.n = oVarB;
-            this.o = new c$a(oVarB, o_aL1);
+            this.o = new a(oVarB, aVarL1);
             return true;
         }
         if (!(bArr[0] == -1)) {
             return true;
         }
-        c$a c_a = this.o;
-        if (c_a != null) {
-            c_a.c = j;
-            i_b.f1240b = c_a;
+        a aVar = this.o;
+        if (aVar != null) {
+            aVar.c = j;
+            bVar.f1240b = aVar;
         }
-        Objects.requireNonNull(i_b.a);
+        Objects.requireNonNull(bVar.a);
         return false;
     }
 
@@ -71,6 +73,44 @@ public final class c extends i {
         if (z2) {
             this.n = null;
             this.o = null;
+        }
+    }
+
+    /* JADX INFO: compiled from: FlacReader.java */
+    public final class a implements g {
+        public o a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public o.a f1235b;
+        public long c = -1;
+        public long d = -1;
+
+        public a(o oVar, o.a aVar) {
+            this.a = oVar;
+            this.f1235b = aVar;
+        }
+
+        @Override // b.i.a.c.x2.j0.g
+        public t a() {
+            b.c.a.a0.d.D(this.c != -1);
+            return new n(this.a, this.c);
+        }
+
+        @Override // b.i.a.c.x2.j0.g
+        public long b(b.i.a.c.x2.i iVar) {
+            long j = this.d;
+            if (j < 0) {
+                return -1L;
+            }
+            long j2 = -(j + 2);
+            this.d = -1L;
+            return j2;
+        }
+
+        @Override // b.i.a.c.x2.j0.g
+        public void c(long j) {
+            long[] jArr = this.f1235b.a;
+            this.d = jArr[e0.e(jArr, j, true, true)];
         }
     }
 }

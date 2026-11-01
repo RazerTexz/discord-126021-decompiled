@@ -76,9 +76,49 @@ public final class i implements h {
     public final ReadWriteProperty v;
     public final ReadWriteProperty w;
 
+    /* JADX INFO: compiled from: DescriptorRendererOptionsImpl.kt */
+    public final class a extends d0.z.d.o implements Function1<c1, String> {
+        public static final a j = new a();
+
+        public a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ String invoke(c1 c1Var) {
+            return invoke2(c1Var);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final String invoke2(c1 c1Var) {
+            d0.z.d.m.checkNotNullParameter(c1Var, "it");
+            return "...";
+        }
+    }
+
+    /* JADX INFO: compiled from: DescriptorRendererOptionsImpl.kt */
+    public final class b extends d0.z.d.o implements Function1<c0, c0> {
+        public static final b j = new b();
+
+        public b() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ c0 invoke(c0 c0Var) {
+            return invoke2(c0Var);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final c0 invoke2(c0 c0Var) {
+            d0.z.d.m.checkNotNullParameter(c0Var, "it");
+            return c0Var;
+        }
+    }
+
     public i() {
-        b$c b_c = b$c.a;
-        this.c = new j(b_c, b_c, this);
+        d0.e0.p.d.m0.j.b.c cVar = d0.e0.p.d.m0.j.b.c.a;
+        this.c = new j(cVar, cVar, this);
         Boolean bool = Boolean.TRUE;
         this.d = new j(bool, bool, this);
         this.e = new j(bool, bool, this);
@@ -103,15 +143,15 @@ public final class i implements h {
         this.v = new j(bool2, bool2, this);
         this.w = new j(bool2, bool2, this);
         this.f3446x = new j(bool2, bool2, this);
-        i$b i_b = i$b.j;
-        this.f3447y = new j(i_b, i_b, this);
-        i$a i_a = i$a.j;
-        this.f3448z = new j(i_a, i_a, this);
+        b bVar = b.j;
+        this.f3447y = new j(bVar, bVar, this);
+        a aVar = a.j;
+        this.f3448z = new j(aVar, aVar, this);
         this.A = new j(bool, bool, this);
         m mVar = m.RENDER_OPEN;
         this.B = new j(mVar, mVar, this);
-        c$l$a c_l_a = c$l$a.a;
-        this.C = new j(c_l_a, c_l_a, this);
+        c.l.a aVar2 = c.l.a.a;
+        this.C = new j(aVar2, aVar2, this);
         p pVar = p.j;
         this.D = new j(pVar, pVar, this);
         n nVar = n.ALL;
@@ -127,8 +167,8 @@ public final class i implements h {
         Set<d0.e0.p.d.m0.g.b> internalAnnotationsForResolve = k.a.getInternalAnnotationsForResolve();
         this.L = new j(internalAnnotationsForResolve, internalAnnotationsForResolve, this);
         this.M = new j(null, null, this);
-        a aVar = a.NO_ARGUMENTS;
-        this.N = new j(aVar, aVar, this);
+        d0.e0.p.d.m0.j.a aVar3 = d0.e0.p.d.m0.j.a.NO_ARGUMENTS;
+        this.N = new j(aVar3, aVar3, this);
         this.O = new j(bool2, bool2, this);
         this.P = new j(bool, bool, this);
         this.Q = new j(bool, bool, this);
@@ -179,8 +219,8 @@ public final class i implements h {
     }
 
     @Override // d0.e0.p.d.m0.j.h
-    public a getAnnotationArgumentsRenderingPolicy() {
-        return (a) this.N.getValue(this, a[37]);
+    public d0.e0.p.d.m0.j.a getAnnotationArgumentsRenderingPolicy() {
+        return (d0.e0.p.d.m0.j.a) this.N.getValue(this, a[37]);
     }
 
     public Function1<d0.e0.p.d.m0.c.g1.c, Boolean> getAnnotationFilter() {
@@ -195,8 +235,8 @@ public final class i implements h {
         return ((Boolean) this.j.getValue(this, a[7])).booleanValue();
     }
 
-    public b getClassifierNamePolicy() {
-        return (b) this.c.getValue(this, a[0]);
+    public d0.e0.p.d.m0.j.b getClassifierNamePolicy() {
+        return (d0.e0.p.d.m0.j.b) this.c.getValue(this, a[0]);
     }
 
     @Override // d0.e0.p.d.m0.j.h
@@ -231,11 +271,11 @@ public final class i implements h {
     }
 
     public boolean getIncludeAnnotationArguments() {
-        return h$a.getIncludeAnnotationArguments(this);
+        return h.a.getIncludeAnnotationArguments(this);
     }
 
     public boolean getIncludeEmptyAnnotationArguments() {
-        return h$a.getIncludeEmptyAnnotationArguments(this);
+        return h.a.getIncludeEmptyAnnotationArguments(this);
     }
 
     public boolean getIncludePropertyConstant() {
@@ -342,8 +382,8 @@ public final class i implements h {
         return ((Boolean) this.l.getValue(this, a[9])).booleanValue();
     }
 
-    public c$l getValueParametersHandler() {
-        return (c$l) this.C.getValue(this, a[26]);
+    public c.l getValueParametersHandler() {
+        return (c.l) this.C.getValue(this, a[26]);
     }
 
     public boolean getVerbose() {
@@ -379,13 +419,13 @@ public final class i implements h {
     }
 
     @Override // d0.e0.p.d.m0.j.h
-    public void setAnnotationArgumentsRenderingPolicy(a aVar) {
+    public void setAnnotationArgumentsRenderingPolicy(d0.e0.p.d.m0.j.a aVar) {
         d0.z.d.m.checkNotNullParameter(aVar, "<set-?>");
         this.N.setValue(this, a[37], aVar);
     }
 
     @Override // d0.e0.p.d.m0.j.h
-    public void setClassifierNamePolicy(b bVar) {
+    public void setClassifierNamePolicy(d0.e0.p.d.m0.j.b bVar) {
         d0.z.d.m.checkNotNullParameter(bVar, "<set-?>");
         this.c.setValue(this, a[0], bVar);
     }

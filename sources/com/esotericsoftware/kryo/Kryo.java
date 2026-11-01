@@ -1,56 +1,15 @@
 package com.esotericsoftware.kryo;
 
-import b.e.a.a$a;
+import b.e.b.b;
 import com.esotericsoftware.kryo.factories.PseudoSerializerFactory;
 import com.esotericsoftware.kryo.factories.ReflectionSerializerFactory;
 import com.esotericsoftware.kryo.factories.SerializerFactory;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
-import com.esotericsoftware.kryo.serializers.ClosureSerializer$Closure;
+import com.esotericsoftware.kryo.serializers.ClosureSerializer;
 import com.esotericsoftware.kryo.serializers.CollectionSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultArraySerializers$BooleanArraySerializer;
-import com.esotericsoftware.kryo.serializers.DefaultArraySerializers$ByteArraySerializer;
-import com.esotericsoftware.kryo.serializers.DefaultArraySerializers$CharArraySerializer;
-import com.esotericsoftware.kryo.serializers.DefaultArraySerializers$DoubleArraySerializer;
-import com.esotericsoftware.kryo.serializers.DefaultArraySerializers$FloatArraySerializer;
-import com.esotericsoftware.kryo.serializers.DefaultArraySerializers$IntArraySerializer;
-import com.esotericsoftware.kryo.serializers.DefaultArraySerializers$LongArraySerializer;
-import com.esotericsoftware.kryo.serializers.DefaultArraySerializers$ObjectArraySerializer;
-import com.esotericsoftware.kryo.serializers.DefaultArraySerializers$ShortArraySerializer;
-import com.esotericsoftware.kryo.serializers.DefaultArraySerializers$StringArraySerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$BigDecimalSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$BigIntegerSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$BooleanSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$ByteSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$CalendarSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$CharSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$CharsetSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$ClassSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$CollectionsEmptyListSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$CollectionsEmptyMapSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$CollectionsEmptySetSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$CollectionsSingletonListSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$CollectionsSingletonMapSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$CollectionsSingletonSetSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$CurrencySerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$DateSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$DoubleSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$EnumSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$EnumSetSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$FloatSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$IntSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$KryoSerializableSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$LocaleSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$LongSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$ShortSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$StringBufferSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$StringBuilderSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$StringSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$TimeZoneSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$TreeMapSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$TreeSetSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$URLSerializer;
-import com.esotericsoftware.kryo.serializers.DefaultSerializers$VoidSerializer;
+import com.esotericsoftware.kryo.serializers.DefaultArraySerializers;
+import com.esotericsoftware.kryo.serializers.DefaultSerializers;
 import com.esotericsoftware.kryo.serializers.FieldSerializer;
 import com.esotericsoftware.kryo.serializers.FieldSerializerConfig;
 import com.esotericsoftware.kryo.serializers.GenericsResolver;
@@ -66,6 +25,7 @@ import com.esotericsoftware.kryo.util.MapReferenceResolver;
 import com.esotericsoftware.kryo.util.ObjectMap;
 import com.esotericsoftware.kryo.util.Util;
 import h0.b.b.a;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Proxy;
@@ -100,7 +60,7 @@ public class Kryo {
     private boolean copyReferences;
     private boolean copyShallow;
     private SerializerFactory defaultSerializer;
-    private final ArrayList<Kryo$DefaultSerializerEntry> defaultSerializers;
+    private final ArrayList<DefaultSerializerEntry> defaultSerializers;
     private int depth;
     private FieldSerializerConfig fieldSerializerConfig;
     private GenericsResolver genericsResolver;
@@ -121,6 +81,120 @@ public class Kryo {
     private volatile Thread thread;
     private boolean warnUnregisteredClasses;
 
+    public class DefaultInstantiatorStrategy implements a {
+        private a fallbackStrategy;
+
+        /* JADX INFO: renamed from: com.esotericsoftware.kryo.Kryo$DefaultInstantiatorStrategy$1, reason: invalid class name */
+        public class AnonymousClass1 implements h0.b.a.a {
+            public final /* synthetic */ b val$access;
+            public final /* synthetic */ Class val$type;
+
+            public AnonymousClass1(b bVar, Class cls) {
+                this.val$access = bVar;
+                this.val$type = cls;
+            }
+
+            @Override // h0.b.a.a
+            public Object newInstance() {
+                try {
+                    return this.val$access.c();
+                } catch (Exception e) {
+                    StringBuilder sbU = b.d.b.a.a.U("Error constructing instance of class: ");
+                    sbU.append(Util.className(this.val$type));
+                    throw new KryoException(sbU.toString(), e);
+                }
+            }
+        }
+
+        /* JADX INFO: renamed from: com.esotericsoftware.kryo.Kryo$DefaultInstantiatorStrategy$2, reason: invalid class name */
+        public class AnonymousClass2 implements h0.b.a.a {
+            public final /* synthetic */ Constructor val$constructor;
+            public final /* synthetic */ Class val$type;
+
+            public AnonymousClass2(Constructor constructor, Class cls) {
+                this.val$constructor = constructor;
+                this.val$type = cls;
+            }
+
+            @Override // h0.b.a.a
+            public Object newInstance() {
+                try {
+                    return this.val$constructor.newInstance(new Object[0]);
+                } catch (Exception e) {
+                    StringBuilder sbU = b.d.b.a.a.U("Error constructing instance of class: ");
+                    sbU.append(Util.className(this.val$type));
+                    throw new KryoException(sbU.toString(), e);
+                }
+            }
+        }
+
+        public DefaultInstantiatorStrategy() {
+        }
+
+        public a getFallbackInstantiatorStrategy() {
+            return this.fallbackStrategy;
+        }
+
+        @Override // h0.b.b.a
+        public h0.b.a.a newInstantiatorOf(Class cls) {
+            Constructor declaredConstructor;
+            if (!Util.IS_ANDROID) {
+                if (!((cls.getEnclosingClass() == null || !cls.isMemberClass() || Modifier.isStatic(cls.getModifiers())) ? false : true)) {
+                    try {
+                        return new AnonymousClass1(b.a(cls), cls);
+                    } catch (Exception unused) {
+                    }
+                }
+            }
+            try {
+                try {
+                    declaredConstructor = cls.getConstructor(null);
+                } catch (Exception unused2) {
+                    declaredConstructor = cls.getDeclaredConstructor(null);
+                    declaredConstructor.setAccessible(true);
+                }
+                return new AnonymousClass2(declaredConstructor, cls);
+            } catch (Exception unused3) {
+                a aVar = this.fallbackStrategy;
+                if (aVar != null) {
+                    return aVar.newInstantiatorOf(cls);
+                }
+                if (cls.isMemberClass() && !Modifier.isStatic(cls.getModifiers())) {
+                    StringBuilder sbU = b.d.b.a.a.U("Class cannot be created (non-static member class): ");
+                    sbU.append(Util.className(cls));
+                    throw new KryoException(sbU.toString());
+                }
+                StringBuilder sbU2 = b.d.b.a.a.U("Class cannot be created (missing no-arg constructor): ");
+                sbU2.append(Util.className(cls));
+                StringBuilder sb = new StringBuilder(sbU2.toString());
+                if (cls.getSimpleName().equals("")) {
+                    b.d.b.a.a.s0(sb, "\n\tThis is an anonymous class, which is not serializable by default in Kryo. Possible solutions: ", "1. Remove uses of anonymous classes, including double brace initialization, from the containing ", "class. This is the safest solution, as anonymous classes don't have predictable names for serialization.", "\n\t2. Register a FieldSerializer for the containing class and call ");
+                    sb.append("FieldSerializer#setIgnoreSyntheticFields(false) on it. This is not safe but may be sufficient temporarily. ");
+                    sb.append("Use at your own risk.");
+                }
+                throw new KryoException(sb.toString());
+            }
+        }
+
+        public void setFallbackInstantiatorStrategy(a aVar) {
+            this.fallbackStrategy = aVar;
+        }
+
+        public DefaultInstantiatorStrategy(a aVar) {
+            this.fallbackStrategy = aVar;
+        }
+    }
+
+    public final class DefaultSerializerEntry {
+        public final SerializerFactory serializerFactory;
+        public final Class type;
+
+        public DefaultSerializerEntry(Class cls, SerializerFactory serializerFactory) {
+            this.type = cls;
+            this.serializerFactory = serializerFactory;
+        }
+    }
+
     public Kryo() {
         this(new DefaultClassResolver(), new MapReferenceResolver(), new DefaultStreamFactory());
     }
@@ -132,13 +206,13 @@ public class Kryo {
         if (serializer == null) {
             throw new IllegalArgumentException("serializer cannot be null.");
         }
-        Kryo$DefaultSerializerEntry kryo$DefaultSerializerEntry = new Kryo$DefaultSerializerEntry(cls, new PseudoSerializerFactory(serializer));
-        ArrayList<Kryo$DefaultSerializerEntry> arrayList = this.defaultSerializers;
-        arrayList.add(arrayList.size() - this.lowPriorityDefaultSerializerCount, kryo$DefaultSerializerEntry);
+        DefaultSerializerEntry defaultSerializerEntry = new DefaultSerializerEntry(cls, new PseudoSerializerFactory(serializer));
+        ArrayList<DefaultSerializerEntry> arrayList = this.defaultSerializers;
+        arrayList.add(arrayList.size() - this.lowPriorityDefaultSerializerCount, defaultSerializerEntry);
     }
 
     private void beginObject() {
-        a$a a_a = b.e.a.a.a;
+        b.e.a.a.C0064a c0064a = b.e.a.a.a;
         int i = this.depth;
         if (i != this.maxDepth) {
             this.depth = i + 1;
@@ -172,7 +246,7 @@ public class Kryo {
             if (this.needsCopyReference != null) {
                 reference(t3);
             }
-            a$a a_a = b.e.a.a.a;
+            b.e.a.a.C0064a c0064a = b.e.a.a.a;
             return t3;
         } finally {
             int i = this.copyDepth - 1;
@@ -204,7 +278,7 @@ public class Kryo {
             if (this.needsCopyReference != null) {
                 reference(t3);
             }
-            a$a a_a = b.e.a.a.a;
+            b.e.a.a.C0064a c0064a = b.e.a.a.a;
             return t3;
         } finally {
             this.copyShallow = false;
@@ -246,9 +320,9 @@ public class Kryo {
         }
         int size = this.defaultSerializers.size();
         for (int i = 0; i < size; i++) {
-            Kryo$DefaultSerializerEntry kryo$DefaultSerializerEntry = this.defaultSerializers.get(i);
-            if (kryo$DefaultSerializerEntry.type.isAssignableFrom(cls)) {
-                return kryo$DefaultSerializerEntry.serializerFactory.makeSerializer(this, cls);
+            DefaultSerializerEntry defaultSerializerEntry = this.defaultSerializers.get(i);
+            if (defaultSerializerEntry.type.isAssignableFrom(cls)) {
+                return defaultSerializerEntry.serializerFactory.makeSerializer(this, cls);
             }
         }
         return newDefaultSerializer(cls);
@@ -324,7 +398,7 @@ public class Kryo {
         } else if (EnumSet.class.isAssignableFrom(cls)) {
             registration = this.classResolver.getRegistration(EnumSet.class);
         } else if (isClosure(cls)) {
-            registration = this.classResolver.getRegistration(ClosureSerializer$Closure.class);
+            registration = this.classResolver.getRegistration(ClosureSerializer.Closure.class);
         }
         if (registration != null) {
             return registration;
@@ -428,7 +502,7 @@ public class Kryo {
             } else {
                 obj = registration.getSerializer().read(this, input, type);
             }
-            a$a a_a = b.e.a.a.a;
+            b.e.a.a.C0064a c0064a = b.e.a.a.a;
             return obj;
         } finally {
             int i = this.depth - 1;
@@ -461,7 +535,7 @@ public class Kryo {
             } else {
                 t = (T) getRegistration(cls).getSerializer().read(this, input, cls);
             }
-            a$a a_a = b.e.a.a.a;
+            b.e.a.a.C0064a c0064a = b.e.a.a.a;
             return t;
         } finally {
             int i = this.depth - 1;
@@ -494,12 +568,12 @@ public class Kryo {
             } else {
                 Serializer serializer = getRegistration(cls).getSerializer();
                 if (!serializer.getAcceptsNull() && input.readByte() == 0) {
-                    a$a a_a = b.e.a.a.a;
+                    b.e.a.a.C0064a c0064a = b.e.a.a.a;
                     return null;
                 }
                 t = (T) serializer.read(this, input, cls);
             }
-            a$a a_a2 = b.e.a.a.a;
+            b.e.a.a.C0064a c0064a2 = b.e.a.a.a;
             return t;
         } finally {
             int i = this.depth - 1;
@@ -519,7 +593,7 @@ public class Kryo {
         if (z2) {
             varInt = input.readVarInt(true);
             if (varInt == 0) {
-                a$a a_a = b.e.a.a.a;
+                b.e.a.a.C0064a c0064a = b.e.a.a.a;
                 this.readObject = null;
                 return -1;
             }
@@ -536,12 +610,12 @@ public class Kryo {
         }
         if (varInt == 1) {
             int iNextReadId = this.referenceResolver.nextReadId(cls);
-            a$a a_a2 = b.e.a.a.a;
+            b.e.a.a.C0064a c0064a2 = b.e.a.a.a;
             this.readReferenceIds.add(iNextReadId);
             return this.readReferenceIds.size;
         }
         this.readObject = this.referenceResolver.getReadObject(cls, varInt - 2);
-        a$a a_a3 = b.e.a.a.a;
+        b.e.a.a.C0064a c0064a3 = b.e.a.a.a;
         return -1;
     }
 
@@ -585,7 +659,7 @@ public class Kryo {
         if (identityMap != null) {
             identityMap.clear(2048);
         }
-        a$a a_a = b.e.a.a.a;
+        b.e.a.a.C0064a c0064a = b.e.a.a.a;
     }
 
     @Deprecated
@@ -632,7 +706,7 @@ public class Kryo {
         }
         this.references = true;
         this.referenceResolver = referenceResolver;
-        a$a a_a = b.e.a.a.a;
+        b.e.a.a.C0064a c0064a = b.e.a.a.a;
     }
 
     public boolean setReferences(boolean z2) {
@@ -643,13 +717,13 @@ public class Kryo {
         if (z2 && this.referenceResolver == null) {
             this.referenceResolver = new MapReferenceResolver();
         }
-        a$a a_a = b.e.a.a.a;
+        b.e.a.a.C0064a c0064a = b.e.a.a.a;
         return !z2;
     }
 
     public void setRegistrationRequired(boolean z2) {
         this.registrationRequired = z2;
-        a$a a_a = b.e.a.a.a;
+        b.e.a.a.C0064a c0064a = b.e.a.a.a;
     }
 
     public void setStreamFactory(StreamFactory streamFactory) {
@@ -658,7 +732,7 @@ public class Kryo {
 
     public void setWarnUnregisteredClasses(boolean z2) {
         this.warnUnregisteredClasses = z2;
-        a$a a_a = b.e.a.a.a;
+        b.e.a.a.C0064a c0064a = b.e.a.a.a;
     }
 
     public String unregisteredClassMessage(Class cls) {
@@ -710,7 +784,7 @@ public class Kryo {
                 }
                 return;
             }
-            a$a a_a = b.e.a.a.a;
+            b.e.a.a.C0064a c0064a = b.e.a.a.a;
             registrationWriteClass.getSerializer().write(this, output, obj);
             int i3 = this.depth - 1;
             this.depth = i3;
@@ -739,7 +813,7 @@ public class Kryo {
             if (this.references && writeReferenceOrNull(output, obj, false)) {
                 getRegistration(obj.getClass()).getSerializer().setGenerics(this, null);
             } else {
-                a$a a_a = b.e.a.a.a;
+                b.e.a.a.C0064a c0064a = b.e.a.a.a;
                 getRegistration(obj.getClass()).getSerializer().write(this, output, obj);
             }
         } finally {
@@ -774,7 +848,7 @@ public class Kryo {
                 }
             } else if (!serializer.getAcceptsNull()) {
                 if (obj == null) {
-                    a$a a_a = b.e.a.a.a;
+                    b.e.a.a.C0064a c0064a = b.e.a.a.a;
                     output.writeByte((byte) 0);
                     if (i == 0) {
                         if (z2) {
@@ -787,7 +861,7 @@ public class Kryo {
                 }
                 output.writeByte((byte) 1);
             }
-            a$a a_a2 = b.e.a.a.a;
+            b.e.a.a.C0064a c0064a2 = b.e.a.a.a;
             serializer.write(this, output, obj);
         } finally {
             i = this.depth - 1;
@@ -800,7 +874,7 @@ public class Kryo {
 
     public boolean writeReferenceOrNull(Output output, Object obj, boolean z2) {
         if (obj == null) {
-            a$a a_a = b.e.a.a.a;
+            b.e.a.a.C0064a c0064a = b.e.a.a.a;
             output.writeVarInt(0, true);
             return true;
         }
@@ -812,13 +886,13 @@ public class Kryo {
         }
         int writtenId = this.referenceResolver.getWrittenId(obj);
         if (writtenId != -1) {
-            a$a a_a2 = b.e.a.a.a;
+            b.e.a.a.C0064a c0064a2 = b.e.a.a.a;
             output.writeVarInt(writtenId + 2, true);
             return true;
         }
         this.referenceResolver.addWrittenObject(obj);
         output.writeVarInt(1, true);
-        a$a a_a3 = b.e.a.a.a;
+        b.e.a.a.C0064a c0064a3 = b.e.a.a.a;
         return false;
     }
 
@@ -845,10 +919,10 @@ public class Kryo {
 
     public Kryo(ClassResolver classResolver, ReferenceResolver referenceResolver, StreamFactory streamFactory) {
         this.defaultSerializer = new ReflectionSerializerFactory(FieldSerializer.class);
-        ArrayList<Kryo$DefaultSerializerEntry> arrayList = new ArrayList<>(33);
+        ArrayList<DefaultSerializerEntry> arrayList = new ArrayList<>(33);
         this.defaultSerializers = arrayList;
         this.classLoader = getClass().getClassLoader();
-        this.strategy = new Kryo$DefaultInstantiatorStrategy();
+        this.strategy = new DefaultInstantiatorStrategy();
         this.maxDepth = Integer.MAX_VALUE;
         this.autoReset = true;
         this.readReferenceIds = new IntArray(0);
@@ -866,54 +940,54 @@ public class Kryo {
                 referenceResolver.setKryo(this);
                 this.references = true;
             }
-            addDefaultSerializer(byte[].class, DefaultArraySerializers$ByteArraySerializer.class);
-            addDefaultSerializer(char[].class, DefaultArraySerializers$CharArraySerializer.class);
-            addDefaultSerializer(short[].class, DefaultArraySerializers$ShortArraySerializer.class);
-            addDefaultSerializer(int[].class, DefaultArraySerializers$IntArraySerializer.class);
-            addDefaultSerializer(long[].class, DefaultArraySerializers$LongArraySerializer.class);
-            addDefaultSerializer(float[].class, DefaultArraySerializers$FloatArraySerializer.class);
-            addDefaultSerializer(double[].class, DefaultArraySerializers$DoubleArraySerializer.class);
-            addDefaultSerializer(boolean[].class, DefaultArraySerializers$BooleanArraySerializer.class);
-            addDefaultSerializer(String[].class, DefaultArraySerializers$StringArraySerializer.class);
-            addDefaultSerializer(Object[].class, DefaultArraySerializers$ObjectArraySerializer.class);
-            addDefaultSerializer(KryoSerializable.class, DefaultSerializers$KryoSerializableSerializer.class);
-            addDefaultSerializer(BigInteger.class, DefaultSerializers$BigIntegerSerializer.class);
-            addDefaultSerializer(BigDecimal.class, DefaultSerializers$BigDecimalSerializer.class);
-            addDefaultSerializer(Class.class, DefaultSerializers$ClassSerializer.class);
-            addDefaultSerializer(Date.class, DefaultSerializers$DateSerializer.class);
-            addDefaultSerializer(Enum.class, DefaultSerializers$EnumSerializer.class);
-            addDefaultSerializer(EnumSet.class, DefaultSerializers$EnumSetSerializer.class);
-            addDefaultSerializer(Currency.class, DefaultSerializers$CurrencySerializer.class);
-            addDefaultSerializer(StringBuffer.class, DefaultSerializers$StringBufferSerializer.class);
-            addDefaultSerializer(StringBuilder.class, DefaultSerializers$StringBuilderSerializer.class);
-            addDefaultSerializer(Collections.EMPTY_LIST.getClass(), DefaultSerializers$CollectionsEmptyListSerializer.class);
-            addDefaultSerializer(Collections.EMPTY_MAP.getClass(), DefaultSerializers$CollectionsEmptyMapSerializer.class);
-            addDefaultSerializer(Collections.EMPTY_SET.getClass(), DefaultSerializers$CollectionsEmptySetSerializer.class);
-            addDefaultSerializer(Collections.singletonList(null).getClass(), DefaultSerializers$CollectionsSingletonListSerializer.class);
-            addDefaultSerializer(Collections.singletonMap(null, null).getClass(), DefaultSerializers$CollectionsSingletonMapSerializer.class);
-            addDefaultSerializer(Collections.singleton(null).getClass(), DefaultSerializers$CollectionsSingletonSetSerializer.class);
-            addDefaultSerializer(TreeSet.class, DefaultSerializers$TreeSetSerializer.class);
+            addDefaultSerializer(byte[].class, DefaultArraySerializers.ByteArraySerializer.class);
+            addDefaultSerializer(char[].class, DefaultArraySerializers.CharArraySerializer.class);
+            addDefaultSerializer(short[].class, DefaultArraySerializers.ShortArraySerializer.class);
+            addDefaultSerializer(int[].class, DefaultArraySerializers.IntArraySerializer.class);
+            addDefaultSerializer(long[].class, DefaultArraySerializers.LongArraySerializer.class);
+            addDefaultSerializer(float[].class, DefaultArraySerializers.FloatArraySerializer.class);
+            addDefaultSerializer(double[].class, DefaultArraySerializers.DoubleArraySerializer.class);
+            addDefaultSerializer(boolean[].class, DefaultArraySerializers.BooleanArraySerializer.class);
+            addDefaultSerializer(String[].class, DefaultArraySerializers.StringArraySerializer.class);
+            addDefaultSerializer(Object[].class, DefaultArraySerializers.ObjectArraySerializer.class);
+            addDefaultSerializer(KryoSerializable.class, DefaultSerializers.KryoSerializableSerializer.class);
+            addDefaultSerializer(BigInteger.class, DefaultSerializers.BigIntegerSerializer.class);
+            addDefaultSerializer(BigDecimal.class, DefaultSerializers.BigDecimalSerializer.class);
+            addDefaultSerializer(Class.class, DefaultSerializers.ClassSerializer.class);
+            addDefaultSerializer(Date.class, DefaultSerializers.DateSerializer.class);
+            addDefaultSerializer(Enum.class, DefaultSerializers.EnumSerializer.class);
+            addDefaultSerializer(EnumSet.class, DefaultSerializers.EnumSetSerializer.class);
+            addDefaultSerializer(Currency.class, DefaultSerializers.CurrencySerializer.class);
+            addDefaultSerializer(StringBuffer.class, DefaultSerializers.StringBufferSerializer.class);
+            addDefaultSerializer(StringBuilder.class, DefaultSerializers.StringBuilderSerializer.class);
+            addDefaultSerializer(Collections.EMPTY_LIST.getClass(), DefaultSerializers.CollectionsEmptyListSerializer.class);
+            addDefaultSerializer(Collections.EMPTY_MAP.getClass(), DefaultSerializers.CollectionsEmptyMapSerializer.class);
+            addDefaultSerializer(Collections.EMPTY_SET.getClass(), DefaultSerializers.CollectionsEmptySetSerializer.class);
+            addDefaultSerializer(Collections.singletonList(null).getClass(), DefaultSerializers.CollectionsSingletonListSerializer.class);
+            addDefaultSerializer(Collections.singletonMap(null, null).getClass(), DefaultSerializers.CollectionsSingletonMapSerializer.class);
+            addDefaultSerializer(Collections.singleton(null).getClass(), DefaultSerializers.CollectionsSingletonSetSerializer.class);
+            addDefaultSerializer(TreeSet.class, DefaultSerializers.TreeSetSerializer.class);
             addDefaultSerializer(Collection.class, CollectionSerializer.class);
-            addDefaultSerializer(TreeMap.class, DefaultSerializers$TreeMapSerializer.class);
+            addDefaultSerializer(TreeMap.class, DefaultSerializers.TreeMapSerializer.class);
             addDefaultSerializer(Map.class, MapSerializer.class);
-            addDefaultSerializer(TimeZone.class, DefaultSerializers$TimeZoneSerializer.class);
-            addDefaultSerializer(Calendar.class, DefaultSerializers$CalendarSerializer.class);
-            addDefaultSerializer(Locale.class, DefaultSerializers$LocaleSerializer.class);
-            addDefaultSerializer(Charset.class, DefaultSerializers$CharsetSerializer.class);
-            addDefaultSerializer(URL.class, DefaultSerializers$URLSerializer.class);
+            addDefaultSerializer(TimeZone.class, DefaultSerializers.TimeZoneSerializer.class);
+            addDefaultSerializer(Calendar.class, DefaultSerializers.CalendarSerializer.class);
+            addDefaultSerializer(Locale.class, DefaultSerializers.LocaleSerializer.class);
+            addDefaultSerializer(Charset.class, DefaultSerializers.CharsetSerializer.class);
+            addDefaultSerializer(URL.class, DefaultSerializers.URLSerializer.class);
             OptionalSerializers.addDefaultSerializers(this);
             TimeSerializers.addDefaultSerializers(this);
             this.lowPriorityDefaultSerializerCount = arrayList.size();
-            register(Integer.TYPE, new DefaultSerializers$IntSerializer());
-            register(String.class, new DefaultSerializers$StringSerializer());
-            register(Float.TYPE, new DefaultSerializers$FloatSerializer());
-            register(Boolean.TYPE, new DefaultSerializers$BooleanSerializer());
-            register(Byte.TYPE, new DefaultSerializers$ByteSerializer());
-            register(Character.TYPE, new DefaultSerializers$CharSerializer());
-            register(Short.TYPE, new DefaultSerializers$ShortSerializer());
-            register(Long.TYPE, new DefaultSerializers$LongSerializer());
-            register(Double.TYPE, new DefaultSerializers$DoubleSerializer());
-            register(Void.TYPE, new DefaultSerializers$VoidSerializer());
+            register(Integer.TYPE, new DefaultSerializers.IntSerializer());
+            register(String.class, new DefaultSerializers.StringSerializer());
+            register(Float.TYPE, new DefaultSerializers.FloatSerializer());
+            register(Boolean.TYPE, new DefaultSerializers.BooleanSerializer());
+            register(Byte.TYPE, new DefaultSerializers.ByteSerializer());
+            register(Character.TYPE, new DefaultSerializers.CharSerializer());
+            register(Short.TYPE, new DefaultSerializers.ShortSerializer());
+            register(Long.TYPE, new DefaultSerializers.LongSerializer());
+            register(Double.TYPE, new DefaultSerializers.DoubleSerializer());
+            register(Void.TYPE, new DefaultSerializers.VoidSerializer());
             return;
         }
         throw new IllegalArgumentException("classResolver cannot be null.");
@@ -924,9 +998,9 @@ public class Kryo {
             throw new IllegalArgumentException("type cannot be null.");
         }
         if (serializerFactory != null) {
-            Kryo$DefaultSerializerEntry kryo$DefaultSerializerEntry = new Kryo$DefaultSerializerEntry(cls, serializerFactory);
-            ArrayList<Kryo$DefaultSerializerEntry> arrayList = this.defaultSerializers;
-            arrayList.add(arrayList.size() - this.lowPriorityDefaultSerializerCount, kryo$DefaultSerializerEntry);
+            DefaultSerializerEntry defaultSerializerEntry = new DefaultSerializerEntry(cls, serializerFactory);
+            ArrayList<DefaultSerializerEntry> arrayList = this.defaultSerializers;
+            arrayList.add(arrayList.size() - this.lowPriorityDefaultSerializerCount, defaultSerializerEntry);
             return;
         }
         throw new IllegalArgumentException("serializerFactory cannot be null.");
@@ -953,9 +1027,9 @@ public class Kryo {
             throw new IllegalArgumentException("type cannot be null.");
         }
         if (cls2 != null) {
-            Kryo$DefaultSerializerEntry kryo$DefaultSerializerEntry = new Kryo$DefaultSerializerEntry(cls, new ReflectionSerializerFactory(cls2));
-            ArrayList<Kryo$DefaultSerializerEntry> arrayList = this.defaultSerializers;
-            arrayList.add(arrayList.size() - this.lowPriorityDefaultSerializerCount, kryo$DefaultSerializerEntry);
+            DefaultSerializerEntry defaultSerializerEntry = new DefaultSerializerEntry(cls, new ReflectionSerializerFactory(cls2));
+            ArrayList<DefaultSerializerEntry> arrayList = this.defaultSerializers;
+            arrayList.add(arrayList.size() - this.lowPriorityDefaultSerializerCount, defaultSerializerEntry);
             return;
         }
         throw new IllegalArgumentException("serializerClass cannot be null.");
@@ -965,7 +1039,7 @@ public class Kryo {
         int id2 = registration.getId();
         if (id2 >= 0) {
             getRegistration(registration.getId());
-            a$a a_a = b.e.a.a.a;
+            b.e.a.a.C0064a c0064a = b.e.a.a.a;
             return this.classResolver.register(registration);
         }
         throw new IllegalArgumentException(b.d.b.a.a.q("id must be > 0: ", id2));
@@ -994,7 +1068,7 @@ public class Kryo {
                     }
                     return;
                 } else {
-                    a$a a_a = b.e.a.a.a;
+                    b.e.a.a.C0064a c0064a = b.e.a.a.a;
                     serializer.write(this, output, obj);
                     if (i == 0) {
                         if (z2) {
@@ -1044,7 +1118,7 @@ public class Kryo {
             if (this.needsCopyReference != null) {
                 reference(t2);
             }
-            a$a a_a = b.e.a.a.a;
+            b.e.a.a.C0064a c0064a = b.e.a.a.a;
             return t2;
         } finally {
             int i = this.copyDepth - 1;
@@ -1078,7 +1152,7 @@ public class Kryo {
                 } else {
                     t = (T) serializer.read(this, input, cls);
                 }
-                a$a a_a = b.e.a.a.a;
+                b.e.a.a.C0064a c0064a = b.e.a.a.a;
                 return t;
             } finally {
                 int i = this.depth - 1;
@@ -1114,7 +1188,7 @@ public class Kryo {
                     }
                 } else if (!serializer.getAcceptsNull()) {
                     if (obj == null) {
-                        a$a a_a = b.e.a.a.a;
+                        b.e.a.a.C0064a c0064a = b.e.a.a.a;
                         output.writeByte((byte) 0);
                         if (i == 0) {
                             if (z2) {
@@ -1127,7 +1201,7 @@ public class Kryo {
                     }
                     output.writeByte((byte) 1);
                 }
-                a$a a_a2 = b.e.a.a.a;
+                b.e.a.a.C0064a c0064a2 = b.e.a.a.a;
                 serializer.write(this, output, obj);
                 if (i == 0) {
                     if (z2) {
@@ -1174,7 +1248,7 @@ public class Kryo {
             if (this.needsCopyReference != null) {
                 reference(t2);
             }
-            a$a a_a = b.e.a.a.a;
+            b.e.a.a.C0064a c0064a = b.e.a.a.a;
             return t2;
         } finally {
             this.copyShallow = false;
@@ -1212,12 +1286,12 @@ public class Kryo {
                     }
                 } else {
                     if (!serializer.getAcceptsNull() && input.readByte() == 0) {
-                        a$a a_a = b.e.a.a.a;
+                        b.e.a.a.C0064a c0064a = b.e.a.a.a;
                         return null;
                     }
                     t = (T) serializer.read(this, input, cls);
                 }
-                a$a a_a2 = b.e.a.a.a;
+                b.e.a.a.C0064a c0064a2 = b.e.a.a.a;
                 return t;
             } finally {
                 int i = this.depth - 1;

@@ -4,8 +4,6 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.text.TextUtils;
-import b.i.a.f.h.l.a1$a;
-import b.i.a.f.h.l.c1$a;
 import com.google.android.gms.measurement.internal.zzap;
 import com.google.android.gms.measurement.internal.zzn;
 import java.util.Iterator;
@@ -60,19 +58,19 @@ public final /* synthetic */ class y4 implements Runnable {
             zzapVar = new zzap(bundle2);
         }
         q9 q9VarM = gVarK.m();
-        a1$a a1_aM = b.i.a.f.h.l.a1.M();
-        if (a1_aM.l) {
-            a1_aM.n();
-            a1_aM.l = false;
+        b.i.a.f.h.l.a1.a aVarM = b.i.a.f.h.l.a1.M();
+        if (aVarM.l) {
+            aVarM.n();
+            aVarM.l = false;
         }
-        b.i.a.f.h.l.a1.E((b.i.a.f.h.l.a1) a1_aM.k, 0L);
+        b.i.a.f.h.l.a1.E((b.i.a.f.h.l.a1) aVarM.k, 0L);
         for (String str2 : zzapVar.j.keySet()) {
-            c1$a c1_aQ = b.i.a.f.h.l.c1.Q();
-            c1_aQ.s(str2);
-            q9VarM.F(c1_aQ, zzapVar.w0(str2));
-            a1_aM.s(c1_aQ);
+            b.i.a.f.h.l.c1.a aVarQ = b.i.a.f.h.l.c1.Q();
+            aVarQ.s(str2);
+            q9VarM.F(aVarQ, zzapVar.w0(str2));
+            aVarM.s(aVarQ);
         }
-        byte[] bArrD = ((b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) a1_aM.p())).d();
+        byte[] bArrD = ((b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) aVarM.p())).d();
         gVarK.g().n.c("Saving default event parameters, appId, data size", gVarK.d().u(str), Integer.valueOf(bArrD.length));
         ContentValues contentValues = new ContentValues();
         contentValues.put("app_id", str);

@@ -8,9 +8,11 @@ import d0.t.h0;
 import d0.t.u;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import d0.z.d.y;
 import java.util.Collection;
 import java.util.Map;
+import kotlin.jvm.functions.Function0;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: JavaAnnotationMapper.kt */
@@ -25,6 +27,32 @@ public class b implements d0.e0.p.d.m0.c.g1.c, d0.e0.p.d.m0.e.a.h0.i {
     public final d0.e0.p.d.m0.g.b f3314b;
     public final boolean f;
 
+    /* JADX INFO: compiled from: JavaAnnotationMapper.kt */
+    public final class a extends o implements Function0<j0> {
+        public final /* synthetic */ d0.e0.p.d.m0.e.a.i0.g $c;
+        public final /* synthetic */ b this$0;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(d0.e0.p.d.m0.e.a.i0.g gVar, b bVar) {
+            super(0);
+            this.$c = gVar;
+            this.this$0 = bVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ j0 invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final j0 invoke() {
+            j0 defaultType = this.$c.getModule().getBuiltIns().getBuiltInClassByFqName(this.this$0.getFqName()).getDefaultType();
+            m.checkNotNullExpressionValue(defaultType, "c.module.builtIns.getBuiltInClassByFqName(fqName).defaultType");
+            return defaultType;
+        }
+    }
+
     public b(d0.e0.p.d.m0.e.a.i0.g gVar, d0.e0.p.d.m0.e.a.k0.a aVar, d0.e0.p.d.m0.g.b bVar) {
         Collection<d0.e0.p.d.m0.e.a.k0.b> arguments;
         m.checkNotNullParameter(gVar, "c");
@@ -36,7 +64,7 @@ public class b implements d0.e0.p.d.m0.c.g1.c, d0.e0.p.d.m0.e.a.h0.i {
             m.checkNotNullExpressionValue(u0VarSource, "NO_SOURCE");
         }
         this.c = u0VarSource;
-        this.d = gVar.getStorageManager().createLazyValue(new b$a(gVar, this));
+        this.d = gVar.getStorageManager().createLazyValue(new a(gVar, this));
         this.e = (aVar == null || (arguments = aVar.getArguments()) == null) ? null : (d0.e0.p.d.m0.e.a.k0.b) u.firstOrNull(arguments);
         this.f = m.areEqual(aVar != null ? Boolean.valueOf(aVar.isIdeExternalAnnotation()) : null, Boolean.TRUE);
     }

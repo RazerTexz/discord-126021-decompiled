@@ -16,17 +16,47 @@ public final class b0 implements o {
     public final Handler f964b;
 
     @GuardedBy("messagePool")
-    public static final List<b0$b> a = new ArrayList(50);
+    public static final List<b> a = new ArrayList(50);
+
+    /* JADX INFO: compiled from: SystemHandlerWrapper.java */
+    public final class b implements o.a {
+
+        @Nullable
+        public Message a;
+
+        public b() {
+        }
+
+        public final void a() {
+            this.a = null;
+            List<b> list = b0.a;
+            synchronized (list) {
+                if (list.size() < 50) {
+                    list.add(this);
+                }
+            }
+        }
+
+        public void b() {
+            Message message = this.a;
+            Objects.requireNonNull(message);
+            message.sendToTarget();
+            a();
+        }
+
+        public b(a aVar) {
+        }
+    }
 
     public b0(Handler handler) {
         this.f964b = handler;
     }
 
     @Override // b.i.a.c.f3.o
-    public o$a a(int i, int i2, int i3) {
-        b0$b b0_bK = k();
-        b0_bK.a = this.f964b.obtainMessage(i, i2, i3);
-        return b0_bK;
+    public o.a a(int i, int i2, int i3) {
+        b bVarK = k();
+        bVarK.a = this.f964b.obtainMessage(i, i2, i3);
+        return bVarK;
     }
 
     @Override // b.i.a.c.f3.o
@@ -35,20 +65,20 @@ public final class b0 implements o {
     }
 
     @Override // b.i.a.c.f3.o
-    public o$a c(int i) {
-        b0$b b0_bK = k();
-        b0_bK.a = this.f964b.obtainMessage(i);
-        return b0_bK;
+    public o.a c(int i) {
+        b bVarK = k();
+        bVarK.a = this.f964b.obtainMessage(i);
+        return bVarK;
     }
 
     @Override // b.i.a.c.f3.o
-    public boolean d(o$a o_a) {
-        b0$b b0_b = (b0$b) o_a;
+    public boolean d(o.a aVar) {
+        b bVar = (b) aVar;
         Handler handler = this.f964b;
-        Message message = b0_b.a;
+        Message message = bVar.a;
         Objects.requireNonNull(message);
         boolean zSendMessageAtFrontOfQueue = handler.sendMessageAtFrontOfQueue(message);
-        b0_b.a();
+        bVar.a();
         return zSendMessageAtFrontOfQueue;
     }
 
@@ -73,10 +103,10 @@ public final class b0 implements o {
     }
 
     @Override // b.i.a.c.f3.o
-    public o$a i(int i, @Nullable Object obj) {
-        b0$b b0_bK = k();
-        b0_bK.a = this.f964b.obtainMessage(i, obj);
-        return b0_bK;
+    public o.a i(int i, @Nullable Object obj) {
+        b bVarK = k();
+        bVarK.a = this.f964b.obtainMessage(i, obj);
+        return bVarK;
     }
 
     @Override // b.i.a.c.f3.o
@@ -84,12 +114,12 @@ public final class b0 implements o {
         this.f964b.removeCallbacksAndMessages(null);
     }
 
-    public static b0$b k() {
-        b0$b b0_b;
-        List<b0$b> list = a;
+    public static b k() {
+        b bVar;
+        List<b> list = a;
         synchronized (list) {
-            b0_b = list.isEmpty() ? new b0$b(null) : list.remove(list.size() - 1);
+            bVar = list.isEmpty() ? new b(null) : list.remove(list.size() - 1);
         }
-        return b0_b;
+        return bVar;
     }
 }

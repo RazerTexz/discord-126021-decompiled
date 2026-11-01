@@ -13,18 +13,11 @@ import com.discord.api.voice.server.VoiceServer;
 import com.discord.api.voice.state.VoiceState;
 import com.discord.app.App;
 import com.discord.app.AppLog;
-import com.discord.gateway.io.OutgoingPayload$VoiceStateUpdate;
+import com.discord.gateway.io.OutgoingPayload;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.experiments.domain.Experiment;
 import com.discord.rtcconnection.RtcConnection;
-import com.discord.rtcconnection.RtcConnection$AnalyticsEvent;
-import com.discord.rtcconnection.RtcConnection$Metadata;
-import com.discord.rtcconnection.RtcConnection$Quality;
-import com.discord.rtcconnection.RtcConnection$State$d;
-import com.discord.rtcconnection.RtcConnection$State$f;
-import com.discord.rtcconnection.RtcConnection$StateChange;
-import com.discord.rtcconnection.RtcConnection$b;
 import com.discord.rtcconnection.VideoMetadata;
 import com.discord.rtcconnection.mediaengine.MediaEngine;
 import com.discord.rtcconnection.mediaengine.MediaEngineConnection;
@@ -45,13 +38,15 @@ import com.discord.utilities.time.ClockFactory;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import d0.t.h0;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import javax.net.ssl.SSLSocketFactory;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -62,40 +57,675 @@ import rx.subjects.SerializedSubject;
 
 /* JADX INFO: compiled from: StoreRtcConnection.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StoreRtcConnection extends RtcConnection$b implements DebugPrintable {
-    public static final StoreRtcConnection$Companion Companion = new StoreRtcConnection$Companion(null);
+public final class StoreRtcConnection extends RtcConnection.b implements DebugPrintable {
     private static final long SPEAKING_UPDATES_BUFFER_MS = 300;
     private final Clock clock;
-    private final Observable<RtcConnection$StateChange> connectionState;
-    private final SerializedSubject<RtcConnection$StateChange, RtcConnection$StateChange> connectionStateSubject;
+    private final Observable<RtcConnection.StateChange> connectionState;
+    private final SerializedSubject<RtcConnection.StateChange, RtcConnection.StateChange> connectionStateSubject;
     private Context context;
-    private OutgoingPayload$VoiceStateUpdate currentVoiceState;
+    private OutgoingPayload.VoiceStateUpdate currentVoiceState;
     private final long debugDisplayId;
     private final Dispatcher dispatcher;
     private final DebugPrintableCollection dpc;
     private boolean hasSelectedVoiceChannel;
     private static int instanceCounter;
     private Long joinedChannelTimestamp;
-    private final ListenerCollectionSubject<StoreRtcConnection$Listener> listenerSubject;
-    private final ListenerCollection<StoreRtcConnection$Listener> listeners;
+    private final ListenerCollectionSubject<Listener> listenerSubject;
+    private final ListenerCollection<Listener> listeners;
     private final Logger logger;
     private final String loggingTag;
     private NetworkMonitor networkMonitor;
-    private final Observable<RtcConnection$Quality> quality;
-    private final BehaviorSubject<RtcConnection$Quality> qualitySubject;
+    private final Observable<RtcConnection.Quality> quality;
+    private final BehaviorSubject<RtcConnection.Quality> qualitySubject;
     private RtcConnection rtcConnection;
-    private RtcConnection$Metadata rtcConnectionMetadata;
-    private final BehaviorSubject<RtcConnection$Metadata> rtcConnectionMetadataSubject;
+    private RtcConnection.Metadata rtcConnectionMetadata;
+    private final BehaviorSubject<RtcConnection.Metadata> rtcConnectionMetadataSubject;
     private Channel selectedVoiceChannel;
     private String sessionId;
-    private final Observable<List<StoreRtcConnection$SpeakingUserUpdate>> speakingUpdates;
-    private final PublishSubject<StoreRtcConnection$SpeakingUserUpdate> speakingUsersSubject;
+    private final Observable<List<SpeakingUserUpdate>> speakingUpdates;
+    private final PublishSubject<SpeakingUserUpdate> speakingUsersSubject;
     private final StoreAnalytics storeAnalytics;
     private final StoreRtcRegion storeRtcRegion;
     private final StoreVoiceStates storeVoiceStates;
     private final StoreStream stream;
     private VoicePropsTracker voicePropsTracker;
     private VoiceServer voiceServer;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$createRtcConnection$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public final class AnonymousClass1 extends o implements Function1<Listener, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Listener listener) {
+            invoke2(listener);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Listener listener) {
+            m.checkNotNullParameter(listener, "it");
+            listener.onConnecting();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$init$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public final class AnonymousClass1 extends o implements Function1<Boolean, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$init$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreRtcConnection.kt */
+        public final class C02891 extends o implements Function0<Unit> {
+            public final /* synthetic */ boolean $isMuted;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C02891(boolean z2) {
+                super(0);
+                this.$isMuted = z2;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreRtcConnection.access$handleSelfMuted(StoreRtcConnection.this, this.$isMuted);
+            }
+        }
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.a;
+        }
+
+        public final void invoke(boolean z2) {
+            StoreRtcConnection.access$getDispatcher$p(StoreRtcConnection.this).schedule(new C02891(z2));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$onAnalyticsEvent$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ Map $properties;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Map map) {
+            super(0);
+            this.$properties = map;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreRtcConnection.access$getStoreAnalytics$p(StoreRtcConnection.this).trackVideoStreamEnded(this.$properties);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$onFirstFrameReceived$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public final class AnonymousClass1 extends o implements Function1<Listener, Unit> {
+        public final /* synthetic */ long $ssrc;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(1);
+            this.$ssrc = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Listener listener) {
+            invoke2(listener);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Listener listener) {
+            m.checkNotNullParameter(listener, "it");
+            listener.onFirstFrameReceived(this.$ssrc);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$onFirstFrameSent$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public final class AnonymousClass1 extends o implements Function1<Listener, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Listener listener) {
+            invoke2(listener);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Listener listener) {
+            m.checkNotNullParameter(listener, "it");
+            listener.onFirstFrameSent();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$onMediaEngineConnectionConnected$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ RtcConnection $connection;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(RtcConnection rtcConnection) {
+            super(0);
+            this.$connection = rtcConnection;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreRtcConnection.applyVoiceConfiguration$default(StoreRtcConnection.this, this.$connection, null, 2, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$onMediaSessionIdReceived$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreRtcConnection.access$handleMediaSessionIdReceived(StoreRtcConnection.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$onSpeaking$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ boolean $isSpeaking;
+        public final /* synthetic */ long $userId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, boolean z2) {
+            super(0);
+            this.$userId = j;
+            this.$isSpeaking = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            VoicePropsTracker voicePropsTrackerAccess$getVoicePropsTracker$p = StoreRtcConnection.access$getVoicePropsTracker$p(StoreRtcConnection.this);
+            if (voicePropsTrackerAccess$getVoicePropsTracker$p != null) {
+                voicePropsTrackerAccess$getVoicePropsTracker$p.handleOnSpeaking(this.$userId, this.$isSpeaking);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$onStateChange$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public final class AnonymousClass1 extends o implements Function1<Listener, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Listener listener) {
+            invoke2(listener);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Listener listener) {
+            m.checkNotNullParameter(listener, "it");
+            listener.onConnected();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$onVideoMetadata$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ VideoMetadata $metadata;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(VideoMetadata videoMetadata) {
+            super(0);
+            this.$metadata = videoMetadata;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreRtcConnection.access$getStream$p(StoreRtcConnection.this).handleVideoMetadataUpdate(this.$metadata);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$onVideoStream$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ int $audioSsrc;
+        public final /* synthetic */ int $rtxSsrc;
+        public final /* synthetic */ Integer $streamId;
+        public final /* synthetic */ long $userId;
+        public final /* synthetic */ int $videoSsrc;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, Integer num, int i, int i2, int i3) {
+            super(0);
+            this.$userId = j;
+            this.$streamId = num;
+            this.$audioSsrc = i;
+            this.$videoSsrc = i2;
+            this.$rtxSsrc = i3;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreRtcConnection.access$getStream$p(StoreRtcConnection.this).handleVideoStreamUpdate(this.$userId, this.$streamId, this.$audioSsrc, this.$videoSsrc, this.$rtxSsrc);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$init$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public final class AnonymousClass2 extends o implements Function1<Boolean, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$init$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreRtcConnection.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public final /* synthetic */ boolean $isDeafened;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(boolean z2) {
+                super(0);
+                this.$isDeafened = z2;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreRtcConnection.access$handleSelfDeafened(StoreRtcConnection.this, this.$isDeafened);
+            }
+        }
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.a;
+        }
+
+        public final void invoke(boolean z2) {
+            StoreRtcConnection.access$getDispatcher$p(StoreRtcConnection.this).schedule(new AnonymousClass1(z2));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$init$3, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public final class AnonymousClass3<T, R> implements b<VideoInputDeviceDescription, Boolean> {
+        public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Boolean call(VideoInputDeviceDescription videoInputDeviceDescription) {
+            return call2(videoInputDeviceDescription);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Boolean call2(VideoInputDeviceDescription videoInputDeviceDescription) {
+            return Boolean.valueOf(videoInputDeviceDescription != null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$init$4, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public final class AnonymousClass4 extends o implements Function1<Boolean, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$init$4$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreRtcConnection.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public final /* synthetic */ Boolean $isVideoSelected;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(Boolean bool) {
+                super(0);
+                this.$isVideoSelected = bool;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreRtcConnection storeRtcConnection = StoreRtcConnection.this;
+                Boolean bool = this.$isVideoSelected;
+                m.checkNotNullExpressionValue(bool, "isVideoSelected");
+                StoreRtcConnection.access$handleSelfVideo(storeRtcConnection, bool.booleanValue());
+            }
+        }
+
+        public AnonymousClass4() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke2(bool);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Boolean bool) {
+            StoreRtcConnection.access$getDispatcher$p(StoreRtcConnection.this).schedule(new AnonymousClass1(bool));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$init$5, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public final class AnonymousClass5 extends o implements Function1<Map<Long, ? extends Float>, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$init$5$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreRtcConnection.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public final /* synthetic */ Map $usersVolume;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(Map map) {
+                super(0);
+                this.$usersVolume = map;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreRtcConnection.access$handleUsersVolume(StoreRtcConnection.this, this.$usersVolume);
+            }
+        }
+
+        public AnonymousClass5() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Map<Long, ? extends Float> map) {
+            invoke2((Map<Long, Float>) map);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Map<Long, Float> map) {
+            m.checkNotNullParameter(map, "usersVolume");
+            StoreRtcConnection.access$getDispatcher$p(StoreRtcConnection.this).schedule(new AnonymousClass1(map));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$init$6, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public final class AnonymousClass6 extends o implements Function1<Map<Long, ? extends Boolean>, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$init$6$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreRtcConnection.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public final /* synthetic */ Map $usersMuted;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(Map map) {
+                super(0);
+                this.$usersMuted = map;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreRtcConnection.access$handleUsersMuted(StoreRtcConnection.this, this.$usersMuted);
+            }
+        }
+
+        public AnonymousClass6() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Map<Long, ? extends Boolean> map) {
+            invoke2((Map<Long, Boolean>) map);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Map<Long, Boolean> map) {
+            m.checkNotNullParameter(map, "usersMuted");
+            StoreRtcConnection.access$getDispatcher$p(StoreRtcConnection.this).schedule(new AnonymousClass1(map));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$init$7, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public final class AnonymousClass7 extends o implements Function1<Map<Long, ? extends Boolean>, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreRtcConnection$init$7$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreRtcConnection.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public final /* synthetic */ Map $usersOffScreen;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(Map map) {
+                super(0);
+                this.$usersOffScreen = map;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreRtcConnection.access$handleUsersOffScreen(StoreRtcConnection.this, this.$usersOffScreen);
+            }
+        }
+
+        public AnonymousClass7() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Map<Long, ? extends Boolean> map) {
+            invoke2((Map<Long, Boolean>) map);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Map<Long, Boolean> map) {
+            m.checkNotNullParameter(map, "usersOffScreen");
+            StoreRtcConnection.access$getDispatcher$p(StoreRtcConnection.this).schedule(new AnonymousClass1(map));
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public abstract class DefaultListener implements Listener {
+        @Override // com.discord.stores.StoreRtcConnection.Listener
+        public void onConnected() {
+        }
+
+        @Override // com.discord.stores.StoreRtcConnection.Listener
+        public void onConnecting() {
+        }
+
+        @Override // com.discord.stores.StoreRtcConnection.Listener
+        public void onFirstFrameReceived(long ssrc) {
+        }
+
+        @Override // com.discord.stores.StoreRtcConnection.Listener
+        public void onFirstFrameSent() {
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public interface Listener {
+        void onConnected();
+
+        void onConnecting();
+
+        /* synthetic */ void onFirstFrameReceived(long j);
+
+        /* synthetic */ void onFirstFrameSent();
+    }
+
+    /* JADX INFO: compiled from: StoreRtcConnection.kt */
+    public final /* data */ class SpeakingUserUpdate {
+        private final boolean isSpeaking;
+        private final long userId;
+
+        public SpeakingUserUpdate(long j, boolean z2) {
+            this.userId = j;
+            this.isSpeaking = z2;
+        }
+
+        public static /* synthetic */ SpeakingUserUpdate copy$default(SpeakingUserUpdate speakingUserUpdate, long j, boolean z2, int i, Object obj) {
+            if ((i & 1) != 0) {
+                j = speakingUserUpdate.userId;
+            }
+            if ((i & 2) != 0) {
+                z2 = speakingUserUpdate.isSpeaking;
+            }
+            return speakingUserUpdate.copy(j, z2);
+        }
+
+        public final SpeakingUserUpdate copy(long userId, boolean isSpeaking) {
+            return new SpeakingUserUpdate(userId, isSpeaking);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof SpeakingUserUpdate)) {
+                return false;
+            }
+            SpeakingUserUpdate speakingUserUpdate = (SpeakingUserUpdate) other;
+            return this.userId == speakingUserUpdate.userId && this.isSpeaking == speakingUserUpdate.isSpeaking;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsSpeaking() {
+            return this.isSpeaking;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getUserId() {
+            return this.userId;
+        }
+
+        public final long getUserId() {
+            return this.userId;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v3, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v2 */
+        /* JADX WARN: Type inference failed for: r1v3 */
+        public int hashCode() {
+            int iA = a0.a.a.b.a(this.userId) * 31;
+            boolean z2 = this.isSpeaking;
+            ?? r1 = z2;
+            if (z2) {
+                r1 = 1;
+            }
+            return iA + r1;
+        }
+
+        public final boolean isSpeaking() {
+            return this.isSpeaking;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("SpeakingUserUpdate(userId=");
+            sbU.append(this.userId);
+            sbU.append(", isSpeaking=");
+            return a.O(sbU, this.isSpeaking, ")");
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            RtcConnection.AnalyticsEvent.values();
+            int[] iArr = new int[5];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[RtcConnection.AnalyticsEvent.VOICE_CONNECTION_SUCCESS.ordinal()] = 1;
+            iArr[RtcConnection.AnalyticsEvent.VOICE_CONNECTION_FAILURE.ordinal()] = 2;
+            iArr[RtcConnection.AnalyticsEvent.VOICE_DISCONNECT.ordinal()] = 3;
+            iArr[RtcConnection.AnalyticsEvent.VIDEO_STREAM_ENDED.ordinal()] = 4;
+            iArr[RtcConnection.AnalyticsEvent.MEDIA_SESSION_JOINED.ordinal()] = 5;
+        }
+    }
 
     public /* synthetic */ StoreRtcConnection(StoreStream storeStream, Dispatcher dispatcher, Clock clock, StoreRtcRegion storeRtcRegion, StoreAnalytics storeAnalytics, StoreVoiceStates storeVoiceStates, Logger logger, DebugPrintableCollection debugPrintableCollection, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(storeStream, dispatcher, clock, storeRtcRegion, storeAnalytics, storeVoiceStates, (i & 64) != 0 ? AppLog.g : logger, (i & 128) != 0 ? SystemLogUtils.INSTANCE.getDebugPrintables$app_productionGoogleRelease() : debugPrintableCollection);
@@ -157,17 +787,17 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
     }
 
     private final void applyVoiceConfiguration(RtcConnection rtcConnection, Long targetUserId) {
-        StoreMediaSettings$VoiceConfiguration voiceConfigurationBlocking = this.stream.getMediaSettings().getVoiceConfigurationBlocking();
-        for (Map$Entry<Long, Float> map$Entry : voiceConfigurationBlocking.getUserOutputVolumes().entrySet()) {
-            long jLongValue = map$Entry.getKey().longValue();
-            float fFloatValue = map$Entry.getValue().floatValue();
+        StoreMediaSettings.VoiceConfiguration voiceConfigurationBlocking = this.stream.getMediaSettings().getVoiceConfigurationBlocking();
+        for (Map.Entry<Long, Float> entry : voiceConfigurationBlocking.getUserOutputVolumes().entrySet()) {
+            long jLongValue = entry.getKey().longValue();
+            float fFloatValue = entry.getValue().floatValue();
             if (targetUserId == null || jLongValue == targetUserId.longValue()) {
                 rtcConnection.v(jLongValue, fFloatValue);
             }
         }
-        for (Map$Entry<Long, Boolean> map$Entry2 : voiceConfigurationBlocking.getMutedUsers().entrySet()) {
-            long jLongValue2 = map$Entry2.getKey().longValue();
-            boolean zBooleanValue = map$Entry2.getValue().booleanValue();
+        for (Map.Entry<Long, Boolean> entry2 : voiceConfigurationBlocking.getMutedUsers().entrySet()) {
+            long jLongValue2 = entry2.getKey().longValue();
+            boolean zBooleanValue = entry2.getValue().booleanValue();
             if (targetUserId == null || jLongValue2 == targetUserId.longValue()) {
                 rtcConnection.mutedUsers.put(Long.valueOf(jLongValue2), Boolean.valueOf(zBooleanValue));
                 MediaEngineConnection mediaEngineConnection = rtcConnection.mediaEngineConnection;
@@ -176,9 +806,9 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
                 }
             }
         }
-        for (Map$Entry<Long, Boolean> map$Entry3 : voiceConfigurationBlocking.getOffScreenUsers().entrySet()) {
-            long jLongValue3 = map$Entry3.getKey().longValue();
-            boolean zBooleanValue2 = map$Entry3.getValue().booleanValue();
+        for (Map.Entry<Long, Boolean> entry3 : voiceConfigurationBlocking.getOffScreenUsers().entrySet()) {
+            long jLongValue3 = entry3.getKey().longValue();
+            boolean zBooleanValue2 = entry3.getValue().booleanValue();
             if (targetUserId == null || jLongValue3 == targetUserId.longValue()) {
                 MediaEngineConnection mediaEngineConnection2 = rtcConnection.mediaEngineConnection;
                 if (mediaEngineConnection2 == null) {
@@ -192,7 +822,7 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
 
     @StoreThread
     private final void checkForVoiceServerUpdate() {
-        String strB;
+        String endpoint;
         RtcConnection rtcConnection = this.rtcConnection;
         VoiceServer voiceServer = this.voiceServer;
         if (rtcConnection == null || voiceServer == null) {
@@ -200,22 +830,22 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
         }
         if (voiceServer.getGuildId() == null || !(!m.areEqual(voiceServer.getGuildId(), rtcConnection.guildId))) {
             if (voiceServer.getChannelId() != null) {
-                Long lA = voiceServer.getChannelId();
+                Long channelId = voiceServer.getChannelId();
                 long j = rtcConnection.channelId;
-                if (lA == null || lA.longValue() != j) {
+                if (channelId == null || channelId.longValue() != j) {
                     return;
                 }
             }
-            Objects.requireNonNull(App.Companion);
+            Objects.requireNonNull(App.INSTANCE);
             SSLSocketFactory sSLSocketFactoryCreateSocketFactory$default = null;
             if (App.access$getIS_LOCAL$cp()) {
-                strB = "";
+                endpoint = "";
             } else {
-                strB = voiceServer.getEndpoint();
+                endpoint = voiceServer.getEndpoint();
                 sSLSocketFactoryCreateSocketFactory$default = SecureSocketsLayerUtils.createSocketFactory$default(null, 1, null);
             }
-            recordBreadcrumb(a.w("Voice server update, connect to server w/ endpoint: ", strB));
-            rtcConnection.s(new w(rtcConnection, strB, voiceServer.getToken(), sSLSocketFactoryCreateSocketFactory$default));
+            recordBreadcrumb(a.w("Voice server update, connect to server w/ endpoint: ", endpoint));
+            rtcConnection.s(new w(rtcConnection, endpoint, voiceServer.getToken(), sSLSocketFactoryCreateSocketFactory$default));
         }
     }
 
@@ -238,7 +868,7 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
         }
         Channel channel2 = this.selectedVoiceChannel;
         Long lValueOf2 = channel2 != null ? Long.valueOf(channel2.getId()) : null;
-        MediaEngine mediaEngine = StoreStream.Companion.getMediaEngine().getMediaEngine();
+        MediaEngine mediaEngine = StoreStream.INSTANCE.getMediaEngine().getMediaEngine();
         if (str == null || lValueOf2 == null) {
             return;
         }
@@ -268,7 +898,7 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
         RtcConnection rtcConnection4 = new RtcConnection(l, jLongValue2, str, true, strValueOf, id2, mediaEngine, logger, ClockFactory.get(), null, networkMonitor, h0.toMutableMap(this.stream.getMediaSettings().getMutedUsers()), null, null, z2, str2, null, 78336);
         rtcConnection4.c(this);
         this.rtcConnection = rtcConnection4;
-        this.listenerSubject.notify(StoreRtcConnection$createRtcConnection$1.INSTANCE);
+        this.listenerSubject.notify(AnonymousClass1.INSTANCE);
         updateMetadata();
     }
 
@@ -303,15 +933,15 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
         return l.longValue();
     }
 
-    public final Observable<RtcConnection$StateChange> getConnectionState() {
+    public final Observable<RtcConnection.StateChange> getConnectionState() {
         return this.connectionState;
     }
 
-    public final ListenerCollection<StoreRtcConnection$Listener> getListeners() {
+    public final ListenerCollection<Listener> getListeners() {
         return this.listeners;
     }
 
-    public final Observable<RtcConnection$Quality> getQuality() {
+    public final Observable<RtcConnection.Quality> getQuality() {
         return this.quality;
     }
 
@@ -321,11 +951,11 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
     }
 
     @StoreThread
-    public final RtcConnection$Metadata getRtcConnectionMetadata() {
+    public final RtcConnection.Metadata getRtcConnectionMetadata() {
         return this.rtcConnectionMetadata;
     }
 
-    public final Observable<List<StoreRtcConnection$SpeakingUserUpdate>> getSpeakingUpdates() {
+    public final Observable<List<SpeakingUserUpdate>> getSpeakingUpdates() {
         return this.speakingUpdates;
     }
 
@@ -366,27 +996,27 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
 
     @StoreThread
     private final void handleSelfDeafened(boolean selfDeafened) {
-        this.currentVoiceState = OutgoingPayload$VoiceStateUpdate.copy$default(this.currentVoiceState, null, null, false, selfDeafened, false, null, 55, null);
+        this.currentVoiceState = OutgoingPayload.VoiceStateUpdate.copy$default(this.currentVoiceState, null, null, false, selfDeafened, false, null, 55, null);
         onVoiceStateUpdated();
     }
 
     @StoreThread
     private final void handleSelfMuted(boolean selfMuted) {
-        this.currentVoiceState = OutgoingPayload$VoiceStateUpdate.copy$default(this.currentVoiceState, null, null, selfMuted, false, false, null, 59, null);
+        this.currentVoiceState = OutgoingPayload.VoiceStateUpdate.copy$default(this.currentVoiceState, null, null, selfMuted, false, false, null, 59, null);
         onVoiceStateUpdated();
     }
 
     @StoreThread
     private final void handleSelfVideo(boolean selfVideo) {
-        this.currentVoiceState = OutgoingPayload$VoiceStateUpdate.copy$default(this.currentVoiceState, null, null, false, false, selfVideo, null, 47, null);
+        this.currentVoiceState = OutgoingPayload.VoiceStateUpdate.copy$default(this.currentVoiceState, null, null, false, false, selfVideo, null, 47, null);
         onVoiceStateUpdated();
     }
 
     @StoreThread
     private final void handleUsersMuted(Map<Long, Boolean> usersMuted) {
-        for (Map$Entry<Long, Boolean> map$Entry : usersMuted.entrySet()) {
-            long jLongValue = map$Entry.getKey().longValue();
-            boolean zBooleanValue = map$Entry.getValue().booleanValue();
+        for (Map.Entry<Long, Boolean> entry : usersMuted.entrySet()) {
+            long jLongValue = entry.getKey().longValue();
+            boolean zBooleanValue = entry.getValue().booleanValue();
             RtcConnection rtcConnection = this.rtcConnection;
             if (rtcConnection != null) {
                 rtcConnection.mutedUsers.put(Long.valueOf(jLongValue), Boolean.valueOf(zBooleanValue));
@@ -400,9 +1030,9 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
 
     @StoreThread
     private final void handleUsersOffScreen(Map<Long, Boolean> usersOffScreen) {
-        for (Map$Entry<Long, Boolean> map$Entry : usersOffScreen.entrySet()) {
-            long jLongValue = map$Entry.getKey().longValue();
-            boolean zBooleanValue = map$Entry.getValue().booleanValue();
+        for (Map.Entry<Long, Boolean> entry : usersOffScreen.entrySet()) {
+            long jLongValue = entry.getKey().longValue();
+            boolean zBooleanValue = entry.getValue().booleanValue();
             RtcConnection rtcConnection = this.rtcConnection;
             if (rtcConnection != null) {
                 MediaEngineConnection mediaEngineConnection = rtcConnection.mediaEngineConnection;
@@ -417,9 +1047,9 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
 
     @StoreThread
     private final void handleUsersVolume(Map<Long, Float> usersVolume) {
-        for (Map$Entry<Long, Float> map$Entry : usersVolume.entrySet()) {
-            long jLongValue = map$Entry.getKey().longValue();
-            float fFloatValue = map$Entry.getValue().floatValue();
+        for (Map.Entry<Long, Float> entry : usersVolume.entrySet()) {
+            long jLongValue = entry.getKey().longValue();
+            float fFloatValue = entry.getValue().floatValue();
             RtcConnection rtcConnection = this.rtcConnection;
             if (rtcConnection != null) {
                 rtcConnection.v(jLongValue, fFloatValue);
@@ -448,7 +1078,7 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
         }
         Channel channelFindChannelByIdInternal$app_productionGoogleRelease = channelId != null ? this.stream.getChannels().findChannelByIdInternal$app_productionGoogleRelease(channelId.longValue()) : null;
         this.selectedVoiceChannel = channelFindChannelByIdInternal$app_productionGoogleRelease;
-        OutgoingPayload$VoiceStateUpdate outgoingPayload$VoiceStateUpdate = this.currentVoiceState;
+        OutgoingPayload.VoiceStateUpdate voiceStateUpdate = this.currentVoiceState;
         if (channelFindChannelByIdInternal$app_productionGoogleRelease != null) {
             Long lValueOf = Long.valueOf(channelFindChannelByIdInternal$app_productionGoogleRelease.getGuildId());
             if (lValueOf.longValue() > 0) {
@@ -459,7 +1089,7 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
         } else {
             l = null;
         }
-        this.currentVoiceState = OutgoingPayload$VoiceStateUpdate.copy$default(outgoingPayload$VoiceStateUpdate, l, channelFindChannelByIdInternal$app_productionGoogleRelease != null ? Long.valueOf(channelFindChannelByIdInternal$app_productionGoogleRelease.getId()) : null, false, false, false, null, 60, null);
+        this.currentVoiceState = OutgoingPayload.VoiceStateUpdate.copy$default(voiceStateUpdate, l, channelFindChannelByIdInternal$app_productionGoogleRelease != null ? Long.valueOf(channelFindChannelByIdInternal$app_productionGoogleRelease.getId()) : null, false, false, false, null, 60, null);
         if (channelFindChannelByIdInternal$app_productionGoogleRelease != null) {
             this.hasSelectedVoiceChannel = true;
             createRtcConnection();
@@ -494,15 +1124,15 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
         m.checkNotNullParameter(networkMonitor, "networkMonitor");
         this.context = context;
         this.networkMonitor = networkMonitor;
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        ObservableExtensionsKt.appSubscribe$default(storeStream$Companion.getMediaSettings().isSelfMuted(), StoreRtcConnection.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreRtcConnection$init$1(this), 62, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(storeStream$Companion.getMediaSettings().isSelfDeafened(), StoreRtcConnection.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreRtcConnection$init$2(this), 62, (Object) null);
-        Observable<R> observableG = storeStream$Companion.getMediaEngine().getSelectedVideoInputDevice().G(StoreRtcConnection$init$3.INSTANCE);
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        ObservableExtensionsKt.appSubscribe$default(companion.getMediaSettings().isSelfMuted(), StoreRtcConnection.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(companion.getMediaSettings().isSelfDeafened(), StoreRtcConnection.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
+        Observable<R> observableG = companion.getMediaEngine().getSelectedVideoInputDevice().G(AnonymousClass3.INSTANCE);
         m.checkNotNullExpressionValue(observableG, "StoreStream\n        .get…viceDescription != null }");
-        ObservableExtensionsKt.appSubscribe$default(observableG, StoreRtcConnection.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreRtcConnection$init$4(this), 62, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(this.stream.getMediaSettings().getUsersVolume(), StoreRtcConnection.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreRtcConnection$init$5(this), 62, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(this.stream.getMediaSettings().getUsersMuted(), StoreRtcConnection.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreRtcConnection$init$6(this), 62, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(this.stream.getMediaSettings().getUsersOffScreen(), StoreRtcConnection.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreRtcConnection$init$7(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(observableG, StoreRtcConnection.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass4(), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(this.stream.getMediaSettings().getUsersVolume(), StoreRtcConnection.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass5(), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(this.stream.getMediaSettings().getUsersMuted(), StoreRtcConnection.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass6(), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(this.stream.getMediaSettings().getUsersOffScreen(), StoreRtcConnection.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass7(), 62, (Object) null);
     }
 
     @StoreThread
@@ -523,13 +1153,13 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
             mapEmptyMap = h0.emptyMap();
         }
         Map<Long, VoiceState> map = mapEmptyMap;
-        VideoInputDeviceDescription selectedVideoInputDeviceBlocking = this.stream.getMediaEngine().getSelectedVideoInputDevice();
+        VideoInputDeviceDescription selectedVideoInputDevice = this.stream.getMediaEngine().getSelectedVideoInputDevice();
         NetworkUtils networkUtils = NetworkUtils.INSTANCE;
         Context context = this.context;
         if (context == null) {
             m.throwUninitializedPropertyAccessException("context");
         }
-        analyticsTracker.voiceChannelJoin(id2, str, channel, map, selectedVideoInputDeviceBlocking, networkUtils.getNetworkType(context), lValueOf, lValueOf2);
+        analyticsTracker.voiceChannelJoin(id2, str, channel, map, selectedVideoInputDevice, networkUtils.getNetworkType(context), lValueOf, lValueOf2);
     }
 
     @StoreThread
@@ -591,14 +1221,14 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
         Logger.w$default(this.logger, this.loggingTag, msg, null, 4, null);
     }
 
-    public final Observable<RtcConnection$Metadata> observeRtcConnectionMetadata() {
-        BehaviorSubject<RtcConnection$Metadata> behaviorSubject = this.rtcConnectionMetadataSubject;
+    public final Observable<RtcConnection.Metadata> observeRtcConnectionMetadata() {
+        BehaviorSubject<RtcConnection.Metadata> behaviorSubject = this.rtcConnectionMetadataSubject;
         m.checkNotNullExpressionValue(behaviorSubject, "rtcConnectionMetadataSubject");
         return behaviorSubject;
     }
 
-    @Override // com.discord.rtcconnection.RtcConnection$b, com.discord.rtcconnection.RtcConnection$c
-    public void onAnalyticsEvent(RtcConnection$AnalyticsEvent event, Map<String, Object> properties) {
+    @Override // com.discord.rtcconnection.RtcConnection.b, com.discord.rtcconnection.RtcConnection.c
+    public void onAnalyticsEvent(RtcConnection.AnalyticsEvent event, Map<String, Object> properties) {
         m.checkNotNullParameter(event, "event");
         m.checkNotNullParameter(properties, "properties");
         int iOrdinal = event.ordinal();
@@ -613,7 +1243,7 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
         if (iOrdinal == 2) {
             this.storeAnalytics.trackVoiceDisconnect(properties);
         } else if (iOrdinal == 3) {
-            this.dispatcher.schedule(new StoreRtcConnection$onAnalyticsEvent$1(this, properties));
+            this.dispatcher.schedule(new AnonymousClass1(properties));
         } else {
             if (iOrdinal != 4) {
                 return;
@@ -622,70 +1252,70 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
         }
     }
 
-    @Override // com.discord.rtcconnection.RtcConnection$b, com.discord.rtcconnection.RtcConnection$c
+    @Override // com.discord.rtcconnection.RtcConnection.b, com.discord.rtcconnection.RtcConnection.c
     public void onFatalClose() {
         this.stream.getVoiceChannelSelected().clear();
     }
 
-    @Override // com.discord.rtcconnection.RtcConnection$b
+    @Override // com.discord.rtcconnection.RtcConnection.b
     public void onFirstFrameReceived(long ssrc) {
-        this.listenerSubject.notify(new StoreRtcConnection$onFirstFrameReceived$1(ssrc));
+        this.listenerSubject.notify(new AnonymousClass1(ssrc));
     }
 
-    @Override // com.discord.rtcconnection.RtcConnection$b
+    @Override // com.discord.rtcconnection.RtcConnection.b
     public void onFirstFrameSent() {
-        this.listenerSubject.notify(StoreRtcConnection$onFirstFrameSent$1.INSTANCE);
+        this.listenerSubject.notify(AnonymousClass1.INSTANCE);
     }
 
-    @Override // com.discord.rtcconnection.RtcConnection$b, com.discord.rtcconnection.RtcConnection$c
+    @Override // com.discord.rtcconnection.RtcConnection.b, com.discord.rtcconnection.RtcConnection.c
     public void onMediaEngineConnectionConnected(RtcConnection connection) {
         m.checkNotNullParameter(connection, "connection");
-        this.dispatcher.schedule(new StoreRtcConnection$onMediaEngineConnectionConnected$1(this, connection));
+        this.dispatcher.schedule(new AnonymousClass1(connection));
     }
 
-    @Override // com.discord.rtcconnection.RtcConnection$b, com.discord.rtcconnection.RtcConnection$c
+    @Override // com.discord.rtcconnection.RtcConnection.b, com.discord.rtcconnection.RtcConnection.c
     public void onMediaSessionIdReceived() {
-        this.dispatcher.schedule(new StoreRtcConnection$onMediaSessionIdReceived$1(this));
+        this.dispatcher.schedule(new AnonymousClass1());
     }
 
-    @Override // com.discord.rtcconnection.RtcConnection$b, com.discord.rtcconnection.RtcConnection$c
-    public void onQualityUpdate(RtcConnection$Quality quality) {
+    @Override // com.discord.rtcconnection.RtcConnection.b, com.discord.rtcconnection.RtcConnection.c
+    public void onQualityUpdate(RtcConnection.Quality quality) {
         m.checkNotNullParameter(quality, "quality");
         this.qualitySubject.onNext(quality);
     }
 
-    @Override // com.discord.rtcconnection.RtcConnection$b, com.discord.rtcconnection.RtcConnection$c
+    @Override // com.discord.rtcconnection.RtcConnection.b, com.discord.rtcconnection.RtcConnection.c
     public void onSpeaking(long userId, boolean isSpeaking) {
-        PublishSubject<StoreRtcConnection$SpeakingUserUpdate> publishSubject = this.speakingUsersSubject;
-        publishSubject.k.onNext(new StoreRtcConnection$SpeakingUserUpdate(userId, isSpeaking));
-        this.dispatcher.schedule(new StoreRtcConnection$onSpeaking$1(this, userId, isSpeaking));
+        PublishSubject<SpeakingUserUpdate> publishSubject = this.speakingUsersSubject;
+        publishSubject.k.onNext(new SpeakingUserUpdate(userId, isSpeaking));
+        this.dispatcher.schedule(new AnonymousClass1(userId, isSpeaking));
     }
 
-    @Override // com.discord.rtcconnection.RtcConnection$b, com.discord.rtcconnection.RtcConnection$c
-    public void onStateChange(RtcConnection$StateChange stateChange) {
+    @Override // com.discord.rtcconnection.RtcConnection.b, com.discord.rtcconnection.RtcConnection.c
+    public void onStateChange(RtcConnection.StateChange stateChange) {
         m.checkNotNullParameter(stateChange, "stateChange");
         recordBreadcrumb("connection state change: " + stateChange);
         this.connectionStateSubject.k.onNext(stateChange);
-        if (m.areEqual(stateChange.state, RtcConnection$State$f.a)) {
-            this.listenerSubject.notify(StoreRtcConnection$onStateChange$1.INSTANCE);
+        if (m.areEqual(stateChange.state, RtcConnection.State.f.a)) {
+            this.listenerSubject.notify(AnonymousClass1.INSTANCE);
         }
     }
 
-    @Override // com.discord.rtcconnection.RtcConnection$b, com.discord.rtcconnection.RtcConnection$c
+    @Override // com.discord.rtcconnection.RtcConnection.b, com.discord.rtcconnection.RtcConnection.c
     public void onUserCreated(RtcConnection connection, long userId) {
         m.checkNotNullParameter(connection, "connection");
         applyVoiceConfiguration(connection, Long.valueOf(userId));
     }
 
-    @Override // com.discord.rtcconnection.RtcConnection$b, com.discord.rtcconnection.RtcConnection$c
+    @Override // com.discord.rtcconnection.RtcConnection.b, com.discord.rtcconnection.RtcConnection.c
     public void onVideoMetadata(VideoMetadata metadata) {
         m.checkNotNullParameter(metadata, "metadata");
-        this.dispatcher.schedule(new StoreRtcConnection$onVideoMetadata$1(this, metadata));
+        this.dispatcher.schedule(new AnonymousClass1(metadata));
     }
 
-    @Override // com.discord.rtcconnection.RtcConnection$b, com.discord.rtcconnection.RtcConnection$c
+    @Override // com.discord.rtcconnection.RtcConnection.b, com.discord.rtcconnection.RtcConnection.c
     public void onVideoStream(long userId, Integer streamId, int audioSsrc, int videoSsrc, int rtxSsrc) {
-        this.dispatcher.schedule(new StoreRtcConnection$onVideoStream$1(this, userId, streamId, audioSsrc, videoSsrc, rtxSsrc));
+        this.dispatcher.schedule(new AnonymousClass1(userId, streamId, audioSsrc, videoSsrc, rtxSsrc));
     }
 
     @StoreThread
@@ -696,7 +1326,7 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
             sbU.append(this.currentVoiceState);
             recordBreadcrumb(sbU.toString());
         }
-        StoreGatewayConnection gatewaySocket = StoreStream.Companion.getGatewaySocket();
+        StoreGatewayConnection gatewaySocket = StoreStream.INSTANCE.getGatewaySocket();
         Long guildId = this.currentVoiceState.getGuildId();
         Long channelId = this.currentVoiceState.getChannelId();
         boolean selfMute = this.currentVoiceState.getSelfMute();
@@ -719,9 +1349,9 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
     @StoreThread
     private final void updateMetadata() {
         RtcConnection rtcConnection = this.rtcConnection;
-        RtcConnection$Metadata rtcConnection$MetadataI = rtcConnection != null ? rtcConnection.i() : null;
-        this.rtcConnectionMetadata = rtcConnection$MetadataI;
-        this.rtcConnectionMetadataSubject.onNext(rtcConnection$MetadataI);
+        RtcConnection.Metadata metadataI = rtcConnection != null ? rtcConnection.i() : null;
+        this.rtcConnectionMetadata = metadataI;
+        this.rtcConnectionMetadataSubject.onNext(metadataI);
     }
 
     public StoreRtcConnection(StoreStream storeStream, Dispatcher dispatcher, Clock clock, StoreRtcRegion storeRtcRegion, StoreAnalytics storeAnalytics, StoreVoiceStates storeVoiceStates, Logger logger, DebugPrintableCollection debugPrintableCollection) {
@@ -741,27 +1371,27 @@ public final class StoreRtcConnection extends RtcConnection$b implements DebugPr
         this.storeVoiceStates = storeVoiceStates;
         this.logger = logger;
         this.dpc = debugPrintableCollection;
-        ListenerCollectionSubject<StoreRtcConnection$Listener> listenerCollectionSubject = new ListenerCollectionSubject<>();
+        ListenerCollectionSubject<Listener> listenerCollectionSubject = new ListenerCollectionSubject<>();
         this.listenerSubject = listenerCollectionSubject;
         this.listeners = listenerCollectionSubject;
-        PublishSubject<StoreRtcConnection$SpeakingUserUpdate> publishSubjectK0 = PublishSubject.k0();
+        PublishSubject<SpeakingUserUpdate> publishSubjectK0 = PublishSubject.k0();
         this.speakingUsersSubject = publishSubjectK0;
-        BehaviorSubject<RtcConnection$Quality> behaviorSubjectL0 = BehaviorSubject.l0(RtcConnection$Quality.UNKNOWN);
+        BehaviorSubject<RtcConnection.Quality> behaviorSubjectL0 = BehaviorSubject.l0(RtcConnection.Quality.UNKNOWN);
         this.qualitySubject = behaviorSubjectL0;
-        this.currentVoiceState = new OutgoingPayload$VoiceStateUpdate(null, null, false, false, false, null, 32, null);
-        SerializedSubject<RtcConnection$StateChange, RtcConnection$StateChange> serializedSubject = new SerializedSubject<>(BehaviorSubject.l0(new RtcConnection$StateChange(new RtcConnection$State$d(false), null)));
+        this.currentVoiceState = new OutgoingPayload.VoiceStateUpdate(null, null, false, false, false, null, 32, null);
+        SerializedSubject<RtcConnection.StateChange, RtcConnection.StateChange> serializedSubject = new SerializedSubject<>(BehaviorSubject.l0(new RtcConnection.StateChange(new RtcConnection.State.d(false), null)));
         this.connectionStateSubject = serializedSubject;
         this.rtcConnectionMetadataSubject = BehaviorSubject.l0(null);
-        Observable<RtcConnection$StateChange> observableR = ObservableExtensionsKt.computationLatest(serializedSubject).r();
+        Observable<RtcConnection.StateChange> observableR = ObservableExtensionsKt.computationLatest(serializedSubject).r();
         m.checkNotNullExpressionValue(observableR, "connectionStateSubject\n …  .distinctUntilChanged()");
         this.connectionState = observableR;
         m.checkNotNullExpressionValue(behaviorSubjectL0, "qualitySubject");
-        Observable<RtcConnection$Quality> observableR2 = ObservableExtensionsKt.computationLatest(behaviorSubjectL0).r();
+        Observable<RtcConnection.Quality> observableR2 = ObservableExtensionsKt.computationLatest(behaviorSubjectL0).r();
         m.checkNotNullExpressionValue(observableR2, "qualitySubject\n         …  .distinctUntilChanged()");
         this.quality = observableR2;
-        Observable<List<StoreRtcConnection$SpeakingUserUpdate>> observableA = publishSubjectK0.a(300L, TimeUnit.MILLISECONDS);
+        Observable<List<SpeakingUserUpdate>> observableA = publishSubjectK0.a(300L, TimeUnit.MILLISECONDS);
         m.checkNotNullExpressionValue(observableA, "speakingUsersSubject\n   …S, TimeUnit.MILLISECONDS)");
-        Observable<List<StoreRtcConnection$SpeakingUserUpdate>> observableR3 = ObservableExtensionsKt.computationLatest(observableA).r();
+        Observable<List<SpeakingUserUpdate>> observableR3 = ObservableExtensionsKt.computationLatest(observableA).r();
         m.checkNotNullExpressionValue(observableR3, "speakingUsersSubject\n   …  .distinctUntilChanged()");
         this.speakingUpdates = observableR3;
         StringBuilder sbU = a.U("StoreRtcConnection ");

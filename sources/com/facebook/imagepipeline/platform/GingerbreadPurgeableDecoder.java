@@ -1,7 +1,7 @@
 package com.facebook.imagepipeline.platform;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory$Options;
+import android.graphics.BitmapFactory;
 import android.os.MemoryFile;
 import b.c.a.a0.d;
 import b.f.d.d.c;
@@ -29,13 +29,13 @@ public class GingerbreadPurgeableDecoder extends DalvikPurgeableDecoder {
     }
 
     @Override // com.facebook.imagepipeline.nativecode.DalvikPurgeableDecoder
-    public Bitmap c(CloseableReference<PooledByteBuffer> closeableReference, BitmapFactory$Options bitmapFactory$Options) {
-        return h(closeableReference, closeableReference.u().size(), null, bitmapFactory$Options);
+    public Bitmap c(CloseableReference<PooledByteBuffer> closeableReference, BitmapFactory.Options options) {
+        return h(closeableReference, closeableReference.u().size(), null, options);
     }
 
     @Override // com.facebook.imagepipeline.nativecode.DalvikPurgeableDecoder
-    public Bitmap d(CloseableReference<PooledByteBuffer> closeableReference, int i, BitmapFactory$Options bitmapFactory$Options) {
-        return h(closeableReference, i, DalvikPurgeableDecoder.e(closeableReference, i) ? null : DalvikPurgeableDecoder.a, bitmapFactory$Options);
+    public Bitmap d(CloseableReference<PooledByteBuffer> closeableReference, int i, BitmapFactory.Options options) {
+        return h(closeableReference, i, DalvikPurgeableDecoder.e(closeableReference, i) ? null : DalvikPurgeableDecoder.a, options);
     }
 
     public static MemoryFile g(CloseableReference<PooledByteBuffer> closeableReference, int i, byte[] bArr) throws Throwable {
@@ -94,7 +94,7 @@ public class GingerbreadPurgeableDecoder extends DalvikPurgeableDecoder {
     }
 
     /* JADX WARN: Code duplicated, block: B:24:0x003c  */
-    public final Bitmap h(CloseableReference<PooledByteBuffer> closeableReference, int i, byte[] bArr, BitmapFactory$Options bitmapFactory$Options) throws Throwable {
+    public final Bitmap h(CloseableReference<PooledByteBuffer> closeableReference, int i, byte[] bArr, BitmapFactory.Options options) throws Throwable {
         MemoryFile memoryFile = null;
         try {
             MemoryFile memoryFileG = g(closeableReference, i, bArr);
@@ -104,7 +104,7 @@ public class GingerbreadPurgeableDecoder extends DalvikPurgeableDecoder {
                 if (bVar == null) {
                     throw new IllegalStateException("WebpBitmapFactory is null");
                 }
-                Bitmap bitmapA = bVar.a(fileDescriptorJ, null, bitmapFactory$Options);
+                Bitmap bitmapA = bVar.a(fileDescriptorJ, null, options);
                 d.y(bitmapA, "BitmapFactory returned null");
                 Bitmap bitmap = bitmapA;
                 memoryFileG.close();

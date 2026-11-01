@@ -3,29 +3,37 @@ package androidx.room.paging;
 import android.database.Cursor;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.paging.PositionalDataSource;
-import androidx.paging.PositionalDataSource$LoadInitialCallback;
-import androidx.paging.PositionalDataSource$LoadInitialParams;
-import androidx.paging.PositionalDataSource$LoadRangeCallback;
-import androidx.paging.PositionalDataSource$LoadRangeParams;
-import androidx.room.InvalidationTracker$Observer;
+import androidx.room.InvalidationTracker;
 import androidx.room.RoomDatabase;
 import androidx.room.RoomSQLiteQuery;
 import androidx.sqlite.db.SupportSQLiteQuery;
 import b.d.b.a.a;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public abstract class LimitOffsetDataSource<T> extends PositionalDataSource<T> {
     private final String mCountQuery;
     private final RoomDatabase mDb;
     private final boolean mInTransaction;
     private final String mLimitOffsetQuery;
-    private final InvalidationTracker$Observer mObserver;
+    private final InvalidationTracker.Observer mObserver;
     private final RoomSQLiteQuery mSourceQuery;
+
+    /* JADX INFO: renamed from: androidx.room.paging.LimitOffsetDataSource$1, reason: invalid class name */
+    public class AnonymousClass1 extends InvalidationTracker.Observer {
+        public AnonymousClass1(String[] strArr) {
+            super(strArr);
+        }
+
+        @Override // androidx.room.InvalidationTracker.Observer
+        public void onInvalidated(@NonNull Set<String> set) {
+            LimitOffsetDataSource.this.invalidate();
+        }
+    }
 
     public LimitOffsetDataSource(RoomDatabase roomDatabase, SupportSQLiteQuery supportSQLiteQuery, boolean z2, String... strArr) {
         this(roomDatabase, RoomSQLiteQuery.copyFrom(supportSQLiteQuery), z2, strArr);
@@ -61,7 +69,7 @@ public abstract class LimitOffsetDataSource<T> extends PositionalDataSource<T> {
         return super.isInvalid();
     }
 
-    public void loadInitial(@NonNull PositionalDataSource$LoadInitialParams positionalDataSource$LoadInitialParams, @NonNull PositionalDataSource$LoadInitialCallback<T> positionalDataSource$LoadInitialCallback) throws Throwable {
+    public void loadInitial(@NonNull PositionalDataSource.LoadInitialParams loadInitialParams, @NonNull PositionalDataSource.LoadInitialCallback<T> loadInitialCallback) throws Throwable {
         RoomSQLiteQuery sQLiteQuery;
         int i;
         RoomSQLiteQuery roomSQLiteQuery;
@@ -71,8 +79,8 @@ public abstract class LimitOffsetDataSource<T> extends PositionalDataSource<T> {
         try {
             int iCountItems = countItems();
             if (iCountItems != 0) {
-                int iComputeInitialLoadPosition = computeInitialLoadPosition(positionalDataSource$LoadInitialParams, iCountItems);
-                sQLiteQuery = getSQLiteQuery(iComputeInitialLoadPosition, computeInitialLoadSize(positionalDataSource$LoadInitialParams, iComputeInitialLoadPosition, iCountItems));
+                int iComputeInitialLoadPosition = computeInitialLoadPosition(loadInitialParams, iCountItems);
+                sQLiteQuery = getSQLiteQuery(iComputeInitialLoadPosition, computeInitialLoadSize(loadInitialParams, iComputeInitialLoadPosition, iCountItems));
                 try {
                     cursorQuery = this.mDb.query(sQLiteQuery);
                     List<T> listConvertRows = convertRows(cursorQuery);
@@ -102,15 +110,15 @@ public abstract class LimitOffsetDataSource<T> extends PositionalDataSource<T> {
             if (roomSQLiteQuery != null) {
                 roomSQLiteQuery.release();
             }
-            positionalDataSource$LoadInitialCallback.onResult(listEmptyList, i, iCountItems);
+            loadInitialCallback.onResult(listEmptyList, i, iCountItems);
         } catch (Throwable th2) {
             th = th2;
             sQLiteQuery = null;
         }
     }
 
-    public void loadRange(@NonNull PositionalDataSource$LoadRangeParams positionalDataSource$LoadRangeParams, @NonNull PositionalDataSource$LoadRangeCallback<T> positionalDataSource$LoadRangeCallback) {
-        positionalDataSource$LoadRangeCallback.onResult(loadRange(positionalDataSource$LoadRangeParams.startPosition, positionalDataSource$LoadRangeParams.loadSize));
+    public void loadRange(@NonNull PositionalDataSource.LoadRangeParams loadRangeParams, @NonNull PositionalDataSource.LoadRangeCallback<T> loadRangeCallback) {
+        loadRangeCallback.onResult(loadRange(loadRangeParams.startPosition, loadRangeParams.loadSize));
     }
 
     public LimitOffsetDataSource(RoomDatabase roomDatabase, RoomSQLiteQuery roomSQLiteQuery, boolean z2, String... strArr) {
@@ -125,9 +133,9 @@ public abstract class LimitOffsetDataSource<T> extends PositionalDataSource<T> {
         sbU2.append(roomSQLiteQuery.getSql());
         sbU2.append(" ) LIMIT ? OFFSET ?");
         this.mLimitOffsetQuery = sbU2.toString();
-        LimitOffsetDataSource$1 limitOffsetDataSource$1 = new LimitOffsetDataSource$1(this, strArr);
-        this.mObserver = limitOffsetDataSource$1;
-        roomDatabase.getInvalidationTracker().addWeakObserver(limitOffsetDataSource$1);
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1(strArr);
+        this.mObserver = anonymousClass1;
+        roomDatabase.getInvalidationTracker().addWeakObserver(anonymousClass1);
     }
 
     @NonNull

@@ -1,22 +1,52 @@
 package d0.e0.p.d.m0.n;
 
-import d0.e0.p.d.m0.k.a0.i$b;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: TypeAliasExpander.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class q0 {
-    public static final q0$a a = new q0$a(null);
+    public static final a a = new a(null);
     public final boolean c;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final s0 f3536b;
 
+    /* JADX INFO: compiled from: TypeAliasExpander.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public static final void access$assertRecursionDepth(a aVar, int i, d0.e0.p.d.m0.c.y0 y0Var) {
+            Objects.requireNonNull(aVar);
+            if (i > 100) {
+                throw new AssertionError(d0.z.d.m.stringPlus("Too deep recursion while expanding type alias ", y0Var.getName()));
+            }
+        }
+
+        public final void checkBoundsInTypeAlias(s0 s0Var, c0 c0Var, c0 c0Var2, d0.e0.p.d.m0.c.z0 z0Var, c1 c1Var) {
+            d0.z.d.m.checkNotNullParameter(s0Var, "reportStrategy");
+            d0.z.d.m.checkNotNullParameter(c0Var, "unsubstitutedArgument");
+            d0.z.d.m.checkNotNullParameter(c0Var2, "typeArgument");
+            d0.z.d.m.checkNotNullParameter(z0Var, "typeParameterDescriptor");
+            d0.z.d.m.checkNotNullParameter(c1Var, "substitutor");
+            Iterator<c0> it = z0Var.getUpperBounds().iterator();
+            while (it.hasNext()) {
+                c0 c0VarSafeSubstitute = c1Var.safeSubstitute(it.next(), j1.INVARIANT);
+                d0.z.d.m.checkNotNullExpressionValue(c0VarSafeSubstitute, "substitutor.safeSubstitute(bound, Variance.INVARIANT)");
+                if (!d0.e0.p.d.m0.n.l1.f.a.isSubtypeOf(c0Var2, c0VarSafeSubstitute)) {
+                    s0Var.boundsViolationInSubstitution(c0VarSafeSubstitute, c0Var, c0Var2, z0Var);
+                }
+            }
+        }
+    }
+
     static {
-        new q0(s0$a.a, false);
+        new q0(s0.a.a, false);
     }
 
     public q0(s0 s0Var, boolean z2) {
@@ -64,13 +94,13 @@ public final class q0 {
         d0 d0Var = d0.a;
         u0 typeConstructor = r0Var.getDescriptor().getTypeConstructor();
         d0.z.d.m.checkNotNullExpressionValue(typeConstructor, "descriptor.typeConstructor");
-        return m0.withAbbreviation(j0VarMakeNullableIfNeeded, d0.simpleTypeWithNonTrivialMemberScope(gVar, typeConstructor, r0Var.getArguments(), z2, i$b.f3461b));
+        return m0.withAbbreviation(j0VarMakeNullableIfNeeded, d0.simpleTypeWithNonTrivialMemberScope(gVar, typeConstructor, r0Var.getArguments(), z2, d0.e0.p.d.m0.k.a0.i.b.f3461b));
     }
 
     public final w0 e(w0 w0Var, r0 r0Var, d0.e0.p.d.m0.c.z0 z0Var, int i) {
         c0 c0VarB;
         j1 j1Var = j1.INVARIANT;
-        q0$a.access$assertRecursionDepth(a, i, r0Var.getDescriptor());
+        a.access$assertRecursionDepth(a, i, r0Var.getDescriptor());
         if (w0Var.isStarProjection()) {
             d0.z.d.m.checkNotNull(z0Var);
             w0 w0VarMakeStarProjection = e1.makeStarProjection(z0Var);
@@ -176,14 +206,14 @@ public final class q0 {
                     w0 w0Var3 = j0VarAsSimpleType.getArguments().get(i2);
                     d0.e0.p.d.m0.c.z0 z0Var2 = j0VarAsSimpleType.getConstructor().getParameters().get(i2);
                     if (this.c) {
-                        q0$a q0_a = a;
+                        a aVar = a;
                         s0 s0Var = this.f3536b;
                         c0 type3 = w0Var3.getType();
                         d0.z.d.m.checkNotNullExpressionValue(type3, "unsubstitutedArgument.type");
                         c0 type4 = w0Var2.getType();
                         d0.z.d.m.checkNotNullExpressionValue(type4, "substitutedArgument.type");
                         d0.z.d.m.checkNotNullExpressionValue(z0Var2, "typeParameter");
-                        q0_a.checkBoundsInTypeAlias(s0Var, type3, type4, z0Var2, c1VarCreate);
+                        aVar.checkBoundsInTypeAlias(s0Var, type3, type4, z0Var2, c1VarCreate);
                     }
                 }
             }

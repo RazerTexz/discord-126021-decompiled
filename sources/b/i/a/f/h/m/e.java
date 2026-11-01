@@ -8,7 +8,6 @@ import java.nio.ByteOrder;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.UUID;
 import org.objectweb.asm.Opcodes;
 
@@ -120,13 +119,13 @@ public final class e {
         if (map.keySet().size() > 0) {
             sb2.append('{');
             int i3 = 0;
-            for (Map$Entry<ParcelUuid, byte[]> map$Entry : map.entrySet()) {
+            for (Map.Entry<ParcelUuid, byte[]> entry : map.entrySet()) {
                 if (i3 > 0) {
                     sb2.append(", ");
                 }
-                sb2.append(map$Entry.getKey());
+                sb2.append(entry.getKey());
                 sb2.append('=');
-                byte[] value = map$Entry.getValue();
+                byte[] value = entry.getValue();
                 sb2.append(value == null ? null : b.i.a.f.e.o.d.a(value, false));
                 i3++;
             }

@@ -3,10 +3,13 @@ package com.discord.stores;
 import androidx.core.app.NotificationCompat;
 import com.discord.models.domain.ModelCall;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import java.util.HashSet;
 import java.util.Set;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 import rx.Observable;
 
 /* JADX INFO: compiled from: StoreCallsIncoming.kt */
@@ -17,6 +20,65 @@ public final class StoreCallsIncoming extends StoreV2 {
     private final Set<Long> incomingCalls;
     private final ObservationDeck observationDeck;
     private final StoreUser userStore;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreCallsIncoming$observeHasIncoming$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreCallsIncoming.kt */
+    public final class AnonymousClass1<T, R> implements b<Set<? extends Long>, Boolean> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Boolean call(Set<? extends Long> set) {
+            return call2((Set<Long>) set);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Boolean call2(Set<Long> set) {
+            m.checkNotNullExpressionValue(set, "incomingCalls");
+            return Boolean.valueOf(!set.isEmpty());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreCallsIncoming$observeIncoming$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreCallsIncoming.kt */
+    public final class AnonymousClass1 extends o implements Function0<Set<? extends Long>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Set<? extends Long> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Set<? extends Long> invoke2() {
+            return StoreCallsIncoming.this.getIncomingCalls();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreCallsIncoming$removeIncomingCall$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreCallsIncoming.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreCallsIncoming.access$clearIncomingCall(StoreCallsIncoming.this, this.$channelId);
+        }
+    }
 
     public StoreCallsIncoming(Dispatcher dispatcher, ObservationDeck observationDeck, StoreUser storeUser) {
         m.checkNotNullParameter(dispatcher, "dispatcher");
@@ -72,19 +134,19 @@ public final class StoreCallsIncoming extends StoreV2 {
     }
 
     public final Observable<Boolean> observeHasIncoming() {
-        Observable<Boolean> observableR = observeIncoming().G(StoreCallsIncoming$observeHasIncoming$1.INSTANCE).r();
+        Observable<Boolean> observableR = observeIncoming().G(AnonymousClass1.INSTANCE).r();
         m.checkNotNullExpressionValue(observableR, "observeIncoming()\n      …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Set<Long>> observeIncoming() {
-        Observable<Set<Long>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreCallsIncoming$observeIncoming$1(this), 14, null).r();
+        Observable<Set<Long>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final void removeIncomingCall(long channelId) {
-        this.dispatcher.schedule(new StoreCallsIncoming$removeIncomingCall$1(this, channelId));
+        this.dispatcher.schedule(new AnonymousClass1(channelId));
     }
 
     @Override // com.discord.stores.StoreV2

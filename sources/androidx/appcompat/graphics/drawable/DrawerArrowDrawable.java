@@ -5,19 +5,17 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.Paint$Cap;
-import android.graphics.Paint$Join;
-import android.graphics.Paint$Style;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.ColorInt;
 import androidx.annotation.FloatRange;
-import androidx.appcompat.R$attr;
-import androidx.appcompat.R$style;
-import androidx.appcompat.R$styleable;
+import androidx.annotation.RestrictTo;
+import androidx.appcompat.R;
 import androidx.core.graphics.drawable.DrawableCompat;
 import b.d.b.a.a;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /* JADX INFO: loaded from: classes.dex */
 public class DrawerArrowDrawable extends Drawable {
@@ -39,25 +37,30 @@ public class DrawerArrowDrawable extends Drawable {
     private boolean mVerticalMirror;
     private static final float ARROW_HEAD_ANGLE = (float) Math.toRadians(45.0d);
 
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public @interface ArrowDirection {
+    }
+
     public DrawerArrowDrawable(Context context) {
         Paint paint = new Paint();
         this.mPaint = paint;
         this.mPath = new Path();
         this.mVerticalMirror = false;
         this.mDirection = 2;
-        paint.setStyle(Paint$Style.STROKE);
-        paint.setStrokeJoin(Paint$Join.MITER);
-        paint.setStrokeCap(Paint$Cap.BUTT);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeJoin(Paint.Join.MITER);
+        paint.setStrokeCap(Paint.Cap.BUTT);
         paint.setAntiAlias(true);
-        TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(null, R$styleable.DrawerArrowToggle, R$attr.drawerArrowStyle, R$style.Base_Widget_AppCompat_DrawerArrowToggle);
-        setColor(typedArrayObtainStyledAttributes.getColor(R$styleable.DrawerArrowToggle_color, 0));
-        setBarThickness(typedArrayObtainStyledAttributes.getDimension(R$styleable.DrawerArrowToggle_thickness, 0.0f));
-        setSpinEnabled(typedArrayObtainStyledAttributes.getBoolean(R$styleable.DrawerArrowToggle_spinBars, true));
-        setGapSize(Math.round(typedArrayObtainStyledAttributes.getDimension(R$styleable.DrawerArrowToggle_gapBetweenBars, 0.0f)));
-        this.mSize = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$styleable.DrawerArrowToggle_drawableSize, 0);
-        this.mBarLength = Math.round(typedArrayObtainStyledAttributes.getDimension(R$styleable.DrawerArrowToggle_barLength, 0.0f));
-        this.mArrowHeadLength = Math.round(typedArrayObtainStyledAttributes.getDimension(R$styleable.DrawerArrowToggle_arrowHeadLength, 0.0f));
-        this.mArrowShaftLength = typedArrayObtainStyledAttributes.getDimension(R$styleable.DrawerArrowToggle_arrowShaftLength, 0.0f);
+        TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(null, R.styleable.DrawerArrowToggle, R.attr.drawerArrowStyle, R.style.Base_Widget_AppCompat_DrawerArrowToggle);
+        setColor(typedArrayObtainStyledAttributes.getColor(R.styleable.DrawerArrowToggle_color, 0));
+        setBarThickness(typedArrayObtainStyledAttributes.getDimension(R.styleable.DrawerArrowToggle_thickness, 0.0f));
+        setSpinEnabled(typedArrayObtainStyledAttributes.getBoolean(R.styleable.DrawerArrowToggle_spinBars, true));
+        setGapSize(Math.round(typedArrayObtainStyledAttributes.getDimension(R.styleable.DrawerArrowToggle_gapBetweenBars, 0.0f)));
+        this.mSize = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.DrawerArrowToggle_drawableSize, 0);
+        this.mBarLength = Math.round(typedArrayObtainStyledAttributes.getDimension(R.styleable.DrawerArrowToggle_barLength, 0.0f));
+        this.mArrowHeadLength = Math.round(typedArrayObtainStyledAttributes.getDimension(R.styleable.DrawerArrowToggle_arrowHeadLength, 0.0f));
+        this.mArrowShaftLength = typedArrayObtainStyledAttributes.getDimension(R.styleable.DrawerArrowToggle_arrowShaftLength, 0.0f);
         typedArrayObtainStyledAttributes.recycle();
     }
 

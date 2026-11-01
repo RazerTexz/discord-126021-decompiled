@@ -7,7 +7,7 @@ import java.util.Objects;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class b<T> extends a$a {
+public final class b<T> extends a.AbstractBinderC0117a {
     public final T a;
 
     public b(T t) {

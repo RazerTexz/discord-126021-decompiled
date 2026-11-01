@@ -1,12 +1,9 @@
 package b.i.a.c;
 
 import android.os.Handler;
+import android.util.Pair;
 import androidx.annotation.Nullable;
-import b.i.a.c.a3.b0$a;
-import b.i.a.c.a3.b0$a$a;
-import b.i.a.c.a3.k0$a;
-import b.i.a.c.w2.s$a;
-import b.i.a.c.w2.s$a$a;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -21,62 +18,198 @@ import java.util.Set;
 /* JADX INFO: compiled from: MediaSourceList.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class u1 {
-    public final u1$d d;
-    public final b0$a e;
-    public final s$a f;
-    public final HashMap<u1$c, u1$b> g;
-    public final Set<u1$c> h;
+    public final d d;
+    public final b.i.a.c.a3.b0.a e;
+    public final b.i.a.c.w2.s.a f;
+    public final HashMap<c, b> g;
+    public final Set<c> h;
     public boolean j;
 
     @Nullable
     public b.i.a.c.e3.a0 k;
-    public b.i.a.c.a3.k0 i = new k0$a(0, new Random());
+    public b.i.a.c.a3.k0 i = new b.i.a.c.a3.k0.a(0, new Random());
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final IdentityHashMap<b.i.a.c.a3.x, u1$c> f1137b = new IdentityHashMap<>();
-    public final Map<Object, u1$c> c = new HashMap();
-    public final List<u1$c> a = new ArrayList();
+    public final IdentityHashMap<b.i.a.c.a3.x, c> f1137b = new IdentityHashMap<>();
+    public final Map<Object, c> c = new HashMap();
+    public final List<c> a = new ArrayList();
 
-    public u1(u1$d u1_d, @Nullable b.i.a.c.s2.g1 g1Var, Handler handler) {
-        this.d = u1_d;
-        b0$a b0_a = new b0$a();
-        this.e = b0_a;
-        s$a s_a = new s$a();
-        this.f = s_a;
-        this.g = new HashMap<>();
-        this.h = new HashSet();
-        if (g1Var != null) {
-            b0_a.c.add(new b0$a$a(handler, g1Var));
-            s_a.c.add(new s$a$a(handler, g1Var));
+    /* JADX INFO: compiled from: MediaSourceList.java */
+    public final class a implements b.i.a.c.a3.b0, b.i.a.c.w2.s {
+        public final c j;
+        public b.i.a.c.a3.b0.a k;
+        public b.i.a.c.w2.s.a l;
+
+        public a(c cVar) {
+            this.k = u1.this.e;
+            this.l = u1.this.f;
+            this.j = cVar;
+        }
+
+        @Override // b.i.a.c.w2.s
+        public void J(int i, @Nullable b.i.a.c.a3.a0.a aVar) {
+            if (a(i, aVar)) {
+                this.l.b();
+            }
+        }
+
+        @Override // b.i.a.c.w2.s
+        public void S(int i, @Nullable b.i.a.c.a3.a0.a aVar) {
+            if (a(i, aVar)) {
+                this.l.a();
+            }
+        }
+
+        @Override // b.i.a.c.a3.b0
+        public void X(int i, @Nullable b.i.a.c.a3.a0.a aVar, b.i.a.c.a3.t tVar, b.i.a.c.a3.w wVar) {
+            if (a(i, aVar)) {
+                this.k.d(tVar, wVar);
+            }
+        }
+
+        public final boolean a(int i, @Nullable b.i.a.c.a3.a0.a aVar) {
+            b.i.a.c.a3.a0.a aVarB = null;
+            if (aVar != null) {
+                c cVar = this.j;
+                for (int i2 = 0; i2 < cVar.c.size(); i2++) {
+                    if (cVar.c.get(i2).d == aVar.d) {
+                        aVarB = aVar.b(Pair.create(cVar.f1139b, aVar.a));
+                        break;
+                    }
+                }
+                if (aVarB == null) {
+                    return false;
+                }
+            }
+            int i3 = i + this.j.d;
+            b.i.a.c.a3.b0.a aVar2 = this.k;
+            if (aVar2.a != i3 || !b.i.a.c.f3.e0.a(aVar2.f807b, aVarB)) {
+                this.k = u1.this.e.g(i3, aVarB, 0L);
+            }
+            b.i.a.c.w2.s.a aVar3 = this.l;
+            if (aVar3.a == i3 && b.i.a.c.f3.e0.a(aVar3.f1156b, aVarB)) {
+                return true;
+            }
+            this.l = u1.this.f.g(i3, aVarB);
+            return true;
+        }
+
+        @Override // b.i.a.c.w2.s
+        public void c0(int i, @Nullable b.i.a.c.a3.a0.a aVar, int i2) {
+            if (a(i, aVar)) {
+                this.l.d(i2);
+            }
+        }
+
+        @Override // b.i.a.c.w2.s
+        public void d0(int i, @Nullable b.i.a.c.a3.a0.a aVar) {
+            if (a(i, aVar)) {
+                this.l.f();
+            }
+        }
+
+        @Override // b.i.a.c.a3.b0
+        public void g0(int i, @Nullable b.i.a.c.a3.a0.a aVar, b.i.a.c.a3.t tVar, b.i.a.c.a3.w wVar, IOException iOException, boolean z2) {
+            if (a(i, aVar)) {
+                this.k.e(tVar, wVar, iOException, z2);
+            }
+        }
+
+        @Override // b.i.a.c.w2.s
+        public void i0(int i, @Nullable b.i.a.c.a3.a0.a aVar) {
+            if (a(i, aVar)) {
+                this.l.c();
+            }
+        }
+
+        @Override // b.i.a.c.a3.b0
+        public void o(int i, @Nullable b.i.a.c.a3.a0.a aVar, b.i.a.c.a3.w wVar) {
+            if (a(i, aVar)) {
+                this.k.b(wVar);
+            }
+        }
+
+        @Override // b.i.a.c.a3.b0
+        public void q(int i, @Nullable b.i.a.c.a3.a0.a aVar, b.i.a.c.a3.t tVar, b.i.a.c.a3.w wVar) {
+            if (a(i, aVar)) {
+                this.k.c(tVar, wVar);
+            }
+        }
+
+        @Override // b.i.a.c.w2.s
+        public void u(int i, @Nullable b.i.a.c.a3.a0.a aVar, Exception exc) {
+            if (a(i, aVar)) {
+                this.l.e(exc);
+            }
+        }
+
+        @Override // b.i.a.c.a3.b0
+        public void x(int i, @Nullable b.i.a.c.a3.a0.a aVar, b.i.a.c.a3.t tVar, b.i.a.c.a3.w wVar) {
+            if (a(i, aVar)) {
+                this.k.f(tVar, wVar);
+            }
         }
     }
 
-    public o2 a(int i, List<u1$c> list, b.i.a.c.a3.k0 k0Var) {
+    /* JADX INFO: compiled from: MediaSourceList.java */
+    public final class b {
+        public final b.i.a.c.a3.a0 a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final b.i.a.c.a3.a0.b f1138b;
+        public final a c;
+
+        public b(b.i.a.c.a3.a0 a0Var, b.i.a.c.a3.a0.b bVar, a aVar) {
+            this.a = a0Var;
+            this.f1138b = bVar;
+            this.c = aVar;
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaSourceList.java */
+    public interface d {
+    }
+
+    public u1(d dVar, @Nullable b.i.a.c.s2.g1 g1Var, Handler handler) {
+        this.d = dVar;
+        b.i.a.c.a3.b0.a aVar = new b.i.a.c.a3.b0.a();
+        this.e = aVar;
+        b.i.a.c.w2.s.a aVar2 = new b.i.a.c.w2.s.a();
+        this.f = aVar2;
+        this.g = new HashMap<>();
+        this.h = new HashSet();
+        if (g1Var != null) {
+            aVar.c.add(new b.i.a.c.a3.b0.a.C0092a(handler, g1Var));
+            aVar2.c.add(new b.i.a.c.w2.s.a.C0101a(handler, g1Var));
+        }
+    }
+
+    public o2 a(int i, List<c> list, b.i.a.c.a3.k0 k0Var) {
         if (!list.isEmpty()) {
             this.i = k0Var;
             for (int i2 = i; i2 < list.size() + i; i2++) {
-                u1$c u1_c = list.get(i2 - i);
+                c cVar = list.get(i2 - i);
                 if (i2 > 0) {
-                    u1$c u1_c2 = this.a.get(i2 - 1);
-                    u1_c.d = u1_c2.a.n.p() + u1_c2.d;
-                    u1_c.e = false;
-                    u1_c.c.clear();
+                    c cVar2 = this.a.get(i2 - 1);
+                    cVar.d = cVar2.a.n.p() + cVar2.d;
+                    cVar.e = false;
+                    cVar.c.clear();
                 } else {
-                    u1_c.d = 0;
-                    u1_c.e = false;
-                    u1_c.c.clear();
+                    cVar.d = 0;
+                    cVar.e = false;
+                    cVar.c.clear();
                 }
-                b(i2, u1_c.a.n.p());
-                this.a.add(i2, u1_c);
-                this.c.put(u1_c.f1139b, u1_c);
+                b(i2, cVar.a.n.p());
+                this.a.add(i2, cVar);
+                this.c.put(cVar.f1139b, cVar);
                 if (this.j) {
-                    g(u1_c);
+                    g(cVar);
                     if (this.f1137b.isEmpty()) {
-                        this.h.add(u1_c);
+                        this.h.add(cVar);
                     } else {
-                        u1$b u1_b = this.g.get(u1_c);
-                        if (u1_b != null) {
-                            u1_b.a.d(u1_b.f1138b);
+                        b bVar = this.g.get(cVar);
+                        if (bVar != null) {
+                            bVar.a.d(bVar.f1138b);
                         }
                     }
                 }
@@ -98,21 +231,21 @@ public final class u1 {
         }
         int iP = 0;
         for (int i = 0; i < this.a.size(); i++) {
-            u1$c u1_c = this.a.get(i);
-            u1_c.d = iP;
-            iP += u1_c.a.n.p();
+            c cVar = this.a.get(i);
+            cVar.d = iP;
+            iP += cVar.a.n.p();
         }
         return new c2(this.a, this.i);
     }
 
     public final void d() {
-        Iterator<u1$c> it = this.h.iterator();
+        Iterator<c> it = this.h.iterator();
         while (it.hasNext()) {
-            u1$c next = it.next();
+            c next = it.next();
             if (next.c.isEmpty()) {
-                u1$b u1_b = this.g.get(next);
-                if (u1_b != null) {
-                    u1_b.a.d(u1_b.f1138b);
+                b bVar = this.g.get(next);
+                if (bVar != null) {
+                    bVar.a.d(bVar.f1138b);
                 }
                 it.remove();
             }
@@ -123,54 +256,79 @@ public final class u1 {
         return this.a.size();
     }
 
-    public final void f(u1$c u1_c) {
-        if (u1_c.e && u1_c.c.isEmpty()) {
-            u1$b u1_bRemove = this.g.remove(u1_c);
-            Objects.requireNonNull(u1_bRemove);
-            u1_bRemove.a.a(u1_bRemove.f1138b);
-            u1_bRemove.a.c(u1_bRemove.c);
-            u1_bRemove.a.g(u1_bRemove.c);
-            this.h.remove(u1_c);
+    public final void f(c cVar) {
+        if (cVar.e && cVar.c.isEmpty()) {
+            b bVarRemove = this.g.remove(cVar);
+            Objects.requireNonNull(bVarRemove);
+            bVarRemove.a.a(bVarRemove.f1138b);
+            bVarRemove.a.c(bVarRemove.c);
+            bVarRemove.a.g(bVarRemove.c);
+            this.h.remove(cVar);
         }
     }
 
-    public final void g(u1$c u1_c) {
-        b.i.a.c.a3.v vVar = u1_c.a;
+    public final void g(c cVar) {
+        b.i.a.c.a3.v vVar = cVar.a;
         n0 n0Var = new n0(this);
-        u1$a u1_a = new u1$a(this, u1_c);
-        this.g.put(u1_c, new u1$b(vVar, n0Var, u1_a));
+        a aVar = new a(cVar);
+        this.g.put(cVar, new b(vVar, n0Var, aVar));
         Handler handler = new Handler(b.i.a.c.f3.e0.o(), null);
         Objects.requireNonNull(vVar);
-        b0$a b0_a = vVar.c;
-        Objects.requireNonNull(b0_a);
-        b0_a.c.add(new b0$a$a(handler, u1_a));
+        b.i.a.c.a3.b0.a aVar2 = vVar.c;
+        Objects.requireNonNull(aVar2);
+        aVar2.c.add(new b.i.a.c.a3.b0.a.C0092a(handler, aVar));
         Handler handler2 = new Handler(b.i.a.c.f3.e0.o(), null);
-        s$a s_a = vVar.d;
-        Objects.requireNonNull(s_a);
-        s_a.c.add(new s$a$a(handler2, u1_a));
+        b.i.a.c.w2.s.a aVar3 = vVar.d;
+        Objects.requireNonNull(aVar3);
+        aVar3.c.add(new b.i.a.c.w2.s.a.C0101a(handler2, aVar));
         vVar.l(n0Var, this.k);
     }
 
     public void h(b.i.a.c.a3.x xVar) {
-        u1$c u1_cRemove = this.f1137b.remove(xVar);
-        Objects.requireNonNull(u1_cRemove);
-        u1_cRemove.a.j(xVar);
-        u1_cRemove.c.remove(((b.i.a.c.a3.u) xVar).j);
+        c cVarRemove = this.f1137b.remove(xVar);
+        Objects.requireNonNull(cVarRemove);
+        cVarRemove.a.j(xVar);
+        cVarRemove.c.remove(((b.i.a.c.a3.u) xVar).j);
         if (!this.f1137b.isEmpty()) {
             d();
         }
-        f(u1_cRemove);
+        f(cVarRemove);
     }
 
     public final void i(int i, int i2) {
         for (int i3 = i2 - 1; i3 >= i; i3--) {
-            u1$c u1_cRemove = this.a.remove(i3);
-            this.c.remove(u1_cRemove.f1139b);
-            b(i3, -u1_cRemove.a.n.p());
-            u1_cRemove.e = true;
+            c cVarRemove = this.a.remove(i3);
+            this.c.remove(cVarRemove.f1139b);
+            b(i3, -cVarRemove.a.n.p());
+            cVarRemove.e = true;
             if (this.j) {
-                f(u1_cRemove);
+                f(cVarRemove);
             }
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaSourceList.java */
+    public final class c implements t1 {
+        public final b.i.a.c.a3.v a;
+        public int d;
+        public boolean e;
+        public final List<b.i.a.c.a3.a0.a> c = new ArrayList();
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final Object f1139b = new Object();
+
+        public c(b.i.a.c.a3.a0 a0Var, boolean z2) {
+            this.a = new b.i.a.c.a3.v(a0Var, z2);
+        }
+
+        @Override // b.i.a.c.t1
+        public o2 a() {
+            return this.a.n;
+        }
+
+        @Override // b.i.a.c.t1
+        public Object getUid() {
+            return this.f1139b;
         }
     }
 }

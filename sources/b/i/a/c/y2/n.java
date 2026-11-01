@@ -23,7 +23,7 @@ public class n {
     public boolean h;
 
     @GuardedBy("MESSAGE_PARAMS_INSTANCE_POOL")
-    public static final ArrayDeque<n$a> a = new ArrayDeque<>();
+    public static final ArrayDeque<a> a = new ArrayDeque<>();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final Object f1308b = new Object();
@@ -88,11 +88,11 @@ public class n {
         }
     }
 
-    public static n$a e() {
-        ArrayDeque<n$a> arrayDeque = a;
+    public static a e() {
+        ArrayDeque<a> arrayDeque = a;
         synchronized (arrayDeque) {
             if (arrayDeque.isEmpty()) {
-                return new n$a();
+                return new a();
             }
             return arrayDeque.removeFirst();
         }
@@ -103,5 +103,17 @@ public class n {
         if (andSet != null) {
             throw andSet;
         }
+    }
+
+    /* JADX INFO: compiled from: AsynchronousMediaCodecBufferEnqueuer.java */
+    public class a {
+        public int a;
+        public int c;
+        public long e;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public int f1309b;
+        public int f;
+        public final MediaCodec.CryptoInfo d = new MediaCodec.CryptoInfo();
     }
 }

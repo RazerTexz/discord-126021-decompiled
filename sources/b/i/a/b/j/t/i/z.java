@@ -2,7 +2,6 @@ package b.i.a.b.j.t.i;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase$CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import java.util.Arrays;
 import java.util.List;
@@ -12,16 +11,21 @@ import java.util.List;
 public final class z extends SQLiteOpenHelper {
     public final int k;
     public boolean l;
-    public static final List<z$a> j = Arrays.asList(v.a, w.a, x.a, y.a);
+    public static final List<a> j = Arrays.asList(v.a, w.a, x.a, y.a);
+
+    /* JADX INFO: compiled from: SchemaManager.java */
+    public interface a {
+        void a(SQLiteDatabase sQLiteDatabase);
+    }
 
     public z(Context context, String str, int i) {
-        super(context, str, (SQLiteDatabase$CursorFactory) null, i);
+        super(context, str, (SQLiteDatabase.CursorFactory) null, i);
         this.l = false;
         this.k = i;
     }
 
     public final void a(SQLiteDatabase sQLiteDatabase, int i, int i2) {
-        List<z$a> list = j;
+        List<a> list = j;
         if (i2 <= list.size()) {
             while (i < i2) {
                 j.get(i).a(sQLiteDatabase);

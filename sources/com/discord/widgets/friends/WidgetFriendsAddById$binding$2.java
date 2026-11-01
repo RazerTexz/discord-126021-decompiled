@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetFriendsAddByIdBinding;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -29,17 +29,17 @@ public final /* synthetic */ class WidgetFriendsAddById$binding$2 extends k impl
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetFriendsAddByIdBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.friend_add_username_indicator;
-        TextView textView = (TextView) view.findViewById(R$id.friend_add_username_indicator);
+        int i = R.id.friend_add_username_indicator;
+        TextView textView = (TextView) view.findViewById(R.id.friend_add_username_indicator);
         if (textView != null) {
-            i = R$id.friends_add_container;
-            LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.friends_add_container);
+            i = R.id.friends_add_container;
+            LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.friends_add_container);
             if (linearLayout != null) {
-                i = R$id.friends_add_send;
-                MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.friends_add_send);
+                i = R.id.friends_add_send;
+                MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.friends_add_send);
                 if (materialButton != null) {
-                    i = R$id.friends_add_text_edit_wrap;
-                    TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.friends_add_text_edit_wrap);
+                    i = R.id.friends_add_text_edit_wrap;
+                    TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.friends_add_text_edit_wrap);
                     if (textInputLayout != null) {
                         return new WidgetFriendsAddByIdBinding((NestedScrollView) view, textView, linearLayout, materialButton, textInputLayout);
                     }

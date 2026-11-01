@@ -1,6 +1,9 @@
 package com.esotericsoftware.kryo.util;
 
 import b.d.b.a.a;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -21,6 +24,164 @@ public class ObjectMap<K, V> {
     private int threshold;
     public V[] valueTable;
     public static Random random = new Random();
+
+    public class Entries<K, V> extends MapIterator<K, V> implements Iterable<Entry<K, V>>, Iterator<Entry<K, V>> {
+        public Entry<K, V> entry;
+
+        public Entries(ObjectMap<K, V> objectMap) {
+            super(objectMap);
+            this.entry = new Entry<>();
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.hasNext;
+        }
+
+        @Override // java.lang.Iterable
+        public Iterator<Entry<K, V>> iterator() {
+            return this;
+        }
+
+        @Override // java.util.Iterator
+        public /* bridge */ /* synthetic */ Object next() {
+            return next();
+        }
+
+        @Override // com.esotericsoftware.kryo.util.ObjectMap.MapIterator, java.util.Iterator
+        public /* bridge */ /* synthetic */ void remove() {
+            super.remove();
+        }
+
+        @Override // com.esotericsoftware.kryo.util.ObjectMap.MapIterator
+        public /* bridge */ /* synthetic */ void reset() {
+            super.reset();
+        }
+
+        @Override // java.util.Iterator
+        public Entry<K, V> next() {
+            if (!this.hasNext) {
+                throw new NoSuchElementException();
+            }
+            ObjectMap<K, V> objectMap = this.map;
+            K[] kArr = objectMap.keyTable;
+            Entry<K, V> entry = this.entry;
+            int i = this.nextIndex;
+            entry.key = kArr[i];
+            entry.value = objectMap.valueTable[i];
+            this.currentIndex = i;
+            advance();
+            return this.entry;
+        }
+    }
+
+    public class Entry<K, V> {
+        public K key;
+        public V value;
+
+        public String toString() {
+            return this.key + "=" + this.value;
+        }
+    }
+
+    public class Keys<K> extends MapIterator<K, Object> implements Iterable<K>, Iterator<K> {
+        public Keys(ObjectMap<K, ?> objectMap) {
+            super(objectMap);
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.hasNext;
+        }
+
+        @Override // java.lang.Iterable
+        public Iterator<K> iterator() {
+            return this;
+        }
+
+        @Override // java.util.Iterator
+        public K next() {
+            if (!this.hasNext) {
+                throw new NoSuchElementException();
+            }
+            K[] kArr = this.map.keyTable;
+            int i = this.nextIndex;
+            K k = kArr[i];
+            this.currentIndex = i;
+            advance();
+            return k;
+        }
+
+        @Override // com.esotericsoftware.kryo.util.ObjectMap.MapIterator, java.util.Iterator
+        public /* bridge */ /* synthetic */ void remove() {
+            super.remove();
+        }
+
+        @Override // com.esotericsoftware.kryo.util.ObjectMap.MapIterator
+        public /* bridge */ /* synthetic */ void reset() {
+            super.reset();
+        }
+
+        public ArrayList<K> toArray() {
+            ArrayList<K> arrayList = new ArrayList<>(this.map.size);
+            while (this.hasNext) {
+                arrayList.add(next());
+            }
+            return arrayList;
+        }
+    }
+
+    public class MapIterator<K, V> {
+        public int currentIndex;
+        public boolean hasNext;
+        public final ObjectMap<K, V> map;
+        public int nextIndex;
+
+        public MapIterator(ObjectMap<K, V> objectMap) {
+            this.map = objectMap;
+            reset();
+        }
+
+        public void advance() {
+            int i;
+            this.hasNext = false;
+            ObjectMap<K, V> objectMap = this.map;
+            K[] kArr = objectMap.keyTable;
+            int i2 = objectMap.capacity + objectMap.stashSize;
+            do {
+                i = this.nextIndex + 1;
+                this.nextIndex = i;
+                if (i >= i2) {
+                    return;
+                }
+            } while (kArr[i] == null);
+            this.hasNext = true;
+        }
+
+        public void remove() {
+            int i = this.currentIndex;
+            if (i < 0) {
+                throw new IllegalStateException("next must be called before remove.");
+            }
+            ObjectMap<K, V> objectMap = this.map;
+            if (i >= objectMap.capacity) {
+                objectMap.removeStashIndex(i);
+                this.nextIndex = this.currentIndex - 1;
+                advance();
+            } else {
+                objectMap.keyTable[i] = null;
+                objectMap.valueTable[i] = null;
+            }
+            this.currentIndex = -1;
+            this.map.size--;
+        }
+
+        public void reset() {
+            this.currentIndex = -1;
+            this.nextIndex = -1;
+            advance();
+        }
+    }
 
     public ObjectMap() {
         this(32, 0.8f);
@@ -117,8 +278,8 @@ public class ObjectMap<K, V> {
         }
     }
 
-    public ObjectMap$Entries<K, V> entries() {
-        return new ObjectMap$Entries<>(this);
+    public Entries<K, V> entries() {
+        return new Entries<>(this);
     }
 
     public K findKey(Object obj, boolean z2) {
@@ -212,8 +373,8 @@ public class ObjectMap<K, V> {
         return (i2 ^ (i2 >>> this.hashShift)) & this.mask;
     }
 
-    public ObjectMap$Keys<K> keys() {
-        return new ObjectMap$Keys<>(this);
+    public Keys<K> keys() {
+        return new Keys<>(this);
     }
 
     public static int nextPowerOfTwo(int i) {
@@ -356,8 +517,8 @@ public class ObjectMap<K, V> {
 
     public void putAll(ObjectMap<K, V> objectMap) {
         ensureCapacity(objectMap.size);
-        for (ObjectMap$Entry<K, V> objectMap$Entry : objectMap.entries()) {
-            put(objectMap$Entry.key, objectMap$Entry.value);
+        for (Entry<K, V> entry : objectMap.entries()) {
+            put(entry.key, entry.value);
         }
     }
 
@@ -704,12 +865,65 @@ public class ObjectMap<K, V> {
         }
     }
 
-    public ObjectMap$Values<V> values() {
-        return new ObjectMap$Values<>(this);
+    public Values<V> values() {
+        return new Values<>(this);
     }
 
     public ObjectMap(int i) {
         this(i, 0.8f);
+    }
+
+    public class Values<V> extends MapIterator<Object, V> implements Iterable<V>, Iterator<V> {
+        public Values(ObjectMap<?, V> objectMap) {
+            super(objectMap);
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.hasNext;
+        }
+
+        @Override // java.lang.Iterable
+        public Iterator<V> iterator() {
+            return this;
+        }
+
+        @Override // java.util.Iterator
+        public V next() {
+            if (!this.hasNext) {
+                throw new NoSuchElementException();
+            }
+            V[] vArr = this.map.valueTable;
+            int i = this.nextIndex;
+            V v = vArr[i];
+            this.currentIndex = i;
+            advance();
+            return v;
+        }
+
+        @Override // com.esotericsoftware.kryo.util.ObjectMap.MapIterator, java.util.Iterator
+        public /* bridge */ /* synthetic */ void remove() {
+            super.remove();
+        }
+
+        @Override // com.esotericsoftware.kryo.util.ObjectMap.MapIterator
+        public /* bridge */ /* synthetic */ void reset() {
+            super.reset();
+        }
+
+        public ArrayList<V> toArray() {
+            ArrayList<V> arrayList = new ArrayList<>(this.map.size);
+            while (this.hasNext) {
+                arrayList.add(next());
+            }
+            return arrayList;
+        }
+
+        public void toArray(ArrayList<V> arrayList) {
+            while (this.hasNext) {
+                arrayList.add(next());
+            }
+        }
     }
 
     public ObjectMap(int i, float f) {

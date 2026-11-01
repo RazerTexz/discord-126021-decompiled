@@ -4,7 +4,7 @@ import a0.a.a.b;
 import b.d.b.a.a;
 import com.discord.api.commands.ApplicationCommandAttachment;
 import com.discord.api.commands.ApplicationCommandData;
-import com.discord.restapi.RestAPIParams$ApplicationCommand;
+import com.discord.restapi.RestAPIParams;
 import com.discord.stores.StoreApplicationCommandsKt;
 import com.discord.widgets.chat.input.models.ApplicationCommandValue;
 import d0.t.n;
@@ -227,14 +227,14 @@ public final /* data */ class ApplicationCommandLocalSendData {
         return new ApplicationCommandData(str, strValueOf, str2, str3, restParams, arrayList2);
     }
 
-    public final RestAPIParams$ApplicationCommand toRestApiParam() {
+    public final RestAPIParams.ApplicationCommand toRestApiParam() {
         String strValueOf = String.valueOf(this.channelId);
         String strValueOf2 = String.valueOf(this.application.getId());
         Long l = this.guildId;
         String strValueOf3 = l != null ? String.valueOf(l.longValue()) : null;
         ApplicationCommandData restApiApplicationCommandDataParam = toRestApiApplicationCommandDataParam();
         String str = this.sessionId;
-        return new RestAPIParams$ApplicationCommand(2L, strValueOf, strValueOf2, strValueOf3, restApiApplicationCommandDataParam, str != null ? str : null, this.nonceString);
+        return new RestAPIParams.ApplicationCommand(2L, strValueOf, strValueOf2, strValueOf3, restApiApplicationCommandDataParam, str != null ? str : null, this.nonceString);
     }
 
     public String toString() {

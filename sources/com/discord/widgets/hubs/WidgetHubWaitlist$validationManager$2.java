@@ -1,7 +1,8 @@
 package com.discord.widgets.hubs;
 
+import com.discord.R;
 import com.discord.utilities.view.validators.BasicTextInputValidator;
-import com.discord.utilities.view.validators.Input$TextInputLayoutInput;
+import com.discord.utilities.view.validators.Input;
 import com.discord.utilities.view.validators.ValidationManager;
 import com.google.android.material.textfield.TextInputLayout;
 import d0.z.d.m;
@@ -29,6 +30,6 @@ public final class WidgetHubWaitlist$validationManager$2 extends o implements Fu
     public final ValidationManager invoke() {
         TextInputLayout textInputLayout = this.this$0.getBinding().d;
         m.checkNotNullExpressionValue(textInputLayout, "binding.hubWaitlistLayout");
-        return new ValidationManager(new Input$TextInputLayoutInput("school name", textInputLayout, BasicTextInputValidator.Companion.createRequiredInputValidator(2131892854)));
+        return new ValidationManager(new Input.TextInputLayoutInput("school name", textInputLayout, BasicTextInputValidator.INSTANCE.createRequiredInputValidator(R.string.member_verification_form_required_item)));
     }
 }

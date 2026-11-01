@@ -1,18 +1,15 @@
 package b.g.a.c.g0.t;
 
-import b.g.a.a.p$a;
-import b.g.a.a.p$b;
 import b.g.a.c.x;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import java.io.IOException;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: MapEntrySerializer.java */
 /* JADX INFO: loaded from: classes3.dex */
 @b.g.a.c.y.a
-public class i extends b.g.a.c.g0.h<Map$Entry<?, ?>> implements b.g.a.c.g0.i {
+public class i extends b.g.a.c.g0.h<Map.Entry<?, ?>> implements b.g.a.c.g0.i {
     public l _dynamicValueSerializers;
     public final b.g.a.c.j _entryType;
     public b.g.a.c.n<Object> _keySerializer;
@@ -33,7 +30,7 @@ public class i extends b.g.a.c.g0.h<Map$Entry<?, ?>> implements b.g.a.c.g0.i {
         this._valueTypeIsStatic = z2;
         this._valueTypeSerializer = gVar;
         this._property = dVar;
-        this._dynamicValueSerializers = l$b.f706b;
+        this._dynamicValueSerializers = l.b.f706b;
         this._suppressableValue = null;
         this._suppressNulls = false;
     }
@@ -44,9 +41,9 @@ public class i extends b.g.a.c.g0.h<Map$Entry<?, ?>> implements b.g.a.c.g0.i {
         b.g.a.c.n<?> nVarH2;
         Object obj;
         boolean zB;
-        p$b p_bB;
-        p$a p_a;
-        Object objT0 = p$a.NON_EMPTY;
+        b.g.a.a.p.b bVarB;
+        b.g.a.a.p.a aVar;
+        Object objT0 = b.g.a.a.p.a.NON_EMPTY;
         b.g.a.c.b bVarV = xVar.v();
         b.g.a.c.c0.i member = dVar == null ? null : dVar.getMember();
         if (member == null || bVarV == null) {
@@ -72,11 +69,11 @@ public class i extends b.g.a.c.g0.h<Map$Entry<?, ?>> implements b.g.a.c.g0.i {
         b.g.a.c.n<?> nVarO = nVarH2 == null ? xVar.o(this._keyType, dVar) : xVar.z(nVarH2, dVar);
         Object obj2 = this._suppressableValue;
         boolean z2 = this._suppressNulls;
-        if (dVar == null || (p_bB = dVar.b(xVar._config, null)) == null || (p_a = p_bB._contentInclusion) == p$a.USE_DEFAULTS) {
+        if (dVar == null || (bVarB = dVar.b(xVar._config, null)) == null || (aVar = bVarB._contentInclusion) == b.g.a.a.p.a.USE_DEFAULTS) {
             obj = obj2;
             zB = z2;
         } else {
-            int iOrdinal = p_a.ordinal();
+            int iOrdinal = aVar.ordinal();
             if (iOrdinal != 1) {
                 if (iOrdinal != 2) {
                     if (iOrdinal != 3) {
@@ -89,7 +86,7 @@ public class i extends b.g.a.c.g0.h<Map$Entry<?, ?>> implements b.g.a.c.g0.i {
                             obj = null;
                             zB = false;
                         } else {
-                            objT0 = xVar.A(null, p_bB._contentFilter);
+                            objT0 = xVar.A(null, bVarB._contentFilter);
                             if (objT0 != null) {
                                 zB = xVar.B(objT0);
                                 obj = objT0;
@@ -110,7 +107,7 @@ public class i extends b.g.a.c.g0.h<Map$Entry<?, ?>> implements b.g.a.c.g0.i {
 
     @Override // b.g.a.c.n
     public boolean d(x xVar, Object obj) {
-        Object value = ((Map$Entry) obj).getValue();
+        Object value = ((Map.Entry) obj).getValue();
         if (value == null) {
             return this._suppressNulls;
         }
@@ -137,25 +134,25 @@ public class i extends b.g.a.c.g0.h<Map$Entry<?, ?>> implements b.g.a.c.g0.i {
                 }
             }
             Object obj2 = this._suppressableValue;
-            return obj2 == p$a.NON_EMPTY ? nVar.d(xVar, value) : obj2.equals(value);
+            return obj2 == b.g.a.a.p.a.NON_EMPTY ? nVar.d(xVar, value) : obj2.equals(value);
         }
         return false;
     }
 
     @Override // b.g.a.c.n
     public void f(Object obj, b.g.a.b.d dVar, x xVar) throws IOException {
-        Map$Entry<?, ?> map$Entry = (Map$Entry) obj;
-        dVar.d0(map$Entry);
-        r(map$Entry, dVar, xVar);
+        Map.Entry<?, ?> entry = (Map.Entry) obj;
+        dVar.d0(entry);
+        r(entry, dVar, xVar);
         dVar.u();
     }
 
     @Override // b.g.a.c.n
     public void g(Object obj, b.g.a.b.d dVar, x xVar, b.g.a.c.e0.g gVar) throws IOException {
-        Map$Entry<?, ?> map$Entry = (Map$Entry) obj;
-        dVar.e(map$Entry);
-        b.g.a.b.s.b bVarE = gVar.e(dVar, gVar.d(map$Entry, b.g.a.b.h.START_OBJECT));
-        r(map$Entry, dVar, xVar);
+        Map.Entry<?, ?> entry = (Map.Entry) obj;
+        dVar.e(entry);
+        b.g.a.b.s.b bVarE = gVar.e(dVar, gVar.d(entry, b.g.a.b.h.START_OBJECT));
+        r(entry, dVar, xVar);
         gVar.f(dVar, bVarE);
     }
 
@@ -164,12 +161,12 @@ public class i extends b.g.a.c.g0.h<Map$Entry<?, ?>> implements b.g.a.c.g0.i {
         return new i(this, this._keySerializer, this._valueSerializer, this._suppressableValue, this._suppressNulls);
     }
 
-    public void r(Map$Entry<?, ?> map$Entry, b.g.a.b.d dVar, x xVar) throws IOException {
+    public void r(Map.Entry<?, ?> entry, b.g.a.b.d dVar, x xVar) throws IOException {
         b.g.a.c.n<Object> nVar;
         b.g.a.c.e0.g gVar = this._valueTypeSerializer;
-        Object key = map$Entry.getKey();
+        Object key = entry.getKey();
         b.g.a.c.n<Object> nVar2 = key == null ? xVar._nullKeySerializer : this._keySerializer;
-        Object value = map$Entry.getValue();
+        Object value = entry.getValue();
         if (value != null) {
             nVar = this._valueSerializer;
             if (nVar == null) {
@@ -179,12 +176,12 @@ public class i extends b.g.a.c.g0.h<Map$Entry<?, ?>> implements b.g.a.c.g0.i {
                     nVar = nVarC;
                 } else if (this._valueType.r()) {
                     l lVar = this._dynamicValueSerializers;
-                    l$d l_dA = lVar.a(xVar.k(this._valueType, cls), xVar, this._property);
-                    l lVar2 = l_dA.f708b;
+                    l.d dVarA = lVar.a(xVar.k(this._valueType, cls), xVar, this._property);
+                    l lVar2 = dVarA.f708b;
                     if (lVar != lVar2) {
                         this._dynamicValueSerializers = lVar2;
                     }
-                    nVar = l_dA.a;
+                    nVar = dVarA.a;
                 } else {
                     l lVar3 = this._dynamicValueSerializers;
                     b.g.a.c.d dVar2 = this._property;
@@ -198,7 +195,7 @@ public class i extends b.g.a.c.g0.h<Map$Entry<?, ?>> implements b.g.a.c.g0.i {
                 }
             }
             Object obj = this._suppressableValue;
-            if (obj != null && ((obj == p$a.NON_EMPTY && nVar.d(xVar, value)) || this._suppressableValue.equals(value))) {
+            if (obj != null && ((obj == b.g.a.a.p.a.NON_EMPTY && nVar.d(xVar, value)) || this._suppressableValue.equals(value))) {
                 return;
             }
         } else if (this._suppressNulls) {
@@ -214,7 +211,7 @@ public class i extends b.g.a.c.g0.h<Map$Entry<?, ?>> implements b.g.a.c.g0.i {
                 nVar.g(value, dVar, xVar, gVar);
             }
         } catch (Exception e) {
-            o(xVar, e, map$Entry, b.d.b.a.a.v("", key));
+            o(xVar, e, entry, b.d.b.a.a.v("", key));
             throw null;
         }
     }
@@ -228,7 +225,7 @@ public class i extends b.g.a.c.g0.h<Map$Entry<?, ?>> implements b.g.a.c.g0.i {
         this._valueTypeSerializer = iVar._valueTypeSerializer;
         this._keySerializer = nVar;
         this._valueSerializer = nVar2;
-        this._dynamicValueSerializers = l$b.f706b;
+        this._dynamicValueSerializers = l.b.f706b;
         this._property = iVar._property;
         this._suppressableValue = obj;
         this._suppressNulls = z2;

@@ -3,31 +3,31 @@ package com.discord.widgets.chat.input;
 import android.content.Context;
 import android.view.View;
 import androidx.annotation.MainThread;
+import androidx.appcompat.widget.ActivityChooserModel;
+import androidx.fragment.app.FragmentActivity;
 import b.a.d.d0;
 import b.b.a.h.a;
-import b.b.a.h.a$a;
-import b.b.a.h.a$b;
-import b.b.a.h.a$c;
-import b.b.a.h.a$d;
-import b.b.a.h.a$e;
 import b.i.a.f.e.o.f;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.permission.Permission;
 import com.discord.api.sticker.Sticker;
 import com.discord.app.AppPermissionsRequests;
 import com.discord.panels.PanelState;
-import com.discord.panels.PanelState$a;
 import com.discord.stores.StoreAnalytics;
 import com.discord.stores.StoreExpressionSuggestions;
-import com.discord.stores.StoreNotices$Notice;
+import com.discord.stores.StoreNotices;
 import com.discord.stores.StoreStickers;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.analytics.ChatInputComponentTypes;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.channel.ChannelSelector;
 import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
+import com.discord.utilities.stickers.StickerUtils;
 import com.discord.widgets.home.WidgetHome;
+import com.discord.widgets.settings.premium.WidgetSettingsGifting;
 import com.lytefast.flexinput.FlexInputAttachmentListener;
 import com.lytefast.flexinput.FlexInputListener;
 import com.lytefast.flexinput.model.Attachment;
@@ -38,10 +38,13 @@ import d0.t.n0;
 import d0.t.u;
 import d0.z.d.a0;
 import d0.z.d.e0;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -53,7 +56,9 @@ import rx.subjects.PublishSubject;
 /* JADX INFO: loaded from: classes2.dex */
 public final class AppFlexInputViewModel extends d0<FlexInputState> implements FlexInputViewModel {
     private static final String CHAT_GIFTING_NOTICE = "CHAT_GIFTING_NOTICE";
-    public static final AppFlexInputViewModel$Companion Companion = new AppFlexInputViewModel$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private boolean attachmentView;
     private PublishSubject<a> eventSubject;
     private final AppPermissionsRequests permissionRequests;
@@ -63,12 +68,299 @@ public final class AppFlexInputViewModel extends d0<FlexInputState> implements F
     private final StoreExpressionSuggestions storeExpressionSuggestions;
     private final StoreStickers storeStickers;
 
-    public /* synthetic */ AppFlexInputViewModel(AppPermissionsRequests appPermissionsRequests, FlexInputState flexInputState, Observable observable, StoreStickers storeStickers, StoreAnalytics storeAnalytics, StoreExpressionSuggestions storeExpressionSuggestions, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(appPermissionsRequests, (i & 2) != 0 ? new FlexInputState(null, false, null, false, false, null, false, false, false, false, false, null, null, 8191) : flexInputState, (i & 4) != 0 ? AppFlexInputViewModel$Companion.access$observeStores(Companion) : observable, (i & 8) != 0 ? StoreStream.Companion.getStickers() : storeStickers, (i & 16) != 0 ? StoreStream.Companion.getAnalytics() : storeAnalytics, (i & 32) != 0 ? StoreStream.Companion.getExpressionSuggestions() : storeExpressionSuggestions);
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.AppFlexInputViewModel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AppFlexInputViewModel.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<StoreState, Unit> {
+        public AnonymousClass1(AppFlexInputViewModel appFlexInputViewModel) {
+            super(1, appFlexInputViewModel, AppFlexInputViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/chat/input/AppFlexInputViewModel$StoreState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
+            invoke2(storeState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreState storeState) {
+            m.checkNotNullParameter(storeState, "p1");
+            AppFlexInputViewModel.access$handleStoreState((AppFlexInputViewModel) this.receiver, storeState);
+        }
     }
 
-    public static final /* synthetic */ void access$handleStoreState(AppFlexInputViewModel appFlexInputViewModel, AppFlexInputViewModel$StoreState appFlexInputViewModel$StoreState) {
-        appFlexInputViewModel.handleStoreState(appFlexInputViewModel$StoreState);
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.AppFlexInputViewModel$getMatchingStickers$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AppFlexInputViewModel.kt */
+    public final class AnonymousClass1 extends o implements Function1<String, Set<? extends Sticker>> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Set<? extends Sticker> invoke(String str) {
+            return invoke2(str);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Set<Sticker> invoke2(String str) {
+            m.checkNotNullParameter(str, "inputText");
+            StickerUtils stickerUtils = StickerUtils.INSTANCE;
+            return StickerUtils.findStickerMatches$default(stickerUtils, str, StickerUtils.getStickersForAutocomplete$default(stickerUtils, null, null, null, null, null, 31, null), false, 4, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.AppFlexInputViewModel$onGiftButtonClicked$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AppFlexInputViewModel.kt */
+    public final class AnonymousClass1 extends o implements Function1<FragmentActivity, Boolean> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(FragmentActivity fragmentActivity) {
+            return Boolean.valueOf(invoke2(fragmentActivity));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(FragmentActivity fragmentActivity) {
+            m.checkNotNullParameter(fragmentActivity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
+            StoreStream.Companion companion = StoreStream.INSTANCE;
+            Channel channelFindChannelById = companion.getChannels().findChannelById(companion.getChannelsSelected().getId());
+            WidgetSettingsGifting.INSTANCE.launch(fragmentActivity, new Traits.Location((channelFindChannelById == null || channelFindChannelById.getGuildId() != 0) ? Traits.Location.Page.GUILD_CHANNEL : "DM Channel", Traits.Location.Section.CHANNEL_TEXT_AREA, "Button Icon", "gift", null, 16, null));
+            StoreNotices.markSeen$default(companion.getNotices(), AppFlexInputViewModel.CHAT_GIFTING_NOTICE, 0L, 2, null);
+            return true;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.AppFlexInputViewModel$onSendButtonClicked$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AppFlexInputViewModel.kt */
+    public final class AnonymousClass1 extends o implements Function1<Boolean, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.a;
+        }
+
+        public final void invoke(boolean z2) {
+            if (z2) {
+                AppFlexInputViewModel.clean$default(AppFlexInputViewModel.this, false, 1, null);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: AppFlexInputViewModel.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static final /* synthetic */ Observable access$observeStores(Companion companion) {
+            return companion.observeStores();
+        }
+
+        private final Observable<StoreState> observeStores() {
+            Observable observableY = StoreStream.INSTANCE.getChannelsSelected().observeResolvedSelectedChannel().Y(AppFlexInputViewModel$Companion$observeStores$1.INSTANCE);
+            m.checkNotNullExpressionValue(observableY, "StoreStream\n          .g…            }\n          }");
+            return observableY;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: AppFlexInputViewModel.kt */
+    public final /* data */ class StoreState {
+        private final Long channelPermission;
+        private final boolean isThreadCreation;
+        private final PanelState leftPanelState;
+        private final StoreNotices.Notice notice;
+        private final PanelState rightPanelState;
+        private final Channel selectedChannel;
+        private final boolean stickerSuggestionsEnabled;
+
+        public StoreState(PanelState panelState, PanelState panelState2, Channel channel, Long l, StoreNotices.Notice notice, boolean z2, boolean z3) {
+            m.checkNotNullParameter(panelState, "leftPanelState");
+            m.checkNotNullParameter(panelState2, "rightPanelState");
+            this.leftPanelState = panelState;
+            this.rightPanelState = panelState2;
+            this.selectedChannel = channel;
+            this.channelPermission = l;
+            this.notice = notice;
+            this.stickerSuggestionsEnabled = z2;
+            this.isThreadCreation = z3;
+        }
+
+        public static /* synthetic */ StoreState copy$default(StoreState storeState, PanelState panelState, PanelState panelState2, Channel channel, Long l, StoreNotices.Notice notice, boolean z2, boolean z3, int i, Object obj) {
+            if ((i & 1) != 0) {
+                panelState = storeState.leftPanelState;
+            }
+            if ((i & 2) != 0) {
+                panelState2 = storeState.rightPanelState;
+            }
+            PanelState panelState3 = panelState2;
+            if ((i & 4) != 0) {
+                channel = storeState.selectedChannel;
+            }
+            Channel channel2 = channel;
+            if ((i & 8) != 0) {
+                l = storeState.channelPermission;
+            }
+            Long l2 = l;
+            if ((i & 16) != 0) {
+                notice = storeState.notice;
+            }
+            StoreNotices.Notice notice2 = notice;
+            if ((i & 32) != 0) {
+                z2 = storeState.stickerSuggestionsEnabled;
+            }
+            boolean z4 = z2;
+            if ((i & 64) != 0) {
+                z3 = storeState.isThreadCreation;
+            }
+            return storeState.copy(panelState, panelState3, channel2, l2, notice2, z4, z3);
+        }
+
+        public final StoreState copy(PanelState leftPanelState, PanelState rightPanelState, Channel selectedChannel, Long channelPermission, StoreNotices.Notice notice, boolean stickerSuggestionsEnabled, boolean isThreadCreation) {
+            m.checkNotNullParameter(leftPanelState, "leftPanelState");
+            m.checkNotNullParameter(rightPanelState, "rightPanelState");
+            return new StoreState(leftPanelState, rightPanelState, selectedChannel, channelPermission, notice, stickerSuggestionsEnabled, isThreadCreation);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof StoreState)) {
+                return false;
+            }
+            StoreState storeState = (StoreState) other;
+            return m.areEqual(this.leftPanelState, storeState.leftPanelState) && m.areEqual(this.rightPanelState, storeState.rightPanelState) && m.areEqual(this.selectedChannel, storeState.selectedChannel) && m.areEqual(this.channelPermission, storeState.channelPermission) && m.areEqual(this.notice, storeState.notice) && this.stickerSuggestionsEnabled == storeState.stickerSuggestionsEnabled && this.isThreadCreation == storeState.isThreadCreation;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final Long getChannelPermission() {
+            return this.channelPermission;
+        }
+
+        public final Long getChannelPermission() {
+            return this.channelPermission;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final boolean getIsThreadCreation() {
+            return this.isThreadCreation;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final PanelState getLeftPanelState() {
+            return this.leftPanelState;
+        }
+
+        public final PanelState getLeftPanelState() {
+            return this.leftPanelState;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final StoreNotices.Notice getNotice() {
+            return this.notice;
+        }
+
+        public final StoreNotices.Notice getNotice() {
+            return this.notice;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final PanelState getRightPanelState() {
+            return this.rightPanelState;
+        }
+
+        public final PanelState getRightPanelState() {
+            return this.rightPanelState;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Channel getSelectedChannel() {
+            return this.selectedChannel;
+        }
+
+        public final Channel getSelectedChannel() {
+            return this.selectedChannel;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final boolean getStickerSuggestionsEnabled() {
+            return this.stickerSuggestionsEnabled;
+        }
+
+        public final boolean getStickerSuggestionsEnabled() {
+            return this.stickerSuggestionsEnabled;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v12, types: [int] */
+        /* JADX WARN: Type inference failed for: r0v14, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v3, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v5 */
+        /* JADX WARN: Type inference failed for: r1v7 */
+        /* JADX WARN: Type inference failed for: r2v10 */
+        /* JADX WARN: Type inference failed for: r2v11, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v12 */
+        public int hashCode() {
+            PanelState panelState = this.leftPanelState;
+            int iHashCode = (panelState != null ? panelState.hashCode() : 0) * 31;
+            PanelState panelState2 = this.rightPanelState;
+            int iHashCode2 = (iHashCode + (panelState2 != null ? panelState2.hashCode() : 0)) * 31;
+            Channel channel = this.selectedChannel;
+            int iHashCode3 = (iHashCode2 + (channel != null ? channel.hashCode() : 0)) * 31;
+            Long l = this.channelPermission;
+            int iHashCode4 = (iHashCode3 + (l != null ? l.hashCode() : 0)) * 31;
+            StoreNotices.Notice notice = this.notice;
+            int iHashCode5 = (iHashCode4 + (notice != null ? notice.hashCode() : 0)) * 31;
+            boolean z2 = this.stickerSuggestionsEnabled;
+            ?? r1 = z2;
+            if (z2) {
+                r1 = 1;
+            }
+            int i = (iHashCode5 + r1) * 31;
+            boolean z3 = this.isThreadCreation;
+            return i + (z3 ? 1 : z3);
+        }
+
+        public final boolean isThreadCreation() {
+            return this.isThreadCreation;
+        }
+
+        public String toString() {
+            StringBuilder sbU = b.d.b.a.a.U("StoreState(leftPanelState=");
+            sbU.append(this.leftPanelState);
+            sbU.append(", rightPanelState=");
+            sbU.append(this.rightPanelState);
+            sbU.append(", selectedChannel=");
+            sbU.append(this.selectedChannel);
+            sbU.append(", channelPermission=");
+            sbU.append(this.channelPermission);
+            sbU.append(", notice=");
+            sbU.append(this.notice);
+            sbU.append(", stickerSuggestionsEnabled=");
+            sbU.append(this.stickerSuggestionsEnabled);
+            sbU.append(", isThreadCreation=");
+            return b.d.b.a.a.O(sbU, this.isThreadCreation, ")");
+        }
+    }
+
+    public /* synthetic */ AppFlexInputViewModel(AppPermissionsRequests appPermissionsRequests, FlexInputState flexInputState, Observable observable, StoreStickers storeStickers, StoreAnalytics storeAnalytics, StoreExpressionSuggestions storeExpressionSuggestions, int i, DefaultConstructorMarker defaultConstructorMarker) {
+        this(appPermissionsRequests, (i & 2) != 0 ? new FlexInputState(null, false, null, false, false, null, false, false, false, false, false, null, null, 8191) : flexInputState, (i & 4) != 0 ? Companion.access$observeStores(INSTANCE) : observable, (i & 8) != 0 ? StoreStream.INSTANCE.getStickers() : storeStickers, (i & 16) != 0 ? StoreStream.INSTANCE.getAnalytics() : storeAnalytics, (i & 32) != 0 ? StoreStream.INSTANCE.getExpressionSuggestions() : storeExpressionSuggestions);
+    }
+
+    public static final /* synthetic */ void access$handleStoreState(AppFlexInputViewModel appFlexInputViewModel, StoreState storeState) {
+        appFlexInputViewModel.handleStoreState(storeState);
     }
 
     public static /* synthetic */ void clean$default(AppFlexInputViewModel appFlexInputViewModel, boolean z2, int i, Object obj) {
@@ -88,7 +380,7 @@ public final class AppFlexInputViewModel extends d0<FlexInputState> implements F
 
     public final void focus() {
         PublishSubject<a> publishSubject = this.eventSubject;
-        publishSubject.k.onNext(a$a.a);
+        publishSubject.k.onNext(a.C0060a.a);
     }
 
     public final boolean getAttachmentView() {
@@ -97,9 +389,9 @@ public final class AppFlexInputViewModel extends d0<FlexInputState> implements F
 
     public final List<Sticker> getMatchingStickers(String inputText) {
         m.checkNotNullParameter(inputText, "inputText");
-        AppFlexInputViewModel$getMatchingStickers$1 appFlexInputViewModel$getMatchingStickers$1 = AppFlexInputViewModel$getMatchingStickers$1.INSTANCE;
+        AnonymousClass1 anonymousClass1 = AnonymousClass1.INSTANCE;
         int length = inputText.length();
-        return u.toList(3 <= length && 50 >= length ? appFlexInputViewModel$getMatchingStickers$1.invoke2(inputText) : n0.emptySet());
+        return u.toList(3 <= length && 50 >= length ? anonymousClass1.invoke2(inputText) : n0.emptySet());
     }
 
     public final FlexInputAttachmentListener getSingleAttachmentSelectedListener() {
@@ -110,7 +402,7 @@ public final class AppFlexInputViewModel extends d0<FlexInputState> implements F
         return this.singleSelectMode;
     }
 
-    private final void handleStoreState(AppFlexInputViewModel$StoreState storeState) {
+    private final void handleStoreState(StoreState storeState) {
         boolean zCan;
         boolean z2;
         boolean z3;
@@ -118,8 +410,8 @@ public final class AppFlexInputViewModel extends d0<FlexInputState> implements F
         Channel selectedChannel = storeState.getSelectedChannel();
         Long channelPermission = storeState.getChannelPermission();
         PanelState leftPanelState = storeState.getLeftPanelState();
-        PanelState$a panelState$a = PanelState$a.a;
-        boolean z4 = (m.areEqual(leftPanelState, panelState$a) ^ true) || (m.areEqual(storeState.getRightPanelState(), panelState$a) ^ true);
+        PanelState.a aVar = PanelState.a.a;
+        boolean z4 = (m.areEqual(leftPanelState, aVar) ^ true) || (m.areEqual(storeState.getRightPanelState(), aVar) ^ true);
         boolean z5 = (storeState.getNotice() == null || storeState.getNotice().isInAppNotification() || storeState.getNotice().isPopup()) ? false : true;
         if (selectedChannel == null) {
             zCan = false;
@@ -161,7 +453,7 @@ public final class AppFlexInputViewModel extends d0<FlexInputState> implements F
 
     public final void hideKeyboard() {
         PublishSubject<a> publishSubject = this.eventSubject;
-        publishSubject.k.onNext(a$b.a);
+        publishSubject.k.onNext(a.b.a);
     }
 
     public boolean isAttachmentViewEnabled() {
@@ -227,7 +519,7 @@ public final class AppFlexInputViewModel extends d0<FlexInputState> implements F
             l.longValue();
             if (l2 != null) {
                 l2.longValue();
-                ChannelSelector.openCreateThread$default(ChannelSelector.Companion.getInstance(), l2.longValue(), l.longValue(), null, "Plus Button", 4, null);
+                ChannelSelector.openCreateThread$default(ChannelSelector.INSTANCE.getInstance(), l2.longValue(), l.longValue(), null, "Plus Button", 4, null);
                 onContentDialogDismissed(false);
             }
         }
@@ -266,7 +558,7 @@ public final class AppFlexInputViewModel extends d0<FlexInputState> implements F
             updateViewState(FlexInputState.a(flexInputStateRequireViewState, null, false, null, false, false, 0, false, false, false, false, false, null, null, 7903));
         } else {
             PublishSubject<a> publishSubject = this.eventSubject;
-            publishSubject.k.onNext(new a$e(2131887440));
+            publishSubject.k.onNext(new a.e(R.string.cannot_attach_files));
         }
     }
 
@@ -274,7 +566,7 @@ public final class AppFlexInputViewModel extends d0<FlexInputState> implements F
     @MainThread
     public void onGiftButtonClicked() {
         hideKeyboard();
-        StoreStream.Companion.getNotices().requestToShow(new StoreNotices$Notice(CHAT_GIFTING_NOTICE, null, 0L, 0, false, d0.t.m.listOf(a0.getOrCreateKotlinClass(WidgetHome.class)), 0L, false, 0L, AppFlexInputViewModel$onGiftButtonClicked$1.INSTANCE, 150, null));
+        StoreStream.INSTANCE.getNotices().requestToShow(new StoreNotices.Notice(CHAT_GIFTING_NOTICE, null, 0L, 0, false, d0.t.m.listOf(a0.getOrCreateKotlinClass(WidgetHome.class)), 0L, false, 0L, AnonymousClass1.INSTANCE, 150, null));
     }
 
     @Override // com.lytefast.flexinput.viewmodel.FlexInputViewModel
@@ -332,7 +624,7 @@ public final class AppFlexInputViewModel extends d0<FlexInputState> implements F
         if (viewState == null || inputListener == null) {
             return;
         }
-        inputListener.onSend(viewState.inputText, viewState.attachments, new AppFlexInputViewModel$onSendButtonClicked$1(this));
+        inputListener.onSend(viewState.inputText, viewState.attachments, new AnonymousClass1());
     }
 
     @MainThread
@@ -367,7 +659,7 @@ public final class AppFlexInputViewModel extends d0<FlexInputState> implements F
     public boolean onToolTipButtonLongPressed(View button) {
         m.checkNotNullParameter(button, "button");
         PublishSubject<a> publishSubject = this.eventSubject;
-        publishSubject.k.onNext(new a$d(button.getContentDescription().toString()));
+        publishSubject.k.onNext(new a.d(button.getContentDescription().toString()));
         return true;
     }
 
@@ -449,7 +741,7 @@ public final class AppFlexInputViewModel extends d0<FlexInputState> implements F
 
     private final void showKeyboard() {
         PublishSubject<a> publishSubject = this.eventSubject;
-        publishSubject.k.onNext(a$c.a);
+        publishSubject.k.onNext(a.c.a);
     }
 
     public final void showKeyboardAndHideExpressionTray() {
@@ -458,7 +750,7 @@ public final class AppFlexInputViewModel extends d0<FlexInputState> implements F
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public AppFlexInputViewModel(AppPermissionsRequests appPermissionsRequests, FlexInputState flexInputState, Observable<AppFlexInputViewModel$StoreState> observable, StoreStickers storeStickers, StoreAnalytics storeAnalytics, StoreExpressionSuggestions storeExpressionSuggestions) {
+    public AppFlexInputViewModel(AppPermissionsRequests appPermissionsRequests, FlexInputState flexInputState, Observable<StoreState> observable, StoreStickers storeStickers, StoreAnalytics storeAnalytics, StoreExpressionSuggestions storeExpressionSuggestions) {
         super(flexInputState);
         m.checkNotNullParameter(appPermissionsRequests, "permissionRequests");
         m.checkNotNullParameter(flexInputState, "initialViewState");
@@ -473,7 +765,7 @@ public final class AppFlexInputViewModel extends d0<FlexInputState> implements F
         this.eventSubject = PublishSubject.k0();
         Observable observableR = ObservableExtensionsKt.computationLatest(observable).r();
         m.checkNotNullExpressionValue(observableR, "storeObservable\n        …  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableR, this, null, 2, null), AppFlexInputViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AppFlexInputViewModel$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableR, this, null, 2, null), AppFlexInputViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
         this.attachmentView = true;
     }
 }

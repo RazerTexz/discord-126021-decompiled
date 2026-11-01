@@ -27,7 +27,7 @@ public final class e {
     }
 
     public final List<d0.e0.p.d.m0.n.n1.i> b(f fVar, d0.e0.p.d.m0.n.n1.i iVar, d0.e0.p.d.m0.n.n1.l lVar) {
-        f$b f_bSubstitutionSupertypePolicy;
+        f.b bVarSubstitutionSupertypePolicy;
         d0.e0.p.d.m0.n.n1.b bVar = d0.e0.p.d.m0.n.n1.b.FOR_SUBTYPING;
         List<d0.e0.p.d.m0.n.n1.i> listFastCorrespondingSupertypes = fVar.fastCorrespondingSupertypes(iVar, lVar);
         if (listFastCorrespondingSupertypes == null) {
@@ -66,17 +66,17 @@ public final class e {
                     }
                     if (fVar.areEqualTypeConstructors(fVar.typeConstructor(iVarCaptureFromArguments2), lVar)) {
                         listFastCorrespondingSupertypes.add(iVarCaptureFromArguments2);
-                        f_bSubstitutionSupertypePolicy = f$b$c.a;
+                        bVarSubstitutionSupertypePolicy = f.b.c.a;
                     } else {
-                        f_bSubstitutionSupertypePolicy = fVar.argumentsCount(iVarCaptureFromArguments2) == 0 ? f$b$b.a : fVar.substitutionSupertypePolicy(iVarCaptureFromArguments2);
+                        bVarSubstitutionSupertypePolicy = fVar.argumentsCount(iVarCaptureFromArguments2) == 0 ? f.b.C0579b.a : fVar.substitutionSupertypePolicy(iVarCaptureFromArguments2);
                     }
-                    if (!(!d0.z.d.m.areEqual(f_bSubstitutionSupertypePolicy, f$b$c.a))) {
-                        f_bSubstitutionSupertypePolicy = null;
+                    if (!(!d0.z.d.m.areEqual(bVarSubstitutionSupertypePolicy, f.b.c.a))) {
+                        bVarSubstitutionSupertypePolicy = null;
                     }
-                    if (f_bSubstitutionSupertypePolicy != null) {
+                    if (bVarSubstitutionSupertypePolicy != null) {
                         Iterator<d0.e0.p.d.m0.n.n1.h> it = fVar.supertypes(fVar.typeConstructor(iVarPop)).iterator();
                         while (it.hasNext()) {
-                            supertypesDeque.add(f_bSubstitutionSupertypePolicy.transformType(fVar, it.next()));
+                            supertypesDeque.add(bVarSubstitutionSupertypePolicy.transformType(fVar, it.next()));
                         }
                     }
                 }
@@ -153,7 +153,7 @@ public final class e {
     }
 
     public final List<d0.e0.p.d.m0.n.n1.i> findCorrespondingSupertypes(f fVar, d0.e0.p.d.m0.n.n1.i iVar, d0.e0.p.d.m0.n.n1.l lVar) {
-        f$b f_b;
+        f.b bVar;
         d0.z.d.m.checkNotNullParameter(fVar, "<this>");
         d0.z.d.m.checkNotNullParameter(iVar, "subType");
         d0.z.d.m.checkNotNullParameter(lVar, "superConstructor");
@@ -181,17 +181,17 @@ public final class e {
             if (supertypesSet.add(iVarPop)) {
                 if (fVar.isClassType(iVarPop)) {
                     iVar2.add(iVarPop);
-                    f_b = f$b$c.a;
+                    bVar = f.b.c.a;
                 } else {
-                    f_b = f$b$b.a;
+                    bVar = f.b.C0579b.a;
                 }
-                if (!(!d0.z.d.m.areEqual(f_b, f$b$c.a))) {
-                    f_b = null;
+                if (!(!d0.z.d.m.areEqual(bVar, f.b.c.a))) {
+                    bVar = null;
                 }
-                if (f_b != null) {
+                if (bVar != null) {
                     Iterator<d0.e0.p.d.m0.n.n1.h> it = fVar.supertypes(fVar.typeConstructor(iVarPop)).iterator();
                     while (it.hasNext()) {
-                        supertypesDeque.add(f_b.transformType(fVar, it.next()));
+                        supertypesDeque.add(bVar.transformType(fVar, it.next()));
                     }
                 }
             }
@@ -471,16 +471,16 @@ public final class e {
                             d0.e0.p.d.m0.n.n1.i iVarPop = supertypesDeque.pop();
                             d0.z.d.m.checkNotNullExpressionValue(iVarPop, "current");
                             if (supertypesSet.add(iVarPop)) {
-                                f$b f_b = fVar.isClassType(iVarPop) ? f$b$c.a : f$b$b.a;
-                                if (!(!d0.z.d.m.areEqual(f_b, f$b$c.a))) {
-                                    f_b = null;
+                                f.b bVar = fVar.isClassType(iVarPop) ? f.b.c.a : f.b.C0579b.a;
+                                if (!(!d0.z.d.m.areEqual(bVar, f.b.c.a))) {
+                                    bVar = null;
                                 }
-                                if (f_b == null) {
+                                if (bVar == null) {
                                     continue;
                                 } else {
                                     Iterator<d0.e0.p.d.m0.n.n1.h> it3 = fVar.supertypes(fVar.typeConstructor(iVarPop)).iterator();
                                     while (it3.hasNext()) {
-                                        d0.e0.p.d.m0.n.n1.i iVarTransformType = f_b.transformType(fVar, it3.next());
+                                        d0.e0.p.d.m0.n.n1.i iVarTransformType = bVar.transformType(fVar, it3.next());
                                         if (fVar.isNothingConstructor(fVar.typeConstructor(iVarTransformType))) {
                                             fVar.clear();
                                         } else {

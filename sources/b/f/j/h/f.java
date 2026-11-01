@@ -2,12 +2,36 @@ package b.f.j.h;
 
 import b.f.j.j.h;
 import b.f.j.j.i;
+import java.util.Collections;
 import java.util.List;
 
 /* JADX INFO: compiled from: SimpleProgressiveJpegConfig.java */
 /* JADX INFO: loaded from: classes.dex */
 public class f implements d {
-    public final f$c a = new f$b(null);
+    public final c a = new b(null);
+
+    /* JADX INFO: compiled from: SimpleProgressiveJpegConfig.java */
+    public class b implements c {
+        public b(a aVar) {
+        }
+
+        @Override // b.f.j.h.f.c
+        public List<Integer> a() {
+            return Collections.EMPTY_LIST;
+        }
+
+        @Override // b.f.j.h.f.c
+        public int b() {
+            return 0;
+        }
+    }
+
+    /* JADX INFO: compiled from: SimpleProgressiveJpegConfig.java */
+    public interface c {
+        List<Integer> a();
+
+        int b();
+    }
 
     @Override // b.f.j.h.d
     public i a(int i) {

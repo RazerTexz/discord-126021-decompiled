@@ -7,25 +7,71 @@ import com.discord.api.channel.ChannelUtils;
 import com.discord.api.stageinstance.RecommendedStageInstance;
 import com.discord.api.stageinstance.StageInstance;
 import com.discord.models.domain.ModelInvite;
-import com.discord.stores.StoreInstantInvites$InviteState;
-import com.discord.stores.StoreInstantInvites$InviteState$Resolved;
-import com.discord.stores.StoreRequestedStageChannels$StageInstanceState;
+import com.discord.stores.StoreInstantInvites;
+import com.discord.stores.StoreRequestedStageChannels;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.SnowflakeUtils;
 import d0.z.d.m;
 import java.util.Map;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import rx.Observable;
+import rx.functions.Func4;
 
 /* JADX INFO: compiled from: InviteEmbedModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class InviteEmbedModel {
-    public static final InviteEmbedModel$Companion Companion = new InviteEmbedModel$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final Map<Long, Channel> channels;
-    private final Map<String, StoreInstantInvites$InviteState> invites;
-    private final Map<Long, StoreRequestedStageChannels$StageInstanceState> requestedInstances;
+    private final Map<String, StoreInstantInvites.InviteState> invites;
+    private final Map<Long, StoreRequestedStageChannels.StageInstanceState> requestedInstances;
     private final Map<Long, StageInstance> stageInstances;
 
+    /* JADX INFO: compiled from: InviteEmbedModel.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ Observable observe$default(Companion companion, Observable observable, Observable observable2, Observable observable3, Observable observable4, int i, Object obj) {
+            if ((i & 1) != 0) {
+                observable = StoreStream.INSTANCE.getChannels().observeGuildAndPrivateChannels();
+            }
+            if ((i & 2) != 0) {
+                observable2 = StoreStream.INSTANCE.getInstantInvites().observeKnownInvites();
+            }
+            if ((i & 4) != 0) {
+                observable3 = StoreStream.INSTANCE.getStageInstances().observeStageInstances();
+            }
+            if ((i & 8) != 0) {
+                observable4 = StoreStream.INSTANCE.getRequestedStageChannels().observeRequestedStageChannels();
+            }
+            return companion.observe(observable, observable2, observable3, observable4);
+        }
+
+        public final Observable<InviteEmbedModel> observe(Observable<Map<Long, Channel>> channelsObservable, Observable<Map<String, StoreInstantInvites.InviteState>> knownInvitesObservable, Observable<Map<Long, StageInstance>> stageInstancesObservable, Observable<Map<Long, StoreRequestedStageChannels.StageInstanceState>> requestedStageInstances) {
+            m.checkNotNullParameter(channelsObservable, "channelsObservable");
+            m.checkNotNullParameter(knownInvitesObservable, "knownInvitesObservable");
+            m.checkNotNullParameter(stageInstancesObservable, "stageInstancesObservable");
+            m.checkNotNullParameter(requestedStageInstances, "requestedStageInstances");
+            InviteEmbedModel$Companion$observe$1 inviteEmbedModel$Companion$observe$1 = InviteEmbedModel$Companion$observe$1.INSTANCE;
+            Object inviteEmbedModel$sam$rx_functions_Func4$0 = inviteEmbedModel$Companion$observe$1;
+            if (inviteEmbedModel$Companion$observe$1 != null) {
+                inviteEmbedModel$sam$rx_functions_Func4$0 = new InviteEmbedModel$sam$rx_functions_Func4$0(inviteEmbedModel$Companion$observe$1);
+            }
+            Observable<InviteEmbedModel> observableH = Observable.h(channelsObservable, knownInvitesObservable, stageInstancesObservable, requestedStageInstances, (Func4) inviteEmbedModel$sam$rx_functions_Func4$0);
+            m.checkNotNullExpressionValue(observableH, "Observable.combineLatest… ::InviteEmbedModel\n    )");
+            return observableH;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
-    public InviteEmbedModel(Map<Long, Channel> map, Map<String, ? extends StoreInstantInvites$InviteState> map2, Map<Long, StageInstance> map3, Map<Long, StoreRequestedStageChannels$StageInstanceState> map4) {
+    public InviteEmbedModel(Map<Long, Channel> map, Map<String, ? extends StoreInstantInvites.InviteState> map2, Map<Long, StageInstance> map3, Map<Long, StoreRequestedStageChannels.StageInstanceState> map4) {
         m.checkNotNullParameter(map, "channels");
         m.checkNotNullParameter(map2, "invites");
         m.checkNotNullParameter(map3, "stageInstances");
@@ -40,7 +86,7 @@ public final /* data */ class InviteEmbedModel {
         return this.channels;
     }
 
-    private final Map<String, StoreInstantInvites$InviteState> component2() {
+    private final Map<String, StoreInstantInvites.InviteState> component2() {
         return this.invites;
     }
 
@@ -48,7 +94,7 @@ public final /* data */ class InviteEmbedModel {
         return this.stageInstances;
     }
 
-    private final Map<Long, StoreRequestedStageChannels$StageInstanceState> component4() {
+    private final Map<Long, StoreRequestedStageChannels.StageInstanceState> component4() {
         return this.requestedInstances;
     }
 
@@ -69,7 +115,7 @@ public final /* data */ class InviteEmbedModel {
         return inviteEmbedModel.copy(map, map2, map3, map4);
     }
 
-    public final InviteEmbedModel copy(Map<Long, Channel> channels, Map<String, ? extends StoreInstantInvites$InviteState> invites, Map<Long, StageInstance> stageInstances, Map<Long, StoreRequestedStageChannels$StageInstanceState> requestedInstances) {
+    public final InviteEmbedModel copy(Map<Long, Channel> channels, Map<String, ? extends StoreInstantInvites.InviteState> invites, Map<Long, StageInstance> stageInstances, Map<Long, StoreRequestedStageChannels.StageInstanceState> requestedInstances) {
         m.checkNotNullParameter(channels, "channels");
         m.checkNotNullParameter(invites, "invites");
         m.checkNotNullParameter(stageInstances, "stageInstances");
@@ -90,13 +136,13 @@ public final /* data */ class InviteEmbedModel {
 
     public final ModelInvite getResolvedInvite(String inviteKey) {
         m.checkNotNullParameter(inviteKey, "inviteKey");
-        StoreInstantInvites$InviteState storeInstantInvites$InviteState = this.invites.get(inviteKey);
-        if (!(storeInstantInvites$InviteState instanceof StoreInstantInvites$InviteState$Resolved)) {
-            storeInstantInvites$InviteState = null;
+        StoreInstantInvites.InviteState inviteState = this.invites.get(inviteKey);
+        if (!(inviteState instanceof StoreInstantInvites.InviteState.Resolved)) {
+            inviteState = null;
         }
-        StoreInstantInvites$InviteState$Resolved storeInstantInvites$InviteState$Resolved = (StoreInstantInvites$InviteState$Resolved) storeInstantInvites$InviteState;
-        if (storeInstantInvites$InviteState$Resolved != null) {
-            return storeInstantInvites$InviteState$Resolved.getInvite();
+        StoreInstantInvites.InviteState.Resolved resolved = (StoreInstantInvites.InviteState.Resolved) inviteState;
+        if (resolved != null) {
+            return resolved.getInvite();
         }
         return null;
     }
@@ -104,11 +150,11 @@ public final /* data */ class InviteEmbedModel {
     public int hashCode() {
         Map<Long, Channel> map = this.channels;
         int iHashCode = (map != null ? map.hashCode() : 0) * 31;
-        Map<String, StoreInstantInvites$InviteState> map2 = this.invites;
+        Map<String, StoreInstantInvites.InviteState> map2 = this.invites;
         int iHashCode2 = (iHashCode + (map2 != null ? map2.hashCode() : 0)) * 31;
         Map<Long, StageInstance> map3 = this.stageInstances;
         int iHashCode3 = (iHashCode2 + (map3 != null ? map3.hashCode() : 0)) * 31;
-        Map<Long, StoreRequestedStageChannels$StageInstanceState> map4 = this.requestedInstances;
+        Map<Long, StoreRequestedStageChannels.StageInstanceState> map4 = this.requestedInstances;
         return iHashCode3 + (map4 != null ? map4.hashCode() : 0);
     }
 
@@ -131,12 +177,12 @@ public final /* data */ class InviteEmbedModel {
                 if (((Channel) a.d(channel, this.channels)) != null) {
                     return null;
                 }
-                StoreRequestedStageChannels$StageInstanceState storeRequestedStageChannels$StageInstanceState = (StoreRequestedStageChannels$StageInstanceState) a.d(channel, this.requestedInstances);
-                if (storeRequestedStageChannels$StageInstanceState != null && (stageInstance = storeRequestedStageChannels$StageInstanceState.getStageInstance()) != null && (recommendedStageInstance = stageInstance.getInstance()) != null && d.W0(recommendedStageInstance)) {
+                StoreRequestedStageChannels.StageInstanceState stageInstanceState = (StoreRequestedStageChannels.StageInstanceState) a.d(channel, this.requestedInstances);
+                if (stageInstanceState != null && (stageInstance = stageInstanceState.getStageInstance()) != null && (recommendedStageInstance = stageInstance.getInstance()) != null && d.W0(recommendedStageInstance)) {
                     return resolvedInvite;
                 }
-                if (storeRequestedStageChannels$StageInstanceState == null || storeRequestedStageChannels$StageInstanceState.isError()) {
-                    StoreStream.Companion.getRequestedStageChannels().enqueueStageChannelFetch(channel.getId());
+                if (stageInstanceState == null || stageInstanceState.isError()) {
+                    StoreStream.INSTANCE.getRequestedStageChannels().enqueueStageChannelFetch(channel.getId());
                 }
             }
         }

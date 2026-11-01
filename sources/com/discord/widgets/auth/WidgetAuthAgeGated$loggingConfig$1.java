@@ -25,7 +25,7 @@ public final class WidgetAuthAgeGated$loggingConfig$1 extends o implements Funct
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final AnalyticsSchema invoke() {
-        TrackImpressionUserAgeGateUnderage trackImpressionUserAgeGateUnderage = new TrackImpressionUserAgeGateUnderage(Boolean.valueOf(StoreStream.Companion.getUsers().getMeSnapshot().getId() > 0));
+        TrackImpressionUserAgeGateUnderage trackImpressionUserAgeGateUnderage = new TrackImpressionUserAgeGateUnderage(Boolean.valueOf(StoreStream.INSTANCE.getUsers().getMeSnapshot().getId() > 0));
         trackImpressionUserAgeGateUnderage.e(new TrackImpressionMetadata(null, null, null, ImpressionGroups.USER_REGISTRATION_FLOW, 7));
         return trackImpressionUserAgeGateUnderage;
     }

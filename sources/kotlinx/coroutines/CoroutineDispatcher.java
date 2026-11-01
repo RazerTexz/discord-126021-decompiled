@@ -4,24 +4,35 @@ import androidx.exifinterface.media.ExifInterface;
 import b.i.a.f.e.o.f;
 import com.discord.widgets.chat.input.MentionUtilsKt;
 import d0.w.a;
+import d0.w.b;
 import d0.w.d;
-import d0.w.d$a;
-import d0.w.d$b;
 import java.util.Objects;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
-import kotlin.coroutines.CoroutineContext$Element;
-import kotlin.coroutines.CoroutineContext$Key;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import s.a.a.g;
+import s.a.a0;
 import s.a.l;
 
 /* JADX INFO: compiled from: CoroutineDispatcher.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class CoroutineDispatcher extends a implements d {
-    public static final CoroutineDispatcher$a Key = new CoroutineDispatcher$a(null);
+
+    /* JADX INFO: renamed from: Key, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
+
+    /* JADX INFO: renamed from: kotlinx.coroutines.CoroutineDispatcher$a, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: CoroutineDispatcher.kt */
+    public final class Companion extends b<d, CoroutineDispatcher> {
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            super(d.b.a, a0.j);
+            int i = d.e;
+        }
+    }
 
     public CoroutineDispatcher() {
-        super(d$b.a);
+        super(d.b.a);
     }
 
     public abstract void dispatch(CoroutineContext context, Runnable block);
@@ -30,9 +41,9 @@ public abstract class CoroutineDispatcher extends a implements d {
         dispatch(context, block);
     }
 
-    @Override // d0.w.a, kotlin.coroutines.CoroutineContext$Element, kotlin.coroutines.CoroutineContext
-    public <E extends CoroutineContext$Element> E get(CoroutineContext$Key<E> coroutineContext$Key) {
-        return (E) d$a.get(this, coroutineContext$Key);
+    @Override // d0.w.a, kotlin.coroutines.CoroutineContext.Element, kotlin.coroutines.CoroutineContext
+    public <E extends CoroutineContext.Element> E get(CoroutineContext.Key<E> key) {
+        return (E) d.a.get(this, key);
     }
 
     @Override // d0.w.d
@@ -45,8 +56,8 @@ public abstract class CoroutineDispatcher extends a implements d {
     }
 
     @Override // d0.w.a, kotlin.coroutines.CoroutineContext
-    public CoroutineContext minusKey(CoroutineContext$Key<?> coroutineContext$Key) {
-        return d$a.minusKey(this, coroutineContext$Key);
+    public CoroutineContext minusKey(CoroutineContext.Key<?> key) {
+        return d.a.minusKey(this, key);
     }
 
     public final CoroutineDispatcher plus(CoroutineDispatcher other) {

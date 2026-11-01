@@ -1,7 +1,6 @@
 package b.i.a.c.t2;
 
-import com.google.android.exoplayer2.audio.AudioProcessor$UnhandledAudioFormatException;
-import com.google.android.exoplayer2.audio.AudioProcessor$a;
+import com.google.android.exoplayer2.audio.AudioProcessor;
 import java.nio.ByteBuffer;
 
 /* JADX INFO: compiled from: TrimmingAudioProcessor.java */
@@ -55,12 +54,12 @@ public final class f0 extends v {
     }
 
     @Override // b.i.a.c.t2.v
-    public AudioProcessor$a f(AudioProcessor$a audioProcessor$a) throws AudioProcessor$UnhandledAudioFormatException {
-        if (audioProcessor$a.d != 2) {
-            throw new AudioProcessor$UnhandledAudioFormatException(audioProcessor$a);
+    public AudioProcessor.a f(AudioProcessor.a aVar) throws AudioProcessor.UnhandledAudioFormatException {
+        if (aVar.d != 2) {
+            throw new AudioProcessor.UnhandledAudioFormatException(aVar);
         }
         this.k = true;
-        return (this.i == 0 && this.j == 0) ? AudioProcessor$a.a : audioProcessor$a;
+        return (this.i == 0 && this.j == 0) ? AudioProcessor.a.a : aVar;
     }
 
     @Override // b.i.a.c.t2.v

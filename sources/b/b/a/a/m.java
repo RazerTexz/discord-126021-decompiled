@@ -2,19 +2,19 @@ package b.b.a.a;
 
 import com.lytefast.flexinput.fragment.FlexInputFragment;
 import com.lytefast.flexinput.model.Attachment;
-import com.lytefast.flexinput.utils.SelectionCoordinator$ItemSelectionListener;
+import com.lytefast.flexinput.utils.SelectionCoordinator;
 import com.lytefast.flexinput.viewmodel.FlexInputViewModel;
 
 /* JADX INFO: compiled from: FlexInputFragment.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class m implements SelectionCoordinator$ItemSelectionListener<Attachment<? extends Object>> {
+public final class m implements SelectionCoordinator.ItemSelectionListener<Attachment<? extends Object>> {
     public final /* synthetic */ FlexInputFragment a;
 
     public m(FlexInputFragment flexInputFragment) {
         this.a = flexInputFragment;
     }
 
-    @Override // com.lytefast.flexinput.utils.SelectionCoordinator$ItemSelectionListener
+    @Override // com.lytefast.flexinput.utils.SelectionCoordinator.ItemSelectionListener
     public void onItemSelected(Attachment<? extends Object> attachment) {
         Attachment<? extends Object> attachment2 = attachment;
         d0.z.d.m.checkNotNullParameter(attachment2, "item");
@@ -38,7 +38,7 @@ public final class m implements SelectionCoordinator$ItemSelectionListener<Attac
         }
     }
 
-    @Override // com.lytefast.flexinput.utils.SelectionCoordinator$ItemSelectionListener
+    @Override // com.lytefast.flexinput.utils.SelectionCoordinator.ItemSelectionListener
     public void onItemUnselected(Attachment<? extends Object> attachment) {
         d0.z.d.m.checkNotNullParameter(attachment, "item");
         FlexInputFragment flexInputFragment = this.a;
@@ -48,7 +48,7 @@ public final class m implements SelectionCoordinator$ItemSelectionListener<Attac
         }
     }
 
-    @Override // com.lytefast.flexinput.utils.SelectionCoordinator$ItemSelectionListener
+    @Override // com.lytefast.flexinput.utils.SelectionCoordinator.ItemSelectionListener
     public void unregister() {
     }
 }

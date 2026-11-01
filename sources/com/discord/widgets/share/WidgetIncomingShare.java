@@ -4,93 +4,1063 @@ import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
+import android.text.Editable;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.TextView;
+import androidx.appcompat.widget.ActivityChooserModel;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationCompat;
 import androidx.core.view.ViewCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
-import b.a.a.c;
-import b.a.a.c$b;
 import b.a.d.j;
-import b.a.d.o;
 import b.d.b.a.a;
-import com.discord.R$layout;
-import com.discord.R$menu;
+import com.discord.R;
+import com.discord.api.activity.Activity;
+import com.discord.api.application.Application;
+import com.discord.api.channel.Channel;
+import com.discord.app.AppActivity;
 import com.discord.app.AppFragment;
 import com.discord.app.AppViewFlipper;
+import com.discord.databinding.ViewImageBinding;
 import com.discord.databinding.WidgetIncomingShareBinding;
-import com.discord.stores.StoreGuilds$Actions;
+import com.discord.models.deserialization.gson.InboundGatewayGsonParser;
+import com.discord.models.domain.ModelAuditLogEntry;
+import com.discord.models.guild.Guild;
+import com.discord.models.user.MeUser;
+import com.discord.stores.StoreGuilds;
+import com.discord.stores.StoreMessages;
+import com.discord.stores.StoreSlowMode;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import com.discord.stores.StoreUser;
+import com.discord.utilities.ShareUtils;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.attachments.AttachmentUtilsKt;
-import com.discord.utilities.captcha.CaptchaHelper$CaptchaPayload;
+import com.discord.utilities.captcha.CaptchaErrorBody;
+import com.discord.utilities.captcha.CaptchaHelper;
 import com.discord.utilities.channel.ChannelSelector;
 import com.discord.utilities.dimen.DimenUtils;
+import com.discord.utilities.error.Error;
+import com.discord.utilities.guilds.GuildUtilsKt;
+import com.discord.utilities.intent.IntentUtils;
+import com.discord.utilities.messagesend.MessageResult;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapter;
+import com.discord.utilities.premium.PremiumUtils;
+import com.discord.utilities.resources.StringResourceUtilsKt;
+import com.discord.utilities.rest.SendUtils;
 import com.discord.utilities.rest.SendUtilsKt;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.Clock;
 import com.discord.utilities.time.ClockFactory;
+import com.discord.utilities.user.UserUtils;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.view.recycler.PaddedItemDecorator;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.utilities.views.ViewCoroutineScopeKt;
+import com.discord.widgets.captcha.WidgetCaptchaBottomSheet;
 import com.discord.widgets.chat.list.ViewEmbedGameInvite;
-import com.discord.widgets.chat.list.ViewEmbedGameInvite$Model;
 import com.discord.widgets.user.search.WidgetGlobalSearchAdapter;
-import com.discord.widgets.user.search.WidgetGlobalSearchModel$ItemChannel;
-import com.discord.widgets.user.search.WidgetGlobalSearchModel$ItemDataPayload;
-import com.discord.widgets.user.search.WidgetGlobalSearchModel$ItemGuild;
-import com.discord.widgets.user.search.WidgetGlobalSearchModel$ItemUser;
+import com.discord.widgets.user.search.WidgetGlobalSearchModel;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.lytefast.flexinput.model.Attachment;
-import com.lytefast.flexinput.model.Attachment$Companion;
+import d0.d0.f;
 import d0.g0.t;
+import d0.l;
 import d0.t.n;
 import d0.t.u;
+import d0.w.i.a.e;
+import d0.w.i.a.k;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
+import j0.l.a.c;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+import kotlin.Pair;
+import kotlin.Unit;
+import kotlin.coroutines.Continuation;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function2;
+import kotlin.jvm.functions.Function3;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
+import kotlinx.coroutines.CoroutineScope;
+import org.objectweb.asm.Opcodes;
 import rx.Observable;
-import rx.Observable$c;
+import rx.functions.Action2;
+import rx.functions.Func2;
+import rx.functions.Func6;
 import rx.subjects.BehaviorSubject;
 
 /* JADX INFO: compiled from: WidgetIncomingShare.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetIncomingShare extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetIncomingShare.class, "binding", "getBinding()Lcom/discord/databinding/WidgetIncomingShareBinding;", 0)};
-    public static final WidgetIncomingShare$Companion Companion = new WidgetIncomingShare$Companion(null);
     private static final String EXTRA_RECIPIENT = "EXTRA_RECIPIENT";
     private static final int FLIPPER_RESULTS = 0;
     private static final int FLIPPER_RESULTS_EMPTY = 1;
     private static final int FLIPPER_SEARCH = 0;
     private static final int FLIPPER_SELECTED = 1;
 
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
+
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
     private final BehaviorSubject<String> commentPublisher;
-    private final BehaviorSubject<WidgetIncomingShare$ContentModel> contentPublisher;
-    private WidgetIncomingShare$Adapter previewAdapter;
+    private final BehaviorSubject<ContentModel> contentPublisher;
+    private Adapter previewAdapter;
     private String queryString;
     private WidgetGlobalSearchAdapter resultsAdapter;
     private final BehaviorSubject<String> searchQueryPublisher;
-    private final BehaviorSubject<WidgetGlobalSearchModel$ItemDataPayload> selectedReceiverPublisher;
+    private final BehaviorSubject<WidgetGlobalSearchModel.ItemDataPayload> selectedReceiverPublisher;
+
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final class Adapter extends RecyclerView.Adapter<ViewHolder> {
+        private ContentModel inputModel;
+        private Function1<? super Uri, Unit> onItemClickListener;
+        public final /* synthetic */ WidgetIncomingShare this$0;
+
+        /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$Adapter$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+        public final class AnonymousClass1 extends o implements Function1<Uri, Unit> {
+            public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Uri uri) {
+                invoke2(uri);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Uri uri) {
+            }
+        }
+
+        /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+        public final class ViewHolder extends RecyclerView.ViewHolder {
+            private final ViewImageBinding binding;
+            public final /* synthetic */ Adapter this$0;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public ViewHolder(Adapter adapter, ViewImageBinding viewImageBinding) {
+                super(viewImageBinding.a);
+                m.checkNotNullParameter(viewImageBinding, "binding");
+                this.this$0 = adapter;
+                this.binding = viewImageBinding;
+            }
+
+            public final void bind(Uri uri) {
+                this.binding.a.setOnClickListener(new WidgetIncomingShare$Adapter$ViewHolder$bind$1(this, uri));
+                this.binding.a.setImageURI(uri);
+            }
+        }
+
+        public Adapter(WidgetIncomingShare widgetIncomingShare, ContentModel contentModel, Function1<? super Uri, Unit> function1) {
+            m.checkNotNullParameter(contentModel, "inputModel");
+            m.checkNotNullParameter(function1, "onItemClickListener");
+            this.this$0 = widgetIncomingShare;
+            this.inputModel = contentModel;
+            this.onItemClickListener = function1;
+        }
+
+        public static final /* synthetic */ Function1 access$getOnItemClickListener$p(Adapter adapter) {
+            return adapter.onItemClickListener;
+        }
+
+        public static final /* synthetic */ void access$setOnItemClickListener$p(Adapter adapter, Function1 function1) {
+            adapter.onItemClickListener = function1;
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        /* JADX INFO: renamed from: getItemCount */
+        public int getPageSize() {
+            List<Uri> uris = this.inputModel.getUris();
+            if (uris != null) {
+                return uris.size();
+            }
+            return 0;
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        public /* bridge */ /* synthetic */ void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            onBindViewHolder((ViewHolder) viewHolder, i);
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        public /* bridge */ /* synthetic */ RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            return onCreateViewHolder(viewGroup, i);
+        }
+
+        public final void setData(ContentModel inputModel, Function1<? super Uri, Unit> onItemClickListener) {
+            m.checkNotNullParameter(inputModel, "inputModel");
+            m.checkNotNullParameter(onItemClickListener, "onItemClickListener");
+            this.inputModel = inputModel;
+            this.onItemClickListener = onItemClickListener;
+        }
+
+        public void onBindViewHolder(ViewHolder holder, int position) {
+            m.checkNotNullParameter(holder, "holder");
+            List<Uri> uris = this.inputModel.getUris();
+            holder.bind(uris != null ? uris.get(position) : null);
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            m.checkNotNullParameter(parent, "parent");
+            View viewInflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_image, parent, false);
+            Objects.requireNonNull(viewInflate, "rootView");
+            ViewImageBinding viewImageBinding = new ViewImageBinding((SimpleDraweeView) viewInflate);
+            m.checkNotNullExpressionValue(viewImageBinding, "ViewImageBinding.inflate….context), parent, false)");
+            return new ViewHolder(this, viewImageBinding);
+        }
+
+        public /* synthetic */ Adapter(WidgetIncomingShare widgetIncomingShare, ContentModel contentModel, Function1 function1, int i, DefaultConstructorMarker defaultConstructorMarker) {
+            this(widgetIncomingShare, contentModel, (i & 2) != 0 ? AnonymousClass1.INSTANCE : function1);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$configureUi$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final class AnonymousClass1 extends o implements Function3<TextView, Integer, KeyEvent, Boolean> {
+        public final /* synthetic */ Model $this_configureUi;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Model model) {
+            super(3);
+            this.$this_configureUi = model;
+        }
+
+        @Override // kotlin.jvm.functions.Function3
+        public /* bridge */ /* synthetic */ Boolean invoke(TextView textView, Integer num, KeyEvent keyEvent) {
+            return Boolean.valueOf(invoke(textView, num.intValue(), keyEvent));
+        }
+
+        public final boolean invoke(TextView textView, int i, KeyEvent keyEvent) {
+            m.checkNotNullParameter(textView, "<anonymous parameter 0>");
+            if (i != 4 || this.$this_configureUi.getReceiver() == null) {
+                return false;
+            }
+            WidgetIncomingShare widgetIncomingShare = WidgetIncomingShare.this;
+            TextInputLayout textInputLayout = WidgetIncomingShare.access$getBinding$p(widgetIncomingShare).d;
+            m.checkNotNullExpressionValue(textInputLayout, "binding.externalShareComment");
+            Context context = textInputLayout.getContext();
+            m.checkNotNullExpressionValue(context, "binding.externalShareComment.context");
+            WidgetIncomingShare.onSendClicked$default(widgetIncomingShare, context, this.$this_configureUi.getReceiver(), this.$this_configureUi.getGameInviteModel(), this.$this_configureUi.getContentModel(), this.$this_configureUi.getIsOnCooldown(), this.$this_configureUi.getMaxFileSizeMB(), this.$this_configureUi.getIsUserPremium(), null, 128, null);
+            return true;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onSendClicked$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final class AnonymousClass1<T1, T2, R> implements Func2<MeUser, Channel, Pair<? extends MeUser, ? extends Channel>> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // rx.functions.Func2
+        public /* bridge */ /* synthetic */ Pair<? extends MeUser, ? extends Channel> call(MeUser meUser, Channel channel) {
+            return call2(meUser, channel);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Pair<MeUser, Channel> call2(MeUser meUser, Channel channel) {
+            return d0.o.to(meUser, channel);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final class AnonymousClass1 extends o implements Function1<Editable, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            m.checkNotNullParameter(editable, "editable");
+            WidgetIncomingShare.access$getCommentPublisher$p(WidgetIncomingShare.this).onNext(editable.toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final class AnonymousClass1<T, R> implements b<WidgetGlobalSearchModel.ItemDataPayload, Observable<? extends Model>> {
+
+        /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onViewBoundOrOnResume$1$2, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+        public final class AnonymousClass2<T, R> implements b<Integer, Boolean> {
+            public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+            @Override // j0.k.b
+            public /* bridge */ /* synthetic */ Boolean call(Integer num) {
+                return call2(num);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final Boolean call2(Integer num) {
+                return Boolean.valueOf(num.intValue() > 0);
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onViewBoundOrOnResume$1$3, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+        public final class AnonymousClass3<T1, T2, T3, T4, T5, T6, R> implements Func6<ContentModel, ViewEmbedGameInvite.Model, String, WidgetGlobalSearchModel, Boolean, MeUser, Model> {
+            public final /* synthetic */ WidgetGlobalSearchModel.ItemDataPayload $receiver;
+
+            public AnonymousClass3(WidgetGlobalSearchModel.ItemDataPayload itemDataPayload) {
+                this.$receiver = itemDataPayload;
+            }
+
+            @Override // rx.functions.Func6
+            public /* bridge */ /* synthetic */ Model call(ContentModel contentModel, ViewEmbedGameInvite.Model model, String str, WidgetGlobalSearchModel widgetGlobalSearchModel, Boolean bool, MeUser meUser) {
+                return call2(contentModel, model, str, widgetGlobalSearchModel, bool, meUser);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final Model call2(ContentModel contentModel, ViewEmbedGameInvite.Model model, String str, WidgetGlobalSearchModel widgetGlobalSearchModel, Boolean bool, MeUser meUser) {
+                Guild guild;
+                WidgetGlobalSearchModel.ItemDataPayload itemDataPayload = this.$receiver;
+                int maxFileSizeMB = 0;
+                if (itemDataPayload instanceof WidgetGlobalSearchModel.ItemGuild) {
+                    maxFileSizeMB = GuildUtilsKt.getMaxFileSizeMB(((WidgetGlobalSearchModel.ItemGuild) itemDataPayload).getGuild());
+                } else if ((itemDataPayload instanceof WidgetGlobalSearchModel.ItemChannel) && (guild = ((WidgetGlobalSearchModel.ItemChannel) itemDataPayload).getGuild()) != null) {
+                    maxFileSizeMB = GuildUtilsKt.getMaxFileSizeMB(guild);
+                }
+                m.checkNotNullExpressionValue(contentModel, "contentModel");
+                m.checkNotNullExpressionValue(widgetGlobalSearchModel, "searchModel");
+                WidgetGlobalSearchModel.ItemDataPayload itemDataPayload2 = this.$receiver;
+                m.checkNotNullExpressionValue(bool, "isOnCooldown");
+                boolean zBooleanValue = bool.booleanValue();
+                int iMax = Math.max(maxFileSizeMB, PremiumUtils.INSTANCE.getMaxFileSizeMB(meUser));
+                UserUtils userUtils = UserUtils.INSTANCE;
+                m.checkNotNullExpressionValue(meUser, "meUser");
+                return new Model(contentModel, model, str, widgetGlobalSearchModel, itemDataPayload2, zBooleanValue, iMax, userUtils.isPremium(meUser));
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onViewBoundOrOnResume$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+        public final class C04621<T, R> implements b<ContentModel, Observable<? extends ViewEmbedGameInvite.Model>> {
+            public static final C04621 INSTANCE = new C04621();
+
+            @Override // j0.k.b
+            public /* bridge */ /* synthetic */ Observable<? extends ViewEmbedGameInvite.Model> call(ContentModel contentModel) {
+                return call2(contentModel);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final Observable<? extends ViewEmbedGameInvite.Model> call2(ContentModel contentModel) {
+                return ViewEmbedGameInvite.Model.INSTANCE.getForShare(ClockFactory.get(), contentModel.getActivityActionUri(), contentModel.getActivity());
+            }
+        }
+
+        public AnonymousClass1() {
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends Model> call(WidgetGlobalSearchModel.ItemDataPayload itemDataPayload) {
+            return call2(itemDataPayload);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends Model> call2(WidgetGlobalSearchModel.ItemDataPayload itemDataPayload) {
+            Channel channel;
+            BehaviorSubject behaviorSubjectAccess$getContentPublisher$p = WidgetIncomingShare.access$getContentPublisher$p(WidgetIncomingShare.this);
+            Observable<R> observableY = WidgetIncomingShare.access$getContentPublisher$p(WidgetIncomingShare.this).Y(C04621.INSTANCE);
+            BehaviorSubject behaviorSubjectAccess$getCommentPublisher$p = WidgetIncomingShare.access$getCommentPublisher$p(WidgetIncomingShare.this);
+            m.checkNotNullExpressionValue(behaviorSubjectAccess$getCommentPublisher$p, "commentPublisher");
+            Observable observableLeadingEdgeThrottle = ObservableExtensionsKt.leadingEdgeThrottle(behaviorSubjectAccess$getCommentPublisher$p, 500L, TimeUnit.MILLISECONDS);
+            WidgetGlobalSearchModel.Companion companion = WidgetGlobalSearchModel.INSTANCE;
+            BehaviorSubject behaviorSubjectAccess$getSearchQueryPublisher$p = WidgetIncomingShare.access$getSearchQueryPublisher$p(WidgetIncomingShare.this);
+            m.checkNotNullExpressionValue(behaviorSubjectAccess$getSearchQueryPublisher$p, "searchQueryPublisher");
+            Observable forSend$default = WidgetGlobalSearchModel.Companion.getForSend$default(companion, behaviorSubjectAccess$getSearchQueryPublisher$p, null, 2, null);
+            StoreStream.Companion companion2 = StoreStream.INSTANCE;
+            return Observable.f(behaviorSubjectAccess$getContentPublisher$p, observableY, observableLeadingEdgeThrottle, forSend$default, companion2.getSlowMode().observeCooldownSecs((itemDataPayload == null || (channel = itemDataPayload.getChannel()) == null) ? null : Long.valueOf(channel.getId()), StoreSlowMode.Type.MessageSend.INSTANCE).G(AnonymousClass2.INSTANCE).r(), StoreUser.observeMe$default(companion2.getUsers(), false, 1, null), new AnonymousClass3(itemDataPayload));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$configureUi$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final class AnonymousClass2<T1, T2> implements Action2<MenuItem, Context> {
+        public final /* synthetic */ Model $this_configureUi;
+
+        public AnonymousClass2(Model model) {
+            this.$this_configureUi = model;
+        }
+
+        @Override // rx.functions.Action2
+        public /* bridge */ /* synthetic */ void call(MenuItem menuItem, Context context) {
+            call2(menuItem, context);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(MenuItem menuItem, Context context) {
+            m.checkNotNullExpressionValue(menuItem, "menuItem");
+            if (menuItem.getItemId() != R.id.menu_send) {
+                return;
+            }
+            WidgetIncomingShare widgetIncomingShare = WidgetIncomingShare.this;
+            m.checkNotNullExpressionValue(context, "ctx");
+            WidgetIncomingShare.onSendClicked$default(widgetIncomingShare, context, this.$this_configureUi.getReceiver(), this.$this_configureUi.getGameInviteModel(), this.$this_configureUi.getContentModel(), this.$this_configureUi.getIsOnCooldown(), this.$this_configureUi.getMaxFileSizeMB(), this.$this_configureUi.getIsUserPremium(), null, 128, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onSendClicked$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final class AnonymousClass2<T, R> implements b<Pair<? extends MeUser, ? extends Channel>, Observable<? extends Pair<? extends MeUser, ? extends MessageResult>>> {
+        public final /* synthetic */ CaptchaHelper.CaptchaPayload $captchaPayload;
+        public final /* synthetic */ List $data;
+        public final /* synthetic */ ViewEmbedGameInvite.Model $gameInviteModel;
+
+        public AnonymousClass2(List list, ViewEmbedGameInvite.Model model, CaptchaHelper.CaptchaPayload captchaPayload) {
+            this.$data = list;
+            this.$gameInviteModel = model;
+            this.$captchaPayload = captchaPayload;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends Pair<? extends MeUser, ? extends MessageResult>> call(Pair<? extends MeUser, ? extends Channel> pair) {
+            return call2((Pair<MeUser, Channel>) pair);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends Pair<MeUser, MessageResult>> call2(Pair<MeUser, Channel> pair) {
+            MeUser meUserComponent1 = pair.component1();
+            Channel channelComponent2 = pair.component2();
+            if (channelComponent2 == null) {
+                return c.k;
+            }
+            StoreMessages messages = StoreStream.INSTANCE.getMessages();
+            long id2 = channelComponent2.getId();
+            m.checkNotNullExpressionValue(meUserComponent1, "meUser");
+            TextInputLayout textInputLayout = WidgetIncomingShare.access$getBinding$p(WidgetIncomingShare.this).d;
+            m.checkNotNullExpressionValue(textInputLayout, "binding.externalShareComment");
+            String textOrEmpty = ViewExtensions.getTextOrEmpty(textInputLayout);
+            List list = this.$data;
+            ViewEmbedGameInvite.Model model = this.$gameInviteModel;
+            Application application = model != null ? model.getApplication() : null;
+            ViewEmbedGameInvite.Model model2 = this.$gameInviteModel;
+            Activity activity = model2 != null ? model2.getActivity() : null;
+            ViewEmbedGameInvite.Model model3 = this.$gameInviteModel;
+            return StoreMessages.sendMessage$default(messages, id2, meUserComponent1, textOrEmpty, null, list, null, null, null, application, activity, model3 != null ? model3.getMessageActivity() : null, null, null, null, this.$captchaPayload, 14464, null).G(new WidgetIncomingShare$onSendClicked$2$$special$$inlined$let$lambda$1(this, meUserComponent1));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final class AnonymousClass2 extends o implements Function1<Editable, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            m.checkNotNullParameter(editable, "editable");
+            WidgetIncomingShare.access$getSearchQueryPublisher$p(WidgetIncomingShare.this).onNext(editable.toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onViewBoundOrOnResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final class AnonymousClass2 extends o implements Function1<Model, Unit> {
+        public final /* synthetic */ Clock $clock;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(Clock clock) {
+            super(1);
+            this.$clock = clock;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            WidgetIncomingShare widgetIncomingShare = WidgetIncomingShare.this;
+            m.checkNotNullExpressionValue(model, "it");
+            WidgetIncomingShare.access$configureUi(widgetIncomingShare, model, this.$clock);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onSendClicked$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final class AnonymousClass3 extends o implements Function1<Pair<? extends MeUser, ? extends MessageResult>, Unit> {
+        public final /* synthetic */ ContentModel $contentModel;
+        public final /* synthetic */ Context $context;
+        public final /* synthetic */ List $data;
+        public final /* synthetic */ ViewEmbedGameInvite.Model $gameInviteModel;
+        public final /* synthetic */ boolean $hasGif;
+        public final /* synthetic */ boolean $hasImage;
+        public final /* synthetic */ boolean $hasVideo;
+        public final /* synthetic */ boolean $isOnCooldown;
+        public final /* synthetic */ boolean $isUserPremium;
+        public final /* synthetic */ int $maxFileSizeMB;
+        public final /* synthetic */ WidgetGlobalSearchModel.ItemDataPayload $receiver;
+
+        /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onSendClicked$3$2, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+        public final class AnonymousClass2 extends o implements Function2<AppFragment, CaptchaHelper.CaptchaPayload, Unit> {
+            public AnonymousClass2() {
+                super(2);
+            }
+
+            @Override // kotlin.jvm.functions.Function2
+            public /* bridge */ /* synthetic */ Unit invoke(AppFragment appFragment, CaptchaHelper.CaptchaPayload captchaPayload) {
+                invoke2(appFragment, captchaPayload);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(AppFragment appFragment, CaptchaHelper.CaptchaPayload captchaPayload) {
+                m.checkNotNullParameter(appFragment, "<anonymous parameter 0>");
+                m.checkNotNullParameter(captchaPayload, "captchaPayload");
+                AnonymousClass3 anonymousClass3 = AnonymousClass3.this;
+                WidgetIncomingShare.access$onSendClicked(WidgetIncomingShare.this, anonymousClass3.$context, anonymousClass3.$receiver, anonymousClass3.$gameInviteModel, anonymousClass3.$contentModel, anonymousClass3.$isOnCooldown, anonymousClass3.$maxFileSizeMB, anonymousClass3.$isUserPremium, captchaPayload);
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onSendClicked$3$3, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+        public final class C04613 extends o implements Function0<Unit> {
+            public final /* synthetic */ MeUser $me;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C04613(MeUser meUser) {
+                super(0);
+                this.$me = meUser;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                Guild guild;
+                WidgetGlobalSearchModel.ItemDataPayload itemDataPayload = AnonymousClass3.this.$receiver;
+                int maxFileSizeMB = 0;
+                if (itemDataPayload instanceof WidgetGlobalSearchModel.ItemGuild) {
+                    maxFileSizeMB = GuildUtilsKt.getMaxFileSizeMB(((WidgetGlobalSearchModel.ItemGuild) itemDataPayload).getGuild());
+                } else if ((itemDataPayload instanceof WidgetGlobalSearchModel.ItemChannel) && (guild = ((WidgetGlobalSearchModel.ItemChannel) itemDataPayload).getGuild()) != null) {
+                    maxFileSizeMB = GuildUtilsKt.getMaxFileSizeMB(guild);
+                }
+                int iMax = Math.max(maxFileSizeMB, PremiumUtils.INSTANCE.getMaxFileSizeMB(this.$me));
+                b.a.a.c.Companion bVar = b.a.a.c.INSTANCE;
+                FragmentManager parentFragmentManager = WidgetIncomingShare.this.getParentFragmentManager();
+                m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+                UserUtils userUtils = UserUtils.INSTANCE;
+                MeUser meUser = this.$me;
+                m.checkNotNullExpressionValue(meUser, "me");
+                boolean zIsPremium = userUtils.isPremium(meUser);
+                int size = AnonymousClass3.this.$data.size();
+                AnonymousClass3 anonymousClass3 = AnonymousClass3.this;
+                bVar.a(parentFragmentManager, zIsPremium, iMax, Float.MAX_VALUE, Float.MAX_VALUE, null, size, anonymousClass3.$hasImage, anonymousClass3.$hasVideo, anonymousClass3.$hasGif);
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass3(List list, Context context, WidgetGlobalSearchModel.ItemDataPayload itemDataPayload, ViewEmbedGameInvite.Model model, ContentModel contentModel, boolean z2, int i, boolean z3, boolean z4, boolean z5, boolean z6) {
+            super(1);
+            this.$data = list;
+            this.$context = context;
+            this.$receiver = itemDataPayload;
+            this.$gameInviteModel = model;
+            this.$contentModel = contentModel;
+            this.$isOnCooldown = z2;
+            this.$maxFileSizeMB = i;
+            this.$isUserPremium = z3;
+            this.$hasImage = z4;
+            this.$hasVideo = z5;
+            this.$hasGif = z6;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Pair<? extends MeUser, ? extends MessageResult> pair) {
+            invoke2((Pair<MeUser, ? extends MessageResult>) pair);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Pair<MeUser, ? extends MessageResult> pair) {
+            MeUser meUserComponent1 = pair.component1();
+            MessageResult messageResultComponent2 = pair.component2();
+            if (messageResultComponent2 instanceof MessageResult.Success) {
+                WidgetIncomingShare.access$onSendCompleted(WidgetIncomingShare.this);
+                Attachment attachment = (Attachment) u.firstOrNull(this.$data);
+                if (attachment != null) {
+                    AnalyticsTracker.INSTANCE.externalShare(attachment.getUri());
+                    return;
+                }
+                return;
+            }
+            if (messageResultComponent2 instanceof MessageResult.Slowmode) {
+                int iCoerceAtLeast = f.coerceAtLeast((int) (((MessageResult.Slowmode) messageResultComponent2).getCooldownMs() / 1000), 1);
+                Resources resources = this.$context.getResources();
+                m.checkNotNullExpressionValue(resources, "context.resources");
+                b.a.d.m.h(this.$context, StringResourceUtilsKt.getQuantityString(resources, this.$context, R.plurals.channel_slowmode_cooldown_seconds, iCoerceAtLeast, Integer.valueOf(iCoerceAtLeast)), 0, null, 12);
+                return;
+            }
+            if (messageResultComponent2 instanceof MessageResult.CaptchaRequired) {
+                MessageResult.CaptchaRequired captchaRequired = (MessageResult.CaptchaRequired) messageResultComponent2;
+                if (captchaRequired.getNonce() != null) {
+                    StoreStream.INSTANCE.getMessages().deleteLocalMessage(captchaRequired.getChannelId(), captchaRequired.getNonce());
+                }
+                WidgetCaptchaBottomSheet.Companion.enqueue$default(WidgetCaptchaBottomSheet.INSTANCE, "Message Captcha", new AnonymousClass2(), null, CaptchaErrorBody.INSTANCE.createFromError(captchaRequired.getError()), 4, null);
+                return;
+            }
+            if (messageResultComponent2 instanceof MessageResult.UnknownFailure) {
+                SendUtils sendUtils = SendUtils.INSTANCE;
+                Error error = ((MessageResult.UnknownFailure) messageResultComponent2).getError();
+                AppActivity appActivity = WidgetIncomingShare.this.getAppActivity();
+                if (appActivity != null) {
+                    SendUtils.handleSendError$default(sendUtils, error, appActivity, new C04613(meUserComponent1), null, 8, null);
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onViewBound$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final class AnonymousClass3 implements View.OnFocusChangeListener {
+        public AnonymousClass3() {
+        }
+
+        @Override // android.view.View.OnFocusChangeListener
+        public final void onFocusChange(View view, boolean z2) {
+            if (z2) {
+                NestedScrollView nestedScrollView = WidgetIncomingShare.access$getBinding$p(WidgetIncomingShare.this).j;
+                TextInputLayout textInputLayout = WidgetIncomingShare.access$getBinding$p(WidgetIncomingShare.this).d;
+                m.checkNotNullExpressionValue(textInputLayout, "binding.externalShareComment");
+                nestedScrollView.smoothScrollTo(0, textInputLayout.getBottom());
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onViewBound$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final class AnonymousClass4 implements View.OnClickListener {
+
+        /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onViewBound$4$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+        @e(c = "com.discord.widgets.share.WidgetIncomingShare$onViewBound$4$1", f = "WidgetIncomingShare.kt", l = {Opcodes.L2D}, m = "invokeSuspend")
+        public final class AnonymousClass1 extends k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+            public int label;
+
+            public AnonymousClass1(Continuation continuation) {
+                super(2, continuation);
+            }
+
+            @Override // d0.w.i.a.a
+            public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
+                m.checkNotNullParameter(continuation, "completion");
+                return AnonymousClass4.this.new AnonymousClass1(continuation);
+            }
+
+            @Override // kotlin.jvm.functions.Function2
+            public final Object invoke(CoroutineScope coroutineScope, Continuation<? super Unit> continuation) {
+                return ((AnonymousClass1) create(coroutineScope, continuation)).invokeSuspend(Unit.a);
+            }
+
+            @Override // d0.w.i.a.a
+            public final Object invokeSuspend(Object obj) throws Throwable {
+                Object coroutine_suspended = d0.w.h.c.getCOROUTINE_SUSPENDED();
+                int i = this.label;
+                if (i == 0) {
+                    l.throwOnFailure(obj);
+                    this.label = 1;
+                    if (b.i.a.f.e.o.f.P(200L, this) == coroutine_suspended) {
+                        return coroutine_suspended;
+                    }
+                } else {
+                    if (i != 1) {
+                        throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+                    }
+                    l.throwOnFailure(obj);
+                }
+                WidgetIncomingShare.access$getBinding$p(WidgetIncomingShare.this).g.requestFocus();
+                return Unit.a;
+            }
+        }
+
+        public AnonymousClass4() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            TextInputLayout textInputLayout = WidgetIncomingShare.access$getBinding$p(WidgetIncomingShare.this).g;
+            m.checkNotNullExpressionValue(textInputLayout, "binding.externalShareSearch");
+            CoroutineScope coroutineScope = ViewCoroutineScopeKt.getCoroutineScope(textInputLayout);
+            if (coroutineScope != null) {
+                b.i.a.f.e.o.f.H0(coroutineScope, null, null, new AnonymousClass1(null), 3, null);
+            }
+            WidgetIncomingShare.access$getSelectedReceiverPublisher$p(WidgetIncomingShare.this).onNext(null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$configureUi$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final class AnonymousClass5 extends o implements Function1<Uri, Unit> {
+        public final /* synthetic */ ContentModel $this_configureUi;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass5(ContentModel contentModel) {
+            super(1);
+            this.$this_configureUi = contentModel;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Uri uri) {
+            invoke2(uri);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Uri uri) {
+            ArrayList arrayList;
+            ContentModel contentModel = this.$this_configureUi;
+            List<Uri> uris = contentModel.getUris();
+            if (uris != null) {
+                arrayList = new ArrayList();
+                for (Object obj : uris) {
+                    if (!m.areEqual((Uri) obj, uri)) {
+                        arrayList.add(obj);
+                    }
+                }
+            } else {
+                arrayList = null;
+            }
+            WidgetIncomingShare.access$getContentPublisher$p(WidgetIncomingShare.this).onNext(ContentModel.copy$default(contentModel, null, arrayList, null, null, null, null, 61, null));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.share.WidgetIncomingShare$onViewBound$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final class AnonymousClass5 extends o implements Function1<Intent, Unit> {
+        public AnonymousClass5() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Intent intent) {
+            invoke2(intent);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Intent intent) {
+            m.checkNotNullParameter(intent, "it");
+            WidgetIncomingShare.access$initialize(WidgetIncomingShare.this, ContentModel.INSTANCE.get(intent));
+            WidgetIncomingShare.access$getSelectedReceiverPublisher$p(WidgetIncomingShare.this).onNext(null);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static /* synthetic */ void launch$default(Companion companion, Context context, String str, String str2, int i, Object obj) {
+            if ((i & 2) != 0) {
+                str = null;
+            }
+            if ((i & 4) != 0) {
+                str2 = null;
+            }
+            companion.launch(context, str, str2);
+        }
+
+        public final void launch(Context context, String text, String recipient) {
+            m.checkNotNullParameter(context, "context");
+            Intent intentPutExtra = new Intent().putExtra("android.intent.extra.TEXT", text).putExtra(WidgetIncomingShare.EXTRA_RECIPIENT, recipient);
+            m.checkNotNullExpressionValue(intentPutExtra, "Intent()\n          .putE…TRA_RECIPIENT, recipient)");
+            j.d(context, WidgetIncomingShare.class, intentPutExtra);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final /* data */ class ContentModel {
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
+        private final Activity activity;
+        private final Uri activityActionUri;
+        private final Long preselectedRecipientChannel;
+        private final String recipient;
+        private final CharSequence sharedText;
+        private final List<Uri> uris;
+
+        /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+        public final class Companion {
+            private Companion() {
+            }
+
+            public final ContentModel get(Intent recentIntent) {
+                m.checkNotNullParameter(recentIntent, "recentIntent");
+                ShareUtils.SharedContent sharedContent = ShareUtils.INSTANCE.getSharedContent(recentIntent, false);
+                Long directShareId = IntentUtils.INSTANCE.getDirectShareId(recentIntent);
+                String stringExtra = recentIntent.getStringExtra(WidgetIncomingShare.EXTRA_RECIPIENT);
+                String action = recentIntent.getAction();
+                Uri data = (action != null && action.hashCode() == -1103390587 && action.equals("com.discord.intent.action.SDK")) ? recentIntent.getData() : null;
+                String stringExtra2 = recentIntent.getStringExtra("com.discord.intent.extra.EXTRA_ACTIVITY");
+                return new ContentModel(sharedContent.getText(), sharedContent.getUris(), directShareId, stringExtra, data, stringExtra2 != null ? (Activity) InboundGatewayGsonParser.fromJson(new com.discord.models.domain.Model.JsonReader(new StringReader(stringExtra2)), Activity.class) : null);
+            }
+
+            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+                this();
+            }
+        }
+
+        public ContentModel() {
+            this(null, null, null, null, null, null, 63, null);
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public ContentModel(CharSequence charSequence, List<? extends Uri> list, Long l, String str, Uri uri, Activity activity) {
+            this.sharedText = charSequence;
+            this.uris = list;
+            this.preselectedRecipientChannel = l;
+            this.recipient = str;
+            this.activityActionUri = uri;
+            this.activity = activity;
+        }
+
+        public final List<Uri> component2() {
+            return this.uris;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ ContentModel copy$default(ContentModel contentModel, CharSequence charSequence, List list, Long l, String str, Uri uri, Activity activity, int i, Object obj) {
+            if ((i & 1) != 0) {
+                charSequence = contentModel.sharedText;
+            }
+            if ((i & 2) != 0) {
+                list = contentModel.uris;
+            }
+            List list2 = list;
+            if ((i & 4) != 0) {
+                l = contentModel.preselectedRecipientChannel;
+            }
+            Long l2 = l;
+            if ((i & 8) != 0) {
+                str = contentModel.recipient;
+            }
+            String str2 = str;
+            if ((i & 16) != 0) {
+                uri = contentModel.activityActionUri;
+            }
+            Uri uri2 = uri;
+            if ((i & 32) != 0) {
+                activity = contentModel.activity;
+            }
+            return contentModel.copy(charSequence, list2, l2, str2, uri2, activity);
+        }
+
+        public final ContentModel copy(CharSequence sharedText, List<? extends Uri> uris, Long preselectedRecipientChannel, String recipient, Uri activityActionUri, Activity activity) {
+            return new ContentModel(sharedText, uris, preselectedRecipientChannel, recipient, activityActionUri, activity);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof ContentModel)) {
+                return false;
+            }
+            ContentModel contentModel = (ContentModel) other;
+            return m.areEqual(this.sharedText, contentModel.sharedText) && m.areEqual(this.uris, contentModel.uris) && m.areEqual(this.preselectedRecipientChannel, contentModel.preselectedRecipientChannel) && m.areEqual(this.recipient, contentModel.recipient) && m.areEqual(this.activityActionUri, contentModel.activityActionUri) && m.areEqual(this.activity, contentModel.activity);
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final Activity getActivity() {
+            return this.activity;
+        }
+
+        public final Activity getActivity() {
+            return this.activity;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final Uri getActivityActionUri() {
+            return this.activityActionUri;
+        }
+
+        public final Uri getActivityActionUri() {
+            return this.activityActionUri;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Long getPreselectedRecipientChannel() {
+            return this.preselectedRecipientChannel;
+        }
+
+        public final Long getPreselectedRecipientChannel() {
+            return this.preselectedRecipientChannel;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final String getRecipient() {
+            return this.recipient;
+        }
+
+        public final String getRecipient() {
+            return this.recipient;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final CharSequence getSharedText() {
+            return this.sharedText;
+        }
+
+        public final CharSequence getSharedText() {
+            return this.sharedText;
+        }
+
+        public final List<Uri> getUris() {
+            return this.uris;
+        }
+
+        public int hashCode() {
+            CharSequence charSequence = this.sharedText;
+            int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
+            List<Uri> list = this.uris;
+            int iHashCode2 = (iHashCode + (list != null ? list.hashCode() : 0)) * 31;
+            Long l = this.preselectedRecipientChannel;
+            int iHashCode3 = (iHashCode2 + (l != null ? l.hashCode() : 0)) * 31;
+            String str = this.recipient;
+            int iHashCode4 = (iHashCode3 + (str != null ? str.hashCode() : 0)) * 31;
+            Uri uri = this.activityActionUri;
+            int iHashCode5 = (iHashCode4 + (uri != null ? uri.hashCode() : 0)) * 31;
+            Activity activity = this.activity;
+            return iHashCode5 + (activity != null ? activity.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("ContentModel(sharedText=");
+            sbU.append(this.sharedText);
+            sbU.append(", uris=");
+            sbU.append(this.uris);
+            sbU.append(", preselectedRecipientChannel=");
+            sbU.append(this.preselectedRecipientChannel);
+            sbU.append(", recipient=");
+            sbU.append(this.recipient);
+            sbU.append(", activityActionUri=");
+            sbU.append(this.activityActionUri);
+            sbU.append(", activity=");
+            sbU.append(this.activity);
+            sbU.append(")");
+            return sbU.toString();
+        }
+
+        public /* synthetic */ ContentModel(String str, List list, Long l, String str2, Uri uri, Activity activity, int i, DefaultConstructorMarker defaultConstructorMarker) {
+            this((i & 1) != 0 ? "" : str, (i & 2) != 0 ? null : list, (i & 4) != 0 ? null : l, (i & 8) != 0 ? null : str2, (i & 16) != 0 ? null : uri, (i & 32) == 0 ? activity : null);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetIncomingShare.kt */
+    public final class Model {
+        private final String comment;
+        private final ContentModel contentModel;
+        private final ViewEmbedGameInvite.Model gameInviteModel;
+        private final boolean isOnCooldown;
+        private final boolean isUserPremium;
+        private final int maxFileSizeMB;
+        private final WidgetGlobalSearchModel.ItemDataPayload receiver;
+        private final WidgetGlobalSearchModel searchModel;
+
+        public Model(ContentModel contentModel, ViewEmbedGameInvite.Model model, String str, WidgetGlobalSearchModel widgetGlobalSearchModel, WidgetGlobalSearchModel.ItemDataPayload itemDataPayload, boolean z2, int i, boolean z3) {
+            m.checkNotNullParameter(contentModel, "contentModel");
+            m.checkNotNullParameter(widgetGlobalSearchModel, "searchModel");
+            this.contentModel = contentModel;
+            this.gameInviteModel = model;
+            this.comment = str;
+            this.searchModel = widgetGlobalSearchModel;
+            this.receiver = itemDataPayload;
+            this.isOnCooldown = z2;
+            this.maxFileSizeMB = i;
+            this.isUserPremium = z3;
+        }
+
+        public final String getComment() {
+            return this.comment;
+        }
+
+        public final ContentModel getContentModel() {
+            return this.contentModel;
+        }
+
+        public final ViewEmbedGameInvite.Model getGameInviteModel() {
+            return this.gameInviteModel;
+        }
+
+        /* JADX INFO: renamed from: isOnCooldown, reason: from getter */
+        public final boolean getIsOnCooldown() {
+            return this.isOnCooldown;
+        }
+
+        /* JADX INFO: renamed from: isUserPremium, reason: from getter */
+        public final boolean getIsUserPremium() {
+            return this.isUserPremium;
+        }
+
+        public final int getMaxFileSizeMB() {
+            return this.maxFileSizeMB;
+        }
+
+        public final WidgetGlobalSearchModel.ItemDataPayload getReceiver() {
+            return this.receiver;
+        }
+
+        public final WidgetGlobalSearchModel getSearchModel() {
+            return this.searchModel;
+        }
+    }
 
     public WidgetIncomingShare() {
-        super(R$layout.widget_incoming_share);
+        super(R.layout.widget_incoming_share);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetIncomingShare$binding$2.INSTANCE, null, 2, null);
         this.contentPublisher = BehaviorSubject.k0();
         this.commentPublisher = BehaviorSubject.l0("");
@@ -98,8 +1068,8 @@ public final class WidgetIncomingShare extends AppFragment {
         this.selectedReceiverPublisher = BehaviorSubject.k0();
     }
 
-    public static final /* synthetic */ void access$configureUi(WidgetIncomingShare widgetIncomingShare, WidgetIncomingShare$Model widgetIncomingShare$Model, Clock clock) {
-        widgetIncomingShare.configureUi(widgetIncomingShare$Model, clock);
+    public static final /* synthetic */ void access$configureUi(WidgetIncomingShare widgetIncomingShare, Model model, Clock clock) {
+        widgetIncomingShare.configureUi(model, clock);
     }
 
     public static final /* synthetic */ WidgetIncomingShareBinding access$getBinding$p(WidgetIncomingShare widgetIncomingShare) {
@@ -126,12 +1096,12 @@ public final class WidgetIncomingShare extends AppFragment {
         return widgetIncomingShare.selectedReceiverPublisher;
     }
 
-    public static final /* synthetic */ void access$initialize(WidgetIncomingShare widgetIncomingShare, WidgetIncomingShare$ContentModel widgetIncomingShare$ContentModel) {
-        widgetIncomingShare.initialize(widgetIncomingShare$ContentModel);
+    public static final /* synthetic */ void access$initialize(WidgetIncomingShare widgetIncomingShare, ContentModel contentModel) {
+        widgetIncomingShare.initialize(contentModel);
     }
 
-    public static final /* synthetic */ void access$onSendClicked(WidgetIncomingShare widgetIncomingShare, Context context, WidgetGlobalSearchModel$ItemDataPayload widgetGlobalSearchModel$ItemDataPayload, ViewEmbedGameInvite$Model viewEmbedGameInvite$Model, WidgetIncomingShare$ContentModel widgetIncomingShare$ContentModel, boolean z2, int i, boolean z3, CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload) {
-        widgetIncomingShare.onSendClicked(context, widgetGlobalSearchModel$ItemDataPayload, viewEmbedGameInvite$Model, widgetIncomingShare$ContentModel, z2, i, z3, captchaHelper$CaptchaPayload);
+    public static final /* synthetic */ void access$onSendClicked(WidgetIncomingShare widgetIncomingShare, Context context, WidgetGlobalSearchModel.ItemDataPayload itemDataPayload, ViewEmbedGameInvite.Model model, ContentModel contentModel, boolean z2, int i, boolean z3, CaptchaHelper.CaptchaPayload captchaPayload) {
+        widgetIncomingShare.onSendClicked(context, itemDataPayload, model, contentModel, z2, i, z3, captchaPayload);
     }
 
     public static final /* synthetic */ void access$onSendCompleted(WidgetIncomingShare widgetIncomingShare) {
@@ -142,7 +1112,7 @@ public final class WidgetIncomingShare extends AppFragment {
         widgetIncomingShare.queryString = str;
     }
 
-    private final void configureAdapter(WidgetIncomingShare$Adapter previewAdapter) {
+    private final void configureAdapter(Adapter previewAdapter) {
         RecyclerView recyclerView = getBinding().e;
         m.checkNotNullExpressionValue(recyclerView, "binding.externalShareList");
         recyclerView.setAdapter(previewAdapter);
@@ -162,13 +1132,13 @@ public final class WidgetIncomingShare extends AppFragment {
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
      */
-    private final void configureUi(WidgetIncomingShare$Model widgetIncomingShare$Model, Clock clock) {
+    private final void configureUi(Model model, Clock clock) {
         List<Uri> uris;
-        configureUi(widgetIncomingShare$Model.getContentModel());
+        configureUi(model.getContentModel());
         TextInputLayout textInputLayout = getBinding().d;
         m.checkNotNullExpressionValue(textInputLayout, "binding.externalShareComment");
-        ViewExtensions.setOnEditorActionListener(textInputLayout, new WidgetIncomingShare$configureUi$1(this, widgetIncomingShare$Model));
-        if (widgetIncomingShare$Model.getReceiver() != null) {
+        ViewExtensions.setOnEditorActionListener(textInputLayout, new AnonymousClass1(model));
+        if (model.getReceiver() != null) {
             AppViewFlipper appViewFlipper = getBinding().k;
             m.checkNotNullExpressionValue(appViewFlipper, "binding.searchFlipper");
             appViewFlipper.setDisplayedChild(1);
@@ -181,15 +1151,15 @@ public final class WidgetIncomingShare extends AppFragment {
             if (editText != null) {
                 editText.setImeOptions(4);
             }
-            String comment = widgetIncomingShare$Model.getComment();
-            setActionBarOptionsMenu(!(comment == null || t.isBlank(comment)) || (((uris = widgetIncomingShare$Model.getContentModel().getUris()) != null && !uris.isEmpty()) || widgetIncomingShare$Model.getGameInviteModel() != null) ? R$menu.menu_external_share : R$menu.menu_empty, new WidgetIncomingShare$configureUi$2(this, widgetIncomingShare$Model), null);
-            WidgetGlobalSearchModel$ItemDataPayload receiver = widgetIncomingShare$Model.getReceiver();
-            if (receiver instanceof WidgetGlobalSearchModel$ItemUser) {
-                getBinding().l.onConfigure((WidgetGlobalSearchModel$ItemUser) widgetIncomingShare$Model.getReceiver());
-            } else if (receiver instanceof WidgetGlobalSearchModel$ItemChannel) {
-                getBinding().l.onConfigure((WidgetGlobalSearchModel$ItemChannel) widgetIncomingShare$Model.getReceiver());
-            } else if (receiver instanceof WidgetGlobalSearchModel$ItemGuild) {
-                getBinding().l.onConfigure((WidgetGlobalSearchModel$ItemGuild) widgetIncomingShare$Model.getReceiver());
+            String comment = model.getComment();
+            setActionBarOptionsMenu(!(comment == null || t.isBlank(comment)) || (((uris = model.getContentModel().getUris()) != null && !uris.isEmpty()) || model.getGameInviteModel() != null) ? R.menu.menu_external_share : R.menu.menu_empty, new AnonymousClass2(model), null);
+            WidgetGlobalSearchModel.ItemDataPayload receiver = model.getReceiver();
+            if (receiver instanceof WidgetGlobalSearchModel.ItemUser) {
+                getBinding().l.onConfigure((WidgetGlobalSearchModel.ItemUser) model.getReceiver());
+            } else if (receiver instanceof WidgetGlobalSearchModel.ItemChannel) {
+                getBinding().l.onConfigure((WidgetGlobalSearchModel.ItemChannel) model.getReceiver());
+            } else if (receiver instanceof WidgetGlobalSearchModel.ItemGuild) {
+                getBinding().l.onConfigure((WidgetGlobalSearchModel.ItemGuild) model.getReceiver());
             }
         } else {
             AppViewFlipper appViewFlipper2 = getBinding().k;
@@ -207,31 +1177,31 @@ public final class WidgetIncomingShare extends AppFragment {
             if (editText2 != null) {
                 editText2.setImeOptions(5);
             }
-            AppFragment.setActionBarOptionsMenu$default(this, R$menu.menu_empty, null, null, 4, null);
+            AppFragment.setActionBarOptionsMenu$default(this, R.menu.menu_empty, null, null, 4, null);
         }
         AppViewFlipper appViewFlipper3 = getBinding().i;
         m.checkNotNullExpressionValue(appViewFlipper3, "binding.incomingShareResultsFlipper");
-        appViewFlipper3.setDisplayedChild(widgetIncomingShare$Model.getSearchModel().getData().isEmpty() ? 1 : 0);
+        appViewFlipper3.setDisplayedChild(model.getSearchModel().getData().isEmpty() ? 1 : 0);
         WidgetGlobalSearchAdapter widgetGlobalSearchAdapter = this.resultsAdapter;
         if (widgetGlobalSearchAdapter == null) {
             m.throwUninitializedPropertyAccessException("resultsAdapter");
         }
-        widgetGlobalSearchAdapter.setOnUpdated(new WidgetIncomingShare$configureUi$$inlined$apply$lambda$1(this, widgetIncomingShare$Model));
-        List<WidgetGlobalSearchModel$ItemDataPayload> data = widgetIncomingShare$Model.getSearchModel().getData();
+        widgetGlobalSearchAdapter.setOnUpdated(new WidgetIncomingShare$configureUi$$inlined$apply$lambda$1(this, model));
+        List<WidgetGlobalSearchModel.ItemDataPayload> data = model.getSearchModel().getData();
         ArrayList arrayList = new ArrayList();
         for (Object obj : data) {
-            String key = ((WidgetGlobalSearchModel$ItemDataPayload) obj).getKey();
-            WidgetGlobalSearchModel$ItemDataPayload receiver2 = widgetIncomingShare$Model.getReceiver();
+            String key = ((WidgetGlobalSearchModel.ItemDataPayload) obj).getKey();
+            WidgetGlobalSearchModel.ItemDataPayload receiver2 = model.getReceiver();
             if (!m.areEqual(key, receiver2 != null ? receiver2.getKey() : null)) {
                 arrayList.add(obj);
             }
         }
         widgetGlobalSearchAdapter.setData(arrayList);
-        widgetGlobalSearchAdapter.setOnSelectedListener(new WidgetIncomingShare$configureUi$$inlined$apply$lambda$2(this, widgetIncomingShare$Model));
+        widgetGlobalSearchAdapter.setOnSelectedListener(new WidgetIncomingShare$configureUi$$inlined$apply$lambda$2(this, model));
         ViewEmbedGameInvite viewEmbedGameInvite = getBinding().c;
         m.checkNotNullExpressionValue(viewEmbedGameInvite, "binding.externalShareActivityActionPreview");
-        viewEmbedGameInvite.setVisibility(widgetIncomingShare$Model.getGameInviteModel() != null ? 0 : 8);
-        ViewEmbedGameInvite$Model gameInviteModel = widgetIncomingShare$Model.getGameInviteModel();
+        viewEmbedGameInvite.setVisibility(model.getGameInviteModel() != null ? 0 : 8);
+        ViewEmbedGameInvite.Model gameInviteModel = model.getGameInviteModel();
         if (gameInviteModel != null) {
             getBinding().c.bind(gameInviteModel, clock);
         }
@@ -248,26 +1218,26 @@ public final class WidgetIncomingShare extends AppFragment {
         return (WidgetIncomingShareBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final void initialize(WidgetIncomingShare$ContentModel widgetIncomingShare$ContentModel) {
+    private final void initialize(ContentModel contentModel) {
         Context context;
         int i = 0;
-        if (widgetIncomingShare$ContentModel.getPreselectedRecipientChannel() != null && (context = getContext()) != null) {
-            ChannelSelector.Companion.getInstance().findAndSet(context, widgetIncomingShare$ContentModel.getPreselectedRecipientChannel().longValue());
+        if (contentModel.getPreselectedRecipientChannel() != null && (context = getContext()) != null) {
+            ChannelSelector.INSTANCE.getInstance().findAndSet(context, contentModel.getPreselectedRecipientChannel().longValue());
             m.checkNotNullExpressionValue(context, "context");
             j.c(context, false, getMostRecentIntent().setFlags(268468225), 2);
             finish();
         }
         TextInputLayout textInputLayout = getBinding().g;
         m.checkNotNullExpressionValue(textInputLayout, "binding.externalShareSearch");
-        ViewExtensions.setText(textInputLayout, widgetIncomingShare$ContentModel.getRecipient());
+        ViewExtensions.setText(textInputLayout, contentModel.getRecipient());
         TextInputLayout textInputLayout2 = getBinding().g;
         m.checkNotNullExpressionValue(textInputLayout2, "binding.externalShareSearch");
         ViewExtensions.setSelectionEnd(textInputLayout2);
         TextInputLayout textInputLayout3 = getBinding().d;
         m.checkNotNullExpressionValue(textInputLayout3, "binding.externalShareComment");
-        ViewExtensions.setText(textInputLayout3, widgetIncomingShare$ContentModel.getSharedText());
-        this.contentPublisher.onNext(widgetIncomingShare$ContentModel);
-        List<Uri> uris = widgetIncomingShare$ContentModel.getUris();
+        ViewExtensions.setText(textInputLayout3, contentModel.getSharedText());
+        this.contentPublisher.onNext(contentModel);
+        List<Uri> uris = contentModel.getUris();
         if (uris != null) {
             for (Object obj : uris) {
                 int i2 = i + 1;
@@ -282,42 +1252,42 @@ public final class WidgetIncomingShare extends AppFragment {
         }
     }
 
-    public static /* synthetic */ void onSendClicked$default(WidgetIncomingShare widgetIncomingShare, Context context, WidgetGlobalSearchModel$ItemDataPayload widgetGlobalSearchModel$ItemDataPayload, ViewEmbedGameInvite$Model viewEmbedGameInvite$Model, WidgetIncomingShare$ContentModel widgetIncomingShare$ContentModel, boolean z2, int i, boolean z3, CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload, int i2, Object obj) {
-        widgetIncomingShare.onSendClicked(context, widgetGlobalSearchModel$ItemDataPayload, viewEmbedGameInvite$Model, widgetIncomingShare$ContentModel, z2, i, z3, (i2 & 128) != 0 ? null : captchaHelper$CaptchaPayload);
+    public static /* synthetic */ void onSendClicked$default(WidgetIncomingShare widgetIncomingShare, Context context, WidgetGlobalSearchModel.ItemDataPayload itemDataPayload, ViewEmbedGameInvite.Model model, ContentModel contentModel, boolean z2, int i, boolean z3, CaptchaHelper.CaptchaPayload captchaPayload, int i2, Object obj) {
+        widgetIncomingShare.onSendClicked(context, itemDataPayload, model, contentModel, z2, i, z3, (i2 & 128) != 0 ? null : captchaPayload);
     }
 
-    private final void onSendClicked(Context context, WidgetGlobalSearchModel$ItemDataPayload receiver, ViewEmbedGameInvite$Model gameInviteModel, WidgetIncomingShare$ContentModel contentModel, boolean isOnCooldown, int maxFileSizeMB, boolean isUserPremium, CaptchaHelper$CaptchaPayload captchaPayload) {
-        Observable$c observable$cD;
+    private final void onSendClicked(Context context, WidgetGlobalSearchModel.ItemDataPayload receiver, ViewEmbedGameInvite.Model gameInviteModel, ContentModel contentModel, boolean isOnCooldown, int maxFileSizeMB, boolean isUserPremium, CaptchaHelper.CaptchaPayload captchaPayload) {
+        Observable.c cVarD;
         List listEmptyList;
         boolean z2;
         boolean z3;
         boolean z4;
         if (isOnCooldown) {
-            b.a.d.m.g(context, 2131887611, 0, null, 12);
+            b.a.d.m.g(context, R.string.channel_slowmode_desc_short, 0, null, 12);
             return;
         }
-        if (receiver instanceof WidgetGlobalSearchModel$ItemChannel) {
-            WidgetGlobalSearchModel$ItemChannel widgetGlobalSearchModel$ItemChannel = (WidgetGlobalSearchModel$ItemChannel) receiver;
-            ChannelSelector.selectChannel$default(ChannelSelector.Companion.getInstance(), widgetGlobalSearchModel$ItemChannel.getChannel(), null, null, 6, null);
-            observable$cD = o.d(new WidgetIncomingShare$onSendClicked$filter$1(receiver), widgetGlobalSearchModel$ItemChannel.getChannel(), 0L, null, 12);
-        } else if (receiver instanceof WidgetGlobalSearchModel$ItemUser) {
-            ChannelSelector.Companion.getInstance().findAndSetDirectMessage(context, ((WidgetGlobalSearchModel$ItemUser) receiver).getUser().getId());
-            observable$cD = o.d(new WidgetIncomingShare$onSendClicked$filter$2(receiver), receiver.getChannel(), 0L, null, 12);
+        if (receiver instanceof WidgetGlobalSearchModel.ItemChannel) {
+            WidgetGlobalSearchModel.ItemChannel itemChannel = (WidgetGlobalSearchModel.ItemChannel) receiver;
+            ChannelSelector.selectChannel$default(ChannelSelector.INSTANCE.getInstance(), itemChannel.getChannel(), null, null, 6, null);
+            cVarD = b.a.d.o.d(new WidgetIncomingShare$onSendClicked$filter$1(receiver), itemChannel.getChannel(), 0L, null, 12);
+        } else if (receiver instanceof WidgetGlobalSearchModel.ItemUser) {
+            ChannelSelector.INSTANCE.getInstance().findAndSetDirectMessage(context, ((WidgetGlobalSearchModel.ItemUser) receiver).getUser().getId());
+            cVarD = b.a.d.o.d(new WidgetIncomingShare$onSendClicked$filter$2(receiver), receiver.getChannel(), 0L, null, 12);
         } else {
-            if (!(receiver instanceof WidgetGlobalSearchModel$ItemGuild)) {
+            if (!(receiver instanceof WidgetGlobalSearchModel.ItemGuild)) {
                 return;
             }
-            StoreStream.Companion.getGuildSelected().set(((WidgetGlobalSearchModel$ItemGuild) receiver).getGuild().getId());
-            observable$cD = o.d(new WidgetIncomingShare$onSendClicked$filter$3(receiver), receiver.getChannel(), 0L, null, 12);
+            StoreStream.INSTANCE.getGuildSelected().set(((WidgetGlobalSearchModel.ItemGuild) receiver).getGuild().getId());
+            cVarD = b.a.d.o.d(new WidgetIncomingShare$onSendClicked$filter$3(receiver), receiver.getChannel(), 0L, null, 12);
         }
         List<Uri> uris = contentModel.getUris();
         if (uris != null) {
             listEmptyList = new ArrayList(d0.t.o.collectionSizeOrDefault(uris, 10));
             for (Uri uri : uris) {
-                Attachment$Companion attachment$Companion = Attachment.Companion;
+                Attachment.Companion companion = Attachment.INSTANCE;
                 ContentResolver contentResolver = context.getContentResolver();
                 m.checkNotNullExpressionValue(contentResolver, "context.contentResolver");
-                listEmptyList.add(attachment$Companion.b(uri, contentResolver));
+                listEmptyList.add(companion.b(uri, contentResolver));
             }
         } else {
             listEmptyList = n.emptyList();
@@ -386,23 +1356,23 @@ public final class WidgetIncomingShare extends AppFragment {
             break;
         }
         if (fSumOfFloat > ((float) maxFileSizeMB)) {
-            c$b c_b = c.k;
+            b.a.a.c.Companion bVar = b.a.a.c.INSTANCE;
             FragmentManager parentFragmentManager = getParentFragmentManager();
             m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            c_b.a(parentFragmentManager, isUserPremium, maxFileSizeMB, fFloatValue, fSumOfFloat, null, listEmptyList.size(), z2, z3, z4);
+            bVar.a(parentFragmentManager, isUserPremium, maxFileSizeMB, fFloatValue, fSumOfFloat, null, listEmptyList.size(), z2, z3, z4);
             return;
         }
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        Observable observableObserveMe$default = StoreUser.observeMe$default(storeStream$Companion.getUsers(), false, 1, null);
-        Observable<R> observableK = storeStream$Companion.getChannelsSelected().observeSelectedChannel().k(observable$cD);
+        StoreStream.Companion companion2 = StoreStream.INSTANCE;
+        Observable observableObserveMe$default = StoreUser.observeMe$default(companion2.getUsers(), false, 1, null);
+        Observable<R> observableK = companion2.getChannelsSelected().observeSelectedChannel().k(cVarD);
         m.checkNotNullExpressionValue(observableK, "StoreStream\n            …         .compose(filter)");
-        Observable observableA = Observable.j(observableObserveMe$default, ObservableExtensionsKt.takeSingleUntilTimeout$default(observableK, 1000L, false, 2, null), WidgetIncomingShare$onSendClicked$1.INSTANCE).Z(1).A(new WidgetIncomingShare$onSendClicked$2(this, listEmptyList, gameInviteModel, captchaPayload));
+        Observable observableA = Observable.j(observableObserveMe$default, ObservableExtensionsKt.takeSingleUntilTimeout$default(observableK, 1000L, false, 2, null), AnonymousClass1.INSTANCE).Z(1).A(new AnonymousClass2(listEmptyList, gameInviteModel, captchaPayload));
         m.checkNotNullExpressionValue(observableA, "Observable\n        .comb…ervable.empty()\n        }");
         WidgetGlobalSearchAdapter widgetGlobalSearchAdapter = this.resultsAdapter;
         if (widgetGlobalSearchAdapter == null) {
             m.throwUninitializedPropertyAccessException("resultsAdapter");
         }
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.withDimmer(ObservableExtensionsKt.ui(observableA, this, widgetGlobalSearchAdapter), getBinding().f2479b, 0L), WidgetIncomingShare.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetIncomingShare$onSendClicked$3(this, listEmptyList, context, receiver, gameInviteModel, contentModel, isOnCooldown, maxFileSizeMB, isUserPremium, z2, z3, z4), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.withDimmer(ObservableExtensionsKt.ui(observableA, this, widgetGlobalSearchAdapter), getBinding().f2479b, 0L), WidgetIncomingShare.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass3(listEmptyList, context, receiver, gameInviteModel, contentModel, isOnCooldown, maxFileSizeMB, isUserPremium, z2, z3, z4), 62, (Object) null);
     }
 
     private final void onSendCompleted() {
@@ -425,36 +1395,36 @@ public final class WidgetIncomingShare extends AppFragment {
             finish();
             return;
         }
-        WidgetIncomingShare$Adapter widgetIncomingShare$Adapter = new WidgetIncomingShare$Adapter(this, new WidgetIncomingShare$ContentModel(null, null, null, null, null, null, 63, null), null, 2, null);
-        this.previewAdapter = widgetIncomingShare$Adapter;
-        if (widgetIncomingShare$Adapter == null) {
+        Adapter adapter = new Adapter(this, new ContentModel(null, null, null, null, null, null, 63, null), null, 2, null);
+        this.previewAdapter = adapter;
+        if (adapter == null) {
             m.throwUninitializedPropertyAccessException("previewAdapter");
         }
-        configureAdapter(widgetIncomingShare$Adapter);
+        configureAdapter(adapter);
         TextInputLayout textInputLayout = getBinding().d;
         m.checkNotNullExpressionValue(textInputLayout, "binding.externalShareComment");
-        ViewExtensions.addBindedTextWatcher(textInputLayout, this, new WidgetIncomingShare$onViewBound$1(this));
+        ViewExtensions.addBindedTextWatcher(textInputLayout, this, new AnonymousClass1());
         RecyclerView recyclerView = getBinding().h;
         m.checkNotNullExpressionValue(recyclerView, "binding.externalShareSearchResults");
-        this.resultsAdapter = (WidgetGlobalSearchAdapter) MGRecyclerAdapter.Companion.configure(new WidgetGlobalSearchAdapter(recyclerView));
+        this.resultsAdapter = (WidgetGlobalSearchAdapter) MGRecyclerAdapter.INSTANCE.configure(new WidgetGlobalSearchAdapter(recyclerView));
         ViewCompat.setNestedScrollingEnabled(getBinding().h, false);
         getBinding().h.setHasFixedSize(false);
         TextInputLayout textInputLayout2 = getBinding().g;
         m.checkNotNullExpressionValue(textInputLayout2, "binding.externalShareSearch");
-        ViewExtensions.addBindedTextWatcher(textInputLayout2, this, new WidgetIncomingShare$onViewBound$2(this));
+        ViewExtensions.addBindedTextWatcher(textInputLayout2, this, new AnonymousClass2());
         TextInputLayout textInputLayout3 = getBinding().g;
         m.checkNotNullExpressionValue(textInputLayout3, "binding.externalShareSearch");
-        ViewExtensions.setOnEditTextFocusChangeListener(textInputLayout3, new WidgetIncomingShare$onViewBound$3(this));
-        getBinding().m.setOnClickListener(new WidgetIncomingShare$onViewBound$4(this));
+        ViewExtensions.setOnEditTextFocusChangeListener(textInputLayout3, new AnonymousClass3());
+        getBinding().m.setOnClickListener(new AnonymousClass4());
         this.selectedReceiverPublisher.onNext(null);
         AppViewFlipper appViewFlipper = getBinding().k;
         m.checkNotNullExpressionValue(appViewFlipper, "binding.searchFlipper");
-        appViewFlipper.setInAnimation(AnimationUtils.loadAnimation(context, 2130771970));
+        appViewFlipper.setInAnimation(AnimationUtils.loadAnimation(context, R.anim.abc_grow_fade_in_from_bottom));
         AppViewFlipper appViewFlipper2 = getBinding().k;
         m.checkNotNullExpressionValue(appViewFlipper2, "binding.searchFlipper");
-        appViewFlipper2.setOutAnimation(AnimationUtils.loadAnimation(context, 2130771973));
-        setOnNewIntentListener(new WidgetIncomingShare$onViewBound$5(this));
-        initialize(WidgetIncomingShare$ContentModel.Companion.get(getMostRecentIntent()));
+        appViewFlipper2.setOutAnimation(AnimationUtils.loadAnimation(context, R.anim.abc_shrink_fade_out_from_bottom));
+        setOnNewIntentListener(new AnonymousClass5());
+        initialize(ContentModel.INSTANCE.get(getMostRecentIntent()));
     }
 
     @Override // com.discord.app.AppFragment
@@ -462,35 +1432,35 @@ public final class WidgetIncomingShare extends AppFragment {
         super.onViewBoundOrOnResume();
         BehaviorSubject<String> behaviorSubject = this.searchQueryPublisher;
         m.checkNotNullExpressionValue(behaviorSubject, "searchQueryPublisher");
-        StoreGuilds$Actions.requestMembers(this, behaviorSubject, false);
+        StoreGuilds.Actions.requestMembers(this, behaviorSubject, false);
         Clock clock = ClockFactory.get();
-        Observable<R> observableY = this.selectedReceiverPublisher.r().Y(new WidgetIncomingShare$onViewBoundOrOnResume$1(this));
+        Observable<R> observableY = this.selectedReceiverPublisher.r().Y(new AnonymousClass1());
         m.checkNotNullExpressionValue(observableY, "selectedReceiverPublishe…  )\n          }\n        }");
         Observable observableComputationLatest = ObservableExtensionsKt.computationLatest(observableY);
         WidgetGlobalSearchAdapter widgetGlobalSearchAdapter = this.resultsAdapter;
         if (widgetGlobalSearchAdapter == null) {
             m.throwUninitializedPropertyAccessException("resultsAdapter");
         }
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(observableComputationLatest, this, widgetGlobalSearchAdapter), WidgetIncomingShare.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetIncomingShare$onViewBoundOrOnResume$2(this, clock), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(observableComputationLatest, this, widgetGlobalSearchAdapter), WidgetIncomingShare.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(clock), 62, (Object) null);
     }
 
     @SuppressLint({"NotifyDataSetChanged"})
-    private final void configureUi(WidgetIncomingShare$ContentModel widgetIncomingShare$ContentModel) {
-        WidgetIncomingShare$Adapter widgetIncomingShare$Adapter = this.previewAdapter;
-        if (widgetIncomingShare$Adapter == null) {
+    private final void configureUi(ContentModel contentModel) {
+        Adapter adapter = this.previewAdapter;
+        if (adapter == null) {
             m.throwUninitializedPropertyAccessException("previewAdapter");
         }
-        widgetIncomingShare$Adapter.setData(widgetIncomingShare$ContentModel, new WidgetIncomingShare$configureUi$5(this, widgetIncomingShare$ContentModel));
-        WidgetIncomingShare$Adapter widgetIncomingShare$Adapter2 = this.previewAdapter;
-        if (widgetIncomingShare$Adapter2 == null) {
+        adapter.setData(contentModel, new AnonymousClass5(contentModel));
+        Adapter adapter2 = this.previewAdapter;
+        if (adapter2 == null) {
             m.throwUninitializedPropertyAccessException("previewAdapter");
         }
-        widgetIncomingShare$Adapter2.notifyDataSetChanged();
-        List<Uri> uris = widgetIncomingShare$ContentModel.getUris();
+        adapter2.notifyDataSetChanged();
+        List<Uri> uris = contentModel.getUris();
         boolean z2 = (uris == null || uris.isEmpty()) ? false : true;
         CardView cardView = getBinding().f;
         m.checkNotNullExpressionValue(cardView, "binding.externalShareListWrap");
         cardView.setVisibility(z2 ? 0 : 8);
-        getBinding().d.setHint(z2 ? 2131886309 : 2131896642);
+        getBinding().d.setHint(z2 ? R.string.add_a_comment_optional : R.string.upload_area_leave_a_comment);
     }
 }

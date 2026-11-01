@@ -1,13 +1,8 @@
 package b.g.a.c;
 
-import b.g.a.a.g$a;
-import b.g.a.a.i$d;
-import b.g.a.a.p$b;
-import b.g.a.a.q$a;
-import b.g.a.a.z$a;
+import b.g.a.a.z;
 import b.g.a.c.c0.a0;
 import b.g.a.c.c0.g0;
-import b.g.a.c.y.e$b;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import java.io.Serializable;
 import java.lang.annotation.Annotation;
@@ -16,8 +11,18 @@ import java.util.List;
 /* JADX INFO: compiled from: AnnotationIntrospector.java */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class b implements Serializable {
-    public q$a A(b.g.a.c.z.l<?> lVar, b.g.a.c.c0.b bVar) {
-        return q$a.j;
+
+    /* JADX INFO: compiled from: AnnotationIntrospector.java */
+    public class a {
+        public final int a;
+
+        public a(int i, String str) {
+            this.a = i;
+        }
+    }
+
+    public b.g.a.a.q.a A(b.g.a.c.z.l<?> lVar, b.g.a.c.c0.b bVar) {
+        return b.g.a.a.q.a.j;
     }
 
     public Integer B(b.g.a.c.c0.b bVar) {
@@ -28,7 +33,7 @@ public abstract class b implements Serializable {
         return null;
     }
 
-    public b$a D(b.g.a.c.c0.i iVar) {
+    public a D(b.g.a.c.c0.i iVar) {
         return null;
     }
 
@@ -56,7 +61,7 @@ public abstract class b implements Serializable {
         return null;
     }
 
-    public e$b K(b.g.a.c.c0.b bVar) {
+    public b.g.a.c.y.e.b K(b.g.a.c.c0.b bVar) {
         return null;
     }
 
@@ -64,8 +69,8 @@ public abstract class b implements Serializable {
         return null;
     }
 
-    public z$a M(b.g.a.c.c0.b bVar) {
-        return z$a.j;
+    public z.a M(b.g.a.c.c0.b bVar) {
+        return z.a.j;
     }
 
     public List<b.g.a.c.e0.b> N(b.g.a.c.c0.b bVar) {
@@ -152,12 +157,12 @@ public abstract class b implements Serializable {
         return null;
     }
 
-    public g$a d(b.g.a.c.z.l<?> lVar, b.g.a.c.c0.b bVar) {
+    public b.g.a.a.g.a d(b.g.a.c.z.l<?> lVar, b.g.a.c.c0.b bVar) {
         if (!Y(bVar)) {
             return null;
         }
-        g$a g_aE = e(bVar);
-        return g_aE == null ? g$a.DEFAULT : g_aE;
+        b.g.a.a.g.a aVarE = e(bVar);
+        return aVarE == null ? b.g.a.a.g.a.DEFAULT : aVarE;
     }
 
     public Boolean d0(b.g.a.c.c0.i iVar) {
@@ -165,7 +170,7 @@ public abstract class b implements Serializable {
     }
 
     @Deprecated
-    public g$a e(b.g.a.c.c0.b bVar) {
+    public b.g.a.a.g.a e(b.g.a.c.c0.b bVar) {
         return null;
     }
 
@@ -185,18 +190,18 @@ public abstract class b implements Serializable {
         return null;
     }
 
-    public i$d h(b.g.a.c.c0.b bVar) {
-        return i$d.j;
+    public b.g.a.a.i.d h(b.g.a.c.c0.b bVar) {
+        return b.g.a.a.i.d.j;
     }
 
     public String i(b.g.a.c.c0.i iVar) {
         return null;
     }
 
-    public b.g.a.a.b$a j(b.g.a.c.c0.i iVar) {
+    public b.g.a.a.b.a j(b.g.a.c.c0.i iVar) {
         Object objK = k(iVar);
         if (objK != null) {
-            return b.g.a.a.b$a.a(objK, null);
+            return b.g.a.a.b.a.a(objK, null);
         }
         return null;
     }
@@ -238,7 +243,7 @@ public abstract class b implements Serializable {
         return a0Var;
     }
 
-    public b.g.a.a.u$a t(b.g.a.c.c0.b bVar) {
+    public b.g.a.a.u.a t(b.g.a.c.c0.b bVar) {
         return null;
     }
 
@@ -254,17 +259,17 @@ public abstract class b implements Serializable {
         return null;
     }
 
-    public b.g.a.a.n$a x(b.g.a.c.z.l<?> lVar, b.g.a.c.c0.b bVar) {
+    public b.g.a.a.n.a x(b.g.a.c.z.l<?> lVar, b.g.a.c.c0.b bVar) {
         return y(bVar);
     }
 
     @Deprecated
-    public b.g.a.a.n$a y(b.g.a.c.c0.b bVar) {
-        return b.g.a.a.n$a.j;
+    public b.g.a.a.n.a y(b.g.a.c.c0.b bVar) {
+        return b.g.a.a.n.a.j;
     }
 
-    public p$b z(b.g.a.c.c0.b bVar) {
-        p$b p_b = p$b.j;
-        return p$b.j;
+    public b.g.a.a.p.b z(b.g.a.c.c0.b bVar) {
+        b.g.a.a.p.b bVar2 = b.g.a.a.p.b.j;
+        return b.g.a.a.p.b.j;
     }
 }

@@ -2,7 +2,7 @@ package com.discord.widgets.channels;
 
 import android.view.View;
 import android.widget.FrameLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetChannelSidebarActionsBinding;
 import com.discord.views.channelsidebar.GuildChannelSideBarActionsView;
 import com.discord.views.channelsidebar.PrivateChannelSideBarActionsView;
@@ -27,11 +27,11 @@ public final /* synthetic */ class WidgetChannelSidebarActions$binding$2 extends
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetChannelSidebarActionsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.widget_channel_sidebar_actions_guild_view;
-        GuildChannelSideBarActionsView guildChannelSideBarActionsView = (GuildChannelSideBarActionsView) view.findViewById(R$id.widget_channel_sidebar_actions_guild_view);
+        int i = R.id.widget_channel_sidebar_actions_guild_view;
+        GuildChannelSideBarActionsView guildChannelSideBarActionsView = (GuildChannelSideBarActionsView) view.findViewById(R.id.widget_channel_sidebar_actions_guild_view);
         if (guildChannelSideBarActionsView != null) {
-            i = R$id.widget_channel_sidebar_actions_private_view;
-            PrivateChannelSideBarActionsView privateChannelSideBarActionsView = (PrivateChannelSideBarActionsView) view.findViewById(R$id.widget_channel_sidebar_actions_private_view);
+            i = R.id.widget_channel_sidebar_actions_private_view;
+            PrivateChannelSideBarActionsView privateChannelSideBarActionsView = (PrivateChannelSideBarActionsView) view.findViewById(R.id.widget_channel_sidebar_actions_private_view);
             if (privateChannelSideBarActionsView != null) {
                 return new WidgetChannelSidebarActionsBinding((FrameLayout) view, guildChannelSideBarActionsView, privateChannelSideBarActionsView);
             }

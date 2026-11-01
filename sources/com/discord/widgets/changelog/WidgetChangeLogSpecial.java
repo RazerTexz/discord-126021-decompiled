@@ -1,27 +1,35 @@
 package com.discord.widgets.changelog;
 
 import android.content.Context;
+import android.content.Intent;
+import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
 import android.widget.ImageButton;
-import android.widget.LinearLayout$LayoutParams;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 import androidx.cardview.widget.CardView;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import b.a.d.f;
+import b.a.d.j;
 import b.d.b.a.a;
 import b.f.g.a.a.b;
 import b.f.g.a.a.d;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetChangeLogSpecialBinding;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.time.ClockFactory;
-import com.discord.utilities.time.TimeUtils$UTCFormat;
+import com.discord.utilities.time.TimeUtils;
+import com.discord.utilities.uri.UriHandler;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
@@ -29,21 +37,30 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.facebook.drawee.controller.AbstractDraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 import d0.g0.t;
+import d0.t.g0;
 import d0.t.h0;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function3;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
+import org.webrtc.MediaStreamTrack;
 
 /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChangeLogSpecial extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetChangeLogSpecial.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChangeLogSpecialBinding;", 0)};
-    public static final WidgetChangeLogSpecial$Companion Companion = new WidgetChangeLogSpecial$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String INTENT_EXTRA_BODY = "INTENT_EXTRA_BODY";
     private static final String INTENT_EXTRA_EXIT_STYLE = "INTENT_EXTRA_EXIT_STYLE";
     private static final String INTENT_EXTRA_HIDE_VIDEO = "INTENT_EXTRA_HIDE_VIDEO";
@@ -58,8 +75,243 @@ public final class WidgetChangeLogSpecial extends AppFragment {
     private final WidgetChangeLogSpecial$thumbnailControllerListener$1 thumbnailControllerListener;
     private AbstractDraweeController<Object, Object> thumbnailDraweeController;
 
+    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$configureMedia$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
+    public final class AnonymousClass1 implements MediaPlayer.OnCompletionListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.media.MediaPlayer.OnCompletionListener
+        public final void onCompletion(MediaPlayer mediaPlayer) {
+            WidgetChangeLogSpecial.access$showVideoOverlay(WidgetChangeLogSpecial.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$hideVideoOverlay$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
+    public final class AnonymousClass1 extends o implements Function1<ViewPropertyAnimator, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ViewPropertyAnimator viewPropertyAnimator) {
+            invoke2(viewPropertyAnimator);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ViewPropertyAnimator viewPropertyAnimator) {
+            m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
+            viewPropertyAnimator.scaleX(2.0f);
+            viewPropertyAnimator.scaleY(2.0f);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
+    public final class AnonymousClass1 extends o implements Function3<Context, String, String, Unit> {
+        public AnonymousClass1() {
+            super(3);
+        }
+
+        @Override // kotlin.jvm.functions.Function3
+        public /* bridge */ /* synthetic */ Unit invoke(Context context, String str, String str2) {
+            invoke2(context, str, str2);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Context context, String str, String str2) {
+            m.checkNotNullParameter(context, "context");
+            m.checkNotNullParameter(str, "url");
+            WidgetChangeLogSpecial.track$default(WidgetChangeLogSpecial.this, "change_log_cta_clicked", g0.mapOf(d0.o.to("cta_type", "inline_link")), false, 4, null);
+            UriHandler.handle$default(UriHandler.INSTANCE, context, str, false, false, null, 28, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$showVideoOverlay$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
+    public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "view");
+            view.setScaleX(2.0f);
+            view.setScaleY(2.0f);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$configureMedia$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            VideoView videoView = WidgetChangeLogSpecial.access$getBinding$p(WidgetChangeLogSpecial.this).i;
+            m.checkNotNullExpressionValue(videoView, "binding.changeLogVideo");
+            if (videoView.isPlaying()) {
+                WidgetChangeLogSpecial.access$showVideoOverlay(WidgetChangeLogSpecial.this);
+                WidgetChangeLogSpecial.access$getBinding$p(WidgetChangeLogSpecial.this).i.pause();
+            } else {
+                WidgetChangeLogSpecial.access$hideVideoOverlay(WidgetChangeLogSpecial.this);
+                WidgetChangeLogSpecial.access$getBinding$p(WidgetChangeLogSpecial.this).i.start();
+            }
+            WidgetChangeLogSpecial.track$default(WidgetChangeLogSpecial.this, "change_log_video_interacted", null, false, 2, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetChangeLogSpecial.this.requireActivity().finish();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$showVideoOverlay$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
+    public final class AnonymousClass2 extends o implements Function1<ViewPropertyAnimator, Unit> {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ViewPropertyAnimator viewPropertyAnimator) {
+            invoke2(viewPropertyAnimator);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ViewPropertyAnimator viewPropertyAnimator) {
+            m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
+            viewPropertyAnimator.scaleX(1.0f);
+            viewPropertyAnimator.scaleY(1.0f);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$configureMedia$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
+    public final class AnonymousClass3 implements MediaPlayer.OnPreparedListener {
+        public AnonymousClass3() {
+        }
+
+        @Override // android.media.MediaPlayer.OnPreparedListener
+        public final void onPrepared(MediaPlayer mediaPlayer) {
+            m.checkNotNullParameter(mediaPlayer, "mp");
+            mediaPlayer.start();
+            mediaPlayer.pause();
+            VideoView videoView = WidgetChangeLogSpecial.access$getBinding$p(WidgetChangeLogSpecial.this).i;
+            m.checkNotNullExpressionValue(videoView, "binding.changeLogVideo");
+            videoView.getLayoutParams().height = -2;
+            WidgetChangeLogSpecial.access$getBinding$p(WidgetChangeLogSpecial.this).i.requestLayout();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$onViewBound$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public AnonymousClass3() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetChangeLogSpecial.this.requireActivity().finish();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$onViewBound$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
+    public final class AnonymousClass4 implements View.OnClickListener {
+        public AnonymousClass4() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            UriHandler.handle$default(UriHandler.INSTANCE, WidgetChangeLogSpecial.this.requireContext(), f.a.a(360056891113L, null), false, false, null, 28, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.changelog.WidgetChangeLogSpecial$onViewBound$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
+    public final class AnonymousClass5 implements NestedScrollView.OnScrollChangeListener {
+        public AnonymousClass5() {
+        }
+
+        @Override // androidx.core.widget.NestedScrollView.OnScrollChangeListener
+        public final void onScrollChange(NestedScrollView nestedScrollView, int i, int i2, int i3, int i4) {
+            WidgetChangeLogSpecial widgetChangeLogSpecial = WidgetChangeLogSpecial.this;
+            int iAccess$getMaxScrolledPercent$p = WidgetChangeLogSpecial.access$getMaxScrolledPercent$p(widgetChangeLogSpecial);
+            NestedScrollView nestedScrollView2 = WidgetChangeLogSpecial.access$getBinding$p(WidgetChangeLogSpecial.this).g;
+            m.checkNotNullExpressionValue(nestedScrollView2, "binding.changeLogSpecialScrollview");
+            int height = ViewExtensions.getContentView(nestedScrollView2).getHeight();
+            NestedScrollView nestedScrollView3 = WidgetChangeLogSpecial.access$getBinding$p(WidgetChangeLogSpecial.this).g;
+            m.checkNotNullExpressionValue(nestedScrollView3, "binding.changeLogSpecialScrollview");
+            WidgetChangeLogSpecial.access$setMaxScrolledPercent$p(widgetChangeLogSpecial, d0.d0.f.coerceAtLeast(iAccess$getMaxScrolledPercent$p, (i2 * 100) / d0.d0.f.coerceAtLeast(height - nestedScrollView3.getHeight(), 1)));
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
+    public final class Companion {
+
+        /* JADX INFO: compiled from: WidgetChangeLogSpecial.kt */
+        public enum ExitStyle {
+            BACK,
+            CLOSE
+        }
+
+        private Companion() {
+        }
+
+        public static /* synthetic */ void launch$default(Companion companion, Context context, String str, String str2, String str3, String str4, ExitStyle exitStyle, boolean z2, int i, Object obj) {
+            companion.launch(context, str, str2, str3, str4, (i & 32) != 0 ? ExitStyle.CLOSE : exitStyle, (i & 64) != 0 ? false : z2);
+        }
+
+        public final void launch(Context context, String version, String revision, String video, String body, ExitStyle exitStyle, boolean hideVideo) {
+            m.checkNotNullParameter(context, "context");
+            m.checkNotNullParameter(version, "version");
+            m.checkNotNullParameter(revision, "revision");
+            m.checkNotNullParameter(video, MediaStreamTrack.VIDEO_TRACK_KIND);
+            m.checkNotNullParameter(body, "body");
+            m.checkNotNullParameter(exitStyle, "exitStyle");
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(WidgetChangeLogSpecial.INTENT_EXTRA_EXIT_STYLE, exitStyle);
+            bundle.putString(WidgetChangeLogSpecial.INTENT_EXTRA_VERSION, version);
+            bundle.putString(WidgetChangeLogSpecial.INTENT_EXTRA_REVISION, revision);
+            bundle.putString(WidgetChangeLogSpecial.INTENT_EXTRA_VIDEO, video);
+            bundle.putString(WidgetChangeLogSpecial.INTENT_EXTRA_BODY, body);
+            bundle.putBoolean(WidgetChangeLogSpecial.INTENT_EXTRA_HIDE_VIDEO, hideVideo);
+            j.d(context, WidgetChangeLogSpecial.class, new Intent().putExtras(bundle));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetChangeLogSpecial() {
-        super(R$layout.widget_change_log_special);
+        super(R.layout.widget_change_log_special);
         this.binding = FragmentViewBindingDelegateKt.viewBinding(this, WidgetChangeLogSpecial$binding$2.INSTANCE, new WidgetChangeLogSpecial$binding$3(this));
         this.thumbnailControllerListener = new WidgetChangeLogSpecial$thumbnailControllerListener$1(this);
     }
@@ -98,9 +350,9 @@ public final class WidgetChangeLogSpecial extends AppFragment {
         simpleDraweeView.setVisibility(zEndsWith$default ? 0 : 8);
         if (zEndsWith$default) {
             getBinding().i.setVideoPath(videoUrl);
-            getBinding().i.setOnCompletionListener(new WidgetChangeLogSpecial$configureMedia$1(this));
-            getBinding().i.setOnClickListener(new WidgetChangeLogSpecial$configureMedia$2(this));
-            getBinding().i.setOnPreparedListener(new WidgetChangeLogSpecial$configureMedia$3(this));
+            getBinding().i.setOnCompletionListener(new AnonymousClass1());
+            getBinding().i.setOnClickListener(new AnonymousClass2());
+            getBinding().i.setOnPreparedListener(new AnonymousClass3());
             return;
         }
         SimpleDraweeView simpleDraweeView2 = getBinding().h;
@@ -127,11 +379,11 @@ public final class WidgetChangeLogSpecial extends AppFragment {
     private final CharSequence getDateString(Context context) {
         String stringExtra = getMostRecentIntent().getStringExtra(INTENT_EXTRA_VERSION);
         if (stringExtra == null) {
-            stringExtra = getString(2131887518);
+            stringExtra = getString(R.string.change_log_md_date);
         }
         m.checkNotNullExpressionValue(stringExtra, "mostRecentIntent.getStri…tring.change_log_md_date)");
         try {
-            Date date = new SimpleDateFormat(TimeUtils$UTCFormat.SHORT).parse(stringExtra);
+            Date date = new SimpleDateFormat(TimeUtils.UTCFormat.SHORT).parse(stringExtra);
             if (date == null) {
                 date = new Date();
             }
@@ -142,21 +394,21 @@ public final class WidgetChangeLogSpecial extends AppFragment {
     }
 
     private final void hideVideoOverlay() {
-        ViewExtensions.fadeOut$default(getBinding().j, 200L, WidgetChangeLogSpecial$hideVideoOverlay$1.INSTANCE, null, 4, null);
+        ViewExtensions.fadeOut$default(getBinding().j, 200L, AnonymousClass1.INSTANCE, null, 4, null);
     }
 
-    public static final void launch(Context context, String str, String str2, String str3, String str4, WidgetChangeLogSpecial$Companion$ExitStyle widgetChangeLogSpecial$Companion$ExitStyle, boolean z2) {
-        Companion.launch(context, str, str2, str3, str4, widgetChangeLogSpecial$Companion$ExitStyle, z2);
+    public static final void launch(Context context, String str, String str2, String str3, String str4, Companion.ExitStyle exitStyle, boolean z2) {
+        INSTANCE.launch(context, str, str2, str3, str4, exitStyle, z2);
     }
 
     @Override // androidx.fragment.app.Fragment
     public void onDestroy() {
         String stringExtra = getMostRecentIntent().getStringExtra(INTENT_EXTRA_VERSION);
         if (stringExtra == null) {
-            stringExtra = getString(2131887518);
+            stringExtra = getString(R.string.change_log_md_date);
         }
         m.checkNotNullExpressionValue(stringExtra, "mostRecentIntent.getStri…tring.change_log_md_date)");
-        StoreStream.Companion.getChangeLog().markSeen(stringExtra);
+        StoreStream.INSTANCE.getChangeLog().markSeen(stringExtra);
         track$default(this, "change_log_closed", null, false, 6, null);
         super.onDestroy();
     }
@@ -189,10 +441,10 @@ public final class WidgetChangeLogSpecial extends AppFragment {
         setActionBarSubtitle(getDateString(requireContext()));
         String stringExtra = getMostRecentIntent().getStringExtra(INTENT_EXTRA_BODY);
         if (stringExtra == null) {
-            stringExtra = getString(2131887517);
+            stringExtra = getString(R.string.change_log_md_body);
         }
         m.checkNotNullExpressionValue(stringExtra, "mostRecentIntent.getStri…tring.change_log_md_body)");
-        if (getMostRecentIntent().getSerializableExtra(INTENT_EXTRA_EXIT_STYLE) == WidgetChangeLogSpecial$Companion$ExitStyle.BACK) {
+        if (getMostRecentIntent().getSerializableExtra(INTENT_EXTRA_EXIT_STYLE) == Companion.ExitStyle.BACK) {
             ImageButton imageButton = getBinding().e;
             m.checkNotNullExpressionValue(imageButton, "binding.changeLogSpecialClose");
             imageButton.setVisibility(8);
@@ -203,38 +455,38 @@ public final class WidgetChangeLogSpecial extends AppFragment {
         TextView textView = getBinding().f;
         m.checkNotNullExpressionValue(textView, "binding.changeLogSpecialDate");
         textView.setText(getDateString(requireContext()));
-        getBinding().f2254b.setDraweeSpanStringBuilder(ChangeLogParser.INSTANCE.parse(requireContext(), stringExtra, true, new WidgetChangeLogSpecial$onViewBound$1(this)));
+        getBinding().f2254b.setDraweeSpanStringBuilder(ChangeLogParser.INSTANCE.parse(requireContext(), stringExtra, true, new AnonymousClass1()));
         String stringExtra2 = getMostRecentIntent().getStringExtra(INTENT_EXTRA_VIDEO);
         if (stringExtra2 == null) {
-            stringExtra2 = getString(2131887521);
+            stringExtra2 = getString(R.string.change_log_md_video);
         }
         m.checkNotNullExpressionValue(stringExtra2, "mostRecentIntent.getStri…ring.change_log_md_video)");
         configureMedia(stringExtra2);
-        getBinding().c.setOnClickListener(new WidgetChangeLogSpecial$onViewBound$2(this));
-        getBinding().e.setOnClickListener(new WidgetChangeLogSpecial$onViewBound$3(this));
+        getBinding().c.setOnClickListener(new AnonymousClass2());
+        getBinding().e.setOnClickListener(new AnonymousClass3());
         LinkifiedTextView linkifiedTextView = getBinding().f2254b;
         m.checkNotNullExpressionValue(linkifiedTextView, "binding.changeLogBody");
-        b.a.k.b.n(linkifiedTextView, 2131887533, new Object[0], null, 4);
+        b.a.k.b.n(linkifiedTextView, R.string.changelog_stickers_cta_body, new Object[0], null, 4);
         LinkifiedTextView linkifiedTextView2 = getBinding().f2254b;
         m.checkNotNullExpressionValue(linkifiedTextView2, "binding.changeLogBody");
         linkifiedTextView2.setMovementMethod(LinkMovementMethod.getInstance());
-        getBinding().d.setOnClickListener(new WidgetChangeLogSpecial$onViewBound$4(this));
+        getBinding().d.setOnClickListener(new AnonymousClass4());
         if (getMostRecentIntent().getBooleanExtra(INTENT_EXTRA_HIDE_VIDEO, false)) {
             VideoView videoView = getBinding().i;
             m.checkNotNullExpressionValue(videoView, "binding.changeLogVideo");
             videoView.setVisibility(8);
             CardView cardView = getBinding().k;
             m.checkNotNullExpressionValue(cardView, "binding.changelogSpecialHeaderContainer");
-            ViewGroup$LayoutParams layoutParams = cardView.getLayoutParams();
+            ViewGroup.LayoutParams layoutParams = cardView.getLayoutParams();
             Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.widget.LinearLayout.LayoutParams");
-            LinearLayout$LayoutParams linearLayout$LayoutParams = (LinearLayout$LayoutParams) layoutParams;
-            linearLayout$LayoutParams.setMargins(linearLayout$LayoutParams.leftMargin, linearLayout$LayoutParams.topMargin, linearLayout$LayoutParams.rightMargin, DimenUtils.dpToPixels(16));
+            LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) layoutParams;
+            layoutParams2.setMargins(layoutParams2.leftMargin, layoutParams2.topMargin, layoutParams2.rightMargin, DimenUtils.dpToPixels(16));
         }
-        getBinding().g.setOnScrollChangeListener(new WidgetChangeLogSpecial$onViewBound$5(this));
+        getBinding().g.setOnScrollChangeListener(new AnonymousClass5());
     }
 
     private final void showVideoOverlay() {
-        ViewExtensions.fadeIn$default(getBinding().j, 200L, WidgetChangeLogSpecial$showVideoOverlay$1.INSTANCE, WidgetChangeLogSpecial$showVideoOverlay$2.INSTANCE, null, 8, null);
+        ViewExtensions.fadeIn$default(getBinding().j, 200L, AnonymousClass1.INSTANCE, AnonymousClass2.INSTANCE, null, 8, null);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -251,12 +503,12 @@ public final class WidgetChangeLogSpecial extends AppFragment {
     private final void track(String event, Map<String, ? extends Object> properties, boolean includeStats) {
         String stringExtra = getMostRecentIntent().getStringExtra(INTENT_EXTRA_VERSION);
         if (stringExtra == null) {
-            stringExtra = getString(2131887518);
+            stringExtra = getString(R.string.change_log_md_date);
         }
         m.checkNotNullExpressionValue(stringExtra, "mostRecentIntent.getStri…tring.change_log_md_date)");
         String stringExtra2 = getMostRecentIntent().getStringExtra(INTENT_EXTRA_REVISION);
         if (stringExtra2 == null) {
-            stringExtra2 = getString(2131887520);
+            stringExtra2 = getString(R.string.change_log_md_revision);
         }
         m.checkNotNullExpressionValue(stringExtra2, "mostRecentIntent.getStri…g.change_log_md_revision)");
         HashMap map = new HashMap();

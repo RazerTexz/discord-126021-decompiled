@@ -2,6 +2,7 @@ package s.a;
 
 import androidx.recyclerview.widget.RecyclerView;
 import com.discord.api.permission.Permission;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 import kotlinx.coroutines.CoroutineDispatcher;
 
@@ -73,7 +74,7 @@ public abstract class q0 extends CoroutineDispatcher {
         return RecyclerView.FOREVER_NS;
     }
 
-    public final boolean R() {
+    public final boolean R() throws IllegalAccessException, InvocationTargetException {
         s.a.a.b<j0<?>> bVar = this.m;
         if (bVar != null) {
             int i = bVar.f3826b;

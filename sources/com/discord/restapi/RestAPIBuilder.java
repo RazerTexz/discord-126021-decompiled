@@ -1,18 +1,17 @@
 package com.discord.restapi;
 
+import androidx.annotation.VisibleForTesting;
 import androidx.exifinterface.media.ExifInterface;
 import b.a.b.a;
 import b.i.d.c;
 import b.i.d.e;
-import com.discord.models.domain.Model$TypeAdapterFactory;
-import com.discord.models.experiments.dto.UserExperimentDto$TypeAdapterFactory;
+import com.discord.models.domain.Model;
+import com.discord.models.experiments.dto.UserExperimentDto;
 import com.google.gson.Gson;
 import d0.z.d.m;
 import f0.p;
 import f0.w;
-import f0.w$a;
 import f0.x;
-import f0.x$a;
 import i0.d0.a.g;
 import i0.e0.b.k;
 import i0.i;
@@ -32,6 +31,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import okhttp3.Interceptor;
 
 /* JADX INFO: compiled from: RestAPIBuilder.kt */
@@ -40,11 +40,36 @@ public final class RestAPIBuilder {
     private static final int API_VERSION = 9;
     public static final String CONTENT_TYPE_JSON = "application/json";
     public static final String CONTENT_TYPE_TEXT = "text/plain";
-    public static final RestAPIBuilder$Companion Companion = new RestAPIBuilder$Companion(null);
     private static final long DEFAULT_TIMEOUT_MILLIS = 10000;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final String baseApiUrl;
     private final p cookieJar;
     private static Function2<? super String, ? super x, Unit> clientCallback = RestAPIBuilder$Companion$clientCallback$1.INSTANCE;
+
+    /* JADX INFO: compiled from: RestAPIBuilder.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        @VisibleForTesting
+        public static /* synthetic */ void getClientCallback$annotations() {
+        }
+
+        public final Function2<String, x, Unit> getClientCallback() {
+            return RestAPIBuilder.access$getClientCallback$cp();
+        }
+
+        public final void setClientCallback(Function2<? super String, ? super x, Unit> function2) {
+            m.checkNotNullParameter(function2, "<set-?>");
+            RestAPIBuilder.access$setClientCallback$cp(function2);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public RestAPIBuilder(String str, p pVar) {
         m.checkNotNullParameter(str, "baseApiUrl");
@@ -85,9 +110,9 @@ public final class RestAPIBuilder {
         eVar.c = c.m;
         m.checkNotNullExpressionValue(eVar, "GsonBuilder()\n        .s…ER_CASE_WITH_UNDERSCORES)");
         a.a(eVar);
-        eVar.e.add(new Model$TypeAdapterFactory());
-        eVar.e.add(UserExperimentDto$TypeAdapterFactory.INSTANCE);
-        eVar.b(RestAPIParams$ChannelPosition.class, new RestAPIParams$ChannelPosition$Serializer());
+        eVar.e.add(new Model.TypeAdapterFactory());
+        eVar.e.add(UserExperimentDto.TypeAdapterFactory.INSTANCE);
+        eVar.b(RestAPIParams.ChannelPosition.class, new RestAPIParams.ChannelPosition.Serializer());
         if (serializeNulls) {
             eVar.g = true;
         }
@@ -100,15 +125,15 @@ public final class RestAPIBuilder {
         arrayList2.add(new g(null, false));
         arrayList.add(new k());
         m.checkNotNullExpressionValue(gsonA, "gson");
-        arrayList.add(new PayloadJSON$ConverterFactory(gsonA));
+        arrayList.add(new PayloadJSON.ConverterFactory(gsonA));
         if (m.areEqual(contentType, CONTENT_TYPE_JSON)) {
             arrayList.add(new i0.e0.a.a(gsonA));
         }
         Objects.requireNonNull(strW, "baseUrl == null");
         m.checkParameterIsNotNull(strW, "$this$toHttpUrl");
-        w$a w_a = new w$a();
-        w_a.e(null, strW);
-        w wVarB = w_a.b();
+        w.a aVar = new w.a();
+        aVar.e(null, strW);
+        w wVarB = aVar.b();
         List<String> list = wVarB.i;
         if (!"".equals(list.get(list.size() - 1))) {
             throw new IllegalArgumentException("baseUrl must end in /: " + wVarB);
@@ -163,27 +188,27 @@ public final class RestAPIBuilder {
     }
 
     private final x buildOkHttpClient(Long timeoutMillis, List<? extends Interceptor> interceptors) {
-        x$a x_a = new x$a();
+        x.a aVar = new x.a();
         if (interceptors != null) {
             for (Interceptor interceptor : interceptors) {
                 m.checkParameterIsNotNull(interceptor, "interceptor");
-                x_a.c.add(interceptor);
+                aVar.c.add(interceptor);
             }
         }
         if (timeoutMillis != null) {
             long jLongValue = timeoutMillis.longValue();
             TimeUnit timeUnit = TimeUnit.MILLISECONDS;
-            x_a.a(jLongValue, timeUnit);
+            aVar.a(jLongValue, timeUnit);
             long jLongValue2 = timeoutMillis.longValue();
             m.checkParameterIsNotNull(timeUnit, "unit");
-            x_a.f3691z = f0.e0.c.b("timeout", jLongValue2, timeUnit);
+            aVar.f3691z = f0.e0.c.b("timeout", jLongValue2, timeUnit);
             long jLongValue3 = timeoutMillis.longValue();
             m.checkParameterIsNotNull(timeUnit, "unit");
-            x_a.f3689x = f0.e0.c.b("timeout", jLongValue3, timeUnit);
+            aVar.f3689x = f0.e0.c.b("timeout", jLongValue3, timeUnit);
         }
         p pVar = this.cookieJar;
         m.checkParameterIsNotNull(pVar, "cookieJar");
-        x_a.j = pVar;
-        return new x(x_a);
+        aVar.j = pVar;
+        return new x(aVar);
     }
 }

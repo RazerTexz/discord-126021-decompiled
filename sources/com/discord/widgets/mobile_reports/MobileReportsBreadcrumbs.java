@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.report.NodeElementResult;
 import com.discord.api.report.NodeResult;
 import com.discord.api.report.ReportNodeChild;
@@ -47,13 +46,13 @@ public final class MobileReportsBreadcrumbs extends LinearLayout {
         View view = this.binding.a;
         Objects.requireNonNull(view, "null cannot be cast to non-null type android.view.ViewGroup");
         ViewGroup viewGroup = (ViewGroup) view;
-        View viewInflate = layoutInflaterFrom.inflate(R$layout.view_mobile_reports_breadcrumbs_item, viewGroup, false);
+        View viewInflate = layoutInflaterFrom.inflate(R.layout.view_mobile_reports_breadcrumbs_item, viewGroup, false);
         viewGroup.addView(viewInflate);
-        int i = R$id.reports_breadcrumbs_item_dot;
-        View viewFindViewById = viewInflate.findViewById(R$id.reports_breadcrumbs_item_dot);
+        int i = R.id.reports_breadcrumbs_item_dot;
+        View viewFindViewById = viewInflate.findViewById(R.id.reports_breadcrumbs_item_dot);
         if (viewFindViewById != null) {
-            i = R$id.reports_breadcrumbs_item_title;
-            TextView textView = (TextView) viewInflate.findViewById(R$id.reports_breadcrumbs_item_title);
+            i = R.id.reports_breadcrumbs_item_title;
+            TextView textView = (TextView) viewInflate.findViewById(R.id.reports_breadcrumbs_item_title);
             if (textView != null) {
                 ViewMobileReportsBreadcrumbsItemBinding viewMobileReportsBreadcrumbsItemBinding = new ViewMobileReportsBreadcrumbsItemBinding((ConstraintLayout) viewInflate, viewFindViewById, textView);
                 m.checkNotNullExpressionValue(viewMobileReportsBreadcrumbsItemBinding, "ViewMobileReportsBreadcr…ach to parent */ true\n  )");
@@ -122,7 +121,7 @@ public final class MobileReportsBreadcrumbs extends LinearLayout {
     public MobileReportsBreadcrumbs(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(R$layout.view_mobile_reports_breadcrumbs, this);
+        LayoutInflater.from(context).inflate(R.layout.view_mobile_reports_breadcrumbs, this);
         ViewMobileReportsBreadcrumbsBinding viewMobileReportsBreadcrumbsBinding = new ViewMobileReportsBreadcrumbsBinding(this);
         m.checkNotNullExpressionValue(viewMobileReportsBreadcrumbsBinding, "ViewMobileReportsBreadcr…ater.from(context), this)");
         this.binding = viewMobileReportsBreadcrumbsBinding;

@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetSettingsAccountEditBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -29,20 +29,20 @@ public final /* synthetic */ class WidgetSettingsAccountUsernameEdit$binding$2 e
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSettingsAccountEditBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.dtddd;
-        TextView textView = (TextView) view.findViewById(R$id.dtddd);
+        int i = R.id.dtddd;
+        TextView textView = (TextView) view.findViewById(R.id.dtddd);
         if (textView != null) {
-            i = R$id.edit_account_discriminator_wrap;
-            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.edit_account_discriminator_wrap);
+            i = R.id.edit_account_discriminator_wrap;
+            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.edit_account_discriminator_wrap);
             if (textInputLayout != null) {
-                i = R$id.edit_account_tag_layout_container;
-                RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R$id.edit_account_tag_layout_container);
+                i = R.id.edit_account_tag_layout_container;
+                RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.edit_account_tag_layout_container);
                 if (relativeLayout != null) {
-                    i = R$id.edit_account_username_wrap;
-                    TextInputLayout textInputLayout2 = (TextInputLayout) view.findViewById(R$id.edit_account_username_wrap);
+                    i = R.id.edit_account_username_wrap;
+                    TextInputLayout textInputLayout2 = (TextInputLayout) view.findViewById(R.id.edit_account_username_wrap);
                     if (textInputLayout2 != null) {
-                        i = R$id.settings_account_save;
-                        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R$id.settings_account_save);
+                        i = R.id.settings_account_save;
+                        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.settings_account_save);
                         if (floatingActionButton != null) {
                             return new WidgetSettingsAccountEditBinding((CoordinatorLayout) view, textView, textInputLayout, relativeLayout, textInputLayout2, floatingActionButton);
                         }

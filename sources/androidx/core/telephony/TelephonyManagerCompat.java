@@ -1,10 +1,12 @@
 package androidx.core.telephony;
 
 import android.annotation.SuppressLint;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.telephony.TelephonyManager;
+import androidx.annotation.DoNotInline;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -14,6 +16,45 @@ public class TelephonyManagerCompat {
     private static Method sGetDeviceIdMethod;
     private static Method sGetSubIdMethod;
 
+    @RequiresApi(23)
+    public class Api23Impl {
+        private Api23Impl() {
+        }
+
+        @SuppressLint({"MissingPermission"})
+        @Nullable
+        @RequiresPermission("android.permission.READ_PHONE_STATE")
+        @DoNotInline
+        public static String getDeviceId(TelephonyManager telephonyManager, int i) {
+            return telephonyManager.getDeviceId(i);
+        }
+    }
+
+    @RequiresApi(26)
+    public class Api26Impl {
+        private Api26Impl() {
+        }
+
+        @SuppressLint({"MissingPermission"})
+        @Nullable
+        @RequiresPermission("android.permission.READ_PHONE_STATE")
+        @DoNotInline
+        public static String getImei(TelephonyManager telephonyManager) {
+            return telephonyManager.getImei();
+        }
+    }
+
+    @RequiresApi(30)
+    public class Api30Impl {
+        private Api30Impl() {
+        }
+
+        @DoNotInline
+        public static int getSubscriptionId(TelephonyManager telephonyManager) {
+            return telephonyManager.getSubscriptionId();
+        }
+    }
+
     private TelephonyManagerCompat() {
     }
 
@@ -22,16 +63,16 @@ public class TelephonyManagerCompat {
     @SuppressLint({"MissingPermission"})
     public static String getImei(@NonNull TelephonyManager telephonyManager) {
         int subscriptionId;
-        int i = Build$VERSION.SDK_INT;
+        int i = Build.VERSION.SDK_INT;
         if (i >= 26) {
-            return TelephonyManagerCompat$Api26Impl.getImei(telephonyManager);
+            return Api26Impl.getImei(telephonyManager);
         }
         if (i < 22 || (subscriptionId = getSubscriptionId(telephonyManager)) == Integer.MAX_VALUE || subscriptionId == -1) {
             return telephonyManager.getDeviceId();
         }
         int slotIndex = SubscriptionManagerCompat.getSlotIndex(subscriptionId);
         if (i >= 23) {
-            return TelephonyManagerCompat$Api23Impl.getDeviceId(telephonyManager, slotIndex);
+            return Api23Impl.getDeviceId(telephonyManager, slotIndex);
         }
         try {
             if (sGetDeviceIdMethod == null) {
@@ -47,9 +88,9 @@ public class TelephonyManagerCompat {
 
     @SuppressLint({"SoonBlockedPrivateApi"})
     public static int getSubscriptionId(@NonNull TelephonyManager telephonyManager) {
-        int i = Build$VERSION.SDK_INT;
+        int i = Build.VERSION.SDK_INT;
         if (i >= 30) {
-            return TelephonyManagerCompat$Api30Impl.getSubscriptionId(telephonyManager);
+            return Api30Impl.getSubscriptionId(telephonyManager);
         }
         if (i < 22) {
             return Integer.MAX_VALUE;

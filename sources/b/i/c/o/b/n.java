@@ -1,13 +1,13 @@
 package b.i.c.o.b;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.firebase.dynamiclinks.internal.zzr;
 
 /* JADX INFO: compiled from: com.google.firebase:firebase-dynamic-links@@19.1.1 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class n implements Parcelable$Creator<zzr> {
-    @Override // android.os.Parcelable$Creator
+public final class n implements Parcelable.Creator<zzr> {
+    @Override // android.os.Parcelable.Creator
     public final zzr createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         String strR = null;
@@ -23,7 +23,7 @@ public final class n implements Parcelable$Creator<zzr> {
         return new zzr(strR);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zzr[] newArray(int i) {
         return new zzr[i];
     }

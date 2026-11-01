@@ -1,15 +1,51 @@
 package androidx.media;
 
 import android.media.AudioAttributes;
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
 @RequiresApi(26)
-@RestrictTo({RestrictTo$Scope.LIBRARY})
+@RestrictTo({RestrictTo.Scope.LIBRARY})
 public class AudioAttributesImplApi26 extends AudioAttributesImplApi21 {
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+
+    @RequiresApi(26)
+    public class Builder extends AudioAttributesImplApi21.Builder {
+        public Builder() {
+        }
+
+        @Override // androidx.media.AudioAttributesImplApi21.Builder, androidx.media.AudioAttributesImpl.Builder
+        @NonNull
+        public AudioAttributesImpl build() {
+            return new AudioAttributesImplApi26(this.mFwkBuilder.build());
+        }
+
+        @Override // androidx.media.AudioAttributesImplApi21.Builder, androidx.media.AudioAttributesImpl.Builder
+        @NonNull
+        public /* bridge */ /* synthetic */ AudioAttributesImpl.Builder setUsage(int i) {
+            return setUsage(i);
+        }
+
+        public Builder(Object obj) {
+            super(obj);
+        }
+
+        @Override // androidx.media.AudioAttributesImplApi21.Builder, androidx.media.AudioAttributesImpl.Builder
+        @NonNull
+        public /* bridge */ /* synthetic */ AudioAttributesImplApi21.Builder setUsage(int i) {
+            return setUsage(i);
+        }
+
+        @Override // androidx.media.AudioAttributesImplApi21.Builder, androidx.media.AudioAttributesImpl.Builder
+        @NonNull
+        public Builder setUsage(int i) {
+            this.mFwkBuilder.setUsage(i);
+            return this;
+        }
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public AudioAttributesImplApi26() {
     }
 

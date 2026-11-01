@@ -1,9 +1,14 @@
 package d0.e0.p.d.m0.p;
 
+import com.discord.widgets.chat.input.MentionUtilsKt;
 import d0.t.h0;
 import d0.z.d.m;
+import d0.z.d.o;
+import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 import kotlin.Lazy;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: JavaTypeEnhancementState.kt */
@@ -22,8 +27,47 @@ public final class e {
     public final boolean i;
     public final boolean j;
 
+    /* JADX INFO: compiled from: JavaTypeEnhancementState.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    /* JADX INFO: compiled from: JavaTypeEnhancementState.kt */
+    public final class b extends o implements Function0<String[]> {
+        public b() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ String[] invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final String[] invoke2() {
+            ArrayList arrayList = new ArrayList();
+            arrayList.add(e.this.getGlobalJsr305Level().getDescription());
+            h migrationLevelForJsr305 = e.this.getMigrationLevelForJsr305();
+            if (migrationLevelForJsr305 != null) {
+                arrayList.add(m.stringPlus("under-migration:", migrationLevelForJsr305.getDescription()));
+            }
+            for (Map.Entry<String, h> entry : e.this.getUserDefinedLevelForSpecificJsr305Annotation().entrySet()) {
+                StringBuilder sbQ = b.d.b.a.a.Q(MentionUtilsKt.MENTIONS_CHAR);
+                sbQ.append(entry.getKey());
+                sbQ.append(MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR);
+                sbQ.append(entry.getValue().getDescription());
+                arrayList.add(sbQ.toString());
+            }
+            Object[] array = arrayList.toArray(new String[0]);
+            Objects.requireNonNull(array, "null cannot be cast to non-null type kotlin.Array<T>");
+            return (String[]) array;
+        }
+    }
+
     static {
-        new e$a(null);
+        new a(null);
         h hVar = h.WARN;
         a = hVar;
         new e(hVar, null, h0.emptyMap(), false, null, 24, null);
@@ -43,7 +87,7 @@ public final class e {
         this.e = map;
         this.f = z2;
         this.g = hVar3;
-        this.h = d0.g.lazy(new e$b(this));
+        this.h = d0.g.lazy(new b());
         h hVar4 = h.IGNORE;
         boolean z3 = true;
         boolean z4 = hVar == hVar4 && hVar2 == hVar4 && map.isEmpty();

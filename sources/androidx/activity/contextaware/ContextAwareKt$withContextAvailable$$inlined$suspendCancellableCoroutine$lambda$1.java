@@ -2,7 +2,6 @@ package androidx.activity.contextaware;
 
 import android.content.Context;
 import d0.k;
-import d0.k$a;
 import d0.l;
 import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
@@ -27,10 +26,10 @@ public final class ContextAwareKt$withContextAvailable$$inlined$suspendCancellab
         m.checkNotNullParameter(context, "context");
         CancellableContinuation cancellableContinuation = this.$co;
         try {
-            k$a k_a = k.j;
+            k.a aVar = k.j;
             objM97constructorimpl = k.m97constructorimpl(this.$onContextAvailable$inlined.invoke(context));
         } catch (Throwable th) {
-            k$a k_a2 = k.j;
+            k.a aVar2 = k.j;
             objM97constructorimpl = k.m97constructorimpl(l.createFailure(th));
         }
         cancellableContinuation.resumeWith(objM97constructorimpl);

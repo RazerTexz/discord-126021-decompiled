@@ -1,9 +1,7 @@
 package b.f.j.s;
 
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$CompressFormat;
 import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory$Options;
 import android.graphics.Matrix;
 import java.io.OutputStream;
 
@@ -43,10 +41,10 @@ public class f implements b {
         Integer num2 = num == null ? 85 : num;
         b.f.j.d.f fVar2 = fVar == null ? b.f.j.d.f.a : fVar;
         int iA0 = !this.a ? 1 : b.c.a.a0.d.a0(fVar2, eVar2, eVar, this.f645b);
-        BitmapFactory$Options bitmapFactory$Options = new BitmapFactory$Options();
-        bitmapFactory$Options.inSampleSize = iA0;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = iA0;
         try {
-            Bitmap bitmapDecodeStream = BitmapFactory.decodeStream(eVar.e(), null, bitmapFactory$Options);
+            Bitmap bitmapDecodeStream = BitmapFactory.decodeStream(eVar.e(), null, options);
             if (bitmapDecodeStream == null) {
                 b.f.d.e.a.e("SimpleImageTranscoder", "Couldn't decode the EncodedImage InputStream ! ");
                 return new a(2);
@@ -133,16 +131,16 @@ public class f implements b {
         return cVar == b.f.i.b.k || cVar == b.f.i.b.a;
     }
 
-    public static Bitmap$CompressFormat e(b.f.i.c cVar) {
+    public static Bitmap.CompressFormat e(b.f.i.c cVar) {
         if (cVar == null) {
-            return Bitmap$CompressFormat.JPEG;
+            return Bitmap.CompressFormat.JPEG;
         }
         if (cVar == b.f.i.b.a) {
-            return Bitmap$CompressFormat.JPEG;
+            return Bitmap.CompressFormat.JPEG;
         }
         if (cVar == b.f.i.b.f540b) {
-            return Bitmap$CompressFormat.PNG;
+            return Bitmap.CompressFormat.PNG;
         }
-        return b.f.i.b.a(cVar) ? Bitmap$CompressFormat.WEBP : Bitmap$CompressFormat.JPEG;
+        return b.f.i.b.a(cVar) ? Bitmap.CompressFormat.WEBP : Bitmap.CompressFormat.JPEG;
     }
 }

@@ -1,6 +1,7 @@
 package com.discord.widgets.servers;
 
 import android.view.View;
+import com.discord.R;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -24,6 +25,6 @@ public final class WidgetServerSettingsRolesAdapter$RoleListItem$onConfigure$4 e
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(View view) {
         m.checkNotNullParameter(view, "view");
-        b.a.d.m.g(view.getContext(), 2131896527, 0, null, 12);
+        b.a.d.m.g(view.getContext(), R.string.two_fa_guild_mfa_warning_ios, 0, null, 12);
     }
 }

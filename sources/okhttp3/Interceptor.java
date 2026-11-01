@@ -7,5 +7,12 @@ import java.io.IOException;
 public interface Interceptor {
     public static final /* synthetic */ int a = 0;
 
-    Response intercept(Interceptor$Chain chain) throws IOException;
+    /* JADX INFO: compiled from: Interceptor.kt */
+    public interface Chain {
+        Response a(Request request) throws IOException;
+
+        Request c();
+    }
+
+    Response intercept(Chain chain) throws IOException;
 }

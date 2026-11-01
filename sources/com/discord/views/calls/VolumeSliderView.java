@@ -8,9 +8,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import b.a.i.l4;
-import com.discord.R$a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import b.a.y.j;
+import com.discord.R;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.color.ColorCompatKt;
 import d0.z.d.m;
@@ -24,25 +23,40 @@ public final class VolumeSliderView extends LinearLayout {
     /* JADX INFO: renamed from: j, reason: from kotlin metadata */
     public final l4 binding;
 
+    /* JADX INFO: compiled from: VolumeSliderView.kt */
+    public final class a extends j {
+        public final /* synthetic */ Function2 a;
+
+        public a(Function2 function2) {
+            this.a = function2;
+        }
+
+        @Override // b.a.y.j, android.widget.SeekBar.OnSeekBarChangeListener
+        public void onProgressChanged(SeekBar seekBar, int i, boolean z2) {
+            m.checkNotNullParameter(seekBar, "seekBar");
+            this.a.invoke(Float.valueOf(i), Boolean.valueOf(z2));
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public VolumeSliderView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(getContext()).inflate(R$layout.volume_slider_view, this);
-        int i = R$id.volume_slider_max_vol;
-        ImageView imageView = (ImageView) findViewById(R$id.volume_slider_max_vol);
+        LayoutInflater.from(getContext()).inflate(R.layout.volume_slider_view, this);
+        int i = R.id.volume_slider_max_vol;
+        ImageView imageView = (ImageView) findViewById(R.id.volume_slider_max_vol);
         if (imageView != null) {
-            i = R$id.volume_slider_min_vol;
-            ImageView imageView2 = (ImageView) findViewById(R$id.volume_slider_min_vol);
+            i = R.id.volume_slider_min_vol;
+            ImageView imageView2 = (ImageView) findViewById(R.id.volume_slider_min_vol);
             if (imageView2 != null) {
-                i = R$id.volume_slider_seek_bar;
-                SeekBar seekBar = (SeekBar) findViewById(R$id.volume_slider_seek_bar);
+                i = R.id.volume_slider_seek_bar;
+                SeekBar seekBar = (SeekBar) findViewById(R.id.volume_slider_seek_bar);
                 if (seekBar != null) {
                     l4 l4Var = new l4(this, imageView, imageView2, seekBar);
                     m.checkNotNullExpressionValue(l4Var, "VolumeSliderViewBinding.…ater.from(context), this)");
                     this.binding = l4Var;
                     if (attributeSet != null) {
-                        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R$a.VolumeSliderView, 0, 0);
+                        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.a.VolumeSliderView, 0, 0);
                         m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…e.VolumeSliderView, 0, 0)");
                         int i2 = typedArrayObtainStyledAttributes.getInt(1, 100);
                         int resourceId = typedArrayObtainStyledAttributes.getResourceId(0, -1);
@@ -66,6 +80,6 @@ public final class VolumeSliderView extends LinearLayout {
 
     public final void setOnVolumeChange(Function2<? super Float, ? super Boolean, Unit> onVolumeChanged) {
         m.checkNotNullParameter(onVolumeChanged, "onVolumeChanged");
-        this.binding.d.setOnSeekBarChangeListener(new VolumeSliderView$a(onVolumeChanged));
+        this.binding.d.setOnSeekBarChangeListener(new a(onVolumeChanged));
     }
 }

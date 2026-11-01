@@ -2,7 +2,6 @@ package b.c.a.c0;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: compiled from: LottieValueCallback.java */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +18,7 @@ public class c<T> {
     }
 
     @Nullable
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public final T a(float f, float f2, T t, T t2, float f3, float f4, float f5) {
         b<T> bVar = this.a;
         bVar.a = t;

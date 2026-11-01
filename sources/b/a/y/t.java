@@ -2,6 +2,7 @@ package b.a.y;
 
 import android.content.Context;
 import com.discord.BuildConfig;
+import com.discord.R;
 import com.discord.models.domain.ModelInvite;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.views.OverlayMenuView;
@@ -28,7 +29,7 @@ public final class t extends d0.z.d.o implements Function1<ModelInvite, Unit> {
         d0.z.d.m.checkNotNullExpressionValue(context, "context");
         String link = modelInvite2.toLink(this.this$0.getResources(), BuildConfig.HOST_INVITE);
         d0.z.d.m.checkNotNullExpressionValue(link, "invite.toLink(resources, BuildConfig.HOST_INVITE)");
-        b.a.d.m.a(context, link, 2131892298);
+        b.a.d.m.a(context, link, R.string.invite_link_copied);
         this.this$0.getOnDismissRequested$app_productionGoogleRelease().invoke();
         return Unit.a;
     }

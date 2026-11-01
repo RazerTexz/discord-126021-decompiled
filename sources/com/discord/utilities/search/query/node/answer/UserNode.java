@@ -1,8 +1,8 @@
 package com.discord.utilities.search.query.node.answer;
 
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import b.d.b.a.a;
-import com.discord.utilities.search.network.SearchQuery$Builder;
+import com.discord.utilities.search.network.SearchQuery;
 import com.discord.utilities.search.query.FilterType;
 import com.discord.utilities.search.validation.SearchData;
 import d0.t.n0;
@@ -15,6 +15,18 @@ import java.util.Set;
 public final /* data */ class UserNode extends AnswerNode {
     private final int discriminator;
     private final String userName;
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            FilterType.values();
+            int[] iArr = new int[4];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[FilterType.FROM.ordinal()] = 1;
+            iArr[FilterType.MENTIONS.ordinal()] = 2;
+        }
+    }
 
     public UserNode(String str, int i) {
         m.checkNotNullParameter(str, "userName");
@@ -91,7 +103,7 @@ public final /* data */ class UserNode extends AnswerNode {
     }
 
     @Override // com.discord.utilities.search.query.node.answer.AnswerNode
-    public void updateQuery(SearchQuery$Builder queryBuilder, SearchData searchData, FilterType filterType) {
+    public void updateQuery(SearchQuery.Builder queryBuilder, SearchData searchData, FilterType filterType) {
         String str;
         m.checkNotNullParameter(queryBuilder, "queryBuilder");
         m.checkNotNullParameter(searchData, "searchData");

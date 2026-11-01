@@ -1,9 +1,6 @@
 package lombok.javac;
 
 import com.sun.tools.javac.tree.JCTree;
-import com.sun.tools.javac.tree.JCTree$JCCompilationUnit;
-import com.sun.tools.javac.tree.JCTree$JCFieldAccess;
-import com.sun.tools.javac.tree.JCTree$JCImport;
 import com.sun.tools.javac.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,7 +13,7 @@ public class JavacImportList implements ImportList {
     private final String pkgStr;
     private final List<JCTree> defs;
 
-    public JavacImportList(JCTree$JCCompilationUnit cud) {
+    public JavacImportList(JCTree.JCCompilationUnit cud) {
         this.pkgStr = PackageName.getPackageName(cud);
         this.defs = cud.defs;
     }
@@ -34,13 +31,13 @@ public class JavacImportList implements ImportList {
     public String getFullyQualifiedNameForSimpleNameNoAliasing(String unqualified) {
         Iterator it = this.defs.iterator();
         while (it.hasNext()) {
-            JCTree$JCImport jCTree$JCImport = (JCTree) it.next();
-            if (jCTree$JCImport instanceof JCTree$JCImport) {
-                JCTree$JCFieldAccess jCTree$JCFieldAccess = jCTree$JCImport.qualid;
-                if (jCTree$JCFieldAccess instanceof JCTree$JCFieldAccess) {
-                    String simpleName = jCTree$JCFieldAccess.name.toString();
+            JCTree.JCImport jCImport = (JCTree) it.next();
+            if (jCImport instanceof JCTree.JCImport) {
+                JCTree.JCFieldAccess jCFieldAccess = jCImport.qualid;
+                if (jCFieldAccess instanceof JCTree.JCFieldAccess) {
+                    String simpleName = jCFieldAccess.name.toString();
                     if (simpleName.equals(unqualified)) {
-                        return jCTree$JCFieldAccess.toString();
+                        return jCFieldAccess.toString();
                     }
                 } else {
                     continue;
@@ -57,13 +54,13 @@ public class JavacImportList implements ImportList {
         }
         Iterator it = this.defs.iterator();
         while (it.hasNext()) {
-            JCTree$JCImport jCTree$JCImport = (JCTree) it.next();
-            if ((jCTree$JCImport instanceof JCTree$JCImport) && !jCTree$JCImport.staticImport) {
-                JCTree$JCFieldAccess jCTree$JCFieldAccess = jCTree$JCImport.qualid;
-                if (jCTree$JCFieldAccess instanceof JCTree$JCFieldAccess) {
-                    String simpleName = jCTree$JCFieldAccess.name.toString();
+            JCTree.JCImport jCImport = (JCTree) it.next();
+            if ((jCImport instanceof JCTree.JCImport) && !jCImport.staticImport) {
+                JCTree.JCFieldAccess jCFieldAccess = jCImport.qualid;
+                if (jCFieldAccess instanceof JCTree.JCFieldAccess) {
+                    String simpleName = jCFieldAccess.name.toString();
                     if ("*".equals(simpleName)) {
-                        String starImport = jCTree$JCFieldAccess.selected.toString();
+                        String starImport = jCFieldAccess.selected.toString();
                         if (packageName.equals(starImport)) {
                             return true;
                         }
@@ -86,15 +83,15 @@ public class JavacImportList implements ImportList {
         }
         Iterator it = this.defs.iterator();
         while (it.hasNext()) {
-            JCTree$JCImport jCTree$JCImport = (JCTree) it.next();
-            if ((jCTree$JCImport instanceof JCTree$JCImport) && !jCTree$JCImport.staticImport) {
-                JCTree$JCFieldAccess jCTree$JCFieldAccess = jCTree$JCImport.qualid;
-                if (jCTree$JCFieldAccess instanceof JCTree$JCFieldAccess) {
-                    String simpleName = jCTree$JCFieldAccess.name.toString();
+            JCTree.JCImport jCImport = (JCTree) it.next();
+            if ((jCImport instanceof JCTree.JCImport) && !jCImport.staticImport) {
+                JCTree.JCFieldAccess jCFieldAccess = jCImport.qualid;
+                if (jCFieldAccess instanceof JCTree.JCFieldAccess) {
+                    String simpleName = jCFieldAccess.name.toString();
                     if ("*".equals(simpleName)) {
-                        String topLevelName = topLevelName((JCTree) jCTree$JCFieldAccess);
+                        String topLevelName = topLevelName((JCTree) jCFieldAccess);
                         if (topLevelName.equals(startsWith)) {
-                            out.add(String.valueOf(jCTree$JCFieldAccess.selected.toString()) + "." + name);
+                            out.add(String.valueOf(jCFieldAccess.selected.toString()) + "." + name);
                         }
                     }
                 }
@@ -104,8 +101,8 @@ public class JavacImportList implements ImportList {
     }
 
     private String topLevelName(JCTree tree) {
-        while (tree instanceof JCTree$JCFieldAccess) {
-            tree = ((JCTree$JCFieldAccess) tree).selected;
+        while (tree instanceof JCTree.JCFieldAccess) {
+            tree = ((JCTree.JCFieldAccess) tree).selected;
         }
         return tree.toString();
     }

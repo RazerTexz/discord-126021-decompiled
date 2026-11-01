@@ -1,5 +1,6 @@
 package d0.e0.p.d.m0.j;
 
+import d0.g0.t;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
@@ -11,12 +12,38 @@ public abstract class p {
     public static final p k;
     public static final /* synthetic */ p[] l;
 
+    /* JADX INFO: compiled from: DescriptorRenderer.kt */
+    public final class a extends p {
+        public a(String str, int i) {
+            super(str, i, null);
+        }
+
+        @Override // d0.e0.p.d.m0.j.p
+        public String escape(String str) {
+            d0.z.d.m.checkNotNullParameter(str, "string");
+            return t.replace$default(t.replace$default(str, "<", "&lt;", false, 4, (Object) null), ">", "&gt;", false, 4, (Object) null);
+        }
+    }
+
+    /* JADX INFO: compiled from: DescriptorRenderer.kt */
+    public final class b extends p {
+        public b(String str, int i) {
+            super(str, i, null);
+        }
+
+        @Override // d0.e0.p.d.m0.j.p
+        public String escape(String str) {
+            d0.z.d.m.checkNotNullParameter(str, "string");
+            return str;
+        }
+    }
+
     static {
-        p$b p_b = new p$b("PLAIN", 0);
-        j = p_b;
-        p$a p_a = new p$a("HTML", 1);
-        k = p_a;
-        l = new p[]{p_b, p_a};
+        b bVar = new b("PLAIN", 0);
+        j = bVar;
+        a aVar = new a("HTML", 1);
+        k = aVar;
+        l = new p[]{bVar, aVar};
     }
 
     public p(String str, int i, DefaultConstructorMarker defaultConstructorMarker) {

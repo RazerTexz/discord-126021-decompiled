@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
+import com.discord.R;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChannelsListItemDirectoryBinding implements ViewBinding {
@@ -33,14 +33,14 @@ public final class WidgetChannelsListItemDirectoryBinding implements ViewBinding
 
     @NonNull
     public static WidgetChannelsListItemDirectoryBinding a(@NonNull View view) {
-        int i = R$id.directory_channel_icon;
-        ImageView imageView = (ImageView) view.findViewById(R$id.directory_channel_icon);
+        int i = R.id.directory_channel_icon;
+        ImageView imageView = (ImageView) view.findViewById(R.id.directory_channel_icon);
         if (imageView != null) {
-            i = R$id.directory_channel_name;
-            TextView textView = (TextView) view.findViewById(R$id.directory_channel_name);
+            i = R.id.directory_channel_name;
+            TextView textView = (TextView) view.findViewById(R.id.directory_channel_name);
             if (textView != null) {
-                i = R$id.directory_channel_unread_count;
-                TextView textView2 = (TextView) view.findViewById(R$id.directory_channel_unread_count);
+                i = R.id.directory_channel_unread_count;
+                TextView textView2 = (TextView) view.findViewById(R.id.directory_channel_unread_count);
                 if (textView2 != null) {
                     return new WidgetChannelsListItemDirectoryBinding((LinearLayout) view, imageView, textView, textView2);
                 }

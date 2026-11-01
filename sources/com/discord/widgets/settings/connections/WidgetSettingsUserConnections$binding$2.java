@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetSettingsConnectionsBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -27,11 +27,11 @@ public final /* synthetic */ class WidgetSettingsUserConnections$binding$2 exten
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSettingsConnectionsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.connections_empty;
-        TextView textView = (TextView) view.findViewById(R$id.connections_empty);
+        int i = R.id.connections_empty;
+        TextView textView = (TextView) view.findViewById(R.id.connections_empty);
         if (textView != null) {
-            i = R$id.connections_recycler;
-            RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.connections_recycler);
+            i = R.id.connections_recycler;
+            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.connections_recycler);
             if (recyclerView != null) {
                 return new WidgetSettingsConnectionsBinding((CoordinatorLayout) view, textView, recyclerView);
             }

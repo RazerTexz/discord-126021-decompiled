@@ -1,23 +1,106 @@
 package d0.e0.p.d.m0.c.i1;
 
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.e0.p.d.m0.c.u0;
 import d0.e0.p.d.m0.c.y0;
 import d0.e0.p.d.m0.c.z0;
 import d0.e0.p.d.m0.n.e1;
+import d0.e0.p.d.m0.n.i1;
+import d0.e0.p.d.m0.n.u0;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: AbstractTypeAliasDescriptor.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class e extends l implements y0 {
     public final d0.e0.p.d.m0.c.u n;
     public List<? extends z0> o;
-    public final e$b p;
+    public final b p;
+
+    /* JADX INFO: compiled from: AbstractTypeAliasDescriptor.kt */
+    public final class a extends d0.z.d.o implements Function1<i1, Boolean> {
+        public a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(i1 i1Var) {
+            return invoke2(i1Var);
+        }
+
+        /* JADX WARN: Code duplicated, block: B:12:0x002d  */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Boolean invoke2(i1 i1Var) {
+            boolean z2;
+            d0.z.d.m.checkNotNullExpressionValue(i1Var, "type");
+            if (!d0.e0.p.d.m0.n.e0.isError(i1Var)) {
+                e eVar = e.this;
+                d0.e0.p.d.m0.c.h declarationDescriptor = i1Var.getConstructor().getDeclarationDescriptor();
+                z2 = (declarationDescriptor instanceof z0) && !d0.z.d.m.areEqual(((z0) declarationDescriptor).getContainingDeclaration(), eVar);
+            }
+            return Boolean.valueOf(z2);
+        }
+    }
+
+    /* JADX INFO: compiled from: AbstractTypeAliasDescriptor.kt */
+    public final class b implements u0 {
+        public b() {
+        }
+
+        @Override // d0.e0.p.d.m0.n.u0
+        public d0.e0.p.d.m0.b.h getBuiltIns() {
+            return d0.e0.p.d.m0.k.x.a.getBuiltIns(getDeclarationDescriptor());
+        }
+
+        @Override // d0.e0.p.d.m0.n.u0
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.h getDeclarationDescriptor() {
+            return getDeclarationDescriptor();
+        }
+
+        @Override // d0.e0.p.d.m0.n.u0
+        public List<z0> getParameters() {
+            List list = ((d0.e0.p.d.m0.l.b.e0.l) e.this).f3498z;
+            if (list != null) {
+                return list;
+            }
+            d0.z.d.m.throwUninitializedPropertyAccessException("typeConstructorParameters");
+            throw null;
+        }
+
+        @Override // d0.e0.p.d.m0.n.u0
+        public Collection<d0.e0.p.d.m0.n.c0> getSupertypes() {
+            Collection<d0.e0.p.d.m0.n.c0> supertypes = getDeclarationDescriptor().getUnderlyingType().getConstructor().getSupertypes();
+            d0.z.d.m.checkNotNullExpressionValue(supertypes, "declarationDescriptor.underlyingType.constructor.supertypes");
+            return supertypes;
+        }
+
+        @Override // d0.e0.p.d.m0.n.u0
+        public boolean isDenotable() {
+            return true;
+        }
+
+        @Override // d0.e0.p.d.m0.n.u0
+        public u0 refine(d0.e0.p.d.m0.n.l1.g gVar) {
+            d0.z.d.m.checkNotNullParameter(gVar, "kotlinTypeRefiner");
+            return this;
+        }
+
+        public String toString() {
+            StringBuilder sbU = b.d.b.a.a.U("[typealias ");
+            sbU.append(getDeclarationDescriptor().getName().asString());
+            sbU.append(']');
+            return sbU.toString();
+        }
+
+        @Override // d0.e0.p.d.m0.n.u0
+        public y0 getDeclarationDescriptor() {
+            return e.this;
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public e(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.g1.g gVar, d0.e0.p.d.m0.g.e eVar, u0 u0Var, d0.e0.p.d.m0.c.u uVar) {
+    public e(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.g1.g gVar, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.u0 u0Var, d0.e0.p.d.m0.c.u uVar) {
         super(mVar, gVar, eVar, u0Var);
         d0.z.d.m.checkNotNullParameter(mVar, "containingDeclaration");
         d0.z.d.m.checkNotNullParameter(gVar, "annotations");
@@ -25,7 +108,7 @@ public abstract class e extends l implements y0 {
         d0.z.d.m.checkNotNullParameter(u0Var, "sourceElement");
         d0.z.d.m.checkNotNullParameter(uVar, "visibilityImpl");
         this.n = uVar;
-        this.p = new e$b(this);
+        this.p = new b();
     }
 
     @Override // d0.e0.p.d.m0.c.m
@@ -59,10 +142,10 @@ public abstract class e extends l implements y0 {
         d0.z.d.m.checkNotNullExpressionValue(constructors, "classDescriptor.constructors");
         ArrayList arrayList = new ArrayList();
         for (d0.e0.p.d.m0.c.d dVar : constructors) {
-            j0$a j0_a = j0.M;
+            j0.a aVar = j0.M;
             d0.e0.p.d.m0.m.o oVar = lVar.q;
             d0.z.d.m.checkNotNullExpressionValue(dVar, "it");
-            i0 i0VarCreateIfAvailable = j0_a.createIfAvailable(oVar, this, dVar);
+            i0 i0VarCreateIfAvailable = aVar.createIfAvailable(oVar, this, dVar);
             if (i0VarCreateIfAvailable != null) {
                 arrayList.add(i0VarCreateIfAvailable);
             }
@@ -71,7 +154,7 @@ public abstract class e extends l implements y0 {
     }
 
     @Override // d0.e0.p.d.m0.c.h
-    public d0.e0.p.d.m0.n.u0 getTypeConstructor() {
+    public u0 getTypeConstructor() {
         return this.p;
     }
 
@@ -102,7 +185,7 @@ public abstract class e extends l implements y0 {
 
     @Override // d0.e0.p.d.m0.c.i
     public boolean isInner() {
-        return e1.contains(((d0.e0.p.d.m0.l.b.e0.l) this).getUnderlyingType(), new e$a(this));
+        return e1.contains(((d0.e0.p.d.m0.l.b.e0.l) this).getUnderlyingType(), new a());
     }
 
     @Override // d0.e0.p.d.m0.c.i1.k

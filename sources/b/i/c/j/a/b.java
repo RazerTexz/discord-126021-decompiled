@@ -13,12 +13,18 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-api@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public class b implements a {
-    public static volatile a a;
+public class b implements b.i.c.j.a.a {
+    public static volatile b.i.c.j.a.a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final b.i.a.f.i.a.a f1656b;
     public final Map<String, ?> c;
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-api@@18.0.0 */
+    public class a implements b.i.c.j.a.a.InterfaceC0136a {
+        public a(b bVar, String str) {
+        }
+    }
 
     public b(b.i.a.f.i.a.a aVar) {
         Objects.requireNonNull(aVar, "null reference");
@@ -134,9 +140,9 @@ public class b implements a {
 
     @Override // b.i.c.j.a.a
     @WorkerThread
-    public a$a c(@NonNull String str, a$b a_b) {
+    public b.i.c.j.a.a.InterfaceC0136a c(@NonNull String str, b.i.c.j.a.a.b bVar) {
         Object dVar;
-        Objects.requireNonNull(a_b, "null reference");
+        Objects.requireNonNull(bVar, "null reference");
         if (!c.a(str)) {
             return null;
         }
@@ -145,14 +151,14 @@ public class b implements a {
         }
         b.i.a.f.i.a.a aVar = this.f1656b;
         if ("fiam".equals(str)) {
-            dVar = new b.i.c.j.a.c.b(aVar, a_b);
+            dVar = new b.i.c.j.a.c.b(aVar, bVar);
         } else {
-            dVar = ("crash".equals(str) || "clx".equals(str)) ? new b.i.c.j.a.c.d(aVar, a_b) : null;
+            dVar = ("crash".equals(str) || "clx".equals(str)) ? new b.i.c.j.a.c.d(aVar, bVar) : null;
         }
         if (dVar == null) {
             return null;
         }
         this.c.put(str, dVar);
-        return new b$a(this, str);
+        return new a(this, str);
     }
 }

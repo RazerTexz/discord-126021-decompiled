@@ -13,10 +13,10 @@ public final class PayoutGroupTypeAdapter extends TypeAdapter<PayoutGroupType> {
     @Override // com.google.gson.TypeAdapter
     public PayoutGroupType read(JsonReader jsonReader) throws IOException {
         m.checkNotNullParameter(jsonReader, "in");
-        PayoutGroupType$Companion payoutGroupType$Companion = PayoutGroupType.Companion;
+        PayoutGroupType.Companion companion = PayoutGroupType.INSTANCE;
         String strJ = jsonReader.J();
         m.checkNotNullExpressionValue(strJ, "`in`.nextString()");
-        Objects.requireNonNull(payoutGroupType$Companion);
+        Objects.requireNonNull(companion);
         m.checkNotNullParameter(strJ, "apiValue");
         PayoutGroupType payoutGroupType = PayoutGroupType.MARKETPLACE;
         if (m.areEqual(strJ, payoutGroupType.getApiValue())) {

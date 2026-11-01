@@ -1,9 +1,9 @@
 package com.discord.utilities.search.query.node.answer;
 
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.discord.utilities.search.network.SearchQuery$Builder;
+import com.discord.utilities.search.network.SearchQuery;
 import com.discord.utilities.search.query.FilterType;
 import com.discord.utilities.search.validation.SearchData;
 import com.discord.widgets.chat.input.MentionUtilsKt;
@@ -79,7 +79,7 @@ public final /* data */ class ChannelNode extends AnswerNode {
     }
 
     @Override // com.discord.utilities.search.query.node.answer.AnswerNode
-    public void updateQuery(SearchQuery$Builder queryBuilder, SearchData searchData, FilterType filterType) {
+    public void updateQuery(SearchQuery.Builder queryBuilder, SearchData searchData, FilterType filterType) {
         Long l;
         m.checkNotNullParameter(queryBuilder, "queryBuilder");
         m.checkNotNullParameter(searchData, "searchData");

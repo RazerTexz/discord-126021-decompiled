@@ -1,8 +1,6 @@
 package d0.e0.p.d.m0.e.a.h0;
 
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.e0.p.d.m0.c.a$a;
-import d0.e0.p.d.m0.c.b$a;
 import d0.e0.p.d.m0.c.i1.c0;
 import d0.e0.p.d.m0.c.i1.d0;
 import d0.e0.p.d.m0.c.i1.e0;
@@ -20,11 +18,11 @@ import kotlin.Pair;
 /* JADX INFO: loaded from: classes3.dex */
 public class g extends c0 implements b {
     public final boolean J;
-    public final Pair<a$a<?>, ?> K;
+    public final Pair<d0.e0.p.d.m0.c.a.InterfaceC0511a<?>, ?> K;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public g(m mVar, d0.e0.p.d.m0.c.g1.g gVar, z zVar, u uVar, boolean z2, d0.e0.p.d.m0.g.e eVar, u0 u0Var, n0 n0Var, b$a b_a, boolean z3, Pair<a$a<?>, ?> pair) {
-        super(mVar, n0Var, gVar, zVar, uVar, z2, eVar, b_a, u0Var, false, false, false, false, false, false);
+    public g(m mVar, d0.e0.p.d.m0.c.g1.g gVar, z zVar, u uVar, boolean z2, d0.e0.p.d.m0.g.e eVar, u0 u0Var, n0 n0Var, d0.e0.p.d.m0.c.b.a aVar, boolean z3, Pair<d0.e0.p.d.m0.c.a.InterfaceC0511a<?>, ?> pair) {
+        super(mVar, n0Var, gVar, zVar, uVar, z2, eVar, aVar, u0Var, false, false, false, false, false, false);
         if (mVar == null) {
             a(0);
             throw null;
@@ -49,7 +47,7 @@ public class g extends c0 implements b {
             a(5);
             throw null;
         }
-        if (b_a == null) {
+        if (aVar == null) {
             a(6);
             throw null;
         }
@@ -151,7 +149,7 @@ public class g extends c0 implements b {
     }
 
     @Override // d0.e0.p.d.m0.c.i1.c0
-    public c0 b(m mVar, z zVar, u uVar, n0 n0Var, b$a b_a, d0.e0.p.d.m0.g.e eVar, u0 u0Var) {
+    public c0 b(m mVar, z zVar, u uVar, n0 n0Var, d0.e0.p.d.m0.c.b.a aVar, d0.e0.p.d.m0.g.e eVar, u0 u0Var) {
         if (mVar == null) {
             a(13);
             throw null;
@@ -164,12 +162,12 @@ public class g extends c0 implements b {
             a(15);
             throw null;
         }
-        if (b_a == null) {
+        if (aVar == null) {
             a(16);
             throw null;
         }
         if (eVar != null) {
-            return new g(mVar, getAnnotations(), zVar, uVar, isVar(), eVar, u0Var, n0Var, b_a, this.J, this.K);
+            return new g(mVar, getAnnotations(), zVar, uVar, isVar(), eVar, u0Var, n0Var, aVar, this.J, this.K);
         }
         a(17);
         throw null;
@@ -197,14 +195,14 @@ public class g extends c0 implements b {
             throw null;
         }
         if (u0Var != null) {
-            return new g(mVar, gVar, zVar, uVar, z2, eVar, u0Var, null, b$a.DECLARATION, z3, null);
+            return new g(mVar, gVar, zVar, uVar, z2, eVar, u0Var, null, d0.e0.p.d.m0.c.b.a.DECLARATION, z3, null);
         }
         a(12);
         throw null;
     }
 
     @Override // d0.e0.p.d.m0.e.a.h0.b
-    public b enhance(d0.e0.p.d.m0.n.c0 c0Var, List<l> list, d0.e0.p.d.m0.n.c0 c0Var2, Pair<a$a<?>, ?> pair) {
+    public b enhance(d0.e0.p.d.m0.n.c0 c0Var, List<l> list, d0.e0.p.d.m0.n.c0 c0Var2, Pair<d0.e0.p.d.m0.c.a.InterfaceC0511a<?>, ?> pair) {
         d0 d0Var;
         e0 e0Var;
         if (list == null) {

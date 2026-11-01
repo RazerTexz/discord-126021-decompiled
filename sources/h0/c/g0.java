@@ -2,18 +2,17 @@ package h0.c;
 
 import org.webrtc.VideoFileRenderer;
 import org.webrtc.VideoFrame;
-import org.webrtc.VideoFrame$I420Buffer;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class g0 implements Runnable {
     public final /* synthetic */ VideoFileRenderer j;
-    public final /* synthetic */ VideoFrame$I420Buffer k;
+    public final /* synthetic */ VideoFrame.I420Buffer k;
     public final /* synthetic */ VideoFrame l;
 
-    public /* synthetic */ g0(VideoFileRenderer videoFileRenderer, VideoFrame$I420Buffer videoFrame$I420Buffer, VideoFrame videoFrame) {
+    public /* synthetic */ g0(VideoFileRenderer videoFileRenderer, VideoFrame.I420Buffer i420Buffer, VideoFrame videoFrame) {
         this.j = videoFileRenderer;
-        this.k = videoFrame$I420Buffer;
+        this.k = i420Buffer;
         this.l = videoFrame;
     }
 

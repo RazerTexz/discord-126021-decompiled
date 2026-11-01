@@ -3,16 +3,23 @@ package b.f.b.b;
 import android.os.Environment;
 import androidx.annotation.VisibleForTesting;
 import com.facebook.common.file.FileUtils$CreateDirectoryException;
+import com.facebook.common.file.FileUtils$ParentDirNotFoundException;
+import com.facebook.common.file.FileUtils$RenameException;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /* JADX INFO: compiled from: DefaultDiskStorage.java */
 /* JADX INFO: loaded from: classes.dex */
-public class a implements c {
+public class a implements b.f.b.b.c {
     public final File c;
     public final boolean d;
     public final File e;
@@ -22,6 +29,191 @@ public class a implements c {
     public final b.f.b.a.a f;
     public final b.f.d.k.a g;
     public static final long a = TimeUnit.MINUTES.toMillis(30);
+
+    /* JADX INFO: compiled from: DefaultDiskStorage.java */
+    @VisibleForTesting
+    public class c implements b.f.b.b.c.a {
+        public final String a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final b.f.a.a f459b;
+        public long c;
+        public long d;
+
+        public c(String str, File file, C0065a c0065a) {
+            Objects.requireNonNull(str);
+            this.a = str;
+            this.f459b = new b.f.a.a(file);
+            this.c = -1L;
+            this.d = -1L;
+        }
+
+        @Override // b.f.b.b.c.a
+        public long a() {
+            if (this.d < 0) {
+                this.d = this.f459b.a.lastModified();
+            }
+            return this.d;
+        }
+
+        @Override // b.f.b.b.c.a
+        public String getId() {
+            return this.a;
+        }
+
+        @Override // b.f.b.b.c.a
+        public long getSize() {
+            if (this.c < 0) {
+                this.c = this.f459b.a();
+            }
+            return this.c;
+        }
+    }
+
+    /* JADX INFO: compiled from: DefaultDiskStorage.java */
+    public class d {
+        public final String a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final String f460b;
+
+        public d(String str, String str2) {
+            this.a = str;
+            this.f460b = str2;
+        }
+
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append(this.a);
+            sb.append("(");
+            return b.d.b.a.a.J(sb, this.f460b, ")");
+        }
+    }
+
+    /* JADX INFO: compiled from: DefaultDiskStorage.java */
+    public class e extends IOException {
+        public e(long j, long j2) {
+            super("File was not written completely. Expected: " + j + ", found: " + j2);
+        }
+    }
+
+    /* JADX INFO: compiled from: DefaultDiskStorage.java */
+    @VisibleForTesting
+    public class f implements b.f.b.b.c.b {
+        public final String a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        @VisibleForTesting
+        public final File f461b;
+
+        public f(String str, File file) {
+            this.a = str;
+            this.f461b = file;
+        }
+
+        public boolean a() {
+            return !this.f461b.exists() || this.f461b.delete();
+        }
+
+        public b.f.a.a b(Object obj) throws IOException {
+            Objects.requireNonNull((b.f.d.k.c) a.this.g);
+            long jCurrentTimeMillis = System.currentTimeMillis();
+            File fileJ = a.this.j(this.a);
+            try {
+                b.c.a.a0.d.Q1(this.f461b, fileJ);
+                if (fileJ.exists()) {
+                    fileJ.setLastModified(jCurrentTimeMillis);
+                }
+                return new b.f.a.a(fileJ);
+            } catch (FileUtils$RenameException e) {
+                Throwable cause = e.getCause();
+                if (cause != null && !(cause instanceof FileUtils$ParentDirNotFoundException)) {
+                    boolean z2 = cause instanceof FileNotFoundException;
+                }
+                b.f.b.a.a aVar = a.this.f;
+                int i = a.f457b;
+                Objects.requireNonNull((b.f.b.a.d) aVar);
+                throw e;
+            }
+        }
+
+        public void c(b.f.b.a.g gVar, Object obj) throws IOException {
+            try {
+                FileOutputStream fileOutputStream = new FileOutputStream(this.f461b);
+                try {
+                    b.f.d.d.b bVar = new b.f.d.d.b(fileOutputStream);
+                    b.f.j.c.h hVar = (b.f.j.c.h) gVar;
+                    InputStream inputStreamE = hVar.a.e();
+                    Objects.requireNonNull(inputStreamE);
+                    hVar.f556b.c.a(inputStreamE, bVar);
+                    bVar.flush();
+                    long j = bVar.j;
+                    fileOutputStream.close();
+                    if (this.f461b.length() != j) {
+                        throw new e(j, this.f461b.length());
+                    }
+                } catch (Throwable th) {
+                    fileOutputStream.close();
+                    throw th;
+                }
+            } catch (FileNotFoundException e) {
+                b.f.b.a.a aVar = a.this.f;
+                int i = a.f457b;
+                Objects.requireNonNull((b.f.b.a.d) aVar);
+                throw e;
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: DefaultDiskStorage.java */
+    public class g implements b.f.d.c.a {
+        public boolean a;
+
+        public g(C0065a c0065a) {
+        }
+
+        @Override // b.f.d.c.a
+        public void a(File file) {
+            if (this.a) {
+                d dVarH = a.h(a.this, file);
+                boolean z2 = false;
+                if (dVarH != null) {
+                    String str = dVarH.a;
+                    if (str == ".tmp") {
+                        long jLastModified = file.lastModified();
+                        Objects.requireNonNull((b.f.d.k.c) a.this.g);
+                        if (jLastModified > System.currentTimeMillis() - a.a) {
+                        }
+                    } else {
+                        b.c.a.a0.d.B(str == ".cnt");
+                    }
+                    z2 = true;
+                }
+                if (z2) {
+                    return;
+                }
+            }
+            file.delete();
+        }
+
+        @Override // b.f.d.c.a
+        public void b(File file) {
+            if (this.a || !file.equals(a.this.e)) {
+                return;
+            }
+            this.a = true;
+        }
+
+        @Override // b.f.d.c.a
+        public void c(File file) {
+            if (!a.this.c.equals(file) && !this.a) {
+                file.delete();
+            }
+            if (this.a && file.equals(a.this.e)) {
+                this.a = false;
+            }
+        }
+    }
 
     /* JADX WARN: Code duplicated, block: B:15:0x005c  */
     /* JADX WARN: Code duplicated, block: B:17:0x0062  */
@@ -88,25 +280,25 @@ public class a implements c {
 
     @Override // b.f.b.b.c
     public void a() {
-        b.c.a.a0.d.o2(this.c, new a$g(this, null));
+        b.c.a.a0.d.o2(this.c, new g(null));
     }
 
     @Override // b.f.b.b.c
-    public c$b b(String str, Object obj) throws IOException {
+    public b.f.b.b.c.b b(String str, Object obj) throws IOException {
         File file = new File(k(str));
         if (!file.exists()) {
             try {
                 b.c.a.a0.d.l1(file);
-            } catch (FileUtils$CreateDirectoryException e) {
+            } catch (FileUtils$CreateDirectoryException e2) {
                 Objects.requireNonNull((b.f.b.a.d) this.f);
-                throw e;
+                throw e2;
             }
         }
         try {
-            return new a$f(this, str, File.createTempFile(str + ".", ".tmp", file));
-        } catch (IOException e2) {
+            return new f(str, File.createTempFile(str + ".", ".tmp", file));
+        } catch (IOException e3) {
             Objects.requireNonNull((b.f.b.a.d) this.f);
-            throw e2;
+            throw e3;
         }
     }
 
@@ -134,9 +326,9 @@ public class a implements c {
 
     @Override // b.f.b.b.c
     public Collection e() throws IOException {
-        a$b a_b = new a$b(this, null);
-        b.c.a.a0.d.o2(this.e, a_b);
-        return Collections.unmodifiableList(a_b.a);
+        b bVar = new b(null);
+        b.c.a.a0.d.o2(this.e, bVar);
+        return Collections.unmodifiableList(bVar.a);
     }
 
     @Override // b.f.b.b.c
@@ -145,18 +337,18 @@ public class a implements c {
     }
 
     @Override // b.f.b.b.c
-    public long g(c$a c_a) {
-        return i(((a$c) c_a).f459b.a);
+    public long g(b.f.b.b.c.a aVar) {
+        return i(((c) aVar).f459b.a);
     }
 
     /* JADX WARN: Code duplicated, block: B:18:0x003d  */
-    public static a$d h(a aVar, File file) {
-        a$d a_d;
+    public static d h(a aVar, File file) {
+        d dVar;
         Objects.requireNonNull(aVar);
         String name = file.getName();
         int iLastIndexOf = name.lastIndexOf(46);
         if (iLastIndexOf <= 0) {
-            a_d = null;
+            dVar = null;
         } else {
             String strSubstring = name.substring(iLastIndexOf);
             String str = ".cnt";
@@ -164,22 +356,22 @@ public class a implements c {
                 str = ".tmp".equals(strSubstring) ? ".tmp" : null;
             }
             if (str == null) {
-                a_d = null;
+                dVar = null;
             } else {
                 String strSubstring2 = name.substring(0, iLastIndexOf);
                 if (str.equals(".tmp")) {
                     int iLastIndexOf2 = strSubstring2.lastIndexOf(46);
                     if (iLastIndexOf2 <= 0) {
-                        a_d = null;
+                        dVar = null;
                     } else {
                         strSubstring2 = strSubstring2.substring(0, iLastIndexOf2);
                     }
                 }
-                a_d = new a$d(str, strSubstring2);
+                dVar = new d(str, strSubstring2);
             }
         }
-        if (a_d != null && new File(aVar.k(a_d.f460b)).equals(file.getParentFile())) {
-            return a_d;
+        if (dVar != null && new File(aVar.k(dVar.f460b)).equals(file.getParentFile())) {
+            return dVar;
         }
         return null;
     }
@@ -210,5 +402,30 @@ public class a implements c {
         StringBuilder sb = new StringBuilder();
         sb.append(this.e);
         return b.d.b.a.a.J(sb, File.separator, strValueOf);
+    }
+
+    /* JADX INFO: compiled from: DefaultDiskStorage.java */
+    public class b implements b.f.d.c.a {
+        public final List<b.f.b.b.c.a> a = new ArrayList();
+
+        public b(C0065a c0065a) {
+        }
+
+        @Override // b.f.d.c.a
+        public void a(File file) {
+            d dVarH = a.h(a.this, file);
+            if (dVarH == null || dVarH.a != ".cnt") {
+                return;
+            }
+            this.a.add(new c(dVarH.f460b, file, null));
+        }
+
+        @Override // b.f.d.c.a
+        public void b(File file) {
+        }
+
+        @Override // b.f.d.c.a
+        public void c(File file) {
+        }
     }
 }

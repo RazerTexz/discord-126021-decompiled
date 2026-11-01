@@ -2,7 +2,6 @@ package com.discord.widgets.directories;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import b.d.b.a.a;
 import com.discord.models.hubs.DirectoryEntryCategory;
 import d0.z.d.m;
@@ -10,8 +9,33 @@ import d0.z.d.m;
 /* JADX INFO: compiled from: WidgetDirectoryCategory.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class DirectoryCategoryArgs implements Parcelable {
-    public static final Parcelable$Creator<DirectoryCategoryArgs> CREATOR = new DirectoryCategoryArgs$Creator();
+    public static final Parcelable.Creator<DirectoryCategoryArgs> CREATOR = new Creator();
     private final DirectoryEntryCategory directoryCategory;
+
+    public final class Creator implements Parcelable.Creator<DirectoryCategoryArgs> {
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final DirectoryCategoryArgs createFromParcel(Parcel parcel) {
+            m.checkNotNullParameter(parcel, "in");
+            return new DirectoryCategoryArgs((DirectoryEntryCategory) Enum.valueOf(DirectoryEntryCategory.class, parcel.readString()));
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ DirectoryCategoryArgs createFromParcel(Parcel parcel) {
+            return createFromParcel(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final DirectoryCategoryArgs[] newArray(int i) {
+            return new DirectoryCategoryArgs[i];
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ DirectoryCategoryArgs[] newArray(int i) {
+            return newArray(i);
+        }
+    }
 
     public DirectoryCategoryArgs(DirectoryEntryCategory directoryEntryCategory) {
         m.checkNotNullParameter(directoryEntryCategory, "directoryCategory");

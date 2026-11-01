@@ -1,12 +1,15 @@
 package b.i.a.c.x2;
 
 import android.net.Uri;
+import androidx.annotation.GuardedBy;
+import androidx.annotation.Nullable;
 import b.i.a.c.x2.k0.h0;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /* JADX INFO: compiled from: DefaultExtractorsFactory.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -14,7 +17,7 @@ public final class f implements l {
     public static final int[] a = {5, 4, 12, 8, 3, 10, 9, 11, 6, 2, 0, 1, 7, 14};
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final f$a f1175b = new f$a();
+    public static final a f1175b = new a();
 
     @Override // b.i.a.c.x2.l
     public synchronized h[] a() {
@@ -58,23 +61,23 @@ public final class f implements l {
                 list.add(new b.i.a.c.x2.c0.b(0));
                 return;
             case 4:
-                f$a f_a = f1175b;
-                synchronized (f_a.a) {
+                a aVar = f1175b;
+                synchronized (aVar.a) {
                     hVarNewInstance = null;
-                    if (f_a.a.get()) {
-                        constructor = f_a.f1176b;
+                    if (aVar.a.get()) {
+                        constructor = aVar.f1176b;
                     } else {
                         try {
                             if (Boolean.TRUE.equals(Class.forName("com.google.android.exoplayer2.ext.flac.FlacLibrary").getMethod("isAvailable", new Class[0]).invoke(null, new Object[0]))) {
-                                f_a.f1176b = Class.forName("com.google.android.exoplayer2.ext.flac.FlacExtractor").asSubclass(h.class).getConstructor(Integer.TYPE);
+                                aVar.f1176b = Class.forName("com.google.android.exoplayer2.ext.flac.FlacExtractor").asSubclass(h.class).getConstructor(Integer.TYPE);
                             }
                             break;
                         } catch (ClassNotFoundException unused) {
                         } catch (Exception e) {
                             throw new RuntimeException("Error instantiating FLAC extension", e);
                         }
-                        f_a.a.set(true);
-                        constructor = f_a.f1176b;
+                        aVar.a.set(true);
+                        constructor = aVar.f1176b;
                     }
                 }
                 if (constructor != null) {
@@ -123,5 +126,15 @@ public final class f implements l {
                 list.add(new b.i.a.c.x2.f0.a());
                 return;
         }
+    }
+
+    /* JADX INFO: compiled from: DefaultExtractorsFactory.java */
+    public final class a {
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        @Nullable
+        @GuardedBy("extensionLoaded")
+        public Constructor<? extends h> f1176b;
+        public final AtomicBoolean a = new AtomicBoolean(false);
     }
 }

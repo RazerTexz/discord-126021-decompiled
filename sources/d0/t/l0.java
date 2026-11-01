@@ -12,6 +12,29 @@ public final class l0<T> extends c<T> implements RandomAccess {
     public int m;
     public final Object[] n;
 
+    /* JADX INFO: compiled from: SlidingWindow.kt */
+    public final class a extends b<T> {
+        public int l;
+        public int m;
+
+        public a() {
+            this.l = l0.this.size();
+            this.m = l0.access$getStartIndex$p(l0.this);
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // d0.t.b
+        public void a() {
+            if (this.l == 0) {
+                this.j = 3;
+                return;
+            }
+            b(l0.access$getBuffer$p(l0.this)[this.m]);
+            this.m = (this.m + 1) % l0.access$getCapacity$p(l0.this);
+            this.l--;
+        }
+    }
+
     public l0(Object[] objArr, int i) {
         d0.z.d.m.checkNotNullParameter(objArr, "buffer");
         this.n = objArr;
@@ -80,7 +103,7 @@ public final class l0<T> extends c<T> implements RandomAccess {
 
     @Override // d0.t.c, java.util.Collection, java.lang.Iterable, java.util.List
     public Iterator<T> iterator() {
-        return new l0$a(this);
+        return new a();
     }
 
     public final void removeFirst(int i) {

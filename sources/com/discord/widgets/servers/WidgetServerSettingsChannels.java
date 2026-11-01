@@ -1,38 +1,67 @@
 package com.discord.widgets.servers;
 
 import android.content.Context;
+import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import androidx.core.app.NotificationCompat;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
+import b.a.d.j;
 import b.d.b.a.a;
-import com.discord.R$layout;
-import com.discord.R$menu;
+import com.discord.R;
+import com.discord.api.channel.Channel;
+import com.discord.api.channel.ChannelUtils;
 import com.discord.app.AppActivity;
 import com.discord.app.AppFragment;
 import com.discord.app.LoggingConfig;
 import com.discord.databinding.WidgetServerSettingsChannelsBinding;
-import com.discord.restapi.RestAPIParams$ChannelPosition;
+import com.discord.models.guild.Guild;
+import com.discord.restapi.RestAPIParams;
+import com.discord.stores.StoreChannels;
+import com.discord.stores.StoreStream;
+import com.discord.stores.StoreUser;
+import com.discord.utilities.error.Error;
+import com.discord.utilities.mg_recycler.CategoricalDragAndDropAdapter;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapter;
-import com.discord.utilities.mg_recycler.MGRecyclerAdapter$Companion;
+import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.widgets.channels.settings.WidgetTextChannelSettings;
+import com.discord.widgets.chat.AutocompleteTypes;
+import com.discord.widgets.voice.settings.WidgetVoiceChannelSettings;
+import d0.f0.q;
+import d0.t.u;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
+import rx.Observable;
+import rx.functions.Action0;
+import rx.functions.Action1;
+import rx.functions.Action2;
 import rx.subjects.BehaviorSubject;
 
 /* JADX INFO: compiled from: WidgetServerSettingsChannels.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsChannels extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetServerSettingsChannels.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsChannelsBinding;", 0)};
-    public static final WidgetServerSettingsChannels$Companion Companion = new WidgetServerSettingsChannels$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     public static final String INTENT_EXTRA_GUILD_ID = "INTENT_EXTRA_GUILD_ID";
     private SettingsChannelListAdapter adapter;
 
@@ -41,15 +70,446 @@ public final class WidgetServerSettingsChannels extends AppFragment {
     private final BehaviorSubject<Integer> channelSortTypeSubject;
     private final LoggingConfig loggingConfig;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsChannels$configureFabVisibility$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsChannels.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ Model $model;
+        public final /* synthetic */ Function0 $setFabVisibility;
+
+        /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsChannels$configureFabVisibility$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: WidgetServerSettingsChannels.kt */
+        public final class C04251 implements Action0 {
+            public C04251() {
+            }
+
+            @Override // rx.functions.Action0
+            public final void call() {
+                AnonymousClass1.this.$setFabVisibility.invoke();
+            }
+        }
+
+        public AnonymousClass1(Model model, Function0 function0) {
+            this.$model = model;
+            this.$setFabVisibility = function0;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetServerSettingsChannelsFabMenuFragment.Companion companion = WidgetServerSettingsChannelsFabMenuFragment.INSTANCE;
+            long id2 = this.$model.getGuild().getId();
+            FragmentManager childFragmentManager = WidgetServerSettingsChannels.this.getChildFragmentManager();
+            m.checkNotNullExpressionValue(childFragmentManager, "childFragmentManager");
+            companion.show(id2, childFragmentManager, new C04251());
+            WidgetServerSettingsChannels.access$getBinding$p(WidgetServerSettingsChannels.this).c.hide();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsChannels$configureUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsChannels.kt */
+    public final class AnonymousClass1<T1, T2> implements Action2<MenuItem, Context> {
+
+        /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsChannels$configureUI$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: WidgetServerSettingsChannels.kt */
+        public final class C04261 extends o implements Function1<Integer, Unit> {
+            public C04261() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Integer num) {
+                invoke(num.intValue());
+                return Unit.a;
+            }
+
+            public final void invoke(int i) {
+                WidgetServerSettingsChannels.access$getChannelSortTypeSubject$p(WidgetServerSettingsChannels.this).onNext(Integer.valueOf(i));
+            }
+        }
+
+        public AnonymousClass1() {
+        }
+
+        @Override // rx.functions.Action2
+        public /* bridge */ /* synthetic */ void call(MenuItem menuItem, Context context) {
+            call2(menuItem, context);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(MenuItem menuItem, Context context) {
+            m.checkNotNullExpressionValue(menuItem, "menuItem");
+            switch (menuItem.getItemId()) {
+                case R.id.menu_sort_channel /* 2131364413 */:
+                    WidgetServerSettingsChannelsSortActions.Companion companion = WidgetServerSettingsChannelsSortActions.INSTANCE;
+                    FragmentManager childFragmentManager = WidgetServerSettingsChannels.this.getChildFragmentManager();
+                    m.checkNotNullExpressionValue(childFragmentManager, "childFragmentManager");
+                    companion.show(childFragmentManager, new C04261());
+                    break;
+                case R.id.menu_sort_done /* 2131364414 */:
+                    WidgetServerSettingsChannels.access$getChannelSortTypeSubject$p(WidgetServerSettingsChannels.this).onNext(-1);
+                    break;
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsChannels$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsChannels.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<Model, Unit> {
+        public AnonymousClass1(WidgetServerSettingsChannels widgetServerSettingsChannels) {
+            super(1, widgetServerSettingsChannels, WidgetServerSettingsChannels.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/WidgetServerSettingsChannels$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) throws Exception {
+            invoke2(model);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) throws Exception {
+            WidgetServerSettingsChannels.access$configureUI((WidgetServerSettingsChannels) this.receiver, model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsChannels$reorderChannels$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsChannels.kt */
+    public final class AnonymousClass1 extends o implements Function1<Void, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r4) {
+            b.a.d.m.i(WidgetServerSettingsChannels.this, R.string.channel_order_updated, 0, 4);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsChannels$setOnClickListener$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsChannels.kt */
+    public final class AnonymousClass1 extends o implements Function1<Long, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        public final void invoke(long j) {
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke(l.longValue());
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsChannels$configureUI$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsChannels.kt */
+    public final class AnonymousClass2<T> implements Action1<Menu> {
+        public final /* synthetic */ Model $model;
+
+        public AnonymousClass2(Model model) {
+            this.$model = model;
+        }
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(Menu menu) {
+            call2(menu);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(Menu menu) {
+            MenuItem menuItemFindItem = menu.findItem(R.id.menu_sort_channel);
+            m.checkNotNullExpressionValue(menuItemFindItem, "menu.findItem(R.id.menu_sort_channel)");
+            menuItemFindItem.setVisible(!this.$model.isSorting());
+            MenuItem menuItemFindItem2 = menu.findItem(R.id.menu_sort_done);
+            m.checkNotNullExpressionValue(menuItemFindItem2, "menu.findItem(R.id.menu_sort_done)");
+            menuItemFindItem2.setVisible(this.$model.isSorting());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsChannels$reorderChannels$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsChannels.kt */
+    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+        public final /* synthetic */ Model $data;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(Model model) {
+            super(1);
+            this.$data = model;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) throws Exception {
+            invoke2(error);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) throws Exception {
+            m.checkNotNullParameter(error, "it");
+            WidgetServerSettingsChannels.access$configureUI(WidgetServerSettingsChannels.this, this.$data);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsChannels$setOnClickListener$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsChannels.kt */
+    public final class AnonymousClass2 extends o implements Function1<Long, Unit> {
+        public final /* synthetic */ Model $model;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(Model model) {
+            super(1);
+            this.$model = model;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke(l.longValue());
+            return Unit.a;
+        }
+
+        public final void invoke(long j) {
+            if (PermissionUtils.can(16L, this.$model.getChannelPermissions().get(Long.valueOf(j)))) {
+                Channel channel = this.$model.getChannels().get(Long.valueOf(j));
+                if (channel == null || !ChannelUtils.w(channel)) {
+                    WidgetTextChannelSettings.INSTANCE.launch(j, WidgetServerSettingsChannels.this.requireContext());
+                } else {
+                    WidgetVoiceChannelSettings.INSTANCE.launch(j, WidgetServerSettingsChannels.this.requireContext());
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsChannels$configureUI$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsChannels.kt */
+    public final class AnonymousClass3<T> implements Action1<Map<Long, ? extends SettingsChannelListAdapter.UpdatedPosition>> {
+        public final /* synthetic */ Model $model;
+
+        public AnonymousClass3(Model model) {
+            this.$model = model;
+        }
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(Map<Long, ? extends SettingsChannelListAdapter.UpdatedPosition> map) {
+            call2((Map<Long, SettingsChannelListAdapter.UpdatedPosition>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(Map<Long, SettingsChannelListAdapter.UpdatedPosition> map) {
+            WidgetServerSettingsChannels widgetServerSettingsChannels = WidgetServerSettingsChannels.this;
+            Model model = this.$model;
+            m.checkNotNullExpressionValue(map, "newPositions");
+            WidgetServerSettingsChannels.access$reorderChannels(widgetServerSettingsChannels, model, map);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsChannels.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(Context context, long guildId) {
+            m.checkNotNullParameter(context, "context");
+            StoreStream.INSTANCE.getAnalytics().onGuildSettingsPaneViewed(AutocompleteTypes.CHANNELS, guildId);
+            Intent intentPutExtra = new Intent().putExtra(WidgetServerSettingsChannels.INTENT_EXTRA_GUILD_ID, guildId);
+            m.checkNotNullExpressionValue(intentPutExtra, "Intent()\n          .putE…_EXTRA_GUILD_ID, guildId)");
+            j.d(context, WidgetServerSettingsChannels.class, intentPutExtra);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsChannels.kt */
+    public final /* data */ class Model {
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
+        private final Map<Long, Long> channelPermissions;
+        private final Map<Long, Channel> channels;
+        private final Guild guild;
+        private final boolean isSorting;
+        private final List<CategoricalDragAndDropAdapter.Payload> items;
+
+        /* JADX INFO: compiled from: WidgetServerSettingsChannels.kt */
+        public final class Companion {
+            private Companion() {
+            }
+
+            public final Observable<Model> get(long guildId, Observable<Integer> channelTypeObservable) {
+                m.checkNotNullParameter(channelTypeObservable, "channelTypeObservable");
+                StoreStream.Companion companion = StoreStream.INSTANCE;
+                Observable observableE = Observable.e(StoreUser.observeMe$default(companion.getUsers(), false, 1, null), companion.getPermissions().observePermissionsForGuild(guildId), companion.getGuilds().observeGuild(guildId), StoreChannels.observeChannelsForGuild$default(companion.getChannels(), guildId, null, 2, null), companion.getChannels().observeChannelCategories(guildId), companion.getPermissions().observeChannelPermissionsForGuild(guildId), channelTypeObservable, WidgetServerSettingsChannels$Model$Companion$get$1.INSTANCE);
+                m.checkNotNullExpressionValue(observableE, "Observable\n            .…ermissions)\n            }");
+                Observable<Model> observableR = ObservableExtensionsKt.computationLatest(observableE).r();
+                m.checkNotNullExpressionValue(observableR, "Observable\n            .…  .distinctUntilChanged()");
+                return observableR;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public final LinkedHashMap<Long, Channel> getSortedGuildChannels(Map<Long, Channel> guildChannels, int channelType) {
+                m.checkNotNullParameter(guildChannels, "guildChannels");
+                LinkedHashMap<Long, Channel> linkedHashMap = new LinkedHashMap<>();
+                for (Object obj : q.sortedWith(q.filter(u.asSequence(guildChannels.values()), new WidgetServerSettingsChannels$Model$Companion$getSortedGuildChannels$$inlined$also$lambda$1(guildChannels, channelType)), ChannelUtils.h(Channel.INSTANCE))) {
+                    linkedHashMap.put(Long.valueOf(((Channel) obj).getId()), obj);
+                }
+                return linkedHashMap;
+            }
+
+            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+                this();
+            }
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public Model(Guild guild, List<? extends CategoricalDragAndDropAdapter.Payload> list, boolean z2, Map<Long, Channel> map, Map<Long, Long> map2) {
+            m.checkNotNullParameter(guild, "guild");
+            m.checkNotNullParameter(list, "items");
+            m.checkNotNullParameter(map, "channels");
+            m.checkNotNullParameter(map2, "channelPermissions");
+            this.guild = guild;
+            this.items = list;
+            this.isSorting = z2;
+            this.channels = map;
+            this.channelPermissions = map2;
+        }
+
+        public final List<CategoricalDragAndDropAdapter.Payload> component2() {
+            return this.items;
+        }
+
+        public final Map<Long, Channel> component4() {
+            return this.channels;
+        }
+
+        public final Map<Long, Long> component5() {
+            return this.channelPermissions;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ Model copy$default(Model model, Guild guild, List list, boolean z2, Map map, Map map2, int i, Object obj) {
+            if ((i & 1) != 0) {
+                guild = model.guild;
+            }
+            if ((i & 2) != 0) {
+                list = model.items;
+            }
+            List list2 = list;
+            if ((i & 4) != 0) {
+                z2 = model.isSorting;
+            }
+            boolean z3 = z2;
+            if ((i & 8) != 0) {
+                map = model.channels;
+            }
+            Map map3 = map;
+            if ((i & 16) != 0) {
+                map2 = model.channelPermissions;
+            }
+            return model.copy(guild, list2, z3, map3, map2);
+        }
+
+        public final Model copy(Guild guild, List<? extends CategoricalDragAndDropAdapter.Payload> items, boolean isSorting, Map<Long, Channel> channels, Map<Long, Long> channelPermissions) {
+            m.checkNotNullParameter(guild, "guild");
+            m.checkNotNullParameter(items, "items");
+            m.checkNotNullParameter(channels, "channels");
+            m.checkNotNullParameter(channelPermissions, "channelPermissions");
+            return new Model(guild, items, isSorting, channels, channelPermissions);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof Model)) {
+                return false;
+            }
+            Model model = (Model) other;
+            return m.areEqual(this.guild, model.guild) && m.areEqual(this.items, model.items) && this.isSorting == model.isSorting && m.areEqual(this.channels, model.channels) && m.areEqual(this.channelPermissions, model.channelPermissions);
+        }
+
+        public final Map<Long, Long> getChannelPermissions() {
+            return this.channelPermissions;
+        }
+
+        public final Map<Long, Channel> getChannels() {
+            return this.channels;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsSorting() {
+            return this.isSorting;
+        }
+
+        public final List<CategoricalDragAndDropAdapter.Payload> getItems() {
+            return this.items;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v6, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v10 */
+        /* JADX WARN: Type inference failed for: r2v12 */
+        /* JADX WARN: Type inference failed for: r2v4, types: [int] */
+        public int hashCode() {
+            Guild guild = this.guild;
+            int iHashCode = (guild != null ? guild.hashCode() : 0) * 31;
+            List<CategoricalDragAndDropAdapter.Payload> list = this.items;
+            int iHashCode2 = (iHashCode + (list != null ? list.hashCode() : 0)) * 31;
+            boolean z2 = this.isSorting;
+            ?? r2 = z2;
+            if (z2) {
+                r2 = 1;
+            }
+            int i = (iHashCode2 + r2) * 31;
+            Map<Long, Channel> map = this.channels;
+            int iHashCode3 = (i + (map != null ? map.hashCode() : 0)) * 31;
+            Map<Long, Long> map2 = this.channelPermissions;
+            return iHashCode3 + (map2 != null ? map2.hashCode() : 0);
+        }
+
+        public final boolean isSorting() {
+            return this.isSorting;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("Model(guild=");
+            sbU.append(this.guild);
+            sbU.append(", items=");
+            sbU.append(this.items);
+            sbU.append(", isSorting=");
+            sbU.append(this.isSorting);
+            sbU.append(", channels=");
+            sbU.append(this.channels);
+            sbU.append(", channelPermissions=");
+            return a.M(sbU, this.channelPermissions, ")");
+        }
+    }
+
     public WidgetServerSettingsChannels() {
-        super(R$layout.widget_server_settings_channels);
+        super(R.layout.widget_server_settings_channels);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetServerSettingsChannels$binding$2.INSTANCE, null, 2, null);
         this.channelSortTypeSubject = BehaviorSubject.l0(-1);
         this.loggingConfig = new LoggingConfig(false, null, WidgetServerSettingsChannels$loggingConfig$1.INSTANCE, 3);
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetServerSettingsChannels widgetServerSettingsChannels, WidgetServerSettingsChannels$Model widgetServerSettingsChannels$Model) throws Exception {
-        widgetServerSettingsChannels.configureUI(widgetServerSettingsChannels$Model);
+    public static final /* synthetic */ void access$configureUI(WidgetServerSettingsChannels widgetServerSettingsChannels, Model model) throws Exception {
+        widgetServerSettingsChannels.configureUI(model);
     }
 
     public static final /* synthetic */ WidgetServerSettingsChannelsBinding access$getBinding$p(WidgetServerSettingsChannels widgetServerSettingsChannels) {
@@ -60,17 +520,17 @@ public final class WidgetServerSettingsChannels extends AppFragment {
         return widgetServerSettingsChannels.channelSortTypeSubject;
     }
 
-    public static final /* synthetic */ void access$reorderChannels(WidgetServerSettingsChannels widgetServerSettingsChannels, WidgetServerSettingsChannels$Model widgetServerSettingsChannels$Model, Map map) {
-        widgetServerSettingsChannels.reorderChannels(widgetServerSettingsChannels$Model, map);
+    public static final /* synthetic */ void access$reorderChannels(WidgetServerSettingsChannels widgetServerSettingsChannels, Model model, Map map) {
+        widgetServerSettingsChannels.reorderChannels(model, map);
     }
 
-    private final void configureFabVisibility(WidgetServerSettingsChannels$Model model) {
+    private final void configureFabVisibility(Model model) {
         WidgetServerSettingsChannels$configureFabVisibility$setFabVisibility$1 widgetServerSettingsChannels$configureFabVisibility$setFabVisibility$1 = new WidgetServerSettingsChannels$configureFabVisibility$setFabVisibility$1(this, model);
         widgetServerSettingsChannels$configureFabVisibility$setFabVisibility$1.invoke();
-        getBinding().c.setOnClickListener(new WidgetServerSettingsChannels$configureFabVisibility$1(this, model, widgetServerSettingsChannels$configureFabVisibility$setFabVisibility$1));
+        getBinding().c.setOnClickListener(new AnonymousClass1(model, widgetServerSettingsChannels$configureFabVisibility$setFabVisibility$1));
     }
 
-    private final void configureUI(WidgetServerSettingsChannels$Model model) throws Exception {
+    private final void configureUI(Model model) throws Exception {
         if (model == null) {
             AppActivity appActivity = getAppActivity();
             if (appActivity != null) {
@@ -80,9 +540,9 @@ public final class WidgetServerSettingsChannels extends AppFragment {
             return;
         }
         setActionBarDisplayHomeAsUpEnabled(!model.isSorting());
-        setActionBarTitle(!model.isSorting() ? 2131887633 : 2131895681);
+        setActionBarTitle(!model.isSorting() ? R.string.channels : R.string.sorting);
         setActionBarSubtitle(model.getGuild().getName());
-        setActionBarOptionsMenu(R$menu.menu_channel_sort, new WidgetServerSettingsChannels$configureUI$1(this), new WidgetServerSettingsChannels$configureUI$2(model));
+        setActionBarOptionsMenu(R.menu.menu_channel_sort, new AnonymousClass1(), new AnonymousClass2(model));
         configureFabVisibility(model);
         SettingsChannelListAdapter settingsChannelListAdapter = this.adapter;
         if (settingsChannelListAdapter != null) {
@@ -90,7 +550,7 @@ public final class WidgetServerSettingsChannels extends AppFragment {
         }
         SettingsChannelListAdapter settingsChannelListAdapter2 = this.adapter;
         if (settingsChannelListAdapter2 != null) {
-            settingsChannelListAdapter2.setPositionUpdateListener(new WidgetServerSettingsChannels$configureUI$3(this, model));
+            settingsChannelListAdapter2.setPositionUpdateListener(new AnonymousClass3(model));
         }
         SettingsChannelListAdapter settingsChannelListAdapter3 = this.adapter;
         if (settingsChannelListAdapter3 != null) {
@@ -102,7 +562,7 @@ public final class WidgetServerSettingsChannels extends AppFragment {
         return (WidgetServerSettingsChannelsBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger$a
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.a
     public LoggingConfig getLoggingConfig() {
         return this.loggingConfig;
     }
@@ -111,33 +571,33 @@ public final class WidgetServerSettingsChannels extends AppFragment {
     public void onViewBound(View view) {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
-        MGRecyclerAdapter$Companion mGRecyclerAdapter$Companion = MGRecyclerAdapter.Companion;
+        MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
         RecyclerView recyclerView = getBinding().d;
         m.checkNotNullExpressionValue(recyclerView, "binding.serverSettingsChannelsTextRecycler");
-        this.adapter = (SettingsChannelListAdapter) mGRecyclerAdapter$Companion.configure(new SettingsChannelListAdapter(recyclerView, true));
+        this.adapter = (SettingsChannelListAdapter) companion.configure(new SettingsChannelListAdapter(recyclerView, true));
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         long longExtra = getMostRecentIntent().getLongExtra(INTENT_EXTRA_GUILD_ID, -1L);
-        WidgetServerSettingsChannels$Model$Companion widgetServerSettingsChannels$Model$Companion = WidgetServerSettingsChannels$Model.Companion;
+        Model.Companion companion = Model.INSTANCE;
         BehaviorSubject<Integer> behaviorSubject = this.channelSortTypeSubject;
         m.checkNotNullExpressionValue(behaviorSubject, "channelSortTypeSubject");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(widgetServerSettingsChannels$Model$Companion.get(longExtra, behaviorSubject), this, null, 2, null), WidgetServerSettingsChannels.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetServerSettingsChannels$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(companion.get(longExtra, behaviorSubject), this, null, 2, null), WidgetServerSettingsChannels.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
     }
 
-    private final void reorderChannels(WidgetServerSettingsChannels$Model data, Map<Long, SettingsChannelListAdapter$UpdatedPosition> newPositions) {
+    private final void reorderChannels(Model data, Map<Long, SettingsChannelListAdapter.UpdatedPosition> newPositions) {
         ArrayList arrayList = new ArrayList(newPositions.size());
-        for (Map$Entry<Long, SettingsChannelListAdapter$UpdatedPosition> map$Entry : newPositions.entrySet()) {
-            long jLongValue = map$Entry.getKey().longValue();
-            SettingsChannelListAdapter$UpdatedPosition value = map$Entry.getValue();
-            arrayList.add(new RestAPIParams$ChannelPosition(jLongValue, value.getPosition(), value.getParentId()));
+        for (Map.Entry<Long, SettingsChannelListAdapter.UpdatedPosition> entry : newPositions.entrySet()) {
+            long jLongValue = entry.getKey().longValue();
+            SettingsChannelListAdapter.UpdatedPosition value = entry.getValue();
+            arrayList.add(new RestAPIParams.ChannelPosition(jLongValue, value.getPosition(), value.getParentId()));
         }
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApiSerializeNulls().reorderChannels(data.getGuild().getId(), arrayList), false, 1, null), getBinding().f2550b, 0L, 2, null), this, null, 2, null), WidgetServerSettingsChannels.class, getContext(), (Function1) null, new WidgetServerSettingsChannels$reorderChannels$2(this, data), (Function0) null, (Function0) null, new WidgetServerSettingsChannels$reorderChannels$1(this), 52, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApiSerializeNulls().reorderChannels(data.getGuild().getId(), arrayList), false, 1, null), getBinding().f2550b, 0L, 2, null), this, null, 2, null), WidgetServerSettingsChannels.class, getContext(), (Function1) null, new AnonymousClass2(data), (Function0) null, (Function0) null, new AnonymousClass1(), 52, (Object) null);
     }
 
-    private final void setOnClickListener(SettingsChannelListAdapter settingsChannelListAdapter, WidgetServerSettingsChannels$Model widgetServerSettingsChannels$Model) {
-        settingsChannelListAdapter.setOnClickListener(widgetServerSettingsChannels$Model.isSorting() ? WidgetServerSettingsChannels$setOnClickListener$1.INSTANCE : new WidgetServerSettingsChannels$setOnClickListener$2(this, widgetServerSettingsChannels$Model));
+    private final void setOnClickListener(SettingsChannelListAdapter settingsChannelListAdapter, Model model) {
+        settingsChannelListAdapter.setOnClickListener(model.isSorting() ? AnonymousClass1.INSTANCE : new AnonymousClass2(model));
     }
 }

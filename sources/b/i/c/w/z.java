@@ -1,15 +1,20 @@
 package b.i.c.w;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.PowerManager;
-import android.os.PowerManager$WakeLock;
 import android.util.Log;
 import androidx.annotation.GuardedBy;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: compiled from: com.google.firebase:firebase-messaging@@21.0.0 */
@@ -23,10 +28,47 @@ public class z implements Runnable {
     public static Boolean l;
     public final Context m;
     public final b.i.c.s.q n;
-    public final PowerManager$WakeLock o;
+    public final PowerManager.WakeLock o;
     public final y p;
     public final long q;
     public static final Object j = new Object();
+
+    /* JADX INFO: compiled from: com.google.firebase:firebase-messaging@@21.0.0 */
+    @VisibleForTesting
+    public class a extends BroadcastReceiver {
+
+        @Nullable
+        @GuardedBy("this")
+        public z a;
+
+        public a(z zVar) {
+            this.a = zVar;
+        }
+
+        public void a() {
+            if (z.a()) {
+                Log.d("FirebaseMessaging", "Connectivity change received registered");
+            }
+            z.this.m.registerReceiver(this, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
+        }
+
+        @Override // android.content.BroadcastReceiver
+        public synchronized void onReceive(Context context, Intent intent) {
+            z zVar = this.a;
+            if (zVar == null) {
+                return;
+            }
+            if (zVar.e()) {
+                if (z.a()) {
+                    Log.d("FirebaseMessaging", "Connectivity changed. Starting background sync.");
+                }
+                z zVar2 = this.a;
+                zVar2.p.h.schedule(zVar2, 0L, TimeUnit.SECONDS);
+                context.unregisterReceiver(this);
+                this.a = null;
+            }
+        }
+    }
 
     public z(y yVar, Context context, b.i.c.s.q qVar, long j2) {
         this.p = yVar;
@@ -37,7 +79,7 @@ public class z implements Runnable {
     }
 
     public static boolean a() {
-        return Log.isLoggable("FirebaseMessaging", 3) || (Build$VERSION.SDK_INT == 23 && Log.isLoggable("FirebaseMessaging", 3));
+        return Log.isLoggable("FirebaseMessaging", 3) || (Build.VERSION.SDK_INT == 23 && Log.isLoggable("FirebaseMessaging", 3));
     }
 
     public static boolean b(Context context) {
@@ -95,7 +137,7 @@ public class z implements Runnable {
             if (!this.n.d()) {
                 this.p.e(false);
             } else if (b(this.m) && !e()) {
-                new z$a(this, this).a();
+                new a(this).a();
             } else {
                 if (this.p.f()) {
                     this.p.e(false);

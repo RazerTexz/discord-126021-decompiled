@@ -45,7 +45,7 @@ public final class GrowthTeamFeatures {
     }
 
     private final boolean isGuildExperimentEnabled(String str, int i, long j, boolean z2) {
-        Experiment guildExperiment = StoreStream.Companion.getExperiments().getGuildExperiment(str, j, z2);
+        Experiment guildExperiment = StoreStream.INSTANCE.getExperiments().getGuildExperiment(str, j, z2);
         return isBucketEnabled(guildExperiment != null ? Integer.valueOf(guildExperiment.getBucket()) : null, str, i, z2);
     }
 
@@ -104,7 +104,7 @@ public final class GrowthTeamFeatures {
     }
 
     private final boolean isUserExperimentEnabled(String str, int i, boolean z2) {
-        Experiment userExperiment = StoreStream.Companion.getExperiments().getUserExperiment(str, z2);
+        Experiment userExperiment = StoreStream.INSTANCE.getExperiments().getUserExperiment(str, z2);
         return isBucketEnabled(userExperiment != null ? Integer.valueOf(userExperiment.getBucket()) : null, str, i, z2);
     }
 }

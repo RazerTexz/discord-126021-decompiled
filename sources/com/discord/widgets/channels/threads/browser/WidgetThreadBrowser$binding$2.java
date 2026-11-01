@@ -2,7 +2,7 @@ package com.discord.widgets.channels.threads.browser;
 
 import android.view.View;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetThreadBrowserBinding;
 import com.discord.utilities.simple_pager.SimplePager;
 import com.google.android.material.appbar.AppBarLayout;
@@ -28,14 +28,14 @@ public final /* synthetic */ class WidgetThreadBrowser$binding$2 extends k imple
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetThreadBrowserBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.action_bar_tabs;
-        TabLayout tabLayout = (TabLayout) view.findViewById(R$id.action_bar_tabs);
+        int i = R.id.action_bar_tabs;
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.action_bar_tabs);
         if (tabLayout != null) {
-            i = R$id.thread_browser_toolbar;
-            AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R$id.thread_browser_toolbar);
+            i = R.id.thread_browser_toolbar;
+            AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R.id.thread_browser_toolbar);
             if (appBarLayout != null) {
-                i = R$id.thread_browser_view_pager;
-                SimplePager simplePager = (SimplePager) view.findViewById(R$id.thread_browser_view_pager);
+                i = R.id.thread_browser_view_pager;
+                SimplePager simplePager = (SimplePager) view.findViewById(R.id.thread_browser_view_pager);
                 if (simplePager != null) {
                     return new WidgetThreadBrowserBinding((ConstraintLayout) view, tabLayout, appBarLayout, simplePager);
                 }

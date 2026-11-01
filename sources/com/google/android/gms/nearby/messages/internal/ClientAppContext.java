@@ -1,7 +1,7 @@
 package com.google.android.gms.nearby.messages.internal;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
 import androidx.annotation.Nullable;
@@ -15,7 +15,7 @@ import java.util.Objects;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class ClientAppContext extends AbstractSafeParcelable implements ReflectedParcelable {
-    public static final Parcelable$Creator<ClientAppContext> CREATOR = new l0();
+    public static final Parcelable.Creator<ClientAppContext> CREATOR = new l0();
     public final int j;
     public final String k;
 

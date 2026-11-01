@@ -13,9 +13,9 @@ public final class PayoutStatusAdapter extends TypeAdapter<PayoutStatus> {
     @Override // com.google.gson.TypeAdapter
     public PayoutStatus read(JsonReader jsonReader) throws IOException {
         m.checkNotNullParameter(jsonReader, "in");
-        PayoutStatus$Companion payoutStatus$Companion = PayoutStatus.Companion;
+        PayoutStatus.Companion companion = PayoutStatus.INSTANCE;
         int iY = jsonReader.y();
-        Objects.requireNonNull(payoutStatus$Companion);
+        Objects.requireNonNull(companion);
         PayoutStatus payoutStatus = PayoutStatus.OPEN;
         if (iY == payoutStatus.getApiValue()) {
             return payoutStatus;

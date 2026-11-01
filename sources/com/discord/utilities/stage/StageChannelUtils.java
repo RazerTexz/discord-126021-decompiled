@@ -17,7 +17,6 @@ import com.discord.stores.StorePermissions;
 import com.discord.stores.StoreStageChannels;
 import com.discord.stores.StoreStageInstances;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import com.discord.stores.StoreUser;
 import com.discord.utilities.guilds.MemberVerificationUtils;
 import com.discord.utilities.permissions.PermissionUtils;
@@ -25,13 +24,42 @@ import com.discord.widgets.stage.StageChannelJoinHelper;
 import com.discord.widgets.stage.StageRoles;
 import com.discord.widgets.stage.start.WidgetModeratorStartStage;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Map;
-import java.util.Map$Entry;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: StageChannelUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StageChannelUtils {
     public static final StageChannelUtils INSTANCE = new StageChannelUtils();
+
+    /* JADX INFO: renamed from: com.discord.utilities.stage.StageChannelUtils$connectToStageChannel$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StageChannelUtils.kt */
+    public final class AnonymousClass2 extends o implements Function0<Unit> {
+        public final /* synthetic */ Channel $channel;
+        public final /* synthetic */ Context $context;
+        public final /* synthetic */ FragmentManager $fragmentManager;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(Context context, FragmentManager fragmentManager, Channel channel) {
+            super(0);
+            this.$context = context;
+            this.$fragmentManager = fragmentManager;
+            this.$channel = channel;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StageChannelJoinHelper.connectToStage$default(StageChannelJoinHelper.INSTANCE, this.$context, this.$fragmentManager, this.$channel.getId(), false, false, null, null, null, null, null, PointerIconCompat.TYPE_TOP_RIGHT_DIAGONAL_DOUBLE_ARROW, null);
+        }
+    }
 
     private StageChannelUtils() {
     }
@@ -56,35 +84,35 @@ public final class StageChannelUtils {
         if (channel.getType() != 13) {
             return;
         }
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        StageInstance stageInstanceForChannel = storeStream$Companion.getStageInstances().getStageInstanceForChannel(channel.getId());
-        Long l = (Long) a.d(channel, storeStream$Companion.getPermissions().getPermissionsByChannel());
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        StageInstance stageInstanceForChannel = companion.getStageInstances().getStageInstanceForChannel(channel.getId());
+        Long l = (Long) a.d(channel, companion.getPermissions().getPermissionsByChannel());
         if (stageInstanceForChannel != null && d.W0(stageInstanceForChannel)) {
             StageChannelJoinHelper.connectToStage$default(StageChannelJoinHelper.INSTANCE, context, fragmentManager, channel.getId(), false, false, null, null, null, null, null, PointerIconCompat.TYPE_TOP_RIGHT_DIAGONAL_DOUBLE_ARROW, null);
             return;
         }
         if (stageInstanceForChannel != null || l == null || !PermissionUtils.can(20971536L, Long.valueOf(l.longValue()))) {
-            MemberVerificationUtils.maybeShowVerificationGate$default(MemberVerificationUtils.INSTANCE, context, fragmentManager, channel.getGuildId(), "Guild Voice", null, null, new StageChannelUtils$connectToStageChannel$2(context, fragmentManager, channel), 48, null);
+            MemberVerificationUtils.maybeShowVerificationGate$default(MemberVerificationUtils.INSTANCE, context, fragmentManager, channel.getGuildId(), "Guild Voice", null, null, new AnonymousClass2(context, fragmentManager, channel), 48, null);
             return;
         }
-        WidgetModeratorStartStage.Companion.launch(context, channel.getId(), channel.getGuildId());
+        WidgetModeratorStartStage.INSTANCE.launch(context, channel.getId(), channel.getGuildId());
     }
 
     public static /* synthetic */ boolean shouldShowEndStageBottomSheet$default(StageChannelUtils stageChannelUtils, long j, StoreChannels storeChannels, StoreStageChannels storeStageChannels, StoreStageInstances storeStageInstances, StoreUser storeUser, int i, Object obj) {
         if ((i & 2) != 0) {
-            storeChannels = StoreStream.Companion.getChannels();
+            storeChannels = StoreStream.INSTANCE.getChannels();
         }
         StoreChannels storeChannels2 = storeChannels;
         if ((i & 4) != 0) {
-            storeStageChannels = StoreStream.Companion.getStageChannels();
+            storeStageChannels = StoreStream.INSTANCE.getStageChannels();
         }
         StoreStageChannels storeStageChannels2 = storeStageChannels;
         if ((i & 8) != 0) {
-            storeStageInstances = StoreStream.Companion.getStageInstances();
+            storeStageInstances = StoreStream.INSTANCE.getStageInstances();
         }
         StoreStageInstances storeStageInstances2 = storeStageInstances;
         if ((i & 16) != 0) {
-            storeUser = StoreStream.Companion.getUsers();
+            storeUser = StoreStream.INSTANCE.getUsers();
         }
         return stageChannelUtils.shouldShowEndStageBottomSheet(j, storeChannels2, storeStageChannels2, storeStageInstances2, storeUser);
     }
@@ -103,9 +131,9 @@ public final class StageChannelUtils {
         long id2 = userStore.getMeSnapshot().getId();
         boolean z2 = false;
         boolean z3 = false;
-        for (Map$Entry<Long, StageRoles> map$Entry : channelRoles.entrySet()) {
-            long jLongValue = map$Entry.getKey().longValue();
-            int iM35unboximpl = map$Entry.getValue().m35unboximpl();
+        for (Map.Entry<Long, StageRoles> entry : channelRoles.entrySet()) {
+            long jLongValue = entry.getKey().longValue();
+            int iM35unboximpl = entry.getValue().m35unboximpl();
             if (jLongValue != id2 && StageRoles.m32isModeratorimpl(iM35unboximpl)) {
                 if (StageRoles.m33isSpeakerimpl(iM35unboximpl)) {
                     z2 = true;

@@ -5,8 +5,18 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: DefaultBuiltIns.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class e extends h {
-    public static final e$a f = new e$a(null);
+    public static final a f = new a(null);
     public static final e g = new e(false, 1, null);
+
+    /* JADX INFO: compiled from: DefaultBuiltIns.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final e getInstance() {
+            return e.access$getInstance$cp();
+        }
+    }
 
     public e(boolean z2) {
         super(new d0.e0.p.d.m0.m.f("DefaultBuiltIns"));

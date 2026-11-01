@@ -7,12 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import b.a.i.f;
 import b.a.y.n0.a;
-import com.discord.R$a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.widgets.chat.input.gifpicker.ViewScalingOnTouchListener;
@@ -29,18 +27,18 @@ public final class CardSegment extends CardView implements a {
     public CardSegment(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(getContext()).inflate(R$layout.card_segment_view, this);
-        int i = R$id.card_segment_badge;
-        TextView textView = (TextView) findViewById(R$id.card_segment_badge);
+        LayoutInflater.from(getContext()).inflate(R.layout.card_segment_view, this);
+        int i = R.id.card_segment_badge;
+        TextView textView = (TextView) findViewById(R.id.card_segment_badge);
         if (textView != null) {
-            i = R$id.card_segment_text;
-            TextView textView2 = (TextView) findViewById(R$id.card_segment_text);
+            i = R.id.card_segment_text;
+            TextView textView2 = (TextView) findViewById(R.id.card_segment_text);
             if (textView2 != null) {
                 f fVar = new f(this, textView, textView2);
                 m.checkNotNullExpressionValue(fVar, "CardSegmentViewBinding.i…ater.from(context), this)");
                 this.binding = fVar;
                 if (attributeSet != null) {
-                    TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R$a.CardSegment, 0, 0);
+                    TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.a.CardSegment, 0, 0);
                     m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…leable.CardSegment, 0, 0)");
                     try {
                         setText(typedArrayObtainStyledAttributes.getString(0));
@@ -59,8 +57,8 @@ public final class CardSegment extends CardView implements a {
 
     @Override // b.a.y.n0.a
     public void a(boolean selected) {
-        int themedColor = selected ? ColorCompat.getThemedColor(this, 2130968896) : ColorCompat.getColor(this, 2131100438);
-        int color = selected ? ColorCompat.getColor(this, 2131100487) : ColorCompat.getThemedColor(this, 2130969007);
+        int themedColor = selected ? ColorCompat.getThemedColor(this, R.attr.colorBackgroundAccent) : ColorCompat.getColor(this, R.color.transparent);
+        int color = selected ? ColorCompat.getColor(this, R.color.white) : ColorCompat.getThemedColor(this, R.attr.colorInteractiveMuted);
         setCardBackgroundColor(themedColor);
         this.binding.c.setTextColor(color);
     }

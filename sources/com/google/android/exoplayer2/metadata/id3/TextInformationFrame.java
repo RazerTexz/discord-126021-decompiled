@@ -1,11 +1,10 @@
 package com.google.android.exoplayer2.metadata.id3;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
 import b.i.a.c.f3.e0;
-import b.i.a.c.p1$b;
+import b.i.a.c.p1;
 import com.discord.widgets.chat.input.autocomplete.AutocompleteViewModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,19 @@ public final class TextInformationFrame extends Id3Frame {
     @Nullable
     public final String k;
     public final String l;
-    public static final Parcelable$Creator<TextInformationFrame> CREATOR = new TextInformationFrame$a();
+    public static final Parcelable.Creator<TextInformationFrame> CREATOR = new a();
+
+    public class a implements Parcelable.Creator<TextInformationFrame> {
+        @Override // android.os.Parcelable.Creator
+        public TextInformationFrame createFromParcel(Parcel parcel) {
+            return new TextInformationFrame(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public TextInformationFrame[] newArray(int i) {
+            return new TextInformationFrame[i];
+        }
+    }
 
     public TextInformationFrame(String str, @Nullable String str2, String str3) {
         super(str);
@@ -55,7 +66,7 @@ public final class TextInformationFrame extends Id3Frame {
     }
 
     public int hashCode() {
-        int iM = a.m(this.j, 527, 31);
+        int iM = b.d.b.a.a.m(this.j, 527, 31);
         String str = this.k;
         int iHashCode = (iM + (str != null ? str.hashCode() : 0)) * 31;
         String str2 = this.l;
@@ -63,8 +74,8 @@ public final class TextInformationFrame extends Id3Frame {
     }
 
     /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
-    @Override // com.google.android.exoplayer2.metadata.id3.Id3Frame, com.google.android.exoplayer2.metadata.Metadata$Entry
-    public void n(p1$b p1_b) {
+    @Override // com.google.android.exoplayer2.metadata.id3.Id3Frame, com.google.android.exoplayer2.metadata.Metadata.Entry
+    public void n(p1.b bVar) {
         String str = this.j;
         str.hashCode();
         byte b2 = -1;
@@ -184,50 +195,50 @@ public final class TextInformationFrame extends Id3Frame {
             switch (b2) {
                 case 0:
                 case 10:
-                    p1_b.c = this.l;
+                    bVar.c = this.l;
                     break;
                 case 1:
                 case 11:
-                    p1_b.f1053y = this.l;
+                    bVar.f1053y = this.l;
                     break;
                 case 2:
                 case 12:
                     int i = Integer.parseInt(this.l.substring(2, 4));
                     int i2 = Integer.parseInt(this.l.substring(0, 2));
-                    p1_b.f1051s = Integer.valueOf(i);
-                    p1_b.t = Integer.valueOf(i2);
+                    bVar.f1051s = Integer.valueOf(i);
+                    bVar.t = Integer.valueOf(i2);
                     break;
                 case 3:
                 case 17:
-                    p1_b.f1050b = this.l;
+                    bVar.f1050b = this.l;
                     break;
                 case 4:
                 case 18:
-                    p1_b.d = this.l;
+                    bVar.d = this.l;
                     break;
                 case 5:
                 case 19:
-                    p1_b.f1054z = this.l;
+                    bVar.f1054z = this.l;
                     break;
                 case 6:
                 case 20:
                     String[] strArrH = e0.H(this.l, AutocompleteViewModel.COMMAND_DISCOVER_TOKEN);
                     int i3 = Integer.parseInt(strArrH[0]);
                     Integer numValueOf = strArrH.length > 1 ? Integer.valueOf(Integer.parseInt(strArrH[1])) : null;
-                    p1_b.n = Integer.valueOf(i3);
-                    p1_b.o = numValueOf;
+                    bVar.n = Integer.valueOf(i3);
+                    bVar.o = numValueOf;
                     break;
                 case 7:
                 case 16:
-                    p1_b.a = this.l;
+                    bVar.a = this.l;
                     break;
                 case 8:
                 case 15:
-                    p1_b.f1052x = this.l;
+                    bVar.f1052x = this.l;
                     break;
                 case 9:
                 case 21:
-                    p1_b.r = Integer.valueOf(Integer.parseInt(this.l));
+                    bVar.r = Integer.valueOf(Integer.parseInt(this.l));
                     break;
                 case 13:
                     ArrayList arrayList = (ArrayList) a(this.l);
@@ -235,12 +246,12 @@ public final class TextInformationFrame extends Id3Frame {
                     if (size != 1) {
                         if (size != 2) {
                             if (size == 3) {
-                                p1_b.t = (Integer) arrayList.get(2);
+                                bVar.t = (Integer) arrayList.get(2);
                             }
                         }
-                        p1_b.f1051s = (Integer) arrayList.get(1);
+                        bVar.f1051s = (Integer) arrayList.get(1);
                     }
-                    p1_b.r = (Integer) arrayList.get(0);
+                    bVar.r = (Integer) arrayList.get(0);
                     break;
                 case 14:
                     ArrayList arrayList2 = (ArrayList) a(this.l);
@@ -248,12 +259,12 @@ public final class TextInformationFrame extends Id3Frame {
                     if (size2 != 1) {
                         if (size2 != 2) {
                             if (size2 == 3) {
-                                p1_b.w = (Integer) arrayList2.get(2);
+                                bVar.w = (Integer) arrayList2.get(2);
                             }
                         }
-                        p1_b.v = (Integer) arrayList2.get(1);
+                        bVar.v = (Integer) arrayList2.get(1);
                     }
-                    p1_b.u = (Integer) arrayList2.get(0);
+                    bVar.u = (Integer) arrayList2.get(0);
                     break;
             }
         } catch (NumberFormatException | StringIndexOutOfBoundsException unused) {
@@ -265,7 +276,7 @@ public final class TextInformationFrame extends Id3Frame {
         String str = this.j;
         String str2 = this.k;
         String str3 = this.l;
-        StringBuilder sbS = a.S(a.b(str3, a.b(str2, a.b(str, 22))), str, ": description=", str2, ": value=");
+        StringBuilder sbS = b.d.b.a.a.S(b.d.b.a.a.b(str3, b.d.b.a.a.b(str2, b.d.b.a.a.b(str, 22))), str, ": description=", str2, ": value=");
         sbS.append(str3);
         return sbS.toString();
     }

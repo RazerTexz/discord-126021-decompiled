@@ -1,7 +1,6 @@
 package com.esotericsoftware.kryo.serializers;
 
 import b.e.a.a;
-import b.e.a.a$a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class FieldSerializerConfig implements Cloneable {
@@ -12,14 +11,14 @@ public class FieldSerializerConfig implements Cloneable {
     private boolean copyTransient = true;
     private boolean serializeTransient = false;
     private boolean optimizedGenerics = false;
-    private FieldSerializer$CachedFieldNameStrategy cachedFieldNameStrategy = FieldSerializer$CachedFieldNameStrategy.DEFAULT;
+    private FieldSerializer.CachedFieldNameStrategy cachedFieldNameStrategy = FieldSerializer.CachedFieldNameStrategy.DEFAULT;
     private boolean useAsm = true ^ FieldSerializer.unsafeAvailable;
 
     public FieldSerializerConfig() {
-        a$a a_a = a.a;
+        a.C0064a c0064a = a.a;
     }
 
-    public FieldSerializer$CachedFieldNameStrategy getCachedFieldNameStrategy() {
+    public FieldSerializer.CachedFieldNameStrategy getCachedFieldNameStrategy() {
         return this.cachedFieldNameStrategy;
     }
 
@@ -60,9 +59,9 @@ public class FieldSerializerConfig implements Cloneable {
         return clone();
     }
 
-    public void setCachedFieldNameStrategy(FieldSerializer$CachedFieldNameStrategy fieldSerializer$CachedFieldNameStrategy) {
-        this.cachedFieldNameStrategy = fieldSerializer$CachedFieldNameStrategy;
-        a$a a_a = a.a;
+    public void setCachedFieldNameStrategy(FieldSerializer.CachedFieldNameStrategy cachedFieldNameStrategy) {
+        this.cachedFieldNameStrategy = cachedFieldNameStrategy;
+        a.C0064a c0064a = a.a;
     }
 
     public void setCopyTransient(boolean z2) {
@@ -71,27 +70,27 @@ public class FieldSerializerConfig implements Cloneable {
 
     public void setFieldsAsAccessible(boolean z2) {
         this.setFieldsAsAccessible = z2;
-        a$a a_a = a.a;
+        a.C0064a c0064a = a.a;
     }
 
     public void setFieldsCanBeNull(boolean z2) {
         this.fieldsCanBeNull = z2;
-        a$a a_a = a.a;
+        a.C0064a c0064a = a.a;
     }
 
     public void setFixedFieldTypes(boolean z2) {
         this.fixedFieldTypes = z2;
-        a$a a_a = a.a;
+        a.C0064a c0064a = a.a;
     }
 
     public void setIgnoreSyntheticFields(boolean z2) {
         this.ignoreSyntheticFields = z2;
-        a$a a_a = a.a;
+        a.C0064a c0064a = a.a;
     }
 
     public void setOptimizedGenerics(boolean z2) {
         this.optimizedGenerics = z2;
-        a$a a_a = a.a;
+        a.C0064a c0064a = a.a;
     }
 
     public void setSerializeTransient(boolean z2) {
@@ -102,9 +101,9 @@ public class FieldSerializerConfig implements Cloneable {
         this.useAsm = z2;
         if (!z2 && !FieldSerializer.unsafeAvailable) {
             this.useAsm = true;
-            a$a a_a = a.a;
+            a.C0064a c0064a = a.a;
         }
-        a$a a_a2 = a.a;
+        a.C0064a c0064a2 = a.a;
     }
 
     public FieldSerializerConfig clone() {

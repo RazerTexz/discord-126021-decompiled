@@ -7,14 +7,13 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView$ItemDecoration;
-import androidx.recyclerview.widget.RecyclerView$State;
+import com.discord.R;
 import com.discord.widgets.chat.list.adapter.WidgetChatListAdapter;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: ThreadSpineItemDecoration.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ThreadSpineItemDecoration extends RecyclerView$ItemDecoration {
+public final class ThreadSpineItemDecoration extends RecyclerView.ItemDecoration {
     private final WidgetChatListAdapter adapter;
     private final Context context;
     private final Drawable drawable;
@@ -25,8 +24,8 @@ public final class ThreadSpineItemDecoration extends RecyclerView$ItemDecoration
         m.checkNotNullParameter(widgetChatListAdapter, "adapter");
         this.context = context;
         this.adapter = widgetChatListAdapter;
-        this.drawable = ContextCompat.getDrawable(context, 2131232542);
-        this.startPositionPx = context.getResources().getDimensionPixelSize(2131165321);
+        this.drawable = ContextCompat.getDrawable(context, R.drawable.thread_embed_spine_drawable);
+        this.startPositionPx = context.getResources().getDimensionPixelSize(R.dimen.chat_list_spine_margin);
     }
 
     private final void drawSpinePiece(Canvas canvas, RecyclerView parent, View child) {
@@ -62,8 +61,8 @@ public final class ThreadSpineItemDecoration extends RecyclerView$ItemDecoration
         canvas.restore();
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$ItemDecoration
-    public void onDrawOver(Canvas canvas, RecyclerView parent, RecyclerView$State state) {
+    @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
+    public void onDrawOver(Canvas canvas, RecyclerView parent, RecyclerView.State state) {
         m.checkNotNullParameter(canvas, "canvas");
         m.checkNotNullParameter(parent, "parent");
         m.checkNotNullParameter(state, "state");

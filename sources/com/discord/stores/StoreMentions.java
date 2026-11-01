@@ -1,5 +1,6 @@
 package com.discord.stores;
 
+import androidx.core.app.NotificationCompat;
 import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
@@ -11,23 +12,21 @@ import com.discord.api.user.User;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.ModelMessageDelete;
 import com.discord.models.domain.ModelNotificationSettings;
-import com.discord.models.domain.ModelNotificationSettings$ChannelOverride;
 import com.discord.models.domain.ModelPayload;
-import com.discord.models.domain.ModelPayload$VersionedReadStates;
 import com.discord.models.domain.ModelReadState;
 import com.discord.models.domain.ModelUserRelationship;
 import com.discord.models.message.Message;
 import com.discord.models.thread.dto.ModelThreadListSync;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
 import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.utilities.persister.Persister;
 import d0.t.h0;
-import d0.t.o;
 import d0.t.r;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -35,7 +34,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
@@ -61,6 +60,106 @@ public final class StoreMentions extends StoreV2 {
     private final StoreUserGuildSettings storeUserGuildSettings;
     private final StoreUserRelationships storeUserRelationships;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreMentions$handleMessageAck$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMentions.kt */
+    public final class AnonymousClass1 extends o implements Function1<ModelReadState, Boolean> {
+        public final /* synthetic */ ModelReadState $readState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(ModelReadState modelReadState) {
+            super(1);
+            this.$readState = modelReadState;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(ModelReadState modelReadState) {
+            return Boolean.valueOf(invoke2(modelReadState));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(ModelReadState modelReadState) {
+            m.checkNotNullParameter(modelReadState, "it");
+            return modelReadState.getChannelId() == this.$readState.getChannelId();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMentions$observeMentionCounts$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMentions.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Integer>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Integer> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Integer> invoke2() {
+            return StoreMentions.this.getMentionCounts();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMentions$observeTotalMentions$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMentions.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Integer>, Integer> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Integer call(Map<Long, ? extends Integer> map) {
+            return call2((Map<Long, Integer>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Integer call2(Map<Long, Integer> map) {
+            return Integer.valueOf(u.sumOfInt(map.values()));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMentions$handleConnectionOpen$3, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMentions.kt */
+    public final class AnonymousClass3 extends o implements Function1<ModelReadState, Boolean> {
+        public final /* synthetic */ HashSet $newReadStateChannelIds;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass3(HashSet hashSet) {
+            super(1);
+            this.$newReadStateChannelIds = hashSet;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(ModelReadState modelReadState) {
+            return Boolean.valueOf(invoke2(modelReadState));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(ModelReadState modelReadState) {
+            m.checkNotNullParameter(modelReadState, "readState");
+            return this.$newReadStateChannelIds.contains(Long.valueOf(modelReadState.getChannelId()));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMentions$handleConnectionOpen$5, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMentions.kt */
+    public final class AnonymousClass5 extends o implements Function1<ModelReadState, Boolean> {
+        public AnonymousClass5() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(ModelReadState modelReadState) {
+            return Boolean.valueOf(invoke2(modelReadState));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(ModelReadState modelReadState) {
+            m.checkNotNullParameter(modelReadState, "readState");
+            return !StoreMentions.access$getStoreChannels$p(StoreMentions.this).getChannelNamesInternal$app_productionGoogleRelease().containsKey(Long.valueOf(modelReadState.getChannelId()));
+        }
+    }
+
     public /* synthetic */ StoreMentions(StoreUserRelationships storeUserRelationships, StorePermissions storePermissions, StoreMessageAck storeMessageAck, StoreUserGuildSettings storeUserGuildSettings, StoreChannels storeChannels, StoreThreadsJoined storeThreadsJoined, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(storeUserRelationships, storePermissions, storeMessageAck, storeUserGuildSettings, storeChannels, storeThreadsJoined, (i & 64) != 0 ? ObservationDeckProvider.get() : observationDeck);
     }
@@ -71,17 +170,17 @@ public final class StoreMentions extends StoreV2 {
 
     @StoreThread
     private final Map<Long, Integer> computeMentionCounts() {
-        StoreMessageAck$Ack storeMessageAck$Ack;
+        StoreMessageAck.Ack ack;
         if (this.serverInitReadStates.isEmpty() && this.mentionedMessages.isEmpty()) {
             return this.countsEmpty;
         }
         HashMap map = new HashMap();
-        Map<Long, StoreMessageAck$Ack> allInternal = this.storeMessageAck.getAllInternal();
+        Map<Long, StoreMessageAck.Ack> allInternal = this.storeMessageAck.getAllInternal();
         for (ModelReadState modelReadState : this.serverInitReadStates) {
             long channelId = modelReadState.getChannelId();
             long lastMessageId = modelReadState.getLastMessageId();
             int mentionCount = modelReadState.getMentionCount();
-            if (mentionCount >= 1 && isMentionableChannel(channelId) && (storeMessageAck$Ack = allInternal.get(Long.valueOf(channelId))) != null && storeMessageAck$Ack.getMessageId() <= lastMessageId) {
+            if (mentionCount >= 1 && isMentionableChannel(channelId) && (ack = allInternal.get(Long.valueOf(channelId))) != null && ack.getMessageId() <= lastMessageId) {
                 Long lValueOf = Long.valueOf(channelId);
                 Integer num = (Integer) map.get(Long.valueOf(channelId));
                 if (num == null) {
@@ -94,8 +193,8 @@ public final class StoreMentions extends StoreV2 {
             long channelId2 = message.getChannelId();
             User author = message.getAuthor();
             if (!ModelUserRelationship.isType(this.storeUserRelationships.getRelationships().get(author != null ? Long.valueOf(author.getId()) : null), 2) && isMentionableChannel(channelId2)) {
-                StoreMessageAck$Ack storeMessageAck$Ack2 = allInternal.get(Long.valueOf(channelId2));
-                if (storeMessageAck$Ack2 == null || storeMessageAck$Ack2.getMessageId() < message.getId()) {
+                StoreMessageAck.Ack ack2 = allInternal.get(Long.valueOf(channelId2));
+                if (ack2 == null || ack2.getMessageId() < message.getId()) {
                     Long lValueOf2 = Long.valueOf(channelId2);
                     Integer num2 = (Integer) map.get(Long.valueOf(channelId2));
                     if (num2 == null) {
@@ -158,30 +257,30 @@ public final class StoreMentions extends StoreV2 {
                 arrayListA0.add(obj);
             }
         }
-        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(arrayListA0, 10));
+        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(arrayListA0, 10));
         Iterator it = arrayListA0.iterator();
         while (it.hasNext()) {
             arrayList.add(Long.valueOf(((Channel) it.next()).getId()));
         }
         hashSet.addAll(arrayList);
-        ModelPayload$VersionedReadStates readState = payload.getReadState();
+        ModelPayload.VersionedReadStates readState = payload.getReadState();
         m.checkNotNullExpressionValue(readState, "payload.readState");
         if (readState.isPartial()) {
-            ModelPayload$VersionedReadStates readState2 = payload.getReadState();
+            ModelPayload.VersionedReadStates readState2 = payload.getReadState();
             m.checkNotNullExpressionValue(readState2, "payload.readState");
             List<ModelReadState> entries = readState2.getEntries();
             m.checkNotNullExpressionValue(entries, "payload.readState.entries");
-            ArrayList arrayList2 = new ArrayList(o.collectionSizeOrDefault(entries, 10));
+            ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(entries, 10));
             Iterator<T> it2 = entries.iterator();
             while (it2.hasNext()) {
                 arrayList2.add(Long.valueOf(((ModelReadState) it2.next()).getChannelId()));
             }
-            r.removeAll((List) this.serverInitReadStates, (Function1) new StoreMentions$handleConnectionOpen$3(u.toHashSet(arrayList2)));
+            r.removeAll((List) this.serverInitReadStates, (Function1) new AnonymousClass3(u.toHashSet(arrayList2)));
         } else {
             this.serverInitReadStates.clear();
         }
         ArrayList<ModelReadState> arrayList3 = this.serverInitReadStates;
-        ModelPayload$VersionedReadStates readState3 = payload.getReadState();
+        ModelPayload.VersionedReadStates readState3 = payload.getReadState();
         m.checkNotNullExpressionValue(readState3, "payload.readState");
         List<ModelReadState> entries2 = readState3.getEntries();
         m.checkNotNullExpressionValue(entries2, "payload.readState.entries");
@@ -192,7 +291,7 @@ public final class StoreMentions extends StoreV2 {
             }
         }
         arrayList3.addAll(arrayList4);
-        r.removeAll((List) this.serverInitReadStates, (Function1) new StoreMentions$handleConnectionOpen$5(this));
+        r.removeAll((List) this.serverInitReadStates, (Function1) new AnonymousClass5());
         markChanged();
     }
 
@@ -243,7 +342,7 @@ public final class StoreMentions extends StoreV2 {
     @StoreThread
     public final void handleMessageAck(ModelReadState readState) {
         m.checkNotNullParameter(readState, "readState");
-        r.removeAll((List) this.serverInitReadStates, (Function1) new StoreMentions$handleMessageAck$1(readState));
+        r.removeAll((List) this.serverInitReadStates, (Function1) new AnonymousClass1(readState));
         this.serverInitReadStates.add(readState);
         markChanged();
     }
@@ -296,7 +395,7 @@ public final class StoreMentions extends StoreV2 {
         List<Long> list;
         boolean z2;
         ModelNotificationSettings modelNotificationSettings;
-        ModelNotificationSettings$ChannelOverride channelOverride;
+        ModelNotificationSettings.ChannelOverride channelOverride;
         Long l = this.channelGuildIds.get(Long.valueOf(channelId));
         if (l == null) {
             l = 0L;
@@ -353,8 +452,8 @@ public final class StoreMentions extends StoreV2 {
 
     @StoreThread
     private final boolean isMentionableChannel(long channelId) {
-        StoreMessageAck$Ack storeMessageAck$Ack = this.storeMessageAck.getAllInternal().get(Long.valueOf(channelId));
-        boolean zIsLockedAck = storeMessageAck$Ack != null ? storeMessageAck$Ack.isLockedAck() : false;
+        StoreMessageAck.Ack ack = this.storeMessageAck.getAllInternal().get(Long.valueOf(channelId));
+        boolean zIsLockedAck = ack != null ? ack.isLockedAck() : false;
         if (channelId == this.selectedChannelId && !zIsLockedAck) {
             return false;
         }
@@ -362,13 +461,13 @@ public final class StoreMentions extends StoreV2 {
     }
 
     public final Observable<Map<Long, Integer>> observeMentionCounts() {
-        Observable<Map<Long, Integer>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreMentions$observeMentionCounts$1(this), 14, null).r();
+        Observable<Map<Long, Integer>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Integer> observeTotalMentions() {
-        Observable observableG = observeMentionCounts().G(StoreMentions$observeTotalMentions$1.INSTANCE);
+        Observable observableG = observeMentionCounts().G(AnonymousClass1.INSTANCE);
         m.checkNotNullExpressionValue(observableG, "observeMentionCounts()\n … .map { it.values.sum() }");
         return observableG;
     }
@@ -392,9 +491,9 @@ public final class StoreMentions extends StoreV2 {
     private final void removeAllMessagesForChannel(long channelId) {
         HashMap<Long, Message> map = this.mentionedMessages;
         LinkedHashMap linkedHashMap = new LinkedHashMap();
-        for (Map$Entry<Long, Message> map$Entry : map.entrySet()) {
-            if (map$Entry.getValue().getChannelId() == channelId) {
-                linkedHashMap.put(map$Entry.getKey(), map$Entry.getValue());
+        for (Map.Entry<Long, Message> entry : map.entrySet()) {
+            if (entry.getValue().getChannelId() == channelId) {
+                linkedHashMap.put(entry.getKey(), entry.getValue());
             }
         }
         Iterator it = linkedHashMap.keySet().iterator();

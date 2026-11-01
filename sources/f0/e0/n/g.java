@@ -1,21 +1,20 @@
 package f0.e0.n;
 
 import d0.z.d.m;
-import g0.e$a;
 
 /* JADX INFO: compiled from: WebSocketProtocol.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class g {
-    public static final void a(e$a e_a, byte[] bArr) {
+    public static final void a(g0.e.a aVar, byte[] bArr) {
         long j;
-        m.checkParameterIsNotNull(e_a, "cursor");
+        m.checkParameterIsNotNull(aVar, "cursor");
         m.checkParameterIsNotNull(bArr, "key");
         int length = bArr.length;
         int i = 0;
         do {
-            byte[] bArr2 = e_a.n;
-            int i2 = e_a.o;
-            int i3 = e_a.p;
+            byte[] bArr2 = aVar.n;
+            int i2 = aVar.o;
+            int i3 = aVar.p;
             if (bArr2 != null) {
                 while (i2 < i3) {
                     int i4 = i % length;
@@ -24,15 +23,15 @@ public final class g {
                     i = i4 + 1;
                 }
             }
-            long j2 = e_a.m;
-            g0.e eVar = e_a.j;
+            long j2 = aVar.m;
+            g0.e eVar = aVar.j;
             if (eVar == null) {
                 m.throwNpe();
             }
             if (!(j2 != eVar.k)) {
                 throw new IllegalStateException("no more bytes".toString());
             }
-            j = e_a.m;
-        } while (e_a.b(j == -1 ? 0L : j + ((long) (e_a.p - e_a.o))) != -1);
+            j = aVar.m;
+        } while (aVar.b(j == -1 ? 0L : j + ((long) (aVar.p - aVar.o))) != -1);
     }
 }

@@ -3,7 +3,7 @@ package j0.l.a;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 import rx.Producer;
-import rx.Scheduler$Worker;
+import rx.Scheduler;
 import rx.functions.Action0;
 
 /* JADX INFO: compiled from: OnSubscribeRedo.java */
@@ -12,14 +12,14 @@ public class x implements Producer {
     public final /* synthetic */ AtomicLong j;
     public final /* synthetic */ j0.l.b.a k;
     public final /* synthetic */ AtomicBoolean l;
-    public final /* synthetic */ Scheduler$Worker m;
+    public final /* synthetic */ Scheduler.Worker m;
     public final /* synthetic */ Action0 n;
 
-    public x(y yVar, AtomicLong atomicLong, j0.l.b.a aVar, AtomicBoolean atomicBoolean, Scheduler$Worker scheduler$Worker, Action0 action0) {
+    public x(y yVar, AtomicLong atomicLong, j0.l.b.a aVar, AtomicBoolean atomicBoolean, Scheduler.Worker worker, Action0 action0) {
         this.j = atomicLong;
         this.k = aVar;
         this.l = atomicBoolean;
-        this.m = scheduler$Worker;
+        this.m = worker;
         this.n = action0;
     }
 

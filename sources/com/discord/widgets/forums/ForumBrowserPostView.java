@@ -3,21 +3,19 @@ package com.discord.widgets.forums;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
-import android.view.ViewGroup$MarginLayoutParams;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.Barrier;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import b.d.b.a.a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.message.attachment.MessageAttachment;
 import com.discord.api.message.reaction.MessageReaction;
@@ -35,7 +33,6 @@ import com.discord.utilities.extensions.SimpleDraweeViewExtensionsKt;
 import com.discord.utilities.images.MGImages;
 import com.discord.utilities.message.MessageUtils;
 import com.discord.utilities.textprocessing.DiscordParser;
-import com.discord.utilities.textprocessing.DiscordParser$ParserOptions;
 import com.discord.utilities.textprocessing.MessagePreprocessor;
 import com.discord.utilities.textprocessing.MessageRenderContext;
 import com.discord.utilities.view.extensions.ViewExtensions;
@@ -139,14 +136,14 @@ public final class ForumBrowserPostView extends ConstraintLayout {
         simpleDraweeSpanTextView2.setVisibility(0);
         Context context = getContext();
         m.checkNotNullExpressionValue(context, "context");
-        MessageRenderContext messageRenderContext = new MessageRenderContext(context, post.getMyUserId(), true, MessageUtils.getNickOrUsernames$default(message, post.getChannel(), post.getGuildMembers(), null, 8, null), post.getChannelNames(), post.getGuildRoles(), 0, null, null, ColorCompat.getThemedColor(getContext(), 2130970293), 0, null, null, null, 15808, null);
+        MessageRenderContext messageRenderContext = new MessageRenderContext(context, post.getMyUserId(), true, MessageUtils.getNickOrUsernames$default(message, post.getChannel(), post.getGuildMembers(), null, 8, null), post.getChannelNames(), post.getGuildRoles(), 0, null, null, ColorCompat.getThemedColor(getContext(), R.attr.theme_chat_spoiler_inapp_bg), 0, null, null, null, 15808, null);
         DraweeSpanStringBuilder channelMessage = null;
         if (post.isFirstMessageBlocked()) {
-            string = getContext().getString(2131894770);
+            string = getContext().getString(R.string.reply_quote_message_blocked);
         } else if (message.hasStickers()) {
-            string = getContext().getString(2131894776);
+            string = getContext().getString(R.string.reply_quote_sticker_mobile);
         } else {
-            string = message.hasEmbeds() ? getContext().getString(2131894774) : null;
+            string = message.hasEmbeds() ? getContext().getString(R.string.reply_quote_no_text_content_mobile) : null;
         }
         if (string != null) {
             channelMessage = new DraweeSpanStringBuilder();
@@ -156,9 +153,9 @@ public final class ForumBrowserPostView extends ConstraintLayout {
             Context context2 = getContext();
             m.checkNotNullExpressionValue(context2, "context");
             MessagePreprocessor messagePreprocessor = new MessagePreprocessor(post.getMyUserId(), null, null, false, null, 30, null);
-            DiscordParser$ParserOptions discordParser$ParserOptions = DiscordParser$ParserOptions.FORUM_POST_FIRST_MESSAGE;
+            DiscordParser.ParserOptions parserOptions = DiscordParser.ParserOptions.FORUM_POST_FIRST_MESSAGE;
             UtcDateTime editedTimestamp = message.getEditedTimestamp();
-            channelMessage = DiscordParser.parseChannelMessage(context2, messageContent, messageRenderContext, messagePreprocessor, discordParser$ParserOptions, (editedTimestamp != null ? editedTimestamp.getDateTimeMillis() : 0L) > 0);
+            channelMessage = DiscordParser.parseChannelMessage(context2, messageContent, messageRenderContext, messagePreprocessor, parserOptions, (editedTimestamp != null ? editedTimestamp.getDateTimeMillis() : 0L) > 0);
         }
         if (channelMessage != null) {
             this.binding.c.setDraweeSpanStringBuilder(channelMessage);
@@ -231,7 +228,7 @@ public final class ForumBrowserPostView extends ConstraintLayout {
         TypingDots typingDots = this.binding.n;
         m.checkNotNullExpressionValue(typingDots, "binding.typingIndicator");
         typingDots.setVisibility(z2 ? 0 : 8);
-        if (Build$VERSION.SDK_INT >= 23) {
+        if (Build.VERSION.SDK_INT >= 23) {
             View view = this.binding.a;
             m.checkNotNullExpressionValue(view, "binding.root");
             view.setForeground(getCardPressHighlight());
@@ -255,10 +252,10 @@ public final class ForumBrowserPostView extends ConstraintLayout {
                 username = owner.getUsername();
             }
             textView2.setText(username);
-            this.binding.e.setTextColor(GuildMember.Companion.getColor(guildMember, ColorCompat.getThemedColor(getContext(), 2130969008)));
+            this.binding.e.setTextColor(GuildMember.INSTANCE.getColor(guildMember, ColorCompat.getThemedColor(getContext(), R.attr.colorInteractiveNormal)));
             SimpleDraweeView simpleDraweeView2 = this.binding.d;
             m.checkNotNullExpressionValue(simpleDraweeView2, "binding.forumPostOwnerAvatar");
-            SimpleDraweeViewExtensionsKt.setAvatar(simpleDraweeView2, post.getOwner(), false, 2131165299, guildMember);
+            SimpleDraweeViewExtensionsKt.setAvatar(simpleDraweeView2, post.getOwner(), false, R.dimen.avatar_size_small, guildMember);
         }
     }
 
@@ -289,10 +286,10 @@ public final class ForumBrowserPostView extends ConstraintLayout {
         m.checkNotNullExpressionValue(textView, "binding.forumPostOwnerName");
         textView.setAlpha(f);
         if (readState.getHasUnread()) {
-            this.binding.f2109b.setTextColor(ColorCompat.getThemedColor(getContext(), 2130968989));
-            this.binding.c.setTextColor(ColorCompat.getThemedColor(getContext(), 2130968990));
+            this.binding.f2109b.setTextColor(ColorCompat.getThemedColor(getContext(), R.attr.colorHeaderPrimary));
+            this.binding.c.setTextColor(ColorCompat.getThemedColor(getContext(), R.attr.colorHeaderSecondary));
         } else {
-            int themedColor = ColorCompat.getThemedColor(getContext(), 2130969978);
+            int themedColor = ColorCompat.getThemedColor(getContext(), R.attr.primary_300);
             this.binding.f2109b.setTextColor(themedColor);
             this.binding.c.setTextColor(themedColor);
         }
@@ -316,11 +313,11 @@ public final class ForumBrowserPostView extends ConstraintLayout {
         int iCoerceAtMost = f.coerceAtMost(typingUsers.size(), 3);
         TypingDots typingDots = this.binding.n;
         m.checkNotNullExpressionValue(typingDots, "binding.typingIndicator");
-        ViewGroup$LayoutParams layoutParams = typingDots.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = typingDots.getLayoutParams();
         Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.MarginLayoutParams");
-        ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams = (ViewGroup$MarginLayoutParams) layoutParams;
-        viewGroup$MarginLayoutParams.setMarginStart(((this.avatarSizePx - this.overlapAmountPx) * iCoerceAtMost) - DimenUtils.dpToPixels(8));
-        typingDots.setLayoutParams(viewGroup$MarginLayoutParams);
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
+        marginLayoutParams.setMarginStart(((this.avatarSizePx - this.overlapAmountPx) * iCoerceAtMost) - DimenUtils.dpToPixels(8));
+        typingDots.setLayoutParams(marginLayoutParams);
     }
 
     private final Drawable getCardPressHighlight() {
@@ -339,57 +336,57 @@ public final class ForumBrowserPostView extends ConstraintLayout {
     public ForumBrowserPostView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(R$layout.forum_browser_post_view, this);
-        int i2 = R$id.footer_barrier;
-        Barrier barrier = (Barrier) findViewById(R$id.footer_barrier);
+        LayoutInflater.from(context).inflate(R.layout.forum_browser_post_view, this);
+        int i2 = R.id.footer_barrier;
+        Barrier barrier = (Barrier) findViewById(R.id.footer_barrier);
         if (barrier != null) {
-            i2 = R$id.form_post_title;
-            TextView textView = (TextView) findViewById(R$id.form_post_title);
+            i2 = R.id.form_post_title;
+            TextView textView = (TextView) findViewById(R.id.form_post_title);
             if (textView != null) {
-                i2 = R$id.forum_post_desc_text;
-                SimpleDraweeSpanTextView simpleDraweeSpanTextView = (SimpleDraweeSpanTextView) findViewById(R$id.forum_post_desc_text);
+                i2 = R.id.forum_post_desc_text;
+                SimpleDraweeSpanTextView simpleDraweeSpanTextView = (SimpleDraweeSpanTextView) findViewById(R.id.forum_post_desc_text);
                 if (simpleDraweeSpanTextView != null) {
-                    i2 = R$id.forum_post_owner_avatar;
-                    SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R$id.forum_post_owner_avatar);
+                    i2 = R.id.forum_post_owner_avatar;
+                    SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R.id.forum_post_owner_avatar);
                     if (simpleDraweeView != null) {
-                        i2 = R$id.forum_post_owner_name;
-                        TextView textView2 = (TextView) findViewById(R$id.forum_post_owner_name);
+                        i2 = R.id.forum_post_owner_name;
+                        TextView textView2 = (TextView) findViewById(R.id.forum_post_owner_name);
                         if (textView2 != null) {
-                            i2 = R$id.forum_post_tag;
-                            ForumPostTagView forumPostTagView = (ForumPostTagView) findViewById(R$id.forum_post_tag);
+                            i2 = R.id.forum_post_tag;
+                            ForumPostTagView forumPostTagView = (ForumPostTagView) findViewById(R.id.forum_post_tag);
                             if (forumPostTagView != null) {
-                                i2 = R$id.header_barrier;
-                                Barrier barrier2 = (Barrier) findViewById(R$id.header_barrier);
+                                i2 = R.id.header_barrier;
+                                Barrier barrier2 = (Barrier) findViewById(R.id.header_barrier);
                                 if (barrier2 != null) {
-                                    i2 = R$id.inline_media_image_preview;
-                                    SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) findViewById(R$id.inline_media_image_preview);
+                                    i2 = R.id.inline_media_image_preview;
+                                    SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) findViewById(R.id.inline_media_image_preview);
                                     if (simpleDraweeView2 != null) {
-                                        i2 = R$id.message_count;
-                                        TextView textView3 = (TextView) findViewById(R$id.message_count);
+                                        i2 = R.id.message_count;
+                                        TextView textView3 = (TextView) findViewById(R.id.message_count);
                                         if (textView3 != null) {
-                                            i2 = R$id.message_count_container;
-                                            LinearLayout linearLayout = (LinearLayout) findViewById(R$id.message_count_container);
+                                            i2 = R.id.message_count_container;
+                                            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.message_count_container);
                                             if (linearLayout != null) {
-                                                i2 = R$id.never_seen_before;
-                                                ImageView imageView = (ImageView) findViewById(R$id.never_seen_before);
+                                                i2 = R.id.never_seen_before;
+                                                ImageView imageView = (ImageView) findViewById(R.id.never_seen_before);
                                                 if (imageView != null) {
-                                                    i2 = R$id.pinned_icon;
-                                                    ImageView imageView2 = (ImageView) findViewById(R$id.pinned_icon);
+                                                    i2 = R.id.pinned_icon;
+                                                    ImageView imageView2 = (ImageView) findViewById(R.id.pinned_icon);
                                                     if (imageView2 != null) {
-                                                        i2 = R$id.reaction;
-                                                        ReactionView reactionView = (ReactionView) findViewById(R$id.reaction);
+                                                        i2 = R.id.reaction;
+                                                        ReactionView reactionView = (ReactionView) findViewById(R.id.reaction);
                                                         if (reactionView != null) {
-                                                            i2 = R$id.timestamp;
-                                                            TextView textView4 = (TextView) findViewById(R$id.timestamp);
+                                                            i2 = R.id.timestamp;
+                                                            TextView textView4 = (TextView) findViewById(R.id.timestamp);
                                                             if (textView4 != null) {
-                                                                i2 = R$id.typing_indicator;
-                                                                TypingDots typingDots = (TypingDots) findViewById(R$id.typing_indicator);
+                                                                i2 = R.id.typing_indicator;
+                                                                TypingDots typingDots = (TypingDots) findViewById(R.id.typing_indicator);
                                                                 if (typingDots != null) {
-                                                                    i2 = R$id.typing_user_summary;
-                                                                    UserSummaryView userSummaryView = (UserSummaryView) findViewById(R$id.typing_user_summary);
+                                                                    i2 = R.id.typing_user_summary;
+                                                                    UserSummaryView userSummaryView = (UserSummaryView) findViewById(R.id.typing_user_summary);
                                                                     if (userSummaryView != null) {
-                                                                        i2 = R$id.unread_message_count;
-                                                                        TextView textView5 = (TextView) findViewById(R$id.unread_message_count);
+                                                                        i2 = R.id.unread_message_count;
+                                                                        TextView textView5 = (TextView) findViewById(R.id.unread_message_count);
                                                                         if (textView5 != null) {
                                                                             ForumBrowserPostViewBinding forumBrowserPostViewBinding = new ForumBrowserPostViewBinding(this, barrier, textView, simpleDraweeSpanTextView, simpleDraweeView, textView2, forumPostTagView, barrier2, simpleDraweeView2, textView3, linearLayout, imageView, imageView2, reactionView, textView4, typingDots, userSummaryView, textView5);
                                                                             m.checkNotNullExpressionValue(forumBrowserPostViewBinding, "ForumBrowserPostViewBind…ater.from(context), this)");

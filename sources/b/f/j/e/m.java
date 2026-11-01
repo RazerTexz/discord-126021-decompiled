@@ -2,15 +2,13 @@ package b.f.j.e;
 
 import android.content.ContentResolver;
 import android.content.Context;
-import android.os.Build$VERSION;
-import androidx.core.util.Pools$SynchronizedPool;
-import b.f.j.c.m$b;
+import android.os.Build;
+import androidx.core.util.Pools;
 import b.f.j.c.r;
 import b.f.j.c.s;
 import b.f.j.c.t;
 import b.f.j.c.v;
 import b.f.j.c.w;
-import b.f.j.c.w$a;
 import b.f.j.c.y;
 import b.f.j.c.z;
 import b.f.j.l.x;
@@ -69,13 +67,13 @@ public class m {
     public final h a() {
         b.f.j.h.b bVarC;
         b.f.j.h.b bVarB;
-        if (Build$VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= 24) {
             Objects.requireNonNull(this.c.getExperiments());
         }
         if (this.o == null) {
             ContentResolver contentResolver = this.c.getContext().getApplicationContext().getContentResolver();
             if (this.n == null) {
-                l$d l_d = this.c.getExperiments().f575b;
+                l.d dVar = this.c.getExperiments().f575b;
                 Context context = this.c.getContext();
                 b.f.d.g.a aVarE = this.c.a().e();
                 if (this.k == null) {
@@ -119,7 +117,7 @@ public class m {
                 a aVar = this.d;
                 Objects.requireNonNull(this.c.getExperiments());
                 int i2 = this.c.getExperiments().g;
-                Objects.requireNonNull((l$c) l_d);
+                Objects.requireNonNull((l.c) dVar);
                 this.n = new p(context, aVarE, bVar, dVarO, zS, zM, false, eVarD, gVarC, sVarD, sVarE, fVarF, fVarI, iVarL, platformBitmapFactoryG, 0, 0, false, i, aVar, false, i2);
             }
             p pVar = this.n;
@@ -185,13 +183,13 @@ public class m {
             b.f.j.c.a aVarG = this.c.g();
             Supplier<MemoryCacheParams> supplierA = this.c.A();
             b.f.d.g.c cVarW = this.c.w();
-            w$a w_aN = this.c.n();
+            w.a aVarN = this.c.n();
             Objects.requireNonNull(this.c.getExperiments());
             Objects.requireNonNull(this.c.getExperiments());
-            m$b<CacheKey> m_bR = this.c.r();
+            b.f.j.c.m.b<CacheKey> bVarR = this.c.r();
             b.f.j.c.k kVar = (b.f.j.c.k) aVarG;
             Objects.requireNonNull(kVar);
-            v vVar = new v(new b.f.j.c.j(kVar), w_aN, supplierA, m_bR, false, false);
+            v vVar = new v(new b.f.j.c.j(kVar), aVarN, supplierA, bVarR, false, false);
             cVarW.a(vVar);
             this.e = vVar;
         }
@@ -254,12 +252,12 @@ public class m {
         if (this.f578s == null) {
             x xVarA = this.c.a();
             Objects.requireNonNull(this.c.getExperiments());
-            if (Build$VERSION.SDK_INT >= 26) {
+            if (Build.VERSION.SDK_INT >= 26) {
                 int iB = xVarA.b();
-                aVar = new b.f.j.n.c(xVarA.a(), iB, new Pools$SynchronizedPool(iB));
+                aVar = new b.f.j.n.c(xVarA.a(), iB, new Pools.SynchronizedPool(iB));
             } else {
                 int iB2 = xVarA.b();
-                aVar = new b.f.j.n.a(xVarA.a(), iB2, new Pools$SynchronizedPool(iB2));
+                aVar = new b.f.j.n.a(xVarA.a(), iB2, new Pools.SynchronizedPool(iB2));
             }
             this.f578s = aVar;
         }

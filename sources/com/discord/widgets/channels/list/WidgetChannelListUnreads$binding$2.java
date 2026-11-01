@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetChannelsListUnreadsBinding;
 import d0.z.d.m;
 import d0.z.d.o;
@@ -30,11 +30,11 @@ public final class WidgetChannelListUnreads$binding$2 extends o implements Funct
     @Override // kotlin.jvm.functions.Function0
     public final WidgetChannelsListUnreadsBinding invoke() {
         View viewInflate = WidgetChannelListUnreads.access$getUnreadsStub$p(this.this$0).inflate();
-        int i = R$id.channels_list_unreads;
-        TextView textView = (TextView) viewInflate.findViewById(R$id.channels_list_unreads);
+        int i = R.id.channels_list_unreads;
+        TextView textView = (TextView) viewInflate.findViewById(R.id.channels_list_unreads);
         if (textView != null) {
-            i = R$id.channels_list_unreads_background;
-            RelativeLayout relativeLayout = (RelativeLayout) viewInflate.findViewById(R$id.channels_list_unreads_background);
+            i = R.id.channels_list_unreads_background;
+            RelativeLayout relativeLayout = (RelativeLayout) viewInflate.findViewById(R.id.channels_list_unreads_background);
             if (relativeLayout != null) {
                 WidgetChannelsListUnreadsBinding widgetChannelsListUnreadsBinding = new WidgetChannelsListUnreadsBinding((FrameLayout) viewInflate, textView, relativeLayout);
                 m.checkNotNullExpressionValue(widgetChannelsListUnreadsBinding, "WidgetChannelsListUnread…nd(unreadsStub.inflate())");

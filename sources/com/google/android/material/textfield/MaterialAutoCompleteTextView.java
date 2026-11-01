@@ -6,19 +6,17 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.View$MeasureSpec;
-import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.accessibility.AccessibilityManager;
+import android.widget.AdapterView;
 import android.widget.Filterable;
 import android.widget.ListAdapter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 import androidx.appcompat.widget.ListPopupWindow;
-import com.google.android.material.R$attr;
-import com.google.android.material.R$style;
-import com.google.android.material.R$styleable;
+import com.google.android.material.R;
 import com.google.android.material.internal.ManufacturerUtils;
 import com.google.android.material.internal.ThemeEnforcement;
 import com.google.android.material.theme.overlay.MaterialThemeOverlay;
@@ -35,6 +33,26 @@ public class MaterialAutoCompleteTextView extends AppCompatAutoCompleteTextView 
 
     @NonNull
     private final Rect tempRect;
+
+    public class a implements AdapterView.OnItemClickListener {
+        public a() {
+        }
+
+        @Override // android.widget.AdapterView.OnItemClickListener
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
+            MaterialAutoCompleteTextView.access$100(MaterialAutoCompleteTextView.this, i < 0 ? MaterialAutoCompleteTextView.access$000(MaterialAutoCompleteTextView.this).getSelectedItem() : MaterialAutoCompleteTextView.this.getAdapter().getItem(i));
+            AdapterView.OnItemClickListener onItemClickListener = MaterialAutoCompleteTextView.this.getOnItemClickListener();
+            if (onItemClickListener != null) {
+                if (view == null || i < 0) {
+                    view = MaterialAutoCompleteTextView.access$000(MaterialAutoCompleteTextView.this).getSelectedView();
+                    i = MaterialAutoCompleteTextView.access$000(MaterialAutoCompleteTextView.this).getSelectedItemPosition();
+                    j = MaterialAutoCompleteTextView.access$000(MaterialAutoCompleteTextView.this).getSelectedItemId();
+                }
+                onItemClickListener.onItemClick(MaterialAutoCompleteTextView.access$000(MaterialAutoCompleteTextView.this).getListView(), view, i, j);
+            }
+            MaterialAutoCompleteTextView.access$000(MaterialAutoCompleteTextView.this).dismiss();
+        }
+    }
 
     public MaterialAutoCompleteTextView(@NonNull Context context) {
         this(context, null);
@@ -72,8 +90,8 @@ public class MaterialAutoCompleteTextView extends AppCompatAutoCompleteTextView 
         if (adapter == null || textInputLayoutFindTextInputLayoutAncestor == null) {
             return 0;
         }
-        int iMakeMeasureSpec = View$MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 0);
-        int iMakeMeasureSpec2 = View$MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 0);
+        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 0);
+        int iMakeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 0);
         int iMin = Math.min(adapter.getCount(), Math.max(0, this.modalListPopup.getSelectedItemPosition()) + 15);
         View view = null;
         int iMax = 0;
@@ -85,7 +103,7 @@ public class MaterialAutoCompleteTextView extends AppCompatAutoCompleteTextView 
             }
             view = adapter.getView(iMax2, view, textInputLayoutFindTextInputLayoutAncestor);
             if (view.getLayoutParams() == null) {
-                view.setLayoutParams(new ViewGroup$LayoutParams(-2, -2));
+                view.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
             }
             view.measure(iMakeMeasureSpec, iMakeMeasureSpec2);
             iMax = Math.max(iMax, view.getMeasuredWidth());
@@ -111,8 +129,8 @@ public class MaterialAutoCompleteTextView extends AppCompatAutoCompleteTextView 
     @Override // android.widget.TextView, android.view.View
     public void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
-        if (View$MeasureSpec.getMode(i) == Integer.MIN_VALUE) {
-            setMeasuredDimension(Math.min(Math.max(getMeasuredWidth(), measureContentWidth()), View$MeasureSpec.getSize(i)), getMeasuredHeight());
+        if (View.MeasureSpec.getMode(i) == Integer.MIN_VALUE) {
+            setMeasuredDimension(Math.min(Math.max(getMeasuredWidth(), measureContentWidth()), View.MeasureSpec.getSize(i)), getMeasuredHeight());
         }
     }
 
@@ -137,15 +155,15 @@ public class MaterialAutoCompleteTextView extends AppCompatAutoCompleteTextView 
     }
 
     public MaterialAutoCompleteTextView(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, R$attr.autoCompleteTextViewStyle);
+        this(context, attributeSet, R.attr.autoCompleteTextViewStyle);
     }
 
     public MaterialAutoCompleteTextView(@NonNull Context context, @Nullable AttributeSet attributeSet, int i) {
         super(MaterialThemeOverlay.wrap(context, attributeSet, i, 0), attributeSet, i);
         this.tempRect = new Rect();
         Context context2 = getContext();
-        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context2, attributeSet, R$styleable.MaterialAutoCompleteTextView, i, R$style.Widget_AppCompat_AutoCompleteTextView, new int[0]);
-        int i2 = R$styleable.MaterialAutoCompleteTextView_android_inputType;
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context2, attributeSet, R.styleable.MaterialAutoCompleteTextView, i, R.style.Widget_AppCompat_AutoCompleteTextView, new int[0]);
+        int i2 = R.styleable.MaterialAutoCompleteTextView_android_inputType;
         if (typedArrayObtainStyledAttributes.hasValue(i2) && typedArrayObtainStyledAttributes.getInt(i2, 0) == 0) {
             setKeyListener(null);
         }
@@ -156,7 +174,7 @@ public class MaterialAutoCompleteTextView extends AppCompatAutoCompleteTextView 
         listPopupWindow.setAnchorView(this);
         listPopupWindow.setInputMethodMode(2);
         listPopupWindow.setAdapter(getAdapter());
-        listPopupWindow.setOnItemClickListener(new MaterialAutoCompleteTextView$a(this));
+        listPopupWindow.setOnItemClickListener(new a());
         typedArrayObtainStyledAttributes.recycle();
     }
 }

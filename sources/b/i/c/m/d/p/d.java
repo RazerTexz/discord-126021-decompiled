@@ -1,10 +1,9 @@
 package b.i.c.m.d.p;
 
-import android.app.ActivityManager$RunningAppProcessInfo;
+import android.app.ActivityManager;
 import b.i.c.m.d.t.e;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 
 /* JADX INFO: compiled from: SessionProtobufHelper.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -75,17 +74,17 @@ public class d {
         return c.d(iA) + c.e(3) + iA + iD4;
     }
 
-    public static int f(e eVar, Thread thread, StackTraceElement[] stackTraceElementArr, Thread[] threadArr, List<StackTraceElement[]> list, int i, a aVar, a aVar2, Map<String, String> map, ActivityManager$RunningAppProcessInfo activityManager$RunningAppProcessInfo, int i2) {
+    public static int f(e eVar, Thread thread, StackTraceElement[] stackTraceElementArr, Thread[] threadArr, List<StackTraceElement[]> list, int i, a aVar, a aVar2, Map<String, String> map, ActivityManager.RunningAppProcessInfo runningAppProcessInfo, int i2) {
         int iE = e(eVar, thread, stackTraceElementArr, threadArr, list, i, aVar, aVar2);
         int iD = c.d(iE) + c.e(1) + iE + 0;
         if (map != null) {
-            for (Map$Entry<String, String> map$Entry : map.entrySet()) {
-                int iB = b(map$Entry.getKey(), map$Entry.getValue());
+            for (Map.Entry<String, String> entry : map.entrySet()) {
+                int iB = b(entry.getKey(), entry.getValue());
                 iD += c.d(iB) + c.e(2) + iB;
             }
         }
-        if (activityManager$RunningAppProcessInfo != null) {
-            iD += c.a(3, activityManager$RunningAppProcessInfo.importance != 100);
+        if (runningAppProcessInfo != null) {
+            iD += c.a(3, runningAppProcessInfo.importance != 100);
         }
         return c.f(4, i2) + iD;
     }

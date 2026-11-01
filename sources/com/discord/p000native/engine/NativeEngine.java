@@ -4,16 +4,71 @@ import android.content.Context;
 import co.discord.media_engine.CameraEnumeratorProvider;
 import co.discord.media_engine.SharedEglBaseContext;
 import d0.z.d.m;
-import org.webrtc.EglBase$Context;
+import org.webrtc.EglBase;
+import org.webrtc.VideoFrame;
 
 /* JADX INFO: compiled from: NativeEngine.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class NativeEngine {
-    public static final NativeEngine$Companion Companion = new NativeEngine$Companion(null);
     public static final int LOGLEVEL_DEBUG = 2;
     public static final int LOGLEVEL_DEFAULT = -1;
     private final int logLevel;
     private final long nativeInstance;
+
+    /* JADX INFO: compiled from: NativeEngine.kt */
+    public interface ConnectToServerCallback {
+        void onConnectToServer(ConnectionInfo info, String error);
+    }
+
+    /* JADX INFO: compiled from: NativeEngine.kt */
+    public interface DeviceChangeCallback {
+        void onChange(AudioInputDeviceDescription[] audioInputDevices, AudioOutputDeviceDescription[] audioOutputDevices, VideoInputDeviceDescription[] videoInputDevices);
+    }
+
+    /* JADX INFO: compiled from: NativeEngine.kt */
+    public interface GetAudioInputDevicesCallback {
+        void onDevices(AudioInputDeviceDescription[] devices);
+    }
+
+    /* JADX INFO: compiled from: NativeEngine.kt */
+    public interface GetAudioOutputDevicesCallback {
+        void onDevices(AudioOutputDeviceDescription[] devices);
+    }
+
+    /* JADX INFO: compiled from: NativeEngine.kt */
+    public interface GetAudioSubsystemCallback {
+        void onAudioSubsystem(String subsystem, String audioLayer);
+    }
+
+    /* JADX INFO: compiled from: NativeEngine.kt */
+    public interface GetRankedRtcRegionsCallback {
+        void onRankedRtcRegions(String[] regions);
+    }
+
+    /* JADX INFO: compiled from: NativeEngine.kt */
+    public interface GetSupportedVideoCodecsCallback {
+        void onSupportedVideoCodecs(String[] codecs);
+    }
+
+    /* JADX INFO: compiled from: NativeEngine.kt */
+    public interface GetVideoInputDevicesCallback {
+        void onDevices(VideoInputDeviceDescription[] devices);
+    }
+
+    /* JADX INFO: compiled from: NativeEngine.kt */
+    public interface OnNoInputCallback {
+        void onNoInput(boolean input);
+    }
+
+    /* JADX INFO: compiled from: NativeEngine.kt */
+    public interface OnVoiceCallback {
+        void onVoice(float level, int speaking);
+    }
+
+    /* JADX INFO: compiled from: NativeEngine.kt */
+    public interface VideoFrameCallback {
+        boolean onFrame(VideoFrame frame);
+    }
 
     static {
         System.loadLibrary("discord");
@@ -27,12 +82,12 @@ public final class NativeEngine {
         CameraEnumeratorProvider.maybeInit(applicationContext);
         Context applicationContext2 = context.getApplicationContext();
         m.checkNotNullExpressionValue(applicationContext2, "context.applicationContext");
-        EglBase$Context eglContext = SharedEglBaseContext.getEglContext();
+        EglBase.Context eglContext = SharedEglBaseContext.getEglContext();
         m.checkNotNullExpressionValue(eglContext, "SharedEglBaseContext.getEglContext()");
         this.nativeInstance = nativeCreateInstance(applicationContext2, eglContext, i);
     }
 
-    public final native NativeConnection createVoiceConnection(long ssrc, String userId, String serverIp, int port, String experimentsJSON, String streamParametersJSON, NativeEngine$ConnectToServerCallback callback);
+    public final native NativeConnection createVoiceConnection(long ssrc, String userId, String serverIp, int port, String experimentsJSON, String streamParametersJSON, ConnectToServerCallback callback);
 
     public final void dispose() {
         nativeDestroyInstance();
@@ -40,21 +95,21 @@ public final class NativeEngine {
 
     public final native void enableBuiltInAEC(boolean enable);
 
-    public final native void getAudioSubsystem(NativeEngine$GetAudioSubsystemCallback callback);
+    public final native void getAudioSubsystem(GetAudioSubsystemCallback callback);
 
-    public final native void getInputDevices(NativeEngine$GetAudioInputDevicesCallback callback);
+    public final native void getInputDevices(GetAudioInputDevicesCallback callback);
 
-    public final native void getOutputDevices(NativeEngine$GetAudioOutputDevicesCallback callback);
+    public final native void getOutputDevices(GetAudioOutputDevicesCallback callback);
 
-    public final native void getSupportedVideoCodecs(NativeEngine$GetSupportedVideoCodecsCallback callback);
+    public final native void getSupportedVideoCodecs(GetSupportedVideoCodecsCallback callback);
 
-    public final native void getVideoInputDevices(NativeEngine$GetVideoInputDevicesCallback callback);
+    public final native void getVideoInputDevices(GetVideoInputDevicesCallback callback);
 
-    private final native long nativeCreateInstance(Context context, EglBase$Context eglContext, int logLevel);
+    private final native long nativeCreateInstance(Context context, EglBase.Context eglContext, int logLevel);
 
     private final native void nativeDestroyInstance();
 
-    public final native void rankRtcRegions(String regionsWithIpsJSON, NativeEngine$GetRankedRtcRegionsCallback callback);
+    public final native void rankRtcRegions(String regionsWithIpsJSON, GetRankedRtcRegionsCallback callback);
 
     public final native void setAudioInputEnabled(boolean enable);
 
@@ -68,11 +123,11 @@ public final class NativeEngine {
 
     public final native void setNoInputThreshold(float threshold);
 
-    public final native void setOnDeviceChangeCallback(NativeEngine$DeviceChangeCallback callback);
+    public final native void setOnDeviceChangeCallback(DeviceChangeCallback callback);
 
-    public final native void setOnNoInputCallback(NativeEngine$OnNoInputCallback callback);
+    public final native void setOnNoInputCallback(OnNoInputCallback callback);
 
-    public final native void setOnVoiceCallback(NativeEngine$OnVoiceCallback callback);
+    public final native void setOnVoiceCallback(OnVoiceCallback callback);
 
     public final native void setOutputDevice(String deviceIndex);
 
@@ -86,5 +141,5 @@ public final class NativeEngine {
 
     public final native void setVideoInputDeviceIndex(int deviceIndex);
 
-    public final native void setVideoOutputSink(String streamIdentifier, NativeEngine$VideoFrameCallback callback);
+    public final native void setVideoOutputSink(String streamIdentifier, VideoFrameCallback callback);
 }

@@ -5,11 +5,12 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcelable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.collection.ArrayMap;
 import b.d.b.a.a;
+import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -18,7 +19,7 @@ import java.nio.charset.Charset;
 import java.util.Set;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY})
+@RestrictTo({RestrictTo.Scope.LIBRARY})
 public class VersionedParcelStream extends VersionedParcel {
     private static final int TYPE_BOOLEAN = 5;
     private static final int TYPE_BOOLEAN_ARRAY = 6;
@@ -38,7 +39,7 @@ public class VersionedParcelStream extends VersionedParcel {
     public int mCount;
     private DataInputStream mCurrentInput;
     private DataOutputStream mCurrentOutput;
-    private VersionedParcelStream$FieldBuffer mFieldBuffer;
+    private FieldBuffer mFieldBuffer;
     private int mFieldId;
     public int mFieldSize;
     private boolean mIgnoreParcelables;
@@ -46,21 +47,46 @@ public class VersionedParcelStream extends VersionedParcel {
     private final DataOutputStream mMasterOutput;
     private static final Charset UTF_16 = Charset.forName("UTF-16");
 
+    public class FieldBuffer {
+        public final DataOutputStream mDataStream;
+        private final int mFieldId;
+        public final ByteArrayOutputStream mOutput;
+        private final DataOutputStream mTarget;
+
+        public FieldBuffer(int i, DataOutputStream dataOutputStream) {
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            this.mOutput = byteArrayOutputStream;
+            this.mDataStream = new DataOutputStream(byteArrayOutputStream);
+            this.mFieldId = i;
+            this.mTarget = dataOutputStream;
+        }
+
+        public void flushField() throws IOException {
+            this.mDataStream.flush();
+            int size = this.mOutput.size();
+            this.mTarget.writeInt((this.mFieldId << 16) | (size >= 65535 ? 65535 : size));
+            if (size >= 65535) {
+                this.mTarget.writeInt(size);
+            }
+            this.mOutput.writeTo(this.mTarget);
+        }
+    }
+
     public VersionedParcelStream(InputStream inputStream, OutputStream outputStream) {
         this(inputStream, outputStream, new ArrayMap(), new ArrayMap(), new ArrayMap());
     }
 
     @Override // androidx.versionedparcelable.VersionedParcel
     public void closeField() {
-        VersionedParcelStream$FieldBuffer versionedParcelStream$FieldBuffer = this.mFieldBuffer;
-        if (versionedParcelStream$FieldBuffer != null) {
+        FieldBuffer fieldBuffer = this.mFieldBuffer;
+        if (fieldBuffer != null) {
             try {
-                if (versionedParcelStream$FieldBuffer.mOutput.size() != 0) {
+                if (fieldBuffer.mOutput.size() != 0) {
                     this.mFieldBuffer.flushField();
                 }
                 this.mFieldBuffer = null;
             } catch (IOException e) {
-                throw new VersionedParcel$ParcelException(e);
+                throw new VersionedParcel.ParcelException(e);
             }
         }
     }
@@ -80,7 +106,7 @@ public class VersionedParcelStream extends VersionedParcel {
         try {
             return this.mCurrentInput.readBoolean();
         } catch (IOException e) {
-            throw new VersionedParcel$ParcelException(e);
+            throw new VersionedParcel.ParcelException(e);
         }
     }
 
@@ -108,7 +134,7 @@ public class VersionedParcelStream extends VersionedParcel {
             this.mCurrentInput.readFully(bArr);
             return bArr;
         } catch (IOException e) {
-            throw new VersionedParcel$ParcelException(e);
+            throw new VersionedParcel.ParcelException(e);
         }
     }
 
@@ -122,7 +148,7 @@ public class VersionedParcelStream extends VersionedParcel {
         try {
             return this.mCurrentInput.readDouble();
         } catch (IOException e) {
-            throw new VersionedParcel$ParcelException(e);
+            throw new VersionedParcel.ParcelException(e);
         }
     }
 
@@ -162,7 +188,7 @@ public class VersionedParcelStream extends VersionedParcel {
         try {
             return this.mCurrentInput.readFloat();
         } catch (IOException e) {
-            throw new VersionedParcel$ParcelException(e);
+            throw new VersionedParcel.ParcelException(e);
         }
     }
 
@@ -171,7 +197,7 @@ public class VersionedParcelStream extends VersionedParcel {
         try {
             return this.mCurrentInput.readInt();
         } catch (IOException e) {
-            throw new VersionedParcel$ParcelException(e);
+            throw new VersionedParcel.ParcelException(e);
         }
     }
 
@@ -180,7 +206,7 @@ public class VersionedParcelStream extends VersionedParcel {
         try {
             return this.mCurrentInput.readLong();
         } catch (IOException e) {
-            throw new VersionedParcel$ParcelException(e);
+            throw new VersionedParcel.ParcelException(e);
         }
     }
 
@@ -252,7 +278,7 @@ public class VersionedParcelStream extends VersionedParcel {
             this.mCurrentInput.readFully(bArr);
             return new String(bArr, UTF_16);
         } catch (IOException e) {
-            throw new VersionedParcel$ParcelException(e);
+            throw new VersionedParcel.ParcelException(e);
         }
     }
 
@@ -264,9 +290,9 @@ public class VersionedParcelStream extends VersionedParcel {
     @Override // androidx.versionedparcelable.VersionedParcel
     public void setOutputField(int i) {
         closeField();
-        VersionedParcelStream$FieldBuffer versionedParcelStream$FieldBuffer = new VersionedParcelStream$FieldBuffer(i, this.mMasterOutput);
-        this.mFieldBuffer = versionedParcelStream$FieldBuffer;
-        this.mCurrentOutput = versionedParcelStream$FieldBuffer.mDataStream;
+        FieldBuffer fieldBuffer = new FieldBuffer(i, this.mMasterOutput);
+        this.mFieldBuffer = fieldBuffer;
+        this.mCurrentOutput = fieldBuffer.mDataStream;
     }
 
     @Override // androidx.versionedparcelable.VersionedParcel
@@ -282,7 +308,7 @@ public class VersionedParcelStream extends VersionedParcel {
         try {
             this.mCurrentOutput.writeBoolean(z2);
         } catch (IOException e) {
-            throw new VersionedParcel$ParcelException(e);
+            throw new VersionedParcel.ParcelException(e);
         }
     }
 
@@ -300,7 +326,7 @@ public class VersionedParcelStream extends VersionedParcel {
                 writeObject(bundle.get(str));
             }
         } catch (IOException e) {
-            throw new VersionedParcel$ParcelException(e);
+            throw new VersionedParcel.ParcelException(e);
         }
     }
 
@@ -314,7 +340,7 @@ public class VersionedParcelStream extends VersionedParcel {
                 this.mCurrentOutput.writeInt(-1);
             }
         } catch (IOException e) {
-            throw new VersionedParcel$ParcelException(e);
+            throw new VersionedParcel.ParcelException(e);
         }
     }
 
@@ -330,7 +356,7 @@ public class VersionedParcelStream extends VersionedParcel {
         try {
             this.mCurrentOutput.writeDouble(d);
         } catch (IOException e) {
-            throw new VersionedParcel$ParcelException(e);
+            throw new VersionedParcel.ParcelException(e);
         }
     }
 
@@ -339,7 +365,7 @@ public class VersionedParcelStream extends VersionedParcel {
         try {
             this.mCurrentOutput.writeFloat(f);
         } catch (IOException e) {
-            throw new VersionedParcel$ParcelException(e);
+            throw new VersionedParcel.ParcelException(e);
         }
     }
 
@@ -348,7 +374,7 @@ public class VersionedParcelStream extends VersionedParcel {
         try {
             this.mCurrentOutput.writeInt(i);
         } catch (IOException e) {
-            throw new VersionedParcel$ParcelException(e);
+            throw new VersionedParcel.ParcelException(e);
         }
     }
 
@@ -357,7 +383,7 @@ public class VersionedParcelStream extends VersionedParcel {
         try {
             this.mCurrentOutput.writeLong(j);
         } catch (IOException e) {
-            throw new VersionedParcel$ParcelException(e);
+            throw new VersionedParcel.ParcelException(e);
         }
     }
 
@@ -450,7 +476,7 @@ public class VersionedParcelStream extends VersionedParcel {
                 this.mCurrentOutput.writeInt(-1);
             }
         } catch (IOException e) {
-            throw new VersionedParcel$ParcelException(e);
+            throw new VersionedParcel.ParcelException(e);
         }
     }
 
@@ -473,12 +499,59 @@ public class VersionedParcelStream extends VersionedParcel {
         this.mCount = 0;
         this.mFieldId = -1;
         this.mFieldSize = -1;
-        DataInputStream dataInputStream = inputStream != null ? new DataInputStream(new VersionedParcelStream$1(this, inputStream)) : null;
+        DataInputStream dataInputStream = inputStream != null ? new DataInputStream(new AnonymousClass1(inputStream)) : null;
         this.mMasterInput = dataInputStream;
         DataOutputStream dataOutputStream = outputStream != null ? new DataOutputStream(outputStream) : null;
         this.mMasterOutput = dataOutputStream;
         this.mCurrentInput = dataInputStream;
         this.mCurrentOutput = dataOutputStream;
+    }
+
+    /* JADX INFO: renamed from: androidx.versionedparcelable.VersionedParcelStream$1, reason: invalid class name */
+    public class AnonymousClass1 extends FilterInputStream {
+        public AnonymousClass1(InputStream inputStream) {
+            super(inputStream);
+        }
+
+        @Override // java.io.FilterInputStream, java.io.InputStream
+        public int read() throws IOException {
+            VersionedParcelStream versionedParcelStream = VersionedParcelStream.this;
+            int i = versionedParcelStream.mFieldSize;
+            if (i != -1 && versionedParcelStream.mCount >= i) {
+                throw new IOException();
+            }
+            int i2 = super.read();
+            VersionedParcelStream.this.mCount++;
+            return i2;
+        }
+
+        @Override // java.io.FilterInputStream, java.io.InputStream
+        public long skip(long j) throws IOException {
+            VersionedParcelStream versionedParcelStream = VersionedParcelStream.this;
+            int i = versionedParcelStream.mFieldSize;
+            if (i != -1 && versionedParcelStream.mCount >= i) {
+                throw new IOException();
+            }
+            long jSkip = super.skip(j);
+            if (jSkip > 0) {
+                VersionedParcelStream.this.mCount += (int) jSkip;
+            }
+            return jSkip;
+        }
+
+        @Override // java.io.FilterInputStream, java.io.InputStream
+        public int read(byte[] bArr, int i, int i2) throws IOException {
+            VersionedParcelStream versionedParcelStream = VersionedParcelStream.this;
+            int i3 = versionedParcelStream.mFieldSize;
+            if (i3 != -1 && versionedParcelStream.mCount >= i3) {
+                throw new IOException();
+            }
+            int i4 = super.read(bArr, i, i2);
+            if (i4 > 0) {
+                VersionedParcelStream.this.mCount += i4;
+            }
+            return i4;
+        }
     }
 
     @Override // androidx.versionedparcelable.VersionedParcel
@@ -491,7 +564,7 @@ public class VersionedParcelStream extends VersionedParcel {
                 this.mCurrentOutput.writeInt(-1);
             }
         } catch (IOException e) {
-            throw new VersionedParcel$ParcelException(e);
+            throw new VersionedParcel.ParcelException(e);
         }
     }
 }

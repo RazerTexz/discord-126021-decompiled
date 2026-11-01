@@ -8,7 +8,6 @@ import com.discord.stores.StoreAccessibility;
 import com.discord.stores.StoreChannels;
 import com.discord.stores.StoreGuilds;
 import com.discord.stores.StoreRequestedStageChannels;
-import com.discord.stores.StoreRequestedStageChannels$StageInstanceState;
 import com.discord.stores.StoreStageChannels;
 import com.discord.stores.StoreStageInstances;
 import com.discord.stores.StoreUser;
@@ -22,7 +21,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetChatListAdapterItemStageInvite.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetChatListAdapterItemStageInvite$Model$Companion$observe$1 extends o implements Function0<WidgetChatListAdapterItemStageInvite$Model> {
+public final class WidgetChatListAdapterItemStageInvite$Model$Companion$observe$1 extends o implements Function0<WidgetChatListAdapterItemStageInvite.Model> {
     public final /* synthetic */ StoreAccessibility $accessibilityStore;
     public final /* synthetic */ StoreChannels $channelStore;
     public final /* synthetic */ StoreGuilds $guildStore;
@@ -46,7 +45,7 @@ public final class WidgetChatListAdapterItemStageInvite$Model$Companion$observe$
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ WidgetChatListAdapterItemStageInvite$Model invoke() {
+    public /* bridge */ /* synthetic */ WidgetChatListAdapterItemStageInvite.Model invoke() {
         return invoke();
     }
 
@@ -55,11 +54,11 @@ public final class WidgetChatListAdapterItemStageInvite$Model$Companion$observe$
     /* JADX WARN: Code duplicated, block: B:41:0x00fa  */
     /* JADX WARN: Code duplicated, block: B:7:0x003c  */
     @Override // kotlin.jvm.functions.Function0
-    public final WidgetChatListAdapterItemStageInvite$Model invoke() {
+    public final WidgetChatListAdapterItemStageInvite.Model invoke() {
         Channel channel;
         StageInstance stageInstance;
         Map<Long, StageRoles> channelRoles;
-        StoreRequestedStageChannels$StageInstanceState storeRequestedStageChannels$StageInstanceState;
+        StoreRequestedStageChannels.StageInstanceState stageInstanceState;
         StageInstance stageInstance2;
         List listAccess$speakersFromLocalStore;
         Integer num;
@@ -94,25 +93,25 @@ public final class WidgetChatListAdapterItemStageInvite$Model$Companion$observe$
             channelRoles = null;
         }
         if (channel3 != null) {
-            storeRequestedStageChannels$StageInstanceState = this.$requestedInstanceStore.getRequestedInstanceStatesByChannel().get(Long.valueOf(channel3.getId()));
+            stageInstanceState = this.$requestedInstanceStore.getRequestedInstanceStatesByChannel().get(Long.valueOf(channel3.getId()));
         } else {
-            storeRequestedStageChannels$StageInstanceState = null;
+            stageInstanceState = null;
         }
         if (channel3 != null) {
             long id4 = channel3.getId();
-            WidgetChatListAdapterItemStageInvite$Model$Companion widgetChatListAdapterItemStageInvite$Model$Companion = WidgetChatListAdapterItemStageInvite$Model.Companion;
+            WidgetChatListAdapterItemStageInvite.Model.Companion companion = WidgetChatListAdapterItemStageInvite.Model.INSTANCE;
             stageInstance2 = stageInstance;
-            listAccess$speakersFromLocalStore = WidgetChatListAdapterItemStageInvite$Model$Companion.access$speakersFromLocalStore(widgetChatListAdapterItemStageInvite$Model$Companion, this.$guildStore, this.$userStore, this.$stageChannelStore, id4, this.$item.getGuildId());
+            listAccess$speakersFromLocalStore = WidgetChatListAdapterItemStageInvite.Model.Companion.access$speakersFromLocalStore(companion, this.$guildStore, this.$userStore, this.$stageChannelStore, id4, this.$item.getGuildId());
             if (listAccess$speakersFromLocalStore == null) {
-                listAccess$speakersFromLocalStore = WidgetChatListAdapterItemStageInvite$Model$Companion.access$speakersFromRequest(widgetChatListAdapterItemStageInvite$Model$Companion, storeRequestedStageChannels$StageInstanceState);
+                listAccess$speakersFromLocalStore = WidgetChatListAdapterItemStageInvite.Model.Companion.access$speakersFromRequest(companion, stageInstanceState);
             }
         } else {
             stageInstance2 = stageInstance;
             listAccess$speakersFromLocalStore = null;
         }
         if (channelRoles == null || listAccess$speakersFromLocalStore == null) {
-            if ((storeRequestedStageChannels$StageInstanceState != null ? storeRequestedStageChannels$StageInstanceState.getStageInstance() : null) != null) {
-                numValueOf = Integer.valueOf(storeRequestedStageChannels$StageInstanceState.getStageInstance().getParticipantCount() - storeRequestedStageChannels$StageInstanceState.getStageInstance().d().size());
+            if ((stageInstanceState != null ? stageInstanceState.getStageInstance() : null) != null) {
+                numValueOf = Integer.valueOf(stageInstanceState.getStageInstance().getParticipantCount() - stageInstanceState.getStageInstance().d().size());
             } else {
                 num = null;
             }
@@ -123,7 +122,7 @@ public final class WidgetChatListAdapterItemStageInvite$Model$Companion$observe$
             } else {
                 listEmptyList = n.emptyList();
             }
-            return new WidgetChatListAdapterItemStageInvite$Model(invite, id2, user, channel3, z2, stageInstance2, listEmptyList, num);
+            return new WidgetChatListAdapterItemStageInvite.Model(invite, id2, user, channel3, z2, stageInstance2, listEmptyList, num);
         }
         numValueOf = Integer.valueOf(channelRoles.size() - listAccess$speakersFromLocalStore.size());
         num = numValueOf;
@@ -134,6 +133,6 @@ public final class WidgetChatListAdapterItemStageInvite$Model$Companion$observe$
         } else {
             listEmptyList = n.emptyList();
         }
-        return new WidgetChatListAdapterItemStageInvite$Model(invite2, id2, user, channel3, z3, stageInstance2, listEmptyList, num);
+        return new WidgetChatListAdapterItemStageInvite.Model(invite2, id2, user, channel3, z3, stageInstance2, listEmptyList, num);
     }
 }

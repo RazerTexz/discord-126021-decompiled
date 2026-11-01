@@ -2,18 +2,22 @@ package com.discord.widgets.settings.account;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.TextView;
+import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppDialog;
 import com.discord.app.AppLog;
 import com.discord.databinding.WidgetDisableDeleteAccountDialogBinding;
 import com.discord.models.user.MeUser;
-import com.discord.restapi.RestAPIParams$DisableAccount;
+import com.discord.restapi.RestAPIParams;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUser;
+import com.discord.utilities.error.Error;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
@@ -21,10 +25,14 @@ import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.google.android.material.textfield.TextInputLayout;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.NoWhenBranchMatchedException;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 import rx.Observable;
 
@@ -32,14 +40,235 @@ import rx.Observable;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetDisableDeleteAccountDialog extends AppDialog {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetDisableDeleteAccountDialog.class, "binding", "getBinding()Lcom/discord/databinding/WidgetDisableDeleteAccountDialogBinding;", 0)};
-    public static final WidgetDisableDeleteAccountDialog$Companion Companion = new WidgetDisableDeleteAccountDialog$Companion(null);
     private static final String EXTRA_MODE = "extra_mode";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onDisableClicked$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
+    public final class AnonymousClass1 extends o implements Function1<Error, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            m.checkNotNullParameter(error, "it");
+            WidgetDisableDeleteAccountDialog.access$getBinding$p(WidgetDisableDeleteAccountDialog.this).e.setIsLoading(false);
+            Error.Response response = error.getResponse();
+            m.checkNotNullExpressionValue(response, "it.response");
+            int code = response.getCode();
+            if (code == 50018) {
+                TextInputLayout textInputLayout = WidgetDisableDeleteAccountDialog.access$getBinding$p(WidgetDisableDeleteAccountDialog.this).g;
+                m.checkNotNullExpressionValue(textInputLayout, "binding.disableDeletePasswordWrap");
+                Error.Response response2 = error.getResponse();
+                m.checkNotNullExpressionValue(response2, "it.response");
+                textInputLayout.setError(response2.getMessage());
+                return;
+            }
+            if (code != 60008) {
+                Context context = WidgetDisableDeleteAccountDialog.this.getContext();
+                Error.Response response3 = error.getResponse();
+                m.checkNotNullExpressionValue(response3, "it.response");
+                b.a.d.m.h(context, response3.getMessage(), 0, null, 12);
+                return;
+            }
+            TextInputLayout textInputLayout2 = WidgetDisableDeleteAccountDialog.access$getBinding$p(WidgetDisableDeleteAccountDialog.this).d;
+            m.checkNotNullExpressionValue(textInputLayout2, "binding.disableDeleteCodeWrap");
+            Error.Response response4 = error.getResponse();
+            m.checkNotNullExpressionValue(response4, "it.response");
+            textInputLayout2.setError(response4.getMessage());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<MeUser, Unit> {
+        public AnonymousClass1(WidgetDisableDeleteAccountDialog widgetDisableDeleteAccountDialog) {
+            super(1, widgetDisableDeleteAccountDialog, WidgetDisableDeleteAccountDialog.class, "configureUI", "configureUI(Lcom/discord/models/user/MeUser;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(MeUser meUser) {
+            invoke2(meUser);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(MeUser meUser) {
+            m.checkNotNullParameter(meUser, "p1");
+            WidgetDisableDeleteAccountDialog.access$configureUI((WidgetDisableDeleteAccountDialog) this.receiver, meUser);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetDisableDeleteAccountDialog.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onDisableClicked$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
+    public final class AnonymousClass2 extends o implements Function1<Void, Unit> {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+            StoreStream.INSTANCE.getAuthentication().logout();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
+    public final class AnonymousClass2 extends o implements Function1<Editable, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            m.checkNotNullParameter(editable, "it");
+            TextInputLayout textInputLayout = WidgetDisableDeleteAccountDialog.access$getBinding$p(WidgetDisableDeleteAccountDialog.this).d;
+            m.checkNotNullExpressionValue(textInputLayout, "binding.disableDeleteCodeWrap");
+            textInputLayout.setError(null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onViewBound$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
+    public final class AnonymousClass3 extends o implements Function1<Editable, Unit> {
+        public AnonymousClass3() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            m.checkNotNullParameter(editable, "it");
+            TextInputLayout textInputLayout = WidgetDisableDeleteAccountDialog.access$getBinding$p(WidgetDisableDeleteAccountDialog.this).g;
+            m.checkNotNullExpressionValue(textInputLayout, "binding.disableDeletePasswordWrap");
+            textInputLayout.setError(null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetDisableDeleteAccountDialog$onViewBound$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
+    public final class AnonymousClass4 implements View.OnClickListener {
+        public final /* synthetic */ Mode $mode;
+
+        public AnonymousClass4(Mode mode) {
+            this.$mode = mode;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetDisableDeleteAccountDialog.access$onDisableClicked(WidgetDisableDeleteAccountDialog.this, this.$mode);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, Mode mode) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            m.checkNotNullParameter(mode, "mode");
+            WidgetDisableDeleteAccountDialog widgetDisableDeleteAccountDialog = new WidgetDisableDeleteAccountDialog();
+            Bundle bundle = new Bundle();
+            bundle.putInt(WidgetDisableDeleteAccountDialog.EXTRA_MODE, mode.ordinal());
+            widgetDisableDeleteAccountDialog.setArguments(bundle);
+            String tag = widgetDisableDeleteAccountDialog.getTag();
+            if (tag == null) {
+                tag = "";
+            }
+            widgetDisableDeleteAccountDialog.show(fragmentManager, tag);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetDisableDeleteAccountDialog.kt */
+    public enum Mode {
+        DISABLE(R.string.disable_account, R.string.disable_account_body, R.string.disable),
+        DELETE(R.string.delete_account, R.string.delete_account_body, R.string.delete);
+
+        private final int bodyStringId;
+        private final int confirmStringId;
+        private final int headerStringId;
+
+        Mode(@StringRes int i, int i2, int i3) {
+            this.headerStringId = i;
+            this.bodyStringId = i2;
+            this.confirmStringId = i3;
+        }
+
+        public final int getBodyStringId() {
+            return this.bodyStringId;
+        }
+
+        public final int getConfirmStringId() {
+            return this.confirmStringId;
+        }
+
+        public final int getHeaderStringId() {
+            return this.headerStringId;
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            Mode.values();
+            int[] iArr = new int[2];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[Mode.DISABLE.ordinal()] = 1;
+            iArr[Mode.DELETE.ordinal()] = 2;
+        }
+    }
+
     public WidgetDisableDeleteAccountDialog() {
-        super(R$layout.widget_disable_delete_account_dialog);
+        super(R.layout.widget_disable_delete_account_dialog);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetDisableDeleteAccountDialog$binding$2.INSTANCE, null, 2, null);
     }
 
@@ -51,8 +280,8 @@ public final class WidgetDisableDeleteAccountDialog extends AppDialog {
         return widgetDisableDeleteAccountDialog.getBinding();
     }
 
-    public static final /* synthetic */ void access$onDisableClicked(WidgetDisableDeleteAccountDialog widgetDisableDeleteAccountDialog, WidgetDisableDeleteAccountDialog$Mode widgetDisableDeleteAccountDialog$Mode) {
-        widgetDisableDeleteAccountDialog.onDisableClicked(widgetDisableDeleteAccountDialog$Mode);
+    public static final /* synthetic */ void access$onDisableClicked(WidgetDisableDeleteAccountDialog widgetDisableDeleteAccountDialog, Mode mode) {
+        widgetDisableDeleteAccountDialog.onDisableClicked(mode);
     }
 
     private final void configureUI(MeUser meUser) {
@@ -65,7 +294,7 @@ public final class WidgetDisableDeleteAccountDialog extends AppDialog {
         return (WidgetDisableDeleteAccountDialogBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final void onDisableClicked(WidgetDisableDeleteAccountDialog$Mode mode) {
+    private final void onDisableClicked(Mode mode) {
         String textOrEmpty;
         Observable<Void> observableDisableAccount;
         getBinding().e.setIsLoading(true);
@@ -80,38 +309,38 @@ public final class WidgetDisableDeleteAccountDialog extends AppDialog {
         }
         TextInputLayout textInputLayout3 = getBinding().g;
         m.checkNotNullExpressionValue(textInputLayout3, "binding.disableDeletePasswordWrap");
-        RestAPIParams$DisableAccount restAPIParams$DisableAccount = new RestAPIParams$DisableAccount(ViewExtensions.getTextOrEmpty(textInputLayout3), textOrEmpty);
+        RestAPIParams.DisableAccount disableAccount = new RestAPIParams.DisableAccount(ViewExtensions.getTextOrEmpty(textInputLayout3), textOrEmpty);
         int iOrdinal = mode.ordinal();
         if (iOrdinal == 0) {
-            observableDisableAccount = RestAPI.Companion.getApi().disableAccount(restAPIParams$DisableAccount);
+            observableDisableAccount = RestAPI.INSTANCE.getApi().disableAccount(disableAccount);
         } else {
             if (iOrdinal != 1) {
                 throw new NoWhenBranchMatchedException();
             }
-            observableDisableAccount = RestAPI.Companion.getApi().deleteAccount(restAPIParams$DisableAccount);
+            observableDisableAccount = RestAPI.INSTANCE.getApi().deleteAccount(disableAccount);
         }
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(observableDisableAccount, false, 1, null), this, null, 2, null), WidgetDisableDeleteAccountDialog.class, (Context) null, (Function1) null, new WidgetDisableDeleteAccountDialog$onDisableClicked$1(this), (Function0) null, (Function0) null, WidgetDisableDeleteAccountDialog$onDisableClicked$2.INSTANCE, 54, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(observableDisableAccount, false, 1, null), this, null, 2, null), WidgetDisableDeleteAccountDialog.class, (Context) null, (Function1) null, new AnonymousClass1(), (Function0) null, (Function0) null, AnonymousClass2.INSTANCE, 54, (Object) null);
     }
 
     @Override // com.discord.app.AppDialog, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(StoreUser.observeMe$default(StoreStream.Companion.getUsers(), false, 1, null), this, null, 2, null), WidgetDisableDeleteAccountDialog.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetDisableDeleteAccountDialog$onResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(StoreUser.observeMe$default(StoreStream.INSTANCE.getUsers(), false, 1, null), this, null, 2, null), WidgetDisableDeleteAccountDialog.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
     }
 
     @Override // com.discord.app.AppDialog
     public void onViewBound(View view) {
-        WidgetDisableDeleteAccountDialog$Mode widgetDisableDeleteAccountDialog$Mode;
+        Mode mode;
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         setCancelable(false);
         Bundle arguments = getArguments();
         if (arguments != null) {
-            widgetDisableDeleteAccountDialog$Mode = WidgetDisableDeleteAccountDialog$Mode.values()[arguments.getInt(EXTRA_MODE)];
+            mode = Mode.values()[arguments.getInt(EXTRA_MODE)];
         } else {
-            widgetDisableDeleteAccountDialog$Mode = null;
+            mode = null;
         }
-        if (widgetDisableDeleteAccountDialog$Mode == null) {
+        if (mode == null) {
             Logger.e$default(AppLog.g, "Disable/Delete Dialog shown with null mode", null, null, 6, null);
             dismiss();
             return;
@@ -119,18 +348,18 @@ public final class WidgetDisableDeleteAccountDialog extends AppDialog {
         getBinding().e.setIsLoading(false);
         TextView textView = getBinding().f;
         m.checkNotNullExpressionValue(textView, "binding.disableDeleteHeader");
-        textView.setText(getString(widgetDisableDeleteAccountDialog$Mode.getHeaderStringId()));
+        textView.setText(getString(mode.getHeaderStringId()));
         TextView textView2 = getBinding().f2366b;
         m.checkNotNullExpressionValue(textView2, "binding.disableDeleteBody");
-        textView2.setText(getString(widgetDisableDeleteAccountDialog$Mode.getBodyStringId()));
-        getBinding().e.setText(getString(widgetDisableDeleteAccountDialog$Mode.getConfirmStringId()));
-        getBinding().c.setOnClickListener(new WidgetDisableDeleteAccountDialog$onViewBound$1(this));
+        textView2.setText(getString(mode.getBodyStringId()));
+        getBinding().e.setText(getString(mode.getConfirmStringId()));
+        getBinding().c.setOnClickListener(new AnonymousClass1());
         TextInputLayout textInputLayout = getBinding().d;
         m.checkNotNullExpressionValue(textInputLayout, "binding.disableDeleteCodeWrap");
-        ViewExtensions.addBindedTextWatcher(textInputLayout, this, new WidgetDisableDeleteAccountDialog$onViewBound$2(this));
+        ViewExtensions.addBindedTextWatcher(textInputLayout, this, new AnonymousClass2());
         TextInputLayout textInputLayout2 = getBinding().g;
         m.checkNotNullExpressionValue(textInputLayout2, "binding.disableDeletePasswordWrap");
-        ViewExtensions.addBindedTextWatcher(textInputLayout2, this, new WidgetDisableDeleteAccountDialog$onViewBound$3(this));
-        getBinding().e.setOnClickListener(new WidgetDisableDeleteAccountDialog$onViewBound$4(this, widgetDisableDeleteAccountDialog$Mode));
+        ViewExtensions.addBindedTextWatcher(textInputLayout2, this, new AnonymousClass3());
+        getBinding().e.setOnClickListener(new AnonymousClass4(mode));
     }
 }

@@ -1,12 +1,18 @@
 package j0.l.a;
 
 import java.util.List;
-import rx.Observable$b;
+import rx.Observable;
 import rx.Subscriber;
 
 /* JADX INFO: compiled from: OperatorToObservableList.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class n2<T> implements Observable$b<List<T>, T> {
+public final class n2<T> implements Observable.b<List<T>, T> {
+
+    /* JADX INFO: compiled from: OperatorToObservableList.java */
+    public final class a {
+        public static final n2<Object> a = new n2<>();
+    }
+
     @Override // j0.k.b
     public Object call(Object obj) {
         Subscriber subscriber = (Subscriber) obj;

@@ -1,17 +1,19 @@
 package d0.e0.p.d.m0.c.i1;
 
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.e0.p.d.m0.c.b$a;
 import d0.e0.p.d.m0.c.o0;
 import d0.e0.p.d.m0.c.p0;
 import d0.e0.p.d.m0.c.q0;
 import d0.e0.p.d.m0.c.u0;
 import d0.e0.p.d.m0.c.z0;
 import d0.e0.p.d.m0.n.c1;
+import d0.e0.p.d.m0.n.j1;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 /* JADX INFO: compiled from: PropertyDescriptorImpl.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -31,7 +33,7 @@ public class c0 extends n0 implements d0.e0.p.d.m0.c.n0 {
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public Collection<? extends d0.e0.p.d.m0.c.n0> f3259s;
     public final d0.e0.p.d.m0.c.n0 t;
-    public final b$a u;
+    public final d0.e0.p.d.m0.c.b.a u;
     public final boolean v;
     public final boolean w;
 
@@ -45,7 +47,7 @@ public class c0 extends n0 implements d0.e0.p.d.m0.c.n0 {
     public final boolean f3262z;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public c0(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.n0 n0Var, d0.e0.p.d.m0.c.g1.g gVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, boolean z2, d0.e0.p.d.m0.g.e eVar, b$a b_a, u0 u0Var, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8) {
+    public c0(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.n0 n0Var, d0.e0.p.d.m0.c.g1.g gVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, boolean z2, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.b.a aVar, u0 u0Var, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8) {
         super(mVar, gVar, eVar, null, z2, u0Var);
         if (mVar == null) {
             a(0);
@@ -67,7 +69,7 @@ public class c0 extends n0 implements d0.e0.p.d.m0.c.n0 {
             a(4);
             throw null;
         }
-        if (b_a == null) {
+        if (aVar == null) {
             a(5);
             throw null;
         }
@@ -79,7 +81,7 @@ public class c0 extends n0 implements d0.e0.p.d.m0.c.n0 {
         this.q = zVar;
         this.r = uVar;
         this.t = n0Var == null ? this : n0Var;
-        this.u = b_a;
+        this.u = aVar;
         this.v = z3;
         this.w = z4;
         this.f3260x = z5;
@@ -310,7 +312,7 @@ public class c0 extends n0 implements d0.e0.p.d.m0.c.n0 {
         return oVar.visitPropertyDescriptor(this, d);
     }
 
-    public c0 b(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, d0.e0.p.d.m0.c.n0 n0Var, b$a b_a, d0.e0.p.d.m0.g.e eVar, u0 u0Var) {
+    public c0 b(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, d0.e0.p.d.m0.c.n0 n0Var, d0.e0.p.d.m0.c.b.a aVar, d0.e0.p.d.m0.g.e eVar, u0 u0Var) {
         if (mVar == null) {
             a(27);
             throw null;
@@ -323,12 +325,12 @@ public class c0 extends n0 implements d0.e0.p.d.m0.c.n0 {
             a(29);
             throw null;
         }
-        if (b_a == null) {
+        if (aVar == null) {
             a(30);
             throw null;
         }
         if (eVar != null) {
-            return new c0(mVar, n0Var, getAnnotations(), zVar, uVar, isVar(), eVar, b_a, u0Var, isLateInit(), isConst(), isExpect(), isActual(), isExternal(), isDelegated());
+            return new c0(mVar, n0Var, getAnnotations(), zVar, uVar, isVar(), eVar, aVar, u0Var, isLateInit(), isConst(), isExpect(), isActual(), isExternal(), isDelegated());
         }
         a(31);
         throw null;
@@ -346,11 +348,11 @@ public class c0 extends n0 implements d0.e0.p.d.m0.c.n0 {
     }
 
     @Override // d0.e0.p.d.m0.c.b
-    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.b copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, b$a b_a, boolean z2) {
-        return copy(mVar, zVar, uVar, b_a, z2);
+    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.b copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, d0.e0.p.d.m0.c.b.a aVar, boolean z2) {
+        return copy(mVar, zVar, uVar, aVar, z2);
     }
 
-    public static c0 create(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.g1.g gVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, boolean z2, d0.e0.p.d.m0.g.e eVar, b$a b_a, u0 u0Var, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8) {
+    public static c0 create(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.g1.g gVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, boolean z2, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.b.a aVar, u0 u0Var, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8) {
         if (mVar == null) {
             a(7);
             throw null;
@@ -371,12 +373,12 @@ public class c0 extends n0 implements d0.e0.p.d.m0.c.n0 {
             a(11);
             throw null;
         }
-        if (b_a == null) {
+        if (aVar == null) {
             a(12);
             throw null;
         }
         if (u0Var != null) {
-            return new c0(mVar, null, gVar, zVar, uVar, z2, eVar, b_a, u0Var, z3, z4, z5, z6, z7, z8);
+            return new c0(mVar, null, gVar, zVar, uVar, z2, eVar, aVar, u0Var, z3, z4, z5, z6, z7, z8);
         }
         a(13);
         throw null;
@@ -422,10 +424,10 @@ public class c0 extends n0 implements d0.e0.p.d.m0.c.n0 {
     }
 
     @Override // d0.e0.p.d.m0.c.b
-    public b$a getKind() {
-        b$a b_a = this.u;
-        if (b_a != null) {
-            return b_a;
+    public d0.e0.p.d.m0.c.b.a getKind() {
+        d0.e0.p.d.m0.c.b.a aVar = this.u;
+        if (aVar != null) {
+            return aVar;
         }
         a(34);
         throw null;
@@ -533,8 +535,8 @@ public class c0 extends n0 implements d0.e0.p.d.m0.c.n0 {
         return this.G;
     }
 
-    public c0$a newCopyBuilder() {
-        return new c0$a(this);
+    public a newCopyBuilder() {
+        return new a();
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -582,8 +584,8 @@ public class c0 extends n0 implements d0.e0.p.d.m0.c.n0 {
     }
 
     @Override // d0.e0.p.d.m0.c.b
-    public d0.e0.p.d.m0.c.n0 copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, b$a b_a, boolean z2) {
-        d0.e0.p.d.m0.c.n0 n0VarBuild = newCopyBuilder().setOwner(mVar).setOriginal(null).setModality(zVar).setVisibility(uVar).setKind(b_a).setCopyOverrides(z2).build();
+    public d0.e0.p.d.m0.c.n0 copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, d0.e0.p.d.m0.c.b.a aVar, boolean z2) {
+        d0.e0.p.d.m0.c.n0 n0VarBuild = newCopyBuilder().setOwner(mVar).setOriginal(null).setModality(zVar).setVisibility(uVar).setKind(aVar).setCopyOverrides(z2).build();
         if (n0VarBuild != null) {
             return n0VarBuild;
         }
@@ -625,6 +627,320 @@ public class c0 extends n0 implements d0.e0.p.d.m0.c.n0 {
     @Override // d0.e0.p.d.m0.c.i1.l, d0.e0.p.d.m0.c.i1.k, d0.e0.p.d.m0.c.m
     public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.p getOriginal() {
         return getOriginal();
+    }
+
+    /* JADX INFO: compiled from: PropertyDescriptorImpl.java */
+    public class a {
+        public d0.e0.p.d.m0.c.m a;
+        public d0.e0.p.d.m0.c.u c;
+        public d0.e0.p.d.m0.c.b.a e;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public d0.e0.p.d.m0.c.z f3263b;
+        public q0 h;
+        public d0.e0.p.d.m0.g.e i;
+        public d0.e0.p.d.m0.n.c0 j;
+        public d0.e0.p.d.m0.c.n0 d = null;
+        public d0.e0.p.d.m0.n.z0 f = d0.e0.p.d.m0.n.z0.a;
+        public boolean g = true;
+
+        public a() {
+            this.a = c0.this.getContainingDeclaration();
+            this.f3263b = c0.this.getModality();
+            this.c = c0.this.getVisibility();
+            this.e = c0.this.getKind();
+            this.h = c0.this.B;
+            this.i = c0.this.getName();
+            this.j = c0.this.getType();
+        }
+
+        public static /* synthetic */ void a(int i) {
+            String str = (i == 1 || i == 2 || i == 3 || i == 5 || i == 7 || i == 9 || i == 11 || i == 19 || i == 13 || i == 14 || i == 16 || i == 17) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+            Object[] objArr = new Object[(i == 1 || i == 2 || i == 3 || i == 5 || i == 7 || i == 9 || i == 11 || i == 19 || i == 13 || i == 14 || i == 16 || i == 17) ? 2 : 3];
+            switch (i) {
+                case 1:
+                case 2:
+                case 3:
+                case 5:
+                case 7:
+                case 9:
+                case 11:
+                case 13:
+                case 14:
+                case 16:
+                case 17:
+                case 19:
+                    objArr[0] = "kotlin/reflect/jvm/internal/impl/descriptors/impl/PropertyDescriptorImpl$CopyConfiguration";
+                    break;
+                case 4:
+                    objArr[0] = "type";
+                    break;
+                case 6:
+                    objArr[0] = "modality";
+                    break;
+                case 8:
+                    objArr[0] = "visibility";
+                    break;
+                case 10:
+                    objArr[0] = "kind";
+                    break;
+                case 12:
+                    objArr[0] = "typeParameters";
+                    break;
+                case 15:
+                    objArr[0] = "substitution";
+                    break;
+                case 18:
+                    objArr[0] = ModelAuditLogEntry.CHANGE_KEY_NAME;
+                    break;
+                default:
+                    objArr[0] = "owner";
+                    break;
+            }
+            if (i == 1) {
+                objArr[1] = "setOwner";
+            } else if (i == 2) {
+                objArr[1] = "setOriginal";
+            } else if (i == 3) {
+                objArr[1] = "setPreserveSourceElement";
+            } else if (i == 5) {
+                objArr[1] = "setReturnType";
+            } else if (i == 7) {
+                objArr[1] = "setModality";
+            } else if (i == 9) {
+                objArr[1] = "setVisibility";
+            } else if (i == 11) {
+                objArr[1] = "setKind";
+            } else if (i == 19) {
+                objArr[1] = "setName";
+            } else if (i == 13) {
+                objArr[1] = "setTypeParameters";
+            } else if (i == 14) {
+                objArr[1] = "setDispatchReceiverParameter";
+            } else if (i == 16) {
+                objArr[1] = "setSubstitution";
+            } else if (i != 17) {
+                objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/impl/PropertyDescriptorImpl$CopyConfiguration";
+            } else {
+                objArr[1] = "setCopyOverrides";
+            }
+            switch (i) {
+                case 1:
+                case 2:
+                case 3:
+                case 5:
+                case 7:
+                case 9:
+                case 11:
+                case 13:
+                case 14:
+                case 16:
+                case 17:
+                case 19:
+                    break;
+                case 4:
+                    objArr[2] = "setReturnType";
+                    break;
+                case 6:
+                    objArr[2] = "setModality";
+                    break;
+                case 8:
+                    objArr[2] = "setVisibility";
+                    break;
+                case 10:
+                    objArr[2] = "setKind";
+                    break;
+                case 12:
+                    objArr[2] = "setTypeParameters";
+                    break;
+                case 15:
+                    objArr[2] = "setSubstitution";
+                    break;
+                case 18:
+                    objArr[2] = "setName";
+                    break;
+                default:
+                    objArr[2] = "setOwner";
+                    break;
+            }
+            String str2 = String.format(str, objArr);
+            if (i != 1 && i != 2 && i != 3 && i != 5 && i != 7 && i != 9 && i != 11 && i != 19 && i != 13 && i != 14 && i != 16 && i != 17) {
+                throw new IllegalArgumentException(str2);
+            }
+            throw new IllegalStateException(str2);
+        }
+
+        public d0.e0.p.d.m0.c.n0 build() {
+            q0 q0VarSubstitute;
+            f0 f0Var;
+            d0 d0Var;
+            e0 e0Var;
+            d0.e0.p.d.m0.m.k<d0.e0.p.d.m0.k.v.g<?>> kVar;
+            c0 c0Var = c0.this;
+            Objects.requireNonNull(c0Var);
+            d0.e0.p.d.m0.c.b.a aVar = d0.e0.p.d.m0.c.b.a.FAKE_OVERRIDE;
+            d0.e0.p.d.m0.c.m mVar = this.a;
+            d0.e0.p.d.m0.c.z zVar = this.f3263b;
+            d0.e0.p.d.m0.c.u uVar = this.c;
+            d0.e0.p.d.m0.c.n0 n0Var = this.d;
+            d0.e0.p.d.m0.c.b.a aVar2 = this.e;
+            d0.e0.p.d.m0.g.e eVar = this.i;
+            u0 u0Var = u0.a;
+            c0 c0VarB = c0Var.b(mVar, zVar, uVar, n0Var, aVar2, eVar, u0Var);
+            List<z0> typeParameters = c0Var.getTypeParameters();
+            ArrayList arrayList = new ArrayList(typeParameters.size());
+            c1 c1VarSubstituteTypeParameters = d0.e0.p.d.m0.n.o.substituteTypeParameters(typeParameters, this.f, c0VarB, arrayList);
+            d0.e0.p.d.m0.n.c0 c0Var2 = this.j;
+            j1 j1Var = j1.OUT_VARIANCE;
+            d0.e0.p.d.m0.n.c0 c0VarSubstitute = c1VarSubstituteTypeParameters.substitute(c0Var2, j1Var);
+            if (c0VarSubstitute == null) {
+                return null;
+            }
+            q0 q0Var = this.h;
+            if (q0Var != null) {
+                q0VarSubstitute = q0Var.substitute(c1VarSubstituteTypeParameters);
+                if (q0VarSubstitute == null) {
+                    return null;
+                }
+            } else {
+                q0VarSubstitute = null;
+            }
+            q0 q0Var2 = c0Var.C;
+            if (q0Var2 != null) {
+                d0.e0.p.d.m0.n.c0 c0VarSubstitute2 = c1VarSubstituteTypeParameters.substitute(q0Var2.getType(), j1.IN_VARIANCE);
+                if (c0VarSubstitute2 == null) {
+                    return null;
+                }
+                f0Var = new f0(c0VarB, new d0.e0.p.d.m0.k.a0.p.b(c0VarB, c0VarSubstitute2, c0Var.C.getValue()), c0Var.C.getAnnotations());
+            } else {
+                f0Var = null;
+            }
+            c0VarB.setType(c0VarSubstitute, arrayList, q0VarSubstitute, f0Var);
+            d0 d0Var2 = c0Var.E;
+            if (d0Var2 == null) {
+                d0Var = null;
+            } else {
+                d0.e0.p.d.m0.c.g1.g annotations = d0Var2.getAnnotations();
+                d0.e0.p.d.m0.c.z zVar2 = this.f3263b;
+                d0.e0.p.d.m0.c.u visibility = c0Var.E.getVisibility();
+                if (this.e == aVar && d0.e0.p.d.m0.c.t.isPrivate(visibility.normalize())) {
+                    visibility = d0.e0.p.d.m0.c.t.h;
+                }
+                d0.e0.p.d.m0.c.u uVar2 = visibility;
+                boolean zIsDefault = c0Var.E.isDefault();
+                boolean zIsExternal = c0Var.E.isExternal();
+                boolean zIsInline = c0Var.E.isInline();
+                d0.e0.p.d.m0.c.b.a aVar3 = this.e;
+                d0.e0.p.d.m0.c.n0 n0Var2 = this.d;
+                d0Var = new d0(c0VarB, annotations, zVar2, uVar2, zIsDefault, zIsExternal, zIsInline, aVar3, n0Var2 == null ? null : n0Var2.getGetter(), u0Var);
+            }
+            if (d0Var != null) {
+                d0.e0.p.d.m0.n.c0 returnType = c0Var.E.getReturnType();
+                d0Var.setInitialSignatureDescriptor(c0.c(c1VarSubstituteTypeParameters, c0Var.E));
+                d0Var.initialize(returnType != null ? c1VarSubstituteTypeParameters.substitute(returnType, j1Var) : null);
+            }
+            p0 p0Var = c0Var.F;
+            if (p0Var == null) {
+                e0Var = null;
+            } else {
+                d0.e0.p.d.m0.c.g1.g annotations2 = p0Var.getAnnotations();
+                d0.e0.p.d.m0.c.z zVar3 = this.f3263b;
+                d0.e0.p.d.m0.c.u visibility2 = c0Var.F.getVisibility();
+                if (this.e == aVar && d0.e0.p.d.m0.c.t.isPrivate(visibility2.normalize())) {
+                    visibility2 = d0.e0.p.d.m0.c.t.h;
+                }
+                d0.e0.p.d.m0.c.u uVar3 = visibility2;
+                boolean zIsDefault2 = c0Var.F.isDefault();
+                boolean zIsExternal2 = c0Var.F.isExternal();
+                boolean zIsInline2 = c0Var.F.isInline();
+                d0.e0.p.d.m0.c.b.a aVar4 = this.e;
+                d0.e0.p.d.m0.c.n0 n0Var3 = this.d;
+                e0Var = new e0(c0VarB, annotations2, zVar3, uVar3, zIsDefault2, zIsExternal2, zIsInline2, aVar4, n0Var3 == null ? null : n0Var3.getSetter(), u0Var);
+            }
+            if (e0Var != null) {
+                List<d0.e0.p.d.m0.c.c1> substitutedValueParameters = q.getSubstitutedValueParameters(e0Var, c0Var.F.getValueParameters(), c1VarSubstituteTypeParameters, false, false, null);
+                if (substitutedValueParameters == null) {
+                    c0VarB.setSetterProjectedOut(true);
+                    substitutedValueParameters = Collections.singletonList(e0.createSetterParameter(e0Var, d0.e0.p.d.m0.k.x.a.getBuiltIns(this.a).getNothingType(), c0Var.F.getValueParameters().get(0).getAnnotations()));
+                }
+                if (substitutedValueParameters.size() != 1) {
+                    throw new IllegalStateException();
+                }
+                e0Var.setInitialSignatureDescriptor(c0.c(c1VarSubstituteTypeParameters, c0Var.F));
+                e0Var.initialize(substitutedValueParameters.get(0));
+            }
+            d0.e0.p.d.m0.c.v vVar = c0Var.H;
+            p pVar = vVar == null ? null : new p(vVar.getAnnotations(), c0VarB);
+            d0.e0.p.d.m0.c.v vVar2 = c0Var.I;
+            c0VarB.initialize(d0Var, e0Var, pVar, vVar2 != null ? new p(vVar2.getAnnotations(), c0VarB) : null);
+            if (this.g) {
+                d0.e0.p.d.m0.p.j jVarCreate = d0.e0.p.d.m0.p.j.create();
+                Iterator<? extends d0.e0.p.d.m0.c.n0> it = c0Var.getOverriddenDescriptors().iterator();
+                while (it.hasNext()) {
+                    jVarCreate.add(it.next().substitute(c1VarSubstituteTypeParameters));
+                }
+                c0VarB.setOverriddenDescriptors(jVarCreate);
+            }
+            if (c0Var.isConst() && (kVar = c0Var.p) != null) {
+                c0VarB.setCompileTimeInitializer(kVar);
+            }
+            return c0VarB;
+        }
+
+        public a setCopyOverrides(boolean z2) {
+            this.g = z2;
+            return this;
+        }
+
+        public a setKind(d0.e0.p.d.m0.c.b.a aVar) {
+            if (aVar != null) {
+                this.e = aVar;
+                return this;
+            }
+            a(10);
+            throw null;
+        }
+
+        public a setModality(d0.e0.p.d.m0.c.z zVar) {
+            if (zVar != null) {
+                this.f3263b = zVar;
+                return this;
+            }
+            a(6);
+            throw null;
+        }
+
+        public a setOriginal(d0.e0.p.d.m0.c.b bVar) {
+            this.d = (d0.e0.p.d.m0.c.n0) bVar;
+            return this;
+        }
+
+        public a setOwner(d0.e0.p.d.m0.c.m mVar) {
+            if (mVar != null) {
+                this.a = mVar;
+                return this;
+            }
+            a(0);
+            throw null;
+        }
+
+        public a setSubstitution(d0.e0.p.d.m0.n.z0 z0Var) {
+            if (z0Var != null) {
+                this.f = z0Var;
+                return this;
+            }
+            a(15);
+            throw null;
+        }
+
+        public a setVisibility(d0.e0.p.d.m0.c.u uVar) {
+            if (uVar != null) {
+                this.c = uVar;
+                return this;
+            }
+            a(8);
+            throw null;
+        }
     }
 
     @Override // d0.e0.p.d.m0.c.i1.l, d0.e0.p.d.m0.c.i1.k, d0.e0.p.d.m0.c.m

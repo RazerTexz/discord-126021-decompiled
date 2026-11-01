@@ -3,8 +3,6 @@ package com.discord.widgets.chat.input;
 import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView$ItemDecoration;
-import androidx.recyclerview.widget.RecyclerView$State;
 import d0.z.d.m;
 import java.util.Iterator;
 import java.util.List;
@@ -12,7 +10,7 @@ import java.util.ListIterator;
 
 /* JADX INFO: compiled from: ExpressionPickerItemDecoration.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ExpressionPickerItemDecoration extends RecyclerView$ItemDecoration {
+public final class ExpressionPickerItemDecoration extends RecyclerView.ItemDecoration {
     private final int bottomPaddingForLastRow;
     private final List<Integer> headerIndices;
     private final int numOfColumns;
@@ -42,8 +40,8 @@ public final class ExpressionPickerItemDecoration extends RecyclerView$ItemDecor
         return 0;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$ItemDecoration
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView$State state) {
+    @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         m.checkNotNullParameter(outRect, "outRect");
         m.checkNotNullParameter(view, "view");
         m.checkNotNullParameter(parent, "parent");

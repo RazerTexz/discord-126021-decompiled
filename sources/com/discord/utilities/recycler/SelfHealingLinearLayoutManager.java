@@ -2,9 +2,6 @@ package com.discord.utilities.recycler;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView$Adapter;
-import androidx.recyclerview.widget.RecyclerView$Recycler;
-import androidx.recyclerview.widget.RecyclerView$State;
 import b.d.b.a.a;
 import com.discord.app.AppLog;
 import d0.g0.w;
@@ -14,14 +11,27 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: SelfHealingLinearLayoutManager.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class SelfHealingLinearLayoutManager extends LinearLayoutManager {
-    private final RecyclerView$Adapter<?> adapter;
+    private final RecyclerView.Adapter<?> adapter;
     private final RecyclerView recyclerView;
 
-    public /* synthetic */ SelfHealingLinearLayoutManager(RecyclerView recyclerView, RecyclerView$Adapter recyclerView$Adapter, int i, boolean z2, int i2, DefaultConstructorMarker defaultConstructorMarker) {
-        this(recyclerView, recyclerView$Adapter, (i2 & 4) != 0 ? 1 : i, (i2 & 8) != 0 ? false : z2);
+    /* JADX INFO: renamed from: com.discord.utilities.recycler.SelfHealingLinearLayoutManager$resetAdapter$1, reason: invalid class name */
+    /* JADX INFO: compiled from: SelfHealingLinearLayoutManager.kt */
+    public final class AnonymousClass1 implements Runnable {
+        public AnonymousClass1() {
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            SelfHealingLinearLayoutManager.access$getAdapter$p(SelfHealingLinearLayoutManager.this).notifyDataSetChanged();
+            SelfHealingLinearLayoutManager.access$getRecyclerView$p(SelfHealingLinearLayoutManager.this).invalidate();
+        }
     }
 
-    public static final /* synthetic */ RecyclerView$Adapter access$getAdapter$p(SelfHealingLinearLayoutManager selfHealingLinearLayoutManager) {
+    public /* synthetic */ SelfHealingLinearLayoutManager(RecyclerView recyclerView, RecyclerView.Adapter adapter, int i, boolean z2, int i2, DefaultConstructorMarker defaultConstructorMarker) {
+        this(recyclerView, adapter, (i2 & 4) != 0 ? 1 : i, (i2 & 8) != 0 ? false : z2);
+    }
+
+    public static final /* synthetic */ RecyclerView.Adapter access$getAdapter$p(SelfHealingLinearLayoutManager selfHealingLinearLayoutManager) {
         return selfHealingLinearLayoutManager.adapter;
     }
 
@@ -35,8 +45,8 @@ public final class SelfHealingLinearLayoutManager extends LinearLayoutManager {
         AppLog.g.w("Invalid adapter configuration.", new Exception(sbU.toString(), exception));
     }
 
-    @Override // androidx.recyclerview.widget.LinearLayoutManager, androidx.recyclerview.widget.RecyclerView$LayoutManager
-    public void onLayoutChildren(RecyclerView$Recycler recycler, RecyclerView$State state) {
+    @Override // androidx.recyclerview.widget.LinearLayoutManager, androidx.recyclerview.widget.RecyclerView.LayoutManager
+    public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
         String message;
         m.checkNotNullParameter(recycler, "recycler");
         m.checkNotNullParameter(state, "state");
@@ -56,16 +66,16 @@ public final class SelfHealingLinearLayoutManager extends LinearLayoutManager {
     }
 
     private final void resetAdapter(Throwable exception) {
-        this.recyclerView.post(new SelfHealingLinearLayoutManager$resetAdapter$1(this));
+        this.recyclerView.post(new AnonymousClass1());
         logWarning(exception);
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public SelfHealingLinearLayoutManager(RecyclerView recyclerView, RecyclerView$Adapter<?> recyclerView$Adapter, int i, boolean z2) {
+    public SelfHealingLinearLayoutManager(RecyclerView recyclerView, RecyclerView.Adapter<?> adapter, int i, boolean z2) {
         super(recyclerView.getContext(), i, z2);
         m.checkNotNullParameter(recyclerView, "recyclerView");
-        m.checkNotNullParameter(recyclerView$Adapter, "adapter");
+        m.checkNotNullParameter(adapter, "adapter");
         this.recyclerView = recyclerView;
-        this.adapter = recyclerView$Adapter;
+        this.adapter = adapter;
     }
 }

@@ -1,6 +1,6 @@
 package com.facebook.animated.webp;
 
-import android.graphics.Bitmap$Config;
+import android.graphics.Bitmap;
 import b.f.d.d.c;
 import b.f.j.a.a.d;
 import b.f.j.d.b;
@@ -12,7 +12,7 @@ public class WebPImage implements b.f.j.a.a.c, b.f.j.a.b.c {
 
     @c
     private long mNativeContext;
-    public Bitmap$Config a = null;
+    public Bitmap.Config a = null;
 
     @c
     public WebPImage() {
@@ -40,7 +40,7 @@ public class WebPImage implements b.f.j.a.a.c, b.f.j.a.b.c {
     }
 
     @Override // b.f.j.a.a.c
-    public Bitmap$Config d() {
+    public Bitmap.Config d() {
         return this.a;
     }
 

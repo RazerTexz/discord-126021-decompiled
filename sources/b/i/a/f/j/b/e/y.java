@@ -1,7 +1,6 @@
 package b.i.a.f.j.b.e;
 
 import android.os.RemoteException;
-import b.i.a.f.e.h.a$b;
 import com.google.android.gms.tasks.TaskCompletionSource;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -15,7 +14,7 @@ public final class y extends b.i.a.f.e.h.j.p<f, Void> {
     }
 
     @Override // b.i.a.f.e.h.j.p
-    public final /* synthetic */ void c(a$b a_b, TaskCompletionSource<Void> taskCompletionSource) throws RemoteException {
-        this.c.a((f) a_b, i.j(this.d, taskCompletionSource));
+    public final /* synthetic */ void c(b.i.a.f.e.h.a.b bVar, TaskCompletionSource<Void> taskCompletionSource) throws RemoteException {
+        this.c.a((f) bVar, i.j(this.d, taskCompletionSource));
     }
 }

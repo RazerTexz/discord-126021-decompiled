@@ -5,7 +5,6 @@ import f0.x;
 import java.io.IOException;
 import java.util.Objects;
 import okhttp3.Interceptor;
-import okhttp3.Interceptor$Chain;
 import okhttp3.Response;
 import okhttp3.internal.connection.RouteException;
 
@@ -17,9 +16,9 @@ public final class a implements Interceptor {
     public static final a f3612b = new a();
 
     @Override // okhttp3.Interceptor
-    public Response intercept(Interceptor$Chain interceptor$Chain) throws IOException {
-        d0.z.d.m.checkParameterIsNotNull(interceptor$Chain, "chain");
-        f0.e0.h.g gVar = (f0.e0.h.g) interceptor$Chain;
+    public Response intercept(Interceptor.Chain chain) throws IOException {
+        d0.z.d.m.checkParameterIsNotNull(chain, "chain");
+        f0.e0.h.g gVar = (f0.e0.h.g) chain;
         e eVar = gVar.f3628b;
         Objects.requireNonNull(eVar);
         d0.z.d.m.checkParameterIsNotNull(gVar, "chain");

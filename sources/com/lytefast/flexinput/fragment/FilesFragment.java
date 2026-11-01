@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View$OnClickListener;
 import android.view.ViewGroup;
 import androidx.activity.result.ActivityResultCaller;
 import androidx.core.content.ContextCompat;
@@ -14,28 +13,88 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import b.b.a.a.e;
-import b.b.a.b;
-import com.lytefast.flexinput.R$f;
-import com.lytefast.flexinput.R$g;
+import com.lytefast.flexinput.R;
 import com.lytefast.flexinput.adapters.EmptyListAdapter;
 import com.lytefast.flexinput.adapters.FileListAdapter;
-import com.lytefast.flexinput.adapters.FileListAdapter$a;
 import com.lytefast.flexinput.model.Attachment;
 import com.lytefast.flexinput.utils.SelectionAggregator;
 import com.lytefast.flexinput.utils.SelectionCoordinator;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.io.File;
 import java.util.Objects;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: FilesFragment.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class FilesFragment extends Fragment {
-    public static final FilesFragment$Companion Companion = new FilesFragment$Companion(null);
     private static final String REQUIRED_PERMISSION = "android.permission.READ_EXTERNAL_STORAGE";
     private FileListAdapter adapter;
     private RecyclerView recyclerView;
     private SelectionCoordinator<Attachment<Object>, Attachment<File>> selectionCoordinator;
     private SwipeRefreshLayout swipeRefreshLayout;
+
+    /* JADX INFO: compiled from: FilesFragment.kt */
+    public final class a implements View.OnClickListener {
+        public final /* synthetic */ View j;
+        public final /* synthetic */ FilesFragment k;
+        public final /* synthetic */ b.b.a.b l;
+
+        /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.FilesFragment$a$a, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: FilesFragment.kt */
+        public final class C0489a extends o implements Function0<Unit> {
+            public C0489a() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public Unit invoke() {
+                ContentResolver contentResolver;
+                Context context = a.this.j.getContext();
+                if (context != null && (contentResolver = context.getContentResolver()) != null) {
+                    FilesFragment filesFragment = a.this.k;
+                    SelectionCoordinator selectionCoordinatorAccess$getSelectionCoordinator$p = FilesFragment.access$getSelectionCoordinator$p(filesFragment);
+                    m.checkNotNull(selectionCoordinatorAccess$getSelectionCoordinator$p);
+                    FilesFragment.access$setAdapter$p(filesFragment, new FileListAdapter(contentResolver, selectionCoordinatorAccess$getSelectionCoordinator$p));
+                    RecyclerView recyclerView = a.this.k.getRecyclerView();
+                    if (recyclerView != null) {
+                        recyclerView.setAdapter(FilesFragment.access$getAdapter$p(a.this.k));
+                    }
+                    FilesFragment.access$loadDownloadFolder(a.this.k);
+                }
+                return Unit.a;
+            }
+        }
+
+        public a(View view, FilesFragment filesFragment, b.b.a.b bVar) {
+            this.j = view;
+            this.k = filesFragment;
+            this.l = bVar;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            b.b.a.b bVar = this.l;
+            if (bVar != null) {
+                bVar.requestMediaPermissions(new C0489a());
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: FilesFragment.kt */
+    public final /* synthetic */ class b extends k implements Function0<Unit> {
+        public b(FilesFragment filesFragment) {
+            super(0, filesFragment, FilesFragment.class, "loadDownloadFolder", "loadDownloadFolder()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public Unit invoke() {
+            FilesFragment.access$loadDownloadFolder((FilesFragment) this.receiver);
+            return Unit.a;
+        }
+    }
 
     public static final /* synthetic */ FileListAdapter access$getAdapter$p(FilesFragment filesFragment) {
         return filesFragment.adapter;
@@ -89,15 +148,15 @@ public class FilesFragment extends Fragment {
         m.checkNotNullExpressionValue(externalStoragePublicDirectory, "downloadFolder");
         Objects.requireNonNull(fileListAdapter);
         m.checkNotNullParameter(externalStoragePublicDirectory, "root");
-        new FileListAdapter$a(fileListAdapter).execute(externalStoragePublicDirectory);
+        new FileListAdapter.a(fileListAdapter).execute(externalStoragePublicDirectory);
         SwipeRefreshLayout swipeRefreshLayout2 = this.swipeRefreshLayout;
         m.checkNotNull(swipeRefreshLayout2);
         swipeRefreshLayout2.setRefreshing(false);
     }
 
-    public EmptyListAdapter newPermissionsRequestAdapter(View$OnClickListener onClickListener) {
+    public EmptyListAdapter newPermissionsRequestAdapter(View.OnClickListener onClickListener) {
         m.checkNotNullParameter(onClickListener, "onClickListener");
-        return new EmptyListAdapter(R$g.item_permission_storage, R$f.permissions_req_btn, onClickListener);
+        return new EmptyListAdapter(R.g.item_permission_storage, R.f.permissions_req_btn, onClickListener);
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -106,21 +165,21 @@ public class FilesFragment extends Fragment {
         this.selectionCoordinator = new SelectionCoordinator<>(null, null, 3);
         Fragment parentFragment = getParentFragment();
         ActivityResultCaller parentFragment2 = parentFragment != null ? parentFragment.getParentFragment() : null;
-        if (!(parentFragment2 instanceof b)) {
+        if (!(parentFragment2 instanceof b.b.a.b)) {
             parentFragment2 = null;
         }
-        b bVar = (b) parentFragment2;
+        b.b.a.b bVar = (b.b.a.b) parentFragment2;
         if (bVar != null) {
             SelectionAggregator selectionAggregatorB = bVar.b();
             SelectionCoordinator<Attachment<Object>, Attachment<File>> selectionCoordinator = this.selectionCoordinator;
             m.checkNotNull(selectionCoordinator);
             selectionAggregatorB.registerSelectionCoordinator(selectionCoordinator);
         }
-        View viewInflate = inflater.inflate(R$g.fragment_recycler_view, container, false);
+        View viewInflate = inflater.inflate(R.g.fragment_recycler_view, container, false);
         if (viewInflate == null) {
             return null;
         }
-        this.recyclerView = (RecyclerView) viewInflate.findViewById(R$f.list);
+        this.recyclerView = (RecyclerView) viewInflate.findViewById(R.f.list);
         if (hasPermissions(REQUIRED_PERMISSION)) {
             Context context = viewInflate.getContext();
             m.checkNotNullExpressionValue(context, "context");
@@ -137,13 +196,13 @@ public class FilesFragment extends Fragment {
         } else {
             RecyclerView recyclerView2 = this.recyclerView;
             if (recyclerView2 != null) {
-                recyclerView2.setAdapter(newPermissionsRequestAdapter(new FilesFragment$a(viewInflate, this, bVar)));
+                recyclerView2.setAdapter(newPermissionsRequestAdapter(new a(viewInflate, this, bVar)));
             }
         }
-        SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) viewInflate.findViewById(R$f.swipeRefreshLayout);
+        SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) viewInflate.findViewById(R.f.swipeRefreshLayout);
         this.swipeRefreshLayout = swipeRefreshLayout;
         if (swipeRefreshLayout != null) {
-            swipeRefreshLayout.setOnRefreshListener(new e(new FilesFragment$b(this)));
+            swipeRefreshLayout.setOnRefreshListener(new e(new b(this)));
         }
         return viewInflate;
     }

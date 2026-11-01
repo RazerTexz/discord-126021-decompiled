@@ -4,10 +4,14 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
-import android.view.ViewGroup$MarginLayoutParams;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import androidx.core.app.NotificationCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.ViewGroupKt;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
@@ -16,7 +20,7 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import b.a.d.g0;
 import b.a.d.i0;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetTabsHostBinding;
 import com.discord.utilities.analytics.AnalyticsTracker;
@@ -29,17 +33,22 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.discord.widgets.status.WidgetGlobalStatusIndicatorState;
 import com.discord.widgets.user.WidgetUserStatusSheet;
 import com.discord.widgets.user.search.WidgetGlobalSearchDialog;
-import com.discord.widgets.user.search.WidgetGlobalSearchDialog$Companion;
 import d0.z.d.a0;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.reflect.KProperty;
+import kotlin.sequences.Sequence;
 import rx.Observable;
+import rx.functions.Func0;
 
 /* JADX INFO: compiled from: WidgetTabsHost.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -47,7 +56,6 @@ public final class WidgetTabsHost extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetTabsHost.class, "binding", "getBinding()Lcom/discord/databinding/WidgetTabsHostBinding;", 0)};
     private static final long BOTTOM_TABS_DOWNWARD_ANIMATION_DURATION_MS = 200;
     private static final long BOTTOM_TABS_UPWARD_ANIMATION_DURATION_MS = 250;
-    public static final WidgetTabsHost$Companion Companion = new WidgetTabsHost$Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -59,13 +67,277 @@ public final class WidgetTabsHost extends AppFragment {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-    private TabsHostViewModel$ViewState viewState;
+    private TabsHostViewModel.ViewState viewState;
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$configureSystemStatusBar$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetTabsHost.kt */
+    public final class AnonymousClass1 extends o implements Function1<WidgetGlobalStatusIndicatorState.State, Unit> {
+        public final /* synthetic */ int $defaultStatusBarColor;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(int i) {
+            super(1);
+            this.$defaultStatusBarColor = i;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetGlobalStatusIndicatorState.State state) {
+            invoke2(state);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetGlobalStatusIndicatorState.State state) {
+            m.checkNotNullParameter(state, "state");
+            WidgetTabsHost.access$setPanelWindowInsetsListeners(WidgetTabsHost.this, state.isVisible());
+            int color = ColorCompat.getColor(WidgetTabsHost.this, R.color.transparent);
+            if (!state.isVisible()) {
+                color = this.$defaultStatusBarColor;
+            }
+            ColorCompat.setStatusBarColor$default((Fragment) WidgetTabsHost.this, color, false, 4, (Object) null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetTabsHost.kt */
+    public final class AnonymousClass1<R> implements Func0<Boolean> {
+        public AnonymousClass1() {
+        }
+
+        @Override // rx.functions.Func0, java.util.concurrent.Callable
+        public /* bridge */ /* synthetic */ Object call() {
+            return call();
+        }
+
+        @Override // rx.functions.Func0, java.util.concurrent.Callable
+        public final Boolean call() {
+            return Boolean.valueOf(WidgetTabsHost.access$getViewModel$p(WidgetTabsHost.this).handleBackPress());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetTabsHost.kt */
+    public final class AnonymousClass1 extends o implements Function1<TabsHostViewModel.ViewState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(TabsHostViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(TabsHostViewModel.ViewState viewState) {
+            WidgetTabsHost widgetTabsHost = WidgetTabsHost.this;
+            m.checkNotNullExpressionValue(viewState, "viewState");
+            WidgetTabsHost.access$updateViews(widgetTabsHost, viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$setPanelWindowInsetsListeners$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetTabsHost.kt */
+    public final class AnonymousClass1 implements OnApplyWindowInsetsListener {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            Sequence<View> children;
+            m.checkNotNullParameter(view, "v");
+            m.checkNotNullParameter(windowInsetsCompat, "insets");
+            view.setPadding(windowInsetsCompat.getSystemWindowInsetLeft(), view.getPaddingTop(), windowInsetsCompat.getSystemWindowInsetRight(), view.getPaddingBottom());
+            WindowInsetsCompat windowInsetsCompatBuild = new WindowInsetsCompat.Builder().setSystemWindowInsets(Insets.of(0, windowInsetsCompat.getSystemWindowInsetTop(), 0, windowInsetsCompat.getSystemWindowInsetBottom())).build();
+            m.checkNotNullExpressionValue(windowInsetsCompatBuild, "WindowInsetsCompat.Build…        )\n      ).build()");
+            if (!(view instanceof ViewGroup)) {
+                view = null;
+            }
+            ViewGroup viewGroup = (ViewGroup) view;
+            if (viewGroup != null && (children = ViewGroupKt.getChildren(viewGroup)) != null) {
+                Iterator<View> it = children.iterator();
+                while (it.hasNext()) {
+                    ViewCompat.dispatchApplyWindowInsets(it.next(), windowInsetsCompatBuild);
+                }
+            }
+            return windowInsetsCompatBuild;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$updateViews$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetTabsHost.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<NavigationTab, Unit> {
+        public AnonymousClass1(TabsHostViewModel tabsHostViewModel) {
+            super(1, tabsHostViewModel, TabsHostViewModel.class, "selectTab", "selectTab(Lcom/discord/widgets/tabs/NavigationTab;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(NavigationTab navigationTab) {
+            invoke2(navigationTab);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(NavigationTab navigationTab) {
+            m.checkNotNullParameter(navigationTab, "p1");
+            ((TabsHostViewModel) this.receiver).selectTab(navigationTab);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$onViewBoundOrOnResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetTabsHost.kt */
+    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<TabsHostViewModel.Event, Unit> {
+        public AnonymousClass2(WidgetTabsHost widgetTabsHost) {
+            super(1, widgetTabsHost, WidgetTabsHost.class, "handleEvent", "handleEvent(Lcom/discord/widgets/tabs/TabsHostViewModel$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(TabsHostViewModel.Event event) {
+            invoke2(event);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(TabsHostViewModel.Event event) {
+            m.checkNotNullParameter(event, "p1");
+            WidgetTabsHost.access$handleEvent((WidgetTabsHost) this.receiver, event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$setPanelWindowInsetsListeners$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetTabsHost.kt */
+    public final class AnonymousClass2 implements OnApplyWindowInsetsListener {
+        public final /* synthetic */ boolean $isCallStatusVisible;
+
+        public AnonymousClass2(boolean z2) {
+            this.$isCallStatusVisible = z2;
+        }
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            Sequence<View> children;
+            m.checkNotNullParameter(view, "view");
+            m.checkNotNullParameter(windowInsetsCompat, "insets");
+            if (this.$isCallStatusVisible) {
+                view.setPadding(view.getPaddingLeft(), 0, view.getPaddingRight(), view.getPaddingBottom());
+            } else {
+                view.setPadding(view.getPaddingLeft(), windowInsetsCompat.getSystemWindowInsetTop(), view.getPaddingRight(), view.getPaddingBottom());
+                windowInsetsCompat = new WindowInsetsCompat.Builder().setSystemWindowInsets(Insets.of(windowInsetsCompat.getSystemWindowInsetLeft(), 0, windowInsetsCompat.getSystemWindowInsetRight(), windowInsetsCompat.getSystemWindowInsetBottom())).build();
+                m.checkNotNullExpressionValue(windowInsetsCompat, "WindowInsetsCompat.Build…      )\n        ).build()");
+            }
+            if (!(view instanceof ViewGroup)) {
+                view = null;
+            }
+            ViewGroup viewGroup = (ViewGroup) view;
+            if (viewGroup != null && (children = ViewGroupKt.getChildren(viewGroup)) != null) {
+                Iterator<View> it = children.iterator();
+                while (it.hasNext()) {
+                    ViewCompat.dispatchApplyWindowInsets(it.next(), windowInsetsCompat);
+                }
+            }
+            return windowInsetsCompat;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$updateViews$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetTabsHost.kt */
+    public final /* synthetic */ class AnonymousClass2 extends k implements Function0<Unit> {
+        public AnonymousClass2(WidgetTabsHost widgetTabsHost) {
+            super(0, widgetTabsHost, WidgetTabsHost.class, "onSearchClick", "onSearchClick()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetTabsHost.access$onSearchClick((WidgetTabsHost) this.receiver);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$setPanelWindowInsetsListeners$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetTabsHost.kt */
+    public final class AnonymousClass3 implements OnApplyWindowInsetsListener {
+        public final /* synthetic */ boolean $isCallStatusVisible;
+
+        public AnonymousClass3(boolean z2) {
+            this.$isCallStatusVisible = z2;
+        }
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            int systemWindowInsetTop;
+            m.checkNotNullExpressionValue(view, "v");
+            if (this.$isCallStatusVisible) {
+                systemWindowInsetTop = 0;
+            } else {
+                m.checkNotNullExpressionValue(windowInsetsCompat, "insets");
+                systemWindowInsetTop = windowInsetsCompat.getSystemWindowInsetTop();
+            }
+            view.setPadding(view.getPaddingLeft(), systemWindowInsetTop, view.getPaddingRight(), view.getPaddingBottom());
+            return windowInsetsCompat.consumeSystemWindowInsets();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$updateViews$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetTabsHost.kt */
+    public final /* synthetic */ class AnonymousClass3 extends k implements Function0<Unit> {
+        public AnonymousClass3(WidgetTabsHost widgetTabsHost) {
+            super(0, widgetTabsHost, WidgetTabsHost.class, "onSettingsLongPress", "onSettingsLongPress()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetTabsHost.access$onSettingsLongPress((WidgetTabsHost) this.receiver);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$setPanelWindowInsetsListeners$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetTabsHost.kt */
+    public final class AnonymousClass4 implements OnApplyWindowInsetsListener {
+        public static final AnonymousClass4 INSTANCE = new AnonymousClass4();
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            m.checkNotNullExpressionValue(view, "v");
+            m.checkNotNullExpressionValue(windowInsetsCompat, "insets");
+            view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), windowInsetsCompat.getSystemWindowInsetBottom());
+            return windowInsetsCompat.consumeSystemWindowInsets();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.WidgetTabsHost$updateViews$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetTabsHost.kt */
+    public final /* synthetic */ class AnonymousClass4 extends k implements Function0<Unit> {
+        public AnonymousClass4(WidgetTabsHost widgetTabsHost) {
+            super(0, widgetTabsHost, WidgetTabsHost.class, "onSearchClick", "onSearchClick()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetTabsHost.access$onSearchClick((WidgetTabsHost) this.receiver);
+        }
+    }
 
     public WidgetTabsHost() {
-        super(R$layout.widget_tabs_host);
+        super(R.layout.widget_tabs_host);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetTabsHost$binding$2.INSTANCE, null, 2, null);
         this.tabToTabSelectionListenerMap = new LinkedHashMap();
-        this.globalStatusIndicatorStateObserver = WidgetGlobalStatusIndicatorState.Provider.get();
+        this.globalStatusIndicatorStateObserver = WidgetGlobalStatusIndicatorState.INSTANCE.get();
         WidgetTabsHost$viewModel$2 widgetTabsHost$viewModel$2 = WidgetTabsHost$viewModel$2.INSTANCE;
         g0 g0Var = new g0(this);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(TabsHostViewModel.class), new WidgetTabsHost$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetTabsHost$viewModel$2));
@@ -79,8 +351,8 @@ public final class WidgetTabsHost extends AppFragment {
         return widgetTabsHost.getViewModel();
     }
 
-    public static final /* synthetic */ void access$handleEvent(WidgetTabsHost widgetTabsHost, TabsHostViewModel$Event tabsHostViewModel$Event) {
-        widgetTabsHost.handleEvent(tabsHostViewModel$Event);
+    public static final /* synthetic */ void access$handleEvent(WidgetTabsHost widgetTabsHost, TabsHostViewModel.Event event) {
+        widgetTabsHost.handleEvent(event);
     }
 
     public static final /* synthetic */ void access$onSearchClick(WidgetTabsHost widgetTabsHost) {
@@ -95,14 +367,14 @@ public final class WidgetTabsHost extends AppFragment {
         widgetTabsHost.setPanelWindowInsetsListeners(z2);
     }
 
-    public static final /* synthetic */ void access$updateViews(WidgetTabsHost widgetTabsHost, TabsHostViewModel$ViewState tabsHostViewModel$ViewState) {
-        widgetTabsHost.updateViews(tabsHostViewModel$ViewState);
+    public static final /* synthetic */ void access$updateViews(WidgetTabsHost widgetTabsHost, TabsHostViewModel.ViewState viewState) {
+        widgetTabsHost.updateViews(viewState);
     }
 
     private final void configureSystemStatusBar() {
-        int themedColor = ColorCompat.getThemedColor(this, 2130968914);
+        int themedColor = ColorCompat.getThemedColor(this, R.attr.colorBackgroundTertiary);
         ColorCompat.setStatusBarColor$default((Fragment) this, themedColor, false, 4, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(this.globalStatusIndicatorStateObserver.observeState(), this, null, 2, null), WidgetTabsHost.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetTabsHost$configureSystemStatusBar$1(this, themedColor), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(this.globalStatusIndicatorStateObserver.observeState(), this, null, 2, null), WidgetTabsHost.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(themedColor), 62, (Object) null);
     }
 
     private final WidgetTabsHostBinding getBinding() {
@@ -113,14 +385,14 @@ public final class WidgetTabsHost extends AppFragment {
         return (TabsHostViewModel) this.viewModel.getValue();
     }
 
-    private final void handleEvent(TabsHostViewModel$Event event) {
-        if (m.areEqual(event, TabsHostViewModel$Event$TrackFriendsListShown.INSTANCE)) {
+    private final void handleEvent(TabsHostViewModel.Event event) {
+        if (m.areEqual(event, TabsHostViewModel.Event.TrackFriendsListShown.INSTANCE)) {
             handleFriendsListShown();
-        } else if (m.areEqual(event, TabsHostViewModel$Event$DismissSearchDialog.INSTANCE)) {
-            WidgetGlobalSearchDialog$Companion widgetGlobalSearchDialog$Companion = WidgetGlobalSearchDialog.Companion;
+        } else if (m.areEqual(event, TabsHostViewModel.Event.DismissSearchDialog.INSTANCE)) {
+            WidgetGlobalSearchDialog.Companion companion = WidgetGlobalSearchDialog.INSTANCE;
             FragmentManager parentFragmentManager = getParentFragmentManager();
             m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            widgetGlobalSearchDialog$Companion.dismiss(parentFragmentManager);
+            companion.dismiss(parentFragmentManager);
         }
     }
 
@@ -151,7 +423,7 @@ public final class WidgetTabsHost extends AppFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 4008) {
-            GoogleSmartLockManager.Companion.handleResult(resultCode, data);
+            GoogleSmartLockManager.INSTANCE.handleResult(resultCode, data);
         }
     }
 
@@ -165,32 +437,32 @@ public final class WidgetTabsHost extends AppFragment {
     }
 
     private final void onSearchClick() {
-        WidgetGlobalSearchDialog$Companion widgetGlobalSearchDialog$Companion = WidgetGlobalSearchDialog.Companion;
+        WidgetGlobalSearchDialog.Companion companion = WidgetGlobalSearchDialog.INSTANCE;
         FragmentManager parentFragmentManager = getParentFragmentManager();
         m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        WidgetGlobalSearchDialog$Companion.show$default(widgetGlobalSearchDialog$Companion, parentFragmentManager, null, 2, null);
+        WidgetGlobalSearchDialog.Companion.show$default(companion, parentFragmentManager, null, 2, null);
     }
 
     private final void onSettingsLongPress() {
-        WidgetUserStatusSheet.Companion.show(this);
+        WidgetUserStatusSheet.INSTANCE.show(this);
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
-        getBinding().f2664b.addHeightChangedListener(BottomNavViewObserver.Companion.getINSTANCE());
+        getBinding().f2664b.addHeightChangedListener(BottomNavViewObserver.INSTANCE.getINSTANCE());
         setPanelWindowInsetsListeners$default(this, false, 1, null);
-        AppFragment.setOnBackPressed$default(this, new WidgetTabsHost$onViewBound$1(this), 0, 2, null);
+        AppFragment.setOnBackPressed$default(this, new AnonymousClass1(), 0, 2, null);
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        Observable<TabsHostViewModel$ViewState> observableR = getViewModel().observeViewState().r();
+        Observable<TabsHostViewModel.ViewState> observableR = getViewModel().observeViewState().r();
         m.checkNotNullExpressionValue(observableR, "viewModel.observeViewSta…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableR, this, null, 2, null), WidgetTabsHost.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetTabsHost$onViewBoundOrOnResume$1(this), 62, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetTabsHost.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetTabsHost$onViewBoundOrOnResume$2(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableR, this, null, 2, null), WidgetTabsHost.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetTabsHost.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(this), 62, (Object) null);
         configureSystemStatusBar();
     }
 
@@ -198,8 +470,8 @@ public final class WidgetTabsHost extends AppFragment {
         m.checkNotNullParameter(navigationTab, "navigationTab");
         m.checkNotNullParameter(onTabSelectedListener, "onTabSelectedListener");
         this.tabToTabSelectionListenerMap.put(navigationTab, onTabSelectedListener);
-        TabsHostViewModel$ViewState tabsHostViewModel$ViewState = this.viewState;
-        NavigationTab selectedTab = tabsHostViewModel$ViewState != null ? tabsHostViewModel$ViewState.getSelectedTab() : null;
+        TabsHostViewModel.ViewState viewState = this.viewState;
+        NavigationTab selectedTab = viewState != null ? viewState.getSelectedTab() : null;
         if (selectedTab != null) {
             navigateToTab(selectedTab);
         }
@@ -213,36 +485,36 @@ public final class WidgetTabsHost extends AppFragment {
     }
 
     private final void setPanelWindowInsetsListeners(boolean isCallStatusVisible) {
-        ViewCompat.setOnApplyWindowInsetsListener(getBinding().c, WidgetTabsHost$setPanelWindowInsetsListeners$1.INSTANCE);
-        ViewCompat.setOnApplyWindowInsetsListener(getBinding().e, new WidgetTabsHost$setPanelWindowInsetsListeners$2(isCallStatusVisible));
+        ViewCompat.setOnApplyWindowInsetsListener(getBinding().c, AnonymousClass1.INSTANCE);
+        ViewCompat.setOnApplyWindowInsetsListener(getBinding().e, new AnonymousClass2(isCallStatusVisible));
         FrameLayout frameLayout = getBinding().g;
         m.checkNotNullExpressionValue(frameLayout, "binding.widgetTabsHostNavHost");
         ViewExtensions.setForwardingWindowInsetsListener(frameLayout);
-        ViewCompat.setOnApplyWindowInsetsListener(getBinding().h, new WidgetTabsHost$setPanelWindowInsetsListeners$3(isCallStatusVisible));
-        ViewCompat.setOnApplyWindowInsetsListener(getBinding().f2664b, WidgetTabsHost$setPanelWindowInsetsListeners$4.INSTANCE);
+        ViewCompat.setOnApplyWindowInsetsListener(getBinding().h, new AnonymousClass3(isCallStatusVisible));
+        ViewCompat.setOnApplyWindowInsetsListener(getBinding().f2664b, AnonymousClass4.INSTANCE);
         getBinding().c.requestApplyInsets();
     }
 
-    private final void updateNavHostMargins(TabsHostViewModel$ViewState viewState) {
+    private final void updateNavHostMargins(TabsHostViewModel.ViewState viewState) {
         NavigationTab selectedTab = viewState.getSelectedTab();
         FrameLayout frameLayout = getBinding().g;
         m.checkNotNullExpressionValue(frameLayout, "binding.widgetTabsHostNavHost");
-        ViewGroup$LayoutParams layoutParams = frameLayout.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = frameLayout.getLayoutParams();
         Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.MarginLayoutParams");
-        ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams = (ViewGroup$MarginLayoutParams) layoutParams;
-        viewGroup$MarginLayoutParams.setMargins(viewGroup$MarginLayoutParams.leftMargin, viewGroup$MarginLayoutParams.topMargin, viewGroup$MarginLayoutParams.rightMargin, selectedTab == NavigationTab.HOME ? 0 : viewState.getBottomNavHeight());
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
+        marginLayoutParams.setMargins(marginLayoutParams.leftMargin, marginLayoutParams.topMargin, marginLayoutParams.rightMargin, selectedTab == NavigationTab.HOME ? 0 : viewState.getBottomNavHeight());
         FrameLayout frameLayout2 = getBinding().g;
         m.checkNotNullExpressionValue(frameLayout2, "binding.widgetTabsHostNavHost");
-        frameLayout2.setLayoutParams(viewGroup$MarginLayoutParams);
+        frameLayout2.setLayoutParams(marginLayoutParams);
     }
 
-    private final void updateViews(TabsHostViewModel$ViewState viewState) {
+    private final void updateViews(TabsHostViewModel.ViewState viewState) {
         this.viewState = viewState;
         NavigationTab selectedTab = viewState.getSelectedTab();
         boolean showBottomNav = viewState.getShowBottomNav();
         int bottomNavHeight = viewState.getBottomNavHeight();
         navigateToTab(selectedTab);
-        getBinding().f2664b.updateView(selectedTab, new WidgetTabsHost$updateViews$1(getViewModel()), showBottomNav, viewState.getMyUserId(), viewState.getVisibleTabs(), viewState.getNumHomeNotifications(), viewState.getNumFriendsNotifications(), new WidgetTabsHost$updateViews$2(this), new WidgetTabsHost$updateViews$3(this), new WidgetTabsHost$updateViews$4(this));
+        getBinding().f2664b.updateView(selectedTab, new AnonymousClass1(getViewModel()), showBottomNav, viewState.getMyUserId(), viewState.getVisibleTabs(), viewState.getNumHomeNotifications(), viewState.getNumFriendsNotifications(), new AnonymousClass2(this), new AnonymousClass3(this), new AnonymousClass4(this));
         updateNavHostMargins(viewState);
         boolean z2 = !m.areEqual(Boolean.valueOf(showBottomNav), this.previousShowBottomNav);
         boolean z3 = bottomNavHeight != this.previousBottomNavHeight;

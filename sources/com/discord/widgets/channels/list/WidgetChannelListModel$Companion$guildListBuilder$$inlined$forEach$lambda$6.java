@@ -90,17 +90,17 @@ public final class WidgetChannelListModel$Companion$guildListBuilder$$inlined$fo
     @Override // kotlin.jvm.functions.Function0
     public final ChannelListItemStageVoiceChannel invoke() {
         Set<Long> speakerIds;
-        WidgetChannelListModel$Companion$VocalChannelData widgetChannelListModel$Companion$VocalChannelDataInvoke2 = this.$getVocalChannelData$2.invoke2(this.$channel);
-        if (widgetChannelListModel$Companion$VocalChannelDataInvoke2 == null) {
+        WidgetChannelListModel.Companion.VocalChannelData vocalChannelDataInvoke2 = this.$getVocalChannelData$2.invoke2(this.$channel);
+        if (vocalChannelDataInvoke2 == null) {
             return null;
         }
         Channel channel = this.$channel;
-        boolean voiceChannelSelected = widgetChannelListModel$Companion$VocalChannelDataInvoke2.getVoiceChannelSelected();
+        boolean voiceChannelSelected = vocalChannelDataInvoke2.getVoiceChannelSelected();
         Long l = this.$permissions;
-        boolean locked = widgetChannelListModel$Companion$VocalChannelDataInvoke2.getLocked();
-        int numUsersConnected = widgetChannelListModel$Companion$VocalChannelDataInvoke2.getNumUsersConnected();
+        boolean locked = vocalChannelDataInvoke2.getLocked();
+        int numUsersConnected = vocalChannelDataInvoke2.getNumUsersConnected();
         StageInstance stageInstance = (StageInstance) a.d(this.$channel, this.$stageInstances$inlined);
         StageChannel stageChannel = (StageChannel) a.d(this.$channel, this.$stageChannels$inlined);
-        return new ChannelListItemStageVoiceChannel(channel, voiceChannelSelected, l, locked, numUsersConnected, stageInstance, (stageChannel == null || (speakerIds = stageChannel.getSpeakerIds()) == null || !(speakerIds.isEmpty() ^ true)) ? false : true, widgetChannelListModel$Companion$VocalChannelDataInvoke2.isGuildRoleSubscriptionLockedChannel(), widgetChannelListModel$Companion$VocalChannelDataInvoke2.isGuildRoleSubscriptionChannel());
+        return new ChannelListItemStageVoiceChannel(channel, voiceChannelSelected, l, locked, numUsersConnected, stageInstance, (stageChannel == null || (speakerIds = stageChannel.getSpeakerIds()) == null || !(speakerIds.isEmpty() ^ true)) ? false : true, vocalChannelDataInvoke2.isGuildRoleSubscriptionLockedChannel(), vocalChannelDataInvoke2.isGuildRoleSubscriptionChannel());
     }
 }

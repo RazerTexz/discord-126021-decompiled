@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.view.View;
 import android.widget.TextView;
 import b.a.k.b;
+import com.discord.R;
 import com.discord.databinding.WidgetGuildProfileEmojiExtraBinding;
 import d0.z.d.m;
 
@@ -31,6 +32,6 @@ public final class MoreEmojiViewHolder extends BaseEmojiViewHolder {
         m.checkNotNullExpressionValue(view, "itemView");
         Resources resources = view.getResources();
         m.checkNotNullExpressionValue(resources, "itemView.resources");
-        textView.setText(b.i(resources, 2131888993, new Object[]{String.valueOf(((EmojiItem$MoreEmoji) data).getExtraEmojiCount())}, null, 4));
+        textView.setText(b.i(resources, R.string.extra_emoji_count, new Object[]{String.valueOf(((EmojiItem.MoreEmoji) data).getExtraEmojiCount())}, null, 4));
     }
 }

@@ -12,6 +12,71 @@ import kotlin.jvm.functions.Function2;
 /* JADX INFO: compiled from: SparseLongArray.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class SparseLongArrayKt {
+
+    /* JADX INFO: renamed from: androidx.core.util.SparseLongArrayKt$keyIterator$1, reason: invalid class name */
+    /* JADX INFO: compiled from: SparseLongArray.kt */
+    public final class AnonymousClass1 extends c0 {
+        public final /* synthetic */ SparseLongArray $this_keyIterator;
+        private int index;
+
+        public AnonymousClass1(SparseLongArray sparseLongArray) {
+            this.$this_keyIterator = sparseLongArray;
+        }
+
+        public final int getIndex() {
+            return this.index;
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.index < this.$this_keyIterator.size();
+        }
+
+        @Override // d0.t.c0
+        public int nextInt() {
+            SparseLongArray sparseLongArray = this.$this_keyIterator;
+            int i = this.index;
+            this.index = i + 1;
+            return sparseLongArray.keyAt(i);
+        }
+
+        public final void setIndex(int i) {
+            this.index = i;
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.core.util.SparseLongArrayKt$valueIterator$1, reason: invalid class name */
+    /* JADX INFO: compiled from: SparseLongArray.kt */
+    public final class AnonymousClass1 extends d0 {
+        public final /* synthetic */ SparseLongArray $this_valueIterator;
+        private int index;
+
+        public AnonymousClass1(SparseLongArray sparseLongArray) {
+            this.$this_valueIterator = sparseLongArray;
+        }
+
+        public final int getIndex() {
+            return this.index;
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.index < this.$this_valueIterator.size();
+        }
+
+        @Override // d0.t.d0
+        public long nextLong() {
+            SparseLongArray sparseLongArray = this.$this_valueIterator;
+            int i = this.index;
+            this.index = i + 1;
+            return sparseLongArray.valueAt(i);
+        }
+
+        public final void setIndex(int i) {
+            this.index = i;
+        }
+    }
+
     @RequiresApi(18)
     public static final boolean contains(SparseLongArray sparseLongArray, int i) {
         m.checkNotNullParameter(sparseLongArray, "<this>");
@@ -85,7 +150,7 @@ public final class SparseLongArrayKt {
     @RequiresApi(18)
     public static final c0 keyIterator(SparseLongArray sparseLongArray) {
         m.checkNotNullParameter(sparseLongArray, "<this>");
-        return new SparseLongArrayKt$keyIterator$1(sparseLongArray);
+        return new AnonymousClass1(sparseLongArray);
     }
 
     @RequiresApi(18)
@@ -138,6 +203,6 @@ public final class SparseLongArrayKt {
     @RequiresApi(18)
     public static final d0 valueIterator(SparseLongArray sparseLongArray) {
         m.checkNotNullParameter(sparseLongArray, "<this>");
-        return new SparseLongArrayKt$valueIterator$1(sparseLongArray);
+        return new AnonymousClass1(sparseLongArray);
     }
 }

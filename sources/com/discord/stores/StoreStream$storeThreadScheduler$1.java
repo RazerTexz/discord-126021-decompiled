@@ -9,10 +9,10 @@ public final class StoreStream$storeThreadScheduler$1 implements ThreadFactory {
 
     @Override // java.util.concurrent.ThreadFactory
     public final Thread newThread(Runnable runnable) {
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        Thread thread = new Thread(runnable, storeStream$Companion.getSTORE_THREAD_NAME());
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        Thread thread = new Thread(runnable, companion.getSTORE_THREAD_NAME());
         thread.setPriority((int) 8.0d);
-        storeStream$Companion.setSTORE_THREAD_ID(thread.getId());
+        companion.setSTORE_THREAD_ID(thread.getId());
         return thread;
     }
 }

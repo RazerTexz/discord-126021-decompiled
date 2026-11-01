@@ -4,7 +4,7 @@ import rx.Observable;
 
 /* JADX INFO: compiled from: OnSubscribeSingle.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class e0<T> implements j0.h$a<T> {
+public class e0<T> implements j0.h.a<T> {
     public final Observable<T> j;
 
     public e0(Observable<T> observable) {

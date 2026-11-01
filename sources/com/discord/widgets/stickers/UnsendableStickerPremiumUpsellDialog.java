@@ -1,29 +1,81 @@
 package com.discord.widgets.stickers;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppDialog;
 import com.discord.databinding.StickerPremiumUpsellDialogBinding;
+import com.discord.utilities.analytics.AnalyticsTracker;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.widgets.settings.premium.WidgetSettingsPremium;
 import d0.z.d.m;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: UnsendableStickerPremiumUpsellDialog.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class UnsendableStickerPremiumUpsellDialog extends AppDialog {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(UnsendableStickerPremiumUpsellDialog.class, "binding", "getBinding()Lcom/discord/databinding/StickerPremiumUpsellDialogBinding;", 0)};
-    public static final UnsendableStickerPremiumUpsellDialog$Companion Companion = new UnsendableStickerPremiumUpsellDialog$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.stickers.UnsendableStickerPremiumUpsellDialog$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: UnsendableStickerPremiumUpsellDialog.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            UnsendableStickerPremiumUpsellDialog.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.stickers.UnsendableStickerPremiumUpsellDialog$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: UnsendableStickerPremiumUpsellDialog.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetSettingsPremium.Companion companion = WidgetSettingsPremium.INSTANCE;
+            Context contextRequireContext = UnsendableStickerPremiumUpsellDialog.this.requireContext();
+            m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+            WidgetSettingsPremium.Companion.launch$default(companion, contextRequireContext, null, Traits.Location.Section.EXPRESSION_PICKER, 2, null);
+            UnsendableStickerPremiumUpsellDialog.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: compiled from: UnsendableStickerPremiumUpsellDialog.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            new UnsendableStickerPremiumUpsellDialog().show(fragmentManager, UnsendableStickerPremiumUpsellDialog.class.getSimpleName());
+            AnalyticsTracker.premiumUpsellViewed$default(AnalyticsTracker.INSTANCE, AnalyticsTracker.PremiumUpsellType.StickerPickerUpsell, new Traits.Location(null, Traits.Location.Section.STICKER_PICKER_UPSELL, null, null, null, 29, null), null, null, 12, null);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public UnsendableStickerPremiumUpsellDialog() {
-        super(R$layout.sticker_premium_upsell_dialog);
+        super(R.layout.sticker_premium_upsell_dialog);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, UnsendableStickerPremiumUpsellDialog$binding$2.INSTANCE, null, 2, null);
     }
 
@@ -37,8 +89,8 @@ public final class UnsendableStickerPremiumUpsellDialog extends AppDialog {
         super.onViewBound(view);
         TextView textView = getBinding().c;
         m.checkNotNullExpressionValue(textView, "binding.stickerPremiumUpsellDescription");
-        textView.setText(b.k(this, 2131894513, new Object[0], null, 4));
-        getBinding().f2154b.setOnClickListener(new UnsendableStickerPremiumUpsellDialog$onViewBound$1(this));
-        getBinding().d.setOnClickListener(new UnsendableStickerPremiumUpsellDialog$onViewBound$2(this));
+        textView.setText(b.k(this, R.string.premium_upsell_global_stickers_description_mobile, new Object[0], null, 4));
+        getBinding().f2154b.setOnClickListener(new AnonymousClass1());
+        getBinding().d.setOnClickListener(new AnonymousClass2());
     }
 }

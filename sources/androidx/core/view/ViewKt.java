@@ -1,11 +1,9 @@
 package androidx.core.view;
 
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
 import android.graphics.Canvas;
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
-import android.view.ViewGroup$MarginLayoutParams;
+import android.view.ViewGroup;
 import android.view.ViewParent;
 import androidx.annotation.Px;
 import androidx.annotation.RequiresApi;
@@ -22,13 +20,100 @@ import kotlin.sequences.Sequence;
 /* JADX INFO: compiled from: View.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewKt {
+
+    /* JADX INFO: renamed from: androidx.core.view.ViewKt$doOnAttach$1, reason: invalid class name */
+    /* JADX INFO: compiled from: View.kt */
+    public final class AnonymousClass1 implements View.OnAttachStateChangeListener {
+        public final /* synthetic */ Function1<View, Unit> $action;
+        public final /* synthetic */ View $this_doOnAttach;
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public AnonymousClass1(View view, Function1<? super View, Unit> function1) {
+            this.$this_doOnAttach = view;
+            this.$action = function1;
+        }
+
+        @Override // android.view.View.OnAttachStateChangeListener
+        public void onViewAttachedToWindow(View view) {
+            m.checkNotNullParameter(view, "view");
+            this.$this_doOnAttach.removeOnAttachStateChangeListener(this);
+            this.$action.invoke(view);
+        }
+
+        @Override // android.view.View.OnAttachStateChangeListener
+        public void onViewDetachedFromWindow(View view) {
+            m.checkNotNullParameter(view, "view");
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.core.view.ViewKt$doOnDetach$1, reason: invalid class name */
+    /* JADX INFO: compiled from: View.kt */
+    public final class AnonymousClass1 implements View.OnAttachStateChangeListener {
+        public final /* synthetic */ Function1<View, Unit> $action;
+        public final /* synthetic */ View $this_doOnDetach;
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public AnonymousClass1(View view, Function1<? super View, Unit> function1) {
+            this.$this_doOnDetach = view;
+            this.$action = function1;
+        }
+
+        @Override // android.view.View.OnAttachStateChangeListener
+        public void onViewAttachedToWindow(View view) {
+            m.checkNotNullParameter(view, "view");
+        }
+
+        @Override // android.view.View.OnAttachStateChangeListener
+        public void onViewDetachedFromWindow(View view) {
+            m.checkNotNullParameter(view, "view");
+            this.$this_doOnDetach.removeOnAttachStateChangeListener(this);
+            this.$action.invoke(view);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.core.view.ViewKt$doOnNextLayout$1, reason: invalid class name */
+    /* JADX INFO: compiled from: View.kt */
+    public final class AnonymousClass1 implements View.OnLayoutChangeListener {
+        public final /* synthetic */ Function1<View, Unit> $action;
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public AnonymousClass1(Function1<? super View, Unit> function1) {
+            this.$action = function1;
+        }
+
+        @Override // android.view.View.OnLayoutChangeListener
+        public void onLayoutChange(View view, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+            m.checkNotNullParameter(view, "view");
+            view.removeOnLayoutChangeListener(this);
+            this.$action.invoke(view);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.core.view.ViewKt$doOnPreDraw$1, reason: invalid class name */
+    /* JADX INFO: compiled from: View.kt */
+    public final class AnonymousClass1 implements Runnable {
+        public final /* synthetic */ Function1<View, Unit> $action;
+        public final /* synthetic */ View $this_doOnPreDraw;
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public AnonymousClass1(Function1<? super View, Unit> function1, View view) {
+            this.$action = function1;
+            this.$this_doOnPreDraw = view;
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            this.$action.invoke(this.$this_doOnPreDraw);
+        }
+    }
+
     public static final void doOnAttach(View view, Function1<? super View, Unit> function1) {
         m.checkNotNullParameter(view, "<this>");
         m.checkNotNullParameter(function1, "action");
         if (ViewCompat.isAttachedToWindow(view)) {
             function1.invoke(view);
         } else {
-            view.addOnAttachStateChangeListener(new ViewKt$doOnAttach$1(view, function1));
+            view.addOnAttachStateChangeListener(new AnonymousClass1(view, function1));
         }
     }
 
@@ -36,7 +121,7 @@ public final class ViewKt {
         m.checkNotNullParameter(view, "<this>");
         m.checkNotNullParameter(function1, "action");
         if (ViewCompat.isAttachedToWindow(view)) {
-            view.addOnAttachStateChangeListener(new ViewKt$doOnDetach$1(view, function1));
+            view.addOnAttachStateChangeListener(new AnonymousClass1(view, function1));
         } else {
             function1.invoke(view);
         }
@@ -55,31 +140,31 @@ public final class ViewKt {
     public static final void doOnNextLayout(View view, Function1<? super View, Unit> function1) {
         m.checkNotNullParameter(view, "<this>");
         m.checkNotNullParameter(function1, "action");
-        view.addOnLayoutChangeListener(new ViewKt$doOnNextLayout$1(function1));
+        view.addOnLayoutChangeListener(new AnonymousClass1(function1));
     }
 
     public static final OneShotPreDrawListener doOnPreDraw(View view, Function1<? super View, Unit> function1) {
         m.checkNotNullParameter(view, "<this>");
         m.checkNotNullParameter(function1, "action");
-        OneShotPreDrawListener oneShotPreDrawListenerAdd = OneShotPreDrawListener.add(view, new ViewKt$doOnPreDraw$1(function1, view));
+        OneShotPreDrawListener oneShotPreDrawListenerAdd = OneShotPreDrawListener.add(view, new AnonymousClass1(function1, view));
         m.checkNotNullExpressionValue(oneShotPreDrawListenerAdd, "View.doOnPreDraw(\n    crossinline action: (view: View) -> Unit\n): OneShotPreDrawListener = OneShotPreDrawListener.add(this) { action(this) }");
         return oneShotPreDrawListenerAdd;
     }
 
-    public static /* synthetic */ Bitmap drawToBitmap$default(View view, Bitmap$Config bitmap$Config, int i, Object obj) {
+    public static /* synthetic */ Bitmap drawToBitmap$default(View view, Bitmap.Config config, int i, Object obj) {
         if ((i & 1) != 0) {
-            bitmap$Config = Bitmap$Config.ARGB_8888;
+            config = Bitmap.Config.ARGB_8888;
         }
-        return drawToBitmap(view, bitmap$Config);
+        return drawToBitmap(view, config);
     }
 
-    public static final Bitmap drawToBitmap(View view, Bitmap$Config bitmap$Config) {
+    public static final Bitmap drawToBitmap(View view, Bitmap.Config config) {
         m.checkNotNullParameter(view, "<this>");
-        m.checkNotNullParameter(bitmap$Config, "config");
+        m.checkNotNullParameter(config, "config");
         if (!ViewCompat.isLaidOut(view)) {
             throw new IllegalStateException("View needs to be laid out before calling drawToBitmap()");
         }
-        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), bitmap$Config);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), config);
         m.checkNotNullExpressionValue(bitmapCreateBitmap, "createBitmap(width, height, config)");
         Canvas canvas = new Canvas(bitmapCreateBitmap);
         canvas.translate(-view.getScrollX(), -view.getScrollY());
@@ -99,60 +184,60 @@ public final class ViewKt {
 
     public static final int getMarginBottom(View view) {
         m.checkNotNullParameter(view, "<this>");
-        ViewGroup$LayoutParams layoutParams = view.getLayoutParams();
-        ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams = layoutParams instanceof ViewGroup$MarginLayoutParams ? (ViewGroup$MarginLayoutParams) layoutParams : null;
-        if (viewGroup$MarginLayoutParams == null) {
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        ViewGroup.MarginLayoutParams marginLayoutParams = layoutParams instanceof ViewGroup.MarginLayoutParams ? (ViewGroup.MarginLayoutParams) layoutParams : null;
+        if (marginLayoutParams == null) {
             return 0;
         }
-        return viewGroup$MarginLayoutParams.bottomMargin;
+        return marginLayoutParams.bottomMargin;
     }
 
     public static final int getMarginEnd(View view) {
         m.checkNotNullParameter(view, "<this>");
-        ViewGroup$LayoutParams layoutParams = view.getLayoutParams();
-        if (layoutParams instanceof ViewGroup$MarginLayoutParams) {
-            return MarginLayoutParamsCompat.getMarginEnd((ViewGroup$MarginLayoutParams) layoutParams);
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        if (layoutParams instanceof ViewGroup.MarginLayoutParams) {
+            return MarginLayoutParamsCompat.getMarginEnd((ViewGroup.MarginLayoutParams) layoutParams);
         }
         return 0;
     }
 
     public static final int getMarginLeft(View view) {
         m.checkNotNullParameter(view, "<this>");
-        ViewGroup$LayoutParams layoutParams = view.getLayoutParams();
-        ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams = layoutParams instanceof ViewGroup$MarginLayoutParams ? (ViewGroup$MarginLayoutParams) layoutParams : null;
-        if (viewGroup$MarginLayoutParams == null) {
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        ViewGroup.MarginLayoutParams marginLayoutParams = layoutParams instanceof ViewGroup.MarginLayoutParams ? (ViewGroup.MarginLayoutParams) layoutParams : null;
+        if (marginLayoutParams == null) {
             return 0;
         }
-        return viewGroup$MarginLayoutParams.leftMargin;
+        return marginLayoutParams.leftMargin;
     }
 
     public static final int getMarginRight(View view) {
         m.checkNotNullParameter(view, "<this>");
-        ViewGroup$LayoutParams layoutParams = view.getLayoutParams();
-        ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams = layoutParams instanceof ViewGroup$MarginLayoutParams ? (ViewGroup$MarginLayoutParams) layoutParams : null;
-        if (viewGroup$MarginLayoutParams == null) {
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        ViewGroup.MarginLayoutParams marginLayoutParams = layoutParams instanceof ViewGroup.MarginLayoutParams ? (ViewGroup.MarginLayoutParams) layoutParams : null;
+        if (marginLayoutParams == null) {
             return 0;
         }
-        return viewGroup$MarginLayoutParams.rightMargin;
+        return marginLayoutParams.rightMargin;
     }
 
     public static final int getMarginStart(View view) {
         m.checkNotNullParameter(view, "<this>");
-        ViewGroup$LayoutParams layoutParams = view.getLayoutParams();
-        if (layoutParams instanceof ViewGroup$MarginLayoutParams) {
-            return MarginLayoutParamsCompat.getMarginStart((ViewGroup$MarginLayoutParams) layoutParams);
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        if (layoutParams instanceof ViewGroup.MarginLayoutParams) {
+            return MarginLayoutParamsCompat.getMarginStart((ViewGroup.MarginLayoutParams) layoutParams);
         }
         return 0;
     }
 
     public static final int getMarginTop(View view) {
         m.checkNotNullParameter(view, "<this>");
-        ViewGroup$LayoutParams layoutParams = view.getLayoutParams();
-        ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams = layoutParams instanceof ViewGroup$MarginLayoutParams ? (ViewGroup$MarginLayoutParams) layoutParams : null;
-        if (viewGroup$MarginLayoutParams == null) {
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        ViewGroup.MarginLayoutParams marginLayoutParams = layoutParams instanceof ViewGroup.MarginLayoutParams ? (ViewGroup.MarginLayoutParams) layoutParams : null;
+        if (marginLayoutParams == null) {
             return 0;
         }
-        return viewGroup$MarginLayoutParams.topMargin;
+        return marginLayoutParams.topMargin;
     }
 
     public static final boolean isGone(View view) {
@@ -207,19 +292,19 @@ public final class ViewKt {
         view.setVisibility(z2 ? 0 : 8);
     }
 
-    public static final void updateLayoutParams(View view, Function1<? super ViewGroup$LayoutParams, Unit> function1) {
+    public static final void updateLayoutParams(View view, Function1<? super ViewGroup.LayoutParams, Unit> function1) {
         m.checkNotNullParameter(view, "<this>");
         m.checkNotNullParameter(function1, "block");
-        ViewGroup$LayoutParams layoutParams = view.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
         Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.LayoutParams");
         function1.invoke(layoutParams);
         view.setLayoutParams(layoutParams);
     }
 
-    public static final /* synthetic */ <T extends ViewGroup$LayoutParams> void updateLayoutParamsTyped(View view, Function1<? super T, Unit> function1) {
+    public static final /* synthetic */ <T extends ViewGroup.LayoutParams> void updateLayoutParamsTyped(View view, Function1<? super T, Unit> function1) {
         m.checkNotNullParameter(view, "<this>");
         m.checkNotNullParameter(function1, "block");
-        ViewGroup$LayoutParams layoutParams = view.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
         m.reifiedOperationMarker(1, ExifInterface.GPS_DIRECTION_TRUE);
         function1.invoke(layoutParams);
         view.setLayoutParams(layoutParams);

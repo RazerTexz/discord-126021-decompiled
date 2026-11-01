@@ -3,7 +3,6 @@ package b.i.d.q.x;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory;
-import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$a;
 import com.google.gson.internal.bind.TypeAdapterRuntimeTypeWrapper;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
@@ -13,7 +12,7 @@ import java.lang.reflect.Field;
 
 /* JADX INFO: compiled from: ReflectiveTypeAdapterFactory.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class c extends ReflectiveTypeAdapterFactory$a {
+public class c extends ReflectiveTypeAdapterFactory.a {
     public final /* synthetic */ Field d;
     public final /* synthetic */ boolean e;
     public final /* synthetic */ TypeAdapter f;
@@ -32,7 +31,7 @@ public class c extends ReflectiveTypeAdapterFactory$a {
         this.i = z5;
     }
 
-    @Override // com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$a
+    @Override // com.google.gson.internal.bind.ReflectiveTypeAdapterFactory.a
     public void a(JsonReader jsonReader, Object obj) throws IllegalAccessException, IOException {
         Object obj2 = this.f.read(jsonReader);
         if (obj2 == null && this.i) {
@@ -41,12 +40,12 @@ public class c extends ReflectiveTypeAdapterFactory$a {
         this.d.set(obj, obj2);
     }
 
-    @Override // com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$a
+    @Override // com.google.gson.internal.bind.ReflectiveTypeAdapterFactory.a
     public void b(JsonWriter jsonWriter, Object obj) throws IllegalAccessException, IOException {
         (this.e ? this.f : new TypeAdapterRuntimeTypeWrapper(this.g, this.f, this.h.getType())).write(jsonWriter, this.d.get(obj));
     }
 
-    @Override // com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$a
+    @Override // com.google.gson.internal.bind.ReflectiveTypeAdapterFactory.a
     public boolean c(Object obj) throws IllegalAccessException, IOException {
         return this.f3123b && this.d.get(obj) != obj;
     }

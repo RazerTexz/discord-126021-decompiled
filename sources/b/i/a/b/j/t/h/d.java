@@ -1,14 +1,13 @@
 package b.i.a.b.j.t.h;
 
 import android.app.job.JobInfo;
-import android.app.job.JobInfo$Builder;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
 import android.os.PersistableBundle;
 import android.util.Base64;
 import androidx.annotation.RequiresApi;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import com.adjust.sdk.Constants;
 import com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService;
 import java.nio.ByteBuffer;
@@ -69,22 +68,22 @@ public class d implements r {
         }
         long jH0 = this.f787b.h0(iVar);
         f fVar = this.c;
-        JobInfo$Builder jobInfo$Builder = new JobInfo$Builder(value, componentName);
+        JobInfo.Builder builder = new JobInfo.Builder(value, componentName);
         b.i.a.b.d dVarD = iVar.d();
-        jobInfo$Builder.setMinimumLatency(fVar.b(dVarD, jH0, i));
-        Set<f$b> setC = fVar.c().get(dVarD).c();
-        if (setC.contains(f$b.NETWORK_UNMETERED)) {
-            jobInfo$Builder.setRequiredNetworkType(2);
+        builder.setMinimumLatency(fVar.b(dVarD, jH0, i));
+        Set<f.b> setC = fVar.c().get(dVarD).c();
+        if (setC.contains(f.b.NETWORK_UNMETERED)) {
+            builder.setRequiredNetworkType(2);
             z3 = true;
         } else {
             z3 = true;
-            jobInfo$Builder.setRequiredNetworkType(1);
+            builder.setRequiredNetworkType(1);
         }
-        if (setC.contains(f$b.DEVICE_CHARGING)) {
-            jobInfo$Builder.setRequiresCharging(z3);
+        if (setC.contains(f.b.DEVICE_CHARGING)) {
+            builder.setRequiresCharging(z3);
         }
-        if (setC.contains(f$b.DEVICE_IDLE)) {
-            jobInfo$Builder.setRequiresDeviceIdle(z3);
+        if (setC.contains(f.b.DEVICE_IDLE)) {
+            builder.setRequiresDeviceIdle(z3);
         }
         PersistableBundle persistableBundle = new PersistableBundle();
         persistableBundle.putInt("attemptNumber", i);
@@ -92,11 +91,11 @@ public class d implements r {
         persistableBundle.putInt("priority", b.i.a.b.j.w.a.a(iVar.d()));
         if (iVar.c() != null) {
             c = 0;
-            persistableBundle.putString(NotificationCompat$MessagingStyle$Message.KEY_EXTRAS_BUNDLE, Base64.encodeToString(iVar.c(), 0));
+            persistableBundle.putString(NotificationCompat.MessagingStyle.Message.KEY_EXTRAS_BUNDLE, Base64.encodeToString(iVar.c(), 0));
         } else {
             c = 0;
         }
-        jobInfo$Builder.setExtras(persistableBundle);
+        builder.setExtras(persistableBundle);
         Object[] objArr = new Object[5];
         objArr[c] = iVar;
         objArr[1] = Integer.valueOf(value);
@@ -104,6 +103,6 @@ public class d implements r {
         objArr[3] = Long.valueOf(jH0);
         objArr[4] = Integer.valueOf(i);
         b.c.a.a0.d.Y("JobInfoScheduler", "Scheduling upload for context %s with jobId=%d in %dms(Backend next call timestamp %d). Attempt %d", objArr);
-        jobScheduler.schedule(jobInfo$Builder.build());
+        jobScheduler.schedule(builder.build());
     }
 }

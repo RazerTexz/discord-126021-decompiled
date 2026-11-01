@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 import com.discord.widgets.channels.WidgetCreateChannel;
-import com.discord.widgets.channels.WidgetCreateChannel$Companion;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -36,9 +35,9 @@ public final class WidgetGuildProfileSheet$configureGuildActions$$inlined$apply$
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(View view) {
         m.checkNotNullParameter(view, "it");
-        WidgetCreateChannel$Companion widgetCreateChannel$Companion = WidgetCreateChannel.Companion;
+        WidgetCreateChannel.Companion companion = WidgetCreateChannel.INSTANCE;
         Context context = this.$this_apply.getContext();
         m.checkNotNullExpressionValue(context, "context");
-        WidgetCreateChannel$Companion.show$default(widgetCreateChannel$Companion, context, this.$guildId$inlined, 0, null, 12, null);
+        WidgetCreateChannel.Companion.show$default(companion, context, this.$guildId$inlined, 0, null, 12, null);
     }
 }

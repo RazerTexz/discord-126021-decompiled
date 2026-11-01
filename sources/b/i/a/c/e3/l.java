@@ -9,6 +9,12 @@ import java.util.Map;
 /* JADX INFO: compiled from: DataSource.java */
 /* JADX INFO: loaded from: classes3.dex */
 public interface l extends h {
+
+    /* JADX INFO: compiled from: DataSource.java */
+    public interface a {
+        l a();
+    }
+
     long a(n nVar) throws IOException;
 
     void close() throws IOException;

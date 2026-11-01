@@ -1,14 +1,17 @@
 package b.o.a.v;
 
-import android.hardware.camera2.CaptureRequest$Builder;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.DngCreator;
+import android.hardware.camera2.TotalCaptureResult;
+import android.location.Location;
 import android.media.Image;
 import android.media.ImageReader;
-import android.media.ImageReader$OnImageAvailableListener;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.exifinterface.media.ExifInterface;
-import b.o.a.l$a;
+import b.o.a.l;
+import b.o.a.m.j;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -18,22 +21,95 @@ import java.nio.ByteBuffer;
 /* JADX INFO: compiled from: Full2PictureRecorder.java */
 /* JADX INFO: loaded from: classes3.dex */
 @RequiresApi(21)
-public class b extends c implements ImageReader$OnImageAvailableListener {
+public class b extends c implements ImageReader.OnImageAvailableListener {
     public final b.o.a.n.o.c n;
     public final b.o.a.n.o.a o;
     public final ImageReader p;
-    public final CaptureRequest$Builder q;
+    public final CaptureRequest.Builder q;
     public DngCreator r;
 
-    public b(@NonNull l$a l_a, @NonNull b.o.a.n.d dVar, @NonNull CaptureRequest$Builder captureRequest$Builder, @NonNull ImageReader imageReader) {
-        super(l_a, dVar);
+    /* JADX INFO: compiled from: Full2PictureRecorder.java */
+    public class a extends b.o.a.n.o.e {
+        public a() {
+        }
+
+        @Override // b.o.a.n.o.e, b.o.a.n.o.a
+        public void b(@NonNull b.o.a.n.o.c cVar, @NonNull CaptureRequest captureRequest, @NonNull TotalCaptureResult totalCaptureResult) {
+            int i;
+            b bVar = b.this;
+            if (bVar.j.g == j.DNG) {
+                bVar.r = new DngCreator(((b.o.a.n.d) cVar).f1919g0, totalCaptureResult);
+                b bVar2 = b.this;
+                DngCreator dngCreator = bVar2.r;
+                int i2 = bVar2.j.c;
+                int i3 = (i2 + 360) % 360;
+                if (i3 == 0) {
+                    i = 1;
+                } else if (i3 == 90) {
+                    i = 6;
+                } else if (i3 == 180) {
+                    i = 3;
+                } else {
+                    if (i3 != 270) {
+                        throw new IllegalArgumentException(b.d.b.a.a.q("Invalid orientation: ", i2));
+                    }
+                    i = 8;
+                }
+                dngCreator.setOrientation(i);
+                b bVar3 = b.this;
+                Location location = bVar3.j.f1912b;
+                if (location != null) {
+                    bVar3.r.setLocation(location);
+                }
+            }
+        }
+
+        @Override // b.o.a.n.o.e, b.o.a.n.o.a
+        public void c(@NonNull b.o.a.n.o.c cVar, @NonNull CaptureRequest captureRequest) {
+            if (this.d) {
+                j(cVar);
+                this.d = false;
+            }
+            Integer num = 2;
+            if (captureRequest.getTag() == num) {
+                c.m.a(1, "onCaptureStarted:", "Dispatching picture shutter.");
+                b.this.a(false);
+                l(Integer.MAX_VALUE);
+            }
+        }
+
+        @Override // b.o.a.n.o.e
+        public void j(@NonNull b.o.a.n.o.c cVar) {
+            this.c = cVar;
+            b bVar = b.this;
+            bVar.q.addTarget(bVar.p.getSurface());
+            b bVar2 = b.this;
+            l.a aVar = bVar2.j;
+            if (aVar.g == j.JPEG) {
+                bVar2.q.set(CaptureRequest.JPEG_ORIENTATION, Integer.valueOf(aVar.c));
+            }
+            b.this.q.setTag(2);
+            try {
+                ((b.o.a.n.d) cVar).e1(this, b.this.q);
+            } catch (CameraAccessException e) {
+                b bVar3 = b.this;
+                bVar3.j = null;
+                bVar3.l = e;
+                bVar3.b();
+                l(Integer.MAX_VALUE);
+            }
+        }
+    }
+
+    public b(@NonNull l.a aVar, @NonNull b.o.a.n.d dVar, @NonNull CaptureRequest.Builder builder, @NonNull ImageReader imageReader) {
+        super(aVar, dVar);
         this.n = dVar;
-        this.q = captureRequest$Builder;
+        this.q = builder;
         this.p = imageReader;
         b.o.a.r.g gVarB = b.o.a.r.g.b("FallbackCameraThread");
         b.o.a.r.g.c = gVarB;
         imageReader.setOnImageAvailableListener(this, gVarB.f);
-        this.o = new b$a(this);
+        this.o = new a();
     }
 
     @Override // b.o.a.v.d
@@ -46,12 +122,12 @@ public class b extends c implements ImageReader$OnImageAvailableListener {
         ByteBuffer buffer = image.getPlanes()[0].getBuffer();
         byte[] bArr = new byte[buffer.remaining()];
         buffer.get(bArr);
-        l$a l_a = this.j;
-        l_a.f = bArr;
-        l_a.c = 0;
+        l.a aVar = this.j;
+        aVar.f = bArr;
+        aVar.c = 0;
         try {
             int attributeInt = new ExifInterface(new ByteArrayInputStream(this.j.f)).getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
-            l$a l_a2 = this.j;
+            l.a aVar2 = this.j;
             switch (attributeInt) {
                 case 3:
                 case 4:
@@ -66,7 +142,7 @@ public class b extends c implements ImageReader$OnImageAvailableListener {
                     i = 270;
                     break;
             }
-            l_a2.c = i;
+            aVar2.c = i;
         } catch (IOException unused) {
         }
     }
@@ -90,7 +166,7 @@ public class b extends c implements ImageReader$OnImageAvailableListener {
 
     /* JADX WARN: Code duplicated, block: B:28:0x0069  */
     /* JADX WARN: Multi-variable type inference failed */
-    @Override // android.media.ImageReader$OnImageAvailableListener
+    @Override // android.media.ImageReader.OnImageAvailableListener
     public void onImageAvailable(ImageReader imageReader) throws Throwable {
         Image imageAcquireNextImage;
         b.o.a.b bVar = c.m;

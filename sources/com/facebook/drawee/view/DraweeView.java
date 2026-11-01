@@ -9,13 +9,12 @@ import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View$MeasureSpec;
-import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import b.c.a.a0.d;
 import b.f.d.d.i;
-import b.f.g.b.c$a;
+import b.f.g.b.c;
 import b.f.j.r.b;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.interfaces.DraweeHierarchy;
@@ -41,14 +40,14 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
 
     public void doAttach() {
         DraweeHolder<DH> draweeHolder = this.mDraweeHolder;
-        draweeHolder.f.a(c$a.ON_HOLDER_ATTACH);
+        draweeHolder.f.a(c.a.ON_HOLDER_ATTACH);
         draweeHolder.f2893b = true;
         draweeHolder.b();
     }
 
     public void doDetach() {
         DraweeHolder<DH> draweeHolder = this.mDraweeHolder;
-        draweeHolder.f.a(c$a.ON_HOLDER_DETACH);
+        draweeHolder.f.a(c.a.ON_HOLDER_DETACH);
         draweeHolder.f2893b = false;
         draweeHolder.b();
     }
@@ -145,21 +144,21 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
         aspectRatioMeasure$Spec.a = i;
         aspectRatioMeasure$Spec.f2892b = i2;
         float f = this.mAspectRatio;
-        ViewGroup$LayoutParams layoutParams = getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = getLayoutParams();
         int paddingRight = getPaddingRight() + getPaddingLeft();
         int paddingBottom = getPaddingBottom() + getPaddingTop();
         if (f > 0.0f && layoutParams != null) {
             int i3 = layoutParams.height;
             boolean z2 = true;
             if (i3 == 0 || i3 == -2) {
-                aspectRatioMeasure$Spec.f2892b = View$MeasureSpec.makeMeasureSpec(View.resolveSize((int) (((View$MeasureSpec.getSize(aspectRatioMeasure$Spec.a) - paddingRight) / f) + paddingBottom), aspectRatioMeasure$Spec.f2892b), BasicMeasure.EXACTLY);
+                aspectRatioMeasure$Spec.f2892b = View.MeasureSpec.makeMeasureSpec(View.resolveSize((int) (((View.MeasureSpec.getSize(aspectRatioMeasure$Spec.a) - paddingRight) / f) + paddingBottom), aspectRatioMeasure$Spec.f2892b), BasicMeasure.EXACTLY);
             } else {
                 int i4 = layoutParams.width;
                 if (i4 != 0 && i4 != -2) {
                     z2 = false;
                 }
                 if (z2) {
-                    aspectRatioMeasure$Spec.a = View$MeasureSpec.makeMeasureSpec(View.resolveSize((int) (((View$MeasureSpec.getSize(aspectRatioMeasure$Spec.f2892b) - paddingBottom) * f) + paddingRight), aspectRatioMeasure$Spec.a), BasicMeasure.EXACTLY);
+                    aspectRatioMeasure$Spec.a = View.MeasureSpec.makeMeasureSpec(View.resolveSize((int) (((View.MeasureSpec.getSize(aspectRatioMeasure$Spec.f2892b) - paddingBottom) * f) + paddingRight), aspectRatioMeasure$Spec.a), BasicMeasure.EXACTLY);
                 }
             }
         }

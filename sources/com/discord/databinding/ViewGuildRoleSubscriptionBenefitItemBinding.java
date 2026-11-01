@@ -6,8 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -35,15 +34,15 @@ public final class ViewGuildRoleSubscriptionBenefitItemBinding implements ViewBi
 
     @NonNull
     public static ViewGuildRoleSubscriptionBenefitItemBinding a(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
-        layoutInflater.inflate(R$layout.view_guild_role_subscription_benefit_item, viewGroup);
-        int i = R$id.guild_role_subscription_benefit_description;
-        TextView textView = (TextView) viewGroup.findViewById(R$id.guild_role_subscription_benefit_description);
+        layoutInflater.inflate(R.layout.view_guild_role_subscription_benefit_item, viewGroup);
+        int i = R.id.guild_role_subscription_benefit_description;
+        TextView textView = (TextView) viewGroup.findViewById(R.id.guild_role_subscription_benefit_description);
         if (textView != null) {
-            i = R$id.guild_role_subscription_benefit_image;
-            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewGroup.findViewById(R$id.guild_role_subscription_benefit_image);
+            i = R.id.guild_role_subscription_benefit_image;
+            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewGroup.findViewById(R.id.guild_role_subscription_benefit_image);
             if (simpleDraweeView != null) {
-                i = R$id.guild_role_subscription_benefit_name;
-                TextView textView2 = (TextView) viewGroup.findViewById(R$id.guild_role_subscription_benefit_name);
+                i = R.id.guild_role_subscription_benefit_name;
+                TextView textView2 = (TextView) viewGroup.findViewById(R.id.guild_role_subscription_benefit_name);
                 if (textView2 != null) {
                     return new ViewGuildRoleSubscriptionBenefitItemBinding(viewGroup, textView, simpleDraweeView, textView2);
                 }

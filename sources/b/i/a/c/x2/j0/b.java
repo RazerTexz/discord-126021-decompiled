@@ -3,6 +3,7 @@ package b.i.a.c.x2.j0;
 import androidx.annotation.Nullable;
 import b.i.a.c.f3.e0;
 import b.i.a.c.x2.t;
+import b.i.a.c.x2.u;
 import java.io.EOFException;
 import java.io.IOException;
 
@@ -24,6 +25,33 @@ public final class b implements g {
     public long k;
     public long l;
 
+    /* JADX INFO: renamed from: b.i.a.c.x2.j0.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: DefaultOggSeeker.java */
+    public final class C0104b implements t {
+        public C0104b(a aVar) {
+        }
+
+        @Override // b.i.a.c.x2.t
+        public boolean c() {
+            return true;
+        }
+
+        @Override // b.i.a.c.x2.t
+        public t.a h(long j) {
+            b bVar = b.this;
+            long j2 = (((long) bVar.d.i) * j) / 1000000;
+            long j3 = bVar.f1234b;
+            long j4 = bVar.c;
+            return new t.a(new u(j, e0.i(((((j4 - j3) * j2) / bVar.f) + j3) - 30000, j3, j4 - 1)));
+        }
+
+        @Override // b.i.a.c.x2.t
+        public long i() {
+            b bVar = b.this;
+            return (bVar.f * 1000000) / ((long) bVar.d.i);
+        }
+    }
+
     public b(i iVar, long j, long j2, long j3, long j4, boolean z2) {
         b.c.a.a0.d.j(j >= 0 && j2 > j);
         this.d = iVar;
@@ -42,7 +70,7 @@ public final class b implements g {
     @Nullable
     public t a() {
         if (this.f != 0) {
-            return new b$b(this, null);
+            return new C0104b(null);
         }
         return null;
     }

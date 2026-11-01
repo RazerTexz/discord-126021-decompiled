@@ -5,9 +5,11 @@ import android.text.format.DateUtils;
 import b.a.k.b;
 import b.d.b.a.a;
 import com.adjust.sdk.Constants;
+import com.discord.i18n.RenderContext;
 import com.discord.utilities.SnowflakeUtils;
 import com.discord.utilities.locale.LocaleManager;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
@@ -15,8 +17,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Map;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: TimeUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -24,6 +29,16 @@ public final class TimeUtils {
     private static final String DATE_FORMAT_DISCORD_API = "yyyy-MM-dd'T'HH:mm:ss";
     public static final TimeUtils INSTANCE = new TimeUtils();
     private static final LocaleManager localeManager = new LocaleManager();
+
+    /* JADX INFO: compiled from: TimeUtils.kt */
+    public final class UTCFormat {
+        public static final String LONG = "yyyy-MM-dd'T'HH:mm:ss";
+        public static final String SHORT = "yyyy-MM-dd";
+        public static final UTCFormat INSTANCE = new UTCFormat();
+
+        private UTCFormat() {
+        }
+    }
 
     private TimeUtils() {
     }
@@ -230,7 +245,7 @@ public final class TimeUtils {
             m.checkNotNullExpressionValue(elapsedTime, "elapsedTime");
             return elapsedTime;
         }
-        return b.g(formatString, new Object[0], new TimeUtils$toFriendlyStringSimple$1(elapsedTime, argName));
+        return b.g(formatString, new Object[0], new AnonymousClass1(elapsedTime, argName));
     }
 
     public static /* synthetic */ CharSequence toReadableTimeString$default(Context context, long j, Clock clock, int i, Object obj) {
@@ -310,6 +325,36 @@ public final class TimeUtils {
             return null;
         }
         return simpleDateFormat.format(new Date(unixTimeMillis.longValue()));
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.time.TimeUtils$toFriendlyStringSimple$1, reason: invalid class name */
+    /* JADX INFO: compiled from: TimeUtils.kt */
+    public final class AnonymousClass1 extends o implements Function1<RenderContext, Unit> {
+        public final /* synthetic */ String $argName;
+        public final /* synthetic */ String $elapsedTime;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(String str, String str2) {
+            super(1);
+            this.$elapsedTime = str;
+            this.$argName = str2;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            m.checkNotNullParameter(renderContext, "$receiver");
+            Map<String, String> map = renderContext.args;
+            String str = this.$argName;
+            String str2 = this.$elapsedTime;
+            m.checkNotNullExpressionValue(str2, "elapsedTime");
+            map.put(str, str2);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.a;
+        }
     }
 
     public static /* synthetic */ String renderUtcDate$default(TimeUtils timeUtils, String str, Locale locale, String str2, DateFormat dateFormat, int i, int i2, Object obj) {

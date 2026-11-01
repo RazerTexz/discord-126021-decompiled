@@ -5,17 +5,17 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.fragment.app.FragmentManager;
 import b.a.k.b;
+import com.discord.R;
 import com.discord.api.activity.Activity;
 import com.discord.api.activity.ActivityParty;
 import com.discord.api.activity.ActivityTimestamps;
 import com.discord.models.guild.Guild;
 import com.discord.models.presence.Presence;
 import com.discord.models.user.User;
-import com.discord.stores.StoreApplicationStreamPreviews$StreamPreview;
+import com.discord.stores.StoreApplicationStreamPreviews;
 import com.discord.utilities.presence.ActivityUtilsKt;
 import com.discord.utilities.presence.PresenceUtils;
 import com.discord.utilities.streams.StreamContext;
-import com.discord.utilities.streams.StreamContext$Joinability;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.views.StreamPreviewView;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -29,6 +29,21 @@ import kotlin.jvm.functions.Function0;
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewHolderStreamRichPresence extends ViewHolderUserRichPresence {
     private final StreamPreviewView streamPreview;
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.presence.ViewHolderStreamRichPresence$setOnStreamPreviewClicked$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewHolderStreamRichPresence.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ Function0 $onStreamPreviewClicked;
+
+        public AnonymousClass1(Function0 function0) {
+            this.$onStreamPreviewClicked = function0;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onStreamPreviewClicked.invoke();
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ViewHolderStreamRichPresence(View view, SimpleDraweeView simpleDraweeView, TextView textView, TextView textView2, TextView textView3, TextView textView4, TextView textView5, View view2, StreamPreviewView streamPreviewView) {
@@ -52,7 +67,7 @@ public final class ViewHolderStreamRichPresence extends ViewHolderUserRichPresen
     }
 
     private final void configureStreamPreview(StreamContext streamContext) {
-        StoreApplicationStreamPreviews$StreamPreview preview = streamContext != null ? streamContext.getPreview() : null;
+        StoreApplicationStreamPreviews.StreamPreview preview = streamContext != null ? streamContext.getPreview() : null;
         if (preview == null) {
             this.streamPreview.setVisibility(8);
         } else {
@@ -68,7 +83,7 @@ public final class ViewHolderStreamRichPresence extends ViewHolderUserRichPresen
         }
         Guild guild = streamContext.getGuild();
         String name = guild != null ? guild.getName() : null;
-        getRichPresenceHeader().setText(name != null ? b.j(getRichPresenceHeader(), 2131896730, new Object[]{name}, null, 4) : b.j(getRichPresenceHeader(), 2131896729, new Object[0], null, 4));
+        getRichPresenceHeader().setText(name != null ? b.j(getRichPresenceHeader(), R.string.user_activity_header_streaming_to_guild, new Object[]{name}, null, 4) : b.j(getRichPresenceHeader(), R.string.user_activity_header_streaming_to_dm, new Object[0], null, 4));
         if (model == null || !ActivityUtilsKt.isGameActivity(model)) {
             getRichPresenceTextContainer().setVisibility(8);
             return;
@@ -96,7 +111,7 @@ public final class ViewHolderStreamRichPresence extends ViewHolderUserRichPresen
         m.checkNotNullParameter(applicationContext, "applicationContext");
         disposeTimer();
         Activity playingActivity = (richPresence == null || (presence = richPresence.getPresence()) == null) ? null : PresenceUtils.INSTANCE.getPlayingActivity(presence);
-        boolean z2 = (streamContext != null ? streamContext.getJoinability() : null) == StreamContext$Joinability.MISSING_PERMISSIONS;
+        boolean z2 = (streamContext != null ? streamContext.getJoinability() : null) == StreamContext.Joinability.MISSING_PERMISSIONS;
         if ((streamContext == null && playingActivity == null) || z2) {
             getRoot().setVisibility(8);
             return;
@@ -115,7 +130,7 @@ public final class ViewHolderStreamRichPresence extends ViewHolderUserRichPresen
         }
         if (party != null) {
             PresenceUtils presenceUtils = PresenceUtils.INSTANCE;
-            charSequenceJ = presenceUtils.getMaxSize(party) != 0 ? b.j(getRoot(), 2131896743, new Object[]{String.valueOf(presenceUtils.getCurrentSize(party)), String.valueOf(presenceUtils.getMaxSize(party))}, null, 4) : null;
+            charSequenceJ = presenceUtils.getMaxSize(party) != 0 ? b.j(getRoot(), R.string.user_activity_state_size, new Object[]{String.valueOf(presenceUtils.getCurrentSize(party)), String.valueOf(presenceUtils.getMaxSize(party))}, null, 4) : null;
             if (charSequenceJ == null) {
                 charSequenceJ = "";
             }
@@ -129,6 +144,6 @@ public final class ViewHolderStreamRichPresence extends ViewHolderUserRichPresen
 
     public final void setOnStreamPreviewClicked(Function0<Unit> onStreamPreviewClicked) {
         m.checkNotNullParameter(onStreamPreviewClicked, "onStreamPreviewClicked");
-        this.streamPreview.setOnClickListener(new ViewHolderStreamRichPresence$setOnStreamPreviewClicked$1(onStreamPreviewClicked));
+        this.streamPreview.setOnClickListener(new AnonymousClass1(onStreamPreviewClicked));
     }
 }

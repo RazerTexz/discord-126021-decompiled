@@ -1,6 +1,6 @@
 package b.i.c.w;
 
-import android.content.SharedPreferences$Editor;
+import android.content.SharedPreferences;
 import java.util.Iterator;
 
 /* JADX INFO: compiled from: com.google.firebase:firebase-messaging@@21.0.0 */
@@ -16,7 +16,7 @@ public final /* synthetic */ class t implements Runnable {
     public final void run() {
         u uVar = this.j;
         synchronized (uVar.d) {
-            SharedPreferences$Editor sharedPreferences$EditorEdit = uVar.a.edit();
+            SharedPreferences.Editor editorEdit = uVar.a.edit();
             String str = uVar.f1797b;
             StringBuilder sb = new StringBuilder();
             Iterator<String> it = uVar.d.iterator();
@@ -24,7 +24,7 @@ public final /* synthetic */ class t implements Runnable {
                 sb.append(it.next());
                 sb.append(uVar.c);
             }
-            sharedPreferences$EditorEdit.putString(str, sb.toString()).commit();
+            editorEdit.putString(str, sb.toString()).commit();
         }
     }
 }

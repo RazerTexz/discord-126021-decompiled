@@ -10,7 +10,7 @@ public class ModelGuildIntegration implements Model {
     private static final String TWITCH_URL_PREFIX = "twitch.tv/";
     public static final String TYPE_TWITCH = "twitch";
     public static final String TYPE_YOUTUBE = "youtube";
-    private ModelGuildIntegration$IntegrationAccount account;
+    private IntegrationAccount account;
     private boolean enableEmoticons;
     private boolean enabled;
     private int expireBehavior;
@@ -27,52 +27,167 @@ public class ModelGuildIntegration implements Model {
     private User user;
     public static final String[] SUPPORTED_TYPES = {"twitch", "youtube"};
 
+    public class IntegrationAccount implements Model {
+
+        /* JADX INFO: renamed from: id, reason: collision with root package name */
+        private String f2722id;
+        private String name;
+
+        @Override // com.discord.models.domain.Model
+        public void assignField(Model.JsonReader jsonReader) throws IOException {
+            String strNextName = jsonReader.nextName();
+            strNextName.hashCode();
+            if (strNextName.equals(ModelAuditLogEntry.CHANGE_KEY_ID)) {
+                this.f2722id = jsonReader.nextString(this.f2722id);
+            } else if (strNextName.equals(ModelAuditLogEntry.CHANGE_KEY_NAME)) {
+                this.name = jsonReader.nextString(this.name);
+            } else {
+                jsonReader.skipValue();
+            }
+        }
+
+        public boolean canEqual(Object obj) {
+            return obj instanceof IntegrationAccount;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof IntegrationAccount)) {
+                return false;
+            }
+            IntegrationAccount integrationAccount = (IntegrationAccount) obj;
+            if (!integrationAccount.canEqual(this)) {
+                return false;
+            }
+            String id2 = getId();
+            String id3 = integrationAccount.getId();
+            if (id2 != null ? !id2.equals(id3) : id3 != null) {
+                return false;
+            }
+            String name = getName();
+            String name2 = integrationAccount.getName();
+            return name != null ? name.equals(name2) : name2 == null;
+        }
+
+        public String getId() {
+            return this.f2722id;
+        }
+
+        public String getName() {
+            return this.name;
+        }
+
+        public int hashCode() {
+            String id2 = getId();
+            int iHashCode = id2 == null ? 43 : id2.hashCode();
+            String name = getName();
+            return ((iHashCode + 59) * 59) + (name != null ? name.hashCode() : 43);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("ModelGuildIntegration.IntegrationAccount(id=");
+            sbU.append(getId());
+            sbU.append(", name=");
+            sbU.append(getName());
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    public class Update implements Model {
+        private long guildId;
+
+        @Override // com.discord.models.domain.Model
+        public void assignField(Model.JsonReader jsonReader) throws IOException {
+            String strNextName = jsonReader.nextName();
+            strNextName.hashCode();
+            if (strNextName.equals(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID)) {
+                this.guildId = jsonReader.nextLong(this.guildId);
+            } else {
+                jsonReader.skipValue();
+            }
+        }
+
+        public boolean canEqual(Object obj) {
+            return obj instanceof Update;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof Update)) {
+                return false;
+            }
+            Update update = (Update) obj;
+            return update.canEqual(this) && getGuildId() == update.getGuildId();
+        }
+
+        public long getGuildId() {
+            return this.guildId;
+        }
+
+        public int hashCode() {
+            long guildId = getGuildId();
+            return 59 + ((int) (guildId ^ (guildId >>> 32)));
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("ModelGuildIntegration.Update(guildId=");
+            sbU.append(getGuildId());
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
     @Override // com.discord.models.domain.Model
-    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
-        String strNextName = model$JsonReader.nextName();
+    public void assignField(Model.JsonReader jsonReader) throws IOException {
+        String strNextName = jsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "enable_emoticons":
-                this.enableEmoticons = model$JsonReader.nextBoolean(this.enableEmoticons);
+                this.enableEmoticons = jsonReader.nextBoolean(this.enableEmoticons);
                 break;
             case "syncing":
-                this.syncing = model$JsonReader.nextBoolean(this.syncing);
+                this.syncing = jsonReader.nextBoolean(this.syncing);
                 break;
             case "enabled":
-                this.enabled = model$JsonReader.nextBoolean(this.enabled);
+                this.enabled = jsonReader.nextBoolean(this.enabled);
                 break;
             case "account":
-                this.account = (ModelGuildIntegration$IntegrationAccount) model$JsonReader.parse(new ModelGuildIntegration$IntegrationAccount());
+                this.account = (IntegrationAccount) jsonReader.parse(new IntegrationAccount());
                 break;
             case "expire_behavior":
-                this.expireBehavior = model$JsonReader.nextInt(this.expireBehavior);
+                this.expireBehavior = jsonReader.nextInt(this.expireBehavior);
                 break;
             case "id":
-                this.f2721id = model$JsonReader.nextLong(this.f2721id);
+                this.f2721id = jsonReader.nextLong(this.f2721id);
                 break;
             case "name":
-                this.name = model$JsonReader.nextString(this.name);
+                this.name = jsonReader.nextString(this.name);
                 break;
             case "type":
-                this.type = model$JsonReader.nextString(this.type);
+                this.type = jsonReader.nextString(this.type);
                 break;
             case "user":
-                this.user = (User) InboundGatewayGsonParser.fromJson(model$JsonReader, User.class);
+                this.user = (User) InboundGatewayGsonParser.fromJson(jsonReader, User.class);
                 break;
             case "synced_at":
-                this.syncedAt = model$JsonReader.nextString(this.syncedAt);
+                this.syncedAt = jsonReader.nextString(this.syncedAt);
                 break;
             case "role_id":
-                this.roleId = model$JsonReader.nextLong(this.roleId);
+                this.roleId = jsonReader.nextLong(this.roleId);
                 break;
             case "expire_grace_period":
-                this.expireGracePeriod = model$JsonReader.nextInt(this.expireGracePeriod);
+                this.expireGracePeriod = jsonReader.nextInt(this.expireGracePeriod);
                 break;
             case "subscriber_count":
-                this.subscriberCount = model$JsonReader.nextInt(this.subscriberCount);
+                this.subscriberCount = jsonReader.nextInt(this.subscriberCount);
                 break;
             default:
-                model$JsonReader.skipValue();
+                jsonReader.skipValue();
                 break;
         }
     }
@@ -112,12 +227,12 @@ public class ModelGuildIntegration implements Model {
         if (user != null ? !user.equals(user2) : user2 != null) {
             return false;
         }
-        ModelGuildIntegration$IntegrationAccount account = getAccount();
-        ModelGuildIntegration$IntegrationAccount account2 = modelGuildIntegration.getAccount();
+        IntegrationAccount account = getAccount();
+        IntegrationAccount account2 = modelGuildIntegration.getAccount();
         return account != null ? account.equals(account2) : account2 == null;
     }
 
-    public ModelGuildIntegration$IntegrationAccount getAccount() {
+    public IntegrationAccount getAccount() {
         return this.account;
     }
 
@@ -181,7 +296,7 @@ public class ModelGuildIntegration implements Model {
         int iHashCode3 = (iHashCode2 * 59) + (type == null ? 43 : type.hashCode());
         User user = getUser();
         int iHashCode4 = (iHashCode3 * 59) + (user == null ? 43 : user.hashCode());
-        ModelGuildIntegration$IntegrationAccount account = getAccount();
+        IntegrationAccount account = getAccount();
         return (iHashCode4 * 59) + (account != null ? account.hashCode() : 43);
     }
 

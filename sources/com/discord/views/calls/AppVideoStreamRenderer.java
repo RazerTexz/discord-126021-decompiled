@@ -13,8 +13,6 @@ import b.a.y.j0.e;
 import co.discord.media_engine.VideoStreamRenderer;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import com.discord.utilities.rx.ObservableExtensionsKt$filterNull$1;
-import com.discord.utilities.rx.ObservableExtensionsKt$filterNull$2;
 import d0.z.d.e0;
 import d0.z.d.m;
 import java.util.HashMap;
@@ -22,7 +20,7 @@ import java.util.Objects;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
-import org.webrtc.RendererCommon$ScalingType;
+import org.webrtc.RendererCommon;
 import rx.Observable;
 import rx.Subscription;
 import rx.subjects.BehaviorSubject;
@@ -50,10 +48,10 @@ public final class AppVideoStreamRenderer extends VideoStreamRenderer {
     public Function1<? super Point, Unit> onFrameRenderedListener;
 
     /* JADX INFO: renamed from: p, reason: from kotlin metadata */
-    public RendererCommon$ScalingType prevScalingType;
+    public RendererCommon.ScalingType prevScalingType;
 
     /* JADX INFO: renamed from: q, reason: from kotlin metadata */
-    public RendererCommon$ScalingType prevScalingTypeMismatchOrientation;
+    public RendererCommon.ScalingType prevScalingTypeMismatchOrientation;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public AppVideoStreamRenderer(Context context, AttributeSet attributeSet) {
@@ -62,9 +60,9 @@ public final class AppVideoStreamRenderer extends VideoStreamRenderer {
         m.checkNotNullParameter(attributeSet, "attrs");
         this.onSizeChangedSubject = BehaviorSubject.l0(Unit.a);
         this.currentFrameResolutionSubject = BehaviorSubject.l0(null);
-        RendererCommon$ScalingType rendererCommon$ScalingType = RendererCommon$ScalingType.SCALE_ASPECT_BALANCED;
-        this.prevScalingType = rendererCommon$ScalingType;
-        this.prevScalingTypeMismatchOrientation = rendererCommon$ScalingType;
+        RendererCommon.ScalingType scalingType = RendererCommon.ScalingType.SCALE_ASPECT_BALANCED;
+        this.prevScalingType = scalingType;
+        this.prevScalingTypeMismatchOrientation = scalingType;
     }
 
     @MainThread
@@ -79,11 +77,11 @@ public final class AppVideoStreamRenderer extends VideoStreamRenderer {
         e0.asMutableMap(map).remove(num);
         this.currentFrameResolutionSubject.onNext(null);
         map.isEmpty();
-        VideoStreamRenderer.attachToStream$default(this, StoreStream.Companion.getMediaEngine().getVoiceEngineNative(), null, null, 4, null);
+        VideoStreamRenderer.attachToStream$default(this, StoreStream.INSTANCE.getMediaEngine().getVoiceEngineNative(), null, null, 4, null);
     }
 
     @MainThread
-    public final void c(Integer newStreamId, RendererCommon$ScalingType scalingType, RendererCommon$ScalingType scalingTypeMismatchOrientation, boolean isVideoMirrored) {
+    public final void c(Integer newStreamId, RendererCommon.ScalingType scalingType, RendererCommon.ScalingType scalingTypeMismatchOrientation, boolean isVideoMirrored) {
         if (newStreamId == null) {
             b();
             this.streamId = null;
@@ -98,7 +96,7 @@ public final class AppVideoStreamRenderer extends VideoStreamRenderer {
             HashMap<Integer, VideoStreamRenderer> map = d.a;
             VideoStreamRenderer videoStreamRenderer = map.get(Integer.valueOf(iIntValue));
             if (videoStreamRenderer != null && videoStreamRenderer != this) {
-                VideoStreamRenderer.attachToStream$default(videoStreamRenderer, StoreStream.Companion.getMediaEngine().getVoiceEngineNative(), null, null, 4, null);
+                VideoStreamRenderer.attachToStream$default(videoStreamRenderer, StoreStream.INSTANCE.getMediaEngine().getVoiceEngineNative(), null, null, 4, null);
                 map.remove(Integer.valueOf(iIntValue));
                 map.isEmpty();
             }
@@ -110,7 +108,7 @@ public final class AppVideoStreamRenderer extends VideoStreamRenderer {
             }
             Observable<R> observableA = this.onSizeChangedSubject.A(new a(eVar));
             m.checkNotNullExpressionValue(observableA, "onSizeChangedSubject\n   …rameResolutionSampled() }");
-            Observable observableG = observableA.y(ObservableExtensionsKt$filterNull$1.INSTANCE).G(ObservableExtensionsKt$filterNull$2.INSTANCE);
+            Observable observableG = observableA.y(ObservableExtensionsKt.AnonymousClass1.INSTANCE).G(ObservableExtensionsKt.AnonymousClass2.INSTANCE);
             m.checkNotNullExpressionValue(observableG, "filter { it != null }.map { it!! }");
             Observable observableUi = ObservableExtensionsKt.ui(observableG);
             b bVar = new b(this);
@@ -122,19 +120,19 @@ public final class AppVideoStreamRenderer extends VideoStreamRenderer {
             sbU.append(" to stream id: ");
             sbU.append(iIntValue);
             Log.d("AppVideoStreamRenderer", sbU.toString());
-            attachToStream(StoreStream.Companion.getMediaEngine().getVoiceEngineNative(), String.valueOf(iIntValue), eVar);
+            attachToStream(StoreStream.INSTANCE.getMediaEngine().getVoiceEngineNative(), String.valueOf(iIntValue), eVar);
             this.streamId = newStreamId;
         }
-        RendererCommon$ScalingType rendererCommon$ScalingType = scalingType != null ? scalingType : this.prevScalingType;
-        RendererCommon$ScalingType rendererCommon$ScalingType2 = scalingTypeMismatchOrientation != null ? scalingTypeMismatchOrientation : this.prevScalingTypeMismatchOrientation;
+        RendererCommon.ScalingType scalingType2 = scalingType != null ? scalingType : this.prevScalingType;
+        RendererCommon.ScalingType scalingType3 = scalingTypeMismatchOrientation != null ? scalingTypeMismatchOrientation : this.prevScalingTypeMismatchOrientation;
         setMirror(isVideoMirrored);
         setZOrderMediaOverlay(this.isOverlay);
-        if (rendererCommon$ScalingType == this.prevScalingType && rendererCommon$ScalingType2 == this.prevScalingTypeMismatchOrientation) {
+        if (scalingType2 == this.prevScalingType && scalingType3 == this.prevScalingTypeMismatchOrientation) {
             return;
         }
-        setScalingType(rendererCommon$ScalingType, rendererCommon$ScalingType2);
-        this.prevScalingType = rendererCommon$ScalingType;
-        this.prevScalingTypeMismatchOrientation = rendererCommon$ScalingType2;
+        setScalingType(scalingType2, scalingType3);
+        this.prevScalingType = scalingType2;
+        this.prevScalingTypeMismatchOrientation = scalingType3;
     }
 
     public final Function1<Point, Unit> getOnFrameRenderedListener() {

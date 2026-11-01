@@ -6,35 +6,356 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import androidx.annotation.DrawableRes;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
 import androidx.core.view.ViewKt;
+import androidx.fragment.app.FragmentManager;
 import b.a.i.j5;
-import com.discord.R$id;
-import com.discord.R$menu;
+import b.d.b.a.a;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.user.NsfwAllowance;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetHomeBinding;
 import com.discord.models.presence.Presence;
-import com.discord.stores.StoreChannelsSelected$ResolvedSelectedChannel;
-import com.discord.stores.StoreChannelsSelected$ResolvedSelectedChannel$Channel;
-import com.discord.stores.StoreChannelsSelected$ResolvedSelectedChannel$ThreadDraft;
+import com.discord.stores.StoreChannelsSelected;
+import com.discord.stores.StoreStream;
+import com.discord.utilities.channel.ChannelInviteLaunchUtils;
 import com.discord.utilities.channel.GuildChannelIconUtilsKt;
+import com.discord.utilities.device.DeviceUtils;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.utilities.toolbar.ToolbarUtilsKt;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.views.StatusView;
 import com.discord.views.ToolbarTitleLayout;
+import com.discord.widgets.channels.threads.browser.WidgetThreadBrowser;
+import com.discord.widgets.friends.WidgetFriendsAdd;
+import com.discord.widgets.search.WidgetSearch;
+import com.discord.widgets.user.calls.PrivateCallLauncher;
 import d0.z.d.m;
 import kotlin.NoWhenBranchMatchedException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.functions.Action1;
+import rx.functions.Action2;
 
 /* JADX INFO: compiled from: WidgetHomeHeaderManager.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetHomeHeaderManager {
     private static final String ANALYTICS_SOURCE = "Toolbar";
     public static final WidgetHomeHeaderManager INSTANCE = new WidgetHomeHeaderManager();
+
+    /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHomeHeaderManager$configureThreadBrowserIconBehavior$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHomeHeaderManager.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ Channel $channel;
+        public final /* synthetic */ Context $context;
+
+        public AnonymousClass1(Context context, Channel channel) {
+            this.$context = context;
+            this.$channel = channel;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetThreadBrowser.INSTANCE.show(this.$context, this.$channel.getGuildId(), ChannelUtils.H(this.$channel) ? this.$channel.getParentId() : this.$channel.getId(), "Chat List Header");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHomeHeaderManager$getOnConfigureAction$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHomeHeaderManager.kt */
+    public final class AnonymousClass1<T> implements Action1<Menu> {
+        public final /* synthetic */ Resources $resources;
+        public final /* synthetic */ WidgetHomeModel $this_getOnConfigureAction;
+
+        public AnonymousClass1(WidgetHomeModel widgetHomeModel, Resources resources) {
+            this.$this_getOnConfigureAction = widgetHomeModel;
+            this.$resources = resources;
+        }
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(Menu menu) {
+            call2(menu);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(Menu menu) {
+            boolean z2 = false;
+            boolean z3 = this.$this_getOnConfigureAction.getChannel() != null && ChannelUtils.E(this.$this_getOnConfigureAction.getChannel());
+            boolean zIsSmallScreen = DeviceUtils.INSTANCE.isSmallScreen(this.$resources);
+            boolean z4 = this.$this_getOnConfigureAction.getThreadExperimentEnabled() && this.$this_getOnConfigureAction.getThreadCount() > 0 && !WidgetHomeHeaderManager.access$isChannelNSFWGated(WidgetHomeHeaderManager.INSTANCE, this.$this_getOnConfigureAction.isChannelNsfw(), this.$this_getOnConfigureAction.isNsfwUnConsented(), this.$this_getOnConfigureAction.getNsfwAllowed());
+            Channel channel = this.$this_getOnConfigureAction.getChannel();
+            Integer numValueOf = channel != null ? Integer.valueOf(channel.getType()) : null;
+            if ((numValueOf != null && numValueOf.intValue() == 3) || (numValueOf != null && numValueOf.intValue() == 1)) {
+                MenuItem menuItemFindItem = menu.findItem(R.id.menu_chat_search);
+                m.checkNotNullExpressionValue(menuItemFindItem, "menu.findItem(R.id.menu_chat_search)");
+                menuItemFindItem.setVisible(false);
+                MenuItem menuItemFindItem2 = menu.findItem(R.id.menu_chat_side_panel);
+                m.checkNotNullExpressionValue(menuItemFindItem2, "menu.findItem(R.id.menu_chat_side_panel)");
+                menuItemFindItem2.setVisible(true);
+                MenuItem menuItemFindItem3 = menu.findItem(R.id.menu_chat_thread_browser);
+                m.checkNotNullExpressionValue(menuItemFindItem3, "menu.findItem(R.id.menu_chat_thread_browser)");
+                menuItemFindItem3.setVisible(false);
+            } else if ((numValueOf != null && numValueOf.intValue() == 5) || ((numValueOf != null && numValueOf.intValue() == 15) || (numValueOf != null && numValueOf.intValue() == 0))) {
+                MenuItem menuItemFindItem4 = menu.findItem(R.id.menu_chat_side_panel);
+                m.checkNotNullExpressionValue(menuItemFindItem4, "menu.findItem(R.id.menu_chat_side_panel)");
+                menuItemFindItem4.setVisible(true);
+                if (zIsSmallScreen) {
+                    MenuItem menuItemFindItem5 = menu.findItem(R.id.menu_chat_search);
+                    m.checkNotNullExpressionValue(menuItemFindItem5, "menu.findItem(R.id.menu_chat_search)");
+                    menuItemFindItem5.setVisible(!this.$this_getOnConfigureAction.getThreadExperimentEnabled());
+                    MenuItem menuItemFindItem6 = menu.findItem(R.id.menu_chat_thread_browser);
+                    m.checkNotNullExpressionValue(menuItemFindItem6, "menu.findItem(R.id.menu_chat_thread_browser)");
+                    menuItemFindItem6.setVisible(z4);
+                } else {
+                    MenuItem menuItemFindItem7 = menu.findItem(R.id.menu_chat_search);
+                    m.checkNotNullExpressionValue(menuItemFindItem7, "menu.findItem(R.id.menu_chat_search)");
+                    menuItemFindItem7.setVisible(true);
+                    MenuItem menuItemFindItem8 = menu.findItem(R.id.menu_chat_thread_browser);
+                    m.checkNotNullExpressionValue(menuItemFindItem8, "menu.findItem(R.id.menu_chat_thread_browser)");
+                    menuItemFindItem8.setVisible(z4);
+                }
+            } else if ((numValueOf != null && numValueOf.intValue() == 10) || ((numValueOf != null && numValueOf.intValue() == 12) || (numValueOf != null && numValueOf.intValue() == 11))) {
+                MenuItem menuItemFindItem9 = menu.findItem(R.id.menu_chat_side_panel);
+                m.checkNotNullExpressionValue(menuItemFindItem9, "menu.findItem(R.id.menu_chat_side_panel)");
+                menuItemFindItem9.setVisible(!ChannelUtils.j(this.$this_getOnConfigureAction.getChannel()));
+                MenuItem menuItemFindItem10 = menu.findItem(R.id.menu_chat_search);
+                m.checkNotNullExpressionValue(menuItemFindItem10, "menu.findItem(R.id.menu_chat_search)");
+                menuItemFindItem10.setVisible(!zIsSmallScreen);
+                MenuItem menuItemFindItem11 = menu.findItem(R.id.menu_chat_thread_browser);
+                m.checkNotNullExpressionValue(menuItemFindItem11, "menu.findItem(R.id.menu_chat_thread_browser)");
+                menuItemFindItem11.setVisible(false);
+            } else if (numValueOf != null && numValueOf.intValue() == 14) {
+                MenuItem menuItemFindItem12 = menu.findItem(R.id.menu_chat_search);
+                m.checkNotNullExpressionValue(menuItemFindItem12, "menu.findItem(R.id.menu_chat_search)");
+                menuItemFindItem12.setVisible(false);
+                MenuItem menuItemFindItem13 = menu.findItem(R.id.menu_chat_side_panel);
+                m.checkNotNullExpressionValue(menuItemFindItem13, "menu.findItem(R.id.menu_chat_side_panel)");
+                menuItemFindItem13.setVisible(true);
+                MenuItem menuItemFindItem14 = menu.findItem(R.id.menu_chat_thread_browser);
+                m.checkNotNullExpressionValue(menuItemFindItem14, "menu.findItem(R.id.menu_chat_thread_browser)");
+                menuItemFindItem14.setVisible(false);
+            }
+            boolean z5 = this.$this_getOnConfigureAction.getChannel() != null && ChannelUtils.B(this.$this_getOnConfigureAction.getChannel());
+            MenuItem menuItemFindItem15 = menu.findItem(R.id.menu_chat_start_call);
+            m.checkNotNullExpressionValue(menuItemFindItem15, "menu.findItem(R.id.menu_chat_start_call)");
+            menuItemFindItem15.setVisible((this.$this_getOnConfigureAction.isCallConnected() || !z5 || z3) ? false : true);
+            MenuItem menuItemFindItem16 = menu.findItem(R.id.menu_chat_start_video_call);
+            m.checkNotNullExpressionValue(menuItemFindItem16, "menu.findItem(R.id.menu_chat_start_video_call)");
+            menuItemFindItem16.setVisible((this.$this_getOnConfigureAction.isCallConnected() || !z5 || z3) ? false : true);
+            MenuItem menuItemFindItem17 = menu.findItem(R.id.menu_chat_stop_call);
+            m.checkNotNullExpressionValue(menuItemFindItem17, "menu.findItem(R.id.menu_chat_stop_call)");
+            if (this.$this_getOnConfigureAction.isCallConnected() && !z3) {
+                z2 = true;
+            }
+            menuItemFindItem17.setVisible(z2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHomeHeaderManager$getOnSelectedAction$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHomeHeaderManager.kt */
+    public final class AnonymousClass1 implements Action2<MenuItem, Context> {
+        public final /* synthetic */ AppFragment $appFragment;
+        public final /* synthetic */ PanelLayout $panelLayout;
+        public final /* synthetic */ WidgetHomeModel $this_getOnSelectedAction;
+
+        public AnonymousClass1(WidgetHomeModel widgetHomeModel, AppFragment appFragment, PanelLayout panelLayout) {
+            this.$this_getOnSelectedAction = widgetHomeModel;
+            this.$appFragment = appFragment;
+            this.$panelLayout = panelLayout;
+        }
+
+        @Override // rx.functions.Action2
+        public /* bridge */ /* synthetic */ void call(MenuItem menuItem, Context context) {
+            call2(menuItem, context);
+        }
+
+        private final void launchForSearch(Context context) {
+            Channel channel = this.$this_getOnSelectedAction.getChannel();
+            if (channel != null && ChannelUtils.B(channel)) {
+                WidgetSearch.INSTANCE.launchForChannel(this.$this_getOnSelectedAction.getChannelId(), context);
+                return;
+            }
+            Channel channel2 = this.$this_getOnSelectedAction.getChannel();
+            if (channel2 == null || !ChannelUtils.v(channel2)) {
+                return;
+            }
+            WidgetSearch.INSTANCE.launchForGuild(this.$this_getOnSelectedAction.getChannel().getGuildId(), context);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public void call2(MenuItem menuItem, Context context) {
+            m.checkNotNullParameter(menuItem, "menuItem");
+            m.checkNotNullParameter(context, "context");
+            AppFragment appFragment = this.$appFragment;
+            FragmentManager parentFragmentManager = appFragment.getParentFragmentManager();
+            m.checkNotNullExpressionValue(parentFragmentManager, "appFragment.parentFragmentManager");
+            PrivateCallLauncher privateCallLauncher = new PrivateCallLauncher(appFragment, appFragment, context, parentFragmentManager);
+            switch (menuItem.getItemId()) {
+                case R.id.menu_chat_add_friend /* 2131364371 */:
+                    WidgetFriendsAdd.Companion.show$default(WidgetFriendsAdd.INSTANCE, context, null, WidgetHomeHeaderManager.ANALYTICS_SOURCE, 2, null);
+                    break;
+                case R.id.menu_chat_search /* 2131364372 */:
+                    launchForSearch(context);
+                    break;
+                case R.id.menu_chat_side_panel /* 2131364373 */:
+                    this.$panelLayout.openEndPanel();
+                    break;
+                case R.id.menu_chat_start_call /* 2131364374 */:
+                    privateCallLauncher.launchVoiceCall(this.$this_getOnSelectedAction.getChannelId());
+                    break;
+                case R.id.menu_chat_start_group /* 2131364375 */:
+                    ChannelInviteLaunchUtils.inviteToChannel$default(ChannelInviteLaunchUtils.INSTANCE, this.$appFragment, this.$this_getOnSelectedAction.getChannel(), WidgetHomeHeaderManager.ANALYTICS_SOURCE, null, null, 24, null);
+                    break;
+                case R.id.menu_chat_start_video_call /* 2131364376 */:
+                    privateCallLauncher.launchVideoCall(this.$this_getOnSelectedAction.getChannelId());
+                    break;
+                case R.id.menu_chat_stop_call /* 2131364377 */:
+                    StoreStream.INSTANCE.getVoiceChannelSelected().clear();
+                    break;
+            }
+            AppFragment.hideKeyboard$default(this.$appFragment, null, 1, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetHomeHeaderManager.kt */
+    public final /* data */ class HeaderData {
+        private final Integer drawableRes;
+        private final boolean leftButtonIsBack;
+        private final CharSequence subtitle;
+        private final CharSequence title;
+        private final Integer trailingDrawable;
+
+        public HeaderData(CharSequence charSequence, CharSequence charSequence2, @DrawableRes Integer num, boolean z2, @DrawableRes Integer num2) {
+            this.title = charSequence;
+            this.subtitle = charSequence2;
+            this.drawableRes = num;
+            this.leftButtonIsBack = z2;
+            this.trailingDrawable = num2;
+        }
+
+        public static /* synthetic */ HeaderData copy$default(HeaderData headerData, CharSequence charSequence, CharSequence charSequence2, Integer num, boolean z2, Integer num2, int i, Object obj) {
+            if ((i & 1) != 0) {
+                charSequence = headerData.title;
+            }
+            if ((i & 2) != 0) {
+                charSequence2 = headerData.subtitle;
+            }
+            CharSequence charSequence3 = charSequence2;
+            if ((i & 4) != 0) {
+                num = headerData.drawableRes;
+            }
+            Integer num3 = num;
+            if ((i & 8) != 0) {
+                z2 = headerData.leftButtonIsBack;
+            }
+            boolean z3 = z2;
+            if ((i & 16) != 0) {
+                num2 = headerData.trailingDrawable;
+            }
+            return headerData.copy(charSequence, charSequence3, num3, z3, num2);
+        }
+
+        public final HeaderData copy(CharSequence title, CharSequence subtitle, @DrawableRes Integer drawableRes, boolean leftButtonIsBack, @DrawableRes Integer trailingDrawable) {
+            return new HeaderData(title, subtitle, drawableRes, leftButtonIsBack, trailingDrawable);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof HeaderData)) {
+                return false;
+            }
+            HeaderData headerData = (HeaderData) other;
+            return m.areEqual(this.title, headerData.title) && m.areEqual(this.subtitle, headerData.subtitle) && m.areEqual(this.drawableRes, headerData.drawableRes) && this.leftButtonIsBack == headerData.leftButtonIsBack && m.areEqual(this.trailingDrawable, headerData.trailingDrawable);
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Integer getDrawableRes() {
+            return this.drawableRes;
+        }
+
+        public final Integer getDrawableRes() {
+            return this.drawableRes;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getLeftButtonIsBack() {
+            return this.leftButtonIsBack;
+        }
+
+        public final boolean getLeftButtonIsBack() {
+            return this.leftButtonIsBack;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final CharSequence getSubtitle() {
+            return this.subtitle;
+        }
+
+        public final CharSequence getSubtitle() {
+            return this.subtitle;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final CharSequence getTitle() {
+            return this.title;
+        }
+
+        public final CharSequence getTitle() {
+            return this.title;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final Integer getTrailingDrawable() {
+            return this.trailingDrawable;
+        }
+
+        public final Integer getTrailingDrawable() {
+            return this.trailingDrawable;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v8, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v12 */
+        /* JADX WARN: Type inference failed for: r2v7, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v9 */
+        public int hashCode() {
+            CharSequence charSequence = this.title;
+            int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
+            CharSequence charSequence2 = this.subtitle;
+            int iHashCode2 = (iHashCode + (charSequence2 != null ? charSequence2.hashCode() : 0)) * 31;
+            Integer num = this.drawableRes;
+            int iHashCode3 = (iHashCode2 + (num != null ? num.hashCode() : 0)) * 31;
+            boolean z2 = this.leftButtonIsBack;
+            ?? r2 = z2;
+            if (z2) {
+                r2 = 1;
+            }
+            int i = (iHashCode3 + r2) * 31;
+            Integer num2 = this.trailingDrawable;
+            return i + (num2 != null ? num2.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("HeaderData(title=");
+            sbU.append(this.title);
+            sbU.append(", subtitle=");
+            sbU.append(this.subtitle);
+            sbU.append(", drawableRes=");
+            sbU.append(this.drawableRes);
+            sbU.append(", leftButtonIsBack=");
+            sbU.append(this.leftButtonIsBack);
+            sbU.append(", trailingDrawable=");
+            return a.F(sbU, this.trailingDrawable, ")");
+        }
+
+        public /* synthetic */ HeaderData(CharSequence charSequence, CharSequence charSequence2, Integer num, boolean z2, Integer num2, int i, DefaultConstructorMarker defaultConstructorMarker) {
+            this(charSequence, (i & 2) != 0 ? null : charSequence2, (i & 4) != 0 ? null : num, (i & 8) != 0 ? false : z2, (i & 16) != 0 ? null : num2);
+        }
+    }
 
     private WidgetHomeHeaderManager() {
     }
@@ -66,28 +387,28 @@ public final class WidgetHomeHeaderManager {
         if (context != null) {
             WidgetHomeHeaderManager widgetHomeHeaderManager = INSTANCE;
             m.checkNotNullExpressionValue(context, "context");
-            WidgetHomeHeaderManager$HeaderData headerData = widgetHomeHeaderManager.getHeaderData(model, context);
+            HeaderData headerData = widgetHomeHeaderManager.getHeaderData(model, context);
             CharSequence title = headerData.getTitle();
             CharSequence subtitle = headerData.getSubtitle();
             Integer drawableRes = headerData.getDrawableRes();
             boolean leftButtonIsBack = headerData.getLeftButtonIsBack();
             Integer trailingDrawable = headerData.getTrailingDrawable();
             if (leftButtonIsBack) {
-                themedDrawableRes$default = DrawableCompat.getThemedDrawableRes$default(context, 2130969454, 0, 2, (Object) null);
+                themedDrawableRes$default = DrawableCompat.getThemedDrawableRes$default(context, R.attr.ic_action_bar_back, 0, 2, (Object) null);
             } else {
                 if (leftButtonIsBack) {
                     throw new NoWhenBranchMatchedException();
                 }
-                themedDrawableRes$default = 2131231915;
+                themedDrawableRes$default = R.drawable.ic_menu_24dp;
             }
             Integer numValueOf2 = Integer.valueOf(themedDrawableRes$default);
             if (leftButtonIsBack) {
-                i = 2131886994;
+                i = R.string.back;
             } else {
                 if (leftButtonIsBack) {
                     throw new NoWhenBranchMatchedException();
                 }
-                i = 2131896442;
+                i = R.string.toggle_drawer;
             }
             widgetHome.setActionBarDisplayHomeAsUpEnabled(true, numValueOf2, Integer.valueOf(i));
             widgetHome.setActionBarTitle(title, drawableRes, trailingDrawable);
@@ -99,10 +420,10 @@ public final class WidgetHomeHeaderManager {
         }
         widgetHome.setActionBarTitleClick(new WidgetHomeHeaderManager$configure$$inlined$apply$lambda$2(model, widgetHome, model, binding));
         WidgetHomeHeaderManager widgetHomeHeaderManager2 = INSTANCE;
-        WidgetHomeHeaderManager$getOnSelectedAction$1 onSelectedAction = widgetHomeHeaderManager2.getOnSelectedAction(model, widgetHome, widgetHome.getPanelLayout());
+        AnonymousClass1 onSelectedAction = widgetHomeHeaderManager2.getOnSelectedAction(model, widgetHome, widgetHome.getPanelLayout());
         Resources resources = widgetHome.getResources();
         m.checkNotNullExpressionValue(resources, "widgetHome.resources");
-        Toolbar actionBarOptionsMenu = widgetHome.setActionBarOptionsMenu(R$menu.menu_chat_toolbar, onSelectedAction, widgetHomeHeaderManager2.getOnConfigureAction(model, resources));
+        Toolbar actionBarOptionsMenu = widgetHome.setActionBarOptionsMenu(R.menu.menu_chat_toolbar, onSelectedAction, widgetHomeHeaderManager2.getOnConfigureAction(model, resources));
         Channel channel2 = model.getChannel();
         boolean zN = channel2 != null ? ChannelUtils.n(channel2, model.getDmPresence()) : false;
         ToolbarTitleLayout actionBarTitleLayout = widgetHome.getActionBarTitleLayout();
@@ -134,8 +455,8 @@ public final class WidgetHomeHeaderManager {
             boolean z2 = !ChannelUtils.q(channel);
             int threadCount = model.getThreadCount();
             View viewFindViewById = null;
-            MenuItem menuItemFindItem = (toolbar == null || (menu = toolbar.getMenu()) == null) ? null : menu.findItem(R$id.menu_chat_thread_browser);
-            TextView textView = (menuItemFindItem == null || (actionView2 = menuItemFindItem.getActionView()) == null) ? null : (TextView) actionView2.findViewById(R$id.thread_browser_count);
+            MenuItem menuItemFindItem = (toolbar == null || (menu = toolbar.getMenu()) == null) ? null : menu.findItem(R.id.menu_chat_thread_browser);
+            TextView textView = (menuItemFindItem == null || (actionView2 = menuItemFindItem.getActionView()) == null) ? null : (TextView) actionView2.findViewById(R.id.thread_browser_count);
             if (textView != null) {
                 textView.setText(String.valueOf(Math.min(99, threadCount)));
             }
@@ -143,50 +464,50 @@ public final class WidgetHomeHeaderManager {
                 ViewKt.setVisible(textView, threadCount != 0 && z2);
             }
             if (menuItemFindItem != null && (actionView = menuItemFindItem.getActionView()) != null) {
-                viewFindViewById = actionView.findViewById(R$id.thread_browser_root);
+                viewFindViewById = actionView.findViewById(R.id.thread_browser_root);
             }
             if (viewFindViewById != null) {
                 ViewKt.setVisible(viewFindViewById, z2);
             }
             if (viewFindViewById != null) {
-                viewFindViewById.setOnClickListener(new WidgetHomeHeaderManager$configureThreadBrowserIconBehavior$1(context, channel));
+                viewFindViewById.setOnClickListener(new AnonymousClass1(context, channel));
             }
         }
     }
 
-    private final WidgetHomeHeaderManager$HeaderData getHeaderData(WidgetHomeModel widgetHomeModel, Context context) {
-        StoreChannelsSelected$ResolvedSelectedChannel selectedChannel = widgetHomeModel.getSelectedChannel();
-        if (!(selectedChannel instanceof StoreChannelsSelected$ResolvedSelectedChannel$Channel)) {
-            return selectedChannel instanceof StoreChannelsSelected$ResolvedSelectedChannel$ThreadDraft ? new WidgetHomeHeaderManager$HeaderData(context.getString(2131888265), ChannelUtils.d(((StoreChannelsSelected$ResolvedSelectedChannel$ThreadDraft) widgetHomeModel.getSelectedChannel()).getParentChannel(), context, false), null, true, null, 16, null) : new WidgetHomeHeaderManager$HeaderData(null, null, null, false, null, 30, null);
+    private final HeaderData getHeaderData(WidgetHomeModel widgetHomeModel, Context context) {
+        StoreChannelsSelected.ResolvedSelectedChannel selectedChannel = widgetHomeModel.getSelectedChannel();
+        if (!(selectedChannel instanceof StoreChannelsSelected.ResolvedSelectedChannel.Channel)) {
+            return selectedChannel instanceof StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft ? new HeaderData(context.getString(R.string.create_thread), ChannelUtils.d(((StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft) widgetHomeModel.getSelectedChannel()).getParentChannel(), context, false), null, true, null, 16, null) : new HeaderData(null, null, null, false, null, 30, null);
         }
         Channel channel = widgetHomeModel.getChannel();
         Integer numValueOf = channel != null ? Integer.valueOf(channel.getType()) : null;
         if (numValueOf == null) {
-            return new WidgetHomeHeaderManager$HeaderData(context.getString(2131887637), null, null, false, null, 26, null);
+            return new HeaderData(context.getString(R.string.channels_unavailable_title), null, null, false, null, 26, null);
         }
         if (numValueOf.intValue() == 3) {
-            return new WidgetHomeHeaderManager$HeaderData(ChannelUtils.d(widgetHomeModel.getChannel(), context, false), null, 2131231827, false, null, 26, null);
+            return new HeaderData(ChannelUtils.d(widgetHomeModel.getChannel(), context, false), null, Integer.valueOf(R.drawable.ic_group_message_header), false, null, 26, null);
         }
         if (numValueOf.intValue() == 1) {
-            return new WidgetHomeHeaderManager$HeaderData(ChannelUtils.d(widgetHomeModel.getChannel(), context, false), null, 2131231716, false, null, 26, null);
+            return new HeaderData(ChannelUtils.d(widgetHomeModel.getChannel(), context, false), null, Integer.valueOf(R.drawable.ic_direct_message_header), false, null, 26, null);
         }
         if (numValueOf.intValue() == 14) {
-            return new WidgetHomeHeaderManager$HeaderData(ChannelUtils.d(widgetHomeModel.getChannel(), context, false), null, 2131231874, false, null, 26, null);
+            return new HeaderData(ChannelUtils.d(widgetHomeModel.getChannel(), context, false), null, Integer.valueOf(R.drawable.ic_hub_24dp), false, null, 26, null);
         }
         if (widgetHomeModel.getChannel().getId() <= 0) {
-            return new WidgetHomeHeaderManager$HeaderData(null, null, null, false, null, 26, null);
+            return new HeaderData(null, null, null, false, null, 26, null);
         }
         String strD = ChannelUtils.d(widgetHomeModel.getChannel(), context, false);
         Channel parentChannel = widgetHomeModel.getParentChannel();
-        return new WidgetHomeHeaderManager$HeaderData(strD, parentChannel != null ? ChannelUtils.d(parentChannel, context, false) : null, Integer.valueOf(GuildChannelIconUtilsKt.guildChannelIcon(widgetHomeModel.getChannel())), ((StoreChannelsSelected$ResolvedSelectedChannel$Channel) widgetHomeModel.getSelectedChannel()).getPeekParent() != null || ChannelUtils.J(widgetHomeModel.getChannel()), null, 16, null);
+        return new HeaderData(strD, parentChannel != null ? ChannelUtils.d(parentChannel, context, false) : null, Integer.valueOf(GuildChannelIconUtilsKt.guildChannelIcon(widgetHomeModel.getChannel())), ((StoreChannelsSelected.ResolvedSelectedChannel.Channel) widgetHomeModel.getSelectedChannel()).getPeekParent() != null || ChannelUtils.J(widgetHomeModel.getChannel()), null, 16, null);
     }
 
     private final Action1<Menu> getOnConfigureAction(WidgetHomeModel widgetHomeModel, Resources resources) {
-        return new WidgetHomeHeaderManager$getOnConfigureAction$1(widgetHomeModel, resources);
+        return new AnonymousClass1(widgetHomeModel, resources);
     }
 
-    private final WidgetHomeHeaderManager$getOnSelectedAction$1 getOnSelectedAction(WidgetHomeModel widgetHomeModel, AppFragment appFragment, PanelLayout panelLayout) {
-        return new WidgetHomeHeaderManager$getOnSelectedAction$1(widgetHomeModel, appFragment, panelLayout);
+    private final AnonymousClass1 getOnSelectedAction(WidgetHomeModel widgetHomeModel, AppFragment appFragment, PanelLayout panelLayout) {
+        return new AnonymousClass1(widgetHomeModel, appFragment, panelLayout);
     }
 
     private final boolean isChannelNSFWGated(boolean isChannelNsfw, boolean isNsfwUnConsented, NsfwAllowance nsfwAllowed) {

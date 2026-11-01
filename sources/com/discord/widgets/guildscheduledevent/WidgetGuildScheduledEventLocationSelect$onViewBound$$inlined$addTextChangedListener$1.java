@@ -2,7 +2,7 @@ package com.discord.widgets.guildscheduledevent;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 
 /* JADX INFO: compiled from: TextView.kt */
 /* JADX INFO: loaded from: classes2.dex */

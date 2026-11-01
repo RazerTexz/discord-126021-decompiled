@@ -1,7 +1,7 @@
 package f0.e0.k;
 
 import android.net.http.X509TrustManagerExtensions;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.security.NetworkSecurityPolicy;
 import d0.t.n;
 import d0.z.d.m;
@@ -9,12 +9,13 @@ import f0.e0.k.i.i;
 import f0.e0.k.i.j;
 import f0.e0.k.i.k;
 import f0.e0.k.i.l;
-import f0.e0.k.i.l$a;
 import f0.y;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.security.cert.TrustAnchor;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,18 +23,85 @@ import java.util.List;
 import java.util.Objects;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.X509TrustManager;
+import kotlin.TypeCastException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: AndroidPlatform.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class b extends h {
     public static final boolean d;
-    public static final b$a e = new b$a(null);
+    public static final a e = new a(null);
     public final List<k> f;
     public final f0.e0.k.i.h g;
 
+    /* JADX INFO: renamed from: f0.e0.k.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: AndroidPlatform.kt */
+    public final class C0609b implements f0.e0.m.e {
+        public final X509TrustManager a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final Method f3648b;
+
+        public C0609b(X509TrustManager x509TrustManager, Method method) {
+            m.checkParameterIsNotNull(x509TrustManager, "trustManager");
+            m.checkParameterIsNotNull(method, "findByIssuerAndSignatureMethod");
+            this.a = x509TrustManager;
+            this.f3648b = method;
+        }
+
+        @Override // f0.e0.m.e
+        public X509Certificate a(X509Certificate x509Certificate) {
+            m.checkParameterIsNotNull(x509Certificate, "cert");
+            try {
+                Object objInvoke = this.f3648b.invoke(this.a, x509Certificate);
+                if (objInvoke != null) {
+                    return ((TrustAnchor) objInvoke).getTrustedCert();
+                }
+                throw new TypeCastException("null cannot be cast to non-null type java.security.cert.TrustAnchor");
+            } catch (IllegalAccessException e) {
+                throw new AssertionError("unable to get issues and signature", e);
+            } catch (InvocationTargetException unused) {
+                return null;
+            }
+        }
+
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof C0609b)) {
+                return false;
+            }
+            C0609b c0609b = (C0609b) obj;
+            return m.areEqual(this.a, c0609b.a) && m.areEqual(this.f3648b, c0609b.f3648b);
+        }
+
+        public int hashCode() {
+            X509TrustManager x509TrustManager = this.a;
+            int iHashCode = (x509TrustManager != null ? x509TrustManager.hashCode() : 0) * 31;
+            Method method = this.f3648b;
+            return iHashCode + (method != null ? method.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = b.d.b.a.a.U("CustomTrustRootIndex(trustManager=");
+            sbU.append(this.a);
+            sbU.append(", findByIssuerAndSignatureMethod=");
+            sbU.append(this.f3648b);
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    /* JADX INFO: compiled from: AndroidPlatform.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     static {
         boolean z2 = false;
-        if (h.c.c() && Build$VERSION.SDK_INT < 30) {
+        if (h.c.c() && Build.VERSION.SDK_INT < 30) {
             z2 = true;
         }
         d = z2;
@@ -44,7 +112,7 @@ public final class b extends h {
         Method method;
         Method method2;
         k[] kVarArr = new k[4];
-        l$a l_a = l.h;
+        l.a aVar = l.h;
         m.checkParameterIsNotNull("com.android.org.conscrypt", "packageName");
         Method method3 = null;
         try {
@@ -58,7 +126,7 @@ public final class b extends h {
             lVar = null;
         }
         kVarArr[0] = lVar;
-        f0.e0.k.i.f$a f_a = f0.e0.k.i.f.f3653b;
+        f0.e0.k.i.f.a aVar2 = f0.e0.k.i.f.f3653b;
         kVarArr[1] = new j(f0.e0.k.i.f.a);
         kVarArr[2] = new j(i.a);
         kVarArr[3] = new j(f0.e0.k.i.g.a);
@@ -104,7 +172,7 @@ public final class b extends h {
             Method declaredMethod = x509TrustManager.getClass().getDeclaredMethod("findTrustAnchorByIssuerAndSignature", X509Certificate.class);
             m.checkExpressionValueIsNotNull(declaredMethod, "method");
             declaredMethod.setAccessible(true);
-            return new b$b(x509TrustManager, declaredMethod);
+            return new C0609b(x509TrustManager, declaredMethod);
         } catch (NoSuchMethodException unused) {
             return super.c(x509TrustManager);
         }
@@ -136,7 +204,7 @@ public final class b extends h {
         try {
             socket.connect(inetSocketAddress, i);
         } catch (ClassCastException e2) {
-            if (Build$VERSION.SDK_INT != 26) {
+            if (Build.VERSION.SDK_INT != 26) {
                 throw e2;
             }
             throw new IOException("Exception in connect", e2);
@@ -188,7 +256,7 @@ public final class b extends h {
     @Override // f0.e0.k.h
     public boolean h(String str) {
         m.checkParameterIsNotNull(str, "hostname");
-        int i = Build$VERSION.SDK_INT;
+        int i = Build.VERSION.SDK_INT;
         if (i >= 24) {
             return NetworkSecurityPolicy.getInstance().isCleartextTrafficPermitted(str);
         }

@@ -9,15 +9,29 @@ public abstract class n {
     public static final n k;
     public static final /* synthetic */ n[] l;
 
-    static {
-        n$a n_a = new n$a("DEFAULT", 0);
-        j = n_a;
-        n$b n_b = new n$b("STRING", 1);
-        k = n_b;
-        l = new n[]{n_a, n_b};
+    /* JADX INFO: compiled from: LongSerializationPolicy.java */
+    public final enum a extends n {
+        public a(String str, int i) {
+            super(str, i, null);
+        }
     }
 
-    public n(String str, int i, n$a n_a) {
+    /* JADX INFO: compiled from: LongSerializationPolicy.java */
+    public final enum b extends n {
+        public b(String str, int i) {
+            super(str, i, null);
+        }
+    }
+
+    static {
+        a aVar = new a("DEFAULT", 0);
+        j = aVar;
+        b bVar = new b("STRING", 1);
+        k = bVar;
+        l = new n[]{aVar, bVar};
+    }
+
+    public n(String str, int i, a aVar) {
         super(str, i);
     }
 

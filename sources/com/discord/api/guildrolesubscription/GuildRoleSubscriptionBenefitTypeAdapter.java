@@ -13,9 +13,9 @@ public final class GuildRoleSubscriptionBenefitTypeAdapter extends TypeAdapter<G
     @Override // com.google.gson.TypeAdapter
     public GuildRoleSubscriptionBenefitType read(JsonReader jsonReader) throws IOException {
         m.checkNotNullParameter(jsonReader, "in");
-        GuildRoleSubscriptionBenefitType$Companion guildRoleSubscriptionBenefitType$Companion = GuildRoleSubscriptionBenefitType.Companion;
+        GuildRoleSubscriptionBenefitType.Companion companion = GuildRoleSubscriptionBenefitType.INSTANCE;
         int iY = jsonReader.y();
-        Objects.requireNonNull(guildRoleSubscriptionBenefitType$Companion);
+        Objects.requireNonNull(companion);
         if (iY != 1) {
             return iY != 2 ? GuildRoleSubscriptionBenefitType.UNKNOWN : GuildRoleSubscriptionBenefitType.INTANGIBLE;
         }

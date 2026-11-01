@@ -4,17 +4,15 @@ import android.graphics.RectF;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
-import android.view.View$MeasureSpec;
-import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup;
 import androidx.constraintlayout.motion.utils.CurveFit;
 import androidx.constraintlayout.motion.utils.Easing;
 import androidx.constraintlayout.motion.utils.VelocityMatrix;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.constraintlayout.widget.ConstraintAttribute;
-import androidx.constraintlayout.widget.ConstraintLayout$LayoutParams;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.constraintlayout.widget.ConstraintSet$Constraint;
 import b.d.b.a.a;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -696,8 +694,8 @@ public class MotionController {
     }
 
     public boolean interpolate(View view, float f, long j, KeyCache keyCache) {
-        TimeCycleSplineSet$PathRotate timeCycleSplineSet$PathRotate;
-        boolean pathRotate;
+        TimeCycleSplineSet.PathRotate pathRotate;
+        boolean pathRotate2;
         float adjustedPosition = getAdjustedPosition(f, null);
         HashMap<String, SplineSet> map = this.mAttributesMap;
         if (map != null) {
@@ -708,19 +706,19 @@ public class MotionController {
         }
         HashMap<String, TimeCycleSplineSet> map2 = this.mTimeCycleAttributesMap;
         if (map2 != null) {
-            timeCycleSplineSet$PathRotate = null;
+            pathRotate = null;
             boolean property = false;
             for (TimeCycleSplineSet timeCycleSplineSet : map2.values()) {
-                if (timeCycleSplineSet instanceof TimeCycleSplineSet$PathRotate) {
-                    timeCycleSplineSet$PathRotate = (TimeCycleSplineSet$PathRotate) timeCycleSplineSet;
+                if (timeCycleSplineSet instanceof TimeCycleSplineSet.PathRotate) {
+                    pathRotate = (TimeCycleSplineSet.PathRotate) timeCycleSplineSet;
                 } else {
                     property |= timeCycleSplineSet.setProperty(view, adjustedPosition, j, keyCache);
                 }
             }
-            pathRotate = property;
+            pathRotate2 = property;
         } else {
-            timeCycleSplineSet$PathRotate = null;
-            pathRotate = false;
+            pathRotate = null;
+            pathRotate2 = false;
         }
         CurveFit[] curveFitArr = this.mSpline;
         if (curveFitArr != null) {
@@ -739,15 +737,15 @@ public class MotionController {
             HashMap<String, SplineSet> map3 = this.mAttributesMap;
             if (map3 != null) {
                 for (SplineSet splineSet : map3.values()) {
-                    if (splineSet instanceof SplineSet$PathRotate) {
+                    if (splineSet instanceof SplineSet.PathRotate) {
                         double[] dArr2 = this.mInterpolateVelocity;
-                        ((SplineSet$PathRotate) splineSet).setPathRotate(view, adjustedPosition, dArr2[0], dArr2[1]);
+                        ((SplineSet.PathRotate) splineSet).setPathRotate(view, adjustedPosition, dArr2[0], dArr2[1]);
                     }
                 }
             }
-            if (timeCycleSplineSet$PathRotate != null) {
+            if (pathRotate != null) {
                 double[] dArr3 = this.mInterpolateVelocity;
-                pathRotate = timeCycleSplineSet$PathRotate.setPathRotate(view, keyCache, adjustedPosition, j, dArr3[0], dArr3[1]) | pathRotate;
+                pathRotate2 = pathRotate.setPathRotate(view, keyCache, adjustedPosition, j, dArr3[0], dArr3[1]) | pathRotate2;
             }
             int i = 1;
             while (true) {
@@ -801,22 +799,22 @@ public class MotionController {
             int i6 = i5 - i3;
             int i7 = iA - i4;
             if (f5 != f4 || f7 != f6) {
-                view.measure(View$MeasureSpec.makeMeasureSpec(i6, BasicMeasure.EXACTLY), View$MeasureSpec.makeMeasureSpec(i7, BasicMeasure.EXACTLY));
+                view.measure(View.MeasureSpec.makeMeasureSpec(i6, BasicMeasure.EXACTLY), View.MeasureSpec.makeMeasureSpec(i7, BasicMeasure.EXACTLY));
             }
             view.layout(i3, i4, i5, iA);
         }
         HashMap<String, KeyCycleOscillator> map4 = this.mCycleMap;
         if (map4 != null) {
             for (KeyCycleOscillator keyCycleOscillator : map4.values()) {
-                if (keyCycleOscillator instanceof KeyCycleOscillator$PathRotateSet) {
+                if (keyCycleOscillator instanceof KeyCycleOscillator.PathRotateSet) {
                     double[] dArr4 = this.mInterpolateVelocity;
-                    ((KeyCycleOscillator$PathRotateSet) keyCycleOscillator).setPathRotate(view, adjustedPosition, dArr4[0], dArr4[1]);
+                    ((KeyCycleOscillator.PathRotateSet) keyCycleOscillator).setPathRotate(view, adjustedPosition, dArr4[0], dArr4[1]);
                 } else {
                     keyCycleOscillator.setProperty(view, adjustedPosition);
                 }
             }
         }
-        return pathRotate;
+        return pathRotate2;
     }
 
     public String name() {
@@ -879,7 +877,7 @@ public class MotionController {
         motionPaths.position = 0.0f;
         readView(motionPaths);
         this.mStartMotionPath.setBounds(constraintWidget.getX(), constraintWidget.getY(), constraintWidget.getWidth(), constraintWidget.getHeight());
-        ConstraintSet$Constraint parameters = constraintSet.getParameters(this.mId);
+        ConstraintSet.Constraint parameters = constraintSet.getParameters(this.mId);
         this.mStartMotionPath.applyParameters(parameters);
         this.mMotionStagger = parameters.motion.mMotionStagger;
         this.mStartPoint.setState(constraintWidget, constraintSet, this.mId);
@@ -888,9 +886,9 @@ public class MotionController {
     public void setView(View view) {
         this.mView = view;
         this.mId = view.getId();
-        ViewGroup$LayoutParams layoutParams = view.getLayoutParams();
-        if (layoutParams instanceof ConstraintLayout$LayoutParams) {
-            this.mConstraintTag = ((ConstraintLayout$LayoutParams) layoutParams).getConstraintTag();
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        if (layoutParams instanceof ConstraintLayout.LayoutParams) {
+            this.mConstraintTag = ((ConstraintLayout.LayoutParams) layoutParams).getConstraintTag();
         }
     }
 

@@ -7,14 +7,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.annotation.LayoutRes;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
-import com.discord.R$layout;
+import b.d.b.a.a;
+import com.discord.R;
+import com.discord.api.connectedaccounts.ConnectedAccount;
 import com.discord.databinding.UserProfileConnectionsViewBinding;
+import com.discord.models.domain.ModelAuditLogEntry;
+import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapter;
-import com.discord.utilities.mg_recycler.MGRecyclerAdapter$Companion;
+import com.discord.utilities.mg_recycler.MGRecyclerAdapterSimple;
+import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
+import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
+import com.discord.utilities.platform.Platform;
+import com.discord.utilities.view.extensions.ViewExtensions;
 import d0.z.d.m;
+import d0.z.d.o;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function3;
@@ -23,30 +35,325 @@ import kotlin.jvm.functions.Function3;
 /* JADX INFO: loaded from: classes.dex */
 public final class UserProfileConnectionsView extends LinearLayout {
     private final UserProfileConnectionsViewBinding binding;
-    private final UserProfileConnectionsView$ConnectedAccountsAdapter connectedAccountsAdapter;
+    private final ConnectedAccountsAdapter connectedAccountsAdapter;
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.profile.UserProfileConnectionsView$updateViewState$1, reason: invalid class name */
+    /* JADX INFO: compiled from: UserProfileConnectionsView.kt */
+    public final class AnonymousClass1 extends o implements Function3<String, Integer, String, Unit> {
+        public final /* synthetic */ Function3 $onConnectedAccountClick;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Function3 function3) {
+            super(3);
+            this.$onConnectedAccountClick = function3;
+        }
+
+        @Override // kotlin.jvm.functions.Function3
+        public /* bridge */ /* synthetic */ Unit invoke(String str, Integer num, String str2) {
+            invoke(str, num.intValue(), str2);
+            return Unit.a;
+        }
+
+        public final void invoke(String str, int i, String str2) {
+            m.checkNotNullParameter(str, "username");
+            this.$onConnectedAccountClick.invoke(str, Integer.valueOf(i), str2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.profile.UserProfileConnectionsView$updateViewState$2, reason: invalid class name */
+    /* JADX INFO: compiled from: UserProfileConnectionsView.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ Function0 $onMutualGuildsItemClick;
+
+        public AnonymousClass2(Function0 function0) {
+            this.$onMutualGuildsItemClick = function0;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onMutualGuildsItemClick.invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.profile.UserProfileConnectionsView$updateViewState$3, reason: invalid class name */
+    /* JADX INFO: compiled from: UserProfileConnectionsView.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public final /* synthetic */ Function0 $onMutualFriendsItemClick;
+
+        public AnonymousClass3(Function0 function0) {
+            this.$onMutualFriendsItemClick = function0;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onMutualFriendsItemClick.invoke();
+        }
+    }
+
+    /* JADX INFO: compiled from: UserProfileConnectionsView.kt */
+    public final /* data */ class ConnectedAccountItem implements MGRecyclerDataPayload {
+        private final ConnectedAccount connectedAccount;
+        private final String key;
+        private final int type;
+
+        public ConnectedAccountItem(ConnectedAccount connectedAccount) {
+            m.checkNotNullParameter(connectedAccount, "connectedAccount");
+            this.connectedAccount = connectedAccount;
+            this.key = connectedAccount.getId();
+        }
+
+        public static /* synthetic */ ConnectedAccountItem copy$default(ConnectedAccountItem connectedAccountItem, ConnectedAccount connectedAccount, int i, Object obj) {
+            if ((i & 1) != 0) {
+                connectedAccount = connectedAccountItem.connectedAccount;
+            }
+            return connectedAccountItem.copy(connectedAccount);
+        }
+
+        public final ConnectedAccountItem copy(ConnectedAccount connectedAccount) {
+            m.checkNotNullParameter(connectedAccount, "connectedAccount");
+            return new ConnectedAccountItem(connectedAccount);
+        }
+
+        public boolean equals(Object other) {
+            if (this != other) {
+                return (other instanceof ConnectedAccountItem) && m.areEqual(this.connectedAccount, ((ConnectedAccountItem) other).connectedAccount);
+            }
+            return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ConnectedAccount getConnectedAccount() {
+            return this.connectedAccount;
+        }
+
+        public final ConnectedAccount getConnectedAccount() {
+            return this.connectedAccount;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
+        public String getKey() {
+            return this.key;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
+        public int getType() {
+            return this.type;
+        }
+
+        public int hashCode() {
+            ConnectedAccount connectedAccount = this.connectedAccount;
+            if (connectedAccount != null) {
+                return connectedAccount.hashCode();
+            }
+            return 0;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("ConnectedAccountItem(connectedAccount=");
+            sbU.append(this.connectedAccount);
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    /* JADX INFO: compiled from: UserProfileConnectionsView.kt */
+    public final class ConnectedAccountsAdapter extends MGRecyclerAdapterSimple<ConnectedAccountItem> {
+        private Function3<? super String, ? super Integer, ? super String, Unit> onConnectedAccountClick;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public ConnectedAccountsAdapter(RecyclerView recyclerView) {
+            super(recyclerView, false, 2, null);
+            m.checkNotNullParameter(recyclerView, "recyclerView");
+            this.onConnectedAccountClick = UserProfileConnectionsView$ConnectedAccountsAdapter$onConnectedAccountClick$1.INSTANCE;
+        }
+
+        public final Function3<String, Integer, String, Unit> getOnConnectedAccountClick() {
+            return this.onConnectedAccountClick;
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        public /* bridge */ /* synthetic */ RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            return onCreateViewHolder(viewGroup, i);
+        }
+
+        public final void setOnConnectedAccountClick(Function3<? super String, ? super Integer, ? super String, Unit> function3) {
+            m.checkNotNullParameter(function3, "<set-?>");
+            this.onConnectedAccountClick = function3;
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        public MGRecyclerViewHolder<ConnectedAccountsAdapter, ConnectedAccountItem> onCreateViewHolder(ViewGroup parent, int viewType) {
+            m.checkNotNullParameter(parent, "parent");
+            return new ViewHolder(R.layout.icon_list_item_text_view, this);
+        }
+    }
+
+    /* JADX INFO: compiled from: UserProfileConnectionsView.kt */
+    public final class ViewHolder extends MGRecyclerViewHolder<ConnectedAccountsAdapter, ConnectedAccountItem> {
+        private final TextView listItemTextView;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public ViewHolder(@LayoutRes int i, ConnectedAccountsAdapter connectedAccountsAdapter) {
+            super(i, connectedAccountsAdapter);
+            m.checkNotNullParameter(connectedAccountsAdapter, "adapter");
+            View view = this.itemView;
+            Objects.requireNonNull(view, "null cannot be cast to non-null type android.widget.TextView");
+            this.listItemTextView = (TextView) view;
+        }
+
+        public static final /* synthetic */ ConnectedAccountsAdapter access$getAdapter$p(ViewHolder viewHolder) {
+            return (ConnectedAccountsAdapter) viewHolder.adapter;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
+        public /* bridge */ /* synthetic */ void onConfigure(int i, ConnectedAccountItem connectedAccountItem) {
+            onConfigure2(i, connectedAccountItem);
+        }
+
+        /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
+        public void onConfigure2(int position, ConnectedAccountItem data) {
+            m.checkNotNullParameter(data, "data");
+            super.onConfigure(position, data);
+            ConnectedAccount connectedAccount = data.getConnectedAccount();
+            String name = connectedAccount.getName();
+            Platform platformFrom = Platform.INSTANCE.from(connectedAccount);
+            Integer themedPlatformImage = platformFrom.getThemedPlatformImage();
+            int iIntValue = themedPlatformImage != null ? themedPlatformImage.intValue() : 0;
+            String profileUrl = platformFrom.getProfileUrl(connectedAccount);
+            TextView textView = this.listItemTextView;
+            Integer themedPlatformImage2 = platformFrom.getThemedPlatformImage();
+            ViewExtensions.setCompoundDrawableWithIntrinsicBounds$default(textView, DrawableCompat.getThemedDrawableRes$default(textView, themedPlatformImage2 != null ? themedPlatformImage2.intValue() : 0, 0, 2, (Object) null), 0, 0, 0, 14, null);
+            this.listItemTextView.setText(connectedAccount.getName());
+            TextView textView2 = this.listItemTextView;
+            String str = String.format("%s, %s", Arrays.copyOf(new Object[]{connectedAccount.getType(), connectedAccount.getName()}, 2));
+            m.checkNotNullExpressionValue(str, "java.lang.String.format(format, *args)");
+            textView2.setContentDescription(str);
+            this.itemView.setOnClickListener(new UserProfileConnectionsView$ViewHolder$onConfigure$1(this, platformFrom, name, iIntValue, profileUrl));
+        }
+    }
+
+    /* JADX INFO: compiled from: UserProfileConnectionsView.kt */
+    public final /* data */ class ViewState {
+        private final List<ConnectedAccountItem> connectedAccountItems;
+        private final boolean showConnectionsSection;
+        private final boolean showMutualGuildsAndFriends;
+
+        public ViewState(boolean z2, boolean z3, List<ConnectedAccountItem> list) {
+            m.checkNotNullParameter(list, "connectedAccountItems");
+            this.showConnectionsSection = z2;
+            this.showMutualGuildsAndFriends = z3;
+            this.connectedAccountItems = list;
+        }
+
+        public final List<ConnectedAccountItem> component3() {
+            return this.connectedAccountItems;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ ViewState copy$default(ViewState viewState, boolean z2, boolean z3, List list, int i, Object obj) {
+            if ((i & 1) != 0) {
+                z2 = viewState.showConnectionsSection;
+            }
+            if ((i & 2) != 0) {
+                z3 = viewState.showMutualGuildsAndFriends;
+            }
+            if ((i & 4) != 0) {
+                list = viewState.connectedAccountItems;
+            }
+            return viewState.copy(z2, z3, list);
+        }
+
+        public final ViewState copy(boolean showConnectionsSection, boolean showMutualGuildsAndFriends, List<ConnectedAccountItem> connectedAccountItems) {
+            m.checkNotNullParameter(connectedAccountItems, "connectedAccountItems");
+            return new ViewState(showConnectionsSection, showMutualGuildsAndFriends, connectedAccountItems);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof ViewState)) {
+                return false;
+            }
+            ViewState viewState = (ViewState) other;
+            return this.showConnectionsSection == viewState.showConnectionsSection && this.showMutualGuildsAndFriends == viewState.showMutualGuildsAndFriends && m.areEqual(this.connectedAccountItems, viewState.connectedAccountItems);
+        }
+
+        public final List<ConnectedAccountItem> getConnectedAccountItems() {
+            return this.connectedAccountItems;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getShowConnectionsSection() {
+            return this.showConnectionsSection;
+        }
+
+        public final boolean getShowConnectionsSection() {
+            return this.showConnectionsSection;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getShowMutualGuildsAndFriends() {
+            return this.showMutualGuildsAndFriends;
+        }
+
+        public final boolean getShowMutualGuildsAndFriends() {
+            return this.showMutualGuildsAndFriends;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r0v3, types: [int] */
+        /* JADX WARN: Type inference failed for: r0v6 */
+        /* JADX WARN: Type inference failed for: r0v7 */
+        /* JADX WARN: Type inference failed for: r1v0 */
+        /* JADX WARN: Type inference failed for: r1v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v6 */
+        public int hashCode() {
+            boolean z2 = this.showConnectionsSection;
+            ?? r0 = z2;
+            if (z2) {
+                r0 = 1;
+            }
+            int i = r0 * 31;
+            boolean z3 = this.showMutualGuildsAndFriends;
+            int i2 = (i + (z3 ? 1 : z3)) * 31;
+            List<ConnectedAccountItem> list = this.connectedAccountItems;
+            return i2 + (list != null ? list.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("ViewState(showConnectionsSection=");
+            sbU.append(this.showConnectionsSection);
+            sbU.append(", showMutualGuildsAndFriends=");
+            sbU.append(this.showMutualGuildsAndFriends);
+            sbU.append(", connectedAccountItems=");
+            return a.L(sbU, this.connectedAccountItems, ")");
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public UserProfileConnectionsView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         m.checkNotNullParameter(context, "context");
         m.checkNotNullParameter(attributeSet, "attrs");
-        View viewInflate = LayoutInflater.from(context).inflate(R$layout.user_profile_connections_view, (ViewGroup) this, false);
+        View viewInflate = LayoutInflater.from(context).inflate(R.layout.user_profile_connections_view, (ViewGroup) this, false);
         addView(viewInflate);
-        int i = R$id.user_profile_connections_mutual_friends_item;
-        TextView textView = (TextView) viewInflate.findViewById(R$id.user_profile_connections_mutual_friends_item);
+        int i = R.id.user_profile_connections_mutual_friends_item;
+        TextView textView = (TextView) viewInflate.findViewById(R.id.user_profile_connections_mutual_friends_item);
         if (textView != null) {
-            i = R$id.user_profile_connections_mutual_guilds_item;
-            TextView textView2 = (TextView) viewInflate.findViewById(R$id.user_profile_connections_mutual_guilds_item);
+            i = R.id.user_profile_connections_mutual_guilds_item;
+            TextView textView2 = (TextView) viewInflate.findViewById(R.id.user_profile_connections_mutual_guilds_item);
             if (textView2 != null) {
-                i = R$id.user_profile_connections_view_recycler;
-                RecyclerView recyclerView = (RecyclerView) viewInflate.findViewById(R$id.user_profile_connections_view_recycler);
+                i = R.id.user_profile_connections_view_recycler;
+                RecyclerView recyclerView = (RecyclerView) viewInflate.findViewById(R.id.user_profile_connections_view_recycler);
                 if (recyclerView != null) {
                     UserProfileConnectionsViewBinding userProfileConnectionsViewBinding = new UserProfileConnectionsViewBinding((LinearLayout) viewInflate, textView, textView2, recyclerView);
                     m.checkNotNullExpressionValue(userProfileConnectionsViewBinding, "UserProfileConnectionsVi…rom(context), this, true)");
                     this.binding = userProfileConnectionsViewBinding;
-                    MGRecyclerAdapter$Companion mGRecyclerAdapter$Companion = MGRecyclerAdapter.Companion;
+                    MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
                     m.checkNotNullExpressionValue(recyclerView, "binding.userProfileConnectionsViewRecycler");
-                    this.connectedAccountsAdapter = (UserProfileConnectionsView$ConnectedAccountsAdapter) mGRecyclerAdapter$Companion.configure(new UserProfileConnectionsView$ConnectedAccountsAdapter(recyclerView));
+                    this.connectedAccountsAdapter = (ConnectedAccountsAdapter) companion.configure(new ConnectedAccountsAdapter(recyclerView));
                     return;
                 }
             }
@@ -61,18 +368,18 @@ public final class UserProfileConnectionsView extends LinearLayout {
         ViewCompat.setNestedScrollingEnabled(this.binding.d, false);
     }
 
-    public final void updateViewState(UserProfileConnectionsView$ViewState viewState, Function3<? super String, ? super Integer, ? super String, Unit> onConnectedAccountClick, Function0<Unit> onMutualGuildsItemClick, Function0<Unit> onMutualFriendsItemClick) {
+    public final void updateViewState(ViewState viewState, Function3<? super String, ? super Integer, ? super String, Unit> onConnectedAccountClick, Function0<Unit> onMutualGuildsItemClick, Function0<Unit> onMutualFriendsItemClick) {
         m.checkNotNullParameter(viewState, "viewState");
         m.checkNotNullParameter(onConnectedAccountClick, "onConnectedAccountClick");
         m.checkNotNullParameter(onMutualGuildsItemClick, "onMutualGuildsItemClick");
         m.checkNotNullParameter(onMutualFriendsItemClick, "onMutualFriendsItemClick");
-        this.connectedAccountsAdapter.setOnConnectedAccountClick(new UserProfileConnectionsView$updateViewState$1(onConnectedAccountClick));
+        this.connectedAccountsAdapter.setOnConnectedAccountClick(new AnonymousClass1(onConnectedAccountClick));
         this.connectedAccountsAdapter.setData(viewState.getConnectedAccountItems());
-        this.binding.c.setOnClickListener(new UserProfileConnectionsView$updateViewState$2(onMutualGuildsItemClick));
+        this.binding.c.setOnClickListener(new AnonymousClass2(onMutualGuildsItemClick));
         TextView textView = this.binding.c;
         m.checkNotNullExpressionValue(textView, "binding.userProfileConnectionsMutualGuildsItem");
         textView.setVisibility(viewState.getShowMutualGuildsAndFriends() ? 0 : 8);
-        this.binding.f2164b.setOnClickListener(new UserProfileConnectionsView$updateViewState$3(onMutualFriendsItemClick));
+        this.binding.f2164b.setOnClickListener(new AnonymousClass3(onMutualFriendsItemClick));
         TextView textView2 = this.binding.f2164b;
         m.checkNotNullExpressionValue(textView2, "binding.userProfileConnectionsMutualFriendsItem");
         textView2.setVisibility(viewState.getShowMutualGuildsAndFriends() ? 0 : 8);

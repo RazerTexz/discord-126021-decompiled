@@ -942,7 +942,7 @@ public class e {
             a(57);
             throw null;
         }
-        while (d.getKind() == d0.e0.p.d.m0.c.b$a.FAKE_OVERRIDE) {
+        while (d.getKind() == d0.e0.p.d.m0.c.b.a.FAKE_OVERRIDE) {
             Collection<? extends d0.e0.p.d.m0.c.b> overriddenDescriptors = d.getOverriddenDescriptors();
             if (overriddenDescriptors.isEmpty()) {
                 throw new IllegalStateException("Fake override should have at least one overridden descriptor: " + d);

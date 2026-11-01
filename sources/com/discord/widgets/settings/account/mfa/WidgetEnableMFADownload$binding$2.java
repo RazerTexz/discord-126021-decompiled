@@ -3,7 +3,7 @@ package com.discord.widgets.settings.account.mfa;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetSettingsEnableMfaDownloadBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -26,10 +26,10 @@ public final /* synthetic */ class WidgetEnableMFADownload$binding$2 extends k i
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSettingsEnableMfaDownloadBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        TextView textView = (TextView) view.findViewById(R$id.mfa_download_body);
+        TextView textView = (TextView) view.findViewById(R.id.mfa_download_body);
         if (textView != null) {
             return new WidgetSettingsEnableMfaDownloadBinding((LinearLayout) view, textView);
         }
-        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R$id.mfa_download_body)));
+        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R.id.mfa_download_body)));
     }
 }

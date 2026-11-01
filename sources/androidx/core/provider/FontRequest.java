@@ -5,7 +5,6 @@ import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.core.util.Preconditions;
 import b.d.b.a.a;
 import java.util.List;
@@ -43,12 +42,12 @@ public final class FontRequest {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public String getId() {
         return this.mIdentifier;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     @Deprecated
     public String getIdentifier() {
         return this.mIdentifier;

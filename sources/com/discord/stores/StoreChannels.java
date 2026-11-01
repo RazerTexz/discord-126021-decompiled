@@ -1,29 +1,36 @@
 package com.discord.stores;
 
 import android.content.Context;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.pm.ShortcutManagerCompat;
 import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelRecipient;
 import com.discord.api.channel.ChannelRecipientNick;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.guild.Guild;
+import com.discord.api.permission.Permission;
 import com.discord.api.user.User;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.message.Message;
 import com.discord.models.thread.dto.ModelThreadListSync;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.utilities.collections.CollectionExtensionsKt;
+import com.discord.utilities.frecency.FrecencyTracker;
+import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.utilities.persister.Persister;
 import com.discord.utilities.search.network.state.SearchState;
 import d0.d0.f;
+import d0.f0.q;
 import d0.t.g0;
 import d0.t.h0;
 import d0.t.n;
-import d0.t.o;
 import d0.t.r;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
+import j0.l.e.k;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -31,8 +38,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -41,7 +48,6 @@ import rx.Observable;
 /* JADX INFO: compiled from: StoreChannels.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreChannels extends StoreV2 {
-    public static final StoreChannels$Companion Companion = new StoreChannels$Companion(null);
     public static final long PRIVATE_CHANNELS_ID = 0;
     private final Map<Long, String> channelNames;
     private Map<Long, String> channelNamesSnapshot;
@@ -62,6 +68,451 @@ public final class StoreChannels extends StoreV2 {
     private final Map<Long, Channel> threadsById;
     private Map<Long, Channel> threadsByIdSnapshot;
     private static final StoreChannels$Companion$InitializedUpdateSource$1 InitializedUpdateSource = new StoreChannels$Companion$InitializedUpdateSource$1();
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeAllChannels$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreChannels.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Channel>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Channel> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Channel> invoke2() {
+            return h0.plus(StoreChannels.access$getChannelsByIdSnapshot$p(StoreChannels.this), StoreChannels.access$getThreadsByIdSnapshot$p(StoreChannels.this));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeChannel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreChannels.kt */
+    public final class AnonymousClass1 extends o implements Function0<Channel> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Channel invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final Channel invoke() {
+            return StoreChannels.this.getChannel(this.$channelId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeChannelCategories$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreChannels.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Channel>, List<? extends Channel>> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ List<? extends Channel> call(Map<Long, ? extends Channel> map) {
+            return call2((Map<Long, Channel>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final List<Channel> call2(Map<Long, Channel> map) {
+            Collection<Channel> collectionValues = map.values();
+            ArrayList arrayList = new ArrayList();
+            for (T t : collectionValues) {
+                if (ChannelUtils.k((Channel) t)) {
+                    arrayList.add(t);
+                }
+            }
+            return arrayList;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeChannelsForGuild$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreChannels.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Channel>, Observable<? extends Map<Long, ? extends Channel>>> {
+        public final /* synthetic */ long $guildId;
+        public final /* synthetic */ Integer $type;
+
+        public AnonymousClass1(long j, Integer num) {
+            this.$guildId = j;
+            this.$type = num;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends Map<Long, ? extends Channel>> call(Map<Long, ? extends Channel> map) {
+            return call2((Map<Long, Channel>) map);
+        }
+
+        /* JADX WARN: Code duplicated, block: B:15:0x0043  */
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends Map<Long, Channel>> call2(Map<Long, Channel> map) {
+            boolean z2;
+            m.checkNotNullExpressionValue(map, "channels");
+            LinkedHashMap linkedHashMap = new LinkedHashMap();
+            for (Map.Entry<Long, Channel> entry : map.entrySet()) {
+                Channel value = entry.getValue();
+                if (value.getGuildId() != this.$guildId) {
+                    z2 = false;
+                } else {
+                    if (this.$type != null) {
+                        int type = value.getType();
+                        Integer num = this.$type;
+                        if (num == null || type != num.intValue()) {
+                            z2 = false;
+                        }
+                    }
+                    z2 = true;
+                }
+                if (z2) {
+                    linkedHashMap.put(entry.getKey(), entry.getValue());
+                }
+            }
+            return new k(linkedHashMap);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeDMs$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreChannels.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Channel>, List<? extends Channel>> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ List<? extends Channel> call(Map<Long, ? extends Channel> map) {
+            return call2((Map<Long, Channel>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final List<Channel> call2(Map<Long, Channel> map) {
+            Collection<Channel> collectionValues = map.values();
+            ArrayList arrayList = new ArrayList();
+            for (T t : collectionValues) {
+                if (ChannelUtils.m((Channel) t)) {
+                    arrayList.add(t);
+                }
+            }
+            return arrayList;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeDefaultChannel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreChannels.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Long>, Observable<? extends Channel>> {
+        public final /* synthetic */ long $guildId;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeDefaultChannel$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreChannels.kt */
+        public final class C02241<T, R> implements b<Map<Long, ? extends Channel>, Channel> {
+            public final /* synthetic */ Map $guildChannelPermissions;
+
+            /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeDefaultChannel$1$1$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: StoreChannels.kt */
+            public final class C02251 extends o implements Function1<Channel, Boolean> {
+                public C02251() {
+                    super(1);
+                }
+
+                @Override // kotlin.jvm.functions.Function1
+                public /* bridge */ /* synthetic */ Boolean invoke(Channel channel) {
+                    return Boolean.valueOf(invoke2(channel));
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final boolean invoke2(Channel channel) {
+                    m.checkNotNullParameter(channel, "channel");
+                    return PermissionUtils.can(Permission.VIEW_CHANNEL, (Long) a.d(channel, C02241.this.$guildChannelPermissions));
+                }
+            }
+
+            public C02241(Map map) {
+                this.$guildChannelPermissions = map;
+            }
+
+            @Override // j0.k.b
+            public /* bridge */ /* synthetic */ Channel call(Map<Long, ? extends Channel> map) {
+                return call2((Map<Long, Channel>) map);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final Channel call2(Map<Long, Channel> map) {
+                return (Channel) q.firstOrNull(q.sortedWith(q.filter(u.asSequence(map.values()), new C02251()), ChannelUtils.h(Channel.INSTANCE)));
+            }
+        }
+
+        public AnonymousClass1(long j) {
+            this.$guildId = j;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends Channel> call(Map<Long, ? extends Long> map) {
+            return call2((Map<Long, Long>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends Channel> call2(Map<Long, Long> map) {
+            return StoreChannels.this.observeChannelsForGuild(this.$guildId, 0).G(new C02241(map));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeDirectShareCandidates$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreChannels.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Channel>, Boolean> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Boolean call(Map<Long, ? extends Channel> map) {
+            return call2((Map<Long, Channel>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Boolean call2(Map<Long, Channel> map) {
+            m.checkNotNullExpressionValue(map, "it");
+            return Boolean.valueOf(!map.isEmpty());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeGuildAndPrivateChannels$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreChannels.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Channel>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Channel> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Channel> invoke2() {
+            return StoreChannels.access$getChannelsByIdSnapshot$p(StoreChannels.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeIds$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreChannels.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Channel>, Map<Long, ? extends List<? extends Long>>> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Map<Long, ? extends List<? extends Long>> call(Map<Long, ? extends Channel> map) {
+            return call2((Map<Long, Channel>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Map<Long, List<Long>> call2(Map<Long, Channel> map) {
+            Collection<Channel> collectionValues = map.values();
+            LinkedHashMap linkedHashMap = new LinkedHashMap();
+            for (T t : collectionValues) {
+                Long lValueOf = Long.valueOf(((Channel) t).getGuildId());
+                Object arrayList = linkedHashMap.get(lValueOf);
+                if (arrayList == null) {
+                    arrayList = new ArrayList();
+                    linkedHashMap.put(lValueOf, arrayList);
+                }
+                ((List) arrayList).add(t);
+            }
+            LinkedHashMap linkedHashMap2 = new LinkedHashMap(g0.mapCapacity(linkedHashMap.size()));
+            for (Map.Entry entry : linkedHashMap.entrySet()) {
+                Object key = entry.getKey();
+                List list = (List) entry.getValue();
+                ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(list, 10));
+                Iterator<T> it = list.iterator();
+                while (it.hasNext()) {
+                    arrayList2.add(Long.valueOf(((Channel) it.next()).getId()));
+                }
+                linkedHashMap2.put(key, arrayList2);
+            }
+            return linkedHashMap2;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeInitializedForAuthedUser$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreChannels.kt */
+    public final class AnonymousClass1 extends o implements Function0<Boolean> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Boolean invoke() {
+            return Boolean.valueOf(invoke2());
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2() {
+            return StoreChannels.this.getInitializedForAuthedUser();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeNames$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreChannels.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends String>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends String> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends String> invoke2() {
+            return StoreChannels.access$getChannelNamesSnapshot$p(StoreChannels.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observePrivateChannel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreChannels.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Channel>, Channel> {
+        public final /* synthetic */ long $channelId;
+
+        public AnonymousClass1(long j) {
+            this.$channelId = j;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Channel call(Map<Long, ? extends Channel> map) {
+            return call2((Map<Long, Channel>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Channel call2(Map<Long, Channel> map) {
+            return map.get(Long.valueOf(this.$channelId));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeThreadsFromMessages$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreChannels.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Channel>> {
+        public final /* synthetic */ List $messages;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(List list) {
+            super(0);
+            this.$messages = list;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Channel> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Channel> invoke2() {
+            List list = this.$messages;
+            ArrayList arrayList = new ArrayList();
+            for (Object obj : list) {
+                if (((Message) obj).hasThread()) {
+                    arrayList.add(obj);
+                }
+            }
+            ArrayList arrayList2 = new ArrayList();
+            Iterator it = arrayList.iterator();
+            while (it.hasNext()) {
+                Channel channel = StoreChannels.this.getChannel(((Message) it.next()).getId());
+                if (channel != null) {
+                    arrayList2.add(channel);
+                }
+            }
+            LinkedHashMap linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(d0.t.o.collectionSizeOrDefault(arrayList2, 10)), 16));
+            for (Object obj2 : arrayList2) {
+                linkedHashMap.put(Long.valueOf(((Channel) obj2).getId()), obj2);
+            }
+            return linkedHashMap;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannels$onGroupCreated$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreChannels.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ Channel $channel;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Channel channel) {
+            super(0);
+            this.$channel = channel;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreChannels.this.handleChannelOrThreadCreateOrUpdate(this.$channel);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannels$handleGuildRemove$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreChannels.kt */
+    public final class AnonymousClass2 extends o implements Function1<Channel, Boolean> {
+        public final /* synthetic */ Guild $guild;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(Guild guild) {
+            super(1);
+            this.$guild = guild;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(Channel channel) {
+            return Boolean.valueOf(invoke2(channel));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(Channel channel) {
+            m.checkNotNullParameter(channel, "thread");
+            return channel.getGuildId() == this.$guild.getId();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannels$observeDirectShareCandidates$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreChannels.kt */
+    public final class AnonymousClass2<T, R> implements b<Map<Long, ? extends Channel>, List<? extends Channel>> {
+        public final /* synthetic */ Context $context;
+
+        public AnonymousClass2(Context context) {
+            this.$context = context;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ List<? extends Channel> call(Map<Long, ? extends Channel> map) {
+            return call2((Map<Long, Channel>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final List<Channel> call2(Map<Long, Channel> map) {
+            Collection sortedKeys$default = FrecencyTracker.getSortedKeys$default(StoreStream.INSTANCE.getChannelsSelected().getFrecency(), 0L, 1, null);
+            ArrayList arrayList = new ArrayList();
+            Iterator<T> it = sortedKeys$default.iterator();
+            while (it.hasNext()) {
+                Channel channel = map.get(Long.valueOf(((Number) it.next()).longValue()));
+                if (channel != null) {
+                    arrayList.add(channel);
+                }
+            }
+            ArrayList arrayList2 = new ArrayList();
+            for (T t : arrayList) {
+                if (ChannelUtils.m((Channel) t)) {
+                    arrayList2.add(t);
+                }
+            }
+            return u.take(arrayList2, ShortcutManagerCompat.getMaxShortcutCountPerActivity(this.$context));
+        }
+    }
 
     public /* synthetic */ StoreChannels(Dispatcher dispatcher, ObservationDeck observationDeck, Function1 function1, Function0 function0, Function0 function2, Persister persister, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, observationDeck, function1, function0, function2, (i & 32) != 0 ? new Persister("STORE_CHANNELS_V26", new ArrayList()) : persister);
@@ -170,7 +621,7 @@ public final class StoreChannels extends StoreV2 {
         while (it.hasNext()) {
             r.addAll(arrayList, ((Map) it.next()).values());
         }
-        LinkedHashMap linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(o.collectionSizeOrDefault(arrayList, 10)), 16));
+        LinkedHashMap linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(d0.t.o.collectionSizeOrDefault(arrayList, 10)), 16));
         for (Object obj : arrayList) {
             linkedHashMap.put(Long.valueOf(((Channel) obj).getId()), obj);
         }
@@ -357,14 +808,14 @@ public final class StoreChannels extends StoreV2 {
             }
         }
         this.preloadedThreads.clear();
-        Iterator<Map$Entry<Long, Map<Long, Channel>>> it = this.channelsByGuild.entrySet().iterator();
+        Iterator<Map.Entry<Long, Map<Long, Channel>>> it = this.channelsByGuild.entrySet().iterator();
         while (it.hasNext()) {
             Map<Long, Channel> value = it.next().getValue();
             Map<Long, String> map7 = this.channelNames;
             Iterator<T> it2 = value.entrySet().iterator();
             while (it2.hasNext()) {
-                Map$Entry map$Entry = (Map$Entry) it2.next();
-                map7.put((Long) map$Entry.getKey(), ChannelUtils.c((Channel) map$Entry.getValue()));
+                Map.Entry entry = (Map.Entry) it2.next();
+                map7.put((Long) entry.getKey(), ChannelUtils.c((Channel) entry.getValue()));
             }
         }
         this.handledReadyPayload = true;
@@ -410,7 +861,7 @@ public final class StoreChannels extends StoreV2 {
                 } else {
                     List<ChannelRecipientNick> listQ2 = channel.q();
                     if (listQ2 != null) {
-                        arrayList2 = new ArrayList(o.collectionSizeOrDefault(listQ2, 10));
+                        arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(listQ2, 10));
                         for (ChannelRecipientNick channelRecipientNick : listQ2) {
                             if (channelRecipientNick.b() == recipient.getUser().getId()) {
                                 channelRecipientNick = new ChannelRecipientNick(recipient.getUser().getId(), strB);
@@ -479,7 +930,7 @@ public final class StoreChannels extends StoreV2 {
                 }
             }
             this.channelsByGuild.remove(Long.valueOf(guild.getId()));
-            r.removeAll(this.threadsById.values(), new StoreChannels$handleGuildRemove$2(guild));
+            r.removeAll(this.threadsById.values(), new AnonymousClass2(guild));
         }
         markChanged();
     }
@@ -570,9 +1021,9 @@ public final class StoreChannels extends StoreV2 {
             ((List) arrayList).add(obj);
         }
         LinkedHashMap linkedHashMap2 = new LinkedHashMap(g0.mapCapacity(linkedHashMap.size()));
-        for (Map$Entry map$Entry : linkedHashMap.entrySet()) {
-            Object key = map$Entry.getKey();
-            List list = (List) map$Entry.getValue();
+        for (Map.Entry entry : linkedHashMap.entrySet()) {
+            Object key = entry.getKey();
+            List list = (List) entry.getValue();
             HashMap map2 = new HashMap();
             for (Object obj2 : list) {
                 map2.put(Long.valueOf(((Channel) obj2).getId()), obj2);
@@ -585,17 +1036,17 @@ public final class StoreChannels extends StoreV2 {
     }
 
     public final Observable<Map<Long, Channel>> observeAllChannels() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreChannels$observeAllChannels$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     public final Observable<Channel> observeChannel(long channelId) {
-        Observable<Channel> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreChannels$observeChannel$1(this, channelId), 14, null).r();
+        Observable<Channel> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(channelId), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<List<Channel>> observeChannelCategories(long guildId) {
-        Observable<List<Channel>> observableR = observeChannelsForGuild$default(this, guildId, null, 2, null).G(StoreChannels$observeChannelCategories$1.INSTANCE).r();
+        Observable<List<Channel>> observableR = observeChannelsForGuild$default(this, guildId, null, 2, null).G(AnonymousClass1.INSTANCE).r();
         m.checkNotNullExpressionValue(observableR, "observeChannelsForGuild(…  .distinctUntilChanged()");
         return observableR;
     }
@@ -612,32 +1063,32 @@ public final class StoreChannels extends StoreV2 {
     }
 
     public final Observable<Map<Long, Channel>> observeChannelsForGuild(long guildId, Integer type) {
-        Observable<Map<Long, Channel>> observableR = observeGuildAndPrivateChannels().Y(new StoreChannels$observeChannelsForGuild$1(guildId, type)).r();
+        Observable<Map<Long, Channel>> observableR = observeGuildAndPrivateChannels().Y(new AnonymousClass1(guildId, type)).r();
         m.checkNotNullExpressionValue(observableR, "observeGuildAndPrivateCh…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<List<Channel>> observeDMs() {
-        Observable observableG = observePrivateChannels().G(StoreChannels$observeDMs$1.INSTANCE);
+        Observable observableG = observePrivateChannels().G(AnonymousClass1.INSTANCE);
         m.checkNotNullExpressionValue(observableG, "observePrivateChannels()…nel -> channel.isDM() } }");
         return observableG;
     }
 
     public final Observable<Channel> observeDefaultChannel(long guildId) {
-        Observable<Channel> observableR = this.observeChannelPermissionsForGuild.invoke(Long.valueOf(guildId)).Y(new StoreChannels$observeDefaultChannel$1(this, guildId)).r();
+        Observable<Channel> observableR = this.observeChannelPermissionsForGuild.invoke(Long.valueOf(guildId)).Y(new AnonymousClass1(guildId)).r();
         m.checkNotNullExpressionValue(observableR, "observeChannelPermission…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<List<Channel>> observeDirectShareCandidates(Context context) {
         m.checkNotNullParameter(context, "context");
-        Observable observableG = observeGuildAndPrivateChannels().y(StoreChannels$observeDirectShareCandidates$1.INSTANCE).G(new StoreChannels$observeDirectShareCandidates$2(context));
+        Observable observableG = observeGuildAndPrivateChannels().y(AnonymousClass1.INSTANCE).G(new AnonymousClass2(context));
         m.checkNotNullExpressionValue(observableG, "observeGuildAndPrivateCh…ity(context))\n          }");
         return observableG;
     }
 
     public final Observable<Map<Long, Channel>> observeGuildAndPrivateChannels() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreChannels$observeGuildAndPrivateChannels$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     public static /* synthetic */ Observable observeIds$default(StoreChannels storeChannels, boolean z2, int i, Object obj) {
@@ -648,23 +1099,23 @@ public final class StoreChannels extends StoreV2 {
     }
 
     public final Observable<Map<Long, List<Long>>> observeIds(boolean includeThreads) {
-        Observable<Map<Long, List<Long>>> observableR = (includeThreads ? observeAllChannels() : observeGuildAndPrivateChannels()).G(StoreChannels$observeIds$1.INSTANCE).r();
+        Observable<Map<Long, List<Long>>> observableR = (includeThreads ? observeAllChannels() : observeGuildAndPrivateChannels()).G(AnonymousClass1.INSTANCE).r();
         m.checkNotNullExpressionValue(observableR, "channelsObservable\n     …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Boolean> observeInitializedForAuthedUser() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{InitializedUpdateSource}, false, null, null, new StoreChannels$observeInitializedForAuthedUser$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{InitializedUpdateSource}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     public final Observable<Map<Long, String>> observeNames() {
-        Observable<Map<Long, String>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreChannels$observeNames$1(this), 14, null).r();
+        Observable<Map<Long, String>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Channel> observePrivateChannel(long channelId) {
-        Observable<Channel> observableR = observePrivateChannels().G(new StoreChannels$observePrivateChannel$1(channelId)).r();
+        Observable<Channel> observableR = observePrivateChannels().G(new AnonymousClass1(channelId)).r();
         m.checkNotNullExpressionValue(observableR, "observePrivateChannels()…  .distinctUntilChanged()");
         return observableR;
     }
@@ -675,14 +1126,14 @@ public final class StoreChannels extends StoreV2 {
 
     public final Observable<Map<Long, Channel>> observeThreadsFromMessages(List<Message> messages) {
         m.checkNotNullParameter(messages, "messages");
-        Observable<Map<Long, Channel>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreChannels$observeThreadsFromMessages$1(this, messages), 14, null).r();
+        Observable<Map<Long, Channel>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(messages), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final void onGroupCreated(Channel channel) {
         m.checkNotNullParameter(channel, "channel");
-        this.dispatcher.schedule(new StoreChannels$onGroupCreated$1(this, channel));
+        this.dispatcher.schedule(new AnonymousClass1(channel));
     }
 
     public final void setInitializedForAuthedUser$app_productionGoogleRelease(boolean z2) {
@@ -711,7 +1162,7 @@ public final class StoreChannels extends StoreV2 {
                 arrayList2.add(setKeySet);
             }
         }
-        List listFlatten = o.flatten(arrayList2);
+        List listFlatten = d0.t.o.flatten(arrayList2);
         Persister<List<Channel>> persister = this.channelsCache;
         ArrayList arrayList3 = new ArrayList();
         for (Object obj : arrayList) {
@@ -720,7 +1171,7 @@ public final class StoreChannels extends StoreV2 {
             }
         }
         Persister.set$default(persister, arrayList3, false, 2, null);
-        LinkedHashMap linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(o.collectionSizeOrDefault(arrayList, 10)), 16));
+        LinkedHashMap linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(d0.t.o.collectionSizeOrDefault(arrayList, 10)), 16));
         for (Object obj2 : arrayList) {
             linkedHashMap.put(Long.valueOf(((Channel) obj2).getId()), obj2);
         }
@@ -729,8 +1180,8 @@ public final class StoreChannels extends StoreV2 {
         LinkedHashMap linkedHashMap2 = new LinkedHashMap(g0.mapCapacity(map2.size()));
         Iterator<T> it3 = map2.entrySet().iterator();
         while (it3.hasNext()) {
-            Map$Entry map$Entry = (Map$Entry) it3.next();
-            linkedHashMap2.put(map$Entry.getKey(), CollectionExtensionsKt.snapshot$default((Map) map$Entry.getValue(), 0, 0.0f, 3, null));
+            Map.Entry entry = (Map.Entry) it3.next();
+            linkedHashMap2.put(entry.getKey(), CollectionExtensionsKt.snapshot$default((Map) entry.getValue(), 0, 0.0f, 3, null));
         }
         this.channelsByGuildSnapshot = linkedHashMap2;
         this.channelNamesSnapshot = CollectionExtensionsKt.snapshot$default(this.channelNames, 0, 0.0f, 3, null);

@@ -1,12 +1,13 @@
 package com.discord.stores;
 
 import android.content.Context;
+import androidx.core.app.NotificationCompat;
+import b.d.b.a.a;
 import com.discord.api.activity.ActivityType;
 import com.discord.api.connectedaccounts.ConnectedAccount;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.domain.spotify.ModelSpotifyAlbum;
-import com.discord.models.domain.spotify.ModelSpotifyAlbum$AlbumImage;
 import com.discord.models.domain.spotify.ModelSpotifyTrack;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.integrations.SpotifyHelper;
@@ -21,6 +22,9 @@ import d0.g0.t;
 import d0.g0.w;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
+import j0.l.e.k;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -28,8 +32,10 @@ import java.util.concurrent.TimeUnit;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
 import rx.Subscription;
+import rx.functions.Func2;
 import rx.subjects.BehaviorSubject;
 
 /* JADX INFO: compiled from: StoreSpotify.kt */
@@ -40,8 +46,319 @@ public final class StoreSpotify {
     private Subscription expireStateSub;
     private final BehaviorSubject<Unit> publishStateTrigger;
     private final SpotifyApiClient spotifyApiClient;
-    private StoreSpotify$SpotifyState spotifyState;
+    private SpotifyState spotifyState;
     private final StoreStream stream;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreSpotify$init$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreSpotify.kt */
+    public final class AnonymousClass1<T, R> implements b<ModelSpotifyTrack, Observable<? extends ModelSpotifyTrack>> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreSpotify$init$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreSpotify.kt */
+        public final class C02921<T, R> implements b {
+            public static final C02921 INSTANCE = new C02921();
+
+            public final Void call(Long l) {
+                return null;
+            }
+
+            @Override // j0.k.b
+            public /* bridge */ /* synthetic */ Object call(Object obj) {
+                return call((Long) obj);
+            }
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends ModelSpotifyTrack> call(ModelSpotifyTrack modelSpotifyTrack) {
+            return call2(modelSpotifyTrack);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends ModelSpotifyTrack> call2(ModelSpotifyTrack modelSpotifyTrack) {
+            return modelSpotifyTrack != null ? new k(modelSpotifyTrack) : Observable.d0(1L, TimeUnit.SECONDS).G(C02921.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreSpotify$setPlayingStatus$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreSpotify.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ boolean $playing;
+        public final /* synthetic */ int $position;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(boolean z2, int i) {
+            super(0);
+            this.$playing = z2;
+            this.$position = i;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            if (StoreSpotify.access$getSpotifyState$p(StoreSpotify.this) == null) {
+                StoreSpotify.access$setSpotifyState$p(StoreSpotify.this, new SpotifyState(null, false, 0, 0L, 15, null));
+            }
+            StoreSpotify storeSpotify = StoreSpotify.this;
+            SpotifyState spotifyStateAccess$getSpotifyState$p = StoreSpotify.access$getSpotifyState$p(storeSpotify);
+            StoreSpotify.access$setSpotifyState$p(storeSpotify, spotifyStateAccess$getSpotifyState$p != null ? SpotifyState.copy$default(spotifyStateAccess$getSpotifyState$p, null, this.$playing, this.$position, StoreSpotify.access$getClock$p(StoreSpotify.this).currentTimeMillis() - ((long) this.$position), 1, null) : null);
+            StoreSpotify.access$getPublishStateTrigger$p(StoreSpotify.this).onNext(Unit.a);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreSpotify$startStateExpiration$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreSpotify.kt */
+    public final class AnonymousClass1 extends o implements Function1<Subscription, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            m.checkNotNullParameter(subscription, "it");
+            StoreSpotify.access$setExpireStateSub$p(StoreSpotify.this, subscription);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreSpotify$init$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreSpotify.kt */
+    public final class AnonymousClass2<T1, T2, R> implements Func2<Unit, ModelSpotifyTrack, ModelSpotifyTrack> {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        @Override // rx.functions.Func2
+        public /* bridge */ /* synthetic */ ModelSpotifyTrack call(Unit unit, ModelSpotifyTrack modelSpotifyTrack) {
+            return call2(unit, modelSpotifyTrack);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final ModelSpotifyTrack call2(Unit unit, ModelSpotifyTrack modelSpotifyTrack) {
+            return modelSpotifyTrack;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreSpotify$startStateExpiration$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreSpotify.kt */
+    public final class AnonymousClass2 extends o implements Function1<Long, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreSpotify$startStateExpiration$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreSpotify.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public AnonymousClass1() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreSpotify.access$setSpotifyState$p(StoreSpotify.this, null);
+                StoreSpotify.access$publishState(StoreSpotify.this);
+            }
+        }
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            StoreSpotify.access$getDispatcher$p(StoreSpotify.this).schedule(new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreSpotify$init$3, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreSpotify.kt */
+    public final class AnonymousClass3 extends o implements Function1<ModelSpotifyTrack, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreSpotify$init$3$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreSpotify.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public final /* synthetic */ ModelSpotifyTrack $track;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(ModelSpotifyTrack modelSpotifyTrack) {
+                super(0);
+                this.$track = modelSpotifyTrack;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                SpotifyState spotifyStateAccess$getSpotifyState$p = StoreSpotify.access$getSpotifyState$p(StoreSpotify.this);
+                if (spotifyStateAccess$getSpotifyState$p != null) {
+                    StoreSpotify.access$setSpotifyState$p(StoreSpotify.this, SpotifyState.copy$default(spotifyStateAccess$getSpotifyState$p, this.$track, false, 0, 0L, 14, null));
+                    Subscription subscriptionAccess$getExpireStateSub$p = StoreSpotify.access$getExpireStateSub$p(StoreSpotify.this);
+                    if (subscriptionAccess$getExpireStateSub$p != null) {
+                        subscriptionAccess$getExpireStateSub$p.unsubscribe();
+                    }
+                    if (this.$track != null) {
+                        StoreSpotify.access$startStateExpiration(StoreSpotify.this, (this.$track.getDurationMs() + spotifyStateAccess$getSpotifyState$p.getStart()) - StoreSpotify.access$getClock$p(StoreSpotify.this).currentTimeMillis());
+                    }
+                }
+                StoreSpotify.access$publishState(StoreSpotify.this);
+            }
+        }
+
+        public AnonymousClass3() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelSpotifyTrack modelSpotifyTrack) {
+            invoke2(modelSpotifyTrack);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelSpotifyTrack modelSpotifyTrack) {
+            StoreSpotify.access$getDispatcher$p(StoreSpotify.this).schedule(new AnonymousClass1(modelSpotifyTrack));
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreSpotify.kt */
+    public final /* data */ class SpotifyState {
+        private final boolean playing;
+        private final int position;
+        private final long start;
+        private final ModelSpotifyTrack track;
+
+        public SpotifyState() {
+            this(null, false, 0, 0L, 15, null);
+        }
+
+        public SpotifyState(ModelSpotifyTrack modelSpotifyTrack, boolean z2, int i, long j) {
+            this.track = modelSpotifyTrack;
+            this.playing = z2;
+            this.position = i;
+            this.start = j;
+        }
+
+        public static /* synthetic */ SpotifyState copy$default(SpotifyState spotifyState, ModelSpotifyTrack modelSpotifyTrack, boolean z2, int i, long j, int i2, Object obj) {
+            if ((i2 & 1) != 0) {
+                modelSpotifyTrack = spotifyState.track;
+            }
+            if ((i2 & 2) != 0) {
+                z2 = spotifyState.playing;
+            }
+            boolean z3 = z2;
+            if ((i2 & 4) != 0) {
+                i = spotifyState.position;
+            }
+            int i3 = i;
+            if ((i2 & 8) != 0) {
+                j = spotifyState.start;
+            }
+            return spotifyState.copy(modelSpotifyTrack, z3, i3, j);
+        }
+
+        public final SpotifyState copy(ModelSpotifyTrack track, boolean playing, int position, long start) {
+            return new SpotifyState(track, playing, position, start);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof SpotifyState)) {
+                return false;
+            }
+            SpotifyState spotifyState = (SpotifyState) other;
+            return m.areEqual(this.track, spotifyState.track) && this.playing == spotifyState.playing && this.position == spotifyState.position && this.start == spotifyState.start;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getPlaying() {
+            return this.playing;
+        }
+
+        public final boolean getPlaying() {
+            return this.playing;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getPosition() {
+            return this.position;
+        }
+
+        public final int getPosition() {
+            return this.position;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final long getStart() {
+            return this.start;
+        }
+
+        public final long getStart() {
+            return this.start;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ModelSpotifyTrack getTrack() {
+            return this.track;
+        }
+
+        public final ModelSpotifyTrack getTrack() {
+            return this.track;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v4, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v6 */
+        /* JADX WARN: Type inference failed for: r1v7 */
+        public int hashCode() {
+            ModelSpotifyTrack modelSpotifyTrack = this.track;
+            int iHashCode = (modelSpotifyTrack != null ? modelSpotifyTrack.hashCode() : 0) * 31;
+            boolean z2 = this.playing;
+            ?? r1 = z2;
+            if (z2) {
+                r1 = 1;
+            }
+            return a0.a.a.b.a(this.start) + ((((iHashCode + r1) * 31) + this.position) * 31);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("SpotifyState(track=");
+            sbU.append(this.track);
+            sbU.append(", playing=");
+            sbU.append(this.playing);
+            sbU.append(", position=");
+            sbU.append(this.position);
+            sbU.append(", start=");
+            return a.C(sbU, this.start, ")");
+        }
+
+        public /* synthetic */ SpotifyState(ModelSpotifyTrack modelSpotifyTrack, boolean z2, int i, long j, int i2, DefaultConstructorMarker defaultConstructorMarker) {
+            this((i2 & 1) != 0 ? null : modelSpotifyTrack, (i2 & 2) != 0 ? false : z2, (i2 & 4) == 0 ? i : 0, (i2 & 8) != 0 ? 0L : j);
+        }
+    }
 
     public StoreSpotify(StoreStream storeStream, Dispatcher dispatcher, Clock clock) {
         m.checkNotNullParameter(storeStream, "stream");
@@ -70,7 +387,7 @@ public final class StoreSpotify {
         return storeSpotify.publishStateTrigger;
     }
 
-    public static final /* synthetic */ StoreSpotify$SpotifyState access$getSpotifyState$p(StoreSpotify storeSpotify) {
+    public static final /* synthetic */ SpotifyState access$getSpotifyState$p(StoreSpotify storeSpotify) {
         return storeSpotify.spotifyState;
     }
 
@@ -82,8 +399,8 @@ public final class StoreSpotify {
         storeSpotify.expireStateSub = subscription;
     }
 
-    public static final /* synthetic */ void access$setSpotifyState$p(StoreSpotify storeSpotify, StoreSpotify$SpotifyState storeSpotify$SpotifyState) {
-        storeSpotify.spotifyState = storeSpotify$SpotifyState;
+    public static final /* synthetic */ void access$setSpotifyState$p(StoreSpotify storeSpotify, SpotifyState spotifyState) {
+        storeSpotify.spotifyState = spotifyState;
     }
 
     public static final /* synthetic */ void access$startStateExpiration(StoreSpotify storeSpotify, long j) {
@@ -130,25 +447,25 @@ public final class StoreSpotify {
     public final void init(Context context) {
         m.checkNotNullParameter(context, "context");
         SpotifyHelper.registerSpotifyBroadcastReceivers(context);
-        Observable observableP = Observable.j(this.publishStateTrigger, this.spotifyApiClient.getSpotifyTrack().Y(StoreSpotify$init$1.INSTANCE).r(), StoreSpotify$init$2.INSTANCE).p(2L, TimeUnit.SECONDS);
+        Observable observableP = Observable.j(this.publishStateTrigger, this.spotifyApiClient.getSpotifyTrack().Y(AnonymousClass1.INSTANCE).r(), AnonymousClass2.INSTANCE).p(2L, TimeUnit.SECONDS);
         m.checkNotNullExpressionValue(observableP, "Observable.combineLatest…unce(2, TimeUnit.SECONDS)");
-        ObservableExtensionsKt.appSubscribe$default(observableP, StoreSpotify.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreSpotify$init$3(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(observableP, StoreSpotify.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass3(), 62, (Object) null);
     }
 
     @StoreThread
     private final void publishState() {
         boolean z2;
         String str;
-        List<ModelSpotifyAlbum$AlbumImage> images;
-        List<ModelSpotifyAlbum$AlbumImage> images2;
-        ModelSpotifyAlbum$AlbumImage modelSpotifyAlbum$AlbumImage;
+        List<ModelSpotifyAlbum.AlbumImage> images;
+        List<ModelSpotifyAlbum.AlbumImage> images2;
+        ModelSpotifyAlbum.AlbumImage albumImage;
         String url;
         List listSplit$default;
         if (this.spotifyState == null) {
             this.stream.getPresences().updateActivity(ActivityType.LISTENING, null, true);
             return;
         }
-        StoreUserConnections$State stateSnapshot = this.stream.getUserConnections().getStateSnapshot();
+        StoreUserConnections.State stateSnapshot = this.stream.getUserConnections().getStateSnapshot();
         if (!(stateSnapshot instanceof Collection) || !stateSnapshot.isEmpty()) {
             Iterator<ConnectedAccount> it = stateSnapshot.iterator();
             while (true) {
@@ -167,17 +484,17 @@ public final class StoreSpotify {
             break;
         }
         if (z2) {
-            StoreSpotify$SpotifyState storeSpotify$SpotifyState = this.spotifyState;
-            m.checkNotNull(storeSpotify$SpotifyState);
-            ModelSpotifyTrack track = storeSpotify$SpotifyState.getTrack();
-            boolean playing = storeSpotify$SpotifyState.getPlaying();
-            long start = storeSpotify$SpotifyState.getStart();
+            SpotifyState spotifyState = this.spotifyState;
+            m.checkNotNull(spotifyState);
+            ModelSpotifyTrack track = spotifyState.getTrack();
+            boolean playing = spotifyState.getPlaying();
+            long start = spotifyState.getStart();
             if (!playing || track == null) {
                 this.stream.getPresences().updateActivity(ActivityType.LISTENING, null, true);
                 return;
             }
             ModelSpotifyAlbum album = track.getAlbum();
-            String str2 = (album == null || (images2 = album.getImages()) == null || (modelSpotifyAlbum$AlbumImage = (ModelSpotifyAlbum$AlbumImage) u.firstOrNull((List) images2)) == null || (url = modelSpotifyAlbum$AlbumImage.getUrl()) == null || (listSplit$default = w.split$default((CharSequence) url, new String[]{AutocompleteViewModel.COMMAND_DISCOVER_TOKEN}, false, 0, 6, (Object) null)) == null) ? null : (String) u.last(listSplit$default);
+            String str2 = (album == null || (images2 = album.getImages()) == null || (albumImage = (ModelSpotifyAlbum.AlbumImage) u.firstOrNull((List) images2)) == null || (url = albumImage.getUrl()) == null || (listSplit$default = w.split$default((CharSequence) url, new String[]{AutocompleteViewModel.COMMAND_DISCOVER_TOKEN}, false, 0, 6, (Object) null)) == null) ? null : (String) u.last(listSplit$default);
             if (str2 != null) {
                 str = Platform.SPOTIFY.getPlatformId() + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + str2;
             } else {
@@ -203,13 +520,13 @@ public final class StoreSpotify {
     }
 
     public final void setPlayingStatus(boolean playing, int position) {
-        this.dispatcher.schedule(new StoreSpotify$setPlayingStatus$1(this, playing, position));
+        this.dispatcher.schedule(new AnonymousClass1(playing, position));
     }
 
     @StoreThread
     private final void startStateExpiration(long timeLeftMs) {
         Observable<Long> observableD0 = Observable.d0(timeLeftMs + 5000, TimeUnit.MILLISECONDS);
         m.checkNotNullExpressionValue(observableD0, "Observable\n        .time…), TimeUnit.MILLISECONDS)");
-        ObservableExtensionsKt.appSubscribe$default(observableD0, StoreSpotify.class, (Context) null, new StoreSpotify$startStateExpiration$1(this), (Function1) null, (Function0) null, (Function0) null, new StoreSpotify$startStateExpiration$2(this), 58, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(observableD0, StoreSpotify.class, (Context) null, new AnonymousClass1(), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 58, (Object) null);
     }
 }

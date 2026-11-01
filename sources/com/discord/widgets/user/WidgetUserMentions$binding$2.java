@@ -4,7 +4,7 @@ import android.view.View;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetUserMentionsBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -22,11 +22,11 @@ public final /* synthetic */ class WidgetUserMentions$binding$2 extends k implem
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetUserMentionsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = 2131361878;
-        Toolbar toolbar = (Toolbar) view.findViewById(2131361878);
+        int i = R.id.action_bar_toolbar;
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.action_bar_toolbar);
         if (toolbar != null) {
-            i = R$id.user_mentions_list;
-            RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.user_mentions_list);
+            i = R.id.user_mentions_list;
+            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.user_mentions_list);
             if (recyclerView != null) {
                 return new WidgetUserMentionsBinding((CoordinatorLayout) view, toolbar, recyclerView);
             }

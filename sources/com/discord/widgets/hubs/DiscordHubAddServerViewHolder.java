@@ -1,11 +1,12 @@
 package com.discord.widgets.hubs;
 
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.discord.databinding.DiscordHubAddServerListItemBinding;
 import com.discord.models.guild.Guild;
 import com.discord.utilities.icon.IconUtils;
-import com.discord.utilities.views.SimpleRecyclerAdapter$ViewHolder;
+import com.discord.utilities.views.SimpleRecyclerAdapter;
 import com.discord.views.GuildView;
 import d0.z.d.m;
 import kotlin.Unit;
@@ -13,9 +14,24 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: DiscordHubAddServerViewHolder.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class DiscordHubAddServerViewHolder extends SimpleRecyclerAdapter$ViewHolder<Guild> {
+public final class DiscordHubAddServerViewHolder extends SimpleRecyclerAdapter.ViewHolder<Guild> {
     private final DiscordHubAddServerListItemBinding binding;
     private final Function1<Long, Unit> onClickListener;
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.DiscordHubAddServerViewHolder$bind$2, reason: invalid class name */
+    /* JADX INFO: compiled from: DiscordHubAddServerViewHolder.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ Guild $data;
+
+        public AnonymousClass2(Guild guild) {
+            this.$data = guild;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            DiscordHubAddServerViewHolder.this.getOnClickListener().invoke(Long.valueOf(this.$data.getId()));
+        }
+    }
 
     /* JADX WARN: Illegal instructions before constructor call */
     /* JADX WARN: Multi-variable type inference failed */
@@ -29,7 +45,7 @@ public final class DiscordHubAddServerViewHolder extends SimpleRecyclerAdapter$V
         this.onClickListener = function1;
     }
 
-    @Override // com.discord.utilities.views.SimpleRecyclerAdapter$ViewHolder
+    @Override // com.discord.utilities.views.SimpleRecyclerAdapter.ViewHolder
     public /* bridge */ /* synthetic */ void bind(Guild guild) {
         bind2(guild);
     }
@@ -51,6 +67,6 @@ public final class DiscordHubAddServerViewHolder extends SimpleRecyclerAdapter$V
         GuildView guildView = this.binding.f2098b;
         guildView.b();
         guildView.a(IconUtils.getForGuild$default(data, null, false, null, 14, null), data.getShortName());
-        this.binding.c.setOnClickListener(new DiscordHubAddServerViewHolder$bind$2(this, data));
+        this.binding.c.setOnClickListener(new AnonymousClass2(data));
     }
 }

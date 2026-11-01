@@ -3,7 +3,7 @@ package com.discord.widgets.chat.input.gifpicker;
 import android.view.View;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetGifCategoryBinding;
 import com.discord.utilities.views.ContentResizingCoordinatorLayout;
 import d0.z.d.k;
@@ -28,14 +28,14 @@ public final /* synthetic */ class WidgetGifCategory$binding$2 extends k impleme
     public final WidgetGifCategoryBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
         ContentResizingCoordinatorLayout contentResizingCoordinatorLayout = (ContentResizingCoordinatorLayout) view;
-        int i = R$id.gif_category_gif_recycler;
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.gif_category_gif_recycler);
+        int i = R.id.gif_category_gif_recycler;
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.gif_category_gif_recycler);
         if (recyclerView != null) {
-            i = R$id.gif_category_loading_view;
-            GifLoadingView gifLoadingView = (GifLoadingView) view.findViewById(R$id.gif_category_loading_view);
+            i = R.id.gif_category_loading_view;
+            GifLoadingView gifLoadingView = (GifLoadingView) view.findViewById(R.id.gif_category_loading_view);
             if (gifLoadingView != null) {
-                i = R$id.gif_category_title;
-                TextView textView = (TextView) view.findViewById(R$id.gif_category_title);
+                i = R.id.gif_category_title;
+                TextView textView = (TextView) view.findViewById(R.id.gif_category_title);
                 if (textView != null) {
                     return new WidgetGifCategoryBinding((ContentResizingCoordinatorLayout) view, contentResizingCoordinatorLayout, recyclerView, gifLoadingView, textView);
                 }

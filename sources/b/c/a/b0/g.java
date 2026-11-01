@@ -8,7 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
 import android.graphics.RectF;
-import android.os.Build$VERSION;
+import android.os.Build;
 import java.io.Closeable;
 
 /* JADX INFO: compiled from: Utils.java */
@@ -115,7 +115,7 @@ public final class g {
     }
 
     public static void f(Canvas canvas, RectF rectF, Paint paint, int i) {
-        if (Build$VERSION.SDK_INT < 23) {
+        if (Build.VERSION.SDK_INT < 23) {
             canvas.saveLayer(rectF, paint, i);
         } else {
             canvas.saveLayer(rectF, paint);

@@ -1,21 +1,21 @@
 package b.o.a;
 
-import com.otaliastudios.cameraview.CameraView$b;
+import com.otaliastudios.cameraview.CameraView;
 import java.util.Iterator;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: CameraView.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class h implements Runnable {
-    public final /* synthetic */ CameraView$b j;
+    public final /* synthetic */ CameraView.b j;
 
-    public h(CameraView$b cameraView$b) {
-        this.j = cameraView$b;
+    public h(CameraView.b bVar) {
+        this.j = bVar;
     }
 
     @Override // java.lang.Runnable
     public void run() {
-        Iterator<a> it = this.j.c.D.iterator();
+        Iterator<a> it = CameraView.this.D.iterator();
         while (it.hasNext()) {
             Objects.requireNonNull(it.next());
         }

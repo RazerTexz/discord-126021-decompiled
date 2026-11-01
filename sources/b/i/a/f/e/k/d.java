@@ -6,7 +6,6 @@ import android.os.IInterface;
 import android.os.Looper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import b.i.a.f.e.h.a$f;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.Scope;
 import java.util.Collections;
@@ -16,7 +15,7 @@ import java.util.Set;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public abstract class d<T extends IInterface> extends b<T> implements a$f {
+public abstract class d<T extends IInterface> extends b<T> implements b.i.a.f.e.h.a.f {
 
     /* JADX INFO: renamed from: x, reason: collision with root package name */
     public final c f1382x;
@@ -48,7 +47,7 @@ public abstract class d<T extends IInterface> extends b<T> implements a$f {
         this.f1383y = set;
     }
 
-    @Override // b.i.a.f.e.h.a$f
+    @Override // b.i.a.f.e.h.a.f
     @NonNull
     public Set<Scope> a() {
         return o() ? this.f1383y : Collections.emptySet();

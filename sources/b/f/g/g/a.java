@@ -22,13 +22,18 @@ public class a {
     public float g;
 
     @VisibleForTesting
-    public a$a a = null;
+    public InterfaceC0069a a = null;
 
     @VisibleForTesting
     public boolean c = false;
 
     @VisibleForTesting
     public boolean d = false;
+
+    /* JADX INFO: renamed from: b.f.g.g.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: GestureDetector.java */
+    public interface InterfaceC0069a {
+    }
 
     public a(Context context) {
         this.f524b = ViewConfiguration.get(context).getScaledTouchSlop();

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.text.style.TextAppearanceSpan;
 import androidx.exifinterface.media.ExifInterface;
+import com.discord.R;
 import com.discord.simpleast.core.node.Node;
 import com.discord.utilities.spans.VerticalPaddingSpan;
 import com.discord.utilities.textprocessing.node.BasicRenderContext;
@@ -44,14 +45,14 @@ public final class HeaderNode<T extends BasicRenderContext> extends Node<T> {
         }
         int i3 = this.numHeaderIndicators;
         if (i3 != 1) {
-            i = i3 != 2 ? 2131165486 : 2131165483;
+            i = i3 != 2 ? R.dimen.markdown_messages_header_3_top_padding : R.dimen.markdown_messages_header_2_top_padding;
         } else {
-            i = 2131165480;
+            i = R.dimen.markdown_messages_header_1_top_padding;
         }
         if (i3 != 1) {
-            i2 = i3 != 2 ? 2131165484 : 2131165481;
+            i2 = i3 != 2 ? R.dimen.markdown_messages_header_3_bottom_padding : R.dimen.markdown_messages_header_2_bottom_padding;
         } else {
-            i2 = 2131165478;
+            i2 = R.dimen.markdown_messages_header_1_bottom_padding;
         }
         if (i3 != 1) {
             textAppearanceSpan = i3 != 2 ? new TextAppearanceSpan(context, 2131952044) : new TextAppearanceSpan(context, 2131952043);

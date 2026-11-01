@@ -2,7 +2,7 @@ package com.google.firebase.messaging;
 
 import android.os.Bundle;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import b.c.a.a0.d;
 import b.i.c.w.s;
@@ -14,7 +14,7 @@ import java.util.Map;
 public final class RemoteMessage extends AbstractSafeParcelable {
     public Bundle j;
     public Map<String, String> k;
-    public static final Parcelable$Creator<RemoteMessage> CREATOR = new s();
+    public static final Parcelable.Creator<RemoteMessage> CREATOR = new s();
 
     public RemoteMessage(Bundle bundle) {
         this.j = bundle;

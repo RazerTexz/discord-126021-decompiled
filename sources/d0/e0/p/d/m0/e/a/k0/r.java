@@ -5,6 +5,15 @@ import java.util.List;
 /* JADX INFO: compiled from: javaElements.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public interface r extends q, z {
+
+    /* JADX INFO: compiled from: javaElements.kt */
+    public final class a {
+        public static boolean getHasAnnotationParameterDefaultValue(r rVar) {
+            d0.z.d.m.checkNotNullParameter(rVar, "this");
+            return rVar.getAnnotationParameterDefaultValue() != null;
+        }
+    }
+
     b getAnnotationParameterDefaultValue();
 
     boolean getHasAnnotationParameterDefaultValue();

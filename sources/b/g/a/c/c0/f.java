@@ -1,6 +1,5 @@
 package b.g.a.c.c0;
 
-import b.g.a.c.i0.d$a;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Method;
@@ -23,21 +22,21 @@ public final class f extends u {
         return Modifier.isStatic(method.getModifiers()) && !method.isSynthetic();
     }
 
-    public final p g(d$a d_a, d$a d_a2) {
+    public final p g(b.g.a.c.i0.d.a aVar, b.g.a.c.i0.d.a aVar2) {
         if (!this.e) {
             return new p();
         }
-        Annotation[] declaredAnnotations = d_a.f727b;
+        Annotation[] declaredAnnotations = aVar.f727b;
         if (declaredAnnotations == null) {
-            declaredAnnotations = d_a.a.getDeclaredAnnotations();
-            d_a.f727b = declaredAnnotations;
+            declaredAnnotations = aVar.a.getDeclaredAnnotations();
+            aVar.f727b = declaredAnnotations;
         }
         o oVarC = c(declaredAnnotations);
-        if (d_a2 != null) {
-            Annotation[] declaredAnnotations2 = d_a2.f727b;
+        if (aVar2 != null) {
+            Annotation[] declaredAnnotations2 = aVar2.f727b;
             if (declaredAnnotations2 == null) {
-                declaredAnnotations2 = d_a2.a.getDeclaredAnnotations();
-                d_a2.f727b = declaredAnnotations2;
+                declaredAnnotations2 = aVar2.a.getDeclaredAnnotations();
+                aVar2.f727b = declaredAnnotations2;
             }
             oVarC = b(oVarC, declaredAnnotations2);
         }
@@ -59,7 +58,7 @@ public final class f extends u {
         int length = annotationArr.length;
         p[] pVarArr = new p[length];
         for (int i = 0; i < length; i++) {
-            o oVarB = b(o$a.c, annotationArr[i]);
+            o oVarB = b(o.a.c, annotationArr[i]);
             if (annotationArr2 != null) {
                 oVarB = b(oVarB, annotationArr2[i]);
             }
@@ -80,26 +79,26 @@ public final class f extends u {
     }
 
     /* JADX WARN: Code duplicated, block: B:27:0x007d  */
-    public e k(d$a d_a, d$a d_a2) {
+    public e k(b.g.a.c.i0.d.a aVar, b.g.a.c.i0.d.a aVar2) {
         Annotation[][] annotationArr;
         p[] pVarArrI;
-        int iA = d_a.a();
+        int iA = aVar.a();
         if (this.c == null) {
-            return new e(this.d, d_a.a, new p(), u.a(iA));
+            return new e(this.d, aVar.a, new p(), u.a(iA));
         }
         if (iA == 0) {
-            return new e(this.d, d_a.a, g(d_a, d_a2), u.a);
+            return new e(this.d, aVar.a, g(aVar, aVar2), u.a);
         }
-        Annotation[][] parameterAnnotations = d_a.c;
+        Annotation[][] parameterAnnotations = aVar.c;
         if (parameterAnnotations == null) {
-            parameterAnnotations = d_a.a.getParameterAnnotations();
-            d_a.c = parameterAnnotations;
+            parameterAnnotations = aVar.a.getParameterAnnotations();
+            aVar.c = parameterAnnotations;
         }
         Annotation[][] annotationArr2 = null;
         pVarArrI = null;
         p[] pVarArrI2 = null;
         if (iA != parameterAnnotations.length) {
-            Class<?> declaringClass = d_a.a.getDeclaringClass();
+            Class<?> declaringClass = aVar.a.getDeclaringClass();
             if (b.g.a.c.i0.d.q(declaringClass) && iA == parameterAnnotations.length + 2) {
                 annotationArr = new Annotation[parameterAnnotations.length + 2][];
                 System.arraycopy(parameterAnnotations, 0, annotationArr, 2, parameterAnnotations.length);
@@ -112,25 +111,25 @@ public final class f extends u {
                     pVarArrI = i(annotationArr, null);
                 }
                 if (pVarArrI2 == null) {
-                    throw new IllegalStateException(String.format("Internal error: constructor for %s has mismatch: %d parameters; %d sets of annotations", d_a.a.getDeclaringClass().getName(), Integer.valueOf(iA), Integer.valueOf(parameterAnnotations.length)));
+                    throw new IllegalStateException(String.format("Internal error: constructor for %s has mismatch: %d parameters; %d sets of annotations", aVar.a.getDeclaringClass().getName(), Integer.valueOf(iA), Integer.valueOf(parameterAnnotations.length)));
                 }
             }
             pVarArrI2 = pVarArrI;
             parameterAnnotations = annotationArr;
             if (pVarArrI2 == null) {
-                throw new IllegalStateException(String.format("Internal error: constructor for %s has mismatch: %d parameters; %d sets of annotations", d_a.a.getDeclaringClass().getName(), Integer.valueOf(iA), Integer.valueOf(parameterAnnotations.length)));
+                throw new IllegalStateException(String.format("Internal error: constructor for %s has mismatch: %d parameters; %d sets of annotations", aVar.a.getDeclaringClass().getName(), Integer.valueOf(iA), Integer.valueOf(parameterAnnotations.length)));
             }
         } else {
-            if (d_a2 != null) {
-                Annotation[][] parameterAnnotations2 = d_a2.c;
+            if (aVar2 != null) {
+                Annotation[][] parameterAnnotations2 = aVar2.c;
                 if (parameterAnnotations2 == null) {
-                    parameterAnnotations2 = d_a2.a.getParameterAnnotations();
-                    d_a2.c = parameterAnnotations2;
+                    parameterAnnotations2 = aVar2.a.getParameterAnnotations();
+                    aVar2.c = parameterAnnotations2;
                 }
                 annotationArr2 = parameterAnnotations2;
             }
             pVarArrI2 = i(parameterAnnotations, annotationArr2);
         }
-        return new e(this.d, d_a.a, g(d_a, d_a2), pVarArrI2);
+        return new e(this.d, aVar.a, g(aVar, aVar2), pVarArrI2);
     }
 }

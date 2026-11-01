@@ -4,6 +4,7 @@ import b.i.d.o;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.internal.LinkedTreeMap;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
@@ -14,7 +15,18 @@ public final class ObjectTypeAdapter extends TypeAdapter<Object> {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final Gson f3121b;
-    public static final o a = new ObjectTypeAdapter$1();
+    public static final o a = new AnonymousClass1();
+
+    /* JADX INFO: renamed from: com.google.gson.internal.bind.ObjectTypeAdapter$1, reason: invalid class name */
+    public class AnonymousClass1 implements o {
+        @Override // b.i.d.o
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {
+            if (typeToken.getRawType() == Object.class) {
+                return new ObjectTypeAdapter(gson);
+            }
+            return null;
+        }
+    }
 
     public ObjectTypeAdapter(Gson gson) {
         this.f3121b = gson;

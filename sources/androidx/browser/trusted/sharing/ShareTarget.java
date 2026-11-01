@@ -2,8 +2,16 @@ package androidx.browser.trusted.sharing;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class ShareTarget {
@@ -28,13 +36,114 @@ public final class ShareTarget {
     public final String method;
 
     @NonNull
-    public final ShareTarget$Params params;
+    public final Params params;
 
-    public ShareTarget(@NonNull String str, @Nullable String str2, @Nullable String str3, @NonNull ShareTarget$Params shareTarget$Params) {
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    public @interface EncodingType {
+    }
+
+    public final class FileFormField {
+        public static final String KEY_ACCEPTED_TYPES = "androidx.browser.trusted.sharing.KEY_ACCEPTED_TYPES";
+        public static final String KEY_NAME = "androidx.browser.trusted.sharing.KEY_FILE_NAME";
+
+        @NonNull
+        public final List<String> acceptedTypes;
+
+        @NonNull
+        public final String name;
+
+        public FileFormField(@NonNull String str, @NonNull List<String> list) {
+            this.name = str;
+            this.acceptedTypes = Collections.unmodifiableList(list);
+        }
+
+        @Nullable
+        public static FileFormField fromBundle(@Nullable Bundle bundle) {
+            if (bundle == null) {
+                return null;
+            }
+            String string = bundle.getString(KEY_NAME);
+            ArrayList<String> stringArrayList = bundle.getStringArrayList(KEY_ACCEPTED_TYPES);
+            if (string == null || stringArrayList == null) {
+                return null;
+            }
+            return new FileFormField(string, stringArrayList);
+        }
+
+        @NonNull
+        public Bundle toBundle() {
+            Bundle bundle = new Bundle();
+            bundle.putString(KEY_NAME, this.name);
+            bundle.putStringArrayList(KEY_ACCEPTED_TYPES, new ArrayList<>(this.acceptedTypes));
+            return bundle;
+        }
+    }
+
+    public class Params {
+        public static final String KEY_FILES = "androidx.browser.trusted.sharing.KEY_FILES";
+        public static final String KEY_TEXT = "androidx.browser.trusted.sharing.KEY_TEXT";
+        public static final String KEY_TITLE = "androidx.browser.trusted.sharing.KEY_TITLE";
+
+        @Nullable
+        public final List<FileFormField> files;
+
+        @Nullable
+        public final String text;
+
+        @Nullable
+        public final String title;
+
+        public Params(@Nullable String str, @Nullable String str2, @Nullable List<FileFormField> list) {
+            this.title = str;
+            this.text = str2;
+            this.files = list;
+        }
+
+        @Nullable
+        public static Params fromBundle(@Nullable Bundle bundle) {
+            ArrayList arrayList = null;
+            if (bundle == null) {
+                return null;
+            }
+            ArrayList parcelableArrayList = bundle.getParcelableArrayList(KEY_FILES);
+            if (parcelableArrayList != null) {
+                arrayList = new ArrayList();
+                Iterator it = parcelableArrayList.iterator();
+                while (it.hasNext()) {
+                    arrayList.add(FileFormField.fromBundle((Bundle) it.next()));
+                }
+            }
+            return new Params(bundle.getString("androidx.browser.trusted.sharing.KEY_TITLE"), bundle.getString("androidx.browser.trusted.sharing.KEY_TEXT"), arrayList);
+        }
+
+        @NonNull
+        public Bundle toBundle() {
+            Bundle bundle = new Bundle();
+            bundle.putString("androidx.browser.trusted.sharing.KEY_TITLE", this.title);
+            bundle.putString("androidx.browser.trusted.sharing.KEY_TEXT", this.text);
+            if (this.files != null) {
+                ArrayList<? extends Parcelable> arrayList = new ArrayList<>();
+                Iterator<FileFormField> it = this.files.iterator();
+                while (it.hasNext()) {
+                    arrayList.add(it.next().toBundle());
+                }
+                bundle.putParcelableArrayList(KEY_FILES, arrayList);
+            }
+            return bundle;
+        }
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    public @interface RequestMethod {
+    }
+
+    public ShareTarget(@NonNull String str, @Nullable String str2, @Nullable String str3, @NonNull Params params) {
         this.action = str;
         this.method = str2;
         this.encodingType = str3;
-        this.params = shareTarget$Params;
+        this.params = params;
     }
 
     @Nullable
@@ -42,11 +151,11 @@ public final class ShareTarget {
         String string = bundle.getString(KEY_ACTION);
         String string2 = bundle.getString(KEY_METHOD);
         String string3 = bundle.getString(KEY_ENCTYPE);
-        ShareTarget$Params shareTarget$ParamsFromBundle = ShareTarget$Params.fromBundle(bundle.getBundle(KEY_PARAMS));
-        if (string == null || shareTarget$ParamsFromBundle == null) {
+        Params paramsFromBundle = Params.fromBundle(bundle.getBundle(KEY_PARAMS));
+        if (string == null || paramsFromBundle == null) {
             return null;
         }
-        return new ShareTarget(string, string2, string3, shareTarget$ParamsFromBundle);
+        return new ShareTarget(string, string2, string3, paramsFromBundle);
     }
 
     @NonNull

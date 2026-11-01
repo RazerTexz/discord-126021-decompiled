@@ -4,17 +4,16 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import b.i.a.c.f3.e0;
 import b.i.a.c.f3.x;
-import b.i.a.c.j1$b;
+import b.i.a.c.j1;
 import b.i.a.c.x2.h;
 import b.i.a.c.x2.i;
 import b.i.a.c.x2.i0.l;
 import b.i.a.c.x2.j;
 import b.i.a.c.x2.s;
-import b.i.a.c.x2.t$b;
+import b.i.a.c.x2.t;
 import b.i.a.c.x2.w;
 import com.google.android.exoplayer2.ParserException;
 import com.google.android.exoplayer2.metadata.Metadata;
-import com.google.android.exoplayer2.metadata.Metadata$Entry;
 import com.google.android.exoplayer2.metadata.mp4.MotionPhotoMetadata;
 import java.io.IOException;
 import java.util.Objects;
@@ -41,11 +40,11 @@ public final class a implements h {
     public long f = -1;
 
     public final void a() {
-        c(new Metadata$Entry[0]);
+        c(new Metadata.Entry[0]);
         j jVar = this.f1177b;
         Objects.requireNonNull(jVar);
         jVar.j();
-        this.f1177b.a(new t$b(-9223372036854775807L, 0L));
+        this.f1177b.a(new t.b(-9223372036854775807L, 0L));
         this.c = 6;
     }
 
@@ -71,14 +70,14 @@ public final class a implements h {
         return this.a.u() == 1165519206 && this.a.y() == 0;
     }
 
-    public final void c(Metadata$Entry... metadata$EntryArr) {
+    public final void c(Metadata.Entry... entryArr) {
         j jVar = this.f1177b;
         Objects.requireNonNull(jVar);
         w wVarP = jVar.p(1024, 4);
-        j1$b j1_b = new j1$b();
-        j1_b.j = "image/jpeg";
-        j1_b.i = new Metadata(metadata$EntryArr);
-        wVarP.e(j1_b.a());
+        j1.b bVar = new j1.b();
+        bVar.j = "image/jpeg";
+        bVar.i = new Metadata(entryArr);
+        wVarP.e(bVar.a());
     }
 
     public final int d(i iVar) throws IOException {
@@ -214,13 +213,13 @@ public final class a implements h {
                                 long j7 = -1;
                                 boolean zEquals = false;
                                 for (int size = bVarA.f1178b.size() - 1; size >= 0; size--) {
-                                    b$a b_a = bVarA.f1178b.get(size);
-                                    zEquals |= "video/mp4".equals(b_a.a);
+                                    b.a aVar = bVarA.f1178b.get(size);
+                                    zEquals |= "video/mp4".equals(aVar.a);
                                     if (size == 0) {
-                                        j = jB - b_a.c;
+                                        j = jB - aVar.c;
                                         jB = 0;
                                     } else {
-                                        long j8 = jB - b_a.f1179b;
+                                        long j8 = jB - aVar.f1179b;
                                         j = jB;
                                         jB = j8;
                                     }

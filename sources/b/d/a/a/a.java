@@ -6,7 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
 import android.os.Bundle;
@@ -314,7 +314,7 @@ public class a extends BillingClient {
                 bundle.putString("proxyPackage", stringExtra);
                 try {
                     bundle.putString("proxyPackageVersion", this.e.getPackageManager().getPackageInfo(stringExtra, 0).versionName);
-                } catch (PackageManager$NameNotFoundException unused2) {
+                } catch (PackageManager.NameNotFoundException unused2) {
                     bundle.putString("proxyPackageVersion", "package not found");
                 }
             }

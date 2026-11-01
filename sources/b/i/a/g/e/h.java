@@ -1,17 +1,17 @@
 package b.i.a.g.e;
 
-import android.view.ViewTreeObserver$OnPreDrawListener;
+import android.view.ViewTreeObserver;
 
 /* JADX INFO: compiled from: FloatingActionButtonImpl.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class h implements ViewTreeObserver$OnPreDrawListener {
+public class h implements ViewTreeObserver.OnPreDrawListener {
     public final /* synthetic */ f j;
 
     public h(f fVar) {
         this.j = fVar;
     }
 
-    @Override // android.view.ViewTreeObserver$OnPreDrawListener
+    @Override // android.view.ViewTreeObserver.OnPreDrawListener
     public boolean onPreDraw() {
         f fVar = this.j;
         float rotation = fVar.F.getRotation();

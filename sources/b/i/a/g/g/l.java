@@ -6,12 +6,13 @@ import android.util.Property;
 import android.view.animation.Interpolator;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
-import androidx.vectordrawable.graphics.drawable.Animatable2Compat$AnimationCallback;
+import androidx.vectordrawable.graphics.drawable.Animatable2Compat;
 import androidx.vectordrawable.graphics.drawable.AnimationUtilsCompat;
-import com.google.android.material.R$animator;
+import com.google.android.material.R;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.progressindicator.BaseProgressIndicatorSpec;
 import com.google.android.material.progressindicator.LinearProgressIndicatorSpec;
+import java.util.Arrays;
 
 /* JADX INFO: compiled from: LinearIndeterminateDisjointAnimatorDelegate.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -25,15 +26,43 @@ public final class l extends g<ObjectAnimator> {
     public boolean k;
     public float l;
     public boolean m;
-    public Animatable2Compat$AnimationCallback n;
-    public static final Property<l, Float> f = new l$a(Float.class, "animationFraction");
+    public Animatable2Compat.AnimationCallback n;
+    public static final Property<l, Float> f = new a(Float.class, "animationFraction");
+
+    /* JADX INFO: compiled from: LinearIndeterminateDisjointAnimatorDelegate.java */
+    public final class a extends Property<l, Float> {
+        public a(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public Float get(l lVar) {
+            return Float.valueOf(lVar.l);
+        }
+
+        @Override // android.util.Property
+        public void set(l lVar, Float f) {
+            l lVar2 = lVar;
+            float fFloatValue = f.floatValue();
+            lVar2.l = fFloatValue;
+            int i = (int) (fFloatValue * 1800.0f);
+            for (int i2 = 0; i2 < 4; i2++) {
+                lVar2.f1623b[i2] = Math.max(0.0f, Math.min(1.0f, lVar2.h[i2].getInterpolation(lVar2.b(i, l.e[i2], l.d[i2]))));
+            }
+            if (lVar2.k) {
+                Arrays.fill(lVar2.c, MaterialColors.compositeARGBWithAlpha(lVar2.i.indicatorColors[lVar2.j], lVar2.a.getAlpha()));
+                lVar2.k = false;
+            }
+            lVar2.a.invalidateSelf();
+        }
+    }
 
     public l(@NonNull Context context, @NonNull LinearProgressIndicatorSpec linearProgressIndicatorSpec) {
         super(2);
         this.j = 0;
         this.n = null;
         this.i = linearProgressIndicatorSpec;
-        this.h = new Interpolator[]{AnimationUtilsCompat.loadInterpolator(context, R$animator.linear_indeterminate_line1_head_interpolator), AnimationUtilsCompat.loadInterpolator(context, R$animator.linear_indeterminate_line1_tail_interpolator), AnimationUtilsCompat.loadInterpolator(context, R$animator.linear_indeterminate_line2_head_interpolator), AnimationUtilsCompat.loadInterpolator(context, R$animator.linear_indeterminate_line2_tail_interpolator)};
+        this.h = new Interpolator[]{AnimationUtilsCompat.loadInterpolator(context, R.animator.linear_indeterminate_line1_head_interpolator), AnimationUtilsCompat.loadInterpolator(context, R.animator.linear_indeterminate_line1_tail_interpolator), AnimationUtilsCompat.loadInterpolator(context, R.animator.linear_indeterminate_line2_head_interpolator), AnimationUtilsCompat.loadInterpolator(context, R.animator.linear_indeterminate_line2_tail_interpolator)};
     }
 
     @Override // b.i.a.g.g.g
@@ -50,8 +79,8 @@ public final class l extends g<ObjectAnimator> {
     }
 
     @Override // b.i.a.g.g.g
-    public void d(@NonNull Animatable2Compat$AnimationCallback animatable2Compat$AnimationCallback) {
-        this.n = animatable2Compat$AnimationCallback;
+    public void d(@NonNull Animatable2Compat.AnimationCallback animationCallback) {
+        this.n = animationCallback;
     }
 
     @Override // b.i.a.g.g.g

@@ -2,27 +2,31 @@ package com.discord.widgets.servers.role_members;
 
 import android.content.Context;
 import b.a.d.d0;
+import b.d.b.a.a;
+import com.discord.api.role.GuildRole;
 import com.discord.models.member.GuildMember;
 import com.discord.models.user.User;
-import com.discord.restapi.RestAPIParams$GuildMember;
+import com.discord.restapi.RestAPIParams;
 import com.discord.stores.StoreGatewayConnection;
 import com.discord.stores.StoreGuilds;
-import com.discord.stores.StoreGuilds$Actions;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUser;
 import com.discord.stores.updates.ObservationDeck;
 import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.user.UserUtils;
-import com.discord.widgets.channels.permissions.PermissionOwner$Member;
+import com.discord.widgets.channels.permissions.PermissionOwner;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -32,14 +36,407 @@ import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ServerSettingsRoleMembersViewModel extends d0<ServerSettingsRoleMembersViewModel$ViewState> {
-    public static final ServerSettingsRoleMembersViewModel$Companion Companion = new ServerSettingsRoleMembersViewModel$Companion(null);
-    private final PublishSubject<ServerSettingsRoleMembersViewModel$Event> eventSubject;
+public final class ServerSettingsRoleMembersViewModel extends d0<ViewState> {
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
+    private final PublishSubject<Event> eventSubject;
     private final long guildId;
     private final long guildRoleId;
     private final RestAPI restApi;
     private final BehaviorSubject<String> searchQuerySubject;
     private final StoreGatewayConnection storeGatewayConnection;
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.role_members.ServerSettingsRoleMembersViewModel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
+    public final class AnonymousClass1 extends o implements Function1<StoreState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
+            invoke2(storeState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreState storeState) {
+            ServerSettingsRoleMembersViewModel serverSettingsRoleMembersViewModel = ServerSettingsRoleMembersViewModel.this;
+            m.checkNotNullExpressionValue(storeState, "storeState");
+            ServerSettingsRoleMembersViewModel.access$handleStoreState(serverSettingsRoleMembersViewModel, storeState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.role_members.ServerSettingsRoleMembersViewModel$removeRoleFromMember$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
+    public final class AnonymousClass1 extends o implements Function1<Void, Unit> {
+        public final /* synthetic */ ViewState.Loaded $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(ViewState.Loaded loaded) {
+            super(1);
+            this.$viewState = loaded;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r7) {
+            ServerSettingsRoleMembersViewModel.access$updateViewState(ServerSettingsRoleMembersViewModel.this, ViewState.Loaded.copy$default(this.$viewState, false, null, null, 6, null));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.role_members.ServerSettingsRoleMembersViewModel$2, reason: invalid class name */
+    /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
+    public final class AnonymousClass2 extends o implements Function1<String, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            StoreGatewayConnection.requestGuildMembers$default(ServerSettingsRoleMembersViewModel.access$getStoreGatewayConnection$p(ServerSettingsRoleMembersViewModel.this), ServerSettingsRoleMembersViewModel.access$getGuildId$p(ServerSettingsRoleMembersViewModel.this), str, null, null, 12, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.role_members.ServerSettingsRoleMembersViewModel$removeRoleFromMember$2, reason: invalid class name */
+    /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
+    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            m.checkNotNullParameter(error, "it");
+            ServerSettingsRoleMembersViewModel.access$emitEvent(ServerSettingsRoleMembersViewModel.this, new Event.RemoveMemberFailure(error));
+        }
+    }
+
+    /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        private final Observable<StoreState> observeGuildRoleMembers(long guildId, long guildRoleId, StoreGuilds storeGuilds, StoreUser storeUser, ObservationDeck observationDeck) {
+            return ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{storeGuilds, storeUser}, false, null, null, new ServerSettingsRoleMembersViewModel$Companion$observeGuildRoleMembers$1(storeGuilds, guildId, guildRoleId, storeUser), 14, null);
+        }
+
+        public final Observable<StoreState> observeStoreState(long guildId, long guildRoleId, BehaviorSubject<String> searchFilterSubject, StoreGuilds storeGuilds, StoreUser storeUser, ObservationDeck observationDeck) {
+            m.checkNotNullParameter(searchFilterSubject, "searchFilterSubject");
+            m.checkNotNullParameter(storeGuilds, "storeGuilds");
+            m.checkNotNullParameter(storeUser, "storeUser");
+            m.checkNotNullParameter(observationDeck, "observationDeck");
+            Observable<StoreState> observableJ = Observable.j(searchFilterSubject.r(), observeGuildRoleMembers(guildId, guildRoleId, storeGuilds, storeUser, observationDeck), ServerSettingsRoleMembersViewModel$Companion$observeStoreState$1.INSTANCE);
+            m.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…eredGuildMembers)\n      }");
+            return observableJ;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
+    public abstract class Event {
+
+        /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
+        public final /* data */ class RemoveMemberFailure extends Event {
+            private final Error error;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public RemoveMemberFailure(Error error) {
+                super(null);
+                m.checkNotNullParameter(error, "error");
+                this.error = error;
+            }
+
+            public static /* synthetic */ RemoveMemberFailure copy$default(RemoveMemberFailure removeMemberFailure, Error error, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    error = removeMemberFailure.error;
+                }
+                return removeMemberFailure.copy(error);
+            }
+
+            public final RemoveMemberFailure copy(Error error) {
+                m.checkNotNullParameter(error, "error");
+                return new RemoveMemberFailure(error);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof RemoveMemberFailure) && m.areEqual(this.error, ((RemoveMemberFailure) other).error);
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Error getError() {
+                return this.error;
+            }
+
+            public final Error getError() {
+                return this.error;
+            }
+
+            public int hashCode() {
+                Error error = this.error;
+                if (error != null) {
+                    return error.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                StringBuilder sbU = a.U("RemoveMemberFailure(error=");
+                sbU.append(this.error);
+                sbU.append(")");
+                return sbU.toString();
+            }
+        }
+
+        private Event() {
+        }
+
+        public /* synthetic */ Event(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
+    public final /* data */ class StoreState {
+        private final List<GuildMember> guildMembers;
+        private final GuildRole role;
+        private final Map<Long, User> users;
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public StoreState(List<GuildMember> list, Map<Long, ? extends User> map, GuildRole guildRole) {
+            m.checkNotNullParameter(list, "guildMembers");
+            m.checkNotNullParameter(map, "users");
+            this.guildMembers = list;
+            this.users = map;
+            this.role = guildRole;
+        }
+
+        public final List<GuildMember> component1() {
+            return this.guildMembers;
+        }
+
+        public final Map<Long, User> component2() {
+            return this.users;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ StoreState copy$default(StoreState storeState, List list, Map map, GuildRole guildRole, int i, Object obj) {
+            if ((i & 1) != 0) {
+                list = storeState.guildMembers;
+            }
+            if ((i & 2) != 0) {
+                map = storeState.users;
+            }
+            if ((i & 4) != 0) {
+                guildRole = storeState.role;
+            }
+            return storeState.copy(list, map, guildRole);
+        }
+
+        public final StoreState copy(List<GuildMember> guildMembers, Map<Long, ? extends User> users, GuildRole role) {
+            m.checkNotNullParameter(guildMembers, "guildMembers");
+            m.checkNotNullParameter(users, "users");
+            return new StoreState(guildMembers, users, role);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof StoreState)) {
+                return false;
+            }
+            StoreState storeState = (StoreState) other;
+            return m.areEqual(this.guildMembers, storeState.guildMembers) && m.areEqual(this.users, storeState.users) && m.areEqual(this.role, storeState.role);
+        }
+
+        public final List<GuildMember> getGuildMembers() {
+            return this.guildMembers;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final GuildRole getRole() {
+            return this.role;
+        }
+
+        public final GuildRole getRole() {
+            return this.role;
+        }
+
+        public final Map<Long, User> getUsers() {
+            return this.users;
+        }
+
+        public int hashCode() {
+            List<GuildMember> list = this.guildMembers;
+            int iHashCode = (list != null ? list.hashCode() : 0) * 31;
+            Map<Long, User> map = this.users;
+            int iHashCode2 = (iHashCode + (map != null ? map.hashCode() : 0)) * 31;
+            GuildRole guildRole = this.role;
+            return iHashCode2 + (guildRole != null ? guildRole.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("StoreState(guildMembers=");
+            sbU.append(this.guildMembers);
+            sbU.append(", users=");
+            sbU.append(this.users);
+            sbU.append(", role=");
+            sbU.append(this.role);
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
+    public abstract class ViewState {
+
+        /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
+        public final /* data */ class Loaded extends ViewState {
+            private final boolean isUpdating;
+            private final List<ServerSettingsRoleMemberAdapterItem> memberList;
+            private final GuildRole role;
+
+            public /* synthetic */ Loaded(boolean z2, List list, GuildRole guildRole, int i, DefaultConstructorMarker defaultConstructorMarker) {
+                this((i & 1) != 0 ? false : z2, list, guildRole);
+            }
+
+            public final List<ServerSettingsRoleMemberAdapterItem> component2() {
+                return this.memberList;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, boolean z2, List list, GuildRole guildRole, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    z2 = loaded.isUpdating;
+                }
+                if ((i & 2) != 0) {
+                    list = loaded.memberList;
+                }
+                if ((i & 4) != 0) {
+                    guildRole = loaded.role;
+                }
+                return loaded.copy(z2, list, guildRole);
+            }
+
+            public final Loaded copy(boolean isUpdating, List<ServerSettingsRoleMemberAdapterItem> memberList, GuildRole role) {
+                m.checkNotNullParameter(memberList, "memberList");
+                m.checkNotNullParameter(role, "role");
+                return new Loaded(isUpdating, memberList, role);
+            }
+
+            public boolean equals(Object other) {
+                if (this == other) {
+                    return true;
+                }
+                if (!(other instanceof Loaded)) {
+                    return false;
+                }
+                Loaded loaded = (Loaded) other;
+                return this.isUpdating == loaded.isUpdating && m.areEqual(this.memberList, loaded.memberList) && m.areEqual(this.role, loaded.role);
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final boolean getIsUpdating() {
+                return this.isUpdating;
+            }
+
+            public final List<ServerSettingsRoleMemberAdapterItem> getMemberList() {
+                return this.memberList;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final GuildRole getRole() {
+                return this.role;
+            }
+
+            public final GuildRole getRole() {
+                return this.role;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            /* JADX WARN: Type inference failed for: r0v1, types: [int] */
+            /* JADX WARN: Type inference failed for: r0v6 */
+            /* JADX WARN: Type inference failed for: r0v7 */
+            public int hashCode() {
+                boolean z2 = this.isUpdating;
+                ?? r0 = z2;
+                if (z2) {
+                    r0 = 1;
+                }
+                int i = r0 * 31;
+                List<ServerSettingsRoleMemberAdapterItem> list = this.memberList;
+                int iHashCode = (i + (list != null ? list.hashCode() : 0)) * 31;
+                GuildRole guildRole = this.role;
+                return iHashCode + (guildRole != null ? guildRole.hashCode() : 0);
+            }
+
+            public final boolean isUpdating() {
+                return this.isUpdating;
+            }
+
+            public String toString() {
+                StringBuilder sbU = a.U("Loaded(isUpdating=");
+                sbU.append(this.isUpdating);
+                sbU.append(", memberList=");
+                sbU.append(this.memberList);
+                sbU.append(", role=");
+                sbU.append(this.role);
+                sbU.append(")");
+                return sbU.toString();
+            }
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Loaded(boolean z2, List<ServerSettingsRoleMemberAdapterItem> list, GuildRole guildRole) {
+                super(null);
+                m.checkNotNullParameter(list, "memberList");
+                m.checkNotNullParameter(guildRole, "role");
+                this.isUpdating = z2;
+                this.memberList = list;
+                this.role = guildRole;
+            }
+        }
+
+        /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
+        public final class Loading extends ViewState {
+            public static final Loading INSTANCE = new Loading();
+
+            private Loading() {
+                super(null);
+            }
+        }
+
+        private ViewState() {
+        }
+
+        public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     /* JADX WARN: Illegal instructions before constructor call */
     /* JADX WARN: Multi-variable type inference failed */
@@ -55,7 +452,7 @@ public final class ServerSettingsRoleMembersViewModel extends d0<ServerSettingsR
      */
     public /* synthetic */ ServerSettingsRoleMembersViewModel(long j, long j2, StoreGatewayConnection storeGatewayConnection, BehaviorSubject behaviorSubject, RestAPI restAPI, StoreGuilds storeGuilds, ObservationDeck observationDeck, StoreUser storeUser, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         BehaviorSubject behaviorSubject2;
-        StoreGatewayConnection gatewaySocket = (i & 4) != 0 ? StoreStream.Companion.getGatewaySocket() : storeGatewayConnection;
+        StoreGatewayConnection gatewaySocket = (i & 4) != 0 ? StoreStream.INSTANCE.getGatewaySocket() : storeGatewayConnection;
         if ((i & 8) != 0) {
             BehaviorSubject behaviorSubjectL0 = BehaviorSubject.l0("");
             m.checkNotNullExpressionValue(behaviorSubjectL0, "BehaviorSubject.create(\"\")");
@@ -63,15 +460,15 @@ public final class ServerSettingsRoleMembersViewModel extends d0<ServerSettingsR
         } else {
             behaviorSubject2 = behaviorSubject;
         }
-        RestAPI api = (i & 16) != 0 ? RestAPI.Companion.getApi() : restAPI;
-        StoreGuilds guilds = (i & 32) != 0 ? StoreStream.Companion.getGuilds() : storeGuilds;
+        RestAPI api = (i & 16) != 0 ? RestAPI.INSTANCE.getApi() : restAPI;
+        StoreGuilds guilds = (i & 32) != 0 ? StoreStream.INSTANCE.getGuilds() : storeGuilds;
         ObservationDeck observationDeck2 = (i & 64) != 0 ? ObservationDeckProvider.get() : observationDeck;
-        StoreUser users = (i & 128) != 0 ? StoreStream.Companion.getUsers() : storeUser;
-        this(j, j2, gatewaySocket, behaviorSubject2, api, guilds, observationDeck2, users, (i & 256) != 0 ? Companion.observeStoreState(j, j2, behaviorSubject2, guilds, users, observationDeck2) : observable);
+        StoreUser users = (i & 128) != 0 ? StoreStream.INSTANCE.getUsers() : storeUser;
+        this(j, j2, gatewaySocket, behaviorSubject2, api, guilds, observationDeck2, users, (i & 256) != 0 ? INSTANCE.observeStoreState(j, j2, behaviorSubject2, guilds, users, observationDeck2) : observable);
     }
 
-    public static final /* synthetic */ void access$emitEvent(ServerSettingsRoleMembersViewModel serverSettingsRoleMembersViewModel, ServerSettingsRoleMembersViewModel$Event serverSettingsRoleMembersViewModel$Event) {
-        serverSettingsRoleMembersViewModel.emitEvent(serverSettingsRoleMembersViewModel$Event);
+    public static final /* synthetic */ void access$emitEvent(ServerSettingsRoleMembersViewModel serverSettingsRoleMembersViewModel, Event event) {
+        serverSettingsRoleMembersViewModel.emitEvent(event);
     }
 
     public static final /* synthetic */ long access$getGuildId$p(ServerSettingsRoleMembersViewModel serverSettingsRoleMembersViewModel) {
@@ -82,15 +479,15 @@ public final class ServerSettingsRoleMembersViewModel extends d0<ServerSettingsR
         return serverSettingsRoleMembersViewModel.storeGatewayConnection;
     }
 
-    public static final /* synthetic */ void access$handleStoreState(ServerSettingsRoleMembersViewModel serverSettingsRoleMembersViewModel, ServerSettingsRoleMembersViewModel$StoreState serverSettingsRoleMembersViewModel$StoreState) {
-        serverSettingsRoleMembersViewModel.handleStoreState(serverSettingsRoleMembersViewModel$StoreState);
+    public static final /* synthetic */ void access$handleStoreState(ServerSettingsRoleMembersViewModel serverSettingsRoleMembersViewModel, StoreState storeState) {
+        serverSettingsRoleMembersViewModel.handleStoreState(storeState);
     }
 
-    public static final /* synthetic */ void access$updateViewState(ServerSettingsRoleMembersViewModel serverSettingsRoleMembersViewModel, ServerSettingsRoleMembersViewModel$ViewState serverSettingsRoleMembersViewModel$ViewState) {
-        serverSettingsRoleMembersViewModel.updateViewState(serverSettingsRoleMembersViewModel$ViewState);
+    public static final /* synthetic */ void access$updateViewState(ServerSettingsRoleMembersViewModel serverSettingsRoleMembersViewModel, ViewState viewState) {
+        serverSettingsRoleMembersViewModel.updateViewState(viewState);
     }
 
-    private final void emitEvent(ServerSettingsRoleMembersViewModel$Event event) {
+    private final void emitEvent(Event event) {
         this.eventSubject.k.onNext(event);
     }
 
@@ -103,42 +500,42 @@ public final class ServerSettingsRoleMembersViewModel extends d0<ServerSettingsR
                 if (nick == null) {
                     nick = UserUtils.getUserNameWithDiscriminator$default(UserUtils.INSTANCE, user, null, null, 3, null);
                 }
-                arrayList.add(new ServerSettingsRoleMemberAdapterItem(guildMember, new PermissionOwner$Member(user, nick.toString(), false)));
+                arrayList.add(new ServerSettingsRoleMemberAdapterItem(guildMember, new PermissionOwner.Member(user, nick.toString(), false)));
             }
         }
         return arrayList;
     }
 
-    private final void handleStoreState(ServerSettingsRoleMembersViewModel$StoreState storeState) {
+    private final void handleStoreState(StoreState storeState) {
         if (storeState.getRole() == null) {
             return;
         }
-        ServerSettingsRoleMembersViewModel$ViewState serverSettingsRoleMembersViewModel$ViewStateRequireViewState = requireViewState();
-        if (!(serverSettingsRoleMembersViewModel$ViewStateRequireViewState instanceof ServerSettingsRoleMembersViewModel$ViewState$Loaded)) {
-            serverSettingsRoleMembersViewModel$ViewStateRequireViewState = null;
+        ViewState viewStateRequireViewState = requireViewState();
+        if (!(viewStateRequireViewState instanceof ViewState.Loaded)) {
+            viewStateRequireViewState = null;
         }
-        ServerSettingsRoleMembersViewModel$ViewState$Loaded serverSettingsRoleMembersViewModel$ViewState$Loaded = (ServerSettingsRoleMembersViewModel$ViewState$Loaded) serverSettingsRoleMembersViewModel$ViewStateRequireViewState;
-        updateViewState(new ServerSettingsRoleMembersViewModel$ViewState$Loaded(serverSettingsRoleMembersViewModel$ViewState$Loaded != null ? serverSettingsRoleMembersViewModel$ViewState$Loaded.isUpdating() : false, generateGuildMemberList(storeState.getGuildMembers(), storeState.getUsers()), storeState.getRole()));
+        ViewState.Loaded loaded = (ViewState.Loaded) viewStateRequireViewState;
+        updateViewState(new ViewState.Loaded(loaded != null ? loaded.isUpdating() : false, generateGuildMemberList(storeState.getGuildMembers(), storeState.getUsers()), storeState.getRole()));
     }
 
-    public final Observable<ServerSettingsRoleMembersViewModel$Event> observeEvents() {
-        PublishSubject<ServerSettingsRoleMembersViewModel$Event> publishSubject = this.eventSubject;
+    public final Observable<Event> observeEvents() {
+        PublishSubject<Event> publishSubject = this.eventSubject;
         m.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
     }
 
     public final void removeRoleFromMember(GuildMember guildMember) {
         m.checkNotNullParameter(guildMember, "guildMember");
-        ServerSettingsRoleMembersViewModel$ViewState serverSettingsRoleMembersViewModel$ViewStateRequireViewState = requireViewState();
-        if (!(serverSettingsRoleMembersViewModel$ViewStateRequireViewState instanceof ServerSettingsRoleMembersViewModel$ViewState$Loaded)) {
-            serverSettingsRoleMembersViewModel$ViewStateRequireViewState = null;
+        ViewState viewStateRequireViewState = requireViewState();
+        if (!(viewStateRequireViewState instanceof ViewState.Loaded)) {
+            viewStateRequireViewState = null;
         }
-        ServerSettingsRoleMembersViewModel$ViewState$Loaded serverSettingsRoleMembersViewModel$ViewState$Loaded = (ServerSettingsRoleMembersViewModel$ViewState$Loaded) serverSettingsRoleMembersViewModel$ViewStateRequireViewState;
-        if (serverSettingsRoleMembersViewModel$ViewState$Loaded != null) {
-            updateViewState(ServerSettingsRoleMembersViewModel$ViewState$Loaded.copy$default(serverSettingsRoleMembersViewModel$ViewState$Loaded, true, null, null, 6, null));
+        ViewState.Loaded loaded = (ViewState.Loaded) viewStateRequireViewState;
+        if (loaded != null) {
+            updateViewState(ViewState.Loaded.copy$default(loaded, true, null, null, 6, null));
             List<Long> mutableList = u.toMutableList((Collection) guildMember.getRoles());
             mutableList.remove(Long.valueOf(this.guildRoleId));
-            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.changeGuildMember(this.guildId, guildMember.getUserId(), RestAPIParams$GuildMember.Companion.createWithRoles(mutableList)), false, 1, null), this, null, 2, null), ServerSettingsRoleMembersViewModel.class, (Context) null, (Function1) null, new ServerSettingsRoleMembersViewModel$removeRoleFromMember$2(this), (Function0) null, (Function0) null, new ServerSettingsRoleMembersViewModel$removeRoleFromMember$1(this, serverSettingsRoleMembersViewModel$ViewState$Loaded), 54, (Object) null);
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.changeGuildMember(this.guildId, guildMember.getUserId(), RestAPIParams.GuildMember.INSTANCE.createWithRoles(mutableList)), false, 1, null), this, null, 2, null), ServerSettingsRoleMembersViewModel.class, (Context) null, (Function1) null, new AnonymousClass2(), (Function0) null, (Function0) null, new AnonymousClass1(loaded), 54, (Object) null);
         }
     }
 
@@ -148,8 +545,8 @@ public final class ServerSettingsRoleMembersViewModel extends d0<ServerSettingsR
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public ServerSettingsRoleMembersViewModel(long j, long j2, StoreGatewayConnection storeGatewayConnection, BehaviorSubject<String> behaviorSubject, RestAPI restAPI, StoreGuilds storeGuilds, ObservationDeck observationDeck, StoreUser storeUser, Observable<ServerSettingsRoleMembersViewModel$StoreState> observable) {
-        super(ServerSettingsRoleMembersViewModel$ViewState$Loading.INSTANCE);
+    public ServerSettingsRoleMembersViewModel(long j, long j2, StoreGatewayConnection storeGatewayConnection, BehaviorSubject<String> behaviorSubject, RestAPI restAPI, StoreGuilds storeGuilds, ObservationDeck observationDeck, StoreUser storeUser, Observable<StoreState> observable) {
+        super(ViewState.Loading.INSTANCE);
         m.checkNotNullParameter(storeGatewayConnection, "storeGatewayConnection");
         m.checkNotNullParameter(behaviorSubject, "searchQuerySubject");
         m.checkNotNullParameter(restAPI, "restApi");
@@ -163,12 +560,12 @@ public final class ServerSettingsRoleMembersViewModel extends d0<ServerSettingsR
         this.searchQuerySubject = behaviorSubject;
         this.restApi = restAPI;
         this.eventSubject = PublishSubject.k0();
-        StoreGuilds$Actions.requestRoleMembers(j, j2, this, restAPI, storeGatewayConnection);
-        Observable<ServerSettingsRoleMembersViewModel$StoreState> observableR = observable.r();
+        StoreGuilds.Actions.requestRoleMembers(j, j2, this, restAPI, storeGatewayConnection);
+        Observable<StoreState> observableR = observable.r();
         m.checkNotNullExpressionValue(observableR, "storeStateObservable\n   …  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableR), this, null, 2, null), ServerSettingsRoleMembersViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new ServerSettingsRoleMembersViewModel$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableR), this, null, 2, null), ServerSettingsRoleMembersViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
         Observable<String> observableP = behaviorSubject.P(750L, TimeUnit.MILLISECONDS);
         m.checkNotNullExpressionValue(observableP, "searchQuerySubject\n     …0, TimeUnit.MILLISECONDS)");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableP), this, null, 2, null), ServerSettingsRoleMembersViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new ServerSettingsRoleMembersViewModel$2(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableP), this, null, 2, null), ServerSettingsRoleMembersViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
     }
 }

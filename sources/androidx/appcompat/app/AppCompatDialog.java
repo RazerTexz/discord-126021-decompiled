@@ -2,35 +2,43 @@ package androidx.appcompat.app;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface$OnCancelListener;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup;
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
-import androidx.appcompat.R$attr;
+import androidx.appcompat.R;
 import androidx.appcompat.view.ActionMode;
-import androidx.appcompat.view.ActionMode$Callback;
 import androidx.core.view.KeyEventDispatcher;
-import androidx.core.view.KeyEventDispatcher$Component;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AppCompatDialog extends Dialog implements AppCompatCallback {
     private AppCompatDelegate mDelegate;
-    private final KeyEventDispatcher$Component mKeyDispatcher;
+    private final KeyEventDispatcher.Component mKeyDispatcher;
+
+    /* JADX INFO: renamed from: androidx.appcompat.app.AppCompatDialog$1, reason: invalid class name */
+    public class AnonymousClass1 implements KeyEventDispatcher.Component {
+        public AnonymousClass1() {
+        }
+
+        @Override // androidx.core.view.KeyEventDispatcher.Component
+        public boolean superDispatchKeyEvent(KeyEvent keyEvent) {
+            return AppCompatDialog.this.superDispatchKeyEvent(keyEvent);
+        }
+    }
 
     public AppCompatDialog(Context context) {
         this(context, 0);
     }
 
     @Override // android.app.Dialog
-    public void addContentView(View view, ViewGroup$LayoutParams viewGroup$LayoutParams) {
-        getDelegate().addContentView(view, viewGroup$LayoutParams);
+    public void addContentView(View view, ViewGroup.LayoutParams layoutParams) {
+        getDelegate().addContentView(view, layoutParams);
     }
 
     @Override // android.app.Dialog, android.content.DialogInterface
@@ -39,7 +47,7 @@ public class AppCompatDialog extends Dialog implements AppCompatCallback {
         getDelegate().onDestroy();
     }
 
-    @Override // android.app.Dialog, android.view.Window$Callback
+    @Override // android.app.Dialog, android.view.Window.Callback
     public boolean dispatchKeyEvent(KeyEvent keyEvent) {
         return KeyEventDispatcher.dispatchKeyEvent(this.mKeyDispatcher, getWindow().getDecorView(), this, keyEvent);
     }
@@ -66,12 +74,12 @@ public class AppCompatDialog extends Dialog implements AppCompatCallback {
             return i;
         }
         TypedValue typedValue = new TypedValue();
-        context.getTheme().resolveAttribute(R$attr.dialogTheme, typedValue, true);
+        context.getTheme().resolveAttribute(R.attr.dialogTheme, typedValue, true);
         return typedValue.resourceId;
     }
 
     @Override // android.app.Dialog
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void invalidateOptionsMenu() {
         getDelegate().invalidateOptionsMenu();
     }
@@ -99,7 +107,7 @@ public class AppCompatDialog extends Dialog implements AppCompatCallback {
 
     @Override // androidx.appcompat.app.AppCompatCallback
     @Nullable
-    public ActionMode onWindowStartingSupportActionMode(ActionMode$Callback actionMode$Callback) {
+    public ActionMode onWindowStartingSupportActionMode(ActionMode.Callback callback) {
         return null;
     }
 
@@ -124,7 +132,7 @@ public class AppCompatDialog extends Dialog implements AppCompatCallback {
 
     public AppCompatDialog(Context context, int i) {
         super(context, getThemeResId(context, i));
-        this.mKeyDispatcher = new AppCompatDialog$1(this);
+        this.mKeyDispatcher = new AnonymousClass1();
         AppCompatDelegate delegate = getDelegate();
         delegate.setTheme(getThemeResId(context, i));
         delegate.onCreate(null);
@@ -136,8 +144,8 @@ public class AppCompatDialog extends Dialog implements AppCompatCallback {
     }
 
     @Override // android.app.Dialog
-    public void setContentView(View view, ViewGroup$LayoutParams viewGroup$LayoutParams) {
-        getDelegate().setContentView(view, viewGroup$LayoutParams);
+    public void setContentView(View view, ViewGroup.LayoutParams layoutParams) {
+        getDelegate().setContentView(view, layoutParams);
     }
 
     @Override // android.app.Dialog
@@ -146,8 +154,8 @@ public class AppCompatDialog extends Dialog implements AppCompatCallback {
         getDelegate().setTitle(getContext().getString(i));
     }
 
-    public AppCompatDialog(Context context, boolean z2, DialogInterface$OnCancelListener dialogInterface$OnCancelListener) {
-        super(context, z2, dialogInterface$OnCancelListener);
-        this.mKeyDispatcher = new AppCompatDialog$1(this);
+    public AppCompatDialog(Context context, boolean z2, DialogInterface.OnCancelListener onCancelListener) {
+        super(context, z2, onCancelListener);
+        this.mKeyDispatcher = new AnonymousClass1();
     }
 }

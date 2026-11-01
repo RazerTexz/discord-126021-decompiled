@@ -9,11 +9,11 @@ import rx.functions.Action1;
 /* JADX INFO: loaded from: classes.dex */
 public final class ModelMuteConfig$Parser$parse$1<T> implements Action1<String> {
     public final /* synthetic */ Ref$ObjectRef $endTime;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
 
-    public ModelMuteConfig$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model$JsonReader model$JsonReader) {
+    public ModelMuteConfig$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model.JsonReader jsonReader) {
         this.$endTime = ref$ObjectRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
     }
 
     @Override // rx.functions.Action1

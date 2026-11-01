@@ -1,29 +1,83 @@
 package com.discord.widgets.auth;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import androidx.fragment.app.Fragment;
+import b.a.d.j;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetAuthResetPasswordBinding;
+import com.discord.utilities.uri.UriHandler;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import d0.z.d.m;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: WidgetAuthResetPassword.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetAuthResetPassword extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetAuthResetPassword.class, "binding", "getBinding()Lcom/discord/databinding/WidgetAuthResetPasswordBinding;", 0)};
-    public static final WidgetAuthResetPassword$Companion Companion = new WidgetAuthResetPassword$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String INTENT_EXTRA_TOKEN = "INTENT_EXTRA_TOKEN";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
     private String token;
 
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthResetPassword$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetAuthResetPassword.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            UriHandler uriHandler = UriHandler.INSTANCE;
+            Context contextRequireContext = WidgetAuthResetPassword.this.requireContext();
+            StringBuilder sbU = a.U("https://discord.com/reset#token=");
+            sbU.append(WidgetAuthResetPassword.access$getToken$p(WidgetAuthResetPassword.this));
+            UriHandler.handle$default(uriHandler, contextRequireContext, sbU.toString(), false, false, null, 28, null);
+            WidgetAuthResetPassword.this.requireActivity().finish();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthResetPassword$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetAuthResetPassword.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetAuthResetPassword.this.requireActivity().finish();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetAuthResetPassword.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void start(Context context, String token) {
+            m.checkNotNullParameter(context, "context");
+            m.checkNotNullParameter(token, "token");
+            Intent intent = new Intent();
+            intent.putExtra(WidgetAuthResetPassword.INTENT_EXTRA_TOKEN, token);
+            j.d(context, WidgetAuthResetPassword.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetAuthResetPassword() {
-        super(R$layout.widget_auth_reset_password);
+        super(R.layout.widget_auth_reset_password);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetAuthResetPassword$binding$2.INSTANCE, null, 2, null);
     }
 
@@ -52,7 +106,7 @@ public final class WidgetAuthResetPassword extends AppFragment {
             stringExtra = "";
         }
         this.token = stringExtra;
-        getBinding().c.setOnClickListener(new WidgetAuthResetPassword$onViewBound$1(this));
-        getBinding().f2238b.setOnClickListener(new WidgetAuthResetPassword$onViewBound$2(this));
+        getBinding().c.setOnClickListener(new AnonymousClass1());
+        getBinding().f2238b.setOnClickListener(new AnonymousClass2());
     }
 }

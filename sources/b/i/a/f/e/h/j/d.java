@@ -3,14 +3,14 @@ package b.i.a.f.e.h.j;
 import android.os.DeadObjectException;
 import android.os.RemoteException;
 import androidx.annotation.NonNull;
-import b.i.a.f.e.h.a$b;
+import b.i.a.f.e.h.a.b;
 import b.i.a.f.e.h.h;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.internal.BasePendingResult;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public abstract class d<R extends b.i.a.f.e.h.h, A extends a$b> extends BasePendingResult<R> implements e<R> {
+public abstract class d<R extends b.i.a.f.e.h.h, A extends b.i.a.f.e.h.a.b> extends BasePendingResult<R> implements e<R> {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public d(@NonNull b.i.a.f.e.h.a<?> aVar, @NonNull b.i.a.f.e.h.c cVar) {
         super(cVar);

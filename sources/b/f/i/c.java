@@ -8,6 +8,13 @@ public class c {
     public final String f541b;
     public static final c a = new c("UNKNOWN", null);
 
+    /* JADX INFO: compiled from: ImageFormat.java */
+    public interface a {
+        int a();
+
+        c b(byte[] bArr, int i);
+    }
+
     public c(String str, String str2) {
         this.f541b = str;
     }

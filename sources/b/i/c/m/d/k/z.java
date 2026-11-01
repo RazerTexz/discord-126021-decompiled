@@ -2,14 +2,14 @@ package b.i.c.m.d.k;
 
 /* JADX INFO: compiled from: CrashlyticsController.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class z implements x$g {
+public class z implements x.g {
     public final /* synthetic */ f1 a;
 
     public z(x xVar, f1 f1Var) {
         this.a = f1Var;
     }
 
-    @Override // b.i.c.m.d.k.x$g
+    @Override // b.i.c.m.d.k.x.g
     public void a(b.i.c.m.d.p.c cVar) throws Exception {
         String str = this.a.a;
         b.i.c.m.d.p.a aVar = b.i.c.m.d.p.d.a;

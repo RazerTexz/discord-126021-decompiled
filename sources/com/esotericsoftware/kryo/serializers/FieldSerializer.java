@@ -1,7 +1,6 @@
 package com.esotericsoftware.kryo.serializers;
 
 import b.e.a.a;
-import b.e.a.a$a;
 import b.e.b.c;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.NotNull;
@@ -11,6 +10,10 @@ import com.esotericsoftware.kryo.io.Output;
 import com.esotericsoftware.kryo.util.IntArray;
 import com.esotericsoftware.kryo.util.ObjectMap;
 import com.esotericsoftware.kryo.util.Util;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -26,30 +29,69 @@ import java.util.Iterator;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
-public class FieldSerializer<T> extends Serializer<T> implements Comparator<FieldSerializer$CachedField> {
-    public static FieldSerializer$CachedFieldFactory asmFieldFactory;
-    public static FieldSerializer$CachedFieldFactory objectFieldFactory;
+public class FieldSerializer<T> extends Serializer<T> implements Comparator<CachedField> {
+    public static CachedFieldFactory asmFieldFactory;
+    public static CachedFieldFactory objectFieldFactory;
     public static Method sortFieldsByOffsetMethod;
     public static boolean unsafeAvailable;
-    public static FieldSerializer$CachedFieldFactory unsafeFieldFactory;
+    public static CachedFieldFactory unsafeFieldFactory;
     public static Class<?> unsafeUtilClass;
     public Object access;
     private FieldSerializerAnnotationsUtil annotationsUtil;
     public final Class componentType;
     public final FieldSerializerConfig config;
-    private FieldSerializer$CachedField[] fields;
+    private CachedField[] fields;
     private Class[] generics;
     private Generics genericsScope;
     private FieldSerializerGenericsUtil genericsUtil;
     private boolean hasObjectFields;
     public final Kryo kryo;
-    public HashSet<FieldSerializer$CachedField> removedFields;
-    private FieldSerializer$CachedField[] transientFields;
+    public HashSet<CachedField> removedFields;
+    private CachedField[] transientFields;
     public final Class type;
     public final TypeVariable[] typeParameters;
     private FieldSerializerUnsafeUtil unsafeUtil;
     private boolean useMemRegions;
     private boolean varIntsEnabled;
+
+    @Target({ElementType.FIELD})
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface Bind {
+        Class<? extends Serializer> value();
+    }
+
+    public interface CachedFieldFactory {
+        CachedField createCachedField(Class cls, Field field, FieldSerializer fieldSerializer);
+    }
+
+    public interface CachedFieldNameStrategy {
+        public static final CachedFieldNameStrategy DEFAULT = new AnonymousClass1();
+        public static final CachedFieldNameStrategy EXTENDED = new AnonymousClass2();
+
+        /* JADX INFO: renamed from: com.esotericsoftware.kryo.serializers.FieldSerializer$CachedFieldNameStrategy$1, reason: invalid class name */
+        public final class AnonymousClass1 implements CachedFieldNameStrategy {
+            @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedFieldNameStrategy
+            public String getName(CachedField cachedField) {
+                return cachedField.field.getName();
+            }
+        }
+
+        /* JADX INFO: renamed from: com.esotericsoftware.kryo.serializers.FieldSerializer$CachedFieldNameStrategy$2, reason: invalid class name */
+        public final class AnonymousClass2 implements CachedFieldNameStrategy {
+            @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedFieldNameStrategy
+            public String getName(CachedField cachedField) {
+                return cachedField.field.getDeclaringClass().getSimpleName() + "." + cachedField.field.getName();
+            }
+        }
+
+        String getName(CachedField cachedField);
+    }
+
+    @Target({ElementType.FIELD})
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface Optional {
+        String value();
+    }
 
     static {
         try {
@@ -61,7 +103,7 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
                 unsafeAvailable = true;
             }
         } catch (Throwable unused) {
-            a$a a_a = a.a;
+            a.C0064a c0064a = a.a;
         }
     }
 
@@ -73,7 +115,7 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
     /* JADX WARN: Code duplicated, block: B:28:0x0069  */
     /* JADX WARN: Code duplicated, block: B:33:0x007e  */
     private List<Field> buildValidFields(boolean z2, List<Field> list, ObjectMap objectMap, IntArray intArray) {
-        FieldSerializer$Optional fieldSerializer$Optional;
+        Optional optional;
         ArrayList arrayList = new ArrayList(list.size());
         int size = list.size();
         for (int i = 0; i < size; i++) {
@@ -81,16 +123,16 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
             int modifiers = field.getModifiers();
             if (Modifier.isTransient(modifiers) == z2 && !Modifier.isStatic(modifiers) && (!field.isSynthetic() || !this.config.isIgnoreSyntheticFields())) {
                 if (field.isAccessible()) {
-                    fieldSerializer$Optional = (FieldSerializer$Optional) field.getAnnotation(FieldSerializer$Optional.class);
-                    if (fieldSerializer$Optional != null || objectMap.containsKey(fieldSerializer$Optional.value())) {
+                    optional = (Optional) field.getAnnotation(Optional.class);
+                    if (optional != null || objectMap.containsKey(optional.value())) {
                         arrayList.add(field);
                         intArray.add((Modifier.isFinal(modifiers) && Modifier.isPublic(modifiers) && Modifier.isPublic(field.getType().getModifiers())) ? 1 : 0);
                     }
                 } else if (this.config.isSetFieldsAsAccessible()) {
                     try {
                         field.setAccessible(true);
-                        fieldSerializer$Optional = (FieldSerializer$Optional) field.getAnnotation(FieldSerializer$Optional.class);
-                        if (fieldSerializer$Optional != null) {
+                        optional = (Optional) field.getAnnotation(Optional.class);
+                        if (optional != null) {
                             arrayList.add(field);
                             intArray.add((Modifier.isFinal(modifiers) && Modifier.isPublic(modifiers) && Modifier.isPublic(field.getType().getModifiers())) ? 1 : 0);
                         } else {
@@ -105,18 +147,18 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
         return arrayList;
     }
 
-    private List<Field> buildValidFieldsFromCachedFields(FieldSerializer$CachedField[] fieldSerializer$CachedFieldArr, IntArray intArray) {
-        ArrayList arrayList = new ArrayList(fieldSerializer$CachedFieldArr.length);
-        for (FieldSerializer$CachedField fieldSerializer$CachedField : fieldSerializer$CachedFieldArr) {
-            arrayList.add(fieldSerializer$CachedField.field);
-            intArray.add(fieldSerializer$CachedField.accessIndex > -1 ? 1 : 0);
+    private List<Field> buildValidFieldsFromCachedFields(CachedField[] cachedFieldArr, IntArray intArray) {
+        ArrayList arrayList = new ArrayList(cachedFieldArr.length);
+        for (CachedField cachedField : cachedFieldArr) {
+            arrayList.add(cachedField.field);
+            intArray.add(cachedField.accessIndex > -1 ? 1 : 0);
         }
         return arrayList;
     }
 
     @Override // java.util.Comparator
-    public /* bridge */ /* synthetic */ int compare(FieldSerializer$CachedField fieldSerializer$CachedField, FieldSerializer$CachedField fieldSerializer$CachedField2) {
-        return compare2(fieldSerializer$CachedField, fieldSerializer$CachedField2);
+    public /* bridge */ /* synthetic */ int compare(CachedField cachedField, CachedField cachedField2) {
+        return compare2(cachedField, cachedField2);
     }
 
     @Override // com.esotericsoftware.kryo.Serializer
@@ -140,7 +182,7 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
         return (T) kryo.newInstance(cls);
     }
 
-    private void createCachedFields(IntArray intArray, List<Field> list, List<FieldSerializer$CachedField> list2, int i) {
+    private void createCachedFields(IntArray intArray, List<Field> list, List<CachedField> list2, int i) {
         if (!this.config.isUseAsm() && this.useMemRegions) {
             this.unsafeUtil.createUnsafeCacheFieldsAndRegions(list, list2, i, intArray);
             return;
@@ -160,25 +202,25 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
         return (T) kryo.newInstance(t.getClass());
     }
 
-    private FieldSerializer$CachedFieldFactory getAsmFieldFactory() {
+    private CachedFieldFactory getAsmFieldFactory() {
         if (asmFieldFactory == null) {
             asmFieldFactory = new AsmCachedFieldFactory();
         }
         return asmFieldFactory;
     }
 
-    public String getCachedFieldName(FieldSerializer$CachedField fieldSerializer$CachedField) {
-        return this.config.getCachedFieldNameStrategy().getName(fieldSerializer$CachedField);
+    public String getCachedFieldName(CachedField cachedField) {
+        return this.config.getCachedFieldNameStrategy().getName(cachedField);
     }
 
     public boolean getCopyTransient() {
         return this.config.isCopyTransient();
     }
 
-    public FieldSerializer$CachedField getField(String str) {
-        for (FieldSerializer$CachedField fieldSerializer$CachedField : this.fields) {
-            if (getCachedFieldName(fieldSerializer$CachedField).equals(str)) {
-                return fieldSerializer$CachedField;
+    public CachedField getField(String str) {
+        for (CachedField cachedField : this.fields) {
+            if (getCachedFieldName(cachedField).equals(str)) {
+                return cachedField;
             }
         }
         StringBuilder sbY = b.d.b.a.a.Y("Field \"", str, "\" not found on class: ");
@@ -186,7 +228,7 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
         throw new IllegalArgumentException(sbY.toString());
     }
 
-    public FieldSerializer$CachedField[] getFields() {
+    public CachedField[] getFields() {
         return this.fields;
     }
 
@@ -202,7 +244,7 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
         return this.kryo;
     }
 
-    private FieldSerializer$CachedFieldFactory getObjectFieldFactory() {
+    private CachedFieldFactory getObjectFieldFactory() {
         if (objectFieldFactory == null) {
             objectFieldFactory = new ObjectCachedFieldFactory();
         }
@@ -213,7 +255,7 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
         return this.config.isSerializeTransient();
     }
 
-    public FieldSerializer$CachedField[] getTransientFields() {
+    public CachedField[] getTransientFields() {
         return this.transientFields;
     }
 
@@ -221,10 +263,10 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
         return this.type;
     }
 
-    private FieldSerializer$CachedFieldFactory getUnsafeFieldFactory() {
+    private CachedFieldFactory getUnsafeFieldFactory() {
         if (unsafeFieldFactory == null) {
             try {
-                unsafeFieldFactory = (FieldSerializer$CachedFieldFactory) getClass().getClassLoader().loadClass("com.esotericsoftware.kryo.serializers.UnsafeCachedFieldFactory").newInstance();
+                unsafeFieldFactory = (CachedFieldFactory) getClass().getClassLoader().loadClass("com.esotericsoftware.kryo.serializers.UnsafeCachedFieldFactory").newInstance();
             } catch (Exception e) {
                 throw new RuntimeException("Cannot create UnsafeFieldFactory", e);
             }
@@ -243,54 +285,54 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
     public void initializeCachedFields() {
     }
 
-    public FieldSerializer$CachedField newCachedField(Field field, int i, int i2) {
-        FieldSerializer$CachedField fieldSerializer$CachedFieldNewMatchingCachedField;
+    public CachedField newCachedField(Field field, int i, int i2) {
+        CachedField cachedFieldNewMatchingCachedField;
         Class[] clsArr = {field.getType()};
         Type genericType = this.config.isOptimizedGenerics() ? field.getGenericType() : null;
         if (!this.config.isOptimizedGenerics() || genericType == clsArr[0]) {
-            a$a a_a = a.a;
-            fieldSerializer$CachedFieldNewMatchingCachedField = newMatchingCachedField(field, i2, clsArr[0], genericType, null);
+            a.C0064a c0064a = a.a;
+            cachedFieldNewMatchingCachedField = newMatchingCachedField(field, i2, clsArr[0], genericType, null);
         } else {
-            fieldSerializer$CachedFieldNewMatchingCachedField = this.genericsUtil.newCachedFieldOfGenericType(field, i2, clsArr, genericType);
+            cachedFieldNewMatchingCachedField = this.genericsUtil.newCachedFieldOfGenericType(field, i2, clsArr, genericType);
         }
-        if (fieldSerializer$CachedFieldNewMatchingCachedField instanceof ObjectField) {
+        if (cachedFieldNewMatchingCachedField instanceof ObjectField) {
             this.hasObjectFields = true;
         }
-        fieldSerializer$CachedFieldNewMatchingCachedField.field = field;
-        fieldSerializer$CachedFieldNewMatchingCachedField.varIntsEnabled = this.varIntsEnabled;
+        cachedFieldNewMatchingCachedField.field = field;
+        cachedFieldNewMatchingCachedField.varIntsEnabled = this.varIntsEnabled;
         if (!this.config.isUseAsm()) {
-            fieldSerializer$CachedFieldNewMatchingCachedField.offset = this.unsafeUtil.getObjectFieldOffset(field);
+            cachedFieldNewMatchingCachedField.offset = this.unsafeUtil.getObjectFieldOffset(field);
         }
-        fieldSerializer$CachedFieldNewMatchingCachedField.access = (c) this.access;
-        fieldSerializer$CachedFieldNewMatchingCachedField.accessIndex = i2;
-        fieldSerializer$CachedFieldNewMatchingCachedField.canBeNull = (!this.config.isFieldsCanBeNull() || clsArr[0].isPrimitive() || field.isAnnotationPresent(NotNull.class)) ? false : true;
+        cachedFieldNewMatchingCachedField.access = (c) this.access;
+        cachedFieldNewMatchingCachedField.accessIndex = i2;
+        cachedFieldNewMatchingCachedField.canBeNull = (!this.config.isFieldsCanBeNull() || clsArr[0].isPrimitive() || field.isAnnotationPresent(NotNull.class)) ? false : true;
         if (this.kryo.isFinal(clsArr[0]) || this.config.isFixedFieldTypes()) {
-            fieldSerializer$CachedFieldNewMatchingCachedField.valueClass = clsArr[0];
+            cachedFieldNewMatchingCachedField.valueClass = clsArr[0];
         }
-        return fieldSerializer$CachedFieldNewMatchingCachedField;
+        return cachedFieldNewMatchingCachedField;
     }
 
-    public FieldSerializer$CachedField newMatchingCachedField(Field field, int i, Class cls, Type type, Class[] clsArr) {
+    public CachedField newMatchingCachedField(Field field, int i, Class cls, Type type, Class[] clsArr) {
         if (i != -1) {
             return getAsmFieldFactory().createCachedField(cls, field, this);
         }
         if (!this.config.isUseAsm()) {
             return getUnsafeFieldFactory().createCachedField(cls, field, this);
         }
-        FieldSerializer$CachedField fieldSerializer$CachedFieldCreateCachedField = getObjectFieldFactory().createCachedField(cls, field, this);
+        CachedField cachedFieldCreateCachedField = getObjectFieldFactory().createCachedField(cls, field, this);
         if (!this.config.isOptimizedGenerics()) {
-            return fieldSerializer$CachedFieldCreateCachedField;
+            return cachedFieldCreateCachedField;
         }
         if (clsArr != null) {
-            ((ObjectField) fieldSerializer$CachedFieldCreateCachedField).generics = clsArr;
-            return fieldSerializer$CachedFieldCreateCachedField;
+            ((ObjectField) cachedFieldCreateCachedField).generics = clsArr;
+            return cachedFieldCreateCachedField;
         }
         if (type == null) {
-            return fieldSerializer$CachedFieldCreateCachedField;
+            return cachedFieldCreateCachedField;
         }
-        ((ObjectField) fieldSerializer$CachedFieldCreateCachedField).generics = FieldSerializerGenericsUtil.getGenerics(type, this.kryo);
-        a$a a_a = a.a;
-        return fieldSerializer$CachedFieldCreateCachedField;
+        ((ObjectField) cachedFieldCreateCachedField).generics = FieldSerializerGenericsUtil.getGenerics(type, this.kryo);
+        a.C0064a c0064a = a.a;
+        return cachedFieldCreateCachedField;
     }
 
     @Override // com.esotericsoftware.kryo.Serializer
@@ -306,8 +348,8 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
             }
             T tCreate = create(kryo, input, cls);
             kryo.reference(tCreate);
-            for (FieldSerializer$CachedField fieldSerializer$CachedField : this.fields) {
-                fieldSerializer$CachedField.read(input, tCreate);
+            for (CachedField cachedField : this.fields) {
+                cachedField.read(input, tCreate);
             }
             if (this.config.isSerializeTransient()) {
                 int length = this.transientFields.length;
@@ -330,38 +372,38 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
     public void removeField(String str) {
         int i = 0;
         while (true) {
-            FieldSerializer$CachedField[] fieldSerializer$CachedFieldArr = this.fields;
-            if (i < fieldSerializer$CachedFieldArr.length) {
-                FieldSerializer$CachedField fieldSerializer$CachedField = fieldSerializer$CachedFieldArr[i];
-                if (getCachedFieldName(fieldSerializer$CachedField).equals(str)) {
-                    FieldSerializer$CachedField[] fieldSerializer$CachedFieldArr2 = this.fields;
-                    int length = fieldSerializer$CachedFieldArr2.length - 1;
-                    FieldSerializer$CachedField[] fieldSerializer$CachedFieldArr3 = new FieldSerializer$CachedField[length];
-                    System.arraycopy(fieldSerializer$CachedFieldArr2, 0, fieldSerializer$CachedFieldArr3, 0, i);
-                    System.arraycopy(this.fields, i + 1, fieldSerializer$CachedFieldArr3, i, length - i);
-                    this.fields = fieldSerializer$CachedFieldArr3;
-                    this.removedFields.add(fieldSerializer$CachedField);
+            CachedField[] cachedFieldArr = this.fields;
+            if (i < cachedFieldArr.length) {
+                CachedField cachedField = cachedFieldArr[i];
+                if (getCachedFieldName(cachedField).equals(str)) {
+                    CachedField[] cachedFieldArr2 = this.fields;
+                    int length = cachedFieldArr2.length - 1;
+                    CachedField[] cachedFieldArr3 = new CachedField[length];
+                    System.arraycopy(cachedFieldArr2, 0, cachedFieldArr3, 0, i);
+                    System.arraycopy(this.fields, i + 1, cachedFieldArr3, i, length - i);
+                    this.fields = cachedFieldArr3;
+                    this.removedFields.add(cachedField);
                     return;
                 }
                 i++;
             } else {
                 int i2 = 0;
                 while (true) {
-                    FieldSerializer$CachedField[] fieldSerializer$CachedFieldArr4 = this.transientFields;
-                    if (i2 >= fieldSerializer$CachedFieldArr4.length) {
+                    CachedField[] cachedFieldArr4 = this.transientFields;
+                    if (i2 >= cachedFieldArr4.length) {
                         StringBuilder sbY = b.d.b.a.a.Y("Field \"", str, "\" not found on class: ");
                         sbY.append(this.type.getName());
                         throw new IllegalArgumentException(sbY.toString());
                     }
-                    FieldSerializer$CachedField fieldSerializer$CachedField2 = fieldSerializer$CachedFieldArr4[i2];
-                    if (getCachedFieldName(fieldSerializer$CachedField2).equals(str)) {
-                        FieldSerializer$CachedField[] fieldSerializer$CachedFieldArr5 = this.transientFields;
-                        int length2 = fieldSerializer$CachedFieldArr5.length - 1;
-                        FieldSerializer$CachedField[] fieldSerializer$CachedFieldArr6 = new FieldSerializer$CachedField[length2];
-                        System.arraycopy(fieldSerializer$CachedFieldArr5, 0, fieldSerializer$CachedFieldArr6, 0, i2);
-                        System.arraycopy(this.transientFields, i2 + 1, fieldSerializer$CachedFieldArr6, i2, length2 - i2);
-                        this.transientFields = fieldSerializer$CachedFieldArr6;
-                        this.removedFields.add(fieldSerializer$CachedField2);
+                    CachedField cachedField2 = cachedFieldArr4[i2];
+                    if (getCachedFieldName(cachedField2).equals(str)) {
+                        CachedField[] cachedFieldArr5 = this.transientFields;
+                        int length2 = cachedFieldArr5.length - 1;
+                        CachedField[] cachedFieldArr6 = new CachedField[length2];
+                        System.arraycopy(cachedFieldArr5, 0, cachedFieldArr6, 0, i2);
+                        System.arraycopy(this.transientFields, i2 + 1, cachedFieldArr6, i2, length2 - i2);
+                        this.transientFields = cachedFieldArr6;
+                        this.removedFields.add(cachedField2);
                         return;
                     }
                     i2++;
@@ -422,7 +464,7 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
 
     @Override // com.esotericsoftware.kryo.Serializer
     public void write(Kryo kryo, Output output, T t) {
-        a$a a_a = a.a;
+        a.C0064a c0064a = a.a;
         if (this.config.isOptimizedGenerics()) {
             if (this.typeParameters != null && this.generics != null) {
                 rebuildCachedFields();
@@ -431,8 +473,8 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
                 kryo.getGenericsResolver().pushScope(this.type, this.genericsScope);
             }
         }
-        for (FieldSerializer$CachedField fieldSerializer$CachedField : this.fields) {
-            fieldSerializer$CachedField.write(output, t);
+        for (CachedField cachedField : this.fields) {
+            cachedField.write(output, t);
         }
         if (this.config.isSerializeTransient()) {
             int length = this.transientFields.length;
@@ -446,21 +488,68 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
         kryo.getGenericsResolver().popScope();
     }
 
+    public abstract class CachedField<X> {
+        public c access;
+        public boolean canBeNull;
+        public Field field;
+        public Serializer serializer;
+        public Class valueClass;
+        public int accessIndex = -1;
+        public long offset = -1;
+        public boolean varIntsEnabled = true;
+
+        public abstract void copy(Object obj, Object obj2);
+
+        public Field getField() {
+            return this.field;
+        }
+
+        public Serializer getSerializer() {
+            return this.serializer;
+        }
+
+        public abstract void read(Input input, Object obj);
+
+        public void setCanBeNull(boolean z2) {
+            this.canBeNull = z2;
+        }
+
+        public void setClass(Class cls) {
+            this.valueClass = cls;
+            this.serializer = null;
+        }
+
+        public void setSerializer(Serializer serializer) {
+            this.serializer = serializer;
+        }
+
+        public String toString() {
+            return this.field.getName();
+        }
+
+        public abstract void write(Output output, Object obj);
+
+        public void setClass(Class cls, Serializer serializer) {
+            this.valueClass = cls;
+            this.serializer = serializer;
+        }
+    }
+
     public FieldSerializer(Kryo kryo, Class cls, Class[] clsArr) {
         this(kryo, cls, clsArr, kryo.getFieldSerializerConfig().clone());
     }
 
     /* JADX INFO: renamed from: compare, reason: avoid collision after fix types in other method */
-    public int compare2(FieldSerializer$CachedField fieldSerializer$CachedField, FieldSerializer$CachedField fieldSerializer$CachedField2) {
-        return getCachedFieldName(fieldSerializer$CachedField).compareTo(getCachedFieldName(fieldSerializer$CachedField2));
+    public int compare2(CachedField cachedField, CachedField cachedField2) {
+        return getCachedFieldName(cachedField).compareTo(getCachedFieldName(cachedField2));
     }
 
     public void rebuildCachedFields(boolean z2) {
         List<Field> listBuildValidFieldsFromCachedFields;
         List<Field> listBuildValidFieldsFromCachedFields2;
-        a$a a_a = a.a;
+        a.C0064a c0064a = a.a;
         if (this.type.isInterface()) {
-            this.fields = new FieldSerializer$CachedField[0];
+            this.fields = new CachedField[0];
             return;
         }
         this.hasObjectFields = false;
@@ -516,15 +605,15 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
         createCachedFields(intArray, listBuildValidFieldsFromCachedFields, arrayList2, 0);
         createCachedFields(intArray, listBuildValidFieldsFromCachedFields2, arrayList3, listBuildValidFieldsFromCachedFields.size());
         Collections.sort(arrayList2, this);
-        this.fields = (FieldSerializer$CachedField[]) arrayList2.toArray(new FieldSerializer$CachedField[arrayList2.size()]);
+        this.fields = (CachedField[]) arrayList2.toArray(new CachedField[arrayList2.size()]);
         Collections.sort(arrayList3, this);
-        this.transientFields = (FieldSerializer$CachedField[]) arrayList3.toArray(new FieldSerializer$CachedField[arrayList3.size()]);
+        this.transientFields = (CachedField[]) arrayList3.toArray(new CachedField[arrayList3.size()]);
         initializeCachedFields();
         if (this.genericsScope != null) {
             this.kryo.getGenericsResolver().popScope();
         }
         if (!z2) {
-            Iterator<FieldSerializer$CachedField> it = this.removedFields.iterator();
+            Iterator<CachedField> it = this.removedFields.iterator();
             while (it.hasNext()) {
                 removeField(it.next());
             }
@@ -533,13 +622,13 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
     }
 
     public FieldSerializer(Kryo kryo, Class cls, Class[] clsArr, FieldSerializerConfig fieldSerializerConfig) {
-        this.fields = new FieldSerializer$CachedField[0];
-        this.transientFields = new FieldSerializer$CachedField[0];
+        this.fields = new CachedField[0];
+        this.transientFields = new CachedField[0];
         this.removedFields = new HashSet<>();
         this.useMemRegions = false;
         this.hasObjectFields = false;
         this.varIntsEnabled = true;
-        a$a a_a = a.a;
+        a.C0064a c0064a = a.a;
         this.config = fieldSerializerConfig;
         this.kryo = kryo;
         this.type = cls;
@@ -552,45 +641,45 @@ public class FieldSerializer<T> extends Serializer<T> implements Comparator<Fiel
             this.componentType = cls.getComponentType();
         }
         this.genericsUtil = new FieldSerializerGenericsUtil(this);
-        this.unsafeUtil = FieldSerializerUnsafeUtil$Factory.getInstance(this);
+        this.unsafeUtil = FieldSerializerUnsafeUtil.Factory.getInstance(this);
         this.annotationsUtil = new FieldSerializerAnnotationsUtil(this);
         rebuildCachedFields();
     }
 
-    public void removeField(FieldSerializer$CachedField fieldSerializer$CachedField) {
+    public void removeField(CachedField cachedField) {
         int i = 0;
         while (true) {
-            FieldSerializer$CachedField[] fieldSerializer$CachedFieldArr = this.fields;
-            if (i < fieldSerializer$CachedFieldArr.length) {
-                FieldSerializer$CachedField fieldSerializer$CachedField2 = fieldSerializer$CachedFieldArr[i];
-                if (fieldSerializer$CachedField2 == fieldSerializer$CachedField) {
-                    int length = fieldSerializer$CachedFieldArr.length - 1;
-                    FieldSerializer$CachedField[] fieldSerializer$CachedFieldArr2 = new FieldSerializer$CachedField[length];
-                    System.arraycopy(fieldSerializer$CachedFieldArr, 0, fieldSerializer$CachedFieldArr2, 0, i);
-                    System.arraycopy(this.fields, i + 1, fieldSerializer$CachedFieldArr2, i, length - i);
-                    this.fields = fieldSerializer$CachedFieldArr2;
-                    this.removedFields.add(fieldSerializer$CachedField2);
+            CachedField[] cachedFieldArr = this.fields;
+            if (i < cachedFieldArr.length) {
+                CachedField cachedField2 = cachedFieldArr[i];
+                if (cachedField2 == cachedField) {
+                    int length = cachedFieldArr.length - 1;
+                    CachedField[] cachedFieldArr2 = new CachedField[length];
+                    System.arraycopy(cachedFieldArr, 0, cachedFieldArr2, 0, i);
+                    System.arraycopy(this.fields, i + 1, cachedFieldArr2, i, length - i);
+                    this.fields = cachedFieldArr2;
+                    this.removedFields.add(cachedField2);
                     return;
                 }
                 i++;
             } else {
                 int i2 = 0;
                 while (true) {
-                    FieldSerializer$CachedField[] fieldSerializer$CachedFieldArr3 = this.transientFields;
-                    if (i2 < fieldSerializer$CachedFieldArr3.length) {
-                        FieldSerializer$CachedField fieldSerializer$CachedField3 = fieldSerializer$CachedFieldArr3[i2];
-                        if (fieldSerializer$CachedField3 == fieldSerializer$CachedField) {
-                            int length2 = fieldSerializer$CachedFieldArr3.length - 1;
-                            FieldSerializer$CachedField[] fieldSerializer$CachedFieldArr4 = new FieldSerializer$CachedField[length2];
-                            System.arraycopy(fieldSerializer$CachedFieldArr3, 0, fieldSerializer$CachedFieldArr4, 0, i2);
-                            System.arraycopy(this.transientFields, i2 + 1, fieldSerializer$CachedFieldArr4, i2, length2 - i2);
-                            this.transientFields = fieldSerializer$CachedFieldArr4;
-                            this.removedFields.add(fieldSerializer$CachedField3);
+                    CachedField[] cachedFieldArr3 = this.transientFields;
+                    if (i2 < cachedFieldArr3.length) {
+                        CachedField cachedField3 = cachedFieldArr3[i2];
+                        if (cachedField3 == cachedField) {
+                            int length2 = cachedFieldArr3.length - 1;
+                            CachedField[] cachedFieldArr4 = new CachedField[length2];
+                            System.arraycopy(cachedFieldArr3, 0, cachedFieldArr4, 0, i2);
+                            System.arraycopy(this.transientFields, i2 + 1, cachedFieldArr4, i2, length2 - i2);
+                            this.transientFields = cachedFieldArr4;
+                            this.removedFields.add(cachedField3);
                             return;
                         }
                         i2++;
                     } else {
-                        throw new IllegalArgumentException("Field \"" + fieldSerializer$CachedField + "\" not found on class: " + this.type.getName());
+                        throw new IllegalArgumentException("Field \"" + cachedField + "\" not found on class: " + this.type.getName());
                     }
                 }
             }

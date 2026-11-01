@@ -7,7 +7,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class DisableGuildCommunicationViewModel$Companion$observeStores$1 extends o implements Function0<DisableGuildCommunicationViewModel$StoreState> {
+public final class DisableGuildCommunicationViewModel$Companion$observeStores$1 extends o implements Function0<DisableGuildCommunicationViewModel.StoreState> {
     public final /* synthetic */ long $guildId;
     public final /* synthetic */ StoreGuilds $guildsStore;
     public final /* synthetic */ long $userId;
@@ -23,13 +23,13 @@ public final class DisableGuildCommunicationViewModel$Companion$observeStores$1 
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ DisableGuildCommunicationViewModel$StoreState invoke() {
+    public /* bridge */ /* synthetic */ DisableGuildCommunicationViewModel.StoreState invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final DisableGuildCommunicationViewModel$StoreState invoke() {
-        return new DisableGuildCommunicationViewModel$StoreState(this.$userStore.getUsers().get(Long.valueOf(this.$userId)), this.$guildsStore.getGuild(this.$guildId));
+    public final DisableGuildCommunicationViewModel.StoreState invoke() {
+        return new DisableGuildCommunicationViewModel.StoreState(this.$userStore.getUsers().get(Long.valueOf(this.$userId)), this.$guildsStore.getGuild(this.$guildId));
     }
 }

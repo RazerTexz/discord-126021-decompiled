@@ -3,7 +3,7 @@ package b.i.a.f.h.l;
 import android.annotation.TargetApi;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.UserHandle;
 import android.util.Log;
 import androidx.annotation.Nullable;
@@ -24,7 +24,7 @@ public final class a4 {
     static {
         Method declaredMethod;
         Method declaredMethod2 = null;
-        if (Build$VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= 24) {
             try {
                 declaredMethod = JobScheduler.class.getDeclaredMethod("scheduleAsPackage", JobInfo.class, String.class, Integer.TYPE, String.class);
             } catch (NoSuchMethodException unused) {
@@ -37,7 +37,7 @@ public final class a4 {
             declaredMethod = null;
         }
         a = declaredMethod;
-        if (Build$VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= 24) {
             try {
                 declaredMethod2 = UserHandle.class.getDeclaredMethod("myUserId", null);
             } catch (NoSuchMethodException unused2) {

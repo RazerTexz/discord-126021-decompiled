@@ -1,14 +1,13 @@
 package com.discord.widgets.chat.list.adapter;
 
-import android.graphics.Shader$TileMode;
+import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.databinding.WidgetChatListAdapterItemMentionFooterBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
@@ -22,20 +21,20 @@ public final class WidgetChatListAdapterItemMentionFooter extends WidgetChatList
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemMentionFooter(WidgetChatListAdapter widgetChatListAdapter) {
-        super(R$layout.widget_chat_list_adapter_item_mention_footer, widgetChatListAdapter);
+        super(R.layout.widget_chat_list_adapter_item_mention_footer, widgetChatListAdapter);
         m.checkNotNullParameter(widgetChatListAdapter, "adapter");
         View view = this.itemView;
-        int i = R$id.chat_list_item_mention_footer_divider;
-        View viewFindViewById = view.findViewById(R$id.chat_list_item_mention_footer_divider);
+        int i = R.id.chat_list_item_mention_footer_divider;
+        View viewFindViewById = view.findViewById(R.id.chat_list_item_mention_footer_divider);
         if (viewFindViewById != null) {
-            i = R$id.chat_list_item_mention_footer_hand;
-            ImageView imageView = (ImageView) view.findViewById(R$id.chat_list_item_mention_footer_hand);
+            i = R.id.chat_list_item_mention_footer_hand;
+            ImageView imageView = (ImageView) view.findViewById(R.id.chat_list_item_mention_footer_hand);
             if (imageView != null) {
-                i = R$id.chat_list_item_message_header_channel;
-                TextView textView = (TextView) view.findViewById(R$id.chat_list_item_message_header_channel);
+                i = R.id.chat_list_item_message_header_channel;
+                TextView textView = (TextView) view.findViewById(R.id.chat_list_item_message_header_channel);
                 if (textView != null) {
-                    i = R$id.tile;
-                    View viewFindViewById2 = view.findViewById(R$id.tile);
+                    i = R.id.tile;
+                    View viewFindViewById2 = view.findViewById(R.id.tile);
                     if (viewFindViewById2 != null) {
                         WidgetChatListAdapterItemMentionFooterBinding widgetChatListAdapterItemMentionFooterBinding = new WidgetChatListAdapterItemMentionFooterBinding((LinearLayout) view, viewFindViewById, imageView, textView, viewFindViewById2);
                         m.checkNotNullExpressionValue(widgetChatListAdapterItemMentionFooterBinding, "WidgetChatListAdapterIte…terBinding.bind(itemView)");
@@ -60,8 +59,8 @@ public final class WidgetChatListAdapterItemMentionFooter extends WidgetChatList
         Objects.requireNonNull(background, "null cannot be cast to non-null type android.graphics.drawable.BitmapDrawable");
         BitmapDrawable bitmapDrawable = (BitmapDrawable) background;
         bitmapDrawable.mutate();
-        Shader$TileMode shader$TileMode = Shader$TileMode.REPEAT;
-        bitmapDrawable.setTileModeXY(shader$TileMode, shader$TileMode);
+        Shader.TileMode tileMode = Shader.TileMode.REPEAT;
+        bitmapDrawable.setTileModeXY(tileMode, tileMode);
     }
 
     /* JADX WARN: Can't rename method to resolve collision */

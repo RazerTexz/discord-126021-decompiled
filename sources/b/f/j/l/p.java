@@ -1,7 +1,6 @@
 package b.f.j.l;
 
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
 import java.util.LinkedList;
 import java.util.Objects;
 
@@ -27,25 +26,29 @@ public class p implements d {
         Bitmap bitmapA;
         Bitmap bitmapC;
         synchronized (this) {
-            int i2 = this.e;
-            int i3 = this.f597b;
-            if (i2 > i3) {
-                synchronized (this) {
-                    while (this.e > i3 && (bitmapC = this.a.c()) != null) {
-                        int iB = this.a.b(bitmapC);
-                        this.e -= iB;
-                        this.d.e(iB);
+            try {
+                int i2 = this.e;
+                int i3 = this.f597b;
+                if (i2 > i3) {
+                    synchronized (this) {
+                        while (this.e > i3 && (bitmapC = this.a.c()) != null) {
+                            int iB = this.a.b(bitmapC);
+                            this.e -= iB;
+                            this.d.e(iB);
+                        }
                     }
                 }
-            }
-            bitmapA = this.a.a(i);
-            if (bitmapA != null) {
-                int iB2 = this.a.b(bitmapA);
-                this.e -= iB2;
-                this.d.b(iB2);
-            } else {
-                this.d.a(i);
-                bitmapA = Bitmap.createBitmap(1, i, Bitmap$Config.ALPHA_8);
+                bitmapA = this.a.a(i);
+                if (bitmapA != null) {
+                    int iB2 = this.a.b(bitmapA);
+                    this.e -= iB2;
+                    this.d.b(iB2);
+                } else {
+                    this.d.a(i);
+                    bitmapA = Bitmap.createBitmap(1, i, Bitmap.Config.ALPHA_8);
+                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return bitmapA;
@@ -70,14 +73,14 @@ public class p implements d {
                     g<T> gVar = eVar.f598b;
                     int iB2 = eVar.b(bitmap);
                     synchronized (gVar) {
-                        g$b g_b = (g$b) gVar.a.get(iB2);
-                        if (g_b == null) {
-                            g$b g_b2 = new g$b(null, iB2, new LinkedList(), null, null);
-                            gVar.a.put(iB2, (g$b<T>) g_b2);
-                            g_b = g_b2;
+                        g.b bVar = (g.b) gVar.a.get(iB2);
+                        if (bVar == null) {
+                            g.b bVar2 = new g.b(null, iB2, new LinkedList(), null, null);
+                            gVar.a.put(iB2, (g.b<T>) bVar2);
+                            bVar = bVar2;
                         }
-                        g_b.c.addLast((I) bitmap);
-                        gVar.a((g$b<T>) g_b);
+                        bVar.c.addLast((I) bitmap);
+                        gVar.a((g.b<T>) bVar);
                     }
                 }
             }

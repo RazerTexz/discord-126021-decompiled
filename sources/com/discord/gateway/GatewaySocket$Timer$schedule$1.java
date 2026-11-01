@@ -8,10 +8,10 @@ import rx.functions.Action1;
 /* JADX INFO: loaded from: classes.dex */
 public final class GatewaySocket$Timer$schedule$1<T> implements Action1<Long> {
     public final /* synthetic */ Function0 $action;
-    public final /* synthetic */ GatewaySocket$Timer this$0;
+    public final /* synthetic */ GatewaySocket.Timer this$0;
 
-    public GatewaySocket$Timer$schedule$1(GatewaySocket$Timer gatewaySocket$Timer, Function0 function0) {
-        this.this$0 = gatewaySocket$Timer;
+    public GatewaySocket$Timer$schedule$1(GatewaySocket.Timer timer, Function0 function0) {
+        this.this$0 = timer;
         this.$action = function0;
     }
 
@@ -25,7 +25,7 @@ public final class GatewaySocket$Timer$schedule$1<T> implements Action1<Long> {
         try {
             this.$action.invoke();
         } finally {
-            GatewaySocket$Timer.access$setSubscription$p(this.this$0, null);
+            GatewaySocket.Timer.access$setSubscription$p(this.this$0, null);
         }
     }
 }

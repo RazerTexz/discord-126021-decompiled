@@ -9,18 +9,40 @@ import d0.e0.p.d.m0.n.j0;
 import d0.e0.p.d.m0.n.v;
 import d0.e0.p.d.m0.n.w0;
 import d0.g0.w;
-import d0.t.o;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.Pair;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: RawType.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class g extends v implements i0 {
+
+    /* JADX INFO: compiled from: RawType.kt */
+    public final class a extends o implements Function1<String, CharSequence> {
+        public static final a j = new a();
+
+        public a() {
+            super(1);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final CharSequence invoke2(String str) {
+            m.checkNotNullParameter(str, "it");
+            return m.stringPlus("(raw) ", str);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ CharSequence invoke(String str) {
+            return invoke2(str);
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public g(j0 j0Var, j0 j0Var2) {
         super(j0Var, j0Var2);
@@ -31,7 +53,7 @@ public final class g extends v implements i0 {
 
     public static final List<String> a(d0.e0.p.d.m0.j.c cVar, c0 c0Var) {
         List<w0> arguments = c0Var.getArguments();
-        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(arguments, 10));
+        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(arguments, 10));
         Iterator<T> it = arguments.iterator();
         while (it.hasNext()) {
             arrayList.add(cVar.renderTypeProjection((w0) it.next()));
@@ -89,7 +111,7 @@ public final class g extends v implements i0 {
         }
         List<String> listA = a(cVar, getLowerBound());
         List<String> listA2 = a(cVar, getUpperBound());
-        String strJoinToString$default = u.joinToString$default(listA, ", ", null, null, 0, null, g$a.j, 30, null);
+        String strJoinToString$default = u.joinToString$default(listA, ", ", null, null, 0, null, a.j, 30, null);
         List listZip = u.zip(listA, listA2);
         boolean z2 = false;
         if (!(listZip instanceof Collection) || !listZip.isEmpty()) {

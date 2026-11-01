@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import android.support.v4.media.session.MediaSessionCompat;
 import androidx.collection.ArrayMap;
 import androidx.media.utils.MediaConstants;
@@ -12,9 +11,21 @@ import androidx.media.utils.MediaConstants;
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"BanParcelableUsage"})
 public final class MediaMetadataCompat implements Parcelable {
-    public static final Parcelable$Creator<MediaMetadataCompat> CREATOR;
+    public static final Parcelable.Creator<MediaMetadataCompat> CREATOR;
     public static final ArrayMap<String, Integer> j;
     public final Bundle k;
+
+    public class a implements Parcelable.Creator<MediaMetadataCompat> {
+        @Override // android.os.Parcelable.Creator
+        public MediaMetadataCompat createFromParcel(Parcel parcel) {
+            return new MediaMetadataCompat(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public MediaMetadataCompat[] newArray(int i) {
+            return new MediaMetadataCompat[i];
+        }
+    }
 
     static {
         ArrayMap<String, Integer> arrayMap = new ArrayMap<>();
@@ -50,7 +61,7 @@ public final class MediaMetadataCompat implements Parcelable {
         arrayMap.put("android.media.metadata.MEDIA_URI", 1);
         arrayMap.put(MediaConstants.METADATA_KEY_IS_ADVERTISEMENT, 0);
         arrayMap.put("android.media.metadata.DOWNLOAD_STATUS", 0);
-        CREATOR = new MediaMetadataCompat$a();
+        CREATOR = new a();
     }
 
     public MediaMetadataCompat(Parcel parcel) {

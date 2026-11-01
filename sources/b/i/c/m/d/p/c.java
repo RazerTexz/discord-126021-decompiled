@@ -14,6 +14,15 @@ public final class c implements Flushable {
     public final OutputStream m;
     public int l = 0;
 
+    /* JADX INFO: compiled from: CodedOutputStream.java */
+    public class a extends IOException {
+        private static final long serialVersionUID = -6947486886997889499L;
+
+        public a() {
+            super("CodedOutputStream was writing to a flat byte array and ran out of space.");
+        }
+    }
+
     public c(OutputStream outputStream, byte[] bArr) {
         this.m = outputStream;
         this.j = bArr;
@@ -24,7 +33,7 @@ public final class c implements Flushable {
         return e(i) + 1;
     }
 
-    public static int b(int i, a aVar) {
+    public static int b(int i, b.i.c.m.d.p.a aVar) {
         return e(i) + d(aVar.a.length) + aVar.a.length;
     }
 
@@ -92,7 +101,7 @@ public final class c implements Flushable {
     public final void j() throws IOException {
         OutputStream outputStream = this.m;
         if (outputStream == null) {
-            throw new c$a();
+            throw new a();
         }
         outputStream.write(this.j, 0, this.l);
         this.l = 0;
@@ -103,7 +112,7 @@ public final class c implements Flushable {
         n(z2 ? 1 : 0);
     }
 
-    public void l(int i, a aVar) throws IOException {
+    public void l(int i, b.i.c.m.d.p.a aVar) throws IOException {
         o((i << 3) | 2);
         o(aVar.a.length);
         byte[] bArr = aVar.a;

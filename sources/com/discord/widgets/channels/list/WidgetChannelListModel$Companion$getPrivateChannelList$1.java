@@ -3,12 +3,10 @@ package com.discord.widgets.channels.list;
 import androidx.core.app.NotificationCompat;
 import b.d.b.a.a;
 import com.discord.api.channel.Channel;
-import com.discord.api.channel.Channel$Companion;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.channel.ChannelUtils$getSortByMostRecent$1;
 import com.discord.models.domain.ModelApplicationStream;
 import com.discord.models.domain.ModelNotificationSettings;
-import com.discord.models.domain.ModelNotificationSettings$ChannelOverride;
 import com.discord.models.presence.Presence;
 import com.discord.models.user.User;
 import com.discord.stores.StoreApplicationStreaming;
@@ -66,9 +64,9 @@ public final class WidgetChannelListModel$Companion$getPrivateChannelList$1<T, R
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
     public final WidgetChannelListModel call2(Unit unit) {
         Map<Long, Channel> channelsForGuild = this.$storeChannels.getChannelsForGuild(0L);
-        Channel$Companion channel$Companion = Channel.Companion;
+        Channel.Companion companion = Channel.INSTANCE;
         Map<Long, Long> mostRecentIds = this.$storeMessagesMostRecent.getMostRecentIds();
-        m.checkNotNullParameter(channel$Companion, "$this$getSortByMostRecent");
+        m.checkNotNullParameter(companion, "$this$getSortByMostRecent");
         m.checkNotNullParameter(mostRecentIds, "mostRecentMessageIds");
         ChannelUtils$getSortByMostRecent$1 channelUtils$getSortByMostRecent$1 = new ChannelUtils$getSortByMostRecent$1(mostRecentIds);
         long id2 = this.$storeChannelsSelected.getId();
@@ -96,7 +94,7 @@ public final class WidgetChannelListModel$Companion$getPrivateChannelList$1<T, R
             int iIntValue = num != null ? num.intValue() : 0;
             User userA2 = ChannelUtils.a(channel);
             boolean zContainsKey = streamsByUser.containsKey(userA2 != null ? Long.valueOf(userA2.getId()) : null);
-            ModelNotificationSettings$ChannelOverride channelOverride = modelNotificationSettings.getChannelOverride(channel.getId());
+            ModelNotificationSettings.ChannelOverride channelOverride = modelNotificationSettings.getChannelOverride(channel.getId());
             arrayList.add(new ChannelListItemPrivate(channel, presence, z2, iIntValue, zContainsKey, channelOverride != null ? channelOverride.isMuted() : false));
         }
     }

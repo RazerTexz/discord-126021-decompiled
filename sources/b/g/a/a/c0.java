@@ -10,13 +10,48 @@ import java.lang.annotation.Target;
 @Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface c0 {
+
+    /* JADX INFO: compiled from: JsonTypeInfo.java */
+    public enum a {
+        PROPERTY,
+        WRAPPER_OBJECT,
+        WRAPPER_ARRAY,
+        EXTERNAL_PROPERTY,
+        EXISTING_PROPERTY
+    }
+
+    /* JADX INFO: compiled from: JsonTypeInfo.java */
+    public enum b {
+        NONE(null),
+        CLASS("@class"),
+        MINIMAL_CLASS("@c"),
+        NAME("@type"),
+        DEDUCTION(null),
+        CUSTOM(null);
+
+        private final String _defaultPropertyName;
+
+        b(String str) {
+            this._defaultPropertyName = str;
+        }
+
+        public String f() {
+            return this._defaultPropertyName;
+        }
+    }
+
+    /* JADX INFO: compiled from: JsonTypeInfo.java */
+    @Deprecated
+    public abstract class c {
+    }
+
     Class<?> defaultImpl() default c0.class;
 
-    c0$a include() default c0$a.PROPERTY;
+    a include() default a.PROPERTY;
 
     String property() default "";
 
-    c0$b use();
+    b use();
 
     boolean visible() default false;
 }

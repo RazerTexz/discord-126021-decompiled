@@ -9,7 +9,6 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: WidgetChatInputAutocompleteStickerAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class AutocompleteStickerItem implements MGRecyclerDataPayload {
-    public static final AutocompleteStickerItem$Companion Companion = new AutocompleteStickerItem$Companion(null);
     public static final int TYPE = 0;
     private final String key;
     private final Sticker sticker;

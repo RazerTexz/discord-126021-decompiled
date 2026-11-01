@@ -5,10 +5,113 @@ import d0.e0.p.d.m0.c.c1;
 import d0.e0.p.d.m0.l.b.p;
 import java.util.Collection;
 import java.util.LinkedHashSet;
+import java.util.Set;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: DescriptorResolverUtils.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class a {
+
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.g0.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: DescriptorResolverUtils.java */
+    public final class C0520a extends d0.e0.p.d.m0.k.i {
+        public final /* synthetic */ p a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final /* synthetic */ Set f3313b;
+        public final /* synthetic */ boolean c;
+
+        /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.g0.a$a$a, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: DescriptorResolverUtils.java */
+        public class C0521a implements Function1<d0.e0.p.d.m0.c.b, Unit> {
+            public C0521a() {
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(d0.e0.p.d.m0.c.b bVar) {
+                return invoke2(bVar);
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public Unit invoke2(d0.e0.p.d.m0.c.b bVar) {
+                if (bVar == null) {
+                    throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "descriptor", "kotlin/reflect/jvm/internal/impl/load/java/components/DescriptorResolverUtils$1$1", "invoke"));
+                }
+                C0520a.this.a.reportCannotInferVisibility(bVar);
+                return Unit.a;
+            }
+        }
+
+        public C0520a(p pVar, Set set, boolean z2) {
+            this.a = pVar;
+            this.f3313b = set;
+            this.c = z2;
+        }
+
+        public static /* synthetic */ void a(int i) {
+            Object[] objArr = new Object[3];
+            if (i == 1) {
+                objArr[0] = "fromSuper";
+            } else if (i == 2) {
+                objArr[0] = "fromCurrent";
+            } else if (i == 3) {
+                objArr[0] = "member";
+            } else if (i != 4) {
+                objArr[0] = "fakeOverride";
+            } else {
+                objArr[0] = "overridden";
+            }
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/load/java/components/DescriptorResolverUtils$1";
+            if (i == 1 || i == 2) {
+                objArr[2] = "conflict";
+            } else if (i == 3 || i == 4) {
+                objArr[2] = "setOverriddenDescriptors";
+            } else {
+                objArr[2] = "addFakeOverride";
+            }
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+
+        @Override // d0.e0.p.d.m0.k.j
+        public void addFakeOverride(d0.e0.p.d.m0.c.b bVar) {
+            if (bVar == null) {
+                a(0);
+                throw null;
+            }
+            d0.e0.p.d.m0.k.k.resolveUnknownVisibilityForMember(bVar, new C0521a());
+            this.f3313b.add(bVar);
+        }
+
+        @Override // d0.e0.p.d.m0.k.i
+        public void conflict(d0.e0.p.d.m0.c.b bVar, d0.e0.p.d.m0.c.b bVar2) {
+            if (bVar == null) {
+                a(1);
+                throw null;
+            }
+            if (bVar2 != null) {
+                return;
+            }
+            a(2);
+            throw null;
+        }
+
+        @Override // d0.e0.p.d.m0.k.j
+        public void setOverriddenDescriptors(d0.e0.p.d.m0.c.b bVar, Collection<? extends d0.e0.p.d.m0.c.b> collection) {
+            if (bVar == null) {
+                a(3);
+                throw null;
+            }
+            if (collection == null) {
+                a(4);
+                throw null;
+            }
+            if (!this.c || bVar.getKind() == d0.e0.p.d.m0.c.b.a.FAKE_OVERRIDE) {
+                super.setOverriddenDescriptors(bVar, collection);
+            }
+        }
+    }
+
     public static /* synthetic */ void a(int i) {
         String str = i != 18 ? "Argument for @NotNull parameter '%s' of %s.%s must not be null" : "@NotNull method %s.%s must not return null";
         Object[] objArr = new Object[i != 18 ? 3 : 2];
@@ -115,7 +218,7 @@ public final class a {
             throw null;
         }
         LinkedHashSet linkedHashSet = new LinkedHashSet();
-        kVar.generateOverridesInFunctionGroup(eVar, collection, collection2, eVar2, new a$a(pVar, linkedHashSet, z2));
+        kVar.generateOverridesInFunctionGroup(eVar, collection, collection2, eVar2, new C0520a(pVar, linkedHashSet, z2));
         return linkedHashSet;
     }
 

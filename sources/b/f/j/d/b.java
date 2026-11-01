@@ -1,13 +1,13 @@
 package b.f.j.d;
 
-import android.graphics.Bitmap$Config;
+import android.graphics.Bitmap;
 import b.f.d.d.i;
 
 /* JADX INFO: compiled from: ImageDecodeOptions.java */
 /* JADX INFO: loaded from: classes.dex */
 public class b {
-    public final Bitmap$Config d;
-    public final Bitmap$Config e;
+    public final Bitmap.Config d;
+    public final Bitmap.Config e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final int f564b = 100;
@@ -32,8 +32,8 @@ public class b {
 
     public int hashCode() {
         int iOrdinal = (this.d.ordinal() + (((((((((((this.f564b * 31) + this.c) * 31) + 0) * 31) + 0) * 31) + 0) * 31) + 0) * 31)) * 31;
-        Bitmap$Config bitmap$Config = this.e;
-        return ((((((iOrdinal + (bitmap$Config != null ? bitmap$Config.ordinal() : 0)) * 31) + 0) * 31) + 0) * 31) + 0;
+        Bitmap.Config config = this.e;
+        return ((((((iOrdinal + (config != null ? config.ordinal() : 0)) * 31) + 0) * 31) + 0) * 31) + 0;
     }
 
     public String toString() {

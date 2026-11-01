@@ -12,6 +12,30 @@ public final class u<T, R> implements Sequence<R> {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final Function1<T, R> f3578b;
 
+    /* JADX INFO: compiled from: Sequences.kt */
+    public final class a implements Iterator<R>, d0.z.d.g0.a {
+        public final Iterator<T> j;
+
+        public a() {
+            this.j = u.access$getSequence$p(u.this).iterator();
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.j.hasNext();
+        }
+
+        @Override // java.util.Iterator
+        public R next() {
+            return (R) u.access$getTransformer$p(u.this).invoke(this.j.next());
+        }
+
+        @Override // java.util.Iterator
+        public void remove() {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public u(Sequence<? extends T> sequence, Function1<? super T, ? extends R> function1) {
         d0.z.d.m.checkNotNullParameter(sequence, "sequence");
@@ -35,6 +59,6 @@ public final class u<T, R> implements Sequence<R> {
 
     @Override // kotlin.sequences.Sequence
     public Iterator<R> iterator() {
-        return new u$a(this);
+        return new a();
     }
 }

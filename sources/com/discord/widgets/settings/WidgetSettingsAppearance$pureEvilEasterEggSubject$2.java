@@ -24,6 +24,6 @@ public final class WidgetSettingsAppearance$pureEvilEasterEggSubject$2 extends o
     @Override // kotlin.jvm.functions.Function0
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final BehaviorSubject<Boolean> invoke2() {
-        return BehaviorSubject.l0(Boolean.valueOf(m.areEqual(StoreStream.Companion.getUserSettingsSystem().getTheme(), ModelUserSettings.THEME_PURE_EVIL)));
+        return BehaviorSubject.l0(Boolean.valueOf(m.areEqual(StoreStream.INSTANCE.getUserSettingsSystem().getTheme(), ModelUserSettings.THEME_PURE_EVIL)));
     }
 }

@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Paint$Style;
 import android.graphics.Path;
-import android.graphics.Path$FillType;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -16,8 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import b.a.i.k4;
 import b.a.y.f0;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.utilities.color.ColorCompat;
 import d0.a0.a;
 import d0.g;
@@ -56,12 +53,12 @@ public final class VoiceUserLimitView extends LinearLayout {
     public VoiceUserLimitView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(getContext()).inflate(R$layout.voice_user_limit_view, this);
-        int i = R$id.voice_user_limit_current;
-        TextView textView = (TextView) findViewById(R$id.voice_user_limit_current);
+        LayoutInflater.from(getContext()).inflate(R.layout.voice_user_limit_view, this);
+        int i = R.id.voice_user_limit_current;
+        TextView textView = (TextView) findViewById(R.id.voice_user_limit_current);
         if (textView != null) {
-            i = R$id.voice_user_limit_max;
-            TextView textView2 = (TextView) findViewById(R$id.voice_user_limit_max);
+            i = R.id.voice_user_limit_max;
+            TextView textView2 = (TextView) findViewById(R.id.voice_user_limit_max);
             if (textView2 != null) {
                 k4 k4Var = new k4(this, textView, textView2);
                 m.checkNotNullExpressionValue(k4Var, "VoiceUserLimitViewBindin…ater.from(context), this)");
@@ -77,11 +74,11 @@ public final class VoiceUserLimitView extends LinearLayout {
                 Resources resources = getResources();
                 m.checkNotNullExpressionValue(resources, "resources");
                 this.slantWidthPx = a.roundToInt(TypedValue.applyDimension(1, 6.0f, resources.getDisplayMetrics()));
-                paint.setColor(ColorCompat.getThemedColor(getContext(), 2130968904));
+                paint.setColor(ColorCompat.getThemedColor(getContext(), R.attr.colorBackgroundMobilePrimary));
                 paint.setStrokeWidth(2.0f);
-                paint.setStyle(Paint$Style.FILL_AND_STROKE);
+                paint.setStyle(Paint.Style.FILL_AND_STROKE);
                 paint.setAntiAlias(true);
-                path.setFillType(Path$FillType.EVEN_ODD);
+                path.setFillType(Path.FillType.EVEN_ODD);
                 return;
             }
         }

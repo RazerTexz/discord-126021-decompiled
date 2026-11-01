@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -58,9 +57,9 @@ public final class GuildSubscriptionsManager {
     }
 
     public final synchronized void flush() {
-        for (Map$Entry<Long, GuildSubscriptions> map$Entry : this.pendingEmissions.entrySet()) {
-            long jLongValue = map$Entry.getKey().longValue();
-            GuildSubscriptions value = map$Entry.getValue();
+        for (Map.Entry<Long, GuildSubscriptions> entry : this.pendingEmissions.entrySet()) {
+            long jLongValue = entry.getKey().longValue();
+            GuildSubscriptions value = entry.getValue();
             this.subscribedGuilds.add(Long.valueOf(jLongValue));
             this.onChange.invoke(Long.valueOf(jLongValue), value);
         }
@@ -144,7 +143,7 @@ public final class GuildSubscriptionsManager {
     public final synchronized void retainAll(List<Long> guildIds) {
         m.checkNotNullParameter(guildIds, "guildIds");
         this.subscribedGuilds.retainAll(guildIds);
-        Iterator<Map$Entry<Long, GuildSubscriptions>> it = this.pendingEmissions.entrySet().iterator();
+        Iterator<Map.Entry<Long, GuildSubscriptions>> it = this.pendingEmissions.entrySet().iterator();
         while (it.hasNext()) {
             if (!guildIds.contains(Long.valueOf(it.next().getKey().longValue()))) {
                 it.remove();

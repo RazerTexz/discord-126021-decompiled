@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.Set;
 
@@ -53,7 +52,7 @@ public final class w5<K, V> extends LinkedHashMap<K, V> {
     }
 
     @Override // java.util.LinkedHashMap, java.util.HashMap, java.util.AbstractMap, java.util.Map
-    public final Set<Map$Entry<K, V>> entrySet() {
+    public final Set<Map.Entry<K, V>> entrySet() {
         return isEmpty() ? Collections.emptySet() : super.entrySet();
     }
 
@@ -66,10 +65,10 @@ public final class w5<K, V> extends LinkedHashMap<K, V> {
                 z2 = true;
             } else {
                 if (size() == map.size()) {
-                    Iterator<Map$Entry<K, V>> it = entrySet().iterator();
+                    Iterator<Map.Entry<K, V>> it = entrySet().iterator();
                     while (true) {
                         if (it.hasNext()) {
-                            Map$Entry<K, V> next = it.next();
+                            Map.Entry<K, V> next = it.next();
                             if (map.containsKey(next.getKey())) {
                                 V value = next.getValue();
                                 Object obj2 = map.get(next.getKey());
@@ -107,8 +106,8 @@ public final class w5<K, V> extends LinkedHashMap<K, V> {
     @Override // java.util.AbstractMap, java.util.Map
     public final int hashCode() {
         int iB = 0;
-        for (Map$Entry<K, V> map$Entry : entrySet()) {
-            iB += b(map$Entry.getValue()) ^ b(map$Entry.getKey());
+        for (Map.Entry<K, V> entry : entrySet()) {
+            iB += b(entry.getValue()) ^ b(entry.getKey());
         }
         return iB;
     }

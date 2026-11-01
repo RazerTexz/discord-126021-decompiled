@@ -16,7 +16,7 @@ public class e {
     public final b.c.a.d f438b;
     public final String c;
     public final long d;
-    public final e$a e;
+    public final a e;
     public final long f;
 
     @Nullable
@@ -44,13 +44,24 @@ public class e {
     public final int u;
     public final boolean v;
 
+    /* JADX INFO: compiled from: Layer.java */
+    public enum a {
+        PRE_COMP,
+        SOLID,
+        IMAGE,
+        NULL,
+        SHAPE,
+        TEXT,
+        UNKNOWN
+    }
+
     /* JADX WARN: Incorrect types in method signature: (Ljava/util/List<Lb/c/a/y/l/b;>;Lb/c/a/d;Ljava/lang/String;JLb/c/a/y/m/e$a;JLjava/lang/String;Ljava/util/List<Lb/c/a/y/l/f;>;Lb/c/a/y/k/l;IIIFFIILb/c/a/y/k/j;Lb/c/a/y/k/k;Ljava/util/List<Lb/c/a/c0/a<Ljava/lang/Float;>;>;Ljava/lang/Object;Lb/c/a/y/k/b;Z)V */
-    public e(List list, b.c.a.d dVar, String str, long j, e$a e_a, long j2, @Nullable String str2, List list2, l lVar, int i, int i2, int i3, float f, float f2, int i4, int i5, @Nullable j jVar, @Nullable k kVar, List list3, int i6, @Nullable b.c.a.y.k.b bVar, boolean z2) {
+    public e(List list, b.c.a.d dVar, String str, long j, a aVar, long j2, @Nullable String str2, List list2, l lVar, int i, int i2, int i3, float f, float f2, int i4, int i5, @Nullable j jVar, @Nullable k kVar, List list3, int i6, @Nullable b.c.a.y.k.b bVar, boolean z2) {
         this.a = list;
         this.f438b = dVar;
         this.c = str;
         this.d = j;
-        this.e = e_a;
+        this.e = aVar;
         this.f = j2;
         this.g = str2;
         this.h = list2;

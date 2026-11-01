@@ -1,6 +1,6 @@
 package b.b.a.d;
 
-import com.lytefast.flexinput.adapters.FileListAdapter$a;
+import com.lytefast.flexinput.adapters.FileListAdapter;
 import com.lytefast.flexinput.model.Attachment;
 import java.io.File;
 import java.util.Comparator;
@@ -9,10 +9,10 @@ import java.util.Objects;
 /* JADX INFO: compiled from: Comparisons.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class f<T> implements Comparator {
-    public final /* synthetic */ FileListAdapter$a j;
+    public final /* synthetic */ FileListAdapter.a j;
 
-    public f(FileListAdapter$a fileListAdapter$a) {
-        this.j = fileListAdapter$a;
+    public f(FileListAdapter.a aVar) {
+        this.j = aVar;
     }
 
     /* JADX WARN: Multi-variable type inference failed */

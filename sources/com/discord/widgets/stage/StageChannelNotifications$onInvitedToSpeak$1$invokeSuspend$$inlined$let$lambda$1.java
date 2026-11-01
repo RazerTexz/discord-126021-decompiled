@@ -22,12 +22,12 @@ import rx.Observable;
 public final class StageChannelNotifications$onInvitedToSpeak$1$invokeSuspend$$inlined$let$lambda$1 extends k implements Function2<CoroutineScope, Continuation<? super Bitmap>, Object> {
     public final /* synthetic */ String $iconUrl$inlined;
     public int label;
-    public final /* synthetic */ StageChannelNotifications$onInvitedToSpeak$1 this$0;
+    public final /* synthetic */ StageChannelNotifications.AnonymousClass1 this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public StageChannelNotifications$onInvitedToSpeak$1$invokeSuspend$$inlined$let$lambda$1(Continuation continuation, StageChannelNotifications$onInvitedToSpeak$1 stageChannelNotifications$onInvitedToSpeak$1, String str) {
+    public StageChannelNotifications$onInvitedToSpeak$1$invokeSuspend$$inlined$let$lambda$1(Continuation continuation, StageChannelNotifications.AnonymousClass1 anonymousClass1, String str) {
         super(2, continuation);
-        this.this$0 = stageChannelNotifications$onInvitedToSpeak$1;
+        this.this$0 = anonymousClass1;
         this.$iconUrl$inlined = str;
     }
 

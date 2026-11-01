@@ -12,11 +12,11 @@ public final class v {
     public int i;
     public c j;
     public int k;
-    public v$a[] l;
+    public a[] l;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final d f3725b = null;
-    public v$a[] f = new v$a[256];
+    public a[] f = new a[256];
     public int g = 1;
     public c h = new c();
 
@@ -47,10 +47,10 @@ public final class v {
         }
         int i3 = iHashCode & Integer.MAX_VALUE;
         byte[] bArr = this.j.a;
-        v$a[] v_aArr = this.f;
-        for (v$a v_a = v_aArr[i3 % v_aArr.length]; v_a != null; v_a = v_a.i) {
-            if (v_a.f3724b == 64 && v_a.h == i3) {
-                int i4 = (int) v_a.f;
+        a[] aVarArr = this.f;
+        for (a aVar = aVarArr[i3 % aVarArr.length]; aVar != null; aVar = aVar.i) {
+            if (aVar.f3724b == 64 && aVar.h == i3) {
+                int i4 = (int) aVar.f;
                 int i5 = 0;
                 while (true) {
                     if (i5 >= i2) {
@@ -65,15 +65,15 @@ public final class v {
                 }
                 if (z2) {
                     this.j.f3699b = i;
-                    return v_a;
+                    return aVar;
                 }
             }
         }
         int i6 = this.i;
         this.i = i6 + 1;
-        v$a v_a2 = new v$a(i6, 64, i, i3);
-        v(v_a2);
-        return v_a2;
+        a aVar2 = new a(i6, 64, i, i3);
+        v(aVar2);
+        return aVar2;
     }
 
     public u b(Object obj) {
@@ -129,17 +129,17 @@ public final class v {
 
     public final u d(int i, String str, String str2, int i2) {
         int iS = s(i, str, str2, i2);
-        for (v$a v_aQ = q(iS); v_aQ != null; v_aQ = v_aQ.i) {
-            if (v_aQ.f3724b == i && v_aQ.h == iS && v_aQ.f == i2 && v_aQ.d.equals(str) && v_aQ.e.equals(str2)) {
-                return v_aQ;
+        for (a aVarQ = q(iS); aVarQ != null; aVarQ = aVarQ.i) {
+            if (aVarQ.f3724b == i && aVarQ.h == iS && aVarQ.f == i2 && aVarQ.d.equals(str) && aVarQ.e.equals(str2)) {
+                return aVarQ;
             }
         }
         this.h.f(i, i2, k(str, str2));
         int i3 = this.g;
         this.g = i3 + 1;
-        v$a v_a = new v$a(i3, i, null, str, str2, i2, iS);
-        v(v_a);
-        return v_a;
+        a aVar = new a(i3, i, null, str, str2, i2, iS);
+        v(aVar);
+        return aVar;
     }
 
     public u e(int i) {
@@ -148,9 +148,9 @@ public final class v {
 
     public final u f(int i, int i2) {
         int iR = r(i, i2);
-        for (v$a v_aQ = q(iR); v_aQ != null; v_aQ = v_aQ.i) {
-            if (v_aQ.f3724b == i && v_aQ.h == iR && v_aQ.f == i2) {
-                return v_aQ;
+        for (a aVarQ = q(iR); aVarQ != null; aVarQ = aVarQ.i) {
+            if (aVarQ.f3724b == i && aVarQ.h == iR && aVarQ.f == i2) {
+                return aVarQ;
             }
         }
         c cVar = this.h;
@@ -158,18 +158,18 @@ public final class v {
         cVar.i(i2);
         int i3 = this.g;
         this.g = i3 + 1;
-        v$a v_a = new v$a(i3, i, i2, iR);
-        v(v_a);
-        return v_a;
+        a aVar = new a(i3, i, i2, iR);
+        v(aVar);
+        return aVar;
     }
 
     public final u g(int i, long j) {
         int i2 = (int) j;
         int i3 = (int) (j >>> 32);
         int i4 = (i + i2 + i3) & Integer.MAX_VALUE;
-        for (v$a v_aQ = q(i4); v_aQ != null; v_aQ = v_aQ.i) {
-            if (v_aQ.f3724b == i && v_aQ.h == i4 && v_aQ.f == j) {
-                return v_aQ;
+        for (a aVarQ = q(i4); aVarQ != null; aVarQ = aVarQ.i) {
+            if (aVarQ.f3724b == i && aVarQ.h == i4 && aVarQ.f == j) {
+                return aVarQ;
             }
         }
         int i5 = this.g;
@@ -197,31 +197,31 @@ public final class v {
         bArr[i13] = (byte) i2;
         cVar.f3699b = i13 + 1;
         this.g += 2;
-        v$a v_a = new v$a(i5, i, j, i4);
-        v(v_a);
-        return v_a;
+        a aVar = new a(i5, i, j, i4);
+        v(aVar);
+        return aVar;
     }
 
-    public final v$a h(int i, String str, String str2, String str3) {
+    public final a h(int i, String str, String str2, String str3) {
         int iT = t(i, str, str2, str3);
-        for (v$a v_aQ = q(iT); v_aQ != null; v_aQ = v_aQ.i) {
-            if (v_aQ.f3724b == i && v_aQ.h == iT && v_aQ.c.equals(str) && v_aQ.d.equals(str2) && v_aQ.e.equals(str3)) {
-                return v_aQ;
+        for (a aVarQ = q(iT); aVarQ != null; aVarQ = aVarQ.i) {
+            if (aVarQ.f3724b == i && aVarQ.h == iT && aVarQ.c.equals(str) && aVarQ.d.equals(str2) && aVarQ.e.equals(str3)) {
+                return aVarQ;
             }
         }
         this.h.f(i, m(7, str).a, k(str2, str3));
         int i2 = this.g;
         this.g = i2 + 1;
-        v$a v_a = new v$a(i2, i, str, str2, str3, 0L, iT);
-        v(v_a);
-        return v_a;
+        a aVar = new a(i2, i, str, str2, str3, 0L, iT);
+        v(aVar);
+        return aVar;
     }
 
     public u i(int i, String str, String str2, String str3, boolean z2) {
         int iU = u(15, str, str2, str3, i);
-        for (v$a v_aQ = q(iU); v_aQ != null; v_aQ = v_aQ.i) {
-            if (v_aQ.f3724b == 15 && v_aQ.h == iU && v_aQ.f == i && v_aQ.c.equals(str) && v_aQ.d.equals(str2) && v_aQ.e.equals(str3)) {
-                return v_aQ;
+        for (a aVarQ = q(iU); aVarQ != null; aVarQ = aVarQ.i) {
+            if (aVarQ.f3724b == 15 && aVarQ.h == iU && aVarQ.f == i && aVarQ.c.equals(str) && aVarQ.d.equals(str2) && aVarQ.e.equals(str3)) {
+                return aVarQ;
             }
         }
         if (i <= 4) {
@@ -231,9 +231,9 @@ public final class v {
         }
         int i2 = this.g;
         this.g = i2 + 1;
-        v$a v_a = new v$a(i2, 15, str, str2, str3, i, iU);
-        v(v_a);
-        return v_a;
+        a aVar = new a(i2, 15, str, str2, str3, i, iU);
+        v(aVar);
+        return aVar;
     }
 
     public u j(String str) {
@@ -242,23 +242,23 @@ public final class v {
 
     public int k(String str, String str2) {
         int iHashCode = ((str2.hashCode() * str.hashCode()) + 12) & Integer.MAX_VALUE;
-        for (v$a v_aQ = q(iHashCode); v_aQ != null; v_aQ = v_aQ.i) {
-            if (v_aQ.f3724b == 12 && v_aQ.h == iHashCode && v_aQ.d.equals(str) && v_aQ.e.equals(str2)) {
-                return v_aQ.a;
+        for (a aVarQ = q(iHashCode); aVarQ != null; aVarQ = aVarQ.i) {
+            if (aVarQ.f3724b == 12 && aVarQ.h == iHashCode && aVarQ.d.equals(str) && aVarQ.e.equals(str2)) {
+                return aVarQ.a;
             }
         }
         this.h.f(12, l(str), l(str2));
         int i = this.g;
         this.g = i + 1;
-        v(new v$a(i, 12, str, str2, iHashCode));
+        v(new a(i, 12, str, str2, iHashCode));
         return i;
     }
 
     public int l(String str) {
         int iHashCode = (str.hashCode() + 1) & Integer.MAX_VALUE;
-        for (v$a v_aQ = q(iHashCode); v_aQ != null; v_aQ = v_aQ.i) {
-            if (v_aQ.f3724b == 1 && v_aQ.h == iHashCode && v_aQ.e.equals(str)) {
-                return v_aQ.a;
+        for (a aVarQ = q(iHashCode); aVarQ != null; aVarQ = aVarQ.i) {
+            if (aVarQ.f3724b == 1 && aVarQ.h == iHashCode && aVarQ.e.equals(str)) {
+                return aVarQ.a;
             }
         }
         c cVar = this.h;
@@ -284,7 +284,7 @@ public final class v {
                 cVar.a(str, i4, 65535);
                 int i5 = this.g;
                 this.g = i5 + 1;
-                v(new v$a(i5, 1, str, iHashCode));
+                v(new a(i5, 1, str, iHashCode));
                 return i5;
             }
             bArr[i3] = (byte) cCharAt;
@@ -294,67 +294,67 @@ public final class v {
         cVar.f3699b = i3;
         int i6 = this.g;
         this.g = i6 + 1;
-        v(new v$a(i6, 1, str, iHashCode));
+        v(new a(i6, 1, str, iHashCode));
         return i6;
     }
 
     public final u m(int i, String str) {
         int iHashCode = (str.hashCode() + i) & Integer.MAX_VALUE;
-        for (v$a v_aQ = q(iHashCode); v_aQ != null; v_aQ = v_aQ.i) {
-            if (v_aQ.f3724b == i && v_aQ.h == iHashCode && v_aQ.e.equals(str)) {
-                return v_aQ;
+        for (a aVarQ = q(iHashCode); aVarQ != null; aVarQ = aVarQ.i) {
+            if (aVarQ.f3724b == i && aVarQ.h == iHashCode && aVarQ.e.equals(str)) {
+                return aVarQ;
             }
         }
         this.h.e(i, l(str));
         int i2 = this.g;
         this.g = i2 + 1;
-        v$a v_a = new v$a(i2, i, str, iHashCode);
-        v(v_a);
-        return v_a;
+        a aVar = new a(i2, i, str, iHashCode);
+        v(aVar);
+        return aVar;
     }
 
     public int n(String str) {
         int iHashCode = (str.hashCode() + 128) & Integer.MAX_VALUE;
-        for (v$a v_aQ = q(iHashCode); v_aQ != null; v_aQ = v_aQ.i) {
-            if (v_aQ.f3724b == 128 && v_aQ.h == iHashCode && v_aQ.e.equals(str)) {
-                return v_aQ.a;
+        for (a aVarQ = q(iHashCode); aVarQ != null; aVarQ = aVarQ.i) {
+            if (aVarQ.f3724b == 128 && aVarQ.h == iHashCode && aVarQ.e.equals(str)) {
+                return aVarQ.a;
             }
         }
-        return o(new v$a(this.k, 128, str, iHashCode));
+        return o(new a(this.k, 128, str, iHashCode));
     }
 
-    public final int o(v$a v_a) {
+    public final int o(a aVar) {
         if (this.l == null) {
-            this.l = new v$a[16];
+            this.l = new a[16];
         }
         int i = this.k;
-        v$a[] v_aArr = this.l;
-        if (i == v_aArr.length) {
-            v$a[] v_aArr2 = new v$a[v_aArr.length * 2];
-            System.arraycopy(v_aArr, 0, v_aArr2, 0, v_aArr.length);
-            this.l = v_aArr2;
+        a[] aVarArr = this.l;
+        if (i == aVarArr.length) {
+            a[] aVarArr2 = new a[aVarArr.length * 2];
+            System.arraycopy(aVarArr, 0, aVarArr2, 0, aVarArr.length);
+            this.l = aVarArr2;
         }
-        v$a[] v_aArr3 = this.l;
+        a[] aVarArr3 = this.l;
         int i2 = this.k;
         this.k = i2 + 1;
-        v_aArr3[i2] = v_a;
-        v(v_a);
-        return v_a.a;
+        aVarArr3[i2] = aVar;
+        v(aVar);
+        return aVar.a;
     }
 
     public int p(String str, int i) {
         int iHashCode = (str.hashCode() + Opcodes.LOR + i) & Integer.MAX_VALUE;
-        for (v$a v_aQ = q(iHashCode); v_aQ != null; v_aQ = v_aQ.i) {
-            if (v_aQ.f3724b == 129 && v_aQ.h == iHashCode && v_aQ.f == i && v_aQ.e.equals(str)) {
-                return v_aQ.a;
+        for (a aVarQ = q(iHashCode); aVarQ != null; aVarQ = aVarQ.i) {
+            if (aVarQ.f3724b == 129 && aVarQ.h == iHashCode && aVarQ.f == i && aVarQ.e.equals(str)) {
+                return aVarQ.a;
             }
         }
-        return o(new v$a(this.k, Opcodes.LOR, str, i, iHashCode));
+        return o(new a(this.k, Opcodes.LOR, str, i, iHashCode));
     }
 
-    public final v$a q(int i) {
-        v$a[] v_aArr = this.f;
-        return v_aArr[i % v_aArr.length];
+    public final a q(int i) {
+        a[] aVarArr = this.f;
+        return aVarArr[i % aVarArr.length];
     }
 
     public static int r(int i, int i2) {
@@ -373,31 +373,62 @@ public final class v {
         return Integer.MAX_VALUE & ((str3.hashCode() * str2.hashCode() * str.hashCode() * i2) + i);
     }
 
-    public final v$a v(v$a v_a) {
+    public final a v(a aVar) {
         int i = this.e;
-        v$a[] v_aArr = this.f;
-        if (i > (v_aArr.length * 3) / 4) {
-            int length = v_aArr.length;
+        a[] aVarArr = this.f;
+        if (i > (aVarArr.length * 3) / 4) {
+            int length = aVarArr.length;
             int i2 = (length * 2) + 1;
-            v$a[] v_aArr2 = new v$a[i2];
+            a[] aVarArr2 = new a[i2];
             for (int i3 = length - 1; i3 >= 0; i3--) {
-                v$a v_a2 = this.f[i3];
-                while (v_a2 != null) {
-                    int i4 = v_a2.h % i2;
-                    v$a v_a3 = v_a2.i;
-                    v_a2.i = v_aArr2[i4];
-                    v_aArr2[i4] = v_a2;
-                    v_a2 = v_a3;
+                a aVar2 = this.f[i3];
+                while (aVar2 != null) {
+                    int i4 = aVar2.h % i2;
+                    a aVar3 = aVar2.i;
+                    aVar2.i = aVarArr2[i4];
+                    aVarArr2[i4] = aVar2;
+                    aVar2 = aVar3;
                 }
             }
-            this.f = v_aArr2;
+            this.f = aVarArr2;
         }
         this.e++;
-        int i5 = v_a.h;
-        v$a[] v_aArr3 = this.f;
-        int length2 = i5 % v_aArr3.length;
-        v_a.i = v_aArr3[length2];
-        v_aArr3[length2] = v_a;
-        return v_a;
+        int i5 = aVar.h;
+        a[] aVarArr3 = this.f;
+        int length2 = i5 % aVarArr3.length;
+        aVar.i = aVarArr3[length2];
+        aVarArr3[length2] = aVar;
+        return aVar;
+    }
+
+    /* JADX INFO: compiled from: SymbolTable.java */
+    public class a extends u {
+        public final int h;
+        public a i;
+
+        public a(int i, int i2, String str, String str2, String str3, long j, int i3) {
+            super(i, i2, str, str2, str3, j);
+            this.h = i3;
+        }
+
+        public a(int i, int i2, String str, int i3) {
+            super(i, i2, null, null, str, 0L);
+            this.h = i3;
+        }
+
+        public a(int i, int i2, String str, long j, int i3) {
+            super(i, i2, null, null, str, j);
+            this.h = i3;
+        }
+
+        public a(int i, int i2, String str, String str2, int i3) {
+            super(i, i2, null, str, str2, 0L);
+            this.h = i3;
+        }
+
+        public a(int i, int i2, long j, int i3) {
+            super(i, i2, null, null, null, j);
+            this.h = i3;
+        }
     }
 }

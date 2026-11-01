@@ -2,6 +2,7 @@ package f0.e0.k;
 
 import android.util.Log;
 import androidx.core.os.EnvironmentCompat;
+import d0.t.o;
 import d0.z.d.m;
 import f0.x;
 import f0.y;
@@ -16,9 +17,11 @@ import java.security.NoSuchAlgorithmException;
 import java.security.Provider;
 import java.security.Security;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map$Entry;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ssl.SSLContext;
@@ -28,6 +31,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 import kotlin.TypeCastException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: Platform.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -36,7 +40,43 @@ public class h {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final Logger f3650b;
-    public static final h$a c;
+    public static final a c;
+
+    /* JADX INFO: compiled from: Platform.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final List<String> a(List<? extends y> list) {
+            m.checkParameterIsNotNull(list, "protocols");
+            ArrayList arrayList = new ArrayList();
+            for (Object obj : list) {
+                if (((y) obj) != y.HTTP_1_0) {
+                    arrayList.add(obj);
+                }
+            }
+            ArrayList arrayList2 = new ArrayList(o.collectionSizeOrDefault(arrayList, 10));
+            Iterator it = arrayList.iterator();
+            while (it.hasNext()) {
+                arrayList2.add(((y) it.next()).toString());
+            }
+            return arrayList2;
+        }
+
+        public final byte[] b(List<? extends y> list) {
+            m.checkParameterIsNotNull(list, "protocols");
+            g0.e eVar = new g0.e();
+            for (String str : (ArrayList) a(list)) {
+                eVar.T(str.length());
+                eVar.b0(str);
+            }
+            return eVar.Z(eVar.k);
+        }
+
+        public final boolean c() {
+            return m.areEqual("Dalvik", System.getProperty("java.vm.name"));
+        }
+    }
 
     /* JADX WARN: Code duplicated, block: B:28:0x0087 A[PHI: r1
       0x0087: PHI (r1v3 f0.e0.k.h) = (r1v1 f0.e0.k.h), (r1v4 f0.e0.k.h), (r1v4 f0.e0.k.h) binds: [B:68:0x0187, B:26:0x0082, B:27:0x0084] A[DONT_GENERATE, DONT_INLINE]] */
@@ -60,13 +100,13 @@ public class h {
         h hVar;
         String property;
         h eVar = null;
-        h$a h_a = new h$a(null);
-        c = h_a;
-        if (h_a.c()) {
+        a aVar = new a(null);
+        c = aVar;
+        if (aVar.c()) {
             f0.e0.k.i.c cVar = f0.e0.k.i.c.c;
-            for (Map$Entry<String, String> map$Entry : f0.e0.k.i.c.f3652b.entrySet()) {
-                String key = map$Entry.getKey();
-                String value = map$Entry.getValue();
+            for (Map.Entry<String, String> entry : f0.e0.k.i.c.f3652b.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
                 Logger logger = Logger.getLogger(key);
                 if (f0.e0.k.i.c.a.add(logger)) {
                     m.checkExpressionValueIsNotNull(logger, "logger");
@@ -75,10 +115,10 @@ public class h {
                     logger.addHandler(f0.e0.k.i.d.a);
                 }
             }
-            a aVar = a.e;
-            hVar = a.d ? new a() : null;
+            f0.e0.k.a aVar2 = f0.e0.k.a.e;
+            hVar = f0.e0.k.a.d ? new f0.e0.k.a() : null;
             if (hVar == null) {
-                b$a b_a = b.e;
+                b.a aVar3 = b.e;
                 eVar = b.d ? new b() : null;
                 if (eVar == null) {
                     m.throwNpe();
@@ -89,13 +129,13 @@ public class h {
             Provider provider3 = Security.getProviders()[0];
             m.checkExpressionValueIsNotNull(provider3, "Security.getProviders()[0]");
             if (m.areEqual("Conscrypt", provider3.getName())) {
-                d$a d_a = d.e;
+                d.a aVar4 = d.e;
                 hVar = d.d ? new d() : null;
                 if (hVar == null) {
                     provider = Security.getProviders()[0];
                     m.checkExpressionValueIsNotNull(provider, "Security.getProviders()[0]");
                     if (m.areEqual("BC", provider.getName())) {
-                        c$a c_a = c.e;
+                        c.a aVar5 = c.e;
                         if (c.d) {
                             hVar = new c();
                         } else {
@@ -105,14 +145,14 @@ public class h {
                             provider2 = Security.getProviders()[0];
                             m.checkExpressionValueIsNotNull(provider2, "Security.getProviders()[0]");
                             if (m.areEqual("OpenJSSE", provider2.getName())) {
-                                g$a g_a = g.e;
+                                g.a aVar6 = g.e;
                                 if (g.d) {
                                     hVar = new g();
                                 } else {
                                     hVar = null;
                                 }
                                 if (hVar == null) {
-                                    f$a f_a = f.e;
+                                    f.a aVar7 = f.e;
                                     if (f.d) {
                                         hVar = new f();
                                     } else {
@@ -150,7 +190,7 @@ public class h {
                                     }
                                 }
                             } else {
-                                f$a f_a2 = f.e;
+                                f.a aVar8 = f.e;
                                 if (f.d) {
                                     hVar = new f();
                                 } else {
@@ -186,14 +226,14 @@ public class h {
                         provider2 = Security.getProviders()[0];
                         m.checkExpressionValueIsNotNull(provider2, "Security.getProviders()[0]");
                         if (m.areEqual("OpenJSSE", provider2.getName())) {
-                            g$a g_a2 = g.e;
+                            g.a aVar9 = g.e;
                             if (g.d) {
                                 hVar = new g();
                             } else {
                                 hVar = null;
                             }
                             if (hVar == null) {
-                                f$a f_a3 = f.e;
+                                f.a aVar10 = f.e;
                                 if (f.d) {
                                     hVar = new f();
                                 } else {
@@ -225,7 +265,7 @@ public class h {
                                 }
                             }
                         } else {
-                            f$a f_a4 = f.e;
+                            f.a aVar11 = f.e;
                             if (f.d) {
                                 hVar = new f();
                             } else {
@@ -262,7 +302,7 @@ public class h {
                 provider = Security.getProviders()[0];
                 m.checkExpressionValueIsNotNull(provider, "Security.getProviders()[0]");
                 if (m.areEqual("BC", provider.getName())) {
-                    c$a c_a2 = c.e;
+                    c.a aVar12 = c.e;
                     if (c.d) {
                         hVar = new c();
                     } else {
@@ -272,14 +312,14 @@ public class h {
                         provider2 = Security.getProviders()[0];
                         m.checkExpressionValueIsNotNull(provider2, "Security.getProviders()[0]");
                         if (m.areEqual("OpenJSSE", provider2.getName())) {
-                            g$a g_a3 = g.e;
+                            g.a aVar13 = g.e;
                             if (g.d) {
                                 hVar = new g();
                             } else {
                                 hVar = null;
                             }
                             if (hVar == null) {
-                                f$a f_a5 = f.e;
+                                f.a aVar14 = f.e;
                                 if (f.d) {
                                     hVar = new f();
                                 } else {
@@ -311,7 +351,7 @@ public class h {
                                 }
                             }
                         } else {
-                            f$a f_a6 = f.e;
+                            f.a aVar15 = f.e;
                             if (f.d) {
                                 hVar = new f();
                             } else {
@@ -347,14 +387,14 @@ public class h {
                     provider2 = Security.getProviders()[0];
                     m.checkExpressionValueIsNotNull(provider2, "Security.getProviders()[0]");
                     if (m.areEqual("OpenJSSE", provider2.getName())) {
-                        g$a g_a4 = g.e;
+                        g.a aVar16 = g.e;
                         if (g.d) {
                             hVar = new g();
                         } else {
                             hVar = null;
                         }
                         if (hVar == null) {
-                            f$a f_a7 = f.e;
+                            f.a aVar17 = f.e;
                             if (f.d) {
                                 hVar = new f();
                             } else {
@@ -386,7 +426,7 @@ public class h {
                             }
                         }
                     } else {
-                        f$a f_a8 = f.e;
+                        f.a aVar18 = f.e;
                         if (f.d) {
                             hVar = new f();
                         } else {

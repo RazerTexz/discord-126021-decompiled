@@ -1,7 +1,6 @@
 package b.q.a;
 
 import android.view.View;
-import android.view.View$OnClickListener;
 import android.view.ViewGroup;
 import com.yalantis.ucrop.UCropActivity;
 import com.yalantis.ucrop.view.GestureCropImageView;
@@ -10,14 +9,14 @@ import java.util.Iterator;
 
 /* JADX INFO: compiled from: UCropActivity.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class b implements View$OnClickListener {
+public class b implements View.OnClickListener {
     public final /* synthetic */ UCropActivity j;
 
     public b(UCropActivity uCropActivity) {
         this.j = uCropActivity;
     }
 
-    @Override // android.view.View$OnClickListener
+    @Override // android.view.View.OnClickListener
     public void onClick(View view) {
         GestureCropImageView gestureCropImageView = this.j.w;
         AspectRatioTextView aspectRatioTextView = (AspectRatioTextView) ((ViewGroup) view).getChildAt(0);

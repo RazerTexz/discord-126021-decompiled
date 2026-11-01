@@ -1,15 +1,39 @@
 package com.discord.widgets.friends;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import androidx.annotation.LayoutRes;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
-import com.discord.R$layout;
+import b.a.k.b;
+import com.discord.R;
+import com.discord.databinding.WidgetFriendsListAdapterItemFriendBinding;
+import com.discord.databinding.WidgetFriendsListAdapterItemHeaderBinding;
+import com.discord.databinding.WidgetFriendsListAdapterItemPendingBinding;
 import com.discord.databinding.WidgetFriendsListAdapterSuggestedFriendBinding;
+import com.discord.databinding.WidgetFriendsListContactSyncUpsellBinding;
+import com.discord.databinding.WidgetFriendsListExpandableHeaderBinding;
+import com.discord.models.domain.ModelAuditLogEntry;
+import com.discord.models.presence.Presence;
 import com.discord.models.user.User;
+import com.discord.utilities.drawable.DrawableCompat;
+import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapterSimple;
 import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
+import com.discord.utilities.presence.PresenceUtils;
+import com.discord.utilities.view.extensions.ViewExtensions;
+import com.discord.utilities.view.text.SimpleDraweeSpanTextView;
+import com.discord.views.StatusView;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.android.material.card.MaterialCardView;
 import d0.z.d.m;
 import java.util.Objects;
 import kotlin.Unit;
@@ -19,7 +43,7 @@ import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: WidgetFriendsListAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetFriendsListAdapter extends MGRecyclerAdapterSimple<FriendsListViewModel$Item> {
+public final class WidgetFriendsListAdapter extends MGRecyclerAdapterSimple<FriendsListViewModel.Item> {
     private Function1<? super User, Unit> onClickAcceptFriend;
     private Function1<? super User, Unit> onClickApproveSuggestion;
     private Function1<? super User, Unit> onClickCall;
@@ -31,6 +55,433 @@ public final class WidgetFriendsListAdapter extends MGRecyclerAdapterSimple<Frie
     private Function1<? super Long, Unit> onClickRemoveSuggestion;
     private Function0<Unit> onClickSuggestedHeaderExpandCollapse;
     private Function2<? super View, ? super User, Unit> onClickUserProfile;
+
+    /* JADX INFO: compiled from: WidgetFriendsListAdapter.kt */
+    public abstract class Item extends MGRecyclerViewHolder<WidgetFriendsListAdapter, FriendsListViewModel.Item> {
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public Item(@LayoutRes int i, WidgetFriendsListAdapter widgetFriendsListAdapter) {
+            super(i, widgetFriendsListAdapter);
+            m.checkNotNullParameter(widgetFriendsListAdapter, "adapter");
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public Item(View view, WidgetFriendsListAdapter widgetFriendsListAdapter) {
+            super(view, widgetFriendsListAdapter);
+            m.checkNotNullParameter(view, "view");
+            m.checkNotNullParameter(widgetFriendsListAdapter, "adapter");
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetFriendsListAdapter.kt */
+    public final class ItemContactSyncUpsell extends Item {
+        private final WidgetFriendsListContactSyncUpsellBinding binding;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public ItemContactSyncUpsell(WidgetFriendsListAdapter widgetFriendsListAdapter) {
+            super(R.layout.widget_friends_list_contact_sync_upsell, widgetFriendsListAdapter);
+            m.checkNotNullParameter(widgetFriendsListAdapter, "adapter");
+            View view = this.itemView;
+            int i = R.id.friends_list_contact_sync_upsell_arrow;
+            ImageView imageView = (ImageView) view.findViewById(R.id.friends_list_contact_sync_upsell_arrow);
+            if (imageView != null) {
+                MaterialCardView materialCardView = (MaterialCardView) view;
+                i = R.id.friends_list_contact_sync_upsell_icon;
+                ImageView imageView2 = (ImageView) view.findViewById(R.id.friends_list_contact_sync_upsell_icon);
+                if (imageView2 != null) {
+                    i = R.id.friends_list_contact_sync_upsell_subtitle;
+                    TextView textView = (TextView) view.findViewById(R.id.friends_list_contact_sync_upsell_subtitle);
+                    if (textView != null) {
+                        i = R.id.friends_list_contact_sync_upsell_title;
+                        TextView textView2 = (TextView) view.findViewById(R.id.friends_list_contact_sync_upsell_title);
+                        if (textView2 != null) {
+                            WidgetFriendsListContactSyncUpsellBinding widgetFriendsListContactSyncUpsellBinding = new WidgetFriendsListContactSyncUpsellBinding(materialCardView, imageView, materialCardView, imageView2, textView, textView2);
+                            m.checkNotNullExpressionValue(widgetFriendsListContactSyncUpsellBinding, "WidgetFriendsListContact…ellBinding.bind(itemView)");
+                            this.binding = widgetFriendsListContactSyncUpsellBinding;
+                            return;
+                        }
+                    }
+                }
+            }
+            throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
+        }
+
+        public static final /* synthetic */ WidgetFriendsListAdapter access$getAdapter$p(ItemContactSyncUpsell itemContactSyncUpsell) {
+            return (WidgetFriendsListAdapter) itemContactSyncUpsell.adapter;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
+        public /* bridge */ /* synthetic */ void onConfigure(int i, FriendsListViewModel.Item item) {
+            onConfigure2(i, item);
+        }
+
+        /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
+        public void onConfigure2(int position, FriendsListViewModel.Item data) {
+            m.checkNotNullParameter(data, "data");
+            this.binding.f2397b.setOnClickListener(new WidgetFriendsListAdapter$ItemContactSyncUpsell$onConfigure$1(this));
+            this.binding.f2397b.setOnLongClickListener(new WidgetFriendsListAdapter$ItemContactSyncUpsell$onConfigure$2(this));
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetFriendsListAdapter.kt */
+    public final class ItemHeader extends Item {
+        private final WidgetFriendsListAdapterItemHeaderBinding binding;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public ItemHeader(WidgetFriendsListAdapter widgetFriendsListAdapter) {
+            super(R.layout.widget_friends_list_adapter_item_header, widgetFriendsListAdapter);
+            m.checkNotNullParameter(widgetFriendsListAdapter, "adapter");
+            View view = this.itemView;
+            TextView textView = (TextView) view.findViewById(R.id.friends_list_item_header_text);
+            if (textView == null) {
+                throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R.id.friends_list_item_header_text)));
+            }
+            WidgetFriendsListAdapterItemHeaderBinding widgetFriendsListAdapterItemHeaderBinding = new WidgetFriendsListAdapterItemHeaderBinding((FrameLayout) view, textView);
+            m.checkNotNullExpressionValue(widgetFriendsListAdapterItemHeaderBinding, "WidgetFriendsListAdapter…derBinding.bind(itemView)");
+            this.binding = widgetFriendsListAdapterItemHeaderBinding;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
+        public /* bridge */ /* synthetic */ void onConfigure(int i, FriendsListViewModel.Item item) {
+            onConfigure2(i, item);
+        }
+
+        /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
+        public void onConfigure2(int position, FriendsListViewModel.Item data) {
+            m.checkNotNullParameter(data, "data");
+            super.onConfigure(position, data);
+            FriendsListViewModel.Item.Header header = (FriendsListViewModel.Item.Header) data;
+            TextView textView = this.binding.f2393b;
+            m.checkNotNullExpressionValue(textView, "binding.friendsListItemHeaderText");
+            b.n(textView, header.getTitleStringResId(), new Object[]{Integer.valueOf(header.getCount())}, null, 4);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetFriendsListAdapter.kt */
+    public final class ItemPendingHeader extends Item {
+        private final WidgetFriendsListExpandableHeaderBinding binding;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public ItemPendingHeader(WidgetFriendsListAdapter widgetFriendsListAdapter) {
+            super(R.layout.widget_friends_list_expandable_header, widgetFriendsListAdapter);
+            m.checkNotNullParameter(widgetFriendsListAdapter, "adapter");
+            WidgetFriendsListExpandableHeaderBinding widgetFriendsListExpandableHeaderBindingA = WidgetFriendsListExpandableHeaderBinding.a(this.itemView);
+            m.checkNotNullExpressionValue(widgetFriendsListExpandableHeaderBindingA, "WidgetFriendsListExpanda…derBinding.bind(itemView)");
+            this.binding = widgetFriendsListExpandableHeaderBindingA;
+        }
+
+        public static final /* synthetic */ WidgetFriendsListAdapter access$getAdapter$p(ItemPendingHeader itemPendingHeader) {
+            return (WidgetFriendsListAdapter) itemPendingHeader.adapter;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
+        public /* bridge */ /* synthetic */ void onConfigure(int i, FriendsListViewModel.Item item) {
+            onConfigure2(i, item);
+        }
+
+        /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
+        public void onConfigure2(int position, FriendsListViewModel.Item data) {
+            m.checkNotNullParameter(data, "data");
+            super.onConfigure(position, data);
+            FriendsListViewModel.Item.PendingHeader pendingHeader = (FriendsListViewModel.Item.PendingHeader) data;
+            TextView textView = this.binding.c;
+            m.checkNotNullExpressionValue(textView, "binding.friendsListPendingItemHeaderText");
+            b.n(textView, pendingHeader.getTitleStringResId(), new Object[]{Integer.valueOf(pendingHeader.getCount())}, null, 4);
+            if (!pendingHeader.getShowExpandButton()) {
+                TextView textView2 = this.binding.f2398b;
+                m.checkNotNullExpressionValue(textView2, "binding.friendsListExpandableHeaderButton");
+                textView2.setVisibility(8);
+                return;
+            }
+            TextView textView3 = this.binding.f2398b;
+            m.checkNotNullExpressionValue(textView3, "binding.friendsListExpandableHeaderButton");
+            textView3.setVisibility(0);
+            int i = pendingHeader.isPendingSectionExpanded() ? R.string.friends_pending_request_expand_collapse : R.string.friends_pending_request_expand;
+            TextView textView4 = this.binding.f2398b;
+            m.checkNotNullExpressionValue(textView4, "binding.friendsListExpandableHeaderButton");
+            b.n(textView4, i, new Object[0], null, 4);
+            int i2 = pendingHeader.isPendingSectionExpanded() ? R.drawable.ic_arrow_up_24dp : R.drawable.ic_arrow_right_24dp;
+            TextView textView5 = this.binding.f2398b;
+            m.checkNotNullExpressionValue(textView5, "binding.friendsListExpandableHeaderButton");
+            Drawable drawable = ContextCompat.getDrawable(textView5.getContext(), i2);
+            TextView textView6 = this.binding.f2398b;
+            m.checkNotNullExpressionValue(textView6, "binding.friendsListExpandableHeaderButton");
+            DrawableCompat.setCompoundDrawablesCompat$default(textView6, (Drawable) null, (Drawable) null, drawable, (Drawable) null, 11, (Object) null);
+            this.binding.f2398b.setOnClickListener(new WidgetFriendsListAdapter$ItemPendingHeader$onConfigure$1(this));
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetFriendsListAdapter.kt */
+    public final class ItemPendingUser extends Item {
+        private final WidgetFriendsListAdapterItemPendingBinding binding;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public ItemPendingUser(WidgetFriendsListAdapter widgetFriendsListAdapter) {
+            super(R.layout.widget_friends_list_adapter_item_pending, widgetFriendsListAdapter);
+            m.checkNotNullParameter(widgetFriendsListAdapter, "adapter");
+            View view = this.itemView;
+            int i = R.id.friends_list_item_accept_button;
+            AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(R.id.friends_list_item_accept_button);
+            if (appCompatImageView != null) {
+                i = R.id.friends_list_item_activity;
+                SimpleDraweeSpanTextView simpleDraweeSpanTextView = (SimpleDraweeSpanTextView) view.findViewById(R.id.friends_list_item_activity);
+                if (simpleDraweeSpanTextView != null) {
+                    i = R.id.friends_list_item_avatar;
+                    SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.friends_list_item_avatar);
+                    if (simpleDraweeView != null) {
+                        i = R.id.friends_list_item_buttons_wrap;
+                        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.friends_list_item_buttons_wrap);
+                        if (linearLayout != null) {
+                            i = R.id.friends_list_item_decline_button;
+                            AppCompatImageView appCompatImageView2 = (AppCompatImageView) view.findViewById(R.id.friends_list_item_decline_button);
+                            if (appCompatImageView2 != null) {
+                                i = R.id.friends_list_item_name;
+                                TextView textView = (TextView) view.findViewById(R.id.friends_list_item_name);
+                                if (textView != null) {
+                                    i = R.id.friends_list_item_status;
+                                    StatusView statusView = (StatusView) view.findViewById(R.id.friends_list_item_status);
+                                    if (statusView != null) {
+                                        i = R.id.friends_list_item_text;
+                                        LinearLayout linearLayout2 = (LinearLayout) view.findViewById(R.id.friends_list_item_text);
+                                        if (linearLayout2 != null) {
+                                            WidgetFriendsListAdapterItemPendingBinding widgetFriendsListAdapterItemPendingBinding = new WidgetFriendsListAdapterItemPendingBinding((RelativeLayout) view, appCompatImageView, simpleDraweeSpanTextView, simpleDraweeView, linearLayout, appCompatImageView2, textView, statusView, linearLayout2);
+                                            m.checkNotNullExpressionValue(widgetFriendsListAdapterItemPendingBinding, "WidgetFriendsListAdapter…ingBinding.bind(itemView)");
+                                            this.binding = widgetFriendsListAdapterItemPendingBinding;
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
+        }
+
+        public static final /* synthetic */ WidgetFriendsListAdapter access$getAdapter$p(ItemPendingUser itemPendingUser) {
+            return (WidgetFriendsListAdapter) itemPendingUser.adapter;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
+        public /* bridge */ /* synthetic */ void onConfigure(int i, FriendsListViewModel.Item item) {
+            onConfigure2(i, item);
+        }
+
+        /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
+        public void onConfigure2(int position, FriendsListViewModel.Item data) {
+            m.checkNotNullParameter(data, "data");
+            super.onConfigure(position, data);
+            FriendsListViewModel.Item.PendingFriendRequest pendingFriendRequest = (FriendsListViewModel.Item.PendingFriendRequest) data;
+            this.binding.a.setOnClickListener(new WidgetFriendsListAdapter$ItemPendingUser$onConfigure$1(this, data));
+            TextView textView = this.binding.f;
+            m.checkNotNullExpressionValue(textView, "binding.friendsListItemName");
+            textView.setText(pendingFriendRequest.getUser().getUsername());
+            this.binding.g.setPresence(pendingFriendRequest.getPresence());
+            int relationshipType = pendingFriendRequest.getRelationshipType();
+            if (relationshipType == 3) {
+                SimpleDraweeSpanTextView simpleDraweeSpanTextView = this.binding.c;
+                m.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.friendsListItemActivity");
+                SimpleDraweeSpanTextView simpleDraweeSpanTextView2 = this.binding.c;
+                m.checkNotNullExpressionValue(simpleDraweeSpanTextView2, "binding.friendsListItemActivity");
+                ViewExtensions.setTextAndVisibilityBy(simpleDraweeSpanTextView, b.j(simpleDraweeSpanTextView2, R.string.incoming_friend_request, new Object[0], null, 4));
+                AppCompatImageView appCompatImageView = this.binding.f2394b;
+                m.checkNotNullExpressionValue(appCompatImageView, "binding.friendsListItemAcceptButton");
+                appCompatImageView.setVisibility(0);
+            } else if (relationshipType == 4) {
+                SimpleDraweeSpanTextView simpleDraweeSpanTextView3 = this.binding.c;
+                m.checkNotNullExpressionValue(simpleDraweeSpanTextView3, "binding.friendsListItemActivity");
+                SimpleDraweeSpanTextView simpleDraweeSpanTextView4 = this.binding.c;
+                m.checkNotNullExpressionValue(simpleDraweeSpanTextView4, "binding.friendsListItemActivity");
+                ViewExtensions.setTextAndVisibilityBy(simpleDraweeSpanTextView3, b.j(simpleDraweeSpanTextView4, R.string.outgoing_friend_request, new Object[0], null, 4));
+                AppCompatImageView appCompatImageView2 = this.binding.f2394b;
+                m.checkNotNullExpressionValue(appCompatImageView2, "binding.friendsListItemAcceptButton");
+                appCompatImageView2.setVisibility(8);
+            }
+            SimpleDraweeView simpleDraweeView = this.binding.d;
+            m.checkNotNullExpressionValue(simpleDraweeView, "binding.friendsListItemAvatar");
+            IconUtils.setIcon$default(simpleDraweeView, pendingFriendRequest.getUser(), R.dimen.avatar_size_standard, null, null, null, 56, null);
+            this.binding.f2394b.setOnClickListener(new WidgetFriendsListAdapter$ItemPendingUser$onConfigure$2(this, pendingFriendRequest));
+            this.binding.e.setOnClickListener(new WidgetFriendsListAdapter$ItemPendingUser$onConfigure$3(this, pendingFriendRequest));
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetFriendsListAdapter.kt */
+    public final class ItemSuggestedFriend extends Item {
+        private final WidgetFriendsListAdapterSuggestedFriendBinding viewBinding;
+
+        /* JADX WARN: Illegal instructions before constructor call */
+        public ItemSuggestedFriend(WidgetFriendsListAdapterSuggestedFriendBinding widgetFriendsListAdapterSuggestedFriendBinding, WidgetFriendsListAdapter widgetFriendsListAdapter) {
+            m.checkNotNullParameter(widgetFriendsListAdapterSuggestedFriendBinding, "viewBinding");
+            m.checkNotNullParameter(widgetFriendsListAdapter, "adapter");
+            SuggestedFriendView suggestedFriendView = widgetFriendsListAdapterSuggestedFriendBinding.a;
+            m.checkNotNullExpressionValue(suggestedFriendView, "viewBinding.root");
+            super(suggestedFriendView, widgetFriendsListAdapter);
+            this.viewBinding = widgetFriendsListAdapterSuggestedFriendBinding;
+        }
+
+        public static final /* synthetic */ WidgetFriendsListAdapter access$getAdapter$p(ItemSuggestedFriend itemSuggestedFriend) {
+            return (WidgetFriendsListAdapter) itemSuggestedFriend.adapter;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
+        public /* bridge */ /* synthetic */ void onConfigure(int i, FriendsListViewModel.Item item) {
+            onConfigure2(i, item);
+        }
+
+        /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
+        public void onConfigure2(int position, FriendsListViewModel.Item data) {
+            m.checkNotNullParameter(data, "data");
+            FriendsListViewModel.Item.SuggestedFriend suggestedFriend = (FriendsListViewModel.Item.SuggestedFriend) data;
+            this.viewBinding.a.setOnClickListener(new WidgetFriendsListAdapter$ItemSuggestedFriend$onConfigure$1(this, data));
+            this.viewBinding.f2395b.setAvatarUrl(suggestedFriend.getSuggestion().getUser().getId(), Integer.valueOf(suggestedFriend.getSuggestion().getUser().getDiscriminator()), suggestedFriend.getSuggestion().getUser().getAvatar());
+            this.viewBinding.f2395b.setUsername(suggestedFriend.getSuggestion().getUser().getUsername());
+            this.viewBinding.f2395b.setPublicName(suggestedFriend.getSuggestion().getPublicName());
+            this.viewBinding.f2395b.setOnSendClicked(new WidgetFriendsListAdapter$ItemSuggestedFriend$onConfigure$2(this, data));
+            this.viewBinding.f2395b.setOnDeclineClicked(new WidgetFriendsListAdapter$ItemSuggestedFriend$onConfigure$3(this, data));
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetFriendsListAdapter.kt */
+    public final class ItemSuggestedFriendHeader extends Item {
+        private final WidgetFriendsListExpandableHeaderBinding binding;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public ItemSuggestedFriendHeader(WidgetFriendsListAdapter widgetFriendsListAdapter) {
+            super(R.layout.widget_friends_list_expandable_header, widgetFriendsListAdapter);
+            m.checkNotNullParameter(widgetFriendsListAdapter, "adapter");
+            WidgetFriendsListExpandableHeaderBinding widgetFriendsListExpandableHeaderBindingA = WidgetFriendsListExpandableHeaderBinding.a(this.itemView);
+            m.checkNotNullExpressionValue(widgetFriendsListExpandableHeaderBindingA, "WidgetFriendsListExpanda…derBinding.bind(itemView)");
+            this.binding = widgetFriendsListExpandableHeaderBindingA;
+        }
+
+        public static final /* synthetic */ WidgetFriendsListAdapter access$getAdapter$p(ItemSuggestedFriendHeader itemSuggestedFriendHeader) {
+            return (WidgetFriendsListAdapter) itemSuggestedFriendHeader.adapter;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
+        public /* bridge */ /* synthetic */ void onConfigure(int i, FriendsListViewModel.Item item) {
+            onConfigure2(i, item);
+        }
+
+        /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
+        public void onConfigure2(int position, FriendsListViewModel.Item data) {
+            CharSequence charSequenceJ;
+            m.checkNotNullParameter(data, "data");
+            FriendsListViewModel.Item.SuggestedFriendsHeader suggestedFriendsHeader = (FriendsListViewModel.Item.SuggestedFriendsHeader) data;
+            TextView textView = this.binding.c;
+            m.checkNotNullExpressionValue(textView, "binding.friendsListPendingItemHeaderText");
+            b.m(textView, R.string.friends_friend_suggestions_header, new Object[0], new WidgetFriendsListAdapter$ItemSuggestedFriendHeader$onConfigure$1(data));
+            if (!suggestedFriendsHeader.getShowExpandButton()) {
+                TextView textView2 = this.binding.f2398b;
+                m.checkNotNullExpressionValue(textView2, "binding.friendsListExpandableHeaderButton");
+                textView2.setVisibility(8);
+                return;
+            }
+            TextView textView3 = this.binding.f2398b;
+            m.checkNotNullExpressionValue(textView3, "binding.friendsListExpandableHeaderButton");
+            textView3.setVisibility(0);
+            TextView textView4 = this.binding.f2398b;
+            m.checkNotNullExpressionValue(textView4, "binding.friendsListExpandableHeaderButton");
+            if (suggestedFriendsHeader.isExpanded()) {
+                TextView textView5 = this.binding.f2398b;
+                m.checkNotNullExpressionValue(textView5, "binding.friendsListExpandableHeaderButton");
+                charSequenceJ = b.j(textView5, R.string.friends_pending_request_expand_collapse, new Object[0], null, 4);
+            } else {
+                TextView textView6 = this.binding.f2398b;
+                m.checkNotNullExpressionValue(textView6, "binding.friendsListExpandableHeaderButton");
+                charSequenceJ = b.j(textView6, R.string.friends_pending_request_expand, new Object[0], null, 4);
+            }
+            textView4.setText(charSequenceJ);
+            int i = suggestedFriendsHeader.isExpanded() ? R.drawable.ic_arrow_up_24dp : R.drawable.ic_arrow_right_24dp;
+            TextView textView7 = this.binding.f2398b;
+            m.checkNotNullExpressionValue(textView7, "binding.friendsListExpandableHeaderButton");
+            Drawable drawable = ContextCompat.getDrawable(textView7.getContext(), i);
+            TextView textView8 = this.binding.f2398b;
+            m.checkNotNullExpressionValue(textView8, "binding.friendsListExpandableHeaderButton");
+            DrawableCompat.setCompoundDrawablesCompat$default(textView8, (Drawable) null, (Drawable) null, drawable, (Drawable) null, 11, (Object) null);
+            this.binding.f2398b.setOnClickListener(new WidgetFriendsListAdapter$ItemSuggestedFriendHeader$onConfigure$2(this));
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetFriendsListAdapter.kt */
+    public final class ItemUser extends Item {
+        private final WidgetFriendsListAdapterItemFriendBinding binding;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public ItemUser(WidgetFriendsListAdapter widgetFriendsListAdapter) {
+            super(R.layout.widget_friends_list_adapter_item_friend, widgetFriendsListAdapter);
+            m.checkNotNullParameter(widgetFriendsListAdapter, "adapter");
+            View view = this.itemView;
+            int i = R.id.friends_list_item_activity;
+            SimpleDraweeSpanTextView simpleDraweeSpanTextView = (SimpleDraweeSpanTextView) view.findViewById(R.id.friends_list_item_activity);
+            if (simpleDraweeSpanTextView != null) {
+                i = R.id.friends_list_item_avatar;
+                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.friends_list_item_avatar);
+                if (simpleDraweeView != null) {
+                    i = R.id.friends_list_item_buttons_wrap;
+                    LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.friends_list_item_buttons_wrap);
+                    if (linearLayout != null) {
+                        i = R.id.friends_list_item_call_button;
+                        AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(R.id.friends_list_item_call_button);
+                        if (appCompatImageView != null) {
+                            i = R.id.friends_list_item_chat_button;
+                            AppCompatImageView appCompatImageView2 = (AppCompatImageView) view.findViewById(R.id.friends_list_item_chat_button);
+                            if (appCompatImageView2 != null) {
+                                i = R.id.friends_list_item_name;
+                                TextView textView = (TextView) view.findViewById(R.id.friends_list_item_name);
+                                if (textView != null) {
+                                    i = R.id.friends_list_item_status;
+                                    StatusView statusView = (StatusView) view.findViewById(R.id.friends_list_item_status);
+                                    if (statusView != null) {
+                                        i = R.id.friends_list_item_text;
+                                        LinearLayout linearLayout2 = (LinearLayout) view.findViewById(R.id.friends_list_item_text);
+                                        if (linearLayout2 != null) {
+                                            WidgetFriendsListAdapterItemFriendBinding widgetFriendsListAdapterItemFriendBinding = new WidgetFriendsListAdapterItemFriendBinding((RelativeLayout) view, simpleDraweeSpanTextView, simpleDraweeView, linearLayout, appCompatImageView, appCompatImageView2, textView, statusView, linearLayout2);
+                                            m.checkNotNullExpressionValue(widgetFriendsListAdapterItemFriendBinding, "WidgetFriendsListAdapter…endBinding.bind(itemView)");
+                                            this.binding = widgetFriendsListAdapterItemFriendBinding;
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
+        }
+
+        public static final /* synthetic */ WidgetFriendsListAdapter access$getAdapter$p(ItemUser itemUser) {
+            return (WidgetFriendsListAdapter) itemUser.adapter;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
+        public /* bridge */ /* synthetic */ void onConfigure(int i, FriendsListViewModel.Item item) {
+            onConfigure2(i, item);
+        }
+
+        /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
+        public void onConfigure2(int position, FriendsListViewModel.Item data) {
+            m.checkNotNullParameter(data, "data");
+            super.onConfigure(position, data);
+            FriendsListViewModel.Item.Friend friend = (FriendsListViewModel.Item.Friend) data;
+            this.binding.a.setOnClickListener(new WidgetFriendsListAdapter$ItemUser$onConfigure$1(this, data));
+            TextView textView = this.binding.f;
+            m.checkNotNullExpressionValue(textView, "binding.friendsListItemName");
+            textView.setText(friend.getUser().getUsername());
+            this.binding.g.setPresence(friend.getPresence());
+            Presence presence = friend.getPresence();
+            boolean zIsApplicationStreaming = friend.isApplicationStreaming();
+            SimpleDraweeSpanTextView simpleDraweeSpanTextView = this.binding.f2392b;
+            m.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.friendsListItemActivity");
+            PresenceUtils.setPresenceText$default(presence, zIsApplicationStreaming, simpleDraweeSpanTextView, true, false, 16, null);
+            SimpleDraweeView simpleDraweeView = this.binding.c;
+            m.checkNotNullExpressionValue(simpleDraweeView, "binding.friendsListItemAvatar");
+            IconUtils.setIcon$default(simpleDraweeView, friend.getUser(), R.dimen.avatar_size_standard, null, null, null, 56, null);
+            this.binding.d.setOnClickListener(new WidgetFriendsListAdapter$ItemUser$onConfigure$2(this, friend));
+            this.binding.e.setOnClickListener(new WidgetFriendsListAdapter$ItemUser$onConfigure$3(this, friend));
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetFriendsListAdapter(RecyclerView recyclerView) {
@@ -93,8 +544,8 @@ public final class WidgetFriendsListAdapter extends MGRecyclerAdapterSimple<Frie
         return this.onClickUserProfile;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public /* bridge */ /* synthetic */ RecyclerView$ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public /* bridge */ /* synthetic */ RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         return onCreateViewHolder(viewGroup, i);
     }
 
@@ -153,29 +604,29 @@ public final class WidgetFriendsListAdapter extends MGRecyclerAdapterSimple<Frie
         this.onClickUserProfile = function2;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public MGRecyclerViewHolder<?, FriendsListViewModel$Item> onCreateViewHolder(ViewGroup parent, int viewType) {
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public MGRecyclerViewHolder<?, FriendsListViewModel.Item> onCreateViewHolder(ViewGroup parent, int viewType) {
         m.checkNotNullParameter(parent, "parent");
         switch (viewType) {
             case 0:
-                return new WidgetFriendsListAdapter$ItemUser(this);
+                return new ItemUser(this);
             case 1:
-                return new WidgetFriendsListAdapter$ItemPendingUser(this);
+                return new ItemPendingUser(this);
             case 2:
-                return new WidgetFriendsListAdapter$ItemPendingHeader(this);
+                return new ItemPendingHeader(this);
             case 3:
-                return new WidgetFriendsListAdapter$ItemHeader(this);
+                return new ItemHeader(this);
             case 4:
-                return new WidgetFriendsListAdapter$ItemSuggestedFriendHeader(this);
+                return new ItemSuggestedFriendHeader(this);
             case 5:
-                View viewInflate = LayoutInflater.from(parent.getContext()).inflate(R$layout.widget_friends_list_adapter_suggested_friend, parent, false);
+                View viewInflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.widget_friends_list_adapter_suggested_friend, parent, false);
                 Objects.requireNonNull(viewInflate, "rootView");
                 SuggestedFriendView suggestedFriendView = (SuggestedFriendView) viewInflate;
                 WidgetFriendsListAdapterSuggestedFriendBinding widgetFriendsListAdapterSuggestedFriendBinding = new WidgetFriendsListAdapterSuggestedFriendBinding(suggestedFriendView, suggestedFriendView);
                 m.checkNotNullExpressionValue(widgetFriendsListAdapterSuggestedFriendBinding, "WidgetFriendsListAdapter…          false\n        )");
-                return new WidgetFriendsListAdapter$ItemSuggestedFriend(widgetFriendsListAdapterSuggestedFriendBinding, this);
+                return new ItemSuggestedFriend(widgetFriendsListAdapterSuggestedFriendBinding, this);
             case 6:
-                return new WidgetFriendsListAdapter$ItemContactSyncUpsell(this);
+                return new ItemContactSyncUpsell(this);
             default:
                 throw invalidViewTypeException(viewType);
         }

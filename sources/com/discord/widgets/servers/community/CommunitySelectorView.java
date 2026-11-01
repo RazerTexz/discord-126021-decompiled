@@ -7,9 +7,7 @@ import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.databinding.ViewServerSettingsCommunitySettingSelectorBinding;
 import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -32,7 +30,7 @@ public final class CommunitySelectorView extends LinearLayout {
     }
 
     private final void initAttrs(AttributeSet attrs) {
-        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attrs, R$a.CommunitySelectorView, 0, 0);
+        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attrs, R.a.CommunitySelectorView, 0, 0);
         m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…munitySelectorView, 0, 0)");
         CharSequence text = typedArrayObtainStyledAttributes.getText(3);
         CharSequence text2 = typedArrayObtainStyledAttributes.getText(2);
@@ -67,18 +65,18 @@ public final class CommunitySelectorView extends LinearLayout {
     public CommunitySelectorView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(R$layout.view_server_settings_community_setting_selector, this);
-        int i2 = R$id.server_settings_community_setting_selector_description;
-        TextView textView = (TextView) findViewById(R$id.server_settings_community_setting_selector_description);
+        LayoutInflater.from(context).inflate(R.layout.view_server_settings_community_setting_selector, this);
+        int i2 = R.id.server_settings_community_setting_selector_description;
+        TextView textView = (TextView) findViewById(R.id.server_settings_community_setting_selector_description);
         if (textView != null) {
-            i2 = R$id.server_settings_community_setting_selector_dropdown_icon;
-            ImageView imageView = (ImageView) findViewById(R$id.server_settings_community_setting_selector_dropdown_icon);
+            i2 = R.id.server_settings_community_setting_selector_dropdown_icon;
+            ImageView imageView = (ImageView) findViewById(R.id.server_settings_community_setting_selector_dropdown_icon);
             if (imageView != null) {
-                i2 = R$id.server_settings_community_setting_selector_subtitle;
-                TextView textView2 = (TextView) findViewById(R$id.server_settings_community_setting_selector_subtitle);
+                i2 = R.id.server_settings_community_setting_selector_subtitle;
+                TextView textView2 = (TextView) findViewById(R.id.server_settings_community_setting_selector_subtitle);
                 if (textView2 != null) {
-                    i2 = R$id.server_settings_community_setting_selector_title;
-                    TextView textView3 = (TextView) findViewById(R$id.server_settings_community_setting_selector_title);
+                    i2 = R.id.server_settings_community_setting_selector_title;
+                    TextView textView3 = (TextView) findViewById(R.id.server_settings_community_setting_selector_title);
                     if (textView3 != null) {
                         ViewServerSettingsCommunitySettingSelectorBinding viewServerSettingsCommunitySettingSelectorBinding = new ViewServerSettingsCommunitySettingSelectorBinding(this, textView, imageView, textView2, textView3);
                         m.checkNotNullExpressionValue(viewServerSettingsCommunitySettingSelectorBinding, "ViewServerSettingsCommun…ater.from(context), this)");

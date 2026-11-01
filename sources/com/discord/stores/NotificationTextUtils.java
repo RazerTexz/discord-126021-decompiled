@@ -7,7 +7,6 @@ import com.discord.api.channel.ChannelUtils;
 import com.discord.api.message.Message;
 import com.discord.api.permission.Permission;
 import com.discord.models.domain.ModelNotificationSettings;
-import com.discord.models.domain.ModelNotificationSettings$ChannelOverride;
 import com.discord.models.guild.Guild;
 import com.discord.models.member.GuildMember;
 import com.discord.models.user.User;
@@ -59,11 +58,11 @@ public final class NotificationTextUtils {
         if (channel == null) {
             return false;
         }
-        ModelNotificationSettings$ChannelOverride channelOverride = modelNotificationSettings.getChannelOverride(channel.getParentId());
+        ModelNotificationSettings.ChannelOverride channelOverride = modelNotificationSettings.getChannelOverride(channel.getParentId());
         if (channelOverride != null && channelOverride.isMuted()) {
             return true;
         }
-        ModelNotificationSettings$ChannelOverride channelOverride2 = modelNotificationSettings.getChannelOverride(channel.getId());
+        ModelNotificationSettings.ChannelOverride channelOverride2 = modelNotificationSettings.getChannelOverride(channel.getId());
         return channelOverride2 != null && channelOverride2.isMuted();
     }
 
@@ -83,7 +82,7 @@ public final class NotificationTextUtils {
     /* JADX WARN: Code duplicated, block: B:47:? A[LOOP:1: B:32:0x006e->B:47:?, LOOP_END, SYNTHETIC] */
     /* JADX WARN: Code duplicated, block: B:49:? A[RETURN, SYNTHETIC] */
     /* JADX WARN: Code duplicated, block: B:50:? A[RETURN, SYNTHETIC] */
-    private final boolean isThreadNotificationAllowed(User me2, Collection<Long> myRoleIds, Message message, StoreThreadsJoined$JoinedThread joinedThread, ModelNotificationSettings guildSettings, Guild guild, Channel thread, Channel parentChannel) {
+    private final boolean isThreadNotificationAllowed(User me2, Collection<Long> myRoleIds, Message message, StoreThreadsJoined.JoinedThread joinedThread, ModelNotificationSettings guildSettings, Guild guild, Channel thread, Channel parentChannel) {
         List<Long> listS;
         Iterator<T> it;
         boolean z2;
@@ -212,7 +211,7 @@ public final class NotificationTextUtils {
     }
 
     private final Integer messageNotifications(ModelNotificationSettings modelNotificationSettings, long j) {
-        ModelNotificationSettings$ChannelOverride channelOverride = modelNotificationSettings.getChannelOverride(j);
+        ModelNotificationSettings.ChannelOverride channelOverride = modelNotificationSettings.getChannelOverride(j);
         if (channelOverride == null) {
             return null;
         }
@@ -247,7 +246,7 @@ public final class NotificationTextUtils {
         return true;
     }
 
-    public final boolean shouldNotifyInAppPopup(User me2, Message msg, Channel channel, Map<Long, Integer> blockedRelationships, Channel parentChannel, Guild guild, Map<Long, ? extends Map<Long, GuildMember>> guildMembers, Map<Long, ? extends ModelNotificationSettings> guildSettings, Map<Long, StoreThreadsJoined$JoinedThread> joinedThreads, long selectedVoiceChannelId, Long channelPermissions) {
+    public final boolean shouldNotifyInAppPopup(User me2, Message msg, Channel channel, Map<Long, Integer> blockedRelationships, Channel parentChannel, Guild guild, Map<Long, ? extends Map<Long, GuildMember>> guildMembers, Map<Long, ? extends ModelNotificationSettings> guildSettings, Map<Long, StoreThreadsJoined.JoinedThread> joinedThreads, long selectedVoiceChannelId, Long channelPermissions) {
         com.discord.api.user.User author;
         List<Long> listEmptyList;
         m.checkNotNullParameter(me2, "me");
@@ -272,7 +271,7 @@ public final class NotificationTextUtils {
         List<Long> list = listEmptyList;
         ModelNotificationSettings modelNotificationSettings = (ModelNotificationSettings) a.c(channel, guildSettings);
         if (ChannelUtils.H(channel)) {
-            return isThreadNotificationAllowed(me2, list, msg, (StoreThreadsJoined$JoinedThread) a.d(channel, joinedThreads), modelNotificationSettings, guild, channel, parentChannel);
+            return isThreadNotificationAllowed(me2, list, msg, (StoreThreadsJoined.JoinedThread) a.d(channel, joinedThreads), modelNotificationSettings, guild, channel, parentChannel);
         }
         if (modelNotificationSettings != null) {
             return isNotificationAllowed(modelNotificationSettings, me2, list, msg, guild, channel, channelPermissions, selectedVoiceChannelId);

@@ -11,9 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import b.a.i.i3;
 import b.a.k.b;
-import com.discord.R$id;
-import com.discord.R$layout;
-import com.discord.R$plurals;
+import com.discord.R;
 import com.discord.utilities.resources.StringResourceUtilsKt;
 import d0.z.d.m;
 
@@ -28,19 +26,19 @@ public final class ServerMemberCount extends FrameLayout {
     public ServerMemberCount(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
         m.checkNotNullParameter(context, "context");
-        View viewInflate = LayoutInflater.from(context).inflate(R$layout.view_server_member_count, (ViewGroup) this, false);
+        View viewInflate = LayoutInflater.from(context).inflate(R.layout.view_server_member_count, (ViewGroup) this, false);
         addView(viewInflate);
-        int i = R$id.item_invite_online_dot;
-        ImageView imageView = (ImageView) viewInflate.findViewById(R$id.item_invite_online_dot);
+        int i = R.id.item_invite_online_dot;
+        ImageView imageView = (ImageView) viewInflate.findViewById(R.id.item_invite_online_dot);
         if (imageView != null) {
-            i = R$id.item_invite_online_text;
-            TextView textView = (TextView) viewInflate.findViewById(R$id.item_invite_online_text);
+            i = R.id.item_invite_online_text;
+            TextView textView = (TextView) viewInflate.findViewById(R.id.item_invite_online_text);
             if (textView != null) {
-                i = R$id.item_invite_total_member_dot;
-                ImageView imageView2 = (ImageView) viewInflate.findViewById(R$id.item_invite_total_member_dot);
+                i = R.id.item_invite_total_member_dot;
+                ImageView imageView2 = (ImageView) viewInflate.findViewById(R.id.item_invite_total_member_dot);
                 if (imageView2 != null) {
-                    i = R$id.item_invite_total_member_text;
-                    TextView textView2 = (TextView) viewInflate.findViewById(R$id.item_invite_total_member_text);
+                    i = R.id.item_invite_total_member_text;
+                    TextView textView2 = (TextView) viewInflate.findViewById(R.id.item_invite_total_member_text);
                     if (textView2 != null) {
                         i3 i3Var = new i3((LinearLayout) viewInflate, imageView, textView, imageView2, textView2);
                         m.checkNotNullExpressionValue(i3Var, "ViewServerMemberCountBin…rom(context), this, true)");
@@ -79,7 +77,7 @@ public final class ServerMemberCount extends FrameLayout {
             members.intValue();
             Context context = getContext();
             m.checkNotNullExpressionValue(context, "context");
-            i18nPluralString = StringResourceUtilsKt.getI18nPluralString(context, R$plurals.members_header_members, members.intValue(), members);
+            i18nPluralString = StringResourceUtilsKt.getI18nPluralString(context, R.plurals.members_header_members, members.intValue(), members);
         } else {
             i18nPluralString = null;
         }
@@ -95,7 +93,7 @@ public final class ServerMemberCount extends FrameLayout {
         CharSequence charSequenceJ = null;
         if (active != null) {
             active.intValue();
-            charSequenceJ = b.j(this, 2131892068, new Object[]{active}, null, 4);
+            charSequenceJ = b.j(this, R.string.instant_invite_guild_members_online, new Object[]{active}, null, 4);
         }
         b.a(textView, charSequenceJ);
     }

@@ -1,13 +1,17 @@
 package b.i.c;
 
+import android.annotation.TargetApi;
 import android.app.Application;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager$NameNotFoundException;
 import android.content.pm.ServiceInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Base64;
 import android.util.Log;
 import androidx.annotation.NonNull;
@@ -28,9 +32,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.Queue;
 import java.util.Set;
@@ -51,11 +55,77 @@ public class c {
     public static final Object a = new Object();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final Executor f1653b = new c$d(null);
+    public static final Executor f1653b = new d(null);
     public final AtomicBoolean h = new AtomicBoolean(false);
     public static final Map<String, c> c = new ArrayMap();
     public final AtomicBoolean i = new AtomicBoolean();
-    public final List<c$b> k = new CopyOnWriteArrayList();
+    public final List<b> k = new CopyOnWriteArrayList();
+
+    /* JADX INFO: renamed from: b.i.c.c$c, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: FirebaseApp.java */
+    @TargetApi(14)
+    public class C0135c implements b.i.a.f.e.h.j.c.a {
+        public static AtomicReference<C0135c> a = new AtomicReference<>();
+
+        @Override // b.i.a.f.e.h.j.c.a
+        public void a(boolean z2) {
+            Object obj = c.a;
+            synchronized (c.a) {
+                for (c cVar : new ArrayList(c.c.values())) {
+                    if (cVar.h.get()) {
+                        Log.d("FirebaseApp", "Notifying background state change listeners.");
+                        Iterator<b> it = cVar.k.iterator();
+                        while (it.hasNext()) {
+                            it.next().a(z2);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: FirebaseApp.java */
+    public interface b {
+        void a(boolean z2);
+    }
+
+    /* JADX INFO: compiled from: FirebaseApp.java */
+    public class d implements Executor {
+        public static final Handler j = new Handler(Looper.getMainLooper());
+
+        public d(a aVar) {
+        }
+
+        @Override // java.util.concurrent.Executor
+        public void execute(@NonNull Runnable runnable) {
+            j.post(runnable);
+        }
+    }
+
+    /* JADX INFO: compiled from: FirebaseApp.java */
+    @TargetApi(24)
+    public class e extends BroadcastReceiver {
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final Context f1654b;
+        public static AtomicReference<e> a = new AtomicReference<>();
+
+        public e(Context context) {
+            this.f1654b = context;
+        }
+
+        @Override // android.content.BroadcastReceiver
+        public void onReceive(Context context, Intent intent) {
+            Object obj = c.a;
+            synchronized (c.a) {
+                Iterator<c> it = c.c.values().iterator();
+                while (it.hasNext()) {
+                    it.next().d();
+                }
+            }
+            this.f1654b.unregisterReceiver(this);
+        }
+    }
 
     /* JADX WARN: Code duplicated, block: B:15:0x006b  */
     /* JADX WARN: Code duplicated, block: B:16:0x0075  */
@@ -104,24 +174,24 @@ public class c {
                         } else {
                             Log.w("ComponentDiscovery", String.format("Class %s is not an instance of %s", str3, "com.google.firebase.components.ComponentRegistrar"));
                         }
-                    } catch (ClassNotFoundException e) {
-                        Log.w("ComponentDiscovery", String.format("Class %s is not an found.", str3), e);
-                    } catch (IllegalAccessException e2) {
-                        Log.w("ComponentDiscovery", String.format("Could not instantiate %s.", str3), e2);
-                    } catch (InstantiationException e3) {
+                    } catch (ClassNotFoundException e2) {
+                        Log.w("ComponentDiscovery", String.format("Class %s is not an found.", str3), e2);
+                    } catch (IllegalAccessException e3) {
                         Log.w("ComponentDiscovery", String.format("Could not instantiate %s.", str3), e3);
-                    } catch (NoSuchMethodException e4) {
-                        Log.w("ComponentDiscovery", String.format("Could not instantiate %s", str3), e4);
-                    } catch (InvocationTargetException e5) {
+                    } catch (InstantiationException e4) {
+                        Log.w("ComponentDiscovery", String.format("Could not instantiate %s.", str3), e4);
+                    } catch (NoSuchMethodException e5) {
                         Log.w("ComponentDiscovery", String.format("Could not instantiate %s", str3), e5);
+                    } catch (InvocationTargetException e6) {
+                        Log.w("ComponentDiscovery", String.format("Could not instantiate %s", str3), e6);
                     }
                 }
                 arrayList.add(new FirebaseCommonRegistrar());
                 this.g = new k(f1653b, arrayList, b.i.c.l.d.c(context, Context.class, new Class[0]), b.i.c.l.d.c(this, c.class, new Class[0]), b.i.c.l.d.c(iVar, i.class, new Class[0]));
-                this.j = new r<>(new b(this, context));
+                this.j = new r<>(new b.i.c.b(this, context));
             }
             Log.w("ComponentDiscovery", "Context has no PackageManager.");
-        } catch (PackageManager$NameNotFoundException unused) {
+        } catch (PackageManager.NameNotFoundException unused) {
             Log.w("ComponentDiscovery", "Application info not found.");
         }
         bundle = null;
@@ -147,7 +217,7 @@ public class c {
         }
         arrayList.add(new FirebaseCommonRegistrar());
         this.g = new k(f1653b, arrayList, b.i.c.l.d.c(context, Context.class, new Class[0]), b.i.c.l.d.c(this, c.class, new Class[0]), b.i.c.l.d.c(iVar, i.class, new Class[0]));
-        this.j = new r<>(new b(this, context));
+        this.j = new r<>(new b.i.c.b(this, context));
     }
 
     public final void a() {
@@ -180,7 +250,7 @@ public class c {
 
     public final void d() {
         Queue<b.i.c.q.a<?>> queue;
-        Set<Map$Entry<b.i.c.q.b<Object>, Executor>> setEmptySet;
+        Set<Map.Entry<b.i.c.q.b<Object>, Executor>> setEmptySet;
         if (!UserManagerCompat.isUserUnlocked(this.d)) {
             StringBuilder sb = new StringBuilder();
             sb.append("Device in Direct Boot Mode: postponing initialization of Firebase APIs for app ");
@@ -188,10 +258,10 @@ public class c {
             sb.append(this.e);
             Log.i("FirebaseApp", sb.toString());
             Context context = this.d;
-            if (c$e.a.get() == null) {
-                c$e c_e = new c$e(context);
-                if (c$e.a.compareAndSet(null, c_e)) {
-                    context.registerReceiver(c_e, new IntentFilter("android.intent.action.USER_UNLOCKED"));
+            if (e.a.get() == null) {
+                e eVar = new e(context);
+                if (e.a.compareAndSet(null, eVar)) {
+                    context.registerReceiver(eVar, new IntentFilter("android.intent.action.USER_UNLOCKED"));
                     return;
                 }
                 return;
@@ -205,9 +275,9 @@ public class c {
         Log.i("FirebaseApp", sb2.toString());
         k kVar = this.g;
         boolean zH = h();
-        for (Map$Entry<b.i.c.l.d<?>, r<?>> map$Entry : kVar.f1665b.entrySet()) {
-            b.i.c.l.d<?> key = map$Entry.getKey();
-            r<?> value = map$Entry.getValue();
+        for (Map.Entry<b.i.c.l.d<?>, r<?>> entry : kVar.f1665b.entrySet()) {
+            b.i.c.l.d<?> key = entry.getKey();
+            r<?> value = entry.getValue();
             int i = key.c;
             if (!(i == 1)) {
                 if (!(i == 2) || !zH) {
@@ -236,8 +306,8 @@ public class c {
                             ConcurrentHashMap<b.i.c.q.b<Object>, Executor> concurrentHashMap = qVar.a.get(null);
                             setEmptySet = concurrentHashMap == null ? Collections.emptySet() : concurrentHashMap.entrySet();
                         }
-                        for (Map$Entry<b.i.c.q.b<Object>, Executor> map$Entry2 : setEmptySet) {
-                            map$Entry2.getValue().execute(new p(map$Entry2, aVar));
+                        for (Map.Entry<b.i.c.q.b<Object>, Executor> entry2 : setEmptySet) {
+                            entry2.getValue().execute(new p(entry2, aVar));
                         }
                     }
                 }
@@ -273,17 +343,17 @@ public class c {
     @NonNull
     public static c f(@NonNull Context context, @NonNull i iVar) {
         c cVar;
-        AtomicReference<c$c> atomicReference = c$c.a;
+        AtomicReference<C0135c> atomicReference = C0135c.a;
         if (context.getApplicationContext() instanceof Application) {
             Application application = (Application) context.getApplicationContext();
-            if (c$c.a.get() == null) {
-                c$c c_c = new c$c();
-                if (c$c.a.compareAndSet(null, c_c)) {
+            if (C0135c.a.get() == null) {
+                C0135c c0135c = new C0135c();
+                if (C0135c.a.compareAndSet(null, c0135c)) {
                     b.i.a.f.e.h.j.c.a(application);
                     b.i.a.f.e.h.j.c cVar2 = b.i.a.f.e.h.j.c.j;
                     Objects.requireNonNull(cVar2);
                     synchronized (cVar2) {
-                        cVar2.m.add(c_c);
+                        cVar2.m.add(c0135c);
                     }
                 }
             }

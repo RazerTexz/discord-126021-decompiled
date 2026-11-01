@@ -1,13 +1,12 @@
 package com.discord.widgets.servers;
 
 import android.view.View;
-import android.view.View$OnClickListener;
 import com.discord.views.CheckedSetting;
 import com.discord.views.RadioManager;
 
 /* JADX INFO: compiled from: WidgetServerSettingsEditIntegration.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetServerSettingsEditIntegration$setupRadioManager$$inlined$forEachIndexed$lambda$1 implements View$OnClickListener {
+public final class WidgetServerSettingsEditIntegration$setupRadioManager$$inlined$forEachIndexed$lambda$1 implements View.OnClickListener {
     public final /* synthetic */ CheckedSetting $checkedSetting;
     public final /* synthetic */ int $index;
     public final /* synthetic */ RadioManager $radioManager$inlined;
@@ -22,7 +21,7 @@ public final class WidgetServerSettingsEditIntegration$setupRadioManager$$inline
         this.$stateKey$inlined = i2;
     }
 
-    @Override // android.view.View$OnClickListener
+    @Override // android.view.View.OnClickListener
     public final void onClick(View view) {
         this.$radioManager$inlined.a(this.$checkedSetting);
         WidgetServerSettingsEditIntegration.access$getState$p(this.this$0).put(this.$stateKey$inlined, Integer.valueOf(this.$index));

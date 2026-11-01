@@ -8,7 +8,15 @@ import java.util.concurrent.atomic.AtomicLong;
 public final class j extends AtomicLong implements ThreadFactory {
     public final String prefix;
     private static final long serialVersionUID = -8841098858898482335L;
-    public static final ThreadFactory j = new j$a();
+    public static final ThreadFactory j = new a();
+
+    /* JADX INFO: compiled from: RxThreadFactory.java */
+    public final class a implements ThreadFactory {
+        @Override // java.util.concurrent.ThreadFactory
+        public Thread newThread(Runnable runnable) {
+            throw new AssertionError("No threads allowed.");
+        }
+    }
 
     public j(String str) {
         this.prefix = str;

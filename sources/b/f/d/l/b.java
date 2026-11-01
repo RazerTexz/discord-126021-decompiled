@@ -2,7 +2,7 @@ package b.f.d.l;
 
 import android.net.Uri;
 import android.provider.ContactsContract;
-import android.provider.MediaStore$Images$Media;
+import android.provider.MediaStore;
 import com.adjust.sdk.Constants;
 
 /* JADX INFO: compiled from: UriUtil.java */
@@ -19,7 +19,7 @@ public class b {
 
     public static boolean b(Uri uri) {
         String string = uri.toString();
-        return string.startsWith(MediaStore$Images$Media.EXTERNAL_CONTENT_URI.toString()) || string.startsWith(MediaStore$Images$Media.INTERNAL_CONTENT_URI.toString());
+        return string.startsWith(MediaStore.Images.Media.EXTERNAL_CONTENT_URI.toString()) || string.startsWith(MediaStore.Images.Media.INTERNAL_CONTENT_URI.toString());
     }
 
     public static boolean c(Uri uri) {

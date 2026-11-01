@@ -4,37 +4,42 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.RecyclerView;
 import b.a.d.g0;
 import b.a.d.i0;
-import b.a.d.m;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppBottomSheet;
 import com.discord.chips_view.ChipsView;
 import com.discord.databinding.GroupInviteFriendsBottomSheetBinding;
 import com.discord.models.user.User;
+import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapter;
-import com.discord.utilities.mg_recycler.MGRecyclerAdapter$Companion;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
-import d0.t.o;
 import d0.z.d.a0;
+import d0.z.d.k;
+import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Objects;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function2;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: GroupInviteFriendsSheet.kt */
@@ -42,7 +47,9 @@ import kotlin.reflect.KProperty;
 public final class GroupInviteFriendsSheet extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(GroupInviteFriendsSheet.class, "binding", "getBinding()Lcom/discord/databinding/GroupInviteFriendsBottomSheetBinding;", 0)};
     public static final float BOTTOM_SHEET_HEIGHT_PERCENT = 0.9f;
-    public static final GroupInviteFriendsSheet$Companion Companion = new GroupInviteFriendsSheet$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     public static final long NO_CHANNEL_ID = -1;
     private GroupInviteFriendsSheetAdapter adapter;
 
@@ -51,6 +58,160 @@ public final class GroupInviteFriendsSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.invite.GroupInviteFriendsSheet$onResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: GroupInviteFriendsSheet.kt */
+    public final class AnonymousClass1 extends o implements Function1<GroupInviteFriendsSheetViewModel.ViewState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GroupInviteFriendsSheetViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GroupInviteFriendsSheetViewModel.ViewState viewState) {
+            m.checkNotNullParameter(viewState, "viewState");
+            GroupInviteFriendsSheet.access$updateView(GroupInviteFriendsSheet.this, viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.invite.GroupInviteFriendsSheet$onViewCreated$1, reason: invalid class name */
+    /* JADX INFO: compiled from: GroupInviteFriendsSheet.kt */
+    public final class AnonymousClass1 extends o implements Function2<User, Boolean, Unit> {
+        public AnonymousClass1() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(User user, Boolean bool) {
+            invoke(user, bool.booleanValue());
+            return Unit.a;
+        }
+
+        public final void invoke(User user, boolean z2) {
+            m.checkNotNullParameter(user, "user");
+            GroupInviteFriendsSheet.access$getViewModel$p(GroupInviteFriendsSheet.this).onChangeUserChecked(user, z2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.invite.GroupInviteFriendsSheet$onResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: GroupInviteFriendsSheet.kt */
+    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<GroupInviteFriendsSheetViewModel.Event, Unit> {
+        public AnonymousClass2(GroupInviteFriendsSheet groupInviteFriendsSheet) {
+            super(1, groupInviteFriendsSheet, GroupInviteFriendsSheet.class, "handleEvent", "handleEvent(Lcom/discord/widgets/channels/invite/GroupInviteFriendsSheetViewModel$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GroupInviteFriendsSheetViewModel.Event event) {
+            invoke2(event);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GroupInviteFriendsSheetViewModel.Event event) {
+            m.checkNotNullParameter(event, "p1");
+            GroupInviteFriendsSheet.access$handleEvent((GroupInviteFriendsSheet) this.receiver, event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.invite.GroupInviteFriendsSheet$onViewCreated$2, reason: invalid class name */
+    /* JADX INFO: compiled from: GroupInviteFriendsSheet.kt */
+    public final class AnonymousClass2 extends o implements Function1<UserDataContract, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(UserDataContract userDataContract) {
+            invoke2(userDataContract);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(UserDataContract userDataContract) {
+            User modelUser;
+            if (userDataContract == null || (modelUser = userDataContract.getModelUser()) == null) {
+                return;
+            }
+            GroupInviteFriendsSheet.access$getViewModel$p(GroupInviteFriendsSheet.this).onChangeUserChecked(modelUser, false);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.invite.GroupInviteFriendsSheet$onViewCreated$3, reason: invalid class name */
+    /* JADX INFO: compiled from: GroupInviteFriendsSheet.kt */
+    public final class AnonymousClass3 extends o implements Function1<Object, Unit> {
+        public AnonymousClass3() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Object obj) {
+            invoke2(obj);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Object obj) {
+            GroupInviteFriendsSheet.access$getViewModel$p(GroupInviteFriendsSheet.this).onSearchTextChanged(String.valueOf(obj));
+        }
+    }
+
+    /* JADX INFO: compiled from: GroupInviteFriendsSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static /* synthetic */ GroupInviteFriendsSheet show$default(Companion companion, FragmentManager fragmentManager, long j, String str, int i, Object obj) {
+            if ((i & 2) != 0) {
+                j = -1;
+            }
+            return companion.show(fragmentManager, j, str);
+        }
+
+        public final GroupInviteFriendsSheet show(FragmentManager fragmentManager, long channelId, String source) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            m.checkNotNullParameter(source, "source");
+            GroupInviteFriendsSheet groupInviteFriendsSheet = new GroupInviteFriendsSheet();
+            Bundle bundleT = a.T("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
+            if (channelId == -1) {
+                AnalyticsTracker.openModal$default("DM Group Create", source, null, 4, null);
+            } else {
+                AnalyticsTracker.openModal$default("DM Group Add", source, null, 4, null);
+            }
+            groupInviteFriendsSheet.setArguments(bundleT);
+            groupInviteFriendsSheet.show(fragmentManager, GroupInviteFriendsSheet.class.getSimpleName());
+            return groupInviteFriendsSheet;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: GroupInviteFriendsSheet.kt */
+    public final class UserDataContract implements ChipsView.a {
+        private final String displayString;
+        private final User modelUser;
+
+        public UserDataContract(User user) {
+            m.checkNotNullParameter(user, "modelUser");
+            this.modelUser = user;
+            this.displayString = user.getUsername();
+        }
+
+        @Override // com.discord.chips_view.ChipsView.a
+        public String getDisplayString() {
+            return this.displayString;
+        }
+
+        public final User getModelUser() {
+            return this.modelUser;
+        }
+    }
 
     public GroupInviteFriendsSheet() {
         super(false, 1, null);
@@ -64,12 +225,12 @@ public final class GroupInviteFriendsSheet extends AppBottomSheet {
         return groupInviteFriendsSheet.getViewModel();
     }
 
-    public static final /* synthetic */ void access$handleEvent(GroupInviteFriendsSheet groupInviteFriendsSheet, GroupInviteFriendsSheetViewModel$Event groupInviteFriendsSheetViewModel$Event) {
-        groupInviteFriendsSheet.handleEvent(groupInviteFriendsSheetViewModel$Event);
+    public static final /* synthetic */ void access$handleEvent(GroupInviteFriendsSheet groupInviteFriendsSheet, GroupInviteFriendsSheetViewModel.Event event) {
+        groupInviteFriendsSheet.handleEvent(event);
     }
 
-    public static final /* synthetic */ void access$updateView(GroupInviteFriendsSheet groupInviteFriendsSheet, GroupInviteFriendsSheetViewModel$ViewState groupInviteFriendsSheetViewModel$ViewState) {
-        groupInviteFriendsSheet.updateView(groupInviteFriendsSheetViewModel$ViewState);
+    public static final /* synthetic */ void access$updateView(GroupInviteFriendsSheet groupInviteFriendsSheet, GroupInviteFriendsSheetViewModel.ViewState viewState) {
+        groupInviteFriendsSheet.updateView(viewState);
     }
 
     private final GroupInviteFriendsBottomSheetBinding getBinding() {
@@ -78,52 +239,52 @@ public final class GroupInviteFriendsSheet extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
-        return R$layout.group_invite_friends_bottom_sheet;
+        return R.layout.group_invite_friends_bottom_sheet;
     }
 
     private final GroupInviteFriendsSheetViewModel getViewModel() {
         return (GroupInviteFriendsSheetViewModel) this.viewModel.getValue();
     }
 
-    private final void handleEvent(GroupInviteFriendsSheetViewModel$Event event) {
-        if (event instanceof GroupInviteFriendsSheetViewModel$Event$ChannelFull) {
-            m.i(this, 2131889809, 0, 4);
+    private final void handleEvent(GroupInviteFriendsSheetViewModel.Event event) {
+        if (event instanceof GroupInviteFriendsSheetViewModel.Event.ChannelFull) {
+            b.a.d.m.i(this, R.string.group_dm_invite_full_sub, 0, 4);
         }
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), GroupInviteFriendsSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new GroupInviteFriendsSheet$onResume$1(this), 62, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), GroupInviteFriendsSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new GroupInviteFriendsSheet$onResume$2(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), GroupInviteFriendsSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), GroupInviteFriendsSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(this), 62, (Object) null);
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        d0.z.d.m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(view, "view");
         super.onViewCreated(view, savedInstanceState);
-        MGRecyclerAdapter$Companion mGRecyclerAdapter$Companion = MGRecyclerAdapter.Companion;
+        MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
         RecyclerView recyclerView = getBinding().c;
-        d0.z.d.m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
-        this.adapter = (GroupInviteFriendsSheetAdapter) mGRecyclerAdapter$Companion.configure(new GroupInviteFriendsSheetAdapter(recyclerView, new GroupInviteFriendsSheet$onViewCreated$1(this)));
+        m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
+        this.adapter = (GroupInviteFriendsSheetAdapter) companion.configure(new GroupInviteFriendsSheetAdapter(recyclerView, new AnonymousClass1()));
         ChipsView chipsView = getBinding().f2114b;
         Objects.requireNonNull(chipsView, "null cannot be cast to non-null type com.discord.chips_view.ChipsView<com.discord.primitives.UserId /* = kotlin.Long */, com.discord.widgets.channels.invite.GroupInviteFriendsSheet.UserDataContract>");
-        chipsView.setChipDeletedListener(new GroupInviteFriendsSheet$onViewCreated$2(this));
-        getBinding().f2114b.setTextChangedListener(new GroupInviteFriendsSheet$onViewCreated$3(this));
+        chipsView.setChipDeletedListener(new AnonymousClass2());
+        getBinding().f2114b.setTextChangedListener(new AnonymousClass3());
         setBottomSheetCollapsedStateDisabled();
         resizeSheetHeight();
     }
 
     private final void resizeSheetHeight() {
         ConstraintLayout constraintLayout = getBinding().d;
-        d0.z.d.m.checkNotNullExpressionValue(constraintLayout, "binding.root");
+        m.checkNotNullExpressionValue(constraintLayout, "binding.root");
         if (!ViewCompat.isLaidOut(constraintLayout) || constraintLayout.isLayoutRequested()) {
             constraintLayout.addOnLayoutChangeListener(new GroupInviteFriendsSheet$resizeSheetHeight$$inlined$doOnLayout$1(this));
         } else {
-            ViewGroup$LayoutParams layoutParams = constraintLayout.getLayoutParams();
+            ViewGroup.LayoutParams layoutParams = constraintLayout.getLayoutParams();
             Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.LayoutParams");
             Resources resources = getResources();
-            d0.z.d.m.checkNotNullExpressionValue(resources, "resources");
+            m.checkNotNullExpressionValue(resources, "resources");
             layoutParams.height = (int) (resources.getDisplayMetrics().heightPixels * 0.9f);
             constraintLayout.setLayoutParams(layoutParams);
         }
@@ -136,32 +297,32 @@ public final class GroupInviteFriendsSheet extends AppBottomSheet {
         }
     }
 
-    private final void updateView(GroupInviteFriendsSheetViewModel$ViewState viewState) {
+    private final void updateView(GroupInviteFriendsSheetViewModel.ViewState viewState) {
         GroupInviteFriendsSheetAdapter groupInviteFriendsSheetAdapter = this.adapter;
         if (groupInviteFriendsSheetAdapter == null) {
-            d0.z.d.m.throwUninitializedPropertyAccessException("adapter");
+            m.throwUninitializedPropertyAccessException("adapter");
         }
         int itemCount = groupInviteFriendsSheetAdapter.getItemCount();
         GroupInviteFriendsSheetAdapter groupInviteFriendsSheetAdapter2 = this.adapter;
         if (groupInviteFriendsSheetAdapter2 == null) {
-            d0.z.d.m.throwUninitializedPropertyAccessException("adapter");
+            m.throwUninitializedPropertyAccessException("adapter");
         }
         groupInviteFriendsSheetAdapter2.setData(viewState.getFriendItems());
         scrollToTopIfDeletingChar(itemCount, viewState.getFriendItems().size());
         AppCompatImageView appCompatImageView = getBinding().e;
-        d0.z.d.m.checkNotNullExpressionValue(appCompatImageView, "binding.searchIcon");
+        m.checkNotNullExpressionValue(appCompatImageView, "binding.searchIcon");
         appCompatImageView.setVisibility(viewState.getShowSearchIcon() ? 0 : 8);
         for (User user : viewState.getCheckedUsers()) {
             ChipsView chipsView = getBinding().f2114b;
             String username = user.getUsername();
-            String string = b.k(this, 2131894737, new Object[]{user.getUsername()}, null, 4).toString();
+            String string = b.k(this, R.string.remove, new Object[]{user.getUsername()}, null, 4).toString();
             Long lValueOf = Long.valueOf(user.getId());
-            d0.z.d.m.checkNotNullExpressionValue(user, "user");
-            chipsView.b(username, string, lValueOf, new GroupInviteFriendsSheet$UserDataContract(user));
+            m.checkNotNullExpressionValue(user, "user");
+            chipsView.b(username, string, lValueOf, new UserDataContract(user));
         }
         ChipsView chipsView2 = getBinding().f2114b;
         HashSet<User> checkedUsers = viewState.getCheckedUsers();
-        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(checkedUsers, 10));
+        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(checkedUsers, 10));
         Iterator<T> it = checkedUsers.iterator();
         while (it.hasNext()) {
             arrayList.add(Long.valueOf(((User) it.next()).getId()));

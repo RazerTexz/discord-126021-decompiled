@@ -3,14 +3,15 @@ package com.discord.stores;
 import android.content.Context;
 import com.discord.models.domain.ModelBan;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import rx.Observable;
@@ -22,6 +23,87 @@ public final class StoreBans extends StoreV2 {
     private HashMap<Long, HashMap<Long, ModelBan>> bannedUsersSnapshot;
     private final Dispatcher dispatcher;
     private final ObservationDeck observationDeck;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreBans$observeBans$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreBans.kt */
+    public final class AnonymousClass1 extends o implements Function1<List<? extends ModelBan>, Unit> {
+        public final /* synthetic */ long $guildId;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreBans$observeBans$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreBans.kt */
+        public final class C02141 extends o implements Function0<Unit> {
+            public final /* synthetic */ List $bans;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C02141(List list) {
+                super(0);
+                this.$bans = list;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                HashMap mapAccess$getBannedUsers$p = StoreBans.access$getBannedUsers$p(StoreBans.this);
+                Long lValueOf = Long.valueOf(AnonymousClass1.this.$guildId);
+                Object map = mapAccess$getBannedUsers$p.get(lValueOf);
+                if (map == null) {
+                    map = new HashMap();
+                    mapAccess$getBannedUsers$p.put(lValueOf, map);
+                }
+                HashMap map2 = (HashMap) map;
+                for (ModelBan modelBan : this.$bans) {
+                    map2.put(Long.valueOf(modelBan.getUser().getId()), modelBan);
+                }
+                StoreBans.this.markChanged();
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(1);
+            this.$guildId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ModelBan> list) {
+            invoke2(list);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<? extends ModelBan> list) {
+            m.checkNotNullParameter(list, "bans");
+            StoreBans.access$getDispatcher$p(StoreBans.this).schedule(new C02141(list));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreBans$observeBans$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreBans.kt */
+    public final class AnonymousClass2 extends o implements Function0<Map<Long, ? extends ModelBan>> {
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(long j) {
+            super(0);
+            this.$guildId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends ModelBan> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends ModelBan> invoke2() {
+            return (Map) StoreBans.access$getBannedUsersSnapshot$p(StoreBans.this).get(Long.valueOf(this.$guildId));
+        }
+    }
 
     public StoreBans(Dispatcher dispatcher, ObservationDeck observationDeck) {
         m.checkNotNullParameter(dispatcher, "dispatcher");
@@ -73,8 +155,8 @@ public final class StoreBans extends StoreV2 {
     }
 
     public final Observable<Map<Long, ModelBan>> observeBans(long guildId) {
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().getBans(guildId), false, 1, null), StoreBans.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreBans$observeBans$1(this, guildId), 62, (Object) null);
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreBans$observeBans$2(this, guildId), 14, null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getBans(guildId), false, 1, null), StoreBans.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(guildId), 62, (Object) null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass2(guildId), 14, null);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -84,8 +166,8 @@ public final class StoreBans extends StoreV2 {
         HashMap<Long, HashMap<Long, ModelBan>> map = new HashMap<>(this.bannedUsers);
         Iterator<T> it = this.bannedUsers.entrySet().iterator();
         while (it.hasNext()) {
-            Map$Entry map$Entry = (Map$Entry) it.next();
-            map.put(map$Entry.getKey(), new HashMap((HashMap) map$Entry.getValue()));
+            Map.Entry entry = (Map.Entry) it.next();
+            map.put(entry.getKey(), new HashMap((HashMap) entry.getValue()));
         }
         this.bannedUsersSnapshot = map;
     }

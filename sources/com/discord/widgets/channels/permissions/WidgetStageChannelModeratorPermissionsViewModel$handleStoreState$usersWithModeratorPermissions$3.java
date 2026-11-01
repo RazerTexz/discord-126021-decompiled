@@ -8,12 +8,12 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: WidgetStageChannelModeratorPermissionsViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetStageChannelModeratorPermissionsViewModel$handleStoreState$usersWithModeratorPermissions$3 extends o implements Function1<PermissionOverwrite, Boolean> {
-    public final /* synthetic */ WidgetStageChannelModeratorPermissionsViewModel$StoreState $storeState;
+    public final /* synthetic */ WidgetStageChannelModeratorPermissionsViewModel.StoreState $storeState;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetStageChannelModeratorPermissionsViewModel$handleStoreState$usersWithModeratorPermissions$3(WidgetStageChannelModeratorPermissionsViewModel$StoreState widgetStageChannelModeratorPermissionsViewModel$StoreState) {
+    public WidgetStageChannelModeratorPermissionsViewModel$handleStoreState$usersWithModeratorPermissions$3(WidgetStageChannelModeratorPermissionsViewModel.StoreState storeState) {
         super(1);
-        this.$storeState = widgetStageChannelModeratorPermissionsViewModel$StoreState;
+        this.$storeState = storeState;
     }
 
     @Override // kotlin.jvm.functions.Function1
@@ -24,6 +24,6 @@ public final class WidgetStageChannelModeratorPermissionsViewModel$handleStoreSt
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(PermissionOverwrite permissionOverwrite) {
         m.checkNotNullParameter(permissionOverwrite, "it");
-        return !((WidgetStageChannelModeratorPermissionsViewModel$StoreState$Valid) this.$storeState).getGuild().isOwner(permissionOverwrite.e());
+        return !((WidgetStageChannelModeratorPermissionsViewModel.StoreState.Valid) this.$storeState).getGuild().isOwner(permissionOverwrite.e());
     }
 }

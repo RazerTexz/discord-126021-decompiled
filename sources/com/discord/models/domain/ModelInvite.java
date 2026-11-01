@@ -32,6 +32,110 @@ public class ModelInvite implements Serializable {
     private boolean temporary;
     private int uses;
 
+    public enum InviteTargetTypes {
+        STREAM(1, "Stream"),
+        EMBEDDED_APPLICATION(2, "Application"),
+        GDM(-1, "GDM Invite"),
+        SERVER(-1, "Server Invite");
+
+        private final int code;
+        private final String name;
+
+        InviteTargetTypes(int i, String str) {
+            this.code = i;
+            this.name = str;
+        }
+
+        public static /* synthetic */ int access$000(InviteTargetTypes inviteTargetTypes) {
+            return inviteTargetTypes.code;
+        }
+
+        public static /* synthetic */ String access$100(InviteTargetTypes inviteTargetTypes) {
+            return inviteTargetTypes.name;
+        }
+    }
+
+    public class Settings {
+        public static final int NEVER = 0;
+        public static final int ONE_DAY = 86400;
+        public static final int ONE_HOUR = 3600;
+        private final int maxAge;
+        private final int maxUses;
+        private final boolean temporary;
+        public static final int SEVEN_DAYS = 604800;
+        public static final int TWELVE_HOURS = 43200;
+        public static final int SIX_HOURS = 21600;
+        public static final int HALF_HOUR = 1800;
+        public static final int[] EXPIRES_AFTER_ARRAY = {0, SEVEN_DAYS, 86400, TWELVE_HOURS, SIX_HOURS, 3600, HALF_HOUR};
+        public static final int[] MAX_USES_ARRAY = {0, 1, 10, 100};
+
+        public Settings(int i, int i2, boolean z2) {
+            this.maxAge = i;
+            this.maxUses = i2;
+            this.temporary = z2;
+        }
+
+        public boolean canEqual(Object obj) {
+            return obj instanceof Settings;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof Settings)) {
+                return false;
+            }
+            Settings settings = (Settings) obj;
+            return settings.canEqual(this) && getMaxAge() == settings.getMaxAge() && getMaxUses() == settings.getMaxUses() && isTemporary() == settings.isTemporary();
+        }
+
+        public int getMaxAge() {
+            return this.maxAge;
+        }
+
+        public int getMaxUses() {
+            return this.maxUses;
+        }
+
+        public int hashCode() {
+            return ((getMaxUses() + ((getMaxAge() + 59) * 59)) * 59) + (isTemporary() ? 79 : 97);
+        }
+
+        public boolean isTemporary() {
+            return this.temporary;
+        }
+
+        public Settings mergeMaxAge(int i) {
+            return new Settings(i, this.maxUses, this.temporary);
+        }
+
+        public Settings mergeMaxUses(int i) {
+            return new Settings(this.maxAge, i, this.temporary);
+        }
+
+        public Settings mergeTemporary(boolean z2) {
+            return new Settings(this.maxAge, this.maxUses, z2);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("ModelInvite.Settings(maxAge=");
+            sbU.append(getMaxAge());
+            sbU.append(", maxUses=");
+            sbU.append(getMaxUses());
+            sbU.append(", temporary=");
+            sbU.append(isTemporary());
+            sbU.append(")");
+            return sbU.toString();
+        }
+
+        public Settings(int i) {
+            this.maxAge = i;
+            this.maxUses = 0;
+            this.temporary = false;
+        }
+    }
+
     private ModelInvite(Channel channel, String str, Guild guild) {
         this.channel = channel;
         this.code = str;
@@ -139,20 +243,20 @@ public class ModelInvite implements Serializable {
             return null;
         }
         int i = this.targetType;
-        ModelInvite$InviteTargetTypes modelInvite$InviteTargetTypes = ModelInvite$InviteTargetTypes.STREAM;
-        if (i == ModelInvite$InviteTargetTypes.access$000(modelInvite$InviteTargetTypes)) {
-            return ModelInvite$InviteTargetTypes.access$100(modelInvite$InviteTargetTypes);
+        InviteTargetTypes inviteTargetTypes = InviteTargetTypes.STREAM;
+        if (i == InviteTargetTypes.access$000(inviteTargetTypes)) {
+            return InviteTargetTypes.access$100(inviteTargetTypes);
         }
         int i2 = this.targetType;
-        ModelInvite$InviteTargetTypes modelInvite$InviteTargetTypes2 = ModelInvite$InviteTargetTypes.EMBEDDED_APPLICATION;
-        if (i2 == ModelInvite$InviteTargetTypes.access$000(modelInvite$InviteTargetTypes2)) {
-            return ModelInvite$InviteTargetTypes.access$100(modelInvite$InviteTargetTypes2);
+        InviteTargetTypes inviteTargetTypes2 = InviteTargetTypes.EMBEDDED_APPLICATION;
+        if (i2 == InviteTargetTypes.access$000(inviteTargetTypes2)) {
+            return InviteTargetTypes.access$100(inviteTargetTypes2);
         }
         if (isMultiUserDm(this.channel)) {
-            return ModelInvite$InviteTargetTypes.access$100(ModelInvite$InviteTargetTypes.GDM);
+            return InviteTargetTypes.access$100(InviteTargetTypes.GDM);
         }
         if (isPublic(this.channel)) {
-            return ModelInvite$InviteTargetTypes.access$100(ModelInvite$InviteTargetTypes.SERVER);
+            return InviteTargetTypes.access$100(InviteTargetTypes.SERVER);
         }
         return null;
     }

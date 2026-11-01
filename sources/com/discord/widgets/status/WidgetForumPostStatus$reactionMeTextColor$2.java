@@ -1,6 +1,7 @@
 package com.discord.widgets.status;
 
 import android.content.res.ColorStateList;
+import com.discord.R;
 import com.discord.utilities.color.ColorCompat;
 import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
@@ -24,6 +25,6 @@ public final class WidgetForumPostStatus$reactionMeTextColor$2 extends o impleme
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final ColorStateList invoke() {
-        return ColorStateList.valueOf(ColorCompat.getThemedColor(this.this$0.getContext(), 2130968989));
+        return ColorStateList.valueOf(ColorCompat.getThemedColor(this.this$0.getContext(), R.attr.colorHeaderPrimary));
     }
 }

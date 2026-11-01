@@ -6,6 +6,20 @@ public class NativeLibrary {
     private static boolean libraryLoaded;
     private static Object lock = new Object();
 
+    public class DefaultLoader implements NativeLibraryLoader {
+        @Override // org.webrtc.NativeLibraryLoader
+        public boolean load(String str) {
+            Logging.d(NativeLibrary.access$000(), "Loading library: " + str);
+            try {
+                System.loadLibrary(str);
+                return true;
+            } catch (UnsatisfiedLinkError e) {
+                Logging.e(NativeLibrary.access$000(), "Failed to load native library: " + str, e);
+                return false;
+            }
+        }
+    }
+
     public static /* synthetic */ String access$000() {
         return TAG;
     }

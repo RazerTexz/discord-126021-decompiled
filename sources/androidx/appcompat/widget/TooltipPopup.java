@@ -9,71 +9,64 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View$MeasureSpec;
 import android.view.ViewGroup;
-import android.view.ViewGroup$LayoutParams;
 import android.view.WindowManager;
-import android.view.WindowManager$LayoutParams;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
-import androidx.appcompat.R$dimen;
-import androidx.appcompat.R$id;
-import androidx.appcompat.R$layout;
-import androidx.appcompat.R$style;
+import androidx.appcompat.R;
 import androidx.core.view.PointerIconCompat;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class TooltipPopup {
     private static final String TAG = "TooltipPopup";
     private final View mContentView;
     private final Context mContext;
-    private final WindowManager$LayoutParams mLayoutParams;
+    private final WindowManager.LayoutParams mLayoutParams;
     private final TextView mMessageView;
     private final int[] mTmpAnchorPos;
     private final int[] mTmpAppPos;
     private final Rect mTmpDisplayFrame;
 
     public TooltipPopup(@NonNull Context context) {
-        WindowManager$LayoutParams windowManager$LayoutParams = new WindowManager$LayoutParams();
-        this.mLayoutParams = windowManager$LayoutParams;
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        this.mLayoutParams = layoutParams;
         this.mTmpDisplayFrame = new Rect();
         this.mTmpAnchorPos = new int[2];
         this.mTmpAppPos = new int[2];
         this.mContext = context;
-        View viewInflate = LayoutInflater.from(context).inflate(R$layout.abc_tooltip, (ViewGroup) null);
+        View viewInflate = LayoutInflater.from(context).inflate(R.layout.abc_tooltip, (ViewGroup) null);
         this.mContentView = viewInflate;
-        this.mMessageView = (TextView) viewInflate.findViewById(R$id.message);
-        windowManager$LayoutParams.setTitle(getClass().getSimpleName());
-        windowManager$LayoutParams.packageName = context.getPackageName();
-        windowManager$LayoutParams.type = PointerIconCompat.TYPE_HAND;
-        windowManager$LayoutParams.width = -2;
-        windowManager$LayoutParams.height = -2;
-        windowManager$LayoutParams.format = -3;
-        windowManager$LayoutParams.windowAnimations = R$style.Animation_AppCompat_Tooltip;
-        windowManager$LayoutParams.flags = 24;
+        this.mMessageView = (TextView) viewInflate.findViewById(R.id.message);
+        layoutParams.setTitle(getClass().getSimpleName());
+        layoutParams.packageName = context.getPackageName();
+        layoutParams.type = PointerIconCompat.TYPE_HAND;
+        layoutParams.width = -2;
+        layoutParams.height = -2;
+        layoutParams.format = -3;
+        layoutParams.windowAnimations = R.style.Animation_AppCompat_Tooltip;
+        layoutParams.flags = 24;
     }
 
-    private void computePosition(View view, int i, int i2, boolean z2, WindowManager$LayoutParams windowManager$LayoutParams) {
+    private void computePosition(View view, int i, int i2, boolean z2, WindowManager.LayoutParams layoutParams) {
         int height;
         int i3;
-        windowManager$LayoutParams.token = view.getApplicationWindowToken();
-        int dimensionPixelOffset = this.mContext.getResources().getDimensionPixelOffset(R$dimen.tooltip_precise_anchor_threshold);
+        layoutParams.token = view.getApplicationWindowToken();
+        int dimensionPixelOffset = this.mContext.getResources().getDimensionPixelOffset(R.dimen.tooltip_precise_anchor_threshold);
         if (view.getWidth() < dimensionPixelOffset) {
             i = view.getWidth() / 2;
         }
         if (view.getHeight() >= dimensionPixelOffset) {
-            int dimensionPixelOffset2 = this.mContext.getResources().getDimensionPixelOffset(R$dimen.tooltip_precise_anchor_extra_offset);
+            int dimensionPixelOffset2 = this.mContext.getResources().getDimensionPixelOffset(R.dimen.tooltip_precise_anchor_extra_offset);
             height = i2 + dimensionPixelOffset2;
             i3 = i2 - dimensionPixelOffset2;
         } else {
             height = view.getHeight();
             i3 = 0;
         }
-        windowManager$LayoutParams.gravity = 49;
-        int dimensionPixelOffset3 = this.mContext.getResources().getDimensionPixelOffset(z2 ? R$dimen.tooltip_y_offset_touch : R$dimen.tooltip_y_offset_non_touch);
+        layoutParams.gravity = 49;
+        int dimensionPixelOffset3 = this.mContext.getResources().getDimensionPixelOffset(z2 ? R.dimen.tooltip_y_offset_touch : R.dimen.tooltip_y_offset_non_touch);
         View appRootView = getAppRootView(view);
         if (appRootView == null) {
             Log.e(TAG, "Cannot find app view");
@@ -95,8 +88,8 @@ public class TooltipPopup {
         int[] iArr2 = this.mTmpAppPos;
         iArr[0] = i4 - iArr2[0];
         iArr[1] = iArr[1] - iArr2[1];
-        windowManager$LayoutParams.x = (iArr[0] + i) - (appRootView.getWidth() / 2);
-        int iMakeMeasureSpec = View$MeasureSpec.makeMeasureSpec(0, 0);
+        layoutParams.x = (iArr[0] + i) - (appRootView.getWidth() / 2);
+        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
         this.mContentView.measure(iMakeMeasureSpec, iMakeMeasureSpec);
         int measuredHeight = this.mContentView.getMeasuredHeight();
         int[] iArr3 = this.mTmpAnchorPos;
@@ -104,24 +97,24 @@ public class TooltipPopup {
         int i6 = iArr3[1] + height + dimensionPixelOffset3;
         if (z2) {
             if (i5 >= 0) {
-                windowManager$LayoutParams.y = i5;
+                layoutParams.y = i5;
                 return;
             } else {
-                windowManager$LayoutParams.y = i6;
+                layoutParams.y = i6;
                 return;
             }
         }
         if (measuredHeight + i6 <= this.mTmpDisplayFrame.height()) {
-            windowManager$LayoutParams.y = i6;
+            layoutParams.y = i6;
         } else {
-            windowManager$LayoutParams.y = i5;
+            layoutParams.y = i5;
         }
     }
 
     private static View getAppRootView(View view) {
         View rootView = view.getRootView();
-        ViewGroup$LayoutParams layoutParams = rootView.getLayoutParams();
-        if ((layoutParams instanceof WindowManager$LayoutParams) && ((WindowManager$LayoutParams) layoutParams).type == 2) {
+        ViewGroup.LayoutParams layoutParams = rootView.getLayoutParams();
+        if ((layoutParams instanceof WindowManager.LayoutParams) && ((WindowManager.LayoutParams) layoutParams).type == 2) {
             return rootView;
         }
         for (Context context = view.getContext(); context instanceof ContextWrapper; context = ((ContextWrapper) context).getBaseContext()) {

@@ -4,19 +4,17 @@ import android.view.View;
 import android.widget.LinearLayout;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.botuikit.SelectItem;
 import com.discord.databinding.WidgetChatListAdapterItemBotComponentRowBinding;
 import com.discord.models.botuikit.MessageComponent;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.message.Message;
-import com.discord.restapi.RestAPIParams$ComponentInteractionData$ButtonComponentInteractionData;
+import com.discord.restapi.RestAPIParams;
 import com.discord.widgets.botuikit.ComponentProvider;
 import com.discord.widgets.botuikit.views.ComponentActionListener;
 import com.discord.widgets.botuikit.views.select.ComponentContext;
 import com.discord.widgets.botuikit.views.select.SelectComponentBottomSheet;
-import com.discord.widgets.botuikit.views.select.SelectComponentBottomSheet$Companion;
 import com.discord.widgets.chat.list.entries.BotUiComponentEntry;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
 import d0.t.n;
@@ -34,17 +32,17 @@ public final class WidgetChatListAdapterItemBotComponentRow extends WidgetChatLi
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemBotComponentRow(WidgetChatListAdapter widgetChatListAdapter) {
-        super(R$layout.widget_chat_list_adapter_item_bot_component_row, widgetChatListAdapter);
+        super(R.layout.widget_chat_list_adapter_item_bot_component_row, widgetChatListAdapter);
         m.checkNotNullParameter(widgetChatListAdapter, "adapter");
         View view = this.itemView;
-        int i = R$id.chat_list_adapter_item_component_root;
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.chat_list_adapter_item_component_root);
+        int i = R.id.chat_list_adapter_item_component_root;
+        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.chat_list_adapter_item_component_root);
         if (linearLayout != null) {
-            i = R$id.chat_list_adapter_item_gutter_bg;
-            View viewFindViewById = view.findViewById(R$id.chat_list_adapter_item_gutter_bg);
+            i = R.id.chat_list_adapter_item_gutter_bg;
+            View viewFindViewById = view.findViewById(R.id.chat_list_adapter_item_gutter_bg);
             if (viewFindViewById != null) {
-                i = R$id.chat_list_adapter_item_highlighted_bg;
-                View viewFindViewById2 = view.findViewById(R$id.chat_list_adapter_item_highlighted_bg);
+                i = R.id.chat_list_adapter_item_highlighted_bg;
+                View viewFindViewById2 = view.findViewById(R.id.chat_list_adapter_item_highlighted_bg);
                 if (viewFindViewById2 != null) {
                     WidgetChatListAdapterItemBotComponentRowBinding widgetChatListAdapterItemBotComponentRowBinding = new WidgetChatListAdapterItemBotComponentRowBinding((ConstraintLayout) view, linearLayout, viewFindViewById, viewFindViewById2);
                     m.checkNotNullExpressionValue(widgetChatListAdapterItemBotComponentRowBinding, "WidgetChatListAdapterIte…RowBinding.bind(itemView)");
@@ -82,7 +80,7 @@ public final class WidgetChatListAdapterItemBotComponentRow extends WidgetChatLi
         if (botUiComponentEntry3 == null) {
             m.throwUninitializedPropertyAccessException("entry");
         }
-        widgetChatListAdapter.onBotUiComponentClicked(applicationId, id2, botUiComponentEntry3.getMessage().getFlags(), componentIndex, new RestAPIParams$ComponentInteractionData$ButtonComponentInteractionData(null, customId, 1, null));
+        widgetChatListAdapter.onBotUiComponentClicked(applicationId, id2, botUiComponentEntry3.getMessage().getFlags(), componentIndex, new RestAPIParams.ComponentInteractionData.ButtonComponentInteractionData(null, customId, 1, null));
     }
 
     @Override // com.discord.widgets.chat.list.adapter.WidgetChatListItem, com.discord.utilities.mg_recycler.MGRecyclerViewHolder
@@ -95,7 +93,7 @@ public final class WidgetChatListAdapterItemBotComponentRow extends WidgetChatLi
         m.checkNotNullParameter(customId, "customId");
         m.checkNotNullParameter(options, "options");
         m.checkNotNullParameter(selectedItems, "selectedItems");
-        SelectComponentBottomSheet$Companion selectComponentBottomSheet$Companion = SelectComponentBottomSheet.Companion;
+        SelectComponentBottomSheet.Companion companion = SelectComponentBottomSheet.INSTANCE;
         FragmentManager fragmentManager = ((WidgetChatListAdapter) this.adapter).getFragmentManager();
         BotUiComponentEntry botUiComponentEntry = this.entry;
         if (botUiComponentEntry == null) {
@@ -121,7 +119,7 @@ public final class WidgetChatListAdapterItemBotComponentRow extends WidgetChatLi
         if (botUiComponentEntry5 == null) {
             m.throwUninitializedPropertyAccessException("entry");
         }
-        selectComponentBottomSheet$Companion.show(fragmentManager, new ComponentContext(guildId, id2, channelId, flags, botUiComponentEntry5.getApplicationId()), componentIndex, customId, placeholder, minOptionsToSelect, maxOptionsToSelect, options, selectedItems, emojiAnimationsEnabled);
+        companion.show(fragmentManager, new ComponentContext(guildId, id2, channelId, flags, botUiComponentEntry5.getApplicationId()), componentIndex, customId, placeholder, minOptionsToSelect, maxOptionsToSelect, options, selectedItems, emojiAnimationsEnabled);
     }
 
     public final void setEntry(BotUiComponentEntry botUiComponentEntry) {

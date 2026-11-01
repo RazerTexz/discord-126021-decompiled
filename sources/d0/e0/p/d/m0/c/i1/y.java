@@ -1,11 +1,13 @@
 package d0.e0.p.d.m0.c.i1;
 
-import d0.e0.p.d.m0.m.f$m;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import kotlin.Lazy;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.jvm.internal.impl.descriptors.InvalidModuleException;
@@ -24,6 +26,64 @@ public final class y extends k implements d0.e0.p.d.m0.c.c0 {
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public final Lazy f3278s;
 
+    /* JADX INFO: compiled from: ModuleDescriptorImpl.kt */
+    public final class a extends d0.z.d.o implements Function0<j> {
+        public a() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ j invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final j invoke() {
+            w wVarAccess$getDependencies$p = y.access$getDependencies$p(y.this);
+            y yVar = y.this;
+            if (wVarAccess$getDependencies$p == null) {
+                StringBuilder sbU = b.d.b.a.a.U("Dependencies of module ");
+                sbU.append(y.access$getId(yVar));
+                sbU.append(" were not set before querying module content");
+                throw new AssertionError(sbU.toString());
+            }
+            List<y> allDependencies = wVarAccess$getDependencies$p.getAllDependencies();
+            allDependencies.contains(y.this);
+            Iterator<T> it = allDependencies.iterator();
+            while (it.hasNext()) {
+                y.access$isInitialized((y) it.next());
+            }
+            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(allDependencies, 10));
+            Iterator<T> it2 = allDependencies.iterator();
+            while (it2.hasNext()) {
+                d0.e0.p.d.m0.c.f0 f0VarAccess$getPackageFragmentProviderForModuleContent$p = y.access$getPackageFragmentProviderForModuleContent$p((y) it2.next());
+                d0.z.d.m.checkNotNull(f0VarAccess$getPackageFragmentProviderForModuleContent$p);
+                arrayList.add(f0VarAccess$getPackageFragmentProviderForModuleContent$p);
+            }
+            return new j(arrayList);
+        }
+    }
+
+    /* JADX INFO: compiled from: ModuleDescriptorImpl.kt */
+    public final class b extends d0.z.d.o implements Function1<d0.e0.p.d.m0.g.b, d0.e0.p.d.m0.c.j0> {
+        public b() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.j0 invoke(d0.e0.p.d.m0.g.b bVar) {
+            return invoke2(bVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final d0.e0.p.d.m0.c.j0 invoke2(d0.e0.p.d.m0.g.b bVar) {
+            d0.z.d.m.checkNotNullParameter(bVar, "fqName");
+            y yVar = y.this;
+            return new s(yVar, bVar, y.access$getStorageManager$p(yVar));
+        }
+    }
+
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
     public y(d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.m.o oVar, d0.e0.p.d.m0.b.h hVar, d0.e0.p.d.m0.h.a aVar) {
         this(eVar, oVar, hVar, aVar, null, null, 48, null);
@@ -38,7 +98,7 @@ public final class y extends k implements d0.e0.p.d.m0.c.c0 {
 
     @Override // d0.e0.p.d.m0.c.m
     public <R, D> R accept(d0.e0.p.d.m0.c.o<R, D> oVar, D d) {
-        return (R) d0.e0.p.d.m0.c.c0$a.accept(this, oVar, d);
+        return (R) d0.e0.p.d.m0.c.c0.a.accept(this, oVar, d);
     }
 
     public static final /* synthetic */ w access$getDependencies$p(y yVar) {
@@ -86,7 +146,7 @@ public final class y extends k implements d0.e0.p.d.m0.c.c0 {
 
     @Override // d0.e0.p.d.m0.c.m
     public d0.e0.p.d.m0.c.m getContainingDeclaration() {
-        return d0.e0.p.d.m0.c.c0$a.getContainingDeclaration(this);
+        return d0.e0.p.d.m0.c.c0.a.getContainingDeclaration(this);
     }
 
     @Override // d0.e0.p.d.m0.c.c0
@@ -105,7 +165,7 @@ public final class y extends k implements d0.e0.p.d.m0.c.c0 {
     public d0.e0.p.d.m0.c.j0 getPackage(d0.e0.p.d.m0.g.b bVar) {
         d0.z.d.m.checkNotNullParameter(bVar, "fqName");
         assertValid();
-        return (d0.e0.p.d.m0.c.j0) ((f$m) this.r).invoke(bVar);
+        return (d0.e0.p.d.m0.c.j0) ((d0.e0.p.d.m0.m.f.m) this.r).invoke(bVar);
     }
 
     public final d0.e0.p.d.m0.c.f0 getPackageFragmentProvider() {
@@ -161,8 +221,8 @@ public final class y extends k implements d0.e0.p.d.m0.c.c0 {
             this.n = mutableMap;
             mutableMap.put(d0.e0.p.d.m0.n.l1.h.getREFINER_CAPABILITY(), new d0.e0.p.d.m0.n.l1.o(null));
             this.q = true;
-            this.r = oVar.createMemoizedFunction(new y$b(this));
-            this.f3278s = d0.g.lazy(new y$a(this));
+            this.r = oVar.createMemoizedFunction(new b());
+            this.f3278s = d0.g.lazy(new a());
             return;
         }
         throw new IllegalArgumentException(d0.z.d.m.stringPlus("Module name must be special: ", eVar));

@@ -27,9 +27,9 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel$createRe
     public final void invoke2(Error error) {
         m.checkNotNullParameter(error, "it");
         ServerSettingsCreatorMonetizationOnboardingViewModel serverSettingsCreatorMonetizationOnboardingViewModel = this.this$0;
-        ServerSettingsCreatorMonetizationOnboardingViewModel$ViewState serverSettingsCreatorMonetizationOnboardingViewModel$ViewStateAccess$requireViewState = ServerSettingsCreatorMonetizationOnboardingViewModel.access$requireViewState(serverSettingsCreatorMonetizationOnboardingViewModel);
-        if (serverSettingsCreatorMonetizationOnboardingViewModel$ViewStateAccess$requireViewState instanceof ServerSettingsCreatorMonetizationOnboardingViewModel$ViewState$CreateRequest) {
-            ServerSettingsCreatorMonetizationOnboardingViewModel.access$updateViewState(serverSettingsCreatorMonetizationOnboardingViewModel, ServerSettingsCreatorMonetizationOnboardingViewModel$ViewState$CreateRequest.copy$default((ServerSettingsCreatorMonetizationOnboardingViewModel$ViewState$CreateRequest) serverSettingsCreatorMonetizationOnboardingViewModel$ViewStateAccess$requireViewState, null, false, false, 3, null));
+        ServerSettingsCreatorMonetizationOnboardingViewModel.ViewState viewStateAccess$requireViewState = ServerSettingsCreatorMonetizationOnboardingViewModel.access$requireViewState(serverSettingsCreatorMonetizationOnboardingViewModel);
+        if (viewStateAccess$requireViewState instanceof ServerSettingsCreatorMonetizationOnboardingViewModel.ViewState.CreateRequest) {
+            ServerSettingsCreatorMonetizationOnboardingViewModel.access$updateViewState(serverSettingsCreatorMonetizationOnboardingViewModel, ServerSettingsCreatorMonetizationOnboardingViewModel.ViewState.CreateRequest.copy$default((ServerSettingsCreatorMonetizationOnboardingViewModel.ViewState.CreateRequest) viewStateAccess$requireViewState, null, false, false, 3, null));
         }
     }
 }

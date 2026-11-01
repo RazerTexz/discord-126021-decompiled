@@ -3,9 +3,7 @@ package b.f.g.e;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.Paint$Style;
 import android.graphics.Path;
-import android.graphics.Path$Direction;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
@@ -77,7 +75,7 @@ public class l extends Drawable implements j {
         rectF.inset(f / 2.0f, f / 2.0f);
         int i = 0;
         if (this.n) {
-            this.u.addCircle(this.w.centerX(), this.w.centerY(), Math.min(this.w.width(), this.w.height()) / 2.0f, Path$Direction.CW);
+            this.u.addCircle(this.w.centerX(), this.w.centerY(), Math.min(this.w.width(), this.w.height()) / 2.0f, Path.Direction.CW);
         } else {
             int i2 = 0;
             while (true) {
@@ -88,7 +86,7 @@ public class l extends Drawable implements j {
                 fArr[i2] = (this.j[i2] + this.p) - (this.o / 2.0f);
                 i2++;
             }
-            this.u.addRoundRect(this.w, fArr, Path$Direction.CW);
+            this.u.addRoundRect(this.w, fArr, Path.Direction.CW);
         }
         RectF rectF2 = this.w;
         float f2 = this.o;
@@ -96,7 +94,7 @@ public class l extends Drawable implements j {
         float f3 = this.p + (this.r ? this.o : 0.0f);
         this.w.inset(f3, f3);
         if (this.n) {
-            this.t.addCircle(this.w.centerX(), this.w.centerY(), Math.min(this.w.width(), this.w.height()) / 2.0f, Path$Direction.CW);
+            this.t.addCircle(this.w.centerX(), this.w.centerY(), Math.min(this.w.width(), this.w.height()) / 2.0f, Path.Direction.CW);
         } else if (this.r) {
             if (this.l == null) {
                 this.l = new float[8];
@@ -109,9 +107,9 @@ public class l extends Drawable implements j {
                 fArr2[i] = this.j[i] - this.o;
                 i++;
             }
-            this.t.addRoundRect(this.w, fArr2, Path$Direction.CW);
+            this.t.addRoundRect(this.w, fArr2, Path.Direction.CW);
         } else {
-            this.t.addRoundRect(this.w, this.j, Path$Direction.CW);
+            this.t.addRoundRect(this.w, this.j, Path.Direction.CW);
         }
         float f4 = -f3;
         this.w.inset(f4, f4);
@@ -127,12 +125,12 @@ public class l extends Drawable implements j {
     @Override // android.graphics.drawable.Drawable
     public void draw(Canvas canvas) {
         this.m.setColor(b.c.a.a0.d.m1(this.v, this.f512x));
-        this.m.setStyle(Paint$Style.FILL);
+        this.m.setStyle(Paint.Style.FILL);
         this.m.setFilterBitmap(this.f511s);
         canvas.drawPath(this.t, this.m);
         if (this.o != 0.0f) {
             this.m.setColor(b.c.a.a0.d.m1(this.q, this.f512x));
-            this.m.setStyle(Paint$Style.STROKE);
+            this.m.setStyle(Paint.Style.STROKE);
             this.m.setStrokeWidth(this.o);
             canvas.drawPath(this.u, this.m);
         }

@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetServerSettingsEnableCommunityBinding;
 import com.discord.views.ScreenTitleView;
 import com.google.android.material.button.MaterialButton;
@@ -29,18 +29,18 @@ public final /* synthetic */ class WidgetServerSettingsEnableCommunity$binding$2
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetServerSettingsEnableCommunityBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.community_get_started_header;
-        ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(R$id.community_get_started_header);
+        int i = R.id.community_get_started_header;
+        ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(R.id.community_get_started_header);
         if (screenTitleView != null) {
-            i = R$id.community_get_started_header_image;
-            ImageView imageView = (ImageView) view.findViewById(R$id.community_get_started_header_image);
+            i = R.id.community_get_started_header_image;
+            ImageView imageView = (ImageView) view.findViewById(R.id.community_get_started_header_image);
             if (imageView != null) {
                 ScrollView scrollView = (ScrollView) view;
-                i = R$id.community_header_image;
-                RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R$id.community_header_image);
+                i = R.id.community_header_image;
+                RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.community_header_image);
                 if (relativeLayout != null) {
-                    i = R$id.community_setting_get_started;
-                    MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.community_setting_get_started);
+                    i = R.id.community_setting_get_started;
+                    MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.community_setting_get_started);
                     if (materialButton != null) {
                         return new WidgetServerSettingsEnableCommunityBinding(scrollView, screenTitleView, imageView, scrollView, relativeLayout, materialButton);
                     }

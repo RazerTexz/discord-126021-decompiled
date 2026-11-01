@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.util.Collection;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -12,6 +11,57 @@ public class ArrayMap<K, V> extends SimpleArrayMap<K, V> implements Map<K, V> {
 
     @Nullable
     public MapCollections<K, V> mCollections;
+
+    /* JADX INFO: renamed from: androidx.collection.ArrayMap$1, reason: invalid class name */
+    public class AnonymousClass1 extends MapCollections<K, V> {
+        public AnonymousClass1() {
+        }
+
+        @Override // androidx.collection.MapCollections
+        public void colClear() {
+            ArrayMap.this.clear();
+        }
+
+        @Override // androidx.collection.MapCollections
+        public Object colGetEntry(int i, int i2) {
+            return ArrayMap.this.mArray[(i << 1) + i2];
+        }
+
+        @Override // androidx.collection.MapCollections
+        public Map<K, V> colGetMap() {
+            return ArrayMap.this;
+        }
+
+        @Override // androidx.collection.MapCollections
+        public int colGetSize() {
+            return ArrayMap.this.mSize;
+        }
+
+        @Override // androidx.collection.MapCollections
+        public int colIndexOfKey(Object obj) {
+            return ArrayMap.this.indexOfKey(obj);
+        }
+
+        @Override // androidx.collection.MapCollections
+        public int colIndexOfValue(Object obj) {
+            return ArrayMap.this.indexOfValue(obj);
+        }
+
+        @Override // androidx.collection.MapCollections
+        public void colPut(K k, V v) {
+            ArrayMap.this.put(k, v);
+        }
+
+        @Override // androidx.collection.MapCollections
+        public void colRemoveAt(int i) {
+            ArrayMap.this.removeAt(i);
+        }
+
+        @Override // androidx.collection.MapCollections
+        public V colSetValue(int i, V v) {
+            return ArrayMap.this.setValueAt(i, v);
+        }
+    }
 
     public ArrayMap() {
     }
@@ -21,13 +71,13 @@ public class ArrayMap<K, V> extends SimpleArrayMap<K, V> implements Map<K, V> {
     }
 
     @Override // java.util.Map
-    public Set<Map$Entry<K, V>> entrySet() {
+    public Set<Map.Entry<K, V>> entrySet() {
         return getCollection().getEntrySet();
     }
 
     private MapCollections<K, V> getCollection() {
         if (this.mCollections == null) {
-            this.mCollections = new ArrayMap$1(this);
+            this.mCollections = new AnonymousClass1();
         }
         return this.mCollections;
     }
@@ -40,8 +90,8 @@ public class ArrayMap<K, V> extends SimpleArrayMap<K, V> implements Map<K, V> {
     @Override // java.util.Map
     public void putAll(Map<? extends K, ? extends V> map) {
         ensureCapacity(map.size() + this.mSize);
-        for (Map$Entry<? extends K, ? extends V> map$Entry : map.entrySet()) {
-            put(map$Entry.getKey(), map$Entry.getValue());
+        for (Map.Entry<? extends K, ? extends V> entry : map.entrySet()) {
+            put(entry.getKey(), entry.getValue());
         }
     }
 

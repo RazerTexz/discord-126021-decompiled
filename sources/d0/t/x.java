@@ -3,7 +3,6 @@ package d0.t;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 
 /* JADX INFO: compiled from: Maps.kt */
@@ -36,7 +35,7 @@ public final class x implements Map, Serializable, d0.z.d.g0.a {
     }
 
     @Override // java.util.Map
-    public final /* bridge */ Set<Map$Entry> entrySet() {
+    public final /* bridge */ Set<Map.Entry> entrySet() {
         return getEntries();
     }
 
@@ -55,7 +54,7 @@ public final class x implements Map, Serializable, d0.z.d.g0.a {
         return null;
     }
 
-    public Set<Map$Entry> getEntries() {
+    public Set<Map.Entry> getEntries() {
         return y.j;
     }
 

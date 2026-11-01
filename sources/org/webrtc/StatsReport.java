@@ -9,14 +9,32 @@ public class StatsReport {
     public final String f3822id;
     public final double timestamp;
     public final String type;
-    public final StatsReport$Value[] values;
+    public final Value[] values;
+
+    public class Value {
+        public final String name;
+        public final String value;
+
+        @CalledByNative("Value")
+        public Value(String str, String str2) {
+            this.name = str;
+            this.value = str2;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("[");
+            sbU.append(this.name);
+            sbU.append(": ");
+            return a.J(sbU, this.value, "]");
+        }
+    }
 
     @CalledByNative
-    public StatsReport(String str, String str2, double d, StatsReport$Value[] statsReport$ValueArr) {
+    public StatsReport(String str, String str2, double d, Value[] valueArr) {
         this.f3822id = str;
         this.type = str2;
         this.timestamp = d;
-        this.values = statsReport$ValueArr;
+        this.values = valueArr;
     }
 
     public String toString() {
@@ -29,11 +47,11 @@ public class StatsReport {
         sbU.append(", values: ");
         int i = 0;
         while (true) {
-            StatsReport$Value[] statsReport$ValueArr = this.values;
-            if (i >= statsReport$ValueArr.length) {
+            Value[] valueArr = this.values;
+            if (i >= valueArr.length) {
                 return sbU.toString();
             }
-            sbU.append(statsReport$ValueArr[i].toString());
+            sbU.append(valueArr[i].toString());
             sbU.append(", ");
             i++;
         }

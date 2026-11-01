@@ -1,8 +1,6 @@
 package b.c.a.a0;
 
 import android.graphics.PointF;
-import b.c.a.a0.i0.c$a;
-import b.c.a.a0.i0.c$b;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,11 +12,11 @@ public class b0 implements h0<b.c.a.y.l.k> {
     public static final b0 a = new b0();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final c$a f327b = c$a.a("c", "v", "i", "o");
+    public static final b.c.a.a0.i0.c.a f327b = b.c.a.a0.i0.c.a.a("c", "v", "i", "o");
 
     @Override // b.c.a.a0.h0
     public b.c.a.y.l.k a(b.c.a.a0.i0.c cVar, float f) throws IOException {
-        if (cVar.u() == c$b.BEGIN_ARRAY) {
+        if (cVar.u() == b.c.a.a0.i0.c.b.BEGIN_ARRAY) {
             cVar.a();
         }
         cVar.b();
@@ -42,7 +40,7 @@ public class b0 implements h0<b.c.a.y.l.k> {
             }
         }
         cVar.d();
-        if (cVar.u() == c$b.END_ARRAY) {
+        if (cVar.u() == b.c.a.a0.i0.c.b.END_ARRAY) {
             cVar.c();
         }
         if (listC == null || listC2 == null || listC3 == null) {

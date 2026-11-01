@@ -3,7 +3,7 @@ package com.discord.utilities.views;
 import android.view.View;
 import b.i.a.f.e.o.f;
 import d0.z.d.m;
-import kotlin.coroutines.CoroutineContext$Element$a;
+import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.internal.Ref$ObjectRef;
 import kotlinx.coroutines.CoroutineDispatcher;
 import kotlinx.coroutines.CoroutineScope;
@@ -37,7 +37,7 @@ public final class ViewCoroutineScopeKt {
         }
         Job jobD = f.d(null, 1);
         CoroutineDispatcher coroutineDispatcher = k0.a;
-        ref$ObjectRef.element = f.c(CoroutineContext$Element$a.plus((h1) jobD, n.f3830b.H()));
+        ref$ObjectRef.element = f.c(CoroutineContext.Element.a.plus((h1) jobD, n.f3830b.H()));
         view.getViewTreeObserver().addOnWindowAttachListener(new ViewCoroutineScopeKt$coroutineScope$1(ref$ObjectRef));
         view.setTag(i, (CoroutineScope) ref$ObjectRef.element);
         return (CoroutineScope) ref$ObjectRef.element;

@@ -1,15 +1,29 @@
 package com.discord.widgets.channels.memberlist.adapter;
 
 import android.widget.TextView;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
+import androidx.recyclerview.widget.RecyclerView;
+import com.discord.R;
 import com.discord.databinding.WidgetChannelMembersListItemHeaderBinding;
 import d0.z.d.m;
 import kotlin.NoWhenBranchMatchedException;
 
 /* JADX INFO: compiled from: ChannelMembersListViewHolderHeader.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ChannelMembersListViewHolderHeader extends RecyclerView$ViewHolder {
+public final class ChannelMembersListViewHolderHeader extends RecyclerView.ViewHolder {
     private final WidgetChannelMembersListItemHeaderBinding binding;
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            ChannelMembersListAdapter.Item.Header.Type.values();
+            int[] iArr = new int[3];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[ChannelMembersListAdapter.Item.Header.Type.ONLINE.ordinal()] = 1;
+            iArr[ChannelMembersListAdapter.Item.Header.Type.OFFLINE.ordinal()] = 2;
+            iArr[ChannelMembersListAdapter.Item.Header.Type.GROUP_DM.ordinal()] = 3;
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ChannelMembersListViewHolderHeader(WidgetChannelMembersListItemHeaderBinding widgetChannelMembersListItemHeaderBinding) {
@@ -18,19 +32,19 @@ public final class ChannelMembersListViewHolderHeader extends RecyclerView$ViewH
         this.binding = widgetChannelMembersListItemHeaderBinding;
     }
 
-    public final void bind(ChannelMembersListAdapter$Item$Header data) {
+    public final void bind(ChannelMembersListAdapter.Item.Header data) {
         int i;
         m.checkNotNullParameter(data, "data");
         int iOrdinal = data.getHeaderType().ordinal();
         if (iOrdinal == 0) {
-            i = 2131895916;
+            i = R.string.status_online;
         } else if (iOrdinal == 1) {
-            i = 2131895915;
+            i = R.string.status_offline;
         } else {
             if (iOrdinal != 2) {
                 throw new NoWhenBranchMatchedException();
             }
-            i = 2131892934;
+            i = R.string.members;
         }
         TextView textView = this.binding.c;
         m.checkNotNullExpressionValue(textView, "binding.channelMembersListItemHeaderText");

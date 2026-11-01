@@ -9,13 +9,25 @@ public final class i {
     public final String a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final i$a f469b;
-    public i$a c;
+    public final a f469b;
+    public a c;
+
+    /* JADX INFO: compiled from: Objects.java */
+    public final class a {
+        public String a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public Object f470b;
+        public a c;
+
+        public a(h hVar) {
+        }
+    }
 
     public i(String str, h hVar) {
-        i$a i_a = new i$a(null);
-        this.f469b = i_a;
-        this.c = i_a;
+        a aVar = new a(null);
+        this.f469b = aVar;
+        this.c = aVar;
         this.a = str;
     }
 
@@ -30,12 +42,12 @@ public final class i {
     }
 
     public final i c(String str, Object obj) {
-        i$a i_a = new i$a(null);
-        this.c.c = i_a;
-        this.c = i_a;
-        i_a.f470b = obj;
+        a aVar = new a(null);
+        this.c.c = aVar;
+        this.c = aVar;
+        aVar.f470b = obj;
         Objects.requireNonNull(str);
-        i_a.a = str;
+        aVar.a = str;
         return this;
     }
 
@@ -43,12 +55,12 @@ public final class i {
         StringBuilder sb = new StringBuilder(32);
         sb.append(this.a);
         sb.append('{');
-        i$a i_a = this.f469b.c;
+        a aVar = this.f469b.c;
         String str = "";
-        while (i_a != null) {
-            Object obj = i_a.f470b;
+        while (aVar != null) {
+            Object obj = aVar.f470b;
             sb.append(str);
-            String str2 = i_a.a;
+            String str2 = aVar.a;
             if (str2 != null) {
                 sb.append(str2);
                 sb.append('=');
@@ -59,7 +71,7 @@ public final class i {
                 String strDeepToString = Arrays.deepToString(new Object[]{obj});
                 sb.append((CharSequence) strDeepToString, 1, strDeepToString.length() - 1);
             }
-            i_a = i_a.c;
+            aVar = aVar.c;
             str = ", ";
         }
         sb.append('}');

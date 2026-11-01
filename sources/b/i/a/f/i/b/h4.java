@@ -1,6 +1,6 @@
 package b.i.a.f.i.b;
 
-import android.content.SharedPreferences$Editor;
+import android.content.SharedPreferences;
 import androidx.annotation.WorkerThread;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-impl@@18.0.0 */
@@ -32,9 +32,9 @@ public final class h4 {
 
     @WorkerThread
     public final void b(long j) {
-        SharedPreferences$Editor sharedPreferences$EditorEdit = this.e.w().edit();
-        sharedPreferences$EditorEdit.putLong(this.a, j);
-        sharedPreferences$EditorEdit.apply();
+        SharedPreferences.Editor editorEdit = this.e.w().edit();
+        editorEdit.putLong(this.a, j);
+        editorEdit.apply();
         this.d = j;
     }
 }

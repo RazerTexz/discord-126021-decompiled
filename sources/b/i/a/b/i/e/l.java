@@ -7,6 +7,12 @@ import com.google.auto.value.AutoValue;
 /* JADX INFO: loaded from: classes3.dex */
 @AutoValue
 public abstract class l {
+
+    /* JADX INFO: compiled from: LogEvent.java */
+    @AutoValue.Builder
+    public abstract class a {
+    }
+
     @Nullable
     public abstract Integer a();
 

@@ -7,7 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewpager2.widget.ViewPager2;
 import b.a.i.d5;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetDirectoryChannelBinding;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.views.ChatActionItem;
@@ -34,32 +34,32 @@ public final /* synthetic */ class WidgetDirectoryChannel$binding$2 extends k im
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetDirectoryChannelBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = 2131361878;
-        Toolbar toolbar = (Toolbar) view.findViewById(2131361878);
+        int i = R.id.action_bar_toolbar;
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.action_bar_toolbar);
         if (toolbar != null) {
-            i = R$id.header;
-            ServerDiscoveryHeader serverDiscoveryHeader = (ServerDiscoveryHeader) view.findViewById(R$id.header);
+            i = R.id.header;
+            ServerDiscoveryHeader serverDiscoveryHeader = (ServerDiscoveryHeader) view.findViewById(R.id.header);
             if (serverDiscoveryHeader != null) {
-                i = R$id.tabs;
-                TabLayout tabLayout = (TabLayout) view.findViewById(R$id.tabs);
+                i = R.id.tabs;
+                TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
                 if (tabLayout != null) {
-                    i = R$id.view_pager;
-                    ViewPager2 viewPager2 = (ViewPager2) view.findViewById(R$id.view_pager);
+                    i = R.id.view_pager;
+                    ViewPager2 viewPager2 = (ViewPager2) view.findViewById(R.id.view_pager);
                     if (viewPager2 != null) {
-                        i = R$id.widget_directory_channel_empty;
-                        View viewFindViewById = view.findViewById(R$id.widget_directory_channel_empty);
+                        i = R.id.widget_directory_channel_empty;
+                        View viewFindViewById = view.findViewById(R.id.widget_directory_channel_empty);
                         if (viewFindViewById != null) {
-                            int i2 = R$id.item_directory_empty_header;
-                            TextView textView = (TextView) viewFindViewById.findViewById(R$id.item_directory_empty_header);
+                            int i2 = R.id.item_directory_empty_header;
+                            TextView textView = (TextView) viewFindViewById.findViewById(R.id.item_directory_empty_header);
                             if (textView != null) {
-                                i2 = R$id.item_directory_empty_subheader;
-                                LinkifiedTextView linkifiedTextView = (LinkifiedTextView) viewFindViewById.findViewById(R$id.item_directory_empty_subheader);
+                                i2 = R.id.item_directory_empty_subheader;
+                                LinkifiedTextView linkifiedTextView = (LinkifiedTextView) viewFindViewById.findViewById(R.id.item_directory_empty_subheader);
                                 if (linkifiedTextView != null) {
-                                    i2 = R$id.welcome_card_add_server;
-                                    ChatActionItem chatActionItem = (ChatActionItem) viewFindViewById.findViewById(R$id.welcome_card_add_server);
+                                    i2 = R.id.welcome_card_add_server;
+                                    ChatActionItem chatActionItem = (ChatActionItem) viewFindViewById.findViewById(R.id.welcome_card_add_server);
                                     if (chatActionItem != null) {
-                                        i2 = R$id.welcome_card_invite_friends;
-                                        ChatActionItem chatActionItem2 = (ChatActionItem) viewFindViewById.findViewById(R$id.welcome_card_invite_friends);
+                                        i2 = R.id.welcome_card_invite_friends;
+                                        ChatActionItem chatActionItem2 = (ChatActionItem) viewFindViewById.findViewById(R.id.welcome_card_invite_friends);
                                         if (chatActionItem2 != null) {
                                             return new WidgetDirectoryChannelBinding((CoordinatorLayout) view, toolbar, serverDiscoveryHeader, tabLayout, viewPager2, new d5((LinearLayout) viewFindViewById, textView, linkifiedTextView, chatActionItem, chatActionItem2));
                                         }

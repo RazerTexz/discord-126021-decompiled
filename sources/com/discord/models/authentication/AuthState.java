@@ -4,13 +4,42 @@ import b.d.b.a.a;
 import com.discord.api.auth.RequiredAction;
 import d0.z.d.m;
 import java.util.Set;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: AuthState.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class AuthState {
-    public static final AuthState$Companion Companion = new AuthState$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final Set<RequiredAction> requiredActions;
     private final String token;
+
+    /* JADX INFO: compiled from: AuthState.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final AuthState from(String token, Set<? extends RequiredAction> requiredActions) {
+            m.checkNotNullParameter(requiredActions, "requiredActions");
+            if (token != null) {
+                return new AuthState(token, requiredActions);
+            }
+            return null;
+        }
+
+        public final boolean isUpdatePasswordRequired(AuthState authState) {
+            Set<RequiredAction> requiredActions;
+            if (authState == null || (requiredActions = authState.getRequiredActions()) == null) {
+                return false;
+            }
+            return requiredActions.contains(RequiredAction.UPDATE_PASSWORD);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     /* JADX WARN: Multi-variable type inference failed */
     public AuthState(String str, Set<? extends RequiredAction> set) {

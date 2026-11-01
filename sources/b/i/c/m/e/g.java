@@ -14,12 +14,24 @@ public final class g {
     public final File e;
     public final File f;
 
-    public g(g$b g_b, g$a g_a) {
-        this.a = g_b.a;
-        this.f1756b = g_b.f1757b;
-        this.c = g_b.c;
-        this.d = g_b.d;
-        this.e = g_b.e;
-        this.f = g_b.f;
+    /* JADX INFO: compiled from: SessionFiles.java */
+    public final class b {
+        public File a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public File f1757b;
+        public File c;
+        public File d;
+        public File e;
+        public File f;
+    }
+
+    public g(b bVar, a aVar) {
+        this.a = bVar.a;
+        this.f1756b = bVar.f1757b;
+        this.c = bVar.c;
+        this.d = bVar.d;
+        this.e = bVar.e;
+        this.f = bVar.f;
     }
 }

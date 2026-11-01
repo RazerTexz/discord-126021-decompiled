@@ -4,7 +4,6 @@ import androidx.exifinterface.media.ExifInterface;
 import d0.z.d.m;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 import kotlin.jvm.functions.Function2;
 
@@ -21,9 +20,9 @@ public final class StoreUtilitiesKt {
             return map2;
         }
         HashMap map3 = new HashMap(map.size());
-        for (Map$Entry<K, ? extends V> map$Entry : map.entrySet()) {
-            Object key = map$Entry.getKey();
-            V value = map$Entry.getValue();
+        for (Map.Entry<K, ? extends V> entry : map.entrySet()) {
+            Object key = entry.getKey();
+            V value = entry.getValue();
             if (set.contains(key)) {
                 map3.put(key, function2.invoke(key, value));
             } else {

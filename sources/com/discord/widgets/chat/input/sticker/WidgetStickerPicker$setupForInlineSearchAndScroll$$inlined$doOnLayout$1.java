@@ -1,14 +1,13 @@
 package com.discord.widgets.chat.input.sticker;
 
 import android.view.View;
-import android.view.View$OnLayoutChangeListener;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: View.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetStickerPicker$setupForInlineSearchAndScroll$$inlined$doOnLayout$1 implements View$OnLayoutChangeListener {
+public final class WidgetStickerPicker$setupForInlineSearchAndScroll$$inlined$doOnLayout$1 implements View.OnLayoutChangeListener {
     public final /* synthetic */ long $packId$inlined;
     public final /* synthetic */ String $searchText$inlined;
     public final /* synthetic */ WidgetStickerPicker this$0;
@@ -19,7 +18,7 @@ public final class WidgetStickerPicker$setupForInlineSearchAndScroll$$inlined$do
         this.$packId$inlined = j;
     }
 
-    @Override // android.view.View$OnLayoutChangeListener
+    @Override // android.view.View.OnLayoutChangeListener
     public void onLayoutChange(View view, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
         m.checkNotNullParameter(view, "view");
         view.removeOnLayoutChangeListener(this);

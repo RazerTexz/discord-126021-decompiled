@@ -4,10 +4,23 @@ import java.util.Collection;
 
 /* JADX INFO: compiled from: CallableMemberDescriptor.java */
 /* JADX INFO: loaded from: classes3.dex */
-public interface b extends a, y {
-    b copy(m mVar, z zVar, u uVar, b$a b_a, boolean z2);
+public interface b extends d0.e0.p.d.m0.c.a, y {
 
-    b$a getKind();
+    /* JADX INFO: compiled from: CallableMemberDescriptor.java */
+    public enum a {
+        DECLARATION,
+        FAKE_OVERRIDE,
+        DELEGATION,
+        SYNTHESIZED;
+
+        public boolean isReal() {
+            return this != FAKE_OVERRIDE;
+        }
+    }
+
+    b copy(m mVar, z zVar, u uVar, a aVar, boolean z2);
+
+    a getKind();
 
     @Override // d0.e0.p.d.m0.c.a, d0.e0.p.d.m0.c.m
     b getOriginal();

@@ -2,7 +2,7 @@ package com.discord.utilities.search.query.node.content;
 
 import android.content.Context;
 import android.text.SpannableStringBuilder;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import b.d.b.a.a;
 import com.discord.utilities.search.query.node.QueryNode;
 import d0.z.d.m;

@@ -1,17 +1,26 @@
 package com.discord.stores;
 
+import android.content.Context;
 import com.discord.api.guildjoinrequest.ApplicationStatus;
 import com.discord.api.guildjoinrequest.GuildJoinRequest;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.guild.Guild;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
+import com.discord.utilities.rest.RestAPI;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.widgets.servers.member_verification.MemberVerificationSuccessDialog;
 import d0.t.h0;
 import d0.z.d.m;
+import d0.z.d.o;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
 import rx.Observable;
 
 /* JADX INFO: compiled from: StoreGuildJoinRequest.kt */
@@ -25,6 +34,156 @@ public final class StoreGuildJoinRequest extends StoreV2 {
     private HashMap<Long, Guild> pendingGuilds;
     private Map<Long, Guild> pendingGuildsSnapshot;
     private final StoreUser userStore;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildJoinRequest$fetchPendingGuilds$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuildJoinRequest.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreGuildJoinRequest$fetchPendingGuilds$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreGuildJoinRequest.kt */
+        public final class C02391 extends o implements Function1<List<? extends com.discord.api.guild.Guild>, Unit> {
+
+            /* JADX INFO: renamed from: com.discord.stores.StoreGuildJoinRequest$fetchPendingGuilds$1$1$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: StoreGuildJoinRequest.kt */
+            public final class C02401 extends o implements Function0<Unit> {
+                public final /* synthetic */ List $results;
+
+                /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+                public C02401(List list) {
+                    super(0);
+                    this.$results = list;
+                }
+
+                @Override // kotlin.jvm.functions.Function0
+                public /* bridge */ /* synthetic */ Unit invoke() {
+                    invoke2();
+                    return Unit.a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2() {
+                    for (com.discord.api.guild.Guild guild : this.$results) {
+                        StoreGuildJoinRequest.access$getPendingGuilds$p(StoreGuildJoinRequest.this).put(Long.valueOf(guild.getId()), new Guild(guild));
+                    }
+                    StoreGuildJoinRequest.this.markChanged();
+                }
+            }
+
+            public C02391() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(List<? extends com.discord.api.guild.Guild> list) {
+                invoke2((List<com.discord.api.guild.Guild>) list);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(List<com.discord.api.guild.Guild> list) {
+                m.checkNotNullParameter(list, "results");
+                StoreGuildJoinRequest.access$getDispatcher$p(StoreGuildJoinRequest.this).schedule(new C02401(list));
+            }
+        }
+
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Map<Long, Guild> guilds = StoreGuildJoinRequest.access$getGuildsStore$p(StoreGuildJoinRequest.this).getGuilds();
+            Set setKeySet = StoreGuildJoinRequest.access$getGuildJoinRequests$p(StoreGuildJoinRequest.this).keySet();
+            m.checkNotNullExpressionValue(setKeySet, "guildJoinRequests.keys");
+            ArrayList arrayList = new ArrayList();
+            Iterator it = setKeySet.iterator();
+            while (true) {
+                boolean z2 = false;
+                if (!it.hasNext()) {
+                    break;
+                }
+                Object next = it.next();
+                Long l = (Long) next;
+                m.checkNotNullExpressionValue(l, "it");
+                if (!guilds.containsKey(l) && !StoreGuildJoinRequest.access$getPendingGuilds$p(StoreGuildJoinRequest.this).containsKey(l)) {
+                    z2 = true;
+                }
+                if (z2) {
+                    arrayList.add(next);
+                }
+            }
+            if (!arrayList.isEmpty()) {
+                ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getUserJoinRequestGuilds(), false, 1, null), StoreGuildJoinRequest.this.getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new C02391(), 62, (Object) null);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildJoinRequest$observeGuildJoinRequest$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuildJoinRequest.kt */
+    public final class AnonymousClass1 extends o implements Function0<GuildJoinRequest> {
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$guildId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ GuildJoinRequest invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final GuildJoinRequest invoke() {
+            return (GuildJoinRequest) StoreGuildJoinRequest.access$getGuildJoinRequestsSnapshot$p(StoreGuildJoinRequest.this).get(Long.valueOf(this.$guildId));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildJoinRequest$observeGuildJoinRequests$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuildJoinRequest.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends GuildJoinRequest>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends GuildJoinRequest> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends GuildJoinRequest> invoke2() {
+            return StoreGuildJoinRequest.access$getGuildJoinRequestsSnapshot$p(StoreGuildJoinRequest.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildJoinRequest$observePendingGuilds$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuildJoinRequest.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Guild>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Guild> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Guild> invoke2() {
+            return StoreGuildJoinRequest.access$getPendingGuildsSnapshot$p(StoreGuildJoinRequest.this);
+        }
+    }
 
     public StoreGuildJoinRequest(StoreUser storeUser, StoreGuilds storeGuilds, Dispatcher dispatcher, ObservationDeck observationDeck) {
         m.checkNotNullParameter(storeUser, "userStore");
@@ -78,7 +237,7 @@ public final class StoreGuildJoinRequest extends StoreV2 {
     }
 
     public final void fetchPendingGuilds() {
-        this.dispatcher.schedule(new StoreGuildJoinRequest$fetchPendingGuilds$1(this));
+        this.dispatcher.schedule(new AnonymousClass1());
     }
 
     public final GuildJoinRequest getGuildJoinRequest(long guildId) {
@@ -103,7 +262,7 @@ public final class StoreGuildJoinRequest extends StoreV2 {
     private final void handleGuildJoinRequestApproved(long guildId) {
         Guild guild = this.guildsStore.getGuild(guildId);
         if ((guild != null ? guild.getName() : null) != null) {
-            MemberVerificationSuccessDialog.Companion.enqueue(guildId);
+            MemberVerificationSuccessDialog.INSTANCE.enqueue(guildId);
         }
     }
 
@@ -136,19 +295,19 @@ public final class StoreGuildJoinRequest extends StoreV2 {
     }
 
     public final Observable<GuildJoinRequest> observeGuildJoinRequest(long guildId) {
-        Observable<GuildJoinRequest> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreGuildJoinRequest$observeGuildJoinRequest$1(this, guildId), 14, null).r();
+        Observable<GuildJoinRequest> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(guildId), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Map<Long, GuildJoinRequest>> observeGuildJoinRequests() {
-        Observable<Map<Long, GuildJoinRequest>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreGuildJoinRequest$observeGuildJoinRequests$1(this), 14, null).r();
+        Observable<Map<Long, GuildJoinRequest>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Map<Long, Guild>> observePendingGuilds() {
-        Observable<Map<Long, Guild>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreGuildJoinRequest$observePendingGuilds$1(this), 14, null).r();
+        Observable<Map<Long, Guild>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }

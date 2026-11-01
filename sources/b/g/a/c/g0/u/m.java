@@ -1,7 +1,5 @@
 package b.g.a.c.g0.u;
 
-import b.g.a.a.i$c;
-import b.g.a.a.i$d;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import java.io.IOException;
 import java.util.Objects;
@@ -23,9 +21,9 @@ public class m extends p0<Enum<?>> implements b.g.a.c.g0.i {
 
     @Override // b.g.a.c.g0.i
     public b.g.a.c.n<?> a(b.g.a.c.x xVar, b.g.a.c.d dVar) throws JsonMappingException {
-        i$d i_dL = l(xVar, dVar, this._handledType);
-        if (i_dL != null) {
-            Boolean boolP = p(this._handledType, i_dL, false, this._serializeAsIndex);
+        b.g.a.a.i.d dVarL = l(xVar, dVar, this._handledType);
+        if (dVarL != null) {
+            Boolean boolP = p(this._handledType, dVarL, false, this._serializeAsIndex);
             if (!Objects.equals(boolP, this._serializeAsIndex)) {
                 return new m(this._values, boolP);
             }
@@ -46,19 +44,19 @@ public class m extends p0<Enum<?>> implements b.g.a.c.g0.i {
         }
     }
 
-    public static Boolean p(Class<?> cls, i$d i_d, boolean z2, Boolean bool) {
-        i$c i_cE = i_d == null ? null : i_d.e();
-        if (i_cE == null || i_cE == i$c.ANY || i_cE == i$c.SCALAR) {
+    public static Boolean p(Class<?> cls, b.g.a.a.i.d dVar, boolean z2, Boolean bool) {
+        b.g.a.a.i.c cVarE = dVar == null ? null : dVar.e();
+        if (cVarE == null || cVarE == b.g.a.a.i.c.ANY || cVarE == b.g.a.a.i.c.SCALAR) {
             return bool;
         }
-        if (i_cE == i$c.STRING || i_cE == i$c.NATURAL) {
+        if (cVarE == b.g.a.a.i.c.STRING || cVarE == b.g.a.a.i.c.NATURAL) {
             return Boolean.FALSE;
         }
-        if (i_cE.f() || i_cE == i$c.ARRAY) {
+        if (cVarE.f() || cVarE == b.g.a.a.i.c.ARRAY) {
             return Boolean.TRUE;
         }
         Object[] objArr = new Object[3];
-        objArr[0] = i_cE;
+        objArr[0] = cVarE;
         objArr[1] = cls.getName();
         objArr[2] = z2 ? "class" : "property";
         throw new IllegalArgumentException(String.format("Unsupported serialization shape (%s) for Enum %s, not supported as %s annotation", objArr));

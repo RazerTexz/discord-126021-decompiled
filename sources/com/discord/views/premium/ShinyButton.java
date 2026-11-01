@@ -5,16 +5,14 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import b.a.i.n1;
-import com.discord.R$a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.color.ColorCompatKt;
@@ -31,21 +29,21 @@ public final class ShinyButton extends RelativeLayout {
     public ShinyButton(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(R$layout.shiny_button, this);
-        int i = R$id.button_container;
-        LinearLayout linearLayout = (LinearLayout) findViewById(R$id.button_container);
+        LayoutInflater.from(context).inflate(R.layout.shiny_button, this);
+        int i = R.id.button_container;
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.button_container);
         if (linearLayout != null) {
-            i = 2131364017;
-            ImageView imageView = (ImageView) findViewById(2131364017);
+            i = R.id.icon;
+            ImageView imageView = (ImageView) findViewById(R.id.icon);
             if (imageView != null) {
-                i = 2131365767;
-                TextView textView = (TextView) findViewById(2131365767);
+                i = R.id.text;
+                TextView textView = (TextView) findViewById(R.id.text);
                 if (textView != null) {
                     n1 n1Var = new n1(this, linearLayout, imageView, textView);
                     m.checkNotNullExpressionValue(n1Var, "ShinyButtonBinding.infla…ater.from(context), this)");
                     this.binding = n1Var;
                     if (attributeSet != null) {
-                        TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet, R$a.ShinyButton, 0, 0);
+                        TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet, R.a.ShinyButton, 0, 0);
                         try {
                             String string = typedArrayObtainStyledAttributes.getString(3);
                             if (string != null) {
@@ -57,8 +55,8 @@ public final class ShinyButton extends RelativeLayout {
                                 m.checkNotNullExpressionValue(drawable, "it");
                                 setDrawable(drawable);
                             }
-                            setBackgroundTint(typedArrayObtainStyledAttributes.getColor(0, ColorCompat.getColor(context, 2131100471)));
-                            int color = typedArrayObtainStyledAttributes.getColor(1, ColorCompat.getColor(context, 2131100487));
+                            setBackgroundTint(typedArrayObtainStyledAttributes.getColor(0, ColorCompat.getColor(context, R.color.uikit_btn_bg_color_selector_green)));
+                            int color = typedArrayObtainStyledAttributes.getColor(1, ColorCompat.getColor(context, R.color.white));
                             setTextColor(color);
                             setDrawableColor(color);
                             return;
@@ -79,7 +77,7 @@ public final class ShinyButton extends RelativeLayout {
         if (changed) {
             LinearLayout linearLayout = this.binding.f165b;
             m.checkNotNullExpressionValue(linearLayout, "binding.buttonContainer");
-            ViewGroup$LayoutParams layoutParams = linearLayout.getLayoutParams();
+            ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
             layoutParams.width = getLayoutParams().width;
             layoutParams.height = getLayoutParams().height;
             LinearLayout linearLayout2 = this.binding.f165b;
@@ -106,7 +104,7 @@ public final class ShinyButton extends RelativeLayout {
     }
 
     public final void setText(String text) {
-        m.checkNotNullParameter(text, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         TextView textView = this.binding.d;
         m.checkNotNullExpressionValue(textView, "binding.text");
         textView.setText(text);

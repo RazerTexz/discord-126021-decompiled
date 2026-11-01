@@ -1,7 +1,7 @@
 package com.google.android.gms.internal.icing;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.a.f.e.h.h;
 import b.i.a.f.h.k.r;
@@ -17,7 +17,7 @@ public final class zzo extends AbstractSafeParcelable implements h {
 
     @Deprecated
     public String[] l;
-    public static final Parcelable$Creator<zzo> CREATOR = new r();
+    public static final Parcelable.Creator<zzo> CREATOR = new r();
 
     public zzo() {
     }

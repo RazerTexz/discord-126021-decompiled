@@ -14,6 +14,35 @@ public class k {
     public volatile Object _prev = this;
     public volatile Object _removedRef = null;
 
+    /* JADX INFO: compiled from: LockFreeLinkedList.kt */
+    public abstract class a extends d<k> {
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public k f3828b;
+        public final k c;
+
+        public a(k kVar) {
+            this.c = kVar;
+        }
+
+        @Override // s.a.a.d
+        public void b(k kVar, Object obj) {
+            k kVar2 = kVar;
+            boolean z2 = obj == null;
+            k kVar3 = z2 ? this.c : this.f3828b;
+            if (kVar3 != null && k.j.compareAndSet(kVar2, this, kVar3) && z2) {
+                k kVar4 = this.c;
+                k kVar5 = this.f3828b;
+                d0.z.d.m.checkNotNull(kVar5);
+                kVar4.g(kVar5);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: LockFreeLinkedList.kt */
+    public final class b extends p {
+    }
+
     public final boolean e(k kVar, k kVar2) {
         k.lazySet(kVar, this);
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = j;
@@ -162,13 +191,13 @@ public class k {
         return null;
     }
 
-    public final int p(k kVar, k kVar2, k$a k_a) {
+    public final int p(k kVar, k kVar2, a aVar) {
         k.lazySet(kVar, this);
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = j;
         atomicReferenceFieldUpdater.lazySet(kVar, kVar2);
-        k_a.f3828b = kVar2;
-        if (atomicReferenceFieldUpdater.compareAndSet(this, kVar2, k_a)) {
-            return k_a.a(this) == null ? 1 : 2;
+        aVar.f3828b = kVar2;
+        if (atomicReferenceFieldUpdater.compareAndSet(this, kVar2, aVar)) {
+            return aVar.a(this) == null ? 1 : 2;
         }
         return 0;
     }

@@ -11,12 +11,12 @@ public class e extends q<Bitmap> {
         Object objPollFirst;
         g<T> gVar = this.f598b;
         synchronized (gVar) {
-            g$b g_b = (g$b) gVar.a.get(i);
-            if (g_b == null) {
+            g.b bVar = (g.b) gVar.a.get(i);
+            if (bVar == null) {
                 objPollFirst = null;
             } else {
-                objPollFirst = g_b.c.pollFirst();
-                gVar.a((g$b<T>) g_b);
+                objPollFirst = bVar.c.pollFirst();
+                gVar.a((g.b<T>) bVar);
             }
         }
         if (objPollFirst != null) {

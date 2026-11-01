@@ -3,16 +3,40 @@ package com.discord.widgets.hubs.events;
 import a0.a.a.b;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import b.d.b.a.a;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: WidgetHubEventsPage.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class HubEventsArgs implements Parcelable {
-    public static final Parcelable$Creator<HubEventsArgs> CREATOR = new HubEventsArgs$Creator();
+    public static final Parcelable.Creator<HubEventsArgs> CREATOR = new Creator();
     private final long directoryChannelId;
     private final long guildId;
+
+    public final class Creator implements Parcelable.Creator<HubEventsArgs> {
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final HubEventsArgs createFromParcel(Parcel parcel) {
+            m.checkNotNullParameter(parcel, "in");
+            return new HubEventsArgs(parcel.readLong(), parcel.readLong());
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ HubEventsArgs createFromParcel(Parcel parcel) {
+            return createFromParcel(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final HubEventsArgs[] newArray(int i) {
+            return new HubEventsArgs[i];
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ HubEventsArgs[] newArray(int i) {
+            return newArray(i);
+        }
+    }
 
     public HubEventsArgs(long j, long j2) {
         this.guildId = j;

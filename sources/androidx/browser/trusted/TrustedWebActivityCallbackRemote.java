@@ -6,7 +6,6 @@ import android.os.RemoteException;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import x.a.a.d.a;
-import x.a.a.d.a$a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class TrustedWebActivityCallbackRemote {
@@ -18,7 +17,7 @@ public class TrustedWebActivityCallbackRemote {
 
     @Nullable
     public static TrustedWebActivityCallbackRemote fromBinder(@Nullable IBinder iBinder) {
-        a aVarAsInterface = iBinder == null ? null : a$a.asInterface(iBinder);
+        a aVarAsInterface = iBinder == null ? null : a.AbstractBinderC0654a.asInterface(iBinder);
         if (aVarAsInterface == null) {
             return null;
         }

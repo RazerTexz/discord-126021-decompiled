@@ -5,7 +5,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
+import com.discord.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /* JADX INFO: compiled from: WidgetUserProfileAdapterItemFriendMutualServerBinding.java */
@@ -30,11 +30,11 @@ public final class f6 implements ViewBinding {
 
     @NonNull
     public static f6 a(@NonNull View view) {
-        int i = R$id.user_profile_adapter_item_friend_mutual_image;
-        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.user_profile_adapter_item_friend_mutual_image);
+        int i = R.id.user_profile_adapter_item_friend_mutual_image;
+        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.user_profile_adapter_item_friend_mutual_image);
         if (simpleDraweeView != null) {
-            i = R$id.user_profile_adapter_item_friend_mutual_text;
-            TextView textView = (TextView) view.findViewById(R$id.user_profile_adapter_item_friend_mutual_text);
+            i = R.id.user_profile_adapter_item_friend_mutual_text;
+            TextView textView = (TextView) view.findViewById(R.id.user_profile_adapter_item_friend_mutual_text);
             if (textView != null) {
                 return new f6((RelativeLayout) view, simpleDraweeView, textView);
             }

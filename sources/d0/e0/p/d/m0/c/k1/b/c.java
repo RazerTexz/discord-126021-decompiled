@@ -30,10 +30,10 @@ public final class c extends n implements d0.e0.p.d.m0.e.a.k0.a {
         d0.z.d.m.checkNotNullExpressionValue(declaredMethods, "annotation.annotationClass.java.declaredMethods");
         ArrayList arrayList = new ArrayList(declaredMethods.length);
         for (Method method : declaredMethods) {
-            d$a d_a = d.a;
+            d.a aVar = d.a;
             Object objInvoke = method.invoke(getAnnotation(), new Object[0]);
             d0.z.d.m.checkNotNullExpressionValue(objInvoke, "method.invoke(annotation)");
-            arrayList.add(d_a.create(objInvoke, d0.e0.p.d.m0.g.e.identifier(method.getName())));
+            arrayList.add(aVar.create(objInvoke, d0.e0.p.d.m0.g.e.identifier(method.getName())));
         }
         return arrayList;
     }
@@ -49,12 +49,12 @@ public final class c extends n implements d0.e0.p.d.m0.e.a.k0.a {
 
     @Override // d0.e0.p.d.m0.e.a.k0.a
     public boolean isFreshlySupportedTypeUseAnnotation() {
-        return d0.e0.p.d.m0.e.a.k0.a$a.isFreshlySupportedTypeUseAnnotation(this);
+        return d0.e0.p.d.m0.e.a.k0.a.C0527a.isFreshlySupportedTypeUseAnnotation(this);
     }
 
     @Override // d0.e0.p.d.m0.e.a.k0.a
     public boolean isIdeExternalAnnotation() {
-        return d0.e0.p.d.m0.e.a.k0.a$a.isIdeExternalAnnotation(this);
+        return d0.e0.p.d.m0.e.a.k0.a.C0527a.isIdeExternalAnnotation(this);
     }
 
     @Override // d0.e0.p.d.m0.e.a.k0.a

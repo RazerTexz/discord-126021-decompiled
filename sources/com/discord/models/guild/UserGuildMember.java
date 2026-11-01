@@ -56,7 +56,7 @@ public final /* data */ class UserGuildMember {
     }
 
     public final String getNickOrUserName() {
-        return GuildMember.Companion.getNickOrUsername(this.guildMember, this.user);
+        return GuildMember.INSTANCE.getNickOrUsername(this.guildMember, this.user);
     }
 
     public final String getNickname() {

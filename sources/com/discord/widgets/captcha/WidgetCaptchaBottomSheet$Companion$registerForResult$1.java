@@ -2,7 +2,7 @@ package com.discord.widgets.captcha;
 
 import android.os.Bundle;
 import com.discord.app.AppFragment;
-import com.discord.utilities.captcha.CaptchaHelper$CaptchaPayload;
+import com.discord.utilities.captcha.CaptchaHelper;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -39,7 +39,7 @@ public final class WidgetCaptchaBottomSheet$Companion$registerForResult$1 extend
             if (string == null || !(!m.areEqual(string, ""))) {
                 return;
             }
-            this.$onCaptchaPayloadReceived.invoke(this.$fragment, new CaptchaHelper$CaptchaPayload(string, string2));
+            this.$onCaptchaPayloadReceived.invoke(this.$fragment, new CaptchaHelper.CaptchaPayload(string, string2));
         }
     }
 }

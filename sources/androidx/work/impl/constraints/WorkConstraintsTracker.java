@@ -8,7 +8,6 @@ import androidx.work.Logger;
 import androidx.work.impl.constraints.controllers.BatteryChargingController;
 import androidx.work.impl.constraints.controllers.BatteryNotLowController;
 import androidx.work.impl.constraints.controllers.ConstraintController;
-import androidx.work.impl.constraints.controllers.ConstraintController$OnConstraintUpdatedCallback;
 import androidx.work.impl.constraints.controllers.NetworkConnectedController;
 import androidx.work.impl.constraints.controllers.NetworkMeteredController;
 import androidx.work.impl.constraints.controllers.NetworkNotRoamingController;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
-public class WorkConstraintsTracker implements ConstraintController$OnConstraintUpdatedCallback {
+public class WorkConstraintsTracker implements ConstraintController.OnConstraintUpdatedCallback {
 
     @Nullable
     private final WorkConstraintsCallback mCallback;
@@ -47,7 +46,7 @@ public class WorkConstraintsTracker implements ConstraintController$OnConstraint
         }
     }
 
-    @Override // androidx.work.impl.constraints.controllers.ConstraintController$OnConstraintUpdatedCallback
+    @Override // androidx.work.impl.constraints.controllers.ConstraintController.OnConstraintUpdatedCallback
     public void onConstraintMet(@NonNull List<String> list) {
         synchronized (this.mLock) {
             ArrayList arrayList = new ArrayList();
@@ -64,7 +63,7 @@ public class WorkConstraintsTracker implements ConstraintController$OnConstraint
         }
     }
 
-    @Override // androidx.work.impl.constraints.controllers.ConstraintController$OnConstraintUpdatedCallback
+    @Override // androidx.work.impl.constraints.controllers.ConstraintController.OnConstraintUpdatedCallback
     public void onConstraintNotMet(@NonNull List<String> list) {
         synchronized (this.mLock) {
             WorkConstraintsCallback workConstraintsCallback = this.mCallback;

@@ -4,12 +4,11 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View$OnClickListener;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.report.ReportReason;
 import com.discord.databinding.WidgetTosReportViolationReasonBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
@@ -23,6 +22,49 @@ import kotlin.jvm.internal.Ref$BooleanRef;
 public final class WidgetTosReportViolationReasonView extends RelativeLayout {
     private final WidgetTosReportViolationReasonBinding binding;
     private ReportReason reason;
+
+    /* JADX INFO: renamed from: com.discord.widgets.tos.WidgetTosReportViolationReasonView$setOnClickListener$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetTosReportViolationReasonView.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ Ref$BooleanRef $onClickInvoked;
+        public final /* synthetic */ View.OnClickListener $onClickListener;
+
+        public AnonymousClass1(Ref$BooleanRef ref$BooleanRef, View.OnClickListener onClickListener) {
+            this.$onClickInvoked = ref$BooleanRef;
+            this.$onClickListener = onClickListener;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onClickInvoked.element = true;
+            View.OnClickListener onClickListener = this.$onClickListener;
+            if (onClickListener != null) {
+                onClickListener.onClick(WidgetTosReportViolationReasonView.this);
+            }
+            this.$onClickInvoked.element = false;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tos.WidgetTosReportViolationReasonView$setOnClickListener$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetTosReportViolationReasonView.kt */
+    public final class AnonymousClass2 implements CompoundButton.OnCheckedChangeListener {
+        public final /* synthetic */ Ref$BooleanRef $onClickInvoked;
+        public final /* synthetic */ View.OnClickListener $onClickListener;
+
+        public AnonymousClass2(Ref$BooleanRef ref$BooleanRef, View.OnClickListener onClickListener) {
+            this.$onClickInvoked = ref$BooleanRef;
+            this.$onClickListener = onClickListener;
+        }
+
+        @Override // android.widget.CompoundButton.OnCheckedChangeListener
+        public final void onCheckedChanged(CompoundButton compoundButton, boolean z2) {
+            View.OnClickListener onClickListener;
+            if (this.$onClickInvoked.element || !z2 || (onClickListener = this.$onClickListener) == null) {
+                return;
+            }
+            onClickListener.onClick(WidgetTosReportViolationReasonView.this);
+        }
+    }
 
     public WidgetTosReportViolationReasonView(Context context) {
         this(context, null, 0, 6, null);
@@ -68,11 +110,11 @@ public final class WidgetTosReportViolationReasonView extends RelativeLayout {
     }
 
     @Override // android.view.View
-    public void setOnClickListener(View$OnClickListener onClickListener) {
+    public void setOnClickListener(View.OnClickListener onClickListener) {
         Ref$BooleanRef ref$BooleanRef = new Ref$BooleanRef();
         ref$BooleanRef.element = false;
-        this.binding.a.setOnClickListener(new WidgetTosReportViolationReasonView$setOnClickListener$1(this, ref$BooleanRef, onClickListener));
-        this.binding.d.setOnCheckedChangeListener(new WidgetTosReportViolationReasonView$setOnClickListener$2(this, ref$BooleanRef, onClickListener));
+        this.binding.a.setOnClickListener(new AnonymousClass1(ref$BooleanRef, onClickListener));
+        this.binding.d.setOnCheckedChangeListener(new AnonymousClass2(ref$BooleanRef, onClickListener));
     }
 
     public final void setReason(ReportReason reportReason) {
@@ -89,16 +131,16 @@ public final class WidgetTosReportViolationReasonView extends RelativeLayout {
     public WidgetTosReportViolationReasonView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
         m.checkNotNullParameter(context, "context");
-        View viewInflate = LayoutInflater.from(context).inflate(R$layout.widget_tos_report_violation_reason, (ViewGroup) this, false);
+        View viewInflate = LayoutInflater.from(context).inflate(R.layout.widget_tos_report_violation_reason, (ViewGroup) this, false);
         addView(viewInflate);
-        int i2 = R$id.report_reason_descriptipn;
-        TextView textView = (TextView) viewInflate.findViewById(R$id.report_reason_descriptipn);
+        int i2 = R.id.report_reason_descriptipn;
+        TextView textView = (TextView) viewInflate.findViewById(R.id.report_reason_descriptipn);
         if (textView != null) {
-            i2 = R$id.report_reason_header;
-            TextView textView2 = (TextView) viewInflate.findViewById(R$id.report_reason_header);
+            i2 = R.id.report_reason_header;
+            TextView textView2 = (TextView) viewInflate.findViewById(R.id.report_reason_header);
             if (textView2 != null) {
-                i2 = R$id.report_reason_radio;
-                MaterialRadioButton materialRadioButton = (MaterialRadioButton) viewInflate.findViewById(R$id.report_reason_radio);
+                i2 = R.id.report_reason_radio;
+                MaterialRadioButton materialRadioButton = (MaterialRadioButton) viewInflate.findViewById(R.id.report_reason_radio);
                 if (materialRadioButton != null) {
                     WidgetTosReportViolationReasonBinding widgetTosReportViolationReasonBinding = new WidgetTosReportViolationReasonBinding((RelativeLayout) viewInflate, textView, textView2, materialRadioButton);
                     m.checkNotNullExpressionValue(widgetTosReportViolationReasonBinding, "WidgetTosReportViolation…rom(context), this, true)");

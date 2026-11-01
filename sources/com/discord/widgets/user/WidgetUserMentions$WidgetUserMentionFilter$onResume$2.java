@@ -8,10 +8,10 @@ import rx.functions.Action1;
 /* JADX INFO: compiled from: WidgetUserMentions.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetUserMentions$WidgetUserMentionFilter$onResume$2<T> implements Action1<Boolean> {
-    public final /* synthetic */ WidgetUserMentions$WidgetUserMentionFilter this$0;
+    public final /* synthetic */ WidgetUserMentions.WidgetUserMentionFilter this$0;
 
-    public WidgetUserMentions$WidgetUserMentionFilter$onResume$2(WidgetUserMentions$WidgetUserMentionFilter widgetUserMentions$WidgetUserMentionFilter) {
-        this.this$0 = widgetUserMentions$WidgetUserMentionFilter;
+    public WidgetUserMentions$WidgetUserMentionFilter$onResume$2(WidgetUserMentions.WidgetUserMentionFilter widgetUserMentionFilter) {
+        this.this$0 = widgetUserMentionFilter;
     }
 
     @Override // rx.functions.Action1
@@ -21,11 +21,11 @@ public final class WidgetUserMentions$WidgetUserMentionFilter$onResume$2<T> impl
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
     public final void call2(Boolean bool) {
-        WidgetUserMentions$WidgetUserMentionFilter widgetUserMentions$WidgetUserMentionFilter = this.this$0;
-        WidgetUserMentions$Model$MessageLoader$Filters widgetUserMentions$Model$MessageLoader$FiltersAccess$getFilters$p = WidgetUserMentions$WidgetUserMentionFilter.access$getFilters$p(widgetUserMentions$WidgetUserMentionFilter);
-        CheckedSetting checkedSetting = WidgetUserMentions$WidgetUserMentionFilter.access$getBinding$p(this.this$0).f2683b;
+        WidgetUserMentions.WidgetUserMentionFilter widgetUserMentionFilter = this.this$0;
+        WidgetUserMentions.Model.MessageLoader.Filters filtersAccess$getFilters$p = WidgetUserMentions.WidgetUserMentionFilter.access$getFilters$p(widgetUserMentionFilter);
+        CheckedSetting checkedSetting = WidgetUserMentions.WidgetUserMentionFilter.access$getBinding$p(this.this$0).f2683b;
         m.checkNotNullExpressionValue(checkedSetting, "binding.userMentionsFilterIncludeEveryone");
-        WidgetUserMentions$WidgetUserMentionFilter.access$updateFilters(widgetUserMentions$WidgetUserMentionFilter, WidgetUserMentions$Model$MessageLoader$Filters.copy$default(widgetUserMentions$Model$MessageLoader$FiltersAccess$getFilters$p, 0L, false, checkedSetting.isChecked(), false, 11, null));
-        WidgetUserMentions$WidgetUserMentionFilter.access$delayedDismiss(this.this$0);
+        WidgetUserMentions.WidgetUserMentionFilter.access$updateFilters(widgetUserMentionFilter, WidgetUserMentions.Model.MessageLoader.Filters.copy$default(filtersAccess$getFilters$p, 0L, false, checkedSetting.isChecked(), false, 11, null));
+        WidgetUserMentions.WidgetUserMentionFilter.access$delayedDismiss(this.this$0);
     }
 }

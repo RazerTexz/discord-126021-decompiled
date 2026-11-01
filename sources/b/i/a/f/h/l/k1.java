@@ -6,7 +6,7 @@ public final /* synthetic */ class k1 {
     public static final /* synthetic */ int[] a;
 
     static {
-        int[] iArr = new int[u4$e.a().length];
+        int[] iArr = new int[u4.e.a().length];
         a = iArr;
         try {
             iArr[3] = 1;

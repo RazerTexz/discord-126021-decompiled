@@ -1,13 +1,13 @@
 package b.i.a.f.i.b;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.measurement.internal.zzku;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-impl@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class s9 implements Parcelable$Creator<zzku> {
-    @Override // android.os.Parcelable$Creator
+public final class s9 implements Parcelable.Creator<zzku> {
+    @Override // android.os.Parcelable.Creator
     public final zzku createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         String strR = null;
@@ -72,7 +72,7 @@ public final class s9 implements Parcelable$Creator<zzku> {
         return new zzku(iG1, strR, jH1, lValueOf, fValueOf, strR2, strR3, dValueOf);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zzku[] newArray(int i) {
         return new zzku[i];
     }

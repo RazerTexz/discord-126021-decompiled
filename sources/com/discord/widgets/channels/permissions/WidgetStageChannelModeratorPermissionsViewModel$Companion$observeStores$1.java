@@ -3,7 +3,6 @@ package com.discord.widgets.channels.permissions;
 import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.permission.PermissionOverwrite;
-import com.discord.api.permission.PermissionOverwrite$Type;
 import com.discord.models.guild.Guild;
 import com.discord.models.user.User;
 import com.discord.stores.StoreChannels;
@@ -25,7 +24,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetStageChannelModeratorPermissionsViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetStageChannelModeratorPermissionsViewModel$Companion$observeStores$1 extends o implements Function0<WidgetStageChannelModeratorPermissionsViewModel$StoreState> {
+public final class WidgetStageChannelModeratorPermissionsViewModel$Companion$observeStores$1 extends o implements Function0<WidgetStageChannelModeratorPermissionsViewModel.StoreState> {
     public final /* synthetic */ long $channelId;
     public final /* synthetic */ StoreChannels $channelStore;
     public final /* synthetic */ StoreGuilds $guildStore;
@@ -43,20 +42,20 @@ public final class WidgetStageChannelModeratorPermissionsViewModel$Companion$obs
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ WidgetStageChannelModeratorPermissionsViewModel$StoreState invoke() {
+    public /* bridge */ /* synthetic */ WidgetStageChannelModeratorPermissionsViewModel.StoreState invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final WidgetStageChannelModeratorPermissionsViewModel$StoreState invoke() {
+    public final WidgetStageChannelModeratorPermissionsViewModel.StoreState invoke() {
         Channel channel = this.$channelStore.getChannel(this.$channelId);
         if (channel == null || channel.getType() != 13) {
-            return WidgetStageChannelModeratorPermissionsViewModel$StoreState$Invalid.INSTANCE;
+            return WidgetStageChannelModeratorPermissionsViewModel.StoreState.Invalid.INSTANCE;
         }
         Guild guild = (Guild) a.c(channel, this.$guildStore.getGuilds());
         if (guild == null) {
-            return WidgetStageChannelModeratorPermissionsViewModel$StoreState$Invalid.INSTANCE;
+            return WidgetStageChannelModeratorPermissionsViewModel.StoreState.Invalid.INSTANCE;
         }
         List<PermissionOverwrite> listV = channel.v();
         if (listV == null) {
@@ -69,7 +68,7 @@ public final class WidgetStageChannelModeratorPermissionsViewModel$Companion$obs
                 break;
             }
             Object next = it.next();
-            if (((PermissionOverwrite) next).getType() == PermissionOverwrite$Type.MEMBER) {
+            if (((PermissionOverwrite) next).getType() == PermissionOverwrite.Type.MEMBER) {
                 arrayList.add(next);
             }
         }
@@ -89,6 +88,6 @@ public final class WidgetStageChannelModeratorPermissionsViewModel$Companion$obs
         if (mapEmptyMap2 == null) {
             mapEmptyMap2 = h0.emptyMap();
         }
-        return new WidgetStageChannelModeratorPermissionsViewModel$StoreState$Valid(guild, listV, map, users, mapEmptyMap2, this.$userStore.getUsers(m.listOf(Long.valueOf(guild.getOwnerId())), true).get(Long.valueOf(guild.getOwnerId())), StageChannelUtils.computeCanEditStageModerators(this.$permissionStore, this.$guildStore, this.$userStore.getMeSnapshot().getId(), guild.getId(), channel));
+        return new WidgetStageChannelModeratorPermissionsViewModel.StoreState.Valid(guild, listV, map, users, mapEmptyMap2, this.$userStore.getUsers(m.listOf(Long.valueOf(guild.getOwnerId())), true).get(Long.valueOf(guild.getOwnerId())), StageChannelUtils.computeCanEditStageModerators(this.$permissionStore, this.$guildStore, this.$userStore.getMeSnapshot().getId(), guild.getId(), channel));
     }
 }

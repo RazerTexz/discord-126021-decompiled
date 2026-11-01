@@ -2,20 +2,16 @@ package b.f.j.e;
 
 import android.app.ActivityManager;
 import android.content.Context;
-import android.graphics.Bitmap$Config;
+import android.graphics.Bitmap;
 import androidx.appcompat.widget.ActivityChooserModel;
-import b.f.j.c.m$b;
 import b.f.j.c.r;
-import b.f.j.c.w$a;
+import b.f.j.c.w;
 import b.f.j.c.z;
-import b.f.j.l.w;
-import b.f.j.l.w$b;
 import b.f.j.l.x;
 import b.f.j.p.a0;
 import b.f.j.p.o0;
 import com.facebook.cache.common.CacheKey;
 import com.facebook.cache.disk.DiskCacheConfig;
-import com.facebook.cache.disk.DiskCacheConfig$b;
 import com.facebook.common.internal.Supplier;
 import com.facebook.common.memory.PooledByteBuffer;
 import com.facebook.imagepipeline.cache.DefaultBitmapMemoryCacheParamsSupplier;
@@ -28,7 +24,7 @@ import java.util.Set;
 /* JADX INFO: compiled from: ImagePipelineConfig.java */
 /* JADX INFO: loaded from: classes.dex */
 public class j implements k {
-    public final w$a c;
+    public final w.a c;
     public final b.f.j.c.i d;
     public final Context e;
 
@@ -60,22 +56,28 @@ public class j implements k {
     public final DiskCacheConfig u;
     public final l v;
     public final boolean w;
-    public static j$b a = new j$b(null);
+    public static b a = new b(null);
 
-    public j(j$a j_a, i iVar) {
+    /* JADX INFO: compiled from: ImagePipelineConfig.java */
+    public class b {
+        public b(i iVar) {
+        }
+    }
+
+    public j(a aVar, i iVar) {
         b.f.j.c.n nVar;
         z zVar;
         b.f.j.r.b.b();
-        this.v = new l(j_a.f, null);
-        Supplier<MemoryCacheParams> defaultBitmapMemoryCacheParamsSupplier = j_a.a;
+        this.v = new l(aVar.f, null);
+        Supplier<MemoryCacheParams> defaultBitmapMemoryCacheParamsSupplier = aVar.a;
         if (defaultBitmapMemoryCacheParamsSupplier == null) {
-            Object systemService = j_a.f574b.getSystemService(ActivityChooserModel.ATTRIBUTE_ACTIVITY);
+            Object systemService = aVar.f574b.getSystemService(ActivityChooserModel.ATTRIBUTE_ACTIVITY);
             Objects.requireNonNull(systemService);
             defaultBitmapMemoryCacheParamsSupplier = new DefaultBitmapMemoryCacheParamsSupplier((ActivityManager) systemService);
         }
         this.f570b = defaultBitmapMemoryCacheParamsSupplier;
         this.c = new b.f.j.c.c();
-        Bitmap$Config bitmap$Config = Bitmap$Config.ARGB_8888;
+        Bitmap.Config config = Bitmap.Config.ARGB_8888;
         synchronized (b.f.j.c.n.class) {
             if (b.f.j.c.n.a == null) {
                 b.f.j.c.n.a = new b.f.j.c.n();
@@ -83,11 +85,11 @@ public class j implements k {
             nVar = b.f.j.c.n.a;
         }
         this.d = nVar;
-        Context context = j_a.f574b;
+        Context context = aVar.f574b;
         Objects.requireNonNull(context);
         this.e = context;
         this.g = new c(new d());
-        this.f = j_a.c;
+        this.f = aVar.c;
         this.h = new b.f.j.c.o();
         synchronized (z.class) {
             if (z.a == null) {
@@ -97,12 +99,12 @@ public class j implements k {
         }
         this.j = zVar;
         this.k = new i(this);
-        DiskCacheConfig diskCacheConfig = j_a.d;
+        DiskCacheConfig diskCacheConfig = aVar.d;
         if (diskCacheConfig == null) {
-            Context context2 = j_a.f574b;
+            Context context2 = aVar.f574b;
             try {
                 b.f.j.r.b.b();
-                diskCacheConfig = new DiskCacheConfig(new DiskCacheConfig$b(context2, null));
+                diskCacheConfig = new DiskCacheConfig(new DiskCacheConfig.b(context2, null));
                 b.f.j.r.b.b();
             } finally {
                 b.f.j.r.b.b();
@@ -114,17 +116,17 @@ public class j implements k {
         b.f.j.r.b.b();
         this.n = new a0(30000);
         b.f.j.r.b.b();
-        x xVar = new x(new w(new w$b(null), null));
+        x xVar = new x(new b.f.j.l.w(new b.f.j.l.w.b(null), null));
         this.p = xVar;
         this.q = new b.f.j.h.f();
         this.r = new HashSet();
         this.f571s = new HashSet();
         this.t = true;
-        DiskCacheConfig diskCacheConfig2 = j_a.e;
+        DiskCacheConfig diskCacheConfig2 = aVar.e;
         this.u = diskCacheConfig2 != null ? diskCacheConfig2 : diskCacheConfig;
-        this.i = new b(xVar.b());
-        this.w = j_a.g;
-        this.f572x = j_a.h;
+        this.i = new b.f.j.e.b(xVar.b());
+        this.w = aVar.g;
+        this.f572x = aVar.h;
         this.f573y = new b.f.j.c.k();
     }
 
@@ -199,7 +201,7 @@ public class j implements k {
     }
 
     @Override // b.f.j.e.k
-    public b.f.j.c.w<CacheKey, PooledByteBuffer> i() {
+    public w<CacheKey, PooledByteBuffer> i() {
         return null;
     }
 
@@ -224,7 +226,7 @@ public class j implements k {
     }
 
     @Override // b.f.j.e.k
-    public w$a n() {
+    public w.a n() {
         return this.c;
     }
 
@@ -244,7 +246,7 @@ public class j implements k {
     }
 
     @Override // b.f.j.e.k
-    public m$b<CacheKey> r() {
+    public b.f.j.c.m.b<CacheKey> r() {
         return null;
     }
 
@@ -286,5 +288,24 @@ public class j implements k {
     @Override // b.f.j.e.k
     public b.f.c.a z() {
         return null;
+    }
+
+    /* JADX INFO: compiled from: ImagePipelineConfig.java */
+    public class a {
+        public Supplier<MemoryCacheParams> a;
+        public DiskCacheConfig d;
+        public DiskCacheConfig e;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final Context f574b;
+        public boolean c = false;
+        public final l.b f = new l.b(this);
+        public boolean g = true;
+        public b.f.j.g.a h = new b.f.j.g.a();
+
+        public a(Context context, i iVar) {
+            Objects.requireNonNull(context);
+            this.f574b = context;
+        }
     }
 }

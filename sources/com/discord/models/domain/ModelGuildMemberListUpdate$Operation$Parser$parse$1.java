@@ -15,12 +15,48 @@ public final class ModelGuildMemberListUpdate$Operation$Parser$parse$1<T> implem
     public final /* synthetic */ Ref$ObjectRef $item;
     public final /* synthetic */ Ref$ObjectRef $items;
     public final /* synthetic */ Ref$ObjectRef $range;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
     public final /* synthetic */ Ref$ObjectRef $type;
 
-    public ModelGuildMemberListUpdate$Operation$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model$JsonReader model$JsonReader, Ref$ObjectRef ref$ObjectRef2, Ref$ObjectRef ref$ObjectRef3, Ref$ObjectRef ref$ObjectRef4, Ref$ObjectRef ref$ObjectRef5) {
+    /* JADX INFO: renamed from: com.discord.models.domain.ModelGuildMemberListUpdate$Operation$Parser$parse$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ModelGuildMemberListUpdate.kt */
+    public final class AnonymousClass1<T> implements Model.JsonReader.ItemFactory<Integer> {
+        public AnonymousClass1() {
+        }
+
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public /* bridge */ /* synthetic */ Integer get() {
+            return get();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public final Integer get() {
+            return ModelGuildMemberListUpdate$Operation$Parser$parse$1.this.$reader.nextIntOrNull();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.models.domain.ModelGuildMemberListUpdate$Operation$Parser$parse$1$3, reason: invalid class name */
+    /* JADX INFO: compiled from: ModelGuildMemberListUpdate.kt */
+    public final class AnonymousClass3<T> implements Model.JsonReader.ItemFactory<ModelGuildMemberListUpdate.Operation.Item> {
+        public AnonymousClass3() {
+        }
+
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public /* bridge */ /* synthetic */ ModelGuildMemberListUpdate.Operation.Item get() {
+            return get();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public final ModelGuildMemberListUpdate.Operation.Item get() {
+            return ModelGuildMemberListUpdate.Operation.Item.Parser.INSTANCE.parse(ModelGuildMemberListUpdate$Operation$Parser$parse$1.this.$reader);
+        }
+    }
+
+    public ModelGuildMemberListUpdate$Operation$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model.JsonReader jsonReader, Ref$ObjectRef ref$ObjectRef2, Ref$ObjectRef ref$ObjectRef3, Ref$ObjectRef ref$ObjectRef4, Ref$ObjectRef ref$ObjectRef5) {
         this.$type = ref$ObjectRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
         this.$index = ref$ObjectRef2;
         this.$range = ref$ObjectRef3;
         this.$item = ref$ObjectRef4;
@@ -45,7 +81,7 @@ public final class ModelGuildMemberListUpdate$Operation$Parser$parse$1<T> implem
                     break;
                 case 3242771:
                     if (str.equals("item")) {
-                        this.$item.element = (T) ModelGuildMemberListUpdate$Operation$Item$Parser.INSTANCE.parse(this.$reader);
+                        this.$item.element = (T) ModelGuildMemberListUpdate.Operation.Item.Parser.INSTANCE.parse(this.$reader);
                         return;
                     }
                     break;
@@ -57,14 +93,14 @@ public final class ModelGuildMemberListUpdate$Operation$Parser$parse$1<T> implem
                     break;
                 case 100526016:
                     if (str.equals("items")) {
-                        this.$items.element = (T) this.$reader.nextList(new ModelGuildMemberListUpdate$Operation$Parser$parse$1$3(this));
+                        this.$items.element = (T) this.$reader.nextList(new AnonymousClass3());
                         return;
                     }
                     break;
                 case 108280125:
                     if (str.equals("range")) {
                         Ref$ObjectRef ref$ObjectRef = this.$range;
-                        List<T> listNextList = this.$reader.nextList(new ModelGuildMemberListUpdate$Operation$Parser$parse$1$1(this));
+                        List<T> listNextList = this.$reader.nextList(new AnonymousClass1());
                         T t = listNextList.get(0);
                         m.checkNotNullExpressionValue(t, "it[0]");
                         int iIntValue = ((Number) t).intValue();

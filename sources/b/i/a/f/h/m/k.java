@@ -10,7 +10,7 @@ public final class k extends l<b.i.a.f.e.h.j.e<Status>> {
         this.a = status;
     }
 
-    @Override // b.i.a.f.e.h.j.k$b
+    @Override // b.i.a.f.e.h.j.k.b
     public final /* synthetic */ void a(Object obj) {
         b.i.a.f.e.h.j.e eVar = (b.i.a.f.e.h.j.e) obj;
         if (this.a.w0()) {

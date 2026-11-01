@@ -16,7 +16,20 @@ public final class f extends l {
     public final long f;
     public final o g;
 
-    public f(long j, Integer num, long j2, byte[] bArr, String str, long j3, o oVar, f$a f_a) {
+    /* JADX INFO: compiled from: AutoValue_LogEvent.java */
+    public final class b extends l.a {
+        public Long a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public Integer f750b;
+        public Long c;
+        public byte[] d;
+        public String e;
+        public Long f;
+        public o g;
+    }
+
+    public f(long j, Integer num, long j2, byte[] bArr, String str, long j3, o oVar, a aVar) {
         this.a = j;
         this.f749b = num;
         this.c = j2;

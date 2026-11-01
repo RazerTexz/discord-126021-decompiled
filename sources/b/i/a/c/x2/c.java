@@ -35,17 +35,17 @@ public final class c implements t {
     }
 
     @Override // b.i.a.c.x2.t
-    public t$a h(long j) {
+    public t.a h(long j) {
         int iE = e0.e(this.e, j, true, true);
         long[] jArr = this.e;
         long j2 = jArr[iE];
         long[] jArr2 = this.c;
         u uVar = new u(j2, jArr2[iE]);
         if (j2 >= j || iE == this.a - 1) {
-            return new t$a(uVar);
+            return new t.a(uVar);
         }
         int i = iE + 1;
-        return new t$a(uVar, new u(jArr[i], jArr2[i]));
+        return new t.a(uVar, new u(jArr[i], jArr2[i]));
     }
 
     @Override // b.i.a.c.x2.t

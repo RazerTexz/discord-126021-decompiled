@@ -6,13 +6,16 @@ import android.text.style.BackgroundColorSpan;
 import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import android.view.View;
 import androidx.exifinterface.media.ExifInterface;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.simpleast.core.node.Node;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.spans.ClickableSpan;
-import com.discord.utilities.textprocessing.node.ChannelMentionNode$RenderContext;
+import com.discord.utilities.textprocessing.node.ChannelMentionNode.RenderContext;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
@@ -21,8 +24,39 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: ChannelMentionNode.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ChannelMentionNode<T extends ChannelMentionNode$RenderContext> extends Node<T> {
+public final class ChannelMentionNode<T extends RenderContext> extends Node<T> {
     private final long channelId;
+
+    /* JADX INFO: renamed from: com.discord.utilities.textprocessing.node.ChannelMentionNode$render$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ChannelMentionNode.kt */
+    public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+        public final /* synthetic */ Function1 $onClick;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Function1 function1) {
+            super(1);
+            this.$onClick = function1;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+            this.$onClick.invoke(Long.valueOf(ChannelMentionNode.this.getChannelId()));
+        }
+    }
+
+    /* JADX INFO: compiled from: ChannelMentionNode.kt */
+    public interface RenderContext extends BasicRenderContext {
+        Function1<Long, Unit> getChannelMentionOnClick();
+
+        Map<Long, String> getChannelNames();
+    }
 
     public ChannelMentionNode(long j) {
         super(null, 1, null);
@@ -39,7 +73,7 @@ public final class ChannelMentionNode<T extends ChannelMentionNode$RenderContext
 
     @Override // com.discord.simpleast.core.node.Node
     public /* bridge */ /* synthetic */ void render(SpannableStringBuilder spannableStringBuilder, Object obj) {
-        render(spannableStringBuilder, (ChannelMentionNode$RenderContext) obj);
+        render(spannableStringBuilder, (RenderContext) obj);
     }
 
     public void render(SpannableStringBuilder builder, T renderContext) {
@@ -56,13 +90,13 @@ public final class ChannelMentionNode<T extends ChannelMentionNode$RenderContext
         }
         Function1<Long, Unit> channelMentionOnClick = renderContext.getChannelMentionOnClick();
         if (channelMentionOnClick != null) {
-            arrayList.add(new ClickableSpan(Integer.valueOf(ColorCompat.getThemedColor(context, 2130970287)), false, null, new ChannelMentionNode$render$1(this, channelMentionOnClick), 4, null));
+            arrayList.add(new ClickableSpan(Integer.valueOf(ColorCompat.getThemedColor(context, R.attr.theme_chat_mention_foreground)), false, null, new AnonymousClass1(channelMentionOnClick), 4, null));
         } else {
-            arrayList.add(new ForegroundColorSpan(ColorCompat.getThemedColor(context, 2130970287)));
+            arrayList.add(new ForegroundColorSpan(ColorCompat.getThemedColor(context, R.attr.theme_chat_mention_foreground)));
         }
-        arrayList.add(new BackgroundColorSpan(ColorCompat.getThemedColor(context, 2130970286)));
+        arrayList.add(new BackgroundColorSpan(ColorCompat.getThemedColor(context, R.attr.theme_chat_mention_background)));
         StringBuilder sb = new StringBuilder();
-        m.checkNotNullParameter(Channel.Companion, "$this$DISPLAY_PREFIX_GUILD");
+        m.checkNotNullParameter(Channel.INSTANCE, "$this$DISPLAY_PREFIX_GUILD");
         sb.append("#");
         sb.append(str);
         builder.append((CharSequence) sb.toString());

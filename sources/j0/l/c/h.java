@@ -2,7 +2,7 @@ package j0.l.c;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
-import rx.Scheduler$Worker;
+import rx.Scheduler;
 import rx.functions.Action0;
 
 /* JADX INFO: compiled from: SchedulePeriodicHelper.java */
@@ -15,19 +15,19 @@ public final class h implements Action0 {
     public final /* synthetic */ long n;
     public final /* synthetic */ Action0 o;
     public final /* synthetic */ j0.l.d.a p;
-    public final /* synthetic */ i$a q;
-    public final /* synthetic */ Scheduler$Worker r;
+    public final /* synthetic */ i.a q;
+    public final /* synthetic */ Scheduler.Worker r;
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public final /* synthetic */ long f3790s;
 
-    public h(long j, long j2, Action0 action0, j0.l.d.a aVar, i$a i_a, Scheduler$Worker scheduler$Worker, long j3) {
+    public h(long j, long j2, Action0 action0, j0.l.d.a aVar, i.a aVar2, Scheduler.Worker worker, long j3) {
         this.m = j;
         this.n = j2;
         this.o = action0;
         this.p = aVar;
-        this.q = i_a;
-        this.r = scheduler$Worker;
+        this.q = aVar2;
+        this.r = worker;
         this.f3790s = j3;
         this.k = j;
         this.l = j2;
@@ -42,9 +42,9 @@ public final class h implements Action0 {
         if (this.p.isUnsubscribed()) {
             return;
         }
-        i$a i_a = this.q;
-        if (i_a != null) {
-            nanos = i_a.a();
+        i.a aVar = this.q;
+        if (aVar != null) {
+            nanos = aVar.a();
         } else {
             TimeUnit timeUnit = TimeUnit.MILLISECONDS;
             Objects.requireNonNull(this.r);

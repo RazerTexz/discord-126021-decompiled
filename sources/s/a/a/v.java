@@ -3,7 +3,7 @@ package s.a.a;
 import java.lang.Comparable;
 import java.util.Arrays;
 import s.a.a.w;
-import s.a.r0$c;
+import s.a.r0;
 
 /* JADX INFO: compiled from: ThreadSafeHeap.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -12,8 +12,8 @@ public class v<T extends w & Comparable<? super T>> {
     public volatile int _size = 0;
 
     public final void a(T t) {
-        r0$c r0_c = (r0$c) t;
-        r0_c.g(this);
+        r0.c cVar = (r0.c) t;
+        cVar.g(this);
         T[] tArr = this.a;
         if (tArr == null) {
             tArr = (T[]) new w[4];
@@ -27,7 +27,7 @@ public class v<T extends w & Comparable<? super T>> {
         int i = this._size;
         this._size = i + 1;
         tArr[i] = t;
-        r0_c.k = i;
+        cVar.k = i;
         d(i);
     }
 

@@ -13,12 +13,28 @@ public class b {
     public final int d;
     public final b.f.d.h.f<Bitmap> e;
 
+    /* JADX INFO: compiled from: BitmapCounter.java */
+    public class a implements b.f.d.h.f<Bitmap> {
+        public a() {
+        }
+
+        @Override // b.f.d.h.f
+        public void release(Bitmap bitmap) {
+            Bitmap bitmap2 = bitmap;
+            try {
+                b.this.a(bitmap2);
+            } finally {
+                bitmap2.recycle();
+            }
+        }
+    }
+
     public b(int i, int i2) {
         b.c.a.a0.d.i(Boolean.valueOf(i > 0));
         b.c.a.a0.d.i(Boolean.valueOf(i2 > 0));
         this.c = i;
         this.d = i2;
-        this.e = new b$a(this);
+        this.e = new a();
     }
 
     public synchronized void a(Bitmap bitmap) {

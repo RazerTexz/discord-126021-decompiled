@@ -1,7 +1,6 @@
 package b.i.a.f.e.k;
 
 import android.net.Uri;
-import android.net.Uri$Builder;
 import androidx.annotation.Nullable;
 import java.util.Arrays;
 import java.util.Objects;
@@ -18,7 +17,7 @@ public final class q0 {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     @Nullable
     public final String f1391b;
-    public static final Uri a = new Uri$Builder().scheme("content").authority("com.google.android.gms.chimera").build();
+    public static final Uri a = new Uri.Builder().scheme("content").authority("com.google.android.gms.chimera").build();
 
     public q0(String str, String str2, int i, boolean z2) {
         b.c.a.a0.d.w(str);

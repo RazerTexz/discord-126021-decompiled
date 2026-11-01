@@ -9,4 +9,9 @@ public final class i {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final /* synthetic */ int f3791b = 0;
     public static final long a = TimeUnit.MINUTES.toNanos(Long.getLong("rx.scheduler.drift-tolerance", 15).longValue());
+
+    /* JADX INFO: compiled from: SchedulePeriodicHelper.java */
+    public interface a {
+        long a();
+    }
 }

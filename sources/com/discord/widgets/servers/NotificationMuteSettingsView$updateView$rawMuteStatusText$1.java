@@ -1,5 +1,6 @@
 package com.discord.widgets.servers;
 
+import com.discord.R;
 import com.discord.i18n.RenderContext;
 import com.discord.utilities.color.ColorCompat;
 import d0.z.d.m;
@@ -27,6 +28,6 @@ public final class NotificationMuteSettingsView$updateView$rawMuteStatusText$1 e
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(RenderContext renderContext) {
         m.checkNotNullParameter(renderContext, "$receiver");
-        renderContext.boldColor = Integer.valueOf(ColorCompat.getThemedColor(this.this$0.getContext(), 2130968972));
+        renderContext.boldColor = Integer.valueOf(ColorCompat.getThemedColor(this.this$0.getContext(), R.attr.colorControlBrandForeground));
     }
 }

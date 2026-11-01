@@ -23,7 +23,7 @@ public final class SectionHeaderViewHolder extends DirectoryChannelViewHolder {
     public void bind(DirectoryChannelItem item, DirectoryChannelItemClickInterface listener) {
         m.checkNotNullParameter(item, "item");
         m.checkNotNullParameter(listener, "listener");
-        int textRes = ((DirectoryChannelItem$SectionHeader) item).getTextRes();
+        int textRes = ((DirectoryChannelItem.SectionHeader) item).getTextRes();
         TextView textView = this.viewBinding.f2097b;
         m.checkNotNullExpressionValue(textView, "viewBinding.directorySectionText");
         b.n(textView, textRes, new Object[0], null, 4);

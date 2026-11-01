@@ -2,7 +2,6 @@ package androidx.core.graphics;
 
 import android.graphics.Color;
 import android.graphics.ColorSpace;
-import android.graphics.ColorSpace$Named;
 import androidx.annotation.ColorInt;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.motion.widget.Key;
@@ -52,9 +51,9 @@ public final class ColorKt {
     }
 
     @RequiresApi(26)
-    public static final long convertTo(@ColorInt int i, ColorSpace$Named colorSpace$Named) {
-        m.checkNotNullParameter(colorSpace$Named, "colorSpace");
-        return Color.convert(i, ColorSpace.get(colorSpace$Named));
+    public static final long convertTo(@ColorInt int i, ColorSpace.Named named) {
+        m.checkNotNullParameter(named, "colorSpace");
+        return Color.convert(i, ColorSpace.get(named));
     }
 
     public static final int getAlpha(@ColorInt int i) {
@@ -187,9 +186,9 @@ public final class ColorKt {
     }
 
     @RequiresApi(26)
-    public static final long convertTo(long j, ColorSpace$Named colorSpace$Named) {
-        m.checkNotNullParameter(colorSpace$Named, "colorSpace");
-        return Color.convert(j, ColorSpace.get(colorSpace$Named));
+    public static final long convertTo(long j, ColorSpace.Named named) {
+        m.checkNotNullParameter(named, "colorSpace");
+        return Color.convert(j, ColorSpace.get(named));
     }
 
     @RequiresApi(26)
@@ -199,10 +198,10 @@ public final class ColorKt {
     }
 
     @RequiresApi(26)
-    public static final Color convertTo(Color color, ColorSpace$Named colorSpace$Named) {
+    public static final Color convertTo(Color color, ColorSpace.Named named) {
         m.checkNotNullParameter(color, "<this>");
-        m.checkNotNullParameter(colorSpace$Named, "colorSpace");
-        Color colorConvert = color.convert(ColorSpace.get(colorSpace$Named));
+        m.checkNotNullParameter(named, "colorSpace");
+        Color colorConvert = color.convert(ColorSpace.get(named));
         m.checkNotNullExpressionValue(colorConvert, "convert(ColorSpace.get(colorSpace))");
         return colorConvert;
     }

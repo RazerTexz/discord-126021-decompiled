@@ -7,6 +7,7 @@ import d0.t.u;
 import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.List;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: BinaryVersion.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -19,8 +20,15 @@ public abstract class a {
     public final int d;
     public final List<Integer> e;
 
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.f.z.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: BinaryVersion.kt */
+    public final class C0554a {
+        public C0554a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     static {
-        new a$a(null);
+        new C0554a(null);
     }
 
     public a(int... iArr) {

@@ -10,13 +10,13 @@ public final class WithLifecycleStateKt$suspendWithStateAtLeastUnchecked$$inline
     public final /* synthetic */ boolean $dispatchNeeded$inlined;
     public final /* synthetic */ CoroutineDispatcher $lifecycleDispatcher$inlined;
     public final /* synthetic */ WithLifecycleStateKt$suspendWithStateAtLeastUnchecked$$inlined$suspendCancellableCoroutine$lambda$1 $observer;
-    public final /* synthetic */ Lifecycle$State $state$inlined;
+    public final /* synthetic */ Lifecycle.State $state$inlined;
     public final /* synthetic */ Lifecycle $this_suspendWithStateAtLeastUnchecked$inlined;
 
-    public WithLifecycleStateKt$suspendWithStateAtLeastUnchecked$$inlined$suspendCancellableCoroutine$lambda$2(WithLifecycleStateKt$suspendWithStateAtLeastUnchecked$$inlined$suspendCancellableCoroutine$lambda$1 withLifecycleStateKt$suspendWithStateAtLeastUnchecked$$inlined$suspendCancellableCoroutine$lambda$1, Lifecycle lifecycle, Lifecycle$State lifecycle$State, Function0 function0, boolean z2, CoroutineDispatcher coroutineDispatcher) {
+    public WithLifecycleStateKt$suspendWithStateAtLeastUnchecked$$inlined$suspendCancellableCoroutine$lambda$2(WithLifecycleStateKt$suspendWithStateAtLeastUnchecked$$inlined$suspendCancellableCoroutine$lambda$1 withLifecycleStateKt$suspendWithStateAtLeastUnchecked$$inlined$suspendCancellableCoroutine$lambda$1, Lifecycle lifecycle, Lifecycle.State state, Function0 function0, boolean z2, CoroutineDispatcher coroutineDispatcher) {
         this.$observer = withLifecycleStateKt$suspendWithStateAtLeastUnchecked$$inlined$suspendCancellableCoroutine$lambda$1;
         this.$this_suspendWithStateAtLeastUnchecked$inlined = lifecycle;
-        this.$state$inlined = lifecycle$State;
+        this.$state$inlined = state;
         this.$block$inlined = function0;
         this.$dispatchNeeded$inlined = z2;
         this.$lifecycleDispatcher$inlined = coroutineDispatcher;

@@ -33,7 +33,7 @@ public final class g implements w {
     }
 
     @Override // b.i.a.c.x2.w
-    public void d(long j, int i, int i2, int i3, @Nullable w$a w_a) {
+    public void d(long j, int i, int i2, int i3, @Nullable w.a aVar) {
     }
 
     @Override // b.i.a.c.x2.w

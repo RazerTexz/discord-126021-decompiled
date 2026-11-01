@@ -2,15 +2,15 @@ package b.i.a.f.c.a.d;
 
 import android.net.Uri;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.auth.api.credentials.Credential;
 import com.google.android.gms.auth.api.credentials.IdToken;
 import java.util.ArrayList;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class e implements Parcelable$Creator<Credential> {
-    @Override // android.os.Parcelable$Creator
+public final class e implements Parcelable.Creator<Credential> {
+    @Override // android.os.Parcelable.Creator
     public final Credential createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         String strR = null;
@@ -59,7 +59,7 @@ public final class e implements Parcelable$Creator<Credential> {
         return new Credential(strR, strR2, uri, arrayListV, strR3, strR4, strR5, strR6);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ Credential[] newArray(int i) {
         return new Credential[i];
     }

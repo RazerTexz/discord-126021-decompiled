@@ -5,7 +5,7 @@ import android.widget.LinearLayout;
 import android.widget.VideoView;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.core.widget.NestedScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetChangeLogBinding;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -30,32 +30,32 @@ public final /* synthetic */ class WidgetChangeLog$binding$2 extends k implement
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetChangeLogBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.change_log_body;
-        LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R$id.change_log_body);
+        int i = R.id.change_log_body;
+        LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R.id.change_log_body);
         if (linkifiedTextView != null) {
-            i = R$id.change_log_contents;
-            LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.change_log_contents);
+            i = R.id.change_log_contents;
+            LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.change_log_contents);
             if (linearLayout != null) {
-                i = R$id.change_log_facebook;
-                AppCompatImageButton appCompatImageButton = (AppCompatImageButton) view.findViewById(R$id.change_log_facebook);
+                i = R.id.change_log_facebook;
+                AppCompatImageButton appCompatImageButton = (AppCompatImageButton) view.findViewById(R.id.change_log_facebook);
                 if (appCompatImageButton != null) {
-                    i = R$id.change_log_instagram;
-                    AppCompatImageButton appCompatImageButton2 = (AppCompatImageButton) view.findViewById(R$id.change_log_instagram);
+                    i = R.id.change_log_instagram;
+                    AppCompatImageButton appCompatImageButton2 = (AppCompatImageButton) view.findViewById(R.id.change_log_instagram);
                     if (appCompatImageButton2 != null) {
-                        i = R$id.change_log_scrollview;
-                        NestedScrollView nestedScrollView = (NestedScrollView) view.findViewById(R$id.change_log_scrollview);
+                        i = R.id.change_log_scrollview;
+                        NestedScrollView nestedScrollView = (NestedScrollView) view.findViewById(R.id.change_log_scrollview);
                         if (nestedScrollView != null) {
-                            i = R$id.change_log_thumbnail;
-                            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.change_log_thumbnail);
+                            i = R.id.change_log_thumbnail;
+                            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.change_log_thumbnail);
                             if (simpleDraweeView != null) {
-                                i = R$id.change_log_twitter;
-                                AppCompatImageButton appCompatImageButton3 = (AppCompatImageButton) view.findViewById(R$id.change_log_twitter);
+                                i = R.id.change_log_twitter;
+                                AppCompatImageButton appCompatImageButton3 = (AppCompatImageButton) view.findViewById(R.id.change_log_twitter);
                                 if (appCompatImageButton3 != null) {
-                                    i = R$id.change_log_video;
-                                    VideoView videoView = (VideoView) view.findViewById(R$id.change_log_video);
+                                    i = R.id.change_log_video;
+                                    VideoView videoView = (VideoView) view.findViewById(R.id.change_log_video);
                                     if (videoView != null) {
-                                        i = R$id.change_log_video_overlay;
-                                        SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) view.findViewById(R$id.change_log_video_overlay);
+                                        i = R.id.change_log_video_overlay;
+                                        SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) view.findViewById(R.id.change_log_video_overlay);
                                         if (simpleDraweeView2 != null) {
                                             return new WidgetChangeLogBinding((LinearLayout) view, linkifiedTextView, linearLayout, appCompatImageButton, appCompatImageButton2, nestedScrollView, simpleDraweeView, appCompatImageButton3, videoView, simpleDraweeView2);
                                         }

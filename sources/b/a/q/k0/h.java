@@ -2,7 +2,7 @@ package b.a.q.k0;
 
 import android.content.Context;
 import androidx.annotation.MainThread;
-import com.discord.rtcconnection.enums.ScoAudioState$b;
+import com.discord.rtcconnection.enums.ScoAudioState;
 
 /* JADX INFO: compiled from: OnAudioManagerBroadcastListener.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -10,7 +10,7 @@ import com.discord.rtcconnection.enums.ScoAudioState$b;
 public interface h {
     void a(Context context, boolean z2);
 
-    void b(Context context, ScoAudioState$b scoAudioState$b);
+    void b(Context context, ScoAudioState.b bVar);
 
     void c(Context context);
 

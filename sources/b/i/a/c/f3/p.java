@@ -1,6 +1,7 @@
 package b.i.a.c.f3;
 
 import android.os.Looper;
+import androidx.annotation.Nullable;
 import java.util.ArrayDeque;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -8,8 +9,8 @@ import java.util.concurrent.CopyOnWriteArraySet;
 /* JADX INFO: loaded from: classes3.dex */
 public final class p<T> {
     public final g a;
-    public final p$b<T> c;
-    public final CopyOnWriteArraySet<p$c<T>> d;
+    public final b<T> c;
+    public final CopyOnWriteArraySet<c<T>> d;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final o f973b;
@@ -17,11 +18,21 @@ public final class p<T> {
     public final ArrayDeque<Runnable> e = new ArrayDeque<>();
     public final ArrayDeque<Runnable> f = new ArrayDeque<>();
 
-    public p(CopyOnWriteArraySet<p$c<T>> copyOnWriteArraySet, Looper looper, g gVar, p$b<T> p_b) {
+    /* JADX INFO: compiled from: ListenerSet.java */
+    public interface a<T> {
+        void invoke(T t);
+    }
+
+    /* JADX INFO: compiled from: ListenerSet.java */
+    public interface b<T> {
+        void a(T t, n nVar);
+    }
+
+    public p(CopyOnWriteArraySet<c<T>> copyOnWriteArraySet, Looper looper, g gVar, b<T> bVar) {
         this.a = gVar;
         this.d = copyOnWriteArraySet;
-        this.c = p_b;
-        this.f973b = gVar.b(looper, new b(this));
+        this.c = bVar;
+        this.f973b = gVar.b(looper, new b.i.a.c.f3.b(this));
     }
 
     public void a() {
@@ -44,19 +55,47 @@ public final class p<T> {
         }
     }
 
-    public void b(int i, p$a<T> p_a) {
-        this.f.add(new a(new CopyOnWriteArraySet(this.d), i, p_a));
+    public void b(int i, a<T> aVar) {
+        this.f.add(new b.i.a.c.f3.a(new CopyOnWriteArraySet(this.d), i, aVar));
     }
 
     public void c() {
-        for (p$c<T> p_c : this.d) {
-            p$b<T> p_b = this.c;
-            p_c.d = true;
-            if (p_c.c) {
-                p_b.a(p_c.a, p_c.f974b.b());
+        for (c<T> cVar : this.d) {
+            b<T> bVar = this.c;
+            cVar.d = true;
+            if (cVar.c) {
+                bVar.a(cVar.a, cVar.f974b.b());
             }
         }
         this.d.clear();
         this.g = true;
+    }
+
+    /* JADX INFO: compiled from: ListenerSet.java */
+    public final class c<T> {
+        public final T a;
+        public boolean c;
+        public boolean d;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public n.b f974b = new n.b();
+
+        public c(T t) {
+            this.a = t;
+        }
+
+        public boolean equals(@Nullable Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || c.class != obj.getClass()) {
+                return false;
+            }
+            return this.a.equals(((c) obj).a);
+        }
+
+        public int hashCode() {
+            return this.a.hashCode();
+        }
     }
 }

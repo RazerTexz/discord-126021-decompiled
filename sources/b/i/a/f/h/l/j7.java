@@ -17,11 +17,215 @@ public final class j7 {
     public static final Class<?> f1452b;
     public static final boolean c;
     public static final boolean d;
-    public static final j7$c e;
+    public static final c e;
     public static final boolean f;
     public static final boolean g;
     public static final long h;
     public static final boolean i;
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
+    public final class a extends c {
+        public a(Unsafe unsafe) {
+            super(unsafe);
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final byte a(Object obj, long j) {
+            return j7.i ? j7.t(obj, j) : j7.u(obj, j);
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final void b(Object obj, long j, byte b2) {
+            if (j7.i) {
+                j7.l(obj, j, b2);
+            } else {
+                j7.o(obj, j, b2);
+            }
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final void c(Object obj, long j, double d) {
+            f(obj, j, Double.doubleToLongBits(d));
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final void d(Object obj, long j, float f) {
+            e(obj, j, Float.floatToIntBits(f));
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final void g(Object obj, long j, boolean z2) {
+            if (j7.i) {
+                j7.l(obj, j, z2 ? (byte) 1 : (byte) 0);
+            } else {
+                j7.o(obj, j, z2 ? (byte) 1 : (byte) 0);
+            }
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final boolean h(Object obj, long j) {
+            if (j7.i) {
+                return j7.t(obj, j) != 0;
+            }
+            return j7.u(obj, j) != 0;
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final float i(Object obj, long j) {
+            return Float.intBitsToFloat(k(obj, j));
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final double j(Object obj, long j) {
+            return Double.longBitsToDouble(l(obj, j));
+        }
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
+    public final class b extends c {
+        public b(Unsafe unsafe) {
+            super(unsafe);
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final byte a(Object obj, long j) {
+            return j7.i ? j7.t(obj, j) : j7.u(obj, j);
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final void b(Object obj, long j, byte b2) {
+            if (j7.i) {
+                j7.l(obj, j, b2);
+            } else {
+                j7.o(obj, j, b2);
+            }
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final void c(Object obj, long j, double d) {
+            f(obj, j, Double.doubleToLongBits(d));
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final void d(Object obj, long j, float f) {
+            e(obj, j, Float.floatToIntBits(f));
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final void g(Object obj, long j, boolean z2) {
+            if (j7.i) {
+                j7.l(obj, j, z2 ? (byte) 1 : (byte) 0);
+            } else {
+                j7.o(obj, j, z2 ? (byte) 1 : (byte) 0);
+            }
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final boolean h(Object obj, long j) {
+            if (j7.i) {
+                return j7.t(obj, j) != 0;
+            }
+            return j7.u(obj, j) != 0;
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final float i(Object obj, long j) {
+            return Float.intBitsToFloat(k(obj, j));
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final double j(Object obj, long j) {
+            return Double.longBitsToDouble(l(obj, j));
+        }
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
+    public abstract class c {
+        public Unsafe a;
+
+        public c(Unsafe unsafe) {
+            this.a = unsafe;
+        }
+
+        public abstract byte a(Object obj, long j);
+
+        public abstract void b(Object obj, long j, byte b2);
+
+        public abstract void c(Object obj, long j, double d);
+
+        public abstract void d(Object obj, long j, float f);
+
+        public final void e(Object obj, long j, int i) {
+            this.a.putInt(obj, j, i);
+        }
+
+        public final void f(Object obj, long j, long j2) {
+            this.a.putLong(obj, j, j2);
+        }
+
+        public abstract void g(Object obj, long j, boolean z2);
+
+        public abstract boolean h(Object obj, long j);
+
+        public abstract float i(Object obj, long j);
+
+        public abstract double j(Object obj, long j);
+
+        public final int k(Object obj, long j) {
+            return this.a.getInt(obj, j);
+        }
+
+        public final long l(Object obj, long j) {
+            return this.a.getLong(obj, j);
+        }
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
+    public final class d extends c {
+        public d(Unsafe unsafe) {
+            super(unsafe);
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final byte a(Object obj, long j) {
+            return this.a.getByte(obj, j);
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final void b(Object obj, long j, byte b2) {
+            this.a.putByte(obj, j, b2);
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final void c(Object obj, long j, double d) {
+            this.a.putDouble(obj, j, d);
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final void d(Object obj, long j, float f) {
+            this.a.putFloat(obj, j, f);
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final void g(Object obj, long j, boolean z2) {
+            this.a.putBoolean(obj, j, z2);
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final boolean h(Object obj, long j) {
+            return this.a.getBoolean(obj, j);
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final float i(Object obj, long j) {
+            return this.a.getFloat(obj, j);
+        }
+
+        @Override // b.i.a.f.h.l.j7.c
+        public final double j(Object obj, long j) {
+            return this.a.getDouble(obj, j);
+        }
+    }
 
     static {
         String str;
@@ -29,7 +233,7 @@ public final class j7 {
         boolean z3;
         boolean z4;
         boolean z5;
-        j7$c j7_c;
+        c cVar;
         Unsafe unsafeK = k();
         a = unsafeK;
         f1452b = q3.a;
@@ -39,17 +243,17 @@ public final class j7 {
         Class<?> cls2 = Integer.TYPE;
         boolean zP2 = p(cls2);
         d = zP2;
-        j7$c j7_d = null;
+        c dVar = null;
         if (unsafeK != null) {
             if (!q3.a()) {
-                j7_d = new j7$d(unsafeK);
+                dVar = new d(unsafeK);
             } else if (zP) {
-                j7_d = new j7$a(unsafeK);
+                dVar = new a(unsafeK);
             } else if (zP2) {
-                j7_d = new j7$b(unsafeK);
+                dVar = new b(unsafeK);
             }
         }
-        e = j7_d;
+        e = dVar;
         if (unsafeK == null) {
             str = "getByte";
             z2 = false;
@@ -180,8 +384,8 @@ public final class j7 {
         h(Object[].class);
         j(Object[].class);
         Field fieldS = s();
-        if (fieldS != null && (j7_c = e) != null) {
-            j7_c.a.objectFieldOffset(fieldS);
+        if (fieldS != null && (cVar = e) != null) {
+            cVar.a.objectFieldOffset(fieldS);
         }
         if (ByteOrder.nativeOrder() != ByteOrder.BIG_ENDIAN) {
             z5 = false;

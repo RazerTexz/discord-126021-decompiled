@@ -3,7 +3,7 @@ package com.discord.widgets.debugging;
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetDebuggingBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -26,10 +26,10 @@ public final /* synthetic */ class WidgetDebugging$binding$2 extends k implement
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetDebuggingBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.debugging_logs);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.debugging_logs);
         if (recyclerView != null) {
             return new WidgetDebuggingBinding((CoordinatorLayout) view, recyclerView);
         }
-        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R$id.debugging_logs)));
+        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R.id.debugging_logs)));
     }
 }

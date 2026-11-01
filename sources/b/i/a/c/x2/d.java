@@ -42,10 +42,10 @@ public class d implements t {
     }
 
     @Override // b.i.a.c.x2.t
-    public t$a h(long j) {
+    public t.a h(long j) {
         long j2 = this.d;
         if (j2 == -1 && !this.g) {
-            return new t$a(new u(0L, this.f1167b));
+            return new t.a(new u(0L, this.f1167b));
         }
         long j3 = (((long) this.e) * j) / 8000000;
         long j4 = this.c;
@@ -60,10 +60,10 @@ public class d implements t {
             int i = this.c;
             if (((long) i) + jMax < this.a) {
                 long j5 = jMax + ((long) i);
-                return new t$a(uVar, new u(b(j5), j5));
+                return new t.a(uVar, new u(b(j5), j5));
             }
         }
-        return new t$a(uVar);
+        return new t.a(uVar);
     }
 
     @Override // b.i.a.c.x2.t

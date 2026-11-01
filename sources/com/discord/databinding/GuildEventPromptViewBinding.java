@@ -8,8 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.google.android.material.textview.MaterialTextView;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -41,24 +40,24 @@ public final class GuildEventPromptViewBinding implements ViewBinding {
 
     @NonNull
     public static GuildEventPromptViewBinding a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
-        View viewInflate = layoutInflater.inflate(R$layout.guild_event_prompt_view, viewGroup, false);
+        View viewInflate = layoutInflater.inflate(R.layout.guild_event_prompt_view, viewGroup, false);
         if (z2) {
             viewGroup.addView(viewInflate);
         }
-        int i = R$id.arrow;
-        ImageView imageView = (ImageView) viewInflate.findViewById(R$id.arrow);
+        int i = R.id.arrow;
+        ImageView imageView = (ImageView) viewInflate.findViewById(R.id.arrow);
         if (imageView != null) {
-            i = 2131364017;
-            ImageView imageView2 = (ImageView) viewInflate.findViewById(2131364017);
+            i = R.id.icon;
+            ImageView imageView2 = (ImageView) viewInflate.findViewById(R.id.icon);
             if (imageView2 != null) {
-                i = R$id.icon_bg;
-                ImageView imageView3 = (ImageView) viewInflate.findViewById(R$id.icon_bg);
+                i = R.id.icon_bg;
+                ImageView imageView3 = (ImageView) viewInflate.findViewById(R.id.icon_bg);
                 if (imageView3 != null) {
-                    i = R$id.subtitle;
-                    MaterialTextView materialTextView = (MaterialTextView) viewInflate.findViewById(R$id.subtitle);
+                    i = R.id.subtitle;
+                    MaterialTextView materialTextView = (MaterialTextView) viewInflate.findViewById(R.id.subtitle);
                     if (materialTextView != null) {
-                        i = 2131365869;
-                        MaterialTextView materialTextView2 = (MaterialTextView) viewInflate.findViewById(2131365869);
+                        i = R.id.title;
+                        MaterialTextView materialTextView2 = (MaterialTextView) viewInflate.findViewById(R.id.title);
                         if (materialTextView2 != null) {
                             return new GuildEventPromptViewBinding((ConstraintLayout) viewInflate, imageView, imageView2, imageView3, materialTextView, materialTextView2);
                         }

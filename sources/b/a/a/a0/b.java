@@ -10,18 +10,18 @@ import kotlin.reflect.KProperty;
 /* JADX INFO: compiled from: GiftPurchasedDialog.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class b extends o implements Function1<View, Unit> {
-    public final /* synthetic */ a$d this$0;
+    public final /* synthetic */ a.d this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public b(a$d a_d) {
+    public b(a.d dVar) {
         super(1);
-        this.this$0 = a_d;
+        this.this$0 = dVar;
     }
 
     @Override // kotlin.jvm.functions.Function1
     public Unit invoke(View view) {
         m.checkNotNullParameter(view, "it");
-        a aVar = this.this$0.this$0;
+        a aVar = a.this;
         KProperty[] kPropertyArr = a.j;
         aVar.g().f.callOnClick();
         return Unit.a;

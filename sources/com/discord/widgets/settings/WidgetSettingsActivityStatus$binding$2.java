@@ -2,7 +2,7 @@ package com.discord.widgets.settings;
 
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetSettingsActivityStatusBinding;
 import com.discord.views.CheckedSetting;
 import d0.z.d.k;
@@ -26,10 +26,10 @@ public final /* synthetic */ class WidgetSettingsActivityStatus$binding$2 extend
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSettingsActivityStatusBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R$id.show_current_activity);
+        CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R.id.show_current_activity);
         if (checkedSetting != null) {
             return new WidgetSettingsActivityStatusBinding((CoordinatorLayout) view, checkedSetting);
         }
-        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R$id.show_current_activity)));
+        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R.id.show_current_activity)));
     }
 }

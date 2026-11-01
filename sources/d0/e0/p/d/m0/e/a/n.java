@@ -1,6 +1,5 @@
 package d0.e0.p.d.m0.e.a;
 
-import d0.e0.p.d.m0.c.b$a;
 import d0.e0.p.d.m0.c.n0;
 
 /* JADX INFO: compiled from: DescriptorsJvmAbiUtil.java */
@@ -61,7 +60,7 @@ public final class n {
             a(0);
             throw null;
         }
-        if (n0Var.getKind() == b$a.FAKE_OVERRIDE) {
+        if (n0Var.getKind() == d0.e0.p.d.m0.c.b.a.FAKE_OVERRIDE) {
             return false;
         }
         if (isClassCompanionObjectWithBackingFieldsInOuter(n0Var.getContainingDeclaration())) {

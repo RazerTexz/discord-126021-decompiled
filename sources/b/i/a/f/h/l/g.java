@@ -1,12 +1,14 @@
 package b.i.a.f.h.l;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences$Editor;
 import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.RemoteException;
+import android.os.SystemClock;
 import android.util.Log;
 import android.util.Pair;
 import androidx.annotation.GuardedBy;
@@ -32,10 +34,116 @@ public class g {
     public final b.i.a.f.i.a.a f;
 
     @GuardedBy("listenerList")
-    public final List<Pair<b.i.a.f.i.b.z5, g$c>> g;
+    public final List<Pair<b.i.a.f.i.b.z5, c>> g;
     public int h;
     public boolean i;
     public volatile ec j;
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-sdk-api@@18.0.0 */
+    public abstract class a implements Runnable {
+        public final long j;
+        public final long k;
+        public final boolean l;
+
+        public a(boolean z2) {
+            Objects.requireNonNull((b.i.a.f.e.o.c) g.this.d);
+            this.j = System.currentTimeMillis();
+            Objects.requireNonNull((b.i.a.f.e.o.c) g.this.d);
+            this.k = SystemClock.elapsedRealtime();
+            this.l = z2;
+        }
+
+        public abstract void a() throws RemoteException;
+
+        public void b() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            if (g.this.i) {
+                b();
+                return;
+            }
+            try {
+                a();
+            } catch (Exception e) {
+                g.this.b(e, false, this.l);
+                b();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-sdk-api@@18.0.0 */
+    public final class b implements Application.ActivityLifecycleCallbacks {
+        public b() {
+        }
+
+        @Override // android.app.Application.ActivityLifecycleCallbacks
+        public final void onActivityCreated(Activity activity, Bundle bundle) {
+            g gVar = g.this;
+            gVar.e.execute(new e0(this, bundle, activity));
+        }
+
+        @Override // android.app.Application.ActivityLifecycleCallbacks
+        public final void onActivityDestroyed(Activity activity) {
+            g gVar = g.this;
+            gVar.e.execute(new j0(this, activity));
+        }
+
+        @Override // android.app.Application.ActivityLifecycleCallbacks
+        public final void onActivityPaused(Activity activity) {
+            g gVar = g.this;
+            gVar.e.execute(new f0(this, activity));
+        }
+
+        @Override // android.app.Application.ActivityLifecycleCallbacks
+        public final void onActivityResumed(Activity activity) {
+            g gVar = g.this;
+            gVar.e.execute(new g0(this, activity));
+        }
+
+        @Override // android.app.Application.ActivityLifecycleCallbacks
+        public final void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
+            cc ccVar = new cc();
+            g gVar = g.this;
+            gVar.e.execute(new h0(this, activity, ccVar));
+            Bundle bundleT0 = ccVar.t0(50L);
+            if (bundleT0 != null) {
+                bundle.putAll(bundleT0);
+            }
+        }
+
+        @Override // android.app.Application.ActivityLifecycleCallbacks
+        public final void onActivityStarted(Activity activity) {
+            g gVar = g.this;
+            gVar.e.execute(new d0(this, activity));
+        }
+
+        @Override // android.app.Application.ActivityLifecycleCallbacks
+        public final void onActivityStopped(Activity activity) {
+            g gVar = g.this;
+            gVar.e.execute(new i0(this, activity));
+        }
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-sdk-api@@18.0.0 */
+    public final class c extends b.i.a.f.h.l.b {
+        public final b.i.a.f.i.b.z5 a;
+
+        public c(b.i.a.f.i.b.z5 z5Var) {
+            this.a = z5Var;
+        }
+
+        @Override // b.i.a.f.h.l.c
+        public final void Z(String str, String str2, Bundle bundle, long j) {
+            this.a.a(str, str2, bundle, j);
+        }
+
+        @Override // b.i.a.f.h.l.c
+        public final int a() {
+            return System.identityHashCode(this.a);
+        }
+    }
 
     /* JADX WARN: Code duplicated, block: B:21:0x0060  */
     public g(Context context, String str, String str2, String str3, Bundle bundle) {
@@ -91,7 +199,7 @@ public class g {
         if (application == null) {
             Log.w(this.c, "Unable to register lifecycle notifications. Application null.");
         } else {
-            application.registerActivityLifecycleCallbacks(new g$b(this));
+            application.registerActivityLifecycleCallbacks(new b());
         }
     }
 
@@ -135,7 +243,7 @@ public class g {
                 try {
                     ApplicationInfo applicationInfoA = b.i.a.f.e.p.b.a(context).a(context.getPackageName(), 128);
                     z2 = (applicationInfoA == null || (bundle = applicationInfoA.metaData) == null) ? false : bundle.getBoolean("app_measurement_internal_disable_startup_flags");
-                } catch (PackageManager$NameNotFoundException unused) {
+                } catch (PackageManager.NameNotFoundException unused) {
                 }
                 if (z2) {
                     f1442b = Boolean.TRUE;
@@ -143,9 +251,9 @@ public class g {
                 }
                 SharedPreferences sharedPreferences = context.getSharedPreferences("com.google.android.gms.measurement.prefs", 0);
                 f1442b = Boolean.valueOf(sharedPreferences.getBoolean("allow_remote_dynamite", true));
-                SharedPreferences$Editor sharedPreferences$EditorEdit = sharedPreferences.edit();
-                sharedPreferences$EditorEdit.remove("allow_remote_dynamite");
-                sharedPreferences$EditorEdit.apply();
+                SharedPreferences.Editor editorEdit = sharedPreferences.edit();
+                editorEdit.remove("allow_remote_dynamite");
+                editorEdit.apply();
             } catch (Exception e) {
                 Log.e("FA", "Exception reading flag from SharedPreferences.", e);
                 f1442b = Boolean.TRUE;

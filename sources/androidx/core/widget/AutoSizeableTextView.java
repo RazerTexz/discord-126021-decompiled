@@ -1,19 +1,18 @@
 package androidx.core.widget;
 
-import android.os.Build$VERSION;
+import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public interface AutoSizeableTextView {
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public static final boolean PLATFORM_SUPPORTS_AUTOSIZE;
 
     static {
-        PLATFORM_SUPPORTS_AUTOSIZE = Build$VERSION.SDK_INT >= 27;
+        PLATFORM_SUPPORTS_AUTOSIZE = Build.VERSION.SDK_INT >= 27;
     }
 
     int getAutoSizeMaxTextSize();

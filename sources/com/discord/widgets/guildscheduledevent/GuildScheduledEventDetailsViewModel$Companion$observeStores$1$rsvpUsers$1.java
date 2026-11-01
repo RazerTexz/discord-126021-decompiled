@@ -7,7 +7,7 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: GuildScheduledEventDetailsViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class GuildScheduledEventDetailsViewModel$Companion$observeStores$1$rsvpUsers$1 extends o implements Function1<GuildScheduledEventUser, GuildScheduledEventRsvpUserListItem$RsvpUser> {
+public final class GuildScheduledEventDetailsViewModel$Companion$observeStores$1$rsvpUsers$1 extends o implements Function1<GuildScheduledEventUser, GuildScheduledEventRsvpUserListItem.RsvpUser> {
     public final /* synthetic */ GuildScheduledEvent $guildScheduledEvent;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -17,13 +17,13 @@ public final class GuildScheduledEventDetailsViewModel$Companion$observeStores$1
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public /* bridge */ /* synthetic */ GuildScheduledEventRsvpUserListItem$RsvpUser invoke(GuildScheduledEventUser guildScheduledEventUser) {
+    public /* bridge */ /* synthetic */ GuildScheduledEventRsvpUserListItem.RsvpUser invoke(GuildScheduledEventUser guildScheduledEventUser) {
         return invoke2(guildScheduledEventUser);
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final GuildScheduledEventRsvpUserListItem$RsvpUser invoke2(GuildScheduledEventUser guildScheduledEventUser) {
+    public final GuildScheduledEventRsvpUserListItem.RsvpUser invoke2(GuildScheduledEventUser guildScheduledEventUser) {
         m.checkNotNullParameter(guildScheduledEventUser, "guildScheduledEventUser");
-        return GuildScheduledEventRsvpUserListItem$RsvpUser.Companion.from(guildScheduledEventUser, this.$guildScheduledEvent.getGuildId());
+        return GuildScheduledEventRsvpUserListItem.RsvpUser.INSTANCE.from(guildScheduledEventUser, this.$guildScheduledEvent.getGuildId());
     }
 }

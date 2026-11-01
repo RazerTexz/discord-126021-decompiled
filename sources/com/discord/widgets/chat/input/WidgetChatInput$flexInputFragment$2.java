@@ -1,7 +1,7 @@
 package com.discord.widgets.chat.input;
 
 import androidx.fragment.app.Fragment;
-import com.discord.R$id;
+import com.discord.R;
 import com.lytefast.flexinput.fragment.FlexInputFragment;
 import d0.z.d.o;
 import java.util.Objects;
@@ -26,7 +26,7 @@ public final class WidgetChatInput$flexInputFragment$2 extends o implements Func
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final FlexInputFragment invoke() {
-        Fragment fragmentFindFragmentById = this.this$0.getChildFragmentManager().findFragmentById(R$id.chat_input_widget);
+        Fragment fragmentFindFragmentById = this.this$0.getChildFragmentManager().findFragmentById(R.id.chat_input_widget);
         Objects.requireNonNull(fragmentFindFragmentById, "null cannot be cast to non-null type com.lytefast.flexinput.fragment.FlexInputFragment");
         return (FlexInputFragment) fragmentFindFragmentById;
     }

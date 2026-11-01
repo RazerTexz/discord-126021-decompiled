@@ -1,9 +1,8 @@
 package com.google.android.exoplayer2.metadata.id3;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
 import b.i.a.c.f3.e0;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -12,7 +11,19 @@ public final class UrlLinkFrame extends Id3Frame {
     @Nullable
     public final String k;
     public final String l;
-    public static final Parcelable$Creator<UrlLinkFrame> CREATOR = new UrlLinkFrame$a();
+    public static final Parcelable.Creator<UrlLinkFrame> CREATOR = new a();
+
+    public class a implements Parcelable.Creator<UrlLinkFrame> {
+        @Override // android.os.Parcelable.Creator
+        public UrlLinkFrame createFromParcel(Parcel parcel) {
+            return new UrlLinkFrame(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public UrlLinkFrame[] newArray(int i) {
+            return new UrlLinkFrame[i];
+        }
+    }
 
     public UrlLinkFrame(String str, @Nullable String str2, String str3) {
         super(str);
@@ -32,7 +43,7 @@ public final class UrlLinkFrame extends Id3Frame {
     }
 
     public int hashCode() {
-        int iM = a.m(this.j, 527, 31);
+        int iM = b.d.b.a.a.m(this.j, 527, 31);
         String str = this.k;
         int iHashCode = (iM + (str != null ? str.hashCode() : 0)) * 31;
         String str2 = this.l;
@@ -43,7 +54,7 @@ public final class UrlLinkFrame extends Id3Frame {
     public String toString() {
         String str = this.j;
         String str2 = this.l;
-        return a.k(a.b(str2, a.b(str, 6)), str, ": url=", str2);
+        return b.d.b.a.a.k(b.d.b.a.a.b(str2, b.d.b.a.a.b(str, 6)), str, ": url=", str2);
     }
 
     @Override // android.os.Parcelable

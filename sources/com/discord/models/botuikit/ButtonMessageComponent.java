@@ -21,7 +21,7 @@ public final /* data */ class ButtonMessageComponent extends ActionMessageCompon
     private final String url;
 
     public /* synthetic */ ButtonMessageComponent(ComponentType componentType, int i, ActionInteractionComponentState actionInteractionComponentState, String str, String str2, ButtonStyle buttonStyle, ComponentEmoji componentEmoji, String str3, boolean z2, int i2, DefaultConstructorMarker defaultConstructorMarker) {
-        this(componentType, i, (i2 & 4) != 0 ? ActionInteractionComponentState$Enabled.INSTANCE : actionInteractionComponentState, str, str2, buttonStyle, (i2 & 64) != 0 ? null : componentEmoji, (i2 & 128) != 0 ? null : str3, z2);
+        this(componentType, i, (i2 & 4) != 0 ? ActionInteractionComponentState.Enabled.INSTANCE : actionInteractionComponentState, str, str2, buttonStyle, (i2 & 64) != 0 ? null : componentEmoji, (i2 & 128) != 0 ? null : str3, z2);
     }
 
     public final ComponentType component1() {

@@ -4,7 +4,7 @@ import android.view.View;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.chips_view.ChipsView;
 import com.discord.databinding.GroupInviteFriendsBottomSheetBinding;
 import d0.z.d.k;
@@ -28,15 +28,15 @@ public final /* synthetic */ class GroupInviteFriendsSheet$binding$2 extends k i
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final GroupInviteFriendsBottomSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.chips_view;
-        ChipsView chipsView = (ChipsView) view.findViewById(R$id.chips_view);
+        int i = R.id.chips_view;
+        ChipsView chipsView = (ChipsView) view.findViewById(R.id.chips_view);
         if (chipsView != null) {
-            i = 2131364898;
-            RecyclerView recyclerView = (RecyclerView) view.findViewById(2131364898);
+            i = R.id.recycler_view;
+            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
             if (recyclerView != null) {
                 ConstraintLayout constraintLayout = (ConstraintLayout) view;
-                i = R$id.search_icon;
-                AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(R$id.search_icon);
+                i = R.id.search_icon;
+                AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(R.id.search_icon);
                 if (appCompatImageView != null) {
                     return new GroupInviteFriendsBottomSheetBinding(constraintLayout, chipsView, recyclerView, constraintLayout, appCompatImageView);
                 }

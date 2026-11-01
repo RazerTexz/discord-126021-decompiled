@@ -2,7 +2,6 @@ package b.i.a.f.e.h.j;
 
 import android.app.Activity;
 import android.app.Application;
-import android.app.Application$ActivityLifecycleCallbacks;
 import android.content.ComponentCallbacks2;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -14,12 +13,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class c implements Application$ActivityLifecycleCallbacks, ComponentCallbacks2 {
+public final class c implements Application.ActivityLifecycleCallbacks, ComponentCallbacks2 {
     public boolean n = false;
     public static final c j = new c();
     public final AtomicBoolean k = new AtomicBoolean();
     public final AtomicBoolean l = new AtomicBoolean();
-    public final ArrayList<c$a> m = new ArrayList<>();
+    public final ArrayList<a> m = new ArrayList<>();
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
+    public interface a {
+        void a(boolean z2);
+    }
 
     public static void a(@RecentlyNonNull Application application) {
         c cVar = j;
@@ -34,14 +38,14 @@ public final class c implements Application$ActivityLifecycleCallbacks, Componen
 
     public final void b(boolean z2) {
         synchronized (j) {
-            Iterator<c$a> it = this.m.iterator();
+            Iterator<a> it = this.m.iterator();
             while (it.hasNext()) {
                 it.next().a(z2);
             }
         }
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivityCreated(@RecentlyNonNull Activity activity, @Nullable Bundle bundle) {
         boolean zCompareAndSet = this.k.compareAndSet(true, false);
         this.l.set(true);
@@ -50,15 +54,15 @@ public final class c implements Application$ActivityLifecycleCallbacks, Componen
         }
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivityDestroyed(@RecentlyNonNull Activity activity) {
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivityPaused(@RecentlyNonNull Activity activity) {
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivityResumed(@RecentlyNonNull Activity activity) {
         boolean zCompareAndSet = this.k.compareAndSet(true, false);
         this.l.set(true);
@@ -67,15 +71,15 @@ public final class c implements Application$ActivityLifecycleCallbacks, Componen
         }
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivitySaveInstanceState(@RecentlyNonNull Activity activity, @RecentlyNonNull Bundle bundle) {
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivityStarted(@RecentlyNonNull Activity activity) {
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivityStopped(@RecentlyNonNull Activity activity) {
     }
 

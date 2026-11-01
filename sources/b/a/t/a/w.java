@@ -27,14 +27,14 @@ public final class w<RC, S> extends Rule<RC, Node<RC>, S> {
         d0.z.d.m.checkNotNull(strGroup);
         String strGroup2 = matcher.group(3);
         if (matcher.group(2) == null) {
-            v$a v_a = new v$a(strGroup, strGroup2, this.a);
-            d0.z.d.m.checkNotNullParameter(v_a, "node");
-            return new ParseSpec<>(v_a, s2);
+            v.a aVar = new v.a(strGroup, strGroup2, this.a);
+            d0.z.d.m.checkNotNullParameter(aVar, "node");
+            return new ParseSpec<>(aVar, s2);
         }
-        v$a v_a2 = new v$a(strGroup, strGroup2, this.a);
+        v.a aVar2 = new v.a(strGroup, strGroup2, this.a);
         int iStart = matcher.start(2);
         int iEnd = matcher.end(2);
-        d0.z.d.m.checkNotNullParameter(v_a2, "node");
-        return new ParseSpec<>(v_a2, s2, iStart, iEnd);
+        d0.z.d.m.checkNotNullParameter(aVar2, "node");
+        return new ParseSpec<>(aVar2, s2, iStart, iEnd);
     }
 }

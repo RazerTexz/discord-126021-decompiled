@@ -1,5 +1,6 @@
 package com.discord.widgets.chat.input.autocomplete;
 
+import com.discord.R;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.color.ColorCompat;
 import d0.z.d.o;
@@ -25,6 +26,6 @@ public final class InputAutocomplete$viewModel$2 extends o implements Function0<
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final AutocompleteViewModel invoke() {
-        return new AutocompleteViewModel(InputAutocomplete.access$getChannel$p(this.this$0), InputAutocomplete.access$getFlexInputViewModel$p(this.this$0), null, StoreStream.Companion.getExperiments(), ColorCompat.getThemedColor(InputAutocomplete.access$getEditText$p(this.this$0), 2130970287), ColorCompat.getThemedColor(InputAutocomplete.access$getEditText$p(this.this$0), 2130968898), ColorCompat.getColor(InputAutocomplete.access$getEditText$p(this.this$0), 2131100382), null, Opcodes.IINC, null);
+        return new AutocompleteViewModel(InputAutocomplete.access$getChannel$p(this.this$0), InputAutocomplete.access$getFlexInputViewModel$p(this.this$0), null, StoreStream.INSTANCE.getExperiments(), ColorCompat.getThemedColor(InputAutocomplete.access$getEditText$p(this.this$0), R.attr.theme_chat_mention_foreground), ColorCompat.getThemedColor(InputAutocomplete.access$getEditText$p(this.this$0), R.attr.colorBackgroundFloating), ColorCompat.getColor(InputAutocomplete.access$getEditText$p(this.this$0), R.color.status_red_500), null, Opcodes.IINC, null);
     }
 }

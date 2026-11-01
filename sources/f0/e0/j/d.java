@@ -8,7 +8,7 @@ import okio.ByteString;
 public final class d {
     public static final String[] d;
     public static final d e = new d();
-    public static final ByteString a = ByteString.k.c("PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n");
+    public static final ByteString a = ByteString.INSTANCE.c("PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n");
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final String[] f3637b = {"DATA", "HEADERS", "PRIORITY", "RST_STREAM", "SETTINGS", "PUSH_PROMISE", "PING", "GOAWAY", "WINDOW_UPDATE", "CONTINUATION"};

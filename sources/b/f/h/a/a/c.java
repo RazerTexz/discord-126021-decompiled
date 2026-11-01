@@ -8,22 +8,49 @@ import java.util.concurrent.TimeUnit;
 
 /* JADX INFO: compiled from: AnimationBackendDelegateWithInactivityCheck.java */
 /* JADX INFO: loaded from: classes.dex */
-public class c<T extends a> extends b<T> {
+public class c<T extends b.f.h.a.a.a> extends b.f.h.a.a.b<T> {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final b.f.d.k.b f525b;
     public final ScheduledExecutorService c;
     public boolean d;
     public long e;
-    public c$b f;
+    public b f;
     public final Runnable g;
 
-    public c(T t, c$b c_b, b.f.d.k.b bVar, ScheduledExecutorService scheduledExecutorService) {
+    /* JADX INFO: compiled from: AnimationBackendDelegateWithInactivityCheck.java */
+    public class a implements Runnable {
+        public a() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            synchronized (c.this) {
+                c cVar = c.this;
+                cVar.d = false;
+                if (cVar.f525b.now() - cVar.e > 2000) {
+                    b bVar = c.this.f;
+                    if (bVar != null) {
+                        bVar.c();
+                    }
+                } else {
+                    c.this.c();
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: AnimationBackendDelegateWithInactivityCheck.java */
+    public interface b {
+        void c();
+    }
+
+    public c(T t, b bVar, b.f.d.k.b bVar2, ScheduledExecutorService scheduledExecutorService) {
         super(t);
         this.d = false;
-        this.g = new c$a(this);
-        this.f = c_b;
-        this.f525b = bVar;
+        this.g = new a();
+        this.f = bVar;
+        this.f525b = bVar2;
         this.c = scheduledExecutorService;
     }
 

@@ -1,12 +1,13 @@
 package com.discord.stores;
 
+import a0.a.a.b;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences$Editor;
 import androidx.collection.LruCache;
 import androidx.media.AudioAttributesCompat;
-import b.a.b.a;
+import b.d.b.a.a;
 import b.i.d.e;
+import com.discord.api.botuikit.ComponentType;
 import com.discord.api.commands.ApplicationCommandData;
 import com.discord.api.interaction.Interaction;
 import com.discord.api.interaction.InteractionModalCreate;
@@ -17,21 +18,16 @@ import com.discord.models.commands.Application;
 import com.discord.models.commands.ApplicationCommandLocalSendData;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.domain.NonceGenerator;
-import com.discord.models.domain.NonceGenerator$Companion;
 import com.discord.models.message.Message;
-import com.discord.nullserializable.NullSerializable$a;
-import com.discord.nullserializable.NullSerializable$b;
-import com.discord.restapi.RestAPIParams$ComponentInteractionData;
+import com.discord.nullserializable.NullSerializable;
+import com.discord.restapi.RestAPIParams;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
 import com.discord.utilities.cache.SharedPreferencesProvider;
 import com.discord.utilities.error.Error;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.message.LocalMessageCreatorsKt;
 import com.discord.utilities.messagesend.MessageResult;
-import com.discord.utilities.messagesend.MessageResult$Success;
-import com.discord.utilities.messagesend.MessageResult$UnknownFailure;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.Clock;
@@ -39,16 +35,17 @@ import com.discord.utilities.user.UserUtils;
 import com.google.gson.Gson;
 import com.lytefast.flexinput.model.Attachment;
 import d0.g0.t;
-import d0.o;
 import d0.t.g0;
 import d0.t.h0;
 import d0.z.d.m;
+import d0.z.d.o;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import kotlin.Pair;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -61,43 +58,966 @@ import rx.subjects.PublishSubject;
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreApplicationInteractions extends StoreV2 {
     private static final String CACHE_KEY_APPLICATION_COMMAND_SEND_DATA_SET = "CACHE_KEY_APPLICATION_COMMAND_SEND_DATA_SET";
-    public static final StoreApplicationInteractions$Companion Companion = new StoreApplicationInteractions$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     public static final long TYPE_COMPONENT_INTERACTION = 3;
     public static final long TYPE_MODAL_INTERACTION = 5;
     private Map<String, ApplicationCommandLocalSendData> applicationCommandLocalSendDataSet;
     private Map<String, ApplicationCommandLocalSendData> applicationCommandLocalSendDataSnapshot;
     private final Clock clock;
-    private final Map<String, StoreApplicationInteractions$ComponentLocation> componentInteractions;
+    private final Map<String, ComponentLocation> componentInteractions;
     private final Dispatcher dispatcher;
     private final Gson gson;
-    private final Map<Long, Map<Integer, StoreApplicationInteractions$InteractionSendState>> interactionComponentSendState;
-    private Map<Long, ? extends Map<Integer, ? extends StoreApplicationInteractions$InteractionSendState>> interactionComponentSendStateSnapshot;
-    private final HashMap<Long, StoreApplicationInteractions$State> interactionData;
-    private Map<Long, ? extends StoreApplicationInteractions$State> interactionDataSnapshot;
+    private final Map<Long, Map<Integer, InteractionSendState>> interactionComponentSendState;
+    private Map<Long, ? extends Map<Integer, ? extends InteractionSendState>> interactionComponentSendStateSnapshot;
+    private final HashMap<Long, State> interactionData;
+    private Map<Long, ? extends State> interactionDataSnapshot;
     private final PublishSubject<InteractionModalCreate> interactionModalCreate;
     private final NonceGenerator nonceGenerator;
     private final ObservationDeck observationDeck;
     private final RestAPI restAPI;
-    private final LruCache<String, StoreApplicationInteractions$SentInteraction> sentInteractions;
-    private Map<String, StoreApplicationInteractions$SentInteraction> sentInteractionsSnapshot;
+    private final LruCache<String, SentInteraction> sentInteractions;
+    private Map<String, SentInteraction> sentInteractionsSnapshot;
     private String sessionId;
     private final SharedPreferences sharedPrefs;
     private final StoreLocalActionComponentState storeLocalActionComponentState;
     private final StoreMessages storeMessages;
     private final StoreStream storeStream;
     private final StoreUser storeUser;
-    private static final ObservationDeck$UpdateSource ComponentStateUpdate = new StoreApplicationInteractions$Companion$ComponentStateUpdate$1();
-    private static final ObservationDeck$UpdateSource SentInteractionsUpdate = new StoreApplicationInteractions$Companion$SentInteractionsUpdate$1();
+    private static final ObservationDeck.UpdateSource ComponentStateUpdate = new StoreApplicationInteractions$Companion$ComponentStateUpdate$1();
+    private static final ObservationDeck.UpdateSource SentInteractionsUpdate = new StoreApplicationInteractions$Companion$SentInteractionsUpdate$1();
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$clearComponentInteractionSendSuccessAndFailures$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            LinkedHashMap linkedHashMap;
+            LinkedHashMap linkedHashMap2 = new LinkedHashMap();
+            Iterator<T> it = StoreApplicationInteractions.this.getInteractionComponentSendState().keySet().iterator();
+            while (it.hasNext()) {
+                long jLongValue = ((Number) it.next()).longValue();
+                Map<Integer, InteractionSendState> map = StoreApplicationInteractions.this.getInteractionComponentSendState().get(Long.valueOf(jLongValue));
+                if (map != null) {
+                    linkedHashMap = new LinkedHashMap();
+                    for (Map.Entry<Integer, InteractionSendState> entry : map.entrySet()) {
+                        if (entry.getValue() instanceof InteractionSendState.Loading) {
+                            linkedHashMap.put(entry.getKey(), entry.getValue());
+                        }
+                    }
+                } else {
+                    linkedHashMap = null;
+                }
+                if (linkedHashMap != null) {
+                    linkedHashMap2.put(Long.valueOf(jLongValue), linkedHashMap);
+                }
+            }
+            StoreApplicationInteractions.this.getInteractionComponentSendState().clear();
+            StoreApplicationInteractions.this.getInteractionComponentSendState().putAll(linkedHashMap2);
+            StoreApplicationInteractions.this.markChanged(StoreApplicationInteractions.INSTANCE.getComponentStateUpdate());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$handleSendApplicationCommandRequest$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public final class AnonymousClass1 extends o implements Function1<MessageResult, Unit> {
+        public final /* synthetic */ ApplicationCommandLocalSendData $localSendData;
+        public final /* synthetic */ Function1 $onFail;
+        public final /* synthetic */ Function0 $onSuccess;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$handleSendApplicationCommandRequest$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final class C02051 extends o implements Function0<Unit> {
+            public final /* synthetic */ MessageResult $result;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C02051(MessageResult messageResult) {
+                super(0);
+                this.$result = messageResult;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                StoreApplicationInteractions.access$handleApplicationCommandResult(StoreApplicationInteractions.this, this.$result, anonymousClass1.$localSendData, anonymousClass1.$onSuccess, anonymousClass1.$onFail);
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(ApplicationCommandLocalSendData applicationCommandLocalSendData, Function0 function0, Function1 function1) {
+            super(1);
+            this.$localSendData = applicationCommandLocalSendData;
+            this.$onSuccess = function0;
+            this.$onFail = function1;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(MessageResult messageResult) {
+            invoke2(messageResult);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(MessageResult messageResult) {
+            m.checkNotNullParameter(messageResult, "result");
+            StoreApplicationInteractions.access$getDispatcher$p(StoreApplicationInteractions.this).schedule(new C02051(messageResult));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$observeComponentInteractionState$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Map<Integer, ? extends InteractionSendState>>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Map<Integer, ? extends InteractionSendState>> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Map<Integer, ? extends InteractionSendState>> invoke2() {
+            return StoreApplicationInteractions.this.getComponentInteractionData();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$observeInteractionData$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public final class AnonymousClass1 extends o implements Function0<State> {
+        public final /* synthetic */ long $interactionId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$interactionId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ State invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final State invoke() {
+            return StoreApplicationInteractions.this.getInteractionData(this.$interactionId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$observeSentInteractions$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<String, ? extends SentInteraction>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<String, ? extends SentInteraction> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<String, ? extends SentInteraction> invoke2() {
+            return StoreApplicationInteractions.access$getSentInteractionsSnapshot$p(StoreApplicationInteractions.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$resendApplicationCommand$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ Message $message;
+        public final /* synthetic */ String $nonce;
+        public final /* synthetic */ ApplicationCommandLocalSendData $updatedSendData;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Message message, String str, ApplicationCommandLocalSendData applicationCommandLocalSendData) {
+            super(0);
+            this.$message = message;
+            this.$nonce = str;
+            this.$updatedSendData = applicationCommandLocalSendData;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreApplicationInteractions.access$getStoreMessages$p(StoreApplicationInteractions.this).deleteLocalMessage(this.$message.getChannelId(), this.$nonce);
+            StoreApplicationInteractions.handleSendApplicationCommandRequest$default(StoreApplicationInteractions.this, this.$updatedSendData, null, null, null, 14, null);
+            StoreApplicationInteractions.access$removeApplicationCommandSendData(StoreApplicationInteractions.this, this.$nonce);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$sendApplicationCommand$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ List $attachments;
+        public final /* synthetic */ ApplicationCommandLocalSendData $localSendData;
+        public final /* synthetic */ Function1 $onFail;
+        public final /* synthetic */ Function0 $onSuccess;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(ApplicationCommandLocalSendData applicationCommandLocalSendData, List list, Function0 function0, Function1 function1) {
+            super(0);
+            this.$localSendData = applicationCommandLocalSendData;
+            this.$attachments = list;
+            this.$onSuccess = function0;
+            this.$onFail = function1;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreApplicationInteractions.access$handleSendApplicationCommandRequest(StoreApplicationInteractions.this, this.$localSendData, this.$attachments, this.$onSuccess, this.$onFail);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$sendComponentInteraction$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ long $applicationId;
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ int $componentIndex;
+        public final /* synthetic */ RestAPIParams.ComponentInteractionData $data;
+        public final /* synthetic */ Long $guildId;
+        public final /* synthetic */ Long $messageFlags;
+        public final /* synthetic */ long $messageId;
+        public final /* synthetic */ String $nonce;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$sendComponentInteraction$1$3, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final class AnonymousClass3 extends o implements Function1<Void, Unit> {
+            public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
+
+            public AnonymousClass3() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+                invoke2(r1);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Void r1) {
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$sendComponentInteraction$1$4, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final class AnonymousClass4 extends o implements Function1<Error, Unit> {
+
+            /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$sendComponentInteraction$1$4$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+            public final class C02061 extends o implements Function0<Unit> {
+                public final /* synthetic */ Error $it;
+
+                /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+                public C02061(Error error) {
+                    super(0);
+                    this.$it = error;
+                }
+
+                @Override // kotlin.jvm.functions.Function0
+                public /* bridge */ /* synthetic */ Unit invoke() {
+                    invoke2();
+                    return Unit.a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2() {
+                    StoreLocalActionComponentState storeLocalActionComponentStateAccess$getStoreLocalActionComponentState$p = StoreApplicationInteractions.access$getStoreLocalActionComponentState$p(StoreApplicationInteractions.this);
+                    AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                    storeLocalActionComponentStateAccess$getStoreLocalActionComponentState$p.clearState(anonymousClass1.$messageId, Integer.valueOf(anonymousClass1.$componentIndex));
+                    StoreApplicationInteractions.this.getComponentInteractions().remove(AnonymousClass1.this.$nonce);
+                    AnonymousClass1 anonymousClass2 = AnonymousClass1.this;
+                    StoreApplicationInteractions storeApplicationInteractions = StoreApplicationInteractions.this;
+                    long j = anonymousClass2.$messageId;
+                    int i = anonymousClass2.$componentIndex;
+                    Error.Response response = this.$it.getResponse();
+                    m.checkNotNullExpressionValue(response, "it.response");
+                    StoreApplicationInteractions.access$addInteractionStateToComponent(storeApplicationInteractions, j, i, new InteractionSendState.Failed(response.getMessage()));
+                }
+            }
+
+            public AnonymousClass4() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+                invoke2(error);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Error error) {
+                m.checkNotNullParameter(error, "it");
+                StoreApplicationInteractions.access$getDispatcher$p(StoreApplicationInteractions.this).schedule(new C02061(error));
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, int i, String str, long j2, Long l, long j3, Long l2, RestAPIParams.ComponentInteractionData componentInteractionData) {
+            super(0);
+            this.$messageId = j;
+            this.$componentIndex = i;
+            this.$nonce = str;
+            this.$channelId = j2;
+            this.$guildId = l;
+            this.$applicationId = j3;
+            this.$messageFlags = l2;
+            this.$data = componentInteractionData;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            boolean z2;
+            boolean z3;
+            Collection<ComponentLocation> collectionValues = StoreApplicationInteractions.this.getComponentInteractions().values();
+            if (!(collectionValues instanceof Collection) || !collectionValues.isEmpty()) {
+                Iterator<T> it = collectionValues.iterator();
+                while (true) {
+                    if (!it.hasNext()) {
+                        z2 = false;
+                        break;
+                    } else {
+                        if (((ComponentLocation) it.next()).getMessageId() == this.$messageId) {
+                            z2 = true;
+                            break;
+                        }
+                    }
+                }
+            } else {
+                z2 = false;
+                break;
+            }
+            if (!z2) {
+                StoreApplicationInteractions.this.getComponentInteractions().put(this.$nonce, new ComponentLocation(this.$messageId, this.$componentIndex));
+                StoreApplicationInteractions.access$addInteractionStateToComponent(StoreApplicationInteractions.this, this.$messageId, this.$componentIndex, InteractionSendState.Loading.INSTANCE);
+                StoreApplicationInteractions.this.getSentInteractions$app_productionGoogleRelease().put(this.$nonce, new SentInteraction(this.$channelId, Long.valueOf(this.$messageId), this.$guildId, null, 8, null));
+                ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(StoreApplicationInteractions.access$getRestAPI$p(StoreApplicationInteractions.this).sendComponentInteraction(new RestAPIParams.ComponentInteraction(3L, this.$channelId, this.$applicationId, this.$guildId, this.$messageId, this.$messageFlags, this.$data, StoreApplicationInteractions.access$getSessionId$p(StoreApplicationInteractions.this), this.$nonce)), false, 1, null), StoreApplicationInteractions.this.getClass(), (Context) null, (Function1) null, new AnonymousClass4(), (Function0) null, (Function0) null, AnonymousClass3.INSTANCE, 54, (Object) null);
+                return;
+            }
+            Collection<ComponentLocation> collectionValues2 = StoreApplicationInteractions.this.getComponentInteractions().values();
+            if (!(collectionValues2 instanceof Collection) || !collectionValues2.isEmpty()) {
+                Iterator<T> it2 = collectionValues2.iterator();
+                while (true) {
+                    if (!it2.hasNext()) {
+                        z3 = true;
+                        break;
+                    }
+                    ComponentLocation componentLocation = (ComponentLocation) it2.next();
+                    if (!(componentLocation.getMessageId() == this.$messageId && componentLocation.getComponentIndex() != this.$componentIndex)) {
+                        z3 = false;
+                        break;
+                    }
+                }
+            } else {
+                z3 = true;
+                break;
+            }
+            if (z3) {
+                StoreApplicationInteractions.access$getStoreLocalActionComponentState$p(StoreApplicationInteractions.this).clearState(this.$messageId, Integer.valueOf(this.$componentIndex));
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$sendModalInteraction$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ List $components;
+        public final /* synthetic */ SentInteraction $localSendData;
+        public final /* synthetic */ InteractionModalCreate $modal;
+        public final /* synthetic */ long $nonce;
+        public final /* synthetic */ Function0 $onError;
+        public final /* synthetic */ Function1 $onNext;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$sendModalInteraction$1$2, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final class AnonymousClass2 extends o implements Function1<Void, Unit> {
+            public AnonymousClass2() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+                invoke2(r1);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Void r4) {
+                AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                anonymousClass1.$onNext.invoke(String.valueOf(anonymousClass1.$nonce));
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$sendModalInteraction$1$3, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final class AnonymousClass3 extends o implements Function1<Error, Unit> {
+            public AnonymousClass3() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+                invoke2(error);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Error error) {
+                m.checkNotNullParameter(error, "it");
+                AnonymousClass1.this.$onError.invoke();
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(InteractionModalCreate interactionModalCreate, SentInteraction sentInteraction, long j, List list, Function1 function1, Function0 function0) {
+            super(0);
+            this.$modal = interactionModalCreate;
+            this.$localSendData = sentInteraction;
+            this.$nonce = j;
+            this.$components = list;
+            this.$onNext = function1;
+            this.$onError = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            RestAPI restAPIAccess$getRestAPI$p = StoreApplicationInteractions.access$getRestAPI$p(StoreApplicationInteractions.this);
+            long id2 = this.$modal.getApplication().getId();
+            long channelId = this.$localSendData.getChannelId();
+            Long guildId = this.$localSendData.getGuildId();
+            long j = this.$nonce;
+            String strAccess$getSessionId$p = StoreApplicationInteractions.access$getSessionId$p(StoreApplicationInteractions.this);
+            long id3 = this.$modal.getId();
+            String customId = this.$modal.getCustomId();
+            List list = this.$components;
+            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(list, 10));
+            Iterator it = list.iterator();
+            while (it.hasNext()) {
+                Pair pair = (Pair) it.next();
+                arrayList.add(new RestAPIParams.ModalInteractionDataComponent(ComponentType.ACTION_ROW, d0.t.m.listOf(new RestAPIParams.ModalInteractionDataComponent(ComponentType.TEXT, null, (String) pair.getFirst(), (String) pair.getSecond())), null, null));
+                it = it;
+                restAPIAccess$getRestAPI$p = restAPIAccess$getRestAPI$p;
+                j = j;
+                strAccess$getSessionId$p = strAccess$getSessionId$p;
+            }
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(restAPIAccess$getRestAPI$p.sendModalInteraction(new RestAPIParams.ModalInteraction(5L, id2, null, channelId, guildId, strAccess$getSessionId$p, j, new RestAPIParams.ModalInteractionData(id3, customId, arrayList))), false, 1, null), StoreApplicationInteractions.this.getClass(), (Context) null, (Function1) null, new AnonymousClass3(), (Function0) null, (Function0) null, new AnonymousClass2(), 54, (Object) null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$fetchInteractionDataIfNonExisting$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public final class AnonymousClass2 extends o implements Function0<Unit> {
+        public final /* synthetic */ long $interactionId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(long j) {
+            super(0);
+            this.$interactionId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreApplicationInteractions.access$handleInteractionDataFetchStart(StoreApplicationInteractions.this, this.$interactionId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$fetchInteractionDataIfNonExisting$3, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public final class AnonymousClass3 extends o implements Function1<ApplicationCommandData, Unit> {
+        public final /* synthetic */ long $interactionId;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$fetchInteractionDataIfNonExisting$3$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public final /* synthetic */ ApplicationCommandData $interactionDetail;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(ApplicationCommandData applicationCommandData) {
+                super(0);
+                this.$interactionDetail = applicationCommandData;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                AnonymousClass3 anonymousClass3 = AnonymousClass3.this;
+                StoreApplicationInteractions.access$handleInteractionDataFetchSuccess(StoreApplicationInteractions.this, anonymousClass3.$interactionId, this.$interactionDetail);
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass3(long j) {
+            super(1);
+            this.$interactionId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ApplicationCommandData applicationCommandData) {
+            invoke2(applicationCommandData);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ApplicationCommandData applicationCommandData) {
+            m.checkNotNullParameter(applicationCommandData, "interactionDetail");
+            StoreApplicationInteractions.access$getDispatcher$p(StoreApplicationInteractions.this).schedule(new AnonymousClass1(applicationCommandData));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$fetchInteractionDataIfNonExisting$4, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public final class AnonymousClass4 extends o implements Function1<Error, Unit> {
+        public final /* synthetic */ long $interactionId;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreApplicationInteractions$fetchInteractionDataIfNonExisting$4$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public AnonymousClass1() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                AnonymousClass4 anonymousClass4 = AnonymousClass4.this;
+                StoreApplicationInteractions.access$handleInteractionDataFetchFailure(StoreApplicationInteractions.this, anonymousClass4.$interactionId);
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass4(long j) {
+            super(1);
+            this.$interactionId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            m.checkNotNullParameter(error, "it");
+            StoreApplicationInteractions.access$getDispatcher$p(StoreApplicationInteractions.this).schedule(new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final ObservationDeck.UpdateSource getComponentStateUpdate() {
+            return StoreApplicationInteractions.access$getComponentStateUpdate$cp();
+        }
+
+        public final ObservationDeck.UpdateSource getSentInteractionsUpdate() {
+            return StoreApplicationInteractions.access$getSentInteractionsUpdate$cp();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public final /* data */ class ComponentLocation {
+        private final int componentIndex;
+        private final long messageId;
+
+        public ComponentLocation(long j, int i) {
+            this.messageId = j;
+            this.componentIndex = i;
+        }
+
+        public static /* synthetic */ ComponentLocation copy$default(ComponentLocation componentLocation, long j, int i, int i2, Object obj) {
+            if ((i2 & 1) != 0) {
+                j = componentLocation.messageId;
+            }
+            if ((i2 & 2) != 0) {
+                i = componentLocation.componentIndex;
+            }
+            return componentLocation.copy(j, i);
+        }
+
+        public final ComponentLocation copy(long messageId, int componentIndex) {
+            return new ComponentLocation(messageId, componentIndex);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof ComponentLocation)) {
+                return false;
+            }
+            ComponentLocation componentLocation = (ComponentLocation) other;
+            return this.messageId == componentLocation.messageId && this.componentIndex == componentLocation.componentIndex;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final int getComponentIndex() {
+            return this.componentIndex;
+        }
+
+        public final int getComponentIndex() {
+            return this.componentIndex;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getMessageId() {
+            return this.messageId;
+        }
+
+        public final long getMessageId() {
+            return this.messageId;
+        }
+
+        public int hashCode() {
+            return (b.a(this.messageId) * 31) + this.componentIndex;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("ComponentLocation(messageId=");
+            sbU.append(this.messageId);
+            sbU.append(", componentIndex=");
+            return a.B(sbU, this.componentIndex, ")");
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public abstract class InteractionSendState {
+
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final class Failed extends InteractionSendState {
+            private final String errorMessage;
+
+            public Failed() {
+                this(null, 1, null);
+            }
+
+            public Failed(String str) {
+                super(null);
+                this.errorMessage = str;
+            }
+
+            public final String getErrorMessage() {
+                return this.errorMessage;
+            }
+
+            public /* synthetic */ Failed(String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
+                this((i & 1) != 0 ? null : str);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final class Loading extends InteractionSendState {
+            public static final Loading INSTANCE = new Loading();
+
+            private Loading() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final class Success extends InteractionSendState {
+            public static final Success INSTANCE = new Success();
+
+            private Success() {
+                super(null);
+            }
+        }
+
+        private InteractionSendState() {
+        }
+
+        public /* synthetic */ InteractionSendState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public final /* data */ class SentInteraction {
+        private final long channelId;
+        private final Long guildId;
+        private final Long messageId;
+        private SentInteractionState state;
+
+        public SentInteraction(long j, Long l, Long l2, SentInteractionState sentInteractionState) {
+            m.checkNotNullParameter(sentInteractionState, "state");
+            this.channelId = j;
+            this.messageId = l;
+            this.guildId = l2;
+            this.state = sentInteractionState;
+        }
+
+        public static /* synthetic */ SentInteraction copy$default(SentInteraction sentInteraction, long j, Long l, Long l2, SentInteractionState sentInteractionState, int i, Object obj) {
+            if ((i & 1) != 0) {
+                j = sentInteraction.channelId;
+            }
+            long j2 = j;
+            if ((i & 2) != 0) {
+                l = sentInteraction.messageId;
+            }
+            Long l3 = l;
+            if ((i & 4) != 0) {
+                l2 = sentInteraction.guildId;
+            }
+            Long l4 = l2;
+            if ((i & 8) != 0) {
+                sentInteractionState = sentInteraction.state;
+            }
+            return sentInteraction.copy(j2, l3, l4, sentInteractionState);
+        }
+
+        public final SentInteraction copy(long channelId, Long messageId, Long guildId, SentInteractionState state) {
+            m.checkNotNullParameter(state, "state");
+            return new SentInteraction(channelId, messageId, guildId, state);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof SentInteraction)) {
+                return false;
+            }
+            SentInteraction sentInteraction = (SentInteraction) other;
+            return this.channelId == sentInteraction.channelId && m.areEqual(this.messageId, sentInteraction.messageId) && m.areEqual(this.guildId, sentInteraction.guildId) && m.areEqual(this.state, sentInteraction.state);
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getChannelId() {
+            return this.channelId;
+        }
+
+        public final long getChannelId() {
+            return this.channelId;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final Long getGuildId() {
+            return this.guildId;
+        }
+
+        public final Long getGuildId() {
+            return this.guildId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Long getMessageId() {
+            return this.messageId;
+        }
+
+        public final Long getMessageId() {
+            return this.messageId;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final SentInteractionState getState() {
+            return this.state;
+        }
+
+        public final SentInteractionState getState() {
+            return this.state;
+        }
+
+        public int hashCode() {
+            int iA = b.a(this.channelId) * 31;
+            Long l = this.messageId;
+            int iHashCode = (iA + (l != null ? l.hashCode() : 0)) * 31;
+            Long l2 = this.guildId;
+            int iHashCode2 = (iHashCode + (l2 != null ? l2.hashCode() : 0)) * 31;
+            SentInteractionState sentInteractionState = this.state;
+            return iHashCode2 + (sentInteractionState != null ? sentInteractionState.hashCode() : 0);
+        }
+
+        public final void setState(SentInteractionState sentInteractionState) {
+            m.checkNotNullParameter(sentInteractionState, "<set-?>");
+            this.state = sentInteractionState;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("SentInteraction(channelId=");
+            sbU.append(this.channelId);
+            sbU.append(", messageId=");
+            sbU.append(this.messageId);
+            sbU.append(", guildId=");
+            sbU.append(this.guildId);
+            sbU.append(", state=");
+            sbU.append(this.state);
+            sbU.append(")");
+            return sbU.toString();
+        }
+
+        public /* synthetic */ SentInteraction(long j, Long l, Long l2, SentInteractionState sentInteractionState, int i, DefaultConstructorMarker defaultConstructorMarker) {
+            this(j, l, l2, (i & 8) != 0 ? SentInteractionState.SENDING : sentInteractionState);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public enum SentInteractionState {
+        SENDING,
+        FAILURE,
+        SUCCESS
+    }
+
+    /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+    public abstract class State {
+
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final class Failure extends State {
+            public static final Failure INSTANCE = new Failure();
+
+            private Failure() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final class Fetching extends State {
+            public static final Fetching INSTANCE = new Fetching();
+
+            private Fetching() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreApplicationInteractions.kt */
+        public final /* data */ class Loaded extends State {
+            private final ApplicationCommandData commandOptions;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Loaded(ApplicationCommandData applicationCommandData) {
+                super(null);
+                m.checkNotNullParameter(applicationCommandData, "commandOptions");
+                this.commandOptions = applicationCommandData;
+            }
+
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, ApplicationCommandData applicationCommandData, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    applicationCommandData = loaded.commandOptions;
+                }
+                return loaded.copy(applicationCommandData);
+            }
+
+            public final Loaded copy(ApplicationCommandData commandOptions) {
+                m.checkNotNullParameter(commandOptions, "commandOptions");
+                return new Loaded(commandOptions);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Loaded) && m.areEqual(this.commandOptions, ((Loaded) other).commandOptions);
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ApplicationCommandData getCommandOptions() {
+                return this.commandOptions;
+            }
+
+            public final ApplicationCommandData getCommandOptions() {
+                return this.commandOptions;
+            }
+
+            public int hashCode() {
+                ApplicationCommandData applicationCommandData = this.commandOptions;
+                if (applicationCommandData != null) {
+                    return applicationCommandData.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                StringBuilder sbU = a.U("Loaded(commandOptions=");
+                sbU.append(this.commandOptions);
+                sbU.append(")");
+                return sbU.toString();
+            }
+        }
+
+        private State() {
+        }
+
+        public /* synthetic */ State(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public /* synthetic */ StoreApplicationInteractions(StoreStream storeStream, Dispatcher dispatcher, StoreMessages storeMessages, StoreLocalActionComponentState storeLocalActionComponentState, StoreUser storeUser, Clock clock, SharedPreferences sharedPreferences, ObservationDeck observationDeck, RestAPI restAPI, NonceGenerator nonceGenerator, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(storeStream, dispatcher, storeMessages, storeLocalActionComponentState, storeUser, clock, (i & 64) != 0 ? SharedPreferencesProvider.INSTANCE.get() : sharedPreferences, (i & 128) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 256) != 0 ? RestAPI.Companion.getApi() : restAPI, (i & 512) != 0 ? new NonceGenerator() : nonceGenerator);
+        this(storeStream, dispatcher, storeMessages, storeLocalActionComponentState, storeUser, clock, (i & 64) != 0 ? SharedPreferencesProvider.INSTANCE.get() : sharedPreferences, (i & 128) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 256) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 512) != 0 ? new NonceGenerator() : nonceGenerator);
     }
 
-    public static final /* synthetic */ void access$addInteractionStateToComponent(StoreApplicationInteractions storeApplicationInteractions, long j, int i, StoreApplicationInteractions$InteractionSendState storeApplicationInteractions$InteractionSendState) {
-        storeApplicationInteractions.addInteractionStateToComponent(j, i, storeApplicationInteractions$InteractionSendState);
+    public static final /* synthetic */ void access$addInteractionStateToComponent(StoreApplicationInteractions storeApplicationInteractions, long j, int i, InteractionSendState interactionSendState) {
+        storeApplicationInteractions.addInteractionStateToComponent(j, i, interactionSendState);
     }
 
-    public static final /* synthetic */ ObservationDeck$UpdateSource access$getComponentStateUpdate$cp() {
+    public static final /* synthetic */ ObservationDeck.UpdateSource access$getComponentStateUpdate$cp() {
         return ComponentStateUpdate;
     }
 
@@ -113,7 +1033,7 @@ public final class StoreApplicationInteractions extends StoreV2 {
         return storeApplicationInteractions.sentInteractionsSnapshot;
     }
 
-    public static final /* synthetic */ ObservationDeck$UpdateSource access$getSentInteractionsUpdate$cp() {
+    public static final /* synthetic */ ObservationDeck.UpdateSource access$getSentInteractionsUpdate$cp() {
         return SentInteractionsUpdate;
     }
 
@@ -162,8 +1082,8 @@ public final class StoreApplicationInteractions extends StoreV2 {
     }
 
     @StoreThread
-    private final void addInteractionStateToComponent(long messageId, int componentIndex, StoreApplicationInteractions$InteractionSendState sendState) {
-        this.interactionComponentSendState.put(Long.valueOf(messageId), g0.mapOf(o.to(Integer.valueOf(componentIndex), sendState)));
+    private final void addInteractionStateToComponent(long messageId, int componentIndex, InteractionSendState sendState) {
+        this.interactionComponentSendState.put(Long.valueOf(messageId), g0.mapOf(d0.o.to(Integer.valueOf(componentIndex), sendState)));
         markChanged(ComponentStateUpdate);
     }
 
@@ -183,29 +1103,29 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
     @StoreThread
     private final void clearCache() {
-        SharedPreferences$Editor sharedPreferences$EditorEdit = this.sharedPrefs.edit();
-        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
-        sharedPreferences$EditorEdit.putString(CACHE_KEY_APPLICATION_COMMAND_SEND_DATA_SET, null);
-        sharedPreferences$EditorEdit.apply();
+        SharedPreferences.Editor editorEdit = this.sharedPrefs.edit();
+        m.checkNotNullExpressionValue(editorEdit, "editor");
+        editorEdit.putString(CACHE_KEY_APPLICATION_COMMAND_SEND_DATA_SET, null);
+        editorEdit.apply();
         this.applicationCommandLocalSendDataSet.clear();
         markChanged();
     }
 
     private final void clearComponentInteractionSendSuccessAndFailures() {
-        this.dispatcher.schedule(new StoreApplicationInteractions$clearComponentInteractionSendSuccessAndFailures$1(this));
+        this.dispatcher.schedule(new AnonymousClass1());
     }
 
     public final void fetchInteractionDataIfNonExisting(long interactionId, long channelId, long messageId, String messageNonce) {
         ApplicationCommandLocalSendData applicationCommandLocalSendData;
-        StoreApplicationInteractions$State storeApplicationInteractions$State = this.interactionData.get(Long.valueOf(interactionId));
-        if ((storeApplicationInteractions$State instanceof StoreApplicationInteractions$State$Fetching) || (storeApplicationInteractions$State instanceof StoreApplicationInteractions$State$Loaded)) {
+        State state = this.interactionData.get(Long.valueOf(interactionId));
+        if ((state instanceof State.Fetching) || (state instanceof State.Loaded)) {
             return;
         }
         if (!(messageNonce == null || t.isBlank(messageNonce)) && this.applicationCommandLocalSendDataSnapshot.containsKey(messageNonce) && (applicationCommandLocalSendData = this.applicationCommandLocalSendDataSnapshot.get(messageNonce)) != null) {
             this.dispatcher.schedule(new StoreApplicationInteractions$fetchInteractionDataIfNonExisting$$inlined$let$lambda$1(applicationCommandLocalSendData, this, interactionId));
         } else {
-            this.dispatcher.schedule(new StoreApplicationInteractions$fetchInteractionDataIfNonExisting$2(this, interactionId));
-            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.getInteractionData(channelId, messageId), false, 1, null), StoreApplicationInteractions.class, (Context) null, (Function1) null, new StoreApplicationInteractions$fetchInteractionDataIfNonExisting$4(this, interactionId), (Function0) null, (Function0) null, new StoreApplicationInteractions$fetchInteractionDataIfNonExisting$3(this, interactionId), 54, (Object) null);
+            this.dispatcher.schedule(new AnonymousClass2(interactionId));
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.getInteractionData(channelId, messageId), false, 1, null), StoreApplicationInteractions.class, (Context) null, (Function1) null, new AnonymousClass4(interactionId), (Function0) null, (Function0) null, new AnonymousClass3(interactionId), 54, (Object) null);
         }
     }
 
@@ -213,27 +1133,27 @@ public final class StoreApplicationInteractions extends StoreV2 {
         return this.applicationCommandLocalSendDataSet;
     }
 
-    public final Map<Long, Map<Integer, StoreApplicationInteractions$InteractionSendState>> getComponentInteractionData() {
+    public final Map<Long, Map<Integer, InteractionSendState>> getComponentInteractionData() {
         return this.interactionComponentSendStateSnapshot;
     }
 
-    public final Map<String, StoreApplicationInteractions$ComponentLocation> getComponentInteractions() {
+    public final Map<String, ComponentLocation> getComponentInteractions() {
         return this.componentInteractions;
     }
 
-    public final Map<Long, Map<Integer, StoreApplicationInteractions$InteractionSendState>> getInteractionComponentSendState() {
+    public final Map<Long, Map<Integer, InteractionSendState>> getInteractionComponentSendState() {
         return this.interactionComponentSendState;
     }
 
-    public final Map<Long, Map<Integer, StoreApplicationInteractions$InteractionSendState>> getInteractionComponentSendStateSnapshot() {
+    public final Map<Long, Map<Integer, InteractionSendState>> getInteractionComponentSendStateSnapshot() {
         return this.interactionComponentSendStateSnapshot;
     }
 
-    public final StoreApplicationInteractions$State getInteractionData(long interactionId) {
+    public final State getInteractionData(long interactionId) {
         return this.interactionDataSnapshot.get(Long.valueOf(interactionId));
     }
 
-    public final LruCache<String, StoreApplicationInteractions$SentInteraction> getSentInteractions$app_productionGoogleRelease() {
+    public final LruCache<String, SentInteraction> getSentInteractions$app_productionGoogleRelease() {
         return this.sentInteractions;
     }
 
@@ -264,7 +1184,7 @@ public final class StoreApplicationInteractions extends StoreV2 {
     private final void handleApplicationCommandResult(MessageResult result, ApplicationCommandLocalSendData localSendData, Function0<Unit> onSuccess, Function1<? super Error, Unit> onFail) {
         ApplicationCommandLocalSendData applicationCommandLocalSendData = this.applicationCommandLocalSendDataSet.get(localSendData.getNonceString());
         boolean z2 = (applicationCommandLocalSendData != null ? applicationCommandLocalSendData.getInteractionId() : null) == null;
-        if (result instanceof MessageResult$Success) {
+        if (result instanceof MessageResult.Success) {
             if (onSuccess != null) {
                 onSuccess.invoke();
             }
@@ -274,13 +1194,13 @@ public final class StoreApplicationInteractions extends StoreV2 {
             }
             return;
         }
-        if (!(result instanceof MessageResult$UnknownFailure)) {
+        if (!(result instanceof MessageResult.UnknownFailure)) {
             if (z2) {
                 this.storeStream.handleInteractionFailure(new InteractionStateUpdate(localSendData.getInteractionId(), localSendData.getNonceString()));
             }
         } else {
             if (onFail != null) {
-                onFail.invoke(((MessageResult$UnknownFailure) result).getError());
+                onFail.invoke(((MessageResult.UnknownFailure) result).getError());
             }
             if (z2) {
                 this.storeStream.handleInteractionFailure(new InteractionStateUpdate(localSendData.getInteractionId(), localSendData.getNonceString()));
@@ -293,8 +1213,8 @@ public final class StoreApplicationInteractions extends StoreV2 {
         clearComponentInteractionSendSuccessAndFailures();
     }
 
-    private final void handleComponentInteractionMessage(StoreApplicationInteractions$ComponentLocation componentLocation) {
-        addInteractionStateToComponent(componentLocation.getMessageId(), componentLocation.getComponentIndex(), StoreApplicationInteractions$InteractionSendState$Success.INSTANCE);
+    private final void handleComponentInteractionMessage(ComponentLocation componentLocation) {
+        addInteractionStateToComponent(componentLocation.getMessageId(), componentLocation.getComponentIndex(), InteractionSendState.Success.INSTANCE);
     }
 
     @StoreThread
@@ -321,19 +1241,19 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
     @StoreThread
     private final void handleInteractionDataFetchFailure(long interactionId) {
-        this.interactionData.put(Long.valueOf(interactionId), StoreApplicationInteractions$State$Failure.INSTANCE);
+        this.interactionData.put(Long.valueOf(interactionId), State.Failure.INSTANCE);
         markChanged();
     }
 
     @StoreThread
     private final void handleInteractionDataFetchStart(long interactionId) {
-        this.interactionData.put(Long.valueOf(interactionId), StoreApplicationInteractions$State$Fetching.INSTANCE);
+        this.interactionData.put(Long.valueOf(interactionId), State.Fetching.INSTANCE);
         markChanged();
     }
 
     @StoreThread
     private final void handleInteractionDataFetchSuccess(long interactionId, ApplicationCommandData interactionData) {
-        this.interactionData.put(Long.valueOf(interactionId), new StoreApplicationInteractions$State$Loaded(interactionData));
+        this.interactionData.put(Long.valueOf(interactionId), new State.Loaded(interactionData));
         markChanged();
     }
 
@@ -348,9 +1268,9 @@ public final class StoreApplicationInteractions extends StoreV2 {
     public final void handleInteractionFailure(InteractionStateUpdate interactionStateUpdate) {
         ApplicationCommandLocalSendData applicationCommandLocalSendData;
         m.checkNotNullParameter(interactionStateUpdate, "interactionStateUpdate");
-        StoreApplicationInteractions$SentInteraction storeApplicationInteractions$SentInteraction = this.sentInteractions.get(interactionStateUpdate.getNonce());
-        if (storeApplicationInteractions$SentInteraction != null) {
-            storeApplicationInteractions$SentInteraction.setState(StoreApplicationInteractions$SentInteractionState.FAILURE);
+        SentInteraction sentInteraction = this.sentInteractions.get(interactionStateUpdate.getNonce());
+        if (sentInteraction != null) {
+            sentInteraction.setState(SentInteractionState.FAILURE);
             markChanged(SentInteractionsUpdate);
         }
         if (!this.componentInteractions.containsKey(interactionStateUpdate.getNonce())) {
@@ -360,11 +1280,11 @@ public final class StoreApplicationInteractions extends StoreV2 {
             handleInteractionFailure(applicationCommandLocalSendData, interactionStateUpdate.getId());
             return;
         }
-        StoreApplicationInteractions$ComponentLocation storeApplicationInteractions$ComponentLocation = this.componentInteractions.get(interactionStateUpdate.getNonce());
-        if (storeApplicationInteractions$ComponentLocation != null) {
-            this.storeLocalActionComponentState.clearState(storeApplicationInteractions$ComponentLocation.getMessageId(), Integer.valueOf(storeApplicationInteractions$ComponentLocation.getComponentIndex()));
+        ComponentLocation componentLocation = this.componentInteractions.get(interactionStateUpdate.getNonce());
+        if (componentLocation != null) {
+            this.storeLocalActionComponentState.clearState(componentLocation.getMessageId(), Integer.valueOf(componentLocation.getComponentIndex()));
             this.componentInteractions.remove(interactionStateUpdate.getNonce());
-            addInteractionStateToComponent(storeApplicationInteractions$ComponentLocation.getMessageId(), storeApplicationInteractions$ComponentLocation.getComponentIndex(), new StoreApplicationInteractions$InteractionSendState$Failed(null, 1, null));
+            addInteractionStateToComponent(componentLocation.getMessageId(), componentLocation.getComponentIndex(), new InteractionSendState.Failed(null, 1, null));
         }
     }
 
@@ -376,17 +1296,17 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
     @StoreThread
     public final void handleInteractionSuccess(InteractionStateUpdate interactionStateUpdate) {
-        StoreApplicationInteractions$ComponentLocation storeApplicationInteractions$ComponentLocation;
+        ComponentLocation componentLocation;
         m.checkNotNullParameter(interactionStateUpdate, "interactionStateUpdate");
-        StoreApplicationInteractions$SentInteraction storeApplicationInteractions$SentInteraction = this.sentInteractions.get(interactionStateUpdate.getNonce());
-        if (storeApplicationInteractions$SentInteraction != null) {
-            storeApplicationInteractions$SentInteraction.setState(StoreApplicationInteractions$SentInteractionState.SUCCESS);
+        SentInteraction sentInteraction = this.sentInteractions.get(interactionStateUpdate.getNonce());
+        if (sentInteraction != null) {
+            sentInteraction.setState(SentInteractionState.SUCCESS);
             markChanged(SentInteractionsUpdate);
         }
-        if (!this.componentInteractions.containsKey(interactionStateUpdate.getNonce()) || (storeApplicationInteractions$ComponentLocation = this.componentInteractions.get(interactionStateUpdate.getNonce())) == null) {
+        if (!this.componentInteractions.containsKey(interactionStateUpdate.getNonce()) || (componentLocation = this.componentInteractions.get(interactionStateUpdate.getNonce())) == null) {
             return;
         }
-        this.interactionComponentSendState.remove(Long.valueOf(storeApplicationInteractions$ComponentLocation.getMessageId()));
+        this.interactionComponentSendState.remove(Long.valueOf(componentLocation.getMessageId()));
         this.componentInteractions.remove(interactionStateUpdate.getNonce());
         markChanged(ComponentStateUpdate);
     }
@@ -410,12 +1330,12 @@ public final class StoreApplicationInteractions extends StoreV2 {
     public final void handleMessageUpdate(com.discord.api.message.Message message) {
         boolean z2;
         m.checkNotNullParameter(message, "message");
-        Map<String, StoreApplicationInteractions$ComponentLocation> map = this.componentInteractions;
+        Map<String, ComponentLocation> map = this.componentInteractions;
         if (map.isEmpty()) {
             z2 = false;
             break;
         }
-        Iterator<Map$Entry<String, StoreApplicationInteractions$ComponentLocation>> it = map.entrySet().iterator();
+        Iterator<Map.Entry<String, ComponentLocation>> it = map.entrySet().iterator();
         while (true) {
             if (it.hasNext()) {
                 if (it.next().getValue().getMessageId() == message.getId()) {
@@ -429,11 +1349,11 @@ public final class StoreApplicationInteractions extends StoreV2 {
         }
         if (z2) {
             this.storeLocalActionComponentState.clearState(message.getId(), null);
-            Map<String, StoreApplicationInteractions$ComponentLocation> map2 = this.componentInteractions;
+            Map<String, ComponentLocation> map2 = this.componentInteractions;
             LinkedHashMap linkedHashMap = new LinkedHashMap();
-            for (Map$Entry<String, StoreApplicationInteractions$ComponentLocation> map$Entry : map2.entrySet()) {
-                if (map$Entry.getValue().getMessageId() == message.getId()) {
-                    linkedHashMap.put(map$Entry.getKey(), map$Entry.getValue());
+            for (Map.Entry<String, ComponentLocation> entry : map2.entrySet()) {
+                if (entry.getValue().getMessageId() == message.getId()) {
+                    linkedHashMap.put(entry.getKey(), entry.getValue());
                 }
             }
             Iterator it2 = linkedHashMap.keySet().iterator();
@@ -474,11 +1394,11 @@ public final class StoreApplicationInteractions extends StoreV2 {
                     this.storeMessages.deleteLocalMessage(applicationCommandLocalSendData.getChannelId(), applicationCommandLocalSendData.getNonceString());
                 }
             } else {
-                StoreApplicationInteractions$ComponentLocation storeApplicationInteractions$ComponentLocation = this.componentInteractions.get(nonce);
-                if (storeApplicationInteractions$ComponentLocation == null) {
+                ComponentLocation componentLocation = this.componentInteractions.get(nonce);
+                if (componentLocation == null) {
                     return;
                 }
-                handleComponentInteractionMessage(storeApplicationInteractions$ComponentLocation);
+                handleComponentInteractionMessage(componentLocation);
                 this.componentInteractions.remove(nonce);
             }
         }
@@ -507,7 +1427,7 @@ public final class StoreApplicationInteractions extends StoreV2 {
     @StoreThread
     private final void handleSendApplicationCommandRequest(ApplicationCommandLocalSendData localSendData, List<? extends Attachment<?>> attachments, Function0<Unit> onSuccess, Function1<? super Error, Unit> onFail) {
         upsertApplicationCommandSendData(localSendData);
-        ObservableExtensionsKt.appSubscribe$default(sendApplicationCommandObservable(localSendData, attachments), StoreApplicationInteractions.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreApplicationInteractions$handleSendApplicationCommandRequest$1(this, localSendData, onSuccess, onFail), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(sendApplicationCommandObservable(localSendData, attachments), StoreApplicationInteractions.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(localSendData, onSuccess, onFail), 62, (Object) null);
     }
 
     @Override // com.discord.stores.Store
@@ -546,14 +1466,14 @@ public final class StoreApplicationInteractions extends StoreV2 {
         }
     }
 
-    public final Observable<Map<Long, Map<Integer, StoreApplicationInteractions$InteractionSendState>>> observeComponentInteractionState() {
-        Observable<Map<Long, Map<Integer, StoreApplicationInteractions$InteractionSendState>>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{ComponentStateUpdate}, false, null, null, new StoreApplicationInteractions$observeComponentInteractionState$1(this), 14, null).r();
+    public final Observable<Map<Long, Map<Integer, InteractionSendState>>> observeComponentInteractionState() {
+        Observable<Map<Long, Map<Integer, InteractionSendState>>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{ComponentStateUpdate}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }
 
-    public final Observable<StoreApplicationInteractions$State> observeInteractionData(long interactionId) {
-        Observable<StoreApplicationInteractions$State> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreApplicationInteractions$observeInteractionData$1(this, interactionId), 14, null).r();
+    public final Observable<State> observeInteractionData(long interactionId) {
+        Observable<State> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(interactionId), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }
@@ -564,8 +1484,8 @@ public final class StoreApplicationInteractions extends StoreV2 {
         return publishSubject;
     }
 
-    public final Observable<Map<String, StoreApplicationInteractions$SentInteraction>> observeSentInteractions() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{SentInteractionsUpdate}, false, null, null, new StoreApplicationInteractions$observeSentInteractions$1(this), 14, null);
+    public final Observable<Map<String, SentInteraction>> observeSentInteractions() {
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{SentInteractionsUpdate}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     @StoreThread
@@ -583,7 +1503,7 @@ public final class StoreApplicationInteractions extends StoreV2 {
         if (type == null || type.intValue() != -4 || (nonce = message.getNonce()) == null || (applicationCommandLocalSendData = this.applicationCommandLocalSendDataSnapshot.get(nonce)) == null) {
             return;
         }
-        this.dispatcher.schedule(new StoreApplicationInteractions$resendApplicationCommand$1(this, message, nonce, ApplicationCommandLocalSendData.copy$default(applicationCommandLocalSendData, NonceGenerator$Companion.computeNonce$default(NonceGenerator.Companion, null, 1, null), 0L, null, null, null, null, null, null, null, null, null, 1022, null)));
+        this.dispatcher.schedule(new AnonymousClass1(message, nonce, ApplicationCommandLocalSendData.copy$default(applicationCommandLocalSendData, NonceGenerator.Companion.computeNonce$default(NonceGenerator.INSTANCE, null, 1, null), 0L, null, null, null, null, null, null, null, null, null, 1022, null)));
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -595,7 +1515,7 @@ public final class StoreApplicationInteractions extends StoreV2 {
         m.checkNotNullParameter(data, "data");
         m.checkNotNullParameter(onSuccess, "onSuccess");
         m.checkNotNullParameter(onFail, "onFail");
-        this.dispatcher.schedule(new StoreApplicationInteractions$sendApplicationCommand$1(this, new ApplicationCommandLocalSendData(this.nonceGenerator.nonce(), channelId, guildId, data.getApplicationCommand().getGuildId(), data.getApplication(), this.sessionId, data.getApplicationCommand().getName(), data.getApplicationCommand().getId(), data.getValues(), version, null, 1024, null), attachments, onSuccess, onFail));
+        this.dispatcher.schedule(new AnonymousClass1(new ApplicationCommandLocalSendData(this.nonceGenerator.nonce(), channelId, guildId, data.getApplicationCommand().getGuildId(), data.getApplication(), this.sessionId, data.getApplicationCommand().getName(), data.getApplicationCommand().getId(), data.getValues(), version, null, 1024, null), attachments, onSuccess, onFail));
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -608,13 +1528,13 @@ public final class StoreApplicationInteractions extends StoreV2 {
 
     private final Observable<MessageResult> sendApplicationCommandObservable(ApplicationCommandLocalSendData localSendData, List<? extends Attachment<?>> attachments) {
         Message messageBuildApplicationCommandLocalMessage$default = buildApplicationCommandLocalMessage$default(this, localSendData, false, false, 6, null);
-        this.sentInteractions.put(localSendData.getNonceString(), new StoreApplicationInteractions$SentInteraction(localSendData.getChannelId(), null, localSendData.getGuildId(), null, 8, null));
+        this.sentInteractions.put(localSendData.getNonceString(), new SentInteraction(localSendData.getChannelId(), null, localSendData.getGuildId(), null, 8, null));
         return this.storeMessages.sendMessage(messageBuildApplicationCommandLocalMessage$default, localSendData, attachments);
     }
 
-    public final void sendComponentInteraction(long applicationId, Long guildId, long channelId, long messageId, int componentIndex, RestAPIParams$ComponentInteractionData data, Long messageFlags) {
+    public final void sendComponentInteraction(long applicationId, Long guildId, long channelId, long messageId, int componentIndex, RestAPIParams.ComponentInteractionData data, Long messageFlags) {
         m.checkNotNullParameter(data, "data");
-        this.dispatcher.schedule(new StoreApplicationInteractions$sendComponentInteraction$1(this, messageId, componentIndex, String.valueOf(this.nonceGenerator.nonce()), channelId, guildId, applicationId, messageFlags, data));
+        this.dispatcher.schedule(new AnonymousClass1(messageId, componentIndex, String.valueOf(this.nonceGenerator.nonce()), channelId, guildId, applicationId, messageFlags, data));
     }
 
     public final void sendModalInteraction(InteractionModalCreate modal, List<Pair<String, String>> components, Function1<? super String, Unit> onNext, Function0<Unit> onError) {
@@ -622,16 +1542,16 @@ public final class StoreApplicationInteractions extends StoreV2 {
         m.checkNotNullParameter(components, "components");
         m.checkNotNullParameter(onNext, "onNext");
         m.checkNotNullParameter(onError, "onError");
-        StoreApplicationInteractions$SentInteraction storeApplicationInteractions$SentInteraction = this.sentInteractions.get(modal.getNonce());
-        if (storeApplicationInteractions$SentInteraction != null) {
-            m.checkNotNullExpressionValue(storeApplicationInteractions$SentInteraction, "sentInteractions[modal.nonce] ?: return");
+        SentInteraction sentInteraction = this.sentInteractions.get(modal.getNonce());
+        if (sentInteraction != null) {
+            m.checkNotNullExpressionValue(sentInteraction, "sentInteractions[modal.nonce] ?: return");
             long jNonce = this.nonceGenerator.nonce();
-            this.sentInteractions.put(String.valueOf(jNonce), storeApplicationInteractions$SentInteraction);
-            this.dispatcher.schedule(new StoreApplicationInteractions$sendModalInteraction$1(this, modal, storeApplicationInteractions$SentInteraction, jNonce, components, onNext, onError));
+            this.sentInteractions.put(String.valueOf(jNonce), sentInteraction);
+            this.dispatcher.schedule(new AnonymousClass1(modal, sentInteraction, jNonce, components, onNext, onError));
         }
     }
 
-    public final void setInteractionComponentSendStateSnapshot(Map<Long, ? extends Map<Integer, ? extends StoreApplicationInteractions$InteractionSendState>> map) {
+    public final void setInteractionComponentSendStateSnapshot(Map<Long, ? extends Map<Integer, ? extends InteractionSendState>> map) {
         m.checkNotNullParameter(map, "<set-?>");
         this.interactionComponentSendStateSnapshot = map;
     }
@@ -642,16 +1562,16 @@ public final class StoreApplicationInteractions extends StoreV2 {
         super.snapshotData();
         this.interactionDataSnapshot = new HashMap(this.interactionData);
         this.interactionComponentSendStateSnapshot = new HashMap(this.interactionComponentSendState);
-        Map<String, StoreApplicationInteractions$SentInteraction> mapSnapshot = this.sentInteractions.snapshot();
+        Map<String, SentInteraction> mapSnapshot = this.sentInteractions.snapshot();
         m.checkNotNullExpressionValue(mapSnapshot, "sentInteractions.snapshot()");
         this.sentInteractionsSnapshot = mapSnapshot;
         HashMap map = new HashMap(this.applicationCommandLocalSendDataSet);
         this.applicationCommandLocalSendDataSnapshot = map;
         String strM = this.gson.m(map);
-        SharedPreferences$Editor sharedPreferences$EditorEdit = this.sharedPrefs.edit();
-        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
-        sharedPreferences$EditorEdit.putString(CACHE_KEY_APPLICATION_COMMAND_SEND_DATA_SET, strM);
-        sharedPreferences$EditorEdit.apply();
+        SharedPreferences.Editor editorEdit = this.sharedPrefs.edit();
+        m.checkNotNullExpressionValue(editorEdit, "editor");
+        editorEdit.putString(CACHE_KEY_APPLICATION_COMMAND_SEND_DATA_SET, strM);
+        editorEdit.apply();
     }
 
     private final User toUser(Application application) {
@@ -662,7 +1582,7 @@ public final class StoreApplicationInteractions extends StoreV2 {
         long id2 = application.getId();
         String name = application.getName();
         String icon = application.getIcon();
-        return new User(id2, name, icon != null ? new NullSerializable$b(icon) : new NullSerializable$a(null, 1), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4194296);
+        return new User(id2, name, icon != null ? new NullSerializable.b(icon) : new NullSerializable.a(null, 1), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4194296);
     }
 
     @StoreThread
@@ -702,7 +1622,7 @@ public final class StoreApplicationInteractions extends StoreV2 {
         this.sentInteractions = new LruCache<>(5);
         this.sentInteractionsSnapshot = h0.emptyMap();
         e eVar = new e();
-        a.a(eVar);
+        b.a.b.a.a(eVar);
         this.gson = eVar.a();
         this.interactionModalCreate = PublishSubject.k0();
     }

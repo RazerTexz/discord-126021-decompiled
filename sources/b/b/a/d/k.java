@@ -16,12 +16,12 @@ public final class k extends d0.w.i.a.k implements Function2<CoroutineScope, Con
     public final /* synthetic */ ContentResolver $contentResolver;
     public final /* synthetic */ Uri $uri;
     public int label;
-    public final /* synthetic */ i$b this$0;
+    public final /* synthetic */ i.b this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public k(i$b i_b, ContentResolver contentResolver, Uri uri, Continuation continuation) {
+    public k(i.b bVar, ContentResolver contentResolver, Uri uri, Continuation continuation) {
         super(2, continuation);
-        this.this$0 = i_b;
+        this.this$0 = bVar;
         this.$contentResolver = contentResolver;
         this.$uri = uri;
     }

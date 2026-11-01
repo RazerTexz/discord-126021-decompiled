@@ -3,7 +3,6 @@ package org.webrtc.voiceengine;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.Build;
-import android.os.Build$VERSION;
 import b.d.b.a.a;
 import java.util.Arrays;
 import java.util.List;
@@ -124,7 +123,7 @@ public final class WebRtcAudioUtils {
     }
 
     private static void logAudioDeviceInfo(String str, AudioManager audioManager) {
-        if (Build$VERSION.SDK_INT < 23) {
+        if (Build.VERSION.SDK_INT < 23) {
             return;
         }
         AudioDeviceInfo[] devices = audioManager.getDevices(3);
@@ -207,9 +206,9 @@ public final class WebRtcAudioUtils {
 
     public static void logDeviceInfo(String str) {
         StringBuilder sbU = a.U("Android SDK: ");
-        sbU.append(Build$VERSION.SDK_INT);
+        sbU.append(Build.VERSION.SDK_INT);
         sbU.append(", Release: ");
-        sbU.append(Build$VERSION.RELEASE);
+        sbU.append(Build.VERSION.RELEASE);
         sbU.append(", Brand: ");
         sbU.append(Build.BRAND);
         sbU.append(", Device: ");
@@ -228,7 +227,7 @@ public final class WebRtcAudioUtils {
     }
 
     private static void logIsStreamMute(String str, AudioManager audioManager, int i, StringBuilder sb) {
-        if (Build$VERSION.SDK_INT >= 23) {
+        if (Build.VERSION.SDK_INT >= 23) {
             sb.append(", muted=");
             sb.append(audioManager.isStreamMute(i));
         }

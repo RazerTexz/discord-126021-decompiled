@@ -12,24 +12,30 @@ public class s implements Serializable {
     public final Integer _index;
     public final Boolean _required;
     public h0 _valueNulls;
-    public final transient s$a m;
+    public final transient a m;
     private static final long serialVersionUID = -1;
     public static final s j = new s(Boolean.TRUE, null, null, null, null, null, null);
     public static final s k = new s(Boolean.FALSE, null, null, null, null, null, null);
     public static final s l = new s(null, null, null, null, null, null, null);
 
-    public s(Boolean bool, String str, Integer num, String str2, s$a s_a, h0 h0Var, h0 h0Var2) {
+    /* JADX INFO: compiled from: PropertyMetadata.java */
+    public final class a {
+        public a(b.g.a.c.c0.i iVar, boolean z2) {
+        }
+    }
+
+    public s(Boolean bool, String str, Integer num, String str2, a aVar, h0 h0Var, h0 h0Var2) {
         this._required = bool;
         this._description = str;
         this._index = num;
         this._defaultValue = (str2 == null || str2.isEmpty()) ? null : str2;
-        this.m = s_a;
+        this.m = aVar;
         this._valueNulls = h0Var;
         this._contentNulls = h0Var2;
     }
 
-    public s a(s$a s_a) {
-        return new s(this._required, this._description, this._index, this._defaultValue, s_a, this._valueNulls, this._contentNulls);
+    public s a(a aVar) {
+        return new s(this._required, this._description, this._index, this._defaultValue, aVar, this._valueNulls, this._contentNulls);
     }
 
     public Object readResolve() {

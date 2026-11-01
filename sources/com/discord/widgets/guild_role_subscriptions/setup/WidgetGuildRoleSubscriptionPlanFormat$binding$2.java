@@ -3,7 +3,7 @@ package com.discord.widgets.guild_role_subscriptions.setup;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetGuildRoleSubscriptionPlanFormatBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -26,20 +26,20 @@ public final /* synthetic */ class WidgetGuildRoleSubscriptionPlanFormat$binding
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGuildRoleSubscriptionPlanFormatBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.guild_role_subscription_format_divider;
-        View viewFindViewById = view.findViewById(R$id.guild_role_subscription_format_divider);
+        int i = R.id.guild_role_subscription_format_divider;
+        View viewFindViewById = view.findViewById(R.id.guild_role_subscription_format_divider);
         if (viewFindViewById != null) {
-            i = R$id.guild_role_subscription_format_subtitle;
-            TextView textView = (TextView) view.findViewById(R$id.guild_role_subscription_format_subtitle);
+            i = R.id.guild_role_subscription_format_subtitle;
+            TextView textView = (TextView) view.findViewById(R.id.guild_role_subscription_format_subtitle);
             if (textView != null) {
-                i = R$id.guild_role_subscription_format_title;
-                TextView textView2 = (TextView) view.findViewById(R$id.guild_role_subscription_format_title);
+                i = R.id.guild_role_subscription_format_title;
+                TextView textView2 = (TextView) view.findViewById(R.id.guild_role_subscription_format_title);
                 if (textView2 != null) {
-                    i = R$id.guild_role_subscription_plan_entire_server_format;
-                    GuildRoleSubscriptionPlanFormatRadioButton guildRoleSubscriptionPlanFormatRadioButton = (GuildRoleSubscriptionPlanFormatRadioButton) view.findViewById(R$id.guild_role_subscription_plan_entire_server_format);
+                    i = R.id.guild_role_subscription_plan_entire_server_format;
+                    GuildRoleSubscriptionPlanFormatRadioButton guildRoleSubscriptionPlanFormatRadioButton = (GuildRoleSubscriptionPlanFormatRadioButton) view.findViewById(R.id.guild_role_subscription_plan_entire_server_format);
                     if (guildRoleSubscriptionPlanFormatRadioButton != null) {
-                        i = R$id.guild_role_subscription_plan_some_channels_format;
-                        GuildRoleSubscriptionPlanFormatRadioButton guildRoleSubscriptionPlanFormatRadioButton2 = (GuildRoleSubscriptionPlanFormatRadioButton) view.findViewById(R$id.guild_role_subscription_plan_some_channels_format);
+                        i = R.id.guild_role_subscription_plan_some_channels_format;
+                        GuildRoleSubscriptionPlanFormatRadioButton guildRoleSubscriptionPlanFormatRadioButton2 = (GuildRoleSubscriptionPlanFormatRadioButton) view.findViewById(R.id.guild_role_subscription_plan_some_channels_format);
                         if (guildRoleSubscriptionPlanFormatRadioButton2 != null) {
                             return new WidgetGuildRoleSubscriptionPlanFormatBinding((LinearLayout) view, viewFindViewById, textView, textView2, guildRoleSubscriptionPlanFormatRadioButton, guildRoleSubscriptionPlanFormatRadioButton2);
                         }

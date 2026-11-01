@@ -1,21 +1,65 @@
 package com.discord.widgets.stage;
 
 import b.d.b.a.a;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: StageRoles.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StageRoles {
     private static final int AUDIENCE;
-    public static final StageRoles$Companion Companion;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE;
     private static final int IS_INVITED_TO_SPEAK = 4;
     private static final int IS_MODERATOR = 2;
     private static final int IS_SPEAKER = 1;
     private final int rolesFlags;
 
+    /* JADX INFO: compiled from: StageRoles.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        /* JADX INFO: renamed from: invoke-H48EO60$default, reason: not valid java name */
+        public static /* synthetic */ int m36invokeH48EO60$default(Companion companion, boolean z2, boolean z3, boolean z4, int i, Object obj) {
+            if ((i & 1) != 0) {
+                z2 = false;
+            }
+            if ((i & 2) != 0) {
+                z3 = false;
+            }
+            if ((i & 4) != 0) {
+                z4 = false;
+            }
+            return companion.m38invokeH48EO60(z2, z3, z4);
+        }
+
+        /* JADX INFO: renamed from: getAUDIENCE-1LxfuJo, reason: not valid java name */
+        public final int m37getAUDIENCE1LxfuJo() {
+            return StageRoles.m24access$getAUDIENCE$cp1LxfuJo();
+        }
+
+        /* JADX INFO: renamed from: invoke-H48EO60, reason: not valid java name */
+        public final int m38invokeH48EO60(boolean isSpeaker, boolean isModerator, boolean isInvitedToSpeak) {
+            int i = isSpeaker ? 1 : 0;
+            if (isModerator) {
+                i |= 2;
+            }
+            if (isInvitedToSpeak) {
+                i |= 4;
+            }
+            return StageRoles.m26constructorimpl(i);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     static {
-        StageRoles$Companion stageRoles$Companion = new StageRoles$Companion(null);
-        Companion = stageRoles$Companion;
-        AUDIENCE = StageRoles$Companion.m36invokeH48EO60$default(stageRoles$Companion, false, false, false, 7, null);
+        Companion companion = new Companion(null);
+        INSTANCE = companion;
+        AUDIENCE = Companion.m36invokeH48EO60$default(companion, false, false, false, 7, null);
     }
 
     private /* synthetic */ StageRoles(int i) {

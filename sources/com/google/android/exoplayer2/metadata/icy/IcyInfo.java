@@ -1,17 +1,16 @@
 package com.google.android.exoplayer2.metadata.icy;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import b.i.a.c.j1;
-import b.i.a.c.p1$b;
-import b.i.a.c.z2.a;
-import com.google.android.exoplayer2.metadata.Metadata$Entry;
+import b.i.a.c.p1;
+import com.google.android.exoplayer2.metadata.Metadata;
 import java.util.Arrays;
 import java.util.Objects;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class IcyInfo implements Metadata$Entry {
+public final class IcyInfo implements Metadata.Entry {
     public final byte[] j;
 
     @Nullable
@@ -19,7 +18,19 @@ public final class IcyInfo implements Metadata$Entry {
 
     @Nullable
     public final String l;
-    public static final Parcelable$Creator<IcyInfo> CREATOR = new IcyInfo$a();
+    public static final Parcelable.Creator<IcyInfo> CREATOR = new a();
+
+    public class a implements Parcelable.Creator<IcyInfo> {
+        @Override // android.os.Parcelable.Creator
+        public IcyInfo createFromParcel(Parcel parcel) {
+            return new IcyInfo(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public IcyInfo[] newArray(int i) {
+            return new IcyInfo[i];
+        }
+    }
 
     public IcyInfo(byte[] bArr, @Nullable String str, @Nullable String str2) {
         this.j = bArr;
@@ -46,17 +57,17 @@ public final class IcyInfo implements Metadata$Entry {
         return Arrays.hashCode(this.j);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
-    public void n(p1$b p1_b) {
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
+    public void n(p1.b bVar) {
         String str = this.k;
         if (str != null) {
-            p1_b.a = str;
+            bVar.a = str;
         }
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     public /* synthetic */ byte[] o0() {
-        return a.a(this);
+        return b.i.a.c.z2.a.a(this);
     }
 
     public String toString() {
@@ -70,9 +81,9 @@ public final class IcyInfo implements Metadata$Entry {
         parcel.writeString(this.l);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     public /* synthetic */ j1 y() {
-        return a.b(this);
+        return b.i.a.c.z2.a.b(this);
     }
 
     public IcyInfo(Parcel parcel) {

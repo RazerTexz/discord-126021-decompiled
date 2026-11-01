@@ -6,28 +6,28 @@ import h0.c.c0;
 /* JADX INFO: loaded from: classes3.dex */
 public class VideoEncoderWrapper {
     @CalledByNative
-    public static VideoEncoder$Callback createEncoderCallback(long j) {
+    public static VideoEncoder.Callback createEncoderCallback(long j) {
         return new c0(j);
     }
 
     @Nullable
     @CalledByNative
-    public static Integer getScalingSettingsHigh(VideoEncoder$ScalingSettings videoEncoder$ScalingSettings) {
-        return videoEncoder$ScalingSettings.high;
+    public static Integer getScalingSettingsHigh(VideoEncoder.ScalingSettings scalingSettings) {
+        return scalingSettings.high;
     }
 
     @Nullable
     @CalledByNative
-    public static Integer getScalingSettingsLow(VideoEncoder$ScalingSettings videoEncoder$ScalingSettings) {
-        return videoEncoder$ScalingSettings.low;
+    public static Integer getScalingSettingsLow(VideoEncoder.ScalingSettings scalingSettings) {
+        return scalingSettings.low;
     }
 
     @CalledByNative
-    public static boolean getScalingSettingsOn(VideoEncoder$ScalingSettings videoEncoder$ScalingSettings) {
-        return videoEncoder$ScalingSettings.on;
+    public static boolean getScalingSettingsOn(VideoEncoder.ScalingSettings scalingSettings) {
+        return scalingSettings.on;
     }
 
-    public static /* synthetic */ void lambda$createEncoderCallback$0(long j, EncodedImage encodedImage, VideoEncoder$CodecSpecificInfo videoEncoder$CodecSpecificInfo) {
+    public static /* synthetic */ void lambda$createEncoderCallback$0(long j, EncodedImage encodedImage, VideoEncoder.CodecSpecificInfo codecSpecificInfo) {
         nativeOnEncodedFrame(j, encodedImage);
     }
 

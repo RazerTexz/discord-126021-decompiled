@@ -2,7 +2,7 @@ package androidx.view;
 
 import b.i.a.f.e.o.f;
 import d0.z.d.m;
-import kotlin.coroutines.CoroutineContext$Element$a;
+import kotlin.coroutines.CoroutineContext;
 import kotlinx.coroutines.CoroutineDispatcher;
 import kotlinx.coroutines.Job;
 import s.a.a.n;
@@ -22,7 +22,7 @@ public final class LifecycleKt {
             }
             Job jobD = f.d(null, 1);
             CoroutineDispatcher coroutineDispatcher = k0.a;
-            lifecycleCoroutineScopeImpl = new LifecycleCoroutineScopeImpl(lifecycle, CoroutineContext$Element$a.plus((h1) jobD, n.f3830b.H()));
+            lifecycleCoroutineScopeImpl = new LifecycleCoroutineScopeImpl(lifecycle, CoroutineContext.Element.a.plus((h1) jobD, n.f3830b.H()));
         } while (!lifecycle.mInternalScopeRef.compareAndSet(null, lifecycleCoroutineScopeImpl));
         lifecycleCoroutineScopeImpl.register();
         return lifecycleCoroutineScopeImpl;

@@ -3,18 +3,16 @@ package com.discord.views;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import androidx.annotation.ColorInt;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import b.a.i.n2;
-import com.discord.R$a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.m;
@@ -46,12 +44,12 @@ public final class LoadingButton extends FrameLayout {
         super(context, attributeSet, 0);
         int i = 4;
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(R$layout.view_loading_button, this);
-        int i2 = R$id.loading_button_button;
-        MaterialButton materialButton = (MaterialButton) findViewById(R$id.loading_button_button);
+        LayoutInflater.from(context).inflate(R.layout.view_loading_button, this);
+        int i2 = R.id.loading_button_button;
+        MaterialButton materialButton = (MaterialButton) findViewById(R.id.loading_button_button);
         if (materialButton != null) {
-            i2 = R$id.loading_button_progress;
-            ProgressBar progressBar = (ProgressBar) findViewById(R$id.loading_button_progress);
+            i2 = R.id.loading_button_progress;
+            ProgressBar progressBar = (ProgressBar) findViewById(R.id.loading_button_progress);
             if (progressBar != null) {
                 n2 n2Var = new n2(this, materialButton, progressBar);
                 m.checkNotNullExpressionValue(n2Var, "ViewLoadingButtonBinding…ater.from(context), this)");
@@ -60,7 +58,7 @@ public final class LoadingButton extends FrameLayout {
                 setClickable(true);
                 setFocusable(true);
                 if (attributeSet != null) {
-                    TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$a.LoadingButton, 0, 0);
+                    TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.a.LoadingButton, 0, 0);
                     m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…able.LoadingButton, 0, 0)");
                     try {
                         String string = typedArrayObtainStyledAttributes.getString(8);
@@ -229,7 +227,7 @@ public final class LoadingButton extends FrameLayout {
     private final void setProgressBarColor(@ColorInt int color) {
         ProgressBar progressBar = this.binding.c;
         m.checkNotNullExpressionValue(progressBar, "binding.loadingButtonProgress");
-        progressBar.getIndeterminateDrawable().setColorFilter(color, PorterDuff$Mode.SRC_IN);
+        progressBar.getIndeterminateDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
     }
 
     public final void setText(CharSequence text) {

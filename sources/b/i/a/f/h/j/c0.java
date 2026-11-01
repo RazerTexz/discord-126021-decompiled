@@ -7,8 +7,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager$NameNotFoundException;
-import android.os.Build$VERSION;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import androidx.core.app.NotificationCompat;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -36,14 +36,14 @@ public final class c0 extends e {
                 C("Receiver registered for local dispatch.");
                 this.l = true;
             }
-        } catch (PackageManager$NameNotFoundException unused) {
+        } catch (PackageManager.NameNotFoundException unused) {
         }
     }
 
     public final void O() {
         this.m = false;
         this.n.cancel(S());
-        if (Build$VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= 24) {
             JobScheduler jobScheduler = (JobScheduler) this.j.f1417b.getSystemService("jobscheduler");
             int iR = R();
             b("Cancelling job. JobID", Integer.valueOf(iR));

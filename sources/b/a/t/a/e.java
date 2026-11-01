@@ -1,7 +1,7 @@
 package b.a.t.a;
 
 import com.discord.simpleast.core.node.Node;
-import com.discord.simpleast.core.node.StyleNode$a;
+import com.discord.simpleast.core.node.StyleNode;
 import com.discord.simpleast.core.parser.Rule;
 import java.util.Arrays;
 import java.util.Collection;
@@ -73,14 +73,14 @@ public final class e {
         return Pattern.compile(sbU.toString());
     }
 
-    public static Rule e(e eVar, Pattern pattern, int i, StyleNode$a styleNode$a, int i2) {
+    public static Rule e(e eVar, Pattern pattern, int i, StyleNode.a aVar, int i2) {
         if ((i2 & 1) != 0) {
             i = 0;
         }
         if ((i2 & 2) != 0) {
-            styleNode$a = null;
+            aVar = null;
         }
         d0.z.d.m.checkNotNullParameter(pattern, "$this$toMatchGroupRule");
-        return new d(pattern, i, styleNode$a, pattern);
+        return new d(pattern, i, aVar, pattern);
     }
 }

@@ -1,10 +1,16 @@
 package com.discord.widgets.guilds.create;
 
+import a0.a.a.b;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.view.View;
 import android.widget.EditText;
 import androidx.annotation.LayoutRes;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -12,17 +18,15 @@ import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.d.g0;
 import b.a.d.i0;
 import b.a.d.j;
-import b.a.k.b;
 import b.c.a.a0.d;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.app.LoggingConfig;
 import com.discord.databinding.WidgetGuildCreateBinding;
-import com.discord.dialogs.ImageUploadDialog$PreviewType;
+import com.discord.dialogs.ImageUploadDialog;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
-import com.discord.utilities.images.MGImages$ChangeDetector;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.view.text.TextWatcherKt;
@@ -31,27 +35,31 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.discord.views.ScreenTitleView;
 import com.discord.widgets.guilds.invite.GuildInviteShareSheetFeatureFlag;
 import com.discord.widgets.guilds.invite.WidgetGuildInviteShare;
-import com.discord.widgets.guilds.invite.WidgetGuildInviteShare$Companion;
 import com.discord.widgets.guilds.invite.WidgetGuildInviteShareSheet;
-import com.discord.widgets.guilds.invite.WidgetGuildInviteShareSheet$Companion;
 import com.discord.widgets.nux.WidgetNuxChannelPrompt;
 import d0.g;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
+import java.lang.reflect.InvocationTargetException;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
+import rx.functions.Action1;
 
 /* JADX INFO: compiled from: WidgetGuildCreate.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public class WidgetGuildCreate extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGuildCreate.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildCreateBinding;", 0)};
     public static final String ANALYTICS_SOURCE = "Guild Create";
-    public static final WidgetGuildCreate$Companion Companion = new WidgetGuildCreate$Companion(null);
     public static final String EXTRA_OPTIONS = "com.discord.intent.extra.EXTRA_OPTIONS";
     private static final String GUIDELINES_URL = "https://discord.com/guidelines";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: args$delegate, reason: from kotlin metadata */
     private final Lazy args;
@@ -63,6 +71,422 @@ public class WidgetGuildCreate extends AppFragment {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.create.WidgetGuildCreate$onImageChosen$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildCreate.kt */
+    public final class AnonymousClass1<T> implements Action1<String> {
+        public AnonymousClass1() {
+        }
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(String str) {
+            call2(str);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(String str) {
+            WidgetGuildCreate.access$getViewModel$p(WidgetGuildCreate.this).updateGuildIconUri(str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.create.WidgetGuildCreate$onImageCropped$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildCreate.kt */
+    public final class AnonymousClass1<T> implements Action1<String> {
+        public AnonymousClass1() {
+        }
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(String str) {
+            call2(str);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(String str) {
+            WidgetGuildCreate.access$getViewModel$p(WidgetGuildCreate.this).updateGuildIconUri(str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.create.WidgetGuildCreate$onResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildCreate.kt */
+    public final class AnonymousClass1 extends o implements Function1<WidgetGuildCreateViewModel.ViewState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetGuildCreateViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetGuildCreateViewModel.ViewState viewState) {
+            m.checkNotNullParameter(viewState, "it");
+            WidgetGuildCreate.this.configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.create.WidgetGuildCreate$onResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildCreate.kt */
+    public final class AnonymousClass2 extends o implements Function1<WidgetGuildCreateViewModel.Event, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetGuildCreateViewModel.Event event) {
+            invoke2(event);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetGuildCreateViewModel.Event event) {
+            m.checkNotNullParameter(event, "it");
+            WidgetGuildCreate.access$handleEvent(WidgetGuildCreate.this, event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.create.WidgetGuildCreate$onResume$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildCreate.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public AnonymousClass3() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetGuildCreate widgetGuildCreate = WidgetGuildCreate.this;
+            widgetGuildCreate.hideKeyboard(widgetGuildCreate.getViews().getGuildCreateName());
+            WidgetGuildCreate.this.openMediaChooser();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.create.WidgetGuildCreate$onResume$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildCreate.kt */
+    public final class AnonymousClass4 extends o implements Function1<String, Unit> {
+        public AnonymousClass4() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            m.checkNotNullParameter(str, "it");
+            WidgetGuildCreate.access$getViewModel$p(WidgetGuildCreate.this).updateGuildName(str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.create.WidgetGuildCreate$onResume$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildCreate.kt */
+    public final class AnonymousClass5 implements View.OnClickListener {
+        public AnonymousClass5() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetGuildCreate.access$getViewModel$p(WidgetGuildCreate.this).createGuild(WidgetGuildCreate.this.requireContext());
+            WidgetGuildCreate widgetGuildCreate = WidgetGuildCreate.this;
+            widgetGuildCreate.hideKeyboard(widgetGuildCreate.getView());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildCreate.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(Context context, Options options) {
+            m.checkNotNullParameter(context, "context");
+            m.checkNotNullParameter(options, "options");
+            Intent intent = new Intent();
+            intent.putExtra(WidgetGuildCreate.EXTRA_OPTIONS, options);
+            j.d(context, WidgetGuildCreate.class, intent);
+        }
+
+        public final void showFragment(AppFragment fragment, Options options) {
+            m.checkNotNullParameter(fragment, "fragment");
+            m.checkNotNullParameter(options, "options");
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(WidgetGuildCreate.EXTRA_OPTIONS, options);
+            j.g(j.g, fragment.getParentFragmentManager(), fragment.requireContext(), WidgetGuildCreate.class, 0, true, null, bundle, 40);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildCreate.kt */
+    public final /* data */ class Options implements Parcelable {
+        public static final Parcelable.Creator<Options> CREATOR = new Creator();
+        private final String analyticsLocation;
+        private final boolean closeWithResult;
+        private final String customTitle;
+        private final boolean showChannelPrompt;
+        private final StockGuildTemplate template;
+
+        public final class Creator implements Parcelable.Creator<Options> {
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.Creator
+            public final Options createFromParcel(Parcel parcel) {
+                m.checkNotNullParameter(parcel, "in");
+                return new Options(parcel.readString(), (StockGuildTemplate) Enum.valueOf(StockGuildTemplate.class, parcel.readString()), parcel.readInt() != 0, parcel.readString(), parcel.readInt() != 0);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            public /* bridge */ /* synthetic */ Options createFromParcel(Parcel parcel) {
+                return createFromParcel(parcel);
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.Creator
+            public final Options[] newArray(int i) {
+                return new Options[i];
+            }
+
+            @Override // android.os.Parcelable.Creator
+            public /* bridge */ /* synthetic */ Options[] newArray(int i) {
+                return newArray(i);
+            }
+        }
+
+        public Options(String str, StockGuildTemplate stockGuildTemplate, boolean z2, String str2, boolean z3) {
+            m.checkNotNullParameter(str, "analyticsLocation");
+            m.checkNotNullParameter(stockGuildTemplate, "template");
+            this.analyticsLocation = str;
+            this.template = stockGuildTemplate;
+            this.showChannelPrompt = z2;
+            this.customTitle = str2;
+            this.closeWithResult = z3;
+        }
+
+        public static /* synthetic */ Options copy$default(Options options, String str, StockGuildTemplate stockGuildTemplate, boolean z2, String str2, boolean z3, int i, Object obj) {
+            if ((i & 1) != 0) {
+                str = options.analyticsLocation;
+            }
+            if ((i & 2) != 0) {
+                stockGuildTemplate = options.template;
+            }
+            StockGuildTemplate stockGuildTemplate2 = stockGuildTemplate;
+            if ((i & 4) != 0) {
+                z2 = options.showChannelPrompt;
+            }
+            boolean z4 = z2;
+            if ((i & 8) != 0) {
+                str2 = options.customTitle;
+            }
+            String str3 = str2;
+            if ((i & 16) != 0) {
+                z3 = options.closeWithResult;
+            }
+            return options.copy(str, stockGuildTemplate2, z4, str3, z3);
+        }
+
+        public final Options copy(String analyticsLocation, StockGuildTemplate template, boolean showChannelPrompt, String customTitle, boolean closeWithResult) {
+            m.checkNotNullParameter(analyticsLocation, "analyticsLocation");
+            m.checkNotNullParameter(template, "template");
+            return new Options(analyticsLocation, template, showChannelPrompt, customTitle, closeWithResult);
+        }
+
+        @Override // android.os.Parcelable
+        public int describeContents() {
+            return 0;
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof Options)) {
+                return false;
+            }
+            Options options = (Options) other;
+            return m.areEqual(this.analyticsLocation, options.analyticsLocation) && m.areEqual(this.template, options.template) && this.showChannelPrompt == options.showChannelPrompt && m.areEqual(this.customTitle, options.customTitle) && this.closeWithResult == options.closeWithResult;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getAnalyticsLocation() {
+            return this.analyticsLocation;
+        }
+
+        public final String getAnalyticsLocation() {
+            return this.analyticsLocation;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getCloseWithResult() {
+            return this.closeWithResult;
+        }
+
+        public final boolean getCloseWithResult() {
+            return this.closeWithResult;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final String getCustomTitle() {
+            return this.customTitle;
+        }
+
+        public final String getCustomTitle() {
+            return this.customTitle;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getShowChannelPrompt() {
+            return this.showChannelPrompt;
+        }
+
+        public final boolean getShowChannelPrompt() {
+            return this.showChannelPrompt;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final StockGuildTemplate getTemplate() {
+            return this.template;
+        }
+
+        public final StockGuildTemplate getTemplate() {
+            return this.template;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v10, types: [int] */
+        /* JADX WARN: Type inference failed for: r0v6, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v4, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v6 */
+        /* JADX WARN: Type inference failed for: r2v8 */
+        /* JADX WARN: Type inference failed for: r3v0 */
+        /* JADX WARN: Type inference failed for: r3v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r3v2 */
+        public int hashCode() {
+            String str = this.analyticsLocation;
+            int iHashCode = (str != null ? str.hashCode() : 0) * 31;
+            StockGuildTemplate stockGuildTemplate = this.template;
+            int iHashCode2 = (iHashCode + (stockGuildTemplate != null ? stockGuildTemplate.hashCode() : 0)) * 31;
+            boolean z2 = this.showChannelPrompt;
+            ?? r2 = z2;
+            if (z2) {
+                r2 = 1;
+            }
+            int i = (iHashCode2 + r2) * 31;
+            String str2 = this.customTitle;
+            int iHashCode3 = (i + (str2 != null ? str2.hashCode() : 0)) * 31;
+            boolean z3 = this.closeWithResult;
+            return iHashCode3 + (z3 ? 1 : z3);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("Options(analyticsLocation=");
+            sbU.append(this.analyticsLocation);
+            sbU.append(", template=");
+            sbU.append(this.template);
+            sbU.append(", showChannelPrompt=");
+            sbU.append(this.showChannelPrompt);
+            sbU.append(", customTitle=");
+            sbU.append(this.customTitle);
+            sbU.append(", closeWithResult=");
+            return a.O(sbU, this.closeWithResult, ")");
+        }
+
+        @Override // android.os.Parcelable
+        public void writeToParcel(Parcel parcel, int flags) {
+            m.checkNotNullParameter(parcel, "parcel");
+            parcel.writeString(this.analyticsLocation);
+            parcel.writeString(this.template.name());
+            parcel.writeInt(this.showChannelPrompt ? 1 : 0);
+            parcel.writeString(this.customTitle);
+            parcel.writeInt(this.closeWithResult ? 1 : 0);
+        }
+
+        public /* synthetic */ Options(String str, StockGuildTemplate stockGuildTemplate, boolean z2, String str2, boolean z3, int i, DefaultConstructorMarker defaultConstructorMarker) {
+            this(str, (i & 2) != 0 ? StockGuildTemplate.CREATE : stockGuildTemplate, (i & 4) != 0 ? false : z2, (i & 8) != 0 ? null : str2, (i & 16) != 0 ? false : z3);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildCreate.kt */
+    public final /* data */ class Result implements Parcelable {
+        public static final Parcelable.Creator<Result> CREATOR = new Creator();
+        private final long guildId;
+
+        public final class Creator implements Parcelable.Creator<Result> {
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.Creator
+            public final Result createFromParcel(Parcel parcel) {
+                m.checkNotNullParameter(parcel, "in");
+                return new Result(parcel.readLong());
+            }
+
+            @Override // android.os.Parcelable.Creator
+            public /* bridge */ /* synthetic */ Result createFromParcel(Parcel parcel) {
+                return createFromParcel(parcel);
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.Creator
+            public final Result[] newArray(int i) {
+                return new Result[i];
+            }
+
+            @Override // android.os.Parcelable.Creator
+            public /* bridge */ /* synthetic */ Result[] newArray(int i) {
+                return newArray(i);
+            }
+        }
+
+        public Result(long j) {
+            this.guildId = j;
+        }
+
+        public static /* synthetic */ Result copy$default(Result result, long j, int i, Object obj) {
+            if ((i & 1) != 0) {
+                j = result.guildId;
+            }
+            return result.copy(j);
+        }
+
+        public final Result copy(long guildId) {
+            return new Result(guildId);
+        }
+
+        @Override // android.os.Parcelable
+        public int describeContents() {
+            return 0;
+        }
+
+        public boolean equals(Object other) {
+            if (this != other) {
+                return (other instanceof Result) && this.guildId == ((Result) other).guildId;
+            }
+            return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        public final long getGuildId() {
+            return this.guildId;
+        }
+
+        public int hashCode() {
+            return b.a(this.guildId);
+        }
+
+        public String toString() {
+            return a.C(a.U("Result(guildId="), this.guildId, ")");
+        }
+
+        @Override // android.os.Parcelable
+        public void writeToParcel(Parcel parcel, int flags) {
+            m.checkNotNullParameter(parcel, "parcel");
+            parcel.writeLong(this.guildId);
+        }
+    }
 
     public WidgetGuildCreate() {
         this(0, 1, null);
@@ -82,44 +506,44 @@ public class WidgetGuildCreate extends AppFragment {
         return widgetGuildCreate.getViewModel();
     }
 
-    public static final /* synthetic */ void access$handleEvent(WidgetGuildCreate widgetGuildCreate, WidgetGuildCreateViewModel$Event widgetGuildCreateViewModel$Event) {
-        widgetGuildCreate.handleEvent(widgetGuildCreateViewModel$Event);
+    public static final /* synthetic */ void access$handleEvent(WidgetGuildCreate widgetGuildCreate, WidgetGuildCreateViewModel.Event event) {
+        widgetGuildCreate.handleEvent(event);
     }
 
-    public void configureUI(WidgetGuildCreateViewModel$ViewState viewState) {
+    public void configureUI(WidgetGuildCreateViewModel.ViewState viewState) {
         ScreenTitleView screenTitleView;
         m.checkNotNullParameter(viewState, "viewState");
-        if (!m.areEqual(viewState, WidgetGuildCreateViewModel$ViewState$Uninitialized.INSTANCE) && (viewState instanceof WidgetGuildCreateViewModel$ViewState$Initialized)) {
-            WidgetGuildCreateViewModel$ViewState$Initialized widgetGuildCreateViewModel$ViewState$Initialized = (WidgetGuildCreateViewModel$ViewState$Initialized) viewState;
-            String guildName = widgetGuildCreateViewModel$ViewState$Initialized.getGuildName(requireContext());
+        if (!m.areEqual(viewState, WidgetGuildCreateViewModel.ViewState.Uninitialized.INSTANCE) && (viewState instanceof WidgetGuildCreateViewModel.ViewState.Initialized)) {
+            WidgetGuildCreateViewModel.ViewState.Initialized initialized = (WidgetGuildCreateViewModel.ViewState.Initialized) viewState;
+            String guildName = initialized.getGuildName(requireContext());
             if (!m.areEqual(guildName, ViewExtensions.getTextOrEmpty(getViews().getGuildCreateName()))) {
                 ViewExtensions.setText(getViews().getGuildCreateName(), guildName);
             }
-            if (!m.areEqual(this.currentImageUri, widgetGuildCreateViewModel$ViewState$Initialized.getGuildIconUri())) {
-                getViews().getIconUploaderPlaceholderGroup().setVisibility(widgetGuildCreateViewModel$ViewState$Initialized.getGuildIconUri() == null ? 0 : 8);
-                IconUtils.setIcon$default(getViews().getIconUploaderImage(), widgetGuildCreateViewModel$ViewState$Initialized.getGuildIconUri(), 2131165302, (Function1) null, (MGImages$ChangeDetector) null, 24, (Object) null);
-                this.currentImageUri = widgetGuildCreateViewModel$ViewState$Initialized.getGuildIconUri();
+            if (!m.areEqual(this.currentImageUri, initialized.getGuildIconUri())) {
+                getViews().getIconUploaderPlaceholderGroup().setVisibility(initialized.getGuildIconUri() == null ? 0 : 8);
+                IconUtils.setIcon$default(getViews().getIconUploaderImage(), initialized.getGuildIconUri(), R.dimen.avatar_size_xxlarge, (Function1) null, (MGImages.ChangeDetector) null, 24, (Object) null);
+                this.currentImageUri = initialized.getGuildIconUri();
             }
-            if (widgetGuildCreateViewModel$ViewState$Initialized.getCustomTitle() != null && (screenTitleView = getViews().getScreenTitleView()) != null) {
-                screenTitleView.setTitle(widgetGuildCreateViewModel$ViewState$Initialized.getCustomTitle());
+            if (initialized.getCustomTitle() != null && (screenTitleView = getViews().getScreenTitleView()) != null) {
+                screenTitleView.setTitle(initialized.getCustomTitle());
             }
-            getViews().getGuildCreateButton().setIsLoading(widgetGuildCreateViewModel$ViewState$Initialized.isBusy());
+            getViews().getGuildCreateButton().setIsLoading(initialized.isBusy());
         }
     }
 
     public WidgetGuildCreateViewModel createViewModelFactory() {
-        return new WidgetGuildCreateViewModel(2131888245, getArgs().getTemplate(), null, getArgs().getShowChannelPrompt(), getArgs().getAnalyticsLocation(), getArgs().getCustomTitle(), getArgs().getCloseWithResult(), null, null, null, 896, null);
+        return new WidgetGuildCreateViewModel(R.string.create_server_default_server_name_format, getArgs().getTemplate(), null, getArgs().getShowChannelPrompt(), getArgs().getAnalyticsLocation(), getArgs().getCustomTitle(), getArgs().getCloseWithResult(), null, null, null, 896, null);
     }
 
-    public final WidgetGuildCreate$Options getArgs() {
-        return (WidgetGuildCreate$Options) this.args.getValue();
+    public final Options getArgs() {
+        return (Options) this.args.getValue();
     }
 
     private final WidgetGuildCreateBinding getBinding() {
         return (WidgetGuildCreateBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger$a
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.a
     public LoggingConfig getLoggingConfig() {
         return this.loggingConfig;
     }
@@ -129,41 +553,41 @@ public class WidgetGuildCreate extends AppFragment {
     }
 
     public GuildCreateCloneViews getViews() {
-        GuildCreateCloneViews$Companion guildCreateCloneViews$Companion = GuildCreateCloneViews.Companion;
+        GuildCreateCloneViews.Companion companion = GuildCreateCloneViews.INSTANCE;
         WidgetGuildCreateBinding binding = getBinding();
         m.checkNotNullExpressionValue(binding, "binding");
-        return guildCreateCloneViews$Companion.from(binding);
+        return companion.from(binding);
     }
 
-    private final void handleEvent(WidgetGuildCreateViewModel$Event event) {
-        if (event instanceof WidgetGuildCreateViewModel$Event$ShowToast) {
-            b.a.d.m.i(this, ((WidgetGuildCreateViewModel$Event$ShowToast) event).getStringResId(), 0, 4);
+    private final void handleEvent(WidgetGuildCreateViewModel.Event event) {
+        if (event instanceof WidgetGuildCreateViewModel.Event.ShowToast) {
+            b.a.d.m.i(this, ((WidgetGuildCreateViewModel.Event.ShowToast) event).getStringResId(), 0, 4);
             return;
         }
-        if (event instanceof WidgetGuildCreateViewModel$Event$LaunchChannelPrompt) {
-            WidgetNuxChannelPrompt.Companion.launch(requireContext(), ((WidgetGuildCreateViewModel$Event$LaunchChannelPrompt) event).getGuildId());
+        if (event instanceof WidgetGuildCreateViewModel.Event.LaunchChannelPrompt) {
+            WidgetNuxChannelPrompt.INSTANCE.launch(requireContext(), ((WidgetGuildCreateViewModel.Event.LaunchChannelPrompt) event).getGuildId());
             requireActivity().finish();
             return;
         }
-        if (event instanceof WidgetGuildCreateViewModel$Event$CloseWithResult) {
+        if (event instanceof WidgetGuildCreateViewModel.Event.CloseWithResult) {
             FragmentActivity activity = getActivity();
             if (activity != null) {
-                activity.setResult(-1, d.g2(new WidgetGuildCreate$Result(((WidgetGuildCreateViewModel$Event$CloseWithResult) event).getGuildId())));
+                activity.setResult(-1, d.g2(new Result(((WidgetGuildCreateViewModel.Event.CloseWithResult) event).getGuildId())));
                 activity.finish();
                 return;
             }
             return;
         }
-        if (event instanceof WidgetGuildCreateViewModel$Event$LaunchInviteShareScreen) {
-            if (GuildInviteShareSheetFeatureFlag.Companion.getINSTANCE().isEnabled()) {
-                WidgetGuildInviteShareSheet$Companion.enqueueNoticeForHomeTab$default(WidgetGuildInviteShareSheet.Companion, null, ((WidgetGuildCreateViewModel$Event$LaunchInviteShareScreen) event).getGuildId(), "Guild Create", 1, null);
+        if (event instanceof WidgetGuildCreateViewModel.Event.LaunchInviteShareScreen) {
+            if (GuildInviteShareSheetFeatureFlag.INSTANCE.getINSTANCE().isEnabled()) {
+                WidgetGuildInviteShareSheet.Companion.enqueueNoticeForHomeTab$default(WidgetGuildInviteShareSheet.INSTANCE, null, ((WidgetGuildCreateViewModel.Event.LaunchInviteShareScreen) event).getGuildId(), "Guild Create", 1, null);
                 j.c(requireContext(), false, null, 6);
             } else {
-                WidgetGuildInviteShare$Companion widgetGuildInviteShare$Companion = WidgetGuildInviteShare.Companion;
+                WidgetGuildInviteShare.Companion companion = WidgetGuildInviteShare.INSTANCE;
                 Context contextRequireContext = requireContext();
                 FragmentManager parentFragmentManager = getParentFragmentManager();
                 m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-                WidgetGuildInviteShare$Companion.launch$default(widgetGuildInviteShare$Companion, contextRequireContext, parentFragmentManager, ((WidgetGuildCreateViewModel$Event$LaunchInviteShareScreen) event).getGuildId(), null, true, null, null, "Guild Create", 96, null);
+                WidgetGuildInviteShare.Companion.launch$default(companion, contextRequireContext, parentFragmentManager, ((WidgetGuildCreateViewModel.Event.LaunchInviteShareScreen) event).getGuildId(), null, true, null, null, "Guild Create", 96, null);
             }
             requireActivity().finish();
         }
@@ -171,37 +595,37 @@ public class WidgetGuildCreate extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onImageChosen(Uri uri, String mimeType) {
-        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         m.checkNotNullParameter(mimeType, "mimeType");
         super.onImageChosen(uri, mimeType);
         FragmentManager parentFragmentManager = getParentFragmentManager();
         m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        MGImages.prepareImageUpload(uri, mimeType, parentFragmentManager, this, new WidgetGuildCreate$onImageChosen$1(this), ImageUploadDialog$PreviewType.GUILD_AVATAR);
+        MGImages.prepareImageUpload(uri, mimeType, parentFragmentManager, this, new AnonymousClass1(), ImageUploadDialog.PreviewType.GUILD_AVATAR);
     }
 
     @Override // com.discord.app.AppFragment
-    public void onImageCropped(Uri uri, String mimeType) {
-        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+    public void onImageCropped(Uri uri, String mimeType) throws IllegalAccessException, InvocationTargetException {
+        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         m.checkNotNullParameter(mimeType, "mimeType");
         super.onImageCropped(uri, mimeType);
-        MGImages.requestDataUrl(requireContext(), uri, mimeType, new WidgetGuildCreate$onImageCropped$1(this));
+        MGImages.requestDataUrl(requireContext(), uri, mimeType, new AnonymousClass1());
     }
 
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildCreate$onResume$1(this), 62, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildCreate$onResume$2(this), 62, (Object) null);
-        getViews().getGuildCreateIconUploader().setOnClickListener(new WidgetGuildCreate$onResume$3(this));
-        b.n(getViews().getGuidelinesTextView(), 2131888247, new Object[]{GUIDELINES_URL}, null, 4);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
+        getViews().getGuildCreateIconUploader().setOnClickListener(new AnonymousClass3());
+        b.a.k.b.n(getViews().getGuidelinesTextView(), R.string.create_server_guidelines, new Object[]{GUIDELINES_URL}, null, 4);
         EditText editText = getViews().getGuildCreateName().getEditText();
         if (editText != null) {
-            TextWatcherKt.addLifecycleAwareTextWatcher(editText, this, new WidgetGuildCreate$onResume$4(this));
+            TextWatcherKt.addLifecycleAwareTextWatcher(editText, this, new AnonymousClass4());
         }
-        getViews().getGuildCreateButton().setOnClickListener(new WidgetGuildCreate$onResume$5(this));
+        getViews().getGuildCreateButton().setOnClickListener(new AnonymousClass5());
     }
 
     public /* synthetic */ WidgetGuildCreate(int i, int i2, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i2 & 1) != 0 ? R$layout.widget_guild_create : i);
+        this((i2 & 1) != 0 ? R.layout.widget_guild_create : i);
     }
 }

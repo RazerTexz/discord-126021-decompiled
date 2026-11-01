@@ -3,8 +3,6 @@ package com.discord.utilities.view.recycler;
 import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView$ItemDecoration;
-import androidx.recyclerview.widget.RecyclerView$State;
 import b.d.b.a.a;
 import d0.j;
 import d0.z.d.m;
@@ -12,7 +10,7 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: PaddedItemDecorator.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class PaddedItemDecorator extends RecyclerView$ItemDecoration {
+public final class PaddedItemDecorator extends RecyclerView.ItemDecoration {
     private final int orientation;
     private final boolean spaceBetweenItemsOnly;
     private final int spaceHorz;
@@ -22,8 +20,8 @@ public final class PaddedItemDecorator extends RecyclerView$ItemDecoration {
         this(i, i2, i3, (i4 & 8) != 0 ? false : z2);
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$ItemDecoration
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView$State state) {
+    @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         m.checkNotNullParameter(outRect, "outRect");
         m.checkNotNullParameter(view, "view");
         m.checkNotNullParameter(parent, "parent");

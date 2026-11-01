@@ -754,12 +754,12 @@ public class m {
                 int i11 = 1048575 & i5;
                 long j = ((long) i10) | (((long) i11) << 32);
                 int iR = v.r(130, i10 + i11);
-                v$a v_aQ = vVar.q(iR);
+                v.a aVarQ = vVar.q(iR);
                 while (true) {
-                    if (v_aQ == null) {
-                        v$a[] v_aArr = vVar.l;
-                        String str = v_aArr[i10].e;
-                        String str2 = v_aArr[i11].e;
+                    if (aVarQ == null) {
+                        v.a[] aVarArr = vVar.l;
+                        String str = aVarArr[i10].e;
+                        String str2 = aVarArr[i11].e;
                         Objects.requireNonNull(vVar.a);
                         ClassLoader classLoader = f.class.getClassLoader();
                         try {
@@ -777,9 +777,9 @@ public class m {
                                     strReplace = cls.getName().replace('.', MentionUtilsKt.SLASH_CHAR);
                                 }
                                 int iN2 = vVar.n(strReplace);
-                                v$a v_a = new v$a(vVar.k, 130, j, iR);
-                                vVar.v(v_a);
-                                v_a.g = iN2;
+                                v.a aVar = new v.a(vVar.k, 130, j, iR);
+                                vVar.v(aVar);
+                                aVar.g = iN2;
                                 i3 = iN2;
                                 break;
                             } catch (ClassNotFoundException e) {
@@ -789,11 +789,11 @@ public class m {
                             throw new TypeNotPresentException(str, e2);
                         }
                     }
-                    if (v_aQ.f3724b == 130 && v_aQ.h == iR && v_aQ.f == j) {
-                        i3 = v_aQ.g;
+                    if (aVarQ.f3724b == 130 && aVarQ.h == iR && aVarQ.f == j) {
+                        i3 = aVarQ.g;
                         break;
                     }
-                    v_aQ = v_aQ.i;
+                    aVarQ = aVarQ.i;
                 }
                 i7 = i9 | i3;
             } else {

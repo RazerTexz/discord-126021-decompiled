@@ -2,7 +2,7 @@ package com.discord.widgets.settings.account.mfa;
 
 import android.view.View;
 import android.widget.LinearLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetSettingsEnableMfaSuccessBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -26,10 +26,10 @@ public final /* synthetic */ class WidgetEnableMFASuccess$binding$2 extends k im
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSettingsEnableMfaSuccessBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.mfa_success_enable_sms);
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.mfa_success_enable_sms);
         if (materialButton != null) {
             return new WidgetSettingsEnableMfaSuccessBinding((LinearLayout) view, materialButton);
         }
-        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R$id.mfa_success_enable_sms)));
+        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R.id.mfa_success_enable_sms)));
     }
 }

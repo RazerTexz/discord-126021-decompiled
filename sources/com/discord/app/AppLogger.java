@@ -1,7 +1,7 @@
 package com.discord.app;
 
 import com.discord.api.science.AnalyticsSchema;
-import com.discord.utilities.analytics.AnalyticsUtils$Tracker;
+import com.discord.utilities.analytics.AnalyticsUtils;
 import com.discord.utilities.features.GrowthTeamFeatures;
 import d0.e0.g;
 import d0.z.d.m;
@@ -21,21 +21,26 @@ public final class AppLogger {
     public AnalyticsSchema previousAnalyticsSchema;
 
     /* JADX INFO: renamed from: c, reason: from kotlin metadata */
-    public final AppLogger$a provider;
+    public final a provider;
 
     /* JADX INFO: renamed from: d, reason: from kotlin metadata */
-    public final AnalyticsUtils$Tracker tracker;
+    public final AnalyticsUtils.Tracker tracker;
 
     /* JADX INFO: renamed from: e, reason: from kotlin metadata */
     public final boolean isImpressionLoggingEnabled;
 
-    public AppLogger(AppLogger$a appLogger$a, AnalyticsUtils$Tracker analyticsUtils$Tracker, boolean z2, int i) {
-        AnalyticsUtils$Tracker analyticsUtils$Tracker$Companion = (i & 2) != 0 ? AnalyticsUtils$Tracker.Companion.getInstance() : null;
+    /* JADX INFO: compiled from: AppLogger.kt */
+    public interface a {
+        LoggingConfig getLoggingConfig();
+    }
+
+    public AppLogger(a aVar, AnalyticsUtils.Tracker tracker, boolean z2, int i) {
+        AnalyticsUtils.Tracker companion = (i & 2) != 0 ? AnalyticsUtils.Tracker.INSTANCE.getInstance() : null;
         z2 = (i & 4) != 0 ? GrowthTeamFeatures.INSTANCE.isImpressionLoggingEnabled() : z2;
-        m.checkNotNullParameter(appLogger$a, "provider");
-        m.checkNotNullParameter(analyticsUtils$Tracker$Companion, "tracker");
-        this.provider = appLogger$a;
-        this.tracker = analyticsUtils$Tracker$Companion;
+        m.checkNotNullParameter(aVar, "provider");
+        m.checkNotNullParameter(companion, "tracker");
+        this.provider = aVar;
+        this.tracker = companion;
         this.isImpressionLoggingEnabled = z2;
     }
 

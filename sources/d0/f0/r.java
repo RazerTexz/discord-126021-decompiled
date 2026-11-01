@@ -1,6 +1,7 @@
 package d0.f0;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import kotlin.sequences.Sequence;
 
 /* JADX INFO: compiled from: Sequences.kt */
@@ -11,6 +12,44 @@ public final class r<T> implements Sequence<T>, e<T> {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final int f3575b;
     public final int c;
+
+    /* JADX INFO: compiled from: Sequences.kt */
+    public final class a implements Iterator<T>, d0.z.d.g0.a {
+        public final Iterator<T> j;
+        public int k;
+
+        public a() {
+            this.j = r.access$getSequence$p(r.this).iterator();
+        }
+
+        public final void a() {
+            while (this.k < r.access$getStartIndex$p(r.this) && this.j.hasNext()) {
+                this.j.next();
+                this.k++;
+            }
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            a();
+            return this.k < r.access$getEndIndex$p(r.this) && this.j.hasNext();
+        }
+
+        @Override // java.util.Iterator
+        public T next() {
+            a();
+            if (this.k >= r.access$getEndIndex$p(r.this)) {
+                throw new NoSuchElementException();
+            }
+            this.k++;
+            return this.j.next();
+        }
+
+        @Override // java.util.Iterator
+        public void remove() {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+    }
 
     /* JADX WARN: Multi-variable type inference failed */
     public r(Sequence<? extends T> sequence, int i, int i2) {
@@ -50,7 +89,7 @@ public final class r<T> implements Sequence<T>, e<T> {
 
     @Override // kotlin.sequences.Sequence
     public Iterator<T> iterator() {
-        return new r$a(this);
+        return new a();
     }
 
     @Override // d0.f0.e

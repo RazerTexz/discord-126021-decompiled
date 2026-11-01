@@ -2,7 +2,6 @@ package com.discord.utilities.channel;
 
 import com.discord.api.channel.Channel;
 import com.discord.models.domain.ModelNotificationSettings;
-import com.discord.models.domain.ModelNotificationSettings$ChannelOverride;
 import com.discord.models.guild.Guild;
 import d0.z.d.m;
 
@@ -18,7 +17,7 @@ public final class ChannelNotificationSettingsUtils {
         m.checkNotNullParameter(guild, "guild");
         m.checkNotNullParameter(channel, "channel");
         m.checkNotNullParameter(guildSettings, "guildSettings");
-        ModelNotificationSettings$ChannelOverride channelOverride = guildSettings.getChannelOverride(channel.getId());
+        ModelNotificationSettings.ChannelOverride channelOverride = guildSettings.getChannelOverride(channel.getId());
         int messageNotifications = channelOverride != null ? channelOverride.getMessageNotifications() : ModelNotificationSettings.FREQUENCY_UNSET;
         if (messageNotifications != ModelNotificationSettings.FREQUENCY_UNSET) {
             return messageNotifications;

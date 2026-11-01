@@ -1,6 +1,5 @@
 package b.i.a.c.x2.k0;
 
-import b.i.a.c.x2.t$b;
 import java.io.IOException;
 
 /* JADX INFO: compiled from: Ac4Extractor.java */
@@ -95,9 +94,9 @@ public final class h implements b.i.a.c.x2.h {
 
     @Override // b.i.a.c.x2.h
     public void f(b.i.a.c.x2.j jVar) {
-        this.a.e(jVar, new i0$d(Integer.MIN_VALUE, 0, 1));
+        this.a.e(jVar, new i0.d(Integer.MIN_VALUE, 0, 1));
         jVar.j();
-        jVar.a(new t$b(-9223372036854775807L, 0L));
+        jVar.a(new b.i.a.c.x2.t.b(-9223372036854775807L, 0L));
     }
 
     @Override // b.i.a.c.x2.h

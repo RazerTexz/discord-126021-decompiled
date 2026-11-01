@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.Purchase;
-import com.android.billingclient.api.Purchase$a;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -25,15 +24,15 @@ public final class j implements Callable<Void> {
 
     @Override // java.util.concurrent.Callable
     public final Void call() throws Exception {
-        Purchase$a purchase$a;
-        a aVar = this.l;
+        Purchase.a aVar;
+        a aVar2 = this.l;
         String str = this.j;
         String strValueOf = String.valueOf(str);
         b.i.a.f.h.n.a.e("BillingClient", strValueOf.length() != 0 ? "Querying owned items, item type: ".concat(strValueOf) : new String("Querying owned items, item type: "));
         ArrayList arrayList = new ArrayList();
-        boolean z2 = aVar.k;
-        boolean z3 = aVar.p;
-        String str2 = aVar.f448b;
+        boolean z2 = aVar2.k;
+        boolean z3 = aVar2.p;
+        String str2 = aVar2.f448b;
         Bundle bundle = new Bundle();
         bundle.putString("playBillingLibraryVersion", str2);
         int i = 1;
@@ -43,7 +42,7 @@ public final class j implements Callable<Void> {
         String string = null;
         while (true) {
             try {
-                Bundle bundleO0 = aVar.k ? aVar.f.o0(9, aVar.e.getPackageName(), str, string, bundle) : aVar.f.E(3, aVar.e.getPackageName(), str, string);
+                Bundle bundleO0 = aVar2.k ? aVar2.f.o0(9, aVar2.e.getPackageName(), str, string, bundle) : aVar2.f.E(3, aVar2.e.getPackageName(), str, string);
                 BillingResult billingResult = p.h;
                 if (bundleO0 == null) {
                     Object[] objArr = new Object[i];
@@ -82,7 +81,7 @@ public final class j implements Callable<Void> {
                     }
                 }
                 if (billingResult != p.i) {
-                    purchase$a = new Purchase$a(billingResult, null);
+                    aVar = new Purchase.a(billingResult, null);
                     break;
                 }
                 ArrayList<String> stringArrayList4 = bundleO0.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
@@ -105,14 +104,14 @@ public final class j implements Callable<Void> {
                         sb.append("Got an exception trying to decode the purchase: ");
                         sb.append(strValueOf3);
                         b.i.a.f.h.n.a.f("BillingClient", sb.toString());
-                        purchase$a = new Purchase$a(p.h, null);
+                        aVar = new Purchase.a(p.h, null);
                     }
                 }
                 string = bundleO0.getString("INAPP_CONTINUATION_TOKEN");
                 String strValueOf4 = String.valueOf(string);
                 b.i.a.f.h.n.a.e("BillingClient", strValueOf4.length() != 0 ? "Continuation token: ".concat(strValueOf4) : new String("Continuation token: "));
                 if (TextUtils.isEmpty(string)) {
-                    purchase$a = new Purchase$a(p.i, arrayList);
+                    aVar = new Purchase.a(p.i, arrayList);
                     break;
                 }
             } catch (Exception e2) {
@@ -122,16 +121,16 @@ public final class j implements Callable<Void> {
                 sb2.append(strValueOf5);
                 sb2.append("; try to reconnect");
                 b.i.a.f.h.n.a.f("BillingClient", sb2.toString());
-                purchase$a = new Purchase$a(p.j, null);
+                aVar = new Purchase.a(p.j, null);
             }
         }
-        List<Purchase> list = purchase$a.a;
+        List<Purchase> list = aVar.a;
         if (list != null) {
-            this.k.onQueryPurchasesResponse(purchase$a.f2005b, list);
+            this.k.onQueryPurchasesResponse(aVar.f2005b, list);
             return null;
         }
         f fVar = this.k;
-        BillingResult billingResult3 = purchase$a.f2005b;
+        BillingResult billingResult3 = aVar.f2005b;
         b.i.a.f.h.n.m<Object> mVar = b.i.a.f.h.n.k.k;
         fVar.onQueryPurchasesResponse(billingResult3, b.i.a.f.h.n.l.l);
         return null;

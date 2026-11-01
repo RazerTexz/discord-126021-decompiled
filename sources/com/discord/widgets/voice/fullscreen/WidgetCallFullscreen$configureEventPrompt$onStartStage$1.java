@@ -2,7 +2,6 @@ package com.discord.widgets.voice.fullscreen;
 
 import androidx.fragment.app.FragmentManager;
 import com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheet;
-import com.discord.widgets.stage.sheet.WidgetStageStartEventBottomSheet$Companion;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -27,9 +26,9 @@ public final class WidgetCallFullscreen$configureEventPrompt$onStartStage$1 exte
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2() {
-        WidgetStageStartEventBottomSheet$Companion widgetStageStartEventBottomSheet$Companion = WidgetStageStartEventBottomSheet.Companion;
+        WidgetStageStartEventBottomSheet.Companion companion = WidgetStageStartEventBottomSheet.INSTANCE;
         FragmentManager parentFragmentManager = this.this$0.getParentFragmentManager();
         m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        WidgetStageStartEventBottomSheet$Companion.show$default(widgetStageStartEventBottomSheet$Companion, parentFragmentManager, WidgetCallFullscreen.access$getChannelId(this.this$0), null, 4, null);
+        WidgetStageStartEventBottomSheet.Companion.show$default(companion, parentFragmentManager, WidgetCallFullscreen.access$getChannelId(this.this$0), null, 4, null);
     }
 }

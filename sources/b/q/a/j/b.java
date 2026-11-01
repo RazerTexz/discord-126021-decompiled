@@ -3,7 +3,6 @@ package b.q.a.j;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory$Options;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -11,9 +10,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import b.q.a.l.c;
-import b.q.a.l.c$a;
 import com.adjust.sdk.Constants;
-import com.yalantis.ucrop.UCropActivity$a;
+import com.yalantis.ucrop.UCropActivity;
 import d0.z.d.m;
 import f0.e0.g.e;
 import f0.x;
@@ -26,13 +24,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Objects;
-import okhttp3.Request$a;
+import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 /* JADX INFO: compiled from: BitmapLoadTask.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class b extends AsyncTask<Void, Void, b$a> {
+public class b extends AsyncTask<Void, Void, a> {
     public final Context a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -120,10 +118,10 @@ public class b extends AsyncTask<Void, Void, b$a> {
         x xVar = new x();
         g gVar = null;
         try {
-            Request$a request$a = new Request$a();
-            request$a.f(uri.toString());
+            Request.a aVar = new Request.a();
+            aVar.f(uri.toString());
             try {
-                responseExecute = ((e) xVar.b(request$a.a())).execute();
+                responseExecute = ((e) xVar.b(aVar.a())).execute();
                 try {
                     g gVarC = responseExecute.body.c();
                     try {
@@ -237,22 +235,22 @@ public class b extends AsyncTask<Void, Void, b$a> {
 
     @Override // android.os.AsyncTask
     @NonNull
-    public b$a doInBackground(Void[] voidArr) {
+    public a doInBackground(Void[] voidArr) {
         int i;
         int iA;
         int i2;
         boolean z2;
         if (this.f1982b == null) {
-            return new b$a(new NullPointerException("Input Uri cannot be null"));
+            return new a(new NullPointerException("Input Uri cannot be null"));
         }
         try {
             c();
-            BitmapFactory$Options bitmapFactory$Options = new BitmapFactory$Options();
-            bitmapFactory$Options.inJustDecodeBounds = true;
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
             int i3 = this.d;
             int i4 = this.e;
-            int i5 = bitmapFactory$Options.outHeight;
-            int i6 = bitmapFactory$Options.outWidth;
+            int i5 = options.outHeight;
+            int i6 = options.outWidth;
             if (i5 > i4 || i6 > i3) {
                 int i7 = 1;
                 while (true) {
@@ -265,8 +263,8 @@ public class b extends AsyncTask<Void, Void, b$a> {
             } else {
                 i = 1;
             }
-            bitmapFactory$Options.inSampleSize = i;
-            bitmapFactory$Options.inJustDecodeBounds = false;
+            options.inSampleSize = i;
+            options.inJustDecodeBounds = false;
             boolean z3 = false;
             Bitmap bitmapDecodeStream = null;
             while (true) {
@@ -276,7 +274,7 @@ public class b extends AsyncTask<Void, Void, b$a> {
                         StringBuilder sbU = b.d.b.a.a.U("Bitmap could not be decoded from the Uri: [");
                         sbU.append(this.f1982b);
                         sbU.append("]");
-                        return new b$a(new IllegalArgumentException(sbU.toString()));
+                        return new a(new IllegalArgumentException(sbU.toString()));
                     }
                     Context context = this.a;
                     Uri uri = this.f1982b;
@@ -325,7 +323,7 @@ public class b extends AsyncTask<Void, Void, b$a> {
                         matrix.postScale(i8, 1.0f);
                     }
                     if (matrix.isIdentity()) {
-                        return new b$a(bitmapDecodeStream, bVar);
+                        return new a(bitmapDecodeStream, bVar);
                     }
                     try {
                         Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmapDecodeStream, 0, 0, bitmapDecodeStream.getWidth(), bitmapDecodeStream.getHeight(), matrix, true);
@@ -335,22 +333,22 @@ public class b extends AsyncTask<Void, Void, b$a> {
                     } catch (OutOfMemoryError e2) {
                         Log.e("BitmapLoadUtils", "transformBitmap: ", e2);
                     }
-                    return new b$a(bitmapDecodeStream, bVar);
+                    return new a(bitmapDecodeStream, bVar);
                 }
                 try {
                     try {
                         InputStream inputStreamOpenInputStream2 = this.a.getContentResolver().openInputStream(this.f1982b);
                         try {
-                            bitmapDecodeStream = BitmapFactory.decodeStream(inputStreamOpenInputStream2, null, bitmapFactory$Options);
-                            if (bitmapFactory$Options.outWidth == -1 || bitmapFactory$Options.outHeight == -1) {
-                                b$a b_a = new b$a(new IllegalArgumentException("Bounds for bitmap could not be retrieved from the Uri: [" + this.f1982b + "]"));
+                            bitmapDecodeStream = BitmapFactory.decodeStream(inputStreamOpenInputStream2, null, options);
+                            if (options.outWidth == -1 || options.outHeight == -1) {
+                                a aVar = new a(new IllegalArgumentException("Bounds for bitmap could not be retrieved from the Uri: [" + this.f1982b + "]"));
                                 if (inputStreamOpenInputStream2 != null) {
                                     try {
                                         inputStreamOpenInputStream2.close();
                                     } catch (IOException unused2) {
                                     }
                                 }
-                                return b_a;
+                                return aVar;
                             }
                             if (inputStreamOpenInputStream2 != null) {
                                 try {
@@ -359,7 +357,7 @@ public class b extends AsyncTask<Void, Void, b$a> {
                                 }
                             }
                             if ((bitmapDecodeStream != null ? bitmapDecodeStream.getByteCount() : 0) > 104857600) {
-                                bitmapFactory$Options.inSampleSize *= 2;
+                                options.inSampleSize *= 2;
                                 z2 = true;
                             } else {
                                 z2 = false;
@@ -381,38 +379,38 @@ public class b extends AsyncTask<Void, Void, b$a> {
                         StringBuilder sbU3 = b.d.b.a.a.U("Bitmap could not be decoded from the Uri: [");
                         sbU3.append(this.f1982b);
                         sbU3.append("]");
-                        return new b$a(new IllegalArgumentException(sbU3.toString(), e3));
+                        return new a(new IllegalArgumentException(sbU3.toString(), e3));
                     }
                 } catch (OutOfMemoryError e4) {
                     Log.e("BitmapWorkerTask", "doInBackground: BitmapFactory.decodeFileDescriptor: ", e4);
-                    bitmapFactory$Options.inSampleSize *= 2;
+                    options.inSampleSize *= 2;
                 }
             }
         } catch (IOException | NullPointerException e5) {
-            return new b$a(e5);
+            return new a(e5);
         }
     }
 
     @Override // android.os.AsyncTask
-    public void onPostExecute(@NonNull b$a b_a) {
-        b$a b_a2 = b_a;
-        Exception exc = b_a2.c;
+    public void onPostExecute(@NonNull a aVar) {
+        a aVar2 = aVar;
+        Exception exc = aVar2.c;
         if (exc != null) {
             b.q.a.l.b bVar = (b.q.a.l.b) this.f;
             Objects.requireNonNull(bVar);
             Log.e("TransformImageView", "onFailure: setImageUri", exc);
-            c$a c_a = bVar.a.p;
-            if (c_a != null) {
-                UCropActivity$a uCropActivity$a = (UCropActivity$a) c_a;
-                uCropActivity$a.a.b(exc);
-                uCropActivity$a.a.finish();
+            c.a aVar3 = bVar.a.p;
+            if (aVar3 != null) {
+                UCropActivity.a aVar4 = (UCropActivity.a) aVar3;
+                UCropActivity.this.b(exc);
+                UCropActivity.this.finish();
                 return;
             }
             return;
         }
         b.q.a.h.b bVar2 = this.f;
-        Bitmap bitmap = b_a2.a;
-        b.q.a.i.b bVar3 = b_a2.f1983b;
+        Bitmap bitmap = aVar2.a;
+        b.q.a.i.b bVar3 = aVar2.f1983b;
         String path = this.f1982b.getPath();
         Uri uri = this.c;
         String path2 = uri == null ? null : uri.getPath();
@@ -422,5 +420,23 @@ public class b extends AsyncTask<Void, Void, b$a> {
         cVar.f1991x = bVar3;
         cVar.f1990s = true;
         cVar.setImageBitmap(bitmap);
+    }
+
+    /* JADX INFO: compiled from: BitmapLoadTask.java */
+    public class a {
+        public Bitmap a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public b.q.a.i.b f1983b;
+        public Exception c;
+
+        public a(@NonNull Bitmap bitmap, @NonNull b.q.a.i.b bVar) {
+            this.a = bitmap;
+            this.f1983b = bVar;
+        }
+
+        public a(@NonNull Exception exc) {
+            this.c = exc;
+        }
     }
 }

@@ -11,20 +11,20 @@ import kotlinx.coroutines.Job;
 public final class LifecycleController {
     private final DispatchQueue dispatchQueue;
     private final Lifecycle lifecycle;
-    private final Lifecycle$State minState;
+    private final Lifecycle.State minState;
     private final LifecycleEventObserver observer;
 
-    public LifecycleController(Lifecycle lifecycle, Lifecycle$State lifecycle$State, DispatchQueue dispatchQueue, Job job) {
+    public LifecycleController(Lifecycle lifecycle, Lifecycle.State state, DispatchQueue dispatchQueue, Job job) {
         m.checkNotNullParameter(lifecycle, "lifecycle");
-        m.checkNotNullParameter(lifecycle$State, "minState");
+        m.checkNotNullParameter(state, "minState");
         m.checkNotNullParameter(dispatchQueue, "dispatchQueue");
         m.checkNotNullParameter(job, "parentJob");
         this.lifecycle = lifecycle;
-        this.minState = lifecycle$State;
+        this.minState = state;
         this.dispatchQueue = dispatchQueue;
         LifecycleController$observer$1 lifecycleController$observer$1 = new LifecycleController$observer$1(this, job);
         this.observer = lifecycleController$observer$1;
-        if (lifecycle.getCurrentState() != Lifecycle$State.DESTROYED) {
+        if (lifecycle.getCurrentState() != Lifecycle.State.DESTROYED) {
             lifecycle.addObserver(lifecycleController$observer$1);
         } else {
             f.t(job, null, 1, null);
@@ -36,7 +36,7 @@ public final class LifecycleController {
         return lifecycleController.dispatchQueue;
     }
 
-    public static final /* synthetic */ Lifecycle$State access$getMinState$p(LifecycleController lifecycleController) {
+    public static final /* synthetic */ Lifecycle.State access$getMinState$p(LifecycleController lifecycleController) {
         return lifecycleController.minState;
     }
 

@@ -9,13 +9,13 @@ public final /* synthetic */ class f implements Comparator {
 
     @Override // java.util.Comparator
     public final int compare(Object obj, Object obj2) {
-        m$c m_c = (m$c) obj;
-        m$c m_c2 = (m$c) obj2;
-        int iCompare = Integer.compare(m_c2.a, m_c.a);
+        m.c cVar = (m.c) obj;
+        m.c cVar2 = (m.c) obj2;
+        int iCompare = Integer.compare(cVar2.a, cVar.a);
         if (iCompare != 0) {
             return iCompare;
         }
-        int iCompareTo = m_c2.c.compareTo(m_c.c);
-        return iCompareTo != 0 ? iCompareTo : m_c2.d.compareTo(m_c.d);
+        int iCompareTo = cVar2.c.compareTo(cVar.c);
+        return iCompareTo != 0 ? iCompareTo : cVar2.d.compareTo(cVar.d);
     }
 }

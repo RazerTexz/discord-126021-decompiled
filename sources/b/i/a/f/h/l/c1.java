@@ -5,7 +5,7 @@ import java.util.Objects;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class c1 extends u4<c1, c1$a> implements d6 {
+public final class c1 extends u4<c1, a> implements d6 {
     private int zzc;
     private long zzf;
     private float zzg;
@@ -15,6 +15,53 @@ public final class c1 extends u4<c1, c1$a> implements d6 {
     private String zzd = "";
     private String zze = "";
     private b5<c1> zzi = m6.k;
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
+    public final class a extends u4.b<c1, a> implements d6 {
+        public a() {
+            super(c1.R());
+        }
+
+        public final a q(double d) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            c1.v((c1) this.k, d);
+            return this;
+        }
+
+        public final a r(long j) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            c1.w((c1) this.k, j);
+            return this;
+        }
+
+        public final a s(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            c1.z((c1) this.k, str);
+            return this;
+        }
+
+        public final a t(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            c1.D((c1) this.k, str);
+            return this;
+        }
+
+        public a(k1 k1Var) {
+            super(c1.R());
+        }
+    }
 
     static {
         c1 c1Var = new c1();
@@ -92,7 +139,7 @@ public final class c1 extends u4<c1, c1$a> implements d6 {
         return this.zzi.size();
     }
 
-    public static c1$a Q() {
+    public static a Q() {
         return zzj.s();
     }
 
@@ -106,24 +153,24 @@ public final class c1 extends u4<c1, c1$a> implements d6 {
             case 1:
                 return new c1();
             case 2:
-                return new c1$a(null);
+                return new a(null);
             case 3:
                 return new o6(zzj, "\u0001\u0006\u0000\u0001\u0001\u0006\u0006\u0000\u0001\u0000\u0001ဈ\u0000\u0002ဈ\u0001\u0003ဂ\u0002\u0004ခ\u0003\u0005က\u0004\u0006\u001b", new Object[]{"zzc", "zzd", "zze", "zzf", "zzg", "zzh", "zzi", c1.class});
             case 4:
                 return zzj;
             case 5:
-                j6<c1> u4_a = zzk;
-                if (u4_a == null) {
+                j6<c1> aVar = zzk;
+                if (aVar == null) {
                     synchronized (c1.class) {
-                        u4_a = zzk;
-                        if (u4_a == null) {
-                            u4_a = new u4$a<>(zzj);
-                            zzk = u4_a;
+                        aVar = zzk;
+                        if (aVar == null) {
+                            aVar = new u4.a<>(zzj);
+                            zzk = aVar;
                         }
                         break;
                     }
                 }
-                return u4_a;
+                return aVar;
             case 6:
                 return (byte) 1;
             case 7:

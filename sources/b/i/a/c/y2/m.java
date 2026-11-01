@@ -1,6 +1,6 @@
 package b.i.a.c.y2;
 
-import android.media.MediaCodec$CryptoInfo;
+import android.media.MediaCodec;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -20,14 +20,14 @@ public class m extends Handler {
 
     @Override // android.os.Handler
     public void handleMessage(Message message) {
-        n$a n_a;
+        n.a aVar;
         n nVar = this.a;
         Objects.requireNonNull(nVar);
         int i = message.what;
         if (i == 0) {
-            n_a = (n$a) message.obj;
+            aVar = (n.a) message.obj;
             try {
-                nVar.c.queueInputBuffer(n_a.a, n_a.f1309b, n_a.c, n_a.e, n_a.f);
+                nVar.c.queueInputBuffer(aVar.a, aVar.f1309b, aVar.c, aVar.e, aVar.f);
             } catch (RuntimeException e) {
                 nVar.f.set(e);
             }
@@ -37,26 +37,26 @@ public class m extends Handler {
             } else {
                 nVar.g.b();
             }
-            n_a = null;
+            aVar = null;
         } else {
-            n_a = (n$a) message.obj;
-            int i2 = n_a.a;
-            int i3 = n_a.f1309b;
-            MediaCodec$CryptoInfo mediaCodec$CryptoInfo = n_a.d;
-            long j = n_a.e;
-            int i4 = n_a.f;
+            aVar = (n.a) message.obj;
+            int i2 = aVar.a;
+            int i3 = aVar.f1309b;
+            MediaCodec.CryptoInfo cryptoInfo = aVar.d;
+            long j = aVar.e;
+            int i4 = aVar.f;
             try {
                 synchronized (n.f1308b) {
-                    nVar.c.queueSecureInputBuffer(i2, i3, mediaCodec$CryptoInfo, j, i4);
+                    nVar.c.queueSecureInputBuffer(i2, i3, cryptoInfo, j, i4);
                 }
             } catch (RuntimeException e2) {
                 nVar.f.set(e2);
             }
         }
-        if (n_a != null) {
-            ArrayDeque<n$a> arrayDeque = n.a;
+        if (aVar != null) {
+            ArrayDeque<n.a> arrayDeque = n.a;
             synchronized (arrayDeque) {
-                arrayDeque.add(n_a);
+                arrayDeque.add(aVar);
             }
         }
     }

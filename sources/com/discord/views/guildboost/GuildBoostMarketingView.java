@@ -10,9 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import b.a.i.y2;
 import b.a.k.b;
-import com.discord.R$id;
-import com.discord.R$layout;
-import com.discord.R$plurals;
+import com.discord.R;
 import com.discord.api.premium.PremiumTier;
 import com.discord.utilities.KotlinExtensionsKt;
 import com.discord.utilities.resources.StringResourceUtilsKt;
@@ -31,36 +29,50 @@ public final class GuildBoostMarketingView extends FrameLayout {
     /* JADX INFO: renamed from: j, reason: from kotlin metadata */
     public final y2 binding;
 
+    /* JADX INFO: compiled from: GuildBoostMarketingView.kt */
+    public final class a implements View.OnClickListener {
+        public final /* synthetic */ Function0 j;
+
+        public a(Function0 function0) {
+            this.j = function0;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.j.invoke();
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public GuildBoostMarketingView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0, 0);
         m.checkNotNullParameter(context, "context");
-        View viewInflate = LayoutInflater.from(context).inflate(R$layout.view_premium_marketing, (ViewGroup) this, false);
+        View viewInflate = LayoutInflater.from(context).inflate(R.layout.view_premium_marketing, (ViewGroup) this, false);
         addView(viewInflate);
-        int i = R$id.view_premium_marketing_container_tier1;
-        LinearLayout linearLayout = (LinearLayout) viewInflate.findViewById(R$id.view_premium_marketing_container_tier1);
+        int i = R.id.view_premium_marketing_container_tier1;
+        LinearLayout linearLayout = (LinearLayout) viewInflate.findViewById(R.id.view_premium_marketing_container_tier1);
         if (linearLayout != null) {
-            i = R$id.view_premium_marketing_learn_more;
-            MaterialButton materialButton = (MaterialButton) viewInflate.findViewById(R$id.view_premium_marketing_learn_more);
+            i = R.id.view_premium_marketing_learn_more;
+            MaterialButton materialButton = (MaterialButton) viewInflate.findViewById(R.id.view_premium_marketing_learn_more);
             if (materialButton != null) {
                 LinearLayout linearLayout2 = (LinearLayout) viewInflate;
-                i = R$id.view_premium_marketing_marketing_subtitle;
-                TextView textView = (TextView) viewInflate.findViewById(R$id.view_premium_marketing_marketing_subtitle);
+                i = R.id.view_premium_marketing_marketing_subtitle;
+                TextView textView = (TextView) viewInflate.findViewById(R.id.view_premium_marketing_marketing_subtitle);
                 if (textView != null) {
-                    i = R$id.view_premium_marketing_marketing_title;
-                    TextView textView2 = (TextView) viewInflate.findViewById(R$id.view_premium_marketing_marketing_title);
+                    i = R.id.view_premium_marketing_marketing_title;
+                    TextView textView2 = (TextView) viewInflate.findViewById(R.id.view_premium_marketing_marketing_title);
                     if (textView2 != null) {
-                        i = R$id.view_premium_marketing_nitro_boost_count;
-                        TextView textView3 = (TextView) viewInflate.findViewById(R$id.view_premium_marketing_nitro_boost_count);
+                        i = R.id.view_premium_marketing_nitro_boost_count;
+                        TextView textView3 = (TextView) viewInflate.findViewById(R.id.view_premium_marketing_nitro_boost_count);
                         if (textView3 != null) {
-                            i = R$id.view_premium_marketing_nitro_boost_discount;
-                            TextView textView4 = (TextView) viewInflate.findViewById(R$id.view_premium_marketing_nitro_boost_discount);
+                            i = R.id.view_premium_marketing_nitro_boost_discount;
+                            TextView textView4 = (TextView) viewInflate.findViewById(R.id.view_premium_marketing_nitro_boost_discount);
                             if (textView4 != null) {
-                                i = R$id.view_premium_marketing_nitro_classic_boost_count;
-                                TextView textView5 = (TextView) viewInflate.findViewById(R$id.view_premium_marketing_nitro_classic_boost_count);
+                                i = R.id.view_premium_marketing_nitro_classic_boost_count;
+                                TextView textView5 = (TextView) viewInflate.findViewById(R.id.view_premium_marketing_nitro_classic_boost_count);
                                 if (textView5 != null) {
-                                    i = R$id.view_premium_marketing_nitro_classic_boost_discount;
-                                    TextView textView6 = (TextView) viewInflate.findViewById(R$id.view_premium_marketing_nitro_classic_boost_discount);
+                                    i = R.id.view_premium_marketing_nitro_classic_boost_discount;
+                                    TextView textView6 = (TextView) viewInflate.findViewById(R.id.view_premium_marketing_nitro_classic_boost_discount);
                                     if (textView6 != null) {
                                         y2 y2Var = new y2(linearLayout2, linearLayout, materialButton, linearLayout2, textView, textView2, textView3, textView4, textView5, textView6);
                                         m.checkNotNullExpressionValue(y2Var, "ViewPremiumMarketingBind…rom(context), this, true)");
@@ -84,22 +96,22 @@ public final class GuildBoostMarketingView extends FrameLayout {
         m.checkNotNullParameter(onlearnMoreClickCallback, "onlearnMoreClickCallback");
         Context context = getContext();
         m.checkNotNullExpressionValue(context, "context");
-        CharSequence i18nPluralString = StringResourceUtilsKt.getI18nPluralString(context, R$plurals.guild_settings_premium_upsell_body_perk_no_free_guild_subscriptions_numFreeGuildSubscriptions, 2, 2);
+        CharSequence i18nPluralString = StringResourceUtilsKt.getI18nPluralString(context, R.plurals.guild_settings_premium_upsell_body_perk_no_free_guild_subscriptions_numFreeGuildSubscriptions, 2, 2);
         TextView textView = this.binding.h;
         m.checkNotNullExpressionValue(textView, "binding.viewPremiumMarketingNitroBoostDiscount");
         NumberFormat percentInstance = NumberFormat.getPercentInstance();
         Float fValueOf = Float.valueOf(0.3f);
-        b.n(textView, 2131891360, new Object[]{percentInstance.format(fValueOf)}, null, 4);
+        b.n(textView, R.string.guild_settings_premium_upsell_body_perk_guild_subscription_discount, new Object[]{percentInstance.format(fValueOf)}, null, 4);
         TextView textView2 = this.binding.g;
         m.checkNotNullExpressionValue(textView2, "binding.viewPremiumMarketingNitroBoostCount");
-        b.n(textView2, 2131891362, new Object[]{i18nPluralString}, null, 4);
+        b.n(textView2, R.string.guild_settings_premium_upsell_body_perk_num_guild_subscriptions, new Object[]{i18nPluralString}, null, 4);
         TextView textView3 = this.binding.j;
         m.checkNotNullExpressionValue(textView3, "binding.viewPremiumMarke…NitroClassicBoostDiscount");
-        b.n(textView3, 2131891360, new Object[]{NumberFormat.getPercentInstance().format(fValueOf)}, null, 4);
+        b.n(textView3, R.string.guild_settings_premium_upsell_body_perk_guild_subscription_discount, new Object[]{NumberFormat.getPercentInstance().format(fValueOf)}, null, 4);
         TextView textView4 = this.binding.i;
         m.checkNotNullExpressionValue(textView4, "binding.viewPremiumMarketingNitroClassicBoostCount");
-        b.n(textView4, 2131891361, new Object[]{i18nPluralString}, null, 4);
-        this.binding.c.setOnClickListener(new GuildBoostMarketingView$a(onlearnMoreClickCallback));
+        b.n(textView4, R.string.guild_settings_premium_upsell_body_perk_no_free_guild_subscriptions, new Object[]{i18nPluralString}, null, 4);
+        this.binding.c.setOnClickListener(new a(onlearnMoreClickCallback));
         int iOrdinal = userPremiumTier.ordinal();
         if (iOrdinal == 0) {
             TextView textView5 = this.binding.e;
@@ -115,7 +127,7 @@ public final class GuildBoostMarketingView extends FrameLayout {
             linearLayout2.setVisibility(0);
             TextView textView6 = this.binding.f;
             m.checkNotNullExpressionValue(textView6, "binding.viewPremiumMarketingMarketingTitle");
-            ViewExtensions.setTextAndVisibilityBy(textView6, b.j(this, 2131891364, new Object[0], null, 4));
+            ViewExtensions.setTextAndVisibilityBy(textView6, b.j(this, R.string.guild_settings_premium_upsell_heading_secondary, new Object[0], null, 4));
             TextView textView7 = this.binding.e;
             m.checkNotNullExpressionValue(textView7, "binding.viewPremiumMarketingMarketingSubtitle");
             textView7.setVisibility(8);
@@ -134,10 +146,10 @@ public final class GuildBoostMarketingView extends FrameLayout {
             linearLayout4.setVisibility(8);
             TextView textView9 = this.binding.f;
             m.checkNotNullExpressionValue(textView9, "binding.viewPremiumMarketingMarketingTitle");
-            ViewExtensions.setTextAndVisibilityBy(textView9, b.j(this, 2131891365, new Object[0], null, 4));
+            ViewExtensions.setTextAndVisibilityBy(textView9, b.j(this, R.string.guild_settings_premium_upsell_heading_secondary_premium_user, new Object[0], null, 4));
             TextView textView10 = this.binding.e;
             m.checkNotNullExpressionValue(textView10, "binding.viewPremiumMarketingMarketingSubtitle");
-            ViewExtensions.setTextAndVisibilityBy(textView10, b.j(this, 2131891366, new Object[]{String.valueOf(2)}, null, 4));
+            ViewExtensions.setTextAndVisibilityBy(textView10, b.j(this, R.string.guild_settings_premium_upsell_heading_tertiary_premium_user, new Object[]{String.valueOf(2)}, null, 4));
             unit = Unit.a;
         } else {
             if (iOrdinal != 4) {

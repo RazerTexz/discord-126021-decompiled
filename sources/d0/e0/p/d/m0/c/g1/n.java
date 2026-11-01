@@ -6,6 +6,7 @@ import d0.t.u;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: KotlinTarget.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -57,8 +58,14 @@ public enum n {
     private final String description;
     private final boolean isDefault;
 
+    /* JADX INFO: compiled from: KotlinTarget.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     static {
-        new n$a(null);
+        new a(null);
         j = new HashMap<>();
         n[] nVarArrValuesCustom = valuesCustom();
         int i = 0;

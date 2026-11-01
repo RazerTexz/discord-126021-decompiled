@@ -11,6 +11,21 @@ public final class l {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final int[] f1121b = {0, 1, 2, 3, 4, 5, 6, 8, -1, -1, -1, 7, 8, -1, 8, -1};
 
+    /* JADX INFO: compiled from: AacUtil.java */
+    public final class b {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f1122b;
+        public final String c;
+
+        public b(int i, int i2, String str, a aVar) {
+            this.a = i;
+            this.f1122b = i2;
+            this.c = str;
+        }
+    }
+
     public static int a(b.i.a.c.f3.w wVar) throws ParserException {
         int iG = wVar.g(4);
         if (iG == 15) {
@@ -22,7 +37,7 @@ public final class l {
         throw ParserException.a(null, null);
     }
 
-    public static l$b b(b.i.a.c.f3.w wVar, boolean z2) throws ParserException {
+    public static b b(b.i.a.c.f3.w wVar, boolean z2) throws ParserException {
         int iG = wVar.g(5);
         if (iG == 31) {
             iG = wVar.g(6) + 32;
@@ -98,12 +113,12 @@ public final class l {
         }
         int i = f1121b[iG2];
         if (i != -1) {
-            return new l$b(iA, i, strG, null);
+            return new b(iA, i, strG, null);
         }
         throw ParserException.a(null, null);
     }
 
-    public static l$b c(byte[] bArr) throws ParserException {
+    public static b c(byte[] bArr) throws ParserException {
         return b(new b.i.a.c.f3.w(bArr), false);
     }
 }

@@ -2,7 +2,6 @@ package b.i.a.g.g;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Paint$Style;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import androidx.annotation.ColorInt;
@@ -56,7 +55,7 @@ public final class h extends f<LinearProgressIndicatorSpec> {
         float f6 = f3 - (f4 * 2.0f);
         float f7 = (f * f6) + f5;
         float f8 = (f6 * f2) + f5;
-        paint.setStyle(Paint$Style.FILL);
+        paint.setStyle(Paint.Style.FILL);
         paint.setAntiAlias(true);
         paint.setColor(i);
         float f9 = this.d;
@@ -73,7 +72,7 @@ public final class h extends f<LinearProgressIndicatorSpec> {
         int iCompositeARGBWithAlpha = MaterialColors.compositeARGBWithAlpha(((LinearProgressIndicatorSpec) this.a).trackColor, this.f1622b.getAlpha());
         float f = ((-this.c) / 2.0f) + this.e;
         float f2 = -f;
-        paint.setStyle(Paint$Style.FILL);
+        paint.setStyle(Paint.Style.FILL);
         paint.setAntiAlias(true);
         paint.setColor(iCompositeARGBWithAlpha);
         float f3 = this.d;

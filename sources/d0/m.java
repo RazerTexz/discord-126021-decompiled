@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.Lazy;
 import kotlin.jvm.functions.Function0;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: LazyJVM.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -15,8 +16,14 @@ public final class m<T> implements Lazy<T>, Serializable {
     private final Object f12final;
     private volatile Function0<? extends T> initializer;
 
+    /* JADX INFO: compiled from: LazyJVM.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     static {
-        new m$a(null);
+        new a(null);
         j = AtomicReferenceFieldUpdater.newUpdater(m.class, Object.class, "_value");
     }
 

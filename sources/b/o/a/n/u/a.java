@@ -1,9 +1,6 @@
 package b.o.a.n.u;
 
 import android.hardware.Camera;
-import android.hardware.Camera$CameraInfo;
-import android.hardware.Camera$Parameters;
-import android.hardware.Camera$Size;
 import android.media.CamcorderProfile;
 import androidx.annotation.NonNull;
 import b.o.a.c;
@@ -12,7 +9,6 @@ import b.o.a.m.f;
 import b.o.a.m.h;
 import b.o.a.m.j;
 import b.o.a.m.m;
-import b.o.a.r.a$a;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -21,21 +17,21 @@ import java.util.List;
 /* JADX INFO: compiled from: Camera1Options.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class a extends c {
-    public a(@NonNull Camera$Parameters camera$Parameters, int i, boolean z2) {
+    public a(@NonNull Camera.Parameters parameters, int i, boolean z2) {
         CamcorderProfile camcorderProfile;
         int i2;
         int i3;
         b.o.a.n.q.a aVarA = b.o.a.n.q.a.a();
-        Camera$CameraInfo camera$CameraInfo = new Camera$CameraInfo();
+        Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
         int numberOfCameras = Camera.getNumberOfCameras();
         for (int i4 = 0; i4 < numberOfCameras; i4++) {
-            Camera.getCameraInfo(i4, camera$CameraInfo);
-            e eVar = (e) aVarA.b(b.o.a.n.q.a.d, Integer.valueOf(camera$CameraInfo.facing));
+            Camera.getCameraInfo(i4, cameraInfo);
+            e eVar = (e) aVarA.b(b.o.a.n.q.a.d, Integer.valueOf(cameraInfo.facing));
             if (eVar != null) {
                 this.f1911b.add(eVar);
             }
         }
-        List<String> supportedWhiteBalance = camera$Parameters.getSupportedWhiteBalance();
+        List<String> supportedWhiteBalance = parameters.getSupportedWhiteBalance();
         if (supportedWhiteBalance != null) {
             Iterator<String> it = supportedWhiteBalance.iterator();
             while (it.hasNext()) {
@@ -46,7 +42,7 @@ public class a extends c {
             }
         }
         this.c.add(f.OFF);
-        List<String> supportedFlashModes = camera$Parameters.getSupportedFlashModes();
+        List<String> supportedFlashModes = parameters.getSupportedFlashModes();
         if (supportedFlashModes != null) {
             Iterator<String> it2 = supportedFlashModes.iterator();
             while (it2.hasNext()) {
@@ -57,7 +53,7 @@ public class a extends c {
             }
         }
         this.d.add(h.OFF);
-        List<String> supportedSceneModes = camera$Parameters.getSupportedSceneModes();
+        List<String> supportedSceneModes = parameters.getSupportedSceneModes();
         if (supportedSceneModes != null) {
             Iterator<String> it3 = supportedSceneModes.iterator();
             while (it3.hasNext()) {
@@ -67,20 +63,20 @@ public class a extends c {
                 }
             }
         }
-        this.k = camera$Parameters.isZoomSupported();
-        this.o = camera$Parameters.getSupportedFocusModes().contains("auto");
-        float exposureCompensationStep = camera$Parameters.getExposureCompensationStep();
-        this.m = camera$Parameters.getMinExposureCompensation() * exposureCompensationStep;
-        this.n = camera$Parameters.getMaxExposureCompensation() * exposureCompensationStep;
-        this.l = (camera$Parameters.getMinExposureCompensation() == 0 && camera$Parameters.getMaxExposureCompensation() == 0) ? false : true;
-        for (Camera$Size camera$Size : camera$Parameters.getSupportedPictureSizes()) {
-            int i5 = z2 ? camera$Size.height : camera$Size.width;
-            int i6 = z2 ? camera$Size.width : camera$Size.height;
+        this.k = parameters.isZoomSupported();
+        this.o = parameters.getSupportedFocusModes().contains("auto");
+        float exposureCompensationStep = parameters.getExposureCompensationStep();
+        this.m = parameters.getMinExposureCompensation() * exposureCompensationStep;
+        this.n = parameters.getMaxExposureCompensation() * exposureCompensationStep;
+        this.l = (parameters.getMinExposureCompensation() == 0 && parameters.getMaxExposureCompensation() == 0) ? false : true;
+        for (Camera.Size size : parameters.getSupportedPictureSizes()) {
+            int i5 = z2 ? size.height : size.width;
+            int i6 = z2 ? size.width : size.height;
             this.e.add(new b.o.a.x.b(i5, i6));
             this.g.add(b.o.a.x.a.f(i5, i6));
         }
         ArrayList arrayList = new ArrayList(b.o.a.r.a.f1948b.keySet());
-        Collections.sort(arrayList, new a$a(((long) Integer.MAX_VALUE) * ((long) Integer.MAX_VALUE)));
+        Collections.sort(arrayList, new b.o.a.r.a.C0176a(((long) Integer.MAX_VALUE) * ((long) Integer.MAX_VALUE)));
         while (true) {
             if (arrayList.size() <= 0) {
                 camcorderProfile = CamcorderProfile.get(i, 0);
@@ -94,11 +90,11 @@ public class a extends c {
         }
         int i7 = camcorderProfile.videoFrameWidth;
         int i8 = camcorderProfile.videoFrameHeight;
-        List<Camera$Size> supportedVideoSizes = camera$Parameters.getSupportedVideoSizes();
+        List<Camera.Size> supportedVideoSizes = parameters.getSupportedVideoSizes();
         if (supportedVideoSizes != null) {
-            for (Camera$Size camera$Size2 : supportedVideoSizes) {
-                int i9 = camera$Size2.width;
-                if (i9 <= i7 && (i3 = camera$Size2.height) <= i8) {
+            for (Camera.Size size2 : supportedVideoSizes) {
+                int i9 = size2.width;
+                if (i9 <= i7 && (i3 = size2.height) <= i8) {
                     int i10 = z2 ? i3 : i9;
                     i9 = z2 ? i9 : i3;
                     this.f.add(new b.o.a.x.b(i10, i9));
@@ -106,9 +102,9 @@ public class a extends c {
                 }
             }
         } else {
-            for (Camera$Size camera$Size3 : camera$Parameters.getSupportedPreviewSizes()) {
-                int i11 = camera$Size3.width;
-                if (i11 <= i7 && (i2 = camera$Size3.height) <= i8) {
+            for (Camera.Size size3 : parameters.getSupportedPreviewSizes()) {
+                int i11 = size3.width;
+                if (i11 <= i7 && (i2 = size3.height) <= i8) {
                     int i12 = z2 ? i2 : i11;
                     i11 = z2 ? i11 : i2;
                     this.f.add(new b.o.a.x.b(i12, i11));
@@ -118,7 +114,7 @@ public class a extends c {
         }
         this.p = Float.MAX_VALUE;
         this.q = -3.4028235E38f;
-        for (int[] iArr : camera$Parameters.getSupportedPreviewFpsRange()) {
+        for (int[] iArr : parameters.getSupportedPreviewFpsRange()) {
             float f = iArr[0] / 1000.0f;
             float f2 = iArr[1] / 1000.0f;
             this.p = Math.min(this.p, f);

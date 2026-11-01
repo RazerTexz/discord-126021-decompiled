@@ -5,7 +5,9 @@ import d0.e0.p.d.m0.c.z0;
 import d0.e0.p.d.m0.e.a.i0.l.s;
 import d0.e0.p.d.m0.e.a.k0.y;
 import d0.e0.p.d.m0.e.a.k0.z;
+import d0.z.d.o;
 import java.util.Map;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: resolvers.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -18,6 +20,29 @@ public final class h implements k {
     public final Map<y, Integer> d;
     public final d0.e0.p.d.m0.m.i<y, s> e;
 
+    /* JADX INFO: compiled from: resolvers.kt */
+    public final class a extends o implements Function1<y, s> {
+        public a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ s invoke(y yVar) {
+            return invoke2(yVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final s invoke2(y yVar) {
+            d0.z.d.m.checkNotNullParameter(yVar, "typeParameter");
+            Integer num = (Integer) h.access$getTypeParameters$p(h.this).get(yVar);
+            if (num == null) {
+                return null;
+            }
+            h hVar = h.this;
+            return new s(d0.e0.p.d.m0.e.a.i0.a.copyWithNewDefaultTypeQualifiers(d0.e0.p.d.m0.e.a.i0.a.child(h.access$getC$p(hVar), hVar), h.access$getContainingDeclaration$p(hVar).getAnnotations()), yVar, h.access$getTypeParametersIndexOffset$p(hVar) + num.intValue(), h.access$getContainingDeclaration$p(hVar));
+        }
+    }
+
     public h(g gVar, m mVar, z zVar, int i) {
         d0.z.d.m.checkNotNullParameter(gVar, "c");
         d0.z.d.m.checkNotNullParameter(mVar, "containingDeclaration");
@@ -26,7 +51,7 @@ public final class h implements k {
         this.f3324b = mVar;
         this.c = i;
         this.d = d0.e0.p.d.m0.p.a.mapToIndex(zVar.getTypeParameters());
-        this.e = gVar.getStorageManager().createMemoizedFunctionWithNullableValues(new h$a(this));
+        this.e = gVar.getStorageManager().createMemoizedFunctionWithNullableValues(new a());
     }
 
     public static final /* synthetic */ g access$getC$p(h hVar) {

@@ -30,11 +30,11 @@ public class d implements h {
     public final Set<String> h;
     public long i;
     public final b.f.d.i.a j;
-    public final c k;
+    public final b.f.b.b.c k;
     public final g l;
     public final b.f.b.a.a m;
     public final boolean n;
-    public final d$b o;
+    public final b o;
     public final b.f.d.k.a p;
     public static final long a = TimeUnit.HOURS.toMillis(2);
 
@@ -42,10 +42,40 @@ public class d implements h {
     public static final long f463b = TimeUnit.MINUTES.toMillis(30);
     public final Object q = new Object();
 
-    public d(c cVar, g gVar, d$c d_c, b.f.b.a.b bVar, b.f.b.a.a aVar, b.f.d.a.a aVar2, Executor executor, boolean z2) {
+    /* JADX INFO: compiled from: DiskStorageCache.java */
+    public class a implements Runnable {
+        public a() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            synchronized (d.this.q) {
+                d.this.e();
+            }
+            Objects.requireNonNull(d.this);
+            d.this.e.countDown();
+        }
+    }
+
+    /* JADX INFO: compiled from: DiskStorageCache.java */
+    public class c {
+        public final long a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final long f465b;
+        public final long c;
+
+        public c(long j, long j2, long j3) {
+            this.a = j;
+            this.f465b = j2;
+            this.c = j3;
+        }
+    }
+
+    public d(b.f.b.b.c cVar, g gVar, c cVar2, b.f.b.a.b bVar, b.f.b.a.a aVar, b.f.d.a.a aVar2, Executor executor, boolean z2) {
         b.f.d.i.a aVar3;
-        this.c = d_c.f465b;
-        long j = d_c.c;
+        this.c = cVar2.f465b;
+        long j = cVar2.c;
         this.d = j;
         this.f = j;
         b.f.d.i.a aVar4 = b.f.d.i.a.a;
@@ -61,7 +91,7 @@ public class d implements h {
         this.i = -1L;
         this.g = bVar;
         this.m = aVar;
-        this.o = new d$b();
+        this.o = new b();
         this.p = b.f.d.k.c.a;
         this.n = z2;
         this.h = new HashSet();
@@ -69,27 +99,27 @@ public class d implements h {
             this.e = new CountDownLatch(0);
         } else {
             this.e = new CountDownLatch(1);
-            executor.execute(new d$a(this));
+            executor.execute(new a());
         }
     }
 
     public final void a(long j, int i) throws IOException {
         try {
-            Collection<c$a> collectionC = c(this.k.e());
+            Collection<b.f.b.b.c.a> collectionC = c(this.k.e());
             long jA = this.o.a() - j;
             int i2 = 0;
             long j2 = 0;
-            for (c$a c_a : (ArrayList) collectionC) {
+            for (b.f.b.b.c.a aVar : (ArrayList) collectionC) {
                 if (j2 > jA) {
                     break;
                 }
-                long jG = this.k.g(c_a);
-                this.h.remove(c_a.getId());
+                long jG = this.k.g(aVar);
+                this.h.remove(aVar.getId());
                 if (jG > 0) {
                     i2++;
                     j2 += jG;
                     i iVarA = i.a();
-                    c_a.getId();
+                    aVar.getId();
                     Objects.requireNonNull((b.f.b.a.e) this.g);
                     iVarA.b();
                 }
@@ -97,9 +127,9 @@ public class d implements h {
             this.o.b(-j2, -i2);
             this.k.a();
         } catch (IOException e) {
-            b.f.b.a.a aVar = this.m;
+            b.f.b.a.a aVar2 = this.m;
             e.getMessage();
-            Objects.requireNonNull((b.f.b.a.d) aVar);
+            Objects.requireNonNull((b.f.b.a.d) aVar2);
             throw e;
         }
     }
@@ -146,16 +176,16 @@ public class d implements h {
         }
     }
 
-    public final Collection<c$a> c(Collection<c$a> collection) {
+    public final Collection<b.f.b.b.c.a> c(Collection<b.f.b.b.c.a> collection) {
         Objects.requireNonNull((b.f.d.k.c) this.p);
         long jCurrentTimeMillis = System.currentTimeMillis() + a;
         ArrayList arrayList = new ArrayList(collection.size());
         ArrayList arrayList2 = new ArrayList(collection.size());
-        for (c$a c_a : collection) {
-            if (c_a.a() > jCurrentTimeMillis) {
-                arrayList.add(c_a);
+        for (b.f.b.b.c.a aVar : collection) {
+            if (aVar.a() > jCurrentTimeMillis) {
+                arrayList.add(aVar);
             } else {
-                arrayList2.add(c_a);
+                arrayList2.add(aVar);
             }
         }
         Collections.sort(arrayList2, this.l.get());
@@ -189,25 +219,25 @@ public class d implements h {
             }
         }
         try {
-            c$b c_bG = g(strW1, cacheKey);
+            b.f.b.b.c.b bVarG = g(strW1, cacheKey);
             try {
-                a$f a_f = (a$f) c_bG;
-                a_f.c(gVar, cacheKey);
+                b.f.b.b.a.f fVar = (b.f.b.b.a.f) bVarG;
+                fVar.c(gVar, cacheKey);
                 synchronized (this.q) {
-                    aVarB = a_f.b(cacheKey);
+                    aVarB = fVar.b(cacheKey);
                     this.h.add(strW1);
                     this.o.b(aVarB.a(), 1L);
                 }
                 aVarB.a();
                 this.o.a();
                 Objects.requireNonNull((b.f.b.a.e) this.g);
-                if (!a_f.a()) {
+                if (!fVar.a()) {
                     b.f.d.e.a.a(d.class, "Failed to delete temp file");
                 }
                 iVarA.b();
                 return aVarB;
             } catch (Throwable th3) {
-                if (!((a$f) c_bG).a()) {
+                if (!((b.f.b.b.a.f) bVarG).a()) {
                     b.f.d.e.a.a(d.class, "Failed to delete temp file");
                 }
                 throw th3;
@@ -225,9 +255,9 @@ public class d implements h {
         long j2;
         Objects.requireNonNull((b.f.d.k.c) this.p);
         long jCurrentTimeMillis = System.currentTimeMillis();
-        d$b d_b = this.o;
-        synchronized (d_b) {
-            z2 = d_b.a;
+        b bVar = this.o;
+        synchronized (bVar) {
+            z2 = bVar.a;
         }
         long jMax = -1;
         if (z2) {
@@ -244,19 +274,19 @@ public class d implements h {
             long size = 0;
             boolean z3 = false;
             int i = 0;
-            for (c$a c_a : this.k.e()) {
+            for (b.f.b.b.c.a aVar : this.k.e()) {
                 i++;
-                size += c_a.getSize();
-                if (c_a.a() > j4) {
-                    c_a.getSize();
+                size += aVar.getSize();
+                if (aVar.a() > j4) {
+                    aVar.getSize();
                     j2 = j4;
-                    jMax = Math.max(c_a.a() - jCurrentTimeMillis2, jMax);
+                    jMax = Math.max(aVar.a() - jCurrentTimeMillis2, jMax);
                     z3 = true;
                 } else {
                     j2 = j4;
                     if (this.n) {
                         Objects.requireNonNull(hashSet);
-                        hashSet.add(c_a.getId());
+                        hashSet.add(aVar.getId());
                     }
                 }
                 j4 = j2;
@@ -264,9 +294,9 @@ public class d implements h {
             if (z3) {
                 Objects.requireNonNull((b.f.b.a.d) this.m);
             }
-            d$b d_b2 = this.o;
-            synchronized (d_b2) {
-                j = d_b2.c;
+            b bVar2 = this.o;
+            synchronized (bVar2) {
+                j = bVar2.c;
             }
             long j5 = i;
             if (j != j5 || this.o.a() != size) {
@@ -275,19 +305,19 @@ public class d implements h {
                     this.h.clear();
                     this.h.addAll(hashSet);
                 }
-                d$b d_b3 = this.o;
-                synchronized (d_b3) {
-                    d_b3.c = j5;
-                    d_b3.f464b = size;
-                    d_b3.a = true;
+                b bVar3 = this.o;
+                synchronized (bVar3) {
+                    bVar3.c = j5;
+                    bVar3.f464b = size;
+                    bVar3.a = true;
                 }
             }
             this.i = jCurrentTimeMillis2;
             return true;
         } catch (IOException e) {
-            b.f.b.a.a aVar = this.m;
+            b.f.b.a.a aVar2 = this.m;
             e.getMessage();
-            Objects.requireNonNull((b.f.b.a.d) aVar);
+            Objects.requireNonNull((b.f.b.a.d) aVar2);
             return false;
         }
     }
@@ -315,17 +345,17 @@ public class d implements h {
         }
     }
 
-    public final c$b g(String str, CacheKey cacheKey) throws IOException {
+    public final b.f.b.b.c.b g(String str, CacheKey cacheKey) throws IOException {
         synchronized (this.q) {
             boolean zE = e();
             h();
             long jA = this.o.a();
             if (jA > this.f && !zE) {
-                d$b d_b = this.o;
-                synchronized (d_b) {
-                    d_b.a = false;
-                    d_b.c = -1L;
-                    d_b.f464b = -1L;
+                b bVar = this.o;
+                synchronized (bVar) {
+                    bVar.a = false;
+                    bVar.c = -1L;
+                    bVar.f464b = -1L;
                 }
                 e();
             }
@@ -340,7 +370,7 @@ public class d implements h {
     public final void h() {
         long availableBlocksLong;
         boolean z2 = true;
-        char c = this.k.isExternal() ? (char) 2 : (char) 1;
+        char c2 = this.k.isExternal() ? (char) 2 : (char) 1;
         b.f.d.i.a aVar = this.j;
         long jA = this.d - this.o.a();
         aVar.a();
@@ -356,7 +386,7 @@ public class d implements h {
                 throw th;
             }
         }
-        StatFs statFs = c == 1 ? aVar.c : aVar.e;
+        StatFs statFs = c2 == 1 ? aVar.c : aVar.e;
         if (statFs != null) {
             availableBlocksLong = statFs.getAvailableBlocksLong() * statFs.getBlockSizeLong();
         } else {
@@ -369,6 +399,27 @@ public class d implements h {
             this.f = this.c;
         } else {
             this.f = this.d;
+        }
+    }
+
+    /* JADX INFO: compiled from: DiskStorageCache.java */
+    @VisibleForTesting
+    public class b {
+        public boolean a = false;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public long f464b = -1;
+        public long c = -1;
+
+        public synchronized long a() {
+            return this.f464b;
+        }
+
+        public synchronized void b(long j, long j2) {
+            if (this.a) {
+                this.f464b += j;
+                this.c += j2;
+            }
         }
     }
 }

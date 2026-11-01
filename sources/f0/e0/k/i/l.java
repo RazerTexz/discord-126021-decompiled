@@ -3,11 +3,18 @@ package f0.e0.k.i;
 import d0.z.d.m;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: StandardAndroidSocketAdapter.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class l extends f {
-    public static final l$a h = new l$a(null);
+    public static final a h = new a(null);
+
+    /* JADX INFO: compiled from: StandardAndroidSocketAdapter.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public l(Class<? super SSLSocket> cls, Class<? super SSLSocketFactory> cls2, Class<?> cls3) {

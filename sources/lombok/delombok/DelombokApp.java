@@ -1,10 +1,18 @@
 package lombok.delombok;
 
+import com.discord.widgets.chat.input.autocomplete.AutocompleteViewModel;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.List;
-import java.util.Map$Entry;
+import java.util.Map;
+import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import lombok.core.LombokApp;
 import lombok.permit.Permit;
@@ -57,8 +65,131 @@ public class DelombokApp extends LombokApp {
             return null;
         }
         JarFile toolsJarFile = new JarFile(toolsJar);
-        ClassLoader loader = new DelombokApp$1(DelombokApp.class.getClassLoader(), toolsJarFile, toolsJar);
+        ClassLoader loader = new AnonymousClass1(DelombokApp.class.getClassLoader(), toolsJarFile, toolsJar);
         return loader.loadClass("lombok.delombok.Delombok");
+    }
+
+    /* JADX INFO: renamed from: lombok.delombok.DelombokApp$1, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/delombok/DelombokApp$1.SCL.lombok */
+    class AnonymousClass1 extends ClassLoader {
+        private final /* synthetic */ JarFile val$toolsJarFile;
+        private final /* synthetic */ File val$toolsJar;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        AnonymousClass1(ClassLoader $anonymous0, JarFile jarFile, File file) {
+            super($anonymous0);
+            this.val$toolsJarFile = jarFile;
+            this.val$toolsJar = file;
+        }
+
+        private Class<?> loadStreamAsClass(String name, boolean resolve, InputStream in) throws ClassNotFoundException {
+            try {
+                try {
+                    byte[] b2 = new byte[65536];
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+                    while (true) {
+                        int r = in.read(b2);
+                        if (r == -1) {
+                            break;
+                        }
+                        out.write(b2, 0, r);
+                    }
+                    in.close();
+                    byte[] data = out.toByteArray();
+                    Class<?> c = defineClass(name, data, 0, data.length);
+                    if (resolve) {
+                        resolveClass(c);
+                    }
+                    return c;
+                } finally {
+                    in.close();
+                }
+            } catch (Exception e2) {
+                throw new ClassNotFoundException(name, e2);
+            }
+        }
+
+        @Override // java.lang.ClassLoader
+        protected synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
+            String binName = name.replace(".", AutocompleteViewModel.COMMAND_DISCOVER_TOKEN);
+            String rawName = String.valueOf(binName) + ".class";
+            String altName = String.valueOf(binName) + ".SCL.lombok";
+            JarEntry entry = this.val$toolsJarFile.getJarEntry(rawName);
+            if (entry == null) {
+                if (name.startsWith("lombok.")) {
+                    InputStream res = getParent().getResourceAsStream(rawName);
+                    if (res == null) {
+                        res = getParent().getResourceAsStream(altName);
+                    }
+                    return loadStreamAsClass(name, resolve, res);
+                }
+                return super.loadClass(name, resolve);
+            }
+            try {
+                return loadStreamAsClass(name, resolve, this.val$toolsJarFile.getInputStream(entry));
+            } catch (IOException e2) {
+                throw new ClassNotFoundException(name, e2);
+            }
+        }
+
+        @Override // java.lang.ClassLoader
+        public URL getResource(String name) {
+            JarEntry entry = this.val$toolsJarFile.getJarEntry(name);
+            if (entry == null) {
+                return super.getResource(name);
+            }
+            try {
+                return new URL("jar:file:" + this.val$toolsJar.getAbsolutePath() + "!" + name);
+            } catch (MalformedURLException unused) {
+                return null;
+            }
+        }
+
+        @Override // java.lang.ClassLoader
+        public Enumeration<URL> getResources(String name) throws IOException {
+            JarEntry entry = this.val$toolsJarFile.getJarEntry(name);
+            Enumeration<URL> parent = super.getResources(name);
+            return entry == null ? super.getResources(name) : new C06421(parent, this.val$toolsJar, name);
+        }
+
+        /* JADX INFO: renamed from: lombok.delombok.DelombokApp$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: loaded from: discord-126021.apk:lombok/delombok/DelombokApp$1$1.SCL.lombok */
+        class C06421 implements Enumeration<URL> {
+            private final /* synthetic */ String val$name;
+            private final /* synthetic */ Enumeration val$parent;
+            private final /* synthetic */ File val$toolsJar;
+            private boolean first = false;
+
+            @Override // java.util.Enumeration
+            public /* bridge */ /* synthetic */ URL nextElement() {
+                return nextElement();
+            }
+
+            C06421(Enumeration enumeration, File file, String str) {
+                this.val$parent = enumeration;
+                this.val$toolsJar = file;
+                this.val$name = str;
+            }
+
+            @Override // java.util.Enumeration
+            public boolean hasMoreElements() {
+                return !this.first || this.val$parent.hasMoreElements();
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // java.util.Enumeration
+            public URL nextElement() {
+                if (!this.first) {
+                    this.first = true;
+                    try {
+                        return new URL("jar:file:" + this.val$toolsJar.getAbsolutePath() + "!" + this.val$name);
+                    } catch (MalformedURLException unused) {
+                        return (URL) this.val$parent.nextElement();
+                    }
+                }
+                return (URL) this.val$parent.nextElement();
+            }
+        }
     }
 
     private void runDirectly(List<String> args) {
@@ -88,7 +219,7 @@ public class DelombokApp extends LombokApp {
     }
 
     private static File findToolsJarViaEnvironment() {
-        for (Map$Entry<String, String> s2 : System.getenv().entrySet()) {
+        for (Map.Entry<String, String> s2 : System.getenv().entrySet()) {
             if ("JAVA_HOME".equalsIgnoreCase(s2.getKey())) {
                 return extensiveCheckToolsJar(new File(s2.getValue()));
             }

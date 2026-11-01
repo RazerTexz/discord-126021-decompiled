@@ -5,7 +5,7 @@ import java.io.InputStream;
 
 /* JADX INFO: compiled from: QueueFileLogStore.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class d implements c$d {
+public class d implements c.d {
     public final /* synthetic */ byte[] a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -16,7 +16,7 @@ public class d implements c$d {
         this.f1710b = iArr;
     }
 
-    @Override // b.i.c.m.d.l.c$d
+    @Override // b.i.c.m.d.l.c.d
     public void a(InputStream inputStream, int i) throws IOException {
         try {
             inputStream.read(this.a, this.f1710b[0], i);

@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.work.Logger;
 import androidx.work.impl.WorkManagerImpl;
+import androidx.work.impl.utils.PackageManagerHelper;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ConstraintProxyUpdateReceiver extends BroadcastReceiver {
@@ -17,6 +18,36 @@ public class ConstraintProxyUpdateReceiver extends BroadcastReceiver {
     public static final String KEY_NETWORK_STATE_PROXY_ENABLED = "KEY_NETWORK_STATE_PROXY_ENABLED";
     public static final String KEY_STORAGE_NOT_LOW_PROXY_ENABLED = "KEY_STORAGE_NOT_LOW_PROXY_ENABLED";
     public static final String TAG = Logger.tagWithPrefix("ConstrntProxyUpdtRecvr");
+
+    /* JADX INFO: renamed from: androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver$1, reason: invalid class name */
+    public class AnonymousClass1 implements Runnable {
+        public final /* synthetic */ Context val$context;
+        public final /* synthetic */ Intent val$intent;
+        public final /* synthetic */ BroadcastReceiver.PendingResult val$pendingResult;
+
+        public AnonymousClass1(Intent intent, Context context, BroadcastReceiver.PendingResult pendingResult) {
+            this.val$intent = intent;
+            this.val$context = context;
+            this.val$pendingResult = pendingResult;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            try {
+                boolean booleanExtra = this.val$intent.getBooleanExtra(ConstraintProxyUpdateReceiver.KEY_BATTERY_NOT_LOW_PROXY_ENABLED, false);
+                boolean booleanExtra2 = this.val$intent.getBooleanExtra(ConstraintProxyUpdateReceiver.KEY_BATTERY_CHARGING_PROXY_ENABLED, false);
+                boolean booleanExtra3 = this.val$intent.getBooleanExtra(ConstraintProxyUpdateReceiver.KEY_STORAGE_NOT_LOW_PROXY_ENABLED, false);
+                boolean booleanExtra4 = this.val$intent.getBooleanExtra(ConstraintProxyUpdateReceiver.KEY_NETWORK_STATE_PROXY_ENABLED, false);
+                Logger.get().debug(ConstraintProxyUpdateReceiver.TAG, String.format("Updating proxies: BatteryNotLowProxy enabled (%s), BatteryChargingProxy enabled (%s), StorageNotLowProxy (%s), NetworkStateProxy enabled (%s)", Boolean.valueOf(booleanExtra), Boolean.valueOf(booleanExtra2), Boolean.valueOf(booleanExtra3), Boolean.valueOf(booleanExtra4)), new Throwable[0]);
+                PackageManagerHelper.setComponentEnabled(this.val$context, ConstraintProxy.BatteryNotLowProxy.class, booleanExtra);
+                PackageManagerHelper.setComponentEnabled(this.val$context, ConstraintProxy.BatteryChargingProxy.class, booleanExtra2);
+                PackageManagerHelper.setComponentEnabled(this.val$context, ConstraintProxy.StorageNotLowProxy.class, booleanExtra3);
+                PackageManagerHelper.setComponentEnabled(this.val$context, ConstraintProxy.NetworkStateProxy.class, booleanExtra4);
+            } finally {
+                this.val$pendingResult.finish();
+            }
+        }
+    }
 
     public static Intent newConstraintProxyUpdateIntent(Context context, boolean z2, boolean z3, boolean z4, boolean z5) {
         Intent intent = new Intent(ACTION);
@@ -29,7 +60,7 @@ public class ConstraintProxyUpdateReceiver extends BroadcastReceiver {
     public void onReceive(@NonNull Context context, @Nullable Intent intent) {
         String action = intent != null ? intent.getAction() : null;
         if (ACTION.equals(action)) {
-            WorkManagerImpl.getInstance(context).getWorkTaskExecutor().executeOnBackgroundThread(new ConstraintProxyUpdateReceiver$1(this, intent, context, goAsync()));
+            WorkManagerImpl.getInstance(context).getWorkTaskExecutor().executeOnBackgroundThread(new AnonymousClass1(intent, context, goAsync()));
         } else {
             Logger.get().debug(TAG, String.format("Ignoring unknown action %s", action), new Throwable[0]);
         }

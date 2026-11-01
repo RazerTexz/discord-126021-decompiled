@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetDonutBetaPopupBinding;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.google.android.material.button.MaterialButton;
@@ -30,23 +30,23 @@ public final /* synthetic */ class WidgetDonutBetaPopup$binding$2 extends k impl
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetDonutBetaPopupBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.donut_beta_actions;
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.donut_beta_actions);
+        int i = R.id.donut_beta_actions;
+        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.donut_beta_actions);
         if (linearLayout != null) {
-            i = R$id.donut_beta_body;
-            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R$id.donut_beta_body);
+            i = R.id.donut_beta_body;
+            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R.id.donut_beta_body);
             if (linkifiedTextView != null) {
-                i = R$id.donut_beta_close;
-                ImageView imageView = (ImageView) view.findViewById(R$id.donut_beta_close);
+                i = R.id.donut_beta_close;
+                ImageView imageView = (ImageView) view.findViewById(R.id.donut_beta_close);
                 if (imageView != null) {
-                    i = R$id.donut_beta_close_button;
-                    MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.donut_beta_close_button);
+                    i = R.id.donut_beta_close_button;
+                    MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.donut_beta_close_button);
                     if (materialButton != null) {
-                        i = R$id.donut_beta_open_button;
-                        MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.donut_beta_open_button);
+                        i = R.id.donut_beta_open_button;
+                        MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.donut_beta_open_button);
                         if (materialButton2 != null) {
-                            i = R$id.donut_beta_title;
-                            TextView textView = (TextView) view.findViewById(R$id.donut_beta_title);
+                            i = R.id.donut_beta_title;
+                            TextView textView = (TextView) view.findViewById(R.id.donut_beta_title);
                             if (textView != null) {
                                 return new WidgetDonutBetaPopupBinding((ConstraintLayout) view, linearLayout, linkifiedTextView, imageView, materialButton, materialButton2, textView);
                             }

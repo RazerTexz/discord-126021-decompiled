@@ -6,7 +6,12 @@ import kotlin.reflect.KProperty;
 /* JADX INFO: compiled from: KProperty.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public interface g<T, V> extends KProperty<V>, Function1<T, V> {
+
+    /* JADX INFO: compiled from: KProperty.kt */
+    public interface a<T, V> extends KProperty.Getter<V>, Function1<T, V> {
+    }
+
     V get(T t);
 
-    g$a<T, V> getGetter();
+    a<T, V> getGetter();
 }

@@ -1,13 +1,12 @@
 package defpackage;
 
 import android.view.View;
-import android.view.View$OnClickListener;
 import com.lytefast.flexinput.fragment.FlexInputFragment;
 import com.lytefast.flexinput.viewmodel.FlexInputViewModel;
 
 /* JADX INFO: compiled from: java-style lambda group */
 /* JADX INFO: loaded from: classes.dex */
-public final class h implements View$OnClickListener {
+public final class h implements View.OnClickListener {
     public final /* synthetic */ int j;
     public final /* synthetic */ Object k;
 
@@ -16,7 +15,7 @@ public final class h implements View$OnClickListener {
         this.k = obj;
     }
 
-    @Override // android.view.View$OnClickListener
+    @Override // android.view.View.OnClickListener
     public final void onClick(View view) {
         int i = this.j;
         if (i == 0) {

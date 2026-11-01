@@ -1,7 +1,6 @@
 package b.c.a.a0;
 
 import android.graphics.Color;
-import b.c.a.a0.i0.c$b;
 import java.io.IOException;
 
 /* JADX INFO: compiled from: ColorParser.java */
@@ -11,7 +10,7 @@ public class f implements h0<Integer> {
 
     @Override // b.c.a.a0.h0
     public Integer a(b.c.a.a0.i0.c cVar, float f) throws IOException {
-        boolean z2 = cVar.u() == c$b.BEGIN_ARRAY;
+        boolean z2 = cVar.u() == b.c.a.a0.i0.c.b.BEGIN_ARRAY;
         if (z2) {
             cVar.a();
         }

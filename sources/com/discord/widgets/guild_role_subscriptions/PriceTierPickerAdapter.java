@@ -2,8 +2,7 @@ package com.discord.widgets.guild_role_subscriptions;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView$Adapter;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
+import androidx.recyclerview.widget.RecyclerView;
 import com.discord.databinding.DialogSimpleSelectorItemBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import d0.t.n;
@@ -14,7 +13,7 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetPriceTierPickerBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class PriceTierPickerAdapter extends RecyclerView$Adapter<PriceTierViewHolder> {
+public final class PriceTierPickerAdapter extends RecyclerView.Adapter<PriceTierViewHolder> {
     private final Function1<Integer, Unit> itemClickListener;
     private List<Integer> items;
 
@@ -25,18 +24,18 @@ public final class PriceTierPickerAdapter extends RecyclerView$Adapter<PriceTier
         this.items = n.emptyList();
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemCount() {
         return this.items.size();
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public /* bridge */ /* synthetic */ void onBindViewHolder(RecyclerView$ViewHolder recyclerView$ViewHolder, int i) {
-        onBindViewHolder((PriceTierViewHolder) recyclerView$ViewHolder, i);
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public /* bridge */ /* synthetic */ void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        onBindViewHolder((PriceTierViewHolder) viewHolder, i);
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public /* bridge */ /* synthetic */ RecyclerView$ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public /* bridge */ /* synthetic */ RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         return onCreateViewHolder(viewGroup, i);
     }
 
@@ -51,7 +50,7 @@ public final class PriceTierPickerAdapter extends RecyclerView$Adapter<PriceTier
         holder.configureUI(this.items.get(position).intValue(), this.itemClickListener);
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public PriceTierViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         m.checkNotNullParameter(parent, "parent");
         DialogSimpleSelectorItemBinding dialogSimpleSelectorItemBindingA = DialogSimpleSelectorItemBinding.a(LayoutInflater.from(parent.getContext()), parent, false);

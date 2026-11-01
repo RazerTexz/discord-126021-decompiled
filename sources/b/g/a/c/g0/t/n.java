@@ -1,7 +1,5 @@
 package b.g.a.c.g0.t;
 
-import b.g.a.a.i$a;
-import b.g.a.a.i$d;
 import b.g.a.c.w;
 import b.g.a.c.x;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -41,9 +39,9 @@ public class n extends b.g.a.c.g0.u.a<String[]> implements b.g.a.c.g0.i {
         } else {
             nVarH = null;
         }
-        i$a i_a = i$a.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED;
-        i$d i_dL = l(xVar, dVar, String[].class);
-        Boolean boolB = i_dL != null ? i_dL.b(i_a) : null;
+        b.g.a.a.i.a aVar = b.g.a.a.i.a.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED;
+        b.g.a.a.i.d dVarL = l(xVar, dVar, String[].class);
+        Boolean boolB = dVarL != null ? dVarL.b(aVar) : null;
         if (nVarH == null) {
             nVarH = this._elementSerializer;
         }

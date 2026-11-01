@@ -105,10 +105,10 @@ public class f extends e {
         String[] strArr2;
         int i6;
         String str32;
-        b$a b_a = new b$a();
-        b_a.a(this.A);
+        b.a aVar = new b.a();
+        aVar.a(this.A);
         for (l lVar = this.h; lVar != null; lVar = (l) lVar.a) {
-            b_a.a(lVar.l);
+            aVar.a(lVar.l);
         }
         r rVar = this.j;
         while (true) {
@@ -116,13 +116,13 @@ public class f extends e {
             if (rVar == null) {
                 break;
             }
-            b_a.a(rVar.M);
-            b_a.a(null);
+            aVar.a(rVar.M);
+            aVar.a(null);
             rVar = (r) rVar.f3715b;
         }
-        int i7 = b_a.a;
+        int i7 = aVar.a;
         b[] bVarArr = new b[i7];
-        System.arraycopy(b_a.f3698b, 0, bVarArr, 0, i7);
+        System.arraycopy(aVar.f3698b, 0, bVarArr, 0, i7);
         this.h = null;
         this.i = null;
         this.j = null;
@@ -1169,9 +1169,9 @@ public class f extends e {
                 if (i99 != 0) {
                     c cVar6 = new c();
                     rVar2.J = cVar6;
-                    a aVar = new a(rVar2.d, false, cVar6, null);
-                    dVar6.j(aVar, i99, null, cArr5);
-                    aVar.g();
+                    a aVar2 = new a(rVar2.d, false, cVar6, null);
+                    dVar6.j(aVar2, i99, null, cArr5);
+                    aVar2.g();
                 }
                 int i109 = i87;
                 if (i109 != 0) {

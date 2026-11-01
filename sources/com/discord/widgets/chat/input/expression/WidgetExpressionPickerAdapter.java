@@ -1,10 +1,14 @@
 package com.discord.widgets.chat.input.expression;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
+import androidx.core.app.NotificationCompat;
+import androidx.core.view.MarginLayoutParamsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView$OnScrollListener;
 import b.d.b.a.a;
 import com.discord.app.AppLog;
 import com.discord.models.domain.ModelAuditLogEntry;
@@ -14,11 +18,12 @@ import com.discord.utilities.mg_recycler.MGRecyclerAdapterSimple;
 import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
 import com.discord.utilities.rx.LeadingEdgeThrottle;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import com.discord.utilities.views.StickyHeaderItemDecoration$StickyHeaderAdapter;
+import com.discord.utilities.views.StickyHeaderItemDecoration;
 import com.discord.widgets.chat.input.ExpressionPickerItemDecoration;
 import d0.t.m0;
 import d0.t.n;
 import d0.z.d.m;
+import d0.z.d.o;
 import j0.l.a.r;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,40 +34,189 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import rx.Emitter$BackpressureMode;
+import rx.Emitter;
 import rx.Observable;
+import rx.functions.Action1;
 
 /* JADX INFO: compiled from: WidgetExpressionPickerAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public abstract class WidgetExpressionPickerAdapter extends MGRecyclerAdapterSimple<MGRecyclerDataPayload> implements StickyHeaderItemDecoration$StickyHeaderAdapter {
-    public static final WidgetExpressionPickerAdapter$Companion Companion = new WidgetExpressionPickerAdapter$Companion(null);
+public abstract class WidgetExpressionPickerAdapter extends MGRecyclerAdapterSimple<MGRecyclerDataPayload> implements StickyHeaderItemDecoration.StickyHeaderAdapter {
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     public static final int ITEM_TYPE_HEADER = 0;
     public List<Integer> headerIndices;
     private final Set<Integer> headerTypes;
     private ExpressionPickerItemDecoration itemDecoration;
-    private RecyclerView$OnScrollListener onScrollListener;
+    private RecyclerView.OnScrollListener onScrollListener;
     private Function1<? super Integer, Unit> onScrollPositionListener;
-    public WidgetExpressionPickerAdapter$StickyHeadersManager stickyHeaderManager;
+    public StickyHeadersManager stickyHeaderManager;
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionPickerAdapter$onAttachedToRecyclerView$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetExpressionPickerAdapter.kt */
+    public final class AnonymousClass1 implements View.OnLayoutChangeListener {
+        public final /* synthetic */ RecyclerView $recyclerView;
+
+        public AnonymousClass1(RecyclerView recyclerView) {
+            this.$recyclerView = recyclerView;
+        }
+
+        @Override // android.view.View.OnLayoutChangeListener
+        public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+            WidgetExpressionPickerAdapter.this.getStickyHeaderManager().layoutViews(this.$recyclerView);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionPickerAdapter$setupScrollObservables$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetExpressionPickerAdapter.kt */
+    public final class AnonymousClass1<T> implements Action1<Emitter<Unit>> {
+
+        /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionPickerAdapter$setupScrollObservables$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: WidgetExpressionPickerAdapter.kt */
+        public final class C03791 extends RecyclerView.OnScrollListener {
+            public final /* synthetic */ Emitter $emitter;
+
+            public C03791(Emitter emitter) {
+                this.$emitter = emitter;
+            }
+
+            @Override // androidx.recyclerview.widget.RecyclerView.OnScrollListener
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                m.checkNotNullParameter(recyclerView, "recyclerView");
+                super.onScrolled(recyclerView, dx, dy);
+                this.$emitter.onNext(Unit.a);
+            }
+        }
+
+        public AnonymousClass1() {
+        }
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(Emitter<Unit> emitter) {
+            call2(emitter);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(Emitter<Unit> emitter) {
+            m.checkNotNullParameter(emitter, "emitter");
+            WidgetExpressionPickerAdapter.this.setOnScrollListener(new C03791(emitter));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionPickerAdapter$setupScrollObservables$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetExpressionPickerAdapter.kt */
+    public final class AnonymousClass2 extends o implements Function1<Unit, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
+            invoke2(unit);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Unit unit) {
+            WidgetExpressionPickerAdapter.this.getOnScrollPositionListener().invoke(Integer.valueOf(WidgetExpressionPickerAdapter.this.getLayoutManager().findFirstVisibleItemPosition()));
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetExpressionPickerAdapter.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final int calculateNumOfColumns(int margin, float itemSize, int defaultNumColumns, Resources resources) {
+            m.checkNotNullParameter(resources, "resources");
+            DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+            int i = (int) ((displayMetrics.widthPixels - margin) / itemSize);
+            if (i != 0) {
+                return i;
+            }
+            AppLog appLog = AppLog.g;
+            StringBuilder sbU = a.U("\n          invalid dimensions while calculating numColumns\n          displayMetrics.widthPixels: ");
+            sbU.append(displayMetrics.widthPixels);
+            sbU.append("\n          total margin marginStart: ");
+            sbU.append(margin);
+            sbU.append("\n          itemSize: ");
+            sbU.append(itemSize);
+            sbU.append("\n        ");
+            Logger.e$default(appLog, d0.g0.m.trimIndent(sbU.toString()), null, null, 6, null);
+            return defaultNumColumns;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+
+        public final int calculateNumOfColumns(RecyclerView recyclerView, float itemSize, int defaultNumColumns) {
+            m.checkNotNullParameter(recyclerView, "recyclerView");
+            ViewGroup.LayoutParams layoutParams = recyclerView.getLayoutParams();
+            int marginStart = layoutParams instanceof ViewGroup.MarginLayoutParams ? MarginLayoutParamsCompat.getMarginStart((ViewGroup.MarginLayoutParams) layoutParams) : 0;
+            ViewGroup.LayoutParams layoutParams2 = recyclerView.getLayoutParams();
+            int marginEnd = layoutParams2 instanceof ViewGroup.MarginLayoutParams ? MarginLayoutParamsCompat.getMarginEnd((ViewGroup.MarginLayoutParams) layoutParams2) : 0;
+            Resources resources = recyclerView.getResources();
+            m.checkNotNullExpressionValue(resources, "recyclerView.resources");
+            return calculateNumOfColumns(marginStart + marginEnd, itemSize, defaultNumColumns, resources);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetExpressionPickerAdapter.kt */
+    public interface StickyHeaderViewHolder {
+        void bind(int position, MGRecyclerDataPayload data);
+
+        View getItemView();
+    }
+
+    /* JADX INFO: compiled from: WidgetExpressionPickerAdapter.kt */
+    public final class StickyHeadersManager {
+        private final View currentStickyHeaderView;
+        private final StickyHeaderViewHolder stickyHeaderHolder;
+
+        public StickyHeadersManager(WidgetExpressionPickerAdapter widgetExpressionPickerAdapter) {
+            m.checkNotNullParameter(widgetExpressionPickerAdapter, "adapter");
+            StickyHeaderViewHolder stickyHeaderViewHolderCreateStickyHeaderViewHolder = widgetExpressionPickerAdapter.createStickyHeaderViewHolder(widgetExpressionPickerAdapter);
+            this.stickyHeaderHolder = stickyHeaderViewHolderCreateStickyHeaderViewHolder;
+            this.currentStickyHeaderView = stickyHeaderViewHolderCreateStickyHeaderViewHolder.getItemView();
+        }
+
+        public final View getCurrentStickyHeaderView() {
+            return this.currentStickyHeaderView;
+        }
+
+        public final StickyHeaderViewHolder getStickyHeaderHolder() {
+            return this.stickyHeaderHolder;
+        }
+
+        public final void layoutViews(RecyclerView recyclerView) {
+            m.checkNotNullParameter(recyclerView, "recyclerView");
+            View view = this.currentStickyHeaderView;
+            if (view != null) {
+                StickyHeaderItemDecoration.LayoutManager.layoutHeaderView(recyclerView, view);
+            }
+        }
+    }
 
     public /* synthetic */ WidgetExpressionPickerAdapter(RecyclerView recyclerView, Set set, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(recyclerView, (i & 2) != 0 ? m0.setOf(0) : set);
     }
 
-    public abstract WidgetExpressionPickerAdapter$StickyHeaderViewHolder createStickyHeaderViewHolder(WidgetExpressionPickerAdapter adapter);
+    public abstract StickyHeaderViewHolder createStickyHeaderViewHolder(WidgetExpressionPickerAdapter adapter);
 
-    @Override // com.discord.utilities.views.StickyHeaderItemDecoration$StickyHeaderAdapter
+    @Override // com.discord.utilities.views.StickyHeaderItemDecoration.StickyHeaderAdapter
     public View getAndBindHeaderView(int position) {
         MGRecyclerDataPayload mGRecyclerDataPayload = getInternalData().get(position);
-        WidgetExpressionPickerAdapter$StickyHeadersManager widgetExpressionPickerAdapter$StickyHeadersManager = this.stickyHeaderManager;
-        if (widgetExpressionPickerAdapter$StickyHeadersManager == null) {
+        StickyHeadersManager stickyHeadersManager = this.stickyHeaderManager;
+        if (stickyHeadersManager == null) {
             m.throwUninitializedPropertyAccessException("stickyHeaderManager");
         }
-        widgetExpressionPickerAdapter$StickyHeadersManager.getStickyHeaderHolder().bind(position, mGRecyclerDataPayload);
-        WidgetExpressionPickerAdapter$StickyHeadersManager widgetExpressionPickerAdapter$StickyHeadersManager2 = this.stickyHeaderManager;
-        if (widgetExpressionPickerAdapter$StickyHeadersManager2 == null) {
+        stickyHeadersManager.getStickyHeaderHolder().bind(position, mGRecyclerDataPayload);
+        StickyHeadersManager stickyHeadersManager2 = this.stickyHeaderManager;
+        if (stickyHeadersManager2 == null) {
             m.throwUninitializedPropertyAccessException("stickyHeaderManager");
         }
-        return widgetExpressionPickerAdapter$StickyHeadersManager2.getCurrentStickyHeaderView();
+        return stickyHeadersManager2.getCurrentStickyHeaderView();
     }
 
     public final List<Integer> getHeaderIndices() {
@@ -73,7 +227,7 @@ public abstract class WidgetExpressionPickerAdapter extends MGRecyclerAdapterSim
         return list;
     }
 
-    @Override // com.discord.utilities.views.StickyHeaderItemDecoration$StickyHeaderAdapter
+    @Override // com.discord.utilities.views.StickyHeaderItemDecoration.StickyHeaderAdapter
     public Integer getHeaderPositionForItem(int itemPosition) {
         Integer numPrevious;
         List<Integer> list = this.headerIndices;
@@ -110,7 +264,7 @@ public abstract class WidgetExpressionPickerAdapter extends MGRecyclerAdapterSim
 
     public abstract int getNumColumns();
 
-    public final RecyclerView$OnScrollListener getOnScrollListener() {
+    public final RecyclerView.OnScrollListener getOnScrollListener() {
         return this.onScrollListener;
     }
 
@@ -118,31 +272,31 @@ public abstract class WidgetExpressionPickerAdapter extends MGRecyclerAdapterSim
         return this.onScrollPositionListener;
     }
 
-    public final WidgetExpressionPickerAdapter$StickyHeadersManager getStickyHeaderManager() {
-        WidgetExpressionPickerAdapter$StickyHeadersManager widgetExpressionPickerAdapter$StickyHeadersManager = this.stickyHeaderManager;
-        if (widgetExpressionPickerAdapter$StickyHeadersManager == null) {
+    public final StickyHeadersManager getStickyHeaderManager() {
+        StickyHeadersManager stickyHeadersManager = this.stickyHeaderManager;
+        if (stickyHeadersManager == null) {
             m.throwUninitializedPropertyAccessException("stickyHeaderManager");
         }
-        return widgetExpressionPickerAdapter$StickyHeadersManager;
+        return stickyHeadersManager;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         m.checkNotNullParameter(recyclerView, "recyclerView");
         super.onAttachedToRecyclerView(recyclerView);
-        this.stickyHeaderManager = new WidgetExpressionPickerAdapter$StickyHeadersManager(this);
-        recyclerView.addOnLayoutChangeListener(new WidgetExpressionPickerAdapter$onAttachedToRecyclerView$1(this, recyclerView));
+        this.stickyHeaderManager = new StickyHeadersManager(this);
+        recyclerView.addOnLayoutChangeListener(new AnonymousClass1(recyclerView));
     }
 
     public final void scrollToPosition(int position) {
-        RecyclerView$OnScrollListener recyclerView$OnScrollListener = this.onScrollListener;
-        if (recyclerView$OnScrollListener != null) {
-            getRecycler().removeOnScrollListener(recyclerView$OnScrollListener);
+        RecyclerView.OnScrollListener onScrollListener = this.onScrollListener;
+        if (onScrollListener != null) {
+            getRecycler().removeOnScrollListener(onScrollListener);
         }
         getLayoutManager().scrollToPositionWithOffset(position, 0);
-        RecyclerView$OnScrollListener recyclerView$OnScrollListener2 = this.onScrollListener;
-        if (recyclerView$OnScrollListener2 != null) {
-            getRecycler().addOnScrollListener(recyclerView$OnScrollListener2);
+        RecyclerView.OnScrollListener onScrollListener2 = this.onScrollListener;
+        if (onScrollListener2 != null) {
+            getRecycler().addOnScrollListener(onScrollListener2);
         }
     }
 
@@ -187,8 +341,8 @@ public abstract class WidgetExpressionPickerAdapter extends MGRecyclerAdapterSim
         this.itemDecoration = expressionPickerItemDecoration;
     }
 
-    public final void setOnScrollListener(RecyclerView$OnScrollListener recyclerView$OnScrollListener) {
-        this.onScrollListener = recyclerView$OnScrollListener;
+    public final void setOnScrollListener(RecyclerView.OnScrollListener onScrollListener) {
+        this.onScrollListener = onScrollListener;
     }
 
     public final void setOnScrollPositionListener(Function1<? super Integer, Unit> function1) {
@@ -196,19 +350,19 @@ public abstract class WidgetExpressionPickerAdapter extends MGRecyclerAdapterSim
         this.onScrollPositionListener = function1;
     }
 
-    public final void setStickyHeaderManager(WidgetExpressionPickerAdapter$StickyHeadersManager widgetExpressionPickerAdapter$StickyHeadersManager) {
-        m.checkNotNullParameter(widgetExpressionPickerAdapter$StickyHeadersManager, "<set-?>");
-        this.stickyHeaderManager = widgetExpressionPickerAdapter$StickyHeadersManager;
+    public final void setStickyHeaderManager(StickyHeadersManager stickyHeadersManager) {
+        m.checkNotNullParameter(stickyHeadersManager, "<set-?>");
+        this.stickyHeaderManager = stickyHeadersManager;
     }
 
     private final void setupScrollObservables() {
-        Observable observableO = Observable.o(new WidgetExpressionPickerAdapter$setupScrollObservables$1(this), Emitter$BackpressureMode.LATEST);
+        Observable observableO = Observable.o(new AnonymousClass1(), Emitter.BackpressureMode.LATEST);
         Observable observableH0 = Observable.h0(new r(observableO.j, new LeadingEdgeThrottle(250L, TimeUnit.MILLISECONDS)));
         m.checkNotNullExpressionValue(observableH0, "Observable\n        .crea…, TimeUnit.MILLISECONDS))");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(observableH0), getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetExpressionPickerAdapter$setupScrollObservables$2(this), 62, (Object) null);
-        RecyclerView$OnScrollListener recyclerView$OnScrollListener = this.onScrollListener;
-        if (recyclerView$OnScrollListener != null) {
-            getRecycler().addOnScrollListener(recyclerView$OnScrollListener);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(observableH0), getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
+        RecyclerView.OnScrollListener onScrollListener = this.onScrollListener;
+        if (onScrollListener != null) {
+            getRecycler().addOnScrollListener(onScrollListener);
         }
     }
 

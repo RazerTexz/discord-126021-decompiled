@@ -3,7 +3,6 @@ package com.discord.widgets.hubs;
 import a0.a.a.b;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
 import d0.z.d.m;
@@ -12,7 +11,7 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: WidgetHubDescriptionViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class HubDescriptionArgs implements Parcelable {
-    public static final Parcelable$Creator<HubDescriptionArgs> CREATOR = new HubDescriptionArgs$Creator();
+    public static final Parcelable.Creator<HubDescriptionArgs> CREATOR = new Creator();
     private final long channelId;
     private final String description;
     private final long guildId;
@@ -20,6 +19,31 @@ public final /* data */ class HubDescriptionArgs implements Parcelable {
     private final boolean isEditing;
     private final boolean isNewGuild;
     private final Integer primaryCategoryId;
+
+    public final class Creator implements Parcelable.Creator<HubDescriptionArgs> {
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final HubDescriptionArgs createFromParcel(Parcel parcel) {
+            m.checkNotNullParameter(parcel, "in");
+            return new HubDescriptionArgs(parcel.readLong(), parcel.readLong(), parcel.readInt() != 0, parcel.readString(), parcel.readInt() != 0, parcel.readString(), parcel.readInt() != 0 ? Integer.valueOf(parcel.readInt()) : null);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ HubDescriptionArgs createFromParcel(Parcel parcel) {
+            return createFromParcel(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final HubDescriptionArgs[] newArray(int i) {
+            return new HubDescriptionArgs[i];
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ HubDescriptionArgs[] newArray(int i) {
+            return newArray(i);
+        }
+    }
 
     public HubDescriptionArgs(long j, long j2, boolean z2, String str, boolean z3, String str2, Integer num) {
         m.checkNotNullParameter(str, "hubName");

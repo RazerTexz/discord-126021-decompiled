@@ -1,25 +1,51 @@
 package com.discord.widgets.chat.input.autocomplete;
 
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import b.d.b.a.a;
+import com.discord.models.domain.ModelGuildMemberListUpdate;
 import d0.g;
 import d0.z.d.m;
 import java.util.List;
 import kotlin.Lazy;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: Autocompletable.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class GlobalRoleAutocompletable extends Autocompletable {
-    public static final GlobalRoleAutocompletable$Companion Companion = new GlobalRoleAutocompletable$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final String text;
     private final List<String> textMatchers;
     private static final Lazy here$delegate = g.lazy(GlobalRoleAutocompletable$Companion$here$2.INSTANCE);
     private static final Lazy everyone$delegate = g.lazy(GlobalRoleAutocompletable$Companion$everyone$2.INSTANCE);
 
+    /* JADX INFO: compiled from: Autocompletable.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final GlobalRoleAutocompletable getEveryone() {
+            Lazy lazyAccess$getEveryone$cp = GlobalRoleAutocompletable.access$getEveryone$cp();
+            Companion companion = GlobalRoleAutocompletable.INSTANCE;
+            return (GlobalRoleAutocompletable) lazyAccess$getEveryone$cp.getValue();
+        }
+
+        public final GlobalRoleAutocompletable getHere() {
+            Lazy lazyAccess$getHere$cp = GlobalRoleAutocompletable.access$getHere$cp();
+            Companion companion = GlobalRoleAutocompletable.INSTANCE;
+            return (GlobalRoleAutocompletable) lazyAccess$getHere$cp.getValue();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public GlobalRoleAutocompletable(String str) {
         super(null);
-        m.checkNotNullParameter(str, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkNotNullParameter(str, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         this.text = str;
         this.textMatchers = d0.t.m.listOf(leadingIdentifier().getIdentifier() + str);
     }
@@ -40,7 +66,7 @@ public final /* data */ class GlobalRoleAutocompletable extends Autocompletable 
     }
 
     public final GlobalRoleAutocompletable copy(String text) {
-        m.checkNotNullParameter(text, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         return new GlobalRoleAutocompletable(text);
     }
 

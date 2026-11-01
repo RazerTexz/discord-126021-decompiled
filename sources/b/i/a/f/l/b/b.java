@@ -2,13 +2,13 @@ package b.i.a.f.l.b;
 
 import android.content.Intent;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.signin.internal.zab;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class b implements Parcelable$Creator<zab> {
-    @Override // android.os.Parcelable$Creator
+public final class b implements Parcelable.Creator<zab> {
+    @Override // android.os.Parcelable.Creator
     public final zab createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         int iG1 = 0;
@@ -31,7 +31,7 @@ public final class b implements Parcelable$Creator<zab> {
         return new zab(iG1, iG2, intent);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zab[] newArray(int i) {
         return new zab[i];
     }

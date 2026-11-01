@@ -13,6 +13,25 @@ import rx.Observable;
 public final class WidgetAgeVerifyViewModel$Companion$observeStores$1<T, R> implements b<Channel, Observable<? extends Channel>> {
     public static final WidgetAgeVerifyViewModel$Companion$observeStores$1 INSTANCE = new WidgetAgeVerifyViewModel$Companion$observeStores$1();
 
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAgeVerifyViewModel$Companion$observeStores$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetAgeVerifyViewModel.kt */
+    public final class AnonymousClass1<T, R> implements b<Channel, Channel> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Channel call(Channel channel) {
+            return call2(channel);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Channel call2(Channel channel) {
+            if (channel == null || channel.getNsfw()) {
+                return null;
+            }
+            return channel;
+        }
+    }
+
     @Override // j0.k.b
     public /* bridge */ /* synthetic */ Observable<? extends Channel> call(Channel channel) {
         return call2(channel);
@@ -21,6 +40,6 @@ public final class WidgetAgeVerifyViewModel$Companion$observeStores$1<T, R> impl
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
     public final Observable<? extends Channel> call2(Channel channel) {
         Long lValueOf = channel != null ? Long.valueOf(channel.getGuildId()) : null;
-        return lValueOf == null ? new k(null) : ObservableExtensionsKt.takeSingleUntilTimeout$default(StoreStream.Companion.getChannels().observeDefaultChannel(lValueOf.longValue()), 0L, false, 3, null).G(WidgetAgeVerifyViewModel$Companion$observeStores$1$1.INSTANCE);
+        return lValueOf == null ? new k(null) : ObservableExtensionsKt.takeSingleUntilTimeout$default(StoreStream.INSTANCE.getChannels().observeDefaultChannel(lValueOf.longValue()), 0L, false, 3, null).G(AnonymousClass1.INSTANCE);
     }
 }

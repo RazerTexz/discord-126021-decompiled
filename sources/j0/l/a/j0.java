@@ -1,6 +1,6 @@
 package j0.l.a;
 
-import rx.Scheduler$Worker;
+import rx.Scheduler;
 import rx.Subscriber;
 import rx.functions.Action0;
 
@@ -9,11 +9,11 @@ import rx.functions.Action0;
 public class j0 implements Action0 {
     public long j;
     public final /* synthetic */ Subscriber k;
-    public final /* synthetic */ Scheduler$Worker l;
+    public final /* synthetic */ Scheduler.Worker l;
 
-    public j0(k0 k0Var, Subscriber subscriber, Scheduler$Worker scheduler$Worker) {
+    public j0(k0 k0Var, Subscriber subscriber, Scheduler.Worker worker) {
         this.k = subscriber;
-        this.l = scheduler$Worker;
+        this.l = worker;
     }
 
     @Override // rx.functions.Action0

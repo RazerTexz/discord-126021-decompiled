@@ -15,7 +15,7 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class EmojiPickerViewModel$Companion$buildEmojiListItems$items$2 extends o implements Function1<Emoji, WidgetEmojiAdapter$EmojiItem> {
+public final class EmojiPickerViewModel$Companion$buildEmojiListItems$items$2 extends o implements Function1<Emoji, WidgetEmojiAdapter.EmojiItem> {
     public final /* synthetic */ boolean $allowEmojisToAnimate;
     public final /* synthetic */ Function1 $getGuild;
     public final /* synthetic */ String $searchInputLower;
@@ -29,12 +29,12 @@ public final class EmojiPickerViewModel$Companion$buildEmojiListItems$items$2 ex
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public /* bridge */ /* synthetic */ WidgetEmojiAdapter$EmojiItem invoke(Emoji emoji) {
+    public /* bridge */ /* synthetic */ WidgetEmojiAdapter.EmojiItem invoke(Emoji emoji) {
         return invoke2(emoji);
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final WidgetEmojiAdapter$EmojiItem invoke2(Emoji emoji) {
+    public final WidgetEmojiAdapter.EmojiItem invoke2(Emoji emoji) {
         String name;
         Object next;
         String lowerCase;
@@ -68,6 +68,6 @@ public final class EmojiPickerViewModel$Companion$buildEmojiListItems$items$2 ex
                 name = guild.getName();
             }
         }
-        return new WidgetEmojiAdapter$EmojiItem(name, emoji, str2, this.$allowEmojisToAnimate);
+        return new WidgetEmojiAdapter.EmojiItem(name, emoji, str2, this.$allowEmojisToAnimate);
     }
 }

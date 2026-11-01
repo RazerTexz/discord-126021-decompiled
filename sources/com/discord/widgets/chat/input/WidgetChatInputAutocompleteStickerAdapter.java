@@ -2,7 +2,6 @@ package com.discord.widgets.chat.input;
 
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
 import com.discord.api.sticker.Sticker;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapterSimple;
 import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
@@ -28,12 +27,12 @@ public final class WidgetChatInputAutocompleteStickerAdapter extends MGRecyclerA
         return this.onClickSticker;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public /* bridge */ /* synthetic */ RecyclerView$ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public /* bridge */ /* synthetic */ RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         return onCreateViewHolder(viewGroup, i);
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public MGRecyclerViewHolder<?, AutocompleteStickerItem> onCreateViewHolder(ViewGroup parent, int viewType) {
         m.checkNotNullParameter(parent, "parent");
         if (viewType == 0) {

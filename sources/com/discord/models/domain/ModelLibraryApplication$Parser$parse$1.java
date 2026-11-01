@@ -14,12 +14,12 @@ public final class ModelLibraryApplication$Parser$parse$1<T> implements Action1<
     public final /* synthetic */ Ref$ObjectRef $branchId;
     public final /* synthetic */ Ref$ObjectRef $createdAt;
     public final /* synthetic */ Ref$ObjectRef $flags;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
     public final /* synthetic */ Ref$ObjectRef $skuId;
 
-    public ModelLibraryApplication$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model$JsonReader model$JsonReader, Ref$ObjectRef ref$ObjectRef2, Ref$ObjectRef ref$ObjectRef3, Ref$ObjectRef ref$ObjectRef4, Ref$ObjectRef ref$ObjectRef5) {
+    public ModelLibraryApplication$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model.JsonReader jsonReader, Ref$ObjectRef ref$ObjectRef2, Ref$ObjectRef ref$ObjectRef3, Ref$ObjectRef ref$ObjectRef4, Ref$ObjectRef ref$ObjectRef5) {
         this.$application = ref$ObjectRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
         this.$createdAt = ref$ObjectRef2;
         this.$skuId = ref$ObjectRef3;
         this.$flags = ref$ObjectRef4;

@@ -9,11 +9,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.RecyclerView$Adapter;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
+import androidx.recyclerview.widget.RecyclerView;
 import b.d.b.a.a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.databinding.WidgetHubEventBinding;
 import com.discord.databinding.WidgetHubEventsFooterBinding;
 import com.discord.databinding.WidgetHubEventsHeaderBinding;
@@ -27,7 +25,7 @@ import java.util.Objects;
 
 /* JADX INFO: compiled from: WidgetHubEventsPageAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetHubEventsPageAdapter extends RecyclerView$Adapter<WidgetHubEventsPageViewHolder> {
+public final class WidgetHubEventsPageAdapter extends RecyclerView.Adapter<WidgetHubEventsPageViewHolder> {
     private final Context context;
     private final HubEventsEventListener eventListener;
     private List<? extends HubEventsPage> items;
@@ -40,7 +38,7 @@ public final class WidgetHubEventsPageAdapter extends RecyclerView$Adapter<Widge
         this.items = n.emptyList();
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemViewType(int position) {
         return this.items.get(position).getViewType();
     }
@@ -49,19 +47,19 @@ public final class WidgetHubEventsPageAdapter extends RecyclerView$Adapter<Widge
         return this.items;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     /* JADX INFO: renamed from: getItemCount */
     public int getPageSize() {
         return this.items.size();
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public /* bridge */ /* synthetic */ void onBindViewHolder(RecyclerView$ViewHolder recyclerView$ViewHolder, int i) {
-        onBindViewHolder((WidgetHubEventsPageViewHolder) recyclerView$ViewHolder, i);
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public /* bridge */ /* synthetic */ void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        onBindViewHolder((WidgetHubEventsPageViewHolder) viewHolder, i);
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public /* bridge */ /* synthetic */ RecyclerView$ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public /* bridge */ /* synthetic */ RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         return onCreateViewHolder(viewGroup, i);
     }
 
@@ -81,24 +79,24 @@ public final class WidgetHubEventsPageAdapter extends RecyclerView$Adapter<Widge
         if (holder instanceof WidgetHubEventsPageFooterViewHolder) {
             HubEventsPage hubEventsPage = this.items.get(position);
             Objects.requireNonNull(hubEventsPage, "null cannot be cast to non-null type com.discord.widgets.hubs.events.HubEventsPage.Footer");
-            ((WidgetHubEventsPageFooterViewHolder) holder).bind((HubEventsPage$Footer) hubEventsPage);
+            ((WidgetHubEventsPageFooterViewHolder) holder).bind((HubEventsPage.Footer) hubEventsPage);
         } else if (holder instanceof WidgetHubEventViewHolder) {
             HubEventsPage hubEventsPage2 = this.items.get(position);
             Objects.requireNonNull(hubEventsPage2, "null cannot be cast to non-null type com.discord.widgets.hubs.events.HubEventsPage.Event");
-            ((WidgetHubEventViewHolder) holder).bind(((HubEventsPage$Event) hubEventsPage2).getGuildScheduledEventData());
+            ((WidgetHubEventViewHolder) holder).bind(((HubEventsPage.Event) hubEventsPage2).getGuildScheduledEventData());
         }
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public WidgetHubEventsPageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         m.checkNotNullParameter(parent, "parent");
         LayoutInflater layoutInflaterFrom = LayoutInflater.from(this.context);
         if (viewType != 0) {
             if (viewType == 1) {
-                View viewInflate = layoutInflaterFrom.inflate(R$layout.widget_hub_events_footer, parent, false);
-                LoadingButton loadingButton = (LoadingButton) viewInflate.findViewById(R$id.button);
+                View viewInflate = layoutInflaterFrom.inflate(R.layout.widget_hub_events_footer, parent, false);
+                LoadingButton loadingButton = (LoadingButton) viewInflate.findViewById(R.id.button);
                 if (loadingButton == null) {
-                    throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(R$id.button)));
+                    throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(R.id.button)));
                 }
                 WidgetHubEventsFooterBinding widgetHubEventsFooterBinding = new WidgetHubEventsFooterBinding((LinearLayout) viewInflate, loadingButton);
                 m.checkNotNullExpressionValue(widgetHubEventsFooterBinding, "WidgetHubEventsFooterBin…(inflater, parent, false)");
@@ -107,25 +105,25 @@ public final class WidgetHubEventsPageAdapter extends RecyclerView$Adapter<Widge
             if (viewType != 2) {
                 throw new IllegalStateException(a.q("Invalid view type: ", viewType));
             }
-            View viewInflate2 = layoutInflaterFrom.inflate(R$layout.widget_hub_event, parent, false);
+            View viewInflate2 = layoutInflaterFrom.inflate(R.layout.widget_hub_event, parent, false);
             Objects.requireNonNull(viewInflate2, "rootView");
             GuildScheduledEventItemView guildScheduledEventItemView = (GuildScheduledEventItemView) viewInflate2;
             WidgetHubEventBinding widgetHubEventBinding = new WidgetHubEventBinding(guildScheduledEventItemView, guildScheduledEventItemView);
             m.checkNotNullExpressionValue(widgetHubEventBinding, "WidgetHubEventBinding.in…(inflater, parent, false)");
             return new WidgetHubEventViewHolder(widgetHubEventBinding, this.eventListener);
         }
-        View viewInflate3 = layoutInflaterFrom.inflate(R$layout.widget_hub_events_header, parent, false);
-        int i = R$id.close;
-        ImageView imageView = (ImageView) viewInflate3.findViewById(R$id.close);
+        View viewInflate3 = layoutInflaterFrom.inflate(R.layout.widget_hub_events_header, parent, false);
+        int i = R.id.close;
+        ImageView imageView = (ImageView) viewInflate3.findViewById(R.id.close);
         if (imageView != null) {
-            i = R$id.description;
-            TextView textView = (TextView) viewInflate3.findViewById(R$id.description);
+            i = R.id.description;
+            TextView textView = (TextView) viewInflate3.findViewById(R.id.description);
             if (textView != null) {
-                i = 2131364034;
-                ImageView imageView2 = (ImageView) viewInflate3.findViewById(2131364034);
+                i = R.id.image;
+                ImageView imageView2 = (ImageView) viewInflate3.findViewById(R.id.image);
                 if (imageView2 != null) {
-                    i = 2131365869;
-                    TextView textView2 = (TextView) viewInflate3.findViewById(2131365869);
+                    i = R.id.title;
+                    TextView textView2 = (TextView) viewInflate3.findViewById(R.id.title);
                     if (textView2 != null) {
                         WidgetHubEventsHeaderBinding widgetHubEventsHeaderBinding = new WidgetHubEventsHeaderBinding((ConstraintLayout) viewInflate3, imageView, textView, imageView2, textView2);
                         m.checkNotNullExpressionValue(widgetHubEventsHeaderBinding, "WidgetHubEventsHeaderBin…(inflater, parent, false)");

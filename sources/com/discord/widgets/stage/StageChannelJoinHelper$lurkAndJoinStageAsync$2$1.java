@@ -2,7 +2,6 @@ package com.discord.widgets.stage;
 
 import com.discord.models.guild.Guild;
 import d0.k;
-import d0.k$a;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -30,7 +29,7 @@ public final class StageChannelJoinHelper$lurkAndJoinStageAsync$2$1 extends o im
         m.checkNotNullParameter(guild, "<anonymous parameter 0>");
         CancellableContinuation cancellableContinuation = this.$continuation;
         Unit unit = Unit.a;
-        k$a k_a = k.j;
+        k.a aVar = k.j;
         cancellableContinuation.resumeWith(k.m97constructorimpl(unit));
     }
 }

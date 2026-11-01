@@ -15,17 +15,17 @@ import okhttp3.ResponseBody;
 /* JADX INFO: loaded from: classes3.dex */
 public final class y {
     public final f0.w c;
-    public final List<h$a> d;
-    public final List<e$a> e;
+    public final List<h.a> d;
+    public final List<e.a> e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final f0.e$a f3767b;
+    public final f0.e.a f3767b;
     public final Executor f;
     public final boolean g;
     public final Map<Method, z<?>> a = new ConcurrentHashMap();
 
-    public y(f0.e$a e_a, f0.w wVar, List<h$a> list, List<e$a> list2, Executor executor, boolean z2) {
-        this.f3767b = e_a;
+    public y(f0.e.a aVar, f0.w wVar, List<h.a> list, List<e.a> list2, Executor executor, boolean z2) {
+        this.f3767b = aVar;
         this.c = wVar;
         this.d = list;
         this.e = list2;
@@ -132,6 +132,6 @@ public final class y {
                 return hVar;
             }
         }
-        return c$d.a;
+        return c.d.a;
     }
 }

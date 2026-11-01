@@ -4,7 +4,6 @@ import d0.z.d.m;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map$Entry;
 
 /* JADX INFO: compiled from: VoiceQuality.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -16,7 +15,7 @@ public final class VoiceQuality {
     public final void getBufferStats(Map<String, Object> result) {
         PlayoutMetric audioJitterBuffer;
         m.checkNotNullParameter(result, "result");
-        Iterator<Map$Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
+        Iterator<Map.Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
         InboundBufferStats bufferStats = null;
         while (it.hasNext()) {
             InboundAudio value = it.next().getValue();
@@ -46,7 +45,7 @@ public final class VoiceQuality {
 
     public final void getFrameOpStats(Map<String, Object> result) {
         m.checkNotNullParameter(result, "result");
-        Iterator<Map$Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
+        Iterator<Map.Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
         Long lValueOf = null;
         Long lValueOf2 = null;
         Long lValueOf3 = null;
@@ -118,7 +117,7 @@ public final class VoiceQuality {
         numArr[2] = obj;
         numArr[3] = obj;
         numArr[4] = obj;
-        Iterator<Map$Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
+        Iterator<Map.Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
         double mosSum = 0.0d;
         int mosCount = 0;
         while (it.hasNext()) {
@@ -138,7 +137,7 @@ public final class VoiceQuality {
 
     public final void getPacketStats(Map<String, Object> result) {
         m.checkNotNullParameter(result, "result");
-        Iterator<Map$Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
+        Iterator<Map.Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
         long packetsReceived = 0;
         long packetsLost = 0;
         while (it.hasNext()) {
@@ -163,7 +162,7 @@ public final class VoiceQuality {
         Duration duration = this._duration;
         duration.setConnected(duration.getConnected() + 1);
         long packetsSent = this._outboundStats.getPacketsSent();
-        Iterator<Map$Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
+        Iterator<Map.Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
         long j2 = 0;
         long packetsReceived = 0;
         while (it.hasNext()) {
@@ -171,9 +170,9 @@ public final class VoiceQuality {
         }
         OutboundRtpAudio outboundRtpAudio = stats.getOutboundRtpAudio();
         this._outboundStats = outboundRtpAudio != null ? new OutboundAudio(outboundRtpAudio.getPacketsSent(), outboundRtpAudio.getPacketsLost()) : new OutboundAudio(0L, 0);
-        Iterator<Map$Entry<String, InboundRtpAudio>> it2 = stats.getInboundRtpAudio().entrySet().iterator();
+        Iterator<Map.Entry<String, InboundRtpAudio>> it2 = stats.getInboundRtpAudio().entrySet().iterator();
         while (it2.hasNext()) {
-            Map$Entry<String, InboundRtpAudio> next = it2.next();
+            Map.Entry<String, InboundRtpAudio> next = it2.next();
             String key = next.getKey();
             InboundRtpAudio value = next.getValue();
             Transport transport = stats.getTransport();
@@ -216,7 +215,7 @@ public final class VoiceQuality {
         } else {
             z2 = false;
         }
-        Iterator<Map$Entry<String, InboundAudio>> it3 = this._inboundStats.entrySet().iterator();
+        Iterator<Map.Entry<String, InboundAudio>> it3 = this._inboundStats.entrySet().iterator();
         long packetsReceived4 = j3;
         while (it3.hasNext()) {
             packetsReceived4 += it3.next().getValue().getPacketsReceived();

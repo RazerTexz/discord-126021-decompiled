@@ -1,13 +1,17 @@
 package com.google.gson.internal.bind;
 
 import b.i.d.o;
+import b.i.d.q.a;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.lang.reflect.GenericArrayType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -16,7 +20,21 @@ public final class ArrayTypeAdapter<E> extends TypeAdapter<Object> {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final Class<E> f3117b;
-    public static final o a = new ArrayTypeAdapter$1();
+    public static final o a = new AnonymousClass1();
+
+    /* JADX INFO: renamed from: com.google.gson.internal.bind.ArrayTypeAdapter$1, reason: invalid class name */
+    public class AnonymousClass1 implements o {
+        @Override // b.i.d.o
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {
+            Type type = typeToken.getType();
+            boolean z2 = type instanceof GenericArrayType;
+            if (!z2 && (!(type instanceof Class) || !((Class) type).isArray())) {
+                return null;
+            }
+            Type genericComponentType = z2 ? ((GenericArrayType) type).getGenericComponentType() : ((Class) type).getComponentType();
+            return new ArrayTypeAdapter(gson, gson.h(TypeToken.get(genericComponentType)), a.e(genericComponentType));
+        }
+    }
 
     public ArrayTypeAdapter(Gson gson, TypeAdapter<E> typeAdapter, Class<E> cls) {
         this.c = new TypeAdapterRuntimeTypeWrapper(gson, typeAdapter, cls);

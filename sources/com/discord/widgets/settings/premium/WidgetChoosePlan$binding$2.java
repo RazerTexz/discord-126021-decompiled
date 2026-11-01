@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetChoosePlanBinding;
 import com.discord.utilities.dimmer.DimmerView;
 import com.discord.utilities.view.text.LinkifiedTextView;
@@ -29,17 +29,17 @@ public final /* synthetic */ class WidgetChoosePlan$binding$2 extends k implemen
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetChoosePlanBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.choose_plan_empty_container;
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.choose_plan_empty_container);
+        int i = R.id.choose_plan_empty_container;
+        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.choose_plan_empty_container);
         if (linearLayout != null) {
-            i = R$id.choose_plan_empty_description;
-            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R$id.choose_plan_empty_description);
+            i = R.id.choose_plan_empty_description;
+            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R.id.choose_plan_empty_description);
             if (linkifiedTextView != null) {
-                i = R$id.choose_plan_recycler;
-                RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.choose_plan_recycler);
+                i = R.id.choose_plan_recycler;
+                RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.choose_plan_recycler);
                 if (recyclerView != null) {
-                    i = 2131363051;
-                    DimmerView dimmerView = (DimmerView) view.findViewById(2131363051);
+                    i = R.id.dimmer_view;
+                    DimmerView dimmerView = (DimmerView) view.findViewById(R.id.dimmer_view);
                     if (dimmerView != null) {
                         return new WidgetChoosePlanBinding((CoordinatorLayout) view, linearLayout, linkifiedTextView, recyclerView, dimmerView);
                     }

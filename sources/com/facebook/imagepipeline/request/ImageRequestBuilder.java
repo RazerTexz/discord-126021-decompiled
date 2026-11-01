@@ -16,12 +16,12 @@ public class ImageRequestBuilder {
     public Uri a = null;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public ImageRequest$c f2904b = ImageRequest$c.FULL_FETCH;
+    public ImageRequest.c f2904b = ImageRequest.c.FULL_FETCH;
     public int c = 0;
     public b.f.j.d.e d = null;
     public f e = null;
     public b f = b.a;
-    public ImageRequest$b g = ImageRequest$b.DEFAULT;
+    public ImageRequest.b g = ImageRequest.b.DEFAULT;
     public boolean h = false;
     public boolean i = false;
     public boolean j = false;
@@ -30,28 +30,34 @@ public class ImageRequestBuilder {
     public Boolean m = null;
     public a o = null;
 
+    public class BuilderException extends RuntimeException {
+        public BuilderException(String str) {
+            super(b.d.b.a.a.w("Invalid request builder: ", str));
+        }
+    }
+
     public ImageRequest a() {
         Uri uri = this.a;
         if (uri == null) {
-            throw new ImageRequestBuilder$BuilderException("Source must be set!");
+            throw new BuilderException("Source must be set!");
         }
         if ("res".equals(b.f.d.l.b.a(uri))) {
             if (!this.a.isAbsolute()) {
-                throw new ImageRequestBuilder$BuilderException("Resource URI path must be absolute.");
+                throw new BuilderException("Resource URI path must be absolute.");
             }
             if (this.a.getPath().isEmpty()) {
-                throw new ImageRequestBuilder$BuilderException("Resource URI must not be empty");
+                throw new BuilderException("Resource URI must not be empty");
             }
             try {
                 Integer.parseInt(this.a.getPath().substring(1));
             } catch (NumberFormatException unused) {
-                throw new ImageRequestBuilder$BuilderException("Resource URI path must be a resource id.");
+                throw new BuilderException("Resource URI path must be a resource id.");
             }
         }
         if (!ModelAuditLogEntry.CHANGE_KEY_ASSET.equals(b.f.d.l.b.a(this.a)) || this.a.isAbsolute()) {
             return new ImageRequest(this);
         }
-        throw new ImageRequestBuilder$BuilderException("Asset URI path must be absolute.");
+        throw new BuilderException("Asset URI path must be absolute.");
     }
 
     public static ImageRequestBuilder b(Uri uri) {

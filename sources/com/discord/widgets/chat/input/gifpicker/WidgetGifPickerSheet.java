@@ -1,24 +1,98 @@
 package com.discord.widgets.chat.input.gifpicker;
 
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppBottomSheet;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: WidgetGifPickerSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGifPickerSheet extends AppBottomSheet {
-    public static final WidgetGifPickerSheet$Companion Companion = new WidgetGifPickerSheet$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private View container;
     private WidgetGifPickerSearch gifPickerFragment;
     private Function0<Unit> onCancel;
     private Function0<Unit> onGifSelected;
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifPickerSheet$onViewCreated$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGifPickerSheet.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Function0 function0Access$getOnGifSelected$p = WidgetGifPickerSheet.access$getOnGifSelected$p(WidgetGifPickerSheet.this);
+            if (function0Access$getOnGifSelected$p != null) {
+            }
+            WidgetGifPickerSheet.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifPickerSheet$onViewCreated$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGifPickerSheet.kt */
+    public final class AnonymousClass2 implements Runnable {
+        public AnonymousClass2() {
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            ViewGroup.LayoutParams layoutParams = WidgetGifPickerSheet.access$getContainer$p(WidgetGifPickerSheet.this).getLayoutParams();
+            if (layoutParams != null) {
+                Resources resources = WidgetGifPickerSheet.this.getResources();
+                m.checkNotNullExpressionValue(resources, "resources");
+                layoutParams.height = (int) (((double) resources.getDisplayMetrics().heightPixels) * 0.9d);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGifPickerSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ void show$default(Companion companion, FragmentManager fragmentManager, Function0 function0, Function0 function1, int i, Object obj) {
+            if ((i & 2) != 0) {
+                function0 = null;
+            }
+            if ((i & 4) != 0) {
+                function1 = null;
+            }
+            companion.show(fragmentManager, function0, function1);
+        }
+
+        public final void show(FragmentManager fragmentManager, Function0<Unit> onGifSelected, Function0<Unit> onCancel) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            WidgetGifPickerSheet widgetGifPickerSheet = new WidgetGifPickerSheet();
+            widgetGifPickerSheet.show(fragmentManager, WidgetGifPickerSheet.class.getSimpleName());
+            widgetGifPickerSheet.setOnGifSelected(onGifSelected);
+            widgetGifPickerSheet.setOnCancel(onCancel);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public WidgetGifPickerSheet() {
         super(false, 1, null);
@@ -46,10 +120,10 @@ public final class WidgetGifPickerSheet extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
-        return R$layout.widget_gif_picker_sheet;
+        return R.layout.widget_gif_picker_sheet;
     }
 
-    @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface$OnCancelListener
+    @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnCancelListener
     public void onCancel(DialogInterface dialog) {
         m.checkNotNullParameter(dialog, "dialog");
         super.onCancel(dialog);
@@ -75,7 +149,7 @@ public final class WidgetGifPickerSheet extends AppBottomSheet {
         if (widgetGifPickerSearch == null) {
             m.throwUninitializedPropertyAccessException("gifPickerFragment");
         }
-        widgetGifPickerSearch.setOnGifSelected(new WidgetGifPickerSheet$onViewCreated$1(this));
+        widgetGifPickerSearch.setOnGifSelected(new AnonymousClass1());
         FragmentTransaction fragmentTransactionBeginTransaction = getChildFragmentManager().beginTransaction();
         WidgetGifPickerSearch widgetGifPickerSearch2 = this.gifPickerFragment;
         if (widgetGifPickerSearch2 == null) {
@@ -85,7 +159,7 @@ public final class WidgetGifPickerSheet extends AppBottomSheet {
         if (widgetGifPickerSearch3 == null) {
             m.throwUninitializedPropertyAccessException("gifPickerFragment");
         }
-        fragmentTransactionBeginTransaction.replace(R$id.gif_search_sheet_content, widgetGifPickerSearch2, widgetGifPickerSearch3.getClass().getSimpleName()).runOnCommit(new WidgetGifPickerSheet$onViewCreated$2(this)).commit();
+        fragmentTransactionBeginTransaction.replace(R.id.gif_search_sheet_content, widgetGifPickerSearch2, widgetGifPickerSearch3.getClass().getSimpleName()).runOnCommit(new AnonymousClass2()).commit();
     }
 
     /* JADX WARN: Multi-variable type inference failed */

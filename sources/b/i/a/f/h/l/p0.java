@@ -1,10 +1,11 @@
 package b.i.a.f.h.l;
 
+import com.discord.widgets.chat.input.MentionUtilsKt;
 import java.util.List;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class p0 extends u4<p0, p0$a> implements d6 {
+public final class p0 extends u4<p0, a> implements d6 {
     private int zzc;
     private int zzd;
     private boolean zzf;
@@ -12,6 +13,61 @@ public final class p0 extends u4<p0, p0$a> implements d6 {
     private static volatile j6<p0> zzi;
     private String zze = "";
     private b5<String> zzg = m6.k;
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
+    public final class a extends u4.b<p0, a> implements d6 {
+        public a(q0 q0Var) {
+            super(p0.D());
+        }
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
+    public enum b implements y4 {
+        UNKNOWN_MATCH_TYPE(0),
+        REGEXP(1),
+        BEGINS_WITH(2),
+        ENDS_WITH(3),
+        PARTIAL(4),
+        EXACT(5),
+        IN_LIST(6);
+
+        private final int zzi;
+
+        b(int i) {
+            this.zzi = i;
+        }
+
+        @Override // b.i.a.f.h.l.y4
+        public final int a() {
+            return this.zzi;
+        }
+
+        public static b f(int i) {
+            switch (i) {
+                case 0:
+                    return UNKNOWN_MATCH_TYPE;
+                case 1:
+                    return REGEXP;
+                case 2:
+                    return BEGINS_WITH;
+                case 3:
+                    return ENDS_WITH;
+                case 4:
+                    return PARTIAL;
+                case 5:
+                    return EXACT;
+                case 6:
+                    return IN_LIST;
+                default:
+                    return null;
+            }
+        }
+
+        @Override // java.lang.Enum
+        public final String toString() {
+            return "<" + b.class.getName() + MentionUtilsKt.MENTIONS_CHAR + Integer.toHexString(System.identityHashCode(this)) + " number=" + this.zzi + " name=" + name() + '>';
+        }
+    }
 
     static {
         p0 p0Var = new p0();
@@ -41,24 +97,24 @@ public final class p0 extends u4<p0, p0$a> implements d6 {
             case 1:
                 return new p0();
             case 2:
-                return new p0$a(null);
+                return new a(null);
             case 3:
                 return new o6(zzh, "\u0001\u0004\u0000\u0001\u0001\u0004\u0004\u0000\u0001\u0000\u0001ဌ\u0000\u0002ဈ\u0001\u0003ဇ\u0002\u0004\u001a", new Object[]{"zzc", "zzd", w0.a, "zze", "zzf", "zzg"});
             case 4:
                 return zzh;
             case 5:
-                j6<p0> u4_a = zzi;
-                if (u4_a == null) {
+                j6<p0> aVar = zzi;
+                if (aVar == null) {
                     synchronized (p0.class) {
-                        u4_a = zzi;
-                        if (u4_a == null) {
-                            u4_a = new u4$a<>(zzh);
-                            zzi = u4_a;
+                        aVar = zzi;
+                        if (aVar == null) {
+                            aVar = new u4.a<>(zzh);
+                            zzi = aVar;
                         }
                         break;
                     }
                 }
-                return u4_a;
+                return aVar;
             case 6:
                 return (byte) 1;
             case 7:
@@ -72,9 +128,9 @@ public final class p0 extends u4<p0, p0$a> implements d6 {
         return (this.zzc & 1) != 0;
     }
 
-    public final p0$b v() {
-        p0$b p0_bF = p0$b.f(this.zzd);
-        return p0_bF == null ? p0$b.UNKNOWN_MATCH_TYPE : p0_bF;
+    public final b v() {
+        b bVarF = b.f(this.zzd);
+        return bVarF == null ? b.UNKNOWN_MATCH_TYPE : bVarF;
     }
 
     public final boolean w() {

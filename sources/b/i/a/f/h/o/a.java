@@ -47,7 +47,7 @@ public class a extends Binder implements IInterface {
             throw new UnsupportedOperationException();
         }
         if (i == 6) {
-            ((k) fVar).a.g(new i$b((Status) b.a(parcel, Status.CREATOR), (zzf) b.a(parcel, zzf.CREATOR)));
+            ((k) fVar).a.g(new i.b((Status) b.a(parcel, Status.CREATOR), (zzf) b.a(parcel, zzf.CREATOR)));
             return true;
         }
         if (i == 8) {

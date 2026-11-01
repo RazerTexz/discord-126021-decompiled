@@ -6,7 +6,7 @@ import b.i.a.c.x2.i;
 import b.i.a.c.x2.j;
 import b.i.a.c.x2.r;
 import b.i.a.c.x2.s;
-import b.i.a.c.x2.t$b;
+import b.i.a.c.x2.t;
 import java.io.IOException;
 import org.checkerframework.checker.nullness.qual.RequiresNonNull;
 
@@ -41,7 +41,7 @@ public final class c implements h {
         if (this.n) {
             return;
         }
-        this.f.a(new t$b(-9223372036854775807L, 0L));
+        this.f.a(new t.b(-9223372036854775807L, 0L));
         this.n = true;
     }
 

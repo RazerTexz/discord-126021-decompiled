@@ -5,11 +5,10 @@ import android.util.AttributeSet;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout$Behavior;
 
 /* JADX INFO: compiled from: ViewOffsetBehavior.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class c<V extends View> extends CoordinatorLayout$Behavior<V> {
+public class c<V extends View> extends CoordinatorLayout.Behavior<V> {
     private int tempLeftRightOffset;
     private int tempTopBottomOffset;
     private d viewOffsetHelper;
@@ -49,7 +48,7 @@ public class c<V extends View> extends CoordinatorLayout$Behavior<V> {
         coordinatorLayout.onLayoutChild(v, i);
     }
 
-    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout$Behavior
+    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
     public boolean onLayoutChild(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V v, int i) {
         layoutChild(coordinatorLayout, v, i);
         if (this.viewOffsetHelper == null) {

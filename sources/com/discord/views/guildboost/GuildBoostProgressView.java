@@ -10,8 +10,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import b.a.i.x2;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.utilities.premium.GuildBoostUtils;
 import d0.z.d.m;
@@ -27,16 +26,16 @@ public final class GuildBoostProgressView extends FrameLayout {
     public GuildBoostProgressView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         m.checkNotNullParameter(context, "context");
-        View viewInflate = LayoutInflater.from(getContext()).inflate(R$layout.view_premium_guild_progress, (ViewGroup) this, false);
+        View viewInflate = LayoutInflater.from(getContext()).inflate(R.layout.view_premium_guild_progress, (ViewGroup) this, false);
         addView(viewInflate);
-        int i = R$id.progress_gem_icon;
-        ImageView imageView = (ImageView) viewInflate.findViewById(R$id.progress_gem_icon);
+        int i = R.id.progress_gem_icon;
+        ImageView imageView = (ImageView) viewInflate.findViewById(R.id.progress_gem_icon);
         if (imageView != null) {
-            i = R$id.progress_level_text;
-            TextView textView = (TextView) viewInflate.findViewById(R$id.progress_level_text);
+            i = R.id.progress_level_text;
+            TextView textView = (TextView) viewInflate.findViewById(R.id.progress_level_text);
             if (textView != null) {
-                i = R$id.progress_progress;
-                ProgressBar progressBar = (ProgressBar) viewInflate.findViewById(R$id.progress_progress);
+                i = R.id.progress_progress;
+                ProgressBar progressBar = (ProgressBar) viewInflate.findViewById(R.id.progress_progress);
                 if (progressBar != null) {
                     x2 x2Var = new x2((FrameLayout) viewInflate, imageView, textView, progressBar);
                     m.checkNotNullExpressionValue(x2Var, "ViewPremiumGuildProgress…rom(context), this, true)");
@@ -55,25 +54,25 @@ public final class GuildBoostProgressView extends FrameLayout {
         if (premiumTier == 0) {
             Context context = getContext();
             m.checkNotNullExpressionValue(context, "context");
-            themedDrawableRes$default = DrawableCompat.getThemedDrawableRes$default(context, 2130968724, 0, 2, (Object) null);
+            themedDrawableRes$default = DrawableCompat.getThemedDrawableRes$default(context, R.attr.boosted_guild_tier_0, 0, 2, (Object) null);
         } else if (premiumTier == 1) {
-            themedDrawableRes$default = 2131231584;
+            themedDrawableRes$default = R.drawable.ic_boosted_guild_tier_1;
         } else if (premiumTier == 2) {
-            themedDrawableRes$default = 2131231585;
+            themedDrawableRes$default = R.drawable.ic_boosted_guild_tier_2;
         } else if (premiumTier == 3) {
-            themedDrawableRes$default = 2131231586;
+            themedDrawableRes$default = R.drawable.ic_boosted_guild_tier_3;
         }
         imageView.setImageResource(themedDrawableRes$default);
         TextView textView = this.binding.c;
         m.checkNotNullExpressionValue(textView, "binding.progressLevelText");
         if (premiumTier == 0) {
-            string = getContext().getString(2131894022);
+            string = getContext().getString(R.string.premium_guild_header_badge_no_tier);
         } else if (premiumTier == 1) {
-            string = getContext().getString(2131894200);
+            string = getContext().getString(R.string.premium_guild_tier_1);
         } else if (premiumTier != 2) {
-            string = premiumTier != 3 ? "" : getContext().getString(2131894204);
+            string = premiumTier != 3 ? "" : getContext().getString(R.string.premium_guild_tier_3);
         } else {
-            string = getContext().getString(2131894202);
+            string = getContext().getString(R.string.premium_guild_tier_2);
         }
         textView.setText(string);
         ProgressBar progressBar = this.binding.d;

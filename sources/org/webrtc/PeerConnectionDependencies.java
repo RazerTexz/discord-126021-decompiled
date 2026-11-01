@@ -4,18 +4,40 @@ import androidx.annotation.Nullable;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class PeerConnectionDependencies {
-    private final PeerConnection$Observer observer;
+    private final PeerConnection.Observer observer;
     private final SSLCertificateVerifier sslCertificateVerifier;
 
-    public /* synthetic */ PeerConnectionDependencies(PeerConnection$Observer peerConnection$Observer, SSLCertificateVerifier sSLCertificateVerifier, PeerConnectionDependencies$1 peerConnectionDependencies$1) {
-        this(peerConnection$Observer, sSLCertificateVerifier);
+    public class Builder {
+        private PeerConnection.Observer observer;
+        private SSLCertificateVerifier sslCertificateVerifier;
+
+        public /* synthetic */ Builder(PeerConnection.Observer observer, AnonymousClass1 anonymousClass1) {
+            this(observer);
+        }
+
+        public PeerConnectionDependencies createPeerConnectionDependencies() {
+            return new PeerConnectionDependencies(this.observer, this.sslCertificateVerifier, null);
+        }
+
+        public Builder setSSLCertificateVerifier(SSLCertificateVerifier sSLCertificateVerifier) {
+            this.sslCertificateVerifier = sSLCertificateVerifier;
+            return this;
+        }
+
+        private Builder(PeerConnection.Observer observer) {
+            this.observer = observer;
+        }
     }
 
-    public static PeerConnectionDependencies$Builder builder(PeerConnection$Observer peerConnection$Observer) {
-        return new PeerConnectionDependencies$Builder(peerConnection$Observer, null);
+    public /* synthetic */ PeerConnectionDependencies(PeerConnection.Observer observer, SSLCertificateVerifier sSLCertificateVerifier, AnonymousClass1 anonymousClass1) {
+        this(observer, sSLCertificateVerifier);
     }
 
-    public PeerConnection$Observer getObserver() {
+    public static Builder builder(PeerConnection.Observer observer) {
+        return new Builder(observer, null);
+    }
+
+    public PeerConnection.Observer getObserver() {
         return this.observer;
     }
 
@@ -24,8 +46,8 @@ public final class PeerConnectionDependencies {
         return this.sslCertificateVerifier;
     }
 
-    private PeerConnectionDependencies(PeerConnection$Observer peerConnection$Observer, SSLCertificateVerifier sSLCertificateVerifier) {
-        this.observer = peerConnection$Observer;
+    private PeerConnectionDependencies(PeerConnection.Observer observer, SSLCertificateVerifier sSLCertificateVerifier) {
+        this.observer = observer;
         this.sslCertificateVerifier = sSLCertificateVerifier;
     }
 }

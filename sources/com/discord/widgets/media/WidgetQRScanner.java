@@ -1,12 +1,17 @@
 package com.discord.widgets.media;
 
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.view.View;
 import android.webkit.URLUtil;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
+import b.a.d.j;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
+import com.discord.app.AppActivity;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetQrScannerBinding;
 import com.discord.utilities.color.ColorCompat;
@@ -19,26 +24,105 @@ import com.google.android.material.chip.Chip;
 import com.google.zxing.Result;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
+import e0.a.a.a.b;
+import e0.a.a.a.c;
 import java.util.List;
+import java.util.Objects;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 import kotlin.text.MatchResult;
 import kotlin.text.Regex;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
-import me.dm7.barcodescanner.zxing.ZXingScannerView$b;
 
 /* JADX INFO: compiled from: WidgetQRScanner.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetQRScanner extends AppFragment implements ZXingScannerView$b {
+public final class WidgetQRScanner extends AppFragment implements ZXingScannerView.b {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetQRScanner.class, "binding", "getBinding()Lcom/discord/databinding/WidgetQrScannerBinding;", 0)};
-    public static final WidgetQRScanner$Companion Companion = new WidgetQRScanner$Companion(null);
     private static final String EXTRA_SHOW_HELP_CHIP = "SHOW_HELP_CHIP";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final int MAIN_BACK_CAMERA = 0;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.media.WidgetQRScanner$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetQRScanner.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            ZXingScannerView zXingScannerView = WidgetQRScanner.access$getBinding$p(WidgetQRScanner.this).f2515b;
+            if (zXingScannerView.n == null) {
+                zXingScannerView.n = new c(zXingScannerView);
+            }
+            c cVar = zXingScannerView.n;
+            Objects.requireNonNull(cVar);
+            new Handler(cVar.getLooper()).post(new b(cVar, 0));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.media.WidgetQRScanner$onViewBoundOrOnResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetQRScanner.kt */
+    public final class AnonymousClass2 extends o implements Function0<Unit> {
+        public AnonymousClass2() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            AppActivity appActivity = WidgetQRScanner.this.getAppActivity();
+            if (appActivity != null) {
+                appActivity.finish();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetQRScanner.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static /* synthetic */ void launch$default(Companion companion, Context context, boolean z2, int i, Object obj) {
+            if ((i & 2) != 0) {
+                z2 = false;
+            }
+            companion.launch(context, z2);
+        }
+
+        public final void launch(Context context, boolean showHelpChip) {
+            m.checkNotNullParameter(context, "context");
+            Intent intentPutExtra = new Intent("android.intent.action.VIEW").putExtra(WidgetQRScanner.EXTRA_SHOW_HELP_CHIP, showHelpChip);
+            m.checkNotNullExpressionValue(intentPutExtra, "Intent(Intent.ACTION_VIE…_HELP_CHIP, showHelpChip)");
+            j.d(context, WidgetQRScanner.class, intentPutExtra);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetQRScanner() {
-        super(R$layout.widget_qr_scanner);
+        super(R.layout.widget_qr_scanner);
         this.binding = FragmentViewBindingDelegateKt.viewBinding(this, WidgetQRScanner$binding$2.INSTANCE, new WidgetQRScanner$binding$3(this));
     }
 
@@ -61,7 +145,7 @@ public final class WidgetQRScanner extends AppFragment implements ZXingScannerVi
     /* JADX WARN: Code duplicated, block: B:17:0x0058  */
     /* JADX WARN: Code duplicated, block: B:18:0x0068  */
     /* JADX WARN: Code duplicated, block: B:9:0x0022  */
-    @Override // me.dm7.barcodescanner.zxing.ZXingScannerView$b
+    @Override // me.dm7.barcodescanner.zxing.ZXingScannerView.b
     public void handleResult(Result rawResult) {
         String str;
         IntentUtils intentUtils;
@@ -73,7 +157,7 @@ public final class WidgetQRScanner extends AppFragment implements ZXingScannerVi
         Uri uri = Uri.parse(str);
         if (URLUtil.isValidUrl(str)) {
             b.a.d.m0.a aVar = b.a.d.m0.a.G;
-            m.checkNotNullExpressionValue(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+            m.checkNotNullExpressionValue(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
             if (aVar.a(uri.getHost())) {
                 path = uri.getPath();
                 if (path != null) {
@@ -85,13 +169,13 @@ public final class WidgetQRScanner extends AppFragment implements ZXingScannerVi
                     matchResultMatchEntire = null;
                 }
                 if (matchResultMatchEntire != null) {
-                    WidgetRemoteAuth.Companion.launch(requireContext(), (String) u.last((List) matchResultMatchEntire.getGroupValues()));
+                    WidgetRemoteAuth.INSTANCE.launch(requireContext(), (String) u.last((List) matchResultMatchEntire.getGroupValues()));
                 } else {
                     UriHandler.handle$default(UriHandler.INSTANCE, requireContext(), str, false, false, null, 28, null);
                 }
             } else {
                 intentUtils = IntentUtils.INSTANCE;
-                m.checkNotNullExpressionValue(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+                m.checkNotNullExpressionValue(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
                 if (intentUtils.isDiscordAppUri(uri)) {
                     path = uri.getPath();
                     if (path != null) {
@@ -103,17 +187,17 @@ public final class WidgetQRScanner extends AppFragment implements ZXingScannerVi
                         matchResultMatchEntire = null;
                     }
                     if (matchResultMatchEntire != null) {
-                        WidgetRemoteAuth.Companion.launch(requireContext(), (String) u.last((List) matchResultMatchEntire.getGroupValues()));
+                        WidgetRemoteAuth.INSTANCE.launch(requireContext(), (String) u.last((List) matchResultMatchEntire.getGroupValues()));
                     } else {
                         UriHandler.handle$default(UriHandler.INSTANCE, requireContext(), str, false, false, null, 28, null);
                     }
                 } else {
-                    b.a.d.m.i(this, 2131894636, 0, 4);
+                    b.a.d.m.i(this, R.string.qr_code_invalid, 0, 4);
                 }
             }
         } else {
             intentUtils = IntentUtils.INSTANCE;
-            m.checkNotNullExpressionValue(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+            m.checkNotNullExpressionValue(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
             if (intentUtils.isDiscordAppUri(uri)) {
                 path = uri.getPath();
                 if (path != null) {
@@ -125,12 +209,12 @@ public final class WidgetQRScanner extends AppFragment implements ZXingScannerVi
                     matchResultMatchEntire = null;
                 }
                 if (matchResultMatchEntire != null) {
-                    WidgetRemoteAuth.Companion.launch(requireContext(), (String) u.last((List) matchResultMatchEntire.getGroupValues()));
+                    WidgetRemoteAuth.INSTANCE.launch(requireContext(), (String) u.last((List) matchResultMatchEntire.getGroupValues()));
                 } else {
                     UriHandler.handle$default(UriHandler.INSTANCE, requireContext(), str, false, false, null, 28, null);
                 }
             } else {
-                b.a.d.m.i(this, 2131894636, 0, 4);
+                b.a.d.m.i(this, R.string.qr_code_invalid, 0, 4);
             }
         }
         requireActivity().finish();
@@ -160,13 +244,13 @@ public final class WidgetQRScanner extends AppFragment implements ZXingScannerVi
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ColorCompat.setStatusBarColor$default((Fragment) this, ColorCompat.getColor(this, 2131099689), false, 4, (Object) null);
+        ColorCompat.setStatusBarColor$default((Fragment) this, ColorCompat.getColor(this, R.color.black), false, 4, (Object) null);
         AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
-        setActionBarTitle(2131892651);
+        setActionBarTitle(R.string.login_with_qr);
         boolean booleanExtra = getMostRecentIntent().getBooleanExtra(EXTRA_SHOW_HELP_CHIP, false);
         Chip chip = getBinding().c;
         m.checkNotNullExpressionValue(chip, "binding.qrScannerChip");
         chip.setVisibility(booleanExtra ? 0 : 8);
-        requestCameraQRScanner(new WidgetQRScanner$onViewBoundOrOnResume$1(this), new WidgetQRScanner$onViewBoundOrOnResume$2(this));
+        requestCameraQRScanner(new AnonymousClass1(), new AnonymousClass2());
     }
 }

@@ -5,7 +5,6 @@ import com.discord.api.voice.state.VoiceState;
 import d0.z.d.m;
 import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 
 /* JADX INFO: compiled from: StoreRtcConnection.kt */
@@ -30,9 +29,9 @@ public final class VoicePropsTracker {
         this.channelId = j2;
         this.localUserId = j3;
         if (map != null) {
-            for (Map$Entry<Long, VoiceState> map$Entry : map.entrySet()) {
-                long jLongValue = map$Entry.getKey().longValue();
-                VoiceState value = map$Entry.getValue();
+            for (Map.Entry<Long, VoiceState> entry : map.entrySet()) {
+                long jLongValue = entry.getKey().longValue();
+                VoiceState value = entry.getValue();
                 Long channelId = value.getChannelId();
                 long j4 = this.channelId;
                 if (channelId != null && channelId.longValue() == j4) {

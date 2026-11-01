@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$layout;
+import com.discord.R;
 import java.util.Objects;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final class DialogSimpleSelectorItemBinding implements ViewBinding {
 
     @NonNull
     public static DialogSimpleSelectorItemBinding a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
-        View viewInflate = layoutInflater.inflate(R$layout.dialog_simple_selector_item, viewGroup, false);
+        View viewInflate = layoutInflater.inflate(R.layout.dialog_simple_selector_item, viewGroup, false);
         if (z2) {
             viewGroup.addView(viewInflate);
         }

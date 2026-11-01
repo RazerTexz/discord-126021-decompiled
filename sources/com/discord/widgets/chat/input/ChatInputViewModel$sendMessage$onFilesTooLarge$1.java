@@ -8,15 +8,15 @@ import kotlin.jvm.functions.Function2;
 /* JADX INFO: compiled from: ChatInputViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ChatInputViewModel$sendMessage$onFilesTooLarge$1 extends o implements Function2<Integer, Boolean, Unit> {
-    public final /* synthetic */ ChatInputViewModel$AttachmentContext $attachmentsContext;
+    public final /* synthetic */ ChatInputViewModel.AttachmentContext $attachmentsContext;
     public final /* synthetic */ Function0 $messageResendCompressedHandler;
     public final /* synthetic */ ChatInputViewModel this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public ChatInputViewModel$sendMessage$onFilesTooLarge$1(ChatInputViewModel chatInputViewModel, ChatInputViewModel$AttachmentContext chatInputViewModel$AttachmentContext, Function0 function0) {
+    public ChatInputViewModel$sendMessage$onFilesTooLarge$1(ChatInputViewModel chatInputViewModel, ChatInputViewModel.AttachmentContext attachmentContext, Function0 function0) {
         super(2);
         this.this$0 = chatInputViewModel;
-        this.$attachmentsContext = chatInputViewModel$AttachmentContext;
+        this.$attachmentsContext = attachmentContext;
         this.$messageResendCompressedHandler = function0;
     }
 
@@ -28,6 +28,6 @@ public final class ChatInputViewModel$sendMessage$onFilesTooLarge$1 extends o im
 
     /* JADX WARN: Type inference incomplete: some casts might be missing */
     public final void invoke(int i, boolean z2) {
-        ChatInputViewModel.access$getEventSubject$p(this.this$0).k.onNext((T) new ChatInputViewModel$Event$FilesTooLarge(i, this.$attachmentsContext.getCurrentFileSizeMB(), this.$attachmentsContext.getMaxAttachmentSizeMB(), z2, this.$attachmentsContext.getAttachments(), this.$attachmentsContext.getHasImage(), this.$attachmentsContext.getHasVideo(), this.$attachmentsContext.getHasGif(), this.$messageResendCompressedHandler));
+        ChatInputViewModel.access$getEventSubject$p(this.this$0).k.onNext((T) new ChatInputViewModel.Event.FilesTooLarge(i, this.$attachmentsContext.getCurrentFileSizeMB(), this.$attachmentsContext.getMaxAttachmentSizeMB(), z2, this.$attachmentsContext.getAttachments(), this.$attachmentsContext.getHasImage(), this.$attachmentsContext.getHasVideo(), this.$attachmentsContext.getHasGif(), this.$messageResendCompressedHandler));
     }
 }

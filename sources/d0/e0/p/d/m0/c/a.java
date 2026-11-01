@@ -6,6 +6,12 @@ import java.util.List;
 /* JADX INFO: compiled from: CallableDescriptor.java */
 /* JADX INFO: loaded from: classes3.dex */
 public interface a extends n, q, w0<a> {
+
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.c.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: CallableDescriptor.java */
+    public interface InterfaceC0511a<V> {
+    }
+
     q0 getDispatchReceiverParameter();
 
     q0 getExtensionReceiverParameter();
@@ -19,7 +25,7 @@ public interface a extends n, q, w0<a> {
 
     List<z0> getTypeParameters();
 
-    <V> V getUserData(a$a<V> a_a);
+    <V> V getUserData(InterfaceC0511a<V> interfaceC0511a);
 
     List<c1> getValueParameters();
 

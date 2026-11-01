@@ -1,8 +1,12 @@
 package com.google.android.exoplayer2.upstream;
 
 import android.net.Uri;
+import android.system.ErrnoException;
+import android.system.OsConstants;
 import android.text.TextUtils;
+import androidx.annotation.DoNotInline;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.view.PointerIconCompat;
 import b.i.a.c.e3.g;
 import b.i.a.c.e3.n;
@@ -23,12 +27,34 @@ public final class FileDataSource extends g {
     public long g;
     public boolean h;
 
+    public class FileDataSourceException extends DataSourceException {
+        public FileDataSourceException(Throwable th, int i) {
+            super(th, i);
+        }
+
+        public FileDataSourceException(@Nullable String str, @Nullable Throwable th, int i) {
+            super(str, th, i);
+        }
+    }
+
+    @RequiresApi(21)
+    public final class a {
+        public static /* synthetic */ boolean a(Throwable th) {
+            return b(th);
+        }
+
+        @DoNotInline
+        private static boolean b(@Nullable Throwable th) {
+            return (th instanceof ErrnoException) && ((ErrnoException) th).errno == OsConstants.EACCES;
+        }
+    }
+
     public FileDataSource() {
         super(false);
     }
 
     @Override // b.i.a.c.e3.l
-    public long a(n nVar) throws FileDataSource$FileDataSourceException {
+    public long a(n nVar) throws FileDataSourceException {
         Uri uri = nVar.a;
         this.f = uri;
         r(nVar);
@@ -45,23 +71,23 @@ public final class FileDataSource extends g {
                 }
                 this.g = length;
                 if (length < 0) {
-                    throw new FileDataSource$FileDataSourceException(null, null, 2008);
+                    throw new FileDataSourceException(null, null, 2008);
                 }
                 this.h = true;
                 s(nVar);
                 return this.g;
             } catch (IOException e) {
-                throw new FileDataSource$FileDataSourceException(e, 2000);
+                throw new FileDataSourceException(e, 2000);
             }
         } catch (FileNotFoundException e2) {
             if (TextUtils.isEmpty(uri.getQuery()) && TextUtils.isEmpty(uri.getFragment())) {
-                throw new FileDataSource$FileDataSourceException(e2, (e0.a < 21 || !FileDataSource$a.a(e2.getCause())) ? 2005 : 2006);
+                throw new FileDataSourceException(e2, (e0.a < 21 || !a.a(e2.getCause())) ? 2005 : 2006);
             }
-            throw new FileDataSource$FileDataSourceException(String.format("uri has query and/or fragment, which are not supported. Did you call Uri.parse() on a string containing '?' or '#'? Use Uri.fromFile(new File(path)) to avoid this. path=%s,query=%s,fragment=%s", uri.getPath(), uri.getQuery(), uri.getFragment()), e2, PointerIconCompat.TYPE_WAIT);
+            throw new FileDataSourceException(String.format("uri has query and/or fragment, which are not supported. Did you call Uri.parse() on a string containing '?' or '#'? Use Uri.fromFile(new File(path)) to avoid this. path=%s,query=%s,fragment=%s", uri.getPath(), uri.getQuery(), uri.getFragment()), e2, PointerIconCompat.TYPE_WAIT);
         } catch (SecurityException e3) {
-            throw new FileDataSource$FileDataSourceException(e3, 2006);
+            throw new FileDataSourceException(e3, 2006);
         } catch (RuntimeException e4) {
-            throw new FileDataSource$FileDataSourceException(e4, 2000);
+            throw new FileDataSourceException(e4, 2000);
         }
     }
 
@@ -70,7 +96,7 @@ public final class FileDataSource extends g {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    public void close() throws FileDataSource$FileDataSourceException {
+    public void close() throws FileDataSourceException {
         this.f = null;
         try {
             RandomAccessFile randomAccessFile = this.e;
@@ -83,7 +109,7 @@ public final class FileDataSource extends g {
                 q();
             }
         } catch (IOException e) {
-            throw new FileDataSource$FileDataSourceException(e, 2000);
+            throw new FileDataSourceException(e, 2000);
         }
     }
 
@@ -94,7 +120,7 @@ public final class FileDataSource extends g {
     }
 
     @Override // b.i.a.c.e3.h
-    public int read(byte[] bArr, int i, int i2) throws FileDataSource$FileDataSourceException {
+    public int read(byte[] bArr, int i, int i2) throws FileDataSourceException {
         if (i2 == 0) {
             return 0;
         }
@@ -112,7 +138,7 @@ public final class FileDataSource extends g {
             }
             return i4;
         } catch (IOException e) {
-            throw new FileDataSource$FileDataSourceException(e, 2000);
+            throw new FileDataSourceException(e, 2000);
         }
     }
 }

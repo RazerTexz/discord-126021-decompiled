@@ -3,15 +3,34 @@ package com.discord.widgets.tabs;
 import d0.g;
 import d0.z.d.m;
 import kotlin.Lazy;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
 import rx.subjects.BehaviorSubject;
 
 /* JADX INFO: compiled from: BottomNavViewObserver.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class BottomNavViewObserver implements TabsHostBottomNavigationView$HeightChangedListener {
-    public static final BottomNavViewObserver$Companion Companion = new BottomNavViewObserver$Companion(null);
+public final class BottomNavViewObserver implements TabsHostBottomNavigationView.HeightChangedListener {
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final Lazy INSTANCE$delegate = g.lazy(BottomNavViewObserver$Companion$INSTANCE$2.INSTANCE);
     private final BehaviorSubject<Integer> heightSubject = BehaviorSubject.l0(0);
+
+    /* JADX INFO: compiled from: BottomNavViewObserver.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final BottomNavViewObserver getINSTANCE() {
+            Lazy lazyAccess$getINSTANCE$cp = BottomNavViewObserver.access$getINSTANCE$cp();
+            Companion companion = BottomNavViewObserver.INSTANCE;
+            return (BottomNavViewObserver) lazyAccess$getINSTANCE$cp.getValue();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public static final /* synthetic */ Lazy access$getINSTANCE$cp() {
         return INSTANCE$delegate;
@@ -23,7 +42,7 @@ public final class BottomNavViewObserver implements TabsHostBottomNavigationView
         return behaviorSubject;
     }
 
-    @Override // com.discord.widgets.tabs.TabsHostBottomNavigationView$HeightChangedListener
+    @Override // com.discord.widgets.tabs.TabsHostBottomNavigationView.HeightChangedListener
     public void onHeightChanged(int height) {
         this.heightSubject.onNext(Integer.valueOf(height));
     }

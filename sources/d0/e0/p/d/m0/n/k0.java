@@ -23,7 +23,7 @@ public final class k0 extends j0 {
         this.m = z2;
         this.n = iVar;
         this.o = function1;
-        if (getMemberScope() instanceof t$d) {
+        if (getMemberScope() instanceof t.d) {
             StringBuilder sbU = b.d.b.a.a.U("SimpleTypeImpl should not be created for error type: ");
             sbU.append(getMemberScope());
             sbU.append('\n');

@@ -8,8 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.google.android.material.button.MaterialButton;
 
 /* JADX INFO: compiled from: WidgetChannelSettingsDeleteBinding.java */
@@ -42,21 +41,21 @@ public final class s4 implements ViewBinding {
 
     @NonNull
     public static s4 a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
-        View viewInflate = layoutInflater.inflate(R$layout.widget_channel_settings_delete, (ViewGroup) null, false);
+        View viewInflate = layoutInflater.inflate(R.layout.widget_channel_settings_delete, (ViewGroup) null, false);
         if (z2) {
             throw null;
         }
-        int i = R$id.channel_settings_delete_body;
-        TextView textView = (TextView) viewInflate.findViewById(R$id.channel_settings_delete_body);
+        int i = R.id.channel_settings_delete_body;
+        TextView textView = (TextView) viewInflate.findViewById(R.id.channel_settings_delete_body);
         if (textView != null) {
-            i = R$id.channel_settings_delete_cancel;
-            MaterialButton materialButton = (MaterialButton) viewInflate.findViewById(R$id.channel_settings_delete_cancel);
+            i = R.id.channel_settings_delete_cancel;
+            MaterialButton materialButton = (MaterialButton) viewInflate.findViewById(R.id.channel_settings_delete_cancel);
             if (materialButton != null) {
-                i = R$id.channel_settings_delete_confirm;
-                MaterialButton materialButton2 = (MaterialButton) viewInflate.findViewById(R$id.channel_settings_delete_confirm);
+                i = R.id.channel_settings_delete_confirm;
+                MaterialButton materialButton2 = (MaterialButton) viewInflate.findViewById(R.id.channel_settings_delete_confirm);
                 if (materialButton2 != null) {
-                    i = R$id.channel_settings_delete_title;
-                    TextView textView2 = (TextView) viewInflate.findViewById(R$id.channel_settings_delete_title);
+                    i = R.id.channel_settings_delete_title;
+                    TextView textView2 = (TextView) viewInflate.findViewById(R.id.channel_settings_delete_title);
                     if (textView2 != null) {
                         return new s4((LinearLayout) viewInflate, textView, materialButton, materialButton2, textView2);
                     }

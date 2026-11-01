@@ -1,7 +1,7 @@
 package com.google.android.gms.auth.api.credentials;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import b.c.a.a0.d;
 import b.i.a.f.c.a.d.g;
@@ -24,7 +24,7 @@ public final class CredentialRequest extends AbstractSafeParcelable {
     @Nullable
     public final String q;
     public final boolean r;
-    public static final Parcelable$Creator<CredentialRequest> CREATOR = new g();
+    public static final Parcelable.Creator<CredentialRequest> CREATOR = new g();
 
     public CredentialRequest(int i, boolean z2, String[] strArr, @Nullable CredentialPickerConfig credentialPickerConfig, @Nullable CredentialPickerConfig credentialPickerConfig2, boolean z3, @Nullable String str, @Nullable String str2, boolean z4) {
         this.j = i;

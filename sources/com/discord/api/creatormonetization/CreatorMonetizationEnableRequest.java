@@ -8,7 +8,14 @@ import d0.z.d.m;
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class CreatorMonetizationEnableRequest {
     private final long id;
-    private final CreatorMonetizationEnableRequest$State state;
+    private final State state;
+
+    /* JADX INFO: compiled from: CreatorMonetizationEnableRequest.kt */
+    public enum State {
+        OPEN,
+        REJECTED,
+        APPROVED
+    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -27,15 +34,15 @@ public final /* data */ class CreatorMonetizationEnableRequest {
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
-    public final CreatorMonetizationEnableRequest$State getState() {
+    public final State getState() {
         return this.state;
     }
 
     public int hashCode() {
         long j = this.id;
         int i = ((int) (j ^ (j >>> 32))) * 31;
-        CreatorMonetizationEnableRequest$State creatorMonetizationEnableRequest$State = this.state;
-        return i + (creatorMonetizationEnableRequest$State != null ? creatorMonetizationEnableRequest$State.hashCode() : 0);
+        State state = this.state;
+        return i + (state != null ? state.hashCode() : 0);
     }
 
     public String toString() {

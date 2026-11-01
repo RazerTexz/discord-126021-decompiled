@@ -36,7 +36,7 @@ public class c0 implements b.i.a.f.n.f<b.i.c.m.d.s.h.b, Void> {
             x.c(bVar2.e, file);
             b.i.c.m.d.q.c.d dVar = new b.i.c.m.d.q.c.d(file, x.f);
             i iVar = xVar.m;
-            iVar.b(new j(iVar, new x$m(context, dVar, bVarA, true)));
+            iVar.b(new j(iVar, new x.m(context, dVar, bVarA, true)));
         }
         return b.i.a.f.e.o.f.B1(Arrays.asList(x.b(this.f1679b.n), this.f1679b.n.A.b(this.a, b.c.a.y.b.m(bVar2))));
     }

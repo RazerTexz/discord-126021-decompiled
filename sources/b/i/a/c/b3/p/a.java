@@ -1,7 +1,6 @@
 package b.i.a.c.b3.p;
 
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import b.i.a.c.b3.f;
@@ -20,7 +19,7 @@ import java.util.zip.Inflater;
 public final class a extends f {
     public final x n;
     public final x o;
-    public final a$a p;
+    public final C0096a p;
 
     @Nullable
     public Inflater q;
@@ -29,7 +28,7 @@ public final class a extends f {
         super("PgsDecoder");
         this.n = new x();
         this.o = new x();
-        this.p = new a$a();
+        this.p = new C0096a();
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
@@ -63,7 +62,7 @@ public final class a extends f {
         ArrayList arrayList = new ArrayList();
         while (aVar.n.a() >= 3) {
             x xVar5 = aVar.n;
-            a$a a_a = aVar.p;
+            C0096a c0096a = aVar.p;
             int i6 = xVar5.c;
             int iT2 = xVar5.t();
             int iY = xVar5.y();
@@ -75,10 +74,10 @@ public final class a extends f {
                 if (iT2 != 128) {
                     switch (iT2) {
                         case 20:
-                            Objects.requireNonNull(a_a);
+                            Objects.requireNonNull(c0096a);
                             if (iY % 5 == 2) {
                                 xVar5.F(2);
-                                Arrays.fill(a_a.f871b, i5);
+                                Arrays.fill(c0096a.f871b, i5);
                                 int i8 = iY / 5;
                                 int i9 = 0;
                                 while (i9 < i8) {
@@ -88,55 +87,55 @@ public final class a extends f {
                                     double dT = xVar5.t() - 128;
                                     arrayList = arrayList;
                                     double dT2 = xVar5.t() - 128;
-                                    a_a.f871b[iT3] = (e0.h((int) ((1.402d * dT) + d), 0, 255) << 16) | (xVar5.t() << 24) | (e0.h((int) ((d - (0.34414d * dT2)) - (dT * 0.71414d)), 0, 255) << 8) | e0.h((int) ((dT2 * 1.772d) + d), 0, 255);
+                                    c0096a.f871b[iT3] = (e0.h((int) ((1.402d * dT) + d), 0, 255) << 16) | (xVar5.t() << 24) | (e0.h((int) ((d - (0.34414d * dT2)) - (dT * 0.71414d)), 0, 255) << 8) | e0.h((int) ((dT2 * 1.772d) + d), 0, 255);
                                     i9++;
                                     xVar5 = xVar5;
                                 }
                                 xVar = xVar5;
-                                a_a.c = true;
+                                c0096a.c = true;
                             } else {
                                 xVar = xVar5;
                             }
                             break;
                         case 21:
-                            Objects.requireNonNull(a_a);
+                            Objects.requireNonNull(c0096a);
                             if (iY >= 4) {
                                 xVar5.F(3);
                                 int i10 = iY - 4;
                                 if (!((xVar5.t() & 128) != 0)) {
-                                    x xVar6 = a_a.a;
+                                    x xVar6 = c0096a.a;
                                     i3 = xVar6.f984b;
                                     i4 = xVar6.c;
                                     if (i3 < i4 && i10 > 0) {
                                         int iMin = Math.min(i10, i4 - i3);
-                                        xVar5.e(a_a.a.a, i3, iMin);
-                                        a_a.a.E(i3 + iMin);
+                                        xVar5.e(c0096a.a.a, i3, iMin);
+                                        c0096a.a.E(i3 + iMin);
                                     }
                                 } else if (i10 >= 7 && (iV = xVar5.v()) >= 4) {
-                                    a_a.h = xVar5.y();
-                                    a_a.i = xVar5.y();
-                                    a_a.a.A(iV - 4);
+                                    c0096a.h = xVar5.y();
+                                    c0096a.i = xVar5.y();
+                                    c0096a.a.A(iV - 4);
                                     i10 -= 7;
-                                    x xVar7 = a_a.a;
+                                    x xVar7 = c0096a.a;
                                     i3 = xVar7.f984b;
                                     i4 = xVar7.c;
                                     if (i3 < i4) {
                                         int iMin2 = Math.min(i10, i4 - i3);
-                                        xVar5.e(a_a.a.a, i3, iMin2);
-                                        a_a.a.E(i3 + iMin2);
+                                        xVar5.e(c0096a.a.a, i3, iMin2);
+                                        c0096a.a.E(i3 + iMin2);
                                     }
                                 }
                             }
                             xVar = xVar5;
                             break;
                         case 22:
-                            Objects.requireNonNull(a_a);
+                            Objects.requireNonNull(c0096a);
                             if (iY >= 19) {
-                                a_a.d = xVar5.y();
-                                a_a.e = xVar5.y();
+                                c0096a.d = xVar5.y();
+                                c0096a.e = xVar5.y();
                                 xVar5.F(11);
-                                a_a.f = xVar5.y();
-                                a_a.g = xVar5.y();
+                                c0096a.f = xVar5.y();
+                                c0096a.g = xVar5.y();
                             }
                             xVar = xVar5;
                             break;
@@ -147,36 +146,36 @@ public final class a extends f {
                     bVar = null;
                 } else {
                     xVar = xVar5;
-                    if (a_a.d == 0 || a_a.e == 0 || a_a.h == 0 || a_a.i == 0 || (i2 = (xVar2 = a_a.a).c) == 0 || xVar2.f984b != i2 || !a_a.c) {
+                    if (c0096a.d == 0 || c0096a.e == 0 || c0096a.h == 0 || c0096a.i == 0 || (i2 = (xVar2 = c0096a.a).c) == 0 || xVar2.f984b != i2 || !c0096a.c) {
                         bVar = null;
                     } else {
                         xVar2.E(0);
-                        int i11 = a_a.h * a_a.i;
+                        int i11 = c0096a.h * c0096a.i;
                         int[] iArr = new int[i11];
                         int i12 = 0;
                         while (i12 < i11) {
-                            int iT5 = a_a.a.t();
+                            int iT5 = c0096a.a.t();
                             if (iT5 != 0) {
                                 iT = i12 + 1;
-                                iArr[i12] = a_a.f871b[iT5];
+                                iArr[i12] = c0096a.f871b[iT5];
                             } else {
-                                int iT6 = a_a.a.t();
+                                int iT6 = c0096a.a.t();
                                 if (iT6 != 0) {
-                                    iT = ((iT6 & 64) == 0 ? iT6 & 63 : ((iT6 & 63) << 8) | a_a.a.t()) + i12;
-                                    Arrays.fill(iArr, i12, iT, (iT6 & 128) == 0 ? 0 : a_a.f871b[a_a.a.t()]);
+                                    iT = ((iT6 & 64) == 0 ? iT6 & 63 : ((iT6 & 63) << 8) | c0096a.a.t()) + i12;
+                                    Arrays.fill(iArr, i12, iT, (iT6 & 128) == 0 ? 0 : c0096a.f871b[c0096a.a.t()]);
                                 }
                             }
                             i12 = iT;
                         }
-                        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(iArr, a_a.h, a_a.i, Bitmap$Config.ARGB_8888);
-                        float f = a_a.f;
-                        float f2 = a_a.d;
+                        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(iArr, c0096a.h, c0096a.i, Bitmap.Config.ARGB_8888);
+                        float f = c0096a.f;
+                        float f2 = c0096a.d;
                         float f3 = f / f2;
-                        float f4 = a_a.g;
-                        float f5 = a_a.e;
-                        bVar = new b.i.a.c.b3.b(null, null, null, bitmapCreateBitmap, f4 / f5, 0, 0, f3, 0, Integer.MIN_VALUE, -3.4028235E38f, a_a.h / f2, a_a.i / f5, false, ViewCompat.MEASURED_STATE_MASK, Integer.MIN_VALUE, 0.0f, null);
+                        float f4 = c0096a.g;
+                        float f5 = c0096a.e;
+                        bVar = new b.i.a.c.b3.b(null, null, null, bitmapCreateBitmap, f4 / f5, 0, 0, f3, 0, Integer.MIN_VALUE, -3.4028235E38f, c0096a.h / f2, c0096a.i / f5, false, ViewCompat.MEASURED_STATE_MASK, Integer.MIN_VALUE, 0.0f, null);
                     }
-                    a_a.a();
+                    c0096a.a();
                 }
                 xVar.E(i7);
             }
@@ -189,5 +188,32 @@ public final class a extends f {
             aVar = this;
         }
         return new b(Collections.unmodifiableList(arrayList));
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.b3.p.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: PgsDecoder.java */
+    public final class C0096a {
+        public boolean c;
+        public int d;
+        public int e;
+        public int f;
+        public int g;
+        public int h;
+        public int i;
+        public final x a = new x();
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int[] f871b = new int[256];
+
+        public void a() {
+            this.d = 0;
+            this.e = 0;
+            this.f = 0;
+            this.g = 0;
+            this.h = 0;
+            this.i = 0;
+            this.a.A(0);
+            this.c = false;
+        }
     }
 }

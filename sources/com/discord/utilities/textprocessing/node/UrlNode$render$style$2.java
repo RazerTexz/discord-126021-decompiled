@@ -12,15 +12,15 @@ import kotlin.jvm.functions.Function3;
 /* JADX INFO: compiled from: UrlNode.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class UrlNode$render$style$2 extends o implements Function1<View, Unit> {
-    public final /* synthetic */ UrlNode$RenderContext $renderContext;
+    public final /* synthetic */ UrlNode.RenderContext $renderContext;
     public final /* synthetic */ String $safeUrl;
     public final /* synthetic */ UrlNode this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public UrlNode$render$style$2(UrlNode urlNode, UrlNode$RenderContext urlNode$RenderContext, String str) {
+    public UrlNode$render$style$2(UrlNode urlNode, UrlNode.RenderContext renderContext, String str) {
         super(1);
         this.this$0 = urlNode;
-        this.$renderContext = urlNode$RenderContext;
+        this.$renderContext = renderContext;
         this.$safeUrl = str;
     }
 

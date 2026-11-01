@@ -5,7 +5,7 @@ import java.util.List;
 
 /* JADX INFO: compiled from: TrimPathContent.java */
 /* JADX INFO: loaded from: classes.dex */
-public class s implements c, b.c.a.w.c.a$b {
+public class s implements c, b.c.a.w.c.a.b {
     public final boolean a;
     public final int c;
     public final b.c.a.w.c.a<?, Float> d;
@@ -13,7 +13,7 @@ public class s implements c, b.c.a.w.c.a$b {
     public final b.c.a.w.c.a<?, Float> f;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final List<b.c.a.w.c.a$b> f391b = new ArrayList();
+    public final List<b.c.a.w.c.a.b> f391b = new ArrayList();
 
     public s(b.c.a.y.m.b bVar, b.c.a.y.l.p pVar) {
         this.a = pVar.f;
@@ -32,7 +32,7 @@ public class s implements c, b.c.a.w.c.a$b {
         aVarA3.a.add(this);
     }
 
-    @Override // b.c.a.w.c.a$b
+    @Override // b.c.a.w.c.a.b
     public void a() {
         for (int i = 0; i < this.f391b.size(); i++) {
             this.f391b.get(i).a();

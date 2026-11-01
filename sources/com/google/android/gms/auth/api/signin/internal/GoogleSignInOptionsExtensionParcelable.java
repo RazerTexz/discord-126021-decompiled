@@ -2,7 +2,7 @@ package com.google.android.gms.auth.api.signin.internal;
 
 import android.os.Bundle;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.a.f.c.a.f.b.b;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
@@ -13,7 +13,7 @@ public class GoogleSignInOptionsExtensionParcelable extends AbstractSafeParcelab
     public final int j;
     public int k;
     public Bundle l;
-    public static final Parcelable$Creator<GoogleSignInOptionsExtensionParcelable> CREATOR = new b();
+    public static final Parcelable.Creator<GoogleSignInOptionsExtensionParcelable> CREATOR = new b();
 
     public GoogleSignInOptionsExtensionParcelable(int i, int i2, Bundle bundle) {
         this.j = i;

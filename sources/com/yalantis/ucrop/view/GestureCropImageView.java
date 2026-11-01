@@ -5,22 +5,65 @@ import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
-import android.widget.ImageView$ScaleType;
-import b.q.a.k.c;
-import b.q.a.k.c$a;
-import b.q.a.l.a;
+import android.widget.ImageView;
 import java.util.Objects;
 
 /* JADX INFO: loaded from: classes3.dex */
-public class GestureCropImageView extends a {
+public class GestureCropImageView extends b.q.a.l.a {
     public ScaleGestureDetector K;
-    public c L;
+    public b.q.a.k.c L;
     public GestureDetector M;
     public float N;
     public float O;
     public boolean P;
     public boolean Q;
     public int R;
+
+    public class b extends GestureDetector.SimpleOnGestureListener {
+        public b(a aVar) {
+        }
+
+        @Override // android.view.GestureDetector.SimpleOnGestureListener, android.view.GestureDetector.OnDoubleTapListener
+        public boolean onDoubleTap(MotionEvent motionEvent) {
+            GestureCropImageView gestureCropImageView = GestureCropImageView.this;
+            float doubleTapTargetScale = gestureCropImageView.getDoubleTapTargetScale();
+            float x2 = motionEvent.getX();
+            float y2 = motionEvent.getY();
+            if (doubleTapTargetScale > gestureCropImageView.getMaxScale()) {
+                doubleTapTargetScale = gestureCropImageView.getMaxScale();
+            }
+            float currentScale = gestureCropImageView.getCurrentScale();
+            b.q.a.l.a.b bVar = new b.q.a.l.a.b(gestureCropImageView, 200L, currentScale, doubleTapTargetScale - currentScale, x2, y2);
+            gestureCropImageView.E = bVar;
+            gestureCropImageView.post(bVar);
+            return super.onDoubleTap(motionEvent);
+        }
+
+        @Override // android.view.GestureDetector.SimpleOnGestureListener, android.view.GestureDetector.OnGestureListener
+        public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+            GestureCropImageView.this.g(-f, -f2);
+            return true;
+        }
+    }
+
+    public class c extends b.q.a.k.c.b {
+        public c(a aVar) {
+        }
+    }
+
+    public class d extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+        public d(a aVar) {
+        }
+
+        @Override // android.view.ScaleGestureDetector.SimpleOnScaleGestureListener, android.view.ScaleGestureDetector.OnScaleGestureListener
+        public boolean onScale(ScaleGestureDetector scaleGestureDetector) {
+            GestureCropImageView gestureCropImageView = GestureCropImageView.this;
+            float scaleFactor = scaleGestureDetector.getScaleFactor();
+            GestureCropImageView gestureCropImageView2 = GestureCropImageView.this;
+            gestureCropImageView.f(scaleFactor, gestureCropImageView2.N, gestureCropImageView2.O);
+            return true;
+        }
+    }
 
     public GestureCropImageView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
@@ -31,10 +74,10 @@ public class GestureCropImageView extends a {
 
     @Override // b.q.a.l.c
     public void c() {
-        setScaleType(ImageView$ScaleType.MATRIX);
-        this.M = new GestureDetector(getContext(), new GestureCropImageView$b(this, null), null, true);
-        this.K = new ScaleGestureDetector(getContext(), new GestureCropImageView$d(this, null));
-        this.L = new c(new GestureCropImageView$c(this, null));
+        setScaleType(ImageView.ScaleType.MATRIX);
+        this.M = new GestureDetector(getContext(), new b(null), null, true);
+        this.K = new ScaleGestureDetector(getContext(), new d(null));
+        this.L = new b.q.a.k.c(new c(null));
     }
 
     public int getDoubleTapScaleSteps() {
@@ -59,7 +102,7 @@ public class GestureCropImageView extends a {
             this.K.onTouchEvent(motionEvent);
         }
         if (this.P) {
-            c cVar = this.L;
+            b.q.a.k.c cVar = this.L;
             Objects.requireNonNull(cVar);
             int actionMasked = motionEvent.getActionMasked();
             if (actionMasked == 0) {
@@ -97,9 +140,9 @@ public class GestureCropImageView extends a {
                         cVar.g = degrees - 360.0f;
                     }
                 }
-                c$a c_a = cVar.i;
-                if (c_a != null) {
-                    GestureCropImageView gestureCropImageView = ((GestureCropImageView$c) c_a).a;
+                b.q.a.k.c.a aVar = cVar.i;
+                if (aVar != null) {
+                    GestureCropImageView gestureCropImageView = GestureCropImageView.this;
                     gestureCropImageView.e(cVar.g, gestureCropImageView.N, gestureCropImageView.O);
                 }
                 cVar.a = x3;

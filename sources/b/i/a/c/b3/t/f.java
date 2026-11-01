@@ -1,6 +1,6 @@
 package b.i.a.c.b3.t;
 
-import android.text.Layout$Alignment;
+import android.text.Layout;
 import androidx.annotation.Nullable;
 
 /* JADX INFO: compiled from: TtmlStyle.java */
@@ -21,10 +21,10 @@ public final class f {
     public String l;
 
     @Nullable
-    public Layout$Alignment o;
+    public Layout.Alignment o;
 
     @Nullable
-    public Layout$Alignment p;
+    public Layout.Alignment p;
 
     @Nullable
     public b r;
@@ -42,8 +42,8 @@ public final class f {
 
     public f a(@Nullable f fVar) {
         int i;
-        Layout$Alignment layout$Alignment;
-        Layout$Alignment layout$Alignment2;
+        Layout.Alignment alignment;
+        Layout.Alignment alignment2;
         String str;
         if (fVar != null) {
             if (!this.c && fVar.c) {
@@ -68,11 +68,11 @@ public final class f {
             if (this.n == -1) {
                 this.n = fVar.n;
             }
-            if (this.o == null && (layout$Alignment2 = fVar.o) != null) {
-                this.o = layout$Alignment2;
+            if (this.o == null && (alignment2 = fVar.o) != null) {
+                this.o = alignment2;
             }
-            if (this.p == null && (layout$Alignment = fVar.p) != null) {
-                this.p = layout$Alignment;
+            if (this.p == null && (alignment = fVar.p) != null) {
+                this.p = alignment;
             }
             if (this.q == -1) {
                 this.q = fVar.q;

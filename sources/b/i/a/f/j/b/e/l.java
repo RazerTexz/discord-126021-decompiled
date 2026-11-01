@@ -2,7 +2,6 @@ package b.i.a.f.j.b.e;
 
 import android.os.IBinder;
 import android.os.RemoteException;
-import b.i.a.f.e.h.j.k$a;
 import com.google.android.gms.nearby.messages.SubscribeOptions;
 import com.google.android.gms.nearby.messages.internal.SubscribeRequest;
 import java.lang.ref.WeakReference;
@@ -31,7 +30,7 @@ public final /* synthetic */ class l implements a0 {
         SubscribeOptions subscribeOptions = this.d;
         int i = iVar.m;
         if (!fVar.A.a(kVar2.c)) {
-            b.i.a.f.h.m.o<k$a, IBinder> oVar = fVar.A;
+            b.i.a.f.h.m.o<b.i.a.f.e.h.j.k.a, IBinder> oVar = fVar.A;
             oVar.a.put(kVar2.c, new WeakReference<>(new b.i.a.f.h.m.h(kVar2)));
         }
         ((u0) fVar.w()).C(new SubscribeRequest(3, fVar.A.b(kVar2.c), subscribeOptions.a, new b.i.a.f.h.m.j(kVar), subscribeOptions.f3019b, null, 0, null, null, null, false, d0Var, false, null, subscribeOptions.d, 0, i));

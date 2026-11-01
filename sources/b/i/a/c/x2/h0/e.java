@@ -2,7 +2,7 @@ package b.i.a.c.x2.h0;
 
 import android.util.Pair;
 import b.i.a.c.f3.e0;
-import b.i.a.c.x2.t$a;
+import b.i.a.c.x2.t;
 import b.i.a.c.x2.u;
 
 /* JADX INFO: compiled from: MlltSeeker.java */
@@ -48,9 +48,9 @@ public final class e implements g {
     }
 
     @Override // b.i.a.c.x2.t
-    public t$a h(long j) {
+    public t.a h(long j) {
         Pair<Long, Long> pairB = b(e0.M(e0.i(j, 0L, this.c)), this.f1204b, this.a);
-        return new t$a(new u(e0.B(((Long) pairB.first).longValue()), ((Long) pairB.second).longValue()));
+        return new t.a(new u(e0.B(((Long) pairB.first).longValue()), ((Long) pairB.second).longValue()));
     }
 
     @Override // b.i.a.c.x2.t

@@ -1,6 +1,6 @@
 package b.a.f;
 
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.widget.RelativeLayout;
 import d0.z.d.m;
@@ -26,6 +26,6 @@ public final class b implements Runnable {
         m.checkNotNullExpressionValue(background, "it.background");
         int i = this.k.p.c;
         Objects.requireNonNull(aVar);
-        background.setColorFilter(i, PorterDuff$Mode.SRC_ATOP);
+        background.setColorFilter(i, PorterDuff.Mode.SRC_ATOP);
     }
 }

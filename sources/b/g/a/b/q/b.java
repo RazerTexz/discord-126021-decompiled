@@ -1,6 +1,5 @@
 package b.g.a.b.q;
 
-import b.g.a.b.d$a;
 import b.g.a.b.i;
 import b.g.a.b.k;
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -24,28 +23,28 @@ public abstract class b extends b.g.a.b.o.a {
         this.t = r;
         this.v = b.g.a.b.t.d.j;
         this.f671s = cVar;
-        if (d$a.ESCAPE_NON_ASCII.g(i)) {
+        if (b.g.a.b.d.a.ESCAPE_NON_ASCII.g(i)) {
             this.u = Opcodes.LAND;
         }
-        this.w = !d$a.QUOTE_FIELD_NAMES.g(i);
+        this.w = !b.g.a.b.d.a.QUOTE_FIELD_NAMES.g(i);
     }
 
     @Override // b.g.a.b.d
-    public b.g.a.b.d b(d$a d_a) {
-        int iH = d_a.h();
+    public b.g.a.b.d b(b.g.a.b.d.a aVar) {
+        int iH = aVar.h();
         this.o &= ~iH;
         if ((iH & b.g.a.b.o.a.m) != 0) {
-            if (d_a == d$a.WRITE_NUMBERS_AS_STRINGS) {
+            if (aVar == b.g.a.b.d.a.WRITE_NUMBERS_AS_STRINGS) {
                 this.p = false;
-            } else if (d_a == d$a.ESCAPE_NON_ASCII) {
+            } else if (aVar == b.g.a.b.d.a.ESCAPE_NON_ASCII) {
                 y0(0);
-            } else if (d_a == d$a.STRICT_DUPLICATE_DETECTION) {
+            } else if (aVar == b.g.a.b.d.a.STRICT_DUPLICATE_DETECTION) {
                 c cVar = this.q;
                 cVar.d = null;
                 this.q = cVar;
             }
         }
-        if (d_a == d$a.QUOTE_FIELD_NAMES) {
+        if (aVar == b.g.a.b.d.a.QUOTE_FIELD_NAMES) {
             this.w = true;
         }
         return this;
@@ -54,18 +53,18 @@ public abstract class b extends b.g.a.b.o.a {
     @Override // b.g.a.b.o.a
     public void r0(int i, int i2) {
         if ((b.g.a.b.o.a.m & i2) != 0) {
-            this.p = d$a.WRITE_NUMBERS_AS_STRINGS.g(i);
-            d$a d_a = d$a.ESCAPE_NON_ASCII;
-            if (d_a.g(i2)) {
-                if (d_a.g(i)) {
+            this.p = b.g.a.b.d.a.WRITE_NUMBERS_AS_STRINGS.g(i);
+            b.g.a.b.d.a aVar = b.g.a.b.d.a.ESCAPE_NON_ASCII;
+            if (aVar.g(i2)) {
+                if (aVar.g(i)) {
                     y0(Opcodes.LAND);
                 } else {
                     y0(0);
                 }
             }
-            d$a d_a2 = d$a.STRICT_DUPLICATE_DETECTION;
-            if (d_a2.g(i2)) {
-                if (d_a2.g(i)) {
+            b.g.a.b.d.a aVar2 = b.g.a.b.d.a.STRICT_DUPLICATE_DETECTION;
+            if (aVar2.g(i2)) {
+                if (aVar2.g(i)) {
                     c cVar = this.q;
                     if (cVar.d == null) {
                         cVar.d = new a(this);
@@ -78,7 +77,7 @@ public abstract class b extends b.g.a.b.o.a {
                 }
             }
         }
-        this.w = !d$a.QUOTE_FIELD_NAMES.g(i);
+        this.w = !b.g.a.b.d.a.QUOTE_FIELD_NAMES.g(i);
     }
 
     public void x0(String str) throws IOException {

@@ -3,7 +3,6 @@ package com.discord.widgets.user.usersheet;
 import android.os.Bundle;
 import androidx.fragment.app.FragmentManager;
 import b.a.a.i;
-import b.a.a.i$b;
 import d0.z.d.m;
 import d0.z.d.o;
 import java.util.Objects;
@@ -29,10 +28,10 @@ public final class WidgetUserSheet$configureConnectionsSection$onConnectedAccoun
 
     public final void invoke(String str, int i, String str2) {
         m.checkNotNullParameter(str, "username");
-        i$b i_b = i.k;
+        i.Companion companion = i.INSTANCE;
         FragmentManager parentFragmentManager = this.this$0.getParentFragmentManager();
         m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        Objects.requireNonNull(i_b);
+        Objects.requireNonNull(companion);
         m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
         m.checkNotNullParameter(str, "username");
         i iVar = new i();

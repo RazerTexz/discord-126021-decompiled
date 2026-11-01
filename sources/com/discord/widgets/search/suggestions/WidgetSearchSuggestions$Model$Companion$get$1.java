@@ -13,7 +13,7 @@ import rx.functions.Func3;
 
 /* JADX INFO: compiled from: WidgetSearchSuggestions.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetSearchSuggestions$Model$Companion$get$1<T1, T2, T3, R> implements Func3<SearchData, List<? extends QueryNode>, Collection<? extends List<? extends QueryNode>>, WidgetSearchSuggestions$Model> {
+public final class WidgetSearchSuggestions$Model$Companion$get$1<T1, T2, T3, R> implements Func3<SearchData, List<? extends QueryNode>, Collection<? extends List<? extends QueryNode>>, WidgetSearchSuggestions.Model> {
     public final /* synthetic */ SearchStringProvider $searchStringProvider;
 
     public WidgetSearchSuggestions$Model$Companion$get$1(SearchStringProvider searchStringProvider) {
@@ -21,17 +21,17 @@ public final class WidgetSearchSuggestions$Model$Companion$get$1<T1, T2, T3, R> 
     }
 
     @Override // rx.functions.Func3
-    public /* bridge */ /* synthetic */ WidgetSearchSuggestions$Model call(SearchData searchData, List<? extends QueryNode> list, Collection<? extends List<? extends QueryNode>> collection) {
+    public /* bridge */ /* synthetic */ WidgetSearchSuggestions.Model call(SearchData searchData, List<? extends QueryNode> list, Collection<? extends List<? extends QueryNode>> collection) {
         return call2(searchData, list, collection);
     }
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-    public final WidgetSearchSuggestions$Model call2(SearchData searchData, List<? extends QueryNode> list, Collection<? extends List<? extends QueryNode>> collection) {
+    public final WidgetSearchSuggestions.Model call2(SearchData searchData, List<? extends QueryNode> list, Collection<? extends List<? extends QueryNode>> collection) {
         m.checkNotNullParameter(searchData, "searchData");
         m.checkNotNullParameter(list, "queryNodes");
         m.checkNotNullParameter(collection, "history");
         List<QueryNode> mutableList = u.toMutableList((Collection) list);
-        QueryNode.Preprocessor.preprocess(mutableList, searchData);
-        return new WidgetSearchSuggestions$Model(mutableList, SearchSuggestionEngine.getSuggestions(mutableList, searchData, this.$searchStringProvider, collection));
+        QueryNode.INSTANCE.preprocess(mutableList, searchData);
+        return new WidgetSearchSuggestions.Model(mutableList, SearchSuggestionEngine.getSuggestions(mutableList, searchData, this.$searchStringProvider, collection));
     }
 }

@@ -8,8 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.Barrier;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
 
@@ -58,33 +57,33 @@ public final class ViewChatEmbedGameInviteBinding implements ViewBinding {
 
     @NonNull
     public static ViewChatEmbedGameInviteBinding a(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
-        layoutInflater.inflate(R$layout.view_chat_embed_game_invite, viewGroup);
-        int i = R$id.item_game_invite_action_btn;
-        MaterialButton materialButton = (MaterialButton) viewGroup.findViewById(R$id.item_game_invite_action_btn);
+        layoutInflater.inflate(R.layout.view_chat_embed_game_invite, viewGroup);
+        int i = R.id.item_game_invite_action_btn;
+        MaterialButton materialButton = (MaterialButton) viewGroup.findViewById(R.id.item_game_invite_action_btn);
         if (materialButton != null) {
-            i = R$id.item_game_invite_application_name_tv;
-            TextView textView = (TextView) viewGroup.findViewById(R$id.item_game_invite_application_name_tv);
+            i = R.id.item_game_invite_application_name_tv;
+            TextView textView = (TextView) viewGroup.findViewById(R.id.item_game_invite_application_name_tv);
             if (textView != null) {
-                i = R$id.item_game_invite_avatar_iv;
-                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewGroup.findViewById(R$id.item_game_invite_avatar_iv);
+                i = R.id.item_game_invite_avatar_iv;
+                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewGroup.findViewById(R.id.item_game_invite_avatar_iv);
                 if (simpleDraweeView != null) {
-                    i = R$id.item_game_invite_avatar_status_iv;
-                    SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) viewGroup.findViewById(R$id.item_game_invite_avatar_status_iv);
+                    i = R.id.item_game_invite_avatar_status_iv;
+                    SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) viewGroup.findViewById(R.id.item_game_invite_avatar_status_iv);
                     if (simpleDraweeView2 != null) {
-                        i = R$id.item_game_invite_barrier;
-                        Barrier barrier = (Barrier) viewGroup.findViewById(R$id.item_game_invite_barrier);
+                        i = R.id.item_game_invite_barrier;
+                        Barrier barrier = (Barrier) viewGroup.findViewById(R.id.item_game_invite_barrier);
                         if (barrier != null) {
-                            i = R$id.item_game_invite_cover_iv;
-                            SimpleDraweeView simpleDraweeView3 = (SimpleDraweeView) viewGroup.findViewById(R$id.item_game_invite_cover_iv);
+                            i = R.id.item_game_invite_cover_iv;
+                            SimpleDraweeView simpleDraweeView3 = (SimpleDraweeView) viewGroup.findViewById(R.id.item_game_invite_cover_iv);
                             if (simpleDraweeView3 != null) {
-                                i = R$id.item_game_invite_header;
-                                TextView textView2 = (TextView) viewGroup.findViewById(R$id.item_game_invite_header);
+                                i = R.id.item_game_invite_header;
+                                TextView textView2 = (TextView) viewGroup.findViewById(R.id.item_game_invite_header);
                                 if (textView2 != null) {
-                                    i = R$id.item_game_invite_recycler;
-                                    RecyclerView recyclerView = (RecyclerView) viewGroup.findViewById(R$id.item_game_invite_recycler);
+                                    i = R.id.item_game_invite_recycler;
+                                    RecyclerView recyclerView = (RecyclerView) viewGroup.findViewById(R.id.item_game_invite_recycler);
                                     if (recyclerView != null) {
-                                        i = R$id.item_game_invite_subtext;
-                                        TextView textView3 = (TextView) viewGroup.findViewById(R$id.item_game_invite_subtext);
+                                        i = R.id.item_game_invite_subtext;
+                                        TextView textView3 = (TextView) viewGroup.findViewById(R.id.item_game_invite_subtext);
                                         if (textView3 != null) {
                                             return new ViewChatEmbedGameInviteBinding(viewGroup, materialButton, textView, simpleDraweeView, simpleDraweeView2, barrier, simpleDraweeView3, textView2, recyclerView, textView3);
                                         }

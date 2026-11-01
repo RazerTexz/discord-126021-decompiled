@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetNuxChannelPromptBinding;
 import com.discord.views.LoadingButton;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -30,26 +30,26 @@ public final /* synthetic */ class WidgetNuxChannelPrompt$binding$2 extends k im
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetNuxChannelPromptBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.nuf_channel_prompt_cta_button;
-        LoadingButton loadingButton = (LoadingButton) view.findViewById(R$id.nuf_channel_prompt_cta_button);
+        int i = R.id.nuf_channel_prompt_cta_button;
+        LoadingButton loadingButton = (LoadingButton) view.findViewById(R.id.nuf_channel_prompt_cta_button);
         if (loadingButton != null) {
-            i = R$id.nuf_channel_prompt_guild_icon;
-            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.nuf_channel_prompt_guild_icon);
+            i = R.id.nuf_channel_prompt_guild_icon;
+            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.nuf_channel_prompt_guild_icon);
             if (simpleDraweeView != null) {
-                i = R$id.nuf_channel_prompt_guild_icon_name;
-                TextView textView = (TextView) view.findViewById(R$id.nuf_channel_prompt_guild_icon_name);
+                i = R.id.nuf_channel_prompt_guild_icon_name;
+                TextView textView = (TextView) view.findViewById(R.id.nuf_channel_prompt_guild_icon_name);
                 if (textView != null) {
-                    i = R$id.nuf_channel_prompt_guild_name;
-                    TextView textView2 = (TextView) view.findViewById(R$id.nuf_channel_prompt_guild_name);
+                    i = R.id.nuf_channel_prompt_guild_name;
+                    TextView textView2 = (TextView) view.findViewById(R.id.nuf_channel_prompt_guild_name);
                     if (textView2 != null) {
-                        i = R$id.nuf_channel_prompt_skip_button;
-                        TextView textView3 = (TextView) view.findViewById(R$id.nuf_channel_prompt_skip_button);
+                        i = R.id.nuf_channel_prompt_skip_button;
+                        TextView textView3 = (TextView) view.findViewById(R.id.nuf_channel_prompt_skip_button);
                         if (textView3 != null) {
-                            i = R$id.nuf_channel_prompt_topic_wrap;
-                            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.nuf_channel_prompt_topic_wrap);
+                            i = R.id.nuf_channel_prompt_topic_wrap;
+                            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.nuf_channel_prompt_topic_wrap);
                             if (textInputLayout != null) {
-                                i = R$id.toolbar;
-                                Toolbar toolbar = (Toolbar) view.findViewById(R$id.toolbar);
+                                i = R.id.toolbar;
+                                Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
                                 if (toolbar != null) {
                                     return new WidgetNuxChannelPromptBinding((RelativeLayout) view, loadingButton, simpleDraweeView, textView, textView2, textView3, textInputLayout, toolbar);
                                 }

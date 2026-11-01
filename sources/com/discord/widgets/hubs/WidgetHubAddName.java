@@ -10,7 +10,7 @@ import b.a.d.g0;
 import b.a.d.i0;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.app.AppLog;
 import com.discord.databinding.WidgetHubAddNameBinding;
@@ -18,6 +18,7 @@ import com.discord.models.guild.Guild;
 import com.discord.stores.StoreStream;
 import com.discord.stores.utilities.Loading;
 import com.discord.stores.utilities.RestCallStateKt;
+import com.discord.stores.utilities.Success;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.rx.ObservableExtensionsKt;
@@ -28,7 +29,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import d0.g;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.reflect.KProperty;
@@ -50,8 +53,65 @@ public final class WidgetHubAddName extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAddName$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubAddName.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetHubAddName.access$maybeUpdateName(WidgetHubAddName.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAddName$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubAddName.kt */
+    public final class AnonymousClass1 extends o implements Function1<AddNameState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(AddNameState addNameState) {
+            invoke2(addNameState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(AddNameState addNameState) {
+            m.checkNotNullParameter(addNameState, "viewState");
+            WidgetHubAddName.access$configureUI(WidgetHubAddName.this, addNameState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAddName$configureUI$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubAddName.kt */
+    public final class AnonymousClass2 extends o implements Function1<Success<? extends Void>, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Success<? extends Void> success) {
+            invoke2((Success<Void>) success);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Success<Void> success) {
+            m.checkNotNullParameter(success, "it");
+            FragmentActivity activity = WidgetHubAddName.this.getActivity();
+            if (activity != null) {
+                activity.onBackPressed();
+            }
+            WidgetHubAddName widgetHubAddName = WidgetHubAddName.this;
+            widgetHubAddName.hideKeyboard(widgetHubAddName.getView());
+        }
+    }
+
     public WidgetHubAddName() {
-        super(R$layout.widget_hub_add_name);
+        super(R.layout.widget_hub_add_name);
         this.args = g.lazy(new WidgetHubAddName$$special$$inlined$args$1(this, "intent_args_key"));
         WidgetHubAddName$viewModel$2 widgetHubAddName$viewModel$2 = new WidgetHubAddName$viewModel$2(this);
         g0 g0Var = new g0(this);
@@ -79,12 +139,12 @@ public final class WidgetHubAddName extends AppFragment {
             Object[] objArr = new Object[1];
             Guild guild = state.getGuild();
             objArr[0] = guild != null ? guild.getName() : null;
-            textView.setText(b.k(this, 2131891846, objArr, null, 4));
+            textView.setText(b.k(this, R.string.hub_real_name_modal_header, objArr, null, 4));
             Guild guild2 = state.getGuild();
             if (guild2 != null) {
                 getBinding().f2467b.a(IconUtils.getForGuild$default(state.getGuild(), null, false, null, 14, null), guild2.getShortName());
             }
-            RestCallStateKt.handleResponse$default(state.getChangeNicknameAsync(), context, null, null, new WidgetHubAddName$configureUI$2(this), 6, null);
+            RestCallStateKt.handleResponse$default(state.getChangeNicknameAsync(), context, null, null, new AnonymousClass2(), 6, null);
         }
     }
 
@@ -117,7 +177,7 @@ public final class WidgetHubAddName extends AppFragment {
     public void onViewBound(View view) {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
-        getBinding().f.setOnClickListener(new WidgetHubAddName$onViewBound$1(this));
+        getBinding().f.setOnClickListener(new AnonymousClass1());
         TextInputEditText textInputEditText = getBinding().c;
         m.checkNotNullExpressionValue(textInputEditText, "binding.discordHubAddNameInput");
         showKeyboard(textInputEditText);
@@ -126,7 +186,7 @@ public final class WidgetHubAddName extends AppFragment {
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        Guild guild = StoreStream.Companion.getGuilds().getGuild(getArgs().getGuildId());
+        Guild guild = StoreStream.INSTANCE.getGuilds().getGuild(getArgs().getGuildId());
         if (guild == null || !guild.isHub()) {
             FragmentActivity activity = getActivity();
             if (activity != null) {
@@ -137,6 +197,6 @@ public final class WidgetHubAddName extends AppFragment {
             sbU.append(getArgs().getGuildId());
             Logger.e$default(appLog, "Guild is not a hub", new IllegalStateException(sbU.toString()), null, 4, null);
         }
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(ObservableExtensionsKt.ui(getViewModel().observeViewState()), this, null, 2, null), WidgetHubAddName.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetHubAddName$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(ObservableExtensionsKt.ui(getViewModel().observeViewState()), this, null, 2, null), WidgetHubAddName.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 }

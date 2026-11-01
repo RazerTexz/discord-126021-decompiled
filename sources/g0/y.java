@@ -12,7 +12,25 @@ public class y {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public boolean f3695b;
-    public static final y a = new y$a();
+    public static final y a = new a();
+
+    /* JADX INFO: compiled from: Timeout.kt */
+    public final class a extends y {
+        @Override // g0.y
+        public y d(long j) {
+            return this;
+        }
+
+        @Override // g0.y
+        public void f() {
+        }
+
+        @Override // g0.y
+        public y g(long j, TimeUnit timeUnit) {
+            d0.z.d.m.checkParameterIsNotNull(timeUnit, "unit");
+            return this;
+        }
+    }
 
     public y a() {
         this.f3695b = false;

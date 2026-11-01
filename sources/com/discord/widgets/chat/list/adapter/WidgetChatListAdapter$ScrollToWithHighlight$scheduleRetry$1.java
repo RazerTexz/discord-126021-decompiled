@@ -16,12 +16,12 @@ import kotlinx.coroutines.CoroutineScope;
 @e(c = "com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$ScrollToWithHighlight$scheduleRetry$1", f = "WidgetChatListAdapter.kt", l = {453}, m = "invokeSuspend")
 public final class WidgetChatListAdapter$ScrollToWithHighlight$scheduleRetry$1 extends k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
     public int label;
-    public final /* synthetic */ WidgetChatListAdapter$ScrollToWithHighlight this$0;
+    public final /* synthetic */ WidgetChatListAdapter.ScrollToWithHighlight this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetChatListAdapter$ScrollToWithHighlight$scheduleRetry$1(WidgetChatListAdapter$ScrollToWithHighlight widgetChatListAdapter$ScrollToWithHighlight, Continuation continuation) {
+    public WidgetChatListAdapter$ScrollToWithHighlight$scheduleRetry$1(WidgetChatListAdapter.ScrollToWithHighlight scrollToWithHighlight, Continuation continuation) {
         super(2, continuation);
-        this.this$0 = widgetChatListAdapter$ScrollToWithHighlight;
+        this.this$0 = scrollToWithHighlight;
     }
 
     @Override // d0.w.i.a.a

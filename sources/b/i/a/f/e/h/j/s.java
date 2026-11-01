@@ -20,7 +20,7 @@ public abstract class s {
 
     public abstract void b(@NonNull Status status);
 
-    public abstract void c(g$a<?> g_a) throws DeadObjectException;
+    public abstract void c(g.a<?> aVar) throws DeadObjectException;
 
     public abstract void d(@NonNull x0 x0Var, boolean z2);
 

@@ -16,6 +16,12 @@ public class MemoryPooledByteBufferOutputStream extends i {
     public CloseableReference<r> k;
     public int l;
 
+    public class InvalidStreamException extends RuntimeException {
+        public InvalidStreamException() {
+            super("OutputStream no longer valid");
+        }
+    }
+
     public MemoryPooledByteBufferOutputStream(s sVar, int i) {
         d.i(Boolean.valueOf(i > 0));
         Objects.requireNonNull(sVar);
@@ -26,7 +32,7 @@ public class MemoryPooledByteBufferOutputStream extends i {
 
     public final void a() {
         if (!CloseableReference.y(this.k)) {
-            throw new MemoryPooledByteBufferOutputStream$InvalidStreamException();
+            throw new InvalidStreamException();
         }
     }
 

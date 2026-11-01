@@ -1,17 +1,31 @@
 package com.google.android.material.datepicker;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import b.i.a.g.d.l;
 import java.util.Arrays;
 
 /* JADX INFO: loaded from: classes3.dex */
-public class DateValidatorPointForward implements CalendarConstraints$DateValidator {
+public class DateValidatorPointForward implements CalendarConstraints.DateValidator {
     private final long point;
-    public static final Parcelable$Creator<DateValidatorPointForward> CREATOR = new DateValidatorPointForward$a();
+    public static final Parcelable.Creator<DateValidatorPointForward> CREATOR = new a();
 
-    public /* synthetic */ DateValidatorPointForward(long j, DateValidatorPointForward$a dateValidatorPointForward$a) {
+    public final class a implements Parcelable.Creator<DateValidatorPointForward> {
+        @Override // android.os.Parcelable.Creator
+        @NonNull
+        public DateValidatorPointForward createFromParcel(@NonNull Parcel parcel) {
+            return new DateValidatorPointForward(parcel.readLong(), null);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        @NonNull
+        public DateValidatorPointForward[] newArray(int i) {
+            return new DateValidatorPointForward[i];
+        }
+    }
+
+    public /* synthetic */ DateValidatorPointForward(long j, a aVar) {
         this(j);
     }
 
@@ -36,7 +50,7 @@ public class DateValidatorPointForward implements CalendarConstraints$DateValida
         return Arrays.hashCode(new Object[]{Long.valueOf(this.point)});
     }
 
-    @Override // com.google.android.material.datepicker.CalendarConstraints$DateValidator
+    @Override // com.google.android.material.datepicker.CalendarConstraints.DateValidator
     public boolean isValid(long j) {
         return j >= this.point;
     }

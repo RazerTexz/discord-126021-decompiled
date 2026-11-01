@@ -1,7 +1,7 @@
 package b.i.a.g.b;
 
 import android.content.res.ColorStateList;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.InsetDrawable;
 import android.graphics.drawable.LayerDrawable;
@@ -10,10 +10,9 @@ import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
-import com.google.android.material.R$attr;
+import com.google.android.material.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.ripple.RippleUtils;
@@ -23,7 +22,7 @@ import com.google.android.material.shape.Shapeable;
 
 /* JADX INFO: compiled from: MaterialButtonHelper.java */
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class a {
     public final MaterialButton a;
     public int c;
@@ -41,7 +40,7 @@ public class a {
     public int h;
 
     @Nullable
-    public PorterDuff$Mode i;
+    public PorterDuff.Mode i;
 
     @Nullable
     public ColorStateList j;
@@ -126,14 +125,14 @@ public class a {
         MaterialShapeDrawable materialShapeDrawable = new MaterialShapeDrawable(this.f1604b);
         materialShapeDrawable.initializeElevationOverlay(this.a.getContext());
         DrawableCompat.setTintList(materialShapeDrawable, this.j);
-        PorterDuff$Mode porterDuff$Mode = this.i;
-        if (porterDuff$Mode != null) {
-            DrawableCompat.setTintMode(materialShapeDrawable, porterDuff$Mode);
+        PorterDuff.Mode mode = this.i;
+        if (mode != null) {
+            DrawableCompat.setTintMode(materialShapeDrawable, mode);
         }
         materialShapeDrawable.setStroke(this.h, this.k);
         MaterialShapeDrawable materialShapeDrawable2 = new MaterialShapeDrawable(this.f1604b);
         materialShapeDrawable2.setTint(0);
-        materialShapeDrawable2.setStroke(this.h, this.n ? MaterialColors.getColor(this.a, R$attr.colorSurface) : 0);
+        materialShapeDrawable2.setStroke(this.h, this.n ? MaterialColors.getColor(this.a, R.attr.colorSurface) : 0);
         MaterialShapeDrawable materialShapeDrawable3 = new MaterialShapeDrawable(this.f1604b);
         this.m = materialShapeDrawable3;
         DrawableCompat.setTint(materialShapeDrawable3, -1);
@@ -152,7 +151,7 @@ public class a {
         if (materialShapeDrawableB != null) {
             materialShapeDrawableB.setStroke(this.h, this.k);
             if (materialShapeDrawableD != null) {
-                materialShapeDrawableD.setStroke(this.h, this.n ? MaterialColors.getColor(this.a, R$attr.colorSurface) : 0);
+                materialShapeDrawableD.setStroke(this.h, this.n ? MaterialColors.getColor(this.a, R.attr.colorSurface) : 0);
             }
         }
     }

@@ -15,26 +15,54 @@ public class e {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final c f1906b;
-    public final a c;
+    public final b.m.a.g.d.a c;
 
-    public e(b.m.a.b bVar, c cVar, a aVar) {
+    /* JADX INFO: compiled from: SntpClient.java */
+    public class a extends IOException {
+        public a(String str) {
+            super(str);
+        }
+    }
+
+    /* JADX INFO: compiled from: SntpClient.java */
+    public final class b {
+        public final long a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final long f1907b;
+        public final long c;
+        public final b.m.a.b d;
+
+        public b(long j, long j2, long j3, b.m.a.b bVar) {
+            this.a = j;
+            this.f1907b = j2;
+            this.c = j3;
+            this.d = bVar;
+        }
+
+        public long a() {
+            return this.a + this.c + (this.d.b() - this.f1907b);
+        }
+    }
+
+    public e(b.m.a.b bVar, c cVar, b.m.a.g.d.a aVar) {
         this.a = bVar;
         this.f1906b = cVar;
         this.c = aVar;
     }
 
-    public static void a(byte b2, byte b3, int i, long j) throws e$a {
+    public static void a(byte b2, byte b3, int i, long j) throws a {
         if (b2 == 3) {
-            throw new e$a("unsynchronized server");
+            throw new a("unsynchronized server");
         }
         if (b3 != 4 && b3 != 5) {
-            throw new e$a(b.d.b.a.a.q("untrusted mode: ", b3));
+            throw new a(b.d.b.a.a.q("untrusted mode: ", b3));
         }
         if (i == 0 || i > 15) {
-            throw new e$a(b.d.b.a.a.q("untrusted stratum: ", i));
+            throw new a(b.d.b.a.a.q("untrusted stratum: ", i));
         }
         if (j == 0) {
-            throw new e$a("zero transmitTime");
+            throw new a("zero transmitTime");
         }
     }
 
@@ -63,7 +91,7 @@ public class e {
         return ((b(bArr, i + 4) * 1000) / Permission.REQUEST_TO_SPEAK) + ((jB - 2208988800L) * 1000);
     }
 
-    public e$b d(String str, Long l) throws IOException {
+    public b d(String str, Long l) throws IOException {
         DatagramSocket datagramSocketC = null;
         try {
             InetAddress inetAddressA = this.f1906b.a(str);
@@ -99,9 +127,9 @@ public class e {
             long jC2 = c(bArrCopyOf, 32);
             long jC3 = c(bArrCopyOf, 40);
             a(b2, b3, i, jC3);
-            e$b e_b = new e$b(j5, jB2, ((jC3 - j5) + (jC2 - jC)) / 2, this.a);
+            b bVar = new b(j5, jB2, ((jC3 - j5) + (jC2 - jC)) / 2, this.a);
             datagramSocketC.close();
-            return e_b;
+            return bVar;
         } catch (Throwable th) {
             if (datagramSocketC != null) {
                 datagramSocketC.close();

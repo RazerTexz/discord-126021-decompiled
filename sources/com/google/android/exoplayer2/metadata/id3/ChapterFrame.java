@@ -1,7 +1,7 @@
 package com.google.android.exoplayer2.metadata.id3;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import b.i.a.c.f3.e0;
 import java.util.Arrays;
@@ -14,7 +14,19 @@ public final class ChapterFrame extends Id3Frame {
     public final long n;
     public final long o;
     public final Id3Frame[] p;
-    public static final Parcelable$Creator<ChapterFrame> CREATOR = new ChapterFrame$a();
+    public static final Parcelable.Creator<ChapterFrame> CREATOR = new a();
+
+    public class a implements Parcelable.Creator<ChapterFrame> {
+        @Override // android.os.Parcelable.Creator
+        public ChapterFrame createFromParcel(Parcel parcel) {
+            return new ChapterFrame(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public ChapterFrame[] newArray(int i) {
+            return new ChapterFrame[i];
+        }
+    }
 
     public ChapterFrame(String str, int i, int i2, long j, long j2, Id3Frame[] id3FrameArr) {
         super("CHAP");

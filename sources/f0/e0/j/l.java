@@ -16,7 +16,6 @@ import kotlin.TypeCastException;
 import okhttp3.Headers;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.Response$a;
 import okhttp3.internal.http2.ConnectionShutdownException;
 import okhttp3.internal.http2.StreamResetException;
 import okio.ByteString;
@@ -54,7 +53,7 @@ public final class l implements f0.e0.h.d {
         if (nVar == null) {
             d0.z.d.m.throwNpe();
         }
-        ((n$a) nVar.g()).close();
+        ((n.a) nVar.g()).close();
     }
 
     @Override // f0.e0.h.d
@@ -137,10 +136,10 @@ public final class l implements f0.e0.h.d {
         if (nVar3 == null) {
             d0.z.d.m.throwNpe();
         }
-        n$c n_c = nVar3.i;
+        n.c cVar = nVar3.i;
         long j = this.g.h;
         TimeUnit timeUnit = TimeUnit.MILLISECONDS;
-        n_c.g(j, timeUnit);
+        cVar.g(j, timeUnit);
         n nVar4 = this.c;
         if (nVar4 == null) {
             d0.z.d.m.throwNpe();
@@ -168,7 +167,7 @@ public final class l implements f0.e0.h.d {
     }
 
     @Override // f0.e0.h.d
-    public Response$a d(boolean z2) throws IOException {
+    public Response.a d(boolean z2) throws IOException {
         Headers headers;
         n nVar = this.c;
         if (nVar == null) {
@@ -221,19 +220,19 @@ public final class l implements f0.e0.h.d {
         if (jVarA == null) {
             throw new ProtocolException("Expected ':status' header not present");
         }
-        Response$a response$a = new Response$a();
-        response$a.f(yVar);
-        response$a.c = jVarA.f3630b;
-        response$a.e(jVarA.c);
+        Response.a aVar2 = new Response.a();
+        aVar2.f(yVar);
+        aVar2.c = jVarA.f3630b;
+        aVar2.e(jVarA.c);
         Object[] array = arrayList.toArray(new String[0]);
         if (array == null) {
             throw new TypeCastException("null cannot be cast to non-null type kotlin.Array<T>");
         }
-        response$a.d(new Headers((String[]) array, null));
-        if (z2 && response$a.c == 100) {
+        aVar2.d(new Headers((String[]) array, null));
+        if (z2 && aVar2.c == 100) {
             return null;
         }
-        return response$a;
+        return aVar2;
     }
 
     @Override // f0.e0.h.d

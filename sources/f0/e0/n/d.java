@@ -1,7 +1,7 @@
 package f0.e0.n;
 
 import androidx.browser.trusted.sharing.ShareTarget;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import androidx.core.view.PointerIconCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.adjust.sdk.Constants;
@@ -10,9 +10,10 @@ import com.discord.models.domain.ModelAuditLogEntry;
 import d0.g0.t;
 import d0.t.m;
 import f0.y;
-import g0.e$a;
+import java.io.Closeable;
 import java.io.IOException;
 import java.net.ProtocolException;
+import java.net.SocketTimeoutException;
 import java.util.ArrayDeque;
 import java.util.List;
 import java.util.Objects;
@@ -25,12 +26,12 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
+import okio.BufferedSink;
 import okio.ByteString;
-import okio.ByteString$a;
 
 /* JADX INFO: compiled from: RealWebSocket.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class d implements WebSocket, h$a {
+public final class d implements WebSocket, h.a {
     public f0.e c;
     public f0.e0.f.a d;
     public h e;
@@ -45,14 +46,14 @@ public final class d implements WebSocket, h$a {
     public final long f3658x;
 
     /* JADX INFO: renamed from: y, reason: collision with root package name */
-    public f f3659y;
+    public f0.e0.n.f f3659y;
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
     public long f3660z;
     public i f;
     public f0.e0.f.c g;
     public String h;
-    public d$c i;
+    public c i;
     public final ArrayDeque<ByteString> j;
     public final ArrayDeque<Object> k;
     public long l;
@@ -68,7 +69,133 @@ public final class d implements WebSocket, h$a {
     public final Random w;
     public static final List<y> a = m.listOf(y.HTTP_1_1);
 
-    public d(f0.e0.f.d dVar, Request request, WebSocketListener webSocketListener, Random random, long j, f fVar, long j2) {
+    /* JADX INFO: renamed from: f0.e0.n.d$d, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: RealWebSocket.kt */
+    public final class C0610d extends f0.e0.f.a {
+        public C0610d() {
+            super(b.d.b.a.a.J(new StringBuilder(), d.this.h, " writer"), false, 2);
+        }
+
+        @Override // f0.e0.f.a
+        public long a() {
+            try {
+                return d.this.m() ? 0L : -1L;
+            } catch (IOException e) {
+                d.this.i(e, null);
+                return -1L;
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: RealWebSocket.kt */
+    public final class a {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final ByteString f3661b;
+        public final long c;
+
+        public a(int i, ByteString byteString, long j) {
+            this.a = i;
+            this.f3661b = byteString;
+            this.c = j;
+        }
+    }
+
+    /* JADX INFO: compiled from: RealWebSocket.kt */
+    public final class b {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final ByteString f3662b;
+
+        public b(int i, ByteString byteString) {
+            d0.z.d.m.checkParameterIsNotNull(byteString, "data");
+            this.a = i;
+            this.f3662b = byteString;
+        }
+    }
+
+    /* JADX INFO: compiled from: RealWebSocket.kt */
+    public abstract class c implements Closeable {
+        public final boolean j;
+        public final g0.g k;
+        public final BufferedSink l;
+
+        public c(boolean z2, g0.g gVar, BufferedSink bufferedSink) {
+            d0.z.d.m.checkParameterIsNotNull(gVar, "source");
+            d0.z.d.m.checkParameterIsNotNull(bufferedSink, "sink");
+            this.j = z2;
+            this.k = gVar;
+            this.l = bufferedSink;
+        }
+    }
+
+    /* JADX INFO: compiled from: TaskQueue.kt */
+    public final class e extends f0.e0.f.a {
+        public final /* synthetic */ long e;
+        public final /* synthetic */ d f;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public e(String str, String str2, long j, d dVar, String str3, c cVar, f0.e0.n.f fVar) {
+            super(str2, true);
+            this.e = j;
+            this.f = dVar;
+        }
+
+        @Override // f0.e0.f.a
+        public long a() {
+            i iVar;
+            d dVar = this.f;
+            synchronized (dVar) {
+                if (!dVar.p && (iVar = dVar.f) != null) {
+                    int i = dVar.t ? dVar.q : -1;
+                    dVar.q++;
+                    dVar.t = true;
+                    if (i != -1) {
+                        StringBuilder sbU = b.d.b.a.a.U("sent ping but didn't receive pong within ");
+                        sbU.append(dVar.f3658x);
+                        sbU.append("ms (after ");
+                        sbU.append(i - 1);
+                        sbU.append(" successful ping/pongs)");
+                        dVar.i(new SocketTimeoutException(sbU.toString()), null);
+                    } else {
+                        try {
+                            ByteString byteString = ByteString.j;
+                            d0.z.d.m.checkParameterIsNotNull(byteString, "payload");
+                            iVar.b(9, byteString);
+                        } catch (IOException e) {
+                            dVar.i(e, null);
+                        }
+                    }
+                }
+            }
+            return this.e;
+        }
+    }
+
+    /* JADX INFO: compiled from: TaskQueue.kt */
+    public final class f extends f0.e0.f.a {
+        public final /* synthetic */ d e;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public f(String str, boolean z2, String str2, boolean z3, d dVar, i iVar, ByteString byteString, Ref$ObjectRef ref$ObjectRef, Ref$IntRef ref$IntRef, Ref$ObjectRef ref$ObjectRef2, Ref$ObjectRef ref$ObjectRef3, Ref$ObjectRef ref$ObjectRef4, Ref$ObjectRef ref$ObjectRef5) {
+            super(str2, z3);
+            this.e = dVar;
+        }
+
+        @Override // f0.e0.f.a
+        public long a() {
+            f0.e eVar = this.e.c;
+            if (eVar == null) {
+                d0.z.d.m.throwNpe();
+            }
+            eVar.cancel();
+            return -1L;
+        }
+    }
+
+    public d(f0.e0.f.d dVar, Request request, WebSocketListener webSocketListener, Random random, long j, f0.e0.n.f fVar, long j2) {
         d0.z.d.m.checkParameterIsNotNull(dVar, "taskRunner");
         d0.z.d.m.checkParameterIsNotNull(request, "originalRequest");
         d0.z.d.m.checkParameterIsNotNull(webSocketListener, "listener");
@@ -88,16 +215,16 @@ public final class d implements WebSocket, h$a {
             sbU.append(request.method);
             throw new IllegalArgumentException(sbU.toString().toString());
         }
-        ByteString$a byteString$a = ByteString.k;
+        ByteString.Companion companion = ByteString.INSTANCE;
         byte[] bArr = new byte[16];
         random.nextBytes(bArr);
-        this.f3656b = ByteString$a.d(byteString$a, bArr, 0, 0, 3).f();
+        this.f3656b = ByteString.Companion.d(companion, bArr, 0, 0, 3).f();
     }
 
     @Override // okhttp3.WebSocket
     public boolean a(String str) {
-        d0.z.d.m.checkParameterIsNotNull(str, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
-        ByteString byteStringC = ByteString.k.c(str);
+        d0.z.d.m.checkParameterIsNotNull(str, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+        ByteString byteStringC = ByteString.INSTANCE.c(str);
         synchronized (this) {
             if (!this.p && !this.m) {
                 if (this.l + ((long) byteStringC.j()) > Permission.MOVE_MEMBERS) {
@@ -105,7 +232,7 @@ public final class d implements WebSocket, h$a {
                     return false;
                 }
                 this.l += (long) byteStringC.j();
-                this.k.add(new d$b(1, byteStringC));
+                this.k.add(new b(1, byteStringC));
                 l();
                 return true;
             }
@@ -113,19 +240,19 @@ public final class d implements WebSocket, h$a {
         }
     }
 
-    @Override // f0.e0.n.h$a
+    @Override // f0.e0.n.h.a
     public void b(ByteString byteString) throws IOException {
         d0.z.d.m.checkParameterIsNotNull(byteString, "bytes");
         this.v.onMessage(this, byteString);
     }
 
-    @Override // f0.e0.n.h$a
+    @Override // f0.e0.n.h.a
     public void c(String str) throws IOException {
-        d0.z.d.m.checkParameterIsNotNull(str, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        d0.z.d.m.checkParameterIsNotNull(str, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         this.v.onMessage(this, str);
     }
 
-    @Override // f0.e0.n.h$a
+    @Override // f0.e0.n.h.a
     public synchronized void d(ByteString byteString) {
         d0.z.d.m.checkParameterIsNotNull(byteString, "payload");
         if (!this.p && (!this.m || !this.k.isEmpty())) {
@@ -155,14 +282,14 @@ public final class d implements WebSocket, h$a {
                     throw new IllegalArgumentException(str2.toString());
                 }
                 if (str != null) {
-                    byteStringC = ByteString.k.c(str);
+                    byteStringC = ByteString.INSTANCE.c(str);
                     if (!(((long) byteStringC.j()) <= 123)) {
                         throw new IllegalArgumentException(("reason.size() > 123: " + str).toString());
                     }
                 }
                 if (!this.p && !this.m) {
                     this.m = true;
-                    this.k.add(new d$a(i, byteStringC, 60000L));
+                    this.k.add(new a(i, byteStringC, 60000L));
                     l();
                     return true;
                 }
@@ -173,16 +300,16 @@ public final class d implements WebSocket, h$a {
         }
     }
 
-    @Override // f0.e0.n.h$a
+    @Override // f0.e0.n.h.a
     public synchronized void f(ByteString byteString) {
         d0.z.d.m.checkParameterIsNotNull(byteString, "payload");
         this.f3657s++;
         this.t = false;
     }
 
-    @Override // f0.e0.n.h$a
+    @Override // f0.e0.n.h.a
     public void g(int i, String str) {
-        d$c d_c;
+        c cVar;
         h hVar;
         i iVar;
         d0.z.d.m.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_REASON);
@@ -195,16 +322,16 @@ public final class d implements WebSocket, h$a {
             }
             this.n = i;
             this.o = str;
-            d_c = null;
+            cVar = null;
             if (this.m && this.k.isEmpty()) {
-                d$c d_c2 = this.i;
+                c cVar2 = this.i;
                 this.i = null;
                 hVar = this.e;
                 this.e = null;
                 iVar = this.f;
                 this.f = null;
                 this.g.f();
-                d_c = d_c2;
+                cVar = cVar2;
             } else {
                 hVar = null;
                 iVar = null;
@@ -212,16 +339,16 @@ public final class d implements WebSocket, h$a {
         }
         try {
             this.v.onClosing(this, i, str);
-            if (d_c != null) {
+            if (cVar != null) {
                 this.v.onClosed(this, i, str);
             }
-            if (d_c != null) {
+            if (cVar != null) {
                 byte[] bArr = f0.e0.c.a;
-                d0.z.d.m.checkParameterIsNotNull(d_c, "$this$closeQuietly");
+                d0.z.d.m.checkParameterIsNotNull(cVar, "$this$closeQuietly");
                 try {
-                    d_c.close();
-                } catch (RuntimeException e) {
-                    throw e;
+                    cVar.close();
+                } catch (RuntimeException e2) {
+                    throw e2;
                 } catch (Exception unused) {
                 }
             }
@@ -230,8 +357,8 @@ public final class d implements WebSocket, h$a {
                 d0.z.d.m.checkParameterIsNotNull(hVar, "$this$closeQuietly");
                 try {
                     hVar.close();
-                } catch (RuntimeException e2) {
-                    throw e2;
+                } catch (RuntimeException e3) {
+                    throw e3;
                 } catch (Exception unused2) {
                 }
             }
@@ -240,19 +367,19 @@ public final class d implements WebSocket, h$a {
                 d0.z.d.m.checkParameterIsNotNull(iVar, "$this$closeQuietly");
                 try {
                     iVar.close();
-                } catch (RuntimeException e3) {
-                    throw e3;
+                } catch (RuntimeException e4) {
+                    throw e4;
                 } catch (Exception unused3) {
                 }
             }
         } catch (Throwable th) {
-            if (d_c != null) {
+            if (cVar != null) {
                 byte[] bArr4 = f0.e0.c.a;
-                d0.z.d.m.checkParameterIsNotNull(d_c, "$this$closeQuietly");
+                d0.z.d.m.checkParameterIsNotNull(cVar, "$this$closeQuietly");
                 try {
-                    d_c.close();
-                } catch (RuntimeException e4) {
-                    throw e4;
+                    cVar.close();
+                } catch (RuntimeException e5) {
+                    throw e5;
                 } catch (Exception unused4) {
                 }
             }
@@ -261,8 +388,8 @@ public final class d implements WebSocket, h$a {
                 d0.z.d.m.checkParameterIsNotNull(hVar, "$this$closeQuietly");
                 try {
                     hVar.close();
-                } catch (RuntimeException e5) {
-                    throw e5;
+                } catch (RuntimeException e6) {
+                    throw e6;
                 } catch (Exception unused5) {
                 }
             }
@@ -274,8 +401,8 @@ public final class d implements WebSocket, h$a {
             try {
                 iVar.close();
                 throw th;
-            } catch (RuntimeException e6) {
-                throw e6;
+            } catch (RuntimeException e7) {
+                throw e7;
             } catch (Exception unused6) {
                 throw th;
             }
@@ -299,7 +426,7 @@ public final class d implements WebSocket, h$a {
             throw new ProtocolException("Expected 'Upgrade' header value 'websocket' but was '" + strA2 + '\'');
         }
         String strA3 = Response.a(response, "Sec-WebSocket-Accept", null, 2);
-        String strF = ByteString.k.c(this.f3656b + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11").g(Constants.SHA1).f();
+        String strF = ByteString.INSTANCE.c(this.f3656b + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11").g(Constants.SHA1).f();
         if (!(!d0.z.d.m.areEqual(strF, strA3))) {
             if (cVar == null) {
                 throw new ProtocolException("Web Socket exchange missing: bad interceptor?");
@@ -316,7 +443,7 @@ public final class d implements WebSocket, h$a {
                 return;
             }
             this.p = true;
-            d$c d_c = this.i;
+            c cVar = this.i;
             this.i = null;
             h hVar = this.e;
             this.e = null;
@@ -325,13 +452,13 @@ public final class d implements WebSocket, h$a {
             this.g.f();
             try {
                 this.v.onFailure(this, exc, response);
-                if (d_c != null) {
+                if (cVar != null) {
                     byte[] bArr = f0.e0.c.a;
-                    d0.z.d.m.checkParameterIsNotNull(d_c, "$this$closeQuietly");
+                    d0.z.d.m.checkParameterIsNotNull(cVar, "$this$closeQuietly");
                     try {
-                        d_c.close();
-                    } catch (RuntimeException e) {
-                        throw e;
+                        cVar.close();
+                    } catch (RuntimeException e2) {
+                        throw e2;
                     } catch (Exception unused) {
                     }
                 }
@@ -340,8 +467,8 @@ public final class d implements WebSocket, h$a {
                     d0.z.d.m.checkParameterIsNotNull(hVar, "$this$closeQuietly");
                     try {
                         hVar.close();
-                    } catch (RuntimeException e2) {
-                        throw e2;
+                    } catch (RuntimeException e3) {
+                        throw e3;
                     } catch (Exception unused2) {
                     }
                 }
@@ -350,19 +477,19 @@ public final class d implements WebSocket, h$a {
                     d0.z.d.m.checkParameterIsNotNull(iVar, "$this$closeQuietly");
                     try {
                         iVar.close();
-                    } catch (RuntimeException e3) {
-                        throw e3;
+                    } catch (RuntimeException e4) {
+                        throw e4;
                     } catch (Exception unused3) {
                     }
                 }
             } catch (Throwable th) {
-                if (d_c != null) {
+                if (cVar != null) {
                     byte[] bArr4 = f0.e0.c.a;
-                    d0.z.d.m.checkParameterIsNotNull(d_c, "$this$closeQuietly");
+                    d0.z.d.m.checkParameterIsNotNull(cVar, "$this$closeQuietly");
                     try {
-                        d_c.close();
-                    } catch (RuntimeException e4) {
-                        throw e4;
+                        cVar.close();
+                    } catch (RuntimeException e5) {
+                        throw e5;
                     } catch (Exception unused4) {
                     }
                 }
@@ -371,8 +498,8 @@ public final class d implements WebSocket, h$a {
                     d0.z.d.m.checkParameterIsNotNull(hVar, "$this$closeQuietly");
                     try {
                         hVar.close();
-                    } catch (RuntimeException e5) {
-                        throw e5;
+                    } catch (RuntimeException e6) {
+                        throw e6;
                     } catch (Exception unused5) {
                     }
                 }
@@ -384,8 +511,8 @@ public final class d implements WebSocket, h$a {
                 try {
                     iVar.close();
                     throw th;
-                } catch (RuntimeException e6) {
-                    throw e6;
+                } catch (RuntimeException e7) {
+                    throw e7;
                 } catch (Exception unused6) {
                     throw th;
                 }
@@ -393,31 +520,31 @@ public final class d implements WebSocket, h$a {
         }
     }
 
-    public final void j(String str, d$c d_c) throws IOException {
+    public final void j(String str, c cVar) throws IOException {
         d0.z.d.m.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        d0.z.d.m.checkParameterIsNotNull(d_c, "streams");
-        f fVar = this.f3659y;
+        d0.z.d.m.checkParameterIsNotNull(cVar, "streams");
+        f0.e0.n.f fVar = this.f3659y;
         if (fVar == null) {
             d0.z.d.m.throwNpe();
         }
         synchronized (this) {
             this.h = str;
-            this.i = d_c;
-            boolean z2 = d_c.j;
-            this.f = new i(z2, d_c.l, this.w, fVar.a, z2 ? fVar.c : fVar.e, this.f3660z);
-            this.d = new d$d(this);
+            this.i = cVar;
+            boolean z2 = cVar.j;
+            this.f = new i(z2, cVar.l, this.w, fVar.a, z2 ? fVar.c : fVar.e, this.f3660z);
+            this.d = new C0610d();
             long j = this.f3658x;
             if (j != 0) {
                 long nanos = TimeUnit.MILLISECONDS.toNanos(j);
                 String str2 = str + " ping";
-                this.g.c(new d$e(str2, str2, nanos, this, str, d_c, fVar), nanos);
+                this.g.c(new e(str2, str2, nanos, this, str, cVar, fVar), nanos);
             }
             if (!this.k.isEmpty()) {
                 l();
             }
         }
-        boolean z3 = d_c.j;
-        this.e = new h(z3, d_c.k, this, fVar.a, z3 ^ true ? fVar.c : fVar.e);
+        boolean z3 = cVar.j;
+        this.e = new h(z3, cVar.k, this, fVar.a, z3 ^ true ? fVar.c : fVar.e);
     }
 
     public final void k() throws IOException {
@@ -445,26 +572,26 @@ public final class d implements WebSocket, h$a {
                         hVar.v.B(hVar.q, j);
                         if (!hVar.u) {
                             g0.e eVar = hVar.q;
-                            e$a e_a = hVar.t;
-                            if (e_a == null) {
+                            g0.e.a aVar = hVar.t;
+                            if (aVar == null) {
                                 d0.z.d.m.throwNpe();
                             }
-                            eVar.u(e_a);
+                            eVar.u(aVar);
                             hVar.t.b(hVar.q.k - hVar.l);
-                            e$a e_a2 = hVar.t;
+                            g0.e.a aVar2 = hVar.t;
                             byte[] bArr = hVar.f3665s;
                             if (bArr == null) {
                                 d0.z.d.m.throwNpe();
                             }
-                            g.a(e_a2, bArr);
+                            g.a(aVar2, bArr);
                             hVar.t.close();
                         }
                     }
                     if (hVar.m) {
                         if (hVar.o) {
-                            c cVar = hVar.r;
+                            f0.e0.n.c cVar = hVar.r;
                             if (cVar == null) {
-                                cVar = new c(hVar.f3667y);
+                                cVar = new f0.e0.n.c(hVar.f3667y);
                                 hVar.r = cVar;
                             }
                             g0.e eVar2 = hVar.q;
@@ -550,7 +677,7 @@ public final class d implements WebSocket, h$a {
         Ref$ObjectRef ref$ObjectRef3;
         Ref$ObjectRef ref$ObjectRef4;
         Ref$ObjectRef ref$ObjectRef5;
-        d$c d_c;
+        c cVar;
         h hVar;
         i iVar;
         Ref$ObjectRef ref$ObjectRef6 = new Ref$ObjectRef();
@@ -574,7 +701,7 @@ public final class d implements WebSocket, h$a {
             if (byteStringPoll == null) {
                 ?? Poll = this.k.poll();
                 ref$ObjectRef6.element = Poll;
-                if (Poll instanceof d$a) {
+                if (Poll instanceof a) {
                     int i = this.n;
                     ref$IntRef.element = i;
                     ref$ObjectRef7.element = this.o;
@@ -593,12 +720,12 @@ public final class d implements WebSocket, h$a {
                         if (t == 0) {
                             throw new TypeCastException("null cannot be cast to non-null type okhttp3.internal.ws.RealWebSocket.Close");
                         }
-                        long j = ((d$a) t).c;
-                        f0.e0.f.c cVar = this.g;
+                        long j = ((a) t).c;
+                        f0.e0.f.c cVar2 = this.g;
                         String str = this.h + " cancel";
                         ref$ObjectRef = ref$ObjectRef10;
                         ref$ObjectRef2 = ref$ObjectRef9;
-                        cVar.c(new d$f(str, true, str, true, this, iVar2, byteStringPoll, ref$ObjectRef6, ref$IntRef, ref$ObjectRef7, ref$ObjectRef8, ref$ObjectRef2, ref$ObjectRef), TimeUnit.MILLISECONDS.toNanos(j));
+                        cVar2.c(new f(str, true, str, true, this, iVar2, byteStringPoll, ref$ObjectRef6, ref$IntRef, ref$ObjectRef7, ref$ObjectRef8, ref$ObjectRef2, ref$ObjectRef), TimeUnit.MILLISECONDS.toNanos(j));
                     }
                 } else {
                     ref$ObjectRef = ref$ObjectRef10;
@@ -616,26 +743,26 @@ public final class d implements WebSocket, h$a {
                 if (ref$ObjectRef11 == 0) {
                     ref$ObjectRef4 = iVar2;
                     T t2 = ref$ObjectRef6.element;
-                    if (t2 instanceof d$b) {
+                    if (t2 instanceof b) {
                         if (t2 == 0) {
                             throw new TypeCastException("null cannot be cast to non-null type okhttp3.internal.ws.RealWebSocket.Message");
                         }
-                        d$b d_b = (d$b) t2;
+                        b bVar = (b) t2;
                         if (ref$ObjectRef4 == 0) {
                             d0.z.d.m.throwNpe();
                         }
-                        ref$ObjectRef4.c(d_b.a, d_b.f3662b);
+                        ref$ObjectRef4.c(bVar.a, bVar.f3662b);
                         synchronized (this) {
-                            this.l -= (long) d_b.f3662b.j();
+                            this.l -= (long) bVar.f3662b.j();
                         }
-                        d$c d_c2 = (d$c) ref$ObjectRef4.element;
-                        if (d_c2 != null) {
+                        c cVar3 = (c) ref$ObjectRef4.element;
+                        if (cVar3 != null) {
                             byte[] bArr = f0.e0.c.a;
-                            d0.z.d.m.checkParameterIsNotNull(d_c2, "$this$closeQuietly");
+                            d0.z.d.m.checkParameterIsNotNull(cVar3, "$this$closeQuietly");
                             try {
-                                d_c2.close();
-                            } catch (RuntimeException e) {
-                                throw e;
+                                cVar3.close();
+                            } catch (RuntimeException e2) {
+                                throw e2;
                             } catch (Exception unused) {
                             }
                         }
@@ -645,8 +772,8 @@ public final class d implements WebSocket, h$a {
                             d0.z.d.m.checkParameterIsNotNull(hVar2, "$this$closeQuietly");
                             try {
                                 hVar2.close();
-                            } catch (RuntimeException e2) {
-                                throw e2;
+                            } catch (RuntimeException e3) {
+                                throw e3;
                             } catch (Exception unused2) {
                             }
                         }
@@ -659,13 +786,13 @@ public final class d implements WebSocket, h$a {
                         try {
                             iVar3.close();
                             throw th;
-                        } catch (RuntimeException e3) {
-                            throw e3;
+                        } catch (RuntimeException e4) {
+                            throw e4;
                         } catch (Exception unused3) {
                             throw th;
                         }
                     }
-                    ref$ObjectRef3 = t2 instanceof d$a;
+                    ref$ObjectRef3 = t2 instanceof a;
                     try {
                         if (ref$ObjectRef3 == 0) {
                             throw new AssertionError();
@@ -673,16 +800,16 @@ public final class d implements WebSocket, h$a {
                         if (t2 == 0) {
                             throw new TypeCastException("null cannot be cast to non-null type okhttp3.internal.ws.RealWebSocket.Close");
                         }
-                        d$a d_a = (d$a) t2;
+                        a aVar = (a) t2;
                         if (ref$ObjectRef4 == 0) {
                             d0.z.d.m.throwNpe();
                         }
-                        ref$ObjectRef4.a(d_a.a, d_a.f3661b);
+                        ref$ObjectRef4.a(aVar.a, aVar.f3661b);
                         ref$ObjectRef4 = ref$ObjectRef8;
                         try {
-                            d$c d_c3 = (d$c) ref$ObjectRef4.element;
+                            c cVar4 = (c) ref$ObjectRef4.element;
                             ref$ObjectRef5 = ref$ObjectRef4;
-                            if (d_c3 != null) {
+                            if (cVar4 != null) {
                                 WebSocketListener webSocketListener = this.v;
                                 int i2 = ref$IntRef.element;
                                 String str2 = (String) ref$ObjectRef7.element;
@@ -700,14 +827,14 @@ public final class d implements WebSocket, h$a {
                     } catch (Throwable th2) {
                         th = th2;
                     }
-                    d_c = (d$c) ref$ObjectRef5.element;
-                    if (d_c != null) {
+                    cVar = (c) ref$ObjectRef5.element;
+                    if (cVar != null) {
                         byte[] bArr4 = f0.e0.c.a;
-                        d0.z.d.m.checkParameterIsNotNull(d_c, "$this$closeQuietly");
+                        d0.z.d.m.checkParameterIsNotNull(cVar, "$this$closeQuietly");
                         try {
-                            d_c.close();
-                        } catch (RuntimeException e4) {
-                            throw e4;
+                            cVar.close();
+                        } catch (RuntimeException e5) {
+                            throw e5;
                         } catch (Exception unused4) {
                         }
                     }
@@ -717,8 +844,8 @@ public final class d implements WebSocket, h$a {
                         d0.z.d.m.checkParameterIsNotNull(hVar, "$this$closeQuietly");
                         try {
                             hVar.close();
-                        } catch (RuntimeException e5) {
-                            throw e5;
+                        } catch (RuntimeException e6) {
+                            throw e6;
                         } catch (Exception unused5) {
                         }
                     }
@@ -728,8 +855,8 @@ public final class d implements WebSocket, h$a {
                         d0.z.d.m.checkParameterIsNotNull(iVar, "$this$closeQuietly");
                         try {
                             iVar.close();
-                        } catch (RuntimeException e6) {
-                            throw e6;
+                        } catch (RuntimeException e7) {
+                            throw e7;
                         } catch (Exception unused6) {
                         }
                     }
@@ -742,11 +869,11 @@ public final class d implements WebSocket, h$a {
                 d0.z.d.m.checkParameterIsNotNull(ref$ObjectRef11, "payload");
                 iVar2.b(10, ref$ObjectRef11);
                 ref$ObjectRef5 = ref$ObjectRef8;
-                d_c = (d$c) ref$ObjectRef5.element;
-                if (d_c != null) {
+                cVar = (c) ref$ObjectRef5.element;
+                if (cVar != null) {
                     byte[] bArr7 = f0.e0.c.a;
-                    d0.z.d.m.checkParameterIsNotNull(d_c, "$this$closeQuietly");
-                    d_c.close();
+                    d0.z.d.m.checkParameterIsNotNull(cVar, "$this$closeQuietly");
+                    cVar.close();
                 }
                 hVar = (h) ref$ObjectRef2.element;
                 if (hVar != null) {

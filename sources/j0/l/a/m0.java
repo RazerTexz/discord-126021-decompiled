@@ -7,10 +7,10 @@ import rx.functions.Action0;
 /* JADX INFO: compiled from: OperatorBufferWithTime.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class m0 implements Action0 {
-    public final /* synthetic */ n0$a j;
+    public final /* synthetic */ n0.a j;
 
-    public m0(n0$a n0_a) {
-        this.j = n0_a;
+    public m0(n0.a aVar) {
+        this.j = aVar;
     }
 
     /* JADX WARN: Type inference fix 'apply assigned field type' failed
@@ -25,18 +25,18 @@ public class m0 implements Action0 {
      */
     @Override // rx.functions.Action0
     public void call() {
-        n0$a n0_a = this.j;
-        synchronized (n0_a) {
-            if (n0_a.m) {
+        n0.a aVar = this.j;
+        synchronized (aVar) {
+            if (aVar.m) {
                 return;
             }
-            Collection collection = n0_a.l;
-            n0_a.l = new ArrayList();
+            Collection collection = aVar.l;
+            aVar.l = new ArrayList();
             try {
-                n0_a.j.onNext(collection);
+                aVar.j.onNext(collection);
             } catch (Throwable th) {
                 b.i.a.f.e.o.f.o1(th);
-                n0_a.onError(th);
+                aVar.onError(th);
             }
         }
     }

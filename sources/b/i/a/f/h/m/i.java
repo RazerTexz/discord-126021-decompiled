@@ -12,7 +12,7 @@ public final class i extends l<MessageListener> {
         this.a = list;
     }
 
-    @Override // b.i.a.f.e.h.j.k$b
+    @Override // b.i.a.f.e.h.j.k.b
     public final void a(Object obj) {
         MessageListener messageListener = (MessageListener) obj;
         for (Update update : this.a) {

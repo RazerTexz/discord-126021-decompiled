@@ -12,7 +12,7 @@ public class l extends AnimatorListenerAdapter {
         this.a = hVar;
     }
 
-    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator$AnimatorListener
+    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
     public void onAnimationEnd(Animator animator) {
         h hVar = this.a;
         hVar.c.setChecked(hVar.j);

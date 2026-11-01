@@ -3,14 +3,14 @@ package com.discord.widgets.friends;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TextView;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.databinding.SuggestedFriendViewBinding;
 import com.discord.utilities.icon.IconUtils;
-import com.discord.utilities.images.MGImages$ChangeDetector;
+import com.discord.utilities.images.MGImages;
 import com.facebook.drawee.view.SimpleDraweeView;
 import d0.z.d.m;
 import kotlin.Unit;
@@ -22,6 +22,36 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: loaded from: classes2.dex */
 public final class SuggestedFriendView extends ConstraintLayout {
     private final SuggestedFriendViewBinding binding;
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.SuggestedFriendView$setOnDeclineClicked$1, reason: invalid class name */
+    /* JADX INFO: compiled from: SuggestedFriendView.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ Function0 $onDeclineClicked;
+
+        public AnonymousClass1(Function0 function0) {
+            this.$onDeclineClicked = function0;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onDeclineClicked.invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.SuggestedFriendView$setOnSendClicked$1, reason: invalid class name */
+    /* JADX INFO: compiled from: SuggestedFriendView.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ Function0 $onSendClicked;
+
+        public AnonymousClass1(Function0 function0) {
+            this.$onSendClicked = function0;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onSendClicked.invoke();
+        }
+    }
 
     public SuggestedFriendView(Context context) {
         this(context, null, 0, 6, null);
@@ -42,17 +72,17 @@ public final class SuggestedFriendView extends ConstraintLayout {
         String forUser = IconUtils.getForUser(lValueOf, avatarUrl, discriminator, false, Integer.valueOf(simpleDraweeView.getHeight()));
         SimpleDraweeView simpleDraweeView2 = this.binding.f2156b;
         m.checkNotNullExpressionValue(simpleDraweeView2, "binding.suggestedFriendAvatar");
-        IconUtils.setIcon$default(simpleDraweeView2, forUser, 0, (Function1) null, (MGImages$ChangeDetector) null, 28, (Object) null);
+        IconUtils.setIcon$default(simpleDraweeView2, forUser, 0, (Function1) null, (MGImages.ChangeDetector) null, 28, (Object) null);
     }
 
     public final void setOnDeclineClicked(Function0<Unit> onDeclineClicked) {
         m.checkNotNullParameter(onDeclineClicked, "onDeclineClicked");
-        this.binding.c.setOnClickListener(new SuggestedFriendView$setOnDeclineClicked$1(onDeclineClicked));
+        this.binding.c.setOnClickListener(new AnonymousClass1(onDeclineClicked));
     }
 
     public final void setOnSendClicked(Function0<Unit> onSendClicked) {
         m.checkNotNullParameter(onSendClicked, "onSendClicked");
-        this.binding.e.setOnClickListener(new SuggestedFriendView$setOnSendClicked$1(onSendClicked));
+        this.binding.e.setOnClickListener(new AnonymousClass1(onSendClicked));
     }
 
     public final void setPublicName(String publicName) {
@@ -72,21 +102,21 @@ public final class SuggestedFriendView extends ConstraintLayout {
     public SuggestedFriendView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(R$layout.suggested_friend_view, this);
-        int i2 = R$id.suggested_friend_avatar;
-        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R$id.suggested_friend_avatar);
+        LayoutInflater.from(context).inflate(R.layout.suggested_friend_view, this);
+        int i2 = R.id.suggested_friend_avatar;
+        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R.id.suggested_friend_avatar);
         if (simpleDraweeView != null) {
-            i2 = R$id.suggested_friend_decline;
-            AppCompatImageView appCompatImageView = (AppCompatImageView) findViewById(R$id.suggested_friend_decline);
+            i2 = R.id.suggested_friend_decline;
+            AppCompatImageView appCompatImageView = (AppCompatImageView) findViewById(R.id.suggested_friend_decline);
             if (appCompatImageView != null) {
-                i2 = R$id.suggested_friend_public_name;
-                TextView textView = (TextView) findViewById(R$id.suggested_friend_public_name);
+                i2 = R.id.suggested_friend_public_name;
+                TextView textView = (TextView) findViewById(R.id.suggested_friend_public_name);
                 if (textView != null) {
-                    i2 = R$id.suggested_friend_send_request;
-                    AppCompatImageView appCompatImageView2 = (AppCompatImageView) findViewById(R$id.suggested_friend_send_request);
+                    i2 = R.id.suggested_friend_send_request;
+                    AppCompatImageView appCompatImageView2 = (AppCompatImageView) findViewById(R.id.suggested_friend_send_request);
                     if (appCompatImageView2 != null) {
-                        i2 = R$id.suggested_friend_username;
-                        TextView textView2 = (TextView) findViewById(R$id.suggested_friend_username);
+                        i2 = R.id.suggested_friend_username;
+                        TextView textView2 = (TextView) findViewById(R.id.suggested_friend_username);
                         if (textView2 != null) {
                             SuggestedFriendViewBinding suggestedFriendViewBinding = new SuggestedFriendViewBinding(this, simpleDraweeView, appCompatImageView, textView, appCompatImageView2, textView2);
                             m.checkNotNullExpressionValue(suggestedFriendViewBinding, "SuggestedFriendViewBindi…ater.from(context), this)");

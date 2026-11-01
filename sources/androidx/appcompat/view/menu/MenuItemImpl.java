@@ -5,32 +5,29 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
-import android.view.ContextMenu$ContextMenuInfo;
+import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.MenuItem$OnActionExpandListener;
-import android.view.MenuItem$OnMenuItemClickListener;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.view.ViewDebug$CapturedViewProperty;
+import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
-import androidx.appcompat.R$string;
+import androidx.appcompat.R;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.internal.view.SupportMenuItem;
 import androidx.core.view.ActionProvider;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public final class MenuItemImpl implements SupportMenuItem {
     private static final int CHECKABLE = 1;
     private static final int CHECKED = 2;
@@ -44,7 +41,7 @@ public final class MenuItemImpl implements SupportMenuItem {
     private ActionProvider mActionProvider;
     private View mActionView;
     private final int mCategoryOrder;
-    private MenuItem$OnMenuItemClickListener mClickListener;
+    private MenuItem.OnMenuItemClickListener mClickListener;
     private CharSequence mContentDescription;
     private final int mGroup;
     private Drawable mIconDrawable;
@@ -52,8 +49,8 @@ public final class MenuItemImpl implements SupportMenuItem {
     private Intent mIntent;
     private Runnable mItemCallback;
     public MenuBuilder mMenu;
-    private ContextMenu$ContextMenuInfo mMenuInfo;
-    private MenuItem$OnActionExpandListener mOnActionExpandListener;
+    private ContextMenu.ContextMenuInfo mMenuInfo;
+    private MenuItem.OnActionExpandListener mOnActionExpandListener;
     private final int mOrdering;
     private char mShortcutAlphabeticChar;
     private char mShortcutNumericChar;
@@ -66,12 +63,24 @@ public final class MenuItemImpl implements SupportMenuItem {
     private int mShortcutAlphabeticModifiers = 4096;
     private int mIconResId = 0;
     private ColorStateList mIconTintList = null;
-    private PorterDuff$Mode mIconTintMode = null;
+    private PorterDuff.Mode mIconTintMode = null;
     private boolean mHasIconTint = false;
     private boolean mHasIconTintMode = false;
     private boolean mNeedToApplyIconTint = false;
     private int mFlags = 16;
     private boolean mIsActionViewExpanded = false;
+
+    /* JADX INFO: renamed from: androidx.appcompat.view.menu.MenuItemImpl$1, reason: invalid class name */
+    public class AnonymousClass1 implements ActionProvider.VisibilityListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // androidx.core.view.ActionProvider.VisibilityListener
+        public void onActionProviderVisibilityChanged(boolean z2) {
+            MenuItemImpl menuItemImpl = MenuItemImpl.this;
+            menuItemImpl.mMenu.onItemVisibleChanged(menuItemImpl);
+        }
+    }
 
     public MenuItemImpl(MenuBuilder menuBuilder, int i, int i2, int i3, int i4, CharSequence charSequence, int i5) {
         this.mShowAsAction = 0;
@@ -116,8 +125,8 @@ public final class MenuItemImpl implements SupportMenuItem {
         if (this.mActionView == null) {
             return true;
         }
-        MenuItem$OnActionExpandListener menuItem$OnActionExpandListener = this.mOnActionExpandListener;
-        if (menuItem$OnActionExpandListener == null || menuItem$OnActionExpandListener.onMenuItemActionCollapse(this)) {
+        MenuItem.OnActionExpandListener onActionExpandListener = this.mOnActionExpandListener;
+        if (onActionExpandListener == null || onActionExpandListener.onMenuItemActionCollapse(this)) {
             return this.mMenu.collapseItemActionView(this);
         }
         return false;
@@ -128,8 +137,8 @@ public final class MenuItemImpl implements SupportMenuItem {
         if (!hasCollapsibleActionView()) {
             return false;
         }
-        MenuItem$OnActionExpandListener menuItem$OnActionExpandListener = this.mOnActionExpandListener;
-        if (menuItem$OnActionExpandListener == null || menuItem$OnActionExpandListener.onMenuItemActionExpand(this)) {
+        MenuItem.OnActionExpandListener onActionExpandListener = this.mOnActionExpandListener;
+        if (onActionExpandListener == null || onActionExpandListener.onMenuItemActionExpand(this)) {
             return this.mMenu.expandItemActionView(this);
         }
         return false;
@@ -200,7 +209,7 @@ public final class MenuItemImpl implements SupportMenuItem {
     }
 
     @Override // androidx.core.internal.view.SupportMenuItem, android.view.MenuItem
-    public PorterDuff$Mode getIconTintMode() {
+    public PorterDuff.Mode getIconTintMode() {
         return this.mIconTintMode;
     }
 
@@ -210,13 +219,13 @@ public final class MenuItemImpl implements SupportMenuItem {
     }
 
     @Override // android.view.MenuItem
-    @ViewDebug$CapturedViewProperty
+    @ViewDebug.CapturedViewProperty
     public int getItemId() {
         return this.mId;
     }
 
     @Override // android.view.MenuItem
-    public ContextMenu$ContextMenuInfo getMenuInfo() {
+    public ContextMenu.ContextMenuInfo getMenuInfo() {
         return this.mMenuInfo;
     }
 
@@ -251,23 +260,23 @@ public final class MenuItemImpl implements SupportMenuItem {
         Resources resources = this.mMenu.getContext().getResources();
         StringBuilder sb = new StringBuilder();
         if (ViewConfiguration.get(this.mMenu.getContext()).hasPermanentMenuKey()) {
-            sb.append(resources.getString(R$string.abc_prepend_shortcut_label));
+            sb.append(resources.getString(R.string.abc_prepend_shortcut_label));
         }
         int i = this.mMenu.isQwertyMode() ? this.mShortcutAlphabeticModifiers : this.mShortcutNumericModifiers;
-        appendModifier(sb, i, 65536, resources.getString(R$string.abc_menu_meta_shortcut_label));
-        appendModifier(sb, i, 4096, resources.getString(R$string.abc_menu_ctrl_shortcut_label));
-        appendModifier(sb, i, 2, resources.getString(R$string.abc_menu_alt_shortcut_label));
-        appendModifier(sb, i, 1, resources.getString(R$string.abc_menu_shift_shortcut_label));
-        appendModifier(sb, i, 4, resources.getString(R$string.abc_menu_sym_shortcut_label));
-        appendModifier(sb, i, 8, resources.getString(R$string.abc_menu_function_shortcut_label));
+        appendModifier(sb, i, 65536, resources.getString(R.string.abc_menu_meta_shortcut_label));
+        appendModifier(sb, i, 4096, resources.getString(R.string.abc_menu_ctrl_shortcut_label));
+        appendModifier(sb, i, 2, resources.getString(R.string.abc_menu_alt_shortcut_label));
+        appendModifier(sb, i, 1, resources.getString(R.string.abc_menu_shift_shortcut_label));
+        appendModifier(sb, i, 4, resources.getString(R.string.abc_menu_sym_shortcut_label));
+        appendModifier(sb, i, 8, resources.getString(R.string.abc_menu_function_shortcut_label));
         if (shortcut == '\b') {
-            sb.append(resources.getString(R$string.abc_menu_delete_shortcut_label));
+            sb.append(resources.getString(R.string.abc_menu_delete_shortcut_label));
         } else if (shortcut == '\n') {
-            sb.append(resources.getString(R$string.abc_menu_enter_shortcut_label));
+            sb.append(resources.getString(R.string.abc_menu_enter_shortcut_label));
         } else if (shortcut != ' ') {
             sb.append(shortcut);
         } else {
-            sb.append(resources.getString(R$string.abc_menu_space_shortcut_label));
+            sb.append(resources.getString(R.string.abc_menu_space_shortcut_label));
         }
         return sb.toString();
     }
@@ -283,7 +292,7 @@ public final class MenuItemImpl implements SupportMenuItem {
     }
 
     @Override // android.view.MenuItem
-    @ViewDebug$CapturedViewProperty
+    @ViewDebug.CapturedViewProperty
     public CharSequence getTitle() {
         return this.mTitle;
     }
@@ -294,8 +303,8 @@ public final class MenuItemImpl implements SupportMenuItem {
         return charSequence != null ? charSequence : this.mTitle;
     }
 
-    public CharSequence getTitleForItemView(MenuView$ItemView menuView$ItemView) {
-        return (menuView$ItemView == null || !menuView$ItemView.prefersCondensedTitle()) ? getTitle() : getTitleCondensed();
+    public CharSequence getTitleForItemView(MenuView.ItemView itemView) {
+        return (itemView == null || !itemView.prefersCondensedTitle()) ? getTitle() : getTitleCondensed();
     }
 
     @Override // androidx.core.internal.view.SupportMenuItem, android.view.MenuItem
@@ -320,8 +329,8 @@ public final class MenuItemImpl implements SupportMenuItem {
     }
 
     public boolean invoke() {
-        MenuItem$OnMenuItemClickListener menuItem$OnMenuItemClickListener = this.mClickListener;
-        if (menuItem$OnMenuItemClickListener != null && menuItem$OnMenuItemClickListener.onMenuItemClick(this)) {
+        MenuItem.OnMenuItemClickListener onMenuItemClickListener = this.mClickListener;
+        if (onMenuItemClickListener != null && onMenuItemClickListener.onMenuItemClick(this)) {
             return true;
         }
         MenuBuilder menuBuilder = this.mMenu;
@@ -495,8 +504,8 @@ public final class MenuItemImpl implements SupportMenuItem {
     }
 
     @Override // androidx.core.internal.view.SupportMenuItem, android.view.MenuItem
-    public MenuItem setIconTintMode(PorterDuff$Mode porterDuff$Mode) {
-        this.mIconTintMode = porterDuff$Mode;
+    public MenuItem setIconTintMode(PorterDuff.Mode mode) {
+        this.mIconTintMode = mode;
         this.mHasIconTintMode = true;
         this.mNeedToApplyIconTint = true;
         this.mMenu.onItemsChanged(false);
@@ -517,8 +526,8 @@ public final class MenuItemImpl implements SupportMenuItem {
         }
     }
 
-    public void setMenuInfo(ContextMenu$ContextMenuInfo contextMenu$ContextMenuInfo) {
-        this.mMenuInfo = contextMenu$ContextMenuInfo;
+    public void setMenuInfo(ContextMenu.ContextMenuInfo contextMenuInfo) {
+        this.mMenuInfo = contextMenuInfo;
     }
 
     @Override // android.view.MenuItem
@@ -532,14 +541,14 @@ public final class MenuItemImpl implements SupportMenuItem {
     }
 
     @Override // android.view.MenuItem
-    public MenuItem setOnActionExpandListener(MenuItem$OnActionExpandListener menuItem$OnActionExpandListener) {
-        this.mOnActionExpandListener = menuItem$OnActionExpandListener;
+    public MenuItem setOnActionExpandListener(MenuItem.OnActionExpandListener onActionExpandListener) {
+        this.mOnActionExpandListener = onActionExpandListener;
         return this;
     }
 
     @Override // android.view.MenuItem
-    public MenuItem setOnMenuItemClickListener(MenuItem$OnMenuItemClickListener menuItem$OnMenuItemClickListener) {
-        this.mClickListener = menuItem$OnMenuItemClickListener;
+    public MenuItem setOnMenuItemClickListener(MenuItem.OnMenuItemClickListener onMenuItemClickListener) {
+        this.mClickListener = onMenuItemClickListener;
         return this;
     }
 
@@ -582,7 +591,7 @@ public final class MenuItemImpl implements SupportMenuItem {
         this.mMenu.onItemsChanged(true);
         ActionProvider actionProvider3 = this.mActionProvider;
         if (actionProvider3 != null) {
-            actionProvider3.setVisibilityListener(new MenuItemImpl$1(this));
+            actionProvider3.setVisibilityListener(new AnonymousClass1());
         }
         return this;
     }

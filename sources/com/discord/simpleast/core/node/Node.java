@@ -1,15 +1,72 @@
 package com.discord.simpleast.core.node;
 
 import android.text.SpannableStringBuilder;
+import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: Node.kt */
 /* JADX INFO: loaded from: classes.dex */
 public class Node<R> {
     private Collection<Node<R>> children;
+
+    /* JADX INFO: compiled from: Node.kt */
+    public class a<R> extends Node<R> {
+
+        /* JADX INFO: renamed from: com.discord.simpleast.core.node.Node$a$a, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: Node.kt */
+        public final class C0189a extends o implements Function1<Node<R>, CharSequence> {
+            public static final C0189a j = new C0189a();
+
+            public C0189a() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public CharSequence invoke(Object obj) {
+                Node node = (Node) obj;
+                m.checkNotNullParameter(node, "it");
+                return node.toString();
+            }
+        }
+
+        public a(Node<R>... nodeArr) {
+            m.checkNotNullParameter(nodeArr, "children");
+            ArrayList arrayList = new ArrayList();
+            for (Node<R> node : nodeArr) {
+                if (node != null) {
+                    arrayList.add(node);
+                }
+            }
+            super(u.toMutableList((Collection) arrayList));
+        }
+
+        @Override // com.discord.simpleast.core.node.Node
+        public void render(SpannableStringBuilder spannableStringBuilder, R r) {
+            m.checkNotNullParameter(spannableStringBuilder, "builder");
+            Collection<Node<R>> children = getChildren();
+            if (children != null) {
+                Iterator<T> it = children.iterator();
+                while (it.hasNext()) {
+                    ((Node) it.next()).render(spannableStringBuilder, r);
+                }
+            }
+        }
+
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append(getClass().getSimpleName());
+            sb.append(" >\n");
+            Collection<Node<R>> children = getChildren();
+            sb.append(children != null ? u.joinToString$default(children, "\n->", ">>", "\n>|", 0, null, C0189a.j, 24, null) : null);
+            return sb.toString();
+        }
+    }
 
     public Node() {
         this(null, 1, null);

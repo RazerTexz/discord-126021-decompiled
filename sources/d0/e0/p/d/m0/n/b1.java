@@ -14,7 +14,7 @@ public final class b1 implements Function1<d0.e0.p.d.m0.g.b, Boolean> {
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public Boolean invoke2(d0.e0.p.d.m0.g.b bVar) {
         if (bVar != null) {
-            return Boolean.valueOf(!bVar.equals(d0.e0.p.d.m0.b.k$a.G));
+            return Boolean.valueOf(!bVar.equals(d0.e0.p.d.m0.b.k.a.G));
         }
         throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", ModelAuditLogEntry.CHANGE_KEY_NAME, "kotlin/reflect/jvm/internal/impl/types/TypeSubstitutor$1", "invoke"));
     }

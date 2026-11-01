@@ -4,18 +4,58 @@ import android.os.Looper;
 import androidx.annotation.Nullable;
 import b.i.a.c.j1;
 import com.google.android.exoplayer2.drm.DrmSession;
+import com.google.android.exoplayer2.drm.UnsupportedDrmException;
 
 /* JADX INFO: compiled from: DrmSessionManager.java */
 /* JADX INFO: loaded from: classes3.dex */
 public interface u {
-    public static final u a = new u$a();
+    public static final u a = new a();
+
+    /* JADX INFO: compiled from: DrmSessionManager.java */
+    public class a implements u {
+        @Override // b.i.a.c.w2.u
+        public /* synthetic */ void a() {
+            t.b(this);
+        }
+
+        @Override // b.i.a.c.w2.u
+        public /* synthetic */ b b(Looper looper, s.a aVar, j1 j1Var) {
+            return t.a(this, looper, aVar, j1Var);
+        }
+
+        @Override // b.i.a.c.w2.u
+        @Nullable
+        public DrmSession c(Looper looper, @Nullable s.a aVar, j1 j1Var) {
+            if (j1Var.f1020z == null) {
+                return null;
+            }
+            return new z(new DrmSession.DrmSessionException(new UnsupportedDrmException(1), 6001));
+        }
+
+        @Override // b.i.a.c.w2.u
+        public int d(j1 j1Var) {
+            return j1Var.f1020z != null ? 1 : 0;
+        }
+
+        @Override // b.i.a.c.w2.u
+        public /* synthetic */ void release() {
+            t.c(this);
+        }
+    }
+
+    /* JADX INFO: compiled from: DrmSessionManager.java */
+    public interface b {
+        public static final /* synthetic */ int a = 0;
+
+        void release();
+    }
 
     void a();
 
-    u$b b(Looper looper, @Nullable s$a s_a, j1 j1Var);
+    b b(Looper looper, @Nullable s.a aVar, j1 j1Var);
 
     @Nullable
-    DrmSession c(Looper looper, @Nullable s$a s_a, j1 j1Var);
+    DrmSession c(Looper looper, @Nullable s.a aVar, j1 j1Var);
 
     int d(j1 j1Var);
 

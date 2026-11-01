@@ -2,7 +2,7 @@ package com.discord.widgets.media;
 
 import android.view.View;
 import android.widget.FrameLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetQrScannerBinding;
 import com.google.android.material.chip.Chip;
 import d0.z.d.k;
@@ -27,11 +27,11 @@ public final /* synthetic */ class WidgetQRScanner$binding$2 extends k implement
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetQrScannerBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.qr_scanner;
-        ZXingScannerView zXingScannerView = (ZXingScannerView) view.findViewById(R$id.qr_scanner);
+        int i = R.id.qr_scanner;
+        ZXingScannerView zXingScannerView = (ZXingScannerView) view.findViewById(R.id.qr_scanner);
         if (zXingScannerView != null) {
-            i = R$id.qr_scanner_chip;
-            Chip chip = (Chip) view.findViewById(R$id.qr_scanner_chip);
+            i = R.id.qr_scanner_chip;
+            Chip chip = (Chip) view.findViewById(R.id.qr_scanner_chip);
             if (chip != null) {
                 return new WidgetQrScannerBinding((FrameLayout) view, zXingScannerView, chip);
             }

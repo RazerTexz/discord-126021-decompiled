@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -34,21 +33,21 @@ public final class j0 {
         TextUtils.isEmpty(null);
         this.g = null;
         HashMap map2 = new HashMap();
-        Iterator<Map$Entry<String, String>> it = map.entrySet().iterator();
+        Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
         while (true) {
             if (!it.hasNext()) {
                 break;
             }
-            Map$Entry<String, String> next = it.next();
+            Map.Entry<String, String> next = it.next();
             String key = next.getKey();
             if ((key != null ? key.toString().startsWith("&") : false) && (strA2 = a(dVar, next.getKey())) != null) {
                 map2.put(strA2, b(dVar, next.getValue()));
             }
         }
-        for (Map$Entry<String, String> map$Entry : map.entrySet()) {
-            String key2 = map$Entry.getKey();
-            if (!(key2 == null ? false : key2.toString().startsWith("&")) && (strA = a(dVar, map$Entry.getKey())) != null) {
-                map2.put(strA, b(dVar, map$Entry.getValue()));
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            String key2 = entry.getKey();
+            if (!(key2 == null ? false : key2.toString().startsWith("&")) && (strA = a(dVar, entry.getKey())) != null) {
+                map2.put(strA, b(dVar, entry.getValue()));
             }
         }
         if (!TextUtils.isEmpty(this.g)) {

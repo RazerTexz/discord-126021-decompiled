@@ -1,15 +1,22 @@
 package com.google.gson.internal.bind;
 
-import b.i.d.a;
 import b.i.d.d;
 import b.i.d.o;
 import b.i.d.p.c;
 import b.i.d.q.g;
+import b.i.d.q.r;
 import b.i.d.q.y.b;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.internal.Excluder;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class ReflectiveTypeAdapterFactory implements o {
@@ -18,6 +25,84 @@ public final class ReflectiveTypeAdapterFactory implements o {
     public final Excluder l;
     public final JsonAdapterAnnotationTypeAdapterFactory m;
     public final b n = b.a;
+
+    public final class Adapter<T> extends TypeAdapter<T> {
+        public final r<T> a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final Map<String, a> f3122b;
+
+        public Adapter(r<T> rVar, Map<String, a> map) {
+            this.a = rVar;
+            this.f3122b = map;
+        }
+
+        @Override // com.google.gson.TypeAdapter
+        public T read(JsonReader jsonReader) throws IOException {
+            if (jsonReader.N() == JsonToken.NULL) {
+                jsonReader.H();
+                return null;
+            }
+            T tA = this.a.a();
+            try {
+                jsonReader.b();
+                while (jsonReader.q()) {
+                    a aVar = this.f3122b.get(jsonReader.C());
+                    if (aVar == null || !aVar.c) {
+                        jsonReader.U();
+                    } else {
+                        aVar.a(jsonReader, tA);
+                    }
+                }
+                jsonReader.f();
+                return tA;
+            } catch (IllegalAccessException e) {
+                throw new AssertionError(e);
+            } catch (IllegalStateException e2) {
+                throw new JsonSyntaxException(e2);
+            }
+        }
+
+        @Override // com.google.gson.TypeAdapter
+        public void write(JsonWriter jsonWriter, T t) throws IOException {
+            if (t == null) {
+                jsonWriter.s();
+                return;
+            }
+            jsonWriter.c();
+            try {
+                for (a aVar : this.f3122b.values()) {
+                    if (aVar.c(t)) {
+                        jsonWriter.n(aVar.a);
+                        aVar.b(jsonWriter, t);
+                    }
+                }
+                jsonWriter.f();
+            } catch (IllegalAccessException e) {
+                throw new AssertionError(e);
+            }
+        }
+    }
+
+    public abstract class a {
+        public final String a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final boolean f3123b;
+        public final boolean c;
+
+        public a(String str, boolean z2, boolean z3) {
+            this.a = str;
+            this.f3123b = z2;
+            this.c = z3;
+        }
+
+        public abstract void a(JsonReader jsonReader, Object obj) throws IllegalAccessException, IOException;
+
+        public abstract void b(JsonWriter jsonWriter, Object obj) throws IllegalAccessException, IOException;
+
+        public abstract boolean c(Object obj) throws IllegalAccessException, IOException;
+    }
 
     public ReflectiveTypeAdapterFactory(g gVar, d dVar, Excluder excluder, JsonAdapterAnnotationTypeAdapterFactory jsonAdapterAnnotationTypeAdapterFactory) {
         this.j = gVar;
@@ -32,10 +117,10 @@ public final class ReflectiveTypeAdapterFactory implements o {
         Class<?> type = field.getType();
         if (!(excluder.b(type) || excluder.f(type, z2))) {
             if ((excluder.l & field.getModifiers()) == 0 && ((excluder.k == -1.0d || excluder.i((c) field.getAnnotation(c.class), (b.i.d.p.d) field.getAnnotation(b.i.d.p.d.class))) && !field.isSynthetic() && ((excluder.m || !excluder.h(field.getType())) && !excluder.g(field.getType())))) {
-                List<a> list = z2 ? excluder.n : excluder.o;
+                List<b.i.d.a> list = z2 ? excluder.n : excluder.o;
                 if (!list.isEmpty()) {
                     b.i.d.b bVar = new b.i.d.b(field);
-                    Iterator<a> it = list.iterator();
+                    Iterator<b.i.d.a> it = list.iterator();
                     while (true) {
                         if (it.hasNext()) {
                             if (it.next().a(bVar)) {

@@ -1,6 +1,5 @@
 package okhttp3;
 
-import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
 import d0.z.d.m;
 import f0.e0.g.c;
@@ -98,7 +97,7 @@ public final class Response implements Closeable {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("Response{protocol=");
+        StringBuilder sbU = b.d.b.a.a.U("Response{protocol=");
         sbU.append(this.protocol);
         sbU.append(", code=");
         sbU.append(this.code);
@@ -108,5 +107,116 @@ public final class Response implements Closeable {
         sbU.append(this.request.url);
         sbU.append('}');
         return sbU.toString();
+    }
+
+    /* JADX INFO: compiled from: Response.kt */
+    public class a {
+        public Request a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public y f3816b;
+        public int c;
+        public String d;
+        public v e;
+        public Headers.a f;
+        public ResponseBody g;
+        public Response h;
+        public Response i;
+        public Response j;
+        public long k;
+        public long l;
+        public c m;
+
+        public a() {
+            this.c = -1;
+            this.f = new Headers.a();
+        }
+
+        public Response a() {
+            int i = this.c;
+            if (!(i >= 0)) {
+                StringBuilder sbU = b.d.b.a.a.U("code < 0: ");
+                sbU.append(this.c);
+                throw new IllegalStateException(sbU.toString().toString());
+            }
+            Request request = this.a;
+            if (request == null) {
+                throw new IllegalStateException("request == null".toString());
+            }
+            y yVar = this.f3816b;
+            if (yVar == null) {
+                throw new IllegalStateException("protocol == null".toString());
+            }
+            String str = this.d;
+            if (str != null) {
+                return new Response(request, yVar, str, i, this.e, this.f.c(), this.g, this.h, this.i, this.j, this.k, this.l, this.m);
+            }
+            throw new IllegalStateException("message == null".toString());
+        }
+
+        public a b(Response response) {
+            c("cacheResponse", response);
+            this.i = response;
+            return this;
+        }
+
+        public final void c(String str, Response response) {
+            if (response != null) {
+                if (!(response.body == null)) {
+                    throw new IllegalArgumentException(b.d.b.a.a.w(str, ".body != null").toString());
+                }
+                if (!(response.networkResponse == null)) {
+                    throw new IllegalArgumentException(b.d.b.a.a.w(str, ".networkResponse != null").toString());
+                }
+                if (!(response.cacheResponse == null)) {
+                    throw new IllegalArgumentException(b.d.b.a.a.w(str, ".cacheResponse != null").toString());
+                }
+                if (!(response.priorResponse == null)) {
+                    throw new IllegalArgumentException(b.d.b.a.a.w(str, ".priorResponse != null").toString());
+                }
+            }
+        }
+
+        public a d(Headers headers) {
+            m.checkParameterIsNotNull(headers, "headers");
+            this.f = headers.e();
+            return this;
+        }
+
+        public a e(String str) {
+            m.checkParameterIsNotNull(str, "message");
+            this.d = str;
+            return this;
+        }
+
+        public a f(y yVar) {
+            m.checkParameterIsNotNull(yVar, "protocol");
+            this.f3816b = yVar;
+            return this;
+        }
+
+        public a g(Request request) {
+            m.checkParameterIsNotNull(request, "request");
+            this.a = request;
+            return this;
+        }
+
+        public a(Response response) {
+            m.checkParameterIsNotNull(response, "response");
+            this.c = -1;
+            this.a = response.request;
+            this.f3816b = response.protocol;
+            this.c = response.code;
+            this.d = response.message;
+            this.e = response.handshake;
+            this.f = response.headers.e();
+            this.g = response.body;
+            this.h = response.networkResponse;
+            this.i = response.cacheResponse;
+            this.j = response.priorResponse;
+            this.k = response.sentRequestAtMillis;
+            this.l = response.receivedResponseAtMillis;
+            this.m = response.exchange;
+        }
     }
 }

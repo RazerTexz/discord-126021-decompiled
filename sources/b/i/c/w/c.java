@@ -1,8 +1,7 @@
 package b.i.c.w;
 
-import android.R$drawable;
+import android.R;
 import android.app.ActivityManager;
-import android.app.ActivityManager$RunningAppProcessInfo;
 import android.app.KeyguardManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -11,14 +10,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager$NameNotFoundException;
 import android.content.res.Resources;
-import android.content.res.Resources$NotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Process;
 import android.os.SystemClock;
@@ -26,9 +23,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import androidx.appcompat.widget.ActivityChooserModel;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
-import androidx.core.app.NotificationCompat$BigPictureStyle;
-import androidx.core.app.NotificationCompat$BigTextStyle;
-import androidx.core.app.NotificationCompat$Builder;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import com.google.android.gms.tasks.Task;
 import java.net.MalformedURLException;
@@ -92,15 +87,15 @@ public class c {
         }
         if (!((KeyguardManager) this.f1794b.getSystemService("keyguard")).inKeyguardRestrictedInputMode()) {
             int iMyPid = Process.myPid();
-            List<ActivityManager$RunningAppProcessInfo> runningAppProcesses = ((ActivityManager) this.f1794b.getSystemService(ActivityChooserModel.ATTRIBUTE_ACTIVITY)).getRunningAppProcesses();
+            List<ActivityManager.RunningAppProcessInfo> runningAppProcesses = ((ActivityManager) this.f1794b.getSystemService(ActivityChooserModel.ATTRIBUTE_ACTIVITY)).getRunningAppProcesses();
             if (runningAppProcesses == null) {
                 z2 = false;
                 break;
             }
-            Iterator<ActivityManager$RunningAppProcessInfo> it = runningAppProcesses.iterator();
+            Iterator<ActivityManager.RunningAppProcessInfo> it = runningAppProcesses.iterator();
             while (true) {
                 if (it.hasNext()) {
-                    ActivityManager$RunningAppProcessInfo next = it.next();
+                    ActivityManager.RunningAppProcessInfo next = it.next();
                     if (next.pid == iMyPid) {
                         if (next.importance == 100) {
                             z2 = true;
@@ -140,13 +135,13 @@ public class c {
             if (applicationInfo == null || (bundle = applicationInfo.metaData) == null) {
                 bundle = Bundle.EMPTY;
             }
-        } catch (PackageManager$NameNotFoundException e) {
+        } catch (PackageManager.NameNotFoundException e) {
             String strValueOf2 = String.valueOf(e);
             b.d.b.a.a.h0(strValueOf2.length() + 35, "Couldn't get own application info: ", strValueOf2, "FirebaseMessaging");
         }
         String packageName = context.getPackageName();
         String strE2 = rVar.e("gcm.n.android_channel_id");
-        if (Build$VERSION.SDK_INT < 26) {
+        if (Build.VERSION.SDK_INT < 26) {
             strE2 = null;
         } else {
             try {
@@ -179,20 +174,20 @@ public class c {
                         }
                     }
                 }
-            } catch (PackageManager$NameNotFoundException unused2) {
+            } catch (PackageManager.NameNotFoundException unused2) {
             }
         }
         Resources resources = context.getResources();
         PackageManager packageManager = context.getPackageManager();
-        NotificationCompat$Builder notificationCompat$Builder = new NotificationCompat$Builder(context, strE2);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, strE2);
         CharSequence charSequenceD = rVar.d(resources, packageName, "gcm.n.title");
         if (!TextUtils.isEmpty(charSequenceD)) {
-            notificationCompat$Builder.setContentTitle(charSequenceD);
+            builder.setContentTitle(charSequenceD);
         }
         CharSequence charSequenceD2 = rVar.d(resources, packageName, "gcm.n.body");
         if (!TextUtils.isEmpty(charSequenceD2)) {
-            notificationCompat$Builder.setContentText(charSequenceD2);
-            notificationCompat$Builder.setStyle(new NotificationCompat$BigTextStyle().bigText(charSequenceD2));
+            builder.setContentText(charSequenceD2);
+            builder.setStyle(new NotificationCompat.BigTextStyle().bigText(charSequenceD2));
         }
         String strE3 = rVar.e("gcm.n.icon");
         if (TextUtils.isEmpty(strE3)) {
@@ -201,14 +196,14 @@ public class c {
                 identifier = i;
             } else {
                 try {
-                } catch (PackageManager$NameNotFoundException e2) {
+                } catch (PackageManager.NameNotFoundException e2) {
                     String strValueOf3 = String.valueOf(e2);
                     b.d.b.a.a.h0(strValueOf3.length() + 35, "Couldn't get own application info: ", strValueOf3, "FirebaseMessaging");
                     identifier = i;
                 }
             }
             if (identifier != 0 || !a.b(resources, identifier)) {
-                identifier = R$drawable.sym_def_app_icon;
+                identifier = R.drawable.sym_def_app_icon;
             }
         } else {
             identifier = resources.getIdentifier(strE3, "drawable", packageName);
@@ -217,13 +212,13 @@ public class c {
                 i = bundle.getInt("com.google.firebase.messaging.default_notification_icon", 0);
                 identifier = i == 0 ? packageManager.getApplicationInfo(packageName, 0).icon : packageManager.getApplicationInfo(packageName, 0).icon;
                 if (identifier != 0) {
-                    identifier = R$drawable.sym_def_app_icon;
+                    identifier = R.drawable.sym_def_app_icon;
                 } else {
-                    identifier = R$drawable.sym_def_app_icon;
+                    identifier = R.drawable.sym_def_app_icon;
                 }
             }
         }
-        notificationCompat$Builder.setSmallIcon(identifier);
+        builder.setSmallIcon(identifier);
         String strE4 = rVar.e("gcm.n.sound2");
         if (TextUtils.isEmpty(strE4)) {
             strE4 = rVar.e("gcm.n.sound");
@@ -241,7 +236,7 @@ public class c {
             defaultUri = Uri.parse(sb.toString());
         }
         if (defaultUri != null) {
-            notificationCompat$Builder.setSound(defaultUri);
+            builder.setSound(defaultUri);
         }
         String strE5 = rVar.e("gcm.n.click_action");
         if (TextUtils.isEmpty(strE5)) {
@@ -281,10 +276,10 @@ public class c {
                 activity = a.a(context, new Intent("com.google.firebase.messaging.NOTIFICATION_OPEN").putExtras(rVar.g()).putExtra("pending_intent", activity));
             }
         }
-        notificationCompat$Builder.setContentIntent(activity);
+        builder.setContentIntent(activity);
         PendingIntent pendingIntentA = !rVar.a("google.c.a.e") ? null : a.a(context, new Intent("com.google.firebase.messaging.NOTIFICATION_DISMISS").putExtras(rVar.g()));
         if (pendingIntentA != null) {
-            notificationCompat$Builder.setDeleteIntent(pendingIntentA);
+            builder.setDeleteIntent(pendingIntentA);
         }
         String strE7 = rVar.e("gcm.n.color");
         if (TextUtils.isEmpty(strE7)) {
@@ -303,7 +298,7 @@ public class c {
                 if (i2 != 0) {
                     try {
                         numValueOf = Integer.valueOf(ContextCompat.getColor(context, i2));
-                    } catch (Resources$NotFoundException unused4) {
+                    } catch (Resources.NotFoundException unused4) {
                         Log.w("FirebaseMessaging", "Cannot find the color resource referenced in AndroidManifest.");
                         numValueOf = null;
                     }
@@ -313,13 +308,13 @@ public class c {
             }
         }
         if (numValueOf != null) {
-            notificationCompat$Builder.setColor(numValueOf.intValue());
+            builder.setColor(numValueOf.intValue());
         }
-        notificationCompat$Builder.setAutoCancel(!rVar.a("gcm.n.sticky"));
-        notificationCompat$Builder.setLocalOnly(rVar.a("gcm.n.local_only"));
+        builder.setAutoCancel(!rVar.a("gcm.n.sticky"));
+        builder.setLocalOnly(rVar.a("gcm.n.local_only"));
         CharSequence charSequenceE = rVar.e("gcm.n.ticker");
         if (charSequenceE != null) {
-            notificationCompat$Builder.setTicker(charSequenceE);
+            builder.setTicker(charSequenceE);
         }
         Integer numB = rVar.b("gcm.n.notification_priority");
         if (numB == null) {
@@ -330,7 +325,7 @@ public class c {
             numB = null;
         }
         if (numB != null) {
-            notificationCompat$Builder.setPriority(numB.intValue());
+            builder.setPriority(numB.intValue());
         }
         Integer numB2 = rVar.b("gcm.n.visibility");
         if (numB2 == null) {
@@ -341,7 +336,7 @@ public class c {
             numB2 = null;
         }
         if (numB2 != null) {
-            notificationCompat$Builder.setVisibility(numB2.intValue());
+            builder.setVisibility(numB2.intValue());
         }
         Integer numB3 = rVar.b("gcm.n.notification_count");
         if (numB3 == null) {
@@ -352,7 +347,7 @@ public class c {
             numB3 = null;
         }
         if (numB3 != null) {
-            notificationCompat$Builder.setNumber(numB3.intValue());
+            builder.setNumber(numB3.intValue());
         }
         String strE8 = rVar.e("gcm.n.event_time");
         if (TextUtils.isEmpty(strE8)) {
@@ -367,8 +362,8 @@ public class c {
             }
         }
         if (lValueOf != null) {
-            notificationCompat$Builder.setShowWhen(true);
-            notificationCompat$Builder.setWhen(lValueOf.longValue());
+            builder.setShowWhen(true);
+            builder.setWhen(lValueOf.longValue());
         }
         JSONArray jSONArrayC = rVar.c("gcm.n.vibrate_timings");
         if (jSONArrayC == null) {
@@ -390,7 +385,7 @@ public class c {
             }
         }
         if (jArr != null) {
-            notificationCompat$Builder.setVibrate(jArr);
+            builder.setVibrate(jArr);
         }
         JSONArray jSONArrayC2 = rVar.c("gcm.n.light_settings");
         if (jSONArrayC2 == null) {
@@ -420,7 +415,7 @@ public class c {
             }
         }
         if (iArr != null) {
-            notificationCompat$Builder.setLights(iArr[0], iArr[1], iArr[2]);
+            builder.setLights(iArr[0], iArr[1], iArr[2]);
         }
         boolean zA = rVar.a("gcm.n.default_sound");
         ?? r0 = zA;
@@ -431,7 +426,7 @@ public class c {
         if (rVar.a("gcm.n.default_light_settings")) {
             i4 = (r0 == true ? 1 : 0) | 4;
         }
-        notificationCompat$Builder.setDefaults(i4);
+        builder.setDefaults(i4);
         String strE9 = rVar.e("gcm.n.tag");
         if (TextUtils.isEmpty(strE9)) {
             long jUptimeMillis = SystemClock.uptimeMillis();
@@ -445,8 +440,8 @@ public class c {
                 Task<Bitmap> task = oVar.k;
                 Objects.requireNonNull(task, "null reference");
                 Bitmap bitmap = (Bitmap) b.i.a.f.e.o.f.k(task, 5L, TimeUnit.SECONDS);
-                notificationCompat$Builder.setLargeIcon(bitmap);
-                notificationCompat$Builder.setStyle(new NotificationCompat$BigPictureStyle().bigPicture(bitmap).bigLargeIcon(null));
+                builder.setLargeIcon(bitmap);
+                builder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bitmap).bigLargeIcon(null));
             } catch (InterruptedException unused8) {
                 Log.w("FirebaseMessaging", "Interrupted while downloading image, showing notification without it");
                 oVar.close();
@@ -462,7 +457,7 @@ public class c {
         if (Log.isLoggable("FirebaseMessaging", 3)) {
             Log.d("FirebaseMessaging", "Showing notification");
         }
-        ((NotificationManager) this.f1794b.getSystemService("notification")).notify(strE9, 0, notificationCompat$Builder.build());
+        ((NotificationManager) this.f1794b.getSystemService("notification")).notify(strE9, 0, builder.build());
         return true;
     }
 }

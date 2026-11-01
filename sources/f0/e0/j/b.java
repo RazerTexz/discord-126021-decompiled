@@ -2,7 +2,6 @@ package f0.e0.j;
 
 import com.discord.models.domain.ModelAuditLogEntry;
 import okio.ByteString;
-import okio.ByteString$a;
 
 /* JADX INFO: compiled from: Header.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -20,13 +19,13 @@ public final class b {
     public final ByteString i;
 
     static {
-        ByteString$a byteString$a = ByteString.k;
-        a = byteString$a.c(":");
-        f3633b = byteString$a.c(":status");
-        c = byteString$a.c(":method");
-        d = byteString$a.c(":path");
-        e = byteString$a.c(":scheme");
-        f = byteString$a.c(":authority");
+        ByteString.Companion companion = ByteString.INSTANCE;
+        a = companion.c(":");
+        f3633b = companion.c(":status");
+        c = companion.c(":method");
+        d = companion.c(":path");
+        e = companion.c(":scheme");
+        f = companion.c(":authority");
     }
 
     public b(ByteString byteString, ByteString byteString2) {
@@ -63,13 +62,13 @@ public final class b {
     public b(String str, String str2) {
         d0.z.d.m.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
         d0.z.d.m.checkParameterIsNotNull(str2, "value");
-        ByteString$a byteString$a = ByteString.k;
-        this(byteString$a.c(str), byteString$a.c(str2));
+        ByteString.Companion companion = ByteString.INSTANCE;
+        this(companion.c(str), companion.c(str2));
     }
 
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
     public b(ByteString byteString, String str) {
-        this(byteString, ByteString.k.c(str));
+        this(byteString, ByteString.INSTANCE.c(str));
         d0.z.d.m.checkParameterIsNotNull(byteString, ModelAuditLogEntry.CHANGE_KEY_NAME);
         d0.z.d.m.checkParameterIsNotNull(str, "value");
     }

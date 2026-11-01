@@ -1,7 +1,7 @@
 package b.i.a.c.x2.j0;
 
 import b.i.a.c.f3.x;
-import b.i.a.c.j1$b;
+import b.i.a.c.j1;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -39,9 +39,9 @@ public final class h extends i {
 
     @Override // b.i.a.c.x2.j0.i
     @EnsuresNonNullIf(expression = {"#3.format"}, result = false)
-    public boolean d(x xVar, long j, i$b i_b) {
+    public boolean d(x xVar, long j, i.b bVar) {
         if (this.o) {
-            Objects.requireNonNull(i_b.a);
+            Objects.requireNonNull(bVar.a);
             boolean z2 = xVar.f() == 1332770163;
             xVar.E(0);
             return z2;
@@ -49,12 +49,12 @@ public final class h extends i {
         byte[] bArrCopyOf = Arrays.copyOf(xVar.a, xVar.c);
         int i = bArrCopyOf[9] & 255;
         List<byte[]> listG = b.c.a.a0.d.g(bArrCopyOf);
-        j1$b j1_b = new j1$b();
-        j1_b.k = "audio/opus";
-        j1_b.f1023x = i;
-        j1_b.f1024y = 48000;
-        j1_b.m = listG;
-        i_b.a = j1_b.a();
+        j1.b bVar2 = new j1.b();
+        bVar2.k = "audio/opus";
+        bVar2.f1023x = i;
+        bVar2.f1024y = 48000;
+        bVar2.m = listG;
+        bVar.a = bVar2.a();
         this.o = true;
         return true;
     }

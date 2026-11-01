@@ -4,12 +4,19 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View$MeasureSpec;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import com.discord.models.domain.ModelAuditLogEntry;
 import com.google.android.material.tabs.TabLayout;
+import d0.t.j;
+import d0.t.u;
 import d0.z.d.m;
+import java.util.List;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: SimplePager.kt */
@@ -19,6 +26,65 @@ public final class SimplePager extends ViewPager {
     private boolean keepAllPagesLoaded;
     private boolean preserveSelectedPage;
     private boolean wrapHeight;
+
+    /* JADX INFO: compiled from: SimplePager.kt */
+    public final class Adapter extends FragmentPagerAdapter {
+        private final List<Item> items;
+
+        /* JADX INFO: compiled from: SimplePager.kt */
+        public final class Item {
+            private final Function0<Fragment> creator;
+            private final String title;
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public Item(String str, Function0<? extends Fragment> function0) {
+                m.checkNotNullParameter(str, "title");
+                m.checkNotNullParameter(function0, "creator");
+                this.title = str;
+                this.creator = function0;
+            }
+
+            public final Function0<Fragment> getCreator$utils_release() {
+                return this.creator;
+            }
+
+            /* JADX INFO: renamed from: getTitle$utils_release, reason: from getter */
+            public final String getTitle() {
+                return this.title;
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public Adapter(FragmentManager fragmentManager, Item... itemArr) {
+            super(fragmentManager, 1);
+            m.checkNotNullParameter(fragmentManager, "fm");
+            m.checkNotNullParameter(itemArr, "items");
+            this.items = j.asList(itemArr);
+        }
+
+        @Override // androidx.viewpager.widget.PagerAdapter
+        public int getCount() {
+            return this.items.size();
+        }
+
+        @Override // androidx.fragment.app.FragmentPagerAdapter
+        public Fragment getItem(int position) {
+            Function0<Fragment> creator$utils_release;
+            Fragment fragmentInvoke;
+            Item item = (Item) u.getOrNull(this.items, position);
+            if (item != null && (creator$utils_release = item.getCreator$utils_release()) != null && (fragmentInvoke = creator$utils_release.invoke()) != null) {
+                return fragmentInvoke;
+            }
+            throw new IllegalArgumentException("Invalid position: " + position + '.');
+        }
+
+        @Override // androidx.viewpager.widget.PagerAdapter
+        public CharSequence getPageTitle(int position) {
+            String title;
+            Item item = (Item) u.getOrNull(this.items, position);
+            return (item == null || (title = item.getTitle()) == null) ? super.getPageTitle(position) : title;
+        }
+    }
 
     public SimplePager(Context context) {
         this(context, null, 2, null);
@@ -67,7 +133,7 @@ public final class SimplePager extends ViewPager {
         int i = 0;
         for (int i2 = 0; i2 < childCount; i2++) {
             View childAt = getChildAt(i2);
-            childAt.measure(widthMeasureSpec, View$MeasureSpec.makeMeasureSpec(0, 0));
+            childAt.measure(widthMeasureSpec, View.MeasureSpec.makeMeasureSpec(0, 0));
             m.checkNotNullExpressionValue(childAt, "child");
             int measuredHeight = childAt.getMeasuredHeight();
             if (measuredHeight > i) {
@@ -75,7 +141,7 @@ public final class SimplePager extends ViewPager {
             }
         }
         if (i != 0) {
-            heightMeasureSpec = View$MeasureSpec.makeMeasureSpec(i, BasicMeasure.EXACTLY);
+            heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(i, BasicMeasure.EXACTLY);
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }

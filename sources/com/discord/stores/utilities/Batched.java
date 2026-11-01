@@ -5,9 +5,16 @@ import b.i.a.f.e.o.f;
 import com.discord.app.AppLog;
 import com.discord.utilities.time.Clock;
 import com.discord.utilities.time.ClockFactory;
+import d0.l;
+import d0.w.h.c;
+import d0.w.i.a.e;
+import d0.w.i.a.k;
 import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.List;
+import kotlin.Unit;
+import kotlin.coroutines.Continuation;
+import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlinx.coroutines.CoroutineScope;
 import kotlinx.coroutines.Job;
@@ -18,7 +25,6 @@ import rx.subjects.SerializedSubject;
 /* JADX INFO: compiled from: Batched.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class Batched<T> {
-    public static final Batched$Companion Companion = new Batched$Companion(null);
     public static final long DEFAULT_DEBOUNCE_DELAY_MS = 100;
     public static final long DEFAULT_MAX_DEBOUNCE_DELAY_MS = 300;
     private static final long QUEUE_NOT_STARTED = -1;
@@ -31,6 +37,49 @@ public final class Batched<T> {
     private final CoroutineScope scope;
     private final SerializedSubject<List<T>, List<T>> subject;
     private final String type;
+
+    /* JADX INFO: renamed from: com.discord.stores.utilities.Batched$onNext$1, reason: invalid class name */
+    /* JADX INFO: compiled from: Batched.kt */
+    @e(c = "com.discord.stores.utilities.Batched$onNext$1", f = "Batched.kt", l = {82}, m = "invokeSuspend")
+    public final class AnonymousClass1 extends k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+        public int label;
+
+        public AnonymousClass1(Continuation continuation) {
+            super(2, continuation);
+        }
+
+        @Override // d0.w.i.a.a
+        public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
+            m.checkNotNullParameter(continuation, "completion");
+            return new AnonymousClass1(continuation);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public final Object invoke(CoroutineScope coroutineScope, Continuation<? super Unit> continuation) {
+            return ((AnonymousClass1) create(coroutineScope, continuation)).invokeSuspend(Unit.a);
+        }
+
+        @Override // d0.w.i.a.a
+        public final Object invokeSuspend(Object obj) throws Throwable {
+            Object coroutine_suspended = c.getCOROUTINE_SUSPENDED();
+            int i = this.label;
+            if (i == 0) {
+                l.throwOnFailure(obj);
+                long jAccess$getDebounceDelayMs$p = Batched.access$getDebounceDelayMs$p(Batched.this);
+                this.label = 1;
+                if (f.P(jAccess$getDebounceDelayMs$p, this) == coroutine_suspended) {
+                    return coroutine_suspended;
+                }
+            } else {
+                if (i != 1) {
+                    throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+                }
+                l.throwOnFailure(obj);
+            }
+            Batched.this.flush();
+            return Unit.a;
+        }
+    }
 
     public Batched(String str, long j, long j2, CoroutineScope coroutineScope, Clock clock) {
         m.checkNotNullParameter(str, "type");
@@ -86,7 +135,7 @@ public final class Batched<T> {
             if (job != null) {
                 f.t(job, null, 1, null);
             }
-            this.debounceJob = f.H0(this.scope, null, null, new Batched$onNext$1(this, null), 3, null);
+            this.debounceJob = f.H0(this.scope, null, null, new AnonymousClass1(null), 3, null);
         }
     }
 

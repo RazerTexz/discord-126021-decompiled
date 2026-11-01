@@ -1,7 +1,8 @@
 package b.i.a.c.g3.z;
 
 import androidx.annotation.Nullable;
-import com.google.android.exoplayer2.util.GlUtil$a;
+import com.google.android.exoplayer2.util.GlUtil;
+import java.nio.FloatBuffer;
 
 /* JADX INFO: compiled from: ProjectionRenderer.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -14,11 +15,11 @@ public final class i {
     public int h;
 
     @Nullable
-    public i$a i;
+    public a i;
 
     @Nullable
-    public i$a j;
-    public GlUtil$a k;
+    public a j;
+    public GlUtil.a k;
     public int l;
     public int m;
     public int n;
@@ -29,13 +30,38 @@ public final class i {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final String[] f1002b = {"#extension GL_OES_EGL_image_external : require", "precision mediump float;", "uniform samplerExternalOES uTexture;", "varying vec2 vTexCoords;", "void main() {", "  gl_FragColor = texture2D(uTexture, vTexCoords);", "}"};
 
+    /* JADX INFO: compiled from: ProjectionRenderer.java */
+    public class a {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final FloatBuffer f1003b;
+        public final FloatBuffer c;
+        public final int d;
+
+        public a(h.b bVar) {
+            float[] fArr = bVar.c;
+            this.a = fArr.length / 3;
+            this.f1003b = GlUtil.b(fArr);
+            this.c = GlUtil.b(bVar.d);
+            int i = bVar.f1001b;
+            if (i == 1) {
+                this.d = 5;
+            } else if (i != 2) {
+                this.d = 4;
+            } else {
+                this.d = 6;
+            }
+        }
+    }
+
     public static boolean a(h hVar) {
-        h$a h_a = hVar.a;
-        h$a h_a2 = hVar.f1000b;
-        h$b[] h_bArr = h_a.a;
-        if (h_bArr.length == 1 && h_bArr[0].a == 0) {
-            h$b[] h_bArr2 = h_a2.a;
-            if (h_bArr2.length == 1 && h_bArr2[0].a == 0) {
+        h.a aVar = hVar.a;
+        h.a aVar2 = hVar.f1000b;
+        h.b[] bVarArr = aVar.a;
+        if (bVarArr.length == 1 && bVarArr[0].a == 0) {
+            h.b[] bVarArr2 = aVar2.a;
+            if (bVarArr2.length == 1 && bVarArr2[0].a == 0) {
                 return true;
             }
         }

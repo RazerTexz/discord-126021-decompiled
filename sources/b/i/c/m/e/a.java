@@ -39,16 +39,16 @@ public class a implements e {
         StringBuilder sbU2 = b.d.b.a.a.U("Minidump ");
         sbU2.append((fileB == null || !fileB.exists()) ? "does not exist" : "exists");
         bVar.b(sbU2.toString());
-        g$b g_b = new g$b();
+        g.b bVar2 = new g.b();
         if (fileA != null && fileA.exists() && file.exists()) {
-            g_b.a = b(file, ".dmp");
-            g_b.f1757b = b(fileA, ".device_info");
-            g_b.c = new File(fileA, "session.json");
-            g_b.d = new File(fileA, "app.json");
-            g_b.e = new File(fileA, "device.json");
-            g_b.f = new File(fileA, "os.json");
+            bVar2.a = b(file, ".dmp");
+            bVar2.f1757b = b(fileA, ".device_info");
+            bVar2.c = new File(fileA, "session.json");
+            bVar2.d = new File(fileA, "app.json");
+            bVar2.e = new File(fileA, "device.json");
+            bVar2.f = new File(fileA, "os.json");
         }
-        return new g(g_b, null);
+        return new g(bVar2, null);
     }
 
     @Nullable

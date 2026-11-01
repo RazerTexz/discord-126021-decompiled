@@ -7,8 +7,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.views.CheckedSetting;
 import com.google.android.material.button.MaterialButton;
 
@@ -45,21 +44,21 @@ public final class ViewGuildInviteBottomSheetBinding implements ViewBinding {
 
     @NonNull
     public static ViewGuildInviteBottomSheetBinding a(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
-        layoutInflater.inflate(R$layout.view_guild_invite_bottom_sheet, viewGroup);
-        int i = R$id.guild_invite_channel_spinner;
-        Spinner spinner = (Spinner) viewGroup.findViewById(R$id.guild_invite_channel_spinner);
+        layoutInflater.inflate(R.layout.view_guild_invite_bottom_sheet, viewGroup);
+        int i = R.id.guild_invite_channel_spinner;
+        Spinner spinner = (Spinner) viewGroup.findViewById(R.id.guild_invite_channel_spinner);
         if (spinner != null) {
-            i = R$id.guild_invite_expires_after_radiogroup;
-            RadioGroup radioGroup = (RadioGroup) viewGroup.findViewById(R$id.guild_invite_expires_after_radiogroup);
+            i = R.id.guild_invite_expires_after_radiogroup;
+            RadioGroup radioGroup = (RadioGroup) viewGroup.findViewById(R.id.guild_invite_expires_after_radiogroup);
             if (radioGroup != null) {
-                i = R$id.guild_invite_generate_link;
-                MaterialButton materialButton = (MaterialButton) viewGroup.findViewById(R$id.guild_invite_generate_link);
+                i = R.id.guild_invite_generate_link;
+                MaterialButton materialButton = (MaterialButton) viewGroup.findViewById(R.id.guild_invite_generate_link);
                 if (materialButton != null) {
-                    i = R$id.guild_invite_max_uses_radiogroup;
-                    RadioGroup radioGroup2 = (RadioGroup) viewGroup.findViewById(R$id.guild_invite_max_uses_radiogroup);
+                    i = R.id.guild_invite_max_uses_radiogroup;
+                    RadioGroup radioGroup2 = (RadioGroup) viewGroup.findViewById(R.id.guild_invite_max_uses_radiogroup);
                     if (radioGroup2 != null) {
-                        i = R$id.guild_invite_temporary_membership;
-                        CheckedSetting checkedSetting = (CheckedSetting) viewGroup.findViewById(R$id.guild_invite_temporary_membership);
+                        i = R.id.guild_invite_temporary_membership;
+                        CheckedSetting checkedSetting = (CheckedSetting) viewGroup.findViewById(R.id.guild_invite_temporary_membership);
                         if (checkedSetting != null) {
                             return new ViewGuildInviteBottomSheetBinding(viewGroup, spinner, radioGroup, materialButton, radioGroup2, checkedSetting);
                         }

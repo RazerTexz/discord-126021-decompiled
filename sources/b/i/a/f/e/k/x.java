@@ -2,14 +2,14 @@ package b.i.a.f.e.k;
 
 import android.os.IBinder;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.internal.zau;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class x implements Parcelable$Creator<zau> {
-    @Override // android.os.Parcelable$Creator
+public final class x implements Parcelable.Creator<zau> {
+    @Override // android.os.Parcelable.Creator
     public final zau createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         IBinder iBinderF1 = null;
@@ -38,7 +38,7 @@ public final class x implements Parcelable$Creator<zau> {
         return new zau(iG1, iBinderF1, connectionResult, zE1, zE2);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zau[] newArray(int i) {
         return new zau[i];
     }

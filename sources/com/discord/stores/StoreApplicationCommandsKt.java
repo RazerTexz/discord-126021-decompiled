@@ -1,6 +1,7 @@
 package com.discord.stores;
 
 import android.content.res.Resources;
+import com.discord.R;
 import com.discord.api.commands.ApplicationCommandPermission;
 import com.discord.api.commands.ApplicationCommandType;
 import com.discord.api.commands.CommandChoice;
@@ -133,28 +134,28 @@ public final class StoreApplicationCommandsKt {
         if (applicationCommandOption.getType() == ApplicationCommandType.STRING) {
             List<CommandChoice> choices = applicationCommandOption.getChoices();
             if (!(choices == null || choices.isEmpty())) {
-                return resources.getString(2131887768);
+                return resources.getString(R.string.command_validation_choice_error);
             }
         }
         if (applicationCommandOption.getType() == ApplicationCommandType.INTEGER) {
-            return resources.getString(2131887770);
+            return resources.getString(R.string.command_validation_integer_error);
         }
         if (applicationCommandOption.getType() == ApplicationCommandType.NUMBER) {
-            return resources.getString(2131887775);
+            return resources.getString(R.string.command_validation_number_error);
         }
         if (applicationCommandOption.getType() == ApplicationCommandType.BOOLEAN) {
-            return resources.getString(2131887766);
+            return resources.getString(R.string.command_validation_boolean_error);
         }
         if (applicationCommandOption.getType() == ApplicationCommandType.USER) {
-            return resources.getString(2131887784);
+            return resources.getString(R.string.command_validation_user_error);
         }
         if (applicationCommandOption.getType() == ApplicationCommandType.CHANNEL) {
-            return resources.getString(2131887767);
+            return resources.getString(R.string.command_validation_channel_error);
         }
         if (applicationCommandOption.getType() == ApplicationCommandType.ROLE) {
-            return resources.getString(2131887780);
+            return resources.getString(R.string.command_validation_role_error);
         }
-        return applicationCommandOption.getType() == ApplicationCommandType.MENTIONABLE ? resources.getString(2131887774) : resources.getString(2131887779);
+        return applicationCommandOption.getType() == ApplicationCommandType.MENTIONABLE ? resources.getString(R.string.command_validation_mentionable_error) : resources.getString(R.string.command_validation_required_error);
     }
 
     /* JADX WARN: Multi-variable type inference failed */

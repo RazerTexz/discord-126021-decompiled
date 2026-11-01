@@ -1,9 +1,8 @@
 package d0.z.d;
 
 import kotlin.reflect.KCallable;
-import kotlin.reflect.KProperty$Getter;
+import kotlin.reflect.KProperty;
 import kotlin.reflect.KProperty0;
-import kotlin.reflect.KProperty0$Getter;
 
 /* JADX INFO: compiled from: PropertyReference0.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -21,7 +20,7 @@ public abstract class v extends z implements KProperty0 {
         return ((KProperty0) getReflected()).getDelegate();
     }
 
-    public /* bridge */ /* synthetic */ KProperty$Getter getGetter() {
+    public /* bridge */ /* synthetic */ KProperty.Getter getGetter() {
         return mo112getGetter();
     }
 
@@ -36,7 +35,7 @@ public abstract class v extends z implements KProperty0 {
 
     @Override // kotlin.reflect.KProperty0
     /* JADX INFO: renamed from: getGetter */
-    public KProperty0$Getter mo112getGetter() {
+    public KProperty0.Getter mo112getGetter() {
         return ((KProperty0) getReflected()).mo112getGetter();
     }
 

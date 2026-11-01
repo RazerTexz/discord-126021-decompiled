@@ -38,9 +38,9 @@ public final class r implements t {
     }
 
     @Override // b.i.a.c.x2.t
-    public t$a h(long j) {
+    public t.a h(long j) {
         if (!this.d) {
-            return new t$a(u.a);
+            return new t.a(u.a);
         }
         int iE = e0.e(this.f1295b, j, true, true);
         long[] jArr = this.f1295b;
@@ -48,10 +48,10 @@ public final class r implements t {
         long[] jArr2 = this.a;
         u uVar = new u(j2, jArr2[iE]);
         if (j2 == j || iE == jArr.length - 1) {
-            return new t$a(uVar);
+            return new t.a(uVar);
         }
         int i = iE + 1;
-        return new t$a(uVar, new u(jArr[i], jArr2[i]));
+        return new t.a(uVar, new u(jArr[i], jArr2[i]));
     }
 
     @Override // b.i.a.c.x2.t

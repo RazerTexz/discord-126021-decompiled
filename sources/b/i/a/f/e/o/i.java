@@ -1,7 +1,7 @@
 package b.i.a.f.e.o;
 
 import android.content.Context;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.Process;
 import android.os.WorkSource;
 import android.util.Log;
@@ -59,14 +59,14 @@ public class i {
         } catch (Exception unused5) {
         }
         d = method4;
-        if (Build$VERSION.SDK_INT >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             try {
                 WorkSource.class.getMethod("createWorkChain", new Class[0]);
             } catch (Exception e) {
                 Log.w("WorkSourceUtil", "Missing WorkChain API createWorkChain", e);
             }
         }
-        if (Build$VERSION.SDK_INT >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             try {
                 Class.forName("android.os.WorkSource$WorkChain").getMethod("addNode", Integer.TYPE, String.class);
             } catch (Exception e2) {

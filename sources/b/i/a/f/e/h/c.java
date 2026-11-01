@@ -12,11 +12,21 @@ import java.util.WeakHashMap;
 public abstract class c {
     public static final Set<c> a = Collections.newSetFromMap(new WeakHashMap());
 
-    public <A extends a$b, R extends h, T extends b.i.a.f.e.h.j.d<R, A>> T a(@NonNull T t) {
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
+    @Deprecated
+    public interface a extends b.i.a.f.e.h.j.f {
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
+    @Deprecated
+    public interface b extends b.i.a.f.e.h.j.l {
+    }
+
+    public <A extends b.i.a.f.e.h.a.b, R extends h, T extends b.i.a.f.e.h.j.d<R, A>> T a(@NonNull T t) {
         throw new UnsupportedOperationException();
     }
 
-    public <A extends a$b, T extends b.i.a.f.e.h.j.d<? extends h, A>> T b(@NonNull T t) {
+    public <A extends b.i.a.f.e.h.a.b, T extends b.i.a.f.e.h.j.d<? extends h, A>> T b(@NonNull T t) {
         throw new UnsupportedOperationException();
     }
 

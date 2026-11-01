@@ -2,7 +2,6 @@ package b.i.c.m.d.k;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import b.i.c.m.d.m.v$c$a;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -28,7 +27,7 @@ public class f implements a1 {
 
     @Override // b.i.c.m.d.k.a1
     @Nullable
-    public v$c$a b() {
+    public b.i.c.m.d.m.v.c.a b() {
         byte[] byteArray;
         byte[] bArr = this.a;
         if (bArr == null || bArr.length == 0) {

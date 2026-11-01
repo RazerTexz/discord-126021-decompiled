@@ -1,7 +1,6 @@
 package com.discord.widgets.guilds.invite;
 
 import d0.k;
-import d0.k$a;
 import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
@@ -28,7 +27,7 @@ public final class InviteJoinHelper$joinViaInvite$4$hasMicrophonePermissions$1$2
     public final void invoke2() {
         Continuation continuation = this.$cont;
         Boolean bool = Boolean.TRUE;
-        k$a k_a = k.j;
+        k.a aVar = k.j;
         continuation.resumeWith(k.m97constructorimpl(bool));
     }
 }

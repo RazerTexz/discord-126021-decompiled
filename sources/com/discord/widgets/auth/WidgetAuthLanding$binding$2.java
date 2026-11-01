@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetAuthLandingBinding;
 import com.discord.views.ScreenTitleView;
@@ -30,26 +30,26 @@ public final /* synthetic */ class WidgetAuthLanding$binding$2 extends k impleme
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetAuthLandingBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.auth_bottom_container;
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.auth_bottom_container);
+        int i = R.id.auth_bottom_container;
+        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.auth_bottom_container);
         if (linearLayout != null) {
-            i = R$id.auth_landing_invite_info;
-            AuthInviteInfoView authInviteInfoView = (AuthInviteInfoView) view.findViewById(R$id.auth_landing_invite_info);
+            i = R.id.auth_landing_invite_info;
+            AuthInviteInfoView authInviteInfoView = (AuthInviteInfoView) view.findViewById(R.id.auth_landing_invite_info);
             if (authInviteInfoView != null) {
-                i = R$id.auth_landing_login;
-                MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.auth_landing_login);
+                i = R.id.auth_landing_login;
+                MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.auth_landing_login);
                 if (materialButton != null) {
-                    i = R$id.auth_landing_logo;
-                    ImageView imageView = (ImageView) view.findViewById(R$id.auth_landing_logo);
+                    i = R.id.auth_landing_logo;
+                    ImageView imageView = (ImageView) view.findViewById(R.id.auth_landing_logo);
                     if (imageView != null) {
-                        i = R$id.auth_landing_register;
-                        MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.auth_landing_register);
+                        i = R.id.auth_landing_register;
+                        MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.auth_landing_register);
                         if (materialButton2 != null) {
-                            i = R$id.auth_landing_switch_flipper;
-                            AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R$id.auth_landing_switch_flipper);
+                            i = R.id.auth_landing_switch_flipper;
+                            AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R.id.auth_landing_switch_flipper);
                             if (appViewFlipper != null) {
-                                i = R$id.auth_landing_title;
-                                ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(R$id.auth_landing_title);
+                                i = R.id.auth_landing_title;
+                                ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(R.id.auth_landing_title);
                                 if (screenTitleView != null) {
                                     return new WidgetAuthLandingBinding((RelativeLayout) view, linearLayout, authInviteInfoView, materialButton, imageView, materialButton2, appViewFlipper, screenTitleView);
                                 }

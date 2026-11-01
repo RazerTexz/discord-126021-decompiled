@@ -12,16 +12,31 @@ import java.util.Map;
 /* JADX INFO: compiled from: AnnotatedMethodCollector.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class k extends u {
-    public final t$a d;
+    public final t.a d;
     public final boolean e;
 
-    public k(b.g.a.c.b bVar, t$a t_a, boolean z2) {
+    /* JADX INFO: compiled from: AnnotatedMethodCollector.java */
+    public final class a {
+        public e0 a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public Method f691b;
+        public o c;
+
+        public a(e0 e0Var, Method method, o oVar) {
+            this.a = e0Var;
+            this.f691b = method;
+            this.c = oVar;
+        }
+    }
+
+    public k(b.g.a.c.b bVar, t.a aVar, boolean z2) {
         super(bVar);
-        this.d = bVar == null ? null : t_a;
+        this.d = bVar == null ? null : aVar;
         this.e = z2;
     }
 
-    public final void f(e0 e0Var, Class<?> cls, Map<y, k$a> map, Class<?> cls2) {
+    public final void f(e0 e0Var, Class<?> cls, Map<y, a> map, Class<?> cls2) {
         if (cls2 != null) {
             g(e0Var, cls, map, cls2);
         }
@@ -31,26 +46,26 @@ public class k extends u {
         for (Method method : b.g.a.c.i0.d.k(cls)) {
             if (h(method)) {
                 y yVar = new y(method);
-                k$a k_a = map.get(yVar);
-                if (k_a == null) {
-                    map.put(yVar, new k$a(e0Var, method, this.c == null ? o$a.c : c(method.getDeclaredAnnotations())));
+                a aVar = map.get(yVar);
+                if (aVar == null) {
+                    map.put(yVar, new a(e0Var, method, this.c == null ? o.a.c : c(method.getDeclaredAnnotations())));
                 } else {
                     if (this.e) {
-                        k_a.c = d(k_a.c, method.getDeclaredAnnotations());
+                        aVar.c = d(aVar.c, method.getDeclaredAnnotations());
                     }
-                    Method method2 = k_a.f691b;
+                    Method method2 = aVar.f691b;
                     if (method2 == null) {
-                        k_a.f691b = method;
+                        aVar.f691b = method;
                     } else if (Modifier.isAbstract(method2.getModifiers()) && !Modifier.isAbstract(method.getModifiers())) {
-                        k_a.f691b = method;
-                        k_a.a = e0Var;
+                        aVar.f691b = method;
+                        aVar.a = e0Var;
                     }
                 }
             }
         }
     }
 
-    public void g(e0 e0Var, Class<?> cls, Map<y, k$a> map, Class<?> cls2) {
+    public void g(e0 e0Var, Class<?> cls, Map<y, a> map, Class<?> cls2) {
         List listEmptyList;
         if (this.c == null) {
             return;
@@ -67,12 +82,12 @@ public class k extends u {
             for (Method method : ((Class) it.next()).getDeclaredMethods()) {
                 if (h(method)) {
                     y yVar = new y(method);
-                    k$a k_a = map.get(yVar);
+                    a aVar = map.get(yVar);
                     Annotation[] declaredAnnotations = method.getDeclaredAnnotations();
-                    if (k_a == null) {
-                        map.put(yVar, new k$a(e0Var, null, c(declaredAnnotations)));
+                    if (aVar == null) {
+                        map.put(yVar, new a(e0Var, null, c(declaredAnnotations)));
                     } else {
-                        k_a.c = d(k_a.c, declaredAnnotations);
+                        aVar.c = d(aVar.c, declaredAnnotations);
                     }
                 }
             }

@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetAnnouncementGuildProfileSheetBinding;
 import com.facebook.drawee.view.SimpleDraweeView;
 import d0.z.d.k;
@@ -28,20 +28,20 @@ public final /* synthetic */ class WidgetPublicAnnouncementProfileSheet$binding$
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetAnnouncementGuildProfileSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.announcement_guild_avatar;
-        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.announcement_guild_avatar);
+        int i = R.id.announcement_guild_avatar;
+        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.announcement_guild_avatar);
         if (simpleDraweeView != null) {
-            i = R$id.announcement_guild_description;
-            TextView textView = (TextView) view.findViewById(R$id.announcement_guild_description);
+            i = R.id.announcement_guild_description;
+            TextView textView = (TextView) view.findViewById(R.id.announcement_guild_description);
             if (textView != null) {
-                i = R$id.announcement_guild_here_to_help;
-                TextView textView2 = (TextView) view.findViewById(R$id.announcement_guild_here_to_help);
+                i = R.id.announcement_guild_here_to_help;
+                TextView textView2 = (TextView) view.findViewById(R.id.announcement_guild_here_to_help);
                 if (textView2 != null) {
-                    i = R$id.announcement_guild_name;
-                    TextView textView3 = (TextView) view.findViewById(R$id.announcement_guild_name);
+                    i = R.id.announcement_guild_name;
+                    TextView textView3 = (TextView) view.findViewById(R.id.announcement_guild_name);
                     if (textView3 != null) {
-                        i = R$id.announcement_guild_staff_icon;
-                        ImageView imageView = (ImageView) view.findViewById(R$id.announcement_guild_staff_icon);
+                        i = R.id.announcement_guild_staff_icon;
+                        ImageView imageView = (ImageView) view.findViewById(R.id.announcement_guild_staff_icon);
                         if (imageView != null) {
                             return new WidgetAnnouncementGuildProfileSheetBinding((NestedScrollView) view, simpleDraweeView, textView, textView2, textView3, imageView);
                         }

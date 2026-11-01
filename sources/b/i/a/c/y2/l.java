@@ -1,10 +1,6 @@
 package b.i.a.c.y2;
 
 import android.media.MediaCodec;
-import android.media.MediaCodec$BufferInfo;
-import android.media.MediaCodec$CodecException;
-import android.media.MediaCodec$CryptoInfo;
-import android.media.MediaCodec$CryptoInfo$Pattern;
 import android.media.MediaCrypto;
 import android.media.MediaFormat;
 import android.os.Bundle;
@@ -14,6 +10,7 @@ import android.view.Surface;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import b.i.a.c.f3.e0;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Objects;
 
@@ -33,7 +30,60 @@ public final class l implements t {
     public Surface g;
     public int f = 0;
 
-    public l(MediaCodec mediaCodec, HandlerThread handlerThread, HandlerThread handlerThread2, boolean z2, l$a l_a) {
+    /* JADX INFO: compiled from: AsynchronousMediaCodecAdapter.java */
+    public final class b implements t.b {
+        public final b.i.b.a.l<HandlerThread> a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final b.i.b.a.l<HandlerThread> f1307b;
+
+        public b(int i, boolean z2) {
+            b.i.a.c.y2.a aVar = new b.i.a.c.y2.a(i);
+            b.i.a.c.y2.b bVar = new b.i.a.c.y2.b(i);
+            this.a = aVar;
+            this.f1307b = bVar;
+        }
+
+        @Override // b.i.a.c.y2.t.b
+        public /* bridge */ /* synthetic */ t a(t.a aVar) throws IOException {
+            return b(aVar);
+        }
+
+        public l b(t.a aVar) throws Exception {
+            MediaCodec mediaCodecCreateByCodecName;
+            String str = aVar.a.a;
+            l lVar = null;
+            try {
+                String strValueOf = String.valueOf(str);
+                b.c.a.a0.d.f(strValueOf.length() != 0 ? "createCodec:".concat(strValueOf) : new String("createCodec:"));
+                mediaCodecCreateByCodecName = MediaCodec.createByCodecName(str);
+                try {
+                    l lVar2 = new l(mediaCodecCreateByCodecName, this.a.get(), this.f1307b.get(), false, null);
+                    try {
+                        b.c.a.a0.d.d0();
+                        l.k(lVar2, aVar.f1314b, aVar.d, aVar.e, 0, false);
+                        return lVar2;
+                    } catch (Exception e) {
+                        e = e;
+                        lVar = lVar2;
+                        if (lVar != null) {
+                            lVar.release();
+                        } else if (mediaCodecCreateByCodecName != null) {
+                            mediaCodecCreateByCodecName.release();
+                        }
+                        throw e;
+                    }
+                } catch (Exception e2) {
+                    e = e2;
+                }
+            } catch (Exception e3) {
+                e = e3;
+                mediaCodecCreateByCodecName = null;
+            }
+        }
+    }
+
+    public l(MediaCodec mediaCodec, HandlerThread handlerThread, HandlerThread handlerThread2, boolean z2, a aVar) {
         this.a = mediaCodec;
         this.f1306b = new o(handlerThread);
         this.c = new n(mediaCodec, handlerThread2);
@@ -49,27 +99,27 @@ public final class l implements t {
     public void b(int i, int i2, b.i.a.c.v2.c cVar, long j, int i3) {
         n nVar = this.c;
         nVar.f();
-        n$a n_aE = n.e();
-        n_aE.a = i;
-        n_aE.f1309b = i2;
-        n_aE.c = 0;
-        n_aE.e = j;
-        n_aE.f = i3;
-        MediaCodec$CryptoInfo mediaCodec$CryptoInfo = n_aE.d;
-        mediaCodec$CryptoInfo.numSubSamples = cVar.f;
-        mediaCodec$CryptoInfo.numBytesOfClearData = n.c(cVar.d, mediaCodec$CryptoInfo.numBytesOfClearData);
-        mediaCodec$CryptoInfo.numBytesOfEncryptedData = n.c(cVar.e, mediaCodec$CryptoInfo.numBytesOfEncryptedData);
-        byte[] bArrB = n.b(cVar.f1141b, mediaCodec$CryptoInfo.key);
+        n.a aVarE = n.e();
+        aVarE.a = i;
+        aVarE.f1309b = i2;
+        aVarE.c = 0;
+        aVarE.e = j;
+        aVarE.f = i3;
+        MediaCodec.CryptoInfo cryptoInfo = aVarE.d;
+        cryptoInfo.numSubSamples = cVar.f;
+        cryptoInfo.numBytesOfClearData = n.c(cVar.d, cryptoInfo.numBytesOfClearData);
+        cryptoInfo.numBytesOfEncryptedData = n.c(cVar.e, cryptoInfo.numBytesOfEncryptedData);
+        byte[] bArrB = n.b(cVar.f1141b, cryptoInfo.key);
         Objects.requireNonNull(bArrB);
-        mediaCodec$CryptoInfo.key = bArrB;
-        byte[] bArrB2 = n.b(cVar.a, mediaCodec$CryptoInfo.iv);
+        cryptoInfo.key = bArrB;
+        byte[] bArrB2 = n.b(cVar.a, cryptoInfo.iv);
         Objects.requireNonNull(bArrB2);
-        mediaCodec$CryptoInfo.iv = bArrB2;
-        mediaCodec$CryptoInfo.mode = cVar.c;
+        cryptoInfo.iv = bArrB2;
+        cryptoInfo.mode = cVar.c;
         if (e0.a >= 24) {
-            mediaCodec$CryptoInfo.setPattern(new MediaCodec$CryptoInfo$Pattern(cVar.g, cVar.h));
+            cryptoInfo.setPattern(new MediaCodec.CryptoInfo.Pattern(cVar.g, cVar.h));
         }
-        nVar.e.obtainMessage(1, n_aE).sendToTarget();
+        nVar.e.obtainMessage(1, aVarE).sendToTarget();
     }
 
     @Override // b.i.a.c.y2.t
@@ -89,10 +139,10 @@ public final class l implements t {
                     oVar.m = null;
                     throw illegalStateException;
                 }
-                MediaCodec$CodecException mediaCodec$CodecException = oVar.j;
-                if (mediaCodec$CodecException != null) {
+                MediaCodec.CodecException codecException = oVar.j;
+                if (codecException != null) {
                     oVar.j = null;
-                    throw mediaCodec$CodecException;
+                    throw codecException;
                 }
                 s sVar = oVar.d;
                 if (!(sVar.c == 0)) {
@@ -104,7 +154,7 @@ public final class l implements t {
     }
 
     @Override // b.i.a.c.y2.t
-    public int e(MediaCodec$BufferInfo mediaCodec$BufferInfo) {
+    public int e(MediaCodec.BufferInfo bufferInfo) {
         int iB;
         o oVar = this.f1306b;
         synchronized (oVar.a) {
@@ -115,18 +165,18 @@ public final class l implements t {
                     oVar.m = null;
                     throw illegalStateException;
                 }
-                MediaCodec$CodecException mediaCodec$CodecException = oVar.j;
-                if (mediaCodec$CodecException != null) {
+                MediaCodec.CodecException codecException = oVar.j;
+                if (codecException != null) {
                     oVar.j = null;
-                    throw mediaCodec$CodecException;
+                    throw codecException;
                 }
                 s sVar = oVar.e;
                 if (!(sVar.c == 0)) {
                     iB = sVar.b();
                     if (iB >= 0) {
                         b.c.a.a0.d.H(oVar.h);
-                        MediaCodec$BufferInfo mediaCodec$BufferInfoRemove = oVar.f.remove();
-                        mediaCodec$BufferInfo.set(mediaCodec$BufferInfoRemove.offset, mediaCodec$BufferInfoRemove.size, mediaCodec$BufferInfoRemove.presentationTimeUs, mediaCodec$BufferInfoRemove.flags);
+                        MediaCodec.BufferInfo bufferInfoRemove = oVar.f.remove();
+                        bufferInfo.set(bufferInfoRemove.offset, bufferInfoRemove.size, bufferInfoRemove.presentationTimeUs, bufferInfoRemove.flags);
                     } else if (iB == -2) {
                         oVar.h = oVar.g.remove();
                     }
@@ -137,9 +187,9 @@ public final class l implements t {
     }
 
     @Override // b.i.a.c.y2.t
-    public void f(t$c t_c, Handler handler) {
+    public void f(t.c cVar, Handler handler) {
         m();
-        this.a.setOnFrameRenderedListener(new c(this, t_c), handler);
+        this.a.setOnFrameRenderedListener(new c(this, cVar), handler);
     }
 
     @Override // b.i.a.c.y2.t
@@ -250,15 +300,15 @@ public final class l implements t {
     public void queueInputBuffer(int i, int i2, int i3, long j, int i4) {
         n nVar = this.c;
         nVar.f();
-        n$a n_aE = n.e();
-        n_aE.a = i;
-        n_aE.f1309b = i2;
-        n_aE.c = i3;
-        n_aE.e = j;
-        n_aE.f = i4;
+        n.a aVarE = n.e();
+        aVarE.a = i;
+        aVarE.f1309b = i2;
+        aVarE.c = i3;
+        aVarE.e = j;
+        aVarE.f = i4;
         Handler handler = nVar.e;
         int i5 = e0.a;
-        handler.obtainMessage(0, n_aE).sendToTarget();
+        handler.obtainMessage(0, aVarE).sendToTarget();
     }
 
     @Override // b.i.a.c.y2.t

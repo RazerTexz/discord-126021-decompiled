@@ -3,8 +3,7 @@ package com.discord.widgets.chat.input.applicationcommands;
 import android.view.View;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.databinding.ViewAppcommandsOptionheadingListitemBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
@@ -17,14 +16,14 @@ public final class SelectedAppCommandSectionHeadingAdapterItem extends MGRecycle
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public SelectedAppCommandSectionHeadingAdapterItem(SelectedApplicationCommandAdapter selectedApplicationCommandAdapter) {
-        super(R$layout.view_appcommands_optionheading_listitem, selectedApplicationCommandAdapter);
+        super(R.layout.view_appcommands_optionheading_listitem, selectedApplicationCommandAdapter);
         m.checkNotNullParameter(selectedApplicationCommandAdapter, "adapter");
         View view = this.itemView;
-        int i = R$id.appcommands_optionheading_title;
-        TextView textView = (TextView) view.findViewById(R$id.appcommands_optionheading_title);
+        int i = R.id.appcommands_optionheading_title;
+        TextView textView = (TextView) view.findViewById(R.id.appcommands_optionheading_title);
         if (textView != null) {
-            i = R$id.divider;
-            View viewFindViewById = view.findViewById(R$id.divider);
+            i = R.id.divider;
+            View viewFindViewById = view.findViewById(R.id.divider);
             if (viewFindViewById != null) {
                 ViewAppcommandsOptionheadingListitemBinding viewAppcommandsOptionheadingListitemBinding = new ViewAppcommandsOptionheadingListitemBinding((ConstraintLayout) view, textView, viewFindViewById);
                 m.checkNotNullExpressionValue(viewAppcommandsOptionheadingListitemBinding, "ViewAppcommandsOptionhea…temBinding.bind(itemView)");

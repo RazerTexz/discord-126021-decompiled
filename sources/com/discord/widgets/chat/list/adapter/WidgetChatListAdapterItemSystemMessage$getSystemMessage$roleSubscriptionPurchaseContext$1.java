@@ -1,8 +1,13 @@
 package com.discord.widgets.chat.list.adapter;
 
 import android.content.Context;
+import android.view.View;
+import com.discord.R;
+import com.discord.i18n.Hook;
 import com.discord.i18n.RenderContext;
 import com.discord.models.message.Message;
+import com.discord.utilities.color.ColorCompat;
+import com.discord.utilities.spans.ClickableSpan;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -33,10 +38,97 @@ public final class WidgetChatListAdapterItemSystemMessage$getSystemMessage$roleS
         return Unit.a;
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemSystemMessage.kt */
+    public final class AnonymousClass1 extends o implements Function1<Hook, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: WidgetChatListAdapterItemSystemMessage.kt */
+        public final class C03971 extends o implements Function1<View, Unit> {
+            public C03971() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(View view) {
+                invoke2(view);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(View view) {
+                m.checkNotNullParameter(view, "it");
+                WidgetChatListAdapter.EventHandler eventHandler = WidgetChatListAdapterItemSystemMessage.access$getAdapter$p(WidgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1.this.this$0).getEventHandler();
+                WidgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1 widgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1 = WidgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1.this;
+                eventHandler.onMessageAuthorNameClicked(widgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1.$this_getSystemMessage, WidgetChatListAdapterItemSystemMessage.access$getAdapter$p(widgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1.this$0).getData().getGuildId());
+            }
+        }
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Hook hook) {
+            m.checkNotNullParameter(hook, "$receiver");
+            hook.styles.add(new ClickableSpan(Integer.valueOf(WidgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1.this.$authorRoleColor), false, null, new C03971(), 4, null));
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Hook hook) {
+            invoke2(hook);
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemSystemMessage.kt */
+    public final class AnonymousClass2 extends o implements Function1<Hook, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetChatListAdapterItemSystemMessage.kt */
+        public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(View view) {
+                invoke2(view);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(View view) {
+                m.checkNotNullParameter(view, "it");
+                WidgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1 widgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1 = WidgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1.this;
+                if (widgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1.$roleSubscriptionListingId != null) {
+                    WidgetChatListAdapterItemSystemMessage.access$getAdapter$p(widgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1.this$0).onRoleSubscriptionPurchaseSystemMessageClicked(WidgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1.this.$roleSubscriptionListingId.longValue(), WidgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1.this.$this_getSystemMessage.getId());
+                }
+            }
+        }
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Hook hook) {
+            m.checkNotNullParameter(hook, "$receiver");
+            hook.styles.add(new ClickableSpan(Integer.valueOf(ColorCompat.getThemedColor(WidgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1.this.$context, R.attr.colorTextLink)), false, null, new AnonymousClass1(), 4, null));
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Hook hook) {
+            invoke2(hook);
+            return Unit.a;
+        }
+    }
+
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(RenderContext renderContext) {
         m.checkNotNullParameter(renderContext, "$receiver");
-        renderContext.a("usernameOnClick", new WidgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1$1(this));
-        renderContext.a("roleSubscriptionOnClick", new WidgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1$2(this));
+        renderContext.a("usernameOnClick", new AnonymousClass1());
+        renderContext.a("roleSubscriptionOnClick", new AnonymousClass2());
     }
 }

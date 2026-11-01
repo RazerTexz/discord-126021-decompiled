@@ -5,20 +5,21 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Drawable$ConstantState;
+import android.view.animation.AnimationUtils;
 import androidx.annotation.IntRange;
 import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat;
-import androidx.vectordrawable.graphics.drawable.Animatable2Compat$AnimationCallback;
 import com.linecorp.apng.decoder.Apng;
 import com.linecorp.apng.decoder.ApngException;
 import d0.t.k;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import kotlin.jvm.functions.Function0;
 import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: compiled from: ApngDrawable.kt */
@@ -38,7 +39,7 @@ public final class a extends Drawable implements Animatable2Compat {
     @IntRange(from = -1, to = 2147483647L)
     public int n;
     public final Paint o;
-    public final List<Animatable2Compat$AnimationCallback> p;
+    public final List<Animatable2Compat.AnimationCallback> p;
     public final List<b> q;
     public final int[] r;
 
@@ -50,13 +51,66 @@ public final class a extends Drawable implements Animatable2Compat {
     public Long w;
 
     /* JADX INFO: renamed from: x, reason: collision with root package name */
-    public a$a f1901x;
+    public C0162a f1901x;
+
+    /* JADX INFO: renamed from: b.l.a.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: ApngDrawable.kt */
+    public final class C0162a extends Drawable.ConstantState {
+        public final Apng a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f1902b;
+        public final int c;
+        public final int d;
+        public final Function0<Long> e;
+
+        /* JADX INFO: renamed from: b.l.a.a$a$a, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: ApngDrawable.kt */
+        public final class C0163a extends o implements Function0<Long> {
+            public static final C0163a j = new C0163a();
+
+            public C0163a() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public Long invoke() {
+                return Long.valueOf(AnimationUtils.currentAnimationTimeMillis());
+            }
+        }
+
+        public C0162a(Apng apng, @IntRange(from = 1, to = 2147483647L) int i, @IntRange(from = 1, to = 2147483647L) int i2, int i3, Function0<Long> function0) {
+            m.checkNotNullParameter(apng, "apng");
+            m.checkNotNullParameter(function0, "currentTimeProvider");
+            this.a = apng;
+            this.f1902b = i;
+            this.c = i2;
+            this.d = i3;
+            this.e = function0;
+        }
+
+        @Override // android.graphics.drawable.Drawable.ConstantState
+        public int getChangingConfigurations() {
+            return 0;
+        }
+
+        @Override // android.graphics.drawable.Drawable.ConstantState
+        public Drawable newDrawable() {
+            return new a(new C0162a(this));
+        }
+
+        /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
+        public C0162a(C0162a c0162a) {
+            this(c0162a.a.copy(), c0162a.f1902b, c0162a.c, c0162a.d, c0162a.e);
+            m.checkNotNullParameter(c0162a, "apngState");
+        }
+    }
 
     @VisibleForTesting
-    public a(a$a a_a) {
-        m.checkNotNullParameter(a_a, "apngState");
-        this.f1901x = a_a;
-        this.j = a_a.a.getDuration();
+    public a(C0162a c0162a) {
+        m.checkNotNullParameter(c0162a, "apngState");
+        this.f1901x = c0162a;
+        this.j = c0162a.a.getDuration();
         int frameCount = this.f1901x.a.getFrameCount();
         this.k = frameCount;
         this.l = k.toList(this.f1901x.a.getFrameDurations());
@@ -68,17 +122,17 @@ public final class a extends Drawable implements Animatable2Compat {
         this.p = new ArrayList();
         this.q = new ArrayList();
         this.r = new int[frameCount];
-        a$a a_a2 = this.f1901x;
-        this.f1900s = a_a2.f1902b;
-        this.t = a_a2.c;
+        C0162a c0162a2 = this.f1901x;
+        this.f1900s = c0162a2.f1902b;
+        this.t = c0162a2.c;
         for (int i = 1; i < frameCount; i++) {
             int[] iArr = this.r;
             int i2 = i - 1;
             iArr[i] = iArr[i2] + this.f1901x.a.getFrameDurations()[i2];
         }
         Rect bounds = getBounds();
-        a$a a_a3 = this.f1901x;
-        bounds.set(0, 0, a_a3.f1902b, a_a3.c);
+        C0162a c0162a3 = this.f1901x;
+        bounds.set(0, 0, c0162a3.f1902b, c0162a3.c);
     }
 
     @WorkerThread
@@ -96,8 +150,8 @@ public final class a extends Drawable implements Animatable2Compat {
         }
         if (z2) {
             int i = (num == null && num2 == null) ? Opcodes.IF_ICMPNE : 0;
-            Apng apngDecode = Apng.Companion.decode(inputStream);
-            return new a(new a$a(apngDecode, num != null ? num.intValue() : apngDecode.getWidth(), num2 != null ? num2.intValue() : apngDecode.getHeight(), i, a$a$a.j));
+            Apng apngDecode = Apng.INSTANCE.decode(inputStream);
+            return new a(new C0162a(apngDecode, num != null ? num.intValue() : apngDecode.getWidth(), num2 != null ? num2.intValue() : apngDecode.getHeight(), i, C0162a.C0163a.j));
         }
         throw new IllegalArgumentException(("Can not specify 0 or negative as height value. height = " + num2).toString());
     }
@@ -177,7 +231,7 @@ public final class a extends Drawable implements Animatable2Compat {
                 } else if ((d() == 0) && l == null) {
                     Iterator<T> it = this.p.iterator();
                     while (it.hasNext()) {
-                        ((Animatable2Compat$AnimationCallback) it.next()).onAnimationStart(this);
+                        ((Animatable2Compat.AnimationCallback) it.next()).onAnimationStart(this);
                     }
                 } else {
                     if (c() == this.k - 1) {
@@ -204,7 +258,7 @@ public final class a extends Drawable implements Animatable2Compat {
                 this.u = false;
                 Iterator<T> it2 = this.p.iterator();
                 while (it2.hasNext()) {
-                    ((Animatable2Compat$AnimationCallback) it2.next()).onAnimationEnd(this);
+                    ((Animatable2Compat.AnimationCallback) it2.next()).onAnimationEnd(this);
                 }
             }
         }
@@ -219,7 +273,7 @@ public final class a extends Drawable implements Animatable2Compat {
     }
 
     @Override // android.graphics.drawable.Drawable
-    public Drawable$ConstantState getConstantState() {
+    public Drawable.ConstantState getConstantState() {
         return this.f1901x;
     }
 
@@ -245,14 +299,14 @@ public final class a extends Drawable implements Animatable2Compat {
 
     @Override // android.graphics.drawable.Drawable
     public Drawable mutate() {
-        this.f1901x = new a$a(this.f1901x);
+        this.f1901x = new C0162a(this.f1901x);
         return this;
     }
 
     @Override // androidx.vectordrawable.graphics.drawable.Animatable2Compat
-    public void registerAnimationCallback(Animatable2Compat$AnimationCallback animatable2Compat$AnimationCallback) {
-        m.checkNotNullParameter(animatable2Compat$AnimationCallback, "callback");
-        this.p.add(animatable2Compat$AnimationCallback);
+    public void registerAnimationCallback(Animatable2Compat.AnimationCallback animationCallback) {
+        m.checkNotNullParameter(animationCallback, "callback");
+        this.p.add(animationCallback);
     }
 
     @Override // android.graphics.drawable.Drawable
@@ -279,8 +333,8 @@ public final class a extends Drawable implements Animatable2Compat {
     }
 
     @Override // androidx.vectordrawable.graphics.drawable.Animatable2Compat
-    public boolean unregisterAnimationCallback(Animatable2Compat$AnimationCallback animatable2Compat$AnimationCallback) {
-        m.checkNotNullParameter(animatable2Compat$AnimationCallback, "callback");
-        return this.p.remove(animatable2Compat$AnimationCallback);
+    public boolean unregisterAnimationCallback(Animatable2Compat.AnimationCallback animationCallback) {
+        m.checkNotNullParameter(animationCallback, "callback");
+        return this.p.remove(animationCallback);
     }
 }

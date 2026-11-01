@@ -5,7 +5,6 @@ import b.i.a.f.e.o.f;
 import com.discord.analytics.utils.RegistrationSteps;
 import d0.g0.t;
 import d0.t.n0;
-import d0.y.b;
 import d0.z.d.m;
 import f0.e0.g.j;
 import f0.e0.h.g;
@@ -18,7 +17,6 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
-import okhttp3.Interceptor$Chain;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -31,14 +29,28 @@ public final class a implements Interceptor {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public volatile Set<String> f3669b;
-    public volatile a$a c;
-    public final a$b d;
+    public volatile EnumC0611a c;
+    public final b d;
 
-    public a(a$b a_b) {
-        m.checkParameterIsNotNull(a_b, "logger");
-        this.d = a_b;
+    /* JADX INFO: renamed from: f0.f0.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: HttpLoggingInterceptor.kt */
+    public enum EnumC0611a {
+        NONE,
+        BASIC,
+        HEADERS,
+        BODY
+    }
+
+    /* JADX INFO: compiled from: HttpLoggingInterceptor.kt */
+    public interface b {
+        void log(String str);
+    }
+
+    public a(b bVar) {
+        m.checkParameterIsNotNull(bVar, "logger");
+        this.d = bVar;
         this.f3669b = n0.emptySet();
-        this.c = a$a.NONE;
+        this.c = EnumC0611a.NONE;
     }
 
     public final boolean a(Headers headers) {
@@ -53,19 +65,19 @@ public final class a implements Interceptor {
     }
 
     @Override // okhttp3.Interceptor
-    public Response intercept(Interceptor$Chain interceptor$Chain) throws Exception {
+    public Response intercept(Interceptor.Chain chain) throws Exception {
         String string;
         Charset charsetA;
         Charset charsetA2;
-        m.checkParameterIsNotNull(interceptor$Chain, "chain");
-        a$a a_a = this.c;
-        g gVar = (g) interceptor$Chain;
+        m.checkParameterIsNotNull(chain, "chain");
+        EnumC0611a enumC0611a = this.c;
+        g gVar = (g) chain;
         Request request = gVar.f;
-        if (a_a == a$a.NONE) {
+        if (enumC0611a == EnumC0611a.NONE) {
             return gVar.a(request);
         }
-        boolean z2 = a_a == a$a.BODY;
-        boolean z3 = z2 || a_a == a$a.HEADERS;
+        boolean z2 = enumC0611a == EnumC0611a.BODY;
+        boolean z3 = z2 || enumC0611a == EnumC0611a.HEADERS;
         RequestBody requestBody = request.body;
         k kVarB = gVar.b();
         StringBuilder sbU = b.d.b.a.a.U("--> ");
@@ -83,7 +95,7 @@ public final class a implements Interceptor {
         String string2 = sbU.toString();
         if (!z3 && requestBody != null) {
             StringBuilder sbX = b.d.b.a.a.X(string2, " (");
-            sbX.append(requestBody.getSize());
+            sbX.append(requestBody.contentLength());
             sbX.append("-byte body)");
             string2 = sbX.toString();
         }
@@ -95,11 +107,11 @@ public final class a implements Interceptor {
                 if (mediaTypeContentType != null && headers.c("Content-Type") == null) {
                     this.d.log("Content-Type: " + mediaTypeContentType);
                 }
-                if (requestBody.getSize() != -1 && headers.c("Content-Length") == null) {
-                    a$b a_b = this.d;
+                if (requestBody.contentLength() != -1 && headers.c("Content-Length") == null) {
+                    b bVar = this.d;
                     StringBuilder sbU3 = b.d.b.a.a.U("Content-Length: ");
-                    sbU3.append(requestBody.getSize());
-                    a_b.log(sbU3.toString());
+                    sbU3.append(requestBody.contentLength());
+                    bVar.log(sbU3.toString());
                 }
             }
             int size = headers.size();
@@ -107,28 +119,28 @@ public final class a implements Interceptor {
                 b(headers, i);
             }
             if (!z2 || requestBody == null) {
-                a$b a_b2 = this.d;
+                b bVar2 = this.d;
                 StringBuilder sbU4 = b.d.b.a.a.U("--> END ");
                 sbU4.append(request.method);
-                a_b2.log(sbU4.toString());
+                bVar2.log(sbU4.toString());
             } else if (a(request.headers)) {
-                a$b a_b3 = this.d;
+                b bVar3 = this.d;
                 StringBuilder sbU5 = b.d.b.a.a.U("--> END ");
                 sbU5.append(request.method);
                 sbU5.append(" (encoded body omitted)");
-                a_b3.log(sbU5.toString());
+                bVar3.log(sbU5.toString());
             } else if (requestBody.isDuplex()) {
-                a$b a_b4 = this.d;
+                b bVar4 = this.d;
                 StringBuilder sbU6 = b.d.b.a.a.U("--> END ");
                 sbU6.append(request.method);
                 sbU6.append(" (duplex request body omitted)");
-                a_b4.log(sbU6.toString());
+                bVar4.log(sbU6.toString());
             } else if (requestBody.isOneShot()) {
-                a$b a_b5 = this.d;
+                b bVar5 = this.d;
                 StringBuilder sbU7 = b.d.b.a.a.U("--> END ");
                 sbU7.append(request.method);
                 sbU7.append(" (one-shot body omitted)");
-                a_b5.log(sbU7.toString());
+                bVar5.log(sbU7.toString());
             } else {
                 e eVar = new e();
                 requestBody.writeTo(eVar);
@@ -140,21 +152,21 @@ public final class a implements Interceptor {
                 this.d.log("");
                 if (f.F0(eVar)) {
                     this.d.log(eVar.M(charsetA2));
-                    a$b a_b6 = this.d;
+                    b bVar6 = this.d;
                     StringBuilder sbU8 = b.d.b.a.a.U("--> END ");
                     sbU8.append(request.method);
                     sbU8.append(" (");
-                    sbU8.append(requestBody.getSize());
+                    sbU8.append(requestBody.contentLength());
                     sbU8.append("-byte body)");
-                    a_b6.log(sbU8.toString());
+                    bVar6.log(sbU8.toString());
                 } else {
-                    a$b a_b7 = this.d;
+                    b bVar7 = this.d;
                     StringBuilder sbU9 = b.d.b.a.a.U("--> END ");
                     sbU9.append(request.method);
                     sbU9.append(" (binary ");
-                    sbU9.append(requestBody.getSize());
+                    sbU9.append(requestBody.contentLength());
                     sbU9.append("-byte body omitted)");
-                    a_b7.log(sbU9.toString());
+                    bVar7.log(sbU9.toString());
                 }
             }
         }
@@ -168,7 +180,7 @@ public final class a implements Interceptor {
             }
             long jA = responseBody.a();
             String str = jA != -1 ? jA + "-byte" : "unknown-length";
-            a$b a_b8 = this.d;
+            b bVar8 = this.d;
             StringBuilder sbU10 = b.d.b.a.a.U("<-- ");
             sbU10.append(responseA.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String);
             sbU10.append(responseA.message.length() == 0 ? "" : String.valueOf(' ') + responseA.message);
@@ -179,7 +191,7 @@ public final class a implements Interceptor {
             sbU10.append("ms");
             sbU10.append(!z3 ? b.d.b.a.a.y(", ", str, " body") : "");
             sbU10.append(')');
-            a_b8.log(sbU10.toString());
+            bVar8.log(sbU10.toString());
             if (z3) {
                 Headers headers2 = responseA.headers;
                 int size2 = headers2.size();
@@ -201,13 +213,13 @@ public final class a implements Interceptor {
                         try {
                             eVarG = new e();
                             eVarG.P(lVar);
-                            b.closeFinally(lVar, null);
+                            d0.y.b.closeFinally(lVar, null);
                             l = lValueOf;
                         } catch (Throwable th) {
                             try {
                                 throw th;
                             } catch (Throwable th2) {
-                                b.closeFinally(lVar, th);
+                                d0.y.b.closeFinally(lVar, th);
                                 throw th2;
                             }
                         }
@@ -219,11 +231,11 @@ public final class a implements Interceptor {
                     }
                     if (!f.F0(eVarG)) {
                         this.d.log("");
-                        a$b a_b9 = this.d;
+                        b bVar9 = this.d;
                         StringBuilder sbU11 = b.d.b.a.a.U("<-- END HTTP (binary ");
                         sbU11.append(eVarG.k);
                         sbU11.append("-byte body omitted)");
-                        a_b9.log(sbU11.toString());
+                        bVar9.log(sbU11.toString());
                         return responseA;
                     }
                     if (jA != 0) {
@@ -231,19 +243,19 @@ public final class a implements Interceptor {
                         this.d.log(eVarG.b().M(charsetA));
                     }
                     if (l != null) {
-                        a$b a_b10 = this.d;
+                        b bVar10 = this.d;
                         StringBuilder sbU12 = b.d.b.a.a.U("<-- END HTTP (");
                         sbU12.append(eVarG.k);
                         sbU12.append("-byte, ");
                         sbU12.append(l);
                         sbU12.append("-gzipped-byte body)");
-                        a_b10.log(sbU12.toString());
+                        bVar10.log(sbU12.toString());
                     } else {
-                        a$b a_b11 = this.d;
+                        b bVar11 = this.d;
                         StringBuilder sbU13 = b.d.b.a.a.U("<-- END HTTP (");
                         sbU13.append(eVarG.k);
                         sbU13.append("-byte body)");
-                        a_b11.log(sbU13.toString());
+                        bVar11.log(sbU13.toString());
                     }
                 }
             }

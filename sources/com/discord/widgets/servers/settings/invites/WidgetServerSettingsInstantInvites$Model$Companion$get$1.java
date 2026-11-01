@@ -12,7 +12,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetServerSettingsInstantInvites.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetServerSettingsInstantInvites$Model$Companion$get$1 extends o implements Function0<WidgetServerSettingsInstantInvites$Model> {
+public final class WidgetServerSettingsInstantInvites$Model$Companion$get$1 extends o implements Function0<WidgetServerSettingsInstantInvites.Model> {
     public final /* synthetic */ long $guildId;
     public final /* synthetic */ StoreGuilds $storeGuilds;
     public final /* synthetic */ StoreInstantInvites $storeInstantInvites;
@@ -26,13 +26,13 @@ public final class WidgetServerSettingsInstantInvites$Model$Companion$get$1 exte
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ WidgetServerSettingsInstantInvites$Model invoke() {
+    public /* bridge */ /* synthetic */ WidgetServerSettingsInstantInvites.Model invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final WidgetServerSettingsInstantInvites$Model invoke() {
+    public final WidgetServerSettingsInstantInvites.Model invoke() {
         Guild guild = this.$storeGuilds.getGuild(this.$guildId);
         Map<Long, GuildMember> mapEmptyMap = this.$storeGuilds.getMembers().get(Long.valueOf(this.$guildId));
         if (mapEmptyMap == null) {
@@ -42,6 +42,6 @@ public final class WidgetServerSettingsInstantInvites$Model$Companion$get$1 exte
         if (guild == null) {
             return null;
         }
-        return invites == null ? new WidgetServerSettingsInstantInvites$Model(guild, null) : new WidgetServerSettingsInstantInvites$Model(guild, WidgetServerSettingsInstantInvites$Model$InviteItem.Companion.createList(invites, this.$guildId, mapEmptyMap));
+        return invites == null ? new WidgetServerSettingsInstantInvites.Model(guild, null) : new WidgetServerSettingsInstantInvites.Model(guild, WidgetServerSettingsInstantInvites.Model.InviteItem.INSTANCE.createList(invites, this.$guildId, mapEmptyMap));
     }
 }

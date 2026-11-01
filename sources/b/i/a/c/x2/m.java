@@ -6,13 +6,19 @@ import org.objectweb.asm.Opcodes;
 /* JADX INFO: compiled from: FlacFrameReader.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class m {
-    public static boolean a(b.i.a.c.f3.x xVar, o oVar, boolean z2, m$a m_a) {
+
+    /* JADX INFO: compiled from: FlacFrameReader.java */
+    public final class a {
+        public long a;
+    }
+
+    public static boolean a(b.i.a.c.f3.x xVar, o oVar, boolean z2, a aVar) {
         try {
             long jZ = xVar.z();
             if (!z2) {
                 jZ *= (long) oVar.f1292b;
             }
-            m_a.a = jZ;
+            aVar.a = jZ;
             return true;
         } catch (NumberFormatException unused) {
             return false;
@@ -22,7 +28,7 @@ public final class m {
     /* JADX WARN: Code duplicated, block: B:61:0x00ac  */
     /* JADX WARN: Code duplicated, block: B:62:0x00ae  */
     /* JADX WARN: Instruction removed from duplicated block: B:62:0x00ae, please report this as an issue */
-    public static boolean b(b.i.a.c.f3.x xVar, o oVar, int i, m$a m_a) {
+    public static boolean b(b.i.a.c.f3.x xVar, o oVar, int i, a aVar) {
         boolean z2;
         long jU = xVar.u();
         long j = jU >>> 16;
@@ -38,7 +44,7 @@ public final class m {
         if (!(i4 > 7 ? !(i4 > 10 || oVar.g != 2) : i4 == oVar.g - 1)) {
             return false;
         }
-        if (!(i5 == 0 || i5 == oVar.i) || z4 || !a(xVar, oVar, z3, m_a)) {
+        if (!(i5 == 0 || i5 == oVar.i) || z4 || !a(xVar, oVar, z3, aVar)) {
             return false;
         }
         int iC = c(xVar, i2);

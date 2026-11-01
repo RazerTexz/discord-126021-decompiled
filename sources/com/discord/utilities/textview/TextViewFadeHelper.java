@@ -1,7 +1,13 @@
 package com.discord.utilities.textview;
 
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
 import android.text.Layout;
 import android.text.Spannable;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+import android.text.style.UpdateAppearance;
 import android.widget.TextView;
 import d0.z.d.m;
 
@@ -9,13 +15,30 @@ import d0.z.d.m;
 /* JADX INFO: loaded from: classes2.dex */
 public final class TextViewFadeHelper {
     private Float lineWidth;
-    private final TextViewFadeHelper$LinearGradientSpan span;
+    private final LinearGradientSpan span;
     private final TextView textView;
+
+    /* JADX INFO: compiled from: TextViewFadeHelper.kt */
+    public final class LinearGradientSpan extends CharacterStyle implements UpdateAppearance {
+        public LinearGradientSpan() {
+        }
+
+        @Override // android.text.style.CharacterStyle
+        public void updateDrawState(TextPaint tp) {
+            Float lineWidth;
+            if (tp == null || (lineWidth = TextViewFadeHelper.this.getLineWidth()) == null) {
+                return;
+            }
+            float fFloatValue = lineWidth.floatValue();
+            tp.bgColor = 0;
+            tp.setShader(new LinearGradient(0.0f, 0.0f, fFloatValue, 0.0f, TextViewFadeHelper.this.getTextView().getCurrentTextColor(), Color.parseColor("#00000000"), Shader.TileMode.CLAMP));
+        }
+    }
 
     public TextViewFadeHelper(TextView textView) {
         m.checkNotNullParameter(textView, "textView");
         this.textView = textView;
-        this.span = new TextViewFadeHelper$LinearGradientSpan(this);
+        this.span = new LinearGradientSpan();
     }
 
     public static final /* synthetic */ void access$updateFade(TextViewFadeHelper textViewFadeHelper) {
@@ -26,7 +49,7 @@ public final class TextViewFadeHelper {
         return this.lineWidth;
     }
 
-    public final TextViewFadeHelper$LinearGradientSpan getSpan() {
+    public final LinearGradientSpan getSpan() {
         return this.span;
     }
 

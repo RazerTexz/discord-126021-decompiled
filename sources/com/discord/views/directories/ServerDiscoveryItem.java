@@ -3,14 +3,13 @@ package com.discord.views.directories;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View$OnClickListener;
+import android.view.View;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.Barrier;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import b.a.i.g3;
 import b.a.k.b;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.views.GuildView;
 import com.discord.views.guilds.ServerMemberCount;
@@ -28,30 +27,30 @@ public final class ServerDiscoveryItem extends ConstraintLayout {
     public ServerDiscoveryItem(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(R$layout.view_server_discovery_item, this);
-        int i = R$id.button_barrier;
-        Barrier barrier = (Barrier) findViewById(R$id.button_barrier);
+        LayoutInflater.from(context).inflate(R.layout.view_server_discovery_item, this);
+        int i = R.id.button_barrier;
+        Barrier barrier = (Barrier) findViewById(R.id.button_barrier);
         if (barrier != null) {
-            i = R$id.server_discovery_item_barrier;
-            Barrier barrier2 = (Barrier) findViewById(R$id.server_discovery_item_barrier);
+            i = R.id.server_discovery_item_barrier;
+            Barrier barrier2 = (Barrier) findViewById(R.id.server_discovery_item_barrier);
             if (barrier2 != null) {
-                i = R$id.server_discovery_item_button;
-                MaterialButton materialButton = (MaterialButton) findViewById(R$id.server_discovery_item_button);
+                i = R.id.server_discovery_item_button;
+                MaterialButton materialButton = (MaterialButton) findViewById(R.id.server_discovery_item_button);
                 if (materialButton != null) {
-                    i = R$id.server_discovery_item_button_joined;
-                    MaterialButton materialButton2 = (MaterialButton) findViewById(R$id.server_discovery_item_button_joined);
+                    i = R.id.server_discovery_item_button_joined;
+                    MaterialButton materialButton2 = (MaterialButton) findViewById(R.id.server_discovery_item_button_joined);
                     if (materialButton2 != null) {
-                        i = R$id.server_discovery_item_count_container;
-                        ServerMemberCount serverMemberCount = (ServerMemberCount) findViewById(R$id.server_discovery_item_count_container);
+                        i = R.id.server_discovery_item_count_container;
+                        ServerMemberCount serverMemberCount = (ServerMemberCount) findViewById(R.id.server_discovery_item_count_container);
                         if (serverMemberCount != null) {
-                            i = R$id.server_discovery_item_description;
-                            TextView textView = (TextView) findViewById(R$id.server_discovery_item_description);
+                            i = R.id.server_discovery_item_description;
+                            TextView textView = (TextView) findViewById(R.id.server_discovery_item_description);
                             if (textView != null) {
-                                i = R$id.server_discovery_item_image;
-                                GuildView guildView = (GuildView) findViewById(R$id.server_discovery_item_image);
+                                i = R.id.server_discovery_item_image;
+                                GuildView guildView = (GuildView) findViewById(R.id.server_discovery_item_image);
                                 if (guildView != null) {
-                                    i = R$id.server_discovery_item_title;
-                                    TextView textView2 = (TextView) findViewById(R$id.server_discovery_item_title);
+                                    i = R.id.server_discovery_item_title;
+                                    TextView textView2 = (TextView) findViewById(R.id.server_discovery_item_title);
                                     if (textView2 != null) {
                                         g3 g3Var = new g3(this, barrier, barrier2, materialButton, materialButton2, serverMemberCount, textView, guildView, textView2);
                                         m.checkNotNullExpressionValue(g3Var, "ViewServerDiscoveryItemB…ater.from(context), this)");
@@ -75,11 +74,11 @@ public final class ServerDiscoveryItem extends ConstraintLayout {
         b.a(textView, description);
     }
 
-    public final void setJoinButtonOnClickListener(View$OnClickListener listener) {
+    public final void setJoinButtonOnClickListener(View.OnClickListener listener) {
         this.binding.f119b.setOnClickListener(listener);
     }
 
-    public final void setJoinedButtonOnClickListener(View$OnClickListener listener) {
+    public final void setJoinedButtonOnClickListener(View.OnClickListener listener) {
         this.binding.c.setOnClickListener(listener);
     }
 

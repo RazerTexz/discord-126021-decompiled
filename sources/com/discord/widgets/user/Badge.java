@@ -2,10 +2,18 @@ package com.discord.widgets.user;
 
 import android.content.Context;
 import androidx.annotation.DrawableRes;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentManager;
+import b.a.k.b;
 import b.d.b.a.a;
+import com.discord.R;
+import com.discord.api.user.UserProfile;
+import com.discord.models.user.User;
+import com.discord.utilities.user.UserProfileUtilsKt;
+import com.discord.utilities.user.UserUtils;
 import d0.z.d.m;
+import java.util.ArrayList;
+import java.util.List;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -13,7 +21,6 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: Badge.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class Badge {
-    public static final Badge$Companion Companion = new Badge$Companion(null);
     private static final int GUILD_BOOST_LEVEL_1_MONTHS = 1;
     private static final int GUILD_BOOST_LEVEL_2_MONTHS = 2;
     private static final int GUILD_BOOST_LEVEL_3_MONTHS = 3;
@@ -23,11 +30,98 @@ public final /* data */ class Badge {
     private static final int GUILD_BOOST_LEVEL_7_MONTHS = 15;
     private static final int GUILD_BOOST_LEVEL_8_MONTHS = 18;
     private static final int GUILD_BOOST_LEVEL_9_MONTHS = 24;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final int icon;
     private final String objectType;
     private final boolean showPremiumUpSell;
     private final CharSequence text;
     private final CharSequence tooltip;
+
+    /* JADX INFO: compiled from: Badge.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final List<Badge> getBadgesForUser(User user, UserProfile profile, boolean isMeUserPremium, boolean isMeUserVerified, Context context) {
+            int i;
+            m.checkNotNullParameter(user, "user");
+            m.checkNotNullParameter(profile, "profile");
+            m.checkNotNullParameter(context, "context");
+            ArrayList arrayList = new ArrayList(8);
+            UserUtils userUtils = UserUtils.INSTANCE;
+            if (userUtils.isStaff(user)) {
+                arrayList.add(new Badge(R.drawable.ic_profile_badge_staff_32dp, context.getString(R.string.staff_badge_tooltip), null, false, null, 28, null));
+            }
+            if (userUtils.isPartner(user)) {
+                arrayList.add(new Badge(R.drawable.ic_profile_badge_partner_32dp, context.getString(R.string.partner_badge_tooltip), null, false, null, 28, null));
+            }
+            if (userUtils.isCertifiedModerator(user)) {
+                arrayList.add(new Badge(R.drawable.ic_profile_badge_certified_moderator_32dp, context.getString(R.string.certified_moderator_badge_tooltip), null, false, null, 28, null));
+            }
+            if (userUtils.isHypeSquad(user)) {
+                arrayList.add(new Badge(R.drawable.ic_profile_badge_hypesquad_32dp, context.getString(R.string.hypesquad_badge_tooltip), null, false, null, 28, null));
+            }
+            if (userUtils.isHypesquadHouse1(user)) {
+                arrayList.add(new Badge(R.drawable.ic_hypesquad_house1_32dp, context.getString(R.string.hypesquad_house_1), b.h(context, R.string.hypesquad_online_badge_tooltip, new Object[]{b.h(context, R.string.hypesquad_house_1, new Object[0], null, 4)}, null, 4), false, null, 24, null));
+            }
+            if (userUtils.isHypesquadHouse2(user)) {
+                arrayList.add(new Badge(R.drawable.ic_hypesquad_house2_32dp, b.h(context, R.string.hypesquad_house_2, new Object[0], null, 4), b.h(context, R.string.hypesquad_online_badge_tooltip, new Object[]{context.getString(R.string.hypesquad_house_2)}, null, 4), false, null, 24, null));
+            }
+            if (userUtils.isHypesquadHouse3(user)) {
+                arrayList.add(new Badge(R.drawable.ic_hypesquad_house3_32dp, context.getString(R.string.hypesquad_house_3), b.h(context, R.string.hypesquad_online_badge_tooltip, new Object[]{b.h(context, R.string.hypesquad_house_3, new Object[0], null, 4)}, null, 4), false, null, 24, null));
+            }
+            if (userUtils.isBugHunterLevel1(user)) {
+                arrayList.add(new Badge(R.drawable.ic_profile_badge_bughunter_level_1_32dp, context.getString(R.string.bug_hunter_badge_tooltip), null, false, null, 28, null));
+            }
+            if (userUtils.isBugHunterLevel2(user)) {
+                arrayList.add(new Badge(R.drawable.ic_profile_badge_bughunter_level_2_32dp, context.getString(R.string.bug_hunter_badge_tooltip), null, false, null, 28, null));
+            }
+            if (userUtils.isVerifiedDeveloper(user)) {
+                arrayList.add(new Badge(R.drawable.ic_profile_badge_verified_developer_32dp, context.getString(R.string.verified_developer_badge_tooltip), null, false, null, 28, null));
+            }
+            if (userUtils.isPremiumEarlySupporter(user)) {
+                arrayList.add(new Badge(R.drawable.ic_profile_badge_premium_early_supporter_32dp, context.getString(R.string.early_supporter_tooltip), null, !isMeUserPremium && isMeUserVerified, "PREMIUM_EARLY_SUPPORTER", 4, null));
+            }
+            if (UserProfileUtilsKt.isPremium(profile)) {
+                arrayList.add(new Badge(R.drawable.ic_profile_badge_nitro_32dp, context.getString(R.string.premium_title), b.h(context, R.string.premium_badge_tooltip, new Object[]{UserProfileUtilsKt.getPremiumSince(profile, context)}, null, 4), !isMeUserPremium && isMeUserVerified, "PREMIUM"));
+            }
+            if (UserProfileUtilsKt.isGuildBooster(profile)) {
+                Integer guildBoostMonthsSubscribed = UserProfileUtilsKt.getGuildBoostMonthsSubscribed(profile);
+                int iIntValue = guildBoostMonthsSubscribed != null ? guildBoostMonthsSubscribed.intValue() : 0;
+                if (iIntValue >= 24) {
+                    i = R.drawable.ic_profile_badge_premium_guild_subscription_lvl9_32dp;
+                } else if (iIntValue >= 18) {
+                    i = R.drawable.ic_profile_badge_premium_guild_subscription_lvl8_32dp;
+                } else if (iIntValue >= 15) {
+                    i = R.drawable.ic_profile_badge_premium_guild_subscription_lvl7_32dp;
+                } else if (iIntValue >= 12) {
+                    i = R.drawable.ic_profile_badge_premium_guild_subscription_lvl6_32dp;
+                } else if (iIntValue >= 9) {
+                    i = R.drawable.ic_profile_badge_premium_guild_subscription_lvl5_32dp;
+                } else if (iIntValue >= 6) {
+                    i = R.drawable.ic_profile_badge_premium_guild_subscription_lvl4_32dp;
+                } else if (iIntValue >= 3) {
+                    i = R.drawable.ic_profile_badge_premium_guild_subscription_lvl3_32dp;
+                } else {
+                    i = iIntValue >= 2 ? R.drawable.ic_profile_badge_premium_guild_subscription_lvl2_32dp : R.drawable.ic_profile_badge_premium_guild_subscription_lvl1_32dp;
+                }
+                arrayList.add(new Badge(i, context.getString(R.string.premium_title), b.h(context, R.string.premium_guild_subscription_tooltip, new Object[]{UserProfileUtilsKt.getBoostingSince(profile, context)}, null, 4), !isMeUserPremium && isMeUserVerified, "PREMIUM_GUILD"));
+            }
+            return arrayList;
+        }
+
+        public final Function1<Badge, Unit> onBadgeClick(FragmentManager fragmentManager, Context context) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            m.checkNotNullParameter(context, "context");
+            return new Badge$Companion$onBadgeClick$1(fragmentManager, context);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public Badge() {
         this(0, null, null, false, null, 31, null);
@@ -145,7 +239,7 @@ public final /* data */ class Badge {
     }
 
     public static final Function1<Badge, Unit> onBadgeClick(FragmentManager fragmentManager, Context context) {
-        return Companion.onBadgeClick(fragmentManager, context);
+        return INSTANCE.onBadgeClick(fragmentManager, context);
     }
 
     public String toString() {

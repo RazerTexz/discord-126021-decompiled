@@ -4,13 +4,11 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.View$MeasureSpec;
-import android.view.ViewGroup$MarginLayoutParams;
+import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout$LayoutParams;
 import androidx.core.math.MathUtils;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
@@ -66,22 +64,22 @@ public abstract class b extends c<View> {
             this.verticalLayoutGap = 0;
             return;
         }
-        CoordinatorLayout$LayoutParams coordinatorLayout$LayoutParams = (CoordinatorLayout$LayoutParams) view.getLayoutParams();
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) view.getLayoutParams();
         Rect rect = this.tempRect1;
-        rect.set(coordinatorLayout.getPaddingLeft() + ((ViewGroup$MarginLayoutParams) coordinatorLayout$LayoutParams).leftMargin, viewFindFirstDependency.getBottom() + ((ViewGroup$MarginLayoutParams) coordinatorLayout$LayoutParams).topMargin, (coordinatorLayout.getWidth() - coordinatorLayout.getPaddingRight()) - ((ViewGroup$MarginLayoutParams) coordinatorLayout$LayoutParams).rightMargin, ((viewFindFirstDependency.getBottom() + coordinatorLayout.getHeight()) - coordinatorLayout.getPaddingBottom()) - ((ViewGroup$MarginLayoutParams) coordinatorLayout$LayoutParams).bottomMargin);
+        rect.set(coordinatorLayout.getPaddingLeft() + ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin, viewFindFirstDependency.getBottom() + ((ViewGroup.MarginLayoutParams) layoutParams).topMargin, (coordinatorLayout.getWidth() - coordinatorLayout.getPaddingRight()) - ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin, ((viewFindFirstDependency.getBottom() + coordinatorLayout.getHeight()) - coordinatorLayout.getPaddingBottom()) - ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin);
         WindowInsetsCompat lastWindowInsets = coordinatorLayout.getLastWindowInsets();
         if (lastWindowInsets != null && ViewCompat.getFitsSystemWindows(coordinatorLayout) && !ViewCompat.getFitsSystemWindows(view)) {
             rect.left = lastWindowInsets.getSystemWindowInsetLeft() + rect.left;
             rect.right -= lastWindowInsets.getSystemWindowInsetRight();
         }
         Rect rect2 = this.tempRect2;
-        GravityCompat.apply(resolveGravity(coordinatorLayout$LayoutParams.gravity), view.getMeasuredWidth(), view.getMeasuredHeight(), rect, rect2, i);
+        GravityCompat.apply(resolveGravity(layoutParams.gravity), view.getMeasuredWidth(), view.getMeasuredHeight(), rect, rect2, i);
         int overlapPixelsForOffset = getOverlapPixelsForOffset(viewFindFirstDependency);
         view.layout(rect2.left, rect2.top - overlapPixelsForOffset, rect2.right, rect2.bottom - overlapPixelsForOffset);
         this.verticalLayoutGap = rect2.top - viewFindFirstDependency.getBottom();
     }
 
-    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout$Behavior
+    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
     public boolean onMeasureChild(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view, int i, int i2, int i3, int i4) {
         View viewFindFirstDependency;
         WindowInsetsCompat lastWindowInsets;
@@ -89,7 +87,7 @@ public abstract class b extends c<View> {
         if ((i5 != -1 && i5 != -2) || (viewFindFirstDependency = findFirstDependency(coordinatorLayout.getDependencies(view))) == null) {
             return false;
         }
-        int size = View$MeasureSpec.getSize(i3);
+        int size = View.MeasureSpec.getSize(i3);
         if (size <= 0) {
             size = coordinatorLayout.getHeight();
         } else if (ViewCompat.getFitsSystemWindows(viewFindFirstDependency) && (lastWindowInsets = coordinatorLayout.getLastWindowInsets()) != null) {
@@ -102,7 +100,7 @@ public abstract class b extends c<View> {
         } else {
             scrollRange -= measuredHeight;
         }
-        coordinatorLayout.onMeasureChild(view, i, i2, View$MeasureSpec.makeMeasureSpec(scrollRange, i5 == -1 ? BasicMeasure.EXACTLY : Integer.MIN_VALUE), i4);
+        coordinatorLayout.onMeasureChild(view, i, i2, View.MeasureSpec.makeMeasureSpec(scrollRange, i5 == -1 ? BasicMeasure.EXACTLY : Integer.MIN_VALUE), i4);
         return true;
     }
 

@@ -6,7 +6,6 @@ import com.discord.models.commands.ApplicationCommand;
 import com.discord.models.member.GuildMember;
 import com.discord.stores.DiscoverCommands;
 import com.discord.widgets.chat.input.WidgetChatInputDiscoveryCommandsModel;
-import com.discord.widgets.chat.input.WidgetChatInputDiscoveryCommandsModel$Companion;
 import d0.t.n;
 import d0.z.d.m;
 import java.util.List;
@@ -31,7 +30,7 @@ public final class ApplicationCommandsAutocompletableSource$Companion$getDiscove
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
     public final WidgetChatInputDiscoveryCommandsModel call2(Long l, Map<Long, GuildMember> map, DiscoverCommands discoverCommands, List<Application> list, List<? extends ApplicationCommand> list2) {
-        WidgetChatInputDiscoveryCommandsModel$Companion widgetChatInputDiscoveryCommandsModel$Companion = WidgetChatInputDiscoveryCommandsModel.Companion;
+        WidgetChatInputDiscoveryCommandsModel.Companion companion = WidgetChatInputDiscoveryCommandsModel.INSTANCE;
         m.checkNotNullExpressionValue(l, "meId");
         long jLongValue = l.longValue();
         GuildMember guildMember = map.get(l);
@@ -44,6 +43,6 @@ public final class ApplicationCommandsAutocompletableSource$Companion$getDiscove
         boolean z2 = this.$includeHeaders;
         int i = this.$placeholdersCount;
         m.checkNotNullExpressionValue(list2, "frecency");
-        return widgetChatInputDiscoveryCommandsModel$Companion.parseModelDiscoveryCommands(jLongValue, roles, list, discoverCommands, z2, i, list2);
+        return companion.parseModelDiscoveryCommands(jLongValue, roles, list, discoverCommands, z2, i, list2);
     }
 }

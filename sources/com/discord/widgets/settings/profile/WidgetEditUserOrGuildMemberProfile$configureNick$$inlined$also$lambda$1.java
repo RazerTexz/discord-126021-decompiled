@@ -9,14 +9,14 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: WidgetEditUserOrGuildMemberProfile.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetEditUserOrGuildMemberProfile$configureNick$$inlined$also$lambda$1 extends o implements Function1<Editable, Unit> {
-    public final /* synthetic */ SettingsUserProfileViewModel$ViewState$Loaded $viewState$inlined;
+    public final /* synthetic */ SettingsUserProfileViewModel.ViewState.Loaded $viewState$inlined;
     public final /* synthetic */ WidgetEditUserOrGuildMemberProfile this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetEditUserOrGuildMemberProfile$configureNick$$inlined$also$lambda$1(WidgetEditUserOrGuildMemberProfile widgetEditUserOrGuildMemberProfile, SettingsUserProfileViewModel$ViewState$Loaded settingsUserProfileViewModel$ViewState$Loaded) {
+    public WidgetEditUserOrGuildMemberProfile$configureNick$$inlined$also$lambda$1(WidgetEditUserOrGuildMemberProfile widgetEditUserOrGuildMemberProfile, SettingsUserProfileViewModel.ViewState.Loaded loaded) {
         super(1);
         this.this$0 = widgetEditUserOrGuildMemberProfile;
-        this.$viewState$inlined = settingsUserProfileViewModel$ViewState$Loaded;
+        this.$viewState$inlined = loaded;
     }
 
     @Override // kotlin.jvm.functions.Function1

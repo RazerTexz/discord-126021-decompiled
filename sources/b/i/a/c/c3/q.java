@@ -1,7 +1,7 @@
 package b.i.a.c.c3;
 
 import androidx.annotation.Nullable;
-import b.i.a.c.a3.a0$a;
+import b.i.a.c.a3.a0;
 import b.i.a.c.a3.o0;
 import b.i.a.c.g2;
 import b.i.a.c.o2;
@@ -16,5 +16,5 @@ public abstract class q {
 
     public abstract void a(@Nullable Object obj);
 
-    public abstract r b(g2[] g2VarArr, o0 o0Var, a0$a a0_a, o2 o2Var) throws ExoPlaybackException;
+    public abstract r b(g2[] g2VarArr, o0 o0Var, a0.a aVar, o2 o2Var) throws ExoPlaybackException;
 }

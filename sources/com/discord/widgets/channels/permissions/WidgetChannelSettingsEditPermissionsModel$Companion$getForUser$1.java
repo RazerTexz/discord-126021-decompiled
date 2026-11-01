@@ -48,10 +48,10 @@ public final class WidgetChannelSettingsEditPermissionsModel$Companion$getForUse
         User user = this.$storeUser.getUsers().get(Long.valueOf(this.$targetUserId));
         Guild guild = this.$storeGuilds.getGuild(this.$guildId);
         Long l = this.$storePermissions.getPermissionsByChannel().get(Long.valueOf(this.$channelId));
-        boolean zIsEnabled = NewThreadsPermissionsFeatureFlag.Companion.getINSTANCE().isEnabled(this.$guildId);
-        if (channel == null || guild == null || user == null || l == null || !WidgetChannelSettingsEditPermissionsModel$Companion.access$isAbleToManagePerms(WidgetChannelSettingsEditPermissionsModel.Companion, guild, meSnapshot, l.longValue())) {
+        boolean zIsEnabled = NewThreadsPermissionsFeatureFlag.INSTANCE.getINSTANCE().isEnabled(this.$guildId);
+        if (channel == null || guild == null || user == null || l == null || !WidgetChannelSettingsEditPermissionsModel.Companion.access$isAbleToManagePerms(WidgetChannelSettingsEditPermissionsModel.INSTANCE, guild, meSnapshot, l.longValue())) {
             return null;
         }
-        return new WidgetChannelSettingsEditPermissionsModel$ModelForUser(channel, l.longValue(), user.getId() == meSnapshot.getId(), user, this.$storeGuilds.getMember(this.$guildId, user.getId()), zIsEnabled);
+        return new WidgetChannelSettingsEditPermissionsModel.ModelForUser(channel, l.longValue(), user.getId() == meSnapshot.getId(), user, this.$storeGuilds.getMember(this.$guildId, user.getId()), zIsEnabled);
     }
 }

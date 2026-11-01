@@ -1,6 +1,5 @@
 package b.g.a.c.g0.u;
 
-import b.g.a.b.f$b;
 import java.io.IOException;
 
 /* JADX INFO: compiled from: NumberSerializers.java */
@@ -10,7 +9,7 @@ public class y extends w<Object> {
     public static final y k = new y();
 
     public y() {
-        super(Float.class, f$b.FLOAT, "number");
+        super(Float.class, b.g.a.b.f.b.FLOAT, "number");
     }
 
     @Override // b.g.a.c.n

@@ -1,7 +1,6 @@
 package com.discord.widgets.stage;
 
 import d0.k;
-import d0.k$a;
 import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -27,7 +26,7 @@ public final class StageChannelJoinHelper$lurkAndJoinStageAsync$2$2 extends o im
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2() {
         CancellableContinuation cancellableContinuation = this.$continuation;
-        k$a k_a = k.j;
+        k.a aVar = k.j;
         cancellableContinuation.resumeWith(k.m97constructorimpl(null));
     }
 }

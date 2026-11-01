@@ -29,7 +29,7 @@ public final class WidgetAgeVerify$loggingConfig$1 extends o implements Function
     @Override // kotlin.jvm.functions.Function0
     public final AnalyticsSchema invoke() {
         AnalyticsSchema trackImpressionUserAgeGate;
-        boolean z2 = StoreStream.Companion.getUsers().getMeSnapshot().getId() > 0;
+        boolean z2 = StoreStream.INSTANCE.getUsers().getMeSnapshot().getId() > 0;
         AppViewFlipper appViewFlipper = WidgetAgeVerify.access$getBinding$p(this.this$0).f2224b;
         m.checkNotNullExpressionValue(appViewFlipper, "binding.ageVerifyViewFlipper");
         int displayedChild = appViewFlipper.getDisplayedChild();

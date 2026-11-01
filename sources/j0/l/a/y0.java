@@ -5,10 +5,10 @@ import rx.Producer;
 /* JADX INFO: compiled from: OperatorObserveOn.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class y0 implements Producer {
-    public final /* synthetic */ z0$a j;
+    public final /* synthetic */ z0.a j;
 
-    public y0(z0$a z0_a) {
-        this.j = z0_a;
+    public y0(z0.a aVar) {
+        this.j = aVar;
     }
 
     @Override // rx.Producer

@@ -1,14 +1,19 @@
 package j0;
 
 import j0.o.l;
+import rx.functions.Action1;
 
 /* JADX INFO: compiled from: Completable.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class d {
-    public final d$a a;
+    public final a a;
 
-    public d(d$a d_a) {
-        j0.k.b<d$a, d$a> bVar = l.d;
-        this.a = bVar != null ? bVar.call(d_a) : d_a;
+    /* JADX INFO: compiled from: Completable.java */
+    public interface a extends Action1<e> {
+    }
+
+    public d(a aVar) {
+        j0.k.b<a, a> bVar = l.d;
+        this.a = bVar != null ? bVar.call(aVar) : aVar;
     }
 }

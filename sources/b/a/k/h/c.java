@@ -2,7 +2,6 @@ package b.a.k.h;
 
 import com.discord.i18n.RenderContext;
 import com.discord.simpleast.core.node.Node;
-import com.discord.simpleast.core.node.Node$a;
 import com.discord.simpleast.core.parser.ParseSpec;
 import com.discord.simpleast.core.parser.Parser;
 import com.discord.simpleast.core.parser.Rule;
@@ -23,10 +22,10 @@ public final class c extends Rule<RenderContext, Node<RenderContext>, b.a.k.g.c>
         m.checkNotNullParameter(matcher, "matcher");
         m.checkNotNullParameter(parser, "parser");
         m.checkNotNullParameter(cVar2, "state");
-        Node node$a = cVar2.a ? new Node$a(new Node[0]) : new b.a.k.f.a();
+        Node aVar = cVar2.a ? new Node.a(new Node[0]) : new b.a.k.f.a();
         int iStart = matcher.start(1);
         int iEnd = matcher.end(1);
-        m.checkNotNullParameter(node$a, "node");
-        return new ParseSpec<>(node$a, cVar2, iStart, iEnd);
+        m.checkNotNullParameter(aVar, "node");
+        return new ParseSpec<>(aVar, cVar2, iStart, iEnd);
     }
 }

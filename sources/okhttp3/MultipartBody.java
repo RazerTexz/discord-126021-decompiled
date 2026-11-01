@@ -1,10 +1,17 @@
 package okhttp3;
 
 import androidx.browser.trusted.sharing.ShareTarget;
+import com.discord.models.domain.ModelAuditLogEntry;
+import d0.g0.w;
 import d0.z.d.m;
+import f0.e0.c;
 import g0.e;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import kotlin.TypeCastException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import okio.BufferedSink;
 import okio.ByteString;
 
@@ -18,35 +25,163 @@ public final class MultipartBody extends RequestBody {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final MediaType f3809b;
-    public static final MultipartBody$b f = new MultipartBody$b(null);
+    public static final b f = new b(null);
     public final MediaType g;
     public long h;
     public final ByteString i;
     public final MediaType j;
-    public final List<MultipartBody$Part> k;
+    public final List<Part> k;
+
+    /* JADX INFO: compiled from: MultipartBody.kt */
+    public final class Part {
+
+        /* JADX INFO: renamed from: a, reason: from kotlin metadata */
+        public final Headers headers;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name and from kotlin metadata */
+        public final RequestBody body;
+
+        public Part(Headers headers, RequestBody requestBody, DefaultConstructorMarker defaultConstructorMarker) {
+            this.headers = headers;
+            this.body = requestBody;
+        }
+
+        public static final Part a(Headers headers, RequestBody requestBody) {
+            m.checkParameterIsNotNull(requestBody, "body");
+            if (!(headers.c("Content-Type") == null)) {
+                throw new IllegalArgumentException("Unexpected header: Content-Type".toString());
+            }
+            if (headers.c("Content-Length") == null) {
+                return new Part(headers, requestBody, null);
+            }
+            throw new IllegalArgumentException("Unexpected header: Content-Length".toString());
+        }
+
+        public static final Part b(String str, String str2, RequestBody requestBody) {
+            m.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            m.checkParameterIsNotNull(requestBody, "body");
+            StringBuilder sb = new StringBuilder();
+            sb.append("form-data; name=");
+            b bVar = MultipartBody.f;
+            bVar.a(sb, str);
+            if (str2 != null) {
+                sb.append("; filename=");
+                bVar.a(sb, str2);
+            }
+            String string = sb.toString();
+            m.checkExpressionValueIsNotNull(string, "StringBuilder().apply(builderAction).toString()");
+            ArrayList arrayList = new ArrayList(20);
+            m.checkParameterIsNotNull("Content-Disposition", ModelAuditLogEntry.CHANGE_KEY_NAME);
+            m.checkParameterIsNotNull(string, "value");
+            if (1 == 0) {
+                throw new IllegalArgumentException("name is empty".toString());
+            }
+            for (int i = 0; i < 19; i++) {
+                char cCharAt = "Content-Disposition".charAt(i);
+                if (!('!' <= cCharAt && '~' >= cCharAt)) {
+                    throw new IllegalArgumentException(c.j("Unexpected char %#04x at %d in header name: %s", Integer.valueOf(cCharAt), Integer.valueOf(i), "Content-Disposition").toString());
+                }
+            }
+            m.checkParameterIsNotNull("Content-Disposition", ModelAuditLogEntry.CHANGE_KEY_NAME);
+            m.checkParameterIsNotNull(string, "value");
+            arrayList.add("Content-Disposition");
+            arrayList.add(w.trim(string).toString());
+            Object[] array = arrayList.toArray(new String[0]);
+            if (array != null) {
+                return a(new Headers((String[]) array, null), requestBody);
+            }
+            throw new TypeCastException("null cannot be cast to non-null type kotlin.Array<T>");
+        }
+    }
+
+    /* JADX INFO: compiled from: MultipartBody.kt */
+    public final class a {
+        public final ByteString a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public MediaType f3811b;
+        public final List<Part> c;
+
+        public a() {
+            String string = UUID.randomUUID().toString();
+            m.checkExpressionValueIsNotNull(string, "UUID.randomUUID().toString()");
+            m.checkParameterIsNotNull(string, "boundary");
+            this.a = ByteString.INSTANCE.c(string);
+            this.f3811b = MultipartBody.a;
+            this.c = new ArrayList();
+        }
+
+        public final a a(Part part) {
+            m.checkParameterIsNotNull(part, "part");
+            this.c.add(part);
+            return this;
+        }
+
+        public final MultipartBody b() {
+            if (!this.c.isEmpty()) {
+                return new MultipartBody(this.a, this.f3811b, c.z(this.c));
+            }
+            throw new IllegalStateException("Multipart body must have at least one part.".toString());
+        }
+
+        public final a c(MediaType mediaType) {
+            m.checkParameterIsNotNull(mediaType, "type");
+            if (m.areEqual(mediaType.type, "multipart")) {
+                this.f3811b = mediaType;
+                return this;
+            }
+            throw new IllegalArgumentException(("multipart != " + mediaType).toString());
+        }
+    }
+
+    /* JADX INFO: compiled from: MultipartBody.kt */
+    public final class b {
+        public b(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final void a(StringBuilder sb, String str) {
+            m.checkParameterIsNotNull(sb, "$this$appendQuotedString");
+            m.checkParameterIsNotNull(str, "key");
+            sb.append('\"');
+            int length = str.length();
+            for (int i = 0; i < length; i++) {
+                char cCharAt = str.charAt(i);
+                if (cCharAt == '\n') {
+                    sb.append("%0A");
+                } else if (cCharAt == '\r') {
+                    sb.append("%0D");
+                } else if (cCharAt == '\"') {
+                    sb.append("%22");
+                } else {
+                    sb.append(cCharAt);
+                }
+            }
+            sb.append('\"');
+        }
+    }
 
     static {
-        MediaType$a mediaType$a = MediaType.c;
-        a = MediaType$a.a("multipart/mixed");
-        MediaType$a.a("multipart/alternative");
-        MediaType$a.a("multipart/digest");
-        MediaType$a.a("multipart/parallel");
-        f3809b = MediaType$a.a(ShareTarget.ENCODING_TYPE_MULTIPART);
+        MediaType.Companion companion = MediaType.INSTANCE;
+        a = MediaType.Companion.a("multipart/mixed");
+        MediaType.Companion.a("multipart/alternative");
+        MediaType.Companion.a("multipart/digest");
+        MediaType.Companion.a("multipart/parallel");
+        f3809b = MediaType.Companion.a(ShareTarget.ENCODING_TYPE_MULTIPART);
         c = new byte[]{(byte) 58, (byte) 32};
         d = new byte[]{(byte) 13, (byte) 10};
         byte b2 = (byte) 45;
         e = new byte[]{b2, b2};
     }
 
-    public MultipartBody(ByteString byteString, MediaType mediaType, List<MultipartBody$Part> list) {
+    public MultipartBody(ByteString byteString, MediaType mediaType, List<Part> list) {
         m.checkParameterIsNotNull(byteString, "boundaryByteString");
         m.checkParameterIsNotNull(mediaType, "type");
         m.checkParameterIsNotNull(list, "parts");
         this.i = byteString;
         this.j = mediaType;
         this.k = list;
-        MediaType$a mediaType$a = MediaType.c;
-        this.g = MediaType$a.a(mediaType + "; boundary=" + byteString.q());
+        MediaType.Companion companion = MediaType.INSTANCE;
+        this.g = MediaType.Companion.a(mediaType + "; boundary=" + byteString.q());
         this.h = -1L;
     }
 
@@ -62,9 +197,9 @@ public final class MultipartBody extends RequestBody {
         int size = this.k.size();
         long j = 0;
         for (int i = 0; i < size; i++) {
-            MultipartBody$Part multipartBody$Part = this.k.get(i);
-            Headers headers = multipartBody$Part.headers;
-            RequestBody requestBody = multipartBody$Part.body;
+            Part part = this.k.get(i);
+            Headers headers = part.headers;
+            RequestBody requestBody = part.body;
             if (bufferedSink == null) {
                 m.throwNpe();
             }

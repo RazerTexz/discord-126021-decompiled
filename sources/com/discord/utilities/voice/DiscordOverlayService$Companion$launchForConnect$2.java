@@ -28,9 +28,9 @@ public final class DiscordOverlayService$Companion$launchForConnect$2 extends o 
     public final void invoke2(String str) {
         Context context = (Context) this.$weakContext.get();
         if (context != null) {
-            DiscordOverlayService$Companion discordOverlayService$Companion = DiscordOverlayService.Companion;
+            DiscordOverlayService.Companion companion = DiscordOverlayService.INSTANCE;
             m.checkNotNullExpressionValue(str, "action");
-            DiscordOverlayService$Companion.tryStartOverlayService$default(discordOverlayService$Companion, context, str, false, 4, null);
+            DiscordOverlayService.Companion.tryStartOverlayService$default(companion, context, str, false, 4, null);
         }
     }
 }

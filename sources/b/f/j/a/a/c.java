@@ -1,6 +1,6 @@
 package b.f.j.a.a;
 
-import android.graphics.Bitmap$Config;
+import android.graphics.Bitmap;
 
 /* JADX INFO: compiled from: AnimatedImage.java */
 /* JADX INFO: loaded from: classes2.dex */
@@ -9,7 +9,7 @@ public interface c {
 
     int b();
 
-    Bitmap$Config d();
+    Bitmap.Config d();
 
     d e(int i);
 

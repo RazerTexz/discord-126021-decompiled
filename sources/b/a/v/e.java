@@ -5,7 +5,6 @@ import d0.t.h0;
 import d0.z.d.o;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map$Entry;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
@@ -26,9 +25,9 @@ public final class e extends o implements Function1<Integer, Unit> {
         TooltipManager tooltipManager = this.this$0;
         Map<String, Integer> map = tooltipManager.tooltipNameToTooltipViewIdMap;
         LinkedHashMap linkedHashMap = new LinkedHashMap();
-        for (Map$Entry<String, Integer> map$Entry : map.entrySet()) {
-            if (map$Entry.getValue().intValue() != iIntValue) {
-                linkedHashMap.put(map$Entry.getKey(), map$Entry.getValue());
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            if (entry.getValue().intValue() != iIntValue) {
+                linkedHashMap.put(entry.getKey(), entry.getValue());
             }
         }
         tooltipManager.tooltipNameToTooltipViewIdMap = h0.toMutableMap(linkedHashMap);

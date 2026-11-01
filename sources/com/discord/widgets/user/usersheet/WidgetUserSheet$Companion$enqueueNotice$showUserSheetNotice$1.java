@@ -32,12 +32,12 @@ public final class WidgetUserSheet$Companion$enqueueNotice$showUserSheetNotice$1
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(FragmentActivity fragmentActivity) {
         m.checkNotNullParameter(fragmentActivity, "fragmentActivity");
-        WidgetUserSheet$Companion widgetUserSheet$Companion = WidgetUserSheet.Companion;
+        WidgetUserSheet.Companion companion = WidgetUserSheet.INSTANCE;
         long j = this.$userId;
         String str = this.$friendToken;
         FragmentManager supportFragmentManager = fragmentActivity.getSupportFragmentManager();
         m.checkNotNullExpressionValue(supportFragmentManager, "fragmentActivity.supportFragmentManager");
-        WidgetUserSheet$Companion.show$default(widgetUserSheet$Companion, j, null, supportFragmentManager, null, null, null, str, 58, null);
+        WidgetUserSheet.Companion.show$default(companion, j, null, supportFragmentManager, null, null, null, str, 58, null);
         StoreNotices.markSeen$default(this.$storeNotices, this.$noticeName, 0L, 2, null);
         return true;
     }

@@ -1,6 +1,5 @@
 package d0.e0.p.d.m0.b.q;
 
-import d0.e0.p.d.m0.b.k$a;
 import d0.g0.s;
 import d0.g0.w;
 import java.lang.annotation.Annotation;
@@ -10,7 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.Set;
 
@@ -31,7 +29,67 @@ public final class c {
     public static final HashMap<d0.e0.p.d.m0.g.c, d0.e0.p.d.m0.g.a> j;
     public static final HashMap<d0.e0.p.d.m0.g.c, d0.e0.p.d.m0.g.b> k;
     public static final HashMap<d0.e0.p.d.m0.g.c, d0.e0.p.d.m0.g.b> l;
-    public static final List<c$a> m;
+    public static final List<a> m;
+
+    /* JADX INFO: compiled from: JavaToKotlinClassMap.kt */
+    public final class a {
+        public final d0.e0.p.d.m0.g.a a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final d0.e0.p.d.m0.g.a f3237b;
+        public final d0.e0.p.d.m0.g.a c;
+
+        public a(d0.e0.p.d.m0.g.a aVar, d0.e0.p.d.m0.g.a aVar2, d0.e0.p.d.m0.g.a aVar3) {
+            d0.z.d.m.checkNotNullParameter(aVar, "javaClass");
+            d0.z.d.m.checkNotNullParameter(aVar2, "kotlinReadOnly");
+            d0.z.d.m.checkNotNullParameter(aVar3, "kotlinMutable");
+            this.a = aVar;
+            this.f3237b = aVar2;
+            this.c = aVar3;
+        }
+
+        public final d0.e0.p.d.m0.g.a component1() {
+            return this.a;
+        }
+
+        public final d0.e0.p.d.m0.g.a component2() {
+            return this.f3237b;
+        }
+
+        public final d0.e0.p.d.m0.g.a component3() {
+            return this.c;
+        }
+
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof a)) {
+                return false;
+            }
+            a aVar = (a) obj;
+            return d0.z.d.m.areEqual(this.a, aVar.a) && d0.z.d.m.areEqual(this.f3237b, aVar.f3237b) && d0.z.d.m.areEqual(this.c, aVar.c);
+        }
+
+        public final d0.e0.p.d.m0.g.a getJavaClass() {
+            return this.a;
+        }
+
+        public int hashCode() {
+            return this.c.hashCode() + ((this.f3237b.hashCode() + (this.a.hashCode() * 31)) * 31);
+        }
+
+        public String toString() {
+            StringBuilder sbU = b.d.b.a.a.U("PlatformMutabilityMapping(javaClass=");
+            sbU.append(this.a);
+            sbU.append(", kotlinReadOnly=");
+            sbU.append(this.f3237b);
+            sbU.append(", kotlinMutable=");
+            sbU.append(this.c);
+            sbU.append(')');
+            return sbU.toString();
+        }
+    }
 
     static {
         c cVar = new c();
@@ -75,81 +133,81 @@ public final class c {
         j = new HashMap<>();
         k = new HashMap<>();
         l = new HashMap<>();
-        d0.e0.p.d.m0.g.a aVar3 = d0.e0.p.d.m0.g.a.topLevel(k$a.I);
+        d0.e0.p.d.m0.g.a aVar3 = d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k.a.I);
         d0.z.d.m.checkNotNullExpressionValue(aVar3, "topLevel(FqNames.iterable)");
-        d0.e0.p.d.m0.g.b bVar = k$a.Q;
+        d0.e0.p.d.m0.g.b bVar = d0.e0.p.d.m0.b.k.a.Q;
         d0.e0.p.d.m0.g.b packageFqName = aVar3.getPackageFqName();
         d0.e0.p.d.m0.g.b packageFqName2 = aVar3.getPackageFqName();
         d0.z.d.m.checkNotNullExpressionValue(packageFqName2, "kotlinReadOnly.packageFqName");
         d0.e0.p.d.m0.g.b bVarTail = d0.e0.p.d.m0.g.d.tail(bVar, packageFqName2);
         int i2 = 0;
         d0.e0.p.d.m0.g.a aVar4 = new d0.e0.p.d.m0.g.a(packageFqName, bVarTail, false);
-        d0.e0.p.d.m0.g.a aVar5 = d0.e0.p.d.m0.g.a.topLevel(k$a.H);
+        d0.e0.p.d.m0.g.a aVar5 = d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k.a.H);
         d0.z.d.m.checkNotNullExpressionValue(aVar5, "topLevel(FqNames.iterator)");
-        d0.e0.p.d.m0.g.b bVar2 = k$a.P;
+        d0.e0.p.d.m0.g.b bVar2 = d0.e0.p.d.m0.b.k.a.P;
         d0.e0.p.d.m0.g.b packageFqName3 = aVar5.getPackageFqName();
         d0.e0.p.d.m0.g.b packageFqName4 = aVar5.getPackageFqName();
         d0.z.d.m.checkNotNullExpressionValue(packageFqName4, "kotlinReadOnly.packageFqName");
         d0.e0.p.d.m0.g.a aVar6 = new d0.e0.p.d.m0.g.a(packageFqName3, d0.e0.p.d.m0.g.d.tail(bVar2, packageFqName4), false);
-        d0.e0.p.d.m0.g.a aVar7 = d0.e0.p.d.m0.g.a.topLevel(k$a.J);
+        d0.e0.p.d.m0.g.a aVar7 = d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k.a.J);
         d0.z.d.m.checkNotNullExpressionValue(aVar7, "topLevel(FqNames.collection)");
-        d0.e0.p.d.m0.g.b bVar3 = k$a.R;
+        d0.e0.p.d.m0.g.b bVar3 = d0.e0.p.d.m0.b.k.a.R;
         d0.e0.p.d.m0.g.b packageFqName5 = aVar7.getPackageFqName();
         d0.e0.p.d.m0.g.b packageFqName6 = aVar7.getPackageFqName();
         d0.z.d.m.checkNotNullExpressionValue(packageFqName6, "kotlinReadOnly.packageFqName");
         d0.e0.p.d.m0.g.a aVar8 = new d0.e0.p.d.m0.g.a(packageFqName5, d0.e0.p.d.m0.g.d.tail(bVar3, packageFqName6), false);
-        d0.e0.p.d.m0.g.a aVar9 = d0.e0.p.d.m0.g.a.topLevel(k$a.K);
+        d0.e0.p.d.m0.g.a aVar9 = d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k.a.K);
         d0.z.d.m.checkNotNullExpressionValue(aVar9, "topLevel(FqNames.list)");
-        d0.e0.p.d.m0.g.b bVar4 = k$a.S;
+        d0.e0.p.d.m0.g.b bVar4 = d0.e0.p.d.m0.b.k.a.S;
         d0.e0.p.d.m0.g.b packageFqName7 = aVar9.getPackageFqName();
         d0.e0.p.d.m0.g.b packageFqName8 = aVar9.getPackageFqName();
         d0.z.d.m.checkNotNullExpressionValue(packageFqName8, "kotlinReadOnly.packageFqName");
         d0.e0.p.d.m0.g.a aVar10 = new d0.e0.p.d.m0.g.a(packageFqName7, d0.e0.p.d.m0.g.d.tail(bVar4, packageFqName8), false);
-        d0.e0.p.d.m0.g.a aVar11 = d0.e0.p.d.m0.g.a.topLevel(k$a.M);
+        d0.e0.p.d.m0.g.a aVar11 = d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k.a.M);
         d0.z.d.m.checkNotNullExpressionValue(aVar11, "topLevel(FqNames.set)");
-        d0.e0.p.d.m0.g.b bVar5 = k$a.U;
+        d0.e0.p.d.m0.g.b bVar5 = d0.e0.p.d.m0.b.k.a.U;
         d0.e0.p.d.m0.g.b packageFqName9 = aVar11.getPackageFqName();
         d0.e0.p.d.m0.g.b packageFqName10 = aVar11.getPackageFqName();
         d0.z.d.m.checkNotNullExpressionValue(packageFqName10, "kotlinReadOnly.packageFqName");
         d0.e0.p.d.m0.g.a aVar12 = new d0.e0.p.d.m0.g.a(packageFqName9, d0.e0.p.d.m0.g.d.tail(bVar5, packageFqName10), false);
-        d0.e0.p.d.m0.g.a aVar13 = d0.e0.p.d.m0.g.a.topLevel(k$a.L);
+        d0.e0.p.d.m0.g.a aVar13 = d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k.a.L);
         d0.z.d.m.checkNotNullExpressionValue(aVar13, "topLevel(FqNames.listIterator)");
-        d0.e0.p.d.m0.g.b bVar6 = k$a.T;
+        d0.e0.p.d.m0.g.b bVar6 = d0.e0.p.d.m0.b.k.a.T;
         d0.e0.p.d.m0.g.b packageFqName11 = aVar13.getPackageFqName();
         d0.e0.p.d.m0.g.b packageFqName12 = aVar13.getPackageFqName();
         d0.z.d.m.checkNotNullExpressionValue(packageFqName12, "kotlinReadOnly.packageFqName");
         d0.e0.p.d.m0.g.a aVar14 = new d0.e0.p.d.m0.g.a(packageFqName11, d0.e0.p.d.m0.g.d.tail(bVar6, packageFqName12), false);
-        d0.e0.p.d.m0.g.b bVar7 = k$a.N;
+        d0.e0.p.d.m0.g.b bVar7 = d0.e0.p.d.m0.b.k.a.N;
         d0.e0.p.d.m0.g.a aVar15 = d0.e0.p.d.m0.g.a.topLevel(bVar7);
         d0.z.d.m.checkNotNullExpressionValue(aVar15, "topLevel(FqNames.map)");
-        d0.e0.p.d.m0.g.b bVar8 = k$a.V;
+        d0.e0.p.d.m0.g.b bVar8 = d0.e0.p.d.m0.b.k.a.V;
         d0.e0.p.d.m0.g.b packageFqName13 = aVar15.getPackageFqName();
         d0.e0.p.d.m0.g.b packageFqName14 = aVar15.getPackageFqName();
         d0.z.d.m.checkNotNullExpressionValue(packageFqName14, "kotlinReadOnly.packageFqName");
         d0.e0.p.d.m0.g.a aVar16 = new d0.e0.p.d.m0.g.a(packageFqName13, d0.e0.p.d.m0.g.d.tail(bVar8, packageFqName14), false);
-        d0.e0.p.d.m0.g.a aVarCreateNestedClassId = d0.e0.p.d.m0.g.a.topLevel(bVar7).createNestedClassId(k$a.O.shortName());
+        d0.e0.p.d.m0.g.a aVarCreateNestedClassId = d0.e0.p.d.m0.g.a.topLevel(bVar7).createNestedClassId(d0.e0.p.d.m0.b.k.a.O.shortName());
         d0.z.d.m.checkNotNullExpressionValue(aVarCreateNestedClassId, "topLevel(FqNames.map).createNestedClassId(FqNames.mapEntry.shortName())");
-        d0.e0.p.d.m0.g.b bVar9 = k$a.W;
+        d0.e0.p.d.m0.g.b bVar9 = d0.e0.p.d.m0.b.k.a.W;
         d0.e0.p.d.m0.g.b packageFqName15 = aVarCreateNestedClassId.getPackageFqName();
         d0.e0.p.d.m0.g.b packageFqName16 = aVarCreateNestedClassId.getPackageFqName();
         d0.z.d.m.checkNotNullExpressionValue(packageFqName16, "kotlinReadOnly.packageFqName");
-        List<c$a> listListOf = d0.t.n.listOf((Object[]) new c$a[]{new c$a(access$classId(cVar, Iterable.class), aVar3, aVar4), new c$a(access$classId(cVar, Iterator.class), aVar5, aVar6), new c$a(access$classId(cVar, Collection.class), aVar7, aVar8), new c$a(access$classId(cVar, List.class), aVar9, aVar10), new c$a(access$classId(cVar, Set.class), aVar11, aVar12), new c$a(access$classId(cVar, ListIterator.class), aVar13, aVar14), new c$a(access$classId(cVar, Map.class), aVar15, aVar16), new c$a(access$classId(cVar, Map$Entry.class), aVarCreateNestedClassId, new d0.e0.p.d.m0.g.a(packageFqName15, d0.e0.p.d.m0.g.d.tail(bVar9, packageFqName16), false))});
+        List<a> listListOf = d0.t.n.listOf((Object[]) new a[]{new a(access$classId(cVar, Iterable.class), aVar3, aVar4), new a(access$classId(cVar, Iterator.class), aVar5, aVar6), new a(access$classId(cVar, Collection.class), aVar7, aVar8), new a(access$classId(cVar, List.class), aVar9, aVar10), new a(access$classId(cVar, Set.class), aVar11, aVar12), new a(access$classId(cVar, ListIterator.class), aVar13, aVar14), new a(access$classId(cVar, Map.class), aVar15, aVar16), new a(access$classId(cVar, Map.Entry.class), aVarCreateNestedClassId, new d0.e0.p.d.m0.g.a(packageFqName15, d0.e0.p.d.m0.g.d.tail(bVar9, packageFqName16), false))});
         m = listListOf;
-        cVar.d(Object.class, k$a.f3217b);
-        cVar.d(String.class, k$a.g);
-        cVar.d(CharSequence.class, k$a.f);
-        cVar.c(Throwable.class, k$a.f3227s);
-        cVar.d(Cloneable.class, k$a.d);
-        cVar.d(Number.class, k$a.q);
-        cVar.c(Comparable.class, k$a.t);
-        cVar.d(Enum.class, k$a.r);
-        cVar.c(Annotation.class, k$a.f3230z);
-        for (c$a c_a : listListOf) {
+        cVar.d(Object.class, d0.e0.p.d.m0.b.k.a.f3217b);
+        cVar.d(String.class, d0.e0.p.d.m0.b.k.a.g);
+        cVar.d(CharSequence.class, d0.e0.p.d.m0.b.k.a.f);
+        cVar.c(Throwable.class, d0.e0.p.d.m0.b.k.a.f3227s);
+        cVar.d(Cloneable.class, d0.e0.p.d.m0.b.k.a.d);
+        cVar.d(Number.class, d0.e0.p.d.m0.b.k.a.q);
+        cVar.c(Comparable.class, d0.e0.p.d.m0.b.k.a.t);
+        cVar.d(Enum.class, d0.e0.p.d.m0.b.k.a.r);
+        cVar.c(Annotation.class, d0.e0.p.d.m0.b.k.a.f3230z);
+        for (a aVar17 : listListOf) {
             c cVar6 = a;
             Objects.requireNonNull(cVar6);
-            d0.e0.p.d.m0.g.a aVarComponent1 = c_a.component1();
-            d0.e0.p.d.m0.g.a aVarComponent2 = c_a.component2();
-            d0.e0.p.d.m0.g.a aVarComponent3 = c_a.component3();
+            d0.e0.p.d.m0.g.a aVarComponent1 = aVar17.component1();
+            d0.e0.p.d.m0.g.a aVarComponent2 = aVar17.component2();
+            d0.e0.p.d.m0.g.a aVarComponent3 = aVar17.component3();
             cVar6.a(aVarComponent1, aVarComponent2);
             d0.e0.p.d.m0.g.b bVarAsSingleFqName2 = aVarComponent3.asSingleFqName();
             d0.z.d.m.checkNotNullExpressionValue(bVarAsSingleFqName2, "mutableClassId.asSingleFqName()");
@@ -176,34 +234,34 @@ public final class c {
             d0.e0.p.d.m0.k.y.d dVar = dVarArrValues[i3];
             i3++;
             c cVar7 = a;
-            d0.e0.p.d.m0.g.a aVar17 = d0.e0.p.d.m0.g.a.topLevel(dVar.getWrapperFqName());
-            d0.z.d.m.checkNotNullExpressionValue(aVar17, "topLevel(jvmType.wrapperFqName)");
+            d0.e0.p.d.m0.g.a aVar18 = d0.e0.p.d.m0.g.a.topLevel(dVar.getWrapperFqName());
+            d0.z.d.m.checkNotNullExpressionValue(aVar18, "topLevel(jvmType.wrapperFqName)");
             d0.e0.p.d.m0.b.k kVar = d0.e0.p.d.m0.b.k.a;
             d0.e0.p.d.m0.b.i primitiveType = dVar.getPrimitiveType();
             d0.z.d.m.checkNotNullExpressionValue(primitiveType, "jvmType.primitiveType");
-            d0.e0.p.d.m0.g.a aVar18 = d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k.getPrimitiveFqName(primitiveType));
-            d0.z.d.m.checkNotNullExpressionValue(aVar18, "topLevel(StandardNames.getPrimitiveFqName(jvmType.primitiveType))");
-            cVar7.a(aVar17, aVar18);
+            d0.e0.p.d.m0.g.a aVar19 = d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k.getPrimitiveFqName(primitiveType));
+            d0.z.d.m.checkNotNullExpressionValue(aVar19, "topLevel(StandardNames.getPrimitiveFqName(jvmType.primitiveType))");
+            cVar7.a(aVar18, aVar19);
         }
-        for (d0.e0.p.d.m0.g.a aVar19 : d0.e0.p.d.m0.b.c.a.allClassesWithIntrinsicCompanions()) {
+        for (d0.e0.p.d.m0.g.a aVar20 : d0.e0.p.d.m0.b.c.a.allClassesWithIntrinsicCompanions()) {
             c cVar8 = a;
             StringBuilder sbU = b.d.b.a.a.U("kotlin.jvm.internal.");
-            sbU.append(aVar19.getShortClassName().asString());
+            sbU.append(aVar20.getShortClassName().asString());
             sbU.append("CompanionObject");
-            d0.e0.p.d.m0.g.a aVar20 = d0.e0.p.d.m0.g.a.topLevel(new d0.e0.p.d.m0.g.b(sbU.toString()));
-            d0.z.d.m.checkNotNullExpressionValue(aVar20, "topLevel(FqName(\"kotlin.jvm.internal.\" + classId.shortClassName.asString() + \"CompanionObject\"))");
-            d0.e0.p.d.m0.g.a aVarCreateNestedClassId2 = aVar19.createNestedClassId(d0.e0.p.d.m0.g.g.f3425b);
+            d0.e0.p.d.m0.g.a aVar21 = d0.e0.p.d.m0.g.a.topLevel(new d0.e0.p.d.m0.g.b(sbU.toString()));
+            d0.z.d.m.checkNotNullExpressionValue(aVar21, "topLevel(FqName(\"kotlin.jvm.internal.\" + classId.shortClassName.asString() + \"CompanionObject\"))");
+            d0.e0.p.d.m0.g.a aVarCreateNestedClassId2 = aVar20.createNestedClassId(d0.e0.p.d.m0.g.g.f3425b);
             d0.z.d.m.checkNotNullExpressionValue(aVarCreateNestedClassId2, "classId.createNestedClassId(SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT)");
-            cVar8.a(aVar20, aVarCreateNestedClassId2);
+            cVar8.a(aVar21, aVarCreateNestedClassId2);
         }
         int i4 = 0;
         while (true) {
             int i5 = i4 + 1;
             c cVar9 = a;
-            d0.e0.p.d.m0.g.a aVar21 = d0.e0.p.d.m0.g.a.topLevel(new d0.e0.p.d.m0.g.b(d0.z.d.m.stringPlus("kotlin.jvm.functions.Function", Integer.valueOf(i4))));
-            d0.z.d.m.checkNotNullExpressionValue(aVar21, "topLevel(FqName(\"kotlin.jvm.functions.Function$i\"))");
+            d0.e0.p.d.m0.g.a aVar22 = d0.e0.p.d.m0.g.a.topLevel(new d0.e0.p.d.m0.g.b(d0.z.d.m.stringPlus("kotlin.jvm.functions.Function", Integer.valueOf(i4))));
+            d0.z.d.m.checkNotNullExpressionValue(aVar22, "topLevel(FqName(\"kotlin.jvm.functions.Function$i\"))");
             d0.e0.p.d.m0.b.k kVar2 = d0.e0.p.d.m0.b.k.a;
-            cVar9.a(aVar21, d0.e0.p.d.m0.b.k.getFunctionClassId(i4));
+            cVar9.a(aVar22, d0.e0.p.d.m0.b.k.getFunctionClassId(i4));
             cVar9.b(new d0.e0.p.d.m0.g.b(d0.z.d.m.stringPlus(c, Integer.valueOf(i4))), h);
             if (i5 >= 23) {
                 break;
@@ -218,7 +276,7 @@ public final class c {
             c cVar11 = a;
             cVar11.b(new d0.e0.p.d.m0.g.b(d0.z.d.m.stringPlus(str, Integer.valueOf(i2))), h);
             if (i6 >= 22) {
-                d0.e0.p.d.m0.g.b safe = k$a.c.toSafe();
+                d0.e0.p.d.m0.g.b safe = d0.e0.p.d.m0.b.k.a.c.toSafe();
                 d0.z.d.m.checkNotNullExpressionValue(safe, "nothing.toSafe()");
                 cVar11.b(safe, cVar11.e(Void.class));
                 return;
@@ -291,7 +349,7 @@ public final class c {
         return g;
     }
 
-    public final List<c$a> getMutabilityMappings() {
+    public final List<a> getMutabilityMappings() {
         return m;
     }
 

@@ -6,14 +6,12 @@ import android.text.SpannableStringBuilder;
 import android.util.Base64;
 import android.util.Pair;
 import androidx.core.view.ViewCompat;
-import b.i.a.c.b3.b$b;
 import b.i.a.c.f3.e0;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -91,11 +89,11 @@ public final class g implements b.i.a.c.b3.g {
                 arrayList2.add(new b.i.a.c.b3.b(null, null, null, bitmapDecodeByteArray, eVar.c, 0, eVar.e, eVar.f884b, 0, Integer.MIN_VALUE, -3.4028235E38f, eVar.f, eVar.g, false, ViewCompat.MEASURED_STATE_MASK, eVar.j, 0.0f, null));
             }
         }
-        for (Map$Entry map$Entry : treeMap.entrySet()) {
-            e eVar2 = map2.get(map$Entry.getKey());
+        for (Map.Entry entry : treeMap.entrySet()) {
+            e eVar2 = map2.get(entry.getKey());
             Objects.requireNonNull(eVar2);
-            b$b b_b = (b$b) map$Entry.getValue();
-            CharSequence charSequence = b_b.a;
+            b.i.a.c.b3.b.C0093b c0093b = (b.i.a.c.b3.b.C0093b) entry.getValue();
+            CharSequence charSequence = c0093b.a;
             Objects.requireNonNull(charSequence);
             SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) charSequence;
             for (a aVar : (a[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), a.class)) {
@@ -141,17 +139,17 @@ public final class g implements b.i.a.c.b3.g {
             }
             float f = eVar2.c;
             int i9 = eVar2.d;
-            b_b.e = f;
-            b_b.f = i9;
-            b_b.g = eVar2.e;
-            b_b.h = eVar2.f884b;
-            b_b.l = eVar2.f;
+            c0093b.e = f;
+            c0093b.f = i9;
+            c0093b.g = eVar2.e;
+            c0093b.h = eVar2.f884b;
+            c0093b.l = eVar2.f;
             float f2 = eVar2.i;
             int i10 = eVar2.h;
-            b_b.k = f2;
-            b_b.j = i10;
-            b_b.p = eVar2.j;
-            arrayList2.add(b_b.a());
+            c0093b.k = f2;
+            c0093b.j = i10;
+            c0093b.p = eVar2.j;
+            arrayList2.add(c0093b.a());
         }
         return arrayList2;
     }

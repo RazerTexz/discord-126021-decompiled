@@ -1,7 +1,6 @@
 package b.i.a.c.g3;
 
 import androidx.annotation.Nullable;
-import b.i.a.c.f3.u$c;
 import com.google.android.exoplayer2.ParserException;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,11 +61,11 @@ public final class m {
                 arrayList.add(a(xVar));
             }
             if (iT2 > 0) {
-                u$c u_cE = b.i.a.c.f3.u.e((byte[]) arrayList.get(0), iT, ((byte[]) arrayList.get(0)).length);
-                int i5 = u_cE.e;
-                int i6 = u_cE.f;
-                float f2 = u_cE.g;
-                strA = b.i.a.c.f3.h.a(u_cE.a, u_cE.f981b, u_cE.c);
+                b.i.a.c.f3.u.c cVarE = b.i.a.c.f3.u.e((byte[]) arrayList.get(0), iT, ((byte[]) arrayList.get(0)).length);
+                int i5 = cVarE.e;
+                int i6 = cVarE.f;
+                float f2 = cVarE.g;
+                strA = b.i.a.c.f3.h.a(cVarE.a, cVarE.f981b, cVarE.c);
                 i = i5;
                 i2 = i6;
                 f = f2;

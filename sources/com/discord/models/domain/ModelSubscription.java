@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ModelSubscription.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,17 +18,385 @@ public final /* data */ class ModelSubscription extends HasSubscriptionItems {
     private final String currentPeriodEnd;
     private final String currentPeriodStart;
     private final String id;
-    private final List<ModelSubscription$SubscriptionItem> items;
+    private final List<SubscriptionItem> items;
     private final Integer paymentGateway;
     private final String paymentGatewayPlanId;
     private final String paymentSourceId;
-    private final ModelSubscription$SubscriptionRenewalMutations renewalMutations;
+    private final SubscriptionRenewalMutations renewalMutations;
     private final int status;
     private final String trialEndsAt;
     private final String trialId;
     private final int type;
 
-    public ModelSubscription(String str, String str2, String str3, String str4, String str5, String str6, Integer num, String str7, String str8, ModelSubscription$SubscriptionRenewalMutations modelSubscription$SubscriptionRenewalMutations, List<ModelSubscription$SubscriptionItem> list, String str9, int i, int i2) {
+    /* JADX INFO: compiled from: ModelSubscription.kt */
+    public enum PaymentGateway {
+        STRIPE(1),
+        BRAINTREE(2),
+        APPLE(3),
+        GOOGLE(4),
+        UNKNOWN(null);
+
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
+        private final Integer intRepresentation;
+
+        /* JADX INFO: compiled from: ModelSubscription.kt */
+        public final class Companion {
+            private Companion() {
+            }
+
+            /* JADX WARN: Code duplicated, block: B:12:0x001c  */
+            /* JADX WARN: Code duplicated, block: B:16:? A[RETURN, SYNTHETIC] */
+            public final PaymentGateway from(Integer paymentGatewayInt) {
+                PaymentGateway paymentGateway;
+                PaymentGateway[] paymentGatewayArrValues = PaymentGateway.values();
+                for (int i = 0; i < 5; i++) {
+                    paymentGateway = paymentGatewayArrValues[i];
+                    if (m.areEqual(paymentGateway.getIntRepresentation(), paymentGatewayInt)) {
+                        if (paymentGateway != null) {
+                            return paymentGateway;
+                        }
+                        return PaymentGateway.UNKNOWN;
+                    }
+                }
+                paymentGateway = null;
+                if (paymentGateway != null) {
+                    return paymentGateway;
+                }
+                return PaymentGateway.UNKNOWN;
+            }
+
+            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+                this();
+            }
+        }
+
+        PaymentGateway(Integer num) {
+            this.intRepresentation = num;
+        }
+
+        public final Integer getIntRepresentation() {
+            return this.intRepresentation;
+        }
+    }
+
+    /* JADX INFO: compiled from: ModelSubscription.kt */
+    public enum Status {
+        UNPAID(0),
+        ACTIVE(1),
+        PAST_DUE(2),
+        CANCELED(3),
+        ENDED(4),
+        ACCOUNT_HOLD(6);
+
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
+        private final int intRepresentation;
+
+        /* JADX INFO: compiled from: ModelSubscription.kt */
+        public final class Companion {
+            private Companion() {
+            }
+
+            /* JADX WARN: Code duplicated, block: B:14:0x001c A[RETURN] */
+            /* JADX WARN: Code duplicated, block: B:15:0x001d  */
+            public final Status from(int statusInt) {
+                Status status;
+                Status[] statusArrValues = Status.values();
+                for (int i = 0; i < 6; i++) {
+                    status = statusArrValues[i];
+                    if (status.getIntRepresentation() == statusInt) {
+                        if (status != null) {
+                            return status;
+                        }
+                        throw new IllegalArgumentException(a.q("unsupported subscription status: ", statusInt));
+                    }
+                }
+                status = null;
+                if (status != null) {
+                    return status;
+                }
+                throw new IllegalArgumentException(a.q("unsupported subscription status: ", statusInt));
+            }
+
+            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+                this();
+            }
+        }
+
+        Status(int i) {
+            this.intRepresentation = i;
+        }
+
+        public final int getIntRepresentation() {
+            return this.intRepresentation;
+        }
+
+        public final boolean isAccountHold() {
+            return this == ACCOUNT_HOLD;
+        }
+
+        public final boolean isCanceled() {
+            return this == CANCELED;
+        }
+    }
+
+    /* JADX INFO: compiled from: ModelSubscription.kt */
+    public final /* data */ class SubscriptionAdditionalPlan {
+        private final long planId;
+        private final int quantity;
+
+        public SubscriptionAdditionalPlan(long j, int i) {
+            this.planId = j;
+            this.quantity = i;
+        }
+
+        public static /* synthetic */ SubscriptionAdditionalPlan copy$default(SubscriptionAdditionalPlan subscriptionAdditionalPlan, long j, int i, int i2, Object obj) {
+            if ((i2 & 1) != 0) {
+                j = subscriptionAdditionalPlan.planId;
+            }
+            if ((i2 & 2) != 0) {
+                i = subscriptionAdditionalPlan.quantity;
+            }
+            return subscriptionAdditionalPlan.copy(j, i);
+        }
+
+        public final SubscriptionAdditionalPlan copy(long planId, int quantity) {
+            return new SubscriptionAdditionalPlan(planId, quantity);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof SubscriptionAdditionalPlan)) {
+                return false;
+            }
+            SubscriptionAdditionalPlan subscriptionAdditionalPlan = (SubscriptionAdditionalPlan) other;
+            return this.planId == subscriptionAdditionalPlan.planId && this.quantity == subscriptionAdditionalPlan.quantity;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getPlanId() {
+            return this.planId;
+        }
+
+        public final long getPlanId() {
+            return this.planId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final int getQuantity() {
+            return this.quantity;
+        }
+
+        public final int getQuantity() {
+            return this.quantity;
+        }
+
+        public int hashCode() {
+            long j = this.planId;
+            return (((int) (j ^ (j >>> 32))) * 31) + this.quantity;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("SubscriptionAdditionalPlan(planId=");
+            sbU.append(this.planId);
+            sbU.append(", quantity=");
+            return a.B(sbU, this.quantity, ")");
+        }
+    }
+
+    /* JADX INFO: compiled from: ModelSubscription.kt */
+    public final /* data */ class SubscriptionItem {
+        private final long id;
+        private final long planId;
+        private final int quantity;
+
+        public SubscriptionItem(long j, long j2, int i) {
+            this.id = j;
+            this.planId = j2;
+            this.quantity = i;
+        }
+
+        public static /* synthetic */ SubscriptionItem copy$default(SubscriptionItem subscriptionItem, long j, long j2, int i, int i2, Object obj) {
+            if ((i2 & 1) != 0) {
+                j = subscriptionItem.id;
+            }
+            long j3 = j;
+            if ((i2 & 2) != 0) {
+                j2 = subscriptionItem.planId;
+            }
+            long j4 = j2;
+            if ((i2 & 4) != 0) {
+                i = subscriptionItem.quantity;
+            }
+            return subscriptionItem.copy(j3, j4, i);
+        }
+
+        public final SubscriptionItem copy(long id2, long planId, int quantity) {
+            return new SubscriptionItem(id2, planId, quantity);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof SubscriptionItem)) {
+                return false;
+            }
+            SubscriptionItem subscriptionItem = (SubscriptionItem) other;
+            return this.id == subscriptionItem.id && this.planId == subscriptionItem.planId && this.quantity == subscriptionItem.quantity;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getId() {
+            return this.id;
+        }
+
+        public final long getId() {
+            return this.id;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getPlanId() {
+            return this.planId;
+        }
+
+        public final long getPlanId() {
+            return this.planId;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getQuantity() {
+            return this.quantity;
+        }
+
+        public final int getQuantity() {
+            return this.quantity;
+        }
+
+        public int hashCode() {
+            long j = this.id;
+            int i = ((int) (j ^ (j >>> 32))) * 31;
+            long j2 = this.planId;
+            return ((i + ((int) (j2 ^ (j2 >>> 32)))) * 31) + this.quantity;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("SubscriptionItem(id=");
+            sbU.append(this.id);
+            sbU.append(", planId=");
+            sbU.append(this.planId);
+            sbU.append(", quantity=");
+            return a.B(sbU, this.quantity, ")");
+        }
+    }
+
+    /* JADX INFO: compiled from: ModelSubscription.kt */
+    public final /* data */ class SubscriptionRenewalMutations extends HasSubscriptionItems {
+        private final List<SubscriptionItem> items;
+        private final String paymentGatewayPlanId;
+
+        public SubscriptionRenewalMutations(List<SubscriptionItem> list, String str) {
+            m.checkNotNullParameter(list, "items");
+            this.items = list;
+            this.paymentGatewayPlanId = str;
+        }
+
+        public final List<SubscriptionItem> component1() {
+            return getItems();
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ SubscriptionRenewalMutations copy$default(SubscriptionRenewalMutations subscriptionRenewalMutations, List list, String str, int i, Object obj) {
+            if ((i & 1) != 0) {
+                list = subscriptionRenewalMutations.getItems();
+            }
+            if ((i & 2) != 0) {
+                str = subscriptionRenewalMutations.paymentGatewayPlanId;
+            }
+            return subscriptionRenewalMutations.copy(list, str);
+        }
+
+        public final SubscriptionRenewalMutations copy(List<SubscriptionItem> items, String paymentGatewayPlanId) {
+            m.checkNotNullParameter(items, "items");
+            return new SubscriptionRenewalMutations(items, paymentGatewayPlanId);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof SubscriptionRenewalMutations)) {
+                return false;
+            }
+            SubscriptionRenewalMutations subscriptionRenewalMutations = (SubscriptionRenewalMutations) other;
+            return m.areEqual(getItems(), subscriptionRenewalMutations.getItems()) && m.areEqual(this.paymentGatewayPlanId, subscriptionRenewalMutations.paymentGatewayPlanId);
+        }
+
+        @Override // com.discord.models.domain.HasSubscriptionItems
+        public List<SubscriptionItem> getItems() {
+            return this.items;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getPaymentGatewayPlanId() {
+            return this.paymentGatewayPlanId;
+        }
+
+        public final String getPaymentGatewayPlanId() {
+            return this.paymentGatewayPlanId;
+        }
+
+        public int hashCode() {
+            List<SubscriptionItem> items = getItems();
+            int iHashCode = (items != null ? items.hashCode() : 0) * 31;
+            String str = this.paymentGatewayPlanId;
+            return iHashCode + (str != null ? str.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("SubscriptionRenewalMutations(items=");
+            sbU.append(getItems());
+            sbU.append(", paymentGatewayPlanId=");
+            return a.J(sbU, this.paymentGatewayPlanId, ")");
+        }
+    }
+
+    /* JADX INFO: compiled from: ModelSubscription.kt */
+    public enum Type {
+        PREMIUM,
+        GUILD;
+
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
+
+        /* JADX INFO: compiled from: ModelSubscription.kt */
+        public final class Companion {
+            private Companion() {
+            }
+
+            public final Type from(int typeInt) {
+                if (typeInt == 1) {
+                    return Type.PREMIUM;
+                }
+                if (typeInt == 2) {
+                    return Type.GUILD;
+                }
+                throw new IllegalArgumentException(a.q("unsupported subscription type: ", typeInt));
+            }
+
+            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+                this();
+            }
+        }
+    }
+
+    public ModelSubscription(String str, String str2, String str3, String str4, String str5, String str6, Integer num, String str7, String str8, SubscriptionRenewalMutations subscriptionRenewalMutations, List<SubscriptionItem> list, String str9, int i, int i2) {
         m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_ID);
         m.checkNotNullParameter(str2, "createdAt");
         m.checkNotNullParameter(str4, "currentPeriodStart");
@@ -42,23 +411,23 @@ public final /* data */ class ModelSubscription extends HasSubscriptionItems {
         this.paymentGateway = num;
         this.trialId = str7;
         this.trialEndsAt = str8;
-        this.renewalMutations = modelSubscription$SubscriptionRenewalMutations;
+        this.renewalMutations = subscriptionRenewalMutations;
         this.items = list;
         this.paymentGatewayPlanId = str9;
         this.status = i;
         this.type = i2;
     }
 
-    public final List<ModelSubscription$SubscriptionItem> component11() {
+    public final List<SubscriptionItem> component11() {
         return getItems();
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ ModelSubscription copy$default(ModelSubscription modelSubscription, String str, String str2, String str3, String str4, String str5, String str6, Integer num, String str7, String str8, ModelSubscription$SubscriptionRenewalMutations modelSubscription$SubscriptionRenewalMutations, List list, String str9, int i, int i2, int i3, Object obj) {
-        return modelSubscription.copy((i3 & 1) != 0 ? modelSubscription.id : str, (i3 & 2) != 0 ? modelSubscription.createdAt : str2, (i3 & 4) != 0 ? modelSubscription.canceledAt : str3, (i3 & 8) != 0 ? modelSubscription.currentPeriodStart : str4, (i3 & 16) != 0 ? modelSubscription.currentPeriodEnd : str5, (i3 & 32) != 0 ? modelSubscription.paymentSourceId : str6, (i3 & 64) != 0 ? modelSubscription.paymentGateway : num, (i3 & 128) != 0 ? modelSubscription.trialId : str7, (i3 & 256) != 0 ? modelSubscription.trialEndsAt : str8, (i3 & 512) != 0 ? modelSubscription.renewalMutations : modelSubscription$SubscriptionRenewalMutations, (i3 & 1024) != 0 ? modelSubscription.getItems() : list, (i3 & 2048) != 0 ? modelSubscription.paymentGatewayPlanId : str9, (i3 & 4096) != 0 ? modelSubscription.status : i, (i3 & 8192) != 0 ? modelSubscription.type : i2);
+    public static /* synthetic */ ModelSubscription copy$default(ModelSubscription modelSubscription, String str, String str2, String str3, String str4, String str5, String str6, Integer num, String str7, String str8, SubscriptionRenewalMutations subscriptionRenewalMutations, List list, String str9, int i, int i2, int i3, Object obj) {
+        return modelSubscription.copy((i3 & 1) != 0 ? modelSubscription.id : str, (i3 & 2) != 0 ? modelSubscription.createdAt : str2, (i3 & 4) != 0 ? modelSubscription.canceledAt : str3, (i3 & 8) != 0 ? modelSubscription.currentPeriodStart : str4, (i3 & 16) != 0 ? modelSubscription.currentPeriodEnd : str5, (i3 & 32) != 0 ? modelSubscription.paymentSourceId : str6, (i3 & 64) != 0 ? modelSubscription.paymentGateway : num, (i3 & 128) != 0 ? modelSubscription.trialId : str7, (i3 & 256) != 0 ? modelSubscription.trialEndsAt : str8, (i3 & 512) != 0 ? modelSubscription.renewalMutations : subscriptionRenewalMutations, (i3 & 1024) != 0 ? modelSubscription.getItems() : list, (i3 & 2048) != 0 ? modelSubscription.paymentGatewayPlanId : str9, (i3 & 4096) != 0 ? modelSubscription.status : i, (i3 & 8192) != 0 ? modelSubscription.type : i2);
     }
 
-    public final ModelSubscription copy(String id2, String createdAt, String canceledAt, String currentPeriodStart, String currentPeriodEnd, String paymentSourceId, Integer paymentGateway, String trialId, String trialEndsAt, ModelSubscription$SubscriptionRenewalMutations renewalMutations, List<ModelSubscription$SubscriptionItem> items, String paymentGatewayPlanId, int status, int type) {
+    public final ModelSubscription copy(String id2, String createdAt, String canceledAt, String currentPeriodStart, String currentPeriodEnd, String paymentSourceId, Integer paymentGateway, String trialId, String trialEndsAt, SubscriptionRenewalMutations renewalMutations, List<SubscriptionItem> items, String paymentGatewayPlanId, int status, int type) {
         m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
         m.checkNotNullParameter(createdAt, "createdAt");
         m.checkNotNullParameter(currentPeriodStart, "currentPeriodStart");
@@ -128,7 +497,7 @@ public final /* data */ class ModelSubscription extends HasSubscriptionItems {
     }
 
     @Override // com.discord.models.domain.HasSubscriptionItems
-    public List<ModelSubscription$SubscriptionItem> getItems() {
+    public List<SubscriptionItem> getItems() {
         return this.items;
     }
 
@@ -160,15 +529,15 @@ public final /* data */ class ModelSubscription extends HasSubscriptionItems {
     }
 
     public final SubscriptionPlanType getPlanType() {
-        return SubscriptionPlanType.Companion.from(getPremiumBasePlanId());
+        return SubscriptionPlanType.INSTANCE.from(getPremiumBasePlanId());
     }
 
     /* JADX INFO: renamed from: component10, reason: from getter */
-    public final ModelSubscription$SubscriptionRenewalMutations getRenewalMutations() {
+    public final SubscriptionRenewalMutations getRenewalMutations() {
         return this.renewalMutations;
     }
 
-    public final ModelSubscription$SubscriptionRenewalMutations getRenewalMutations() {
+    public final SubscriptionRenewalMutations getRenewalMutations() {
         return this.renewalMutations;
     }
 
@@ -177,8 +546,8 @@ public final /* data */ class ModelSubscription extends HasSubscriptionItems {
         return this.status;
     }
 
-    public final ModelSubscription$Status getStatus() {
-        return ModelSubscription$Status.Companion.from(this.status);
+    public final Status getStatus() {
+        return Status.INSTANCE.from(this.status);
     }
 
     /* JADX INFO: renamed from: component9, reason: from getter */
@@ -204,19 +573,19 @@ public final /* data */ class ModelSubscription extends HasSubscriptionItems {
         return this.type;
     }
 
-    public final ModelSubscription$Type getType() {
-        return ModelSubscription$Type.Companion.from(this.type);
+    public final Type getType() {
+        return Type.INSTANCE.from(this.type);
     }
 
     public final boolean hasAnyOfPlans(Set<Long> planIds) {
         m.checkNotNullParameter(planIds, "planIds");
-        List<ModelSubscription$SubscriptionItem> items = getItems();
+        List<SubscriptionItem> items = getItems();
         if ((items instanceof Collection) && items.isEmpty()) {
             return false;
         }
         Iterator<T> it = items.iterator();
         while (it.hasNext()) {
-            if (planIds.contains(Long.valueOf(((ModelSubscription$SubscriptionItem) it.next()).getPlanId()))) {
+            if (planIds.contains(Long.valueOf(((SubscriptionItem) it.next()).getPlanId()))) {
                 return true;
             }
         }
@@ -224,11 +593,11 @@ public final /* data */ class ModelSubscription extends HasSubscriptionItems {
     }
 
     public final boolean hasPlan(long planId) {
-        List<ModelSubscription$SubscriptionItem> items = getItems();
+        List<SubscriptionItem> items = getItems();
         if (!(items instanceof Collection) || !items.isEmpty()) {
             Iterator<T> it = items.iterator();
             while (it.hasNext()) {
-                if (((ModelSubscription$SubscriptionItem) it.next()).getPlanId() == planId) {
+                if (((SubscriptionItem) it.next()).getPlanId() == planId) {
                     return true;
                 }
             }
@@ -255,20 +624,20 @@ public final /* data */ class ModelSubscription extends HasSubscriptionItems {
         int iHashCode8 = (iHashCode7 + (str7 != null ? str7.hashCode() : 0)) * 31;
         String str8 = this.trialEndsAt;
         int iHashCode9 = (iHashCode8 + (str8 != null ? str8.hashCode() : 0)) * 31;
-        ModelSubscription$SubscriptionRenewalMutations modelSubscription$SubscriptionRenewalMutations = this.renewalMutations;
-        int iHashCode10 = (iHashCode9 + (modelSubscription$SubscriptionRenewalMutations != null ? modelSubscription$SubscriptionRenewalMutations.hashCode() : 0)) * 31;
-        List<ModelSubscription$SubscriptionItem> items = getItems();
+        SubscriptionRenewalMutations subscriptionRenewalMutations = this.renewalMutations;
+        int iHashCode10 = (iHashCode9 + (subscriptionRenewalMutations != null ? subscriptionRenewalMutations.hashCode() : 0)) * 31;
+        List<SubscriptionItem> items = getItems();
         int iHashCode11 = (iHashCode10 + (items != null ? items.hashCode() : 0)) * 31;
         String str9 = this.paymentGatewayPlanId;
         return ((((iHashCode11 + (str9 != null ? str9.hashCode() : 0)) * 31) + this.status) * 31) + this.type;
     }
 
     public final boolean isAppleSubscription() {
-        return ModelSubscription$PaymentGateway.Companion.from(this.paymentGateway) == ModelSubscription$PaymentGateway.APPLE;
+        return PaymentGateway.INSTANCE.from(this.paymentGateway) == PaymentGateway.APPLE;
     }
 
     public final boolean isGoogleSubscription() {
-        return ModelSubscription$PaymentGateway.Companion.from(this.paymentGateway) == ModelSubscription$PaymentGateway.GOOGLE;
+        return PaymentGateway.INSTANCE.from(this.paymentGateway) == PaymentGateway.GOOGLE;
     }
 
     public final boolean isMobileManaged() {

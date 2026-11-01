@@ -5,6 +5,7 @@ import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: TypesJVM.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -12,6 +13,26 @@ public final class k implements ParameterizedType, Type {
     public final Type[] j;
     public final Class<?> k;
     public final Type l;
+
+    /* JADX INFO: compiled from: TypesJVM.kt */
+    public final /* synthetic */ class a extends d0.z.d.k implements Function1<Type, String> {
+        public static final a j = new a();
+
+        public a() {
+            super(1, n.class, "typeToString", "typeToString(Ljava/lang/reflect/Type;)Ljava/lang/String;", 1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ String invoke(Type type) {
+            return invoke2(type);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final String invoke2(Type type) {
+            d0.z.d.m.checkNotNullParameter(type, "p1");
+            return n.access$typeToString(type);
+        }
+    }
 
     public k(Class<?> cls, Type type, List<? extends Type> list) {
         d0.z.d.m.checkNotNullParameter(cls, "rawType");
@@ -61,7 +82,7 @@ public final class k implements ParameterizedType, Type {
         }
         Type[] typeArr = this.j;
         if (!(typeArr.length == 0)) {
-            d0.t.k.joinTo$default(typeArr, sb, null, "<", ">", 0, null, k$a.j, 50, null);
+            d0.t.k.joinTo$default(typeArr, sb, null, "<", ">", 0, null, a.j, 50, null);
         }
         String string = sb.toString();
         d0.z.d.m.checkNotNullExpressionValue(string, "StringBuilder().apply(builderAction).toString()");

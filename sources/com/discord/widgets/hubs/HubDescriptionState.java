@@ -5,7 +5,6 @@ import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.directory.DirectoryEntryGuild;
 import com.discord.models.hubs.DirectoryEntryCategory;
-import com.discord.models.hubs.DirectoryEntryCategory$Companion;
 import com.discord.stores.utilities.Default;
 import com.discord.stores.utilities.RestCallState;
 import d0.z.d.m;
@@ -107,9 +106,9 @@ public final /* data */ class HubDescriptionState {
             return null;
         }
         int iIntValue = num.intValue();
-        DirectoryEntryCategory$Companion directoryEntryCategory$Companion = DirectoryEntryCategory.Companion;
+        DirectoryEntryCategory.Companion companion = DirectoryEntryCategory.INSTANCE;
         Channel channel = this.channel;
-        return directoryEntryCategory$Companion.findByKey(iIntValue, channel != null && ChannelUtils.x(channel));
+        return companion.findByKey(iIntValue, channel != null && ChannelUtils.x(channel));
     }
 
     public int hashCode() {

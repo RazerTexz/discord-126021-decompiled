@@ -3,7 +3,6 @@ package b.i.a.c.x2.k0;
 import android.util.Pair;
 import androidx.annotation.Nullable;
 import b.i.a.c.j1;
-import b.i.a.c.j1$b;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Objects;
@@ -36,7 +35,36 @@ public final class p implements o {
     public boolean p;
     public boolean q;
     public final boolean[] g = new boolean[4];
-    public final p$a h = new p$a(128);
+    public final a h = new a(128);
+
+    /* JADX INFO: compiled from: H262Reader.java */
+    public final class a {
+        public static final byte[] a = {0, 0, 1};
+        public int c;
+        public int d;
+        public byte[] e;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public boolean f1268b;
+
+        public a(int i) {
+            this.e = new byte[i];
+        }
+
+        public void a(byte[] bArr, int i, int i2) {
+            if (this.f1268b) {
+                int i3 = i2 - i;
+                byte[] bArr2 = this.e;
+                int length = bArr2.length;
+                int i4 = this.c;
+                if (length < i4 + i3) {
+                    this.e = Arrays.copyOf(bArr2, (i4 + i3) * 2);
+                }
+                System.arraycopy(bArr, i, this.e, this.c, i3);
+                this.c += i3;
+            }
+        }
+    }
 
     public p(@Nullable j0 j0Var) {
         this.d = j0Var;
@@ -81,7 +109,7 @@ public final class p implements o {
         long j;
         int i2;
         boolean z2;
-        p$a p_a;
+        a aVar;
         byte[] bArrCopyOf;
         int i3;
         int i4;
@@ -117,21 +145,21 @@ public final class p implements o {
                     this.h.a(bArr, i10, iB);
                 }
                 int i15 = i14 < 0 ? -i14 : 0;
-                p$a p_a2 = this.h;
-                if (p_a2.f1268b) {
-                    int i16 = p_a2.c - i15;
-                    p_a2.c = i16;
-                    if (p_a2.d == 0 && i13 == 181) {
-                        p_a2.d = i16;
+                a aVar2 = this.h;
+                if (aVar2.f1268b) {
+                    int i16 = aVar2.c - i15;
+                    aVar2.c = i16;
+                    if (aVar2.d == 0 && i13 == 181) {
+                        aVar2.d = i16;
                     } else {
-                        p_a2.f1268b = false;
+                        aVar2.f1268b = false;
                         z2 = true;
                     }
                     if (z2) {
-                        p_a = this.h;
+                        aVar = this.h;
                         String str = this.f1267b;
                         Objects.requireNonNull(str);
-                        bArrCopyOf = Arrays.copyOf(p_a.e, p_a.c);
+                        bArrCopyOf = Arrays.copyOf(aVar.e, aVar.c);
                         int i17 = bArrCopyOf[4] & 255;
                         int i18 = bArrCopyOf[5] & 255;
                         i3 = (i17 << 4) | (i18 >> 4);
@@ -147,20 +175,20 @@ public final class p implements o {
                                 f = i4 * 121;
                                 i6 = i3 * 100;
                             }
-                            j1$b j1_b = new j1$b();
-                            j1_b.a = str;
-                            j1_b.k = "video/mpeg2";
-                            j1_b.p = i3;
-                            j1_b.q = i4;
-                            j1_b.t = f2;
-                            j1_b.m = Collections.singletonList(bArrCopyOf);
-                            j1 j1VarA = j1_b.a();
+                            j1.b bVar = new j1.b();
+                            bVar.a = str;
+                            bVar.k = "video/mpeg2";
+                            bVar.p = i3;
+                            bVar.q = i4;
+                            bVar.t = f2;
+                            bVar.m = Collections.singletonList(bArrCopyOf);
+                            j1 j1VarA = bVar.a();
                             i7 = (bArrCopyOf[7] & 15) - 1;
                             if (i7 >= 0) {
                                 dArr = a;
                                 if (i7 < dArr.length) {
                                     d = dArr[i7];
-                                    int i19 = p_a.d + 9;
+                                    int i19 = aVar.d + 9;
                                     i8 = (bArrCopyOf[i19] & 96) >> 5;
                                     i9 = bArrCopyOf[i19] & 31;
                                     if (i8 != i9) {
@@ -186,20 +214,20 @@ public final class p implements o {
                             i6 = i3 * 9;
                         }
                         f2 = f / i6;
-                        j1$b j1_b2 = new j1$b();
-                        j1_b2.a = str;
-                        j1_b2.k = "video/mpeg2";
-                        j1_b2.p = i3;
-                        j1_b2.q = i4;
-                        j1_b2.t = f2;
-                        j1_b2.m = Collections.singletonList(bArrCopyOf);
-                        j1 j1VarA2 = j1_b2.a();
+                        j1.b bVar2 = new j1.b();
+                        bVar2.a = str;
+                        bVar2.k = "video/mpeg2";
+                        bVar2.p = i3;
+                        bVar2.q = i4;
+                        bVar2.t = f2;
+                        bVar2.m = Collections.singletonList(bArrCopyOf);
+                        j1 j1VarA2 = bVar2.a();
                         i7 = (bArrCopyOf[7] & 15) - 1;
                         if (i7 >= 0) {
                             dArr = a;
                             if (i7 < dArr.length) {
                                 d = dArr[i7];
-                                int i110 = p_a.d + 9;
+                                int i110 = aVar.d + 9;
                                 i8 = (bArrCopyOf[i110] & 96) >> 5;
                                 i9 = bArrCopyOf[i110] & 31;
                                 if (i8 != i9) {
@@ -225,16 +253,16 @@ public final class p implements o {
                         i12 = i12;
                     }
                 } else if (i13 == 179) {
-                    p_a2.f1268b = true;
+                    aVar2.f1268b = true;
                 }
-                byte[] bArr2 = p$a.a;
-                p_a2.a(bArr2, 0, bArr2.length);
+                byte[] bArr2 = a.a;
+                aVar2.a(bArr2, 0, bArr2.length);
                 z2 = false;
                 if (z2) {
-                    p_a = this.h;
+                    aVar = this.h;
                     String str2 = this.f1267b;
                     Objects.requireNonNull(str2);
-                    bArrCopyOf = Arrays.copyOf(p_a.e, p_a.c);
+                    bArrCopyOf = Arrays.copyOf(aVar.e, aVar.c);
                     int i111 = bArrCopyOf[4] & 255;
                     int i112 = bArrCopyOf[5] & 255;
                     i3 = (i111 << 4) | (i112 >> 4);
@@ -250,20 +278,20 @@ public final class p implements o {
                             f = i4 * 121;
                             i6 = i3 * 100;
                         }
-                        j1$b j1_b3 = new j1$b();
-                        j1_b3.a = str2;
-                        j1_b3.k = "video/mpeg2";
-                        j1_b3.p = i3;
-                        j1_b3.q = i4;
-                        j1_b3.t = f2;
-                        j1_b3.m = Collections.singletonList(bArrCopyOf);
-                        j1 j1VarA3 = j1_b3.a();
+                        j1.b bVar3 = new j1.b();
+                        bVar3.a = str2;
+                        bVar3.k = "video/mpeg2";
+                        bVar3.p = i3;
+                        bVar3.q = i4;
+                        bVar3.t = f2;
+                        bVar3.m = Collections.singletonList(bArrCopyOf);
+                        j1 j1VarA3 = bVar3.a();
                         i7 = (bArrCopyOf[7] & 15) - 1;
                         if (i7 >= 0) {
                             dArr = a;
                             if (i7 < dArr.length) {
                                 d = dArr[i7];
-                                int i113 = p_a.d + 9;
+                                int i113 = aVar.d + 9;
                                 i8 = (bArrCopyOf[i113] & 96) >> 5;
                                 i9 = bArrCopyOf[i113] & 31;
                                 if (i8 != i9) {
@@ -289,20 +317,20 @@ public final class p implements o {
                         i6 = i3 * 9;
                     }
                     f2 = f / i6;
-                    j1$b j1_b4 = new j1$b();
-                    j1_b4.a = str2;
-                    j1_b4.k = "video/mpeg2";
-                    j1_b4.p = i3;
-                    j1_b4.q = i4;
-                    j1_b4.t = f2;
-                    j1_b4.m = Collections.singletonList(bArrCopyOf);
-                    j1 j1VarA4 = j1_b4.a();
+                    j1.b bVar4 = new j1.b();
+                    bVar4.a = str2;
+                    bVar4.k = "video/mpeg2";
+                    bVar4.p = i3;
+                    bVar4.q = i4;
+                    bVar4.t = f2;
+                    bVar4.m = Collections.singletonList(bArrCopyOf);
+                    j1 j1VarA4 = bVar4.a();
                     i7 = (bArrCopyOf[7] & 15) - 1;
                     if (i7 >= 0) {
                         dArr = a;
                         if (i7 < dArr.length) {
                             d = dArr[i7];
-                            int i114 = p_a.d + 9;
+                            int i114 = aVar.d + 9;
                             i8 = (bArrCopyOf[i114] & 96) >> 5;
                             i9 = bArrCopyOf[i114] & 31;
                             if (i8 != i9) {
@@ -400,10 +428,10 @@ public final class p implements o {
     @Override // b.i.a.c.x2.k0.o
     public void c() {
         b.i.a.c.f3.u.a(this.g);
-        p$a p_a = this.h;
-        p_a.f1268b = false;
-        p_a.c = 0;
-        p_a.d = 0;
+        a aVar = this.h;
+        aVar.f1268b = false;
+        aVar.c = 0;
+        aVar.d = 0;
         w wVar = this.f;
         if (wVar != null) {
             wVar.c();
@@ -419,13 +447,13 @@ public final class p implements o {
     }
 
     @Override // b.i.a.c.x2.k0.o
-    public void e(b.i.a.c.x2.j jVar, i0$d i0_d) {
-        i0_d.a();
-        this.f1267b = i0_d.b();
-        this.c = jVar.p(i0_d.c(), 2);
+    public void e(b.i.a.c.x2.j jVar, i0.d dVar) {
+        dVar.a();
+        this.f1267b = dVar.b();
+        this.c = jVar.p(dVar.c(), 2);
         j0 j0Var = this.d;
         if (j0Var != null) {
-            j0Var.b(jVar, i0_d);
+            j0Var.b(jVar, dVar);
         }
     }
 

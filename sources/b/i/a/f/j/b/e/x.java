@@ -1,7 +1,5 @@
 package b.i.a.f.j.b.e;
 
-import b.i.a.f.e.h.j.k$a;
-
 /* JADX INFO: Add missing generic type declarations: [T] */
 /* JADX INFO: loaded from: classes3.dex */
 public final class x<T> extends b.i.a.f.e.h.j.q<f, T> {
@@ -11,8 +9,8 @@ public final class x<T> extends b.i.a.f.e.h.j.q<f, T> {
     public final /* synthetic */ i c;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public x(i iVar, k$a k_a, a0 a0Var) {
-        super(k_a);
+    public x(i iVar, b.i.a.f.e.h.j.k.a aVar, a0 a0Var) {
+        super(aVar);
         this.c = iVar;
         this.f1587b = a0Var;
     }

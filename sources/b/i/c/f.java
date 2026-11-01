@@ -1,7 +1,7 @@
 package b.i.c;
 
 import android.content.Context;
-import android.os.Build$VERSION;
+import android.os.Build;
 
 /* JADX INFO: compiled from: FirebaseCommonRegistrar.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -11,7 +11,7 @@ public final /* synthetic */ class f implements b.i.c.x.g {
     @Override // b.i.c.x.g
     public String a(Object obj) {
         Context context = (Context) obj;
-        int i = Build$VERSION.SDK_INT;
+        int i = Build.VERSION.SDK_INT;
         if (context.getPackageManager().hasSystemFeature("android.hardware.type.television")) {
             return "tv";
         }

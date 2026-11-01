@@ -14,15 +14,19 @@ public final class s implements b.i.a.c.e3.l {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final int f832b;
-    public final s$a c;
+    public final a c;
     public final byte[] d;
     public int e;
 
-    public s(b.i.a.c.e3.l lVar, int i, s$a s_a) {
+    /* JADX INFO: compiled from: IcyDataSource.java */
+    public interface a {
+    }
+
+    public s(b.i.a.c.e3.l lVar, int i, a aVar) {
         b.c.a.a0.d.j(i > 0);
         this.a = lVar;
         this.f832b = i;
-        this.c = s_a;
+        this.c = aVar;
         this.d = new byte[1];
         this.e = i;
     }
@@ -80,22 +84,22 @@ public final class s implements b.i.a.c.e3.l {
                         if (i3 <= 0) {
                             break;
                         }
-                        s$a s_a = this.c;
+                        a aVar = this.c;
                         b.i.a.c.f3.x xVar = new b.i.a.c.f3.x(bArr2, i3);
-                        e0$a e0_a = (e0$a) s_a;
-                        if (e0_a.n) {
-                            e0 e0Var = e0_a.o;
+                        e0.a aVar2 = (e0.a) aVar;
+                        if (aVar2.n) {
+                            e0 e0Var = e0.this;
                             Map<String, String> map = e0.j;
-                            jMax = Math.max(e0Var.v(), e0_a.j);
+                            jMax = Math.max(e0Var.v(), aVar2.j);
                         } else {
-                            jMax = e0_a.j;
+                            jMax = aVar2.j;
                         }
                         int iA = xVar.a();
-                        b.i.a.c.x2.w wVar = e0_a.m;
+                        b.i.a.c.x2.w wVar = aVar2.m;
                         Objects.requireNonNull(wVar);
                         wVar.c(xVar, iA);
                         wVar.d(jMax, 1, iA, 0, null);
-                        e0_a.n = true;
+                        aVar2.n = true;
                         break;
                     }
                     int i7 = this.a.read(bArr2, i5, i4);

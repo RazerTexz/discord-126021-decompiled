@@ -1,6 +1,6 @@
 package com.discord.widgets.botuikit.views;
 
-import com.discord.R$string;
+import com.discord.R;
 import com.discord.api.botuikit.ComponentEmoji;
 import com.discord.models.domain.emoji.ModelEmojiCustom;
 import com.discord.models.domain.emoji.ModelEmojiUnicode;
@@ -36,12 +36,12 @@ public final class ComponentViewUtils {
             }
             imageUri = ModelEmojiCustom.getImageUri(jLongValue, z3, 64);
         } else {
-            ModelEmojiUnicode modelEmojiUnicode = StoreStream.Companion.getEmojis().getUnicodeEmojiSurrogateMap().get(componentEmoji.getName());
+            ModelEmojiUnicode modelEmojiUnicode = StoreStream.INSTANCE.getEmojis().getUnicodeEmojiSurrogateMap().get(componentEmoji.getName());
             imageUri = ModelEmojiUnicode.getImageUri(modelEmojiUnicode != null ? modelEmojiUnicode.getCodePoints() : null, simpleDraweeView.getContext());
         }
-        if (!m.areEqual(simpleDraweeView.getTag(R$string.tag_emoji_url), imageUri)) {
-            simpleDraweeView.setTag(R$string.tag_emoji_url, imageUri);
-            MGImages.setImage$default(simpleDraweeView, imageUri, 2131165401, 2131165401, true, null, null, 96, null);
+        if (!m.areEqual(simpleDraweeView.getTag(R.string.tag_emoji_url), imageUri)) {
+            simpleDraweeView.setTag(R.string.tag_emoji_url, imageUri);
+            MGImages.setImage$default(simpleDraweeView, imageUri, R.dimen.emoji_size, R.dimen.emoji_size, true, null, null, 96, null);
         }
     }
 }

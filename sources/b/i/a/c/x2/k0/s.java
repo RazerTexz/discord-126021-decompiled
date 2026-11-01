@@ -1,6 +1,6 @@
 package b.i.a.c.x2.k0;
 
-import b.i.a.c.j1$b;
+import b.i.a.c.j1;
 import java.util.Collections;
 import org.checkerframework.checker.nullness.qual.RequiresNonNull;
 
@@ -9,7 +9,7 @@ import org.checkerframework.checker.nullness.qual.RequiresNonNull;
 public final class s implements o {
     public final e0 a;
     public b.i.a.c.x2.w c;
-    public s$a d;
+    public a d;
     public boolean e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -24,21 +24,63 @@ public final class s implements o {
     public long m = -9223372036854775807L;
     public final b.i.a.c.f3.x n = new b.i.a.c.f3.x();
 
+    /* JADX INFO: compiled from: H265Reader.java */
+    public final class a {
+        public final b.i.a.c.x2.w a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public long f1276b;
+        public boolean c;
+        public int d;
+        public long e;
+        public boolean f;
+        public boolean g;
+        public boolean h;
+        public boolean i;
+        public boolean j;
+        public long k;
+        public long l;
+        public boolean m;
+
+        public a(b.i.a.c.x2.w wVar) {
+            this.a = wVar;
+        }
+
+        /* JADX WARN: Type inference fix 'apply assigned field type' failed
+        java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$PrimitiveArg
+        	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
+        	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+        	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+         */
+        public final void a(int i) {
+            long j = this.l;
+            if (j == -9223372036854775807L) {
+                return;
+            }
+            boolean z2 = this.m;
+            this.a.d(j, z2 ? 1 : 0, (int) (this.f1276b - this.k), i, null);
+        }
+    }
+
     public s(e0 e0Var) {
         this.a = e0Var;
     }
 
     @RequiresNonNull({"sampleReader"})
     public final void a(byte[] bArr, int i, int i2) {
-        s$a s_a = this.d;
-        if (s_a.f) {
-            int i3 = s_a.d;
+        a aVar = this.d;
+        if (aVar.f) {
+            int i3 = aVar.d;
             int i4 = (i + 2) - i3;
             if (i4 < i2) {
-                s_a.g = (bArr[i4] & 128) != 0;
-                s_a.f = false;
+                aVar.g = (bArr[i4] & 128) != 0;
+                aVar.f = false;
             } else {
-                s_a.d = (i2 - i) + i3;
+                aVar.d = (i2 - i) + i3;
             }
         }
         if (!this.e) {
@@ -79,19 +121,19 @@ public final class s implements o {
                 long j3 = this.l - ((long) i7);
                 int i8 = i6 < 0 ? -i6 : 0;
                 long j4 = this.m;
-                s$a s_a = this.d;
+                a aVar = this.d;
                 boolean z2 = this.e;
-                if (s_a.j && s_a.g) {
-                    s_a.m = s_a.c;
-                    s_a.j = false;
-                } else if (s_a.h || s_a.g) {
-                    if (z2 && s_a.i) {
-                        s_a.a(((int) (j3 - s_a.f1276b)) + i7);
+                if (aVar.j && aVar.g) {
+                    aVar.m = aVar.c;
+                    aVar.j = false;
+                } else if (aVar.h || aVar.g) {
+                    if (z2 && aVar.i) {
+                        aVar.a(((int) (j3 - aVar.f1276b)) + i7);
                     }
-                    s_a.k = s_a.f1276b;
-                    s_a.l = s_a.e;
-                    s_a.m = s_a.c;
-                    s_a.i = true;
+                    aVar.k = aVar.f1276b;
+                    aVar.l = aVar.e;
+                    aVar.m = aVar.c;
+                    aVar.i = true;
                 }
                 if (this.e) {
                     j3 = j3;
@@ -280,15 +322,15 @@ public final class s implements o {
                                     }
                                 }
                                 String strB = b.i.a.c.f3.h.b(iE2, zD, iE3, i11, iArr, iE4);
-                                j1$b j1_b = new j1$b();
-                                j1_b.a = str;
-                                j1_b.k = "video/hevc";
-                                j1_b.h = strB;
-                                j1_b.p = iF2;
-                                j1_b.q = iF3;
-                                j1_b.t = f;
-                                j1_b.m = Collections.singletonList(bArr2);
-                                wVar4.e(j1_b.a());
+                                j1.b bVar = new j1.b();
+                                bVar.a = str;
+                                bVar.k = "video/hevc";
+                                bVar.h = strB;
+                                bVar.p = iF2;
+                                bVar.q = iF3;
+                                bVar.t = f;
+                                bVar.m = Collections.singletonList(bArr2);
+                                wVar4.e(bVar.a());
                                 this.e = true;
                             } else {
                                 j3 = j3;
@@ -319,28 +361,28 @@ public final class s implements o {
                     b.c.a.a0.d.J(j2, this.n, this.a.f1246b);
                 }
                 long j5 = this.m;
-                s$a s_a2 = this.d;
+                a aVar2 = this.d;
                 boolean z3 = this.e;
-                s_a2.g = false;
-                s_a2.h = false;
-                s_a2.e = j5;
-                s_a2.d = 0;
-                s_a2.f1276b = j3;
+                aVar2.g = false;
+                aVar2.h = false;
+                aVar2.e = j5;
+                aVar2.d = 0;
+                aVar2.f1276b = j3;
                 if (!(i5 < 32 || i5 == 40)) {
-                    if (s_a2.i && !s_a2.j) {
+                    if (aVar2.i && !aVar2.j) {
                         if (z3) {
-                            s_a2.a(i7);
+                            aVar2.a(i7);
                         }
-                        s_a2.i = false;
+                        aVar2.i = false;
                     }
                     if ((32 <= i5 && i5 <= 35) || i5 == 39) {
-                        s_a2.h = !s_a2.j;
-                        s_a2.j = true;
+                        aVar2.h = !aVar2.j;
+                        aVar2.j = true;
                     }
                 }
                 boolean z4 = i5 >= 16 && i5 <= 21;
-                s_a2.c = z4;
-                s_a2.f = z4 || i5 <= 9;
+                aVar2.c = z4;
+                aVar2.f = z4 || i5 <= 9;
                 if (!this.e) {
                     this.g.d(i5);
                     this.h.d(i5);
@@ -365,13 +407,13 @@ public final class s implements o {
         this.i.c();
         this.j.c();
         this.k.c();
-        s$a s_a = this.d;
-        if (s_a != null) {
-            s_a.f = false;
-            s_a.g = false;
-            s_a.h = false;
-            s_a.i = false;
-            s_a.j = false;
+        a aVar = this.d;
+        if (aVar != null) {
+            aVar.f = false;
+            aVar.g = false;
+            aVar.h = false;
+            aVar.i = false;
+            aVar.j = false;
         }
     }
 
@@ -380,13 +422,13 @@ public final class s implements o {
     }
 
     @Override // b.i.a.c.x2.k0.o
-    public void e(b.i.a.c.x2.j jVar, i0$d i0_d) {
-        i0_d.a();
-        this.f1275b = i0_d.b();
-        b.i.a.c.x2.w wVarP = jVar.p(i0_d.c(), 2);
+    public void e(b.i.a.c.x2.j jVar, i0.d dVar) {
+        dVar.a();
+        this.f1275b = dVar.b();
+        b.i.a.c.x2.w wVarP = jVar.p(dVar.c(), 2);
         this.c = wVarP;
-        this.d = new s$a(wVarP);
-        this.a.a(jVar, i0_d);
+        this.d = new a(wVarP);
+        this.a.a(jVar, dVar);
     }
 
     @Override // b.i.a.c.x2.k0.o

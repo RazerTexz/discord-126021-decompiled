@@ -2,7 +2,7 @@ package com.google.android.gms.auth.api.credentials;
 
 import android.net.Uri;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import androidx.annotation.Nullable;
 import b.c.a.a0.d;
@@ -37,7 +37,30 @@ public class Credential extends AbstractSafeParcelable implements ReflectedParce
 
     @Nullable
     public final String q;
-    public static final Parcelable$Creator<Credential> CREATOR = new e();
+    public static final Parcelable.Creator<Credential> CREATOR = new e();
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
+    public class a {
+        public final String a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        @Nullable
+        public String f2995b;
+
+        @Nullable
+        public Uri c;
+
+        @Nullable
+        public String d;
+
+        public a(String str) {
+            this.a = str;
+        }
+
+        public Credential a() {
+            return new Credential(this.a, this.f2995b, this.c, null, this.d, null, null, null);
+        }
+    }
 
     public Credential(String str, @Nullable String str2, @Nullable Uri uri, List<IdToken> list, @Nullable String str3, @Nullable String str4, @Nullable String str5, @Nullable String str6) {
         d.z(str, "credential identifier cannot be null");

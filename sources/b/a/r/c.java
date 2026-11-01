@@ -3,8 +3,7 @@ package b.a.r;
 import android.content.Intent;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
-import com.discord.samsung.SamsungConnectActivity$Result$Failure;
-import com.discord.samsung.SamsungConnectActivity$Result$Success;
+import com.discord.samsung.SamsungConnectActivity;
 import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
 
@@ -24,12 +23,12 @@ public final class c<O> implements ActivityResultCallback<ActivityResult> {
         if (activityResult2.getResultCode() == 500) {
             Function1 function1 = this.a;
             Intent data = activityResult2.getData();
-            function1.invoke(new SamsungConnectActivity$Result$Failure(true, data != null ? data.getIntExtra("com.discord.samsung.intent.extra.ATTEMPT_COUNT", 0) : 0));
+            function1.invoke(new SamsungConnectActivity.Result.Failure(true, data != null ? data.getIntExtra("com.discord.samsung.intent.extra.ATTEMPT_COUNT", 0) : 0));
             return;
         }
         Intent data2 = activityResult2.getData();
         if (data2 == null) {
-            this.a.invoke(new SamsungConnectActivity$Result$Failure(false, 0, 2));
+            this.a.invoke(new SamsungConnectActivity.Result.Failure(false, 0, 2));
             return;
         }
         Function1 function2 = this.a;
@@ -38,6 +37,6 @@ public final class c<O> implements ActivityResultCallback<ActivityResult> {
             stringExtra = "";
         }
         String stringExtra2 = data2.getStringExtra("com.discord.samsung.intent.extra.SERVER_URL");
-        function2.invoke(new SamsungConnectActivity$Result$Success(stringExtra, stringExtra2 != null ? stringExtra2 : ""));
+        function2.invoke(new SamsungConnectActivity.Result.Success(stringExtra, stringExtra2 != null ? stringExtra2 : ""));
     }
 }

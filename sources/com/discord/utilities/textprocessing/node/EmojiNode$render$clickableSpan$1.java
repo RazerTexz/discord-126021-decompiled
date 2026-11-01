@@ -10,14 +10,14 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: EmojiNode.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class EmojiNode$render$clickableSpan$1 extends o implements Function1<View, Unit> {
-    public final /* synthetic */ EmojiNode$RenderContext $renderContext;
+    public final /* synthetic */ EmojiNode.RenderContext $renderContext;
     public final /* synthetic */ EmojiNode this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public EmojiNode$render$clickableSpan$1(EmojiNode emojiNode, EmojiNode$RenderContext emojiNode$RenderContext) {
+    public EmojiNode$render$clickableSpan$1(EmojiNode emojiNode, EmojiNode.RenderContext renderContext) {
         super(1);
         this.this$0 = emojiNode;
-        this.$renderContext = emojiNode$RenderContext;
+        this.$renderContext = renderContext;
     }
 
     @Override // kotlin.jvm.functions.Function1

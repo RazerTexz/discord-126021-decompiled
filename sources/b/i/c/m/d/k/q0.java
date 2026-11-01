@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager$NameNotFoundException;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.annotation.Nullable;
@@ -64,7 +63,7 @@ public class q0 {
         try {
             PackageManager packageManager = context.getPackageManager();
             boolValueOf = (packageManager == null || (applicationInfo = packageManager.getApplicationInfo(context.getPackageName(), 128)) == null || (bundle = applicationInfo.metaData) == null || !bundle.containsKey("firebase_crashlytics_collection_enabled")) ? null : Boolean.valueOf(applicationInfo.metaData.getBoolean("firebase_crashlytics_collection_enabled"));
-        } catch (PackageManager$NameNotFoundException e) {
+        } catch (PackageManager.NameNotFoundException e) {
             if (b.i.c.m.d.b.a.a(3)) {
                 Log.d("FirebaseCrashlytics", "Unable to get PackageManager. Falling through", e);
             }

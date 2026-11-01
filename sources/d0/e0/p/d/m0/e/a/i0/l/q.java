@@ -1,6 +1,5 @@
 package d0.e0.p.d.m0.e.a.i0.l;
 
-import d0.e0.p.d.m0.p.b$b;
 import java.util.Collection;
 import java.util.Set;
 import kotlin.Unit;
@@ -8,7 +7,7 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: LazyJavaStaticClassScope.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class q extends b$b<d0.e0.p.d.m0.c.e, Unit> {
+public final class q extends d0.e0.p.d.m0.p.b.AbstractC0589b<d0.e0.p.d.m0.c.e, Unit> {
     public final /* synthetic */ d0.e0.p.d.m0.c.e a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -22,7 +21,7 @@ public final class q extends b$b<d0.e0.p.d.m0.c.e, Unit> {
         this.c = function1;
     }
 
-    @Override // d0.e0.p.d.m0.p.b$d
+    @Override // d0.e0.p.d.m0.p.b.d
     public /* bridge */ /* synthetic */ boolean beforeChildren(Object obj) {
         return beforeChildren((d0.e0.p.d.m0.c.e) obj);
     }
@@ -31,7 +30,7 @@ public final class q extends b$b<d0.e0.p.d.m0.c.e, Unit> {
     public void m87result() {
     }
 
-    @Override // d0.e0.p.d.m0.p.b$d
+    @Override // d0.e0.p.d.m0.p.b.d
     public /* bridge */ /* synthetic */ Object result() {
         m87result();
         return Unit.a;

@@ -2,8 +2,8 @@ package b.i.a.f.h.j;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager$NameNotFoundException;
-import android.content.res.Resources$NotFoundException;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.os.Bundle;
 import java.util.Locale;
 
@@ -29,7 +29,7 @@ public final class a1 extends e {
         i0 i0VarI = null;
         try {
             applicationInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(), 128);
-        } catch (PackageManager$NameNotFoundException e) {
+        } catch (PackageManager.NameNotFoundException e) {
             x("PackageManager doesn't know about the app package", e);
             applicationInfo = null;
         }
@@ -44,7 +44,7 @@ public final class a1 extends e {
         g0 g0Var = new g0(this.j);
         try {
             i0VarI = g0Var.I(g0Var.j.c.getResources().getXml(i));
-        } catch (Resources$NotFoundException e2) {
+        } catch (Resources.NotFoundException e2) {
             g0Var.x("inflate() called with unknown resourceId", e2);
         }
         if (i0VarI != null) {

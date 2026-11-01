@@ -7,35 +7,35 @@ import java.util.Objects;
 
 /* JADX INFO: compiled from: MaskingMediaPeriod.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class u implements x, x$a {
-    public final a0$a j;
+public final class u implements x, x.a {
+    public final a0.a j;
     public final long k;
     public final b.i.a.c.e3.o l;
     public a0 m;
     public x n;
 
     @Nullable
-    public x$a o;
+    public x.a o;
     public long p = -9223372036854775807L;
 
-    public u(a0$a a0_a, b.i.a.c.e3.o oVar, long j) {
-        this.j = a0_a;
+    public u(a0.a aVar, b.i.a.c.e3.o oVar, long j) {
+        this.j = aVar;
         this.l = oVar;
         this.k = j;
     }
 
-    @Override // b.i.a.c.a3.j0$a
+    @Override // b.i.a.c.a3.j0.a
     public void a(j0 j0Var) {
-        x$a x_a = this.o;
+        x.a aVar = this.o;
         int i = b.i.a.c.f3.e0.a;
-        x_a.a(this);
+        aVar.a(this);
     }
 
-    @Override // b.i.a.c.a3.x$a
+    @Override // b.i.a.c.a3.x.a
     public void b(x xVar) {
-        x$a x_a = this.o;
+        x.a aVar = this.o;
         int i = b.i.a.c.f3.e0.a;
-        x_a.b(this);
+        aVar.b(this);
     }
 
     @Override // b.i.a.c.a3.x
@@ -45,7 +45,7 @@ public final class u implements x, x$a {
         return xVar.c();
     }
 
-    public void d(a0$a a0_a) {
+    public void d(a0.a aVar) {
         long j = this.k;
         long j2 = this.p;
         if (j2 != -9223372036854775807L) {
@@ -53,7 +53,7 @@ public final class u implements x, x$a {
         }
         a0 a0Var = this.m;
         Objects.requireNonNull(a0Var);
-        x xVarN = a0Var.n(a0_a, this.l, j);
+        x xVarN = a0Var.n(aVar, this.l, j);
         this.n = xVarN;
         if (this.o != null) {
             xVarN.l(this, j);
@@ -111,8 +111,8 @@ public final class u implements x, x$a {
     }
 
     @Override // b.i.a.c.a3.x
-    public void l(x$a x_a, long j) {
-        this.o = x_a;
+    public void l(x.a aVar, long j) {
+        this.o = aVar;
         x xVar = this.n;
         if (xVar != null) {
             long j2 = this.k;

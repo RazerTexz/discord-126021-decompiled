@@ -2,7 +2,6 @@ package com.discord.widgets.channels.memberlist;
 
 import androidx.core.app.NotificationCompat;
 import com.discord.panels.PanelState;
-import com.discord.panels.PanelState$c;
 import d0.z.d.m;
 import j0.k.b;
 
@@ -18,6 +17,6 @@ public final class WidgetChannelMembersListViewModel$Companion$observeStoreState
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
     public final Boolean call2(PanelState panelState) {
-        return Boolean.valueOf(m.areEqual(panelState, PanelState$c.a));
+        return Boolean.valueOf(m.areEqual(panelState, PanelState.c.a));
     }
 }

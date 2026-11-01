@@ -1,5 +1,6 @@
 package b.i.c.m.d.k;
 
+import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.concurrent.Callable;
@@ -10,6 +11,25 @@ public class j1 implements Runnable {
     public final /* synthetic */ Callable j;
     public final /* synthetic */ TaskCompletionSource k;
 
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: Utils.java */
+    public class a<T> implements b.i.a.f.n.a<T, Void> {
+        public a() {
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        @Override // b.i.a.f.n.a
+        public Void a(@NonNull Task task) throws Exception {
+            if (task.p()) {
+                j1.this.k.a.s((TResult) task.l());
+                return null;
+            }
+            TaskCompletionSource taskCompletionSource = j1.this.k;
+            taskCompletionSource.a.t(task.k());
+            return null;
+        }
+    }
+
     public j1(Callable callable, TaskCompletionSource taskCompletionSource) {
         this.j = callable;
         this.k = taskCompletionSource;
@@ -18,7 +38,7 @@ public class j1 implements Runnable {
     @Override // java.lang.Runnable
     public void run() {
         try {
-            ((Task) this.j.call()).h(new j1$a(this));
+            ((Task) this.j.call()).h(new a());
         } catch (Exception e) {
             this.k.a.t(e);
         }

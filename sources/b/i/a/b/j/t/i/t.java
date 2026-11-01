@@ -16,14 +16,37 @@ import java.util.List;
 /* JADX INFO: compiled from: SQLiteEventStore.java */
 /* JADX INFO: loaded from: classes3.dex */
 @WorkerThread
-public class t implements c, b.i.a.b.j.u.a {
+public class t implements b.i.a.b.j.t.i.c, b.i.a.b.j.u.a {
     public final z k;
     public final b.i.a.b.j.v.a l;
     public final b.i.a.b.j.v.a m;
-    public final d n;
+    public final b.i.a.b.j.t.i.d n;
     public static final b.i.a.b.b j = new b.i.a.b.b("proto");
 
-    public t(b.i.a.b.j.v.a aVar, b.i.a.b.j.v.a aVar2, d dVar, z zVar) {
+    /* JADX INFO: compiled from: SQLiteEventStore.java */
+    public interface b<T, U> {
+        U apply(T t);
+    }
+
+    /* JADX INFO: compiled from: SQLiteEventStore.java */
+    public class c {
+        public final String a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final String f802b;
+
+        public c(String str, String str2, a aVar) {
+            this.a = str;
+            this.f802b = str2;
+        }
+    }
+
+    /* JADX INFO: compiled from: SQLiteEventStore.java */
+    public interface d<T> {
+        T a();
+    }
+
+    public t(b.i.a.b.j.v.a aVar, b.i.a.b.j.v.a aVar2, b.i.a.b.j.t.i.d dVar, z zVar) {
         this.k = zVar;
         this.l = aVar;
         this.m = aVar2;
@@ -31,11 +54,11 @@ public class t implements c, b.i.a.b.j.u.a {
     }
 
     @Override // b.i.a.b.j.u.a
-    public <T> T a(b.i.a.b.j.u.a$a<T> a_a) {
+    public <T> T a(b.i.a.b.j.u.a.InterfaceC0091a<T> interfaceC0091a) {
         SQLiteDatabase sQLiteDatabaseB = b();
         e(new m(sQLiteDatabaseB), n.a);
         try {
-            T tExecute = a_a.execute();
+            T tExecute = interfaceC0091a.execute();
             sQLiteDatabaseB.setTransactionSuccessful();
             return tExecute;
         } finally {
@@ -51,7 +74,7 @@ public class t implements c, b.i.a.b.j.u.a {
         if (jLongValue < 1) {
             return null;
         }
-        return new b(jLongValue, iVar, fVar);
+        return new b.i.a.b.j.t.i.b(jLongValue, iVar, fVar);
     }
 
     @VisibleForTesting
@@ -82,11 +105,11 @@ public class t implements c, b.i.a.b.j.u.a {
         this.k.close();
     }
 
-    public final <T> T d(t$b<SQLiteDatabase, T> t_b) {
+    public final <T> T d(b<SQLiteDatabase, T> bVar) {
         SQLiteDatabase sQLiteDatabaseB = b();
         sQLiteDatabaseB.beginTransaction();
         try {
-            T tApply = t_b.apply(sQLiteDatabaseB);
+            T tApply = bVar.apply(sQLiteDatabaseB);
             sQLiteDatabaseB.setTransactionSuccessful();
             return tApply;
         } finally {
@@ -94,14 +117,14 @@ public class t implements c, b.i.a.b.j.u.a {
         }
     }
 
-    public final <T> T e(t$d<T> t_d, t$b<Throwable, T> t_b) {
+    public final <T> T e(d<T> dVar, b<Throwable, T> bVar) {
         long jA = this.m.a();
         while (true) {
             try {
-                return t_d.a();
+                return dVar.a();
             } catch (SQLiteDatabaseLockedException e) {
                 if (this.m.a() >= ((long) this.n.a()) + jA) {
-                    return t_b.apply(e);
+                    return bVar.apply(e);
                 }
                 SystemClock.sleep(50L);
             }
@@ -168,9 +191,9 @@ public class t implements c, b.i.a.b.j.u.a {
         }
     }
 
-    public static <T> T n(Cursor cursor, t$b<Cursor, T> t_b) {
+    public static <T> T n(Cursor cursor, b<Cursor, T> bVar) {
         try {
-            return t_b.apply(cursor);
+            return bVar.apply(cursor);
         } finally {
             cursor.close();
         }

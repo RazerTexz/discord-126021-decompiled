@@ -1,12 +1,11 @@
 package b.f.m;
 
-import android.os.StrictMode$ThreadPolicy;
+import android.os.StrictMode;
 import android.os.Trace;
 import android.util.Log;
 import com.discord.widgets.chat.input.autocomplete.AutocompleteViewModel;
 import com.facebook.soloader.Api18TraceUtils;
 import com.facebook.soloader.SoLoader;
-import com.facebook.soloader.SoLoader$a;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -27,11 +26,11 @@ public class c extends l {
     }
 
     @Override // b.f.m.l
-    public int a(String str, int i, StrictMode$ThreadPolicy strictMode$ThreadPolicy) throws IOException {
-        return c(str, i, this.a, strictMode$ThreadPolicy);
+    public int a(String str, int i, StrictMode.ThreadPolicy threadPolicy) throws IOException {
+        return c(str, i, this.a, threadPolicy);
     }
 
-    public int c(String str, int i, File file, StrictMode$ThreadPolicy strictMode$ThreadPolicy) throws Throwable {
+    public int c(String str, int i, File file, StrictMode.ThreadPolicy threadPolicy) throws Throwable {
         File file2 = new File(file, str);
         if (!file2.exists()) {
             StringBuilder sbX = b.d.b.a.a.X(str, " not found on ");
@@ -66,7 +65,7 @@ public class c extends l {
                             Log.d("SoLoader", sbU.toString());
                             for (String str2 : strArrJ0) {
                                 if (!str2.startsWith(AutocompleteViewModel.COMMAND_DISCOVER_TOKEN)) {
-                                    SoLoader.d(str2, null, null, i | 1, strictMode$ThreadPolicy);
+                                    SoLoader.d(str2, null, null, i | 1, threadPolicy);
                                 }
                             }
                         } catch (ClosedByInterruptException e) {
@@ -93,7 +92,7 @@ public class c extends l {
             Log.d("SoLoader", "Not resolving dependencies for " + str);
         }
         try {
-            ((SoLoader$a) SoLoader.f2906b).b(file2.getAbsolutePath(), i);
+            ((SoLoader.a) SoLoader.f2906b).b(file2.getAbsolutePath(), i);
             return 1;
         } catch (UnsatisfiedLinkError e2) {
             if (!e2.getMessage().contains("bad ELF magic")) {

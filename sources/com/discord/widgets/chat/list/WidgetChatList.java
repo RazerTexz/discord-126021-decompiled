@@ -7,11 +7,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView$Adapter$StateRestorationPolicy;
-import androidx.recyclerview.widget.RecyclerView$ItemAnimator;
 import b.a.d.f0;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetChatListBinding;
 import com.discord.stores.StoreStream;
@@ -25,8 +23,10 @@ import com.discord.widgets.chat.list.adapter.WidgetChatListAdapter;
 import com.discord.widgets.chat.list.adapter.WidgetChatListAdapterEventsHandler;
 import com.discord.widgets.chat.list.model.WidgetChatListModel;
 import d0.z.d.a0;
+import d0.z.d.k;
 import d0.z.d.m;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.reflect.KProperty;
@@ -40,13 +40,50 @@ public final class WidgetChatList extends AppFragment {
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
-    private RecyclerView$ItemAnimator defaultItemAnimator;
+    private RecyclerView.ItemAnimator defaultItemAnimator;
 
     /* JADX INFO: renamed from: flexInputViewModel$delegate, reason: from kotlin metadata */
     private final Lazy flexInputViewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.WidgetChatList$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatList.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<WidgetChatListModel, Unit> {
+        public AnonymousClass1(WidgetChatList widgetChatList) {
+            super(1, widgetChatList, WidgetChatList.class, "configureUI", "configureUI(Lcom/discord/widgets/chat/list/model/WidgetChatListModel;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetChatListModel widgetChatListModel) {
+            invoke2(widgetChatListModel);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetChatListModel widgetChatListModel) {
+            WidgetChatList.access$configureUI((WidgetChatList) this.receiver, widgetChatListModel);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.WidgetChatList$onViewBoundOrOnResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatList.kt */
+    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<Long, Unit> {
+        public AnonymousClass2(WidgetChatList widgetChatList) {
+            super(1, widgetChatList, WidgetChatList.class, "scrollTo", "scrollTo(J)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke(l.longValue());
+            return Unit.a;
+        }
+
+        public final void invoke(long j) {
+            WidgetChatList.access$scrollTo((WidgetChatList) this.receiver, j);
+        }
+    }
+
     public WidgetChatList() {
-        super(R$layout.widget_chat_list);
+        super(R.layout.widget_chat_list);
         this.binding = FragmentViewBindingDelegateKt.viewBinding(this, WidgetChatList$binding$2.INSTANCE, new WidgetChatList$binding$3(this));
         this.flexInputViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(AppFlexInputViewModel.class), new WidgetChatList$appActivityViewModels$$inlined$activityViewModels$1(this), new f0(new WidgetChatList$flexInputViewModel$2(this)));
     }
@@ -78,7 +115,7 @@ public final class WidgetChatList extends AppFragment {
         RecyclerView recyclerView = getBinding().f2343b;
         m.checkNotNullExpressionValue(recyclerView, "binding.chatListRecycler");
         widgetChatListAdapter.setRecycler(recyclerView);
-        LinearLayoutManager layoutManager = ((WidgetChatListAdapter) MGRecyclerAdapter.Companion.configure(widgetChatListAdapter)).getLayoutManager();
+        LinearLayoutManager layoutManager = ((WidgetChatListAdapter) MGRecyclerAdapter.INSTANCE.configure(widgetChatListAdapter)).getLayoutManager();
         if (layoutManager != null) {
             layoutManager.setReverseLayout(true);
         }
@@ -101,13 +138,13 @@ public final class WidgetChatList extends AppFragment {
         FragmentManager parentFragmentManager = getParentFragmentManager();
         m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
         WidgetChatListAdapter widgetChatListAdapter = new WidgetChatListAdapter(recyclerView, this, parentFragmentManager, new WidgetChatListAdapterEventsHandler(this, getFlexInputViewModel(), null, null, null, null, null, null, null, null, null, null, 4092, null), getFlexInputViewModel(), ClockFactory.get());
-        MGRecyclerAdapter.Companion.configure(widgetChatListAdapter);
+        MGRecyclerAdapter.INSTANCE.configure(widgetChatListAdapter);
         addThreadSpineItemDecoration(widgetChatListAdapter);
         LinearLayoutManager layoutManager = widgetChatListAdapter.getLayoutManager();
         if (layoutManager != null) {
             layoutManager.setReverseLayout(true);
         }
-        widgetChatListAdapter.setStateRestorationPolicy(RecyclerView$Adapter$StateRestorationPolicy.PREVENT_WHEN_EMPTY);
+        widgetChatListAdapter.setStateRestorationPolicy(RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY);
         this.adapter = widgetChatListAdapter;
     }
 
@@ -168,8 +205,8 @@ public final class WidgetChatList extends AppFragment {
         if (widgetChatListAdapter2 != null) {
             widgetChatListAdapter2.onResume();
         }
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(ObservableExtensionsKt.computationLatest(WidgetChatListModel.Companion.get()), this, this.adapter), WidgetChatList.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetChatList$onViewBoundOrOnResume$1(this), 62, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(StoreStream.Companion.getMessagesLoader().getScrollTo(), this, null, 2, null), WidgetChatList.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetChatList$onViewBoundOrOnResume$2(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(ObservableExtensionsKt.computationLatest(WidgetChatListModel.INSTANCE.get()), this, this.adapter), WidgetChatList.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(StoreStream.INSTANCE.getMessagesLoader().getScrollTo(), this, null, 2, null), WidgetChatList.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(this), 62, (Object) null);
         RecyclerView recyclerView = getBinding().f2343b;
         m.checkNotNullExpressionValue(recyclerView, "binding.chatListRecycler");
         this.defaultItemAnimator = recyclerView.getItemAnimator();

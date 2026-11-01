@@ -7,27 +7,24 @@ import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Outline;
 import android.graphics.Paint;
-import android.graphics.Paint$Style;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Shader$TileMode;
+import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Drawable$ConstantState;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Dimension;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.core.graphics.ColorUtils;
 import com.google.android.material.shape.ShapeAppearanceModel;
 import com.google.android.material.shape.ShapeAppearancePathProvider;
 
 /* JADX INFO: compiled from: BorderDrawable.java */
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class c extends Drawable {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -60,14 +57,31 @@ public class c extends Drawable {
     public final Rect d = new Rect();
     public final RectF e = new RectF();
     public final RectF f = new RectF();
-    public final c$b g = new c$b(this, null);
+    public final b g = new b(null);
     public boolean n = true;
+
+    /* JADX INFO: compiled from: BorderDrawable.java */
+    public class b extends Drawable.ConstantState {
+        public b(a aVar) {
+        }
+
+        @Override // android.graphics.drawable.Drawable.ConstantState
+        public int getChangingConfigurations() {
+            return 0;
+        }
+
+        @Override // android.graphics.drawable.Drawable.ConstantState
+        @NonNull
+        public Drawable newDrawable() {
+            return c.this;
+        }
+    }
 
     public c(ShapeAppearanceModel shapeAppearanceModel) {
         this.o = shapeAppearanceModel;
         Paint paint = new Paint(1);
         this.f1612b = paint;
-        paint.setStyle(Paint$Style.STROKE);
+        paint.setStyle(Paint.Style.STROKE);
     }
 
     @NonNull
@@ -92,7 +106,7 @@ public class c extends Drawable {
             Rect rect = this.d;
             copyBounds(rect);
             float fHeight = this.h / rect.height();
-            paint.setShader(new LinearGradient(0.0f, rect.top, 0.0f, rect.bottom, new int[]{ColorUtils.compositeColors(this.i, this.m), ColorUtils.compositeColors(this.j, this.m), ColorUtils.compositeColors(ColorUtils.setAlphaComponent(this.j, 0), this.m), ColorUtils.compositeColors(ColorUtils.setAlphaComponent(this.l, 0), this.m), ColorUtils.compositeColors(this.l, this.m), ColorUtils.compositeColors(this.k, this.m)}, new float[]{0.0f, fHeight, 0.5f, 0.5f, 1.0f - fHeight, 1.0f}, Shader$TileMode.CLAMP));
+            paint.setShader(new LinearGradient(0.0f, rect.top, 0.0f, rect.bottom, new int[]{ColorUtils.compositeColors(this.i, this.m), ColorUtils.compositeColors(this.j, this.m), ColorUtils.compositeColors(ColorUtils.setAlphaComponent(this.j, 0), this.m), ColorUtils.compositeColors(ColorUtils.setAlphaComponent(this.l, 0), this.m), ColorUtils.compositeColors(this.l, this.m), ColorUtils.compositeColors(this.k, this.m)}, new float[]{0.0f, fHeight, 0.5f, 0.5f, 1.0f - fHeight, 1.0f}, Shader.TileMode.CLAMP));
             this.n = false;
         }
         float strokeWidth = this.f1612b.getStrokeWidth() / 2.0f;
@@ -107,7 +121,7 @@ public class c extends Drawable {
 
     @Override // android.graphics.drawable.Drawable
     @Nullable
-    public Drawable$ConstantState getConstantState() {
+    public Drawable.ConstantState getConstantState() {
         return this.g;
     }
 

@@ -2,6 +2,7 @@ package j0.l.c;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -9,13 +10,13 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
-import rx.Scheduler$Worker;
+import rx.Scheduler;
 import rx.Subscription;
 import rx.functions.Action0;
 
 /* JADX INFO: compiled from: NewThreadWorker.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class g extends Scheduler$Worker implements Subscription {
+public class g extends Scheduler.Worker implements Subscription {
     public static final boolean j;
     public static volatile Object n;
     public final ScheduledExecutorService p;
@@ -24,6 +25,27 @@ public class g extends Scheduler$Worker implements Subscription {
     public static final ConcurrentHashMap<ScheduledThreadPoolExecutor, ScheduledThreadPoolExecutor> l = new ConcurrentHashMap<>();
     public static final AtomicReference<ScheduledExecutorService> m = new AtomicReference<>();
     public static final int k = Integer.getInteger("rx.scheduler.jdk6.purge-frequency-millis", 1000).intValue();
+
+    /* JADX INFO: compiled from: NewThreadWorker.java */
+    public final class a implements Runnable {
+        @Override // java.lang.Runnable
+        public void run() {
+            try {
+                Iterator<ScheduledThreadPoolExecutor> it = g.l.keySet().iterator();
+                while (it.hasNext()) {
+                    ScheduledThreadPoolExecutor next = it.next();
+                    if (next.isShutdown()) {
+                        it.remove();
+                    } else {
+                        next.purge();
+                    }
+                }
+            } catch (Throwable th) {
+                b.i.a.f.e.o.f.o1(th);
+                j0.o.l.b(th);
+            }
+        }
+    }
 
     static {
         boolean z2 = Boolean.getBoolean("rx.scheduler.jdk6.purge-force");
@@ -39,12 +61,12 @@ public class g extends Scheduler$Worker implements Subscription {
         this.p = scheduledExecutorServiceNewScheduledThreadPool;
     }
 
-    @Override // rx.Scheduler$Worker
+    @Override // rx.Scheduler.Worker
     public Subscription a(Action0 action0) {
         return this.q ? j0.r.c.a : f(action0, 0L, null);
     }
 
-    @Override // rx.Scheduler$Worker
+    @Override // rx.Scheduler.Worker
     public Subscription b(Action0 action0, long j2, TimeUnit timeUnit) {
         return this.q ? j0.r.c.a : f(action0, j2, timeUnit);
     }
@@ -69,9 +91,9 @@ public class g extends Scheduler$Worker implements Subscription {
             }
             ScheduledExecutorService scheduledExecutorServiceNewScheduledThreadPool = Executors.newScheduledThreadPool(1, new j0.l.e.j("RxSchedulerPurge-"));
             if (atomicReference.compareAndSet(null, scheduledExecutorServiceNewScheduledThreadPool)) {
-                g$a g_a = new g$a();
+                a aVar = new a();
                 int i = k;
-                scheduledExecutorServiceNewScheduledThreadPool.scheduleAtFixedRate(g_a, i, i, TimeUnit.MILLISECONDS);
+                scheduledExecutorServiceNewScheduledThreadPool.scheduleAtFixedRate(aVar, i, i, TimeUnit.MILLISECONDS);
                 break;
             }
             scheduledExecutorServiceNewScheduledThreadPool.shutdownNow();

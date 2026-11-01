@@ -6,13 +6,22 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public class k {
-    public static final k$b a = new t();
+    public static final b a = new t();
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
+    public interface a<R extends b.i.a.f.e.h.h, T> {
+        T a(R r);
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
+    public interface b {
+    }
 
     public static <R extends b.i.a.f.e.h.h> Task<Void> a(b.i.a.f.e.h.d<R> dVar) {
         u uVar = new u();
-        k$b k_b = a;
+        b bVar = a;
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        dVar.c(new s(dVar, taskCompletionSource, uVar, k_b));
+        dVar.c(new s(dVar, taskCompletionSource, uVar, bVar));
         return taskCompletionSource.a;
     }
 }

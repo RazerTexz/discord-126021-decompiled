@@ -6,7 +6,8 @@ import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.ViewGroup$LayoutParams;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -17,7 +18,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import b.a.k.b;
-import com.discord.R$drawable;
+import com.discord.R;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.databinding.VoiceControlsSheetViewBinding;
 import com.discord.utilities.color.ColorCompat;
@@ -44,6 +45,111 @@ public final class VoiceControlsSheetView extends LinearLayout {
     private final VoiceControlsSheetViewBinding binding;
     private boolean isGestureNavigationEnabled;
 
+    /* JADX INFO: renamed from: com.discord.widgets.voice.controls.VoiceControlsSheetView$configureInviteButtons$1, reason: invalid class name */
+    /* JADX INFO: compiled from: VoiceControlsSheetView.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ Function0 $onInviteClick;
+
+        public AnonymousClass1(Function0 function0) {
+            this.$onInviteClick = function0;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onInviteClick.invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.controls.VoiceControlsSheetView$configureOutputSelectors$1, reason: invalid class name */
+    /* JADX INFO: compiled from: VoiceControlsSheetView.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ Function0 $onAudioOutputClick;
+
+        public AnonymousClass1(Function0 function0) {
+            this.$onAudioOutputClick = function0;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onAudioOutputClick.invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.controls.VoiceControlsSheetView$configureScreenshareButtons$1, reason: invalid class name */
+    /* JADX INFO: compiled from: VoiceControlsSheetView.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ Function0 $onScreenshareClick;
+
+        public AnonymousClass1(Function0 function0) {
+            this.$onScreenshareClick = function0;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onScreenshareClick.invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.controls.VoiceControlsSheetView$configureVideoButton$1, reason: invalid class name */
+    /* JADX INFO: compiled from: VoiceControlsSheetView.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ Function0 $onVideoClick;
+
+        public AnonymousClass1(Function0 function0) {
+            this.$onVideoClick = function0;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onVideoClick.invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.controls.VoiceControlsSheetView$configureInviteButtons$2, reason: invalid class name */
+    /* JADX INFO: compiled from: VoiceControlsSheetView.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ Function0 $onInviteClick;
+
+        public AnonymousClass2(Function0 function0) {
+            this.$onInviteClick = function0;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onInviteClick.invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.controls.VoiceControlsSheetView$configureOutputSelectors$2, reason: invalid class name */
+    /* JADX INFO: compiled from: VoiceControlsSheetView.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ Function0 $onAudioOutputClick;
+
+        public AnonymousClass2(Function0 function0) {
+            this.$onAudioOutputClick = function0;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onAudioOutputClick.invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.controls.VoiceControlsSheetView$configureScreenshareButtons$2, reason: invalid class name */
+    /* JADX INFO: compiled from: VoiceControlsSheetView.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ Function0 $onScreenshareClick;
+
+        public AnonymousClass2(Function0 function0) {
+            this.$onScreenshareClick = function0;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onScreenshareClick.invoke();
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public VoiceControlsSheetView(Context context) {
         super(context);
@@ -60,8 +166,8 @@ public final class VoiceControlsSheetView extends LinearLayout {
     }
 
     private final void configureInviteButtons(CallModel callModel, Function0<Unit> onInviteClick, boolean showInTopRow) {
-        this.binding.h.setOnClickListener(new VoiceControlsSheetView$configureInviteButtons$1(onInviteClick));
-        this.binding.i.setOnClickListener(new VoiceControlsSheetView$configureInviteButtons$2(onInviteClick));
+        this.binding.h.setOnClickListener(new AnonymousClass1(onInviteClick));
+        this.binding.i.setOnClickListener(new AnonymousClass2(onInviteClick));
         ImageView imageView = this.binding.h;
         m.checkNotNullExpressionValue(imageView, "binding.inviteButton");
         imageView.setVisibility(callModel.canInvite() && showInTopRow ? 0 : 8);
@@ -103,18 +209,18 @@ public final class VoiceControlsSheetView extends LinearLayout {
         ImageView imageView4 = this.binding.d;
         m.checkNotNullExpressionValue(imageView4, "binding.audioOutputMore");
         imageView4.setVisibility(outputSelectorState.getShowMoreOptions() ? 0 : 8);
-        this.binding.f2217b.setOnClickListener(new VoiceControlsSheetView$configureOutputSelectors$1(onAudioOutputClick));
-        this.binding.e.setOnClickListener(new VoiceControlsSheetView$configureOutputSelectors$2(onAudioOutputClick));
+        this.binding.f2217b.setOnClickListener(new AnonymousClass1(onAudioOutputClick));
+        this.binding.e.setOnClickListener(new AnonymousClass2(onAudioOutputClick));
     }
 
     private final void configureScreenshareButtons(CallModel model, Function0<Unit> onScreenshareClick, boolean showInTopRow) {
         boolean z2 = !ChannelUtils.D(model.getChannel());
         boolean zIsStreaming = model.isStreaming();
-        int i = zIsStreaming ? 2131896004 : 2131893050;
+        int i = zIsStreaming ? R.string.stop_streaming : R.string.mobile_stream_screen_share;
         ImageView imageView = this.binding.p;
         m.checkNotNullExpressionValue(imageView, "binding.screenShareButton");
         imageView.setVisibility(z2 && showInTopRow ? 0 : 8);
-        int i2 = zIsStreaming ? 2131231938 : 2131231937;
+        int i2 = zIsStreaming ? R.drawable.ic_mobile_screenshare_end_24dp : R.drawable.ic_mobile_screenshare_24dp;
         int i3 = zIsStreaming ? ViewCompat.MEASURED_STATE_MASK : -1;
         Context context = getContext();
         m.checkNotNullExpressionValue(context, "context");
@@ -126,11 +232,11 @@ public final class VoiceControlsSheetView extends LinearLayout {
         ImageView imageView3 = this.binding.p;
         m.checkNotNullExpressionValue(imageView3, "binding.screenShareButton");
         imageView3.setImageTintList(ColorStateList.valueOf(i3));
-        this.binding.p.setOnClickListener(new VoiceControlsSheetView$configureScreenshareButtons$1(onScreenshareClick));
+        this.binding.p.setOnClickListener(new AnonymousClass1(onScreenshareClick));
         TextView textView = this.binding.q;
         m.checkNotNullExpressionValue(textView, "binding.screenShareSecondaryButton");
         textView.setVisibility(z2 && !showInTopRow ? 0 : 8);
-        this.binding.q.setOnClickListener(new VoiceControlsSheetView$configureScreenshareButtons$2(onScreenshareClick));
+        this.binding.q.setOnClickListener(new AnonymousClass2(onScreenshareClick));
         TextView textView2 = this.binding.q;
         m.checkNotNullExpressionValue(textView2, "binding.screenShareSecondaryButton");
         ViewExtensions.setCompoundDrawableWithIntrinsicBounds$default(textView2, i2, 0, 0, 0, 14, null);
@@ -168,25 +274,25 @@ public final class VoiceControlsSheetView extends LinearLayout {
         ImageView imageView3 = this.binding.w;
         m.checkNotNullExpressionValue(imageView3, "binding.videoButton");
         imageView3.setBackgroundTintList(ColorStateList.valueOf(defaultButtonBackgroundTint));
-        this.binding.w.setOnClickListener(new VoiceControlsSheetView$configureVideoButton$1(onVideoClick));
+        this.binding.w.setOnClickListener(new AnonymousClass1(onVideoClick));
     }
 
     private final int getDefaultButtonBackgroundTint(Context context, boolean isActive) {
         if (isActive) {
-            return ColorCompat.getColor(context, 2131100487);
+            return ColorCompat.getColor(context, R.color.white);
         }
         if (isActive) {
             throw new NoWhenBranchMatchedException();
         }
-        return ColorCompat.getColor(context, 2131100523);
+        return ColorCompat.getColor(context, R.color.white_alpha_24);
     }
 
     private final int getDefaultButtonIconTint(Context context, boolean isActive) {
         if (!isActive) {
-            return ColorCompat.getColor(context, 2131100487);
+            return ColorCompat.getColor(context, R.color.white);
         }
         TypedValue typedValue = new TypedValue();
-        context.getTheme().resolveAttribute(2130968764, typedValue, true);
+        context.getTheme().resolveAttribute(R.attr.call_controls_active_button_icon_color, typedValue, true);
         return ColorCompat.getColor(context, typedValue.resourceId);
     }
 
@@ -208,7 +314,7 @@ public final class VoiceControlsSheetView extends LinearLayout {
         imageView.setVisibility((stageRoles == null || !StageRoles.m33isSpeakerimpl(stageRoles.m35unboximpl()) || StageRoles.m32isModeratorimpl(stageRoles.m35unboximpl())) ? false : true ? 0 : 8);
         ImageView imageView2 = this.binding.j;
         m.checkNotNullExpressionValue(imageView2, "binding.moveToAudienceButton");
-        imageView2.setBackgroundTintList(ColorStateList.valueOf(ColorCompat.getColor(imageView.getContext(), 2131100523)));
+        imageView2.setBackgroundTintList(ColorStateList.valueOf(ColorCompat.getColor(imageView.getContext(), R.color.white_alpha_24)));
         imageView.setOnClickListener(new VoiceControlsSheetView$configureMoveToAudienceButton$$inlined$apply$lambda$1(this, stageRoles, onMoveToAudienceClick));
     }
 
@@ -230,13 +336,13 @@ public final class VoiceControlsSheetView extends LinearLayout {
         ImageView imageView3 = this.binding.k;
         m.checkNotNullExpressionValue(imageView3, "binding.muteButton");
         imageView3.setBackgroundTintList(ColorStateList.valueOf(defaultButtonBackgroundTint));
-        this.binding.k.setImageResource(zIsMeMutedByAnySource ? 2131231923 : 2131231934);
+        this.binding.k.setImageResource(zIsMeMutedByAnySource ? R.drawable.ic_mic_mute_red_strike_24dp : R.drawable.ic_mic_white_24dp);
         this.binding.k.setOnClickListener(new VoiceControlsSheetView$configureMuteButton$1(onMuteClick));
         ImageView imageView4 = this.binding.k;
         m.checkNotNullExpressionValue(imageView4, "binding.muteButton");
         Context context2 = getContext();
         m.checkNotNullExpressionValue(context2, "context");
-        imageView4.setContentDescription(b.h(context2, zIsMeMutedByAnySource ? 2131896587 : 2131893137, new Object[0], null, 4));
+        imageView4.setContentDescription(b.h(context2, zIsMeMutedByAnySource ? R.string.unmute : R.string.mute, new Object[0], null, 4));
     }
 
     /* JADX INFO: renamed from: configureRaiseHandButton-fw_bWyM, reason: not valid java name */
@@ -257,19 +363,19 @@ public final class VoiceControlsSheetView extends LinearLayout {
         numericBadgingView2.setBadgeNumber(requestingToSpeakCount);
         ImageView imageView = this.binding.o;
         if (StageRoles.m32isModeratorimpl(stageRoles.m35unboximpl())) {
-            imageView.setContentDescription(imageView.getResources().getString(2131894813));
+            imageView.setContentDescription(imageView.getResources().getString(R.string.request_to_speak_area_title));
             ViewExtensions.setEnabledAndAlpha$default(imageView, true, 0.0f, 2, null);
-            imageView.setImageDrawable(ContextCompat.getDrawable(imageView.getContext(), 2131232156));
+            imageView.setImageDrawable(ContextCompat.getDrawable(imageView.getContext(), R.drawable.ic_stage_raised_hand_list));
         } else {
             Resources resources = imageView.getResources();
             if (model.canRequestToSpeak()) {
-                i = model.isMyHandRaised() ? 2131886891 : 2131886892;
+                i = model.isMyHandRaised() ? R.string.audience_lower_hand : R.string.audience_raise_hand_cta;
             } else {
-                i = 2131886893;
+                i = R.string.audience_raise_hand_no_permission;
             }
             imageView.setContentDescription(resources.getString(i));
             ViewExtensions.setEnabledAndAlpha(imageView, !isUpdatingRequestToSpeak && model.canRequestToSpeak(), 0.2f);
-            imageView.setImageDrawable(ContextCompat.getDrawable(imageView.getContext(), 2131232153));
+            imageView.setImageDrawable(ContextCompat.getDrawable(imageView.getContext(), R.drawable.ic_stage_raised_hand));
         }
         if (model.isMyHandRaised() && !StageRoles.m32isModeratorimpl(stageRoles.m35unboximpl())) {
             z2 = true;
@@ -311,7 +417,7 @@ public final class VoiceControlsSheetView extends LinearLayout {
             i = 8;
             materialTextView.setVisibility(8);
             ImageView imageView2 = this.binding.g;
-            imageView2.setImageResource(stageRoles == null ? 2131231590 : R$drawable.ic_stage_leave_20dp);
+            imageView2.setImageResource(stageRoles == null ? R.drawable.ic_call_disconnect_24dp : R.drawable.ic_stage_leave_20dp);
             imageView2.setVisibility(showDisconnect ? 0 : 8);
             imageView2.setOnClickListener(new VoiceControlsSheetView$configureUI$$inlined$apply$lambda$2(stageRoles, showDisconnect, onDisconnectClick));
             m.checkNotNullExpressionValue(imageView2, "binding.disconnectButton…sconnectClick() }\n      }");
@@ -333,7 +439,7 @@ public final class VoiceControlsSheetView extends LinearLayout {
         button.setVisibility(i);
         TextView textView = this.binding.f;
         m.checkNotNullExpressionValue(textView, "binding.deafenSecondaryButton");
-        b.n(textView, isDeafened ? 2131896574 : 2131888355, new Object[0], null, 4);
+        b.n(textView, isDeafened ? R.string.undeafen : R.string.deafen, new Object[0], null, 4);
         this.binding.f.setOnClickListener(new VoiceControlsSheetView$configureUI$4(onDeafenPressed));
         TextView textView2 = this.binding.f;
         m.checkNotNullExpressionValue(textView2, "binding.deafenSecondaryButton");
@@ -363,7 +469,7 @@ public final class VoiceControlsSheetView extends LinearLayout {
             m.checkNotNullExpressionValue(resources3, "resources");
             i = resources3.getDisplayMetrics().heightPixels;
         }
-        ViewGroup$LayoutParams layoutParams = getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = getLayoutParams();
         layoutParams.width = i;
         setLayoutParams(layoutParams);
     }

@@ -2,11 +2,12 @@ package androidx.core.content.pm;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager$NameNotFoundException;
 import android.content.pm.Signature;
 import android.content.pm.SigningInfo;
-import android.os.Build$VERSION;
+import android.os.Build;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.Size;
 import b.d.b.a.a;
 import java.security.MessageDigest;
@@ -20,6 +21,31 @@ import java.util.Set;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class PackageInfoCompat {
+
+    @RequiresApi(28)
+    public class Api28Impl {
+        private Api28Impl() {
+        }
+
+        @Nullable
+        public static Signature[] getApkContentsSigners(@NonNull SigningInfo signingInfo) {
+            return signingInfo.getApkContentsSigners();
+        }
+
+        @Nullable
+        public static Signature[] getSigningCertificateHistory(@NonNull SigningInfo signingInfo) {
+            return signingInfo.getSigningCertificateHistory();
+        }
+
+        public static boolean hasMultipleSigners(@NonNull SigningInfo signingInfo) {
+            return signingInfo.hasMultipleSigners();
+        }
+
+        public static boolean hasSigningCertificate(@NonNull PackageManager packageManager, @NonNull String str, @NonNull byte[] bArr, int i) {
+            return packageManager.hasSigningCertificate(str, bArr, i);
+        }
+    }
+
     private PackageInfoCompat() {
     }
 
@@ -41,22 +67,22 @@ public final class PackageInfoCompat {
     }
 
     public static long getLongVersionCode(@NonNull PackageInfo packageInfo) {
-        return Build$VERSION.SDK_INT >= 28 ? packageInfo.getLongVersionCode() : packageInfo.versionCode;
+        return Build.VERSION.SDK_INT >= 28 ? packageInfo.getLongVersionCode() : packageInfo.versionCode;
     }
 
     @NonNull
-    public static List<Signature> getSignatures(@NonNull PackageManager packageManager, @NonNull String str) throws PackageManager$NameNotFoundException {
+    public static List<Signature> getSignatures(@NonNull PackageManager packageManager, @NonNull String str) throws PackageManager.NameNotFoundException {
         Signature[] apkContentsSigners;
-        if (Build$VERSION.SDK_INT >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             SigningInfo signingInfo = packageManager.getPackageInfo(str, 134217728).signingInfo;
-            apkContentsSigners = PackageInfoCompat$Api28Impl.hasMultipleSigners(signingInfo) ? PackageInfoCompat$Api28Impl.getApkContentsSigners(signingInfo) : PackageInfoCompat$Api28Impl.getSigningCertificateHistory(signingInfo);
+            apkContentsSigners = Api28Impl.hasMultipleSigners(signingInfo) ? Api28Impl.getApkContentsSigners(signingInfo) : Api28Impl.getSigningCertificateHistory(signingInfo);
         } else {
             apkContentsSigners = packageManager.getPackageInfo(str, 64).signatures;
         }
         return apkContentsSigners == null ? Collections.emptyList() : Arrays.asList(apkContentsSigners);
     }
 
-    public static boolean hasSignatures(@NonNull PackageManager packageManager, @NonNull String str, @NonNull @Size(min = 1) Map<byte[], Integer> map, boolean z2) throws PackageManager$NameNotFoundException {
+    public static boolean hasSignatures(@NonNull PackageManager packageManager, @NonNull String str, @NonNull @Size(min = 1) Map<byte[], Integer> map, boolean z2) throws PackageManager.NameNotFoundException {
         if (map.isEmpty()) {
             return false;
         }
@@ -75,9 +101,9 @@ public final class PackageInfoCompat {
             }
         }
         List<Signature> signatures = getSignatures(packageManager, str);
-        if (!z2 && Build$VERSION.SDK_INT >= 28) {
+        if (!z2 && Build.VERSION.SDK_INT >= 28) {
             for (byte[] bArr2 : setKeySet) {
-                if (!PackageInfoCompat$Api28Impl.hasSigningCertificate(packageManager, str, bArr2, map.get(bArr2).intValue())) {
+                if (!Api28Impl.hasSigningCertificate(packageManager, str, bArr2, map.get(bArr2).intValue())) {
                     return false;
                 }
             }

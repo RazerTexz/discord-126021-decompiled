@@ -1,9 +1,10 @@
 package com.discord.widgets.chat.input;
 
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
+import androidx.recyclerview.widget.RecyclerView;
 import b.a.k.b;
 import b.d.b.a.a;
+import com.discord.R;
 import com.discord.databinding.CommandCategoryItemBinding;
 import com.discord.models.commands.Application;
 import com.discord.utilities.color.ColorCompat;
@@ -16,9 +17,24 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetChatInputCategoriesAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ApplicationCategoryViewHolder extends RecyclerView$ViewHolder {
+public final class ApplicationCategoryViewHolder extends RecyclerView.ViewHolder {
     private final CommandCategoryItemBinding binding;
     private final Function1<Application, Unit> onItemSelected;
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.ApplicationCategoryViewHolder$bind$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatInputCategoriesAdapter.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ Application $application;
+
+        public AnonymousClass1(Application application) {
+            this.$application = application;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            ApplicationCategoryViewHolder.access$getOnItemSelected$p(ApplicationCategoryViewHolder.this).invoke(this.$application);
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     /* JADX WARN: Multi-variable type inference failed */
@@ -50,11 +66,11 @@ public final class ApplicationCategoryViewHolder extends RecyclerView$ViewHolder
         if (isSelected) {
             SimpleDraweeView simpleDraweeView3 = this.binding.f2090b;
             m.checkNotNullExpressionValue(simpleDraweeView3, "binding.commandCategoryItemIcon");
-            themedColor = ColorCompat.getThemedColor(simpleDraweeView3, 2130969005);
+            themedColor = ColorCompat.getThemedColor(simpleDraweeView3, R.attr.colorInteractiveActive);
         } else {
             SimpleDraweeView simpleDraweeView4 = this.binding.f2090b;
             m.checkNotNullExpressionValue(simpleDraweeView4, "binding.commandCategoryItemIcon");
-            themedColor = ColorCompat.getThemedColor(simpleDraweeView4, 2130969008);
+            themedColor = ColorCompat.getThemedColor(simpleDraweeView4, R.attr.colorInteractiveNormal);
         }
         SimpleDraweeView simpleDraweeView5 = this.binding.f2090b;
         m.checkNotNullExpressionValue(simpleDraweeView5, "binding.commandCategoryItemIcon");
@@ -62,9 +78,9 @@ public final class ApplicationCategoryViewHolder extends RecyclerView$ViewHolder
         SimpleDraweeView simpleDraweeView6 = this.binding.f2090b;
         m.checkNotNullExpressionValue(simpleDraweeView6, "binding.commandCategoryItemIcon");
         simpleDraweeView6.setAlpha(isSelected ? 1.0f : 0.5f);
-        this.itemView.setOnClickListener(new ApplicationCategoryViewHolder$bind$1(this, application));
+        this.itemView.setOnClickListener(new AnonymousClass1(application));
         View view2 = this.itemView;
         m.checkNotNullExpressionValue(view2, "itemView");
-        view2.setContentDescription(b.h(a.x(this.itemView, "itemView", "itemView.context"), 2131887711, new Object[]{application.getName()}, null, 4));
+        view2.setContentDescription(b.h(a.x(this.itemView, "itemView", "itemView.context"), R.string.command_accessibility_desc_app_item, new Object[]{application.getName()}, null, 4));
     }
 }

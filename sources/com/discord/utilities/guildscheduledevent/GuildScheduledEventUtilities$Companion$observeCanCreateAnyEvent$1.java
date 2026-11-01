@@ -27,6 +27,6 @@ public final class GuildScheduledEventUtilities$Companion$observeCanCreateAnyEve
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2() {
-        return GuildScheduledEventUtilities.Companion.canCreateAnyEvent(this.$guildId, this.$channelsStore, this.$permissionsStore);
+        return GuildScheduledEventUtilities.INSTANCE.canCreateAnyEvent(this.$guildId, this.$channelsStore, this.$permissionsStore);
     }
 }

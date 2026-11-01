@@ -7,9 +7,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import b.a.i.w3;
-import com.discord.R$id;
-import com.discord.R$layout;
-import com.discord.utilities.analytics.Traits$Payment$Type;
+import com.discord.R;
+import com.discord.utilities.analytics.Traits;
 import com.discord.views.VoiceUserView;
 import d0.z.d.m;
 import rx.Subscription;
@@ -28,27 +27,27 @@ public final class StageCallSpeakerView extends CardView {
     public StageCallSpeakerView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(R$layout.view_stage_channel_speaker, this);
-        int i = R$id.stage_channel_speaker;
-        VoiceUserView voiceUserView = (VoiceUserView) findViewById(R$id.stage_channel_speaker);
+        LayoutInflater.from(context).inflate(R.layout.view_stage_channel_speaker, this);
+        int i = R.id.stage_channel_speaker;
+        VoiceUserView voiceUserView = (VoiceUserView) findViewById(R.id.stage_channel_speaker);
         if (voiceUserView != null) {
-            i = R$id.stage_channel_speaker_blocked;
-            ImageView imageView = (ImageView) findViewById(R$id.stage_channel_speaker_blocked);
+            i = R.id.stage_channel_speaker_blocked;
+            ImageView imageView = (ImageView) findViewById(R.id.stage_channel_speaker_blocked);
             if (imageView != null) {
-                i = R$id.stage_channel_speaker_deafen_indicator;
-                ImageView imageView2 = (ImageView) findViewById(R$id.stage_channel_speaker_deafen_indicator);
+                i = R.id.stage_channel_speaker_deafen_indicator;
+                ImageView imageView2 = (ImageView) findViewById(R.id.stage_channel_speaker_deafen_indicator);
                 if (imageView2 != null) {
-                    i = R$id.stage_channel_speaker_mod_indicator;
-                    ImageView imageView3 = (ImageView) findViewById(R$id.stage_channel_speaker_mod_indicator);
+                    i = R.id.stage_channel_speaker_mod_indicator;
+                    ImageView imageView3 = (ImageView) findViewById(R.id.stage_channel_speaker_mod_indicator);
                     if (imageView3 != null) {
-                        i = R$id.stage_channel_speaker_mute_indicator;
-                        ImageView imageView4 = (ImageView) findViewById(R$id.stage_channel_speaker_mute_indicator);
+                        i = R.id.stage_channel_speaker_mute_indicator;
+                        ImageView imageView4 = (ImageView) findViewById(R.id.stage_channel_speaker_mute_indicator);
                         if (imageView4 != null) {
-                            i = R$id.stage_channel_speaker_name;
-                            TextView textView = (TextView) findViewById(R$id.stage_channel_speaker_name);
+                            i = R.id.stage_channel_speaker_name;
+                            TextView textView = (TextView) findViewById(R.id.stage_channel_speaker_name);
                             if (textView != null) {
-                                i = R$id.stage_channel_speaker_pulse;
-                                SpeakerPulseView speakerPulseView = (SpeakerPulseView) findViewById(R$id.stage_channel_speaker_pulse);
+                                i = R.id.stage_channel_speaker_pulse;
+                                SpeakerPulseView speakerPulseView = (SpeakerPulseView) findViewById(R.id.stage_channel_speaker_pulse);
                                 if (speakerPulseView != null) {
                                     w3 w3Var = new w3(this, voiceUserView, imageView, imageView2, imageView3, imageView4, textView, speakerPulseView);
                                     m.checkNotNullExpressionValue(w3Var, "ViewStageChannelSpeakerB…ater.from(context), this)");

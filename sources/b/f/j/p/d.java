@@ -2,7 +2,6 @@ package b.f.j.p;
 
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.facebook.imagepipeline.request.ImageRequest;
-import com.facebook.imagepipeline.request.ImageRequest$c;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -10,7 +9,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 
 /* JADX INFO: compiled from: BaseProducerContext.java */
@@ -24,7 +22,7 @@ public class d implements x0 {
     public final String d;
     public final z0 e;
     public final Object f;
-    public final ImageRequest$c g;
+    public final ImageRequest.c g;
     public final Map<String, Object> h;
     public boolean i;
     public b.f.j.d.d j;
@@ -41,7 +39,7 @@ public class d implements x0 {
         a = new b.f.d.d.g(hashSet);
     }
 
-    public d(ImageRequest imageRequest, String str, String str2, z0 z0Var, Object obj, ImageRequest$c imageRequest$c, boolean z2, boolean z3, b.f.j.d.d dVar, b.f.j.e.k kVar) {
+    public d(ImageRequest imageRequest, String str, String str2, z0 z0Var, Object obj, ImageRequest.c cVar, boolean z2, boolean z3, b.f.j.d.d dVar, b.f.j.e.k kVar) {
         this.f609b = imageRequest;
         this.c = str;
         HashMap map = new HashMap();
@@ -51,7 +49,7 @@ public class d implements x0 {
         this.d = str2;
         this.e = z0Var;
         this.f = obj;
-        this.g = imageRequest$c;
+        this.g = cVar;
         this.i = z2;
         this.j = dVar;
         this.k = z3;
@@ -125,8 +123,8 @@ public class d implements x0 {
         if (map == null) {
             return;
         }
-        for (Map$Entry<String, ?> map$Entry : map.entrySet()) {
-            d(map$Entry.getKey(), map$Entry.getValue());
+        for (Map.Entry<String, ?> entry : map.entrySet()) {
+            d(entry.getKey(), entry.getValue());
         }
     }
 
@@ -162,7 +160,7 @@ public class d implements x0 {
     }
 
     @Override // b.f.j.p.x0
-    public ImageRequest$c q() {
+    public ImageRequest.c q() {
         return this.g;
     }
 

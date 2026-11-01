@@ -3,11 +3,10 @@ package androidx.core.content.pm;
 import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public abstract class ShortcutInfoChangeListener {
     @AnyThread
     public void onAllShortcutsRemoved() {

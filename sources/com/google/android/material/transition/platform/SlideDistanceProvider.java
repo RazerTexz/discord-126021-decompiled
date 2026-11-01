@@ -1,6 +1,7 @@
 package com.google.android.material.transition.platform;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.content.Context;
@@ -11,9 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.RestrictTo;
 import androidx.core.view.ViewCompat;
-import b.d.b.a.a;
-import com.google.android.material.R$dimen;
+import com.google.android.material.R;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /* JADX INFO: loaded from: classes3.dex */
 @RequiresApi(21)
@@ -23,6 +26,45 @@ public final class SlideDistanceProvider implements VisibilityAnimatorProvider {
 
     @Px
     private int slideDistance = -1;
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface GravityFlag {
+    }
+
+    public final class a extends AnimatorListenerAdapter {
+        public final /* synthetic */ View a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final /* synthetic */ float f3107b;
+
+        public a(View view, float f) {
+            this.a = view;
+            this.f3107b = f;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            this.a.setTranslationX(this.f3107b);
+        }
+    }
+
+    public final class b extends AnimatorListenerAdapter {
+        public final /* synthetic */ View a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final /* synthetic */ float f3108b;
+
+        public b(View view, float f) {
+            this.a = view;
+            this.f3108b = f;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            this.a.setTranslationY(this.f3108b);
+        }
+    }
 
     public SlideDistanceProvider(int i) {
         this.slideEdge = i;
@@ -61,7 +103,7 @@ public final class SlideDistanceProvider implements VisibilityAnimatorProvider {
         if (i == 8388613) {
             return createTranslationXAnimator(view2, isRtl(view) ? translationX - i2 : i2 + translationX, translationX, translationX);
         }
-        throw new IllegalArgumentException(a.q("Invalid slide direction: ", i));
+        throw new IllegalArgumentException(b.d.b.a.a.q("Invalid slide direction: ", i));
     }
 
     private static Animator createTranslationDisappearAnimator(View view, View view2, int i, @Px int i2) {
@@ -85,18 +127,18 @@ public final class SlideDistanceProvider implements VisibilityAnimatorProvider {
         if (i == 8388613) {
             return createTranslationXAnimator(view2, translationX, isRtl(view) ? i2 + translationX : translationX - i2, translationX);
         }
-        throw new IllegalArgumentException(a.q("Invalid slide direction: ", i));
+        throw new IllegalArgumentException(b.d.b.a.a.q("Invalid slide direction: ", i));
     }
 
     private static Animator createTranslationXAnimator(View view, float f, float f2, float f3) {
         ObjectAnimator objectAnimatorOfPropertyValuesHolder = ObjectAnimator.ofPropertyValuesHolder(view, PropertyValuesHolder.ofFloat((Property<?, Float>) View.TRANSLATION_X, f, f2));
-        objectAnimatorOfPropertyValuesHolder.addListener(new SlideDistanceProvider$a(view, f3));
+        objectAnimatorOfPropertyValuesHolder.addListener(new a(view, f3));
         return objectAnimatorOfPropertyValuesHolder;
     }
 
     private static Animator createTranslationYAnimator(View view, float f, float f2, float f3) {
         ObjectAnimator objectAnimatorOfPropertyValuesHolder = ObjectAnimator.ofPropertyValuesHolder(view, PropertyValuesHolder.ofFloat((Property<?, Float>) View.TRANSLATION_Y, f, f2));
-        objectAnimatorOfPropertyValuesHolder.addListener(new SlideDistanceProvider$b(view, f3));
+        objectAnimatorOfPropertyValuesHolder.addListener(new b(view, f3));
         return objectAnimatorOfPropertyValuesHolder;
     }
 
@@ -107,7 +149,7 @@ public final class SlideDistanceProvider implements VisibilityAnimatorProvider {
 
     private int getSlideDistanceOrDefault(Context context) {
         int i = this.slideDistance;
-        return i != -1 ? i : context.getResources().getDimensionPixelSize(R$dimen.mtrl_transition_shared_axis_slide_distance);
+        return i != -1 ? i : context.getResources().getDimensionPixelSize(R.dimen.mtrl_transition_shared_axis_slide_distance);
     }
 
     public int getSlideEdge() {

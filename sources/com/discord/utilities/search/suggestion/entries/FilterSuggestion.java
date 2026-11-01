@@ -2,19 +2,74 @@ package com.discord.utilities.search.suggestion.entries;
 
 import b.d.b.a.a;
 import com.discord.utilities.search.query.FilterType;
+import com.discord.utilities.search.strings.SearchStringProvider;
+import com.discord.widgets.chat.input.MentionUtilsKt;
+import d0.g0.w;
 import d0.z.d.m;
+import kotlin.NoWhenBranchMatchedException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: FilterSuggestion.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class FilterSuggestion implements SearchSuggestion {
-    public static final FilterSuggestion$Companion Companion = new FilterSuggestion$Companion(null);
-    private final SearchSuggestion$Category category;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
+    private final SearchSuggestion.Category category;
     private final FilterType filterType;
+
+    /* JADX INFO: compiled from: FilterSuggestion.kt */
+    public final class Companion {
+
+        public final /* synthetic */ class WhenMappings {
+            public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+            static {
+                FilterType.values();
+                int[] iArr = new int[4];
+                $EnumSwitchMapping$0 = iArr;
+                iArr[FilterType.FROM.ordinal()] = 1;
+                iArr[FilterType.MENTIONS.ordinal()] = 2;
+                iArr[FilterType.HAS.ordinal()] = 3;
+                iArr[FilterType.IN.ordinal()] = 4;
+            }
+        }
+
+        private Companion() {
+        }
+
+        public final boolean canComplete(CharSequence currentInput, FilterType filterType, SearchStringProvider searchStringProvider) {
+            m.checkNotNullParameter(currentInput, "currentInput");
+            m.checkNotNullParameter(filterType, "filterType");
+            m.checkNotNullParameter(searchStringProvider, "searchStringProvider");
+            return w.contains$default((CharSequence) getStringRepresentation(filterType, searchStringProvider), currentInput, false, 2, (Object) null);
+        }
+
+        private final String getStringRepresentation(FilterType filterType, SearchStringProvider searchStringProvider) {
+            String fromFilterString;
+            int iOrdinal = filterType.ordinal();
+            if (iOrdinal == 0) {
+                fromFilterString = searchStringProvider.getFromFilterString();
+            } else if (iOrdinal == 1 || iOrdinal == 2) {
+                fromFilterString = searchStringProvider.getMentionsFilterString();
+            } else {
+                if (iOrdinal != 3) {
+                    throw new NoWhenBranchMatchedException();
+                }
+                fromFilterString = searchStringProvider.getInFilterString();
+            }
+            return fromFilterString + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public FilterSuggestion(FilterType filterType) {
         m.checkNotNullParameter(filterType, "filterType");
         this.filterType = filterType;
-        this.category = SearchSuggestion$Category.FILTER;
+        this.category = SearchSuggestion.Category.FILTER;
     }
 
     public static /* synthetic */ FilterSuggestion copy$default(FilterSuggestion filterSuggestion, FilterType filterType, int i, Object obj) {
@@ -37,7 +92,7 @@ public final /* data */ class FilterSuggestion implements SearchSuggestion {
     }
 
     @Override // com.discord.utilities.search.suggestion.entries.SearchSuggestion
-    public SearchSuggestion$Category getCategory() {
+    public SearchSuggestion.Category getCategory() {
         return this.category;
     }
 

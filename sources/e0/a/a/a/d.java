@@ -3,48 +3,67 @@ package e0.a.a.a;
 import android.content.Context;
 import android.graphics.Point;
 import android.hardware.Camera;
-import android.hardware.Camera$AutoFocusCallback;
-import android.hardware.Camera$CameraInfo;
-import android.hardware.Camera$Parameters;
-import android.hardware.Camera$PreviewCallback;
-import android.hardware.Camera$Size;
 import android.os.Handler;
 import android.util.Log;
 import android.view.SurfaceHolder;
-import android.view.SurfaceHolder$Callback;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import java.util.List;
 
 /* JADX INFO: compiled from: CameraPreview.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class d extends SurfaceView implements SurfaceHolder$Callback {
+public class d extends SurfaceView implements SurfaceHolder.Callback {
     public e j;
     public Handler k;
     public boolean l;
     public boolean m;
     public boolean n;
     public boolean o;
-    public Camera$PreviewCallback p;
+    public Camera.PreviewCallback p;
     public float q;
     public Runnable r;
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
-    public Camera$AutoFocusCallback f3597s;
+    public Camera.AutoFocusCallback f3597s;
 
-    public d(Context context, e eVar, Camera$PreviewCallback camera$PreviewCallback) {
+    /* JADX INFO: compiled from: CameraPreview.java */
+    public class a implements Runnable {
+        public a() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            d dVar = d.this;
+            if (dVar.j != null && dVar.l && dVar.m && dVar.n) {
+                dVar.a();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: CameraPreview.java */
+    public class b implements Camera.AutoFocusCallback {
+        public b() {
+        }
+
+        @Override // android.hardware.Camera.AutoFocusCallback
+        public void onAutoFocus(boolean z2, Camera camera) {
+            d.this.b();
+        }
+    }
+
+    public d(Context context, e eVar, Camera.PreviewCallback previewCallback) {
         super(context);
         this.l = true;
         this.m = true;
         this.n = false;
         this.o = true;
         this.q = 0.1f;
-        this.r = new d$a(this);
-        this.f3597s = new d$b(this);
+        this.r = new a();
+        this.f3597s = new b();
         this.j = eVar;
-        this.p = camera$PreviewCallback;
+        this.p = previewCallback;
         this.k = new Handler();
         getHolder().addCallback(this);
         getHolder().setType(3);
@@ -63,7 +82,7 @@ public class d extends SurfaceView implements SurfaceHolder$Callback {
     }
 
     public final void c(int i, int i2) {
-        ViewGroup$LayoutParams layoutParams = getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = getLayoutParams();
         if (getDisplayOrientation() % 180 != 0) {
             i2 = i;
             i = i2;
@@ -85,8 +104,8 @@ public class d extends SurfaceView implements SurfaceHolder$Callback {
     }
 
     public void d() {
-        Camera$Size optimalPreviewSize = getOptimalPreviewSize();
-        Camera$Parameters parameters = this.j.a.getParameters();
+        Camera.Size optimalPreviewSize = getOptimalPreviewSize();
+        Camera.Parameters parameters = this.j.a.getParameters();
         parameters.setPreviewSize(optimalPreviewSize.width, optimalPreviewSize.height);
         this.j.a.setParameters(parameters);
         Point point = new Point(getWidth(), getHeight());
@@ -124,12 +143,12 @@ public class d extends SurfaceView implements SurfaceHolder$Callback {
         if (this.j == null) {
             return 0;
         }
-        Camera$CameraInfo camera$CameraInfo = new Camera$CameraInfo();
+        Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
         int i2 = this.j.f3598b;
         if (i2 == -1) {
-            Camera.getCameraInfo(0, camera$CameraInfo);
+            Camera.getCameraInfo(0, cameraInfo);
         } else {
-            Camera.getCameraInfo(i2, camera$CameraInfo);
+            Camera.getCameraInfo(i2, cameraInfo);
         }
         int rotation = ((WindowManager) getContext().getSystemService("window")).getDefaultDisplay().getRotation();
         if (rotation != 0) {
@@ -141,16 +160,16 @@ public class d extends SurfaceView implements SurfaceHolder$Callback {
                 i = 270;
             }
         }
-        return camera$CameraInfo.facing == 1 ? (360 - ((camera$CameraInfo.orientation + i) % 360)) % 360 : ((camera$CameraInfo.orientation - i) + 360) % 360;
+        return cameraInfo.facing == 1 ? (360 - ((cameraInfo.orientation + i) % 360)) % 360 : ((cameraInfo.orientation - i) + 360) % 360;
     }
 
-    private Camera$Size getOptimalPreviewSize() {
+    private Camera.Size getOptimalPreviewSize() {
         e eVar = this.j;
-        Camera$Size camera$Size = null;
+        Camera.Size size = null;
         if (eVar == null) {
             return null;
         }
-        List<Camera$Size> supportedPreviewSizes = eVar.a.getParameters().getSupportedPreviewSizes();
+        List<Camera.Size> supportedPreviewSizes = eVar.a.getParameters().getSupportedPreviewSizes();
         int width = getWidth();
         int height = getHeight();
         if (b.i.a.f.e.o.f.q0(getContext()) == 1) {
@@ -163,21 +182,21 @@ public class d extends SurfaceView implements SurfaceHolder$Callback {
         }
         double dAbs = Double.MAX_VALUE;
         double dAbs2 = Double.MAX_VALUE;
-        for (Camera$Size camera$Size2 : supportedPreviewSizes) {
-            if (Math.abs((((double) camera$Size2.width) / ((double) camera$Size2.height)) - d) <= this.q && Math.abs(camera$Size2.height - height) < dAbs2) {
-                dAbs2 = Math.abs(camera$Size2.height - height);
-                camera$Size = camera$Size2;
+        for (Camera.Size size2 : supportedPreviewSizes) {
+            if (Math.abs((((double) size2.width) / ((double) size2.height)) - d) <= this.q && Math.abs(size2.height - height) < dAbs2) {
+                dAbs2 = Math.abs(size2.height - height);
+                size = size2;
             }
         }
-        if (camera$Size == null) {
-            for (Camera$Size camera$Size3 : supportedPreviewSizes) {
-                if (Math.abs(camera$Size3.height - height) < dAbs) {
-                    camera$Size = camera$Size3;
-                    dAbs = Math.abs(camera$Size3.height - height);
+        if (size == null) {
+            for (Camera.Size size3 : supportedPreviewSizes) {
+                if (Math.abs(size3.height - height) < dAbs) {
+                    size = size3;
+                    dAbs = Math.abs(size3.height - height);
                 }
             }
         }
-        return camera$Size;
+        return size;
     }
 
     public void setAspectTolerance(float f) {
@@ -204,7 +223,7 @@ public class d extends SurfaceView implements SurfaceHolder$Callback {
         this.o = z2;
     }
 
-    @Override // android.view.SurfaceHolder$Callback
+    @Override // android.view.SurfaceHolder.Callback
     public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i2, int i3) {
         if (surfaceHolder.getSurface() == null) {
             return;
@@ -232,12 +251,12 @@ public class d extends SurfaceView implements SurfaceHolder$Callback {
         }
     }
 
-    @Override // android.view.SurfaceHolder$Callback
+    @Override // android.view.SurfaceHolder.Callback
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         this.n = true;
     }
 
-    @Override // android.view.SurfaceHolder$Callback
+    @Override // android.view.SurfaceHolder.Callback
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         this.n = false;
         e();

@@ -1,7 +1,9 @@
 package com.discord.stores;
 
 import android.content.Context;
-import b.a.d.o;
+import androidx.core.app.NotificationCompat;
+import b.d.b.a.a;
+import com.discord.api.channel.Channel;
 import com.discord.api.guild.GuildVerificationLevel;
 import com.discord.api.guildmember.GuildMember;
 import com.discord.api.guildmember.GuildMembersChunk;
@@ -12,22 +14,28 @@ import com.discord.api.thread.ThreadListMember;
 import com.discord.api.thread.ThreadMemberListUpdate;
 import com.discord.api.thread.ThreadMembersUpdate;
 import com.discord.api.utcdatetime.UtcDateTime;
+import com.discord.app.AppComponent;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.guild.Guild;
-import com.discord.models.member.GuildMember$Companion;
 import com.discord.models.user.MeUser;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
 import com.discord.utilities.collections.CollectionExtensionsKt;
-import com.discord.utilities.collections.SnowflakePartitionMap$CopiablePartitionMap;
+import com.discord.utilities.collections.SnowflakePartitionMap;
+import com.discord.utilities.guildmember.GuildMemberUtilsKt;
 import com.discord.utilities.guilds.GuildUtilsKt;
+import com.discord.utilities.guilds.RoleUtils;
 import com.discord.utilities.persister.Persister;
+import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.t.g0;
 import d0.t.h0;
 import d0.t.n0;
+import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
+import j0.l.e.k;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -36,18 +44,18 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
+import rx.functions.Func2;
 
 /* JADX INFO: compiled from: StoreGuilds.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreGuilds extends StoreV2 {
-    public static final StoreGuilds$Companion Companion = new StoreGuilds$Companion(null);
     private static final int HUGE_GUILD_SIZE = 2000;
     private final Dispatcher dispatcher;
     private final Map<Long, Map<Long, GuildMember>> guildMembers;
@@ -70,6 +78,475 @@ public final class StoreGuilds extends StoreV2 {
     private static final Map<Long, GuildRole> emptyRoles = new HashMap();
     private static final StoreGuilds$Companion$GuildsUpdate$1 GuildsUpdate = new StoreGuilds$Companion$GuildsUpdate$1();
     private static final StoreGuilds$Companion$ComputedMembersUpdate$1 ComputedMembersUpdate = new StoreGuilds$Companion$ComputedMembersUpdate$1();
+
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class Actions {
+        public static final Actions INSTANCE = new Actions();
+
+        private Actions() {
+        }
+
+        public static final void requestMembers(AppComponent fragment, Observable<String> partialUserNameTokenEmitted, boolean autocomplete) {
+            m.checkNotNullParameter(fragment, "fragment");
+            m.checkNotNullParameter(partialUserNameTokenEmitted, "partialUserNameTokenEmitted");
+            Observable observableY = partialUserNameTokenEmitted.p(1000L, TimeUnit.MILLISECONDS).G(new StoreGuilds$Actions$requestMembers$1(autocomplete)).y(StoreGuilds$Actions$requestMembers$2.INSTANCE).r().Y(StoreGuilds$Actions$requestMembers$3.INSTANCE);
+            m.checkNotNullExpressionValue(observableY, "partialUserNameTokenEmit…            }\n          }");
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableY), fragment, null, 2, null), (Context) null, "requestGuildMembers", (Function1) null, StoreGuilds$Actions$requestMembers$4.INSTANCE, (Function1) null, (Function0) null, (Function0) null, 117, (Object) null);
+        }
+
+        public static final void requestRoleMembers(long guildId, long roleId, AppComponent appComponent, RestAPI restApi, StoreGatewayConnection storeGatewayConnection) {
+            m.checkNotNullParameter(appComponent, "appComponent");
+            m.checkNotNullParameter(restApi, "restApi");
+            m.checkNotNullParameter(storeGatewayConnection, "storeGatewayConnection");
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(restApi.getGuildRoleMemberIds(guildId, roleId)), appComponent, null, 2, null), INSTANCE.getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreGuilds$Actions$requestRoleMembers$1(storeGatewayConnection, guildId), 62, (Object) null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$handleGuildMemberCommunicationEnabled$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ long $guildId;
+        public final /* synthetic */ long $userId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, long j2) {
+            super(0);
+            this.$guildId = j;
+            this.$userId = j2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreGuilds.access$handleGuildMemberCommunicationEnabledInternal(StoreGuilds.this, this.$guildId, this.$userId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$initClearCommunicationDisabledObserver$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass1<T1, T2, R> implements Func2<List<? extends com.discord.models.member.GuildMember>, Long, List<? extends com.discord.models.member.GuildMember>> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // rx.functions.Func2
+        public /* bridge */ /* synthetic */ List<? extends com.discord.models.member.GuildMember> call(List<? extends com.discord.models.member.GuildMember> list, Long l) {
+            return call2((List<com.discord.models.member.GuildMember>) list, l);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final List<com.discord.models.member.GuildMember> call2(List<com.discord.models.member.GuildMember> list, Long l) {
+            ArrayList arrayListA0 = a.a0(list, "members");
+            for (Object obj : list) {
+                if (!((com.discord.models.member.GuildMember) obj).isCommunicationDisabled()) {
+                    arrayListA0.add(obj);
+                }
+            }
+            return arrayListA0;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$observeCommunicationDisabledGuildMembers$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass1<T1, T2, R> implements Func2<Set<? extends Long>, Map<Long, ? extends Map<Long, ? extends com.discord.models.member.GuildMember>>, List<? extends com.discord.models.member.GuildMember>> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // rx.functions.Func2
+        public /* bridge */ /* synthetic */ List<? extends com.discord.models.member.GuildMember> call(Set<? extends Long> set, Map<Long, ? extends Map<Long, ? extends com.discord.models.member.GuildMember>> map) {
+            return call2((Set<Long>) set, (Map<Long, ? extends Map<Long, com.discord.models.member.GuildMember>>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final List<com.discord.models.member.GuildMember> call2(Set<Long> set, Map<Long, ? extends Map<Long, com.discord.models.member.GuildMember>> map) {
+            ArrayList arrayList;
+            Collection<com.discord.models.member.GuildMember> collectionValues;
+            m.checkNotNullExpressionValue(set, "guildIds");
+            ArrayList arrayList2 = new ArrayList();
+            Iterator<T> it = set.iterator();
+            while (it.hasNext()) {
+                Map<Long, com.discord.models.member.GuildMember> map2 = map.get(Long.valueOf(((Number) it.next()).longValue()));
+                if (map2 == null || (collectionValues = map2.values()) == null) {
+                    arrayList = null;
+                } else {
+                    arrayList = new ArrayList();
+                    for (Object obj : collectionValues) {
+                        if (((com.discord.models.member.GuildMember) obj).isCommunicationDisabled()) {
+                            arrayList.add(obj);
+                        }
+                    }
+                }
+                if (arrayList != null) {
+                    arrayList2.add(arrayList);
+                }
+            }
+            return d0.t.o.flatten(arrayList2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$observeComputed$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Map<Long, ? extends com.discord.models.member.GuildMember>>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Map<Long, ? extends com.discord.models.member.GuildMember>> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Map<Long, ? extends com.discord.models.member.GuildMember>> invoke2() {
+            return StoreGuilds.this.getMembers();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$observeComputedMember$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass1 extends o implements Function0<com.discord.models.member.GuildMember> {
+        public final /* synthetic */ long $guildId;
+        public final /* synthetic */ long $userId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, long j2) {
+            super(0);
+            this.$guildId = j;
+            this.$userId = j2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ com.discord.models.member.GuildMember invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final com.discord.models.member.GuildMember invoke() {
+            return StoreGuilds.this.getMember(this.$guildId, this.$userId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$observeFromChannelId$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass1<T, R> implements b<Channel, Observable<? extends Guild>> {
+        public AnonymousClass1() {
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends Guild> call(Channel channel) {
+            return call2(channel);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends Guild> call2(Channel channel) {
+            return channel != null ? StoreGuilds.this.observeGuild(channel.getGuildId()) : new k(null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$observeGuild$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Guild>, Guild> {
+        public final /* synthetic */ long $guildId;
+
+        public AnonymousClass1(long j) {
+            this.$guildId = j;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Guild call(Map<Long, ? extends Guild> map) {
+            return call2((Map<Long, Guild>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Guild call2(Map<Long, Guild> map) {
+            return map.get(Long.valueOf(this.$guildId));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$observeGuildIds$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Guild>, Observable<? extends Set<? extends Long>>> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends Set<? extends Long>> call(Map<Long, ? extends Guild> map) {
+            return call2((Map<Long, Guild>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends Set<Long>> call2(Map<Long, Guild> map) {
+            return new k(map.keySet());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$observeGuildMember$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Map<Long, ? extends com.discord.models.member.GuildMember>>, com.discord.models.member.GuildMember> {
+        public final /* synthetic */ long $guildId;
+        public final /* synthetic */ long $userId;
+
+        public AnonymousClass1(long j, long j2) {
+            this.$guildId = j;
+            this.$userId = j2;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ com.discord.models.member.GuildMember call(Map<Long, ? extends Map<Long, ? extends com.discord.models.member.GuildMember>> map) {
+            return call2((Map<Long, ? extends Map<Long, com.discord.models.member.GuildMember>>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final com.discord.models.member.GuildMember call2(Map<Long, ? extends Map<Long, com.discord.models.member.GuildMember>> map) {
+            Map<Long, com.discord.models.member.GuildMember> map2 = map.get(Long.valueOf(this.$guildId));
+            if (map2 != null) {
+                return map2.get(Long.valueOf(this.$userId));
+            }
+            return null;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$observeGuildMembers$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Map<Long, ? extends com.discord.models.member.GuildMember>>, Map<Long, ? extends com.discord.models.member.GuildMember>> {
+        public final /* synthetic */ long $guildId;
+
+        public AnonymousClass1(long j) {
+            this.$guildId = j;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Map<Long, ? extends com.discord.models.member.GuildMember> call(Map<Long, ? extends Map<Long, ? extends com.discord.models.member.GuildMember>> map) {
+            return call2((Map<Long, ? extends Map<Long, com.discord.models.member.GuildMember>>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Map<Long, com.discord.models.member.GuildMember> call2(Map<Long, ? extends Map<Long, com.discord.models.member.GuildMember>> map) {
+            Map<Long, com.discord.models.member.GuildMember> map2 = map.get(Long.valueOf(this.$guildId));
+            return map2 != null ? map2 : h0.emptyMap();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$observeGuilds$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Guild>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Guild> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Guild> invoke2() {
+            return StoreGuilds.this.getGuilds();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$observeJoinedAt$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Long>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Long> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Long> invoke2() {
+            return StoreGuilds.this.getGuildsJoinedAt();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$observeRoles$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Map<Long, ? extends GuildRole>>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Map<Long, ? extends GuildRole>> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Map<Long, ? extends GuildRole>> invoke2() {
+            return StoreGuilds.this.getRoles();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$observeSortedRoles$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends GuildRole>, Observable<? extends List<? extends GuildRole>>> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends List<? extends GuildRole>> call(Map<Long, ? extends GuildRole> map) {
+            return call2((Map<Long, GuildRole>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends List<GuildRole>> call2(Map<Long, GuildRole> map) {
+            return new k(u.sortedWith(map.values(), RoleUtils.getROLE_COMPARATOR()));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$observeUnavailableGuilds$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass1 extends o implements Function0<Set<? extends Long>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Set<? extends Long> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Set<? extends Long> invoke2() {
+            return StoreGuilds.this.getUnavailableGuilds();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$observeVerificationLevel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass1<T, R> implements b<Guild, GuildVerificationLevel> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ GuildVerificationLevel call(Guild guild) {
+            return call2(guild);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final GuildVerificationLevel call2(Guild guild) {
+            GuildVerificationLevel verificationLevel;
+            return (guild == null || (verificationLevel = guild.getVerificationLevel()) == null) ? GuildVerificationLevel.NONE : verificationLevel;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$initClearCommunicationDisabledObserver$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass2 extends o implements Function1<List<? extends com.discord.models.member.GuildMember>, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$initClearCommunicationDisabledObserver$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreGuilds.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public final /* synthetic */ List $members;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(List list) {
+                super(0);
+                this.$members = list;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                List<com.discord.models.member.GuildMember> list = this.$members;
+                m.checkNotNullExpressionValue(list, "members");
+                for (com.discord.models.member.GuildMember guildMember : list) {
+                    StoreGuilds.access$handleGuildMemberCommunicationEnabledInternal(StoreGuilds.this, guildMember.getGuildId(), guildMember.getUserId());
+                }
+            }
+        }
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends com.discord.models.member.GuildMember> list) {
+            invoke2((List<com.discord.models.member.GuildMember>) list);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<com.discord.models.member.GuildMember> list) {
+            StoreGuilds.access$getDispatcher$p(StoreGuilds.this).schedule(new AnonymousClass1(list));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$observeComputed$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass2<T, R> implements b<Map<Long, ? extends Map<Long, ? extends com.discord.models.member.GuildMember>>, Map<Long, ? extends com.discord.models.member.GuildMember>> {
+        public final /* synthetic */ long $guildId;
+
+        public AnonymousClass2(long j) {
+            this.$guildId = j;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Map<Long, ? extends com.discord.models.member.GuildMember> call(Map<Long, ? extends Map<Long, ? extends com.discord.models.member.GuildMember>> map) {
+            return call2((Map<Long, ? extends Map<Long, com.discord.models.member.GuildMember>>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Map<Long, com.discord.models.member.GuildMember> call2(Map<Long, ? extends Map<Long, com.discord.models.member.GuildMember>> map) {
+            Map<Long, com.discord.models.member.GuildMember> map2 = map.get(Long.valueOf(this.$guildId));
+            return map2 != null ? map2 : StoreGuilds.access$getEmptyComputedMap$cp();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$observeJoinedAt$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass2<T, R> implements b<Map<Long, ? extends Long>, Long> {
+        public final /* synthetic */ long $guildId;
+
+        public AnonymousClass2(long j) {
+            this.$guildId = j;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Long call(Map<Long, ? extends Long> map) {
+            return call2((Map<Long, Long>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Long call2(Map<Long, Long> map) {
+            return Long.valueOf(GuildMemberUtilsKt.getJoinedAtOrNow(map.get(Long.valueOf(this.$guildId))));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuilds$observeRoles$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuilds.kt */
+    public final class AnonymousClass2<T, R> implements b<Map<Long, ? extends Map<Long, ? extends GuildRole>>, Map<Long, ? extends GuildRole>> {
+        public final /* synthetic */ long $guildId;
+
+        public AnonymousClass2(long j) {
+            this.$guildId = j;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Map<Long, ? extends GuildRole> call(Map<Long, ? extends Map<Long, ? extends GuildRole>> map) {
+            return call2((Map<Long, ? extends Map<Long, GuildRole>>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Map<Long, GuildRole> call2(Map<Long, ? extends Map<Long, GuildRole>> map) {
+            Map<Long, GuildRole> map2 = map.get(Long.valueOf(this.$guildId));
+            return map2 != null ? map2 : StoreGuilds.access$getEmptyRoles$cp();
+        }
+    }
 
     public /* synthetic */ StoreGuilds(StoreUser storeUser, Dispatcher dispatcher, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(storeUser, dispatcher, (i & 4) != 0 ? ObservationDeckProvider.get() : observationDeck);
@@ -250,7 +727,7 @@ public final class StoreGuilds extends StoreV2 {
             m.checkNotNull(map2);
             map2.put(Long.valueOf(id2), guildMember2);
         }
-        com.discord.models.member.GuildMember guildMemberFrom$default = GuildMember$Companion.from$default(com.discord.models.member.GuildMember.Companion, guildMember2, guildId, this.guildRoles.get(Long.valueOf(guildId)), null, 8, null);
+        com.discord.models.member.GuildMember guildMemberFrom$default = com.discord.models.member.GuildMember.Companion.from$default(com.discord.models.member.GuildMember.INSTANCE, guildMember2, guildId, this.guildRoles.get(Long.valueOf(guildId)), null, 8, null);
         Map<Long, com.discord.models.member.GuildMember> map3 = this.guildMembersComputed.get(Long.valueOf(guildId));
         m.checkNotNull(map3);
         if (!m.areEqual(guildMemberFrom$default, map3.get(Long.valueOf(id2)))) {
@@ -268,7 +745,7 @@ public final class StoreGuilds extends StoreV2 {
     }
 
     public final void handleGuildMemberCommunicationEnabled(long guildId, long userId) {
-        this.dispatcher.schedule(new StoreGuilds$handleGuildMemberCommunicationEnabled$1(this, guildId, userId));
+        this.dispatcher.schedule(new AnonymousClass1(guildId, userId));
     }
 
     @StoreThread
@@ -281,7 +758,7 @@ public final class StoreGuilds extends StoreV2 {
         GuildMember guildMemberA = GuildMember.a(guildMember, 0L, null, null, null, null, null, false, null, null, null, null, null, null, 4095);
         handleGuildMember$default(this, guildMemberA, guildId, false, 4, null);
         if (userId == getMeId()) {
-            StoreStream.Companion.getPermissions().handleGuildMemberAdd(guildMemberA);
+            StoreStream.INSTANCE.getPermissions().handleGuildMemberAdd(guildMemberA);
         }
     }
 
@@ -491,18 +968,18 @@ public final class StoreGuilds extends StoreV2 {
         this.guilds.putAll(CollectionExtensionsKt.filterNonNullValues(this.guildsCache.get()));
         Map<Long, Map<Long, GuildRole>> map = this.guildRolesCache.get();
         LinkedHashMap linkedHashMap = new LinkedHashMap();
-        Iterator<Map$Entry<Long, Map<Long, GuildRole>>> it = map.entrySet().iterator();
+        Iterator<Map.Entry<Long, Map<Long, GuildRole>>> it = map.entrySet().iterator();
         while (true) {
             if (!it.hasNext()) {
                 break;
             }
-            Map$Entry<Long, Map<Long, GuildRole>> next = it.next();
+            Map.Entry<Long, Map<Long, GuildRole>> next = it.next();
             if (next.getKey() != null) {
                 linkedHashMap.put(next.getKey(), next.getValue());
             }
         }
-        for (Map$Entry map$Entry : linkedHashMap.entrySet()) {
-            this.guildRoles.put(Long.valueOf(((Number) map$Entry.getKey()).longValue()), h0.toMutableMap((Map) map$Entry.getValue()));
+        for (Map.Entry entry : linkedHashMap.entrySet()) {
+            this.guildRoles.put(Long.valueOf(((Number) entry.getKey()).longValue()), h0.toMutableMap((Map) entry.getValue()));
         }
         this.guildsJoinedAt.putAll(this.guildsJoinedAtCache.get());
         markChanged(GuildsUpdate, ComputedMembersUpdate);
@@ -510,79 +987,79 @@ public final class StoreGuilds extends StoreV2 {
     }
 
     private final void initClearCommunicationDisabledObserver(Context ctx) {
-        Observable observableR = Observable.j(observeCommunicationDisabledGuildMembers(), Observable.E(0L, 10L, TimeUnit.SECONDS), StoreGuilds$initClearCommunicationDisabledObserver$1.INSTANCE).r();
+        Observable observableR = Observable.j(observeCommunicationDisabledGuildMembers(), Observable.E(0L, 10L, TimeUnit.SECONDS), AnonymousClass1.INSTANCE).r();
         m.checkNotNullExpressionValue(observableR, "Observable.combineLatest…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.computationLatest(observableR), StoreGuilds.class, ctx, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreGuilds$initClearCommunicationDisabledObserver$2(this), 60, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.computationLatest(observableR), StoreGuilds.class, ctx, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 60, (Object) null);
     }
 
     public final Observable<List<com.discord.models.member.GuildMember>> observeCommunicationDisabledGuildMembers() {
-        Observable<List<com.discord.models.member.GuildMember>> observableR = Observable.j(observeGuildIds(), observeComputed(), StoreGuilds$observeCommunicationDisabledGuildMembers$1.INSTANCE).r();
+        Observable<List<com.discord.models.member.GuildMember>> observableR = Observable.j(observeGuildIds(), observeComputed(), AnonymousClass1.INSTANCE).r();
         m.checkNotNullExpressionValue(observableR, "Observable.combineLatest…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Map<Long, Map<Long, com.discord.models.member.GuildMember>>> observeComputed() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{ComputedMembersUpdate}, false, null, null, new StoreGuilds$observeComputed$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{ComputedMembersUpdate}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     public final Observable<com.discord.models.member.GuildMember> observeComputedMember(long guildId, long userId) {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{ComputedMembersUpdate}, false, null, null, new StoreGuilds$observeComputedMember$1(this, guildId, userId), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{ComputedMembersUpdate}, false, null, null, new AnonymousClass1(guildId, userId), 14, null);
     }
 
     public final Observable<Guild> observeFromChannelId(long channelId) {
-        Observable observableY = StoreStream.Companion.getChannels().observeChannel(channelId).Y(new StoreGuilds$observeFromChannelId$1(this));
+        Observable observableY = StoreStream.INSTANCE.getChannels().observeChannel(channelId).Y(new AnonymousClass1());
         m.checkNotNullExpressionValue(observableY, "StoreStream\n        .get…ll)\n          }\n        }");
         return observableY;
     }
 
     public final Observable<Guild> observeGuild(long guildId) {
-        Observable<Guild> observableR = observeGuilds().G(new StoreGuilds$observeGuild$1(guildId)).r();
+        Observable<Guild> observableR = observeGuilds().G(new AnonymousClass1(guildId)).r();
         m.checkNotNullExpressionValue(observableR, "observeGuilds()\n        …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Set<Long>> observeGuildIds() {
-        Observable<Set<Long>> observableR = observeGuilds().Y(StoreGuilds$observeGuildIds$1.INSTANCE).r();
+        Observable<Set<Long>> observableR = observeGuilds().Y(AnonymousClass1.INSTANCE).r();
         m.checkNotNullExpressionValue(observableR, "observeGuilds()\n        …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<com.discord.models.member.GuildMember> observeGuildMember(long guildId, long userId) {
-        return observeComputed().G(new StoreGuilds$observeGuildMember$1(guildId, userId)).r();
+        return observeComputed().G(new AnonymousClass1(guildId, userId)).r();
     }
 
     public final Observable<Map<Long, com.discord.models.member.GuildMember>> observeGuildMembers(long guildId) {
-        return observeComputed().G(new StoreGuilds$observeGuildMembers$1(guildId)).r();
+        return observeComputed().G(new AnonymousClass1(guildId)).r();
     }
 
     public final Observable<Map<Long, Guild>> observeGuilds() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{GuildsUpdate}, false, null, null, new StoreGuilds$observeGuilds$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{GuildsUpdate}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     public final Observable<Map<Long, Long>> observeJoinedAt() {
-        Observable<Map<Long, Long>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{GuildsUpdate}, false, null, null, new StoreGuilds$observeJoinedAt$1(this), 14, null).r();
+        Observable<Map<Long, Long>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{GuildsUpdate}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Map<Long, Map<Long, GuildRole>>> observeRoles() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{GuildsUpdate}, false, null, null, new StoreGuilds$observeRoles$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{GuildsUpdate}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     public final Observable<List<GuildRole>> observeSortedRoles(long guildId) {
-        Observable<List<GuildRole>> observableR = observeRoles(guildId).Y(StoreGuilds$observeSortedRoles$1.INSTANCE).r();
+        Observable<List<GuildRole>> observableR = observeRoles(guildId).Y(AnonymousClass1.INSTANCE).r();
         m.checkNotNullExpressionValue(observableR, "observeRoles(guildId)\n  …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Set<Long>> observeUnavailableGuilds() {
-        Observable<Set<Long>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{GuildsUpdate}, false, null, null, new StoreGuilds$observeUnavailableGuilds$1(this), 14, null).r();
+        Observable<Set<Long>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{GuildsUpdate}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<GuildVerificationLevel> observeVerificationLevel(long guildId) {
-        Observable<GuildVerificationLevel> observableR = observeGuild(guildId).G(StoreGuilds$observeVerificationLevel$1.INSTANCE).r();
+        Observable<GuildVerificationLevel> observableR = observeGuild(guildId).G(AnonymousClass1.INSTANCE).r();
         m.checkNotNullExpressionValue(observableR, "observeGuild(guildId)\n  …  .distinctUntilChanged()");
         return observableR;
     }
@@ -590,41 +1067,41 @@ public final class StoreGuilds extends StoreV2 {
     @Override // com.discord.stores.StoreV2
     @StoreThread
     public void snapshotData() {
-        SnowflakePartitionMap$CopiablePartitionMap snowflakePartitionMap$CopiablePartitionMap;
+        SnowflakePartitionMap.CopiablePartitionMap copiablePartitionMap;
         super.snapshotData();
         if (getUpdateSources().contains(GuildsUpdate)) {
             HashMap map = new HashMap(this.guildsJoinedAt);
             this.guildsJoinedAtSnapshot = map;
             Persister.set$default(this.guildsJoinedAtCache, map, false, 2, null);
             this.guildsSnapshot = new HashMap(this.guilds);
-            Persister.set$default(this.guildsCache, h0.minus((Map) this.guilds, (Iterable) StoreStream.Companion.getLurking().getLurkingGuildIdsSync()), false, 2, null);
+            Persister.set$default(this.guildsCache, h0.minus((Map) this.guilds, (Iterable) StoreStream.INSTANCE.getLurking().getLurkingGuildIdsSync()), false, 2, null);
             this.guildsUnavailableSnapshot = new HashSet(this.guildsUnavailable);
             Map<Long, Map<Long, GuildRole>> map2 = this.guildRoles;
             LinkedHashMap linkedHashMap = new LinkedHashMap(g0.mapCapacity(map2.size()));
             Iterator<T> it = map2.entrySet().iterator();
             while (it.hasNext()) {
-                Map$Entry map$Entry = (Map$Entry) it.next();
-                linkedHashMap.put(map$Entry.getKey(), new HashMap((Map) map$Entry.getValue()));
+                Map.Entry entry = (Map.Entry) it.next();
+                linkedHashMap.put(entry.getKey(), new HashMap((Map) entry.getValue()));
             }
             this.guildRolesSnapshot = linkedHashMap;
             Persister.set$default(this.guildRolesCache, linkedHashMap, false, 2, null);
         }
         if (getUpdateSources().contains(ComputedMembersUpdate)) {
             HashMap map3 = new HashMap();
-            for (Map$Entry<Long, Map<Long, com.discord.models.member.GuildMember>> map$Entry2 : this.guildMembersComputed.entrySet()) {
-                Map<Long, com.discord.models.member.GuildMember> value = map$Entry2.getValue();
+            for (Map.Entry<Long, Map<Long, com.discord.models.member.GuildMember>> entry2 : this.guildMembersComputed.entrySet()) {
+                Map<Long, com.discord.models.member.GuildMember> value = entry2.getValue();
                 if (value.size() < 2000) {
-                    map3.put(map$Entry2.getKey(), new HashMap(value));
+                    map3.put(entry2.getKey(), new HashMap(value));
                 } else {
-                    if (value instanceof SnowflakePartitionMap$CopiablePartitionMap) {
-                        snowflakePartitionMap$CopiablePartitionMap = (SnowflakePartitionMap$CopiablePartitionMap) value;
+                    if (value instanceof SnowflakePartitionMap.CopiablePartitionMap) {
+                        copiablePartitionMap = (SnowflakePartitionMap.CopiablePartitionMap) value;
                     } else {
-                        SnowflakePartitionMap$CopiablePartitionMap snowflakePartitionMap$CopiablePartitionMap2 = new SnowflakePartitionMap$CopiablePartitionMap(0, 1, null);
-                        snowflakePartitionMap$CopiablePartitionMap2.putAll(value);
-                        map$Entry2.setValue(snowflakePartitionMap$CopiablePartitionMap2);
-                        snowflakePartitionMap$CopiablePartitionMap = snowflakePartitionMap$CopiablePartitionMap2;
+                        SnowflakePartitionMap.CopiablePartitionMap copiablePartitionMap2 = new SnowflakePartitionMap.CopiablePartitionMap(0, 1, null);
+                        copiablePartitionMap2.putAll(value);
+                        entry2.setValue(copiablePartitionMap2);
+                        copiablePartitionMap = copiablePartitionMap2;
                     }
-                    map3.put(map$Entry2.getKey(), snowflakePartitionMap$CopiablePartitionMap.fastCopy());
+                    map3.put(entry2.getKey(), copiablePartitionMap.fastCopy());
                 }
             }
             this.guildMembersComputedSnapshot = map3;
@@ -655,33 +1132,33 @@ public final class StoreGuilds extends StoreV2 {
     }
 
     public final Observable<Map<Long, com.discord.models.member.GuildMember>> observeComputed(long guildId) {
-        Observable<Map<Long, com.discord.models.member.GuildMember>> observableR = observeComputed().G(new StoreGuilds$observeComputed$2(guildId)).r();
+        Observable<Map<Long, com.discord.models.member.GuildMember>> observableR = observeComputed().G(new AnonymousClass2(guildId)).r();
         m.checkNotNullExpressionValue(observableR, "observeComputed()\n      …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Map<Long, GuildRole>> observeRoles(long guildId) {
-        Observable<Map<Long, GuildRole>> observableR = observeRoles().G(new StoreGuilds$observeRoles$2(guildId)).r();
+        Observable<Map<Long, GuildRole>> observableR = observeRoles().G(new AnonymousClass2(guildId)).r();
         m.checkNotNullExpressionValue(observableR, "observeRoles()\n        .…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Long> observeJoinedAt(long guildId) {
-        Observable<Long> observableR = observeJoinedAt().G(new StoreGuilds$observeJoinedAt$2(guildId)).r();
+        Observable<Long> observableR = observeJoinedAt().G(new AnonymousClass2(guildId)).r();
         m.checkNotNullExpressionValue(observableR, "observeJoinedAt()\n      …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Map<Long, com.discord.models.member.GuildMember>> observeComputed(long guildId, Collection<Long> userIds) {
         m.checkNotNullParameter(userIds, "userIds");
-        Observable observableK = observeComputed(guildId).k(o.a(userIds));
+        Observable observableK = observeComputed(guildId).k(b.a.d.o.a(userIds));
         m.checkNotNullExpressionValue(observableK, "observeComputed(guildId)…mpose(filterMap(userIds))");
         return observableK;
     }
 
     public final Observable<Map<Long, GuildRole>> observeRoles(long guildId, Collection<Long> roleIds) {
         m.checkNotNullParameter(roleIds, "roleIds");
-        Observable observableK = observeRoles(guildId).k(o.a(roleIds));
+        Observable observableK = observeRoles(guildId).k(b.a.d.o.a(roleIds));
         m.checkNotNullExpressionValue(observableK, "observeRoles(guildId)\n  …mpose(filterMap(roleIds))");
         return observableK;
     }

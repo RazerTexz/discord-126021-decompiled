@@ -1,7 +1,6 @@
 package b.i.a.f.h.e;
 
 import android.os.Handler;
-import android.os.Handler$Callback;
 import android.os.Looper;
 import android.os.Message;
 
@@ -17,7 +16,7 @@ public class c extends Handler {
         super.dispatchMessage(message);
     }
 
-    public c(Looper looper, Handler$Callback handler$Callback) {
-        super(looper, handler$Callback);
+    public c(Looper looper, Handler.Callback callback) {
+        super(looper, callback);
     }
 }

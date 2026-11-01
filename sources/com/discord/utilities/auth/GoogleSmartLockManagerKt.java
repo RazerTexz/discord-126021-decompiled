@@ -24,7 +24,7 @@ public final class GoogleSmartLockManagerKt {
         return intent.hasExtra(WidgetAuthLogin.GOOGLE_SMARTLOCK_LOGIN_EXTRA_ID);
     }
 
-    public static final GoogleSmartLockManager$SmartLockCredentials toSmartLockCredentials(Intent intent) {
+    public static final GoogleSmartLockManager.SmartLockCredentials toSmartLockCredentials(Intent intent) {
         m.checkNotNullParameter(intent, "$this$toSmartLockCredentials");
         if (!intent.hasExtra(WidgetAuthLogin.GOOGLE_SMARTLOCK_LOGIN_EXTRA_ID)) {
             return null;
@@ -34,6 +34,6 @@ public final class GoogleSmartLockManagerKt {
         if (stringExtra == null || stringExtra2 == null) {
             return null;
         }
-        return new GoogleSmartLockManager$SmartLockCredentials(stringExtra, stringExtra2);
+        return new GoogleSmartLockManager.SmartLockCredentials(stringExtra, stringExtra2);
     }
 }

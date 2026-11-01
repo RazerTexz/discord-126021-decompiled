@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewStub;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -19,10 +20,11 @@ import b.a.d.i0;
 import b.a.d.j;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
-import com.discord.R$plurals;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetGuildsListBinding;
+import com.discord.stores.StoreConnectionOpen;
+import com.discord.stores.StoreNux;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.accessibility.AccessibilityUtils;
 import com.discord.utilities.analytics.AnalyticsTracker;
@@ -35,30 +37,31 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.discord.widgets.channels.list.WidgetChannelListUnreads;
 import com.discord.widgets.channels.list.WidgetChannelsListItemChannelActions;
-import com.discord.widgets.channels.list.WidgetChannelsListItemChannelActions$Companion;
 import com.discord.widgets.guilds.contextmenu.WidgetFolderContextMenu;
-import com.discord.widgets.guilds.contextmenu.WidgetFolderContextMenu$Companion;
 import com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu;
-import com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu$Companion;
 import com.discord.widgets.guilds.create.CreateGuildTrigger;
 import com.discord.widgets.home.WidgetHome;
 import com.discord.widgets.hubs.HubEmailArgs;
 import com.discord.widgets.hubs.WidgetHubEmailFlow;
 import com.discord.widgets.nux.WidgetGuildTemplates;
 import com.discord.widgets.nux.WidgetNavigationHelp;
-import com.discord.widgets.nux.WidgetNavigationHelp$Companion;
 import com.discord.widgets.tabs.BottomNavViewObserver;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
+import java.util.Objects;
 import kotlin.Lazy;
 import kotlin.NoWhenBranchMatchedException;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
+import rx.Observable;
 
 /* JADX INFO: compiled from: WidgetGuildsList.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetGuildsList extends AppFragment implements WidgetGuildListAdapter$InteractionListener {
+public final class WidgetGuildsList extends AppFragment implements WidgetGuildListAdapter.InteractionListener {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGuildsList.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildsListBinding;", 0)};
     private WidgetGuildListAdapter adapter;
 
@@ -71,21 +74,316 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: compiled from: WidgetGuildsList.kt */
+    public final /* data */ class AddGuildHint {
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
+        private final boolean isAddGuildHint;
+        private final boolean isEligible;
+
+        /* JADX INFO: compiled from: WidgetGuildsList.kt */
+        public final class Companion {
+            private Companion() {
+            }
+
+            public final Observable<AddGuildHint> get() {
+                StoreStream.Companion companion = StoreStream.INSTANCE;
+                Observable observableY = Observable.i(companion.getNux().getNuxState(), StoreConnectionOpen.observeConnectionOpen$default(companion.getConnectionOpen(), false, 1, null), companion.getChannels().observeGuildAndPrivateChannels(), WidgetGuildsList$AddGuildHint$Companion$get$1.INSTANCE).y(WidgetGuildsList$AddGuildHint$Companion$get$2.INSTANCE);
+                m.checkNotNullExpressionValue(observableY, "Observable\n             ….filter { it.isEligible }");
+                Observable<AddGuildHint> observableM = ObservableExtensionsKt.takeSingleUntilTimeout$default(observableY, 0L, false, 3, null).M(WidgetGuildsList$AddGuildHint$Companion$get$3.INSTANCE);
+                m.checkNotNullExpressionValue(observableM, "Observable\n             … = false)\n              }");
+                return observableM;
+            }
+
+            public final Observable<Boolean> getDismissAction() {
+                Observable observableG = StoreStream.INSTANCE.getNavigation().observeLeftPanelState().G(WidgetGuildsList$AddGuildHint$Companion$getDismissAction$1.INSTANCE);
+                m.checkNotNullExpressionValue(observableG, "StoreStream\n            …te == PanelState.Closed }");
+                return observableG;
+            }
+
+            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+                this();
+            }
+        }
+
+        public AddGuildHint(boolean z2, boolean z3) {
+            this.isEligible = z2;
+            this.isAddGuildHint = z3;
+        }
+
+        public static /* synthetic */ AddGuildHint copy$default(AddGuildHint addGuildHint, boolean z2, boolean z3, int i, Object obj) {
+            if ((i & 1) != 0) {
+                z2 = addGuildHint.isEligible;
+            }
+            if ((i & 2) != 0) {
+                z3 = addGuildHint.isAddGuildHint;
+            }
+            return addGuildHint.copy(z2, z3);
+        }
+
+        public final AddGuildHint copy(boolean isEligible, boolean isAddGuildHint) {
+            return new AddGuildHint(isEligible, isAddGuildHint);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof AddGuildHint)) {
+                return false;
+            }
+            AddGuildHint addGuildHint = (AddGuildHint) other;
+            return this.isEligible == addGuildHint.isEligible && this.isAddGuildHint == addGuildHint.isAddGuildHint;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getIsAddGuildHint() {
+            return this.isAddGuildHint;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final boolean getIsEligible() {
+            return this.isEligible;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r0v3, types: [int] */
+        /* JADX WARN: Type inference failed for: r0v4 */
+        /* JADX WARN: Type inference failed for: r0v5 */
+        /* JADX WARN: Type inference failed for: r1v0 */
+        /* JADX WARN: Type inference failed for: r1v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v2 */
+        public int hashCode() {
+            boolean z2 = this.isEligible;
+            ?? r0 = z2;
+            if (z2) {
+                r0 = 1;
+            }
+            int i = r0 * 31;
+            boolean z3 = this.isAddGuildHint;
+            return i + (z3 ? 1 : z3);
+        }
+
+        public final boolean isAddGuildHint() {
+            return this.isAddGuildHint;
+        }
+
+        public final boolean isEligible() {
+            return this.isEligible;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("AddGuildHint(isEligible=");
+            sbU.append(this.isEligible);
+            sbU.append(", isAddGuildHint=");
+            return a.O(sbU, this.isAddGuildHint, ")");
+        }
+
+        public /* synthetic */ AddGuildHint(boolean z2, boolean z3, int i, DefaultConstructorMarker defaultConstructorMarker) {
+            this(z2, (i & 2) != 0 ? false : z3);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildsList$configureAddGuildHint$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildsList.kt */
+    public final class AnonymousClass1 extends o implements Function1<StoreNux.NuxState, StoreNux.NuxState> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ StoreNux.NuxState invoke(StoreNux.NuxState nuxState) {
+            return invoke2(nuxState);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final StoreNux.NuxState invoke2(StoreNux.NuxState nuxState) {
+            m.checkNotNullParameter(nuxState, "nux");
+            return StoreNux.NuxState.copy$default(nuxState, false, false, false, false, false, null, 47, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildsList$configureBottomNavSpace$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildsList.kt */
+    public final class AnonymousClass1 extends o implements Function1<Integer, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Integer num) {
+            invoke(num.intValue());
+            return Unit.a;
+        }
+
+        public final void invoke(int i) {
+            WidgetGuildsList.access$getAdapter$p(WidgetGuildsList.this).handleBottomNavHeight(i);
+            ViewStub viewStub = WidgetGuildsList.access$getBinding$p(WidgetGuildsList.this).c;
+            m.checkNotNullExpressionValue(viewStub, "binding.guildListUnreadsStub");
+            ViewGroup.LayoutParams layoutParams = viewStub.getLayoutParams();
+            Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.MarginLayoutParams");
+            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
+            marginLayoutParams.setMargins(marginLayoutParams.leftMargin, marginLayoutParams.topMargin, marginLayoutParams.rightMargin, i);
+            ViewStub viewStub2 = WidgetGuildsList.access$getBinding$p(WidgetGuildsList.this).c;
+            m.checkNotNullExpressionValue(viewStub2, "binding.guildListUnreadsStub");
+            viewStub2.setLayoutParams(marginLayoutParams);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildsList$onResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildsList.kt */
+    public final class AnonymousClass1 extends o implements Function1<WidgetGuildsListViewModel.ViewState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetGuildsListViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetGuildsListViewModel.ViewState viewState) {
+            m.checkNotNullParameter(viewState, "it");
+            WidgetGuildsList.access$configureUI(WidgetGuildsList.this, viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildsList$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildsList.kt */
+    public final class AnonymousClass1 extends o implements Function0<Integer> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Integer invoke() {
+            return Integer.valueOf(invoke2());
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final int invoke2() {
+            return WidgetGuildsList.access$getAdapter$p(WidgetGuildsList.this).getItemCount();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildsList$onResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildsList.kt */
+    public final class AnonymousClass2 extends o implements Function1<WidgetGuildsListViewModel.Event, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetGuildsListViewModel.Event event) {
+            invoke2(event);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetGuildsListViewModel.Event event) {
+            m.checkNotNullParameter(event, "it");
+            WidgetGuildsList.access$handleEvent(WidgetGuildsList.this, event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildsList$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildsList.kt */
+    public final class AnonymousClass2 extends o implements Function1<View, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildsList$onViewBound$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetGuildsList.kt */
+        public final class AnonymousClass1 implements View.OnClickListener {
+            public AnonymousClass1() {
+            }
+
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                WidgetGuildsList.access$dismissAddGuildHint(WidgetGuildsList.this, true);
+            }
+        }
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+            WidgetGuildsList.access$setGuildListAddHint$p(WidgetGuildsList.this, view);
+            View viewAccess$getGuildListAddHint$p = WidgetGuildsList.access$getGuildListAddHint$p(WidgetGuildsList.this);
+            if (viewAccess$getGuildListAddHint$p != null) {
+                viewAccess$getGuildListAddHint$p.setOnClickListener(new AnonymousClass1());
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildsList$onResume$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildsList.kt */
+    public final class AnonymousClass3 extends o implements Function1<AddGuildHint, Unit> {
+        public AnonymousClass3() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(AddGuildHint addGuildHint) {
+            invoke2(addGuildHint);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(AddGuildHint addGuildHint) {
+            m.checkNotNullParameter(addGuildHint, "it");
+            WidgetGuildsList.access$configureAddGuildHint(WidgetGuildsList.this, addGuildHint);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.list.WidgetGuildsList$onResume$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildsList.kt */
+    public final class AnonymousClass4 extends o implements Function1<Boolean, Unit> {
+        public AnonymousClass4() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.a;
+        }
+
+        public final void invoke(boolean z2) {
+            if (z2) {
+                WidgetGuildsList.access$dismissAddGuildHint(WidgetGuildsList.this, false);
+            }
+        }
+    }
+
     public WidgetGuildsList() {
-        super(R$layout.widget_guilds_list);
+        super(R.layout.widget_guilds_list);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildsList$binding$2.INSTANCE, null, 2, null);
-        this.bottomNavViewObserver = BottomNavViewObserver.Companion.getINSTANCE();
+        this.bottomNavViewObserver = BottomNavViewObserver.INSTANCE.getINSTANCE();
         WidgetGuildsList$viewModel$2 widgetGuildsList$viewModel$2 = WidgetGuildsList$viewModel$2.INSTANCE;
         g0 g0Var = new g0(this);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetGuildsListViewModel.class), new WidgetGuildsList$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetGuildsList$viewModel$2));
     }
 
-    public static final /* synthetic */ void access$configureAddGuildHint(WidgetGuildsList widgetGuildsList, WidgetGuildsList$AddGuildHint widgetGuildsList$AddGuildHint) {
-        widgetGuildsList.configureAddGuildHint(widgetGuildsList$AddGuildHint);
+    public static final /* synthetic */ void access$configureAddGuildHint(WidgetGuildsList widgetGuildsList, AddGuildHint addGuildHint) {
+        widgetGuildsList.configureAddGuildHint(addGuildHint);
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetGuildsList widgetGuildsList, WidgetGuildsListViewModel$ViewState widgetGuildsListViewModel$ViewState) {
-        widgetGuildsList.configureUI(widgetGuildsListViewModel$ViewState);
+    public static final /* synthetic */ void access$configureUI(WidgetGuildsList widgetGuildsList, WidgetGuildsListViewModel.ViewState viewState) {
+        widgetGuildsList.configureUI(viewState);
     }
 
     public static final /* synthetic */ void access$dismissAddGuildHint(WidgetGuildsList widgetGuildsList, boolean z2) {
@@ -108,8 +406,8 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
         return widgetGuildsList.guildListAddHint;
     }
 
-    public static final /* synthetic */ void access$handleEvent(WidgetGuildsList widgetGuildsList, WidgetGuildsListViewModel$Event widgetGuildsListViewModel$Event) {
-        widgetGuildsList.handleEvent(widgetGuildsListViewModel$Event);
+    public static final /* synthetic */ void access$handleEvent(WidgetGuildsList widgetGuildsList, WidgetGuildsListViewModel.Event event) {
+        widgetGuildsList.handleEvent(event);
     }
 
     public static final /* synthetic */ void access$setAdapter$p(WidgetGuildsList widgetGuildsList, WidgetGuildListAdapter widgetGuildListAdapter) {
@@ -120,9 +418,9 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
         widgetGuildsList.guildListAddHint = view;
     }
 
-    private final void announceFolderToggle(GuildListItem$FolderItem item) {
+    private final void announceFolderToggle(GuildListItem.FolderItem item) {
         Object[] objArr = new Object[2];
-        objArr[0] = b.k(this, item.isOpen() ? 2131887705 : 2131888963, new Object[0], null, 4);
+        objArr[0] = b.k(this, item.isOpen() ? R.string.collapsed : R.string.expanded, new Object[0], null, 4);
         String name = item.getName();
         if (name == null) {
             name = "";
@@ -131,9 +429,9 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
         AccessibilityUtils.INSTANCE.sendAnnouncement(requireContext(), a.P(objArr, 2, "%s, %s", "java.lang.String.format(this, *args)"));
     }
 
-    private final void configureAddGuildHint(WidgetGuildsList$AddGuildHint addGuildHint) {
+    private final void configureAddGuildHint(AddGuildHint addGuildHint) {
         if (addGuildHint.isAddGuildHint()) {
-            StoreStream.Companion.getNux().updateNux(WidgetGuildsList$configureAddGuildHint$1.INSTANCE);
+            StoreStream.INSTANCE.getNux().updateNux(AnonymousClass1.INSTANCE);
         }
         if (addGuildHint.isEligible()) {
             AnalyticsTracker.INSTANCE.showFirstServerTipTutorial();
@@ -145,23 +443,23 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
     }
 
     private final void configureBottomNavSpace() {
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(this.bottomNavViewObserver.observeHeight(), this, null, 2, null), WidgetGuildsList.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildsList$configureBottomNavSpace$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(this.bottomNavViewObserver.observeHeight(), this, null, 2, null), WidgetGuildsList.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
-    private final void configureUI(WidgetGuildsListViewModel$ViewState viewState) {
+    private final void configureUI(WidgetGuildsListViewModel.ViewState viewState) {
         View view;
-        if (viewState instanceof WidgetGuildsListViewModel$ViewState$Loaded) {
+        if (viewState instanceof WidgetGuildsListViewModel.ViewState.Loaded) {
             WidgetGuildListAdapter widgetGuildListAdapter = this.adapter;
             if (widgetGuildListAdapter == null) {
                 m.throwUninitializedPropertyAccessException("adapter");
             }
-            WidgetGuildsListViewModel$ViewState$Loaded widgetGuildsListViewModel$ViewState$Loaded = (WidgetGuildsListViewModel$ViewState$Loaded) viewState;
-            widgetGuildListAdapter.setItems(widgetGuildsListViewModel$ViewState$Loaded.getItems(), !widgetGuildsListViewModel$ViewState$Loaded.getWasDragResult());
+            WidgetGuildsListViewModel.ViewState.Loaded loaded = (WidgetGuildsListViewModel.ViewState.Loaded) viewState;
+            widgetGuildListAdapter.setItems(loaded.getItems(), !loaded.getWasDragResult());
             WidgetChannelListUnreads widgetChannelListUnreads = this.guildListUnreads;
             if (widgetChannelListUnreads != null) {
-                widgetChannelListUnreads.onDatasetChanged(widgetGuildsListViewModel$ViewState$Loaded.getItems());
+                widgetChannelListUnreads.onDatasetChanged(loaded.getItems());
             }
-            if (widgetGuildsListViewModel$ViewState$Loaded.getHasChannels() && (view = this.guildListAddHint) != null && view.getVisibility() == 0) {
+            if (loaded.getHasChannels() && (view = this.guildListAddHint) != null && view.getVisibility() == 0) {
                 dismissAddGuildHint(false);
             }
         }
@@ -202,41 +500,41 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
         return (WidgetGuildsListViewModel) this.viewModel.getValue();
     }
 
-    private final void handleEvent(WidgetGuildsListViewModel$Event event) {
-        if (event instanceof WidgetGuildsListViewModel$Event$ShowChannelActions) {
-            showChannelActions(((WidgetGuildsListViewModel$Event$ShowChannelActions) event).getChannelId());
+    private final void handleEvent(WidgetGuildsListViewModel.Event event) {
+        if (event instanceof WidgetGuildsListViewModel.Event.ShowChannelActions) {
+            showChannelActions(((WidgetGuildsListViewModel.Event.ShowChannelActions) event).getChannelId());
             return;
         }
-        if (event instanceof WidgetGuildsListViewModel$Event$ShowUnavailableGuilds) {
-            showUnavailableGuildsToast(((WidgetGuildsListViewModel$Event$ShowUnavailableGuilds) event).getUnavailableGuildCount());
+        if (event instanceof WidgetGuildsListViewModel.Event.ShowUnavailableGuilds) {
+            showUnavailableGuildsToast(((WidgetGuildsListViewModel.Event.ShowUnavailableGuilds) event).getUnavailableGuildCount());
             return;
         }
-        if (event instanceof WidgetGuildsListViewModel$Event$AnnounceFolderToggleForAccessibility) {
-            announceFolderToggle(((WidgetGuildsListViewModel$Event$AnnounceFolderToggleForAccessibility) event).getItem());
+        if (event instanceof WidgetGuildsListViewModel.Event.AnnounceFolderToggleForAccessibility) {
+            announceFolderToggle(((WidgetGuildsListViewModel.Event.AnnounceFolderToggleForAccessibility) event).getItem());
             return;
         }
-        if (m.areEqual(event, WidgetGuildsListViewModel$Event$ShowCreateGuild.INSTANCE)) {
+        if (m.areEqual(event, WidgetGuildsListViewModel.Event.ShowCreateGuild.INSTANCE)) {
             showCreateGuild();
             return;
         }
-        if (m.areEqual(event, WidgetGuildsListViewModel$Event$ShowHubVerification.INSTANCE)) {
+        if (m.areEqual(event, WidgetGuildsListViewModel.Event.ShowHubVerification.INSTANCE)) {
             showHubVerification();
-        } else if (m.areEqual(event, WidgetGuildsListViewModel$Event$ShowHelp.INSTANCE)) {
+        } else if (m.areEqual(event, WidgetGuildsListViewModel.Event.ShowHelp.INSTANCE)) {
             showHelp();
         } else {
-            if (!m.areEqual(event, WidgetGuildsListViewModel$Event$FocusFirstElement.INSTANCE)) {
+            if (!m.areEqual(event, WidgetGuildsListViewModel.Event.FocusFirstElement.INSTANCE)) {
                 throw new NoWhenBranchMatchedException();
             }
             focusFirstElement();
         }
     }
 
-    @Override // com.discord.widgets.guilds.list.WidgetGuildListAdapter$InteractionListener
+    @Override // com.discord.widgets.guilds.list.WidgetGuildListAdapter.InteractionListener
     public boolean onDrop() {
         return getViewModel().onDrop();
     }
 
-    @Override // com.discord.widgets.guilds.list.WidgetGuildListAdapter$InteractionListener
+    @Override // com.discord.widgets.guilds.list.WidgetGuildListAdapter.InteractionListener
     public void onItemClicked(View view, GuildListItem item) {
         m.checkNotNullParameter(view, "view");
         m.checkNotNullParameter(item, "item");
@@ -247,12 +545,12 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
         viewModel.onItemClicked(item, contextRequireContext, parentFragmentManager);
     }
 
-    @Override // com.discord.widgets.guilds.list.WidgetGuildListAdapter$InteractionListener
+    @Override // com.discord.widgets.guilds.list.WidgetGuildListAdapter.InteractionListener
     public void onItemLongPressed(View view, GuildListItem item) {
         m.checkNotNullParameter(view, "view");
         m.checkNotNullParameter(item, "item");
-        boolean z2 = item instanceof GuildListItem$GuildItem;
-        if (!z2 && !(item instanceof GuildListItem$FolderItem)) {
+        boolean z2 = item instanceof GuildListItem.GuildItem;
+        if (!z2 && !(item instanceof GuildListItem.FolderItem)) {
             getViewModel().onItemLongPressed(item);
             return;
         }
@@ -260,55 +558,55 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
         view.getLocationInWindow(iArr);
         PointF pointF = new PointF(iArr[0] + DimenUtils.dpToPixels(64), iArr[1]);
         if (z2) {
-            WidgetGuildContextMenu$Companion widgetGuildContextMenu$Companion = WidgetGuildContextMenu.Companion;
+            WidgetGuildContextMenu.Companion companion = WidgetGuildContextMenu.INSTANCE;
             FragmentActivity fragmentActivityRequireActivity = requireActivity();
             m.checkNotNullExpressionValue(fragmentActivityRequireActivity, "requireActivity()");
-            widgetGuildContextMenu$Companion.show(fragmentActivityRequireActivity, pointF, ((GuildListItem$GuildItem) item).getGuild().getId());
+            companion.show(fragmentActivityRequireActivity, pointF, ((GuildListItem.GuildItem) item).getGuild().getId());
             return;
         }
-        if (item instanceof GuildListItem$FolderItem) {
-            WidgetFolderContextMenu$Companion widgetFolderContextMenu$Companion = WidgetFolderContextMenu.Companion;
+        if (item instanceof GuildListItem.FolderItem) {
+            WidgetFolderContextMenu.Companion companion2 = WidgetFolderContextMenu.INSTANCE;
             FragmentActivity fragmentActivityRequireActivity2 = requireActivity();
             m.checkNotNullExpressionValue(fragmentActivityRequireActivity2, "requireActivity()");
-            widgetFolderContextMenu$Companion.show(fragmentActivityRequireActivity2, pointF, ((GuildListItem$FolderItem) item).getFolderId());
+            companion2.show(fragmentActivityRequireActivity2, pointF, ((GuildListItem.FolderItem) item).getFolderId());
         }
     }
 
-    @Override // com.discord.widgets.guilds.list.WidgetGuildListAdapter$InteractionListener
+    @Override // com.discord.widgets.guilds.list.WidgetGuildListAdapter.InteractionListener
     public void onItemMoved() {
-        WidgetGuildContextMenu$Companion widgetGuildContextMenu$Companion = WidgetGuildContextMenu.Companion;
+        WidgetGuildContextMenu.Companion companion = WidgetGuildContextMenu.INSTANCE;
         FragmentActivity fragmentActivityRequireActivity = requireActivity();
         m.checkNotNullExpressionValue(fragmentActivityRequireActivity, "requireActivity()");
-        widgetGuildContextMenu$Companion.hide(fragmentActivityRequireActivity, true);
-        WidgetFolderContextMenu$Companion widgetFolderContextMenu$Companion = WidgetFolderContextMenu.Companion;
+        companion.hide(fragmentActivityRequireActivity, true);
+        WidgetFolderContextMenu.Companion companion2 = WidgetFolderContextMenu.INSTANCE;
         FragmentActivity fragmentActivityRequireActivity2 = requireActivity();
         m.checkNotNullExpressionValue(fragmentActivityRequireActivity2, "requireActivity()");
-        widgetFolderContextMenu$Companion.hide(fragmentActivityRequireActivity2, true);
+        companion2.hide(fragmentActivityRequireActivity2, true);
     }
 
-    @Override // com.discord.widgets.guilds.list.WidgetGuildListAdapter$InteractionListener
-    public void onOperation(WidgetGuildListAdapter$Operation operation) {
+    @Override // com.discord.widgets.guilds.list.WidgetGuildListAdapter.InteractionListener
+    public void onOperation(WidgetGuildListAdapter.Operation operation) {
         m.checkNotNullParameter(operation, "operation");
-        if (operation instanceof WidgetGuildListAdapter$Operation$MoveAbove) {
-            WidgetGuildListAdapter$Operation$MoveAbove widgetGuildListAdapter$Operation$MoveAbove = (WidgetGuildListAdapter$Operation$MoveAbove) operation;
-            getViewModel().moveAbove(widgetGuildListAdapter$Operation$MoveAbove.getFromPosition(), widgetGuildListAdapter$Operation$MoveAbove.getTargetPosition());
-        } else if (operation instanceof WidgetGuildListAdapter$Operation$MoveBelow) {
-            WidgetGuildListAdapter$Operation$MoveBelow widgetGuildListAdapter$Operation$MoveBelow = (WidgetGuildListAdapter$Operation$MoveBelow) operation;
-            getViewModel().moveBelow(widgetGuildListAdapter$Operation$MoveBelow.getFromPosition(), widgetGuildListAdapter$Operation$MoveBelow.getTargetPosition());
-        } else if (operation instanceof WidgetGuildListAdapter$Operation$TargetOperation) {
-            WidgetGuildListAdapter$Operation$TargetOperation widgetGuildListAdapter$Operation$TargetOperation = (WidgetGuildListAdapter$Operation$TargetOperation) operation;
-            getViewModel().target(widgetGuildListAdapter$Operation$TargetOperation.getFromPosition(), widgetGuildListAdapter$Operation$TargetOperation.getTargetPosition());
+        if (operation instanceof WidgetGuildListAdapter.Operation.MoveAbove) {
+            WidgetGuildListAdapter.Operation.MoveAbove moveAbove = (WidgetGuildListAdapter.Operation.MoveAbove) operation;
+            getViewModel().moveAbove(moveAbove.getFromPosition(), moveAbove.getTargetPosition());
+        } else if (operation instanceof WidgetGuildListAdapter.Operation.MoveBelow) {
+            WidgetGuildListAdapter.Operation.MoveBelow moveBelow = (WidgetGuildListAdapter.Operation.MoveBelow) operation;
+            getViewModel().moveBelow(moveBelow.getFromPosition(), moveBelow.getTargetPosition());
+        } else if (operation instanceof WidgetGuildListAdapter.Operation.TargetOperation) {
+            WidgetGuildListAdapter.Operation.TargetOperation targetOperation = (WidgetGuildListAdapter.Operation.TargetOperation) operation;
+            getViewModel().target(targetOperation.getFromPosition(), targetOperation.getTargetPosition());
         }
     }
 
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetGuildsList.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildsList$onResume$1(this), 62, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().listenForEvents(), this, null, 2, null), WidgetGuildsList.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildsList$onResume$2(this), 62, (Object) null);
-        WidgetGuildsList$AddGuildHint$Companion widgetGuildsList$AddGuildHint$Companion = WidgetGuildsList$AddGuildHint.Companion;
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(widgetGuildsList$AddGuildHint$Companion.get(), this, null, 2, null), WidgetGuildsList.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildsList$onResume$3(this), 62, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(widgetGuildsList$AddGuildHint$Companion.getDismissAction(), this, null, 2, null), WidgetGuildsList.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildsList$onResume$4(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetGuildsList.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().listenForEvents(), this, null, 2, null), WidgetGuildsList.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
+        AddGuildHint.Companion companion = AddGuildHint.INSTANCE;
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(companion.get(), this, null, 2, null), WidgetGuildsList.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass3(), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(companion.getDismissAction(), this, null, 2, null), WidgetGuildsList.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass4(), 62, (Object) null);
         configureBottomNavSpace();
     }
 
@@ -321,10 +619,10 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
         m.checkNotNullExpressionValue(viewStub, "binding.guildListUnreadsStub");
         RecyclerView recyclerView = getBinding().f2458b;
         m.checkNotNullExpressionValue(recyclerView, "binding.guildList");
-        WidgetChannelListUnreads widgetChannelListUnreads = new WidgetChannelListUnreads(viewStub, recyclerView, null, new WidgetGuildsList$onViewBound$1(this), 0, 0, false, 116, null);
+        WidgetChannelListUnreads widgetChannelListUnreads = new WidgetChannelListUnreads(viewStub, recyclerView, null, new AnonymousClass1(), 0, 0, false, 116, null);
         this.guildListUnreads = widgetChannelListUnreads;
         if (widgetChannelListUnreads != null) {
-            widgetChannelListUnreads.setMentionResId(2131886090);
+            widgetChannelListUnreads.setMentionResId(R.string._new);
         }
         WidgetChannelListUnreads widgetChannelListUnreads2 = this.guildListUnreads;
         if (widgetChannelListUnreads2 != null) {
@@ -336,7 +634,7 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
         }
         WidgetHome widgetHome = (WidgetHome) parentFragment;
         if (widgetHome != null) {
-            widgetHome.setOnGuildListAddHintCreate(new WidgetGuildsList$onViewBound$2(this));
+            widgetHome.setOnGuildListAddHintCreate(new AnonymousClass2());
         }
     }
 
@@ -369,36 +667,36 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
         }
         new ItemTouchHelper(new GuildsDragAndDropCallback(widgetGuildListAdapter3)).attachToRecyclerView(getBinding().f2458b);
         RecyclerView recyclerView5 = getBinding().f2458b;
-        Drawable drawable = ContextCompat.getDrawable(requireContext(), DrawableCompat.getThemedDrawableRes$default(requireContext(), 2130968712, 0, 2, (Object) null));
+        Drawable drawable = ContextCompat.getDrawable(requireContext(), DrawableCompat.getThemedDrawableRes$default(requireContext(), R.attr.bg_folder_no_children, 0, 2, (Object) null));
         m.checkNotNull(drawable);
         m.checkNotNullExpressionValue(drawable, "ContextCompat.getDrawabl…children)\n            )!!");
-        Drawable drawable2 = ContextCompat.getDrawable(requireContext(), DrawableCompat.getThemedDrawableRes$default(requireContext(), 2130968713, 0, 2, (Object) null));
+        Drawable drawable2 = ContextCompat.getDrawable(requireContext(), DrawableCompat.getThemedDrawableRes$default(requireContext(), R.attr.bg_folder_tintable_no_children, 0, 2, (Object) null));
         m.checkNotNull(drawable2);
         m.checkNotNullExpressionValue(drawable2, "ContextCompat.getDrawabl…children)\n            )!!");
-        Drawable drawable3 = ContextCompat.getDrawable(requireContext(), DrawableCompat.getThemedDrawableRes$default(requireContext(), 2130968714, 0, 2, (Object) null));
+        Drawable drawable3 = ContextCompat.getDrawable(requireContext(), DrawableCompat.getThemedDrawableRes$default(requireContext(), R.attr.bg_folder_with_children, 0, 2, (Object) null));
         m.checkNotNull(drawable3);
         m.checkNotNullExpressionValue(drawable3, "ContextCompat.getDrawabl…children)\n            )!!");
-        recyclerView5.addItemDecoration(new FolderItemDecoration(drawable, drawable2, drawable3, requireContext().getResources().getDimensionPixelSize(2131165293)));
+        recyclerView5.addItemDecoration(new FolderItemDecoration(drawable, drawable2, drawable3, requireContext().getResources().getDimensionPixelSize(R.dimen.avatar_size_large)));
     }
 
     private final void showChannelActions(long channelId) {
-        WidgetChannelsListItemChannelActions$Companion widgetChannelsListItemChannelActions$Companion = WidgetChannelsListItemChannelActions.Companion;
+        WidgetChannelsListItemChannelActions.Companion companion = WidgetChannelsListItemChannelActions.INSTANCE;
         FragmentManager parentFragmentManager = getParentFragmentManager();
         m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        widgetChannelsListItemChannelActions$Companion.show(parentFragmentManager, channelId);
+        companion.show(parentFragmentManager, channelId);
     }
 
     private final void showCreateGuild() {
         dismissAddGuildHint(true);
-        WidgetGuildTemplates.Companion.launch(requireContext(), CreateGuildTrigger.IN_APP, false);
+        WidgetGuildTemplates.INSTANCE.launch(requireContext(), CreateGuildTrigger.IN_APP, false);
     }
 
     private final void showHelp() {
         dismissAddGuildHint(true);
-        WidgetNavigationHelp$Companion widgetNavigationHelp$Companion = WidgetNavigationHelp.Companion;
+        WidgetNavigationHelp.Companion companion = WidgetNavigationHelp.INSTANCE;
         FragmentManager parentFragmentManager = getParentFragmentManager();
         m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        widgetNavigationHelp$Companion.show(parentFragmentManager);
+        companion.show(parentFragmentManager);
     }
 
     private final void showHubVerification() {
@@ -408,6 +706,6 @@ public final class WidgetGuildsList extends AppFragment implements WidgetGuildLi
     private final void showUnavailableGuildsToast(int unavailableGuildCount) {
         Resources resources = getResources();
         m.checkNotNullExpressionValue(resources, "resources");
-        b.a.d.m.h(getContext(), b.l(StringResourceUtilsKt.getQuantityString(resources, requireContext(), R$plurals.partial_outage_count, unavailableGuildCount, Integer.valueOf(unavailableGuildCount)), new Object[0], null, 2), 0, null, 12);
+        b.a.d.m.h(getContext(), b.l(StringResourceUtilsKt.getQuantityString(resources, requireContext(), R.plurals.partial_outage_count, unavailableGuildCount, Integer.valueOf(unavailableGuildCount)), new Object[0], null, 2), 0, null, 12);
     }
 }

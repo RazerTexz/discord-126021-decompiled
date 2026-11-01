@@ -8,8 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.google.android.material.button.MaterialButton;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -33,16 +32,16 @@ public final class EmptyFriendsStateViewBinding implements ViewBinding {
 
     @NonNull
     public static EmptyFriendsStateViewBinding a(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
-        layoutInflater.inflate(R$layout.empty_friends_state_view, viewGroup);
-        int i = R$id.empty_friends_state_add_friend;
-        MaterialButton materialButton = (MaterialButton) viewGroup.findViewById(R$id.empty_friends_state_add_friend);
+        layoutInflater.inflate(R.layout.empty_friends_state_view, viewGroup);
+        int i = R.id.empty_friends_state_add_friend;
+        MaterialButton materialButton = (MaterialButton) viewGroup.findViewById(R.id.empty_friends_state_add_friend);
         if (materialButton != null) {
-            ImageView imageView = (ImageView) viewGroup.findViewById(R$id.empty_friends_state_image);
-            i = R$id.empty_friends_state_title;
-            TextView textView = (TextView) viewGroup.findViewById(R$id.empty_friends_state_title);
+            ImageView imageView = (ImageView) viewGroup.findViewById(R.id.empty_friends_state_image);
+            i = R.id.empty_friends_state_title;
+            TextView textView = (TextView) viewGroup.findViewById(R.id.empty_friends_state_title);
             if (textView != null) {
-                i = R$id.subtitle;
-                TextView textView2 = (TextView) viewGroup.findViewById(R$id.subtitle);
+                i = R.id.subtitle;
+                TextView textView2 = (TextView) viewGroup.findViewById(R.id.subtitle);
                 if (textView2 != null) {
                     return new EmptyFriendsStateViewBinding(viewGroup, materialButton, imageView, textView, textView2);
                 }

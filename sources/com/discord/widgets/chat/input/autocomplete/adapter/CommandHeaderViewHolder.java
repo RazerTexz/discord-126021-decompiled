@@ -1,32 +1,99 @@
 package com.discord.widgets.chat.input.autocomplete.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
+import androidx.recyclerview.widget.RecyclerView;
+import com.discord.R;
 import com.discord.api.user.User;
 import com.discord.databinding.WidgetChatInputCommandApplicationHeaderItemBinding;
+import com.discord.models.commands.Application;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.drawable.DrawableCompat;
+import com.discord.utilities.error.Error;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImagesBitmap;
-import com.discord.utilities.images.MGImagesBitmap$ImageRequest;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.widgets.chat.input.autocomplete.ApplicationPlaceholder;
+import d0.g0.t;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.HashSet;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: CommandHeaderViewHolder.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class CommandHeaderViewHolder extends RecyclerView$ViewHolder implements StickyHeaderHolder {
+public final class CommandHeaderViewHolder extends RecyclerView.ViewHolder implements StickyHeaderHolder {
     private final WidgetChatInputCommandApplicationHeaderItemBinding binding;
     private ApplicationPlaceholder currentItem;
     private final View itemView;
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.adapter.CommandHeaderViewHolder$bind$1, reason: invalid class name */
+    /* JADX INFO: compiled from: CommandHeaderViewHolder.kt */
+    public final class AnonymousClass1 extends o implements Function1<MGImagesBitmap.CloseableBitmaps, Unit> {
+        public final /* synthetic */ String $iconUrl;
+        public final /* synthetic */ ApplicationPlaceholder $item;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(ApplicationPlaceholder applicationPlaceholder, String str) {
+            super(1);
+            this.$item = applicationPlaceholder;
+            this.$iconUrl = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(MGImagesBitmap.CloseableBitmaps closeableBitmaps) {
+            invoke2(closeableBitmaps);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(MGImagesBitmap.CloseableBitmaps closeableBitmaps) {
+            Application application;
+            m.checkNotNullParameter(closeableBitmaps, "closeableBitmaps");
+            ApplicationPlaceholder currentItem = CommandHeaderViewHolder.this.getCurrentItem();
+            if (t.equals$default((currentItem == null || (application = currentItem.getApplication()) == null) ? null : application.getIcon(), this.$item.getApplication().getIcon(), false, 2, null)) {
+                CommandHeaderViewHolder.access$getBinding$p(CommandHeaderViewHolder.this).f2305b.setImageBitmap((Bitmap) closeableBitmaps.get((Object) this.$iconUrl));
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.adapter.CommandHeaderViewHolder$bind$2, reason: invalid class name */
+    /* JADX INFO: compiled from: CommandHeaderViewHolder.kt */
+    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+        public final /* synthetic */ int $tint;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(int i) {
+            super(1);
+            this.$tint = i;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            m.checkNotNullParameter(error, "<anonymous parameter 0>");
+            ImageView imageView = CommandHeaderViewHolder.access$getBinding$p(CommandHeaderViewHolder.this).f2305b;
+            m.checkNotNullExpressionValue(imageView, "binding.chatInputApplicationAvatar");
+            Context context = imageView.getContext();
+            m.checkNotNullExpressionValue(context, "binding.chatInputApplicationAvatar.context");
+            Drawable drawable$default = DrawableCompat.getDrawable$default(context, R.drawable.ic_slash_command_24dp, this.$tint, false, 4, null);
+            if (drawable$default != null) {
+                CommandHeaderViewHolder.access$getBinding$p(CommandHeaderViewHolder.this).f2305b.setImageDrawable(drawable$default);
+            }
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public CommandHeaderViewHolder(WidgetChatInputCommandApplicationHeaderItemBinding widgetChatInputCommandApplicationHeaderItemBinding) {
@@ -59,13 +126,13 @@ public final class CommandHeaderViewHolder extends RecyclerView$ViewHolder imple
         textView.setText(name);
         ImageView imageView = this.binding.f2305b;
         m.checkNotNullExpressionValue(imageView, "binding.chatInputApplicationAvatar");
-        int themedColor = ColorCompat.getThemedColor(imageView, 2130969056);
+        int themedColor = ColorCompat.getThemedColor(imageView, R.attr.colorTextMuted);
         if (item.getApplication().getIconRes() == null) {
             String applicationIcon$default = IconUtils.getApplicationIcon$default(IconUtils.INSTANCE, item.getApplication(), 0, 2, (Object) null);
             HashSet hashSet = new HashSet();
-            hashSet.add(new MGImagesBitmap$ImageRequest(applicationIcon$default, true));
+            hashSet.add(new MGImagesBitmap.ImageRequest(applicationIcon$default, true));
             this.binding.f2305b.setImageBitmap(null);
-            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(MGImagesBitmap.getBitmaps(hashSet)), CommandHeaderViewHolder.class, (Context) null, (Function1) null, new CommandHeaderViewHolder$bind$2(this, themedColor), (Function0) null, (Function0) null, new CommandHeaderViewHolder$bind$1(this, item, applicationIcon$default), 54, (Object) null);
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(MGImagesBitmap.getBitmaps(hashSet)), CommandHeaderViewHolder.class, (Context) null, (Function1) null, new AnonymousClass2(themedColor), (Function0) null, (Function0) null, new AnonymousClass1(item, applicationIcon$default), 54, (Object) null);
             return;
         }
         ImageView imageView2 = this.binding.f2305b;

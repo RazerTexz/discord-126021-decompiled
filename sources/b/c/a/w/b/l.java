@@ -3,7 +3,6 @@ package b.c.a.w.b;
 import android.annotation.TargetApi;
 import android.graphics.Matrix;
 import android.graphics.Path;
-import android.graphics.Path$Op;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -25,7 +24,7 @@ public class l implements m, j {
     }
 
     @TargetApi(19)
-    public final void a(Path$Op path$Op) {
+    public final void a(Path.Op op) {
         Matrix matrixE;
         Matrix matrixE2;
         this.f385b.reset();
@@ -70,7 +69,7 @@ public class l implements m, j {
         } else {
             this.a.set(mVar2.getPath());
         }
-        this.c.op(this.a, this.f385b, path$Op);
+        this.c.op(this.a, this.f385b, op);
     }
 
     @Override // b.c.a.w.b.c
@@ -106,13 +105,13 @@ public class l implements m, j {
                 this.c.addPath(this.d.get(i).getPath());
             }
         } else if (iOrdinal == 1) {
-            a(Path$Op.UNION);
+            a(Path.Op.UNION);
         } else if (iOrdinal == 2) {
-            a(Path$Op.REVERSE_DIFFERENCE);
+            a(Path.Op.REVERSE_DIFFERENCE);
         } else if (iOrdinal == 3) {
-            a(Path$Op.INTERSECT);
+            a(Path.Op.INTERSECT);
         } else if (iOrdinal == 4) {
-            a(Path$Op.XOR);
+            a(Path.Op.XOR);
         }
         return this.c;
     }

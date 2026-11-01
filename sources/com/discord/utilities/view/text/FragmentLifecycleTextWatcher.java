@@ -3,7 +3,7 @@ package com.discord.utilities.view.text;
 import android.text.Editable;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
-import androidx.view.Lifecycle$Event;
+import androidx.view.Lifecycle;
 import androidx.view.LifecycleObserver;
 import androidx.view.LifecycleOwner;
 import androidx.view.OnLifecycleEvent;
@@ -52,7 +52,7 @@ public final class FragmentLifecycleTextWatcher implements android.text.TextWatc
         }
     }
 
-    @OnLifecycleEvent(Lifecycle$Event.ON_DESTROY)
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public final void onDestroyView() {
         this.textView.removeTextChangedListener(this);
     }

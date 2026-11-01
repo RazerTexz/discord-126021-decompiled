@@ -1,9 +1,6 @@
 package b.g.a.c.c0;
 
 import b.g.a.a.h0;
-import b.g.a.a.p$b;
-import b.g.a.c.b$a;
-import b.g.a.c.s$a;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -14,18 +11,147 @@ import java.util.Set;
 public class c0 extends s implements Comparable<c0> {
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
-    public c0$d<j> f687s;
+    public d<j> f687s;
     public final boolean l;
     public final b.g.a.c.z.l<?> m;
     public final b.g.a.c.b n;
     public final b.g.a.c.t o;
     public final b.g.a.c.t p;
-    public c0$d<g> q;
-    public c0$d<m> r;
-    public c0$d<j> t;
+    public d<g> q;
+    public d<m> r;
+    public d<j> t;
     public transient b.g.a.c.s u;
-    public transient b$a v;
-    public static final b$a k = new b$a(1, "");
+    public transient b.g.a.c.b.a v;
+    public static final b.g.a.c.b.a k = new b.g.a.c.b.a(1, "");
+
+    /* JADX INFO: compiled from: POJOPropertyBuilder.java */
+    public class a implements e<Class<?>[]> {
+        public a() {
+        }
+
+        @Override // b.g.a.c.c0.c0.e
+        public Class<?>[] a(i iVar) {
+            return c0.this.n.R(iVar);
+        }
+    }
+
+    /* JADX INFO: compiled from: POJOPropertyBuilder.java */
+    public class b implements e<b.g.a.c.b.a> {
+        public b() {
+        }
+
+        @Override // b.g.a.c.c0.c0.e
+        public b.g.a.c.b.a a(i iVar) {
+            return c0.this.n.D(iVar);
+        }
+    }
+
+    /* JADX INFO: compiled from: POJOPropertyBuilder.java */
+    public class c implements e<Boolean> {
+        public c() {
+        }
+
+        @Override // b.g.a.c.c0.c0.e
+        public Boolean a(i iVar) {
+            return c0.this.n.d0(iVar);
+        }
+    }
+
+    /* JADX INFO: compiled from: POJOPropertyBuilder.java */
+    public final class d<T> {
+        public final T a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final d<T> f688b;
+        public final b.g.a.c.t c;
+        public final boolean d;
+        public final boolean e;
+        public final boolean f;
+
+        public d(T t, d<T> dVar, b.g.a.c.t tVar, boolean z2, boolean z3, boolean z4) {
+            this.a = t;
+            this.f688b = dVar;
+            b.g.a.c.t tVar2 = (tVar == null || tVar.d()) ? null : tVar;
+            this.c = tVar2;
+            if (z2) {
+                if (tVar2 == null) {
+                    throw new IllegalArgumentException("Cannot pass true for 'explName' if name is null/empty");
+                }
+                if (!tVar.c()) {
+                    z2 = false;
+                }
+            }
+            this.d = z2;
+            this.e = z3;
+            this.f = z4;
+        }
+
+        public d<T> a(d<T> dVar) {
+            d<T> dVar2 = this.f688b;
+            return dVar2 == null ? c(dVar) : c(dVar2.a(dVar));
+        }
+
+        public d<T> b() {
+            d<T> dVar = this.f688b;
+            if (dVar == null) {
+                return this;
+            }
+            d<T> dVarB = dVar.b();
+            if (this.c != null) {
+                return dVarB.c == null ? c(null) : c(dVarB);
+            }
+            if (dVarB.c != null) {
+                return dVarB;
+            }
+            boolean z2 = this.e;
+            if (z2 == dVarB.e) {
+                return c(dVarB);
+            }
+            return z2 ? c(null) : dVarB;
+        }
+
+        public d<T> c(d<T> dVar) {
+            return dVar == this.f688b ? this : new d<>(this.a, dVar, this.c, this.d, this.e, this.f);
+        }
+
+        public d<T> d() {
+            d<T> dVarD;
+            if (!this.f) {
+                d<T> dVar = this.f688b;
+                return (dVar == null || (dVarD = dVar.d()) == this.f688b) ? this : c(dVarD);
+            }
+            d<T> dVar2 = this.f688b;
+            if (dVar2 == null) {
+                return null;
+            }
+            return dVar2.d();
+        }
+
+        public d<T> e() {
+            return this.f688b == null ? this : new d<>(this.a, null, this.c, this.d, this.e, this.f);
+        }
+
+        public d<T> f() {
+            d<T> dVar = this.f688b;
+            d<T> dVarF = dVar == null ? null : dVar.f();
+            return this.e ? c(dVarF) : dVarF;
+        }
+
+        public String toString() {
+            String str = String.format("%s[visible=%b,ignore=%b,explicitName=%b]", this.a.toString(), Boolean.valueOf(this.e), Boolean.valueOf(this.f), Boolean.valueOf(this.d));
+            if (this.f688b == null) {
+                return str;
+            }
+            StringBuilder sbX = b.d.b.a.a.X(str, ", ");
+            sbX.append(this.f688b.toString());
+            return sbX.toString();
+        }
+    }
+
+    /* JADX INFO: compiled from: POJOPropertyBuilder.java */
+    public interface e<T> {
+        T a(i iVar);
+    }
 
     public c0(b.g.a.c.z.l<?> lVar, b.g.a.c.b bVar, boolean z2, b.g.a.c.t tVar) {
         this.m = lVar;
@@ -35,13 +161,13 @@ public class c0 extends s implements Comparable<c0> {
         this.l = z2;
     }
 
-    public final <T extends i> c0$d<T> A(c0$d<T> c0_d, p pVar) {
-        i iVar = (i) c0_d.a.l(pVar);
-        c0$d<T> c0_d2 = c0_d.f688b;
-        if (c0_d2 != null) {
-            c0_d = c0_d.c(A(c0_d2, pVar));
+    public final <T extends i> d<T> A(d<T> dVar, p pVar) {
+        i iVar = (i) dVar.a.l(pVar);
+        d<T> dVar2 = dVar.f688b;
+        if (dVar2 != null) {
+            dVar = dVar.c(A(dVar2, pVar));
         }
-        return iVar == c0_d.a ? c0_d : new c0$d<>(iVar, c0_d.f688b, c0_d.c, c0_d.d, c0_d.e, c0_d.f);
+        return iVar == dVar.a ? dVar : new d<>(iVar, dVar.f688b, dVar.c, dVar.d, dVar.e, dVar.f);
     }
 
     /*  JADX ERROR: JadxRuntimeException in pass: ConstructorVisitor
@@ -82,22 +208,22 @@ public class c0 extends s implements Comparable<c0> {
         	at java.base/java.util.stream.Sink$ChainedReference.end(Sink.java:258)
         */
 
-    public final Set<b.g.a.c.t> C(c0$d<? extends i> c0_d, Set<b.g.a.c.t> set) {
-        for (c0$d c0_d2 = c0_d; c0_d2 != null; c0_d2 = c0_d2.f688b) {
-            if (c0_d2.d && c0_d2.c != null) {
+    public final Set<b.g.a.c.t> C(d<? extends i> dVar, Set<b.g.a.c.t> set) {
+        for (d dVar2 = dVar; dVar2 != null; dVar2 = dVar2.f688b) {
+            if (dVar2.d && dVar2.c != null) {
                 if (set == null) {
                     set = new HashSet<>();
                 }
-                set.add(c0_d2.c);
+                set.add(dVar2.c);
             }
         }
         return set;
     }
 
-    public final <T extends i> p D(c0$d<T> c0_d) {
-        p pVar = c0_d.a.k;
-        c0$d<T> c0_d2 = c0_d.f688b;
-        return c0_d2 != null ? p.c(pVar, D(c0_d2)) : pVar;
+    public final <T extends i> p D(d<T> dVar) {
+        p pVar = dVar.a.k;
+        d<T> dVar2 = dVar.f688b;
+        return dVar2 != null ? p.c(pVar, D(dVar2)) : pVar;
     }
 
     public int E(j jVar) {
@@ -109,28 +235,28 @@ public class c0 extends s implements Comparable<c0> {
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    public final p F(int i, c0$d<? extends i>... c0_dArr) {
-        c0$d<? extends i> c0_d = c0_dArr[i];
-        p pVarC = ((i) c0_d.a).k;
-        c0$d<? extends i> c0_d2 = c0_d.f688b;
-        if (c0_d2 != null) {
-            pVarC = p.c(pVarC, D(c0_d2));
+    public final p F(int i, d<? extends i>... dVarArr) {
+        d<? extends i> dVar = dVarArr[i];
+        p pVarC = ((i) dVar.a).k;
+        d<? extends i> dVar2 = dVar.f688b;
+        if (dVar2 != null) {
+            pVarC = p.c(pVarC, D(dVar2));
         }
         do {
             i++;
-            if (i >= c0_dArr.length) {
+            if (i >= dVarArr.length) {
                 return pVarC;
             }
-        } while (c0_dArr[i] == null);
-        return p.c(pVarC, F(i, c0_dArr));
+        } while (dVarArr[i] == null);
+        return p.c(pVarC, F(i, dVarArr));
     }
 
-    public final <T> c0$d<T> G(c0$d<T> c0_d) {
-        return c0_d == null ? c0_d : c0_d.d();
+    public final <T> d<T> G(d<T> dVar) {
+        return dVar == null ? dVar : dVar.d();
     }
 
-    public final <T> c0$d<T> H(c0$d<T> c0_d) {
-        return c0_d == null ? c0_d : c0_d.f();
+    public final <T> d<T> H(d<T> dVar) {
+        return dVar == null ? dVar : dVar.f();
     }
 
     public int I(j jVar) {
@@ -138,8 +264,8 @@ public class c0 extends s implements Comparable<c0> {
         return (!strC.startsWith("set") || strC.length() <= 3) ? 2 : 1;
     }
 
-    public final <T> c0$d<T> J(c0$d<T> c0_d) {
-        return c0_d == null ? c0_d : c0_d.b();
+    public final <T> d<T> J(d<T> dVar) {
+        return dVar == null ? dVar : dVar.b();
     }
 
     public void K(c0 c0Var) {
@@ -154,37 +280,37 @@ public class c0 extends s implements Comparable<c0> {
         return setC == null ? Collections.emptySet() : setC;
     }
 
-    public <T> T M(c0$e<T> c0_e) {
-        c0$d<j> c0_d;
-        c0$d<g> c0_d2;
+    public <T> T M(e<T> eVar) {
+        d<j> dVar;
+        d<g> dVar2;
         T tA = null;
         if (this.n == null) {
             return null;
         }
         if (this.l) {
-            c0$d<j> c0_d3 = this.f687s;
-            if (c0_d3 != null) {
-                tA = c0_e.a(c0_d3.a);
+            d<j> dVar3 = this.f687s;
+            if (dVar3 != null) {
+                tA = eVar.a(dVar3.a);
             }
         } else {
-            c0$d<m> c0_d4 = this.r;
-            tA = c0_d4 != null ? c0_e.a(c0_d4.a) : null;
-            if (tA == null && (c0_d = this.t) != null) {
-                tA = c0_e.a(c0_d.a);
+            d<m> dVar4 = this.r;
+            tA = dVar4 != null ? eVar.a(dVar4.a) : null;
+            if (tA == null && (dVar = this.t) != null) {
+                tA = eVar.a(dVar.a);
             }
         }
-        return (tA != null || (c0_d2 = this.q) == null) ? tA : c0_e.a(c0_d2.a);
+        return (tA != null || (dVar2 = this.q) == null) ? tA : eVar.a(dVar2.a);
     }
 
-    public static <T> c0$d<T> N(c0$d<T> c0_d, c0$d<T> c0_d2) {
-        if (c0_d == null) {
-            return c0_d2;
+    public static <T> d<T> N(d<T> dVar, d<T> dVar2) {
+        if (dVar == null) {
+            return dVar2;
         }
-        if (c0_d2 == null) {
-            return c0_d;
+        if (dVar2 == null) {
+            return dVar;
         }
-        c0$d<T> c0_d3 = c0_d.f688b;
-        return c0_d3 == null ? c0_d.c(c0_d2) : c0_d.c(c0_d3.a(c0_d2));
+        d<T> dVar3 = dVar.f688b;
+        return dVar3 == null ? dVar.c(dVar2) : dVar.c(dVar3.a(dVar2));
     }
 
     @Override // java.lang.Comparable
@@ -206,63 +332,63 @@ public class c0 extends s implements Comparable<c0> {
     }
 
     @Override // b.g.a.c.c0.s
-    public p$b g() {
+    public b.g.a.a.p.b g() {
         i iVarJ = j();
         b.g.a.c.b bVar = this.n;
-        p$b p_bZ = bVar == null ? null : bVar.z(iVarJ);
-        if (p_bZ != null) {
-            return p_bZ;
+        b.g.a.a.p.b bVarZ = bVar == null ? null : bVar.z(iVarJ);
+        if (bVarZ != null) {
+            return bVarZ;
         }
-        p$b p_b = p$b.j;
-        return p$b.j;
+        b.g.a.a.p.b bVar2 = b.g.a.a.p.b.j;
+        return b.g.a.a.p.b.j;
     }
 
     @Override // b.g.a.c.c0.s
-    public b$a h() {
-        b$a b_a = this.v;
-        if (b_a != null) {
-            if (b_a == k) {
+    public b.g.a.c.b.a h() {
+        b.g.a.c.b.a aVar = this.v;
+        if (aVar != null) {
+            if (aVar == k) {
                 return null;
             }
-            return b_a;
+            return aVar;
         }
-        b$a b_a2 = (b$a) M(new c0$b(this));
-        this.v = b_a2 == null ? k : b_a2;
-        return b_a2;
+        b.g.a.c.b.a aVar2 = (b.g.a.c.b.a) M(new b());
+        this.v = aVar2 == null ? k : aVar2;
+        return aVar2;
     }
 
     @Override // b.g.a.c.c0.s
     public Class<?>[] i() {
-        return (Class[]) M(new c0$a(this));
+        return (Class[]) M(new a());
     }
 
     /* JADX WARN: Multi-variable type inference failed */
     @Override // b.g.a.c.c0.s
     public m k() {
-        c0$d c0_d = this.r;
-        if (c0_d == null) {
+        d dVar = this.r;
+        if (dVar == null) {
             return null;
         }
         do {
-            T t = c0_d.a;
-            if (((m) t)._owner instanceof e) {
+            T t = dVar.a;
+            if (((m) t)._owner instanceof b.g.a.c.c0.e) {
                 return (m) t;
             }
-            c0_d = c0_d.f688b;
-        } while (c0_d != null);
+            dVar = dVar.f688b;
+        } while (dVar != null);
         return this.r.a;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
     @Override // b.g.a.c.c0.s
     public g l() {
-        c0$d<g> c0_d = this.q;
-        if (c0_d == null) {
+        d<g> dVar = this.q;
+        if (dVar == null) {
             return null;
         }
-        g gVar = c0_d.a;
-        for (c0$d c0_d2 = c0_d.f688b; c0_d2 != null; c0_d2 = c0_d2.f688b) {
-            g gVar2 = (g) c0_d2.a;
+        g gVar = dVar.a;
+        for (d dVar2 = dVar.f688b; dVar2 != null; dVar2 = dVar2.f688b) {
+            g gVar2 = (g) dVar2.a;
             Class<?> clsG = gVar.g();
             Class<?> clsG2 = gVar2.g();
             if (clsG != clsG2) {
@@ -297,56 +423,56 @@ public class c0 extends s implements Comparable<c0> {
     public j n() {
         int iE;
         int iE2;
-        c0$d c0_d = this.f687s;
-        if (c0_d == null) {
+        d dVar = this.f687s;
+        if (dVar == null) {
             return null;
         }
-        c0$d c0_d2 = c0_d.f688b;
-        if (c0_d2 == null) {
-            return (j) c0_d.a;
+        d dVar2 = dVar.f688b;
+        if (dVar2 == null) {
+            return (j) dVar.a;
         }
-        while (c0_d2 != null) {
-            Class<?> clsG = ((j) c0_d.a).g();
-            Class<?> clsG2 = ((j) c0_d2.a).g();
+        while (dVar2 != null) {
+            Class<?> clsG = ((j) dVar.a).g();
+            Class<?> clsG2 = ((j) dVar2.a).g();
             if (clsG == clsG2) {
-                iE = E((j) c0_d2.a);
-                iE2 = E((j) c0_d.a);
+                iE = E((j) dVar2.a);
+                iE2 = E((j) dVar.a);
                 if (iE != iE2) {
                     StringBuilder sbU = b.d.b.a.a.U("Conflicting getter definitions for property \"");
                     sbU.append(p());
                     sbU.append("\": ");
-                    sbU.append(((j) c0_d.a).h());
+                    sbU.append(((j) dVar.a).h());
                     sbU.append(" vs ");
-                    sbU.append(((j) c0_d2.a).h());
+                    sbU.append(((j) dVar2.a).h());
                     throw new IllegalArgumentException(sbU.toString());
                 }
                 if (iE < iE2) {
-                    c0_d = c0_d2;
+                    dVar = dVar2;
                 }
             } else if (clsG.isAssignableFrom(clsG2)) {
-                c0_d = c0_d2;
+                dVar = dVar2;
             } else if (clsG2.isAssignableFrom(clsG)) {
                 continue;
             } else {
-                iE = E((j) c0_d2.a);
-                iE2 = E((j) c0_d.a);
+                iE = E((j) dVar2.a);
+                iE2 = E((j) dVar.a);
                 if (iE != iE2) {
                     StringBuilder sbU2 = b.d.b.a.a.U("Conflicting getter definitions for property \"");
                     sbU2.append(p());
                     sbU2.append("\": ");
-                    sbU2.append(((j) c0_d.a).h());
+                    sbU2.append(((j) dVar.a).h());
                     sbU2.append(" vs ");
-                    sbU2.append(((j) c0_d2.a).h());
+                    sbU2.append(((j) dVar2.a).h());
                     throw new IllegalArgumentException(sbU2.toString());
                 }
                 if (iE < iE2) {
-                    c0_d = c0_d2;
+                    dVar = dVar2;
                 }
             }
-            c0_d2 = c0_d2.f688b;
+            dVar2 = dVar2.f688b;
         }
-        this.f687s = c0_d.e();
-        return (j) c0_d.a;
+        this.f687s = dVar.e();
+        return (j) dVar.a;
     }
 
     /* JADX WARN: Code duplicated, block: B:12:0x001d  */
@@ -362,33 +488,33 @@ public class c0 extends s implements Comparable<c0> {
         if (this.u == null) {
             h0 h0VarB = null;
             if (this.l) {
-                c0$d<j> c0_d = this.f687s;
-                if (c0_d != null) {
-                    jVar = c0_d.a;
+                d<j> dVar = this.f687s;
+                if (dVar != null) {
+                    jVar = dVar.a;
                 } else {
-                    c0$d<g> c0_d2 = this.q;
-                    if (c0_d2 != null) {
-                        jVar = c0_d2.a;
+                    d<g> dVar2 = this.q;
+                    if (dVar2 != null) {
+                        jVar = dVar2.a;
                     } else {
                         jVar = null;
                     }
                 }
             } else {
-                c0$d<m> c0_d3 = this.r;
-                if (c0_d3 != null) {
-                    jVar = c0_d3.a;
+                d<m> dVar3 = this.r;
+                if (dVar3 != null) {
+                    jVar = dVar3.a;
                 } else {
-                    c0$d<j> c0_d4 = this.t;
-                    if (c0_d4 != null) {
-                        jVar = c0_d4.a;
+                    d<j> dVar4 = this.t;
+                    if (dVar4 != null) {
+                        jVar = dVar4.a;
                     } else {
-                        c0$d<g> c0_d5 = this.q;
-                        if (c0_d5 != null) {
-                            jVar = c0_d5.a;
+                        d<g> dVar5 = this.q;
+                        if (dVar5 != null) {
+                            jVar = dVar5.a;
                         } else {
-                            c0$d<j> c0_d6 = this.f687s;
-                            if (c0_d6 != null) {
-                                jVar = c0_d6.a;
+                            d<j> dVar6 = this.f687s;
+                            if (dVar6 != null) {
+                                jVar = dVar6.a;
                             } else {
                                 jVar = null;
                             }
@@ -429,14 +555,14 @@ public class c0 extends s implements Comparable<c0> {
                             z2 = true;
                         } else {
                             if (boolM.booleanValue()) {
-                                sVarA = sVarA.a(new s$a(iVarJ, false));
+                                sVarA = sVarA.a(new b.g.a.c.s.a(iVarJ, false));
                             }
                             z2 = false;
                         }
-                        b.g.a.a.z$a z_aM = this.n.M(jVar);
-                        if (z_aM != null) {
-                            h0VarB = z_aM.b();
-                            h0VarA = z_aM.a();
+                        b.g.a.a.z.a aVarM = this.n.M(jVar);
+                        if (aVarM != null) {
+                            h0VarB = aVarM.b();
+                            h0VarA = aVarM.a();
                         } else {
                             h0VarA = null;
                         }
@@ -458,16 +584,16 @@ public class c0 extends s implements Comparable<c0> {
                         Objects.requireNonNull(this.m.f(cls));
                     }
                     if (z2 || h0VarB == null || h0VarA == null) {
-                        b.g.a.a.z$a z_aL = this.m.l();
+                        b.g.a.a.z.a aVarL = this.m.l();
                         if (h0VarB == null) {
-                            h0VarB = z_aL.b();
+                            h0VarB = aVarL.b();
                         }
                         if (h0VarA == null) {
-                            h0VarA = z_aL.a();
+                            h0VarA = aVarL.a();
                         }
                         if (z2) {
                             if (Boolean.TRUE.equals(this.m.h()) && iVarJ != null) {
-                                sVarA = sVarA.a(new s$a(iVarJ, true));
+                                sVarA = sVarA.a(new b.g.a.c.s.a(iVarJ, true));
                             }
                         }
                     }
@@ -510,10 +636,10 @@ public class c0 extends s implements Comparable<c0> {
     public Class<?> r() {
         b.g.a.c.j jVarE;
         if (this.l) {
-            b bVarN = n();
+            b.g.a.c.c0.b bVarN = n();
             jVarE = (bVarN == null && (bVarN = l()) == null) ? b.g.a.c.h0.n.k() : bVarN.e();
         } else {
-            b bVarK = k();
+            b.g.a.c.c0.b bVarK = k();
             if (bVarK == null) {
                 j jVarS = s();
                 if (jVarS != null) {
@@ -554,20 +680,20 @@ public class c0 extends s implements Comparable<c0> {
         int I2;
         b.g.a.c.b bVar;
         j jVarF0;
-        c0$d c0_d = this.t;
-        if (c0_d == null) {
+        d dVar = this.t;
+        if (dVar == null) {
             return null;
         }
-        c0$d c0_d2 = c0_d.f688b;
-        if (c0_d2 == null) {
-            return (j) c0_d.a;
+        d dVar2 = dVar.f688b;
+        if (dVar2 == null) {
+            return (j) dVar.a;
         }
-        while (c0_d2 != null) {
-            Class<?> clsG = ((j) c0_d.a).g();
-            Class<?> clsG2 = ((j) c0_d2.a).g();
+        while (dVar2 != null) {
+            Class<?> clsG = ((j) dVar.a).g();
+            Class<?> clsG2 = ((j) dVar2.a).g();
             if (clsG == clsG2) {
-                jVar = (j) c0_d2.a;
-                jVar2 = (j) c0_d.a;
+                jVar = (j) dVar2.a;
+                jVar2 = (j) dVar.a;
                 I = I(jVar);
                 I2 = I(jVar2);
                 if (I != I2) {
@@ -577,23 +703,23 @@ public class c0 extends s implements Comparable<c0> {
                         if (jVarF0 != jVar2) {
                             if (jVarF0 != jVar) {
                             }
-                            c0_d = c0_d2;
+                            dVar = dVar2;
                         } else {
                             continue;
                         }
                     }
-                    throw new IllegalArgumentException(String.format("Conflicting setter definitions for property \"%s\": %s vs %s", p(), ((j) c0_d.a).h(), ((j) c0_d2.a).h()));
+                    throw new IllegalArgumentException(String.format("Conflicting setter definitions for property \"%s\": %s vs %s", p(), ((j) dVar.a).h(), ((j) dVar2.a).h()));
                 }
                 if (I < I2) {
-                    c0_d = c0_d2;
+                    dVar = dVar2;
                 }
             } else if (clsG.isAssignableFrom(clsG2)) {
-                c0_d = c0_d2;
+                dVar = dVar2;
             } else if (clsG2.isAssignableFrom(clsG)) {
                 continue;
             } else {
-                jVar = (j) c0_d2.a;
-                jVar2 = (j) c0_d.a;
+                jVar = (j) dVar2.a;
+                jVar2 = (j) dVar.a;
                 I = I(jVar);
                 I2 = I(jVar2);
                 if (I != I2) {
@@ -603,21 +729,21 @@ public class c0 extends s implements Comparable<c0> {
                         if (jVarF0 != jVar2) {
                             if (jVarF0 != jVar) {
                             }
-                            c0_d = c0_d2;
+                            dVar = dVar2;
                         } else {
                             continue;
                         }
                     }
-                    throw new IllegalArgumentException(String.format("Conflicting setter definitions for property \"%s\": %s vs %s", p(), ((j) c0_d.a).h(), ((j) c0_d2.a).h()));
+                    throw new IllegalArgumentException(String.format("Conflicting setter definitions for property \"%s\": %s vs %s", p(), ((j) dVar.a).h(), ((j) dVar2.a).h()));
                 }
                 if (I < I2) {
-                    c0_d = c0_d2;
+                    dVar = dVar2;
                 }
             }
-            c0_d2 = c0_d2.f688b;
+            dVar2 = dVar2.f688b;
         }
-        this.t = c0_d.e();
-        return (j) c0_d.a;
+        this.t = dVar.e();
+        return (j) dVar.a;
     }
 
     @Override // b.g.a.c.c0.s
@@ -652,47 +778,47 @@ public class c0 extends s implements Comparable<c0> {
 
     @Override // b.g.a.c.c0.s
     public boolean v() {
-        Boolean bool = (Boolean) M(new c0$c(this));
+        Boolean bool = (Boolean) M(new c());
         return bool != null && bool.booleanValue();
     }
 
-    public final <T> boolean w(c0$d<T> c0_d) {
-        while (c0_d != null) {
-            if (c0_d.c != null && c0_d.d) {
+    public final <T> boolean w(d<T> dVar) {
+        while (dVar != null) {
+            if (dVar.c != null && dVar.d) {
                 return true;
             }
-            c0_d = c0_d.f688b;
+            dVar = dVar.f688b;
         }
         return false;
     }
 
-    public final <T> boolean x(c0$d<T> c0_d) {
-        while (c0_d != null) {
-            b.g.a.c.t tVar = c0_d.c;
+    public final <T> boolean x(d<T> dVar) {
+        while (dVar != null) {
+            b.g.a.c.t tVar = dVar.c;
             if (tVar != null && tVar.c()) {
                 return true;
             }
-            c0_d = c0_d.f688b;
+            dVar = dVar.f688b;
         }
         return false;
     }
 
-    public final <T> boolean y(c0$d<T> c0_d) {
-        while (c0_d != null) {
-            if (c0_d.f) {
+    public final <T> boolean y(d<T> dVar) {
+        while (dVar != null) {
+            if (dVar.f) {
                 return true;
             }
-            c0_d = c0_d.f688b;
+            dVar = dVar.f688b;
         }
         return false;
     }
 
-    public final <T> boolean z(c0$d<T> c0_d) {
-        while (c0_d != null) {
-            if (c0_d.e) {
+    public final <T> boolean z(d<T> dVar) {
+        while (dVar != null) {
+            if (dVar.e) {
                 return true;
             }
-            c0_d = c0_d.f688b;
+            dVar = dVar.f688b;
         }
         return false;
     }

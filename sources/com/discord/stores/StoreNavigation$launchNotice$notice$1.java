@@ -26,7 +26,7 @@ public final class StoreNavigation$launchNotice$notice$1 extends o implements Fu
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(FragmentActivity fragmentActivity) {
         m.checkNotNullParameter(fragmentActivity, "it");
-        StoreNotices.markSeen$default(StoreStream.Companion.getNotices(), this.$noticeName, 0L, 2, null);
+        StoreNotices.markSeen$default(StoreStream.INSTANCE.getNotices(), this.$noticeName, 0L, 2, null);
         return ((Boolean) this.$showAction.invoke(fragmentActivity)).booleanValue();
     }
 }

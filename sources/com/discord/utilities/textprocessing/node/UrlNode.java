@@ -1,20 +1,35 @@
 package com.discord.utilities.textprocessing.node;
 
+import android.content.Context;
 import android.text.SpannableStringBuilder;
+import androidx.annotation.AttrRes;
 import androidx.exifinterface.media.ExifInterface;
 import com.discord.simpleast.core.node.Node;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.spans.ClickableSpan;
 import com.discord.utilities.string.StringUtilsKt;
-import com.discord.utilities.textprocessing.node.UrlNode$RenderContext;
+import com.discord.utilities.textprocessing.node.UrlNode.RenderContext;
 import d0.z.d.m;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function3;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: UrlNode.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class UrlNode<T extends UrlNode$RenderContext> extends Node<T> {
+public final class UrlNode<T extends RenderContext> extends Node<T> {
     private final String mask;
     private final String url;
+
+    /* JADX INFO: compiled from: UrlNode.kt */
+    public interface RenderContext extends BasicRenderContext {
+        @AttrRes
+        int getLinkColorAttrResId();
+
+        Function3<Context, String, String, Unit> getOnClickUrl();
+
+        Function1<String, Unit> getOnLongPressUrl();
+    }
 
     public /* synthetic */ UrlNode(String str, String str2, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(str, (i & 2) != 0 ? null : str2);
@@ -30,7 +45,7 @@ public final class UrlNode<T extends UrlNode$RenderContext> extends Node<T> {
 
     @Override // com.discord.simpleast.core.node.Node
     public /* bridge */ /* synthetic */ void render(SpannableStringBuilder spannableStringBuilder, Object obj) {
-        render(spannableStringBuilder, (UrlNode$RenderContext) obj);
+        render(spannableStringBuilder, (RenderContext) obj);
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

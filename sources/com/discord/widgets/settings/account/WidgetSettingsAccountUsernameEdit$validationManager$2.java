@@ -1,9 +1,9 @@
 package com.discord.widgets.settings.account;
 
+import com.discord.R;
 import com.discord.utilities.auth.AuthUtils;
 import com.discord.utilities.view.validators.BasicTextInputValidator;
-import com.discord.utilities.view.validators.Input$EditTextInput;
-import com.discord.utilities.view.validators.Input$TextInputLayoutInput;
+import com.discord.utilities.view.validators.Input;
 import com.discord.utilities.view.validators.InputValidator;
 import com.discord.utilities.view.validators.ValidationManager;
 import com.google.android.material.textfield.TextInputLayout;
@@ -32,9 +32,9 @@ public final class WidgetSettingsAccountUsernameEdit$validationManager$2 extends
     public final ValidationManager invoke() {
         TextInputLayout textInputLayout = WidgetSettingsAccountUsernameEdit.access$getBinding$p(this.this$0).c;
         m.checkNotNullExpressionValue(textInputLayout, "binding.editAccountUsernameWrap");
-        InputValidator[] inputValidatorArr = {BasicTextInputValidator.Companion.createRequiredInputValidator(2131897012)};
+        InputValidator[] inputValidatorArr = {BasicTextInputValidator.INSTANCE.createRequiredInputValidator(R.string.username_required)};
         TextInputLayout textInputLayout2 = WidgetSettingsAccountUsernameEdit.access$getBinding$p(this.this$0).f2598b;
         m.checkNotNullExpressionValue(textInputLayout2, "binding.editAccountDiscriminatorWrap");
-        return new ValidationManager(new Input$TextInputLayoutInput("username", textInputLayout, inputValidatorArr), new Input$EditTextInput("discriminator", textInputLayout2, AuthUtils.INSTANCE.createDiscriminatorInputValidator(2131893974, 2131893977)));
+        return new ValidationManager(new Input.TextInputLayoutInput("username", textInputLayout, inputValidatorArr), new Input.EditTextInput("discriminator", textInputLayout2, AuthUtils.INSTANCE.createDiscriminatorInputValidator(R.string.premium_change_discriminator_length_error, R.string.premium_change_discriminator_zero_error)));
     }
 }

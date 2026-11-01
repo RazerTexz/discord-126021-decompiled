@@ -15,6 +15,13 @@ public final class KrispOveruseDetector {
     public int c;
     public final MediaEngineConnection d;
 
+    /* JADX INFO: compiled from: KrispOveruseDetector.kt */
+    public enum Status {
+        CPU_OVERUSE,
+        FAILED,
+        VAD_CPU_OVERUSE
+    }
+
     public KrispOveruseDetector(MediaEngineConnection mediaEngineConnection) {
         m.checkNotNullParameter(mediaEngineConnection, "connection");
         this.d = mediaEngineConnection;

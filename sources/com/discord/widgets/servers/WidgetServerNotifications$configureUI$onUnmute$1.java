@@ -27,6 +27,6 @@ public final class WidgetServerNotifications$configureUI$onUnmute$1 extends o im
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2() {
-        StoreUserGuildSettings.setGuildMuted$default(StoreStream.Companion.getUserGuildSettings(), this.this$0.requireContext(), this.$guildId, false, null, 8, null);
+        StoreUserGuildSettings.setGuildMuted$default(StoreStream.INSTANCE.getUserGuildSettings(), this.this$0.requireContext(), this.$guildId, false, null, 8, null);
     }
 }

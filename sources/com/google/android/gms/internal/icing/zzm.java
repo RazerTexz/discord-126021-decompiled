@@ -2,7 +2,7 @@ package com.google.android.gms.internal.icing;
 
 import android.os.Bundle;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.a.f.h.k.p;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
@@ -14,7 +14,7 @@ import java.util.Arrays;
 public final class zzm extends AbstractSafeParcelable {
     public final int j;
     public final Bundle k;
-    public static final Parcelable$Creator<zzm> CREATOR = new p();
+    public static final Parcelable.Creator<zzm> CREATOR = new p();
 
     public zzm(int i, Bundle bundle) {
         this.j = i;

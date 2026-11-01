@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 
 /* JADX INFO: compiled from: AutoValue_CrashlyticsReport_Session_Event_Application_Execution_BinaryImage.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class m extends v$d$d$a$b$a {
+public final class m extends v.d.AbstractC0143d.a.b.AbstractC0145a {
     public final long a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -13,31 +13,31 @@ public final class m extends v$d$d$a$b$a {
     public final String c;
     public final String d;
 
-    public m(long j, long j2, String str, String str2, m$a m_a) {
+    public m(long j, long j2, String str, String str2, a aVar) {
         this.a = j;
         this.f1727b = j2;
         this.c = str;
         this.d = str2;
     }
 
-    @Override // b.i.c.m.d.m.v$d$d$a$b$a
+    @Override // b.i.c.m.d.m.v.d.AbstractC0143d.a.b.AbstractC0145a
     @NonNull
     public long a() {
         return this.a;
     }
 
-    @Override // b.i.c.m.d.m.v$d$d$a$b$a
+    @Override // b.i.c.m.d.m.v.d.AbstractC0143d.a.b.AbstractC0145a
     @NonNull
     public String b() {
         return this.c;
     }
 
-    @Override // b.i.c.m.d.m.v$d$d$a$b$a
+    @Override // b.i.c.m.d.m.v.d.AbstractC0143d.a.b.AbstractC0145a
     public long c() {
         return this.f1727b;
     }
 
-    @Override // b.i.c.m.d.m.v$d$d$a$b$a
+    @Override // b.i.c.m.d.m.v.d.AbstractC0143d.a.b.AbstractC0145a
     @Nullable
     public String d() {
         return this.d;
@@ -47,17 +47,17 @@ public final class m extends v$d$d$a$b$a {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof v$d$d$a$b$a)) {
+        if (!(obj instanceof v.d.AbstractC0143d.a.b.AbstractC0145a)) {
             return false;
         }
-        v$d$d$a$b$a v_d_d_a_b_a = (v$d$d$a$b$a) obj;
-        if (this.a == v_d_d_a_b_a.a() && this.f1727b == v_d_d_a_b_a.c() && this.c.equals(v_d_d_a_b_a.b())) {
+        v.d.AbstractC0143d.a.b.AbstractC0145a abstractC0145a = (v.d.AbstractC0143d.a.b.AbstractC0145a) obj;
+        if (this.a == abstractC0145a.a() && this.f1727b == abstractC0145a.c() && this.c.equals(abstractC0145a.b())) {
             String str = this.d;
             if (str == null) {
-                if (v_d_d_a_b_a.d() == null) {
+                if (abstractC0145a.d() == null) {
                     return true;
                 }
-            } else if (str.equals(v_d_d_a_b_a.d())) {
+            } else if (str.equals(abstractC0145a.d())) {
                 return true;
             }
         }

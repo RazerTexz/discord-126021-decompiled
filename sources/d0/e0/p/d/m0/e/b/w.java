@@ -6,11 +6,30 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: SignatureBuildingComponents.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class w {
     public static final w a = new w();
+
+    /* JADX INFO: compiled from: SignatureBuildingComponents.kt */
+    public final class a extends d0.z.d.o implements Function1<String, CharSequence> {
+        public a() {
+            super(1);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final CharSequence invoke2(String str) {
+            d0.z.d.m.checkNotNullParameter(str, "it");
+            return w.access$escapeClassName(w.this, str);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ CharSequence invoke(String str) {
+            return invoke2(str);
+        }
+    }
 
     public final String a(String str) {
         if (str.length() <= 1) {
@@ -81,7 +100,7 @@ public final class w {
         d0.z.d.m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
         d0.z.d.m.checkNotNullParameter(list, "parameters");
         d0.z.d.m.checkNotNullParameter(str2, "ret");
-        return str + '(' + d0.t.u.joinToString$default(list, "", null, null, 0, null, new w$a(this), 30, null) + ')' + a(str2);
+        return str + '(' + d0.t.u.joinToString$default(list, "", null, null, 0, null, new a(), 30, null) + ')' + a(str2);
     }
 
     public final String signature(String str, String str2) {

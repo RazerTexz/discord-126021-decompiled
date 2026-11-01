@@ -10,6 +10,21 @@ import androidx.annotation.RequiresApi;
 /* JADX INFO: loaded from: classes3.dex */
 @RequiresApi(21)
 public abstract class d extends e {
+
+    /* JADX INFO: compiled from: ActionWrapper.java */
+    public class a implements b {
+        public a() {
+        }
+
+        @Override // b.o.a.n.o.b
+        public void a(@NonNull b.o.a.n.o.a aVar, int i) {
+            d.this.l(i);
+            if (i == Integer.MAX_VALUE) {
+                ((e) aVar).a.remove(this);
+            }
+        }
+    }
+
     @Override // b.o.a.n.o.e, b.o.a.n.o.a
     public void b(@NonNull c cVar, @NonNull CaptureRequest captureRequest, @NonNull TotalCaptureResult totalCaptureResult) {
         m().b(cVar, captureRequest, totalCaptureResult);
@@ -37,7 +52,7 @@ public abstract class d extends e {
     @Override // b.o.a.n.o.e
     public void j(@NonNull c cVar) {
         this.c = cVar;
-        m().f(new d$a(this));
+        m().f(new a());
         m().j(cVar);
     }
 

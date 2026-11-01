@@ -4,12 +4,11 @@ import android.content.Context;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import kotlin.jvm.functions.Function0;
 import rx.Observable;
-import rx.Observable$c;
 import rx.functions.Action1;
 
 /* JADX INFO: compiled from: AppTransformers.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class w<T, R> implements Observable$c<T, T> {
+public final class w<T, R> implements Observable.c<T, T> {
     public final /* synthetic */ Context j;
     public final /* synthetic */ Class k;
     public final /* synthetic */ Action1 l;

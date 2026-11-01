@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
+import com.discord.R;
 
 /* JADX INFO: compiled from: ViewUserStatusPresenceBinding.java */
 /* JADX INFO: loaded from: classes.dex */
@@ -34,14 +34,14 @@ public final class e4 implements ViewBinding {
 
     @NonNull
     public static e4 a(@NonNull View view) {
-        int i = R$id.user_status_presence_dot;
-        ImageView imageView = (ImageView) view.findViewById(R$id.user_status_presence_dot);
+        int i = R.id.user_status_presence_dot;
+        ImageView imageView = (ImageView) view.findViewById(R.id.user_status_presence_dot);
         if (imageView != null) {
-            i = R$id.user_status_presence_subtitle;
-            TextView textView = (TextView) view.findViewById(R$id.user_status_presence_subtitle);
+            i = R.id.user_status_presence_subtitle;
+            TextView textView = (TextView) view.findViewById(R.id.user_status_presence_subtitle);
             if (textView != null) {
-                i = R$id.user_status_presence_title;
-                TextView textView2 = (TextView) view.findViewById(R$id.user_status_presence_title);
+                i = R.id.user_status_presence_title;
+                TextView textView2 = (TextView) view.findViewById(R.id.user_status_presence_title);
                 if (textView2 != null) {
                     LinearLayout linearLayout = (LinearLayout) view;
                     return new e4(linearLayout, imageView, textView, textView2, linearLayout);

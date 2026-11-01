@@ -6,16 +6,15 @@ import android.graphics.Point;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View$OnTouchListener;
 import com.discord.overlay.OverlayManager;
-import com.discord.overlay.R$a;
+import com.discord.overlay.R;
 import com.discord.overlay.views.OverlayBubbleWrap;
 import d0.z.d.m;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: OverlayManager.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class a implements View$OnTouchListener {
+public final class a implements View.OnTouchListener {
     public final /* synthetic */ OverlayManager j;
 
     public a(OverlayManager overlayManager) {
@@ -23,7 +22,7 @@ public final class a implements View$OnTouchListener {
     }
 
     /* JADX WARN: Code duplicated, block: B:11:0x002c  */
-    @Override // android.view.View$OnTouchListener
+    @Override // android.view.View.OnTouchListener
     public final boolean onTouch(View view, MotionEvent motionEvent) {
         boolean z2;
         m.checkNotNullExpressionValue(motionEvent, "event");
@@ -57,7 +56,7 @@ public final class a implements View$OnTouchListener {
                         Log.d(simpleName, sbU.toString());
                     }
                     overlayManager.c(null);
-                    Animator animatorLoadAnimator = AnimatorInflater.loadAnimator(overlayBubbleWrap.getContext(), R$a.fade_out);
+                    Animator animatorLoadAnimator = AnimatorInflater.loadAnimator(overlayBubbleWrap.getContext(), R.a.fade_out);
                     animatorLoadAnimator.setTarget(overlayBubbleWrap);
                     animatorLoadAnimator.addListener(new e(overlayManager, overlayBubbleWrap));
                     animatorLoadAnimator.start();

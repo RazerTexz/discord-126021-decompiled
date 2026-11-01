@@ -1,13 +1,19 @@
 package okhttp3;
 
-import b.d.b.a.a;
+import androidx.browser.trusted.sharing.ShareTarget;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.widgets.chat.input.MentionUtilsKt;
+import d0.g0.t;
+import d0.t.h0;
 import d0.t.n;
 import d0.z.d.m;
 import f0.d;
+import f0.e0.c;
+import f0.e0.h.f;
 import f0.w;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import kotlin.Pair;
 
 /* JADX INFO: compiled from: Request.kt */
@@ -60,7 +66,7 @@ public final class Request {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("Request{method=");
+        StringBuilder sbU = b.d.b.a.a.U("Request{method=");
         sbU.append(this.method);
         sbU.append(", url=");
         sbU.append(this.url);
@@ -93,5 +99,131 @@ public final class Request {
         String string = sbU.toString();
         m.checkExpressionValueIsNotNull(string, "StringBuilder().apply(builderAction).toString()");
         return string;
+    }
+
+    /* JADX INFO: compiled from: Request.kt */
+    public class a {
+        public w a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public String f3813b;
+        public Headers.a c;
+        public RequestBody d;
+        public Map<Class<?>, Object> e;
+
+        public a() {
+            this.e = new LinkedHashMap();
+            this.f3813b = ShareTarget.METHOD_GET;
+            this.c = new Headers.a();
+        }
+
+        public Request a() {
+            w wVar = this.a;
+            if (wVar != null) {
+                return new Request(wVar, this.f3813b, this.c.c(), this.d, c.A(this.e));
+            }
+            throw new IllegalStateException("url == null".toString());
+        }
+
+        public a b(String str, String str2) {
+            m.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            m.checkParameterIsNotNull(str2, "value");
+            Headers.a aVar = this.c;
+            Objects.requireNonNull(aVar);
+            m.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            m.checkParameterIsNotNull(str2, "value");
+            Headers.Companion bVar = Headers.INSTANCE;
+            bVar.a(str);
+            bVar.b(str2, str);
+            aVar.d(str);
+            aVar.b(str, str2);
+            return this;
+        }
+
+        public a c(String str, RequestBody requestBody) {
+            m.checkParameterIsNotNull(str, "method");
+            if (!(str.length() > 0)) {
+                throw new IllegalArgumentException("method.isEmpty() == true".toString());
+            }
+            if (requestBody == null) {
+                m.checkParameterIsNotNull(str, "method");
+                if (!(!(m.areEqual(str, ShareTarget.METHOD_POST) || m.areEqual(str, "PUT") || m.areEqual(str, "PATCH") || m.areEqual(str, "PROPPATCH") || m.areEqual(str, "REPORT")))) {
+                    throw new IllegalArgumentException(b.d.b.a.a.y("method ", str, " must have a request body.").toString());
+                }
+            } else if (!f.a(str)) {
+                throw new IllegalArgumentException(b.d.b.a.a.y("method ", str, " must not have a request body.").toString());
+            }
+            this.f3813b = str;
+            this.d = requestBody;
+            return this;
+        }
+
+        public a d(String str) {
+            m.checkParameterIsNotNull(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            this.c.d(str);
+            return this;
+        }
+
+        public <T> a e(Class<? super T> cls, T t) {
+            m.checkParameterIsNotNull(cls, "type");
+            if (t == null) {
+                this.e.remove(cls);
+            } else {
+                if (this.e.isEmpty()) {
+                    this.e = new LinkedHashMap();
+                }
+                Map<Class<?>, Object> map = this.e;
+                T tCast = cls.cast(t);
+                if (tCast == null) {
+                    m.throwNpe();
+                }
+                map.put(cls, tCast);
+            }
+            return this;
+        }
+
+        public a f(String str) {
+            m.checkParameterIsNotNull(str, "url");
+            if (t.startsWith(str, "ws:", true)) {
+                StringBuilder sbU = b.d.b.a.a.U("http:");
+                String strSubstring = str.substring(3);
+                m.checkExpressionValueIsNotNull(strSubstring, "(this as java.lang.String).substring(startIndex)");
+                sbU.append(strSubstring);
+                str = sbU.toString();
+            } else if (t.startsWith(str, "wss:", true)) {
+                StringBuilder sbU2 = b.d.b.a.a.U("https:");
+                String strSubstring2 = str.substring(4);
+                m.checkExpressionValueIsNotNull(strSubstring2, "(this as java.lang.String).substring(startIndex)");
+                sbU2.append(strSubstring2);
+                str = sbU2.toString();
+            }
+            m.checkParameterIsNotNull(str, "$this$toHttpUrl");
+            w.a aVar = new w.a();
+            aVar.e(null, str);
+            g(aVar.b());
+            return this;
+        }
+
+        public a g(w wVar) {
+            m.checkParameterIsNotNull(wVar, "url");
+            this.a = wVar;
+            return this;
+        }
+
+        public a(Request request) {
+            Map<Class<?>, Object> mutableMap;
+            m.checkParameterIsNotNull(request, "request");
+            this.e = new LinkedHashMap();
+            this.a = request.url;
+            this.f3813b = request.method;
+            this.d = request.body;
+            if (request.tags.isEmpty()) {
+                mutableMap = new LinkedHashMap<>();
+            } else {
+                mutableMap = h0.toMutableMap(request.tags);
+            }
+            this.e = mutableMap;
+            this.c = request.headers.e();
+        }
     }
 }

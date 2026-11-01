@@ -1,5 +1,6 @@
 package d0.z.d;
 
+import java.io.ObjectStreamException;
 import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.util.List;
@@ -18,7 +19,16 @@ public abstract class d implements KCallable, Serializable {
     public final Object receiver;
     private transient KCallable reflected;
     private final String signature;
-    public static final Object NO_RECEIVER = d$a.j;
+    public static final Object NO_RECEIVER = a.j;
+
+    /* JADX INFO: compiled from: CallableReference.java */
+    public class a implements Serializable {
+        public static final a j = new a();
+
+        private Object readResolve() throws ObjectStreamException {
+            return j;
+        }
+    }
 
     public d() {
         this(NO_RECEIVER);

@@ -1,14 +1,10 @@
 package b.g.a.c.g0.u;
 
-import b.g.a.a.i$c;
-import b.g.a.a.i$d;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonMappingException$a;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.Set;
 
@@ -22,7 +18,7 @@ public abstract class d extends q0<Object> implements b.g.a.c.g0.i, b.g.a.c.g0.o
     public final b.g.a.c.g0.t.j _objectIdWriter;
     public final Object _propertyFilterId;
     public final b.g.a.c.g0.c[] _props;
-    public final i$c _serializationShape;
+    public final b.g.a.a.i.c _serializationShape;
     public final b.g.a.c.c0.i _typeId;
 
     static {
@@ -53,7 +49,7 @@ public abstract class d extends q0<Object> implements b.g.a.c.g0.i, b.g.a.c.g0.o
     /* JADX WARN: Code duplicated, block: B:73:0x0171  */
     @Override // b.g.a.c.g0.i
     public b.g.a.c.n<?> a(b.g.a.c.x xVar, b.g.a.c.d dVar) throws JsonMappingException {
-        i$c i_cE;
+        b.g.a.a.i.c cVarE;
         Object objG;
         Set<String> set;
         Set<String> setD;
@@ -65,22 +61,22 @@ public abstract class d extends q0<Object> implements b.g.a.c.g0.i, b.g.a.c.g0.o
         b.g.a.c.g0.c[] cVarArr = null;
         b.g.a.c.c0.i member = (dVar == null || bVarV == null) ? null : dVar.getMember();
         b.g.a.c.v vVar = xVar._config;
-        i$d i_dL = l(xVar, dVar, this._handledType);
+        b.g.a.a.i.d dVarL = l(xVar, dVar, this._handledType);
         char c = 0;
-        if (i_dL == null || !i_dL.i()) {
-            i_cE = null;
+        if (dVarL == null || !dVarL.i()) {
+            cVarE = null;
         } else {
-            i_cE = i_dL.e();
-            if (i_cE != i$c.ANY && i_cE != this._serializationShape) {
+            cVarE = dVarL.e();
+            if (cVarE != b.g.a.a.i.c.ANY && cVarE != this._serializationShape) {
                 if (this._beanType.w()) {
-                    int iOrdinal = i_cE.ordinal();
+                    int iOrdinal = cVarE.ordinal();
                     if (iOrdinal == 5 || iOrdinal == 7 || iOrdinal == 8) {
                         vVar.n(this._beanType);
                         Class<?> cls = this._beanType._class;
-                        return xVar.y(new m(b.g.a.c.i0.f.a(xVar._config, cls), m.p(cls, i_dL, true, null)), dVar);
+                        return xVar.y(new m(b.g.a.c.i0.f.a(xVar._config, cls), m.p(cls, dVarL, true, null)), dVar);
                     }
-                } else if (i_cE == i$c.NATURAL && ((!this._beanType.z() || !Map.class.isAssignableFrom(this._handledType)) && Map$Entry.class.isAssignableFrom(this._handledType))) {
-                    b.g.a.c.j jVarI = this._beanType.i(Map$Entry.class);
+                } else if (cVarE == b.g.a.a.i.c.NATURAL && ((!this._beanType.z() || !Map.class.isAssignableFrom(this._handledType)) && Map.Entry.class.isAssignableFrom(this._handledType))) {
+                    b.g.a.c.j jVarI = this._beanType.i(Map.Entry.class);
                     return xVar.y(new b.g.a.c.g0.t.i(this._beanType, jVarI.h(0), jVarI.h(1), false, null, dVar), dVar);
                 }
             }
@@ -171,10 +167,10 @@ public abstract class d extends q0<Object> implements b.g.a.c.g0.i, b.g.a.c.g0.o
         if (objG != null) {
             dVarW = dVarW.w(objG);
         }
-        if (i_cE == null) {
-            i_cE = this._serializationShape;
+        if (cVarE == null) {
+            cVarE = this._serializationShape;
         }
-        return i_cE == i$c.ARRAY ? dVarW.s() : dVarW;
+        return cVarE == b.g.a.a.i.c.ARRAY ? dVarW.s() : dVarW;
     }
 
     /* JADX WARN: Code duplicated, block: B:60:0x00b6  */
@@ -398,7 +394,7 @@ public abstract class d extends q0<Object> implements b.g.a.c.g0.i, b.g.a.c.g0.o
             throw null;
         } catch (StackOverflowError e2) {
             JsonMappingException jsonMappingException = new JsonMappingException(dVar, "Infinite recursion (StackOverflowError)", e2);
-            jsonMappingException.e(new JsonMappingException$a(obj, i != cVarArr.length ? cVarArr[i]._name._value : "[anySetter]"));
+            jsonMappingException.e(new JsonMappingException.a(obj, i != cVarArr.length ? cVarArr[i]._name._value : "[anySetter]"));
             throw jsonMappingException;
         }
     }

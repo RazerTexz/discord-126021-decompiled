@@ -2,14 +2,13 @@ package com.discord.widgets.user.presence;
 
 import android.content.Context;
 import android.view.View;
-import android.view.View$OnClickListener;
 import com.discord.api.activity.Activity;
 import com.discord.models.user.User;
 import java.util.List;
 
 /* JADX INFO: compiled from: ViewHolderUserRichPresence.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class ViewHolderUserRichPresence$configureCustomButtonsUi$$inlined$forEachIndexed$lambda$1 implements View$OnClickListener {
+public final class ViewHolderUserRichPresence$configureCustomButtonsUi$$inlined$forEachIndexed$lambda$1 implements View.OnClickListener {
     public final /* synthetic */ Activity $activity$inlined;
     public final /* synthetic */ List $activityButtons$inlined;
     public final /* synthetic */ Context $applicationContext$inlined;
@@ -26,7 +25,7 @@ public final class ViewHolderUserRichPresence$configureCustomButtonsUi$$inlined$
         this.$activity$inlined = activity;
     }
 
-    @Override // android.view.View$OnClickListener
+    @Override // android.view.View.OnClickListener
     public final void onClick(View view) {
         ViewHolderUserRichPresence.access$handleActivityCustomButtonClick(this.this$0, this.$applicationContext$inlined, this.$user$inlined, this.$activity$inlined, this.$index);
     }

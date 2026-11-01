@@ -6,7 +6,6 @@ import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import androidx.collection.SparseArrayCompat;
 import androidx.core.view.animation.PathInterpolatorCompat;
-import b.c.a.a0.i0.c$a;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 
@@ -17,7 +16,7 @@ public class q {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static SparseArrayCompat<WeakReference<Interpolator>> f341b;
     public static final Interpolator a = new LinearInterpolator();
-    public static c$a c = c$a.a("t", "s", "e", "o", "i", "h", "to", "ti");
+    public static b.c.a.a0.i0.c.a c = b.c.a.a0.i0.c.a.a("t", "s", "e", "o", "i", "h", "to", "ti");
 
     public static <T> b.c.a.c0.a<T> a(b.c.a.a0.i0.c cVar, b.c.a.d dVar, float f, h0<T> h0Var, boolean z2) throws IOException {
         Interpolator interpolator;

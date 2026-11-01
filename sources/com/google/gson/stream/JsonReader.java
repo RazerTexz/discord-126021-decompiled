@@ -1,6 +1,5 @@
 package com.google.gson.stream;
 
-import b.d.b.a.a;
 import b.i.d.q.p;
 import java.io.Closeable;
 import java.io.EOFException;
@@ -34,8 +33,11 @@ public class JsonReader implements Closeable {
     public int q = 0;
     public int r = 0;
 
+    public class a extends p {
+    }
+
     static {
-        p.a = new JsonReader$a();
+        p.a = new a();
     }
 
     public JsonReader(Reader reader) {
@@ -67,7 +69,7 @@ public class JsonReader implements Closeable {
             this.n += this.t;
         } else {
             if (iD != 8 && iD != 9 && iD != 10) {
-                StringBuilder sbU = a.U("Expected a long but was ");
+                StringBuilder sbU = b.d.b.a.a.U("Expected a long but was ");
                 sbU.append(N());
                 sbU.append(t());
                 throw new IllegalStateException(sbU.toString());
@@ -91,7 +93,7 @@ public class JsonReader implements Closeable {
         double d = Double.parseDouble(this.u);
         long j3 = (long) d;
         if (j3 != d) {
-            StringBuilder sbU2 = a.U("Expected a long but was ");
+            StringBuilder sbU2 = b.d.b.a.a.U("Expected a long but was ");
             sbU2.append(this.u);
             sbU2.append(t());
             throw new NumberFormatException(sbU2.toString());
@@ -116,7 +118,7 @@ public class JsonReader implements Closeable {
             strI = I('\'');
         } else {
             if (iD != 13) {
-                StringBuilder sbU = a.U("Expected a name but was ");
+                StringBuilder sbU = b.d.b.a.a.U("Expected a name but was ");
                 sbU.append(N());
                 sbU.append(t());
                 throw new IllegalStateException(sbU.toString());
@@ -140,7 +142,7 @@ public class JsonReader implements Closeable {
                     if (!z2) {
                         return -1;
                     }
-                    StringBuilder sbU = a.U("End of input");
+                    StringBuilder sbU = b.d.b.a.a.U("End of input");
                     sbU.append(t());
                     throw new EOFException(sbU.toString());
                 }
@@ -229,7 +231,7 @@ public class JsonReader implements Closeable {
             iD = d();
         }
         if (iD != 7) {
-            StringBuilder sbU = a.U("Expected null but was ");
+            StringBuilder sbU = b.d.b.a.a.U("Expected null but was ");
             sbU.append(N());
             sbU.append(t());
             throw new IllegalStateException(sbU.toString());
@@ -312,7 +314,7 @@ public class JsonReader implements Closeable {
             str = Long.toString(this.f3135s);
         } else {
             if (iD != 16) {
-                StringBuilder sbU = a.U("Expected a string but was ");
+                StringBuilder sbU = b.d.b.a.a.U("Expected a string but was ");
                 sbU.append(N());
                 sbU.append(t());
                 throw new IllegalStateException(sbU.toString());
@@ -488,7 +490,7 @@ public class JsonReader implements Closeable {
                         i = c3 - 'a';
                     } else {
                         if (c3 < 'A' || c3 > 'F') {
-                            StringBuilder sbU = a.U("\\u");
+                            StringBuilder sbU = b.d.b.a.a.U("\\u");
                             sbU.append(new String(this.m, this.n, 4));
                             throw new NumberFormatException(sbU.toString());
                         }
@@ -631,7 +633,7 @@ public class JsonReader implements Closeable {
     }
 
     public final IOException V(String str) throws IOException {
-        StringBuilder sbU = a.U(str);
+        StringBuilder sbU = b.d.b.a.a.U(str);
         sbU.append(t());
         throw new MalformedJsonException(sbU.toString());
     }
@@ -646,7 +648,7 @@ public class JsonReader implements Closeable {
             this.f3137y[this.w - 1] = 0;
             this.r = 0;
         } else {
-            StringBuilder sbU = a.U("Expected BEGIN_ARRAY but was ");
+            StringBuilder sbU = b.d.b.a.a.U("Expected BEGIN_ARRAY but was ");
             sbU.append(N());
             sbU.append(t());
             throw new IllegalStateException(sbU.toString());
@@ -662,7 +664,7 @@ public class JsonReader implements Closeable {
             O(3);
             this.r = 0;
         } else {
-            StringBuilder sbU = a.U("Expected BEGIN_OBJECT but was ");
+            StringBuilder sbU = b.d.b.a.a.U("Expected BEGIN_OBJECT but was ");
             sbU.append(N());
             sbU.append(t());
             throw new IllegalStateException(sbU.toString());
@@ -1202,7 +1204,7 @@ public class JsonReader implements Closeable {
             iD = d();
         }
         if (iD != 4) {
-            StringBuilder sbU = a.U("Expected END_ARRAY but was ");
+            StringBuilder sbU = b.d.b.a.a.U("Expected END_ARRAY but was ");
             sbU.append(N());
             sbU.append(t());
             throw new IllegalStateException(sbU.toString());
@@ -1221,7 +1223,7 @@ public class JsonReader implements Closeable {
             iD = d();
         }
         if (iD != 2) {
-            StringBuilder sbU = a.U("Expected END_OBJECT but was ");
+            StringBuilder sbU = b.d.b.a.a.U("Expected END_OBJECT but was ");
             sbU.append(N());
             sbU.append(t());
             throw new IllegalStateException(sbU.toString());
@@ -1236,7 +1238,7 @@ public class JsonReader implements Closeable {
     }
 
     public String getPath() {
-        StringBuilder sbQ = a.Q('$');
+        StringBuilder sbQ = b.d.b.a.a.Q('$');
         int i = this.w;
         for (int i2 = 0; i2 < i; i2++) {
             int i3 = this.v[i2];
@@ -1327,7 +1329,7 @@ public class JsonReader implements Closeable {
     }
 
     public String t() {
-        StringBuilder sbW = a.W(" at line ", this.p + 1, " column ", (this.n - this.q) + 1, " path ");
+        StringBuilder sbW = b.d.b.a.a.W(" at line ", this.p + 1, " column ", (this.n - this.q) + 1, " path ");
         sbW.append(getPath());
         return sbW.toString();
     }
@@ -1349,7 +1351,7 @@ public class JsonReader implements Closeable {
             return true;
         }
         if (iD != 6) {
-            StringBuilder sbU = a.U("Expected a boolean but was ");
+            StringBuilder sbU = b.d.b.a.a.U("Expected a boolean but was ");
             sbU.append(N());
             sbU.append(t());
             throw new IllegalStateException(sbU.toString());
@@ -1381,7 +1383,7 @@ public class JsonReader implements Closeable {
         } else if (iD == 10) {
             this.u = L();
         } else if (iD != 11) {
-            StringBuilder sbU = a.U("Expected a double but was ");
+            StringBuilder sbU = b.d.b.a.a.U("Expected a double but was ");
             sbU.append(N());
             sbU.append(t());
             throw new IllegalStateException(sbU.toString());
@@ -1408,7 +1410,7 @@ public class JsonReader implements Closeable {
             long j2 = this.f3135s;
             int i = (int) j2;
             if (j2 != i) {
-                StringBuilder sbU = a.U("Expected an int but was ");
+                StringBuilder sbU = b.d.b.a.a.U("Expected an int but was ");
                 sbU.append(this.f3135s);
                 sbU.append(t());
                 throw new NumberFormatException(sbU.toString());
@@ -1424,7 +1426,7 @@ public class JsonReader implements Closeable {
             this.n += this.t;
         } else {
             if (iD != 8 && iD != 9 && iD != 10) {
-                StringBuilder sbU2 = a.U("Expected an int but was ");
+                StringBuilder sbU2 = b.d.b.a.a.U("Expected an int but was ");
                 sbU2.append(N());
                 sbU2.append(t());
                 throw new IllegalStateException(sbU2.toString());
@@ -1448,7 +1450,7 @@ public class JsonReader implements Closeable {
         double d = Double.parseDouble(this.u);
         int i5 = (int) d;
         if (i5 != d) {
-            StringBuilder sbU3 = a.U("Expected an int but was ");
+            StringBuilder sbU3 = b.d.b.a.a.U("Expected an int but was ");
             sbU3.append(this.u);
             sbU3.append(t());
             throw new NumberFormatException(sbU3.toString());

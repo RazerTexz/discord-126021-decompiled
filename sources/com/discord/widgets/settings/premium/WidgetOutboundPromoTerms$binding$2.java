@@ -3,7 +3,7 @@ package com.discord.widgets.settings.premium;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetOutboundPromoTermsBinding;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import d0.z.d.k;
@@ -27,11 +27,11 @@ public final /* synthetic */ class WidgetOutboundPromoTerms$binding$2 extends k 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetOutboundPromoTermsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.promoTermsClose;
-        TextView textView = (TextView) view.findViewById(R$id.promoTermsClose);
+        int i = R.id.promoTermsClose;
+        TextView textView = (TextView) view.findViewById(R.id.promoTermsClose);
         if (textView != null) {
-            i = R$id.promoTermsContent;
-            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R$id.promoTermsContent);
+            i = R.id.promoTermsContent;
+            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R.id.promoTermsContent);
             if (linkifiedTextView != null) {
                 return new WidgetOutboundPromoTermsBinding((LinearLayout) view, textView, linkifiedTextView);
             }

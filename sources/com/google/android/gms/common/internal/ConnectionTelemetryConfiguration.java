@@ -1,7 +1,7 @@
 package com.google.android.gms.common.internal;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import androidx.annotation.RecentlyNonNull;
 import b.c.a.a0.d;
@@ -13,7 +13,7 @@ import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 public class ConnectionTelemetryConfiguration extends AbstractSafeParcelable {
 
     @RecentlyNonNull
-    public static final Parcelable$Creator<ConnectionTelemetryConfiguration> CREATOR = new o0();
+    public static final Parcelable.Creator<ConnectionTelemetryConfiguration> CREATOR = new o0();
     public final RootTelemetryConfiguration j;
     public final boolean k;
     public final boolean l;

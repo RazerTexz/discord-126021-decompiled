@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.hardware.display.VirtualDisplay;
 import android.media.projection.MediaProjection;
-import android.media.projection.MediaProjection$Callback;
 import android.media.projection.MediaProjectionManager;
 import android.view.Surface;
 import androidx.annotation.Nullable;
@@ -23,7 +22,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
 
     @Nullable
     public MediaProjection mediaProjection;
-    private final MediaProjection$Callback mediaProjectionCallback;
+    private final MediaProjection.Callback mediaProjectionCallback;
 
     @Nullable
     private MediaProjectionManager mediaProjectionManager;
@@ -37,9 +36,44 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     private VirtualDisplay virtualDisplay;
     private int width;
 
-    public ScreenCapturerAndroid(Intent intent, MediaProjection$Callback mediaProjection$Callback) {
+    /* JADX INFO: renamed from: org.webrtc.ScreenCapturerAndroid$1, reason: invalid class name */
+    public class AnonymousClass1 implements Runnable {
+        public AnonymousClass1() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            ScreenCapturerAndroid.access$000(ScreenCapturerAndroid.this).stopListening();
+            ScreenCapturerAndroid.access$100(ScreenCapturerAndroid.this).onCapturerStopped();
+            if (ScreenCapturerAndroid.access$200(ScreenCapturerAndroid.this) != null) {
+                ScreenCapturerAndroid.access$200(ScreenCapturerAndroid.this).release();
+                ScreenCapturerAndroid.access$202(ScreenCapturerAndroid.this, null);
+            }
+            ScreenCapturerAndroid screenCapturerAndroid = ScreenCapturerAndroid.this;
+            MediaProjection mediaProjection = screenCapturerAndroid.mediaProjection;
+            if (mediaProjection != null) {
+                mediaProjection.unregisterCallback(ScreenCapturerAndroid.access$300(screenCapturerAndroid));
+                ScreenCapturerAndroid.this.mediaProjection.stop();
+                ScreenCapturerAndroid.this.mediaProjection = null;
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: org.webrtc.ScreenCapturerAndroid$2, reason: invalid class name */
+    public class AnonymousClass2 implements Runnable {
+        public AnonymousClass2() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            ScreenCapturerAndroid.access$200(ScreenCapturerAndroid.this).release();
+            ScreenCapturerAndroid.this.createVirtualDisplay();
+        }
+    }
+
+    public ScreenCapturerAndroid(Intent intent, MediaProjection.Callback callback) {
         this.mediaProjectionPermissionResultData = intent;
-        this.mediaProjectionCallback = mediaProjection$Callback;
+        this.mediaProjectionCallback = callback;
     }
 
     public static /* synthetic */ SurfaceTextureHelper access$000(ScreenCapturerAndroid screenCapturerAndroid) {
@@ -59,7 +93,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
         return virtualDisplay;
     }
 
-    public static /* synthetic */ MediaProjection$Callback access$300(ScreenCapturerAndroid screenCapturerAndroid) {
+    public static /* synthetic */ MediaProjection.Callback access$300(ScreenCapturerAndroid screenCapturerAndroid) {
         return screenCapturerAndroid.mediaProjectionCallback;
     }
 
@@ -71,7 +105,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
         if (this.virtualDisplay == null) {
             return;
         }
-        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new ScreenCapturerAndroid$2(this));
+        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new AnonymousClass2());
     }
 
     private void checkNotDisposed() {
@@ -139,6 +173,6 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     @Override // org.webrtc.VideoCapturer
     public synchronized void stopCapture() {
         checkNotDisposed();
-        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new ScreenCapturerAndroid$1(this));
+        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new AnonymousClass1());
     }
 }

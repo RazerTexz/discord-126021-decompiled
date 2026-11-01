@@ -4,7 +4,6 @@ import android.graphics.drawable.Drawable;
 import b.c.a.a0.d;
 import b.f.d.d.i;
 import b.f.g.b.c;
-import b.f.g.b.c$a;
 import b.f.g.e.f0;
 import b.f.g.e.g0;
 import com.facebook.drawee.interfaces.DraweeController;
@@ -33,7 +32,7 @@ public class DraweeHolder<DH extends DraweeHierarchy> implements g0 {
         if (this.a) {
             return;
         }
-        this.f.a(c$a.ON_ATTACH_CONTROLLER);
+        this.f.a(c.a.ON_ATTACH_CONTROLLER);
         this.a = true;
         DraweeController draweeController = this.e;
         if (draweeController == null || draweeController.b() == null) {
@@ -52,7 +51,7 @@ public class DraweeHolder<DH extends DraweeHierarchy> implements g0 {
 
     public final void c() {
         if (this.a) {
-            this.f.a(c$a.ON_DETACH_CONTROLLER);
+            this.f.a(c.a.ON_DETACH_CONTROLLER);
             this.a = false;
             if (e()) {
                 this.e.a();
@@ -77,7 +76,7 @@ public class DraweeHolder<DH extends DraweeHierarchy> implements g0 {
         if (this.c == z2) {
             return;
         }
-        this.f.a(z2 ? c$a.ON_DRAWABLE_SHOW : c$a.ON_DRAWABLE_HIDE);
+        this.f.a(z2 ? c.a.ON_DRAWABLE_SHOW : c.a.ON_DRAWABLE_HIDE);
         this.c = z2;
         b();
     }
@@ -88,15 +87,15 @@ public class DraweeHolder<DH extends DraweeHierarchy> implements g0 {
             c();
         }
         if (e()) {
-            this.f.a(c$a.ON_CLEAR_OLD_CONTROLLER);
+            this.f.a(c.a.ON_CLEAR_OLD_CONTROLLER);
             this.e.e(null);
         }
         this.e = draweeController;
         if (draweeController != null) {
-            this.f.a(c$a.ON_SET_CONTROLLER);
+            this.f.a(c.a.ON_SET_CONTROLLER);
             this.e.e(this.d);
         } else {
-            this.f.a(c$a.ON_CLEAR_CONTROLLER);
+            this.f.a(c.a.ON_CLEAR_CONTROLLER);
         }
         if (z2) {
             a();
@@ -104,7 +103,7 @@ public class DraweeHolder<DH extends DraweeHierarchy> implements g0 {
     }
 
     public void h(DH dh) {
-        this.f.a(c$a.ON_SET_HIERARCHY);
+        this.f.a(c.a.ON_SET_HIERARCHY);
         boolean zE = e();
         Object objD = d();
         if (objD instanceof f0) {

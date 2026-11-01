@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.PremiumStickerUpsellDialogBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -28,20 +28,20 @@ public final /* synthetic */ class StickerPremiumUpsellDialog$binding$2 extends 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final PremiumStickerUpsellDialogBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.close_button;
-        TextView textView = (TextView) view.findViewById(R$id.close_button);
+        int i = R.id.close_button;
+        TextView textView = (TextView) view.findViewById(R.id.close_button);
         if (textView != null) {
-            i = R$id.premium_upsell_close;
-            ImageView imageView = (ImageView) view.findViewById(R$id.premium_upsell_close);
+            i = R.id.premium_upsell_close;
+            ImageView imageView = (ImageView) view.findViewById(R.id.premium_upsell_close);
             if (imageView != null) {
-                i = R$id.premium_upsell_description;
-                TextView textView2 = (TextView) view.findViewById(R$id.premium_upsell_description);
+                i = R.id.premium_upsell_description;
+                TextView textView2 = (TextView) view.findViewById(R.id.premium_upsell_description);
                 if (textView2 != null) {
-                    i = R$id.premium_upsell_perk_boosts;
-                    TextView textView3 = (TextView) view.findViewById(R$id.premium_upsell_perk_boosts);
+                    i = R.id.premium_upsell_perk_boosts;
+                    TextView textView3 = (TextView) view.findViewById(R.id.premium_upsell_perk_boosts);
                     if (textView3 != null) {
-                        i = R$id.subscribe_button;
-                        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.subscribe_button);
+                        i = R.id.subscribe_button;
+                        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.subscribe_button);
                         if (materialButton != null) {
                             return new PremiumStickerUpsellDialogBinding((RelativeLayout) view, textView, imageView, textView2, textView3, materialButton);
                         }

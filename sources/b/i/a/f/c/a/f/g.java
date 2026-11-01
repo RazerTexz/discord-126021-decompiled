@@ -1,14 +1,14 @@
 package b.i.a.f.c.a.f;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.SignInAccount;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class g implements Parcelable$Creator<SignInAccount> {
-    @Override // android.os.Parcelable$Creator
+public final class g implements Parcelable.Creator<SignInAccount> {
+    @Override // android.os.Parcelable.Creator
     public final SignInAccount createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         String strR = "";
@@ -31,7 +31,7 @@ public final class g implements Parcelable$Creator<SignInAccount> {
         return new SignInAccount(strR, googleSignInAccount, strR2);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ SignInAccount[] newArray(int i) {
         return new SignInAccount[i];
     }

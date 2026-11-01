@@ -1,10 +1,8 @@
 package b.i.a.c;
 
-import b.i.a.c.f3.p$a;
-
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class z implements p$a {
+public final /* synthetic */ class z implements b.i.a.c.f3.p.a {
     public final /* synthetic */ o1 a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -15,8 +13,8 @@ public final /* synthetic */ class z implements p$a {
         this.f1317b = i;
     }
 
-    @Override // b.i.a.c.f3.p$a
+    @Override // b.i.a.c.f3.p.a
     public final void invoke(Object obj) {
-        ((y1$c) obj).M(this.a, this.f1317b);
+        ((y1.c) obj).M(this.a, this.f1317b);
     }
 }

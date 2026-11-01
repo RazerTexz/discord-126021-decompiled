@@ -18,7 +18,7 @@ public final /* synthetic */ class c implements Runnable {
         k kVar = this.j;
         Surface surface = kVar.r;
         if (surface != null) {
-            Iterator<k$b> it = kVar.j.iterator();
+            Iterator<k.b> it = kVar.j.iterator();
             while (it.hasNext()) {
                 it.next().q(surface);
             }

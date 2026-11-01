@@ -2,7 +2,6 @@ package com.discord.widgets.nux;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.widgets.guilds.create.CreateGuildTrigger;
@@ -12,12 +11,37 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: WidgetGuildTemplates.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class GuildCreateArgs implements Parcelable {
-    public static final Parcelable$Creator<GuildCreateArgs> CREATOR = new GuildCreateArgs$Creator();
+    public static final Parcelable.Creator<GuildCreateArgs> CREATOR = new Creator();
     private final boolean closeWithResult;
     private final GuildTemplateArgs guildTemplate;
     private final boolean isNux;
     private final String location;
     private final CreateGuildTrigger trigger;
+
+    public final class Creator implements Parcelable.Creator<GuildCreateArgs> {
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final GuildCreateArgs createFromParcel(Parcel parcel) {
+            m.checkNotNullParameter(parcel, "in");
+            return new GuildCreateArgs(parcel.readInt() != 0, parcel.readString(), (CreateGuildTrigger) Enum.valueOf(CreateGuildTrigger.class, parcel.readString()), GuildTemplateArgs.CREATOR.createFromParcel(parcel), parcel.readInt() != 0);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ GuildCreateArgs createFromParcel(Parcel parcel) {
+            return createFromParcel(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final GuildCreateArgs[] newArray(int i) {
+            return new GuildCreateArgs[i];
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ GuildCreateArgs[] newArray(int i) {
+            return newArray(i);
+        }
+    }
 
     public GuildCreateArgs(boolean z2, String str, CreateGuildTrigger createGuildTrigger, GuildTemplateArgs guildTemplateArgs, boolean z3) {
         m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_LOCATION);

@@ -14,7 +14,7 @@ public final class Persister$Companion$kryos$1 extends ThreadLocal<Kryo> {
     @Override // java.lang.ThreadLocal
     public Kryo initialValue() {
         Kryo kryo = new Kryo();
-        Persister.Companion.getKryoConfig().invoke(kryo);
+        Persister.INSTANCE.getKryoConfig().invoke(kryo);
         return kryo;
     }
 }

@@ -9,12 +9,12 @@ import kotlin.jvm.functions.Function0;
 /* JADX INFO: compiled from: WidgetDirectoriesSearchViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetDirectoriesSearchViewModel$ViewState$directoryEntryData$2 extends o implements Function0<List<? extends DirectoryEntryData>> {
-    public final /* synthetic */ WidgetDirectoriesSearchViewModel$ViewState this$0;
+    public final /* synthetic */ WidgetDirectoriesSearchViewModel.ViewState this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetDirectoriesSearchViewModel$ViewState$directoryEntryData$2(WidgetDirectoriesSearchViewModel$ViewState widgetDirectoriesSearchViewModel$ViewState) {
+    public WidgetDirectoriesSearchViewModel$ViewState$directoryEntryData$2(WidgetDirectoriesSearchViewModel.ViewState viewState) {
         super(0);
-        this.this$0 = widgetDirectoriesSearchViewModel$ViewState;
+        this.this$0 = viewState;
     }
 
     @Override // kotlin.jvm.functions.Function0

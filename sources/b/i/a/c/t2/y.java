@@ -1,7 +1,6 @@
 package b.i.a.c.t2;
 
-import com.google.android.exoplayer2.audio.AudioProcessor$UnhandledAudioFormatException;
-import com.google.android.exoplayer2.audio.AudioProcessor$a;
+import com.google.android.exoplayer2.audio.AudioProcessor;
 import java.nio.ByteBuffer;
 
 /* JADX INFO: compiled from: FloatResamplingAudioProcessor.java */
@@ -37,12 +36,12 @@ public final class y extends v {
     }
 
     @Override // b.i.a.c.t2.v
-    public AudioProcessor$a f(AudioProcessor$a audioProcessor$a) throws AudioProcessor$UnhandledAudioFormatException {
-        int i2 = audioProcessor$a.d;
+    public AudioProcessor.a f(AudioProcessor.a aVar) throws AudioProcessor.UnhandledAudioFormatException {
+        int i2 = aVar.d;
         if (b.i.a.c.f3.e0.y(i2)) {
-            return i2 != 4 ? new AudioProcessor$a(audioProcessor$a.f2914b, audioProcessor$a.c, 4) : AudioProcessor$a.a;
+            return i2 != 4 ? new AudioProcessor.a(aVar.f2914b, aVar.c, 4) : AudioProcessor.a.a;
         }
-        throw new AudioProcessor$UnhandledAudioFormatException(audioProcessor$a);
+        throw new AudioProcessor.UnhandledAudioFormatException(aVar);
     }
 
     public static void k(int i2, ByteBuffer byteBuffer) {

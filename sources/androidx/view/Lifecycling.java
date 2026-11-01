@@ -3,7 +3,6 @@ package androidx.view;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -13,12 +12,26 @@ import java.util.List;
 import java.util.Map;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class Lifecycling {
     private static final int GENERATED_CALLBACK = 2;
     private static final int REFLECTIVE_CALLBACK = 1;
     private static Map<Class<?>, Integer> sCallbackCache = new HashMap();
     private static Map<Class<?>, List<Constructor<? extends GeneratedAdapter>>> sClassToAdapters = new HashMap();
+
+    /* JADX INFO: renamed from: androidx.lifecycle.Lifecycling$1, reason: invalid class name */
+    public class AnonymousClass1 implements GenericLifecycleObserver {
+        public final /* synthetic */ LifecycleEventObserver val$observer;
+
+        public AnonymousClass1(LifecycleEventObserver lifecycleEventObserver) {
+            this.val$observer = lifecycleEventObserver;
+        }
+
+        @Override // androidx.view.LifecycleEventObserver
+        public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event) {
+            this.val$observer.onStateChanged(lifecycleOwner, event);
+        }
+    }
 
     private Lifecycling() {
     }
@@ -67,7 +80,7 @@ public class Lifecycling {
     @NonNull
     @Deprecated
     public static GenericLifecycleObserver getCallback(Object obj) {
-        return new Lifecycling$1(lifecycleEventObserver(obj));
+        return new AnonymousClass1(lifecycleEventObserver(obj));
     }
 
     private static int getObserverConstructorType(Class<?> cls) {

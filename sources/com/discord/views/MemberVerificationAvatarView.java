@@ -6,8 +6,7 @@ import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import b.a.i.v0;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 import d0.z.d.m;
 
@@ -22,12 +21,12 @@ public final class MemberVerificationAvatarView extends FrameLayout {
     public MemberVerificationAvatarView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(R$layout.member_verification_avatar_view, this);
-        int i = R$id.member_verification_avatar;
-        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R$id.member_verification_avatar);
+        LayoutInflater.from(context).inflate(R.layout.member_verification_avatar_view, this);
+        int i = R.id.member_verification_avatar;
+        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R.id.member_verification_avatar);
         if (simpleDraweeView != null) {
-            i = R$id.member_verification_text;
-            TextView textView = (TextView) findViewById(R$id.member_verification_text);
+            i = R.id.member_verification_text;
+            TextView textView = (TextView) findViewById(R.id.member_verification_text);
             if (textView != null) {
                 v0 v0Var = new v0(this, simpleDraweeView, textView);
                 m.checkNotNullExpressionValue(v0Var, "MemberVerificationAvatar…ater.from(context), this)");

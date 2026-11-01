@@ -3,14 +3,14 @@ package androidx.core.graphics.drawable;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Outline;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.DrawableContainer;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.InsetDrawable;
 import android.graphics.drawable.RippleDrawable;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -50,7 +50,7 @@ public class WrappedDrawableApi21 extends WrappedDrawableApi14 {
 
     @Override // androidx.core.graphics.drawable.WrappedDrawableApi14
     public boolean isCompatTintEnabled() {
-        if (Build$VERSION.SDK_INT != 21) {
+        if (Build.VERSION.SDK_INT != 21) {
             return false;
         }
         Drawable drawable = this.mDrawable;
@@ -109,11 +109,11 @@ public class WrappedDrawableApi21 extends WrappedDrawableApi14 {
     }
 
     @Override // androidx.core.graphics.drawable.WrappedDrawableApi14, android.graphics.drawable.Drawable, androidx.core.graphics.drawable.TintAwareDrawable
-    public void setTintMode(@NonNull PorterDuff$Mode porterDuff$Mode) {
+    public void setTintMode(@NonNull PorterDuff.Mode mode) {
         if (isCompatTintEnabled()) {
-            super.setTintMode(porterDuff$Mode);
+            super.setTintMode(mode);
         } else {
-            this.mDrawable.setTintMode(porterDuff$Mode);
+            this.mDrawable.setTintMode(mode);
         }
     }
 

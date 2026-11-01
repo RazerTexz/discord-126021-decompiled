@@ -1,7 +1,7 @@
 package b.i.a.c.x2.i0;
 
 import androidx.annotation.Nullable;
-import b.i.a.c.x2.w$a;
+import b.i.a.c.x2.w;
 
 /* JADX INFO: compiled from: TrackEncryptionBox.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -11,7 +11,7 @@ public final class n {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     @Nullable
     public final String f1231b;
-    public final w$a c;
+    public final w.a c;
     public final int d;
 
     @Nullable
@@ -66,6 +66,6 @@ public final class n {
                 b.d.b.a.a.i0(str.length() + 68, "Unsupported protection scheme type '", str, "'. Assuming AES-CTR crypto mode.", "TrackEncryptionBox");
             }
         }
-        this.c = new w$a(i4, bArr, i2, i3);
+        this.c = new w.a(i4, bArr, i2, i3);
     }
 }

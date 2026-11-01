@@ -5,7 +5,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
+import com.discord.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
 
@@ -38,17 +38,17 @@ public final class WidgetGuildInviteShareItemBinding implements ViewBinding {
 
     @NonNull
     public static WidgetGuildInviteShareItemBinding a(@NonNull View view) {
-        int i = R$id.item_icon_iv;
-        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.item_icon_iv);
+        int i = R.id.item_icon_iv;
+        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.item_icon_iv);
         if (simpleDraweeView != null) {
-            i = R$id.item_invite_btn;
-            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.item_invite_btn);
+            i = R.id.item_invite_btn;
+            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.item_invite_btn);
             if (materialButton != null) {
-                i = R$id.item_name_tv;
-                TextView textView = (TextView) view.findViewById(R$id.item_name_tv);
+                i = R.id.item_name_tv;
+                TextView textView = (TextView) view.findViewById(R.id.item_name_tv);
                 if (textView != null) {
-                    i = R$id.item_sent;
-                    MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.item_sent);
+                    i = R.id.item_sent;
+                    MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.item_sent);
                     if (materialButton2 != null) {
                         return new WidgetGuildInviteShareItemBinding((LinearLayout) view, simpleDraweeView, materialButton, textView, materialButton2);
                     }

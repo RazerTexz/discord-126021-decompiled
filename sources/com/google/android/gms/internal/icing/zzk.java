@@ -1,7 +1,7 @@
 package com.google.android.gms.internal.icing;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.d.b.a.a;
 import b.i.a.f.h.k.o;
@@ -17,7 +17,7 @@ public final class zzk extends AbstractSafeParcelable {
     public final int m;
     public final byte[] n;
     public static final int j = Integer.parseInt("-1");
-    public static final Parcelable$Creator<zzk> CREATOR = new o();
+    public static final Parcelable.Creator<zzk> CREATOR = new o();
 
     static {
         ArrayList arrayList = new ArrayList();

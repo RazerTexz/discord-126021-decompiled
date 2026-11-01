@@ -2,7 +2,6 @@ package com.discord.utilities.resources;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.content.res.Resources$NotFoundException;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
 import b.a.k.b;
@@ -24,7 +23,7 @@ public final class StringResourceUtilsKt {
         return objArr.length == 0 ? b.l(quantityString, new Object[0], null, 2) : b.l(quantityString, Arrays.copyOf(objArr, objArr.length), null, 2);
     }
 
-    public static final CharSequence getQuantityString(Resources resources, @PluralsRes int i, @StringRes int i2, int i3, Object... objArr) throws Resources$NotFoundException {
+    public static final CharSequence getQuantityString(Resources resources, @PluralsRes int i, @StringRes int i2, int i3, Object... objArr) throws Resources.NotFoundException {
         m.checkNotNullParameter(resources, "$this$getQuantityString");
         m.checkNotNullParameter(objArr, "formatArgs");
         if (i3 == 0) {

@@ -4,14 +4,14 @@ import android.accounts.Account;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.common.Feature;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.common.internal.GetServiceRequest;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class p0 implements Parcelable$Creator<GetServiceRequest> {
+public final class p0 implements Parcelable.Creator<GetServiceRequest> {
     public static void a(GetServiceRequest getServiceRequest, Parcel parcel, int i) {
         int iY2 = b.c.a.a0.d.y2(parcel, 20293);
         int i2 = getServiceRequest.j;
@@ -43,7 +43,7 @@ public final class p0 implements Parcelable$Creator<GetServiceRequest> {
         b.c.a.a0.d.A2(parcel, iY2);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final GetServiceRequest createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         String strR = null;
@@ -115,7 +115,7 @@ public final class p0 implements Parcelable$Creator<GetServiceRequest> {
         return new GetServiceRequest(iG1, iG2, iG3, strR, iBinderF1, scopeArr, bundleM, account, featureArr, featureArr2, zE1, iG4, zE2, strR2);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* bridge */ /* synthetic */ GetServiceRequest[] newArray(int i) {
         return new GetServiceRequest[i];
     }

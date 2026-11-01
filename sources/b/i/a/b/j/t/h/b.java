@@ -9,9 +9,9 @@ public final class b extends f {
     public final b.i.a.b.j.v.a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final Map<b.i.a.b.d, f$a> f784b;
+    public final Map<b.i.a.b.d, f.a> f784b;
 
-    public b(b.i.a.b.j.v.a aVar, Map<b.i.a.b.d, f$a> map) {
+    public b(b.i.a.b.j.v.a aVar, Map<b.i.a.b.d, f.a> map) {
         Objects.requireNonNull(aVar, "Null clock");
         this.a = aVar;
         Objects.requireNonNull(map, "Null values");
@@ -24,7 +24,7 @@ public final class b extends f {
     }
 
     @Override // b.i.a.b.j.t.h.f
-    public Map<b.i.a.b.d, f$a> c() {
+    public Map<b.i.a.b.d, f.a> c() {
         return this.f784b;
     }
 

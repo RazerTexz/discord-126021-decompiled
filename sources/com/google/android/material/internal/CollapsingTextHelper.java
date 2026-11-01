@@ -3,39 +3,34 @@ package com.google.android.material.internal;
 import android.animation.TimeInterpolator;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
-import android.text.Layout$Alignment;
+import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
-import android.text.TextUtils$TruncateAt;
 import android.util.Log;
 import android.view.View;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.core.math.MathUtils;
 import androidx.core.text.TextDirectionHeuristicsCompat;
 import androidx.core.util.Preconditions;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
-import b.i.a.g.f.a;
-import b.i.a.g.f.a$a;
 import com.google.android.material.animation.AnimationUtils;
 import com.google.android.material.resources.CancelableFontCallback;
 import com.google.android.material.resources.TextAppearance;
 import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public final class CollapsingTextHelper {
     private static final boolean DEBUG_DRAW = false;
     private static final String ELLIPSIS_NORMAL = "…";
@@ -114,6 +109,26 @@ public final class CollapsingTextHelper {
     private float collapsedTextSize = 15.0f;
     private int maxLines = 1;
 
+    public class a implements CancelableFontCallback.ApplyFont {
+        public a() {
+        }
+
+        @Override // com.google.android.material.resources.CancelableFontCallback.ApplyFont
+        public void apply(Typeface typeface) {
+            CollapsingTextHelper.this.setCollapsedTypeface(typeface);
+        }
+    }
+
+    public class b implements CancelableFontCallback.ApplyFont {
+        public b() {
+        }
+
+        @Override // com.google.android.material.resources.CancelableFontCallback.ApplyFont
+        public void apply(Typeface typeface) {
+            CollapsingTextHelper.this.setExpandedTypeface(typeface);
+        }
+    }
+
     static {
         Paint paint = null;
         if (0 != 0) {
@@ -143,7 +158,7 @@ public final class CollapsingTextHelper {
         calculateUsingTextSize(this.collapsedTextSize);
         CharSequence charSequence = this.textToDraw;
         if (charSequence != null && (staticLayout = this.textLayout) != null) {
-            this.textToDrawCollapsed = TextUtils.ellipsize(charSequence, this.textPaint, staticLayout.getWidth(), TextUtils$TruncateAt.END);
+            this.textToDrawCollapsed = TextUtils.ellipsize(charSequence, this.textPaint, staticLayout.getWidth(), TextUtils.TruncateAt.END);
         }
         CharSequence charSequence2 = this.textToDrawCollapsed;
         float fMeasureText = charSequence2 != null ? this.textPaint.measureText(charSequence2, 0, charSequence2.length()) : 0.0f;
@@ -305,14 +320,14 @@ public final class CollapsingTextHelper {
     private StaticLayout createStaticLayout(int i, float f, boolean z2) {
         StaticLayout staticLayoutA;
         try {
-            a aVar = new a(this.text, this.textPaint, (int) f);
-            aVar.l = TextUtils$TruncateAt.END;
+            b.i.a.g.f.a aVar = new b.i.a.g.f.a(this.text, this.textPaint, (int) f);
+            aVar.l = TextUtils.TruncateAt.END;
             aVar.k = z2;
-            aVar.h = Layout$Alignment.ALIGN_NORMAL;
+            aVar.h = Layout.Alignment.ALIGN_NORMAL;
             aVar.j = false;
             aVar.i = i;
             staticLayoutA = aVar.a();
-        } catch (a$a e) {
+        } catch (b.i.a.g.f.a.C0123a e) {
             Log.e(TAG, e.getCause().getMessage(), e);
             staticLayoutA = null;
         }
@@ -380,7 +395,7 @@ public final class CollapsingTextHelper {
         if (width <= 0 || height <= 0) {
             return;
         }
-        this.expandedTitleTexture = Bitmap.createBitmap(width, height, Bitmap$Config.ARGB_8888);
+        this.expandedTitleTexture = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         this.textLayout.draw(new Canvas(this.expandedTitleTexture));
         if (this.texturePaint == null) {
             this.texturePaint = new Paint(3);
@@ -581,7 +596,7 @@ public final class CollapsingTextHelper {
         if (cancelableFontCallback != null) {
             cancelableFontCallback.cancel();
         }
-        this.collapsedFontCallback = new CancelableFontCallback(new CollapsingTextHelper$a(this), textAppearance.getFallbackFont());
+        this.collapsedFontCallback = new CancelableFontCallback(new a(), textAppearance.getFallbackFont());
         textAppearance.getFontAsync(this.view.getContext(), this.collapsedFontCallback);
         recalculate();
     }
@@ -661,7 +676,7 @@ public final class CollapsingTextHelper {
         if (cancelableFontCallback != null) {
             cancelableFontCallback.cancel();
         }
-        this.expandedFontCallback = new CancelableFontCallback(new CollapsingTextHelper$b(this), textAppearance.getFallbackFont());
+        this.expandedFontCallback = new CancelableFontCallback(new b(), textAppearance.getFallbackFont());
         textAppearance.getFontAsync(this.view.getContext(), this.expandedFontCallback);
         recalculate();
     }

@@ -1,6 +1,8 @@
 package b.i.a.c.x2.j0;
 
 import b.i.a.c.f3.x;
+import b.i.a.c.j1;
+import b.i.a.c.x2.t;
 import b.i.a.c.x2.w;
 import java.io.IOException;
 import org.checkerframework.checker.nullness.qual.EnsuresNonNullIf;
@@ -22,7 +24,35 @@ public abstract class i {
     public boolean l;
     public boolean m;
     public final e a = new e();
-    public i$b j = new i$b();
+    public b j = new b();
+
+    /* JADX INFO: compiled from: StreamReader.java */
+    public class b {
+        public j1 a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public g f1240b;
+    }
+
+    /* JADX INFO: compiled from: StreamReader.java */
+    public final class c implements g {
+        public c(a aVar) {
+        }
+
+        @Override // b.i.a.c.x2.j0.g
+        public t a() {
+            return new t.b(-9223372036854775807L, 0L);
+        }
+
+        @Override // b.i.a.c.x2.j0.g
+        public long b(b.i.a.c.x2.i iVar) {
+            return -1L;
+        }
+
+        @Override // b.i.a.c.x2.j0.g
+        public void c(long j) {
+        }
+    }
 
     public long a(long j) {
         return (((long) this.i) * j) / 1000000;
@@ -35,11 +65,11 @@ public abstract class i {
     public abstract long c(x xVar);
 
     @EnsuresNonNullIf(expression = {"#3.format"}, result = false)
-    public abstract boolean d(x xVar, long j, i$b i_b) throws IOException;
+    public abstract boolean d(x xVar, long j, b bVar) throws IOException;
 
     public void e(boolean z2) {
         if (z2) {
-            this.j = new i$b();
+            this.j = new b();
             this.f = 0L;
             this.h = 0;
         } else {

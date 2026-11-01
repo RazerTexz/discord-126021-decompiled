@@ -7,7 +7,7 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGlobalSearchModel$Companion$create$filteredResults$7 extends o implements Function1<Channel, WidgetGlobalSearchModel$ItemDataPayload> {
+public final class WidgetGlobalSearchModel$Companion$create$filteredResults$7 extends o implements Function1<Channel, WidgetGlobalSearchModel.ItemDataPayload> {
     public final /* synthetic */ String $sanitizedFilter;
     public final /* synthetic */ WidgetGlobalSearchModel$Companion$create$4 $toItemChannel$4;
 
@@ -19,12 +19,12 @@ public final class WidgetGlobalSearchModel$Companion$create$filteredResults$7 ex
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public /* bridge */ /* synthetic */ WidgetGlobalSearchModel$ItemDataPayload invoke(Channel channel) {
+    public /* bridge */ /* synthetic */ WidgetGlobalSearchModel.ItemDataPayload invoke(Channel channel) {
         return invoke2(channel);
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final WidgetGlobalSearchModel$ItemDataPayload invoke2(Channel channel) {
+    public final WidgetGlobalSearchModel.ItemDataPayload invoke2(Channel channel) {
         m.checkNotNullParameter(channel, "it");
         return this.$toItemChannel$4.invoke2(channel, this.$sanitizedFilter);
     }

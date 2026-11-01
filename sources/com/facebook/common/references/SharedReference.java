@@ -18,6 +18,12 @@ public class SharedReference<T> {
     public T f2884b;
     public static final Map<Object, Integer> a = new IdentityHashMap();
 
+    public class NullReferenceException extends RuntimeException {
+        public NullReferenceException() {
+            super("Null shared reference");
+        }
+    }
+
     public SharedReference(T t, f<T> fVar) {
         Objects.requireNonNull(t);
         this.f2884b = t;
@@ -75,7 +81,7 @@ public class SharedReference<T> {
             z2 = this.c > 0;
         }
         if (!(z2)) {
-            throw new SharedReference$NullReferenceException();
+            throw new NullReferenceException();
         }
     }
 

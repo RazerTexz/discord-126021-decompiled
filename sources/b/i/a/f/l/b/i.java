@@ -1,14 +1,14 @@
 package b.i.a.f.l.b;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.common.internal.zas;
 import com.google.android.gms.signin.internal.zak;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class i implements Parcelable$Creator<zak> {
-    @Override // android.os.Parcelable$Creator
+public final class i implements Parcelable.Creator<zak> {
+    @Override // android.os.Parcelable.Creator
     public final zak createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         int iG1 = 0;
@@ -28,7 +28,7 @@ public final class i implements Parcelable$Creator<zak> {
         return new zak(iG1, zasVar);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zak[] newArray(int i) {
         return new zak[i];
     }

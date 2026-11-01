@@ -28,7 +28,15 @@ public @interface ColumnInfo {
     public static final int UNSPECIFIED = 1;
     public static final String VALUE_UNSPECIFIED = "[value-unspecified]";
 
-    @ColumnInfo$Collate
+    @Retention(RetentionPolicy.CLASS)
+    public @interface Collate {
+    }
+
+    @Retention(RetentionPolicy.CLASS)
+    public @interface SQLiteTypeAffinity {
+    }
+
+    @Collate
     int collate() default 1;
 
     String defaultValue() default "[value-unspecified]";
@@ -37,6 +45,6 @@ public @interface ColumnInfo {
 
     String name() default "[field-name]";
 
-    @ColumnInfo$SQLiteTypeAffinity
+    @SQLiteTypeAffinity
     int typeAffinity() default 1;
 }

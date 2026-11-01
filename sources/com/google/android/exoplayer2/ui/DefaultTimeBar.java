@@ -13,11 +13,9 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View$MeasureSpec;
 import android.view.ViewParent;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
-import android.view.accessibility.AccessibilityNodeInfo$AccessibilityAction;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,7 +23,6 @@ import b.c.a.a0.d;
 import b.i.a.c.d3.b;
 import b.i.a.c.d3.c;
 import b.i.a.c.d3.o;
-import b.i.a.c.d3.o$a;
 import b.i.a.c.f3.e0;
 import java.util.Collections;
 import java.util.Formatter;
@@ -42,7 +39,7 @@ public class DefaultTimeBar extends View implements o {
     public final StringBuilder D;
     public final Formatter E;
     public final Runnable F;
-    public final CopyOnWriteArraySet<o$a> G;
+    public final CopyOnWriteArraySet<o.a> G;
     public final Point H;
     public final float I;
     public int J;
@@ -105,8 +102,8 @@ public class DefaultTimeBar extends View implements o {
     }
 
     @Override // b.i.a.c.d3.o
-    public void b(o$a o_a) {
-        this.G.add(o_a);
+    public void b(o.a aVar) {
+        this.G.add(aVar);
     }
 
     public static int c(float f, int i) {
@@ -152,7 +149,7 @@ public class DefaultTimeBar extends View implements o {
         if (parent != null) {
             parent.requestDisallowInterceptTouchEvent(true);
         }
-        Iterator<o$a> it = this.G.iterator();
+        Iterator<o.a> it = this.G.iterator();
         while (it.hasNext()) {
             it.next().m(this, j);
         }
@@ -167,7 +164,7 @@ public class DefaultTimeBar extends View implements o {
             parent.requestDisallowInterceptTouchEvent(false);
         }
         invalidate();
-        Iterator<o$a> it = this.G.iterator();
+        Iterator<o.a> it = this.G.iterator();
         while (it.hasNext()) {
             it.next().l(this, this.Q, z2);
         }
@@ -242,7 +239,7 @@ public class DefaultTimeBar extends View implements o {
             return;
         }
         this.Q = j;
-        Iterator<o$a> it = this.G.iterator();
+        Iterator<o.a> it = this.G.iterator();
         while (it.hasNext()) {
             it.next().k(this, j);
         }
@@ -341,8 +338,8 @@ public class DefaultTimeBar extends View implements o {
             return;
         }
         if (e0.a >= 21) {
-            accessibilityNodeInfo.addAction(AccessibilityNodeInfo$AccessibilityAction.ACTION_SCROLL_FORWARD);
-            accessibilityNodeInfo.addAction(AccessibilityNodeInfo$AccessibilityAction.ACTION_SCROLL_BACKWARD);
+            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_FORWARD);
+            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_BACKWARD);
         } else {
             accessibilityNodeInfo.addAction(4096);
             accessibilityNodeInfo.addAction(8192);
@@ -353,7 +350,7 @@ public class DefaultTimeBar extends View implements o {
     /* JADX WARN: Code duplicated, block: B:11:0x001a  */
     /* JADX WARN: Code duplicated, block: B:13:0x0027  */
     /* JADX WARN: Code duplicated, block: B:15:0x002b  */
-    @Override // android.view.View, android.view.KeyEvent$Callback
+    @Override // android.view.View, android.view.KeyEvent.Callback
     public boolean onKeyDown(int i, KeyEvent keyEvent) {
         if (isEnabled()) {
             long positionIncrement = getPositionIncrement();
@@ -422,14 +419,14 @@ public class DefaultTimeBar extends View implements o {
 
     @Override // android.view.View
     public void onMeasure(int i, int i2) {
-        int mode = View$MeasureSpec.getMode(i2);
-        int size = View$MeasureSpec.getSize(i2);
+        int mode = View.MeasureSpec.getMode(i2);
+        int size = View.MeasureSpec.getSize(i2);
         if (mode == 0) {
             size = this.v;
         } else if (mode != 1073741824) {
             size = Math.min(this.v, size);
         }
-        setMeasuredDimension(View$MeasureSpec.getSize(i), size);
+        setMeasuredDimension(View.MeasureSpec.getSize(i), size);
         i();
     }
 
@@ -629,9 +626,9 @@ public class DefaultTimeBar extends View implements o {
         int iC5 = c(f, 0);
         int iC6 = c(f, 16);
         if (attributeSet2 != null) {
-            TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet2, R$g.DefaultTimeBar, i, 0);
+            TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet2, R.g.DefaultTimeBar, i, 0);
             try {
-                Drawable drawable = typedArrayObtainStyledAttributes.getDrawable(R$g.DefaultTimeBar_scrubber_drawable);
+                Drawable drawable = typedArrayObtainStyledAttributes.getDrawable(R.g.DefaultTimeBar_scrubber_drawable);
                 this.t = drawable;
                 if (drawable != null) {
                     int i2 = e0.a;
@@ -643,19 +640,19 @@ public class DefaultTimeBar extends View implements o {
                     }
                     iC2 = Math.max(drawable.getMinimumHeight(), iC2);
                 }
-                this.u = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$g.DefaultTimeBar_bar_height, iC);
-                this.v = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$g.DefaultTimeBar_touch_target_height, iC2);
-                this.w = typedArrayObtainStyledAttributes.getInt(R$g.DefaultTimeBar_bar_gravity, 0);
-                this.f2955x = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$g.DefaultTimeBar_ad_marker_width, iC3);
-                this.f2956y = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$g.DefaultTimeBar_scrubber_enabled_size, iC4);
-                this.f2957z = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$g.DefaultTimeBar_scrubber_disabled_size, iC5);
-                this.A = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$g.DefaultTimeBar_scrubber_dragged_size, iC6);
-                int i3 = typedArrayObtainStyledAttributes.getInt(R$g.DefaultTimeBar_played_color, -1);
-                int i4 = typedArrayObtainStyledAttributes.getInt(R$g.DefaultTimeBar_scrubber_color, -1);
-                int i5 = typedArrayObtainStyledAttributes.getInt(R$g.DefaultTimeBar_buffered_color, -855638017);
-                int i6 = typedArrayObtainStyledAttributes.getInt(R$g.DefaultTimeBar_unplayed_color, 872415231);
-                int i7 = typedArrayObtainStyledAttributes.getInt(R$g.DefaultTimeBar_ad_marker_color, -1291845888);
-                int i8 = typedArrayObtainStyledAttributes.getInt(R$g.DefaultTimeBar_played_ad_marker_color, 872414976);
+                this.u = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.g.DefaultTimeBar_bar_height, iC);
+                this.v = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.g.DefaultTimeBar_touch_target_height, iC2);
+                this.w = typedArrayObtainStyledAttributes.getInt(R.g.DefaultTimeBar_bar_gravity, 0);
+                this.f2955x = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.g.DefaultTimeBar_ad_marker_width, iC3);
+                this.f2956y = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.g.DefaultTimeBar_scrubber_enabled_size, iC4);
+                this.f2957z = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.g.DefaultTimeBar_scrubber_disabled_size, iC5);
+                this.A = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.g.DefaultTimeBar_scrubber_dragged_size, iC6);
+                int i3 = typedArrayObtainStyledAttributes.getInt(R.g.DefaultTimeBar_played_color, -1);
+                int i4 = typedArrayObtainStyledAttributes.getInt(R.g.DefaultTimeBar_scrubber_color, -1);
+                int i5 = typedArrayObtainStyledAttributes.getInt(R.g.DefaultTimeBar_buffered_color, -855638017);
+                int i6 = typedArrayObtainStyledAttributes.getInt(R.g.DefaultTimeBar_unplayed_color, 872415231);
+                int i7 = typedArrayObtainStyledAttributes.getInt(R.g.DefaultTimeBar_ad_marker_color, -1291845888);
+                int i8 = typedArrayObtainStyledAttributes.getInt(R.g.DefaultTimeBar_played_ad_marker_color, 872414976);
                 paint.setColor(i3);
                 paint6.setColor(i4);
                 paint2.setColor(i5);

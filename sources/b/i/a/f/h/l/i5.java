@@ -1,14 +1,14 @@
 package b.i.a.f.h.l;
 
 import java.util.Iterator;
-import java.util.Map$Entry;
+import java.util.Map;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class i5<K> implements Iterator<Map$Entry<K, Object>> {
-    public Iterator<Map$Entry<K, Object>> j;
+public final class i5<K> implements Iterator<Map.Entry<K, Object>> {
+    public Iterator<Map.Entry<K, Object>> j;
 
-    public i5(Iterator<Map$Entry<K, Object>> it) {
+    public i5(Iterator<Map.Entry<K, Object>> it) {
         this.j = it;
     }
 
@@ -19,7 +19,7 @@ public final class i5<K> implements Iterator<Map$Entry<K, Object>> {
 
     @Override // java.util.Iterator
     public final /* synthetic */ Object next() {
-        Map$Entry<K, Object> next = this.j.next();
+        Map.Entry<K, Object> next = this.j.next();
         return next.getValue() instanceof d5 ? new f5(next, null) : next;
     }
 

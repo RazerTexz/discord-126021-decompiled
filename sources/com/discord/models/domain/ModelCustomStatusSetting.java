@@ -1,18 +1,71 @@
 package com.discord.models.domain;
 
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import b.d.b.a.a;
+import com.google.gson.stream.JsonToken;
 import d0.z.d.m;
+import java.io.IOException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import kotlin.jvm.internal.Ref$ObjectRef;
 
 /* JADX INFO: compiled from: ModelCustomStatusSetting.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class ModelCustomStatusSetting {
-    public static final ModelCustomStatusSetting$Companion Companion = new ModelCustomStatusSetting$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final Long emojiId;
     private final String emojiName;
     private final String expiresAt;
     private final String text;
     private static final ModelCustomStatusSetting CLEAR = new ModelCustomStatusSetting(null, null, null, null);
+
+    /* JADX INFO: compiled from: ModelCustomStatusSetting.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final ModelCustomStatusSetting getCLEAR() {
+            return ModelCustomStatusSetting.access$getCLEAR$cp();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: ModelCustomStatusSetting.kt */
+    public final class Parser implements Model.Parser<ModelCustomStatusSetting> {
+        public static final Parser INSTANCE = new Parser();
+
+        private Parser() {
+        }
+
+        @Override // com.discord.models.domain.Model.Parser
+        public /* bridge */ /* synthetic */ ModelCustomStatusSetting parse(Model.JsonReader jsonReader) {
+            return parse(jsonReader);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // com.discord.models.domain.Model.Parser
+        public ModelCustomStatusSetting parse(Model.JsonReader reader) throws IOException {
+            Ref$ObjectRef ref$ObjectRefC0 = a.c0(reader, "reader");
+            ref$ObjectRefC0.element = null;
+            Ref$ObjectRef ref$ObjectRef = new Ref$ObjectRef();
+            ref$ObjectRef.element = null;
+            Ref$ObjectRef ref$ObjectRef2 = new Ref$ObjectRef();
+            ref$ObjectRef2.element = null;
+            Ref$ObjectRef ref$ObjectRef3 = new Ref$ObjectRef();
+            ref$ObjectRef3.element = null;
+            if (reader.peek() == JsonToken.NULL) {
+                reader.nextNull();
+                return ModelCustomStatusSetting.INSTANCE.getCLEAR();
+            }
+            reader.nextObject(new ModelCustomStatusSetting$Parser$parse$1(ref$ObjectRefC0, reader, ref$ObjectRef, ref$ObjectRef2, ref$ObjectRef3));
+            return new ModelCustomStatusSetting((String) ref$ObjectRefC0.element, (Long) ref$ObjectRef.element, (String) ref$ObjectRef2.element, (String) ref$ObjectRef3.element);
+        }
+    }
 
     public ModelCustomStatusSetting(String str, Long l, String str2, String str3) {
         this.text = str;

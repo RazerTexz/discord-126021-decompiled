@@ -73,7 +73,7 @@ public class l<T> extends j0<T> implements CancellableContinuation<T>, Coroutine
                 }
             }
         }
-        if (zV || ((m0) this._parentHandle) != null || (job = (Job) this.p.getContext().get(Job.h)) == null) {
+        if (zV || ((m0) this._parentHandle) != null || (job = (Job) this.p.getContext().get(Job.INSTANCE)) == null) {
             return;
         }
         m0 m0VarW0 = b.i.a.f.e.o.f.w0(job, true, false, new o(job, this), 2, null);
@@ -408,7 +408,7 @@ public class l<T> extends j0<T> implements CancellableContinuation<T>, Coroutine
         if (obj instanceof w) {
             throw ((w) obj).f3846b;
         }
-        if (!b.i.a.f.e.o.f.B0(this.l) || (job = (Job) this.o.get(Job.h)) == null || job.a()) {
+        if (!b.i.a.f.e.o.f.B0(this.l) || (job = (Job) this.o.get(Job.INSTANCE)) == null || job.a()) {
             return j(obj);
         }
         CancellationException cancellationExceptionQ = job.q();

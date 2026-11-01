@@ -3,8 +3,9 @@ package com.discord.widgets.servers;
 import android.os.Bundle;
 import android.view.View;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppBottomSheet;
 import com.discord.databinding.WidgetServerSettingsChannelsSortActionsBinding;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
@@ -12,17 +13,86 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: WidgetServerSettingsChannelsSortActions.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsChannelsSortActions extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetServerSettingsChannelsSortActions.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsChannelsSortActionsBinding;", 0)};
-    public static final WidgetServerSettingsChannelsSortActions$Companion Companion = new WidgetServerSettingsChannelsSortActions$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
     private Function1<? super Integer, Unit> sortTypeSelectedListener;
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsChannelsSortActions$configureUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsChannelsSortActions.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            Function1<Integer, Unit> sortTypeSelectedListener = WidgetServerSettingsChannelsSortActions.this.getSortTypeSelectedListener();
+            if (sortTypeSelectedListener != null) {
+                sortTypeSelectedListener.invoke(4);
+            }
+            WidgetServerSettingsChannelsSortActions.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsChannelsSortActions$configureUI$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsChannelsSortActions.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            Function1<Integer, Unit> sortTypeSelectedListener = WidgetServerSettingsChannelsSortActions.this.getSortTypeSelectedListener();
+            if (sortTypeSelectedListener != null) {
+                sortTypeSelectedListener.invoke(2);
+            }
+            WidgetServerSettingsChannelsSortActions.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsChannelsSortActions$configureUI$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsChannelsSortActions.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public AnonymousClass3() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            Function1<Integer, Unit> sortTypeSelectedListener = WidgetServerSettingsChannelsSortActions.this.getSortTypeSelectedListener();
+            if (sortTypeSelectedListener != null) {
+                sortTypeSelectedListener.invoke(0);
+            }
+            WidgetServerSettingsChannelsSortActions.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsChannelsSortActions.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, Function1<? super Integer, Unit> sortTypeSelectedListener) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            m.checkNotNullParameter(sortTypeSelectedListener, "sortTypeSelectedListener");
+            WidgetServerSettingsChannelsSortActions widgetServerSettingsChannelsSortActions = new WidgetServerSettingsChannelsSortActions();
+            widgetServerSettingsChannelsSortActions.setSortTypeSelectedListener(sortTypeSelectedListener);
+            widgetServerSettingsChannelsSortActions.show(fragmentManager, "javaClass");
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public WidgetServerSettingsChannelsSortActions() {
         super(false, 1, null);
@@ -30,9 +100,9 @@ public final class WidgetServerSettingsChannelsSortActions extends AppBottomShee
     }
 
     private final void configureUI() {
-        getBinding().f2551b.setOnClickListener(new WidgetServerSettingsChannelsSortActions$configureUI$1(this));
-        getBinding().d.setOnClickListener(new WidgetServerSettingsChannelsSortActions$configureUI$2(this));
-        getBinding().c.setOnClickListener(new WidgetServerSettingsChannelsSortActions$configureUI$3(this));
+        getBinding().f2551b.setOnClickListener(new AnonymousClass1());
+        getBinding().d.setOnClickListener(new AnonymousClass2());
+        getBinding().c.setOnClickListener(new AnonymousClass3());
     }
 
     private final WidgetServerSettingsChannelsSortActionsBinding getBinding() {
@@ -41,7 +111,7 @@ public final class WidgetServerSettingsChannelsSortActions extends AppBottomShee
 
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
-        return R$layout.widget_server_settings_channels_sort_actions;
+        return R.layout.widget_server_settings_channels_sort_actions;
     }
 
     public final Function1<Integer, Unit> getSortTypeSelectedListener() {

@@ -3,22 +3,59 @@ package d0.e0.p.d.m0.e.b;
 import d0.e0.p.d.m0.c.e0;
 import d0.t.m0;
 import d0.t.n0;
+import java.util.Collection;
 import java.util.Set;
 import kotlin.Pair;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.jvm.internal.impl.protobuf.InvalidProtocolBufferException;
 
 /* JADX INFO: compiled from: DeserializedDescriptorResolver.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class f {
-    public static final f$a a = new f$a(null);
-    public static final Set<d0.e0.p.d.m0.e.b.b0.a$a> c = n0.setOf((Object[]) new d0.e0.p.d.m0.e.b.b0.a$a[]{d0.e0.p.d.m0.e.b.b0.a$a.FILE_FACADE, d0.e0.p.d.m0.e.b.b0.a$a.MULTIFILE_CLASS_PART});
+    public static final a a = new a(null);
+    public static final Set<d0.e0.p.d.m0.e.b.b0.a.EnumC0533a> c = n0.setOf((Object[]) new d0.e0.p.d.m0.e.b.b0.a.EnumC0533a[]{d0.e0.p.d.m0.e.b.b0.a.EnumC0533a.FILE_FACADE, d0.e0.p.d.m0.e.b.b0.a.EnumC0533a.MULTIFILE_CLASS_PART});
     public d0.e0.p.d.m0.l.b.j g;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final Set<d0.e0.p.d.m0.e.b.b0.a$a> f3376b = m0.setOf(d0.e0.p.d.m0.e.b.b0.a$a.CLASS);
+    public static final Set<d0.e0.p.d.m0.e.b.b0.a.EnumC0533a> f3376b = m0.setOf(d0.e0.p.d.m0.e.b.b0.a.EnumC0533a.CLASS);
     public static final d0.e0.p.d.m0.f.a0.b.f d = new d0.e0.p.d.m0.f.a0.b.f(1, 1, 2);
     public static final d0.e0.p.d.m0.f.a0.b.f e = new d0.e0.p.d.m0.f.a0.b.f(1, 1, 11);
     public static final d0.e0.p.d.m0.f.a0.b.f f = new d0.e0.p.d.m0.f.a0.b.f(1, 1, 13);
+
+    /* JADX INFO: compiled from: DeserializedDescriptorResolver.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final d0.e0.p.d.m0.f.a0.b.f getKOTLIN_1_3_RC_METADATA_VERSION$descriptors_jvm() {
+            return f.access$getKOTLIN_1_3_RC_METADATA_VERSION$cp();
+        }
+
+        public final Set<d0.e0.p.d.m0.e.b.b0.a.EnumC0533a> getKOTLIN_CLASS$descriptors_jvm() {
+            return f.access$getKOTLIN_CLASS$cp();
+        }
+    }
+
+    /* JADX INFO: compiled from: DeserializedDescriptorResolver.kt */
+    public final class b extends d0.z.d.o implements Function0<Collection<? extends d0.e0.p.d.m0.g.e>> {
+        public static final b j = new b();
+
+        public b() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Collection<? extends d0.e0.p.d.m0.g.e> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Collection<? extends d0.e0.p.d.m0.g.e> invoke2() {
+            return d0.t.n.emptyList();
+        }
+    }
 
     public final d0.e0.p.d.m0.l.b.e0.e a(p pVar) {
         d0.e0.p.d.m0.l.b.e0.e eVar = d0.e0.p.d.m0.l.b.e0.e.STABLE;
@@ -86,10 +123,10 @@ public final class f {
         }
         d0.e0.p.d.m0.f.a0.b.g gVarComponent1 = packageDataFrom.component1();
         d0.e0.p.d.m0.f.l lVarComponent2 = packageDataFrom.component2();
-        return new d0.e0.p.d.m0.l.b.e0.i(e0Var, lVarComponent2, gVarComponent1, pVar.getClassHeader().getMetadataVersion(), new j(pVar, lVarComponent2, gVarComponent1, b(pVar), c(pVar), a(pVar)), getComponents(), f$b.j);
+        return new d0.e0.p.d.m0.l.b.e0.i(e0Var, lVarComponent2, gVarComponent1, pVar.getClassHeader().getMetadataVersion(), new j(pVar, lVarComponent2, gVarComponent1, b(pVar), c(pVar), a(pVar)), getComponents(), b.j);
     }
 
-    public final String[] d(p pVar, Set<? extends d0.e0.p.d.m0.e.b.b0.a$a> set) {
+    public final String[] d(p pVar, Set<? extends d0.e0.p.d.m0.e.b.b0.a.EnumC0533a> set) {
         d0.e0.p.d.m0.e.b.b0.a classHeader = pVar.getClassHeader();
         String[] data = classHeader.getData();
         if (data == null) {

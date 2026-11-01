@@ -1,6 +1,6 @@
 package b.f.j.a.b;
 
-import android.graphics.Bitmap$Config;
+import android.graphics.Bitmap;
 import b.f.j.a.a.f;
 import com.facebook.common.references.CloseableReference;
 import com.facebook.imagepipeline.bitmaps.PlatformBitmapFactory;
@@ -37,7 +37,7 @@ public class e implements d {
         this.d = platformBitmapFactory;
     }
 
-    public final b.f.j.j.c a(b.f.j.d.b bVar, b.f.j.a.a.c cVar, Bitmap$Config bitmap$Config) {
+    public final b.f.j.j.c a(b.f.j.d.b bVar, b.f.j.a.a.c cVar, Bitmap.Config config) {
         try {
             Objects.requireNonNull(bVar);
             f fVar = new f(cVar);

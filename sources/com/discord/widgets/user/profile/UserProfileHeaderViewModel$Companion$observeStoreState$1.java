@@ -15,6 +15,26 @@ public final class UserProfileHeaderViewModel$Companion$observeStoreState$1<T, R
     public final /* synthetic */ StoreUser $storeUser;
     public final /* synthetic */ long $userId;
 
+    /* JADX INFO: renamed from: com.discord.widgets.user.profile.UserProfileHeaderViewModel$Companion$observeStoreState$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: UserProfileHeaderViewModel.kt */
+    public final class AnonymousClass1<T, R> implements b<User, Pair<? extends MeUser, ? extends User>> {
+        public final /* synthetic */ MeUser $meUser;
+
+        public AnonymousClass1(MeUser meUser) {
+            this.$meUser = meUser;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Pair<? extends MeUser, ? extends User> call(User user) {
+            return call2(user);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Pair<MeUser, User> call2(User user) {
+            return new Pair<>(this.$meUser, user);
+        }
+    }
+
     public UserProfileHeaderViewModel$Companion$observeStoreState$1(long j, StoreUser storeUser) {
         this.$userId = j;
         this.$storeUser = storeUser;
@@ -28,6 +48,6 @@ public final class UserProfileHeaderViewModel$Companion$observeStoreState$1<T, R
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
     public final Observable<? extends Pair<MeUser, User>> call2(MeUser meUser) {
         long j = this.$userId;
-        return j == -1 ? new k(new Pair(meUser, meUser)) : this.$storeUser.observeUser(j).G(new UserProfileHeaderViewModel$Companion$observeStoreState$1$1(meUser));
+        return j == -1 ? new k(new Pair(meUser, meUser)) : this.$storeUser.observeUser(j).G(new AnonymousClass1(meUser));
     }
 }

@@ -6,23 +6,23 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class EmojiPickerViewModel$ViewState$Results$firstUnicodeEmojiCategoryItem$2 extends o implements Function0<EmojiCategoryItem$StandardItem> {
-    public final /* synthetic */ EmojiPickerViewModel$ViewState$Results this$0;
+public final class EmojiPickerViewModel$ViewState$Results$firstUnicodeEmojiCategoryItem$2 extends o implements Function0<EmojiCategoryItem.StandardItem> {
+    public final /* synthetic */ EmojiPickerViewModel.ViewState.Results this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public EmojiPickerViewModel$ViewState$Results$firstUnicodeEmojiCategoryItem$2(EmojiPickerViewModel$ViewState$Results emojiPickerViewModel$ViewState$Results) {
+    public EmojiPickerViewModel$ViewState$Results$firstUnicodeEmojiCategoryItem$2(EmojiPickerViewModel.ViewState.Results results) {
         super(0);
-        this.this$0 = emojiPickerViewModel$ViewState$Results;
+        this.this$0 = results;
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ EmojiCategoryItem$StandardItem invoke() {
+    public /* bridge */ /* synthetic */ EmojiCategoryItem.StandardItem invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final EmojiCategoryItem$StandardItem invoke() {
+    public final EmojiCategoryItem.StandardItem invoke() {
         Object next;
         Iterator<T> it = this.this$0.getCategoryItems().iterator();
         do {
@@ -32,6 +32,6 @@ public final class EmojiPickerViewModel$ViewState$Results$firstUnicodeEmojiCateg
             }
             next = it.next();
         } while (!((EmojiCategoryItem) next).containsOnlyUnicodeEmoji());
-        return (EmojiCategoryItem$StandardItem) (next instanceof EmojiCategoryItem$StandardItem ? next : null);
+        return (EmojiCategoryItem.StandardItem) (next instanceof EmojiCategoryItem.StandardItem ? next : null);
     }
 }

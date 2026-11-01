@@ -1,13 +1,11 @@
 package com.facebook.imagepipeline.request;
 
 import android.net.Uri;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import b.f.d.d.i;
-import b.f.j.d.a;
 import b.f.j.d.d;
 import b.f.j.d.e;
 import b.f.j.d.f;
-import b.f.j.q.b;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.facebook.cache.common.CacheKey;
 import java.io.File;
@@ -22,26 +20,55 @@ public class ImageRequest {
     public File e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final ImageRequest$b f2902b;
+    public final b f2902b;
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
-    public final b f2903s;
+    public final b.f.j.q.b f2903s;
     public final boolean f;
     public final boolean g;
     public final boolean h;
     public final b.f.j.d.b i;
     public final e j;
     public final f k;
-    public final a l;
+    public final b.f.j.d.a l;
     public final d m;
-    public final ImageRequest$c n;
+    public final c n;
     public final int o;
     public final boolean p;
     public final boolean q;
     public final Boolean r;
     public final b.f.j.k.e t;
     public final int u;
-    public static final b.f.d.d.d<ImageRequest, Uri> a = new ImageRequest$a();
+    public static final b.f.d.d.d<ImageRequest, Uri> a = new a();
+
+    public final class a implements b.f.d.d.d<ImageRequest, Uri> {
+    }
+
+    public enum b {
+        SMALL,
+        DEFAULT
+    }
+
+    public enum c {
+        FULL_FETCH(1),
+        DISK_CACHE(2),
+        ENCODED_MEMORY_CACHE(3),
+        BITMAP_MEMORY_CACHE(4);
+
+        private int mValue;
+
+        c(int i) {
+            this.mValue = i;
+        }
+
+        public static c f(c cVar, c cVar2) {
+            return cVar.mValue > cVar2.mValue ? cVar : cVar2;
+        }
+
+        public int g() {
+            return this.mValue;
+        }
+    }
 
     public ImageRequest(ImageRequestBuilder imageRequestBuilder) {
         this.f2902b = imageRequestBuilder.g;
@@ -121,20 +148,20 @@ public class ImageRequest {
         if (!b.c.a.a0.d.g0(null, null) || !b.c.a.a0.d.g0(this.k, imageRequest.k) || this.h != imageRequest.h) {
             return false;
         }
-        b bVar = this.f2903s;
+        b.f.j.q.b bVar = this.f2903s;
         CacheKey postprocessorCacheKey = bVar != null ? bVar.getPostprocessorCacheKey() : null;
-        b bVar2 = imageRequest.f2903s;
+        b.f.j.q.b bVar2 = imageRequest.f2903s;
         return b.c.a.a0.d.g0(postprocessorCacheKey, bVar2 != null ? bVar2.getPostprocessorCacheKey() : null) && this.u == imageRequest.u;
     }
 
     public int hashCode() {
-        b bVar = this.f2903s;
+        b.f.j.q.b bVar = this.f2903s;
         return Arrays.hashCode(new Object[]{this.f2902b, this.c, Boolean.valueOf(this.g), this.l, this.m, this.n, Integer.valueOf(this.o), Boolean.valueOf(this.p), Boolean.valueOf(this.q), this.i, this.r, this.j, this.k, bVar != null ? bVar.getPostprocessorCacheKey() : null, null, Integer.valueOf(this.u), Boolean.valueOf(this.h)});
     }
 
     public String toString() {
         i iVarH2 = b.c.a.a0.d.h2(this);
-        iVarH2.c(NotificationCompat$MessagingStyle$Message.KEY_DATA_URI, this.c);
+        iVarH2.c(NotificationCompat.MessagingStyle.Message.KEY_DATA_URI, this.c);
         iVarH2.c("cacheChoice", this.f2902b);
         iVarH2.c("decodeOptions", this.i);
         iVarH2.c("postprocessor", this.f2903s);

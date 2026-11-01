@@ -2,35 +2,96 @@ package com.discord.widgets.settings;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.LinearLayout;
 import androidx.fragment.app.Fragment;
+import b.a.d.j;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetSettingsNotificationsBinding;
 import com.discord.stores.StoreNotifications;
 import com.discord.stores.StoreStream;
+import com.discord.utilities.fcm.NotificationClient;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.views.CheckedSetting;
 import d0.z.d.m;
+import d0.z.d.o;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: WidgetSettingsNotifications.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsNotifications extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetSettingsNotifications.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsNotificationsBinding;", 0)};
-    public static final WidgetSettingsNotifications$Companion Companion = new WidgetSettingsNotifications$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
     private final StoreNotifications notificationStore;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsNotifications$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsNotifications.kt */
+    public final class AnonymousClass1 extends o implements Function1<NotificationClient.SettingsV2, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(NotificationClient.SettingsV2 settingsV2) {
+            invoke2(settingsV2);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(NotificationClient.SettingsV2 settingsV2) {
+            m.checkNotNullParameter(settingsV2, "settings");
+            LinearLayout linearLayout = WidgetSettingsNotifications.access$getBinding$p(WidgetSettingsNotifications.this).g;
+            m.checkNotNullExpressionValue(linearLayout, "binding.settingsNotificationsWrap");
+            linearLayout.setVisibility(settingsV2.isEnabled() ? 0 : 8);
+            CheckedSetting checkedSetting = WidgetSettingsNotifications.access$getBinding$p(WidgetSettingsNotifications.this).d;
+            m.checkNotNullExpressionValue(checkedSetting, "binding.settingsNotificationsEnabled");
+            checkedSetting.setChecked(settingsV2.isEnabled());
+            CheckedSetting checkedSetting2 = WidgetSettingsNotifications.access$getBinding$p(WidgetSettingsNotifications.this).f2632b;
+            m.checkNotNullExpressionValue(checkedSetting2, "binding.settingsInappNotifsSwitch");
+            checkedSetting2.setChecked(settingsV2.isEnabledInApp());
+            CheckedSetting checkedSetting3 = WidgetSettingsNotifications.access$getBinding$p(WidgetSettingsNotifications.this).c;
+            m.checkNotNullExpressionValue(checkedSetting3, "binding.settingsNotificationsBlink");
+            checkedSetting3.setChecked(settingsV2.isDisableBlink());
+            CheckedSetting checkedSetting4 = WidgetSettingsNotifications.access$getBinding$p(WidgetSettingsNotifications.this).f;
+            m.checkNotNullExpressionValue(checkedSetting4, "binding.settingsNotificationsVibrations");
+            checkedSetting4.setChecked(settingsV2.isDisableVibrate());
+            CheckedSetting checkedSetting5 = WidgetSettingsNotifications.access$getBinding$p(WidgetSettingsNotifications.this).e;
+            m.checkNotNullExpressionValue(checkedSetting5, "binding.settingsNotificationsMuteAll");
+            checkedSetting5.setChecked(settingsV2.isDisableSound());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsNotifications.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            m.checkNotNullParameter(context, "context");
+            j.e(context, WidgetSettingsNotifications.class, null, 4);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetSettingsNotifications() {
-        super(R$layout.widget_settings_notifications);
+        super(R.layout.widget_settings_notifications);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetSettingsNotifications$binding$2.INSTANCE, null, 2, null);
-        this.notificationStore = StoreStream.Companion.getNotifications();
+        this.notificationStore = StoreStream.INSTANCE.getNotifications();
     }
 
     public static final /* synthetic */ WidgetSettingsNotificationsBinding access$getBinding$p(WidgetSettingsNotifications widgetSettingsNotifications) {
@@ -42,15 +103,15 @@ public final class WidgetSettingsNotifications extends AppFragment {
     }
 
     public static final void launch(Context context) {
-        Companion.launch(context);
+        INSTANCE.launch(context);
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
-        setActionBarSubtitle(2131896797);
-        setActionBarTitle(2131893385);
+        setActionBarSubtitle(R.string.user_settings);
+        setActionBarTitle(R.string.notifications);
         AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
         StoreNotifications storeNotifications = this.notificationStore;
         getBinding().d.setOnCheckedListener(new WidgetSettingsNotifications$onViewBound$1$1(storeNotifications));
@@ -63,6 +124,6 @@ public final class WidgetSettingsNotifications extends AppFragment {
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(StoreStream.Companion.getNotifications().getSettings(), this, null, 2, null), WidgetSettingsNotifications.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetSettingsNotifications$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(StoreStream.INSTANCE.getNotifications().getSettings(), this, null, 2, null), WidgetSettingsNotifications.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 }

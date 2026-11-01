@@ -7,13 +7,6 @@ import android.database.sqlite.SQLiteException;
 import android.text.TextUtils;
 import androidx.annotation.WorkerThread;
 import androidx.collection.ArrayMap;
-import b.i.a.f.h.l.k0$a;
-import b.i.a.f.h.l.l0$a;
-import b.i.a.f.h.l.m0$a;
-import b.i.a.f.h.l.o0$a;
-import b.i.a.f.h.l.t0$a;
-import b.i.a.f.h.l.u0$a;
-import b.i.a.f.h.l.u4$b;
 import com.google.android.gms.internal.measurement.zzij;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -131,10 +124,10 @@ public final class p4 extends i9 implements e {
                 throw th;
             }
             if (blob != null) {
-                u0$a u0_aT = t(str, blob).t();
-                v(str, u0_aT);
-                this.d.put(str, u((b.i.a.f.h.l.u0) ((b.i.a.f.h.l.u4) u0_aT.p())));
-                this.g.put(str, (b.i.a.f.h.l.u0) ((b.i.a.f.h.l.u4) u0_aT.p()));
+                b.i.a.f.h.l.u0.a aVarT = t(str, blob).t();
+                v(str, aVarT);
+                this.d.put(str, u((b.i.a.f.h.l.u0) ((b.i.a.f.h.l.u4) aVarT.p())));
+                this.g.put(str, (b.i.a.f.h.l.u0) ((b.i.a.f.h.l.u4) aVarT.p()));
                 this.i.put(str, null);
                 return;
             }
@@ -179,7 +172,7 @@ public final class p4 extends i9 implements e {
             return b.i.a.f.h.l.u0.G();
         }
         try {
-            b.i.a.f.h.l.u0 u0Var = (b.i.a.f.h.l.u0) ((b.i.a.f.h.l.u4) ((u0$a) q9.x(b.i.a.f.h.l.u0.F(), bArr)).p());
+            b.i.a.f.h.l.u0 u0Var = (b.i.a.f.h.l.u0) ((b.i.a.f.h.l.u4) ((b.i.a.f.h.l.u0.a) q9.x(b.i.a.f.h.l.u0.F(), bArr)).p());
             g().n.c("Parsed config. version, gmp_app_id", u0Var.x() ? Long.valueOf(u0Var.y()) : null, u0Var.z() ? u0Var.A() : null);
             return u0Var;
         } catch (zzij e) {
@@ -199,40 +192,40 @@ public final class p4 extends i9 implements e {
         return arrayMap;
     }
 
-    public final void v(String str, u0$a u0_a) {
+    public final void v(String str, b.i.a.f.h.l.u0.a aVar) {
         ArrayMap arrayMap = new ArrayMap();
         ArrayMap arrayMap2 = new ArrayMap();
         ArrayMap arrayMap3 = new ArrayMap();
-        for (int i = 0; i < ((b.i.a.f.h.l.u0) u0_a.k).C(); i++) {
-            t0$a t0_aT = ((b.i.a.f.h.l.u0) u0_a.k).u(i).t();
-            if (TextUtils.isEmpty(t0_aT.q())) {
+        for (int i = 0; i < ((b.i.a.f.h.l.u0) aVar.k).C(); i++) {
+            b.i.a.f.h.l.t0.a aVarT = ((b.i.a.f.h.l.u0) aVar.k).u(i).t();
+            if (TextUtils.isEmpty(aVarT.q())) {
                 g().i.a("EventConfig contained null event name");
             } else {
-                String strQ = t0_aT.q();
-                String strY1 = b.i.a.f.e.o.f.Y1(t0_aT.q(), v5.a, v5.c);
+                String strQ = aVarT.q();
+                String strY1 = b.i.a.f.e.o.f.Y1(aVarT.q(), v5.a, v5.c);
                 if (!TextUtils.isEmpty(strY1)) {
-                    if (t0_aT.l) {
-                        t0_aT.n();
-                        t0_aT.l = false;
+                    if (aVarT.l) {
+                        aVarT.n();
+                        aVarT.l = false;
                     }
-                    b.i.a.f.h.l.t0.v((b.i.a.f.h.l.t0) t0_aT.k, strY1);
-                    if (u0_a.l) {
-                        u0_a.n();
-                        u0_a.l = false;
+                    b.i.a.f.h.l.t0.v((b.i.a.f.h.l.t0) aVarT.k, strY1);
+                    if (aVar.l) {
+                        aVar.n();
+                        aVar.l = false;
                     }
-                    b.i.a.f.h.l.u0.w((b.i.a.f.h.l.u0) u0_a.k, i, (b.i.a.f.h.l.t0) ((b.i.a.f.h.l.u4) t0_aT.p()));
+                    b.i.a.f.h.l.u0.w((b.i.a.f.h.l.u0) aVar.k, i, (b.i.a.f.h.l.t0) ((b.i.a.f.h.l.u4) aVarT.p()));
                 }
                 if (b.i.a.f.h.l.x7.b() && this.a.h.o(p.N0)) {
-                    arrayMap.put(strQ, Boolean.valueOf(((b.i.a.f.h.l.t0) t0_aT.k).w()));
+                    arrayMap.put(strQ, Boolean.valueOf(((b.i.a.f.h.l.t0) aVarT.k).w()));
                 } else {
-                    arrayMap.put(t0_aT.q(), Boolean.valueOf(((b.i.a.f.h.l.t0) t0_aT.k).w()));
+                    arrayMap.put(aVarT.q(), Boolean.valueOf(((b.i.a.f.h.l.t0) aVarT.k).w()));
                 }
-                arrayMap2.put(t0_aT.q(), Boolean.valueOf(((b.i.a.f.h.l.t0) t0_aT.k).x()));
-                if (((b.i.a.f.h.l.t0) t0_aT.k).y()) {
-                    if (t0_aT.r() < 2 || t0_aT.r() > 65535) {
-                        g().i.c("Invalid sampling rate. Event name, sample rate", t0_aT.q(), Integer.valueOf(t0_aT.r()));
+                arrayMap2.put(aVarT.q(), Boolean.valueOf(((b.i.a.f.h.l.t0) aVarT.k).x()));
+                if (((b.i.a.f.h.l.t0) aVarT.k).y()) {
+                    if (aVarT.r() < 2 || aVarT.r() > 65535) {
+                        g().i.c("Invalid sampling rate. Event name, sample rate", aVarT.q(), Integer.valueOf(aVarT.r()));
                     } else {
-                        arrayMap3.put(t0_aT.q(), Integer.valueOf(t0_aT.r()));
+                        arrayMap3.put(aVarT.q(), Integer.valueOf(aVarT.r()));
                     }
                 }
             }
@@ -252,111 +245,111 @@ public final class p4 extends i9 implements e {
         n();
         b();
         b.c.a.a0.d.w(str);
-        u0$a u0_aT = t(str, bArr).t();
-        v(str, u0_aT);
-        this.g.put(str, (b.i.a.f.h.l.u0) ((b.i.a.f.h.l.u4) u0_aT.p()));
+        b.i.a.f.h.l.u0.a aVarT = t(str, bArr).t();
+        v(str, aVarT);
+        this.g.put(str, (b.i.a.f.h.l.u0) ((b.i.a.f.h.l.u4) aVarT.p()));
         this.i.put(str, str2);
-        this.d.put(str, u((b.i.a.f.h.l.u0) ((b.i.a.f.h.l.u4) u0_aT.p())));
+        this.d.put(str, u((b.i.a.f.h.l.u0) ((b.i.a.f.h.l.u4) aVarT.p())));
         g gVarQ = q();
-        ArrayList<b.i.a.f.h.l.k0> arrayList = new ArrayList(Collections.unmodifiableList(((b.i.a.f.h.l.u0) u0_aT.k).D()));
+        ArrayList<b.i.a.f.h.l.k0> arrayList = new ArrayList(Collections.unmodifiableList(((b.i.a.f.h.l.u0) aVarT.k).D()));
         Objects.requireNonNull(gVarQ);
         String str4 = "app_id=? and audience_id=?";
         String str5 = "null reference";
         int i = 0;
         while (i < arrayList.size()) {
-            k0$a k0_aT = ((b.i.a.f.h.l.k0) arrayList.get(i)).t();
-            if (((b.i.a.f.h.l.k0) k0_aT.k).D() != 0) {
+            b.i.a.f.h.l.k0.a aVarT2 = ((b.i.a.f.h.l.k0) arrayList.get(i)).t();
+            if (((b.i.a.f.h.l.k0) aVarT2.k).D() != 0) {
                 int i2 = 0;
-                while (i2 < ((b.i.a.f.h.l.k0) k0_aT.k).D()) {
-                    l0$a l0_aT = ((b.i.a.f.h.l.k0) k0_aT.k).z(i2).t();
-                    l0$a l0_a = (l0$a) ((u4$b) l0_aT.clone());
-                    u0$a u0_a = u0_aT;
-                    String strY1 = b.i.a.f.e.o.f.Y1(((b.i.a.f.h.l.l0) l0_aT.k).z(), v5.a, v5.c);
+                while (i2 < ((b.i.a.f.h.l.k0) aVarT2.k).D()) {
+                    b.i.a.f.h.l.l0.a aVarT3 = ((b.i.a.f.h.l.k0) aVarT2.k).z(i2).t();
+                    b.i.a.f.h.l.l0.a aVar = (b.i.a.f.h.l.l0.a) ((b.i.a.f.h.l.u4.b) aVarT3.clone());
+                    b.i.a.f.h.l.u0.a aVar2 = aVarT;
+                    String strY1 = b.i.a.f.e.o.f.Y1(((b.i.a.f.h.l.l0) aVarT3.k).z(), v5.a, v5.c);
                     if (strY1 != null) {
-                        if (l0_a.l) {
-                            l0_a.n();
-                            l0_a.l = false;
+                        if (aVar.l) {
+                            aVar.n();
+                            aVar.l = false;
                         }
-                        b.i.a.f.h.l.l0.w((b.i.a.f.h.l.l0) l0_a.k, strY1);
+                        b.i.a.f.h.l.l0.w((b.i.a.f.h.l.l0) aVar.k, strY1);
                         z4 = true;
                     } else {
                         z4 = false;
                     }
                     int i3 = 0;
-                    while (i3 < ((b.i.a.f.h.l.l0) l0_aT.k).B()) {
-                        b.i.a.f.h.l.m0 m0VarU = ((b.i.a.f.h.l.l0) l0_aT.k).u(i3);
-                        l0$a l0_a2 = l0_aT;
+                    while (i3 < ((b.i.a.f.h.l.l0) aVarT3.k).B()) {
+                        b.i.a.f.h.l.m0 m0VarU = ((b.i.a.f.h.l.l0) aVarT3.k).u(i3);
+                        b.i.a.f.h.l.l0.a aVar3 = aVarT3;
                         String str6 = str4;
                         String str7 = str5;
                         String strY2 = b.i.a.f.e.o.f.Y1(m0VarU.C(), u5.a, u5.f1575b);
                         if (strY2 != null) {
-                            m0$a m0_aT = m0VarU.t();
-                            if (m0_aT.l) {
-                                m0_aT.n();
-                                m0_aT.l = false;
+                            b.i.a.f.h.l.m0.a aVarT4 = m0VarU.t();
+                            if (aVarT4.l) {
+                                aVarT4.n();
+                                aVarT4.l = false;
                             }
-                            b.i.a.f.h.l.m0.u((b.i.a.f.h.l.m0) m0_aT.k, strY2);
-                            b.i.a.f.h.l.m0 m0Var = (b.i.a.f.h.l.m0) ((b.i.a.f.h.l.u4) m0_aT.p());
-                            if (l0_a.l) {
-                                l0_a.n();
-                                l0_a.l = false;
+                            b.i.a.f.h.l.m0.u((b.i.a.f.h.l.m0) aVarT4.k, strY2);
+                            b.i.a.f.h.l.m0 m0Var = (b.i.a.f.h.l.m0) ((b.i.a.f.h.l.u4) aVarT4.p());
+                            if (aVar.l) {
+                                aVar.n();
+                                aVar.l = false;
                             }
-                            b.i.a.f.h.l.l0.v((b.i.a.f.h.l.l0) l0_a.k, i3, m0Var);
+                            b.i.a.f.h.l.l0.v((b.i.a.f.h.l.l0) aVar.k, i3, m0Var);
                             z4 = true;
                         }
                         i3++;
-                        l0_aT = l0_a2;
+                        aVarT3 = aVar3;
                         str4 = str6;
                         str5 = str7;
                     }
                     String str8 = str4;
                     String str9 = str5;
                     if (z4) {
-                        if (k0_aT.l) {
-                            k0_aT.n();
-                            k0_aT.l = false;
+                        if (aVarT2.l) {
+                            aVarT2.n();
+                            aVarT2.l = false;
                         }
-                        b.i.a.f.h.l.k0.v((b.i.a.f.h.l.k0) k0_aT.k, i2, (b.i.a.f.h.l.l0) ((b.i.a.f.h.l.u4) l0_a.p()));
-                        arrayList.set(i, (b.i.a.f.h.l.k0) ((b.i.a.f.h.l.u4) k0_aT.p()));
+                        b.i.a.f.h.l.k0.v((b.i.a.f.h.l.k0) aVarT2.k, i2, (b.i.a.f.h.l.l0) ((b.i.a.f.h.l.u4) aVar.p()));
+                        arrayList.set(i, (b.i.a.f.h.l.k0) ((b.i.a.f.h.l.u4) aVarT2.p()));
                     }
                     i2++;
-                    u0_aT = u0_a;
+                    aVarT = aVar2;
                     str4 = str8;
                     str5 = str9;
                 }
             }
-            u0$a u0_a2 = u0_aT;
+            b.i.a.f.h.l.u0.a aVar4 = aVarT;
             String str10 = str4;
             String str11 = str5;
-            if (((b.i.a.f.h.l.k0) k0_aT.k).B() != 0) {
-                for (int i4 = 0; i4 < ((b.i.a.f.h.l.k0) k0_aT.k).B(); i4++) {
-                    b.i.a.f.h.l.o0 o0VarU = ((b.i.a.f.h.l.k0) k0_aT.k).u(i4);
+            if (((b.i.a.f.h.l.k0) aVarT2.k).B() != 0) {
+                for (int i4 = 0; i4 < ((b.i.a.f.h.l.k0) aVarT2.k).B(); i4++) {
+                    b.i.a.f.h.l.o0 o0VarU = ((b.i.a.f.h.l.k0) aVarT2.k).u(i4);
                     String strY3 = b.i.a.f.e.o.f.Y1(o0VarU.x(), x5.a, x5.f1578b);
                     if (strY3 != null) {
-                        o0$a o0_aT = o0VarU.t();
-                        if (o0_aT.l) {
-                            o0_aT.n();
+                        b.i.a.f.h.l.o0.a aVarT5 = o0VarU.t();
+                        if (aVarT5.l) {
+                            aVarT5.n();
                             z3 = false;
-                            o0_aT.l = false;
+                            aVarT5.l = false;
                         } else {
                             z3 = false;
                         }
-                        b.i.a.f.h.l.o0.u((b.i.a.f.h.l.o0) o0_aT.k, strY3);
-                        if (k0_aT.l) {
-                            k0_aT.n();
-                            k0_aT.l = z3;
+                        b.i.a.f.h.l.o0.u((b.i.a.f.h.l.o0) aVarT5.k, strY3);
+                        if (aVarT2.l) {
+                            aVarT2.n();
+                            aVarT2.l = z3;
                         }
-                        b.i.a.f.h.l.k0.w((b.i.a.f.h.l.k0) k0_aT.k, i4, (b.i.a.f.h.l.o0) ((b.i.a.f.h.l.u4) o0_aT.p()));
-                        arrayList.set(i, (b.i.a.f.h.l.k0) ((b.i.a.f.h.l.u4) k0_aT.p()));
+                        b.i.a.f.h.l.k0.w((b.i.a.f.h.l.k0) aVarT2.k, i4, (b.i.a.f.h.l.o0) ((b.i.a.f.h.l.u4) aVarT5.p()));
+                        arrayList.set(i, (b.i.a.f.h.l.k0) ((b.i.a.f.h.l.u4) aVarT2.p()));
                     }
                 }
             }
             i++;
-            u0_aT = u0_a2;
+            aVarT = aVar4;
             str4 = str10;
             str5 = str11;
         }
-        u0$a u0_a3 = u0_aT;
+        b.i.a.f.h.l.u0.a aVar5 = aVarT;
         String str12 = str4;
         String str13 = str5;
         gVarQ.n();
@@ -439,12 +432,12 @@ public final class p4 extends i9 implements e {
             sQLiteDatabaseT.setTransactionSuccessful();
             sQLiteDatabaseT.endTransaction();
             try {
-                if (u0_a3.l) {
-                    u0_a3.n();
-                    u0_a3.l = false;
+                if (aVar5.l) {
+                    aVar5.n();
+                    aVar5.l = false;
                 }
-                b.i.a.f.h.l.u0.v((b.i.a.f.h.l.u0) u0_a3.k);
-                bArrD = ((b.i.a.f.h.l.u0) ((b.i.a.f.h.l.u4) u0_a3.p())).d();
+                b.i.a.f.h.l.u0.v((b.i.a.f.h.l.u0) aVar5.k);
+                bArrD = ((b.i.a.f.h.l.u0) ((b.i.a.f.h.l.u4) aVar5.p())).d();
             } catch (RuntimeException e) {
                 g().i.c("Unable to serialize reduced-size config. Storing full config instead. appId", q3.s(str), e);
                 bArrD = bArr;
@@ -462,7 +455,7 @@ public final class p4 extends i9 implements e {
             } catch (SQLiteException e2) {
                 gVarQ2.g().f.c("Error storing remote config. appId", q3.s(str), e2);
             }
-            this.g.put(str, (b.i.a.f.h.l.u0) ((b.i.a.f.h.l.u4) u0_a3.p()));
+            this.g.put(str, (b.i.a.f.h.l.u0) ((b.i.a.f.h.l.u4) aVar5.p()));
             return true;
         } catch (Throwable th) {
             sQLiteDatabaseT.endTransaction();

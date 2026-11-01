@@ -12,7 +12,7 @@ public class b extends AnimatorListenerAdapter {
         this.a = dVar;
     }
 
-    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator$AnimatorListener
+    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
     public void onAnimationRepeat(Animator animator) {
         super.onAnimationRepeat(animator);
         d dVar = this.a;

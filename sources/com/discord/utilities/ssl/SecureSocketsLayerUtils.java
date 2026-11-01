@@ -5,6 +5,7 @@ import d0.y.b;
 import d0.z.d.m;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.NoSuchAlgorithmException;
@@ -70,7 +71,7 @@ public final class SecureSocketsLayerUtils {
         }
     }
 
-    public static final TrustManagerFactory getTrustManagerFactory(AssetManager assetManager, String certificatePath) throws NoSuchAlgorithmException, IOException {
+    public static final TrustManagerFactory getTrustManagerFactory(AssetManager assetManager, String certificatePath) throws IllegalAccessException, NoSuchAlgorithmException, IOException, InvocationTargetException {
         m.checkNotNullParameter(assetManager, "assetManager");
         m.checkNotNullParameter(certificatePath, "certificatePath");
         TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());

@@ -12,7 +12,7 @@ public final class UserProfileHeaderView$Companion$bind$$inlined$filterIs$1<T, R
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // j0.k.b
     public final Boolean call(Object obj) {
-        return Boolean.valueOf(obj instanceof UserProfileHeaderViewModel$ViewState$Loaded);
+        return Boolean.valueOf(obj instanceof UserProfileHeaderViewModel.ViewState.Loaded);
     }
 
     @Override // j0.k.b

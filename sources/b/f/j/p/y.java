@@ -8,14 +8,14 @@ import java.util.Objects;
 /* JADX INFO: compiled from: HttpUrlConnectionNetworkFetcher.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class y implements Runnable {
-    public final /* synthetic */ a0$a j;
-    public final /* synthetic */ o0$a k;
+    public final /* synthetic */ a0.a j;
+    public final /* synthetic */ o0.a k;
     public final /* synthetic */ a0 l;
 
-    public y(a0 a0Var, a0$a a0_a, o0$a o0_a) {
+    public y(a0 a0Var, a0.a aVar, o0.a aVar2) {
         this.l = a0Var;
-        this.j = a0_a;
-        this.k = o0_a;
+        this.j = aVar;
+        this.k = aVar2;
     }
 
     /* JADX WARN: Code duplicated, block: B:33:0x0059  */
@@ -25,18 +25,18 @@ public class y implements Runnable {
     public void run() throws Throwable {
         HttpURLConnection httpURLConnectionA;
         a0 a0Var = this.l;
-        a0$a a0_a = this.j;
-        o0$a o0_a = this.k;
+        a0.a aVar = this.j;
+        o0.a aVar2 = this.k;
         Objects.requireNonNull(a0Var);
         InputStream inputStream = null;
         try {
-            httpURLConnectionA = a0Var.a(a0_a.f642b.e().c, 5);
+            httpURLConnectionA = a0Var.a(aVar.f642b.e().c, 5);
             try {
                 try {
-                    a0_a.e = a0Var.c.now();
+                    aVar.e = a0Var.c.now();
                     if (httpURLConnectionA != null) {
                         inputStream = httpURLConnectionA.getInputStream();
-                        ((n0$a) o0_a).b(inputStream, -1);
+                        ((n0.a) aVar2).b(inputStream, -1);
                     }
                     if (inputStream != null) {
                         try {
@@ -49,7 +49,7 @@ public class y implements Runnable {
                     }
                 } catch (IOException e) {
                     e = e;
-                    ((n0$a) o0_a).a(e);
+                    ((n0.a) aVar2).a(e);
                     if (inputStream != null) {
                         try {
                             inputStream.close();

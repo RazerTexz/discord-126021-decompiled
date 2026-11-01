@@ -14,7 +14,7 @@ import kotlin.Unit;
 import kotlin.coroutines.Continuation;
 import kotlin.jvm.functions.Function2;
 import kotlinx.coroutines.CoroutineScope;
-import okhttp3.Request$a;
+import okhttp3.Request;
 import okhttp3.Response;
 
 /* JADX INFO: compiled from: SamsungConnect.kt */
@@ -62,10 +62,10 @@ public final class a extends k implements Function2<CoroutineScope, Continuation
             throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
         }
         l.throwOnFailure(obj);
-        Request$a request$a = new Request$a();
-        request$a.c(ShareTarget.METHOD_GET, null);
-        request$a.f(this.$url);
-        Response responseExecute = ((f0.e0.g.e) this.$okHttpClient.b(request$a.a())).execute();
+        Request.a aVar = new Request.a();
+        aVar.c(ShareTarget.METHOD_GET, null);
+        aVar.f(this.$url);
+        Response responseExecute = ((f0.e0.g.e) this.$okHttpClient.b(aVar.a())).execute();
         String strA = Response.a(responseExecute, "Location", null, 2);
         Uri uri = strA != null ? Uri.parse(strA) : null;
         boolean z2 = false;

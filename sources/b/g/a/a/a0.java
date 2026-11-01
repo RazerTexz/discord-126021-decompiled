@@ -10,5 +10,15 @@ import java.lang.annotation.Target;
 @Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface a0 {
-    a0$a[] value();
+
+    /* JADX INFO: compiled from: JsonSubTypes.java */
+    public @interface a {
+        String name() default "";
+
+        String[] names() default {};
+
+        Class<?> value();
+    }
+
+    a[] value();
 }

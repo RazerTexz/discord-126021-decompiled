@@ -3,6 +3,7 @@ package com.google.gson;
 import b.i.d.q.x.a;
 import b.i.d.q.x.b;
 import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.io.Reader;
@@ -12,6 +13,31 @@ import java.io.Writer;
 
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class TypeAdapter<T> {
+
+    /* JADX INFO: renamed from: com.google.gson.TypeAdapter$1, reason: invalid class name */
+    public class AnonymousClass1 extends TypeAdapter<T> {
+        public AnonymousClass1() {
+        }
+
+        @Override // com.google.gson.TypeAdapter
+        public T read(JsonReader jsonReader) throws IOException {
+            if (jsonReader.N() != JsonToken.NULL) {
+                return (T) TypeAdapter.this.read(jsonReader);
+            }
+            jsonReader.H();
+            return null;
+        }
+
+        @Override // com.google.gson.TypeAdapter
+        public void write(JsonWriter jsonWriter, T t) throws IOException {
+            if (t == null) {
+                jsonWriter.s();
+            } else {
+                TypeAdapter.this.write(jsonWriter, t);
+            }
+        }
+    }
+
     public final T fromJson(Reader reader) throws IOException {
         return read(new JsonReader(reader));
     }
@@ -25,7 +51,7 @@ public abstract class TypeAdapter<T> {
     }
 
     public final TypeAdapter<T> nullSafe() {
-        return new TypeAdapter$1(this);
+        return new AnonymousClass1();
     }
 
     public abstract T read(JsonReader jsonReader) throws IOException;

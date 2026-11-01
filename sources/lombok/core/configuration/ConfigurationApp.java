@@ -1,7 +1,14 @@
 package lombok.core.configuration;
 
 import com.zwitserloot.cmdreader.CmdReader;
+import com.zwitserloot.cmdreader.Description;
+import com.zwitserloot.cmdreader.Excludes;
+import com.zwitserloot.cmdreader.FullName;
 import com.zwitserloot.cmdreader.InvalidCommandLineException;
+import com.zwitserloot.cmdreader.Mandatory;
+import com.zwitserloot.cmdreader.Requires;
+import com.zwitserloot.cmdreader.Sequential;
+import com.zwitserloot.cmdreader.Shorthand;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -11,13 +18,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -29,7 +36,7 @@ public class ConfigurationApp extends LombokApp {
     private static final URI NO_CONFIG = URI.create("");
     private PrintStream out = System.out;
     private PrintStream err = System.err;
-    private static final ConfigurationProblemReporter VOID = new ConfigurationApp$1();
+    private static final ConfigurationProblemReporter VOID = new AnonymousClass1();
 
     @Override // lombok.core.LombokApp
     public String getAppName() {
@@ -46,25 +53,65 @@ public class ConfigurationApp extends LombokApp {
         return Arrays.asList("configuration", "config", "conf", "settings");
     }
 
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationApp$CmdArgs.SCL.lombok */
+    public class CmdArgs {
+
+        @Mandatory(onlyIfNot = {"help", "generate"})
+        @Description("Paths to java files or directories the configuration is to be printed for.")
+        @Sequential
+        private List<String> paths = new ArrayList();
+
+        @Excludes({"paths"})
+        @Description("Generates a list containing all the available configuration parameters. Add --verbose to print more information.")
+        @Shorthand({"g"})
+        boolean generate = false;
+
+        @Description("Displays more information.")
+        @Shorthand({"v"})
+        boolean verbose = false;
+
+        @Requires({"verbose"})
+        @Description("Also display files that don't mention the key.")
+        @Shorthand({"n"})
+        @FullName("not-mentioned")
+        boolean notMentioned = false;
+
+        @Description("Limit the result to these keys.")
+        @Shorthand({"k"})
+        private List<String> key = new ArrayList();
+
+        @Description("Shows this help text.")
+        @Shorthand({"h", "?"})
+        boolean help = false;
+
+        static /* synthetic */ List access$1(CmdArgs cmdArgs) {
+            return cmdArgs.paths;
+        }
+
+        static /* synthetic */ List access$0(CmdArgs cmdArgs) {
+            return cmdArgs.key;
+        }
+    }
+
     @Override // lombok.core.LombokApp
     public int runApp(List<String> raw) throws Exception {
-        CmdReader<ConfigurationApp$CmdArgs> reader = CmdReader.of(ConfigurationApp$CmdArgs.class);
+        CmdReader<CmdArgs> reader = CmdReader.of(CmdArgs.class);
         try {
-            ConfigurationApp$CmdArgs args = reader.make((String[]) raw.toArray(new String[0]));
+            CmdArgs args = reader.make((String[]) raw.toArray(new String[0]));
             if (args.help) {
                 this.out.println(reader.generateCommandLineHelp("java -jar lombok.jar configuration"));
                 return 0;
             }
-            ConfigurationKeysLoader$LoaderLoader.loadAllConfigurationKeys();
-            Collection<ConfigurationKey<?>> keys = checkKeys(ConfigurationApp$CmdArgs.access$0(args));
+            ConfigurationKeysLoader.LoaderLoader.loadAllConfigurationKeys();
+            Collection<ConfigurationKey<?>> keys = checkKeys(CmdArgs.access$0(args));
             if (keys == null) {
                 return 1;
             }
             boolean verbose = args.verbose;
             if (args.generate) {
-                return generate(keys, verbose, !ConfigurationApp$CmdArgs.access$0(args).isEmpty());
+                return generate(keys, verbose, !CmdArgs.access$0(args).isEmpty());
             }
-            return display(keys, verbose, ConfigurationApp$CmdArgs.access$1(args), !ConfigurationApp$CmdArgs.access$0(args).isEmpty(), args.notMentioned);
+            return display(keys, verbose, CmdArgs.access$1(args), !CmdArgs.access$0(args).isEmpty(), args.notMentioned);
         } catch (InvalidCommandLineException e) {
             this.err.println(e.getMessage());
             this.err.println(reader.generateCommandLineHelp("java -jar lombok.jar configuration"));
@@ -138,11 +185,11 @@ public class ConfigurationApp extends LombokApp {
             }
         }
         List<String> problems = new ArrayList<>();
-        ConfigurationProblemReporter reporter = new ConfigurationApp$2(this, problems);
+        ConfigurationProblemReporter reporter = new AnonymousClass2(problems);
         FileSystemSourceCache cache = new FileSystemSourceCache();
         ConfigurationParser parser = new ConfigurationParser(reporter);
         boolean first = true;
-        for (Map$Entry<URI, Set<String>> entry : sharedDirectories.entrySet()) {
+        for (Map.Entry<URI, Set<String>> entry : sharedDirectories.entrySet()) {
             if (!first) {
                 this.out.printf("%n%n", new Object[0]);
             }
@@ -188,6 +235,21 @@ public class ConfigurationApp extends LombokApp {
         return 0;
     }
 
+    /* JADX INFO: renamed from: lombok.core.configuration.ConfigurationApp$2, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationApp$2.SCL.lombok */
+    class AnonymousClass2 implements ConfigurationProblemReporter {
+        private final /* synthetic */ List val$problems;
+
+        AnonymousClass2(List list) {
+            this.val$problems = list;
+        }
+
+        @Override // lombok.core.configuration.ConfigurationProblemReporter
+        public void report(String sourceDescription, String problem, int lineNumber, CharSequence line) {
+            this.val$problems.add(String.format("%s: %s (%s:%d)", problem, line, sourceDescription, Integer.valueOf(lineNumber)));
+        }
+    }
+
     private void printValue(ConfigurationKey<?> key, Object value, boolean verbose, Collection<String> history) {
         if (verbose) {
             this.out.printf("# %s%n", key.getDescription());
@@ -212,6 +274,17 @@ public class ConfigurationApp extends LombokApp {
         }
     }
 
+    /* JADX INFO: renamed from: lombok.core.configuration.ConfigurationApp$1, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationApp$1.SCL.lombok */
+    class AnonymousClass1 implements ConfigurationProblemReporter {
+        AnonymousClass1() {
+        }
+
+        @Override // lombok.core.configuration.ConfigurationProblemReporter
+        public void report(String sourceDescription, String problem, int lineNumber, CharSequence line) {
+        }
+    }
+
     private Map<ConfigurationKey<?>, ? extends Collection<String>> trace(Collection<ConfigurationKey<?>> keys, URI directory, boolean notMentioned) throws Exception {
         Map<ConfigurationKey<?>, List<String>> result = new HashMap<>();
         Iterator<ConfigurationKey<?>> it = keys.iterator();
@@ -228,10 +301,10 @@ public class ConfigurationApp extends LombokApp {
                 break;
             }
             if (context.exists()) {
-                Deque<ConfigurationApp$Source> round = new ArrayDeque<>();
-                round.push(new ConfigurationApp$Source(context, context.description()));
+                Deque<Source> round = new ArrayDeque<>();
+                round.push(new Source(context, context.description()));
                 while (!round.isEmpty()) {
-                    ConfigurationApp$Source current = round.pop();
+                    Source current = round.pop();
                     if (current != null && visited.add(current.file) && current.file.exists()) {
                         Map<ConfigurationKey<?>, List<String>> traces = trace(current.file, keys, round);
                         stopBubbling = stopBubbling(traces.get(ConfigurationKeys.STOP_BUBBLING));
@@ -271,11 +344,72 @@ public class ConfigurationApp extends LombokApp {
         return result;
     }
 
-    private Map<ConfigurationKey<?>, List<String>> trace(ConfigurationFile context, Collection<ConfigurationKey<?>> keys, Deque<ConfigurationApp$Source> round) throws IOException {
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationApp$Source.SCL.lombok */
+    final class Source {
+        final ConfigurationFile file;
+        final String description;
+
+        Source(ConfigurationFile file, String description) {
+            this.file = file;
+            this.description = description;
+        }
+    }
+
+    private Map<ConfigurationKey<?>, List<String>> trace(ConfigurationFile context, Collection<ConfigurationKey<?>> keys, Deque<Source> round) throws IOException {
         Map<ConfigurationKey<?>, List<String>> result = new HashMap<>();
-        ConfigurationParser$Collector collector = new ConfigurationApp$3(this, round, keys, result);
+        ConfigurationParser.Collector collector = new AnonymousClass3(round, keys, result);
         new ConfigurationParser(VOID).parse(context, collector);
         return result;
+    }
+
+    /* JADX INFO: renamed from: lombok.core.configuration.ConfigurationApp$3, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationApp$3.SCL.lombok */
+    class AnonymousClass3 implements ConfigurationParser.Collector {
+        private final /* synthetic */ Deque val$round;
+        private final /* synthetic */ Collection val$keys;
+        private final /* synthetic */ Map val$result;
+
+        AnonymousClass3(Deque deque, Collection collection, Map map) {
+            this.val$round = deque;
+            this.val$keys = collection;
+            this.val$result = map;
+        }
+
+        @Override // lombok.core.configuration.ConfigurationParser.Collector
+        public void addImport(ConfigurationFile importFile, ConfigurationFile context, int lineNumber) {
+            this.val$round.push(new Source(importFile, String.valueOf(importFile.description()) + " (imported from " + context.description() + ":" + lineNumber + ")"));
+        }
+
+        @Override // lombok.core.configuration.ConfigurationParser.Collector
+        public void clear(ConfigurationKey<?> key, ConfigurationFile context, int lineNumber) {
+            trace(key, "clear " + key.getKeyName(), lineNumber);
+        }
+
+        @Override // lombok.core.configuration.ConfigurationParser.Collector
+        public void set(ConfigurationKey<?> key, Object value, ConfigurationFile context, int lineNumber) {
+            trace(key, String.valueOf(key.getKeyName()) + " = " + value, lineNumber);
+        }
+
+        @Override // lombok.core.configuration.ConfigurationParser.Collector
+        public void add(ConfigurationKey<?> key, Object value, ConfigurationFile context, int lineNumber) {
+            trace(key, String.valueOf(key.getKeyName()) + " += " + value, lineNumber);
+        }
+
+        @Override // lombok.core.configuration.ConfigurationParser.Collector
+        public void remove(ConfigurationKey<?> key, Object value, ConfigurationFile context, int lineNumber) {
+            trace(key, String.valueOf(key.getKeyName()) + " -= " + value, lineNumber);
+        }
+
+        private void trace(ConfigurationKey<?> key, String message, int lineNumber) {
+            if (this.val$keys.contains(key) || key == ConfigurationKeys.STOP_BUBBLING) {
+                List<String> traces = (List) this.val$result.get(key);
+                if (traces == null) {
+                    traces = new ArrayList<>();
+                    this.val$result.put(key, traces);
+                }
+                traces.add(String.format("%4d: %s", Integer.valueOf(lineNumber), message));
+            }
+        }
     }
 
     private boolean stopBubbling(List<String> stops) {
@@ -300,8 +434,25 @@ public class ConfigurationApp extends LombokApp {
         return keys;
     }
 
+    /* JADX INFO: renamed from: lombok.core.configuration.ConfigurationApp$4, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationApp$4.SCL.lombok */
+    class AnonymousClass4 implements Comparator<URI> {
+        @Override // java.util.Comparator
+        public /* bridge */ /* synthetic */ int compare(URI uri, URI uri2) {
+            return compare2(uri, uri2);
+        }
+
+        AnonymousClass4() {
+        }
+
+        /* JADX INFO: renamed from: compare, reason: avoid collision after fix types in other method */
+        public int compare2(URI o1, URI o2) {
+            return o1.toString().compareTo(o2.toString());
+        }
+    }
+
     private TreeMap<URI, Set<String>> findSharedDirectories(Collection<String> paths) {
-        TreeMap<URI, Set<String>> sharedDirectories = new TreeMap<>(new ConfigurationApp$4(this));
+        TreeMap<URI, Set<String>> sharedDirectories = new TreeMap<>(new AnonymousClass4());
         for (String path : paths) {
             File file = new File(path);
             if (!file.exists()) {

@@ -32,27 +32,27 @@ public final class i0 implements Runnable {
             if (!connectionResult2.x0()) {
                 String strValueOf = String.valueOf(connectionResult2);
                 Log.wtf("SignInCoordinator", b.d.b.a.a.j(strValueOf.length() + 48, "Sign-in succeeded with resolve account failure: ", strValueOf), new Exception());
-                ((g$b) g0Var.h).b(connectionResult2);
+                ((g.b) g0Var.h).b(connectionResult2);
                 g0Var.g.h();
                 return;
             }
             h0 h0Var = g0Var.h;
             b.i.a.f.e.k.g gVarW0 = zauVar.w0();
             Set<Scope> set = g0Var.e;
-            g$b g_b = (g$b) h0Var;
-            Objects.requireNonNull(g_b);
+            g.b bVar = (g.b) h0Var;
+            Objects.requireNonNull(bVar);
             if (gVarW0 == null || set == null) {
                 Log.wtf("GoogleApiManager", "Received null response from onSignInSuccess", new Exception());
-                g_b.b(new ConnectionResult(4));
+                bVar.b(new ConnectionResult(4));
             } else {
-                g_b.c = gVarW0;
-                g_b.d = set;
-                if (g_b.e) {
-                    g_b.a.b(gVarW0, set);
+                bVar.c = gVarW0;
+                bVar.d = set;
+                if (bVar.e) {
+                    bVar.a.b(gVarW0, set);
                 }
             }
         } else {
-            ((g$b) g0Var.h).b(connectionResult);
+            ((g.b) g0Var.h).b(connectionResult);
         }
         g0Var.g.h();
     }

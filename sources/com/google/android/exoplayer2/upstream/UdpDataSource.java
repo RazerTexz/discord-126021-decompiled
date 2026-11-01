@@ -33,6 +33,12 @@ public final class UdpDataSource extends g {
     public boolean l;
     public int m;
 
+    public final class UdpDataSourceException extends DataSourceException {
+        public UdpDataSourceException(Throwable th, int i) {
+            super(th, i);
+        }
+    }
+
     public UdpDataSource() {
         super(true);
         this.e = 8000;
@@ -42,7 +48,7 @@ public final class UdpDataSource extends g {
     }
 
     @Override // b.i.a.c.e3.l
-    public long a(n nVar) throws UdpDataSource$UdpDataSourceException {
+    public long a(n nVar) throws UdpDataSourceException {
         Uri uri = nVar.a;
         this.h = uri;
         String host = uri.getHost();
@@ -65,9 +71,9 @@ public final class UdpDataSource extends g {
             s(nVar);
             return -1L;
         } catch (IOException e) {
-            throw new UdpDataSource$UdpDataSourceException(e, 2001);
+            throw new UdpDataSourceException(e, 2001);
         } catch (SecurityException e2) {
-            throw new UdpDataSource$UdpDataSourceException(e2, 2006);
+            throw new UdpDataSourceException(e2, 2006);
         }
     }
 
@@ -104,7 +110,7 @@ public final class UdpDataSource extends g {
     }
 
     @Override // b.i.a.c.e3.h
-    public int read(byte[] bArr, int i, int i2) throws UdpDataSource$UdpDataSourceException {
+    public int read(byte[] bArr, int i, int i2) throws UdpDataSourceException {
         if (i2 == 0) {
             return 0;
         }
@@ -117,9 +123,9 @@ public final class UdpDataSource extends g {
                 this.m = length;
                 p(length);
             } catch (SocketTimeoutException e) {
-                throw new UdpDataSource$UdpDataSourceException(e, 2002);
+                throw new UdpDataSourceException(e, 2002);
             } catch (IOException e2) {
-                throw new UdpDataSource$UdpDataSourceException(e2, 2001);
+                throw new UdpDataSourceException(e2, 2001);
             }
         }
         int length2 = this.g.getLength();

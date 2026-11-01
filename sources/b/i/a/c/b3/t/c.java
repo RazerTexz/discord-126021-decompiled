@@ -1,15 +1,14 @@
 package b.i.a.c.b3.t;
 
-import android.text.Layout$Alignment;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.util.Log;
 import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import b.i.a.c.f3.e0;
 import b.i.a.c.f3.i;
 import b.i.a.c.f3.q;
 import b.i.b.b.h;
-import b.i.b.b.h$a;
 import b.i.b.b.n0;
 import b.i.b.b.p0;
 import b.i.b.b.r;
@@ -41,8 +40,46 @@ public final class c extends b.i.a.c.b3.f {
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public static final Pattern f880s = Pattern.compile("^(\\d+\\.?\\d*?)px (\\d+\\.?\\d*?)px$");
     public static final Pattern t = Pattern.compile("^(\\d+) (\\d+)$");
-    public static final c$b u = new c$b(30.0f, 1, 1);
-    public static final c$a v = new c$a(32, 15);
+    public static final b u = new b(30.0f, 1, 1);
+    public static final a v = new a(32, 15);
+
+    /* JADX INFO: renamed from: b.i.a.c.b3.t.c$c, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: TtmlDecoder.java */
+    public final class C0097c {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f882b;
+
+        public C0097c(int i, int i2) {
+            this.a = i;
+            this.f882b = i2;
+        }
+    }
+
+    /* JADX INFO: compiled from: TtmlDecoder.java */
+    public final class a {
+        public final int a;
+
+        public a(int i, int i2) {
+            this.a = i2;
+        }
+    }
+
+    /* JADX INFO: compiled from: TtmlDecoder.java */
+    public final class b {
+        public final float a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f881b;
+        public final int c;
+
+        public b(float f, int i, int i2) {
+            this.a = f;
+            this.f881b = i;
+            this.c = i2;
+        }
+    }
 
     public c() {
         super("TtmlDecoder");
@@ -57,18 +94,18 @@ public final class c extends b.i.a.c.b3.f {
 
     @Override // b.i.a.c.b3.f
     public b.i.a.c.b3.g j(byte[] bArr, int i, boolean z2) throws SubtitleDecoderException {
-        c$b c_b;
+        b bVar;
         try {
             XmlPullParser xmlPullParserNewPullParser = this.w.newPullParser();
             HashMap map = new HashMap();
             HashMap map2 = new HashMap();
             HashMap map3 = new HashMap();
             map2.put("", new e("", -3.4028235E38f, -3.4028235E38f, Integer.MIN_VALUE, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, Integer.MIN_VALUE, -3.4028235E38f, Integer.MIN_VALUE));
-            c$c c_cV = null;
+            C0097c c0097cV = null;
             xmlPullParserNewPullParser.setInput(new ByteArrayInputStream(bArr, 0, i), null);
             ArrayDeque arrayDeque = new ArrayDeque();
-            c$b c_bP = u;
-            c$a c_aN = v;
+            b bVarP = u;
+            a aVarN = v;
             g gVar = null;
             int i2 = 0;
             for (int eventType = xmlPullParserNewPullParser.getEventType(); eventType != 1; eventType = xmlPullParserNewPullParser.getEventType()) {
@@ -77,25 +114,25 @@ public final class c extends b.i.a.c.b3.f {
                     String name = xmlPullParserNewPullParser.getName();
                     if (eventType == 2) {
                         if ("tt".equals(name)) {
-                            c_bP = p(xmlPullParserNewPullParser);
-                            c_aN = n(xmlPullParserNewPullParser, v);
-                            c_cV = v(xmlPullParserNewPullParser);
+                            bVarP = p(xmlPullParserNewPullParser);
+                            aVarN = n(xmlPullParserNewPullParser, v);
+                            c0097cV = v(xmlPullParserNewPullParser);
                         }
-                        c$c c_c = c_cV;
-                        c$b c_b2 = c_bP;
-                        c$a c_a = c_aN;
+                        C0097c c0097c = c0097cV;
+                        b bVar2 = bVarP;
+                        a aVar = aVarN;
                         if (!l(name)) {
                             String strValueOf = String.valueOf(xmlPullParserNewPullParser.getName());
                             Log.i("TtmlDecoder", strValueOf.length() != 0 ? "Ignoring unsupported tag: ".concat(strValueOf) : new String("Ignoring unsupported tag: "));
                             i2++;
-                            c_b = c_b2;
+                            bVar = bVar2;
                         } else if ("head".equals(name)) {
-                            c_b = c_b2;
-                            q(xmlPullParserNewPullParser, map, c_a, c_c, map2, map3);
+                            bVar = bVar2;
+                            q(xmlPullParserNewPullParser, map, aVar, c0097c, map2, map3);
                         } else {
-                            c_b = c_b2;
+                            bVar = bVar2;
                             try {
-                                d dVarR = r(xmlPullParserNewPullParser, dVar, map2, c_b);
+                                d dVarR = r(xmlPullParserNewPullParser, dVar, map2, bVar);
                                 arrayDeque.push(dVarR);
                                 if (dVar != null) {
                                     dVar.a(dVarR);
@@ -105,9 +142,9 @@ public final class c extends b.i.a.c.b3.f {
                                 i2++;
                             }
                         }
-                        c_bP = c_b;
-                        c_cV = c_c;
-                        c_aN = c_a;
+                        bVarP = bVar;
+                        c0097cV = c0097c;
+                        aVarN = aVar;
                     } else if (eventType == 4) {
                         Objects.requireNonNull(dVar);
                         d dVarB = d.b(xmlPullParserNewPullParser.getText());
@@ -150,32 +187,32 @@ public final class c extends b.i.a.c.b3.f {
     }
 
     @Nullable
-    public static Layout$Alignment m(String str) {
+    public static Layout.Alignment m(String str) {
         String strU1 = b.i.a.f.e.o.f.u1(str);
         strU1.hashCode();
         switch (strU1) {
             case "center":
-                return Layout$Alignment.ALIGN_CENTER;
+                return Layout.Alignment.ALIGN_CENTER;
             case "end":
             case "right":
-                return Layout$Alignment.ALIGN_OPPOSITE;
+                return Layout.Alignment.ALIGN_OPPOSITE;
             case "left":
             case "start":
-                return Layout$Alignment.ALIGN_NORMAL;
+                return Layout.Alignment.ALIGN_NORMAL;
             default:
                 return null;
         }
     }
 
-    public static c$a n(XmlPullParser xmlPullParser, c$a c_a) throws SubtitleDecoderException {
+    public static a n(XmlPullParser xmlPullParser, a aVar) throws SubtitleDecoderException {
         String attributeValue = xmlPullParser.getAttributeValue("http://www.w3.org/ns/ttml#parameter", "cellResolution");
         if (attributeValue == null) {
-            return c_a;
+            return aVar;
         }
         Matcher matcher = t.matcher(attributeValue);
         if (!matcher.matches()) {
             Log.w("TtmlDecoder", attributeValue.length() != 0 ? "Ignoring malformed cell resolution: ".concat(attributeValue) : new String("Ignoring malformed cell resolution: "));
-            return c_a;
+            return aVar;
         }
         try {
             String strGroup = matcher.group(1);
@@ -185,7 +222,7 @@ public final class c extends b.i.a.c.b3.f {
             Objects.requireNonNull(strGroup2);
             int i2 = Integer.parseInt(strGroup2);
             if (i != 0 && i2 != 0) {
-                return new c$a(i, i2);
+                return new a(i, i2);
             }
             StringBuilder sb = new StringBuilder(47);
             sb.append("Invalid cell resolution ");
@@ -195,7 +232,7 @@ public final class c extends b.i.a.c.b3.f {
             throw new SubtitleDecoderException(sb.toString());
         } catch (NumberFormatException unused) {
             Log.w("TtmlDecoder", attributeValue.length() != 0 ? "Ignoring malformed cell resolution: ".concat(attributeValue) : new String("Ignoring malformed cell resolution: "));
-            return c_a;
+            return aVar;
         }
     }
 
@@ -241,7 +278,7 @@ public final class c extends b.i.a.c.b3.f {
         fVar.k = Float.parseFloat(strGroup2);
     }
 
-    public static c$b p(XmlPullParser xmlPullParser) throws SubtitleDecoderException {
+    public static b p(XmlPullParser xmlPullParser) throws SubtitleDecoderException {
         String attributeValue = xmlPullParser.getAttributeValue("http://www.w3.org/ns/ttml#parameter", "frameRate");
         int i = attributeValue != null ? Integer.parseInt(attributeValue) : 30;
         float f = 1.0f;
@@ -254,18 +291,18 @@ public final class c extends b.i.a.c.b3.f {
             }
             f = Integer.parseInt(strArrSplit[0]) / Integer.parseInt(strArrSplit[1]);
         }
-        c$b c_b = u;
-        int i3 = c_b.f881b;
+        b bVar = u;
+        int i3 = bVar.f881b;
         String attributeValue3 = xmlPullParser.getAttributeValue("http://www.w3.org/ns/ttml#parameter", "subFrameRate");
         if (attributeValue3 != null) {
             i3 = Integer.parseInt(attributeValue3);
         }
-        int i4 = c_b.c;
+        int i4 = bVar.c;
         String attributeValue4 = xmlPullParser.getAttributeValue("http://www.w3.org/ns/ttml#parameter", "tickRate");
         if (attributeValue4 != null) {
             i4 = Integer.parseInt(attributeValue4);
         }
-        return new c$b(i * f, i3, i4);
+        return new b(i * f, i3, i4);
     }
 
     /* JADX WARN: Code duplicated, block: B:105:0x021d  */
@@ -295,7 +332,7 @@ public final class c extends b.i.a.c.b3.f {
     /* JADX WARN: Code duplicated, block: B:91:0x01e9  */
     /* JADX WARN: Code duplicated, block: B:97:0x01f4  */
     /* JADX WARN: Code duplicated, block: B:98:0x01f7  */
-    public static Map<String, f> q(XmlPullParser xmlPullParser, Map<String, f> map, c$a c_a, @Nullable c$c c_c, Map<String, e> map2, Map<String, String> map3) throws XmlPullParserException, IOException {
+    public static Map<String, f> q(XmlPullParser xmlPullParser, Map<String, f> map, a aVar, @Nullable C0097c c0097c, Map<String, e> map2, Map<String, String> map3) throws XmlPullParserException, IOException {
         String strR0;
         e eVar;
         float f;
@@ -371,7 +408,7 @@ public final class c extends b.i.a.c.b3.f {
                                             str = new String("Ignoring region with unsupported extent: ");
                                         }
                                         Log.w("TtmlDecoder", str);
-                                    } else if (c_c == null) {
+                                    } else if (c0097c == null) {
                                         if (strR6.length() != 0) {
                                             str2 = "Ignoring region with missing tts:extent: ".concat(strR6);
                                         } else {
@@ -386,8 +423,8 @@ public final class c extends b.i.a.c.b3.f {
                                             String strGroup6 = matcher2.group(2);
                                             Objects.requireNonNull(strGroup6);
                                             float f7 = Integer.parseInt(strGroup6);
-                                            f4 = i3 / c_c.a;
-                                            f3 = f7 / c_c.f882b;
+                                            f4 = i3 / c0097c.a;
+                                            f3 = f7 / c0097c.f882b;
                                         } catch (NumberFormatException unused2) {
                                             Log.w("TtmlDecoder", strR6.length() != 0 ? "Ignoring region with malformed extent: ".concat(strR6) : new String("Ignoring region with malformed extent: "));
                                             eVar = null;
@@ -411,7 +448,7 @@ public final class c extends b.i.a.c.b3.f {
                                         f5 = f2;
                                         i = 0;
                                     }
-                                    float f8 = 1.0f / c_a.a;
+                                    float f8 = 1.0f / aVar.a;
                                     strR3 = b.c.a.a0.d.r0(xmlPullParser, "writingMode");
                                     if (strR3 != null) {
                                         strU1 = b.i.a.f.e.o.f.u1(strR3);
@@ -453,7 +490,7 @@ public final class c extends b.i.a.c.b3.f {
                             }
                         } else if (!matcher4.matches()) {
                             Log.w("TtmlDecoder", strR6.length() != 0 ? "Ignoring region with unsupported origin: ".concat(strR6) : new String("Ignoring region with unsupported origin: "));
-                        } else if (c_c == null) {
+                        } else if (c0097c == null) {
                             Log.w("TtmlDecoder", strR6.length() != 0 ? "Ignoring region with missing tts:extent: ".concat(strR6) : new String("Ignoring region with missing tts:extent: "));
                         } else {
                             try {
@@ -463,8 +500,8 @@ public final class c extends b.i.a.c.b3.f {
                                 String strGroup8 = matcher4.group(2);
                                 Objects.requireNonNull(strGroup8);
                                 int i5 = Integer.parseInt(strGroup8);
-                                float f9 = i4 / c_c.a;
-                                float f10 = i5 / c_c.f882b;
+                                float f9 = i4 / c0097c.a;
+                                float f10 = i5 / c0097c.f882b;
                                 f = f9;
                                 f2 = f10;
                                 strR1 = b.c.a.a0.d.r0(xmlPullParser, "extent");
@@ -486,7 +523,7 @@ public final class c extends b.i.a.c.b3.f {
                                             str = new String("Ignoring region with unsupported extent: ");
                                         }
                                         Log.w("TtmlDecoder", str);
-                                    } else if (c_c == null) {
+                                    } else if (c0097c == null) {
                                         if (strR6.length() != 0) {
                                             str2 = "Ignoring region with missing tts:extent: ".concat(strR6);
                                         } else {
@@ -500,8 +537,8 @@ public final class c extends b.i.a.c.b3.f {
                                         String strGroup12 = matcher2.group(2);
                                         Objects.requireNonNull(strGroup12);
                                         float f12 = Integer.parseInt(strGroup12);
-                                        f4 = i6 / c_c.a;
-                                        f3 = f12 / c_c.f882b;
+                                        f4 = i6 / c0097c.a;
+                                        f3 = f12 / c0097c.f882b;
                                     }
                                     strR2 = b.c.a.a0.d.r0(xmlPullParser, "displayAlign");
                                     if (strR2 != null) {
@@ -521,7 +558,7 @@ public final class c extends b.i.a.c.b3.f {
                                         f5 = f2;
                                         i = 0;
                                     }
-                                    float f13 = 1.0f / c_a.a;
+                                    float f13 = 1.0f / aVar.a;
                                     strR3 = b.c.a.a0.d.r0(xmlPullParser, "writingMode");
                                     if (strR3 != null) {
                                         strU1 = b.i.a.f.e.o.f.u1(strR3);
@@ -585,7 +622,7 @@ public final class c extends b.i.a.c.b3.f {
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
     /* JADX WARN: Code duplicated, block: B:31:0x007c  */
     /* JADX WARN: Code duplicated, block: B:76:0x00fc  */
-    public static d r(XmlPullParser xmlPullParser, @Nullable d dVar, Map<String, e> map, c$b c_b) throws SubtitleDecoderException {
+    public static d r(XmlPullParser xmlPullParser, @Nullable d dVar, Map<String, e> map, b bVar) throws SubtitleDecoderException {
         long j;
         long j2;
         byte b2;
@@ -628,11 +665,11 @@ public final class c extends b.i.a.c.b3.f {
             }
             if (b2 != 0) {
                 if (b2 == 1) {
-                    jU3 = u(attributeValue, c_b);
+                    jU3 = u(attributeValue, bVar);
                 } else if (b2 == 2) {
-                    jU2 = u(attributeValue, c_b);
+                    jU2 = u(attributeValue, bVar);
                 } else if (b2 == 3) {
-                    jU = u(attributeValue, c_b);
+                    jU = u(attributeValue, bVar);
                 } else if (b2 == 4) {
                     String[] strArrT = t(attributeValue);
                     if (strArrT.length > 0) {
@@ -690,7 +727,7 @@ public final class c extends b.i.a.c.b3.f {
     public static f s(XmlPullParser xmlPullParser, f fVar) {
         byte b2;
         byte b3;
-        b bVar;
+        b.i.a.c.b3.t.b bVar;
         int attributeCount = xmlPullParser.getAttributeCount();
         f fVarK = fVar;
         for (int i = 0; i < attributeCount; i++) {
@@ -798,7 +835,7 @@ public final class c extends b.i.a.c.b3.f {
                             }
                             break;
                         case 3556653:
-                            if (strU2.equals(NotificationCompat$MessagingStyle$Message.KEY_TEXT)) {
+                            if (strU2.equals(NotificationCompat.MessagingStyle.Message.KEY_TEXT)) {
                                 i2 = 5;
                             }
                             break;
@@ -888,13 +925,13 @@ public final class c extends b.i.a.c.b3.f {
                     break;
                 case "textEmphasis":
                     fVarK = k(fVarK);
-                    Pattern pattern = b.a;
-                    b bVar2 = null;
+                    Pattern pattern = b.i.a.c.b3.t.b.a;
+                    b.i.a.c.b3.t.b bVar2 = null;
                     if (attributeValue != null) {
                         String strU4 = b.i.a.f.e.o.f.u1(attributeValue.trim());
                         if (!strU4.isEmpty()) {
-                            r rVarN = r.n(TextUtils.split(strU4, b.a));
-                            String str = (String) b.i.a.f.e.o.f.k0(h.b(b.e, rVarN), "outside");
+                            r rVarN = r.n(TextUtils.split(strU4, b.i.a.c.b3.t.b.a));
+                            String str = (String) b.i.a.f.e.o.f.k0(h.b(b.i.a.c.b3.t.b.e, rVarN), "outside");
                             int iHashCode = str.hashCode();
                             if (iHashCode != -1392885889) {
                                 if (iHashCode != -1106037339) {
@@ -914,12 +951,12 @@ public final class c extends b.i.a.c.b3.f {
                                 b2 = -1;
                             }
                             int i3 = b2 != 0 ? b2 != 1 ? 1 : -2 : 2;
-                            h$a h_a = (h$a) h.b(b.f879b, rVarN);
-                            if (h_a.isEmpty()) {
-                                p0 p0VarB = h.b(b.d, rVarN);
-                                p0 p0VarB2 = h.b(b.c, rVarN);
-                                if (((h$a) p0VarB).isEmpty() && ((h$a) p0VarB2).isEmpty()) {
-                                    bVar = new b(-1, 0, i3);
+                            h.a aVar = (h.a) h.b(b.i.a.c.b3.t.b.f879b, rVarN);
+                            if (aVar.isEmpty()) {
+                                p0 p0VarB = h.b(b.i.a.c.b3.t.b.d, rVarN);
+                                p0 p0VarB2 = h.b(b.i.a.c.b3.t.b.c, rVarN);
+                                if (((h.a) p0VarB).isEmpty() && ((h.a) p0VarB2).isEmpty()) {
+                                    bVar = new b.i.a.c.b3.t.b(-1, 0, i3);
                                 } else {
                                     String str2 = (String) b.i.a.f.e.o.f.k0(p0VarB, "filled");
                                     int iHashCode2 = str2.hashCode();
@@ -948,10 +985,10 @@ public final class c extends b.i.a.c.b3.f {
                                     } else if (str3.equals("circle")) {
                                         i2 = 2;
                                     }
-                                    bVar = new b(i2 != 0 ? i2 != 1 ? 1 : 3 : 2, i4, i3);
+                                    bVar = new b.i.a.c.b3.t.b(i2 != 0 ? i2 != 1 ? 1 : 3 : 2, i4, i3);
                                 }
                             } else {
-                                String str4 = (String) new n0(h_a).next();
+                                String str4 = (String) new n0(aVar).next();
                                 int iHashCode4 = str4.hashCode();
                                 if (iHashCode4 != 3005871) {
                                     if (iHashCode4 == 3387192 && str4.equals("none")) {
@@ -962,7 +999,7 @@ public final class c extends b.i.a.c.b3.f {
                                 } else if (!str4.equals("auto")) {
                                     b4 = -1;
                                 }
-                                bVar = new b(b4 == 0 ? 0 : -1, 0, i3);
+                                bVar = new b.i.a.c.b3.t.b(b4 == 0 ? 0 : -1, 0, i3);
                             }
                             bVar2 = bVar;
                         }
@@ -1016,7 +1053,7 @@ public final class c extends b.i.a.c.b3.f {
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
     /* JADX WARN: Code duplicated, block: B:21:0x00a5  */
-    public static long u(String str, c$b c_b) throws SubtitleDecoderException {
+    public static long u(String str, b bVar) throws SubtitleDecoderException {
         double d;
         double d2;
         Matcher matcher = n.matcher(str);
@@ -1033,9 +1070,9 @@ public final class c extends b.i.a.c.b3.f {
             String strGroup4 = matcher.group(4);
             double d6 = d5 + (strGroup4 != null ? Double.parseDouble(strGroup4) : 0.0d);
             String strGroup5 = matcher.group(5);
-            double d7 = d6 + (strGroup5 != null ? Long.parseLong(strGroup5) / c_b.a : 0.0d);
+            double d7 = d6 + (strGroup5 != null ? Long.parseLong(strGroup5) / bVar.a : 0.0d);
             String strGroup6 = matcher.group(6);
-            return (long) ((d7 + (strGroup6 != null ? (Long.parseLong(strGroup6) / ((double) c_b.f881b)) / ((double) c_b.a) : 0.0d)) * 1000000.0d);
+            return (long) ((d7 + (strGroup6 != null ? (Long.parseLong(strGroup6) / ((double) bVar.f881b)) / ((double) bVar.a) : 0.0d)) * 1000000.0d);
         }
         Matcher matcher2 = o.matcher(str);
         if (!matcher2.matches()) {
@@ -1049,7 +1086,7 @@ public final class c extends b.i.a.c.b3.f {
         Objects.requireNonNull(strGroup8);
         switch (strGroup8) {
             case "f":
-                d = c_b.a;
+                d = bVar.a;
                 d8 /= d;
                 return (long) (d8 * 1000000.0d);
             case "h":
@@ -1059,7 +1096,7 @@ public final class c extends b.i.a.c.b3.f {
                 d2 = 60.0d;
                 break;
             case "t":
-                d = c_b.c;
+                d = bVar.c;
                 d8 /= d;
                 return (long) (d8 * 1000000.0d);
             case "ms":
@@ -1074,7 +1111,7 @@ public final class c extends b.i.a.c.b3.f {
     }
 
     @Nullable
-    public static c$c v(XmlPullParser xmlPullParser) {
+    public static C0097c v(XmlPullParser xmlPullParser) {
         String strR0 = b.c.a.a0.d.r0(xmlPullParser, "extent");
         if (strR0 == null) {
             return null;
@@ -1090,7 +1127,7 @@ public final class c extends b.i.a.c.b3.f {
             int i = Integer.parseInt(strGroup);
             String strGroup2 = matcher.group(2);
             Objects.requireNonNull(strGroup2);
-            return new c$c(i, Integer.parseInt(strGroup2));
+            return new C0097c(i, Integer.parseInt(strGroup2));
         } catch (NumberFormatException unused) {
             Log.w("TtmlDecoder", strR0.length() != 0 ? "Ignoring malformed tts extent: ".concat(strR0) : new String("Ignoring malformed tts extent: "));
             return null;

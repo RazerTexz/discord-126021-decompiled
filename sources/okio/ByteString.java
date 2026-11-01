@@ -1,11 +1,11 @@
 package okio;
 
+import b.d.b.a.a;
 import b.i.a.f.e.o.f;
 import d0.g0.c;
 import d0.g0.t;
 import d0.t.j;
 import d0.z.d.m;
-import g0.a;
 import g0.e;
 import g0.z.b;
 import java.io.EOFException;
@@ -15,22 +15,77 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.util.Arrays;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ByteString.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class ByteString implements Serializable, Comparable<ByteString> {
+
+    /* JADX INFO: renamed from: k, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final byte[] data;
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public transient int hashCode;
-    public static final ByteString$a k = new ByteString$a(null);
     private static final long serialVersionUID = 1;
 
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public transient String utf8;
     public static final ByteString j = new ByteString(new byte[0]);
+
+    /* JADX INFO: renamed from: okio.ByteString$a, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: ByteString.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final ByteString a(String str) {
+            m.checkParameterIsNotNull(str, "$this$decodeHex");
+            if (!(str.length() % 2 == 0)) {
+                throw new IllegalArgumentException(a.w("Unexpected hex string: ", str).toString());
+            }
+            int length = str.length() / 2;
+            byte[] bArr = new byte[length];
+            for (int i = 0; i < length; i++) {
+                int i2 = i * 2;
+                bArr[i] = (byte) (b.a(str.charAt(i2 + 1)) + (b.a(str.charAt(i2)) << 4));
+            }
+            return new ByteString(bArr);
+        }
+
+        public final ByteString b(String str, Charset charset) {
+            m.checkParameterIsNotNull(str, "$this$encode");
+            m.checkParameterIsNotNull(charset, "charset");
+            byte[] bytes = str.getBytes(charset);
+            m.checkExpressionValueIsNotNull(bytes, "(this as java.lang.String).getBytes(charset)");
+            return new ByteString(bytes);
+        }
+
+        public final ByteString c(String str) {
+            m.checkParameterIsNotNull(str, "$this$encodeUtf8");
+            m.checkParameterIsNotNull(str, "$this$asUtf8ToByteArray");
+            byte[] bytes = str.getBytes(c.a);
+            m.checkExpressionValueIsNotNull(bytes, "(this as java.lang.String).getBytes(charset)");
+            ByteString byteString = new ByteString(bytes);
+            byteString.utf8 = str;
+            return byteString;
+        }
+
+        public static ByteString d(Companion companion, byte[] bArr, int i, int i2, int i3) {
+            if ((i3 & 1) != 0) {
+                i = 0;
+            }
+            if ((i3 & 2) != 0) {
+                i2 = bArr.length;
+            }
+            m.checkParameterIsNotNull(bArr, "$this$toByteString");
+            f.B(bArr.length, i, i2);
+            return new ByteString(j.copyOfRange(bArr, i, i2 + i));
+        }
+    }
 
     public ByteString(byte[] bArr) {
         m.checkParameterIsNotNull(bArr, "data");
@@ -82,8 +137,8 @@ public class ByteString implements Serializable, Comparable<ByteString> {
 
     public String f() {
         byte[] bArr = this.data;
-        byte[] bArr2 = a.a;
-        byte[] bArr3 = a.a;
+        byte[] bArr2 = g0.a.a;
+        byte[] bArr3 = g0.a.a;
         m.checkParameterIsNotNull(bArr, "$this$encodeBase64");
         m.checkParameterIsNotNull(bArr3, "map");
         byte[] bArr4 = new byte[((bArr.length + 2) / 3) * 4];
@@ -254,7 +309,7 @@ public class ByteString implements Serializable, Comparable<ByteString> {
         m.checkParameterIsNotNull(in, "$this$readByteString");
         int i2 = 0;
         if (!(i >= 0)) {
-            throw new IllegalArgumentException(b.d.b.a.a.q("byteCount < 0: ", i).toString());
+            throw new IllegalArgumentException(a.q("byteCount < 0: ", i).toString());
         }
         byte[] bArr = new byte[i];
         while (i2 < i) {
@@ -614,17 +669,17 @@ public class ByteString implements Serializable, Comparable<ByteString> {
         }
         if (i9 == -1) {
             if (this.data.length <= 64) {
-                StringBuilder sbU = b.d.b.a.a.U("[hex=");
+                StringBuilder sbU = a.U("[hex=");
                 sbU.append(k());
                 sbU.append(']');
                 return sbU.toString();
             }
-            StringBuilder sbU2 = b.d.b.a.a.U("[size=");
+            StringBuilder sbU2 = a.U("[size=");
             sbU2.append(this.data.length);
             sbU2.append(" hex=");
             byte[] bArr2 = this.data;
             if (!(64 <= bArr2.length)) {
-                throw new IllegalArgumentException(b.d.b.a.a.A(b.d.b.a.a.U("endIndex > length("), this.data.length, ')').toString());
+                throw new IllegalArgumentException(a.A(a.U("endIndex > length("), this.data.length, ')').toString());
             }
             sbU2.append((64 == bArr2.length ? this : new ByteString(j.copyOfRange(bArr2, 0, 64))).k());
             sbU2.append("…]");
@@ -637,7 +692,7 @@ public class ByteString implements Serializable, Comparable<ByteString> {
         if (i9 >= strQ.length()) {
             return "[text=" + strReplace$default + ']';
         }
-        StringBuilder sbU3 = b.d.b.a.a.U("[size=");
+        StringBuilder sbU3 = a.U("[size=");
         sbU3.append(this.data.length);
         sbU3.append(" text=");
         sbU3.append(strReplace$default);

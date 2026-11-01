@@ -2,7 +2,6 @@ package com.discord.widgets.user.search;
 
 import com.discord.api.channel.Channel;
 import com.discord.models.domain.ModelNotificationSettings;
-import com.discord.models.domain.ModelNotificationSettings$ChannelOverride;
 import d0.z.d.m;
 import d0.z.d.o;
 import java.util.Map;
@@ -29,7 +28,7 @@ public final class WidgetGlobalSearchGuildsModel$Companion$asDirectMessageItems$
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(Channel channel) {
         ModelNotificationSettings modelNotificationSettings;
-        ModelNotificationSettings$ChannelOverride channelOverride;
+        ModelNotificationSettings.ChannelOverride channelOverride;
         m.checkNotNullParameter(channel, "it");
         return this.$mentionCounts.containsKey(Long.valueOf(channel.getId())) && ((modelNotificationSettings = this.$dmSettings) == null || (channelOverride = modelNotificationSettings.getChannelOverride(channel.getId())) == null || !channelOverride.isMuted());
     }

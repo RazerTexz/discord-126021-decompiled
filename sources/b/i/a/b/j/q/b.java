@@ -5,14 +5,14 @@ import java.util.Objects;
 /* JADX INFO: compiled from: AutoValue_BackendResponse.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class b extends g {
-    public final g$a a;
+    public final g.a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final long f772b;
 
-    public b(g$a g_a, long j) {
-        Objects.requireNonNull(g_a, "Null status");
-        this.a = g_a;
+    public b(g.a aVar, long j) {
+        Objects.requireNonNull(aVar, "Null status");
+        this.a = aVar;
         this.f772b = j;
     }
 
@@ -22,7 +22,7 @@ public final class b extends g {
     }
 
     @Override // b.i.a.b.j.q.g
-    public g$a c() {
+    public g.a c() {
         return this.a;
     }
 

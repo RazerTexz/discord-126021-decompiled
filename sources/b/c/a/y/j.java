@@ -2,12 +2,11 @@ package b.c.a.y;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.core.util.Pair;
 
 /* JADX INFO: compiled from: MutablePair.java */
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY})
+@RestrictTo({RestrictTo.Scope.LIBRARY})
 public class j<T> {
 
     @Nullable

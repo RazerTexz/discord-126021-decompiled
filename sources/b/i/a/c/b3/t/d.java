@@ -1,6 +1,6 @@
 package b.i.a.c.b3.t;
 
-import android.text.Layout$Alignment;
+import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.BackgroundColorSpan;
@@ -13,7 +13,6 @@ import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.util.Pair;
 import androidx.annotation.Nullable;
-import b.i.a.c.b3.b$b;
 import b.i.a.c.f3.e0;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -21,7 +20,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.TreeSet;
 
@@ -119,11 +117,11 @@ public final class d {
         }
     }
 
-    public static SpannableStringBuilder f(String str, Map<String, b$b> map) {
+    public static SpannableStringBuilder f(String str, Map<String, b.i.a.c.b3.b.C0093b> map) {
         if (!map.containsKey(str)) {
-            b$b b_b = new b$b();
-            b_b.a = new SpannableStringBuilder();
-            map.put(str, b_b);
+            b.i.a.c.b3.b.C0093b c0093b = new b.i.a.c.b3.b.C0093b();
+            c0093b.a = new SpannableStringBuilder();
+            map.put(str, c0093b);
         }
         CharSequence charSequence = map.get(str).a;
         Objects.requireNonNull(charSequence);
@@ -161,34 +159,34 @@ public final class d {
     /* JADX WARN: Code duplicated, block: B:143:0x0251  */
     /* JADX WARN: Code duplicated, block: B:156:0x025a A[SYNTHETIC] */
     /* JADX WARN: Code duplicated, block: B:157:0x025a A[SYNTHETIC] */
-    public final void i(long j, Map<String, f> map, Map<String, e> map2, String str, Map<String, b$b> map3) {
+    public final void i(long j, Map<String, f> map, Map<String, e> map2, String str, Map<String, b.i.a.c.b3.b.C0093b> map3) {
         d dVar;
         boolean z2;
         f fVarT1;
         int i;
         float f;
-        Layout$Alignment layout$Alignment;
-        Layout$Alignment layout$Alignment2;
+        Layout.Alignment alignment;
+        Layout.Alignment alignment2;
         int i2;
         if (g(j)) {
             String str2 = "".equals(this.h) ? str : this.h;
-            Iterator<Map$Entry<String, Integer>> it = this.l.entrySet().iterator();
+            Iterator<Map.Entry<String, Integer>> it = this.l.entrySet().iterator();
             while (it.hasNext()) {
-                Map$Entry<String, Integer> next = it.next();
+                Map.Entry<String, Integer> next = it.next();
                 String key = next.getKey();
                 int iIntValue = this.k.containsKey(key) ? this.k.get(key).intValue() : 0;
                 int iIntValue2 = next.getValue().intValue();
                 if (iIntValue != iIntValue2) {
-                    b$b b_b = map3.get(key);
-                    Objects.requireNonNull(b_b);
+                    b.i.a.c.b3.b.C0093b c0093b = map3.get(key);
+                    Objects.requireNonNull(c0093b);
                     e eVar = map2.get(str2);
                     Objects.requireNonNull(eVar);
                     int i3 = eVar.j;
                     f fVarT2 = b.c.a.a0.d.T1(this.f, this.g, map);
-                    SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) b_b.a;
+                    SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) c0093b.a;
                     if (spannableStringBuilder == null) {
                         spannableStringBuilder = new SpannableStringBuilder();
-                        b_b.a = spannableStringBuilder;
+                        c0093b.a = spannableStringBuilder;
                     }
                     if (fVarT2 != null) {
                         d dVar2 = this.j;
@@ -299,15 +297,15 @@ public final class d {
                             if ("p".equals(this.a)) {
                                 f = fVarT2.f886s;
                                 if (f != Float.MAX_VALUE) {
-                                    b_b.q = (f * (-90.0f)) / 100.0f;
+                                    c0093b.q = (f * (-90.0f)) / 100.0f;
                                 }
-                                layout$Alignment = fVarT2.o;
-                                if (layout$Alignment != null) {
-                                    b_b.c = layout$Alignment;
+                                alignment = fVarT2.o;
+                                if (alignment != null) {
+                                    c0093b.c = alignment;
                                 }
-                                layout$Alignment2 = fVarT2.p;
-                                if (layout$Alignment2 != null) {
-                                    b_b.d = layout$Alignment2;
+                                alignment2 = fVarT2.p;
+                                if (alignment2 != null) {
+                                    c0093b.d = alignment2;
                                 }
                             }
                         } else if (i6 == 3 || i6 == 4) {
@@ -331,15 +329,15 @@ public final class d {
                         if ("p".equals(this.a)) {
                             f = fVarT2.f886s;
                             if (f != Float.MAX_VALUE) {
-                                b_b.q = (f * (-90.0f)) / 100.0f;
+                                c0093b.q = (f * (-90.0f)) / 100.0f;
                             }
-                            layout$Alignment = fVarT2.o;
-                            if (layout$Alignment != null) {
-                                b_b.c = layout$Alignment;
+                            alignment = fVarT2.o;
+                            if (alignment != null) {
+                                c0093b.c = alignment;
                             }
-                            layout$Alignment2 = fVarT2.p;
-                            if (layout$Alignment2 != null) {
-                                b_b.d = layout$Alignment2;
+                            alignment2 = fVarT2.p;
+                            if (alignment2 != null) {
+                                c0093b.d = alignment2;
                             }
                         }
                     }
@@ -354,7 +352,7 @@ public final class d {
         }
     }
 
-    public final void j(long j, boolean z2, String str, Map<String, b$b> map) {
+    public final void j(long j, boolean z2, String str, Map<String, b.i.a.c.b3.b.C0093b> map) {
         this.k.clear();
         this.l.clear();
         if ("metadata".equals(this.a)) {
@@ -375,10 +373,10 @@ public final class d {
             return;
         }
         if (g(j)) {
-            for (Map$Entry<String, b$b> map$Entry : map.entrySet()) {
+            for (Map.Entry<String, b.i.a.c.b3.b.C0093b> entry : map.entrySet()) {
                 HashMap<String, Integer> map2 = this.k;
-                String key = map$Entry.getKey();
-                CharSequence charSequence = map$Entry.getValue().a;
+                String key = entry.getKey();
+                CharSequence charSequence = entry.getValue().a;
                 Objects.requireNonNull(charSequence);
                 map2.put(key, Integer.valueOf(charSequence.length()));
             }
@@ -399,10 +397,10 @@ public final class d {
                     spannableStringBuilderF2.append('\n');
                 }
             }
-            for (Map$Entry<String, b$b> map$Entry2 : map.entrySet()) {
+            for (Map.Entry<String, b.i.a.c.b3.b.C0093b> entry2 : map.entrySet()) {
                 HashMap<String, Integer> map3 = this.l;
-                String key2 = map$Entry2.getKey();
-                CharSequence charSequence2 = map$Entry2.getValue().a;
+                String key2 = entry2.getKey();
+                CharSequence charSequence2 = entry2.getValue().a;
                 Objects.requireNonNull(charSequence2);
                 map3.put(key2, Integer.valueOf(charSequence2.length()));
             }

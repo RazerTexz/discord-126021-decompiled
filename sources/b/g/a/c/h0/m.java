@@ -24,6 +24,66 @@ public class m implements Serializable {
     private final b.g.a.c.j[] _types;
     private final String[] _unboundVariables;
 
+    /* JADX INFO: compiled from: TypeBindings.java */
+    public final class a {
+        public final Class<?> a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final b.g.a.c.j[] f720b;
+        public final int c;
+
+        public a(Class<?> cls, b.g.a.c.j[] jVarArr, int i) {
+            this.a = cls;
+            this.f720b = jVarArr;
+            this.c = i;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (obj == null || obj.getClass() != a.class) {
+                return false;
+            }
+            a aVar = (a) obj;
+            if (this.c == aVar.c && this.a == aVar.a) {
+                b.g.a.c.j[] jVarArr = aVar.f720b;
+                int length = this.f720b.length;
+                if (length == jVarArr.length) {
+                    for (int i = 0; i < length; i++) {
+                        if (!this.f720b[i].equals(jVarArr[i])) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public int hashCode() {
+            return this.c;
+        }
+
+        public String toString() {
+            return b.d.b.a.a.o(this.a, new StringBuilder(), "<>");
+        }
+    }
+
+    /* JADX INFO: compiled from: TypeBindings.java */
+    public class b {
+        public static final TypeVariable<?>[] a = AbstractList.class.getTypeParameters();
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public static final TypeVariable<?>[] f721b = Collection.class.getTypeParameters();
+        public static final TypeVariable<?>[] c = Iterable.class.getTypeParameters();
+        public static final TypeVariable<?>[] d = List.class.getTypeParameters();
+        public static final TypeVariable<?>[] e = ArrayList.class.getTypeParameters();
+        public static final TypeVariable<?>[] f = Map.class.getTypeParameters();
+        public static final TypeVariable<?>[] g = HashMap.class.getTypeParameters();
+        public static final TypeVariable<?>[] h = LinkedHashMap.class.getTypeParameters();
+    }
+
     static {
         String[] strArr = new String[0];
         j = strArr;
@@ -53,22 +113,22 @@ public class m implements Serializable {
     }
 
     public Object a(Class<?> cls) {
-        return new m$a(cls, this._types, this._hashCode);
+        return new a(cls, this._types, this._hashCode);
     }
 
     public static m b(Class<?> cls, b.g.a.c.j jVar) {
         TypeVariable[] typeParameters;
-        TypeVariable<?>[] typeVariableArr = m$b.a;
+        TypeVariable<?>[] typeVariableArr = b.a;
         if (cls == Collection.class) {
-            typeParameters = m$b.f721b;
+            typeParameters = b.f721b;
         } else if (cls == List.class) {
-            typeParameters = m$b.d;
+            typeParameters = b.d;
         } else if (cls == ArrayList.class) {
-            typeParameters = m$b.e;
+            typeParameters = b.e;
         } else if (cls == AbstractList.class) {
-            typeParameters = m$b.a;
+            typeParameters = b.a;
         } else {
-            typeParameters = cls == Iterable.class ? m$b.c : cls.getTypeParameters();
+            typeParameters = cls == Iterable.class ? b.c : cls.getTypeParameters();
         }
         int length = typeParameters == null ? 0 : typeParameters.length;
         if (length == 1) {
@@ -83,13 +143,13 @@ public class m implements Serializable {
 
     public static m c(Class<?> cls, b.g.a.c.j jVar, b.g.a.c.j jVar2) {
         TypeVariable[] typeParameters;
-        TypeVariable<?>[] typeVariableArr = m$b.a;
+        TypeVariable<?>[] typeVariableArr = b.a;
         if (cls == Map.class) {
-            typeParameters = m$b.f;
+            typeParameters = b.f;
         } else if (cls == HashMap.class) {
-            typeParameters = m$b.g;
+            typeParameters = b.g;
         } else {
-            typeParameters = cls == LinkedHashMap.class ? m$b.h : cls.getTypeParameters();
+            typeParameters = cls == LinkedHashMap.class ? b.h : cls.getTypeParameters();
         }
         int length = typeParameters == null ? 0 : typeParameters.length;
         if (length == 2) {

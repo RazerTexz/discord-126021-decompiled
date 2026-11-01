@@ -3,7 +3,6 @@ package com.facebook.imagepipeline.platform;
 import android.annotation.TargetApi;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory$Options;
 import androidx.exifinterface.media.ExifInterface;
 import b.c.a.a0.d;
 import b.f.d.d.c;
@@ -24,14 +23,14 @@ public class KitKatPurgeableDecoder extends DalvikPurgeableDecoder {
     }
 
     @Override // com.facebook.imagepipeline.nativecode.DalvikPurgeableDecoder
-    public Bitmap c(CloseableReference<PooledByteBuffer> closeableReference, BitmapFactory$Options bitmapFactory$Options) {
+    public Bitmap c(CloseableReference<PooledByteBuffer> closeableReference, BitmapFactory.Options options) {
         PooledByteBuffer pooledByteBufferU = closeableReference.u();
         int size = pooledByteBufferU.size();
         CloseableReference<byte[]> closeableReferenceA = this.c.a(size);
         try {
             byte[] bArrU = closeableReferenceA.u();
             pooledByteBufferU.i(0, bArrU, 0, size);
-            Bitmap bitmapDecodeByteArray = BitmapFactory.decodeByteArray(bArrU, 0, size, bitmapFactory$Options);
+            Bitmap bitmapDecodeByteArray = BitmapFactory.decodeByteArray(bArrU, 0, size, options);
             d.y(bitmapDecodeByteArray, "BitmapFactory returned null");
             closeableReferenceA.close();
             return bitmapDecodeByteArray;
@@ -44,7 +43,7 @@ public class KitKatPurgeableDecoder extends DalvikPurgeableDecoder {
     }
 
     @Override // com.facebook.imagepipeline.nativecode.DalvikPurgeableDecoder
-    public Bitmap d(CloseableReference<PooledByteBuffer> closeableReference, int i, BitmapFactory$Options bitmapFactory$Options) {
+    public Bitmap d(CloseableReference<PooledByteBuffer> closeableReference, int i, BitmapFactory.Options options) {
         byte[] bArr = DalvikPurgeableDecoder.e(closeableReference, i) ? null : DalvikPurgeableDecoder.a;
         PooledByteBuffer pooledByteBufferU = closeableReference.u();
         d.i(Boolean.valueOf(i <= pooledByteBufferU.size()));
@@ -58,7 +57,7 @@ public class KitKatPurgeableDecoder extends DalvikPurgeableDecoder {
                 bArrU[i + 1] = ExifInterface.MARKER_EOI;
                 i = i2;
             }
-            Bitmap bitmapDecodeByteArray = BitmapFactory.decodeByteArray(bArrU, 0, i, bitmapFactory$Options);
+            Bitmap bitmapDecodeByteArray = BitmapFactory.decodeByteArray(bArrU, 0, i, options);
             d.y(bitmapDecodeByteArray, "BitmapFactory returned null");
             closeableReferenceA.close();
             return bitmapDecodeByteArray;

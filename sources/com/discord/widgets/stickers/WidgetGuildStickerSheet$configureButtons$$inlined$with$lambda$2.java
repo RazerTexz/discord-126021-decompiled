@@ -1,12 +1,11 @@
 package com.discord.widgets.stickers;
 
 import android.view.View;
-import android.view.View$OnClickListener;
 import com.discord.models.guild.Guild;
 
 /* JADX INFO: compiled from: WidgetGuildStickerSheet.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGuildStickerSheet$configureButtons$$inlined$with$lambda$2 implements View$OnClickListener {
+public final class WidgetGuildStickerSheet$configureButtons$$inlined$with$lambda$2 implements View.OnClickListener {
     public final /* synthetic */ Guild $guild$inlined;
     public final /* synthetic */ boolean $isUserInGuild$inlined;
     public final /* synthetic */ boolean $isUserPremium$inlined;
@@ -19,7 +18,7 @@ public final class WidgetGuildStickerSheet$configureButtons$$inlined$with$lambda
         this.$isUserInGuild$inlined = z3;
     }
 
-    @Override // android.view.View$OnClickListener
+    @Override // android.view.View.OnClickListener
     public final void onClick(View view) {
         WidgetGuildStickerSheet.access$getViewModel$p(this.this$0).joinGuild(this.$guild$inlined, this.this$0);
     }

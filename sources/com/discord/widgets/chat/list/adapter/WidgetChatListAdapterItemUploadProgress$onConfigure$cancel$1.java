@@ -26,6 +26,6 @@ public final class WidgetChatListAdapterItemUploadProgress$onConfigure$cancel$1 
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2() {
-        StoreStream.Companion.getMessages().cancelMessageSend(((UploadProgressEntry) this.$data).getChannelId(), ((UploadProgressEntry) this.$data).getMessageNonce());
+        StoreStream.INSTANCE.getMessages().cancelMessageSend(((UploadProgressEntry) this.$data).getChannelId(), ((UploadProgressEntry) this.$data).getMessageNonce());
     }
 }

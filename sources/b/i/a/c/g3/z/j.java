@@ -10,7 +10,6 @@ import b.i.a.c.f3.x;
 import b.i.a.c.g3.u;
 import b.i.a.c.j1;
 import com.google.android.exoplayer2.util.GlUtil;
-import com.google.android.exoplayer2.util.GlUtil$a;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,9 +47,9 @@ public final class j implements u, d {
         GlUtil.a();
         i iVar = this.l;
         Objects.requireNonNull(iVar);
-        GlUtil$a glUtil$a = new GlUtil$a(i.a, i.f1002b);
-        iVar.k = glUtil$a;
-        iVar.l = GLES20.glGetUniformLocation(glUtil$a.a, "uMvpMatrix");
+        GlUtil.a aVar = new GlUtil.a(i.a, i.f1002b);
+        iVar.k = aVar;
+        iVar.l = GLES20.glGetUniformLocation(aVar.a, "uMvpMatrix");
         iVar.m = GLES20.glGetUniformLocation(iVar.k.a, "uTexMatrix");
         iVar.n = GLES20.glGetAttribLocation(iVar.k.a, "aPosition");
         iVar.o = GLES20.glGetAttribLocation(iVar.k.a, "aTexCoords");
@@ -86,7 +85,7 @@ public final class j implements u, d {
         float f2;
         int i;
         int i2;
-        ArrayList<h$a> arrayListT1;
+        ArrayList<h.a> arrayListT1;
         this.n.a(j2, Long.valueOf(j));
         byte[] bArr = j1Var.G;
         int i3 = j1Var.H;
@@ -237,7 +236,7 @@ public final class j implements u, d {
                 }
                 i9 = i13;
             }
-            hVar = new h(new h$a(new h$b(0, fArr, fArr2, 1)), i8);
+            hVar = new h(new h.a(new h.b(0, fArr, fArr2, 1)), i8);
         }
         this.o.a(j2, hVar);
     }

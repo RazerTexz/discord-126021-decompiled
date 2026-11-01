@@ -1,6 +1,6 @@
 package com.discord.utilities.rest;
 
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.LocaleList;
 import d0.d0.f;
 import d0.t.u;
@@ -28,7 +28,7 @@ public final class RestAPI$AppHeadersProvider$acceptLanguageProvider$1 extends o
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final String invoke2() {
         ArrayList arrayList = new ArrayList();
-        if (Build$VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= 24) {
             LocaleList adjustedDefault = LocaleList.getAdjustedDefault();
             m.checkNotNullExpressionValue(adjustedDefault, "LocaleList.getAdjustedDefault()");
             int iCoerceAtLeast = 10;

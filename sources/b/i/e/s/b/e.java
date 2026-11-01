@@ -150,19 +150,19 @@ public final class e {
         if (i12 != jVarD.f) {
             throw new IllegalArgumentException();
         }
-        j$b j_b = jVarD.e[fVar.ordinal()];
-        j$a[] j_aArr = j_b.f1892b;
+        j.b bVar4 = jVarD.e[fVar.ordinal()];
+        j.a[] aVarArr = bVar4.f1892b;
         int i25 = 0;
-        for (j$a j_a : j_aArr) {
-            i25 += j_a.a;
+        for (j.a aVar2 : aVarArr) {
+            i25 += aVar2.a;
         }
         b[] bVarArr = new b[i25];
         int i26 = 0;
-        for (j$a j_a2 : j_aArr) {
+        for (j.a aVar3 : aVarArr) {
             int i27 = 0;
-            while (i27 < j_a2.a) {
-                int i28 = j_a2.f1891b;
-                bVarArr[i26] = new b(i28, new byte[j_b.a + i28]);
+            while (i27 < aVar3.a) {
+                int i28 = aVar3.f1891b;
+                bVarArr[i26] = new b(i28, new byte[bVar4.a + i28]);
                 i27++;
                 i26++;
             }
@@ -173,7 +173,7 @@ public final class e {
             i29--;
         }
         int i30 = i29 + 1;
-        int i31 = length2 - j_b.a;
+        int i31 = length2 - bVar4.a;
         int i32 = 0;
         for (int i33 = 0; i33 < i31; i33++) {
             int i34 = 0;
@@ -207,9 +207,9 @@ public final class e {
         byte[] bArr2 = new byte[i37];
         int i39 = 0;
         for (int i40 = 0; i40 < i25; i40++) {
-            b bVar4 = bVarArr[i40];
-            byte[] bArr3 = bVar4.f1887b;
-            int i41 = bVar4.a;
+            b bVar5 = bVarArr[i40];
+            byte[] bArr3 = bVar5.f1887b;
+            int i41 = bVar5.a;
             int length4 = bArr3.length;
             int[] iArr = new int[length4];
             for (int i42 = 0; i42 < length4; i42++) {

@@ -1,5 +1,7 @@
 package org.webrtc;
 
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -23,6 +25,94 @@ public class EglBase10Impl implements EglBase10 {
     private EGLDisplay eglDisplay;
     private EGLSurface eglSurface = EGL10.EGL_NO_SURFACE;
     private final EGL10 egl = (EGL10) EGLContext.getEGL();
+
+    /* JADX INFO: renamed from: org.webrtc.EglBase10Impl$1FakeSurfaceHolder, reason: invalid class name */
+    public class C1FakeSurfaceHolder implements SurfaceHolder {
+        private final Surface surface;
+
+        public C1FakeSurfaceHolder(Surface surface) {
+            this.surface = surface;
+        }
+
+        @Override // android.view.SurfaceHolder
+        public void addCallback(SurfaceHolder.Callback callback) {
+        }
+
+        @Override // android.view.SurfaceHolder
+        public Surface getSurface() {
+            return this.surface;
+        }
+
+        @Override // android.view.SurfaceHolder
+        @Nullable
+        public Rect getSurfaceFrame() {
+            return null;
+        }
+
+        @Override // android.view.SurfaceHolder
+        public boolean isCreating() {
+            return false;
+        }
+
+        @Override // android.view.SurfaceHolder
+        @Nullable
+        public Canvas lockCanvas() {
+            return null;
+        }
+
+        @Override // android.view.SurfaceHolder
+        @Nullable
+        public Canvas lockCanvas(Rect rect) {
+            return null;
+        }
+
+        @Override // android.view.SurfaceHolder
+        public void removeCallback(SurfaceHolder.Callback callback) {
+        }
+
+        @Override // android.view.SurfaceHolder
+        public void setFixedSize(int i, int i2) {
+        }
+
+        @Override // android.view.SurfaceHolder
+        public void setFormat(int i) {
+        }
+
+        @Override // android.view.SurfaceHolder
+        public void setKeepScreenOn(boolean z2) {
+        }
+
+        @Override // android.view.SurfaceHolder
+        public void setSizeFromLayout() {
+        }
+
+        @Override // android.view.SurfaceHolder
+        @Deprecated
+        public void setType(int i) {
+        }
+
+        @Override // android.view.SurfaceHolder
+        public void unlockCanvasAndPost(Canvas canvas) {
+        }
+    }
+
+    public class Context implements EglBase10.Context {
+        private final EGLContext eglContext;
+
+        public Context(EGLContext eGLContext) {
+            this.eglContext = eGLContext;
+        }
+
+        @Override // org.webrtc.EglBase.Context
+        public long getNativeEglContext() {
+            return 0L;
+        }
+
+        @Override // org.webrtc.EglBase10.Context
+        public EGLContext getRawContext() {
+            return this.eglContext;
+        }
+    }
 
     public EglBase10Impl(EGLContext eGLContext, int[] iArr) {
         EGLDisplay eglDisplay = getEglDisplay();
@@ -82,7 +172,7 @@ public class EglBase10Impl implements EglBase10 {
 
     @Override // org.webrtc.EglBase
     public void createSurface(Surface surface) {
-        createSurfaceInternal(new EglBase10Impl$1FakeSurfaceHolder(this, surface));
+        createSurfaceInternal(new C1FakeSurfaceHolder(surface));
     }
 
     private void createSurfaceInternal(Object obj) {
@@ -116,8 +206,8 @@ public class EglBase10Impl implements EglBase10 {
     }
 
     @Override // org.webrtc.EglBase
-    public EglBase$Context getEglBaseContext() {
-        return new EglBase10Impl$Context(this.eglContext);
+    public EglBase.Context getEglBaseContext() {
+        return new Context(this.eglContext);
     }
 
     private EGLConfig getEglConfig(EGLDisplay eGLDisplay, int[] iArr) {

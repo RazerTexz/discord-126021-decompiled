@@ -7,8 +7,6 @@ import android.os.RemoteException;
 import androidx.annotation.GuardedBy;
 import androidx.collection.ArrayMap;
 import b.c.a.a0.d;
-import b.i.a.f.f.a;
-import b.i.a.f.f.b;
 import b.i.a.f.h.l.c;
 import b.i.a.f.h.l.dc;
 import b.i.a.f.h.l.fc;
@@ -32,6 +30,7 @@ import b.i.a.f.i.b.t9;
 import b.i.a.f.i.b.u4;
 import b.i.a.f.i.b.u6;
 import b.i.a.f.i.b.v6;
+import b.i.a.f.i.b.w5;
 import b.i.a.f.i.b.w9;
 import b.i.a.f.i.b.x9;
 import b.i.a.f.i.b.y6;
@@ -53,6 +52,33 @@ public class AppMeasurementDynamiteService extends dc {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     @GuardedBy("listenerMap")
     public final Map<Integer, z5> f3009b = new ArrayMap();
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-sdk@@18.0.0 */
+    public final class a implements w5 {
+        public c a;
+
+        public a(c cVar) {
+            this.a = cVar;
+        }
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-sdk@@18.0.0 */
+    public final class b implements z5 {
+        public c a;
+
+        public b(c cVar) {
+            this.a = cVar;
+        }
+
+        @Override // b.i.a.f.i.b.z5
+        public final void a(String str, String str2, Bundle bundle, long j) {
+            try {
+                this.a.Z(str, str2, bundle, j);
+            } catch (RemoteException e) {
+                AppMeasurementDynamiteService.this.a.g().i.b("Event listener threw exception", e);
+            }
+        }
+    }
 
     @Override // b.i.a.f.h.l.ec
     public void beginAdUnitExposure(String str, long j) throws RemoteException {
@@ -203,8 +229,8 @@ public class AppMeasurementDynamiteService extends dc {
     }
 
     @Override // b.i.a.f.h.l.ec
-    public void initialize(a aVar, zzae zzaeVar, long j) throws RemoteException {
-        Context context = (Context) b.i(aVar);
+    public void initialize(b.i.a.f.f.a aVar, zzae zzaeVar, long j) throws RemoteException {
+        Context context = (Context) b.i.a.f.f.b.i(aVar);
         u4 u4Var = this.a;
         if (u4Var == null) {
             this.a = u4.b(context, zzaeVar, Long.valueOf(j));
@@ -234,59 +260,59 @@ public class AppMeasurementDynamiteService extends dc {
     }
 
     @Override // b.i.a.f.h.l.ec
-    public void logHealthData(int i, String str, a aVar, a aVar2, a aVar3) throws RemoteException {
+    public void logHealthData(int i, String str, b.i.a.f.f.a aVar, b.i.a.f.f.a aVar2, b.i.a.f.f.a aVar3) throws RemoteException {
         g();
-        this.a.g().w(i, true, false, str, aVar == null ? null : b.i(aVar), aVar2 == null ? null : b.i(aVar2), aVar3 != null ? b.i(aVar3) : null);
+        this.a.g().w(i, true, false, str, aVar == null ? null : b.i.a.f.f.b.i(aVar), aVar2 == null ? null : b.i.a.f.f.b.i(aVar2), aVar3 != null ? b.i.a.f.f.b.i(aVar3) : null);
     }
 
     @Override // b.i.a.f.h.l.ec
-    public void onActivityCreated(a aVar, Bundle bundle, long j) throws RemoteException {
-        g();
-        y6 y6Var = this.a.s().c;
-        if (y6Var != null) {
-            this.a.s().M();
-            y6Var.onActivityCreated((Activity) b.i(aVar), bundle);
-        }
-    }
-
-    @Override // b.i.a.f.h.l.ec
-    public void onActivityDestroyed(a aVar, long j) throws RemoteException {
+    public void onActivityCreated(b.i.a.f.f.a aVar, Bundle bundle, long j) throws RemoteException {
         g();
         y6 y6Var = this.a.s().c;
         if (y6Var != null) {
             this.a.s().M();
-            y6Var.onActivityDestroyed((Activity) b.i(aVar));
+            y6Var.onActivityCreated((Activity) b.i.a.f.f.b.i(aVar), bundle);
         }
     }
 
     @Override // b.i.a.f.h.l.ec
-    public void onActivityPaused(a aVar, long j) throws RemoteException {
+    public void onActivityDestroyed(b.i.a.f.f.a aVar, long j) throws RemoteException {
         g();
         y6 y6Var = this.a.s().c;
         if (y6Var != null) {
             this.a.s().M();
-            y6Var.onActivityPaused((Activity) b.i(aVar));
+            y6Var.onActivityDestroyed((Activity) b.i.a.f.f.b.i(aVar));
         }
     }
 
     @Override // b.i.a.f.h.l.ec
-    public void onActivityResumed(a aVar, long j) throws RemoteException {
+    public void onActivityPaused(b.i.a.f.f.a aVar, long j) throws RemoteException {
         g();
         y6 y6Var = this.a.s().c;
         if (y6Var != null) {
             this.a.s().M();
-            y6Var.onActivityResumed((Activity) b.i(aVar));
+            y6Var.onActivityPaused((Activity) b.i.a.f.f.b.i(aVar));
         }
     }
 
     @Override // b.i.a.f.h.l.ec
-    public void onActivitySaveInstanceState(a aVar, fc fcVar, long j) throws RemoteException {
+    public void onActivityResumed(b.i.a.f.f.a aVar, long j) throws RemoteException {
+        g();
+        y6 y6Var = this.a.s().c;
+        if (y6Var != null) {
+            this.a.s().M();
+            y6Var.onActivityResumed((Activity) b.i.a.f.f.b.i(aVar));
+        }
+    }
+
+    @Override // b.i.a.f.h.l.ec
+    public void onActivitySaveInstanceState(b.i.a.f.f.a aVar, fc fcVar, long j) throws RemoteException {
         g();
         y6 y6Var = this.a.s().c;
         Bundle bundle = new Bundle();
         if (y6Var != null) {
             this.a.s().M();
-            y6Var.onActivitySaveInstanceState((Activity) b.i(aVar), bundle);
+            y6Var.onActivitySaveInstanceState((Activity) b.i.a.f.f.b.i(aVar), bundle);
         }
         try {
             fcVar.f(bundle);
@@ -296,7 +322,7 @@ public class AppMeasurementDynamiteService extends dc {
     }
 
     @Override // b.i.a.f.h.l.ec
-    public void onActivityStarted(a aVar, long j) throws RemoteException {
+    public void onActivityStarted(b.i.a.f.f.a aVar, long j) throws RemoteException {
         g();
         if (this.a.s().c != null) {
             this.a.s().M();
@@ -304,7 +330,7 @@ public class AppMeasurementDynamiteService extends dc {
     }
 
     @Override // b.i.a.f.h.l.ec
-    public void onActivityStopped(a aVar, long j) throws RemoteException {
+    public void onActivityStopped(b.i.a.f.f.a aVar, long j) throws RemoteException {
         g();
         if (this.a.s().c != null) {
             this.a.s().M();
@@ -319,18 +345,18 @@ public class AppMeasurementDynamiteService extends dc {
 
     @Override // b.i.a.f.h.l.ec
     public void registerOnMeasurementEventListener(c cVar) throws RemoteException {
-        z5 appMeasurementDynamiteService$b;
+        z5 bVar;
         g();
         synchronized (this.f3009b) {
-            appMeasurementDynamiteService$b = this.f3009b.get(Integer.valueOf(cVar.a()));
-            if (appMeasurementDynamiteService$b == null) {
-                appMeasurementDynamiteService$b = new AppMeasurementDynamiteService$b(this, cVar);
-                this.f3009b.put(Integer.valueOf(cVar.a()), appMeasurementDynamiteService$b);
+            bVar = this.f3009b.get(Integer.valueOf(cVar.a()));
+            if (bVar == null) {
+                bVar = new b(cVar);
+                this.f3009b.put(Integer.valueOf(cVar.a()), bVar);
             }
         }
         c6 c6VarS = this.a.s();
         c6VarS.t();
-        if (c6VarS.e.add(appMeasurementDynamiteService$b)) {
+        if (c6VarS.e.add(bVar)) {
             return;
         }
         c6VarS.g().i.a("OnEventListener already registered");
@@ -373,10 +399,10 @@ public class AppMeasurementDynamiteService extends dc {
     }
 
     @Override // b.i.a.f.h.l.ec
-    public void setCurrentScreen(a aVar, String str, String str2, long j) throws RemoteException {
+    public void setCurrentScreen(b.i.a.f.f.a aVar, String str, String str2, long j) throws RemoteException {
         g();
         h7 h7VarW = this.a.w();
-        Activity activity = (Activity) b.i(aVar);
+        Activity activity = (Activity) b.i.a.f.f.b.i(aVar);
         if (!h7VarW.a.h.z().booleanValue()) {
             h7VarW.g().k.a("setCurrentScreen cannot be called while screen reporting is disabled.");
             return;
@@ -430,11 +456,11 @@ public class AppMeasurementDynamiteService extends dc {
     @Override // b.i.a.f.h.l.ec
     public void setEventInterceptor(c cVar) throws RemoteException {
         g();
-        AppMeasurementDynamiteService$a appMeasurementDynamiteService$a = new AppMeasurementDynamiteService$a(this, cVar);
+        a aVar = new a(cVar);
         if (this.a.f().y()) {
-            this.a.s().B(appMeasurementDynamiteService$a);
+            this.a.s().B(aVar);
         } else {
-            this.a.f().v(new w9(this, appMeasurementDynamiteService$a));
+            this.a.f().v(new w9(this, aVar));
         }
     }
 
@@ -473,9 +499,9 @@ public class AppMeasurementDynamiteService extends dc {
     }
 
     @Override // b.i.a.f.h.l.ec
-    public void setUserProperty(String str, String str2, a aVar, boolean z2, long j) throws RemoteException {
+    public void setUserProperty(String str, String str2, b.i.a.f.f.a aVar, boolean z2, long j) throws RemoteException {
         g();
-        this.a.s().L(str, str2, b.i(aVar), z2, j);
+        this.a.s().L(str, str2, b.i.a.f.f.b.i(aVar), z2, j);
     }
 
     @Override // b.i.a.f.h.l.ec
@@ -486,7 +512,7 @@ public class AppMeasurementDynamiteService extends dc {
             z5VarRemove = this.f3009b.remove(Integer.valueOf(cVar.a()));
         }
         if (z5VarRemove == null) {
-            z5VarRemove = new AppMeasurementDynamiteService$b(this, cVar);
+            z5VarRemove = new b(cVar);
         }
         c6 c6VarS = this.a.s();
         c6VarS.t();

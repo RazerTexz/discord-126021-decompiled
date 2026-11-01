@@ -1,6 +1,5 @@
 package d0.e0.p.d.m0.c.k1.a;
 
-import d0.e0.p.d.m0.e.b.b0.a$a;
 import d0.e0.p.d.m0.e.b.o;
 import d0.e0.p.d.m0.e.b.p;
 import d0.t.u;
@@ -36,7 +35,7 @@ public final class a {
         if (iVar == null) {
             d0.e0.p.d.m0.g.b packageFqName = fVar.getClassId().getPackageFqName();
             d0.z.d.m.checkNotNullExpressionValue(packageFqName, "fileClass.classId.packageFqName");
-            if (fVar.getClassHeader().getKind() == a$a.MULTIFILE_CLASS) {
+            if (fVar.getClassHeader().getKind() == d0.e0.p.d.m0.e.b.b0.a.EnumC0533a.MULTIFILE_CLASS) {
                 List<String> multifilePartNames = fVar.getClassHeader().getMultifilePartNames();
                 collectionListOf = new ArrayList();
                 Iterator<T> it = multifilePartNames.iterator();

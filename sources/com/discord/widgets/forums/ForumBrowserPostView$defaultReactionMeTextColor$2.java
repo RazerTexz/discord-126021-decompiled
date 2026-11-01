@@ -3,6 +3,7 @@ package com.discord.widgets.forums;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import androidx.core.content.ContextCompat;
+import com.discord.R;
 import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
 
@@ -25,6 +26,6 @@ public final class ForumBrowserPostView$defaultReactionMeTextColor$2 extends o i
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final ColorStateList invoke() {
-        return ContextCompat.getColorStateList(this.$context, 2131100382);
+        return ContextCompat.getColorStateList(this.$context, R.color.status_red_500);
     }
 }

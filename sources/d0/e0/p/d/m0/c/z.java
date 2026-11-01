@@ -1,5 +1,7 @@
 package d0.e0.p.d.m0.c;
 
+import kotlin.jvm.internal.DefaultConstructorMarker;
+
 /* JADX INFO: compiled from: Modality.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public enum z {
@@ -8,7 +10,23 @@ public enum z {
     OPEN,
     ABSTRACT;
 
-    public static final z$a j = new z$a(null);
+    public static final a j = new a(null);
+
+    /* JADX INFO: compiled from: Modality.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final z convertFromFlags(boolean z2, boolean z3, boolean z4) {
+            if (z2) {
+                return z.SEALED;
+            }
+            if (z3) {
+                return z.ABSTRACT;
+            }
+            return z4 ? z.OPEN : z.FINAL;
+        }
+    }
 
     /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
     public static z[] valuesCustom() {

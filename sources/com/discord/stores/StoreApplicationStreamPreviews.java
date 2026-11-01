@@ -1,21 +1,24 @@
 package com.discord.stores;
 
 import android.content.Context;
+import b.d.b.a.a;
 import com.discord.models.domain.ModelApplicationStream;
+import com.discord.models.domain.ModelApplicationStreamPreview;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.error.Error;
-import com.discord.utilities.error.Error$Response;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.streams.StreamContext;
 import com.discord.utilities.time.Clock;
 import d0.t.h0;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -26,7 +29,7 @@ import rx.Subscription;
 /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreApplicationStreamPreviews extends StoreV2 {
-    private static final StoreApplicationStreamPreviews$Companion Companion = new StoreApplicationStreamPreviews$Companion(null);
+    private static final Companion Companion = new Companion(null);
 
     @Deprecated
     private static final long READ_PREVIEW_DEFAULT_RETRY_DELAY_MS = 10000;
@@ -36,11 +39,369 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
     private final HashMap<String, Subscription> fetchStreamPreviewSubscriptions;
     private final ObservationDeck observationDeck;
     private final RestAPI restAPI;
-    private final Map<String, StoreApplicationStreamPreviews$StreamPreview> streamKeyToPreviewMap;
-    private Map<String, ? extends StoreApplicationStreamPreviews$StreamPreview> streamKeyToPreviewMapSnapshot;
+    private final Map<String, StreamPreview> streamKeyToPreviewMap;
+    private Map<String, ? extends StreamPreview> streamKeyToPreviewMapSnapshot;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$fetchStreamPreview$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ String $streamKey;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(String str) {
+            super(0);
+            this.$streamKey = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreApplicationStreamPreviews.this.handleFetchStart(this.$streamKey);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$handleFetchFailed$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+    public final class AnonymousClass1 extends o implements Function1<Subscription, Unit> {
+        public final /* synthetic */ String $streamKey;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(String str) {
+            super(1);
+            this.$streamKey = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            StoreApplicationStreamPreviews.access$getFetchStreamPreviewSubscriptions$p(StoreApplicationStreamPreviews.this).put(this.$streamKey, subscription);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$observeStreamPreview$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+    public final class AnonymousClass1 extends o implements Function0<StreamPreview> {
+        public final /* synthetic */ String $streamKey;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(String str) {
+            super(0);
+            this.$streamKey = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ StreamPreview invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final StreamPreview invoke() {
+            return StoreApplicationStreamPreviews.this.getStreamKeyToPreviewMap().get(this.$streamKey);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$fetchStreamPreview$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+    public final class AnonymousClass2 extends o implements Function1<Subscription, Unit> {
+        public final /* synthetic */ String $streamKey;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(String str) {
+            super(1);
+            this.$streamKey = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            StoreApplicationStreamPreviews.access$getFetchStreamPreviewSubscriptions$p(StoreApplicationStreamPreviews.this).put(this.$streamKey, subscription);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$handleFetchFailed$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+    public final class AnonymousClass2 extends o implements Function0<Unit> {
+        public final /* synthetic */ String $streamKey;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(String str) {
+            super(0);
+            this.$streamKey = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreApplicationStreamPreviews.access$getFetchStreamPreviewSubscriptions$p(StoreApplicationStreamPreviews.this).remove(this.$streamKey);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$fetchStreamPreview$3, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+    public final class AnonymousClass3 extends o implements Function1<ModelApplicationStreamPreview, Unit> {
+        public final /* synthetic */ String $streamKey;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$fetchStreamPreview$3$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public final /* synthetic */ ModelApplicationStreamPreview $res;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(ModelApplicationStreamPreview modelApplicationStreamPreview) {
+                super(0);
+                this.$res = modelApplicationStreamPreview;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                AnonymousClass3 anonymousClass3 = AnonymousClass3.this;
+                StoreApplicationStreamPreviews.this.handleFetchSuccess(anonymousClass3.$streamKey, this.$res.getUrl());
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass3(String str) {
+            super(1);
+            this.$streamKey = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelApplicationStreamPreview modelApplicationStreamPreview) {
+            invoke2(modelApplicationStreamPreview);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelApplicationStreamPreview modelApplicationStreamPreview) {
+            m.checkNotNullParameter(modelApplicationStreamPreview, "res");
+            StoreApplicationStreamPreviews.access$getDispatcher$p(StoreApplicationStreamPreviews.this).schedule(new AnonymousClass1(modelApplicationStreamPreview));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$handleFetchFailed$3, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+    public final class AnonymousClass3 extends o implements Function1<Long, Unit> {
+        public final /* synthetic */ String $streamKey;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$handleFetchFailed$3$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public AnonymousClass1() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                AnonymousClass3 anonymousClass3 = AnonymousClass3.this;
+                StoreApplicationStreamPreviews.access$fetchStreamPreviewIfNotFetching(StoreApplicationStreamPreviews.this, anonymousClass3.$streamKey);
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass3(String str) {
+            super(1);
+            this.$streamKey = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            StoreApplicationStreamPreviews.access$getDispatcher$p(StoreApplicationStreamPreviews.this).schedule(new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$fetchStreamPreview$4, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+    public final class AnonymousClass4 extends o implements Function1<Error, Unit> {
+        public final /* synthetic */ String $streamKey;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$fetchStreamPreview$4$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public final /* synthetic */ Error $error;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(Error error) {
+                super(0);
+                this.$error = error;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                AnonymousClass4 anonymousClass4 = AnonymousClass4.this;
+                StoreApplicationStreamPreviews.this.handleFetchFailed(anonymousClass4.$streamKey, this.$error);
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass4(String str) {
+            super(1);
+            this.$streamKey = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            m.checkNotNullParameter(error, "error");
+            StoreApplicationStreamPreviews.access$getDispatcher$p(StoreApplicationStreamPreviews.this).schedule(new AnonymousClass1(error));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationStreamPreviews$fetchStreamPreview$5, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+    public final class AnonymousClass5 extends o implements Function0<Unit> {
+        public final /* synthetic */ String $streamKey;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass5(String str) {
+            super(0);
+            this.$streamKey = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreApplicationStreamPreviews.access$getFetchStreamPreviewSubscriptions$p(StoreApplicationStreamPreviews.this).remove(this.$streamKey);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+    public abstract class StreamPreview {
+
+        /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+        public final class Fetching extends StreamPreview {
+            public static final Fetching INSTANCE = new Fetching();
+
+            private Fetching() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreApplicationStreamPreviews.kt */
+        public final /* data */ class Resolved extends StreamPreview {
+            private final String url;
+
+            public Resolved(String str) {
+                super(null);
+                this.url = str;
+            }
+
+            public static /* synthetic */ Resolved copy$default(Resolved resolved, String str, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    str = resolved.url;
+                }
+                return resolved.copy(str);
+            }
+
+            public final Resolved copy(String url) {
+                return new Resolved(url);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Resolved) && m.areEqual(this.url, ((Resolved) other).url);
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final String getUrl() {
+                return this.url;
+            }
+
+            public final String getUrl() {
+                return this.url;
+            }
+
+            public int hashCode() {
+                String str = this.url;
+                if (str != null) {
+                    return str.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                return a.J(a.U("Resolved(url="), this.url, ")");
+            }
+        }
+
+        private StreamPreview() {
+        }
+
+        public /* synthetic */ StreamPreview(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public /* synthetic */ StoreApplicationStreamPreviews(Dispatcher dispatcher, Clock clock, RestAPI restAPI, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(dispatcher, clock, (i & 4) != 0 ? RestAPI.Companion.getApi() : restAPI, (i & 8) != 0 ? ObservationDeckProvider.get() : observationDeck);
+        this(dispatcher, clock, (i & 4) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 8) != 0 ? ObservationDeckProvider.get() : observationDeck);
     }
 
     public static final /* synthetic */ void access$fetchStreamPreviewIfNotFetching(StoreApplicationStreamPreviews storeApplicationStreamPreviews, String str) {
@@ -56,12 +417,12 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
     }
 
     private final void fetchStreamPreview(String streamKey) {
-        this.dispatcher.schedule(new StoreApplicationStreamPreviews$fetchStreamPreview$1(this, streamKey));
+        this.dispatcher.schedule(new AnonymousClass1(streamKey));
         Subscription subscription = this.fetchStreamPreviewSubscriptions.get(streamKey);
         if (subscription != null) {
             subscription.unsubscribe();
         }
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn(this.restAPI.getStreamPreview(streamKey, this.clock.currentTimeMillis()), false), StoreApplicationStreamPreviews.class, (Context) null, new StoreApplicationStreamPreviews$fetchStreamPreview$2(this, streamKey), new StoreApplicationStreamPreviews$fetchStreamPreview$4(this, streamKey), new StoreApplicationStreamPreviews$fetchStreamPreview$5(this, streamKey), (Function0) null, new StoreApplicationStreamPreviews$fetchStreamPreview$3(this, streamKey), 34, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn(this.restAPI.getStreamPreview(streamKey, this.clock.currentTimeMillis()), false), StoreApplicationStreamPreviews.class, (Context) null, new AnonymousClass2(streamKey), new AnonymousClass4(streamKey), new AnonymousClass5(streamKey), (Function0) null, new AnonymousClass3(streamKey), 34, (Object) null);
     }
 
     public final void fetchStreamPreviewIfNotFetching(StreamContext streamContext) {
@@ -69,7 +430,7 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
         fetchStreamPreviewIfNotFetching(streamContext.getPreview(), streamContext.getStream().getEncodedStreamKey());
     }
 
-    public final Map<String, StoreApplicationStreamPreviews$StreamPreview> getStreamKeyToPreviewMap() {
+    public final Map<String, StreamPreview> getStreamKeyToPreviewMap() {
         return this.streamKeyToPreviewMapSnapshot;
     }
 
@@ -78,14 +439,14 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
         m.checkNotNullParameter(streamKey, "streamKey");
         m.checkNotNullParameter(error, "error");
         Long lValueOf = null;
-        this.streamKeyToPreviewMap.put(streamKey, new StoreApplicationStreamPreviews$StreamPreview$Resolved(null));
+        this.streamKeyToPreviewMap.put(streamKey, new StreamPreview.Resolved(null));
         Throwable throwable = error.getThrowable();
         if (!(throwable instanceof HttpException)) {
             throwable = null;
         }
         HttpException httpException = (HttpException) throwable;
         Integer numValueOf = httpException != null ? Integer.valueOf(httpException.a()) : null;
-        Error$Response response = error.getResponse();
+        Error.Response response = error.getResponse();
         m.checkNotNullExpressionValue(response, "error.response");
         Long retryAfterMs = response.getRetryAfterMs();
         Integer num = this.fetchAttempts.get(streamKey);
@@ -112,7 +473,7 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
             }
             Observable<Long> observableD0 = Observable.d0(lValueOf.longValue(), TimeUnit.MILLISECONDS);
             m.checkNotNullExpressionValue(observableD0, "Observable.timer(retryAf…s, TimeUnit.MILLISECONDS)");
-            ObservableExtensionsKt.appSubscribe$default(observableD0, StoreApplicationStreamPreviews.class, (Context) null, new StoreApplicationStreamPreviews$handleFetchFailed$1(this, streamKey), (Function1) null, new StoreApplicationStreamPreviews$handleFetchFailed$2(this, streamKey), (Function0) null, new StoreApplicationStreamPreviews$handleFetchFailed$3(this, streamKey), 42, (Object) null);
+            ObservableExtensionsKt.appSubscribe$default(observableD0, StoreApplicationStreamPreviews.class, (Context) null, new AnonymousClass1(streamKey), (Function1) null, new AnonymousClass2(streamKey), (Function0) null, new AnonymousClass3(streamKey), 42, (Object) null);
         }
         this.fetchAttempts.put(streamKey, Integer.valueOf(iIntValue));
         markChanged();
@@ -121,7 +482,7 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
     @StoreThread
     public final void handleFetchStart(String streamKey) {
         m.checkNotNullParameter(streamKey, "streamKey");
-        this.streamKeyToPreviewMap.put(streamKey, StoreApplicationStreamPreviews$StreamPreview$Fetching.INSTANCE);
+        this.streamKeyToPreviewMap.put(streamKey, StreamPreview.Fetching.INSTANCE);
         markChanged();
     }
 
@@ -129,12 +490,12 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
     public final void handleFetchSuccess(String streamKey, String url) {
         m.checkNotNullParameter(streamKey, "streamKey");
         m.checkNotNullParameter(url, "url");
-        this.streamKeyToPreviewMap.put(streamKey, new StoreApplicationStreamPreviews$StreamPreview$Resolved(url));
+        this.streamKeyToPreviewMap.put(streamKey, new StreamPreview.Resolved(url));
         this.fetchAttempts.remove(streamKey);
         markChanged();
     }
 
-    public final Observable<StoreApplicationStreamPreviews$StreamPreview> observeStreamPreview(ModelApplicationStream applicationStream) {
+    public final Observable<StreamPreview> observeStreamPreview(ModelApplicationStream applicationStream) {
         m.checkNotNullParameter(applicationStream, "applicationStream");
         return observeStreamPreview(applicationStream.getEncodedStreamKey());
     }
@@ -146,9 +507,9 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
         this.streamKeyToPreviewMapSnapshot = new HashMap(this.streamKeyToPreviewMap);
     }
 
-    public final Observable<StoreApplicationStreamPreviews$StreamPreview> observeStreamPreview(String streamKey) {
+    public final Observable<StreamPreview> observeStreamPreview(String streamKey) {
         m.checkNotNullParameter(streamKey, "streamKey");
-        Observable<StoreApplicationStreamPreviews$StreamPreview> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreApplicationStreamPreviews$observeStreamPreview$1(this, streamKey), 14, null).r();
+        Observable<StreamPreview> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(streamKey), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }
@@ -173,8 +534,8 @@ public final class StoreApplicationStreamPreviews extends StoreV2 {
         fetchStreamPreviewIfNotFetching(this.streamKeyToPreviewMap.get(streamKey), streamKey);
     }
 
-    private final void fetchStreamPreviewIfNotFetching(StoreApplicationStreamPreviews$StreamPreview preview, String streamKey) {
-        if (preview == null || !(preview instanceof StoreApplicationStreamPreviews$StreamPreview$Fetching)) {
+    private final void fetchStreamPreviewIfNotFetching(StreamPreview preview, String streamKey) {
+        if (preview == null || !(preview instanceof StreamPreview.Fetching)) {
             fetchStreamPreview(streamKey);
         }
     }

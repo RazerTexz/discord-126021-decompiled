@@ -1,10 +1,12 @@
 package com.discord.utilities.embed;
 
 import androidx.annotation.DrawableRes;
+import com.discord.R;
 import d0.z.d.m;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import kotlin.NoWhenBranchMatchedException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX WARN: Enum visitor error
 jadx.core.utils.exceptions.JadxRuntimeException: Init of enum field 'VIDEO' uses external variables
@@ -25,13 +27,57 @@ public final class FileType {
     public static final FileType AI;
     public static final FileType ARCHIVE;
     public static final FileType CODE;
-    public static final FileType$Companion Companion;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE;
     public static final FileType DOCUMENT;
     public static final FileType SKETCH;
     public static final FileType SPREADSHEET;
     public static final FileType VIDEO;
     public static final FileType WEBCODE;
     private final ThreadLocal<Matcher> threadLocalMatcher;
+
+    /* JADX INFO: compiled from: FileType.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final FileType getFromExtension(String extension) {
+            m.checkNotNullParameter(extension, "extension");
+            FileType[] fileTypeArrValues = FileType.values();
+            for (int i = 0; i < 10; i++) {
+                FileType fileType = fileTypeArrValues[i];
+                if (FileType.access$matches(fileType, extension)) {
+                    return fileType;
+                }
+            }
+            return null;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            FileType.values();
+            int[] iArr = new int[10];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[FileType.VIDEO.ordinal()] = 1;
+            iArr[FileType.ACROBAT.ordinal()] = 2;
+            iArr[FileType.AE.ordinal()] = 3;
+            iArr[FileType.SKETCH.ordinal()] = 4;
+            iArr[FileType.AI.ordinal()] = 5;
+            iArr[FileType.ARCHIVE.ordinal()] = 6;
+            iArr[FileType.CODE.ordinal()] = 7;
+            iArr[FileType.DOCUMENT.ordinal()] = 8;
+            iArr[FileType.SPREADSHEET.ordinal()] = 9;
+            iArr[FileType.WEBCODE.ordinal()] = 10;
+        }
+    }
 
     static {
         Pattern patternCompile = Pattern.compile("(?:avi|flv|wmv|mov|mp4)$", 0);
@@ -77,7 +123,7 @@ public final class FileType {
         FileType fileType10 = new FileType("WEBCODE", 9, patternCompile10);
         WEBCODE = fileType10;
         $VALUES = new FileType[]{fileType, fileType2, fileType3, fileType4, fileType5, fileType6, fileType7, fileType8, fileType9, fileType10};
-        Companion = new FileType$Companion(null);
+        INSTANCE = new Companion(null);
     }
 
     private FileType(String str, int i, Pattern pattern) {
@@ -93,25 +139,25 @@ public final class FileType {
     public final int getFileDrawable() {
         switch (ordinal()) {
             case 0:
-                return 2131231792;
+                return R.drawable.ic_file_video;
             case 1:
-                return 2131231775;
+                return R.drawable.ic_file_acrobat;
             case 2:
-                return 2131231776;
+                return R.drawable.ic_file_ae;
             case 3:
-                return 2131231788;
+                return R.drawable.ic_file_sketch;
             case 4:
-                return 2131231777;
+                return R.drawable.ic_file_ai;
             case 5:
-                return 2131231778;
+                return R.drawable.ic_file_archive;
             case 6:
-                return 2131231780;
+                return R.drawable.ic_file_code;
             case 7:
-                return 2131231781;
+                return R.drawable.ic_file_document;
             case 8:
-                return 2131231789;
+                return R.drawable.ic_file_spreadsheet;
             case 9:
-                return 2131231793;
+                return R.drawable.ic_file_webcode;
             default:
                 throw new NoWhenBranchMatchedException();
         }

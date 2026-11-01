@@ -2,7 +2,6 @@ package com.discord.widgets.forums;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView$State;
 import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -18,8 +17,8 @@ public final class ForumBrowserLayoutManager extends LinearLayoutManager {
         m.checkNotNullParameter(recyclerView, "recyclerView");
     }
 
-    @Override // androidx.recyclerview.widget.LinearLayoutManager, androidx.recyclerview.widget.RecyclerView$LayoutManager
-    public void onLayoutCompleted(RecyclerView$State state) {
+    @Override // androidx.recyclerview.widget.LinearLayoutManager, androidx.recyclerview.widget.RecyclerView.LayoutManager
+    public void onLayoutCompleted(RecyclerView.State state) {
         super.onLayoutCompleted(state);
         Function0<Unit> function0 = this.onLayoutCompletedCallback;
         if (function0 != null) {

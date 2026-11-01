@@ -1,6 +1,5 @@
 package b.i.a.c.b3.v;
 
-import b.i.a.c.b3.b$b;
 import b.i.a.c.f3.e0;
 import b.i.a.c.f3.x;
 import com.google.android.exoplayer2.text.SubtitleDecoderException;
@@ -35,7 +34,7 @@ public final class c extends b.i.a.c.b3.f {
                 x xVar2 = this.n;
                 int i2 = iF - 8;
                 CharSequence charSequenceF = null;
-                b$b b_bA = null;
+                b.i.a.c.b3.b.C0093b c0093bA = null;
                 while (i2 > 0) {
                     if (i2 < 8) {
                         throw new SubtitleDecoderException("Incomplete vtt cue box header found.");
@@ -47,9 +46,9 @@ public final class c extends b.i.a.c.b3.f {
                     xVar2.F(i3);
                     i2 = (i2 - 8) - i3;
                     if (iF3 == 1937011815) {
-                        h$e h_e = new h$e();
-                        h.e(strM, h_e);
-                        b_bA = h_e.a();
+                        h.e eVar = new h.e();
+                        h.e(strM, eVar);
+                        c0093bA = eVar.a();
                     } else if (iF3 == 1885436268) {
                         charSequenceF = h.f(null, strM.trim(), Collections.emptyList());
                     }
@@ -57,14 +56,14 @@ public final class c extends b.i.a.c.b3.f {
                 if (charSequenceF == null) {
                     charSequenceF = "";
                 }
-                if (b_bA != null) {
-                    b_bA.a = charSequenceF;
-                    bVarA = b_bA.a();
+                if (c0093bA != null) {
+                    c0093bA.a = charSequenceF;
+                    bVarA = c0093bA.a();
                 } else {
                     Pattern pattern = h.a;
-                    h$e h_e2 = new h$e();
-                    h_e2.c = charSequenceF;
-                    bVarA = h_e2.a().a();
+                    h.e eVar2 = new h.e();
+                    eVar2.c = charSequenceF;
+                    bVarA = eVar2.a().a();
                 }
                 arrayList.add(bVarA);
             } else {

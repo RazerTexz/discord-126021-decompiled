@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.d.g0;
 import b.a.d.i0;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetChannelSidebarActionsBinding;
 import com.discord.utilities.device.DeviceUtils;
@@ -19,10 +19,18 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.discord.views.channelsidebar.GuildChannelSideBarActionsView;
 import com.discord.views.channelsidebar.PrivateChannelSideBarActionsView;
+import com.discord.widgets.channels.settings.WidgetTextChannelSettings;
+import com.discord.widgets.channels.settings.WidgetThreadSettings;
+import com.discord.widgets.channels.threads.browser.WidgetThreadBrowser;
+import com.discord.widgets.chat.pins.WidgetChannelPinnedMessages;
+import com.discord.widgets.search.WidgetSearch;
+import com.discord.widgets.settings.WidgetMuteSettingsSheet;
 import com.discord.widgets.user.calls.PrivateCallLauncher;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.reflect.KProperty;
@@ -38,28 +46,252 @@ public final class WidgetChannelSidebarActions extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActions$configureUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelSidebarActions.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ WidgetChannelSidebarActionsViewModel.ViewState $viewState;
+
+        public AnonymousClass1(WidgetChannelSidebarActionsViewModel.ViewState viewState) {
+            this.$viewState = viewState;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetChannelSidebarActions.access$startPrivateCall(WidgetChannelSidebarActions.this, ((WidgetChannelSidebarActionsViewModel.ViewState.Private) this.$viewState).getChannelId(), false);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActions$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelSidebarActions.kt */
+    public final class AnonymousClass1 extends o implements Function1<WidgetChannelSidebarActionsViewModel.ViewState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetChannelSidebarActionsViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetChannelSidebarActionsViewModel.ViewState viewState) {
+            m.checkNotNullParameter(viewState, "viewState");
+            WidgetChannelSidebarActions.access$configureUI(WidgetChannelSidebarActions.this, viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActions$configureUI$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelSidebarActions.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ WidgetChannelSidebarActionsViewModel.ViewState $viewState;
+
+        public AnonymousClass2(WidgetChannelSidebarActionsViewModel.ViewState viewState) {
+            this.$viewState = viewState;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetChannelSidebarActions.access$startPrivateCall(WidgetChannelSidebarActions.this, ((WidgetChannelSidebarActionsViewModel.ViewState.Private) this.$viewState).getChannelId(), true);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActions$configureUI$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelSidebarActions.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public final /* synthetic */ long $channelId;
+
+        public AnonymousClass3(long j) {
+            this.$channelId = j;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetMuteSettingsSheet.Companion companion = WidgetMuteSettingsSheet.INSTANCE;
+            long j = this.$channelId;
+            FragmentManager parentFragmentManager = WidgetChannelSidebarActions.this.getParentFragmentManager();
+            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            companion.showForChannel(j, parentFragmentManager);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActions$configureUI$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelSidebarActions.kt */
+    public final class AnonymousClass4 implements View.OnClickListener {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ Context $context;
+
+        public AnonymousClass4(long j, Context context) {
+            this.$channelId = j;
+            this.$context = context;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetSearch.INSTANCE.launchForChannel(this.$channelId, this.$context);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActions$configureUI$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelSidebarActions.kt */
+    public final class AnonymousClass5 extends o implements Function1<View, Unit> {
+        public final /* synthetic */ Context $context;
+        public final /* synthetic */ WidgetChannelSidebarActionsViewModel.ViewState $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass5(WidgetChannelSidebarActionsViewModel.ViewState viewState, Context context) {
+            super(1);
+            this.$viewState = viewState;
+            this.$context = context;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+            WidgetSearch.INSTANCE.launchForGuild(((WidgetChannelSidebarActionsViewModel.ViewState.Guild) this.$viewState).getGuildId(), this.$context);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActions$configureUI$6, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelSidebarActions.kt */
+    public final class AnonymousClass6 extends o implements Function1<View, Unit> {
+        public final /* synthetic */ Context $context;
+        public final /* synthetic */ WidgetChannelSidebarActionsViewModel.ViewState $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass6(Context context, WidgetChannelSidebarActionsViewModel.ViewState viewState) {
+            super(1);
+            this.$context = context;
+            this.$viewState = viewState;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+            WidgetThreadBrowser.INSTANCE.show(this.$context, ((WidgetChannelSidebarActionsViewModel.ViewState.Guild) this.$viewState).getGuildId(), ((WidgetChannelSidebarActionsViewModel.ViewState.Guild) this.$viewState).getChannelId(), "Channel Side Bar");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActions$configureUI$7, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelSidebarActions.kt */
+    public final class AnonymousClass7 extends o implements Function1<View, Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ Context $context;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass7(Context context, long j) {
+            super(1);
+            this.$context = context;
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+            WidgetChannelPinnedMessages.INSTANCE.show(this.$context, this.$channelId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActions$configureUI$8, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelSidebarActions.kt */
+    public final class AnonymousClass8 extends o implements Function1<View, Unit> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass8(long j) {
+            super(1);
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+            WidgetMuteSettingsSheet.Companion companion = WidgetMuteSettingsSheet.INSTANCE;
+            long j = this.$channelId;
+            FragmentManager parentFragmentManager = WidgetChannelSidebarActions.this.getParentFragmentManager();
+            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            companion.showForChannel(j, parentFragmentManager);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActions$configureUI$9, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelSidebarActions.kt */
+    public final class AnonymousClass9 extends o implements Function1<View, Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ Context $context;
+        public final /* synthetic */ WidgetChannelSidebarActionsViewModel.ViewState $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass9(WidgetChannelSidebarActionsViewModel.ViewState viewState, long j, Context context) {
+            super(1);
+            this.$viewState = viewState;
+            this.$channelId = j;
+            this.$context = context;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+            if (((WidgetChannelSidebarActionsViewModel.ViewState.Guild) this.$viewState).isThread()) {
+                WidgetThreadSettings.INSTANCE.launch(this.$channelId, this.$context);
+            } else {
+                WidgetTextChannelSettings.INSTANCE.launch(this.$channelId, this.$context);
+            }
+        }
+    }
+
     public WidgetChannelSidebarActions() {
-        super(R$layout.widget_channel_sidebar_actions);
+        super(R.layout.widget_channel_sidebar_actions);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetChannelSidebarActions$binding$2.INSTANCE, null, 2, null);
         WidgetChannelSidebarActions$viewModel$2 widgetChannelSidebarActions$viewModel$2 = WidgetChannelSidebarActions$viewModel$2.INSTANCE;
         g0 g0Var = new g0(this);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetChannelSidebarActionsViewModel.class), new WidgetChannelSidebarActions$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetChannelSidebarActions$viewModel$2));
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetChannelSidebarActions widgetChannelSidebarActions, WidgetChannelSidebarActionsViewModel$ViewState widgetChannelSidebarActionsViewModel$ViewState) {
-        widgetChannelSidebarActions.configureUI(widgetChannelSidebarActionsViewModel$ViewState);
+    public static final /* synthetic */ void access$configureUI(WidgetChannelSidebarActions widgetChannelSidebarActions, WidgetChannelSidebarActionsViewModel.ViewState viewState) {
+        widgetChannelSidebarActions.configureUI(viewState);
     }
 
     public static final /* synthetic */ void access$startPrivateCall(WidgetChannelSidebarActions widgetChannelSidebarActions, long j, boolean z2) {
         widgetChannelSidebarActions.startPrivateCall(j, z2);
     }
 
-    private final void configureUI(WidgetChannelSidebarActionsViewModel$ViewState viewState) {
+    private final void configureUI(WidgetChannelSidebarActionsViewModel.ViewState viewState) {
         DeviceUtils deviceUtils = DeviceUtils.INSTANCE;
         Resources resources = getResources();
         m.checkNotNullExpressionValue(resources, "resources");
         boolean zIsSmallScreen = deviceUtils.isSmallScreen(resources);
-        if (m.areEqual(viewState, WidgetChannelSidebarActionsViewModel$ViewState$Uninitialized.INSTANCE)) {
+        if (m.areEqual(viewState, WidgetChannelSidebarActionsViewModel.ViewState.Uninitialized.INSTANCE)) {
             View view = getView();
             if (view != null) {
                 ViewKt.setVisible(view, false);
@@ -67,7 +299,7 @@ public final class WidgetChannelSidebarActions extends AppFragment {
             }
             return;
         }
-        if (viewState instanceof WidgetChannelSidebarActionsViewModel$ViewState$Private) {
+        if (viewState instanceof WidgetChannelSidebarActionsViewModel.ViewState.Private) {
             View view2 = getView();
             if (view2 != null) {
                 ViewKt.setVisible(view2, true);
@@ -78,20 +310,20 @@ public final class WidgetChannelSidebarActions extends AppFragment {
             PrivateChannelSideBarActionsView privateChannelSideBarActionsView = getBinding().c;
             m.checkNotNullExpressionValue(privateChannelSideBarActionsView, "binding.widgetChannelSidebarActionsPrivateView");
             privateChannelSideBarActionsView.setVisibility(0);
-            WidgetChannelSidebarActionsViewModel$ViewState$Private widgetChannelSidebarActionsViewModel$ViewState$Private = (WidgetChannelSidebarActionsViewModel$ViewState$Private) viewState;
-            long channelId = widgetChannelSidebarActionsViewModel$ViewState$Private.getChannelId();
-            getBinding().c.a(new WidgetChannelSidebarActions$configureUI$1(this, viewState), new WidgetChannelSidebarActions$configureUI$2(this, viewState), new WidgetChannelSidebarActions$configureUI$3(this, channelId), new WidgetChannelSidebarActions$configureUI$4(channelId, requireContext()), widgetChannelSidebarActionsViewModel$ViewState$Private.isMuted());
+            WidgetChannelSidebarActionsViewModel.ViewState.Private r2 = (WidgetChannelSidebarActionsViewModel.ViewState.Private) viewState;
+            long channelId = r2.getChannelId();
+            getBinding().c.a(new AnonymousClass1(viewState), new AnonymousClass2(viewState), new AnonymousClass3(channelId), new AnonymousClass4(channelId, requireContext()), r2.isMuted());
             return;
         }
-        if (viewState instanceof WidgetChannelSidebarActionsViewModel$ViewState$Guild) {
-            WidgetChannelSidebarActionsViewModel$ViewState$Guild widgetChannelSidebarActionsViewModel$ViewState$Guild = (WidgetChannelSidebarActionsViewModel$ViewState$Guild) viewState;
-            long channelId2 = widgetChannelSidebarActionsViewModel$ViewState$Guild.getChannelId();
+        if (viewState instanceof WidgetChannelSidebarActionsViewModel.ViewState.Guild) {
+            WidgetChannelSidebarActionsViewModel.ViewState.Guild guild = (WidgetChannelSidebarActionsViewModel.ViewState.Guild) viewState;
+            long channelId2 = guild.getChannelId();
             Context contextRequireContext = requireContext();
             GuildChannelSideBarActionsView guildChannelSideBarActionsView2 = getBinding().f2280b;
-            WidgetChannelSidebarActions$configureUI$5 widgetChannelSidebarActions$configureUI$5 = new WidgetChannelSidebarActions$configureUI$5(viewState, contextRequireContext);
-            WidgetChannelSidebarActions$configureUI$6 widgetChannelSidebarActions$configureUI$6 = new WidgetChannelSidebarActions$configureUI$6(contextRequireContext, viewState);
-            WidgetChannelSidebarActions$configureUI$7 widgetChannelSidebarActions$configureUI$7 = new WidgetChannelSidebarActions$configureUI$7(contextRequireContext, channelId2);
-            guildChannelSideBarActionsView2.a(widgetChannelSidebarActions$configureUI$5, widgetChannelSidebarActions$configureUI$6, new WidgetChannelSidebarActions$configureUI$8(this, channelId2), widgetChannelSidebarActions$configureUI$7, new WidgetChannelSidebarActions$configureUI$9(viewState, channelId2, contextRequireContext), widgetChannelSidebarActionsViewModel$ViewState$Guild.getHasUnreadPins(), widgetChannelSidebarActionsViewModel$ViewState$Guild.isMuted(), widgetChannelSidebarActionsViewModel$ViewState$Guild.getDisablePins(), zIsSmallScreen || widgetChannelSidebarActionsViewModel$ViewState$Guild.isGuildForumPost() || widgetChannelSidebarActionsViewModel$ViewState$Guild.isGuildForumChannel());
+            AnonymousClass5 anonymousClass5 = new AnonymousClass5(viewState, contextRequireContext);
+            AnonymousClass6 anonymousClass6 = new AnonymousClass6(contextRequireContext, viewState);
+            AnonymousClass7 anonymousClass7 = new AnonymousClass7(contextRequireContext, channelId2);
+            guildChannelSideBarActionsView2.a(anonymousClass5, anonymousClass6, new AnonymousClass8(channelId2), anonymousClass7, new AnonymousClass9(viewState, channelId2, contextRequireContext), guild.getHasUnreadPins(), guild.isMuted(), guild.getDisablePins(), zIsSmallScreen || guild.isGuildForumPost() || guild.isGuildForumChannel());
             View view3 = getView();
             if (view3 != null) {
                 ViewKt.setVisible(view3, true);
@@ -101,7 +333,7 @@ public final class WidgetChannelSidebarActions extends AppFragment {
             privateChannelSideBarActionsView2.setVisibility(8);
             GuildChannelSideBarActionsView guildChannelSideBarActionsView3 = getBinding().f2280b;
             m.checkNotNullExpressionValue(guildChannelSideBarActionsView3, "binding.widgetChannelSidebarActionsGuildView");
-            guildChannelSideBarActionsView3.setVisibility(widgetChannelSidebarActionsViewModel$ViewState$Guild.getShouldHideChannelSidebar() ^ true ? 0 : 8);
+            guildChannelSideBarActionsView3.setVisibility(guild.getShouldHideChannelSidebar() ^ true ? 0 : 8);
         }
     }
 
@@ -116,7 +348,7 @@ public final class WidgetChannelSidebarActions extends AppFragment {
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetChannelSidebarActions.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetChannelSidebarActions$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetChannelSidebarActions.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
     private final void startPrivateCall(long channelId, boolean useVideo) {

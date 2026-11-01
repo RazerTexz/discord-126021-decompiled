@@ -4,9 +4,11 @@ import com.discord.api.permission.Permission;
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,10 +18,38 @@ public class c implements Closeable {
     public final RandomAccessFile k;
     public int l;
     public int m;
-    public c$b n;
-    public c$b o;
+    public b n;
+    public b o;
     public static final Logger j = Logger.getLogger(c.class.getName());
     public final byte[] p = new byte[16];
+
+    /* JADX INFO: compiled from: QueueFile.java */
+    public class b {
+        public final int c;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f1709b;
+        public static final b a = new b(0, 0);
+
+        public b(int i, int i2) {
+            this.f1709b = i;
+            this.c = i2;
+        }
+
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append(b.class.getSimpleName());
+            sb.append("[position = ");
+            sb.append(this.f1709b);
+            sb.append(", length = ");
+            return b.d.b.a.a.B(sb, this.c, "]");
+        }
+    }
+
+    /* JADX INFO: compiled from: QueueFile.java */
+    public interface d {
+        void a(InputStream inputStream, int i) throws IOException;
+    }
 
     public c(File file) throws IOException {
         if (!file.exists()) {
@@ -100,18 +130,18 @@ public class c implements Closeable {
                     if (zF) {
                         iY = 16;
                     } else {
-                        c$b c_b = this.o;
-                        iY = y(c_b.f1709b + 4 + c_b.c);
+                        b bVar = this.o;
+                        iY = y(bVar.f1709b + 4 + bVar.c);
                     }
-                    c$b c_b2 = new c$b(iY, length);
+                    b bVar2 = new b(iY, length);
                     C(this.p, 0, length);
                     u(iY, this.p, 0, 4);
                     u(iY + 4, bArr, 0, length);
                     A(this.l, this.m + 1, zF ? iY : this.n.f1709b, iY);
-                    this.o = c_b2;
+                    this.o = bVar2;
                     this.m++;
                     if (zF) {
-                        this.n = c_b2;
+                        this.n = bVar2;
                     }
                 }
             }
@@ -122,9 +152,9 @@ public class c implements Closeable {
     public synchronized void c() throws IOException {
         A(4096, 0, 0, 0);
         this.m = 0;
-        c$b c_b = c$b.a;
-        this.n = c_b;
-        this.o = c_b;
+        b bVar = b.a;
+        this.n = bVar;
+        this.o = bVar;
         if (this.l > 4096) {
             this.k.setLength(4096);
             this.k.getChannel().force(true);
@@ -150,8 +180,8 @@ public class c implements Closeable {
         } while (iX < i2);
         this.k.setLength(i3);
         this.k.getChannel().force(true);
-        c$b c_b = this.o;
-        int iY = y(c_b.f1709b + 4 + c_b.c);
+        b bVar = this.o;
+        int iY = y(bVar.f1709b + 4 + bVar.c);
         if (iY < this.n.f1709b) {
             FileChannel channel = this.k.getChannel();
             channel.position(this.l);
@@ -165,19 +195,19 @@ public class c implements Closeable {
         if (i4 < i5) {
             int i6 = (this.l + i4) - 16;
             A(i3, this.m, i5, i6);
-            this.o = new c$b(i6, this.o.c);
+            this.o = new b(i6, this.o.c);
         } else {
             A(i3, this.m, i5, i4);
         }
         this.l = i3;
     }
 
-    public synchronized void e(c$d c_d) throws IOException {
+    public synchronized void e(d dVar) throws IOException {
         int iY = this.n.f1709b;
         for (int i = 0; i < this.m; i++) {
-            c$b c_bN = n(iY);
-            c_d.a(new c$c(this, c_bN, null), c_bN.c);
-            iY = y(c_bN.f1709b + 4 + c_bN.c);
+            b bVarN = n(iY);
+            dVar.a(new C0139c(bVarN, null), bVarN.c);
+            iY = y(bVarN.f1709b + 4 + bVarN.c);
         }
     }
 
@@ -185,12 +215,12 @@ public class c implements Closeable {
         return this.m == 0;
     }
 
-    public final c$b n(int i) throws IOException {
+    public final b n(int i) throws IOException {
         if (i == 0) {
-            return c$b.a;
+            return b.a;
         }
         this.k.seek(i);
-        return new c$b(i, this.k.readInt());
+        return new b(i, this.k.readInt());
     }
 
     public static int q(byte[] bArr, int i) {
@@ -204,13 +234,13 @@ public class c implements Closeable {
         if (this.m == 1) {
             c();
         } else {
-            c$b c_b = this.n;
-            int iY = y(c_b.f1709b + 4 + c_b.c);
+            b bVar = this.n;
+            int iY = y(bVar.f1709b + 4 + bVar.c);
             t(iY, this.p, 0, 4);
             int iQ = q(this.p, 0);
             A(this.l, this.m - 1, iY, this.o.f1709b);
             this.m--;
-            this.n = new c$b(iY, iQ);
+            this.n = new b(iY, iQ);
         }
     }
 
@@ -245,7 +275,7 @@ public class c implements Closeable {
         sb.append(this.o);
         sb.append(", element lengths=[");
         try {
-            e(new c$a(this, sb));
+            e(new a(this, sb));
         } catch (IOException e) {
             j.log(Level.WARNING, "read error", (Throwable) e);
         }
@@ -274,14 +304,81 @@ public class c implements Closeable {
         if (this.m == 0) {
             return 16;
         }
-        c$b c_b = this.o;
-        int i = c_b.f1709b;
+        b bVar = this.o;
+        int i = bVar.f1709b;
         int i2 = this.n.f1709b;
-        return i >= i2 ? (i - i2) + 4 + c_b.c + 16 : (((i + 4) + c_b.c) + this.l) - i2;
+        return i >= i2 ? (i - i2) + 4 + bVar.c + 16 : (((i + 4) + bVar.c) + this.l) - i2;
     }
 
     public final int y(int i) {
         int i2 = this.l;
         return i < i2 ? i : (i + 16) - i2;
+    }
+
+    /* JADX INFO: compiled from: QueueFile.java */
+    public class a implements d {
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final /* synthetic */ StringBuilder f1708b;
+        public boolean a = true;
+
+        public a(c cVar, StringBuilder sb) {
+            this.f1708b = sb;
+        }
+
+        @Override // b.i.c.m.d.l.c.d
+        public void a(InputStream inputStream, int i) throws IOException {
+            if (this.a) {
+                this.a = false;
+            } else {
+                this.f1708b.append(", ");
+            }
+            this.f1708b.append(i);
+        }
+    }
+
+    /* JADX INFO: renamed from: b.i.c.m.d.l.c$c, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: QueueFile.java */
+    public final class C0139c extends InputStream {
+        public int j;
+        public int k;
+
+        public C0139c(b bVar, a aVar) {
+            int i = bVar.f1709b + 4;
+            int i2 = c.this.l;
+            this.j = i >= i2 ? (i + 16) - i2 : i;
+            this.k = bVar.c;
+        }
+
+        @Override // java.io.InputStream
+        public int read(byte[] bArr, int i, int i2) throws IOException {
+            Objects.requireNonNull(bArr, "buffer");
+            if ((i | i2) < 0 || i2 > bArr.length - i) {
+                throw new ArrayIndexOutOfBoundsException();
+            }
+            int i3 = this.k;
+            if (i3 <= 0) {
+                return -1;
+            }
+            if (i2 > i3) {
+                i2 = i3;
+            }
+            c.this.t(this.j, bArr, i, i2);
+            this.j = c.a(c.this, this.j + i2);
+            this.k -= i2;
+            return i2;
+        }
+
+        @Override // java.io.InputStream
+        public int read() throws IOException {
+            if (this.k == 0) {
+                return -1;
+            }
+            c.this.k.seek(this.j);
+            int i = c.this.k.read();
+            this.j = c.a(c.this, this.j + 1);
+            this.k--;
+            return i;
+        }
     }
 }

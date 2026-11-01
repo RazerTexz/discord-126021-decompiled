@@ -1,7 +1,7 @@
 package com.google.android.exoplayer2.metadata.id3;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import b.i.a.c.f3.e0;
 import java.util.Arrays;
@@ -13,7 +13,19 @@ public final class ChapterTocFrame extends Id3Frame {
     public final boolean m;
     public final String[] n;
     public final Id3Frame[] o;
-    public static final Parcelable$Creator<ChapterTocFrame> CREATOR = new ChapterTocFrame$a();
+    public static final Parcelable.Creator<ChapterTocFrame> CREATOR = new a();
+
+    public class a implements Parcelable.Creator<ChapterTocFrame> {
+        @Override // android.os.Parcelable.Creator
+        public ChapterTocFrame createFromParcel(Parcel parcel) {
+            return new ChapterTocFrame(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public ChapterTocFrame[] newArray(int i) {
+            return new ChapterTocFrame[i];
+        }
+    }
 
     public ChapterTocFrame(String str, boolean z2, boolean z3, String[] strArr, Id3Frame[] id3FrameArr) {
         super("CTOC");

@@ -8,7 +8,7 @@ import d0.z.d.m;
 public final class GiftStyleKt {
     public static final GiftStyle getCustomStyle(ModelGift modelGift) {
         m.checkNotNullParameter(modelGift, "$this$getCustomStyle");
-        return GiftStyle.Companion.from(modelGift);
+        return GiftStyle.INSTANCE.from(modelGift);
     }
 
     public static final boolean hasCustomStyle(ModelGift modelGift) {

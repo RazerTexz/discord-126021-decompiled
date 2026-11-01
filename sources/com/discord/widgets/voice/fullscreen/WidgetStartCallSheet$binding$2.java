@@ -3,7 +3,7 @@ package com.discord.widgets.voice.fullscreen;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetStartCallSheetBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -26,11 +26,11 @@ public final /* synthetic */ class WidgetStartCallSheet$binding$2 extends k impl
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetStartCallSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.start_call_sheet_video_item;
-        TextView textView = (TextView) view.findViewById(R$id.start_call_sheet_video_item);
+        int i = R.id.start_call_sheet_video_item;
+        TextView textView = (TextView) view.findViewById(R.id.start_call_sheet_video_item);
         if (textView != null) {
-            i = R$id.start_call_sheet_voice_item;
-            TextView textView2 = (TextView) view.findViewById(R$id.start_call_sheet_voice_item);
+            i = R.id.start_call_sheet_voice_item;
+            TextView textView2 = (TextView) view.findViewById(R.id.start_call_sheet_voice_item);
             if (textView2 != null) {
                 return new WidgetStartCallSheetBinding((LinearLayout) view, textView, textView2);
             }

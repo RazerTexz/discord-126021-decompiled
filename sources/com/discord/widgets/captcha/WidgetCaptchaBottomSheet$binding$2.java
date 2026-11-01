@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetCaptchaBottomSheetBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -28,17 +28,17 @@ public final /* synthetic */ class WidgetCaptchaBottomSheet$binding$2 extends k 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetCaptchaBottomSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.captcha_body;
-        TextView textView = (TextView) view.findViewById(R$id.captcha_body);
+        int i = R.id.captcha_body;
+        TextView textView = (TextView) view.findViewById(R.id.captcha_body);
         if (textView != null) {
-            i = R$id.captcha_button;
-            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.captcha_button);
+            i = R.id.captcha_button;
+            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.captcha_button);
             if (materialButton != null) {
-                i = R$id.captcha_title;
-                TextView textView2 = (TextView) view.findViewById(R$id.captcha_title);
+                i = R.id.captcha_title;
+                TextView textView2 = (TextView) view.findViewById(R.id.captcha_title);
                 if (textView2 != null) {
-                    i = R$id.guild_join_captcha_image;
-                    ImageView imageView = (ImageView) view.findViewById(R$id.guild_join_captcha_image);
+                    i = R.id.guild_join_captcha_image;
+                    ImageView imageView = (ImageView) view.findViewById(R.id.guild_join_captcha_image);
                     if (imageView != null) {
                         return new WidgetCaptchaBottomSheetBinding((NestedScrollView) view, textView, materialButton, textView2, imageView);
                     }

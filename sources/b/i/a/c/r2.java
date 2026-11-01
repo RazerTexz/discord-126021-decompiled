@@ -2,7 +2,6 @@ package b.i.a.c;
 
 import android.content.Context;
 import android.net.wifi.WifiManager;
-import android.net.wifi.WifiManager$WifiLock;
 import androidx.annotation.Nullable;
 
 /* JADX INFO: compiled from: WifiLockManager.java */
@@ -14,7 +13,7 @@ public final class r2 {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     @Nullable
-    public WifiManager$WifiLock f1059b;
+    public WifiManager.WifiLock f1059b;
     public boolean c;
     public boolean d;
 
@@ -23,14 +22,14 @@ public final class r2 {
     }
 
     public final void a() {
-        WifiManager$WifiLock wifiManager$WifiLock = this.f1059b;
-        if (wifiManager$WifiLock == null) {
+        WifiManager.WifiLock wifiLock = this.f1059b;
+        if (wifiLock == null) {
             return;
         }
         if (this.c && this.d) {
-            wifiManager$WifiLock.acquire();
+            wifiLock.acquire();
         } else {
-            wifiManager$WifiLock.release();
+            wifiLock.release();
         }
     }
 }

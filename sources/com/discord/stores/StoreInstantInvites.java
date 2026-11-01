@@ -1,22 +1,33 @@
 package com.discord.stores;
 
 import android.content.Context;
+import androidx.core.app.NotificationCompat;
+import b.d.b.a.a;
+import com.discord.analytics.generated.events.network_action.TrackNetworkActionInviteResolve;
+import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
+import com.discord.api.channel.Channel;
 import com.discord.api.guild.Guild;
+import com.discord.api.guildscheduledevent.GuildScheduledEvent;
+import com.discord.api.user.User;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.ModelInvite;
+import com.discord.restapi.RestAPIAbortCodes;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.stores.utilities.RestCallStateKt;
+import com.discord.utilities.analytics.AnalyticsTracker;
+import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.t.h0;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import j0.l.e.k;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -29,13 +40,489 @@ public final class StoreInstantInvites extends StoreV2 {
     private final Dispatcher dispatcher;
     private final Map<Long, Map<String, ModelInvite>> invites;
     private Map<Long, ? extends Map<String, ? extends ModelInvite>> invitesSnapshot;
-    private final Map<String, StoreInstantInvites$InviteState> knownInvites;
-    private Map<String, ? extends StoreInstantInvites$InviteState> knownInvitesSnapshot;
+    private final Map<String, InviteState> knownInvites;
+    private Map<String, ? extends InviteState> knownInvitesSnapshot;
     private final ObservationDeck observationDeck;
     private final RestAPI restAPI;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$clearInvites$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreInstantInvites.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$guildId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Map map = (Map) StoreInstantInvites.access$getInvites$p(StoreInstantInvites.this).get(Long.valueOf(this.$guildId));
+            if (map != null) {
+                map.clear();
+            }
+            StoreInstantInvites.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$fetchGuildInvites$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreInstantInvites.kt */
+    public final class AnonymousClass1 extends o implements Function1<List<? extends ModelInvite>, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$fetchGuildInvites$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreInstantInvites.kt */
+        public final class C02611 extends o implements Function0<Unit> {
+            public final /* synthetic */ List $invites;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C02611(List list) {
+                super(0);
+                this.$invites = list;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreInstantInvites.access$onLoadedInvites(StoreInstantInvites.this, this.$invites);
+            }
+        }
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ModelInvite> list) {
+            invoke2(list);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<? extends ModelInvite> list) {
+            m.checkNotNullParameter(list, "invites");
+            StoreInstantInvites.access$getDispatcher$p(StoreInstantInvites.this).schedule(new C02611(list));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$fetchInviteIfNotLoaded$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreInstantInvites.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ Long $eventId;
+        public final /* synthetic */ String $inviteCode;
+        public final /* synthetic */ String $inviteKey;
+        public final /* synthetic */ Boolean $inviteResolved;
+        public final /* synthetic */ String $location;
+        public final /* synthetic */ Function0 $onError;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$fetchInviteIfNotLoaded$1$2, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreInstantInvites.kt */
+        public final class AnonymousClass2 extends o implements Function1<ModelInvite, Unit> {
+
+            /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$fetchInviteIfNotLoaded$1$2$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: StoreInstantInvites.kt */
+            public final class C02631 extends o implements Function0<Unit> {
+                public final /* synthetic */ ModelInvite $it;
+
+                /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+                public C02631(ModelInvite modelInvite) {
+                    super(0);
+                    this.$it = modelInvite;
+                }
+
+                @Override // kotlin.jvm.functions.Function0
+                public /* bridge */ /* synthetic */ Unit invoke() {
+                    invoke2();
+                    return Unit.a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2() {
+                    AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                    StoreInstantInvites storeInstantInvites = StoreInstantInvites.this;
+                    String str = anonymousClass1.$inviteKey;
+                    m.checkNotNullExpressionValue(str, "inviteKey");
+                    StoreInstantInvites.access$setChatInvites(storeInstantInvites, str, new InviteState.Resolved(this.$it));
+                    GuildScheduledEvent guildScheduledEvent = this.$it.getGuildScheduledEvent();
+                    if (guildScheduledEvent != null) {
+                        StoreGuildScheduledEvents guildScheduledEvents = StoreStream.INSTANCE.getGuildScheduledEvents();
+                        m.checkNotNullExpressionValue(guildScheduledEvent, "event");
+                        guildScheduledEvents.addGuildScheduledEventFromInvite(guildScheduledEvent);
+                    }
+                }
+            }
+
+            public AnonymousClass2() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(ModelInvite modelInvite) {
+                invoke2(modelInvite);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(ModelInvite modelInvite) {
+                m.checkNotNullParameter(modelInvite, "it");
+                StoreInstantInvites.access$getDispatcher$p(StoreInstantInvites.this).schedule(new C02631(modelInvite));
+                String str = AnonymousClass1.this.$location;
+                if (str != null) {
+                    AnalyticsTracker.INSTANCE.inviteResolved(modelInvite, str);
+                }
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$fetchInviteIfNotLoaded$1$3, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreInstantInvites.kt */
+        public final class AnonymousClass3 extends o implements Function1<Error, Unit> {
+
+            /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$fetchInviteIfNotLoaded$1$3$2, reason: invalid class name */
+            /* JADX INFO: compiled from: StoreInstantInvites.kt */
+            public final class AnonymousClass2 extends o implements Function0<Unit> {
+                public AnonymousClass2() {
+                    super(0);
+                }
+
+                @Override // kotlin.jvm.functions.Function0
+                public /* bridge */ /* synthetic */ Unit invoke() {
+                    invoke2();
+                    return Unit.a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2() {
+                    AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                    StoreInstantInvites storeInstantInvites = StoreInstantInvites.this;
+                    String str = anonymousClass1.$inviteKey;
+                    m.checkNotNullExpressionValue(str, "inviteKey");
+                    StoreInstantInvites.access$setChatInvites(storeInstantInvites, str, InviteState.LoadFailed.INSTANCE);
+                }
+            }
+
+            /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$fetchInviteIfNotLoaded$1$3$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: StoreInstantInvites.kt */
+            public final class C02641 extends o implements Function0<Unit> {
+                public C02641() {
+                    super(0);
+                }
+
+                @Override // kotlin.jvm.functions.Function0
+                public /* bridge */ /* synthetic */ Unit invoke() {
+                    invoke2();
+                    return Unit.a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2() {
+                    AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                    StoreInstantInvites storeInstantInvites = StoreInstantInvites.this;
+                    String str = anonymousClass1.$inviteKey;
+                    m.checkNotNullExpressionValue(str, "inviteKey");
+                    StoreInstantInvites.access$setChatInvites(storeInstantInvites, str, InviteState.Invalid.INSTANCE);
+                }
+            }
+
+            public AnonymousClass3() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+                invoke2(error);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Error error) {
+                m.checkNotNullParameter(error, "error");
+                Function0 function0 = AnonymousClass1.this.$onError;
+                if (function0 != null) {
+                }
+                int iOrdinal = error.getType().ordinal();
+                if (iOrdinal != 3) {
+                    if (iOrdinal != 11) {
+                        return;
+                    }
+                    StoreInstantInvites.access$getDispatcher$p(StoreInstantInvites.this).schedule(new AnonymousClass2());
+                    return;
+                }
+                error.setShowErrorToasts(false);
+                StoreInstantInvites.access$getDispatcher$p(StoreInstantInvites.this).schedule(new C02641());
+                AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                String str = anonymousClass1.$location;
+                if (str != null) {
+                    String str2 = anonymousClass1.$inviteCode;
+                    Error.Response response = error.getResponse();
+                    m.checkNotNullExpressionValue(response, "error.response");
+                    String message = response.getMessage();
+                    Error.Response response2 = error.getResponse();
+                    m.checkNotNullExpressionValue(response2, "error.response");
+                    AnalyticsTracker.inviteResolveFailed(str2, str, message, Integer.valueOf(response2.getCode()));
+                }
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$fetchInviteIfNotLoaded$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreInstantInvites.kt */
+        public final class C02621 extends o implements Function1<ModelInvite, TrackNetworkMetadataReceiver> {
+            public C02621() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ TrackNetworkMetadataReceiver invoke(ModelInvite modelInvite) {
+                return invoke2(modelInvite);
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final TrackNetworkMetadataReceiver invoke2(ModelInvite modelInvite) {
+                User inviter;
+                Channel channel;
+                Channel channel2;
+                Guild guild;
+                AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                return new TrackNetworkActionInviteResolve(anonymousClass1.$inviteResolved, anonymousClass1.$inviteCode, Boolean.valueOf(StoreStream.INSTANCE.getAuthentication().isAuthed()), (modelInvite == null || (guild = modelInvite.guild) == null) ? null : Long.valueOf(guild.getId()), (modelInvite == null || (channel2 = modelInvite.getChannel()) == null) ? null : Long.valueOf(channel2.getId()), (modelInvite == null || (channel = modelInvite.getChannel()) == null) ? null : Long.valueOf(channel.getType()), (modelInvite == null || (inviter = modelInvite.getInviter()) == null) ? null : Long.valueOf(inviter.getId()), modelInvite != null ? Long.valueOf(modelInvite.getApproximateMemberCount()) : null, modelInvite != null ? Long.valueOf(modelInvite.getApproximatePresenceCount()) : null, modelInvite != null ? modelInvite.getInviteType() : null, null, modelInvite != null ? Boolean.valueOf(m.areEqual(modelInvite.code, String.valueOf(RestAPIAbortCodes.USER_BANNED))) : null, null);
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(String str, String str2, Long l, Boolean bool, String str3, Function0 function0) {
+            super(0);
+            this.$inviteKey = str;
+            this.$inviteCode = str2;
+            this.$eventId = l;
+            this.$inviteResolved = bool;
+            this.$location = str3;
+            this.$onError = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            if (!StoreInstantInvites.access$getKnownInvites$p(StoreInstantInvites.this).containsKey(this.$inviteKey) || (StoreInstantInvites.access$getKnownInvites$p(StoreInstantInvites.this).get(this.$inviteKey) instanceof InviteState.LoadFailed)) {
+                AnalyticsTracker.inviteOpened(this.$inviteCode);
+                StoreInstantInvites storeInstantInvites = StoreInstantInvites.this;
+                String str = this.$inviteKey;
+                m.checkNotNullExpressionValue(str, "inviteKey");
+                StoreInstantInvites.access$setChatInvites(storeInstantInvites, str, InviteState.Loading.INSTANCE);
+                ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestCallStateKt.logNetworkAction(StoreInstantInvites.access$getRestAPI$p(StoreInstantInvites.this).getInviteCode(this.$inviteCode, true, this.$eventId), new C02621()), false, 1, null), StoreInstantInvites.this.getClass(), (Context) null, (Function1) null, new AnonymousClass3(), (Function0) null, (Function0) null, new AnonymousClass2(), 54, (Object) null);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$observeInvite$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreInstantInvites.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<String, ? extends InviteState>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<String, ? extends InviteState> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<String, ? extends InviteState> invoke2() {
+            return StoreInstantInvites.access$getKnownInvites(StoreInstantInvites.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$observeKnownInvites$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreInstantInvites.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<String, ? extends InviteState>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<String, ? extends InviteState> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<String, ? extends InviteState> invoke2() {
+            return StoreInstantInvites.access$getKnownInvites(StoreInstantInvites.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$onInviteRemoved$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreInstantInvites.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ ModelInvite $invite;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(ModelInvite modelInvite) {
+            super(0);
+            this.$invite = modelInvite;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Map map;
+            Guild guild = this.$invite.guild;
+            Long lValueOf = guild != null ? Long.valueOf(guild.getId()) : null;
+            String str = this.$invite.code;
+            if (lValueOf == null || (map = (Map) StoreInstantInvites.access$getInvites$p(StoreInstantInvites.this).get(lValueOf)) == null || ((ModelInvite) map.remove(str)) == null) {
+                return;
+            }
+            StoreInstantInvites.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreInstantInvites$observeInvite$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreInstantInvites.kt */
+    public final class AnonymousClass2<T, R> implements b<Map<String, ? extends InviteState>, InviteState> {
+        public final /* synthetic */ String $inviteKey;
+
+        public AnonymousClass2(String str) {
+            this.$inviteKey = str;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ InviteState call(Map<String, ? extends InviteState> map) {
+            return call2(map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final InviteState call2(Map<String, ? extends InviteState> map) {
+            InviteState inviteState = map.get(this.$inviteKey);
+            return inviteState != null ? inviteState : InviteState.Loading.INSTANCE;
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreInstantInvites.kt */
+    public abstract class InviteState {
+
+        /* JADX INFO: compiled from: StoreInstantInvites.kt */
+        public final class Invalid extends InviteState {
+            public static final Invalid INSTANCE = new Invalid();
+
+            private Invalid() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreInstantInvites.kt */
+        public final class LoadFailed extends InviteState {
+            public static final LoadFailed INSTANCE = new LoadFailed();
+
+            private LoadFailed() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreInstantInvites.kt */
+        public final class Loading extends InviteState {
+            public static final Loading INSTANCE = new Loading();
+
+            private Loading() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreInstantInvites.kt */
+        public final /* data */ class Resolved extends InviteState {
+            private final ModelInvite invite;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Resolved(ModelInvite modelInvite) {
+                super(null);
+                m.checkNotNullParameter(modelInvite, "invite");
+                this.invite = modelInvite;
+            }
+
+            public static /* synthetic */ Resolved copy$default(Resolved resolved, ModelInvite modelInvite, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    modelInvite = resolved.invite;
+                }
+                return resolved.copy(modelInvite);
+            }
+
+            public final Resolved copy(ModelInvite invite) {
+                m.checkNotNullParameter(invite, "invite");
+                return new Resolved(invite);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Resolved) && m.areEqual(this.invite, ((Resolved) other).invite);
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ModelInvite getInvite() {
+                return this.invite;
+            }
+
+            public final ModelInvite getInvite() {
+                return this.invite;
+            }
+
+            public int hashCode() {
+                ModelInvite modelInvite = this.invite;
+                if (modelInvite != null) {
+                    return modelInvite.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                StringBuilder sbU = a.U("Resolved(invite=");
+                sbU.append(this.invite);
+                sbU.append(")");
+                return sbU.toString();
+            }
+        }
+
+        private InviteState() {
+        }
+
+        public /* synthetic */ InviteState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            Error.Type.values();
+            int[] iArr = new int[18];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[Error.Type.DISCORD_REQUEST_ERROR.ordinal()] = 1;
+            iArr[Error.Type.NETWORK.ordinal()] = 2;
+        }
+    }
+
     public /* synthetic */ StoreInstantInvites(Dispatcher dispatcher, ObservationDeck observationDeck, RestAPI restAPI, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 4) != 0 ? RestAPI.Companion.getApi() : restAPI);
+        this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 4) != 0 ? RestAPI.INSTANCE.getApi() : restAPI);
     }
 
     public static final /* synthetic */ Dispatcher access$getDispatcher$p(StoreInstantInvites storeInstantInvites) {
@@ -62,16 +549,16 @@ public final class StoreInstantInvites extends StoreV2 {
         storeInstantInvites.onLoadedInvites(list);
     }
 
-    public static final /* synthetic */ void access$setChatInvites(StoreInstantInvites storeInstantInvites, String str, StoreInstantInvites$InviteState storeInstantInvites$InviteState) {
-        storeInstantInvites.setChatInvites(str, storeInstantInvites$InviteState);
+    public static final /* synthetic */ void access$setChatInvites(StoreInstantInvites storeInstantInvites, String str, InviteState inviteState) {
+        storeInstantInvites.setChatInvites(str, inviteState);
     }
 
     public final void clearInvites(long guildId) {
-        this.dispatcher.schedule(new StoreInstantInvites$clearInvites$1(this, guildId));
+        this.dispatcher.schedule(new AnonymousClass1(guildId));
     }
 
     public final void fetchGuildInvites(long guildId) {
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.getGuildInvites(guildId), false, 1, null), StoreInstantInvites.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreInstantInvites$fetchGuildInvites$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.getGuildInvites(guildId), false, 1, null), StoreInstantInvites.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -81,37 +568,37 @@ public final class StoreInstantInvites extends StoreV2 {
 
     public final void fetchInviteIfNotLoaded(String inviteCode, Long eventId, String location, Boolean inviteResolved, Function0<Unit> onError) {
         m.checkNotNullParameter(inviteCode, "inviteCode");
-        this.dispatcher.schedule(new StoreInstantInvites$fetchInviteIfNotLoaded$1(this, ModelInvite.getInviteStoreKey(inviteCode, eventId), inviteCode, eventId, inviteResolved, location, onError));
+        this.dispatcher.schedule(new AnonymousClass1(ModelInvite.getInviteStoreKey(inviteCode, eventId), inviteCode, eventId, inviteResolved, location, onError));
     }
 
     private final Map<Long, Map<String, ModelInvite>> getInvites() {
         return this.invitesSnapshot;
     }
 
-    private final Map<String, StoreInstantInvites$InviteState> getKnownInvites() {
+    private final Map<String, InviteState> getKnownInvites() {
         return this.knownInvitesSnapshot;
     }
 
-    public final Observable<StoreInstantInvites$InviteState> observeInvite(String inviteKey) {
+    public final Observable<InviteState> observeInvite(String inviteKey) {
         if (inviteKey == null) {
-            k kVar = new k(StoreInstantInvites$InviteState$LoadFailed.INSTANCE);
+            k kVar = new k(InviteState.LoadFailed.INSTANCE);
             m.checkNotNullExpressionValue(kVar, "Observable.just(InviteState.LoadFailed)");
             return kVar;
         }
-        Observable<StoreInstantInvites$InviteState> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreInstantInvites$observeInvite$1(this), 14, null).G(new StoreInstantInvites$observeInvite$2(inviteKey)).r();
+        Observable<InviteState> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).G(new AnonymousClass2(inviteKey)).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
         return observableR;
     }
 
-    public final Observable<Map<String, StoreInstantInvites$InviteState>> observeKnownInvites() {
-        Observable<Map<String, StoreInstantInvites$InviteState>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreInstantInvites$observeKnownInvites$1(this), 14, null).r();
+    public final Observable<Map<String, InviteState>> observeKnownInvites() {
+        Observable<Map<String, InviteState>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }
 
     public final void onInviteRemoved(ModelInvite invite) {
         m.checkNotNullParameter(invite, "invite");
-        this.dispatcher.schedule(new StoreInstantInvites$onInviteRemoved$1(this, invite));
+        this.dispatcher.schedule(new AnonymousClass1(invite));
     }
 
     @StoreThread
@@ -135,7 +622,7 @@ public final class StoreInstantInvites extends StoreV2 {
     }
 
     @StoreThread
-    private final void setChatInvites(String inviteKey, StoreInstantInvites$InviteState inviteState) {
+    private final void setChatInvites(String inviteKey, InviteState inviteState) {
         this.knownInvites.put(inviteKey, inviteState);
         markChanged();
     }
@@ -144,8 +631,8 @@ public final class StoreInstantInvites extends StoreV2 {
     public void snapshotData() {
         super.snapshotData();
         LinkedHashMap linkedHashMap = new LinkedHashMap();
-        for (Map$Entry<Long, Map<String, ModelInvite>> map$Entry : this.invites.entrySet()) {
-            linkedHashMap.put(Long.valueOf(map$Entry.getKey().longValue()), new HashMap(map$Entry.getValue()));
+        for (Map.Entry<Long, Map<String, ModelInvite>> entry : this.invites.entrySet()) {
+            linkedHashMap.put(Long.valueOf(entry.getKey().longValue()), new HashMap(entry.getValue()));
         }
         this.invitesSnapshot = linkedHashMap;
         this.knownInvitesSnapshot = new HashMap(this.knownInvites);

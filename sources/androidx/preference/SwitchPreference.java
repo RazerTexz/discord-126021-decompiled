@@ -6,26 +6,40 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Checkable;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.core.content.res.TypedArrayUtils;
 
 /* JADX INFO: loaded from: classes.dex */
 public class SwitchPreference extends TwoStatePreference {
-    private final SwitchPreference$Listener mListener;
+    private final Listener mListener;
     private CharSequence mSwitchOff;
     private CharSequence mSwitchOn;
 
+    public class Listener implements CompoundButton.OnCheckedChangeListener {
+        public Listener() {
+        }
+
+        @Override // android.widget.CompoundButton.OnCheckedChangeListener
+        public void onCheckedChanged(CompoundButton compoundButton, boolean z2) {
+            if (SwitchPreference.this.callChangeListener(Boolean.valueOf(z2))) {
+                SwitchPreference.this.setChecked(z2);
+            } else {
+                compoundButton.setChecked(!z2);
+            }
+        }
+    }
+
     public SwitchPreference(Context context, AttributeSet attributeSet, int i, int i2) {
         super(context, attributeSet, i, i2);
-        this.mListener = new SwitchPreference$Listener(this);
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$styleable.SwitchPreference, i, i2);
-        setSummaryOn(TypedArrayUtils.getString(typedArrayObtainStyledAttributes, R$styleable.SwitchPreference_summaryOn, R$styleable.SwitchPreference_android_summaryOn));
-        setSummaryOff(TypedArrayUtils.getString(typedArrayObtainStyledAttributes, R$styleable.SwitchPreference_summaryOff, R$styleable.SwitchPreference_android_summaryOff));
-        setSwitchTextOn(TypedArrayUtils.getString(typedArrayObtainStyledAttributes, R$styleable.SwitchPreference_switchTextOn, R$styleable.SwitchPreference_android_switchTextOn));
-        setSwitchTextOff(TypedArrayUtils.getString(typedArrayObtainStyledAttributes, R$styleable.SwitchPreference_switchTextOff, R$styleable.SwitchPreference_android_switchTextOff));
-        setDisableDependentsState(TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, R$styleable.SwitchPreference_disableDependentsState, R$styleable.SwitchPreference_android_disableDependentsState, false));
+        this.mListener = new Listener();
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.SwitchPreference, i, i2);
+        setSummaryOn(TypedArrayUtils.getString(typedArrayObtainStyledAttributes, R.styleable.SwitchPreference_summaryOn, R.styleable.SwitchPreference_android_summaryOn));
+        setSummaryOff(TypedArrayUtils.getString(typedArrayObtainStyledAttributes, R.styleable.SwitchPreference_summaryOff, R.styleable.SwitchPreference_android_summaryOff));
+        setSwitchTextOn(TypedArrayUtils.getString(typedArrayObtainStyledAttributes, R.styleable.SwitchPreference_switchTextOn, R.styleable.SwitchPreference_android_switchTextOn));
+        setSwitchTextOff(TypedArrayUtils.getString(typedArrayObtainStyledAttributes, R.styleable.SwitchPreference_switchTextOff, R.styleable.SwitchPreference_android_switchTextOff));
+        setDisableDependentsState(TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, R.styleable.SwitchPreference_disableDependentsState, R.styleable.SwitchPreference_android_disableDependentsState, false));
         typedArrayObtainStyledAttributes.recycle();
     }
 
@@ -45,7 +59,7 @@ public class SwitchPreference extends TwoStatePreference {
     }
 
     @Override // androidx.preference.Preference
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public void performClick(View view) {
         super.performClick(view);
         syncViewIfAccessibilityEnabled(view);
@@ -81,7 +95,7 @@ public class SwitchPreference extends TwoStatePreference {
     private void syncViewIfAccessibilityEnabled(View view) {
         if (((AccessibilityManager) getContext().getSystemService("accessibility")).isEnabled()) {
             syncSwitchView(view.findViewById(16908352));
-            syncSummaryView(view.findViewById(android.R$id.summary));
+            syncSummaryView(view.findViewById(android.R.id.summary));
         }
     }
 
@@ -98,7 +112,7 @@ public class SwitchPreference extends TwoStatePreference {
     }
 
     public SwitchPreference(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, TypedArrayUtils.getAttr(context, R$attr.switchPreferenceStyle, android.R$attr.switchPreferenceStyle));
+        this(context, attributeSet, TypedArrayUtils.getAttr(context, R.attr.switchPreferenceStyle, android.R.attr.switchPreferenceStyle));
     }
 
     public SwitchPreference(Context context) {

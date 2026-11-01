@@ -17,7 +17,7 @@ public class b {
         } catch (SecurityException unused) {
             zEquals = false;
         }
-        a = zEquals ? l$a.a : null;
+        a = zEquals ? l.a.a : null;
         f677b = new ThreadLocal<>();
     }
 }

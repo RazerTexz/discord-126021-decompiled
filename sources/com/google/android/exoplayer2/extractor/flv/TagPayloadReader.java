@@ -8,6 +8,12 @@ import com.google.android.exoplayer2.ParserException;
 public abstract class TagPayloadReader {
     public final w a;
 
+    public final class UnsupportedFormatException extends ParserException {
+        public UnsupportedFormatException(String str) {
+            super(str, null, false, 1);
+        }
+    }
+
     public TagPayloadReader(w wVar) {
         this.a = wVar;
     }

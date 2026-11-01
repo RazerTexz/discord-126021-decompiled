@@ -1,12 +1,12 @@
 package b.a.q.m0.c;
 
-import com.discord.rtcconnection.mediaengine.MediaEngineConnection$d;
+import com.discord.rtcconnection.mediaengine.MediaEngineConnection;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: MediaEngineConnectionLegacy.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class g extends d0.z.d.o implements Function1<MediaEngineConnection$d, Unit> {
+public final class g extends d0.z.d.o implements Function1<MediaEngineConnection.d, Unit> {
     public final /* synthetic */ int $audioSsrc;
     public final /* synthetic */ boolean $isSpeaking;
     public final /* synthetic */ long $userId;
@@ -20,10 +20,10 @@ public final class g extends d0.z.d.o implements Function1<MediaEngineConnection
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public Unit invoke(MediaEngineConnection$d mediaEngineConnection$d) {
-        MediaEngineConnection$d mediaEngineConnection$d2 = mediaEngineConnection$d;
-        d0.z.d.m.checkNotNullParameter(mediaEngineConnection$d2, "it");
-        mediaEngineConnection$d2.onSpeaking(this.$userId, this.$audioSsrc, this.$isSpeaking);
+    public Unit invoke(MediaEngineConnection.d dVar) {
+        MediaEngineConnection.d dVar2 = dVar;
+        d0.z.d.m.checkNotNullParameter(dVar2, "it");
+        dVar2.onSpeaking(this.$userId, this.$audioSsrc, this.$isSpeaking);
         return Unit.a;
     }
 }

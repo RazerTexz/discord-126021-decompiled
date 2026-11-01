@@ -1,6 +1,6 @@
 package com.discord.stores;
 
-import android.content.SharedPreferences$Editor;
+import android.content.SharedPreferences;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
@@ -28,10 +28,10 @@ public final class StoreNotices$firstUseTimestamp$2 extends o implements Functio
             return j;
         }
         long jCurrentTimeMillis = StoreNotices.access$getClock$p(this.this$0).currentTimeMillis();
-        SharedPreferences$Editor sharedPreferences$EditorEdit = this.this$0.getPrefsSessionDurable().edit();
-        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
-        sharedPreferences$EditorEdit.putLong("CACHE_KEY_FIRST_USE", jCurrentTimeMillis);
-        sharedPreferences$EditorEdit.apply();
+        SharedPreferences.Editor editorEdit = this.this$0.getPrefsSessionDurable().edit();
+        m.checkNotNullExpressionValue(editorEdit, "editor");
+        editorEdit.putLong("CACHE_KEY_FIRST_USE", jCurrentTimeMillis);
+        editorEdit.apply();
         return jCurrentTimeMillis;
     }
 }

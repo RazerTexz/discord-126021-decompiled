@@ -2,7 +2,7 @@ package com.discord.utilities.mg_recycler;
 
 import androidx.exifinterface.media.ExifInterface;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.utilities.mg_recycler.DragAndDropAdapter$Payload;
+import com.discord.utilities.mg_recycler.DragAndDropAdapter.Payload;
 import d0.d0.f;
 import d0.t.c0;
 import d0.t.n;
@@ -17,9 +17,14 @@ import kotlin.ranges.IntRange;
 
 /* JADX INFO: compiled from: DragAndDropAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public abstract class DragAndDropAdapter<T extends DragAndDropAdapter$Payload> extends MGRecyclerAdapterSimple<T> implements DragAndDropHelper$Adapter {
+public abstract class DragAndDropAdapter<T extends Payload> extends MGRecyclerAdapterSimple<T> implements DragAndDropHelper.Adapter {
     private List<T> dataCopy;
     private Map<String, Integer> origPositions;
+
+    /* JADX INFO: compiled from: DragAndDropAdapter.kt */
+    public interface Payload extends MGRecyclerDataPayload {
+        int getPosition();
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public DragAndDropAdapter(RecyclerView recyclerView) {
@@ -45,13 +50,13 @@ public abstract class DragAndDropAdapter<T extends DragAndDropAdapter$Payload> e
     private final void computeOriginalPositions(List<? extends T> data) {
         this.origPositions.clear();
         IntRange indices = n.getIndices(data);
-        ArrayList<DragAndDropAdapter$Payload> arrayList = new ArrayList(o.collectionSizeOrDefault(indices, 10));
+        ArrayList<Payload> arrayList = new ArrayList(o.collectionSizeOrDefault(indices, 10));
         Iterator<Integer> it = indices.iterator();
         while (it.hasNext()) {
             arrayList.add(data.get(((c0) it).nextInt()));
         }
-        for (DragAndDropAdapter$Payload dragAndDropAdapter$Payload : arrayList) {
-            this.origPositions.put(dragAndDropAdapter$Payload.getKey(), Integer.valueOf(dragAndDropAdapter$Payload.getPosition()));
+        for (Payload payload : arrayList) {
+            this.origPositions.put(payload.getKey(), Integer.valueOf(payload.getPosition()));
         }
     }
 
@@ -71,7 +76,7 @@ public abstract class DragAndDropAdapter<T extends DragAndDropAdapter$Payload> e
         return intRangeUntil.contains(fromPosition) && intRangeUntil.contains(toPosition);
     }
 
-    @Override // com.discord.utilities.mg_recycler.DragAndDropHelper$Adapter
+    @Override // com.discord.utilities.mg_recycler.DragAndDropHelper.Adapter
     public void onDrop() {
         if (!this.dataCopy.isEmpty()) {
             Map<String, Integer> mapComputeChangedPositions = computeChangedPositions();
@@ -81,7 +86,7 @@ public abstract class DragAndDropAdapter<T extends DragAndDropAdapter$Payload> e
         }
     }
 
-    @Override // com.discord.utilities.mg_recycler.DragAndDropHelper$Adapter
+    @Override // com.discord.utilities.mg_recycler.DragAndDropHelper.Adapter
     public void onItemMove(int fromPosition, int toPosition) {
         T t = this.dataCopy.get(fromPosition);
         this.dataCopy.remove(fromPosition);

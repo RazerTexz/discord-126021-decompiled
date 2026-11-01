@@ -1,9 +1,10 @@
 package d0.e0.p.d.m0.n.o1;
 
-import d0.e0.p.d.m0.b.h;
 import d0.e0.p.d.m0.c.e;
 import d0.e0.p.d.m0.c.f;
 import d0.e0.p.d.m0.c.g1.g;
+import d0.e0.p.d.m0.c.h;
+import d0.e0.p.d.m0.c.y0;
 import d0.e0.p.d.m0.c.z0;
 import d0.e0.p.d.m0.n.a1;
 import d0.e0.p.d.m0.n.c0;
@@ -16,10 +17,9 @@ import d0.e0.p.d.m0.n.j1;
 import d0.e0.p.d.m0.n.o0;
 import d0.e0.p.d.m0.n.v;
 import d0.e0.p.d.m0.n.w0;
-import d0.e0.p.d.m0.n.y0;
-import d0.t.o;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -29,9 +29,59 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: TypeUtils.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class a {
+
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.n.o1.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: TypeUtils.kt */
+    public final class C0585a extends o implements Function1<i1, Boolean> {
+        public static final C0585a j = new C0585a();
+
+        public C0585a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(i1 i1Var) {
+            return Boolean.valueOf(invoke2(i1Var));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(i1 i1Var) {
+            m.checkNotNullParameter(i1Var, "it");
+            h declarationDescriptor = i1Var.getConstructor().getDeclarationDescriptor();
+            if (declarationDescriptor == null) {
+                return false;
+            }
+            return a.isTypeAliasParameter(declarationDescriptor);
+        }
+    }
+
+    /* JADX INFO: compiled from: TypeUtils.kt */
+    public final class b extends o implements Function1<i1, Boolean> {
+        public static final b j = new b();
+
+        public b() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(i1 i1Var) {
+            return Boolean.valueOf(invoke2(i1Var));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(i1 i1Var) {
+            m.checkNotNullParameter(i1Var, "it");
+            h declarationDescriptor = i1Var.getConstructor().getDeclarationDescriptor();
+            if (declarationDescriptor == null) {
+                return false;
+            }
+            return (declarationDescriptor instanceof y0) || (declarationDescriptor instanceof z0);
+        }
+    }
+
     public static final w0 asTypeProjection(c0 c0Var) {
         m.checkNotNullParameter(c0Var, "<this>");
-        return new y0(c0Var);
+        return new d0.e0.p.d.m0.n.y0(c0Var);
     }
 
     public static final boolean contains(c0 c0Var, Function1<? super i1, Boolean> function1) {
@@ -42,7 +92,7 @@ public final class a {
 
     public static final boolean containsTypeAliasParameters(c0 c0Var) {
         m.checkNotNullParameter(c0Var, "<this>");
-        return contains(c0Var, a$a.j);
+        return contains(c0Var, C0585a.j);
     }
 
     public static final w0 createProjection(c0 c0Var, j1 j1Var, z0 z0Var) {
@@ -51,12 +101,12 @@ public final class a {
         if ((z0Var == null ? null : z0Var.getVariance()) == j1Var) {
             j1Var = j1.INVARIANT;
         }
-        return new y0(j1Var, c0Var);
+        return new d0.e0.p.d.m0.n.y0(j1Var, c0Var);
     }
 
-    public static final h getBuiltIns(c0 c0Var) {
+    public static final d0.e0.p.d.m0.b.h getBuiltIns(c0 c0Var) {
         m.checkNotNullParameter(c0Var, "<this>");
-        h builtIns = c0Var.getConstructor().getBuiltIns();
+        d0.e0.p.d.m0.b.h builtIns = c0Var.getConstructor().getBuiltIns();
         m.checkNotNullExpressionValue(builtIns, "constructor.builtIns");
         return builtIns;
     }
@@ -76,7 +126,7 @@ public final class a {
                 break;
             }
             Object next = it.next();
-            d0.e0.p.d.m0.c.h declarationDescriptor = ((c0) next).getConstructor().getDeclarationDescriptor();
+            h declarationDescriptor = ((c0) next).getConstructor().getDeclarationDescriptor();
             e eVar = declarationDescriptor instanceof e ? (e) declarationDescriptor : null;
             boolean z2 = false;
             if (eVar != null && eVar.getKind() != f.INTERFACE && eVar.getKind() != f.ANNOTATION_CLASS) {
@@ -104,9 +154,9 @@ public final class a {
         return d0.e0.p.d.m0.n.l1.f.a.isSubtypeOf(c0Var, c0Var2);
     }
 
-    public static final boolean isTypeAliasParameter(d0.e0.p.d.m0.c.h hVar) {
+    public static final boolean isTypeAliasParameter(h hVar) {
         m.checkNotNullParameter(hVar, "<this>");
-        return (hVar instanceof z0) && (((z0) hVar).getContainingDeclaration() instanceof d0.e0.p.d.m0.c.y0);
+        return (hVar instanceof z0) && (((z0) hVar).getContainingDeclaration() instanceof y0);
     }
 
     public static final boolean isTypeParameter(c0 c0Var) {
@@ -145,7 +195,7 @@ public final class a {
             if (!lowerBound.getConstructor().getParameters().isEmpty() && lowerBound.getConstructor().getDeclarationDescriptor() != null) {
                 List<z0> parameters = lowerBound.getConstructor().getParameters();
                 m.checkNotNullExpressionValue(parameters, "constructor.parameters");
-                ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(parameters, 10));
+                ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(parameters, 10));
                 Iterator<T> it = parameters.iterator();
                 while (it.hasNext()) {
                     arrayList.add(new o0((z0) it.next()));
@@ -156,7 +206,7 @@ public final class a {
             if (!upperBound.getConstructor().getParameters().isEmpty() && upperBound.getConstructor().getDeclarationDescriptor() != null) {
                 List<z0> parameters2 = upperBound.getConstructor().getParameters();
                 m.checkNotNullExpressionValue(parameters2, "constructor.parameters");
-                ArrayList arrayList2 = new ArrayList(o.collectionSizeOrDefault(parameters2, 10));
+                ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(parameters2, 10));
                 Iterator<T> it2 = parameters2.iterator();
                 while (it2.hasNext()) {
                     arrayList2.add(new o0((z0) it2.next()));
@@ -172,12 +222,12 @@ public final class a {
             boolean zIsEmpty = j0Var.getConstructor().getParameters().isEmpty();
             i1VarReplace$default = j0Var;
             if (!zIsEmpty) {
-                d0.e0.p.d.m0.c.h declarationDescriptor = j0Var.getConstructor().getDeclarationDescriptor();
+                h declarationDescriptor = j0Var.getConstructor().getDeclarationDescriptor();
                 i1VarReplace$default = j0Var;
                 if (declarationDescriptor != null) {
                     List<z0> parameters3 = j0Var.getConstructor().getParameters();
                     m.checkNotNullExpressionValue(parameters3, "constructor.parameters");
-                    ArrayList arrayList3 = new ArrayList(o.collectionSizeOrDefault(parameters3, 10));
+                    ArrayList arrayList3 = new ArrayList(d0.t.o.collectionSizeOrDefault(parameters3, 10));
                     Iterator<T> it3 = parameters3.iterator();
                     while (it3.hasNext()) {
                         arrayList3.add(new o0((z0) it3.next()));
@@ -191,6 +241,6 @@ public final class a {
 
     public static final boolean requiresTypeAliasExpansion(c0 c0Var) {
         m.checkNotNullParameter(c0Var, "<this>");
-        return contains(c0Var, a$b.j);
+        return contains(c0Var, b.j);
     }
 }

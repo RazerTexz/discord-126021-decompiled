@@ -2,7 +2,6 @@ package d0.e0.p.d.m0.b.q;
 
 import d0.e0.p.d.m0.c.c0;
 import d0.e0.p.d.m0.c.i1.a0;
-import d0.e0.p.d.m0.k.a0.i$b;
 
 /* JADX INFO: compiled from: JvmBuiltInsCustomizer.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -17,7 +16,7 @@ public final class h extends a0 {
     }
 
     @Override // d0.e0.p.d.m0.c.e0
-    public i$b getMemberScope() {
-        return i$b.f3461b;
+    public d0.e0.p.d.m0.k.a0.i.b getMemberScope() {
+        return d0.e0.p.d.m0.k.a0.i.b.f3461b;
     }
 }

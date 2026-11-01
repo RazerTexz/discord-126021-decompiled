@@ -7,14 +7,13 @@ import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.View$OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.ViewPropertyAnimator;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.CompoundButton;
-import android.widget.CompoundButton$OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import androidx.annotation.DrawableRes;
@@ -22,11 +21,15 @@ import androidx.annotation.MainThread;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleableRes;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
+import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.ViewGroupKt;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 import b.a.k.b;
 import com.discord.i18n.RenderContext;
 import com.discord.utilities.resources.StringResourceUtilsKt;
@@ -35,8 +38,10 @@ import com.google.android.material.textfield.TextInputLayout;
 import d0.g0.t;
 import d0.z.d.c0;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -50,6 +55,306 @@ public final class ViewExtensions {
     private static final long DEFAULT_FADE_MILLIS_RES = 350;
     private static final long HINT_DELAY_MILLIS = 250;
     private static final HashMap<View, FadeAnimation> fadeAnimations = new HashMap<>();
+
+    /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$addOnHeightChangedListener$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewExtensions.kt */
+    public final class AnonymousClass1 implements View.OnLayoutChangeListener {
+        public final /* synthetic */ Function2 $onHeightChanged;
+
+        public AnonymousClass1(Function2 function2) {
+            this.$onHeightChanged = function2;
+        }
+
+        @Override // android.view.View.OnLayoutChangeListener
+        public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+            int i9 = i4 - i2;
+            int i10 = i8 - i6;
+            if (i9 != i10) {
+                this.$onHeightChanged.invoke(Integer.valueOf(i9), Integer.valueOf(i10));
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$addOnSizeChangedListener$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewExtensions.kt */
+    public final class AnonymousClass1 implements View.OnLayoutChangeListener {
+        public final /* synthetic */ Function4 $onSizeChanged;
+
+        public AnonymousClass1(Function4 function4) {
+            this.$onSizeChanged = function4;
+        }
+
+        @Override // android.view.View.OnLayoutChangeListener
+        public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+            int i9 = i3 - i;
+            int i10 = i4 - i2;
+            int i11 = i7 - i5;
+            int i12 = i8 - i6;
+            if (i9 == i11 && i10 == i12) {
+                return;
+            }
+            this.$onSizeChanged.invoke(Integer.valueOf(i9), Integer.valueOf(i11), Integer.valueOf(i10), Integer.valueOf(i12));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$addOnWidthChangedListener$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewExtensions.kt */
+    public final class AnonymousClass1 implements View.OnLayoutChangeListener {
+        public final /* synthetic */ Function2 $onWidthChanged;
+
+        public AnonymousClass1(Function2 function2) {
+            this.$onWidthChanged = function2;
+        }
+
+        @Override // android.view.View.OnLayoutChangeListener
+        public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+            int i9 = i3 - i;
+            int i10 = i7 - i5;
+            if (i9 != i10) {
+                this.$onWidthChanged.invoke(Integer.valueOf(i9), Integer.valueOf(i10));
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$fadeIn$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewExtensions.kt */
+    public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$fadeOut$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewExtensions.kt */
+    public final class AnonymousClass1 extends o implements Function1<ViewPropertyAnimator, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ViewPropertyAnimator viewPropertyAnimator) {
+            invoke2(viewPropertyAnimator);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ViewPropertyAnimator viewPropertyAnimator) {
+            m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$hintWithRipple$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewExtensions.kt */
+    public final class AnonymousClass1 implements Runnable {
+        public final /* synthetic */ View $this_hintWithRipple;
+
+        public AnonymousClass1(View view) {
+            this.$this_hintWithRipple = view;
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            this.$this_hintWithRipple.setPressed(true);
+            this.$this_hintWithRipple.setPressed(false);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$i18nSetText$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewExtensions.kt */
+    public final class AnonymousClass1 extends o implements Function1<RenderContext, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            m.checkNotNullParameter(renderContext, "$receiver");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$interceptScrollWhenInsideScrollable$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewExtensions.kt */
+    public final class AnonymousClass1 implements View.OnTouchListener {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // android.view.View.OnTouchListener
+        public final boolean onTouch(View view, MotionEvent motionEvent) {
+            m.checkNotNullExpressionValue(view, "view");
+            if (!view.isFocused()) {
+                return false;
+            }
+            view.getParent().requestDisallowInterceptTouchEvent(true);
+            return false;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$setForwardingWindowInsetsListener$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewExtensions.kt */
+    public final class AnonymousClass1 implements OnApplyWindowInsetsListener {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            m.checkNotNullParameter(view, "v");
+            m.checkNotNullParameter(windowInsetsCompat, "insets");
+            if (view instanceof ViewGroup) {
+                Iterator<View> it = ViewGroupKt.getChildren((ViewGroup) view).iterator();
+                while (it.hasNext()) {
+                    ViewCompat.dispatchApplyWindowInsets(it.next(), windowInsetsCompat);
+                }
+            }
+            return windowInsetsCompat.consumeSystemWindowInsets();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$setOnImeActionDone$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewExtensions.kt */
+    public final class AnonymousClass1 extends o implements Function3<TextView, Integer, KeyEvent, Boolean> {
+        public final /* synthetic */ boolean $isEventConsumed;
+        public final /* synthetic */ Function1 $onImeActionDone;
+        public final /* synthetic */ TextInputLayout $this_setOnImeActionDone;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(TextInputLayout textInputLayout, Function1 function1, boolean z2) {
+            super(3);
+            this.$this_setOnImeActionDone = textInputLayout;
+            this.$onImeActionDone = function1;
+            this.$isEventConsumed = z2;
+        }
+
+        public final boolean invoke(TextView textView, int i, KeyEvent keyEvent) {
+            m.checkNotNullParameter(textView, "textView");
+            if (i == 6) {
+                if (ViewExtensions.getTextOrEmpty(this.$this_setOnImeActionDone).length() > 0) {
+                    this.$onImeActionDone.invoke(textView);
+                }
+            }
+            return this.$isEventConsumed;
+        }
+
+        @Override // kotlin.jvm.functions.Function3
+        public /* bridge */ /* synthetic */ Boolean invoke(TextView textView, Integer num, KeyEvent keyEvent) {
+            return Boolean.valueOf(invoke(textView, num.intValue(), keyEvent));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$setOnLongClickListenerConsumeClick$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewExtensions.kt */
+    public final class AnonymousClass1 implements View.OnLongClickListener {
+        public final /* synthetic */ Function1 $onLongClick;
+
+        public AnonymousClass1(Function1 function1) {
+            this.$onLongClick = function1;
+        }
+
+        @Override // android.view.View.OnLongClickListener
+        public final boolean onLongClick(View view) {
+            Function1 function1 = this.$onLongClick;
+            m.checkNotNullExpressionValue(view, "view");
+            function1.invoke(view);
+            ViewParent parent = view.getParent();
+            while (true) {
+                if (parent == null) {
+                    parent = null;
+                    break;
+                }
+                if (parent instanceof RecyclerView) {
+                    break;
+                }
+                parent = parent.getParent();
+            }
+            RecyclerView recyclerView = (RecyclerView) parent;
+            if (recyclerView == null) {
+                return true;
+            }
+            RecyclerViewExtensionsKt.ignoreCurrentTouch(recyclerView);
+            return true;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$fadeIn$2, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewExtensions.kt */
+    public final class AnonymousClass2 extends o implements Function1<ViewPropertyAnimator, Unit> {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ViewPropertyAnimator viewPropertyAnimator) {
+            invoke2(viewPropertyAnimator);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ViewPropertyAnimator viewPropertyAnimator) {
+            m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$fadeOut$2, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewExtensions.kt */
+    public final class AnonymousClass2 extends o implements Function0<Unit> {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        public AnonymousClass2() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.view.extensions.ViewExtensions$fadeIn$3, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewExtensions.kt */
+    public final class AnonymousClass3 extends o implements Function0<Unit> {
+        public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
+
+        public AnonymousClass3() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+        }
+    }
 
     public static final /* synthetic */ HashMap access$getFadeAnimations$p() {
         return fadeAnimations;
@@ -70,19 +375,19 @@ public final class ViewExtensions {
     public static final void addOnHeightChangedListener(View view, Function2<? super Integer, ? super Integer, Unit> function2) {
         m.checkNotNullParameter(view, "$this$addOnHeightChangedListener");
         m.checkNotNullParameter(function2, "onHeightChanged");
-        view.addOnLayoutChangeListener(new ViewExtensions$addOnHeightChangedListener$1(function2));
+        view.addOnLayoutChangeListener(new AnonymousClass1(function2));
     }
 
     public static final void addOnSizeChangedListener(View view, Function4<? super Integer, ? super Integer, ? super Integer, ? super Integer, Unit> function4) {
         m.checkNotNullParameter(view, "$this$addOnSizeChangedListener");
         m.checkNotNullParameter(function4, "onSizeChanged");
-        view.addOnLayoutChangeListener(new ViewExtensions$addOnSizeChangedListener$1(function4));
+        view.addOnLayoutChangeListener(new AnonymousClass1(function4));
     }
 
     public static final void addOnWidthChangedListener(View view, Function2<? super Integer, ? super Integer, Unit> function2) {
         m.checkNotNullParameter(view, "$this$addOnWidthChangedListener");
         m.checkNotNullParameter(function2, "onWidthChanged");
-        view.addOnLayoutChangeListener(new ViewExtensions$addOnWidthChangedListener$1(function2));
+        view.addOnLayoutChangeListener(new AnonymousClass1(function2));
     }
 
     public static final void cancelFadeAnimations(View view) {
@@ -141,15 +446,15 @@ public final class ViewExtensions {
         }
         long j2 = j;
         if ((i & 2) != 0) {
-            function1 = ViewExtensions$fadeIn$1.INSTANCE;
+            function1 = AnonymousClass1.INSTANCE;
         }
         Function1 function3 = function1;
         if ((i & 4) != 0) {
-            function2 = ViewExtensions$fadeIn$2.INSTANCE;
+            function2 = AnonymousClass2.INSTANCE;
         }
         Function1 function4 = function2;
         if ((i & 8) != 0) {
-            function0 = ViewExtensions$fadeIn$3.INSTANCE;
+            function0 = AnonymousClass3.INSTANCE;
         }
         fadeIn(view, j2, function3, function4, function0);
     }
@@ -182,9 +487,9 @@ public final class ViewExtensions {
         if (view != null) {
             HashMap<View, FadeAnimation> map = fadeAnimations;
             FadeAnimation fadeAnimation = map.get(view);
-            FadeAnimation$Type type = fadeAnimation != null ? fadeAnimation.getType() : null;
-            FadeAnimation$Type fadeAnimation$Type = FadeAnimation$Type.FADE_IN;
-            if (type == fadeAnimation$Type) {
+            FadeAnimation.Type type = fadeAnimation != null ? fadeAnimation.getType() : null;
+            FadeAnimation.Type type2 = FadeAnimation.Type.FADE_IN;
+            if (type == type2) {
                 return;
             }
             if (fadeAnimation != null) {
@@ -202,7 +507,7 @@ public final class ViewExtensions {
             function2.invoke(viewPropertyAnimatorAlpha);
             ViewPropertyAnimator listener = viewPropertyAnimatorAlpha.setDuration(j).setInterpolator(new AccelerateDecelerateInterpolator()).withEndAction(new ViewExtensions$fadeIn$viewPropertyAnimator$1(function0)).setListener(new CleanupViewAnimationListener(view));
             m.checkNotNullExpressionValue(listener, "viewPropertyAnimator");
-            map.put(view, new FadeAnimation(listener, fadeAnimation$Type));
+            map.put(view, new FadeAnimation(listener, type2));
             listener.start();
         }
     }
@@ -212,10 +517,10 @@ public final class ViewExtensions {
             j = DEFAULT_FADE_MILLIS_RES;
         }
         if ((i & 2) != 0) {
-            function1 = ViewExtensions$fadeOut$1.INSTANCE;
+            function1 = AnonymousClass1.INSTANCE;
         }
         if ((i & 4) != 0) {
-            function0 = ViewExtensions$fadeOut$2.INSTANCE;
+            function0 = AnonymousClass2.INSTANCE;
         }
         fadeOut(view, j, function1, function0);
     }
@@ -242,9 +547,9 @@ public final class ViewExtensions {
         if (view != null) {
             HashMap<View, FadeAnimation> map = fadeAnimations;
             FadeAnimation fadeAnimation = map.get(view);
-            FadeAnimation$Type type = fadeAnimation != null ? fadeAnimation.getType() : null;
-            FadeAnimation$Type fadeAnimation$Type = FadeAnimation$Type.FADE_OUT;
-            if (type == fadeAnimation$Type) {
+            FadeAnimation.Type type = fadeAnimation != null ? fadeAnimation.getType() : null;
+            FadeAnimation.Type type2 = FadeAnimation.Type.FADE_OUT;
+            if (type == type2) {
                 return;
             }
             if (fadeAnimation != null) {
@@ -256,7 +561,7 @@ public final class ViewExtensions {
                 function1.invoke(viewPropertyAnimatorAlpha);
                 ViewPropertyAnimator listener = viewPropertyAnimatorAlpha.setDuration(j).setInterpolator(new AccelerateDecelerateInterpolator()).withEndAction(new ViewExtensions$fadeOut$viewPropertyAnimator$1(view, function0)).setListener(new CleanupViewAnimationListener(view));
                 m.checkNotNullExpressionValue(listener, "viewPropertyAnimator");
-                map.put(view, new FadeAnimation(listener, fadeAnimation$Type));
+                map.put(view, new FadeAnimation(listener, type2));
                 listener.start();
             }
         }
@@ -298,12 +603,12 @@ public final class ViewExtensions {
         m.checkNotNullParameter(view, "$this$hintWithRipple");
         view.setPressed(true);
         view.setPressed(false);
-        view.postDelayed(new ViewExtensions$hintWithRipple$1(view), j);
+        view.postDelayed(new AnonymousClass1(view), j);
     }
 
     public static /* synthetic */ void i18nSetText$default(TextInputLayout textInputLayout, int i, Object[] objArr, Function1 function1, int i2, Object obj) {
         if ((i2 & 4) != 0) {
-            function1 = ViewExtensions$i18nSetText$1.INSTANCE;
+            function1 = AnonymousClass1.INSTANCE;
         }
         i18nSetText(textInputLayout, i, objArr, function1);
     }
@@ -322,7 +627,7 @@ public final class ViewExtensions {
         m.checkNotNullParameter(textInputLayout, "$this$interceptScrollWhenInsideScrollable");
         EditText editText = textInputLayout.getEditText();
         if (editText != null) {
-            editText.setOnTouchListener(ViewExtensions$interceptScrollWhenInsideScrollable$1.INSTANCE);
+            editText.setOnTouchListener(AnonymousClass1.INSTANCE);
         }
     }
 
@@ -390,7 +695,7 @@ public final class ViewExtensions {
 
     public static final void setForwardingWindowInsetsListener(ViewGroup viewGroup) {
         m.checkNotNullParameter(viewGroup, "$this$setForwardingWindowInsetsListener");
-        ViewCompat.setOnApplyWindowInsetsListener(viewGroup, ViewExtensions$setForwardingWindowInsetsListener$1.INSTANCE);
+        ViewCompat.setOnApplyWindowInsetsListener(viewGroup, AnonymousClass1.INSTANCE);
     }
 
     public static final void setHint(TextInputLayout textInputLayout, int i) {
@@ -409,12 +714,12 @@ public final class ViewExtensions {
         return Unit.a;
     }
 
-    public static final void setOnEditTextFocusChangeListener(TextInputLayout textInputLayout, View$OnFocusChangeListener view$OnFocusChangeListener) {
+    public static final void setOnEditTextFocusChangeListener(TextInputLayout textInputLayout, View.OnFocusChangeListener onFocusChangeListener) {
         m.checkNotNullParameter(textInputLayout, "$this$setOnEditTextFocusChangeListener");
-        m.checkNotNullParameter(view$OnFocusChangeListener, "l");
+        m.checkNotNullParameter(onFocusChangeListener, "l");
         EditText editText = textInputLayout.getEditText();
         if (editText != null) {
-            editText.setOnFocusChangeListener(view$OnFocusChangeListener);
+            editText.setOnFocusChangeListener(onFocusChangeListener);
         }
     }
 
@@ -439,13 +744,13 @@ public final class ViewExtensions {
     public static final Unit setOnImeActionDone(TextInputLayout textInputLayout, boolean z2, Function1<? super TextView, Unit> function1) {
         m.checkNotNullParameter(textInputLayout, "$this$setOnImeActionDone");
         m.checkNotNullParameter(function1, "onImeActionDone");
-        return setOnEditorActionListener(textInputLayout, new ViewExtensions$setOnImeActionDone$1(textInputLayout, function1, z2));
+        return setOnEditorActionListener(textInputLayout, new AnonymousClass1(textInputLayout, function1, z2));
     }
 
     public static final void setOnLongClickListenerConsumeClick(View view, Function1<? super View, Unit> function1) {
         m.checkNotNullParameter(view, "$this$setOnLongClickListenerConsumeClick");
         m.checkNotNullParameter(function1, "onLongClick");
-        view.setOnLongClickListener(new ViewExtensions$setOnLongClickListenerConsumeClick$1(function1));
+        view.setOnLongClickListener(new AnonymousClass1(function1));
     }
 
     public static final void setPluralText(TextView textView, @PluralsRes int i, int i2, Object... objArr) {
@@ -461,12 +766,12 @@ public final class ViewExtensions {
         textView.setText(StringResourceUtilsKt.getQuantityString(resources, context, i, i2, c0Var.toArray(new Object[c0Var.size()])));
     }
 
-    public static final void setProgrammaticChecked(CompoundButton compoundButton, boolean z2, CompoundButton$OnCheckedChangeListener compoundButton$OnCheckedChangeListener) {
+    public static final void setProgrammaticChecked(CompoundButton compoundButton, boolean z2, CompoundButton.OnCheckedChangeListener onCheckedChangeListener) {
         m.checkNotNullParameter(compoundButton, "$this$setProgrammaticChecked");
-        m.checkNotNullParameter(compoundButton$OnCheckedChangeListener, "listener");
+        m.checkNotNullParameter(onCheckedChangeListener, "listener");
         compoundButton.setOnCheckedChangeListener(null);
         compoundButton.setChecked(z2);
-        compoundButton.setOnCheckedChangeListener(compoundButton$OnCheckedChangeListener);
+        compoundButton.setOnCheckedChangeListener(onCheckedChangeListener);
     }
 
     public static final Unit setSelection(TextInputLayout textInputLayout, int i) {

@@ -3,10 +3,9 @@ package b.i.a.f.h.j;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase$CursorFactory;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.util.Log;
 import com.discord.models.domain.ModelAuditLogEntry;
 import java.io.File;
@@ -19,7 +18,7 @@ public final class p extends SQLiteOpenHelper {
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public p(o oVar, Context context, String str) {
-        super(context, str, (SQLiteDatabase$CursorFactory) null, 1);
+        super(context, str, (SQLiteDatabase.CursorFactory) null, 1);
         this.j = oVar;
     }
 
@@ -89,9 +88,9 @@ public final class p extends SQLiteOpenHelper {
         int i;
         String path = sQLiteDatabase.getPath();
         try {
-            i = Integer.parseInt(Build$VERSION.SDK);
+            i = Integer.parseInt(Build.VERSION.SDK);
         } catch (NumberFormatException unused) {
-            String str = Build$VERSION.SDK;
+            String str = Build.VERSION.SDK;
             m0 m0Var = m0.l;
             if (m0Var != null) {
                 m0Var.A("Invalid version number", str);

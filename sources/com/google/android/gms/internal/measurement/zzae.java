@@ -2,7 +2,7 @@ package com.google.android.gms.internal.measurement;
 
 import android.os.Bundle;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.a.f.h.l.h;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
@@ -17,7 +17,7 @@ public final class zzae extends AbstractSafeParcelable {
     public final String n;
     public final String o;
     public final Bundle p;
-    public static final Parcelable$Creator<zzae> CREATOR = new h();
+    public static final Parcelable.Creator<zzae> CREATOR = new h();
 
     public zzae(long j, long j2, boolean z2, String str, String str2, String str3, Bundle bundle) {
         this.j = j;

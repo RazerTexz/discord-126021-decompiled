@@ -12,7 +12,6 @@ import java.io.Reader;
 import java.nio.charset.Charset;
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
-import okhttp3.ResponseBody$a;
 
 /* JADX INFO: compiled from: GsonResponseBodyConverter.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -32,17 +31,17 @@ public final class c<T> implements h<ResponseBody, T> {
         Charset charsetA;
         ResponseBody responseBody2 = responseBody;
         Gson gson = this.a;
-        Reader responseBody$a = responseBody2.reader;
-        if (responseBody$a == null) {
+        Reader aVar = responseBody2.reader;
+        if (aVar == null) {
             g gVarC = responseBody2.c();
             MediaType mediaTypeB = responseBody2.b();
             if (mediaTypeB == null || (charsetA = mediaTypeB.a(d0.g0.c.a)) == null) {
                 charsetA = d0.g0.c.a;
             }
-            responseBody$a = new ResponseBody$a(gVarC, charsetA);
-            responseBody2.reader = responseBody$a;
+            aVar = new ResponseBody.a(gVarC, charsetA);
+            responseBody2.reader = aVar;
         }
-        JsonReader jsonReaderK = gson.k(responseBody$a);
+        JsonReader jsonReaderK = gson.k(aVar);
         try {
             T t = this.f3738b.read(jsonReaderK);
             if (jsonReaderK.N() != JsonToken.END_DOCUMENT) {

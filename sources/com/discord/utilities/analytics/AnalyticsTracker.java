@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import b.d.b.a.a;
 import co.discord.media_engine.VideoInputDeviceDescription;
+import com.adjust.sdk.Adjust;
 import com.adjust.sdk.AdjustAttribution;
+import com.adjust.sdk.AdjustEvent;
 import com.discord.analytics.generated.events.TrackAccountLinkStep;
 import com.discord.analytics.generated.events.TrackAgeGateSubmitted;
 import com.discord.analytics.generated.events.TrackConnectedAccountInitiated;
@@ -20,6 +22,7 @@ import com.discord.analytics.generated.events.TrackRoleSubscriptionListingUpsell
 import com.discord.analytics.generated.events.impression.TrackImpressionInviteAccept;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackSourceMetadata;
+import com.discord.api.activity.Activity;
 import com.discord.api.activity.ActivityPlatform;
 import com.discord.api.application.Application;
 import com.discord.api.channel.Channel;
@@ -34,14 +37,12 @@ import com.discord.api.user.User;
 import com.discord.api.voice.state.VoiceState;
 import com.discord.app.AppLog;
 import com.discord.models.domain.ModelApplicationStream;
-import com.discord.models.domain.ModelApplicationStream$GuildStream;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.ModelGift;
 import com.discord.models.domain.ModelGuildTemplate;
 import com.discord.models.domain.ModelInvite;
 import com.discord.models.domain.ModelMuteConfig;
 import com.discord.models.domain.ModelNotificationSettings;
-import com.discord.models.domain.ModelNotificationSettings$ChannelOverride;
 import com.discord.models.domain.ModelSku;
 import com.discord.models.domain.ModelStoreListing;
 import com.discord.models.domain.emoji.Emoji;
@@ -49,54 +50,47 @@ import com.discord.models.domain.emoji.ModelEmojiCustom;
 import com.discord.models.domain.emoji.ModelEmojiUnicode;
 import com.discord.models.member.GuildMember;
 import com.discord.models.presence.Presence;
-import com.discord.rtcconnection.RtcConnection$Metadata;
-import com.discord.rtcconnection.audio.DiscordAudioManager$AudioDevice;
-import com.discord.rtcconnection.audio.DiscordAudioManager$DeviceTypes;
-import com.discord.rtcconnection.mediaengine.MediaEngine$AudioInfo;
-import com.discord.rtcconnection.mediaengine.MediaEngine$EchoCancellationInfo;
+import com.discord.rtcconnection.RtcConnection;
+import com.discord.rtcconnection.audio.DiscordAudioManager;
+import com.discord.rtcconnection.mediaengine.MediaEngine;
 import com.discord.stores.FailedMessageResolutionType;
 import com.discord.stores.StoreGuildScheduledEvents;
-import com.discord.stores.StoreMediaSettings$NoiseProcessing;
-import com.discord.stores.StoreMediaSettings$VoiceConfiguration;
+import com.discord.stores.StoreMediaSettings;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import com.discord.utilities.collections.CollectionExtensionsKt;
 import com.discord.utilities.email.EmailUtils;
-import com.discord.utilities.fcm.NotificationClient$SettingsV2;
-import com.discord.utilities.intent.RouteHandlers$AnalyticsMetadata;
+import com.discord.utilities.fcm.NotificationClient;
+import com.discord.utilities.intent.RouteHandlers;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.utilities.persister.Persister;
 import com.discord.utilities.phone.PhoneUtils;
 import com.discord.utilities.platform.Platform;
+import com.discord.utilities.presence.ActivityUtilsKt;
+import com.discord.utilities.presence.PresenceUtils;
 import com.discord.utilities.rest.FileUploadAlertType;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import com.discord.utilities.rx.ObservableExtensionsKt$filterNull$1;
-import com.discord.utilities.rx.ObservableExtensionsKt$filterNull$2;
 import com.discord.utilities.time.ClockFactory;
 import com.discord.widgets.chat.input.MentionUtilsKt;
 import com.discord.widgets.guilds.create.StockGuildTemplate;
 import com.discord.widgets.guilds.invite.GuildInvite;
 import com.discord.widgets.stage.model.StageAnalyticsRequestToSpeakState;
-import com.discord.widgets.user.WidgetUserSetCustomStatusViewModel$FormState;
+import com.discord.widgets.user.WidgetUserSetCustomStatusViewModel;
 import com.discord.widgets.user.search.WidgetGlobalSearchModel;
-import com.discord.widgets.user.search.WidgetGlobalSearchModel$ItemChannel;
-import com.discord.widgets.user.search.WidgetGlobalSearchModel$ItemDataPayload;
-import com.discord.widgets.user.search.WidgetGlobalSearchModel$ItemGuild;
-import com.discord.widgets.user.search.WidgetGlobalSearchModel$ItemUser;
 import com.discord.widgets.voice.feedback.FeedbackRating;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import d0.g;
 import d0.g0.s;
 import d0.g0.t;
 import d0.g0.w;
-import d0.o;
 import d0.t.g0;
 import d0.t.h0;
 import d0.t.n;
 import d0.t.r;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -107,7 +101,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TimeZone;
@@ -118,6 +111,7 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import rx.Observable;
+import rx.functions.Func2;
 
 /* JADX INFO: compiled from: AnalyticsTracker.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -130,10 +124,458 @@ public final class AnalyticsTracker {
     public static final long THROTTLE_MEDIUM = 300000;
     public static final long THROTTLE_SHORT = 60000;
     public static final AnalyticsTracker INSTANCE = new AnalyticsTracker();
-    private static final AnalyticsUtils$Tracker tracker = AnalyticsUtils$Tracker.Companion.getInstance();
+    private static final AnalyticsUtils.Tracker tracker = AnalyticsUtils.Tracker.INSTANCE.getInstance();
 
     /* JADX INFO: renamed from: firebaseAnalytics$delegate, reason: from kotlin metadata */
     private static final Lazy firebaseAnalytics = g.lazy(AnalyticsTracker$firebaseAnalytics$2.INSTANCE);
+
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class AdjustEventTracker {
+        private static final String EVENT_TOKEN_LOGIN = "ctt5aq";
+        private static final String EVENT_TOKEN_REGISTER = "ebn8ke";
+        public static final AdjustEventTracker INSTANCE = new AdjustEventTracker();
+
+        private AdjustEventTracker() {
+        }
+
+        public final void trackLogin() {
+            Adjust.trackEvent(new AdjustEvent(EVENT_TOKEN_LOGIN));
+        }
+
+        public final void trackRegister() {
+            Adjust.trackEvent(new AdjustEvent(EVENT_TOKEN_REGISTER));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$ackMessage$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<String, ? extends Object>> {
+        public final /* synthetic */ Function0 $propertyProvider;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Function0 function0) {
+            super(0);
+            this.$propertyProvider = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<String, ? extends Object> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<String, ? extends Object> invoke2() {
+            return CollectionExtensionsKt.filterNonNullValues((Map) this.$propertyProvider.invoke());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$addAttachment$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class AnonymousClass1<T, R> implements b<Channel, Map<String, ? extends Object>> {
+        public final /* synthetic */ String $mimeType;
+        public final /* synthetic */ String $source;
+        public final /* synthetic */ int $totalAttachments;
+
+        public AnonymousClass1(String str, String str2, int i) {
+            this.$source = str;
+            this.$mimeType = str2;
+            this.$totalAttachments = i;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Map<String, ? extends Object> call(Channel channel) {
+            return call2(channel);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Map<String, Object> call2(Channel channel) {
+            Map mapMapOf = h0.mapOf(d0.o.to("source", this.$source), d0.o.to("action_type", 0), d0.o.to("mime_type", this.$mimeType), d0.o.to("total_attachments", Integer.valueOf(this.$totalAttachments)), d0.o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(channel.getGuildId())));
+            AnalyticsUtils analyticsUtils = AnalyticsUtils.INSTANCE;
+            m.checkNotNullExpressionValue(channel, "it");
+            return h0.plus(mapMapOf, analyticsUtils.getProperties$app_productionGoogleRelease(channel));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$channelOpened$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<String, ? extends Object>> {
+        public final /* synthetic */ Function0 $lazyPropertyProvider;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Function0 function0) {
+            super(0);
+            this.$lazyPropertyProvider = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<String, ? extends Object> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<String, ? extends Object> invoke2() {
+            return CollectionExtensionsKt.filterNonNullValues((Map) this.$lazyPropertyProvider.invoke());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$getGameProperties$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class AnonymousClass1<T1, T2, R> implements Func2<Presence, Presence, Activity> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // rx.functions.Func2
+        public /* bridge */ /* synthetic */ Activity call(Presence presence, Presence presence2) {
+            return invoke(presence, presence2);
+        }
+
+        public final Activity invoke(Presence presence, Presence presence2) {
+            PresenceUtils presenceUtils = PresenceUtils.INSTANCE;
+            m.checkNotNullExpressionValue(presence, "localPresence");
+            Activity playingActivity = presenceUtils.getPlayingActivity(presence);
+            if (playingActivity != null) {
+                return playingActivity;
+            }
+            m.checkNotNullExpressionValue(presence2, "externalPresence");
+            return presenceUtils.getPlayingActivity(presence2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$guildViewed$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<String, ? extends Object>> {
+        public final /* synthetic */ Function0 $lazyPropertyProvider;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Function0 function0) {
+            super(0);
+            this.$lazyPropertyProvider = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<String, ? extends Object> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<String, ? extends Object> invoke2() {
+            return (Map) this.$lazyPropertyProvider.invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$inviteSuggestionOpened$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Integer>, Set<? extends Long>> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Set<? extends Long> call(Map<Long, ? extends Integer> map) {
+            return call2((Map<Long, Integer>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Set<Long> call2(Map<Long, Integer> map) {
+            m.checkNotNullExpressionValue(map, "userRelationships");
+            LinkedHashMap linkedHashMap = new LinkedHashMap();
+            for (Map.Entry<Long, Integer> entry : map.entrySet()) {
+                if (entry.getValue().intValue() == 1) {
+                    linkedHashMap.put(entry.getKey(), entry.getValue());
+                }
+            }
+            return linkedHashMap.keySet();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$textInVoiceOpened$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<String, ? extends Object>> {
+        public final /* synthetic */ Function0 $lazyPropertyProvider;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Function0 function0) {
+            super(0);
+            this.$lazyPropertyProvider = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<String, ? extends Object> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<String, ? extends Object> invoke2() {
+            return CollectionExtensionsKt.filterNonNullValues((Map) this.$lazyPropertyProvider.invoke());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$trackUserVoiceEvent$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class AnonymousClass1 extends o implements Function1<Map<String, Object>, Unit> {
+        public final /* synthetic */ String $inputMode;
+        public final /* synthetic */ Channel $this_trackUserVoiceEvent;
+        public final /* synthetic */ Pair $throttleKey;
+
+        /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$trackUserVoiceEvent$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: AnalyticsTracker.kt */
+        public final class C03271 extends o implements Function0<Map<String, ? extends Object>> {
+            public final /* synthetic */ Map $gameProperties;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C03271(Map map) {
+                super(0);
+                this.$gameProperties = map;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Map<String, ? extends Object> invoke() {
+                return invoke2();
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final Map<String, ? extends Object> invoke2() {
+                this.$gameProperties.put("mode", AnonymousClass1.this.$inputMode);
+                this.$gameProperties.put("channel", Long.valueOf(AnonymousClass1.this.$this_trackUserVoiceEvent.getId()));
+                this.$gameProperties.put("channel_type", Integer.valueOf(AnonymousClass1.this.$this_trackUserVoiceEvent.getType()));
+                this.$gameProperties.put("server", Long.valueOf(AnonymousClass1.this.$this_trackUserVoiceEvent.getGuildId()));
+                return this.$gameProperties;
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Channel channel, Pair pair, String str) {
+            super(1);
+            this.$this_trackUserVoiceEvent = channel;
+            this.$throttleKey = pair;
+            this.$inputMode = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Map<String, Object> map) {
+            invoke2(map);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Map<String, Object> map) {
+            m.checkNotNullParameter(map, "gameProperties");
+            AnalyticsTracker.INSTANCE.getTracker().track(this.$throttleKey, 900000L, new C03271(map));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$videoInputsUpdate$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class AnonymousClass1 extends o implements Function1<Map<String, Object>, Unit> {
+        public final /* synthetic */ Map $voiceProperties;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Map map) {
+            super(1);
+            this.$voiceProperties = map;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Map<String, Object> map) {
+            invoke2(map);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Map<String, Object> map) {
+            m.checkNotNullParameter(map, "gameProperties");
+            AnalyticsUtils.Tracker tracker = AnalyticsTracker.INSTANCE.getTracker();
+            Map map2 = this.$voiceProperties;
+            map2.putAll(map);
+            tracker.track("video_input_toggled", CollectionExtensionsKt.filterNonNullValues(map2));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$voiceChannelJoin$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class AnonymousClass1 extends o implements Function1<Map<String, Object>, Unit> {
+        public final /* synthetic */ Map $voiceProperties;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Map map) {
+            super(1);
+            this.$voiceProperties = map;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Map<String, Object> map) {
+            invoke2(map);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Map<String, Object> map) {
+            m.checkNotNullParameter(map, "gameProperties");
+            this.$voiceProperties.putAll(map);
+            AnalyticsTracker.INSTANCE.getTracker().track("join_voice_channel", CollectionExtensionsKt.filterNonNullValues(this.$voiceProperties));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$voiceChannelLeave$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class AnonymousClass1 extends o implements Function1<Map<String, Object>, Unit> {
+        public final /* synthetic */ Map $voiceProperties;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Map map) {
+            super(1);
+            this.$voiceProperties = map;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Map<String, Object> map) {
+            invoke2(map);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Map<String, Object> map) {
+            m.checkNotNullParameter(map, "gameProperties");
+            AnalyticsUtils.Tracker tracker = AnalyticsTracker.INSTANCE.getTracker();
+            Map map2 = this.$voiceProperties;
+            map2.putAll(map);
+            tracker.track("leave_voice_channel", CollectionExtensionsKt.filterNonNullValues(map2));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$addAttachment$2, reason: invalid class name */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class AnonymousClass2 extends o implements Function1<Map<String, ? extends Object>, Unit> {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Map<String, ? extends Object> map) {
+            invoke2(map);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Map<String, ? extends Object> map) {
+            AnalyticsTracker.INSTANCE.getTracker().track("message_attachment_updated", map);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$getGameProperties$2, reason: invalid class name */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class AnonymousClass2<T, R> implements b<Activity, Map<String, Object>> {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Map<String, Object> call(Activity activity) {
+            return call2(activity);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Map<String, Object> call2(Activity activity) {
+            Pair[] pairArr = new Pair[3];
+            pairArr[0] = d0.o.to("game_platform", activity != null ? ActivityUtilsKt.getGamePlatform(activity) : null);
+            pairArr[1] = d0.o.to("game_name", activity != null ? activity.getName() : null);
+            pairArr[2] = d0.o.to("game_id", activity != null ? activity.getApplicationId() : null);
+            return CollectionExtensionsKt.filterNonNullValues(h0.mapOf(pairArr));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.AnalyticsTracker$inviteSuggestionOpened$2, reason: invalid class name */
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public final class AnonymousClass2 extends o implements Function1<Set<? extends Long>, Unit> {
+        public final /* synthetic */ List $channelSuggestions;
+        public final /* synthetic */ long $guildId;
+        public final /* synthetic */ List $userSuggestions;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(List list, List list2, long j) {
+            super(1);
+            this.$channelSuggestions = list;
+            this.$userSuggestions = list2;
+            this.$guildId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Set<? extends Long> set) {
+            invoke2((Set<Long>) set);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Set<Long> set) {
+            List list = this.$channelSuggestions;
+            LinkedHashMap linkedHashMap = new LinkedHashMap();
+            for (Object obj : list) {
+                Integer numValueOf = Integer.valueOf(((Channel) obj).getType());
+                Object arrayList = linkedHashMap.get(numValueOf);
+                if (arrayList == null) {
+                    arrayList = new ArrayList();
+                    linkedHashMap.put(numValueOf, arrayList);
+                }
+                ((List) arrayList).add(obj);
+            }
+            List list2 = (List) linkedHashMap.get(1);
+            int size = list2 != null ? list2.size() : 0;
+            List list3 = (List) linkedHashMap.get(3);
+            AnalyticsTracker.INSTANCE.getTracker().track("invite_suggestion_opened", h0.mapOf(d0.o.to("num_suggestions", Integer.valueOf(this.$userSuggestions.size() + this.$channelSuggestions.size())), d0.o.to("num_friends", Integer.valueOf(set.size())), d0.o.to("num_dms", Integer.valueOf(this.$userSuggestions.size() + size)), d0.o.to("num_group_dms", Integer.valueOf(list3 != null ? list3.size() : 0)), d0.o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(this.$guildId))));
+        }
+    }
+
+    /* JADX INFO: compiled from: AnalyticsTracker.kt */
+    public enum PremiumUpsellType {
+        EmojiPickerHeaderViewed("emoji_picker_search"),
+        EmojiPickerLockedItemClicked("emoji_picker_emoji_clicked"),
+        StreamQualityIndicator("stream_quality_indicator"),
+        EmojiAutocompleteInline("emoji_autocomplete_inline"),
+        EmojiAutocompleteModal("emoji_autocomplete_modal"),
+        CustomProfileUpsellModal("custom profiles upsell modal"),
+        CustomProfileBannerUpsell("custom profiles settings banner upsell"),
+        StickerPickerUpsell("sticker_picker_upsell"),
+        EmptyStickerPickerUpsell("empty_sticker_picker_upsell"),
+        PerGuildIdentityUpsellModal("per server identity upsell modal"),
+        PerGuildIdentityInline("per server identity upsell inline");
+
+        private final String analyticsName;
+
+        PremiumUpsellType(String str) {
+            this.analyticsName = str;
+        }
+
+        public final String getAnalyticsName() {
+            return this.analyticsName;
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
+
+        static {
+            WidgetUserSetCustomStatusViewModel.FormState.Expiration.values();
+            int[] iArr = new int[5];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[WidgetUserSetCustomStatusViewModel.FormState.Expiration.NEVER.ordinal()] = 1;
+            iArr[WidgetUserSetCustomStatusViewModel.FormState.Expiration.IN_30_MINUTES.ordinal()] = 2;
+            iArr[WidgetUserSetCustomStatusViewModel.FormState.Expiration.IN_1_HOUR.ordinal()] = 3;
+            iArr[WidgetUserSetCustomStatusViewModel.FormState.Expiration.IN_4_HOURS.ordinal()] = 4;
+            iArr[WidgetUserSetCustomStatusViewModel.FormState.Expiration.TOMORROW.ordinal()] = 5;
+            DiscordAudioManager.DeviceTypes.values();
+            int[] iArr2 = new int[6];
+            $EnumSwitchMapping$1 = iArr2;
+            iArr2[DiscordAudioManager.DeviceTypes.SPEAKERPHONE.ordinal()] = 1;
+            iArr2[DiscordAudioManager.DeviceTypes.BLUETOOTH_HEADSET.ordinal()] = 2;
+            iArr2[DiscordAudioManager.DeviceTypes.WIRED_HEADSET.ordinal()] = 3;
+            iArr2[DiscordAudioManager.DeviceTypes.EARPIECE.ordinal()] = 4;
+            iArr2[DiscordAudioManager.DeviceTypes.INVALID.ordinal()] = 5;
+            iArr2[DiscordAudioManager.DeviceTypes.DEFAULT.ordinal()] = 6;
+        }
+    }
 
     private AnalyticsTracker() {
     }
@@ -213,7 +655,7 @@ public final class AnalyticsTracker {
     public final void ackMessage(Channel channel, Function0<? extends Map<String, ? extends Object>> propertyProvider) {
         m.checkNotNullParameter(channel, "channel");
         m.checkNotNullParameter(propertyProvider, "propertyProvider");
-        tracker.track(o.to("ack_messages", Long.valueOf(channel.getGuildId())), 900000L, new AnalyticsTracker$ackMessage$1(propertyProvider));
+        tracker.track(d0.o.to("ack_messages", Long.valueOf(channel.getGuildId())), 900000L, new AnonymousClass1(propertyProvider));
     }
 
     public final void activityUpdatedSpotify(String trackId, boolean hasImages) {
@@ -228,13 +670,13 @@ public final class AnalyticsTracker {
     public static final void addAttachment(String source, String mimeType, int totalAttachments) {
         m.checkNotNullParameter(source, "source");
         m.checkNotNullParameter(mimeType, "mimeType");
-        Observable<Channel> observableZ = StoreStream.Companion.getChannelsSelected().observeSelectedChannel().Z(1);
+        Observable<Channel> observableZ = StoreStream.INSTANCE.getChannelsSelected().observeSelectedChannel().Z(1);
         m.checkNotNullExpressionValue(observableZ, "StoreStream\n        .get…hannel()\n        .take(1)");
-        Observable<R> observableG = observableZ.y(ObservableExtensionsKt$filterNull$1.INSTANCE).G(ObservableExtensionsKt$filterNull$2.INSTANCE);
+        Observable<R> observableG = observableZ.y(ObservableExtensionsKt.AnonymousClass1.INSTANCE).G(ObservableExtensionsKt.AnonymousClass2.INSTANCE);
         m.checkNotNullExpressionValue(observableG, "filter { it != null }.map { it!! }");
-        Observable observableG2 = observableG.G(new AnalyticsTracker$addAttachment$1(source, mimeType, totalAttachments));
+        Observable observableG2 = observableG.G(new AnonymousClass1(source, mimeType, totalAttachments));
         m.checkNotNullExpressionValue(observableG2, "StoreStream\n        .get…+ it.properties\n        }");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.computationBuffered(observableG2), INSTANCE.getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, AnalyticsTracker$addAttachment$2.INSTANCE, 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.computationBuffered(observableG2), INSTANCE.getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, AnonymousClass2.INSTANCE, 62, (Object) null);
     }
 
     private final void addVoiceConnectionProperties(Map<String, Object> mutableProperties, Channel channel, String cloudflareBestRegion) {
@@ -252,7 +694,7 @@ public final class AnalyticsTracker {
 
     public final void ageGateSubmitted(long dob, String sourcePage) {
         m.checkNotNullParameter(sourcePage, "sourcePage");
-        AnalyticsUtils$Tracker analyticsUtils$Tracker = tracker;
+        AnalyticsUtils.Tracker tracker2 = tracker;
         Long lValueOf = Long.valueOf(dob);
         Locale locale = Locale.ROOT;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd", locale);
@@ -271,22 +713,22 @@ public final class AnalyticsTracker {
         m.checkNotNullExpressionValue(str3, "formatter.format(Date(this))");
         TrackAgeGateSubmitted trackAgeGateSubmitted = new TrackAgeGateSubmitted(lValueOf, lValueOf2, lValueOf3, Long.valueOf(Long.parseLong(str3)));
         trackAgeGateSubmitted.e(new TrackSourceMetadata(sourcePage, null, null, null, null, 30));
-        analyticsUtils$Tracker.track(trackAgeGateSubmitted);
+        tracker2.track(trackAgeGateSubmitted);
     }
 
     public final void appCrashed() {
-        AnalyticsUtils$Tracker.track$default(tracker, "app_crashed", null, 2, null);
+        AnalyticsUtils.Tracker.track$default(tracker, "app_crashed", null, 2, null);
     }
 
     public final void appExceptionThrown(String stacktrace) {
         m.checkNotNullParameter(stacktrace, "stacktrace");
-        tracker.track("app_exception_thrown", g0.mapOf(o.to("stacktrace", stacktrace)));
+        tracker.track("app_exception_thrown", g0.mapOf(d0.o.to("stacktrace", stacktrace)));
     }
 
     public final void appFirstLogin() {
         Persister persister = new Persister("app_first_login", Boolean.TRUE);
         if (((Boolean) persister.get()).booleanValue()) {
-            tracker.track("app_first_login", g0.mapOf(o.to("platform", "Android")));
+            tracker.track("app_first_login", g0.mapOf(d0.o.to("platform", "Android")));
             persister.set(Boolean.FALSE, true);
         }
     }
@@ -296,11 +738,11 @@ public final class AnalyticsTracker {
         if (!(lValueOf.longValue() != 0)) {
             lValueOf = null;
         }
-        tracker.track("app_landing_viewed", lValueOf != null ? g0.mapOf(o.to("last_logout_ts", Long.valueOf(lValueOf.longValue()))) : null);
+        tracker.track("app_landing_viewed", lValueOf != null ? g0.mapOf(d0.o.to("last_logout_ts", Long.valueOf(lValueOf.longValue()))) : null);
     }
 
     public final void appNativeCrash(boolean didCrash, String exitReason, String exitDescription, String tombstoneGroupHash, String tombstoneCause) {
-        tracker.track("app_native_crash", CollectionExtensionsKt.filterNonNullValues(h0.mapOf(o.to("did_crash", Boolean.valueOf(didCrash)), o.to("exit_reason", exitReason), o.to("exit_description", exitDescription), o.to("tombstone_hash", tombstoneGroupHash), o.to("tombstone_cause", tombstoneCause))));
+        tracker.track("app_native_crash", CollectionExtensionsKt.filterNonNullValues(h0.mapOf(d0.o.to("did_crash", Boolean.valueOf(didCrash)), d0.o.to("exit_reason", exitReason), d0.o.to("exit_description", exitDescription), d0.o.to("tombstone_hash", tombstoneGroupHash), d0.o.to("tombstone_cause", tombstoneCause))));
     }
 
     public static final void appNotificationClicked(Map<String, ? extends Object> properties) {
@@ -316,7 +758,7 @@ public final class AnalyticsTracker {
     }
 
     public final void applicationCommandBrowserJump(long targetApplicationId) {
-        tracker.track("application_command_browser_jumped", g0.mapOf(o.to("target_application_id", Long.valueOf(targetApplicationId))));
+        tracker.track("application_command_browser_jumped", g0.mapOf(d0.o.to("target_application_id", Long.valueOf(targetApplicationId))));
     }
 
     public final void applicationCommandBrowserOpened(Map<String, ? extends Object> snapshotProperties) {
@@ -325,25 +767,25 @@ public final class AnalyticsTracker {
     }
 
     public final void applicationCommandBrowserScrolled() {
-        AnalyticsUtils$Tracker.track$default(tracker, "application_command_browser_scrolled", null, 2, null);
+        AnalyticsUtils.Tracker.track$default(tracker, "application_command_browser_scrolled", null, 2, null);
     }
 
     public final void applicationCommandSelected(long applicationId, long commandId, Map<String, ? extends Object> snapshotProperties) {
         m.checkNotNullParameter(snapshotProperties, "snapshotProperties");
-        tracker.track("application_command_selected", h0.plus(h0.mapOf(o.to(ModelAuditLogEntry.CHANGE_KEY_APPLICATION_ID, Long.valueOf(applicationId)), o.to("command_id", Long.valueOf(commandId))), CollectionExtensionsKt.filterNonNullValues(snapshotProperties)));
+        tracker.track("application_command_selected", h0.plus(h0.mapOf(d0.o.to(ModelAuditLogEntry.CHANGE_KEY_APPLICATION_ID, Long.valueOf(applicationId)), d0.o.to("command_id", Long.valueOf(commandId))), CollectionExtensionsKt.filterNonNullValues(snapshotProperties)));
     }
 
     public final void applicationCommandValidationFailure(long applicationId, long commandId, String argumentType, boolean isRequired) {
         m.checkNotNullParameter(argumentType, "argumentType");
-        tracker.track("application_command_validation_failed", h0.mapOf(o.to(ModelAuditLogEntry.CHANGE_KEY_APPLICATION_ID, Long.valueOf(applicationId)), o.to("command_id", Long.valueOf(commandId)), o.to("argument_type", argumentType), o.to("is_required", Boolean.valueOf(isRequired))));
+        tracker.track("application_command_validation_failed", h0.mapOf(d0.o.to(ModelAuditLogEntry.CHANGE_KEY_APPLICATION_ID, Long.valueOf(applicationId)), d0.o.to("command_id", Long.valueOf(commandId)), d0.o.to("argument_type", argumentType), d0.o.to("is_required", Boolean.valueOf(isRequired))));
     }
 
     public final void attributionChange(AdjustAttribution attribution) {
         m.checkNotNullParameter(attribution, "attribution");
-        tracker.track("user_attribution_received", h0.mapOf(o.to("adjust_tracker_token", attribution.trackerToken), o.to("adjust_tracker_name", attribution.trackerName), o.to("adjust_adid", attribution.adid), o.to("attribution_network", attribution.network), o.to("attribution_campaign", attribution.campaign), o.to("attribution_adgroup", attribution.adgroup), o.to("attribution_creative", attribution.creative)));
+        tracker.track("user_attribution_received", h0.mapOf(d0.o.to("adjust_tracker_token", attribution.trackerToken), d0.o.to("adjust_tracker_name", attribution.trackerName), d0.o.to("adjust_adid", attribution.adid), d0.o.to("attribution_network", attribution.network), d0.o.to("attribution_campaign", attribution.campaign), d0.o.to("attribution_adgroup", attribution.adgroup), d0.o.to("attribution_creative", attribution.creative)));
     }
 
-    private final String audioOutputDeviceTypeToString(DiscordAudioManager$DeviceTypes type) {
+    private final String audioOutputDeviceTypeToString(DiscordAudioManager.DeviceTypes type) {
         int iOrdinal = type.ordinal();
         if (iOrdinal == 0) {
             return "default";
@@ -397,11 +839,11 @@ public final class AnalyticsTracker {
         tracker.track("channel_autocomplete_selected", h0.toMap(linkedHashMap));
     }
 
-    public static /* synthetic */ void callReportProblem$default(AnalyticsTracker analyticsTracker, long j, String str, Channel channel, Map map, Long l, String str2, FeedbackRating feedbackRating, Integer num, String str3, StoreMediaSettings$VoiceConfiguration storeMediaSettings$VoiceConfiguration, DiscordAudioManager$AudioDevice discordAudioManager$AudioDevice, boolean z2, String str4, int i, Object obj) {
-        analyticsTracker.callReportProblem(j, str, channel, map, (i & 16) != 0 ? null : l, str2, feedbackRating, num, str3, storeMediaSettings$VoiceConfiguration, discordAudioManager$AudioDevice, z2, (i & 4096) != 0 ? null : str4);
+    public static /* synthetic */ void callReportProblem$default(AnalyticsTracker analyticsTracker, long j, String str, Channel channel, Map map, Long l, String str2, FeedbackRating feedbackRating, Integer num, String str3, StoreMediaSettings.VoiceConfiguration voiceConfiguration, DiscordAudioManager.AudioDevice audioDevice, boolean z2, String str4, int i, Object obj) {
+        analyticsTracker.callReportProblem(j, str, channel, map, (i & 16) != 0 ? null : l, str2, feedbackRating, num, str3, voiceConfiguration, audioDevice, z2, (i & 4096) != 0 ? null : str4);
     }
 
-    public final void callReportProblem(long meId, String rtcConnectionId, Channel channel, Map<Long, VoiceState> guildVoiceStates, Long durationMs, String mediaSessionId, FeedbackRating feedbackRating, Integer reasonCode, String reasonDescription, StoreMediaSettings$VoiceConfiguration voiceConfig, DiscordAudioManager$AudioDevice audioOutputDevice, boolean videoHardwareScalingEnabled, String issueDetails) {
+    public final void callReportProblem(long meId, String rtcConnectionId, Channel channel, Map<Long, VoiceState> guildVoiceStates, Long durationMs, String mediaSessionId, FeedbackRating feedbackRating, Integer reasonCode, String reasonDescription, StoreMediaSettings.VoiceConfiguration voiceConfig, DiscordAudioManager.AudioDevice audioOutputDevice, boolean videoHardwareScalingEnabled, String issueDetails) {
         m.checkNotNullParameter(channel, "channel");
         m.checkNotNullParameter(guildVoiceStates, "guildVoiceStates");
         m.checkNotNullParameter(feedbackRating, "feedbackRating");
@@ -423,8 +865,8 @@ public final class AnalyticsTracker {
             AppLog appLog = AppLog.g;
             String strValueOf = String.valueOf(reasonCode);
             LinkedHashMap linkedHashMap = new LinkedHashMap(g0.mapCapacity(map.size()));
-            for (Map$Entry map$Entry : map.entrySet()) {
-                linkedHashMap.put(map$Entry.getKey(), String.valueOf(map$Entry.getValue()));
+            for (Map.Entry entry : map.entrySet()) {
+                linkedHashMap.put(entry.getKey(), String.valueOf(entry.getValue()));
             }
             appLog.e("call_report_problem", strValueOf, null, linkedHashMap);
         }
@@ -433,7 +875,7 @@ public final class AnalyticsTracker {
 
     public final void captchaFailed(String reason) {
         m.checkNotNullParameter(reason, ModelAuditLogEntry.CHANGE_KEY_REASON);
-        tracker.track("captcha_failed", g0.mapOf(o.to(ModelAuditLogEntry.CHANGE_KEY_REASON, reason)));
+        tracker.track("captcha_failed", g0.mapOf(d0.o.to(ModelAuditLogEntry.CHANGE_KEY_REASON, reason)));
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -456,7 +898,7 @@ public final class AnalyticsTracker {
 
     public final void channelOpened(long channelId, Function0<? extends Map<String, ? extends Object>> lazyPropertyProvider) {
         m.checkNotNullParameter(lazyPropertyProvider, "lazyPropertyProvider");
-        tracker.track(o.to("channel_opened", Long.valueOf(channelId)), 900000L, new AnalyticsTracker$channelOpened$1(lazyPropertyProvider));
+        tracker.track(d0.o.to("channel_opened", Long.valueOf(channelId)), 900000L, new AnonymousClass1(lazyPropertyProvider));
     }
 
     public final void chatInputComponentViewed(String type) {
@@ -471,7 +913,7 @@ public final class AnalyticsTracker {
     }
 
     private final void closeTutorial(String tutorial, boolean acknowledged) {
-        tracker.track("close_tutorial", h0.mapOf(o.to("tutorial", tutorial), o.to("acknowledged", Boolean.valueOf(acknowledged))));
+        tracker.track("close_tutorial", h0.mapOf(d0.o.to("tutorial", tutorial), d0.o.to("acknowledged", Boolean.valueOf(acknowledged))));
     }
 
     public static /* synthetic */ void connectedAccountViewed$default(String str, int i, Object obj) {
@@ -490,20 +932,20 @@ public final class AnalyticsTracker {
     }
 
     public final void contactSyncToggled(boolean enabled, boolean phoneDiscoverable, boolean emailDiscoverable) {
-        tracker.track("contact_sync_toggled", h0.mapOf(o.to("is_enabled", Boolean.valueOf(enabled)), o.to("am_discoverable_phone", Boolean.valueOf(phoneDiscoverable)), o.to("am_discoverable_email", Boolean.valueOf(emailDiscoverable))));
+        tracker.track("contact_sync_toggled", h0.mapOf(d0.o.to("is_enabled", Boolean.valueOf(enabled)), d0.o.to("am_discoverable_phone", Boolean.valueOf(phoneDiscoverable)), d0.o.to("am_discoverable_email", Boolean.valueOf(emailDiscoverable))));
     }
 
     public final void createGuildViewed(StockGuildTemplate stockGuildTemplate, ModelGuildTemplate guildTemplate, String source) {
         Map mapMapOf;
         m.checkNotNullParameter(stockGuildTemplate, "stockGuildTemplate");
         m.checkNotNullParameter(source, "source");
-        if (guildTemplate == null || (mapMapOf = h0.mapOf(o.to("guild_template_code", guildTemplate.getCode()), o.to("guild_template_name", guildTemplate.getName()), o.to("guild_template_description", guildTemplate.getDescription()), o.to("guild_template_guild_id", Long.valueOf(guildTemplate.getSourceGuildId())))) == null) {
-            mapMapOf = g0.mapOf(o.to("guild_template_name", stockGuildTemplate.name()));
+        if (guildTemplate == null || (mapMapOf = h0.mapOf(d0.o.to("guild_template_code", guildTemplate.getCode()), d0.o.to("guild_template_name", guildTemplate.getName()), d0.o.to("guild_template_description", guildTemplate.getDescription()), d0.o.to("guild_template_guild_id", Long.valueOf(guildTemplate.getSourceGuildId())))) == null) {
+            mapMapOf = g0.mapOf(d0.o.to("guild_template_name", stockGuildTemplate.name()));
         }
-        tracker.track("create_guild_viewed", h0.plus(mapMapOf, g0.mapOf(o.to("location_section", source))));
+        tracker.track("create_guild_viewed", h0.plus(mapMapOf, g0.mapOf(d0.o.to("location_section", source))));
     }
 
-    public final void customStatusUpdated(WidgetUserSetCustomStatusViewModel$FormState formState, Traits$Location locationTrait) {
+    public final void customStatusUpdated(WidgetUserSetCustomStatusViewModel.FormState formState, Traits.Location locationTrait) {
         m.checkNotNullParameter(formState, "formState");
         m.checkNotNullParameter(locationTrait, "locationTrait");
         HashMap map = new HashMap();
@@ -512,11 +954,11 @@ public final class AnalyticsTracker {
         tracker.track("custom_status_updated", map);
     }
 
-    public final void deepLinkReceived(Intent intent, RouteHandlers$AnalyticsMetadata metadata, Map<String, ? extends Object> snapshotProperties) {
+    public final void deepLinkReceived(Intent intent, RouteHandlers.AnalyticsMetadata metadata, Map<String, ? extends Object> snapshotProperties) {
         m.checkNotNullParameter(intent, "intent");
         m.checkNotNullParameter(metadata, "metadata");
         m.checkNotNullParameter(snapshotProperties, "snapshotProperties");
-        tracker.track("deep_link_received", h0.plus(CollectionExtensionsKt.filterNonNullValues(h0.mapOf(o.to("type", metadata.getType()), o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, metadata.getGuildId()), o.to(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID, metadata.getChannelId()), o.to("voice_action", Boolean.valueOf(intent.getStringExtra("actions.fulfillment.extra.ACTION_TOKEN") != null)), o.to("source", intent.getStringExtra("com.discord.intent.extra.EXTRA_SOURCE")))), CollectionExtensionsKt.filterNonNullValues(snapshotProperties)));
+        tracker.track("deep_link_received", h0.plus(CollectionExtensionsKt.filterNonNullValues(h0.mapOf(d0.o.to("type", metadata.getType()), d0.o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, metadata.getGuildId()), d0.o.to(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID, metadata.getChannelId()), d0.o.to("voice_action", Boolean.valueOf(intent.getStringExtra("actions.fulfillment.extra.ACTION_TOKEN") != null)), d0.o.to("source", intent.getStringExtra("com.discord.intent.extra.EXTRA_SOURCE")))), CollectionExtensionsKt.filterNonNullValues(snapshotProperties)));
     }
 
     public static /* synthetic */ void dismissModal$default(AnalyticsTracker analyticsTracker, String str, String str2, String str3, Long l, int i, Object obj) {
@@ -528,7 +970,7 @@ public final class AnalyticsTracker {
 
     public final void dismissModal(String modalName, String location, String dismissType, Long guildId) {
         a.q0(modalName, "modalName", location, ModelAuditLogEntry.CHANGE_KEY_LOCATION, dismissType, "dismissType");
-        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(o.to("location_section", location), o.to("type", modalName), o.to("dismiss_type", dismissType));
+        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(d0.o.to("location_section", location), d0.o.to("type", modalName), d0.o.to("dismiss_type", dismissType));
         if (guildId != null) {
             guildId.longValue();
             mapMutableMapOf.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, String.valueOf(guildId.longValue()));
@@ -536,9 +978,9 @@ public final class AnalyticsTracker {
         tracker.track("modal_dismissed", mapMutableMapOf);
     }
 
-    public final void echoCancellationConfigured(MediaEngine$EchoCancellationInfo info) {
+    public final void echoCancellationConfigured(MediaEngine.EchoCancellationInfo info) {
         m.checkNotNullParameter(info, "info");
-        tracker.track("native_echo_cancellation_configured", h0.mapOf(o.to("builtin_aec_supported_java", Boolean.valueOf(info.builtinAecSupportedJava)), o.to("builtin_aec_supported_native", Boolean.valueOf(info.builtinAecSupportedNative)), o.to("builtin_aec_requested", Boolean.valueOf(info.builtinAecRequested)), o.to("builtin_aec_enabled", Boolean.valueOf(info.builtinAecEnabled)), o.to("aec_enabled_in_settings", Boolean.valueOf(info.aecEnabledInSettings)), o.to("aec_enabled_in_native_config", Boolean.valueOf(info.aecEnabledInNativeConfig)), o.to("aec_mobile_mode", Boolean.valueOf(info.aecMobileMode)), o.to("aec_enabled_by_default", Boolean.valueOf(info.aecEnabledByDefault)), o.to("aec_mobile_mode_by_default", Boolean.valueOf(info.aecMobileModeByDefault))));
+        tracker.track("native_echo_cancellation_configured", h0.mapOf(d0.o.to("builtin_aec_supported_java", Boolean.valueOf(info.builtinAecSupportedJava)), d0.o.to("builtin_aec_supported_native", Boolean.valueOf(info.builtinAecSupportedNative)), d0.o.to("builtin_aec_requested", Boolean.valueOf(info.builtinAecRequested)), d0.o.to("builtin_aec_enabled", Boolean.valueOf(info.builtinAecEnabled)), d0.o.to("aec_enabled_in_settings", Boolean.valueOf(info.aecEnabledInSettings)), d0.o.to("aec_enabled_in_native_config", Boolean.valueOf(info.aecEnabledInNativeConfig)), d0.o.to("aec_mobile_mode", Boolean.valueOf(info.aecMobileMode)), d0.o.to("aec_enabled_by_default", Boolean.valueOf(info.aecEnabledByDefault)), d0.o.to("aec_mobile_mode_by_default", Boolean.valueOf(info.aecMobileModeByDefault))));
     }
 
     public final void emojiCategorySelected(long guildId) {
@@ -571,26 +1013,26 @@ public final class AnalyticsTracker {
 
     public final void expressionPickerOpened(String tab, boolean badged) {
         m.checkNotNullParameter(tab, "tab");
-        tracker.track("expression_picker_opened", h0.mutableMapOf(o.to("badged", Boolean.valueOf(badged)), o.to("tab", tab)));
+        tracker.track("expression_picker_opened", h0.mutableMapOf(d0.o.to("badged", Boolean.valueOf(badged)), d0.o.to("tab", tab)));
     }
 
     public final void expressionPickerStickerShopViewed(boolean badged) {
-        tracker.track("expression_picker_sticker_shop_viewed", h0.mutableMapOf(o.to("badged", Boolean.valueOf(badged))));
+        tracker.track("expression_picker_sticker_shop_viewed", h0.mutableMapOf(d0.o.to("badged", Boolean.valueOf(badged))));
     }
 
     public final void expressionPickerTabClicked(String tab, boolean badged) {
         m.checkNotNullParameter(tab, "tab");
-        tracker.track("expression_picker_tab_clicked", h0.mutableMapOf(o.to("badged", Boolean.valueOf(badged)), o.to("tab", tab)));
+        tracker.track("expression_picker_tab_clicked", h0.mutableMapOf(d0.o.to("badged", Boolean.valueOf(badged)), d0.o.to("tab", tab)));
     }
 
     public final void expressionSuggestionsDisplayed(String suggestionTrigger) {
         m.checkNotNullParameter(suggestionTrigger, "suggestionTrigger");
-        tracker.track("auto_suggest_displayed", g0.mapOf(o.to("suggestion_trigger", suggestionTrigger)));
+        tracker.track("auto_suggest_displayed", g0.mapOf(d0.o.to("suggestion_trigger", suggestionTrigger)));
     }
 
     public final void expressionSuggestionsSelected(long stickerId, String suggestionTrigger) {
         m.checkNotNullParameter(suggestionTrigger, "suggestionTrigger");
-        tracker.track("auto_suggest_expression_selected", h0.mapOf(o.to("sticker_id", Long.valueOf(stickerId)), o.to("suggestion_trigger", suggestionTrigger)));
+        tracker.track("auto_suggest_expression_selected", h0.mapOf(d0.o.to("sticker_id", Long.valueOf(stickerId)), d0.o.to("suggestion_trigger", suggestionTrigger)));
     }
 
     public final void externalDynamicLinkReceived(String fingerprint, String attemptId, String inviteCode, String guildTemplateCode, String authToken, boolean isBackgrounded) {
@@ -600,12 +1042,12 @@ public final class AnalyticsTracker {
         }
         if (str != null) {
             Pair[] pairArr = new Pair[6];
-            pairArr[0] = o.to("fingerprint", fingerprint != null ? toFingerprintNumber(fingerprint) : null);
-            pairArr[1] = o.to("attempt_id", attemptId);
-            pairArr[2] = o.to("invite_code", inviteCode);
-            pairArr[3] = o.to("guild_template_code", guildTemplateCode);
-            pairArr[4] = o.to("has_auth_token", Boolean.valueOf(true ^ (authToken == null || t.isBlank(authToken))));
-            pairArr[5] = o.to("is_backgrounded", Boolean.valueOf(isBackgrounded));
+            pairArr[0] = d0.o.to("fingerprint", fingerprint != null ? toFingerprintNumber(fingerprint) : null);
+            pairArr[1] = d0.o.to("attempt_id", attemptId);
+            pairArr[2] = d0.o.to("invite_code", inviteCode);
+            pairArr[3] = d0.o.to("guild_template_code", guildTemplateCode);
+            pairArr[4] = d0.o.to("has_auth_token", Boolean.valueOf(true ^ (authToken == null || t.isBlank(authToken))));
+            pairArr[5] = d0.o.to("is_backgrounded", Boolean.valueOf(isBackgrounded));
             tracker.track("external_dynamic_link_received", CollectionExtensionsKt.filterNonNullValues(h0.mapOf(pairArr)));
         }
     }
@@ -627,21 +1069,21 @@ public final class AnalyticsTracker {
     }
 
     public final void externalShare(Uri uri) {
-        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         tracker.trackFireBase("handle_ext_share", insertUriProperties(new HashMap(), uri));
     }
 
     public final void externalViewClosed(String type, long durationMs) {
         m.checkNotNullParameter(type, "type");
-        AnalyticsUtils$Tracker analyticsUtils$Tracker = tracker;
+        AnalyticsUtils.Tracker tracker2 = tracker;
         Pair[] pairArr = new Pair[2];
-        pairArr[0] = o.to("type", type);
+        pairArr[0] = d0.o.to("type", type);
         Long lValueOf = Long.valueOf(durationMs);
         if (!(lValueOf.longValue() != 0)) {
             lValueOf = null;
         }
-        pairArr[1] = o.to("duration_open_ms", lValueOf);
-        analyticsUtils$Tracker.track("app_external_view_closed", CollectionExtensionsKt.filterNonNullValues(h0.mapOf(pairArr)));
+        pairArr[1] = d0.o.to("duration_open_ms", lValueOf);
+        tracker2.track("app_external_view_closed", CollectionExtensionsKt.filterNonNullValues(h0.mapOf(pairArr)));
     }
 
     public final void failedMessageResolved(int numAttachments, int maxAttachmentSize, int totalAttachmentSize, boolean hasImage, boolean hasVideo, FailedMessageResolutionType resolutionType, long initialAttemptTimestamp, int numRetries, Map<String, ? extends Object> snapshotProperties) {
@@ -675,7 +1117,7 @@ public final class AnalyticsTracker {
 
     public final void friendAddViewed(String type) {
         m.checkNotNullParameter(type, "type");
-        tracker.track("friend_add_viewed", g0.mapOf(o.to("friend_add_type", type)));
+        tracker.track("friend_add_viewed", g0.mapOf(d0.o.to("friend_add_type", type)));
     }
 
     public static /* synthetic */ void friendRequestFailed$default(AnalyticsTracker analyticsTracker, CharSequence charSequence, String str, Integer num, String str2, int i, Object obj) {
@@ -700,7 +1142,7 @@ public final class AnalyticsTracker {
     }
 
     public final void friendsListViewed() {
-        AnalyticsUtils$Tracker.track$default(tracker, "friends_list_viewed", null, 2, null);
+        AnalyticsUtils.Tracker.track$default(tracker, "friends_list_viewed", null, 2, null);
     }
 
     private final String getAnalyticsValueForNotificationFrequency(Integer messageNotifications) {
@@ -738,13 +1180,13 @@ public final class AnalyticsTracker {
     }
 
     private final Observable<Map<String, Object>> getGameProperties(long meId) {
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        Observable<Presence> observableObserveLocalPresence = storeStream$Companion.getPresences().observeLocalPresence();
-        Observable<R> observableG = storeStream$Companion.getPresences().observePresenceForUser(meId).y(ObservableExtensionsKt$filterNull$1.INSTANCE).G(ObservableExtensionsKt$filterNull$2.INSTANCE);
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        Observable<Presence> observableObserveLocalPresence = companion.getPresences().observeLocalPresence();
+        Observable<R> observableG = companion.getPresences().observePresenceForUser(meId).y(ObservableExtensionsKt.AnonymousClass1.INSTANCE).G(ObservableExtensionsKt.AnonymousClass2.INSTANCE);
         m.checkNotNullExpressionValue(observableG, "filter { it != null }.map { it!! }");
-        Observable observableJ = Observable.j(observableObserveLocalPresence, observableG, AnalyticsTracker$getGameProperties$1.INSTANCE);
+        Observable observableJ = Observable.j(observableObserveLocalPresence, observableG, AnonymousClass1.INSTANCE);
         m.checkNotNullExpressionValue(observableJ, "Observable\n        .comb…\n            })\n        )");
-        Observable<Map<String, Object>> observableG2 = ObservableExtensionsKt.takeSingleUntilTimeout$default(observableJ, 0L, false, 3, null).G(AnalyticsTracker$getGameProperties$2.INSTANCE);
+        Observable<Map<String, Object>> observableG2 = ObservableExtensionsKt.takeSingleUntilTimeout$default(observableJ, 0L, false, 3, null).G(AnonymousClass2.INSTANCE);
         m.checkNotNullExpressionValue(observableG2, "Observable\n        .comb…NonNullValues()\n        }");
         return observableG2;
     }
@@ -772,31 +1214,31 @@ public final class AnalyticsTracker {
     }
 
     private final Map<String, Object> getStageChannelMetadata(long channelId) {
-        String strF;
+        String topic;
         String str;
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        Channel channel = storeStream$Companion.getChannels().getChannel(channelId);
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        Channel channel = companion.getChannels().getChannel(channelId);
         if (channel == null) {
             return null;
         }
         PermissionUtils permissionUtils = PermissionUtils.INSTANCE;
-        Map<Long, GuildRole> mapEmptyMap = (Map) a.c(channel, storeStream$Companion.getGuilds().getRoles());
+        Map<Long, GuildRole> mapEmptyMap = (Map) a.c(channel, companion.getGuilds().getRoles());
         if (mapEmptyMap == null) {
             mapEmptyMap = h0.emptyMap();
         }
         boolean zCanEveryoneRole = permissionUtils.canEveryoneRole(Permission.REQUEST_TO_SPEAK, channel, mapEmptyMap);
-        StageInstance stageInstanceForChannel = storeStream$Companion.getStageInstances().getStageInstanceForChannel(channelId);
+        StageInstance stageInstanceForChannel = companion.getStageInstances().getStageInstanceForChannel(channelId);
         Pair[] pairArr = new Pair[5];
-        pairArr[0] = o.to(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID, Long.valueOf(channelId));
-        pairArr[1] = o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(channel.getGuildId()));
-        if (stageInstanceForChannel == null || (strF = stageInstanceForChannel.getTopic()) == null) {
-            strF = "";
+        pairArr[0] = d0.o.to(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID, Long.valueOf(channelId));
+        pairArr[1] = d0.o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(channel.getGuildId()));
+        if (stageInstanceForChannel == null || (topic = stageInstanceForChannel.getTopic()) == null) {
+            topic = "";
         }
-        pairArr[2] = o.to(ModelAuditLogEntry.CHANGE_KEY_TOPIC, strF);
-        pairArr[3] = o.to("stage_instance_id", stageInstanceForChannel != null ? Long.valueOf(stageInstanceForChannel.getId()) : null);
-        pairArr[4] = o.to("request_to_speak_state", Integer.valueOf(zCanEveryoneRole ? StageAnalyticsRequestToSpeakState.REQUEST_TO_SPEAK_EVERYONE.getIntegerValue() : StageAnalyticsRequestToSpeakState.REQUEST_TO_SPEAK_NO_ONE.getIntegerValue()));
+        pairArr[2] = d0.o.to(ModelAuditLogEntry.CHANGE_KEY_TOPIC, topic);
+        pairArr[3] = d0.o.to("stage_instance_id", stageInstanceForChannel != null ? Long.valueOf(stageInstanceForChannel.getId()) : null);
+        pairArr[4] = d0.o.to("request_to_speak_state", Integer.valueOf(zCanEveryoneRole ? StageAnalyticsRequestToSpeakState.REQUEST_TO_SPEAK_EVERYONE.getIntegerValue() : StageAnalyticsRequestToSpeakState.REQUEST_TO_SPEAK_NO_ONE.getIntegerValue()));
         Map mapMutableMapOf = h0.mutableMapOf(pairArr);
-        RtcConnection$Metadata rtcConnectionMetadata = storeStream$Companion.getRtcConnection().getRtcConnectionMetadata();
+        RtcConnection.Metadata rtcConnectionMetadata = companion.getRtcConnection().getRtcConnectionMetadata();
         if (rtcConnectionMetadata != null && (str = rtcConnectionMetadata.mediaSessionId) != null) {
             mapMutableMapOf.put("media_session_id", str);
         }
@@ -806,7 +1248,7 @@ public final class AnalyticsTracker {
     public static /* synthetic */ void getTHROTTLE_SHORT$annotations() {
     }
 
-    public final AnalyticsUtils$Tracker getTracker() {
+    public final AnalyticsUtils.Tracker getTracker() {
         return tracker;
     }
 
@@ -836,7 +1278,7 @@ public final class AnalyticsTracker {
                 }
             }
         }
-        Map<String, Object> mapMutableMapOf = h0.mutableMapOf(o.to(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID, Long.valueOf(channel.getId())), o.to("channel_type", Integer.valueOf(channel.getType())), o.to("voice_state_count", Integer.valueOf(i)), o.to("video_stream_count", Integer.valueOf(i2)));
+        Map<String, Object> mapMutableMapOf = h0.mutableMapOf(d0.o.to(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID, Long.valueOf(channel.getId())), d0.o.to("channel_type", Integer.valueOf(channel.getType())), d0.o.to("voice_state_count", Integer.valueOf(i)), d0.o.to("video_stream_count", Integer.valueOf(i2)));
         long guildId = channel.getGuildId();
         if (guildId > 0) {
             mapMutableMapOf.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId));
@@ -854,22 +1296,22 @@ public final class AnalyticsTracker {
     public final void giftResolved(ModelGift gift) {
         m.checkNotNullParameter(gift, "gift");
         ModelStoreListing storeListing = gift.getStoreListing();
-        tracker.track("gift_code_resolved", h0.plus(toProperties(storeListing != null ? storeListing.getSku() : null), h0.mapOf(o.to("gift_code", gift.getCode()), o.to("gift_code_max_uses", Integer.valueOf(gift.getMaxUses())), o.to("resolved", Boolean.TRUE))));
+        tracker.track("gift_code_resolved", h0.plus(toProperties(storeListing != null ? storeListing.getSku() : null), h0.mapOf(d0.o.to("gift_code", gift.getCode()), d0.o.to("gift_code_max_uses", Integer.valueOf(gift.getMaxUses())), d0.o.to("resolved", Boolean.TRUE))));
     }
 
     public final void giftResolvedFailed(String giftCode) {
         m.checkNotNullParameter(giftCode, "giftCode");
-        tracker.track("gift_code_resolved", h0.mapOf(o.to("gift_code", giftCode), o.to("resolved", Boolean.FALSE)));
+        tracker.track("gift_code_resolved", h0.mapOf(d0.o.to("gift_code", giftCode), d0.o.to("resolved", Boolean.FALSE)));
     }
 
-    public static /* synthetic */ void guildBoostPromotionClosed$default(AnalyticsTracker analyticsTracker, long j, Traits$Location traits$Location, Long l, int i, Object obj) {
+    public static /* synthetic */ void guildBoostPromotionClosed$default(AnalyticsTracker analyticsTracker, long j, Traits.Location location, Long l, int i, Object obj) {
         if ((i & 4) != 0) {
             l = null;
         }
-        analyticsTracker.guildBoostPromotionClosed(j, traits$Location, l);
+        analyticsTracker.guildBoostPromotionClosed(j, location, l);
     }
 
-    public final void guildBoostPromotionClosed(long guildId, Traits$Location locationTrait, Long channelId) {
+    public final void guildBoostPromotionClosed(long guildId, Traits.Location locationTrait, Long channelId) {
         m.checkNotNullParameter(locationTrait, "locationTrait");
         HashMap map = new HashMap();
         map.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId));
@@ -880,14 +1322,14 @@ public final class AnalyticsTracker {
         tracker.track("premium_guild_promotion_closed", map);
     }
 
-    public static /* synthetic */ void guildBoostPromotionOpened$default(AnalyticsTracker analyticsTracker, long j, Traits$Location traits$Location, Long l, int i, Object obj) {
+    public static /* synthetic */ void guildBoostPromotionOpened$default(AnalyticsTracker analyticsTracker, long j, Traits.Location location, Long l, int i, Object obj) {
         if ((i & 4) != 0) {
             l = null;
         }
-        analyticsTracker.guildBoostPromotionOpened(j, traits$Location, l);
+        analyticsTracker.guildBoostPromotionOpened(j, location, l);
     }
 
-    public final void guildBoostPromotionOpened(long guildId, Traits$Location locationTrait, Long channelId) {
+    public final void guildBoostPromotionOpened(long guildId, Traits.Location locationTrait, Long channelId) {
         m.checkNotNullParameter(locationTrait, "locationTrait");
         HashMap map = new HashMap();
         map.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId));
@@ -903,16 +1345,16 @@ public final class AnalyticsTracker {
     }
 
     public final void guildCreationIntentSelected(Boolean isCommunity) {
-        AnalyticsUtils$Tracker analyticsUtils$Tracker = tracker;
+        AnalyticsUtils.Tracker tracker2 = tracker;
         Pair[] pairArr = new Pair[2];
-        pairArr[0] = o.to("skipped", Boolean.valueOf(isCommunity == null));
-        pairArr[1] = o.to("is_community", Boolean.valueOf(isCommunity != null ? isCommunity.booleanValue() : false));
-        analyticsUtils$Tracker.track("guild_creation_intent_selected", h0.mapOf(pairArr));
+        pairArr[0] = d0.o.to("skipped", Boolean.valueOf(isCommunity == null));
+        pairArr[1] = d0.o.to("is_community", Boolean.valueOf(isCommunity != null ? isCommunity.booleanValue() : false));
+        tracker2.track("guild_creation_intent_selected", h0.mapOf(pairArr));
     }
 
     public static final void guildExperimentTriggered(String name, int revision, int bucket, long guildId) {
         m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        tracker.track("experiment_guild_triggered", h0.mutableMapOf(o.to(ModelAuditLogEntry.CHANGE_KEY_NAME, name), o.to("revision", Integer.valueOf(revision)), o.to("bucket", Integer.valueOf(bucket)), o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId))));
+        tracker.track("experiment_guild_triggered", h0.mutableMapOf(d0.o.to(ModelAuditLogEntry.CHANGE_KEY_NAME, name), d0.o.to("revision", Integer.valueOf(revision)), d0.o.to("bucket", Integer.valueOf(bucket)), d0.o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId))));
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -925,25 +1367,25 @@ public final class AnalyticsTracker {
 
     public final void guildRoleSubscriptionUpsellOpened(long guildRoleSubscriptionGroupListingId, List<Long> guildRoleSubscriptionTierListingIds, boolean hasUserActiveSubscriptions, String location) {
         m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        AnalyticsUtils$Tracker analyticsUtils$Tracker = tracker;
+        AnalyticsUtils.Tracker tracker2 = tracker;
         TrackRoleSubscriptionListingUpsellPageViewedV3 trackRoleSubscriptionListingUpsellPageViewedV3 = new TrackRoleSubscriptionListingUpsellPageViewedV3(Long.valueOf(guildRoleSubscriptionGroupListingId), guildRoleSubscriptionTierListingIds, Boolean.valueOf(hasUserActiveSubscriptions));
         trackRoleSubscriptionListingUpsellPageViewedV3.e(new TrackBase(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, location, null, null, null, null, null, null, null, null, null, null, null, null, -1, -1073741825, 2047));
-        analyticsUtils$Tracker.track(trackRoleSubscriptionListingUpsellPageViewedV3);
+        tracker2.track(trackRoleSubscriptionListingUpsellPageViewedV3);
     }
 
     public static final void guildTemplateResolveFailed(String guildTemplateCode) {
         m.checkNotNullParameter(guildTemplateCode, "guildTemplateCode");
-        tracker.track("guild_template_resolved", h0.mapOf(o.to("resolved", Boolean.FALSE), o.to("guild_template_code", guildTemplateCode)));
+        tracker.track("guild_template_resolved", h0.mapOf(d0.o.to("resolved", Boolean.FALSE), d0.o.to("guild_template_code", guildTemplateCode)));
     }
 
     public final void guildTemplateResolved(ModelGuildTemplate guildTemplate) {
         m.checkNotNullParameter(guildTemplate, "guildTemplate");
-        tracker.track("guild_template_resolved", h0.mapOf(o.to("resolved", Boolean.TRUE), o.to("guild_template_code", guildTemplate.getCode()), o.to("guild_template_name", guildTemplate.getName()), o.to("guild_template_description", guildTemplate.getDescription()), o.to("guild_template_guild_id", Long.valueOf(guildTemplate.getSourceGuildId()))));
+        tracker.track("guild_template_resolved", h0.mapOf(d0.o.to("resolved", Boolean.TRUE), d0.o.to("guild_template_code", guildTemplate.getCode()), d0.o.to("guild_template_name", guildTemplate.getName()), d0.o.to("guild_template_description", guildTemplate.getDescription()), d0.o.to("guild_template_guild_id", Long.valueOf(guildTemplate.getSourceGuildId()))));
     }
 
     public final void guildViewed(long guildId, Function0<? extends Map<String, ? extends Object>> lazyPropertyProvider) {
         m.checkNotNullParameter(lazyPropertyProvider, "lazyPropertyProvider");
-        tracker.track(o.to("guild_viewed", Long.valueOf(guildId)), 900000L, new AnalyticsTracker$guildViewed$1(lazyPropertyProvider));
+        tracker.track(d0.o.to("guild_viewed", Long.valueOf(guildId)), 900000L, new AnonymousClass1(lazyPropertyProvider));
     }
 
     public final void impressionInviteAccept(String inviteCode) {
@@ -994,7 +1436,7 @@ public final class AnalyticsTracker {
 
     public static final void inviteOpened(String inviteCode) {
         m.checkNotNullParameter(inviteCode, "inviteCode");
-        tracker.track("invite_opened", g0.mapOf(o.to("invite_code", inviteCode)));
+        tracker.track("invite_opened", g0.mapOf(d0.o.to("invite_code", inviteCode)));
     }
 
     public static /* synthetic */ void inviteResolveFailed$default(String str, String str2, String str3, Integer num, int i, Object obj) {
@@ -1010,14 +1452,14 @@ public final class AnalyticsTracker {
     public static final void inviteResolveFailed(String inviteCode, String location, String errorMessage, Integer errorCode) {
         m.checkNotNullParameter(inviteCode, "inviteCode");
         m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        AnalyticsUtils$Tracker analyticsUtils$Tracker = tracker;
-        analyticsUtils$Tracker.track("resolve_invite", CollectionExtensionsKt.filterNonNullValues(h0.mapOf(o.to(ModelAuditLogEntry.CHANGE_KEY_CODE, inviteCode), o.to("resolved", Boolean.FALSE), o.to("authenticated", Boolean.valueOf(analyticsUtils$Tracker.isAuthed$app_productionGoogleRelease())), o.to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, location), o.to("error_message", errorMessage), o.to("error_code", errorCode))));
+        AnalyticsUtils.Tracker tracker2 = tracker;
+        tracker2.track("resolve_invite", CollectionExtensionsKt.filterNonNullValues(h0.mapOf(d0.o.to(ModelAuditLogEntry.CHANGE_KEY_CODE, inviteCode), d0.o.to("resolved", Boolean.FALSE), d0.o.to("authenticated", Boolean.valueOf(tracker2.isAuthed$app_productionGoogleRelease())), d0.o.to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, location), d0.o.to("error_message", errorMessage), d0.o.to("error_code", errorCode))));
     }
 
     public final void inviteResolved(ModelInvite invite, String location) {
         m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        AnalyticsUtils$Tracker analyticsUtils$Tracker = tracker;
-        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(o.to("resolved", Boolean.TRUE), o.to("authenticated", Boolean.valueOf(analyticsUtils$Tracker.isAuthed$app_productionGoogleRelease())), o.to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, location));
+        AnalyticsUtils.Tracker tracker2 = tracker;
+        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(d0.o.to("resolved", Boolean.TRUE), d0.o.to("authenticated", Boolean.valueOf(tracker2.isAuthed$app_productionGoogleRelease())), d0.o.to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, location));
         if (invite != null) {
             String str = invite.code;
             m.checkNotNullExpressionValue(str, "invite.code");
@@ -1036,7 +1478,7 @@ public final class AnalyticsTracker {
                 mapMutableMapOf.put(ModelAuditLogEntry.CHANGE_KEY_INVITER_ID, Long.valueOf(inviter.getId()));
             }
         }
-        analyticsUtils$Tracker.track("resolve_invite", mapMutableMapOf);
+        tracker2.track("resolve_invite", mapMutableMapOf);
     }
 
     public final void inviteSent(ModelInvite invite, Map<String, ? extends Object> snapshotProperties) {
@@ -1090,13 +1532,13 @@ public final class AnalyticsTracker {
             arrayList2.add(Long.valueOf(((com.discord.models.user.User) it3.next()).getId()));
         }
         listArr[1] = arrayList2;
-        Observable<R> observableG = StoreStream.Companion.getUserRelationships().observe(u.distinct(d0.t.o.flatten(n.listOf((Object[]) listArr)))).G(AnalyticsTracker$inviteSuggestionOpened$1.INSTANCE);
+        Observable<R> observableG = StoreStream.INSTANCE.getUserRelationships().observe(u.distinct(d0.t.o.flatten(n.listOf((Object[]) listArr)))).G(AnonymousClass1.INSTANCE);
         m.checkNotNullExpressionValue(observableG, "StoreStream\n        .get…         }.keys\n        }");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.computationLatest(ObservableExtensionsKt.takeSingleUntilTimeout$default(observableG, 0L, false, 3, null)), AnalyticsTracker.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnalyticsTracker$inviteSuggestionOpened$2(channelSuggestions, userSuggestions, guildId), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.computationLatest(ObservableExtensionsKt.takeSingleUntilTimeout$default(observableG, 0L, false, 3, null)), AnalyticsTracker.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(channelSuggestions, userSuggestions, guildId), 62, (Object) null);
     }
 
     public final void joinGuildViewed() {
-        AnalyticsUtils$Tracker.track$default(tracker, "join_guild_viewed", null, 2, null);
+        AnalyticsUtils.Tracker.track$default(tracker, "join_guild_viewed", null, 2, null);
     }
 
     public final void launchGame(String gameName) {
@@ -1109,7 +1551,7 @@ public final class AnalyticsTracker {
 
     public final void loginAttempt(boolean isSuccessful) {
         if (isSuccessful) {
-            AnalyticsTracker$AdjustEventTracker.INSTANCE.trackLogin();
+            AdjustEventTracker.INSTANCE.trackLogin();
         }
     }
 
@@ -1156,11 +1598,11 @@ public final class AnalyticsTracker {
     }
 
     public final void nameSubmitted(int numWords, int numChars) {
-        tracker.track("name_submitted", h0.mapOf(o.to("num_words", Integer.valueOf(numWords)), o.to("num_chars", Integer.valueOf(numChars))));
+        tracker.track("name_submitted", h0.mapOf(d0.o.to("num_words", Integer.valueOf(numWords)), d0.o.to("num_chars", Integer.valueOf(numChars))));
     }
 
     public static final void nearbyConnected() {
-        AnalyticsUtils$Tracker.track$default(tracker, "friend_add_nearby_connected", null, 2, null);
+        AnalyticsUtils.Tracker.track$default(tracker, "friend_add_nearby_connected", null, 2, null);
     }
 
     public static /* synthetic */ void newUserOnboarding$default(AnalyticsTracker analyticsTracker, String str, String str2, String str3, Long l, boolean z2, int i, Object obj) {
@@ -1172,7 +1614,7 @@ public final class AnalyticsTracker {
 
     public final void newUserOnboarding(String flowType, String fromStep, String toStep, Long fromStepStartTime, boolean skip) {
         a.q0(flowType, "flowType", fromStep, "fromStep", toStep, "toStep");
-        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(o.to("flow_type", flowType), o.to("from_step", fromStep), o.to("to_step", toStep), o.to("skip", Boolean.valueOf(skip)));
+        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(d0.o.to("flow_type", flowType), d0.o.to("from_step", fromStep), d0.o.to("to_step", toStep), d0.o.to("skip", Boolean.valueOf(skip)));
         if (fromStepStartTime != null) {
             fromStepStartTime.longValue();
             mapMutableMapOf.put("seconds_on_from_step", Long.valueOf(ClockFactory.get().currentTimeMillis() - fromStepStartTime.longValue()));
@@ -1180,17 +1622,17 @@ public final class AnalyticsTracker {
         tracker.track("nuo_transition", mapMutableMapOf);
     }
 
-    public final void notificationPermissionStatus(Context context, NotificationClient$SettingsV2 notificationSettings) {
+    public final void notificationPermissionStatus(Context context, NotificationClient.SettingsV2 notificationSettings) {
         m.checkNotNullParameter(context, "context");
         m.checkNotNullParameter(notificationSettings, "notificationSettings");
-        tracker.track("notification_permission_status", CollectionExtensionsKt.filterNonNullValues(h0.mapOf(o.to("os_enabled", Boolean.valueOf(NotificationManagerCompat.from(context).areNotificationsEnabled())), o.to("foreground_app_enabled", Boolean.valueOf(notificationSettings.isEnabled())), o.to("background_app_enabled", Boolean.valueOf(notificationSettings.isEnabledInApp())))));
+        tracker.track("notification_permission_status", CollectionExtensionsKt.filterNonNullValues(h0.mapOf(d0.o.to("os_enabled", Boolean.valueOf(NotificationManagerCompat.from(context).areNotificationsEnabled())), d0.o.to("foreground_app_enabled", Boolean.valueOf(notificationSettings.isEnabled())), d0.o.to("background_app_enabled", Boolean.valueOf(notificationSettings.isEnabledInApp())))));
     }
 
     public final void notificationSettingsUpdated(ModelNotificationSettings userGuildSettings, Channel channel) {
         boolean z2;
         Object next;
         ModelMuteConfig muteConfig;
-        ModelNotificationSettings$ChannelOverride modelNotificationSettings$ChannelOverride;
+        ModelNotificationSettings.ChannelOverride channelOverride;
         m.checkNotNullParameter(userGuildSettings, "userGuildSettings");
         HashMap map = new HashMap();
         map.put("update_type", userGuildSettings.getChannelOverrides() == null ? "guild" : "channel");
@@ -1203,7 +1645,7 @@ public final class AnalyticsTracker {
         map.put("guild_receive_mobile_push", Boolean.valueOf(userGuildSettings.isMobilePush()));
         map.put("guild_message_notification_settings", getAnalyticsValueForNotificationFrequency(Integer.valueOf(userGuildSettings.getMessageNotifications())));
         map.put("parent_id", channel != null ? Long.valueOf(channel.getParentId()) : null);
-        List<ModelNotificationSettings$ChannelOverride> channelOverrides = userGuildSettings.getChannelOverrides();
+        List<ModelNotificationSettings.ChannelOverride> channelOverrides = userGuildSettings.getChannelOverrides();
         m.checkNotNullExpressionValue(channelOverrides, "userGuildSettings.channelOverrides");
         Iterator<T> it = channelOverrides.iterator();
         do {
@@ -1213,13 +1655,13 @@ public final class AnalyticsTracker {
                 break;
             } else {
                 next = it.next();
-                modelNotificationSettings$ChannelOverride = (ModelNotificationSettings$ChannelOverride) next;
-                m.checkNotNullExpressionValue(modelNotificationSettings$ChannelOverride, "it");
+                channelOverride = (ModelNotificationSettings.ChannelOverride) next;
+                m.checkNotNullExpressionValue(channelOverride, "it");
             }
-        } while (!(channel != null && modelNotificationSettings$ChannelOverride.getChannelId() == channel.getId()));
-        ModelNotificationSettings$ChannelOverride modelNotificationSettings$ChannelOverride2 = (ModelNotificationSettings$ChannelOverride) next;
-        Boolean boolValueOf = modelNotificationSettings$ChannelOverride2 != null ? Boolean.valueOf(modelNotificationSettings$ChannelOverride2.isMuted()) : null;
-        Integer numValueOf = modelNotificationSettings$ChannelOverride2 != null ? Integer.valueOf(modelNotificationSettings$ChannelOverride2.getMessageNotifications()) : null;
+        } while (!(channel != null && channelOverride.getChannelId() == channel.getId()));
+        ModelNotificationSettings.ChannelOverride channelOverride2 = (ModelNotificationSettings.ChannelOverride) next;
+        Boolean boolValueOf = channelOverride2 != null ? Boolean.valueOf(channelOverride2.isMuted()) : null;
+        Integer numValueOf = channelOverride2 != null ? Integer.valueOf(channelOverride2.getMessageNotifications()) : null;
         if (channel != null) {
             if ((channel.getGuildId() == -1 || channel.getGuildId() == 0) ? false : true) {
                 if (!m.areEqual(boolValueOf, Boolean.TRUE) && numValueOf == null) {
@@ -1229,7 +1671,7 @@ public final class AnalyticsTracker {
             }
         }
         map.put("channel_is_muted", boolValueOf);
-        if (modelNotificationSettings$ChannelOverride2 != null && (muteConfig = modelNotificationSettings$ChannelOverride2.getMuteConfig()) != null) {
+        if (channelOverride2 != null && (muteConfig = channelOverride2.getMuteConfig()) != null) {
             endTimeMs = muteConfig.getEndTimeMs();
         }
         map.put("channel_muted_until", endTimeMs);
@@ -1238,7 +1680,7 @@ public final class AnalyticsTracker {
     }
 
     public final void oauth2AuthorizedViewed(long applicationId) {
-        tracker.track("oauth2_authorize_viewed", g0.mapOf(o.to(ModelAuditLogEntry.CHANGE_KEY_APPLICATION_ID, Long.valueOf(applicationId))));
+        tracker.track("oauth2_authorize_viewed", g0.mapOf(d0.o.to(ModelAuditLogEntry.CHANGE_KEY_APPLICATION_ID, Long.valueOf(applicationId))));
     }
 
     public final void openCallFeedbackSheet(long guildId, long channelId, int channelType) {
@@ -1260,7 +1702,7 @@ public final class AnalyticsTracker {
         } else {
             str = z3 ? " (Soft Upsell)" : "";
         }
-        tracker.track("open_popout", h0.plus(channelProperties, h0.mapOf(o.to("type", "Custom Emoji Popout" + str), o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId)), o.to("emoji_id", Long.valueOf(emojiId)))));
+        tracker.track("open_popout", h0.plus(channelProperties, h0.mapOf(d0.o.to("type", "Custom Emoji Popout" + str), d0.o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId)), d0.o.to("emoji_id", Long.valueOf(emojiId)))));
     }
 
     public static final void openGiftModal(ModelGift gift, Channel channel, String location) {
@@ -1273,7 +1715,7 @@ public final class AnalyticsTracker {
         if (channel == null || (mapEmptyMap = AnalyticsUtils.INSTANCE.getProperties$app_productionGoogleRelease(channel)) == null) {
             mapEmptyMap = h0.emptyMap();
         }
-        tracker.track("open_modal", h0.plus(h0.plus(h0.mapOf(o.to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, location), o.to("type", "gift")), mapEmptyMap), properties));
+        tracker.track("open_modal", h0.plus(h0.plus(h0.mapOf(d0.o.to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, location), d0.o.to("type", "gift")), mapEmptyMap), properties));
     }
 
     public final void openGuildProfileSheet(long guildId) {
@@ -1284,7 +1726,7 @@ public final class AnalyticsTracker {
     }
 
     public final void openGuildScheduledEventSheet(long guildId, int numEvents) {
-        tracker.track("open_modal", h0.mapOf(o.to("type", "Guild Events Modal"), o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId)), o.to("guild_events_count", Integer.valueOf(numEvents))));
+        tracker.track("open_modal", h0.mapOf(d0.o.to("type", "Guild Events Modal"), d0.o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId)), d0.o.to("guild_events_count", Integer.valueOf(numEvents))));
     }
 
     public static /* synthetic */ void openModal$default(String str, String str2, Long l, int i, Object obj) {
@@ -1297,7 +1739,7 @@ public final class AnalyticsTracker {
     public static final void openModal(String modalName, String location, Long guildId) {
         m.checkNotNullParameter(modalName, "modalName");
         m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(o.to("location_section", location), o.to("type", modalName));
+        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(d0.o.to("location_section", location), d0.o.to("type", modalName));
         if (guildId != null) {
             guildId.longValue();
             mapMutableMapOf.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, String.valueOf(guildId.longValue()));
@@ -1308,12 +1750,12 @@ public final class AnalyticsTracker {
     public final void openPopout(String popoutName, String location) {
         m.checkNotNullParameter(popoutName, "popoutName");
         m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        tracker.track("open_popout", h0.mapOf(o.to("location_section", location), o.to("type", popoutName)));
+        tracker.track("open_popout", h0.mapOf(d0.o.to("location_section", location), d0.o.to("type", popoutName)));
     }
 
     public final void openUnicodeEmojiPopout(long guildId, Map<String, ? extends Object> channelProperties) {
         m.checkNotNullParameter(channelProperties, "channelProperties");
-        tracker.track("open_popout", h0.plus(channelProperties, h0.mapOf(o.to("type", "Standard Emoji Popout"), o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId)))));
+        tracker.track("open_popout", h0.plus(channelProperties, h0.mapOf(d0.o.to("type", "Standard Emoji Popout"), d0.o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId)))));
     }
 
     public static /* synthetic */ void openUserSheet$default(AnalyticsTracker analyticsTracker, boolean z2, String str, ActivityPlatform activityPlatform, GuildMember guildMember, int i, Object obj) {
@@ -1356,7 +1798,7 @@ public final class AnalyticsTracker {
         tracker.track("open_popout", map);
     }
 
-    public final void openUserStatusSheet(Traits$Location locationTrait, boolean hasCustomStatus) {
+    public final void openUserStatusSheet(Traits.Location locationTrait, boolean hasCustomStatus) {
         m.checkNotNullParameter(locationTrait, "locationTrait");
         HashMap map = new HashMap();
         locationTrait.serializeTo(map);
@@ -1366,24 +1808,24 @@ public final class AnalyticsTracker {
     }
 
     public static final void overlayToggled(boolean isEnabled) {
-        tracker.track("mobile_overlay_toggled", g0.mapOf(o.to("enabled", Boolean.valueOf(isEnabled))));
+        tracker.track("mobile_overlay_toggled", g0.mapOf(d0.o.to("enabled", Boolean.valueOf(isEnabled))));
     }
 
     public final void overlayVoiceClosed(Map<String, ? extends Object> properties) {
         m.checkNotNullParameter(properties, "properties");
-        tracker.track("mobile_overlay_closed", h0.plus(g0.mapOf(o.to("type", "voice")), properties));
+        tracker.track("mobile_overlay_closed", h0.plus(g0.mapOf(d0.o.to("type", "voice")), properties));
     }
 
     public final void overlayVoiceOpened(Map<String, ? extends Object> properties) {
         m.checkNotNullParameter(properties, "properties");
-        tracker.track("mobile_overlay_opened", h0.plus(g0.mapOf(o.to("type", "voice")), properties));
+        tracker.track("mobile_overlay_opened", h0.plus(g0.mapOf(d0.o.to("type", "voice")), properties));
     }
 
-    public static /* synthetic */ void paymentFlowCompleted$default(AnalyticsTracker analyticsTracker, Traits$Location traits$Location, Traits$Subscription traits$Subscription, Traits$Payment traits$Payment, Traits$StoreSku traits$StoreSku, String str, int i, Object obj) {
-        analyticsTracker.paymentFlowCompleted(traits$Location, (i & 2) != 0 ? null : traits$Subscription, (i & 4) != 0 ? null : traits$Payment, (i & 8) != 0 ? null : traits$StoreSku, (i & 16) != 0 ? null : str);
+    public static /* synthetic */ void paymentFlowCompleted$default(AnalyticsTracker analyticsTracker, Traits.Location location, Traits.Subscription subscription, Traits.Payment payment, Traits.StoreSku storeSku, String str, int i, Object obj) {
+        analyticsTracker.paymentFlowCompleted(location, (i & 2) != 0 ? null : subscription, (i & 4) != 0 ? null : payment, (i & 8) != 0 ? null : storeSku, (i & 16) != 0 ? null : str);
     }
 
-    public final void paymentFlowCompleted(Traits$Location locationTrait, Traits$Subscription subscriptionTrait, Traits$Payment paymentTrait, Traits$StoreSku storeSkuTrait, String paymentType) {
+    public final void paymentFlowCompleted(Traits.Location locationTrait, Traits.Subscription subscriptionTrait, Traits.Payment paymentTrait, Traits.StoreSku storeSkuTrait, String paymentType) {
         HashMap map = new HashMap();
         if (locationTrait != null) {
             locationTrait.serializeTo(map);
@@ -1403,20 +1845,20 @@ public final class AnalyticsTracker {
         tracker.track("payment_flow_completed", map);
     }
 
-    public static /* synthetic */ void paymentFlowFailed$default(AnalyticsTracker analyticsTracker, Traits$Location traits$Location, Traits$Subscription traits$Subscription, Traits$StoreSku traits$StoreSku, Traits$Payment traits$Payment, int i, Object obj) {
+    public static /* synthetic */ void paymentFlowFailed$default(AnalyticsTracker analyticsTracker, Traits.Location location, Traits.Subscription subscription, Traits.StoreSku storeSku, Traits.Payment payment, int i, Object obj) {
         if ((i & 2) != 0) {
-            traits$Subscription = null;
+            subscription = null;
         }
         if ((i & 4) != 0) {
-            traits$StoreSku = null;
+            storeSku = null;
         }
         if ((i & 8) != 0) {
-            traits$Payment = null;
+            payment = null;
         }
-        analyticsTracker.paymentFlowFailed(traits$Location, traits$Subscription, traits$StoreSku, traits$Payment);
+        analyticsTracker.paymentFlowFailed(location, subscription, storeSku, payment);
     }
 
-    public final void paymentFlowFailed(Traits$Location locationTrait, Traits$Subscription subscriptionTrait, Traits$StoreSku storeSkuTrait, Traits$Payment paymentTrait) {
+    public final void paymentFlowFailed(Traits.Location locationTrait, Traits.Subscription subscriptionTrait, Traits.StoreSku storeSkuTrait, Traits.Payment paymentTrait) {
         HashMap map = new HashMap();
         if (locationTrait != null) {
             locationTrait.serializeTo(map);
@@ -1433,20 +1875,20 @@ public final class AnalyticsTracker {
         tracker.track("payment_flow_failed", map);
     }
 
-    public static /* synthetic */ void paymentFlowStarted$default(AnalyticsTracker analyticsTracker, Traits$Location traits$Location, Traits$Subscription traits$Subscription, Traits$StoreSku traits$StoreSku, Traits$Payment traits$Payment, int i, Object obj) {
+    public static /* synthetic */ void paymentFlowStarted$default(AnalyticsTracker analyticsTracker, Traits.Location location, Traits.Subscription subscription, Traits.StoreSku storeSku, Traits.Payment payment, int i, Object obj) {
         if ((i & 2) != 0) {
-            traits$Subscription = null;
+            subscription = null;
         }
         if ((i & 4) != 0) {
-            traits$StoreSku = null;
+            storeSku = null;
         }
         if ((i & 8) != 0) {
-            traits$Payment = null;
+            payment = null;
         }
-        analyticsTracker.paymentFlowStarted(traits$Location, traits$Subscription, traits$StoreSku, traits$Payment);
+        analyticsTracker.paymentFlowStarted(location, subscription, storeSku, payment);
     }
 
-    public final void paymentFlowStarted(Traits$Location locationTrait, Traits$Subscription subscriptionTrait, Traits$StoreSku storeSkuTrait, Traits$Payment paymentTrait) {
+    public final void paymentFlowStarted(Traits.Location locationTrait, Traits.Subscription subscriptionTrait, Traits.StoreSku storeSkuTrait, Traits.Payment paymentTrait) {
         m.checkNotNullParameter(locationTrait, "locationTrait");
         HashMap map = new HashMap();
         locationTrait.serializeTo(map);
@@ -1462,15 +1904,15 @@ public final class AnalyticsTracker {
         tracker.track("payment_flow_started", map);
     }
 
-    public static /* synthetic */ void paymentFlowStep$default(AnalyticsTracker analyticsTracker, Traits$Location traits$Location, Traits$Subscription traits$Subscription, String str, String str2, Traits$StoreSku traits$StoreSku, Traits$Payment traits$Payment, int i, Object obj) {
-        analyticsTracker.paymentFlowStep(traits$Location, (i & 2) != 0 ? null : traits$Subscription, str, str2, (i & 16) != 0 ? null : traits$StoreSku, (i & 32) != 0 ? null : traits$Payment);
+    public static /* synthetic */ void paymentFlowStep$default(AnalyticsTracker analyticsTracker, Traits.Location location, Traits.Subscription subscription, String str, String str2, Traits.StoreSku storeSku, Traits.Payment payment, int i, Object obj) {
+        analyticsTracker.paymentFlowStep(location, (i & 2) != 0 ? null : subscription, str, str2, (i & 16) != 0 ? null : storeSku, (i & 32) != 0 ? null : payment);
     }
 
-    public final void paymentFlowStep(Traits$Location locationTrait, Traits$Subscription subscriptionTrait, String toStep, String fromStep, Traits$StoreSku storeSkuTrait, Traits$Payment paymentTrait) {
+    public final void paymentFlowStep(Traits.Location locationTrait, Traits.Subscription subscriptionTrait, String toStep, String fromStep, Traits.StoreSku storeSkuTrait, Traits.Payment paymentTrait) {
         m.checkNotNullParameter(locationTrait, "locationTrait");
         m.checkNotNullParameter(toStep, "toStep");
         m.checkNotNullParameter(fromStep, "fromStep");
-        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(o.to("to_step", toStep), o.to("from_step", fromStep));
+        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(d0.o.to("to_step", toStep), d0.o.to("from_step", fromStep));
         locationTrait.serializeTo(mapMutableMapOf);
         if (subscriptionTrait != null) {
             subscriptionTrait.serializeTo(mapMutableMapOf);
@@ -1495,15 +1937,15 @@ public final class AnalyticsTracker {
             }
             str = "denied";
         }
-        tracker.track("permissions_acked", h0.mapOf(o.to("type", permissionType), o.to("action", str)));
+        tracker.track("permissions_acked", h0.mapOf(d0.o.to("type", permissionType), d0.o.to("action", str)));
     }
 
     public final void permissionsRequested(String permissionType) {
         m.checkNotNullParameter(permissionType, "permissionType");
-        tracker.track("permissions_requested", g0.mapOf(o.to("type", permissionType)));
+        tracker.track("permissions_requested", g0.mapOf(d0.o.to("type", permissionType)));
     }
 
-    public final void premiumSettingsOpened(Traits$Location locationTrait) {
+    public final void premiumSettingsOpened(Traits.Location locationTrait) {
         m.checkNotNullParameter(locationTrait, "locationTrait");
         HashMap map = new HashMap();
         locationTrait.serializeTo(map);
@@ -1511,20 +1953,20 @@ public final class AnalyticsTracker {
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void premiumUpsellViewed$default(AnalyticsTracker analyticsTracker, AnalyticsTracker$PremiumUpsellType analyticsTracker$PremiumUpsellType, Traits$Location traits$Location, Map map, Traits$Source traits$Source, int i, Object obj) {
+    public static /* synthetic */ void premiumUpsellViewed$default(AnalyticsTracker analyticsTracker, PremiumUpsellType premiumUpsellType, Traits.Location location, Map map, Traits.Source source, int i, Object obj) {
         if ((i & 2) != 0) {
-            traits$Location = null;
+            location = null;
         }
         if ((i & 4) != 0) {
             map = h0.emptyMap();
         }
         if ((i & 8) != 0) {
-            traits$Source = null;
+            source = null;
         }
-        analyticsTracker.premiumUpsellViewed(analyticsTracker$PremiumUpsellType, traits$Location, map, traits$Source);
+        analyticsTracker.premiumUpsellViewed(premiumUpsellType, location, map, source);
     }
 
-    public final void premiumUpsellViewed(AnalyticsTracker$PremiumUpsellType type, Traits$Location locationTrait, Map<String, ? extends Object> properties, Traits$Source sourceTrait) {
+    public final void premiumUpsellViewed(PremiumUpsellType type, Traits.Location locationTrait, Map<String, ? extends Object> properties, Traits.Source sourceTrait) {
         m.checkNotNullParameter(type, "type");
         m.checkNotNullParameter(properties, "properties");
         Map<String, ? extends Object> mutableMap = h0.toMutableMap(properties);
@@ -1543,10 +1985,10 @@ public final class AnalyticsTracker {
     }
 
     public final void quickSwitcherOpen() {
-        tracker.track("quickswitcher_opened", g0.mapOf(o.to("source", "ANDROID_QUICK")));
+        tracker.track("quickswitcher_opened", g0.mapOf(d0.o.to("source", "ANDROID_QUICK")));
     }
 
-    public final void quickSwitcherSelect(WidgetGlobalSearchModel model, WidgetGlobalSearchModel$ItemDataPayload selected, int index) {
+    public final void quickSwitcherSelect(WidgetGlobalSearchModel model, WidgetGlobalSearchModel.ItemDataPayload selected, int index) {
         String str;
         m.checkNotNullParameter(model, "model");
         m.checkNotNullParameter(selected, "selected");
@@ -1562,23 +2004,23 @@ public final class AnalyticsTracker {
         } else {
             str = "GUILD";
         }
-        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(o.to("query_length", Integer.valueOf(model.getFilter().length())), o.to("query_mode", str), o.to("num_results_total", Integer.valueOf(model.getData().size())), o.to("selected_index", Integer.valueOf(index)));
-        if (selected instanceof WidgetGlobalSearchModel$ItemChannel) {
-            WidgetGlobalSearchModel$ItemChannel widgetGlobalSearchModel$ItemChannel = (WidgetGlobalSearchModel$ItemChannel) selected;
-            mapMutableMapOf.put("selected_channel_id", Long.valueOf(widgetGlobalSearchModel$ItemChannel.getChannel().getId()));
-            mapMutableMapOf.put("selected_type", widgetGlobalSearchModel$ItemChannel.getChannel().getType() == 3 ? "GROUP_DM" : "TEXT_CHANNEL");
-        } else if (selected instanceof WidgetGlobalSearchModel$ItemUser) {
-            mapMutableMapOf.put("selected_user_id", Long.valueOf(((WidgetGlobalSearchModel$ItemUser) selected).getUser().getId()));
+        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(d0.o.to("query_length", Integer.valueOf(model.getFilter().length())), d0.o.to("query_mode", str), d0.o.to("num_results_total", Integer.valueOf(model.getData().size())), d0.o.to("selected_index", Integer.valueOf(index)));
+        if (selected instanceof WidgetGlobalSearchModel.ItemChannel) {
+            WidgetGlobalSearchModel.ItemChannel itemChannel = (WidgetGlobalSearchModel.ItemChannel) selected;
+            mapMutableMapOf.put("selected_channel_id", Long.valueOf(itemChannel.getChannel().getId()));
+            mapMutableMapOf.put("selected_type", itemChannel.getChannel().getType() == 3 ? "GROUP_DM" : "TEXT_CHANNEL");
+        } else if (selected instanceof WidgetGlobalSearchModel.ItemUser) {
+            mapMutableMapOf.put("selected_user_id", Long.valueOf(((WidgetGlobalSearchModel.ItemUser) selected).getUser().getId()));
             mapMutableMapOf.put("selected_type", "USER");
         } else {
-            if (!(selected instanceof WidgetGlobalSearchModel$ItemGuild)) {
+            if (!(selected instanceof WidgetGlobalSearchModel.ItemGuild)) {
                 AppLog appLog = AppLog.g;
                 StringBuilder sbU = a.U("Unknown QuickSwitcher type: ");
                 sbU.append(selected.getType());
                 Logger.e$default(appLog, sbU.toString(), null, null, 6, null);
                 return;
             }
-            mapMutableMapOf.put("selected_guild_id", Long.valueOf(((WidgetGlobalSearchModel$ItemGuild) selected).getGuild().getId()));
+            mapMutableMapOf.put("selected_guild_id", Long.valueOf(((WidgetGlobalSearchModel.ItemGuild) selected).getGuild().getId()));
             mapMutableMapOf.put("selected_type", "GUILD");
         }
         tracker.track("quickswitcher_result_selected", mapMutableMapOf);
@@ -1615,12 +2057,12 @@ public final class AnalyticsTracker {
     }
 
     public final void registerViewed(ModelInvite invite) {
-        tracker.track("register_viewed", toProperties(invite, h0.mutableMapOf(o.to("is_unclaimed", Boolean.FALSE))));
+        tracker.track("register_viewed", toProperties(invite, h0.mutableMapOf(d0.o.to("is_unclaimed", Boolean.FALSE))));
     }
 
     public final void registered(boolean isSuccessful) {
         if (isSuccessful) {
-            AnalyticsTracker$AdjustEventTracker.INSTANCE.trackRegister();
+            AdjustEventTracker.INSTANCE.trackRegister();
         }
     }
 
@@ -1655,8 +2097,8 @@ public final class AnalyticsTracker {
         HashMap map = new HashMap();
         map.put("streamer_user_id", String.valueOf(stream.getOwnerId()));
         map.put("stream_channel_id", String.valueOf(stream.getChannelId()));
-        if (stream instanceof ModelApplicationStream$GuildStream) {
-            map.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, String.valueOf(((ModelApplicationStream$GuildStream) stream).getGuildId()));
+        if (stream instanceof ModelApplicationStream.GuildStream) {
+            map.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, String.valueOf(((ModelApplicationStream.GuildStream) stream).getGuildId()));
         }
         map.put("rating", rating != null ? rating.getAnalyticsValue() : null);
         map.put("media_session_id", mediaSessionId);
@@ -1692,7 +2134,7 @@ public final class AnalyticsTracker {
         openModal$default("App Store Ratings Prompt", "auto", null, 4, null);
     }
 
-    public final void searchResultSelected(SearchType searchType, Traits$Location locationTrait, Traits$Source sourceTrait, int totalResultsCount, Map<String, ? extends Object> properties) {
+    public final void searchResultSelected(SearchType searchType, Traits.Location locationTrait, Traits.Source sourceTrait, int totalResultsCount, Map<String, ? extends Object> properties) {
         m.checkNotNullParameter(searchType, "searchType");
         m.checkNotNullParameter(properties, "properties");
         LinkedHashMap linkedHashMap = new LinkedHashMap();
@@ -1707,7 +2149,7 @@ public final class AnalyticsTracker {
         tracker.track("search_result_selected", h0.plus(linkedHashMap, CollectionExtensionsKt.filterNonNullValues(properties)));
     }
 
-    public final void searchResultViewed(SearchType searchType, int totalResultsCount, Integer lockedResultsCount, Traits$Location locationTrait, Map<String, ? extends Object> properties, boolean throttle) {
+    public final void searchResultViewed(SearchType searchType, int totalResultsCount, Integer lockedResultsCount, Traits.Location locationTrait, Map<String, ? extends Object> properties, boolean throttle) {
         m.checkNotNullParameter(searchType, "searchType");
         m.checkNotNullParameter(properties, "properties");
         AnalyticsTracker$searchResultViewed$propertyProvider$1 analyticsTracker$searchResultViewed$propertyProvider$1 = new AnalyticsTracker$searchResultViewed$propertyProvider$1(searchType, totalResultsCount, lockedResultsCount, locationTrait, properties);
@@ -1718,7 +2160,7 @@ public final class AnalyticsTracker {
         }
     }
 
-    public final void searchResultsEmpty(SearchType searchType, Traits$Location locationTrait, Map<String, ? extends Object> properties, boolean throttle) {
+    public final void searchResultsEmpty(SearchType searchType, Traits.Location locationTrait, Map<String, ? extends Object> properties, boolean throttle) {
         m.checkNotNullParameter(searchType, "searchType");
         m.checkNotNullParameter(properties, "properties");
         AnalyticsTracker$searchResultsEmpty$propertyProvider$1 analyticsTracker$searchResultsEmpty$propertyProvider$1 = new AnalyticsTracker$searchResultsEmpty$propertyProvider$1(searchType, locationTrait, properties);
@@ -1729,14 +2171,14 @@ public final class AnalyticsTracker {
         }
     }
 
-    public static /* synthetic */ void searchStart$default(AnalyticsTracker analyticsTracker, SearchType searchType, Traits$Location traits$Location, Map map, boolean z2, int i, Object obj) {
+    public static /* synthetic */ void searchStart$default(AnalyticsTracker analyticsTracker, SearchType searchType, Traits.Location location, Map map, boolean z2, int i, Object obj) {
         if ((i & 8) != 0) {
             z2 = false;
         }
-        analyticsTracker.searchStart(searchType, traits$Location, map, z2);
+        analyticsTracker.searchStart(searchType, location, map, z2);
     }
 
-    public final void searchStart(SearchType searchType, Traits$Location locationTrait, Map<String, ? extends Object> properties, boolean throttle) {
+    public final void searchStart(SearchType searchType, Traits.Location locationTrait, Map<String, ? extends Object> properties, boolean throttle) {
         m.checkNotNullParameter(searchType, "searchType");
         m.checkNotNullParameter(properties, "properties");
         AnalyticsTracker$searchStart$propertyProvider$1 analyticsTracker$searchStart$propertyProvider$1 = new AnalyticsTracker$searchStart$propertyProvider$1(searchType, locationTrait, properties);
@@ -1758,7 +2200,7 @@ public final class AnalyticsTracker {
     public final void settingsPaneViewed(String settingsType, String pane, Map<String, ? extends Object> extraProperties) {
         m.checkNotNullParameter(settingsType, "settingsType");
         m.checkNotNullParameter(pane, "pane");
-        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(o.to("settings_type", settingsType), o.to("destination_pane", pane));
+        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(d0.o.to("settings_type", settingsType), d0.o.to("destination_pane", pane));
         if (extraProperties != null) {
             mapMutableMapOf.putAll(extraProperties);
         }
@@ -1770,32 +2212,32 @@ public final class AnalyticsTracker {
     }
 
     private final void showTutorial(String tutorial) {
-        tracker.track("show_tutorial", g0.mapOf(o.to("tutorial", tutorial)));
+        tracker.track("show_tutorial", g0.mapOf(d0.o.to("tutorial", tutorial)));
     }
 
     public final void smartLockAutoLogin() {
-        AnalyticsUtils$Tracker.track$default(tracker, "smart_lock_auto_login", null, 2, null);
+        AnalyticsUtils.Tracker.track$default(tracker, "smart_lock_auto_login", null, 2, null);
     }
 
     public final void smartLockLogin() {
-        AnalyticsUtils$Tracker.track$default(tracker, "smart_lock_login", null, 2, null);
+        AnalyticsUtils.Tracker.track$default(tracker, "smart_lock_login", null, 2, null);
     }
 
     public final void smartLockLoginCredentialsFailed() {
-        AnalyticsUtils$Tracker.track$default(tracker, "smart_lock_login_credentials_failed", null, 2, null);
+        AnalyticsUtils.Tracker.track$default(tracker, "smart_lock_login_credentials_failed", null, 2, null);
     }
 
     public final void stickerPackCategorySelected(long stickerPackId) {
         expressionPickerCategorySelected$default(this, Long.valueOf(stickerPackId), null, "sticker", 2, null);
     }
 
-    public final void stickerPackViewAllViewed(Sticker sticker, String type, String location, Traits$Location locationTrait) {
+    public final void stickerPackViewAllViewed(Sticker sticker, String type, String location, Traits.Location locationTrait) {
         m.checkNotNullParameter(sticker, "sticker");
         m.checkNotNullParameter(type, "type");
         m.checkNotNullParameter(locationTrait, "locationTrait");
         Long packId = sticker.getPackId();
         m.checkNotNull(packId);
-        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(o.to("sticker_id", Long.valueOf(sticker.getId())), o.to("sticker_pack_id", packId), o.to("type", type));
+        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(d0.o.to("sticker_id", Long.valueOf(sticker.getId())), d0.o.to("sticker_pack_id", packId), d0.o.to("type", type));
         if (location != null) {
             mapMutableMapOf.put(ModelAuditLogEntry.CHANGE_KEY_LOCATION, location);
         }
@@ -1803,15 +2245,15 @@ public final class AnalyticsTracker {
         tracker.track("open_popout", mapMutableMapOf);
     }
 
-    public final void stickerPopoutOpened(long stickerPackId, String location, Traits$Location locationTrait) {
+    public final void stickerPopoutOpened(long stickerPackId, String location, Traits.Location locationTrait) {
         m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
         m.checkNotNullParameter(locationTrait, "locationTrait");
-        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(o.to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, location), o.to("sticker_pack_id", Long.valueOf(stickerPackId)), o.to("type", "Sticker Upsell Sheet"));
+        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(d0.o.to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, location), d0.o.to("sticker_pack_id", Long.valueOf(stickerPackId)), d0.o.to("type", "Sticker Upsell Sheet"));
         locationTrait.serializeTo(mapMutableMapOf);
         tracker.track("open_popout", mapMutableMapOf);
     }
 
-    public final void stickerSuggestionsEnabledToggled(boolean enabled, Traits$Location location) {
+    public final void stickerSuggestionsEnabledToggled(boolean enabled, Traits.Location location) {
         LinkedHashMap linkedHashMap = new LinkedHashMap();
         linkedHashMap.put("enabled", Boolean.valueOf(enabled));
         if (location != null) {
@@ -1829,13 +2271,13 @@ public final class AnalyticsTracker {
 
     public final void textInVoiceOpened(long channelId, Function0<? extends Map<String, ? extends Object>> lazyPropertyProvider) {
         m.checkNotNullParameter(lazyPropertyProvider, "lazyPropertyProvider");
-        tracker.track(o.to("text_in_voice_opened", Long.valueOf(channelId)), 900000L, new AnalyticsTracker$textInVoiceOpened$1(lazyPropertyProvider));
+        tracker.track(d0.o.to("text_in_voice_opened", Long.valueOf(channelId)), 900000L, new AnonymousClass1(lazyPropertyProvider));
     }
 
     public final void threadBrowserTabChanged(Map<String, ? extends Object> snapshotProperties, String type) {
         m.checkNotNullParameter(snapshotProperties, "snapshotProperties");
         m.checkNotNullParameter(type, "type");
-        tracker.track("thread_browser_tab_changed", CollectionExtensionsKt.filterNonNullValues(h0.plus(snapshotProperties, g0.mapOf(o.to("type", type)))));
+        tracker.track("thread_browser_tab_changed", CollectionExtensionsKt.filterNonNullValues(h0.plus(snapshotProperties, g0.mapOf(d0.o.to("type", type)))));
     }
 
     public final void threadCreationStarted(long channelId, long guildId, String location) {
@@ -1869,12 +2311,12 @@ public final class AnalyticsTracker {
         return null;
     }
 
-    private final Map<String, Object> toProperties(MediaEngine$AudioInfo mediaEngine$AudioInfo, Map<String, Object> map) {
-        if (mediaEngine$AudioInfo == null) {
+    private final Map<String, Object> toProperties(MediaEngine.AudioInfo audioInfo, Map<String, Object> map) {
+        if (audioInfo == null) {
             return map;
         }
-        map.put("audio_subsystem", mediaEngine$AudioInfo.audioSubsystem);
-        map.put("audio_layer", mediaEngine$AudioInfo.audioLayer);
+        map.put("audio_subsystem", audioInfo.audioSubsystem);
+        map.put("audio_layer", audioInfo.audioLayer);
         return map;
     }
 
@@ -1887,10 +2329,10 @@ public final class AnalyticsTracker {
     public final void trackConnectedAccountInitiated(String platformType, String location) {
         m.checkNotNullParameter(platformType, "platformType");
         m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        AnalyticsUtils$Tracker analyticsUtils$Tracker = tracker;
+        AnalyticsUtils.Tracker tracker2 = tracker;
         TrackConnectedAccountInitiated trackConnectedAccountInitiated = new TrackConnectedAccountInitiated(platformType);
         trackConnectedAccountInitiated.e(new TrackBase(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, location, null, null, null, null, null, null, null, null, null, null, null, null, -1, -1073741825, 2047));
-        analyticsUtils$Tracker.track(trackConnectedAccountInitiated);
+        tracker2.track(trackConnectedAccountInitiated);
     }
 
     public final void trackDismissibleContentDismissed(String type) {
@@ -1903,7 +2345,7 @@ public final class AnalyticsTracker {
     }
 
     public final void trackGuildIdentityMarketingSheet() {
-        tracker.track("tooltip_viewed", g0.mapOf(o.to("type", "per server identity tooltip")));
+        tracker.track("tooltip_viewed", g0.mapOf(d0.o.to("type", "per server identity tooltip")));
     }
 
     public final void trackReportIssueWithAutoMod(String decisionId, long messageId, CharSequence feedbackType, String content) {
@@ -1929,27 +2371,27 @@ public final class AnalyticsTracker {
     }
 
     public final void trackStartStageOpened(boolean canStartPublicStage, Long stageInstanceId, Long guildId) {
-        tracker.track("start_stage_opened", CollectionExtensionsKt.filterNonNullValues(h0.mapOf(o.to("can_start_public_stage", Boolean.valueOf(canStartPublicStage)), o.to("stage_instance_id", stageInstanceId), o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, guildId))));
+        tracker.track("start_stage_opened", CollectionExtensionsKt.filterNonNullValues(h0.mapOf(d0.o.to("can_start_public_stage", Boolean.valueOf(canStartPublicStage)), d0.o.to("stage_instance_id", stageInstanceId), d0.o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, guildId))));
     }
 
     private final void trackUserVoiceEvent(Channel channel, long j, String str, Pair<String, Long> pair) {
-        withGameProperties(j, new AnalyticsTracker$trackUserVoiceEvent$1(channel, pair, str));
+        withGameProperties(j, new AnonymousClass1(channel, pair, str));
     }
 
     public final void unhandledUrl(String url) {
         m.checkNotNullParameter(url, "url");
-        tracker.trackFireBase("unhandled_uri", g0.mapOf(o.to("url", url)));
+        tracker.trackFireBase("unhandled_uri", g0.mapOf(d0.o.to("url", url)));
     }
 
     public final void updateNotifications(boolean enabled) {
-        tracker.track("local_settings_updated", g0.mapOf(o.to("notifications_enabled", Boolean.valueOf(enabled))));
+        tracker.track("local_settings_updated", g0.mapOf(d0.o.to("notifications_enabled", Boolean.valueOf(enabled))));
     }
 
     public final void updateNotificationsInApp(boolean enabled) {
-        tracker.track("local_settings_updated", g0.mapOf(o.to("notifications_in_app_enabled", Boolean.valueOf(enabled))));
+        tracker.track("local_settings_updated", g0.mapOf(d0.o.to("notifications_in_app_enabled", Boolean.valueOf(enabled))));
     }
 
-    public final void upgradePremiumYearlyClosed(Traits$Location locationTrait) {
+    public final void upgradePremiumYearlyClosed(Traits.Location locationTrait) {
         m.checkNotNullParameter(locationTrait, "locationTrait");
         HashMap map = new HashMap();
         locationTrait.serializeTo(map);
@@ -1958,7 +2400,7 @@ public final class AnalyticsTracker {
 
     public static final void userExperimentTriggered(String experimentName, int revision, int population, int bucket) {
         m.checkNotNullParameter(experimentName, "experimentName");
-        tracker.track("experiment_user_triggered", h0.mutableMapOf(o.to(ModelAuditLogEntry.CHANGE_KEY_NAME, experimentName), o.to("revision", Integer.valueOf(revision)), o.to("population", Integer.valueOf(population)), o.to("bucket", Integer.valueOf(bucket))));
+        tracker.track("experiment_user_triggered", h0.mutableMapOf(d0.o.to(ModelAuditLogEntry.CHANGE_KEY_NAME, experimentName), d0.o.to("revision", Integer.valueOf(revision)), d0.o.to("population", Integer.valueOf(population)), d0.o.to("bucket", Integer.valueOf(bucket))));
     }
 
     public final void userListening(long meId, Set<Long> speakingList, String inputMode, Channel channel) {
@@ -1979,13 +2421,13 @@ public final class AnalyticsTracker {
             break;
         }
         if (z2) {
-            trackUserVoiceEvent(channel, meId, inputMode, o.to("start_listening", Long.valueOf(channel.getGuildId())));
+            trackUserVoiceEvent(channel, meId, inputMode, d0.o.to("start_listening", Long.valueOf(channel.getGuildId())));
         }
     }
 
     public final void userReportSubmitted(String reportName, long guildId, String reason, String feedback, boolean skipped) {
         m.checkNotNullParameter(reportName, "reportName");
-        tracker.track("user_report_submitted", CollectionExtensionsKt.filterNonNullValues(h0.mapOf(o.to("report_name", reportName), o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId)), o.to(ModelAuditLogEntry.CHANGE_KEY_REASON, reason), o.to("feedback", feedback), o.to("skipped", Boolean.valueOf(skipped)))));
+        tracker.track("user_report_submitted", CollectionExtensionsKt.filterNonNullValues(h0.mapOf(d0.o.to("report_name", reportName), d0.o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId)), d0.o.to(ModelAuditLogEntry.CHANGE_KEY_REASON, reason), d0.o.to("feedback", feedback), d0.o.to("skipped", Boolean.valueOf(skipped)))));
     }
 
     public final void userSpeaking(long meId, Set<Long> speakingList, String inputMode, Channel channel) {
@@ -1993,24 +2435,24 @@ public final class AnalyticsTracker {
         m.checkNotNullParameter(inputMode, "inputMode");
         m.checkNotNullParameter(channel, "channel");
         if (speakingList.contains(Long.valueOf(meId))) {
-            trackUserVoiceEvent(channel, meId, inputMode, o.to("start_speaking", Long.valueOf(channel.getGuildId())));
+            trackUserVoiceEvent(channel, meId, inputMode, d0.o.to("start_speaking", Long.valueOf(channel.getGuildId())));
         }
     }
 
     public final void videoEventTimes(String eventType, Long gatewayConnection, Long gatewayHello, Long voiceConnection, Long streamRequested, Long streamConnection, Long streamFirstFrame, Long videoFirstFrame, Long mediaEngineConnection, Long connectionVideoFirstFrame, Long connectionStreamFirstFrame) {
         m.checkNotNullParameter(eventType, "eventType");
         Pair[] pairArr = new Pair[11];
-        pairArr[0] = o.to("event_time_name", eventType);
-        pairArr[1] = o.to("gateway_connection", Long.valueOf(gatewayConnection != null ? gatewayConnection.longValue() : -1L));
-        pairArr[2] = o.to("gateway_hello", Long.valueOf(gatewayHello != null ? gatewayHello.longValue() : -1L));
-        pairArr[3] = o.to("voice_connection", Long.valueOf(voiceConnection != null ? voiceConnection.longValue() : -1L));
-        pairArr[4] = o.to("stream_requested", Long.valueOf(streamRequested != null ? streamRequested.longValue() : -1L));
-        pairArr[5] = o.to("stream_connection", Long.valueOf(streamConnection != null ? streamConnection.longValue() : -1L));
-        pairArr[6] = o.to("stream_first_frame", Long.valueOf(streamFirstFrame != null ? streamFirstFrame.longValue() : -1L));
-        pairArr[7] = o.to("video_first_frame", Long.valueOf(videoFirstFrame != null ? videoFirstFrame.longValue() : -1L));
-        pairArr[8] = o.to("media_engine_connection", Long.valueOf(mediaEngineConnection != null ? mediaEngineConnection.longValue() : -1L));
-        pairArr[9] = o.to("connection_video_first_frame", Long.valueOf(connectionVideoFirstFrame != null ? connectionVideoFirstFrame.longValue() : -1L));
-        pairArr[10] = o.to("connection_stream_first_frame", Long.valueOf(connectionStreamFirstFrame != null ? connectionStreamFirstFrame.longValue() : -1L));
+        pairArr[0] = d0.o.to("event_time_name", eventType);
+        pairArr[1] = d0.o.to("gateway_connection", Long.valueOf(gatewayConnection != null ? gatewayConnection.longValue() : -1L));
+        pairArr[2] = d0.o.to("gateway_hello", Long.valueOf(gatewayHello != null ? gatewayHello.longValue() : -1L));
+        pairArr[3] = d0.o.to("voice_connection", Long.valueOf(voiceConnection != null ? voiceConnection.longValue() : -1L));
+        pairArr[4] = d0.o.to("stream_requested", Long.valueOf(streamRequested != null ? streamRequested.longValue() : -1L));
+        pairArr[5] = d0.o.to("stream_connection", Long.valueOf(streamConnection != null ? streamConnection.longValue() : -1L));
+        pairArr[6] = d0.o.to("stream_first_frame", Long.valueOf(streamFirstFrame != null ? streamFirstFrame.longValue() : -1L));
+        pairArr[7] = d0.o.to("video_first_frame", Long.valueOf(videoFirstFrame != null ? videoFirstFrame.longValue() : -1L));
+        pairArr[8] = d0.o.to("media_engine_connection", Long.valueOf(mediaEngineConnection != null ? mediaEngineConnection.longValue() : -1L));
+        pairArr[9] = d0.o.to("connection_video_first_frame", Long.valueOf(connectionVideoFirstFrame != null ? connectionVideoFirstFrame.longValue() : -1L));
+        pairArr[10] = d0.o.to("connection_stream_first_frame", Long.valueOf(connectionStreamFirstFrame != null ? connectionStreamFirstFrame.longValue() : -1L));
         tracker.track("video_event_times", h0.mapOf(pairArr));
     }
 
@@ -2036,7 +2478,7 @@ public final class AnalyticsTracker {
         strArr[1] = str2;
         voiceChannelProperties$default.put("enabled_inputs", n.listOfNotNull((Object[]) strArr));
         voiceChannelProperties$default.put("media_session_id", mediaSessionId);
-        withGameProperties(meId, new AnalyticsTracker$videoInputsUpdate$1(voiceChannelProperties$default));
+        withGameProperties(meId, new AnonymousClass1(voiceChannelProperties$default));
     }
 
     public final void videoLayoutToggled(String videoLayout, long meId, Channel channel) {
@@ -2055,18 +2497,18 @@ public final class AnalyticsTracker {
     }
 
     public final void viewedDisableCommunicationModal(long guildId, long targetUserId) {
-        tracker.track("open_modal", h0.mapOf(o.to("type", "Set Communication Disabled Modal"), o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId)), o.to("other_user_id", Long.valueOf(targetUserId))));
+        tracker.track("open_modal", h0.mapOf(d0.o.to("type", "Set Communication Disabled Modal"), d0.o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId)), d0.o.to("other_user_id", Long.valueOf(targetUserId))));
     }
 
     public final void viewedEnableCommunicationModal(long guildId, long targetUserId) {
-        tracker.track("open_modal", h0.mapOf(o.to("type", "Clear Communication Disabled Modal"), o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId)), o.to("other_user_id", Long.valueOf(targetUserId))));
+        tracker.track("open_modal", h0.mapOf(d0.o.to("type", "Clear Communication Disabled Modal"), d0.o.to(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId)), d0.o.to("other_user_id", Long.valueOf(targetUserId))));
     }
 
-    public final void voiceAudioOutputModeSelected(long meId, String rtcConnectionId, String mediaSessionId, Channel channel, DiscordAudioManager$DeviceTypes fromAudioOutputMode, DiscordAudioManager$DeviceTypes toAudioOutputMode) {
+    public final void voiceAudioOutputModeSelected(long meId, String rtcConnectionId, String mediaSessionId, Channel channel, DiscordAudioManager.DeviceTypes fromAudioOutputMode, DiscordAudioManager.DeviceTypes toAudioOutputMode) {
         m.checkNotNullParameter(channel, "channel");
         m.checkNotNullParameter(fromAudioOutputMode, "fromAudioOutputMode");
         m.checkNotNullParameter(toAudioOutputMode, "toAudioOutputMode");
-        Map mapMutableMapOf = h0.mutableMapOf(o.to(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID, Long.valueOf(channel.getId())), o.to("from_audio_output_mode", audioOutputDeviceTypeToString(fromAudioOutputMode)), o.to("to_audio_output_mode", audioOutputDeviceTypeToString(toAudioOutputMode)));
+        Map mapMutableMapOf = h0.mutableMapOf(d0.o.to(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID, Long.valueOf(channel.getId())), d0.o.to("from_audio_output_mode", audioOutputDeviceTypeToString(fromAudioOutputMode)), d0.o.to("to_audio_output_mode", audioOutputDeviceTypeToString(toAudioOutputMode)));
         if (rtcConnectionId != null) {
             mapMutableMapOf.put("rtc_connection_id", rtcConnectionId);
         }
@@ -2084,7 +2526,7 @@ public final class AnalyticsTracker {
         voiceChannelProperties$default.put("connection_type", getNetworkTypeAnalyticsValue(networkType));
         voiceChannelProperties$default.put("stage_instance_id", stageInstanceId);
         voiceChannelProperties$default.put("guild_scheduled_event_id", guildScheduledEventId);
-        withGameProperties(meId, new AnalyticsTracker$voiceChannelJoin$1(voiceChannelProperties$default));
+        withGameProperties(meId, new AnonymousClass1(voiceChannelProperties$default));
     }
 
     public final void voiceChannelLeave(long meId, String rtcConnectionId, Channel channel, Map<Long, VoiceState> guildVoiceStates, String mediaSessionId, Map<String, ? extends Object> voiceProps, Long durationMs, Long stageInstanceId, Long guildScheduledEventId) {
@@ -2097,7 +2539,7 @@ public final class AnalyticsTracker {
         voiceChannelProperties$default.put("media_session_id", mediaSessionId);
         voiceChannelProperties$default.put("stage_instance_id", stageInstanceId);
         voiceChannelProperties$default.put("guild_scheduled_event_id", guildScheduledEventId);
-        withGameProperties(meId, new AnalyticsTracker$voiceChannelLeave$1(voiceChannelProperties$default));
+        withGameProperties(meId, new AnonymousClass1(voiceChannelProperties$default));
     }
 
     public final void voiceConnectionFailure(Map<String, ? extends Object> properties, Channel channel, String cloudflareBestRegion) {
@@ -2107,7 +2549,7 @@ public final class AnalyticsTracker {
         tracker.track("voice_connection_failure", mutableMap);
     }
 
-    public final void voiceConnectionSuccess(Map<String, ? extends Object> properties, MediaEngine$AudioInfo audioInfo, Channel channel, String cloudflareBestRegion) {
+    public final void voiceConnectionSuccess(Map<String, ? extends Object> properties, MediaEngine.AudioInfo audioInfo, Channel channel, String cloudflareBestRegion) {
         m.checkNotNullParameter(properties, "properties");
         m.checkNotNullParameter(audioInfo, "audioInfo");
         Map<String, ? extends Object> mutableMap = h0.toMutableMap(properties);
@@ -2116,7 +2558,7 @@ public final class AnalyticsTracker {
         tracker.track("voice_connection_success", mutableMap);
     }
 
-    public final void voiceDisconnect(Map<String, ? extends Object> properties, StoreMediaSettings$VoiceConfiguration voiceConfig, Channel channel, String cloudflareBestRegion) {
+    public final void voiceDisconnect(Map<String, ? extends Object> properties, StoreMediaSettings.VoiceConfiguration voiceConfig, Channel channel, String cloudflareBestRegion) {
         m.checkNotNullParameter(properties, "properties");
         m.checkNotNullParameter(voiceConfig, "voiceConfig");
         Map<String, Object> mutableMap = h0.toMutableMap(properties);
@@ -2173,7 +2615,7 @@ public final class AnalyticsTracker {
         return modelInviteToProperties(modelInvite, map);
     }
 
-    public final void openPopout(String popoutName, Traits$Location locationTrait) {
+    public final void openPopout(String popoutName, Traits.Location locationTrait) {
         m.checkNotNullParameter(popoutName, "popoutName");
         m.checkNotNullParameter(locationTrait, "locationTrait");
         HashMap map = new HashMap();
@@ -2199,7 +2641,7 @@ public final class AnalyticsTracker {
         return map;
     }
 
-    public final void openModal(String modalName, Traits$Source sourceTrait) {
+    public final void openModal(String modalName, Traits.Source sourceTrait) {
         m.checkNotNullParameter(modalName, "modalName");
         m.checkNotNullParameter(sourceTrait, "sourceTrait");
         HashMap map = new HashMap();
@@ -2219,7 +2661,7 @@ public final class AnalyticsTracker {
         inviteShareClicked(guildInvite.getInviteCode(), guildInvite.getGuildId(), channel != null ? Long.valueOf(channel.getId()) : null, channel != null ? Integer.valueOf(channel.getType()) : null, guildInvite.getInviterId(), guildInvite.getGuildScheduledEventId());
     }
 
-    public final void openModal(String modalName, Traits$Location locationTrait) {
+    public final void openModal(String modalName, Traits.Location locationTrait) {
         m.checkNotNullParameter(modalName, "modalName");
         m.checkNotNullParameter(locationTrait, "locationTrait");
         HashMap map = new HashMap();
@@ -2228,10 +2670,10 @@ public final class AnalyticsTracker {
         tracker.track("open_modal", map);
     }
 
-    private final Map<String, Object> toProperties(WidgetUserSetCustomStatusViewModel$FormState widgetUserSetCustomStatusViewModel$FormState, Map<String, Object> map) {
+    private final Map<String, Object> toProperties(WidgetUserSetCustomStatusViewModel.FormState formState, Map<String, Object> map) {
         String str;
-        map.put("text_len", Integer.valueOf(TextUtils.getTrimmedLength(widgetUserSetCustomStatusViewModel$FormState.getText())));
-        Emoji emoji = widgetUserSetCustomStatusViewModel$FormState.getEmoji();
+        map.put("text_len", Integer.valueOf(TextUtils.getTrimmedLength(formState.getText())));
+        Emoji emoji = formState.getEmoji();
         String strValueOf = null;
         if (emoji instanceof ModelEmojiCustom) {
             str = "custom";
@@ -2241,7 +2683,7 @@ public final class AnalyticsTracker {
         if (str != null) {
             map.put("emoji_type", str);
         }
-        int iOrdinal = widgetUserSetCustomStatusViewModel$FormState.getExpiration().ordinal();
+        int iOrdinal = formState.getExpiration().ordinal();
         if (iOrdinal != 0) {
             if (iOrdinal == 1) {
                 strValueOf = String.valueOf(StoreGuildScheduledEvents.FETCH_GUILD_EVENTS_THRESHOLD);
@@ -2263,11 +2705,11 @@ public final class AnalyticsTracker {
     }
 
     private final void inviteCopied(String inviteCode, Long guildId, Long channelId, Integer inviteChannelType, String source, Long guildScheduledEventId) {
-        tracker.track("copy_instant_invite", CollectionExtensionsKt.filterNonNullValues(h0.mapOf(o.to(ModelAuditLogEntry.CHANGE_KEY_CODE, inviteCode), o.to("server", guildId), o.to("channel", channelId), o.to("channel_type", inviteChannelType), o.to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, source), o.to("guild_scheduled_event_id", guildScheduledEventId))));
+        tracker.track("copy_instant_invite", CollectionExtensionsKt.filterNonNullValues(h0.mapOf(d0.o.to(ModelAuditLogEntry.CHANGE_KEY_CODE, inviteCode), d0.o.to("server", guildId), d0.o.to("channel", channelId), d0.o.to("channel_type", inviteChannelType), d0.o.to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, source), d0.o.to("guild_scheduled_event_id", guildScheduledEventId))));
     }
 
     private final void inviteShareClicked(String inviteCode, Long guildId, Long channelId, Integer inviteChannelType, Long inviterId, Long guildScheduledEventId) {
-        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(o.to("invite_code", inviteCode));
+        Map<String, ? extends Object> mapMutableMapOf = h0.mutableMapOf(d0.o.to("invite_code", inviteCode));
         if (guildId != null) {
             mapMutableMapOf.put(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID, Long.valueOf(guildId.longValue()));
         }
@@ -2286,19 +2728,19 @@ public final class AnalyticsTracker {
         tracker.track("instant_invite_shared", mapMutableMapOf);
     }
 
-    private final Map<String, Object> toProperties(StoreMediaSettings$VoiceConfiguration storeMediaSettings$VoiceConfiguration) {
-        if (storeMediaSettings$VoiceConfiguration == null) {
+    private final Map<String, Object> toProperties(StoreMediaSettings.VoiceConfiguration voiceConfiguration) {
+        if (voiceConfiguration == null) {
             return h0.emptyMap();
         }
         Pair[] pairArr = new Pair[8];
-        pairArr[0] = o.to("audio_input_mode", storeMediaSettings$VoiceConfiguration.getInputMode());
-        pairArr[1] = o.to("automatic_audio_input_sensitivity_enabled", Boolean.valueOf(storeMediaSettings$VoiceConfiguration.getAutomaticVad()));
-        pairArr[2] = o.to("audio_input_sensitivity", Float.valueOf(storeMediaSettings$VoiceConfiguration.getSensitivity()));
-        pairArr[3] = o.to("echo_cancellation_enabled", Boolean.valueOf(storeMediaSettings$VoiceConfiguration.getEchoCancellation()));
-        pairArr[4] = o.to("noise_suppression_enabled", Boolean.valueOf(storeMediaSettings$VoiceConfiguration.getNoiseProcessing() == StoreMediaSettings$NoiseProcessing.Suppression));
-        pairArr[5] = o.to("noise_cancellation_enabled", Boolean.valueOf(storeMediaSettings$VoiceConfiguration.getNoiseProcessing() == StoreMediaSettings$NoiseProcessing.Cancellation));
-        pairArr[6] = o.to("automatic_gain_control_enabled", Boolean.valueOf(storeMediaSettings$VoiceConfiguration.getAutomaticGainControl()));
-        pairArr[7] = o.to("voice_output_volume", Float.valueOf(storeMediaSettings$VoiceConfiguration.getOutputVolume()));
+        pairArr[0] = d0.o.to("audio_input_mode", voiceConfiguration.getInputMode());
+        pairArr[1] = d0.o.to("automatic_audio_input_sensitivity_enabled", Boolean.valueOf(voiceConfiguration.getAutomaticVad()));
+        pairArr[2] = d0.o.to("audio_input_sensitivity", Float.valueOf(voiceConfiguration.getSensitivity()));
+        pairArr[3] = d0.o.to("echo_cancellation_enabled", Boolean.valueOf(voiceConfiguration.getEchoCancellation()));
+        pairArr[4] = d0.o.to("noise_suppression_enabled", Boolean.valueOf(voiceConfiguration.getNoiseProcessing() == StoreMediaSettings.NoiseProcessing.Suppression));
+        pairArr[5] = d0.o.to("noise_cancellation_enabled", Boolean.valueOf(voiceConfiguration.getNoiseProcessing() == StoreMediaSettings.NoiseProcessing.Cancellation));
+        pairArr[6] = d0.o.to("automatic_gain_control_enabled", Boolean.valueOf(voiceConfiguration.getAutomaticGainControl()));
+        pairArr[7] = d0.o.to("voice_output_volume", Float.valueOf(voiceConfiguration.getOutputVolume()));
         return h0.mapOf(pairArr);
     }
 }

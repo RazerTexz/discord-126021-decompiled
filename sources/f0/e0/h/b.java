@@ -2,7 +2,6 @@ package f0.e0.h;
 
 import androidx.core.app.NotificationCompat;
 import d0.z.d.m;
-import f0.e0.g.c$b;
 import f0.t;
 import f0.y;
 import g0.q;
@@ -11,13 +10,11 @@ import g0.v;
 import java.io.IOException;
 import java.net.ProtocolException;
 import java.util.Objects;
-import okhttp3.Headers$a;
+import okhttp3.Headers;
 import okhttp3.Interceptor;
-import okhttp3.Interceptor$Chain;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.Response$a;
 import okhttp3.ResponseBody;
 
 /* JADX INFO: compiled from: CallServerInterceptor.kt */
@@ -37,7 +34,7 @@ public final class b implements Interceptor {
     /* JADX WARN: Code duplicated, block: B:90:0x0289  */
     /* JADX WARN: Code duplicated, block: B:92:0x0297  */
     @Override // okhttp3.Interceptor
-    public Response intercept(Interceptor$Chain interceptor$Chain) throws Throwable {
+    public Response intercept(Interceptor.Chain chain) throws Throwable {
         boolean z2;
         Response response;
         Long lValueOf;
@@ -45,9 +42,9 @@ public final class b implements Interceptor {
         ResponseBody responseBody;
         long jA;
         ResponseBody responseBody2;
-        Response$a response$aE;
-        m.checkParameterIsNotNull(interceptor$Chain, "chain");
-        g gVar = (g) interceptor$Chain;
+        Response.a aVarE;
+        m.checkParameterIsNotNull(chain, "chain");
+        g gVar = (g) chain;
         f0.e0.g.c cVar = gVar.e;
         if (cVar == null) {
             m.throwNpe();
@@ -68,21 +65,21 @@ public final class b implements Interceptor {
             Objects.requireNonNull(tVar2);
             m.checkParameterIsNotNull(eVar2, NotificationCompat.CATEGORY_CALL);
             m.checkParameterIsNotNull(request, "request");
-            Response$a response$aE2 = null;
+            Response.a aVarE2 = null;
             if (!f.a(request.method) || requestBody == null) {
                 cVar.c.k(cVar, true, false, null);
                 z2 = true;
             } else {
                 if (d0.g0.t.equals("100-continue", request.b("Expect"), true)) {
                     cVar.c();
-                    response$aE = cVar.e(true);
+                    aVarE = cVar.e(true);
                     cVar.f();
                     z2 = false;
                 } else {
                     z2 = true;
-                    response$aE = null;
+                    aVarE = null;
                 }
-                if (response$aE != null) {
+                if (aVarE != null) {
                     cVar.c.k(cVar, true, false, null);
                     if (!cVar.f3614b.j()) {
                         cVar.f.e().l();
@@ -99,7 +96,7 @@ public final class b implements Interceptor {
                     requestBody.writeTo(qVar);
                     qVar.close();
                 }
-                response$aE2 = response$aE;
+                aVarE2 = aVarE;
             }
             if (requestBody == null || !requestBody.isDuplex()) {
                 try {
@@ -114,9 +111,9 @@ public final class b implements Interceptor {
                     throw e;
                 }
             }
-            if (response$aE2 == null) {
-                response$aE2 = cVar.e(false);
-                if (response$aE2 == null) {
+            if (aVarE2 == null) {
+                aVarE2 = cVar.e(false);
+                if (aVarE2 == null) {
                     m.throwNpe();
                 }
                 if (z2) {
@@ -124,25 +121,25 @@ public final class b implements Interceptor {
                     z2 = false;
                 }
             }
-            response$aE2.g(request);
-            response$aE2.e = cVar.f3614b.d;
-            response$aE2.k = jCurrentTimeMillis;
-            response$aE2.l = System.currentTimeMillis();
-            Response responseA = response$aE2.a();
+            aVarE2.g(request);
+            aVarE2.e = cVar.f3614b.d;
+            aVarE2.k = jCurrentTimeMillis;
+            aVarE2.l = System.currentTimeMillis();
+            Response responseA = aVarE2.a();
             int i2 = responseA.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String;
             if (i2 == 100) {
-                Response$a response$aE3 = cVar.e(false);
-                if (response$aE3 == null) {
+                Response.a aVarE3 = cVar.e(false);
+                if (aVarE3 == null) {
                     m.throwNpe();
                 }
                 if (z2) {
                     cVar.f();
                 }
-                response$aE3.g(request);
-                response$aE3.e = cVar.f3614b.d;
-                response$aE3.k = jCurrentTimeMillis;
-                response$aE3.l = System.currentTimeMillis();
-                responseA = response$aE3.a();
+                aVarE3.g(request);
+                aVarE3.e = cVar.f3614b.d;
+                aVarE3.k = jCurrentTimeMillis;
+                aVarE3.l = System.currentTimeMillis();
+                responseA = aVarE3.a();
                 i2 = responseA.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String;
             }
             m.checkParameterIsNotNull(responseA, "response");
@@ -158,7 +155,7 @@ public final class b implements Interceptor {
                 int i3 = responseA.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String;
                 String str = responseA.message;
                 f0.v vVar = responseA.handshake;
-                Headers$a headers$aE = responseA.headers.e();
+                Headers.a aVarE4 = responseA.headers.e();
                 Response response2 = responseA.networkResponse;
                 Response response3 = responseA.cacheResponse;
                 Response response4 = responseA.priorResponse;
@@ -178,7 +175,7 @@ public final class b implements Interceptor {
                 if (str == null) {
                     throw new IllegalStateException("message == null".toString());
                 }
-                response = new Response(request2, yVar, str, i3, vVar, headers$aE.c(), responseBody3, response2, response3, response4, j, j2, cVar2);
+                response = new Response(request2, yVar, str, i3, vVar, aVarE4.c(), responseBody3, response2, response3, response4, j, j2, cVar2);
             } else {
                 m.checkParameterIsNotNull(responseA, "response");
                 Request request3 = responseA.request;
@@ -186,7 +183,7 @@ public final class b implements Interceptor {
                 int i4 = responseA.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String;
                 String str2 = responseA.message;
                 f0.v vVar2 = responseA.handshake;
-                Headers$a headers$aE2 = responseA.headers.e();
+                Headers.a aVarE5 = responseA.headers.e();
                 Response response5 = responseA.networkResponse;
                 Response response6 = responseA.cacheResponse;
                 Response response7 = responseA.priorResponse;
@@ -197,9 +194,9 @@ public final class b implements Interceptor {
                 try {
                     String strA = Response.a(responseA, "Content-Type", null, 2);
                     long jG = cVar.f.g(responseA);
-                    c$b c_b = new c$b(cVar, cVar.f.c(responseA), jG);
-                    m.checkParameterIsNotNull(c_b, "$this$buffer");
-                    h hVar = new h(strA, jG, new r(c_b));
+                    f0.e0.g.c.b bVar = new f0.e0.g.c.b(cVar, cVar.f.c(responseA), jG);
+                    m.checkParameterIsNotNull(bVar, "$this$buffer");
+                    h hVar = new h(strA, jG, new r(bVar));
                     if (!(i4 >= 0)) {
                         throw new IllegalStateException(b.d.b.a.a.q("code < 0: ", i4).toString());
                     }
@@ -212,7 +209,7 @@ public final class b implements Interceptor {
                     if (str2 == null) {
                         throw new IllegalStateException("message == null".toString());
                     }
-                    response = new Response(request3, yVar2, str2, i4, vVar2, headers$aE2.c(), hVar, response5, response6, response7, j3, j4, cVar3);
+                    response = new Response(request3, yVar2, str2, i4, vVar2, aVarE5.c(), hVar, response5, response6, response7, j3, j4, cVar3);
                 } catch (IOException e2) {
                     t tVar5 = cVar.d;
                     f0.e0.g.e eVar5 = cVar.c;

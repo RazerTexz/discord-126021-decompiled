@@ -1,29 +1,33 @@
 package com.discord.utilities.premium;
 
+import androidx.core.app.NotificationCompat;
 import com.discord.api.guild.GuildFeature;
 import com.discord.app.AppLog;
+import com.discord.models.domain.ModelGuildBoostSlot;
 import com.discord.models.domain.ModelSubscription;
-import com.discord.models.domain.ModelSubscription$SubscriptionAdditionalPlan;
-import com.discord.models.domain.ModelSubscription$SubscriptionRenewalMutations;
 import com.discord.models.domain.premium.SubscriptionPlanType;
 import com.discord.models.experiments.domain.Experiment;
 import com.discord.models.guild.Guild;
+import com.discord.restapi.RestAPIParams;
 import com.discord.stores.StoreExperiments;
 import com.discord.stores.StoreGuildBoost;
 import com.discord.stores.StoreGuilds;
 import com.discord.stores.StoreStream;
-import com.discord.utilities.analytics.Traits$Payment$Type;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.guilds.GuildConstantsKt;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.rest.RestAPI;
 import d0.a0.a;
 import d0.t.u;
 import d0.z.d.m;
+import j0.k.b;
+import j0.l.e.k;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import rx.Observable;
+import rx.functions.Action1;
 
 /* JADX INFO: compiled from: GuildBoostUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -33,15 +37,135 @@ public final class GuildBoostUtils {
     public static final int GUILD_BOOST_COOLDOWN_DAYS = 7;
     public static final GuildBoostUtils INSTANCE = new GuildBoostUtils();
 
+    /* JADX INFO: renamed from: com.discord.utilities.premium.GuildBoostUtils$modifyGuildBoostSlot$1, reason: invalid class name */
+    /* JADX INFO: compiled from: GuildBoostUtils.kt */
+    public final class AnonymousClass1<T> implements Action1<ModelGuildBoostSlot> {
+        public final /* synthetic */ StoreGuildBoost $storeGuildBoost;
+
+        public AnonymousClass1(StoreGuildBoost storeGuildBoost) {
+            this.$storeGuildBoost = storeGuildBoost;
+        }
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(ModelGuildBoostSlot modelGuildBoostSlot) {
+            call2(modelGuildBoostSlot);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(ModelGuildBoostSlot modelGuildBoostSlot) {
+            StoreGuildBoost storeGuildBoost = this.$storeGuildBoost;
+            m.checkNotNullExpressionValue(modelGuildBoostSlot, "it");
+            storeGuildBoost.updateGuildBoostSlot(modelGuildBoostSlot);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.premium.GuildBoostUtils$modifyGuildBoostSlot$2, reason: invalid class name */
+    /* JADX INFO: compiled from: GuildBoostUtils.kt */
+    public final class AnonymousClass2<T, R> implements b<ModelGuildBoostSlot, Boolean> {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Boolean call(ModelGuildBoostSlot modelGuildBoostSlot) {
+            return call2(modelGuildBoostSlot);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Boolean call2(ModelGuildBoostSlot modelGuildBoostSlot) {
+            return Boolean.TRUE;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.premium.GuildBoostUtils$modifyGuildBoostSlot$3, reason: invalid class name */
+    /* JADX INFO: compiled from: GuildBoostUtils.kt */
+    public final class AnonymousClass3<T, R> implements b<Throwable, Boolean> {
+        public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Boolean call(Throwable th) {
+            return call2(th);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Boolean call2(Throwable th) {
+            return Boolean.FALSE;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.premium.GuildBoostUtils$modifyGuildBoostSlot$4, reason: invalid class name */
+    /* JADX INFO: compiled from: GuildBoostUtils.kt */
+    public final class AnonymousClass4<T, R> implements b<Boolean, Observable<? extends ModifyGuildBoostSlotResult>> {
+        public final /* synthetic */ RestAPI $api;
+        public final /* synthetic */ boolean $cancel;
+        public final /* synthetic */ ModelSubscription $subscription;
+
+        /* JADX INFO: renamed from: com.discord.utilities.premium.GuildBoostUtils$modifyGuildBoostSlot$4$1, reason: invalid class name */
+        /* JADX INFO: compiled from: GuildBoostUtils.kt */
+        public final class AnonymousClass1<T, R> implements b<Void, ModifyGuildBoostSlotResult> {
+            public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+            @Override // j0.k.b
+            public /* bridge */ /* synthetic */ ModifyGuildBoostSlotResult call(Void r1) {
+                return call2(r1);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final ModifyGuildBoostSlotResult call2(Void r1) {
+                return ModifyGuildBoostSlotResult.SUCCESS;
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.utilities.premium.GuildBoostUtils$modifyGuildBoostSlot$4$2, reason: invalid class name */
+        /* JADX INFO: compiled from: GuildBoostUtils.kt */
+        public final class AnonymousClass2<T, R> implements b<Throwable, ModifyGuildBoostSlotResult> {
+            public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+            @Override // j0.k.b
+            public /* bridge */ /* synthetic */ ModifyGuildBoostSlotResult call(Throwable th) {
+                return call2(th);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final ModifyGuildBoostSlotResult call2(Throwable th) {
+                return ModifyGuildBoostSlotResult.FAILURE_UPDATING_SUBSCRIPTION;
+            }
+        }
+
+        public AnonymousClass4(RestAPI restAPI, ModelSubscription modelSubscription, boolean z2) {
+            this.$api = restAPI;
+            this.$subscription = modelSubscription;
+            this.$cancel = z2;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends ModifyGuildBoostSlotResult> call(Boolean bool) {
+            return call2(bool);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends ModifyGuildBoostSlotResult> call2(Boolean bool) {
+            if (bool.booleanValue()) {
+                return this.$api.updateSubscription(this.$subscription.getId(), new RestAPIParams.UpdateSubscription(null, null, null, GuildBoostUtils.INSTANCE.calculateAdditionalPlansWithGuildBoostAdjustment(this.$subscription, this.$cancel ? -1 : 1), 7, null)).G(AnonymousClass1.INSTANCE).M(AnonymousClass2.INSTANCE);
+            }
+            return new k(ModifyGuildBoostSlotResult.FAILURE_MODIFYING_SLOT);
+        }
+    }
+
+    /* JADX INFO: compiled from: GuildBoostUtils.kt */
+    public enum ModifyGuildBoostSlotResult {
+        SUCCESS,
+        FAILURE_MODIFYING_SLOT,
+        FAILURE_UPDATING_SUBSCRIPTION
+    }
+
     private GuildBoostUtils() {
     }
 
-    public final List<ModelSubscription$SubscriptionAdditionalPlan> calculateAdditionalPlansWithGuildBoostAdjustment(ModelSubscription subscription, int guildBoostAdjustment) {
+    public final List<ModelSubscription.SubscriptionAdditionalPlan> calculateAdditionalPlansWithGuildBoostAdjustment(ModelSubscription subscription, int guildBoostAdjustment) {
         Object next;
-        ModelSubscription$SubscriptionAdditionalPlan modelSubscription$SubscriptionAdditionalPlan;
-        m.checkNotNullParameter(subscription, Traits$Payment$Type.SUBSCRIPTION);
-        ModelSubscription$SubscriptionRenewalMutations renewalMutations = subscription.getRenewalMutations();
-        List<ModelSubscription$SubscriptionAdditionalPlan> premiumAdditionalPlans = renewalMutations == null ? subscription.getPremiumAdditionalPlans() : renewalMutations.getPremiumAdditionalPlans();
+        ModelSubscription.SubscriptionAdditionalPlan subscriptionAdditionalPlan;
+        m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+        ModelSubscription.SubscriptionRenewalMutations renewalMutations = subscription.getRenewalMutations();
+        List<ModelSubscription.SubscriptionAdditionalPlan> premiumAdditionalPlans = renewalMutations == null ? subscription.getPremiumAdditionalPlans() : renewalMutations.getPremiumAdditionalPlans();
         Iterator<T> it = premiumAdditionalPlans.iterator();
         do {
             if (!it.hasNext()) {
@@ -49,31 +173,31 @@ public final class GuildBoostUtils {
                 break;
             }
             next = it.next();
-            modelSubscription$SubscriptionAdditionalPlan = (ModelSubscription$SubscriptionAdditionalPlan) next;
-        } while (!(modelSubscription$SubscriptionAdditionalPlan.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_MONTH.getPlanId() || modelSubscription$SubscriptionAdditionalPlan.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_3_MONTH.getPlanId() || modelSubscription$SubscriptionAdditionalPlan.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_6_MONTH.getPlanId() || modelSubscription$SubscriptionAdditionalPlan.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_YEAR.getPlanId()));
-        ModelSubscription$SubscriptionAdditionalPlan modelSubscription$SubscriptionAdditionalPlan2 = (ModelSubscription$SubscriptionAdditionalPlan) next;
-        int quantity = (modelSubscription$SubscriptionAdditionalPlan2 != null ? modelSubscription$SubscriptionAdditionalPlan2.getQuantity() : 0) + guildBoostAdjustment;
-        if (quantity < 0 || modelSubscription$SubscriptionAdditionalPlan2 == null) {
+            subscriptionAdditionalPlan = (ModelSubscription.SubscriptionAdditionalPlan) next;
+        } while (!(subscriptionAdditionalPlan.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_MONTH.getPlanId() || subscriptionAdditionalPlan.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_3_MONTH.getPlanId() || subscriptionAdditionalPlan.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_6_MONTH.getPlanId() || subscriptionAdditionalPlan.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_YEAR.getPlanId()));
+        ModelSubscription.SubscriptionAdditionalPlan subscriptionAdditionalPlan2 = (ModelSubscription.SubscriptionAdditionalPlan) next;
+        int quantity = (subscriptionAdditionalPlan2 != null ? subscriptionAdditionalPlan2.getQuantity() : 0) + guildBoostAdjustment;
+        if (quantity < 0 || subscriptionAdditionalPlan2 == null) {
             Logger.e$default(AppLog.g, "Error calculating additional_plans adjustment, new sub count:" + quantity, null, null, 6, null);
             return subscription.getPremiumAdditionalPlans();
         }
         ArrayList arrayList = new ArrayList();
         for (Object obj : premiumAdditionalPlans) {
-            ModelSubscription$SubscriptionAdditionalPlan modelSubscription$SubscriptionAdditionalPlan3 = (ModelSubscription$SubscriptionAdditionalPlan) obj;
-            if ((modelSubscription$SubscriptionAdditionalPlan3.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_MONTH.getPlanId() || modelSubscription$SubscriptionAdditionalPlan3.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_3_MONTH.getPlanId() || modelSubscription$SubscriptionAdditionalPlan3.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_6_MONTH.getPlanId() || modelSubscription$SubscriptionAdditionalPlan3.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_YEAR.getPlanId()) ? false : true) {
+            ModelSubscription.SubscriptionAdditionalPlan subscriptionAdditionalPlan3 = (ModelSubscription.SubscriptionAdditionalPlan) obj;
+            if ((subscriptionAdditionalPlan3.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_MONTH.getPlanId() || subscriptionAdditionalPlan3.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_3_MONTH.getPlanId() || subscriptionAdditionalPlan3.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_6_MONTH.getPlanId() || subscriptionAdditionalPlan3.getPlanId() == SubscriptionPlanType.PREMIUM_GUILD_YEAR.getPlanId()) ? false : true) {
                 arrayList.add(obj);
             }
         }
-        return quantity == 0 ? arrayList : u.plus((Collection) arrayList, (Iterable) d0.t.m.listOf(new ModelSubscription$SubscriptionAdditionalPlan(modelSubscription$SubscriptionAdditionalPlan2.getPlanId(), quantity)));
+        return quantity == 0 ? arrayList : u.plus((Collection) arrayList, (Iterable) d0.t.m.listOf(new ModelSubscription.SubscriptionAdditionalPlan(subscriptionAdditionalPlan2.getPlanId(), quantity)));
     }
 
     public static /* synthetic */ int calculatePercentToNextTier$default(GuildBoostUtils guildBoostUtils, long j, int i, int i2, StoreExperiments storeExperiments, StoreGuilds storeGuilds, int i3, Object obj) {
         if ((i3 & 8) != 0) {
-            storeExperiments = StoreStream.Companion.getExperiments();
+            storeExperiments = StoreStream.INSTANCE.getExperiments();
         }
         StoreExperiments storeExperiments2 = storeExperiments;
         if ((i3 & 16) != 0) {
-            storeGuilds = StoreStream.Companion.getGuilds();
+            storeGuilds = StoreStream.INSTANCE.getGuilds();
         }
         return guildBoostUtils.calculatePercentToNextTier(j, i, i2, storeExperiments2, storeGuilds);
     }
@@ -90,11 +214,11 @@ public final class GuildBoostUtils {
 
     public static /* synthetic */ int calculateTotalProgress$default(GuildBoostUtils guildBoostUtils, long j, int i, int i2, StoreExperiments storeExperiments, StoreGuilds storeGuilds, int i3, Object obj) {
         if ((i3 & 8) != 0) {
-            storeExperiments = StoreStream.Companion.getExperiments();
+            storeExperiments = StoreStream.INSTANCE.getExperiments();
         }
         StoreExperiments storeExperiments2 = storeExperiments;
         if ((i3 & 16) != 0) {
-            storeGuilds = StoreStream.Companion.getGuilds();
+            storeGuilds = StoreStream.INSTANCE.getGuilds();
         }
         return guildBoostUtils.calculateTotalProgress(j, i, i2, storeExperiments2, storeGuilds);
     }
@@ -111,20 +235,20 @@ public final class GuildBoostUtils {
         return a.roundToInt((((subscriptionCount - currentTierSubs) / (nextTierSubs - currentTierSubs)) * 33.3f) + (premiumTier * 33.3f));
     }
 
-    public final Observable<GuildBoostUtils$ModifyGuildBoostSlotResult> cancelGuildBoostSlot(RestAPI api, long slotId, ModelSubscription subscription, StoreGuildBoost storeGuildBoost) {
+    public final Observable<ModifyGuildBoostSlotResult> cancelGuildBoostSlot(RestAPI api, long slotId, ModelSubscription subscription, StoreGuildBoost storeGuildBoost) {
         m.checkNotNullParameter(api, "api");
-        m.checkNotNullParameter(subscription, Traits$Payment$Type.SUBSCRIPTION);
+        m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
         m.checkNotNullParameter(storeGuildBoost, "storeGuildBoost");
         return modifyGuildBoostSlot(api, slotId, subscription, true, storeGuildBoost);
     }
 
     public static /* synthetic */ int getBoostTier$default(GuildBoostUtils guildBoostUtils, long j, int i, StoreExperiments storeExperiments, StoreGuilds storeGuilds, int i2, Object obj) {
         if ((i2 & 4) != 0) {
-            storeExperiments = StoreStream.Companion.getExperiments();
+            storeExperiments = StoreStream.INSTANCE.getExperiments();
         }
         StoreExperiments storeExperiments2 = storeExperiments;
         if ((i2 & 8) != 0) {
-            storeGuilds = StoreStream.Companion.getGuilds();
+            storeGuilds = StoreStream.INSTANCE.getGuilds();
         }
         return guildBoostUtils.getBoostTier(j, i, storeExperiments2, storeGuilds);
     }
@@ -160,11 +284,11 @@ public final class GuildBoostUtils {
 
     public static /* synthetic */ int getBoostsRequiredForTier$default(GuildBoostUtils guildBoostUtils, long j, int i, StoreExperiments storeExperiments, StoreGuilds storeGuilds, int i2, Object obj) {
         if ((i2 & 4) != 0) {
-            storeExperiments = StoreStream.Companion.getExperiments();
+            storeExperiments = StoreStream.INSTANCE.getExperiments();
         }
         StoreExperiments storeExperiments2 = storeExperiments;
         if ((i2 & 8) != 0) {
-            storeGuilds = StoreStream.Companion.getGuilds();
+            storeGuilds = StoreStream.INSTANCE.getGuilds();
         }
         return guildBoostUtils.getBoostsRequiredForTier(j, i, storeExperiments2, storeGuilds);
     }
@@ -211,15 +335,15 @@ public final class GuildBoostUtils {
         return 0;
     }
 
-    private final Observable<GuildBoostUtils$ModifyGuildBoostSlotResult> modifyGuildBoostSlot(RestAPI api, long slotId, ModelSubscription subscription, boolean cancel, StoreGuildBoost storeGuildBoost) {
-        Observable<GuildBoostUtils$ModifyGuildBoostSlotResult> observableA = (cancel ? api.cancelSubscriptionSlot(slotId) : api.uncancelSubscriptionSlot(slotId)).X(j0.p.a.c()).u(new GuildBoostUtils$modifyGuildBoostSlot$1(storeGuildBoost)).G(GuildBoostUtils$modifyGuildBoostSlot$2.INSTANCE).M(GuildBoostUtils$modifyGuildBoostSlot$3.INSTANCE).A(new GuildBoostUtils$modifyGuildBoostSlot$4(api, subscription, cancel));
+    private final Observable<ModifyGuildBoostSlotResult> modifyGuildBoostSlot(RestAPI api, long slotId, ModelSubscription subscription, boolean cancel, StoreGuildBoost storeGuildBoost) {
+        Observable<ModifyGuildBoostSlotResult> observableA = (cancel ? api.cancelSubscriptionSlot(slotId) : api.uncancelSubscriptionSlot(slotId)).X(j0.p.a.c()).u(new AnonymousClass1(storeGuildBoost)).G(AnonymousClass2.INSTANCE).M(AnonymousClass3.INSTANCE).A(new AnonymousClass4(api, subscription, cancel));
         m.checkNotNullExpressionValue(observableA, "apiObs\n        .subscrib…N }\n          }\n        }");
         return observableA;
     }
 
-    public final Observable<GuildBoostUtils$ModifyGuildBoostSlotResult> uncancelGuildBoostSlot(RestAPI api, long slotId, ModelSubscription subscription, StoreGuildBoost storeGuildBoost) {
+    public final Observable<ModifyGuildBoostSlotResult> uncancelGuildBoostSlot(RestAPI api, long slotId, ModelSubscription subscription, StoreGuildBoost storeGuildBoost) {
         m.checkNotNullParameter(api, "api");
-        m.checkNotNullParameter(subscription, Traits$Payment$Type.SUBSCRIPTION);
+        m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
         m.checkNotNullParameter(storeGuildBoost, "storeGuildBoost");
         return modifyGuildBoostSlot(api, slotId, subscription, false, storeGuildBoost);
     }

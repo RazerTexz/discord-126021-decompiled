@@ -4,7 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import androidx.annotation.AnimatorRes;
 import androidx.annotation.Nullable;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton$OnChangedCallback;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 /* JADX INFO: compiled from: MotionStrategy.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -22,7 +22,7 @@ public interface j {
 
     AnimatorSet f();
 
-    void g(@Nullable ExtendedFloatingActionButton$OnChangedCallback extendedFloatingActionButton$OnChangedCallback);
+    void g(@Nullable ExtendedFloatingActionButton.OnChangedCallback onChangedCallback);
 
     void onAnimationStart(Animator animator);
 }

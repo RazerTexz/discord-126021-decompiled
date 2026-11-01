@@ -2,17 +2,24 @@ package com.discord.widgets.settings.account;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import b.a.d.j;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
+import com.discord.analytics.generated.events.network_action.TrackNetworkActionUserConnectionsUpdate;
+import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
 import com.discord.api.connectedaccounts.ConnectedAccount;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetSettingsAccountContactsNameEditBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.discord.restapi.RestAPIParams$ConnectedAccountNameOnly;
+import com.discord.restapi.RestAPIParams;
 import com.discord.stores.StoreStream;
+import com.discord.stores.StoreUserConnections;
 import com.discord.stores.utilities.RestCallStateKt;
 import com.discord.utilities.analytics.AnalyticsTracker;
+import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.extensions.ViewExtensions;
@@ -22,25 +29,185 @@ import com.google.android.material.textfield.TextInputLayout;
 import d0.g0.t;
 import d0.g0.w;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Objects;
 import kotlin.NoWhenBranchMatchedException;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: WidgetSettingsAccountContactsNameEdit.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsAccountContactsNameEdit extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetSettingsAccountContactsNameEdit.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsAccountContactsNameEditBinding;", 0)};
-    public static final WidgetSettingsAccountContactsNameEdit$Companion Companion = new WidgetSettingsAccountContactsNameEdit$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountContactsNameEdit$configureUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsAccountContactsNameEdit.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetSettingsAccountContactsNameEdit.access$submitName(WidgetSettingsAccountContactsNameEdit.this, "");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountContactsNameEdit$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsAccountContactsNameEdit.kt */
+    public final class AnonymousClass1 extends o implements Function1<TextView, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(TextView textView) {
+            invoke2(textView);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(TextView textView) {
+            m.checkNotNullParameter(textView, "it");
+            WidgetSettingsAccountContactsNameEdit widgetSettingsAccountContactsNameEdit = WidgetSettingsAccountContactsNameEdit.this;
+            TextInputLayout textInputLayout = WidgetSettingsAccountContactsNameEdit.access$getBinding$p(widgetSettingsAccountContactsNameEdit).f2597b;
+            m.checkNotNullExpressionValue(textInputLayout, "binding.editAccountNameWrap");
+            String textOrEmpty = ViewExtensions.getTextOrEmpty(textInputLayout);
+            Objects.requireNonNull(textOrEmpty, "null cannot be cast to non-null type kotlin.CharSequence");
+            WidgetSettingsAccountContactsNameEdit.access$submitName(widgetSettingsAccountContactsNameEdit, w.trim(textOrEmpty).toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountContactsNameEdit$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsAccountContactsNameEdit.kt */
+    public final class AnonymousClass1 extends o implements Function1<StoreUserConnections.State, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreUserConnections.State state) {
+            invoke2(state);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreUserConnections.State state) {
+            m.checkNotNullParameter(state, "it");
+            WidgetSettingsAccountContactsNameEdit.access$configureUI(WidgetSettingsAccountContactsNameEdit.this, state);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountContactsNameEdit$submitName$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsAccountContactsNameEdit.kt */
+    public final class AnonymousClass1 extends o implements Function1<ConnectedAccount, TrackNetworkMetadataReceiver> {
+        public final /* synthetic */ String $name;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(String str) {
+            super(1);
+            this.$name = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ TrackNetworkMetadataReceiver invoke(ConnectedAccount connectedAccount) {
+            return invoke2(connectedAccount);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final TrackNetworkMetadataReceiver invoke2(ConnectedAccount connectedAccount) {
+            return new TrackNetworkActionUserConnectionsUpdate(this.$name, null, null, null, 14);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountContactsNameEdit$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsAccountContactsNameEdit.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetSettingsAccountContactsNameEdit widgetSettingsAccountContactsNameEdit = WidgetSettingsAccountContactsNameEdit.this;
+            TextInputLayout textInputLayout = WidgetSettingsAccountContactsNameEdit.access$getBinding$p(widgetSettingsAccountContactsNameEdit).f2597b;
+            m.checkNotNullExpressionValue(textInputLayout, "binding.editAccountNameWrap");
+            String textOrEmpty = ViewExtensions.getTextOrEmpty(textInputLayout);
+            Objects.requireNonNull(textOrEmpty, "null cannot be cast to non-null type kotlin.CharSequence");
+            WidgetSettingsAccountContactsNameEdit.access$submitName(widgetSettingsAccountContactsNameEdit, w.trim(textOrEmpty).toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountContactsNameEdit$submitName$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsAccountContactsNameEdit.kt */
+    public final class AnonymousClass2 extends o implements Function1<ConnectedAccount, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ConnectedAccount connectedAccount) {
+            invoke2(connectedAccount);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ConnectedAccount connectedAccount) {
+            m.checkNotNullParameter(connectedAccount, "it");
+            FragmentActivity activity = WidgetSettingsAccountContactsNameEdit.this.getActivity();
+            if (activity != null) {
+                activity.onBackPressed();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountContactsNameEdit$submitName$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsAccountContactsNameEdit.kt */
+    public final class AnonymousClass3 extends o implements Function1<Error, Unit> {
+        public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
+
+        public AnonymousClass3() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            m.checkNotNullParameter(error, "it");
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsAccountContactsNameEdit.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            m.checkNotNullParameter(context, "context");
+            j.e(context, WidgetSettingsAccountContactsNameEdit.class, null, 4);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetSettingsAccountContactsNameEdit() {
-        super(R$layout.widget_settings_account_contacts_name_edit);
+        super(R.layout.widget_settings_account_contacts_name_edit);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetSettingsAccountContactsNameEdit$binding$2.INSTANCE, null, 2, null);
     }
 
@@ -74,7 +241,7 @@ public final class WidgetSettingsAccountContactsNameEdit extends AppFragment {
             name = "";
         }
         ViewExtensions.setText(textInputLayout, name);
-        getBinding().c.setOnClickListener(new WidgetSettingsAccountContactsNameEdit$configureUI$1(this));
+        getBinding().c.setOnClickListener(new AnonymousClass1());
     }
 
     private final WidgetSettingsAccountContactsNameEditBinding getBinding() {
@@ -85,19 +252,19 @@ public final class WidgetSettingsAccountContactsNameEdit extends AppFragment {
     public void onViewBound(View view) {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
-        setActionBarSubtitle(2131896797);
-        setActionBarTitle(2131887915);
+        setActionBarSubtitle(R.string.user_settings);
+        setActionBarTitle(R.string.contact_sync_update_name_title);
         AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
         TextInputLayout textInputLayout = getBinding().f2597b;
         m.checkNotNullExpressionValue(textInputLayout, "binding.editAccountNameWrap");
-        ViewExtensions.setOnImeActionDone$default(textInputLayout, false, new WidgetSettingsAccountContactsNameEdit$onViewBound$1(this), 1, null);
-        getBinding().d.setOnClickListener(new WidgetSettingsAccountContactsNameEdit$onViewBound$2(this));
+        ViewExtensions.setOnImeActionDone$default(textInputLayout, false, new AnonymousClass1(), 1, null);
+        getBinding().d.setOnClickListener(new AnonymousClass2());
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(StoreStream.Companion.getUserConnections().observeConnectedAccounts(), this, null, 2, null), WidgetSettingsAccountContactsNameEdit.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetSettingsAccountContactsNameEdit$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(StoreStream.INSTANCE.getUserConnections().observeConnectedAccounts(), this, null, 2, null), WidgetSettingsAccountContactsNameEdit.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
     private final void submitName(String name) {
@@ -114,6 +281,6 @@ public final class WidgetSettingsAccountContactsNameEdit extends AppFragment {
             string = w.trim(name).toString();
         }
         AnalyticsTracker.INSTANCE.nameSubmitted(w.split$default((CharSequence) name, new String[]{" "}, false, 0, 6, (Object) null).size(), name.length());
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(RestCallStateKt.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApiSerializeNulls().updateConnectionName("contacts", "@me", new RestAPIParams$ConnectedAccountNameOnly(string)), false, 1, null), new WidgetSettingsAccountContactsNameEdit$submitName$1(name)), this, null, 2, null), WidgetSettingsAccountContactsNameEdit.class, (Context) null, (Function1) null, WidgetSettingsAccountContactsNameEdit$submitName$3.INSTANCE, (Function0) null, (Function0) null, new WidgetSettingsAccountContactsNameEdit$submitName$2(this), 54, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(RestCallStateKt.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApiSerializeNulls().updateConnectionName("contacts", "@me", new RestAPIParams.ConnectedAccountNameOnly(string)), false, 1, null), new AnonymousClass1(name)), this, null, 2, null), WidgetSettingsAccountContactsNameEdit.class, (Context) null, (Function1) null, AnonymousClass3.INSTANCE, (Function0) null, (Function0) null, new AnonymousClass2(), 54, (Object) null);
     }
 }

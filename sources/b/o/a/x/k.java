@@ -1,7 +1,6 @@
 package b.o.a.x;
 
 import androidx.annotation.NonNull;
-import b.i.a.f.e.o.f$a;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +9,7 @@ import java.util.List;
 public class k implements c {
     public j a;
 
-    public k(j jVar, f$a f_a) {
+    public k(j jVar, b.i.a.f.e.o.f.a aVar) {
         this.a = jVar;
     }
 

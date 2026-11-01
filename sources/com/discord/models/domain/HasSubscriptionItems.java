@@ -11,36 +11,36 @@ import java.util.List;
 /* JADX INFO: loaded from: classes.dex */
 public abstract class HasSubscriptionItems {
     public final Long getGuildBoostPlanId() {
-        ModelSubscription$SubscriptionAdditionalPlan modelSubscription$SubscriptionAdditionalPlan = (ModelSubscription$SubscriptionAdditionalPlan) u.firstOrNull((List) getPremiumAdditionalPlans());
-        if (modelSubscription$SubscriptionAdditionalPlan != null) {
-            return Long.valueOf(modelSubscription$SubscriptionAdditionalPlan.getPlanId());
+        ModelSubscription.SubscriptionAdditionalPlan subscriptionAdditionalPlan = (ModelSubscription.SubscriptionAdditionalPlan) u.firstOrNull((List) getPremiumAdditionalPlans());
+        if (subscriptionAdditionalPlan != null) {
+            return Long.valueOf(subscriptionAdditionalPlan.getPlanId());
         }
         return null;
     }
 
-    public abstract List<ModelSubscription$SubscriptionItem> getItems();
+    public abstract List<ModelSubscription.SubscriptionItem> getItems();
 
-    public final List<ModelSubscription$SubscriptionAdditionalPlan> getPremiumAdditionalPlans() {
-        List<ModelSubscription$SubscriptionItem> items = getItems();
-        ArrayList<ModelSubscription$SubscriptionItem> arrayList = new ArrayList();
+    public final List<ModelSubscription.SubscriptionAdditionalPlan> getPremiumAdditionalPlans() {
+        List<ModelSubscription.SubscriptionItem> items = getItems();
+        ArrayList<ModelSubscription.SubscriptionItem> arrayList = new ArrayList();
         for (Object obj : items) {
-            if (((ModelSubscription$SubscriptionItem) obj).getPlanId() != getPremiumBasePlanId()) {
+            if (((ModelSubscription.SubscriptionItem) obj).getPlanId() != getPremiumBasePlanId()) {
                 arrayList.add(obj);
             }
         }
         ArrayList arrayList2 = new ArrayList(o.collectionSizeOrDefault(arrayList, 10));
-        for (ModelSubscription$SubscriptionItem modelSubscription$SubscriptionItem : arrayList) {
-            arrayList2.add(new ModelSubscription$SubscriptionAdditionalPlan(modelSubscription$SubscriptionItem.getPlanId(), modelSubscription$SubscriptionItem.getQuantity()));
+        for (ModelSubscription.SubscriptionItem subscriptionItem : arrayList) {
+            arrayList2.add(new ModelSubscription.SubscriptionAdditionalPlan(subscriptionItem.getPlanId(), subscriptionItem.getQuantity()));
         }
         return arrayList2;
     }
 
     public final long getPremiumBasePlanId() {
-        ModelSubscription$SubscriptionItem modelSubscription$SubscriptionItem = (ModelSubscription$SubscriptionItem) u.firstOrNull((List) getItems());
-        Long lValueOf = modelSubscription$SubscriptionItem != null ? Long.valueOf(modelSubscription$SubscriptionItem.getPlanId()) : null;
-        SubscriptionInterval interval = lValueOf != null ? SubscriptionPlanType.Companion.from(lValueOf.longValue()).getInterval() : SubscriptionInterval.MONTHLY;
-        ModelSubscription$SubscriptionItem modelSubscription$SubscriptionItem2 = (ModelSubscription$SubscriptionItem) u.firstOrNull((List) getItems());
-        Long lValueOf2 = modelSubscription$SubscriptionItem2 != null ? Long.valueOf(modelSubscription$SubscriptionItem2.getPlanId()) : null;
-        return SubscriptionPlanType.Companion.getBasePlanFromSubscriptionItems(getItems(), interval, lValueOf2 != null ? SubscriptionPlanType.Companion.from(lValueOf2.longValue()).getIntervalCount() : 1).getPlanId();
+        ModelSubscription.SubscriptionItem subscriptionItem = (ModelSubscription.SubscriptionItem) u.firstOrNull((List) getItems());
+        Long lValueOf = subscriptionItem != null ? Long.valueOf(subscriptionItem.getPlanId()) : null;
+        SubscriptionInterval interval = lValueOf != null ? SubscriptionPlanType.INSTANCE.from(lValueOf.longValue()).getInterval() : SubscriptionInterval.MONTHLY;
+        ModelSubscription.SubscriptionItem subscriptionItem2 = (ModelSubscription.SubscriptionItem) u.firstOrNull((List) getItems());
+        Long lValueOf2 = subscriptionItem2 != null ? Long.valueOf(subscriptionItem2.getPlanId()) : null;
+        return SubscriptionPlanType.INSTANCE.getBasePlanFromSubscriptionItems(getItems(), interval, lValueOf2 != null ? SubscriptionPlanType.INSTANCE.from(lValueOf2.longValue()).getIntervalCount() : 1).getPlanId();
     }
 }

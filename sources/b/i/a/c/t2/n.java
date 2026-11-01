@@ -7,6 +7,21 @@ import androidx.core.view.PointerIconCompat;
 public final class n {
     public static final int[] a = {2002, 2000, 1920, 1601, 1600, PointerIconCompat.TYPE_CONTEXT_MENU, 1000, 960, 800, 800, 480, 400, 400, 2048};
 
+    /* JADX INFO: compiled from: Ac4Util.java */
+    public final class b {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f1124b;
+        public final int c;
+
+        public b(int i, int i2, int i3, int i4, int i5, a aVar) {
+            this.a = i3;
+            this.f1124b = i4;
+            this.c = i5;
+        }
+    }
+
     public static void a(int i, b.i.a.c.f3.x xVar) {
         xVar.A(7);
         byte[] bArr = xVar.a;
@@ -22,7 +37,7 @@ public final class n {
     /* JADX WARN: Code duplicated, block: B:47:0x009b  */
     /* JADX WARN: Code duplicated, block: B:51:0x00a2  */
     /* JADX WARN: Code duplicated, block: B:52:0x00a5  */
-    public static n$b b(b.i.a.c.f3.w wVar) {
+    public static b b(b.i.a.c.f3.w wVar) {
         int i;
         int i2;
         int iG;
@@ -88,6 +103,6 @@ public final class n {
         } else {
             i2 = 0;
         }
-        return new n$b(iG4, 2, i6, i4, i2, null);
+        return new b(iG4, 2, i6, i4, i2, null);
     }
 }

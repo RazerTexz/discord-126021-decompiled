@@ -11,7 +11,7 @@ public final class a extends k {
     public final long f1778b;
     public final long c;
 
-    public a(String str, long j, long j2, a$a a_a) {
+    public a(String str, long j, long j2, C0151a c0151a) {
         this.a = str;
         this.f1778b = j;
         this.c = j2;

@@ -18,10 +18,10 @@ public final class WidgetChannelListModel$Companion$get$1<T, R> implements b<Lon
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
     public final Observable<? extends WidgetChannelListModel> call2(Long l) {
         if (l != null && l.longValue() == 0) {
-            return WidgetChannelListModel$Companion.access$getPrivateChannelList(WidgetChannelListModel.Companion);
+            return WidgetChannelListModel.Companion.access$getPrivateChannelList(WidgetChannelListModel.INSTANCE);
         }
-        WidgetChannelListModel$Companion widgetChannelListModel$Companion = WidgetChannelListModel.Companion;
+        WidgetChannelListModel.Companion companion = WidgetChannelListModel.INSTANCE;
         m.checkNotNullExpressionValue(l, "guildId");
-        return WidgetChannelListModel$Companion.access$getSelectedGuildChannelList(widgetChannelListModel$Companion, l.longValue());
+        return WidgetChannelListModel.Companion.access$getSelectedGuildChannelList(companion, l.longValue());
     }
 }

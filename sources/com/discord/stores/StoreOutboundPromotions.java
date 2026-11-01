@@ -1,13 +1,15 @@
 package com.discord.stores;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import b.d.b.a.a;
 import com.discord.api.premium.ClaimedOutboundPromotion;
 import com.discord.api.premium.OutboundPromotion;
 import com.discord.api.user.User;
+import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.user.MeUser;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
@@ -15,9 +17,12 @@ import com.discord.utilities.user.UserUtils;
 import com.discord.widgets.settings.premium.OutboundPromosPreviewFeatureFlag;
 import d0.t.n;
 import d0.z.d.m;
+import d0.z.d.o;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -27,7 +32,6 @@ import rx.Observable;
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreOutboundPromotions extends StoreV2 {
     private static final String CONSUMED_ENTITLEMENT_PROMO_ID = "CONSUMED_ENTITLEMENT_CODE";
-    public static final StoreOutboundPromotions$Companion Companion = new StoreOutboundPromotions$Companion(null);
     private static final String LATEST_SEEN_PROMO_DATE = "LATEST_SEEN_PROMO_DATE";
     private static final long NO_PROMO_ID = -1;
     private static final long NO_SEEN_PROMO_DATE = -1;
@@ -35,11 +39,214 @@ public final class StoreOutboundPromotions extends StoreV2 {
     private final ObservationDeck observationDeck;
     private final OutboundPromosPreviewFeatureFlag previewFeatureFlag;
     private final RestAPI restAPI;
-    private StoreOutboundPromotions$State state;
-    private StoreOutboundPromotions$State stateSnapshot;
+    private State state;
+    private State stateSnapshot;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreOutboundPromotions$markSeen$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            List<OutboundPromotion> validActivePromotions;
+            State stateAccess$getState$p = StoreOutboundPromotions.access$getState$p(StoreOutboundPromotions.this);
+            Object next = null;
+            if (!(stateAccess$getState$p instanceof State.Loaded)) {
+                stateAccess$getState$p = null;
+            }
+            State.Loaded loaded = (State.Loaded) stateAccess$getState$p;
+            if (loaded == null || (validActivePromotions = loaded.getValidActivePromotions()) == null) {
+                return;
+            }
+            Iterator<T> it = validActivePromotions.iterator();
+            if (it.hasNext()) {
+                next = it.next();
+                if (it.hasNext()) {
+                    UtcDateTime startDate = ((OutboundPromotion) next).getStartDate();
+                    do {
+                        Object next2 = it.next();
+                        UtcDateTime startDate2 = ((OutboundPromotion) next2).getStartDate();
+                        if (startDate.compareTo(startDate2) < 0) {
+                            next = next2;
+                            startDate = startDate2;
+                        }
+                    } while (it.hasNext());
+                }
+            }
+            OutboundPromotion outboundPromotion = (OutboundPromotion) next;
+            if (outboundPromotion != null) {
+                SharedPreferences.Editor editorEdit = StoreOutboundPromotions.this.getPrefs().edit();
+                m.checkNotNullExpressionValue(editorEdit, "editor");
+                editorEdit.putLong(StoreOutboundPromotions.LATEST_SEEN_PROMO_DATE, outboundPromotion.getStartDate().getDateTimeMillis());
+                editorEdit.apply();
+                StoreOutboundPromotions storeOutboundPromotions = StoreOutboundPromotions.this;
+                StoreOutboundPromotions.access$setState$p(storeOutboundPromotions, new State.Loaded(validActivePromotions, StoreOutboundPromotions.access$getUnseenCount(storeOutboundPromotions, validActivePromotions)));
+                StoreOutboundPromotions.this.markChanged();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreOutboundPromotions$observeState$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
+    public final class AnonymousClass1 extends o implements Function0<State> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ State invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final State invoke() {
+            return StoreOutboundPromotions.this.getStateSnapshot();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreOutboundPromotions$observeUnseenCount$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
+    public final class AnonymousClass1 extends o implements Function0<Integer> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Integer invoke() {
+            return Integer.valueOf(invoke2());
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final int invoke2() {
+            return StoreOutboundPromotions.this.getUnseenCount();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
+    public abstract class State {
+
+        /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
+        public final class Failed extends State {
+            public static final Failed INSTANCE = new Failed();
+
+            private Failed() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
+        public final /* data */ class Loaded extends State {
+            private final int unseenCount;
+            private final List<OutboundPromotion> validActivePromotions;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Loaded(List<OutboundPromotion> list, int i) {
+                super(null);
+                m.checkNotNullParameter(list, "validActivePromotions");
+                this.validActivePromotions = list;
+                this.unseenCount = i;
+            }
+
+            public final List<OutboundPromotion> component1() {
+                return this.validActivePromotions;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, int i2, Object obj) {
+                if ((i2 & 1) != 0) {
+                    list = loaded.validActivePromotions;
+                }
+                if ((i2 & 2) != 0) {
+                    i = loaded.unseenCount;
+                }
+                return loaded.copy(list, i);
+            }
+
+            public final Loaded copy(List<OutboundPromotion> validActivePromotions, int unseenCount) {
+                m.checkNotNullParameter(validActivePromotions, "validActivePromotions");
+                return new Loaded(validActivePromotions, unseenCount);
+            }
+
+            @Override // com.discord.stores.StoreOutboundPromotions.State
+            public /* bridge */ /* synthetic */ State deepCopy() {
+                return deepCopy();
+            }
+
+            public boolean equals(Object other) {
+                if (this == other) {
+                    return true;
+                }
+                if (!(other instanceof Loaded)) {
+                    return false;
+                }
+                Loaded loaded = (Loaded) other;
+                return m.areEqual(this.validActivePromotions, loaded.validActivePromotions) && this.unseenCount == loaded.unseenCount;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final int getUnseenCount() {
+                return this.unseenCount;
+            }
+
+            public final int getUnseenCount() {
+                return this.unseenCount;
+            }
+
+            public final List<OutboundPromotion> getValidActivePromotions() {
+                return this.validActivePromotions;
+            }
+
+            public int hashCode() {
+                List<OutboundPromotion> list = this.validActivePromotions;
+                return ((list != null ? list.hashCode() : 0) * 31) + this.unseenCount;
+            }
+
+            public String toString() {
+                StringBuilder sbU = a.U("Loaded(validActivePromotions=");
+                sbU.append(this.validActivePromotions);
+                sbU.append(", unseenCount=");
+                return a.B(sbU, this.unseenCount, ")");
+            }
+
+            @Override // com.discord.stores.StoreOutboundPromotions.State
+            public Loaded deepCopy() {
+                return copy$default(this, new ArrayList(this.validActivePromotions), 0, 2, null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreOutboundPromotions.kt */
+        public final class Loading extends State {
+            public static final Loading INSTANCE = new Loading();
+
+            private Loading() {
+                super(null);
+            }
+        }
+
+        private State() {
+        }
+
+        public State deepCopy() {
+            return this;
+        }
+
+        public /* synthetic */ State(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public /* synthetic */ StoreOutboundPromotions(OutboundPromosPreviewFeatureFlag outboundPromosPreviewFeatureFlag, Dispatcher dispatcher, ObservationDeck observationDeck, RestAPI restAPI, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(outboundPromosPreviewFeatureFlag, dispatcher, (i & 4) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 8) != 0 ? RestAPI.Companion.getApi() : restAPI);
+        this(outboundPromosPreviewFeatureFlag, dispatcher, (i & 4) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 8) != 0 ? RestAPI.INSTANCE.getApi() : restAPI);
     }
 
     public static final /* synthetic */ Dispatcher access$getDispatcher$p(StoreOutboundPromotions storeOutboundPromotions) {
@@ -50,7 +257,7 @@ public final class StoreOutboundPromotions extends StoreV2 {
         return storeOutboundPromotions.restAPI;
     }
 
-    public static final /* synthetic */ StoreOutboundPromotions$State access$getState$p(StoreOutboundPromotions storeOutboundPromotions) {
+    public static final /* synthetic */ State access$getState$p(StoreOutboundPromotions storeOutboundPromotions) {
         return storeOutboundPromotions.state;
     }
 
@@ -58,8 +265,8 @@ public final class StoreOutboundPromotions extends StoreV2 {
         return storeOutboundPromotions.getUnseenCount(list);
     }
 
-    public static final /* synthetic */ void access$setState$p(StoreOutboundPromotions storeOutboundPromotions, StoreOutboundPromotions$State storeOutboundPromotions$State) {
-        storeOutboundPromotions.state = storeOutboundPromotions$State;
+    public static final /* synthetic */ void access$setState$p(StoreOutboundPromotions storeOutboundPromotions, State state) {
+        storeOutboundPromotions.state = state;
     }
 
     public final Observable<ClaimedOutboundPromotion> claimOutboundPromotion(long promotionId) {
@@ -71,18 +278,18 @@ public final class StoreOutboundPromotions extends StoreV2 {
     }
 
     /* JADX INFO: renamed from: getState, reason: from getter */
-    public final StoreOutboundPromotions$State getStateSnapshot() {
+    public final State getStateSnapshot() {
         return this.stateSnapshot;
     }
 
     public final int getUnseenCount() {
-        StoreOutboundPromotions$State stateSnapshot = getStateSnapshot();
-        if (!(stateSnapshot instanceof StoreOutboundPromotions$State$Loaded)) {
+        State stateSnapshot = getStateSnapshot();
+        if (!(stateSnapshot instanceof State.Loaded)) {
             stateSnapshot = null;
         }
-        StoreOutboundPromotions$State$Loaded storeOutboundPromotions$State$Loaded = (StoreOutboundPromotions$State$Loaded) stateSnapshot;
-        if (storeOutboundPromotions$State$Loaded != null) {
-            return storeOutboundPromotions$State$Loaded.getUnseenCount();
+        State.Loaded loaded = (State.Loaded) stateSnapshot;
+        if (loaded != null) {
+            return loaded.getUnseenCount();
         }
         return 0;
     }
@@ -94,11 +301,11 @@ public final class StoreOutboundPromotions extends StoreV2 {
         User me2 = readyPayload.getMe();
         m.checkNotNullExpressionValue(me2, "readyPayload.me");
         if (!userUtils.isPremiumTier2(new MeUser(me2))) {
-            this.state = new StoreOutboundPromotions$State$Loaded(n.emptyList(), 0);
+            this.state = new State.Loaded(n.emptyList(), 0);
             markChanged();
             return;
         }
-        this.state = StoreOutboundPromotions$State$Loading.INSTANCE;
+        this.state = State.Loading.INSTANCE;
         markChanged();
         RestAPI restAPI = this.restAPI;
         Observable observableA = ObservableExtensionsKt.restSubscribeOn$default(this.previewFeatureFlag.isEnabled() ? restAPI.getAllPreviewPromotions() : restAPI.getAllActiveOutboundPromotions(), false, 1, null).A(new StoreOutboundPromotions$handleConnectionOpen$2(this));
@@ -107,17 +314,17 @@ public final class StoreOutboundPromotions extends StoreV2 {
     }
 
     public final void markSeen() {
-        this.dispatcher.schedule(new StoreOutboundPromotions$markSeen$1(this));
+        this.dispatcher.schedule(new AnonymousClass1());
     }
 
-    public final Observable<StoreOutboundPromotions$State> observeState() {
-        Observable<StoreOutboundPromotions$State> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreOutboundPromotions$observeState$1(this), 14, null).r();
+    public final Observable<State> observeState() {
+        Observable<State> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Integer> observeUnseenCount() {
-        Observable<Integer> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreOutboundPromotions$observeUnseenCount$1(this), 14, null).r();
+        Observable<Integer> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
         return observableR;
     }
@@ -152,8 +359,8 @@ public final class StoreOutboundPromotions extends StoreV2 {
         this.dispatcher = dispatcher;
         this.observationDeck = observationDeck;
         this.restAPI = restAPI;
-        StoreOutboundPromotions$State$Loading storeOutboundPromotions$State$Loading = StoreOutboundPromotions$State$Loading.INSTANCE;
-        this.state = storeOutboundPromotions$State$Loading;
-        this.stateSnapshot = storeOutboundPromotions$State$Loading;
+        State.Loading loading = State.Loading.INSTANCE;
+        this.state = loading;
+        this.stateSnapshot = loading;
     }
 }

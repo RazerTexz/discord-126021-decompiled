@@ -1,7 +1,6 @@
 package org.webrtc.voiceengine;
 
 import android.os.Build;
-import android.os.Build$VERSION;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class BuildInfo {
@@ -14,7 +13,7 @@ public final class BuildInfo {
     }
 
     public static String getBuildRelease() {
-        return Build$VERSION.RELEASE;
+        return Build.VERSION.RELEASE;
     }
 
     public static String getBuildType() {
@@ -38,6 +37,6 @@ public final class BuildInfo {
     }
 
     public static int getSdkVersion() {
-        return Build$VERSION.SDK_INT;
+        return Build.VERSION.SDK_INT;
     }
 }

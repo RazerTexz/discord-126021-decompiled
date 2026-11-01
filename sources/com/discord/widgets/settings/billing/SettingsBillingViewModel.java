@@ -1,34 +1,226 @@
 package com.discord.widgets.settings.billing;
 
 import android.content.Context;
+import androidx.core.app.NotificationCompat;
 import b.a.d.d0;
+import b.d.b.a.a;
 import com.discord.models.domain.ModelPaymentSource;
 import com.discord.models.domain.ModelSubscription;
 import com.discord.stores.StorePaymentSources;
-import com.discord.stores.StorePaymentSources$PaymentSourcesState;
-import com.discord.stores.StorePaymentSources$PaymentSourcesState$Failure;
-import com.discord.stores.StorePaymentSources$PaymentSourcesState$Loaded;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import com.discord.stores.StoreSubscriptions;
-import com.discord.stores.StoreSubscriptions$SubscriptionsState;
-import com.discord.stores.StoreSubscriptions$SubscriptionsState$Failure;
-import com.discord.stores.StoreSubscriptions$SubscriptionsState$Loaded;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.t.n;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.List;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
+import rx.functions.Func2;
 
 /* JADX INFO: compiled from: SettingsBillingViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class SettingsBillingViewModel extends d0<SettingsBillingViewModel$ViewState> {
+public final class SettingsBillingViewModel extends d0<ViewState> {
     private final StorePaymentSources storePaymentSources;
     private final StoreSubscriptions storeSubscriptions;
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.billing.SettingsBillingViewModel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: SettingsBillingViewModel.kt */
+    public final class AnonymousClass1<T1, T2, R> implements Func2<StorePaymentSources.PaymentSourcesState, StoreSubscriptions.SubscriptionsState, StoreState> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // rx.functions.Func2
+        public /* bridge */ /* synthetic */ StoreState call(StorePaymentSources.PaymentSourcesState paymentSourcesState, StoreSubscriptions.SubscriptionsState subscriptionsState) {
+            return call2(paymentSourcesState, subscriptionsState);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final StoreState call2(StorePaymentSources.PaymentSourcesState paymentSourcesState, StoreSubscriptions.SubscriptionsState subscriptionsState) {
+            m.checkNotNullExpressionValue(paymentSourcesState, "paymentSourcesState");
+            m.checkNotNullExpressionValue(subscriptionsState, "subscriptionsState");
+            return new StoreState(paymentSourcesState, subscriptionsState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.billing.SettingsBillingViewModel$2, reason: invalid class name */
+    /* JADX INFO: compiled from: SettingsBillingViewModel.kt */
+    public final class AnonymousClass2 extends o implements Function1<StoreState, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
+            invoke2(storeState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreState storeState) {
+            m.checkNotNullParameter(storeState, "storeState");
+            SettingsBillingViewModel.access$handleStoreState(SettingsBillingViewModel.this, storeState);
+        }
+    }
+
+    /* JADX INFO: compiled from: SettingsBillingViewModel.kt */
+    public final /* data */ class StoreState {
+        private final StorePaymentSources.PaymentSourcesState paymentSourceState;
+        private final StoreSubscriptions.SubscriptionsState subscriptionsState;
+
+        public StoreState(StorePaymentSources.PaymentSourcesState paymentSourcesState, StoreSubscriptions.SubscriptionsState subscriptionsState) {
+            m.checkNotNullParameter(paymentSourcesState, "paymentSourceState");
+            m.checkNotNullParameter(subscriptionsState, "subscriptionsState");
+            this.paymentSourceState = paymentSourcesState;
+            this.subscriptionsState = subscriptionsState;
+        }
+
+        public static /* synthetic */ StoreState copy$default(StoreState storeState, StorePaymentSources.PaymentSourcesState paymentSourcesState, StoreSubscriptions.SubscriptionsState subscriptionsState, int i, Object obj) {
+            if ((i & 1) != 0) {
+                paymentSourcesState = storeState.paymentSourceState;
+            }
+            if ((i & 2) != 0) {
+                subscriptionsState = storeState.subscriptionsState;
+            }
+            return storeState.copy(paymentSourcesState, subscriptionsState);
+        }
+
+        public final StoreState copy(StorePaymentSources.PaymentSourcesState paymentSourceState, StoreSubscriptions.SubscriptionsState subscriptionsState) {
+            m.checkNotNullParameter(paymentSourceState, "paymentSourceState");
+            m.checkNotNullParameter(subscriptionsState, "subscriptionsState");
+            return new StoreState(paymentSourceState, subscriptionsState);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof StoreState)) {
+                return false;
+            }
+            StoreState storeState = (StoreState) other;
+            return m.areEqual(this.paymentSourceState, storeState.paymentSourceState) && m.areEqual(this.subscriptionsState, storeState.subscriptionsState);
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final StorePaymentSources.PaymentSourcesState getPaymentSourceState() {
+            return this.paymentSourceState;
+        }
+
+        public final StorePaymentSources.PaymentSourcesState getPaymentSourceState() {
+            return this.paymentSourceState;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final StoreSubscriptions.SubscriptionsState getSubscriptionsState() {
+            return this.subscriptionsState;
+        }
+
+        public final StoreSubscriptions.SubscriptionsState getSubscriptionsState() {
+            return this.subscriptionsState;
+        }
+
+        public int hashCode() {
+            StorePaymentSources.PaymentSourcesState paymentSourcesState = this.paymentSourceState;
+            int iHashCode = (paymentSourcesState != null ? paymentSourcesState.hashCode() : 0) * 31;
+            StoreSubscriptions.SubscriptionsState subscriptionsState = this.subscriptionsState;
+            return iHashCode + (subscriptionsState != null ? subscriptionsState.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("StoreState(paymentSourceState=");
+            sbU.append(this.paymentSourceState);
+            sbU.append(", subscriptionsState=");
+            sbU.append(this.subscriptionsState);
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    /* JADX INFO: compiled from: SettingsBillingViewModel.kt */
+    public abstract class ViewState {
+
+        /* JADX INFO: compiled from: SettingsBillingViewModel.kt */
+        public final class Failure extends ViewState {
+            public static final Failure INSTANCE = new Failure();
+
+            private Failure() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: SettingsBillingViewModel.kt */
+        public final /* data */ class Loaded extends ViewState {
+            private final List<PaymentSourceAdapter.Item> paymentSourceItems;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            /* JADX WARN: Multi-variable type inference failed */
+            public Loaded(List<? extends PaymentSourceAdapter.Item> list) {
+                super(null);
+                m.checkNotNullParameter(list, "paymentSourceItems");
+                this.paymentSourceItems = list;
+            }
+
+            public final List<PaymentSourceAdapter.Item> component1() {
+                return this.paymentSourceItems;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    list = loaded.paymentSourceItems;
+                }
+                return loaded.copy(list);
+            }
+
+            public final Loaded copy(List<? extends PaymentSourceAdapter.Item> paymentSourceItems) {
+                m.checkNotNullParameter(paymentSourceItems, "paymentSourceItems");
+                return new Loaded(paymentSourceItems);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Loaded) && m.areEqual(this.paymentSourceItems, ((Loaded) other).paymentSourceItems);
+                }
+                return true;
+            }
+
+            public final List<PaymentSourceAdapter.Item> getPaymentSourceItems() {
+                return this.paymentSourceItems;
+            }
+
+            public int hashCode() {
+                List<PaymentSourceAdapter.Item> list = this.paymentSourceItems;
+                if (list != null) {
+                    return list.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                return a.L(a.U("Loaded(paymentSourceItems="), this.paymentSourceItems, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: SettingsBillingViewModel.kt */
+        public final class Loading extends ViewState {
+            public static final Loading INSTANCE = new Loading();
+
+            private Loading() {
+                super(null);
+            }
+        }
+
+        private ViewState() {
+        }
+
+        public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public SettingsBillingViewModel() {
         this(null, null, null, 7, null);
@@ -36,18 +228,18 @@ public final class SettingsBillingViewModel extends d0<SettingsBillingViewModel$
 
     /* JADX WARN: Illegal instructions before constructor call */
     public /* synthetic */ SettingsBillingViewModel(StorePaymentSources storePaymentSources, StoreSubscriptions storeSubscriptions, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        storePaymentSources = (i & 1) != 0 ? StoreStream.Companion.getPaymentSources() : storePaymentSources;
-        storeSubscriptions = (i & 2) != 0 ? StoreStream.Companion.getSubscriptions() : storeSubscriptions;
+        storePaymentSources = (i & 1) != 0 ? StoreStream.INSTANCE.getPaymentSources() : storePaymentSources;
+        storeSubscriptions = (i & 2) != 0 ? StoreStream.INSTANCE.getSubscriptions() : storeSubscriptions;
         if ((i & 4) != 0) {
-            StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-            observable = Observable.j(storeStream$Companion.getPaymentSources().observePaymentSourcesState(), storeStream$Companion.getSubscriptions().observeSubscriptions(), SettingsBillingViewModel$1.INSTANCE);
+            StoreStream.Companion companion = StoreStream.INSTANCE;
+            observable = Observable.j(companion.getPaymentSources().observePaymentSourcesState(), companion.getSubscriptions().observeSubscriptions(), AnonymousClass1.INSTANCE);
             m.checkNotNullExpressionValue(observable, "Observable\n      .combin…nsState\n        )\n      }");
         }
         this(storePaymentSources, storeSubscriptions, observable);
     }
 
-    public static final /* synthetic */ void access$handleStoreState(SettingsBillingViewModel settingsBillingViewModel, SettingsBillingViewModel$StoreState settingsBillingViewModel$StoreState) {
-        settingsBillingViewModel.handleStoreState(settingsBillingViewModel$StoreState);
+    public static final /* synthetic */ void access$handleStoreState(SettingsBillingViewModel settingsBillingViewModel, StoreState storeState) {
+        settingsBillingViewModel.handleStoreState(storeState);
     }
 
     private final void fetchData() {
@@ -55,7 +247,7 @@ public final class SettingsBillingViewModel extends d0<SettingsBillingViewModel$
         this.storeSubscriptions.fetchSubscriptions();
     }
 
-    private final List<PaymentSourceAdapter$Item> generateListItems(List<? extends ModelPaymentSource> paymentSources, ModelSubscription premiumSubscription) {
+    private final List<PaymentSourceAdapter.Item> generateListItems(List<? extends ModelPaymentSource> paymentSources, ModelSubscription premiumSubscription) {
         ArrayList arrayList = new ArrayList();
         if (!paymentSources.isEmpty()) {
             int i = 0;
@@ -65,40 +257,40 @@ public final class SettingsBillingViewModel extends d0<SettingsBillingViewModel$
                     n.throwIndexOverflow();
                 }
                 ModelPaymentSource modelPaymentSource = (ModelPaymentSource) obj;
-                PaymentSourceAdapter$PaymentSourceHeader$Type paymentSourceAdapter$PaymentSourceHeader$Type = i != 0 ? i != 1 ? null : PaymentSourceAdapter$PaymentSourceHeader$Type.OTHER : PaymentSourceAdapter$PaymentSourceHeader$Type.DEFAULT;
-                PaymentSourceAdapter$PaymentSourceHeader paymentSourceAdapter$PaymentSourceHeader = paymentSourceAdapter$PaymentSourceHeader$Type != null ? new PaymentSourceAdapter$PaymentSourceHeader(paymentSourceAdapter$PaymentSourceHeader$Type) : null;
-                if (paymentSourceAdapter$PaymentSourceHeader != null) {
-                    arrayList.add(paymentSourceAdapter$PaymentSourceHeader);
+                PaymentSourceAdapter.PaymentSourceHeader.Type type = i != 0 ? i != 1 ? null : PaymentSourceAdapter.PaymentSourceHeader.Type.OTHER : PaymentSourceAdapter.PaymentSourceHeader.Type.DEFAULT;
+                PaymentSourceAdapter.PaymentSourceHeader paymentSourceHeader = type != null ? new PaymentSourceAdapter.PaymentSourceHeader(type) : null;
+                if (paymentSourceHeader != null) {
+                    arrayList.add(paymentSourceHeader);
                 }
-                arrayList.add(new PaymentSourceAdapter$PaymentSourceItem(modelPaymentSource, m.areEqual(modelPaymentSource.getId(), premiumSubscription != null ? premiumSubscription.getPaymentSourceId() : null) && !premiumSubscription.getStatus().isCanceled()));
+                arrayList.add(new PaymentSourceAdapter.PaymentSourceItem(modelPaymentSource, m.areEqual(modelPaymentSource.getId(), premiumSubscription != null ? premiumSubscription.getPaymentSourceId() : null) && !premiumSubscription.getStatus().isCanceled()));
                 i = i2;
             }
-            arrayList.add(new PaymentSourceAdapter$PaymentSourceAddItem());
+            arrayList.add(new PaymentSourceAdapter.PaymentSourceAddItem());
         }
         return arrayList;
     }
 
-    private final void handleStoreState(SettingsBillingViewModel$StoreState storeState) {
-        StorePaymentSources$PaymentSourcesState paymentSourceState = storeState.getPaymentSourceState();
-        StoreSubscriptions$SubscriptionsState subscriptionsState = storeState.getSubscriptionsState();
-        if ((paymentSourceState instanceof StorePaymentSources$PaymentSourcesState$Loaded) && (subscriptionsState instanceof StoreSubscriptions$SubscriptionsState$Loaded)) {
-            updateViewState(new SettingsBillingViewModel$ViewState$Loaded(generateListItems(((StorePaymentSources$PaymentSourcesState$Loaded) paymentSourceState).getPaymentSources(), ((StoreSubscriptions$SubscriptionsState$Loaded) subscriptionsState).getPremiumSubscription())));
-        } else if ((paymentSourceState instanceof StorePaymentSources$PaymentSourcesState$Failure) || (subscriptionsState instanceof StoreSubscriptions$SubscriptionsState$Failure)) {
-            updateViewState(SettingsBillingViewModel$ViewState$Failure.INSTANCE);
+    private final void handleStoreState(StoreState storeState) {
+        StorePaymentSources.PaymentSourcesState paymentSourceState = storeState.getPaymentSourceState();
+        StoreSubscriptions.SubscriptionsState subscriptionsState = storeState.getSubscriptionsState();
+        if ((paymentSourceState instanceof StorePaymentSources.PaymentSourcesState.Loaded) && (subscriptionsState instanceof StoreSubscriptions.SubscriptionsState.Loaded)) {
+            updateViewState(new ViewState.Loaded(generateListItems(((StorePaymentSources.PaymentSourcesState.Loaded) paymentSourceState).getPaymentSources(), ((StoreSubscriptions.SubscriptionsState.Loaded) subscriptionsState).getPremiumSubscription())));
+        } else if ((paymentSourceState instanceof StorePaymentSources.PaymentSourcesState.Failure) || (subscriptionsState instanceof StoreSubscriptions.SubscriptionsState.Failure)) {
+            updateViewState(ViewState.Failure.INSTANCE);
         } else {
-            updateViewState(SettingsBillingViewModel$ViewState$Loading.INSTANCE);
+            updateViewState(ViewState.Loading.INSTANCE);
         }
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public SettingsBillingViewModel(StorePaymentSources storePaymentSources, StoreSubscriptions storeSubscriptions, Observable<SettingsBillingViewModel$StoreState> observable) {
-        super(SettingsBillingViewModel$ViewState$Loading.INSTANCE);
+    public SettingsBillingViewModel(StorePaymentSources storePaymentSources, StoreSubscriptions storeSubscriptions, Observable<StoreState> observable) {
+        super(ViewState.Loading.INSTANCE);
         m.checkNotNullParameter(storePaymentSources, "storePaymentSources");
         m.checkNotNullParameter(storeSubscriptions, "storeSubscriptions");
         m.checkNotNullParameter(observable, "storeObservable");
         this.storePaymentSources = storePaymentSources;
         this.storeSubscriptions = storeSubscriptions;
         fetchData();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observable), this, null, 2, null), SettingsBillingViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new SettingsBillingViewModel$2(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observable), this, null, 2, null), SettingsBillingViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
     }
 }

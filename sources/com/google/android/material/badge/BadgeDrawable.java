@@ -6,44 +6,41 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Paint$Align;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.FrameLayout$LayoutParams;
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
+import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 import androidx.annotation.StyleableRes;
 import androidx.annotation.XmlRes;
 import androidx.core.view.ViewCompat;
-import com.google.android.material.R$attr;
-import com.google.android.material.R$dimen;
-import com.google.android.material.R$id;
-import com.google.android.material.R$string;
-import com.google.android.material.R$style;
-import com.google.android.material.R$styleable;
+import com.google.android.material.R;
 import com.google.android.material.drawable.DrawableUtils;
 import com.google.android.material.internal.TextDrawableHelper;
-import com.google.android.material.internal.TextDrawableHelper$TextDrawableDelegate;
 import com.google.android.material.internal.ThemeEnforcement;
 import com.google.android.material.resources.MaterialResources;
 import com.google.android.material.resources.TextAppearance;
 import com.google.android.material.shape.MaterialShapeDrawable;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
 import java.text.NumberFormat;
 
 /* JADX INFO: loaded from: classes3.dex */
-public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDrawableDelegate {
+public class BadgeDrawable extends Drawable implements TextDrawableHelper.TextDrawableDelegate {
     private static final int BADGE_NUMBER_NONE = -1;
     public static final int BOTTOM_END = 8388693;
     public static final int BOTTOM_START = 8388691;
@@ -75,7 +72,7 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
     private int maxBadgeNumber;
 
     @NonNull
-    private final BadgeDrawable$SavedState savedState;
+    private final SavedState savedState;
 
     @NonNull
     private final MaterialShapeDrawable shapeDrawable;
@@ -84,10 +81,228 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
     private final TextDrawableHelper textDrawableHelper;
 
     @StyleRes
-    private static final int DEFAULT_STYLE = R$style.Widget_MaterialComponents_Badge;
+    private static final int DEFAULT_STYLE = R.style.Widget_MaterialComponents_Badge;
 
     @AttrRes
-    private static final int DEFAULT_THEME_ATTR = R$attr.badgeStyle;
+    private static final int DEFAULT_THEME_ATTR = R.attr.badgeStyle;
+
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface BadgeGravity {
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public final class SavedState implements Parcelable {
+        private int alpha;
+
+        @ColorInt
+        private int backgroundColor;
+        private int badgeGravity;
+
+        @ColorInt
+        private int badgeTextColor;
+
+        @StringRes
+        private int contentDescriptionExceedsMaxBadgeNumberRes;
+
+        @Nullable
+        private CharSequence contentDescriptionNumberless;
+
+        @PluralsRes
+        private int contentDescriptionQuantityStrings;
+
+        @Dimension(unit = 1)
+        private int horizontalOffset;
+        private boolean isVisible;
+        private int maxCharacterCount;
+        private int number;
+
+        @Dimension(unit = 1)
+        private int verticalOffset;
+        public static final Parcelable.Creator<SavedState> CREATOR = new a();
+
+        public final class a implements Parcelable.Creator<SavedState> {
+            @Override // android.os.Parcelable.Creator
+            @NonNull
+            public SavedState createFromParcel(@NonNull Parcel parcel) {
+                return new SavedState(parcel);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            @NonNull
+            public SavedState[] newArray(int i) {
+                return new SavedState[i];
+            }
+        }
+
+        public SavedState(@NonNull Context context) {
+            this.alpha = 255;
+            this.number = -1;
+            this.badgeTextColor = new TextAppearance(context, R.style.TextAppearance_MaterialComponents_Badge).textColor.getDefaultColor();
+            this.contentDescriptionNumberless = context.getString(R.string.mtrl_badge_numberless_content_description);
+            this.contentDescriptionQuantityStrings = R.plurals.mtrl_badge_content_description;
+            this.contentDescriptionExceedsMaxBadgeNumberRes = R.string.mtrl_exceed_max_badge_number_content_description;
+            this.isVisible = true;
+        }
+
+        public static /* synthetic */ boolean access$000(SavedState savedState) {
+            return savedState.isVisible;
+        }
+
+        public static /* synthetic */ boolean access$002(SavedState savedState, boolean z2) {
+            savedState.isVisible = z2;
+            return z2;
+        }
+
+        public static /* synthetic */ int access$100(SavedState savedState) {
+            return savedState.maxCharacterCount;
+        }
+
+        public static /* synthetic */ int access$1000(SavedState savedState) {
+            return savedState.contentDescriptionQuantityStrings;
+        }
+
+        public static /* synthetic */ int access$1002(SavedState savedState, int i) {
+            savedState.contentDescriptionQuantityStrings = i;
+            return i;
+        }
+
+        public static /* synthetic */ int access$102(SavedState savedState, int i) {
+            savedState.maxCharacterCount = i;
+            return i;
+        }
+
+        public static /* synthetic */ int access$1100(SavedState savedState) {
+            return savedState.contentDescriptionExceedsMaxBadgeNumberRes;
+        }
+
+        public static /* synthetic */ int access$1102(SavedState savedState, int i) {
+            savedState.contentDescriptionExceedsMaxBadgeNumberRes = i;
+            return i;
+        }
+
+        public static /* synthetic */ int access$200(SavedState savedState) {
+            return savedState.number;
+        }
+
+        public static /* synthetic */ int access$202(SavedState savedState, int i) {
+            savedState.number = i;
+            return i;
+        }
+
+        public static /* synthetic */ int access$300(SavedState savedState) {
+            return savedState.backgroundColor;
+        }
+
+        public static /* synthetic */ int access$302(SavedState savedState, int i) {
+            savedState.backgroundColor = i;
+            return i;
+        }
+
+        public static /* synthetic */ int access$400(SavedState savedState) {
+            return savedState.badgeTextColor;
+        }
+
+        public static /* synthetic */ int access$402(SavedState savedState, int i) {
+            savedState.badgeTextColor = i;
+            return i;
+        }
+
+        public static /* synthetic */ int access$500(SavedState savedState) {
+            return savedState.badgeGravity;
+        }
+
+        public static /* synthetic */ int access$502(SavedState savedState, int i) {
+            savedState.badgeGravity = i;
+            return i;
+        }
+
+        public static /* synthetic */ int access$600(SavedState savedState) {
+            return savedState.horizontalOffset;
+        }
+
+        public static /* synthetic */ int access$602(SavedState savedState, int i) {
+            savedState.horizontalOffset = i;
+            return i;
+        }
+
+        public static /* synthetic */ int access$700(SavedState savedState) {
+            return savedState.verticalOffset;
+        }
+
+        public static /* synthetic */ int access$702(SavedState savedState, int i) {
+            savedState.verticalOffset = i;
+            return i;
+        }
+
+        public static /* synthetic */ int access$800(SavedState savedState) {
+            return savedState.alpha;
+        }
+
+        public static /* synthetic */ int access$802(SavedState savedState, int i) {
+            savedState.alpha = i;
+            return i;
+        }
+
+        public static /* synthetic */ CharSequence access$900(SavedState savedState) {
+            return savedState.contentDescriptionNumberless;
+        }
+
+        public static /* synthetic */ CharSequence access$902(SavedState savedState, CharSequence charSequence) {
+            savedState.contentDescriptionNumberless = charSequence;
+            return charSequence;
+        }
+
+        @Override // android.os.Parcelable
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override // android.os.Parcelable
+        public void writeToParcel(@NonNull Parcel parcel, int i) {
+            parcel.writeInt(this.backgroundColor);
+            parcel.writeInt(this.badgeTextColor);
+            parcel.writeInt(this.alpha);
+            parcel.writeInt(this.number);
+            parcel.writeInt(this.maxCharacterCount);
+            parcel.writeString(this.contentDescriptionNumberless.toString());
+            parcel.writeInt(this.contentDescriptionQuantityStrings);
+            parcel.writeInt(this.badgeGravity);
+            parcel.writeInt(this.horizontalOffset);
+            parcel.writeInt(this.verticalOffset);
+            parcel.writeInt(this.isVisible ? 1 : 0);
+        }
+
+        public SavedState(@NonNull Parcel parcel) {
+            this.alpha = 255;
+            this.number = -1;
+            this.backgroundColor = parcel.readInt();
+            this.badgeTextColor = parcel.readInt();
+            this.alpha = parcel.readInt();
+            this.number = parcel.readInt();
+            this.maxCharacterCount = parcel.readInt();
+            this.contentDescriptionNumberless = parcel.readString();
+            this.contentDescriptionQuantityStrings = parcel.readInt();
+            this.badgeGravity = parcel.readInt();
+            this.horizontalOffset = parcel.readInt();
+            this.verticalOffset = parcel.readInt();
+            this.isVisible = parcel.readInt() != 0;
+        }
+    }
+
+    public class a implements Runnable {
+        public final /* synthetic */ View j;
+        public final /* synthetic */ FrameLayout k;
+
+        public a(View view, FrameLayout frameLayout) {
+            this.j = view;
+            this.k = frameLayout;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            BadgeDrawable.this.updateBadgeCoordinates(this.j, this.k);
+        }
+    }
 
     private BadgeDrawable(@NonNull Context context) {
         this.contextRef = new WeakReference<>(context);
@@ -95,22 +310,22 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
         Resources resources = context.getResources();
         this.badgeBounds = new Rect();
         this.shapeDrawable = new MaterialShapeDrawable();
-        this.badgeRadius = resources.getDimensionPixelSize(R$dimen.mtrl_badge_radius);
-        this.badgeWidePadding = resources.getDimensionPixelSize(R$dimen.mtrl_badge_long_text_horizontal_padding);
-        this.badgeWithTextRadius = resources.getDimensionPixelSize(R$dimen.mtrl_badge_with_text_radius);
+        this.badgeRadius = resources.getDimensionPixelSize(R.dimen.mtrl_badge_radius);
+        this.badgeWidePadding = resources.getDimensionPixelSize(R.dimen.mtrl_badge_long_text_horizontal_padding);
+        this.badgeWithTextRadius = resources.getDimensionPixelSize(R.dimen.mtrl_badge_with_text_radius);
         TextDrawableHelper textDrawableHelper = new TextDrawableHelper(this);
         this.textDrawableHelper = textDrawableHelper;
-        textDrawableHelper.getTextPaint().setTextAlign(Paint$Align.CENTER);
-        this.savedState = new BadgeDrawable$SavedState(context);
-        setTextAppearanceResource(R$style.TextAppearance_MaterialComponents_Badge);
+        textDrawableHelper.getTextPaint().setTextAlign(Paint.Align.CENTER);
+        this.savedState = new SavedState(context);
+        setTextAppearanceResource(R.style.TextAppearance_MaterialComponents_Badge);
     }
 
     private void calculateCenterAndBounds(@NonNull Context context, @NonNull Rect rect, @NonNull View view) {
-        int iAccess$500 = BadgeDrawable$SavedState.access$500(this.savedState);
+        int iAccess$500 = SavedState.access$500(this.savedState);
         if (iAccess$500 == 8388691 || iAccess$500 == 8388693) {
-            this.badgeCenterY = rect.bottom - BadgeDrawable$SavedState.access$700(this.savedState);
+            this.badgeCenterY = rect.bottom - SavedState.access$700(this.savedState);
         } else {
-            this.badgeCenterY = BadgeDrawable$SavedState.access$700(this.savedState) + rect.top;
+            this.badgeCenterY = SavedState.access$700(this.savedState) + rect.top;
         }
         if (getNumber() <= 9) {
             float f = !hasNumber() ? this.badgeRadius : this.badgeWithTextRadius;
@@ -123,17 +338,17 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
             this.halfBadgeHeight = f2;
             this.halfBadgeWidth = (this.textDrawableHelper.getTextWidth(getBadgeText()) / 2.0f) + this.badgeWidePadding;
         }
-        int dimensionPixelSize = context.getResources().getDimensionPixelSize(hasNumber() ? R$dimen.mtrl_badge_text_horizontal_edge_offset : R$dimen.mtrl_badge_horizontal_edge_offset);
-        int iAccess$501 = BadgeDrawable$SavedState.access$500(this.savedState);
+        int dimensionPixelSize = context.getResources().getDimensionPixelSize(hasNumber() ? R.dimen.mtrl_badge_text_horizontal_edge_offset : R.dimen.mtrl_badge_horizontal_edge_offset);
+        int iAccess$501 = SavedState.access$500(this.savedState);
         if (iAccess$501 == 8388659 || iAccess$501 == 8388691) {
-            this.badgeCenterX = ViewCompat.getLayoutDirection(view) == 0 ? (rect.left - this.halfBadgeWidth) + dimensionPixelSize + BadgeDrawable$SavedState.access$600(this.savedState) : ((rect.right + this.halfBadgeWidth) - dimensionPixelSize) - BadgeDrawable$SavedState.access$600(this.savedState);
+            this.badgeCenterX = ViewCompat.getLayoutDirection(view) == 0 ? (rect.left - this.halfBadgeWidth) + dimensionPixelSize + SavedState.access$600(this.savedState) : ((rect.right + this.halfBadgeWidth) - dimensionPixelSize) - SavedState.access$600(this.savedState);
         } else {
-            this.badgeCenterX = ViewCompat.getLayoutDirection(view) == 0 ? ((rect.right + this.halfBadgeWidth) - dimensionPixelSize) - BadgeDrawable$SavedState.access$600(this.savedState) : (rect.left - this.halfBadgeWidth) + dimensionPixelSize + BadgeDrawable$SavedState.access$600(this.savedState);
+            this.badgeCenterX = ViewCompat.getLayoutDirection(view) == 0 ? ((rect.right + this.halfBadgeWidth) - dimensionPixelSize) - SavedState.access$600(this.savedState) : (rect.left - this.halfBadgeWidth) + dimensionPixelSize + SavedState.access$600(this.savedState);
         }
     }
 
     public void clearNumber() {
-        BadgeDrawable$SavedState.access$202(this.savedState, -1);
+        SavedState.access$202(this.savedState, -1);
         invalidateSelf();
     }
 
@@ -160,9 +375,9 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
     }
 
     @NonNull
-    public static BadgeDrawable createFromSavedState(@NonNull Context context, @NonNull BadgeDrawable$SavedState badgeDrawable$SavedState) {
+    public static BadgeDrawable createFromSavedState(@NonNull Context context, @NonNull SavedState savedState) {
         BadgeDrawable badgeDrawable = new BadgeDrawable(context);
-        badgeDrawable.restoreFromSavedState(badgeDrawable$SavedState);
+        badgeDrawable.restoreFromSavedState(savedState);
         return badgeDrawable;
     }
 
@@ -186,7 +401,7 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
 
     @Override // android.graphics.drawable.Drawable
     public int getAlpha() {
-        return BadgeDrawable$SavedState.access$800(this.savedState);
+        return SavedState.access$800(this.savedState);
     }
 
     @ColorInt
@@ -195,7 +410,7 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
     }
 
     public int getBadgeGravity() {
-        return BadgeDrawable$SavedState.access$500(this.savedState);
+        return SavedState.access$500(this.savedState);
     }
 
     @NonNull
@@ -204,7 +419,7 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
             return NumberFormat.getInstance().format(getNumber());
         }
         Context context = this.contextRef.get();
-        return context == null ? "" : context.getString(R$string.mtrl_exceed_max_badge_number_suffix, Integer.valueOf(this.maxBadgeNumber), DEFAULT_EXCEED_MAX_BADGE_NUMBER_SUFFIX);
+        return context == null ? "" : context.getString(R.string.mtrl_exceed_max_badge_number_suffix, Integer.valueOf(this.maxBadgeNumber), DEFAULT_EXCEED_MAX_BADGE_NUMBER_SUFFIX);
     }
 
     @ColorInt
@@ -219,12 +434,12 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
             return null;
         }
         if (!hasNumber()) {
-            return BadgeDrawable$SavedState.access$900(this.savedState);
+            return SavedState.access$900(this.savedState);
         }
-        if (BadgeDrawable$SavedState.access$1000(this.savedState) <= 0 || (context = this.contextRef.get()) == null) {
+        if (SavedState.access$1000(this.savedState) <= 0 || (context = this.contextRef.get()) == null) {
             return null;
         }
-        return getNumber() <= this.maxBadgeNumber ? context.getResources().getQuantityString(BadgeDrawable$SavedState.access$1000(this.savedState), getNumber(), Integer.valueOf(getNumber())) : context.getString(BadgeDrawable$SavedState.access$1100(this.savedState), Integer.valueOf(this.maxBadgeNumber));
+        return getNumber() <= this.maxBadgeNumber ? context.getResources().getQuantityString(SavedState.access$1000(this.savedState), getNumber(), Integer.valueOf(getNumber())) : context.getString(SavedState.access$1100(this.savedState), Integer.valueOf(this.maxBadgeNumber));
     }
 
     @Nullable
@@ -237,7 +452,7 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
     }
 
     public int getHorizontalOffset() {
-        return BadgeDrawable$SavedState.access$600(this.savedState);
+        return SavedState.access$600(this.savedState);
     }
 
     @Override // android.graphics.drawable.Drawable
@@ -251,12 +466,12 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
     }
 
     public int getMaxCharacterCount() {
-        return BadgeDrawable$SavedState.access$100(this.savedState);
+        return SavedState.access$100(this.savedState);
     }
 
     public int getNumber() {
         if (hasNumber()) {
-            return BadgeDrawable$SavedState.access$200(this.savedState);
+            return SavedState.access$200(this.savedState);
         }
         return 0;
     }
@@ -267,16 +482,16 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
     }
 
     @NonNull
-    public BadgeDrawable$SavedState getSavedState() {
+    public SavedState getSavedState() {
         return this.savedState;
     }
 
     public int getVerticalOffset() {
-        return BadgeDrawable$SavedState.access$700(this.savedState);
+        return SavedState.access$700(this.savedState);
     }
 
     public boolean hasNumber() {
-        return BadgeDrawable$SavedState.access$200(this.savedState) != -1;
+        return SavedState.access$200(this.savedState) != -1;
     }
 
     @Override // android.graphics.drawable.Drawable
@@ -285,30 +500,30 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
     }
 
     private void loadDefaultStateFromAttributes(Context context, AttributeSet attributeSet, @AttrRes int i, @StyleRes int i2) {
-        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R$styleable.Badge, i, i2, new int[0]);
-        setMaxCharacterCount(typedArrayObtainStyledAttributes.getInt(R$styleable.Badge_maxCharacterCount, 4));
-        int i3 = R$styleable.Badge_number;
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R.styleable.Badge, i, i2, new int[0]);
+        setMaxCharacterCount(typedArrayObtainStyledAttributes.getInt(R.styleable.Badge_maxCharacterCount, 4));
+        int i3 = R.styleable.Badge_number;
         if (typedArrayObtainStyledAttributes.hasValue(i3)) {
             setNumber(typedArrayObtainStyledAttributes.getInt(i3, 0));
         }
-        setBackgroundColor(readColorFromAttributes(context, typedArrayObtainStyledAttributes, R$styleable.Badge_backgroundColor));
-        int i4 = R$styleable.Badge_badgeTextColor;
+        setBackgroundColor(readColorFromAttributes(context, typedArrayObtainStyledAttributes, R.styleable.Badge_backgroundColor));
+        int i4 = R.styleable.Badge_badgeTextColor;
         if (typedArrayObtainStyledAttributes.hasValue(i4)) {
             setBadgeTextColor(readColorFromAttributes(context, typedArrayObtainStyledAttributes, i4));
         }
-        setBadgeGravity(typedArrayObtainStyledAttributes.getInt(R$styleable.Badge_badgeGravity, TOP_END));
-        setHorizontalOffset(typedArrayObtainStyledAttributes.getDimensionPixelOffset(R$styleable.Badge_horizontalOffset, 0));
-        setVerticalOffset(typedArrayObtainStyledAttributes.getDimensionPixelOffset(R$styleable.Badge_verticalOffset, 0));
+        setBadgeGravity(typedArrayObtainStyledAttributes.getInt(R.styleable.Badge_badgeGravity, TOP_END));
+        setHorizontalOffset(typedArrayObtainStyledAttributes.getDimensionPixelOffset(R.styleable.Badge_horizontalOffset, 0));
+        setVerticalOffset(typedArrayObtainStyledAttributes.getDimensionPixelOffset(R.styleable.Badge_verticalOffset, 0));
         typedArrayObtainStyledAttributes.recycle();
     }
 
-    @Override // android.graphics.drawable.Drawable, com.google.android.material.internal.TextDrawableHelper$TextDrawableDelegate
+    @Override // android.graphics.drawable.Drawable, com.google.android.material.internal.TextDrawableHelper.TextDrawableDelegate
     public boolean onStateChange(int[] iArr) {
         return super.onStateChange(iArr);
     }
 
-    @Override // com.google.android.material.internal.TextDrawableHelper$TextDrawableDelegate
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    @Override // com.google.android.material.internal.TextDrawableHelper.TextDrawableDelegate
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public void onTextSizeChange() {
         invalidateSelf();
     }
@@ -317,28 +532,28 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
         return MaterialResources.getColorStateList(context, typedArray, i).getDefaultColor();
     }
 
-    private void restoreFromSavedState(@NonNull BadgeDrawable$SavedState badgeDrawable$SavedState) {
-        setMaxCharacterCount(BadgeDrawable$SavedState.access$100(badgeDrawable$SavedState));
-        if (BadgeDrawable$SavedState.access$200(badgeDrawable$SavedState) != -1) {
-            setNumber(BadgeDrawable$SavedState.access$200(badgeDrawable$SavedState));
+    private void restoreFromSavedState(@NonNull SavedState savedState) {
+        setMaxCharacterCount(SavedState.access$100(savedState));
+        if (SavedState.access$200(savedState) != -1) {
+            setNumber(SavedState.access$200(savedState));
         }
-        setBackgroundColor(BadgeDrawable$SavedState.access$300(badgeDrawable$SavedState));
-        setBadgeTextColor(BadgeDrawable$SavedState.access$400(badgeDrawable$SavedState));
-        setBadgeGravity(BadgeDrawable$SavedState.access$500(badgeDrawable$SavedState));
-        setHorizontalOffset(BadgeDrawable$SavedState.access$600(badgeDrawable$SavedState));
-        setVerticalOffset(BadgeDrawable$SavedState.access$700(badgeDrawable$SavedState));
-        setVisible(BadgeDrawable$SavedState.access$000(badgeDrawable$SavedState));
+        setBackgroundColor(SavedState.access$300(savedState));
+        setBadgeTextColor(SavedState.access$400(savedState));
+        setBadgeGravity(SavedState.access$500(savedState));
+        setHorizontalOffset(SavedState.access$600(savedState));
+        setVerticalOffset(SavedState.access$700(savedState));
+        setVisible(SavedState.access$000(savedState));
     }
 
     @Override // android.graphics.drawable.Drawable
     public void setAlpha(int i) {
-        BadgeDrawable$SavedState.access$802(this.savedState, i);
+        SavedState.access$802(this.savedState, i);
         this.textDrawableHelper.getTextPaint().setAlpha(i);
         invalidateSelf();
     }
 
     public void setBackgroundColor(@ColorInt int i) {
-        BadgeDrawable$SavedState.access$302(this.savedState, i);
+        SavedState.access$302(this.savedState, i);
         ColorStateList colorStateListValueOf = ColorStateList.valueOf(i);
         if (this.shapeDrawable.getFillColor() != colorStateListValueOf) {
             this.shapeDrawable.setFillColor(colorStateListValueOf);
@@ -347,8 +562,8 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
     }
 
     public void setBadgeGravity(int i) {
-        if (BadgeDrawable$SavedState.access$500(this.savedState) != i) {
-            BadgeDrawable$SavedState.access$502(this.savedState, i);
+        if (SavedState.access$500(this.savedState) != i) {
+            SavedState.access$502(this.savedState, i);
             WeakReference<View> weakReference = this.anchorViewRef;
             if (weakReference == null || weakReference.get() == null) {
                 return;
@@ -360,7 +575,7 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
     }
 
     public void setBadgeTextColor(@ColorInt int i) {
-        BadgeDrawable$SavedState.access$402(this.savedState, i);
+        SavedState.access$402(this.savedState, i);
         if (this.textDrawableHelper.getTextPaint().getColor() != i) {
             this.textDrawableHelper.getTextPaint().setColor(i);
             invalidateSelf();
@@ -372,25 +587,25 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
     }
 
     public void setContentDescriptionExceedsMaxBadgeNumberStringResource(@StringRes int i) {
-        BadgeDrawable$SavedState.access$1102(this.savedState, i);
+        SavedState.access$1102(this.savedState, i);
     }
 
     public void setContentDescriptionNumberless(CharSequence charSequence) {
-        BadgeDrawable$SavedState.access$902(this.savedState, charSequence);
+        SavedState.access$902(this.savedState, charSequence);
     }
 
     public void setContentDescriptionQuantityStringsResource(@PluralsRes int i) {
-        BadgeDrawable$SavedState.access$1002(this.savedState, i);
+        SavedState.access$1002(this.savedState, i);
     }
 
     public void setHorizontalOffset(int i) {
-        BadgeDrawable$SavedState.access$602(this.savedState, i);
+        SavedState.access$602(this.savedState, i);
         updateCenterAndBounds();
     }
 
     public void setMaxCharacterCount(int i) {
-        if (BadgeDrawable$SavedState.access$100(this.savedState) != i) {
-            BadgeDrawable$SavedState.access$102(this.savedState, i);
+        if (SavedState.access$100(this.savedState) != i) {
+            SavedState.access$102(this.savedState, i);
             updateMaxBadgeNumber();
             this.textDrawableHelper.setTextWidthDirty(true);
             updateCenterAndBounds();
@@ -400,8 +615,8 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
 
     public void setNumber(int i) {
         int iMax = Math.max(0, i);
-        if (BadgeDrawable$SavedState.access$200(this.savedState) != iMax) {
-            BadgeDrawable$SavedState.access$202(this.savedState, iMax);
+        if (SavedState.access$200(this.savedState) != iMax) {
+            SavedState.access$202(this.savedState, iMax);
             this.textDrawableHelper.setTextWidthDirty(true);
             updateCenterAndBounds();
             invalidateSelf();
@@ -426,13 +641,13 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
     }
 
     public void setVerticalOffset(int i) {
-        BadgeDrawable$SavedState.access$702(this.savedState, i);
+        SavedState.access$702(this.savedState, i);
         updateCenterAndBounds();
     }
 
     public void setVisible(boolean z2) {
         setVisible(z2, false);
-        BadgeDrawable$SavedState.access$002(this.savedState, z2);
+        SavedState.access$002(this.savedState, z2);
         if (!BadgeUtils.USE_COMPAT_PARENT || getCustomBadgeParent() == null || z2) {
             return;
         }
@@ -441,12 +656,12 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
 
     private void tryWrapAnchorInCompatParent(View view) {
         ViewGroup viewGroup = (ViewGroup) view.getParent();
-        if (viewGroup == null || viewGroup.getId() != R$id.mtrl_anchor_parent) {
+        if (viewGroup == null || viewGroup.getId() != R.id.mtrl_anchor_parent) {
             WeakReference<FrameLayout> weakReference = this.customBadgeParentRef;
             if (weakReference == null || weakReference.get() != viewGroup) {
                 updateAnchorParentToNotClip(view);
                 FrameLayout frameLayout = new FrameLayout(view.getContext());
-                frameLayout.setId(R$id.mtrl_anchor_parent);
+                frameLayout.setId(R.id.mtrl_anchor_parent);
                 frameLayout.setClipChildren(false);
                 frameLayout.setClipToPadding(false);
                 frameLayout.setLayoutParams(view.getLayoutParams());
@@ -454,11 +669,11 @@ public class BadgeDrawable extends Drawable implements TextDrawableHelper$TextDr
                 frameLayout.setMinimumHeight(view.getHeight());
                 int iIndexOfChild = viewGroup.indexOfChild(view);
                 viewGroup.removeViewAt(iIndexOfChild);
-                view.setLayoutParams(new FrameLayout$LayoutParams(-1, -1));
+                view.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
                 frameLayout.addView(view);
                 viewGroup.addView(frameLayout, iIndexOfChild);
                 this.customBadgeParentRef = new WeakReference<>(frameLayout);
-                frameLayout.post(new BadgeDrawable$a(this, view, frameLayout));
+                frameLayout.post(new a(view, frameLayout));
             }
         }
     }

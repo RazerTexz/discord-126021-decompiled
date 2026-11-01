@@ -1,7 +1,7 @@
 package com.google.android.gms.internal.p001authapi;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.a.f.h.c.p;
 import com.google.android.gms.auth.api.credentials.Credential;
@@ -11,7 +11,7 @@ import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzt extends AbstractSafeParcelable {
     public final Credential j;
-    public static final Parcelable$Creator<zzt> CREATOR = new p();
+    public static final Parcelable.Creator<zzt> CREATOR = new p();
 
     public zzt(Credential credential) {
         this.j = credential;

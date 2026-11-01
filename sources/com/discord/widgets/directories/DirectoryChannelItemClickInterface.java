@@ -5,6 +5,13 @@ import com.discord.api.directory.DirectoryEntryGuild;
 /* JADX INFO: compiled from: WidgetDirectoryEntryViewHolder.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public interface DirectoryChannelItemClickInterface {
+
+    /* JADX INFO: compiled from: WidgetDirectoryEntryViewHolder.kt */
+    public final class DefaultImpls {
+        public static void onAddServerClicked(DirectoryChannelItemClickInterface directoryChannelItemClickInterface) {
+        }
+    }
+
     void onAddServerClicked();
 
     void onEntryClicked(long guildId, long channelId);

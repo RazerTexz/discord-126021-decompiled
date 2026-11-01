@@ -1,32 +1,53 @@
 package b.a.f;
 
 import android.view.View;
-import android.view.View$OnClickListener;
 import com.discord.chips_view.ChipsView;
-import com.discord.chips_view.ChipsView$a;
+import com.discord.chips_view.ChipsView.a;
 import d0.z.d.m;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: Chip.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class a<K, T extends ChipsView$a> implements View$OnClickListener {
+public final class a<K, T extends ChipsView.a> implements View.OnClickListener {
     public b.a.f.h.a j;
     public boolean k;
     public String l;
     public String m;
     public final K n;
     public final T o;
-    public final a$a p;
+    public final C0031a p;
     public final ChipsView<K, T> q;
 
-    public a(String str, String str2, K k, T t, a$a a_a, ChipsView<K, T> chipsView) {
-        m.checkNotNullParameter(a_a, "params");
+    /* JADX INFO: renamed from: b.a.f.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: Chip.kt */
+    public final class C0031a {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f66b;
+        public final int c;
+        public final int d;
+        public final int e;
+        public final int f;
+
+        public C0031a(int i, float f, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9) {
+            this.a = i;
+            this.f66b = i2;
+            this.c = i3;
+            this.d = i4;
+            this.e = i5;
+            this.f = i8;
+        }
+    }
+
+    public a(String str, String str2, K k, T t, C0031a c0031a, ChipsView<K, T> chipsView) {
+        m.checkNotNullParameter(c0031a, "params");
         m.checkNotNullParameter(chipsView, "container");
         this.l = str;
         this.m = str2;
         this.n = k;
         this.o = t;
-        this.p = a_a;
+        this.p = c0031a;
         this.q = chipsView;
         String strSubstring = null;
         if (str == null) {
@@ -63,7 +84,7 @@ public final class a<K, T extends ChipsView$a> implements View$OnClickListener {
         return c.a(this.k) + ((iHashCode4 + (aVar != null ? aVar.hashCode() : 0)) * 31);
     }
 
-    @Override // android.view.View$OnClickListener
+    @Override // android.view.View.OnClickListener
     public void onClick(View view) {
         m.checkNotNullParameter(view, "v");
         this.q.mEditText.clearFocus();

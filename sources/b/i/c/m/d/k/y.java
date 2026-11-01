@@ -4,7 +4,7 @@ import android.os.Build;
 
 /* JADX INFO: compiled from: CrashlyticsController.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class y implements x$g {
+public class y implements x.g {
     public final /* synthetic */ int a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -23,7 +23,7 @@ public class y implements x$g {
         this.f = i3;
     }
 
-    @Override // b.i.c.m.d.k.x$g
+    @Override // b.i.c.m.d.k.x.g
     public void a(b.i.c.m.d.p.c cVar) throws Exception {
         int i = this.a;
         String str = Build.MODEL;

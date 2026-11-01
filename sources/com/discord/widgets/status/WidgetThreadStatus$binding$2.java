@@ -2,7 +2,7 @@ package com.discord.widgets.status;
 
 import android.view.View;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetThreadStatusBinding;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.views.LoadingButton;
@@ -28,11 +28,11 @@ public final /* synthetic */ class WidgetThreadStatus$binding$2 extends k implem
     public final WidgetThreadStatusBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
         ConstraintLayout constraintLayout = (ConstraintLayout) view;
-        int i = R$id.thread_status_button;
-        LoadingButton loadingButton = (LoadingButton) view.findViewById(R$id.thread_status_button);
+        int i = R.id.thread_status_button;
+        LoadingButton loadingButton = (LoadingButton) view.findViewById(R.id.thread_status_button);
         if (loadingButton != null) {
-            i = R$id.thread_status_text;
-            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R$id.thread_status_text);
+            i = R.id.thread_status_text;
+            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R.id.thread_status_text);
             if (linkifiedTextView != null) {
                 return new WidgetThreadStatusBinding((ConstraintLayout) view, constraintLayout, loadingButton, linkifiedTextView);
             }

@@ -3,15 +3,25 @@ package android.support.v4.media;
 import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
-import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"BanParcelableUsage"})
 public final class RatingCompat implements Parcelable {
     public final int j;
     public final float k;
-    public static final Parcelable$Creator<RatingCompat> CREATOR = new RatingCompat$a();
+    public static final Parcelable.Creator<RatingCompat> CREATOR = new a();
+
+    public class a implements Parcelable.Creator<RatingCompat> {
+        @Override // android.os.Parcelable.Creator
+        public RatingCompat createFromParcel(Parcel parcel) {
+            return new RatingCompat(parcel.readInt(), parcel.readFloat());
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public RatingCompat[] newArray(int i) {
+            return new RatingCompat[i];
+        }
+    }
 
     public RatingCompat(int i, float f) {
         this.j = i;
@@ -24,7 +34,7 @@ public final class RatingCompat implements Parcelable {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("Rating:style=");
+        StringBuilder sbU = b.d.b.a.a.U("Rating:style=");
         sbU.append(this.j);
         sbU.append(" rating=");
         float f = this.k;

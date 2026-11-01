@@ -3,6 +3,7 @@ package g0;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.util.concurrent.TimeUnit;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: AsyncTimeout.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -10,10 +11,78 @@ public class b extends y {
     public static final long e;
     public static final long f;
     public static b g;
-    public static final b$a h = new b$a(null);
+    public static final a h = new a(null);
     public boolean i;
     public b j;
     public long k;
+
+    /* JADX INFO: renamed from: g0.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: AsyncTimeout.kt */
+    public final class C0613b extends Thread {
+        public C0613b() {
+            super("Okio Watchdog");
+            setDaemon(true);
+        }
+
+        @Override // java.lang.Thread, java.lang.Runnable
+        public void run() {
+            b bVarA;
+            while (true) {
+                try {
+                    synchronized (b.class) {
+                        bVarA = b.h.a();
+                        if (bVarA == b.g) {
+                            b.g = null;
+                            return;
+                        }
+                    }
+                    if (bVarA != null) {
+                        bVarA.l();
+                    }
+                } catch (InterruptedException unused) {
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: AsyncTimeout.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final b a() throws InterruptedException {
+            b bVar = b.g;
+            if (bVar == null) {
+                d0.z.d.m.throwNpe();
+            }
+            b bVar2 = bVar.j;
+            if (bVar2 == null) {
+                long jNanoTime = System.nanoTime();
+                b.class.wait(b.e);
+                b bVar3 = b.g;
+                if (bVar3 == null) {
+                    d0.z.d.m.throwNpe();
+                }
+                if (bVar3.j != null || System.nanoTime() - jNanoTime < b.f) {
+                    return null;
+                }
+                return b.g;
+            }
+            long jNanoTime2 = bVar2.k - System.nanoTime();
+            if (jNanoTime2 > 0) {
+                long j = jNanoTime2 / 1000000;
+                b.class.wait(j, (int) (jNanoTime2 - (1000000 * j)));
+                return null;
+            }
+            b bVar4 = b.g;
+            if (bVar4 == null) {
+                d0.z.d.m.throwNpe();
+            }
+            bVar4.j = bVar2.j;
+            bVar2.j = null;
+            return bVar2;
+        }
+    }
 
     static {
         long millis = TimeUnit.SECONDS.toMillis(60L);
@@ -33,7 +102,7 @@ public class b extends y {
             synchronized (b.class) {
                 if (g == null) {
                     g = new b();
-                    new b$b().start();
+                    new C0613b().start();
                 }
                 long jNanoTime = System.nanoTime();
                 if (j != 0 && z2) {

@@ -3,7 +3,7 @@ package com.discord.widgets.announcements;
 import android.view.View;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetChannelFollowSuccessDialogBinding;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
@@ -28,14 +28,14 @@ public final /* synthetic */ class WidgetChannelFollowSuccessDialog$binding$2 ex
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetChannelFollowSuccessDialogBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.channel_follow_success_confirm;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.channel_follow_success_confirm);
+        int i = R.id.channel_follow_success_confirm;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.channel_follow_success_confirm);
         if (materialButton != null) {
-            i = R$id.channel_follow_success_image;
-            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.channel_follow_success_image);
+            i = R.id.channel_follow_success_image;
+            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.channel_follow_success_image);
             if (simpleDraweeView != null) {
-                i = R$id.channel_follow_success_text;
-                TextView textView = (TextView) view.findViewById(R$id.channel_follow_success_text);
+                i = R.id.channel_follow_success_text;
+                TextView textView = (TextView) view.findViewById(R.id.channel_follow_success_text);
                 if (textView != null) {
                     return new WidgetChannelFollowSuccessDialogBinding((NestedScrollView) view, materialButton, simpleDraweeView, textView);
                 }

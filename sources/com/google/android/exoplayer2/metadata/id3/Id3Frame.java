@@ -1,12 +1,12 @@
 package com.google.android.exoplayer2.metadata.id3;
 
 import b.i.a.c.j1;
-import b.i.a.c.p1$b;
+import b.i.a.c.p1;
 import b.i.a.c.z2.a;
-import com.google.android.exoplayer2.metadata.Metadata$Entry;
+import com.google.android.exoplayer2.metadata.Metadata;
 
 /* JADX INFO: loaded from: classes3.dex */
-public abstract class Id3Frame implements Metadata$Entry {
+public abstract class Id3Frame implements Metadata.Entry {
     public final String j;
 
     public Id3Frame(String str) {
@@ -18,12 +18,12 @@ public abstract class Id3Frame implements Metadata$Entry {
         return 0;
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
-    public /* synthetic */ void n(p1$b p1_b) {
-        a.c(this, p1_b);
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
+    public /* synthetic */ void n(p1.b bVar) {
+        a.c(this, bVar);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     public /* synthetic */ byte[] o0() {
         return a.a(this);
     }
@@ -32,7 +32,7 @@ public abstract class Id3Frame implements Metadata$Entry {
         return this.j;
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     public /* synthetic */ j1 y() {
         return a.b(this);
     }

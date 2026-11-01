@@ -12,11 +12,120 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import kotlin.jvm.functions.Function2;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: IntersectionType.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class v {
     public static final v a = new v();
+
+    /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
+    /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
+    /* JADX INFO: compiled from: IntersectionType.kt */
+    public abstract class a {
+        public static final a j;
+        public static final a k;
+        public static final a l;
+        public static final a m;
+        public static final /* synthetic */ a[] n;
+
+        /* JADX INFO: renamed from: d0.e0.p.d.m0.n.l1.v$a$a, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: IntersectionType.kt */
+        public final class C0583a extends a {
+            public C0583a(String str, int i) {
+                super(str, i, null);
+            }
+
+            @Override // d0.e0.p.d.m0.n.l1.v.a
+            public a combine(i1 i1Var) {
+                d0.z.d.m.checkNotNullParameter(i1Var, "nextType");
+                return f(i1Var);
+            }
+        }
+
+        /* JADX INFO: compiled from: IntersectionType.kt */
+        public final class b extends a {
+            public b(String str, int i) {
+                super(str, i, null);
+            }
+
+            @Override // d0.e0.p.d.m0.n.l1.v.a
+            public b combine(i1 i1Var) {
+                d0.z.d.m.checkNotNullParameter(i1Var, "nextType");
+                return this;
+            }
+
+            @Override // d0.e0.p.d.m0.n.l1.v.a
+            public /* bridge */ /* synthetic */ a combine(i1 i1Var) {
+                return combine(i1Var);
+            }
+        }
+
+        /* JADX INFO: compiled from: IntersectionType.kt */
+        public final class c extends a {
+            public c(String str, int i) {
+                super(str, i, null);
+            }
+
+            @Override // d0.e0.p.d.m0.n.l1.v.a
+            public a combine(i1 i1Var) {
+                d0.z.d.m.checkNotNullParameter(i1Var, "nextType");
+                return f(i1Var);
+            }
+        }
+
+        /* JADX INFO: compiled from: IntersectionType.kt */
+        public final class d extends a {
+            public d(String str, int i) {
+                super(str, i, null);
+            }
+
+            @Override // d0.e0.p.d.m0.n.l1.v.a
+            public a combine(i1 i1Var) {
+                d0.z.d.m.checkNotNullParameter(i1Var, "nextType");
+                a aVarF = f(i1Var);
+                return aVarF == a.k ? this : aVarF;
+            }
+        }
+
+        static {
+            c cVar = new c("START", 0);
+            j = cVar;
+            C0583a c0583a = new C0583a("ACCEPT_NULL", 1);
+            k = c0583a;
+            d dVar = new d("UNKNOWN", 2);
+            l = dVar;
+            b bVar = new b("NOT_NULL", 3);
+            m = bVar;
+            n = new a[]{cVar, c0583a, dVar, bVar};
+        }
+
+        public a(String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
+            super(str, i);
+        }
+
+        public abstract a combine(i1 i1Var);
+
+        public final a f(i1 i1Var) {
+            d0.z.d.m.checkNotNullParameter(i1Var, "<this>");
+            if (i1Var.isMarkedNullable()) {
+                return k;
+            }
+            return n.a.isSubtypeOfAny(i1Var) ? m : l;
+        }
+
+        public static a valueOf(String str) {
+            d0.z.d.m.checkNotNullParameter(str, "value");
+            return (a) Enum.valueOf(a.class, str);
+        }
+
+        public static a[] values() {
+            a[] aVarArr = n;
+            a[] aVarArr2 = new a[aVarArr.length];
+            System.arraycopy(aVarArr, 0, aVarArr2, 0, aVarArr.length);
+            return aVarArr2;
+        }
+    }
 
     /* JADX WARN: Code duplicated, block: B:16:0x004d  */
     public final Collection<j0> a(Collection<? extends j0> collection, Function2<? super j0, ? super j0, Boolean> function2) {
@@ -81,14 +190,14 @@ public final class v {
                 arrayList.add(j0Var);
             }
         }
-        v$a v_aCombine = v$a.j;
+        a aVarCombine = a.j;
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
-            v_aCombine = v_aCombine.combine((i1) it.next());
+            aVarCombine = aVarCombine.combine((i1) it.next());
         }
         LinkedHashSet linkedHashSet = new LinkedHashSet();
         for (j0 j0VarMakeSimpleTypeDefinitelyNotNullOrNotNull$default : arrayList) {
-            if (v_aCombine == v$a.m) {
+            if (aVarCombine == a.m) {
                 if (j0VarMakeSimpleTypeDefinitelyNotNullOrNotNull$default instanceof i) {
                     j0VarMakeSimpleTypeDefinitelyNotNullOrNotNull$default = m0.withNotNullProjection((i) j0VarMakeSimpleTypeDefinitelyNotNullOrNotNull$default);
                 }

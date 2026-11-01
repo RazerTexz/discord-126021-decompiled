@@ -1,6 +1,8 @@
 package b.i.a.g.k;
 
 import android.content.res.Resources;
+import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -9,18 +11,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
-import com.google.android.material.R$id;
-import com.google.android.material.R$string;
+import com.google.android.material.R;
 import com.google.android.material.button.MaterialButtonToggleGroup;
+import com.google.android.material.internal.TextWatcherAdapter;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.timepicker.ChipTextInputComboView;
 import com.google.android.material.timepicker.TimeModel;
-import com.google.android.material.timepicker.TimePickerView$d;
+import com.google.android.material.timepicker.TimePickerView;
 import java.util.Locale;
+import java.util.Objects;
 
 /* JADX INFO: compiled from: TimePickerTextInputPresenter.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class i implements TimePickerView$d, g {
+public class i implements TimePickerView.d, g {
     public final LinearLayout j;
     public final TimeModel k;
     public final TextWatcher l;
@@ -34,36 +37,88 @@ public class i implements TimePickerView$d, g {
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public MaterialButtonToggleGroup f1630s;
 
+    /* JADX INFO: compiled from: TimePickerTextInputPresenter.java */
+    public class a extends TextWatcherAdapter {
+        public a() {
+        }
+
+        @Override // com.google.android.material.internal.TextWatcherAdapter, android.text.TextWatcher
+        public void afterTextChanged(Editable editable) {
+            try {
+                if (TextUtils.isEmpty(editable)) {
+                    TimeModel timeModel = i.this.k;
+                    Objects.requireNonNull(timeModel);
+                    timeModel.n = 0;
+                } else {
+                    int i = Integer.parseInt(editable.toString());
+                    TimeModel timeModel2 = i.this.k;
+                    Objects.requireNonNull(timeModel2);
+                    timeModel2.n = i % 60;
+                }
+            } catch (NumberFormatException unused) {
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: TimePickerTextInputPresenter.java */
+    public class b extends TextWatcherAdapter {
+        public b() {
+        }
+
+        @Override // com.google.android.material.internal.TextWatcherAdapter, android.text.TextWatcher
+        public void afterTextChanged(Editable editable) {
+            try {
+                if (TextUtils.isEmpty(editable)) {
+                    i.this.k.c(0);
+                } else {
+                    i.this.k.c(Integer.parseInt(editable.toString()));
+                }
+            } catch (NumberFormatException unused) {
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: TimePickerTextInputPresenter.java */
+    public class c implements View.OnClickListener {
+        public c() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public void onClick(View view) {
+            i.this.b(((Integer) view.getTag(R.id.selection_type)).intValue());
+        }
+    }
+
     public i(LinearLayout linearLayout, TimeModel timeModel) {
-        i$a i_a = new i$a(this);
-        this.l = i_a;
-        i$b i_b = new i$b(this);
-        this.m = i_b;
+        a aVar = new a();
+        this.l = aVar;
+        b bVar = new b();
+        this.m = bVar;
         this.j = linearLayout;
         this.k = timeModel;
         Resources resources = linearLayout.getResources();
-        ChipTextInputComboView chipTextInputComboView = (ChipTextInputComboView) linearLayout.findViewById(R$id.material_minute_text_input);
+        ChipTextInputComboView chipTextInputComboView = (ChipTextInputComboView) linearLayout.findViewById(R.id.material_minute_text_input);
         this.n = chipTextInputComboView;
-        ChipTextInputComboView chipTextInputComboView2 = (ChipTextInputComboView) linearLayout.findViewById(R$id.material_hour_text_input);
+        ChipTextInputComboView chipTextInputComboView2 = (ChipTextInputComboView) linearLayout.findViewById(R.id.material_hour_text_input);
         this.o = chipTextInputComboView2;
-        int i = R$id.material_label;
+        int i = R.id.material_label;
         TextView textView = (TextView) chipTextInputComboView.findViewById(i);
         TextView textView2 = (TextView) chipTextInputComboView2.findViewById(i);
-        textView.setText(resources.getString(R$string.material_timepicker_minute));
-        textView2.setText(resources.getString(R$string.material_timepicker_hour));
-        int i2 = R$id.selection_type;
+        textView.setText(resources.getString(R.string.material_timepicker_minute));
+        textView2.setText(resources.getString(R.string.material_timepicker_hour));
+        int i2 = R.id.selection_type;
         chipTextInputComboView.setTag(i2, 12);
         chipTextInputComboView2.setTag(i2, 10);
         if (timeModel.l == 0) {
-            MaterialButtonToggleGroup materialButtonToggleGroup = (MaterialButtonToggleGroup) linearLayout.findViewById(R$id.material_clock_period_toggle);
+            MaterialButtonToggleGroup materialButtonToggleGroup = (MaterialButtonToggleGroup) linearLayout.findViewById(R.id.material_clock_period_toggle);
             this.f1630s = materialButtonToggleGroup;
             materialButtonToggleGroup.addOnButtonCheckedListener(new j(this));
             this.f1630s.setVisibility(0);
             e();
         }
-        i$c i_c = new i$c(this);
-        chipTextInputComboView2.setOnClickListener(i_c);
-        chipTextInputComboView.setOnClickListener(i_c);
+        c cVar = new c();
+        chipTextInputComboView2.setOnClickListener(cVar);
+        chipTextInputComboView.setOnClickListener(cVar);
         chipTextInputComboView2.a(timeModel.k);
         chipTextInputComboView.a(timeModel.j);
         EditText editText = chipTextInputComboView2.k.getEditText();
@@ -72,10 +127,10 @@ public class i implements TimePickerView$d, g {
         this.r = editText2;
         h hVar = new h(chipTextInputComboView2, chipTextInputComboView, timeModel);
         this.p = hVar;
-        ViewCompat.setAccessibilityDelegate(chipTextInputComboView2.j, new a(linearLayout.getContext(), R$string.material_hour_selection));
-        ViewCompat.setAccessibilityDelegate(chipTextInputComboView.j, new a(linearLayout.getContext(), R$string.material_minute_selection));
-        editText.addTextChangedListener(i_b);
-        editText2.addTextChangedListener(i_a);
+        ViewCompat.setAccessibilityDelegate(chipTextInputComboView2.j, new b.i.a.g.k.a(linearLayout.getContext(), R.string.material_hour_selection));
+        ViewCompat.setAccessibilityDelegate(chipTextInputComboView.j, new b.i.a.g.k.a(linearLayout.getContext(), R.string.material_minute_selection));
+        editText.addTextChangedListener(bVar);
+        editText2.addTextChangedListener(aVar);
         d(timeModel);
         TextInputLayout textInputLayout = chipTextInputComboView2.k;
         TextInputLayout textInputLayout2 = chipTextInputComboView.k;
@@ -93,7 +148,7 @@ public class i implements TimePickerView$d, g {
         d(this.k);
     }
 
-    @Override // com.google.android.material.timepicker.TimePickerView$d
+    @Override // com.google.android.material.timepicker.TimePickerView.d
     public void b(int i) {
         this.k.o = i;
         this.n.setChecked(i == 12);
@@ -133,7 +188,7 @@ public class i implements TimePickerView$d, g {
         if (materialButtonToggleGroup == null) {
             return;
         }
-        materialButtonToggleGroup.check(this.k.p == 0 ? R$id.material_clock_period_am_button : R$id.material_clock_period_pm_button);
+        materialButtonToggleGroup.check(this.k.p == 0 ? R.id.material_clock_period_am_button : R.id.material_clock_period_pm_button);
     }
 
     @Override // b.i.a.g.k.g

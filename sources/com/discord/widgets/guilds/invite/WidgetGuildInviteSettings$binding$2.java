@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetGuildInviteSettingsBinding;
 import com.discord.views.CheckedSetting;
 import com.google.android.material.button.MaterialButton;
@@ -29,20 +29,20 @@ public final /* synthetic */ class WidgetGuildInviteSettings$binding$2 extends k
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGuildInviteSettingsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.guild_invite_channel_spinner;
-        Spinner spinner = (Spinner) view.findViewById(R$id.guild_invite_channel_spinner);
+        int i = R.id.guild_invite_channel_spinner;
+        Spinner spinner = (Spinner) view.findViewById(R.id.guild_invite_channel_spinner);
         if (spinner != null) {
-            i = R$id.guild_invite_expires_after_radiogroup;
-            RadioGroup radioGroup = (RadioGroup) view.findViewById(R$id.guild_invite_expires_after_radiogroup);
+            i = R.id.guild_invite_expires_after_radiogroup;
+            RadioGroup radioGroup = (RadioGroup) view.findViewById(R.id.guild_invite_expires_after_radiogroup);
             if (radioGroup != null) {
-                i = R$id.guild_invite_generate_link;
-                MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.guild_invite_generate_link);
+                i = R.id.guild_invite_generate_link;
+                MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.guild_invite_generate_link);
                 if (materialButton != null) {
-                    i = R$id.guild_invite_max_uses_radiogroup;
-                    RadioGroup radioGroup2 = (RadioGroup) view.findViewById(R$id.guild_invite_max_uses_radiogroup);
+                    i = R.id.guild_invite_max_uses_radiogroup;
+                    RadioGroup radioGroup2 = (RadioGroup) view.findViewById(R.id.guild_invite_max_uses_radiogroup);
                     if (radioGroup2 != null) {
-                        i = R$id.guild_invite_temporary_membership;
-                        CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R$id.guild_invite_temporary_membership);
+                        i = R.id.guild_invite_temporary_membership;
+                        CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R.id.guild_invite_temporary_membership);
                         if (checkedSetting != null) {
                             return new WidgetGuildInviteSettingsBinding((LinearLayout) view, spinner, radioGroup, materialButton, radioGroup2, checkedSetting);
                         }

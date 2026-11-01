@@ -7,6 +7,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewConfiguration;
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
@@ -42,6 +43,30 @@ public class PagerTabStrip extends PagerTitleStrip {
     private final Paint mTabPaint;
     private final Rect mTempRect;
     private int mTouchSlop;
+
+    /* JADX INFO: renamed from: androidx.viewpager.widget.PagerTabStrip$1, reason: invalid class name */
+    public class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public void onClick(View view) {
+            ViewPager viewPager = PagerTabStrip.this.mPager;
+            viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.viewpager.widget.PagerTabStrip$2, reason: invalid class name */
+    public class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public void onClick(View view) {
+            ViewPager viewPager = PagerTabStrip.this.mPager;
+            viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+        }
+    }
 
     public PagerTabStrip(@NonNull Context context) {
         this(context, null);
@@ -201,9 +226,9 @@ public class PagerTabStrip extends PagerTitleStrip {
         setTextSpacing(getTextSpacing());
         setWillNotDraw(false);
         this.mPrevText.setFocusable(true);
-        this.mPrevText.setOnClickListener(new PagerTabStrip$1(this));
+        this.mPrevText.setOnClickListener(new AnonymousClass1());
         this.mNextText.setFocusable(true);
-        this.mNextText.setOnClickListener(new PagerTabStrip$2(this));
+        this.mNextText.setOnClickListener(new AnonymousClass2());
         if (getBackground() == null) {
             this.mDrawFullUnderline = true;
         }

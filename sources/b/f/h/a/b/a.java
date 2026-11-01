@@ -1,23 +1,21 @@
 package b.f.h.a.b;
 
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.IntRange;
-import b.f.h.a.a.c$b;
 import b.f.h.a.a.d;
-import b.f.h.a.b.e.c$a;
+import b.f.h.a.b.e.c.a;
 import com.facebook.common.references.CloseableReference;
 import com.facebook.imagepipeline.bitmaps.PlatformBitmapFactory;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: BitmapAnimationBackend.java */
 /* JADX INFO: loaded from: classes.dex */
-public class a implements b.f.h.a.a.a, c$b {
+public class a implements b.f.h.a.a.a, b.f.h.a.a.c.b {
     public final PlatformBitmapFactory a;
     public final d c;
     public final c d;
@@ -29,7 +27,7 @@ public class a implements b.f.h.a.a.a, c$b {
     public Rect h;
     public int i;
     public int j;
-    public Bitmap$Config k = Bitmap$Config.ARGB_8888;
+    public Bitmap.Config k = Bitmap.Config.ARGB_8888;
     public final Paint g = new Paint(6);
 
     public a(PlatformBitmapFactory platformBitmapFactory, b bVar, d dVar, c cVar, b.f.h.a.b.e.a aVar, b.f.h.a.b.e.b bVar2) {
@@ -52,7 +50,7 @@ public class a implements b.f.h.a.a.a, c$b {
         return this.c.b();
     }
 
-    @Override // b.f.h.a.a.c$b
+    @Override // b.f.h.a.a.c.b
     public void c() {
         this.f526b.clear();
     }
@@ -124,9 +122,9 @@ public class a implements b.f.h.a.a.a, c$b {
                     } else if (bVar2.c(iA)) {
                         int i5 = b.f.d.e.a.a;
                     } else {
-                        c$a c_a = new c$a(cVar, this, bVar2, iA, iHashCode);
-                        cVar.e.put(iHashCode, c_a);
-                        cVar.d.execute(c_a);
+                        b.f.h.a.b.e.c.a aVar2 = cVar.new a(this, bVar2, iA, iHashCode);
+                        cVar.e.put(iHashCode, aVar2);
+                        cVar.d.execute(aVar2);
                     }
                 }
                 i3++;

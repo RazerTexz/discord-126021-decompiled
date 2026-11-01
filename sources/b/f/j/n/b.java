@@ -2,16 +2,13 @@ package b.f.j.n;
 
 import android.annotation.TargetApi;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
 import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory$Options;
 import android.graphics.BitmapRegionDecoder;
 import android.graphics.ColorSpace;
-import android.graphics.ColorSpace$Named;
 import android.graphics.Rect;
-import android.os.Build$VERSION;
+import android.os.Build;
 import androidx.annotation.VisibleForTesting;
-import androidx.core.util.Pools$SynchronizedPool;
+import androidx.core.util.Pools;
 import androidx.exifinterface.media.ExifInterface;
 import b.f.j.j.e;
 import com.facebook.common.memory.PooledByteBuffer;
@@ -30,31 +27,31 @@ public abstract class b implements d {
     public final PreverificationHelper c;
 
     @VisibleForTesting
-    public final Pools$SynchronizedPool<ByteBuffer> d;
+    public final Pools.SynchronizedPool<ByteBuffer> d;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final b.f.j.l.d f603b;
 
-    public b(b.f.j.l.d dVar, int i, Pools$SynchronizedPool pools$SynchronizedPool) {
-        this.c = Build$VERSION.SDK_INT >= 26 ? new PreverificationHelper() : null;
+    public b(b.f.j.l.d dVar, int i, Pools.SynchronizedPool synchronizedPool) {
+        this.c = Build.VERSION.SDK_INT >= 26 ? new PreverificationHelper() : null;
         this.f603b = dVar;
-        this.d = pools$SynchronizedPool;
+        this.d = synchronizedPool;
         for (int i2 = 0; i2 < i; i2++) {
             this.d.release(ByteBuffer.allocate(16384));
         }
     }
 
     @Override // b.f.j.n.d
-    public CloseableReference<Bitmap> a(e eVar, Bitmap$Config bitmap$Config, Rect rect, ColorSpace colorSpace) {
-        BitmapFactory$Options bitmapFactory$OptionsE = e(eVar, bitmap$Config);
-        boolean z2 = bitmapFactory$OptionsE.inPreferredConfig != Bitmap$Config.ARGB_8888;
+    public CloseableReference<Bitmap> a(e eVar, Bitmap.Config config, Rect rect, ColorSpace colorSpace) {
+        BitmapFactory.Options optionsE = e(eVar, config);
+        boolean z2 = optionsE.inPreferredConfig != Bitmap.Config.ARGB_8888;
         try {
             InputStream inputStreamE = eVar.e();
             Objects.requireNonNull(inputStreamE);
-            return c(inputStreamE, bitmapFactory$OptionsE, rect, colorSpace);
+            return c(inputStreamE, optionsE, rect, colorSpace);
         } catch (RuntimeException e) {
             if (z2) {
-                return a(eVar, Bitmap$Config.ARGB_8888, rect, colorSpace);
+                return a(eVar, Bitmap.Config.ARGB_8888, rect, colorSpace);
             }
             throw e;
         }
@@ -62,7 +59,7 @@ public abstract class b implements d {
 
     /* JADX WARN: Code duplicated, block: B:14:0x0032  */
     @Override // b.f.j.n.d
-    public CloseableReference<Bitmap> b(e eVar, Bitmap$Config bitmap$Config, Rect rect, int i, ColorSpace colorSpace) {
+    public CloseableReference<Bitmap> b(e eVar, Bitmap.Config config, Rect rect, int i, ColorSpace colorSpace) {
         boolean z2;
         b.f.i.c cVar = eVar.l;
         if ((cVar == b.f.i.b.a || cVar == b.f.i.b.l) && eVar.k == null) {
@@ -76,7 +73,7 @@ public abstract class b implements d {
         } else {
             z2 = true;
         }
-        BitmapFactory$Options bitmapFactory$OptionsE = e(eVar, bitmap$Config);
+        BitmapFactory.Options optionsE = e(eVar, config);
         InputStream inputStreamE = eVar.e();
         Objects.requireNonNull(inputStreamE);
         if (eVar.n() > i) {
@@ -85,10 +82,10 @@ public abstract class b implements d {
         if (!z2) {
             inputStreamE = new b.f.d.j.b(inputStreamE, a);
         }
-        boolean z3 = bitmapFactory$OptionsE.inPreferredConfig != Bitmap$Config.ARGB_8888;
+        boolean z3 = optionsE.inPreferredConfig != Bitmap.Config.ARGB_8888;
         try {
             try {
-                CloseableReference<Bitmap> closeableReferenceC = c(inputStreamE, bitmapFactory$OptionsE, rect, colorSpace);
+                CloseableReference<Bitmap> closeableReferenceC = c(inputStreamE, optionsE, rect, colorSpace);
                 try {
                     inputStreamE.close();
                 } catch (IOException e) {
@@ -107,7 +104,7 @@ public abstract class b implements d {
             if (!z3) {
                 throw e3;
             }
-            CloseableReference<Bitmap> closeableReferenceB = b(eVar, Bitmap$Config.ARGB_8888, rect, i, colorSpace);
+            CloseableReference<Bitmap> closeableReferenceB = b(eVar, Bitmap.Config.ARGB_8888, rect, i, colorSpace);
             try {
                 inputStreamE.close();
             } catch (IOException e4) {
@@ -119,36 +116,36 @@ public abstract class b implements d {
 
     /* JADX WARN: Code duplicated, block: B:45:0x009e A[Catch: all -> 0x00c8, RuntimeException -> 0x00ca, IllegalArgumentException -> 0x00d3, TryCatch #8 {IllegalArgumentException -> 0x00d3, RuntimeException -> 0x00ca, blocks: (B:29:0x006b, B:34:0x0082, B:49:0x00a5, B:41:0x0096, B:45:0x009e, B:46:0x00a1), top: B:80:0x006b, outer: #5 }] */
     /* JADX WARN: Code duplicated, block: B:49:0x00a5 A[Catch: all -> 0x00c8, RuntimeException -> 0x00ca, IllegalArgumentException -> 0x00d3, TRY_LEAVE, TryCatch #8 {IllegalArgumentException -> 0x00d3, RuntimeException -> 0x00ca, blocks: (B:29:0x006b, B:34:0x0082, B:49:0x00a5, B:41:0x0096, B:45:0x009e, B:46:0x00a1), top: B:80:0x006b, outer: #5 }] */
-    public final CloseableReference<Bitmap> c(InputStream inputStream, BitmapFactory$Options bitmapFactory$Options, Rect rect, ColorSpace colorSpace) {
+    public final CloseableReference<Bitmap> c(InputStream inputStream, BitmapFactory.Options options, Rect rect, ColorSpace colorSpace) {
         Bitmap bitmap;
         Bitmap bitmapDecodeStream;
         BitmapRegionDecoder bitmapRegionDecoderNewInstance;
         PreverificationHelper preverificationHelper;
-        int iWidth = bitmapFactory$Options.outWidth;
-        int iHeight = bitmapFactory$Options.outHeight;
+        int iWidth = options.outWidth;
+        int iHeight = options.outHeight;
         if (rect != null) {
-            iWidth = rect.width() / bitmapFactory$Options.inSampleSize;
-            iHeight = rect.height() / bitmapFactory$Options.inSampleSize;
+            iWidth = rect.width() / options.inSampleSize;
+            iHeight = rect.height() / options.inSampleSize;
         }
-        int i = Build$VERSION.SDK_INT;
-        boolean z2 = i >= 26 && (preverificationHelper = this.c) != null && preverificationHelper.shouldUseHardwareBitmapConfig(bitmapFactory$Options.inPreferredConfig);
+        int i = Build.VERSION.SDK_INT;
+        boolean z2 = i >= 26 && (preverificationHelper = this.c) != null && preverificationHelper.shouldUseHardwareBitmapConfig(options.inPreferredConfig);
         BitmapRegionDecoder bitmapRegionDecoder = null;
         if (rect == null && z2) {
-            bitmapFactory$Options.inMutable = false;
+            options.inMutable = false;
             bitmap = null;
         } else {
             if (rect != null && z2) {
-                bitmapFactory$Options.inPreferredConfig = Bitmap$Config.ARGB_8888;
+                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
             }
-            bitmap = this.f603b.get(d(iWidth, iHeight, bitmapFactory$Options));
+            bitmap = this.f603b.get(d(iWidth, iHeight, options));
             Objects.requireNonNull(bitmap, "BitmapPool.get returned null");
         }
-        bitmapFactory$Options.inBitmap = bitmap;
+        options.inBitmap = bitmap;
         if (i >= 26) {
             if (colorSpace == null) {
-                colorSpace = ColorSpace.get(ColorSpace$Named.SRGB);
+                colorSpace = ColorSpace.get(ColorSpace.Named.SRGB);
             }
-            bitmapFactory$Options.inPreferredColorSpace = colorSpace;
+            options.inPreferredColorSpace = colorSpace;
         }
         ByteBuffer byteBufferAcquire = this.d.acquire();
         if (byteBufferAcquire == null) {
@@ -156,16 +153,16 @@ public abstract class b implements d {
         }
         try {
             try {
-                bitmapFactory$Options.inTempStorage = byteBufferAcquire.array();
+                options.inTempStorage = byteBufferAcquire.array();
                 if (rect == null || bitmap == null) {
                     bitmapDecodeStream = null;
                 } else {
                     try {
-                        bitmap.reconfigure(iWidth, iHeight, bitmapFactory$Options.inPreferredConfig);
+                        bitmap.reconfigure(iWidth, iHeight, options.inPreferredConfig);
                         bitmapRegionDecoderNewInstance = BitmapRegionDecoder.newInstance(inputStream, true);
                         try {
                             try {
-                                bitmapDecodeStream = bitmapRegionDecoderNewInstance.decodeRegion(rect, bitmapFactory$Options);
+                                bitmapDecodeStream = bitmapRegionDecoderNewInstance.decodeRegion(rect, options);
                                 bitmapRegionDecoderNewInstance.recycle();
                             } catch (IOException unused) {
                                 b.f.d.e.a.c(b.class, "Could not decode region %s, decoding full bitmap instead.", rect);
@@ -174,7 +171,7 @@ public abstract class b implements d {
                                 }
                                 bitmapDecodeStream = null;
                                 if (bitmapDecodeStream == null) {
-                                    bitmapDecodeStream = BitmapFactory.decodeStream(inputStream, null, bitmapFactory$Options);
+                                    bitmapDecodeStream = BitmapFactory.decodeStream(inputStream, null, options);
                                 }
                                 this.d.release(byteBufferAcquire);
                                 if (bitmap != null) {
@@ -200,7 +197,7 @@ public abstract class b implements d {
                     }
                 }
                 if (bitmapDecodeStream == null) {
-                    bitmapDecodeStream = BitmapFactory.decodeStream(inputStream, null, bitmapFactory$Options);
+                    bitmapDecodeStream = BitmapFactory.decodeStream(inputStream, null, options);
                 }
                 this.d.release(byteBufferAcquire);
                 if (bitmap != null || bitmap == bitmapDecodeStream) {
@@ -237,20 +234,20 @@ public abstract class b implements d {
         }
     }
 
-    public abstract int d(int i, int i2, BitmapFactory$Options bitmapFactory$Options);
+    public abstract int d(int i, int i2, BitmapFactory.Options options);
 
-    public static BitmapFactory$Options e(e eVar, Bitmap$Config bitmap$Config) {
-        BitmapFactory$Options bitmapFactory$Options = new BitmapFactory$Options();
-        bitmapFactory$Options.inSampleSize = eVar.q;
-        bitmapFactory$Options.inJustDecodeBounds = true;
-        BitmapFactory.decodeStream(eVar.e(), null, bitmapFactory$Options);
-        if (bitmapFactory$Options.outWidth == -1 || bitmapFactory$Options.outHeight == -1) {
+    public static BitmapFactory.Options e(e eVar, Bitmap.Config config) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = eVar.q;
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeStream(eVar.e(), null, options);
+        if (options.outWidth == -1 || options.outHeight == -1) {
             throw new IllegalArgumentException();
         }
-        bitmapFactory$Options.inJustDecodeBounds = false;
-        bitmapFactory$Options.inDither = true;
-        bitmapFactory$Options.inPreferredConfig = bitmap$Config;
-        bitmapFactory$Options.inMutable = true;
-        return bitmapFactory$Options;
+        options.inJustDecodeBounds = false;
+        options.inDither = true;
+        options.inPreferredConfig = config;
+        options.inMutable = true;
+        return options;
     }
 }

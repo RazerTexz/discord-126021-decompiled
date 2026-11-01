@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.text.TextUtils;
 import androidx.annotation.Nullable;
-import com.google.android.gms.common.R$a;
+import com.google.android.gms.common.R;
 import com.google.android.gms.common.api.Status;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
@@ -24,7 +24,7 @@ public final class h {
 
     public h(Context context) {
         Resources resources = context.getResources();
-        int i = R$a.common_google_play_services_unknown_issue;
+        int i = R.a.common_google_play_services_unknown_issue;
         int identifier = resources.getIdentifier("google_app_measurement_enable", "integer", resources.getResourcePackageName(i));
         if (identifier != 0) {
             this.e = resources.getInteger(identifier) == 0;

@@ -3,13 +3,13 @@ package j0.l.a;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
-import rx.Observable$a;
+import rx.Observable;
 import rx.Subscriber;
 import rx.subscriptions.CompositeSubscription;
 
 /* JADX INFO: compiled from: OnSubscribeRefCount.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class c0<T> implements Observable$a<T> {
+public final class c0<T> implements Observable.a<T> {
     public final j0.m.b<? extends T> j;
     public volatile CompositeSubscription k = new CompositeSubscription();
     public final AtomicInteger l = new AtomicInteger(0);

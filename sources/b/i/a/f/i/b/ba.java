@@ -6,8 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import androidx.annotation.WorkerThread;
 import androidx.collection.ArrayMap;
-import b.i.a.f.h.l.g1$a;
-import b.i.a.f.h.l.l0$a;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -217,7 +215,7 @@ public final class ba extends i9 {
                         if (cursorQuery2.moveToFirst()) {
                             while (true) {
                                 try {
-                                    b.i.a.f.h.l.l0 l0Var = (b.i.a.f.h.l.l0) ((b.i.a.f.h.l.u4) ((l0$a) q9.x(b.i.a.f.h.l.l0.I(), cursorQuery2.getBlob(1))).p());
+                                    b.i.a.f.h.l.l0 l0Var = (b.i.a.f.h.l.l0) ((b.i.a.f.h.l.u4) ((b.i.a.f.h.l.l0.a) q9.x(b.i.a.f.h.l.l0.I(), cursorQuery2.getBlob(1))).p());
                                     if (l0Var.C()) {
                                         int i3 = cursorQuery2.getInt(i2);
                                         List arrayList2 = (List) arrayMap4.get(Integer.valueOf(i3));
@@ -293,7 +291,7 @@ public final class ba extends i9 {
                         while (true) {
                             int i5 = cursorQuery.getInt(i4);
                             try {
-                                arrayMap5.put(Integer.valueOf(i5), (b.i.a.f.h.l.g1) ((b.i.a.f.h.l.u4) ((g1$a) q9.x(b.i.a.f.h.l.g1.M(), cursorQuery.getBlob(i))).p()));
+                                arrayMap5.put(Integer.valueOf(i5), (b.i.a.f.h.l.g1) ((b.i.a.f.h.l.u4) ((b.i.a.f.h.l.g1.a) q9.x(b.i.a.f.h.l.g1.M(), cursorQuery.getBlob(i))).p()));
                             } catch (IOException e5) {
                                 gVarQ5.g().f.d("Failed to merge filter results. appId, audienceId, error", q3.s(str10), Integer.valueOf(i5), e5);
                             }
@@ -606,47 +604,47 @@ public final class ba extends i9 {
                             } else {
                                 List<Long> listC = m().C(g1Var.E(), list4);
                                 if (!listC.isEmpty()) {
-                                    g1$a g1_aT = g1Var.t();
-                                    if (g1_aT.l) {
-                                        g1_aT.n();
-                                        g1_aT.l = false;
+                                    b.i.a.f.h.l.g1.a aVarT = g1Var.t();
+                                    if (aVarT.l) {
+                                        aVarT.n();
+                                        aVarT.l = false;
                                     }
-                                    b.i.a.f.h.l.g1.B((b.i.a.f.h.l.g1) g1_aT.k);
-                                    if (g1_aT.l) {
-                                        g1_aT.n();
-                                        g1_aT.l = false;
+                                    b.i.a.f.h.l.g1.B((b.i.a.f.h.l.g1) aVarT.k);
+                                    if (aVarT.l) {
+                                        aVarT.n();
+                                        aVarT.l = false;
                                     }
-                                    b.i.a.f.h.l.g1.D((b.i.a.f.h.l.g1) g1_aT.k, listC);
+                                    b.i.a.f.h.l.g1.D((b.i.a.f.h.l.g1) aVarT.k, listC);
                                     List<Long> listC2 = m().C(g1Var.v(), list4);
-                                    if (g1_aT.l) {
-                                        g1_aT.n();
-                                        g1_aT.l = false;
+                                    if (aVarT.l) {
+                                        aVarT.n();
+                                        aVarT.l = false;
                                     }
-                                    b.i.a.f.h.l.g1.w((b.i.a.f.h.l.g1) g1_aT.k);
-                                    if (g1_aT.l) {
-                                        g1_aT.n();
-                                        g1_aT.l = false;
+                                    b.i.a.f.h.l.g1.w((b.i.a.f.h.l.g1) aVarT.k);
+                                    if (aVarT.l) {
+                                        aVarT.n();
+                                        aVarT.l = false;
                                     }
-                                    b.i.a.f.h.l.g1.y((b.i.a.f.h.l.g1) g1_aT.k, listC2);
+                                    b.i.a.f.h.l.g1.y((b.i.a.f.h.l.g1) aVarT.k, listC2);
                                     for (int i7 = 0; i7 < g1Var.J(); i7++) {
                                         if (list4.contains(Integer.valueOf(g1Var.u(i7).x()))) {
-                                            if (g1_aT.l) {
-                                                g1_aT.n();
-                                                g1_aT.l = false;
+                                            if (aVarT.l) {
+                                                aVarT.n();
+                                                aVarT.l = false;
                                             }
-                                            b.i.a.f.h.l.g1.x((b.i.a.f.h.l.g1) g1_aT.k, i7);
+                                            b.i.a.f.h.l.g1.x((b.i.a.f.h.l.g1) aVarT.k, i7);
                                         }
                                     }
                                     for (int i8 = 0; i8 < g1Var.L(); i8++) {
                                         if (list4.contains(Integer.valueOf(g1Var.A(i8).y()))) {
-                                            if (g1_aT.l) {
-                                                g1_aT.n();
-                                                g1_aT.l = false;
+                                            if (aVarT.l) {
+                                                aVarT.n();
+                                                aVarT.l = false;
                                             }
-                                            b.i.a.f.h.l.g1.C((b.i.a.f.h.l.g1) g1_aT.k, i8);
+                                            b.i.a.f.h.l.g1.C((b.i.a.f.h.l.g1) aVarT.k, i8);
                                         }
                                     }
-                                    arrayMap6.put(Integer.valueOf(iIntValue4), (b.i.a.f.h.l.g1) ((b.i.a.f.h.l.u4) g1_aT.p()));
+                                    arrayMap6.put(Integer.valueOf(iIntValue4), (b.i.a.f.h.l.g1) ((b.i.a.f.h.l.u4) aVarT.p()));
                                     it10 = it10;
                                     arrayMap7 = arrayMap7;
                                 }

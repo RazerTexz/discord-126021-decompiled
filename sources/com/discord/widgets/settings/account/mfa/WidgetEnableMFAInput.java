@@ -1,7 +1,6 @@
 package com.discord.widgets.settings.account.mfa;
 
 import android.content.ClipData;
-import android.content.ClipData$Item;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.text.TextUtils;
@@ -10,14 +9,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.d.f0;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetSettingsEnableMfaInputBinding;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Lazy;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: WidgetEnableMFAInput.kt */
@@ -31,8 +33,35 @@ public final class WidgetEnableMFAInput extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.mfa.WidgetEnableMFAInput$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetEnableMFAInput.kt */
+    public final class AnonymousClass1 extends o implements Function1<String, Unit> {
+        public final /* synthetic */ View $view;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(View view) {
+            super(1);
+            this.$view = view;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            m.checkNotNullParameter(str, "verificationCode");
+            WidgetEnableMFAViewModel widgetEnableMFAViewModelAccess$getViewModel$p = WidgetEnableMFAInput.access$getViewModel$p(WidgetEnableMFAInput.this);
+            Context context = this.$view.getContext();
+            m.checkNotNullExpressionValue(context, "view.context");
+            widgetEnableMFAViewModelAccess$getViewModel$p.enableMFA(context, str);
+        }
+    }
+
     public WidgetEnableMFAInput() {
-        super(R$layout.widget_settings_enable_mfa_input);
+        super(R.layout.widget_settings_enable_mfa_input);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetEnableMFAInput$binding$2.INSTANCE, null, 2, null);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetEnableMFAViewModel.class), new WidgetEnableMFAInput$appActivityViewModels$$inlined$activityViewModels$1(this), new f0(WidgetEnableMFAInput$viewModel$2.INSTANCE));
     }
@@ -53,7 +82,7 @@ public final class WidgetEnableMFAInput extends AppFragment {
     public void onViewBound(View view) {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
-        getBinding().f2617b.setOnCodeEntered(new WidgetEnableMFAInput$onViewBound$1(this, view));
+        getBinding().f2617b.setOnCodeEntered(new AnonymousClass1(view));
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -75,7 +104,7 @@ public final class WidgetEnableMFAInput extends AppFragment {
         }
         m.checkNotNullExpressionValue(primaryClip, "clipboard.primaryClip ?: return");
         if (primaryClip.getItemCount() > 0) {
-            ClipData$Item itemAt = primaryClip.getItemAt(0);
+            ClipData.Item itemAt = primaryClip.getItemAt(0);
             m.checkNotNullExpressionValue(itemAt, "clipData.getItemAt(0)");
             CharSequence text = itemAt.getText();
             if (text != null && text.length() == 6 && TextUtils.isDigitsOnly(text)) {

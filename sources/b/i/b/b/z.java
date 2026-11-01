@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
@@ -46,9 +45,9 @@ public class z<K, V> extends AbstractCollection<V> {
         try {
             return super.remove(obj);
         } catch (UnsupportedOperationException unused) {
-            for (Map$Entry<K, V> map$Entry : this.j.entrySet()) {
-                if (b.i.a.f.e.o.f.V(obj, map$Entry.getValue())) {
-                    this.j.remove(map$Entry.getKey());
+            for (Map.Entry<K, V> entry : this.j.entrySet()) {
+                if (b.i.a.f.e.o.f.V(obj, entry.getValue())) {
+                    this.j.remove(entry.getKey());
                     return true;
                 }
             }
@@ -63,9 +62,9 @@ public class z<K, V> extends AbstractCollection<V> {
             return super.removeAll(collection);
         } catch (UnsupportedOperationException unused) {
             HashSet hashSet = new HashSet();
-            for (Map$Entry<K, V> map$Entry : this.j.entrySet()) {
-                if (collection.contains(map$Entry.getValue())) {
-                    hashSet.add(map$Entry.getKey());
+            for (Map.Entry<K, V> entry : this.j.entrySet()) {
+                if (collection.contains(entry.getValue())) {
+                    hashSet.add(entry.getKey());
                 }
             }
             return this.j.keySet().removeAll(hashSet);
@@ -79,9 +78,9 @@ public class z<K, V> extends AbstractCollection<V> {
             return super.retainAll(collection);
         } catch (UnsupportedOperationException unused) {
             HashSet hashSet = new HashSet();
-            for (Map$Entry<K, V> map$Entry : this.j.entrySet()) {
-                if (collection.contains(map$Entry.getValue())) {
-                    hashSet.add(map$Entry.getKey());
+            for (Map.Entry<K, V> entry : this.j.entrySet()) {
+                if (collection.contains(entry.getValue())) {
+                    hashSet.add(entry.getKey());
                 }
             }
             return this.j.keySet().retainAll(hashSet);

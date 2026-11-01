@@ -26,6 +26,6 @@ public final class ModelRichPresence$Companion$get$1<T, R> implements b<Presence
             return new k(null);
         }
         Activity primaryActivity = PresenceUtils.INSTANCE.getPrimaryActivity(presence);
-        return (primaryActivity == null || (applicationId = primaryActivity.getApplicationId()) == null) ? new k(new ModelRichPresence(presence, null, 2, null)) : StoreStream.Companion.getApplication().observeApplication(Long.valueOf(applicationId.longValue())).G(new ModelRichPresence$Companion$get$1$$special$$inlined$let$lambda$1(presence));
+        return (primaryActivity == null || (applicationId = primaryActivity.getApplicationId()) == null) ? new k(new ModelRichPresence(presence, null, 2, null)) : StoreStream.INSTANCE.getApplication().observeApplication(Long.valueOf(applicationId.longValue())).G(new ModelRichPresence$Companion$get$1$$special$$inlined$let$lambda$1(presence));
     }
 }

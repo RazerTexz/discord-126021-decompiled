@@ -5,12 +5,7 @@ import android.view.View;
 import androidx.constraintlayout.motion.utils.Easing;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import androidx.constraintlayout.widget.ConstraintAttribute;
-import androidx.constraintlayout.widget.ConstraintAttribute$AttributeType;
 import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.constraintlayout.widget.ConstraintSet$Constraint;
-import androidx.constraintlayout.widget.ConstraintSet$Motion;
-import androidx.constraintlayout.widget.ConstraintSet$PropertySet;
-import androidx.constraintlayout.widget.ConstraintSet$Transform;
 import com.discord.models.domain.ModelAuditLogEntry;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -182,8 +177,8 @@ public class MotionConstrainedPoint implements Comparable<MotionConstrainedPoint
                         String str2 = str.split(",")[1];
                         if (this.attributes.containsKey(str2)) {
                             ConstraintAttribute constraintAttribute = this.attributes.get(str2);
-                            if (splineSet instanceof SplineSet$CustomSet) {
-                                ((SplineSet$CustomSet) splineSet).setPoint(i, constraintAttribute);
+                            if (splineSet instanceof SplineSet.CustomSet) {
+                                ((SplineSet.CustomSet) splineSet).setPoint(i, constraintAttribute);
                             } else {
                                 Log.e("MotionPaths", str + " splineSet not a CustomSet frame = " + i + ", value" + constraintAttribute.getValueToInterpolate() + splineSet);
                             }
@@ -336,34 +331,34 @@ public class MotionConstrainedPoint implements Comparable<MotionConstrainedPoint
         applyParameters(constraintSet.getParameters(i));
     }
 
-    public void applyParameters(ConstraintSet$Constraint constraintSet$Constraint) {
-        ConstraintSet$PropertySet constraintSet$PropertySet = constraintSet$Constraint.propertySet;
-        int i = constraintSet$PropertySet.mVisibilityMode;
+    public void applyParameters(ConstraintSet.Constraint constraint) {
+        ConstraintSet.PropertySet propertySet = constraint.propertySet;
+        int i = propertySet.mVisibilityMode;
         this.mVisibilityMode = i;
-        int i2 = constraintSet$PropertySet.visibility;
+        int i2 = propertySet.visibility;
         this.visibility = i2;
-        this.alpha = (i2 == 0 || i != 0) ? constraintSet$PropertySet.alpha : 0.0f;
-        ConstraintSet$Transform constraintSet$Transform = constraintSet$Constraint.transform;
-        this.applyElevation = constraintSet$Transform.applyElevation;
-        this.elevation = constraintSet$Transform.elevation;
-        this.rotation = constraintSet$Transform.rotation;
-        this.rotationX = constraintSet$Transform.rotationX;
-        this.rotationY = constraintSet$Transform.rotationY;
-        this.scaleX = constraintSet$Transform.scaleX;
-        this.scaleY = constraintSet$Transform.scaleY;
-        this.mPivotX = constraintSet$Transform.transformPivotX;
-        this.mPivotY = constraintSet$Transform.transformPivotY;
-        this.translationX = constraintSet$Transform.translationX;
-        this.translationY = constraintSet$Transform.translationY;
-        this.translationZ = constraintSet$Transform.translationZ;
-        this.mKeyFrameEasing = Easing.getInterpolator(constraintSet$Constraint.motion.mTransitionEasing);
-        ConstraintSet$Motion constraintSet$Motion = constraintSet$Constraint.motion;
-        this.mPathRotate = constraintSet$Motion.mPathRotate;
-        this.mDrawPath = constraintSet$Motion.mDrawPath;
-        this.mProgress = constraintSet$Constraint.propertySet.mProgress;
-        for (String str : constraintSet$Constraint.mCustomConstraints.keySet()) {
-            ConstraintAttribute constraintAttribute = constraintSet$Constraint.mCustomConstraints.get(str);
-            if (constraintAttribute.getType() != ConstraintAttribute$AttributeType.STRING_TYPE) {
+        this.alpha = (i2 == 0 || i != 0) ? propertySet.alpha : 0.0f;
+        ConstraintSet.Transform transform = constraint.transform;
+        this.applyElevation = transform.applyElevation;
+        this.elevation = transform.elevation;
+        this.rotation = transform.rotation;
+        this.rotationX = transform.rotationX;
+        this.rotationY = transform.rotationY;
+        this.scaleX = transform.scaleX;
+        this.scaleY = transform.scaleY;
+        this.mPivotX = transform.transformPivotX;
+        this.mPivotY = transform.transformPivotY;
+        this.translationX = transform.translationX;
+        this.translationY = transform.translationY;
+        this.translationZ = transform.translationZ;
+        this.mKeyFrameEasing = Easing.getInterpolator(constraint.motion.mTransitionEasing);
+        ConstraintSet.Motion motion = constraint.motion;
+        this.mPathRotate = motion.mPathRotate;
+        this.mDrawPath = motion.mDrawPath;
+        this.mProgress = constraint.propertySet.mProgress;
+        for (String str : constraint.mCustomConstraints.keySet()) {
+            ConstraintAttribute constraintAttribute = constraint.mCustomConstraints.get(str);
+            if (constraintAttribute.getType() != ConstraintAttribute.AttributeType.STRING_TYPE) {
                 this.attributes.put(str, constraintAttribute);
             }
         }

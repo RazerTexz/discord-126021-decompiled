@@ -15,23 +15,18 @@ import b.i.a.c.g3.n;
 import b.i.a.c.g3.o;
 import b.i.a.c.g3.q;
 import b.i.a.c.j1;
-import b.i.a.c.j1$b;
 import b.i.a.c.t2.l;
-import b.i.a.c.t2.l$b;
 import b.i.a.c.x0;
 import b.i.a.c.x2.h;
 import b.i.a.c.x2.i;
 import b.i.a.c.x2.j;
 import b.i.a.c.x2.s;
 import b.i.a.c.x2.t;
-import b.i.a.c.x2.t$b;
 import b.i.a.c.x2.w;
-import b.i.a.c.x2.w$a;
 import b.i.b.b.p;
 import com.discord.api.permission.Permission;
 import com.google.android.exoplayer2.ParserException;
 import com.google.android.exoplayer2.drm.DrmInitData;
-import com.google.android.exoplayer2.drm.DrmInitData$SchemeData;
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -109,7 +104,7 @@ public class e implements h {
     /* JADX INFO: renamed from: f0, reason: collision with root package name */
     public j f1191f0;
     public final g g;
-    public final SparseArray<e$c> h;
+    public final SparseArray<c> h;
     public final boolean i;
     public final x j;
     public final x k;
@@ -136,10 +131,16 @@ public class e implements h {
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
     @Nullable
-    public e$c f1195z;
+    public c f1195z;
+
+    /* JADX INFO: compiled from: MatroskaExtractor.java */
+    public final class b implements b.i.a.c.x2.g0.c {
+        public b(a aVar) {
+        }
+    }
 
     static {
-        a aVar = a.a;
+        b.i.a.c.x2.g0.a aVar = b.i.a.c.x2.g0.a.a;
         a = new byte[]{49, 10, 48, 48, 58, 48, 48, 58, 48, 48, 44, 48, 48, 48, 32, 45, 45, 62, 32, 48, 48, 58, 48, 48, 58, 48, 48, 44, 48, 48, 48, 10};
         f1185b = e0.w("Format: Start, End, ReadOrder, Layer, Style, Name, MarginL, MarginR, MarginV, Effect, Text");
         c = new byte[]{68, 105, 97, 108, 111, 103, 117, 101, 58, 32, 48, 58, 48, 48, 58, 48, 48, 58, 48, 48, 44, 48, 58, 48, 48, 58, 48, 48, 58, 48, 48, 44};
@@ -153,7 +154,7 @@ public class e implements h {
     }
 
     public e(int i) {
-        b bVar = new b();
+        b.i.a.c.x2.g0.b bVar = new b.i.a.c.x2.g0.b();
         this.v = -1L;
         this.w = -9223372036854775807L;
         this.f1193x = -9223372036854775807L;
@@ -162,7 +163,7 @@ public class e implements h {
         this.F = -1L;
         this.G = -9223372036854775807L;
         this.f = bVar;
-        bVar.d = new e$b(this, null);
+        bVar.d = new b(null);
         this.i = (i & 1) == 0;
         this.g = new g();
         this.h = new SparseArray<>();
@@ -251,14 +252,14 @@ public class e implements h {
     }
 
     @RequiresNonNull({"#1.output"})
-    public final void d(e$c e_c, long j, int i, int i2, int i3) {
+    public final void d(c cVar, long j, int i, int i2, int i3) {
         byte[] bArrJ;
         int i4;
-        b.i.a.c.x2.x xVar = e_c.T;
+        b.i.a.c.x2.x xVar = cVar.T;
         if (xVar != null) {
-            xVar.b(e_c.X, j, i, i2, i3, e_c.j);
+            xVar.b(cVar.X, j, i, i2, i3, cVar.j);
         } else {
-            if ("S_TEXT/UTF8".equals(e_c.f1196b) || "S_TEXT/ASS".equals(e_c.f1196b)) {
+            if ("S_TEXT/UTF8".equals(cVar.f1196b) || "S_TEXT/ASS".equals(cVar.f1196b)) {
                 if (this.P > 1) {
                     Log.w("MatroskaExtractor", "Skipping subtitle sample in laced block.");
                 } else {
@@ -266,7 +267,7 @@ public class e implements h {
                     if (j2 == -9223372036854775807L) {
                         Log.w("MatroskaExtractor", "Skipping subtitle sample with no duration.");
                     } else {
-                        String str = e_c.f1196b;
+                        String str = cVar.f1196b;
                         byte[] bArr = this.p.a;
                         str.hashCode();
                         if (str.equals("S_TEXT/ASS")) {
@@ -292,7 +293,7 @@ public class e implements h {
                             }
                             i5++;
                         }
-                        w wVar = e_c.X;
+                        w wVar = cVar.X;
                         x xVar3 = this.p;
                         wVar.c(xVar3, xVar3.c);
                         i2 += this.p.c;
@@ -305,11 +306,11 @@ public class e implements h {
                 } else {
                     x xVar4 = this.f1192s;
                     int i6 = xVar4.c;
-                    e_c.X.f(xVar4, i6, 2);
+                    cVar.X.f(xVar4, i6, 2);
                     i2 += i6;
                 }
             }
-            e_c.X.d(j, i, i2, i3, e_c.j);
+            cVar.X.d(j, i, i2, i3, cVar.j);
         }
         this.K = true;
     }
@@ -348,13 +349,13 @@ public class e implements h {
         boolean z4 = true;
         boolean z5 = true;
         while (z5 && !this.K) {
-            b bVar = (b) this.f;
+            b.i.a.c.x2.g0.b bVar = (b.i.a.c.x2.g0.b) this.f;
             b.c.a.a0.d.H(bVar.d);
             boolean z6 = z3;
             boolean z7 = z4;
             while (true) {
-                b$b b_bPeek = bVar.f1183b.peek();
-                if (b_bPeek == null || iVar.getPosition() < b_bPeek.f1184b) {
+                b.i.a.c.x2.g0.b.C0103b c0103bPeek = bVar.f1183b.peek();
+                if (c0103bPeek == null || iVar.getPosition() < c0103bPeek.f1184b) {
                     if (bVar.e == 0) {
                         long jC = bVar.c.c(iVar, z7, z6, 4);
                         if (jC == -2) {
@@ -364,7 +365,7 @@ public class e implements h {
                                 int iB = g.b(bVar.a[z6 ? 1 : 0]);
                                 if (iB != -1 && iB <= 4) {
                                     int iA = (int) g.a(bVar.a, iB, z6);
-                                    Objects.requireNonNull(((e$b) bVar.d).a);
+                                    Objects.requireNonNull(e.this);
                                     if (iA == 357149030 || iA == 524531317 || iA == 475249515 || iA == 374648427) {
                                         iVar.l(iB);
                                         jC = iA;
@@ -384,9 +385,9 @@ public class e implements h {
                         bVar.g = bVar.c.c(iVar, z6, z7, 8);
                         bVar.e = 2;
                     }
-                    c cVar = bVar.d;
+                    b.i.a.c.x2.g0.c cVar = bVar.d;
                     int i4 = bVar.f;
-                    Objects.requireNonNull(((e$b) cVar).a);
+                    Objects.requireNonNull(e.this);
                     switch (i4) {
                         case Opcodes.LXOR /* 131 */:
                         case Opcodes.L2I /* 136 */:
@@ -500,18 +501,18 @@ public class e implements h {
                         z7 = true;
                     } else if (i == z7) {
                         long position = iVar.getPosition();
-                        bVar.f1183b.push(new b$b(bVar.f, bVar.g + position, null));
-                        c cVar2 = bVar.d;
+                        bVar.f1183b.push(new b.i.a.c.x2.g0.b.C0103b(bVar.f, bVar.g + position, null));
+                        b.i.a.c.x2.g0.c cVar2 = bVar.d;
                         int i5 = bVar.f;
                         long j2 = bVar.g;
-                        e eVar = ((e$b) cVar2).a;
+                        e eVar = e.this;
                         b.c.a.a0.d.H(eVar.f1191f0);
                         if (i5 == 160) {
                             i2 = 0;
                             eVar.V = false;
                         } else if (i5 == 174) {
                             i2 = 0;
-                            eVar.f1195z = new e$c(null);
+                            eVar.f1195z = new c(null);
                         } else if (i5 != 187) {
                             if (i5 == 19899) {
                                 eVar.B = -1;
@@ -534,7 +535,7 @@ public class e implements h {
                                 eVar.I = new r();
                             } else if (i5 == 524531317 && !eVar.A) {
                                 if (!eVar.i || eVar.E == -1) {
-                                    eVar.f1191f0.a(new t$b(eVar.f1194y, 0L));
+                                    eVar.f1191f0.a(new t.b(eVar.f1194y, 0L));
                                     eVar.A = true;
                                 } else {
                                     eVar.D = true;
@@ -554,10 +555,10 @@ public class e implements h {
                             sb.append(j4);
                             throw ParserException.a(sb.toString(), null);
                         }
-                        c cVar3 = bVar.d;
+                        b.i.a.c.x2.g0.c cVar3 = bVar.d;
                         int i6 = bVar.f;
                         long jA = bVar.a(iVar, (int) j4);
-                        e eVar2 = ((e$b) cVar3).a;
+                        e eVar2 = e.this;
                         Objects.requireNonNull(eVar2);
                         if (i6 != 20529) {
                             if (i6 != 20530) {
@@ -758,7 +759,7 @@ public class e implements h {
                             sb2.append(j5);
                             throw ParserException.a(sb2.toString(), null);
                         }
-                        c cVar4 = bVar.d;
+                        b.i.a.c.x2.g0.c cVar4 = bVar.d;
                         int i10 = bVar.f;
                         int i11 = (int) j5;
                         if (i11 == 0) {
@@ -776,7 +777,7 @@ public class e implements h {
                             }
                             str = new String(bArr, 0, i11);
                         }
-                        e eVar3 = ((e$b) cVar4).a;
+                        e eVar3 = e.this;
                         Objects.requireNonNull(eVar3);
                         if (i10 == 134) {
                             eVar3.c(i10);
@@ -798,10 +799,10 @@ public class e implements h {
                         }
                         bVar.e = 0;
                     } else if (i == 4) {
-                        c cVar5 = bVar.d;
+                        b.i.a.c.x2.g0.c cVar5 = bVar.d;
                         int i13 = bVar.f;
                         int i14 = (int) bVar.g;
-                        e eVar4 = ((e$b) cVar5).a;
+                        e eVar4 = e.this;
                         Objects.requireNonNull(eVar4);
                         if (i13 == 161 || i13 == 163) {
                             if (eVar4.L == 0) {
@@ -811,12 +812,12 @@ public class e implements h {
                                 eVar4.L = z7 ? 1 : 0;
                                 eVar4.l.A(z6 ? 1 : 0);
                             }
-                            e$c e_c = eVar4.h.get(eVar4.R);
-                            if (e_c == null) {
+                            c cVar6 = eVar4.h.get(eVar4.R);
+                            if (cVar6 == null) {
                                 iVar.l(i14 - eVar4.S);
                                 eVar4.L = z6 ? 1 : 0;
                             } else {
-                                Objects.requireNonNull(e_c.X);
+                                Objects.requireNonNull(cVar6.X);
                                 if (eVar4.L == z7) {
                                     eVar4.k(iVar, 3);
                                     int i15 = (eVar4.l.a[2] & 6) >> (z7 ? 1 : 0);
@@ -930,7 +931,7 @@ public class e implements h {
                                     }
                                     byte[] bArr2 = eVar4.l.a;
                                     eVar4.M = eVar4.m((bArr2[1] & 255) | (bArr2[0] << 8)) + eVar4.G;
-                                    eVar4.T = (e_c.d == 2 || (i13 == 163 && (eVar4.l.a[2] & 128) == 128)) ? 1 : 0;
+                                    eVar4.T = (cVar6.d == 2 || (i13 == 163 && (eVar4.l.a[2] & 128) == 128)) ? 1 : 0;
                                     eVar4.L = 2;
                                     eVar4.O = 0;
                                 }
@@ -938,7 +939,7 @@ public class e implements h {
                                     while (true) {
                                         int i34 = eVar4.O;
                                         if (i34 < eVar4.P) {
-                                            eVar4.d(e_c, ((long) ((eVar4.O * e_c.e) / 1000)) + eVar4.M, eVar4.T, eVar4.n(iVar, e_c, eVar4.Q[i34]), 0);
+                                            eVar4.d(cVar6, ((long) ((eVar4.O * cVar6.e) / 1000)) + eVar4.M, eVar4.T, eVar4.n(iVar, cVar6, eVar4.Q[i34]), 0);
                                             eVar4.O++;
                                         } else {
                                             eVar4.L = 0;
@@ -949,7 +950,7 @@ public class e implements h {
                                         int i35 = eVar4.O;
                                         if (i35 < eVar4.P) {
                                             int[] iArr3 = eVar4.Q;
-                                            iArr3[i35] = eVar4.n(iVar, e_c, iArr3[i35]);
+                                            iArr3[i35] = eVar4.n(iVar, cVar6, iArr3[i35]);
                                             eVar4.O++;
                                         }
                                     }
@@ -958,11 +959,11 @@ public class e implements h {
                         } else if (i13 != 165) {
                             if (i13 == 16877) {
                                 eVar4.c(i13);
-                                e$c e_c2 = eVar4.f1195z;
-                                int i36 = e_c2.g;
+                                c cVar7 = eVar4.f1195z;
+                                int i36 = cVar7.g;
                                 if (i36 == 1685485123 || i36 == 1685480259) {
                                     byte[] bArr3 = new byte[i14];
-                                    e_c2.N = bArr3;
+                                    cVar7.N = bArr3;
                                     iVar.readFully(bArr3, z6 ? 1 : 0, i14);
                                 } else {
                                     iVar.l(i14);
@@ -976,7 +977,7 @@ public class e implements h {
                                 byte[] bArr5 = new byte[i14];
                                 iVar.readFully(bArr5, z6 ? 1 : 0, i14);
                                 eVar4.c(i13);
-                                eVar4.f1195z.j = new w$a(z7 ? 1 : 0, bArr5, z6 ? 1 : 0, z6 ? 1 : 0);
+                                eVar4.f1195z.j = new w.a(z7 ? 1 : 0, bArr5, z6 ? 1 : 0, z6 ? 1 : 0);
                             } else if (i13 == 21419) {
                                 Arrays.fill(eVar4.n.a, z6 ? (byte) 1 : (byte) 0);
                                 iVar.readFully(eVar4.n.a, 4 - i14, i14);
@@ -997,8 +998,8 @@ public class e implements h {
                                 iVar.readFully(bArr7, z6 ? 1 : 0, i14);
                             }
                         } else if (eVar4.L == 2) {
-                            e$c e_c3 = eVar4.h.get(eVar4.R);
-                            if (eVar4.U == 4 && "V_VP9".equals(e_c3.f1196b)) {
+                            c cVar8 = eVar4.h.get(eVar4.R);
+                            if (eVar4.U == 4 && "V_VP9".equals(cVar8.f1196b)) {
                                 x xVar = eVar4.f1192s;
                                 byte[] bArr8 = xVar.a;
                                 if (bArr8.length < i14) {
@@ -1022,12 +1023,12 @@ public class e implements h {
                             sb4.append(j6);
                             throw ParserException.a(sb4.toString(), null);
                         }
-                        c cVar6 = bVar.d;
+                        b.i.a.c.x2.g0.c cVar9 = bVar.d;
                         int i37 = bVar.f;
                         int i38 = (int) j6;
                         long jA2 = bVar.a(iVar, i38);
                         double dIntBitsToFloat = i38 == 4 ? Float.intBitsToFloat((int) jA2) : Double.longBitsToDouble(jA2);
-                        e eVar5 = ((e$b) cVar6).a;
+                        e eVar5 = e.this;
                         Objects.requireNonNull(eVar5);
                         if (i37 == 181) {
                             eVar5.c(i37);
@@ -1097,7 +1098,7 @@ public class e implements h {
                         bVar.e = z6 ? 1 : 0;
                     }
                 } else {
-                    ((e$b) bVar.d).a.h(bVar.f1183b.pop().a);
+                    e.this.h(bVar.f1183b.pop().a);
                 }
                 z5 = true;
             }
@@ -1135,11 +1136,11 @@ public class e implements h {
             return 0;
         }
         for (int i39 = 0; i39 < this.h.size(); i39++) {
-            e$c e_cValueAt = this.h.valueAt(i39);
-            Objects.requireNonNull(e_cValueAt.X);
-            b.i.a.c.x2.x xVar2 = e_cValueAt.T;
+            c cVarValueAt = this.h.valueAt(i39);
+            Objects.requireNonNull(cVarValueAt.X);
+            b.i.a.c.x2.x xVar2 = cVarValueAt.T;
             if (xVar2 != null) {
-                xVar2.a(e_cValueAt.X, e_cValueAt.j);
+                xVar2.a(cVarValueAt.X, cVarValueAt.j);
             }
         }
         return -1;
@@ -1155,7 +1156,7 @@ public class e implements h {
     public void g(long j, long j2) {
         this.G = -9223372036854775807L;
         this.L = 0;
-        b bVar = (b) this.f;
+        b.i.a.c.x2.g0.b bVar = (b.i.a.c.x2.g0.b) this.f;
         bVar.e = 0;
         bVar.f1183b.clear();
         g gVar = bVar.c;
@@ -1239,7 +1240,7 @@ public class e implements h {
         List<byte[]> listU;
         byte[] bArr;
         int i4;
-        j1$b j1_b;
+        j1.b bVar;
         int i5;
         int i6;
         float f;
@@ -1257,7 +1258,7 @@ public class e implements h {
         o oVarA;
         List<byte[]> list6;
         List<byte[]> list7;
-        t t_b;
+        t bVar2;
         int i12;
         int i13;
         b.c.a.a0.d.H(this.f1191f0);
@@ -1270,18 +1271,18 @@ public class e implements h {
             for (int i16 = 0; i16 < this.P; i16++) {
                 i15 += this.Q[i16];
             }
-            e$c e_c = this.h.get(this.R);
-            Objects.requireNonNull(e_c.X);
+            c cVar = this.h.get(this.R);
+            Objects.requireNonNull(cVar.X);
             int i17 = 0;
             while (i17 < this.P) {
-                long j = this.M + ((long) ((e_c.e * i17) / 1000));
+                long j = this.M + ((long) ((cVar.e * i17) / 1000));
                 int i18 = this.T;
                 if (i17 == 0 && !this.V) {
                     i18 |= 1;
                 }
                 int i19 = this.Q[i17];
                 int i20 = i15 - i19;
-                d(e_c, j, i18, i19, i20);
+                d(cVar, j, i18, i19, i20);
                 i17++;
                 i15 = i20;
             }
@@ -1305,21 +1306,21 @@ public class e implements h {
             }
             if (i == 25152) {
                 c(i);
-                e$c e_c2 = this.f1195z;
-                if (e_c2.h) {
-                    w$a w_a = e_c2.j;
-                    if (w_a == null) {
+                c cVar2 = this.f1195z;
+                if (cVar2.h) {
+                    w.a aVar = cVar2.j;
+                    if (aVar == null) {
                         throw ParserException.a("Encrypted Track found but ContentEncKeyID was not found", null);
                     }
-                    e_c2.l = new DrmInitData(null, true, new DrmInitData$SchemeData(x0.a, "video/webm", w_a.f1299b));
+                    cVar2.l = new DrmInitData(null, true, new DrmInitData.SchemeData(x0.a, "video/webm", aVar.f1299b));
                     return;
                 }
                 return;
             }
             if (i == 28032) {
                 c(i);
-                e$c e_c3 = this.f1195z;
-                if (e_c3.h && e_c3.i != null) {
+                c cVar3 = this.f1195z;
+                if (cVar3.h && cVar3.i != null) {
                     throw ParserException.a("Combining encryption and compression is not supported", null);
                 }
                 return;
@@ -1350,7 +1351,7 @@ public class e implements h {
                 r rVar = this.H;
                 r rVar2 = this.I;
                 if (this.v == -1 || this.f1194y == -9223372036854775807L || rVar == null || (i12 = rVar.a) == 0 || rVar2 == null || rVar2.a != i12) {
-                    t_b = new t$b(this.f1194y, 0L);
+                    bVar2 = new t.b(this.f1194y, 0L);
                 } else {
                     int[] iArrCopyOf = new int[i12];
                     long[] jArrCopyOf = new long[i12];
@@ -1383,9 +1384,9 @@ public class e implements h {
                         jArrCopyOf2 = Arrays.copyOf(jArrCopyOf2, i13);
                         jArrCopyOf3 = Arrays.copyOf(jArrCopyOf3, i13);
                     }
-                    t_b = new b.i.a.c.x2.c(iArrCopyOf, jArrCopyOf, jArrCopyOf2, jArrCopyOf3);
+                    bVar2 = new b.i.a.c.x2.c(iArrCopyOf, jArrCopyOf, jArrCopyOf2, jArrCopyOf3);
                 }
-                jVar.a(t_b);
+                jVar.a(bVar2);
                 this.A = true;
             }
             this.H = null;
@@ -1572,11 +1573,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i26 = i25 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -1647,13 +1648,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14) && !"text/x-ssa".equals(str14) && !"application/vobsub".equals(str14) && !"application/pgs".equals(str14) && !"application/dvbsubs".equals(str14)) {
@@ -1663,21 +1664,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null && !e.containsKey(str10)) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i26;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i26;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA = bVar.a();
                     w wVarP = jVar2.p(r0.c, i5);
                     r0.X = wVarP;
                     wVarP.e(j1VarA);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 2:
                     x xVar = new x(r0.a(r0.f1196b));
@@ -1718,11 +1719,11 @@ public class e implements h {
                                         i4 = 0;
                                     }
                                     int i29 = i28 | i4;
-                                    j1_b = new j1$b();
+                                    bVar = new j1.b();
                                     if (b.i.a.c.f3.t.h(str14)) {
-                                        j1_b.f1023x = r0.O;
-                                        j1_b.f1024y = r0.Q;
-                                        j1_b.f1025z = iR;
+                                        bVar.f1023x = r0.O;
+                                        bVar.f1024y = r0.Q;
+                                        bVar.f1025z = iR;
                                         i5 = 1;
                                     } else if (b.i.a.c.f3.t.j(str14)) {
                                         if (r0.q == 0) {
@@ -1771,13 +1772,13 @@ public class e implements h {
                                         } else {
                                             i8 = iIntValue;
                                         }
-                                        j1_b.p = r0.m;
-                                        j1_b.q = r0.n;
-                                        j1_b.t = f;
-                                        j1_b.f1022s = i8;
-                                        j1_b.u = r0.v;
-                                        j1_b.v = r0.w;
-                                        j1_b.w = nVar;
+                                        bVar.p = r0.m;
+                                        bVar.q = r0.n;
+                                        bVar.t = f;
+                                        bVar.f1022s = i8;
+                                        bVar.u = r0.v;
+                                        bVar.v = r0.w;
+                                        bVar.w = nVar;
                                         i5 = 2;
                                     } else {
                                         if ("application/x-subrip".equals(str14)) {
@@ -1786,21 +1787,21 @@ public class e implements h {
                                     }
                                     str10 = r0.a;
                                     if (str10 != null) {
-                                        j1_b.f1021b = r0.a;
+                                        bVar.f1021b = r0.a;
                                     }
-                                    j1_b.b(i24);
-                                    j1_b.k = str14;
-                                    j1_b.l = i3;
-                                    j1_b.c = r0.W;
-                                    j1_b.d = i29;
-                                    j1_b.m = list3;
-                                    j1_b.h = str8;
-                                    j1_b.n = r0.l;
-                                    j1 j1VarA2 = j1_b.a();
+                                    bVar.b(i24);
+                                    bVar.k = str14;
+                                    bVar.l = i3;
+                                    bVar.c = r0.W;
+                                    bVar.d = i29;
+                                    bVar.m = list3;
+                                    bVar.h = str8;
+                                    bVar.n = r0.l;
+                                    j1 j1VarA2 = bVar.a();
                                     w wVarP2 = jVar2.p(r0.c, i5);
                                     r0.X = wVarP2;
                                     wVarP2.e(j1VarA2);
-                                    this.h.put(r0.c, (e$c) r0);
+                                    this.h.put(r0.c, (c) r0);
                                 } else {
                                     Log.w("MatroskaExtractor", "Non-PCM MS/ACM is unsupported. Setting mimeType to ".concat("audio/x-unknown"));
                                 }
@@ -1825,11 +1826,11 @@ public class e implements h {
                                     i4 = 0;
                                 }
                                 int i211 = i210 | i4;
-                                j1_b = new j1$b();
+                                bVar = new j1.b();
                                 if (b.i.a.c.f3.t.h(str14)) {
-                                    j1_b.f1023x = r0.O;
-                                    j1_b.f1024y = r0.Q;
-                                    j1_b.f1025z = iR;
+                                    bVar.f1023x = r0.O;
+                                    bVar.f1024y = r0.Q;
+                                    bVar.f1025z = iR;
                                     i5 = 1;
                                 } else if (b.i.a.c.f3.t.j(str14)) {
                                     if (r0.q == 0) {
@@ -1878,13 +1879,13 @@ public class e implements h {
                                     } else {
                                         i8 = iIntValue;
                                     }
-                                    j1_b.p = r0.m;
-                                    j1_b.q = r0.n;
-                                    j1_b.t = f;
-                                    j1_b.f1022s = i8;
-                                    j1_b.u = r0.v;
-                                    j1_b.v = r0.w;
-                                    j1_b.w = nVar;
+                                    bVar.p = r0.m;
+                                    bVar.q = r0.n;
+                                    bVar.t = f;
+                                    bVar.f1022s = i8;
+                                    bVar.u = r0.v;
+                                    bVar.v = r0.w;
+                                    bVar.w = nVar;
                                     i5 = 2;
                                 } else {
                                     if ("application/x-subrip".equals(str14)) {
@@ -1893,21 +1894,21 @@ public class e implements h {
                                 }
                                 str10 = r0.a;
                                 if (str10 != null) {
-                                    j1_b.f1021b = r0.a;
+                                    bVar.f1021b = r0.a;
                                 }
-                                j1_b.b(i24);
-                                j1_b.k = str14;
-                                j1_b.l = i3;
-                                j1_b.c = r0.W;
-                                j1_b.d = i211;
-                                j1_b.m = list3;
-                                j1_b.h = str8;
-                                j1_b.n = r0.l;
-                                j1 j1VarA3 = j1_b.a();
+                                bVar.b(i24);
+                                bVar.k = str14;
+                                bVar.l = i3;
+                                bVar.c = r0.W;
+                                bVar.d = i211;
+                                bVar.m = list3;
+                                bVar.h = str8;
+                                bVar.n = r0.l;
+                                j1 j1VarA3 = bVar.a();
                                 w wVarP3 = jVar2.p(r0.c, i5);
                                 r0.X = wVarP3;
                                 wVarP3.e(j1VarA3);
-                                this.h.put(r0.c, (e$c) r0);
+                                this.h.put(r0.c, (c) r0);
                             }
                             z3 = false;
                             if (z3) {
@@ -1938,11 +1939,11 @@ public class e implements h {
                                     i4 = 0;
                                 }
                                 int i214 = i213 | i4;
-                                j1_b = new j1$b();
+                                bVar = new j1.b();
                                 if (b.i.a.c.f3.t.h(str14)) {
-                                    j1_b.f1023x = r0.O;
-                                    j1_b.f1024y = r0.Q;
-                                    j1_b.f1025z = iR;
+                                    bVar.f1023x = r0.O;
+                                    bVar.f1024y = r0.Q;
+                                    bVar.f1025z = iR;
                                     i5 = 1;
                                 } else if (b.i.a.c.f3.t.j(str14)) {
                                     if (r0.q == 0) {
@@ -1991,13 +1992,13 @@ public class e implements h {
                                     } else {
                                         i8 = iIntValue;
                                     }
-                                    j1_b.p = r0.m;
-                                    j1_b.q = r0.n;
-                                    j1_b.t = f;
-                                    j1_b.f1022s = i8;
-                                    j1_b.u = r0.v;
-                                    j1_b.v = r0.w;
-                                    j1_b.w = nVar;
+                                    bVar.p = r0.m;
+                                    bVar.q = r0.n;
+                                    bVar.t = f;
+                                    bVar.f1022s = i8;
+                                    bVar.u = r0.v;
+                                    bVar.v = r0.w;
+                                    bVar.w = nVar;
                                     i5 = 2;
                                 } else {
                                     if ("application/x-subrip".equals(str14)) {
@@ -2006,21 +2007,21 @@ public class e implements h {
                                 }
                                 str10 = r0.a;
                                 if (str10 != null) {
-                                    j1_b.f1021b = r0.a;
+                                    bVar.f1021b = r0.a;
                                 }
-                                j1_b.b(i24);
-                                j1_b.k = str14;
-                                j1_b.l = i3;
-                                j1_b.c = r0.W;
-                                j1_b.d = i214;
-                                j1_b.m = list3;
-                                j1_b.h = str8;
-                                j1_b.n = r0.l;
-                                j1 j1VarA4 = j1_b.a();
+                                bVar.b(i24);
+                                bVar.k = str14;
+                                bVar.l = i3;
+                                bVar.c = r0.W;
+                                bVar.d = i214;
+                                bVar.m = list3;
+                                bVar.h = str8;
+                                bVar.n = r0.l;
+                                j1 j1VarA4 = bVar.a();
                                 w wVarP4 = jVar2.p(r0.c, i5);
                                 r0.X = wVarP4;
                                 wVarP4.e(j1VarA4);
-                                this.h.put(r0.c, (e$c) r0);
+                                this.h.put(r0.c, (c) r0);
                             } else {
                                 Log.w("MatroskaExtractor", "Non-PCM MS/ACM is unsupported. Setting mimeType to ".concat("audio/x-unknown"));
                             }
@@ -2045,11 +2046,11 @@ public class e implements h {
                                 i4 = 0;
                             }
                             int i216 = i215 | i4;
-                            j1_b = new j1$b();
+                            bVar = new j1.b();
                             if (b.i.a.c.f3.t.h(str14)) {
-                                j1_b.f1023x = r0.O;
-                                j1_b.f1024y = r0.Q;
-                                j1_b.f1025z = iR;
+                                bVar.f1023x = r0.O;
+                                bVar.f1024y = r0.Q;
+                                bVar.f1025z = iR;
                                 i5 = 1;
                             } else if (b.i.a.c.f3.t.j(str14)) {
                                 if (r0.q == 0) {
@@ -2098,13 +2099,13 @@ public class e implements h {
                                 } else {
                                     i8 = iIntValue;
                                 }
-                                j1_b.p = r0.m;
-                                j1_b.q = r0.n;
-                                j1_b.t = f;
-                                j1_b.f1022s = i8;
-                                j1_b.u = r0.v;
-                                j1_b.v = r0.w;
-                                j1_b.w = nVar;
+                                bVar.p = r0.m;
+                                bVar.q = r0.n;
+                                bVar.t = f;
+                                bVar.f1022s = i8;
+                                bVar.u = r0.v;
+                                bVar.v = r0.w;
+                                bVar.w = nVar;
                                 i5 = 2;
                             } else {
                                 if ("application/x-subrip".equals(str14)) {
@@ -2113,21 +2114,21 @@ public class e implements h {
                             }
                             str10 = r0.a;
                             if (str10 != null) {
-                                j1_b.f1021b = r0.a;
+                                bVar.f1021b = r0.a;
                             }
-                            j1_b.b(i24);
-                            j1_b.k = str14;
-                            j1_b.l = i3;
-                            j1_b.c = r0.W;
-                            j1_b.d = i216;
-                            j1_b.m = list3;
-                            j1_b.h = str8;
-                            j1_b.n = r0.l;
-                            j1 j1VarA5 = j1_b.a();
+                            bVar.b(i24);
+                            bVar.k = str14;
+                            bVar.l = i3;
+                            bVar.c = r0.W;
+                            bVar.d = i216;
+                            bVar.m = list3;
+                            bVar.h = str8;
+                            bVar.n = r0.l;
+                            j1 j1VarA5 = bVar.a();
                             w wVarP5 = jVar2.p(r0.c, i5);
                             r0.X = wVarP5;
                             wVarP5.e(j1VarA5);
-                            this.h.put(r0.c, (e$c) r0);
+                            this.h.put(r0.c, (c) r0);
                             break;
                         }
                         z3 = true;
@@ -2159,11 +2160,11 @@ public class e implements h {
                                 i4 = 0;
                             }
                             int i219 = i218 | i4;
-                            j1_b = new j1$b();
+                            bVar = new j1.b();
                             if (b.i.a.c.f3.t.h(str14)) {
-                                j1_b.f1023x = r0.O;
-                                j1_b.f1024y = r0.Q;
-                                j1_b.f1025z = iR;
+                                bVar.f1023x = r0.O;
+                                bVar.f1024y = r0.Q;
+                                bVar.f1025z = iR;
                                 i5 = 1;
                             } else if (b.i.a.c.f3.t.j(str14)) {
                                 if (r0.q == 0) {
@@ -2212,13 +2213,13 @@ public class e implements h {
                                 } else {
                                     i8 = iIntValue;
                                 }
-                                j1_b.p = r0.m;
-                                j1_b.q = r0.n;
-                                j1_b.t = f;
-                                j1_b.f1022s = i8;
-                                j1_b.u = r0.v;
-                                j1_b.v = r0.w;
-                                j1_b.w = nVar;
+                                bVar.p = r0.m;
+                                bVar.q = r0.n;
+                                bVar.t = f;
+                                bVar.f1022s = i8;
+                                bVar.u = r0.v;
+                                bVar.v = r0.w;
+                                bVar.w = nVar;
                                 i5 = 2;
                             } else {
                                 if ("application/x-subrip".equals(str14)) {
@@ -2227,21 +2228,21 @@ public class e implements h {
                             }
                             str10 = r0.a;
                             if (str10 != null) {
-                                j1_b.f1021b = r0.a;
+                                bVar.f1021b = r0.a;
                             }
-                            j1_b.b(i24);
-                            j1_b.k = str14;
-                            j1_b.l = i3;
-                            j1_b.c = r0.W;
-                            j1_b.d = i219;
-                            j1_b.m = list3;
-                            j1_b.h = str8;
-                            j1_b.n = r0.l;
-                            j1 j1VarA6 = j1_b.a();
+                            bVar.b(i24);
+                            bVar.k = str14;
+                            bVar.l = i3;
+                            bVar.c = r0.W;
+                            bVar.d = i219;
+                            bVar.m = list3;
+                            bVar.h = str8;
+                            bVar.n = r0.l;
+                            j1 j1VarA6 = bVar.a();
                             w wVarP6 = jVar2.p(r0.c, i5);
                             r0.X = wVarP6;
                             wVarP6.e(j1VarA6);
-                            this.h.put(r0.c, (e$c) r0);
+                            this.h.put(r0.c, (c) r0);
                         } else {
                             Log.w("MatroskaExtractor", "Non-PCM MS/ACM is unsupported. Setting mimeType to ".concat("audio/x-unknown"));
                         }
@@ -2266,11 +2267,11 @@ public class e implements h {
                             i4 = 0;
                         }
                         int i2111 = i2110 | i4;
-                        j1_b = new j1$b();
+                        bVar = new j1.b();
                         if (b.i.a.c.f3.t.h(str14)) {
-                            j1_b.f1023x = r0.O;
-                            j1_b.f1024y = r0.Q;
-                            j1_b.f1025z = iR;
+                            bVar.f1023x = r0.O;
+                            bVar.f1024y = r0.Q;
+                            bVar.f1025z = iR;
                             i5 = 1;
                         } else if (b.i.a.c.f3.t.j(str14)) {
                             if (r0.q == 0) {
@@ -2319,13 +2320,13 @@ public class e implements h {
                             } else {
                                 i8 = iIntValue;
                             }
-                            j1_b.p = r0.m;
-                            j1_b.q = r0.n;
-                            j1_b.t = f;
-                            j1_b.f1022s = i8;
-                            j1_b.u = r0.v;
-                            j1_b.v = r0.w;
-                            j1_b.w = nVar;
+                            bVar.p = r0.m;
+                            bVar.q = r0.n;
+                            bVar.t = f;
+                            bVar.f1022s = i8;
+                            bVar.u = r0.v;
+                            bVar.v = r0.w;
+                            bVar.w = nVar;
                             i5 = 2;
                         } else {
                             if ("application/x-subrip".equals(str14)) {
@@ -2334,21 +2335,21 @@ public class e implements h {
                         }
                         str10 = r0.a;
                         if (str10 != null) {
-                            j1_b.f1021b = r0.a;
+                            bVar.f1021b = r0.a;
                         }
-                        j1_b.b(i24);
-                        j1_b.k = str14;
-                        j1_b.l = i3;
-                        j1_b.c = r0.W;
-                        j1_b.d = i2111;
-                        j1_b.m = list3;
-                        j1_b.h = str8;
-                        j1_b.n = r0.l;
-                        j1 j1VarA7 = j1_b.a();
+                        bVar.b(i24);
+                        bVar.k = str14;
+                        bVar.l = i3;
+                        bVar.c = r0.W;
+                        bVar.d = i2111;
+                        bVar.m = list3;
+                        bVar.h = str8;
+                        bVar.n = r0.l;
+                        j1 j1VarA7 = bVar.a();
                         w wVarP7 = jVar2.p(r0.c, i5);
                         r0.X = wVarP7;
                         wVarP7.e(j1VarA7);
-                        this.h.put(r0.c, (e$c) r0);
+                        this.h.put(r0.c, (c) r0);
                     } catch (ArrayIndexOutOfBoundsException unused) {
                         throw ParserException.a("Error parsing MS/ACM codec private", null);
                     }
@@ -2377,11 +2378,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i2113 = i2112 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -2430,13 +2431,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -2445,21 +2446,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i2113;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA8 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i2113;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA8 = bVar.a();
                     w wVarP8 = jVar2.p(r0.c, i5);
                     r0.X = wVarP8;
                     wVarP8.e(j1VarA8);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 4:
                     byte[] bArrA = r0.a(r0.f1196b);
@@ -2522,11 +2523,11 @@ public class e implements h {
                                 i4 = 0;
                             }
                             int i2115 = i2114 | i4;
-                            j1_b = new j1$b();
+                            bVar = new j1.b();
                             if (b.i.a.c.f3.t.h(str14)) {
-                                j1_b.f1023x = r0.O;
-                                j1_b.f1024y = r0.Q;
-                                j1_b.f1025z = iR;
+                                bVar.f1023x = r0.O;
+                                bVar.f1024y = r0.Q;
+                                bVar.f1025z = iR;
                                 i5 = 1;
                             } else if (b.i.a.c.f3.t.j(str14)) {
                                 if (r0.q == 0) {
@@ -2575,13 +2576,13 @@ public class e implements h {
                                 } else {
                                     i8 = iIntValue;
                                 }
-                                j1_b.p = r0.m;
-                                j1_b.q = r0.n;
-                                j1_b.t = f;
-                                j1_b.f1022s = i8;
-                                j1_b.u = r0.v;
-                                j1_b.v = r0.w;
-                                j1_b.w = nVar;
+                                bVar.p = r0.m;
+                                bVar.q = r0.n;
+                                bVar.t = f;
+                                bVar.f1022s = i8;
+                                bVar.u = r0.v;
+                                bVar.v = r0.w;
+                                bVar.w = nVar;
                                 i5 = 2;
                             } else {
                                 if ("application/x-subrip".equals(str14)) {
@@ -2590,21 +2591,21 @@ public class e implements h {
                             }
                             str10 = r0.a;
                             if (str10 != null) {
-                                j1_b.f1021b = r0.a;
+                                bVar.f1021b = r0.a;
                             }
-                            j1_b.b(i24);
-                            j1_b.k = str14;
-                            j1_b.l = i3;
-                            j1_b.c = r0.W;
-                            j1_b.d = i2115;
-                            j1_b.m = list3;
-                            j1_b.h = str8;
-                            j1_b.n = r0.l;
-                            j1 j1VarA9 = j1_b.a();
+                            bVar.b(i24);
+                            bVar.k = str14;
+                            bVar.l = i3;
+                            bVar.c = r0.W;
+                            bVar.d = i2115;
+                            bVar.m = list3;
+                            bVar.h = str8;
+                            bVar.n = r0.l;
+                            j1 j1VarA9 = bVar.a();
                             w wVarP9 = jVar2.p(r0.c, i5);
                             r0.X = wVarP9;
                             wVarP9.e(j1VarA9);
-                            this.h.put(r0.c, (e$c) r0);
+                            this.h.put(r0.c, (c) r0);
                         } catch (ArrayIndexOutOfBoundsException unused2) {
                             throw ParserException.a("Error parsing vorbis codec private", r0);
                         }
@@ -2637,11 +2638,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i2117 = i2116 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -2690,13 +2691,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -2705,21 +2706,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i2117;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA10 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i2117;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA10 = bVar.a();
                     w wVarP10 = jVar2.p(r0.c, i5);
                     r0.X = wVarP10;
                     wVarP10.e(j1VarA10);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 6:
                     str2 = "audio/mpeg";
@@ -2746,11 +2747,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i2119 = i2118 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -2799,13 +2800,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -2814,21 +2815,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i2119;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA11 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i2119;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA11 = bVar.a();
                     w wVarP11 = jVar2.p(r0.c, i5);
                     r0.X = wVarP11;
                     wVarP11.e(j1VarA11);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 7:
                     byte[] bArrA2 = r0.a(r0.f1196b);
@@ -2886,11 +2887,11 @@ public class e implements h {
                             i4 = 0;
                         }
                         int i21111 = i21110 | i4;
-                        j1_b = new j1$b();
+                        bVar = new j1.b();
                         if (b.i.a.c.f3.t.h(str14)) {
-                            j1_b.f1023x = r0.O;
-                            j1_b.f1024y = r0.Q;
-                            j1_b.f1025z = iR;
+                            bVar.f1023x = r0.O;
+                            bVar.f1024y = r0.Q;
+                            bVar.f1025z = iR;
                             i5 = 1;
                         } else if (b.i.a.c.f3.t.j(str14)) {
                             if (r0.q == 0) {
@@ -2939,13 +2940,13 @@ public class e implements h {
                             } else {
                                 i8 = iIntValue;
                             }
-                            j1_b.p = r0.m;
-                            j1_b.q = r0.n;
-                            j1_b.t = f;
-                            j1_b.f1022s = i8;
-                            j1_b.u = r0.v;
-                            j1_b.v = r0.w;
-                            j1_b.w = nVar;
+                            bVar.p = r0.m;
+                            bVar.q = r0.n;
+                            bVar.t = f;
+                            bVar.f1022s = i8;
+                            bVar.u = r0.v;
+                            bVar.v = r0.w;
+                            bVar.w = nVar;
                             i5 = 2;
                         } else {
                             if ("application/x-subrip".equals(str14)) {
@@ -2954,21 +2955,21 @@ public class e implements h {
                         }
                         str10 = r0.a;
                         if (str10 != null) {
-                            j1_b.f1021b = r0.a;
+                            bVar.f1021b = r0.a;
                         }
-                        j1_b.b(i24);
-                        j1_b.k = str14;
-                        j1_b.l = i3;
-                        j1_b.c = r0.W;
-                        j1_b.d = i21111;
-                        j1_b.m = list3;
-                        j1_b.h = str8;
-                        j1_b.n = r0.l;
-                        j1 j1VarA12 = j1_b.a();
+                        bVar.b(i24);
+                        bVar.k = str14;
+                        bVar.l = i3;
+                        bVar.c = r0.W;
+                        bVar.d = i21111;
+                        bVar.m = list3;
+                        bVar.h = str8;
+                        bVar.n = r0.l;
+                        j1 j1VarA12 = bVar.a();
                         w wVarP12 = jVar2.p(r0.c, i5);
                         r0.X = wVarP12;
                         wVarP12.e(j1VarA12);
-                        this.h.put(r0.c, (e$c) r0);
+                        this.h.put(r0.c, (c) r0);
                     } catch (ArrayIndexOutOfBoundsException unused4) {
                         throw ParserException.a("Error parsing FourCC private data", null);
                     }
@@ -3004,11 +3005,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i21113 = i21112 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -3057,13 +3058,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -3072,21 +3073,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i21113;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA13 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i21113;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA13 = bVar.a();
                     w wVarP13 = jVar2.p(r0.c, i5);
                     r0.X = wVarP13;
                     wVarP13.e(j1VarA13);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 10:
                     m mVarB = m.b(new x(r0.a(r0.f1196b)));
@@ -3111,11 +3112,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i21115 = i21114 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -3164,13 +3165,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -3179,21 +3180,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i21115;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA14 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i21115;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA14 = bVar.a();
                     w wVarP14 = jVar2.p(r0.c, i5);
                     r0.X = wVarP14;
                     wVarP14.e(j1VarA14);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 11:
                     str4 = "application/vobsub";
@@ -3223,11 +3224,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i21117 = i21116 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -3276,13 +3277,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -3291,21 +3292,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i21117;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA15 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i21117;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA15 = bVar.a();
                     w wVarP15 = jVar2.p(r0.c, i5);
                     r0.X = wVarP15;
                     wVarP15.e(j1VarA15);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 12:
                     str13 = "audio/vnd.dts.hd";
@@ -3335,11 +3336,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i21119 = i21118 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -3388,13 +3389,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -3403,28 +3404,28 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i21119;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA16 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i21119;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA16 = bVar.a();
                     w wVarP16 = jVar2.p(r0.c, i5);
                     r0.X = wVarP16;
                     wVarP16.e(j1VarA16);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 13:
                     List<byte[]> listSingletonList2 = Collections.singletonList(r0.a(r0.f1196b));
-                    l$b l_bC = l.c(r0.k);
-                    r0.Q = l_bC.a;
-                    r0.O = l_bC.f1122b;
-                    str7 = l_bC.c;
+                    l.b bVarC = l.c(r0.k);
+                    r0.Q = bVarC.a;
+                    r0.O = bVarC.f1122b;
+                    str7 = bVarC.c;
                     str3 = "audio/mp4a-latm";
                     list5 = listSingletonList2;
                     str = str7;
@@ -3448,11 +3449,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i211111 = i211110 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -3501,13 +3502,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -3516,21 +3517,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i211111;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA17 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i211111;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA17 = bVar.a();
                     w wVarP17 = jVar2.p(r0.c, i5);
                     r0.X = wVarP17;
                     wVarP17.e(j1VarA17);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 14:
                     str13 = "audio/ac3";
@@ -3560,11 +3561,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i211113 = i211112 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -3613,13 +3614,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -3628,21 +3629,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i211113;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA18 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i211113;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA18 = bVar.a();
                     w wVarP18 = jVar2.p(r0.c, i5);
                     r0.X = wVarP18;
                     wVarP18.e(j1VarA18);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 15:
                 case 21:
@@ -3673,11 +3674,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i211115 = i211114 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -3726,13 +3727,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -3741,21 +3742,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i211115;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA19 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i211115;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA19 = bVar.a();
                     w wVarP19 = jVar2.p(r0.c, i5);
                     r0.X = wVarP19;
                     wVarP19.e(j1VarA19);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 16:
                     str13 = "video/av01";
@@ -3785,11 +3786,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i211117 = i211116 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -3838,13 +3839,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -3853,21 +3854,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i211117;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA110 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i211117;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA110 = bVar.a();
                     w wVarP110 = jVar2.p(r0.c, i5);
                     r0.X = wVarP110;
                     wVarP110.e(j1VarA110);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 17:
                     str13 = "video/x-vnd.on2.vp8";
@@ -3897,11 +3898,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i211119 = i211118 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -3950,13 +3951,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -3965,21 +3966,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i211119;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA111 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i211119;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA111 = bVar.a();
                     w wVarP111 = jVar2.p(r0.c, i5);
                     r0.X = wVarP111;
                     wVarP111.e(j1VarA111);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 18:
                     str13 = "video/x-vnd.on2.vp9";
@@ -4009,11 +4010,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i2111111 = i2111110 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -4062,13 +4063,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -4077,21 +4078,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i2111111;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA112 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i2111111;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA112 = bVar.a();
                     w wVarP112 = jVar2.p(r0.c, i5);
                     r0.X = wVarP112;
                     wVarP112.e(j1VarA112);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 19:
                     str13 = "application/pgs";
@@ -4121,11 +4122,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i2111113 = i2111112 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -4174,13 +4175,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -4189,21 +4190,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i2111113;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA113 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i2111113;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA113 = bVar.a();
                     w wVarP113 = jVar2.p(r0.c, i5);
                     r0.X = wVarP113;
                     wVarP113.e(j1VarA113);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 20:
                     str14 = str13;
@@ -4232,11 +4233,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i2111115 = i2111114 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -4285,13 +4286,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -4300,21 +4301,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i2111115;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA114 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i2111115;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA114 = bVar.a();
                     w wVarP114 = jVar2.p(r0.c, i5);
                     r0.X = wVarP114;
                     wVarP114.e(j1VarA114);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 22:
                     int i40 = r0.P;
@@ -4336,11 +4337,11 @@ public class e implements h {
                             i4 = 0;
                         }
                         int i2111117 = i2111116 | i4;
-                        j1_b = new j1$b();
+                        bVar = new j1.b();
                         if (b.i.a.c.f3.t.h(str14)) {
-                            j1_b.f1023x = r0.O;
-                            j1_b.f1024y = r0.Q;
-                            j1_b.f1025z = iR;
+                            bVar.f1023x = r0.O;
+                            bVar.f1024y = r0.Q;
+                            bVar.f1025z = iR;
                             i5 = 1;
                         } else if (b.i.a.c.f3.t.j(str14)) {
                             if (r0.q == 0) {
@@ -4389,13 +4390,13 @@ public class e implements h {
                             } else {
                                 i8 = iIntValue;
                             }
-                            j1_b.p = r0.m;
-                            j1_b.q = r0.n;
-                            j1_b.t = f;
-                            j1_b.f1022s = i8;
-                            j1_b.u = r0.v;
-                            j1_b.v = r0.w;
-                            j1_b.w = nVar;
+                            bVar.p = r0.m;
+                            bVar.q = r0.n;
+                            bVar.t = f;
+                            bVar.f1022s = i8;
+                            bVar.u = r0.v;
+                            bVar.v = r0.w;
+                            bVar.w = nVar;
                             i5 = 2;
                         } else {
                             if ("application/x-subrip".equals(str14)) {
@@ -4404,21 +4405,21 @@ public class e implements h {
                         }
                         str10 = r0.a;
                         if (str10 != null) {
-                            j1_b.f1021b = r0.a;
+                            bVar.f1021b = r0.a;
                         }
-                        j1_b.b(i24);
-                        j1_b.k = str14;
-                        j1_b.l = i3;
-                        j1_b.c = r0.W;
-                        j1_b.d = i2111117;
-                        j1_b.m = list3;
-                        j1_b.h = str8;
-                        j1_b.n = r0.l;
-                        j1 j1VarA115 = j1_b.a();
+                        bVar.b(i24);
+                        bVar.k = str14;
+                        bVar.l = i3;
+                        bVar.c = r0.W;
+                        bVar.d = i2111117;
+                        bVar.m = list3;
+                        bVar.h = str8;
+                        bVar.n = r0.l;
+                        j1 j1VarA115 = bVar.a();
                         w wVarP115 = jVar2.p(r0.c, i5);
                         r0.X = wVarP115;
                         wVarP115.e(j1VarA115);
-                        this.h.put(r0.c, (e$c) r0);
+                        this.h.put(r0.c, (c) r0);
                     } else {
                         StringBuilder sb5 = new StringBuilder(90);
                         sb5.append("Unsupported floating point PCM bit depth: ");
@@ -4451,11 +4452,11 @@ public class e implements h {
                             i4 = 0;
                         }
                         int i2111119 = i2111118 | i4;
-                        j1_b = new j1$b();
+                        bVar = new j1.b();
                         if (b.i.a.c.f3.t.h(str14)) {
-                            j1_b.f1023x = r0.O;
-                            j1_b.f1024y = r0.Q;
-                            j1_b.f1025z = iR;
+                            bVar.f1023x = r0.O;
+                            bVar.f1024y = r0.Q;
+                            bVar.f1025z = iR;
                             i5 = 1;
                         } else if (b.i.a.c.f3.t.j(str14)) {
                             if (r0.q == 0) {
@@ -4504,13 +4505,13 @@ public class e implements h {
                             } else {
                                 i8 = iIntValue;
                             }
-                            j1_b.p = r0.m;
-                            j1_b.q = r0.n;
-                            j1_b.t = f;
-                            j1_b.f1022s = i8;
-                            j1_b.u = r0.v;
-                            j1_b.v = r0.w;
-                            j1_b.w = nVar;
+                            bVar.p = r0.m;
+                            bVar.q = r0.n;
+                            bVar.t = f;
+                            bVar.f1022s = i8;
+                            bVar.u = r0.v;
+                            bVar.v = r0.w;
+                            bVar.w = nVar;
                             i5 = 2;
                         } else {
                             if ("application/x-subrip".equals(str14)) {
@@ -4519,21 +4520,21 @@ public class e implements h {
                         }
                         str10 = r0.a;
                         if (str10 != null) {
-                            j1_b.f1021b = r0.a;
+                            bVar.f1021b = r0.a;
                         }
-                        j1_b.b(i24);
-                        j1_b.k = str14;
-                        j1_b.l = i3;
-                        j1_b.c = r0.W;
-                        j1_b.d = i2111119;
-                        j1_b.m = list3;
-                        j1_b.h = str8;
-                        j1_b.n = r0.l;
-                        j1 j1VarA116 = j1_b.a();
+                        bVar.b(i24);
+                        bVar.k = str14;
+                        bVar.l = i3;
+                        bVar.c = r0.W;
+                        bVar.d = i2111119;
+                        bVar.m = list3;
+                        bVar.h = str8;
+                        bVar.n = r0.l;
+                        j1 j1VarA116 = bVar.a();
                         w wVarP116 = jVar2.p(r0.c, i5);
                         r0.X = wVarP116;
                         wVarP116.e(j1VarA116);
-                        this.h.put(r0.c, (e$c) r0);
+                        this.h.put(r0.c, (c) r0);
                     }
                     break;
                 case 23:
@@ -4572,11 +4573,11 @@ public class e implements h {
                             i4 = 0;
                         }
                         int i21111111 = i21111110 | i4;
-                        j1_b = new j1$b();
+                        bVar = new j1.b();
                         if (b.i.a.c.f3.t.h(str14)) {
-                            j1_b.f1023x = r0.O;
-                            j1_b.f1024y = r0.Q;
-                            j1_b.f1025z = iR;
+                            bVar.f1023x = r0.O;
+                            bVar.f1024y = r0.Q;
+                            bVar.f1025z = iR;
                             i5 = 1;
                         } else if (b.i.a.c.f3.t.j(str14)) {
                             if (r0.q == 0) {
@@ -4625,13 +4626,13 @@ public class e implements h {
                             } else {
                                 i8 = iIntValue;
                             }
-                            j1_b.p = r0.m;
-                            j1_b.q = r0.n;
-                            j1_b.t = f;
-                            j1_b.f1022s = i8;
-                            j1_b.u = r0.v;
-                            j1_b.v = r0.w;
-                            j1_b.w = nVar;
+                            bVar.p = r0.m;
+                            bVar.q = r0.n;
+                            bVar.t = f;
+                            bVar.f1022s = i8;
+                            bVar.u = r0.v;
+                            bVar.v = r0.w;
+                            bVar.w = nVar;
                             i5 = 2;
                         } else {
                             if ("application/x-subrip".equals(str14)) {
@@ -4640,21 +4641,21 @@ public class e implements h {
                         }
                         str10 = r0.a;
                         if (str10 != null) {
-                            j1_b.f1021b = r0.a;
+                            bVar.f1021b = r0.a;
                         }
-                        j1_b.b(i24);
-                        j1_b.k = str14;
-                        j1_b.l = i3;
-                        j1_b.c = r0.W;
-                        j1_b.d = i21111111;
-                        j1_b.m = list3;
-                        j1_b.h = str8;
-                        j1_b.n = r0.l;
-                        j1 j1VarA117 = j1_b.a();
+                        bVar.b(i24);
+                        bVar.k = str14;
+                        bVar.l = i3;
+                        bVar.c = r0.W;
+                        bVar.d = i21111111;
+                        bVar.m = list3;
+                        bVar.h = str8;
+                        bVar.n = r0.l;
+                        j1 j1VarA117 = bVar.a();
                         w wVarP117 = jVar2.p(r0.c, i5);
                         r0.X = wVarP117;
                         wVarP117.e(j1VarA117);
-                        this.h.put(r0.c, (e$c) r0);
+                        this.h.put(r0.c, (c) r0);
                     } else {
                         iR = 268435456;
                     }
@@ -4674,11 +4675,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i21111113 = i21111112 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -4727,13 +4728,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -4742,21 +4743,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i21111113;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA118 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i21111113;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA118 = bVar.a();
                     w wVarP118 = jVar2.p(r0.c, i5);
                     r0.X = wVarP118;
                     wVarP118.e(j1VarA118);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 24:
                     iR = e0.r(r0.P);
@@ -4793,11 +4794,11 @@ public class e implements h {
                             i4 = 0;
                         }
                         int i21111115 = i21111114 | i4;
-                        j1_b = new j1$b();
+                        bVar = new j1.b();
                         if (b.i.a.c.f3.t.h(str14)) {
-                            j1_b.f1023x = r0.O;
-                            j1_b.f1024y = r0.Q;
-                            j1_b.f1025z = iR;
+                            bVar.f1023x = r0.O;
+                            bVar.f1024y = r0.Q;
+                            bVar.f1025z = iR;
                             i5 = 1;
                         } else if (b.i.a.c.f3.t.j(str14)) {
                             if (r0.q == 0) {
@@ -4846,13 +4847,13 @@ public class e implements h {
                             } else {
                                 i8 = iIntValue;
                             }
-                            j1_b.p = r0.m;
-                            j1_b.q = r0.n;
-                            j1_b.t = f;
-                            j1_b.f1022s = i8;
-                            j1_b.u = r0.v;
-                            j1_b.v = r0.w;
-                            j1_b.w = nVar;
+                            bVar.p = r0.m;
+                            bVar.q = r0.n;
+                            bVar.t = f;
+                            bVar.f1022s = i8;
+                            bVar.u = r0.v;
+                            bVar.v = r0.w;
+                            bVar.w = nVar;
                             i5 = 2;
                         } else {
                             if ("application/x-subrip".equals(str14)) {
@@ -4861,21 +4862,21 @@ public class e implements h {
                         }
                         str10 = r0.a;
                         if (str10 != null) {
-                            j1_b.f1021b = r0.a;
+                            bVar.f1021b = r0.a;
                         }
-                        j1_b.b(i24);
-                        j1_b.k = str14;
-                        j1_b.l = i3;
-                        j1_b.c = r0.W;
-                        j1_b.d = i21111115;
-                        j1_b.m = list3;
-                        j1_b.h = str8;
-                        j1_b.n = r0.l;
-                        j1 j1VarA119 = j1_b.a();
+                        bVar.b(i24);
+                        bVar.k = str14;
+                        bVar.l = i3;
+                        bVar.c = r0.W;
+                        bVar.d = i21111115;
+                        bVar.m = list3;
+                        bVar.h = str8;
+                        bVar.n = r0.l;
+                        j1 j1VarA119 = bVar.a();
                         w wVarP119 = jVar2.p(r0.c, i5);
                         r0.X = wVarP119;
                         wVarP119.e(j1VarA119);
-                        this.h.put(r0.c, (e$c) r0);
+                        this.h.put(r0.c, (c) r0);
                     }
                     str14 = "audio/raw";
                     list3 = null;
@@ -4893,11 +4894,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i21111117 = i21111116 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -4946,13 +4947,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -4961,26 +4962,26 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i21111117;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA1110 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i21111117;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA1110 = bVar.a();
                     w wVarP1110 = jVar2.p(r0.c, i5);
                     r0.X = wVarP1110;
                     wVarP1110.e(j1VarA1110);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 25:
                     byte[] bArr7 = f1185b;
                     byte[] bArrA3 = r0.a(r0.f1196b);
-                    b.i.b.b.a<Object> aVar = p.k;
+                    b.i.b.b.a<Object> aVar2 = p.k;
                     Object[] objArr = {bArr7, bArrA3};
                     str4 = "text/x-ssa";
                     listU = p.m(objArr);
@@ -5009,11 +5010,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i21111119 = i21111118 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -5062,13 +5063,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -5077,21 +5078,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i21111119;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA1111 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i21111119;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA1111 = bVar.a();
                     w wVarP1111 = jVar2.p(r0.c, i5);
                     r0.X = wVarP1111;
                     wVarP1111.e(j1VarA1111);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 26:
                     q qVarA = q.a(new x(r0.a(r0.f1196b)));
@@ -5116,11 +5117,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i211111111 = i211111110 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -5169,13 +5170,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -5184,21 +5185,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i211111111;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA1112 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i211111111;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA1112 = bVar.a();
                     w wVarP1112 = jVar2.p(r0.c, i5);
                     r0.X = wVarP1112;
                     wVarP1112.e(j1VarA1112);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 27:
                     str13 = "application/x-subrip";
@@ -5228,11 +5229,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i211111113 = i211111112 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -5281,13 +5282,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -5296,21 +5297,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i211111113;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA1113 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i211111113;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA1113 = bVar.a();
                     w wVarP1113 = jVar2.p(r0.c, i5);
                     r0.X = wVarP1113;
                     wVarP1113.e(j1VarA1113);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 28:
                     str13 = "video/mpeg2";
@@ -5340,11 +5341,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i211111115 = i211111114 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -5393,13 +5394,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -5408,21 +5409,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i211111115;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA1114 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i211111115;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA1114 = bVar.a();
                     w wVarP1114 = jVar2.p(r0.c, i5);
                     r0.X = wVarP1114;
                     wVarP1114.e(j1VarA1114);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 29:
                     str13 = "audio/eac3";
@@ -5452,11 +5453,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i211111117 = i211111116 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -5505,13 +5506,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -5520,21 +5521,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i211111117;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA1115 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i211111117;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA1115 = bVar.a();
                     w wVarP1115 = jVar2.p(r0.c, i5);
                     r0.X = wVarP1115;
                     wVarP1115.e(j1VarA1115);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 30:
                     str4 = "audio/flac";
@@ -5564,11 +5565,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i211111119 = i211111118 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -5617,13 +5618,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -5632,21 +5633,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i211111119;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA1116 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i211111119;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA1116 = bVar.a();
                     w wVarP1116 = jVar2.p(r0.c, i5);
                     r0.X = wVarP1116;
                     wVarP1116.e(j1VarA1116);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 case 31:
                     ArrayList arrayList3 = new ArrayList(3);
@@ -5678,11 +5679,11 @@ public class e implements h {
                         i4 = 0;
                     }
                     int i2111111111 = i2111111110 | i4;
-                    j1_b = new j1$b();
+                    bVar = new j1.b();
                     if (b.i.a.c.f3.t.h(str14)) {
-                        j1_b.f1023x = r0.O;
-                        j1_b.f1024y = r0.Q;
-                        j1_b.f1025z = iR;
+                        bVar.f1023x = r0.O;
+                        bVar.f1024y = r0.Q;
+                        bVar.f1025z = iR;
                         i5 = 1;
                     } else if (b.i.a.c.f3.t.j(str14)) {
                         if (r0.q == 0) {
@@ -5731,13 +5732,13 @@ public class e implements h {
                         } else {
                             i8 = iIntValue;
                         }
-                        j1_b.p = r0.m;
-                        j1_b.q = r0.n;
-                        j1_b.t = f;
-                        j1_b.f1022s = i8;
-                        j1_b.u = r0.v;
-                        j1_b.v = r0.w;
-                        j1_b.w = nVar;
+                        bVar.p = r0.m;
+                        bVar.q = r0.n;
+                        bVar.t = f;
+                        bVar.f1022s = i8;
+                        bVar.u = r0.v;
+                        bVar.v = r0.w;
+                        bVar.w = nVar;
                         i5 = 2;
                     } else {
                         if ("application/x-subrip".equals(str14)) {
@@ -5746,21 +5747,21 @@ public class e implements h {
                     }
                     str10 = r0.a;
                     if (str10 != null) {
-                        j1_b.f1021b = r0.a;
+                        bVar.f1021b = r0.a;
                     }
-                    j1_b.b(i24);
-                    j1_b.k = str14;
-                    j1_b.l = i3;
-                    j1_b.c = r0.W;
-                    j1_b.d = i2111111111;
-                    j1_b.m = list3;
-                    j1_b.h = str8;
-                    j1_b.n = r0.l;
-                    j1 j1VarA1117 = j1_b.a();
+                    bVar.b(i24);
+                    bVar.k = str14;
+                    bVar.l = i3;
+                    bVar.c = r0.W;
+                    bVar.d = i2111111111;
+                    bVar.m = list3;
+                    bVar.h = str8;
+                    bVar.n = r0.l;
+                    j1 j1VarA1117 = bVar.a();
                     w wVarP1117 = jVar2.p(r0.c, i5);
                     r0.X = wVarP1117;
                     wVarP1117.e(j1VarA1117);
-                    this.h.put(r0.c, (e$c) r0);
+                    this.h.put(r0.c, (c) r0);
                     break;
                 default:
                     throw ParserException.a("Unrecognized codec identifier.", null);
@@ -5824,23 +5825,23 @@ public class e implements h {
     }
 
     @RequiresNonNull({"#2.output"})
-    public final int n(i iVar, e$c e_c, int i) throws IOException {
+    public final int n(i iVar, c cVar, int i) throws IOException {
         int i2;
-        if ("S_TEXT/UTF8".equals(e_c.f1196b)) {
+        if ("S_TEXT/UTF8".equals(cVar.f1196b)) {
             o(iVar, a, i);
             int i3 = this.X;
             l();
             return i3;
         }
-        if ("S_TEXT/ASS".equals(e_c.f1196b)) {
+        if ("S_TEXT/ASS".equals(cVar.f1196b)) {
             o(iVar, c, i);
             int i4 = this.X;
             l();
             return i4;
         }
-        w wVar = e_c.X;
+        w wVar = cVar.X;
         if (!this.Z) {
-            if (e_c.h) {
+            if (cVar.h) {
                 this.T &= -1073741825;
                 if (!this.f1186a0) {
                     iVar.readFully(this.l.a, 0, 1);
@@ -5918,7 +5919,7 @@ public class e implements h {
                     }
                 }
             } else {
-                byte[] bArr2 = e_c.i;
+                byte[] bArr2 = cVar.i;
                 if (bArr2 != null) {
                     x xVar2 = this.o;
                     int length = bArr2.length;
@@ -5927,7 +5928,7 @@ public class e implements h {
                     xVar2.f984b = 0;
                 }
             }
-            if (e_c.f > 0) {
+            if (cVar.f > 0) {
                 this.T |= 268435456;
                 this.f1192s.A(0);
                 this.l.A(4);
@@ -5943,10 +5944,10 @@ public class e implements h {
             this.Z = true;
         }
         int i10 = i + this.o.c;
-        if (!"V_MPEG4/ISO/AVC".equals(e_c.f1196b) && !"V_MPEGH/ISO/HEVC".equals(e_c.f1196b)) {
-            if (e_c.T != null) {
+        if (!"V_MPEG4/ISO/AVC".equals(cVar.f1196b) && !"V_MPEGH/ISO/HEVC".equals(cVar.f1196b)) {
+            if (cVar.T != null) {
                 b.c.a.a0.d.D(this.o.c == 0);
-                e_c.T.c(iVar);
+                cVar.T.c(iVar);
             }
             while (true) {
                 int i11 = this.W;
@@ -5962,7 +5963,7 @@ public class e implements h {
             bArr4[0] = 0;
             bArr4[1] = 0;
             bArr4[2] = 0;
-            int i12 = e_c.Y;
+            int i12 = cVar.Y;
             int i13 = 4 - i12;
             while (this.W < i10) {
                 int i14 = this.Y;
@@ -5988,7 +5989,7 @@ public class e implements h {
                 }
             }
         }
-        if ("A_VORBIS".equals(e_c.f1196b)) {
+        if ("A_VORBIS".equals(cVar.f1196b)) {
             this.m.E(0);
             wVar.c(this.m, 4);
             this.X += 4;
@@ -6024,5 +6025,86 @@ public class e implements h {
 
     @Override // b.i.a.c.x2.h
     public final void release() {
+    }
+
+    /* JADX INFO: compiled from: MatroskaExtractor.java */
+    public final class c {
+        public byte[] N;
+        public b.i.a.c.x2.x T;
+        public boolean U;
+        public w X;
+        public int Y;
+        public String a;
+        public int c;
+        public int d;
+        public int e;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public String f1196b;
+        public int f;
+        public int g;
+        public boolean h;
+        public byte[] i;
+        public w.a j;
+        public byte[] k;
+        public DrmInitData l;
+        public int m = -1;
+        public int n = -1;
+        public int o = -1;
+        public int p = -1;
+        public int q = 0;
+        public int r = -1;
+
+        /* JADX INFO: renamed from: s, reason: collision with root package name */
+        public float f1197s = 0.0f;
+        public float t = 0.0f;
+        public float u = 0.0f;
+        public byte[] v = null;
+        public int w = -1;
+
+        /* JADX INFO: renamed from: x, reason: collision with root package name */
+        public boolean f1198x = false;
+
+        /* JADX INFO: renamed from: y, reason: collision with root package name */
+        public int f1199y = -1;
+
+        /* JADX INFO: renamed from: z, reason: collision with root package name */
+        public int f1200z = -1;
+        public int A = -1;
+        public int B = 1000;
+        public int C = 200;
+        public float D = -1.0f;
+        public float E = -1.0f;
+        public float F = -1.0f;
+        public float G = -1.0f;
+        public float H = -1.0f;
+        public float I = -1.0f;
+        public float J = -1.0f;
+        public float K = -1.0f;
+        public float L = -1.0f;
+        public float M = -1.0f;
+        public int O = 1;
+        public int P = -1;
+        public int Q = 8000;
+        public long R = 0;
+        public long S = 0;
+        public boolean V = true;
+        public String W = "eng";
+
+        public c() {
+        }
+
+        @EnsuresNonNull({"codecPrivate"})
+        public final byte[] a(String str) throws ParserException {
+            byte[] bArr = this.k;
+            if (bArr != null) {
+                return bArr;
+            }
+            String strValueOf = String.valueOf(str);
+            throw ParserException.a(strValueOf.length() != 0 ? "Missing CodecPrivate for codec ".concat(strValueOf) : new String("Missing CodecPrivate for codec "), null);
+        }
+
+        public c(a aVar) {
+        }
     }
 }

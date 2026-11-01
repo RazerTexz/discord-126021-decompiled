@@ -9,11 +9,14 @@ import com.discord.api.activity.ActivityType;
 import com.discord.models.domain.ModelAuditLogEntry;
 import d0.z.d.m;
 import java.util.List;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: EmbeddedActivity.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class EmbeddedActivity {
-    public static final EmbeddedActivity$Companion Companion = new EmbeddedActivity$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final long applicationId;
     private final ActivityAssets assets;
     private final Long createdAt;
@@ -26,6 +29,35 @@ public final /* data */ class EmbeddedActivity {
     private final ActivityType type;
     private final String url;
     private final List<Long> userIds;
+
+    /* JADX INFO: compiled from: EmbeddedActivity.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final EmbeddedActivity fromApiEmbeddedActivity(com.discord.api.embeddedactivities.EmbeddedActivity apiEmbeddedActivity, List<Long> userIds, String url, long guildId) {
+            m.checkNotNullParameter(apiEmbeddedActivity, "apiEmbeddedActivity");
+            m.checkNotNullParameter(userIds, "userIds");
+            m.checkNotNullParameter(url, "url");
+            long jA = apiEmbeddedActivity.getApplicationId();
+            ActivityAssets activityAssetsB = apiEmbeddedActivity.getAssets();
+            Long lC = apiEmbeddedActivity.getCreatedAt();
+            String strD = apiEmbeddedActivity.getDetails();
+            String strE = apiEmbeddedActivity.getName();
+            ActivitySecrets activitySecretsF = apiEmbeddedActivity.getSecrets();
+            String strG = apiEmbeddedActivity.getState();
+            ActivityTimestamps activityTimestampsH = apiEmbeddedActivity.getTimestamps();
+            ActivityType activityTypeI = apiEmbeddedActivity.getType();
+            if (activityTypeI == null) {
+                activityTypeI = ActivityType.UNKNOWN;
+            }
+            return new EmbeddedActivity(jA, activityAssetsB, lC, strD, strE, activitySecretsF, strG, activityTimestampsH, activityTypeI, userIds, url, guildId);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public EmbeddedActivity(long j, ActivityAssets activityAssets, Long l, String str, String str2, ActivitySecrets activitySecrets, String str3, ActivityTimestamps activityTimestamps, ActivityType activityType, List<Long> list, String str4, long j2) {
         m.checkNotNullParameter(activityType, "type");

@@ -1,8 +1,8 @@
 package b.o.a.v;
 
-import android.graphics.Bitmap$CompressFormat;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.SurfaceTexture;
 import android.opengl.EGL14;
 import android.opengl.EGLContext;
@@ -10,14 +10,14 @@ import android.opengl.EGLDisplay;
 import android.opengl.EGLSurface;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.util.Log;
 import android.view.Surface;
-import android.view.Surface$OutOfResourcesException;
-import b.o.a.l$a;
+import b.o.a.l;
 import d0.z.d.m;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: SnapshotGlPictureRecorder.java */
@@ -40,7 +40,7 @@ public class h implements Runnable {
     }
 
     @Override // java.lang.Runnable
-    public void run() throws IOException {
+    public void run() throws IllegalAccessException, IOException, InvocationTargetException {
         g gVar = this.o;
         SurfaceTexture surfaceTexture = this.j;
         int i = this.k;
@@ -77,14 +77,14 @@ public class h implements Runnable {
         Matrix.translateM(fArr, 0, -0.5f, -0.5f, 0.0f);
         if (gVar.q) {
             b.o.a.u.b bVar4 = gVar.r;
-            b.o.a.u.a$a a_a = b.o.a.u.a$a.PICTURE_SNAPSHOT;
+            b.o.a.u.a.EnumC0177a enumC0177a = b.o.a.u.a.EnumC0177a.PICTURE_SNAPSHOT;
             Objects.requireNonNull(bVar4);
             try {
-                Canvas canvasLockCanvas = (Build$VERSION.SDK_INT < 23 || !((b.o.a.u.c) bVar4.f1953b).getHardwareCanvasEnabled()) ? bVar4.d.lockCanvas(null) : bVar4.d.lockHardwareCanvas();
-                canvasLockCanvas.drawColor(0, PorterDuff$Mode.CLEAR);
-                ((b.o.a.u.c) bVar4.f1953b).a(a_a, canvasLockCanvas);
+                Canvas canvasLockCanvas = (Build.VERSION.SDK_INT < 23 || !((b.o.a.u.c) bVar4.f1953b).getHardwareCanvasEnabled()) ? bVar4.d.lockCanvas(null) : bVar4.d.lockHardwareCanvas();
+                canvasLockCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
+                ((b.o.a.u.c) bVar4.f1953b).a(enumC0177a, canvasLockCanvas);
                 bVar4.d.unlockCanvasAndPost(canvasLockCanvas);
-            } catch (Surface$OutOfResourcesException e) {
+            } catch (Surface.OutOfResourcesException e) {
                 b.o.a.u.b.a.a(2, "Got Surface.OutOfResourcesException while drawing video overlays", e);
             }
             synchronized (bVar4.g) {
@@ -112,21 +112,21 @@ public class h implements Runnable {
                 bVar5.e.a(timestamp);
             }
         }
-        l$a l_a = gVar.j;
-        Bitmap$CompressFormat bitmap$CompressFormat = Bitmap$CompressFormat.JPEG;
-        m.checkNotNullParameter(bitmap$CompressFormat, "format");
+        l.a aVar3 = gVar.j;
+        Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.JPEG;
+        m.checkNotNullParameter(compressFormat, "format");
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         try {
-            bVar2.a(byteArrayOutputStream, bitmap$CompressFormat);
+            bVar2.a(byteArrayOutputStream, compressFormat);
             byte[] byteArray = byteArrayOutputStream.toByteArray();
             m.checkNotNullExpressionValue(byteArray, "it.toByteArray()");
             d0.y.b.closeFinally(byteArrayOutputStream, null);
-            l_a.f = byteArray;
-            b.o.b.a.a aVar3 = bVar2.a;
+            aVar3.f = byteArray;
+            b.o.b.a.a aVar4 = bVar2.a;
             b.o.b.c.e eVar2 = bVar2.f1967b;
-            Objects.requireNonNull(aVar3);
+            Objects.requireNonNull(aVar4);
             m.checkNotNullParameter(eVar2, "eglSurface");
-            EGL14.eglDestroySurface(aVar3.a.a, eVar2.a);
+            EGL14.eglDestroySurface(aVar4.a.a, eVar2.a);
             bVar2.f1967b = b.o.b.c.d.c;
             bVar2.d = -1;
             bVar2.c = -1;

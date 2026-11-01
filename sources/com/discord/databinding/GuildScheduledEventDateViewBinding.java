@@ -9,8 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class GuildScheduledEventDateViewBinding implements ViewBinding {
@@ -33,15 +32,15 @@ public final class GuildScheduledEventDateViewBinding implements ViewBinding {
 
     @NonNull
     public static GuildScheduledEventDateViewBinding a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
-        View viewInflate = layoutInflater.inflate(R$layout.guild_scheduled_event_date_view, viewGroup, false);
+        View viewInflate = layoutInflater.inflate(R.layout.guild_scheduled_event_date_view, viewGroup, false);
         if (z2) {
             viewGroup.addView(viewInflate);
         }
-        int i = R$id.guild_scheduled_event_date_view_icon;
-        ImageView imageView = (ImageView) viewInflate.findViewById(R$id.guild_scheduled_event_date_view_icon);
+        int i = R.id.guild_scheduled_event_date_view_icon;
+        ImageView imageView = (ImageView) viewInflate.findViewById(R.id.guild_scheduled_event_date_view_icon);
         if (imageView != null) {
-            i = R$id.guild_scheduled_event_date_view_text;
-            TextView textView = (TextView) viewInflate.findViewById(R$id.guild_scheduled_event_date_view_text);
+            i = R.id.guild_scheduled_event_date_view_text;
+            TextView textView = (TextView) viewInflate.findViewById(R.id.guild_scheduled_event_date_view_text);
             if (textView != null) {
                 return new GuildScheduledEventDateViewBinding((ConstraintLayout) viewInflate, imageView, textView);
             }

@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
@@ -13,13 +15,13 @@ import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.d.f0;
 import b.b.a.c;
 import b.d.b.a.a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetExpressionTrayBinding;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.analytics.ChatInputComponentTypes;
+import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.view.rounded.RoundedRelativeLayout;
@@ -30,35 +32,34 @@ import com.discord.views.segmentedcontrol.CardSegment;
 import com.discord.views.segmentedcontrol.SegmentedControlContainer;
 import com.discord.widgets.chat.input.AppFlexInputViewModel;
 import com.discord.widgets.chat.input.OnBackspacePressedListener;
-import com.discord.widgets.chat.input.emoji.EmojiPickerContextType$Chat;
+import com.discord.widgets.chat.input.emoji.EmojiPickerContextType;
 import com.discord.widgets.chat.input.emoji.EmojiPickerListener;
 import com.discord.widgets.chat.input.emoji.EmojiPickerMode;
 import com.discord.widgets.chat.input.emoji.EmojiPickerNavigator;
 import com.discord.widgets.chat.input.emoji.WidgetEmojiPicker;
+import com.discord.widgets.chat.input.gifpicker.GifCategoryItem;
 import com.discord.widgets.chat.input.gifpicker.WidgetGifCategory;
 import com.discord.widgets.chat.input.gifpicker.WidgetGifPicker;
 import com.discord.widgets.chat.input.gifpicker.WidgetGifPickerSheet;
-import com.discord.widgets.chat.input.gifpicker.WidgetGifPickerSheet$Companion;
 import com.discord.widgets.chat.input.sticker.StickerPickerListener;
 import com.discord.widgets.chat.input.sticker.StickerPickerMode;
 import com.discord.widgets.chat.input.sticker.WidgetStickerPicker;
 import com.discord.widgets.chat.input.sticker.WidgetStickerPickerSheet;
-import com.discord.widgets.chat.input.sticker.WidgetStickerPickerSheet$Companion;
-import com.google.android.material.appbar.AppBarLayout$OnOffsetChangedListener;
-import d0.o;
+import com.google.android.material.appbar.AppBarLayout;
 import d0.t.h0;
 import d0.t.u;
 import d0.z.d.a0;
+import d0.z.d.k;
 import d0.z.d.m;
-import j0.l.e.k;
+import d0.z.d.o;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.concurrent.TimeUnit;
 import kotlin.Lazy;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 import rx.Observable;
 import rx.subjects.BehaviorSubject;
@@ -67,7 +68,9 @@ import rx.subjects.BehaviorSubject;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetExpressionTray extends AppFragment implements c {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetExpressionTray.class, "binding", "getBinding()Lcom/discord/databinding/WidgetExpressionTrayBinding;", 0)};
-    public static final WidgetExpressionTray$Companion Companion = new WidgetExpressionTray$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -92,6 +95,365 @@ public final class WidgetExpressionTray extends AppFragment implements c {
     private StickerPickerListener stickerPickerListener;
     private boolean wasActive;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$handleEvent$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function0<Unit> {
+        public AnonymousClass1(WidgetExpressionTray widgetExpressionTray) {
+            super(0, widgetExpressionTray, WidgetExpressionTray.class, "onGifSelected", "onGifSelected()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetExpressionTray.access$onGifSelected((WidgetExpressionTray) this.receiver);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            ExpressionTrayViewModel expressionTrayViewModelAccess$getExpressionTrayViewModel$p = WidgetExpressionTray.access$getExpressionTrayViewModel$p(WidgetExpressionTray.this);
+            TextView textView = WidgetExpressionTray.access$getBinding$p(WidgetExpressionTray.this).j;
+            m.checkNotNullExpressionValue(textView, "binding.expressionTraySearchButton");
+            expressionTrayViewModelAccess$getExpressionTrayViewModel$p.clickSearch(textView.getText().toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class AnonymousClass1 extends o implements Function1<ExpressionTrayViewModel.ViewState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ExpressionTrayViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ExpressionTrayViewModel.ViewState viewState) {
+            m.checkNotNullParameter(viewState, "viewState");
+            WidgetExpressionTray.access$handleViewState(WidgetExpressionTray.this, viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$setUpGifPicker$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<GifCategoryItem, Unit> {
+        public AnonymousClass1(ExpressionTrayViewModel expressionTrayViewModel) {
+            super(1, expressionTrayViewModel, ExpressionTrayViewModel.class, "selectGifCategory", "selectGifCategory(Lcom/discord/widgets/chat/input/gifpicker/GifCategoryItem;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GifCategoryItem gifCategoryItem) {
+            invoke2(gifCategoryItem);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GifCategoryItem gifCategoryItem) {
+            m.checkNotNullParameter(gifCategoryItem, "p1");
+            ((ExpressionTrayViewModel) this.receiver).selectGifCategory(gifCategoryItem);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$setUpStickerPicker$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<Boolean, Unit> {
+        public AnonymousClass1(WidgetExpressionTray widgetExpressionTray) {
+            super(1, widgetExpressionTray, WidgetExpressionTray.class, "showStickersSearchBar", "showStickersSearchBar(Z)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.a;
+        }
+
+        public final void invoke(boolean z2) {
+            WidgetExpressionTray.access$showStickersSearchBar((WidgetExpressionTray) this.receiver, z2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$setUpTabs$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class AnonymousClass1 extends o implements Function1<Integer, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Integer num) {
+            invoke(num.intValue());
+            return Unit.a;
+        }
+
+        public final void invoke(int i) {
+            ExpressionTrayTab expressionTrayTab = ExpressionTrayTab.values()[i];
+            TextView textView = WidgetExpressionTray.access$getBinding$p(WidgetExpressionTray.this).j;
+            m.checkNotNullExpressionValue(textView, "binding.expressionTraySearchButton");
+            textView.setText("");
+            if (WidgetExpressionTray.access$getStickerPickerInitialized$p(WidgetExpressionTray.this) && WidgetExpressionTray.access$getStickerPickerFragment$p(WidgetExpressionTray.this).isVisible()) {
+                WidgetExpressionTray.access$getStickerPickerFragment$p(WidgetExpressionTray.this).clearSearchInput();
+            }
+            WidgetExpressionTray.access$getExpressionTrayViewModel$p(WidgetExpressionTray.this).selectTab(expressionTrayTab);
+            WidgetExpressionTray.access$trackExpressionPickerTabClicked(WidgetExpressionTray.this, expressionTrayTab);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$setWindowInsetsListeners$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class AnonymousClass1 implements OnApplyWindowInsetsListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            ViewCompat.dispatchApplyWindowInsets(WidgetExpressionTray.access$getBinding$p(WidgetExpressionTray.this).e, windowInsetsCompat);
+            ViewCompat.dispatchApplyWindowInsets(WidgetExpressionTray.access$getBinding$p(WidgetExpressionTray.this).g, windowInsetsCompat);
+            return ViewCompat.dispatchApplyWindowInsets(WidgetExpressionTray.access$getBinding$p(WidgetExpressionTray.this).m, windowInsetsCompat);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$trackExpressionPickerOpened$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class AnonymousClass1 extends o implements Function1<ExpressionTrayViewModel.ViewState, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ExpressionTrayViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ExpressionTrayViewModel.ViewState viewState) {
+            String str;
+            int iOrdinal = viewState.getSelectedExpressionTab().ordinal();
+            if (iOrdinal == 0) {
+                str = "emoji";
+            } else if (iOrdinal == 1) {
+                str = IconUtils.ANIMATED_IMAGE_EXTENSION;
+            } else {
+                if (iOrdinal != 2) {
+                    throw new NoWhenBranchMatchedException();
+                }
+                str = "sticker";
+            }
+            AnalyticsTracker.INSTANCE.expressionPickerOpened(str, false);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$trackExpressionPickerTabClicked$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class AnonymousClass1 extends o implements Function1<ExpressionTrayViewModel.ViewState, Unit> {
+        public final /* synthetic */ ExpressionTrayTab $clickedTab;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(ExpressionTrayTab expressionTrayTab) {
+            super(1);
+            this.$clickedTab = expressionTrayTab;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ExpressionTrayViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ExpressionTrayViewModel.ViewState viewState) {
+            String str;
+            int iOrdinal = this.$clickedTab.ordinal();
+            if (iOrdinal == 0) {
+                str = "emoji";
+            } else if (iOrdinal == 1) {
+                str = IconUtils.ANIMATED_IMAGE_EXTENSION;
+            } else {
+                if (iOrdinal != 2) {
+                    throw new NoWhenBranchMatchedException();
+                }
+                str = "sticker";
+            }
+            AnalyticsTracker.INSTANCE.expressionPickerTabClicked(str, false);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$handleEvent$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final /* synthetic */ class AnonymousClass2 extends k implements Function0<Unit> {
+        public AnonymousClass2(WidgetExpressionTray widgetExpressionTray) {
+            super(0, widgetExpressionTray, WidgetExpressionTray.class, "onGifSearchSheetCanceled", "onGifSearchSheetCanceled()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetExpressionTray.access$onGifSearchSheetCanceled((WidgetExpressionTray) this.receiver);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class AnonymousClass2 implements AppBarLayout.OnOffsetChangedListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener, com.google.android.material.appbar.AppBarLayout.BaseOnOffsetChangedListener
+        public final void onOffsetChanged(AppBarLayout appBarLayout, int i) {
+            WidgetExpressionTray.access$isAtInitialScrollPositionSubject$p(WidgetExpressionTray.this).onNext(Boolean.valueOf(i == 0));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$onViewBoundOrOnResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class AnonymousClass2 extends o implements Function1<ExpressionTrayViewModel.Event, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ExpressionTrayViewModel.Event event) {
+            invoke2(event);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ExpressionTrayViewModel.Event event) {
+            m.checkNotNullParameter(event, "event");
+            WidgetExpressionTray.access$handleEvent(WidgetExpressionTray.this, event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$setUpStickerPicker$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class AnonymousClass2 extends o implements Function0<Unit> {
+        public AnonymousClass2() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetExpressionTray.access$getBinding$p(WidgetExpressionTray.this).n.scrollTo(0, 0);
+            WidgetExpressionTray.access$getBinding$p(WidgetExpressionTray.this).n.setExpanded(true, false);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$setWindowInsetsListeners$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class AnonymousClass2 implements OnApplyWindowInsetsListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            return ViewCompat.dispatchApplyWindowInsets(WidgetExpressionTray.access$getBinding$p(WidgetExpressionTray.this).c, windowInsetsCompat);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.WidgetExpressionTray$handleEvent$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class AnonymousClass3 extends o implements Function1<Unit, Unit> {
+        public final /* synthetic */ ExpressionTrayViewModel.Event $event;
+        public final /* synthetic */ WidgetStickerPickerSheet $pickerSheet;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass3(WidgetStickerPickerSheet widgetStickerPickerSheet, ExpressionTrayViewModel.Event event) {
+            super(1);
+            this.$pickerSheet = widgetStickerPickerSheet;
+            this.$event = event;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
+            invoke2(unit);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Unit unit) {
+            this.$pickerSheet.scrollToPack(((ExpressionTrayViewModel.Event.ShowStickerPicker) this.$event).getStickerPackId());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetExpressionTray.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final BehaviorSubject<Boolean> isExpressionTrayActiveSubject() {
+            return WidgetExpressionTray.access$isExpressionTrayActiveSubject$cp();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$2;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$3;
+
+        static {
+            ExpressionTrayTab.values();
+            int[] iArr = new int[3];
+            $EnumSwitchMapping$0 = iArr;
+            ExpressionTrayTab expressionTrayTab = ExpressionTrayTab.EMOJI;
+            iArr[expressionTrayTab.ordinal()] = 1;
+            ExpressionTrayTab expressionTrayTab2 = ExpressionTrayTab.GIF;
+            iArr[expressionTrayTab2.ordinal()] = 2;
+            ExpressionTrayTab expressionTrayTab3 = ExpressionTrayTab.STICKER;
+            iArr[expressionTrayTab3.ordinal()] = 3;
+            ExpressionTrayTab.values();
+            int[] iArr2 = new int[3];
+            $EnumSwitchMapping$1 = iArr2;
+            iArr2[expressionTrayTab.ordinal()] = 1;
+            iArr2[expressionTrayTab2.ordinal()] = 2;
+            iArr2[expressionTrayTab3.ordinal()] = 3;
+            ExpressionTrayTab.values();
+            int[] iArr3 = new int[3];
+            $EnumSwitchMapping$2 = iArr3;
+            iArr3[expressionTrayTab.ordinal()] = 1;
+            iArr3[expressionTrayTab2.ordinal()] = 2;
+            iArr3[expressionTrayTab3.ordinal()] = 3;
+            ExpressionTrayTab.values();
+            int[] iArr4 = new int[3];
+            $EnumSwitchMapping$3 = iArr4;
+            iArr4[expressionTrayTab.ordinal()] = 1;
+            iArr4[expressionTrayTab2.ordinal()] = 2;
+            iArr4[expressionTrayTab3.ordinal()] = 3;
+        }
+    }
+
     static {
         BehaviorSubject<Boolean> behaviorSubjectL0 = BehaviorSubject.l0(Boolean.FALSE);
         m.checkNotNullExpressionValue(behaviorSubjectL0, "BehaviorSubject.create(false)");
@@ -99,7 +461,7 @@ public final class WidgetExpressionTray extends AppFragment implements c {
     }
 
     public WidgetExpressionTray() {
-        super(R$layout.widget_expression_tray);
+        super(R.layout.widget_expression_tray);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetExpressionTray$binding$2.INSTANCE, null, 2, null);
         this.expressionTrayViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(ExpressionTrayViewModel.class), new WidgetExpressionTray$appActivityViewModels$$inlined$activityViewModels$1(this), new f0(WidgetExpressionTray$expressionTrayViewModel$2.INSTANCE));
         this.flexInputViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(AppFlexInputViewModel.class), new WidgetExpressionTray$appActivityViewModels$$inlined$activityViewModels$3(this), new f0(new WidgetExpressionTray$flexInputViewModel$2(this)));
@@ -130,12 +492,12 @@ public final class WidgetExpressionTray extends AppFragment implements c {
         return widgetExpressionTray.stickerPickerInitialized;
     }
 
-    public static final /* synthetic */ void access$handleEvent(WidgetExpressionTray widgetExpressionTray, ExpressionTrayViewModel$Event expressionTrayViewModel$Event) {
-        widgetExpressionTray.handleEvent(expressionTrayViewModel$Event);
+    public static final /* synthetic */ void access$handleEvent(WidgetExpressionTray widgetExpressionTray, ExpressionTrayViewModel.Event event) {
+        widgetExpressionTray.handleEvent(event);
     }
 
-    public static final /* synthetic */ void access$handleViewState(WidgetExpressionTray widgetExpressionTray, ExpressionTrayViewModel$ViewState expressionTrayViewModel$ViewState) {
-        widgetExpressionTray.handleViewState(expressionTrayViewModel$ViewState);
+    public static final /* synthetic */ void access$handleViewState(WidgetExpressionTray widgetExpressionTray, ExpressionTrayViewModel.ViewState viewState) {
+        widgetExpressionTray.handleViewState(viewState);
     }
 
     public static final /* synthetic */ BehaviorSubject access$isAtInitialScrollPositionSubject$p(WidgetExpressionTray widgetExpressionTray) {
@@ -170,11 +532,11 @@ public final class WidgetExpressionTray extends AppFragment implements c {
         widgetExpressionTray.trackExpressionPickerTabClicked(expressionTrayTab);
     }
 
-    private final void configureDetailPage(ExpressionTrayViewModel$ViewState viewState) {
+    private final void configureDetailPage(ExpressionTrayViewModel.ViewState viewState) {
         Fragment fragmentFindFragmentById;
         ExpressionDetailPage expressionDetailPage = viewState.getExpressionDetailPage();
-        if (!(expressionDetailPage instanceof ExpressionDetailPage$GifCategoryPage)) {
-            if (expressionDetailPage != null || (fragmentFindFragmentById = getChildFragmentManager().findFragmentById(R$id.expression_tray_detail_page)) == null) {
+        if (!(expressionDetailPage instanceof ExpressionDetailPage.GifCategoryPage)) {
+            if (expressionDetailPage != null || (fragmentFindFragmentById = getChildFragmentManager().findFragmentById(R.id.expression_tray_detail_page)) == null) {
                 return;
             }
             getChildFragmentManager().beginTransaction().remove(fragmentFindFragmentById).commit();
@@ -182,15 +544,15 @@ public final class WidgetExpressionTray extends AppFragment implements c {
         }
         WidgetGifCategory widgetGifCategory = new WidgetGifCategory();
         Bundle bundle = new Bundle();
-        bundle.putSerializable(WidgetGifCategory.ARG_GIF_CATEGORY_ITEM, ((ExpressionDetailPage$GifCategoryPage) expressionDetailPage).getGifCategoryItem());
+        bundle.putSerializable(WidgetGifCategory.ARG_GIF_CATEGORY_ITEM, ((ExpressionDetailPage.GifCategoryPage) expressionDetailPage).getGifCategoryItem());
         widgetGifCategory.setArguments(bundle);
         widgetGifCategory.setOnGifSelected(new WidgetExpressionTray$configureDetailPage$gifCategoryFragment$1$2(this));
         String simpleName = WidgetGifCategory.class.getSimpleName();
         m.checkNotNullExpressionValue(simpleName, "gifCategoryFragment.javaClass.simpleName");
-        setupTabFragment(R$id.expression_tray_detail_page, widgetGifCategory, simpleName);
+        setupTabFragment(R.id.expression_tray_detail_page, widgetGifCategory, simpleName);
     }
 
-    private final void configureLandingPage(ExpressionTrayViewModel$ViewState viewState) {
+    private final void configureLandingPage(ExpressionTrayViewModel.ViewState viewState) {
         int i;
         ExpressionTrayTab selectedExpressionTab = viewState.getSelectedExpressionTab();
         int iOrdinal = selectedExpressionTab.ordinal();
@@ -206,9 +568,9 @@ public final class WidgetExpressionTray extends AppFragment implements c {
         if (map == null) {
             m.throwUninitializedPropertyAccessException("expressionTabToContentViewsMap");
         }
-        for (Map$Entry<ExpressionTrayTab, ? extends View> map$Entry : map.entrySet()) {
-            ExpressionTrayTab key = map$Entry.getKey();
-            View value = map$Entry.getValue();
+        for (Map.Entry<ExpressionTrayTab, ? extends View> entry : map.entrySet()) {
+            ExpressionTrayTab key = entry.getKey();
+            View value = entry.getValue();
             int i2 = 0;
             if (!(key == selectedExpressionTab)) {
                 i2 = 8;
@@ -217,14 +579,14 @@ public final class WidgetExpressionTray extends AppFragment implements c {
         }
         int iOrdinal2 = selectedExpressionTab.ordinal();
         if (iOrdinal2 == 0) {
-            i = 2131895332;
+            i = R.string.search_for_emoji;
         } else if (iOrdinal2 == 1) {
-            i = 2131895372;
+            i = R.string.search_tenor;
         } else {
             if (iOrdinal2 != 2) {
                 throw new NoWhenBranchMatchedException();
             }
-            i = 2131895334;
+            i = R.string.search_for_stickers;
         }
         String string = getResources().getString(i);
         m.checkNotNullExpressionValue(string, "resources.getString(searchTextStringRes)");
@@ -237,7 +599,7 @@ public final class WidgetExpressionTray extends AppFragment implements c {
     }
 
     private final void fetchDataForTrayOpen() {
-        StoreStream.Companion.getStickers().fetchEnabledStickerDirectory();
+        StoreStream.INSTANCE.getStickers().fetchEnabledStickerDirectory();
     }
 
     private final WidgetExpressionTrayBinding getBinding() {
@@ -260,12 +622,12 @@ public final class WidgetExpressionTray extends AppFragment implements c {
         return u.indexOf(map.keySet(), tab);
     }
 
-    private final void handleEvent(ExpressionTrayViewModel$Event event) {
-        if (m.areEqual(event, ExpressionTrayViewModel$Event$HideExpressionTray.INSTANCE)) {
+    private final void handleEvent(ExpressionTrayViewModel.Event event) {
+        if (m.areEqual(event, ExpressionTrayViewModel.Event.HideExpressionTray.INSTANCE)) {
             getFlexInputViewModel().hideExpressionTray();
             return;
         }
-        if (m.areEqual(event, ExpressionTrayViewModel$Event$ShowEmojiPickerSheet.INSTANCE)) {
+        if (m.areEqual(event, ExpressionTrayViewModel.Event.ShowEmojiPickerSheet.INSTANCE)) {
             Function0<Unit> function0 = this.onEmojiSearchOpenedListener;
             if (function0 != null) {
                 function0.invoke();
@@ -273,28 +635,28 @@ public final class WidgetExpressionTray extends AppFragment implements c {
             AnalyticsTracker.INSTANCE.chatInputComponentViewed(ChatInputComponentTypes.EMOJI_SEARCH);
             FragmentManager parentFragmentManager = getParentFragmentManager();
             m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            EmojiPickerNavigator.launchBottomSheet$default(parentFragmentManager, this.emojiPickerListener, EmojiPickerContextType$Chat.INSTANCE, null, 8, null);
+            EmojiPickerNavigator.launchBottomSheet$default(parentFragmentManager, this.emojiPickerListener, EmojiPickerContextType.Chat.INSTANCE, null, 8, null);
             return;
         }
-        if (m.areEqual(event, ExpressionTrayViewModel$Event$ShowGifPickerSheet.INSTANCE)) {
+        if (m.areEqual(event, ExpressionTrayViewModel.Event.ShowGifPickerSheet.INSTANCE)) {
             AnalyticsTracker.INSTANCE.chatInputComponentViewed(ChatInputComponentTypes.GIF_SEARCH);
-            WidgetGifPickerSheet$Companion widgetGifPickerSheet$Companion = WidgetGifPickerSheet.Companion;
+            WidgetGifPickerSheet.Companion companion = WidgetGifPickerSheet.INSTANCE;
             FragmentManager parentFragmentManager2 = getParentFragmentManager();
             m.checkNotNullExpressionValue(parentFragmentManager2, "parentFragmentManager");
-            widgetGifPickerSheet$Companion.show(parentFragmentManager2, new WidgetExpressionTray$handleEvent$1(this), new WidgetExpressionTray$handleEvent$2(this));
+            companion.show(parentFragmentManager2, new AnonymousClass1(this), new AnonymousClass2(this));
             return;
         }
-        if (event instanceof ExpressionTrayViewModel$Event$ShowStickerPicker) {
-            ExpressionTrayViewModel$Event$ShowStickerPicker expressionTrayViewModel$Event$ShowStickerPicker = (ExpressionTrayViewModel$Event$ShowStickerPicker) event;
-            if (!expressionTrayViewModel$Event$ShowStickerPicker.getInline()) {
+        if (event instanceof ExpressionTrayViewModel.Event.ShowStickerPicker) {
+            ExpressionTrayViewModel.Event.ShowStickerPicker showStickerPicker = (ExpressionTrayViewModel.Event.ShowStickerPicker) event;
+            if (!showStickerPicker.getInline()) {
                 AnalyticsTracker.INSTANCE.chatInputComponentViewed(ChatInputComponentTypes.STICKER_SEARCH);
-                WidgetStickerPickerSheet$Companion widgetStickerPickerSheet$Companion = WidgetStickerPickerSheet.Companion;
+                WidgetStickerPickerSheet.Companion companion2 = WidgetStickerPickerSheet.INSTANCE;
                 FragmentManager parentFragmentManager3 = getParentFragmentManager();
                 m.checkNotNullExpressionValue(parentFragmentManager3, "parentFragmentManager");
-                WidgetStickerPickerSheet widgetStickerPickerSheetShow = widgetStickerPickerSheet$Companion.show(parentFragmentManager3, this.stickerPickerListener, expressionTrayViewModel$Event$ShowStickerPicker.getStickerPackId(), expressionTrayViewModel$Event$ShowStickerPicker.getSearchText(), new WidgetExpressionTray$handleEvent$pickerSheet$1(this));
-                Observable<T> observableQ = new k(Unit.a).q(500L, TimeUnit.MILLISECONDS);
+                WidgetStickerPickerSheet widgetStickerPickerSheetShow = companion2.show(parentFragmentManager3, this.stickerPickerListener, showStickerPicker.getStickerPackId(), showStickerPicker.getSearchText(), new WidgetExpressionTray$handleEvent$pickerSheet$1(this));
+                Observable<T> observableQ = new j0.l.e.k(Unit.a).q(500L, TimeUnit.MILLISECONDS);
                 m.checkNotNullExpressionValue(observableQ, "Observable.just(Unit)\n  …0, TimeUnit.MILLISECONDS)");
-                ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableQ, this, null, 2, null), WidgetExpressionTray.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetExpressionTray$handleEvent$3(widgetStickerPickerSheetShow, event), 62, (Object) null);
+                ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableQ, this, null, 2, null), WidgetExpressionTray.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass3(widgetStickerPickerSheetShow, event), 62, (Object) null);
                 return;
             }
             AnalyticsTracker.INSTANCE.chatInputComponentViewed("sticker");
@@ -302,22 +664,22 @@ public final class WidgetExpressionTray extends AppFragment implements c {
             getFlexInputViewModel().showExpressionTray();
             TextView textView = getBinding().j;
             m.checkNotNullExpressionValue(textView, "binding.expressionTraySearchButton");
-            textView.setText(expressionTrayViewModel$Event$ShowStickerPicker.getSearchText());
+            textView.setText(showStickerPicker.getSearchText());
             hideKeyboard(getView());
             WidgetStickerPicker widgetStickerPicker = this.stickerPickerFragment;
             if (widgetStickerPicker == null) {
                 m.throwUninitializedPropertyAccessException("stickerPickerFragment");
             }
-            String searchText = expressionTrayViewModel$Event$ShowStickerPicker.getSearchText();
+            String searchText = showStickerPicker.getSearchText();
             if (searchText == null) {
                 searchText = "";
             }
-            Long stickerPackId = expressionTrayViewModel$Event$ShowStickerPicker.getStickerPackId();
+            Long stickerPackId = showStickerPicker.getStickerPackId();
             widgetStickerPicker.setupForInlineSearchAndScroll(searchText, stickerPackId != null ? stickerPackId.longValue() : -1L);
         }
     }
 
-    private final void handleViewState(ExpressionTrayViewModel$ViewState viewState) {
+    private final void handleViewState(ExpressionTrayViewModel.ViewState viewState) {
         configureLandingPage(viewState);
         configureDetailPage(viewState);
         ContentResizingCoordinatorLayout contentResizingCoordinatorLayout = getBinding().h;
@@ -357,7 +719,7 @@ public final class WidgetExpressionTray extends AppFragment implements c {
     }
 
     private final void initializeExpressionTabToViewsMap() {
-        this.expressionTabToContentViewsMap = h0.linkedMapOf(o.to(ExpressionTrayTab.EMOJI, getBinding().e), o.to(ExpressionTrayTab.GIF, getBinding().g), o.to(ExpressionTrayTab.STICKER, getBinding().m));
+        this.expressionTabToContentViewsMap = h0.linkedMapOf(d0.o.to(ExpressionTrayTab.EMOJI, getBinding().e), d0.o.to(ExpressionTrayTab.GIF, getBinding().g), d0.o.to(ExpressionTrayTab.STICKER, getBinding().m));
     }
 
     @Override // b.b.a.c
@@ -444,16 +806,16 @@ public final class WidgetExpressionTray extends AppFragment implements c {
         super.onViewBound(view);
         initializeExpressionTabToViewsMap();
         setUpTabs();
-        getBinding().i.setOnClickListener(new WidgetExpressionTray$onViewBound$1(this));
+        getBinding().i.setOnClickListener(new AnonymousClass1());
         setWindowInsetsListeners();
-        getBinding().n.addOnOffsetChangedListener((AppBarLayout$OnOffsetChangedListener) new WidgetExpressionTray$onViewBound$2(this));
+        getBinding().n.addOnOffsetChangedListener((AppBarLayout.OnOffsetChangedListener) new AnonymousClass2());
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getExpressionTrayViewModel().observeViewState(), this, null, 2, null), WidgetExpressionTray.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetExpressionTray$onViewBoundOrOnResume$1(this), 62, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getExpressionTrayViewModel().observeEvents(), this, null, 2, null), WidgetExpressionTray.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetExpressionTray$onViewBoundOrOnResume$2(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getExpressionTrayViewModel().observeViewState(), this, null, 2, null), WidgetExpressionTray.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getExpressionTrayViewModel().observeEvents(), this, null, 2, null), WidgetExpressionTray.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
     }
 
     public final void setEmojiPickerListener(EmojiPickerListener emojiPickerListener) {
@@ -485,11 +847,11 @@ public final class WidgetExpressionTray extends AppFragment implements c {
         widgetEmojiPicker.setOnBackspacePressedListener(this.onBackspacePressedListener);
         Bundle bundle = new Bundle();
         bundle.putSerializable("MODE", EmojiPickerMode.INLINE);
-        bundle.putSerializable(EmojiPickerNavigator.ARG_EMOJI_PICKER_CONTEXT_TYPE, EmojiPickerContextType$Chat.INSTANCE);
+        bundle.putSerializable(EmojiPickerNavigator.ARG_EMOJI_PICKER_CONTEXT_TYPE, EmojiPickerContextType.Chat.INSTANCE);
         widgetEmojiPicker.setArguments(bundle);
         String simpleName = WidgetEmojiPicker.class.getSimpleName();
         m.checkNotNullExpressionValue(simpleName, "emojiPickerFragment.javaClass.simpleName");
-        setupTabFragment(R$id.expression_tray_emoji_picker_content, widgetEmojiPicker, simpleName);
+        setupTabFragment(R.id.expression_tray_emoji_picker_content, widgetEmojiPicker, simpleName);
         this.emojiPickerFragment = widgetEmojiPicker;
     }
 
@@ -499,10 +861,10 @@ public final class WidgetExpressionTray extends AppFragment implements c {
         }
         this.gifPickerInitialized = true;
         WidgetGifPicker widgetGifPicker = new WidgetGifPicker();
-        widgetGifPicker.setOnSelectGifCategory(new WidgetExpressionTray$setUpGifPicker$1(getExpressionTrayViewModel()));
+        widgetGifPicker.setOnSelectGifCategory(new AnonymousClass1(getExpressionTrayViewModel()));
         String simpleName = WidgetGifPicker.class.getSimpleName();
         m.checkNotNullExpressionValue(simpleName, "gifPickerFragment.javaClass.simpleName");
-        setupTabFragment(R$id.expression_tray_gif_picker_content, widgetGifPicker, simpleName);
+        setupTabFragment(R.id.expression_tray_gif_picker_content, widgetGifPicker, simpleName);
         this.gifPickerFragment = widgetGifPicker;
     }
 
@@ -514,20 +876,20 @@ public final class WidgetExpressionTray extends AppFragment implements c {
         WidgetStickerPicker widgetStickerPicker = new WidgetStickerPicker();
         widgetStickerPicker.setListener(this.stickerPickerListener);
         widgetStickerPicker.setOnBackspacePressedListener(this.onBackspacePressedListener);
-        widgetStickerPicker.setShowSearchBar(new WidgetExpressionTray$setUpStickerPicker$1(this));
-        widgetStickerPicker.setScrollExpressionPickerToTop(new WidgetExpressionTray$setUpStickerPicker$2(this));
+        widgetStickerPicker.setShowSearchBar(new AnonymousClass1(this));
+        widgetStickerPicker.setScrollExpressionPickerToTop(new AnonymousClass2());
         Bundle bundle = new Bundle();
         bundle.putSerializable("MODE", StickerPickerMode.INLINE);
         widgetStickerPicker.setArguments(bundle);
         String simpleName = WidgetStickerPicker.class.getSimpleName();
         m.checkNotNullExpressionValue(simpleName, "stickerPickerFragment.javaClass.simpleName");
-        setupTabFragment(R$id.expression_tray_sticker_picker_content, widgetStickerPicker, simpleName);
+        setupTabFragment(R.id.expression_tray_sticker_picker_content, widgetStickerPicker, simpleName);
         this.stickerPickerFragment = widgetStickerPicker;
     }
 
     private final void setUpTabs() {
         getBinding().k.a(getTabIndexFromTabType(ExpressionTrayTab.EMOJI));
-        getBinding().k.setOnSegmentSelectedChangeListener(new WidgetExpressionTray$setUpTabs$1(this));
+        getBinding().k.setOnSegmentSelectedChangeListener(new AnonymousClass1());
     }
 
     private final void setWindowInsetsListeners() {
@@ -543,8 +905,8 @@ public final class WidgetExpressionTray extends AppFragment implements c {
         FragmentContainerView fragmentContainerView4 = getBinding().d;
         m.checkNotNullExpressionValue(fragmentContainerView4, "binding.expressionTrayDetailPage");
         ViewExtensions.setForwardingWindowInsetsListener(fragmentContainerView4);
-        ViewCompat.setOnApplyWindowInsetsListener(getBinding().c, new WidgetExpressionTray$setWindowInsetsListeners$1(this));
-        ViewCompat.setOnApplyWindowInsetsListener(getBinding().h, new WidgetExpressionTray$setWindowInsetsListeners$2(this));
+        ViewCompat.setOnApplyWindowInsetsListener(getBinding().c, new AnonymousClass1());
+        ViewCompat.setOnApplyWindowInsetsListener(getBinding().h, new AnonymousClass2());
         FrameLayout frameLayout = getBinding().f2383b;
         m.checkNotNullExpressionValue(frameLayout, "binding.expressionTrayContainer");
         ViewExtensions.setForwardingWindowInsetsListener(frameLayout);
@@ -562,10 +924,10 @@ public final class WidgetExpressionTray extends AppFragment implements c {
     }
 
     private final void trackExpressionPickerOpened() {
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.takeSingleUntilTimeout$default(getExpressionTrayViewModel().observeViewState(), 0L, false, 3, null), WidgetExpressionTray.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, WidgetExpressionTray$trackExpressionPickerOpened$1.INSTANCE, 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.takeSingleUntilTimeout$default(getExpressionTrayViewModel().observeViewState(), 0L, false, 3, null), WidgetExpressionTray.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, AnonymousClass1.INSTANCE, 62, (Object) null);
     }
 
     private final void trackExpressionPickerTabClicked(ExpressionTrayTab clickedTab) {
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.takeSingleUntilTimeout$default(getExpressionTrayViewModel().observeViewState(), 0L, false, 3, null), WidgetExpressionTray.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetExpressionTray$trackExpressionPickerTabClicked$1(clickedTab), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.takeSingleUntilTimeout$default(getExpressionTrayViewModel().observeViewState(), 0L, false, 3, null), WidgetExpressionTray.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(clickedTab), 62, (Object) null);
     }
 }

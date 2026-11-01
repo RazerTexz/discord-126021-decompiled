@@ -4,10 +4,8 @@ import androidx.fragment.app.FragmentManager;
 import com.discord.analytics.utils.hubs.HubGuildScheduledEventClickType;
 import com.discord.utilities.directories.DirectoryUtils;
 import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilities;
-import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilities$Companion;
 import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilitiesKt;
 import com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventDetailsBottomSheet;
-import com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventDetailsBottomSheet$Companion;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: WidgetHubEventsPage.kt */
@@ -33,10 +31,10 @@ public final class WidgetHubEventsPage$listener$1 implements HubEventsEventListe
     public void onCardClicked(HubGuildScheduledEventData eventData) {
         m.checkNotNullParameter(eventData, "eventData");
         DirectoryUtils.INSTANCE.logGuildScheduledEventClickAction(eventData.getEvent().getId(), eventData.getEvent().getGuildId(), this.this$0.getArgs().getGuildId(), HubGuildScheduledEventClickType.JoinServer);
-        WidgetGuildScheduledEventDetailsBottomSheet$Companion widgetGuildScheduledEventDetailsBottomSheet$Companion = WidgetGuildScheduledEventDetailsBottomSheet.Companion;
+        WidgetGuildScheduledEventDetailsBottomSheet.Companion companion = WidgetGuildScheduledEventDetailsBottomSheet.INSTANCE;
         FragmentManager parentFragmentManager = this.this$0.getParentFragmentManager();
         m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        widgetGuildScheduledEventDetailsBottomSheet$Companion.showForDirectory(parentFragmentManager, eventData.getEvent().getId(), this.this$0.getArgs().getGuildId(), this.this$0.getArgs().getDirectoryChannelId());
+        companion.showForDirectory(parentFragmentManager, eventData.getEvent().getId(), this.this$0.getArgs().getGuildId(), this.this$0.getArgs().getDirectoryChannelId());
     }
 
     @Override // com.discord.widgets.hubs.events.HubEventsEventListener
@@ -57,7 +55,7 @@ public final class WidgetHubEventsPage$listener$1 implements HubEventsEventListe
         long guildId = eventData.getEvent().getGuildId();
         long id2 = eventData.getEvent().getId();
         Long channelId = eventData.getEvent().getChannelId();
-        GuildScheduledEventUtilities$Companion guildScheduledEventUtilities$Companion = GuildScheduledEventUtilities.Companion;
-        guildScheduledEventUtilities$Companion.launchInvite(GuildScheduledEventUtilities$Companion.canShareEvent$default(guildScheduledEventUtilities$Companion, channelId, guildId, null, null, null, null, 60, null), this.this$0, guildId, eventData.getChannel(), id2);
+        GuildScheduledEventUtilities.Companion companion = GuildScheduledEventUtilities.INSTANCE;
+        companion.launchInvite(GuildScheduledEventUtilities.Companion.canShareEvent$default(companion, channelId, guildId, null, null, null, null, 60, null), this.this$0, guildId, eventData.getChannel(), id2);
     }
 }

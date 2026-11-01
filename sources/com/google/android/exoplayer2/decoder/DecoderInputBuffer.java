@@ -22,6 +22,23 @@ public class DecoderInputBuffer extends a {
     public final c k = new c();
     public final int q = 0;
 
+    public final class InsufficientCapacityException extends IllegalStateException {
+        public final int currentCapacity;
+        public final int requiredCapacity;
+
+        public InsufficientCapacityException(int i, int i2) {
+            StringBuilder sb = new StringBuilder(44);
+            sb.append("Buffer too small (");
+            sb.append(i);
+            sb.append(" < ");
+            sb.append(i2);
+            sb.append(")");
+            super(sb.toString());
+            this.currentCapacity = i;
+            this.requiredCapacity = i2;
+        }
+    }
+
     static {
         i1.a("goog.exo.decoder");
     }
@@ -52,7 +69,7 @@ public class DecoderInputBuffer extends a {
             return ByteBuffer.allocateDirect(i);
         }
         ByteBuffer byteBuffer = this.l;
-        throw new DecoderInputBuffer$InsufficientCapacityException(byteBuffer == null ? 0 : byteBuffer.capacity(), i);
+        throw new InsufficientCapacityException(byteBuffer == null ? 0 : byteBuffer.capacity(), i);
     }
 
     @EnsuresNonNull({"data"})

@@ -3,7 +3,7 @@ package com.discord.widgets.auth;
 import android.view.View;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetAuthMfaBinding;
 import com.discord.utilities.dimmer.DimmerView;
 import com.discord.views.CodeVerificationView;
@@ -28,14 +28,14 @@ public final /* synthetic */ class WidgetAuthMfa$binding$2 extends k implements 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetAuthMfaBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.auth_login_forgot_password;
-        TextView textView = (TextView) view.findViewById(R$id.auth_login_forgot_password);
+        int i = R.id.auth_login_forgot_password;
+        TextView textView = (TextView) view.findViewById(R.id.auth_login_forgot_password);
         if (textView != null) {
-            i = R$id.auth_mfa_verification;
-            CodeVerificationView codeVerificationView = (CodeVerificationView) view.findViewById(R$id.auth_mfa_verification);
+            i = R.id.auth_mfa_verification;
+            CodeVerificationView codeVerificationView = (CodeVerificationView) view.findViewById(R.id.auth_mfa_verification);
             if (codeVerificationView != null) {
-                i = 2131363051;
-                DimmerView dimmerView = (DimmerView) view.findViewById(2131363051);
+                i = R.id.dimmer_view;
+                DimmerView dimmerView = (DimmerView) view.findViewById(R.id.dimmer_view);
                 if (dimmerView != null) {
                     return new WidgetAuthMfaBinding((CoordinatorLayout) view, textView, codeVerificationView, dimmerView);
                 }

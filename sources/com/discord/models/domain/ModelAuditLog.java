@@ -23,30 +23,30 @@ public class ModelAuditLog implements Model {
     private List<ModelWebhook> webhooks;
 
     @Override // com.discord.models.domain.Model
-    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
-        String strNextName = model$JsonReader.nextName();
+    public void assignField(Model.JsonReader jsonReader) throws IOException {
+        String strNextName = jsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "threads":
-                this.threads = model$JsonReader.nextList(new f(model$JsonReader));
+                this.threads = jsonReader.nextList(new f(jsonReader));
                 break;
             case "guild_scheduled_events":
-                this.guildScheduledEvents = model$JsonReader.nextList(new c(model$JsonReader));
+                this.guildScheduledEvents = jsonReader.nextList(new c(jsonReader));
                 break;
             case "webhooks":
-                this.webhooks = model$JsonReader.nextList(new e(model$JsonReader));
+                this.webhooks = jsonReader.nextList(new e(jsonReader));
                 break;
             case "audit_log_entries":
-                this.auditLogEntries = model$JsonReader.nextList(new b(model$JsonReader));
+                this.auditLogEntries = jsonReader.nextList(new b(jsonReader));
                 break;
             case "users":
-                this.users = model$JsonReader.nextList(new g(model$JsonReader));
+                this.users = jsonReader.nextList(new g(jsonReader));
                 break;
             case "integrations":
-                this.integrations = model$JsonReader.nextList(new d(model$JsonReader));
+                this.integrations = jsonReader.nextList(new d(jsonReader));
                 break;
             default:
-                model$JsonReader.skipValue();
+                jsonReader.skipValue();
                 break;
         }
     }

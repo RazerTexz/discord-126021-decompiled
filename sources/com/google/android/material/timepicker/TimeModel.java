@@ -3,7 +3,6 @@ package com.google.android.material.timepicker;
 import android.content.res.Resources;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import b.i.a.g.k.d;
 import java.util.Arrays;
 
@@ -16,7 +15,19 @@ public class TimeModel implements Parcelable {
     public int n;
     public int o;
     public int p;
-    public static final Parcelable$Creator<TimeModel> CREATOR = new TimeModel$a();
+    public static final Parcelable.Creator<TimeModel> CREATOR = new a();
+
+    public final class a implements Parcelable.Creator<TimeModel> {
+        @Override // android.os.Parcelable.Creator
+        public TimeModel createFromParcel(Parcel parcel) {
+            return new TimeModel(parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.readInt());
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public TimeModel[] newArray(int i) {
+            return new TimeModel[i];
+        }
+    }
 
     public TimeModel() {
         this(0, 0, 10, 0);

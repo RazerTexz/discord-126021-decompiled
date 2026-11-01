@@ -1,6 +1,6 @@
 package b.g.a.c.e0.h;
 
-import b.g.a.a.c0$a;
+import b.g.a.a.c0;
 
 /* JADX INFO: compiled from: AsExternalTypeSerializer.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -23,7 +23,7 @@ public class c extends m {
     }
 
     @Override // b.g.a.c.e0.g
-    public c0$a c() {
-        return c0$a.EXTERNAL_PROPERTY;
+    public c0.a c() {
+        return c0.a.EXTERNAL_PROPERTY;
     }
 }

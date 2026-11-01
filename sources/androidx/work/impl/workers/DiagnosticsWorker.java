@@ -1,13 +1,12 @@
 package androidx.work.impl.workers;
 
 import android.content.Context;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
-import androidx.work.ListenableWorker$Result;
+import androidx.work.ListenableWorker;
 import androidx.work.Logger;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
@@ -23,7 +22,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class DiagnosticsWorker extends Worker {
     private static final String TAG = Logger.tagWithPrefix("DiagnosticsWrkr");
 
@@ -33,7 +32,7 @@ public class DiagnosticsWorker extends Worker {
 
     @Override // androidx.work.Worker
     @NonNull
-    public ListenableWorker$Result doWork() {
+    public ListenableWorker.Result doWork() {
         WorkDatabase workDatabase = WorkManagerImpl.getInstance(getApplicationContext()).getWorkDatabase();
         WorkSpecDao workSpecDao = workDatabase.workSpecDao();
         WorkNameDao workNameDao = workDatabase.workNameDao();
@@ -60,7 +59,7 @@ public class DiagnosticsWorker extends Worker {
             logger3.info(str3, "Enqueued work:\n\n", new Throwable[0]);
             Logger.get().info(str3, workSpecRows(workNameDao, workTagDao, systemIdInfoDao, allEligibleWorkSpecsForScheduling), new Throwable[0]);
         }
-        return ListenableWorker$Result.success();
+        return ListenableWorker.Result.success();
     }
 
     @NonNull
@@ -71,7 +70,7 @@ public class DiagnosticsWorker extends Worker {
     @NonNull
     private static String workSpecRows(@NonNull WorkNameDao workNameDao, @NonNull WorkTagDao workTagDao, @NonNull SystemIdInfoDao systemIdInfoDao, @NonNull List<WorkSpec> list) {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("\n Id \t Class Name\t %s\t State\t Unique Name\t Tags\t", Build$VERSION.SDK_INT >= 23 ? "Job Id" : "Alarm Id"));
+        sb.append(String.format("\n Id \t Class Name\t %s\t State\t Unique Name\t Tags\t", Build.VERSION.SDK_INT >= 23 ? "Job Id" : "Alarm Id"));
         for (WorkSpec workSpec : list) {
             Integer numValueOf = null;
             SystemIdInfo systemIdInfo = systemIdInfoDao.getSystemIdInfo(workSpec.f38id);

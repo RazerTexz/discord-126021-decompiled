@@ -8,11 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.DrawableRes;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import b.a.i.a0;
 import b.a.k.b;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: IconRow.kt */
@@ -26,15 +25,15 @@ public final class IconRow extends ConstraintLayout {
     public IconRow(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(R$layout.icon_row, this);
-        int i = R$id.divider;
-        View viewFindViewById = findViewById(R$id.divider);
+        LayoutInflater.from(context).inflate(R.layout.icon_row, this);
+        int i = R.id.divider;
+        View viewFindViewById = findViewById(R.id.divider);
         if (viewFindViewById != null) {
-            i = 2131364034;
-            ImageView imageView = (ImageView) findViewById(2131364034);
+            i = R.id.image;
+            ImageView imageView = (ImageView) findViewById(R.id.image);
             if (imageView != null) {
-                i = 2131365767;
-                TextView textView = (TextView) findViewById(2131365767);
+                i = R.id.text;
+                TextView textView = (TextView) findViewById(R.id.text);
                 if (textView != null) {
                     a0 a0Var = new a0(this, viewFindViewById, imageView, textView);
                     m.checkNotNullExpressionValue(a0Var, "IconRowBinding.inflate(L…ater.from(context), this)");
@@ -56,7 +55,7 @@ public final class IconRow extends ConstraintLayout {
     }
 
     public final void setText(String text) {
-        m.checkNotNullParameter(text, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         TextView textView = this.binding.c;
         m.checkNotNullExpressionValue(textView, "binding.text");
         b.a(textView, text);

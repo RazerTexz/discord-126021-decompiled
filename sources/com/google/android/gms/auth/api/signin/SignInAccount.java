@@ -1,7 +1,7 @@
 package com.google.android.gms.auth.api.signin;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.a.f.c.a.f.g;
 import com.google.android.gms.common.internal.ReflectedParcelable;
@@ -17,7 +17,7 @@ public class SignInAccount extends AbstractSafeParcelable implements ReflectedPa
 
     @Deprecated
     public String l;
-    public static final Parcelable$Creator<SignInAccount> CREATOR = new g();
+    public static final Parcelable.Creator<SignInAccount> CREATOR = new g();
 
     public SignInAccount(String str, GoogleSignInAccount googleSignInAccount, String str2) {
         this.k = googleSignInAccount;

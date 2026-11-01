@@ -2,7 +2,7 @@ package com.google.android.gms.internal.icing;
 
 import android.accounts.Account;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.a.f.h.k.m;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
@@ -15,7 +15,7 @@ public final class zzh extends AbstractSafeParcelable {
     public final String k;
     public final boolean l;
     public final Account m;
-    public static final Parcelable$Creator<zzh> CREATOR = new m();
+    public static final Parcelable.Creator<zzh> CREATOR = new m();
 
     public zzh(zzk[] zzkVarArr, String str, boolean z2, Account account) {
         this.j = zzkVarArr;

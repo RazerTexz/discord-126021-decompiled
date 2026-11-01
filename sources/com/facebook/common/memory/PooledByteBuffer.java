@@ -5,6 +5,13 @@ import java.nio.ByteBuffer;
 
 /* JADX INFO: loaded from: classes.dex */
 public interface PooledByteBuffer extends Closeable {
+
+    public class ClosedException extends RuntimeException {
+        public ClosedException() {
+            super("Invalid bytebuf. Already closed");
+        }
+    }
+
     ByteBuffer getByteBuffer();
 
     byte h(int i);

@@ -5,22 +5,16 @@ import android.media.MediaCrypto;
 import android.media.MediaFormat;
 import android.os.Handler;
 import androidx.annotation.Nullable;
-import b.i.a.c.f2$a;
+import b.i.a.c.f2;
 import b.i.a.c.h2;
 import b.i.a.c.j1;
-import b.i.a.c.j1$b;
 import b.i.a.c.k1;
 import b.i.a.c.x1;
-import b.i.a.c.y2.t$b;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.audio.AudioSink;
-import com.google.android.exoplayer2.audio.AudioSink$ConfigurationException;
-import com.google.android.exoplayer2.audio.AudioSink$InitializationException;
-import com.google.android.exoplayer2.audio.AudioSink$WriteException;
 import com.google.android.exoplayer2.decoder.DecoderInputBuffer;
 import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer;
 import com.google.android.exoplayer2.mediacodec.MediaCodecUtil;
-import com.google.android.exoplayer2.mediacodec.MediaCodecUtil$DecoderQueryException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,7 +26,7 @@ import java.util.regex.Pattern;
 /* JADX INFO: loaded from: classes3.dex */
 public class z extends MediaCodecRenderer implements b.i.a.c.f3.s {
     public final Context N0;
-    public final r$a O0;
+    public final r.a O0;
     public final AudioSink P0;
     public int Q0;
     public boolean R0;
@@ -45,14 +39,29 @@ public class z extends MediaCodecRenderer implements b.i.a.c.f3.s {
     public boolean W0;
 
     @Nullable
-    public f2$a X0;
+    public f2.a X0;
 
-    public z(Context context, t$b t_b, b.i.a.c.y2.v vVar, boolean z2, @Nullable Handler handler, @Nullable r rVar, AudioSink audioSink) {
-        super(1, t_b, vVar, z2, 44100.0f);
+    /* JADX INFO: compiled from: MediaCodecAudioRenderer.java */
+    public final class b implements AudioSink.a {
+        public b(a aVar) {
+        }
+
+        public void a(Exception exc) {
+            b.i.a.c.f3.q.b("MediaCodecAudioRenderer", "Audio sink error", exc);
+            r.a aVar = z.this.O0;
+            Handler handler = aVar.a;
+            if (handler != null) {
+                handler.post(new d(aVar, exc));
+            }
+        }
+    }
+
+    public z(Context context, b.i.a.c.y2.t.b bVar, b.i.a.c.y2.v vVar, boolean z2, @Nullable Handler handler, @Nullable r rVar, AudioSink audioSink) {
+        super(1, bVar, vVar, z2, 44100.0f);
         this.N0 = context.getApplicationContext();
         this.P0 = audioSink;
-        this.O0 = new r$a(handler, rVar);
-        audioSink.t(new z$b(this, null));
+        this.O0 = new r.a(handler, rVar);
+        audioSink.t(new b(null));
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, b.i.a.c.v0
@@ -79,10 +88,10 @@ public class z extends MediaCodecRenderer implements b.i.a.c.f3.s {
     public void C(boolean z2, boolean z3) throws ExoPlaybackException {
         b.i.a.c.v2.e eVar = new b.i.a.c.v2.e();
         this.J0 = eVar;
-        r$a r_a = this.O0;
-        Handler handler = r_a.a;
+        r.a aVar = this.O0;
+        Handler handler = aVar.a;
         if (handler != null) {
-            handler.post(new j(r_a, eVar));
+            handler.post(new j(aVar, eVar));
         }
         h2 h2Var = this.l;
         Objects.requireNonNull(h2Var);
@@ -183,7 +192,7 @@ public class z extends MediaCodecRenderer implements b.i.a.c.f3.s {
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
-    public List<b.i.a.c.y2.u> W(b.i.a.c.y2.v vVar, j1 j1Var, boolean z2) throws MediaCodecUtil$DecoderQueryException {
+    public List<b.i.a.c.y2.u> W(b.i.a.c.y2.v vVar, j1 j1Var, boolean z2) throws MediaCodecUtil.DecoderQueryException {
         b.i.a.c.y2.u uVarD;
         String str = j1Var.w;
         if (str == null) {
@@ -207,7 +216,7 @@ public class z extends MediaCodecRenderer implements b.i.a.c.f3.s {
     /* JADX WARN: Code duplicated, block: B:24:0x0066  */
     /* JADX WARN: Code duplicated, block: B:35:0x00b4  */
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
-    public b.i.a.c.y2.t$a Y(b.i.a.c.y2.u uVar, j1 j1Var, @Nullable MediaCrypto mediaCrypto, float f) {
+    public b.i.a.c.y2.t.a Y(b.i.a.c.y2.u uVar, j1 j1Var, @Nullable MediaCrypto mediaCrypto, float f) {
         boolean z2;
         boolean z3;
         j1[] j1VarArr = this.p;
@@ -268,12 +277,12 @@ public class z extends MediaCodecRenderer implements b.i.a.c.f3.s {
             AudioSink audioSink = this.P0;
             int i3 = j1Var.J;
             int i4 = j1Var.K;
-            j1$b j1_b = new j1$b();
-            j1_b.k = "audio/raw";
-            j1_b.f1023x = i3;
-            j1_b.f1024y = i4;
-            j1_b.f1025z = 4;
-            if (audioSink.u(j1_b.a()) == 2) {
+            j1.b bVar = new j1.b();
+            bVar.k = "audio/raw";
+            bVar.f1023x = i3;
+            bVar.f1024y = i4;
+            bVar.f1025z = 4;
+            if (audioSink.u(bVar.a()) == 2) {
                 mediaFormat.setInteger("pcm-encoding", 4);
             }
         }
@@ -281,7 +290,7 @@ public class z extends MediaCodecRenderer implements b.i.a.c.f3.s {
             z4 = true;
         }
         this.S0 = z4 ? j1Var : null;
-        return new b.i.a.c.y2.t$a(uVar, mediaFormat, j1Var, null, mediaCrypto, 0, false);
+        return new b.i.a.c.y2.t.a(uVar, mediaFormat, j1Var, null, mediaCrypto, 0, false);
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, b.i.a.c.f2
@@ -302,10 +311,10 @@ public class z extends MediaCodecRenderer implements b.i.a.c.f3.s {
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
     public void d0(Exception exc) {
         b.i.a.c.f3.q.b("MediaCodecAudioRenderer", "Audio codec error", exc);
-        r$a r_a = this.O0;
-        Handler handler = r_a.a;
+        r.a aVar = this.O0;
+        Handler handler = aVar.a;
         if (handler != null) {
-            handler.post(new c(r_a, exc));
+            handler.post(new c(aVar, exc));
         }
     }
 
@@ -319,19 +328,19 @@ public class z extends MediaCodecRenderer implements b.i.a.c.f3.s {
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
     public void e0(String str, long j, long j2) {
-        r$a r_a = this.O0;
-        Handler handler = r_a.a;
+        r.a aVar = this.O0;
+        Handler handler = aVar.a;
         if (handler != null) {
-            handler.post(new f(r_a, str, j, j2));
+            handler.post(new f(aVar, str, j, j2));
         }
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
     public void f0(String str) {
-        r$a r_a = this.O0;
-        Handler handler = r_a.a;
+        r.a aVar = this.O0;
+        Handler handler = aVar.a;
         if (handler != null) {
-            handler.post(new g(r_a, str));
+            handler.post(new g(aVar, str));
         }
     }
 
@@ -339,11 +348,11 @@ public class z extends MediaCodecRenderer implements b.i.a.c.f3.s {
     @Nullable
     public b.i.a.c.v2.g g0(k1 k1Var) throws ExoPlaybackException {
         b.i.a.c.v2.g gVarG0 = super.g0(k1Var);
-        r$a r_a = this.O0;
+        r.a aVar = this.O0;
         j1 j1Var = k1Var.f1027b;
-        Handler handler = r_a.a;
+        Handler handler = aVar.a;
         if (handler != null) {
-            handler.post(new e(r_a, j1Var, gVarG0));
+            handler.post(new e(aVar, j1Var, gVarG0));
         }
         return gVarG0;
     }
@@ -371,14 +380,14 @@ public class z extends MediaCodecRenderer implements b.i.a.c.f3.s {
             } else {
                 iR = "audio/raw".equals(j1Var.w) ? j1Var.L : 2;
             }
-            j1$b j1_b = new j1$b();
-            j1_b.k = "audio/raw";
-            j1_b.f1025z = iR;
-            j1_b.A = j1Var.M;
-            j1_b.B = j1Var.N;
-            j1_b.f1023x = mediaFormat.getInteger("channel-count");
-            j1_b.f1024y = mediaFormat.getInteger("sample-rate");
-            j1 j1VarA = j1_b.a();
+            j1.b bVar = new j1.b();
+            bVar.k = "audio/raw";
+            bVar.f1025z = iR;
+            bVar.A = j1Var.M;
+            bVar.B = j1Var.N;
+            bVar.f1023x = mediaFormat.getInteger("channel-count");
+            bVar.f1024y = mediaFormat.getInteger("sample-rate");
+            j1 j1VarA = bVar.a();
             if (this.R0 && j1VarA.J == 6 && (i = j1Var.J) < 6) {
                 iArr = new int[i];
                 for (int i2 = 0; i2 < j1Var.J; i2++) {
@@ -389,7 +398,7 @@ public class z extends MediaCodecRenderer implements b.i.a.c.f3.s {
         }
         try {
             this.P0.v(j1Var, 0, iArr);
-        } catch (AudioSink$ConfigurationException e) {
+        } catch (AudioSink.ConfigurationException e) {
             throw z(e, e.format, false, 5001);
         }
     }
@@ -440,9 +449,9 @@ public class z extends MediaCodecRenderer implements b.i.a.c.f3.s {
             }
             this.J0.e += i3;
             return true;
-        } catch (AudioSink$InitializationException e) {
+        } catch (AudioSink.InitializationException e) {
             throw z(e, e.format, e.isRecoverable, 5001);
-        } catch (AudioSink$WriteException e2) {
+        } catch (AudioSink.WriteException e2) {
             throw z(e2, j1Var, e2.isRecoverable, 5002);
         }
     }
@@ -451,12 +460,12 @@ public class z extends MediaCodecRenderer implements b.i.a.c.f3.s {
     public void p0() throws ExoPlaybackException {
         try {
             this.P0.j();
-        } catch (AudioSink$WriteException e) {
+        } catch (AudioSink.WriteException e) {
             throw z(e, e.format, e.isRecoverable, 5002);
         }
     }
 
-    @Override // b.i.a.c.v0, b.i.a.c.b2$b
+    @Override // b.i.a.c.v0, b.i.a.c.b2.b
     public void r(int i, @Nullable Object obj) throws ExoPlaybackException {
         if (i == 2) {
             this.P0.q(((Float) obj).floatValue());
@@ -477,7 +486,7 @@ public class z extends MediaCodecRenderer implements b.i.a.c.f3.s {
                 this.P0.l(((Integer) obj).intValue());
                 break;
             case 11:
-                this.X0 = (f2$a) obj;
+                this.X0 = (f2.a) obj;
                 break;
         }
     }
@@ -494,7 +503,7 @@ public class z extends MediaCodecRenderer implements b.i.a.c.f3.s {
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
-    public int y0(b.i.a.c.y2.v vVar, j1 j1Var) throws MediaCodecUtil$DecoderQueryException {
+    public int y0(b.i.a.c.y2.v vVar, j1 j1Var) throws MediaCodecUtil.DecoderQueryException {
         if (!b.i.a.c.f3.t.h(j1Var.w)) {
             return 0;
         }
@@ -511,12 +520,12 @@ public class z extends MediaCodecRenderer implements b.i.a.c.f3.s {
         AudioSink audioSink = this.P0;
         int i3 = j1Var.J;
         int i4 = j1Var.K;
-        j1$b j1_b = new j1$b();
-        j1_b.k = "audio/raw";
-        j1_b.f1023x = i3;
-        j1_b.f1024y = i4;
-        j1_b.f1025z = 2;
-        if (!audioSink.a(j1_b.a())) {
+        j1.b bVar = new j1.b();
+        bVar.k = "audio/raw";
+        bVar.f1023x = i3;
+        bVar.f1024y = i4;
+        bVar.f1025z = 2;
+        if (!audioSink.a(bVar.a())) {
             return 1;
         }
         List<b.i.a.c.y2.u> listW = W(vVar, j1Var, false);

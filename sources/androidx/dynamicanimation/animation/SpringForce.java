@@ -2,7 +2,6 @@ package androidx.dynamicanimation.animation;
 
 import androidx.annotation.FloatRange;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class SpringForce implements Force {
@@ -22,7 +21,7 @@ public final class SpringForce implements Force {
     private double mGammaMinus;
     private double mGammaPlus;
     private boolean mInitialized;
-    private final DynamicAnimation$MassState mMassState;
+    private final DynamicAnimation.MassState mMassState;
     public double mNaturalFreq;
     private double mValueThreshold;
     private double mVelocityThreshold;
@@ -32,11 +31,11 @@ public final class SpringForce implements Force {
         this.mDampingRatio = 0.5d;
         this.mInitialized = false;
         this.mFinalPosition = UNSET;
-        this.mMassState = new DynamicAnimation$MassState();
+        this.mMassState = new DynamicAnimation.MassState();
     }
 
     @Override // androidx.dynamicanimation.animation.Force
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public float getAcceleration(float f, float f2) {
         float finalPosition = f - getFinalPosition();
         double d = this.mNaturalFreq;
@@ -77,7 +76,7 @@ public final class SpringForce implements Force {
     }
 
     @Override // androidx.dynamicanimation.animation.Force
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public boolean isAtEquilibrium(float f, float f2) {
         return ((double) Math.abs(f2)) < this.mVelocityThreshold && ((double) Math.abs(f - getFinalPosition())) < this.mValueThreshold;
     }
@@ -111,7 +110,7 @@ public final class SpringForce implements Force {
         this.mVelocityThreshold = dAbs * VELOCITY_THRESHOLD_MULTIPLIER;
     }
 
-    public DynamicAnimation$MassState updateValues(double d, double d2, long j) {
+    public DynamicAnimation.MassState updateValues(double d, double d2, long j) {
         double dCos;
         double dPow;
         init();
@@ -152,10 +151,10 @@ public final class SpringForce implements Force {
             dCos = (((Math.cos(d23 * d3) * d18 * d23) + dSin2) * dPow5) + d21;
             dPow = dSin;
         }
-        DynamicAnimation$MassState dynamicAnimation$MassState = this.mMassState;
-        dynamicAnimation$MassState.mValue = (float) (dPow + this.mFinalPosition);
-        dynamicAnimation$MassState.mVelocity = (float) dCos;
-        return dynamicAnimation$MassState;
+        DynamicAnimation.MassState massState = this.mMassState;
+        massState.mValue = (float) (dPow + this.mFinalPosition);
+        massState.mVelocity = (float) dCos;
+        return massState;
     }
 
     public SpringForce(float f) {
@@ -163,7 +162,7 @@ public final class SpringForce implements Force {
         this.mDampingRatio = 0.5d;
         this.mInitialized = false;
         this.mFinalPosition = UNSET;
-        this.mMassState = new DynamicAnimation$MassState();
+        this.mMassState = new DynamicAnimation.MassState();
         this.mFinalPosition = f;
     }
 }

@@ -5,6 +5,7 @@ import androidx.room.EntityInsertionAdapter;
 import androidx.room.RoomDatabase;
 import androidx.room.RoomSQLiteQuery;
 import androidx.room.util.DBUtil;
+import androidx.sqlite.db.SupportSQLiteStatement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +14,42 @@ public final class WorkTagDao_Impl implements WorkTagDao {
     private final RoomDatabase __db;
     private final EntityInsertionAdapter<WorkTag> __insertionAdapterOfWorkTag;
 
+    /* JADX INFO: renamed from: androidx.work.impl.model.WorkTagDao_Impl$1, reason: invalid class name */
+    public class AnonymousClass1 extends EntityInsertionAdapter<WorkTag> {
+        public AnonymousClass1(RoomDatabase roomDatabase) {
+            super(roomDatabase);
+        }
+
+        @Override // androidx.room.EntityInsertionAdapter
+        public /* bridge */ /* synthetic */ void bind(SupportSQLiteStatement supportSQLiteStatement, WorkTag workTag) {
+            bind2(supportSQLiteStatement, workTag);
+        }
+
+        @Override // androidx.room.SharedSQLiteStatement
+        public String createQuery() {
+            return "INSERT OR IGNORE INTO `WorkTag` (`tag`,`work_spec_id`) VALUES (?,?)";
+        }
+
+        /* JADX INFO: renamed from: bind, reason: avoid collision after fix types in other method */
+        public void bind2(SupportSQLiteStatement supportSQLiteStatement, WorkTag workTag) {
+            String str = workTag.tag;
+            if (str == null) {
+                supportSQLiteStatement.bindNull(1);
+            } else {
+                supportSQLiteStatement.bindString(1, str);
+            }
+            String str2 = workTag.workSpecId;
+            if (str2 == null) {
+                supportSQLiteStatement.bindNull(2);
+            } else {
+                supportSQLiteStatement.bindString(2, str2);
+            }
+        }
+    }
+
     public WorkTagDao_Impl(RoomDatabase roomDatabase) {
         this.__db = roomDatabase;
-        this.__insertionAdapterOfWorkTag = new WorkTagDao_Impl$1(this, roomDatabase);
+        this.__insertionAdapterOfWorkTag = new AnonymousClass1(roomDatabase);
     }
 
     @Override // androidx.work.impl.model.WorkTagDao

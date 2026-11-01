@@ -6,14 +6,17 @@ import android.text.style.BackgroundColorSpan;
 import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import android.view.View;
 import androidx.exifinterface.media.ExifInterface;
 import b.d.b.a.a;
+import com.discord.R;
 import com.discord.simpleast.core.node.Node;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.spans.ClickableSpan;
-import com.discord.utilities.textprocessing.node.UserMentionNode$RenderContext;
+import com.discord.utilities.textprocessing.node.UserMentionNode.RenderContext;
 import d0.t.n;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -24,19 +27,61 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: UserMentionNode.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class UserMentionNode<T extends UserMentionNode$RenderContext> extends Node<T> {
-    private final UserMentionNode$Type type;
+public final class UserMentionNode<T extends RenderContext> extends Node<T> {
+    private final Type type;
     private final long userId;
 
-    public /* synthetic */ UserMentionNode(UserMentionNode$Type userMentionNode$Type, long j, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(userMentionNode$Type, (i & 2) != 0 ? -1L : j);
+    /* JADX INFO: renamed from: com.discord.utilities.textprocessing.node.UserMentionNode$renderUserMention$1, reason: invalid class name */
+    /* JADX INFO: compiled from: UserMentionNode.kt */
+    public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+        public final /* synthetic */ Function1 $onClick;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Function1 function1) {
+            super(1);
+            this.$onClick = function1;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+            this.$onClick.invoke(Long.valueOf(UserMentionNode.this.getUserId()));
+        }
+    }
+
+    /* JADX INFO: compiled from: UserMentionNode.kt */
+    public interface RenderContext {
+        Context getContext();
+
+        long getMyId();
+
+        Function1<Long, Unit> getUserMentionOnClick();
+
+        Map<Long, String> getUserNames();
+    }
+
+    /* JADX INFO: compiled from: UserMentionNode.kt */
+    public enum Type {
+        USER,
+        HERE,
+        EVERYONE
+    }
+
+    public /* synthetic */ UserMentionNode(Type type, long j, int i, DefaultConstructorMarker defaultConstructorMarker) {
+        this(type, (i & 2) != 0 ? -1L : j);
     }
 
     public boolean equals(Object other) {
         return (other instanceof UserMentionNode) && ((UserMentionNode) other).userId == this.userId;
     }
 
-    public final UserMentionNode$Type getType() {
+    public final Type getType() {
         return this.type;
     }
 
@@ -46,7 +91,7 @@ public final class UserMentionNode<T extends UserMentionNode$RenderContext> exte
 
     @Override // com.discord.simpleast.core.node.Node
     public /* bridge */ /* synthetic */ void render(SpannableStringBuilder spannableStringBuilder, Object obj) {
-        render(spannableStringBuilder, (UserMentionNode$RenderContext) obj);
+        render(spannableStringBuilder, (RenderContext) obj);
     }
 
     private final void renderUserMention(SpannableStringBuilder builder, T renderContext) {
@@ -63,12 +108,12 @@ public final class UserMentionNode<T extends UserMentionNode$RenderContext> exte
         String string = sbU.toString();
         ArrayList arrayList = new ArrayList();
         arrayList.add(new StyleSpan(1));
-        arrayList.add(new BackgroundColorSpan(ColorCompat.getThemedColor(context, 2130970286)));
+        arrayList.add(new BackgroundColorSpan(ColorCompat.getThemedColor(context, R.attr.theme_chat_mention_background)));
         Function1<Long, Unit> userMentionOnClick = renderContext.getUserMentionOnClick();
         if (!zContainsKey || userMentionOnClick == null) {
-            arrayList.add(new ForegroundColorSpan(ColorCompat.getThemedColor(context, 2130970287)));
+            arrayList.add(new ForegroundColorSpan(ColorCompat.getThemedColor(context, R.attr.theme_chat_mention_foreground)));
         } else {
-            arrayList.add(new ClickableSpan(Integer.valueOf(ColorCompat.getThemedColor(context, 2130970287)), false, null, new UserMentionNode$renderUserMention$1(this, userMentionOnClick), 4, null));
+            arrayList.add(new ClickableSpan(Integer.valueOf(ColorCompat.getThemedColor(context, R.attr.theme_chat_mention_foreground)), false, null, new AnonymousClass1(userMentionOnClick), 4, null));
         }
         builder.append((CharSequence) string);
         Iterator it = arrayList.iterator();
@@ -78,23 +123,23 @@ public final class UserMentionNode<T extends UserMentionNode$RenderContext> exte
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public UserMentionNode(UserMentionNode$Type userMentionNode$Type, long j) {
+    public UserMentionNode(Type type, long j) {
         super(null, 1, null);
-        m.checkNotNullParameter(userMentionNode$Type, "type");
-        this.type = userMentionNode$Type;
+        m.checkNotNullParameter(type, "type");
+        this.type = type;
         this.userId = j;
     }
 
     public void render(SpannableStringBuilder builder, T renderContext) {
         m.checkNotNullParameter(builder, "builder");
         m.checkNotNullParameter(renderContext, "renderContext");
-        if (this.type == UserMentionNode$Type.USER) {
+        if (this.type == Type.USER) {
             renderUserMention(builder, renderContext);
             return;
         }
-        List listListOf = n.listOf(new StyleSpan(1), new BackgroundColorSpan(ColorCompat.getThemedColor(renderContext.getContext(), 2130970286)), new ForegroundColorSpan(ColorCompat.getThemedColor(renderContext.getContext(), 2130970287)));
+        List listListOf = n.listOf(new StyleSpan(1), new BackgroundColorSpan(ColorCompat.getThemedColor(renderContext.getContext(), R.attr.theme_chat_mention_background)), new ForegroundColorSpan(ColorCompat.getThemedColor(renderContext.getContext(), R.attr.theme_chat_mention_foreground)));
         int length = builder.length();
-        builder.append((CharSequence) (this.type == UserMentionNode$Type.HERE ? "@here" : "@everyone"));
+        builder.append((CharSequence) (this.type == Type.HERE ? "@here" : "@everyone"));
         Iterator it = listListOf.iterator();
         while (it.hasNext()) {
             builder.setSpan(it.next(), length, builder.length(), 33);

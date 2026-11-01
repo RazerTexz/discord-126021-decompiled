@@ -1,13 +1,13 @@
 package com.google.android.gms.safetynet;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.i.a.f.k.d;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzd extends AbstractSafeParcelable {
-    public static final Parcelable$Creator<zzd> CREATOR = new d();
+    public static final Parcelable.Creator<zzd> CREATOR = new d();
     public final long j;
     public final HarmfulAppsData[] k;
     public final int l;

@@ -1,7 +1,5 @@
 package b.g.a.c.g0.t;
 
-import b.g.a.a.p$a;
-import b.g.a.c.i0.n$a;
 import b.g.a.c.x;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import java.io.Serializable;
@@ -22,11 +20,11 @@ public class s extends b.g.a.c.g0.c implements Serializable {
     public b.g.a.c.n<Object> c(l lVar, Class<?> cls, x xVar) throws JsonMappingException {
         b.g.a.c.j jVar = this._nonTrivialBaseType;
         b.g.a.c.n<Object> nVarT = jVar != null ? xVar.t(xVar.k(jVar, cls), this) : xVar.u(cls, this);
-        b.g.a.c.i0.n n_a = this._nameTransformer;
+        b.g.a.c.i0.n aVar = this._nameTransformer;
         if (nVarT.e() && (nVarT instanceof t)) {
-            n_a = new n$a(n_a, ((t) nVarT)._nameTransformer);
+            aVar = new b.g.a.c.i0.n.a(aVar, ((t) nVarT)._nameTransformer);
         }
-        b.g.a.c.n<Object> nVarH = nVarT.h(n_a);
+        b.g.a.c.n<Object> nVarH = nVarT.h(aVar);
         this.n = this.n.b(cls, nVarH);
         return nVarH;
     }
@@ -34,18 +32,18 @@ public class s extends b.g.a.c.g0.c implements Serializable {
     @Override // b.g.a.c.g0.c
     public void f(b.g.a.c.n<Object> nVar) {
         if (nVar != null) {
-            b.g.a.c.i0.n n_a = this._nameTransformer;
+            b.g.a.c.i0.n aVar = this._nameTransformer;
             if (nVar.e() && (nVar instanceof t)) {
-                n_a = new n$a(n_a, ((t) nVar)._nameTransformer);
+                aVar = new b.g.a.c.i0.n.a(aVar, ((t) nVar)._nameTransformer);
             }
-            nVar = nVar.h(n_a);
+            nVar = nVar.h(aVar);
         }
         super.f(nVar);
     }
 
     @Override // b.g.a.c.g0.c
     public b.g.a.c.g0.c g(b.g.a.c.i0.n nVar) {
-        return new s(this, new n$a(nVar, this._nameTransformer), new b.g.a.b.p.j(nVar.a(this._name._value)));
+        return new s(this, new b.g.a.c.i0.n.a(nVar, this._nameTransformer), new b.g.a.b.p.j(nVar.a(this._name._value)));
     }
 
     @Override // b.g.a.c.g0.c
@@ -64,7 +62,7 @@ public class s extends b.g.a.c.g0.c implements Serializable {
         }
         Object obj2 = this._suppressableValue;
         if (obj2 != null) {
-            if (p$a.NON_EMPTY == obj2) {
+            if (b.g.a.a.p.a.NON_EMPTY == obj2) {
                 if (nVarC.d(xVar, objInvoke)) {
                     return;
                 }

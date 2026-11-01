@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetSettingsDeveloperBinding;
 import com.discord.views.CheckedSetting;
 import com.google.android.material.button.MaterialButton;
@@ -29,29 +29,29 @@ public final /* synthetic */ class WidgetSettingsDeveloper$binding$2 extends k i
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSettingsDeveloperBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.developer_settings_crash_discord_jnibridge;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.developer_settings_crash_discord_jnibridge);
+        int i = R.id.developer_settings_crash_discord_jnibridge;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.developer_settings_crash_discord_jnibridge);
         if (materialButton != null) {
-            i = R$id.developer_settings_crash_discord_nonfatal;
-            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.developer_settings_crash_discord_nonfatal);
+            i = R.id.developer_settings_crash_discord_nonfatal;
+            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.developer_settings_crash_discord_nonfatal);
             if (materialButton2 != null) {
-                i = R$id.developer_settings_crash_kotlin;
-                MaterialButton materialButton3 = (MaterialButton) view.findViewById(R$id.developer_settings_crash_kotlin);
+                i = R.id.developer_settings_crash_kotlin;
+                MaterialButton materialButton3 = (MaterialButton) view.findViewById(R.id.developer_settings_crash_kotlin);
                 if (materialButton3 != null) {
-                    i = R$id.developer_settings_experiments;
-                    RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.developer_settings_experiments);
+                    i = R.id.developer_settings_experiments;
+                    RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.developer_settings_experiments);
                     if (recyclerView != null) {
-                        i = R$id.developer_settings_notices;
-                        RecyclerView recyclerView2 = (RecyclerView) view.findViewById(R$id.developer_settings_notices);
+                        i = R.id.developer_settings_notices;
+                        RecyclerView recyclerView2 = (RecyclerView) view.findViewById(R.id.developer_settings_notices);
                         if (recyclerView2 != null) {
-                            i = R$id.developer_settings_simulate_gateway_reconnect;
-                            MaterialButton materialButton4 = (MaterialButton) view.findViewById(R$id.developer_settings_simulate_gateway_reconnect);
+                            i = R.id.developer_settings_simulate_gateway_reconnect;
+                            MaterialButton materialButton4 = (MaterialButton) view.findViewById(R.id.developer_settings_simulate_gateway_reconnect);
                             if (materialButton4 != null) {
-                                i = R$id.settings_developer_screenshot_bug_reporting;
-                                CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R$id.settings_developer_screenshot_bug_reporting);
+                                i = R.id.settings_developer_screenshot_bug_reporting;
+                                CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R.id.settings_developer_screenshot_bug_reporting);
                                 if (checkedSetting != null) {
-                                    i = R$id.textView;
-                                    TextView textView = (TextView) view.findViewById(R$id.textView);
+                                    i = R.id.textView;
+                                    TextView textView = (TextView) view.findViewById(R.id.textView);
                                     if (textView != null) {
                                         return new WidgetSettingsDeveloperBinding((CoordinatorLayout) view, materialButton, materialButton2, materialButton3, recyclerView, recyclerView2, materialButton4, checkedSetting, textView);
                                     }

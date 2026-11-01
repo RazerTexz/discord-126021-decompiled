@@ -5,10 +5,10 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.errorprone.annotations.concurrent.LazyInit;
 import com.google.j2objc.annotations.RetainedWith;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 import java.util.SortedMap;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
@@ -18,7 +18,7 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 public abstract class q<K, V> implements Map<K, V>, Serializable {
 
     @LazyInit
-    public transient r<Map$Entry<K, V>> j;
+    public transient r<Map.Entry<K, V>> j;
 
     @RetainedWith
     @LazyInit
@@ -28,6 +28,40 @@ public abstract class q<K, V> implements Map<K, V>, Serializable {
     @LazyInit
     public transient n<V> l;
 
+    /* JADX INFO: compiled from: ImmutableMap.java */
+    public class b implements Serializable {
+        private static final long serialVersionUID = 0;
+        private final Object[] keys;
+        private final Object[] values;
+
+        public b(q<?, ?> qVar) {
+            this.keys = new Object[qVar.size()];
+            this.values = new Object[qVar.size()];
+            s0<Map.Entry<?, ?>> s0VarJ = qVar.e().j();
+            int i = 0;
+            while (s0VarJ.hasNext()) {
+                Map.Entry<?, ?> next = s0VarJ.next();
+                this.keys[i] = next.getKey();
+                this.values[i] = next.getValue();
+                i++;
+            }
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public Object readResolve() {
+            a aVar = new a(this.keys.length);
+            int i = 0;
+            while (true) {
+                Object[] objArr = this.keys;
+                if (i >= objArr.length) {
+                    return aVar.a();
+                }
+                aVar.c(objArr[i], this.values[i]);
+                i++;
+            }
+        }
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static <K, V> q<K, V> a(Map<? extends K, ? extends V> map) {
         if ((map instanceof q) && !(map instanceof SortedMap)) {
@@ -36,21 +70,21 @@ public abstract class q<K, V> implements Map<K, V>, Serializable {
                 return qVar;
             }
         }
-        Set<Map$Entry<? extends K, ? extends V>> setEntrySet = map.entrySet();
+        Set<Map.Entry<? extends K, ? extends V>> setEntrySet = map.entrySet();
         boolean z2 = setEntrySet instanceof Collection;
-        q$a q_a = new q$a(z2 ? setEntrySet.size() : 4);
+        a aVar = new a(z2 ? setEntrySet.size() : 4);
         if (z2) {
-            q_a.b(setEntrySet.size() + q_a.f1648b);
+            aVar.b(setEntrySet.size() + aVar.f1648b);
         }
         Iterator<T> it = setEntrySet.iterator();
         while (it.hasNext()) {
-            Map$Entry map$Entry = (Map$Entry) it.next();
-            q_a.c(map$Entry.getKey(), map$Entry.getValue());
+            Map.Entry entry = (Map.Entry) it.next();
+            aVar.c(entry.getKey(), entry.getValue());
         }
-        return q_a.a();
+        return aVar.a();
     }
 
-    public abstract r<Map$Entry<K, V>> b();
+    public abstract r<Map.Entry<K, V>> b();
 
     public abstract r<K> c();
 
@@ -77,12 +111,12 @@ public abstract class q<K, V> implements Map<K, V>, Serializable {
 
     public abstract n<V> d();
 
-    public r<Map$Entry<K, V>> e() {
-        r<Map$Entry<K, V>> rVar = this.j;
+    public r<Map.Entry<K, V>> e() {
+        r<Map.Entry<K, V>> rVar = this.j;
         if (rVar != null) {
             return rVar;
         }
-        r<Map$Entry<K, V>> rVarB = b();
+        r<Map.Entry<K, V>> rVarB = b();
         this.j = rVarB;
         return rVarB;
     }
@@ -161,14 +195,14 @@ public abstract class q<K, V> implements Map<K, V>, Serializable {
         StringBuilder sb = new StringBuilder((int) Math.min(((long) size) * 8, Permission.MANAGE_EMOJIS_AND_STICKERS));
         sb.append('{');
         boolean z2 = true;
-        for (Map$Entry map$Entry : entrySet()) {
+        for (Map.Entry entry : entrySet()) {
             if (!z2) {
                 sb.append(", ");
             }
             z2 = false;
-            sb.append(map$Entry.getKey());
+            sb.append(entry.getKey());
             sb.append('=');
-            sb.append(map$Entry.getValue());
+            sb.append(entry.getValue());
         }
         sb.append('}');
         return sb.toString();
@@ -186,6 +220,86 @@ public abstract class q<K, V> implements Map<K, V>, Serializable {
     }
 
     public Object writeReplace() {
-        return new q$b(this);
+        return new b(this);
+    }
+
+    /* JADX INFO: compiled from: ImmutableMap.java */
+    public class a<K, V> {
+        public Object[] a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public int f1648b = 0;
+        public boolean c = false;
+
+        public a(int i) {
+            this.a = new Object[i * 2];
+        }
+
+        public q<K, V> a() {
+            int i;
+            this.c = true;
+            int i2 = this.f1648b;
+            Object[] objArr = this.a;
+            if (i2 == 0) {
+                return (i0) i0.m;
+            }
+            int[] iArr = null;
+            if (i2 == 1) {
+                b.i.a.f.e.o.f.z(objArr[0], objArr[1]);
+                return new i0(null, objArr, 1);
+            }
+            b.i.a.f.e.o.f.C(i2, objArr.length >> 1);
+            int iK = r.k(i2);
+            if (i2 == 1) {
+                b.i.a.f.e.o.f.z(objArr[0], objArr[1]);
+            } else {
+                int i3 = iK - 1;
+                int[] iArr2 = new int[iK];
+                Arrays.fill(iArr2, -1);
+                for (int i4 = 0; i4 < i2; i4++) {
+                    int i5 = i4 * 2;
+                    int i6 = i5 + 0;
+                    Object obj = objArr[i6];
+                    Object obj2 = objArr[i5 + 1];
+                    b.i.a.f.e.o.f.z(obj, obj2);
+                    int iC1 = b.i.a.f.e.o.f.c1(obj.hashCode());
+                    while (true) {
+                        i = iC1 & i3;
+                        int i7 = iArr2[i];
+                        if (i7 == -1) {
+                            break;
+                        }
+                        if (objArr[i7].equals(obj)) {
+                            throw new IllegalArgumentException("Multiple entries with same key: " + obj + "=" + obj2 + " and " + objArr[i7] + "=" + objArr[1 ^ i7]);
+                        }
+                        iC1 = i + 1;
+                    }
+                    iArr2[i] = i6;
+                }
+                iArr = iArr2;
+            }
+            return new i0(iArr, objArr, i2);
+        }
+
+        public final void b(int i) {
+            int i2 = i * 2;
+            Object[] objArr = this.a;
+            if (i2 > objArr.length) {
+                this.a = Arrays.copyOf(objArr, n.b.a(objArr.length, i2));
+                this.c = false;
+            }
+        }
+
+        @CanIgnoreReturnValue
+        public a<K, V> c(K k, V v) {
+            b(this.f1648b + 1);
+            b.i.a.f.e.o.f.z(k, v);
+            Object[] objArr = this.a;
+            int i = this.f1648b;
+            objArr[i * 2] = k;
+            objArr[(i * 2) + 1] = v;
+            this.f1648b = i + 1;
+            return this;
+        }
     }
 }

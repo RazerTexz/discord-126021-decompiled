@@ -1,7 +1,6 @@
 package lombok.javac.handlers;
 
-import com.sun.tools.javac.tree.JCTree$JCAnnotation;
-import com.sun.tools.javac.tree.JCTree$JCModifiers;
+import com.sun.tools.javac.tree.JCTree;
 import com.sun.tools.javac.util.List;
 import java.lang.annotation.Annotation;
 import lombok.AccessLevel;
@@ -24,7 +23,7 @@ public class HandleValue extends JavacAnnotationHandler<Value> {
     private HandleToString handleToString = new HandleToString();
 
     @Override // lombok.javac.JavacAnnotationHandler
-    public void handle(AnnotationValues<Value> annotation, JCTree$JCAnnotation ast, JavacNode annotationNode) {
+    public void handle(AnnotationValues<Value> annotation, JCTree.JCAnnotation ast, JavacNode annotationNode) {
         HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.VALUE_FLAG_USAGE, "@Value");
         JavacHandlerUtil.deleteAnnotationIfNeccessary(annotationNode, (Class<? extends Annotation>) Value.class, "lombok.experimental.Value");
         JavacNode typeNode = annotationNode.up();
@@ -35,14 +34,14 @@ public class HandleValue extends JavacAnnotationHandler<Value> {
         }
         String staticConstructorName = annotation.getInstance().staticConstructor();
         if (!JavacHandlerUtil.hasAnnotationAndDeleteIfNeccessary(NonFinal.class, typeNode)) {
-            JCTree$JCModifiers jcm = typeNode.get().mods;
+            JCTree.JCModifiers jcm = typeNode.get().mods;
             if ((jcm.flags & 16) == 0) {
                 jcm.flags |= 16;
                 typeNode.rebuild();
             }
         }
         this.handleFieldDefaults.generateFieldDefaultsForType(typeNode, annotationNode, AccessLevel.PRIVATE, true, true);
-        this.handleConstructor.generateAllArgsConstructor(typeNode, AccessLevel.PUBLIC, staticConstructorName, HandleConstructor$SkipIfConstructorExists.YES, annotationNode);
+        this.handleConstructor.generateAllArgsConstructor(typeNode, AccessLevel.PUBLIC, staticConstructorName, HandleConstructor.SkipIfConstructorExists.YES, annotationNode);
         this.handleConstructor.generateExtraNoArgsConstructor(typeNode, annotationNode);
         this.handleGetter.generateGetterForType(typeNode, annotationNode, AccessLevel.PUBLIC, true, List.nil());
         this.handleEqualsAndHashCode.generateEqualsAndHashCodeForType(typeNode, annotationNode);

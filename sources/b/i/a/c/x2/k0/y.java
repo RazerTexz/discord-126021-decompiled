@@ -27,9 +27,9 @@ public final class y implements i0 {
     }
 
     @Override // b.i.a.c.x2.k0.i0
-    public void a(b.i.a.c.f3.d0 d0Var, b.i.a.c.x2.j jVar, i0$d i0_d) {
+    public void a(b.i.a.c.f3.d0 d0Var, b.i.a.c.x2.j jVar, i0.d dVar) {
         this.e = d0Var;
-        this.a.e(jVar, i0_d);
+        this.a.e(jVar, dVar);
     }
 
     @Override // b.i.a.c.x2.k0.i0

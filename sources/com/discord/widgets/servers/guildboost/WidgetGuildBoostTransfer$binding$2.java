@@ -3,7 +3,7 @@ package com.discord.widgets.servers.guildboost;
 import android.view.View;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetGuildBoostTransferBinding;
 import com.discord.utilities.dimmer.DimmerView;
 import com.discord.views.guildboost.GuildBoostConfirmationView;
@@ -29,29 +29,29 @@ public final /* synthetic */ class WidgetGuildBoostTransfer$binding$2 extends k 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGuildBoostTransferBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = 2131363051;
-        DimmerView dimmerView = (DimmerView) view.findViewById(2131363051);
+        int i = R.id.dimmer_view;
+        DimmerView dimmerView = (DimmerView) view.findViewById(R.id.dimmer_view);
         if (dimmerView != null) {
-            i = R$id.guild_boost_transfer_confirmation_blurb;
-            TextView textView = (TextView) view.findViewById(R$id.guild_boost_transfer_confirmation_blurb);
+            i = R.id.guild_boost_transfer_confirmation_blurb;
+            TextView textView = (TextView) view.findViewById(R.id.guild_boost_transfer_confirmation_blurb);
             if (textView != null) {
-                i = R$id.guild_boost_transfer_error;
-                TextView textView2 = (TextView) view.findViewById(R$id.guild_boost_transfer_error);
+                i = R.id.guild_boost_transfer_error;
+                TextView textView2 = (TextView) view.findViewById(R.id.guild_boost_transfer_error);
                 if (textView2 != null) {
-                    i = R$id.guild_boost_transfer_previous_guild;
-                    GuildBoostConfirmationView guildBoostConfirmationView = (GuildBoostConfirmationView) view.findViewById(R$id.guild_boost_transfer_previous_guild);
+                    i = R.id.guild_boost_transfer_previous_guild;
+                    GuildBoostConfirmationView guildBoostConfirmationView = (GuildBoostConfirmationView) view.findViewById(R.id.guild_boost_transfer_previous_guild);
                     if (guildBoostConfirmationView != null) {
-                        i = R$id.guild_boost_transfer_previous_guild_header;
-                        TextView textView3 = (TextView) view.findViewById(R$id.guild_boost_transfer_previous_guild_header);
+                        i = R.id.guild_boost_transfer_previous_guild_header;
+                        TextView textView3 = (TextView) view.findViewById(R.id.guild_boost_transfer_previous_guild_header);
                         if (textView3 != null) {
-                            i = R$id.guild_boost_transfer_select;
-                            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.guild_boost_transfer_select);
+                            i = R.id.guild_boost_transfer_select;
+                            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.guild_boost_transfer_select);
                             if (materialButton != null) {
-                                i = R$id.guild_boost_transfer_target_guild;
-                                GuildBoostConfirmationView guildBoostConfirmationView2 = (GuildBoostConfirmationView) view.findViewById(R$id.guild_boost_transfer_target_guild);
+                                i = R.id.guild_boost_transfer_target_guild;
+                                GuildBoostConfirmationView guildBoostConfirmationView2 = (GuildBoostConfirmationView) view.findViewById(R.id.guild_boost_transfer_target_guild);
                                 if (guildBoostConfirmationView2 != null) {
-                                    i = R$id.guild_boost_transfer_target_guild_header;
-                                    TextView textView4 = (TextView) view.findViewById(R$id.guild_boost_transfer_target_guild_header);
+                                    i = R.id.guild_boost_transfer_target_guild_header;
+                                    TextView textView4 = (TextView) view.findViewById(R.id.guild_boost_transfer_target_guild_header);
                                     if (textView4 != null) {
                                         return new WidgetGuildBoostTransferBinding((CoordinatorLayout) view, dimmerView, textView, textView2, guildBoostConfirmationView, textView3, materialButton, guildBoostConfirmationView2, textView4);
                                     }

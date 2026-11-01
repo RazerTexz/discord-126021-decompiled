@@ -1,7 +1,7 @@
 package com.google.android.gms.internal.nearby;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import b.c.a.a0.d;
 import b.d.b.a.a;
@@ -12,7 +12,7 @@ import java.util.Objects;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzgs extends AbstractSafeParcelable {
-    public static final Parcelable$Creator<zzgs> CREATOR = new f();
+    public static final Parcelable.Creator<zzgs> CREATOR = new f();
     public final int k;
     public final String l;
 

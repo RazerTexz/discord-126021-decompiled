@@ -1,7 +1,6 @@
 package d0.e0.p.d.m0.b;
 
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.e0.p.d.m0.b.p.c$a;
 import d0.e0.p.d.m0.k.v.w;
 import d0.e0.p.d.m0.n.c0;
 import d0.e0.p.d.m0.n.d0;
@@ -41,7 +40,7 @@ public final class g {
     public static final d0.e0.p.d.m0.g.e extractParameterNameFromFunctionTypeArgument(c0 c0Var) {
         String value;
         d0.z.d.m.checkNotNullParameter(c0Var, "<this>");
-        d0.e0.p.d.m0.c.g1.c cVarFindAnnotation = c0Var.getAnnotations().findAnnotation(k$a.f3229y);
+        d0.e0.p.d.m0.c.g1.c cVarFindAnnotation = c0Var.getAnnotations().findAnnotation(k.a.f3229y);
         if (cVarFindAnnotation == null) {
             return null;
         }
@@ -81,7 +80,7 @@ public final class g {
                 eVar = null;
             }
             if (eVar != null) {
-                d0.e0.p.d.m0.g.b bVar = k$a.f3229y;
+                d0.e0.p.d.m0.g.b bVar = k.a.f3229y;
                 d0.e0.p.d.m0.g.e eVarIdentifier = d0.e0.p.d.m0.g.e.identifier(ModelAuditLogEntry.CHANGE_KEY_NAME);
                 String strAsString = eVar.asString();
                 d0.z.d.m.checkNotNullExpressionValue(strAsString, "name.asString()");
@@ -103,18 +102,18 @@ public final class g {
         if (!fqNameUnsafe.isSafe() || fqNameUnsafe.isRoot()) {
             return null;
         }
-        c$a c_a = d0.e0.p.d.m0.b.p.c.j;
+        d0.e0.p.d.m0.b.p.c.a aVar = d0.e0.p.d.m0.b.p.c.j;
         String strAsString = fqNameUnsafe.shortName().asString();
         d0.z.d.m.checkNotNullExpressionValue(strAsString, "shortName().asString()");
         d0.e0.p.d.m0.g.b bVarParent = fqNameUnsafe.toSafe().parent();
         d0.z.d.m.checkNotNullExpressionValue(bVarParent, "toSafe().parent()");
-        return c_a.getFunctionalClassKind(strAsString, bVarParent);
+        return aVar.getFunctionalClassKind(strAsString, bVarParent);
     }
 
     public static final c0 getReceiverTypeFromFunctionType(c0 c0Var) {
         d0.z.d.m.checkNotNullParameter(c0Var, "<this>");
         isBuiltinFunctionalType(c0Var);
-        if (c0Var.getAnnotations().findAnnotation(k$a.f3228x) != null) {
+        if (c0Var.getAnnotations().findAnnotation(k.a.f3228x) != null) {
             return ((w0) u.first((List) c0Var.getArguments())).getType();
         }
         return null;
@@ -138,7 +137,7 @@ public final class g {
     public static final boolean isBuiltinExtensionFunctionalType(c0 c0Var) {
         d0.z.d.m.checkNotNullParameter(c0Var, "<this>");
         if (isBuiltinFunctionalType(c0Var)) {
-            return c0Var.getAnnotations().findAnnotation(k$a.f3228x) != null;
+            return c0Var.getAnnotations().findAnnotation(k.a.f3228x) != null;
         }
         return false;
     }
@@ -170,7 +169,7 @@ public final class g {
     public static final d0.e0.p.d.m0.c.g1.g withExtensionFunctionAnnotation(d0.e0.p.d.m0.c.g1.g gVar, h hVar) {
         d0.z.d.m.checkNotNullParameter(gVar, "<this>");
         d0.z.d.m.checkNotNullParameter(hVar, "builtIns");
-        d0.e0.p.d.m0.g.b bVar = k$a.f3228x;
+        d0.e0.p.d.m0.g.b bVar = k.a.f3228x;
         return gVar.hasAnnotation(bVar) ? gVar : d0.e0.p.d.m0.c.g1.g.f.create(u.plus(gVar, new d0.e0.p.d.m0.c.g1.j(hVar, bVar, h0.emptyMap())));
     }
 }

@@ -1,11 +1,12 @@
 package org.webrtc.voiceengine;
 
 import android.annotation.TargetApi;
-import android.media.AudioAttributes$Builder;
-import android.media.AudioFormat$Builder;
+import android.media.AudioAttributes;
+import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
-import android.os.Build$VERSION;
+import android.os.Build;
+import android.os.Process;
 import androidx.annotation.Nullable;
 import b.d.b.a.a;
 import java.nio.ByteBuffer;
@@ -13,7 +14,6 @@ import org.webrtc.ContextUtils;
 import org.webrtc.Logging;
 import org.webrtc.MediaStreamTrack;
 import org.webrtc.ThreadUtils;
-import org.webrtc.ThreadUtils$ThreadChecker;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class WebRtcAudioTrack {
@@ -26,24 +26,102 @@ public class WebRtcAudioTrack {
     private static final String TAG = "WebRtcAudioTrack";
 
     @Nullable
-    private static WebRtcAudioTrack$ErrorCallback errorCallback;
+    private static ErrorCallback errorCallback;
 
     @Nullable
-    private static WebRtcAudioTrack$WebRtcAudioTrackErrorCallback errorCallbackOld;
+    private static WebRtcAudioTrackErrorCallback errorCallbackOld;
     private static volatile boolean speakerMute;
     private static int usageAttribute;
     private final AudioManager audioManager;
 
     @Nullable
-    private WebRtcAudioTrack$AudioTrackThread audioThread;
+    private AudioTrackThread audioThread;
 
     @Nullable
     private AudioTrack audioTrack;
     private ByteBuffer byteBuffer;
     private byte[] emptyBytes;
     private final long nativeAudioTrack;
-    private final ThreadUtils$ThreadChecker threadChecker;
+    private final ThreadUtils.ThreadChecker threadChecker;
     private final boolean useMediaTrack;
+
+    public enum AudioTrackStartErrorCode {
+        AUDIO_TRACK_START_EXCEPTION,
+        AUDIO_TRACK_START_STATE_MISMATCH
+    }
+
+    public class AudioTrackThread extends Thread {
+        private volatile boolean keepAlive;
+
+        public AudioTrackThread(String str) {
+            super(str);
+            this.keepAlive = true;
+        }
+
+        @Override // java.lang.Thread, java.lang.Runnable
+        public void run() {
+            Process.setThreadPriority(-19);
+            Logging.d(WebRtcAudioTrack.TAG, "AudioTrackThread" + WebRtcAudioUtils.getThreadInfo());
+            WebRtcAudioTrack.access$100(WebRtcAudioTrack.access$000(WebRtcAudioTrack.this).getPlayState() == 3);
+            int iCapacity = WebRtcAudioTrack.access$200(WebRtcAudioTrack.this).capacity();
+            while (this.keepAlive) {
+                WebRtcAudioTrack webRtcAudioTrack = WebRtcAudioTrack.this;
+                WebRtcAudioTrack.access$400(webRtcAudioTrack, iCapacity, WebRtcAudioTrack.access$300(webRtcAudioTrack));
+                WebRtcAudioTrack.access$100(iCapacity <= WebRtcAudioTrack.access$200(WebRtcAudioTrack.this).remaining());
+                if (WebRtcAudioTrack.access$500()) {
+                    WebRtcAudioTrack.access$200(WebRtcAudioTrack.this).clear();
+                    WebRtcAudioTrack.access$200(WebRtcAudioTrack.this).put(WebRtcAudioTrack.access$600(WebRtcAudioTrack.this));
+                    WebRtcAudioTrack.access$200(WebRtcAudioTrack.this).position(0);
+                }
+                int iWriteBytes = writeBytes(WebRtcAudioTrack.access$000(WebRtcAudioTrack.this), WebRtcAudioTrack.access$200(WebRtcAudioTrack.this), iCapacity);
+                if (iWriteBytes != iCapacity) {
+                    Logging.e(WebRtcAudioTrack.TAG, "AudioTrack.write played invalid number of bytes: " + iWriteBytes);
+                    if (iWriteBytes < 0) {
+                        this.keepAlive = false;
+                        WebRtcAudioTrack.access$700(WebRtcAudioTrack.this, "AudioTrack.write failed: " + iWriteBytes);
+                    }
+                }
+                WebRtcAudioTrack.access$200(WebRtcAudioTrack.this).rewind();
+            }
+            if (WebRtcAudioTrack.access$000(WebRtcAudioTrack.this) != null) {
+                Logging.d(WebRtcAudioTrack.TAG, "Calling AudioTrack.stop...");
+                try {
+                    WebRtcAudioTrack.access$000(WebRtcAudioTrack.this).stop();
+                    Logging.d(WebRtcAudioTrack.TAG, "AudioTrack.stop is done.");
+                } catch (IllegalStateException e) {
+                    StringBuilder sbU = a.U("AudioTrack.stop failed: ");
+                    sbU.append(e.getMessage());
+                    Logging.e(WebRtcAudioTrack.TAG, sbU.toString());
+                }
+            }
+        }
+
+        public void stopThread() {
+            Logging.d(WebRtcAudioTrack.TAG, "stopThread");
+            this.keepAlive = false;
+        }
+
+        private int writeBytes(AudioTrack audioTrack, ByteBuffer byteBuffer, int i) {
+            return audioTrack.write(byteBuffer, i, 0);
+        }
+    }
+
+    public interface ErrorCallback {
+        void onWebRtcAudioTrackError(String str);
+
+        void onWebRtcAudioTrackInitError(String str);
+
+        void onWebRtcAudioTrackStartError(AudioTrackStartErrorCode audioTrackStartErrorCode, String str);
+    }
+
+    @Deprecated
+    public interface WebRtcAudioTrackErrorCallback {
+        void onWebRtcAudioTrackError(String str);
+
+        void onWebRtcAudioTrackInitError(String str);
+
+        void onWebRtcAudioTrackStartError(String str);
+    }
 
     static {
         int defaultUsageAttribute = getDefaultUsageAttribute();
@@ -52,9 +130,9 @@ public class WebRtcAudioTrack {
     }
 
     public WebRtcAudioTrack(long j, boolean z2) {
-        ThreadUtils$ThreadChecker threadUtils$ThreadChecker = new ThreadUtils$ThreadChecker();
-        this.threadChecker = threadUtils$ThreadChecker;
-        threadUtils$ThreadChecker.checkIsOnValidThread();
+        ThreadUtils.ThreadChecker threadChecker = new ThreadUtils.ThreadChecker();
+        this.threadChecker = threadChecker;
+        threadChecker.checkIsOnValidThread();
         Logging.d(TAG, "ctor" + WebRtcAudioUtils.getThreadInfo());
         this.nativeAudioTrack = j;
         this.useMediaTrack = z2;
@@ -116,7 +194,7 @@ public class WebRtcAudioTrack {
             sbU.append(usageAttribute);
             Logging.w(TAG, sbU.toString());
         }
-        return new AudioTrack(new AudioAttributes$Builder().setUsage(z2 ? 1 : usageAttribute).setContentType(z2 ? 2 : 1).build(), new AudioFormat$Builder().setEncoding(2).setSampleRate(i).setChannelMask(i2).build(), i3, 1, 0);
+        return new AudioTrack(new AudioAttributes.Builder().setUsage(z2 ? 1 : usageAttribute).setContentType(z2 ? 2 : 1).build(), new AudioFormat.Builder().setEncoding(2).setSampleRate(i).setChannelMask(i2).build(), i3, 1, 0);
     }
 
     private static AudioTrack createAudioTrackOnLowerThanLollipop(int i, int i2, int i3) {
@@ -132,7 +210,7 @@ public class WebRtcAudioTrack {
     }
 
     private int getBufferSizeInFrames() {
-        if (Build$VERSION.SDK_INT >= 23) {
+        if (Build.VERSION.SDK_INT >= 23) {
             return this.audioTrack.getBufferSizeInFrames();
         }
         return -1;
@@ -199,7 +277,7 @@ public class WebRtcAudioTrack {
     }
 
     private void logBufferCapacityInFrames() {
-        if (Build$VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= 24) {
             StringBuilder sbU = a.U("AudioTrack: buffer capacity in frames: ");
             sbU.append(this.audioTrack.getBufferCapacityInFrames());
             Logging.d(TAG, sbU.toString());
@@ -207,7 +285,7 @@ public class WebRtcAudioTrack {
     }
 
     private void logBufferSizeInFrames() {
-        if (Build$VERSION.SDK_INT >= 23) {
+        if (Build.VERSION.SDK_INT >= 23) {
             StringBuilder sbU = a.U("AudioTrack: buffer size in frames: ");
             sbU.append(this.audioTrack.getBufferSizeInFrames());
             Logging.d(TAG, sbU.toString());
@@ -232,7 +310,7 @@ public class WebRtcAudioTrack {
     }
 
     private void logUnderrunCount() {
-        if (Build$VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= 24) {
             StringBuilder sbU = a.U("underrun count: ");
             sbU.append(this.audioTrack.getUnderrunCount());
             Logging.d(TAG, sbU.toString());
@@ -255,39 +333,39 @@ public class WebRtcAudioTrack {
     private void reportWebRtcAudioTrackError(String str) {
         Logging.e(TAG, "Run-time playback error: " + str);
         WebRtcAudioUtils.logAudioState(TAG);
-        WebRtcAudioTrack$WebRtcAudioTrackErrorCallback webRtcAudioTrack$WebRtcAudioTrackErrorCallback = errorCallbackOld;
-        if (webRtcAudioTrack$WebRtcAudioTrackErrorCallback != null) {
-            webRtcAudioTrack$WebRtcAudioTrackErrorCallback.onWebRtcAudioTrackError(str);
+        WebRtcAudioTrackErrorCallback webRtcAudioTrackErrorCallback = errorCallbackOld;
+        if (webRtcAudioTrackErrorCallback != null) {
+            webRtcAudioTrackErrorCallback.onWebRtcAudioTrackError(str);
         }
-        WebRtcAudioTrack$ErrorCallback webRtcAudioTrack$ErrorCallback = errorCallback;
-        if (webRtcAudioTrack$ErrorCallback != null) {
-            webRtcAudioTrack$ErrorCallback.onWebRtcAudioTrackError(str);
+        ErrorCallback errorCallback2 = errorCallback;
+        if (errorCallback2 != null) {
+            errorCallback2.onWebRtcAudioTrackError(str);
         }
     }
 
     private void reportWebRtcAudioTrackInitError(String str) {
         Logging.e(TAG, "Init playout error: " + str);
         WebRtcAudioUtils.logAudioState(TAG);
-        WebRtcAudioTrack$WebRtcAudioTrackErrorCallback webRtcAudioTrack$WebRtcAudioTrackErrorCallback = errorCallbackOld;
-        if (webRtcAudioTrack$WebRtcAudioTrackErrorCallback != null) {
-            webRtcAudioTrack$WebRtcAudioTrackErrorCallback.onWebRtcAudioTrackInitError(str);
+        WebRtcAudioTrackErrorCallback webRtcAudioTrackErrorCallback = errorCallbackOld;
+        if (webRtcAudioTrackErrorCallback != null) {
+            webRtcAudioTrackErrorCallback.onWebRtcAudioTrackInitError(str);
         }
-        WebRtcAudioTrack$ErrorCallback webRtcAudioTrack$ErrorCallback = errorCallback;
-        if (webRtcAudioTrack$ErrorCallback != null) {
-            webRtcAudioTrack$ErrorCallback.onWebRtcAudioTrackInitError(str);
+        ErrorCallback errorCallback2 = errorCallback;
+        if (errorCallback2 != null) {
+            errorCallback2.onWebRtcAudioTrackInitError(str);
         }
     }
 
-    private void reportWebRtcAudioTrackStartError(WebRtcAudioTrack$AudioTrackStartErrorCode webRtcAudioTrack$AudioTrackStartErrorCode, String str) {
-        Logging.e(TAG, "Start playout error: " + webRtcAudioTrack$AudioTrackStartErrorCode + ". " + str);
+    private void reportWebRtcAudioTrackStartError(AudioTrackStartErrorCode audioTrackStartErrorCode, String str) {
+        Logging.e(TAG, "Start playout error: " + audioTrackStartErrorCode + ". " + str);
         WebRtcAudioUtils.logAudioState(TAG);
-        WebRtcAudioTrack$WebRtcAudioTrackErrorCallback webRtcAudioTrack$WebRtcAudioTrackErrorCallback = errorCallbackOld;
-        if (webRtcAudioTrack$WebRtcAudioTrackErrorCallback != null) {
-            webRtcAudioTrack$WebRtcAudioTrackErrorCallback.onWebRtcAudioTrackStartError(str);
+        WebRtcAudioTrackErrorCallback webRtcAudioTrackErrorCallback = errorCallbackOld;
+        if (webRtcAudioTrackErrorCallback != null) {
+            webRtcAudioTrackErrorCallback.onWebRtcAudioTrackStartError(str);
         }
-        WebRtcAudioTrack$ErrorCallback webRtcAudioTrack$ErrorCallback = errorCallback;
-        if (webRtcAudioTrack$ErrorCallback != null) {
-            webRtcAudioTrack$ErrorCallback.onWebRtcAudioTrackStartError(webRtcAudioTrack$AudioTrackStartErrorCode, str);
+        ErrorCallback errorCallback2 = errorCallback;
+        if (errorCallback2 != null) {
+            errorCallback2.onWebRtcAudioTrackStartError(audioTrackStartErrorCode, str);
         }
     }
 
@@ -297,9 +375,9 @@ public class WebRtcAudioTrack {
     }
 
     @Deprecated
-    public static void setErrorCallback(WebRtcAudioTrack$WebRtcAudioTrackErrorCallback webRtcAudioTrack$WebRtcAudioTrackErrorCallback) {
+    public static void setErrorCallback(WebRtcAudioTrackErrorCallback webRtcAudioTrackErrorCallback) {
         Logging.d(TAG, "Set error callback (deprecated");
-        errorCallbackOld = webRtcAudioTrack$WebRtcAudioTrackErrorCallback;
+        errorCallbackOld = webRtcAudioTrackErrorCallback;
     }
 
     public static void setSpeakerMute(boolean z2) {
@@ -330,16 +408,16 @@ public class WebRtcAudioTrack {
                     try {
                         this.audioTrack.play();
                         if (this.audioTrack.getPlayState() == 3) {
-                            WebRtcAudioTrack$AudioTrackThread webRtcAudioTrack$AudioTrackThread = new WebRtcAudioTrack$AudioTrackThread(this, "AudioTrackJavaThread");
-                            this.audioThread = webRtcAudioTrack$AudioTrackThread;
-                            webRtcAudioTrack$AudioTrackThread.start();
+                            AudioTrackThread audioTrackThread = new AudioTrackThread("AudioTrackJavaThread");
+                            this.audioThread = audioTrackThread;
+                            audioTrackThread.start();
                             return true;
                         }
-                        reportWebRtcAudioTrackStartError(WebRtcAudioTrack$AudioTrackStartErrorCode.AUDIO_TRACK_START_STATE_MISMATCH, "AudioTrack.play failed - incorrect state :" + this.audioTrack.getPlayState());
+                        reportWebRtcAudioTrackStartError(AudioTrackStartErrorCode.AUDIO_TRACK_START_STATE_MISMATCH, "AudioTrack.play failed - incorrect state :" + this.audioTrack.getPlayState());
                         releaseAudioResources();
                         return false;
                     } catch (IllegalStateException e) {
-                        reportWebRtcAudioTrackStartError(WebRtcAudioTrack$AudioTrackStartErrorCode.AUDIO_TRACK_START_EXCEPTION, "AudioTrack.play failed: " + e.getMessage());
+                        reportWebRtcAudioTrackStartError(AudioTrackStartErrorCode.AUDIO_TRACK_START_EXCEPTION, "AudioTrack.play failed: " + e.getMessage());
                         releaseAudioResources();
                         return false;
                     }
@@ -375,8 +453,8 @@ public class WebRtcAudioTrack {
         return true;
     }
 
-    public static void setErrorCallback(WebRtcAudioTrack$ErrorCallback webRtcAudioTrack$ErrorCallback) {
+    public static void setErrorCallback(ErrorCallback errorCallback2) {
         Logging.d(TAG, "Set extended error callback");
-        errorCallback = webRtcAudioTrack$ErrorCallback;
+        errorCallback = errorCallback2;
     }
 }

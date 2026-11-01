@@ -2,11 +2,10 @@ package b.a.d;
 
 import kotlin.jvm.functions.Function1;
 import rx.Observable;
-import rx.Observable$c;
 
 /* JADX INFO: compiled from: AppTransformers.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class a0<T, R> implements Observable$c<T, R> {
+public final class a0<T, R> implements Observable.c<T, R> {
     public final /* synthetic */ Function1 j;
     public final /* synthetic */ Function1 k;
     public final /* synthetic */ Function1 l;

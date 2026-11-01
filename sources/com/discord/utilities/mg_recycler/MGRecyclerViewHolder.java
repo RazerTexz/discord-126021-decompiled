@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import androidx.annotation.LayoutRes;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapter;
 import d0.z.d.m;
@@ -14,7 +13,7 @@ import rx.Subscription;
 
 /* JADX INFO: compiled from: MGRecyclerViewHolder.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public class MGRecyclerViewHolder<T extends MGRecyclerAdapter<D>, D> extends RecyclerView$ViewHolder {
+public class MGRecyclerViewHolder<T extends MGRecyclerAdapter<D>, D> extends RecyclerView.ViewHolder {
     public final T adapter;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

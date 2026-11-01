@@ -25,7 +25,7 @@ public final class WidgetChannelSettingsPermissionsOverview$viewModel$2 extends 
     @Override // kotlin.jvm.functions.Function0
     public final WidgetChannelSettingsPermissionsOverviewViewModel invoke() {
         long jAccess$getChannelIdFromIntent = WidgetChannelSettingsPermissionsOverview.access$getChannelIdFromIntent(this.this$0);
-        Channel channel = StoreStream.Companion.getChannels().getChannel(jAccess$getChannelIdFromIntent);
+        Channel channel = StoreStream.INSTANCE.getChannels().getChannel(jAccess$getChannelIdFromIntent);
         return new WidgetChannelSettingsPermissionsOverviewViewModel(jAccess$getChannelIdFromIntent, channel != null && channel.getType() == 13);
     }
 }

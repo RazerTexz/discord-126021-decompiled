@@ -4,10 +4,10 @@ package b.i.a.f.e.h.j;
 /* JADX INFO: loaded from: classes3.dex */
 public final class v implements Runnable {
     public final /* synthetic */ int j;
-    public final /* synthetic */ g$a k;
+    public final /* synthetic */ g.a k;
 
-    public v(g$a g_a, int i) {
-        this.k = g_a;
+    public v(g.a aVar, int i) {
+        this.k = aVar;
         this.j = i;
     }
 

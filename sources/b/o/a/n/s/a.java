@@ -3,13 +3,13 @@ package b.o.a.n.s;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.hardware.Camera$Area;
+import android.hardware.Camera;
 import androidx.annotation.NonNull;
 import b.o.a.t.c;
 
 /* JADX INFO: compiled from: Camera1MeteringTransform.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class a implements c<Camera$Area> {
+public class a implements c<Camera.Area> {
     public final b.o.a.x.b c;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -23,10 +23,10 @@ public class a implements c<Camera$Area> {
 
     @Override // b.o.a.t.c
     @NonNull
-    public Camera$Area a(@NonNull RectF rectF, int i) {
+    public Camera.Area a(@NonNull RectF rectF, int i) {
         Rect rect = new Rect();
         rectF.round(rect);
-        return new Camera$Area(rect, i);
+        return new Camera.Area(rect, i);
     }
 
     @Override // b.o.a.t.c

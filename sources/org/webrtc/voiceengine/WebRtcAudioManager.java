@@ -4,8 +4,10 @@ import android.media.AudioManager;
 import android.media.AudioRecord;
 import android.media.AudioTrack;
 import android.os.Build;
-import android.os.Build$VERSION;
+import androidx.annotation.Nullable;
 import b.d.b.a.a;
+import java.util.Timer;
+import java.util.TimerTask;
 import org.webrtc.ContextUtils;
 import org.webrtc.Logging;
 import org.webrtc.MediaStreamTrack;
@@ -38,7 +40,74 @@ public class WebRtcAudioManager {
     private int outputChannels;
     private boolean proAudio;
     private int sampleRate;
-    private final WebRtcAudioManager$VolumeLogger volumeLogger;
+    private final VolumeLogger volumeLogger;
+
+    public class VolumeLogger {
+        private static final String THREAD_NAME = "WebRtcVolumeLevelLoggerThread";
+        private static final int TIMER_PERIOD_IN_SECONDS = 30;
+        private final AudioManager audioManager;
+
+        @Nullable
+        private Timer timer;
+
+        public class LogVolumeTask extends TimerTask {
+            private final int maxRingVolume;
+            private final int maxVoiceCallVolume;
+
+            public LogVolumeTask(int i, int i2) {
+                this.maxRingVolume = i;
+                this.maxVoiceCallVolume = i2;
+            }
+
+            @Override // java.util.TimerTask, java.lang.Runnable
+            public void run() {
+                int mode = VolumeLogger.access$000(VolumeLogger.this).getMode();
+                if (mode == 1) {
+                    StringBuilder sbU = a.U("STREAM_RING stream volume: ");
+                    sbU.append(VolumeLogger.access$000(VolumeLogger.this).getStreamVolume(2));
+                    sbU.append(" (max=");
+                    sbU.append(this.maxRingVolume);
+                    sbU.append(")");
+                    Logging.d(WebRtcAudioManager.TAG, sbU.toString());
+                    return;
+                }
+                if (mode == 3) {
+                    StringBuilder sbU2 = a.U("VOICE_CALL stream volume: ");
+                    sbU2.append(VolumeLogger.access$000(VolumeLogger.this).getStreamVolume(0));
+                    sbU2.append(" (max=");
+                    sbU2.append(this.maxVoiceCallVolume);
+                    sbU2.append(")");
+                    Logging.d(WebRtcAudioManager.TAG, sbU2.toString());
+                }
+            }
+        }
+
+        public VolumeLogger(AudioManager audioManager) {
+            this.audioManager = audioManager;
+        }
+
+        public static /* synthetic */ AudioManager access$000(VolumeLogger volumeLogger) {
+            return volumeLogger.audioManager;
+        }
+
+        public static /* synthetic */ void access$100(VolumeLogger volumeLogger) {
+            volumeLogger.stop();
+        }
+
+        public void start() {
+            Timer timer = new Timer(THREAD_NAME);
+            this.timer = timer;
+            timer.schedule(new LogVolumeTask(this.audioManager.getStreamMaxVolume(2), this.audioManager.getStreamMaxVolume(0)), 0L, 30000L);
+        }
+
+        private void stop() {
+            Timer timer = this.timer;
+            if (timer != null) {
+                timer.cancel();
+                this.timer = null;
+            }
+        }
+    }
 
     public WebRtcAudioManager(long j) {
         StringBuilder sbU = a.U("ctor");
@@ -47,7 +116,7 @@ public class WebRtcAudioManager {
         this.nativeAudioManager = j;
         AudioManager audioManager = (AudioManager) ContextUtils.getApplicationContext().getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
         this.audioManager = audioManager;
-        this.volumeLogger = new WebRtcAudioManager$VolumeLogger(audioManager);
+        this.volumeLogger = new VolumeLogger(audioManager);
         storeAudioParameters();
         nativeCacheAudioParameters(this.sampleRate, this.outputChannels, this.inputChannels, this.hardwareAEC, this.hardwareAGC, this.hardwareNS, this.lowLatencyOutput, this.lowLatencyInput, this.proAudio, this.aAudio, this.outputBufferSize, this.inputBufferSize, j);
         WebRtcAudioUtils.logAudioState(TAG);
@@ -64,7 +133,7 @@ public class WebRtcAudioManager {
         sbU.append(WebRtcAudioUtils.getThreadInfo());
         Logging.d(TAG, sbU.toString());
         if (this.initialized) {
-            WebRtcAudioManager$VolumeLogger.access$100(this.volumeLogger);
+            VolumeLogger.access$100(this.volumeLogger);
         }
     }
 
@@ -173,7 +242,7 @@ public class WebRtcAudioManager {
     }
 
     private boolean isProAudioSupported() {
-        return Build$VERSION.SDK_INT >= 23 && ContextUtils.getApplicationContext().getPackageManager().hasSystemFeature("android.hardware.audio.pro");
+        return Build.VERSION.SDK_INT >= 23 && ContextUtils.getApplicationContext().getPackageManager().hasSystemFeature("android.hardware.audio.pro");
     }
 
     private native void nativeCacheAudioParameters(int i, int i2, int i3, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, int i4, int i5, long j);

@@ -1,5 +1,8 @@
 package com.discord.models.requiredaction;
 
+import d0.z.d.m;
+import java.util.Locale;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: RequiredAction.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,5 +14,37 @@ public enum RequiredAction {
     REQUIRE_CAPTCHA,
     NONE;
 
-    public static final RequiredAction$Companion Companion = new RequiredAction$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
+
+    /* JADX INFO: compiled from: RequiredAction.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final RequiredAction fromApiString(String requiredAction) {
+            if (requiredAction != null) {
+                try {
+                    Locale locale = Locale.ROOT;
+                    m.checkNotNullExpressionValue(locale, "Locale.ROOT");
+                    String upperCase = requiredAction.toUpperCase(locale);
+                    m.checkNotNullExpressionValue(upperCase, "(this as java.lang.String).toUpperCase(locale)");
+                    RequiredAction requiredActionValueOf = RequiredAction.valueOf(upperCase);
+                    if (requiredActionValueOf != null) {
+                        return requiredActionValueOf;
+                    }
+                } catch (IllegalArgumentException unused) {
+                    return RequiredAction.NONE;
+                } catch (NullPointerException unused2) {
+                    return RequiredAction.NONE;
+                }
+            }
+            return RequiredAction.NONE;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 }

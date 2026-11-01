@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,6 +17,21 @@ public class Purchase {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final String f2004b;
     public final JSONObject c;
+
+    /* JADX INFO: compiled from: com.android.billingclient:billing@@4.0.0 */
+    public class a {
+
+        @Nullable
+        public final List<Purchase> a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final BillingResult f2005b;
+
+        public a(@NonNull BillingResult billingResult, @Nullable List<Purchase> list) {
+            this.a = list;
+            this.f2005b = billingResult;
+        }
+    }
 
     public Purchase(@NonNull String str, @NonNull String str2) throws JSONException {
         this.a = str;

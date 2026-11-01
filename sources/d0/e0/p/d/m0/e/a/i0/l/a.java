@@ -28,15 +28,34 @@ public class a implements b {
     public final Map<d0.e0.p.d.m0.g.e, d0.e0.p.d.m0.e.a.k0.n> e;
     public final Map<d0.e0.p.d.m0.g.e, w> f;
 
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: DeclaredMemberIndex.kt */
+    public final class C0523a extends d0.z.d.o implements Function1<d0.e0.p.d.m0.e.a.k0.r, Boolean> {
+        public C0523a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(d0.e0.p.d.m0.e.a.k0.r rVar) {
+            return Boolean.valueOf(invoke2(rVar));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(d0.e0.p.d.m0.e.a.k0.r rVar) {
+            d0.z.d.m.checkNotNullParameter(rVar, "m");
+            return ((Boolean) a.access$getMemberFilter$p(a.this).invoke(rVar)).booleanValue() && !d0.e0.p.d.m0.e.a.k0.p.isObjectMethodInInterface(rVar);
+        }
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public a(d0.e0.p.d.m0.e.a.k0.g gVar, Function1<? super d0.e0.p.d.m0.e.a.k0.q, Boolean> function1) {
         d0.z.d.m.checkNotNullParameter(gVar, "jClass");
         d0.z.d.m.checkNotNullParameter(function1, "memberFilter");
         this.a = gVar;
         this.f3325b = function1;
-        a$a a_a = new a$a(this);
-        this.c = a_a;
-        Sequence sequenceFilter = d0.f0.q.filter(u.asSequence(gVar.getMethods()), a_a);
+        C0523a c0523a = new C0523a();
+        this.c = c0523a;
+        Sequence sequenceFilter = d0.f0.q.filter(u.asSequence(gVar.getMethods()), c0523a);
         LinkedHashMap linkedHashMap = new LinkedHashMap();
         for (Object obj : sequenceFilter) {
             d0.e0.p.d.m0.g.e name = ((d0.e0.p.d.m0.e.a.k0.r) obj).getName();

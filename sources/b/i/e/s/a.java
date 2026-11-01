@@ -8,8 +8,6 @@ import b.i.e.l;
 import b.i.e.n.b;
 import b.i.e.s.b.e;
 import b.i.e.s.b.j;
-import b.i.e.s.c.e$b;
-import b.i.e.s.c.e$c;
 import b.i.e.s.c.f;
 import com.google.zxing.ChecksumException;
 import com.google.zxing.FormatException;
@@ -143,7 +141,7 @@ public class a implements i {
                 float f8 = size;
                 float f9 = f5 / f8;
                 float fSqrt = (float) Math.sqrt((f6 / f8) - (f9 * f9));
-                Collections.sort(eVar.f1895b, new e$c(f9, null));
+                Collections.sort(eVar.f1895b, new b.i.e.s.c.e.c(f9, null));
                 float fMax = Math.max(0.2f * f9, fSqrt);
                 int i11 = 0;
                 while (i11 < eVar.f1895b.size() && eVar.f1895b.size() > 3) {
@@ -159,7 +157,7 @@ public class a implements i {
                 while (it3.hasNext()) {
                     f4 += it3.next().c;
                 }
-                Collections.sort(eVar.f1895b, new e$b(f4 / eVar.f1895b.size(), null));
+                Collections.sort(eVar.f1895b, new b.i.e.s.c.e.b(f4 / eVar.f1895b.size(), null));
                 List<b.i.e.s.c.d> list = eVar.f1895b;
                 i = 3;
                 list.subList(3, list.size()).clear();

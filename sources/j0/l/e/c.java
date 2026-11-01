@@ -1,7 +1,7 @@
 package j0.l.e;
 
 import androidx.recyclerview.widget.RecyclerView;
-import j0.l.a.a1$a;
+import j0.l.a.a1;
 import java.util.concurrent.atomic.AtomicLong;
 import rx.Producer;
 
@@ -9,13 +9,17 @@ import rx.Producer;
 /* JADX INFO: loaded from: classes3.dex */
 public final class c extends AtomicLong implements Producer {
     private static final long serialVersionUID = 2826241102729529449L;
-    public final c$a actual;
+    public final a actual;
     public boolean emitting;
     public Throwable exception;
     public volatile boolean terminated;
 
-    public c(c$a c_a) {
-        this.actual = c_a;
+    /* JADX INFO: compiled from: BackpressureDrainManager.java */
+    public interface a {
+    }
+
+    public c(a aVar) {
+        this.actual = aVar;
     }
 
     /* JADX WARN: Bottom block not found for handler: all -> 0x00a7 */
@@ -41,7 +45,7 @@ public final class c extends AtomicLong implements Producer {
             boolean z4 = this.terminated;
             long j = get();
             try {
-                c$a c_a = this.actual;
+                a aVar = this.actual;
                 while (true) {
                     int i = 0;
                     while (true) {
@@ -49,29 +53,29 @@ public final class c extends AtomicLong implements Producer {
                             break;
                         }
                         if (!z4) {
-                            a1$a a1_a = (a1$a) c_a;
-                            objPoll = a1_a.j.poll();
-                            atomicLong = a1_a.k;
+                            a1.a aVar2 = (a1.a) aVar;
+                            objPoll = aVar2.j.poll();
+                            atomicLong = aVar2.k;
                             if (atomicLong != null && objPoll != null) {
                                 atomicLong.incrementAndGet();
                             }
                             if (objPoll == null) {
                                 break;
                             }
-                            if (j0.l.a.e.a(((a1$a) c_a).l, objPoll)) {
+                            if (j0.l.a.e.a(((a1.a) aVar).l, objPoll)) {
                                 return;
                             }
                             j--;
                             i++;
-                        } else if (((a1$a) c_a).j.peek() == null) {
+                        } else if (((a1.a) aVar).j.peek() == null) {
                             try {
                                 Throwable th2 = this.exception;
-                                a1$a a1_a2 = (a1$a) c_a;
+                                a1.a aVar3 = (a1.a) aVar;
                                 if (th2 != null) {
-                                    a1_a2.l.onError(th2);
+                                    aVar3.l.onError(th2);
                                     return;
                                 } else {
-                                    a1_a2.l.onCompleted();
+                                    aVar3.l.onCompleted();
                                     return;
                                 }
                             } catch (Throwable th3) {
@@ -82,9 +86,9 @@ public final class c extends AtomicLong implements Producer {
                             if (j == 0) {
                                 break;
                             }
-                            a1$a a1_a3 = (a1$a) c_a;
-                            objPoll = a1_a3.j.poll();
-                            atomicLong = a1_a3.k;
+                            a1.a aVar4 = (a1.a) aVar;
+                            objPoll = aVar4.j.poll();
+                            atomicLong = aVar4.k;
                             if (atomicLong != null) {
                                 atomicLong.incrementAndGet();
                             }
@@ -92,7 +96,7 @@ public final class c extends AtomicLong implements Producer {
                                 break;
                                 break;
                             } else {
-                                if (j0.l.a.e.a(((a1$a) c_a).l, objPoll)) {
+                                if (j0.l.a.e.a(((a1.a) aVar).l, objPoll)) {
                                     return;
                                 }
                                 j--;
@@ -110,7 +114,7 @@ public final class c extends AtomicLong implements Producer {
                     synchronized (this) {
                         try {
                             z4 = this.terminated;
-                            boolean z5 = ((a1$a) c_a).j.peek() != null;
+                            boolean z5 = ((a1.a) aVar).j.peek() != null;
                             try {
                                 if (get() != RecyclerView.FOREVER_NS) {
                                     long jAddAndGet = addAndGet(-i);

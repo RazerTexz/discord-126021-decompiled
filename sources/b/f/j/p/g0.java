@@ -14,6 +14,57 @@ public abstract class g0 implements w0<b.f.j.j.e> {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final b.f.d.g.g f612b;
 
+    /* JADX INFO: compiled from: LocalFetchProducer.java */
+    public class a extends e1<b.f.j.j.e> {
+        public final /* synthetic */ ImageRequest o;
+        public final /* synthetic */ z0 p;
+        public final /* synthetic */ x0 q;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(l lVar, z0 z0Var, x0 x0Var, String str, ImageRequest imageRequest, z0 z0Var2, x0 x0Var2) {
+            super(lVar, z0Var, x0Var, str);
+            this.o = imageRequest;
+            this.p = z0Var2;
+            this.q = x0Var2;
+        }
+
+        @Override // b.f.j.p.e1
+        public void b(b.f.j.j.e eVar) {
+            b.f.j.j.e eVar2 = eVar;
+            if (eVar2 != null) {
+                eVar2.close();
+            }
+        }
+
+        @Override // b.f.j.p.e1
+        public b.f.j.j.e d() throws Exception {
+            b.f.j.j.e eVarD = g0.this.d(this.o);
+            if (eVarD == null) {
+                this.p.c(this.q, g0.this.e(), false);
+                this.q.n("local");
+                return null;
+            }
+            eVarD.q();
+            this.p.c(this.q, g0.this.e(), true);
+            this.q.n("local");
+            return eVarD;
+        }
+    }
+
+    /* JADX INFO: compiled from: LocalFetchProducer.java */
+    public class b extends e {
+        public final /* synthetic */ e1 a;
+
+        public b(g0 g0Var, e1 e1Var) {
+            this.a = e1Var;
+        }
+
+        @Override // b.f.j.p.y0
+        public void a() {
+            this.a.a();
+        }
+    }
+
     public g0(Executor executor, b.f.d.g.g gVar) {
         this.a = executor;
         this.f612b = gVar;
@@ -24,9 +75,9 @@ public abstract class g0 implements w0<b.f.j.j.e> {
         z0 z0VarO = x0Var.o();
         ImageRequest imageRequestE = x0Var.e();
         x0Var.i("local", "fetch");
-        g0$a g0_a = new g0$a(this, lVar, z0VarO, x0Var, e(), imageRequestE, z0VarO, x0Var);
-        x0Var.f(new g0$b(this, g0_a));
-        this.a.execute(g0_a);
+        a aVar = new a(lVar, z0VarO, x0Var, e(), imageRequestE, z0VarO, x0Var);
+        x0Var.f(new b(this, aVar));
+        this.a.execute(aVar);
     }
 
     public b.f.j.j.e c(InputStream inputStream, int i) throws IOException {

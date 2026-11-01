@@ -2,11 +2,10 @@ package androidx.core.view;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup$MarginLayoutParams;
 import androidx.annotation.Px;
 import androidx.annotation.RequiresApi;
-import b.d.b.a.a;
 import d0.f0.l;
+import d0.z.d.g0.a;
 import d0.z.d.m;
 import java.util.Iterator;
 import kotlin.Unit;
@@ -17,6 +16,49 @@ import kotlin.sequences.Sequence;
 /* JADX INFO: compiled from: ViewGroup.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewGroupKt {
+
+    /* JADX INFO: renamed from: androidx.core.view.ViewGroupKt$iterator$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewGroup.kt */
+    public final class AnonymousClass1 implements Iterator<View>, a {
+        public final /* synthetic */ ViewGroup $this_iterator;
+        private int index;
+
+        public AnonymousClass1(ViewGroup viewGroup) {
+            this.$this_iterator = viewGroup;
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.index < this.$this_iterator.getChildCount();
+        }
+
+        @Override // java.util.Iterator
+        public /* bridge */ /* synthetic */ View next() {
+            return next();
+        }
+
+        @Override // java.util.Iterator
+        public void remove() {
+            ViewGroup viewGroup = this.$this_iterator;
+            int i = this.index - 1;
+            this.index = i;
+            viewGroup.removeViewAt(i);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // java.util.Iterator
+        public View next() {
+            ViewGroup viewGroup = this.$this_iterator;
+            int i = this.index;
+            this.index = i + 1;
+            View childAt = viewGroup.getChildAt(i);
+            if (childAt != null) {
+                return childAt;
+            }
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
     public static final boolean contains(ViewGroup viewGroup, View view) {
         m.checkNotNullParameter(viewGroup, "<this>");
         m.checkNotNullParameter(view, "view");
@@ -72,7 +114,7 @@ public final class ViewGroupKt {
         if (childAt != null) {
             return childAt;
         }
-        StringBuilder sbV = a.V("Index: ", i, ", Size: ");
+        StringBuilder sbV = b.d.b.a.a.V("Index: ", i, ", Size: ");
         sbV.append(viewGroup.getChildCount());
         throw new IndexOutOfBoundsException(sbV.toString());
     }
@@ -104,7 +146,7 @@ public final class ViewGroupKt {
 
     public static final Iterator<View> iterator(ViewGroup viewGroup) {
         m.checkNotNullParameter(viewGroup, "<this>");
-        return new ViewGroupKt$iterator$1(viewGroup);
+        return new AnonymousClass1(viewGroup);
     }
 
     public static final void minusAssign(ViewGroup viewGroup, View view) {
@@ -119,59 +161,59 @@ public final class ViewGroupKt {
         viewGroup.addView(view);
     }
 
-    public static final void setMargins(ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams, @Px int i) {
-        m.checkNotNullParameter(viewGroup$MarginLayoutParams, "<this>");
-        viewGroup$MarginLayoutParams.setMargins(i, i, i, i);
+    public static final void setMargins(ViewGroup.MarginLayoutParams marginLayoutParams, @Px int i) {
+        m.checkNotNullParameter(marginLayoutParams, "<this>");
+        marginLayoutParams.setMargins(i, i, i, i);
     }
 
-    public static /* synthetic */ void updateMargins$default(ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams, int i, int i2, int i3, int i4, int i5, Object obj) {
+    public static /* synthetic */ void updateMargins$default(ViewGroup.MarginLayoutParams marginLayoutParams, int i, int i2, int i3, int i4, int i5, Object obj) {
         if ((i5 & 1) != 0) {
-            i = viewGroup$MarginLayoutParams.leftMargin;
+            i = marginLayoutParams.leftMargin;
         }
         if ((i5 & 2) != 0) {
-            i2 = viewGroup$MarginLayoutParams.topMargin;
+            i2 = marginLayoutParams.topMargin;
         }
         if ((i5 & 4) != 0) {
-            i3 = viewGroup$MarginLayoutParams.rightMargin;
+            i3 = marginLayoutParams.rightMargin;
         }
         if ((i5 & 8) != 0) {
-            i4 = viewGroup$MarginLayoutParams.bottomMargin;
+            i4 = marginLayoutParams.bottomMargin;
         }
-        m.checkNotNullParameter(viewGroup$MarginLayoutParams, "<this>");
-        viewGroup$MarginLayoutParams.setMargins(i, i2, i3, i4);
+        m.checkNotNullParameter(marginLayoutParams, "<this>");
+        marginLayoutParams.setMargins(i, i2, i3, i4);
     }
 
-    public static final void updateMargins(ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams, @Px int i, @Px int i2, @Px int i3, @Px int i4) {
-        m.checkNotNullParameter(viewGroup$MarginLayoutParams, "<this>");
-        viewGroup$MarginLayoutParams.setMargins(i, i2, i3, i4);
+    public static final void updateMargins(ViewGroup.MarginLayoutParams marginLayoutParams, @Px int i, @Px int i2, @Px int i3, @Px int i4) {
+        m.checkNotNullParameter(marginLayoutParams, "<this>");
+        marginLayoutParams.setMargins(i, i2, i3, i4);
     }
 
-    public static /* synthetic */ void updateMarginsRelative$default(ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams, int i, int i2, int i3, int i4, int i5, Object obj) {
+    public static /* synthetic */ void updateMarginsRelative$default(ViewGroup.MarginLayoutParams marginLayoutParams, int i, int i2, int i3, int i4, int i5, Object obj) {
         if ((i5 & 1) != 0) {
-            i = viewGroup$MarginLayoutParams.getMarginStart();
+            i = marginLayoutParams.getMarginStart();
         }
         if ((i5 & 2) != 0) {
-            i2 = viewGroup$MarginLayoutParams.topMargin;
+            i2 = marginLayoutParams.topMargin;
         }
         if ((i5 & 4) != 0) {
-            i3 = viewGroup$MarginLayoutParams.getMarginEnd();
+            i3 = marginLayoutParams.getMarginEnd();
         }
         if ((i5 & 8) != 0) {
-            i4 = viewGroup$MarginLayoutParams.bottomMargin;
+            i4 = marginLayoutParams.bottomMargin;
         }
-        m.checkNotNullParameter(viewGroup$MarginLayoutParams, "<this>");
-        viewGroup$MarginLayoutParams.setMarginStart(i);
-        viewGroup$MarginLayoutParams.topMargin = i2;
-        viewGroup$MarginLayoutParams.setMarginEnd(i3);
-        viewGroup$MarginLayoutParams.bottomMargin = i4;
+        m.checkNotNullParameter(marginLayoutParams, "<this>");
+        marginLayoutParams.setMarginStart(i);
+        marginLayoutParams.topMargin = i2;
+        marginLayoutParams.setMarginEnd(i3);
+        marginLayoutParams.bottomMargin = i4;
     }
 
     @RequiresApi(17)
-    public static final void updateMarginsRelative(ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams, @Px int i, @Px int i2, @Px int i3, @Px int i4) {
-        m.checkNotNullParameter(viewGroup$MarginLayoutParams, "<this>");
-        viewGroup$MarginLayoutParams.setMarginStart(i);
-        viewGroup$MarginLayoutParams.topMargin = i2;
-        viewGroup$MarginLayoutParams.setMarginEnd(i3);
-        viewGroup$MarginLayoutParams.bottomMargin = i4;
+    public static final void updateMarginsRelative(ViewGroup.MarginLayoutParams marginLayoutParams, @Px int i, @Px int i2, @Px int i3, @Px int i4) {
+        m.checkNotNullParameter(marginLayoutParams, "<this>");
+        marginLayoutParams.setMarginStart(i);
+        marginLayoutParams.topMargin = i2;
+        marginLayoutParams.setMarginEnd(i3);
+        marginLayoutParams.bottomMargin = i4;
     }
 }

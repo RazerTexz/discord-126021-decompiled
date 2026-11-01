@@ -2,30 +2,53 @@ package com.google.android.exoplayer2.metadata;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import androidx.annotation.Nullable;
 import b.i.a.c.f3.e0;
+import b.i.a.c.j1;
+import b.i.a.c.p1;
 import java.util.Arrays;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class Metadata implements Parcelable {
-    public final Metadata$Entry[] j;
-    public static final Parcelable$Creator<Metadata> CREATOR = new Metadata$a();
+    public final Entry[] j;
+    public static final Parcelable.Creator<Metadata> CREATOR = new a();
 
-    public Metadata(Metadata$Entry... metadata$EntryArr) {
-        this.j = metadata$EntryArr;
+    public interface Entry extends Parcelable {
+        void n(p1.b bVar);
+
+        @Nullable
+        byte[] o0();
+
+        @Nullable
+        j1 y();
     }
 
-    public Metadata a(Metadata$Entry... metadata$EntryArr) {
-        if (metadata$EntryArr.length == 0) {
+    public class a implements Parcelable.Creator<Metadata> {
+        @Override // android.os.Parcelable.Creator
+        public Metadata createFromParcel(Parcel parcel) {
+            return new Metadata(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public Metadata[] newArray(int i) {
+            return new Metadata[i];
+        }
+    }
+
+    public Metadata(Entry... entryArr) {
+        this.j = entryArr;
+    }
+
+    public Metadata a(Entry... entryArr) {
+        if (entryArr.length == 0) {
             return this;
         }
-        Metadata$Entry[] metadata$EntryArr2 = this.j;
+        Entry[] entryArr2 = this.j;
         int i = e0.a;
-        Object[] objArrCopyOf = Arrays.copyOf(metadata$EntryArr2, metadata$EntryArr2.length + metadata$EntryArr.length);
-        System.arraycopy(metadata$EntryArr, 0, objArrCopyOf, metadata$EntryArr2.length, metadata$EntryArr.length);
-        return new Metadata((Metadata$Entry[]) objArrCopyOf);
+        Object[] objArrCopyOf = Arrays.copyOf(entryArr2, entryArr2.length + entryArr.length);
+        System.arraycopy(entryArr, 0, objArrCopyOf, entryArr2.length, entryArr.length);
+        return new Metadata((Entry[]) objArrCopyOf);
     }
 
     @Override // android.os.Parcelable
@@ -55,24 +78,24 @@ public final class Metadata implements Parcelable {
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(this.j.length);
-        for (Metadata$Entry metadata$Entry : this.j) {
-            parcel.writeParcelable(metadata$Entry, 0);
+        for (Entry entry : this.j) {
+            parcel.writeParcelable(entry, 0);
         }
     }
 
-    public Metadata(List<? extends Metadata$Entry> list) {
-        this.j = (Metadata$Entry[]) list.toArray(new Metadata$Entry[0]);
+    public Metadata(List<? extends Entry> list) {
+        this.j = (Entry[]) list.toArray(new Entry[0]);
     }
 
     public Metadata(Parcel parcel) {
-        this.j = new Metadata$Entry[parcel.readInt()];
+        this.j = new Entry[parcel.readInt()];
         int i = 0;
         while (true) {
-            Metadata$Entry[] metadata$EntryArr = this.j;
-            if (i >= metadata$EntryArr.length) {
+            Entry[] entryArr = this.j;
+            if (i >= entryArr.length) {
                 return;
             }
-            metadata$EntryArr[i] = (Metadata$Entry) parcel.readParcelable(Metadata$Entry.class.getClassLoader());
+            entryArr[i] = (Entry) parcel.readParcelable(Entry.class.getClassLoader());
             i++;
         }
     }

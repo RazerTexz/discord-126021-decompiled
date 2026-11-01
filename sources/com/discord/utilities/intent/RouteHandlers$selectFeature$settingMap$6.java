@@ -26,6 +26,6 @@ public final class RouteHandlers$selectFeature$settingMap$6 extends o implements
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(FragmentActivity fragmentActivity) {
         m.checkNotNullParameter(fragmentActivity, "<anonymous parameter 0>");
-        StoreStream.Companion.getTabsNavigation().selectTab(NavigationTab.FRIENDS, true);
+        StoreStream.INSTANCE.getTabsNavigation().selectTab(NavigationTab.FRIENDS, true);
     }
 }

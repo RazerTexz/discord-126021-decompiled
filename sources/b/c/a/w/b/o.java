@@ -8,7 +8,7 @@ import java.util.List;
 
 /* JADX INFO: compiled from: RectangleContent.java */
 /* JADX INFO: loaded from: classes.dex */
-public class o implements b.c.a.w.c.a$b, k, m {
+public class o implements b.c.a.w.c.a.b, k, m {
     public final String c;
     public final boolean d;
     public final b.c.a.j e;
@@ -40,7 +40,7 @@ public class o implements b.c.a.w.c.a$b, k, m {
         aVarA3.a.add(this);
     }
 
-    @Override // b.c.a.w.c.a$b
+    @Override // b.c.a.w.c.a.b
     public void a() {
         this.j = false;
         this.e.invalidateSelf();

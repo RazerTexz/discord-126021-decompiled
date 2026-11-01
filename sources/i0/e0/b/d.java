@@ -1,6 +1,7 @@
 package i0.e0.b;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import okhttp3.ResponseBody;
 
 /* JADX INFO: compiled from: ScalarResponseBodyConverters.java */
@@ -9,7 +10,7 @@ public final class d implements i0.h<ResponseBody, Character> {
     public static final d a = new d();
 
     @Override // i0.h
-    public Character convert(ResponseBody responseBody) throws IOException {
+    public Character convert(ResponseBody responseBody) throws IllegalAccessException, IOException, InvocationTargetException {
         String strD = responseBody.d();
         if (strD.length() == 1) {
             return Character.valueOf(strD.charAt(0));

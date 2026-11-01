@@ -1,7 +1,6 @@
 package com.discord.rtcconnection.mediaengine;
 
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
 import android.graphics.Matrix;
 import android.opengl.GLES20;
 import com.discord.utilities.time.Clock;
@@ -101,7 +100,7 @@ public final class ThumbnailEmitter {
         GlUtil.checkNoGLES2Error("ThumbnailEmitter.createThumbnail");
         glTextureFrameBuffer.release();
         this.outputByteBuffer.rewind();
-        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(this.width, this.height, Bitmap$Config.ARGB_8888);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(this.width, this.height, Bitmap.Config.ARGB_8888);
         bitmapCreateBitmap.copyPixelsFromBuffer(this.outputByteBuffer);
         m.checkNotNullExpressionValue(bitmapCreateBitmap, "bitmap");
         return bitmapCreateBitmap;

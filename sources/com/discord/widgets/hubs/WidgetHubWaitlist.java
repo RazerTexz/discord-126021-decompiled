@@ -1,16 +1,21 @@
 package com.discord.widgets.hubs;
 
 import android.content.Context;
+import android.view.View;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.d.g0;
 import b.a.d.i0;
+import b.c.a.a0.d;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
+import com.discord.api.hubs.WaitlistSignup;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetHubWaitlistBinding;
 import com.discord.stores.utilities.Loading;
 import com.discord.stores.utilities.RestCallStateKt;
+import com.discord.stores.utilities.Success;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.validators.ValidationManager;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
@@ -19,7 +24,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import d0.g;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.reflect.KProperty;
@@ -41,8 +48,64 @@ public final class WidgetHubWaitlist extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubWaitlist$configureUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubWaitlist.kt */
+    public final class AnonymousClass1 extends o implements Function1<Success<? extends WaitlistSignup>, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Success<? extends WaitlistSignup> success) {
+            invoke2((Success<WaitlistSignup>) success);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Success<WaitlistSignup> success) {
+            m.checkNotNullParameter(success, "it");
+            FragmentActivity activity = WidgetHubWaitlist.this.getActivity();
+            if (activity != null) {
+                activity.setResult(-1, d.g2(new HubWaitlistResult(success.invoke().getSchool())));
+                activity.finish();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubWaitlist$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubWaitlist.kt */
+    public final class AnonymousClass1 extends o implements Function1<HubWaitlistState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(HubWaitlistState hubWaitlistState) {
+            invoke2(hubWaitlistState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(HubWaitlistState hubWaitlistState) {
+            m.checkNotNullParameter(hubWaitlistState, "it");
+            WidgetHubWaitlist.access$configureUI(WidgetHubWaitlist.this, hubWaitlistState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubWaitlist$onViewBoundOrOnResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubWaitlist.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetHubWaitlist.access$maybeSubmitSchoolName(WidgetHubWaitlist.this);
+        }
+    }
+
     public WidgetHubWaitlist() {
-        super(R$layout.widget_hub_waitlist);
+        super(R.layout.widget_hub_waitlist);
         this.args = g.lazy(new WidgetHubWaitlist$$special$$inlined$args$1(this, "intent_args_key"));
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetHubWaitlist$binding$2.INSTANCE, null, 2, null);
         WidgetHubWaitlist$viewModel$2 widgetHubWaitlist$viewModel$2 = new WidgetHubWaitlist$viewModel$2(this);
@@ -64,7 +127,7 @@ public final class WidgetHubWaitlist extends AppFragment {
         if (context != null) {
             m.checkNotNullExpressionValue(context, "context ?: return");
             getBinding().f2478b.setIsLoading(state.getWaitlistAsync() instanceof Loading);
-            RestCallStateKt.handleResponse$default(state.getWaitlistAsync(), context, null, null, new WidgetHubWaitlist$configureUI$1(this), 6, null);
+            RestCallStateKt.handleResponse$default(state.getWaitlistAsync(), context, null, null, new AnonymousClass1(), 6, null);
         }
     }
 
@@ -97,8 +160,8 @@ public final class WidgetHubWaitlist extends AppFragment {
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null)), WidgetHubWaitlist.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetHubWaitlist$onViewBoundOrOnResume$1(this), 62, (Object) null);
-        getBinding().f2478b.setOnClickListener(new WidgetHubWaitlist$onViewBoundOrOnResume$2(this));
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null)), WidgetHubWaitlist.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
+        getBinding().f2478b.setOnClickListener(new AnonymousClass2());
         TextInputEditText textInputEditText = getBinding().c;
         m.checkNotNullExpressionValue(textInputEditText, "binding.hubWaitlistEditText");
         showKeyboard(textInputEditText);

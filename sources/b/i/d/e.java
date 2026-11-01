@@ -4,10 +4,8 @@ import com.google.gson.DefaultDateTypeAdapter;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.internal.Excluder;
-import com.google.gson.internal.bind.TreeTypeAdapter$SingleTypeFactory;
+import com.google.gson.internal.bind.TreeTypeAdapter;
 import com.google.gson.internal.bind.TypeAdapters;
-import com.google.gson.internal.bind.TypeAdapters$31;
-import com.google.gson.internal.bind.TypeAdapters$32;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.sql.Timestamp;
@@ -48,9 +46,9 @@ public final class e {
             DefaultDateTypeAdapter defaultDateTypeAdapter2 = new DefaultDateTypeAdapter(Timestamp.class, i, i2);
             DefaultDateTypeAdapter defaultDateTypeAdapter3 = new DefaultDateTypeAdapter(java.sql.Date.class, i, i2);
             TypeAdapter<Class> typeAdapter = TypeAdapters.a;
-            arrayList.add(new TypeAdapters$32(Date.class, defaultDateTypeAdapter));
-            arrayList.add(new TypeAdapters$32(Timestamp.class, defaultDateTypeAdapter2));
-            arrayList.add(new TypeAdapters$32(java.sql.Date.class, defaultDateTypeAdapter3));
+            arrayList.add(new TypeAdapters.AnonymousClass32(Date.class, defaultDateTypeAdapter));
+            arrayList.add(new TypeAdapters.AnonymousClass32(Timestamp.class, defaultDateTypeAdapter2));
+            arrayList.add(new TypeAdapters.AnonymousClass32(java.sql.Date.class, defaultDateTypeAdapter3));
         }
         return new Gson(this.a, this.c, this.d, this.g, false, false, this.j, false, false, false, this.f1806b, null, this.h, this.i, this.e, this.f, arrayList);
     }
@@ -63,12 +61,12 @@ public final class e {
         }
         if (z2 || (obj instanceof i)) {
             TypeToken<?> typeToken = TypeToken.get(type);
-            this.e.add(new TreeTypeAdapter$SingleTypeFactory(obj, typeToken, typeToken.getType() == typeToken.getRawType(), null));
+            this.e.add(new TreeTypeAdapter.SingleTypeFactory(obj, typeToken, typeToken.getType() == typeToken.getRawType(), null));
         }
         if (obj instanceof TypeAdapter) {
             List<o> list = this.e;
             TypeAdapter<Class> typeAdapter = TypeAdapters.a;
-            list.add(new TypeAdapters$31(TypeToken.get(type), (TypeAdapter) obj));
+            list.add(new TypeAdapters.AnonymousClass31(TypeToken.get(type), (TypeAdapter) obj));
         }
         return this;
     }

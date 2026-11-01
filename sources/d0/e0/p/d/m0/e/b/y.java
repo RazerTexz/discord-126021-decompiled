@@ -16,7 +16,7 @@ public final class y implements x<k> {
 
     @Override // d0.e0.p.d.m0.e.b.x
     public String getPredefinedFullInternalNameForClass(d0.e0.p.d.m0.c.e eVar) {
-        return x$a.getPredefinedFullInternalNameForClass(this, eVar);
+        return x.a.getPredefinedFullInternalNameForClass(this, eVar);
     }
 
     @Override // d0.e0.p.d.m0.e.b.x
@@ -39,7 +39,7 @@ public final class y implements x<k> {
 
     @Override // d0.e0.p.d.m0.e.b.x
     public c0 preprocessType(c0 c0Var) {
-        return x$a.preprocessType(this, c0Var);
+        return x.a.preprocessType(this, c0Var);
     }
 
     @Override // d0.e0.p.d.m0.e.b.x
@@ -50,6 +50,6 @@ public final class y implements x<k> {
 
     @Override // d0.e0.p.d.m0.e.b.x
     public boolean releaseCoroutines() {
-        return x$a.releaseCoroutines(this);
+        return x.a.releaseCoroutines(this);
     }
 }

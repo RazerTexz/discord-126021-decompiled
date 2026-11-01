@@ -1,13 +1,13 @@
 package b.i.a.f.k;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.safetynet.HarmfulAppsData;
 import com.google.android.gms.safetynet.zzd;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class d implements Parcelable$Creator<zzd> {
-    @Override // android.os.Parcelable$Creator
+public final class d implements Parcelable.Creator<zzd> {
+    @Override // android.os.Parcelable.Creator
     public final zzd createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         long jH1 = 0;
@@ -33,7 +33,7 @@ public final class d implements Parcelable$Creator<zzd> {
         return new zzd(jH1, harmfulAppsDataArr, iG1, zE1);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zzd[] newArray(int i) {
         return new zzd[i];
     }

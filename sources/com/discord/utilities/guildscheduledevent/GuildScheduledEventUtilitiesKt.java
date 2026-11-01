@@ -3,6 +3,7 @@ package com.discord.utilities.guildscheduledevent;
 import android.content.Context;
 import android.text.format.DateUtils;
 import b.a.k.b;
+import com.discord.R;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
 import com.discord.api.guildscheduledevent.GuildScheduledEventEntityType;
 import com.discord.api.guildscheduledevent.GuildScheduledEventStatus;
@@ -25,6 +26,44 @@ import java.util.Objects;
 public final class GuildScheduledEventUtilitiesKt {
     public static final int DATE_FORMAT_FLAGS = 101139;
 
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$2;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$3;
+
+        static {
+            GuildScheduledEventEntityType.values();
+            int[] iArr = new int[5];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[GuildScheduledEventEntityType.EXTERNAL.ordinal()] = 1;
+            GuildScheduledEventTiming.values();
+            int[] iArr2 = new int[7];
+            $EnumSwitchMapping$1 = iArr2;
+            GuildScheduledEventTiming guildScheduledEventTiming = GuildScheduledEventTiming.LIVE;
+            iArr2[guildScheduledEventTiming.ordinal()] = 1;
+            iArr2[GuildScheduledEventTiming.EXPIRED.ordinal()] = 2;
+            iArr2[GuildScheduledEventTiming.NOW.ordinal()] = 3;
+            GuildScheduledEventTiming guildScheduledEventTiming2 = GuildScheduledEventTiming.SOON;
+            iArr2[guildScheduledEventTiming2.ordinal()] = 4;
+            GuildScheduledEventTiming guildScheduledEventTiming3 = GuildScheduledEventTiming.TODAY;
+            iArr2[guildScheduledEventTiming3.ordinal()] = 5;
+            GuildScheduledEventTiming guildScheduledEventTiming4 = GuildScheduledEventTiming.TOMORROW;
+            iArr2[guildScheduledEventTiming4.ordinal()] = 6;
+            GuildScheduledEventTiming.values();
+            int[] iArr3 = new int[7];
+            $EnumSwitchMapping$2 = iArr3;
+            iArr3[guildScheduledEventTiming.ordinal()] = 1;
+            iArr3[guildScheduledEventTiming2.ordinal()] = 2;
+            iArr3[guildScheduledEventTiming3.ordinal()] = 3;
+            GuildScheduledEventTiming.values();
+            int[] iArr4 = new int[7];
+            $EnumSwitchMapping$3 = iArr4;
+            iArr4[guildScheduledEventTiming4.ordinal()] = 1;
+            iArr4[GuildScheduledEventTiming.LATER.ordinal()] = 2;
+        }
+    }
+
     public static final boolean canRsvp(GuildScheduledEvent guildScheduledEvent) {
         m.checkNotNullParameter(guildScheduledEvent, "$this$canRsvp");
         return (getEventTiming(guildScheduledEvent) == GuildScheduledEventTiming.LIVE || guildScheduledEvent.getStatus() == GuildScheduledEventStatus.COMPLETED) ? false : true;
@@ -32,10 +71,10 @@ public final class GuildScheduledEventUtilitiesKt {
 
     public static /* synthetic */ UserGuildMember getCreatorUserGuildMember$default(GuildScheduledEvent guildScheduledEvent, StoreGuilds storeGuilds, StoreUser storeUser, int i, Object obj) {
         if ((i & 1) != 0) {
-            storeGuilds = StoreStream.Companion.getGuilds();
+            storeGuilds = StoreStream.INSTANCE.getGuilds();
         }
         if ((i & 2) != 0) {
-            storeUser = StoreStream.Companion.getUsers();
+            storeUser = StoreStream.INSTANCE.getUsers();
         }
         return getCreatorUserGuildMember(guildScheduledEvent, storeGuilds, storeUser);
     }
@@ -71,7 +110,7 @@ public final class GuildScheduledEventUtilitiesKt {
         }
         int iOrdinal2 = getEventTiming(j, guildScheduledEventStatus).ordinal();
         if (iOrdinal2 == 2 || iOrdinal2 == 3 || iOrdinal2 == 5) {
-            return b.h(context, 2131888872, new Object[]{DateUtils.formatDateTime(context, j2, DATE_FORMAT_FLAGS)}, null, 4);
+            return b.h(context, R.string.ending_on_date, new Object[]{DateUtils.formatDateTime(context, j2, DATE_FORMAT_FLAGS)}, null, 4);
         }
         return null;
     }
@@ -133,21 +172,21 @@ public final class GuildScheduledEventUtilitiesKt {
         m.checkNotNullParameter(guildScheduledEventEntityType, "entityType");
         m.checkNotNullParameter(guildScheduledEventStatus, "status");
         GuildScheduledEventTiming eventTiming = getEventTiming(j, guildScheduledEventStatus);
-        Objects.requireNonNull(GuildScheduledEventStatus.Companion);
+        Objects.requireNonNull(GuildScheduledEventStatus.INSTANCE);
         if (GuildScheduledEventStatus.access$getDONE$cp().contains(guildScheduledEventStatus)) {
             return getNonRelativeTimeString(j, context);
         }
         switch (eventTiming.ordinal()) {
             case 1:
             case 2:
-                return b.h(context, 2131890068, new Object[]{DateUtils.getRelativeTimeSpanString(j, ClockFactory.get().currentTimeMillis(), 86400000L), DateUtils.formatDateTime(context, j, DATE_FORMAT_FLAGS)}, null, 4);
+                return b.h(context, R.string.guild_event_date_at_time, new Object[]{DateUtils.getRelativeTimeSpanString(j, ClockFactory.get().currentTimeMillis(), 86400000L), DateUtils.formatDateTime(context, j, DATE_FORMAT_FLAGS)}, null, 4);
             case 3:
-                return b.h(context, 2131895907, new Object[]{Integer.valueOf(minutesRelativeToTime(j))}, null, 4);
+                return b.h(context, R.string.starting_in_minutes, new Object[]{Integer.valueOf(minutesRelativeToTime(j))}, null, 4);
             case 4:
             case 6:
-                return b.h(context, 2131895908, new Object[0], null, 4);
+                return b.h(context, R.string.starting_soon, new Object[0], null, 4);
             case 5:
-                return guildScheduledEventEntityType.ordinal() != 3 ? b.h(context, 2131895796, new Object[0], null, 4) : b.h(context, 2131886232, new Object[0], null, 4);
+                return guildScheduledEventEntityType.ordinal() != 3 ? b.h(context, R.string.stage_channel_live_now, new Object[0], null, 4) : b.h(context, R.string.active_now, new Object[0], null, 4);
             default:
                 return getNonRelativeTimeString(j, context);
         }
@@ -176,10 +215,10 @@ public final class GuildScheduledEventUtilitiesKt {
 
     public static /* synthetic */ UserGuildMember getCreatorUserGuildMember$default(GuildScheduledEventModel guildScheduledEventModel, StoreGuilds storeGuilds, StoreUser storeUser, int i, Object obj) {
         if ((i & 1) != 0) {
-            storeGuilds = StoreStream.Companion.getGuilds();
+            storeGuilds = StoreStream.INSTANCE.getGuilds();
         }
         if ((i & 2) != 0) {
-            storeUser = StoreStream.Companion.getUsers();
+            storeUser = StoreStream.INSTANCE.getUsers();
         }
         return getCreatorUserGuildMember(guildScheduledEventModel, storeGuilds, storeUser);
     }

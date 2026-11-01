@@ -5,10 +5,10 @@ import java.util.Objects;
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class i implements b.i.b.a.l {
-    public final /* synthetic */ e1$b j;
+    public final /* synthetic */ e1.b j;
 
-    public /* synthetic */ i(e1$b e1_b) {
-        this.j = e1_b;
+    public /* synthetic */ i(e1.b bVar) {
+        this.j = bVar;
     }
 
     @Override // b.i.b.a.l

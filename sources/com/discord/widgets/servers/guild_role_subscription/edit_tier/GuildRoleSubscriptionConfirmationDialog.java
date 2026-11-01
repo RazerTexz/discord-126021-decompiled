@@ -5,25 +5,31 @@ import android.content.res.ColorStateList;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
+import androidx.core.os.BundleKt;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppDialog;
 import com.discord.databinding.DialogGuiildRoleSubscriptionConfirmationBinding;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.google.android.material.button.MaterialButton;
+import d0.o;
 import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: GuildRoleSubscriptionConfirmationDialog.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class GuildRoleSubscriptionConfirmationDialog extends AppDialog {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(GuildRoleSubscriptionConfirmationDialog.class, "binding", "getBinding()Lcom/discord/databinding/DialogGuiildRoleSubscriptionConfirmationBinding;", 0)};
-    public static final GuildRoleSubscriptionConfirmationDialog$Companion Companion = new GuildRoleSubscriptionConfirmationDialog$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String INTENT_EXTRA_CONFIRMATION_BUTTON_TEXT = "INTENT_EXTRA_CONFIRMATION_BUTTON_TEXT";
     private static final String INTENT_EXTRA_IS_DESTRUCTIVE_OPERATION = "INTENT_EXTRA_IS_DESTRUCTIVE_OPERATION";
     private static final String INTENT_EXTRA_SUBTITLE = "INTENT_EXTRA_SUBTITLE";
@@ -33,8 +39,61 @@ public final class GuildRoleSubscriptionConfirmationDialog extends AppDialog {
     private final FragmentViewBindingDelegate binding;
     private Function0<Unit> confirmCallback;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.edit_tier.GuildRoleSubscriptionConfirmationDialog$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: GuildRoleSubscriptionConfirmationDialog.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            Function0 function0Access$getConfirmCallback$p = GuildRoleSubscriptionConfirmationDialog.access$getConfirmCallback$p(GuildRoleSubscriptionConfirmationDialog.this);
+            if (function0Access$getConfirmCallback$p != null) {
+            }
+            GuildRoleSubscriptionConfirmationDialog.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guild_role_subscription.edit_tier.GuildRoleSubscriptionConfirmationDialog$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: GuildRoleSubscriptionConfirmationDialog.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            GuildRoleSubscriptionConfirmationDialog.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: compiled from: GuildRoleSubscriptionConfirmationDialog.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static /* synthetic */ void show$default(Companion companion, FragmentManager fragmentManager, String str, String str2, String str3, boolean z2, Function0 function0, int i, Object obj) {
+            companion.show(fragmentManager, str, str2, str3, (i & 16) != 0 ? false : z2, function0);
+        }
+
+        public final void show(FragmentManager fragmentManager, String title, String subtitle, String confirmationButtonText, boolean isDestructiveOperation, Function0<Unit> confirmCallback) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            m.checkNotNullParameter(title, "title");
+            m.checkNotNullParameter(subtitle, "subtitle");
+            m.checkNotNullParameter(confirmationButtonText, "confirmationButtonText");
+            m.checkNotNullParameter(confirmCallback, "confirmCallback");
+            GuildRoleSubscriptionConfirmationDialog guildRoleSubscriptionConfirmationDialog = new GuildRoleSubscriptionConfirmationDialog();
+            guildRoleSubscriptionConfirmationDialog.setConfirmCallback(confirmCallback);
+            guildRoleSubscriptionConfirmationDialog.setArguments(BundleKt.bundleOf(o.to(GuildRoleSubscriptionConfirmationDialog.INTENT_EXTRA_TITLE, title), o.to(GuildRoleSubscriptionConfirmationDialog.INTENT_EXTRA_SUBTITLE, subtitle), o.to(GuildRoleSubscriptionConfirmationDialog.INTENT_EXTRA_CONFIRMATION_BUTTON_TEXT, confirmationButtonText), o.to(GuildRoleSubscriptionConfirmationDialog.INTENT_EXTRA_IS_DESTRUCTIVE_OPERATION, Boolean.valueOf(isDestructiveOperation))));
+            guildRoleSubscriptionConfirmationDialog.show(fragmentManager, GuildRoleSubscriptionConfirmationDialog.class.getSimpleName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public GuildRoleSubscriptionConfirmationDialog() {
-        super(R$layout.dialog_guiild_role_subscription_confirmation);
+        super(R.layout.dialog_guiild_role_subscription_confirmation);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, GuildRoleSubscriptionConfirmationDialog$binding$2.INSTANCE, null, 2, null);
     }
 
@@ -92,8 +151,8 @@ public final class GuildRoleSubscriptionConfirmationDialog extends AppDialog {
             return;
         }
         requireDialog().setCanceledOnTouchOutside(true);
-        getBinding().c.setOnClickListener(new GuildRoleSubscriptionConfirmationDialog$onViewBound$1(this));
-        getBinding().f2094b.setOnClickListener(new GuildRoleSubscriptionConfirmationDialog$onViewBound$2(this));
+        getBinding().c.setOnClickListener(new AnonymousClass1());
+        getBinding().f2094b.setOnClickListener(new AnonymousClass2());
         TextView textView = getBinding().e;
         m.checkNotNullExpressionValue(textView, "binding.guildRoleSubscriptionConfirmationTitle");
         textView.setText(getTitle());
@@ -103,8 +162,8 @@ public final class GuildRoleSubscriptionConfirmationDialog extends AppDialog {
         if (isDestructiveOperation()) {
             MaterialButton materialButton = getBinding().c;
             m.checkNotNullExpressionValue(materialButton, "this");
-            materialButton.setBackgroundTintList(ColorStateList.valueOf(ColorCompat.getColor(materialButton, 2131100472)));
-            materialButton.setTextColor(ColorCompat.getColor(materialButton, 2131100162));
+            materialButton.setBackgroundTintList(ColorStateList.valueOf(ColorCompat.getColor(materialButton, R.color.uikit_btn_bg_color_selector_red)));
+            materialButton.setTextColor(ColorCompat.getColor(materialButton, R.color.primary_100));
         }
         MaterialButton materialButton2 = getBinding().c;
         m.checkNotNullExpressionValue(materialButton2, "binding.confirm");

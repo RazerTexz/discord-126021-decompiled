@@ -4,12 +4,13 @@ import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.FragmentManager;
 import b.i.c.m.d.k.h;
 import com.discord.widgets.chat.input.attachments.AttachmentBottomSheet;
-import com.discord.widgets.chat.input.attachments.AttachmentBottomSheet$Companion;
 import com.lytefast.flexinput.model.Attachment;
 import com.lytefast.flexinput.utils.SelectionAggregator;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: Add missing generic type declarations: [T] */
@@ -17,6 +18,56 @@ import kotlin.jvm.functions.Function2;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChatInputAttachments$createPreviewAdapter$onAttachmentSelected$1<T> extends o implements Function2<SelectionAggregator<T>, T, Unit> {
     public final /* synthetic */ WidgetChatInputAttachments this$0;
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInputAttachments$createPreviewAdapter$onAttachmentSelected$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ SelectionAggregator $aggregator;
+        public final /* synthetic */ Attachment $attachment;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(SelectionAggregator selectionAggregator, Attachment attachment) {
+            super(0);
+            this.$aggregator = selectionAggregator;
+            this.$attachment = attachment;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            this.$aggregator.unselectItem(this.$attachment);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.WidgetChatInputAttachments$createPreviewAdapter$onAttachmentSelected$1$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
+    public final class AnonymousClass2 extends o implements Function1<Boolean, Unit> {
+        public final /* synthetic */ SelectionAggregator $aggregator;
+        public final /* synthetic */ Attachment $attachment;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(Attachment attachment, SelectionAggregator selectionAggregator) {
+            super(1);
+            this.$attachment = attachment;
+            this.$aggregator = selectionAggregator;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.a;
+        }
+
+        public final void invoke(boolean z2) {
+            this.$attachment.setSpoiler(z2);
+            this.$aggregator.getAdapter().notifyDataSetChanged();
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatInputAttachments$createPreviewAdapter$onAttachmentSelected$1(WidgetChatInputAttachments widgetChatInputAttachments) {
@@ -35,9 +86,9 @@ public final class WidgetChatInputAttachments$createPreviewAdapter$onAttachmentS
         m.checkNotNullParameter(selectionAggregator, "aggregator");
         m.checkNotNullParameter(attachment, "attachment");
         h.r(WidgetChatInputAttachments.access$getFlexInputFragment$p(this.this$0).requireContext(), WidgetChatInputAttachments.access$getFlexInputFragment$p(this.this$0).l());
-        AttachmentBottomSheet$Companion attachmentBottomSheet$Companion = AttachmentBottomSheet.Companion;
+        AttachmentBottomSheet.Companion companion = AttachmentBottomSheet.INSTANCE;
         FragmentManager childFragmentManager = WidgetChatInputAttachments.access$getFlexInputFragment$p(this.this$0).getChildFragmentManager();
         m.checkNotNullExpressionValue(childFragmentManager, "flexInputFragment.childFragmentManager");
-        AttachmentBottomSheet$Companion.show$default(attachmentBottomSheet$Companion, childFragmentManager, attachment, new WidgetChatInputAttachments$createPreviewAdapter$onAttachmentSelected$1$1(selectionAggregator, attachment), new WidgetChatInputAttachments$createPreviewAdapter$onAttachmentSelected$1$2(attachment, selectionAggregator), null, 16, null);
+        AttachmentBottomSheet.Companion.show$default(companion, childFragmentManager, attachment, new AnonymousClass1(selectionAggregator, attachment), new AnonymousClass2(attachment, selectionAggregator), null, 16, null);
     }
 }

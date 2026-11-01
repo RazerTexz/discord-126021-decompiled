@@ -7,6 +7,6 @@ public final /* synthetic */ class a implements b.i.a.c.f3.k {
 
     @Override // b.i.a.c.f3.k
     public final void accept(Object obj) {
-        ((s$a) obj).b();
+        ((s.a) obj).b();
     }
 }

@@ -1,7 +1,7 @@
 package com.google.android.gms.nearby.messages;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.a.f.j.b.g;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
@@ -17,7 +17,7 @@ import java.util.Objects;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class MessageFilter extends AbstractSafeParcelable {
-    public static final Parcelable$Creator<MessageFilter> CREATOR = new g();
+    public static final Parcelable.Creator<MessageFilter> CREATOR = new g();
     public static final MessageFilter j;
     public final int k;
     public final List<zzad> l;

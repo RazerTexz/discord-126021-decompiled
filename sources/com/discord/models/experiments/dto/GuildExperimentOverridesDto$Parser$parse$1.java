@@ -1,7 +1,7 @@
 package com.discord.models.experiments.dto;
 
 import androidx.core.app.NotificationCompat;
-import com.discord.models.domain.Model$JsonReader;
+import com.discord.models.domain.Model;
 import com.discord.models.domain.ModelAuditLogEntry;
 import d0.z.d.m;
 import kotlin.jvm.internal.Ref$IntRef;
@@ -13,11 +13,29 @@ import rx.functions.Action1;
 public final class GuildExperimentOverridesDto$Parser$parse$1<T> implements Action1<String> {
     public final /* synthetic */ Ref$IntRef $bucket;
     public final /* synthetic */ Ref$ObjectRef $guildIds;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
 
-    public GuildExperimentOverridesDto$Parser$parse$1(Ref$IntRef ref$IntRef, Model$JsonReader model$JsonReader, Ref$ObjectRef ref$ObjectRef) {
+    /* JADX INFO: renamed from: com.discord.models.experiments.dto.GuildExperimentOverridesDto$Parser$parse$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: GuildExperimentDto.kt */
+    public final class AnonymousClass1<T> implements Model.JsonReader.ItemFactory<Long> {
+        public AnonymousClass1() {
+        }
+
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public /* bridge */ /* synthetic */ Long get() {
+            return get();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public final Long get() {
+            return Long.valueOf(GuildExperimentOverridesDto$Parser$parse$1.this.$reader.nextLong(-1L));
+        }
+    }
+
+    public GuildExperimentOverridesDto$Parser$parse$1(Ref$IntRef ref$IntRef, Model.JsonReader jsonReader, Ref$ObjectRef ref$ObjectRef) {
         this.$bucket = ref$IntRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
         this.$guildIds = ref$ObjectRef;
     }
 
@@ -42,7 +60,7 @@ public final class GuildExperimentOverridesDto$Parser$parse$1<T> implements Acti
         }
         if (iHashCode == 107 && str.equals("k")) {
             Ref$ObjectRef ref$ObjectRef = this.$guildIds;
-            T t = (T) this.$reader.nextList(new GuildExperimentOverridesDto$Parser$parse$1$1(this));
+            T t = (T) this.$reader.nextList(new AnonymousClass1());
             m.checkNotNullExpressionValue(t, "reader.nextList { reader.nextLong(-1L) }");
             ref$ObjectRef.element = t;
         }

@@ -9,6 +9,16 @@ import java.nio.ByteBuffer;
 public class h {
     public static final byte[] a;
 
+    /* JADX INFO: compiled from: Internal.java */
+    public interface a {
+        int getNumber();
+    }
+
+    /* JADX INFO: compiled from: Internal.java */
+    public interface b<T extends a> {
+        T findValueByNumber(int i);
+    }
+
     static {
         byte[] bArr = new byte[0];
         a = bArr;

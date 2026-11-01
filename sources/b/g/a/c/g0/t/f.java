@@ -98,12 +98,12 @@ public final class f extends b.g.a.c.g0.u.b<List<?>> {
                         b.g.a.c.n<Object> nVarC = lVar.c(cls);
                         if (nVarC == null) {
                             if (this._elementType.r()) {
-                                l$d l_dA = lVar.a(xVar.k(this._elementType, cls), xVar, this._property);
-                                l lVar2 = l_dA.f708b;
+                                l.d dVarA = lVar.a(xVar.k(this._elementType, cls), xVar, this._property);
+                                l lVar2 = dVarA.f708b;
                                 if (lVar != lVar2) {
                                     this._dynamicSerializers = lVar2;
                                 }
-                                nVarR = l_dA.a;
+                                nVarR = dVarA.a;
                             } else {
                                 nVarR = r(lVar, cls, xVar);
                             }
@@ -136,12 +136,12 @@ public final class f extends b.g.a.c.g0.u.b<List<?>> {
                     b.g.a.c.n<Object> nVarC2 = lVar3.c(cls2);
                     if (nVarC2 == null) {
                         if (this._elementType.r()) {
-                            l$d l_dA2 = lVar3.a(xVar.k(this._elementType, cls2), xVar, this._property);
-                            l lVar4 = l_dA2.f708b;
+                            l.d dVarA2 = lVar3.a(xVar.k(this._elementType, cls2), xVar, this._property);
+                            l lVar4 = dVarA2.f708b;
                             if (lVar3 != lVar4) {
                                 this._dynamicSerializers = lVar4;
                             }
-                            nVarR2 = l_dA2.a;
+                            nVarR2 = dVarA2.a;
                         } else {
                             nVarR2 = r(lVar3, cls2, xVar);
                         }

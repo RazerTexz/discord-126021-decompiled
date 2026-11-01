@@ -4,7 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Paint$Style;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
@@ -13,7 +12,7 @@ import b.f.g.d.b.b;
 import com.facebook.drawee.drawable.ScalingUtils$ScaleType;
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map$Entry;
+import java.util.Map;
 
 /* JADX INFO: compiled from: DebugControllerOverlayDrawable.java */
 /* JADX INFO: loaded from: classes.dex */
@@ -92,14 +91,14 @@ public class a extends Drawable implements b {
         int i;
         int i2;
         Rect bounds = getBounds();
-        this.f501s.setStyle(Paint$Style.STROKE);
+        this.f501s.setStyle(Paint.Style.STROKE);
         this.f501s.setStrokeWidth(2.0f);
         this.f501s.setColor(-26624);
         canvas.drawRect(bounds.left, bounds.top, bounds.right, bounds.bottom, this.f501s);
-        this.f501s.setStyle(Paint$Style.FILL);
+        this.f501s.setStyle(Paint.Style.FILL);
         this.f501s.setColor(0);
         canvas.drawRect(bounds.left, bounds.top, bounds.right, bounds.bottom, this.f501s);
-        this.f501s.setStyle(Paint$Style.FILL);
+        this.f501s.setStyle(Paint.Style.FILL);
         this.f501s.setStrokeWidth(0.0f);
         this.f501s.setColor(-1);
         this.f504z = this.w;
@@ -171,8 +170,8 @@ public class a extends Drawable implements b {
         if (str != null) {
             a(canvas, "origin", str, this.D);
         }
-        for (Map$Entry<String, String> map$Entry : this.o.entrySet()) {
-            a(canvas, map$Entry.getKey(), map$Entry.getValue(), -1);
+        for (Map.Entry<String, String> entry : this.o.entrySet()) {
+            a(canvas, entry.getKey(), entry.getValue(), -1);
         }
     }
 

@@ -1,20 +1,17 @@
 package androidx.appcompat.widget;
 
+import android.R;
 import android.annotation.SuppressLint;
 import android.app.SearchableInfo;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager$NameNotFoundException;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
-import android.content.res.Resources$NotFoundException;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Drawable$ConstantState;
 import android.net.Uri;
-import android.net.Uri$Builder;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -22,12 +19,9 @@ import android.text.style.TextAppearanceSpan;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.View$OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.appcompat.R$attr;
-import androidx.appcompat.R$id;
 import androidx.core.content.ContextCompat;
 import androidx.cursoradapter.widget.ResourceCursorAdapter;
 import b.d.b.a.a;
@@ -40,7 +34,7 @@ import java.util.WeakHashMap;
 
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"RestrictedAPI"})
-public class SuggestionsAdapter extends ResourceCursorAdapter implements View$OnClickListener {
+public class SuggestionsAdapter extends ResourceCursorAdapter implements View.OnClickListener {
     private static final boolean DBG = false;
     public static final int INVALID_INDEX = -1;
     private static final String LOG_TAG = "SuggestionsAdapter";
@@ -53,7 +47,7 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View$On
     private int mFlagsCol;
     private int mIconName1Col;
     private int mIconName2Col;
-    private final WeakHashMap<String, Drawable$ConstantState> mOutsideDrawablesCache;
+    private final WeakHashMap<String, Drawable.ConstantState> mOutsideDrawablesCache;
     private final Context mProviderContext;
     private int mQueryRefinement;
     private final SearchView mSearchView;
@@ -63,7 +57,23 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View$On
     private int mText2UrlCol;
     private ColorStateList mUrlColor;
 
-    public SuggestionsAdapter(Context context, SearchView searchView, SearchableInfo searchableInfo, WeakHashMap<String, Drawable$ConstantState> weakHashMap) {
+    public final class ChildViewCache {
+        public final ImageView mIcon1;
+        public final ImageView mIcon2;
+        public final ImageView mIconRefine;
+        public final TextView mText1;
+        public final TextView mText2;
+
+        public ChildViewCache(View view) {
+            this.mText1 = (TextView) view.findViewById(R.id.text1);
+            this.mText2 = (TextView) view.findViewById(R.id.text2);
+            this.mIcon1 = (ImageView) view.findViewById(R.id.icon1);
+            this.mIcon2 = (ImageView) view.findViewById(R.id.icon2);
+            this.mIconRefine = (ImageView) view.findViewById(androidx.appcompat.R.id.edit_query);
+        }
+    }
+
+    public SuggestionsAdapter(Context context, SearchView searchView, SearchableInfo searchableInfo, WeakHashMap<String, Drawable.ConstantState> weakHashMap) {
         super(context, searchView.getSuggestionRowLayout(), (Cursor) null, true);
         this.mClosed = false;
         this.mQueryRefinement = 1;
@@ -82,49 +92,49 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View$On
 
     @Override // androidx.cursoradapter.widget.CursorAdapter
     public void bindView(View view, Context context, Cursor cursor) {
-        SuggestionsAdapter$ChildViewCache suggestionsAdapter$ChildViewCache = (SuggestionsAdapter$ChildViewCache) view.getTag();
+        ChildViewCache childViewCache = (ChildViewCache) view.getTag();
         int i = this.mFlagsCol;
         int i2 = i != -1 ? cursor.getInt(i) : 0;
-        if (suggestionsAdapter$ChildViewCache.mText1 != null) {
-            setViewText(suggestionsAdapter$ChildViewCache.mText1, getStringOrNull(cursor, this.mText1Col));
+        if (childViewCache.mText1 != null) {
+            setViewText(childViewCache.mText1, getStringOrNull(cursor, this.mText1Col));
         }
-        if (suggestionsAdapter$ChildViewCache.mText2 != null) {
+        if (childViewCache.mText2 != null) {
             String stringOrNull = getStringOrNull(cursor, this.mText2UrlCol);
             CharSequence url = stringOrNull != null ? formatUrl(stringOrNull) : getStringOrNull(cursor, this.mText2Col);
             if (TextUtils.isEmpty(url)) {
-                TextView textView = suggestionsAdapter$ChildViewCache.mText1;
+                TextView textView = childViewCache.mText1;
                 if (textView != null) {
                     textView.setSingleLine(false);
-                    suggestionsAdapter$ChildViewCache.mText1.setMaxLines(2);
+                    childViewCache.mText1.setMaxLines(2);
                 }
             } else {
-                TextView textView2 = suggestionsAdapter$ChildViewCache.mText1;
+                TextView textView2 = childViewCache.mText1;
                 if (textView2 != null) {
                     textView2.setSingleLine(true);
-                    suggestionsAdapter$ChildViewCache.mText1.setMaxLines(1);
+                    childViewCache.mText1.setMaxLines(1);
                 }
             }
-            setViewText(suggestionsAdapter$ChildViewCache.mText2, url);
+            setViewText(childViewCache.mText2, url);
         }
-        ImageView imageView = suggestionsAdapter$ChildViewCache.mIcon1;
+        ImageView imageView = childViewCache.mIcon1;
         if (imageView != null) {
             setViewDrawable(imageView, getIcon1(cursor), 4);
         }
-        ImageView imageView2 = suggestionsAdapter$ChildViewCache.mIcon2;
+        ImageView imageView2 = childViewCache.mIcon2;
         if (imageView2 != null) {
             setViewDrawable(imageView2, getIcon2(cursor), 8);
         }
         int i3 = this.mQueryRefinement;
         if (i3 != 2 && (i3 != 1 || (i2 & 1) == 0)) {
-            suggestionsAdapter$ChildViewCache.mIconRefine.setVisibility(8);
+            childViewCache.mIconRefine.setVisibility(8);
             return;
         }
-        suggestionsAdapter$ChildViewCache.mIconRefine.setVisibility(0);
-        suggestionsAdapter$ChildViewCache.mIconRefine.setTag(suggestionsAdapter$ChildViewCache.mText1.getText());
-        suggestionsAdapter$ChildViewCache.mIconRefine.setOnClickListener(this);
+        childViewCache.mIconRefine.setVisibility(0);
+        childViewCache.mIconRefine.setTag(childViewCache.mText1.getText());
+        childViewCache.mIconRefine.setOnClickListener(this);
     }
 
-    @Override // androidx.cursoradapter.widget.CursorAdapter, androidx.cursoradapter.widget.CursorFilter$CursorFilterClient
+    @Override // androidx.cursoradapter.widget.CursorAdapter, androidx.cursoradapter.widget.CursorFilter.CursorFilterClient
     public void changeCursor(Cursor cursor) {
         if (this.mClosed) {
             Log.w(LOG_TAG, "Tried to change cursor after adapter was closed.");
@@ -150,11 +160,11 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View$On
     }
 
     private Drawable checkIconCache(String str) {
-        Drawable$ConstantState drawable$ConstantState = this.mOutsideDrawablesCache.get(str);
-        if (drawable$ConstantState == null) {
+        Drawable.ConstantState constantState = this.mOutsideDrawablesCache.get(str);
+        if (constantState == null) {
             return null;
         }
-        return drawable$ConstantState.newDrawable();
+        return constantState.newDrawable();
     }
 
     public void close() {
@@ -162,7 +172,7 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View$On
         this.mClosed = true;
     }
 
-    @Override // androidx.cursoradapter.widget.CursorAdapter, androidx.cursoradapter.widget.CursorFilter$CursorFilterClient
+    @Override // androidx.cursoradapter.widget.CursorAdapter, androidx.cursoradapter.widget.CursorFilter.CursorFilterClient
     public CharSequence convertToString(Cursor cursor) {
         String columnString;
         String columnString2;
@@ -185,7 +195,7 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View$On
     private CharSequence formatUrl(CharSequence charSequence) {
         if (this.mUrlColor == null) {
             TypedValue typedValue = new TypedValue();
-            this.mContext.getTheme().resolveAttribute(R$attr.textColorSearchUrl, typedValue, true);
+            this.mContext.getTheme().resolveAttribute(androidx.appcompat.R.attr.textColorSearchUrl, typedValue, true);
             this.mUrlColor = this.mContext.getResources().getColorStateList(typedValue.resourceId);
         }
         SpannableString spannableString = new SpannableString(charSequence);
@@ -209,7 +219,7 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View$On
             sbV.append(componentName.flattenToShortString());
             Log.w(LOG_TAG, sbV.toString());
             return null;
-        } catch (PackageManager$NameNotFoundException e) {
+        } catch (PackageManager.NameNotFoundException e) {
             Log.w(LOG_TAG, e.toString());
             return null;
         }
@@ -222,11 +232,11 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View$On
             this.mOutsideDrawablesCache.put(strFlattenToShortString, activityIcon != null ? activityIcon.getConstantState() : null);
             return activityIcon;
         }
-        Drawable$ConstantState drawable$ConstantState = this.mOutsideDrawablesCache.get(strFlattenToShortString);
-        if (drawable$ConstantState == null) {
+        Drawable.ConstantState constantState = this.mOutsideDrawablesCache.get(strFlattenToShortString);
+        if (constantState == null) {
             return null;
         }
-        return drawable$ConstantState.newDrawable(this.mProviderContext.getResources());
+        return constantState.newDrawable(this.mProviderContext.getResources());
     }
 
     public static String getColumnString(Cursor cursor, String str) {
@@ -243,7 +253,7 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View$On
             if ("android.resource".equals(uri.getScheme())) {
                 try {
                     return getDrawableFromResourceUri(uri);
-                } catch (Resources$NotFoundException unused) {
+                } catch (Resources.NotFoundException unused) {
                     throw new FileNotFoundException("Resource does not exist: " + uri);
                 }
             }
@@ -304,7 +314,7 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View$On
                 return resourcesForApplication.getDrawable(identifier);
             }
             throw new FileNotFoundException("No resource found for: " + uri);
-        } catch (PackageManager$NameNotFoundException unused2) {
+        } catch (PackageManager.NameNotFoundException unused2) {
             throw new FileNotFoundException("No package found for authority: " + uri);
         }
     }
@@ -323,7 +333,7 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View$On
             Drawable drawable = ContextCompat.getDrawable(this.mProviderContext, i);
             storeInIconCache(str2, drawable);
             return drawable;
-        } catch (Resources$NotFoundException unused) {
+        } catch (Resources.NotFoundException unused) {
             Log.w(LOG_TAG, "Icon resource not found: " + str);
             return null;
         } catch (NumberFormatException unused2) {
@@ -345,7 +355,7 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View$On
             Log.w(LOG_TAG, "Search suggestions cursor threw exception.", e);
             View viewNewDropDownView = newDropDownView(this.mContext, this.mCursor, viewGroup);
             if (viewNewDropDownView != null) {
-                ((SuggestionsAdapter$ChildViewCache) viewNewDropDownView.getTag()).mText1.setText(e.toString());
+                ((ChildViewCache) viewNewDropDownView.getTag()).mText1.setText(e.toString());
             }
             return viewNewDropDownView;
         }
@@ -378,23 +388,23 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View$On
         if (searchableInfo == null || (suggestAuthority = searchableInfo.getSuggestAuthority()) == null) {
             return null;
         }
-        Uri$Builder uri$BuilderFragment = new Uri$Builder().scheme("content").authority(suggestAuthority).query("").fragment("");
+        Uri.Builder builderFragment = new Uri.Builder().scheme("content").authority(suggestAuthority).query("").fragment("");
         String suggestPath = searchableInfo.getSuggestPath();
         if (suggestPath != null) {
-            uri$BuilderFragment.appendEncodedPath(suggestPath);
+            builderFragment.appendEncodedPath(suggestPath);
         }
-        uri$BuilderFragment.appendPath("search_suggest_query");
+        builderFragment.appendPath("search_suggest_query");
         String suggestSelection = searchableInfo.getSuggestSelection();
         if (suggestSelection != null) {
             strArr = new String[]{str};
         } else {
-            uri$BuilderFragment.appendPath(str);
+            builderFragment.appendPath(str);
         }
         String[] strArr2 = strArr;
         if (i > 0) {
-            uri$BuilderFragment.appendQueryParameter("limit", String.valueOf(i));
+            builderFragment.appendQueryParameter("limit", String.valueOf(i));
         }
-        return this.mContext.getContentResolver().query(uri$BuilderFragment.build(), null, suggestSelection, strArr2, null);
+        return this.mContext.getContentResolver().query(builderFragment.build(), null, suggestSelection, strArr2, null);
     }
 
     private static String getStringOrNull(Cursor cursor, int i) {
@@ -417,7 +427,7 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View$On
             Log.w(LOG_TAG, "Search suggestions cursor threw exception.", e);
             View viewNewView = newView(this.mContext, this.mCursor, viewGroup);
             if (viewNewView != null) {
-                ((SuggestionsAdapter$ChildViewCache) viewNewView.getTag()).mText1.setText(e.toString());
+                ((ChildViewCache) viewNewView.getTag()).mText1.setText(e.toString());
             }
             return viewNewView;
         }
@@ -431,8 +441,8 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View$On
     @Override // androidx.cursoradapter.widget.ResourceCursorAdapter, androidx.cursoradapter.widget.CursorAdapter
     public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
         View viewNewView = super.newView(context, cursor, viewGroup);
-        viewNewView.setTag(new SuggestionsAdapter$ChildViewCache(viewNewView));
-        ((ImageView) viewNewView.findViewById(R$id.edit_query)).setImageResource(this.mCommitIconResId);
+        viewNewView.setTag(new ChildViewCache(viewNewView));
+        ((ImageView) viewNewView.findViewById(androidx.appcompat.R.id.edit_query)).setImageResource(this.mCommitIconResId);
         return viewNewView;
     }
 
@@ -448,7 +458,7 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View$On
         updateSpinnerState(getCursor());
     }
 
-    @Override // android.view.View$OnClickListener
+    @Override // android.view.View.OnClickListener
     public void onClick(View view) {
         Object tag = view.getTag();
         if (tag instanceof CharSequence) {
@@ -456,7 +466,7 @@ public class SuggestionsAdapter extends ResourceCursorAdapter implements View$On
         }
     }
 
-    @Override // androidx.cursoradapter.widget.CursorAdapter, androidx.cursoradapter.widget.CursorFilter$CursorFilterClient
+    @Override // androidx.cursoradapter.widget.CursorAdapter, androidx.cursoradapter.widget.CursorFilter.CursorFilterClient
     public Cursor runQueryOnBackgroundThread(CharSequence charSequence) {
         String string = charSequence == null ? "" : charSequence.toString();
         if (this.mSearchView.getVisibility() == 0 && this.mSearchView.getWindowVisibility() == 0) {

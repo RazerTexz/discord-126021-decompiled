@@ -30,20 +30,19 @@ import com.discord.api.voice.state.VoiceState;
 import com.discord.gateway.opcodes.Opcode;
 import com.discord.models.deserialization.gson.InboundGatewayGsonParser;
 import com.discord.models.domain.Model;
-import com.discord.models.domain.Model$JsonReader;
-import com.discord.models.domain.ModelChannelUnreadUpdate$Parser;
-import com.discord.models.domain.ModelGuildIntegration$Update;
-import com.discord.models.domain.ModelGuildMemberListUpdate$Parser;
+import com.discord.models.domain.ModelChannelUnreadUpdate;
+import com.discord.models.domain.ModelGuildIntegration;
+import com.discord.models.domain.ModelGuildMemberListUpdate;
 import com.discord.models.domain.ModelNotificationSettings;
 import com.discord.models.domain.ModelPayload;
-import com.discord.models.domain.ModelPayload$Hello;
-import com.discord.models.domain.ModelReadState$Parser;
-import com.discord.models.domain.ModelUserNote$Update$Parser;
+import com.discord.models.domain.ModelReadState;
+import com.discord.models.domain.ModelSession;
+import com.discord.models.domain.ModelUserNote;
 import com.discord.models.domain.ModelUserSettings;
-import com.discord.models.domain.StreamCreateOrUpdate$Parser;
-import com.discord.models.domain.StreamDelete$Parser;
-import com.discord.models.domain.StreamServerUpdate$Parser;
-import com.discord.models.thread.dto.ModelThreadListSync$Parser;
+import com.discord.models.domain.StreamCreateOrUpdate;
+import com.discord.models.domain.StreamDelete;
+import com.discord.models.domain.StreamServerUpdate;
+import com.discord.models.thread.dto.ModelThreadListSync;
 import com.discord.utilities.fcm.NotificationData;
 import com.discord.utilities.time.ClockFactory;
 import d0.z.d.m;
@@ -59,6 +58,61 @@ public final class IncomingParser implements Model {
     private Opcode opcode;
     private Integer seq;
     private String type;
+
+    /* JADX INFO: renamed from: com.discord.gateway.io.IncomingParser$assignField$1, reason: invalid class name */
+    /* JADX INFO: compiled from: Incoming.kt */
+    public final class AnonymousClass1<T> implements Model.JsonReader.ItemFactory<Presence> {
+        public final /* synthetic */ Model.JsonReader $reader;
+
+        public AnonymousClass1(Model.JsonReader jsonReader) {
+            this.$reader = jsonReader;
+        }
+
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public /* bridge */ /* synthetic */ Presence get() {
+            return get();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public final Presence get() {
+            return (Presence) InboundGatewayGsonParser.fromJson(this.$reader, Presence.class);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.gateway.io.IncomingParser$assignField$2, reason: invalid class name */
+    /* JADX INFO: compiled from: Incoming.kt */
+    public final class AnonymousClass2<T> implements Model.JsonReader.ItemFactory<ModelSession> {
+        public final /* synthetic */ Model.JsonReader $reader;
+
+        public AnonymousClass2(Model.JsonReader jsonReader) {
+            this.$reader = jsonReader;
+        }
+
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public /* bridge */ /* synthetic */ ModelSession get() {
+            return get();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public final ModelSession get() {
+            return (ModelSession) this.$reader.parse(new ModelSession());
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            Opcode.values();
+            int[] iArr = new int[21];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[Opcode.HELLO.ordinal()] = 1;
+            iArr[Opcode.INVALID_SESSION.ordinal()] = 2;
+            iArr[Opcode.DISPATCH.ordinal()] = 3;
+        }
+    }
 
     /* JADX WARN: Multi-variable type inference failed */
     public IncomingParser(Function1<? super String, Unit> function1) {
@@ -285,7 +339,7 @@ public final class IncomingParser implements Model {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    public void assignField(Model$JsonReader reader) throws IOException {
+    public void assignField(Model.JsonReader reader) throws IOException {
         m.checkNotNullParameter(reader, "reader");
         String strNextName = reader.nextName();
         if (strNextName != null) {
@@ -302,7 +356,7 @@ public final class IncomingParser implements Model {
                         return;
                     }
                 } else if (strNextName.equals("op")) {
-                    this.opcode = Opcode.Companion.fromApiInt(reader.nextInt(-1));
+                    this.opcode = Opcode.INSTANCE.fromApiInt(reader.nextInt(-1));
                     return;
                 }
             } else if (strNextName.equals("d")) {
@@ -319,7 +373,7 @@ public final class IncomingParser implements Model {
                         reader.skipValue();
                         return;
                     } else {
-                        this.data = reader.parse(new ModelPayload$Hello());
+                        this.data = reader.parse(new ModelPayload.Hello());
                         return;
                     }
                 }
@@ -337,7 +391,7 @@ public final class IncomingParser implements Model {
                             break;
                         case -2026522382:
                             if (str.equals("SESSIONS_REPLACE")) {
-                                this.data = reader.nextList(new IncomingParser$assignField$2(reader));
+                                this.data = reader.nextList(new AnonymousClass2(reader));
                             }
                             break;
                         case -2002723137:
@@ -420,12 +474,12 @@ public final class IncomingParser implements Model {
                             break;
                         case -1201943215:
                             if (str.equals("GUILD_MEMBER_LIST_UPDATE")) {
-                                this.data = ModelGuildMemberListUpdate$Parser.INSTANCE.parse(reader);
+                                this.data = ModelGuildMemberListUpdate.Parser.INSTANCE.parse(reader);
                             }
                             break;
                         case -960563390:
                             if (str.equals("USER_NOTE_UPDATE")) {
-                                this.data = ModelUserNote$Update$Parser.INSTANCE.parse(reader);
+                                this.data = ModelUserNote.Update.Parser.INSTANCE.parse(reader);
                             }
                             break;
                         case -903406451:
@@ -437,7 +491,7 @@ public final class IncomingParser implements Model {
                             break;
                         case -843352707:
                             if (str.equals("GUILD_INTEGRATIONS_UPDATE")) {
-                                this.data = reader.parse(new ModelGuildIntegration$Update());
+                                this.data = reader.parse(new ModelGuildIntegration.Update());
                             }
                             break;
                         case -778017807:
@@ -475,7 +529,7 @@ public final class IncomingParser implements Model {
                             break;
                         case -207118083:
                             if (str.equals("CHANNEL_UNREAD_UPDATE")) {
-                                this.data = ModelChannelUnreadUpdate$Parser.INSTANCE.parse(reader);
+                                this.data = ModelChannelUnreadUpdate.Parser.INSTANCE.parse(reader);
                             }
                             break;
                         case -161616987:
@@ -513,7 +567,7 @@ public final class IncomingParser implements Model {
                             break;
                         case 85547718:
                             if (str.equals("STREAM_SERVER_UPDATE")) {
-                                this.data = StreamServerUpdate$Parser.INSTANCE.parse(reader);
+                                this.data = StreamServerUpdate.Parser.INSTANCE.parse(reader);
                             }
                             break;
                         case 151900580:
@@ -549,7 +603,7 @@ public final class IncomingParser implements Model {
                             break;
                         case 1281125393:
                             if (str.equals("MESSAGE_ACK")) {
-                                this.data = ModelReadState$Parser.INSTANCE.parse(reader);
+                                this.data = ModelReadState.Parser.INSTANCE.parse(reader);
                             }
                             break;
                         case 1285223808:
@@ -577,19 +631,19 @@ public final class IncomingParser implements Model {
                             break;
                         case 1616207515:
                             if (str.equals("STREAM_CREATE")) {
-                                this.data = StreamCreateOrUpdate$Parser.INSTANCE.parse(reader);
+                                this.data = StreamCreateOrUpdate.Parser.INSTANCE.parse(reader);
                             }
                             break;
                         case 1622830784:
                             break;
                         case 1633043274:
                             if (str.equals("STREAM_DELETE")) {
-                                this.data = StreamDelete$Parser.INSTANCE.parse(reader);
+                                this.data = StreamDelete.Parser.INSTANCE.parse(reader);
                             }
                             break;
                         case 1689894925:
                             if (str.equals("PRESENCES_REPLACE")) {
-                                this.data = reader.nextList(new IncomingParser$assignField$1(reader));
+                                this.data = reader.nextList(new AnonymousClass1(reader));
                             }
                             break;
                         case 1699412580:
@@ -616,7 +670,7 @@ public final class IncomingParser implements Model {
                             break;
                         case 1928220071:
                             if (str.equals("THREAD_LIST_SYNC")) {
-                                this.data = ModelThreadListSync$Parser.INSTANCE.parse(reader);
+                                this.data = ModelThreadListSync.Parser.INSTANCE.parse(reader);
                             }
                             break;
                         case 1990123078:
@@ -626,7 +680,7 @@ public final class IncomingParser implements Model {
                             break;
                         case 2129655400:
                             if (str.equals("STREAM_UPDATE")) {
-                                this.data = StreamCreateOrUpdate$Parser.INSTANCE.parse(reader);
+                                this.data = StreamCreateOrUpdate.Parser.INSTANCE.parse(reader);
                             }
                             break;
                     }

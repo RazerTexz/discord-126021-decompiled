@@ -5,7 +5,9 @@ import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import androidx.annotation.StringRes;
+import androidx.core.view.AccessibilityDelegateCompat;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import com.discord.stores.StoreStream;
 import d0.z.d.m;
 
@@ -14,11 +16,23 @@ import d0.z.d.m;
 public final class AccessibilityUtils {
     public static final AccessibilityUtils INSTANCE = new AccessibilityUtils();
 
+    /* JADX INFO: renamed from: com.discord.utilities.accessibility.AccessibilityUtils$setViewIsHeading$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AccessibilityUtils.kt */
+    public final class AnonymousClass1 extends AccessibilityDelegateCompat {
+        @Override // androidx.core.view.AccessibilityDelegateCompat
+        public void onInitializeAccessibilityNodeInfo(View host, AccessibilityNodeInfoCompat info) {
+            m.checkNotNullParameter(host, "host");
+            m.checkNotNullParameter(info, "info");
+            super.onInitializeAccessibilityNodeInfo(host, info);
+            info.setHeading(true);
+        }
+    }
+
     private AccessibilityUtils() {
     }
 
     public final boolean isReducedMotionEnabled() {
-        return StoreStream.Companion.getAccessibility().getReducedMotionEnabled();
+        return StoreStream.INSTANCE.getAccessibility().getReducedMotionEnabled();
     }
 
     public final void sendAnnouncement(Context context, @StringRes int message) {
@@ -30,7 +44,7 @@ public final class AccessibilityUtils {
 
     public final void setViewIsHeading(View view) {
         m.checkNotNullParameter(view, "view");
-        ViewCompat.setAccessibilityDelegate(view, new AccessibilityUtils$setViewIsHeading$1());
+        ViewCompat.setAccessibilityDelegate(view, new AnonymousClass1());
     }
 
     public final void sendAnnouncement(Context context, String message) {

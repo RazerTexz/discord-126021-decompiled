@@ -1,24 +1,30 @@
 package com.discord.stores;
 
 import android.content.Context;
+import androidx.core.app.NotificationCompat;
 import com.discord.api.message.Message;
 import com.discord.api.user.TypingUser;
 import com.discord.api.user.User;
-import com.discord.restapi.RestAPIParams$EmptyBody;
+import com.discord.models.domain.ModelTypingResponse;
+import com.discord.restapi.RestAPIParams;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.t.h0;
+import d0.t.n0;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import j0.l.e.k;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -36,8 +42,273 @@ public final class StoreUserTyping extends StoreV2 {
     private final HashMap<Long, Map<Long, Subscription>> typingUsersRemoveCallbacks;
     private Map<Long, ? extends Set<Long>> typingUsersSnapshot;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$handleTypingStart$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserTyping.kt */
+    public final class AnonymousClass1 extends o implements Function1<TypingUser, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$handleTypingStart$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreUserTyping.kt */
+        public final class C03121 extends o implements Function0<Unit> {
+            public final /* synthetic */ TypingUser $prevTyping;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C03121(TypingUser typingUser) {
+                super(0);
+                this.$prevTyping = typingUser;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreUserTyping storeUserTyping = StoreUserTyping.this;
+                TypingUser typingUser = this.$prevTyping;
+                m.checkNotNullExpressionValue(typingUser, "prevTyping");
+                StoreUserTyping.access$handleTypingStop(storeUserTyping, typingUser);
+            }
+        }
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(TypingUser typingUser) {
+            invoke2(typingUser);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(TypingUser typingUser) {
+            StoreUserTyping.access$getDispatcher$p(StoreUserTyping.this).schedule(new C03121(typingUser));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$observeTypingUsers$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserTyping.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Set<? extends Long>>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Set<? extends Long>> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Set<? extends Long>> invoke2() {
+            return StoreUserTyping.access$getTypingUsers(StoreUserTyping.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$observeTypingUsersForChannels$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserTyping.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Set<? extends Long>>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Set<? extends Long>> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Set<? extends Long>> invoke2() {
+            return StoreUserTyping.access$getTypingUsers(StoreUserTyping.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$setUserTyping$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserTyping.kt */
+    public final class AnonymousClass1 extends o implements Function1<ModelTypingResponse, Unit> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$setUserTyping$1$2, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreUserTyping.kt */
+        public final class AnonymousClass2 extends o implements Function0<Unit> {
+            public final /* synthetic */ long $threadCreateCooldown;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass2(long j) {
+                super(0);
+                this.$threadCreateCooldown = j;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreStream.INSTANCE.getSlowMode().onCooldown(AnonymousClass1.this.$channelId, this.$threadCreateCooldown, StoreSlowMode.Type.ThreadCreate.INSTANCE);
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$setUserTyping$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreUserTyping.kt */
+        public final class C03131 extends o implements Function0<Unit> {
+            public final /* synthetic */ long $messageSendCooldownSecs;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C03131(long j) {
+                super(0);
+                this.$messageSendCooldownSecs = j;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreStream.INSTANCE.getSlowMode().onCooldown(AnonymousClass1.this.$channelId, this.$messageSendCooldownSecs, StoreSlowMode.Type.MessageSend.INSTANCE);
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(1);
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelTypingResponse modelTypingResponse) {
+            invoke2(modelTypingResponse);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelTypingResponse modelTypingResponse) {
+            Long threadCreateCooldownMs;
+            Long messageSendCooldownMs;
+            long jLongValue = (modelTypingResponse == null || (messageSendCooldownMs = modelTypingResponse.getMessageSendCooldownMs()) == null) ? 0L : messageSendCooldownMs.longValue();
+            if (jLongValue > 0) {
+                StoreUserTyping.access$getDispatcher$p(StoreUserTyping.this).schedule(new C03131(jLongValue));
+            }
+            long jLongValue2 = (modelTypingResponse == null || (threadCreateCooldownMs = modelTypingResponse.getThreadCreateCooldownMs()) == null) ? 0L : threadCreateCooldownMs.longValue();
+            if (jLongValue2 > 0) {
+                StoreUserTyping.access$getDispatcher$p(StoreUserTyping.this).schedule(new AnonymousClass2(jLongValue2));
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$handleTypingStart$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserTyping.kt */
+    public final class AnonymousClass2 extends o implements Function1<Subscription, Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ long $userId;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$handleTypingStart$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreUserTyping.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public final /* synthetic */ Subscription $subscription;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(Subscription subscription) {
+                super(0);
+                this.$subscription = subscription;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                Map map = (Map) StoreUserTyping.access$getTypingUsersRemoveCallbacks$p(StoreUserTyping.this).get(Long.valueOf(AnonymousClass2.this.$channelId));
+                if (map != null) {
+                }
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(long j, long j2) {
+            super(1);
+            this.$channelId = j;
+            this.$userId = j2;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            StoreUserTyping.access$getDispatcher$p(StoreUserTyping.this).schedule(new AnonymousClass1(subscription));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$observeTypingUsers$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserTyping.kt */
+    public final class AnonymousClass2<T, R> implements b<Map<Long, ? extends Set<? extends Long>>, Set<? extends Long>> {
+        public final /* synthetic */ long $channelId;
+
+        public AnonymousClass2(long j) {
+            this.$channelId = j;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Set<? extends Long> call(Map<Long, ? extends Set<? extends Long>> map) {
+            return call2((Map<Long, ? extends Set<Long>>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Set<Long> call2(Map<Long, ? extends Set<Long>> map) {
+            m.checkNotNullExpressionValue(map, "typingUsersByChannel");
+            Set<Long> setEmptySet = map.get(Long.valueOf(this.$channelId));
+            if (setEmptySet == null) {
+                setEmptySet = n0.emptySet();
+            }
+            return setEmptySet;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserTyping$observeTypingUsersForChannels$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserTyping.kt */
+    public final class AnonymousClass2<T, R> implements b<Map<Long, ? extends Set<? extends Long>>, Map<Long, ? extends Set<? extends Long>>> {
+        public final /* synthetic */ Set $channelIds;
+
+        public AnonymousClass2(Set set) {
+            this.$channelIds = set;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Set<? extends Long>> call(Map<Long, ? extends Set<? extends Long>> map) {
+            return call2((Map<Long, ? extends Set<Long>>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Map<Long, Set<Long>> call2(Map<Long, ? extends Set<Long>> map) {
+            m.checkNotNullExpressionValue(map, "typingUsersByChannel");
+            LinkedHashMap linkedHashMap = new LinkedHashMap();
+            for (Map.Entry<Long, ? extends Set<Long>> entry : map.entrySet()) {
+                if (this.$channelIds.contains(Long.valueOf(entry.getKey().longValue()))) {
+                    linkedHashMap.put(entry.getKey(), entry.getValue());
+                }
+            }
+            return linkedHashMap;
+        }
+    }
+
     public /* synthetic */ StoreUserTyping(StoreStream storeStream, Dispatcher dispatcher, ObservationDeck observationDeck, RestAPI restAPI, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(storeStream, dispatcher, (i & 4) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 8) != 0 ? RestAPI.Companion.getApi() : restAPI);
+        this(storeStream, dispatcher, (i & 4) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 8) != 0 ? RestAPI.INSTANCE.getApi() : restAPI);
     }
 
     public static final /* synthetic */ Dispatcher access$getDispatcher$p(StoreUserTyping storeUserTyping) {
@@ -98,7 +369,7 @@ public final class StoreUserTyping extends StoreV2 {
         }
         Observable<T> observableQ = new k(typing).q(10L, TimeUnit.SECONDS);
         m.checkNotNullExpressionValue(observableQ, "Observable\n        .just…lay(10, TimeUnit.SECONDS)");
-        ObservableExtensionsKt.appSubscribe$default(observableQ, (Context) null, "typingRemove", new StoreUserTyping$handleTypingStart$2(this, channelId, userId), new StoreUserTyping$handleTypingStart$1(this), (Function1) null, (Function0) null, (Function0) null, 113, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(observableQ, (Context) null, "typingRemove", new AnonymousClass2(channelId, userId), new AnonymousClass1(), (Function1) null, (Function0) null, (Function0) null, 113, (Object) null);
         HashMap<Long, Set<Long>> map3 = this.typingUsers;
         Long lValueOf2 = Long.valueOf(channelId);
         Set<Long> hashSet = map3.get(lValueOf2);
@@ -123,14 +394,14 @@ public final class StoreUserTyping extends StoreV2 {
     }
 
     public final Observable<Set<Long>> observeTypingUsers(long channelId) {
-        Observable<Set<Long>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreUserTyping$observeTypingUsers$1(this), 14, null).G(new StoreUserTyping$observeTypingUsers$2(channelId)).r();
+        Observable<Set<Long>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).G(new AnonymousClass2(channelId)).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Map<Long, Set<Long>>> observeTypingUsersForChannels(Set<Long> channelIds) {
         m.checkNotNullParameter(channelIds, "channelIds");
-        Observable<Map<Long, Set<Long>>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreUserTyping$observeTypingUsersForChannels$1(this), 14, null).G(new StoreUserTyping$observeTypingUsersForChannels$2(channelIds)).r();
+        Observable<Map<Long, Set<Long>>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).G(new AnonymousClass2(channelIds)).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
         return observableR;
     }
@@ -139,7 +410,7 @@ public final class StoreUserTyping extends StoreV2 {
         if (channelId == 0) {
             return;
         }
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.setUserTyping(channelId, new RestAPIParams$EmptyBody()), false, 1, null), (Context) null, "typingEvent", (Function1) null, new StoreUserTyping$setUserTyping$1(this, channelId), (Function1) null, (Function0) null, (Function0) null, 117, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.setUserTyping(channelId, new RestAPIParams.EmptyBody()), false, 1, null), (Context) null, "typingEvent", (Function1) null, new AnonymousClass1(channelId), (Function1) null, (Function0) null, (Function0) null, 117, (Object) null);
     }
 
     @Override // com.discord.stores.StoreV2
@@ -147,8 +418,8 @@ public final class StoreUserTyping extends StoreV2 {
     public void snapshotData() {
         super.snapshotData();
         HashMap map = new HashMap();
-        for (Map$Entry<Long, Set<Long>> map$Entry : this.typingUsers.entrySet()) {
-            map.put(Long.valueOf(map$Entry.getKey().longValue()), new HashSet(map$Entry.getValue()));
+        for (Map.Entry<Long, Set<Long>> entry : this.typingUsers.entrySet()) {
+            map.put(Long.valueOf(entry.getKey().longValue()), new HashSet(entry.getValue()));
         }
         this.typingUsersSnapshot = map;
     }

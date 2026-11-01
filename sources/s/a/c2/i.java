@@ -2,7 +2,6 @@ package s.a.c2;
 
 import kotlinx.coroutines.channels.ClosedReceiveChannelException;
 import kotlinx.coroutines.channels.ClosedSendChannelException;
-import s.a.a.k$b;
 
 /* JADX INFO: compiled from: AbstractChannel.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -23,7 +22,7 @@ public final class i<E> extends r implements p<E> {
     }
 
     @Override // s.a.c2.p
-    public s.a.a.t d(E e, k$b k_b) {
+    public s.a.a.t d(E e, s.a.a.k.b bVar) {
         return s.a.m.a;
     }
 
@@ -41,7 +40,7 @@ public final class i<E> extends r implements p<E> {
     }
 
     @Override // s.a.c2.r
-    public s.a.a.t t(k$b k_b) {
+    public s.a.a.t t(s.a.a.k.b bVar) {
         return s.a.m.a;
     }
 

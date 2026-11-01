@@ -3,20 +3,21 @@ package com.discord.utilities.textprocessing;
 import a0.a.a.b;
 import android.content.Context;
 import b.d.b.a.a;
+import com.discord.R;
 import com.discord.api.role.GuildRole;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.textprocessing.node.BasicRenderContext;
-import com.discord.utilities.textprocessing.node.ChannelMentionNode$RenderContext;
-import com.discord.utilities.textprocessing.node.EmojiNode$EmojiIdAndType;
-import com.discord.utilities.textprocessing.node.EmojiNode$RenderContext;
-import com.discord.utilities.textprocessing.node.RoleMentionNode$RenderContext;
+import com.discord.utilities.textprocessing.node.ChannelMentionNode;
+import com.discord.utilities.textprocessing.node.EmojiNode;
+import com.discord.utilities.textprocessing.node.RoleMentionNode;
 import com.discord.utilities.textprocessing.node.SpoilerNode;
-import com.discord.utilities.textprocessing.node.SpoilerNode$RenderContext;
-import com.discord.utilities.textprocessing.node.TimestampNode$RenderContext;
-import com.discord.utilities.textprocessing.node.UrlNode$RenderContext;
-import com.discord.utilities.textprocessing.node.UserMentionNode$RenderContext;
+import com.discord.utilities.textprocessing.node.TimestampNode;
+import com.discord.utilities.textprocessing.node.UrlNode;
+import com.discord.utilities.textprocessing.node.UserMentionNode;
+import com.discord.utilities.uri.UriHandler;
 import com.discord.widgets.emoji.WidgetEmojiSheet;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Map;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -25,7 +26,7 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: MessageRenderContext.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* data */ class MessageRenderContext implements BasicRenderContext, UserMentionNode$RenderContext, EmojiNode$RenderContext, ChannelMentionNode$RenderContext, RoleMentionNode$RenderContext, UrlNode$RenderContext, SpoilerNode$RenderContext, TimestampNode$RenderContext {
+public final /* data */ class MessageRenderContext implements BasicRenderContext, UserMentionNode.RenderContext, EmojiNode.RenderContext, ChannelMentionNode.RenderContext, RoleMentionNode.RenderContext, UrlNode.RenderContext, SpoilerNode.RenderContext, TimestampNode.RenderContext {
     private final Function1<Long, Unit> channelMentionOnClick;
     private final Map<Long, String> channelNames;
     private final Context context;
@@ -40,6 +41,50 @@ public final /* data */ class MessageRenderContext implements BasicRenderContext
     private final int spoilerRevealedColorRes;
     private final Function1<Long, Unit> userMentionOnClick;
     private final Map<Long, String> userNames;
+
+    /* JADX INFO: renamed from: com.discord.utilities.textprocessing.MessageRenderContext$1, reason: invalid class name */
+    /* JADX INFO: compiled from: MessageRenderContext.kt */
+    public final class AnonymousClass1 extends o implements Function3<Context, String, String, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(3);
+        }
+
+        @Override // kotlin.jvm.functions.Function3
+        public /* bridge */ /* synthetic */ Unit invoke(Context context, String str, String str2) {
+            invoke2(context, str, str2);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Context context, String str, String str2) {
+            m.checkNotNullParameter(context, "clickContext");
+            m.checkNotNullParameter(str, "url");
+            UriHandler.handleOrUntrusted(context, str, str2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.textprocessing.MessageRenderContext$2, reason: invalid class name */
+    /* JADX INFO: compiled from: MessageRenderContext.kt */
+    public final class AnonymousClass2 extends o implements Function1<String, Unit> {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            m.checkNotNullParameter(str, "it");
+        }
+    }
 
     public MessageRenderContext(Context context, long j, boolean z2) {
         this(context, j, z2, null, null, null, 0, null, null, 0, 0, null, null, null, 16376, null);
@@ -185,73 +230,73 @@ public final /* data */ class MessageRenderContext implements BasicRenderContext
         return m.areEqual(getContext(), messageRenderContext.getContext()) && getMyId() == messageRenderContext.getMyId() && getIsAnimationEnabled() == messageRenderContext.getIsAnimationEnabled() && m.areEqual(getUserNames(), messageRenderContext.getUserNames()) && m.areEqual(getChannelNames(), messageRenderContext.getChannelNames()) && m.areEqual(getRoles(), messageRenderContext.getRoles()) && getLinkColorAttrResId() == messageRenderContext.getLinkColorAttrResId() && m.areEqual(getOnClickUrl(), messageRenderContext.getOnClickUrl()) && m.areEqual(getOnLongPressUrl(), messageRenderContext.getOnLongPressUrl()) && getSpoilerColorRes() == messageRenderContext.getSpoilerColorRes() && getSpoilerRevealedColorRes() == messageRenderContext.getSpoilerRevealedColorRes() && m.areEqual(getSpoilerOnClick(), messageRenderContext.getSpoilerOnClick()) && m.areEqual(getUserMentionOnClick(), messageRenderContext.getUserMentionOnClick()) && m.areEqual(getChannelMentionOnClick(), messageRenderContext.getChannelMentionOnClick());
     }
 
-    @Override // com.discord.utilities.textprocessing.node.ChannelMentionNode$RenderContext
+    @Override // com.discord.utilities.textprocessing.node.ChannelMentionNode.RenderContext
     public Function1<Long, Unit> getChannelMentionOnClick() {
         return this.channelMentionOnClick;
     }
 
-    @Override // com.discord.utilities.textprocessing.node.ChannelMentionNode$RenderContext
+    @Override // com.discord.utilities.textprocessing.node.ChannelMentionNode.RenderContext
     public Map<Long, String> getChannelNames() {
         return this.channelNames;
     }
 
-    @Override // com.discord.utilities.textprocessing.node.BasicRenderContext, com.discord.utilities.textprocessing.node.UserMentionNode$RenderContext, com.discord.utilities.textprocessing.node.EmojiNode$RenderContext
+    @Override // com.discord.utilities.textprocessing.node.BasicRenderContext, com.discord.utilities.textprocessing.node.UserMentionNode.RenderContext, com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
     public Context getContext() {
         return this.context;
     }
 
-    @Override // com.discord.utilities.textprocessing.node.EmojiNode$RenderContext
+    @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
     /* JADX INFO: renamed from: isAnimationEnabled, reason: from getter */
     public boolean getIsAnimationEnabled() {
         return this.isAnimationEnabled;
     }
 
-    @Override // com.discord.utilities.textprocessing.node.UrlNode$RenderContext
+    @Override // com.discord.utilities.textprocessing.node.UrlNode.RenderContext
     public int getLinkColorAttrResId() {
         return this.linkColorAttrResId;
     }
 
-    @Override // com.discord.utilities.textprocessing.node.UserMentionNode$RenderContext
+    @Override // com.discord.utilities.textprocessing.node.UserMentionNode.RenderContext
     public long getMyId() {
         return this.myId;
     }
 
-    @Override // com.discord.utilities.textprocessing.node.UrlNode$RenderContext
+    @Override // com.discord.utilities.textprocessing.node.UrlNode.RenderContext
     public Function3<Context, String, String, Unit> getOnClickUrl() {
         return this.onClickUrl;
     }
 
-    @Override // com.discord.utilities.textprocessing.node.UrlNode$RenderContext
+    @Override // com.discord.utilities.textprocessing.node.UrlNode.RenderContext
     public Function1<String, Unit> getOnLongPressUrl() {
         return this.onLongPressUrl;
     }
 
-    @Override // com.discord.utilities.textprocessing.node.RoleMentionNode$RenderContext
+    @Override // com.discord.utilities.textprocessing.node.RoleMentionNode.RenderContext
     public Map<Long, GuildRole> getRoles() {
         return this.roles;
     }
 
-    @Override // com.discord.utilities.textprocessing.node.SpoilerNode$RenderContext
+    @Override // com.discord.utilities.textprocessing.node.SpoilerNode.RenderContext
     public int getSpoilerColorRes() {
         return this.spoilerColorRes;
     }
 
-    @Override // com.discord.utilities.textprocessing.node.SpoilerNode$RenderContext
+    @Override // com.discord.utilities.textprocessing.node.SpoilerNode.RenderContext
     public Function1<SpoilerNode<?>, Unit> getSpoilerOnClick() {
         return this.spoilerOnClick;
     }
 
-    @Override // com.discord.utilities.textprocessing.node.SpoilerNode$RenderContext
+    @Override // com.discord.utilities.textprocessing.node.SpoilerNode.RenderContext
     public int getSpoilerRevealedColorRes() {
         return this.spoilerRevealedColorRes;
     }
 
-    @Override // com.discord.utilities.textprocessing.node.UserMentionNode$RenderContext
+    @Override // com.discord.utilities.textprocessing.node.UserMentionNode.RenderContext
     public Function1<Long, Unit> getUserMentionOnClick() {
         return this.userMentionOnClick;
     }
 
-    @Override // com.discord.utilities.textprocessing.node.UserMentionNode$RenderContext
+    @Override // com.discord.utilities.textprocessing.node.UserMentionNode.RenderContext
     public Map<Long, String> getUserNames() {
         return this.userNames;
     }
@@ -283,13 +328,13 @@ public final /* data */ class MessageRenderContext implements BasicRenderContext
         return iHashCode5 + (channelMentionOnClick != null ? channelMentionOnClick.hashCode() : 0);
     }
 
-    @Override // com.discord.utilities.textprocessing.node.EmojiNode$RenderContext
-    public void onEmojiClicked(EmojiNode$EmojiIdAndType emojiIdAndType) {
+    @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
+    public void onEmojiClicked(EmojiNode.EmojiIdAndType emojiIdAndType) {
         m.checkNotNullParameter(emojiIdAndType, "emojiIdAndType");
-        WidgetEmojiSheet.Companion.enqueueNotice(emojiIdAndType);
+        WidgetEmojiSheet.INSTANCE.enqueueNotice(emojiIdAndType);
     }
 
-    @Override // com.discord.utilities.textprocessing.node.TimestampNode$RenderContext
+    @Override // com.discord.utilities.textprocessing.node.TimestampNode.RenderContext
     public void onTimestampClicked(CharSequence full) {
         m.checkNotNullParameter(full, "full");
         b.a.d.m.h(getContext(), full, 0, null, 12);
@@ -329,6 +374,6 @@ public final /* data */ class MessageRenderContext implements BasicRenderContext
     }
 
     public /* synthetic */ MessageRenderContext(Context context, long j, boolean z2, Map map, Map map2, Map map3, int i, Function3 function3, Function1 function1, int i2, int i3, Function1 function2, Function1 function4, Function1 function5, int i4, DefaultConstructorMarker defaultConstructorMarker) {
-        this(context, j, z2, (i4 & 8) != 0 ? null : map, (i4 & 16) != 0 ? null : map2, (i4 & 32) != 0 ? null : map3, (i4 & 64) != 0 ? 2130969054 : i, (i4 & 128) != 0 ? MessageRenderContext$1.INSTANCE : function3, (i4 & 256) != 0 ? MessageRenderContext$2.INSTANCE : function1, (i4 & 512) != 0 ? ColorCompat.getThemedColor(context, 2130970291) : i2, (i4 & 1024) != 0 ? ColorCompat.getThemedColor(context, 2130970292) : i3, (i4 & 2048) != 0 ? null : function2, (i4 & 4096) != 0 ? null : function4, (i4 & 8192) != 0 ? null : function5);
+        this(context, j, z2, (i4 & 8) != 0 ? null : map, (i4 & 16) != 0 ? null : map2, (i4 & 32) != 0 ? null : map3, (i4 & 64) != 0 ? R.attr.colorTextLink : i, (i4 & 128) != 0 ? AnonymousClass1.INSTANCE : function3, (i4 & 256) != 0 ? AnonymousClass2.INSTANCE : function1, (i4 & 512) != 0 ? ColorCompat.getThemedColor(context, R.attr.theme_chat_spoiler_bg) : i2, (i4 & 1024) != 0 ? ColorCompat.getThemedColor(context, R.attr.theme_chat_spoiler_bg_visible) : i3, (i4 & 2048) != 0 ? null : function2, (i4 & 4096) != 0 ? null : function4, (i4 & 8192) != 0 ? null : function5);
     }
 }

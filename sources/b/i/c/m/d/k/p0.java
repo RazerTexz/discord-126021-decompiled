@@ -5,21 +5,25 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 /* JADX INFO: compiled from: CrashlyticsUncaughtExceptionHandler.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class p0 implements Thread$UncaughtExceptionHandler {
-    public final p0$a a;
-    public final Thread$UncaughtExceptionHandler c;
+public class p0 implements Thread.UncaughtExceptionHandler {
+    public final a a;
+    public final Thread.UncaughtExceptionHandler c;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final b.i.c.m.d.s.d f1692b;
     public final AtomicBoolean d = new AtomicBoolean(false);
 
-    public p0(p0$a p0_a, b.i.c.m.d.s.d dVar, Thread$UncaughtExceptionHandler thread$UncaughtExceptionHandler) {
-        this.a = p0_a;
-        this.f1692b = dVar;
-        this.c = thread$UncaughtExceptionHandler;
+    /* JADX INFO: compiled from: CrashlyticsUncaughtExceptionHandler.java */
+    public interface a {
     }
 
-    @Override // java.lang.Thread$UncaughtExceptionHandler
+    public p0(a aVar, b.i.c.m.d.s.d dVar, Thread.UncaughtExceptionHandler uncaughtExceptionHandler) {
+        this.a = aVar;
+        this.f1692b = dVar;
+        this.c = uncaughtExceptionHandler;
+    }
+
+    @Override // java.lang.Thread.UncaughtExceptionHandler
     public void uncaughtException(Thread thread, Throwable th) {
         this.d.set(true);
         try {

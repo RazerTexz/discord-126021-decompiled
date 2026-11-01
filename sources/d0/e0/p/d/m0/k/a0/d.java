@@ -1,5 +1,6 @@
 package d0.e0.p.d.m0.k.a0;
 
+import com.discord.models.domain.ModelAuditLogEntry;
 import d0.t.u;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -12,7 +13,7 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: MemberScope.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class d {
-    public static final d$a a;
+    public static final a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static int f3453b;
@@ -31,39 +32,116 @@ public final class d {
     public static final d o;
     public static final d p;
     public static final d q;
-    public static final List<d$a$a> r;
+    public static final List<a.C0563a> r;
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
-    public static final List<d$a$a> f3454s;
+    public static final List<a.C0563a> f3454s;
     public final List<c> t;
     public final int u;
 
+    /* JADX INFO: compiled from: MemberScope.kt */
+    public final class a {
+
+        /* JADX INFO: renamed from: d0.e0.p.d.m0.k.a0.d$a$a, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: MemberScope.kt */
+        public final class C0563a {
+            public final int a;
+
+            /* JADX INFO: renamed from: b, reason: collision with root package name */
+            public final String f3455b;
+
+            public C0563a(int i, String str) {
+                d0.z.d.m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+                this.a = i;
+                this.f3455b = str;
+            }
+
+            public final int getMask() {
+                return this.a;
+            }
+
+            public final String getName() {
+                return this.f3455b;
+            }
+        }
+
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public static final int access$nextMask(a aVar) {
+            Objects.requireNonNull(aVar);
+            int iAccess$getNextMaskValue$cp = d.access$getNextMaskValue$cp();
+            d.access$setNextMaskValue$cp(d.access$getNextMaskValue$cp() << 1);
+            return iAccess$getNextMaskValue$cp;
+        }
+
+        public final int getALL_KINDS_MASK() {
+            return d.access$getALL_KINDS_MASK$cp();
+        }
+
+        public final int getCALLABLES_MASK() {
+            return d.access$getCALLABLES_MASK$cp();
+        }
+
+        public final int getCLASSIFIERS_MASK() {
+            return d.access$getCLASSIFIERS_MASK$cp();
+        }
+
+        public final int getFUNCTIONS_MASK() {
+            return d.access$getFUNCTIONS_MASK$cp();
+        }
+
+        public final int getNON_SINGLETON_CLASSIFIERS_MASK() {
+            return d.access$getNON_SINGLETON_CLASSIFIERS_MASK$cp();
+        }
+
+        public final int getPACKAGES_MASK() {
+            return d.access$getPACKAGES_MASK$cp();
+        }
+
+        public final int getSINGLETON_CLASSIFIERS_MASK() {
+            return d.access$getSINGLETON_CLASSIFIERS_MASK$cp();
+        }
+
+        public final int getTYPE_ALIASES_MASK() {
+            return d.access$getTYPE_ALIASES_MASK$cp();
+        }
+
+        public final int getVALUES_MASK() {
+            return d.access$getVALUES_MASK$cp();
+        }
+
+        public final int getVARIABLES_MASK() {
+            return d.access$getVARIABLES_MASK$cp();
+        }
+    }
+
     static {
-        d$a$a d_a_a;
-        d$a$a d_a_a2;
-        d$a d_a = new d$a(null);
-        a = d_a;
+        a.C0563a c0563a;
+        a.C0563a c0563a2;
+        a aVar = new a(null);
+        a = aVar;
         f3453b = 1;
-        c = d$a.access$nextMask(d_a);
-        d = d$a.access$nextMask(d_a);
-        e = d$a.access$nextMask(d_a);
-        f = d$a.access$nextMask(d_a);
-        g = d$a.access$nextMask(d_a);
-        h = d$a.access$nextMask(d_a);
-        i = d$a.access$nextMask(d_a) - 1;
-        j = d_a.getNON_SINGLETON_CLASSIFIERS_MASK() | d_a.getSINGLETON_CLASSIFIERS_MASK() | d_a.getTYPE_ALIASES_MASK();
-        k = d_a.getSINGLETON_CLASSIFIERS_MASK() | d_a.getFUNCTIONS_MASK() | d_a.getVARIABLES_MASK();
-        l = d_a.getFUNCTIONS_MASK() | d_a.getVARIABLES_MASK();
-        m = new d(d_a.getALL_KINDS_MASK(), null, 2, null);
-        n = new d(d_a.getCALLABLES_MASK(), null, 2, null);
-        new d(d_a.getNON_SINGLETON_CLASSIFIERS_MASK(), null, 2, null);
-        new d(d_a.getSINGLETON_CLASSIFIERS_MASK(), null, 2, null);
-        new d(d_a.getTYPE_ALIASES_MASK(), null, 2, null);
-        o = new d(d_a.getCLASSIFIERS_MASK(), null, 2, null);
-        new d(d_a.getPACKAGES_MASK(), null, 2, null);
-        p = new d(d_a.getFUNCTIONS_MASK(), null, 2, null);
-        q = new d(d_a.getVARIABLES_MASK(), null, 2, null);
-        new d(d_a.getVALUES_MASK(), null, 2, null);
+        c = a.access$nextMask(aVar);
+        d = a.access$nextMask(aVar);
+        e = a.access$nextMask(aVar);
+        f = a.access$nextMask(aVar);
+        g = a.access$nextMask(aVar);
+        h = a.access$nextMask(aVar);
+        i = a.access$nextMask(aVar) - 1;
+        j = aVar.getNON_SINGLETON_CLASSIFIERS_MASK() | aVar.getSINGLETON_CLASSIFIERS_MASK() | aVar.getTYPE_ALIASES_MASK();
+        k = aVar.getSINGLETON_CLASSIFIERS_MASK() | aVar.getFUNCTIONS_MASK() | aVar.getVARIABLES_MASK();
+        l = aVar.getFUNCTIONS_MASK() | aVar.getVARIABLES_MASK();
+        m = new d(aVar.getALL_KINDS_MASK(), null, 2, null);
+        n = new d(aVar.getCALLABLES_MASK(), null, 2, null);
+        new d(aVar.getNON_SINGLETON_CLASSIFIERS_MASK(), null, 2, null);
+        new d(aVar.getSINGLETON_CLASSIFIERS_MASK(), null, 2, null);
+        new d(aVar.getTYPE_ALIASES_MASK(), null, 2, null);
+        o = new d(aVar.getCLASSIFIERS_MASK(), null, 2, null);
+        new d(aVar.getPACKAGES_MASK(), null, 2, null);
+        p = new d(aVar.getFUNCTIONS_MASK(), null, 2, null);
+        q = new d(aVar.getVARIABLES_MASK(), null, 2, null);
+        new d(aVar.getVALUES_MASK(), null, 2, null);
         Field[] fields = d.class.getFields();
         d0.z.d.m.checkNotNullExpressionValue(fields, "T::class.java.fields");
         ArrayList<Field> arrayList = new ArrayList();
@@ -80,12 +158,12 @@ public final class d {
                 int kindMask = dVar.getKindMask();
                 String name = field2.getName();
                 d0.z.d.m.checkNotNullExpressionValue(name, "field.name");
-                d_a_a2 = new d$a$a(kindMask, name);
+                c0563a2 = new a.C0563a(kindMask, name);
             } else {
-                d_a_a2 = null;
+                c0563a2 = null;
             }
-            if (d_a_a2 != null) {
-                arrayList2.add(d_a_a2);
+            if (c0563a2 != null) {
+                arrayList2.add(c0563a2);
             }
         }
         r = arrayList2;
@@ -111,12 +189,12 @@ public final class d {
             if (iIntValue == ((-iIntValue) & iIntValue)) {
                 String name2 = field4.getName();
                 d0.z.d.m.checkNotNullExpressionValue(name2, "field.name");
-                d_a_a = new d$a$a(iIntValue, name2);
+                c0563a = new a.C0563a(iIntValue, name2);
             } else {
-                d_a_a = null;
+                c0563a = null;
             }
-            if (d_a_a != null) {
-                arrayList5.add(d_a_a);
+            if (c0563a != null) {
+                arrayList5.add(c0563a);
             }
         }
         f3454s = arrayList5;
@@ -210,14 +288,14 @@ public final class d {
                 break;
             }
             next = it.next();
-        } while (!(((d$a$a) next).getMask() == getKindMask()));
-        d$a$a d_a_a = (d$a$a) next;
-        String name = d_a_a == null ? null : d_a_a.getName();
+        } while (!(((a.C0563a) next).getMask() == getKindMask()));
+        a.C0563a c0563a = (a.C0563a) next;
+        String name = c0563a == null ? null : c0563a.getName();
         if (name == null) {
-            List<d$a$a> list = f3454s;
+            List<a.C0563a> list = f3454s;
             ArrayList arrayList = new ArrayList();
-            for (d$a$a d_a_a2 : list) {
-                String name2 = acceptsKinds(d_a_a2.getMask()) ? d_a_a2.getName() : null;
+            for (a.C0563a c0563a2 : list) {
+                String name2 = acceptsKinds(c0563a2.getMask()) ? c0563a2.getName() : null;
                 if (name2 != null) {
                     arrayList.add(name2);
                 }

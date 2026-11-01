@@ -1,6 +1,6 @@
 package com.google.firebase.iid;
 
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
@@ -22,7 +22,6 @@ import b.i.c.s.q;
 import b.i.c.s.t;
 import b.i.c.s.u;
 import b.i.c.s.w;
-import b.i.c.s.w$a;
 import b.i.c.s.x;
 import b.i.c.t.a;
 import b.i.c.u.g;
@@ -195,50 +194,50 @@ public class FirebaseInstanceId {
     @Deprecated
     public String i() {
         c(this.f);
-        w$a w_aJ = j();
-        if (p(w_aJ)) {
+        w.a aVarJ = j();
+        if (p(aVarJ)) {
             synchronized (this) {
                 if (!this.k) {
                     o(0L);
                 }
             }
         }
-        int i = w$a.f1776b;
-        if (w_aJ == null) {
+        int i = w.a.f1776b;
+        if (aVarJ == null) {
             return null;
         }
-        return w_aJ.c;
+        return aVarJ.c;
     }
 
     @Nullable
-    public w$a j() {
+    public w.a j() {
         return k(q.b(this.f), "*");
     }
 
     @Nullable
-    public w$a k(String str, String str2) {
-        w$a w_aB;
+    public w.a k(String str, String str2) {
+        w.a aVarB;
         w wVar = f3111b;
         String strH = h();
         synchronized (wVar) {
-            w_aB = w$a.b(wVar.a.getString(wVar.b(strH, str, str2), null));
+            aVarB = w.a.b(wVar.a.getString(wVar.b(strH, str, str2), null));
         }
-        return w_aB;
+        return aVarB;
     }
 
     public static boolean l() {
         if (Log.isLoggable("FirebaseInstanceId", 3)) {
             return true;
         }
-        return Build$VERSION.SDK_INT == 23 && Log.isLoggable("FirebaseInstanceId", 3);
+        return Build.VERSION.SDK_INT == 23 && Log.isLoggable("FirebaseInstanceId", 3);
     }
 
     public final Task m(String str, String str2) throws Exception {
         Task<o> taskJ;
         String strE = e();
-        w$a w_aK = k(str, str2);
-        if (!p(w_aK)) {
-            return f.Z(new p(strE, w_aK.c));
+        w.a aVarK = k(str, str2);
+        if (!p(aVarK)) {
+            return f.Z(new p(strE, aVarK.c));
         }
         u uVar = this.i;
         synchronized (uVar) {
@@ -276,9 +275,9 @@ public class FirebaseInstanceId {
         this.k = true;
     }
 
-    public boolean p(@Nullable w$a w_a) {
-        if (w_a != null) {
-            if (!(System.currentTimeMillis() > w_a.e + w$a.a || !this.g.a().equals(w_a.d))) {
+    public boolean p(@Nullable w.a aVar) {
+        if (aVar != null) {
+            if (!(System.currentTimeMillis() > aVar.e + w.a.a || !this.g.a().equals(aVar.d))) {
                 return false;
             }
         }

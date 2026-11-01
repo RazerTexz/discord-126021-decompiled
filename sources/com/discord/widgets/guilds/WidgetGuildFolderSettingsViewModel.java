@@ -2,22 +2,24 @@ package com.discord.widgets.guilds;
 
 import android.content.Context;
 import b.a.d.d0;
+import b.d.b.a.a;
+import com.discord.R;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.ModelGuildFolder;
-import com.discord.restapi.RestAPIParams$UserSettings;
+import com.discord.models.domain.ModelUserSettings;
+import com.discord.restapi.RestAPIParams;
 import com.discord.stores.StoreGuildsSorted;
-import com.discord.stores.StoreGuildsSorted$Entry;
-import com.discord.stores.StoreGuildsSorted$Entry$Folder;
-import com.discord.stores.StoreGuildsSorted$Entry$SingletonGuild;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUserSettings;
+import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import d0.t.o;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.List;
 import kotlin.NoWhenBranchMatchedException;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -26,15 +28,462 @@ import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: WidgetGuildFolderSettingsViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetGuildFolderSettingsViewModel extends d0<WidgetGuildFolderSettingsViewModel$ViewState> {
-    public static final WidgetGuildFolderSettingsViewModel$Companion Companion = new WidgetGuildFolderSettingsViewModel$Companion(null);
-    private final PublishSubject<WidgetGuildFolderSettingsViewModel$Event> eventSubject;
+public final class WidgetGuildFolderSettingsViewModel extends d0<ViewState> {
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
+    private final PublishSubject<Event> eventSubject;
     private final long folderId;
-    private WidgetGuildFolderSettingsViewModel$StoreState previousStoreState;
+    private StoreState previousStoreState;
     private final StoreUserSettings storeUserSettings;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.WidgetGuildFolderSettingsViewModel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildFolderSettingsViewModel.kt */
+    public final class AnonymousClass1 extends o implements Function1<StoreState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
+            invoke2(storeState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreState storeState) {
+            m.checkNotNullParameter(storeState, "storeState");
+            WidgetGuildFolderSettingsViewModel.access$handleStoreState(WidgetGuildFolderSettingsViewModel.this, storeState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.WidgetGuildFolderSettingsViewModel$saveFolder$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildFolderSettingsViewModel.kt */
+    public final class AnonymousClass1 extends o implements Function1<ModelUserSettings, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelUserSettings modelUserSettings) {
+            invoke2(modelUserSettings);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelUserSettings modelUserSettings) {
+            m.checkNotNullParameter(modelUserSettings, "it");
+            WidgetGuildFolderSettingsViewModel.access$emitUpdateSuccessEvent(WidgetGuildFolderSettingsViewModel.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.WidgetGuildFolderSettingsViewModel$saveFolder$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildFolderSettingsViewModel.kt */
+    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            m.checkNotNullParameter(error, "it");
+            WidgetGuildFolderSettingsViewModel.access$emitUpdateFailureEvent(WidgetGuildFolderSettingsViewModel.this);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildFolderSettingsViewModel.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static final /* synthetic */ Observable access$observeStoreState(Companion companion, long j, StoreUserSettings storeUserSettings, StoreGuildsSorted storeGuildsSorted) {
+            return companion.observeStoreState(j, storeUserSettings, storeGuildsSorted);
+        }
+
+        private final Observable<StoreState> observeStoreState(long folderId, StoreUserSettings storeUserSettings, StoreGuildsSorted storeGuildsSorted) {
+            Observable<StoreState> observableJ = Observable.j(storeUserSettings.observeGuildFolders(), storeGuildsSorted.observeEntries(), new WidgetGuildFolderSettingsViewModel$Companion$observeStoreState$1(folderId));
+            m.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…Guilds)\n        }\n      }");
+            return observableJ;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildFolderSettingsViewModel.kt */
+    public abstract class Event {
+
+        /* JADX INFO: compiled from: WidgetGuildFolderSettingsViewModel.kt */
+        public final /* data */ class UpdateFolderSettingsFailure extends Event {
+            private final int failureMessageStringRes;
+
+            public UpdateFolderSettingsFailure(int i) {
+                super(null);
+                this.failureMessageStringRes = i;
+            }
+
+            public static /* synthetic */ UpdateFolderSettingsFailure copy$default(UpdateFolderSettingsFailure updateFolderSettingsFailure, int i, int i2, Object obj) {
+                if ((i2 & 1) != 0) {
+                    i = updateFolderSettingsFailure.failureMessageStringRes;
+                }
+                return updateFolderSettingsFailure.copy(i);
+            }
+
+            public final UpdateFolderSettingsFailure copy(int failureMessageStringRes) {
+                return new UpdateFolderSettingsFailure(failureMessageStringRes);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof UpdateFolderSettingsFailure) && this.failureMessageStringRes == ((UpdateFolderSettingsFailure) other).failureMessageStringRes;
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getFailureMessageStringRes() {
+                return this.failureMessageStringRes;
+            }
+
+            public final int getFailureMessageStringRes() {
+                return this.failureMessageStringRes;
+            }
+
+            public int hashCode() {
+                return this.failureMessageStringRes;
+            }
+
+            public String toString() {
+                return a.B(a.U("UpdateFolderSettingsFailure(failureMessageStringRes="), this.failureMessageStringRes, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: WidgetGuildFolderSettingsViewModel.kt */
+        public final /* data */ class UpdateFolderSettingsSuccess extends Event {
+            private final int successMessageStringRes;
+
+            public UpdateFolderSettingsSuccess(int i) {
+                super(null);
+                this.successMessageStringRes = i;
+            }
+
+            public static /* synthetic */ UpdateFolderSettingsSuccess copy$default(UpdateFolderSettingsSuccess updateFolderSettingsSuccess, int i, int i2, Object obj) {
+                if ((i2 & 1) != 0) {
+                    i = updateFolderSettingsSuccess.successMessageStringRes;
+                }
+                return updateFolderSettingsSuccess.copy(i);
+            }
+
+            public final UpdateFolderSettingsSuccess copy(int successMessageStringRes) {
+                return new UpdateFolderSettingsSuccess(successMessageStringRes);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof UpdateFolderSettingsSuccess) && this.successMessageStringRes == ((UpdateFolderSettingsSuccess) other).successMessageStringRes;
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getSuccessMessageStringRes() {
+                return this.successMessageStringRes;
+            }
+
+            public final int getSuccessMessageStringRes() {
+                return this.successMessageStringRes;
+            }
+
+            public int hashCode() {
+                return this.successMessageStringRes;
+            }
+
+            public String toString() {
+                return a.B(a.U("UpdateFolderSettingsSuccess(successMessageStringRes="), this.successMessageStringRes, ")");
+            }
+        }
+
+        private Event() {
+        }
+
+        public /* synthetic */ Event(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildFolderSettingsViewModel.kt */
+    public final /* data */ class FormState {
+        private final Integer color;
+        private final String name;
+
+        public FormState(String str, Integer num) {
+            this.name = str;
+            this.color = num;
+        }
+
+        public static /* synthetic */ FormState copy$default(FormState formState, String str, Integer num, int i, Object obj) {
+            if ((i & 1) != 0) {
+                str = formState.name;
+            }
+            if ((i & 2) != 0) {
+                num = formState.color;
+            }
+            return formState.copy(str, num);
+        }
+
+        public final FormState copy(String name, Integer color) {
+            return new FormState(name, color);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof FormState)) {
+                return false;
+            }
+            FormState formState = (FormState) other;
+            return m.areEqual(this.name, formState.name) && m.areEqual(this.color, formState.color);
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Integer getColor() {
+            return this.color;
+        }
+
+        public final Integer getColor() {
+            return this.color;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getName() {
+            return this.name;
+        }
+
+        public final String getName() {
+            return this.name;
+        }
+
+        public int hashCode() {
+            String str = this.name;
+            int iHashCode = (str != null ? str.hashCode() : 0) * 31;
+            Integer num = this.color;
+            return iHashCode + (num != null ? num.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("FormState(name=");
+            sbU.append(this.name);
+            sbU.append(", color=");
+            return a.F(sbU, this.color, ")");
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildFolderSettingsViewModel.kt */
+    public abstract class StoreState {
+
+        /* JADX INFO: compiled from: WidgetGuildFolderSettingsViewModel.kt */
+        public final class Invalid extends StoreState {
+            public static final Invalid INSTANCE = new Invalid();
+
+            private Invalid() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: WidgetGuildFolderSettingsViewModel.kt */
+        public final /* data */ class Valid extends StoreState {
+            private final ModelGuildFolder folder;
+            private final List<StoreGuildsSorted.Entry> sortedGuilds;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            /* JADX WARN: Multi-variable type inference failed */
+            public Valid(ModelGuildFolder modelGuildFolder, List<? extends StoreGuildsSorted.Entry> list) {
+                super(null);
+                m.checkNotNullParameter(modelGuildFolder, "folder");
+                m.checkNotNullParameter(list, "sortedGuilds");
+                this.folder = modelGuildFolder;
+                this.sortedGuilds = list;
+            }
+
+            public final List<StoreGuildsSorted.Entry> component2() {
+                return this.sortedGuilds;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Valid copy$default(Valid valid, ModelGuildFolder modelGuildFolder, List list, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    modelGuildFolder = valid.folder;
+                }
+                if ((i & 2) != 0) {
+                    list = valid.sortedGuilds;
+                }
+                return valid.copy(modelGuildFolder, list);
+            }
+
+            public final Valid copy(ModelGuildFolder folder, List<? extends StoreGuildsSorted.Entry> sortedGuilds) {
+                m.checkNotNullParameter(folder, "folder");
+                m.checkNotNullParameter(sortedGuilds, "sortedGuilds");
+                return new Valid(folder, sortedGuilds);
+            }
+
+            public boolean equals(Object other) {
+                if (this == other) {
+                    return true;
+                }
+                if (!(other instanceof Valid)) {
+                    return false;
+                }
+                Valid valid = (Valid) other;
+                return m.areEqual(this.folder, valid.folder) && m.areEqual(this.sortedGuilds, valid.sortedGuilds);
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ModelGuildFolder getFolder() {
+                return this.folder;
+            }
+
+            public final ModelGuildFolder getFolder() {
+                return this.folder;
+            }
+
+            public final List<StoreGuildsSorted.Entry> getSortedGuilds() {
+                return this.sortedGuilds;
+            }
+
+            public int hashCode() {
+                ModelGuildFolder modelGuildFolder = this.folder;
+                int iHashCode = (modelGuildFolder != null ? modelGuildFolder.hashCode() : 0) * 31;
+                List<StoreGuildsSorted.Entry> list = this.sortedGuilds;
+                return iHashCode + (list != null ? list.hashCode() : 0);
+            }
+
+            public String toString() {
+                StringBuilder sbU = a.U("Valid(folder=");
+                sbU.append(this.folder);
+                sbU.append(", sortedGuilds=");
+                return a.L(sbU, this.sortedGuilds, ")");
+            }
+        }
+
+        private StoreState() {
+        }
+
+        public /* synthetic */ StoreState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildFolderSettingsViewModel.kt */
+    public abstract class ViewState {
+
+        /* JADX INFO: compiled from: WidgetGuildFolderSettingsViewModel.kt */
+        public final /* data */ class Loaded extends ViewState {
+            private final FormState formState;
+            private final boolean showSave;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Loaded(FormState formState, boolean z2) {
+                super(null);
+                m.checkNotNullParameter(formState, "formState");
+                this.formState = formState;
+                this.showSave = z2;
+            }
+
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, FormState formState, boolean z2, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    formState = loaded.formState;
+                }
+                if ((i & 2) != 0) {
+                    z2 = loaded.showSave;
+                }
+                return loaded.copy(formState, z2);
+            }
+
+            public final Loaded copy(FormState formState, boolean showSave) {
+                m.checkNotNullParameter(formState, "formState");
+                return new Loaded(formState, showSave);
+            }
+
+            public boolean equals(Object other) {
+                if (this == other) {
+                    return true;
+                }
+                if (!(other instanceof Loaded)) {
+                    return false;
+                }
+                Loaded loaded = (Loaded) other;
+                return m.areEqual(this.formState, loaded.formState) && this.showSave == loaded.showSave;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final FormState getFormState() {
+                return this.formState;
+            }
+
+            public final FormState getFormState() {
+                return this.formState;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final boolean getShowSave() {
+                return this.showSave;
+            }
+
+            public final boolean getShowSave() {
+                return this.showSave;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            /* JADX WARN: Type inference failed for: r0v4, types: [int] */
+            /* JADX WARN: Type inference failed for: r1v1, types: [int] */
+            /* JADX WARN: Type inference failed for: r1v2 */
+            /* JADX WARN: Type inference failed for: r1v3 */
+            public int hashCode() {
+                FormState formState = this.formState;
+                int iHashCode = (formState != null ? formState.hashCode() : 0) * 31;
+                boolean z2 = this.showSave;
+                ?? r1 = z2;
+                if (z2) {
+                    r1 = 1;
+                }
+                return iHashCode + r1;
+            }
+
+            public String toString() {
+                StringBuilder sbU = a.U("Loaded(formState=");
+                sbU.append(this.formState);
+                sbU.append(", showSave=");
+                return a.O(sbU, this.showSave, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: WidgetGuildFolderSettingsViewModel.kt */
+        public final class Uninitialized extends ViewState {
+            public static final Uninitialized INSTANCE = new Uninitialized();
+
+            private Uninitialized() {
+                super(null);
+            }
+        }
+
+        private ViewState() {
+        }
+
+        public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public /* synthetic */ WidgetGuildFolderSettingsViewModel(long j, StoreUserSettings storeUserSettings, StoreGuildsSorted storeGuildsSorted, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(j, (i & 2) != 0 ? StoreStream.Companion.getUserSettings() : storeUserSettings, (i & 4) != 0 ? StoreStream.Companion.getGuildsSorted() : storeGuildsSorted);
+        this(j, (i & 2) != 0 ? StoreStream.INSTANCE.getUserSettings() : storeUserSettings, (i & 4) != 0 ? StoreStream.INSTANCE.getGuildsSorted() : storeGuildsSorted);
     }
 
     public static final /* synthetic */ void access$emitUpdateFailureEvent(WidgetGuildFolderSettingsViewModel widgetGuildFolderSettingsViewModel) {
@@ -45,25 +494,25 @@ public final class WidgetGuildFolderSettingsViewModel extends d0<WidgetGuildFold
         widgetGuildFolderSettingsViewModel.emitUpdateSuccessEvent();
     }
 
-    public static final /* synthetic */ void access$handleStoreState(WidgetGuildFolderSettingsViewModel widgetGuildFolderSettingsViewModel, WidgetGuildFolderSettingsViewModel$StoreState widgetGuildFolderSettingsViewModel$StoreState) {
-        widgetGuildFolderSettingsViewModel.handleStoreState(widgetGuildFolderSettingsViewModel$StoreState);
+    public static final /* synthetic */ void access$handleStoreState(WidgetGuildFolderSettingsViewModel widgetGuildFolderSettingsViewModel, StoreState storeState) {
+        widgetGuildFolderSettingsViewModel.handleStoreState(storeState);
     }
 
     private final void emitUpdateFailureEvent() {
-        PublishSubject<WidgetGuildFolderSettingsViewModel$Event> publishSubject = this.eventSubject;
-        publishSubject.k.onNext(new WidgetGuildFolderSettingsViewModel$Event$UpdateFolderSettingsFailure(2131888366));
+        PublishSubject<Event> publishSubject = this.eventSubject;
+        publishSubject.k.onNext(new Event.UpdateFolderSettingsFailure(R.string.default_failure_to_perform_action_message));
     }
 
     private final void emitUpdateSuccessEvent() {
-        PublishSubject<WidgetGuildFolderSettingsViewModel$Event> publishSubject = this.eventSubject;
-        publishSubject.k.onNext(new WidgetGuildFolderSettingsViewModel$Event$UpdateFolderSettingsSuccess(2131890231));
+        PublishSubject<Event> publishSubject = this.eventSubject;
+        publishSubject.k.onNext(new Event.UpdateFolderSettingsSuccess(R.string.guild_folder_updated_success));
     }
 
     public final long getFolderId() {
         return this.folderId;
     }
 
-    public final WidgetGuildFolderSettingsViewModel$StoreState getPreviousStoreState() {
+    public final StoreState getPreviousStoreState() {
         return this.previousStoreState;
     }
 
@@ -71,106 +520,106 @@ public final class WidgetGuildFolderSettingsViewModel extends d0<WidgetGuildFold
         return this.storeUserSettings;
     }
 
-    private final void handleStoreState(WidgetGuildFolderSettingsViewModel$StoreState storeState) {
+    private final void handleStoreState(StoreState storeState) {
         this.previousStoreState = storeState;
-        if (storeState instanceof WidgetGuildFolderSettingsViewModel$StoreState$Valid) {
-            WidgetGuildFolderSettingsViewModel$StoreState$Valid widgetGuildFolderSettingsViewModel$StoreState$Valid = (WidgetGuildFolderSettingsViewModel$StoreState$Valid) storeState;
-            WidgetGuildFolderSettingsViewModel$FormState widgetGuildFolderSettingsViewModel$FormState = new WidgetGuildFolderSettingsViewModel$FormState(widgetGuildFolderSettingsViewModel$StoreState$Valid.getFolder().getName(), widgetGuildFolderSettingsViewModel$StoreState$Valid.getFolder().getColor());
-            updateViewState(new WidgetGuildFolderSettingsViewModel$ViewState$Loaded(widgetGuildFolderSettingsViewModel$FormState, shouldShowSave(widgetGuildFolderSettingsViewModel$StoreState$Valid, widgetGuildFolderSettingsViewModel$FormState)));
+        if (storeState instanceof StoreState.Valid) {
+            StoreState.Valid valid = (StoreState.Valid) storeState;
+            FormState formState = new FormState(valid.getFolder().getName(), valid.getFolder().getColor());
+            updateViewState(new ViewState.Loaded(formState, shouldShowSave(valid, formState)));
         }
     }
 
-    public final Observable<WidgetGuildFolderSettingsViewModel$Event> observeEvents() {
-        PublishSubject<WidgetGuildFolderSettingsViewModel$Event> publishSubject = this.eventSubject;
+    public final Observable<Event> observeEvents() {
+        PublishSubject<Event> publishSubject = this.eventSubject;
         m.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
     }
 
     public final void saveFolder() {
         ModelGuildFolder modelGuildFolderAsModelGuildFolder;
-        WidgetGuildFolderSettingsViewModel$StoreState widgetGuildFolderSettingsViewModel$StoreState = this.previousStoreState;
-        if (!(widgetGuildFolderSettingsViewModel$StoreState instanceof WidgetGuildFolderSettingsViewModel$StoreState$Valid)) {
-            widgetGuildFolderSettingsViewModel$StoreState = null;
+        StoreState storeState = this.previousStoreState;
+        if (!(storeState instanceof StoreState.Valid)) {
+            storeState = null;
         }
-        WidgetGuildFolderSettingsViewModel$StoreState$Valid widgetGuildFolderSettingsViewModel$StoreState$Valid = (WidgetGuildFolderSettingsViewModel$StoreState$Valid) widgetGuildFolderSettingsViewModel$StoreState;
-        if (widgetGuildFolderSettingsViewModel$StoreState$Valid != null) {
-            WidgetGuildFolderSettingsViewModel$ViewState viewState = getViewState();
-            if (!(viewState instanceof WidgetGuildFolderSettingsViewModel$ViewState$Loaded)) {
+        StoreState.Valid valid = (StoreState.Valid) storeState;
+        if (valid != null) {
+            ViewState viewState = getViewState();
+            if (!(viewState instanceof ViewState.Loaded)) {
                 viewState = null;
             }
-            WidgetGuildFolderSettingsViewModel$ViewState$Loaded widgetGuildFolderSettingsViewModel$ViewState$Loaded = (WidgetGuildFolderSettingsViewModel$ViewState$Loaded) viewState;
-            if (widgetGuildFolderSettingsViewModel$ViewState$Loaded != null) {
-                WidgetGuildFolderSettingsViewModel$FormState formState = widgetGuildFolderSettingsViewModel$ViewState$Loaded.getFormState();
-                List<StoreGuildsSorted$Entry> sortedGuilds = widgetGuildFolderSettingsViewModel$StoreState$Valid.getSortedGuilds();
-                ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(sortedGuilds, 10));
-                for (StoreGuildsSorted$Entry storeGuildsSorted$Entry : sortedGuilds) {
-                    if (storeGuildsSorted$Entry instanceof StoreGuildsSorted$Entry$SingletonGuild) {
-                        modelGuildFolderAsModelGuildFolder = storeGuildsSorted$Entry.asModelGuildFolder();
+            ViewState.Loaded loaded = (ViewState.Loaded) viewState;
+            if (loaded != null) {
+                FormState formState = loaded.getFormState();
+                List<StoreGuildsSorted.Entry> sortedGuilds = valid.getSortedGuilds();
+                ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(sortedGuilds, 10));
+                for (StoreGuildsSorted.Entry entry : sortedGuilds) {
+                    if (entry instanceof StoreGuildsSorted.Entry.SingletonGuild) {
+                        modelGuildFolderAsModelGuildFolder = entry.asModelGuildFolder();
                     } else {
-                        if (!(storeGuildsSorted$Entry instanceof StoreGuildsSorted$Entry$Folder)) {
+                        if (!(entry instanceof StoreGuildsSorted.Entry.Folder)) {
                             throw new NoWhenBranchMatchedException();
                         }
-                        StoreGuildsSorted$Entry$Folder storeGuildsSorted$Entry$Folder = (StoreGuildsSorted$Entry$Folder) storeGuildsSorted$Entry;
-                        modelGuildFolderAsModelGuildFolder = storeGuildsSorted$Entry$Folder.getId() == this.folderId ? StoreGuildsSorted$Entry$Folder.copy$default(storeGuildsSorted$Entry$Folder, 0L, null, formState.getColor(), formState.getName(), 3, null).asModelGuildFolder() : storeGuildsSorted$Entry.asModelGuildFolder();
+                        StoreGuildsSorted.Entry.Folder folder = (StoreGuildsSorted.Entry.Folder) entry;
+                        modelGuildFolderAsModelGuildFolder = folder.getId() == this.folderId ? StoreGuildsSorted.Entry.Folder.copy$default(folder, 0L, null, formState.getColor(), formState.getName(), 3, null).asModelGuildFolder() : entry.asModelGuildFolder();
                     }
                     arrayList.add(modelGuildFolderAsModelGuildFolder);
                 }
-                ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().updateUserSettings(RestAPIParams$UserSettings.Companion.createWithGuildFolders(arrayList)), false, 1, null), this, null, 2, null), WidgetGuildFolderSettingsViewModel.class, (Context) null, (Function1) null, new WidgetGuildFolderSettingsViewModel$saveFolder$2(this), (Function0) null, (Function0) null, new WidgetGuildFolderSettingsViewModel$saveFolder$1(this), 54, (Object) null);
+                ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateUserSettings(RestAPIParams.UserSettings.INSTANCE.createWithGuildFolders(arrayList)), false, 1, null), this, null, 2, null), WidgetGuildFolderSettingsViewModel.class, (Context) null, (Function1) null, new AnonymousClass2(), (Function0) null, (Function0) null, new AnonymousClass1(), 54, (Object) null);
             }
         }
     }
 
     public final void setColor(Integer color) {
-        WidgetGuildFolderSettingsViewModel$ViewState viewState = getViewState();
-        if (!(viewState instanceof WidgetGuildFolderSettingsViewModel$ViewState$Loaded)) {
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Loaded)) {
             viewState = null;
         }
-        WidgetGuildFolderSettingsViewModel$ViewState$Loaded widgetGuildFolderSettingsViewModel$ViewState$Loaded = (WidgetGuildFolderSettingsViewModel$ViewState$Loaded) viewState;
-        if (widgetGuildFolderSettingsViewModel$ViewState$Loaded != null) {
-            updateFormState(WidgetGuildFolderSettingsViewModel$FormState.copy$default(widgetGuildFolderSettingsViewModel$ViewState$Loaded.getFormState(), null, color, 1, null));
+        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
+        if (loaded != null) {
+            updateFormState(FormState.copy$default(loaded.getFormState(), null, color, 1, null));
         }
     }
 
     public final void setName(String name) {
         m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        WidgetGuildFolderSettingsViewModel$ViewState viewState = getViewState();
-        if (!(viewState instanceof WidgetGuildFolderSettingsViewModel$ViewState$Loaded)) {
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Loaded)) {
             viewState = null;
         }
-        WidgetGuildFolderSettingsViewModel$ViewState$Loaded widgetGuildFolderSettingsViewModel$ViewState$Loaded = (WidgetGuildFolderSettingsViewModel$ViewState$Loaded) viewState;
-        if (widgetGuildFolderSettingsViewModel$ViewState$Loaded != null) {
-            updateFormState(WidgetGuildFolderSettingsViewModel$FormState.copy$default(widgetGuildFolderSettingsViewModel$ViewState$Loaded.getFormState(), name, null, 2, null));
+        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
+        if (loaded != null) {
+            updateFormState(FormState.copy$default(loaded.getFormState(), name, null, 2, null));
         }
     }
 
-    public final void setPreviousStoreState(WidgetGuildFolderSettingsViewModel$StoreState widgetGuildFolderSettingsViewModel$StoreState) {
-        this.previousStoreState = widgetGuildFolderSettingsViewModel$StoreState;
+    public final void setPreviousStoreState(StoreState storeState) {
+        this.previousStoreState = storeState;
     }
 
-    private final boolean shouldShowSave(WidgetGuildFolderSettingsViewModel$StoreState$Valid storeState, WidgetGuildFolderSettingsViewModel$FormState formState) {
+    private final boolean shouldShowSave(StoreState.Valid storeState, FormState formState) {
         return (m.areEqual(storeState.getFolder().getColor(), formState.getColor()) ^ true) || (m.areEqual(storeState.getFolder().getName(), formState.getName()) ^ true);
     }
 
-    private final void updateFormState(WidgetGuildFolderSettingsViewModel$FormState formState) {
-        WidgetGuildFolderSettingsViewModel$ViewState viewState = getViewState();
-        if (!(viewState instanceof WidgetGuildFolderSettingsViewModel$ViewState$Loaded)) {
+    private final void updateFormState(FormState formState) {
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Loaded)) {
             viewState = null;
         }
-        WidgetGuildFolderSettingsViewModel$ViewState$Loaded widgetGuildFolderSettingsViewModel$ViewState$Loaded = (WidgetGuildFolderSettingsViewModel$ViewState$Loaded) viewState;
-        if (widgetGuildFolderSettingsViewModel$ViewState$Loaded != null) {
-            WidgetGuildFolderSettingsViewModel$StoreState widgetGuildFolderSettingsViewModel$StoreState = this.previousStoreState;
-            updateViewState(widgetGuildFolderSettingsViewModel$ViewState$Loaded.copy(formState, widgetGuildFolderSettingsViewModel$StoreState instanceof WidgetGuildFolderSettingsViewModel$StoreState$Valid ? shouldShowSave((WidgetGuildFolderSettingsViewModel$StoreState$Valid) widgetGuildFolderSettingsViewModel$StoreState, formState) : false));
+        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
+        if (loaded != null) {
+            StoreState storeState = this.previousStoreState;
+            updateViewState(loaded.copy(formState, storeState instanceof StoreState.Valid ? shouldShowSave((StoreState.Valid) storeState, formState) : false));
         }
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetGuildFolderSettingsViewModel(long j, StoreUserSettings storeUserSettings, StoreGuildsSorted storeGuildsSorted) {
-        super(WidgetGuildFolderSettingsViewModel$ViewState$Uninitialized.INSTANCE);
+        super(ViewState.Uninitialized.INSTANCE);
         m.checkNotNullParameter(storeUserSettings, "storeUserSettings");
         m.checkNotNullParameter(storeGuildsSorted, "storeGuildsSorted");
         this.folderId = j;
         this.storeUserSettings = storeUserSettings;
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(WidgetGuildFolderSettingsViewModel$Companion.access$observeStoreState(Companion, j, storeUserSettings, storeGuildsSorted)), this, null, 2, null), WidgetGuildFolderSettingsViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildFolderSettingsViewModel$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(Companion.access$observeStoreState(INSTANCE, j, storeUserSettings, storeGuildsSorted)), this, null, 2, null), WidgetGuildFolderSettingsViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
         this.eventSubject = PublishSubject.k0();
     }
 }

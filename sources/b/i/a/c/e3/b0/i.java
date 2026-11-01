@@ -13,7 +13,20 @@ public final class i {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final String f930b;
     public final TreeSet<s> c = new TreeSet<>();
-    public final ArrayList<i$a> d = new ArrayList<>();
+    public final ArrayList<a> d = new ArrayList<>();
+
+    /* JADX INFO: compiled from: CachedContent.java */
+    public final class a {
+        public final long a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final long f931b;
+
+        public a(long j, long j2) {
+            this.a = j;
+            this.f931b = j2;
+        }
+    }
 
     public i(int i, String str, n nVar) {
         this.a = i;
@@ -25,17 +38,17 @@ public final class i {
     public boolean a(long j, long j2) {
         boolean z2;
         for (int i = 0; i < this.d.size(); i++) {
-            i$a i_a = this.d.get(i);
-            long j3 = i_a.f931b;
+            a aVar = this.d.get(i);
+            long j3 = aVar.f931b;
             if (j3 != -1) {
                 if (j2 != -1) {
-                    long j4 = i_a.a;
+                    long j4 = aVar.a;
                     if (j4 <= j && j + j2 <= j4 + j3) {
                         z2 = true;
                     }
                 }
                 z2 = false;
-            } else if (j >= i_a.a) {
+            } else if (j >= aVar.a) {
                 z2 = true;
             } else {
                 z2 = false;

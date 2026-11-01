@@ -1,14 +1,14 @@
 package com.google.android.gms.internal.nearby;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.a.f.h.m.g;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzgu extends AbstractSafeParcelable {
-    public static final Parcelable$Creator<zzgu> CREATOR = new g();
+    public static final Parcelable.Creator<zzgu> CREATOR = new g();
     public final int j;
     public final int k;
     public final byte[] l;

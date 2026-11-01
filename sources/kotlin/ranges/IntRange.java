@@ -1,12 +1,26 @@
 package kotlin.ranges;
 
 import d0.d0.a;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: Ranges.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class IntRange extends IntProgression implements a<Integer> {
-    public static final IntRange$a o = new IntRange$a(null);
+
+    /* JADX INFO: renamed from: o, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     public static final IntRange n = new IntRange(1, 0);
+
+    /* JADX INFO: renamed from: kotlin.ranges.IntRange$a, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: Ranges.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final IntRange getEMPTY() {
+            return IntRange.access$getEMPTY$cp();
+        }
+    }
 
     public IntRange(int i, int i2) {
         super(i, i2, 1);

@@ -1,12 +1,12 @@
 package s.a;
 
-import b.d.b.a.a;
 import java.lang.reflect.Method;
 import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 import kotlin.coroutines.CoroutineContext;
 import kotlinx.coroutines.ExecutorCoroutineDispatcher;
@@ -17,6 +17,24 @@ public final class s extends ExecutorCoroutineDispatcher {
     public static final int j;
     public static volatile Executor pool;
     public static final s k = new s();
+
+    /* JADX INFO: compiled from: CommonPool.kt */
+    public final class a implements ThreadFactory {
+        public final /* synthetic */ AtomicInteger j;
+
+        public a(AtomicInteger atomicInteger) {
+            this.j = atomicInteger;
+        }
+
+        @Override // java.util.concurrent.ThreadFactory
+        public final Thread newThread(Runnable runnable) {
+            StringBuilder sbU = b.d.b.a.a.U("CommonPool-worker-");
+            sbU.append(this.j.incrementAndGet());
+            Thread thread = new Thread(runnable, sbU.toString());
+            thread.setDaemon(true);
+            return thread;
+        }
+    }
 
     static {
         String property;
@@ -29,7 +47,7 @@ public final class s extends ExecutorCoroutineDispatcher {
         if (property != null) {
             Integer intOrNull = d0.g0.s.toIntOrNull(property);
             if (intOrNull == null || intOrNull.intValue() < 1) {
-                throw new IllegalStateException(a.w("Expected positive number in kotlinx.coroutines.default.parallelism, but has ", property).toString());
+                throw new IllegalStateException(b.d.b.a.a.w("Expected positive number in kotlinx.coroutines.default.parallelism, but has ", property).toString());
             }
             iIntValue = intOrNull.intValue();
         } else {
@@ -39,7 +57,7 @@ public final class s extends ExecutorCoroutineDispatcher {
     }
 
     public final ExecutorService I() {
-        return Executors.newFixedThreadPool(L(), new s$a(new AtomicInteger()));
+        return Executors.newFixedThreadPool(L(), new a(new AtomicInteger()));
     }
 
     public final ExecutorService J() {

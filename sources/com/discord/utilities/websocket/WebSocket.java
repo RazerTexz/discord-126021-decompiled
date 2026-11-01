@@ -1,12 +1,14 @@
 package com.discord.utilities.websocket;
 
+import androidx.core.app.NotificationCompat;
 import androidx.core.view.PointerIconCompat;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.o;
+import d0.t.g0;
+import d0.t.h0;
 import d0.z.d.m;
 import f0.e0.k.h;
-import f0.e0.k.h$a;
 import f0.x;
-import f0.x$a;
 import j0.p.a;
 import java.io.InputStreamReader;
 import java.util.Map;
@@ -18,28 +20,284 @@ import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
 import kotlin.jvm.functions.Function3;
-import okhttp3.Request$a;
+import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.WebSocketListener;
 import rx.Observable;
 import rx.Scheduler;
+import rx.functions.Action1;
 import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: WebSocket.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WebSocket {
     private static final int CLOSE_NORMAL = 1000;
-    public static final WebSocket$Companion Companion = new WebSocket$Companion(null);
     private okhttp3.WebSocket client;
     private final Function3<String, Exception, Map<String, String>, Unit> errorLogger;
-    private Function1<? super WebSocket$Closed, Unit> onClosed;
-    private Function1<? super WebSocket$Error, Unit> onError;
+    private Function1<? super Closed, Unit> onClosed;
+    private Function1<? super Error, Unit> onError;
     private Function2<? super InputStreamReader, ? super Integer, Unit> onMessage;
-    private Function1<? super WebSocket$Opened, Unit> onOpened;
+    private Function1<? super Opened, Unit> onOpened;
     private RawMessageHandler rawMessageHandler;
     private final PublishSubject<Function0<Unit>> schedulerSubject;
     private final SSLSocketFactory socketFactory;
-    private WebSocket$State state;
+    private State state;
+
+    /* JADX INFO: renamed from: com.discord.utilities.websocket.WebSocket$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WebSocket.kt */
+    public final class AnonymousClass1<T> implements Action1<Function0<? extends Unit>> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(Function0<? extends Unit> function0) {
+            call2((Function0<Unit>) function0);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(Function0<Unit> function0) {
+            function0.invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.websocket.WebSocket$connect$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WebSocket.kt */
+    public final class AnonymousClass1 extends ZLibWebSocketListener.Listener {
+        private final RawMessageHandler rawMessageHandler;
+
+        public AnonymousClass1() {
+            this.rawMessageHandler = WebSocket.this.getRawMessageHandler();
+        }
+
+        @Override // com.discord.utilities.websocket.ZLibWebSocketListener.Listener
+        public RawMessageHandler getRawMessageHandler() {
+            return this.rawMessageHandler;
+        }
+
+        public static /* synthetic */ void handleError$default(AnonymousClass1 anonymousClass1, Exception exc, String str, String str2, int i, Object obj) {
+            if ((i & 4) != 0) {
+                str2 = null;
+            }
+            anonymousClass1.handleError(exc, str, str2);
+        }
+
+        private final void handleError(Exception exception, String errorMessage, String rawData) {
+            Map mapEmptyMap;
+            if (rawData == null || (mapEmptyMap = g0.mapOf(o.to("raw_data_string", rawData))) == null) {
+                mapEmptyMap = h0.emptyMap();
+            }
+            WebSocket.access$getErrorLogger$p(WebSocket.this).invoke(errorMessage, exception, mapEmptyMap);
+            WebSocket.access$handleOnFailure(WebSocket.this, exception, null, false);
+        }
+
+        @Override // okhttp3.WebSocketListener
+        public void onClosed(okhttp3.WebSocket webSocket, int code, String reason) {
+            m.checkNotNullParameter(webSocket, "webSocket");
+            m.checkNotNullParameter(reason, ModelAuditLogEntry.CHANGE_KEY_REASON);
+            WebSocket.access$schedule(WebSocket.this, new WebSocket$connect$1$onClosed$1(this, code, reason));
+        }
+
+        @Override // okhttp3.WebSocketListener
+        public void onClosing(okhttp3.WebSocket webSocket, int code, String reason) {
+            m.checkNotNullParameter(webSocket, "webSocket");
+            m.checkNotNullParameter(reason, ModelAuditLogEntry.CHANGE_KEY_REASON);
+            WebSocket.access$setState$p(WebSocket.this, State.CLOSING);
+            WebSocket.this.getOnClosed().invoke(new Closed(code, reason));
+        }
+
+        @Override // okhttp3.WebSocketListener
+        public void onFailure(okhttp3.WebSocket webSocket, Throwable t, Response response) {
+            m.checkNotNullParameter(webSocket, "webSocket");
+            m.checkNotNullParameter(t, "t");
+            WebSocket.access$schedule(WebSocket.this, new WebSocket$connect$1$onFailure$1(this, t, response));
+        }
+
+        @Override // com.discord.utilities.websocket.ZLibWebSocketListener.Listener
+        public void onInflateError(Exception e) {
+            m.checkNotNullParameter(e, "e");
+            handleError$default(this, e, "Unable to inflate message.", null, 4, null);
+        }
+
+        @Override // com.discord.utilities.websocket.ZLibWebSocketListener.Listener
+        public void onInflatedMessage(okhttp3.WebSocket webSocket, InputStreamReader reader, int compressedByteLength) {
+            m.checkNotNullParameter(webSocket, "webSocket");
+            m.checkNotNullParameter(reader, "reader");
+            try {
+                WebSocket.this.getOnMessage().invoke(reader, Integer.valueOf(compressedByteLength));
+            } catch (Exception e) {
+                handleError$default(this, e, "Unable to parse model.", null, 4, null);
+            }
+        }
+
+        @Override // okhttp3.WebSocketListener
+        public void onOpen(okhttp3.WebSocket webSocket, Response response) {
+            m.checkNotNullParameter(webSocket, "webSocket");
+            m.checkNotNullParameter(response, "response");
+            WebSocket.access$schedule(WebSocket.this, new WebSocket$connect$1$onOpen$1(this, webSocket, response));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.websocket.WebSocket$resetListeners$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WebSocket.kt */
+    public final class AnonymousClass1 extends d0.z.d.o implements Function1<Opened, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Opened opened) {
+            invoke2(opened);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Opened opened) {
+            m.checkNotNullParameter(opened, "it");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.websocket.WebSocket$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WebSocket.kt */
+    public final class AnonymousClass2<T> implements Action1<Throwable> {
+        public AnonymousClass2() {
+        }
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(Throwable th) {
+            call2(th);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(Throwable th) {
+            WebSocket webSocket = WebSocket.this;
+            m.checkNotNullExpressionValue(th, "it");
+            WebSocket.access$handleOnFailure(webSocket, th, null, WebSocket.this.getState() == State.CLOSED);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.websocket.WebSocket$resetListeners$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WebSocket.kt */
+    public final class AnonymousClass2 extends d0.z.d.o implements Function1<Closed, Unit> {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Closed closed) {
+            invoke2(closed);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Closed closed) {
+            m.checkNotNullParameter(closed, "it");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.websocket.WebSocket$resetListeners$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WebSocket.kt */
+    public final class AnonymousClass3 extends d0.z.d.o implements Function2<InputStreamReader, Integer, Unit> {
+        public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
+
+        public AnonymousClass3() {
+            super(2);
+        }
+
+        public final void invoke(InputStreamReader inputStreamReader, int i) {
+            m.checkNotNullParameter(inputStreamReader, "<anonymous parameter 0>");
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(InputStreamReader inputStreamReader, Integer num) {
+            invoke(inputStreamReader, num.intValue());
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.websocket.WebSocket$resetListeners$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WebSocket.kt */
+    public final class AnonymousClass4 extends d0.z.d.o implements Function1<Error, Unit> {
+        public static final AnonymousClass4 INSTANCE = new AnonymousClass4();
+
+        public AnonymousClass4() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            m.checkNotNullParameter(error, "it");
+        }
+    }
+
+    /* JADX INFO: compiled from: WebSocket.kt */
+    public final class Closed {
+        private final int code;
+        private final String reason;
+
+        public Closed(int i, String str) {
+            this.code = i;
+            this.reason = str;
+        }
+
+        public final int getCode() {
+            return this.code;
+        }
+
+        public final String getReason() {
+            return this.reason;
+        }
+    }
+
+    /* JADX INFO: compiled from: WebSocket.kt */
+    public final class Error {
+        private final Response response;
+        private final Throwable throwable;
+
+        public Error(Throwable th, Response response) {
+            m.checkNotNullParameter(th, "throwable");
+            this.throwable = th;
+            this.response = response;
+        }
+
+        public final Response getResponse() {
+            return this.response;
+        }
+
+        public final Throwable getThrowable() {
+            return this.throwable;
+        }
+    }
+
+    /* JADX INFO: compiled from: WebSocket.kt */
+    public final class Opened {
+        private final Response response;
+
+        public Opened(Response response) {
+            this.response = response;
+        }
+
+        public final Response getResponse() {
+            return this.response;
+        }
+    }
+
+    /* JADX INFO: compiled from: WebSocket.kt */
+    public enum State {
+        NOT_YET_CONNECTED,
+        CONNECTING,
+        CONNECTED,
+        CLOSING,
+        CLOSED
+    }
 
     /* JADX WARN: Multi-variable type inference failed */
     public WebSocket(Scheduler scheduler, Function3<? super String, ? super Exception, ? super Map<String, String>, Unit> function3, SSLSocketFactory sSLSocketFactory) {
@@ -52,13 +310,13 @@ public final class WebSocket {
         this.onClosed = WebSocket$onClosed$1.INSTANCE;
         this.onMessage = WebSocket$onMessage$1.INSTANCE;
         this.onError = WebSocket$onError$1.INSTANCE;
-        this.state = WebSocket$State.NOT_YET_CONNECTED;
+        this.state = State.NOT_YET_CONNECTED;
         Observable<Function0<Unit>> observableK = publishSubjectK0.K();
         if (scheduler == null) {
             AtomicReference<a> atomicReference = a.a;
             scheduler = j0.l.c.m.a;
         }
-        observableK.J(scheduler).W(WebSocket$1.INSTANCE, new WebSocket$2(this));
+        observableK.J(scheduler).W(AnonymousClass1.INSTANCE, new AnonymousClass2());
     }
 
     public static final /* synthetic */ okhttp3.WebSocket access$getClient$p(WebSocket webSocket) {
@@ -69,7 +327,7 @@ public final class WebSocket {
         return webSocket.errorLogger;
     }
 
-    public static final /* synthetic */ WebSocket$State access$getState$p(WebSocket webSocket) {
+    public static final /* synthetic */ State access$getState$p(WebSocket webSocket) {
         return webSocket.state;
     }
 
@@ -85,28 +343,28 @@ public final class WebSocket {
         webSocket.client = webSocket2;
     }
 
-    public static final /* synthetic */ void access$setState$p(WebSocket webSocket, WebSocket$State webSocket$State) {
-        webSocket.state = webSocket$State;
+    public static final /* synthetic */ void access$setState$p(WebSocket webSocket, State state) {
+        webSocket.state = state;
     }
 
     public final void connect(String url) {
         m.checkNotNullParameter(url, "url");
         disconnect(1000, "Closing existing connection.");
-        this.state = WebSocket$State.CONNECTING;
-        this.client = createWebSocket(url, this.socketFactory, new ZLibWebSocketListener(new WebSocket$connect$1(this)));
+        this.state = State.CONNECTING;
+        this.client = createWebSocket(url, this.socketFactory, new ZLibWebSocketListener(new AnonymousClass1()));
     }
 
     private final okhttp3.WebSocket createWebSocket(String url, SSLSocketFactory socketFactory, WebSocketListener listener) {
-        x$a x_a = new x$a();
+        x.a aVar = new x.a();
         if (socketFactory != null) {
-            h$a h_a = h.c;
-            x_a.b(socketFactory, h.a.n());
+            h.a aVar2 = h.c;
+            aVar.b(socketFactory, h.a.n());
         }
-        x_a.a(1L, TimeUnit.MINUTES);
-        x xVar = new x(x_a);
-        Request$a request$a = new Request$a();
-        request$a.f(url);
-        return xVar.g(request$a.a(), listener);
+        aVar.a(1L, TimeUnit.MINUTES);
+        x xVar = new x(aVar);
+        Request.a aVar3 = new Request.a();
+        aVar3.f(url);
+        return xVar.g(aVar3.a(), listener);
     }
 
     public static /* synthetic */ void disconnect$default(WebSocket webSocket, int i, String str, int i2, Object obj) {
@@ -130,7 +388,7 @@ public final class WebSocket {
     public final void disconnect(int code, String reason) {
         okhttp3.WebSocket webSocket = this.client;
         if (webSocket != null) {
-            this.state = WebSocket$State.CLOSING;
+            this.state = State.CLOSING;
             try {
                 try {
                     webSocket.e(code, reason);
@@ -143,11 +401,11 @@ public final class WebSocket {
         }
     }
 
-    public final Function1<WebSocket$Closed, Unit> getOnClosed() {
+    public final Function1<Closed, Unit> getOnClosed() {
         return this.onClosed;
     }
 
-    public final Function1<WebSocket$Error, Unit> getOnError() {
+    public final Function1<Error, Unit> getOnError() {
         return this.onError;
     }
 
@@ -155,7 +413,7 @@ public final class WebSocket {
         return this.onMessage;
     }
 
-    public final Function1<WebSocket$Opened, Unit> getOnOpened() {
+    public final Function1<Opened, Unit> getOnOpened() {
         return this.onOpened;
     }
 
@@ -163,39 +421,23 @@ public final class WebSocket {
         return this.rawMessageHandler;
     }
 
-    public final WebSocket$State getState() {
+    public final State getState() {
         return this.state;
     }
 
-    /* JADX WARN: Failed to analyze thrown exceptions
-    java.util.ConcurrentModificationException
-    	at java.base/java.util.ArrayList$Itr.checkForComodification(ArrayList.java:1013)
-    	at java.base/java.util.ArrayList$Itr.next(ArrayList.java:967)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:132)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.checkInsn(MethodThrowsVisitor.java:180)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:133)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.checkInsn(MethodThrowsVisitor.java:180)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:133)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.checkInsn(MethodThrowsVisitor.java:180)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:133)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
-     */
     private final void handleOnFailure(Throwable throwable, Response response, boolean closed) {
         if (closed) {
-            this.state = WebSocket$State.CLOSED;
+            this.state = State.CLOSED;
         } else {
             disconnect(PointerIconCompat.TYPE_COPY, "Closing due to failure " + throwable + ", " + response);
         }
-        this.onError.invoke(new WebSocket$Error(throwable, response));
+        this.onError.invoke(new Error(throwable, response));
     }
 
     public final void message(String message) {
         m.checkNotNullParameter(message, "message");
         okhttp3.WebSocket webSocket = this.client;
-        if (webSocket == null || this.state != WebSocket$State.CONNECTED) {
+        if (webSocket == null || this.state != State.CONNECTED) {
             return;
         }
         try {
@@ -206,23 +448,23 @@ public final class WebSocket {
     }
 
     public final void resetListeners() {
-        this.onOpened = WebSocket$resetListeners$1.INSTANCE;
-        this.onClosed = WebSocket$resetListeners$2.INSTANCE;
-        this.onMessage = WebSocket$resetListeners$3.INSTANCE;
+        this.onOpened = AnonymousClass1.INSTANCE;
+        this.onClosed = AnonymousClass2.INSTANCE;
+        this.onMessage = AnonymousClass3.INSTANCE;
         this.rawMessageHandler = null;
-        this.onError = WebSocket$resetListeners$4.INSTANCE;
+        this.onError = AnonymousClass4.INSTANCE;
     }
 
     private final void schedule(Function0<Unit> callback) {
         this.schedulerSubject.k.onNext(callback);
     }
 
-    public final void setOnClosed(Function1<? super WebSocket$Closed, Unit> function1) {
+    public final void setOnClosed(Function1<? super Closed, Unit> function1) {
         m.checkNotNullParameter(function1, "<set-?>");
         this.onClosed = function1;
     }
 
-    public final void setOnError(Function1<? super WebSocket$Error, Unit> function1) {
+    public final void setOnError(Function1<? super Error, Unit> function1) {
         m.checkNotNullParameter(function1, "<set-?>");
         this.onError = function1;
     }
@@ -232,7 +474,7 @@ public final class WebSocket {
         this.onMessage = function2;
     }
 
-    public final void setOnOpened(Function1<? super WebSocket$Opened, Unit> function1) {
+    public final void setOnOpened(Function1<? super Opened, Unit> function1) {
         m.checkNotNullParameter(function1, "<set-?>");
         this.onOpened = function1;
     }

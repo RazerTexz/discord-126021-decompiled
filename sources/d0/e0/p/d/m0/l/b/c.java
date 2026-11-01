@@ -7,7 +7,7 @@ import java.util.List;
 public interface c<A, C> {
     List<A> loadCallableAnnotations(y yVar, d0.e0.p.d.m0.i.n nVar, b bVar);
 
-    List<A> loadClassAnnotations(y$a y_a);
+    List<A> loadClassAnnotations(y.a aVar);
 
     List<A> loadEnumEntryAnnotations(y yVar, d0.e0.p.d.m0.f.g gVar);
 

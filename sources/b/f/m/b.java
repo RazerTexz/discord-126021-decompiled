@@ -1,8 +1,8 @@
 package b.f.m;
 
 import android.content.Context;
-import android.content.pm.PackageManager$NameNotFoundException;
-import android.os.StrictMode$ThreadPolicy;
+import android.content.pm.PackageManager;
+import android.os.StrictMode;
 import android.util.Log;
 import java.io.File;
 import java.io.IOException;
@@ -28,8 +28,8 @@ public class b extends l {
     }
 
     @Override // b.f.m.l
-    public int a(String str, int i, StrictMode$ThreadPolicy strictMode$ThreadPolicy) throws IOException {
-        return this.c.a(str, i, strictMode$ThreadPolicy);
+    public int a(String str, int i, StrictMode.ThreadPolicy threadPolicy) throws IOException {
+        return this.c.a(str, i, threadPolicy);
     }
 
     @Override // b.f.m.l
@@ -60,7 +60,7 @@ public class b extends l {
         try {
             Context context = this.a;
             return context.createPackageContext(context.getPackageName(), 0);
-        } catch (PackageManager$NameNotFoundException e) {
+        } catch (PackageManager.NameNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

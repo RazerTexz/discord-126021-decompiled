@@ -31,7 +31,7 @@ public abstract class v0 extends ExecutorCoroutineDispatcher implements h0 {
             return null;
         } catch (RejectedExecutionException e) {
             CancellationException cancellationExceptionA = b.i.a.f.e.o.f.a("The task was rejected", e);
-            Job job = (Job) coroutineContext.get(Job.h);
+            Job job = (Job) coroutineContext.get(Job.INSTANCE);
             if (job == null) {
                 return null;
             }
@@ -68,7 +68,7 @@ public abstract class v0 extends ExecutorCoroutineDispatcher implements h0 {
             H().execute(runnable);
         } catch (RejectedExecutionException e) {
             CancellationException cancellationExceptionA = b.i.a.f.e.o.f.a("The task was rejected", e);
-            Job job = (Job) coroutineContext.get(Job.h);
+            Job job = (Job) coroutineContext.get(Job.INSTANCE);
             if (job != null) {
                 job.b(cancellationExceptionA);
             }

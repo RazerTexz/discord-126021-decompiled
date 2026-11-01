@@ -1,6 +1,7 @@
 package androidx.transition;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.core.content.res.TypedArrayUtils;
+import androidx.core.view.ViewCompat;
 
 /* JADX INFO: loaded from: classes.dex */
 public class Fade extends Visibility {
@@ -18,6 +20,22 @@ public class Fade extends Visibility {
     private static final String LOG_TAG = "Fade";
     public static final int OUT = 2;
     private static final String PROPNAME_TRANSITION_ALPHA = "android:fade:transitionAlpha";
+
+    /* JADX INFO: renamed from: androidx.transition.Fade$1, reason: invalid class name */
+    public class AnonymousClass1 extends TransitionListenerAdapter {
+        public final /* synthetic */ View val$view;
+
+        public AnonymousClass1(View view) {
+            this.val$view = view;
+        }
+
+        @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
+        public void onTransitionEnd(@NonNull Transition transition) {
+            ViewUtils.setTransitionAlpha(this.val$view, 1.0f);
+            ViewUtils.clearNonTransitionAlpha(this.val$view);
+            transition.removeListener(this);
+        }
+    }
 
     public Fade(int i) {
         setMode(i);
@@ -35,8 +53,8 @@ public class Fade extends Visibility {
         }
         ViewUtils.setTransitionAlpha(view, f);
         ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(view, ViewUtils.TRANSITION_ALPHA, f2);
-        objectAnimatorOfFloat.addListener(new Fade$FadeAnimatorListener(view));
-        addListener(new Fade$1(this, view));
+        objectAnimatorOfFloat.addListener(new FadeAnimatorListener(view));
+        addListener(new AnonymousClass1(view));
         return objectAnimatorOfFloat;
     }
 
@@ -55,6 +73,31 @@ public class Fade extends Visibility {
     public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
         ViewUtils.saveNonTransitionAlpha(view);
         return createAnimation(view, getStartAlpha(transitionValues, 1.0f), 0.0f);
+    }
+
+    public class FadeAnimatorListener extends AnimatorListenerAdapter {
+        private final View mView;
+        private boolean mLayerTypeChanged = false;
+
+        public FadeAnimatorListener(View view) {
+            this.mView = view;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            ViewUtils.setTransitionAlpha(this.mView, 1.0f);
+            if (this.mLayerTypeChanged) {
+                this.mView.setLayerType(0, null);
+            }
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationStart(Animator animator) {
+            if (ViewCompat.hasOverlappingRendering(this.mView) && this.mView.getLayerType() == 0) {
+                this.mLayerTypeChanged = true;
+                this.mView.setLayerType(2, null);
+            }
+        }
     }
 
     public Fade() {

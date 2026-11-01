@@ -8,12 +8,24 @@ import d0.e0.p.d.m0.c.x;
 import d0.e0.p.d.m0.c.z;
 import d0.e0.p.d.m0.n.c0;
 import java.util.List;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: CloneableClassScope.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class a extends d0.e0.p.d.m0.k.a0.e {
-    public static final a$a e = new a$a(null);
+    public static final C0510a e = new C0510a(null);
     public static final d0.e0.p.d.m0.g.e f;
+
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.b.q.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: CloneableClassScope.kt */
+    public final class C0510a {
+        public C0510a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final d0.e0.p.d.m0.g.e getCLONE_NAME() {
+            return a.access$getCLONE_NAME$cp();
+        }
+    }
 
     static {
         d0.e0.p.d.m0.g.e eVarIdentifier = d0.e0.p.d.m0.g.e.identifier("clone");
@@ -30,7 +42,7 @@ public final class a extends d0.e0.p.d.m0.k.a0.e {
 
     @Override // d0.e0.p.d.m0.k.a0.e
     public List<x> a() {
-        g0 g0VarCreate = g0.create(this.c, d0.e0.p.d.m0.c.g1.g.f.getEMPTY(), e.getCLONE_NAME(), d0.e0.p.d.m0.c.b$a.DECLARATION, u0.a);
+        g0 g0VarCreate = g0.create(this.c, d0.e0.p.d.m0.c.g1.g.f.getEMPTY(), e.getCLONE_NAME(), d0.e0.p.d.m0.c.b.a.DECLARATION, u0.a);
         g0VarCreate.initialize((q0) null, this.c.getThisAsReceiverParameter(), d0.t.n.emptyList(), d0.t.n.emptyList(), (c0) d0.e0.p.d.m0.k.x.a.getBuiltIns(this.c).getAnyType(), z.OPEN, t.c);
         return d0.t.m.listOf(g0VarCreate);
     }

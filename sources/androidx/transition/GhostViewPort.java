@@ -5,9 +5,10 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver$OnPreDrawListener;
+import android.view.ViewTreeObserver;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"ViewConstructor"})
@@ -15,15 +16,38 @@ public class GhostViewPort extends ViewGroup implements GhostView {
 
     @Nullable
     private Matrix mMatrix;
-    private final ViewTreeObserver$OnPreDrawListener mOnPreDrawListener;
+    private final ViewTreeObserver.OnPreDrawListener mOnPreDrawListener;
     public int mReferences;
     public ViewGroup mStartParent;
     public View mStartView;
     public final View mView;
 
+    /* JADX INFO: renamed from: androidx.transition.GhostViewPort$1, reason: invalid class name */
+    public class AnonymousClass1 implements ViewTreeObserver.OnPreDrawListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.ViewTreeObserver.OnPreDrawListener
+        public boolean onPreDraw() {
+            View view;
+            ViewCompat.postInvalidateOnAnimation(GhostViewPort.this);
+            GhostViewPort ghostViewPort = GhostViewPort.this;
+            ViewGroup viewGroup = ghostViewPort.mStartParent;
+            if (viewGroup == null || (view = ghostViewPort.mStartView) == null) {
+                return true;
+            }
+            viewGroup.endViewTransition(view);
+            ViewCompat.postInvalidateOnAnimation(GhostViewPort.this.mStartParent);
+            GhostViewPort ghostViewPort2 = GhostViewPort.this;
+            ghostViewPort2.mStartParent = null;
+            ghostViewPort2.mStartView = null;
+            return true;
+        }
+    }
+
     public GhostViewPort(View view) {
         super(view.getContext());
-        this.mOnPreDrawListener = new GhostViewPort$1(this);
+        this.mOnPreDrawListener = new AnonymousClass1();
         this.mView = view;
         setWillNotDraw(false);
         setLayerType(2, null);
@@ -78,7 +102,7 @@ public class GhostViewPort extends ViewGroup implements GhostView {
     }
 
     public static GhostViewPort getGhostView(View view) {
-        return (GhostViewPort) view.getTag(R$id.ghost_view);
+        return (GhostViewPort) view.getTag(R.id.ghost_view);
     }
 
     @Override // android.view.ViewGroup, android.view.View
@@ -136,7 +160,7 @@ public class GhostViewPort extends ViewGroup implements GhostView {
     }
 
     public static void setGhostView(@NonNull View view, @Nullable GhostViewPort ghostViewPort) {
-        view.setTag(R$id.ghost_view, ghostViewPort);
+        view.setTag(R.id.ghost_view, ghostViewPort);
     }
 
     public void setMatrix(@NonNull Matrix matrix) {

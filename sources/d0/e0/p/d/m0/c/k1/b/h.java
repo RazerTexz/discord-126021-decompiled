@@ -20,9 +20,9 @@ public final class h extends d implements d0.e0.p.d.m0.e.a.k0.e {
         Object[] objArr = this.c;
         ArrayList arrayList = new ArrayList(objArr.length);
         for (Object obj : objArr) {
-            d$a d_a = d.a;
+            d.a aVar = d.a;
             d0.z.d.m.checkNotNull(obj);
-            arrayList.add(d_a.create(obj, null));
+            arrayList.add(aVar.create(obj, null));
         }
         return arrayList;
     }

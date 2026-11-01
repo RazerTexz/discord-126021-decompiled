@@ -4,6 +4,10 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -14,6 +18,16 @@ public class CollectionSerializer extends Serializer<Collection> {
     private boolean elementsCanBeNull;
     private Class genericType;
     private Serializer serializer;
+
+    @Target({ElementType.FIELD})
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface BindCollection {
+        Class<?> elementClass() default Object.class;
+
+        Class<? extends Serializer> elementSerializer() default Serializer.class;
+
+        boolean elementsCanBeNull() default true;
+    }
 
     public CollectionSerializer() {
         this.elementsCanBeNull = true;

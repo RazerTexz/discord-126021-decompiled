@@ -9,6 +9,8 @@ import androidx.annotation.MainThread;
 import androidx.core.view.ViewKt;
 import androidx.fragment.app.FragmentManager;
 import b.a.k.b;
+import b.d.b.a.a;
+import com.discord.R;
 import com.discord.api.activity.Activity;
 import com.discord.api.activity.ActivityAssets;
 import com.discord.api.activity.ActivityPlatform;
@@ -33,6 +35,74 @@ public final class ViewHolderMusicRichPresence extends ViewHolderUserRichPresenc
     private final TextView richPresenceMusicDuration;
     private final TextView richPresenceMusicElapsed;
     private final SeekBar richPresenceSeekbar;
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.presence.ViewHolderMusicRichPresence$configureUi$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewHolderMusicRichPresence.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ Activity $activity;
+
+        public AnonymousClass1(Activity activity) {
+            this.$activity = activity;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            SpotifyHelper.INSTANCE.launchTrack(a.x(view, "it", "it.context"), this.$activity);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.presence.ViewHolderMusicRichPresence$configureUi$2, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewHolderMusicRichPresence.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ Activity $activity;
+
+        public AnonymousClass2(Activity activity) {
+            this.$activity = activity;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            SpotifyHelper.INSTANCE.launchTrack(a.x(view, "it", "it.context"), this.$activity);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.presence.ViewHolderMusicRichPresence$configureUi$3, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewHolderMusicRichPresence.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public final /* synthetic */ Activity $activity;
+        public final /* synthetic */ boolean $isMe;
+        public final /* synthetic */ User $user;
+
+        public AnonymousClass3(Activity activity, User user, boolean z2) {
+            this.$activity = activity;
+            this.$user = user;
+            this.$isMe = z2;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            SpotifyHelper spotifyHelper = SpotifyHelper.INSTANCE;
+            Context contextX = a.x(view, "it", "it.context");
+            Activity activity = this.$activity;
+            User user = this.$user;
+            spotifyHelper.launchAlbum(contextX, activity, user != null ? user.getId() : 0L, this.$isMe);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.presence.ViewHolderMusicRichPresence$configureUi$4, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewHolderMusicRichPresence.kt */
+    public final class AnonymousClass4 implements View.OnClickListener {
+        public static final AnonymousClass4 INSTANCE = new AnonymousClass4();
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            SpotifyHelper spotifyHelper = SpotifyHelper.INSTANCE;
+            m.checkNotNullExpressionValue(view, "it");
+            Context context = view.getContext();
+            m.checkNotNullExpressionValue(context, "it.context");
+            spotifyHelper.openPlayStoreForSpotify(context);
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ViewHolderMusicRichPresence(View view, SimpleDraweeView simpleDraweeView, SimpleDraweeView simpleDraweeView2, TextView textView, TextView textView2, TextView textView3, TextView textView4, View view2, Button button, SeekBar seekBar, TextView textView5, TextView textView6) {
@@ -88,14 +158,14 @@ public final class ViewHolderMusicRichPresence extends ViewHolderUserRichPresenc
         TextView richPresenceDetails = getRichPresenceDetails();
         if (richPresenceDetails != null) {
             m.checkNotNullExpressionValue(context, "context");
-            ViewExtensions.setTextAndVisibilityBy(richPresenceDetails, b.h(context, 2131896737, new Object[]{strReplace$default}, null, 4));
+            ViewExtensions.setTextAndVisibilityBy(richPresenceDetails, b.h(context, R.string.user_activity_listening_artists, new Object[]{strReplace$default}, null, 4));
         }
         TextView richPresenceTime = getRichPresenceTime();
         m.checkNotNullExpressionValue(context, "context");
         Object[] objArr = new Object[1];
         ActivityAssets assets = primaryActivity.getAssets();
         objArr[0] = assets != null ? assets.getLargeText() : null;
-        ViewExtensions.setTextAndVisibilityBy(richPresenceTime, b.h(context, 2131896736, objArr, null, 4));
+        ViewExtensions.setTextAndVisibilityBy(richPresenceTime, b.h(context, R.string.user_activity_listening_album, objArr, null, 4));
         getRichPresenceTextContainer().setSelected(true);
         configureAssetUi(primaryActivity, streamContext);
         Button richPresencePrimaryButton = getRichPresencePrimaryButton();
@@ -108,7 +178,7 @@ public final class ViewHolderMusicRichPresence extends ViewHolderUserRichPresenc
         if (isMe) {
             Button richPresencePrimaryButton2 = getRichPresencePrimaryButton();
             if (richPresencePrimaryButton2 != null) {
-                b.n(richPresencePrimaryButton2, 2131896720, new Object[0], null, 4);
+                b.n(richPresencePrimaryButton2, R.string.user_activity_cannot_play_self, new Object[0], null, 4);
             }
             Button richPresencePrimaryButton3 = getRichPresencePrimaryButton();
             if (richPresencePrimaryButton3 != null) {
@@ -117,7 +187,7 @@ public final class ViewHolderMusicRichPresence extends ViewHolderUserRichPresenc
         } else {
             Button richPresencePrimaryButton4 = getRichPresencePrimaryButton();
             if (richPresencePrimaryButton4 != null) {
-                b.n(richPresencePrimaryButton4, 2131896739, new Object[]{primaryActivity.getName()}, null, 4);
+                b.n(richPresencePrimaryButton4, R.string.user_activity_play_on_platform, new Object[]{primaryActivity.getName()}, null, 4);
             }
             Button richPresencePrimaryButton5 = getRichPresencePrimaryButton();
             if (richPresencePrimaryButton5 != null) {
@@ -127,17 +197,17 @@ public final class ViewHolderMusicRichPresence extends ViewHolderUserRichPresenc
         if (!SpotifyHelper.INSTANCE.isSpotifyInstalled(context)) {
             Button richPresencePrimaryButton6 = getRichPresencePrimaryButton();
             if (richPresencePrimaryButton6 != null) {
-                richPresencePrimaryButton6.setOnClickListener(ViewHolderMusicRichPresence$configureUi$4.INSTANCE);
+                richPresencePrimaryButton6.setOnClickListener(AnonymousClass4.INSTANCE);
                 return;
             }
             return;
         }
-        getRichPresenceTitle().setOnClickListener(new ViewHolderMusicRichPresence$configureUi$1(primaryActivity));
+        getRichPresenceTitle().setOnClickListener(new AnonymousClass1(primaryActivity));
         Button richPresencePrimaryButton7 = getRichPresencePrimaryButton();
         if (richPresencePrimaryButton7 != null) {
-            richPresencePrimaryButton7.setOnClickListener(new ViewHolderMusicRichPresence$configureUi$2(primaryActivity));
+            richPresencePrimaryButton7.setOnClickListener(new AnonymousClass2(primaryActivity));
         }
-        getRichPresenceImageLarge().setOnClickListener(new ViewHolderMusicRichPresence$configureUi$3(primaryActivity, user, isMe));
+        getRichPresenceImageLarge().setOnClickListener(new AnonymousClass3(primaryActivity, user, isMe));
     }
 
     @Override // com.discord.widgets.user.presence.ViewHolderUserRichPresence

@@ -13,6 +13,7 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 import kotlin.Lazy;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: SubstitutingScope.kt */
@@ -25,6 +26,25 @@ public final class n implements i {
     public Map<d0.e0.p.d.m0.c.m, d0.e0.p.d.m0.c.m> d;
     public final Lazy e;
 
+    /* JADX INFO: compiled from: SubstitutingScope.kt */
+    public final class a extends d0.z.d.o implements Function0<Collection<? extends d0.e0.p.d.m0.c.m>> {
+        public a() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Collection<? extends d0.e0.p.d.m0.c.m> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Collection<? extends d0.e0.p.d.m0.c.m> invoke2() {
+            n nVar = n.this;
+            return n.access$substitute(nVar, l.a.getContributedDescriptors$default(n.access$getWorkerScope$p(nVar), null, null, 3, null));
+        }
+    }
+
     public n(i iVar, c1 c1Var) {
         d0.z.d.m.checkNotNullParameter(iVar, "workerScope");
         d0.z.d.m.checkNotNullParameter(c1Var, "givenSubstitutor");
@@ -32,7 +52,7 @@ public final class n implements i {
         z0 substitution = c1Var.getSubstitution();
         d0.z.d.m.checkNotNullExpressionValue(substitution, "givenSubstitutor.substitution");
         this.c = d0.e0.p.d.m0.k.u.a.d.wrapWithCapturingSubstitution$default(substitution, false, 1, null).buildSubstitutor();
-        this.e = d0.g.lazy(new n$a(this));
+        this.e = d0.g.lazy(new a());
     }
 
     /* JADX WARN: Multi-variable type inference failed */

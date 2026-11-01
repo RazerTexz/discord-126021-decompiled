@@ -9,8 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.databinding.ViewGlobalSearchItemBinding;
@@ -19,12 +18,12 @@ import com.discord.models.user.User;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
-import com.discord.utilities.images.MGImages$ChangeDetector;
 import com.discord.utilities.user.UserUtils;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.facebook.drawee.view.SimpleDraweeView;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.List;
 import kotlin.jvm.functions.Function1;
@@ -34,6 +33,29 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewGlobalSearchItem extends ConstraintLayout {
     private final ViewGlobalSearchItemBinding binding;
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.search.ViewGlobalSearchItem$onConfigure$2, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewGlobalSearchItem.kt */
+    public final class AnonymousClass2 extends o implements Function1<User, CharSequence> {
+        public final /* synthetic */ int $discrimColor;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(int i) {
+            super(1);
+            this.$discrimColor = i;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ CharSequence invoke(User user) {
+            return invoke2(user);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final CharSequence invoke2(User user) {
+            m.checkNotNullParameter(user, "user");
+            return UserUtils.INSTANCE.getUserNameWithDiscriminator(user, Integer.valueOf(this.$discrimColor), Float.valueOf(0.75f));
+        }
+    }
 
     public ViewGlobalSearchItem(Context context) {
         this(context, null, 0, 6, null);
@@ -47,9 +69,9 @@ public final class ViewGlobalSearchItem extends ConstraintLayout {
         this(context, (i2 & 2) != 0 ? null : attributeSet, (i2 & 4) != 0 ? 0 : i);
     }
 
-    public final void configure(WidgetGlobalSearchModel$ItemDataPayload widgetGlobalSearchModel$ItemDataPayload) {
-        m.checkNotNullParameter(widgetGlobalSearchModel$ItemDataPayload, "$this$configure");
-        Integer numValueOf = Integer.valueOf(widgetGlobalSearchModel$ItemDataPayload.getMentions());
+    public final void configure(WidgetGlobalSearchModel.ItemDataPayload itemDataPayload) {
+        m.checkNotNullParameter(itemDataPayload, "$this$configure");
+        Integer numValueOf = Integer.valueOf(itemDataPayload.getMentions());
         if (!(numValueOf.intValue() > 0)) {
             numValueOf = null;
         }
@@ -59,10 +81,10 @@ public final class ViewGlobalSearchItem extends ConstraintLayout {
         ViewExtensions.setTextAndVisibilityBy(textView, strValueOf);
         ImageView imageView = this.binding.g;
         m.checkNotNullExpressionValue(imageView, "binding.itemUnread");
-        imageView.setVisibility(widgetGlobalSearchModel$ItemDataPayload.getUnread() ? 0 : 8);
+        imageView.setVisibility(itemDataPayload.getUnread() ? 0 : 8);
     }
 
-    public final void onConfigure(WidgetGlobalSearchModel$ItemChannel data) {
+    public final void onConfigure(WidgetGlobalSearchModel.ItemChannel data) {
         m.checkNotNullParameter(data, "data");
         configure(data);
         SimpleDraweeView simpleDraweeView = this.binding.d;
@@ -72,22 +94,22 @@ public final class ViewGlobalSearchItem extends ConstraintLayout {
         if (ChannelUtils.B(data.getChannel())) {
             SimpleDraweeView simpleDraweeView2 = this.binding.d;
             m.checkNotNullExpressionValue(simpleDraweeView2, "binding.itemIconIv");
-            IconUtils.setIcon$default(simpleDraweeView2, data.getChannel(), 2131165300, (MGImages$ChangeDetector) null, 8, (Object) null);
+            IconUtils.setIcon$default(simpleDraweeView2, data.getChannel(), R.dimen.avatar_size_standard, (MGImages.ChangeDetector) null, 8, (Object) null);
         } else if (ChannelUtils.w(data.getChannel())) {
             MGImages mGImages = MGImages.INSTANCE;
             SimpleDraweeView simpleDraweeView3 = this.binding.d;
             m.checkNotNullExpressionValue(simpleDraweeView3, "binding.itemIconIv");
-            MGImages.setImage$default(mGImages, simpleDraweeView3, 2131231641, (MGImages$ChangeDetector) null, 4, (Object) null);
+            MGImages.setImage$default(mGImages, simpleDraweeView3, R.drawable.ic_channel_voice_grey_18dp, (MGImages.ChangeDetector) null, 4, (Object) null);
         } else if (ChannelUtils.H(data.getChannel())) {
             MGImages mGImages2 = MGImages.INSTANCE;
             SimpleDraweeView simpleDraweeView4 = this.binding.d;
             m.checkNotNullExpressionValue(simpleDraweeView4, "binding.itemIconIv");
-            MGImages.setImage$default(mGImages2, simpleDraweeView4, 2131232194, (MGImages$ChangeDetector) null, 4, (Object) null);
+            MGImages.setImage$default(mGImages2, simpleDraweeView4, R.drawable.ic_thread_grey_18dp, (MGImages.ChangeDetector) null, 4, (Object) null);
         } else {
             MGImages mGImages3 = MGImages.INSTANCE;
             SimpleDraweeView simpleDraweeView5 = this.binding.d;
             m.checkNotNullExpressionValue(simpleDraweeView5, "binding.itemIconIv");
-            MGImages.setImage$default(mGImages3, simpleDraweeView5, 2131231632, (MGImages$ChangeDetector) null, 4, (Object) null);
+            MGImages.setImage$default(mGImages3, simpleDraweeView5, R.drawable.ic_channel_text_grey_18dp, (MGImages.ChangeDetector) null, 4, (Object) null);
         }
         TextView textView = this.binding.c;
         m.checkNotNullExpressionValue(textView, "binding.itemGroupTv");
@@ -115,10 +137,10 @@ public final class ViewGlobalSearchItem extends ConstraintLayout {
                 if (type == 3) {
                     TextView textView5 = this.binding.f2189b;
                     m.checkNotNullExpressionValue(textView5, "binding.itemDescriptionTv");
-                    int color = ColorCompat.getColor(textView5, 2131100525);
+                    int color = ColorCompat.getColor(textView5, R.color.white_alpha_40);
                     TextView textView6 = this.binding.f2189b;
                     m.checkNotNullExpressionValue(textView6, "binding.itemDescriptionTv");
-                    textView6.setText(u.joinToString$default(ChannelUtils.g(data.getChannel()), null, null, null, 0, null, new ViewGlobalSearchItem$onConfigure$2(color), 31, null));
+                    textView6.setText(u.joinToString$default(ChannelUtils.g(data.getChannel()), null, null, null, 0, null, new AnonymousClass2(color), 31, null));
                     TextView textView7 = this.binding.f2189b;
                     m.checkNotNullExpressionValue(textView7, "binding.itemDescriptionTv");
                     textView7.setVisibility(8);
@@ -142,12 +164,12 @@ public final class ViewGlobalSearchItem extends ConstraintLayout {
         textView10.setAllCaps(true);
     }
 
-    private final CharSequence toStyledText(WidgetGlobalSearchModel$MatchedResult widgetGlobalSearchModel$MatchedResult, String str) {
-        if (widgetGlobalSearchModel$MatchedResult.getFirstMatchIndex() < 0) {
+    private final CharSequence toStyledText(WidgetGlobalSearchModel.MatchedResult matchedResult, String str) {
+        if (matchedResult.getFirstMatchIndex() < 0) {
             return str;
         }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(widgetGlobalSearchModel$MatchedResult.getValue());
-        spannableStringBuilder.setSpan(new StyleSpan(1), widgetGlobalSearchModel$MatchedResult.getFirstMatchIndex(), widgetGlobalSearchModel$MatchedResult.getFilterLength() + widgetGlobalSearchModel$MatchedResult.getFirstMatchIndex(), 17);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(matchedResult.getValue());
+        spannableStringBuilder.setSpan(new StyleSpan(1), matchedResult.getFirstMatchIndex(), matchedResult.getFilterLength() + matchedResult.getFirstMatchIndex(), 17);
         return spannableStringBuilder;
     }
 
@@ -155,27 +177,27 @@ public final class ViewGlobalSearchItem extends ConstraintLayout {
     public ViewGlobalSearchItem(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
         m.checkNotNullParameter(context, "ctx");
-        LayoutInflater.from(context).inflate(R$layout.view_global_search_item, this);
-        int i2 = 2131363590;
-        Guideline guideline = (Guideline) findViewById(2131363590);
+        LayoutInflater.from(context).inflate(R.layout.view_global_search_item, this);
+        int i2 = R.id.guideline;
+        Guideline guideline = (Guideline) findViewById(R.id.guideline);
         if (guideline != null) {
-            i2 = R$id.item_description_tv;
-            TextView textView = (TextView) findViewById(R$id.item_description_tv);
+            i2 = R.id.item_description_tv;
+            TextView textView = (TextView) findViewById(R.id.item_description_tv);
             if (textView != null) {
-                i2 = R$id.item_group_tv;
-                TextView textView2 = (TextView) findViewById(R$id.item_group_tv);
+                i2 = R.id.item_group_tv;
+                TextView textView2 = (TextView) findViewById(R.id.item_group_tv);
                 if (textView2 != null) {
-                    i2 = R$id.item_icon_iv;
-                    SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R$id.item_icon_iv);
+                    i2 = R.id.item_icon_iv;
+                    SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R.id.item_icon_iv);
                     if (simpleDraweeView != null) {
-                        i2 = R$id.item_mentions_tv;
-                        TextView textView3 = (TextView) findViewById(R$id.item_mentions_tv);
+                        i2 = R.id.item_mentions_tv;
+                        TextView textView3 = (TextView) findViewById(R.id.item_mentions_tv);
                         if (textView3 != null) {
-                            i2 = R$id.item_name_tv;
-                            TextView textView4 = (TextView) findViewById(R$id.item_name_tv);
+                            i2 = R.id.item_name_tv;
+                            TextView textView4 = (TextView) findViewById(R.id.item_name_tv);
                             if (textView4 != null) {
-                                i2 = R$id.item_unread;
-                                ImageView imageView = (ImageView) findViewById(R$id.item_unread);
+                                i2 = R.id.item_unread;
+                                ImageView imageView = (ImageView) findViewById(R.id.item_unread);
                                 if (imageView != null) {
                                     ViewGlobalSearchItemBinding viewGlobalSearchItemBinding = new ViewGlobalSearchItemBinding(this, guideline, textView, textView2, simpleDraweeView, textView3, textView4, imageView);
                                     m.checkNotNullExpressionValue(viewGlobalSearchItemBinding, "ViewGlobalSearchItemBind…Inflater.from(ctx), this)");
@@ -191,12 +213,12 @@ public final class ViewGlobalSearchItem extends ConstraintLayout {
         throw new NullPointerException("Missing required view with ID: ".concat(getResources().getResourceName(i2)));
     }
 
-    public final void onConfigure(WidgetGlobalSearchModel$ItemGuild data) {
+    public final void onConfigure(WidgetGlobalSearchModel.ItemGuild data) {
         m.checkNotNullParameter(data, "data");
         configure(data);
         SimpleDraweeView simpleDraweeView = this.binding.d;
         m.checkNotNullExpressionValue(simpleDraweeView, "binding.itemIconIv");
-        IconUtils.setIcon$default(simpleDraweeView, IconUtils.getForGuild$default(data.getGuild(), IconUtils.DEFAULT_ICON, false, null, 12, null), 0, (Function1) null, (MGImages$ChangeDetector) null, 28, (Object) null);
+        IconUtils.setIcon$default(simpleDraweeView, IconUtils.getForGuild$default(data.getGuild(), IconUtils.DEFAULT_ICON, false, null, 12, null), 0, (Function1) null, (MGImages.ChangeDetector) null, 28, (Object) null);
         TextView textView = this.binding.f;
         m.checkNotNullExpressionValue(textView, "binding.itemNameTv");
         textView.setText(toStyledText(data.getMatchedResult(), data.getGuild().getName()));
@@ -208,14 +230,14 @@ public final class ViewGlobalSearchItem extends ConstraintLayout {
         ViewExtensions.setTextAndVisibilityBy(textView3, null);
     }
 
-    public final void onConfigure(WidgetGlobalSearchModel$ItemUser data) {
+    public final void onConfigure(WidgetGlobalSearchModel.ItemUser data) {
         m.checkNotNullParameter(data, "data");
         configure(data);
         SimpleDraweeView simpleDraweeView = this.binding.d;
         m.checkNotNullExpressionValue(simpleDraweeView, "binding.itemIconIv");
         IconUtils.setIcon$default(simpleDraweeView, data.getUser(), 0, null, null, null, 60, null);
         if (data.isFriend()) {
-            this.binding.c.setText(2131889471);
+            this.binding.c.setText(R.string.friends);
         } else {
             TextView textView = this.binding.c;
             m.checkNotNullExpressionValue(textView, "binding.itemGroupTv");

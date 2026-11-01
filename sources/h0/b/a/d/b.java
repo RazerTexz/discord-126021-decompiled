@@ -14,6 +14,10 @@ public abstract class b<T> implements h0.b.a.a<T> {
     public static ObjectInputStream f3731b;
     public final Class<T> c;
 
+    /* JADX INFO: compiled from: GCJInstantiatorBase.java */
+    public class a extends ObjectInputStream {
+    }
+
     public b(Class<T> cls) {
         this.c = cls;
         if (a == null) {
@@ -21,7 +25,7 @@ public abstract class b<T> implements h0.b.a.a<T> {
                 Method declaredMethod = ObjectInputStream.class.getDeclaredMethod("newObject", Class.class, Class.class);
                 a = declaredMethod;
                 declaredMethod.setAccessible(true);
-                f3731b = new b$a();
+                f3731b = new a();
             } catch (IOException e) {
                 throw new ObjenesisException(e);
             } catch (NoSuchMethodException e2) {

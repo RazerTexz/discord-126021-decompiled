@@ -15,21 +15,21 @@ public class ModelBan implements Model {
     private User user;
 
     @Override // com.discord.models.domain.Model
-    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
-        String strNextName = model$JsonReader.nextName();
+    public void assignField(Model.JsonReader jsonReader) throws IOException {
+        String strNextName = jsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "guild_id":
-                this.guildId = model$JsonReader.nextLong(-1L);
+                this.guildId = jsonReader.nextLong(-1L);
                 break;
             case "reason":
-                this.reason = model$JsonReader.nextStringOrNull();
+                this.reason = jsonReader.nextStringOrNull();
                 break;
             case "user":
-                this.user = (User) InboundGatewayGsonParser.fromJson(model$JsonReader, User.class);
+                this.user = (User) InboundGatewayGsonParser.fromJson(jsonReader, User.class);
                 break;
             default:
-                model$JsonReader.skipValue();
+                jsonReader.skipValue();
                 break;
         }
     }

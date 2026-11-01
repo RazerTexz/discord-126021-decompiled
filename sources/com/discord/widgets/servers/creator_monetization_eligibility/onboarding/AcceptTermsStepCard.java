@@ -4,17 +4,16 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup$MarginLayoutParams;
+import android.view.ViewGroup;
 import android.widget.Space;
 import android.widget.TextView;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintLayout$LayoutParams;
 import androidx.core.content.res.TypedArrayKt;
 import androidx.core.view.ViewGroupKt;
 import b.a.k.b;
-import com.discord.R$a;
+import com.discord.R;
 import com.discord.databinding.ViewCreatorMonetizationAcceptTermsStepCardBinding;
 import d0.f0.q;
 import d0.g;
@@ -77,14 +76,14 @@ public final class AcceptTermsStepCard extends ConstraintLayout {
         m.checkNotNullExpressionValue(textView5, "binding.description");
         int id2 = textView5.getId();
         for (View view : list) {
-            ConstraintLayout$LayoutParams constraintLayout$LayoutParams = new ConstraintLayout$LayoutParams(view.getLayoutParams());
-            ((ViewGroup$MarginLayoutParams) constraintLayout$LayoutParams).width = 0;
-            constraintLayout$LayoutParams.topToBottom = id2;
+            ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(view.getLayoutParams());
+            ((ViewGroup.MarginLayoutParams) layoutParams).width = 0;
+            layoutParams.topToBottom = id2;
             Space space = getBinding().d;
             m.checkNotNullExpressionValue(space, "binding.imagePadding");
-            constraintLayout$LayoutParams.startToEnd = space.getId();
-            constraintLayout$LayoutParams.endToEnd = 0;
-            view.setLayoutParams(constraintLayout$LayoutParams);
+            layoutParams.startToEnd = space.getId();
+            layoutParams.endToEnd = 0;
+            view.setLayoutParams(layoutParams);
             id2 = view.getId();
         }
     }
@@ -94,7 +93,7 @@ public final class AcceptTermsStepCard extends ConstraintLayout {
         super(context, attributeSet);
         m.checkNotNullParameter(context, "context");
         this.binding = g.lazy(new AcceptTermsStepCard$binding$2(this, context));
-        int[] iArr = R$a.AcceptTermsStepCard;
+        int[] iArr = R.a.AcceptTermsStepCard;
         m.checkNotNullExpressionValue(iArr, "R.styleable.AcceptTermsStepCard");
         TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, iArr);
         m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(attrs, styleable)");

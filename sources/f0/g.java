@@ -1,9 +1,11 @@
 package f0;
 
 import com.adjust.sdk.Constants;
+import com.discord.widgets.chat.input.MentionUtilsKt;
 import d0.z.d.e0;
 import java.security.Principal;
 import java.security.PublicKey;
+import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,18 +14,73 @@ import java.util.Objects;
 import java.util.Set;
 import javax.net.ssl.SSLPeerUnverifiedException;
 import kotlin.jvm.functions.Function0;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import okio.ByteString;
-import okio.ByteString$a;
 
 /* JADX INFO: compiled from: CertificatePinner.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class g {
-    public final Set<g$b> c;
+    public final Set<b> c;
     public final f0.e0.m.c d;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final g$a f3670b = new g$a(null);
+    public static final a f3670b = new a(null);
     public static final g a = new g(d0.t.u.toSet(new ArrayList()), null, 2);
+
+    /* JADX INFO: compiled from: CertificatePinner.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final String a(Certificate certificate) {
+            d0.z.d.m.checkParameterIsNotNull(certificate, "certificate");
+            return "sha256/" + b((X509Certificate) certificate).f();
+        }
+
+        public final ByteString b(X509Certificate x509Certificate) {
+            d0.z.d.m.checkParameterIsNotNull(x509Certificate, "$this$sha256Hash");
+            ByteString.Companion companion = ByteString.INSTANCE;
+            PublicKey publicKey = x509Certificate.getPublicKey();
+            d0.z.d.m.checkExpressionValueIsNotNull(publicKey, "publicKey");
+            byte[] encoded = publicKey.getEncoded();
+            d0.z.d.m.checkExpressionValueIsNotNull(encoded, "publicKey.encoded");
+            return ByteString.Companion.d(companion, encoded, 0, 0, 3).g(Constants.SHA256);
+        }
+    }
+
+    /* JADX INFO: compiled from: CertificatePinner.kt */
+    public final class b {
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof b)) {
+                return false;
+            }
+            b bVar = (b) obj;
+            Objects.requireNonNull(bVar);
+            if (!d0.z.d.m.areEqual((Object) null, (Object) null)) {
+                return false;
+            }
+            Objects.requireNonNull(bVar);
+            if (!d0.z.d.m.areEqual((Object) null, (Object) null)) {
+                return false;
+            }
+            Objects.requireNonNull(bVar);
+            return !(d0.z.d.m.areEqual((Object) null, (Object) null) ^ true);
+        }
+
+        public int hashCode() {
+            throw null;
+        }
+
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append((String) null);
+            sb.append(MentionUtilsKt.SLASH_CHAR);
+            throw null;
+        }
+    }
 
     public g(Set set, f0.e0.m.c cVar, int i) {
         int i2 = i & 2;
@@ -36,10 +93,10 @@ public final class g {
         d0.z.d.m.checkParameterIsNotNull(str, "hostname");
         d0.z.d.m.checkParameterIsNotNull(function0, "cleanedPeerCertificatesFn");
         d0.z.d.m.checkParameterIsNotNull(str, "hostname");
-        Set<g$b> set = this.c;
-        List<g$b> listEmptyList = d0.t.n.emptyList();
+        Set<b> set = this.c;
+        List<b> listEmptyList = d0.t.n.emptyList();
         for (Object obj : set) {
-            Objects.requireNonNull((g$b) obj);
+            Objects.requireNonNull((b) obj);
             d0.z.d.m.checkParameterIsNotNull(str, "hostname");
             if (d0.g0.t.startsWith$default(null, "**.", false, 2, null)) {
                 throw null;
@@ -61,7 +118,7 @@ public final class g {
         for (X509Certificate x509Certificate : listInvoke) {
             Iterator it = listEmptyList.iterator();
             if (it.hasNext()) {
-                Objects.requireNonNull((g$b) it.next());
+                Objects.requireNonNull((b) it.next());
                 throw null;
             }
         }
@@ -75,12 +132,12 @@ public final class g {
             StringBuilder sb = new StringBuilder();
             sb.append("sha256/");
             d0.z.d.m.checkParameterIsNotNull(x509Certificate2, "$this$sha256Hash");
-            ByteString$a byteString$a = ByteString.k;
+            ByteString.Companion companion = ByteString.INSTANCE;
             PublicKey publicKey = x509Certificate2.getPublicKey();
             d0.z.d.m.checkExpressionValueIsNotNull(publicKey, "publicKey");
             byte[] encoded = publicKey.getEncoded();
             d0.z.d.m.checkExpressionValueIsNotNull(encoded, "publicKey.encoded");
-            sb.append(ByteString$a.d(byteString$a, encoded, 0, 0, 3).g(Constants.SHA256).f());
+            sb.append(ByteString.Companion.d(companion, encoded, 0, 0, 3).g(Constants.SHA256).f());
             sbX.append(sb.toString());
             sbX.append(": ");
             Principal subjectDN = x509Certificate2.getSubjectDN();
@@ -90,9 +147,9 @@ public final class g {
         sbX.append("\n  Pinned certificates for ");
         sbX.append(str);
         sbX.append(":");
-        for (g$b g_b : listEmptyList) {
+        for (b bVar : listEmptyList) {
             sbX.append("\n    ");
-            sbX.append(g_b);
+            sbX.append(bVar);
         }
         String string = sbX.toString();
         d0.z.d.m.checkExpressionValueIsNotNull(string, "StringBuilder().apply(builderAction).toString()");
@@ -120,7 +177,7 @@ public final class g {
         return iHashCode + (cVar != null ? cVar.hashCode() : 0);
     }
 
-    public g(Set<g$b> set, f0.e0.m.c cVar) {
+    public g(Set<b> set, f0.e0.m.c cVar) {
         d0.z.d.m.checkParameterIsNotNull(set, "pins");
         this.c = set;
         this.d = cVar;

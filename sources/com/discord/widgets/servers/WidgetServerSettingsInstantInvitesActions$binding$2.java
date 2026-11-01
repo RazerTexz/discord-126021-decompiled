@@ -3,7 +3,7 @@ package com.discord.widgets.servers;
 import android.view.View;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetServerSettingsInstantInviteActionsBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -26,17 +26,17 @@ public final /* synthetic */ class WidgetServerSettingsInstantInvitesActions$bin
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetServerSettingsInstantInviteActionsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.invite_actions_copy;
-        TextView textView = (TextView) view.findViewById(R$id.invite_actions_copy);
+        int i = R.id.invite_actions_copy;
+        TextView textView = (TextView) view.findViewById(R.id.invite_actions_copy);
         if (textView != null) {
-            i = R$id.invite_actions_revoke;
-            TextView textView2 = (TextView) view.findViewById(R$id.invite_actions_revoke);
+            i = R.id.invite_actions_revoke;
+            TextView textView2 = (TextView) view.findViewById(R.id.invite_actions_revoke);
             if (textView2 != null) {
-                i = R$id.invite_actions_share;
-                TextView textView3 = (TextView) view.findViewById(R$id.invite_actions_share);
+                i = R.id.invite_actions_share;
+                TextView textView3 = (TextView) view.findViewById(R.id.invite_actions_share);
                 if (textView3 != null) {
-                    i = R$id.invite_actions_title;
-                    TextView textView4 = (TextView) view.findViewById(R$id.invite_actions_title);
+                    i = R.id.invite_actions_title;
+                    TextView textView4 = (TextView) view.findViewById(R.id.invite_actions_title);
                     if (textView4 != null) {
                         return new WidgetServerSettingsInstantInviteActionsBinding((NestedScrollView) view, textView, textView2, textView3, textView4);
                     }

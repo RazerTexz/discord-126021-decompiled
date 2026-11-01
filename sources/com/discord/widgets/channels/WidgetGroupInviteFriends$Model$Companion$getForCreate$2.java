@@ -1,21 +1,73 @@
 package com.discord.widgets.channels;
 
 import androidx.core.app.NotificationCompat;
+import com.discord.models.user.User;
+import com.discord.stores.StoreStream;
+import com.discord.utilities.user.UserUtils;
+import d0.z.d.m;
 import j0.k.b;
+import j0.l.e.k;
+import java.util.Collection;
+import java.util.List;
 import rx.Observable;
 
 /* JADX INFO: compiled from: WidgetGroupInviteFriends.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetGroupInviteFriends$Model$Companion$getForCreate$2<T, R> implements b<WidgetGroupInviteFriends$Model$Companion$AddedUsersInput, Observable<? extends WidgetGroupInviteFriends$Model>> {
+public final class WidgetGroupInviteFriends$Model$Companion$getForCreate$2<T, R> implements b<WidgetGroupInviteFriends.Model.Companion.AddedUsersInput, Observable<? extends WidgetGroupInviteFriends.Model>> {
     public static final WidgetGroupInviteFriends$Model$Companion$getForCreate$2 INSTANCE = new WidgetGroupInviteFriends$Model$Companion$getForCreate$2();
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetGroupInviteFriends$Model$Companion$getForCreate$2$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGroupInviteFriends.kt */
+    public final class AnonymousClass1<T, R> implements b<WidgetGroupInviteFriends.Model.ModelAppUserRelationship, List<? extends WidgetGroupInviteFriends.Model.FriendItem>> {
+        public final /* synthetic */ WidgetGroupInviteFriends.Model.Companion.AddedUsersInput $usersFilter;
+
+        public AnonymousClass1(WidgetGroupInviteFriends.Model.Companion.AddedUsersInput addedUsersInput) {
+            this.$usersFilter = addedUsersInput;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ List<? extends WidgetGroupInviteFriends.Model.FriendItem> call(WidgetGroupInviteFriends.Model.ModelAppUserRelationship modelAppUserRelationship) {
+            return call2(modelAppUserRelationship);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final List<WidgetGroupInviteFriends.Model.FriendItem> call2(WidgetGroupInviteFriends.Model.ModelAppUserRelationship modelAppUserRelationship) {
+            WidgetGroupInviteFriends.Model.FriendItem.Companion companion = WidgetGroupInviteFriends.Model.FriendItem.INSTANCE;
+            m.checkNotNullExpressionValue(modelAppUserRelationship, "friends");
+            return companion.createData(modelAppUserRelationship, this.$usersFilter.getAddedUsers());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetGroupInviteFriends$Model$Companion$getForCreate$2$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGroupInviteFriends.kt */
+    public final class AnonymousClass2<T, R> implements b<List<? extends WidgetGroupInviteFriends.Model.FriendItem>, Observable<? extends WidgetGroupInviteFriends.Model>> {
+        public final /* synthetic */ WidgetGroupInviteFriends.Model.Companion.AddedUsersInput $usersFilter;
+
+        public AnonymousClass2(WidgetGroupInviteFriends.Model.Companion.AddedUsersInput addedUsersInput) {
+            this.$usersFilter = addedUsersInput;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends WidgetGroupInviteFriends.Model> call(List<? extends WidgetGroupInviteFriends.Model.FriendItem> list) {
+            return call2((List<WidgetGroupInviteFriends.Model.FriendItem>) list);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends WidgetGroupInviteFriends.Model> call2(List<WidgetGroupInviteFriends.Model.FriendItem> list) {
+            String filter = this.$usersFilter.getFilter();
+            Collection<User> addedUsers = this.$usersFilter.getAddedUsers();
+            m.checkNotNullExpressionValue(list, "friendItems");
+            return new k(new WidgetGroupInviteFriends.Model(null, filter, addedUsers, list, 0, UserUtils.INSTANCE.isStaff(StoreStream.INSTANCE.getUsers().getMeSnapshot()) ? 25 : 10));
+        }
+    }
+
     @Override // j0.k.b
-    public /* bridge */ /* synthetic */ Observable<? extends WidgetGroupInviteFriends$Model> call(WidgetGroupInviteFriends$Model$Companion$AddedUsersInput widgetGroupInviteFriends$Model$Companion$AddedUsersInput) {
-        return call2(widgetGroupInviteFriends$Model$Companion$AddedUsersInput);
+    public /* bridge */ /* synthetic */ Observable<? extends WidgetGroupInviteFriends.Model> call(WidgetGroupInviteFriends.Model.Companion.AddedUsersInput addedUsersInput) {
+        return call2(addedUsersInput);
     }
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-    public final Observable<? extends WidgetGroupInviteFriends$Model> call2(WidgetGroupInviteFriends$Model$Companion$AddedUsersInput widgetGroupInviteFriends$Model$Companion$AddedUsersInput) {
-        return WidgetGroupInviteFriends$Model$Companion.access$getFilteredFriends(WidgetGroupInviteFriends$Model.Companion, null, widgetGroupInviteFriends$Model$Companion$AddedUsersInput.getFilter()).G(new WidgetGroupInviteFriends$Model$Companion$getForCreate$2$1(widgetGroupInviteFriends$Model$Companion$AddedUsersInput)).Y(new WidgetGroupInviteFriends$Model$Companion$getForCreate$2$2(widgetGroupInviteFriends$Model$Companion$AddedUsersInput));
+    public final Observable<? extends WidgetGroupInviteFriends.Model> call2(WidgetGroupInviteFriends.Model.Companion.AddedUsersInput addedUsersInput) {
+        return WidgetGroupInviteFriends.Model.Companion.access$getFilteredFriends(WidgetGroupInviteFriends.Model.INSTANCE, null, addedUsersInput.getFilter()).G(new AnonymousClass1(addedUsersInput)).Y(new AnonymousClass2(addedUsersInput));
     }
 }

@@ -11,10 +11,7 @@ import lombok.core.handlers.HandlerUtil;
 import lombok.eclipse.Eclipse;
 import lombok.eclipse.EclipseNode;
 import lombok.eclipse.handlers.EclipseHandlerUtil;
-import lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer;
-import lombok.eclipse.handlers.EclipseSingularsRecipes$SingularData;
-import lombok.eclipse.handlers.EclipseSingularsRecipes$StatementMaker;
-import lombok.eclipse.handlers.EclipseSingularsRecipes$TypeReferenceMaker;
+import lombok.eclipse.handlers.EclipseSingularsRecipes;
 import lombok.eclipse.handlers.HandleNonNull;
 import org.eclipse.jdt.internal.compiler.ast.Annotation;
 import org.eclipse.jdt.internal.compiler.ast.Argument;
@@ -37,7 +34,7 @@ import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 import org.eclipse.jdt.internal.compiler.ast.TypeReference;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/singulars/EclipseGuavaSingularizer.SCL.lombok */
-abstract class EclipseGuavaSingularizer extends EclipseSingularsRecipes$EclipseSingularizer {
+abstract class EclipseGuavaSingularizer extends EclipseSingularsRecipes.EclipseSingularizer {
     protected static final char[] OF = {'o', 'f'};
     protected static final char[][] CGCC = {new char[]{'c', 'o', 'm'}, new char[]{'g', 'o', 'o', 'g', 'l', 'e'}, new char[]{'c', 'o', 'm', 'm', 'o', 'n'}, new char[]{'c', 'o', 'l', 'l', 'e', 'c', 't'}};
 
@@ -50,11 +47,11 @@ abstract class EclipseGuavaSingularizer extends EclipseSingularsRecipes$EclipseS
     EclipseGuavaSingularizer() {
     }
 
-    protected String getSimpleTargetTypeName(EclipseSingularsRecipes$SingularData data) {
+    protected String getSimpleTargetTypeName(EclipseSingularsRecipes.SingularData data) {
         return GuavaTypeMap.getGuavaTypeName(data.getTargetFqn());
     }
 
-    protected char[] getBuilderMethodName(EclipseSingularsRecipes$SingularData data) {
+    protected char[] getBuilderMethodName(EclipseSingularsRecipes.SingularData data) {
         String simpleTypeName = getSimpleTargetTypeName(data);
         return ("ImmutableSortedSet".equals(simpleTypeName) || "ImmutableSortedMap".equals(simpleTypeName)) ? "naturalOrder".toCharArray() : "builder".toCharArray();
     }
@@ -72,18 +69,18 @@ abstract class EclipseGuavaSingularizer extends EclipseSingularsRecipes$EclipseS
         return tokenizedName;
     }
 
-    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
+    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
     protected char[] getEmptyMakerSelector(String targetFqn) {
         return OF;
     }
 
-    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
+    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
     protected char[][] getEmptyMakerReceiver(String targetFqn) {
         return CGCC;
     }
 
-    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
-    public List<EclipseNode> generateFields(EclipseSingularsRecipes$SingularData data, EclipseNode builderType) {
+    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
+    public List<EclipseNode> generateFields(EclipseSingularsRecipes.SingularData data, EclipseNode builderType) {
         String simpleTypeName = getSimpleTargetTypeName(data);
         char[][] tokenizedName = makeGuavaTypeName(simpleTypeName, true);
         TypeReference type = addTypeArgs(getTypeArgumentsCount(), false, builderType, new QualifiedTypeReference(tokenizedName, NULL_POSS), data.getTypeArgs());
@@ -96,14 +93,14 @@ abstract class EclipseGuavaSingularizer extends EclipseSingularsRecipes$EclipseS
         return Collections.singletonList(EclipseHandlerUtil.injectFieldAndMarkGenerated(builderType, buildField));
     }
 
-    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
-    public void generateMethods(CheckerFrameworkVersion cfv, EclipseSingularsRecipes$SingularData data, boolean deprecate, EclipseNode builderType, boolean fluent, EclipseSingularsRecipes$TypeReferenceMaker returnTypeMaker, EclipseSingularsRecipes$StatementMaker returnStatementMaker, AccessLevel access) {
+    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
+    public void generateMethods(CheckerFrameworkVersion cfv, EclipseSingularsRecipes.SingularData data, boolean deprecate, EclipseNode builderType, boolean fluent, EclipseSingularsRecipes.TypeReferenceMaker returnTypeMaker, EclipseSingularsRecipes.StatementMaker returnStatementMaker, AccessLevel access) {
         generateSingularMethod(cfv, deprecate, returnTypeMaker.make(), returnStatementMaker.mo186make(), data, builderType, fluent, access);
         generatePluralMethod(cfv, deprecate, returnTypeMaker.make(), returnStatementMaker.mo186make(), data, builderType, fluent, access);
         generateClearMethod(cfv, deprecate, returnTypeMaker.make(), returnStatementMaker.mo186make(), data, builderType, access);
     }
 
-    void generateClearMethod(CheckerFrameworkVersion cfv, boolean deprecate, TypeReference returnType, Statement returnStatement, EclipseSingularsRecipes$SingularData data, EclipseNode builderType, AccessLevel access) {
+    void generateClearMethod(CheckerFrameworkVersion cfv, boolean deprecate, TypeReference returnType, Statement returnStatement, EclipseSingularsRecipes.SingularData data, EclipseNode builderType, AccessLevel access) {
         MethodDeclaration md = new MethodDeclaration(builderType.top().get().compilationResult);
         md.bits |= 8388608;
         md.modifiers = EclipseHandlerUtil.toEclipseModifier(access);
@@ -121,7 +118,7 @@ abstract class EclipseGuavaSingularizer extends EclipseSingularsRecipes$EclipseS
         EclipseHandlerUtil.injectMethod(builderType, md);
     }
 
-    void generateSingularMethod(CheckerFrameworkVersion cfv, boolean deprecate, TypeReference returnType, Statement returnStatement, EclipseSingularsRecipes$SingularData data, EclipseNode builderType, boolean fluent, AccessLevel access) {
+    void generateSingularMethod(CheckerFrameworkVersion cfv, boolean deprecate, TypeReference returnType, Statement returnStatement, EclipseSingularsRecipes.SingularData data, EclipseNode builderType, boolean fluent, AccessLevel access) {
         LombokImmutableList<String> suffixes = getArgumentSuffixes();
         char[][] names = new char[suffixes.size()][];
         for (int i = 0; i < suffixes.size(); i++) {
@@ -169,7 +166,7 @@ abstract class EclipseGuavaSingularizer extends EclipseSingularsRecipes$EclipseS
         HandleNonNull.INSTANCE.fix(EclipseHandlerUtil.injectMethod(builderType, md));
     }
 
-    void generatePluralMethod(CheckerFrameworkVersion cfv, boolean deprecate, TypeReference returnType, Statement returnStatement, EclipseSingularsRecipes$SingularData data, EclipseNode builderType, boolean fluent, AccessLevel access) {
+    void generatePluralMethod(CheckerFrameworkVersion cfv, boolean deprecate, TypeReference returnType, Statement returnStatement, EclipseSingularsRecipes.SingularData data, EclipseNode builderType, boolean fluent, AccessLevel access) {
         MethodDeclaration md = new MethodDeclaration(builderType.top().get().compilationResult);
         md.bits |= 8388608;
         md.modifiers = EclipseHandlerUtil.toEclipseModifier(access);
@@ -203,8 +200,8 @@ abstract class EclipseGuavaSingularizer extends EclipseSingularsRecipes$EclipseS
         EclipseHandlerUtil.injectMethod(builderType, md);
     }
 
-    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
-    public void appendBuildCode(EclipseSingularsRecipes$SingularData data, EclipseNode builderType, List<Statement> statements, char[] targetVariableName, String builderVariable) {
+    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
+    public void appendBuildCode(EclipseSingularsRecipes.SingularData data, EclipseNode builderType, List<Statement> statements, char[] targetVariableName, String builderVariable) {
         QualifiedTypeReference qualifiedTypeReference = new QualifiedTypeReference(Eclipse.fromQualifiedName(data.getTargetFqn()), NULL_POSS);
         String simpleTypeName = getSimpleTargetTypeName(data);
         int agrumentsCount = getTypeArgumentsCount();
@@ -227,7 +224,7 @@ abstract class EclipseGuavaSingularizer extends EclipseSingularsRecipes$EclipseS
         statements.add(varDefStat);
     }
 
-    protected Statement createConstructBuilderVarIfNeeded(EclipseSingularsRecipes$SingularData data, EclipseNode builderType) {
+    protected Statement createConstructBuilderVarIfNeeded(EclipseSingularsRecipes.SingularData data, EclipseNode builderType) {
         FieldReference thisDotField = new FieldReference(data.getPluralName(), 0L);
         thisDotField.receiver = new ThisReference(0, 0);
         FieldReference thisDotField2 = new FieldReference(data.getPluralName(), 0L);

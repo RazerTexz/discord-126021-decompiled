@@ -19,11 +19,68 @@ public final class WorkProgressDao_Impl implements WorkProgressDao {
     private final SharedSQLiteStatement __preparedStmtOfDelete;
     private final SharedSQLiteStatement __preparedStmtOfDeleteAll;
 
+    /* JADX INFO: renamed from: androidx.work.impl.model.WorkProgressDao_Impl$1, reason: invalid class name */
+    public class AnonymousClass1 extends EntityInsertionAdapter<WorkProgress> {
+        public AnonymousClass1(RoomDatabase roomDatabase) {
+            super(roomDatabase);
+        }
+
+        @Override // androidx.room.EntityInsertionAdapter
+        public /* bridge */ /* synthetic */ void bind(SupportSQLiteStatement supportSQLiteStatement, WorkProgress workProgress) throws Throwable {
+            bind2(supportSQLiteStatement, workProgress);
+        }
+
+        @Override // androidx.room.SharedSQLiteStatement
+        public String createQuery() {
+            return "INSERT OR REPLACE INTO `WorkProgress` (`work_spec_id`,`progress`) VALUES (?,?)";
+        }
+
+        /* JADX INFO: renamed from: bind, reason: avoid collision after fix types in other method */
+        public void bind2(SupportSQLiteStatement supportSQLiteStatement, WorkProgress workProgress) throws Throwable {
+            String str = workProgress.mWorkSpecId;
+            if (str == null) {
+                supportSQLiteStatement.bindNull(1);
+            } else {
+                supportSQLiteStatement.bindString(1, str);
+            }
+            byte[] byteArrayInternal = Data.toByteArrayInternal(workProgress.mProgress);
+            if (byteArrayInternal == null) {
+                supportSQLiteStatement.bindNull(2);
+            } else {
+                supportSQLiteStatement.bindBlob(2, byteArrayInternal);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.work.impl.model.WorkProgressDao_Impl$2, reason: invalid class name */
+    public class AnonymousClass2 extends SharedSQLiteStatement {
+        public AnonymousClass2(RoomDatabase roomDatabase) {
+            super(roomDatabase);
+        }
+
+        @Override // androidx.room.SharedSQLiteStatement
+        public String createQuery() {
+            return "DELETE from WorkProgress where work_spec_id=?";
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.work.impl.model.WorkProgressDao_Impl$3, reason: invalid class name */
+    public class AnonymousClass3 extends SharedSQLiteStatement {
+        public AnonymousClass3(RoomDatabase roomDatabase) {
+            super(roomDatabase);
+        }
+
+        @Override // androidx.room.SharedSQLiteStatement
+        public String createQuery() {
+            return "DELETE FROM WorkProgress";
+        }
+    }
+
     public WorkProgressDao_Impl(RoomDatabase roomDatabase) {
         this.__db = roomDatabase;
-        this.__insertionAdapterOfWorkProgress = new WorkProgressDao_Impl$1(this, roomDatabase);
-        this.__preparedStmtOfDelete = new WorkProgressDao_Impl$2(this, roomDatabase);
-        this.__preparedStmtOfDeleteAll = new WorkProgressDao_Impl$3(this, roomDatabase);
+        this.__insertionAdapterOfWorkProgress = new AnonymousClass1(roomDatabase);
+        this.__preparedStmtOfDelete = new AnonymousClass2(roomDatabase);
+        this.__preparedStmtOfDeleteAll = new AnonymousClass3(roomDatabase);
     }
 
     @Override // androidx.work.impl.model.WorkProgressDao

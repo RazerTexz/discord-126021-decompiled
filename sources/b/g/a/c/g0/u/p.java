@@ -1,7 +1,5 @@
 package b.g.a.c.g0.u;
 
-import b.g.a.a.i$c;
-import b.g.a.a.i$d;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -20,10 +18,10 @@ public class p extends p0<InetAddress> implements b.g.a.c.g0.i {
     @Override // b.g.a.c.g0.i
     public b.g.a.c.n<?> a(b.g.a.c.x xVar, b.g.a.c.d dVar) throws JsonMappingException {
         boolean z2;
-        i$d i_dL = l(xVar, dVar, this._handledType);
-        if (i_dL != null) {
-            i$c i_cE = i_dL.e();
-            if (i_cE.f() || i_cE == i$c.ARRAY) {
+        b.g.a.a.i.d dVarL = l(xVar, dVar, this._handledType);
+        if (dVarL != null) {
+            b.g.a.a.i.c cVarE = dVarL.e();
+            if (cVarE.f() || cVarE == b.g.a.a.i.c.ARRAY) {
                 z2 = true;
             } else {
                 z2 = false;

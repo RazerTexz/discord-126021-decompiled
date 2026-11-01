@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -27,6 +28,57 @@ public final class ArraySet<E> implements Collection<E>, Set<E> {
     private static int sTwiceBaseCacheSize;
     private static final int[] INT = new int[0];
     private static final Object[] OBJECT = new Object[0];
+
+    /* JADX INFO: renamed from: androidx.collection.ArraySet$1, reason: invalid class name */
+    public class AnonymousClass1 extends MapCollections<E, E> {
+        public AnonymousClass1() {
+        }
+
+        @Override // androidx.collection.MapCollections
+        public void colClear() {
+            ArraySet.this.clear();
+        }
+
+        @Override // androidx.collection.MapCollections
+        public Object colGetEntry(int i, int i2) {
+            return ArraySet.this.mArray[i];
+        }
+
+        @Override // androidx.collection.MapCollections
+        public Map<E, E> colGetMap() {
+            throw new UnsupportedOperationException("not a map");
+        }
+
+        @Override // androidx.collection.MapCollections
+        public int colGetSize() {
+            return ArraySet.this.mSize;
+        }
+
+        @Override // androidx.collection.MapCollections
+        public int colIndexOfKey(Object obj) {
+            return ArraySet.this.indexOf(obj);
+        }
+
+        @Override // androidx.collection.MapCollections
+        public int colIndexOfValue(Object obj) {
+            return ArraySet.this.indexOf(obj);
+        }
+
+        @Override // androidx.collection.MapCollections
+        public void colPut(E e, E e2) {
+            ArraySet.this.add(e);
+        }
+
+        @Override // androidx.collection.MapCollections
+        public void colRemoveAt(int i) {
+            ArraySet.this.removeAt(i);
+        }
+
+        @Override // androidx.collection.MapCollections
+        public E colSetValue(int i, E e) {
+            throw new UnsupportedOperationException("not a map");
+        }
+    }
 
     public ArraySet() {
         this(0);
@@ -222,7 +274,7 @@ public final class ArraySet<E> implements Collection<E>, Set<E> {
 
     private MapCollections<E, E> getCollection() {
         if (this.mCollections == null) {
-            this.mCollections = new ArraySet$1(this);
+            this.mCollections = new AnonymousClass1();
         }
         return this.mCollections;
     }

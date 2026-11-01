@@ -21,10 +21,18 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: Parser.kt */
 /* JADX INFO: loaded from: classes.dex */
 public class Parser<R, T extends Node<R>, S> {
-    public static final Parser$Companion Companion = new Parser$Companion(null);
     private static final String TAG = "Parser";
     private final boolean enableDebugging;
     private final ArrayList<Rule<R, ? extends T, S>> rules;
+
+    /* JADX INFO: compiled from: Parser.kt */
+    public final class ParseException extends RuntimeException {
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public ParseException(String str, CharSequence charSequence, Throwable th) {
+            super("Error while parsing: " + str + " \n Source: " + charSequence, th);
+            m.checkNotNullParameter(str, "message");
+        }
+    }
 
     public Parser() {
         this(false, 1, null);
@@ -114,7 +122,7 @@ public class Parser<R, T extends Node<R>, S> {
                 }
             } while (pair == null);
             if (pair == null) {
-                throw new Parser$ParseException("failed to find rule to match source", source, null);
+                throw new ParseException("failed to find rule to match source", source, null);
             }
             Rule rule = (Rule) pair.component1();
             Matcher matcher = (Matcher) pair.component2();
@@ -136,7 +144,7 @@ public class Parser<R, T extends Node<R>, S> {
             try {
                 strGroup = matcher.group(0);
             } catch (Throwable th) {
-                throw new Parser$ParseException("matcher found no matches", source, th);
+                throw new ParseException("matcher found no matches", source, th);
             }
         }
         Collection<Node<R>> children = node.getChildren();

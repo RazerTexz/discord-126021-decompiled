@@ -1,7 +1,6 @@
 package b.i.a.f.i.b;
 
 import android.content.SharedPreferences;
-import android.content.SharedPreferences$Editor;
 import android.util.Pair;
 import androidx.annotation.WorkerThread;
 import com.discord.stores.StoreGuildScheduledEvents;
@@ -79,9 +78,9 @@ public final class d4 extends r5 {
         boolean z2 = sharedPreferences.getBoolean("has_been_opened", false);
         this.w = z2;
         if (!z2) {
-            SharedPreferences$Editor sharedPreferences$EditorEdit = this.d.edit();
-            sharedPreferences$EditorEdit.putBoolean("has_been_opened", true);
-            sharedPreferences$EditorEdit.apply();
+            SharedPreferences.Editor editorEdit = this.d.edit();
+            editorEdit.putBoolean("has_been_opened", true);
+            editorEdit.apply();
         }
         this.e = new k4(this, "health_monitor", Math.max(0L, p.c.a(null).longValue()), null);
     }
@@ -94,13 +93,13 @@ public final class d4 extends r5 {
     @WorkerThread
     public final void s(Boolean bool) {
         b();
-        SharedPreferences$Editor sharedPreferences$EditorEdit = w().edit();
+        SharedPreferences.Editor editorEdit = w().edit();
         if (bool != null) {
-            sharedPreferences$EditorEdit.putBoolean("measurement_enabled", bool.booleanValue());
+            editorEdit.putBoolean("measurement_enabled", bool.booleanValue());
         } else {
-            sharedPreferences$EditorEdit.remove("measurement_enabled");
+            editorEdit.remove("measurement_enabled");
         }
-        sharedPreferences$EditorEdit.apply();
+        editorEdit.apply();
     }
 
     @WorkerThread
@@ -116,9 +115,9 @@ public final class d4 extends r5 {
     public final void v(boolean z2) {
         b();
         g().n.b("App measurement setting deferred collection", Boolean.valueOf(z2));
-        SharedPreferences$Editor sharedPreferences$EditorEdit = w().edit();
-        sharedPreferences$EditorEdit.putBoolean("deferred_analytics_collection", z2);
-        sharedPreferences$EditorEdit.apply();
+        SharedPreferences.Editor editorEdit = w().edit();
+        editorEdit.putBoolean("deferred_analytics_collection", z2);
+        editorEdit.apply();
     }
 
     @WorkerThread

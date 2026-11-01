@@ -2,7 +2,7 @@ package com.discord.widgets.bugreports;
 
 import android.view.View;
 import android.widget.TextView;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
+import androidx.recyclerview.widget.RecyclerView;
 import com.discord.api.bugreport.Feature;
 import com.discord.databinding.WidgetBugReportFeatureHeaderListItemBinding;
 import d0.z.d.m;
@@ -11,9 +11,24 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetBugReport.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class BugReportFeatureHeaderViewHolder extends RecyclerView$ViewHolder {
+public final class BugReportFeatureHeaderViewHolder extends RecyclerView.ViewHolder {
     private final WidgetBugReportFeatureHeaderListItemBinding binding;
     private final Function1<Feature, Unit> onClickListener;
+
+    /* JADX INFO: renamed from: com.discord.widgets.bugreports.BugReportFeatureHeaderViewHolder$bind$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetBugReport.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ Feature $feature;
+
+        public AnonymousClass1(Feature feature) {
+            this.$feature = feature;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            BugReportFeatureHeaderViewHolder.this.getOnClickListener().invoke(this.$feature);
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     /* JADX WARN: Multi-variable type inference failed */
@@ -33,7 +48,7 @@ public final class BugReportFeatureHeaderViewHolder extends RecyclerView$ViewHol
         TextView textView = this.binding.c;
         m.checkNotNullExpressionValue(textView, "binding.header");
         textView.setText(feature.getName());
-        this.binding.c.setOnClickListener(new BugReportFeatureHeaderViewHolder$bind$1(this, feature));
+        this.binding.c.setOnClickListener(new AnonymousClass1(feature));
     }
 
     public final WidgetBugReportFeatureHeaderListItemBinding getBinding() {

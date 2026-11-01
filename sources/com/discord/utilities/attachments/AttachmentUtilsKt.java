@@ -2,9 +2,10 @@ package com.discord.utilities.attachments;
 
 import android.content.ClipDescription;
 import android.content.ContentResolver;
-import android.graphics.Bitmap$CompressFormat;
+import android.graphics.Bitmap;
 import android.net.Uri;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import android.webkit.MimeTypeMap;
+import androidx.core.app.NotificationCompat;
 import androidx.core.view.inputmethod.InputContentInfoCompat;
 import com.discord.api.message.LocalAttachment;
 import com.discord.utilities.string.StringUtilsKt;
@@ -13,12 +14,15 @@ import d0.g;
 import d0.g0.t;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import g0.e;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import kotlin.Lazy;
+import kotlin.jvm.functions.Function1;
 import kotlin.ranges.IntRange;
 import org.webrtc.MediaStreamTrack;
 
@@ -30,6 +34,70 @@ public final class AttachmentUtilsKt {
     private static final Lazy REGEX_FILE_NAME_PATTERN$delegate = g.lazy(AttachmentUtilsKt$REGEX_FILE_NAME_PATTERN$2.INSTANCE);
     private static final IntRange UTF_8_RANGE_EXCLUSIVE = new IntRange(32, 126);
 
+    /* JADX INFO: renamed from: com.discord.utilities.attachments.AttachmentUtilsKt$appendLinks$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AttachmentUtils.kt */
+    public final class AnonymousClass1 extends o implements Function1<Attachment<?>, CharSequence> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ CharSequence invoke(Attachment<?> attachment) {
+            return invoke2(attachment);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final CharSequence invoke2(Attachment<?> attachment) {
+            m.checkNotNullParameter(attachment, "it");
+            Object data = attachment.getData();
+            Objects.requireNonNull(data, "null cannot be cast to non-null type androidx.core.view.inputmethod.InputContentInfoCompat");
+            InputContentInfoCompat inputContentInfoCompat = (InputContentInfoCompat) data;
+            String strValueOf = String.valueOf(inputContentInfoCompat.getLinkUri());
+            inputContentInfoCompat.releasePermission();
+            return strValueOf;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.attachments.AttachmentUtilsKt$getMimeType$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AttachmentUtils.kt */
+    public final class AnonymousClass1 extends o implements Function1<String, String> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ String invoke(String str) {
+            return invoke2(str);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final String invoke2(String str) {
+            m.checkNotNullParameter(str, "file");
+            Matcher matcher = AttachmentUtilsKt.access$getREGEX_FILE_NAME_PATTERN$p().matcher(str);
+            if (!matcher.matches()) {
+                return null;
+            }
+            return MimeTypeMap.getSingleton().getMimeTypeFromExtension(matcher.group(2));
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0 = new int[Bitmap.CompressFormat.values().length];
+        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
+
+        static {
+            int[] iArr = new int[Bitmap.CompressFormat.values().length];
+            $EnumSwitchMapping$1 = iArr;
+            iArr[Bitmap.CompressFormat.PNG.ordinal()] = 1;
+            iArr[Bitmap.CompressFormat.WEBP.ordinal()] = 2;
+            iArr[Bitmap.CompressFormat.JPEG.ordinal()] = 3;
+        }
+    }
+
     public static final /* synthetic */ Pattern access$getREGEX_FILE_NAME_PATTERN$p() {
         return getREGEX_FILE_NAME_PATTERN();
     }
@@ -37,7 +105,7 @@ public final class AttachmentUtilsKt {
     public static final String appendLinks(String str, List<? extends Attachment<?>> list) {
         m.checkNotNullParameter(str, "content");
         m.checkNotNullParameter(list, "links");
-        return str + "\n" + u.joinToString$default(list, "\n", null, null, 0, null, AttachmentUtilsKt$appendLinks$1.INSTANCE, 30, null);
+        return str + "\n" + u.joinToString$default(list, "\n", null, null, 0, null, AnonymousClass1.INSTANCE, 30, null);
     }
 
     public static final List<Attachment<?>> extractLinks(List<? extends Attachment<?>> list, ContentResolver contentResolver) {
@@ -58,8 +126,8 @@ public final class AttachmentUtilsKt {
         return arrayList;
     }
 
-    private static final String getExtension(Bitmap$CompressFormat bitmap$CompressFormat) {
-        int i = AttachmentUtilsKt$WhenMappings.$EnumSwitchMapping$1[bitmap$CompressFormat.ordinal()];
+    private static final String getExtension(Bitmap.CompressFormat compressFormat) {
+        int i = WhenMappings.$EnumSwitchMapping$1[compressFormat.ordinal()];
         if (i != 1) {
             return i != 2 ? "jpg" : "webp";
         }
@@ -74,16 +142,16 @@ public final class AttachmentUtilsKt {
     }
 
     public static final String getMimeType(ContentResolver contentResolver, Uri uri, String str) {
-        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         String strInvoke2 = null;
         String type = contentResolver != null ? contentResolver.getType(uri) : null;
         if (type != null) {
             return type;
         }
-        AttachmentUtilsKt$getMimeType$1 attachmentUtilsKt$getMimeType$1 = AttachmentUtilsKt$getMimeType$1.INSTANCE;
+        AnonymousClass1 anonymousClass1 = AnonymousClass1.INSTANCE;
         try {
-            String strInvoke3 = attachmentUtilsKt$getMimeType$1.invoke2(String.valueOf(uri));
-            strInvoke2 = strInvoke3 != null ? strInvoke3 : attachmentUtilsKt$getMimeType$1.invoke2(String.valueOf(str));
+            String strInvoke3 = anonymousClass1.invoke2(String.valueOf(uri));
+            strInvoke2 = strInvoke3 != null ? strInvoke3 : anonymousClass1.invoke2(String.valueOf(str));
         } catch (Exception unused) {
         }
         return strInvoke2 != null ? strInvoke2 : "application/octet-stream";
@@ -93,14 +161,14 @@ public final class AttachmentUtilsKt {
         return (Pattern) REGEX_FILE_NAME_PATTERN$delegate.getValue();
     }
 
-    public static final String getSanitizedFileName(String str, Bitmap$CompressFormat bitmap$CompressFormat) {
+    public static final String getSanitizedFileName(String str, Bitmap.CompressFormat compressFormat) {
         m.checkNotNullParameter(str, "fileName");
-        if (bitmap$CompressFormat != null) {
+        if (compressFormat != null) {
             Matcher matcher = getREGEX_FILE_NAME_PATTERN().matcher(str);
             if (matcher.matches()) {
                 str = matcher.group(1);
             }
-            str = str + '.' + getExtension(bitmap$CompressFormat);
+            str = str + '.' + getExtension(compressFormat);
         }
         return toHumanReadableAscii(StringUtilsKt.stripAccents(str));
     }
@@ -118,7 +186,7 @@ public final class AttachmentUtilsKt {
     }
 
     public static final boolean isImage(ContentResolver contentResolver, Uri uri, String str) {
-        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         return t.startsWith$default(getMimeType(contentResolver, uri, str), "image", false, 2, null);
     }
 
@@ -138,7 +206,7 @@ public final class AttachmentUtilsKt {
     }
 
     public static final boolean isVideo(ContentResolver contentResolver, Uri uri, String str) {
-        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         return t.startsWith$default(getMimeType(contentResolver, uri, str), MediaStreamTrack.VIDEO_TRACK_KIND, false, 2, null);
     }
 

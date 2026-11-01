@@ -4,7 +4,7 @@ import androidx.annotation.Nullable;
 
 /* JADX INFO: compiled from: AutoValue_AndroidClientInfo.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class c extends a {
+public final class c extends b.i.a.b.i.e.a {
     public final Integer a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -20,7 +20,7 @@ public final class c extends a {
     public final String k;
     public final String l;
 
-    public c(Integer num, String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11, c$a c_a) {
+    public c(Integer num, String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11, a aVar) {
         this.a = num;
         this.f747b = str;
         this.c = str2;
@@ -69,10 +69,10 @@ public final class c extends a {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof a)) {
+        if (!(obj instanceof b.i.a.b.i.e.a)) {
             return false;
         }
-        a aVar = (a) obj;
+        b.i.a.b.i.e.a aVar = (b.i.a.b.i.e.a) obj;
         Integer num = this.a;
         if (num != null ? num.equals(aVar.l()) : aVar.l() == null) {
             String str = this.f747b;

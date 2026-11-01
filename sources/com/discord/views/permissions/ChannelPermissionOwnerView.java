@@ -10,19 +10,15 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import b.a.i.g;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.role.GuildRole;
 import com.discord.models.user.User;
 import com.discord.utilities.channel.ChannelPermissionUtilsKt;
 import com.discord.utilities.guilds.RoleUtils;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
-import com.discord.utilities.images.MGImages$ChangeDetector;
 import com.discord.utilities.user.UserUtils;
 import com.discord.widgets.channels.permissions.PermissionOwner;
-import com.discord.widgets.channels.permissions.PermissionOwner$Member;
-import com.discord.widgets.channels.permissions.PermissionOwner$Role;
 import com.facebook.drawee.view.SimpleDraweeView;
 import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
@@ -39,18 +35,18 @@ public final class ChannelPermissionOwnerView extends ConstraintLayout {
         super(context, attributeSet);
         m.checkNotNullParameter(context, "context");
         m.checkNotNullParameter(attributeSet, "attrs");
-        LayoutInflater.from(context).inflate(R$layout.channel_permission_owner_view, this);
-        int i = R$id.crown;
-        ImageView imageView = (ImageView) findViewById(R$id.crown);
+        LayoutInflater.from(context).inflate(R.layout.channel_permission_owner_view, this);
+        int i = R.id.crown;
+        ImageView imageView = (ImageView) findViewById(R.id.crown);
         if (imageView != null) {
-            i = R$id.description;
-            TextView textView = (TextView) findViewById(R$id.description);
+            i = R.id.description;
+            TextView textView = (TextView) findViewById(R.id.description);
             if (textView != null) {
-                i = 2131364034;
-                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(2131364034);
+                i = R.id.image;
+                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R.id.image);
                 if (simpleDraweeView != null) {
-                    i = R$id.name;
-                    TextView textView2 = (TextView) findViewById(R$id.name);
+                    i = R.id.name;
+                    TextView textView2 = (TextView) findViewById(R.id.name);
                     if (textView2 != null) {
                         g gVar = new g(this, imageView, textView, simpleDraweeView, textView2);
                         m.checkNotNullExpressionValue(gVar, "ChannelPermissionOwnerVi…ater.from(context), this)");
@@ -65,16 +61,16 @@ public final class ChannelPermissionOwnerView extends ConstraintLayout {
 
     public final void a(PermissionOwner permissionOwner) {
         m.checkNotNullParameter(permissionOwner, "permissionOwner");
-        if (!(permissionOwner instanceof PermissionOwner$Role)) {
-            if (permissionOwner instanceof PermissionOwner$Member) {
-                PermissionOwner$Member permissionOwner$Member = (PermissionOwner$Member) permissionOwner;
-                User user = permissionOwner$Member.getUser();
+        if (!(permissionOwner instanceof PermissionOwner.Role)) {
+            if (permissionOwner instanceof PermissionOwner.Member) {
+                PermissionOwner.Member member = (PermissionOwner.Member) permissionOwner;
+                User user = member.getUser();
                 SimpleDraweeView simpleDraweeView = this.binding.d;
                 m.checkNotNullExpressionValue(simpleDraweeView, "binding.image");
-                IconUtils.setIcon$default(simpleDraweeView, permissionOwner$Member.getUser(), 2131165293, null, null, null, 56, null);
+                IconUtils.setIcon$default(simpleDraweeView, member.getUser(), R.dimen.avatar_size_large, null, null, null, 56, null);
                 TextView textView = this.binding.e;
                 m.checkNotNullExpressionValue(textView, "binding.name");
-                String nickname = permissionOwner$Member.getNickname();
+                String nickname = member.getNickname();
                 if (nickname == null) {
                     nickname = user.getUsername();
                 }
@@ -84,13 +80,13 @@ public final class ChannelPermissionOwnerView extends ConstraintLayout {
                 textView2.setText(UserUtils.getUserNameWithDiscriminator$default(UserUtils.INSTANCE, user, null, null, 3, null));
                 ImageView imageView = this.binding.f116b;
                 m.checkNotNullExpressionValue(imageView, "binding.crown");
-                imageView.setVisibility(permissionOwner$Member.isOwner() ? 0 : 8);
+                imageView.setVisibility(member.isOwner() ? 0 : 8);
                 return;
             }
             return;
         }
-        GuildRole role = ((PermissionOwner$Role) permissionOwner).getRole();
-        Drawable drawable = ContextCompat.getDrawable(getContext(), 2131232011);
+        GuildRole role = ((PermissionOwner.Role) permissionOwner).getRole();
+        Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_person_shield_24dp);
         m.checkNotNull(drawable);
         m.checkNotNullExpressionValue(drawable, "ContextCompat.getDrawabl….ic_person_shield_24dp)!!");
         Context context = getContext();
@@ -99,10 +95,10 @@ public final class ChannelPermissionOwnerView extends ConstraintLayout {
         MGImages mGImages = MGImages.INSTANCE;
         SimpleDraweeView simpleDraweeView2 = this.binding.d;
         m.checkNotNullExpressionValue(simpleDraweeView2, "binding.image");
-        MGImages.setImage$default(mGImages, simpleDraweeView2, drawable, (MGImages$ChangeDetector) null, 4, (Object) null);
+        MGImages.setImage$default(mGImages, simpleDraweeView2, drawable, (MGImages.ChangeDetector) null, 4, (Object) null);
         SimpleDraweeView simpleDraweeView3 = this.binding.d;
         m.checkNotNullExpressionValue(simpleDraweeView3, "binding.image");
-        IconUtils.setIcon$default(simpleDraweeView3, (String) null, 0, (Function1) null, (MGImages$ChangeDetector) null, 28, (Object) null);
+        IconUtils.setIcon$default(simpleDraweeView3, (String) null, 0, (Function1) null, (MGImages.ChangeDetector) null, 28, (Object) null);
         TextView textView3 = this.binding.e;
         m.checkNotNullExpressionValue(textView3, "binding.name");
         textView3.setText(role.getName());

@@ -16,6 +16,6 @@ public final class WidgetChatListAdapterItemGuildTemplate$ModelProvider$get$1 im
 
     @Override // rx.functions.Action0
     public final void call() {
-        StoreStream.Companion.getGuildTemplates().maybeInitTemplateState(this.$item.getGuildTemplateCode());
+        StoreStream.INSTANCE.getGuildTemplates().maybeInitTemplateState(this.$item.getGuildTemplateCode());
     }
 }

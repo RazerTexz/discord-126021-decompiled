@@ -6,7 +6,7 @@ import android.widget.RelativeLayout;
 import b.a.i.v5;
 import b.a.i.w5;
 import b.a.i.x5;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetRemoteAuthBinding;
 import com.google.android.material.button.MaterialButton;
@@ -32,37 +32,37 @@ public final /* synthetic */ class WidgetRemoteAuth$binding$2 extends k implemen
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetRemoteAuthBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.auth_success;
-        View viewFindViewById = view.findViewById(R$id.auth_success);
+        int i = R.id.auth_success;
+        View viewFindViewById = view.findViewById(R.id.auth_success);
         if (viewFindViewById != null) {
-            MaterialButton materialButton = (MaterialButton) viewFindViewById.findViewById(R$id.remote_auth_finish_button);
+            MaterialButton materialButton = (MaterialButton) viewFindViewById.findViewById(R.id.remote_auth_finish_button);
             if (materialButton == null) {
-                throw new NullPointerException("Missing required view with ID: ".concat(viewFindViewById.getResources().getResourceName(R$id.remote_auth_finish_button)));
+                throw new NullPointerException("Missing required view with ID: ".concat(viewFindViewById.getResources().getResourceName(R.id.remote_auth_finish_button)));
             }
             x5 x5Var = new x5((LinearLayout) viewFindViewById, materialButton);
-            i = R$id.not_found;
-            View viewFindViewById2 = view.findViewById(R$id.not_found);
+            i = R.id.not_found;
+            View viewFindViewById2 = view.findViewById(R.id.not_found);
             if (viewFindViewById2 != null) {
-                MaterialButton materialButton2 = (MaterialButton) viewFindViewById2.findViewById(R$id.remote_auth_not_found_cancel_button);
+                MaterialButton materialButton2 = (MaterialButton) viewFindViewById2.findViewById(R.id.remote_auth_not_found_cancel_button);
                 if (materialButton2 == null) {
-                    throw new NullPointerException("Missing required view with ID: ".concat(viewFindViewById2.getResources().getResourceName(R$id.remote_auth_not_found_cancel_button)));
+                    throw new NullPointerException("Missing required view with ID: ".concat(viewFindViewById2.getResources().getResourceName(R.id.remote_auth_not_found_cancel_button)));
                 }
                 v5 v5Var = new v5((LinearLayout) viewFindViewById2, materialButton2);
-                i = R$id.pending_login;
-                View viewFindViewById3 = view.findViewById(R$id.pending_login);
+                i = R.id.pending_login;
+                View viewFindViewById3 = view.findViewById(R.id.pending_login);
                 if (viewFindViewById3 != null) {
-                    int i2 = R$id.remote_auth_cancel_button;
-                    MaterialButton materialButton3 = (MaterialButton) viewFindViewById3.findViewById(R$id.remote_auth_cancel_button);
+                    int i2 = R.id.remote_auth_cancel_button;
+                    MaterialButton materialButton3 = (MaterialButton) viewFindViewById3.findViewById(R.id.remote_auth_cancel_button);
                     if (materialButton3 != null) {
-                        i2 = R$id.remote_auth_login_button;
-                        MaterialButton materialButton4 = (MaterialButton) viewFindViewById3.findViewById(R$id.remote_auth_login_button);
+                        i2 = R.id.remote_auth_login_button;
+                        MaterialButton materialButton4 = (MaterialButton) viewFindViewById3.findViewById(R.id.remote_auth_login_button);
                         if (materialButton4 != null) {
-                            i2 = R$id.remote_auth_temporary_switch;
-                            SwitchMaterial switchMaterial = (SwitchMaterial) viewFindViewById3.findViewById(R$id.remote_auth_temporary_switch);
+                            i2 = R.id.remote_auth_temporary_switch;
+                            SwitchMaterial switchMaterial = (SwitchMaterial) viewFindViewById3.findViewById(R.id.remote_auth_temporary_switch);
                             if (switchMaterial != null) {
                                 w5 w5Var = new w5((LinearLayout) viewFindViewById3, materialButton3, materialButton4, switchMaterial);
-                                i = R$id.remote_auth_view_flipper;
-                                AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R$id.remote_auth_view_flipper);
+                                i = R.id.remote_auth_view_flipper;
+                                AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R.id.remote_auth_view_flipper);
                                 if (appViewFlipper != null) {
                                     return new WidgetRemoteAuthBinding((RelativeLayout) view, x5Var, v5Var, w5Var, appViewFlipper);
                                 }

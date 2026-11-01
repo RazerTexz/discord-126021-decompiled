@@ -16,16 +16,16 @@ import rx.functions.Func6;
 
 /* JADX INFO: compiled from: WidgetCreateChannel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetCreateChannel$Model$Companion$get$1<T1, T2, T3, T4, T5, T6, R> implements Func6<MeUser, Guild, Long, Long, List<? extends GuildRole>, Boolean, WidgetCreateChannel$Model> {
+public final class WidgetCreateChannel$Model$Companion$get$1<T1, T2, T3, T4, T5, T6, R> implements Func6<MeUser, Guild, Long, Long, List<? extends GuildRole>, Boolean, WidgetCreateChannel.Model> {
     public static final WidgetCreateChannel$Model$Companion$get$1 INSTANCE = new WidgetCreateChannel$Model$Companion$get$1();
 
     @Override // rx.functions.Func6
-    public /* bridge */ /* synthetic */ WidgetCreateChannel$Model call(MeUser meUser, Guild guild, Long l, Long l2, List<? extends GuildRole> list, Boolean bool) {
+    public /* bridge */ /* synthetic */ WidgetCreateChannel.Model call(MeUser meUser, Guild guild, Long l, Long l2, List<? extends GuildRole> list, Boolean bool) {
         return call2(meUser, guild, l, l2, (List<GuildRole>) list, bool);
     }
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-    public final WidgetCreateChannel$Model call2(MeUser meUser, Guild guild, Long l, Long l2, List<GuildRole> list, Boolean bool) {
+    public final WidgetCreateChannel.Model call2(MeUser meUser, Guild guild, Long l, Long l2, List<GuildRole> list, Boolean bool) {
         if (guild == null || l == null || list == null) {
             return null;
         }
@@ -41,6 +41,6 @@ public final class WidgetCreateChannel$Model$Companion$get$1<T1, T2, T3, T4, T5,
                 arrayList.add(singleTypePayload);
             }
         }
-        return new WidgetCreateChannel$Model(zBooleanValue, zCanAndIsElevated, zCanAndIsElevated2, zContains, arrayList, null);
+        return new WidgetCreateChannel.Model(zBooleanValue, zCanAndIsElevated, zCanAndIsElevated2, zContains, arrayList, null);
     }
 }

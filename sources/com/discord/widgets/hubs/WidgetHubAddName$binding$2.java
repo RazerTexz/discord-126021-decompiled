@@ -3,7 +3,7 @@ package com.discord.widgets.hubs;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetHubAddNameBinding;
 import com.discord.views.GuildView;
 import com.discord.views.LoadingButton;
@@ -30,20 +30,20 @@ public final /* synthetic */ class WidgetHubAddName$binding$2 extends k implemen
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetHubAddNameBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.discord_hub_add_name_image;
-        GuildView guildView = (GuildView) view.findViewById(R$id.discord_hub_add_name_image);
+        int i = R.id.discord_hub_add_name_image;
+        GuildView guildView = (GuildView) view.findViewById(R.id.discord_hub_add_name_image);
         if (guildView != null) {
-            i = R$id.discord_hub_add_name_input;
-            TextInputEditText textInputEditText = (TextInputEditText) view.findViewById(R$id.discord_hub_add_name_input);
+            i = R.id.discord_hub_add_name_input;
+            TextInputEditText textInputEditText = (TextInputEditText) view.findViewById(R.id.discord_hub_add_name_input);
             if (textInputEditText != null) {
-                i = R$id.discord_hub_add_name_input_layout;
-                TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.discord_hub_add_name_input_layout);
+                i = R.id.discord_hub_add_name_input_layout;
+                TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.discord_hub_add_name_input_layout);
                 if (textInputLayout != null) {
-                    i = R$id.discord_hub_add_name_title;
-                    TextView textView = (TextView) view.findViewById(R$id.discord_hub_add_name_title);
+                    i = R.id.discord_hub_add_name_title;
+                    TextView textView = (TextView) view.findViewById(R.id.discord_hub_add_name_title);
                     if (textView != null) {
-                        i = R$id.discord_hub_add_name_title_button;
-                        LoadingButton loadingButton = (LoadingButton) view.findViewById(R$id.discord_hub_add_name_title_button);
+                        i = R.id.discord_hub_add_name_title_button;
+                        LoadingButton loadingButton = (LoadingButton) view.findViewById(R.id.discord_hub_add_name_title_button);
                         if (loadingButton != null) {
                             return new WidgetHubAddNameBinding((LinearLayout) view, guildView, textInputEditText, textInputLayout, textView, loadingButton);
                         }

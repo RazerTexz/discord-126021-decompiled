@@ -1,7 +1,7 @@
 package com.discord.widgets.notice;
 
 import android.view.View;
-import com.discord.R$id;
+import com.discord.R;
 import com.google.android.material.textfield.TextInputLayout;
 import d0.z.d.m;
 import d0.z.d.o;
@@ -28,7 +28,7 @@ public final class WidgetNoticeDialog$Companion$showInputModal$3 extends o imple
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(View view) {
         m.checkNotNullParameter(view, "view");
-        View viewFindViewById = view.findViewById(R$id.view_input);
+        View viewFindViewById = view.findViewById(R.id.view_input);
         m.checkNotNullExpressionValue(viewFindViewById, "view.findViewById<TextIn…tLayout>(R.id.view_input)");
         ((TextInputLayout) viewFindViewById).setHint(this.$hintText);
     }

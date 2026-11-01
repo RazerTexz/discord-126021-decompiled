@@ -6,17 +6,15 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-import b.i.a.f.e.h.a$a;
-import b.i.a.f.e.h.c$b;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.Scope;
 import java.util.Set;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class g0 extends b.i.a.f.l.b.d implements b.i.a.f.e.h.c$a, c$b {
+public final class g0 extends b.i.a.f.l.b.d implements b.i.a.f.e.h.c.a, b.i.a.f.e.h.c.b {
     public final Handler c;
-    public final a$a<? extends b.i.a.f.l.f, b.i.a.f.l.a> d;
+    public final b.i.a.f.e.h.a.C0112a<? extends b.i.a.f.l.f, b.i.a.f.l.a> d;
     public Set<Scope> e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -24,17 +22,17 @@ public final class g0 extends b.i.a.f.l.b.d implements b.i.a.f.e.h.c$a, c$b {
     public b.i.a.f.e.k.c f;
     public b.i.a.f.l.f g;
     public h0 h;
-    public static a$a<? extends b.i.a.f.l.f, b.i.a.f.l.a> a = b.i.a.f.l.c.c;
+    public static b.i.a.f.e.h.a.C0112a<? extends b.i.a.f.l.f, b.i.a.f.l.a> a = b.i.a.f.l.c.c;
 
     @WorkerThread
     public g0(Context context, Handler handler, @NonNull b.i.a.f.e.k.c cVar) {
-        a$a<? extends b.i.a.f.l.f, b.i.a.f.l.a> a_a = a;
+        b.i.a.f.e.h.a.C0112a<? extends b.i.a.f.l.f, b.i.a.f.l.a> c0112a = a;
         this.f1364b = context;
         this.c = handler;
         b.c.a.a0.d.z(cVar, "ClientSettings must not be null");
         this.f = cVar;
         this.e = cVar.f1380b;
-        this.d = a_a;
+        this.d = c0112a;
     }
 
     @Override // b.i.a.f.e.h.j.f
@@ -46,7 +44,7 @@ public final class g0 extends b.i.a.f.l.b.d implements b.i.a.f.e.h.c$a, c$b {
     @Override // b.i.a.f.e.h.j.l
     @WorkerThread
     public final void g(@NonNull ConnectionResult connectionResult) {
-        ((g$b) this.h).b(connectionResult);
+        ((g.b) this.h).b(connectionResult);
     }
 
     @Override // b.i.a.f.e.h.j.f

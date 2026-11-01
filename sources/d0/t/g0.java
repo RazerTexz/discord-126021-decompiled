@@ -3,7 +3,6 @@ package d0.t;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import kotlin.Pair;
@@ -42,7 +41,7 @@ public class g0 extends f0 {
 
     public static final <K, V> Map<K, V> toSingletonMap(Map<? extends K, ? extends V> map) {
         d0.z.d.m.checkNotNullParameter(map, "$this$toSingletonMap");
-        Map$Entry<? extends K, ? extends V> next = map.entrySet().iterator().next();
+        Map.Entry<? extends K, ? extends V> next = map.entrySet().iterator().next();
         Map<K, V> mapSingletonMap = Collections.singletonMap(next.getKey(), next.getValue());
         d0.z.d.m.checkNotNullExpressionValue(mapSingletonMap, "with(entries.iterator().…ingletonMap(key, value) }");
         return mapSingletonMap;

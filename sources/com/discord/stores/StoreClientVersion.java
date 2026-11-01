@@ -1,11 +1,16 @@
 package com.discord.stores;
 
 import android.content.Context;
-import android.content.SharedPreferences$Editor;
+import android.content.SharedPreferences;
+import androidx.core.app.NotificationCompat;
 import com.discord.BuildConfig;
+import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
+import d0.z.d.k;
 import d0.z.d.m;
+import j0.k.b;
 import java.util.concurrent.TimeUnit;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import rx.Observable;
@@ -19,6 +24,40 @@ public final class StoreClientVersion extends Store {
     private final int clientVersion = BuildConfig.VERSION_CODE;
     private final String clientMinVersionKey = "CLIENT_OUTDATED_KEY";
     private final SerializedSubject<Boolean, Boolean> clientOutdatedSubject = new SerializedSubject<>(BehaviorSubject.l0(Boolean.FALSE));
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreClientVersion$init$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreClientVersion.kt */
+    public final class AnonymousClass1<T, R> implements b<Long, Observable<? extends Integer>> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends Integer> call(Long l) {
+            return call2(l);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends Integer> call2(Long l) {
+            return RestAPI.INSTANCE.getApi().getClientVersion();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreClientVersion$init$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreClientVersion.kt */
+    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<Integer, Unit> {
+        public AnonymousClass2(StoreClientVersion storeClientVersion) {
+            super(1, storeClientVersion, StoreClientVersion.class, "setClientMinVersion", "setClientMinVersion(I)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Integer num) {
+            invoke(num.intValue());
+            return Unit.a;
+        }
+
+        public final void invoke(int i) {
+            StoreClientVersion.access$setClientMinVersion((StoreClientVersion) this.receiver, i);
+        }
+    }
 
     public static final /* synthetic */ void access$setClientMinVersion(StoreClientVersion storeClientVersion, int i) {
         storeClientVersion.setClientMinVersion(i);
@@ -37,19 +76,19 @@ public final class StoreClientVersion extends Store {
         int i = getPrefs().getInt(this.clientMinVersionKey, 0);
         this.clientMinVersion = i;
         setClientMinVersion(i);
-        Observable<R> observableA = Observable.E(0L, 1L, TimeUnit.HOURS).A(StoreClientVersion$init$1.INSTANCE);
+        Observable<R> observableA = Observable.E(0L, 1L, TimeUnit.HOURS).A(AnonymousClass1.INSTANCE);
         m.checkNotNullExpressionValue(observableA, "Observable\n        .inte…ClientVersion()\n        }");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.computationBuffered(observableA), getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreClientVersion$init$2(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.computationBuffered(observableA), getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(this), 62, (Object) null);
     }
 
     private final synchronized void setClientMinVersion(int clientMinVersion) {
         if (this.clientMinVersion != clientMinVersion) {
             this.clientMinVersion = clientMinVersion;
             this.clientOutdatedSubject.k.onNext(Boolean.valueOf(this.clientVersion < clientMinVersion));
-            SharedPreferences$Editor sharedPreferences$EditorEdit = getPrefs().edit();
-            m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
-            sharedPreferences$EditorEdit.putInt(this.clientMinVersionKey, clientMinVersion);
-            sharedPreferences$EditorEdit.apply();
+            SharedPreferences.Editor editorEdit = getPrefs().edit();
+            m.checkNotNullExpressionValue(editorEdit, "editor");
+            editorEdit.putInt(this.clientMinVersionKey, clientMinVersion);
+            editorEdit.apply();
         }
     }
 }

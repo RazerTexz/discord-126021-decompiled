@@ -4,7 +4,6 @@ import b.f.d.d.i;
 import com.facebook.common.internal.Supplier;
 import com.facebook.datasource.DataSource;
 import com.facebook.drawee.controller.AbstractDraweeControllerBuilder;
-import com.facebook.drawee.controller.AbstractDraweeControllerBuilder$b;
 import com.facebook.drawee.interfaces.DraweeController;
 
 /* JADX INFO: Add missing generic type declarations: [IMAGE] */
@@ -17,16 +16,16 @@ public class b<IMAGE> implements Supplier<DataSource<IMAGE>> {
     public final /* synthetic */ String f500b;
     public final /* synthetic */ Object c;
     public final /* synthetic */ Object d;
-    public final /* synthetic */ AbstractDraweeControllerBuilder$b e;
+    public final /* synthetic */ AbstractDraweeControllerBuilder.b e;
     public final /* synthetic */ AbstractDraweeControllerBuilder f;
 
-    public b(AbstractDraweeControllerBuilder abstractDraweeControllerBuilder, DraweeController draweeController, String str, Object obj, Object obj2, AbstractDraweeControllerBuilder$b abstractDraweeControllerBuilder$b) {
+    public b(AbstractDraweeControllerBuilder abstractDraweeControllerBuilder, DraweeController draweeController, String str, Object obj, Object obj2, AbstractDraweeControllerBuilder.b bVar) {
         this.f = abstractDraweeControllerBuilder;
         this.a = draweeController;
         this.f500b = str;
         this.c = obj;
         this.d = obj2;
-        this.e = abstractDraweeControllerBuilder$b;
+        this.e = bVar;
     }
 
     @Override // com.facebook.common.internal.Supplier

@@ -1,7 +1,6 @@
 package d0.w;
 
 import d0.k;
-import d0.k$a;
 import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
@@ -15,7 +14,7 @@ public final class e {
         m.checkNotNullParameter(continuation, "completion");
         Continuation continuationIntercepted = d0.w.h.b.intercepted(d0.w.h.b.createCoroutineUnintercepted(function2, r, continuation));
         Unit unit = Unit.a;
-        k$a k_a = k.j;
+        k.a aVar = k.j;
         continuationIntercepted.resumeWith(k.m97constructorimpl(unit));
     }
 }

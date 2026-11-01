@@ -1,7 +1,5 @@
 package b.c.a.a0;
 
-import b.c.a.a0.i0.c$a;
-import b.c.a.a0.i0.c$b;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,11 +7,11 @@ import java.util.List;
 /* JADX INFO: compiled from: KeyframesParser.java */
 /* JADX INFO: loaded from: classes.dex */
 public class r {
-    public static c$a a = c$a.a("k");
+    public static b.c.a.a0.i0.c.a a = b.c.a.a0.i0.c.a.a("k");
 
     public static <T> List<b.c.a.c0.a<T>> a(b.c.a.a0.i0.c cVar, b.c.a.d dVar, float f, h0<T> h0Var) throws IOException {
         ArrayList arrayList = new ArrayList();
-        if (cVar.u() == c$b.STRING) {
+        if (cVar.u() == b.c.a.a0.i0.c.b.STRING) {
             dVar.a("Lottie doesn't support expressions.");
             return arrayList;
         }
@@ -21,9 +19,9 @@ public class r {
         while (cVar.e()) {
             if (cVar.y(a) != 0) {
                 cVar.C();
-            } else if (cVar.u() == c$b.BEGIN_ARRAY) {
+            } else if (cVar.u() == b.c.a.a0.i0.c.b.BEGIN_ARRAY) {
                 cVar.a();
-                if (cVar.u() == c$b.NUMBER) {
+                if (cVar.u() == b.c.a.a0.i0.c.b.NUMBER) {
                     arrayList.add(q.a(cVar, dVar, f, h0Var, false));
                 } else {
                     while (cVar.e()) {

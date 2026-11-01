@@ -1,8 +1,8 @@
 package b.i.a.c.x2.k0;
 
-import b.i.a.c.f3.u$b;
-import b.i.a.c.f3.u$c;
-import b.i.a.c.j1$b;
+import android.util.SparseArray;
+import androidx.annotation.Nullable;
+import b.i.a.c.j1;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.checkerframework.checker.nullness.qual.RequiresNonNull;
@@ -18,7 +18,7 @@ public final class r implements o {
     public long g;
     public String i;
     public b.i.a.c.x2.w j;
-    public r$b k;
+    public b k;
     public boolean l;
     public boolean n;
     public final boolean[] h = new boolean[3];
@@ -65,92 +65,92 @@ public final class r implements o {
             this.e.a(bArr, i, i2);
         }
         this.f.a(bArr, i, i2);
-        r$b r_b = this.k;
-        if (r_b.k) {
+        b bVar = this.k;
+        if (bVar.k) {
             int i6 = i2 - i;
-            byte[] bArr2 = r_b.g;
+            byte[] bArr2 = bVar.g;
             int length = bArr2.length;
-            int i7 = r_b.h + i6;
+            int i7 = bVar.h + i6;
             if (length < i7) {
-                r_b.g = Arrays.copyOf(bArr2, i7 * 2);
+                bVar.g = Arrays.copyOf(bArr2, i7 * 2);
             }
-            System.arraycopy(bArr, i, r_b.g, r_b.h, i6);
-            int i8 = r_b.h + i6;
-            r_b.h = i8;
-            b.i.a.c.f3.y yVar = r_b.f;
-            yVar.a = r_b.g;
+            System.arraycopy(bArr, i, bVar.g, bVar.h, i6);
+            int i8 = bVar.h + i6;
+            bVar.h = i8;
+            b.i.a.c.f3.y yVar = bVar.f;
+            yVar.a = bVar.g;
             yVar.c = 0;
             yVar.f985b = i8;
             yVar.d = 0;
             yVar.a();
-            if (r_b.f.b(8)) {
-                r_b.f.i();
-                int iE2 = r_b.f.e(2);
-                r_b.f.j(5);
-                if (r_b.f.c()) {
-                    r_b.f.f();
-                    if (r_b.f.c()) {
-                        int iF2 = r_b.f.f();
-                        if (!r_b.c) {
-                            r_b.k = false;
-                            r$b$a r_b_a = r_b.n;
-                            r_b_a.e = iF2;
-                            r_b_a.f1274b = true;
+            if (bVar.f.b(8)) {
+                bVar.f.i();
+                int iE2 = bVar.f.e(2);
+                bVar.f.j(5);
+                if (bVar.f.c()) {
+                    bVar.f.f();
+                    if (bVar.f.c()) {
+                        int iF2 = bVar.f.f();
+                        if (!bVar.c) {
+                            bVar.k = false;
+                            b.a aVar = bVar.n;
+                            aVar.e = iF2;
+                            aVar.f1274b = true;
                             return;
                         }
-                        if (r_b.f.c()) {
-                            int iF3 = r_b.f.f();
-                            if (r_b.e.indexOfKey(iF3) < 0) {
-                                r_b.k = false;
+                        if (bVar.f.c()) {
+                            int iF3 = bVar.f.f();
+                            if (bVar.e.indexOfKey(iF3) < 0) {
+                                bVar.k = false;
                                 return;
                             }
-                            u$b u_b = r_b.e.get(iF3);
-                            u$c u_c = r_b.d.get(u_b.f980b);
-                            if (u_c.h) {
-                                if (!r_b.f.b(2)) {
+                            b.i.a.c.f3.u.b bVar2 = bVar.e.get(iF3);
+                            b.i.a.c.f3.u.c cVar = bVar.d.get(bVar2.f980b);
+                            if (cVar.h) {
+                                if (!bVar.f.b(2)) {
                                     return;
                                 } else {
-                                    r_b.f.j(2);
+                                    bVar.f.j(2);
                                 }
                             }
-                            if (r_b.f.b(u_c.j)) {
-                                int iE3 = r_b.f.e(u_c.j);
-                                if (!u_c.i) {
-                                    if (r_b.f.b(1)) {
-                                        zD = r_b.f.d();
+                            if (bVar.f.b(cVar.j)) {
+                                int iE3 = bVar.f.e(cVar.j);
+                                if (!cVar.i) {
+                                    if (bVar.f.b(1)) {
+                                        zD = bVar.f.d();
                                         if (zD) {
-                                            if (!r_b.f.b(1)) {
+                                            if (!bVar.f.b(1)) {
                                                 return;
                                             }
-                                            zD2 = r_b.f.d();
+                                            zD2 = bVar.f.d();
                                             z2 = true;
                                         }
-                                        if (r_b.i == 5) {
+                                        if (bVar.i == 5) {
                                             z3 = true;
                                         } else {
                                             z3 = false;
                                         }
                                         if (z3) {
                                             iF = 0;
-                                        } else if (!r_b.f.c()) {
+                                        } else if (!bVar.f.c()) {
                                             return;
                                         } else {
-                                            iF = r_b.f.f();
+                                            iF = bVar.f.f();
                                         }
-                                        i3 = u_c.k;
+                                        i3 = cVar.k;
                                         if (i3 != 0) {
-                                            if (i3 == 1 || u_c.m) {
+                                            if (i3 == 1 || cVar.m) {
                                                 iG = 0;
                                             } else {
-                                                if (!r_b.f.c()) {
+                                                if (!bVar.f.c()) {
                                                     return;
                                                 }
-                                                iG = r_b.f.g();
-                                                if (u_b.c && !zD) {
-                                                    if (!r_b.f.c()) {
+                                                iG = bVar.f.g();
+                                                if (bVar2.c && !zD) {
+                                                    if (!bVar.f.c()) {
                                                         return;
                                                     }
-                                                    iG2 = r_b.f.g();
+                                                    iG2 = bVar.f.g();
                                                     i5 = 0;
                                                     i4 = iG;
                                                     iE = 0;
@@ -161,64 +161,64 @@ public final class r implements o {
                                             iG2 = 0;
                                             i5 = 0;
                                         } else {
-                                            if (!r_b.f.b(u_c.l)) {
+                                            if (!bVar.f.b(cVar.l)) {
                                                 return;
                                             }
-                                            iE = r_b.f.e(u_c.l);
-                                            if (u_b.c || zD) {
+                                            iE = bVar.f.e(cVar.l);
+                                            if (bVar2.c || zD) {
                                                 iG3 = 0;
-                                            } else if (!r_b.f.c()) {
+                                            } else if (!bVar.f.c()) {
                                                 return;
                                             } else {
-                                                iG3 = r_b.f.g();
+                                                iG3 = bVar.f.g();
                                             }
                                             i5 = iG3;
                                             iG2 = 0;
                                             i4 = 0;
                                         }
-                                        r$b$a r_b_a2 = r_b.n;
-                                        r_b_a2.c = u_c;
-                                        r_b_a2.d = iE2;
-                                        r_b_a2.e = iF2;
-                                        r_b_a2.f = iE3;
-                                        r_b_a2.g = iF3;
-                                        r_b_a2.h = zD;
-                                        r_b_a2.i = z2;
-                                        r_b_a2.j = zD2;
-                                        r_b_a2.k = z3;
-                                        r_b_a2.l = iF;
-                                        r_b_a2.m = iE;
-                                        r_b_a2.n = i5;
-                                        r_b_a2.o = i4;
-                                        r_b_a2.p = iG2;
-                                        r_b_a2.a = true;
-                                        r_b_a2.f1274b = true;
-                                        r_b.k = false;
+                                        b.a aVar2 = bVar.n;
+                                        aVar2.c = cVar;
+                                        aVar2.d = iE2;
+                                        aVar2.e = iF2;
+                                        aVar2.f = iE3;
+                                        aVar2.g = iF3;
+                                        aVar2.h = zD;
+                                        aVar2.i = z2;
+                                        aVar2.j = zD2;
+                                        aVar2.k = z3;
+                                        aVar2.l = iF;
+                                        aVar2.m = iE;
+                                        aVar2.n = i5;
+                                        aVar2.o = i4;
+                                        aVar2.p = iG2;
+                                        aVar2.a = true;
+                                        aVar2.f1274b = true;
+                                        bVar.k = false;
                                     }
                                     return;
                                 }
                                 zD = false;
                                 zD2 = false;
                                 z2 = false;
-                                if (r_b.i == 5) {
+                                if (bVar.i == 5) {
                                     z3 = true;
                                 } else {
                                     z3 = false;
                                 }
                                 if (z3) {
                                     iF = 0;
-                                } else if (!r_b.f.c()) {
+                                } else if (!bVar.f.c()) {
                                     return;
                                 } else {
-                                    iF = r_b.f.f();
+                                    iF = bVar.f.f();
                                 }
-                                i3 = u_c.k;
+                                i3 = cVar.k;
                                 if (i3 != 0) {
-                                    if (!r_b.f.b(u_c.l)) {
+                                    if (!bVar.f.b(cVar.l)) {
                                         return;
                                     }
-                                    iE = r_b.f.e(u_c.l);
-                                    if (u_b.c) {
+                                    iE = bVar.f.e(cVar.l);
+                                    if (bVar2.c) {
                                         iG3 = 0;
                                     } else {
                                         iG3 = 0;
@@ -239,24 +239,24 @@ public final class r implements o {
                                     iG2 = 0;
                                     i5 = 0;
                                 }
-                                r$b$a r_b_a3 = r_b.n;
-                                r_b_a3.c = u_c;
-                                r_b_a3.d = iE2;
-                                r_b_a3.e = iF2;
-                                r_b_a3.f = iE3;
-                                r_b_a3.g = iF3;
-                                r_b_a3.h = zD;
-                                r_b_a3.i = z2;
-                                r_b_a3.j = zD2;
-                                r_b_a3.k = z3;
-                                r_b_a3.l = iF;
-                                r_b_a3.m = iE;
-                                r_b_a3.n = i5;
-                                r_b_a3.o = i4;
-                                r_b_a3.p = iG2;
-                                r_b_a3.a = true;
-                                r_b_a3.f1274b = true;
-                                r_b.k = false;
+                                b.a aVar3 = bVar.n;
+                                aVar3.c = cVar;
+                                aVar3.d = iE2;
+                                aVar3.e = iF2;
+                                aVar3.f = iE3;
+                                aVar3.g = iF3;
+                                aVar3.h = zD;
+                                aVar3.i = z2;
+                                aVar3.j = zD2;
+                                aVar3.k = z3;
+                                aVar3.l = iF;
+                                aVar3.m = iE;
+                                aVar3.n = i5;
+                                aVar3.o = i4;
+                                aVar3.p = iG2;
+                                aVar3.a = true;
+                                aVar3.f1274b = true;
+                                bVar.k = false;
                             }
                         }
                     }
@@ -325,14 +325,14 @@ public final class r implements o {
                     bArr = bArr2;
                     w wVar = this.d;
                     if (wVar.c) {
-                        u$c u_cE = b.i.a.c.f3.u.e(wVar.d, 3, wVar.e);
-                        this.k.d.append(u_cE.d, u_cE);
+                        b.i.a.c.f3.u.c cVarE = b.i.a.c.f3.u.e(wVar.d, 3, wVar.e);
+                        this.k.d.append(cVarE.d, cVarE);
                         this.d.c();
                     } else {
                         w wVar2 = this.e;
                         if (wVar2.c) {
-                            u$b u_bD = b.i.a.c.f3.u.d(wVar2.d, 3, wVar2.e);
-                            this.k.e.append(u_bD.a, u_bD);
+                            b.i.a.c.f3.u.b bVarD = b.i.a.c.f3.u.d(wVar2.d, 3, wVar2.e);
+                            this.k.e.append(bVarD.a, bVarD);
                             this.e.c();
                         }
                     }
@@ -343,25 +343,25 @@ public final class r implements o {
                     w wVar4 = this.e;
                     arrayList.add(Arrays.copyOf(wVar4.d, wVar4.e));
                     w wVar5 = this.d;
-                    u$c u_cE2 = b.i.a.c.f3.u.e(wVar5.d, 3, wVar5.e);
+                    b.i.a.c.f3.u.c cVarE2 = b.i.a.c.f3.u.e(wVar5.d, 3, wVar5.e);
                     w wVar6 = this.e;
-                    u$b u_bD2 = b.i.a.c.f3.u.d(wVar6.d, 3, wVar6.e);
+                    b.i.a.c.f3.u.b bVarD2 = b.i.a.c.f3.u.d(wVar6.d, 3, wVar6.e);
                     i = i10;
-                    String strA = b.i.a.c.f3.h.a(u_cE2.a, u_cE2.f981b, u_cE2.c);
+                    String strA = b.i.a.c.f3.h.a(cVarE2.a, cVarE2.f981b, cVarE2.c);
                     b.i.a.c.x2.w wVar7 = this.j;
-                    j1$b j1_b = new j1$b();
+                    j1.b bVar = new j1.b();
                     bArr = bArr2;
-                    j1_b.a = this.i;
-                    j1_b.k = "video/avc";
-                    j1_b.h = strA;
-                    j1_b.p = u_cE2.e;
-                    j1_b.q = u_cE2.f;
-                    j1_b.t = u_cE2.g;
-                    j1_b.m = arrayList;
-                    wVar7.e(j1_b.a());
+                    bVar.a = this.i;
+                    bVar.k = "video/avc";
+                    bVar.h = strA;
+                    bVar.p = cVarE2.e;
+                    bVar.q = cVarE2.f;
+                    bVar.t = cVarE2.g;
+                    bVar.m = arrayList;
+                    wVar7.e(bVar.a());
                     this.l = true;
-                    this.k.d.append(u_cE2.d, u_cE2);
-                    this.k.e.append(u_bD2.a, u_bD2);
+                    this.k.d.append(cVarE2.d, cVarE2);
+                    this.k.e.append(bVarD2.a, bVarD2);
                     this.d.c();
                     this.e.c();
                 } else {
@@ -378,32 +378,32 @@ public final class r implements o {
                 this.o.E(4);
                 b.c.a.a0.d.J(j4, this.o, this.a.f1246b);
             }
-            r$b r_b = this.k;
+            b bVar2 = this.k;
             boolean z4 = this.l;
             boolean z5 = this.n;
-            if (r_b.i == 9) {
-                if (z4 && r_b.o) {
-                    j = r_b.j;
+            if (bVar2.i == 9) {
+                if (z4 && bVar2.o) {
+                    j = bVar2.j;
                     i2 = i14 + ((int) (j3 - j));
-                    j2 = r_b.q;
+                    j2 = bVar2.q;
                     if (j2 != -9223372036854775807L) {
-                        r_b.a.d(j2, r_b.r ? 1 : 0, (int) (j - r_b.p), i2, null);
+                        bVar2.a.d(j2, bVar2.r ? 1 : 0, (int) (j - bVar2.p), i2, null);
                     }
                 }
-                r_b.p = r_b.j;
-                r_b.q = r_b.l;
-                r_b.r = false;
-                r_b.o = true;
-            } else if (r_b.c) {
-                r$b$a r_b_a = r_b.n;
-                r$b$a r_b_a2 = r_b.m;
-                if (r_b_a.a) {
-                    if (r_b_a2.a) {
-                        u$c u_c = r_b_a.c;
-                        b.c.a.a0.d.H(u_c);
-                        u$c u_c2 = r_b_a2.c;
-                        b.c.a.a0.d.H(u_c2);
-                        if (r_b_a.f == r_b_a2.f && r_b_a.g == r_b_a2.g && r_b_a.h == r_b_a2.h && ((!r_b_a.i || !r_b_a2.i || r_b_a.j == r_b_a2.j) && (((i5 = r_b_a.d) == (i6 = r_b_a2.d) || (i5 != 0 && i6 != 0)) && (((i7 = u_c.k) != 0 || u_c2.k != 0 || (r_b_a.m == r_b_a2.m && r_b_a.n == r_b_a2.n)) && ((i7 != 1 || u_c2.k != 1 || (r_b_a.o == r_b_a2.o && r_b_a.p == r_b_a2.p)) && (z3 = r_b_a.k) == r_b_a2.k && (!z3 || r_b_a.l == r_b_a2.l)))))) {
+                bVar2.p = bVar2.j;
+                bVar2.q = bVar2.l;
+                bVar2.r = false;
+                bVar2.o = true;
+            } else if (bVar2.c) {
+                b.a aVar = bVar2.n;
+                b.a aVar2 = bVar2.m;
+                if (aVar.a) {
+                    if (aVar2.a) {
+                        b.i.a.c.f3.u.c cVar = aVar.c;
+                        b.c.a.a0.d.H(cVar);
+                        b.i.a.c.f3.u.c cVar2 = aVar2.c;
+                        b.c.a.a0.d.H(cVar2);
+                        if (aVar.f == aVar2.f && aVar.g == aVar2.g && aVar.h == aVar2.h && ((!aVar.i || !aVar2.i || aVar.j == aVar2.j) && (((i5 = aVar.d) == (i6 = aVar2.d) || (i5 != 0 && i6 != 0)) && (((i7 = cVar.k) != 0 || cVar2.k != 0 || (aVar.m == aVar2.m && aVar.n == aVar2.n)) && ((i7 != 1 || cVar2.k != 1 || (aVar.o == aVar2.o && aVar.p == aVar2.p)) && (z3 = aVar.k) == aVar2.k && (!z3 || aVar.l == aVar2.l)))))) {
                             z2 = false;
                         }
                     }
@@ -413,27 +413,27 @@ public final class r implements o {
                 }
                 if (z2) {
                     if (z4) {
-                        j = r_b.j;
+                        j = bVar2.j;
                         i2 = i14 + ((int) (j3 - j));
-                        j2 = r_b.q;
+                        j2 = bVar2.q;
                         if (j2 != -9223372036854775807L) {
-                            r_b.a.d(j2, r_b.r ? 1 : 0, (int) (j - r_b.p), i2, null);
+                            bVar2.a.d(j2, bVar2.r ? 1 : 0, (int) (j - bVar2.p), i2, null);
                         }
                     }
-                    r_b.p = r_b.j;
-                    r_b.q = r_b.l;
-                    r_b.r = false;
-                    r_b.o = true;
+                    bVar2.p = bVar2.j;
+                    bVar2.q = bVar2.l;
+                    bVar2.r = false;
+                    bVar2.o = true;
                 }
             }
-            if (r_b.f1273b) {
-                r$b$a r_b_a3 = r_b.n;
-                z5 = r_b_a3.f1274b && ((i4 = r_b_a3.e) == 7 || i4 == 2);
+            if (bVar2.f1273b) {
+                b.a aVar3 = bVar2.n;
+                z5 = aVar3.f1274b && ((i4 = aVar3.e) == 7 || i4 == 2);
             }
-            boolean z6 = r_b.r;
-            int i16 = r_b.i;
+            boolean z6 = bVar2.r;
+            int i16 = bVar2.i;
             boolean z7 = z6 | (i16 == 5 || (z5 && i16 == 1));
-            r_b.r = z7;
+            bVar2.r = z7;
             if (z7) {
                 this.n = false;
             }
@@ -443,20 +443,20 @@ public final class r implements o {
                 this.e.d(i12);
             }
             this.f.d(i12);
-            r$b r_b2 = this.k;
-            r_b2.i = i12;
-            r_b2.l = j5;
-            r_b2.j = j3;
-            if (r_b2.f1273b) {
+            b bVar3 = this.k;
+            bVar3.i = i12;
+            bVar3.l = j5;
+            bVar3.j = j3;
+            if (bVar3.f1273b) {
                 i3 = 1;
                 if (i12 == 1) {
-                    r$b$a r_b_a4 = r_b2.m;
-                    r_b2.m = r_b2.n;
-                    r_b2.n = r_b_a4;
-                    r_b_a4.f1274b = false;
-                    r_b_a4.a = false;
-                    r_b2.h = 0;
-                    r_b2.k = true;
+                    b.a aVar4 = bVar3.m;
+                    bVar3.m = bVar3.n;
+                    bVar3.n = aVar4;
+                    aVar4.f1274b = false;
+                    aVar4.a = false;
+                    bVar3.h = 0;
+                    bVar3.k = true;
                 }
                 i9 = i11;
                 i10 = i;
@@ -464,14 +464,14 @@ public final class r implements o {
             } else {
                 i3 = 1;
             }
-            if (r_b2.c && (i12 == 5 || i12 == i3 || i12 == 2)) {
-                r$b$a r_b_a5 = r_b2.m;
-                r_b2.m = r_b2.n;
-                r_b2.n = r_b_a5;
-                r_b_a5.f1274b = false;
-                r_b_a5.a = false;
-                r_b2.h = 0;
-                r_b2.k = true;
+            if (bVar3.c && (i12 == 5 || i12 == i3 || i12 == 2)) {
+                b.a aVar5 = bVar3.m;
+                bVar3.m = bVar3.n;
+                bVar3.n = aVar5;
+                aVar5.f1274b = false;
+                aVar5.a = false;
+                bVar3.h = 0;
+                bVar3.k = true;
             }
             i9 = i11;
             i10 = i;
@@ -488,13 +488,13 @@ public final class r implements o {
         this.d.c();
         this.e.c();
         this.f.c();
-        r$b r_b = this.k;
-        if (r_b != null) {
-            r_b.k = false;
-            r_b.o = false;
-            r$b$a r_b_a = r_b.n;
-            r_b_a.f1274b = false;
-            r_b_a.a = false;
+        b bVar = this.k;
+        if (bVar != null) {
+            bVar.k = false;
+            bVar.o = false;
+            b.a aVar = bVar.n;
+            aVar.f1274b = false;
+            aVar.a = false;
         }
     }
 
@@ -503,13 +503,13 @@ public final class r implements o {
     }
 
     @Override // b.i.a.c.x2.k0.o
-    public void e(b.i.a.c.x2.j jVar, i0$d i0_d) {
-        i0_d.a();
-        this.i = i0_d.b();
-        b.i.a.c.x2.w wVarP = jVar.p(i0_d.c(), 2);
+    public void e(b.i.a.c.x2.j jVar, i0.d dVar) {
+        dVar.a();
+        this.i = dVar.b();
+        b.i.a.c.x2.w wVarP = jVar.p(dVar.c(), 2);
         this.j = wVarP;
-        this.k = new r$b(wVarP, this.f1272b, this.c);
-        this.a.a(jVar, i0_d);
+        this.k = new b(wVarP, this.f1272b, this.c);
+        this.a.a(jVar, dVar);
     }
 
     @Override // b.i.a.c.x2.k0.o
@@ -518,5 +518,68 @@ public final class r implements o {
             this.m = j;
         }
         this.n |= (i & 2) != 0;
+    }
+
+    /* JADX INFO: compiled from: H264Reader.java */
+    public final class b {
+        public final b.i.a.c.x2.w a;
+        public final boolean c;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final boolean f1273b;
+        public final b.i.a.c.f3.y f;
+        public byte[] g;
+        public int h;
+        public int i;
+        public long j;
+        public long l;
+        public long p;
+        public long q;
+        public boolean r;
+        public final SparseArray<b.i.a.c.f3.u.c> d = new SparseArray<>();
+        public final SparseArray<b.i.a.c.f3.u.b> e = new SparseArray<>();
+        public a m = new a(null);
+        public a n = new a(null);
+        public boolean k = false;
+        public boolean o = false;
+
+        /* JADX INFO: compiled from: H264Reader.java */
+        public final class a {
+            public boolean a;
+
+            /* JADX INFO: renamed from: b, reason: collision with root package name */
+            public boolean f1274b;
+
+            @Nullable
+            public b.i.a.c.f3.u.c c;
+            public int d;
+            public int e;
+            public int f;
+            public int g;
+            public boolean h;
+            public boolean i;
+            public boolean j;
+            public boolean k;
+            public int l;
+            public int m;
+            public int n;
+            public int o;
+            public int p;
+
+            public a(a aVar) {
+            }
+        }
+
+        public b(b.i.a.c.x2.w wVar, boolean z2, boolean z3) {
+            this.a = wVar;
+            this.f1273b = z2;
+            this.c = z3;
+            byte[] bArr = new byte[128];
+            this.g = bArr;
+            this.f = new b.i.a.c.f3.y(bArr, 0, 0);
+            a aVar = this.n;
+            aVar.f1274b = false;
+            aVar.a = false;
+        }
     }
 }

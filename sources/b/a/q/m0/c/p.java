@@ -1,6 +1,6 @@
 package b.a.q.m0.c;
 
-import com.hammerandchisel.libdiscord.Discord$GetSupportedVideoCodecsCallback;
+import com.hammerandchisel.libdiscord.Discord;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -11,7 +11,7 @@ import rx.Emitter;
 
 /* JADX INFO: compiled from: MediaEngineLegacy.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class p implements Discord$GetSupportedVideoCodecsCallback {
+public final class p implements Discord.GetSupportedVideoCodecsCallback {
     public final /* synthetic */ q a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -22,7 +22,7 @@ public final class p implements Discord$GetSupportedVideoCodecsCallback {
         this.f273b = emitter;
     }
 
-    @Override // com.hammerandchisel.libdiscord.Discord$GetSupportedVideoCodecsCallback
+    @Override // com.hammerandchisel.libdiscord.Discord.GetSupportedVideoCodecsCallback
     public final void onSupportedVideoCodecs(String[] strArr) {
         d0.z.d.m.checkNotNullParameter(strArr, "videoCodecsStringArray");
         k kVar = this.a.j;

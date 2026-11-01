@@ -1,7 +1,7 @@
 package com.google.android.gms.signin.internal;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import b.c.a.a0.d;
 import b.i.a.f.e.h.h;
@@ -16,7 +16,7 @@ public final class zag extends AbstractSafeParcelable implements h {
 
     @Nullable
     public final String k;
-    public static final Parcelable$Creator<zag> CREATOR = new b.i.a.f.l.b.h();
+    public static final Parcelable.Creator<zag> CREATOR = new b.i.a.f.l.b.h();
 
     public zag(List<String> list, @Nullable String str) {
         this.j = list;

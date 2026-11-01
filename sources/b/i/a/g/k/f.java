@@ -4,20 +4,16 @@ import android.view.accessibility.AccessibilityManager;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.exifinterface.media.ExifInterface;
-import com.google.android.material.R$id;
-import com.google.android.material.R$string;
-import com.google.android.material.timepicker.ClockHandView$OnActionUpListener;
-import com.google.android.material.timepicker.ClockHandView$OnRotateListener;
+import com.google.android.material.R;
+import com.google.android.material.timepicker.ClockHandView;
 import com.google.android.material.timepicker.TimeModel;
 import com.google.android.material.timepicker.TimePickerView;
-import com.google.android.material.timepicker.TimePickerView$c;
-import com.google.android.material.timepicker.TimePickerView$d;
 import java.util.Locale;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: TimePickerClockPresenter.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class f implements ClockHandView$OnRotateListener, TimePickerView$d, TimePickerView$c, ClockHandView$OnActionUpListener, g {
+public class f implements ClockHandView.OnRotateListener, TimePickerView.d, TimePickerView.c, ClockHandView.OnActionUpListener, g {
     public TimePickerView m;
     public TimeModel n;
     public float o;
@@ -53,7 +49,7 @@ public class f implements ClockHandView$OnRotateListener, TimePickerView$d, Time
         f();
     }
 
-    @Override // com.google.android.material.timepicker.TimePickerView$d
+    @Override // com.google.android.material.timepicker.TimePickerView.d
     public void b(int i) {
         e(i, true);
     }
@@ -79,13 +75,13 @@ public class f implements ClockHandView$OnRotateListener, TimePickerView$d, Time
         } else {
             strArr = timeModel.l == 1 ? k : j;
         }
-        timePickerView.m.c(strArr, z3 ? R$string.material_minute_suffix : R$string.material_hour_suffix);
+        timePickerView.m.c(strArr, z3 ? R.string.material_minute_suffix : R.string.material_hour_suffix);
         this.m.l.b(z3 ? this.o : this.p, z2);
         TimePickerView timePickerView2 = this.m;
         timePickerView2.j.setChecked(i == 12);
         timePickerView2.k.setChecked(i == 10);
-        ViewCompat.setAccessibilityDelegate(this.m.k, new a(this.m.getContext(), R$string.material_hour_selection));
-        ViewCompat.setAccessibilityDelegate(this.m.j, new a(this.m.getContext(), R$string.material_minute_selection));
+        ViewCompat.setAccessibilityDelegate(this.m.k, new a(this.m.getContext(), R.string.material_hour_selection));
+        ViewCompat.setAccessibilityDelegate(this.m.j, new a(this.m.getContext(), R.string.material_minute_selection));
     }
 
     public final void f() {
@@ -94,7 +90,7 @@ public class f implements ClockHandView$OnRotateListener, TimePickerView$d, Time
         int i = timeModel.p;
         int iB = timeModel.b();
         int i2 = this.n.n;
-        timePickerView.n.check(i == 1 ? R$id.material_clock_period_pm_button : R$id.material_clock_period_am_button);
+        timePickerView.n.check(i == 1 ? R.id.material_clock_period_pm_button : R.id.material_clock_period_am_button);
         Locale locale = timePickerView.getResources().getConfiguration().locale;
         String str = String.format(locale, "%02d", Integer.valueOf(i2));
         String str2 = String.format(locale, "%02d", Integer.valueOf(iB));
@@ -108,7 +104,7 @@ public class f implements ClockHandView$OnRotateListener, TimePickerView$d, Time
         }
     }
 
-    @Override // com.google.android.material.timepicker.ClockHandView$OnActionUpListener
+    @Override // com.google.android.material.timepicker.ClockHandView.OnActionUpListener
     public void onActionUp(float f, boolean z2) {
         this.q = true;
         TimeModel timeModel = this.n;
@@ -138,7 +134,7 @@ public class f implements ClockHandView$OnRotateListener, TimePickerView$d, Time
         this.m.performHapticFeedback(4);
     }
 
-    @Override // com.google.android.material.timepicker.ClockHandView$OnRotateListener
+    @Override // com.google.android.material.timepicker.ClockHandView.OnRotateListener
     public void onRotate(float f, boolean z2) {
         if (this.q) {
             return;

@@ -7,7 +7,6 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.WeakHashMap;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
@@ -27,14 +26,14 @@ public final class x0 {
         synchronized (this.f1374b) {
             map2 = new HashMap(this.f1374b);
         }
-        for (Map$Entry map$Entry : map.entrySet()) {
-            if (z2 || ((Boolean) map$Entry.getValue()).booleanValue()) {
-                ((BasePendingResult) map$Entry.getKey()).e(status);
+        for (Map.Entry entry : map.entrySet()) {
+            if (z2 || ((Boolean) entry.getValue()).booleanValue()) {
+                ((BasePendingResult) entry.getKey()).e(status);
             }
         }
-        for (Map$Entry map$Entry2 : map2.entrySet()) {
-            if (z2 || ((Boolean) map$Entry2.getValue()).booleanValue()) {
-                ((TaskCompletionSource) map$Entry2.getKey()).a(new ApiException(status));
+        for (Map.Entry entry2 : map2.entrySet()) {
+            if (z2 || ((Boolean) entry2.getValue()).booleanValue()) {
+                ((TaskCompletionSource) entry2.getKey()).a(new ApiException(status));
             }
         }
     }

@@ -1,7 +1,9 @@
 package b.i.e.s.c;
 
 import b.i.e.l;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,6 +17,37 @@ public class e {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final List<d> f1895b = new ArrayList();
     public final int[] d = new int[5];
+
+    /* JADX INFO: compiled from: FinderPatternFinder.java */
+    public final class b implements Serializable, Comparator<d> {
+        private final float average;
+
+        public b(float f, a aVar) {
+            this.average = f;
+        }
+
+        @Override // java.util.Comparator
+        public int compare(d dVar, d dVar2) {
+            d dVar3 = dVar;
+            d dVar4 = dVar2;
+            int iCompare = Integer.compare(dVar4.d, dVar3.d);
+            return iCompare == 0 ? Float.compare(Math.abs(dVar3.c - this.average), Math.abs(dVar4.c - this.average)) : iCompare;
+        }
+    }
+
+    /* JADX INFO: compiled from: FinderPatternFinder.java */
+    public final class c implements Serializable, Comparator<d> {
+        private final float average;
+
+        public c(float f, a aVar) {
+            this.average = f;
+        }
+
+        @Override // java.util.Comparator
+        public int compare(d dVar, d dVar2) {
+            return Float.compare(Math.abs(dVar2.c - this.average), Math.abs(dVar.c - this.average));
+        }
+    }
 
     public e(b.i.e.n.b bVar, l lVar) {
         this.a = bVar;

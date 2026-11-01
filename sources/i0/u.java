@@ -1,7 +1,9 @@
 package i0;
 
+import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import java.lang.invoke.MethodHandles;
-import java.lang.invoke.MethodHandles$Lookup;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.concurrent.Executor;
@@ -14,18 +16,49 @@ public class u {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final boolean f3758b;
-    public final Constructor<MethodHandles$Lookup> c;
+    public final Constructor<MethodHandles.Lookup> c;
+
+    /* JADX INFO: compiled from: Platform.java */
+    public final class a extends u {
+        public a() {
+            super(Build.VERSION.SDK_INT >= 24);
+        }
+
+        @Override // i0.u
+        public Executor a() {
+            return new ExecutorC0617a();
+        }
+
+        @Override // i0.u
+        public Object b(Method method, Class<?> cls, Object obj, Object... objArr) throws Throwable {
+            if (Build.VERSION.SDK_INT >= 26) {
+                return super.b(method, cls, obj, objArr);
+            }
+            throw new UnsupportedOperationException("Calling default methods on API 24 and 25 is not supported");
+        }
+
+        /* JADX INFO: renamed from: i0.u$a$a, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: Platform.java */
+        public final class ExecutorC0617a implements Executor {
+            public final Handler j = new Handler(Looper.getMainLooper());
+
+            @Override // java.util.concurrent.Executor
+            public void execute(Runnable runnable) {
+                this.j.post(runnable);
+            }
+        }
+    }
 
     static {
-        a = "Dalvik".equals(System.getProperty("java.vm.name")) ? new u$a() : new u(true);
+        a = "Dalvik".equals(System.getProperty("java.vm.name")) ? new a() : new u(true);
     }
 
     public u(boolean z2) {
         this.f3758b = z2;
-        Constructor<MethodHandles$Lookup> declaredConstructor = null;
+        Constructor<MethodHandles.Lookup> declaredConstructor = null;
         if (z2) {
             try {
-                declaredConstructor = MethodHandles$Lookup.class.getDeclaredConstructor(Class.class, Integer.TYPE);
+                declaredConstructor = MethodHandles.Lookup.class.getDeclaredConstructor(Class.class, Integer.TYPE);
                 declaredConstructor.setAccessible(true);
             } catch (NoClassDefFoundError | NoSuchMethodException unused) {
             }
@@ -39,7 +72,7 @@ public class u {
 
     @IgnoreJRERequirement
     public Object b(Method method, Class<?> cls, Object obj, Object... objArr) throws Throwable {
-        Constructor<MethodHandles$Lookup> constructor = this.c;
+        Constructor<MethodHandles.Lookup> constructor = this.c;
         return (constructor != null ? constructor.newInstance(cls, -1) : MethodHandles.lookup()).unreflectSpecial(method, cls).bindTo(obj).invokeWithArguments(objArr);
     }
 }

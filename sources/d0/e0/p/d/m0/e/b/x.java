@@ -6,6 +6,27 @@ import java.util.Collection;
 /* JADX INFO: compiled from: descriptorBasedTypeSignatureMapping.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public interface x<T> {
+
+    /* JADX INFO: compiled from: descriptorBasedTypeSignatureMapping.kt */
+    public final class a {
+        public static <T> String getPredefinedFullInternalNameForClass(x<? extends T> xVar, d0.e0.p.d.m0.c.e eVar) {
+            d0.z.d.m.checkNotNullParameter(xVar, "this");
+            d0.z.d.m.checkNotNullParameter(eVar, "classDescriptor");
+            return null;
+        }
+
+        public static <T> c0 preprocessType(x<? extends T> xVar, c0 c0Var) {
+            d0.z.d.m.checkNotNullParameter(xVar, "this");
+            d0.z.d.m.checkNotNullParameter(c0Var, "kotlinType");
+            return null;
+        }
+
+        public static <T> boolean releaseCoroutines(x<? extends T> xVar) {
+            d0.z.d.m.checkNotNullParameter(xVar, "this");
+            return true;
+        }
+    }
+
     c0 commonSupertype(Collection<c0> collection);
 
     String getPredefinedFullInternalNameForClass(d0.e0.p.d.m0.c.e eVar);

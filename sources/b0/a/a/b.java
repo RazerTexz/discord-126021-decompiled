@@ -4,8 +4,8 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.ParcelFileDescriptor$AutoCloseInputStream;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import android.os.ParcelFileDescriptor;
+import androidx.core.app.NotificationCompat;
 import d0.l;
 import d0.w.i.a.e;
 import d0.w.i.a.k;
@@ -82,7 +82,7 @@ public final class b extends k implements Function2<CoroutineScope, Continuation
         sb2.append(str2);
         sb.append(sb2.toString());
         m.checkParameterIsNotNull(context, "context");
-        m.checkParameterIsNotNull(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkParameterIsNotNull(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         ContentResolver contentResolver = context.getContentResolver();
         Cursor cursorQuery = contentResolver.query(uri, new String[]{"_display_name"}, null, null, null);
         if (cursorQuery == null) {
@@ -126,13 +126,13 @@ public final class b extends k implements Function2<CoroutineScope, Continuation
         }
         file.createNewFile();
         file.deleteOnExit();
-        ParcelFileDescriptor$AutoCloseInputStream parcelFileDescriptor$AutoCloseInputStream = new ParcelFileDescriptor$AutoCloseInputStream(context.getContentResolver().openFileDescriptor(uri, "r"));
+        ParcelFileDescriptor.AutoCloseInputStream autoCloseInputStream = new ParcelFileDescriptor.AutoCloseInputStream(context.getContentResolver().openFileDescriptor(uri, "r"));
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         try {
             try {
-                d0.y.a.copyTo$default(parcelFileDescriptor$AutoCloseInputStream, fileOutputStream, 0, 2, null);
+                d0.y.a.copyTo$default(autoCloseInputStream, fileOutputStream, 0, 2, null);
                 d0.y.b.closeFinally(fileOutputStream, null);
-                d0.y.b.closeFinally(parcelFileDescriptor$AutoCloseInputStream, null);
+                d0.y.b.closeFinally(autoCloseInputStream, null);
                 for (b0.a.a.e.b bVar : aVar.a) {
                     while (!bVar.b(file)) {
                         file = bVar.a(file);
@@ -151,7 +151,7 @@ public final class b extends k implements Function2<CoroutineScope, Continuation
             try {
                 throw th5;
             } catch (Throwable th6) {
-                d0.y.b.closeFinally(parcelFileDescriptor$AutoCloseInputStream, th5);
+                d0.y.b.closeFinally(autoCloseInputStream, th5);
                 throw th6;
             }
         }

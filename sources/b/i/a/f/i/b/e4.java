@@ -12,7 +12,7 @@ public final class e4 implements Runnable {
     }
 
     @Override // java.lang.Runnable
-    public final void run() {
+    public final void run() throws Throwable {
         this.k.a.w();
     }
 }

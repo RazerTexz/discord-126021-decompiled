@@ -4,8 +4,8 @@ import androidx.annotation.NonNull;
 
 /* JADX INFO: compiled from: AutoValue_CrashlyticsReport_Session_Application_Organization.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class h extends v$d$a$a {
-    @Override // b.i.c.m.d.m.v$d$a$a
+public final class h extends v.d.a.AbstractC0142a {
+    @Override // b.i.c.m.d.m.v.d.a.AbstractC0142a
     @NonNull
     public String a() {
         return null;
@@ -15,10 +15,10 @@ public final class h extends v$d$a$a {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof v$d$a$a)) {
+        if (!(obj instanceof v.d.a.AbstractC0142a)) {
             return false;
         }
-        ((v$d$a$a) obj).a();
+        ((v.d.a.AbstractC0142a) obj).a();
         throw null;
     }
 

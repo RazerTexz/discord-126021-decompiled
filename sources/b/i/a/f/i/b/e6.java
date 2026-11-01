@@ -6,7 +6,6 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Pair;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
-import com.google.android.gms.ads.identifier.AdvertisingIdClient$Info;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Objects;
@@ -53,7 +52,7 @@ public final /* synthetic */ class e6 implements Runnable {
             Objects.requireNonNull(cVar);
             d4VarO.p = cVar.n(str, p.f1552b) + jElapsedRealtime;
             try {
-                AdvertisingIdClient$Info advertisingIdInfo = AdvertisingIdClient.getAdvertisingIdInfo(d4VarO.a.f1570b);
+                AdvertisingIdClient.Info advertisingIdInfo = AdvertisingIdClient.getAdvertisingIdInfo(d4VarO.a.f1570b);
                 if (advertisingIdInfo != null) {
                     d4VarO.n = advertisingIdInfo.getId();
                     d4VarO.o = advertisingIdInfo.isLimitAdTrackingEnabled();

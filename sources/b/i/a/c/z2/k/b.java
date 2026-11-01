@@ -34,7 +34,28 @@ public final class b extends g {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     @Nullable
-    public final b$a f1324b;
+    public final a f1324b;
+
+    /* JADX INFO: renamed from: b.i.a.c.z2.k.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: Id3Decoder.java */
+    public final class C0106b {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final boolean f1325b;
+        public final int c;
+
+        public C0106b(int i, boolean z2, int i2) {
+            this.a = i;
+            this.f1325b = z2;
+            this.c = i2;
+        }
+    }
+
+    /* JADX INFO: compiled from: Id3Decoder.java */
+    public interface a {
+        boolean a(int i, int i2, int i3, int i4, int i5);
+    }
 
     public b() {
         this.f1324b = null;
@@ -62,7 +83,7 @@ public final class b extends g {
     @Nullable
     public Metadata d(byte[] bArr, int i) {
         boolean z2;
-        b$b b_b;
+        C0106b c0106b;
         int i2;
         int iX;
         Id3Frame id3FrameJ;
@@ -87,7 +108,7 @@ public final class b extends g {
                         } else {
                             z2 = true;
                         }
-                        b_b = new b$b(iT, z2, iS);
+                        c0106b = new C0106b(iT, z2, iS);
                     }
                 } else {
                     if (iT == 3) {
@@ -113,27 +134,27 @@ public final class b extends g {
                     } else {
                         z2 = false;
                     }
-                    b_b = new b$b(iT, z2, iS);
+                    c0106b = new C0106b(iT, z2, iS);
                 }
-                if (b_b == null) {
+                if (c0106b == null) {
                     return null;
                 }
                 int i3 = xVar.f984b;
-                i2 = b_b.a == 2 ? 6 : 10;
-                iX = b_b.c;
-                if (b_b.f1325b) {
+                i2 = c0106b.a == 2 ? 6 : 10;
+                iX = c0106b.c;
+                if (c0106b.f1325b) {
                     iX = x(xVar, iX);
                 }
                 xVar.D(i3 + iX);
-                if (!y(xVar, b_b.a, i2, false)) {
-                    if (b_b.a == 4 || !y(xVar, 4, i2, true)) {
-                        b.d.b.a.a.g0(56, "Failed to validate ID3 tag with majorVersion=", b_b.a, "Id3Decoder");
+                if (!y(xVar, c0106b.a, i2, false)) {
+                    if (c0106b.a == 4 || !y(xVar, 4, i2, true)) {
+                        b.d.b.a.a.g0(56, "Failed to validate ID3 tag with majorVersion=", c0106b.a, "Id3Decoder");
                         return null;
                     }
                     z3 = true;
                 }
                 while (xVar.a() >= i2) {
-                    id3FrameJ = j(b_b.a, xVar, z3, i2, this.f1324b);
+                    id3FrameJ = j(c0106b.a, xVar, z3, i2, this.f1324b);
                     if (id3FrameJ != null) {
                         arrayList.add(id3FrameJ);
                     }
@@ -143,26 +164,26 @@ public final class b extends g {
             String strValueOf = String.valueOf(String.format("%06X", Integer.valueOf(iV)));
             Log.w("Id3Decoder", strValueOf.length() != 0 ? "Unexpected first three bytes of ID3 tag header: 0x".concat(strValueOf) : new String("Unexpected first three bytes of ID3 tag header: 0x"));
         }
-        b_b = null;
-        if (b_b == null) {
+        c0106b = null;
+        if (c0106b == null) {
             return null;
         }
         int i4 = xVar.f984b;
-        if (b_b.a == 2) {
+        if (c0106b.a == 2) {
         }
-        iX = b_b.c;
-        if (b_b.f1325b) {
+        iX = c0106b.c;
+        if (c0106b.f1325b) {
             iX = x(xVar, iX);
         }
         xVar.D(i4 + iX);
-        if (!y(xVar, b_b.a, i2, false)) {
-            if (b_b.a == 4) {
+        if (!y(xVar, c0106b.a, i2, false)) {
+            if (c0106b.a == 4) {
             }
-            b.d.b.a.a.g0(56, "Failed to validate ID3 tag with majorVersion=", b_b.a, "Id3Decoder");
+            b.d.b.a.a.g0(56, "Failed to validate ID3 tag with majorVersion=", c0106b.a, "Id3Decoder");
             return null;
         }
         while (xVar.a() >= i2) {
-            id3FrameJ = j(b_b.a, xVar, z3, i2, this.f1324b);
+            id3FrameJ = j(c0106b.a, xVar, z3, i2, this.f1324b);
             if (id3FrameJ != null) {
                 arrayList.add(id3FrameJ);
             }
@@ -209,7 +230,7 @@ public final class b extends g {
         return new BinaryFrame(str, bArr);
     }
 
-    public static ChapterFrame g(x xVar, int i, int i2, boolean z2, int i3, @Nullable b$a b_a) throws UnsupportedEncodingException {
+    public static ChapterFrame g(x xVar, int i, int i2, boolean z2, int i3, @Nullable a aVar) throws UnsupportedEncodingException {
         int i4 = xVar.f984b;
         int iW = w(xVar.a, i4);
         String str = new String(xVar.a, i4, iW - i4, "ISO-8859-1");
@@ -223,7 +244,7 @@ public final class b extends g {
         ArrayList arrayList = new ArrayList();
         int i5 = i4 + i;
         while (xVar.f984b < i5) {
-            Id3Frame id3FrameJ = j(i2, xVar, z2, i3, b_a);
+            Id3Frame id3FrameJ = j(i2, xVar, z2, i3, aVar);
             if (id3FrameJ != null) {
                 arrayList.add(id3FrameJ);
             }
@@ -231,7 +252,7 @@ public final class b extends g {
         return new ChapterFrame(str, iF, iF2, j, j2, (Id3Frame[]) arrayList.toArray(new Id3Frame[0]));
     }
 
-    public static ChapterTocFrame h(x xVar, int i, int i2, boolean z2, int i3, @Nullable b$a b_a) throws UnsupportedEncodingException {
+    public static ChapterTocFrame h(x xVar, int i, int i2, boolean z2, int i3, @Nullable a aVar) throws UnsupportedEncodingException {
         int i4 = xVar.f984b;
         int iW = w(xVar.a, i4);
         String str = new String(xVar.a, i4, iW - i4, "ISO-8859-1");
@@ -250,7 +271,7 @@ public final class b extends g {
         ArrayList arrayList = new ArrayList();
         int i7 = i4 + i;
         while (xVar.f984b < i7) {
-            Id3Frame id3FrameJ = j(i2, xVar, z2, i3, b_a);
+            Id3Frame id3FrameJ = j(i2, xVar, z2, i3, aVar);
             if (id3FrameJ != null) {
                 arrayList.add(id3FrameJ);
             }
@@ -288,7 +309,7 @@ public final class b extends g {
     /* JADX WARN: Code duplicated, block: B:152:0x01d5  */
     /* JADX WARN: Code duplicated, block: B:157:0x01e2 A[Catch: all -> 0x0126, UnsupportedEncodingException -> 0x021a, Merged into TryCatch #0 {all -> 0x0126, UnsupportedEncodingException -> 0x021a, blocks: (B:91:0x0114, B:159:0x01ec, B:162:0x021a, B:93:0x011c, B:102:0x0135, B:104:0x013d, B:112:0x0157, B:121:0x016f, B:132:0x018a, B:139:0x019c, B:145:0x01ab, B:150:0x01c3, B:156:0x01dd, B:157:0x01e2), top: B:169:0x010a }] */
     @Nullable
-    public static Id3Frame j(int i, x xVar, boolean z2, int i2, @Nullable b$a b_a) {
+    public static Id3Frame j(int i, x xVar, boolean z2, int i2, @Nullable a aVar) {
         int iW;
         int i3;
         boolean z3;
@@ -321,9 +342,9 @@ public final class b extends g {
             xVar.E(xVar.c);
             return null;
         }
-        if (b_a != null) {
+        if (aVar != null) {
             i3 = i4;
-            if (!b_a.a(i, iT, iT2, iT3, iT4)) {
+            if (!aVar.a(i, iT, iT2, iT3, iT4)) {
                 xVar.E(i3);
                 return null;
             }
@@ -392,9 +413,9 @@ public final class b extends g {
                 } else if (iT != 67 && iT2 == 79 && iT3 == 77 && (iT4 == 77 || i == 2)) {
                     id3FrameF = i(xVar, iX);
                 } else if (iT != 67 && iT2 == 72 && iT3 == 65 && iT4 == 80) {
-                    id3FrameF = g(xVar, iX, i, z2, i2, b_a);
+                    id3FrameF = g(xVar, iX, i, z2, i2, aVar);
                 } else if (iT != 67 && iT2 == 84 && iT3 == 79 && iT4 == 67) {
-                    id3FrameF = h(xVar, iX, i, z2, i2, b_a);
+                    id3FrameF = h(xVar, iX, i, z2, i2, aVar);
                 } else if (iT != 77 && iT2 == 76 && iT3 == 76 && iT4 == 84) {
                     id3FrameF = l(xVar, iX);
                 } else {
@@ -699,7 +720,7 @@ public final class b extends g {
         }
     }
 
-    public b(@Nullable b$a b_a) {
-        this.f1324b = b_a;
+    public b(@Nullable a aVar) {
+        this.f1324b = aVar;
     }
 }

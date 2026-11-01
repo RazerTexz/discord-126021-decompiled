@@ -9,12 +9,12 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: WidgetChannelsListAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChannelsListAdapter$ItemInvite$onConfigure$2 extends o implements Function1<View, Unit> {
-    public final /* synthetic */ WidgetChannelsListAdapter$ItemInvite this$0;
+    public final /* synthetic */ WidgetChannelsListAdapter.ItemInvite this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetChannelsListAdapter$ItemInvite$onConfigure$2(WidgetChannelsListAdapter$ItemInvite widgetChannelsListAdapter$ItemInvite) {
+    public WidgetChannelsListAdapter$ItemInvite$onConfigure$2(WidgetChannelsListAdapter.ItemInvite itemInvite) {
         super(1);
-        this.this$0 = widgetChannelsListAdapter$ItemInvite;
+        this.this$0 = itemInvite;
     }
 
     @Override // kotlin.jvm.functions.Function1
@@ -26,6 +26,6 @@ public final class WidgetChannelsListAdapter$ItemInvite$onConfigure$2 extends o 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(View view) {
         m.checkNotNullParameter(view, "it");
-        WidgetChannelsListAdapter$ItemInvite.access$getAdapter$p(this.this$0).getOnSelectInvite().invoke(view);
+        WidgetChannelsListAdapter.ItemInvite.access$getAdapter$p(this.this$0).getOnSelectInvite().invoke(view);
     }
 }

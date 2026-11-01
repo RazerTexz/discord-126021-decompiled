@@ -1,12 +1,16 @@
 package com.discord.widgets.auth;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
+import android.widget.CompoundButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.d.g0;
 import b.a.d.i0;
+import b.a.d.j;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetRemoteAuthBinding;
@@ -17,9 +21,12 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 import rx.Observable;
 
@@ -27,8 +34,10 @@ import rx.Observable;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetRemoteAuth extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetRemoteAuth.class, "binding", "getBinding()Lcom/discord/databinding/WidgetRemoteAuthBinding;", 0)};
-    public static final WidgetRemoteAuth$Companion Companion = new WidgetRemoteAuth$Companion(null);
     private static final String EXTRA_REMOTE_AUTH_FINGERPRINT = "REMOTE_AUTH_FINGERPRINT";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final int VIEW_LOADED = 0;
     private static final int VIEW_LOADING = 2;
     private static final int VIEW_NOT_FOUND = 1;
@@ -40,64 +49,164 @@ public final class WidgetRemoteAuth extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetRemoteAuth$configureUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetRemoteAuth.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetRemoteAuth.this.requireActivity().finish();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetRemoteAuth$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetRemoteAuth.kt */
+    public final class AnonymousClass1 extends o implements Function1<WidgetRemoteAuthViewModel.ViewState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetRemoteAuthViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetRemoteAuthViewModel.ViewState viewState) {
+            WidgetRemoteAuth widgetRemoteAuth = WidgetRemoteAuth.this;
+            m.checkNotNullExpressionValue(viewState, "it");
+            WidgetRemoteAuth.access$configureUI(widgetRemoteAuth, viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetRemoteAuth$configureUI$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetRemoteAuth.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetRemoteAuth.this.requireActivity().finish();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetRemoteAuth$configureUI$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetRemoteAuth.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public AnonymousClass3() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetRemoteAuth.access$getViewModel$p(WidgetRemoteAuth.this).remoteLogin();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetRemoteAuth$configureUI$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetRemoteAuth.kt */
+    public final class AnonymousClass4 implements View.OnClickListener {
+        public AnonymousClass4() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetRemoteAuth.access$getViewModel$p(WidgetRemoteAuth.this).cancelLogin();
+            WidgetRemoteAuth.this.requireActivity().finish();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetRemoteAuth$configureUI$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetRemoteAuth.kt */
+    public final class AnonymousClass5 implements CompoundButton.OnCheckedChangeListener {
+        public AnonymousClass5() {
+        }
+
+        @Override // android.widget.CompoundButton.OnCheckedChangeListener
+        public final void onCheckedChanged(CompoundButton compoundButton, boolean z2) {
+            WidgetRemoteAuth.access$getViewModel$p(WidgetRemoteAuth.this).toggleTemporary(!z2);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetRemoteAuth.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, String fingerprint) {
+            m.checkNotNullParameter(context, "context");
+            m.checkNotNullParameter(fingerprint, "fingerprint");
+            Intent intent = new Intent("android.intent.action.VIEW");
+            intent.putExtra(WidgetRemoteAuth.EXTRA_REMOTE_AUTH_FINGERPRINT, fingerprint);
+            j.d(context, WidgetRemoteAuth.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetRemoteAuth() {
-        super(R$layout.widget_remote_auth);
+        super(R.layout.widget_remote_auth);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetRemoteAuth$binding$2.INSTANCE, null, 2, null);
         WidgetRemoteAuth$viewModel$2 widgetRemoteAuth$viewModel$2 = new WidgetRemoteAuth$viewModel$2(this);
         g0 g0Var = new g0(this);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetRemoteAuthViewModel.class), new WidgetRemoteAuth$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetRemoteAuth$viewModel$2));
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetRemoteAuth widgetRemoteAuth, WidgetRemoteAuthViewModel$ViewState widgetRemoteAuthViewModel$ViewState) {
-        widgetRemoteAuth.configureUI(widgetRemoteAuthViewModel$ViewState);
+    public static final /* synthetic */ void access$configureUI(WidgetRemoteAuth widgetRemoteAuth, WidgetRemoteAuthViewModel.ViewState viewState) {
+        widgetRemoteAuth.configureUI(viewState);
     }
 
     public static final /* synthetic */ WidgetRemoteAuthViewModel access$getViewModel$p(WidgetRemoteAuth widgetRemoteAuth) {
         return widgetRemoteAuth.getViewModel();
     }
 
-    private final void configureUI(WidgetRemoteAuthViewModel$ViewState viewState) {
-        if (m.areEqual(viewState, WidgetRemoteAuthViewModel$ViewState$Loading.INSTANCE)) {
+    private final void configureUI(WidgetRemoteAuthViewModel.ViewState viewState) {
+        if (m.areEqual(viewState, WidgetRemoteAuthViewModel.ViewState.Loading.INSTANCE)) {
             AppViewFlipper appViewFlipper = getBinding().e;
             m.checkNotNullExpressionValue(appViewFlipper, "binding.remoteAuthViewFlipper");
             appViewFlipper.setDisplayedChild(2);
             return;
         }
-        if (m.areEqual(viewState, WidgetRemoteAuthViewModel$ViewState$Failed.INSTANCE)) {
+        if (m.areEqual(viewState, WidgetRemoteAuthViewModel.ViewState.Failed.INSTANCE)) {
             AppViewFlipper appViewFlipper2 = getBinding().e;
             m.checkNotNullExpressionValue(appViewFlipper2, "binding.remoteAuthViewFlipper");
             appViewFlipper2.setDisplayedChild(1);
-            getBinding().c.f219b.setOnClickListener(new WidgetRemoteAuth$configureUI$1(this));
+            getBinding().c.f219b.setOnClickListener(new AnonymousClass1());
             return;
         }
-        if (m.areEqual(viewState, WidgetRemoteAuthViewModel$ViewState$Succeeded.INSTANCE)) {
+        if (m.areEqual(viewState, WidgetRemoteAuthViewModel.ViewState.Succeeded.INSTANCE)) {
             AppViewFlipper appViewFlipper3 = getBinding().e;
             m.checkNotNullExpressionValue(appViewFlipper3, "binding.remoteAuthViewFlipper");
             appViewFlipper3.setDisplayedChild(3);
-            getBinding().f2519b.f231b.setOnClickListener(new WidgetRemoteAuth$configureUI$2(this));
+            getBinding().f2519b.f231b.setOnClickListener(new AnonymousClass2());
             return;
         }
-        if (viewState instanceof WidgetRemoteAuthViewModel$ViewState$Loaded) {
+        if (viewState instanceof WidgetRemoteAuthViewModel.ViewState.Loaded) {
             AppViewFlipper appViewFlipper4 = getBinding().e;
             m.checkNotNullExpressionValue(appViewFlipper4, "binding.remoteAuthViewFlipper");
             appViewFlipper4.setDisplayedChild(0);
-            WidgetRemoteAuthViewModel$ViewState$Loaded widgetRemoteAuthViewModel$ViewState$Loaded = (WidgetRemoteAuthViewModel$ViewState$Loaded) viewState;
-            if (widgetRemoteAuthViewModel$ViewState$Loaded.getLoginAllowed()) {
+            WidgetRemoteAuthViewModel.ViewState.Loaded loaded = (WidgetRemoteAuthViewModel.ViewState.Loaded) viewState;
+            if (loaded.getLoginAllowed()) {
                 MaterialButton materialButton = getBinding().d.c;
                 m.checkNotNullExpressionValue(materialButton, "binding.pendingLogin.remoteAuthLoginButton");
                 materialButton.setEnabled(true);
-                getBinding().d.c.setOnClickListener(new WidgetRemoteAuth$configureUI$3(this));
+                getBinding().d.c.setOnClickListener(new AnonymousClass3());
             } else {
                 MaterialButton materialButton2 = getBinding().d.c;
                 m.checkNotNullExpressionValue(materialButton2, "binding.pendingLogin.remoteAuthLoginButton");
                 materialButton2.setEnabled(false);
             }
-            getBinding().d.f225b.setOnClickListener(new WidgetRemoteAuth$configureUI$4(this));
+            getBinding().d.f225b.setOnClickListener(new AnonymousClass4());
             getBinding().d.d.setOnCheckedChangeListener(null);
             SwitchMaterial switchMaterial = getBinding().d.d;
             m.checkNotNullExpressionValue(switchMaterial, "binding.pendingLogin.remoteAuthTemporarySwitch");
-            switchMaterial.setChecked(!widgetRemoteAuthViewModel$ViewState$Loaded.isTemporary());
-            getBinding().d.d.setOnCheckedChangeListener(new WidgetRemoteAuth$configureUI$5(this));
+            switchMaterial.setChecked(!loaded.isTemporary());
+            getBinding().d.d.setOnCheckedChangeListener(new AnonymousClass5());
         }
     }
 
@@ -113,8 +222,8 @@ public final class WidgetRemoteAuth extends AppFragment {
     public void onViewBound(View view) {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
-        Observable<WidgetRemoteAuthViewModel$ViewState> observableR = getViewModel().observeViewState().r();
+        Observable<WidgetRemoteAuthViewModel.ViewState> observableR = getViewModel().observeViewState().r();
         m.checkNotNullExpressionValue(observableR, "viewModel\n        .obser…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableR, this, null, 2, null), WidgetRemoteAuth.class, getContext(), (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetRemoteAuth$onViewBound$1(this), 60, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableR, this, null, 2, null), WidgetRemoteAuth.class, getContext(), (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 60, (Object) null);
     }
 }

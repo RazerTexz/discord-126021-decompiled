@@ -34,10 +34,10 @@ public final class RouteHandlers$selectFeature$settingMap$12 extends o implement
         String queryParameter = this.$uri.getQueryParameter(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID);
         Long longOrNull = queryParameter != null ? s.toLongOrNull(queryParameter) : null;
         if (longOrNull != null) {
-            ChannelSelector channelSelector$Companion = ChannelSelector.Companion.getInstance();
+            ChannelSelector companion = ChannelSelector.INSTANCE.getInstance();
             FragmentManager supportFragmentManager = fragmentActivity.getSupportFragmentManager();
             m.checkNotNullExpressionValue(supportFragmentManager, "ctx.supportFragmentManager");
-            channelSelector$Companion.previewVoiceChannel(supportFragmentManager, longOrNull.longValue());
+            companion.previewVoiceChannel(supportFragmentManager, longOrNull.longValue());
         }
     }
 }

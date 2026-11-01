@@ -19,6 +19,15 @@ public class c {
     @NonNull
     public final b.i.c.c f1787b;
 
+    /* JADX INFO: compiled from: PersistedInstallation.java */
+    public enum a {
+        ATTEMPT_MIGRATION,
+        NOT_GENERATED,
+        UNREGISTERED,
+        REGISTERED,
+        REGISTER_ERROR
+    }
+
     public c(@NonNull b.i.c.c cVar) {
         cVar.a();
         File filesDir = cVar.d.getFilesDir();
@@ -82,7 +91,7 @@ public class c {
             jSONObject = new JSONObject();
         }
         String strOptString = jSONObject.optString("Fid", null);
-        c$a c_a = c$a.ATTEMPT_MIGRATION;
+        a aVar = a.ATTEMPT_MIGRATION;
         int iOptInt = jSONObject.optInt("Status", 0);
         String strOptString2 = jSONObject.optString("AuthToken", null);
         String strOptString3 = jSONObject.optString("RefreshToken", null);
@@ -90,17 +99,17 @@ public class c {
         long jOptLong2 = jSONObject.optLong("ExpiresInSecs", 0L);
         String strOptString4 = jSONObject.optString("FisError", null);
         int i2 = d.a;
-        a$b a_b = new a$b();
-        a_b.d(0L);
-        a_b.b(c_a);
-        a_b.c(0L);
-        a_b.a = strOptString;
-        a_b.b(c$a.values()[iOptInt]);
-        a_b.c = strOptString2;
-        a_b.d = strOptString3;
-        a_b.d(jOptLong);
-        a_b.c(jOptLong2);
-        a_b.g = strOptString4;
-        return a_b.a();
+        b.i.c.u.o.a.b bVar = new b.i.c.u.o.a.b();
+        bVar.d(0L);
+        bVar.b(aVar);
+        bVar.c(0L);
+        bVar.a = strOptString;
+        bVar.b(a.values()[iOptInt]);
+        bVar.c = strOptString2;
+        bVar.d = strOptString3;
+        bVar.d(jOptLong);
+        bVar.c(jOptLong2);
+        bVar.g = strOptString4;
+        return bVar.a();
     }
 }

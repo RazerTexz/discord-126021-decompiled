@@ -2,11 +2,10 @@ package com.google.android.gms.common.internal;
 
 import android.os.IBinder;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import b.c.a.a0.d;
 import b.i.a.f.e.k.g;
-import b.i.a.f.e.k.g$a;
 import b.i.a.f.e.k.x;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
@@ -21,7 +20,7 @@ public final class zau extends AbstractSafeParcelable {
     public ConnectionResult l;
     public boolean m;
     public boolean n;
-    public static final Parcelable$Creator<zau> CREATOR = new x();
+    public static final Parcelable.Creator<zau> CREATOR = new x();
 
     public zau(int i, @Nullable IBinder iBinder, ConnectionResult connectionResult, boolean z2, boolean z3) {
         this.j = i;
@@ -51,7 +50,7 @@ public final class zau extends AbstractSafeParcelable {
         if (iBinder == null) {
             return null;
         }
-        return g$a.g(iBinder);
+        return g.a.g(iBinder);
     }
 
     @Override // android.os.Parcelable

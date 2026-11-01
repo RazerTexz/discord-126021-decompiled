@@ -4,12 +4,12 @@ import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.guild.GuildMaxVideoChannelUsers;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
-import com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem;
+import com.discord.widgets.channels.list.WidgetChannelListUnreads;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: ChannelListItemVoiceChannel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* data */ class ChannelListItemVoiceChannel implements ChannelListItem, ChannelListVocalItem, WidgetChannelListUnreads$UnreadItem {
+public final /* data */ class ChannelListItemVoiceChannel implements ChannelListItem, ChannelListVocalItem, WidgetChannelListUnreads.UnreadItem {
     private final Channel channel;
     private final GuildMaxVideoChannelUsers guildMaxVideoChannelUsers;
     private final GuildScheduledEvent guildScheduledEvent;
@@ -133,7 +133,7 @@ public final /* data */ class ChannelListItemVoiceChannel implements ChannelList
         return this.isNsfw;
     }
 
-    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem
+    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
     /* JADX INFO: renamed from: isUnread, reason: from getter */
     public boolean getIsUnread() {
         return this.isUnread;
@@ -144,7 +144,7 @@ public final /* data */ class ChannelListItemVoiceChannel implements ChannelList
         return this.key;
     }
 
-    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem
+    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
     public int getMentionCount() {
         return this.mentionCount;
     }

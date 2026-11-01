@@ -8,7 +8,7 @@ import android.opengl.EGLContext;
 import android.opengl.EGLDisplay;
 import android.opengl.EGLExt;
 import android.opengl.EGLSurface;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.view.Surface;
 import androidx.annotation.Nullable;
 import b.d.b.a.a;
@@ -24,8 +24,27 @@ public class EglBase14Impl implements EglBase14 {
     private EGLConfig eglConfig;
     private EGLContext eglContext;
     private EGLDisplay eglDisplay;
-    private static final int CURRENT_SDK_VERSION = Build$VERSION.SDK_INT;
+    private static final int CURRENT_SDK_VERSION = Build.VERSION.SDK_INT;
     private EGLSurface eglSurface = EGL14.EGL_NO_SURFACE;
+
+    public class Context implements EglBase14.Context {
+        private final EGLContext egl14Context;
+
+        public Context(EGLContext eGLContext) {
+            this.egl14Context = eGLContext;
+        }
+
+        @Override // org.webrtc.EglBase.Context
+        @TargetApi(21)
+        public long getNativeEglContext() {
+            return EglBase14Impl.access$000() >= 21 ? this.egl14Context.getNativeHandle() : this.egl14Context.getHandle();
+        }
+
+        @Override // org.webrtc.EglBase14.Context
+        public EGLContext getRawContext() {
+            return this.egl14Context;
+        }
+    }
 
     public EglBase14Impl(EGLContext eGLContext, int[] iArr) {
         EGLDisplay eglDisplay = getEglDisplay();
@@ -122,7 +141,7 @@ public class EglBase14Impl implements EglBase14 {
     }
 
     @Override // org.webrtc.EglBase
-    public /* bridge */ /* synthetic */ EglBase$Context getEglBaseContext() {
+    public /* bridge */ /* synthetic */ EglBase.Context getEglBaseContext() {
         return getEglBaseContext();
     }
 
@@ -245,8 +264,8 @@ public class EglBase14Impl implements EglBase14 {
     }
 
     @Override // org.webrtc.EglBase
-    public EglBase14Impl$Context getEglBaseContext() {
-        return new EglBase14Impl$Context(this.eglContext);
+    public Context getEglBaseContext() {
+        return new Context(this.eglContext);
     }
 
     @Override // org.webrtc.EglBase

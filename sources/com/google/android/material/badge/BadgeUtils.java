@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.appcompat.widget.Toolbar;
+import com.google.android.material.R;
 import com.google.android.material.internal.ParcelableSparseArray;
 import com.google.android.material.internal.ToolbarUtils;
 
@@ -19,6 +20,32 @@ import com.google.android.material.internal.ToolbarUtils;
 public class BadgeUtils {
     private static final String LOG_TAG = "BadgeUtils";
     public static final boolean USE_COMPAT_PARENT = false;
+
+    public final class a implements Runnable {
+        public final /* synthetic */ Toolbar j;
+        public final /* synthetic */ int k;
+        public final /* synthetic */ BadgeDrawable l;
+        public final /* synthetic */ FrameLayout m;
+
+        public a(Toolbar toolbar, int i, BadgeDrawable badgeDrawable, FrameLayout frameLayout) {
+            this.j = toolbar;
+            this.k = i;
+            this.l = badgeDrawable;
+            this.m = frameLayout;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            ActionMenuItemView actionMenuItemView = ToolbarUtils.getActionMenuItemView(this.j, this.k);
+            if (actionMenuItemView != null) {
+                BadgeDrawable badgeDrawable = this.l;
+                badgeDrawable.setHorizontalOffset(this.j.getResources().getDimensionPixelOffset(R.dimen.mtrl_badge_toolbar_action_menu_item_horizontal_offset) + badgeDrawable.getHorizontalOffset());
+                BadgeDrawable badgeDrawable2 = this.l;
+                badgeDrawable2.setVerticalOffset(this.j.getResources().getDimensionPixelOffset(R.dimen.mtrl_badge_toolbar_action_menu_item_vertical_offset) + badgeDrawable2.getVerticalOffset());
+                BadgeUtils.attachBadgeDrawable(this.l, actionMenuItemView, this.m);
+            }
+        }
+    }
 
     private BadgeUtils() {
     }
@@ -32,11 +59,11 @@ public class BadgeUtils {
         SparseArray<BadgeDrawable> sparseArray = new SparseArray<>(parcelableSparseArray.size());
         for (int i = 0; i < parcelableSparseArray.size(); i++) {
             int iKeyAt = parcelableSparseArray.keyAt(i);
-            BadgeDrawable$SavedState badgeDrawable$SavedState = (BadgeDrawable$SavedState) parcelableSparseArray.valueAt(i);
-            if (badgeDrawable$SavedState == null) {
+            BadgeDrawable.SavedState savedState = (BadgeDrawable.SavedState) parcelableSparseArray.valueAt(i);
+            if (savedState == null) {
                 throw new IllegalArgumentException("BadgeDrawable's savedState cannot be null");
             }
-            sparseArray.put(iKeyAt, BadgeDrawable.createFromSavedState(context, badgeDrawable$SavedState));
+            sparseArray.put(iKeyAt, BadgeDrawable.createFromSavedState(context, savedState));
         }
         return sparseArray;
     }
@@ -106,6 +133,6 @@ public class BadgeUtils {
     }
 
     public static void attachBadgeDrawable(@NonNull BadgeDrawable badgeDrawable, @NonNull Toolbar toolbar, @IdRes int i, @Nullable FrameLayout frameLayout) {
-        toolbar.post(new BadgeUtils$a(toolbar, i, badgeDrawable, frameLayout));
+        toolbar.post(new a(toolbar, i, badgeDrawable, frameLayout));
     }
 }

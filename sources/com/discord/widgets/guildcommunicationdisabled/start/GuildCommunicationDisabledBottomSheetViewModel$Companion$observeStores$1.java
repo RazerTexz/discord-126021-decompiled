@@ -6,7 +6,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: GuildCommunicationDisabledBottomSheetViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class GuildCommunicationDisabledBottomSheetViewModel$Companion$observeStores$1 extends o implements Function0<GuildCommunicationDisabledBottomSheetViewModel$StoreState> {
+public final class GuildCommunicationDisabledBottomSheetViewModel$Companion$observeStores$1 extends o implements Function0<GuildCommunicationDisabledBottomSheetViewModel.StoreState> {
     public final /* synthetic */ long $guildId;
     public final /* synthetic */ StoreGuilds $guildStore;
     public final /* synthetic */ long $userId;
@@ -20,13 +20,13 @@ public final class GuildCommunicationDisabledBottomSheetViewModel$Companion$obse
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ GuildCommunicationDisabledBottomSheetViewModel$StoreState invoke() {
+    public /* bridge */ /* synthetic */ GuildCommunicationDisabledBottomSheetViewModel.StoreState invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final GuildCommunicationDisabledBottomSheetViewModel$StoreState invoke() {
-        return new GuildCommunicationDisabledBottomSheetViewModel$StoreState(this.$guildStore.getGuild(this.$guildId), this.$guildStore.getMember(this.$guildId, this.$userId));
+    public final GuildCommunicationDisabledBottomSheetViewModel.StoreState invoke() {
+        return new GuildCommunicationDisabledBottomSheetViewModel.StoreState(this.$guildStore.getGuild(this.$guildId), this.$guildStore.getMember(this.$guildId, this.$userId));
     }
 }

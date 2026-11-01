@@ -13,7 +13,7 @@ import java.util.Objects;
 
 /* JADX INFO: compiled from: RepeaterContent.java */
 /* JADX INFO: loaded from: classes.dex */
-public class p implements e, m, j, b.c.a.w.c.a$b, k {
+public class p implements e, m, j, b.c.a.w.c.a.b, k {
     public final b.c.a.j c;
     public final b.c.a.y.m.b d;
     public final String e;
@@ -48,7 +48,7 @@ public class p implements e, m, j, b.c.a.w.c.a$b, k {
         oVar.b(this);
     }
 
-    @Override // b.c.a.w.c.a$b
+    @Override // b.c.a.w.c.a.b
     public void a() {
         this.c.invalidateSelf();
     }

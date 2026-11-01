@@ -4,13 +4,11 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.view.LiveData;
 import androidx.work.ArrayCreatingInputMerger;
 import androidx.work.ExistingWorkPolicy;
 import androidx.work.Logger;
 import androidx.work.OneTimeWorkRequest;
-import androidx.work.OneTimeWorkRequest$Builder;
 import androidx.work.Operation;
 import androidx.work.WorkContinuation;
 import androidx.work.WorkInfo;
@@ -27,7 +25,7 @@ import java.util.List;
 import java.util.Set;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class WorkContinuationImpl extends WorkContinuation {
     private final List<String> mAllIds;
     private boolean mEnqueued;
@@ -47,7 +45,7 @@ public class WorkContinuationImpl extends WorkContinuation {
     @Override // androidx.work.WorkContinuation
     @NonNull
     public WorkContinuation combineInternal(@NonNull List<WorkContinuation> list) {
-        OneTimeWorkRequest oneTimeWorkRequestBuild = new OneTimeWorkRequest$Builder(CombineContinuationsWorker.class).setInputMerger(ArrayCreatingInputMerger.class).build();
+        OneTimeWorkRequest oneTimeWorkRequestBuild = new OneTimeWorkRequest.Builder(CombineContinuationsWorker.class).setInputMerger(ArrayCreatingInputMerger.class).build();
         ArrayList arrayList = new ArrayList(list.size());
         Iterator<WorkContinuation> it = list.iterator();
         while (it.hasNext()) {
@@ -115,7 +113,7 @@ public class WorkContinuationImpl extends WorkContinuation {
         return this.mWorkManagerImpl;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public boolean hasCycles() {
         return hasCycles(this, new HashSet());
     }
@@ -128,7 +126,7 @@ public class WorkContinuationImpl extends WorkContinuation {
         this.mEnqueued = true;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public static Set<String> prerequisitesFor(WorkContinuationImpl workContinuationImpl) {
         HashSet hashSet = new HashSet();
         List<WorkContinuationImpl> parents = workContinuationImpl.getParents();
@@ -151,7 +149,7 @@ public class WorkContinuationImpl extends WorkContinuation {
         this(workManagerImpl, str, existingWorkPolicy, list, null);
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     private static boolean hasCycles(@NonNull WorkContinuationImpl workContinuationImpl, @NonNull Set<String> set) {
         set.addAll(workContinuationImpl.getIds());
         Set<String> setPrerequisitesFor = prerequisitesFor(workContinuationImpl);

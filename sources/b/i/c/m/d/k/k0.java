@@ -1,12 +1,13 @@
 package b.i.c.m.d.k;
 
 import android.content.Context;
-import android.content.SharedPreferences$Editor;
+import android.content.SharedPreferences;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.Objects;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
@@ -32,6 +33,40 @@ public class k0 {
     public ExecutorService l;
     public i m;
     public b.i.c.m.d.a n;
+
+    /* JADX INFO: compiled from: CrashlyticsCore.java */
+    public class a implements Runnable {
+        public final /* synthetic */ b.i.c.m.d.s.d j;
+
+        public a(b.i.c.m.d.s.d dVar) {
+            this.j = dVar;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            k0.a(k0.this, this.j);
+        }
+    }
+
+    /* JADX INFO: compiled from: CrashlyticsCore.java */
+    public class b implements Callable<Boolean> {
+        public b() {
+        }
+
+        @Override // java.util.concurrent.Callable
+        public Boolean call() throws Exception {
+            try {
+                boolean zDelete = k0.this.e.b().delete();
+                b.i.c.m.d.b.a.b("Initialization marker file removed: " + zDelete);
+                return Boolean.valueOf(zDelete);
+            } catch (Exception e) {
+                if (b.i.c.m.d.b.a.a(6)) {
+                    Log.e("FirebaseCrashlytics", "Problem encountered deleting Crashlytics initialization marker.", e);
+                }
+                return Boolean.FALSE;
+            }
+        }
+    }
 
     public k0(b.i.c.c cVar, v0 v0Var, b.i.c.m.d.a aVar, q0 q0Var, b.i.c.m.d.j.a aVar2, b.i.c.m.d.i.a aVar3, ExecutorService executorService) {
         this.f1689b = cVar;
@@ -83,7 +118,7 @@ public class k0 {
     }
 
     public final void b(b.i.c.m.d.s.d dVar) {
-        Future<?> futureSubmit = this.l.submit(new k0$a(this, dVar));
+        Future<?> futureSubmit = this.l.submit(new a(dVar));
         b.i.c.m.d.b.a.b("Crashlytics detected incomplete initialization on previous app launch. Will initialize synchronously.");
         try {
             futureSubmit.get(4L, TimeUnit.SECONDS);
@@ -103,7 +138,7 @@ public class k0 {
     }
 
     public void c() {
-        this.m.b(new k0$b(this));
+        this.m.b(new b());
     }
 
     public void d(@Nullable Boolean bool) {
@@ -125,13 +160,13 @@ public class k0 {
                 boolA = q0Var.a(cVar.d);
             }
             q0Var.g = boolA;
-            SharedPreferences$Editor sharedPreferences$EditorEdit = q0Var.a.edit();
+            SharedPreferences.Editor editorEdit = q0Var.a.edit();
             if (bool != null) {
-                sharedPreferences$EditorEdit.putBoolean("firebase_crashlytics_collection_enabled", bool.booleanValue());
+                editorEdit.putBoolean("firebase_crashlytics_collection_enabled", bool.booleanValue());
             } else {
-                sharedPreferences$EditorEdit.remove("firebase_crashlytics_collection_enabled");
+                editorEdit.remove("firebase_crashlytics_collection_enabled");
             }
-            sharedPreferences$EditorEdit.commit();
+            editorEdit.commit();
             synchronized (q0Var.c) {
                 if (q0Var.b()) {
                     if (!q0Var.e) {

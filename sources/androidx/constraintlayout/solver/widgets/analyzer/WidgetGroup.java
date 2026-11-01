@@ -3,9 +3,9 @@ package androidx.constraintlayout.solver.widgets.analyzer;
 import androidx.constraintlayout.solver.LinearSystem;
 import androidx.constraintlayout.solver.widgets.Chain;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
-import androidx.constraintlayout.solver.widgets.ConstraintWidget$DimensionBehaviour;
 import androidx.constraintlayout.solver.widgets.ConstraintWidgetContainer;
 import b.d.b.a.a;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -18,8 +18,35 @@ public class WidgetGroup {
     public int orientation;
     public ArrayList<ConstraintWidget> widgets = new ArrayList<>();
     public boolean authoritative = false;
-    public ArrayList<WidgetGroup$MeasureResult> results = null;
+    public ArrayList<MeasureResult> results = null;
     private int moveTo = -1;
+
+    public class MeasureResult {
+        public int baseline;
+        public int bottom;
+        public int left;
+        public int orientation;
+        public int right;
+        public int top;
+        public WeakReference<ConstraintWidget> widgetRef;
+
+        public MeasureResult(ConstraintWidget constraintWidget, LinearSystem linearSystem, int i) {
+            this.widgetRef = new WeakReference<>(constraintWidget);
+            this.left = linearSystem.getObjectVariableValue(constraintWidget.mLeft);
+            this.top = linearSystem.getObjectVariableValue(constraintWidget.mTop);
+            this.right = linearSystem.getObjectVariableValue(constraintWidget.mRight);
+            this.bottom = linearSystem.getObjectVariableValue(constraintWidget.mBottom);
+            this.baseline = linearSystem.getObjectVariableValue(constraintWidget.mBaseline);
+            this.orientation = i;
+        }
+
+        public void apply() {
+            ConstraintWidget constraintWidget = this.widgetRef.get();
+            if (constraintWidget != null) {
+                constraintWidget.setFinalFrame(this.left, this.top, this.right, this.bottom, this.baseline, this.orientation);
+            }
+        }
+    }
 
     public WidgetGroup(int i) {
         this.f33id = -1;
@@ -102,8 +129,8 @@ public class WidgetGroup {
     }
 
     private int measureWrap(int i, ConstraintWidget constraintWidget) {
-        ConstraintWidget$DimensionBehaviour dimensionBehaviour = constraintWidget.getDimensionBehaviour(i);
-        if (dimensionBehaviour == ConstraintWidget$DimensionBehaviour.WRAP_CONTENT || dimensionBehaviour == ConstraintWidget$DimensionBehaviour.MATCH_PARENT || dimensionBehaviour == ConstraintWidget$DimensionBehaviour.FIXED) {
+        ConstraintWidget.DimensionBehaviour dimensionBehaviour = constraintWidget.getDimensionBehaviour(i);
+        if (dimensionBehaviour == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT || dimensionBehaviour == ConstraintWidget.DimensionBehaviour.MATCH_PARENT || dimensionBehaviour == ConstraintWidget.DimensionBehaviour.FIXED) {
             return i == 0 ? constraintWidget.getWidth() : constraintWidget.getHeight();
         }
         return -1;
@@ -155,7 +182,7 @@ public class WidgetGroup {
         }
         this.results = new ArrayList<>();
         for (int i3 = 0; i3 < arrayList.size(); i3++) {
-            this.results.add(new WidgetGroup$MeasureResult(this, arrayList.get(i3), linearSystem, i));
+            this.results.add(new MeasureResult(arrayList.get(i3), linearSystem, i));
         }
         if (i == 0) {
             objectVariableValue = linearSystem.getObjectVariableValue(constraintWidgetContainer.mLeft);

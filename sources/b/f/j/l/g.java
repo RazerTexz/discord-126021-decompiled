@@ -2,52 +2,73 @@ package b.f.j.l;
 
 import android.util.SparseArray;
 import androidx.annotation.VisibleForTesting;
+import java.util.LinkedList;
 
 /* JADX INFO: compiled from: BucketMap.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class g<T> {
 
     @VisibleForTesting
-    public g$b<T> c;
+    public b<T> c;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     @VisibleForTesting
-    public g$b<T> f595b;
-    public final SparseArray<g$b<T>> a = new SparseArray<>();
+    public b<T> f595b;
+    public final SparseArray<b<T>> a = new SparseArray<>();
 
     /* JADX WARN: Multi-variable type inference failed */
-    public final void a(g$b<T> g_b) {
-        if (this.f595b == g_b) {
+    public final void a(b<T> bVar) {
+        if (this.f595b == bVar) {
             return;
         }
-        b(g_b);
-        g$b<T> g_b2 = this.f595b;
-        if (g_b2 == 0) {
-            this.f595b = g_b;
-            this.c = g_b;
+        b(bVar);
+        b<T> bVar2 = this.f595b;
+        if (bVar2 == 0) {
+            this.f595b = bVar;
+            this.c = bVar;
         } else {
-            g_b.d = g_b2;
-            g_b2.a = g_b;
-            this.f595b = g_b;
+            bVar.d = bVar2;
+            bVar2.a = bVar;
+            this.f595b = bVar;
         }
     }
 
-    public final synchronized void b(g$b<T> g_b) {
-        g$b g_b2 = (g$b<T>) g_b.a;
-        g$b g_b3 = (g$b<T>) g_b.d;
-        if (g_b2 != null) {
-            g_b2.d = g_b3;
+    public final synchronized void b(b<T> bVar) {
+        b bVar2 = (b<T>) bVar.a;
+        b bVar3 = (b<T>) bVar.d;
+        if (bVar2 != null) {
+            bVar2.d = bVar3;
         }
-        if (g_b3 != null) {
-            g_b3.a = g_b2;
+        if (bVar3 != null) {
+            bVar3.a = bVar2;
         }
-        g_b.a = null;
-        g_b.d = null;
-        if (g_b == this.f595b) {
-            this.f595b = g_b3;
+        bVar.a = null;
+        bVar.d = null;
+        if (bVar == this.f595b) {
+            this.f595b = bVar3;
         }
-        if (g_b == this.c) {
-            this.c = g_b2;
+        if (bVar == this.c) {
+            this.c = bVar2;
+        }
+    }
+
+    /* JADX INFO: compiled from: BucketMap.java */
+    @VisibleForTesting
+    public class b<I> {
+        public LinkedList<I> c;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public int f596b;
+        public b<I> a = null;
+        public b<I> d = null;
+
+        public b(b bVar, int i, LinkedList linkedList, b bVar2, a aVar) {
+            this.f596b = i;
+            this.c = linkedList;
+        }
+
+        public String toString() {
+            return b.d.b.a.a.B(b.d.b.a.a.U("LinkedEntry(key: "), this.f596b, ")");
         }
     }
 }

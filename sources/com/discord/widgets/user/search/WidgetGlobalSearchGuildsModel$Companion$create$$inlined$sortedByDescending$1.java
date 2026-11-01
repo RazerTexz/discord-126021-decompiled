@@ -10,6 +10,6 @@ public final class WidgetGlobalSearchGuildsModel$Companion$create$$inlined$sorte
     /* JADX WARN: Multi-variable type inference failed */
     @Override // java.util.Comparator
     public final int compare(T t, T t2) {
-        return a.compareValues(Integer.valueOf(((WidgetGlobalSearchGuildsModel$Item) t2).getMentionCount()), Integer.valueOf(((WidgetGlobalSearchGuildsModel$Item) t).getMentionCount()));
+        return a.compareValues(Integer.valueOf(((WidgetGlobalSearchGuildsModel.Item) t2).getMentionCount()), Integer.valueOf(((WidgetGlobalSearchGuildsModel.Item) t).getMentionCount()));
     }
 }

@@ -3,7 +3,7 @@ package lombok.eclipse.handlers;
 import java.util.Arrays;
 import lombok.Cleanup;
 import lombok.ConfigurationKeys;
-import lombok.core.AST$Kind;
+import lombok.core.AST;
 import lombok.core.AnnotationValues;
 import lombok.core.handlers.HandlerUtil;
 import lombok.eclipse.EclipseAnnotationHandler;
@@ -40,7 +40,7 @@ public class HandleCleanup extends EclipseAnnotationHandler<Cleanup> {
             annotationNode.addError("cleanupName cannot be the empty string.");
             return;
         }
-        if (annotationNode.up().getKind() != AST$Kind.LOCAL) {
+        if (annotationNode.up().getKind() != AST.Kind.LOCAL) {
             annotationNode.addError("@Cleanup is legal only on local variable declarations.");
             return;
         }

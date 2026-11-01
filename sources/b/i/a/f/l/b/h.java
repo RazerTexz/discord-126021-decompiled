@@ -1,14 +1,14 @@
 package b.i.a.f.l.b;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.signin.internal.zag;
 import java.util.ArrayList;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class h implements Parcelable$Creator<zag> {
-    @Override // android.os.Parcelable$Creator
+public final class h implements Parcelable.Creator<zag> {
+    @Override // android.os.Parcelable.Creator
     public final zag createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         ArrayList<String> arrayListT = null;
@@ -28,7 +28,7 @@ public final class h implements Parcelable$Creator<zag> {
         return new zag(arrayListT, strR);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zag[] newArray(int i) {
         return new zag[i];
     }

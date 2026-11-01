@@ -1,16 +1,21 @@
 package com.discord.widgets.nux;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
+import b.a.d.j;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetNuxGuildTemplateBinding;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.widgets.guilds.create.CreateGuildTrigger;
 import d0.g;
 import d0.t.o;
 import d0.z.d.m;
@@ -18,13 +23,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.Lazy;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
+import rx.functions.Func0;
 
 /* JADX INFO: compiled from: WidgetGuildTemplates.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public class WidgetGuildTemplates extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGuildTemplates.class, "binding", "getBinding()Lcom/discord/databinding/WidgetNuxGuildTemplateBinding;", 0)};
-    public static final WidgetGuildTemplates$Companion Companion = new WidgetGuildTemplates$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final GuildTemplatesAdapter adapter;
 
     /* JADX INFO: renamed from: args$delegate, reason: from kotlin metadata */
@@ -33,8 +42,70 @@ public class WidgetGuildTemplates extends AppFragment {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.nux.WidgetGuildTemplates$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildTemplates.kt */
+    public final class AnonymousClass1<R> implements Func0<Boolean> {
+        public AnonymousClass1() {
+        }
+
+        @Override // rx.functions.Func0, java.util.concurrent.Callable
+        public /* bridge */ /* synthetic */ Object call() {
+            return call();
+        }
+
+        @Override // rx.functions.Func0, java.util.concurrent.Callable
+        public final Boolean call() {
+            WidgetGuildTemplates.access$trackPostRegistrationSkip(WidgetGuildTemplates.this);
+            return Boolean.FALSE;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.nux.WidgetGuildTemplates$onViewBound$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildTemplates.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public AnonymousClass3() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetGuildTemplates.access$trackPostRegistrationTransition(WidgetGuildTemplates.this, GuildTemplateAnalytics.STEP_GUILD_TEMPLATE, GuildTemplateAnalytics.STEP_GUILD_JOIN);
+            WidgetNuxPostRegistrationJoin.INSTANCE.show(WidgetGuildTemplates.this.requireContext());
+            FragmentActivity activity = WidgetGuildTemplates.this.getActivity();
+            if (activity != null) {
+                activity.finish();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildTemplates.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, CreateGuildTrigger trigger, boolean isNux) {
+            m.checkNotNullParameter(context, "context");
+            m.checkNotNullParameter(trigger, "trigger");
+            String str = isNux ? GuildTemplateAnalytics.STEP_GUILD_TEMPLATE : GuildTemplateAnalytics.IN_APP_LOCATION_TEMPLATE;
+            String string = context.getString(R.string.guild_template_selector_title);
+            m.checkNotNullExpressionValue(string, "context.getString(R.stri…_template_selector_title)");
+            String string2 = context.getString(R.string.guild_template_selector_description);
+            m.checkNotNullExpressionValue(string2, "context.getString(R.stri…ate_selector_description)");
+            launch(context, new GuildCreateArgs(isNux, str, trigger, new GuildTemplateArgs(string, string2, null, false, false, 28, null), false, 16, null));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+
+        public final void launch(Context context, GuildCreateArgs args) {
+            m.checkNotNullParameter(context, "context");
+            m.checkNotNullParameter(args, "args");
+            j.d(context, WidgetGuildTemplates.class, args);
+        }
+    }
+
     public WidgetGuildTemplates() {
-        super(R$layout.widget_nux_guild_template);
+        super(R.layout.widget_nux_guild_template);
         this.args = g.lazy(new WidgetGuildTemplates$$special$$inlined$args$1(this, "intent_args_key"));
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildTemplates$binding$2.INSTANCE, null, 2, null);
         this.adapter = new GuildTemplatesAdapter(new WidgetGuildTemplates$adapter$1(this));
@@ -65,7 +136,7 @@ public class WidgetGuildTemplates extends AppFragment {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         trackPostRegistrationTransition(GuildTemplateAnalytics.STEP_REGISTRATION, GuildTemplateAnalytics.STEP_GUILD_TEMPLATE);
-        AppFragment.setOnBackPressed$default(this, new WidgetGuildTemplates$onViewBound$1(this), 0, 2, null);
+        AppFragment.setOnBackPressed$default(this, new AnonymousClass1(), 0, 2, null);
         RecyclerView recyclerView = getBinding().f;
         m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
         recyclerView.setAdapter(this.adapter);
@@ -80,10 +151,10 @@ public class WidgetGuildTemplates extends AppFragment {
         ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(templates, 10));
         Iterator<T> it = templates.iterator();
         while (it.hasNext()) {
-            arrayList.add(new GuildTemplateViewType$Template((GuildTemplate) it.next()));
+            arrayList.add(new GuildTemplateViewType.Template((GuildTemplate) it.next()));
         }
         guildTemplatesAdapter.setItems(arrayList);
-        getBinding().f2505b.setOnClickListener(new WidgetGuildTemplates$onViewBound$3(this));
+        getBinding().f2505b.setOnClickListener(new AnonymousClass3());
         LinearLayout linearLayout = getBinding().c;
         m.checkNotNullExpressionValue(linearLayout, "binding.nuxGuildTemplateSectionBottom");
         linearLayout.setVisibility(getArgs().getGuildTemplate().getShowInvitePrompt() ? 0 : 8);

@@ -3,34 +3,40 @@ package com.discord.widgets.chat.input.sticker;
 import b.d.b.a.a;
 import com.discord.api.sticker.Sticker;
 import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
-import com.discord.utilities.stickers.StickerUtils$StickerSendability;
+import com.discord.utilities.stickers.StickerUtils;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: StickerAdapterItems.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class StickerItem implements MGRecyclerDataPayload {
     private final String key;
-    private final StickerItem$Mode mode;
-    private final StickerUtils$StickerSendability sendability;
+    private final Mode mode;
+    private final StickerUtils.StickerSendability sendability;
     private final Sticker sticker;
     private final int stickerAnimationSettings;
     private final int type;
 
-    public StickerItem(Sticker sticker, int i, StickerItem$Mode stickerItem$Mode, StickerUtils$StickerSendability stickerUtils$StickerSendability) {
+    /* JADX INFO: compiled from: StickerAdapterItems.kt */
+    public enum Mode {
+        OWNED,
+        STORE
+    }
+
+    public StickerItem(Sticker sticker, int i, Mode mode, StickerUtils.StickerSendability stickerSendability) {
         m.checkNotNullParameter(sticker, "sticker");
-        m.checkNotNullParameter(stickerItem$Mode, "mode");
-        m.checkNotNullParameter(stickerUtils$StickerSendability, "sendability");
+        m.checkNotNullParameter(mode, "mode");
+        m.checkNotNullParameter(stickerSendability, "sendability");
         this.sticker = sticker;
         this.stickerAnimationSettings = i;
-        this.mode = stickerItem$Mode;
-        this.sendability = stickerUtils$StickerSendability;
+        this.mode = mode;
+        this.sendability = stickerSendability;
         this.type = 1;
         StringBuilder sbU = a.U("sticker:");
         sbU.append(sticker.getId());
         this.key = sbU.toString();
     }
 
-    public static /* synthetic */ StickerItem copy$default(StickerItem stickerItem, Sticker sticker, int i, StickerItem$Mode stickerItem$Mode, StickerUtils$StickerSendability stickerUtils$StickerSendability, int i2, Object obj) {
+    public static /* synthetic */ StickerItem copy$default(StickerItem stickerItem, Sticker sticker, int i, Mode mode, StickerUtils.StickerSendability stickerSendability, int i2, Object obj) {
         if ((i2 & 1) != 0) {
             sticker = stickerItem.sticker;
         }
@@ -38,15 +44,15 @@ public final /* data */ class StickerItem implements MGRecyclerDataPayload {
             i = stickerItem.stickerAnimationSettings;
         }
         if ((i2 & 4) != 0) {
-            stickerItem$Mode = stickerItem.mode;
+            mode = stickerItem.mode;
         }
         if ((i2 & 8) != 0) {
-            stickerUtils$StickerSendability = stickerItem.sendability;
+            stickerSendability = stickerItem.sendability;
         }
-        return stickerItem.copy(sticker, i, stickerItem$Mode, stickerUtils$StickerSendability);
+        return stickerItem.copy(sticker, i, mode, stickerSendability);
     }
 
-    public final StickerItem copy(Sticker sticker, int stickerAnimationSettings, StickerItem$Mode mode, StickerUtils$StickerSendability sendability) {
+    public final StickerItem copy(Sticker sticker, int stickerAnimationSettings, Mode mode, StickerUtils.StickerSendability sendability) {
         m.checkNotNullParameter(sticker, "sticker");
         m.checkNotNullParameter(mode, "mode");
         m.checkNotNullParameter(sendability, "sendability");
@@ -70,20 +76,20 @@ public final /* data */ class StickerItem implements MGRecyclerDataPayload {
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
-    public final StickerItem$Mode getMode() {
+    public final Mode getMode() {
         return this.mode;
     }
 
-    public final StickerItem$Mode getMode() {
+    public final Mode getMode() {
         return this.mode;
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
-    public final StickerUtils$StickerSendability getSendability() {
+    public final StickerUtils.StickerSendability getSendability() {
         return this.sendability;
     }
 
-    public final StickerUtils$StickerSendability getSendability() {
+    public final StickerUtils.StickerSendability getSendability() {
         return this.sendability;
     }
 
@@ -113,10 +119,10 @@ public final /* data */ class StickerItem implements MGRecyclerDataPayload {
     public int hashCode() {
         Sticker sticker = this.sticker;
         int iHashCode = (((sticker != null ? sticker.hashCode() : 0) * 31) + this.stickerAnimationSettings) * 31;
-        StickerItem$Mode stickerItem$Mode = this.mode;
-        int iHashCode2 = (iHashCode + (stickerItem$Mode != null ? stickerItem$Mode.hashCode() : 0)) * 31;
-        StickerUtils$StickerSendability stickerUtils$StickerSendability = this.sendability;
-        return iHashCode2 + (stickerUtils$StickerSendability != null ? stickerUtils$StickerSendability.hashCode() : 0);
+        Mode mode = this.mode;
+        int iHashCode2 = (iHashCode + (mode != null ? mode.hashCode() : 0)) * 31;
+        StickerUtils.StickerSendability stickerSendability = this.sendability;
+        return iHashCode2 + (stickerSendability != null ? stickerSendability.hashCode() : 0);
     }
 
     public String toString() {

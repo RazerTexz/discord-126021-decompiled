@@ -535,10 +535,10 @@ public final class d extends c {
         throw null;
     }
 
-    public final int J(String str, c$a c_a) {
-        int length = c_a.a.length;
+    public final int J(String str, c.a aVar) {
+        int length = aVar.a.length;
         for (int i = 0; i < length; i++) {
-            if (str.equals(c_a.a[i])) {
+            if (str.equals(aVar.a[i])) {
                 this.v = 0;
                 this.m[this.k - 1] = str;
                 return i;
@@ -1042,47 +1042,47 @@ public final class d extends c {
     }
 
     @Override // b.c.a.a0.i0.c
-    public c$b u() throws IOException {
+    public c.b u() throws IOException {
         int I = this.v;
         if (I == 0) {
             I = I();
         }
         switch (I) {
             case 1:
-                return c$b.BEGIN_OBJECT;
+                return c.b.BEGIN_OBJECT;
             case 2:
-                return c$b.END_OBJECT;
+                return c.b.END_OBJECT;
             case 3:
-                return c$b.BEGIN_ARRAY;
+                return c.b.BEGIN_ARRAY;
             case 4:
-                return c$b.END_ARRAY;
+                return c.b.END_ARRAY;
             case 5:
             case 6:
-                return c$b.BOOLEAN;
+                return c.b.BOOLEAN;
             case 7:
-                return c$b.NULL;
+                return c.b.NULL;
             case 8:
             case 9:
             case 10:
             case 11:
-                return c$b.STRING;
+                return c.b.STRING;
             case 12:
             case 13:
             case 14:
             case 15:
-                return c$b.NAME;
+                return c.b.NAME;
             case 16:
             case 17:
-                return c$b.NUMBER;
+                return c.b.NUMBER;
             case 18:
-                return c$b.END_DOCUMENT;
+                return c.b.END_DOCUMENT;
             default:
                 throw new AssertionError();
         }
     }
 
     @Override // b.c.a.a0.i0.c
-    public int y(c$a c_a) throws IOException {
+    public int y(c.a aVar) throws IOException {
         int I = this.v;
         if (I == 0) {
             I = I();
@@ -1091,17 +1091,17 @@ public final class d extends c {
             return -1;
         }
         if (I == 15) {
-            return J(this.f337y, c_a);
+            return J(this.f337y, aVar);
         }
-        int iV0 = this.t.v0(c_a.f333b);
+        int iV0 = this.t.v0(aVar.f333b);
         if (iV0 != -1) {
             this.v = 0;
-            this.m[this.k - 1] = c_a.a[iV0];
+            this.m[this.k - 1] = aVar.a[iV0];
             return iV0;
         }
         String str = this.m[this.k - 1];
         String strS = s();
-        int iJ = J(strS, c_a);
+        int iJ = J(strS, aVar);
         if (iJ == -1) {
             this.v = 15;
             this.f337y = strS;

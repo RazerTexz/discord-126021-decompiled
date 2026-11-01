@@ -16,9 +16,7 @@ import java.util.Arrays;
 public class CursorLoader extends AsyncTaskLoader<Cursor> {
     public CancellationSignal mCancellationSignal;
     public Cursor mCursor;
-
-    /* JADX WARN: Incorrect inner types in field signature: Landroidx/loader/content/Loader<Landroid/database/Cursor;>.ForceLoadContentObserver; */
-    public final Loader$ForceLoadContentObserver mObserver;
+    public final Loader<Cursor>.ForceLoadContentObserver mObserver;
     public String[] mProjection;
     public String mSelection;
     public String[] mSelectionArgs;
@@ -27,7 +25,7 @@ public class CursorLoader extends AsyncTaskLoader<Cursor> {
 
     public CursorLoader(@NonNull Context context) {
         super(context);
-        this.mObserver = new Loader$ForceLoadContentObserver(this);
+        this.mObserver = new Loader.ForceLoadContentObserver();
     }
 
     @Override // androidx.loader.content.AsyncTaskLoader
@@ -216,7 +214,7 @@ public class CursorLoader extends AsyncTaskLoader<Cursor> {
 
     public CursorLoader(@NonNull Context context, @NonNull Uri uri, @Nullable String[] strArr, @Nullable String str, @Nullable String[] strArr2, @Nullable String str2) {
         super(context);
-        this.mObserver = new Loader$ForceLoadContentObserver(this);
+        this.mObserver = new Loader.ForceLoadContentObserver();
         this.mUri = uri;
         this.mProjection = strArr;
         this.mSelection = str;

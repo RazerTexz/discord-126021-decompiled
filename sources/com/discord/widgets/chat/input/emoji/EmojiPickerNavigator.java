@@ -25,6 +25,6 @@ public final class EmojiPickerNavigator {
     public static final void launchBottomSheet(FragmentManager fragmentManager, EmojiPickerListener emojiPickerListener, EmojiPickerContextType emojiPickerContextType, Function0<Unit> onCancel) {
         m.checkNotNullParameter(fragmentManager, "fragmentManager");
         m.checkNotNullParameter(emojiPickerContextType, "emojiPickerContextType");
-        WidgetEmojiPickerSheet.Companion.show(fragmentManager, emojiPickerListener, emojiPickerContextType, onCancel);
+        WidgetEmojiPickerSheet.INSTANCE.show(fragmentManager, emojiPickerListener, emojiPickerContextType, onCancel);
     }
 }

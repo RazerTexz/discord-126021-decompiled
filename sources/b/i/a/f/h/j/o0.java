@@ -3,7 +3,6 @@ package b.i.a.f.h.j;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
-import android.os.Build$VERSION;
 import android.text.TextUtils;
 import android.util.Log;
 import com.adjust.sdk.Constants;
@@ -21,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map$Entry;
+import java.util.Map;
 import java.util.Objects;
 import java.util.zip.GZIPOutputStream;
 
@@ -36,7 +35,7 @@ public final class o0 extends e {
         String string;
         super(gVar);
         String str = f.a;
-        String str2 = Build$VERSION.RELEASE;
+        String str2 = Build.VERSION.RELEASE;
         Locale locale = Locale.getDefault();
         if (locale == null) {
             string = null;
@@ -152,10 +151,10 @@ public final class o0 extends e {
         long j;
         StringBuilder sb = new StringBuilder();
         try {
-            for (Map$Entry<String, String> map$Entry : j0Var.a.entrySet()) {
-                String key = map$Entry.getKey();
+            for (Map.Entry<String, String> entry : j0Var.a.entrySet()) {
+                String key = entry.getKey();
                 if (!"ht".equals(key) && !"qt".equals(key) && !"AppUID".equals(key) && !"z".equals(key) && !"_gmsv".equals(key)) {
-                    S(sb, key, map$Entry.getValue());
+                    S(sb, key, entry.getValue());
                 }
             }
             S(sb, "ht", String.valueOf(j0Var.d));

@@ -3,7 +3,7 @@ package com.discord.widgets.settings.connections;
 import android.view.View;
 import android.widget.LinearLayout;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetConnectionsAddXboxBinding;
 import com.discord.utilities.dimmer.DimmerView;
 import com.discord.views.CodeVerificationView;
@@ -28,14 +28,14 @@ public final /* synthetic */ class WidgetSettingsUserConnectionsAddXbox$binding$
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetConnectionsAddXboxBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.connections_xbox_code;
-        CodeVerificationView codeVerificationView = (CodeVerificationView) view.findViewById(R$id.connections_xbox_code);
+        int i = R.id.connections_xbox_code;
+        CodeVerificationView codeVerificationView = (CodeVerificationView) view.findViewById(R.id.connections_xbox_code);
         if (codeVerificationView != null) {
-            i = R$id.connections_xbox_login;
-            LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.connections_xbox_login);
+            i = R.id.connections_xbox_login;
+            LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.connections_xbox_login);
             if (linearLayout != null) {
-                i = 2131363051;
-                DimmerView dimmerView = (DimmerView) view.findViewById(2131363051);
+                i = R.id.dimmer_view;
+                DimmerView dimmerView = (DimmerView) view.findViewById(R.id.dimmer_view);
                 if (dimmerView != null) {
                     return new WidgetConnectionsAddXboxBinding((CoordinatorLayout) view, codeVerificationView, linearLayout, dimmerView);
                 }

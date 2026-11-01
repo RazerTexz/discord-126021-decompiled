@@ -8,7 +8,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: AnalyticsUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class AnalyticsUtils$Tracker$Companion$instance$2 extends o implements Function0<AnalyticsUtils$Tracker> {
+public final class AnalyticsUtils$Tracker$Companion$instance$2 extends o implements Function0<AnalyticsUtils.Tracker> {
     public static final AnalyticsUtils$Tracker$Companion$instance$2 INSTANCE = new AnalyticsUtils$Tracker$Companion$instance$2();
 
     public AnalyticsUtils$Tracker$Companion$instance$2() {
@@ -16,13 +16,13 @@ public final class AnalyticsUtils$Tracker$Companion$instance$2 extends o impleme
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ AnalyticsUtils$Tracker invoke() {
+    public /* bridge */ /* synthetic */ AnalyticsUtils.Tracker invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final AnalyticsUtils$Tracker invoke() {
-        return new AnalyticsUtils$Tracker(ClockFactory.get(), RestAPI.Companion.getApi(), new ConcurrentLinkedQueue());
+    public final AnalyticsUtils.Tracker invoke() {
+        return new AnalyticsUtils.Tracker(ClockFactory.get(), RestAPI.INSTANCE.getApi(), new ConcurrentLinkedQueue());
     }
 }

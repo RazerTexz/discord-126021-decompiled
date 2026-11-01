@@ -21,16 +21,54 @@ public class g {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final ConcurrentHashMap<String, WeakReference<g>> f1952b = new ConcurrentHashMap<>(4);
 
+    /* JADX INFO: compiled from: WorkerHandler.java */
+    public class a extends HandlerThread {
+        public a(g gVar, String str) {
+            super(str);
+        }
+
+        @Override // java.lang.Thread
+        @NonNull
+        public String toString() {
+            return super.toString() + "[" + getThreadId() + "]";
+        }
+    }
+
+    /* JADX INFO: compiled from: WorkerHandler.java */
+    public class b implements Executor {
+        public b() {
+        }
+
+        @Override // java.util.concurrent.Executor
+        public void execute(@NonNull Runnable runnable) {
+            g.this.c(runnable);
+        }
+    }
+
+    /* JADX INFO: compiled from: WorkerHandler.java */
+    public class c implements Runnable {
+        public final /* synthetic */ CountDownLatch j;
+
+        public c(g gVar, CountDownLatch countDownLatch) {
+            this.j = countDownLatch;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            this.j.countDown();
+        }
+    }
+
     public g(@NonNull String str) {
         this.d = str;
-        g$a g_a = new g$a(this, str);
-        this.e = g_a;
-        g_a.setDaemon(true);
+        a aVar = new a(this, str);
+        this.e = aVar;
+        aVar.setDaemon(true);
         this.e.start();
         this.f = new Handler(this.e.getLooper());
-        this.g = new g$b(this);
+        this.g = new b();
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        this.f.post(new g$c(this, countDownLatch));
+        this.f.post(new c(this, countDownLatch));
         try {
             countDownLatch.await();
         } catch (InterruptedException unused) {

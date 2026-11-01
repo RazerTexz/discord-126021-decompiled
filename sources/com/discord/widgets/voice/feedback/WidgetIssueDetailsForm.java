@@ -1,15 +1,18 @@
 package com.discord.widgets.voice.feedback;
 
 import android.content.Context;
+import android.content.Intent;
+import android.text.Editable;
 import android.view.View;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.d.f;
 import b.a.d.g0;
 import b.a.d.i0;
+import b.a.d.j;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppActivity;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetIssueDetailsFormBinding;
@@ -22,11 +25,14 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.io.Serializable;
 import java.util.Objects;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: WidgetIssueDetailsForm.kt */
@@ -35,7 +41,9 @@ public final class WidgetIssueDetailsForm extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetIssueDetailsForm.class, "binding", "getBinding()Lcom/discord/databinding/WidgetIssueDetailsFormBinding;", 0)};
     public static final String ARG_PENDING_VOICE_FEEDBACK = "ARG_PENDING_VOICE_FEEDBACK";
     public static final String ARG_SHOW_CX_PROMPT = "ARG_SHOW_CX_PROMPT";
-    public static final WidgetIssueDetailsForm$Companion Companion = new WidgetIssueDetailsForm$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -43,8 +51,83 @@ public final class WidgetIssueDetailsForm extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.voice.feedback.WidgetIssueDetailsForm$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetIssueDetailsForm.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            TextInputLayout textInputLayout = WidgetIssueDetailsForm.access$getBinding$p(WidgetIssueDetailsForm.this).c;
+            m.checkNotNullExpressionValue(textInputLayout, "binding.issueDetailsInput");
+            WidgetIssueDetailsForm.access$getViewModel$p(WidgetIssueDetailsForm.this).submitForm(ViewExtensions.getTextOrEmpty(textInputLayout));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.feedback.WidgetIssueDetailsForm$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetIssueDetailsForm.kt */
+    public final class AnonymousClass1 extends o implements Function1<IssueDetailsFormViewModel.Event, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(IssueDetailsFormViewModel.Event event) {
+            invoke2(event);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(IssueDetailsFormViewModel.Event event) {
+            m.checkNotNullParameter(event, "event");
+            WidgetIssueDetailsForm.access$handleEvent(WidgetIssueDetailsForm.this, event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.feedback.WidgetIssueDetailsForm$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetIssueDetailsForm.kt */
+    public final class AnonymousClass2 extends o implements Function1<Editable, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            m.checkNotNullParameter(editable, "editable");
+            MaterialButton materialButton = WidgetIssueDetailsForm.access$getBinding$p(WidgetIssueDetailsForm.this).d;
+            m.checkNotNullExpressionValue(materialButton, "binding.issueDetailsSubmitButton");
+            materialButton.setEnabled(editable.length() > 0);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetIssueDetailsForm.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context, PendingFeedback pendingFeedback, boolean showCxPrompt) {
+            m.checkNotNullParameter(context, "context");
+            m.checkNotNullParameter(pendingFeedback, "pendingFeedback");
+            Intent intent = new Intent();
+            intent.putExtra(WidgetIssueDetailsForm.ARG_PENDING_VOICE_FEEDBACK, pendingFeedback);
+            intent.putExtra(WidgetIssueDetailsForm.ARG_SHOW_CX_PROMPT, showCxPrompt);
+            j.d(context, WidgetIssueDetailsForm.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetIssueDetailsForm() {
-        super(R$layout.widget_issue_details_form);
+        super(R.layout.widget_issue_details_form);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetIssueDetailsForm$binding$2.INSTANCE, null, 2, null);
         WidgetIssueDetailsForm$viewModel$2 widgetIssueDetailsForm$viewModel$2 = new WidgetIssueDetailsForm$viewModel$2(this);
         g0 g0Var = new g0(this);
@@ -63,8 +146,8 @@ public final class WidgetIssueDetailsForm extends AppFragment {
         return widgetIssueDetailsForm.getViewModel();
     }
 
-    public static final /* synthetic */ void access$handleEvent(WidgetIssueDetailsForm widgetIssueDetailsForm, IssueDetailsFormViewModel$Event issueDetailsFormViewModel$Event) {
-        widgetIssueDetailsForm.handleEvent(issueDetailsFormViewModel$Event);
+    public static final /* synthetic */ void access$handleEvent(WidgetIssueDetailsForm widgetIssueDetailsForm, IssueDetailsFormViewModel.Event event) {
+        widgetIssueDetailsForm.handleEvent(event);
     }
 
     private final WidgetIssueDetailsFormBinding getBinding() {
@@ -81,9 +164,9 @@ public final class WidgetIssueDetailsForm extends AppFragment {
         return (IssueDetailsFormViewModel) this.viewModel.getValue();
     }
 
-    private final void handleEvent(IssueDetailsFormViewModel$Event event) {
-        if (m.areEqual(event, IssueDetailsFormViewModel$Event$Close.INSTANCE)) {
-            b.a.d.m.i(this, 2131887364, 0, 4);
+    private final void handleEvent(IssueDetailsFormViewModel.Event event) {
+        if (m.areEqual(event, IssueDetailsFormViewModel.Event.Close.INSTANCE)) {
+            b.a.d.m.i(this, R.string.call_feedback_confirmation, 0, 4);
             AppActivity appActivity = getAppActivity();
             if (appActivity != null) {
                 appActivity.hideKeyboard(getBinding().c);
@@ -96,14 +179,14 @@ public final class WidgetIssueDetailsForm extends AppFragment {
     public void onViewBound(View view) {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
-        setActionBarTitle(2131889018);
+        setActionBarTitle(R.string.feedback_modal_title);
         MaterialButton materialButton = getBinding().d;
         m.checkNotNullExpressionValue(materialButton, "binding.issueDetailsSubmitButton");
         materialButton.setEnabled(false);
-        getBinding().d.setOnClickListener(new WidgetIssueDetailsForm$onViewBound$1(this));
+        getBinding().d.setOnClickListener(new AnonymousClass1());
         TextInputLayout textInputLayout = getBinding().c;
         m.checkNotNullExpressionValue(textInputLayout, "binding.issueDetailsInput");
-        ViewExtensions.addBindedTextWatcher(textInputLayout, this, new WidgetIssueDetailsForm$onViewBound$2(this));
+        ViewExtensions.addBindedTextWatcher(textInputLayout, this, new AnonymousClass2());
         TextInputLayout textInputLayout2 = getBinding().c;
         m.checkNotNullExpressionValue(textInputLayout2, "binding.issueDetailsInput");
         showKeyboard(textInputLayout2);
@@ -112,13 +195,13 @@ public final class WidgetIssueDetailsForm extends AppFragment {
         linkifiedTextView.setVisibility(shouldShowCxPrompt() ? 0 : 8);
         LinkifiedTextView linkifiedTextView2 = getBinding().f2480b;
         m.checkNotNullExpressionValue(linkifiedTextView2, "binding.issueDetailsCxPrompt");
-        b.n(linkifiedTextView2, 2131889019, new Object[]{f.c()}, null, 4);
+        b.n(linkifiedTextView2, R.string.feedback_need_more_help, new Object[]{f.c()}, null, 4);
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetIssueDetailsForm.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetIssueDetailsForm$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetIssueDetailsForm.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
     private final boolean shouldShowCxPrompt() {

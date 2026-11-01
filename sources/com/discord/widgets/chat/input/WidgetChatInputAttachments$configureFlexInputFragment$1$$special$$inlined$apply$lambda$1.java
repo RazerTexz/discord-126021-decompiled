@@ -7,10 +7,10 @@ import d0.z.d.m;
 /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChatInputAttachments$configureFlexInputFragment$1$$special$$inlined$apply$lambda$1 implements a {
-    public final /* synthetic */ WidgetChatInputAttachments$configureFlexInputFragment$1 this$0;
+    public final /* synthetic */ WidgetChatInputAttachments.AnonymousClass1 this$0;
 
-    public WidgetChatInputAttachments$configureFlexInputFragment$1$$special$$inlined$apply$lambda$1(WidgetChatInputAttachments$configureFlexInputFragment$1 widgetChatInputAttachments$configureFlexInputFragment$1) {
-        this.this$0 = widgetChatInputAttachments$configureFlexInputFragment$1;
+    public WidgetChatInputAttachments$configureFlexInputFragment$1$$special$$inlined$apply$lambda$1(WidgetChatInputAttachments.AnonymousClass1 anonymousClass1) {
+        this.this$0 = anonymousClass1;
     }
 
     @Override // b.b.a.f.a
@@ -21,7 +21,7 @@ public final class WidgetChatInputAttachments$configureFlexInputFragment$1$$spec
 
     @Override // b.b.a.f.a
     public void requestHide() {
-        WidgetChatInputAttachments$configureFlexInputFragment$1 widgetChatInputAttachments$configureFlexInputFragment$1 = this.this$0;
-        widgetChatInputAttachments$configureFlexInputFragment$1.$fragment.hideKeyboard(WidgetChatInputAttachments.access$getFlexInputFragment$p(widgetChatInputAttachments$configureFlexInputFragment$1.this$0).l());
+        WidgetChatInputAttachments.AnonymousClass1 anonymousClass1 = this.this$0;
+        anonymousClass1.$fragment.hideKeyboard(WidgetChatInputAttachments.access$getFlexInputFragment$p(WidgetChatInputAttachments.this).l());
     }
 }

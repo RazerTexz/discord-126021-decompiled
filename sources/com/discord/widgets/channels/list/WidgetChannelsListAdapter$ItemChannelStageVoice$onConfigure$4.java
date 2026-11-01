@@ -11,12 +11,12 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChannelsListAdapter$ItemChannelStageVoice$onConfigure$4 extends o implements Function1<View, Unit> {
     public final /* synthetic */ Channel $channel;
-    public final /* synthetic */ WidgetChannelsListAdapter$ItemChannelStageVoice this$0;
+    public final /* synthetic */ WidgetChannelsListAdapter.ItemChannelStageVoice this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetChannelsListAdapter$ItemChannelStageVoice$onConfigure$4(WidgetChannelsListAdapter$ItemChannelStageVoice widgetChannelsListAdapter$ItemChannelStageVoice, Channel channel) {
+    public WidgetChannelsListAdapter$ItemChannelStageVoice$onConfigure$4(WidgetChannelsListAdapter.ItemChannelStageVoice itemChannelStageVoice, Channel channel) {
         super(1);
-        this.this$0 = widgetChannelsListAdapter$ItemChannelStageVoice;
+        this.this$0 = itemChannelStageVoice;
         this.$channel = channel;
     }
 
@@ -29,6 +29,6 @@ public final class WidgetChannelsListAdapter$ItemChannelStageVoice$onConfigure$4
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(View view) {
         m.checkNotNullParameter(view, "it");
-        WidgetChannelsListAdapter$ItemChannelStageVoice.access$getAdapter$p(this.this$0).getOnSelectChannelOptions().invoke(this.$channel);
+        WidgetChannelsListAdapter.ItemChannelStageVoice.access$getAdapter$p(this.this$0).getOnSelectChannelOptions().invoke(this.$channel);
     }
 }

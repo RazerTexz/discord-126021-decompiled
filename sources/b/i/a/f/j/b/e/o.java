@@ -2,7 +2,6 @@ package b.i.a.f.j.b.e;
 
 import android.os.IBinder;
 import android.os.RemoteException;
-import b.i.a.f.e.h.j.k$a;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.nearby.messages.internal.zzcb;
 import java.util.Objects;
@@ -27,7 +26,7 @@ public final /* synthetic */ class o implements a0 {
         zzcb zzcbVar = new zzcb(1, jVar, fVar.A.b(kVar2.c), false, null, null);
         zzcbVar.m = false;
         ((u0) fVar.w()).s(zzcbVar);
-        b.i.a.f.h.m.o<k$a, IBinder> oVar = fVar.A;
+        b.i.a.f.h.m.o<b.i.a.f.e.h.j.k.a, IBinder> oVar = fVar.A;
         oVar.a.remove(kVar2.c);
     }
 }

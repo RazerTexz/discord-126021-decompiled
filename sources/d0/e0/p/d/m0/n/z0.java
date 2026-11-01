@@ -1,15 +1,45 @@
 package d0.e0.p.d.m0.n;
 
 import com.discord.models.domain.ModelAuditLogEntry;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: TypeSubstitution.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class z0 {
     public static final z0 a;
 
+    /* JADX INFO: compiled from: TypeSubstitution.kt */
+    public final class a extends z0 {
+        @Override // d0.e0.p.d.m0.n.z0
+        public /* bridge */ /* synthetic */ w0 get(c0 c0Var) {
+            return (w0) m96get(c0Var);
+        }
+
+        @Override // d0.e0.p.d.m0.n.z0
+        public boolean isEmpty() {
+            return true;
+        }
+
+        /* JADX INFO: renamed from: get, reason: collision with other method in class */
+        public Void m96get(c0 c0Var) {
+            d0.z.d.m.checkNotNullParameter(c0Var, "key");
+            return null;
+        }
+
+        public String toString() {
+            return "Empty TypeSubstitution";
+        }
+    }
+
+    /* JADX INFO: compiled from: TypeSubstitution.kt */
+    public final class b {
+        public b(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     static {
-        new z0$b(null);
-        a = new z0$a();
+        new b(null);
+        a = new a();
     }
 
     public boolean approximateCapturedTypes() {

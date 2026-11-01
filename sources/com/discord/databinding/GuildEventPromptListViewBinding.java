@@ -7,8 +7,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.widgets.guildscheduledevent.GuildEventPromptView;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -36,18 +35,18 @@ public final class GuildEventPromptListViewBinding implements ViewBinding {
 
     @NonNull
     public static GuildEventPromptListViewBinding a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
-        View viewInflate = layoutInflater.inflate(R$layout.guild_event_prompt_list_view, viewGroup, false);
+        View viewInflate = layoutInflater.inflate(R.layout.guild_event_prompt_list_view, viewGroup, false);
         if (z2) {
             viewGroup.addView(viewInflate);
         }
-        int i = R$id.create_event_button;
-        GuildEventPromptView guildEventPromptView = (GuildEventPromptView) viewInflate.findViewById(R$id.create_event_button);
+        int i = R.id.create_event_button;
+        GuildEventPromptView guildEventPromptView = (GuildEventPromptView) viewInflate.findViewById(R.id.create_event_button);
         if (guildEventPromptView != null) {
-            i = R$id.start_event_button;
-            GuildEventPromptView guildEventPromptView2 = (GuildEventPromptView) viewInflate.findViewById(R$id.start_event_button);
+            i = R.id.start_event_button;
+            GuildEventPromptView guildEventPromptView2 = (GuildEventPromptView) viewInflate.findViewById(R.id.start_event_button);
             if (guildEventPromptView2 != null) {
-                i = R$id.start_stage_button;
-                GuildEventPromptView guildEventPromptView3 = (GuildEventPromptView) viewInflate.findViewById(R$id.start_stage_button);
+                i = R.id.start_stage_button;
+                GuildEventPromptView guildEventPromptView3 = (GuildEventPromptView) viewInflate.findViewById(R.id.start_stage_button);
                 if (guildEventPromptView3 != null) {
                     return new GuildEventPromptListViewBinding((LinearLayout) viewInflate, guildEventPromptView, guildEventPromptView2, guildEventPromptView3);
                 }

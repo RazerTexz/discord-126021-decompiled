@@ -17,36 +17,71 @@ public final class WidgetGlobalSearchScoreStrategy {
     private static final int MENTIONS_MATCH_SCORE = 100;
     public static final WidgetGlobalSearchScoreStrategy INSTANCE = new WidgetGlobalSearchScoreStrategy();
 
+    /* JADX INFO: compiled from: WidgetGlobalSearchScoreStrategy.kt */
+    public enum SearchType {
+        USER(10, 5),
+        NONE(1, 1);
+
+        private final int dmChannelWeight;
+        private final int friendWeight;
+
+        SearchType(int i, int i2) {
+            this.friendWeight = i;
+            this.dmChannelWeight = i2;
+        }
+
+        public final int getDmChannelWeight() {
+            return this.dmChannelWeight;
+        }
+
+        public final int getFriendWeight() {
+            return this.friendWeight;
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            ClientStatus.values();
+            int[] iArr = new int[5];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[ClientStatus.ONLINE.ordinal()] = 1;
+            iArr[ClientStatus.IDLE.ordinal()] = 2;
+            iArr[ClientStatus.DND.ordinal()] = 3;
+        }
+    }
+
     private WidgetGlobalSearchScoreStrategy() {
     }
 
     /* JADX WARN: Code duplicated, block: B:15:0x003a  */
-    public final int score(WidgetGlobalSearchModel$ItemDataPayload widgetGlobalSearchModel$ItemDataPayload, int i, Collection<Long> collection) {
+    public final int score(WidgetGlobalSearchModel.ItemDataPayload itemDataPayload, int i, Collection<Long> collection) {
         int iScoreChannel;
-        m.checkNotNullParameter(widgetGlobalSearchModel$ItemDataPayload, "$this$score");
+        m.checkNotNullParameter(itemDataPayload, "$this$score");
         m.checkNotNullParameter(collection, "frecencyChannels");
-        Channel channel = widgetGlobalSearchModel$ItemDataPayload.getChannel();
+        Channel channel = itemDataPayload.getChannel();
         int iScoreFrecency = scoreFrecency(collection, channel != null ? channel.getId() : 0L);
-        if (!(widgetGlobalSearchModel$ItemDataPayload instanceof WidgetGlobalSearchModel$ItemUser)) {
-            if (widgetGlobalSearchModel$ItemDataPayload instanceof WidgetGlobalSearchModel$ItemChannel) {
-                iScoreChannel = scoreChannel((WidgetGlobalSearchModel$ItemChannel) widgetGlobalSearchModel$ItemDataPayload);
+        if (!(itemDataPayload instanceof WidgetGlobalSearchModel.ItemUser)) {
+            if (itemDataPayload instanceof WidgetGlobalSearchModel.ItemChannel) {
+                iScoreChannel = scoreChannel((WidgetGlobalSearchModel.ItemChannel) itemDataPayload);
             }
-            if (widgetGlobalSearchModel$ItemDataPayload.getMentions() > 0) {
-                iScoreFrecency += widgetGlobalSearchModel$ItemDataPayload.getMentions() + 100;
+            if (itemDataPayload.getMentions() > 0) {
+                iScoreFrecency += itemDataPayload.getMentions() + 100;
             }
-            return scoreMatchedResult(widgetGlobalSearchModel$ItemDataPayload.getMatchedResult()) + iScoreFrecency;
+            return scoreMatchedResult(itemDataPayload.getMatchedResult()) + iScoreFrecency;
         }
-        iScoreChannel = scoreUser((WidgetGlobalSearchModel$ItemUser) widgetGlobalSearchModel$ItemDataPayload, i);
+        iScoreChannel = scoreUser((WidgetGlobalSearchModel.ItemUser) itemDataPayload, i);
         iScoreFrecency += iScoreChannel;
-        if (widgetGlobalSearchModel$ItemDataPayload.getMentions() > 0) {
-            iScoreFrecency += widgetGlobalSearchModel$ItemDataPayload.getMentions() + 100;
+        if (itemDataPayload.getMentions() > 0) {
+            iScoreFrecency += itemDataPayload.getMentions() + 100;
         }
-        return scoreMatchedResult(widgetGlobalSearchModel$ItemDataPayload.getMatchedResult()) + iScoreFrecency;
+        return scoreMatchedResult(itemDataPayload.getMatchedResult()) + iScoreFrecency;
     }
 
-    public final int scoreChannel(WidgetGlobalSearchModel$ItemChannel widgetGlobalSearchModel$ItemChannel) {
-        m.checkNotNullParameter(widgetGlobalSearchModel$ItemChannel, "$this$scoreChannel");
-        Guild guild = widgetGlobalSearchModel$ItemChannel.getGuild();
+    public final int scoreChannel(WidgetGlobalSearchModel.ItemChannel itemChannel) {
+        m.checkNotNullParameter(itemChannel, "$this$scoreChannel");
+        Guild guild = itemChannel.getGuild();
         return (guild != null ? guild.getMemberCount() : 0) > 200 ? -5 : 0;
     }
 
@@ -65,30 +100,30 @@ public final class WidgetGlobalSearchScoreStrategy {
         return 2;
     }
 
-    public final int scoreMatchedResult(WidgetGlobalSearchModel$MatchedResult widgetGlobalSearchModel$MatchedResult) {
+    public final int scoreMatchedResult(WidgetGlobalSearchModel.MatchedResult matchedResult) {
         int firstMatchIndex;
-        m.checkNotNullParameter(widgetGlobalSearchModel$MatchedResult, "$this$scoreMatchedResult");
-        int firstMatchIndex2 = widgetGlobalSearchModel$MatchedResult.getFirstMatchIndex();
+        m.checkNotNullParameter(matchedResult, "$this$scoreMatchedResult");
+        int firstMatchIndex2 = matchedResult.getFirstMatchIndex();
         int i = 0;
         if (firstMatchIndex2 == -1) {
-            firstMatchIndex = (-100) - Math.min(widgetGlobalSearchModel$MatchedResult.getValue().length(), 20);
+            firstMatchIndex = (-100) - Math.min(matchedResult.getValue().length(), 20);
         } else {
-            firstMatchIndex = (firstMatchIndex2 >= 0 && 10 >= firstMatchIndex2) ? 15 - widgetGlobalSearchModel$MatchedResult.getFirstMatchIndex() : 0;
+            firstMatchIndex = (firstMatchIndex2 >= 0 && 10 >= firstMatchIndex2) ? 15 - matchedResult.getFirstMatchIndex() : 0;
         }
-        if (widgetGlobalSearchModel$MatchedResult.getFirstMatchIndex() == 0) {
+        if (matchedResult.getFirstMatchIndex() == 0) {
             i = 2;
-        } else if (widgetGlobalSearchModel$MatchedResult.getFirstMatchIndex() > 0 && !Character.isLetterOrDigit(widgetGlobalSearchModel$MatchedResult.getValue().charAt(widgetGlobalSearchModel$MatchedResult.getFirstMatchIndex() - 1))) {
+        } else if (matchedResult.getFirstMatchIndex() > 0 && !Character.isLetterOrDigit(matchedResult.getValue().charAt(matchedResult.getFirstMatchIndex() - 1))) {
             i = 1;
         }
         return firstMatchIndex + i;
     }
 
     /* JADX WARN: Code duplicated, block: B:17:0x0028  */
-    public final int scoreUser(WidgetGlobalSearchModel$ItemUser widgetGlobalSearchModel$ItemUser, int i) {
+    public final int scoreUser(WidgetGlobalSearchModel.ItemUser itemUser, int i) {
         int i2;
-        m.checkNotNullParameter(widgetGlobalSearchModel$ItemUser, "$this$scoreUser");
-        WidgetGlobalSearchScoreStrategy$SearchType widgetGlobalSearchScoreStrategy$SearchType = i != 1 ? WidgetGlobalSearchScoreStrategy$SearchType.NONE : WidgetGlobalSearchScoreStrategy$SearchType.USER;
-        Presence presence = widgetGlobalSearchModel$ItemUser.getPresence();
+        m.checkNotNullParameter(itemUser, "$this$scoreUser");
+        SearchType searchType = i != 1 ? SearchType.NONE : SearchType.USER;
+        Presence presence = itemUser.getPresence();
         ClientStatus status = presence != null ? presence.getStatus() : null;
         if (status != null) {
             int iOrdinal = status.ordinal();
@@ -104,6 +139,6 @@ public final class WidgetGlobalSearchScoreStrategy {
         } else {
             i2 = 0;
         }
-        return i2 + (widgetGlobalSearchModel$ItemUser.isFriend() ? widgetGlobalSearchScoreStrategy$SearchType.getFriendWeight() : 0) + (widgetGlobalSearchModel$ItemUser.getChannel() != null ? widgetGlobalSearchScoreStrategy$SearchType.getDmChannelWeight() : 0) + (m.areEqual(widgetGlobalSearchModel$ItemUser.getMatchedResult().getValue(), widgetGlobalSearchModel$ItemUser.getUser().getUsername()) ? 2 : 0);
+        return i2 + (itemUser.isFriend() ? searchType.getFriendWeight() : 0) + (itemUser.getChannel() != null ? searchType.getDmChannelWeight() : 0) + (m.areEqual(itemUser.getMatchedResult().getValue(), itemUser.getUser().getUsername()) ? 2 : 0);
     }
 }

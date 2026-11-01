@@ -9,7 +9,6 @@ import android.util.Log;
 import androidx.annotation.CallSuper;
 import androidx.annotation.MainThread;
 import androidx.annotation.VisibleForTesting;
-import b.i.a.f.e.o.j.a;
 import b.i.c.s.a0;
 import b.i.c.s.y;
 import b.i.c.w.d;
@@ -35,8 +34,14 @@ public abstract class EnhancedIntentService extends Service {
     private final Object lock;
     private int runningTasks;
 
+    /* JADX INFO: compiled from: com.google.firebase:firebase-messaging@@21.0.0 */
+    public class a implements a0.a {
+        public a() {
+        }
+    }
+
     public EnhancedIntentService() {
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 1, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue(), new a("Firebase-Messaging-Intent-Handle"));
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 1, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue(), new b.i.a.f.e.o.j.a("Firebase-Messaging-Intent-Handle"));
         threadPoolExecutor.allowCoreThreadTimeOut(true);
         this.executor = Executors.unconfigurableExecutorService(threadPoolExecutor);
         this.lock = new Object();
@@ -103,7 +108,7 @@ public abstract class EnhancedIntentService extends Service {
             Log.d("EnhancedIntentService", "Service received bind request");
         }
         if (this.binder == null) {
-            this.binder = new a0(new EnhancedIntentService$a(this));
+            this.binder = new a0(new a());
         }
         return this.binder;
     }

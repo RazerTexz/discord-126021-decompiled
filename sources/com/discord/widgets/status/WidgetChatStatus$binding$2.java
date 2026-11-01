@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetChatStatusBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -28,11 +28,11 @@ public final /* synthetic */ class WidgetChatStatus$binding$2 extends k implemen
     public final WidgetChatStatusBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
         LinearLayout linearLayout = (LinearLayout) view;
-        int i = R$id.chat_status_unread_messages_mark;
-        ImageView imageView = (ImageView) view.findViewById(R$id.chat_status_unread_messages_mark);
+        int i = R.id.chat_status_unread_messages_mark;
+        ImageView imageView = (ImageView) view.findViewById(R.id.chat_status_unread_messages_mark);
         if (imageView != null) {
-            i = R$id.chat_status_unread_messages_text;
-            TextView textView = (TextView) view.findViewById(R$id.chat_status_unread_messages_text);
+            i = R.id.chat_status_unread_messages_text;
+            TextView textView = (TextView) view.findViewById(R.id.chat_status_unread_messages_text);
             if (textView != null) {
                 return new WidgetChatStatusBinding((LinearLayout) view, linearLayout, imageView, textView);
             }

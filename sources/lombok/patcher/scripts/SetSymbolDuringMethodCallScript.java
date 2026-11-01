@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.patcher.Hook;
 import lombok.patcher.MethodLogistics;
-import lombok.patcher.PatchScript$MethodPatcher;
+import lombok.patcher.PatchScript;
 import lombok.patcher.TargetMatcher;
 import lombok.patcher.TransplantMapper;
 import org.objectweb.asm.ClassVisitor;
@@ -51,10 +51,47 @@ public class SetSymbolDuringMethodCallScript extends MethodLevelPatchScript {
     }
 
     @Override // lombok.patcher.scripts.MethodLevelPatchScript
-    protected PatchScript$MethodPatcher createPatcher(ClassWriter writer, String classSpec, TransplantMapper transplantMapper) {
+    protected PatchScript.MethodPatcher createPatcher(ClassWriter writer, String classSpec, TransplantMapper transplantMapper) {
         List<WrapperMethodDescriptor> descriptors = new ArrayList<>();
-        PatchScript$MethodPatcher patcher = new SetSymbolDuringMethodCallScript$2(this, writer, transplantMapper, new SetSymbolDuringMethodCallScript$1(this, classSpec, descriptors), descriptors);
+        PatchScript.MethodPatcher patcher = new AnonymousClass2(writer, transplantMapper, new AnonymousClass1(classSpec, descriptors), descriptors);
         return patcher;
+    }
+
+    /* JADX INFO: renamed from: lombok.patcher.scripts.SetSymbolDuringMethodCallScript$1, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/SetSymbolDuringMethodCallScript$1.SCL.lombok */
+    class AnonymousClass1 implements PatchScript.MethodPatcherFactory {
+        private final /* synthetic */ String val$classSpec;
+        private final /* synthetic */ List val$descriptors;
+
+        AnonymousClass1(String str, List list) {
+            this.val$classSpec = str;
+            this.val$descriptors = list;
+        }
+
+        @Override // lombok.patcher.PatchScript.MethodPatcherFactory
+        public MethodVisitor createMethodVisitor(String name, String desc, MethodVisitor parent, MethodLogistics logistics) {
+            return SetSymbolDuringMethodCallScript.this.new WrapWithSymbol(name, parent, this.val$classSpec, this.val$descriptors);
+        }
+    }
+
+    /* JADX INFO: renamed from: lombok.patcher.scripts.SetSymbolDuringMethodCallScript$2, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/SetSymbolDuringMethodCallScript$2.SCL.lombok */
+    class AnonymousClass2 extends PatchScript.MethodPatcher {
+        private final /* synthetic */ List val$descriptors;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        AnonymousClass2(ClassVisitor $anonymous0, TransplantMapper $anonymous1, PatchScript.MethodPatcherFactory $anonymous2, List list) {
+            super($anonymous0, $anonymous1, $anonymous2);
+            this.val$descriptors = list;
+        }
+
+        @Override // lombok.patcher.PatchScript.MethodPatcher, org.objectweb.asm.ClassVisitor
+        public void visitEnd() {
+            for (WrapperMethodDescriptor wmd : this.val$descriptors) {
+                SetSymbolDuringMethodCallScript.access$3(SetSymbolDuringMethodCallScript.this, this, wmd);
+            }
+            super.visitEnd();
+        }
     }
 
     static /* synthetic */ void access$3(SetSymbolDuringMethodCallScript setSymbolDuringMethodCallScript, ClassVisitor classVisitor, WrapperMethodDescriptor wrapperMethodDescriptor) {
@@ -85,5 +122,49 @@ public class SetSymbolDuringMethodCallScript extends MethodLevelPatchScript {
         mv.visitInsn(Opcodes.ATHROW);
         mv.visitMaxs(Math.max(1, logistics.getParamCount()), logistics.getParamCount());
         mv.visitEnd();
+    }
+
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/SetSymbolDuringMethodCallScript$WrapWithSymbol.SCL.lombok */
+    class WrapWithSymbol extends MethodVisitor {
+        private final String selfMethodName;
+        private final String selfTypeName;
+        private final List<WrapperMethodDescriptor> descriptors;
+
+        public WrapWithSymbol(String selfMethodName, MethodVisitor mv, String selfTypeName, List<WrapperMethodDescriptor> descriptors) {
+            super(Opcodes.ASM7, mv);
+            this.selfMethodName = selfMethodName;
+            this.selfTypeName = selfTypeName;
+            this.descriptors = descriptors;
+        }
+
+        @Override // org.objectweb.asm.MethodVisitor
+        public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
+            boolean addOwner;
+            String fixedDesc;
+            if (opcode == 185 || opcode == 182) {
+                addOwner = true;
+            } else {
+                if (opcode != 184) {
+                    super.visitMethodInsn(opcode, owner, name, desc, itf);
+                    return;
+                }
+                addOwner = false;
+            }
+            if (!SetSymbolDuringMethodCallScript.access$0(SetSymbolDuringMethodCallScript.this).getClassSpec().equals(owner) || !SetSymbolDuringMethodCallScript.access$0(SetSymbolDuringMethodCallScript.this).getMethodName().equals(name) || !SetSymbolDuringMethodCallScript.access$0(SetSymbolDuringMethodCallScript.this).getMethodDescriptor().equals(desc)) {
+                super.visitMethodInsn(opcode, owner, name, desc, itf);
+                return;
+            }
+            if (addOwner) {
+                fixedDesc = "(L" + SetSymbolDuringMethodCallScript.access$0(SetSymbolDuringMethodCallScript.this).getClassSpec() + ";" + desc.substring(1);
+            } else {
+                fixedDesc = desc;
+            }
+            WrapperMethodDescriptor wmd = new WrapperMethodDescriptor(this.descriptors.size(), opcode, owner, name, fixedDesc, desc, itf);
+            if (SetSymbolDuringMethodCallScript.access$1(SetSymbolDuringMethodCallScript.this)) {
+                System.out.println("Changing method " + this.selfTypeName + "::" + this.selfMethodName + " wrapping call to " + owner + "::" + name + " to set symbol " + SetSymbolDuringMethodCallScript.access$2(SetSymbolDuringMethodCallScript.this));
+            }
+            super.visitMethodInsn(Opcodes.INVOKESTATIC, this.selfTypeName, wmd.getWrapperName(), fixedDesc, false);
+            this.descriptors.add(wmd);
+        }
     }
 }

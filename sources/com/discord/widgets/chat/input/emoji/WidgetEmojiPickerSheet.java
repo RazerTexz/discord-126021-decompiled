@@ -1,24 +1,78 @@
 package com.discord.widgets.chat.input.emoji;
 
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.models.domain.emoji.Emoji;
 import com.discord.widgets.chat.input.expression.WidgetExpressionPickerSheet;
 import d0.z.d.m;
 import java.io.Serializable;
 import java.util.Objects;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: WidgetEmojiPickerSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetEmojiPickerSheet extends WidgetExpressionPickerSheet implements EmojiPickerListener {
-    public static final WidgetEmojiPickerSheet$Companion Companion = new WidgetEmojiPickerSheet$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private View container;
     private WidgetEmojiPicker emojiPickerFragment;
     private EmojiPickerListener emojiPickerListenerDelegate;
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.emoji.WidgetEmojiPickerSheet$onViewCreated$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetEmojiPickerSheet.kt */
+    public final class AnonymousClass2 implements Runnable {
+        public AnonymousClass2() {
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            ViewGroup.LayoutParams layoutParams = WidgetEmojiPickerSheet.access$getContainer$p(WidgetEmojiPickerSheet.this).getLayoutParams();
+            if (layoutParams != null) {
+                Resources resources = WidgetEmojiPickerSheet.this.getResources();
+                m.checkNotNullExpressionValue(resources, "resources");
+                layoutParams.height = (int) (((double) resources.getDisplayMetrics().heightPixels) * 0.9d);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetEmojiPickerSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ void show$default(Companion companion, FragmentManager fragmentManager, EmojiPickerListener emojiPickerListener, EmojiPickerContextType emojiPickerContextType, Function0 function0, int i, Object obj) {
+            if ((i & 8) != 0) {
+                function0 = null;
+            }
+            companion.show(fragmentManager, emojiPickerListener, emojiPickerContextType, function0);
+        }
+
+        public final void show(FragmentManager fragmentManager, EmojiPickerListener emojiPickerListener, EmojiPickerContextType emojiPickerContextType, Function0<Unit> onCancel) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            m.checkNotNullParameter(emojiPickerContextType, "emojiPickerContextType");
+            WidgetEmojiPickerSheet widgetEmojiPickerSheet = new WidgetEmojiPickerSheet();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(EmojiPickerNavigator.ARG_EMOJI_PICKER_CONTEXT_TYPE, emojiPickerContextType);
+            widgetEmojiPickerSheet.setArguments(bundle);
+            widgetEmojiPickerSheet.setEmojiPickerListener(emojiPickerListener);
+            widgetEmojiPickerSheet.setOnCancel(onCancel);
+            widgetEmojiPickerSheet.show(fragmentManager, WidgetEmojiPickerSheet.class.getSimpleName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public static final /* synthetic */ View access$getContainer$p(WidgetEmojiPickerSheet widgetEmojiPickerSheet) {
         View view = widgetEmojiPickerSheet.container;
@@ -42,10 +96,10 @@ public final class WidgetEmojiPickerSheet extends WidgetExpressionPickerSheet im
 
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
-        return R$layout.widget_emoji_picker_sheet;
+        return R.layout.widget_emoji_picker_sheet;
     }
 
-    @Override // com.discord.widgets.chat.input.expression.WidgetExpressionPickerSheet, androidx.fragment.app.DialogFragment, android.content.DialogInterface$OnCancelListener
+    @Override // com.discord.widgets.chat.input.expression.WidgetExpressionPickerSheet, androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnCancelListener
     public void onCancel(DialogInterface dialog) {
         m.checkNotNullParameter(dialog, "dialog");
         super.onCancel(dialog);
@@ -94,7 +148,7 @@ public final class WidgetEmojiPickerSheet extends WidgetExpressionPickerSheet im
         if (widgetEmojiPicker4 == null) {
             m.throwUninitializedPropertyAccessException("emojiPickerFragment");
         }
-        fragmentTransactionBeginTransaction.replace(R$id.emoji_sheet_emoji_picker_content, widgetEmojiPicker3, widgetEmojiPicker4.getClass().getSimpleName()).runOnCommit(new WidgetEmojiPickerSheet$onViewCreated$2(this)).commit();
+        fragmentTransactionBeginTransaction.replace(R.id.emoji_sheet_emoji_picker_content, widgetEmojiPicker3, widgetEmojiPicker4.getClass().getSimpleName()).runOnCommit(new AnonymousClass2()).commit();
     }
 
     public final void setEmojiPickerListener(EmojiPickerListener emojiPickerListener) {

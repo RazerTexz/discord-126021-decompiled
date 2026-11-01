@@ -1,7 +1,6 @@
 package com.discord.widgets.chat.input.autocomplete;
 
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import com.discord.widgets.chat.input.autocomplete.sources.EmojiAutocompletableSource;
 import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
@@ -23,7 +22,7 @@ public final class ChatInputAutocompletables$EMOJI_SOURCE$2 extends o implements
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final EmojiAutocompletableSource invoke() {
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        return new EmojiAutocompletableSource(storeStream$Companion.getEmojis(), storeStream$Companion.getUserSettings());
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        return new EmojiAutocompletableSource(companion.getEmojis(), companion.getUserSettings());
     }
 }

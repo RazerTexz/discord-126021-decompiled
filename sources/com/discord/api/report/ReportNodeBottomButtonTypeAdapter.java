@@ -7,12 +7,26 @@ import com.google.gson.stream.JsonWriter;
 import d0.y.b;
 import d0.z.d.m;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 import kotlin.Unit;
 
 /* JADX INFO: compiled from: InAppReportsMenu.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class ReportNodeBottomButtonTypeAdapter extends TypeAdapter<ReportNodeBottomButton> {
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            JsonToken.values();
+            int[] iArr = new int[10];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[6] = 1;
+            iArr[5] = 2;
+        }
+    }
+
     /* JADX WARN: Code duplicated, block: B:28:0x0064  */
     /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
     @Override // com.google.gson.TypeAdapter
@@ -59,17 +73,17 @@ public final class ReportNodeBottomButtonTypeAdapter extends TypeAdapter<ReportN
         switch (strJ.hashCode()) {
             case -1367724422:
                 if (strJ.equals("cancel")) {
-                    return ReportNodeBottomButton$Cancel.INSTANCE;
+                    return ReportNodeBottomButton.Cancel.INSTANCE;
                 }
                 return null;
             case -891535336:
                 if (strJ.equals("submit")) {
-                    return ReportNodeBottomButton$Submit.INSTANCE;
+                    return ReportNodeBottomButton.Submit.INSTANCE;
                 }
                 return null;
             case 3089282:
                 if (strJ.equals("done")) {
-                    return ReportNodeBottomButton$Done.INSTANCE;
+                    return ReportNodeBottomButton.Done.INSTANCE;
                 }
                 return null;
             case 3377907:
@@ -77,14 +91,14 @@ public final class ReportNodeBottomButtonTypeAdapter extends TypeAdapter<ReportN
                     return null;
                 }
                 Objects.requireNonNull(objJ, "null cannot be cast to non-null type kotlin.Int");
-                return new ReportNodeBottomButton$Next(((Integer) objJ).intValue());
+                return new ReportNodeBottomButton.Next(((Integer) objJ).intValue());
             default:
                 return null;
         }
     }
 
     @Override // com.google.gson.TypeAdapter
-    public void write(JsonWriter jsonWriter, ReportNodeBottomButton reportNodeBottomButton) throws IOException {
+    public void write(JsonWriter jsonWriter, ReportNodeBottomButton reportNodeBottomButton) throws IllegalAccessException, IOException, InvocationTargetException {
         ReportNodeBottomButton reportNodeBottomButton2 = reportNodeBottomButton;
         m.checkNotNullParameter(jsonWriter, "out");
         if (reportNodeBottomButton2 == null) {
@@ -93,7 +107,7 @@ public final class ReportNodeBottomButtonTypeAdapter extends TypeAdapter<ReportN
         }
         JsonWriter jsonWriterN = jsonWriter.c().n("type").H(reportNodeBottomButton2.getType()).n("target");
         try {
-            JsonWriter jsonWriterD = reportNodeBottomButton2 instanceof ReportNodeBottomButton$Next ? jsonWriterN.D(Integer.valueOf(((ReportNodeBottomButton$Next) reportNodeBottomButton2).getTarget())) : jsonWriterN.s();
+            JsonWriter jsonWriterD = reportNodeBottomButton2 instanceof ReportNodeBottomButton.Next ? jsonWriterN.D(Integer.valueOf(((ReportNodeBottomButton.Next) reportNodeBottomButton2).getTarget())) : jsonWriterN.s();
             b.closeFinally(jsonWriterN, null);
             jsonWriterD.f();
         } catch (Throwable th) {

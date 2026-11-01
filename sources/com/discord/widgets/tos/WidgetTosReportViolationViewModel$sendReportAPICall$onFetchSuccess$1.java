@@ -1,7 +1,6 @@
 package com.discord.widgets.tos;
 
 import com.discord.api.user.UserProfile;
-import com.discord.api.user.UserProfile$GuildReference;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import d0.z.d.m;
 import d0.z.d.o;
@@ -37,11 +36,11 @@ public final class WidgetTosReportViolationViewModel$sendReportAPICall$onFetchSu
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(UserProfile userProfile) {
         m.checkNotNullParameter(userProfile, "userProfile");
-        List<UserProfile$GuildReference> listD = userProfile.d();
+        List<UserProfile.GuildReference> listD = userProfile.d();
         ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(listD, 10));
         Iterator<T> it = listD.iterator();
         while (it.hasNext()) {
-            arrayList.add(Long.valueOf(((UserProfile$GuildReference) it.next()).getId()));
+            arrayList.add(Long.valueOf(((UserProfile.GuildReference) it.next()).getId()));
         }
         AnalyticsTracker.INSTANCE.reportTosViolation(this.$reason, this.$channelId, this.$messageId, arrayList);
     }

@@ -2,11 +2,13 @@ package s.a.d2.g;
 
 import d0.g0.m;
 import d0.k;
+import d0.z.d.o;
 import java.util.Objects;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.coroutines.jvm.internal.CoroutineStackFrame;
+import kotlin.jvm.functions.Function2;
 import kotlin.jvm.functions.Function3;
 import kotlinx.coroutines.Job;
 
@@ -19,17 +21,31 @@ public final class e<T> extends d0.w.i.a.d implements s.a.d2.e<T>, CoroutineStac
     private Continuation<? super Unit> completion;
     private CoroutineContext lastEmissionContext;
 
+    /* JADX INFO: compiled from: SafeCollector.kt */
+    public final class a extends o implements Function2<Integer, CoroutineContext.Element, Integer> {
+        public static final a j = new a();
+
+        public a() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public Integer invoke(Integer num, CoroutineContext.Element element) {
+            return Integer.valueOf(num.intValue() + 1);
+        }
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public e(s.a.d2.e<? super T> eVar, CoroutineContext coroutineContext) {
         super(d.j, d0.w.f.j);
         this.collector = eVar;
         this.collectContext = coroutineContext;
-        this.collectContextSize = ((Number) coroutineContext.fold(0, e$a.j)).intValue();
+        this.collectContextSize = ((Number) coroutineContext.fold(0, a.j)).intValue();
     }
 
     public final Object b(Continuation<? super Unit> continuation, T t) {
         CoroutineContext context = continuation.getContext();
-        Job job = (Job) context.get(Job.h);
+        Job job = (Job) context.get(Job.INSTANCE);
         if (job != null && !job.a()) {
             throw job.q();
         }

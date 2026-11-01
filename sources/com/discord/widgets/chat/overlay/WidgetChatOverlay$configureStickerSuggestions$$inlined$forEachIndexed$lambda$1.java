@@ -2,7 +2,6 @@ package com.discord.widgets.chat.overlay;
 
 import android.content.Context;
 import android.view.View;
-import android.view.View$OnClickListener;
 import com.discord.api.sticker.Sticker;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.analytics.AnalyticsTracker;
@@ -13,7 +12,7 @@ import java.util.List;
 
 /* JADX INFO: compiled from: WidgetChatOverlay.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetChatOverlay$configureStickerSuggestions$$inlined$forEachIndexed$lambda$1 implements View$OnClickListener {
+public final class WidgetChatOverlay$configureStickerSuggestions$$inlined$forEachIndexed$lambda$1 implements View.OnClickListener {
     public final /* synthetic */ Sticker $matchedSticker$inlined;
     public final /* synthetic */ boolean $shouldClearTextOnSend$inlined;
     public final /* synthetic */ Sticker $sticker;
@@ -30,9 +29,9 @@ public final class WidgetChatOverlay$configureStickerSuggestions$$inlined$forEac
         this.$shouldClearTextOnSend$inlined = z2;
     }
 
-    @Override // android.view.View$OnClickListener
+    @Override // android.view.View.OnClickListener
     public final void onClick(View view) {
-        AnalyticsTracker.INSTANCE.expressionSuggestionsSelected(this.$matchedSticker$inlined.getId(), StoreStream.Companion.getExpressionSuggestions().getLastSuggestionTrigger());
+        AnalyticsTracker.INSTANCE.expressionSuggestionsSelected(this.$matchedSticker$inlined.getId(), StoreStream.INSTANCE.getExpressionSuggestions().getLastSuggestionTrigger());
         m.checkNotNullExpressionValue(view, "it");
         Context context = view.getContext();
         m.checkNotNullExpressionValue(context, "it.context");

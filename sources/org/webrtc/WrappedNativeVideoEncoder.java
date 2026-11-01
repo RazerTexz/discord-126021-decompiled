@@ -8,7 +8,7 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
     public abstract long createNativeVideoEncoder();
 
     @Override // org.webrtc.VideoEncoder
-    public final VideoCodecStatus encode(VideoFrame videoFrame, VideoEncoder$EncodeInfo videoEncoder$EncodeInfo) {
+    public final VideoCodecStatus encode(VideoFrame videoFrame, VideoEncoder.EncodeInfo encodeInfo) {
         throw new UnsupportedOperationException("Not implemented.");
     }
 
@@ -18,17 +18,17 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
     }
 
     @Override // org.webrtc.VideoEncoder
-    public /* synthetic */ VideoEncoder$ResolutionBitrateLimits[] getResolutionBitrateLimits() {
+    public /* synthetic */ VideoEncoder.ResolutionBitrateLimits[] getResolutionBitrateLimits() {
         return r0.b(this);
     }
 
     @Override // org.webrtc.VideoEncoder
-    public final VideoEncoder$ScalingSettings getScalingSettings() {
+    public final VideoEncoder.ScalingSettings getScalingSettings() {
         throw new UnsupportedOperationException("Not implemented.");
     }
 
     @Override // org.webrtc.VideoEncoder
-    public final VideoCodecStatus initEncode(VideoEncoder$Settings videoEncoder$Settings, VideoEncoder$Callback videoEncoder$Callback) {
+    public final VideoCodecStatus initEncode(VideoEncoder.Settings settings, VideoEncoder.Callback callback) {
         throw new UnsupportedOperationException("Not implemented.");
     }
 
@@ -41,7 +41,7 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
     }
 
     @Override // org.webrtc.VideoEncoder
-    public final VideoCodecStatus setRateAllocation(VideoEncoder$BitrateAllocation videoEncoder$BitrateAllocation, int i) {
+    public final VideoCodecStatus setRateAllocation(VideoEncoder.BitrateAllocation bitrateAllocation, int i) {
         throw new UnsupportedOperationException("Not implemented.");
     }
 }

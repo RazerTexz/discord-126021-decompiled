@@ -11,14 +11,32 @@ import rx.functions.Action1;
 /* JADX INFO: loaded from: classes.dex */
 public final class StreamCreateOrUpdate$Parser$parse$1<T> implements Action1<String> {
     public final /* synthetic */ Ref$BooleanRef $paused;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
     public final /* synthetic */ Ref$ObjectRef $rtcServerId;
     public final /* synthetic */ Ref$ObjectRef $streamKey;
     public final /* synthetic */ Ref$ObjectRef $viewerIds;
 
-    public StreamCreateOrUpdate$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model$JsonReader model$JsonReader, Ref$ObjectRef ref$ObjectRef2, Ref$BooleanRef ref$BooleanRef, Ref$ObjectRef ref$ObjectRef3) {
+    /* JADX INFO: renamed from: com.discord.models.domain.StreamCreateOrUpdate$Parser$parse$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ModelApplicationStream.kt */
+    public final class AnonymousClass1<T> implements Model.JsonReader.ItemFactory<Long> {
+        public AnonymousClass1() {
+        }
+
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public /* bridge */ /* synthetic */ Long get() {
+            return get();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public final Long get() {
+            return Long.valueOf(StreamCreateOrUpdate$Parser$parse$1.this.$reader.nextLong(0L));
+        }
+    }
+
+    public StreamCreateOrUpdate$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model.JsonReader jsonReader, Ref$ObjectRef ref$ObjectRef2, Ref$BooleanRef ref$BooleanRef, Ref$ObjectRef ref$ObjectRef3) {
         this.$streamKey = ref$ObjectRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
         this.$rtcServerId = ref$ObjectRef2;
         this.$paused = ref$BooleanRef;
         this.$viewerIds = ref$ObjectRef3;
@@ -36,7 +54,7 @@ public final class StreamCreateOrUpdate$Parser$parse$1<T> implements Action1<Str
             switch (str.hashCode()) {
                 case -1349214453:
                     if (str.equals("viewer_ids")) {
-                        this.$viewerIds.element = (T) this.$reader.nextList(new StreamCreateOrUpdate$Parser$parse$1$1(this));
+                        this.$viewerIds.element = (T) this.$reader.nextList(new AnonymousClass1());
                         return;
                     }
                     break;

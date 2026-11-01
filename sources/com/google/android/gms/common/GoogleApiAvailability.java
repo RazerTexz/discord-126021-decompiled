@@ -1,29 +1,28 @@
 package com.google.android.gms.common;
 
-import android.R$attr;
-import android.R$drawable;
-import android.R$string;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlertDialog$Builder;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.DialogInterface$OnCancelListener;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.util.TypedValue;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.SimpleArrayMap;
-import androidx.core.app.NotificationCompat$BigTextStyle;
-import androidx.core.app.NotificationCompat$Builder;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import b.c.a.a0.d;
@@ -38,7 +37,6 @@ import b.i.a.f.e.k.m;
 import b.i.a.f.e.k.n;
 import b.i.a.f.e.k.o;
 import b.i.a.f.e.o.f;
-import com.google.android.gms.base.R$b;
 import com.google.android.gms.common.api.internal.LifecycleCallback;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
@@ -50,6 +48,33 @@ public class GoogleApiAvailability extends c {
     public static final Object c = new Object();
     public static final GoogleApiAvailability d = new GoogleApiAvailability();
     public static final int e = c.a;
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
+    @SuppressLint({"HandlerLeak"})
+    public final class a extends b.i.a.f.h.e.c {
+        public final Context a;
+
+        public a(Context context) {
+            super(Looper.myLooper() == null ? Looper.getMainLooper() : Looper.myLooper());
+            this.a = context.getApplicationContext();
+        }
+
+        @Override // android.os.Handler
+        public final void handleMessage(Message message) {
+            int i = message.what;
+            if (i != 1) {
+                b.d.b.a.a.g0(50, "Don't know how to handle this message: ", i, "GoogleApiAvailability");
+                return;
+            }
+            int iC = GoogleApiAvailability.this.c(this.a);
+            if (GoogleApiAvailability.this.d(iC)) {
+                GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.this;
+                Context context = this.a;
+                Intent intentA = googleApiAvailability.a(context, iC, "n");
+                googleApiAvailability.i(context, iC, intentA == null ? null : PendingIntent.getActivity(context, 0, intentA, 134217728));
+            }
+        }
+    }
 
     @Override // b.i.a.f.e.c
     @Nullable
@@ -73,7 +98,7 @@ public class GoogleApiAvailability extends c {
 
     @NonNull
     @MainThread
-    public Task<Void> e(Activity activity) throws PackageManager$NameNotFoundException {
+    public Task<Void> e(Activity activity) throws PackageManager.NameNotFoundException {
         int i = e;
         d.u("makeGooglePlayServicesAvailable must be called from the main thread");
         int iB = super.b(activity, i);
@@ -91,50 +116,50 @@ public class GoogleApiAvailability extends c {
         return b0Var.o.a;
     }
 
-    public boolean f(Activity activity, int i, int i2, @Nullable DialogInterface$OnCancelListener dialogInterface$OnCancelListener) {
-        Dialog dialogG = g(activity, i, new m(super.a(activity, i, "d"), activity, i2), dialogInterface$OnCancelListener);
+    public boolean f(Activity activity, int i, int i2, @Nullable DialogInterface.OnCancelListener onCancelListener) {
+        Dialog dialogG = g(activity, i, new m(super.a(activity, i, "d"), activity, i2), onCancelListener);
         if (dialogG == null) {
             return false;
         }
-        h(activity, dialogG, "GooglePlayServicesErrorDialog", dialogInterface$OnCancelListener);
+        h(activity, dialogG, "GooglePlayServicesErrorDialog", onCancelListener);
         return true;
     }
 
     @Nullable
-    public static Dialog g(@NonNull Context context, int i, n nVar, @Nullable DialogInterface$OnCancelListener dialogInterface$OnCancelListener) {
+    public static Dialog g(@NonNull Context context, int i, n nVar, @Nullable DialogInterface.OnCancelListener onCancelListener) {
         String string;
         if (i == 0) {
             return null;
         }
         TypedValue typedValue = new TypedValue();
-        context.getTheme().resolveAttribute(R$attr.alertDialogTheme, typedValue, true);
-        AlertDialog$Builder alertDialog$Builder = "Theme.Dialog.Alert".equals(context.getResources().getResourceEntryName(typedValue.resourceId)) ? new AlertDialog$Builder(context, 5) : null;
-        if (alertDialog$Builder == null) {
-            alertDialog$Builder = new AlertDialog$Builder(context);
+        context.getTheme().resolveAttribute(android.R.attr.alertDialogTheme, typedValue, true);
+        AlertDialog.Builder builder = "Theme.Dialog.Alert".equals(context.getResources().getResourceEntryName(typedValue.resourceId)) ? new AlertDialog.Builder(context, 5) : null;
+        if (builder == null) {
+            builder = new AlertDialog.Builder(context);
         }
-        alertDialog$Builder.setMessage(l.e(context, i));
-        if (dialogInterface$OnCancelListener != null) {
-            alertDialog$Builder.setOnCancelListener(dialogInterface$OnCancelListener);
+        builder.setMessage(l.e(context, i));
+        if (onCancelListener != null) {
+            builder.setOnCancelListener(onCancelListener);
         }
         Resources resources = context.getResources();
         if (i == 1) {
-            string = resources.getString(R$b.common_google_play_services_install_button);
+            string = resources.getString(com.google.android.gms.base.R.b.common_google_play_services_install_button);
         } else if (i != 2) {
-            string = i != 3 ? resources.getString(R$string.ok) : resources.getString(R$b.common_google_play_services_enable_button);
+            string = i != 3 ? resources.getString(android.R.string.ok) : resources.getString(com.google.android.gms.base.R.b.common_google_play_services_enable_button);
         } else {
-            string = resources.getString(R$b.common_google_play_services_update_button);
+            string = resources.getString(com.google.android.gms.base.R.b.common_google_play_services_update_button);
         }
         if (string != null) {
-            alertDialog$Builder.setPositiveButton(string, nVar);
+            builder.setPositiveButton(string, nVar);
         }
         String strA = l.a(context, i);
         if (strA != null) {
-            alertDialog$Builder.setTitle(strA);
+            builder.setTitle(strA);
         }
-        return alertDialog$Builder.create();
+        return builder.create();
     }
 
-    public static void h(Activity activity, Dialog dialog, String str, @Nullable DialogInterface$OnCancelListener dialogInterface$OnCancelListener) {
+    public static void h(Activity activity, Dialog dialog, String str, @Nullable DialogInterface.OnCancelListener onCancelListener) {
         if (activity instanceof FragmentActivity) {
             FragmentManager supportFragmentManager = ((FragmentActivity) activity).getSupportFragmentManager();
             g gVar = new g();
@@ -142,8 +167,8 @@ public class GoogleApiAvailability extends c {
             dialog.setOnCancelListener(null);
             dialog.setOnDismissListener(null);
             gVar.j = dialog;
-            if (dialogInterface$OnCancelListener != null) {
-                gVar.k = dialogInterface$OnCancelListener;
+            if (onCancelListener != null) {
+                gVar.k = onCancelListener;
             }
             gVar.show(supportFragmentManager, str);
             return;
@@ -154,8 +179,8 @@ public class GoogleApiAvailability extends c {
         dialog.setOnCancelListener(null);
         dialog.setOnDismissListener(null);
         bVar.j = dialog;
-        if (dialogInterface$OnCancelListener != null) {
-            bVar.k = dialogInterface$OnCancelListener;
+        if (onCancelListener != null) {
+            bVar.k = onCancelListener;
         }
         bVar.show(fragmentManager, str);
     }
@@ -165,7 +190,7 @@ public class GoogleApiAvailability extends c {
         int i2;
         Log.w("GoogleApiAvailability", String.format("GMS core API Availability. ConnectionResult=%s, tag=%s", Integer.valueOf(i), null), new IllegalArgumentException());
         if (i == 18) {
-            new GoogleApiAvailability$a(this, context).sendEmptyMessageDelayed(1, 120000L);
+            new a(context).sendEmptyMessageDelayed(1, 120000L);
             return;
         }
         if (pendingIntent == null) {
@@ -177,22 +202,22 @@ public class GoogleApiAvailability extends c {
         }
         String strB = i == 6 ? l.b(context, "common_google_play_services_resolution_required_title") : l.a(context, i);
         if (strB == null) {
-            strB = context.getResources().getString(R$b.common_google_play_services_notification_ticker);
+            strB = context.getResources().getString(com.google.android.gms.base.R.b.common_google_play_services_notification_ticker);
         }
         String strC = (i == 6 || i == 19) ? l.c(context, "common_google_play_services_resolution_required_text", l.d(context)) : l.e(context, i);
         Resources resources = context.getResources();
         NotificationManager notificationManager = (NotificationManager) context.getSystemService("notification");
-        NotificationCompat$Builder style = new NotificationCompat$Builder(context).setLocalOnly(true).setAutoCancel(true).setContentTitle(strB).setStyle(new NotificationCompat$BigTextStyle().bigText(strC));
+        NotificationCompat.Builder style = new NotificationCompat.Builder(context).setLocalOnly(true).setAutoCancel(true).setContentTitle(strB).setStyle(new NotificationCompat.BigTextStyle().bigText(strC));
         if (d.Z0(context)) {
             d.F(true);
             style.setSmallIcon(context.getApplicationInfo().icon).setPriority(2);
             if (d.a1(context)) {
-                style.addAction(com.google.android.gms.base.R$a.common_full_open_on_phone, resources.getString(R$b.common_open_on_phone), pendingIntent);
+                style.addAction(com.google.android.gms.base.R.a.common_full_open_on_phone, resources.getString(com.google.android.gms.base.R.b.common_open_on_phone), pendingIntent);
             } else {
                 style.setContentIntent(pendingIntent);
             }
         } else {
-            style.setSmallIcon(R$drawable.stat_sys_warning).setTicker(resources.getString(R$b.common_google_play_services_notification_ticker)).setWhen(System.currentTimeMillis()).setContentIntent(pendingIntent).setContentText(strC);
+            style.setSmallIcon(android.R.drawable.stat_sys_warning).setTicker(resources.getString(com.google.android.gms.base.R.b.common_google_play_services_notification_ticker)).setWhen(System.currentTimeMillis()).setContentIntent(pendingIntent).setContentText(strC);
         }
         if (f.A0()) {
             d.F(f.A0());
@@ -200,7 +225,7 @@ public class GoogleApiAvailability extends c {
             }
             NotificationChannel notificationChannel = notificationManager.getNotificationChannel("com.google.android.gms.availability");
             SimpleArrayMap<String, String> simpleArrayMap = l.a;
-            String string = context.getResources().getString(R$b.common_google_play_services_notification_channel_name);
+            String string = context.getResources().getString(com.google.android.gms.base.R.b.common_google_play_services_notification_channel_name);
             if (notificationChannel == null) {
                 notificationManager.createNotificationChannel(new NotificationChannel("com.google.android.gms.availability", string, 4));
             } else if (!string.contentEquals(notificationChannel.getName())) {
@@ -219,12 +244,12 @@ public class GoogleApiAvailability extends c {
         notificationManager.notify(i2, notificationBuild);
     }
 
-    public final boolean j(@NonNull Activity activity, @NonNull j jVar, int i, @Nullable DialogInterface$OnCancelListener dialogInterface$OnCancelListener) {
-        Dialog dialogG = g(activity, i, new o(super.a(activity, i, "d"), jVar, 2), dialogInterface$OnCancelListener);
+    public final boolean j(@NonNull Activity activity, @NonNull j jVar, int i, @Nullable DialogInterface.OnCancelListener onCancelListener) {
+        Dialog dialogG = g(activity, i, new o(super.a(activity, i, "d"), jVar, 2), onCancelListener);
         if (dialogG == null) {
             return false;
         }
-        h(activity, dialogG, "GooglePlayServicesErrorDialog", dialogInterface$OnCancelListener);
+        h(activity, dialogG, "GooglePlayServicesErrorDialog", onCancelListener);
         return true;
     }
 }

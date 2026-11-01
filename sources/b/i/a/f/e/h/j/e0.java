@@ -25,9 +25,9 @@ public abstract class e0<T> extends m0 {
     }
 
     @Override // b.i.a.f.e.h.j.s
-    public final void c(g$a<?> g_a) throws DeadObjectException {
+    public final void c(g.a<?> aVar) throws DeadObjectException {
         try {
-            h(g_a);
+            h(aVar);
         } catch (DeadObjectException e) {
             this.f1357b.a(new ApiException(s.a(e)));
             throw e;
@@ -43,5 +43,5 @@ public abstract class e0<T> extends m0 {
         this.f1357b.a(exc);
     }
 
-    public abstract void h(g$a<?> g_a) throws RemoteException;
+    public abstract void h(g.a<?> aVar) throws RemoteException;
 }

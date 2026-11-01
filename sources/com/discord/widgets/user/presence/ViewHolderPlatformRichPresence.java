@@ -11,19 +11,18 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.ViewKt;
 import androidx.fragment.app.FragmentManager;
 import b.a.k.b;
+import com.discord.R;
 import com.discord.api.activity.Activity;
 import com.discord.api.activity.ActivityTimestamps;
 import com.discord.api.application.Application;
 import com.discord.api.connectedaccounts.ConnectedAccount;
 import com.discord.models.user.User;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import com.discord.stores.StoreUserConnections;
-import com.discord.stores.StoreUserConnections$State;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
-import com.discord.utilities.images.MGImages$ChangeDetector;
 import com.discord.utilities.platform.Platform;
 import com.discord.utilities.presence.ActivityUtilsKt;
 import com.discord.utilities.presence.PresenceUtils;
@@ -40,6 +39,29 @@ import java.util.Objects;
 /* JADX INFO: compiled from: ViewHolderPlatformRichPresence.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewHolderPlatformRichPresence extends ViewHolderUserRichPresence {
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.presence.ViewHolderPlatformRichPresence$configureUi$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ViewHolderPlatformRichPresence.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ Platform $platform;
+        public final /* synthetic */ StoreUserConnections $userConnectionStore;
+
+        public AnonymousClass1(StoreUserConnections storeUserConnections, Platform platform) {
+            this.$userConnectionStore = storeUserConnections;
+            this.$platform = platform;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            StoreUserConnections storeUserConnections = this.$userConnectionStore;
+            String platformId = this.$platform.getPlatformId();
+            m.checkNotNullExpressionValue(view, "it");
+            Context context = view.getContext();
+            m.checkNotNullExpressionValue(context, "it.context");
+            storeUserConnections.authorizeConnection(platformId, context, Traits.Location.Obj.ACTIVITY_ACTION);
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ViewHolderPlatformRichPresence(View view, SimpleDraweeView simpleDraweeView, SimpleDraweeView simpleDraweeView2, TextView textView, TextView textView2, TextView textView3, View view2, Button button) {
         super(view, simpleDraweeView, simpleDraweeView2, textView, textView2, null, textView3, null, view2, button, null, 3);
@@ -61,7 +83,7 @@ public final class ViewHolderPlatformRichPresence extends ViewHolderUserRichPres
             return;
         }
         if (platform == Platform.XBOX && platform.getThemedPlatformImage() != null) {
-            MGImages.setImage$default(MGImages.INSTANCE, getRichPresenceImageLarge(), DrawableCompat.getThemedDrawableRes$default(getRichPresenceImageLarge(), platform.getThemedPlatformImage().intValue(), 0, 2, (Object) null), (MGImages$ChangeDetector) null, 4, (Object) null);
+            MGImages.setImage$default(MGImages.INSTANCE, getRichPresenceImageLarge(), DrawableCompat.getThemedDrawableRes$default(getRichPresenceImageLarge(), platform.getThemedPlatformImage().intValue(), 0, 2, (Object) null), (MGImages.ChangeDetector) null, 4, (Object) null);
             getRichPresenceImageLarge().setVisibility(0);
             return;
         }
@@ -106,7 +128,7 @@ public final class ViewHolderPlatformRichPresence extends ViewHolderUserRichPres
             return;
         }
         getRoot().setVisibility(0);
-        Platform platformFrom = ActivityUtilsKt.isXboxActivity(primaryActivity) ? Platform.XBOX : Platform.Companion.from(primaryActivity.getPlatform());
+        Platform platformFrom = ActivityUtilsKt.isXboxActivity(primaryActivity) ? Platform.XBOX : Platform.INSTANCE.from(primaryActivity.getPlatform());
         TextView richPresenceHeader = getRichPresenceHeader();
         Context context = getRichPresenceHeader().getContext();
         m.checkNotNullExpressionValue(context, "richPresenceHeader.context");
@@ -116,8 +138,8 @@ public final class ViewHolderPlatformRichPresence extends ViewHolderUserRichPres
         ActivityTimestamps timestamps = primaryActivity.getTimestamps();
         ViewExtensions.setTextAndVisibilityBy(richPresenceTime, timestamps != null ? friendlyTime(timestamps) : null);
         getRichPresenceTextContainer().setSelected(true);
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        boolean zCanSeePlaystationAccountIntegration = PlaystationExperimentUtilsKt.canSeePlaystationAccountIntegration(storeStream$Companion.getExperiments());
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        boolean zCanSeePlaystationAccountIntegration = PlaystationExperimentUtilsKt.canSeePlaystationAccountIntegration(companion.getExperiments());
         if (!platformFrom.getEnabled() || (platformFrom == Platform.PLAYSTATION && !zCanSeePlaystationAccountIntegration)) {
             Button richPresencePrimaryButton = getRichPresencePrimaryButton();
             if (richPresencePrimaryButton != null) {
@@ -128,8 +150,8 @@ public final class ViewHolderPlatformRichPresence extends ViewHolderUserRichPres
                 richPresencePrimaryButton2.setOnClickListener(null);
             }
         } else {
-            StoreUserConnections userConnections = storeStream$Companion.getUserConnections();
-            StoreUserConnections$State stateSnapshot = userConnections.getStateSnapshot();
+            StoreUserConnections userConnections = companion.getUserConnections();
+            StoreUserConnections.State stateSnapshot = userConnections.getStateSnapshot();
             if (!(stateSnapshot instanceof Collection) || !stateSnapshot.isEmpty()) {
                 Iterator<ConnectedAccount> it = stateSnapshot.iterator();
                 while (true) {
@@ -161,11 +183,11 @@ public final class ViewHolderPlatformRichPresence extends ViewHolderUserRichPres
             if (richPresencePrimaryButton4 != null) {
                 Context context2 = getRoot().getContext();
                 m.checkNotNullExpressionValue(context2, "root.context");
-                richPresencePrimaryButton4.setText(b.h(context2, 2131896723, new Object[]{platformFrom.getProperName()}, null, 4));
+                richPresencePrimaryButton4.setText(b.h(context2, R.string.user_activity_connect_platform, new Object[]{platformFrom.getProperName()}, null, 4));
             }
             Button richPresencePrimaryButton5 = getRichPresencePrimaryButton();
             if (richPresencePrimaryButton5 != null) {
-                richPresencePrimaryButton5.setOnClickListener(new ViewHolderPlatformRichPresence$configureUi$1(userConnections, platformFrom));
+                richPresencePrimaryButton5.setOnClickListener(new AnonymousClass1(userConnections, platformFrom));
             }
         }
         configureImages(platformFrom, richPresence);

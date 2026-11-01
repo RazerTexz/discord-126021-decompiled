@@ -12,28 +12,25 @@ import android.os.Looper;
 import android.os.RemoteException;
 import android.util.Log;
 import androidx.annotation.NonNull;
-import b.i.a.f.e.h.c$a;
-import b.i.a.f.e.h.c$b;
-import b.i.a.f.e.h.j.k$a;
 import com.google.android.gms.nearby.messages.internal.ClientAppContext;
 import com.google.android.gms.nearby.messages.internal.zzj;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class f extends b.i.a.f.e.k.d<u0> {
-    public final b.i.a.f.h.m.o<k$a, IBinder> A;
+    public final b.i.a.f.h.m.o<b.i.a.f.e.h.j.k.a, IBinder> A;
     public final ClientAppContext B;
     public final int C;
 
     @TargetApi(14)
-    public f(Context context, Looper looper, c$a c_a, c$b c_b, b.i.a.f.e.k.c cVar, b.i.a.f.j.b.a aVar) {
+    public f(Context context, Looper looper, b.i.a.f.e.h.c.a aVar, b.i.a.f.e.h.c.b bVar, b.i.a.f.e.k.c cVar, b.i.a.f.j.b.a aVar2) {
         int i;
-        super(context, looper, 62, cVar, c_a, c_b);
+        super(context, looper, 62, cVar, aVar, bVar);
         this.A = new b.i.a.f.h.m.o<>();
         String str = cVar.e;
         int i2 = context instanceof Activity ? 1 : context instanceof Application ? 2 : context instanceof Service ? 3 : 0;
-        if (aVar != null) {
+        if (aVar2 != null) {
             this.B = new ClientAppContext(str, null, false, null, i2);
-            i = aVar.j;
+            i = aVar2.j;
         } else {
             this.B = new ClientAppContext(str, null, false, null, i2);
             i = -1;
@@ -75,7 +72,7 @@ public final class f extends b.i.a.f.e.k.d<u0> {
         }
     }
 
-    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a$f
+    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a.f
     public final void h() {
         try {
             G(2);
@@ -88,12 +85,12 @@ public final class f extends b.i.a.f.e.k.d<u0> {
         super.h();
     }
 
-    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a$f
+    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a.f
     public final boolean k() {
         return b.i.a.f.j.a.a(this.d);
     }
 
-    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a$f
+    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a.f
     public final int l() {
         return 12451000;
     }

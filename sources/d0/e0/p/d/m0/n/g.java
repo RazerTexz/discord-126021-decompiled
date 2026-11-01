@@ -3,15 +3,258 @@ package d0.e0.p.d.m0.n;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import kotlin.Lazy;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: AbstractTypeConstructor.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class g implements u0 {
-    public final d0.e0.p.d.m0.m.j<g$b> a;
+    public final d0.e0.p.d.m0.m.j<b> a;
+
+    /* JADX INFO: compiled from: AbstractTypeConstructor.kt */
+    public final class a implements u0 {
+        public final d0.e0.p.d.m0.n.l1.g a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final Lazy f3524b;
+        public final /* synthetic */ g c;
+
+        /* JADX INFO: renamed from: d0.e0.p.d.m0.n.g$a$a, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: AbstractTypeConstructor.kt */
+        public final class C0580a extends d0.z.d.o implements Function0<List<? extends c0>> {
+            public final /* synthetic */ g this$1;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C0580a(g gVar) {
+                super(0);
+                this.this$1 = gVar;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ List<? extends c0> invoke() {
+                return invoke2();
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final List<? extends c0> invoke2() {
+                return d0.e0.p.d.m0.n.l1.h.refineTypes(a.access$getKotlinTypeRefiner$p(a.this), this.this$1.getSupertypes());
+            }
+        }
+
+        public a(g gVar, d0.e0.p.d.m0.n.l1.g gVar2) {
+            d0.z.d.m.checkNotNullParameter(gVar, "this$0");
+            d0.z.d.m.checkNotNullParameter(gVar2, "kotlinTypeRefiner");
+            this.c = gVar;
+            this.a = gVar2;
+            this.f3524b = d0.g.lazy(d0.i.PUBLICATION, new C0580a(gVar));
+        }
+
+        public static final /* synthetic */ d0.e0.p.d.m0.n.l1.g access$getKotlinTypeRefiner$p(a aVar) {
+            return aVar.a;
+        }
+
+        public boolean equals(Object obj) {
+            return this.c.equals(obj);
+        }
+
+        @Override // d0.e0.p.d.m0.n.u0
+        public d0.e0.p.d.m0.b.h getBuiltIns() {
+            d0.e0.p.d.m0.b.h builtIns = this.c.getBuiltIns();
+            d0.z.d.m.checkNotNullExpressionValue(builtIns, "this@AbstractTypeConstructor.builtIns");
+            return builtIns;
+        }
+
+        @Override // d0.e0.p.d.m0.n.u0
+        public d0.e0.p.d.m0.c.h getDeclarationDescriptor() {
+            return this.c.getDeclarationDescriptor();
+        }
+
+        @Override // d0.e0.p.d.m0.n.u0
+        public List<d0.e0.p.d.m0.c.z0> getParameters() {
+            List<d0.e0.p.d.m0.c.z0> parameters = this.c.getParameters();
+            d0.z.d.m.checkNotNullExpressionValue(parameters, "this@AbstractTypeConstructor.parameters");
+            return parameters;
+        }
+
+        @Override // d0.e0.p.d.m0.n.u0
+        public /* bridge */ /* synthetic */ Collection getSupertypes() {
+            return getSupertypes();
+        }
+
+        public int hashCode() {
+            return this.c.hashCode();
+        }
+
+        @Override // d0.e0.p.d.m0.n.u0
+        public boolean isDenotable() {
+            return this.c.isDenotable();
+        }
+
+        @Override // d0.e0.p.d.m0.n.u0
+        public u0 refine(d0.e0.p.d.m0.n.l1.g gVar) {
+            d0.z.d.m.checkNotNullParameter(gVar, "kotlinTypeRefiner");
+            return this.c.refine(gVar);
+        }
+
+        public String toString() {
+            return this.c.toString();
+        }
+
+        @Override // d0.e0.p.d.m0.n.u0
+        public List<c0> getSupertypes() {
+            return (List) this.f3524b.getValue();
+        }
+    }
+
+    /* JADX INFO: compiled from: AbstractTypeConstructor.kt */
+    public final class b {
+        public final Collection<c0> a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public List<? extends c0> f3525b;
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public b(Collection<? extends c0> collection) {
+            d0.z.d.m.checkNotNullParameter(collection, "allSupertypes");
+            this.a = collection;
+            this.f3525b = d0.t.m.listOf(t.c);
+        }
+
+        public final Collection<c0> getAllSupertypes() {
+            return this.a;
+        }
+
+        public final List<c0> getSupertypesWithoutCycles() {
+            return this.f3525b;
+        }
+
+        public final void setSupertypesWithoutCycles(List<? extends c0> list) {
+            d0.z.d.m.checkNotNullParameter(list, "<set-?>");
+            this.f3525b = list;
+        }
+    }
+
+    /* JADX INFO: compiled from: AbstractTypeConstructor.kt */
+    public final class c extends d0.z.d.o implements Function0<b> {
+        public c() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ b invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final b invoke() {
+            return new b(g.this.a());
+        }
+    }
+
+    /* JADX INFO: compiled from: AbstractTypeConstructor.kt */
+    public final class d extends d0.z.d.o implements Function1<Boolean, b> {
+        public static final d j = new d();
+
+        public d() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ b invoke(Boolean bool) {
+            return invoke(bool.booleanValue());
+        }
+
+        public final b invoke(boolean z2) {
+            return new b(d0.t.m.listOf(t.c));
+        }
+    }
+
+    /* JADX INFO: compiled from: AbstractTypeConstructor.kt */
+    public final class e extends d0.z.d.o implements Function1<b, Unit> {
+
+        /* JADX INFO: compiled from: AbstractTypeConstructor.kt */
+        public final class a extends d0.z.d.o implements Function1<u0, Iterable<? extends c0>> {
+            public final /* synthetic */ g this$0;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public a(g gVar) {
+                super(1);
+                this.this$0 = gVar;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final Iterable<c0> invoke2(u0 u0Var) {
+                d0.z.d.m.checkNotNullParameter(u0Var, "it");
+                return g.access$computeNeighbours(this.this$0, u0Var, false);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Iterable<? extends c0> invoke(u0 u0Var) {
+                return invoke2(u0Var);
+            }
+        }
+
+        /* JADX INFO: compiled from: AbstractTypeConstructor.kt */
+        public final class b extends d0.z.d.o implements Function1<c0, Unit> {
+            public final /* synthetic */ g this$0;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public b(g gVar) {
+                super(1);
+                this.this$0 = gVar;
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(c0 c0Var) {
+                invoke2(c0Var);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(c0 c0Var) {
+                d0.z.d.m.checkNotNullParameter(c0Var, "it");
+                this.this$0.f(c0Var);
+            }
+        }
+
+        public e() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(b bVar) {
+            invoke2(bVar);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(b bVar) {
+            d0.z.d.m.checkNotNullParameter(bVar, "supertypes");
+            Collection<c0> collectionFindLoopsInSupertypesAndDisconnect = g.this.d().findLoopsInSupertypesAndDisconnect(g.this, bVar.getAllSupertypes(), new a(g.this), new b(g.this));
+            if (collectionFindLoopsInSupertypesAndDisconnect.isEmpty()) {
+                c0 c0VarB = g.this.b();
+                collectionFindLoopsInSupertypesAndDisconnect = c0VarB == null ? null : d0.t.m.listOf(c0VarB);
+                if (collectionFindLoopsInSupertypesAndDisconnect == null) {
+                    collectionFindLoopsInSupertypesAndDisconnect = d0.t.n.emptyList();
+                }
+            }
+            Objects.requireNonNull(g.this);
+            g gVar = g.this;
+            List<c0> list = collectionFindLoopsInSupertypesAndDisconnect instanceof List ? (List) collectionFindLoopsInSupertypesAndDisconnect : null;
+            if (list == null) {
+                list = d0.t.u.toList(collectionFindLoopsInSupertypesAndDisconnect);
+            }
+            bVar.setSupertypesWithoutCycles(gVar.e(list));
+        }
+    }
 
     public g(d0.e0.p.d.m0.m.o oVar) {
         d0.z.d.m.checkNotNullParameter(oVar, "storageManager");
-        this.a = oVar.createLazyValueWithPostCompute(new g$c(this), g$d.j, new g$e(this));
+        this.a = oVar.createLazyValueWithPostCompute(new c(), d.j, new e());
     }
 
     public abstract Collection<c0> a();
@@ -58,7 +301,7 @@ public abstract class g implements u0 {
     @Override // d0.e0.p.d.m0.n.u0
     public u0 refine(d0.e0.p.d.m0.n.l1.g gVar) {
         d0.z.d.m.checkNotNullParameter(gVar, "kotlinTypeRefiner");
-        return new g$a(this, gVar);
+        return new a(this, gVar);
     }
 
     @Override // d0.e0.p.d.m0.n.u0

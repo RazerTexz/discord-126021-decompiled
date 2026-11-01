@@ -1,7 +1,7 @@
 package b.i.a.f.e.k;
 
 import android.content.ComponentName;
-import android.os.Handler$Callback;
+import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import androidx.core.os.EnvironmentCompat;
@@ -9,14 +9,14 @@ import java.util.Objects;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class s0 implements Handler$Callback {
+public final class s0 implements Handler.Callback {
     public final /* synthetic */ t0 j;
 
     public /* synthetic */ s0(t0 t0Var) {
         this.j = t0Var;
     }
 
-    @Override // android.os.Handler$Callback
+    @Override // android.os.Handler.Callback
     public final boolean handleMessage(Message message) {
         int i = message.what;
         if (i == 0) {

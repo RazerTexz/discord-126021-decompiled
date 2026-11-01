@@ -26,11 +26,11 @@ public final class DirectoryEntryViewHolder extends DirectoryChannelViewHolder {
         DirectoryEntryData directoryEntryData;
         m.checkNotNullParameter(item, "item");
         m.checkNotNullParameter(listener, "listener");
-        if (!(item instanceof DirectoryChannelItem$DirectoryItem)) {
+        if (!(item instanceof DirectoryChannelItem.DirectoryItem)) {
             item = null;
         }
-        DirectoryChannelItem$DirectoryItem directoryChannelItem$DirectoryItem = (DirectoryChannelItem$DirectoryItem) item;
-        if (directoryChannelItem$DirectoryItem == null || (directoryEntryData = directoryChannelItem$DirectoryItem.getDirectoryEntryData()) == null) {
+        DirectoryChannelItem.DirectoryItem directoryItem = (DirectoryChannelItem.DirectoryItem) item;
+        if (directoryItem == null || (directoryEntryData = directoryItem.getDirectoryEntryData()) == null) {
             return;
         }
         DirectoryEntryGuild entry = directoryEntryData.getEntry();

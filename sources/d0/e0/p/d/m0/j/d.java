@@ -2,10 +2,10 @@ package d0.e0.p.d.m0.j;
 
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.widgets.chat.input.MentionUtilsKt;
-import d0.e0.p.d.m0.b.k$a;
 import d0.e0.p.d.m0.c.a1;
+import d0.e0.p.d.m0.c.c0;
 import d0.e0.p.d.m0.c.c1;
-import d0.e0.p.d.m0.c.d0$b;
+import d0.e0.p.d.m0.c.d0;
 import d0.e0.p.d.m0.c.d1;
 import d0.e0.p.d.m0.c.e0;
 import d0.e0.p.d.m0.c.j0;
@@ -18,23 +18,19 @@ import d0.e0.p.d.m0.c.q0;
 import d0.e0.p.d.m0.c.t;
 import d0.e0.p.d.m0.c.u;
 import d0.e0.p.d.m0.c.v;
-import d0.e0.p.d.m0.c.v0$a;
+import d0.e0.p.d.m0.c.v0;
 import d0.e0.p.d.m0.c.x;
 import d0.e0.p.d.m0.c.y;
 import d0.e0.p.d.m0.c.y0;
 import d0.e0.p.d.m0.c.z;
 import d0.e0.p.d.m0.c.z0;
 import d0.e0.p.d.m0.k.v.r;
-import d0.e0.p.d.m0.k.v.r$b;
-import d0.e0.p.d.m0.k.v.r$b$a;
-import d0.e0.p.d.m0.k.v.r$b$b;
-import d0.e0.p.d.m0.n.c0;
 import d0.e0.p.d.m0.n.e1;
 import d0.e0.p.d.m0.n.h1;
 import d0.e0.p.d.m0.n.i1;
+import d0.e0.p.d.m0.n.j1;
 import d0.e0.p.d.m0.n.k1;
 import d0.e0.p.d.m0.n.s;
-import d0.e0.p.d.m0.n.t$f;
 import d0.e0.p.d.m0.n.u0;
 import d0.e0.p.d.m0.n.w0;
 import d0.g0.w;
@@ -43,31 +39,316 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.Set;
 import kotlin.Lazy;
 import kotlin.NoWhenBranchMatchedException;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: DescriptorRendererImpl.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class d extends c implements h {
+public final class d extends d0.e0.p.d.m0.j.c implements h {
     public final i d;
     public final Lazy e;
+
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.j.d$d, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: DescriptorRendererImpl.kt */
+    public final class C0562d extends d0.z.d.o implements Function1<d0.e0.p.d.m0.k.v.g<?>, CharSequence> {
+        public C0562d() {
+            super(1);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final CharSequence invoke2(d0.e0.p.d.m0.k.v.g<?> gVar) {
+            d0.z.d.m.checkNotNullParameter(gVar, "it");
+            return d.access$renderConstant(d.this, gVar);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ CharSequence invoke(d0.e0.p.d.m0.k.v.g<?> gVar) {
+            return invoke2(gVar);
+        }
+    }
+
+    /* JADX INFO: compiled from: DescriptorRendererImpl.kt */
+    public final class a implements d0.e0.p.d.m0.c.o<Unit, StringBuilder> {
+        public final /* synthetic */ d a;
+
+        public a(d dVar) {
+            d0.z.d.m.checkNotNullParameter(dVar, "this$0");
+            this.a = dVar;
+        }
+
+        public final void a(m0 m0Var, StringBuilder sb, String str) {
+            int iOrdinal = this.a.getPropertyAccessorRenderingPolicy().ordinal();
+            if (iOrdinal != 0) {
+                if (iOrdinal != 1) {
+                    return;
+                }
+                visitFunctionDescriptor2((x) m0Var, sb);
+            } else {
+                d.access$renderAccessorModifiers(this.a, m0Var, sb);
+                sb.append(d0.z.d.m.stringPlus(str, " for "));
+                d dVar = this.a;
+                n0 correspondingProperty = m0Var.getCorrespondingProperty();
+                d0.z.d.m.checkNotNullExpressionValue(correspondingProperty, "descriptor.correspondingProperty");
+                d.access$renderProperty(dVar, correspondingProperty, sb);
+            }
+        }
+
+        @Override // d0.e0.p.d.m0.c.o
+        public /* bridge */ /* synthetic */ Unit visitClassDescriptor(d0.e0.p.d.m0.c.e eVar, StringBuilder sb) {
+            visitClassDescriptor2(eVar, sb);
+            return Unit.a;
+        }
+
+        @Override // d0.e0.p.d.m0.c.o
+        public /* bridge */ /* synthetic */ Unit visitConstructorDescriptor(d0.e0.p.d.m0.c.l lVar, StringBuilder sb) {
+            visitConstructorDescriptor2(lVar, sb);
+            return Unit.a;
+        }
+
+        @Override // d0.e0.p.d.m0.c.o
+        public /* bridge */ /* synthetic */ Unit visitFunctionDescriptor(x xVar, StringBuilder sb) {
+            visitFunctionDescriptor2(xVar, sb);
+            return Unit.a;
+        }
+
+        @Override // d0.e0.p.d.m0.c.o
+        public /* bridge */ /* synthetic */ Unit visitModuleDeclaration(c0 c0Var, StringBuilder sb) {
+            visitModuleDeclaration2(c0Var, sb);
+            return Unit.a;
+        }
+
+        @Override // d0.e0.p.d.m0.c.o
+        public /* bridge */ /* synthetic */ Unit visitPackageFragmentDescriptor(e0 e0Var, StringBuilder sb) {
+            visitPackageFragmentDescriptor2(e0Var, sb);
+            return Unit.a;
+        }
+
+        @Override // d0.e0.p.d.m0.c.o
+        public /* bridge */ /* synthetic */ Unit visitPackageViewDescriptor(j0 j0Var, StringBuilder sb) {
+            visitPackageViewDescriptor2(j0Var, sb);
+            return Unit.a;
+        }
+
+        @Override // d0.e0.p.d.m0.c.o
+        public /* bridge */ /* synthetic */ Unit visitPropertyDescriptor(n0 n0Var, StringBuilder sb) {
+            visitPropertyDescriptor2(n0Var, sb);
+            return Unit.a;
+        }
+
+        @Override // d0.e0.p.d.m0.c.o
+        public /* bridge */ /* synthetic */ Unit visitPropertyGetterDescriptor(o0 o0Var, StringBuilder sb) {
+            visitPropertyGetterDescriptor2(o0Var, sb);
+            return Unit.a;
+        }
+
+        @Override // d0.e0.p.d.m0.c.o
+        public /* bridge */ /* synthetic */ Unit visitPropertySetterDescriptor(p0 p0Var, StringBuilder sb) {
+            visitPropertySetterDescriptor2(p0Var, sb);
+            return Unit.a;
+        }
+
+        @Override // d0.e0.p.d.m0.c.o
+        public /* bridge */ /* synthetic */ Unit visitReceiverParameterDescriptor(q0 q0Var, StringBuilder sb) {
+            visitReceiverParameterDescriptor2(q0Var, sb);
+            return Unit.a;
+        }
+
+        @Override // d0.e0.p.d.m0.c.o
+        public /* bridge */ /* synthetic */ Unit visitTypeAliasDescriptor(y0 y0Var, StringBuilder sb) {
+            visitTypeAliasDescriptor2(y0Var, sb);
+            return Unit.a;
+        }
+
+        @Override // d0.e0.p.d.m0.c.o
+        public /* bridge */ /* synthetic */ Unit visitTypeParameterDescriptor(z0 z0Var, StringBuilder sb) {
+            visitTypeParameterDescriptor2(z0Var, sb);
+            return Unit.a;
+        }
+
+        @Override // d0.e0.p.d.m0.c.o
+        public /* bridge */ /* synthetic */ Unit visitValueParameterDescriptor(c1 c1Var, StringBuilder sb) {
+            visitValueParameterDescriptor2(c1Var, sb);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: visitClassDescriptor, reason: avoid collision after fix types in other method */
+        public void visitClassDescriptor2(d0.e0.p.d.m0.c.e eVar, StringBuilder sb) {
+            d0.z.d.m.checkNotNullParameter(eVar, "descriptor");
+            d0.z.d.m.checkNotNullParameter(sb, "builder");
+            d.access$renderClass(this.a, eVar, sb);
+        }
+
+        /* JADX INFO: renamed from: visitConstructorDescriptor, reason: avoid collision after fix types in other method */
+        public void visitConstructorDescriptor2(d0.e0.p.d.m0.c.l lVar, StringBuilder sb) {
+            d0.z.d.m.checkNotNullParameter(lVar, "constructorDescriptor");
+            d0.z.d.m.checkNotNullParameter(sb, "builder");
+            d.access$renderConstructor(this.a, lVar, sb);
+        }
+
+        /* JADX INFO: renamed from: visitFunctionDescriptor, reason: avoid collision after fix types in other method */
+        public void visitFunctionDescriptor2(x xVar, StringBuilder sb) {
+            d0.z.d.m.checkNotNullParameter(xVar, "descriptor");
+            d0.z.d.m.checkNotNullParameter(sb, "builder");
+            d.access$renderFunction(this.a, xVar, sb);
+        }
+
+        /* JADX INFO: renamed from: visitModuleDeclaration, reason: avoid collision after fix types in other method */
+        public void visitModuleDeclaration2(c0 c0Var, StringBuilder sb) {
+            d0.z.d.m.checkNotNullParameter(c0Var, "descriptor");
+            d0.z.d.m.checkNotNullParameter(sb, "builder");
+            d.access$renderName(this.a, c0Var, sb, true);
+        }
+
+        /* JADX INFO: renamed from: visitPackageFragmentDescriptor, reason: avoid collision after fix types in other method */
+        public void visitPackageFragmentDescriptor2(e0 e0Var, StringBuilder sb) {
+            d0.z.d.m.checkNotNullParameter(e0Var, "descriptor");
+            d0.z.d.m.checkNotNullParameter(sb, "builder");
+            d.access$renderPackageFragment(this.a, e0Var, sb);
+        }
+
+        /* JADX INFO: renamed from: visitPackageViewDescriptor, reason: avoid collision after fix types in other method */
+        public void visitPackageViewDescriptor2(j0 j0Var, StringBuilder sb) {
+            d0.z.d.m.checkNotNullParameter(j0Var, "descriptor");
+            d0.z.d.m.checkNotNullParameter(sb, "builder");
+            d.access$renderPackageView(this.a, j0Var, sb);
+        }
+
+        /* JADX INFO: renamed from: visitPropertyDescriptor, reason: avoid collision after fix types in other method */
+        public void visitPropertyDescriptor2(n0 n0Var, StringBuilder sb) {
+            d0.z.d.m.checkNotNullParameter(n0Var, "descriptor");
+            d0.z.d.m.checkNotNullParameter(sb, "builder");
+            d.access$renderProperty(this.a, n0Var, sb);
+        }
+
+        /* JADX INFO: renamed from: visitPropertyGetterDescriptor, reason: avoid collision after fix types in other method */
+        public void visitPropertyGetterDescriptor2(o0 o0Var, StringBuilder sb) {
+            d0.z.d.m.checkNotNullParameter(o0Var, "descriptor");
+            d0.z.d.m.checkNotNullParameter(sb, "builder");
+            a(o0Var, sb, "getter");
+        }
+
+        /* JADX INFO: renamed from: visitPropertySetterDescriptor, reason: avoid collision after fix types in other method */
+        public void visitPropertySetterDescriptor2(p0 p0Var, StringBuilder sb) {
+            d0.z.d.m.checkNotNullParameter(p0Var, "descriptor");
+            d0.z.d.m.checkNotNullParameter(sb, "builder");
+            a(p0Var, sb, "setter");
+        }
+
+        /* JADX INFO: renamed from: visitReceiverParameterDescriptor, reason: avoid collision after fix types in other method */
+        public void visitReceiverParameterDescriptor2(q0 q0Var, StringBuilder sb) {
+            d0.z.d.m.checkNotNullParameter(q0Var, "descriptor");
+            d0.z.d.m.checkNotNullParameter(sb, "builder");
+            sb.append(q0Var.getName());
+        }
+
+        /* JADX INFO: renamed from: visitTypeAliasDescriptor, reason: avoid collision after fix types in other method */
+        public void visitTypeAliasDescriptor2(y0 y0Var, StringBuilder sb) {
+            d0.z.d.m.checkNotNullParameter(y0Var, "descriptor");
+            d0.z.d.m.checkNotNullParameter(sb, "builder");
+            d.access$renderTypeAlias(this.a, y0Var, sb);
+        }
+
+        /* JADX INFO: renamed from: visitTypeParameterDescriptor, reason: avoid collision after fix types in other method */
+        public void visitTypeParameterDescriptor2(z0 z0Var, StringBuilder sb) {
+            d0.z.d.m.checkNotNullParameter(z0Var, "descriptor");
+            d0.z.d.m.checkNotNullParameter(sb, "builder");
+            d.access$renderTypeParameter(this.a, z0Var, sb, true);
+        }
+
+        /* JADX INFO: renamed from: visitValueParameterDescriptor, reason: avoid collision after fix types in other method */
+        public void visitValueParameterDescriptor2(c1 c1Var, StringBuilder sb) {
+            d0.z.d.m.checkNotNullParameter(c1Var, "descriptor");
+            d0.z.d.m.checkNotNullParameter(sb, "builder");
+            d.access$renderValueParameter(this.a, c1Var, true, sb, true);
+        }
+    }
+
+    /* JADX INFO: compiled from: DescriptorRendererImpl.kt */
+    public final class b extends d0.z.d.o implements Function1<w0, CharSequence> {
+        public b() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ CharSequence invoke(w0 w0Var) {
+            return invoke2(w0Var);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final CharSequence invoke2(w0 w0Var) {
+            d0.z.d.m.checkNotNullParameter(w0Var, "it");
+            if (w0Var.isStarProjection()) {
+                return "*";
+            }
+            d dVar = d.this;
+            d0.e0.p.d.m0.n.c0 type = w0Var.getType();
+            d0.z.d.m.checkNotNullExpressionValue(type, "it.type");
+            String strRenderType = dVar.renderType(type);
+            if (w0Var.getProjectionKind() == j1.INVARIANT) {
+                return strRenderType;
+            }
+            return "" + w0Var.getProjectionKind() + ' ' + strRenderType;
+        }
+    }
+
+    /* JADX INFO: compiled from: DescriptorRendererImpl.kt */
+    public final class c extends d0.z.d.o implements Function0<d> {
+
+        /* JADX INFO: compiled from: DescriptorRendererImpl.kt */
+        public final class a extends d0.z.d.o implements Function1<h, Unit> {
+            public static final a j = new a();
+
+            public a() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(h hVar) {
+                invoke2(hVar);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(h hVar) {
+                d0.z.d.m.checkNotNullParameter(hVar, "<this>");
+                hVar.setExcludedTypeAnnotationClasses(d0.t.o0.plus((Set) hVar.getExcludedTypeAnnotationClasses(), (Iterable) d0.t.m.listOf(d0.e0.p.d.m0.b.k.a.f3228x)));
+                hVar.setAnnotationArgumentsRenderingPolicy(d0.e0.p.d.m0.j.a.ALWAYS_PARENTHESIZED);
+            }
+        }
+
+        public c() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ d invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final d invoke() {
+            return (d) d.this.withOptions(a.j);
+        }
+    }
 
     public d(i iVar) {
         d0.z.d.m.checkNotNullParameter(iVar, "options");
         this.d = iVar;
         iVar.isLocked();
-        this.e = d0.g.lazy(new d$c(this));
+        this.e = d0.g.lazy(new c());
     }
 
     public final void A(d0.e0.p.d.m0.c.a aVar, StringBuilder sb) {
         q0 extensionReceiverParameter;
         if (getReceiverAfterName() && (extensionReceiverParameter = aVar.getExtensionReceiverParameter()) != null) {
             sb.append(" on ");
-            c0 type = extensionReceiverParameter.getType();
+            d0.e0.p.d.m0.n.c0 type = extensionReceiverParameter.getType();
             d0.z.d.m.checkNotNullExpressionValue(type, "receiver.type");
             sb.append(renderType(type));
         }
@@ -97,14 +378,14 @@ public final class d extends c implements h {
         t(z0Var, sb, z2);
         int size = z0Var.getUpperBounds().size();
         if ((size > 1 && !z2) || size == 1) {
-            c0 next = z0Var.getUpperBounds().iterator().next();
+            d0.e0.p.d.m0.n.c0 next = z0Var.getUpperBounds().iterator().next();
             if (!d0.e0.p.d.m0.b.h.isDefaultBound(next)) {
                 sb.append(" : ");
                 d0.z.d.m.checkNotNullExpressionValue(next, "upperBound");
                 sb.append(renderType(next));
             }
         } else if (z2) {
-            for (c0 c0Var : z0Var.getUpperBounds()) {
+            for (d0.e0.p.d.m0.n.c0 c0Var : z0Var.getUpperBounds()) {
                 if (!d0.e0.p.d.m0.b.h.isDefaultBound(c0Var)) {
                     if (z3) {
                         sb.append(" : ");
@@ -181,10 +462,10 @@ public final class d extends c implements h {
         if (z4) {
             s(sb, getActualPropertiesInPrimaryConstructor(), "actual");
         }
-        c0 type = c1Var.getType();
+        d0.e0.p.d.m0.n.c0 type = c1Var.getType();
         d0.z.d.m.checkNotNullExpressionValue(type, "variable.type");
-        c0 varargElementType = c1Var != null ? c1Var.getVarargElementType() : null;
-        c0 c0Var = varargElementType == null ? type : varargElementType;
+        d0.e0.p.d.m0.n.c0 varargElementType = c1Var != null ? c1Var.getVarargElementType() : null;
+        d0.e0.p.d.m0.n.c0 c0Var = varargElementType == null ? type : varargElementType;
         s(sb, varargElementType != null, "vararg");
         if (z4 || (z3 && !getStartFromName())) {
             F(c1Var, sb, z4);
@@ -255,9 +536,9 @@ public final class d extends c implements h {
         }
         ArrayList arrayList = new ArrayList(0);
         for (z0 z0Var : list) {
-            List<c0> upperBounds = z0Var.getUpperBounds();
+            List<d0.e0.p.d.m0.n.c0> upperBounds = z0Var.getUpperBounds();
             d0.z.d.m.checkNotNullExpressionValue(upperBounds, "typeParameter.upperBounds");
-            for (c0 c0Var : d0.t.u.drop(upperBounds, 1)) {
+            for (d0.e0.p.d.m0.n.c0 c0Var : d0.t.u.drop(upperBounds, 1)) {
                 StringBuilder sb2 = new StringBuilder();
                 d0.e0.p.d.m0.g.e name = z0Var.getName();
                 d0.z.d.m.checkNotNullExpressionValue(name, "typeParameter.name");
@@ -297,7 +578,7 @@ public final class d extends c implements h {
         return null;
     }
 
-    public final boolean L(c0 c0Var) {
+    public final boolean L(d0.e0.p.d.m0.n.c0 c0Var) {
         boolean z2;
         if (!d0.e0.p.d.m0.b.g.isBuiltinFunctionalType(c0Var)) {
             return false;
@@ -318,7 +599,7 @@ public final class d extends c implements h {
     }
 
     public final void a(StringBuilder sb, List<? extends w0> list) {
-        d0.t.u.joinTo$default(list, sb, ", ", null, null, 0, null, new d$b(this), 60, null);
+        d0.t.u.joinTo$default(list, sb, ", ", null, null, 0, null, new b(), 60, null);
     }
 
     public static final void access$renderAccessorModifiers(d dVar, m0 m0Var, StringBuilder sb) {
@@ -347,7 +628,7 @@ public final class d extends c implements h {
             dVar.s(sb, dVar.getModifiers().contains(g.INLINE) && eVar.isInline(), "inline");
             dVar.s(sb, dVar.getModifiers().contains(g.VALUE) && eVar.isValue(), "value");
             dVar.s(sb, dVar.getModifiers().contains(g.FUN) && eVar.isFun(), "fun");
-            sb.append(dVar.n(c.a.getClassifierKindPrefix(eVar)));
+            sb.append(dVar.n(d0.e0.p.d.m0.j.c.a.getClassifierKindPrefix(eVar)));
         }
         if (d0.e0.p.d.m0.k.e.isCompanionObject(eVar)) {
             if (dVar.getRenderCompanionObjectName()) {
@@ -396,7 +677,7 @@ public final class d extends c implements h {
             dVar.H(valueParameters, unsubstitutedPrimaryConstructor.hasSynthesizedParameterNames(), sb);
         }
         if (!dVar.getWithoutSuperTypes() && !d0.e0.p.d.m0.b.h.isNothing(eVar.getDefaultType())) {
-            Collection<c0> supertypes = eVar.getTypeConstructor().getSupertypes();
+            Collection<d0.e0.p.d.m0.n.c0> supertypes = eVar.getTypeConstructor().getSupertypes();
             d0.z.d.m.checkNotNullExpressionValue(supertypes, "klass.typeConstructor.supertypes");
             if (!supertypes.isEmpty() && (supertypes.size() != 1 || !d0.e0.p.d.m0.b.h.isAnyOrNullableAny(supertypes.iterator().next()))) {
                 dVar.B(sb);
@@ -564,7 +845,7 @@ public final class d extends c implements h {
         d0.z.d.m.checkNotNullExpressionValue(valueParameters, "function.valueParameters");
         dVar.H(valueParameters, xVar.hasSynthesizedParameterNames(), sb);
         dVar.A(xVar, sb);
-        c0 returnType = xVar.getReturnType();
+        d0.e0.p.d.m0.n.c0 returnType = xVar.getReturnType();
         if (!dVar.getWithoutReturnType() && (dVar.getUnitReturnType() || returnType == null || !d0.e0.p.d.m0.b.h.isUnit(returnType))) {
             sb.append(": ");
             sb.append(returnType == null ? "[NULL]" : dVar.renderType(returnType));
@@ -643,7 +924,7 @@ public final class d extends c implements h {
         }
         dVar.t(n0Var, sb, true);
         sb.append(": ");
-        c0 type = n0Var.getType();
+        d0.e0.p.d.m0.n.c0 type = n0Var.getType();
         d0.z.d.m.checkNotNullExpressionValue(type, "property.type");
         sb.append(dVar.renderType(type));
         dVar.A(n0Var, sb);
@@ -746,7 +1027,7 @@ public final class d extends c implements h {
     }
 
     @Override // d0.e0.p.d.m0.j.h
-    public a getAnnotationArgumentsRenderingPolicy() {
+    public d0.e0.p.d.m0.j.a getAnnotationArgumentsRenderingPolicy() {
         return this.d.getAnnotationArgumentsRenderingPolicy();
     }
 
@@ -762,7 +1043,7 @@ public final class d extends c implements h {
         return this.d.getClassWithPrimaryConstructor();
     }
 
-    public b getClassifierNamePolicy() {
+    public d0.e0.p.d.m0.j.b getClassifierNamePolicy() {
         return this.d.getClassifierNamePolicy();
     }
 
@@ -901,7 +1182,7 @@ public final class d extends c implements h {
         return this.d.getTextFormat();
     }
 
-    public Function1<c0, c0> getTypeNormalizer() {
+    public Function1<d0.e0.p.d.m0.n.c0, d0.e0.p.d.m0.n.c0> getTypeNormalizer() {
         return this.d.getTypeNormalizer();
     }
 
@@ -913,7 +1194,7 @@ public final class d extends c implements h {
         return this.d.getUnitReturnType();
     }
 
-    public c$l getValueParametersHandler() {
+    public d0.e0.p.d.m0.j.c.l getValueParametersHandler() {
         return this.d.getValueParametersHandler();
     }
 
@@ -943,10 +1224,10 @@ public final class d extends c implements h {
 
     public final void h(StringBuilder sb, d0.e0.p.d.m0.c.g1.a aVar, d0.e0.p.d.m0.c.g1.e eVar) {
         if (getModifiers().contains(g.ANNOTATIONS)) {
-            Set<d0.e0.p.d.m0.g.b> excludedTypeAnnotationClasses = aVar instanceof c0 ? getExcludedTypeAnnotationClasses() : getExcludedAnnotationClasses();
+            Set<d0.e0.p.d.m0.g.b> excludedTypeAnnotationClasses = aVar instanceof d0.e0.p.d.m0.n.c0 ? getExcludedTypeAnnotationClasses() : getExcludedAnnotationClasses();
             Function1<d0.e0.p.d.m0.c.g1.c, Boolean> annotationFilter = getAnnotationFilter();
             for (d0.e0.p.d.m0.c.g1.c cVar : aVar.getAnnotations()) {
-                if (!d0.t.u.contains(excludedTypeAnnotationClasses, cVar.getFqName()) && !d0.z.d.m.areEqual(cVar.getFqName(), k$a.f3229y) && (annotationFilter == null || annotationFilter.invoke(cVar).booleanValue())) {
+                if (!d0.t.u.contains(excludedTypeAnnotationClasses, cVar.getFqName()) && !d0.z.d.m.areEqual(cVar.getFqName(), d0.e0.p.d.m0.b.k.a.f3229y) && (annotationFilter == null || annotationFilter.invoke(cVar).booleanValue())) {
                     sb.append(renderAnnotation(cVar, eVar));
                     if (getEachAnnotationOnNewLine()) {
                         sb.append('\n');
@@ -978,31 +1259,31 @@ public final class d extends c implements h {
 
     public final String k(d0.e0.p.d.m0.k.v.g<?> gVar) {
         if (gVar instanceof d0.e0.p.d.m0.k.v.b) {
-            return d0.t.u.joinToString$default(((d0.e0.p.d.m0.k.v.b) gVar).getValue(), ", ", "{", "}", 0, null, new d$d(this), 24, null);
+            return d0.t.u.joinToString$default(((d0.e0.p.d.m0.k.v.b) gVar).getValue(), ", ", "{", "}", 0, null, new C0562d(), 24, null);
         }
         if (gVar instanceof d0.e0.p.d.m0.k.v.a) {
-            return w.removePrefix(c.renderAnnotation$default(this, ((d0.e0.p.d.m0.k.v.a) gVar).getValue(), null, 2, null), "@");
+            return w.removePrefix(d0.e0.p.d.m0.j.c.renderAnnotation$default(this, ((d0.e0.p.d.m0.k.v.a) gVar).getValue(), null, 2, null), "@");
         }
         if (!(gVar instanceof r)) {
             return gVar.toString();
         }
-        r$b value = ((r) gVar).getValue();
-        if (value instanceof r$b$a) {
-            return ((r$b$a) value).getType() + "::class";
+        r.b value = ((r) gVar).getValue();
+        if (value instanceof r.b.a) {
+            return ((r.b.a) value).getType() + "::class";
         }
-        if (!(value instanceof r$b$b)) {
+        if (!(value instanceof r.b.C0566b)) {
             throw new NoWhenBranchMatchedException();
         }
-        r$b$b r_b_b = (r$b$b) value;
-        String strAsString = r_b_b.getClassId().asSingleFqName().asString();
+        r.b.C0566b c0566b = (r.b.C0566b) value;
+        String strAsString = c0566b.getClassId().asSingleFqName().asString();
         d0.z.d.m.checkNotNullExpressionValue(strAsString, "classValue.classId.asSingleFqName().asString()");
-        for (int i = 0; i < r_b_b.getArrayDimensions(); i++) {
+        for (int i = 0; i < c0566b.getArrayDimensions(); i++) {
             strAsString = "kotlin.Array<" + strAsString + '>';
         }
         return d0.z.d.m.stringPlus(strAsString, "::class");
     }
 
-    public final void l(StringBuilder sb, c0 c0Var) {
+    public final void l(StringBuilder sb, d0.e0.p.d.m0.n.c0 c0Var) {
         h(sb, c0Var, null);
         if (d0.e0.p.d.m0.n.e0.isError(c0Var)) {
             if ((c0Var instanceof h1) && getPresentableUnresolvedTypes()) {
@@ -1052,7 +1333,7 @@ public final class d extends c implements h {
     }
 
     public final void o(d0.e0.p.d.m0.c.b bVar, StringBuilder sb) {
-        if (getModifiers().contains(g.MEMBER_KIND) && getVerbose() && bVar.getKind() != d0.e0.p.d.m0.c.b$a.DECLARATION) {
+        if (getModifiers().contains(g.MEMBER_KIND) && getVerbose() && bVar.getKind() != d0.e0.p.d.m0.c.b.a.DECLARATION) {
             sb.append("/*");
             String strName = bVar.getKind().name();
             Objects.requireNonNull(strName, "null cannot be cast to non-null type java.lang.String");
@@ -1101,20 +1382,20 @@ public final class d extends c implements h {
         String name;
         d0.z.d.m.checkNotNullParameter(mVar, "declarationDescriptor");
         StringBuilder sb = new StringBuilder();
-        mVar.accept(new d$a(this), sb);
+        mVar.accept(new a(this), sb);
         if (getWithDefinedIn() && !(mVar instanceof e0) && !(mVar instanceof j0)) {
-            if (mVar instanceof d0.e0.p.d.m0.c.c0) {
+            if (mVar instanceof c0) {
                 sb.append(" is a module");
             } else {
                 d0.e0.p.d.m0.c.m containingDeclaration = mVar.getContainingDeclaration();
-                if (containingDeclaration != null && !(containingDeclaration instanceof d0.e0.p.d.m0.c.c0)) {
+                if (containingDeclaration != null && !(containingDeclaration instanceof c0)) {
                     sb.append(" ");
                     sb.append(renderMessage("defined in"));
                     sb.append(" ");
                     d0.e0.p.d.m0.g.c fqName = d0.e0.p.d.m0.k.e.getFqName(containingDeclaration);
                     d0.z.d.m.checkNotNullExpressionValue(fqName, "getFqName(containingDeclaration)");
                     sb.append(fqName.isRoot() ? "root package" : renderFqName(fqName));
-                    if (getWithSourceFileForTopLevel() && (containingDeclaration instanceof e0) && (mVar instanceof d0.e0.p.d.m0.c.p) && (name = ((v0$a) ((d0.e0.p.d.m0.c.p) mVar).getSource().getContainingFile()).getName()) != null) {
+                    if (getWithSourceFileForTopLevel() && (containingDeclaration instanceof e0) && (mVar instanceof d0.e0.p.d.m0.c.p) && (name = ((v0.a) ((d0.e0.p.d.m0.c.p) mVar).getSource().getContainingFile()).getName()) != null) {
                         sb.append(" ");
                         sb.append(renderMessage("in file"));
                         sb.append(" ");
@@ -1137,7 +1418,7 @@ public final class d extends c implements h {
         if (eVar != null) {
             sb.append(d0.z.d.m.stringPlus(eVar.getRenderName(), ":"));
         }
-        c0 type = cVar.getType();
+        d0.e0.p.d.m0.n.c0 type = cVar.getType();
         sb.append(renderType(type));
         if (getIncludeAnnotationArguments()) {
             Map<d0.e0.p.d.m0.g.e, d0.e0.p.d.m0.k.v.g<?>> allValueArguments = cVar.getAllValueArguments();
@@ -1174,13 +1455,13 @@ public final class d extends c implements h {
             while (it2.hasNext()) {
                 arrayList4.add(d0.z.d.m.stringPlus(((d0.e0.p.d.m0.g.e) it2.next()).asString(), " = ..."));
             }
-            Set<Map$Entry<d0.e0.p.d.m0.g.e, d0.e0.p.d.m0.k.v.g<?>>> setEntrySet = allValueArguments.entrySet();
+            Set<Map.Entry<d0.e0.p.d.m0.g.e, d0.e0.p.d.m0.k.v.g<?>>> setEntrySet = allValueArguments.entrySet();
             ArrayList arrayList5 = new ArrayList(d0.t.o.collectionSizeOrDefault(setEntrySet, 10));
             Iterator<T> it3 = setEntrySet.iterator();
             while (it3.hasNext()) {
-                Map$Entry map$Entry = (Map$Entry) it3.next();
-                d0.e0.p.d.m0.g.e eVar3 = (d0.e0.p.d.m0.g.e) map$Entry.getKey();
-                d0.e0.p.d.m0.k.v.g<?> gVar = (d0.e0.p.d.m0.k.v.g) map$Entry.getValue();
+                Map.Entry entry = (Map.Entry) it3.next();
+                d0.e0.p.d.m0.g.e eVar3 = (d0.e0.p.d.m0.g.e) entry.getKey();
+                d0.e0.p.d.m0.k.v.g<?> gVar = (d0.e0.p.d.m0.k.v.g) entry.getValue();
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append(eVar3.asString());
                 sb2.append(" = ");
@@ -1192,7 +1473,7 @@ public final class d extends c implements h {
                 d0.t.u.joinTo$default(listSorted, sb, ", ", "(", ")", 0, null, null, 112, null);
             }
         }
-        if (getVerbose() && (d0.e0.p.d.m0.n.e0.isError(type) || (type.getConstructor().getDeclarationDescriptor() instanceof d0$b))) {
+        if (getVerbose() && (d0.e0.p.d.m0.n.e0.isError(type) || (type.getConstructor().getDeclarationDescriptor() instanceof d0.b))) {
             sb.append(" /* annotation class not found */");
         }
         String string = sb.toString();
@@ -1216,7 +1497,7 @@ public final class d extends c implements h {
             }
             return '(' + str + ")!";
         }
-        b classifierNamePolicy = getClassifierNamePolicy();
+        d0.e0.p.d.m0.j.b classifierNamePolicy = getClassifierNamePolicy();
         d0.e0.p.d.m0.c.e collection = hVar.getCollection();
         d0.z.d.m.checkNotNullExpressionValue(collection, "builtIns.collection");
         String strSubstringBefore$default = w.substringBefore$default(classifierNamePolicy.renderClassifier(collection, this), "Collection", (String) null, 2, (Object) null);
@@ -1228,7 +1509,7 @@ public final class d extends c implements h {
         if (strK2 != null) {
             return strK2;
         }
-        b classifierNamePolicy2 = getClassifierNamePolicy();
+        d0.e0.p.d.m0.j.b classifierNamePolicy2 = getClassifierNamePolicy();
         d0.e0.p.d.m0.c.e array = hVar.getArray();
         d0.z.d.m.checkNotNullExpressionValue(array, "builtIns.array");
         String strSubstringBefore$default2 = w.substringBefore$default(classifierNamePolicy2.renderClassifier(array, this), "Array", (String) null, 2, (Object) null);
@@ -1267,7 +1548,7 @@ public final class d extends c implements h {
     }
 
     @Override // d0.e0.p.d.m0.j.c
-    public String renderType(c0 c0Var) {
+    public String renderType(d0.e0.p.d.m0.n.c0 c0Var) {
         d0.z.d.m.checkNotNullParameter(c0Var, "type");
         StringBuilder sb = new StringBuilder();
         u(sb, getTypeNormalizer().invoke(c0Var));
@@ -1320,13 +1601,13 @@ public final class d extends c implements h {
     }
 
     @Override // d0.e0.p.d.m0.j.h
-    public void setAnnotationArgumentsRenderingPolicy(a aVar) {
+    public void setAnnotationArgumentsRenderingPolicy(d0.e0.p.d.m0.j.a aVar) {
         d0.z.d.m.checkNotNullParameter(aVar, "<set-?>");
         this.d.setAnnotationArgumentsRenderingPolicy(aVar);
     }
 
     @Override // d0.e0.p.d.m0.j.h
-    public void setClassifierNamePolicy(b bVar) {
+    public void setClassifierNamePolicy(d0.e0.p.d.m0.j.b bVar) {
         d0.z.d.m.checkNotNullParameter(bVar, "<set-?>");
         this.d.setClassifierNamePolicy(bVar);
     }
@@ -1396,7 +1677,7 @@ public final class d extends c implements h {
         sb.append(renderName(name, z2));
     }
 
-    public final void u(StringBuilder sb, c0 c0Var) {
+    public final void u(StringBuilder sb, d0.e0.p.d.m0.n.c0 c0Var) {
         i1 i1VarUnwrap = c0Var.unwrap();
         d0.e0.p.d.m0.n.a aVar = i1VarUnwrap instanceof d0.e0.p.d.m0.n.a ? (d0.e0.p.d.m0.n.a) i1VarUnwrap : null;
         if (aVar == null) {
@@ -1414,7 +1695,7 @@ public final class d extends c implements h {
     }
 
     /* JADX WARN: Code duplicated, block: B:71:0x0124  */
-    public final void v(StringBuilder sb, c0 c0Var) {
+    public final void v(StringBuilder sb, d0.e0.p.d.m0.n.c0 c0Var) {
         String strEscape;
         d0.e0.p.d.m0.g.e eVarExtractParameterNameFromFunctionTypeArgument;
         boolean z2;
@@ -1438,7 +1719,7 @@ public final class d extends c implements h {
                     sb.append("???");
                     return;
                 }
-                String string = ((t$f) j0Var.getConstructor()).getTypeParameterDescriptor().getName().toString();
+                String string = ((d0.e0.p.d.m0.n.t.f) j0Var.getConstructor()).getTypeParameterDescriptor().getName().toString();
                 d0.z.d.m.checkNotNullExpressionValue(string, "type.constructor as UninferredParameterTypeConstructor).typeParameterDescriptor.name.toString()");
                 int iOrdinal = getTextFormat().ordinal();
                 if (iOrdinal != 0) {
@@ -1463,7 +1744,7 @@ public final class d extends c implements h {
             boolean z3 = sb.length() != length;
             boolean zIsSuspendFunctionType = d0.e0.p.d.m0.b.g.isSuspendFunctionType(j0Var);
             boolean zIsMarkedNullable = j0Var.isMarkedNullable();
-            c0 receiverTypeFromFunctionType = d0.e0.p.d.m0.b.g.getReceiverTypeFromFunctionType(j0Var);
+            d0.e0.p.d.m0.n.c0 receiverTypeFromFunctionType = d0.e0.p.d.m0.b.g.getReceiverTypeFromFunctionType(j0Var);
             boolean z4 = zIsMarkedNullable || (z3 && receiverTypeFromFunctionType != null);
             if (z4) {
                 if (zIsSuspendFunctionType) {
@@ -1504,7 +1785,7 @@ public final class d extends c implements h {
                     sb.append(", ");
                 }
                 if (getParameterNamesInFunctionalTypes()) {
-                    c0 type = w0Var.getType();
+                    d0.e0.p.d.m0.n.c0 type = w0Var.getType();
                     d0.z.d.m.checkNotNullExpressionValue(type, "typeProjection.type");
                     eVarExtractParameterNameFromFunctionTypeArgument = d0.e0.p.d.m0.b.g.extractParameterNameFromFunctionTypeArgument(type);
                 } else {
@@ -1586,7 +1867,7 @@ public final class d extends c implements h {
         q0 extensionReceiverParameter = aVar.getExtensionReceiverParameter();
         if (extensionReceiverParameter != null) {
             h(sb, extensionReceiverParameter, d0.e0.p.d.m0.c.g1.e.RECEIVER);
-            c0 type = extensionReceiverParameter.getType();
+            d0.e0.p.d.m0.n.c0 type = extensionReceiverParameter.getType();
             d0.z.d.m.checkNotNullExpressionValue(type, "receiver.type");
             String strRenderType = renderType(type);
             if (L(type) && !e1.isNullableType(type)) {

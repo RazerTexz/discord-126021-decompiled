@@ -1,11 +1,16 @@
 package b.i.a.c.b3.r;
 
 import android.graphics.Color;
+import android.graphics.PointF;
 import android.util.Log;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
+import b.i.a.c.f3.e0;
 import b.i.a.c.f3.q;
 import b.i.a.f.e.o.f;
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /* JADX INFO: compiled from: SsaStyle.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -23,6 +28,74 @@ public final class c {
     public final boolean f;
     public final boolean g;
     public final boolean h;
+
+    /* JADX INFO: compiled from: SsaStyle.java */
+    public final class a {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f877b;
+        public final int c;
+        public final int d;
+        public final int e;
+        public final int f;
+        public final int g;
+        public final int h;
+        public final int i;
+
+        public a(int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9) {
+            this.a = i;
+            this.f877b = i2;
+            this.c = i3;
+            this.d = i4;
+            this.e = i5;
+            this.f = i6;
+            this.g = i7;
+            this.h = i8;
+            this.i = i9;
+        }
+    }
+
+    /* JADX INFO: compiled from: SsaStyle.java */
+    public final class b {
+        public static final Pattern a = Pattern.compile("\\{([^}]*)\\}");
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public static final Pattern f878b = Pattern.compile(e0.k("\\\\pos\\((%1$s),(%1$s)\\)", "\\s*\\d+(?:\\.\\d+)?\\s*"));
+        public static final Pattern c = Pattern.compile(e0.k("\\\\move\\(%1$s,%1$s,(%1$s),(%1$s)(?:,%1$s,%1$s)?\\)", "\\s*\\d+(?:\\.\\d+)?\\s*"));
+        public static final Pattern d = Pattern.compile("\\\\an(\\d+)");
+
+        @Nullable
+        public static PointF a(String str) {
+            String strGroup;
+            String strGroup2;
+            Matcher matcher = f878b.matcher(str);
+            Matcher matcher2 = c.matcher(str);
+            boolean zFind = matcher.find();
+            boolean zFind2 = matcher2.find();
+            if (zFind) {
+                if (zFind2) {
+                    StringBuilder sb = new StringBuilder(str.length() + 82);
+                    sb.append("Override has both \\pos(x,y) and \\move(x1,y1,x2,y2); using \\pos values. override='");
+                    sb.append(str);
+                    sb.append("'");
+                    Log.i("SsaStyle.Overrides", sb.toString());
+                }
+                strGroup = matcher.group(1);
+                strGroup2 = matcher.group(2);
+            } else {
+                if (!zFind2) {
+                    return null;
+                }
+                strGroup = matcher2.group(1);
+                strGroup2 = matcher2.group(2);
+            }
+            Objects.requireNonNull(strGroup);
+            float f = Float.parseFloat(strGroup.trim());
+            Objects.requireNonNull(strGroup2);
+            return new PointF(f, Float.parseFloat(strGroup2.trim()));
+        }
+    }
 
     public c(String str, int i, @Nullable @ColorInt Integer num, float f, boolean z2, boolean z3, boolean z4, boolean z5) {
         this.a = str;

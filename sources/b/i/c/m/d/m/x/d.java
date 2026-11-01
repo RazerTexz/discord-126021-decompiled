@@ -8,10 +8,10 @@ import java.util.Objects;
 
 /* JADX INFO: compiled from: CrashlyticsReportJsonTransform.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class d implements h$a {
+public final /* synthetic */ class d implements h.a {
     public static final d a = new d();
 
-    @Override // b.i.c.m.d.m.x.h$a
+    @Override // b.i.c.m.d.m.x.h.a
     public Object a(JsonReader jsonReader) throws IOException {
         b.i.c.p.a aVar = h.a;
         jsonReader.beginObject();

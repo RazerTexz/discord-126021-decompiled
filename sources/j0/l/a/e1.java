@@ -15,6 +15,32 @@ public class e1<T> extends Subscriber<T> {
     public final /* synthetic */ SerialSubscription n;
     public final /* synthetic */ f1 o;
 
+    /* JADX INFO: compiled from: OperatorOnErrorResumeNextViaFunction.java */
+    public class a extends Subscriber<T> {
+        public a() {
+        }
+
+        @Override // j0.g
+        public void onCompleted() {
+            e1.this.l.onCompleted();
+        }
+
+        @Override // j0.g
+        public void onError(Throwable th) {
+            e1.this.l.onError(th);
+        }
+
+        @Override // j0.g
+        public void onNext(T t) {
+            e1.this.l.onNext(t);
+        }
+
+        @Override // rx.Subscriber
+        public void setProducer(Producer producer) {
+            e1.this.m.c(producer);
+        }
+    }
+
     public e1(f1 f1Var, Subscriber subscriber, j0.l.b.a aVar, SerialSubscription serialSubscription) {
         this.o = f1Var;
         this.l = subscriber;
@@ -41,13 +67,13 @@ public class e1<T> extends Subscriber<T> {
         this.j = true;
         try {
             unsubscribe();
-            e1$a e1_a = new e1$a(this);
-            this.n.a(e1_a);
+            a aVar = new a();
+            this.n.a(aVar);
             long j = this.k;
             if (j != 0) {
                 this.m.b(j);
             }
-            this.o.j.call(th).i0(e1_a);
+            this.o.j.call(th).i0(aVar);
         } catch (Throwable th2) {
             Subscriber subscriber = this.l;
             b.i.a.f.e.o.f.o1(th2);

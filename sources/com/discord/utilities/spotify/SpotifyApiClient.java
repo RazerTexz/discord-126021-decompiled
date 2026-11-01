@@ -3,14 +3,18 @@ package com.discord.utilities.spotify;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import com.discord.models.domain.ModelAuditLogEntry;
+import com.discord.models.domain.ModelConnectionAccessToken;
 import com.discord.models.domain.spotify.ModelSpotifyTrack;
+import com.discord.utilities.error.Error;
 import com.discord.utilities.platform.Platform;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.Clock;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.HashMap;
 import java.util.Objects;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import rx.Observable;
@@ -27,6 +31,131 @@ public final class SpotifyApiClient {
     private long tokenExpiresAt;
     private Subscription tokenSubscription;
     private String trackIdToFetch;
+
+    /* JADX INFO: renamed from: com.discord.utilities.spotify.SpotifyApiClient$fetchSpotifyTrack$1, reason: invalid class name */
+    /* JADX INFO: compiled from: SpotifyApiClient.kt */
+    public final class AnonymousClass1 extends o implements Function1<Error, Unit> {
+        public final /* synthetic */ String $trackId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(String str) {
+            super(1);
+            this.$trackId = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            m.checkNotNullParameter(error, "it");
+            Error.Response response = error.getResponse();
+            m.checkNotNullExpressionValue(response, "it.response");
+            if (response.getCode() == 401) {
+                SpotifyApiClient.access$setTrackIdToFetch(SpotifyApiClient.this, this.$trackId);
+                SpotifyApiClient.access$refreshSpotifyToken(SpotifyApiClient.this);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.spotify.SpotifyApiClient$refreshSpotifyToken$1, reason: invalid class name */
+    /* JADX INFO: compiled from: SpotifyApiClient.kt */
+    public final class AnonymousClass1 extends o implements Function1<ModelConnectionAccessToken, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.utilities.spotify.SpotifyApiClient$refreshSpotifyToken$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: SpotifyApiClient.kt */
+        public final class C03441 extends o implements Function0<String> {
+            public final /* synthetic */ ModelConnectionAccessToken $spotifyToken;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C03441(ModelConnectionAccessToken modelConnectionAccessToken) {
+                super(0);
+                this.$spotifyToken = modelConnectionAccessToken;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ String invoke() {
+                return invoke2();
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final String invoke2() {
+                return this.$spotifyToken.getAccessToken();
+            }
+        }
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelConnectionAccessToken modelConnectionAccessToken) {
+            invoke2(modelConnectionAccessToken);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelConnectionAccessToken modelConnectionAccessToken) {
+            m.checkNotNullParameter(modelConnectionAccessToken, "spotifyToken");
+            RestAPI.AppHeadersProvider.spotifyTokenProvider = new C03441(modelConnectionAccessToken);
+            SpotifyApiClient spotifyApiClient = SpotifyApiClient.this;
+            SpotifyApiClient.access$setTokenExpiresAt(spotifyApiClient, SpotifyApiClient.access$getClock$p(spotifyApiClient).currentTimeMillis() + 3600000);
+            String strAccess$getTrackIdToFetch = SpotifyApiClient.access$getTrackIdToFetch(SpotifyApiClient.this);
+            if (strAccess$getTrackIdToFetch != null) {
+                SpotifyApiClient.this.fetchSpotifyTrack(strAccess$getTrackIdToFetch);
+                SpotifyApiClient.access$setTrackIdToFetch(SpotifyApiClient.this, null);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.spotify.SpotifyApiClient$fetchSpotifyTrack$2, reason: invalid class name */
+    /* JADX INFO: compiled from: SpotifyApiClient.kt */
+    public final class AnonymousClass2 extends o implements Function1<ModelSpotifyTrack, Unit> {
+        public final /* synthetic */ String $trackId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(String str) {
+            super(1);
+            this.$trackId = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelSpotifyTrack modelSpotifyTrack) {
+            invoke2(modelSpotifyTrack);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelSpotifyTrack modelSpotifyTrack) {
+            m.checkNotNullParameter(modelSpotifyTrack, "track");
+            SpotifyApiClient.access$setCachedTrack(SpotifyApiClient.this, modelSpotifyTrack);
+            SpotifyApiClient.access$getSpotifyTrackSubject$p(SpotifyApiClient.this).onNext(SpotifyApiClient.access$getCachedTrack(SpotifyApiClient.this, this.$trackId));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.spotify.SpotifyApiClient$refreshSpotifyToken$2, reason: invalid class name */
+    /* JADX INFO: compiled from: SpotifyApiClient.kt */
+    public final class AnonymousClass2 extends o implements Function1<Subscription, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            m.checkNotNullParameter(subscription, "it");
+            SpotifyApiClient.access$setTokenSubscription$p(SpotifyApiClient.this, subscription);
+        }
+    }
 
     public SpotifyApiClient(Clock clock) {
         m.checkNotNullParameter(clock, "clock");
@@ -83,7 +212,7 @@ public final class SpotifyApiClient {
         }
         this.spotifyTrackSubject.onNext(null);
         if (!isTokenExpiring()) {
-            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApiSpotify().getSpotifyTrack(trackId), false, 1, null), SpotifyApiClient.class, (Context) null, (Function1) null, new SpotifyApiClient$fetchSpotifyTrack$1(this, trackId), (Function0) null, (Function0) null, new SpotifyApiClient$fetchSpotifyTrack$2(this, trackId), 54, (Object) null);
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApiSpotify().getSpotifyTrack(trackId), false, 1, null), SpotifyApiClient.class, (Context) null, (Function1) null, new AnonymousClass1(trackId), (Function0) null, (Function0) null, new AnonymousClass2(trackId), 54, (Object) null);
         } else {
             setTrackIdToFetch(trackId);
             refreshSpotifyToken();
@@ -117,12 +246,12 @@ public final class SpotifyApiClient {
         String str;
         Subscription subscription = this.tokenSubscription;
         if ((subscription == null || (subscription != null && subscription.isUnsubscribed())) && (str = this.spotifyAccountId) != null) {
-            RestAPI api = RestAPI.Companion.getApi();
+            RestAPI api = RestAPI.INSTANCE.getApi();
             String strName = Platform.SPOTIFY.name();
             Objects.requireNonNull(strName, "null cannot be cast to non-null type java.lang.String");
             String lowerCase = strName.toLowerCase();
             m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase()");
-            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(api.getConnectionAccessToken(lowerCase, str), false, 1, null), SpotifyApiClient.class, (Context) null, new SpotifyApiClient$refreshSpotifyToken$2(this), (Function1) null, (Function0) null, (Function0) null, new SpotifyApiClient$refreshSpotifyToken$1(this), 58, (Object) null);
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(api.getConnectionAccessToken(lowerCase, str), false, 1, null), SpotifyApiClient.class, (Context) null, new AnonymousClass2(), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 58, (Object) null);
         }
     }
 

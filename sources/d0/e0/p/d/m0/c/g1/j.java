@@ -2,8 +2,11 @@ package d0.e0.p.d.m0.c.g1;
 
 import d0.e0.p.d.m0.c.u0;
 import d0.e0.p.d.m0.n.c0;
+import d0.e0.p.d.m0.n.j0;
+import d0.z.d.o;
 import java.util.Map;
 import kotlin.Lazy;
+import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: BuiltInAnnotationDescriptor.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -15,6 +18,24 @@ public final class j implements c {
     public final Map<d0.e0.p.d.m0.g.e, d0.e0.p.d.m0.k.v.g<?>> c;
     public final Lazy d;
 
+    /* JADX INFO: compiled from: BuiltInAnnotationDescriptor.kt */
+    public final class a extends o implements Function0<j0> {
+        public a() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ j0 invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final j0 invoke() {
+            return j.access$getBuiltIns$p(j.this).getBuiltInClassByFqName(j.this.getFqName()).getDefaultType();
+        }
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public j(d0.e0.p.d.m0.b.h hVar, d0.e0.p.d.m0.g.b bVar, Map<d0.e0.p.d.m0.g.e, ? extends d0.e0.p.d.m0.k.v.g<?>> map) {
         d0.z.d.m.checkNotNullParameter(hVar, "builtIns");
@@ -23,7 +44,7 @@ public final class j implements c {
         this.a = hVar;
         this.f3252b = bVar;
         this.c = map;
-        this.d = d0.g.lazy(d0.i.PUBLICATION, new j$a(this));
+        this.d = d0.g.lazy(d0.i.PUBLICATION, new a());
     }
 
     public static final /* synthetic */ d0.e0.p.d.m0.b.h access$getBuiltIns$p(j jVar) {

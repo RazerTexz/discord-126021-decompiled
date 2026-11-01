@@ -2,7 +2,6 @@ package org.webrtc;
 
 import android.annotation.TargetApi;
 import android.graphics.SurfaceTexture;
-import android.graphics.SurfaceTexture$OnFrameAvailableListener;
 import android.opengl.GLES20;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -16,12 +15,13 @@ import h0.c.u;
 import h0.c.v;
 import h0.c.w;
 import h0.c.x;
+import java.util.concurrent.Callable;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class SurfaceTextureHelper {
     private static final String TAG = "SurfaceTextureHelper";
     private final EglBase eglBase;
-    private final SurfaceTextureHelper$FrameRefMonitor frameRefMonitor;
+    private final FrameRefMonitor frameRefMonitor;
     private int frameRotation;
     private final Handler handler;
     private boolean hasPendingTexture;
@@ -37,15 +37,110 @@ public class SurfaceTextureHelper {
     public final Runnable setListenerRunnable;
     private final SurfaceTexture surfaceTexture;
     private int textureHeight;
-    private final TextureBufferImpl$RefCountMonitor textureRefCountMonitor;
+    private final TextureBufferImpl.RefCountMonitor textureRefCountMonitor;
     private int textureWidth;
 
     @Nullable
     private final TimestampAligner timestampAligner;
     private final YuvConverter yuvConverter;
 
-    public /* synthetic */ SurfaceTextureHelper(EglBase$Context eglBase$Context, Handler handler, boolean z2, YuvConverter yuvConverter, SurfaceTextureHelper$FrameRefMonitor surfaceTextureHelper$FrameRefMonitor, SurfaceTextureHelper$1 surfaceTextureHelper$1) {
-        this(eglBase$Context, handler, z2, yuvConverter, surfaceTextureHelper$FrameRefMonitor);
+    /* JADX INFO: renamed from: org.webrtc.SurfaceTextureHelper$1, reason: invalid class name */
+    public class AnonymousClass1 implements Callable<SurfaceTextureHelper> {
+        public final /* synthetic */ boolean val$alignTimestamps;
+        public final /* synthetic */ FrameRefMonitor val$frameRefMonitor;
+        public final /* synthetic */ Handler val$handler;
+        public final /* synthetic */ EglBase.Context val$sharedContext;
+        public final /* synthetic */ String val$threadName;
+        public final /* synthetic */ YuvConverter val$yuvConverter;
+
+        public AnonymousClass1(EglBase.Context context, Handler handler, boolean z2, YuvConverter yuvConverter, FrameRefMonitor frameRefMonitor, String str) {
+            this.val$sharedContext = context;
+            this.val$handler = handler;
+            this.val$alignTimestamps = z2;
+            this.val$yuvConverter = yuvConverter;
+            this.val$frameRefMonitor = frameRefMonitor;
+            this.val$threadName = str;
+        }
+
+        @Override // java.util.concurrent.Callable
+        @Nullable
+        public /* bridge */ /* synthetic */ SurfaceTextureHelper call() throws Exception {
+            return call2();
+        }
+
+        @Override // java.util.concurrent.Callable
+        @Nullable
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public SurfaceTextureHelper call2() {
+            try {
+                return new SurfaceTextureHelper(this.val$sharedContext, this.val$handler, this.val$alignTimestamps, this.val$yuvConverter, this.val$frameRefMonitor, null);
+            } catch (RuntimeException e) {
+                Logging.e(SurfaceTextureHelper.TAG, this.val$threadName + " create failure", e);
+                return null;
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: org.webrtc.SurfaceTextureHelper$2, reason: invalid class name */
+    public class AnonymousClass2 implements TextureBufferImpl.RefCountMonitor {
+        public AnonymousClass2() {
+        }
+
+        @Override // org.webrtc.TextureBufferImpl.RefCountMonitor
+        public void onDestroy(TextureBufferImpl textureBufferImpl) {
+            SurfaceTextureHelper.access$200(SurfaceTextureHelper.this);
+            if (SurfaceTextureHelper.access$100(SurfaceTextureHelper.this) != null) {
+                SurfaceTextureHelper.access$100(SurfaceTextureHelper.this).onDestroyBuffer(textureBufferImpl);
+            }
+        }
+
+        @Override // org.webrtc.TextureBufferImpl.RefCountMonitor
+        public void onRelease(TextureBufferImpl textureBufferImpl) {
+            if (SurfaceTextureHelper.access$100(SurfaceTextureHelper.this) != null) {
+                SurfaceTextureHelper.access$100(SurfaceTextureHelper.this).onReleaseBuffer(textureBufferImpl);
+            }
+        }
+
+        @Override // org.webrtc.TextureBufferImpl.RefCountMonitor
+        public void onRetain(TextureBufferImpl textureBufferImpl) {
+            if (SurfaceTextureHelper.access$100(SurfaceTextureHelper.this) != null) {
+                SurfaceTextureHelper.access$100(SurfaceTextureHelper.this).onRetainBuffer(textureBufferImpl);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: org.webrtc.SurfaceTextureHelper$3, reason: invalid class name */
+    public class AnonymousClass3 implements Runnable {
+        public AnonymousClass3() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            StringBuilder sbU = a.U("Setting listener to ");
+            sbU.append(SurfaceTextureHelper.access$300(SurfaceTextureHelper.this));
+            Logging.d(SurfaceTextureHelper.TAG, sbU.toString());
+            SurfaceTextureHelper surfaceTextureHelper = SurfaceTextureHelper.this;
+            SurfaceTextureHelper.access$402(surfaceTextureHelper, SurfaceTextureHelper.access$300(surfaceTextureHelper));
+            SurfaceTextureHelper.access$302(SurfaceTextureHelper.this, null);
+            if (SurfaceTextureHelper.access$500(SurfaceTextureHelper.this)) {
+                SurfaceTextureHelper.access$600(SurfaceTextureHelper.this);
+                SurfaceTextureHelper.access$502(SurfaceTextureHelper.this, false);
+            }
+        }
+    }
+
+    public interface FrameRefMonitor {
+        void onDestroyBuffer(VideoFrame.TextureBuffer textureBuffer);
+
+        void onNewBuffer(VideoFrame.TextureBuffer textureBuffer);
+
+        void onReleaseBuffer(VideoFrame.TextureBuffer textureBuffer);
+
+        void onRetainBuffer(VideoFrame.TextureBuffer textureBuffer);
+    }
+
+    public /* synthetic */ SurfaceTextureHelper(EglBase.Context context, Handler handler, boolean z2, YuvConverter yuvConverter, FrameRefMonitor frameRefMonitor, AnonymousClass1 anonymousClass1) {
+        this(context, handler, z2, yuvConverter, frameRefMonitor);
     }
 
     public /* synthetic */ void a() {
@@ -56,7 +151,7 @@ public class SurfaceTextureHelper {
         release();
     }
 
-    public static /* synthetic */ SurfaceTextureHelper$FrameRefMonitor access$100(SurfaceTextureHelper surfaceTextureHelper) {
+    public static /* synthetic */ FrameRefMonitor access$100(SurfaceTextureHelper surfaceTextureHelper) {
         return surfaceTextureHelper.frameRefMonitor;
     }
 
@@ -104,11 +199,11 @@ public class SurfaceTextureHelper {
         tryDeliverTextureFrame();
     }
 
-    public static SurfaceTextureHelper create(String str, EglBase$Context eglBase$Context, boolean z2, YuvConverter yuvConverter, SurfaceTextureHelper$FrameRefMonitor surfaceTextureHelper$FrameRefMonitor) {
+    public static SurfaceTextureHelper create(String str, EglBase.Context context, boolean z2, YuvConverter yuvConverter, FrameRefMonitor frameRefMonitor) {
         HandlerThread handlerThread = new HandlerThread(str);
         handlerThread.start();
         Handler handler = new Handler(handlerThread.getLooper());
-        return (SurfaceTextureHelper) ThreadUtils.invokeAtFrontUninterruptibly(handler, new SurfaceTextureHelper$1(eglBase$Context, handler, z2, yuvConverter, surfaceTextureHelper$FrameRefMonitor, str));
+        return (SurfaceTextureHelper) ThreadUtils.invokeAtFrontUninterruptibly(handler, new AnonymousClass1(context, handler, z2, yuvConverter, frameRefMonitor, str));
     }
 
     public /* synthetic */ void d() {
@@ -183,8 +278,8 @@ public class SurfaceTextureHelper {
     }
 
     @TargetApi(21)
-    private static void setOnFrameAvailableListener(SurfaceTexture surfaceTexture, SurfaceTexture$OnFrameAvailableListener surfaceTexture$OnFrameAvailableListener, Handler handler) {
-        surfaceTexture.setOnFrameAvailableListener(surfaceTexture$OnFrameAvailableListener, handler);
+    private static void setOnFrameAvailableListener(SurfaceTexture surfaceTexture, SurfaceTexture.OnFrameAvailableListener onFrameAvailableListener, Handler handler) {
+        surfaceTexture.setOnFrameAvailableListener(onFrameAvailableListener, handler);
     }
 
     public void setTextureSize(int i, int i2) {
@@ -213,8 +308,8 @@ public class SurfaceTextureHelper {
     }
 
     @Deprecated
-    public VideoFrame$I420Buffer textureToYuv(VideoFrame$TextureBuffer videoFrame$TextureBuffer) {
-        return videoFrame$TextureBuffer.toI420();
+    public VideoFrame.I420Buffer textureToYuv(VideoFrame.TextureBuffer textureBuffer) {
+        return textureBuffer.toI420();
     }
 
     private void tryDeliverTextureFrame() {
@@ -238,10 +333,10 @@ public class SurfaceTextureHelper {
         if (timestampAligner != null) {
             timestamp = timestampAligner.translateTimestamp(timestamp);
         }
-        TextureBufferImpl textureBufferImpl = new TextureBufferImpl(this.textureWidth, this.textureHeight, VideoFrame$TextureBuffer$Type.OES, this.oesTextureId, RendererCommon.convertMatrixToAndroidGraphicsMatrix(fArr), this.handler, this.yuvConverter, this.textureRefCountMonitor);
-        SurfaceTextureHelper$FrameRefMonitor surfaceTextureHelper$FrameRefMonitor = this.frameRefMonitor;
-        if (surfaceTextureHelper$FrameRefMonitor != null) {
-            surfaceTextureHelper$FrameRefMonitor.onNewBuffer(textureBufferImpl);
+        TextureBufferImpl textureBufferImpl = new TextureBufferImpl(this.textureWidth, this.textureHeight, VideoFrame.TextureBuffer.Type.OES, this.oesTextureId, RendererCommon.convertMatrixToAndroidGraphicsMatrix(fArr), this.handler, this.yuvConverter, this.textureRefCountMonitor);
+        FrameRefMonitor frameRefMonitor = this.frameRefMonitor;
+        if (frameRefMonitor != null) {
+            frameRefMonitor.onNewBuffer(textureBufferImpl);
         }
         VideoFrame videoFrame = new VideoFrame(textureBufferImpl, this.frameRotation, timestamp);
         this.listener.onFrame(videoFrame);
@@ -254,17 +349,17 @@ public class SurfaceTextureHelper {
         }
     }
 
-    private SurfaceTextureHelper(EglBase$Context eglBase$Context, Handler handler, boolean z2, YuvConverter yuvConverter, SurfaceTextureHelper$FrameRefMonitor surfaceTextureHelper$FrameRefMonitor) {
-        this.textureRefCountMonitor = new SurfaceTextureHelper$2(this);
-        this.setListenerRunnable = new SurfaceTextureHelper$3(this);
+    private SurfaceTextureHelper(EglBase.Context context, Handler handler, boolean z2, YuvConverter yuvConverter, FrameRefMonitor frameRefMonitor) {
+        this.textureRefCountMonitor = new AnonymousClass2();
+        this.setListenerRunnable = new AnonymousClass3();
         if (handler.getLooper().getThread() != Thread.currentThread()) {
             throw new IllegalStateException("SurfaceTextureHelper must be created on the handler thread");
         }
         this.handler = handler;
         this.timestampAligner = z2 ? new TimestampAligner() : null;
         this.yuvConverter = yuvConverter;
-        this.frameRefMonitor = surfaceTextureHelper$FrameRefMonitor;
-        EglBase eglBaseB = n0.b(eglBase$Context, EglBase.CONFIG_PIXEL_BUFFER);
+        this.frameRefMonitor = frameRefMonitor;
+        EglBase eglBaseB = n0.b(context, EglBase.CONFIG_PIXEL_BUFFER);
         this.eglBase = eglBaseB;
         try {
             eglBaseB.createDummyPbufferSurface();
@@ -281,15 +376,15 @@ public class SurfaceTextureHelper {
         }
     }
 
-    public static SurfaceTextureHelper create(String str, EglBase$Context eglBase$Context) {
-        return create(str, eglBase$Context, false, new YuvConverter(), null);
+    public static SurfaceTextureHelper create(String str, EglBase.Context context) {
+        return create(str, context, false, new YuvConverter(), null);
     }
 
-    public static SurfaceTextureHelper create(String str, EglBase$Context eglBase$Context, boolean z2) {
-        return create(str, eglBase$Context, z2, new YuvConverter(), null);
+    public static SurfaceTextureHelper create(String str, EglBase.Context context, boolean z2) {
+        return create(str, context, z2, new YuvConverter(), null);
     }
 
-    public static SurfaceTextureHelper create(String str, EglBase$Context eglBase$Context, boolean z2, YuvConverter yuvConverter) {
-        return create(str, eglBase$Context, z2, yuvConverter, null);
+    public static SurfaceTextureHelper create(String str, EglBase.Context context, boolean z2, YuvConverter yuvConverter) {
+        return create(str, context, z2, yuvConverter, null);
     }
 }

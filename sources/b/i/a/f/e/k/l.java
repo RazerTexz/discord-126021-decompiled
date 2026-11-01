@@ -1,7 +1,7 @@
 package b.i.a.f.e.k;
 
 import android.content.Context;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.text.TextUtils;
 import android.util.Log;
@@ -9,8 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.SimpleArrayMap;
 import androidx.core.os.ConfigurationCompat;
-import com.google.android.gms.base.R$b;
-import com.google.android.gms.common.R$a;
+import com.google.android.gms.base.R;
 import java.util.Locale;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
@@ -27,11 +26,11 @@ public final class l {
         Resources resources = context.getResources();
         switch (i) {
             case 1:
-                return resources.getString(R$b.common_google_play_services_install_title);
+                return resources.getString(R.b.common_google_play_services_install_title);
             case 2:
-                return resources.getString(R$b.common_google_play_services_update_title);
+                return resources.getString(R.b.common_google_play_services_update_title);
             case 3:
-                return resources.getString(R$b.common_google_play_services_enable_title);
+                return resources.getString(R.b.common_google_play_services_enable_title);
             case 4:
             case 6:
             case 18:
@@ -94,7 +93,7 @@ public final class l {
             int i = b.i.a.f.e.d.e;
             try {
                 resourcesForApplication = context.getPackageManager().getResourcesForApplication("com.google.android.gms");
-            } catch (PackageManager$NameNotFoundException unused) {
+            } catch (PackageManager.NameNotFoundException unused) {
                 resourcesForApplication = null;
             }
             if (resourcesForApplication == null) {
@@ -121,7 +120,7 @@ public final class l {
         Resources resources = context.getResources();
         String strB = b(context, str);
         if (strB == null) {
-            strB = resources.getString(R$a.common_google_play_services_unknown_issue);
+            strB = resources.getString(com.google.android.gms.common.R.a.common_google_play_services_unknown_issue);
         }
         return String.format(resources.getConfiguration().locale, strB, str2);
     }
@@ -131,7 +130,7 @@ public final class l {
         try {
             b.i.a.f.e.p.a aVarA = b.i.a.f.e.p.b.a(context);
             return aVarA.a.getPackageManager().getApplicationLabel(aVarA.a.getPackageManager().getApplicationInfo(packageName, 0)).toString();
-        } catch (PackageManager$NameNotFoundException | NullPointerException unused) {
+        } catch (PackageManager.NameNotFoundException | NullPointerException unused) {
             String str = context.getApplicationInfo().name;
             return TextUtils.isEmpty(str) ? packageName : str;
         }
@@ -142,13 +141,13 @@ public final class l {
         Resources resources = context.getResources();
         String strD = d(context);
         if (i == 1) {
-            return resources.getString(R$b.common_google_play_services_install_text, strD);
+            return resources.getString(R.b.common_google_play_services_install_text, strD);
         }
         if (i == 2) {
-            return b.c.a.a0.d.a1(context) ? resources.getString(R$b.common_google_play_services_wear_update_text) : resources.getString(R$b.common_google_play_services_update_text, strD);
+            return b.c.a.a0.d.a1(context) ? resources.getString(R.b.common_google_play_services_wear_update_text) : resources.getString(R.b.common_google_play_services_update_text, strD);
         }
         if (i == 3) {
-            return resources.getString(R$b.common_google_play_services_enable_text, strD);
+            return resources.getString(R.b.common_google_play_services_enable_text, strD);
         }
         if (i == 5) {
             return c(context, "common_google_play_services_invalid_account_text", strD);
@@ -157,7 +156,7 @@ public final class l {
             return c(context, "common_google_play_services_network_error_text", strD);
         }
         if (i == 9) {
-            return resources.getString(R$b.common_google_play_services_unsupported_text, strD);
+            return resources.getString(R.b.common_google_play_services_unsupported_text, strD);
         }
         if (i == 20) {
             return c(context, "common_google_play_services_restricted_profile_text", strD);
@@ -168,9 +167,9 @@ public final class l {
             case 17:
                 return c(context, "common_google_play_services_sign_in_failed_text", strD);
             case 18:
-                return resources.getString(R$b.common_google_play_services_updating_text, strD);
+                return resources.getString(R.b.common_google_play_services_updating_text, strD);
             default:
-                return resources.getString(R$a.common_google_play_services_unknown_issue, strD);
+                return resources.getString(com.google.android.gms.common.R.a.common_google_play_services_unknown_issue, strD);
         }
     }
 }

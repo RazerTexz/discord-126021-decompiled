@@ -2,15 +2,16 @@ package androidx.browser.customtabs;
 
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.RemoteException;
+import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.core.app.BundleCompat;
 import x.a.a.a;
-import x.a.a.a$a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class CustomTabsSessionToken {
@@ -25,18 +26,112 @@ public class CustomTabsSessionToken {
     @Nullable
     private final PendingIntent mSessionId;
 
+    /* JADX INFO: renamed from: androidx.browser.customtabs.CustomTabsSessionToken$1, reason: invalid class name */
+    public class AnonymousClass1 extends CustomTabsCallback {
+        public AnonymousClass1() {
+        }
+
+        @Override // androidx.browser.customtabs.CustomTabsCallback
+        public void extraCallback(@NonNull String str, @Nullable Bundle bundle) {
+            try {
+                CustomTabsSessionToken.this.mCallbackBinder.extraCallback(str, bundle);
+            } catch (RemoteException unused) {
+                Log.e(CustomTabsSessionToken.TAG, "RemoteException during ICustomTabsCallback transaction");
+            }
+        }
+
+        @Override // androidx.browser.customtabs.CustomTabsCallback
+        @NonNull
+        public Bundle extraCallbackWithResult(@NonNull String str, @Nullable Bundle bundle) {
+            try {
+                return CustomTabsSessionToken.this.mCallbackBinder.extraCallbackWithResult(str, bundle);
+            } catch (RemoteException unused) {
+                Log.e(CustomTabsSessionToken.TAG, "RemoteException during ICustomTabsCallback transaction");
+                return null;
+            }
+        }
+
+        @Override // androidx.browser.customtabs.CustomTabsCallback
+        public void onMessageChannelReady(@Nullable Bundle bundle) {
+            try {
+                CustomTabsSessionToken.this.mCallbackBinder.onMessageChannelReady(bundle);
+            } catch (RemoteException unused) {
+                Log.e(CustomTabsSessionToken.TAG, "RemoteException during ICustomTabsCallback transaction");
+            }
+        }
+
+        @Override // androidx.browser.customtabs.CustomTabsCallback
+        public void onNavigationEvent(int i, @Nullable Bundle bundle) {
+            try {
+                CustomTabsSessionToken.this.mCallbackBinder.onNavigationEvent(i, bundle);
+            } catch (RemoteException unused) {
+                Log.e(CustomTabsSessionToken.TAG, "RemoteException during ICustomTabsCallback transaction");
+            }
+        }
+
+        @Override // androidx.browser.customtabs.CustomTabsCallback
+        public void onPostMessage(@NonNull String str, @Nullable Bundle bundle) {
+            try {
+                CustomTabsSessionToken.this.mCallbackBinder.onPostMessage(str, bundle);
+            } catch (RemoteException unused) {
+                Log.e(CustomTabsSessionToken.TAG, "RemoteException during ICustomTabsCallback transaction");
+            }
+        }
+
+        @Override // androidx.browser.customtabs.CustomTabsCallback
+        public void onRelationshipValidationResult(int i, @NonNull Uri uri, boolean z2, @Nullable Bundle bundle) {
+            try {
+                CustomTabsSessionToken.this.mCallbackBinder.onRelationshipValidationResult(i, uri, z2, bundle);
+            } catch (RemoteException unused) {
+                Log.e(CustomTabsSessionToken.TAG, "RemoteException during ICustomTabsCallback transaction");
+            }
+        }
+    }
+
+    public class MockCallback extends a.AbstractBinderC0650a {
+        @Override // x.a.a.a.AbstractBinderC0650a, android.os.IInterface
+        public IBinder asBinder() {
+            return this;
+        }
+
+        @Override // x.a.a.a
+        public void extraCallback(String str, Bundle bundle) {
+        }
+
+        @Override // x.a.a.a
+        public Bundle extraCallbackWithResult(String str, Bundle bundle) {
+            return null;
+        }
+
+        @Override // x.a.a.a
+        public void onMessageChannelReady(Bundle bundle) {
+        }
+
+        @Override // x.a.a.a
+        public void onNavigationEvent(int i, Bundle bundle) {
+        }
+
+        @Override // x.a.a.a
+        public void onPostMessage(String str, Bundle bundle) {
+        }
+
+        @Override // x.a.a.a
+        public void onRelationshipValidationResult(int i, Uri uri, boolean z2, Bundle bundle) {
+        }
+    }
+
     public CustomTabsSessionToken(@Nullable a aVar, @Nullable PendingIntent pendingIntent) {
         if (aVar == null && pendingIntent == null) {
             throw new IllegalStateException("CustomTabsSessionToken must have either a session id or a callback (or both).");
         }
         this.mCallbackBinder = aVar;
         this.mSessionId = pendingIntent;
-        this.mCallback = aVar == null ? null : new CustomTabsSessionToken$1(this);
+        this.mCallback = aVar == null ? null : new AnonymousClass1();
     }
 
     @NonNull
     public static CustomTabsSessionToken createMockSessionTokenForTesting() {
-        return new CustomTabsSessionToken(new CustomTabsSessionToken$MockCallback(), null);
+        return new CustomTabsSessionToken(new MockCallback(), null);
     }
 
     public boolean equals(Object obj) {
@@ -90,15 +185,15 @@ public class CustomTabsSessionToken {
         if (binder == null && pendingIntent == null) {
             return null;
         }
-        return new CustomTabsSessionToken(binder != null ? a$a.asInterface(binder) : null, pendingIntent);
+        return new CustomTabsSessionToken(binder != null ? a.AbstractBinderC0650a.asInterface(binder) : null, pendingIntent);
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public boolean hasCallback() {
         return this.mCallbackBinder != null;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public boolean hasId() {
         return this.mSessionId != null;
     }

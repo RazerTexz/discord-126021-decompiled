@@ -15,6 +15,15 @@ public final class a {
     public static final int[] f;
     public static final int[] g;
 
+    /* JADX INFO: renamed from: b.g.a.b.p.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: CharTypes.java */
+    public class C0080a {
+        public static final C0080a a = new C0080a();
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public int[][] f665b = new int[128][];
+    }
+
     static {
         int i;
         char[] charArray = "0123456789ABCDEF".toCharArray();

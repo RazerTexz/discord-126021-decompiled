@@ -2,17 +2,57 @@ package com.discord.simpleast.core.node;
 
 import android.text.SpannableStringBuilder;
 import androidx.exifinterface.media.ExifInterface;
-import b.a.t.b.a.a;
 import d0.z.d.m;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: StyleNode.kt */
 /* JADX INFO: loaded from: classes.dex */
-public class StyleNode<RC, T> extends Node$a<RC> {
-    public static final StyleNode$Companion Companion = new StyleNode$Companion(null);
+public class StyleNode<RC, T> extends Node.a<RC> {
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final List<T> styles;
+
+    /* JADX INFO: compiled from: StyleNode.kt */
+    public final class Companion {
+        public Companion() {
+        }
+
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    /* JADX INFO: compiled from: StyleNode.kt */
+    public interface a<RC> {
+        Iterable<?> get(RC rc);
+    }
+
+    /* JADX INFO: compiled from: StyleNode.kt */
+    public final class b<RC> extends b.a.t.b.a.a<RC> {
+        public final a<RC> a;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public b(String str, a<RC> aVar) {
+            super(str);
+            m.checkNotNullParameter(str, "content");
+            m.checkNotNullParameter(aVar, "stylesProvider");
+            this.a = aVar;
+        }
+
+        @Override // b.a.t.b.a.a, com.discord.simpleast.core.node.Node
+        public void render(SpannableStringBuilder spannableStringBuilder, RC rc) {
+            m.checkNotNullParameter(spannableStringBuilder, "builder");
+            int length = spannableStringBuilder.length();
+            super.render(spannableStringBuilder, rc);
+            Iterator<?> it = this.a.get(rc).iterator();
+            while (it.hasNext()) {
+                spannableStringBuilder.setSpan(it.next(), length, spannableStringBuilder.length(), 33);
+            }
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     /* JADX WARN: Multi-variable type inference failed */
@@ -26,7 +66,7 @@ public class StyleNode<RC, T> extends Node$a<RC> {
         return this.styles;
     }
 
-    @Override // com.discord.simpleast.core.node.Node$a, com.discord.simpleast.core.node.Node
+    @Override // com.discord.simpleast.core.node.Node.a, com.discord.simpleast.core.node.Node
     public void render(SpannableStringBuilder builder, RC renderContext) {
         m.checkNotNullParameter(builder, "builder");
         int length = builder.length();
@@ -38,11 +78,11 @@ public class StyleNode<RC, T> extends Node$a<RC> {
     }
 
     public static final <RC, T> StyleNode<RC, T> wrapText(String str, List<? extends T> list) {
-        Objects.requireNonNull(Companion);
+        Objects.requireNonNull(INSTANCE);
         m.checkNotNullParameter(str, "content");
         m.checkNotNullParameter(list, "styles");
         StyleNode<RC, T> styleNode = new StyleNode<>(list);
-        styleNode.addChild(new a(str));
+        styleNode.addChild(new b.a.t.b.a.a(str));
         return styleNode;
     }
 }

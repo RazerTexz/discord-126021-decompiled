@@ -3,16 +3,15 @@ package b.i.a.f.e;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.RemoteException;
 import android.os.StrictMode;
-import android.os.StrictMode$ThreadPolicy;
 import android.util.Log;
 import androidx.annotation.RecentlyNonNull;
 import com.google.android.gms.common.zzn;
 import com.google.android.gms.common.zzq;
-import com.google.android.gms.dynamite.DynamiteModule$LoadingException;
+import com.google.android.gms.dynamite.DynamiteModule;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
@@ -70,24 +69,24 @@ public class f {
                     g0VarB = g0.a;
                 } else {
                     z zVar = b0.a;
-                    StrictMode$ThreadPolicy strictMode$ThreadPolicyAllowThreadDiskReads = StrictMode.allowThreadDiskReads();
+                    StrictMode.ThreadPolicy threadPolicyAllowThreadDiskReads = StrictMode.allowThreadDiskReads();
                     try {
                         try {
                             b0.a();
                             zH = b0.c.h();
-                            StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskReads);
+                            StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskReads);
                         } catch (Throwable th) {
-                            StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskReads);
+                            StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskReads);
                             throw th;
                         }
-                    } catch (RemoteException | DynamiteModule$LoadingException e) {
+                    } catch (RemoteException | DynamiteModule.LoadingException e) {
                         Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e);
-                        StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskReads);
+                        StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskReads);
                         zH = false;
                     }
                     if (zH) {
                         boolean zA = e.a(this.f1348b);
-                        StrictMode$ThreadPolicy strictMode$ThreadPolicyAllowThreadDiskReads2 = StrictMode.allowThreadDiskReads();
+                        StrictMode.ThreadPolicy threadPolicyAllowThreadDiskReads2 = StrictMode.allowThreadDiskReads();
                         try {
                             Objects.requireNonNull(b0.e, "null reference");
                             try {
@@ -101,20 +100,20 @@ public class f {
                                         if (str2 == null) {
                                             str2 = "error checking package certificate";
                                         }
-                                        g0VarB2 = b.i.a.f.e.o.f.k2(zzqVarH.l) == 4 ? g0.c(str2, new PackageManager$NameNotFoundException()) : g0.b(str2);
+                                        g0VarB2 = b.i.a.f.e.o.f.k2(zzqVarH.l) == 4 ? g0.c(str2, new PackageManager.NameNotFoundException()) : g0.b(str2);
                                     }
                                 } catch (RemoteException e2) {
                                     Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e2);
                                     g0VarB2 = g0.c("module call", e2);
                                 }
-                            } catch (DynamiteModule$LoadingException e3) {
+                            } catch (DynamiteModule.LoadingException e3) {
                                 Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e3);
                                 String strValueOf = String.valueOf(e3.getMessage());
                                 g0VarB2 = g0.c(strValueOf.length() != 0 ? "module init: ".concat(strValueOf) : new String("module init: "), e3);
                             }
-                            StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskReads2);
+                            StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskReads2);
                         } catch (Throwable th2) {
-                            StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskReads2);
+                            StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskReads2);
                             throw th2;
                         }
                     } else {
@@ -130,34 +129,34 @@ public class f {
                                 } else {
                                     y yVar = new y(packageInfo.signatures[0].toByteArray());
                                     String str3 = packageInfo.packageName;
-                                    StrictMode$ThreadPolicy strictMode$ThreadPolicyAllowThreadDiskReads3 = StrictMode.allowThreadDiskReads();
+                                    StrictMode.ThreadPolicy threadPolicyAllowThreadDiskReads3 = StrictMode.allowThreadDiskReads();
                                     try {
                                         g0 g0VarB3 = b0.b(str3, yVar, zA2, false);
-                                        StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskReads3);
+                                        StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskReads3);
                                         if (!g0VarB3.f1349b || (applicationInfo = packageInfo.applicationInfo) == null || (applicationInfo.flags & 2) == 0) {
                                             g0VarB2 = g0VarB3;
                                         } else {
-                                            StrictMode$ThreadPolicy strictMode$ThreadPolicyAllowThreadDiskReads4 = StrictMode.allowThreadDiskReads();
+                                            StrictMode.ThreadPolicy threadPolicyAllowThreadDiskReads4 = StrictMode.allowThreadDiskReads();
                                             try {
                                                 g0 g0VarB4 = b0.b(str3, yVar, false, true);
-                                                StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskReads4);
+                                                StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskReads4);
                                                 if (g0VarB4.f1349b) {
                                                     g0VarB2 = g0.b("debuggable release cert app rejected");
                                                 } else {
                                                     g0VarB2 = g0VarB3;
                                                 }
                                             } catch (Throwable th3) {
-                                                StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskReads4);
+                                                StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskReads4);
                                                 throw th3;
                                             }
                                         }
                                     } catch (Throwable th4) {
-                                        StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskReads3);
+                                        StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskReads3);
                                         throw th4;
                                     }
                                 }
                             }
-                        } catch (PackageManager$NameNotFoundException e4) {
+                        } catch (PackageManager.NameNotFoundException e4) {
                             g0VarB = g0.c(str.length() != 0 ? "no pkg ".concat(str) : new String("no pkg "), e4);
                         }
                     }

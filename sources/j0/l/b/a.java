@@ -12,7 +12,15 @@ public final class a implements Producer {
     public long n;
     public long o;
     public Producer p;
-    public static final Producer j = new a$a();
+    public static final Producer j = new C0625a();
+
+    /* JADX INFO: renamed from: j0.l.b.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: ProducerArbiter.java */
+    public final class C0625a implements Producer {
+        @Override // rx.Producer
+        public void j(long j) {
+        }
+    }
 
     public void a() {
         while (true) {

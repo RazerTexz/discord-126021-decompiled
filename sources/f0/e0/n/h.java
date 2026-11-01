@@ -1,11 +1,11 @@
 package f0.e0.n;
 
 import d0.z.d.m;
-import g0.e$a;
 import java.io.Closeable;
 import java.io.IOException;
 import java.net.ProtocolException;
 import java.util.concurrent.TimeUnit;
+import okio.ByteString;
 import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: compiled from: WebSocketReader.kt */
@@ -23,10 +23,10 @@ public final class h implements Closeable {
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public final byte[] f3665s;
-    public final e$a t;
+    public final g0.e.a t;
     public final boolean u;
     public final g0.g v;
-    public final h$a w;
+    public final a w;
 
     /* JADX INFO: renamed from: x, reason: collision with root package name */
     public final boolean f3666x;
@@ -34,18 +34,31 @@ public final class h implements Closeable {
     /* JADX INFO: renamed from: y, reason: collision with root package name */
     public final boolean f3667y;
 
-    public h(boolean z2, g0.g gVar, h$a h_a, boolean z3, boolean z4) {
+    /* JADX INFO: compiled from: WebSocketReader.kt */
+    public interface a {
+        void b(ByteString byteString) throws IOException;
+
+        void c(String str) throws IOException;
+
+        void d(ByteString byteString);
+
+        void f(ByteString byteString);
+
+        void g(int i, String str);
+    }
+
+    public h(boolean z2, g0.g gVar, a aVar, boolean z3, boolean z4) {
         m.checkParameterIsNotNull(gVar, "source");
-        m.checkParameterIsNotNull(h_a, "frameCallback");
+        m.checkParameterIsNotNull(aVar, "frameCallback");
         this.u = z2;
         this.v = gVar;
-        this.w = h_a;
+        this.w = aVar;
         this.f3666x = z3;
         this.f3667y = z4;
         this.p = new g0.e();
         this.q = new g0.e();
         this.f3665s = z2 ? null : new byte[4];
-        this.t = z2 ? null : new e$a();
+        this.t = z2 ? null : new g0.e.a();
     }
 
     public final void a() throws IOException {
@@ -56,18 +69,18 @@ public final class h implements Closeable {
             this.v.B(this.p, j);
             if (!this.u) {
                 g0.e eVar = this.p;
-                e$a e_a = this.t;
-                if (e_a == null) {
+                g0.e.a aVar = this.t;
+                if (aVar == null) {
                     m.throwNpe();
                 }
-                eVar.u(e_a);
+                eVar.u(aVar);
                 this.t.b(0L);
-                e$a e_a2 = this.t;
+                g0.e.a aVar2 = this.t;
                 byte[] bArr = this.f3665s;
                 if (bArr == null) {
                     m.throwNpe();
                 }
-                g.a(e_a2, bArr);
+                g.a(aVar2, bArr);
                 this.t.close();
             }
         }

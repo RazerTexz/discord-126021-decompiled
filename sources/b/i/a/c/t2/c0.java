@@ -1,7 +1,6 @@
 package b.i.a.c.t2;
 
-import com.google.android.exoplayer2.audio.AudioProcessor$UnhandledAudioFormatException;
-import com.google.android.exoplayer2.audio.AudioProcessor$a;
+import com.google.android.exoplayer2.audio.AudioProcessor;
 import java.nio.ByteBuffer;
 
 /* JADX INFO: compiled from: SilenceSkippingAudioProcessor.java */
@@ -119,21 +118,21 @@ public final class c0 extends v {
     }
 
     @Override // b.i.a.c.t2.v
-    public AudioProcessor$a f(AudioProcessor$a audioProcessor$a) throws AudioProcessor$UnhandledAudioFormatException {
-        if (audioProcessor$a.d == 2) {
-            return this.m ? audioProcessor$a : AudioProcessor$a.a;
+    public AudioProcessor.a f(AudioProcessor.a aVar) throws AudioProcessor.UnhandledAudioFormatException {
+        if (aVar.d == 2) {
+            return this.m ? aVar : AudioProcessor.a.a;
         }
-        throw new AudioProcessor$UnhandledAudioFormatException(audioProcessor$a);
+        throw new AudioProcessor.UnhandledAudioFormatException(aVar);
     }
 
     @Override // b.i.a.c.t2.v
     public void g() {
         if (this.m) {
-            AudioProcessor$a audioProcessor$a = this.f1135b;
-            int i = audioProcessor$a.e;
+            AudioProcessor.a aVar = this.f1135b;
+            int i = aVar.e;
             this.l = i;
             long j = this.i;
-            long j2 = audioProcessor$a.f2914b;
+            long j2 = aVar.f2914b;
             int i2 = ((int) ((j * j2) / 1000000)) * i;
             if (this.n.length != i2) {
                 this.n = new byte[i2];

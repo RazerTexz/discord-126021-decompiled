@@ -35,7 +35,7 @@ public final class Persister$Companion$persistAll$1$1 extends o implements Funct
             TimeElapsed timeElapsed = new TimeElapsed(clockAccess$getClock$cp, 0L, 2, null);
             Persister.access$persist(persister);
             if (timeElapsed.getMilliseconds() > 100) {
-                Function3<Integer, String, Exception, Unit> logger = Persister.Companion.getLogger();
+                Function3<Integer, String, Exception, Unit> logger = Persister.INSTANCE.getLogger();
                 StringBuilder sbU = a.U("Cached ");
                 sbU.append(persister.getKey());
                 sbU.append(" in ");

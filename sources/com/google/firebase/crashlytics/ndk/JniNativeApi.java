@@ -2,7 +2,7 @@ package com.google.firebase.crashlytics.ndk;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.os.Build;
 import android.text.TextUtils;
@@ -74,7 +74,7 @@ public class JniNativeApi implements d {
             String str4 = File.pathSeparator;
             String[] strArr3 = {TextUtils.join(str4, arrayList), TextUtils.join(str4, arrayList2)};
             return a && nativeInit(new String[]{strArr3[0], strArr3[1], str}, assetManager);
-        } catch (PackageManager$NameNotFoundException e) {
+        } catch (PackageManager.NameNotFoundException e) {
             if (b.a.a(6)) {
                 Log.e("FirebaseCrashlytics", "Unable to compose package paths", e);
             }

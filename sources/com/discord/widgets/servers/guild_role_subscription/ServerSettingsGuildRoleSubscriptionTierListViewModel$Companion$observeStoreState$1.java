@@ -6,7 +6,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: ServerSettingsGuildRoleSubscriptionTierListViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ServerSettingsGuildRoleSubscriptionTierListViewModel$Companion$observeStoreState$1 extends o implements Function0<ServerSettingsGuildRoleSubscriptionTierListViewModel$StoreState> {
+public final class ServerSettingsGuildRoleSubscriptionTierListViewModel$Companion$observeStoreState$1 extends o implements Function0<ServerSettingsGuildRoleSubscriptionTierListViewModel.StoreState> {
     public final /* synthetic */ long $guildId;
     public final /* synthetic */ StoreGuildRoleSubscriptions $storeGuildRoleSubscriptions;
 
@@ -18,13 +18,13 @@ public final class ServerSettingsGuildRoleSubscriptionTierListViewModel$Companio
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ ServerSettingsGuildRoleSubscriptionTierListViewModel$StoreState invoke() {
+    public /* bridge */ /* synthetic */ ServerSettingsGuildRoleSubscriptionTierListViewModel.StoreState invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final ServerSettingsGuildRoleSubscriptionTierListViewModel$StoreState invoke() {
-        return new ServerSettingsGuildRoleSubscriptionTierListViewModel$StoreState(this.$storeGuildRoleSubscriptions.getGuildRoleSubscriptionState(this.$guildId));
+    public final ServerSettingsGuildRoleSubscriptionTierListViewModel.StoreState invoke() {
+        return new ServerSettingsGuildRoleSubscriptionTierListViewModel.StoreState(this.$storeGuildRoleSubscriptions.getGuildRoleSubscriptionState(this.$guildId));
     }
 }

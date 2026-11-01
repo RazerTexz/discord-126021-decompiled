@@ -1,5 +1,7 @@
 package androidx.browser.browseractions;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
@@ -13,6 +15,23 @@ public class BrowserActionsFallbackMenuDialog extends Dialog {
     private static final long ENTER_ANIMATION_DURATION_MS = 250;
     private static final long EXIT_ANIMATION_DURATION_MS = 150;
     private final View mContentView;
+
+    /* JADX INFO: renamed from: androidx.browser.browseractions.BrowserActionsFallbackMenuDialog$1, reason: invalid class name */
+    public class AnonymousClass1 extends AnimatorListenerAdapter {
+        public final /* synthetic */ boolean val$isEnterAnimation;
+
+        public AnonymousClass1(boolean z2) {
+            this.val$isEnterAnimation = z2;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            if (this.val$isEnterAnimation) {
+                return;
+            }
+            BrowserActionsFallbackMenuDialog.access$001(BrowserActionsFallbackMenuDialog.this);
+        }
+    }
 
     public BrowserActionsFallbackMenuDialog(Context context, View view) {
         super(context);
@@ -50,6 +69,6 @@ public class BrowserActionsFallbackMenuDialog extends Dialog {
         long j = z2 ? ENTER_ANIMATION_DURATION_MS : 150L;
         this.mContentView.setScaleX(f);
         this.mContentView.setScaleY(f);
-        this.mContentView.animate().scaleX(f2).scaleY(f2).setDuration(j).setInterpolator(new LinearOutSlowInInterpolator()).setListener(new BrowserActionsFallbackMenuDialog$1(this, z2)).start();
+        this.mContentView.animate().scaleX(f2).scaleY(f2).setDuration(j).setInterpolator(new LinearOutSlowInInterpolator()).setListener(new AnonymousClass1(z2)).start();
     }
 }

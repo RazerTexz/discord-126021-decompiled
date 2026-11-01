@@ -1,6 +1,7 @@
 package com.adjust.sdk.scheduler;
 
 import b.d.b.a.a;
+import com.adjust.sdk.AdjustFactory;
 import com.adjust.sdk.Constants;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
@@ -8,6 +9,17 @@ import java.util.concurrent.ThreadFactory;
 /* JADX INFO: loaded from: classes.dex */
 public class ThreadFactoryWrapper implements ThreadFactory {
     private String source;
+
+    /* JADX INFO: renamed from: com.adjust.sdk.scheduler.ThreadFactoryWrapper$1, reason: invalid class name */
+    public class AnonymousClass1 implements Thread.UncaughtExceptionHandler {
+        public AnonymousClass1() {
+        }
+
+        @Override // java.lang.Thread.UncaughtExceptionHandler
+        public void uncaughtException(Thread thread, Throwable th) {
+            AdjustFactory.getLogger().error("Thread [%s] with error [%s]", thread.getName(), th.getMessage());
+        }
+    }
 
     public ThreadFactoryWrapper(String str) {
         this.source = str;
@@ -23,7 +35,7 @@ public class ThreadFactoryWrapper implements ThreadFactory {
         sbU.append(this.source);
         threadNewThread.setName(sbU.toString());
         threadNewThread.setDaemon(true);
-        threadNewThread.setUncaughtExceptionHandler(new ThreadFactoryWrapper$1(this));
+        threadNewThread.setUncaughtExceptionHandler(new AnonymousClass1());
         return threadNewThread;
     }
 }

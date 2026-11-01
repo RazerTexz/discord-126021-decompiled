@@ -14,6 +14,19 @@ public class TimerOnce {
     private ScheduledFuture waitingTask;
     private ILogger logger = AdjustFactory.getLogger();
 
+    /* JADX INFO: renamed from: com.adjust.sdk.scheduler.TimerOnce$1, reason: invalid class name */
+    public class AnonymousClass1 implements Runnable {
+        public AnonymousClass1() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            TimerOnce.access$100(TimerOnce.this).verbose("%s fired", TimerOnce.access$000(TimerOnce.this));
+            TimerOnce.access$200(TimerOnce.this).run();
+            TimerOnce.access$302(TimerOnce.this, null);
+        }
+    }
+
     public TimerOnce(Runnable runnable, String str) {
         this.name = str;
         this.scheduler = new SingleThreadFutureScheduler(str, true);
@@ -57,7 +70,7 @@ public class TimerOnce {
     public void startIn(long j) {
         cancel(false);
         this.logger.verbose("%s starting. Launching in %s seconds", this.name, Util.SecondsDisplayFormat.format(j / 1000.0d));
-        this.waitingTask = this.scheduler.scheduleFuture(new TimerOnce$1(this), j);
+        this.waitingTask = this.scheduler.scheduleFuture(new AnonymousClass1(), j);
     }
 
     public void teardown() {

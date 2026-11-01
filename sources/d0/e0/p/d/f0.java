@@ -4,8 +4,6 @@ import d0.e0.p.d.m0.c.n0;
 import d0.e0.p.d.m0.c.o0;
 import d0.e0.p.d.m0.c.p0;
 import d0.e0.p.d.m0.c.u0;
-import d0.e0.p.d.m0.f.a0.a$d;
-import d0.e0.p.d.m0.i.g$f;
 import java.lang.reflect.Method;
 
 /* JADX INFO: compiled from: RuntimeTypeMapper.kt */
@@ -31,7 +29,7 @@ public final class f0 {
         return dVar.getPrimitiveType();
     }
 
-    public final d$e b(d0.e0.p.d.m0.c.x xVar) {
+    public final d.e b(d0.e0.p.d.m0.c.x xVar) {
         String jvmMethodNameIfSpecial = d0.e0.p.d.m0.e.a.d0.getJvmMethodNameIfSpecial(xVar);
         if (jvmMethodNameIfSpecial == null) {
             if (xVar instanceof o0) {
@@ -47,7 +45,7 @@ public final class f0 {
                 d0.z.d.m.checkNotNullExpressionValue(jvmMethodNameIfSpecial, "descriptor.name.asString()");
             }
         }
-        return new d$e(new d0.e0.p.d.m0.f.a0.b.e$b(jvmMethodNameIfSpecial, d0.e0.p.d.m0.e.b.u.computeJvmDescriptor$default(xVar, false, false, 1, null)));
+        return new d.e(new d0.e0.p.d.m0.f.a0.b.e.b(jvmMethodNameIfSpecial, d0.e0.p.d.m0.e.b.u.computeJvmDescriptor$default(xVar, false, false, 1, null)));
     }
 
     public final d0.e0.p.d.m0.g.a mapJvmClassToKotlinClassId(Class<?> cls) {
@@ -59,7 +57,7 @@ public final class f0 {
             if (iVarA != null) {
                 return new d0.e0.p.d.m0.g.a(d0.e0.p.d.m0.b.k.l, iVarA.getArrayTypeName());
             }
-            d0.e0.p.d.m0.g.a aVar = d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k$a.h.toSafe());
+            d0.e0.p.d.m0.g.a aVar = d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k.a.h.toSafe());
             d0.z.d.m.checkNotNullExpressionValue(aVar, "ClassId.topLevel(Standar…s.FqNames.array.toSafe())");
             return aVar;
         }
@@ -92,11 +90,11 @@ public final class f0 {
         if (original instanceof d0.e0.p.d.m0.l.b.e0.j) {
             d0.e0.p.d.m0.l.b.e0.j jVar = (d0.e0.p.d.m0.l.b.e0.j) original;
             d0.e0.p.d.m0.f.n proto = jVar.getProto();
-            g$f<d0.e0.p.d.m0.f.n, a$d> g_f = d0.e0.p.d.m0.f.a0.a.d;
-            d0.z.d.m.checkNotNullExpressionValue(g_f, "JvmProtoBuf.propertySignature");
-            a$d a_d = (a$d) d0.e0.p.d.m0.f.z.e.getExtensionOrNull(proto, g_f);
-            if (a_d != null) {
-                return new e$c(original, proto, a_d, jVar.getNameResolver(), jVar.getTypeTable());
+            d0.e0.p.d.m0.i.g.f<d0.e0.p.d.m0.f.n, d0.e0.p.d.m0.f.a0.a.d> fVar = d0.e0.p.d.m0.f.a0.a.d;
+            d0.z.d.m.checkNotNullExpressionValue(fVar, "JvmProtoBuf.propertySignature");
+            d0.e0.p.d.m0.f.a0.a.d dVar = (d0.e0.p.d.m0.f.a0.a.d) d0.e0.p.d.m0.f.z.e.getExtensionOrNull(proto, fVar);
+            if (dVar != null) {
+                return new e.c(original, proto, dVar, jVar.getNameResolver(), jVar.getTypeTable());
             }
         } else if (original instanceof d0.e0.p.d.m0.e.a.h0.g) {
             u0 source = ((d0.e0.p.d.m0.e.a.h0.g) original).getSource();
@@ -106,7 +104,7 @@ public final class f0 {
             d0.e0.p.d.m0.e.a.j0.a aVar = (d0.e0.p.d.m0.e.a.j0.a) source;
             d0.e0.p.d.m0.e.a.k0.l javaElement = aVar != null ? aVar.getJavaElement() : null;
             if (javaElement instanceof d0.e0.p.d.m0.c.k1.b.p) {
-                return new e$a(((d0.e0.p.d.m0.c.k1.b.p) javaElement).getMember());
+                return new e.a(((d0.e0.p.d.m0.c.k1.b.p) javaElement).getMember());
             }
             if (!(javaElement instanceof d0.e0.p.d.m0.c.k1.b.s)) {
                 throw new a0("Incorrect resolution sequence for Java field " + original + " (source = " + javaElement + ')');
@@ -123,19 +121,19 @@ public final class f0 {
                 javaElement2 = null;
             }
             d0.e0.p.d.m0.c.k1.b.s sVar = (d0.e0.p.d.m0.c.k1.b.s) javaElement2;
-            return new e$b(member, sVar != null ? sVar.getMember() : null);
+            return new e.b(member, sVar != null ? sVar.getMember() : null);
         }
         o0 getter = original.getGetter();
         d0.z.d.m.checkNotNull(getter);
-        d$e d_eB = b(getter);
+        d.e eVarB = b(getter);
         p0 setter2 = original.getSetter();
-        return new e$d(d_eB, setter2 != null ? b(setter2) : null);
+        return new e.d(eVarB, setter2 != null ? b(setter2) : null);
     }
 
     public final d mapSignature(d0.e0.p.d.m0.c.x xVar) {
         Method member;
-        d0.e0.p.d.m0.f.a0.b.e$b jvmConstructorSignature;
-        d0.e0.p.d.m0.f.a0.b.e$b jvmMethodSignature;
+        d0.e0.p.d.m0.f.a0.b.e.b jvmConstructorSignature;
+        d0.e0.p.d.m0.f.a0.b.e.b jvmMethodSignature;
         d0.z.d.m.checkNotNullParameter(xVar, "possiblySubstitutedFunction");
         d0.e0.p.d.m0.c.b bVarUnwrapFakeOverride = d0.e0.p.d.m0.k.e.unwrapFakeOverride(xVar);
         d0.z.d.m.checkNotNullExpressionValue(bVarUnwrapFakeOverride, "DescriptorUtils.unwrapFa…siblySubstitutedFunction)");
@@ -145,14 +143,14 @@ public final class f0 {
             d0.e0.p.d.m0.l.b.e0.b bVar = (d0.e0.p.d.m0.l.b.e0.b) original;
             d0.e0.p.d.m0.i.n proto = bVar.getProto();
             if ((proto instanceof d0.e0.p.d.m0.f.i) && (jvmMethodSignature = d0.e0.p.d.m0.f.a0.b.h.a.getJvmMethodSignature((d0.e0.p.d.m0.f.i) proto, bVar.getNameResolver(), bVar.getTypeTable())) != null) {
-                return new d$e(jvmMethodSignature);
+                return new d.e(jvmMethodSignature);
             }
             if (!(proto instanceof d0.e0.p.d.m0.f.d) || (jvmConstructorSignature = d0.e0.p.d.m0.f.a0.b.h.a.getJvmConstructorSignature((d0.e0.p.d.m0.f.d) proto, bVar.getNameResolver(), bVar.getTypeTable())) == null) {
                 return b(original);
             }
             d0.e0.p.d.m0.c.m containingDeclaration = xVar.getContainingDeclaration();
             d0.z.d.m.checkNotNullExpressionValue(containingDeclaration, "possiblySubstitutedFunction.containingDeclaration");
-            return d0.e0.p.d.m0.k.g.isInlineClass(containingDeclaration) ? new d$e(jvmConstructorSignature) : new d$d(jvmConstructorSignature);
+            return d0.e0.p.d.m0.k.g.isInlineClass(containingDeclaration) ? new d.e(jvmConstructorSignature) : new d.C0495d(jvmConstructorSignature);
         }
         if (original instanceof d0.e0.p.d.m0.e.a.h0.f) {
             u0 source = ((d0.e0.p.d.m0.e.a.h0.f) original).getSource();
@@ -163,7 +161,7 @@ public final class f0 {
             d0.e0.p.d.m0.e.a.k0.l javaElement = aVar != null ? aVar.getJavaElement() : null;
             d0.e0.p.d.m0.c.k1.b.s sVar = (d0.e0.p.d.m0.c.k1.b.s) (javaElement instanceof d0.e0.p.d.m0.c.k1.b.s ? javaElement : null);
             if (sVar != null && (member = sVar.getMember()) != null) {
-                return new d$c(member);
+                return new d.c(member);
             }
             throw new a0("Incorrect resolution sequence for Java method " + original);
         }
@@ -184,12 +182,12 @@ public final class f0 {
         d0.e0.p.d.m0.e.a.j0.a aVar2 = (d0.e0.p.d.m0.e.a.j0.a) source2;
         d0.e0.p.d.m0.e.a.k0.l javaElement2 = aVar2 != null ? aVar2.getJavaElement() : null;
         if (javaElement2 instanceof d0.e0.p.d.m0.c.k1.b.m) {
-            return new d$b(((d0.e0.p.d.m0.c.k1.b.m) javaElement2).getMember());
+            return new d.b(((d0.e0.p.d.m0.c.k1.b.m) javaElement2).getMember());
         }
         if (javaElement2 instanceof d0.e0.p.d.m0.c.k1.b.j) {
             d0.e0.p.d.m0.c.k1.b.j jVar = (d0.e0.p.d.m0.c.k1.b.j) javaElement2;
             if (jVar.isAnnotationType()) {
-                return new d$a(jVar.getElement());
+                return new d.a(jVar.getElement());
             }
         }
         throw new a0("Incorrect resolution sequence for Java constructor " + original + " (" + javaElement2 + ')');

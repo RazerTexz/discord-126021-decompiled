@@ -4,10 +4,10 @@ import android.os.Bundle;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class o0 implements w0$a {
+public final /* synthetic */ class o0 implements w0.a {
     public static final /* synthetic */ o0 a = new o0();
 
-    @Override // b.i.a.c.w0$a
+    @Override // b.i.a.c.w0.a
     public final w0 a(Bundle bundle) {
         w0 l1Var;
         int i = bundle.getInt(Integer.toString(0, 36), -1);

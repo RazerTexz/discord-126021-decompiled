@@ -1,5 +1,6 @@
 package i0;
 
+import kotlin.coroutines.Continuation;
 import okhttp3.ResponseBody;
 
 /* JADX INFO: compiled from: HttpServiceMethod.java */
@@ -8,12 +9,83 @@ public abstract class j<ResponseT, ReturnT> extends z<ReturnT> {
     public final w a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final f0.e$a f3742b;
+    public final f0.e.a f3742b;
     public final h<ResponseBody, ResponseT> c;
 
-    public j(w wVar, f0.e$a e_a, h<ResponseBody, ResponseT> hVar) {
+    /* JADX INFO: compiled from: HttpServiceMethod.java */
+    public final class a<ResponseT, ReturnT> extends j<ResponseT, ReturnT> {
+        public final e<ResponseT, ReturnT> d;
+
+        public a(w wVar, f0.e.a aVar, h<ResponseBody, ResponseT> hVar, e<ResponseT, ReturnT> eVar) {
+            super(wVar, aVar, hVar);
+            this.d = eVar;
+        }
+
+        @Override // i0.j
+        public ReturnT c(d<ResponseT> dVar, Object[] objArr) {
+            return this.d.b(dVar);
+        }
+    }
+
+    /* JADX INFO: compiled from: HttpServiceMethod.java */
+    public final class b<ResponseT> extends j<ResponseT, Object> {
+        public final e<ResponseT, d<ResponseT>> d;
+
+        public b(w wVar, f0.e.a aVar, h<ResponseBody, ResponseT> hVar, e<ResponseT, d<ResponseT>> eVar, boolean z2) {
+            super(wVar, aVar, hVar);
+            this.d = eVar;
+        }
+
+        @Override // i0.j
+        public Object c(d<ResponseT> dVar, Object[] objArr) throws Throwable {
+            d<ResponseT> dVarB = this.d.b(dVar);
+            Continuation continuation = (Continuation) objArr[objArr.length - 1];
+            try {
+                s.a.l lVar = new s.a.l(d0.w.h.b.intercepted(continuation), 1);
+                lVar.f(new l(dVarB));
+                dVarB.C(new m(lVar));
+                Object objU = lVar.u();
+                if (objU == d0.w.h.c.getCOROUTINE_SUSPENDED()) {
+                    d0.w.i.a.g.probeCoroutineSuspended(continuation);
+                }
+                return objU;
+            } catch (Exception e) {
+                return b.i.a.f.e.o.f.i1(e, continuation);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: HttpServiceMethod.java */
+    public final class c<ResponseT> extends j<ResponseT, Object> {
+        public final e<ResponseT, d<ResponseT>> d;
+
+        public c(w wVar, f0.e.a aVar, h<ResponseBody, ResponseT> hVar, e<ResponseT, d<ResponseT>> eVar) {
+            super(wVar, aVar, hVar);
+            this.d = eVar;
+        }
+
+        @Override // i0.j
+        public Object c(d<ResponseT> dVar, Object[] objArr) throws Throwable {
+            d<ResponseT> dVarB = this.d.b(dVar);
+            Continuation continuation = (Continuation) objArr[objArr.length - 1];
+            try {
+                s.a.l lVar = new s.a.l(d0.w.h.b.intercepted(continuation), 1);
+                lVar.f(new n(dVarB));
+                dVarB.C(new o(lVar));
+                Object objU = lVar.u();
+                if (objU == d0.w.h.c.getCOROUTINE_SUSPENDED()) {
+                    d0.w.i.a.g.probeCoroutineSuspended(continuation);
+                }
+                return objU;
+            } catch (Exception e) {
+                return b.i.a.f.e.o.f.i1(e, continuation);
+            }
+        }
+    }
+
+    public j(w wVar, f0.e.a aVar, h<ResponseBody, ResponseT> hVar) {
         this.a = wVar;
-        this.f3742b = e_a;
+        this.f3742b = aVar;
         this.c = hVar;
     }
 

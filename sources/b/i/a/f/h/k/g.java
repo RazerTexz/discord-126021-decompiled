@@ -12,7 +12,7 @@ public final class g extends b.i.a.f.e.k.d<b> {
         super(context, looper, 19, cVar, fVar, lVar);
     }
 
-    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a$f
+    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a.f
     public final int l() {
         return 12600000;
     }

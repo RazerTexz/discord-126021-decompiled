@@ -2,7 +2,7 @@ package com.discord.utilities.view.text;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.TextView$BufferType;
+import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 import com.facebook.drawee.span.DraweeSpanStringBuilder;
@@ -72,7 +72,7 @@ public class SimpleDraweeSpanTextView extends AppCompatTextView {
     }
 
     public void setDraweeSpanStringBuilder(DraweeSpanStringBuilder draweeSpanStringBuilder) {
-        setText(draweeSpanStringBuilder, TextView$BufferType.SPANNABLE);
+        setText(draweeSpanStringBuilder, TextView.BufferType.SPANNABLE);
         this.mDraweeStringBuilder = draweeSpanStringBuilder;
         if (draweeSpanStringBuilder == null || !this.mIsAttached) {
             return;

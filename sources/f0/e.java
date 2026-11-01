@@ -7,6 +7,12 @@ import okhttp3.Response;
 /* JADX INFO: compiled from: Call.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public interface e extends Cloneable {
+
+    /* JADX INFO: compiled from: Call.kt */
+    public interface a {
+        e b(Request request);
+    }
+
     Request c();
 
     void cancel();

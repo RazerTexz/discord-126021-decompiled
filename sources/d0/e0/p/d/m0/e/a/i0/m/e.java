@@ -4,12 +4,15 @@ import d0.e0.p.d.m0.c.h;
 import d0.e0.p.d.m0.c.z0;
 import d0.e0.p.d.m0.e.a.g0.k;
 import d0.e0.p.d.m0.n.c0;
+import d0.e0.p.d.m0.n.j0;
 import d0.e0.p.d.m0.n.o0;
 import d0.e0.p.d.m0.n.p0;
+import d0.e0.p.d.m0.n.t;
 import d0.e0.p.d.m0.n.w0;
 import d0.e0.p.d.m0.n.y0;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.List;
 import java.util.Objects;
 import kotlin.jvm.functions.Function0;
@@ -18,6 +21,33 @@ import kotlin.jvm.functions.Function0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class e {
     public static final d0.e0.p.d.m0.g.b a = new d0.e0.p.d.m0.g.b("java.lang.Class");
+
+    /* JADX INFO: compiled from: JavaTypeResolver.kt */
+    public final class a extends o implements Function0<j0> {
+        public final /* synthetic */ z0 $this_getErasedUpperBound;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(z0 z0Var) {
+            super(0);
+            this.$this_getErasedUpperBound = z0Var;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ j0 invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final j0 invoke() {
+            StringBuilder sbU = b.d.b.a.a.U("Can't compute erased upper bound of type parameter `");
+            sbU.append(this.$this_getErasedUpperBound);
+            sbU.append('`');
+            j0 j0VarCreateErrorType = t.createErrorType(sbU.toString());
+            m.checkNotNullExpressionValue(j0VarCreateErrorType, "createErrorType(\"Can't compute erased upper bound of type parameter `$this`\")");
+            return j0VarCreateErrorType;
+        }
+    }
 
     public static final /* synthetic */ d0.e0.p.d.m0.g.b access$getJAVA_LANG_CLASS_FQ_NAME$p$s1946801611() {
         return a;
@@ -28,7 +58,7 @@ public final class e {
             z0Var2 = null;
         }
         if ((i & 2) != 0) {
-            function0 = new e$a(z0Var);
+            function0 = new a(z0Var);
         }
         return getErasedUpperBound(z0Var, z0Var2, function0);
     }
@@ -68,13 +98,13 @@ public final class e {
         }
     }
 
-    public static final w0 makeStarProjection(z0 z0Var, a aVar) {
+    public static final w0 makeStarProjection(z0 z0Var, d0.e0.p.d.m0.e.a.i0.m.a aVar) {
         m.checkNotNullParameter(z0Var, "typeParameter");
         m.checkNotNullParameter(aVar, "attr");
         return aVar.getHowThisTypeIsUsed() == k.SUPERTYPE ? new y0(p0.starProjectionType(z0Var)) : new o0(z0Var);
     }
 
-    public static /* synthetic */ a toAttributes$default(k kVar, boolean z2, z0 z0Var, int i, Object obj) {
+    public static /* synthetic */ d0.e0.p.d.m0.e.a.i0.m.a toAttributes$default(k kVar, boolean z2, z0 z0Var, int i, Object obj) {
         if ((i & 1) != 0) {
             z2 = false;
         }
@@ -84,8 +114,8 @@ public final class e {
         return toAttributes(kVar, z2, z0Var);
     }
 
-    public static final a toAttributes(k kVar, boolean z2, z0 z0Var) {
+    public static final d0.e0.p.d.m0.e.a.i0.m.a toAttributes(k kVar, boolean z2, z0 z0Var) {
         m.checkNotNullParameter(kVar, "<this>");
-        return new a(kVar, null, z2, z0Var, 2, null);
+        return new d0.e0.p.d.m0.e.a.i0.m.a(kVar, null, z2, z0Var, 2, null);
     }
 }

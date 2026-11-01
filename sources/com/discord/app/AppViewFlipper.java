@@ -8,7 +8,7 @@ import android.widget.ViewFlipper;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.ViewGroupKt;
-import com.discord.R$a;
+import com.discord.R;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import d0.z.d.m;
 import java.util.Iterator;
@@ -29,7 +29,7 @@ public final class AppViewFlipper extends ViewFlipper {
         if (attributeSet == null) {
             return;
         }
-        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R$a.AppViewFlipper, 0, 0);
+        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.a.AppViewFlipper, 0, 0);
         m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…ble.AppViewFlipper, 0, 0)");
         try {
             this.previewedChildIndex = typedArrayObtainStyledAttributes.getInt(0, 0);
@@ -44,7 +44,7 @@ public final class AppViewFlipper extends ViewFlipper {
         if (getParent() instanceof CoordinatorLayout) {
             Iterator<View> it = ViewGroupKt.getChildren(this).iterator();
             while (it.hasNext()) {
-                ViewCompat.setOnApplyWindowInsetsListener(it.next(), new AppScrollingViewBehavior$a());
+                ViewCompat.setOnApplyWindowInsetsListener(it.next(), new AppScrollingViewBehavior.a());
             }
         }
     }

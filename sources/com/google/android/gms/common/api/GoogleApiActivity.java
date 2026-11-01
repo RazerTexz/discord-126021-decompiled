@@ -3,9 +3,8 @@ package com.google.android.gms.common.api;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.DialogInterface;
-import android.content.DialogInterface$OnCancelListener;
 import android.content.Intent;
-import android.content.IntentSender$SendIntentException;
+import android.content.IntentSender;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -18,7 +17,7 @@ import com.google.android.gms.common.annotation.KeepName;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
 @KeepName
-public class GoogleApiActivity extends Activity implements DialogInterface$OnCancelListener {
+public class GoogleApiActivity extends Activity implements DialogInterface.OnCancelListener {
     public static final /* synthetic */ int j = 0;
     public int k = 0;
 
@@ -50,7 +49,7 @@ public class GoogleApiActivity extends Activity implements DialogInterface$OnCan
         finish();
     }
 
-    @Override // android.content.DialogInterface$OnCancelListener
+    @Override // android.content.DialogInterface.OnCancelListener
     public void onCancel(DialogInterface dialogInterface) {
         this.k = 0;
         setResult(0);
@@ -85,7 +84,7 @@ public class GoogleApiActivity extends Activity implements DialogInterface$OnCan
                 try {
                     startIntentSenderForResult(pendingIntent.getIntentSender(), 1, null, 0, 0, 0);
                     this.k = 1;
-                } catch (IntentSender$SendIntentException e) {
+                } catch (IntentSender.SendIntentException e) {
                     Log.e("GoogleApiActivity", "Failed to launch pendingIntent", e);
                     finish();
                 }

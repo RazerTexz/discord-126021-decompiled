@@ -12,6 +12,21 @@ public final class x {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final b f3354b;
 
+    /* JADX INFO: compiled from: typeEnhancement.kt */
+    public final /* synthetic */ class a {
+        public static final /* synthetic */ int[] a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public static final /* synthetic */ int[] f3355b;
+
+        static {
+            f.valuesCustom();
+            a = new int[]{1, 2};
+            h.valuesCustom();
+            f3355b = new int[]{1, 2, 0};
+        }
+    }
+
     static {
         d0.e0.p.d.m0.g.b bVar = a0.o;
         d0.z.d.m.checkNotNullExpressionValue(bVar, "ENHANCED_NULLABILITY_ANNOTATION");
@@ -38,7 +53,7 @@ public final class x {
         if (u.shouldEnhance(tVar) && (hVar instanceof d0.e0.p.d.m0.c.e)) {
             d0.e0.p.d.m0.b.q.d dVar = d0.e0.p.d.m0.b.q.d.a;
             f mutability = eVar.getMutability();
-            int i = mutability == null ? -1 : x$a.a[mutability.ordinal()];
+            int i = mutability == null ? -1 : a.a[mutability.ordinal()];
             if (i == 1) {
                 if (tVar == t.FLEXIBLE_LOWER) {
                     d0.e0.p.d.m0.c.e eVar2 = (d0.e0.p.d.m0.c.e) hVar;
@@ -67,7 +82,7 @@ public final class x {
             return a(Boolean.valueOf(c0Var.isMarkedNullable()));
         }
         h nullability = eVar.getNullability();
-        int i = nullability == null ? -1 : x$a.f3355b[nullability.ordinal()];
+        int i = nullability == null ? -1 : a.f3355b[nullability.ordinal()];
         if (i == 1) {
             cVar = new c(Boolean.TRUE, a);
         } else {

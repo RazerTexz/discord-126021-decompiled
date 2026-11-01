@@ -2,7 +2,7 @@ package b.a.f;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import d0.z.d.m;
 import java.util.ArrayList;
@@ -15,6 +15,15 @@ public final class e extends LinearLayout {
     public final List<LinearLayout> j;
     public final int k;
 
+    /* JADX INFO: compiled from: ChipsVerticalLinearLayout.kt */
+    public final class a {
+        public int a;
+
+        public a(int i, int i2) {
+            this.a = i2;
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public e(Context context, int i) {
         super(context);
@@ -26,7 +35,7 @@ public final class e extends LinearLayout {
 
     public final LinearLayout a() {
         LinearLayout linearLayout = new LinearLayout(getContext());
-        linearLayout.setLayoutParams(new ViewGroup$LayoutParams(-1, this.k));
+        linearLayout.setLayoutParams(new ViewGroup.LayoutParams(-1, this.k));
         linearLayout.setPadding(0, 0, 0, 0);
         linearLayout.setOrientation(0);
         addView(linearLayout);

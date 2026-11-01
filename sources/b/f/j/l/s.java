@@ -2,7 +2,6 @@ package b.f.j.l;
 
 import android.util.SparseIntArray;
 import com.facebook.imagepipeline.memory.BasePool;
-import com.facebook.imagepipeline.memory.BasePool$InvalidSizeException;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: MemoryChunkPool.java */
@@ -41,7 +40,7 @@ public abstract class s extends BasePool<r> {
     @Override // com.facebook.imagepipeline.memory.BasePool
     public int i(int i) {
         if (i <= 0) {
-            throw new BasePool$InvalidSizeException(Integer.valueOf(i));
+            throw new BasePool.InvalidSizeException(Integer.valueOf(i));
         }
         for (int i2 : this.k) {
             if (i2 >= i) {

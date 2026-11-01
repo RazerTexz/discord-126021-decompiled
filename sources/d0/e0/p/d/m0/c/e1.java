@@ -1,5 +1,6 @@
 package d0.e0.p.d.m0.c;
 
+import androidx.core.os.EnvironmentCompat;
 import java.util.Map;
 
 /* JADX INFO: compiled from: Visibilities.kt */
@@ -10,13 +11,99 @@ public final class e1 {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final Map<f1, Integer> f3246b;
 
+    /* JADX INFO: compiled from: Visibilities.kt */
+    public final class a extends f1 {
+        public static final a c = new a();
+
+        public a() {
+            super("inherited", false);
+        }
+    }
+
+    /* JADX INFO: compiled from: Visibilities.kt */
+    public final class b extends f1 {
+        public static final b c = new b();
+
+        public b() {
+            super("internal", false);
+        }
+    }
+
+    /* JADX INFO: compiled from: Visibilities.kt */
+    public final class c extends f1 {
+        public static final c c = new c();
+
+        public c() {
+            super("invisible_fake", false);
+        }
+    }
+
+    /* JADX INFO: compiled from: Visibilities.kt */
+    public final class d extends f1 {
+        public static final d c = new d();
+
+        public d() {
+            super("local", false);
+        }
+    }
+
+    /* JADX INFO: compiled from: Visibilities.kt */
+    public final class e extends f1 {
+        public static final e c = new e();
+
+        public e() {
+            super("private", false);
+        }
+    }
+
+    /* JADX INFO: compiled from: Visibilities.kt */
+    public final class f extends f1 {
+        public static final f c = new f();
+
+        public f() {
+            super("private_to_this", false);
+        }
+
+        @Override // d0.e0.p.d.m0.c.f1
+        public String getInternalDisplayName() {
+            return "private/*private to this*/";
+        }
+    }
+
+    /* JADX INFO: compiled from: Visibilities.kt */
+    public final class g extends f1 {
+        public static final g c = new g();
+
+        public g() {
+            super("protected", true);
+        }
+    }
+
+    /* JADX INFO: compiled from: Visibilities.kt */
+    public final class h extends f1 {
+        public static final h c = new h();
+
+        public h() {
+            super("public", true);
+        }
+    }
+
+    /* JADX INFO: compiled from: Visibilities.kt */
+    public final class i extends f1 {
+        public static final i c = new i();
+
+        public i() {
+            super(EnvironmentCompat.MEDIA_UNKNOWN, false);
+        }
+    }
+
     static {
         Map mapCreateMapBuilder = d0.t.g0.createMapBuilder();
-        mapCreateMapBuilder.put(e1$f.c, 0);
-        mapCreateMapBuilder.put(e1$e.c, 0);
-        mapCreateMapBuilder.put(e1$b.c, 1);
-        mapCreateMapBuilder.put(e1$g.c, 1);
-        mapCreateMapBuilder.put(e1$h.c, 2);
+        mapCreateMapBuilder.put(f.c, 0);
+        mapCreateMapBuilder.put(e.c, 0);
+        mapCreateMapBuilder.put(b.c, 1);
+        mapCreateMapBuilder.put(g.c, 1);
+        mapCreateMapBuilder.put(h.c, 2);
         f3246b = d0.t.g0.build(mapCreateMapBuilder);
     }
 
@@ -37,6 +124,6 @@ public final class e1 {
 
     public final boolean isPrivate(f1 f1Var) {
         d0.z.d.m.checkNotNullParameter(f1Var, "visibility");
-        return f1Var == e1$e.c || f1Var == e1$f.c;
+        return f1Var == e.c || f1Var == f.c;
     }
 }

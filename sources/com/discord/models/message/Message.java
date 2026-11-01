@@ -24,7 +24,7 @@ import com.discord.api.sticker.StickerPartial;
 import com.discord.api.user.User;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.discord.utilities.captcha.CaptchaHelper$CaptchaPayload;
+import com.discord.utilities.captcha.CaptchaHelper;
 import d0.g0.w;
 import d0.t.h0;
 import d0.z.d.m;
@@ -37,7 +37,6 @@ import org.objectweb.asm.Opcodes;
 /* JADX INFO: compiled from: Message.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class Message {
-    public static final Message$Companion Companion = new Message$Companion(null);
     private final MessageActivity activity;
     private final MessageAllowedMentions allowedMentions;
     private final Application application;
@@ -46,7 +45,7 @@ public final /* data */ class Message {
     private final User author;
     private Map<String, MessageReaction> cachedReactionsMap;
     private final MessageCall call;
-    private final CaptchaHelper$CaptchaPayload captchaPayload;
+    private final CaptchaHelper.CaptchaPayload captchaPayload;
     private final long channelId;
     private final List<Component> components;
     private final String content;
@@ -81,7 +80,7 @@ public final /* data */ class Message {
     private static final Map<String, MessageReaction> EMPTY_REACTIONS = h0.emptyMap();
 
     /* JADX WARN: Multi-variable type inference failed */
-    public Message(long j, long j2, Long l, User user, String str, UtcDateTime utcDateTime, UtcDateTime utcDateTime2, Boolean bool, Boolean bool2, List<User> list, List<Long> list2, List<MessageAttachment> list3, List<MessageEmbed> list4, List<MessageReaction> list5, String str2, Boolean bool3, Long l2, Integer num, MessageActivity messageActivity, Application application, Long l3, MessageReference messageReference, Long l4, List<Sticker> list6, List<StickerPartial> list7, com.discord.api.message.Message message, Interaction interaction, Channel channel, List<? extends Component> list8, MessageCall messageCall, Boolean bool4, RoleSubscriptionData roleSubscriptionData, boolean z2, MessageAllowedMentions messageAllowedMentions, Integer num2, Long l5, Long l6, List<LocalAttachment> list9, CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload) {
+    public Message(long j, long j2, Long l, User user, String str, UtcDateTime utcDateTime, UtcDateTime utcDateTime2, Boolean bool, Boolean bool2, List<User> list, List<Long> list2, List<MessageAttachment> list3, List<MessageEmbed> list4, List<MessageReaction> list5, String str2, Boolean bool3, Long l2, Integer num, MessageActivity messageActivity, Application application, Long l3, MessageReference messageReference, Long l4, List<Sticker> list6, List<StickerPartial> list7, com.discord.api.message.Message message, Interaction interaction, Channel channel, List<? extends Component> list8, MessageCall messageCall, Boolean bool4, RoleSubscriptionData roleSubscriptionData, boolean z2, MessageAllowedMentions messageAllowedMentions, Integer num2, Long l5, Long l6, List<LocalAttachment> list9, CaptchaHelper.CaptchaPayload captchaPayload) {
         this.id = j;
         this.channelId = j2;
         this.guildId = l;
@@ -120,7 +119,7 @@ public final /* data */ class Message {
         this.lastManualAttemptTimestamp = l5;
         this.initialAttemptTimestamp = l6;
         this.localAttachments = list9;
-        this.captchaPayload = captchaHelper$CaptchaPayload;
+        this.captchaPayload = captchaPayload;
     }
 
     public final boolean canResend() {
@@ -165,11 +164,11 @@ public final /* data */ class Message {
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ Message copy$default(Message message, long j, long j2, Long l, User user, String str, UtcDateTime utcDateTime, UtcDateTime utcDateTime2, Boolean bool, Boolean bool2, List list, List list2, List list3, List list4, List list5, String str2, Boolean bool3, Long l2, Integer num, MessageActivity messageActivity, Application application, Long l3, MessageReference messageReference, Long l4, List list6, List list7, com.discord.api.message.Message message2, Interaction interaction, Channel channel, List list8, MessageCall messageCall, Boolean bool4, RoleSubscriptionData roleSubscriptionData, boolean z2, MessageAllowedMentions messageAllowedMentions, Integer num2, Long l5, Long l6, List list9, CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload, int i, int i2, Object obj) {
-        return message.copy((i & 1) != 0 ? message.id : j, (i & 2) != 0 ? message.channelId : j2, (i & 4) != 0 ? message.guildId : l, (i & 8) != 0 ? message.author : user, (i & 16) != 0 ? message.content : str, (i & 32) != 0 ? message.timestamp : utcDateTime, (i & 64) != 0 ? message.editedTimestamp : utcDateTime2, (i & 128) != 0 ? message.tts : bool, (i & 256) != 0 ? message.mentionEveryone : bool2, (i & 512) != 0 ? message.mentions : list, (i & 1024) != 0 ? message.mentionRoles : list2, (i & 2048) != 0 ? message.attachments : list3, (i & 4096) != 0 ? message.embeds : list4, (i & 8192) != 0 ? message.reactions : list5, (i & 16384) != 0 ? message.nonce : str2, (i & 32768) != 0 ? message.pinned : bool3, (i & 65536) != 0 ? message.webhookId : l2, (i & 131072) != 0 ? message.type : num, (i & 262144) != 0 ? message.activity : messageActivity, (i & 524288) != 0 ? message.application : application, (i & 1048576) != 0 ? message.applicationId : l3, (i & 2097152) != 0 ? message.messageReference : messageReference, (i & 4194304) != 0 ? message.flags : l4, (i & 8388608) != 0 ? message.stickers : list6, (i & 16777216) != 0 ? message.stickerItems : list7, (i & 33554432) != 0 ? message.referencedMessage : message2, (i & 67108864) != 0 ? message.interaction : interaction, (i & 134217728) != 0 ? message.thread : channel, (i & 268435456) != 0 ? message.components : list8, (i & 536870912) != 0 ? message.call : messageCall, (i & BasicMeasure.EXACTLY) != 0 ? message.hit : bool4, (i & Integer.MIN_VALUE) != 0 ? message.roleSubscriptionData : roleSubscriptionData, (i2 & 1) != 0 ? message.hasLocalUploads : z2, (i2 & 2) != 0 ? message.allowedMentions : messageAllowedMentions, (i2 & 4) != 0 ? message.numRetries : num2, (i2 & 8) != 0 ? message.lastManualAttemptTimestamp : l5, (i2 & 16) != 0 ? message.initialAttemptTimestamp : l6, (i2 & 32) != 0 ? message.localAttachments : list9, (i2 & 64) != 0 ? message.captchaPayload : captchaHelper$CaptchaPayload);
+    public static /* synthetic */ Message copy$default(Message message, long j, long j2, Long l, User user, String str, UtcDateTime utcDateTime, UtcDateTime utcDateTime2, Boolean bool, Boolean bool2, List list, List list2, List list3, List list4, List list5, String str2, Boolean bool3, Long l2, Integer num, MessageActivity messageActivity, Application application, Long l3, MessageReference messageReference, Long l4, List list6, List list7, com.discord.api.message.Message message2, Interaction interaction, Channel channel, List list8, MessageCall messageCall, Boolean bool4, RoleSubscriptionData roleSubscriptionData, boolean z2, MessageAllowedMentions messageAllowedMentions, Integer num2, Long l5, Long l6, List list9, CaptchaHelper.CaptchaPayload captchaPayload, int i, int i2, Object obj) {
+        return message.copy((i & 1) != 0 ? message.id : j, (i & 2) != 0 ? message.channelId : j2, (i & 4) != 0 ? message.guildId : l, (i & 8) != 0 ? message.author : user, (i & 16) != 0 ? message.content : str, (i & 32) != 0 ? message.timestamp : utcDateTime, (i & 64) != 0 ? message.editedTimestamp : utcDateTime2, (i & 128) != 0 ? message.tts : bool, (i & 256) != 0 ? message.mentionEveryone : bool2, (i & 512) != 0 ? message.mentions : list, (i & 1024) != 0 ? message.mentionRoles : list2, (i & 2048) != 0 ? message.attachments : list3, (i & 4096) != 0 ? message.embeds : list4, (i & 8192) != 0 ? message.reactions : list5, (i & 16384) != 0 ? message.nonce : str2, (i & 32768) != 0 ? message.pinned : bool3, (i & 65536) != 0 ? message.webhookId : l2, (i & 131072) != 0 ? message.type : num, (i & 262144) != 0 ? message.activity : messageActivity, (i & 524288) != 0 ? message.application : application, (i & 1048576) != 0 ? message.applicationId : l3, (i & 2097152) != 0 ? message.messageReference : messageReference, (i & 4194304) != 0 ? message.flags : l4, (i & 8388608) != 0 ? message.stickers : list6, (i & 16777216) != 0 ? message.stickerItems : list7, (i & 33554432) != 0 ? message.referencedMessage : message2, (i & 67108864) != 0 ? message.interaction : interaction, (i & 134217728) != 0 ? message.thread : channel, (i & 268435456) != 0 ? message.components : list8, (i & 536870912) != 0 ? message.call : messageCall, (i & BasicMeasure.EXACTLY) != 0 ? message.hit : bool4, (i & Integer.MIN_VALUE) != 0 ? message.roleSubscriptionData : roleSubscriptionData, (i2 & 1) != 0 ? message.hasLocalUploads : z2, (i2 & 2) != 0 ? message.allowedMentions : messageAllowedMentions, (i2 & 4) != 0 ? message.numRetries : num2, (i2 & 8) != 0 ? message.lastManualAttemptTimestamp : l5, (i2 & 16) != 0 ? message.initialAttemptTimestamp : l6, (i2 & 32) != 0 ? message.localAttachments : list9, (i2 & 64) != 0 ? message.captchaPayload : captchaPayload);
     }
 
-    public final Message copy(long id2, long channelId, Long guildId, User author, String content, UtcDateTime timestamp, UtcDateTime editedTimestamp, Boolean tts, Boolean mentionEveryone, List<User> mentions, List<Long> mentionRoles, List<MessageAttachment> attachments, List<MessageEmbed> embeds, List<MessageReaction> reactions, String nonce, Boolean pinned, Long webhookId, Integer type, MessageActivity activity, Application application, Long applicationId, MessageReference messageReference, Long flags, List<Sticker> stickers, List<StickerPartial> stickerItems, com.discord.api.message.Message referencedMessage, Interaction interaction, Channel thread, List<? extends Component> components, MessageCall call, Boolean hit, RoleSubscriptionData roleSubscriptionData, boolean hasLocalUploads, MessageAllowedMentions allowedMentions, Integer numRetries, Long lastManualAttemptTimestamp, Long initialAttemptTimestamp, List<LocalAttachment> localAttachments, CaptchaHelper$CaptchaPayload captchaPayload) {
+    public final Message copy(long id2, long channelId, Long guildId, User author, String content, UtcDateTime timestamp, UtcDateTime editedTimestamp, Boolean tts, Boolean mentionEveryone, List<User> mentions, List<Long> mentionRoles, List<MessageAttachment> attachments, List<MessageEmbed> embeds, List<MessageReaction> reactions, String nonce, Boolean pinned, Long webhookId, Integer type, MessageActivity activity, Application application, Long applicationId, MessageReference messageReference, Long flags, List<Sticker> stickers, List<StickerPartial> stickerItems, com.discord.api.message.Message referencedMessage, Interaction interaction, Channel thread, List<? extends Component> components, MessageCall call, Boolean hit, RoleSubscriptionData roleSubscriptionData, boolean hasLocalUploads, MessageAllowedMentions allowedMentions, Integer numRetries, Long lastManualAttemptTimestamp, Long initialAttemptTimestamp, List<LocalAttachment> localAttachments, CaptchaHelper.CaptchaPayload captchaPayload) {
         return new Message(id2, channelId, guildId, author, content, timestamp, editedTimestamp, tts, mentionEveryone, mentions, mentionRoles, attachments, embeds, reactions, nonce, pinned, webhookId, type, activity, application, applicationId, messageReference, flags, stickers, stickerItems, referencedMessage, interaction, thread, components, call, hit, roleSubscriptionData, hasLocalUploads, allowedMentions, numRetries, lastManualAttemptTimestamp, initialAttemptTimestamp, localAttachments, captchaPayload);
     }
 
@@ -253,11 +252,11 @@ public final /* data */ class Message {
     }
 
     /* JADX INFO: renamed from: component39, reason: from getter */
-    public final CaptchaHelper$CaptchaPayload getCaptchaPayload() {
+    public final CaptchaHelper.CaptchaPayload getCaptchaPayload() {
         return this.captchaPayload;
     }
 
-    public final CaptchaHelper$CaptchaPayload getCaptchaPayload() {
+    public final CaptchaHelper.CaptchaPayload getCaptchaPayload() {
         return this.captchaPayload;
     }
 
@@ -634,8 +633,8 @@ public final /* data */ class Message {
         int iHashCode34 = (iHashCode33 + (l6 != null ? l6.hashCode() : 0)) * 31;
         List<LocalAttachment> list9 = this.localAttachments;
         int iHashCode35 = (iHashCode34 + (list9 != null ? list9.hashCode() : 0)) * 31;
-        CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload = this.captchaPayload;
-        return iHashCode35 + (captchaHelper$CaptchaPayload != null ? captchaHelper$CaptchaPayload.hashCode() : 0);
+        CaptchaHelper.CaptchaPayload captchaPayload = this.captchaPayload;
+        return iHashCode35 + (captchaPayload != null ? captchaPayload.hashCode() : 0);
     }
 
     public final boolean isApplicationMessage() {
@@ -962,8 +961,8 @@ public final /* data */ class Message {
         return sbU.toString();
     }
 
-    public /* synthetic */ Message(long j, long j2, Long l, User user, String str, UtcDateTime utcDateTime, UtcDateTime utcDateTime2, Boolean bool, Boolean bool2, List list, List list2, List list3, List list4, List list5, String str2, Boolean bool3, Long l2, Integer num, MessageActivity messageActivity, Application application, Long l3, MessageReference messageReference, Long l4, List list6, List list7, com.discord.api.message.Message message, Interaction interaction, Channel channel, List list8, MessageCall messageCall, Boolean bool4, RoleSubscriptionData roleSubscriptionData, boolean z2, MessageAllowedMentions messageAllowedMentions, Integer num2, Long l5, Long l6, List list9, CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload, int i, int i2, DefaultConstructorMarker defaultConstructorMarker) {
-        this(j, j2, (i & 4) != 0 ? null : l, (i & 8) != 0 ? null : user, (i & 16) != 0 ? null : str, (i & 32) != 0 ? null : utcDateTime, (i & 64) != 0 ? null : utcDateTime2, (i & 128) != 0 ? null : bool, (i & 256) != 0 ? null : bool2, (i & 512) != 0 ? null : list, (i & 1024) != 0 ? null : list2, (i & 2048) != 0 ? null : list3, (i & 4096) != 0 ? null : list4, (i & 8192) != 0 ? null : list5, (i & 16384) != 0 ? null : str2, (32768 & i) != 0 ? null : bool3, (65536 & i) != 0 ? null : l2, (131072 & i) != 0 ? null : num, (262144 & i) != 0 ? null : messageActivity, (524288 & i) != 0 ? null : application, (1048576 & i) != 0 ? null : l3, (2097152 & i) != 0 ? null : messageReference, (4194304 & i) != 0 ? null : l4, (8388608 & i) != 0 ? null : list6, (16777216 & i) != 0 ? null : list7, (33554432 & i) != 0 ? null : message, (67108864 & i) != 0 ? null : interaction, (134217728 & i) != 0 ? null : channel, (268435456 & i) != 0 ? null : list8, (536870912 & i) != 0 ? null : messageCall, (1073741824 & i) != 0 ? null : bool4, (i & Integer.MIN_VALUE) != 0 ? null : roleSubscriptionData, (i2 & 1) != 0 ? false : z2, (i2 & 2) != 0 ? null : messageAllowedMentions, (i2 & 4) != 0 ? null : num2, (i2 & 8) != 0 ? null : l5, (i2 & 16) != 0 ? null : l6, (i2 & 32) != 0 ? null : list9, (i2 & 64) != 0 ? null : captchaHelper$CaptchaPayload);
+    public /* synthetic */ Message(long j, long j2, Long l, User user, String str, UtcDateTime utcDateTime, UtcDateTime utcDateTime2, Boolean bool, Boolean bool2, List list, List list2, List list3, List list4, List list5, String str2, Boolean bool3, Long l2, Integer num, MessageActivity messageActivity, Application application, Long l3, MessageReference messageReference, Long l4, List list6, List list7, com.discord.api.message.Message message, Interaction interaction, Channel channel, List list8, MessageCall messageCall, Boolean bool4, RoleSubscriptionData roleSubscriptionData, boolean z2, MessageAllowedMentions messageAllowedMentions, Integer num2, Long l5, Long l6, List list9, CaptchaHelper.CaptchaPayload captchaPayload, int i, int i2, DefaultConstructorMarker defaultConstructorMarker) {
+        this(j, j2, (i & 4) != 0 ? null : l, (i & 8) != 0 ? null : user, (i & 16) != 0 ? null : str, (i & 32) != 0 ? null : utcDateTime, (i & 64) != 0 ? null : utcDateTime2, (i & 128) != 0 ? null : bool, (i & 256) != 0 ? null : bool2, (i & 512) != 0 ? null : list, (i & 1024) != 0 ? null : list2, (i & 2048) != 0 ? null : list3, (i & 4096) != 0 ? null : list4, (i & 8192) != 0 ? null : list5, (i & 16384) != 0 ? null : str2, (32768 & i) != 0 ? null : bool3, (65536 & i) != 0 ? null : l2, (131072 & i) != 0 ? null : num, (262144 & i) != 0 ? null : messageActivity, (524288 & i) != 0 ? null : application, (1048576 & i) != 0 ? null : l3, (2097152 & i) != 0 ? null : messageReference, (4194304 & i) != 0 ? null : l4, (8388608 & i) != 0 ? null : list6, (16777216 & i) != 0 ? null : list7, (33554432 & i) != 0 ? null : message, (67108864 & i) != 0 ? null : interaction, (134217728 & i) != 0 ? null : channel, (268435456 & i) != 0 ? null : list8, (536870912 & i) != 0 ? null : messageCall, (1073741824 & i) != 0 ? null : bool4, (i & Integer.MIN_VALUE) != 0 ? null : roleSubscriptionData, (i2 & 1) != 0 ? false : z2, (i2 & 2) != 0 ? null : messageAllowedMentions, (i2 & 4) != 0 ? null : num2, (i2 & 8) != 0 ? null : l5, (i2 & 16) != 0 ? null : l6, (i2 & 32) != 0 ? null : list9, (i2 & 64) != 0 ? null : captchaPayload);
     }
 
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */

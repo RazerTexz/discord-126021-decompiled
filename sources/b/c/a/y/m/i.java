@@ -3,7 +3,6 @@ package b.c.a.y.m;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Paint$Style;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Typeface;
@@ -24,7 +23,7 @@ import java.util.Objects;
 
 /* JADX INFO: compiled from: TextLayer.java */
 /* JADX INFO: loaded from: classes.dex */
-public class i extends b {
+public class i extends b.c.a.y.m.b {
     public final Paint A;
     public final Paint B;
     public final Map<b.c.a.y.e, List<b.c.a.w.b.d>> C;
@@ -69,6 +68,22 @@ public class i extends b {
     /* JADX INFO: renamed from: z, reason: collision with root package name */
     public final Matrix f446z;
 
+    /* JADX INFO: compiled from: TextLayer.java */
+    public class a extends Paint {
+        public a(i iVar, int i) {
+            super(i);
+            setStyle(Paint.Style.FILL);
+        }
+    }
+
+    /* JADX INFO: compiled from: TextLayer.java */
+    public class b extends Paint {
+        public b(i iVar, int i) {
+            super(i);
+            setStyle(Paint.Style.STROKE);
+        }
+    }
+
     public i(j jVar, e eVar) {
         b.c.a.y.k.b bVar;
         b.c.a.y.k.b bVar2;
@@ -78,8 +93,8 @@ public class i extends b {
         this.f444x = new StringBuilder(2);
         this.f445y = new RectF();
         this.f446z = new Matrix();
-        this.A = new i$a(this, 1);
-        this.B = new i$b(this, 1);
+        this.A = new a(this, 1);
+        this.B = new b(this, 1);
         this.C = new HashMap();
         this.D = new LongSparseArray<>();
         this.F = jVar;
@@ -495,7 +510,7 @@ public class i extends b {
         if (paint.getColor() == 0) {
             return;
         }
-        if (paint.getStyle() == Paint$Style.STROKE && paint.getStrokeWidth() == 0.0f) {
+        if (paint.getStyle() == Paint.Style.STROKE && paint.getStrokeWidth() == 0.0f) {
             return;
         }
         canvas.drawText(str, 0, str.length(), 0.0f, 0.0f, paint);
@@ -505,7 +520,7 @@ public class i extends b {
         if (paint.getColor() == 0) {
             return;
         }
-        if (paint.getStyle() == Paint$Style.STROKE && paint.getStrokeWidth() == 0.0f) {
+        if (paint.getStyle() == Paint.Style.STROKE && paint.getStrokeWidth() == 0.0f) {
             return;
         }
         canvas.drawPath(path, paint);

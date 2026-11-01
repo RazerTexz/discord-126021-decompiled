@@ -2,19 +2,34 @@ package d0.e0.p.d.m0.c.k1.a;
 
 import com.discord.widgets.chat.input.MentionUtilsKt;
 import d0.e0.p.d.m0.e.b.p;
-import d0.e0.p.d.m0.e.b.p$c;
-import d0.e0.p.d.m0.e.b.p$d;
 import d0.g0.t;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ReflectKotlinClass.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class f implements p {
-    public static final f$a a = new f$a(null);
+    public static final a a = new a(null);
     public final d0.e0.p.d.m0.e.b.b0.a c;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final Class<?> f3284b;
+
+    /* JADX INFO: compiled from: ReflectKotlinClass.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final f create(Class<?> cls) {
+            d0.z.d.m.checkNotNullParameter(cls, "klass");
+            d0.e0.p.d.m0.e.b.b0.b bVar = new d0.e0.p.d.m0.e.b.b0.b();
+            c.a.loadClassAnnotations(cls, bVar);
+            d0.e0.p.d.m0.e.b.b0.a aVarCreateHeader = bVar.createHeader();
+            if (aVarCreateHeader == null) {
+                return null;
+            }
+            return new f(cls, aVarCreateHeader, null);
+        }
+    }
 
     public f(Class cls, d0.e0.p.d.m0.e.b.b0.a aVar, DefaultConstructorMarker defaultConstructorMarker) {
         this.f3284b = cls;
@@ -51,9 +66,9 @@ public final class f implements p {
     }
 
     @Override // d0.e0.p.d.m0.e.b.p
-    public void loadClassAnnotations(p$c p_c, byte[] bArr) {
-        d0.z.d.m.checkNotNullParameter(p_c, "visitor");
-        c.a.loadClassAnnotations(this.f3284b, p_c);
+    public void loadClassAnnotations(p.c cVar, byte[] bArr) {
+        d0.z.d.m.checkNotNullParameter(cVar, "visitor");
+        c.a.loadClassAnnotations(this.f3284b, cVar);
     }
 
     public String toString() {
@@ -64,8 +79,8 @@ public final class f implements p {
     }
 
     @Override // d0.e0.p.d.m0.e.b.p
-    public void visitMembers(p$d p_d, byte[] bArr) {
-        d0.z.d.m.checkNotNullParameter(p_d, "visitor");
-        c.a.visitMembers(this.f3284b, p_d);
+    public void visitMembers(p.d dVar, byte[] bArr) {
+        d0.z.d.m.checkNotNullParameter(dVar, "visitor");
+        c.a.visitMembers(this.f3284b, dVar);
     }
 }

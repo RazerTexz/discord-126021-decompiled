@@ -2,18 +2,16 @@ package b.i.c.m.d.k;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
-import android.app.ActivityManager$RunningAppProcessInfo;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.content.res.Resources$NotFoundException;
 import android.hardware.SensorManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Debug;
 import android.os.StatFs;
-import android.provider.Settings$Secure;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -33,9 +31,11 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -46,7 +46,44 @@ public class h {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static long f1685b = -1;
-    public static final Comparator<File> c = new h$a();
+    public static final Comparator<File> c = new a();
+
+    /* JADX INFO: compiled from: CommonUtils.java */
+    public class a implements Comparator<File> {
+        @Override // java.util.Comparator
+        public int compare(File file, File file2) {
+            return (int) (file.lastModified() - file2.lastModified());
+        }
+    }
+
+    /* JADX INFO: compiled from: CommonUtils.java */
+    public enum b {
+        X86_32,
+        X86_64,
+        ARM_UNKNOWN,
+        PPC,
+        PPC64,
+        ARMV6,
+        ARMV7,
+        UNKNOWN,
+        ARMV7S,
+        ARM64;
+
+        public static final Map<String, b> t;
+
+        static {
+            b bVar = X86_32;
+            b bVar2 = ARMV6;
+            b bVar3 = ARMV7;
+            b bVar4 = ARM64;
+            HashMap map = new HashMap(4);
+            t = map;
+            map.put("armeabi-v7a", bVar3);
+            map.put("armeabi", bVar2);
+            map.put("arm64-v8a", bVar4);
+            map.put("x86", bVar);
+        }
+    }
 
     public static long a(String str) {
         StatFs statFs = new StatFs(str);
@@ -177,12 +214,12 @@ public class h {
         }
     }
 
-    public static ActivityManager$RunningAppProcessInfo i(String str, Context context) {
-        List<ActivityManager$RunningAppProcessInfo> runningAppProcesses = ((ActivityManager) context.getSystemService(ActivityChooserModel.ATTRIBUTE_ACTIVITY)).getRunningAppProcesses();
+    public static ActivityManager.RunningAppProcessInfo i(String str, Context context) {
+        List<ActivityManager.RunningAppProcessInfo> runningAppProcesses = ((ActivityManager) context.getSystemService(ActivityChooserModel.ATTRIBUTE_ACTIVITY)).getRunningAppProcesses();
         if (runningAppProcesses != null) {
-            for (ActivityManager$RunningAppProcessInfo activityManager$RunningAppProcessInfo : runningAppProcesses) {
-                if (activityManager$RunningAppProcessInfo.processName.equals(str)) {
-                    return activityManager$RunningAppProcessInfo;
+            for (ActivityManager.RunningAppProcessInfo runningAppProcessInfo : runningAppProcesses) {
+                if (runningAppProcessInfo.processName.equals(str)) {
+                    return runningAppProcessInfo;
                 }
             }
         }
@@ -241,7 +278,7 @@ public class h {
                 if ("android".equals(packageName)) {
                     packageName = context.getPackageName();
                 }
-            } catch (Resources$NotFoundException unused) {
+            } catch (Resources.NotFoundException unused) {
                 packageName = context.getPackageName();
             }
         } else {
@@ -299,7 +336,7 @@ public class h {
     }
 
     public static boolean s(Context context) {
-        String string = Settings$Secure.getString(context.getContentResolver(), "android_id");
+        String string = Settings.Secure.getString(context.getContentResolver(), "android_id");
         String str = Build.PRODUCT;
         return "sdk".equals(str) || "google_sdk".equals(str) || string == null;
     }

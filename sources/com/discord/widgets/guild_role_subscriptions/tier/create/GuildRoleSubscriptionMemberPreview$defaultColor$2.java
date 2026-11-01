@@ -1,5 +1,6 @@
 package com.discord.widgets.guild_role_subscriptions.tier.create;
 
+import com.discord.R;
 import com.discord.utilities.color.ColorCompat;
 import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
@@ -22,6 +23,6 @@ public final class GuildRoleSubscriptionMemberPreview$defaultColor$2 extends o i
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final int invoke2() {
-        return ColorCompat.getColor(this.this$0, 2131100171);
+        return ColorCompat.getColor(this.this$0, R.color.primary_300);
     }
 }

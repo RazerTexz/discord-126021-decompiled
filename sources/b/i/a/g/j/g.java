@@ -2,11 +2,10 @@ package b.i.a.g.j;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Paint$Style;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable$Callback;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,7 +38,7 @@ public class g extends MaterialShapeDrawable {
 
     @Override // com.google.android.material.shape.MaterialShapeDrawable, android.graphics.drawable.Drawable
     public void draw(@NonNull Canvas canvas) {
-        Drawable$Callback callback = getCallback();
+        Drawable.Callback callback = getCallback();
         if (callback instanceof View) {
             View view = (View) callback;
             if (view.getLayerType() != 2) {
@@ -60,9 +59,9 @@ public class g extends MaterialShapeDrawable {
         super(shapeAppearanceModel == null ? new ShapeAppearanceModel() : shapeAppearanceModel);
         Paint paint = new Paint(1);
         this.j = paint;
-        paint.setStyle(Paint$Style.FILL_AND_STROKE);
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setColor(-1);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff$Mode.DST_OUT));
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         this.k = new RectF();
     }
 }

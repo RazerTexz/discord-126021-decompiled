@@ -1,22 +1,38 @@
 package com.discord.utilities.logging;
 
 import com.discord.gateway.GatewaySocketLogger;
-import com.discord.gateway.GatewaySocketLogger$LogLevel;
 import d0.z.d.m;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: AppGatewaySocketLogger.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class AppGatewaySocketLogger implements GatewaySocketLogger {
-    public static final AppGatewaySocketLogger$Companion Companion = new AppGatewaySocketLogger$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final AppGatewaySocketLogger INSTANCE = new AppGatewaySocketLogger();
-    private final GatewaySocketLogger$LogLevel logLevel = GatewaySocketLogger$LogLevel.NONE;
+    private final GatewaySocketLogger.LogLevel logLevel = GatewaySocketLogger.LogLevel.NONE;
+
+    /* JADX INFO: compiled from: AppGatewaySocketLogger.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final AppGatewaySocketLogger getINSTANCE() {
+            return AppGatewaySocketLogger.access$getINSTANCE$cp();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public static final /* synthetic */ AppGatewaySocketLogger access$getINSTANCE$cp() {
         return INSTANCE;
     }
 
     @Override // com.discord.gateway.GatewaySocketLogger
-    public GatewaySocketLogger$LogLevel getLogLevel() {
+    public GatewaySocketLogger.LogLevel getLogLevel() {
         return this.logLevel;
     }
 

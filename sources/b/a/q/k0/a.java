@@ -6,23 +6,30 @@ import android.content.Intent;
 import android.media.AudioManager;
 import androidx.annotation.MainThread;
 import androidx.core.os.EnvironmentCompat;
-import b.a.q.l0.a$b;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.rtcconnection.enums.AudioManagerBroadcastAction;
 import com.discord.rtcconnection.enums.ScoAudioState;
 import d0.z.d.m;
 import java.util.Objects;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import org.webrtc.MediaStreamTrack;
 import org.webrtc.ThreadUtils;
 
 /* JADX INFO: compiled from: AudioManagerBroadcastReceiver.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class a extends BroadcastReceiver {
-    public static final a$a a = new a$a(null);
+    public static final C0040a a = new C0040a(null);
     public final h c;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final Context f261b;
+
+    /* JADX INFO: renamed from: b.a.q.k0.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: AudioManagerBroadcastReceiver.kt */
+    public final class C0040a {
+        public C0040a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
 
     public a(Context context, h hVar) {
         m.checkNotNullParameter(context, "context");
@@ -34,13 +41,13 @@ public final class a extends BroadcastReceiver {
     @Override // android.content.BroadcastReceiver
     @MainThread
     public void onReceive(Context context, Intent intent) {
-        b.a.q.l0.a a_a;
+        b.a.q.l0.a c0041a;
         m.checkNotNullParameter(context, "context");
         ThreadUtils.checkIsOnMainThread();
         if (intent == null) {
             return;
         }
-        Objects.requireNonNull(AudioManagerBroadcastAction.Companion);
+        Objects.requireNonNull(AudioManagerBroadcastAction.INSTANCE);
         m.checkNotNullParameter(intent, "intent");
         String action = intent.getAction();
         AudioManagerBroadcastAction audioManagerBroadcastAction = null;
@@ -80,15 +87,15 @@ public final class a extends BroadcastReceiver {
                         stringExtra = EnvironmentCompat.MEDIA_UNKNOWN;
                     }
                     m.checkNotNullExpressionValue(stringExtra, "intent.getStringExtra(\"name\") ?: \"unknown\"");
-                    a_a = new b.a.q.l0.a$a(stringExtra, intent.getIntExtra("microphone", 0) == 1);
+                    c0041a = new b.a.q.l0.a.C0041a(stringExtra, intent.getIntExtra("microphone", 0) == 1);
                 } else {
-                    a_a = a$b.a;
+                    c0041a = b.a.q.l0.a.b.a;
                 }
-                hVar.e(context, a_a);
+                hVar.e(context, c0041a);
                 return;
             }
             if (iOrdinal == 2) {
-                hVar.b(context, ScoAudioState.Companion.b(intent));
+                hVar.b(context, ScoAudioState.INSTANCE.b(intent));
                 return;
             }
             if (iOrdinal == 3) {

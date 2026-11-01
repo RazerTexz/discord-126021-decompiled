@@ -5,18 +5,17 @@ import android.media.DeniedByServerException;
 import android.media.MediaCrypto;
 import android.media.MediaCryptoException;
 import android.media.MediaDrm;
-import android.media.MediaDrm$KeyRequest;
-import android.media.MediaDrm$ProvisionRequest;
 import android.media.MediaDrmException;
 import android.media.NotProvisionedException;
 import android.media.UnsupportedSchemeException;
 import android.text.TextUtils;
 import android.util.Log;
+import androidx.annotation.DoNotInline;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import b.i.a.c.x0;
 import com.discord.widgets.chat.input.MentionUtilsKt;
-import com.google.android.exoplayer2.drm.DrmInitData$SchemeData;
+import com.google.android.exoplayer2.drm.DrmInitData;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.Charset;
@@ -40,6 +39,15 @@ public final class c0 implements a0 {
     public final MediaDrm c;
     public int d;
 
+    /* JADX INFO: compiled from: FrameworkMediaDrm.java */
+    @RequiresApi(31)
+    public class a {
+        @DoNotInline
+        public static boolean a(MediaDrm mediaDrm, String str) {
+            return mediaDrm.requiresSecureDecoder(str);
+        }
+    }
+
     public c0(UUID uuid) throws UnsupportedSchemeException {
         Objects.requireNonNull(uuid);
         UUID uuid2 = x0.f1158b;
@@ -59,9 +67,9 @@ public final class c0 implements a0 {
     }
 
     @Override // b.i.a.c.w2.a0
-    public a0$d b() {
-        MediaDrm$ProvisionRequest provisionRequest = this.c.getProvisionRequest();
-        return new a0$d(provisionRequest.getData(), provisionRequest.getDefaultUrl());
+    public a0.d b() {
+        MediaDrm.ProvisionRequest provisionRequest = this.c.getProvisionRequest();
+        return new a0.d(provisionRequest.getData(), provisionRequest.getDefaultUrl());
     }
 
     @Override // b.i.a.c.w2.a0
@@ -83,7 +91,7 @@ public final class c0 implements a0 {
     @Override // b.i.a.c.w2.a0
     public boolean e(byte[] bArr, String str) {
         if (b.i.a.c.f3.e0.a >= 31) {
-            return c0$a.a(this.c, str);
+            return a.a(this.c, str);
         }
         try {
             MediaCrypto mediaCrypto = new MediaCrypto(this.f1151b, bArr);
@@ -108,8 +116,8 @@ public final class c0 implements a0 {
     }
 
     @Override // b.i.a.c.w2.a0
-    public void h(@Nullable a0$b a0_b) {
-        this.c.setOnEventListener(new o(this, a0_b));
+    public void h(@Nullable a0.b bVar) {
+        this.c.setOnEventListener(new o(this, bVar));
     }
 
     @Override // b.i.a.c.w2.a0
@@ -166,11 +174,11 @@ public final class c0 implements a0 {
     /* JADX WARN: Code duplicated, block: B:98:0x0214  */
     @Override // b.i.a.c.w2.a0
     @SuppressLint({"WrongConstant"})
-    public a0$a k(byte[] bArr, @Nullable List<DrmInitData$SchemeData> list, int i, @Nullable HashMap<String, String> map) throws NotProvisionedException {
+    public a0.a k(byte[] bArr, @Nullable List<DrmInitData.SchemeData> list, int i, @Nullable HashMap<String, String> map) throws NotProvisionedException {
         byte[] bArr2;
         String str;
         int i2;
-        DrmInitData$SchemeData drmInitData$SchemeData;
+        DrmInitData.SchemeData schemeData;
         b.i.a.c.x2.i0.j jVarV1;
         int i3;
         int i4;
@@ -187,15 +195,15 @@ public final class c0 implements a0 {
         short s2;
         int length;
         ByteBuffer byteBufferAllocate;
-        DrmInitData$SchemeData drmInitData$SchemeData2 = null;
+        DrmInitData.SchemeData schemeData2 = null;
         if (list != null) {
             if (x0.d.equals(this.f1151b)) {
                 if (b.i.a.c.f3.e0.a < 28 || list.size() <= 1) {
                     i2 = 0;
                     while (true) {
                         if (i2 < list.size()) {
-                            DrmInitData$SchemeData drmInitData$SchemeData3 = list.get(i2);
-                            byte[] bArr3 = drmInitData$SchemeData3.n;
+                            DrmInitData.SchemeData schemeData3 = list.get(i2);
+                            byte[] bArr3 = schemeData3.n;
                             Objects.requireNonNull(bArr3);
                             jVarV1 = b.c.a.a0.d.v1(bArr3);
                             if (jVarV1 == null) {
@@ -205,14 +213,14 @@ public final class c0 implements a0 {
                             }
                             i4 = b.i.a.c.f3.e0.a;
                             if ((i4 >= 23 && i3 == 0) || (i4 >= 23 && i3 == 1)) {
-                                drmInitData$SchemeData2 = drmInitData$SchemeData3;
+                                schemeData2 = schemeData3;
                             }
                         } else {
-                            drmInitData$SchemeData = list.get(0);
+                            schemeData = list.get(0);
                         }
                     }
                 } else {
-                    DrmInitData$SchemeData drmInitData$SchemeData4 = list.get(0);
+                    DrmInitData.SchemeData schemeData4 = list.get(0);
                     int i6 = 0;
                     int length2 = 0;
                     while (true) {
@@ -220,10 +228,10 @@ public final class c0 implements a0 {
                             z2 = true;
                             break;
                         }
-                        DrmInitData$SchemeData drmInitData$SchemeData5 = list.get(i6);
-                        byte[] bArr4 = drmInitData$SchemeData5.n;
+                        DrmInitData.SchemeData schemeData5 = list.get(i6);
+                        byte[] bArr4 = schemeData5.n;
                         Objects.requireNonNull(bArr4);
-                        if (b.i.a.c.f3.e0.a(drmInitData$SchemeData5.m, drmInitData$SchemeData4.m) && b.i.a.c.f3.e0.a(drmInitData$SchemeData5.l, drmInitData$SchemeData4.l)) {
+                        if (b.i.a.c.f3.e0.a(schemeData5.m, schemeData4.m) && b.i.a.c.f3.e0.a(schemeData5.l, schemeData4.l)) {
                             if (b.c.a.a0.d.v1(bArr4) != null) {
                                 length2 += bArr4.length;
                                 i6++;
@@ -242,13 +250,13 @@ public final class c0 implements a0 {
                             System.arraycopy(bArr6, 0, bArr5, i7, length3);
                             i7 += length3;
                         }
-                        drmInitData$SchemeData = new DrmInitData$SchemeData(drmInitData$SchemeData4.k, drmInitData$SchemeData4.l, drmInitData$SchemeData4.m, bArr5);
+                        schemeData = new DrmInitData.SchemeData(schemeData4.k, schemeData4.l, schemeData4.m, bArr5);
                     } else {
                         i2 = 0;
                         while (true) {
                             if (i2 < list.size()) {
-                                DrmInitData$SchemeData drmInitData$SchemeData6 = list.get(i2);
-                                byte[] bArr7 = drmInitData$SchemeData6.n;
+                                DrmInitData.SchemeData schemeData6 = list.get(i2);
+                                byte[] bArr7 = schemeData6.n;
                                 Objects.requireNonNull(bArr7);
                                 jVarV1 = b.c.a.a0.d.v1(bArr7);
                                 if (jVarV1 == null) {
@@ -258,15 +266,15 @@ public final class c0 implements a0 {
                                 }
                                 i4 = b.i.a.c.f3.e0.a;
                                 i2 = i4 >= 23 ? i2 + 1 : i2 + 1;
-                                drmInitData$SchemeData2 = drmInitData$SchemeData6;
+                                schemeData2 = schemeData6;
                             } else {
-                                drmInitData$SchemeData = list.get(0);
+                                schemeData = list.get(0);
                             }
                         }
                     }
                 }
                 uuid = this.f1151b;
-                bArrArray = drmInitData$SchemeData2.n;
+                bArrArray = schemeData2.n;
                 Objects.requireNonNull(bArrArray);
                 uuid2 = x0.e;
                 if (uuid2.equals(uuid)) {
@@ -338,7 +346,7 @@ public final class c0 implements a0 {
                     }
                 }
                 UUID uuid3 = this.f1151b;
-                str3 = drmInitData$SchemeData2.m;
+                str3 = schemeData2.m;
                 if (i5 >= 26 && x0.c.equals(uuid3) && ("video/mp4".equals(str3) || "audio/mp4".equals(str3))) {
                     str4 = "cenc";
                 } else {
@@ -347,11 +355,11 @@ public final class c0 implements a0 {
                 bArr2 = bArrW1;
                 str = str4;
             } else {
-                drmInitData$SchemeData = list.get(0);
+                schemeData = list.get(0);
             }
-            drmInitData$SchemeData2 = drmInitData$SchemeData;
+            schemeData2 = schemeData;
             uuid = this.f1151b;
-            bArrArray = drmInitData$SchemeData2.n;
+            bArrArray = schemeData2.n;
             Objects.requireNonNull(bArrArray);
             uuid2 = x0.e;
             if (uuid2.equals(uuid)) {
@@ -399,7 +407,7 @@ public final class c0 implements a0 {
                         }
                     }
                     UUID uuid4 = this.f1151b;
-                    str3 = drmInitData$SchemeData2.m;
+                    str3 = schemeData2.m;
                     if (i5 >= 26) {
                         str4 = str3;
                     } else {
@@ -420,7 +428,7 @@ public final class c0 implements a0 {
                     }
                 }
                 UUID uuid5 = this.f1151b;
-                str3 = drmInitData$SchemeData2.m;
+                str3 = schemeData2.m;
                 if (i5 >= 26) {
                     str4 = str3;
                 } else {
@@ -431,7 +439,7 @@ public final class c0 implements a0 {
             }
             bArrW1 = bArrArray;
             UUID uuid6 = this.f1151b;
-            str3 = drmInitData$SchemeData2.m;
+            str3 = schemeData2.m;
             if (i5 >= 26) {
                 str4 = str3;
             } else {
@@ -443,7 +451,7 @@ public final class c0 implements a0 {
             bArr2 = null;
             str = null;
         }
-        MediaDrm$KeyRequest keyRequest = this.c.getKeyRequest(bArr, bArr2, str, i, map);
+        MediaDrm.KeyRequest keyRequest = this.c.getKeyRequest(bArr, bArr2, str, i, map);
         UUID uuid7 = this.f1151b;
         byte[] data = keyRequest.getData();
         if (x0.c.equals(uuid7) && b.i.a.c.f3.e0.a < 27) {
@@ -453,10 +461,10 @@ public final class c0 implements a0 {
         if ("https://x".equals(defaultUrl)) {
             defaultUrl = "";
         }
-        if (TextUtils.isEmpty(defaultUrl) && drmInitData$SchemeData2 != null && !TextUtils.isEmpty(drmInitData$SchemeData2.l)) {
-            defaultUrl = drmInitData$SchemeData2.l;
+        if (TextUtils.isEmpty(defaultUrl) && schemeData2 != null && !TextUtils.isEmpty(schemeData2.l)) {
+            defaultUrl = schemeData2.l;
         }
-        return new a0$a(data, defaultUrl, b.i.a.c.f3.e0.a >= 23 ? keyRequest.getRequestType() : Integer.MIN_VALUE);
+        return new a0.a(data, defaultUrl, b.i.a.c.f3.e0.a >= 23 ? keyRequest.getRequestType() : Integer.MIN_VALUE);
     }
 
     @Override // b.i.a.c.w2.a0

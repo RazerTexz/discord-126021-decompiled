@@ -5,7 +5,9 @@ import d0.e0.p.d.m0.n.c0;
 import d0.e0.p.d.m0.n.i1;
 import d0.e0.p.d.m0.n.u0;
 import d0.e0.p.d.m0.n.w0;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import kotlin.Lazy;
@@ -23,13 +25,110 @@ public final class j implements d0.e0.p.d.m0.k.u.a.b {
     public final z0 d;
     public final Lazy e;
 
+    /* JADX INFO: compiled from: NewCapturedType.kt */
+    public final class a extends d0.z.d.o implements Function0<List<? extends i1>> {
+        public final /* synthetic */ List<i1> $supertypes;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        /* JADX WARN: Multi-variable type inference failed */
+        public a(List<? extends i1> list) {
+            super(0);
+            this.$supertypes = list;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<? extends i1> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<? extends i1> invoke2() {
+            return this.$supertypes;
+        }
+    }
+
+    /* JADX INFO: compiled from: NewCapturedType.kt */
+    public final class b extends d0.z.d.o implements Function0<List<? extends i1>> {
+        public b() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<? extends i1> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<? extends i1> invoke2() {
+            Function0 function0Access$getSupertypesComputation$p = j.access$getSupertypesComputation$p(j.this);
+            if (function0Access$getSupertypesComputation$p == null) {
+                return null;
+            }
+            return (List) function0Access$getSupertypesComputation$p.invoke();
+        }
+    }
+
+    /* JADX INFO: compiled from: NewCapturedType.kt */
+    public final class c extends d0.z.d.o implements Function0<List<? extends i1>> {
+        public final /* synthetic */ List<i1> $supertypes;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        /* JADX WARN: Multi-variable type inference failed */
+        public c(List<? extends i1> list) {
+            super(0);
+            this.$supertypes = list;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<? extends i1> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<? extends i1> invoke2() {
+            return this.$supertypes;
+        }
+    }
+
+    /* JADX INFO: compiled from: NewCapturedType.kt */
+    public final class d extends d0.z.d.o implements Function0<List<? extends i1>> {
+        public final /* synthetic */ g $kotlinTypeRefiner;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public d(g gVar) {
+            super(0);
+            this.$kotlinTypeRefiner = gVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<? extends i1> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<? extends i1> invoke2() {
+            List<i1> supertypes = j.this.getSupertypes();
+            g gVar = this.$kotlinTypeRefiner;
+            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(supertypes, 10));
+            Iterator<T> it = supertypes.iterator();
+            while (it.hasNext()) {
+                arrayList.add(((i1) it.next()).refine(gVar));
+            }
+            return arrayList;
+        }
+    }
+
     public j(w0 w0Var, Function0<? extends List<? extends i1>> function0, j jVar, z0 z0Var) {
         d0.z.d.m.checkNotNullParameter(w0Var, "projection");
         this.a = w0Var;
         this.f3528b = function0;
         this.c = jVar;
         this.d = z0Var;
-        this.e = d0.g.lazy(d0.i.PUBLICATION, new j$b(this));
+        this.e = d0.g.lazy(d0.i.PUBLICATION, new b());
     }
 
     public static final /* synthetic */ Function0 access$getSupertypesComputation$p(j jVar) {
@@ -91,7 +190,7 @@ public final class j implements d0.e0.p.d.m0.k.u.a.b {
     public final void initializeSupertypes(List<? extends i1> list) {
         d0.z.d.m.checkNotNullParameter(list, "supertypes");
         Function0<? extends List<? extends i1>> function0 = this.f3528b;
-        this.f3528b = new j$c(list);
+        this.f3528b = new c(list);
     }
 
     @Override // d0.e0.p.d.m0.n.u0
@@ -122,12 +221,12 @@ public final class j implements d0.e0.p.d.m0.k.u.a.b {
         d0.z.d.m.checkNotNullParameter(gVar, "kotlinTypeRefiner");
         w0 w0VarRefine = getProjection().refine(gVar);
         d0.z.d.m.checkNotNullExpressionValue(w0VarRefine, "projection.refine(kotlinTypeRefiner)");
-        j$d j_d = this.f3528b == null ? null : new j$d(this, gVar);
+        d dVar = this.f3528b == null ? null : new d(gVar);
         j jVar = this.c;
         if (jVar == null) {
             jVar = this;
         }
-        return new j(w0VarRefine, j_d, jVar, this.d);
+        return new j(w0VarRefine, dVar, jVar, this.d);
     }
 
     public /* synthetic */ j(w0 w0Var, Function0 function0, j jVar, z0 z0Var, int i, DefaultConstructorMarker defaultConstructorMarker) {
@@ -140,7 +239,7 @@ public final class j implements d0.e0.p.d.m0.k.u.a.b {
 
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
     public j(w0 w0Var, List<? extends i1> list, j jVar) {
-        this(w0Var, new j$a(list), jVar, null, 8, null);
+        this(w0Var, new a(list), jVar, null, 8, null);
         d0.z.d.m.checkNotNullParameter(w0Var, "projection");
         d0.z.d.m.checkNotNullParameter(list, "supertypes");
     }

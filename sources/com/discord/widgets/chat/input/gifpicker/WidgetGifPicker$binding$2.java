@@ -3,7 +3,7 @@ package com.discord.widgets.chat.input.gifpicker;
 import android.view.View;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetGifPickerBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -26,15 +26,15 @@ public final /* synthetic */ class WidgetGifPicker$binding$2 extends k implement
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGifPickerBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.gif_picker_category_recycler;
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.gif_picker_category_recycler);
+        int i = R.id.gif_picker_category_recycler;
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.gif_picker_category_recycler);
         if (recyclerView != null) {
             FrameLayout frameLayout = (FrameLayout) view;
-            GifLoadingView gifLoadingView = (GifLoadingView) view.findViewById(R$id.gif_picker_loading_view);
+            GifLoadingView gifLoadingView = (GifLoadingView) view.findViewById(R.id.gif_picker_loading_view);
             if (gifLoadingView != null) {
                 return new WidgetGifPickerBinding(frameLayout, recyclerView, frameLayout, gifLoadingView);
             }
-            i = R$id.gif_picker_loading_view;
+            i = R.id.gif_picker_loading_view;
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
     }

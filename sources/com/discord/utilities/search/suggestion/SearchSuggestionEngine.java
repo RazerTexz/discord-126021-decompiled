@@ -1,6 +1,7 @@
 package com.discord.utilities.search.suggestion;
 
 import android.content.Context;
+import androidx.core.app.NotificationCompat;
 import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
@@ -8,6 +9,8 @@ import com.discord.api.permission.Permission;
 import com.discord.models.guild.UserGuildMember;
 import com.discord.models.member.GuildMember;
 import com.discord.models.user.User;
+import com.discord.stores.StoreGatewayConnection;
+import com.discord.stores.StoreStream;
 import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.search.query.FilterType;
@@ -22,23 +25,23 @@ import com.discord.utilities.search.suggestion.entries.HasSuggestion;
 import com.discord.utilities.search.suggestion.entries.RecentQuerySuggestion;
 import com.discord.utilities.search.suggestion.entries.SearchSuggestion;
 import com.discord.utilities.search.suggestion.entries.UserSuggestion;
-import com.discord.utilities.search.suggestion.entries.UserSuggestion$TargetType;
 import com.discord.utilities.search.validation.SearchData;
 import d0.g0.w;
 import d0.t.n;
-import d0.t.o;
 import d0.t.u;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
 import j0.k.b;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import rx.Observable;
@@ -53,6 +56,79 @@ public final class SearchSuggestionEngine {
     private static final int MAX_USER_SORTING_THRESHOLD;
     private static final SerializedSubject<CharSequence, CharSequence> membersRequestSubject;
     private static Long targetGuildId;
+
+    /* JADX INFO: renamed from: com.discord.utilities.search.suggestion.SearchSuggestionEngine$setupMemberRequestSubscription$1, reason: invalid class name */
+    /* JADX INFO: compiled from: SearchSuggestionEngine.kt */
+    public final class AnonymousClass1<T, R> implements b<CharSequence, String> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ String call(CharSequence charSequence) {
+            return call2(charSequence);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final String call2(CharSequence charSequence) {
+            return charSequence.toString();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.search.suggestion.SearchSuggestionEngine$setupMemberRequestSubscription$2, reason: invalid class name */
+    /* JADX INFO: compiled from: SearchSuggestionEngine.kt */
+    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<CharSequence, Boolean> {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        public AnonymousClass2() {
+            super(1, d0.g0.k.class, "isNotEmpty", "isNotEmpty(Ljava/lang/CharSequence;)Z", 1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(CharSequence charSequence) {
+            return Boolean.valueOf(invoke((String) charSequence));
+        }
+
+        public final boolean invoke(String str) {
+            m.checkNotNullParameter(str, "p1");
+            return str.length() > 0;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.search.suggestion.SearchSuggestionEngine$setupMemberRequestSubscription$3, reason: invalid class name */
+    /* JADX INFO: compiled from: SearchSuggestionEngine.kt */
+    public final class AnonymousClass3 extends o implements Function1<String, Unit> {
+        public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
+
+        public AnonymousClass3() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            StoreGatewayConnection gatewaySocket = StoreStream.INSTANCE.getGatewaySocket();
+            Long targetGuildId = SearchSuggestionEngine.INSTANCE.getTargetGuildId();
+            if (targetGuildId != null) {
+                StoreGatewayConnection.requestGuildMembers$default(gatewaySocket, targetGuildId.longValue(), str, null, null, 12, null);
+            }
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            FilterType.values();
+            int[] iArr = new int[4];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[FilterType.FROM.ordinal()] = 1;
+            iArr[FilterType.MENTIONS.ordinal()] = 2;
+        }
+    }
 
     static {
         SearchSuggestionEngine searchSuggestionEngine = new SearchSuggestionEngine();
@@ -79,12 +155,12 @@ public final class SearchSuggestionEngine {
         }
         ArrayList arrayList2 = new ArrayList();
         for (Object obj2 : arrayList) {
-            if (ChannelSuggestion.Companion.canComplete(ChannelUtils.c((Channel) obj2), rawContent)) {
+            if (ChannelSuggestion.INSTANCE.canComplete(ChannelUtils.c((Channel) obj2), rawContent)) {
                 arrayList2.add(obj2);
             }
         }
-        List<Channel> listSortedWith = u.sortedWith(arrayList2, ChannelUtils.h(Channel.Companion));
-        ArrayList arrayList3 = new ArrayList(o.collectionSizeOrDefault(listSortedWith, 10));
+        List<Channel> listSortedWith = u.sortedWith(arrayList2, ChannelUtils.h(Channel.INSTANCE));
+        ArrayList arrayList3 = new ArrayList(d0.t.o.collectionSizeOrDefault(listSortedWith, 10));
         for (Channel channel : listSortedWith) {
             arrayList3.add(new ChannelSuggestion(ChannelUtils.c(channel), channel.getId()));
         }
@@ -120,11 +196,11 @@ public final class SearchSuggestionEngine {
         }
         ArrayList arrayList2 = new ArrayList();
         for (Object obj : arrayList) {
-            if (FilterSuggestion.Companion.canComplete(rawContent, (FilterType) obj, searchStringProvider)) {
+            if (FilterSuggestion.INSTANCE.canComplete(rawContent, (FilterType) obj, searchStringProvider)) {
                 arrayList2.add(obj);
             }
         }
-        ArrayList arrayList3 = new ArrayList(o.collectionSizeOrDefault(arrayList2, 10));
+        ArrayList arrayList3 = new ArrayList(d0.t.o.collectionSizeOrDefault(arrayList2, 10));
         Iterator it = arrayList2.iterator();
         while (it.hasNext()) {
             arrayList3.add(new FilterSuggestion((FilterType) it.next()));
@@ -140,7 +216,7 @@ public final class SearchSuggestionEngine {
         ArrayList arrayList = new ArrayList();
         for (int i = 0; i < 7; i++) {
             HasAnswerOption hasAnswerOption = hasAnswerOptionArrValues[i];
-            if (HasSuggestion.Companion.canComplete(rawContent, hasAnswerOption, searchStringProvider)) {
+            if (HasSuggestion.INSTANCE.canComplete(rawContent, hasAnswerOption, searchStringProvider)) {
                 arrayList.add(hasAnswerOption);
             }
         }
@@ -153,7 +229,7 @@ public final class SearchSuggestionEngine {
     }
 
     private final Collection<SearchSuggestion> getHistorySuggestions(Collection<? extends List<? extends QueryNode>> recentQueries) {
-        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(recentQueries, 10));
+        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(recentQueries, 10));
         Iterator<T> it = recentQueries.iterator();
         while (it.hasNext()) {
             arrayList.add(new RecentQuerySuggestion((List) it.next()));
@@ -201,26 +277,26 @@ public final class SearchSuggestionEngine {
     }
 
     private final Collection<UserSuggestion> getUserSuggestions(CharSequence rawContent, FilterType currentFilter, Map<Long, UserGuildMember> users) {
-        UserSuggestion$TargetType userSuggestion$TargetType;
+        UserSuggestion.TargetType targetType;
         int iOrdinal = currentFilter.ordinal();
         if (iOrdinal == 0) {
-            userSuggestion$TargetType = UserSuggestion$TargetType.FROM;
+            targetType = UserSuggestion.TargetType.FROM;
         } else {
             if (iOrdinal != 1) {
                 return n.emptyList();
             }
-            userSuggestion$TargetType = UserSuggestion$TargetType.MENTIONS;
+            targetType = UserSuggestion.TargetType.MENTIONS;
         }
         membersRequestSubject.k.onNext(rawContent);
         TreeSet treeSet = new TreeSet();
         boolean z2 = users.size() < MAX_USER_SORTING_THRESHOLD;
-        Iterator<Map$Entry<Long, UserGuildMember>> it = users.entrySet().iterator();
+        Iterator<Map.Entry<Long, UserGuildMember>> it = users.entrySet().iterator();
         while (it.hasNext()) {
             UserGuildMember value = it.next().getValue();
             User user = value.getUser();
             GuildMember guildMember = value.getGuildMember();
-            if (UserSuggestion.Companion.canComplete(user.getUsername(), user.getDiscriminator(), value.getNickname(), rawContent)) {
-                treeSet.add(new UserSuggestion(user, userSuggestion$TargetType, guildMember));
+            if (UserSuggestion.INSTANCE.canComplete(user.getUsername(), user.getDiscriminator(), value.getNickname(), rawContent)) {
+                treeSet.add(new UserSuggestion(user, targetType, guildMember));
                 if (!z2 && treeSet.size() >= MAX_ENTRY_TYPE_COUNT) {
                     return treeSet;
                 }
@@ -234,14 +310,14 @@ public final class SearchSuggestionEngine {
     }
 
     private final void setupMemberRequestSubscription() {
-        Observable<R> observableG = membersRequestSubject.P(750L, TimeUnit.MILLISECONDS).G(SearchSuggestionEngine$setupMemberRequestSubscription$1.INSTANCE);
-        SearchSuggestionEngine$setupMemberRequestSubscription$2 searchSuggestionEngine$setupMemberRequestSubscription$2 = SearchSuggestionEngine$setupMemberRequestSubscription$2.INSTANCE;
-        Object searchSuggestionEngine$sam$rx_functions_Func1$0 = searchSuggestionEngine$setupMemberRequestSubscription$2;
-        if (searchSuggestionEngine$setupMemberRequestSubscription$2 != null) {
-            searchSuggestionEngine$sam$rx_functions_Func1$0 = new SearchSuggestionEngine$sam$rx_functions_Func1$0(searchSuggestionEngine$setupMemberRequestSubscription$2);
+        Observable<R> observableG = membersRequestSubject.P(750L, TimeUnit.MILLISECONDS).G(AnonymousClass1.INSTANCE);
+        AnonymousClass2 anonymousClass2 = AnonymousClass2.INSTANCE;
+        Object searchSuggestionEngine$sam$rx_functions_Func1$0 = anonymousClass2;
+        if (anonymousClass2 != null) {
+            searchSuggestionEngine$sam$rx_functions_Func1$0 = new SearchSuggestionEngine$sam$rx_functions_Func1$0(anonymousClass2);
         }
         Observable observableR = observableG.y((b) searchSuggestionEngine$sam$rx_functions_Func1$0).r();
         m.checkNotNullExpressionValue(observableR, "membersRequestSubject\n  …  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe$default(observableR, SearchSuggestionEngine.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, SearchSuggestionEngine$setupMemberRequestSubscription$3.INSTANCE, 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(observableR, SearchSuggestionEngine.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, AnonymousClass3.INSTANCE, 62, (Object) null);
     }
 }

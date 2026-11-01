@@ -3,9 +3,12 @@ package com.google.android.exoplayer2.upstream;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
+import android.media.ApplicationMediaCapabilities;
 import android.net.Uri;
 import android.os.Bundle;
+import androidx.annotation.DoNotInline;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import b.i.a.c.e3.g;
 import b.i.a.c.e3.n;
 import b.i.a.c.f3.e0;
@@ -29,13 +32,27 @@ public final class ContentDataSource extends g {
     public long i;
     public boolean j;
 
+    public class ContentDataSourceException extends DataSourceException {
+        public ContentDataSourceException(@Nullable IOException iOException, int i) {
+            super(iOException, i);
+        }
+    }
+
+    @RequiresApi(31)
+    public final class a {
+        @DoNotInline
+        public static void a(Bundle bundle) {
+            bundle.putParcelable("android.provider.extra.MEDIA_CAPABILITIES", new ApplicationMediaCapabilities.Builder().addSupportedVideoMimeType("video/hevc").addSupportedHdrType("android.media.feature.hdr.dolby_vision").addSupportedHdrType("android.media.feature.hdr.hdr10").addSupportedHdrType("android.media.feature.hdr.hdr10_plus").addSupportedHdrType("android.media.feature.hdr.hlg").build());
+        }
+    }
+
     public ContentDataSource(Context context) {
         super(false);
         this.e = context.getContentResolver();
     }
 
     @Override // b.i.a.c.e3.l
-    public long a(n nVar) throws ContentDataSource$ContentDataSourceException {
+    public long a(n nVar) throws ContentDataSourceException {
         AssetFileDescriptor assetFileDescriptorOpenAssetFileDescriptor;
         try {
             Uri uri = nVar.a;
@@ -44,7 +61,7 @@ public final class ContentDataSource extends g {
             if ("content".equals(nVar.a.getScheme())) {
                 Bundle bundle = new Bundle();
                 if (e0.a >= 31) {
-                    ContentDataSource$a.a(bundle);
+                    a.a(bundle);
                 }
                 assetFileDescriptorOpenAssetFileDescriptor = this.e.openTypedAssetFileDescriptor(uri, "*/*", bundle);
             } else {
@@ -56,18 +73,18 @@ public final class ContentDataSource extends g {
                 StringBuilder sb = new StringBuilder(strValueOf.length() + 36);
                 sb.append("Could not open file descriptor for: ");
                 sb.append(strValueOf);
-                throw new ContentDataSource$ContentDataSourceException(new IOException(sb.toString()), 2000);
+                throw new ContentDataSourceException(new IOException(sb.toString()), 2000);
             }
             long length = assetFileDescriptorOpenAssetFileDescriptor.getLength();
             FileInputStream fileInputStream = new FileInputStream(assetFileDescriptorOpenAssetFileDescriptor.getFileDescriptor());
             this.h = fileInputStream;
             if (length != -1 && nVar.f > length) {
-                throw new ContentDataSource$ContentDataSourceException(null, 2008);
+                throw new ContentDataSourceException(null, 2008);
             }
             long startOffset = assetFileDescriptorOpenAssetFileDescriptor.getStartOffset();
             long jSkip = fileInputStream.skip(nVar.f + startOffset) - startOffset;
             if (jSkip != nVar.f) {
-                throw new ContentDataSource$ContentDataSourceException(null, 2008);
+                throw new ContentDataSourceException(null, 2008);
             }
             if (length == -1) {
                 FileChannel channel = fileInputStream.getChannel();
@@ -78,14 +95,14 @@ public final class ContentDataSource extends g {
                     long jPosition = size - channel.position();
                     this.i = jPosition;
                     if (jPosition < 0) {
-                        throw new ContentDataSource$ContentDataSourceException(null, 2008);
+                        throw new ContentDataSourceException(null, 2008);
                     }
                 }
             } else {
                 long j = length - jSkip;
                 this.i = j;
                 if (j < 0) {
-                    throw new ContentDataSource$ContentDataSourceException(null, 2008);
+                    throw new ContentDataSourceException(null, 2008);
                 }
             }
             long jMin = nVar.g;
@@ -100,10 +117,10 @@ public final class ContentDataSource extends g {
             s(nVar);
             long j3 = nVar.g;
             return j3 != -1 ? j3 : this.i;
-        } catch (ContentDataSource$ContentDataSourceException e) {
+        } catch (ContentDataSourceException e) {
             throw e;
         } catch (IOException e2) {
-            throw new ContentDataSource$ContentDataSourceException(e2, e2 instanceof FileNotFoundException ? 2005 : 2000);
+            throw new ContentDataSourceException(e2, e2 instanceof FileNotFoundException ? 2005 : 2000);
         }
     }
 
@@ -113,7 +130,7 @@ public final class ContentDataSource extends g {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    public void close() throws ContentDataSource$ContentDataSourceException {
+    public void close() throws ContentDataSourceException {
         this.f = null;
         try {
             FileInputStream fileInputStream = this.h;
@@ -133,7 +150,7 @@ public final class ContentDataSource extends g {
                         q();
                     }
                 } catch (IOException e) {
-                    throw new ContentDataSource$ContentDataSourceException(e, 2000);
+                    throw new ContentDataSourceException(e, 2000);
                 }
             } catch (Throwable th) {
                 this.g = null;
@@ -144,7 +161,7 @@ public final class ContentDataSource extends g {
                 throw th;
             }
         } catch (IOException e2) {
-            throw new ContentDataSource$ContentDataSourceException(e2, 2000);
+            throw new ContentDataSourceException(e2, 2000);
         }
     }
 
@@ -155,7 +172,7 @@ public final class ContentDataSource extends g {
     }
 
     @Override // b.i.a.c.e3.h
-    public int read(byte[] bArr, int i, int i2) throws ContentDataSource$ContentDataSourceException {
+    public int read(byte[] bArr, int i, int i2) throws ContentDataSourceException {
         if (i2 == 0) {
             return 0;
         }
@@ -167,7 +184,7 @@ public final class ContentDataSource extends g {
             try {
                 i2 = (int) Math.min(j, i2);
             } catch (IOException e) {
-                throw new ContentDataSource$ContentDataSourceException(e, 2000);
+                throw new ContentDataSourceException(e, 2000);
             }
         }
         FileInputStream fileInputStream = this.h;

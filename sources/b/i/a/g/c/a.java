@@ -1,10 +1,11 @@
 package b.i.a.g.c;
 
-import android.R$attr;
+import android.R;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.InsetDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.StateListDrawable;
@@ -13,12 +14,8 @@ import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.StyleRes;
 import androidx.core.graphics.drawable.DrawableCompat;
-import com.google.android.material.R$id;
-import com.google.android.material.R$style;
-import com.google.android.material.R$styleable;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.ripple.RippleUtils;
 import com.google.android.material.shape.CornerTreatment;
@@ -26,11 +23,10 @@ import com.google.android.material.shape.CutCornerTreatment;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.RoundedCornerTreatment;
 import com.google.android.material.shape.ShapeAppearanceModel;
-import com.google.android.material.shape.ShapeAppearanceModel$Builder;
 
 /* JADX INFO: compiled from: MaterialCardViewHelper.java */
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class a {
 
     @NonNull
@@ -82,7 +78,7 @@ public class a {
     @Nullable
     public MaterialShapeDrawable r;
     public boolean u;
-    public static final int[] a = {R$attr.state_checked};
+    public static final int[] a = {R.attr.state_checked};
 
     @NonNull
     public final Rect d = new Rect();
@@ -91,15 +87,38 @@ public class a {
     public static final double f1606b = Math.cos(Math.toRadians(45.0d));
     public boolean t = false;
 
+    /* JADX INFO: renamed from: b.i.a.g.c.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: MaterialCardViewHelper.java */
+    public class C0121a extends InsetDrawable {
+        public C0121a(a aVar, Drawable drawable, int i, int i2, int i3, int i4) {
+            super(drawable, i, i2, i3, i4);
+        }
+
+        @Override // android.graphics.drawable.Drawable
+        public int getMinimumHeight() {
+            return -1;
+        }
+
+        @Override // android.graphics.drawable.Drawable
+        public int getMinimumWidth() {
+            return -1;
+        }
+
+        @Override // android.graphics.drawable.InsetDrawable, android.graphics.drawable.DrawableWrapper, android.graphics.drawable.Drawable
+        public boolean getPadding(Rect rect) {
+            return false;
+        }
+    }
+
     public a(@NonNull MaterialCardView materialCardView, AttributeSet attributeSet, int i, @StyleRes int i2) {
         this.c = materialCardView;
         MaterialShapeDrawable materialShapeDrawable = new MaterialShapeDrawable(materialCardView.getContext(), attributeSet, i, i2);
         this.e = materialShapeDrawable;
         materialShapeDrawable.initializeElevationOverlay(materialCardView.getContext());
         materialShapeDrawable.setShadowColor(-12303292);
-        ShapeAppearanceModel$Builder builder = materialShapeDrawable.getShapeAppearanceModel().toBuilder();
-        TypedArray typedArrayObtainStyledAttributes = materialCardView.getContext().obtainStyledAttributes(attributeSet, R$styleable.CardView, i, R$style.CardView);
-        int i3 = R$styleable.CardView_cardCornerRadius;
+        ShapeAppearanceModel.Builder builder = materialShapeDrawable.getShapeAppearanceModel().toBuilder();
+        TypedArray typedArrayObtainStyledAttributes = materialCardView.getContext().obtainStyledAttributes(attributeSet, com.google.android.material.R.styleable.CardView, i, com.google.android.material.R.style.CardView);
+        int i3 = com.google.android.material.R.styleable.CardView_cardCornerRadius;
         if (typedArrayObtainStyledAttributes.hasValue(i3)) {
             builder.setAllCornerSizes(typedArrayObtainStyledAttributes.getDimension(i3, 0.0f));
         }
@@ -142,7 +161,7 @@ public class a {
                 MaterialShapeDrawable materialShapeDrawable = new MaterialShapeDrawable(this.n);
                 this.r = materialShapeDrawable;
                 materialShapeDrawable.setFillColor(this.l);
-                stateListDrawable.addState(new int[]{R$attr.state_pressed}, this.r);
+                stateListDrawable.addState(new int[]{R.attr.state_pressed}, this.r);
                 rippleDrawable = stateListDrawable;
             }
             this.p = rippleDrawable;
@@ -155,7 +174,7 @@ public class a {
             }
             LayerDrawable layerDrawable = new LayerDrawable(new Drawable[]{this.p, this.f, stateListDrawable2});
             this.q = layerDrawable;
-            layerDrawable.setId(2, R$id.mtrl_card_checked_layer_id);
+            layerDrawable.setId(2, com.google.android.material.R.id.mtrl_card_checked_layer_id);
         }
         return this.q;
     }
@@ -172,7 +191,7 @@ public class a {
             iCeil = 0;
             i = 0;
         }
-        return new a$a(this, drawable, iCeil, i, iCeil, i);
+        return new C0121a(this, drawable, iCeil, i, iCeil, i);
     }
 
     public void g(@Nullable Drawable drawable) {
@@ -188,7 +207,7 @@ public class a {
             if (drawable2 != null) {
                 stateListDrawable.addState(a, drawable2);
             }
-            this.q.setDrawableByLayerId(R$id.mtrl_card_checked_layer_id, stateListDrawable);
+            this.q.setDrawableByLayerId(com.google.android.material.R.id.mtrl_card_checked_layer_id, stateListDrawable);
         }
     }
 

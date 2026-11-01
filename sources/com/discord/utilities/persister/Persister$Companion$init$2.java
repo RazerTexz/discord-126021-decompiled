@@ -22,6 +22,6 @@ public final class Persister$Companion$init$2 extends o implements Function1<Boo
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(Boolean bool) {
-        Persister$Companion.access$persistAll(Persister.Companion);
+        Persister.Companion.access$persistAll(Persister.INSTANCE);
     }
 }

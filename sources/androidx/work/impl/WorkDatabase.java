@@ -3,13 +3,13 @@ package androidx.work.impl;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.RoomDatabase$Builder;
-import androidx.room.RoomDatabase$Callback;
 import androidx.room.TypeConverters;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.sqlite.db.SupportSQLiteOpenHelper;
+import androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory;
 import androidx.work.Data;
 import androidx.work.impl.model.Dependency;
 import androidx.work.impl.model.DependencyDao;
@@ -34,29 +34,61 @@ import java.util.concurrent.TimeUnit;
 /* JADX INFO: loaded from: classes.dex */
 @TypeConverters({Data.class, WorkTypeConverters.class})
 @Database(entities = {Dependency.class, WorkSpec.class, WorkTag.class, SystemIdInfo.class, WorkName.class, WorkProgress.class, Preference.class}, version = 11)
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public abstract class WorkDatabase extends RoomDatabase {
     private static final String PRUNE_SQL_FORMAT_PREFIX = "DELETE FROM workspec WHERE state IN (2, 3, 5) AND (period_start_time + minimum_retention_duration) < ";
     private static final String PRUNE_SQL_FORMAT_SUFFIX = " AND (SELECT COUNT(*)=0 FROM dependency WHERE     prerequisite_id=id AND     work_spec_id NOT IN         (SELECT id FROM workspec WHERE state IN (2, 3, 5)))";
     private static final long PRUNE_THRESHOLD_MILLIS = TimeUnit.DAYS.toMillis(7);
 
+    /* JADX INFO: renamed from: androidx.work.impl.WorkDatabase$1, reason: invalid class name */
+    public class AnonymousClass1 implements SupportSQLiteOpenHelper.Factory {
+        public final /* synthetic */ Context val$context;
+
+        public AnonymousClass1(Context context) {
+            this.val$context = context;
+        }
+
+        @Override // androidx.sqlite.db.SupportSQLiteOpenHelper.Factory
+        @NonNull
+        public SupportSQLiteOpenHelper create(@NonNull SupportSQLiteOpenHelper.Configuration configuration) {
+            SupportSQLiteOpenHelper.Configuration.Builder builder = SupportSQLiteOpenHelper.Configuration.builder(this.val$context);
+            builder.name(configuration.name).callback(configuration.callback).noBackupDirectory(true);
+            return new FrameworkSQLiteOpenHelperFactory().create(builder.build());
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.work.impl.WorkDatabase$2, reason: invalid class name */
+    public class AnonymousClass2 extends RoomDatabase.Callback {
+        @Override // androidx.room.RoomDatabase.Callback
+        public void onOpen(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
+            super.onOpen(supportSQLiteDatabase);
+            supportSQLiteDatabase.beginTransaction();
+            try {
+                supportSQLiteDatabase.execSQL(WorkDatabase.getPruneSQL());
+                supportSQLiteDatabase.setTransactionSuccessful();
+            } finally {
+                supportSQLiteDatabase.endTransaction();
+            }
+        }
+    }
+
     @NonNull
     public static WorkDatabase create(@NonNull Context context, @NonNull Executor executor, boolean z2) {
-        RoomDatabase$Builder roomDatabase$BuilderDatabaseBuilder;
+        RoomDatabase.Builder builderDatabaseBuilder;
         if (z2) {
-            roomDatabase$BuilderDatabaseBuilder = Room.inMemoryDatabaseBuilder(context, WorkDatabase.class).allowMainThreadQueries();
+            builderDatabaseBuilder = Room.inMemoryDatabaseBuilder(context, WorkDatabase.class).allowMainThreadQueries();
         } else {
-            roomDatabase$BuilderDatabaseBuilder = Room.databaseBuilder(context, WorkDatabase.class, WorkDatabasePathHelper.getWorkDatabaseName());
-            roomDatabase$BuilderDatabaseBuilder.openHelperFactory(new WorkDatabase$1(context));
+            builderDatabaseBuilder = Room.databaseBuilder(context, WorkDatabase.class, WorkDatabasePathHelper.getWorkDatabaseName());
+            builderDatabaseBuilder.openHelperFactory(new AnonymousClass1(context));
         }
-        return (WorkDatabase) roomDatabase$BuilderDatabaseBuilder.setQueryExecutor(executor).addCallback(generateCleanupCallback()).addMigrations(WorkDatabaseMigrations.MIGRATION_1_2).addMigrations(new WorkDatabaseMigrations$RescheduleMigration(context, 2, 3)).addMigrations(WorkDatabaseMigrations.MIGRATION_3_4).addMigrations(WorkDatabaseMigrations.MIGRATION_4_5).addMigrations(new WorkDatabaseMigrations$RescheduleMigration(context, 5, 6)).addMigrations(WorkDatabaseMigrations.MIGRATION_6_7).addMigrations(WorkDatabaseMigrations.MIGRATION_7_8).addMigrations(WorkDatabaseMigrations.MIGRATION_8_9).addMigrations(new WorkDatabaseMigrations$WorkMigration9To10(context)).addMigrations(new WorkDatabaseMigrations$RescheduleMigration(context, 10, 11)).fallbackToDestructiveMigration().build();
+        return (WorkDatabase) builderDatabaseBuilder.setQueryExecutor(executor).addCallback(generateCleanupCallback()).addMigrations(WorkDatabaseMigrations.MIGRATION_1_2).addMigrations(new WorkDatabaseMigrations.RescheduleMigration(context, 2, 3)).addMigrations(WorkDatabaseMigrations.MIGRATION_3_4).addMigrations(WorkDatabaseMigrations.MIGRATION_4_5).addMigrations(new WorkDatabaseMigrations.RescheduleMigration(context, 5, 6)).addMigrations(WorkDatabaseMigrations.MIGRATION_6_7).addMigrations(WorkDatabaseMigrations.MIGRATION_7_8).addMigrations(WorkDatabaseMigrations.MIGRATION_8_9).addMigrations(new WorkDatabaseMigrations.WorkMigration9To10(context)).addMigrations(new WorkDatabaseMigrations.RescheduleMigration(context, 10, 11)).fallbackToDestructiveMigration().build();
     }
 
     @NonNull
     public abstract DependencyDao dependencyDao();
 
-    public static RoomDatabase$Callback generateCleanupCallback() {
-        return new WorkDatabase$2();
+    public static RoomDatabase.Callback generateCleanupCallback() {
+        return new AnonymousClass2();
     }
 
     public static long getPruneDate() {

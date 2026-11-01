@@ -10,12 +10,19 @@ import java.util.List;
 import javax.net.ssl.SSLParameters;
 import javax.net.ssl.SSLSocket;
 import kotlin.TypeCastException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: Jdk9Platform.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class f extends h {
     public static final boolean d;
-    public static final f$a e = new f$a(null);
+    public static final a e = new a(null);
+
+    /* JADX INFO: compiled from: Jdk9Platform.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
 
     static {
         String property = System.getProperty("java.specification.version");

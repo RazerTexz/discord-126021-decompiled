@@ -1,26 +1,29 @@
 package androidx.preference;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences$Editor;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.AbsSavedState;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.View$OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.res.TypedArrayUtils;
 import androidx.core.view.ViewCompat;
@@ -37,7 +40,7 @@ public class Preference implements Comparable<Preference> {
     private boolean mAllowDividerAbove;
     private boolean mAllowDividerBelow;
     private boolean mBaseMethodCalled;
-    private final View$OnClickListener mClickListener;
+    private final View.OnClickListener mClickListener;
     private Context mContext;
     private boolean mCopyingEnabled;
     private Object mDefaultValue;
@@ -56,10 +59,10 @@ public class Preference implements Comparable<Preference> {
     private Intent mIntent;
     private String mKey;
     private int mLayoutResId;
-    private Preference$OnPreferenceChangeInternalListener mListener;
-    private Preference$OnPreferenceChangeListener mOnChangeListener;
-    private Preference$OnPreferenceClickListener mOnClickListener;
-    private Preference$OnPreferenceCopyListener mOnCopyListener;
+    private OnPreferenceChangeInternalListener mListener;
+    private OnPreferenceChangeListener mOnChangeListener;
+    private OnPreferenceClickListener mOnClickListener;
+    private OnPreferenceCopyListener mOnCopyListener;
     private int mOrder;
     private boolean mParentDependencyMet;
     private PreferenceGroup mParentGroup;
@@ -75,12 +78,107 @@ public class Preference implements Comparable<Preference> {
     private boolean mShouldDisableView;
     private boolean mSingleLineTitle;
     private CharSequence mSummary;
-    private Preference$SummaryProvider mSummaryProvider;
+    private SummaryProvider mSummaryProvider;
     private CharSequence mTitle;
     private int mViewId;
     private boolean mVisible;
     private boolean mWasDetached;
     private int mWidgetLayoutResId;
+
+    /* JADX INFO: renamed from: androidx.preference.Preference$1, reason: invalid class name */
+    public class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public void onClick(View view) {
+            Preference.this.performClick(view);
+        }
+    }
+
+    public class BaseSavedState extends AbsSavedState {
+        public static final Parcelable.Creator<BaseSavedState> CREATOR = new AnonymousClass1();
+
+        /* JADX INFO: renamed from: androidx.preference.Preference$BaseSavedState$1, reason: invalid class name */
+        public final class AnonymousClass1 implements Parcelable.Creator<BaseSavedState> {
+            @Override // android.os.Parcelable.Creator
+            public /* bridge */ /* synthetic */ BaseSavedState createFromParcel(Parcel parcel) {
+                return createFromParcel(parcel);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            public /* bridge */ /* synthetic */ BaseSavedState[] newArray(int i) {
+                return newArray(i);
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.Creator
+            public BaseSavedState createFromParcel(Parcel parcel) {
+                return new BaseSavedState(parcel);
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.Creator
+            public BaseSavedState[] newArray(int i) {
+                return new BaseSavedState[i];
+            }
+        }
+
+        public BaseSavedState(Parcel parcel) {
+            super(parcel);
+        }
+
+        public BaseSavedState(Parcelable parcelable) {
+            super(parcelable);
+        }
+    }
+
+    public interface OnPreferenceChangeInternalListener {
+        void onPreferenceChange(Preference preference);
+
+        void onPreferenceHierarchyChange(Preference preference);
+
+        void onPreferenceVisibilityChange(Preference preference);
+    }
+
+    public interface OnPreferenceChangeListener {
+        boolean onPreferenceChange(Preference preference, Object obj);
+    }
+
+    public interface OnPreferenceClickListener {
+        boolean onPreferenceClick(Preference preference);
+    }
+
+    public class OnPreferenceCopyListener implements View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
+        private final Preference mPreference;
+
+        public OnPreferenceCopyListener(Preference preference) {
+            this.mPreference = preference;
+        }
+
+        @Override // android.view.View.OnCreateContextMenuListener
+        public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+            CharSequence summary = this.mPreference.getSummary();
+            if (!this.mPreference.isCopyingEnabled() || TextUtils.isEmpty(summary)) {
+                return;
+            }
+            contextMenu.setHeaderTitle(summary);
+            contextMenu.add(0, 0, 0, R.string.copy).setOnMenuItemClickListener(this);
+        }
+
+        @Override // android.view.MenuItem.OnMenuItemClickListener
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            ClipboardManager clipboardManager = (ClipboardManager) this.mPreference.getContext().getSystemService("clipboard");
+            CharSequence summary = this.mPreference.getSummary();
+            clipboardManager.setPrimaryClip(ClipData.newPlainText(Preference.CLIPBOARD_ID, summary));
+            Toast.makeText(this.mPreference.getContext(), this.mPreference.getContext().getString(R.string.preference_copied, summary), 0).show();
+            return true;
+        }
+    }
+
+    public interface SummaryProvider<T extends Preference> {
+        CharSequence provideSummary(T t);
+    }
 
     public Preference(Context context, AttributeSet attributeSet, int i, int i2) {
         this.mOrder = Integer.MAX_VALUE;
@@ -95,47 +193,47 @@ public class Preference implements Comparable<Preference> {
         this.mAllowDividerBelow = true;
         this.mSingleLineTitle = true;
         this.mShouldDisableView = true;
-        int i3 = R$layout.preference;
+        int i3 = R.layout.preference;
         this.mLayoutResId = i3;
-        this.mClickListener = new Preference$1(this);
+        this.mClickListener = new AnonymousClass1();
         this.mContext = context;
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$styleable.Preference, i, i2);
-        this.mIconResId = TypedArrayUtils.getResourceId(typedArrayObtainStyledAttributes, R$styleable.Preference_icon, R$styleable.Preference_android_icon, 0);
-        this.mKey = TypedArrayUtils.getString(typedArrayObtainStyledAttributes, R$styleable.Preference_key, R$styleable.Preference_android_key);
-        this.mTitle = TypedArrayUtils.getText(typedArrayObtainStyledAttributes, R$styleable.Preference_title, R$styleable.Preference_android_title);
-        this.mSummary = TypedArrayUtils.getText(typedArrayObtainStyledAttributes, R$styleable.Preference_summary, R$styleable.Preference_android_summary);
-        this.mOrder = TypedArrayUtils.getInt(typedArrayObtainStyledAttributes, R$styleable.Preference_order, R$styleable.Preference_android_order, Integer.MAX_VALUE);
-        this.mFragment = TypedArrayUtils.getString(typedArrayObtainStyledAttributes, R$styleable.Preference_fragment, R$styleable.Preference_android_fragment);
-        this.mLayoutResId = TypedArrayUtils.getResourceId(typedArrayObtainStyledAttributes, R$styleable.Preference_layout, R$styleable.Preference_android_layout, i3);
-        this.mWidgetLayoutResId = TypedArrayUtils.getResourceId(typedArrayObtainStyledAttributes, R$styleable.Preference_widgetLayout, R$styleable.Preference_android_widgetLayout, 0);
-        this.mEnabled = TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, R$styleable.Preference_enabled, R$styleable.Preference_android_enabled, true);
-        this.mSelectable = TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, R$styleable.Preference_selectable, R$styleable.Preference_android_selectable, true);
-        this.mPersistent = TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, R$styleable.Preference_persistent, R$styleable.Preference_android_persistent, true);
-        this.mDependencyKey = TypedArrayUtils.getString(typedArrayObtainStyledAttributes, R$styleable.Preference_dependency, R$styleable.Preference_android_dependency);
-        int i4 = R$styleable.Preference_allowDividerAbove;
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.Preference, i, i2);
+        this.mIconResId = TypedArrayUtils.getResourceId(typedArrayObtainStyledAttributes, R.styleable.Preference_icon, R.styleable.Preference_android_icon, 0);
+        this.mKey = TypedArrayUtils.getString(typedArrayObtainStyledAttributes, R.styleable.Preference_key, R.styleable.Preference_android_key);
+        this.mTitle = TypedArrayUtils.getText(typedArrayObtainStyledAttributes, R.styleable.Preference_title, R.styleable.Preference_android_title);
+        this.mSummary = TypedArrayUtils.getText(typedArrayObtainStyledAttributes, R.styleable.Preference_summary, R.styleable.Preference_android_summary);
+        this.mOrder = TypedArrayUtils.getInt(typedArrayObtainStyledAttributes, R.styleable.Preference_order, R.styleable.Preference_android_order, Integer.MAX_VALUE);
+        this.mFragment = TypedArrayUtils.getString(typedArrayObtainStyledAttributes, R.styleable.Preference_fragment, R.styleable.Preference_android_fragment);
+        this.mLayoutResId = TypedArrayUtils.getResourceId(typedArrayObtainStyledAttributes, R.styleable.Preference_layout, R.styleable.Preference_android_layout, i3);
+        this.mWidgetLayoutResId = TypedArrayUtils.getResourceId(typedArrayObtainStyledAttributes, R.styleable.Preference_widgetLayout, R.styleable.Preference_android_widgetLayout, 0);
+        this.mEnabled = TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, R.styleable.Preference_enabled, R.styleable.Preference_android_enabled, true);
+        this.mSelectable = TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, R.styleable.Preference_selectable, R.styleable.Preference_android_selectable, true);
+        this.mPersistent = TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, R.styleable.Preference_persistent, R.styleable.Preference_android_persistent, true);
+        this.mDependencyKey = TypedArrayUtils.getString(typedArrayObtainStyledAttributes, R.styleable.Preference_dependency, R.styleable.Preference_android_dependency);
+        int i4 = R.styleable.Preference_allowDividerAbove;
         this.mAllowDividerAbove = TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, i4, i4, this.mSelectable);
-        int i5 = R$styleable.Preference_allowDividerBelow;
+        int i5 = R.styleable.Preference_allowDividerBelow;
         this.mAllowDividerBelow = TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, i5, i5, this.mSelectable);
-        int i6 = R$styleable.Preference_defaultValue;
+        int i6 = R.styleable.Preference_defaultValue;
         if (typedArrayObtainStyledAttributes.hasValue(i6)) {
             this.mDefaultValue = onGetDefaultValue(typedArrayObtainStyledAttributes, i6);
         } else {
-            int i7 = R$styleable.Preference_android_defaultValue;
+            int i7 = R.styleable.Preference_android_defaultValue;
             if (typedArrayObtainStyledAttributes.hasValue(i7)) {
                 this.mDefaultValue = onGetDefaultValue(typedArrayObtainStyledAttributes, i7);
             }
         }
-        this.mShouldDisableView = TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, R$styleable.Preference_shouldDisableView, R$styleable.Preference_android_shouldDisableView, true);
-        int i8 = R$styleable.Preference_singleLineTitle;
+        this.mShouldDisableView = TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, R.styleable.Preference_shouldDisableView, R.styleable.Preference_android_shouldDisableView, true);
+        int i8 = R.styleable.Preference_singleLineTitle;
         boolean zHasValue = typedArrayObtainStyledAttributes.hasValue(i8);
         this.mHasSingleLineTitleAttr = zHasValue;
         if (zHasValue) {
-            this.mSingleLineTitle = TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, i8, R$styleable.Preference_android_singleLineTitle, true);
+            this.mSingleLineTitle = TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, i8, R.styleable.Preference_android_singleLineTitle, true);
         }
-        this.mIconSpaceReserved = TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, R$styleable.Preference_iconSpaceReserved, R$styleable.Preference_android_iconSpaceReserved, false);
-        int i9 = R$styleable.Preference_isPreferenceVisible;
+        this.mIconSpaceReserved = TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, R.styleable.Preference_iconSpaceReserved, R.styleable.Preference_android_iconSpaceReserved, false);
+        int i9 = R.styleable.Preference_isPreferenceVisible;
         this.mVisible = TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, i9, i9, true);
-        int i10 = R$styleable.Preference_enableCopying;
+        int i10 = R.styleable.Preference_enableCopying;
         this.mCopyingEnabled = TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, i10, i10, false);
         typedArrayObtainStyledAttributes.recycle();
     }
@@ -148,8 +246,8 @@ public class Preference implements Comparable<Preference> {
     }
 
     public boolean callChangeListener(Object obj) {
-        Preference$OnPreferenceChangeListener preference$OnPreferenceChangeListener = this.mOnChangeListener;
-        return preference$OnPreferenceChangeListener == null || preference$OnPreferenceChangeListener.onPreferenceChange(this, obj);
+        OnPreferenceChangeListener onPreferenceChangeListener = this.mOnChangeListener;
+        return onPreferenceChangeListener == null || onPreferenceChangeListener.onPreferenceChange(this, obj);
     }
 
     public final void clearWasDetached() {
@@ -271,11 +369,11 @@ public class Preference implements Comparable<Preference> {
         return this.mLayoutResId;
     }
 
-    public Preference$OnPreferenceChangeListener getOnPreferenceChangeListener() {
+    public OnPreferenceChangeListener getOnPreferenceChangeListener() {
         return this.mOnChangeListener;
     }
 
-    public Preference$OnPreferenceClickListener getOnPreferenceClickListener() {
+    public OnPreferenceClickListener getOnPreferenceClickListener() {
         return this.mOnClickListener;
     }
 
@@ -369,7 +467,7 @@ public class Preference implements Comparable<Preference> {
     }
 
     @Nullable
-    public final Preference$SummaryProvider getSummaryProvider() {
+    public final SummaryProvider getSummaryProvider() {
         return this.mSummaryProvider;
     }
 
@@ -428,9 +526,9 @@ public class Preference implements Comparable<Preference> {
     }
 
     public void notifyChanged() {
-        Preference$OnPreferenceChangeInternalListener preference$OnPreferenceChangeInternalListener = this.mListener;
-        if (preference$OnPreferenceChangeInternalListener != null) {
-            preference$OnPreferenceChangeInternalListener.onPreferenceChange(this);
+        OnPreferenceChangeInternalListener onPreferenceChangeInternalListener = this.mListener;
+        if (onPreferenceChangeInternalListener != null) {
+            onPreferenceChangeInternalListener.onPreferenceChange(this);
         }
     }
 
@@ -446,9 +544,9 @@ public class Preference implements Comparable<Preference> {
     }
 
     public void notifyHierarchyChanged() {
-        Preference$OnPreferenceChangeInternalListener preference$OnPreferenceChangeInternalListener = this.mListener;
-        if (preference$OnPreferenceChangeInternalListener != null) {
-            preference$OnPreferenceChangeInternalListener.onPreferenceHierarchyChange(this);
+        OnPreferenceChangeInternalListener onPreferenceChangeInternalListener = this.mListener;
+        if (onPreferenceChangeInternalListener != null) {
+            onPreferenceChangeInternalListener.onPreferenceHierarchyChange(this);
         }
     }
 
@@ -469,7 +567,7 @@ public class Preference implements Comparable<Preference> {
         View view = preferenceViewHolder.itemView;
         view.setOnClickListener(this.mClickListener);
         view.setId(this.mViewId);
-        TextView textView = (TextView) preferenceViewHolder.findViewById(android.R$id.summary);
+        TextView textView = (TextView) preferenceViewHolder.findViewById(android.R.id.summary);
         if (textView != null) {
             CharSequence summary = getSummary();
             if (TextUtils.isEmpty(summary)) {
@@ -483,7 +581,7 @@ public class Preference implements Comparable<Preference> {
         } else {
             numValueOf = null;
         }
-        TextView textView2 = (TextView) preferenceViewHolder.findViewById(android.R$id.title);
+        TextView textView2 = (TextView) preferenceViewHolder.findViewById(android.R.id.title);
         if (textView2 != null) {
             CharSequence title = getTitle();
             if (TextUtils.isEmpty(title)) {
@@ -499,7 +597,7 @@ public class Preference implements Comparable<Preference> {
                 }
             }
         }
-        ImageView imageView = (ImageView) preferenceViewHolder.findViewById(android.R$id.icon);
+        ImageView imageView = (ImageView) preferenceViewHolder.findViewById(android.R.id.icon);
         if (imageView != null) {
             int i = this.mIconResId;
             if (i != 0 || this.mIcon != null) {
@@ -517,7 +615,7 @@ public class Preference implements Comparable<Preference> {
                 imageView.setVisibility(this.mIconSpaceReserved ? 4 : 8);
             }
         }
-        View viewFindViewById = preferenceViewHolder.findViewById(R$id.icon_frame);
+        View viewFindViewById = preferenceViewHolder.findViewById(R.id.icon_frame);
         if (viewFindViewById == null) {
             viewFindViewById = preferenceViewHolder.findViewById(16908350);
         }
@@ -540,7 +638,7 @@ public class Preference implements Comparable<Preference> {
         preferenceViewHolder.setDividerAllowedBelow(this.mAllowDividerBelow);
         boolean zIsCopyingEnabled = isCopyingEnabled();
         if (zIsCopyingEnabled && this.mOnCopyListener == null) {
-            this.mOnCopyListener = new Preference$OnPreferenceCopyListener(this);
+            this.mOnCopyListener = new OnPreferenceCopyListener(this);
         }
         view.setOnCreateContextMenuListener(zIsCopyingEnabled ? this.mOnCopyListener : null);
         view.setLongClickable(zIsCopyingEnabled);
@@ -611,7 +709,7 @@ public class Preference implements Comparable<Preference> {
         return this.mExtras;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void performClick(View view) {
         performClick();
     }
@@ -627,7 +725,7 @@ public class Preference implements Comparable<Preference> {
         if (preferenceDataStore != null) {
             preferenceDataStore.putBoolean(this.mKey, z2);
         } else {
-            SharedPreferences$Editor editor = this.mPreferenceManager.getEditor();
+            SharedPreferences.Editor editor = this.mPreferenceManager.getEditor();
             editor.putBoolean(this.mKey, z2);
             tryCommit(editor);
         }
@@ -645,7 +743,7 @@ public class Preference implements Comparable<Preference> {
         if (preferenceDataStore != null) {
             preferenceDataStore.putFloat(this.mKey, f);
         } else {
-            SharedPreferences$Editor editor = this.mPreferenceManager.getEditor();
+            SharedPreferences.Editor editor = this.mPreferenceManager.getEditor();
             editor.putFloat(this.mKey, f);
             tryCommit(editor);
         }
@@ -663,7 +761,7 @@ public class Preference implements Comparable<Preference> {
         if (preferenceDataStore != null) {
             preferenceDataStore.putInt(this.mKey, i);
         } else {
-            SharedPreferences$Editor editor = this.mPreferenceManager.getEditor();
+            SharedPreferences.Editor editor = this.mPreferenceManager.getEditor();
             editor.putInt(this.mKey, i);
             tryCommit(editor);
         }
@@ -681,7 +779,7 @@ public class Preference implements Comparable<Preference> {
         if (preferenceDataStore != null) {
             preferenceDataStore.putLong(this.mKey, j);
         } else {
-            SharedPreferences$Editor editor = this.mPreferenceManager.getEditor();
+            SharedPreferences.Editor editor = this.mPreferenceManager.getEditor();
             editor.putLong(this.mKey, j);
             tryCommit(editor);
         }
@@ -699,7 +797,7 @@ public class Preference implements Comparable<Preference> {
         if (preferenceDataStore != null) {
             preferenceDataStore.putString(this.mKey, str);
         } else {
-            SharedPreferences$Editor editor = this.mPreferenceManager.getEditor();
+            SharedPreferences.Editor editor = this.mPreferenceManager.getEditor();
             editor.putString(this.mKey, str);
             tryCommit(editor);
         }
@@ -717,7 +815,7 @@ public class Preference implements Comparable<Preference> {
         if (preferenceDataStore != null) {
             preferenceDataStore.putStringSet(this.mKey, set);
         } else {
-            SharedPreferences$Editor editor = this.mPreferenceManager.getEditor();
+            SharedPreferences.Editor editor = this.mPreferenceManager.getEditor();
             editor.putStringSet(this.mKey, set);
             tryCommit(editor);
         }
@@ -836,16 +934,16 @@ public class Preference implements Comparable<Preference> {
         this.mLayoutResId = i;
     }
 
-    public final void setOnPreferenceChangeInternalListener(Preference$OnPreferenceChangeInternalListener preference$OnPreferenceChangeInternalListener) {
-        this.mListener = preference$OnPreferenceChangeInternalListener;
+    public final void setOnPreferenceChangeInternalListener(OnPreferenceChangeInternalListener onPreferenceChangeInternalListener) {
+        this.mListener = onPreferenceChangeInternalListener;
     }
 
-    public void setOnPreferenceChangeListener(Preference$OnPreferenceChangeListener preference$OnPreferenceChangeListener) {
-        this.mOnChangeListener = preference$OnPreferenceChangeListener;
+    public void setOnPreferenceChangeListener(OnPreferenceChangeListener onPreferenceChangeListener) {
+        this.mOnChangeListener = onPreferenceChangeListener;
     }
 
-    public void setOnPreferenceClickListener(Preference$OnPreferenceClickListener preference$OnPreferenceClickListener) {
-        this.mOnClickListener = preference$OnPreferenceClickListener;
+    public void setOnPreferenceClickListener(OnPreferenceClickListener onPreferenceClickListener) {
+        this.mOnClickListener = onPreferenceClickListener;
     }
 
     public void setOrder(int i) {
@@ -893,8 +991,8 @@ public class Preference implements Comparable<Preference> {
         notifyChanged();
     }
 
-    public final void setSummaryProvider(@Nullable Preference$SummaryProvider preference$SummaryProvider) {
-        this.mSummaryProvider = preference$SummaryProvider;
+    public final void setSummaryProvider(@Nullable SummaryProvider summaryProvider) {
+        this.mSummaryProvider = summaryProvider;
         notifyChanged();
     }
 
@@ -913,9 +1011,9 @@ public class Preference implements Comparable<Preference> {
     public final void setVisible(boolean z2) {
         if (this.mVisible != z2) {
             this.mVisible = z2;
-            Preference$OnPreferenceChangeInternalListener preference$OnPreferenceChangeInternalListener = this.mListener;
-            if (preference$OnPreferenceChangeInternalListener != null) {
-                preference$OnPreferenceChangeInternalListener.onPreferenceVisibilityChange(this);
+            OnPreferenceChangeInternalListener onPreferenceChangeInternalListener = this.mListener;
+            if (onPreferenceChangeInternalListener != null) {
+                onPreferenceChangeInternalListener.onPreferenceVisibilityChange(this);
             }
         }
     }
@@ -936,9 +1034,9 @@ public class Preference implements Comparable<Preference> {
         return getFilterableStringBuilder().toString();
     }
 
-    private void tryCommit(@NonNull SharedPreferences$Editor sharedPreferences$Editor) {
+    private void tryCommit(@NonNull SharedPreferences.Editor editor) {
         if (this.mPreferenceManager.shouldCommit()) {
-            sharedPreferences$Editor.apply();
+            editor.apply();
         }
     }
 
@@ -983,13 +1081,13 @@ public class Preference implements Comparable<Preference> {
         return charSequence.toString().compareToIgnoreCase(preference.mTitle.toString());
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void performClick() {
-        PreferenceManager$OnPreferenceTreeClickListener onPreferenceTreeClickListener;
+        PreferenceManager.OnPreferenceTreeClickListener onPreferenceTreeClickListener;
         if (isEnabled() && isSelectable()) {
             onClick();
-            Preference$OnPreferenceClickListener preference$OnPreferenceClickListener = this.mOnClickListener;
-            if (preference$OnPreferenceClickListener == null || !preference$OnPreferenceClickListener.onPreferenceClick(this)) {
+            OnPreferenceClickListener onPreferenceClickListener = this.mOnClickListener;
+            if (onPreferenceClickListener == null || !onPreferenceClickListener.onPreferenceClick(this)) {
                 PreferenceManager preferenceManager = getPreferenceManager();
                 if ((preferenceManager == null || (onPreferenceTreeClickListener = preferenceManager.getOnPreferenceTreeClickListener()) == null || !onPreferenceTreeClickListener.onPreferenceTreeClick(this)) && this.mIntent != null) {
                     getContext().startActivity(this.mIntent);
@@ -1002,7 +1100,7 @@ public class Preference implements Comparable<Preference> {
         setTitle(this.mContext.getString(i));
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void onAttachedToHierarchy(PreferenceManager preferenceManager, long j) {
         this.mId = j;
         this.mHasId = true;
@@ -1027,7 +1125,7 @@ public class Preference implements Comparable<Preference> {
     }
 
     public Preference(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, TypedArrayUtils.getAttr(context, R$attr.preferenceStyle, android.R$attr.preferenceStyle));
+        this(context, attributeSet, TypedArrayUtils.getAttr(context, R.attr.preferenceStyle, android.R.attr.preferenceStyle));
     }
 
     public Preference(Context context) {

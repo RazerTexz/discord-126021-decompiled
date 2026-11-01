@@ -1,48 +1,56 @@
 package com.discord.widgets.settings.account;
 
 import android.content.Context;
+import android.text.Editable;
 import android.view.View;
 import android.widget.TextView;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import b.a.d.o;
+import b.a.d.j;
 import b.d.b.a.a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
+import com.discord.api.user.User;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetSettingsAccountChangePasswordBinding;
 import com.discord.models.user.MeUser;
-import com.discord.restapi.RestAPIParams$UserInfo;
+import com.discord.restapi.RestAPIParams;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUser;
 import com.discord.utilities.auth.GoogleSmartLockManager;
+import com.discord.utilities.auth.GoogleSmartLockManagerKt;
 import com.discord.utilities.error.Error;
-import com.discord.utilities.error.Error$Response;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.stateful.StatefulViews;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.view.validators.BasicTextInputValidator;
-import com.discord.utilities.view.validators.Input$TextInputLayoutInput;
+import com.discord.utilities.view.validators.Input;
 import com.discord.utilities.view.validators.ValidationManager;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.google.android.material.textfield.TextInputLayout;
 import d0.g;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.List;
 import java.util.Map;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
+import rx.functions.Action1;
 
 /* JADX INFO: compiled from: WidgetSettingsAccountChangePassword.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public class WidgetSettingsAccountChangePassword extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetSettingsAccountChangePassword.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsAccountChangePasswordBinding;", 0)};
     public static final String CURRENT_PASSWORD_FIELD = "password";
-    public static final WidgetSettingsAccountChangePassword$Companion Companion = new WidgetSettingsAccountChangePassword$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     public static final String MFA_FIELD = "mfa";
     public static final String NEW_PASSWORD_FIELD = "new_password";
 
@@ -54,10 +62,172 @@ public class WidgetSettingsAccountChangePassword extends AppFragment {
     /* JADX INFO: renamed from: validationManager$delegate, reason: from kotlin metadata */
     private final Lazy validationManager;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword$configureUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsAccountChangePassword.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ MeUser $meUser;
+
+        public AnonymousClass1(MeUser meUser) {
+            this.$meUser = meUser;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetSettingsAccountChangePassword.access$saveNewPassword(WidgetSettingsAccountChangePassword.this, this.$meUser);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsAccountChangePassword.kt */
+    public final class AnonymousClass1 extends o implements Function1<Editable, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            m.checkNotNullParameter(editable, "it");
+            TextInputLayout textInputLayout = WidgetSettingsAccountChangePassword.this.getBinding().c;
+            m.checkNotNullExpressionValue(textInputLayout, "binding.changePasswordCurrentPasswordInput");
+            textInputLayout.setError(null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsAccountChangePassword.kt */
+    public final class AnonymousClass1 extends o implements Function1<MeUser, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(MeUser meUser) {
+            invoke2(meUser);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(MeUser meUser) {
+            m.checkNotNullParameter(meUser, "it");
+            WidgetSettingsAccountChangePassword.access$configureUI(WidgetSettingsAccountChangePassword.this, meUser);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword$saveNewPassword$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsAccountChangePassword.kt */
+    public final class AnonymousClass1<T> implements Action1<User> {
+        public final /* synthetic */ String $newPasswordText;
+
+        public AnonymousClass1(String str) {
+            this.$newPasswordText = str;
+        }
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(User user) {
+            call2(user);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(User user) {
+            GoogleSmartLockManager googleSmartLockManager;
+            Context context = WidgetSettingsAccountChangePassword.this.getContext();
+            if (context != null && (googleSmartLockManager = GoogleSmartLockManagerKt.googleSmartLockManager(context)) != null) {
+                googleSmartLockManager.updateAccountInfo(null, this.$newPasswordText);
+            }
+            StoreStream.INSTANCE.getAuthentication().onPasswordChanged(user.getToken());
+            WidgetSettingsAccountChangePassword.this.onChangePasswordSuccess();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsAccountChangePassword.kt */
+    public final class AnonymousClass2 extends o implements Function1<Editable, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            m.checkNotNullParameter(editable, "it");
+            TextInputLayout textInputLayout = WidgetSettingsAccountChangePassword.this.getBinding().d;
+            m.checkNotNullExpressionValue(textInputLayout, "binding.changePasswordNewPasswordInput");
+            textInputLayout.setError(null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword$saveNewPassword$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsAccountChangePassword.kt */
+    public final class AnonymousClass2<T> implements Action1<Error> {
+        public AnonymousClass2() {
+        }
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(Error error) {
+            call2(error);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(Error error) {
+            WidgetSettingsAccountChangePassword.this.getBinding().e.setIsLoading(false);
+            WidgetSettingsAccountChangePassword widgetSettingsAccountChangePassword = WidgetSettingsAccountChangePassword.this;
+            m.checkNotNullExpressionValue(error, "error");
+            WidgetSettingsAccountChangePassword.access$handleError(widgetSettingsAccountChangePassword, error);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword$onViewBound$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsAccountChangePassword.kt */
+    public final class AnonymousClass3 extends o implements Function1<Editable, Unit> {
+        public AnonymousClass3() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            m.checkNotNullParameter(editable, "it");
+            TextInputLayout textInputLayout = WidgetSettingsAccountChangePassword.this.getBinding().f;
+            m.checkNotNullExpressionValue(textInputLayout, "binding.changePasswordTwoFactor");
+            textInputLayout.setError(null);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsAccountChangePassword.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            m.checkNotNullParameter(context, "context");
+            j.e(context, WidgetSettingsAccountChangePassword.class, null, 4);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetSettingsAccountChangePassword() {
-        super(R$layout.widget_settings_account_change_password);
+        super(R.layout.widget_settings_account_change_password);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetSettingsAccountChangePassword$binding$2.INSTANCE, null, 2, null);
-        this.state = new StatefulViews(R$id.change_password_new_password_input);
+        this.state = new StatefulViews(R.id.change_password_new_password_input);
         this.validationManager = g.lazy(new WidgetSettingsAccountChangePassword$validationManager$2(this));
     }
 
@@ -84,11 +254,11 @@ public class WidgetSettingsAccountChangePassword extends AppFragment {
             ValidationManager validationManager = getValidationManager();
             TextInputLayout textInputLayout2 = getBinding().f;
             m.checkNotNullExpressionValue(textInputLayout2, "binding.changePasswordTwoFactor");
-            validationManager.addInput(new Input$TextInputLayoutInput(MFA_FIELD, textInputLayout2, BasicTextInputValidator.Companion.createRequiredInputValidator(2131896542)));
+            validationManager.addInput(new Input.TextInputLayoutInput(MFA_FIELD, textInputLayout2, BasicTextInputValidator.INSTANCE.createRequiredInputValidator(R.string.two_fa_token_required)));
         } else {
             getValidationManager().removeInput(MFA_FIELD);
         }
-        getBinding().e.setOnClickListener(new WidgetSettingsAccountChangePassword$configureUI$1(this, meUser));
+        getBinding().e.setOnClickListener(new AnonymousClass1(meUser));
     }
 
     public final WidgetSettingsAccountChangePasswordBinding getBinding() {
@@ -101,18 +271,18 @@ public class WidgetSettingsAccountChangePassword extends AppFragment {
 
     private final void handleError(Error error) {
         ValidationManager validationManager = getValidationManager();
-        Error$Response response = error.getResponse();
+        Error.Response response = error.getResponse();
         m.checkNotNullExpressionValue(response, "error.response");
         Map<String, List<String>> messages = response.getMessages();
         m.checkNotNullExpressionValue(messages, "error.response.messages");
         int size = validationManager.setErrors(messages).size();
-        Error$Response response2 = error.getResponse();
+        Error.Response response2 = error.getResponse();
         m.checkNotNullExpressionValue(response2, "error.response");
         error.setShowErrorToasts(!(size < response2.getMessages().size()));
     }
 
     public void onChangePasswordSuccess() {
-        b.a.d.m.i(this, 2131895235, 0, 4);
+        b.a.d.m.i(this, R.string.saved_settings, 0, 4);
         FragmentActivity activity = getActivity();
         if (activity != null) {
             activity.finish();
@@ -129,22 +299,22 @@ public class WidgetSettingsAccountChangePassword extends AppFragment {
         AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
         this.state.setupUnsavedChangesConfirmation(this);
         getBinding().e.setIsLoading(false);
-        getBinding().e.setText(getText(2131887525));
+        getBinding().e.setText(getText(R.string.change_password));
         TextInputLayout textInputLayout = getBinding().c;
         m.checkNotNullExpressionValue(textInputLayout, "binding.changePasswordCurrentPasswordInput");
-        ViewExtensions.addBindedTextWatcher(textInputLayout, this, new WidgetSettingsAccountChangePassword$onViewBound$1(this));
+        ViewExtensions.addBindedTextWatcher(textInputLayout, this, new AnonymousClass1());
         TextInputLayout textInputLayout2 = getBinding().d;
         m.checkNotNullExpressionValue(textInputLayout2, "binding.changePasswordNewPasswordInput");
-        ViewExtensions.addBindedTextWatcher(textInputLayout2, this, new WidgetSettingsAccountChangePassword$onViewBound$2(this));
+        ViewExtensions.addBindedTextWatcher(textInputLayout2, this, new AnonymousClass2());
         TextInputLayout textInputLayout3 = getBinding().f;
         m.checkNotNullExpressionValue(textInputLayout3, "binding.changePasswordTwoFactor");
-        ViewExtensions.addBindedTextWatcher(textInputLayout3, this, new WidgetSettingsAccountChangePassword$onViewBound$3(this));
+        ViewExtensions.addBindedTextWatcher(textInputLayout3, this, new AnonymousClass3());
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(StoreUser.observeMe$default(StoreStream.Companion.getUsers(), false, 1, null), this, null, 2, null), getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetSettingsAccountChangePassword$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(StoreUser.observeMe$default(StoreStream.INSTANCE.getUsers(), false, 1, null), this, null, 2, null), getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
     private final void saveNewPassword(MeUser meUser) {
@@ -163,10 +333,10 @@ public class WidgetSettingsAccountChangePassword extends AppFragment {
             TextInputLayout textInputLayout3 = getBinding().d;
             m.checkNotNullExpressionValue(textInputLayout3, "binding.changePasswordNewPasswordInput");
             String textOrEmpty3 = ViewExtensions.getTextOrEmpty(textInputLayout3);
-            RestAPIParams$UserInfo restAPIParams$UserInfo = new RestAPIParams$UserInfo(null, null, null, textOrEmpty2, textOrEmpty3, null, StoreStream.Companion.getNotifications().getPushToken(), textOrEmpty, null, null, null, 1831, null);
+            RestAPIParams.UserInfo userInfo = new RestAPIParams.UserInfo(null, null, null, textOrEmpty2, textOrEmpty3, null, StoreStream.INSTANCE.getNotifications().getPushToken(), textOrEmpty, null, null, null, 1831, null);
             AppFragment.hideKeyboard$default(this, null, 1, null);
             getBinding().e.setIsLoading(true);
-            ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().patchUser(restAPIParams$UserInfo), false, 1, null), this, null, 2, null), getBinding().h, 0L, 2, null).k(o.h(new WidgetSettingsAccountChangePassword$saveNewPassword$1(this, textOrEmpty3), requireContext(), new WidgetSettingsAccountChangePassword$saveNewPassword$2(this)));
+            ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().patchUser(userInfo), false, 1, null), this, null, 2, null), getBinding().h, 0L, 2, null).k(b.a.d.o.h(new AnonymousClass1(textOrEmpty3), requireContext(), new AnonymousClass2()));
         }
     }
 }

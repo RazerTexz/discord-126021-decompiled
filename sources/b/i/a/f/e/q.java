@@ -2,13 +2,13 @@ package b.i.a.f.e;
 
 import android.app.PendingIntent;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.common.ConnectionResult;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class q implements Parcelable$Creator<ConnectionResult> {
-    @Override // android.os.Parcelable$Creator
+public final class q implements Parcelable.Creator<ConnectionResult> {
+    @Override // android.os.Parcelable.Creator
     public final ConnectionResult createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         int iG1 = 0;
@@ -34,7 +34,7 @@ public final class q implements Parcelable$Creator<ConnectionResult> {
         return new ConnectionResult(iG1, iG2, pendingIntent, strR);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* bridge */ /* synthetic */ ConnectionResult[] newArray(int i) {
         return new ConnectionResult[i];
     }

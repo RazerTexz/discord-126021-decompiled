@@ -1,6 +1,5 @@
 package com.esotericsoftware.kryo;
 
-import b.e.a.a$a;
 import com.esotericsoftware.kryo.util.Util;
 import h0.b.a.a;
 
@@ -53,7 +52,7 @@ public class Registration {
             throw new IllegalArgumentException("serializer cannot be null.");
         }
         this.serializer = serializer;
-        a$a a_a = b.e.a.a.a;
+        b.e.a.a.C0064a c0064a = b.e.a.a.a;
     }
 
     public String toString() {

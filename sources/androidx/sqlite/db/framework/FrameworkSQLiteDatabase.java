@@ -3,7 +3,10 @@ package androidx.sqlite.db.framework;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.database.sqlite.SQLiteCursor;
+import android.database.sqlite.SQLiteCursorDriver;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQuery;
 import android.database.sqlite.SQLiteTransactionListener;
 import android.os.CancellationSignal;
 import android.text.TextUtils;
@@ -23,6 +26,36 @@ public class FrameworkSQLiteDatabase implements SupportSQLiteDatabase {
     private final SQLiteDatabase mDelegate;
     private static final String[] CONFLICT_VALUES = {"", " OR ROLLBACK ", " OR ABORT ", " OR FAIL ", " OR IGNORE ", " OR REPLACE "};
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
+
+    /* JADX INFO: renamed from: androidx.sqlite.db.framework.FrameworkSQLiteDatabase$1, reason: invalid class name */
+    public class AnonymousClass1 implements SQLiteDatabase.CursorFactory {
+        public final /* synthetic */ SupportSQLiteQuery val$supportQuery;
+
+        public AnonymousClass1(SupportSQLiteQuery supportSQLiteQuery) {
+            this.val$supportQuery = supportSQLiteQuery;
+        }
+
+        @Override // android.database.sqlite.SQLiteDatabase.CursorFactory
+        public Cursor newCursor(SQLiteDatabase sQLiteDatabase, SQLiteCursorDriver sQLiteCursorDriver, String str, SQLiteQuery sQLiteQuery) {
+            this.val$supportQuery.bindTo(new FrameworkSQLiteProgram(sQLiteQuery));
+            return new SQLiteCursor(sQLiteCursorDriver, str, sQLiteQuery);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.sqlite.db.framework.FrameworkSQLiteDatabase$2, reason: invalid class name */
+    public class AnonymousClass2 implements SQLiteDatabase.CursorFactory {
+        public final /* synthetic */ SupportSQLiteQuery val$supportQuery;
+
+        public AnonymousClass2(SupportSQLiteQuery supportSQLiteQuery) {
+            this.val$supportQuery = supportSQLiteQuery;
+        }
+
+        @Override // android.database.sqlite.SQLiteDatabase.CursorFactory
+        public Cursor newCursor(SQLiteDatabase sQLiteDatabase, SQLiteCursorDriver sQLiteCursorDriver, String str, SQLiteQuery sQLiteQuery) {
+            this.val$supportQuery.bindTo(new FrameworkSQLiteProgram(sQLiteQuery));
+            return new SQLiteCursor(sQLiteCursorDriver, str, sQLiteQuery);
+        }
+    }
 
     public FrameworkSQLiteDatabase(SQLiteDatabase sQLiteDatabase) {
         this.mDelegate = sQLiteDatabase;
@@ -256,12 +289,12 @@ public class FrameworkSQLiteDatabase implements SupportSQLiteDatabase {
 
     @Override // androidx.sqlite.db.SupportSQLiteDatabase
     public Cursor query(SupportSQLiteQuery supportSQLiteQuery) {
-        return this.mDelegate.rawQueryWithFactory(new FrameworkSQLiteDatabase$1(this, supportSQLiteQuery), supportSQLiteQuery.getSql(), EMPTY_STRING_ARRAY, null);
+        return this.mDelegate.rawQueryWithFactory(new AnonymousClass1(supportSQLiteQuery), supportSQLiteQuery.getSql(), EMPTY_STRING_ARRAY, null);
     }
 
     @Override // androidx.sqlite.db.SupportSQLiteDatabase
     @RequiresApi(api = 16)
     public Cursor query(SupportSQLiteQuery supportSQLiteQuery, CancellationSignal cancellationSignal) {
-        return this.mDelegate.rawQueryWithFactory(new FrameworkSQLiteDatabase$2(this, supportSQLiteQuery), supportSQLiteQuery.getSql(), EMPTY_STRING_ARRAY, null, cancellationSignal);
+        return this.mDelegate.rawQueryWithFactory(new AnonymousClass2(supportSQLiteQuery), supportSQLiteQuery.getSql(), EMPTY_STRING_ARRAY, null, cancellationSignal);
     }
 }

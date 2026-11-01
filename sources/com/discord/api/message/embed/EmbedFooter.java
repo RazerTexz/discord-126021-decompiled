@@ -1,6 +1,6 @@
 package com.discord.api.message.embed;
 
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import b.d.b.a.a;
 import d0.z.d.m;
 

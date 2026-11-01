@@ -12,12 +12,12 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChannelsListAdapter$ItemChannelPrivate$onConfigure$1 extends o implements Function1<View, Unit> {
     public final /* synthetic */ ChannelListItem $data;
-    public final /* synthetic */ WidgetChannelsListAdapter$ItemChannelPrivate this$0;
+    public final /* synthetic */ WidgetChannelsListAdapter.ItemChannelPrivate this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetChannelsListAdapter$ItemChannelPrivate$onConfigure$1(WidgetChannelsListAdapter$ItemChannelPrivate widgetChannelsListAdapter$ItemChannelPrivate, ChannelListItem channelListItem) {
+    public WidgetChannelsListAdapter$ItemChannelPrivate$onConfigure$1(WidgetChannelsListAdapter.ItemChannelPrivate itemChannelPrivate, ChannelListItem channelListItem) {
         super(1);
-        this.this$0 = widgetChannelsListAdapter$ItemChannelPrivate;
+        this.this$0 = itemChannelPrivate;
         this.$data = channelListItem;
     }
 
@@ -30,6 +30,6 @@ public final class WidgetChannelsListAdapter$ItemChannelPrivate$onConfigure$1 ex
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(View view) {
         m.checkNotNullParameter(view, "it");
-        WidgetChannelsListAdapter$ItemChannelPrivate.access$getAdapter$p(this.this$0).getOnSelectChannelOptions().invoke(((ChannelListItemPrivate) this.$data).getChannel());
+        WidgetChannelsListAdapter.ItemChannelPrivate.access$getAdapter$p(this.this$0).getOnSelectChannelOptions().invoke(((ChannelListItemPrivate) this.$data).getChannel());
     }
 }

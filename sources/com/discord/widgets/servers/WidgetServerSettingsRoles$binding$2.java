@@ -3,7 +3,7 @@ package com.discord.widgets.servers;
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetServerSettingsRolesBinding;
 import com.discord.utilities.dimmer.DimmerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,14 +28,14 @@ public final /* synthetic */ class WidgetServerSettingsRoles$binding$2 extends k
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetServerSettingsRolesBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = 2131363051;
-        DimmerView dimmerView = (DimmerView) view.findViewById(2131363051);
+        int i = R.id.dimmer_view;
+        DimmerView dimmerView = (DimmerView) view.findViewById(R.id.dimmer_view);
         if (dimmerView != null) {
-            i = R$id.roles_list_add_role_fab;
-            FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R$id.roles_list_add_role_fab);
+            i = R.id.roles_list_add_role_fab;
+            FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.roles_list_add_role_fab);
             if (floatingActionButton != null) {
-                i = R$id.server_settings_roles_recycler;
-                RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.server_settings_roles_recycler);
+                i = R.id.server_settings_roles_recycler;
+                RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.server_settings_roles_recycler);
                 if (recyclerView != null) {
                     return new WidgetServerSettingsRolesBinding((CoordinatorLayout) view, dimmerView, floatingActionButton, recyclerView);
                 }

@@ -1,53 +1,60 @@
 package com.discord.widgets.channels.settings;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.d.g0;
 import b.a.d.i0;
+import b.a.d.j;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$id;
-import com.discord.R$layout;
-import com.discord.R$menu;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.app.AppActivity;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetChannelGroupDmSettingsBinding;
-import com.discord.dialogs.ImageUploadDialog$PreviewType;
+import com.discord.dialogs.ImageUploadDialog;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
-import com.discord.utilities.images.MGImages$ChangeDetector;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.stateful.StatefulViews;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
-import com.discord.widgets.notice.WidgetNoticeDialog$Builder;
-import com.discord.widgets.servers.NotificationMuteSettingsView$ViewState;
+import com.discord.widgets.notice.WidgetNoticeDialog;
+import com.discord.widgets.servers.NotificationMuteSettingsView;
+import com.discord.widgets.settings.WidgetMuteSettingsSheet;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
+import java.lang.reflect.InvocationTargetException;
 import kotlin.Lazy;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 import rx.functions.Action1;
+import rx.functions.Action2;
 
 /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChannelGroupDMSettings extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetChannelGroupDMSettings.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChannelGroupDmSettingsBinding;", 0)};
-    public static final WidgetChannelGroupDMSettings$Companion Companion = new WidgetChannelGroupDMSettings$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String INTENT_EXTRA_CHANNEL_ID = "INTENT_EXTRA_CHANNEL_ID";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -58,18 +65,254 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings$configureIcon$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetChannelGroupDMSettings.this.openMediaChooser();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings$configureUi$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
+    public final class AnonymousClass1<T1, T2> implements Action2<MenuItem, Context> {
+        public final /* synthetic */ String $displayName;
+
+        /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings$configureUi$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
+        public final class C03681 extends o implements Function0<Unit> {
+            public C03681() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                WidgetChannelGroupDMSettings.access$getViewModel$p(WidgetChannelGroupDMSettings.this).leaveGroup();
+            }
+        }
+
+        public AnonymousClass1(String str) {
+            this.$displayName = str;
+        }
+
+        @Override // rx.functions.Action2
+        public /* bridge */ /* synthetic */ void call(MenuItem menuItem, Context context) {
+            call2(menuItem, context);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(MenuItem menuItem, Context context) {
+            m.checkNotNullExpressionValue(menuItem, "menuItem");
+            if (menuItem.getItemId() == R.id.menu_leave_group) {
+                WidgetChannelGroupDMSettings widgetChannelGroupDMSettings = WidgetChannelGroupDMSettings.this;
+                WidgetChannelGroupDMSettings.access$confirmLeave(widgetChannelGroupDMSettings, widgetChannelGroupDMSettings.requireContext(), new C03681(), this.$displayName);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings$confirmLeave$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
+    public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+        public final /* synthetic */ Function0 $confirmed;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Function0 function0) {
+            super(1);
+            this.$confirmed = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+            this.$confirmed.invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
+    public final class AnonymousClass1 extends o implements Function1<ChannelGroupDMSettingsViewModel.ViewState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ChannelGroupDMSettingsViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ChannelGroupDMSettingsViewModel.ViewState viewState) {
+            m.checkNotNullParameter(viewState, "viewState");
+            WidgetChannelGroupDMSettings.access$configureUi(WidgetChannelGroupDMSettings.this, viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings$configureIcon$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
+    public final class AnonymousClass2 extends o implements Function1<String, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            m.checkNotNullParameter(str, "dataUrl");
+            WidgetChannelGroupDMSettings.access$getViewModel$p(WidgetChannelGroupDMSettings.this).onIconEdited(str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings$configureUi$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ String $displayName;
+        public final /* synthetic */ Channel $group;
+
+        public AnonymousClass2(Channel channel, String str) {
+            this.$group = channel;
+            this.$displayName = str;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            ChannelGroupDMSettingsViewModel channelGroupDMSettingsViewModelAccess$getViewModel$p = WidgetChannelGroupDMSettings.access$getViewModel$p(WidgetChannelGroupDMSettings.this);
+            long id2 = this.$group.getId();
+            StatefulViews statefulViewsAccess$getState$p = WidgetChannelGroupDMSettings.access$getState$p(WidgetChannelGroupDMSettings.this);
+            TextInputLayout textInputLayout = WidgetChannelGroupDMSettings.access$getBinding$p(WidgetChannelGroupDMSettings.this).f2257b;
+            m.checkNotNullExpressionValue(textInputLayout, "binding.channelSettingsEditName");
+            channelGroupDMSettingsViewModelAccess$getViewModel$p.editGroup(id2, ((String) statefulViewsAccess$getState$p.get(textInputLayout.getId(), this.$displayName)).toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings$onViewBoundOrOnResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
+    public final class AnonymousClass2 extends o implements Function1<ChannelGroupDMSettingsViewModel.Event, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ChannelGroupDMSettingsViewModel.Event event) {
+            invoke2(event);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ChannelGroupDMSettingsViewModel.Event event) {
+            m.checkNotNullParameter(event, "event");
+            WidgetChannelGroupDMSettings.this.handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings$configureIcon$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public AnonymousClass3() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetChannelGroupDMSettings.access$getViewModel$p(WidgetChannelGroupDMSettings.this).removeEditedIcon();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings$configureUi$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
+    public final class AnonymousClass3 extends o implements Function0<Unit> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass3(long j) {
+            super(0);
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetMuteSettingsSheet.Companion companion = WidgetMuteSettingsSheet.INSTANCE;
+            long j = this.$channelId;
+            FragmentManager parentFragmentManager = WidgetChannelGroupDMSettings.this.getParentFragmentManager();
+            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            companion.showForChannel(j, parentFragmentManager);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings$configureUi$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
+    public final class AnonymousClass4 extends o implements Function0<Unit> {
+        public AnonymousClass4() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetChannelGroupDMSettings.access$getViewModel$p(WidgetChannelGroupDMSettings.this).unmute(WidgetChannelGroupDMSettings.this.requireContext());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void create(long channelId, Context context) {
+            m.checkNotNullParameter(context, "context");
+            Intent intentPutExtra = new Intent().putExtra(WidgetChannelGroupDMSettings.INTENT_EXTRA_CHANNEL_ID, channelId);
+            m.checkNotNullExpressionValue(intentPutExtra, "Intent().putExtra(INTENT…RA_CHANNEL_ID, channelId)");
+            j.d(context, WidgetChannelGroupDMSettings.class, intentPutExtra);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetChannelGroupDMSettings() {
-        super(R$layout.widget_channel_group_dm_settings);
+        super(R.layout.widget_channel_group_dm_settings);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetChannelGroupDMSettings$binding$2.INSTANCE, null, 2, null);
         WidgetChannelGroupDMSettings$viewModel$2 widgetChannelGroupDMSettings$viewModel$2 = new WidgetChannelGroupDMSettings$viewModel$2(this);
         g0 g0Var = new g0(this);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(ChannelGroupDMSettingsViewModel.class), new WidgetChannelGroupDMSettings$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetChannelGroupDMSettings$viewModel$2));
         this.iconEditedResult = WidgetChannelGroupDMSettings$iconEditedResult$1.INSTANCE;
-        this.state = new StatefulViews(R$id.channel_settings_edit_name, R$id.settings_group_icon);
+        this.state = new StatefulViews(R.id.channel_settings_edit_name, R.id.settings_group_icon);
     }
 
-    public static final /* synthetic */ void access$configureUi(WidgetChannelGroupDMSettings widgetChannelGroupDMSettings, ChannelGroupDMSettingsViewModel$ViewState channelGroupDMSettingsViewModel$ViewState) {
-        widgetChannelGroupDMSettings.configureUi(channelGroupDMSettingsViewModel$ViewState);
+    public static final /* synthetic */ void access$configureUi(WidgetChannelGroupDMSettings widgetChannelGroupDMSettings, ChannelGroupDMSettingsViewModel.ViewState viewState) {
+        widgetChannelGroupDMSettings.configureUi(viewState);
     }
 
     public static final /* synthetic */ void access$confirmLeave(WidgetChannelGroupDMSettings widgetChannelGroupDMSettings, Context context, Function0 function0, CharSequence charSequence) {
@@ -88,7 +331,7 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
         return widgetChannelGroupDMSettings.getViewModel();
     }
 
-    private final void configureIcon(ChannelGroupDMSettingsViewModel$ViewState$Valid viewState) {
+    private final void configureIcon(ChannelGroupDMSettingsViewModel.ViewState.Valid viewState) {
         String currentIconUrl = viewState.getCurrentIconUrl();
         if (viewState.getHasUnsavedIconChange()) {
             StatefulViews statefulViews = this.state;
@@ -101,23 +344,23 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
             m.checkNotNullExpressionValue(simpleDraweeView2, "binding.settingsGroupIcon");
             statefulViews2.get(simpleDraweeView2.getId(), currentIconUrl != null ? currentIconUrl : "");
         }
-        getBinding().f.setOnClickListener(new WidgetChannelGroupDMSettings$configureIcon$1(this));
-        this.iconEditedResult = new WidgetChannelGroupDMSettings$configureIcon$2(this);
+        getBinding().f.setOnClickListener(new AnonymousClass1());
+        this.iconEditedResult = new AnonymousClass2();
         SimpleDraweeView simpleDraweeView3 = getBinding().f;
         m.checkNotNullExpressionValue(simpleDraweeView3, "binding.settingsGroupIcon");
-        IconUtils.setIcon$default(simpleDraweeView3, currentIconUrl, 2131165302, (Function1) null, (MGImages$ChangeDetector) null, 24, (Object) null);
+        IconUtils.setIcon$default(simpleDraweeView3, currentIconUrl, R.dimen.avatar_size_xxlarge, (Function1) null, (MGImages.ChangeDetector) null, 24, (Object) null);
         TextView textView = getBinding().g;
         m.checkNotNullExpressionValue(textView, "binding.settingsGroupIconLabel");
         textView.setVisibility(viewState.isDefaultPhoto() ? 0 : 8);
         TextView textView2 = getBinding().h;
         m.checkNotNullExpressionValue(textView2, "binding.settingsGroupIconRemove");
         textView2.setVisibility(viewState.isDefaultPhoto() ^ true ? 0 : 8);
-        getBinding().h.setOnClickListener(new WidgetChannelGroupDMSettings$configureIcon$3(this));
+        getBinding().h.setOnClickListener(new AnonymousClass3());
         this.state.configureSaveActionView(getBinding().c);
     }
 
-    private final void configureUi(ChannelGroupDMSettingsViewModel$ViewState viewState) {
-        if (m.areEqual(viewState, ChannelGroupDMSettingsViewModel$ViewState$Invalid.INSTANCE)) {
+    private final void configureUi(ChannelGroupDMSettingsViewModel.ViewState viewState) {
+        if (m.areEqual(viewState, ChannelGroupDMSettingsViewModel.ViewState.Invalid.INSTANCE)) {
             AppActivity appActivity = getAppActivity();
             if (appActivity != null) {
                 appActivity.finish();
@@ -125,15 +368,15 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
             }
             return;
         }
-        if (viewState instanceof ChannelGroupDMSettingsViewModel$ViewState$Valid) {
-            ChannelGroupDMSettingsViewModel$ViewState$Valid channelGroupDMSettingsViewModel$ViewState$Valid = (ChannelGroupDMSettingsViewModel$ViewState$Valid) viewState;
-            ChannelSettings channelSettings = channelGroupDMSettingsViewModel$ViewState$Valid.getChannelSettings();
+        if (viewState instanceof ChannelGroupDMSettingsViewModel.ViewState.Valid) {
+            ChannelGroupDMSettingsViewModel.ViewState.Valid valid = (ChannelGroupDMSettingsViewModel.ViewState.Valid) viewState;
+            ChannelSettings channelSettings = valid.getChannelSettings();
             Channel channel = channelSettings.getChannel();
             String strD = ChannelUtils.d(channel, requireContext(), true);
-            setActionBarTitle(2131887604);
+            setActionBarTitle(R.string.channel_settings);
             setActionBarSubtitle(strD);
             AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
-            AppFragment.setActionBarOptionsMenu$default(this, R$menu.menu_main_group_settings, new WidgetChannelGroupDMSettings$configureUi$1(this, strD), null, 4, null);
+            AppFragment.setActionBarOptionsMenu$default(this, R.menu.menu_main_group_settings, new AnonymousClass1(strD), null, 4, null);
             TextInputLayout textInputLayout = getBinding().f2257b;
             m.checkNotNullExpressionValue(textInputLayout, "binding.channelSettingsEditName");
             StatefulViews statefulViews = this.state;
@@ -143,16 +386,16 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
             TextInputLayout textInputLayout3 = getBinding().f2257b;
             m.checkNotNullExpressionValue(textInputLayout3, "binding.channelSettingsEditName");
             ViewExtensions.setSelectionEnd(textInputLayout3);
-            configureIcon(channelGroupDMSettingsViewModel$ViewState$Valid);
+            configureIcon(valid);
             this.state.configureSaveActionView(getBinding().c);
-            getBinding().c.setOnClickListener(new WidgetChannelGroupDMSettings$configureUi$2(this, channel, strD));
+            getBinding().c.setOnClickListener(new AnonymousClass2(channel, strD));
             long id2 = channel.getId();
-            getBinding().d.updateView(new NotificationMuteSettingsView$ViewState(channelSettings.isMuted(), channelSettings.getMuteEndTime(), b.k(this, 2131893141, new Object[0], null, 4), b.k(this, 2131896591, new Object[0], null, 4), b.k(this, 2131889198, new Object[0], null, 4), 2131889199, null), new WidgetChannelGroupDMSettings$configureUi$3(this, id2), new WidgetChannelGroupDMSettings$configureUi$4(this));
+            getBinding().d.updateView(new NotificationMuteSettingsView.ViewState(channelSettings.isMuted(), channelSettings.getMuteEndTime(), b.k(this, R.string.mute_conversation, new Object[0], null, 4), b.k(this, R.string.unmute_conversation, new Object[0], null, 4), b.k(this, R.string.form_label_mobile_dm_muted, new Object[0], null, 4), R.string.form_label_mobile_dm_muted_until, null), new AnonymousClass3(id2), new AnonymousClass4());
         }
     }
 
     private final void confirmLeave(Context context, Function0<Unit> confirmed, CharSequence groupName) {
-        WidgetNoticeDialog$Builder negativeButton$default = WidgetNoticeDialog$Builder.setNegativeButton$default(new WidgetNoticeDialog$Builder(context).setTitle(b.k(this, 2131892533, new Object[]{groupName}, null, 4)).setMessage(b.k(this, 2131892527, new Object[]{groupName}, null, 4)).setDialogAttrTheme(2130969885).setPositiveButton(2131892526, new WidgetChannelGroupDMSettings$confirmLeave$1(confirmed)), 2131887437, (Function1) null, 2, (Object) null);
+        WidgetNoticeDialog.Builder negativeButton$default = WidgetNoticeDialog.Builder.setNegativeButton$default(new WidgetNoticeDialog.Builder(context).setTitle(b.k(this, R.string.leave_group_dm_title, new Object[]{groupName}, null, 4)).setMessage(b.k(this, R.string.leave_group_dm_body, new Object[]{groupName}, null, 4)).setDialogAttrTheme(R.attr.notice_theme_positive_red).setPositiveButton(R.string.leave_group_dm, new AnonymousClass1(confirmed)), R.string.cancel, (Function1) null, 2, (Object) null);
         FragmentManager parentFragmentManager = getParentFragmentManager();
         m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
         negativeButton$default.show(parentFragmentManager);
@@ -166,10 +409,10 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
         return (ChannelGroupDMSettingsViewModel) this.viewModel.getValue();
     }
 
-    public final void handleEvent(ChannelGroupDMSettingsViewModel$Event event) {
+    public final void handleEvent(ChannelGroupDMSettingsViewModel.Event event) {
         m.checkNotNullParameter(event, "event");
-        if (!m.areEqual(event, ChannelGroupDMSettingsViewModel$Event$LeaveGroupSuccess.INSTANCE)) {
-            if (m.areEqual(event, ChannelGroupDMSettingsViewModel$Event$SettingsSaved.INSTANCE)) {
+        if (!m.areEqual(event, ChannelGroupDMSettingsViewModel.Event.LeaveGroupSuccess.INSTANCE)) {
+            if (m.areEqual(event, ChannelGroupDMSettingsViewModel.Event.SettingsSaved.INSTANCE)) {
                 handleSettingsSaved();
             }
         } else {
@@ -181,7 +424,7 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
     }
 
     private final void handleSettingsSaved() {
-        b.a.d.m.i(this, 2131895235, 0, 4);
+        b.a.d.m.i(this, R.string.saved_settings, 0, 4);
         StatefulViews.clear$default(this.state, false, 1, null);
         AppFragment.hideKeyboard$default(this, null, 1, null);
         getBinding().e.fullScroll(33);
@@ -189,7 +432,7 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onImageChosen(Uri uri, String mimeType) {
-        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         m.checkNotNullParameter(mimeType, "mimeType");
         super.onImageChosen(uri, mimeType);
         FragmentManager parentFragmentManager = getParentFragmentManager();
@@ -199,12 +442,12 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
         if (function1 != null) {
             widgetChannelGroupDMSettings$sam$rx_functions_Action1$0 = new WidgetChannelGroupDMSettings$sam$rx_functions_Action1$0(function1);
         }
-        MGImages.prepareImageUpload(uri, mimeType, parentFragmentManager, this, (Action1) widgetChannelGroupDMSettings$sam$rx_functions_Action1$0, ImageUploadDialog$PreviewType.GUILD_AVATAR);
+        MGImages.prepareImageUpload(uri, mimeType, parentFragmentManager, this, (Action1) widgetChannelGroupDMSettings$sam$rx_functions_Action1$0, ImageUploadDialog.PreviewType.GUILD_AVATAR);
     }
 
     @Override // com.discord.app.AppFragment
-    public void onImageCropped(Uri uri, String mimeType) {
-        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+    public void onImageCropped(Uri uri, String mimeType) throws IllegalAccessException, InvocationTargetException {
+        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         m.checkNotNullParameter(mimeType, "mimeType");
         super.onImageCropped(uri, mimeType);
         Context context = getContext();
@@ -222,7 +465,7 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
         super.onViewBound(view);
         TextView textView = getBinding().g;
         m.checkNotNullExpressionValue(textView, "binding.settingsGroupIconLabel");
-        textView.setText(b.k(this, 2131893003, new Object[]{"128", "128"}, null, 4));
+        textView.setText(b.k(this, R.string.minimum_size, new Object[]{"128", "128"}, null, 4));
         this.state.setupUnsavedChangesConfirmation(this);
         StatefulViews statefulViews = this.state;
         FloatingActionButton floatingActionButton = getBinding().c;
@@ -234,7 +477,7 @@ public final class WidgetChannelGroupDMSettings extends AppFragment {
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetChannelGroupDMSettings.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetChannelGroupDMSettings$onViewBoundOrOnResume$1(this), 62, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetChannelGroupDMSettings.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetChannelGroupDMSettings$onViewBoundOrOnResume$2(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetChannelGroupDMSettings.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetChannelGroupDMSettings.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
     }
 }

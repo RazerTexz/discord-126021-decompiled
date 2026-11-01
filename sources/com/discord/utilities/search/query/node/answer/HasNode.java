@@ -1,8 +1,8 @@
 package com.discord.utilities.search.query.node.answer;
 
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import b.d.b.a.a;
-import com.discord.utilities.search.network.SearchQuery$Builder;
+import com.discord.utilities.search.network.SearchQuery;
 import com.discord.utilities.search.query.FilterType;
 import com.discord.utilities.search.strings.SearchStringProvider;
 import com.discord.utilities.search.validation.SearchData;
@@ -19,7 +19,7 @@ public final /* data */ class HasNode extends AnswerNode {
 
     public HasNode(HasAnswerOption hasAnswerOption, CharSequence charSequence) {
         m.checkNotNullParameter(hasAnswerOption, "hasAnswerOption");
-        m.checkNotNullParameter(charSequence, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkNotNullParameter(charSequence, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         this.hasAnswerOption = hasAnswerOption;
         this.text = charSequence;
     }
@@ -40,7 +40,7 @@ public final /* data */ class HasNode extends AnswerNode {
 
     public final HasNode copy(HasAnswerOption hasAnswerOption, CharSequence text) {
         m.checkNotNullParameter(hasAnswerOption, "hasAnswerOption");
-        m.checkNotNullParameter(text, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         return new HasNode(hasAnswerOption, text);
     }
 
@@ -93,7 +93,7 @@ public final /* data */ class HasNode extends AnswerNode {
     }
 
     @Override // com.discord.utilities.search.query.node.answer.AnswerNode
-    public void updateQuery(SearchQuery$Builder queryBuilder, SearchData searchData, FilterType filterType) {
+    public void updateQuery(SearchQuery.Builder queryBuilder, SearchData searchData, FilterType filterType) {
         m.checkNotNullParameter(queryBuilder, "queryBuilder");
         m.checkNotNullParameter(searchData, "searchData");
         if (u.contains(getValidFilters(), filterType)) {
@@ -103,7 +103,7 @@ public final /* data */ class HasNode extends AnswerNode {
 
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
     public HasNode(String str, SearchStringProvider searchStringProvider) {
-        this(HasAnswerOption.Companion.getOptionFromString(str, searchStringProvider), str);
+        this(HasAnswerOption.INSTANCE.getOptionFromString(str, searchStringProvider), str);
         m.checkNotNullParameter(str, "match");
         m.checkNotNullParameter(searchStringProvider, "searchStringProvider");
     }

@@ -1,15 +1,41 @@
 package com.discord.widgets.forums;
 
 import b.d.b.a.a;
+import com.discord.api.channel.ForumTag;
 import com.discord.api.message.reaction.MessageReactionEmoji;
 import d0.z.d.m;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: PostData.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class PostTagData {
-    public static final PostTagData$Companion Companion = new PostTagData$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final MessageReactionEmoji messageReactionEmoji;
     private final String tagName;
+
+    /* JADX INFO: compiled from: PostData.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static /* synthetic */ PostTagData fromTag$default(Companion companion, ForumTag forumTag, boolean z2, int i, Object obj) {
+            if ((i & 2) != 0) {
+                z2 = false;
+            }
+            return companion.fromTag(forumTag, z2);
+        }
+
+        public final PostTagData fromTag(ForumTag tag, boolean animated) {
+            m.checkNotNullParameter(tag, "tag");
+            return new PostTagData(new MessageReactionEmoji(tag.getCustomEmojiId(), tag.getEmojiName(), animated), tag.getName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public PostTagData(MessageReactionEmoji messageReactionEmoji, String str) {
         m.checkNotNullParameter(messageReactionEmoji, "messageReactionEmoji");

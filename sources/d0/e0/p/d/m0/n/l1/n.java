@@ -1,6 +1,5 @@
 package d0.e0.p.d.m0.n.l1;
 
-import d0.e0.p.d.m0.n.f$b$b;
 import d0.e0.p.d.m0.n.i1;
 
 /* JADX INFO: compiled from: NewKotlinTypeChecker.kt */
@@ -10,6 +9,6 @@ public final class n {
 
     public final boolean isSubtypeOfAny(i1 i1Var) {
         d0.z.d.m.checkNotNullParameter(i1Var, "type");
-        return d0.e0.p.d.m0.n.c.a.hasNotNullSupertype(p.a.newBaseTypeCheckerContext(false, true), d0.e0.p.d.m0.n.y.lowerIfFlexible(i1Var), f$b$b.a);
+        return d0.e0.p.d.m0.n.c.a.hasNotNullSupertype(p.a.newBaseTypeCheckerContext(false, true), d0.e0.p.d.m0.n.y.lowerIfFlexible(i1Var), d0.e0.p.d.m0.n.f.b.C0579b.a);
     }
 }

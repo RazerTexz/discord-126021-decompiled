@@ -1,16 +1,64 @@
 package d0.e0.p.d.m0.k.v;
 
-import d0.e0.p.d.m0.n.c0;
+import d0.e0.p.d.m0.c.c0;
+import d0.e0.p.d.m0.n.j0;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: ConstantValueFactory.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class h {
     public static final h a = new h();
 
-    public final b a(List<?> list, d0.e0.p.d.m0.b.i iVar) {
+    /* JADX INFO: compiled from: ConstantValueFactory.kt */
+    public final class a extends d0.z.d.o implements Function1<c0, d0.e0.p.d.m0.n.c0> {
+        public final /* synthetic */ d0.e0.p.d.m0.n.c0 $type;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(d0.e0.p.d.m0.n.c0 c0Var) {
+            super(1);
+            this.$type = c0Var;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.n.c0 invoke(c0 c0Var) {
+            return invoke2(c0Var);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final d0.e0.p.d.m0.n.c0 invoke2(c0 c0Var) {
+            d0.z.d.m.checkNotNullParameter(c0Var, "it");
+            return this.$type;
+        }
+    }
+
+    /* JADX INFO: compiled from: ConstantValueFactory.kt */
+    public final class b extends d0.z.d.o implements Function1<c0, d0.e0.p.d.m0.n.c0> {
+        public final /* synthetic */ d0.e0.p.d.m0.b.i $componentType;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public b(d0.e0.p.d.m0.b.i iVar) {
+            super(1);
+            this.$componentType = iVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.n.c0 invoke(c0 c0Var) {
+            return invoke2(c0Var);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final d0.e0.p.d.m0.n.c0 invoke2(c0 c0Var) {
+            d0.z.d.m.checkNotNullParameter(c0Var, "module");
+            j0 primitiveArrayKotlinType = c0Var.getBuiltIns().getPrimitiveArrayKotlinType(this.$componentType);
+            d0.z.d.m.checkNotNullExpressionValue(primitiveArrayKotlinType, "module.builtIns.getPrimitiveArrayKotlinType(componentType)");
+            return primitiveArrayKotlinType;
+        }
+    }
+
+    public final d0.e0.p.d.m0.k.v.b a(List<?> list, d0.e0.p.d.m0.b.i iVar) {
         List list2 = d0.t.u.toList(list);
         ArrayList arrayList = new ArrayList();
         Iterator it = list2.iterator();
@@ -20,13 +68,13 @@ public final class h {
                 arrayList.add(gVarCreateConstantValue);
             }
         }
-        return new b(arrayList, new h$b(iVar));
+        return new d0.e0.p.d.m0.k.v.b(arrayList, new b(iVar));
     }
 
-    public final b createArrayValue(List<? extends g<?>> list, c0 c0Var) {
+    public final d0.e0.p.d.m0.k.v.b createArrayValue(List<? extends g<?>> list, d0.e0.p.d.m0.n.c0 c0Var) {
         d0.z.d.m.checkNotNullParameter(list, "value");
         d0.z.d.m.checkNotNullParameter(c0Var, "type");
-        return new b(list, new h$a(c0Var));
+        return new d0.e0.p.d.m0.k.v.b(list, new a(c0Var));
     }
 
     public final g<?> createConstantValue(Object obj) {

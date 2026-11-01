@@ -22,7 +22,7 @@ import rx.functions.Func5;
 
 /* JADX INFO: compiled from: WidgetGuildInviteShareViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetGuildInviteShareViewModel$observeViewStateFromStores$1<T1, T2, T3, T4, T5, R> implements Func5<WidgetInviteModel, List<? extends InviteSuggestion>, String, Map<String, ? extends Set<? extends Long>>, Unit, WidgetGuildInviteShareViewModel$ViewState$Loaded> {
+public final class WidgetGuildInviteShareViewModel$observeViewStateFromStores$1<T1, T2, T3, T4, T5, R> implements Func5<WidgetInviteModel, List<? extends InviteSuggestion>, String, Map<String, ? extends Set<? extends Long>>, Unit, WidgetGuildInviteShareViewModel.ViewState.Loaded> {
     public final /* synthetic */ WidgetGuildInviteShareViewModel this$0;
 
     public WidgetGuildInviteShareViewModel$observeViewStateFromStores$1(WidgetGuildInviteShareViewModel widgetGuildInviteShareViewModel) {
@@ -30,7 +30,7 @@ public final class WidgetGuildInviteShareViewModel$observeViewStateFromStores$1<
     }
 
     @Override // rx.functions.Func5
-    public /* bridge */ /* synthetic */ WidgetGuildInviteShareViewModel$ViewState$Loaded call(WidgetInviteModel widgetInviteModel, List<? extends InviteSuggestion> list, String str, Map<String, ? extends Set<? extends Long>> map, Unit unit) {
+    public /* bridge */ /* synthetic */ WidgetGuildInviteShareViewModel.ViewState.Loaded call(WidgetInviteModel widgetInviteModel, List<? extends InviteSuggestion> list, String str, Map<String, ? extends Set<? extends Long>> map, Unit unit) {
         return call2(widgetInviteModel, list, str, (Map<String, ? extends Set<Long>>) map, unit);
     }
 
@@ -41,11 +41,11 @@ public final class WidgetGuildInviteShareViewModel$observeViewStateFromStores$1<
     /* JADX WARN: Code duplicated, block: B:57:0x011d  */
     /* JADX WARN: Code duplicated, block: B:77:0x0140 A[SYNTHETIC] */
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-    public final WidgetGuildInviteShareViewModel$ViewState$Loaded call2(WidgetInviteModel widgetInviteModel, List<? extends InviteSuggestion> list, String str, Map<String, ? extends Set<Long>> map, Unit unit) {
+    public final WidgetGuildInviteShareViewModel.ViewState.Loaded call2(WidgetInviteModel widgetInviteModel, List<? extends InviteSuggestion> list, String str, Map<String, ? extends Set<Long>> map, Unit unit) {
         boolean zContains;
         ArrayList arrayList;
         List listListOf;
-        InviteSuggestionItem inviteSuggestionItem$UserItem;
+        InviteSuggestionItem userItem;
         boolean z2;
         m.checkNotNullExpressionValue(map, "sentInvites");
         String strAccess$getInviteLink$p = WidgetGuildInviteShareViewModel.access$getInviteLink$p(this.this$0, widgetInviteModel.getInvite());
@@ -62,13 +62,13 @@ public final class WidgetGuildInviteShareViewModel$observeViewStateFromStores$1<
             ArrayList arrayListA0 = a.a0(list, "inviteSuggestions");
             for (Object obj : list) {
                 InviteSuggestion inviteSuggestion = (InviteSuggestion) obj;
-                if (inviteSuggestion instanceof InviteSuggestion$ChannelItem) {
-                    zContains = w.contains((CharSequence) ChannelUtils.c(((InviteSuggestion$ChannelItem) inviteSuggestion).getChannel()), (CharSequence) str, true);
+                if (inviteSuggestion instanceof InviteSuggestion.ChannelItem) {
+                    zContains = w.contains((CharSequence) ChannelUtils.c(((InviteSuggestion.ChannelItem) inviteSuggestion).getChannel()), (CharSequence) str, true);
                 } else {
-                    if (!(inviteSuggestion instanceof InviteSuggestion$UserSuggestion)) {
+                    if (!(inviteSuggestion instanceof InviteSuggestion.UserSuggestion)) {
                         throw new NoWhenBranchMatchedException();
                     }
-                    zContains = w.contains((CharSequence) ((InviteSuggestion$UserSuggestion) inviteSuggestion).getUser().getUsername(), (CharSequence) str, true);
+                    zContains = w.contains((CharSequence) ((InviteSuggestion.UserSuggestion) inviteSuggestion).getUser().getUsername(), (CharSequence) str, true);
                 }
                 if (zContains) {
                     arrayListA0.add(obj);
@@ -86,37 +86,37 @@ public final class WidgetGuildInviteShareViewModel$observeViewStateFromStores$1<
         if (true ^ list.isEmpty()) {
             arrayList = new ArrayList(o.collectionSizeOrDefault(list, 10));
             for (InviteSuggestion inviteSuggestion2 : list) {
-                if (inviteSuggestion2 instanceof InviteSuggestion$ChannelItem) {
-                    InviteSuggestion$ChannelItem inviteSuggestion$ChannelItem = (InviteSuggestion$ChannelItem) inviteSuggestion2;
-                    inviteSuggestionItem$UserItem = new InviteSuggestionItem$ChannelItem(inviteSuggestion$ChannelItem.getChannel(), set.contains(Long.valueOf(inviteSuggestion$ChannelItem.getChannel().getId())));
+                if (inviteSuggestion2 instanceof InviteSuggestion.ChannelItem) {
+                    InviteSuggestion.ChannelItem channelItem = (InviteSuggestion.ChannelItem) inviteSuggestion2;
+                    userItem = new InviteSuggestionItem.ChannelItem(channelItem.getChannel(), set.contains(Long.valueOf(channelItem.getChannel().getId())));
                 } else {
-                    if (inviteSuggestion2 instanceof InviteSuggestion$UserSuggestion) {
+                    if (inviteSuggestion2 instanceof InviteSuggestion.UserSuggestion) {
                         throw new NoWhenBranchMatchedException();
                     }
-                    InviteSuggestion$UserSuggestion inviteSuggestion$UserSuggestion = (InviteSuggestion$UserSuggestion) inviteSuggestion2;
-                    inviteSuggestionItem$UserItem = new InviteSuggestionItem$UserItem(inviteSuggestion$UserSuggestion.getUser(), u.contains(set, map2.get(Long.valueOf(inviteSuggestion$UserSuggestion.getUser().getId()))));
+                    InviteSuggestion.UserSuggestion userSuggestion = (InviteSuggestion.UserSuggestion) inviteSuggestion2;
+                    userItem = new InviteSuggestionItem.UserItem(userSuggestion.getUser(), u.contains(set, map2.get(Long.valueOf(userSuggestion.getUser().getId()))));
                 }
-                arrayList.add(inviteSuggestionItem$UserItem);
+                arrayList.add(userItem);
             }
             listListOf = arrayList;
         } else if (str == null || t.isBlank(str)) {
             arrayList = new ArrayList(o.collectionSizeOrDefault(list, 10));
             while (r11.hasNext()) {
-                if (inviteSuggestion2 instanceof InviteSuggestion$ChannelItem) {
-                    InviteSuggestion$ChannelItem inviteSuggestion$ChannelItem2 = (InviteSuggestion$ChannelItem) inviteSuggestion2;
-                    inviteSuggestionItem$UserItem = new InviteSuggestionItem$ChannelItem(inviteSuggestion$ChannelItem2.getChannel(), set.contains(Long.valueOf(inviteSuggestion$ChannelItem2.getChannel().getId())));
+                if (inviteSuggestion2 instanceof InviteSuggestion.ChannelItem) {
+                    InviteSuggestion.ChannelItem channelItem2 = (InviteSuggestion.ChannelItem) inviteSuggestion2;
+                    userItem = new InviteSuggestionItem.ChannelItem(channelItem2.getChannel(), set.contains(Long.valueOf(channelItem2.getChannel().getId())));
                 } else {
-                    if (inviteSuggestion2 instanceof InviteSuggestion$UserSuggestion) {
+                    if (inviteSuggestion2 instanceof InviteSuggestion.UserSuggestion) {
                         throw new NoWhenBranchMatchedException();
                     }
-                    InviteSuggestion$UserSuggestion inviteSuggestion$UserSuggestion2 = (InviteSuggestion$UserSuggestion) inviteSuggestion2;
-                    inviteSuggestionItem$UserItem = new InviteSuggestionItem$UserItem(inviteSuggestion$UserSuggestion2.getUser(), u.contains(set, map2.get(Long.valueOf(inviteSuggestion$UserSuggestion2.getUser().getId()))));
+                    InviteSuggestion.UserSuggestion userSuggestion2 = (InviteSuggestion.UserSuggestion) inviteSuggestion2;
+                    userItem = new InviteSuggestionItem.UserItem(userSuggestion2.getUser(), u.contains(set, map2.get(Long.valueOf(userSuggestion2.getUser().getId()))));
                 }
-                arrayList.add(inviteSuggestionItem$UserItem);
+                arrayList.add(userItem);
             }
             listListOf = arrayList;
         } else {
-            listListOf = d0.t.m.listOf(InviteSuggestionItem.SearchNoResultsItem);
+            listListOf = d0.t.m.listOf(InviteSuggestionItem.INSTANCE);
         }
         if (widgetInviteModel.getInvite() != null) {
             if (!widgetInviteModel.getInvite().isStatic() && !widgetInviteModel.isInviteFromStore()) {
@@ -128,6 +128,6 @@ public final class WidgetGuildInviteShareViewModel$observeViewStateFromStores$1<
         }
         m.checkNotNullExpressionValue(widgetInviteModel, "widgetInviteModel");
         m.checkNotNullExpressionValue(str, "filter");
-        return new WidgetGuildInviteShareViewModel$ViewState$Loaded(widgetInviteModel, listListOf, str, map, z2);
+        return new WidgetGuildInviteShareViewModel.ViewState.Loaded(widgetInviteModel, listListOf, str, map, z2);
     }
 }

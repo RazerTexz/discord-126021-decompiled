@@ -10,11 +10,29 @@ import rx.functions.Action1;
 /* JADX INFO: loaded from: classes.dex */
 public final class ModelChannelUnreadUpdate$Parser$parse$1<T> implements Action1<String> {
     public final /* synthetic */ Ref$ObjectRef $channelReadStates;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
 
-    public ModelChannelUnreadUpdate$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model$JsonReader model$JsonReader) {
+    /* JADX INFO: renamed from: com.discord.models.domain.ModelChannelUnreadUpdate$Parser$parse$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ModelChannelUnreadUpdate.kt */
+    public final class AnonymousClass1<T> implements Model.JsonReader.ItemFactory<ModelReadState> {
+        public AnonymousClass1() {
+        }
+
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public /* bridge */ /* synthetic */ ModelReadState get() {
+            return get();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public final ModelReadState get() {
+            return ModelReadState.Parser.INSTANCE.parse(ModelChannelUnreadUpdate$Parser$parse$1.this.$reader);
+        }
+    }
+
+    public ModelChannelUnreadUpdate$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model.JsonReader jsonReader) {
         this.$channelReadStates = ref$ObjectRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
     }
 
     @Override // rx.functions.Action1
@@ -29,7 +47,7 @@ public final class ModelChannelUnreadUpdate$Parser$parse$1<T> implements Action1
             return;
         }
         Ref$ObjectRef ref$ObjectRef = this.$channelReadStates;
-        T t = (T) this.$reader.nextList(new ModelChannelUnreadUpdate$Parser$parse$1$1(this));
+        T t = (T) this.$reader.nextList(new AnonymousClass1());
         m.checkNotNullExpressionValue(t, "reader.nextList { ModelR…te.Parser.parse(reader) }");
         ref$ObjectRef.element = t;
     }

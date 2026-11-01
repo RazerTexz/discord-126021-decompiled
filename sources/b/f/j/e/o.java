@@ -1,5 +1,6 @@
 package b.f.j.e;
 
+import android.os.Process;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -11,6 +12,24 @@ public class o implements ThreadFactory {
     public final boolean l;
     public final AtomicInteger m = new AtomicInteger(1);
 
+    /* JADX INFO: compiled from: PriorityThreadFactory.java */
+    public class a implements Runnable {
+        public final /* synthetic */ Runnable j;
+
+        public a(Runnable runnable) {
+            this.j = runnable;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            try {
+                Process.setThreadPriority(o.this.j);
+            } catch (Throwable unused) {
+            }
+            this.j.run();
+        }
+    }
+
     public o(int i, String str, boolean z2) {
         this.j = i;
         this.k = str;
@@ -20,12 +39,12 @@ public class o implements ThreadFactory {
     @Override // java.util.concurrent.ThreadFactory
     public Thread newThread(Runnable runnable) {
         String str;
-        o$a o_a = new o$a(this, runnable);
+        a aVar = new a(runnable);
         if (this.l) {
             str = this.k + "-" + this.m.getAndIncrement();
         } else {
             str = this.k;
         }
-        return new Thread(o_a, str);
+        return new Thread(aVar, str);
     }
 }

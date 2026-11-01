@@ -1,7 +1,6 @@
 package b.i.a.c.f3;
 
 import android.os.Handler;
-import android.os.Handler$Callback;
 import android.os.Looper;
 import android.os.SystemClock;
 import androidx.annotation.Nullable;
@@ -15,8 +14,8 @@ public class a0 implements g {
     }
 
     @Override // b.i.a.c.f3.g
-    public o b(Looper looper, @Nullable Handler$Callback handler$Callback) {
-        return new b0(new Handler(looper, handler$Callback));
+    public o b(Looper looper, @Nullable Handler.Callback callback) {
+        return new b0(new Handler(looper, callback));
     }
 
     @Override // b.i.a.c.f3.g

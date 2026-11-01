@@ -1,6 +1,7 @@
 package d0.c0;
 
 import java.io.Serializable;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: XorWowRandom.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -21,8 +22,14 @@ public final class e extends c implements Serializable {
     /* JADX INFO: renamed from: z, reason: collision with root package name */
     private int f3189z;
 
+    /* JADX INFO: compiled from: XorWowRandom.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     static {
-        new e$a(null);
+        new a(null);
     }
 
     public e(int i, int i2, int i3, int i4, int i5, int i6) {

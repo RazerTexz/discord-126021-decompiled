@@ -3,7 +3,6 @@ package com.discord.widgets.guilds.profile;
 import android.content.Context;
 import android.view.View;
 import com.discord.widgets.servers.WidgetServerSettingsEmojis;
-import com.discord.widgets.servers.WidgetServerSettingsEmojis$Companion;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -33,9 +32,9 @@ public final class WidgetGuildProfileSheet$configureBottomActions$$inlined$apply
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(View view) {
         m.checkNotNullParameter(view, "v");
-        WidgetServerSettingsEmojis$Companion widgetServerSettingsEmojis$Companion = WidgetServerSettingsEmojis.Companion;
+        WidgetServerSettingsEmojis.Companion companion = WidgetServerSettingsEmojis.INSTANCE;
         Context context = view.getContext();
         m.checkNotNullExpressionValue(context, "v.context");
-        widgetServerSettingsEmojis$Companion.create(context, this.$guildId$inlined);
+        companion.create(context, this.$guildId$inlined);
     }
 }

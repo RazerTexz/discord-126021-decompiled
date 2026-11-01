@@ -1,17 +1,16 @@
 package com.google.android.exoplayer2.metadata.flac;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
 import b.i.a.c.f3.e0;
 import b.i.a.c.j1;
-import b.i.a.c.p1$b;
-import com.google.android.exoplayer2.metadata.Metadata$Entry;
+import b.i.a.c.p1;
+import com.google.android.exoplayer2.metadata.Metadata;
 import java.util.Arrays;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class PictureFrame implements Metadata$Entry {
+public final class PictureFrame implements Metadata.Entry {
     public final int j;
     public final String k;
     public final String l;
@@ -20,7 +19,19 @@ public final class PictureFrame implements Metadata$Entry {
     public final int o;
     public final int p;
     public final byte[] q;
-    public static final Parcelable$Creator<PictureFrame> CREATOR = new PictureFrame$a();
+    public static final Parcelable.Creator<PictureFrame> CREATOR = new a();
+
+    public class a implements Parcelable.Creator<PictureFrame> {
+        @Override // android.os.Parcelable.Creator
+        public PictureFrame createFromParcel(Parcel parcel) {
+            return new PictureFrame(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public PictureFrame[] newArray(int i) {
+            return new PictureFrame[i];
+        }
+    }
 
     public PictureFrame(int i, String str, String str2, int i2, int i3, int i4, int i5, byte[] bArr) {
         this.j = i;
@@ -50,15 +61,15 @@ public final class PictureFrame implements Metadata$Entry {
     }
 
     public int hashCode() {
-        return Arrays.hashCode(this.q) + ((((((((a.m(this.l, a.m(this.k, (this.j + 527) * 31, 31), 31) + this.m) * 31) + this.n) * 31) + this.o) * 31) + this.p) * 31);
+        return Arrays.hashCode(this.q) + ((((((((b.d.b.a.a.m(this.l, b.d.b.a.a.m(this.k, (this.j + 527) * 31, 31), 31) + this.m) * 31) + this.n) * 31) + this.o) * 31) + this.p) * 31);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
-    public void n(p1$b p1_b) {
-        p1_b.b(this.q, this.j);
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
+    public void n(p1.b bVar) {
+        bVar.b(this.q, this.j);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     public /* synthetic */ byte[] o0() {
         return b.i.a.c.z2.a.a(this);
     }
@@ -66,7 +77,7 @@ public final class PictureFrame implements Metadata$Entry {
     public String toString() {
         String str = this.k;
         String str2 = this.l;
-        return a.l(a.b(str2, a.b(str, 32)), "Picture: mimeType=", str, ", description=", str2);
+        return b.d.b.a.a.l(b.d.b.a.a.b(str2, b.d.b.a.a.b(str, 32)), "Picture: mimeType=", str, ", description=", str2);
     }
 
     @Override // android.os.Parcelable
@@ -81,7 +92,7 @@ public final class PictureFrame implements Metadata$Entry {
         parcel.writeByteArray(this.q);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     public /* synthetic */ j1 y() {
         return b.i.a.c.z2.a.b(this);
     }

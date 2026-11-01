@@ -13,6 +13,6 @@ public final class WidgetServerSettingsCommunitySecondStep$onViewBoundOrOnResume
     @Override // j0.k.b
     public final T call(Object obj) {
         Objects.requireNonNull(obj, "null cannot be cast to non-null type com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded");
-        return (T) ((WidgetServerSettingsEnableCommunityViewModel$ViewState$Loaded) obj);
+        return (T) ((WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded) obj);
     }
 }

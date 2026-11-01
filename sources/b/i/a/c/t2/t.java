@@ -15,7 +15,7 @@ public final class t {
     public boolean D;
     public long E;
     public long F;
-    public final t$a a;
+    public final a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final long[] f1129b;
@@ -58,8 +58,21 @@ public final class t {
     /* JADX INFO: renamed from: z, reason: collision with root package name */
     public long f1133z;
 
-    public t(t$a t_a) {
-        this.a = t_a;
+    /* JADX INFO: compiled from: AudioTrackPositionTracker.java */
+    public interface a {
+        void a(long j);
+
+        void b(int i, long j);
+
+        void c(long j);
+
+        void d(long j, long j2, long j3, long j4);
+
+        void e(long j, long j2, long j3, long j4);
+    }
+
+    public t(a aVar) {
+        this.a = aVar;
         if (b.i.a.c.f3.e0.a >= 18) {
             try {
                 this.n = AudioTrack.class.getMethod("getLatency", null);

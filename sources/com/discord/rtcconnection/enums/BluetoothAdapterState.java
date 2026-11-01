@@ -9,7 +9,6 @@ public enum BluetoothAdapterState {
     TurningOff(13),
     TurningOn(11);
 
-    public static final BluetoothAdapterState$a Companion = new BluetoothAdapterState$a(null);
     private final int value;
 
     BluetoothAdapterState(int i) {

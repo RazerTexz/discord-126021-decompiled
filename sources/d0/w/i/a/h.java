@@ -9,31 +9,46 @@ import java.lang.reflect.Method;
 public final class h {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static h$a f3586b;
+    public static a f3586b;
     public static final h c = new h();
-    public static final h$a a = new h$a(null, null, null);
+    public static final a a = new a(null, null, null);
 
-    public final String getModuleName(a aVar) {
+    /* JADX INFO: compiled from: DebugMetadata.kt */
+    public final class a {
+        public final Method a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final Method f3587b;
+        public final Method c;
+
+        public a(Method method, Method method2, Method method3) {
+            this.a = method;
+            this.f3587b = method2;
+            this.c = method3;
+        }
+    }
+
+    public final String getModuleName(d0.w.i.a.a aVar) {
         Method method;
         Object objInvoke;
         Method method2;
         Object objInvoke2;
         m.checkNotNullParameter(aVar, "continuation");
-        h$a h_a = f3586b;
-        if (h_a == null) {
+        a aVar2 = f3586b;
+        if (aVar2 == null) {
             try {
-                h$a h_a2 = new h$a(Class.class.getDeclaredMethod("getModule", new Class[0]), aVar.getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", new Class[0]), aVar.getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod(ModelAuditLogEntry.CHANGE_KEY_NAME, new Class[0]));
-                f3586b = h_a2;
-                h_a = h_a2;
+                a aVar3 = new a(Class.class.getDeclaredMethod("getModule", new Class[0]), aVar.getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", new Class[0]), aVar.getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod(ModelAuditLogEntry.CHANGE_KEY_NAME, new Class[0]));
+                f3586b = aVar3;
+                aVar2 = aVar3;
             } catch (Exception unused) {
-                h_a = a;
-                f3586b = h_a;
+                aVar2 = a;
+                f3586b = aVar2;
             }
         }
-        if (h_a == a || (method = h_a.a) == null || (objInvoke = method.invoke(aVar.getClass(), new Object[0])) == null || (method2 = h_a.f3587b) == null || (objInvoke2 = method2.invoke(objInvoke, new Object[0])) == null) {
+        if (aVar2 == a || (method = aVar2.a) == null || (objInvoke = method.invoke(aVar.getClass(), new Object[0])) == null || (method2 = aVar2.f3587b) == null || (objInvoke2 = method2.invoke(objInvoke, new Object[0])) == null) {
             return null;
         }
-        Method method3 = h_a.c;
+        Method method3 = aVar2.c;
         Object objInvoke3 = method3 != null ? method3.invoke(objInvoke2, new Object[0]) : null;
         return (String) (objInvoke3 instanceof String ? objInvoke3 : null);
     }

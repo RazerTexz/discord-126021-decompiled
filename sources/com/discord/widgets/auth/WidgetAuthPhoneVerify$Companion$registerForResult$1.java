@@ -25,13 +25,13 @@ public final class WidgetAuthPhoneVerify$Companion$registerForResult$1<O> implem
         m.checkNotNullExpressionValue(activityResult, "activityResult");
         if (activityResult.getResultCode() != -1) {
             if (activityResult.getResultCode() == 2) {
-                this.$callback.invoke(WidgetAuthPhoneVerify$Result$Cancelled.INSTANCE);
+                this.$callback.invoke(WidgetAuthPhoneVerify.Result.Cancelled.INSTANCE);
             }
         } else {
             Intent data = activityResult.getData();
             String stringExtra = data != null ? data.getStringExtra("RESULT_EXTRA_TOKEN") : null;
             if (stringExtra != null) {
-                this.$callback.invoke(new WidgetAuthPhoneVerify$Result$Token(stringExtra));
+                this.$callback.invoke(new WidgetAuthPhoneVerify.Result.Token(stringExtra));
             }
         }
     }

@@ -13,6 +13,6 @@ public final class WidgetGuildInviteShareCompact$onViewBoundOrOnResume$$inlined$
     @Override // j0.k.b
     public final T call(Object obj) {
         Objects.requireNonNull(obj, "null cannot be cast to non-null type com.discord.widgets.guilds.invite.WidgetGuildInviteShareViewModel.ViewState.Loaded");
-        return (T) ((WidgetGuildInviteShareViewModel$ViewState$Loaded) obj);
+        return (T) ((WidgetGuildInviteShareViewModel.ViewState.Loaded) obj);
     }
 }

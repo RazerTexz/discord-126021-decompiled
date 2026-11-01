@@ -3,8 +3,10 @@ package com.discord.utilities.platform;
 import androidx.annotation.AttrRes;
 import androidx.annotation.DrawableRes;
 import b.d.b.a.a;
+import com.discord.R;
 import com.discord.api.activity.ActivityPlatform;
 import com.discord.api.connectedaccounts.ConnectedAccount;
+import d0.g0.w;
 import d0.z.d.m;
 import java.util.Locale;
 import java.util.Objects;
@@ -14,23 +16,25 @@ import org.objectweb.asm.Opcodes;
 /* JADX INFO: compiled from: Platform.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public enum Platform {
-    BATTLENET("Battle.net", 2131099687, 2130969440, 2131231466, false, false, false, 112, null),
-    FACEBOOK("Facebook", 2131099876, 2130969441, 2131231472, false, false, true, 48, null),
-    GITHUB("GitHub", 2131099910, 2130969442, 2131231474, false, false, true, 48, null),
-    LEAGUEOFLEGENDS("League of Legends", 2131099945, 2130969443, 2131231476, false, false, false, 112, null),
-    PLAYSTATION("PlayStation Network", 2131100120, 2130969444, 2131231479, false, true, true, 16, null),
-    REDDIT("Reddit", 2131100268, 2130969445, 2131231481, false, false, true, 48, null),
-    SAMSUNG("Samsung Galaxy", null, 2130969446, 2131231483, false, true, false, 82, null),
-    SKYPE("Skype", 2131100280, 2130969447, 2131231485, false, false, false, 112, null),
-    SPOTIFY("Spotify", 2131100282, 2130969448, 2131231487, false, true, true, 16, null),
-    STEAM("Steam", 2131100424, 2130969449, 2131231489, false, false, true, 48, null),
-    TWITCH("Twitch", 2131100439, 2130969450, 2131231491, false, false, true, 48, null),
-    TWITTER("Twitter", 2131100441, 2130969451, 2131231493, false, false, true, 48, null),
-    XBOX("Xbox", 2131100528, 2130969452, 2131231495, false, true, true, 16, null),
-    YOUTUBE("YouTube", 2131100530, 2130969453, 2131231497, false, false, true, 48, null),
+    BATTLENET("Battle.net", Integer.valueOf(R.color.battlenet), Integer.valueOf(R.attr.ic_account_battlenet), Integer.valueOf(R.drawable.ic_account_battlenet_white_24dp), false, false, false, 112, null),
+    FACEBOOK("Facebook", Integer.valueOf(R.color.facebook), Integer.valueOf(R.attr.ic_account_facebook), Integer.valueOf(R.drawable.ic_account_facebook_white_24dp), false, false, true, 48, null),
+    GITHUB("GitHub", Integer.valueOf(R.color.github), Integer.valueOf(R.attr.ic_account_github), Integer.valueOf(R.drawable.ic_account_github_white_24dp), false, false, true, 48, null),
+    LEAGUEOFLEGENDS("League of Legends", Integer.valueOf(R.color.league_of_legends), Integer.valueOf(R.attr.ic_account_league_of_legends), Integer.valueOf(R.drawable.ic_account_league_of_legends_white_24dp), false, false, false, 112, null),
+    PLAYSTATION("PlayStation Network", Integer.valueOf(R.color.playstation), Integer.valueOf(R.attr.ic_account_playstation), Integer.valueOf(R.drawable.ic_account_playstation_white_24dp), false, true, true, 16, null),
+    REDDIT("Reddit", Integer.valueOf(R.color.reddit), Integer.valueOf(R.attr.ic_account_reddit), Integer.valueOf(R.drawable.ic_account_reddit_white_24dp), false, false, true, 48, null),
+    SAMSUNG("Samsung Galaxy", null, Integer.valueOf(R.attr.ic_account_samsung), Integer.valueOf(R.drawable.ic_account_samsung_white_24dp), false, true, false, 82, null),
+    SKYPE("Skype", Integer.valueOf(R.color.skype), Integer.valueOf(R.attr.ic_account_skype), Integer.valueOf(R.drawable.ic_account_skype_white_24dp), false, false, false, 112, null),
+    SPOTIFY("Spotify", Integer.valueOf(R.color.spotify), Integer.valueOf(R.attr.ic_account_spotify), Integer.valueOf(R.drawable.ic_account_spotify_white_24dp), false, true, true, 16, null),
+    STEAM("Steam", Integer.valueOf(R.color.steam), Integer.valueOf(R.attr.ic_account_steam), Integer.valueOf(R.drawable.ic_account_steam_white_24dp), false, false, true, 48, null),
+    TWITCH("Twitch", Integer.valueOf(R.color.twitch), Integer.valueOf(R.attr.ic_account_twitch), Integer.valueOf(R.drawable.ic_account_twitch_white_24dp), false, false, true, 48, null),
+    TWITTER("Twitter", Integer.valueOf(R.color.twitter), Integer.valueOf(R.attr.ic_account_twitter), Integer.valueOf(R.drawable.ic_account_twitter_white_24dp), false, false, true, 48, null),
+    XBOX("Xbox", Integer.valueOf(R.color.xbox), Integer.valueOf(R.attr.ic_account_xbox), Integer.valueOf(R.drawable.ic_account_xbox_white_24dp), false, true, true, 16, null),
+    YOUTUBE("YouTube", Integer.valueOf(R.color.youtube), Integer.valueOf(R.attr.ic_account_youtube), Integer.valueOf(R.drawable.ic_account_youtube_white_24dp), false, false, true, 48, null),
     NONE(null, null, null, null, false, false, false, Opcodes.LAND, null);
 
-    public static final Platform$Companion Companion = new Platform$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final boolean canShowActivity;
     private final boolean canSyncFriends;
     private final Integer colorResId;
@@ -39,6 +43,93 @@ public enum Platform {
     private final String properName;
     private final Integer themedPlatformImage;
     private final Integer whitePlatformImage;
+
+    /* JADX INFO: compiled from: Platform.kt */
+    public final class Companion {
+
+        public final /* synthetic */ class WhenMappings {
+            public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+            static {
+                ActivityPlatform.values();
+                int[] iArr = new int[9];
+                $EnumSwitchMapping$0 = iArr;
+                iArr[ActivityPlatform.SAMSUNG.ordinal()] = 1;
+                iArr[ActivityPlatform.SPOTIFY.ordinal()] = 2;
+                iArr[ActivityPlatform.XBOX.ordinal()] = 3;
+                iArr[ActivityPlatform.PS4.ordinal()] = 4;
+                iArr[ActivityPlatform.PS5.ordinal()] = 5;
+            }
+        }
+
+        private Companion() {
+        }
+
+        public final Platform from(ActivityPlatform activityPlatform) {
+            if (activityPlatform != null) {
+                int iOrdinal = activityPlatform.ordinal();
+                if (iOrdinal == 1) {
+                    return Platform.XBOX;
+                }
+                if (iOrdinal == 4) {
+                    return Platform.SAMSUNG;
+                }
+                if (iOrdinal == 5) {
+                    return Platform.SPOTIFY;
+                }
+                if (iOrdinal == 6) {
+                    return Platform.PLAYSTATION;
+                }
+                if (iOrdinal == 7) {
+                    return Platform.PLAYSTATION;
+                }
+            }
+            return Platform.NONE;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+
+        public final Platform from(String platformName) {
+            m.checkNotNullParameter(platformName, "platformName");
+            try {
+                String string = w.trim(platformName).toString();
+                Locale locale = Locale.ENGLISH;
+                m.checkNotNullExpressionValue(locale, "Locale.ENGLISH");
+                if (string == null) {
+                    throw new NullPointerException("null cannot be cast to non-null type java.lang.String");
+                }
+                String upperCase = string.toUpperCase(locale);
+                m.checkNotNullExpressionValue(upperCase, "(this as java.lang.String).toUpperCase(locale)");
+                return Platform.valueOf(upperCase);
+            } catch (Exception unused) {
+                return Platform.NONE;
+            }
+        }
+
+        public final Platform from(ConnectedAccount connectedAccount) {
+            m.checkNotNullParameter(connectedAccount, "connectedAccount");
+            return from(connectedAccount.getType());
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            Platform.values();
+            int[] iArr = new int[15];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[Platform.GITHUB.ordinal()] = 1;
+            iArr[Platform.REDDIT.ordinal()] = 2;
+            iArr[Platform.SPOTIFY.ordinal()] = 3;
+            iArr[Platform.STEAM.ordinal()] = 4;
+            iArr[Platform.TWITCH.ordinal()] = 5;
+            iArr[Platform.TWITTER.ordinal()] = 6;
+            iArr[Platform.YOUTUBE.ordinal()] = 7;
+        }
+    }
 
     Platform(@AttrRes String str, @DrawableRes Integer num, Integer num2, Integer num3, boolean z2, boolean z3, boolean z4) {
         this.properName = str;
@@ -58,15 +149,15 @@ public enum Platform {
     }
 
     public static final Platform from(ActivityPlatform activityPlatform) {
-        return Companion.from(activityPlatform);
+        return INSTANCE.from(activityPlatform);
     }
 
     public static final Platform from(ConnectedAccount connectedAccount) {
-        return Companion.from(connectedAccount);
+        return INSTANCE.from(connectedAccount);
     }
 
     public static final Platform from(String str) {
-        return Companion.from(str);
+        return INSTANCE.from(str);
     }
 
     public final boolean getCanShowActivity() {

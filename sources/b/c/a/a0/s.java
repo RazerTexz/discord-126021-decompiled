@@ -1,19 +1,17 @@
 package b.c.a.a0;
 
 import android.graphics.Color;
-import b.c.a.a0.i0.c$a;
-import b.c.a.y.m.e$a;
 import java.io.IOException;
 import java.util.ArrayList;
 
 /* JADX INFO: compiled from: LayerParser.java */
 /* JADX INFO: loaded from: classes.dex */
 public class s {
-    public static final c$a a = c$a.a("nm", "ind", "refId", "ty", "parent", "sw", "sh", "sc", "ks", "tt", "masksProperties", "shapes", "t", "ef", "sr", "st", "w", "h", "ip", "op", "tm", "cl", "hd");
+    public static final b.c.a.a0.i0.c.a a = b.c.a.a0.i0.c.a.a("nm", "ind", "refId", "ty", "parent", "sw", "sh", "sc", "ks", "tt", "masksProperties", "shapes", "t", "ef", "sr", "st", "w", "h", "ip", "op", "tm", "cl", "hd");
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final c$a f342b = c$a.a("d", "a");
-    public static final c$a c = c$a.a("nm");
+    public static final b.c.a.a0.i0.c.a f342b = b.c.a.a0.i0.c.a.a("d", "a");
+    public static final b.c.a.a0.i0.c.a c = b.c.a.a0.i0.c.a.a("nm");
 
     /* JADX WARN: Code duplicated, block: B:113:0x0254  */
     /* JADX WARN: Code duplicated, block: B:146:0x02af  */
@@ -35,7 +33,7 @@ public class s {
         long jQ = -1;
         float fN = 0.0f;
         String strT = null;
-        e$a e_a = null;
+        b.c.a.y.m.e.a aVar = null;
         String strT2 = null;
         b.c.a.y.k.l lVarA = null;
         int iC = 0;
@@ -74,7 +72,7 @@ public class s {
                     strT = strT;
                     j = jQ2;
                     int iQ = cVar.q();
-                    e_a = iQ < 6 ? e$a.values()[iQ] : e$a.UNKNOWN;
+                    aVar = iQ < 6 ? b.c.a.y.m.e.a.values()[iQ] : b.c.a.y.m.e.a.UNKNOWN;
                     jQ2 = j;
                     strT = strT;
                     break;
@@ -240,7 +238,7 @@ public class s {
                         } else {
                             cVar.a();
                             if (cVar.e()) {
-                                c$a c_a = b.a;
+                                b.c.a.a0.i0.c.a aVar2 = b.a;
                                 cVar.b();
                                 b.c.a.y.k.k kVar2 = null;
                                 while (cVar.e()) {
@@ -380,6 +378,6 @@ public class s {
         if (strT3.endsWith(".ai") || "ai".equals(str2)) {
             dVar.a("Convert your Illustrator layers to shape layers.");
         }
-        return new b.c.a.y.m.e(arrayList2, dVar, strT3, j3, e_a, jQ, strT2, arrayList, lVarA, iC, iC2, color, fN2, fN3, iC3, iC4, jVar, kVar, arrayList4, i2, bVarR1, zF);
+        return new b.c.a.y.m.e(arrayList2, dVar, strT3, j3, aVar, jQ, strT2, arrayList, lVarA, iC, iC2, color, fN2, fN3, iC3, iC4, jVar, kVar, arrayList4, i2, bVarR1, zF);
     }
 }

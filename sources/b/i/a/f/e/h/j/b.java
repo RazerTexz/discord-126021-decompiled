@@ -1,12 +1,12 @@
 package b.i.a.f.e.h.j;
 
 import androidx.annotation.Nullable;
-import b.i.a.f.e.h.a$d;
+import b.i.a.f.e.h.a.d;
 import java.util.Arrays;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class b<O extends a$d> {
+public final class b<O extends b.i.a.f.e.h.a.d> {
     public final int a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */

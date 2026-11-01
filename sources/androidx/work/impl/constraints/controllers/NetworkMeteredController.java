@@ -1,7 +1,7 @@
 package androidx.work.impl.constraints.controllers;
 
 import android.content.Context;
-import android.os.Build$VERSION;
+import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.work.Logger;
 import androidx.work.NetworkType;
@@ -30,7 +30,7 @@ public class NetworkMeteredController extends ConstraintController<NetworkState>
 
     /* JADX INFO: renamed from: isConstrained, reason: avoid collision after fix types in other method */
     public boolean isConstrained2(@NonNull NetworkState networkState) {
-        if (Build$VERSION.SDK_INT >= 26) {
+        if (Build.VERSION.SDK_INT >= 26) {
             return (networkState.isConnected() && networkState.isMetered()) ? false : true;
         }
         Logger.get().debug(TAG, "Metered network constraint is not supported before API 26, only checking for connected state.", new Throwable[0]);

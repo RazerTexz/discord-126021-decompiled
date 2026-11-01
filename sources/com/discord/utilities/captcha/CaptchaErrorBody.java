@@ -1,19 +1,66 @@
 package com.discord.utilities.captcha;
 
 import b.d.b.a.a;
+import b.i.a.f.e.o.f;
+import b.i.d.c;
+import b.i.d.e;
+import com.discord.app.AppLog;
+import com.discord.utilities.error.Error;
+import com.discord.utilities.logging.Logger;
 import d0.z.d.m;
 import java.io.Serializable;
 import java.util.List;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: CaptchaErrorBody.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class CaptchaErrorBody implements Serializable {
-    public static final CaptchaErrorBody$Companion Companion = new CaptchaErrorBody$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final List<String> captchaKey;
     private final String captchaRqdata;
     private final String captchaRqtoken;
     private final CaptchaService captchaService;
     private final String captchaSitekey;
+
+    /* JADX INFO: compiled from: CaptchaErrorBody.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final CaptchaErrorBody createFromError(Error error) {
+            m.checkNotNullParameter(error, "error");
+            String bodyText = error.getBodyText();
+            if (bodyText == null) {
+                return null;
+            }
+            e eVar = new e();
+            eVar.c = c.m;
+            try {
+                return (CaptchaErrorBody) f.E1(CaptchaErrorBody.class).cast(eVar.a().g(bodyText, CaptchaErrorBody.class));
+            } catch (Exception e) {
+                Logger.e$default(AppLog.g, "failed to parse captcha error body", e, null, 4, null);
+                return null;
+            }
+        }
+
+        public final CaptchaErrorBody createFromString(String errorString) {
+            m.checkNotNullParameter(errorString, "errorString");
+            e eVar = new e();
+            eVar.c = c.m;
+            try {
+                return (CaptchaErrorBody) f.E1(CaptchaErrorBody.class).cast(eVar.a().g(errorString, CaptchaErrorBody.class));
+            } catch (Exception e) {
+                Logger.e$default(AppLog.g, "failed to parse captcha error body", e, null, 4, null);
+                return null;
+            }
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public CaptchaErrorBody(List<String> list, String str, CaptchaService captchaService, String str2, String str3) {
         this.captchaKey = list;

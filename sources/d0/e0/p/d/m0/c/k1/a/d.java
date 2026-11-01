@@ -2,7 +2,6 @@ package d0.e0.p.d.m0.c.k1.a;
 
 import d0.e0.p.d.m0.e.a.k0.u;
 import d0.e0.p.d.m0.e.a.s;
-import d0.e0.p.d.m0.e.a.s$a;
 import d0.g0.t;
 import java.util.Set;
 
@@ -17,9 +16,9 @@ public final class d implements s {
     }
 
     @Override // d0.e0.p.d.m0.e.a.s
-    public d0.e0.p.d.m0.e.a.k0.g findClass(s$a s_a) {
-        d0.z.d.m.checkNotNullParameter(s_a, "request");
-        d0.e0.p.d.m0.g.a classId = s_a.getClassId();
+    public d0.e0.p.d.m0.e.a.k0.g findClass(s.a aVar) {
+        d0.z.d.m.checkNotNullParameter(aVar, "request");
+        d0.e0.p.d.m0.g.a classId = aVar.getClassId();
         d0.e0.p.d.m0.g.b packageFqName = classId.getPackageFqName();
         d0.z.d.m.checkNotNullExpressionValue(packageFqName, "classId.packageFqName");
         String strAsString = classId.getRelativeClassName().asString();

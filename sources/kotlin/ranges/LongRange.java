@@ -2,12 +2,26 @@ package kotlin.ranges;
 
 import d0.d0.a;
 import d0.d0.c;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: Ranges.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class LongRange extends c implements a<Long> {
-    public static final LongRange$a n = new LongRange$a(null);
+
+    /* JADX INFO: renamed from: n, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     public static final LongRange m = new LongRange(1, 0);
+
+    /* JADX INFO: renamed from: kotlin.ranges.LongRange$a, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: Ranges.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final LongRange getEMPTY() {
+            return LongRange.access$getEMPTY$cp();
+        }
+    }
 
     public LongRange(long j, long j2) {
         super(j, j2, 1L);

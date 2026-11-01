@@ -46,11 +46,11 @@ public final class w4 {
         c6 c6Var = (c6) obj2;
         n3 n3Var = (n3) ((c6) obj).f();
         Objects.requireNonNull(n3Var);
-        u4$b u4_b = (u4$b) n3Var;
-        if (!u4_b.j.getClass().isInstance(c6Var)) {
+        u4.b bVar = (u4.b) n3Var;
+        if (!bVar.j.getClass().isInstance(c6Var)) {
             throw new IllegalArgumentException("mergeFrom(MessageLite) can only merge messages of the same type.");
         }
-        u4_b.l((u4) ((l3) c6Var));
-        return u4_b.o();
+        bVar.l((u4) ((l3) c6Var));
+        return bVar.o();
     }
 }

@@ -10,8 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 /* JADX INFO: compiled from: OverlayVoiceChannelSelectorBinding.java */
@@ -48,25 +47,25 @@ public final class b1 implements ViewBinding {
 
     @NonNull
     public static b1 a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
-        View viewInflate = layoutInflater.inflate(R$layout.overlay_voice_channel_selector, viewGroup, false);
+        View viewInflate = layoutInflater.inflate(R.layout.overlay_voice_channel_selector, viewGroup, false);
         if (z2) {
             viewGroup.addView(viewInflate);
         }
-        int i = R$id.close;
-        ImageView imageView = (ImageView) viewInflate.findViewById(R$id.close);
+        int i = R.id.close;
+        ImageView imageView = (ImageView) viewInflate.findViewById(R.id.close);
         if (imageView != null) {
             CardView cardView = (CardView) viewInflate;
-            i = R$id.empty_results;
-            TextView textView = (TextView) viewInflate.findViewById(R$id.empty_results);
+            i = R.id.empty_results;
+            TextView textView = (TextView) viewInflate.findViewById(R.id.empty_results);
             if (textView != null) {
-                i = R$id.overlay_channel_search;
-                TextInputLayout textInputLayout = (TextInputLayout) viewInflate.findViewById(R$id.overlay_channel_search);
+                i = R.id.overlay_channel_search;
+                TextInputLayout textInputLayout = (TextInputLayout) viewInflate.findViewById(R.id.overlay_channel_search);
                 if (textInputLayout != null) {
-                    i = R$id.results_rv;
-                    RecyclerView recyclerView = (RecyclerView) viewInflate.findViewById(R$id.results_rv);
+                    i = R.id.results_rv;
+                    RecyclerView recyclerView = (RecyclerView) viewInflate.findViewById(R.id.results_rv);
                     if (recyclerView != null) {
-                        i = R$id.test;
-                        TextView textView2 = (TextView) viewInflate.findViewById(R$id.test);
+                        i = R.id.test;
+                        TextView textView2 = (TextView) viewInflate.findViewById(R.id.test);
                         if (textView2 != null) {
                             return new b1(cardView, imageView, cardView, textView, textInputLayout, recyclerView, textView2);
                         }

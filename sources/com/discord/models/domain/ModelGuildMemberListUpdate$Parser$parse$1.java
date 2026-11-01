@@ -12,11 +12,47 @@ public final class ModelGuildMemberListUpdate$Parser$parse$1<T> implements Actio
     public final /* synthetic */ Ref$ObjectRef $guildId;
     public final /* synthetic */ Ref$ObjectRef $id;
     public final /* synthetic */ Ref$ObjectRef $operations;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
 
-    public ModelGuildMemberListUpdate$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model$JsonReader model$JsonReader, Ref$ObjectRef ref$ObjectRef2, Ref$ObjectRef ref$ObjectRef3, Ref$ObjectRef ref$ObjectRef4) {
+    /* JADX INFO: renamed from: com.discord.models.domain.ModelGuildMemberListUpdate$Parser$parse$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ModelGuildMemberListUpdate.kt */
+    public final class AnonymousClass1<T> implements Model.JsonReader.ItemFactory<ModelGuildMemberListUpdate.Operation> {
+        public AnonymousClass1() {
+        }
+
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public /* bridge */ /* synthetic */ ModelGuildMemberListUpdate.Operation get() {
+            return get();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public final ModelGuildMemberListUpdate.Operation get() {
+            return ModelGuildMemberListUpdate.Operation.Parser.INSTANCE.parse(ModelGuildMemberListUpdate$Parser$parse$1.this.$reader);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.models.domain.ModelGuildMemberListUpdate$Parser$parse$1$2, reason: invalid class name */
+    /* JADX INFO: compiled from: ModelGuildMemberListUpdate.kt */
+    public final class AnonymousClass2<T> implements Model.JsonReader.ItemFactory<ModelGuildMemberListUpdate.Group> {
+        public AnonymousClass2() {
+        }
+
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public /* bridge */ /* synthetic */ ModelGuildMemberListUpdate.Group get() {
+            return get();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public final ModelGuildMemberListUpdate.Group get() {
+            return ModelGuildMemberListUpdate.Group.Parser.INSTANCE.parse(ModelGuildMemberListUpdate$Parser$parse$1.this.$reader);
+        }
+    }
+
+    public ModelGuildMemberListUpdate$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model.JsonReader jsonReader, Ref$ObjectRef ref$ObjectRef2, Ref$ObjectRef ref$ObjectRef3, Ref$ObjectRef ref$ObjectRef4) {
         this.$guildId = ref$ObjectRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
         this.$id = ref$ObjectRef2;
         this.$operations = ref$ObjectRef3;
         this.$groups = ref$ObjectRef4;
@@ -35,7 +71,7 @@ public final class ModelGuildMemberListUpdate$Parser$parse$1<T> implements Actio
                 if (iHashCode != -1237460524) {
                     if (iHashCode != 3355) {
                         if (iHashCode == 110258 && str.equals("ops")) {
-                            this.$operations.element = (T) this.$reader.nextList(new ModelGuildMemberListUpdate$Parser$parse$1$1(this));
+                            this.$operations.element = (T) this.$reader.nextList(new AnonymousClass1());
                             return;
                         }
                     } else if (str.equals(ModelAuditLogEntry.CHANGE_KEY_ID)) {
@@ -43,7 +79,7 @@ public final class ModelGuildMemberListUpdate$Parser$parse$1<T> implements Actio
                         return;
                     }
                 } else if (str.equals("groups")) {
-                    this.$groups.element = (T) this.$reader.nextList(new ModelGuildMemberListUpdate$Parser$parse$1$2(this));
+                    this.$groups.element = (T) this.$reader.nextList(new AnonymousClass2());
                     return;
                 }
             } else if (str.equals(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID)) {

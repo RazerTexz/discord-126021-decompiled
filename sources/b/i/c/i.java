@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import b.i.a.f.e.k.j;
-import com.google.android.gms.common.R$a;
+import com.google.android.gms.common.R;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -38,7 +38,7 @@ public final class i {
     public static i a(@NonNull Context context) {
         Objects.requireNonNull(context, "null reference");
         Resources resources = context.getResources();
-        String resourcePackageName = resources.getResourcePackageName(R$a.common_google_play_services_unknown_issue);
+        String resourcePackageName = resources.getResourcePackageName(R.a.common_google_play_services_unknown_issue);
         int identifier = resources.getIdentifier("google_app_id", "string", resourcePackageName);
         String string = identifier == 0 ? null : resources.getString(identifier);
         if (TextUtils.isEmpty(string)) {

@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class i1 extends u4<i1, i1$a> implements d6 {
+public final class i1 extends u4<i1, a> implements d6 {
     private int zzc;
     private long zzd;
     private long zzg;
@@ -14,6 +14,44 @@ public final class i1 extends u4<i1, i1$a> implements d6 {
     private static volatile j6<i1> zzk;
     private String zze = "";
     private String zzf = "";
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
+    public final class a extends u4.b<i1, a> implements d6 {
+        public a() {
+            super(i1.M());
+        }
+
+        public final a q(long j) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            i1.w((i1) this.k, j);
+            return this;
+        }
+
+        public final a r(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            i1.x((i1) this.k, str);
+            return this;
+        }
+
+        public final a s(long j) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            i1.B((i1) this.k, j);
+            return this;
+        }
+
+        public a(k1 k1Var) {
+            super(i1.M());
+        }
+    }
 
     static {
         i1 i1Var = new i1();
@@ -71,7 +109,7 @@ public final class i1 extends u4<i1, i1$a> implements d6 {
         return this.zzi;
     }
 
-    public static i1$a L() {
+    public static a L() {
         return zzj.s();
     }
 
@@ -85,24 +123,24 @@ public final class i1 extends u4<i1, i1$a> implements d6 {
             case 1:
                 return new i1();
             case 2:
-                return new i1$a(null);
+                return new a(null);
             case 3:
                 return new o6(zzj, "\u0001\u0006\u0000\u0001\u0001\u0006\u0006\u0000\u0000\u0000\u0001ဂ\u0000\u0002ဈ\u0001\u0003ဈ\u0002\u0004ဂ\u0003\u0005ခ\u0004\u0006က\u0005", new Object[]{"zzc", "zzd", "zze", "zzf", "zzg", "zzh", "zzi"});
             case 4:
                 return zzj;
             case 5:
-                j6<i1> u4_a = zzk;
-                if (u4_a == null) {
+                j6<i1> aVar = zzk;
+                if (aVar == null) {
                     synchronized (i1.class) {
-                        u4_a = zzk;
-                        if (u4_a == null) {
-                            u4_a = new u4$a<>(zzj);
-                            zzk = u4_a;
+                        aVar = zzk;
+                        if (aVar == null) {
+                            aVar = new u4.a<>(zzj);
+                            zzk = aVar;
                         }
                         break;
                     }
                 }
-                return u4_a;
+                return aVar;
             case 6:
                 return (byte) 1;
             case 7:

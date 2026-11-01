@@ -4,7 +4,6 @@ import android.graphics.Rect;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -90,7 +89,7 @@ public final class Insets {
     @NonNull
     @Deprecated
     @RequiresApi(api = 29)
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public static Insets wrap(@NonNull android.graphics.Insets insets) {
         return toCompatInsets(insets);
     }

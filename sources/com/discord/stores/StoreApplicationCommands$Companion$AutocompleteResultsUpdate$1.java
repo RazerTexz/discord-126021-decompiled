@@ -1,8 +1,8 @@
 package com.discord.stores;
 
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
+import com.discord.stores.updates.ObservationDeck;
 
 /* JADX INFO: compiled from: StoreApplicationCommands.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StoreApplicationCommands$Companion$AutocompleteResultsUpdate$1 implements ObservationDeck$UpdateSource {
+public final class StoreApplicationCommands$Companion$AutocompleteResultsUpdate$1 implements ObservationDeck.UpdateSource {
 }

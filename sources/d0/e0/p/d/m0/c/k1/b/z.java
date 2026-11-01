@@ -32,11 +32,11 @@ public final class z extends w implements b0 {
             throw new UnsupportedOperationException(d0.z.d.m.stringPlus("Wildcard types with many bounds are not yet supported: ", this.f3297b));
         }
         if (lowerBounds.length == 1) {
-            w$a w_a = w.a;
+            w.a aVar = w.a;
             d0.z.d.m.checkNotNullExpressionValue(lowerBounds, "lowerBounds");
             Object objSingle = d0.t.k.single(lowerBounds);
             d0.z.d.m.checkNotNullExpressionValue(objSingle, "lowerBounds.single()");
-            return w_a.create((Type) objSingle);
+            return aVar.create((Type) objSingle);
         }
         if (upperBounds.length != 1) {
             return null;
@@ -46,9 +46,9 @@ public final class z extends w implements b0 {
         if (d0.z.d.m.areEqual(type, Object.class)) {
             return null;
         }
-        w$a w_a2 = w.a;
+        w.a aVar2 = w.a;
         d0.z.d.m.checkNotNullExpressionValue(type, "ub");
-        return w_a2.create(type);
+        return aVar2.create(type);
     }
 
     @Override // d0.e0.p.d.m0.c.k1.b.w

@@ -1,10 +1,6 @@
 package d0.e0.p.d.m0.c.k1.a;
 
-import d0.e0.p.d.m0.e.b.p$a;
-import d0.e0.p.d.m0.e.b.p$b;
-import d0.e0.p.d.m0.e.b.p$c;
-import d0.e0.p.d.m0.e.b.p$d;
-import d0.e0.p.d.m0.e.b.p$e;
+import d0.e0.p.d.m0.e.b.p;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -36,7 +32,7 @@ public final class c {
             return new d0.e0.p.d.m0.k.v.f(classId, i);
         }
         if (d0.z.d.m.areEqual(cls, Void.TYPE)) {
-            d0.e0.p.d.m0.g.a aVar = d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k$a.e.toSafe());
+            d0.e0.p.d.m0.g.a aVar = d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k.a.e.toSafe());
             d0.z.d.m.checkNotNullExpressionValue(aVar, "topLevel(StandardNames.FqNames.unit.toSafe())");
             return new d0.e0.p.d.m0.k.v.f(aVar, i);
         }
@@ -52,16 +48,16 @@ public final class c {
         return new d0.e0.p.d.m0.k.v.f(aVar3, i);
     }
 
-    public final void b(p$c p_c, Annotation annotation) throws InvocationTargetException {
+    public final void b(p.c cVar, Annotation annotation) throws InvocationTargetException {
         Class<?> javaClass = d0.z.a.getJavaClass(d0.z.a.getAnnotationClass(annotation));
-        p$a p_aVisitAnnotation = p_c.visitAnnotation(d0.e0.p.d.m0.c.k1.b.b.getClassId(javaClass), new b(annotation));
-        if (p_aVisitAnnotation == null) {
+        p.a aVarVisitAnnotation = cVar.visitAnnotation(d0.e0.p.d.m0.c.k1.b.b.getClassId(javaClass), new b(annotation));
+        if (aVarVisitAnnotation == null) {
             return;
         }
-        c(p_aVisitAnnotation, annotation, javaClass);
+        c(aVarVisitAnnotation, annotation, javaClass);
     }
 
-    public final void c(p$a p_a, Annotation annotation, Class<?> cls) throws InvocationTargetException {
+    public final void c(p.a aVar, Annotation annotation, Class<?> cls) throws InvocationTargetException {
         Method[] declaredMethods = cls.getDeclaredMethods();
         d0.z.d.m.checkNotNullExpressionValue(declaredMethods, "annotationType.declaredMethods");
         int length = declaredMethods.length;
@@ -76,9 +72,9 @@ public final class c {
                 d0.z.d.m.checkNotNullExpressionValue(eVarIdentifier, "identifier(method.name)");
                 Class<?> enclosingClass = objInvoke.getClass();
                 if (d0.z.d.m.areEqual(enclosingClass, Class.class)) {
-                    p_a.visitClassLiteral(eVarIdentifier, a((Class) objInvoke));
+                    aVar.visitClassLiteral(eVarIdentifier, a((Class) objInvoke));
                 } else if (i.m86access$getTYPES_ELIGIBLE_FOR_SIMPLE_VISIT$p$s1934497501().contains(enclosingClass)) {
-                    p_a.visit(eVarIdentifier, objInvoke);
+                    aVar.visit(eVarIdentifier, objInvoke);
                 } else if (d0.e0.p.d.m0.c.k1.b.b.isEnumClassOrSpecializedEnumEntryClass(enclosingClass)) {
                     if (!enclosingClass.isEnum()) {
                         enclosingClass = enclosingClass.getEnclosingClass();
@@ -87,22 +83,22 @@ public final class c {
                     d0.e0.p.d.m0.g.a classId = d0.e0.p.d.m0.c.k1.b.b.getClassId(enclosingClass);
                     d0.e0.p.d.m0.g.e eVarIdentifier2 = d0.e0.p.d.m0.g.e.identifier(((Enum) objInvoke).name());
                     d0.z.d.m.checkNotNullExpressionValue(eVarIdentifier2, "identifier((value as Enum<*>).name)");
-                    p_a.visitEnum(eVarIdentifier, classId, eVarIdentifier2);
+                    aVar.visitEnum(eVarIdentifier, classId, eVarIdentifier2);
                 } else if (Annotation.class.isAssignableFrom(enclosingClass)) {
                     Class<?>[] interfaces = enclosingClass.getInterfaces();
                     d0.z.d.m.checkNotNullExpressionValue(interfaces, "clazz.interfaces");
                     Class<?> cls2 = (Class) d0.t.k.single(interfaces);
                     d0.z.d.m.checkNotNullExpressionValue(cls2, "annotationClass");
-                    p$a p_aVisitAnnotation = p_a.visitAnnotation(eVarIdentifier, d0.e0.p.d.m0.c.k1.b.b.getClassId(cls2));
-                    if (p_aVisitAnnotation != null) {
-                        c(p_aVisitAnnotation, (Annotation) objInvoke, cls2);
+                    p.a aVarVisitAnnotation = aVar.visitAnnotation(eVarIdentifier, d0.e0.p.d.m0.c.k1.b.b.getClassId(cls2));
+                    if (aVarVisitAnnotation != null) {
+                        c(aVarVisitAnnotation, (Annotation) objInvoke, cls2);
                     }
                 } else {
                     if (!enclosingClass.isArray()) {
                         throw new UnsupportedOperationException("Unsupported annotation argument value (" + enclosingClass + "): " + objInvoke);
                     }
-                    p$b p_bVisitArray = p_a.visitArray(eVarIdentifier);
-                    if (p_bVisitArray != null) {
+                    p.b bVarVisitArray = aVar.visitArray(eVarIdentifier);
+                    if (bVarVisitArray != null) {
                         Class<?> componentType = enclosingClass.getComponentType();
                         if (componentType.isEnum()) {
                             d0.z.d.m.checkNotNullExpressionValue(componentType, "componentType");
@@ -116,7 +112,7 @@ public final class c {
                                 Objects.requireNonNull(obj, "null cannot be cast to non-null type kotlin.Enum<*>");
                                 d0.e0.p.d.m0.g.e eVarIdentifier3 = d0.e0.p.d.m0.g.e.identifier(((Enum) obj).name());
                                 d0.z.d.m.checkNotNullExpressionValue(eVarIdentifier3, "identifier((element as Enum<*>).name)");
-                                p_bVisitArray.visitEnum(classId2, eVarIdentifier3);
+                                bVarVisitArray.visitEnum(classId2, eVarIdentifier3);
                             }
                         } else if (d0.z.d.m.areEqual(componentType, Class.class)) {
                             Object[] objArr2 = (Object[]) objInvoke;
@@ -126,7 +122,7 @@ public final class c {
                                 Object obj2 = objArr2[i3];
                                 i3++;
                                 Objects.requireNonNull(obj2, "null cannot be cast to non-null type java.lang.Class<*>");
-                                p_bVisitArray.visitClassLiteral(a((Class) obj2));
+                                bVarVisitArray.visitClassLiteral(a((Class) obj2));
                             }
                         } else {
                             Object[] objArr3 = (Object[]) objInvoke;
@@ -135,21 +131,21 @@ public final class c {
                             while (i4 < length4) {
                                 Object obj3 = objArr3[i4];
                                 i4++;
-                                p_bVisitArray.visit(obj3);
+                                bVarVisitArray.visit(obj3);
                             }
                         }
-                        p_bVisitArray.visitEnd();
+                        bVarVisitArray.visitEnd();
                     }
                 }
             } catch (IllegalAccessException unused) {
             }
         }
-        p_a.visitEnd();
+        aVar.visitEnd();
     }
 
-    public final void loadClassAnnotations(Class<?> cls, p$c p_c) throws InvocationTargetException {
+    public final void loadClassAnnotations(Class<?> cls, p.c cVar) throws InvocationTargetException {
         d0.z.d.m.checkNotNullParameter(cls, "klass");
-        d0.z.d.m.checkNotNullParameter(p_c, "visitor");
+        d0.z.d.m.checkNotNullParameter(cVar, "visitor");
         Annotation[] declaredAnnotations = cls.getDeclaredAnnotations();
         d0.z.d.m.checkNotNullExpressionValue(declaredAnnotations, "klass.declaredAnnotations");
         int length = declaredAnnotations.length;
@@ -158,12 +154,12 @@ public final class c {
             Annotation annotation = declaredAnnotations[i];
             i++;
             d0.z.d.m.checkNotNullExpressionValue(annotation, "annotation");
-            b(p_c, annotation);
+            b(cVar, annotation);
         }
-        p_c.visitEnd();
+        cVar.visitEnd();
     }
 
-    public final void visitMembers(Class<?> cls, p$d p_d) throws InvocationTargetException {
+    public final void visitMembers(Class<?> cls, p.d dVar) throws InvocationTargetException {
         String str;
         Constructor<?>[] constructorArr;
         int i;
@@ -172,7 +168,7 @@ public final class c {
         Method[] methodArr;
         int i3;
         d0.z.d.m.checkNotNullParameter(cls, "klass");
-        d0.z.d.m.checkNotNullParameter(p_d, "memberVisitor");
+        d0.z.d.m.checkNotNullParameter(dVar, "memberVisitor");
         Method[] declaredMethods = cls.getDeclaredMethods();
         d0.z.d.m.checkNotNullExpressionValue(declaredMethods, "klass.declaredMethods");
         int length = declaredMethods.length;
@@ -188,8 +184,8 @@ public final class c {
             d0.z.d.m.checkNotNullExpressionValue(eVarIdentifier, "identifier(method.name)");
             n nVar = n.a;
             d0.z.d.m.checkNotNullExpressionValue(method, "method");
-            p$e p_eVisitMethod = p_d.visitMethod(eVarIdentifier, nVar.methodDesc(method));
-            if (p_eVisitMethod == null) {
+            p.e eVarVisitMethod = dVar.visitMethod(eVarIdentifier, nVar.methodDesc(method));
+            if (eVarVisitMethod == null) {
                 methodArr = declaredMethods;
                 i3 = length;
             } else {
@@ -201,7 +197,7 @@ public final class c {
                     Annotation annotation = declaredAnnotations[i5];
                     i5++;
                     d0.z.d.m.checkNotNullExpressionValue(annotation, "annotation");
-                    b(p_eVisitMethod, annotation);
+                    b(eVarVisitMethod, annotation);
                 }
                 Annotation[][] parameterAnnotations = method.getParameterAnnotations();
                 d0.z.d.m.checkNotNullExpressionValue(parameterAnnotations, "method.parameterAnnotations");
@@ -221,9 +217,9 @@ public final class c {
                         int i10 = length;
                         d0.e0.p.d.m0.g.a classId = d0.e0.p.d.m0.c.k1.b.b.getClassId(javaClass);
                         d0.z.d.m.checkNotNullExpressionValue(annotation2, "annotation");
-                        p$a p_aVisitParameterAnnotation = p_eVisitMethod.visitParameterAnnotation(i6, classId, new b(annotation2));
-                        if (p_aVisitParameterAnnotation != null) {
-                            c(p_aVisitParameterAnnotation, annotation2, javaClass);
+                        p.a aVarVisitParameterAnnotation = eVarVisitMethod.visitParameterAnnotation(i6, classId, new b(annotation2));
+                        if (aVarVisitParameterAnnotation != null) {
+                            c(aVarVisitParameterAnnotation, annotation2, javaClass);
                         }
                         declaredMethods = methodArr2;
                         length = i10;
@@ -233,7 +229,7 @@ public final class c {
                 }
                 methodArr = declaredMethods;
                 i3 = length;
-                p_eVisitMethod.visitEnd();
+                eVarVisitMethod.visitEnd();
             }
             declaredMethods = methodArr;
             length = i3;
@@ -249,8 +245,8 @@ public final class c {
             d0.z.d.m.checkNotNullExpressionValue(eVarSpecial, "special(\"<init>\")");
             n nVar2 = n.a;
             d0.z.d.m.checkNotNullExpressionValue(constructor, "constructor");
-            p$e p_eVisitMethod2 = p_d.visitMethod(eVarSpecial, nVar2.constructorDesc(constructor));
-            if (p_eVisitMethod2 == null) {
+            p.e eVarVisitMethod2 = dVar.visitMethod(eVarSpecial, nVar2.constructorDesc(constructor));
+            if (eVarVisitMethod2 == null) {
                 constructorArr = declaredConstructors;
                 i = length5;
                 i2 = i12;
@@ -264,7 +260,7 @@ public final class c {
                     Annotation annotation3 = declaredAnnotations2[i13];
                     i13++;
                     d0.z.d.m.checkNotNullExpressionValue(annotation3, "annotation");
-                    b(p_eVisitMethod2, annotation3);
+                    b(eVarVisitMethod2, annotation3);
                 }
                 Annotation[][] parameterAnnotations2 = constructor.getParameterAnnotations();
                 d0.z.d.m.checkNotNullExpressionValue(parameterAnnotations2, "parameterAnnotations");
@@ -290,9 +286,9 @@ public final class c {
                             d0.e0.p.d.m0.g.a classId2 = d0.e0.p.d.m0.c.k1.b.b.getClassId(javaClass2);
                             String str3 = str;
                             d0.z.d.m.checkNotNullExpressionValue(annotation4, "annotation");
-                            p$a p_aVisitParameterAnnotation2 = p_eVisitMethod2.visitParameterAnnotation(i19, classId2, new b(annotation4));
-                            if (p_aVisitParameterAnnotation2 != null) {
-                                c(p_aVisitParameterAnnotation2, annotation4, javaClass2);
+                            p.a aVarVisitParameterAnnotation2 = eVarVisitMethod2.visitParameterAnnotation(i19, classId2, new b(annotation4));
+                            if (aVarVisitParameterAnnotation2 != null) {
+                                c(aVarVisitParameterAnnotation2, annotation4, javaClass2);
                             }
                             declaredConstructors = constructorArr2;
                             i12 = i18;
@@ -307,7 +303,7 @@ public final class c {
                 i = length5;
                 i2 = i12;
                 str2 = str;
-                p_eVisitMethod2.visitEnd();
+                eVarVisitMethod2.visitEnd();
             }
             declaredConstructors = constructorArr;
             i11 = i2;
@@ -325,8 +321,8 @@ public final class c {
             d0.z.d.m.checkNotNullExpressionValue(eVarIdentifier2, "identifier(field.name)");
             n nVar3 = n.a;
             d0.z.d.m.checkNotNullExpressionValue(field, "field");
-            p$c p_cVisitField = p_d.visitField(eVarIdentifier2, nVar3.fieldDesc(field), null);
-            if (p_cVisitField != null) {
+            p.c cVarVisitField = dVar.visitField(eVarIdentifier2, nVar3.fieldDesc(field), null);
+            if (cVarVisitField != null) {
                 Annotation[] declaredAnnotations3 = field.getDeclaredAnnotations();
                 d0.z.d.m.checkNotNullExpressionValue(declaredAnnotations3, "field.declaredAnnotations");
                 int length11 = declaredAnnotations3.length;
@@ -335,9 +331,9 @@ public final class c {
                     Annotation annotation5 = declaredAnnotations3[i22];
                     i22++;
                     d0.z.d.m.checkNotNullExpressionValue(annotation5, "annotation");
-                    b(p_cVisitField, annotation5);
+                    b(cVarVisitField, annotation5);
                 }
-                p_cVisitField.visitEnd();
+                cVarVisitField.visitEnd();
             }
         }
     }

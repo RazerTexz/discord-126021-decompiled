@@ -1,9 +1,9 @@
 package com.discord.utilities.spans;
 
-import android.graphics.Paint$FontMetricsInt;
+import android.graphics.Paint;
 import android.text.Spanned;
 import android.text.style.LineHeightSpan;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: VerticalPaddingSpan.kt */
@@ -23,8 +23,8 @@ public final class VerticalPaddingSpan implements LineHeightSpan {
     }
 
     @Override // android.text.style.LineHeightSpan
-    public void chooseHeight(CharSequence text, int start, int end, int spanstartv, int v, Paint$FontMetricsInt fontMetrics) {
-        m.checkNotNullParameter(text, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+    public void chooseHeight(CharSequence text, int start, int end, int spanstartv, int v, Paint.FontMetricsInt fontMetrics) {
+        m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         m.checkNotNullParameter(fontMetrics, "fontMetrics");
         if (((Spanned) (!(text instanceof Spanned) ? null : text)) != null) {
             if (!this.initialized) {

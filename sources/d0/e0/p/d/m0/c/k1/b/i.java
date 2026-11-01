@@ -21,10 +21,10 @@ public final class i extends w implements d0.e0.p.d.m0.e.a.k0.f {
             if (type instanceof Class) {
                 Class cls = (Class) type;
                 if (cls.isArray()) {
-                    w$a w_a = w.a;
+                    w.a aVar = w.a;
                     Class<?> componentType = cls.getComponentType();
                     d0.z.d.m.checkNotNullExpressionValue(componentType, "getComponentType()");
-                    wVarCreate = w_a.create(componentType);
+                    wVarCreate = aVar.create(componentType);
                 }
             }
             StringBuilder sbU = b.d.b.a.a.U("Not an array type (");
@@ -33,10 +33,10 @@ public final class i extends w implements d0.e0.p.d.m0.e.a.k0.f {
             sbU.append(type);
             throw new IllegalArgumentException(sbU.toString());
         }
-        w$a w_a2 = w.a;
+        w.a aVar2 = w.a;
         Type genericComponentType = ((GenericArrayType) type).getGenericComponentType();
         d0.z.d.m.checkNotNullExpressionValue(genericComponentType, "genericComponentType");
-        wVarCreate = w_a2.create(genericComponentType);
+        wVarCreate = aVar2.create(genericComponentType);
         this.c = wVarCreate;
         this.d = d0.t.n.emptyList();
     }

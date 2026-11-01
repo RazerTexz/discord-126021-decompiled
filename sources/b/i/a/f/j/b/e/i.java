@@ -4,11 +4,6 @@ import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
 import androidx.annotation.Nullable;
-import b.i.a.f.e.h.a$a;
-import b.i.a.f.e.h.a$g;
-import b.i.a.f.e.h.b$a;
-import b.i.a.f.e.h.j.k$a;
-import b.i.a.f.e.k.c$a;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.nearby.messages.Message;
 import com.google.android.gms.nearby.messages.MessageListener;
@@ -21,27 +16,27 @@ import java.util.Objects;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class i extends MessagesClient {
-    public static final a$g<f> j;
-    public static final a$a<f, b.i.a.f.j.b.a> k;
+    public static final b.i.a.f.e.h.a.g<f> j;
+    public static final b.i.a.f.e.h.a.C0112a<f, b.i.a.f.j.b.a> k;
     public static final b.i.a.f.e.h.a<b.i.a.f.j.b.a> l;
     public final int m;
 
     static {
-        a$g<f> a_g = new a$g<>();
-        j = a_g;
+        b.i.a.f.e.h.a.g<f> gVar = new b.i.a.f.e.h.a.g<>();
+        j = gVar;
         q qVar = new q();
         k = qVar;
-        l = new b.i.a.f.e.h.a<>("Nearby.MESSAGES_API", qVar, a_g);
+        l = new b.i.a.f.e.h.a<>("Nearby.MESSAGES_API", qVar, gVar);
     }
 
     public i(Activity activity, @Nullable b.i.a.f.j.b.a aVar) {
-        super(activity, l, aVar, b$a.a);
+        super(activity, l, aVar, b.i.a.f.e.h.b.a.a);
         this.m = 1;
         activity.getApplication().registerActivityLifecycleCallbacks(new z(activity, this, null));
     }
 
     @Override // b.i.a.f.e.h.b
-    public final c$a a() {
+    public final b.i.a.f.e.k.c.a a() {
         return super.a();
     }
 
@@ -81,11 +76,11 @@ public final class i extends MessagesClient {
 
     public final <T> Task<Void> k(b.i.a.f.e.h.j.k<T> kVar, a0 a0Var, a0 a0Var2) {
         v vVar = new v(this, kVar, a0Var);
-        k$a<T> k_a = kVar.c;
-        x xVar = new x(this, k_a, a0Var2);
+        b.i.a.f.e.h.j.k.a<T> aVar = kVar.c;
+        x xVar = new x(this, aVar, a0Var2);
         b.c.a.a0.d.z(kVar.c, "Listener has already been released.");
-        b.c.a.a0.d.z(k_a, "Listener has already been released.");
-        b.c.a.a0.d.o(b.c.a.a0.d.h0(kVar.c, k_a), "Listener registration and unregistration methods must be constructed with the same ListenerHolder.");
+        b.c.a.a0.d.z(aVar, "Listener has already been released.");
+        b.c.a.a0.d.o(b.c.a.a0.d.h0(kVar.c, aVar), "Listener registration and unregistration methods must be constructed with the same ListenerHolder.");
         b.i.a.f.e.h.j.g gVar = this.i;
         Runnable runnable = b.i.a.f.e.h.k.j;
         Objects.requireNonNull(gVar);
@@ -102,7 +97,7 @@ public final class i extends MessagesClient {
         b.c.a.a0.d.z(t, "Listener must not be null");
         b.c.a.a0.d.z(name, "Listener type must not be null");
         b.c.a.a0.d.v(name, "Listener type must not be empty");
-        b(new k$a<>(t, name)).b(new u(taskCompletionSource));
+        b(new b.i.a.f.e.h.j.k.a<>(t, name)).b(new u(taskCompletionSource));
         return taskCompletionSource.a;
     }
 

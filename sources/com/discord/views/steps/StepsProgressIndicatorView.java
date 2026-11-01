@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppLog;
 import com.discord.utilities.logging.Logger;
 import d0.z.d.m;
@@ -32,7 +32,7 @@ public final class StepsProgressIndicatorView extends LinearLayout {
         LayoutInflater layoutInflaterFrom = LayoutInflater.from(getContext());
         int i = this.totalStepCount;
         for (int i2 = 0; i2 < i; i2++) {
-            View viewInflate = layoutInflaterFrom.inflate(R$layout.steps_progress_indicator_dot_view, (ViewGroup) this, false);
+            View viewInflate = layoutInflaterFrom.inflate(R.layout.steps_progress_indicator_dot_view, (ViewGroup) this, false);
             addView(viewInflate);
             Objects.requireNonNull(viewInflate, "rootView");
         }

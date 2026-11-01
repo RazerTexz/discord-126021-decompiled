@@ -1,22 +1,36 @@
 package b.a.j;
 
 import android.view.View;
-import android.view.View$OnLayoutChangeListener;
 import androidx.core.view.ViewCompat;
 import com.discord.floating_view_manager.FloatingViewGravity;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: View.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class b implements View$OnLayoutChangeListener {
-    public final /* synthetic */ a j;
+public final class b implements View.OnLayoutChangeListener {
+    public final /* synthetic */ b.a.j.a j;
     public final /* synthetic */ View k;
     public final /* synthetic */ View l;
     public final /* synthetic */ FloatingViewGravity m;
     public final /* synthetic */ int n;
     public final /* synthetic */ int o;
 
-    public b(a aVar, View view, View view2, FloatingViewGravity floatingViewGravity, int i, int i2) {
+    /* JADX INFO: compiled from: View.kt */
+    public final class a implements View.OnLayoutChangeListener {
+        public a() {
+        }
+
+        @Override // android.view.View.OnLayoutChangeListener
+        public void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+            m.checkNotNullParameter(view, "view");
+            view.removeOnLayoutChangeListener(this);
+            b bVar = b.this;
+            b.a.j.a.a(bVar.j, bVar.l, bVar.k, bVar.m, bVar.n, bVar.o);
+            b.this.l.setVisibility(0);
+        }
+    }
+
+    public b(b.a.j.a aVar, View view, View view2, FloatingViewGravity floatingViewGravity, int i, int i2) {
         this.j = aVar;
         this.k = view;
         this.l = view2;
@@ -25,15 +39,15 @@ public final class b implements View$OnLayoutChangeListener {
         this.o = i2;
     }
 
-    @Override // android.view.View$OnLayoutChangeListener
+    @Override // android.view.View.OnLayoutChangeListener
     public void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
         m.checkNotNullParameter(view, "view");
         view.removeOnLayoutChangeListener(this);
         View view2 = this.k;
         if (!ViewCompat.isLaidOut(view2) || view2.isLayoutRequested()) {
-            view2.addOnLayoutChangeListener(new b$a(this));
+            view2.addOnLayoutChangeListener(new a());
         } else {
-            a.a(this.j, this.l, this.k, this.m, this.n, this.o);
+            b.a.j.a.a(this.j, this.l, this.k, this.m, this.n, this.o);
             this.l.setVisibility(0);
         }
     }

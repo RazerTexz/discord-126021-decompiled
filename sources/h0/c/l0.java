@@ -4,12 +4,12 @@ import android.content.Context;
 import android.graphics.Matrix;
 import android.view.WindowManager;
 import org.webrtc.TextureBufferImpl;
-import org.webrtc.VideoFrame$TextureBuffer;
+import org.webrtc.VideoFrame;
 
 /* JADX INFO: compiled from: CameraSession.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class l0 {
-    public static VideoFrame$TextureBuffer a(TextureBufferImpl textureBufferImpl, boolean z2, int i) {
+    public static VideoFrame.TextureBuffer a(TextureBufferImpl textureBufferImpl, boolean z2, int i) {
         Matrix matrix = new Matrix();
         matrix.preTranslate(0.5f, 0.5f);
         if (z2) {

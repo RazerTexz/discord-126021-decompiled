@@ -4,15 +4,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import android.text.TextUtils;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-import b.i.a.f.h.l.a1$a;
-import b.i.a.f.h.l.c1$a;
-import b.i.a.f.h.l.e1$a;
-import b.i.a.f.h.l.i1$a;
-import b.i.a.f.h.l.u4$b;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelReader$ParseException;
 import com.google.android.gms.internal.measurement.zzij;
@@ -29,7 +23,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
@@ -107,34 +100,34 @@ public final class q9 extends i9 {
         ArrayList arrayList = new ArrayList();
         for (Bundle bundle : bundleArr) {
             if (bundle != null) {
-                c1$a c1_aQ = b.i.a.f.h.l.c1.Q();
+                b.i.a.f.h.l.c1.a aVarQ = b.i.a.f.h.l.c1.Q();
                 for (String str : bundle.keySet()) {
-                    c1$a c1_aQ2 = b.i.a.f.h.l.c1.Q();
-                    c1_aQ2.s(str);
+                    b.i.a.f.h.l.c1.a aVarQ2 = b.i.a.f.h.l.c1.Q();
+                    aVarQ2.s(str);
                     Object obj = bundle.get(str);
                     if (obj instanceof Long) {
-                        c1_aQ2.r(((Long) obj).longValue());
+                        aVarQ2.r(((Long) obj).longValue());
                     } else if (obj instanceof String) {
-                        c1_aQ2.t((String) obj);
+                        aVarQ2.t((String) obj);
                     } else if (obj instanceof Double) {
-                        c1_aQ2.q(((Double) obj).doubleValue());
+                        aVarQ2.q(((Double) obj).doubleValue());
                     }
-                    if (c1_aQ.l) {
-                        c1_aQ.n();
-                        c1_aQ.l = false;
+                    if (aVarQ.l) {
+                        aVarQ.n();
+                        aVarQ.l = false;
                     }
-                    b.i.a.f.h.l.c1.x((b.i.a.f.h.l.c1) c1_aQ.k, (b.i.a.f.h.l.c1) ((b.i.a.f.h.l.u4) c1_aQ2.p()));
+                    b.i.a.f.h.l.c1.x((b.i.a.f.h.l.c1) aVarQ.k, (b.i.a.f.h.l.c1) ((b.i.a.f.h.l.u4) aVarQ2.p()));
                 }
-                if (((b.i.a.f.h.l.c1) c1_aQ.k).P() > 0) {
-                    arrayList.add((b.i.a.f.h.l.c1) ((b.i.a.f.h.l.u4) c1_aQ.p()));
+                if (((b.i.a.f.h.l.c1) aVarQ.k).P() > 0) {
+                    arrayList.add((b.i.a.f.h.l.c1) ((b.i.a.f.h.l.u4) aVarQ.p()));
                 }
             }
         }
         return arrayList;
     }
 
-    public static void E(a1$a a1_a, String str, Object obj) {
-        List<b.i.a.f.h.l.c1> listV = a1_a.v();
+    public static void E(b.i.a.f.h.l.a1.a aVar, String str, Object obj) {
+        List<b.i.a.f.h.l.c1> listV = aVar.v();
         int i = 0;
         while (true) {
             if (i >= listV.size()) {
@@ -146,65 +139,65 @@ public final class q9 extends i9 {
                 i++;
             }
         }
-        c1$a c1_aQ = b.i.a.f.h.l.c1.Q();
-        c1_aQ.s(str);
+        b.i.a.f.h.l.c1.a aVarQ = b.i.a.f.h.l.c1.Q();
+        aVarQ.s(str);
         if (obj instanceof Long) {
-            c1_aQ.r(((Long) obj).longValue());
+            aVarQ.r(((Long) obj).longValue());
         } else if (obj instanceof String) {
-            c1_aQ.t((String) obj);
+            aVarQ.t((String) obj);
         } else if (obj instanceof Double) {
-            c1_aQ.q(((Double) obj).doubleValue());
+            aVarQ.q(((Double) obj).doubleValue());
         } else if (obj instanceof Bundle[]) {
             List<b.i.a.f.h.l.c1> listD = D((Bundle[]) obj);
-            if (c1_aQ.l) {
-                c1_aQ.n();
-                c1_aQ.l = false;
+            if (aVarQ.l) {
+                aVarQ.n();
+                aVarQ.l = false;
             }
-            b.i.a.f.h.l.c1.y((b.i.a.f.h.l.c1) c1_aQ.k, listD);
+            b.i.a.f.h.l.c1.y((b.i.a.f.h.l.c1) aVarQ.k, listD);
         }
         if (i < 0) {
-            a1_a.s(c1_aQ);
+            aVar.s(aVarQ);
             return;
         }
-        if (a1_a.l) {
-            a1_a.n();
-            a1_a.l = false;
+        if (aVar.l) {
+            aVar.n();
+            aVar.l = false;
         }
-        b.i.a.f.h.l.a1.y((b.i.a.f.h.l.a1) a1_a.k, i, (b.i.a.f.h.l.c1) ((b.i.a.f.h.l.u4) c1_aQ.p()));
+        b.i.a.f.h.l.a1.y((b.i.a.f.h.l.a1) aVar.k, i, (b.i.a.f.h.l.c1) ((b.i.a.f.h.l.u4) aVarQ.p()));
     }
 
-    public final void F(c1$a c1_a, Object obj) {
+    public final void F(b.i.a.f.h.l.c1.a aVar, Object obj) {
         Objects.requireNonNull(obj, "null reference");
-        if (c1_a.l) {
-            c1_a.n();
-            c1_a.l = false;
+        if (aVar.l) {
+            aVar.n();
+            aVar.l = false;
         }
-        b.i.a.f.h.l.c1.u((b.i.a.f.h.l.c1) c1_a.k);
-        if (c1_a.l) {
-            c1_a.n();
-            c1_a.l = false;
+        b.i.a.f.h.l.c1.u((b.i.a.f.h.l.c1) aVar.k);
+        if (aVar.l) {
+            aVar.n();
+            aVar.l = false;
         }
-        b.i.a.f.h.l.c1.C((b.i.a.f.h.l.c1) c1_a.k);
-        if (c1_a.l) {
-            c1_a.n();
-            c1_a.l = false;
+        b.i.a.f.h.l.c1.C((b.i.a.f.h.l.c1) aVar.k);
+        if (aVar.l) {
+            aVar.n();
+            aVar.l = false;
         }
-        b.i.a.f.h.l.c1.E((b.i.a.f.h.l.c1) c1_a.k);
-        if (c1_a.l) {
-            c1_a.n();
-            c1_a.l = false;
+        b.i.a.f.h.l.c1.E((b.i.a.f.h.l.c1) aVar.k);
+        if (aVar.l) {
+            aVar.n();
+            aVar.l = false;
         }
-        b.i.a.f.h.l.c1.H((b.i.a.f.h.l.c1) c1_a.k);
+        b.i.a.f.h.l.c1.H((b.i.a.f.h.l.c1) aVar.k);
         if (obj instanceof String) {
-            c1_a.t((String) obj);
+            aVar.t((String) obj);
             return;
         }
         if (obj instanceof Long) {
-            c1_a.r(((Long) obj).longValue());
+            aVar.r(((Long) obj).longValue());
             return;
         }
         if (obj instanceof Double) {
-            c1_a.q(((Double) obj).doubleValue());
+            aVar.q(((Double) obj).doubleValue());
             return;
         }
         if (!(obj instanceof Bundle[])) {
@@ -212,41 +205,41 @@ public final class q9 extends i9 {
             return;
         }
         List<b.i.a.f.h.l.c1> listD = D((Bundle[]) obj);
-        if (c1_a.l) {
-            c1_a.n();
-            c1_a.l = false;
+        if (aVar.l) {
+            aVar.n();
+            aVar.l = false;
         }
-        b.i.a.f.h.l.c1.y((b.i.a.f.h.l.c1) c1_a.k, listD);
+        b.i.a.f.h.l.c1.y((b.i.a.f.h.l.c1) aVar.k, listD);
     }
 
-    public final void G(i1$a i1_a, Object obj) {
+    public final void G(b.i.a.f.h.l.i1.a aVar, Object obj) {
         Objects.requireNonNull(obj, "null reference");
-        if (i1_a.l) {
-            i1_a.n();
-            i1_a.l = false;
+        if (aVar.l) {
+            aVar.n();
+            aVar.l = false;
         }
-        b.i.a.f.h.l.i1.u((b.i.a.f.h.l.i1) i1_a.k);
-        if (i1_a.l) {
-            i1_a.n();
-            i1_a.l = false;
+        b.i.a.f.h.l.i1.u((b.i.a.f.h.l.i1) aVar.k);
+        if (aVar.l) {
+            aVar.n();
+            aVar.l = false;
         }
-        b.i.a.f.h.l.i1.A((b.i.a.f.h.l.i1) i1_a.k);
-        if (i1_a.l) {
-            i1_a.n();
-            i1_a.l = false;
+        b.i.a.f.h.l.i1.A((b.i.a.f.h.l.i1) aVar.k);
+        if (aVar.l) {
+            aVar.n();
+            aVar.l = false;
         }
-        b.i.a.f.h.l.i1.E((b.i.a.f.h.l.i1) i1_a.k);
+        b.i.a.f.h.l.i1.E((b.i.a.f.h.l.i1) aVar.k);
         if (obj instanceof String) {
             String str = (String) obj;
-            if (i1_a.l) {
-                i1_a.n();
-                i1_a.l = false;
+            if (aVar.l) {
+                aVar.n();
+                aVar.l = false;
             }
-            b.i.a.f.h.l.i1.C((b.i.a.f.h.l.i1) i1_a.k, str);
+            b.i.a.f.h.l.i1.C((b.i.a.f.h.l.i1) aVar.k, str);
             return;
         }
         if (obj instanceof Long) {
-            i1_a.s(((Long) obj).longValue());
+            aVar.s(((Long) obj).longValue());
             return;
         }
         if (!(obj instanceof Double)) {
@@ -254,11 +247,11 @@ public final class q9 extends i9 {
             return;
         }
         double dDoubleValue = ((Double) obj).doubleValue();
-        if (i1_a.l) {
-            i1_a.n();
-            i1_a.l = false;
+        if (aVar.l) {
+            aVar.n();
+            aVar.l = false;
         }
-        b.i.a.f.h.l.i1.v((b.i.a.f.h.l.i1) i1_a.k, dDoubleValue);
+        b.i.a.f.h.l.i1.v((b.i.a.f.h.l.i1) aVar.k, dDoubleValue);
     }
 
     public static void H(StringBuilder sb, int i) {
@@ -567,10 +560,10 @@ public final class q9 extends i9 {
         }
         ArrayList arrayList = new ArrayList();
         int iIntValue = p.P.a(null).intValue();
-        for (Map$Entry<String, String> map$Entry : mapEmptyMap.entrySet()) {
-            if (map$Entry.getKey().startsWith("measurement.id.")) {
+        for (Map.Entry<String, String> entry : mapEmptyMap.entrySet()) {
+            if (entry.getKey().startsWith("measurement.id.")) {
                 try {
-                    int i = Integer.parseInt(map$Entry.getValue());
+                    int i = Integer.parseInt(entry.getValue());
                     if (i != 0) {
                         arrayList.add(Integer.valueOf(i));
                         if (arrayList.size() >= iIntValue) {
@@ -597,9 +590,9 @@ public final class q9 extends i9 {
         return false;
     }
 
-    public static int s(e1$a e1_a, String str) {
-        for (int i = 0; i < ((b.i.a.f.h.l.e1) e1_a.k).P0(); i++) {
-            if (str.equals(((b.i.a.f.h.l.e1) e1_a.k).h0(i).D())) {
+    public static int s(b.i.a.f.h.l.e1.a aVar, String str) {
+        for (int i = 0; i < ((b.i.a.f.h.l.e1) aVar.k).P0(); i++) {
+            if (str.equals(((b.i.a.f.h.l.e1) aVar.k).h0(i).D())) {
                 return i;
             }
         }
@@ -617,7 +610,7 @@ public final class q9 extends i9 {
         return 0L;
     }
 
-    public final <T extends Parcelable> T u(byte[] bArr, Parcelable$Creator<T> parcelable$Creator) {
+    public final <T extends Parcelable> T u(byte[] bArr, Parcelable.Creator<T> creator) {
         if (bArr == null) {
             return null;
         }
@@ -625,7 +618,7 @@ public final class q9 extends i9 {
         try {
             parcelObtain.unmarshall(bArr, 0, bArr.length);
             parcelObtain.setDataPosition(0);
-            return parcelable$Creator.createFromParcel(parcelObtain);
+            return creator.createFromParcel(parcelObtain);
         } catch (SafeParcelReader$ParseException unused) {
             g().f.a("Failed to load parcelable from buffer");
             return null;
@@ -635,22 +628,22 @@ public final class q9 extends i9 {
     }
 
     public final b.i.a.f.h.l.a1 v(m mVar) {
-        a1$a a1_aM = b.i.a.f.h.l.a1.M();
+        b.i.a.f.h.l.a1.a aVarM = b.i.a.f.h.l.a1.M();
         long j = mVar.e;
-        if (a1_aM.l) {
-            a1_aM.n();
-            a1_aM.l = false;
+        if (aVarM.l) {
+            aVarM.n();
+            aVarM.l = false;
         }
-        b.i.a.f.h.l.a1.E((b.i.a.f.h.l.a1) a1_aM.k, j);
+        b.i.a.f.h.l.a1.E((b.i.a.f.h.l.a1) aVarM.k, j);
         zzap zzapVar = mVar.f;
         Objects.requireNonNull(zzapVar);
         for (String str : zzapVar.j.keySet()) {
-            c1$a c1_aQ = b.i.a.f.h.l.c1.Q();
-            c1_aQ.s(str);
-            F(c1_aQ, mVar.f.w0(str));
-            a1_aM.s(c1_aQ);
+            b.i.a.f.h.l.c1.a aVarQ = b.i.a.f.h.l.c1.Q();
+            aVarQ.s(str);
+            F(aVarQ, mVar.f.w0(str));
+            aVarM.s(aVarQ);
         }
-        return (b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) a1_aM.p());
+        return (b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) aVarM.p());
     }
 
     public static b.i.a.f.h.l.c1 w(b.i.a.f.h.l.a1 a1Var, String str) {
@@ -676,15 +669,15 @@ public final class q9 extends i9 {
         if (h4VarB != null) {
             b.i.a.f.h.l.n3 n3Var = (b.i.a.f.h.l.n3) builder;
             Objects.requireNonNull(n3Var);
-            u4$b u4_b = (u4$b) n3Var;
-            u4_b.m(bArr, bArr.length, h4VarB);
-            return u4_b;
+            b.i.a.f.h.l.u4.b bVar = (b.i.a.f.h.l.u4.b) n3Var;
+            bVar.m(bArr, bArr.length, h4VarB);
+            return bVar;
         }
         b.i.a.f.h.l.n3 n3Var2 = (b.i.a.f.h.l.n3) builder;
         Objects.requireNonNull(n3Var2);
-        u4$b u4_b2 = (u4$b) n3Var2;
-        u4_b2.m(bArr, bArr.length, b.i.a.f.h.l.h4.a());
-        return u4_b2;
+        b.i.a.f.h.l.u4.b bVar2 = (b.i.a.f.h.l.u4.b) n3Var2;
+        bVar2.m(bArr, bArr.length, b.i.a.f.h.l.h4.a());
+        return bVar2;
     }
 
     public final String y(b.i.a.f.h.l.o0 o0Var) {

@@ -1,14 +1,14 @@
 package b.i.a.f.i.b;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.measurement.internal.zzap;
 import com.google.android.gms.measurement.internal.zzaq;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-impl@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class q implements Parcelable$Creator<zzaq> {
-    @Override // android.os.Parcelable$Creator
+public final class q implements Parcelable.Creator<zzaq> {
+    @Override // android.os.Parcelable.Creator
     public final zzaq createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         String strR = null;
@@ -34,7 +34,7 @@ public final class q implements Parcelable$Creator<zzaq> {
         return new zzaq(strR, zzapVar, strR2, jH1);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zzaq[] newArray(int i) {
         return new zzaq[i];
     }

@@ -18,7 +18,13 @@ public class w {
     public final String i;
     public final int j;
 
-    public w(w$b w_b, w$a w_a) {
+    /* JADX INFO: compiled from: PoolConfig.java */
+    public class b {
+        public b(a aVar) {
+        }
+    }
+
+    public w(b bVar, a aVar) {
         b.f.j.r.b.b();
         this.a = j.a();
         this.f600b = v.h();

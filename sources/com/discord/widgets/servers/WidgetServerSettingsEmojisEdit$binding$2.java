@@ -2,7 +2,7 @@ package com.discord.widgets.servers;
 
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetServerSettingsEmojisEditBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -27,11 +27,11 @@ public final /* synthetic */ class WidgetServerSettingsEmojisEdit$binding$2 exte
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetServerSettingsEmojisEditBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.server_settings_emojis_edit_alias;
-        TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.server_settings_emojis_edit_alias);
+        int i = R.id.server_settings_emojis_edit_alias;
+        TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.server_settings_emojis_edit_alias);
         if (textInputLayout != null) {
-            i = R$id.server_settings_emojis_edit_alias_save;
-            FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R$id.server_settings_emojis_edit_alias_save);
+            i = R.id.server_settings_emojis_edit_alias_save;
+            FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.server_settings_emojis_edit_alias_save);
             if (floatingActionButton != null) {
                 return new WidgetServerSettingsEmojisEditBinding((CoordinatorLayout) view, textInputLayout, floatingActionButton);
             }

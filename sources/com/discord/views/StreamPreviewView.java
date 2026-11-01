@@ -9,15 +9,12 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.annotation.MainThread;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import b.a.i.z3;
 import b.a.k.b;
-import com.discord.R$id;
-import com.discord.R$layout;
-import com.discord.stores.StoreApplicationStreamPreviews$StreamPreview;
-import com.discord.stores.StoreApplicationStreamPreviews$StreamPreview$Fetching;
-import com.discord.stores.StoreApplicationStreamPreviews$StreamPreview$Resolved;
-import com.discord.utilities.streams.StreamContext$Joinability;
+import com.discord.R;
+import com.discord.stores.StoreApplicationStreamPreviews;
+import com.discord.utilities.streams.StreamContext;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.facebook.drawee.view.SimpleDraweeView;
 import d0.z.d.m;
@@ -34,16 +31,16 @@ public final class StreamPreviewView extends FrameLayout {
     public StreamPreviewView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         m.checkNotNullParameter(context, "context");
-        View viewInflate = LayoutInflater.from(getContext()).inflate(R$layout.view_stream_preview, (ViewGroup) this, false);
+        View viewInflate = LayoutInflater.from(getContext()).inflate(R.layout.view_stream_preview, (ViewGroup) this, false);
         addView(viewInflate);
-        int i = R$id.stream_preview_image;
-        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate.findViewById(R$id.stream_preview_image);
+        int i = R.id.stream_preview_image;
+        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate.findViewById(R.id.stream_preview_image);
         if (simpleDraweeView != null) {
-            i = R$id.stream_preview_overlay_text;
-            TextView textView = (TextView) viewInflate.findViewById(R$id.stream_preview_overlay_text);
+            i = R.id.stream_preview_overlay_text;
+            TextView textView = (TextView) viewInflate.findViewById(R.id.stream_preview_overlay_text);
             if (textView != null) {
-                i = R$id.stream_preview_placeholder_caption;
-                TextView textView2 = (TextView) viewInflate.findViewById(R$id.stream_preview_placeholder_caption);
+                i = R.id.stream_preview_placeholder_caption;
+                TextView textView2 = (TextView) viewInflate.findViewById(R.id.stream_preview_placeholder_caption);
                 if (textView2 != null) {
                     z3 z3Var = new z3((ConstraintLayout) viewInflate, simpleDraweeView, textView, textView2);
                     m.checkNotNullExpressionValue(z3Var, "ViewStreamPreviewBinding…rom(context), this, true)");
@@ -59,42 +56,42 @@ public final class StreamPreviewView extends FrameLayout {
     }
 
     @MainThread
-    public final void a(StoreApplicationStreamPreviews$StreamPreview preview, StreamContext$Joinability joinability, boolean isAlreadyWatchingStream) {
+    public final void a(StoreApplicationStreamPreviews.StreamPreview preview, StreamContext.Joinability joinability, boolean isAlreadyWatchingStream) {
         m.checkNotNullParameter(preview, "preview");
         m.checkNotNullParameter(joinability, "joinability");
-        if (preview instanceof StoreApplicationStreamPreviews$StreamPreview$Fetching) {
-            setCaptionText(getContext().getString(2131896041));
+        if (preview instanceof StoreApplicationStreamPreviews.StreamPreview.Fetching) {
+            setCaptionText(getContext().getString(R.string.stream_preview_loading));
         } else {
-            if (!(preview instanceof StoreApplicationStreamPreviews$StreamPreview$Resolved)) {
+            if (!(preview instanceof StoreApplicationStreamPreviews.StreamPreview.Resolved)) {
                 throw new NoWhenBranchMatchedException();
             }
-            StoreApplicationStreamPreviews$StreamPreview$Resolved storeApplicationStreamPreviews$StreamPreview$Resolved = (StoreApplicationStreamPreviews$StreamPreview$Resolved) preview;
-            if (storeApplicationStreamPreviews$StreamPreview$Resolved.getUrl() != null) {
-                setImage(storeApplicationStreamPreviews$StreamPreview$Resolved.getUrl());
+            StoreApplicationStreamPreviews.StreamPreview.Resolved resolved = (StoreApplicationStreamPreviews.StreamPreview.Resolved) preview;
+            if (resolved.getUrl() != null) {
+                setImage(resolved.getUrl());
                 setCaptionText(null);
             } else {
                 setImage(null);
-                if (joinability == StreamContext$Joinability.CAN_CONNECT) {
-                    setCaptionText(getContext().getString(2131896026));
+                if (joinability == StreamContext.Joinability.CAN_CONNECT) {
+                    setCaptionText(getContext().getString(R.string.stream_no_preview));
                 } else {
                     setCaptionText(null);
                 }
             }
         }
         if (isAlreadyWatchingStream) {
-            setOverlayCaptionText(b.j(this, 2131897199, new Object[0], null, 4));
+            setOverlayCaptionText(b.j(this, R.string.watch_stream_watching, new Object[0], null, 4));
             return;
         }
         int iOrdinal = joinability.ordinal();
         if (iOrdinal == 0) {
-            setOverlayCaptionText(b.j(this, 2131892394, new Object[0], null, 4));
+            setOverlayCaptionText(b.j(this, R.string.join_stream, new Object[0], null, 4));
         } else if (iOrdinal == 1) {
-            setOverlayCaptionText(b.j(this, 2131896558, new Object[0], null, 4));
+            setOverlayCaptionText(b.j(this, R.string.unable_to_join_channel_full, new Object[0], null, 4));
         } else {
             if (iOrdinal != 2) {
                 throw new NoWhenBranchMatchedException();
             }
-            setOverlayCaptionText(b.j(this, 2131887550, new Object[0], null, 4));
+            setOverlayCaptionText(b.j(this, R.string.channel_locked_short, new Object[0], null, 4));
         }
     }
 

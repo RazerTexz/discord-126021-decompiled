@@ -9,13 +9,13 @@ import kotlin.jvm.functions.Function0;
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreGuildRoleMemberCounts$fetchGuildRoleMemberCountsIfNecessary$1$$special$$inlined$let$lambda$1 extends o implements Function0<Unit> {
     public final /* synthetic */ Map $it;
-    public final /* synthetic */ StoreGuildRoleMemberCounts$fetchGuildRoleMemberCountsIfNecessary$1 this$0;
+    public final /* synthetic */ StoreGuildRoleMemberCounts.AnonymousClass1 this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public StoreGuildRoleMemberCounts$fetchGuildRoleMemberCountsIfNecessary$1$$special$$inlined$let$lambda$1(Map map, StoreGuildRoleMemberCounts$fetchGuildRoleMemberCountsIfNecessary$1 storeGuildRoleMemberCounts$fetchGuildRoleMemberCountsIfNecessary$1) {
+    public StoreGuildRoleMemberCounts$fetchGuildRoleMemberCountsIfNecessary$1$$special$$inlined$let$lambda$1(Map map, StoreGuildRoleMemberCounts.AnonymousClass1 anonymousClass1) {
         super(0);
         this.$it = map;
-        this.this$0 = storeGuildRoleMemberCounts$fetchGuildRoleMemberCountsIfNecessary$1;
+        this.this$0 = anonymousClass1;
     }
 
     @Override // kotlin.jvm.functions.Function0
@@ -26,7 +26,7 @@ public final class StoreGuildRoleMemberCounts$fetchGuildRoleMemberCountsIfNecess
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2() {
-        StoreGuildRoleMemberCounts.access$getGuildRoleMemberCounts$p(this.this$0.this$0).put(Long.valueOf(this.this$0.$guildId), this.$it);
-        this.this$0.this$0.markChanged();
+        StoreGuildRoleMemberCounts.access$getGuildRoleMemberCounts$p(StoreGuildRoleMemberCounts.this).put(Long.valueOf(this.this$0.$guildId), this.$it);
+        StoreGuildRoleMemberCounts.this.markChanged();
     }
 }

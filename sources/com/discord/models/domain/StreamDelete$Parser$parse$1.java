@@ -9,14 +9,14 @@ import rx.functions.Action1;
 /* JADX INFO: compiled from: ModelApplicationStream.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class StreamDelete$Parser$parse$1<T> implements Action1<String> {
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
     public final /* synthetic */ Ref$ObjectRef $reasonStr;
     public final /* synthetic */ Ref$ObjectRef $streamKey;
     public final /* synthetic */ Ref$ObjectRef $unavailable;
 
-    public StreamDelete$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model$JsonReader model$JsonReader, Ref$ObjectRef ref$ObjectRef2, Ref$ObjectRef ref$ObjectRef3) {
+    public StreamDelete$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model.JsonReader jsonReader, Ref$ObjectRef ref$ObjectRef2, Ref$ObjectRef ref$ObjectRef3) {
         this.$streamKey = ref$ObjectRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
         this.$reasonStr = ref$ObjectRef2;
         this.$unavailable = ref$ObjectRef3;
     }

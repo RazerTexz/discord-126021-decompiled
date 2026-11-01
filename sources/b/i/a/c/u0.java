@@ -3,7 +3,7 @@ package b.i.a.c;
 /* JADX INFO: compiled from: BasePlayer.java */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class u0 implements y1 {
-    public final o2$c a = new o2$c();
+    public final o2.c a = new o2.c();
 
     @Override // b.i.a.c.y1
     public final boolean D(int i) {

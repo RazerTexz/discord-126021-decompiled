@@ -6,7 +6,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.widgets.botuikit.views.ActionRowComponentView;
 import com.google.android.flexbox.FlexboxLayout;
 
@@ -32,17 +32,17 @@ public final class a5 implements ViewBinding {
 
     @NonNull
     public static a5 a(@NonNull View view) {
-        int i = R$id.action_row_component_view_group;
-        FlexboxLayout flexboxLayout = (FlexboxLayout) view.findViewById(R$id.action_row_component_view_group);
+        int i = R.id.action_row_component_view_group;
+        FlexboxLayout flexboxLayout = (FlexboxLayout) view.findViewById(R.id.action_row_component_view_group);
         if (flexboxLayout != null) {
-            i = R$id.action_row_component_view_group_error_row;
-            View viewFindViewById = view.findViewById(R$id.action_row_component_view_group_error_row);
+            i = R.id.action_row_component_view_group_error_row;
+            View viewFindViewById = view.findViewById(R.id.action_row_component_view_group_error_row);
             if (viewFindViewById != null) {
-                int i2 = R$id.view_interaction_failed_label_icon;
-                ImageView imageView = (ImageView) viewFindViewById.findViewById(R$id.view_interaction_failed_label_icon);
+                int i2 = R.id.view_interaction_failed_label_icon;
+                ImageView imageView = (ImageView) viewFindViewById.findViewById(R.id.view_interaction_failed_label_icon);
                 if (imageView != null) {
-                    i2 = R$id.view_interaction_failed_label_message;
-                    TextView textView = (TextView) viewFindViewById.findViewById(R$id.view_interaction_failed_label_message);
+                    i2 = R.id.view_interaction_failed_label_message;
+                    TextView textView = (TextView) viewFindViewById.findViewById(R.id.view_interaction_failed_label_message);
                     if (textView != null) {
                         return new a5((ActionRowComponentView) view, flexboxLayout, new m2((ConstraintLayout) viewFindViewById, imageView, textView));
                     }

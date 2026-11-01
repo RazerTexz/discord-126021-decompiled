@@ -2,13 +2,13 @@ package b.i.a.f.e;
 
 import android.os.IBinder;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.common.zzs;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class e0 implements Parcelable$Creator<zzs> {
-    @Override // android.os.Parcelable$Creator
+public final class e0 implements Parcelable.Creator<zzs> {
+    @Override // android.os.Parcelable.Creator
     public final zzs createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         boolean zE1 = false;
@@ -34,7 +34,7 @@ public final class e0 implements Parcelable$Creator<zzs> {
         return new zzs(strR, iBinderF1, zE1, zE2);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* bridge */ /* synthetic */ zzs[] newArray(int i) {
         return new zzs[i];
     }

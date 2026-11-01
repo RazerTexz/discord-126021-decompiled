@@ -4,7 +4,6 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import b.i.a.c.f3.e0;
 import b.i.a.c.j1;
-import b.i.a.c.j1$b;
 import com.google.android.exoplayer2.metadata.Metadata;
 import com.google.android.exoplayer2.metadata.flac.PictureFrame;
 import com.google.android.exoplayer2.metadata.flac.VorbisComment;
@@ -29,10 +28,23 @@ public final class o {
     public final long j;
 
     @Nullable
-    public final o$a k;
+    public final a k;
 
     @Nullable
     public final Metadata l;
+
+    /* JADX INFO: compiled from: FlacStreamMetadata.java */
+    public class a {
+        public final long[] a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final long[] f1293b;
+
+        public a(long[] jArr, long[] jArr2) {
+            this.a = jArr;
+            this.f1293b = jArr2;
+        }
+    }
 
     public o(byte[] bArr, int i) {
         b.i.a.c.f3.w wVar = new b.i.a.c.f3.w(bArr);
@@ -76,8 +88,8 @@ public final class o {
         return new Metadata(arrayList);
     }
 
-    public o b(@Nullable o$a o_a) {
-        return new o(this.a, this.f1292b, this.c, this.d, this.e, this.g, this.h, this.j, o_a, this.l);
+    public o b(@Nullable a aVar) {
+        return new o(this.a, this.f1292b, this.c, this.d, this.e, this.g, this.h, this.j, aVar, this.l);
     }
 
     public static int c(int i) {
@@ -111,14 +123,14 @@ public final class o {
             i = -1;
         }
         Metadata metadataF = f(metadata);
-        j1$b j1_b = new j1$b();
-        j1_b.k = "audio/flac";
-        j1_b.l = i;
-        j1_b.f1023x = this.g;
-        j1_b.f1024y = this.e;
-        j1_b.m = Collections.singletonList(bArr);
-        j1_b.i = metadataF;
-        return j1_b.a();
+        j1.b bVar = new j1.b();
+        bVar.k = "audio/flac";
+        bVar.l = i;
+        bVar.f1023x = this.g;
+        bVar.f1024y = this.e;
+        bVar.m = Collections.singletonList(bArr);
+        bVar.i = metadataF;
+        return bVar.a();
     }
 
     @Nullable
@@ -163,7 +175,7 @@ public final class o {
         }
     }
 
-    public o(int i, int i2, int i3, int i4, int i5, int i6, int i7, long j, @Nullable o$a o_a, @Nullable Metadata metadata) {
+    public o(int i, int i2, int i3, int i4, int i5, int i6, int i7, long j, @Nullable a aVar, @Nullable Metadata metadata) {
         this.a = i;
         this.f1292b = i2;
         this.c = i3;
@@ -174,7 +186,7 @@ public final class o {
         this.h = i7;
         this.i = c(i7);
         this.j = j;
-        this.k = o_a;
+        this.k = aVar;
         this.l = metadata;
     }
 }

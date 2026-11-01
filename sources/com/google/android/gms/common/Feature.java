@@ -1,7 +1,7 @@
 package com.google.android.gms.common;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import androidx.annotation.RecentlyNonNull;
 import b.c.a.a0.d;
@@ -16,7 +16,7 @@ import java.util.Arrays;
 public class Feature extends AbstractSafeParcelable {
 
     @RecentlyNonNull
-    public static final Parcelable$Creator<Feature> CREATOR = new r();
+    public static final Parcelable.Creator<Feature> CREATOR = new r();
     public final String j;
 
     @Deprecated

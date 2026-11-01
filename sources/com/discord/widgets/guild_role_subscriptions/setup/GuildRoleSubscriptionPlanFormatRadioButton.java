@@ -8,7 +8,7 @@ import android.widget.Checkable;
 import android.widget.ImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
-import com.discord.R$a;
+import com.discord.R;
 import com.discord.databinding.ViewGuildRoleSubscriptionPlanFormatRadioButtonBinding;
 import com.google.android.material.radiobutton.MaterialRadioButton;
 import d0.z.d.m;
@@ -17,7 +17,6 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: GuildRoleSubscriptionPlanFormatRadioButton.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class GuildRoleSubscriptionPlanFormatRadioButton extends ConstraintLayout implements Checkable {
-    public static final GuildRoleSubscriptionPlanFormatRadioButton$Companion Companion = new GuildRoleSubscriptionPlanFormatRadioButton$Companion(null);
     private static final int ENTIRE_SERVER_FORMAT_TYPE = 0;
     private static final int SOME_CHANNELS_FORMAT_TYPE = 1;
     private final ViewGuildRoleSubscriptionPlanFormatRadioButtonBinding binding;
@@ -34,16 +33,16 @@ public final class GuildRoleSubscriptionPlanFormatRadioButton extends Constraint
 
     private final void configureUI(int formatType) {
         if (formatType == 0) {
-            this.binding.d.setText(2131890499);
-            this.binding.c.setText(2131890498);
-            this.binding.e.setImageResource(2131231892);
+            this.binding.d.setText(R.string.guild_role_subscription_format_all_channels_name);
+            this.binding.c.setText(R.string.guild_role_subscription_format_all_channels_description);
+            this.binding.e.setImageResource(R.drawable.ic_key_24dp);
         } else {
             if (formatType != 1) {
                 return;
             }
-            this.binding.d.setText(2131890502);
-            this.binding.c.setText(2131890501);
-            this.binding.e.setImageResource(2131231630);
+            this.binding.d.setText(R.string.guild_role_subscription_format_some_channels_name);
+            this.binding.c.setText(R.string.guild_role_subscription_format_some_channels_description);
+            this.binding.e.setImageResource(R.drawable.ic_channel_text);
         }
     }
 
@@ -55,12 +54,12 @@ public final class GuildRoleSubscriptionPlanFormatRadioButton extends Constraint
     }
 
     private final void initialize(AttributeSet attrs) {
-        int dimensionPixelSize = getResources().getDimensionPixelSize(2131165456);
+        int dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.guild_role_subscription_setup_default_padding);
         setPadding(dimensionPixelSize, dimensionPixelSize, dimensionPixelSize, dimensionPixelSize);
-        setBackground(ContextCompat.getDrawable(getContext(), 2131230999));
+        setBackground(ContextCompat.getDrawable(getContext(), R.drawable.bg_guild_role_subscription_plan_format_radio_button));
         Context context = getContext();
         m.checkNotNullExpressionValue(context, "context");
-        int[] iArr = R$a.GuildRoleSubscriptionPlanFormatRadioButton;
+        int[] iArr = R.a.GuildRoleSubscriptionPlanFormatRadioButton;
         m.checkNotNullExpressionValue(iArr, "R.styleable.GuildRoleSub…tionPlanFormatRadioButton");
         TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attrs, iArr);
         m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(attrs, styleable)");

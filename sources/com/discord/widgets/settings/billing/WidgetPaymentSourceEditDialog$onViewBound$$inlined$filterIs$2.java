@@ -13,6 +13,6 @@ public final class WidgetPaymentSourceEditDialog$onViewBound$$inlined$filterIs$2
     @Override // j0.k.b
     public final T call(Object obj) {
         Objects.requireNonNull(obj, "null cannot be cast to non-null type com.discord.widgets.settings.billing.SettingsBillingViewModel.ViewState.Loaded");
-        return (T) ((SettingsBillingViewModel$ViewState$Loaded) obj);
+        return (T) ((SettingsBillingViewModel.ViewState.Loaded) obj);
     }
 }

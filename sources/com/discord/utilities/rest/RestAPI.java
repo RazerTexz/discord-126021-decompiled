@@ -1,7 +1,9 @@
 package com.discord.utilities.rest;
 
+import android.content.Context;
 import android.util.Base64;
 import androidx.core.app.NotificationCompat;
+import com.discord.BuildConfig;
 import com.discord.api.activity.ActivityActionConfirmation;
 import com.discord.api.activity.ActivityMetadata;
 import com.discord.api.application.Application;
@@ -17,6 +19,7 @@ import com.discord.api.auth.mfa.GetBackupCodesSendVerificationKeyResponse;
 import com.discord.api.auth.mfa.GetBackupCodesVerificationRequestBody;
 import com.discord.api.bugreport.BugReportConfig;
 import com.discord.api.channel.Channel;
+import com.discord.api.channel.ChannelUtils;
 import com.discord.api.commands.ApplicationCommand;
 import com.discord.api.commands.ApplicationCommandData;
 import com.discord.api.connectedaccounts.ConnectedAccount;
@@ -75,7 +78,7 @@ import com.discord.models.domain.ModelAppliedGuildBoost;
 import com.discord.models.domain.ModelAuditLog;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.ModelBan;
-import com.discord.models.domain.ModelCall$Ringable;
+import com.discord.models.domain.ModelCall;
 import com.discord.models.domain.ModelChannelFollowerStatsDto;
 import com.discord.models.domain.ModelConnectionAccessToken;
 import com.discord.models.domain.ModelConnectionState;
@@ -117,164 +120,539 @@ import com.discord.models.gifpicker.dto.TrendingGifCategoriesResponseDto;
 import com.discord.models.sticker.dto.ModelStickerPack;
 import com.discord.models.sticker.dto.ModelStickerStoreDirectory;
 import com.discord.models.user.User;
+import com.discord.restapi.BreadcrumbInterceptor;
 import com.discord.restapi.PayloadJSON;
+import com.discord.restapi.RequiredHeadersInterceptor;
+import com.discord.restapi.RestAPIBuilder;
 import com.discord.restapi.RestAPIInterface;
-import com.discord.restapi.RestAPIInterface$Dynamic;
-import com.discord.restapi.RestAPIInterface$Files;
-import com.discord.restapi.RestAPIInterface$RtcLatency;
-import com.discord.restapi.RestAPIParams$ActivateMfaSMS;
-import com.discord.restapi.RestAPIParams$AddServerBody;
-import com.discord.restapi.RestAPIParams$ApplicationCommand;
-import com.discord.restapi.RestAPIParams$AuthLogin;
-import com.discord.restapi.RestAPIParams$AuthRegister;
-import com.discord.restapi.RestAPIParams$AuthRegisterPhone;
-import com.discord.restapi.RestAPIParams$AuthorizeIP;
-import com.discord.restapi.RestAPIParams$BanGuildMember;
-import com.discord.restapi.RestAPIParams$CaptchaCode;
-import com.discord.restapi.RestAPIParams$ChannelFollowerPost;
-import com.discord.restapi.RestAPIParams$ChannelMessagesAck;
-import com.discord.restapi.RestAPIParams$ChannelPermissionOverwrites;
-import com.discord.restapi.RestAPIParams$ChannelPosition;
-import com.discord.restapi.RestAPIParams$ChannelVoiceStateUpdate;
-import com.discord.restapi.RestAPIParams$ComponentInteraction;
-import com.discord.restapi.RestAPIParams$ConnectedAccount;
-import com.discord.restapi.RestAPIParams$ConnectedAccountContacts;
-import com.discord.restapi.RestAPIParams$ConnectedAccountNameOnly;
-import com.discord.restapi.RestAPIParams$ConnectionState;
-import com.discord.restapi.RestAPIParams$Consents;
-import com.discord.restapi.RestAPIParams$CreateChannel;
-import com.discord.restapi.RestAPIParams$CreateGuild;
-import com.discord.restapi.RestAPIParams$CreateGuildChannel;
-import com.discord.restapi.RestAPIParams$CreateGuildFromTemplate;
-import com.discord.restapi.RestAPIParams$CreateGuildRoleSubscriptionGroupListing;
-import com.discord.restapi.RestAPIParams$CreateGuildRoleSubscriptionTierListing;
-import com.discord.restapi.RestAPIParams$CreateGuildScheduledEventBody;
-import com.discord.restapi.RestAPIParams$DeleteGuild;
-import com.discord.restapi.RestAPIParams$DeletePhone;
-import com.discord.restapi.RestAPIParams$DisableAccount;
-import com.discord.restapi.RestAPIParams$DisableGuildCommunication;
-import com.discord.restapi.RestAPIParams$DowngradeSubscriptionBody;
-import com.discord.restapi.RestAPIParams$EmptyBody;
-import com.discord.restapi.RestAPIParams$EnableIntegration;
-import com.discord.restapi.RestAPIParams$EnableMFA;
-import com.discord.restapi.RestAPIParams$ForgotPassword;
-import com.discord.restapi.RestAPIParams$GenerateGiftCode;
-import com.discord.restapi.RestAPIParams$GetForumPostData;
-import com.discord.restapi.RestAPIParams$GreetMessage;
-import com.discord.restapi.RestAPIParams$GroupDM;
-import com.discord.restapi.RestAPIParams$GuildBoosting;
-import com.discord.restapi.RestAPIParams$GuildFeatureAck;
-import com.discord.restapi.RestAPIParams$GuildIntegration;
-import com.discord.restapi.RestAPIParams$GuildMFA;
-import com.discord.restapi.RestAPIParams$GuildMember;
-import com.discord.restapi.RestAPIParams$GuildMemberDisconnect;
-import com.discord.restapi.RestAPIParams$HubWaitlist;
-import com.discord.restapi.RestAPIParams$Invite;
-import com.discord.restapi.RestAPIParams$InviteCode;
-import com.discord.restapi.RestAPIParams$InvoicePreviewBody;
-import com.discord.restapi.RestAPIParams$LeaveGuildBody;
-import com.discord.restapi.RestAPIParams$MFALogin;
-import com.discord.restapi.RestAPIParams$MemberVerificationForm;
-import com.discord.restapi.RestAPIParams$Message;
-import com.discord.restapi.RestAPIParams$ModalInteraction;
-import com.discord.restapi.RestAPIParams$Nick;
-import com.discord.restapi.RestAPIParams$OAuth2Authorize$ResponseGet;
-import com.discord.restapi.RestAPIParams$OAuth2Authorize$ResponsePost;
-import com.discord.restapi.RestAPIParams$PatchGuildEmoji;
-import com.discord.restapi.RestAPIParams$Phone;
-import com.discord.restapi.RestAPIParams$PostGuildEmoji;
-import com.discord.restapi.RestAPIParams$PruneGuild;
-import com.discord.restapi.RestAPIParams$PurchaseMetadataBody;
-import com.discord.restapi.RestAPIParams$RemoteAuthCancel;
-import com.discord.restapi.RestAPIParams$RemoteAuthFinish;
-import com.discord.restapi.RestAPIParams$RemoteAuthInitialize;
-import com.discord.restapi.RestAPIParams$Report;
-import com.discord.restapi.RestAPIParams$Ring;
-import com.discord.restapi.RestAPIParams$Role;
-import com.discord.restapi.RestAPIParams$StartStageInstanceBody;
-import com.discord.restapi.RestAPIParams$TextChannel;
-import com.discord.restapi.RestAPIParams$ThreadCreationSettings;
-import com.discord.restapi.RestAPIParams$ThreadMemberSettings;
-import com.discord.restapi.RestAPIParams$ThreadSettings;
-import com.discord.restapi.RestAPIParams$Thumbnail;
-import com.discord.restapi.RestAPIParams$TopicalChannel;
-import com.discord.restapi.RestAPIParams$TransferGuildOwnership;
-import com.discord.restapi.RestAPIParams$UpdateGuild;
-import com.discord.restapi.RestAPIParams$UpdateGuildRoleSubscriptionGroupListing;
-import com.discord.restapi.RestAPIParams$UpdateGuildRoleSubscriptionTierFreeTrial;
-import com.discord.restapi.RestAPIParams$UpdateGuildRoleSubscriptionTierListing;
-import com.discord.restapi.RestAPIParams$UpdateGuildScheduledEventBody;
-import com.discord.restapi.RestAPIParams$UpdateStageInstanceBody;
-import com.discord.restapi.RestAPIParams$UpdateSubscription;
-import com.discord.restapi.RestAPIParams$UploadContacts;
-import com.discord.restapi.RestAPIParams$UserAgreements;
-import com.discord.restapi.RestAPIParams$UserBulkRelationship;
-import com.discord.restapi.RestAPIParams$UserDevices;
-import com.discord.restapi.RestAPIParams$UserEmailConfirmCode;
-import com.discord.restapi.RestAPIParams$UserGuildSettings;
-import com.discord.restapi.RestAPIParams$UserInfo;
-import com.discord.restapi.RestAPIParams$UserNoteUpdate;
-import com.discord.restapi.RestAPIParams$UserRelationship;
-import com.discord.restapi.RestAPIParams$UserRelationship$Add;
-import com.discord.restapi.RestAPIParams$UserSettings;
-import com.discord.restapi.RestAPIParams$UserSettingsCustomStatus;
-import com.discord.restapi.RestAPIParams$VanityUrl;
-import com.discord.restapi.RestAPIParams$VerificationCode;
-import com.discord.restapi.RestAPIParams$VerificationCodeOnly;
-import com.discord.restapi.RestAPIParams$VerificationCodeResend;
-import com.discord.restapi.RestAPIParams$VerificationPhoneCode;
-import com.discord.restapi.RestAPIParams$VerifyEmail;
-import com.discord.restapi.RestAPIParams$VerifyEmailCode;
-import com.discord.restapi.RestAPIParams$VerifyPurchaseResponse;
-import com.discord.restapi.RestAPIParams$VerifyPurchaseTokenBody;
-import com.discord.restapi.RestAPIParams$VoiceChannel;
+import com.discord.restapi.RestAPIParams;
+import com.discord.restapi.SpotifyTokenInterceptor;
+import com.discord.stores.StoreChannels;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.analytics.ChatInputComponentTypes;
 import com.discord.utilities.auth.GoogleSmartLockManager;
-import com.discord.utilities.captcha.CaptchaHelper$CaptchaPayload;
+import com.discord.utilities.captcha.CaptchaHelper;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.rx.ObservableExtensionsKt;
+import com.discord.utilities.systemlog.SystemLogUtils;
 import com.discord.utilities.time.Clock;
 import com.discord.utilities.time.ClockFactory;
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.internal.LinkedTreeMap;
 import d0.g0.c;
+import d0.t.n;
+import d0.t.u;
 import d0.z.d.m;
-import i0.f0.a;
-import i0.f0.b;
+import f0.f0.a;
 import i0.f0.f;
 import i0.f0.h;
 import i0.f0.i;
 import i0.f0.l;
-import i0.f0.n;
 import i0.f0.o;
 import i0.f0.p;
-import i0.f0.q;
 import i0.f0.s;
 import i0.f0.t;
+import j0.k.b;
+import j0.l.a.q;
+import j0.l.e.k;
 import java.nio.charset.Charset;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import kotlin.Pair;
 import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import okhttp3.Interceptor;
-import okhttp3.MultipartBody$Part;
+import okhttp3.MultipartBody;
 import org.json.JSONException;
 import org.json.JSONObject;
 import retrofit2.Response;
 import rx.Observable;
+import rx.functions.Action1;
 
 /* JADX INFO: compiled from: RestAPI.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class RestAPI implements RestAPIInterface {
-    public static final RestAPI$Companion Companion = new RestAPI$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final RestAPIInterface _api;
     public static RestAPI api;
-    public static RestAPIInterface$Dynamic apiClientVersions;
-    public static RestAPIInterface$Files apiFiles;
-    public static RestAPIInterface$RtcLatency apiRtcLatency;
+    public static RestAPIInterface.Dynamic apiClientVersions;
+    public static RestAPIInterface.Files apiFiles;
+    public static RestAPIInterface.RtcLatency apiRtcLatency;
     public static RestAPI apiSerializeNulls;
     public static RestAPI apiSpotify;
+
+    /* JADX INFO: renamed from: com.discord.utilities.rest.RestAPI$addGroupRecipients$1, reason: invalid class name */
+    /* JADX INFO: compiled from: RestAPI.kt */
+    public final class AnonymousClass1<T, R> implements b<Channel, Boolean> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Boolean call(Channel channel) {
+            return call2(channel);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Boolean call2(Channel channel) {
+            return Boolean.valueOf(channel != null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.rest.RestAPI$createGroupDM$1, reason: invalid class name */
+    /* JADX INFO: compiled from: RestAPI.kt */
+    public final class AnonymousClass1<T> implements Action1<Channel> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(Channel channel) {
+            call2(channel);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(Channel channel) {
+            StoreChannels channels = StoreStream.INSTANCE.getChannels();
+            m.checkNotNullExpressionValue(channel, "channel");
+            channels.onGroupCreated(channel);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.rest.RestAPI$createOrFetchDM$1, reason: invalid class name */
+    /* JADX INFO: compiled from: RestAPI.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Channel>, Observable<? extends Channel>> {
+        public final /* synthetic */ long $userId;
+
+        /* JADX INFO: renamed from: com.discord.utilities.rest.RestAPI$createOrFetchDM$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: RestAPI.kt */
+        public final class C03411<T> implements Action1<Channel> {
+            public static final C03411 INSTANCE = new C03411();
+
+            @Override // rx.functions.Action1
+            public /* bridge */ /* synthetic */ void call(Channel channel) {
+                call2(channel);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final void call2(Channel channel) {
+                StoreStream.INSTANCE.getGatewaySocket().getChannelCreateOrUpdate().k.onNext(channel);
+            }
+        }
+
+        public AnonymousClass1(long j) {
+            this.$userId = j;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends Channel> call(Map<Long, ? extends Channel> map) {
+            return call2((Map<Long, Channel>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends Channel> call2(Map<Long, Channel> map) {
+            T next;
+            User userA;
+            Iterator<T> it = map.values().iterator();
+            do {
+                if (!it.hasNext()) {
+                    next = (T) null;
+                    break;
+                }
+                next = it.next();
+                userA = ChannelUtils.a((Channel) next);
+            } while (!(userA != null && userA.getId() == this.$userId));
+            Channel channel = next;
+            return channel != null ? new k(channel) : ObservableExtensionsKt.restSubscribeOn$default(RestAPI.access$get_api$p(RestAPI.this).userCreateChannel(new RestAPIParams.CreateChannel(this.$userId)), false, 1, null).u(C03411.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.rest.RestAPI$getClientVersion$1, reason: invalid class name */
+    /* JADX INFO: compiled from: RestAPI.kt */
+    public final class AnonymousClass1<T, R> implements b<JsonObject, Integer> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Integer call(JsonObject jsonObject) {
+            return call2(jsonObject);
+        }
+
+        /* JADX WARN: Code duplicated, block: B:10:0x0019  */
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Integer call2(JsonObject jsonObject) {
+            int iC;
+            if (jsonObject == null) {
+                iC = 0;
+            } else {
+                LinkedTreeMap.e<String, JsonElement> eVarC = jsonObject.a.c("discord_android_min_version");
+                JsonElement jsonElement = eVarC != null ? eVarC.p : null;
+                if (jsonElement != null) {
+                    iC = jsonElement.c();
+                } else {
+                    iC = 0;
+                }
+            }
+            return Integer.valueOf(iC);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.rest.RestAPI$getHarvestStatusGuarded$1, reason: invalid class name */
+    /* JADX INFO: compiled from: RestAPI.kt */
+    public final class AnonymousClass1<T, R> implements b<Harvest, HarvestState> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ HarvestState call(Harvest harvest) {
+            return call2(harvest);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final HarvestState call2(Harvest harvest) {
+            return harvest != null ? new HarvestState.LastRequested(harvest) : new HarvestState.NeverRequested();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.rest.RestAPI$addGroupRecipients$2, reason: invalid class name */
+    /* JADX INFO: compiled from: RestAPI.kt */
+    public final class AnonymousClass2<T, R> implements b<Channel, Observable<? extends Channel>> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ List $recipients;
+
+        public AnonymousClass2(long j, List list) {
+            this.$channelId = j;
+            this.$recipients = list;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends Channel> call(Channel channel) {
+            return call2(channel);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends Channel> call2(Channel channel) {
+            return (channel == null || !ChannelUtils.z(channel)) ? RestAPI.access$get_api$p(RestAPI.this).convertDMToGroup(this.$channelId, ((User) u.first(this.$recipients)).getId()) : new k(channel);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.rest.RestAPI$addGroupRecipients$3, reason: invalid class name */
+    /* JADX INFO: compiled from: RestAPI.kt */
+    public final class AnonymousClass3<T, R> implements b<Channel, Observable<? extends Channel>> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ List $recipients;
+
+        /* JADX INFO: renamed from: com.discord.utilities.rest.RestAPI$addGroupRecipients$3$1, reason: invalid class name */
+        /* JADX INFO: compiled from: RestAPI.kt */
+        public final class AnonymousClass1<T, R> implements b<User, Observable<Void>> {
+            public final /* synthetic */ Channel $channel;
+
+            public AnonymousClass1(Channel channel) {
+                this.$channel = channel;
+            }
+
+            @Override // j0.k.b
+            public /* bridge */ /* synthetic */ Observable<Void> call(User user) {
+                return call2(user);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final Observable<Void> call2(User user) {
+                return RestAPI.access$get_api$p(RestAPI.this).addChannelRecipient(this.$channel.getId(), user.getId());
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.utilities.rest.RestAPI$addGroupRecipients$3$2, reason: invalid class name */
+        /* JADX INFO: compiled from: RestAPI.kt */
+        public final class AnonymousClass2<T, R> implements b<List<Observable<Void>>, Observable<? extends Channel>> {
+            public final /* synthetic */ Channel $channel;
+
+            /* JADX INFO: renamed from: com.discord.utilities.rest.RestAPI$addGroupRecipients$3$2$1, reason: invalid class name */
+            /* JADX INFO: compiled from: RestAPI.kt */
+            public final class AnonymousClass1<T, R> implements b<List<Void>, Channel> {
+                public AnonymousClass1() {
+                }
+
+                @Override // j0.k.b
+                public /* bridge */ /* synthetic */ Channel call(List<Void> list) {
+                    return call2(list);
+                }
+
+                /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+                public final Channel call2(List<Void> list) {
+                    return AnonymousClass2.this.$channel;
+                }
+            }
+
+            public AnonymousClass2(Channel channel) {
+                this.$channel = channel;
+            }
+
+            @Override // j0.k.b
+            public /* bridge */ /* synthetic */ Observable<? extends Channel> call(List<Observable<Void>> list) {
+                return call2(list);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final Observable<? extends Channel> call2(List<Observable<Void>> list) {
+                return Observable.H(Observable.h0(new q(list))).f0().G(new AnonymousClass1());
+            }
+        }
+
+        public AnonymousClass3(long j, List list) {
+            this.$channelId = j;
+            this.$recipients = list;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends Channel> call(Channel channel) {
+            return call2(channel);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends Channel> call2(Channel channel) {
+            List listSubList;
+            if (channel.getId() == this.$channelId) {
+                listSubList = this.$recipients;
+            } else {
+                List list = this.$recipients;
+                listSubList = list.subList(1, list.size());
+            }
+            return Observable.B(listSubList).G(new AnonymousClass1(channel)).f0().Y(new AnonymousClass2(channel));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.rest.RestAPI$addGroupRecipients$4, reason: invalid class name */
+    /* JADX INFO: compiled from: RestAPI.kt */
+    public final class AnonymousClass4<T, R> implements b<Channel, Observable<? extends Channel>> {
+        public static final AnonymousClass4 INSTANCE = new AnonymousClass4();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends Channel> call(Channel channel) {
+            return call2(channel);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends Channel> call2(Channel channel) {
+            Observable<R> observableG = StoreStream.INSTANCE.getChannels().observeChannel(channel.getId()).y(ObservableExtensionsKt.AnonymousClass1.INSTANCE).G(ObservableExtensionsKt.AnonymousClass2.INSTANCE);
+            m.checkNotNullExpressionValue(observableG, "filter { it != null }.map { it!! }");
+            return observableG;
+        }
+    }
+
+    /* JADX INFO: compiled from: RestAPI.kt */
+    public final class AppHeadersProvider implements RequiredHeadersInterceptor.HeadersProvider {
+        public static final AppHeadersProvider INSTANCE = new AppHeadersProvider();
+        public static Function0<String> authTokenProvider = RestAPI$AppHeadersProvider$authTokenProvider$1.INSTANCE;
+        public static Function0<String> fingerprintProvider = RestAPI$AppHeadersProvider$fingerprintProvider$1.INSTANCE;
+        public static Function0<String> localeProvider = RestAPI$AppHeadersProvider$localeProvider$1.INSTANCE;
+        public static Function0<String> acceptLanguageProvider = RestAPI$AppHeadersProvider$acceptLanguageProvider$1.INSTANCE;
+        public static Function0<String> spotifyTokenProvider = RestAPI$AppHeadersProvider$spotifyTokenProvider$1.INSTANCE;
+
+        private AppHeadersProvider() {
+        }
+
+        @Override // com.discord.restapi.RequiredHeadersInterceptor.HeadersProvider
+        public String getAcceptLanguages() {
+            return acceptLanguageProvider.invoke();
+        }
+
+        @Override // com.discord.restapi.RequiredHeadersInterceptor.HeadersProvider
+        public String getAuthToken() {
+            return authTokenProvider.invoke();
+        }
+
+        @Override // com.discord.restapi.RequiredHeadersInterceptor.HeadersProvider
+        public String getFingerprint() {
+            return fingerprintProvider.invoke();
+        }
+
+        @Override // com.discord.restapi.RequiredHeadersInterceptor.HeadersProvider
+        public String getLocale() {
+            return localeProvider.invoke();
+        }
+
+        @Override // com.discord.restapi.RequiredHeadersInterceptor.HeadersProvider
+        public String getSpotifyToken() {
+            return spotifyTokenProvider.invoke();
+        }
+
+        @Override // com.discord.restapi.RequiredHeadersInterceptor.HeadersProvider
+        public String getUserAgent() {
+            return BuildConfig.USER_AGENT;
+        }
+    }
+
+    /* JADX INFO: compiled from: RestAPI.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final Interceptor buildAnalyticsInterceptor() {
+            int i = Interceptor.a;
+            return new RestAPI$Companion$buildAnalyticsInterceptor$$inlined$invoke$1();
+        }
+
+        public final Interceptor buildLoggingInterceptor() {
+            a aVar = new a(new RestAPI$Companion$buildLoggingInterceptor$1());
+            a.EnumC0611a enumC0611a = a.EnumC0611a.BASIC;
+            m.checkParameterIsNotNull(enumC0611a, "<set-?>");
+            aVar.c = enumC0611a;
+            return aVar;
+        }
+
+        public static /* synthetic */ void getApi$annotations() {
+        }
+
+        public final RestAPI getApi() {
+            RestAPI restAPIAccess$getApi$cp = RestAPI.access$getApi$cp();
+            if (restAPIAccess$getApi$cp == null) {
+                m.throwUninitializedPropertyAccessException("api");
+            }
+            return restAPIAccess$getApi$cp;
+        }
+
+        public final RestAPIInterface.Dynamic getApiClientVersions() {
+            RestAPIInterface.Dynamic dynamicAccess$getApiClientVersions$cp = RestAPI.access$getApiClientVersions$cp();
+            if (dynamicAccess$getApiClientVersions$cp == null) {
+                m.throwUninitializedPropertyAccessException("apiClientVersions");
+            }
+            return dynamicAccess$getApiClientVersions$cp;
+        }
+
+        public final RestAPIInterface.Files getApiFiles() {
+            RestAPIInterface.Files filesAccess$getApiFiles$cp = RestAPI.access$getApiFiles$cp();
+            if (filesAccess$getApiFiles$cp == null) {
+                m.throwUninitializedPropertyAccessException("apiFiles");
+            }
+            return filesAccess$getApiFiles$cp;
+        }
+
+        public final RestAPIInterface.RtcLatency getApiRtcLatency() {
+            RestAPIInterface.RtcLatency rtcLatencyAccess$getApiRtcLatency$cp = RestAPI.access$getApiRtcLatency$cp();
+            if (rtcLatencyAccess$getApiRtcLatency$cp == null) {
+                m.throwUninitializedPropertyAccessException("apiRtcLatency");
+            }
+            return rtcLatencyAccess$getApiRtcLatency$cp;
+        }
+
+        public static /* synthetic */ void getApiSerializeNulls$annotations() {
+        }
+
+        public final RestAPI getApiSerializeNulls() {
+            RestAPI restAPIAccess$getApiSerializeNulls$cp = RestAPI.access$getApiSerializeNulls$cp();
+            if (restAPIAccess$getApiSerializeNulls$cp == null) {
+                m.throwUninitializedPropertyAccessException("apiSerializeNulls");
+            }
+            return restAPIAccess$getApiSerializeNulls$cp;
+        }
+
+        public static /* synthetic */ void getApiSpotify$annotations() {
+        }
+
+        public final RestAPI getApiSpotify() {
+            RestAPI restAPIAccess$getApiSpotify$cp = RestAPI.access$getApiSpotify$cp();
+            if (restAPIAccess$getApiSpotify$cp == null) {
+                m.throwUninitializedPropertyAccessException("apiSpotify");
+            }
+            return restAPIAccess$getApiSpotify$cp;
+        }
+
+        public final void init(Context context) {
+            m.checkNotNullParameter(context, "context");
+            AppHeadersProvider appHeadersProvider = AppHeadersProvider.INSTANCE;
+            RequiredHeadersInterceptor requiredHeadersInterceptor = new RequiredHeadersInterceptor(appHeadersProvider);
+            BreadcrumbInterceptor breadcrumbInterceptor = new BreadcrumbInterceptor(AppLog.g);
+            Interceptor interceptorBuildAnalyticsInterceptor = buildAnalyticsInterceptor();
+            Interceptor interceptorBuildLoggingInterceptor = buildLoggingInterceptor();
+            List listMutableListOf = n.mutableListOf(requiredHeadersInterceptor, interceptorBuildAnalyticsInterceptor, buildLoggingInterceptor(), breadcrumbInterceptor);
+            List listListOf = n.listOf((Object[]) new Interceptor[]{interceptorBuildLoggingInterceptor, breadcrumbInterceptor});
+            PersistentCookieJar persistentCookieJar = new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
+            RestAPIBuilder restAPIBuilder = new RestAPIBuilder(BuildConfig.HOST_API, persistentCookieJar);
+            setApi(new RestAPI((RestAPIInterface) RestAPIBuilder.build$default(restAPIBuilder, RestAPIInterface.class, false, 0L, listMutableListOf, "client_base", false, null, 102, null)));
+            setApiSerializeNulls(new RestAPI((RestAPIInterface) RestAPIBuilder.build$default(restAPIBuilder, RestAPIInterface.class, true, 0L, listMutableListOf, "client_serialize_nulls", false, null, 100, null)));
+            setApiClientVersions((RestAPIInterface.Dynamic) RestAPIBuilder.build$default(restAPIBuilder, RestAPIInterface.Dynamic.class, false, 0L, listListOf, "client_dynamic", false, null, 102, null));
+            setApiRtcLatency((RestAPIInterface.RtcLatency) RestAPIBuilder.build$default(restAPIBuilder, RestAPIInterface.RtcLatency.class, false, 0L, listListOf, "client_rtc_latency", false, null, 102, null));
+            setApiSpotify(new RestAPI((RestAPIInterface) RestAPIBuilder.build$default(new RestAPIBuilder("https://api.spotify.com/v1/", persistentCookieJar), RestAPIInterface.class, false, 0L, n.listOf((Object[]) new Interceptor[]{interceptorBuildLoggingInterceptor, new SpotifyTokenInterceptor(appHeadersProvider)}), "client_spotify", false, null, 70, null)));
+            setApiFiles((RestAPIInterface.Files) RestAPIBuilder.build$default(restAPIBuilder, RestAPIInterface.Files.class, false, 0L, d0.t.m.listOf(interceptorBuildLoggingInterceptor), "client_files", false, null, 102, null));
+        }
+
+        public final void setApi(RestAPI restAPI) {
+            m.checkNotNullParameter(restAPI, "<set-?>");
+            RestAPI.access$setApi$cp(restAPI);
+        }
+
+        public final void setApiClientVersions(RestAPIInterface.Dynamic dynamic) {
+            m.checkNotNullParameter(dynamic, "<set-?>");
+            RestAPI.access$setApiClientVersions$cp(dynamic);
+        }
+
+        public final void setApiFiles(RestAPIInterface.Files files) {
+            m.checkNotNullParameter(files, "<set-?>");
+            RestAPI.access$setApiFiles$cp(files);
+        }
+
+        public final void setApiRtcLatency(RestAPIInterface.RtcLatency rtcLatency) {
+            m.checkNotNullParameter(rtcLatency, "<set-?>");
+            RestAPI.access$setApiRtcLatency$cp(rtcLatency);
+        }
+
+        public final void setApiSerializeNulls(RestAPI restAPI) {
+            m.checkNotNullParameter(restAPI, "<set-?>");
+            RestAPI.access$setApiSerializeNulls$cp(restAPI);
+        }
+
+        public final void setApiSpotify(RestAPI restAPI) {
+            m.checkNotNullParameter(restAPI, "<set-?>");
+            RestAPI.access$setApiSpotify$cp(restAPI);
+        }
+
+        public final Observable<Void> uploadSystemLog() {
+            return ObservableExtensionsKt.restSubscribeOn$default(getApi().uploadLog("android_system_log.txt", SystemLogUtils.INSTANCE.fetch()), false, 1, null);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: RestAPI.kt */
+    public abstract class HarvestState {
+
+        /* JADX INFO: compiled from: RestAPI.kt */
+        public final class LastRequested extends HarvestState {
+            private final Harvest data;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public LastRequested(Harvest harvest) {
+                super(null);
+                m.checkNotNullParameter(harvest, "data");
+                this.data = harvest;
+            }
+
+            public final Harvest getData() {
+                return this.data;
+            }
+        }
+
+        /* JADX INFO: compiled from: RestAPI.kt */
+        public final class NeverRequested extends HarvestState {
+            public NeverRequested() {
+                super(null);
+            }
+        }
+
+        private HarvestState() {
+        }
+
+        public /* synthetic */ HarvestState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public RestAPI(RestAPIInterface restAPIInterface) {
         m.checkNotNullParameter(restAPIInterface, "_api");
@@ -298,15 +676,15 @@ public final class RestAPI implements RestAPIInterface {
         return api;
     }
 
-    public static final /* synthetic */ RestAPIInterface$Dynamic access$getApiClientVersions$cp() {
+    public static final /* synthetic */ RestAPIInterface.Dynamic access$getApiClientVersions$cp() {
         return apiClientVersions;
     }
 
-    public static final /* synthetic */ RestAPIInterface$Files access$getApiFiles$cp() {
+    public static final /* synthetic */ RestAPIInterface.Files access$getApiFiles$cp() {
         return apiFiles;
     }
 
-    public static final /* synthetic */ RestAPIInterface$RtcLatency access$getApiRtcLatency$cp() {
+    public static final /* synthetic */ RestAPIInterface.RtcLatency access$getApiRtcLatency$cp() {
         return apiRtcLatency;
     }
 
@@ -326,16 +704,16 @@ public final class RestAPI implements RestAPIInterface {
         api = restAPI;
     }
 
-    public static final /* synthetic */ void access$setApiClientVersions$cp(RestAPIInterface$Dynamic restAPIInterface$Dynamic) {
-        apiClientVersions = restAPIInterface$Dynamic;
+    public static final /* synthetic */ void access$setApiClientVersions$cp(RestAPIInterface.Dynamic dynamic) {
+        apiClientVersions = dynamic;
     }
 
-    public static final /* synthetic */ void access$setApiFiles$cp(RestAPIInterface$Files restAPIInterface$Files) {
-        apiFiles = restAPIInterface$Files;
+    public static final /* synthetic */ void access$setApiFiles$cp(RestAPIInterface.Files files) {
+        apiFiles = files;
     }
 
-    public static final /* synthetic */ void access$setApiRtcLatency$cp(RestAPIInterface$RtcLatency restAPIInterface$RtcLatency) {
-        apiRtcLatency = restAPIInterface$RtcLatency;
+    public static final /* synthetic */ void access$setApiRtcLatency$cp(RestAPIInterface.RtcLatency rtcLatency) {
+        apiRtcLatency = rtcLatency;
     }
 
     public static final /* synthetic */ void access$setApiSerializeNulls$cp(RestAPI restAPI) {
@@ -353,7 +731,7 @@ public final class RestAPI implements RestAPIInterface {
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}/requests/@me/ack")
+    @i0.f0.n("guilds/{guildId}/requests/@me/ack")
     public Observable<Void> ackGuildJoinRequest(@s("guildId") long guildId) {
         return this._api.ackGuildJoinRequest(guildId);
     }
@@ -372,9 +750,9 @@ public final class RestAPI implements RestAPIInterface {
 
     public final Observable<Channel> addGroupRecipients(long channelId, List<? extends User> recipients) {
         m.checkNotNullParameter(recipients, "recipients");
-        Observable<Channel> observableY = StoreStream.Companion.getChannels().observePrivateChannel(channelId).y(RestAPI$addGroupRecipients$1.INSTANCE);
+        Observable<Channel> observableY = StoreStream.INSTANCE.getChannels().observePrivateChannel(channelId).y(AnonymousClass1.INSTANCE);
         m.checkNotNullExpressionValue(observableY, "StoreStream\n          .g…nnel -> channel != null }");
-        Observable observableY2 = ObservableExtensionsKt.takeSingleUntilTimeout$default(observableY, 0L, false, 3, null).Y(new RestAPI$addGroupRecipients$2(this, channelId, recipients)).Y(new RestAPI$addGroupRecipients$3(this, channelId, recipients)).Y(RestAPI$addGroupRecipients$4.INSTANCE);
+        Observable observableY2 = ObservableExtensionsKt.takeSingleUntilTimeout$default(observableY, 0L, false, 3, null).Y(new AnonymousClass2(channelId, recipients)).Y(new AnonymousClass3(channelId, recipients)).Y(AnonymousClass4.INSTANCE);
         m.checkNotNullExpressionValue(observableY2, "StoreStream\n          .g….filterNull()\n          }");
         return ObservableExtensionsKt.takeSingleUntilTimeout$default(observableY2, 0L, false, 3, null);
     }
@@ -386,26 +764,26 @@ public final class RestAPI implements RestAPIInterface {
         return this._api.addReaction(channelId, messageId, reaction);
     }
 
-    public static /* synthetic */ Observable addRelationship$default(RestAPI restAPI, String str, long j, Integer num, String str2, CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload, int i, Object obj) {
-        return restAPI.addRelationship(str, j, (i & 4) != 0 ? null : num, (i & 8) != 0 ? null : str2, (i & 16) != 0 ? null : captchaHelper$CaptchaPayload);
+    public static /* synthetic */ Observable addRelationship$default(RestAPI restAPI, String str, long j, Integer num, String str2, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
+        return restAPI.addRelationship(str, j, (i & 4) != 0 ? null : num, (i & 8) != 0 ? null : str2, (i & 16) != 0 ? null : captchaPayload);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @p("users/@me/relationships/{userId}")
-    public Observable<Void> addRelationship(@s("userId") long userId, @a RestAPIParams$UserRelationship relationship, @i("X-Context-Properties") String context) {
+    public Observable<Void> addRelationship(@s("userId") long userId, @i0.f0.a RestAPIParams.UserRelationship relationship, @i("X-Context-Properties") String context) {
         m.checkNotNullParameter(relationship, "relationship");
         m.checkNotNullParameter(context, "context");
         return this._api.addRelationship(userId, relationship, context);
     }
 
-    public final Observable<Void> addRelationship(String location, long userId, Integer type, String friendToken, CaptchaHelper$CaptchaPayload captchaPayload) {
+    public final Observable<Void> addRelationship(String location, long userId, Integer type, String friendToken, CaptchaHelper.CaptchaPayload captchaPayload) {
         m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        return ObservableExtensionsKt.restSubscribeOn$default(this._api.addRelationship(userId, new RestAPIParams$UserRelationship(type, friendToken, captchaPayload != null ? captchaPayload.getCaptchaKey() : null, captchaPayload != null ? captchaPayload.getCaptchaRqtoken() : null), jsonObjectOf(d0.o.to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, location))), false, 1, null);
+        return ObservableExtensionsKt.restSubscribeOn$default(this._api.addRelationship(userId, new RestAPIParams.UserRelationship(type, friendToken, captchaPayload != null ? captchaPayload.getCaptchaKey() : null, captchaPayload != null ? captchaPayload.getCaptchaRqtoken() : null), jsonObjectOf(d0.o.to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, location))), false, 1, null);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("channels/{channelId}/directory-entry/{guildId}")
-    public Observable<Response<DirectoryEntryGuild>> addServerToHub(@s("channelId") long channelId, @s("guildId") long guildId, @a RestAPIParams$AddServerBody body) {
+    public Observable<Response<DirectoryEntryGuild>> addServerToHub(@s("channelId") long channelId, @s("guildId") long guildId, @i0.f0.a RestAPIParams.AddServerBody body) {
         m.checkNotNullParameter(body, "body");
         return this._api.addServerToHub(channelId, guildId, body);
     }
@@ -419,43 +797,43 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("auth/authorize-ip")
-    public Observable<Response<Void>> authorizeIP(@a RestAPIParams$AuthorizeIP body) {
+    public Observable<Response<Void>> authorizeIP(@i0.f0.a RestAPIParams.AuthorizeIP body) {
         m.checkNotNullParameter(body, "body");
         return this._api.authorizeIP(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @p("guilds/{guildId}/bans/{userId}")
-    public Observable<Void> banGuildMember(@s("guildId") long guildId, @s("userId") long userId, @a RestAPIParams$BanGuildMember body, @i("X-Audit-Log-Reason") String reason) {
+    public Observable<Void> banGuildMember(@s("guildId") long guildId, @s("userId") long userId, @i0.f0.a RestAPIParams.BanGuildMember body, @i("X-Audit-Log-Reason") String reason) {
         m.checkNotNullParameter(body, "body");
         return this._api.banGuildMember(guildId, userId, body, reason);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}/roles")
-    public Observable<Void> batchUpdateRole(@s("guildId") long guildId, @a List<RestAPIParams$Role> body) {
+    @i0.f0.n("guilds/{guildId}/roles")
+    public Observable<Void> batchUpdateRole(@s("guildId") long guildId, @i0.f0.a List<RestAPIParams.Role> body) {
         m.checkNotNullParameter(body, "body");
         return this._api.batchUpdateRole(guildId, body);
     }
 
     public static final Interceptor buildAnalyticsInterceptor() {
-        return Companion.buildAnalyticsInterceptor();
+        return INSTANCE.buildAnalyticsInterceptor();
     }
 
     public static final Interceptor buildLoggingInterceptor() {
-        return Companion.buildLoggingInterceptor();
+        return INSTANCE.buildLoggingInterceptor();
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/relationships/bulk")
-    public Observable<Response<BulkAddFriendsResponse>> bulkAddRelationships(@a RestAPIParams$UserBulkRelationship body) {
+    public Observable<Response<BulkAddFriendsResponse>> bulkAddRelationships(@i0.f0.a RestAPIParams.UserBulkRelationship body) {
         m.checkNotNullParameter(body, "body");
         return this._api.bulkAddRelationships(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @f("channels/{channelId}/call")
-    public Observable<ModelCall$Ringable> call(@s("channelId") long channelId) {
+    public Observable<ModelCall.Ringable> call(@s("channelId") long channelId) {
         return this._api.call(channelId);
     }
 
@@ -466,15 +844,15 @@ public final class RestAPI implements RestAPIInterface {
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}/members/{userId}")
-    public Observable<Void> changeGuildMember(@s("guildId") long guildId, @s("userId") long userId, @a RestAPIParams$GuildMember body) {
+    @i0.f0.n("guilds/{guildId}/members/{userId}")
+    public Observable<Void> changeGuildMember(@s("guildId") long guildId, @s("userId") long userId, @i0.f0.a RestAPIParams.GuildMember body) {
         m.checkNotNullParameter(body, "body");
         return this._api.changeGuildMember(guildId, userId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}/members/@me/nick")
-    public Observable<Void> changeGuildNickname(@s("guildId") long guildId, @a RestAPIParams$Nick body) {
+    @i0.f0.n("guilds/{guildId}/members/@me/nick")
+    public Observable<Void> changeGuildNickname(@s("guildId") long guildId, @i0.f0.a RestAPIParams.Nick body) {
         m.checkNotNullParameter(body, "body");
         return this._api.changeGuildNickname(guildId, body);
     }
@@ -487,7 +865,7 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("store/skus/{skuId}/purchase")
-    public Observable<Unit> claimSku(@s("skuId") long skuId, @a RestAPIParams$EmptyBody emptyBody) {
+    public Observable<Unit> claimSku(@s("skuId") long skuId, @i0.f0.a RestAPIParams.EmptyBody emptyBody) {
         m.checkNotNullParameter(emptyBody, "emptyBody");
         return this._api.claimSku(skuId, emptyBody);
     }
@@ -500,14 +878,14 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("channels/{channelId}/followers")
-    public Observable<Void> createChannelFollower(@s("channelId") long channelId, @a RestAPIParams$ChannelFollowerPost body) {
+    public Observable<Void> createChannelFollower(@s("channelId") long channelId, @i0.f0.a RestAPIParams.ChannelFollowerPost body) {
         m.checkNotNullParameter(body, "body");
         return this._api.createChannelFollower(channelId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @p("users/@me/connections/contacts/@me")
-    public Observable<ConnectedAccount> createConnectionContacts(@a RestAPIParams$ConnectedAccountContacts connectedAccountContacts) {
+    public Observable<ConnectedAccount> createConnectionContacts(@i0.f0.a RestAPIParams.ConnectedAccountContacts connectedAccountContacts) {
         m.checkNotNullParameter(connectedAccountContacts, "connectedAccountContacts");
         return this._api.createConnectionContacts(connectedAccountContacts);
     }
@@ -520,28 +898,28 @@ public final class RestAPI implements RestAPIInterface {
 
     public final Observable<Channel> createGroupDM(List<Long> userIds) {
         m.checkNotNullParameter(userIds, "userIds");
-        Observable<Channel> observableU = ObservableExtensionsKt.restSubscribeOn$default(this._api.userCreateChannel(new RestAPIParams$CreateChannel(userIds)), false, 1, null).u(RestAPI$createGroupDM$1.INSTANCE);
+        Observable<Channel> observableU = ObservableExtensionsKt.restSubscribeOn$default(this._api.userCreateChannel(new RestAPIParams.CreateChannel(userIds)), false, 1, null).u(AnonymousClass1.INSTANCE);
         m.checkNotNullExpressionValue(observableU, "_api\n      .userCreateCh…pCreated(channel)\n      }");
         return observableU;
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("guilds")
-    public Observable<Response<Guild>> createGuild(@a RestAPIParams$CreateGuild body) {
+    public Observable<Response<Guild>> createGuild(@i0.f0.a RestAPIParams.CreateGuild body) {
         m.checkNotNullParameter(body, "body");
         return this._api.createGuild(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("guilds/{guildId}/channels")
-    public Observable<Response<Channel>> createGuildChannel(@s("guildId") long guildId, @a RestAPIParams$CreateGuildChannel body) {
+    public Observable<Response<Channel>> createGuildChannel(@s("guildId") long guildId, @i0.f0.a RestAPIParams.CreateGuildChannel body) {
         m.checkNotNullParameter(body, "body");
         return this._api.createGuildChannel(guildId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("guilds/templates/{guildTemplateCode}")
-    public Observable<Guild> createGuildFromTemplate(@s("guildTemplateCode") String guildTemplateCode, @a RestAPIParams$CreateGuildFromTemplate body) {
+    public Observable<Guild> createGuildFromTemplate(@s("guildTemplateCode") String guildTemplateCode, @i0.f0.a RestAPIParams.CreateGuildFromTemplate body) {
         m.checkNotNullParameter(guildTemplateCode, "guildTemplateCode");
         m.checkNotNullParameter(body, "body");
         return this._api.createGuildFromTemplate(guildTemplateCode, body);
@@ -549,28 +927,28 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @p("guilds/{guildId}/requests/@me")
-    public Observable<ModelMemberVerificationFormResponse> createGuildJoinRequest(@s("guildId") long guildId, @a RestAPIParams$MemberVerificationForm body) {
+    public Observable<ModelMemberVerificationFormResponse> createGuildJoinRequest(@s("guildId") long guildId, @i0.f0.a RestAPIParams.MemberVerificationForm body) {
         m.checkNotNullParameter(body, "body");
         return this._api.createGuildJoinRequest(guildId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("guilds/{guildId}/role-subscriptions/group-listings")
-    public Observable<GuildRoleSubscriptionGroupListing> createGuildRoleSubscriptionGroupListing(@s("guildId") long guildId, @a RestAPIParams$CreateGuildRoleSubscriptionGroupListing body) {
+    public Observable<GuildRoleSubscriptionGroupListing> createGuildRoleSubscriptionGroupListing(@s("guildId") long guildId, @i0.f0.a RestAPIParams.CreateGuildRoleSubscriptionGroupListing body) {
         m.checkNotNullParameter(body, "body");
         return this._api.createGuildRoleSubscriptionGroupListing(guildId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("guilds/{guildId}/role-subscriptions/group-listings/{groupListingId}/subscription-listings")
-    public Observable<GuildRoleSubscriptionTierListing> createGuildRoleSubscriptionTier(@s("guildId") long guildId, @s("groupListingId") long groupListingId, @a RestAPIParams$CreateGuildRoleSubscriptionTierListing body) {
+    public Observable<GuildRoleSubscriptionTierListing> createGuildRoleSubscriptionTier(@s("guildId") long guildId, @s("groupListingId") long groupListingId, @i0.f0.a RestAPIParams.CreateGuildRoleSubscriptionTierListing body) {
         m.checkNotNullParameter(body, "body");
         return this._api.createGuildRoleSubscriptionTier(guildId, groupListingId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("guilds/{guildId}/scheduled-events")
-    public Observable<GuildScheduledEvent> createGuildScheduledEvent(@s("guildId") long guildId, @a RestAPIParams$CreateGuildScheduledEventBody event) {
+    public Observable<GuildScheduledEvent> createGuildScheduledEvent(@s("guildId") long guildId, @i0.f0.a RestAPIParams.CreateGuildScheduledEventBody event) {
         m.checkNotNullParameter(event, "event");
         return this._api.createGuildScheduledEvent(guildId, event);
     }
@@ -583,7 +961,7 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("auth/handoff")
-    public Observable<HandoffToken> createHandoffToken(@a CreateHandoffTokenRequest body) {
+    public Observable<HandoffToken> createHandoffToken(@i0.f0.a CreateHandoffTokenRequest body) {
         m.checkNotNullParameter(body, "body");
         return this._api.createHandoffToken(body);
     }
@@ -594,14 +972,14 @@ public final class RestAPI implements RestAPIInterface {
     }
 
     public final Observable<Channel> createOrFetchDM(long userId) {
-        Observable<Channel> observableY = ObservableExtensionsKt.takeSingleUntilTimeout$default(StoreStream.Companion.getChannels().observePrivateChannels(), 0L, false, 3, null).Y(new RestAPI$createOrFetchDM$1(this, userId));
+        Observable<Channel> observableY = ObservableExtensionsKt.takeSingleUntilTimeout$default(StoreStream.INSTANCE.getChannels().observePrivateChannels(), 0L, false, 3, null).Y(new AnonymousClass1(userId));
         m.checkNotNullExpressionValue(observableY, "StoreStream\n          .g…            }\n          }");
         return observableY;
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("google-play/purchase-metadata")
-    public Observable<Unit> createPurchaseMetadata(@a RestAPIParams$PurchaseMetadataBody purchaseMetadataBody) {
+    public Observable<Unit> createPurchaseMetadata(@i0.f0.a RestAPIParams.PurchaseMetadataBody purchaseMetadataBody) {
         m.checkNotNullParameter(purchaseMetadataBody, "purchaseMetadataBody");
         return this._api.createPurchaseMetadata(purchaseMetadataBody);
     }
@@ -614,14 +992,14 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("channels/{channelId}/threads")
-    public Observable<Channel> createThread(@s("channelId") long channelId, @t(ModelAuditLogEntry.CHANGE_KEY_LOCATION) String location, @a RestAPIParams$ThreadCreationSettings body) {
+    public Observable<Channel> createThread(@s("channelId") long channelId, @t(ModelAuditLogEntry.CHANGE_KEY_LOCATION) String location, @i0.f0.a RestAPIParams.ThreadCreationSettings body) {
         m.checkNotNullParameter(body, "body");
         return this._api.createThread(channelId, location, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("channels/{channelId}/messages/{messageId}/threads")
-    public Observable<Channel> createThreadFromMessage(@s("channelId") long channelId, @s("messageId") long messageId, @t(ModelAuditLogEntry.CHANGE_KEY_LOCATION) String location, @a RestAPIParams$ThreadCreationSettings body) {
+    public Observable<Channel> createThreadFromMessage(@s("channelId") long channelId, @s("messageId") long messageId, @t(ModelAuditLogEntry.CHANGE_KEY_LOCATION) String location, @i0.f0.a RestAPIParams.ThreadCreationSettings body) {
         m.checkNotNullParameter(body, "body");
         return this._api.createThreadFromMessage(channelId, messageId, location, body);
     }
@@ -629,7 +1007,7 @@ public final class RestAPI implements RestAPIInterface {
     @Override // com.discord.restapi.RestAPIInterface
     @o("channels/{channelId}/threads?has_message=true")
     @l
-    public Observable<Channel> createThreadWithMessage(@s("channelId") long channelId, @q(ModelAuditLogEntry.CHANGE_KEY_NAME) String name, @q("content") String content, @q("applied_tags") List<Long> appliedTags, @q("sticker_ids") List<Long> stickerIds, @q("type") int type, @q(ModelAuditLogEntry.CHANGE_KEY_AUTO_ARCHIVE_DURATION) Integer autoArchiveDuration, @q MultipartBody$Part[] files) {
+    public Observable<Channel> createThreadWithMessage(@s("channelId") long channelId, @i0.f0.q(ModelAuditLogEntry.CHANGE_KEY_NAME) String name, @i0.f0.q("content") String content, @i0.f0.q("applied_tags") List<Long> appliedTags, @i0.f0.q("sticker_ids") List<Long> stickerIds, @i0.f0.q("type") int type, @i0.f0.q(ModelAuditLogEntry.CHANGE_KEY_AUTO_ARCHIVE_DURATION) Integer autoArchiveDuration, @i0.f0.q MultipartBody.Part[] files) {
         m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         m.checkNotNullParameter(content, "content");
         m.checkNotNullParameter(appliedTags, "appliedTags");
@@ -646,25 +1024,25 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/delete")
-    public Observable<Void> deleteAccount(@a RestAPIParams$DisableAccount body) {
+    public Observable<Void> deleteAccount(@i0.f0.a RestAPIParams.DisableAccount body) {
         m.checkNotNullParameter(body, "body");
         return this._api.deleteAccount(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("channels/{channelId}")
+    @i0.f0.b("channels/{channelId}")
     public Observable<Channel> deleteChannel(@s("channelId") long channelId) {
         return this._api.deleteChannel(channelId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("channels/{channelId}/pins/{messageId}")
+    @i0.f0.b("channels/{channelId}/pins/{messageId}")
     public Observable<Void> deleteChannelPin(@s("channelId") long channelId, @s("messageId") long messageId) {
         return this._api.deleteChannelPin(channelId, messageId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("users/@me/connections/{connection}/{connectionId}")
+    @i0.f0.b("users/@me/connections/{connection}/{connectionId}")
     public Observable<Response<Void>> deleteConnection(@s("connection") String connection, @s("connectionId") String connectionId) {
         m.checkNotNullParameter(connection, "connection");
         m.checkNotNullParameter(connectionId, "connectionId");
@@ -673,80 +1051,80 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("guilds/{guildId}/delete")
-    public Observable<Void> deleteGuild(@s("guildId") long guildId, @a RestAPIParams$DeleteGuild body) {
+    public Observable<Void> deleteGuild(@s("guildId") long guildId, @i0.f0.a RestAPIParams.DeleteGuild body) {
         m.checkNotNullParameter(body, "body");
         return this._api.deleteGuild(guildId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("guilds/{guildId}/emojis/{emojiId}")
+    @i0.f0.b("guilds/{guildId}/emojis/{emojiId}")
     public Observable<Void> deleteGuildEmoji(@s("guildId") long guildId, @s("emojiId") long emojiId) {
         return this._api.deleteGuildEmoji(guildId, emojiId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("guilds/{guildId}/integrations/{integrationId}")
+    @i0.f0.b("guilds/{guildId}/integrations/{integrationId}")
     public Observable<Void> deleteGuildIntegration(@s("guildId") long guildId, @s("integrationId") long integrationId) {
         return this._api.deleteGuildIntegration(guildId, integrationId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("guilds/{guildId}/requests/@me")
+    @i0.f0.b("guilds/{guildId}/requests/@me")
     public Observable<ModelMemberVerificationFormResponse> deleteGuildJoinRequest(@s("guildId") long guildId) {
         return this._api.deleteGuildJoinRequest(guildId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("guilds/{guildId}/role-subscriptions/group-listings/{groupListingId}/subscription-listings/{listingId}")
+    @i0.f0.b("guilds/{guildId}/role-subscriptions/group-listings/{groupListingId}/subscription-listings/{listingId}")
     public Observable<Void> deleteGuildRoleSubscriptionTierListing(@s("guildId") long guildId, @s("groupListingId") long groupListingId, @s("listingId") long tierListingId) {
         return this._api.deleteGuildRoleSubscriptionTierListing(guildId, groupListingId, tierListingId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("guilds/{guildId}/scheduled-events/{eventId}")
+    @i0.f0.b("guilds/{guildId}/scheduled-events/{eventId}")
     public Observable<Void> deleteGuildScheduledEvent(@s("guildId") long guildId, @s("eventId") long eventId) {
         return this._api.deleteGuildScheduledEvent(guildId, eventId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("guilds/{guildId}/scheduled-events/{eventId}/users/@me")
+    @i0.f0.b("guilds/{guildId}/scheduled-events/{eventId}/users/@me")
     public Observable<Void> deleteGuildScheduledEventRsvp(@s("guildId") long guildId, @s("eventId") long eventId) {
         return this._api.deleteGuildScheduledEventRsvp(guildId, eventId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("channels/{channel_id}/messages/{message_id}")
+    @i0.f0.b("channels/{channel_id}/messages/{message_id}")
     public Observable<Void> deleteMessage(@s(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID) long channelId, @s("message_id") long messageId) {
         return this._api.deleteMessage(channelId, messageId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("oauth2/tokens/{oauthId}")
+    @i0.f0.b("oauth2/tokens/{oauthId}")
     public Observable<Void> deleteOAuthToken(@s("oauthId") long oauthId) {
         return this._api.deleteOAuthToken(oauthId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("users/@me/billing/payment-sources/{paymentSourceId}")
+    @i0.f0.b("users/@me/billing/payment-sources/{paymentSourceId}")
     public Observable<Void> deletePaymentSource(@s("paymentSourceId") String paymentSourceId) {
         m.checkNotNullParameter(paymentSourceId, "paymentSourceId");
         return this._api.deletePaymentSource(paymentSourceId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("channels/{channelId}/permissions/{targetId}")
+    @i0.f0.b("channels/{channelId}/permissions/{targetId}")
     public Observable<Void> deletePermissionOverwrites(@s("channelId") long channelId, @s("targetId") long targetId) {
         return this._api.deletePermissionOverwrites(channelId, targetId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("guilds/{guildId}/roles/{roleId}")
+    @i0.f0.b("guilds/{guildId}/roles/{roleId}")
     public Observable<Void> deleteRole(@s("guildId") long guildId, @s("roleId") long roleId) {
         return this._api.deleteRole(guildId, roleId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("users/@me/billing/subscriptions/{subscriptionId}")
+    @i0.f0.b("users/@me/billing/subscriptions/{subscriptionId}")
     public Observable<Void> deleteSubscription(@s("subscriptionId") String subscriptionId) {
         m.checkNotNullParameter(subscriptionId, "subscriptionId");
         return this._api.deleteSubscription(subscriptionId);
@@ -754,56 +1132,56 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/disable")
-    public Observable<Void> disableAccount(@a RestAPIParams$DisableAccount body) {
+    public Observable<Void> disableAccount(@i0.f0.a RestAPIParams.DisableAccount body) {
         m.checkNotNullParameter(body, "body");
         return this._api.disableAccount(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}/members/{userId}")
-    public Observable<Response<Void>> disableGuildCommunication(@s("guildId") long guildId, @s("userId") long userId, @a RestAPIParams$DisableGuildCommunication body, @i("X-Audit-Log-Reason") String reason) {
+    @i0.f0.n("guilds/{guildId}/members/{userId}")
+    public Observable<Response<Void>> disableGuildCommunication(@s("guildId") long guildId, @s("userId") long userId, @i0.f0.a RestAPIParams.DisableGuildCommunication body, @i("X-Audit-Log-Reason") String reason) {
         m.checkNotNullParameter(body, "body");
         return this._api.disableGuildCommunication(guildId, userId, body, reason);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/mfa/totp/disable")
-    public Observable<DisableMfaResponse> disableMFA(@a DisableMfaRequestBody body) {
+    public Observable<DisableMfaResponse> disableMFA(@i0.f0.a DisableMfaRequestBody body) {
         m.checkNotNullParameter(body, "body");
         return this._api.disableMFA(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/mfa/sms/disable")
-    public Observable<Void> disableMfaSMS(@a RestAPIParams$ActivateMfaSMS body) {
+    public Observable<Void> disableMfaSMS(@i0.f0.a RestAPIParams.ActivateMfaSMS body) {
         m.checkNotNullParameter(body, "body");
         return this._api.disableMfaSMS(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}/members/{userId}")
-    public Observable<Void> disconnectGuildMember(@s("guildId") long guildId, @s("userId") long userId, @a RestAPIParams$GuildMemberDisconnect body) {
+    @i0.f0.n("guilds/{guildId}/members/{userId}")
+    public Observable<Void> disconnectGuildMember(@s("guildId") long guildId, @s("userId") long userId, @i0.f0.a RestAPIParams.GuildMemberDisconnect body) {
         m.checkNotNullParameter(body, "body");
         return this._api.disconnectGuildMember(guildId, userId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("google-play/downgrade-subscription")
-    public Observable<Object> downgradeSubscription(@a RestAPIParams$DowngradeSubscriptionBody downgradeSubscriptionBody) {
+    public Observable<Object> downgradeSubscription(@i0.f0.a RestAPIParams.DowngradeSubscriptionBody downgradeSubscriptionBody) {
         m.checkNotNullParameter(downgradeSubscriptionBody, "downgradeSubscriptionBody");
         return this._api.downgradeSubscription(downgradeSubscriptionBody);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("channels/{channelId}")
-    public Observable<Channel> editGroupDM(@s("channelId") long channelId, @a RestAPIParams$GroupDM body) {
+    @i0.f0.n("channels/{channelId}")
+    public Observable<Channel> editGroupDM(@s("channelId") long channelId, @i0.f0.a RestAPIParams.GroupDM body) {
         m.checkNotNullParameter(body, "body");
         return this._api.editGroupDM(channelId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("channels/{channel_id}/messages/{message_id}")
-    public Observable<Message> editMessage(@s(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID) long channelId, @s("message_id") long messageId, @a RestAPIParams$Message message) {
+    @i0.f0.n("channels/{channel_id}/messages/{message_id}")
+    public Observable<Message> editMessage(@s(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID) long channelId, @s("message_id") long messageId, @i0.f0.a RestAPIParams.Message message) {
         m.checkNotNullParameter(message, "message");
         return this._api.editMessage(channelId, messageId, message);
     }
@@ -813,26 +1191,26 @@ public final class RestAPI implements RestAPIInterface {
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("channels/{channelId}")
-    public Observable<Channel> editTextChannel(@s("channelId") long channelId, @a RestAPIParams$TextChannel body) {
+    @i0.f0.n("channels/{channelId}")
+    public Observable<Channel> editTextChannel(@s("channelId") long channelId, @i0.f0.a RestAPIParams.TextChannel body) {
         m.checkNotNullParameter(body, "body");
         return this._api.editTextChannel(channelId, body);
     }
 
     public final Observable<Channel> editTextChannel(long channelId, String name, Integer type, String topic, Boolean nsfw, Integer rateLimit, Integer defaultAutoArchiveDuration) {
-        return ObservableExtensionsKt.restSubscribeOn$default(this._api.editTextChannel(channelId, new RestAPIParams$TextChannel(name, type, topic, nsfw, rateLimit, defaultAutoArchiveDuration)), false, 1, null);
+        return ObservableExtensionsKt.restSubscribeOn$default(this._api.editTextChannel(channelId, new RestAPIParams.TextChannel(name, type, topic, nsfw, rateLimit, defaultAutoArchiveDuration)), false, 1, null);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("channels/{channelId}")
-    public Observable<Channel> editThread(@s("channelId") long channelId, @a RestAPIParams$ThreadSettings body) {
+    @i0.f0.n("channels/{channelId}")
+    public Observable<Channel> editThread(@s("channelId") long channelId, @i0.f0.a RestAPIParams.ThreadSettings body) {
         m.checkNotNullParameter(body, "body");
         return this._api.editThread(channelId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("channels/{channelId}")
-    public Observable<Channel> editTopicalChannel(@s("channelId") long channelId, @a RestAPIParams$TopicalChannel body) {
+    @i0.f0.n("channels/{channelId}")
+    public Observable<Channel> editTopicalChannel(@s("channelId") long channelId, @i0.f0.a RestAPIParams.TopicalChannel body) {
         m.checkNotNullParameter(body, "body");
         return this._api.editTopicalChannel(channelId, body);
     }
@@ -842,53 +1220,53 @@ public final class RestAPI implements RestAPIInterface {
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("channels/{channelId}")
-    public Observable<Channel> editVoiceChannel(@s("channelId") long channelId, @a RestAPIParams$VoiceChannel body) {
+    @i0.f0.n("channels/{channelId}")
+    public Observable<Channel> editVoiceChannel(@s("channelId") long channelId, @i0.f0.a RestAPIParams.VoiceChannel body) {
         m.checkNotNullParameter(body, "body");
         return this._api.editVoiceChannel(channelId, body);
     }
 
     public final Observable<Channel> editVoiceChannel(long channelId, String name, String topic, Boolean nsfw, Integer type, Integer bitrate, Integer userLimit, String rtcRegion) {
-        return ObservableExtensionsKt.restSubscribeOn$default(this._api.editVoiceChannel(channelId, new RestAPIParams$VoiceChannel(name, topic, type, nsfw, userLimit, bitrate, rtcRegion)), false, 1, null);
+        return ObservableExtensionsKt.restSubscribeOn$default(this._api.editVoiceChannel(channelId, new RestAPIParams.VoiceChannel(name, topic, type, nsfw, userLimit, bitrate, rtcRegion)), false, 1, null);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("guilds/{guildId}/integrations")
-    public Observable<Void> enableIntegration(@s("guildId") long guildId, @a RestAPIParams$EnableIntegration body) {
+    public Observable<Void> enableIntegration(@s("guildId") long guildId, @i0.f0.a RestAPIParams.EnableIntegration body) {
         m.checkNotNullParameter(body, "body");
         return this._api.enableIntegration(guildId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/mfa/totp/enable")
-    public Observable<EnableMfaResponse> enableMFA(@a RestAPIParams$EnableMFA body) {
+    public Observable<EnableMfaResponse> enableMFA(@i0.f0.a RestAPIParams.EnableMFA body) {
         m.checkNotNullParameter(body, "body");
         return this._api.enableMFA(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/mfa/sms/enable")
-    public Observable<Void> enableMfaSMS(@a RestAPIParams$ActivateMfaSMS body) {
+    public Observable<Void> enableMfaSMS(@i0.f0.a RestAPIParams.ActivateMfaSMS body) {
         m.checkNotNullParameter(body, "body");
         return this._api.enableMfaSMS(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("stage-instances/{channelId}")
+    @i0.f0.b("stage-instances/{channelId}")
     public Observable<Unit> endStageInstance(@s("channelId") long channelId) {
         return this._api.endStageInstance(channelId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("auth/forgot")
-    public Observable<Response<Void>> forgotPassword(@a RestAPIParams$ForgotPassword body) {
+    public Observable<Response<Void>> forgotPassword(@i0.f0.a RestAPIParams.ForgotPassword body) {
         m.checkNotNullParameter(body, "body");
         return this._api.forgotPassword(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/entitlements/gift-codes")
-    public Observable<ModelGift> generateGiftCode(@a RestAPIParams$GenerateGiftCode body) {
+    public Observable<ModelGift> generateGiftCode(@i0.f0.a RestAPIParams.GenerateGiftCode body) {
         m.checkNotNullParameter(body, "body");
         return this._api.generateGiftCode(body);
     }
@@ -982,21 +1360,21 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/mfa/codes")
-    public Observable<GetBackupCodesResponse> getBackupCodes(@a GetBackupCodesRequestBody body) {
+    public Observable<GetBackupCodesResponse> getBackupCodes(@i0.f0.a GetBackupCodesRequestBody body) {
         m.checkNotNullParameter(body, "body");
         return this._api.getBackupCodes(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("auth/verify/view-backup-codes-challenge")
-    public Observable<GetBackupCodesSendVerificationKeyResponse> getBackupCodesSendVerificationKey(@a GetBackupCodesSendVerificationKeyRequestBody body) {
+    public Observable<GetBackupCodesSendVerificationKeyResponse> getBackupCodesSendVerificationKey(@i0.f0.a GetBackupCodesSendVerificationKeyRequestBody body) {
         m.checkNotNullParameter(body, "body");
         return this._api.getBackupCodesSendVerificationKey(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/mfa/codes-verification")
-    public Observable<GetBackupCodesResponse> getBackupCodesVerification(@a GetBackupCodesVerificationRequestBody body) {
+    public Observable<GetBackupCodesResponse> getBackupCodesVerification(@i0.f0.a GetBackupCodesVerificationRequestBody body) {
         m.checkNotNullParameter(body, "body");
         return this._api.getBackupCodesVerification(body);
     }
@@ -1050,11 +1428,11 @@ public final class RestAPI implements RestAPIInterface {
     }
 
     public final Observable<Integer> getClientVersion() {
-        RestAPIInterface$Dynamic restAPIInterface$Dynamic = apiClientVersions;
-        if (restAPIInterface$Dynamic == null) {
+        RestAPIInterface.Dynamic dynamic = apiClientVersions;
+        if (dynamic == null) {
             m.throwUninitializedPropertyAccessException("apiClientVersions");
         }
-        Observable<R> observableG = restAPIInterface$Dynamic.get("https://dl.discordapp.net/apps/android/versions.json").G(RestAPI$getClientVersion$1.INSTANCE);
+        Observable<R> observableG = dynamic.get("https://dl.discordapp.net/apps/android/versions.json").G(AnonymousClass1.INSTANCE);
         m.checkNotNullExpressionValue(observableG, "apiClientVersions\n      …n_version\")?.asInt ?: 0 }");
         return ObservableExtensionsKt.restSubscribeOn$default(observableG, false, 1, null);
     }
@@ -1131,7 +1509,7 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("channels/{channelId}/post-data")
-    public Observable<ForumPostFirstMessages> getForumPostData(@s("channelId") long channelId, @a RestAPIParams$GetForumPostData body) {
+    public Observable<ForumPostFirstMessages> getForumPostData(@s("channelId") long channelId, @i0.f0.a RestAPIParams.GetForumPostData body) {
         m.checkNotNullParameter(body, "body");
         return this._api.getForumPostData(channelId, body);
     }
@@ -1282,8 +1660,8 @@ public final class RestAPI implements RestAPIInterface {
         return this._api.getHarvestStatus();
     }
 
-    public final Observable<RestAPI$HarvestState> getHarvestStatusGuarded() {
-        Observable<R> observableG = this._api.getHarvestStatus().G(RestAPI$getHarvestStatusGuarded$1.INSTANCE);
+    public final Observable<HarvestState> getHarvestStatusGuarded() {
+        Observable<R> observableG = this._api.getHarvestStatus().G(AnonymousClass1.INSTANCE);
         m.checkNotNullExpressionValue(observableG, "_api.getHarvestStatus()\n…erRequested()\n          }");
         return ObservableExtensionsKt.restSubscribeOn(observableG, false);
     }
@@ -1303,7 +1681,7 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/billing/invoices/preview")
-    public Observable<ModelInvoicePreview> getInvoicePreview(@a RestAPIParams$InvoicePreviewBody invoicePreviewBody) {
+    public Observable<ModelInvoicePreview> getInvoicePreview(@i0.f0.a RestAPIParams.InvoicePreviewBody invoicePreviewBody) {
         m.checkNotNullParameter(invoicePreviewBody, "invoicePreviewBody");
         return this._api.getInvoicePreview(invoicePreviewBody);
     }
@@ -1352,7 +1730,7 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @f("oauth2/authorize")
-    public Observable<RestAPIParams$OAuth2Authorize$ResponseGet> getOauth2Authorize(@t("client_id") String clientId, @t("state") String state, @t("response_type") String responseType, @t("redirect_uri") String redirectUrl, @t("prompt") String prompt, @t("scope") String scope, @t(ModelAuditLogEntry.CHANGE_KEY_PERMISSIONS) String permissions) {
+    public Observable<RestAPIParams.OAuth2Authorize.ResponseGet> getOauth2Authorize(@t("client_id") String clientId, @t("state") String state, @t("response_type") String responseType, @t("redirect_uri") String redirectUrl, @t("prompt") String prompt, @t("scope") String scope, @t(ModelAuditLogEntry.CHANGE_KEY_PERMISSIONS) String permissions) {
         b.d.b.a.a.q0(clientId, "clientId", prompt, "prompt", scope, "scope");
         return this._api.getOauth2Authorize(clientId, state, responseType, redirectUrl, prompt, scope, permissions);
     }
@@ -1415,11 +1793,11 @@ public final class RestAPI implements RestAPIInterface {
     }
 
     public final Observable<List<ModelRtcLatencyRegion>> getRtcLatencyTestRegionsIps() {
-        RestAPIInterface$RtcLatency restAPIInterface$RtcLatency = apiRtcLatency;
-        if (restAPIInterface$RtcLatency == null) {
+        RestAPIInterface.RtcLatency rtcLatency = apiRtcLatency;
+        if (rtcLatency == null) {
             m.throwUninitializedPropertyAccessException("apiRtcLatency");
         }
-        return ObservableExtensionsKt.restSubscribeOn$default(restAPIInterface$RtcLatency.get("https://latency.discord.media/rtc"), false, 1, null);
+        return ObservableExtensionsKt.restSubscribeOn$default(rtcLatency.get("https://latency.discord.media/rtc"), false, 1, null);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
@@ -1524,7 +1902,7 @@ public final class RestAPI implements RestAPIInterface {
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("friend-suggestions/{userId}")
+    @i0.f0.b("friend-suggestions/{userId}")
     public Observable<Void> ignoreFriendSuggestion(@s("userId") long userId) {
         return this._api.ignoreFriendSuggestion(userId);
     }
@@ -1539,12 +1917,12 @@ public final class RestAPI implements RestAPIInterface {
     public final Observable<Void> inviteUserToSpeak(Channel channel, long userId, Clock clock) {
         m.checkNotNullParameter(channel, "channel");
         m.checkNotNullParameter(clock, "clock");
-        return this._api.updateUserVoiceStates(channel.getGuildId(), userId, new RestAPIParams$ChannelVoiceStateUpdate(channel.getId(), Boolean.FALSE, new UtcDateTime(clock.currentTimeMillis())));
+        return this._api.updateUserVoiceStates(channel.getGuildId(), userId, new RestAPIParams.ChannelVoiceStateUpdate(channel.getId(), Boolean.FALSE, new UtcDateTime(clock.currentTimeMillis())));
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @p("guilds/{guildId}/members/@me")
-    public Observable<Guild> joinGuild(@s("guildId") long guildId, @t("lurker") boolean isLurker, @t("session_id") String sessionId, @t("directory_channel_id") Long directoryChannelId, @a RestAPIParams$InviteCode body, @i("X-Context-Properties") String context) {
+    public Observable<Guild> joinGuild(@s("guildId") long guildId, @t("lurker") boolean isLurker, @t("session_id") String sessionId, @t("directory_channel_id") Long directoryChannelId, @i0.f0.a RestAPIParams.InviteCode body, @i("X-Context-Properties") String context) {
         return this._api.joinGuild(guildId, isLurker, sessionId, directoryChannelId, body, context);
     }
 
@@ -1557,14 +1935,14 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("hub-waitlist/signup")
-    public Observable<WaitlistSignup> joinHubWaitlist(@a RestAPIParams$HubWaitlist body) {
+    public Observable<WaitlistSignup> joinHubWaitlist(@i0.f0.a RestAPIParams.HubWaitlist body) {
         m.checkNotNullParameter(body, "body");
         return this._api.joinHubWaitlist(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("channels/{channelId}/thread-members/@me")
-    public Observable<Void> joinThread(@s("channelId") long channelId, @t(ModelAuditLogEntry.CHANGE_KEY_LOCATION) String location, @a RestAPIParams$EmptyBody body) {
+    public Observable<Void> joinThread(@s("channelId") long channelId, @t(ModelAuditLogEntry.CHANGE_KEY_LOCATION) String location, @i0.f0.a RestAPIParams.EmptyBody body) {
         m.checkNotNullParameter(body, "body");
         return this._api.joinThread(channelId, location, body);
     }
@@ -1591,150 +1969,150 @@ public final class RestAPI implements RestAPIInterface {
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("guilds/{guildId}/members/{userId}")
+    @i0.f0.b("guilds/{guildId}/members/{userId}")
     public Observable<Void> kickGuildMember(@s("guildId") long guildId, @s("userId") long userId, @i("X-Audit-Log-Reason") String reason) {
         return this._api.kickGuildMember(guildId, userId, reason);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("users/@me/guilds/{guildId}")
+    @i0.f0.b("users/@me/guilds/{guildId}")
     public Observable<Void> leaveGuild(@s("guildId") long guildId) {
         return this._api.leaveGuild(guildId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @h(hasBody = GoogleSmartLockManager.SET_DISCORD_ACCOUNT_DETAILS, method = "DELETE", path = "users/@me/guilds/{guildId}")
-    public Observable<Void> leaveGuild(@s("guildId") long guildId, @a RestAPIParams$LeaveGuildBody leaveGuildBody) {
+    public Observable<Void> leaveGuild(@s("guildId") long guildId, @i0.f0.a RestAPIParams.LeaveGuildBody leaveGuildBody) {
         m.checkNotNullParameter(leaveGuildBody, "leaveGuildBody");
         return this._api.leaveGuild(guildId, leaveGuildBody);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("channels/{channelId}/thread-members/@me")
+    @i0.f0.b("channels/{channelId}/thread-members/@me")
     public Observable<Void> leaveThread(@s("channelId") long channelId, @t(ModelAuditLogEntry.CHANGE_KEY_LOCATION) String location) {
         return this._api.leaveThread(channelId, location);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("auth/logout")
-    public Observable<Response<Void>> logout(@a RestAPIParams$UserDevices body) {
+    public Observable<Response<Void>> logout(@i0.f0.a RestAPIParams.UserDevices body) {
         m.checkNotNullParameter(body, "body");
         return this._api.logout(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("channels/{channelId}/directory-entry/{guildId}")
-    public Observable<DirectoryEntryGuild> modifyServerInHub(@s("channelId") long channelId, @s("guildId") long guildId, @a RestAPIParams$AddServerBody body) {
+    @i0.f0.n("channels/{channelId}/directory-entry/{guildId}")
+    public Observable<DirectoryEntryGuild> modifyServerInHub(@s("channelId") long channelId, @s("guildId") long guildId, @i0.f0.a RestAPIParams.AddServerBody body) {
         m.checkNotNullParameter(body, "body");
         return this._api.modifyServerInHub(channelId, guildId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}/emojis/{emojiId}")
-    public Observable<ModelEmojiGuild> patchGuildEmoji(@s("guildId") long guildId, @s("emojiId") long emojiId, @a RestAPIParams$PatchGuildEmoji body) {
+    @i0.f0.n("guilds/{guildId}/emojis/{emojiId}")
+    public Observable<ModelEmojiGuild> patchGuildEmoji(@s("guildId") long guildId, @s("emojiId") long emojiId, @i0.f0.a RestAPIParams.PatchGuildEmoji body) {
         m.checkNotNullParameter(body, "body");
         return this._api.patchGuildEmoji(guildId, emojiId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("users/@me")
-    public Observable<com.discord.api.user.User> patchUser(@a PatchUserBody patchUserBody) {
+    @i0.f0.n("users/@me")
+    public Observable<com.discord.api.user.User> patchUser(@i0.f0.a PatchUserBody patchUserBody) {
         m.checkNotNullParameter(patchUserBody, "patchUserBody");
         return this._api.patchUser(patchUserBody);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("users/@me")
-    public Observable<com.discord.api.user.User> patchUser(@a RestAPIParams$UserInfo userInfo) {
+    @i0.f0.n("users/@me")
+    public Observable<com.discord.api.user.User> patchUser(@i0.f0.a RestAPIParams.UserInfo userInfo) {
         m.checkNotNullParameter(userInfo, "userInfo");
         return this._api.patchUser(userInfo);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("phone-verifications/resend")
-    public Observable<Void> phoneVerificationsResend(@a RestAPIParams$VerificationCodeResend body) {
+    public Observable<Void> phoneVerificationsResend(@i0.f0.a RestAPIParams.VerificationCodeResend body) {
         m.checkNotNullParameter(body, "body");
         return this._api.phoneVerificationsResend(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("phone-verifications/verify")
-    public Observable<Response<ModelPhoneVerificationToken>> phoneVerificationsVerify(@a RestAPIParams$VerificationCode body) {
+    public Observable<Response<ModelPhoneVerificationToken>> phoneVerificationsVerify(@i0.f0.a RestAPIParams.VerificationCode body) {
         m.checkNotNullParameter(body, "body");
         return this._api.phoneVerificationsVerify(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("auth/fingerprint")
-    public Observable<FingerprintResponse> postAuthFingerprint(@a RestAPIParams$EmptyBody body) {
+    public Observable<FingerprintResponse> postAuthFingerprint(@i0.f0.a RestAPIParams.EmptyBody body) {
         m.checkNotNullParameter(body, "body");
         return this._api.postAuthFingerprint(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("auth/login")
-    public Observable<Response<ModelLoginResult>> postAuthLogin(@a RestAPIParams$AuthLogin body) {
+    public Observable<Response<ModelLoginResult>> postAuthLogin(@i0.f0.a RestAPIParams.AuthLogin body) {
         m.checkNotNullParameter(body, "body");
         return this._api.postAuthLogin(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("auth/register")
-    public Observable<Response<RegisterResponse>> postAuthRegister(@a RestAPIParams$AuthRegister body) {
+    public Observable<Response<RegisterResponse>> postAuthRegister(@i0.f0.a RestAPIParams.AuthRegister body) {
         m.checkNotNullParameter(body, "body");
         return this._api.postAuthRegister(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("auth/register/phone")
-    public Observable<Response<Void>> postAuthRegisterPhone(@a RestAPIParams$AuthRegisterPhone body) {
+    public Observable<Response<Void>> postAuthRegisterPhone(@i0.f0.a RestAPIParams.AuthRegisterPhone body) {
         m.checkNotNullParameter(body, "body");
         return this._api.postAuthRegisterPhone(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("auth/verify/resend")
-    public Observable<Response<Void>> postAuthVerifyResend(@a RestAPIParams$EmptyBody body) {
+    public Observable<Response<Void>> postAuthVerifyResend(@i0.f0.a RestAPIParams.EmptyBody body) {
         m.checkNotNullParameter(body, "body");
         return this._api.postAuthVerifyResend(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("channels/{channelId}/invites")
-    public Observable<ModelInvite> postChannelInvite(@s("channelId") long channelId, @a RestAPIParams$Invite body) {
+    public Observable<ModelInvite> postChannelInvite(@s("channelId") long channelId, @i0.f0.a RestAPIParams.Invite body) {
         m.checkNotNullParameter(body, "body");
         return this._api.postChannelInvite(channelId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("channels/{channelId}/messages/{messageId}/ack")
-    public Observable<Void> postChannelMessagesAck(@s("channelId") long channelId, @s("messageId") Long messageId, @a RestAPIParams$ChannelMessagesAck body) {
+    public Observable<Void> postChannelMessagesAck(@s("channelId") long channelId, @s("messageId") Long messageId, @i0.f0.a RestAPIParams.ChannelMessagesAck body) {
         m.checkNotNullParameter(body, "body");
         return this._api.postChannelMessagesAck(channelId, messageId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("guilds/{guildId}/emojis")
-    public Observable<ModelEmojiGuild> postGuildEmoji(@s("guildId") long guildId, @a RestAPIParams$PostGuildEmoji body) {
+    public Observable<ModelEmojiGuild> postGuildEmoji(@s("guildId") long guildId, @i0.f0.a RestAPIParams.PostGuildEmoji body) {
         m.checkNotNullParameter(body, "body");
         return this._api.postGuildEmoji(guildId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("guilds/{guildId}/ack/{ackType}/{ackedId}")
-    public Observable<Void> postGuildFeatureAck(@s("guildId") long channelId, @s("ackType") int ackType, @s("ackedId") long ackedId, @a RestAPIParams$GuildFeatureAck body) {
+    public Observable<Void> postGuildFeatureAck(@s("guildId") long channelId, @s("ackType") int ackType, @s("ackedId") long ackedId, @i0.f0.a RestAPIParams.GuildFeatureAck body) {
         m.checkNotNullParameter(body, "body");
         return this._api.postGuildFeatureAck(channelId, ackType, ackedId, body);
     }
 
-    public static /* synthetic */ Observable postInviteCode$default(RestAPI restAPI, ModelInvite modelInvite, String str, RestAPIParams$InviteCode restAPIParams$InviteCode, int i, Object obj) {
+    public static /* synthetic */ Observable postInviteCode$default(RestAPI restAPI, ModelInvite modelInvite, String str, RestAPIParams.InviteCode inviteCode, int i, Object obj) {
         if ((i & 2) != 0) {
             str = "mobile";
         }
-        return restAPI.postInviteCode(modelInvite, str, restAPIParams$InviteCode);
+        return restAPI.postInviteCode(modelInvite, str, inviteCode);
     }
 
-    public final Observable<ModelInvite> postInviteCode(ModelInvite invite, String location, RestAPIParams$InviteCode body) {
+    public final Observable<ModelInvite> postInviteCode(ModelInvite invite, String location, RestAPIParams.InviteCode body) {
         m.checkNotNullParameter(invite, "invite");
         m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
         m.checkNotNullParameter(body, "body");
@@ -1756,7 +2134,7 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("invites/{code}")
-    public Observable<ModelInvite> postInviteCode(@s(ModelAuditLogEntry.CHANGE_KEY_CODE) String code, @a RestAPIParams$InviteCode body, @i("X-Context-Properties") String context) {
+    public Observable<ModelInvite> postInviteCode(@s(ModelAuditLogEntry.CHANGE_KEY_CODE) String code, @i0.f0.a RestAPIParams.InviteCode body, @i("X-Context-Properties") String context) {
         m.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
         m.checkNotNullParameter(body, "body");
         m.checkNotNullParameter(context, "context");
@@ -1765,14 +2143,14 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("auth/mfa/totp")
-    public Observable<Response<ModelLoginResult>> postMFACode(@a RestAPIParams$MFALogin body) {
+    public Observable<Response<ModelLoginResult>> postMFACode(@i0.f0.a RestAPIParams.MFALogin body) {
         m.checkNotNullParameter(body, "body");
         return this._api.postMFACode(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("oauth2/authorize")
-    public Observable<RestAPIParams$OAuth2Authorize$ResponsePost> postOauth2Authorize(@t("client_id") String clientId, @t("state") String state, @t("response_type") String responseType, @t("redirect_uri") String redirectUrl, @t("prompt") String prompt, @t("scope") String scope, @t(ModelAuditLogEntry.CHANGE_KEY_PERMISSIONS) String permissions, @t("code_challenge") String codeChallenge, @t("code_challenge_method") String codeChallengeMethod, @a Map<String, String> body) {
+    public Observable<RestAPIParams.OAuth2Authorize.ResponsePost> postOauth2Authorize(@t("client_id") String clientId, @t("state") String state, @t("response_type") String responseType, @t("redirect_uri") String redirectUrl, @t("prompt") String prompt, @t("scope") String scope, @t(ModelAuditLogEntry.CHANGE_KEY_PERMISSIONS) String permissions, @t("code_challenge") String codeChallenge, @t("code_challenge_method") String codeChallengeMethod, @i0.f0.a Map<String, String> body) {
         m.checkNotNullParameter(clientId, "clientId");
         m.checkNotNullParameter(prompt, "prompt");
         m.checkNotNullParameter(scope, "scope");
@@ -1782,28 +2160,28 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/remote-auth/cancel")
-    public Observable<Void> postRemoteAuthCancel(@a RestAPIParams$RemoteAuthCancel body) {
+    public Observable<Void> postRemoteAuthCancel(@i0.f0.a RestAPIParams.RemoteAuthCancel body) {
         m.checkNotNullParameter(body, "body");
         return this._api.postRemoteAuthCancel(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/remote-auth/finish")
-    public Observable<Void> postRemoteAuthFinish(@a RestAPIParams$RemoteAuthFinish body) {
+    public Observable<Void> postRemoteAuthFinish(@i0.f0.a RestAPIParams.RemoteAuthFinish body) {
         m.checkNotNullParameter(body, "body");
         return this._api.postRemoteAuthFinish(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/remote-auth")
-    public Observable<ModelRemoteAuthHandshake> postRemoteAuthInitialize(@a RestAPIParams$RemoteAuthInitialize body) {
+    public Observable<ModelRemoteAuthHandshake> postRemoteAuthInitialize(@i0.f0.a RestAPIParams.RemoteAuthInitialize body) {
         m.checkNotNullParameter(body, "body");
         return this._api.postRemoteAuthInitialize(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("streams/{streamKey}/preview")
-    public Observable<Void> postStreamPreview(@s("streamKey") String streamKey, @a RestAPIParams$Thumbnail thumbnail) {
+    public Observable<Void> postStreamPreview(@s("streamKey") String streamKey, @i0.f0.a RestAPIParams.Thumbnail thumbnail) {
         m.checkNotNullParameter(streamKey, "streamKey");
         m.checkNotNullParameter(thumbnail, "thumbnail");
         return this._api.postStreamPreview(streamKey, thumbnail);
@@ -1812,37 +2190,37 @@ public final class RestAPI implements RestAPIInterface {
     public final Observable<Void> postStreamPreview(String streamKey, String thumbnail) {
         m.checkNotNullParameter(streamKey, "streamKey");
         m.checkNotNullParameter(thumbnail, "thumbnail");
-        return this._api.postStreamPreview(streamKey, new RestAPIParams$Thumbnail(thumbnail));
+        return this._api.postStreamPreview(streamKey, new RestAPIParams.Thumbnail(thumbnail));
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("guilds/{guildId}/prune")
-    public Observable<Void> pruneMembers(@s("guildId") long guildId, @a RestAPIParams$PruneGuild body) {
+    public Observable<Void> pruneMembers(@s("guildId") long guildId, @i0.f0.a RestAPIParams.PruneGuild body) {
         m.checkNotNullParameter(body, "body");
         return this._api.pruneMembers(guildId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("channels/{channelId}/messages/{messageId}/reactions")
+    @i0.f0.b("channels/{channelId}/messages/{messageId}/reactions")
     public Observable<Void> removeAllReactions(@s("channelId") long channelId, @s("messageId") long messageId) {
         return this._api.removeAllReactions(channelId, messageId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("channels/{channelId}/recipients/{recipientId}")
+    @i0.f0.b("channels/{channelId}/recipients/{recipientId}")
     public Observable<Void> removeChannelRecipient(@s("channelId") long channelId, @s("recipientId") long recipientId) {
         return this._api.removeChannelRecipient(channelId, recipientId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("channels/{channelId}/messages/{messageId}/reactions/{reaction}/{userId}")
+    @i0.f0.b("channels/{channelId}/messages/{messageId}/reactions/{reaction}/{userId}")
     public Observable<Void> removeReaction(@s("channelId") long channelId, @s("messageId") long messageId, @s(encoded = GoogleSmartLockManager.SET_DISCORD_ACCOUNT_DETAILS, value = "reaction") String reaction, @s("userId") long userId) {
         m.checkNotNullParameter(reaction, "reaction");
         return this._api.removeReaction(channelId, messageId, reaction, userId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("users/@me/relationships/{userId}")
+    @i0.f0.b("users/@me/relationships/{userId}")
     public Observable<Void> removeRelationship(@s("userId") long userId, @i("X-Context-Properties") String context) {
         m.checkNotNullParameter(context, "context");
         return this._api.removeRelationship(userId, context);
@@ -1854,28 +2232,28 @@ public final class RestAPI implements RestAPIInterface {
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("channels/{channelId}/messages/{messageId}/reactions/{reaction}/@me")
+    @i0.f0.b("channels/{channelId}/messages/{messageId}/reactions/{reaction}/@me")
     public Observable<Void> removeSelfReaction(@s("channelId") long channelId, @s("messageId") long messageId, @s(encoded = GoogleSmartLockManager.SET_DISCORD_ACCOUNT_DETAILS, value = "reaction") String reaction) {
         m.checkNotNullParameter(reaction, "reaction");
         return this._api.removeSelfReaction(channelId, messageId, reaction);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("channels/{channelId}/directory-entry/{guildId}")
+    @i0.f0.b("channels/{channelId}/directory-entry/{guildId}")
     public Observable<Response<DirectoryEntryGuild>> removeServerFromHub(@s("channelId") long channelId, @s("guildId") long guildId) {
         return this._api.removeServerFromHub(channelId, guildId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}/channels")
-    public Observable<Void> reorderChannels(@s("guildId") long guildId, @a List<RestAPIParams$ChannelPosition> body) {
+    @i0.f0.n("guilds/{guildId}/channels")
+    public Observable<Void> reorderChannels(@s("guildId") long guildId, @i0.f0.a List<RestAPIParams.ChannelPosition> body) {
         m.checkNotNullParameter(body, "body");
         return this._api.reorderChannels(guildId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("report")
-    public Observable<Unit> report(@a RestAPIParams$Report body) {
+    public Observable<Unit> report(@i0.f0.a RestAPIParams.Report body) {
         m.checkNotNullParameter(body, "body");
         return this._api.report(body);
     }
@@ -1902,7 +2280,7 @@ public final class RestAPI implements RestAPIInterface {
     public final Observable<Void> requestToSpeak(Channel channel, Clock clock) {
         m.checkNotNullParameter(channel, "channel");
         m.checkNotNullParameter(clock, "clock");
-        return this._api.updateMyVoiceStates(channel.getGuildId(), new RestAPIParams$ChannelVoiceStateUpdate(channel.getId(), null, new UtcDateTime(clock.currentTimeMillis()), 2, null));
+        return this._api.updateMyVoiceStates(channel.getGuildId(), new RestAPIParams.ChannelVoiceStateUpdate(channel.getId(), null, new UtcDateTime(clock.currentTimeMillis()), 2, null));
     }
 
     @Override // com.discord.restapi.RestAPIInterface
@@ -1925,26 +2303,26 @@ public final class RestAPI implements RestAPIInterface {
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("users/@me/entitlements/gift-codes/{code}")
+    @i0.f0.b("users/@me/entitlements/gift-codes/{code}")
     public Observable<Void> revokeGiftCode(@s(ModelAuditLogEntry.CHANGE_KEY_CODE) String code) {
         m.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
         return this._api.revokeGiftCode(code);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("invites/{inviteCode}")
+    @i0.f0.b("invites/{inviteCode}")
     public Observable<ModelInvite> revokeInvite(@s("inviteCode") String inviteCode) {
         m.checkNotNullParameter(inviteCode, "inviteCode");
         return this._api.revokeInvite(inviteCode);
     }
 
     public final Observable<Void> ring(long channelId, long messageId, List<Long> recipients) {
-        return ObservableExtensionsKt.restSubscribeOn$default(this._api.ring(channelId, new RestAPIParams$Ring(recipients), jsonObjectOf(d0.o.to("message_id", Long.valueOf(messageId)))), false, 1, null);
+        return ObservableExtensionsKt.restSubscribeOn$default(this._api.ring(channelId, new RestAPIParams.Ring(recipients), jsonObjectOf(d0.o.to("message_id", Long.valueOf(messageId)))), false, 1, null);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("channels/{channelId}/call/ring")
-    public Observable<Void> ring(@s("channelId") long channelId, @a RestAPIParams$Ring body, @i("X-Context-Properties") String context) {
+    public Observable<Void> ring(@s("channelId") long channelId, @i0.f0.a RestAPIParams.Ring body, @i("X-Context-Properties") String context) {
         m.checkNotNullParameter(body, "body");
         m.checkNotNullParameter(context, "context");
         return this._api.ring(channelId, body, context);
@@ -1952,7 +2330,7 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("science")
-    public Observable<Void> science(@a Science body) {
+    public Observable<Void> science(@i0.f0.a Science body) {
         m.checkNotNullParameter(body, "body");
         return this._api.science(body);
     }
@@ -1979,7 +2357,7 @@ public final class RestAPI implements RestAPIInterface {
     @Override // com.discord.restapi.RestAPIInterface
     @o("interactions")
     @l
-    public Observable<Void> sendApplicationCommand(@q("payload_json") PayloadJSON<RestAPIParams$ApplicationCommand> payloadJson, @q MultipartBody$Part[] files) {
+    public Observable<Void> sendApplicationCommand(@i0.f0.q("payload_json") PayloadJSON<RestAPIParams.ApplicationCommand> payloadJson, @i0.f0.q MultipartBody.Part[] files) {
         m.checkNotNullParameter(payloadJson, "payloadJson");
         m.checkNotNullParameter(files, ChatInputComponentTypes.FILES);
         return this._api.sendApplicationCommand(payloadJson, files);
@@ -1987,7 +2365,7 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("interactions")
-    public Observable<Void> sendApplicationCommand(@a RestAPIParams$ApplicationCommand body) {
+    public Observable<Void> sendApplicationCommand(@i0.f0.a RestAPIParams.ApplicationCommand body) {
         m.checkNotNullParameter(body, "body");
         return this._api.sendApplicationCommand(body);
     }
@@ -1995,21 +2373,21 @@ public final class RestAPI implements RestAPIInterface {
     @Override // com.discord.restapi.RestAPIInterface
     @o("private/bug-reports")
     @l
-    public Observable<Unit> sendBugReport(@q(ModelAuditLogEntry.CHANGE_KEY_NAME) String name, @q(ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION) String description, @q("priority") int priority, @q("asana_inbox_id") Long asanaInboxId, @q MultipartBody$Part screenshot) {
+    public Observable<Unit> sendBugReport(@i0.f0.q(ModelAuditLogEntry.CHANGE_KEY_NAME) String name, @i0.f0.q(ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION) String description, @i0.f0.q("priority") int priority, @i0.f0.q("asana_inbox_id") Long asanaInboxId, @i0.f0.q MultipartBody.Part screenshot) {
         m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         return this._api.sendBugReport(name, description, priority, asanaInboxId, screenshot);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("interactions")
-    public Observable<Void> sendComponentInteraction(@a RestAPIParams$ComponentInteraction body) {
+    public Observable<Void> sendComponentInteraction(@i0.f0.a RestAPIParams.ComponentInteraction body) {
         m.checkNotNullParameter(body, "body");
         return this._api.sendComponentInteraction(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("channels/{channelId}/greet")
-    public Observable<Message> sendGreetMessage(@s("channelId") long channelId, @a RestAPIParams$GreetMessage body) {
+    public Observable<Message> sendGreetMessage(@s("channelId") long channelId, @i0.f0.a RestAPIParams.GreetMessage body) {
         m.checkNotNullParameter(body, "body");
         return this._api.sendGreetMessage(channelId, body);
     }
@@ -2017,7 +2395,7 @@ public final class RestAPI implements RestAPIInterface {
     @Override // com.discord.restapi.RestAPIInterface
     @o("channels/{channelId}/messages")
     @l
-    public Observable<Message> sendMessage(@s("channelId") long channelId, @q("payload_json") PayloadJSON<RestAPIParams$Message> payloadJson, @q MultipartBody$Part[] files) {
+    public Observable<Message> sendMessage(@s("channelId") long channelId, @i0.f0.q("payload_json") PayloadJSON<RestAPIParams.Message> payloadJson, @i0.f0.q MultipartBody.Part[] files) {
         m.checkNotNullParameter(payloadJson, "payloadJson");
         m.checkNotNullParameter(files, ChatInputComponentTypes.FILES);
         return this._api.sendMessage(channelId, payloadJson, files);
@@ -2025,30 +2403,30 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("channels/{channelId}/messages")
-    public Observable<Message> sendMessage(@s("channelId") long channelId, @a RestAPIParams$Message message) {
+    public Observable<Message> sendMessage(@s("channelId") long channelId, @i0.f0.a RestAPIParams.Message message) {
         m.checkNotNullParameter(message, "message");
         return this._api.sendMessage(channelId, message);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("interactions")
-    public Observable<Void> sendModalInteraction(@a RestAPIParams$ModalInteraction body) {
+    public Observable<Void> sendModalInteraction(@i0.f0.a RestAPIParams.ModalInteraction body) {
         m.checkNotNullParameter(body, "body");
         return this._api.sendModalInteraction(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/relationships")
-    public Observable<Void> sendRelationshipRequest(@a RestAPIParams$UserRelationship$Add relationship, @i("X-Context-Properties") String context) {
+    public Observable<Void> sendRelationshipRequest(@i0.f0.a RestAPIParams.UserRelationship.Add relationship, @i("X-Context-Properties") String context) {
         m.checkNotNullParameter(relationship, "relationship");
         m.checkNotNullParameter(context, "context");
         return this._api.sendRelationshipRequest(relationship, context);
     }
 
-    public final Observable<Void> sendRelationshipRequest(String location, String username, int discriminator, CaptchaHelper$CaptchaPayload captchaPayload) {
+    public final Observable<Void> sendRelationshipRequest(String location, String username, int discriminator, CaptchaHelper.CaptchaPayload captchaPayload) {
         m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
         m.checkNotNullParameter(username, "username");
-        return ObservableExtensionsKt.restSubscribeOn$default(this._api.sendRelationshipRequest(new RestAPIParams$UserRelationship$Add(username, discriminator, captchaPayload != null ? captchaPayload.getCaptchaKey() : null, captchaPayload != null ? captchaPayload.getCaptchaRqtoken() : null), jsonObjectOf(d0.o.to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, location))), false, 1, null);
+        return ObservableExtensionsKt.restSubscribeOn$default(this._api.sendRelationshipRequest(new RestAPIParams.UserRelationship.Add(username, discriminator, captchaPayload != null ? captchaPayload.getCaptchaKey() : null, captchaPayload != null ? captchaPayload.getCaptchaRqtoken() : null), jsonObjectOf(d0.o.to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, location))), false, 1, null);
     }
 
     public static final void setApi(RestAPI restAPI) {
@@ -2077,59 +2455,59 @@ public final class RestAPI implements RestAPIInterface {
         List listEmptyList;
         List listEmptyList2;
         if (grant == null || (listEmptyList = d0.t.m.listOf(grant)) == null) {
-            listEmptyList = d0.t.n.emptyList();
+            listEmptyList = n.emptyList();
         }
         if (revoke == null || (listEmptyList2 = d0.t.m.listOf(revoke)) == null) {
-            listEmptyList2 = d0.t.n.emptyList();
+            listEmptyList2 = n.emptyList();
         }
-        return ObservableExtensionsKt.restSubscribeOn$default(this._api.setConsents(new RestAPIParams$Consents(listEmptyList, listEmptyList2)), false, 1, null);
+        return ObservableExtensionsKt.restSubscribeOn$default(this._api.setConsents(new RestAPIParams.Consents(listEmptyList, listEmptyList2)), false, 1, null);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/consent")
-    public Observable<Void> setConsents(@a RestAPIParams$Consents body) {
+    public Observable<Void> setConsents(@i0.f0.a RestAPIParams.Consents body) {
         m.checkNotNullParameter(body, "body");
         return this._api.setConsents(body);
     }
 
     public final Observable<Void> setMeSuppressed(Channel channel, boolean isSuppressed) {
         m.checkNotNullParameter(channel, "channel");
-        return this._api.updateMyVoiceStates(channel.getGuildId(), new RestAPIParams$ChannelVoiceStateUpdate(channel.getId(), Boolean.valueOf(isSuppressed), null, 4, null));
+        return this._api.updateMyVoiceStates(channel.getGuildId(), new RestAPIParams.ChannelVoiceStateUpdate(channel.getId(), Boolean.valueOf(isSuppressed), null, 4, null));
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("guilds/{guildId}/mfa")
-    public Observable<Void> setMfaLevel(@s("guildId") long guildId, @a RestAPIParams$GuildMFA body) {
+    public Observable<Void> setMfaLevel(@s("guildId") long guildId, @i0.f0.a RestAPIParams.GuildMFA body) {
         m.checkNotNullParameter(body, "body");
         return this._api.setMfaLevel(guildId, body);
     }
 
     public final Observable<Void> setUserSuppressed(Channel channel, long userId, boolean isSuppressed) {
         m.checkNotNullParameter(channel, "channel");
-        return this._api.updateUserVoiceStates(channel.getGuildId(), userId, new RestAPIParams$ChannelVoiceStateUpdate(channel.getId(), Boolean.valueOf(isSuppressed), null, 4, null));
+        return this._api.updateUserVoiceStates(channel.getGuildId(), userId, new RestAPIParams.ChannelVoiceStateUpdate(channel.getId(), Boolean.valueOf(isSuppressed), null, 4, null));
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("channels/{channelId}/typing")
-    public Observable<ModelTypingResponse> setUserTyping(@s("channelId") long channelId, @a RestAPIParams$EmptyBody body) {
+    public Observable<ModelTypingResponse> setUserTyping(@s("channelId") long channelId, @i0.f0.a RestAPIParams.EmptyBody body) {
         m.checkNotNullParameter(body, "body");
         return this._api.setUserTyping(channelId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("stage-instances")
-    public Observable<StageInstance> startStageInstance(@a RestAPIParams$StartStageInstanceBody body) {
+    public Observable<StageInstance> startStageInstance(@i0.f0.a RestAPIParams.StartStageInstanceBody body) {
         m.checkNotNullParameter(body, "body");
         return this._api.startStageInstance(body);
     }
 
     public final Observable<Void> stopRinging(long channelId, long messageId, List<Long> recipients) {
-        return ObservableExtensionsKt.restSubscribeOn$default(this._api.stopRinging(channelId, new RestAPIParams$Ring(recipients), jsonObjectOf(d0.o.to("message_id", Long.valueOf(messageId)))), false, 1, null);
+        return ObservableExtensionsKt.restSubscribeOn$default(this._api.stopRinging(channelId, new RestAPIParams.Ring(recipients), jsonObjectOf(d0.o.to("message_id", Long.valueOf(messageId)))), false, 1, null);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("channels/{channelId}/call/stop-ringing")
-    public Observable<Void> stopRinging(@s("channelId") long channelId, @a RestAPIParams$Ring body, @i("X-Context-Properties") String context) {
+    public Observable<Void> stopRinging(@s("channelId") long channelId, @i0.f0.a RestAPIParams.Ring body, @i("X-Context-Properties") String context) {
         m.checkNotNullParameter(body, "body");
         m.checkNotNullParameter(context, "context");
         return this._api.stopRinging(channelId, body, context);
@@ -2137,7 +2515,7 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("connections/{connection}/callback")
-    public Observable<Void> submitConnectionState(@s("connection") String connection, @a RestAPIParams$ConnectionState state) {
+    public Observable<Void> submitConnectionState(@s("connection") String connection, @i0.f0.a RestAPIParams.ConnectionState state) {
         m.checkNotNullParameter(connection, "connection");
         m.checkNotNullParameter(state, "state");
         return this._api.submitConnectionState(connection, state);
@@ -2145,7 +2523,7 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("reporting/{reportType}")
-    public Observable<Unit> submitReport(@s("reportType") String reportType, @a ReportSubmissionBody body) {
+    public Observable<Unit> submitReport(@s("reportType") String reportType, @i0.f0.a ReportSubmissionBody body) {
         m.checkNotNullParameter(reportType, "reportType");
         m.checkNotNullParameter(body, "body");
         return this._api.submitReport(reportType, body);
@@ -2153,7 +2531,7 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @p("guilds/{guildId}/premium/subscriptions")
-    public Observable<List<ModelAppliedGuildBoost>> subscribeToGuild(@s("guildId") long guildId, @a RestAPIParams$GuildBoosting guildBoosting) {
+    public Observable<List<ModelAppliedGuildBoost>> subscribeToGuild(@s("guildId") long guildId, @i0.f0.a RestAPIParams.GuildBoosting guildBoosting) {
         m.checkNotNullParameter(guildBoosting, "guildBoosting");
         return this._api.subscribeToGuild(guildId, guildBoosting);
     }
@@ -2165,14 +2543,14 @@ public final class RestAPI implements RestAPIInterface {
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}")
-    public Observable<Void> transferGuildOwnership(@s("guildId") long guildId, @a RestAPIParams$TransferGuildOwnership transferGuildOwnership) {
+    @i0.f0.n("guilds/{guildId}")
+    public Observable<Void> transferGuildOwnership(@s("guildId") long guildId, @i0.f0.a RestAPIParams.TransferGuildOwnership transferGuildOwnership) {
         m.checkNotNullParameter(transferGuildOwnership, "transferGuildOwnership");
         return this._api.transferGuildOwnership(guildId, transferGuildOwnership);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("guilds/{guildId}/bans/{userId}")
+    @i0.f0.b("guilds/{guildId}/bans/{userId}")
     public Observable<Void> unbanUser(@s("guildId") long guildId, @s("userId") long userId) {
         return this._api.unbanUser(guildId, userId);
     }
@@ -2184,14 +2562,14 @@ public final class RestAPI implements RestAPIInterface {
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @b("guilds/{guildId}/premium/subscriptions/{subscriptionId}")
+    @i0.f0.b("guilds/{guildId}/premium/subscriptions/{subscriptionId}")
     public Observable<Void> unsubscribeToGuild(@s("guildId") long guildId, @s("subscriptionId") long subscriptionId) {
         return this._api.unsubscribeToGuild(guildId, subscriptionId);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("users/@me/connections/{connection}/{connectionId}")
-    public Observable<Response<ConnectedAccount>> updateConnection(@s("connection") String connection, @s("connectionId") String connectionId, @a RestAPIParams$ConnectedAccount connectedAccount) {
+    @i0.f0.n("users/@me/connections/{connection}/{connectionId}")
+    public Observable<Response<ConnectedAccount>> updateConnection(@s("connection") String connection, @s("connectionId") String connectionId, @i0.f0.a RestAPIParams.ConnectedAccount connectedAccount) {
         m.checkNotNullParameter(connection, "connection");
         m.checkNotNullParameter(connectionId, "connectionId");
         m.checkNotNullParameter(connectedAccount, "connectedAccount");
@@ -2199,8 +2577,8 @@ public final class RestAPI implements RestAPIInterface {
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("users/@me/connections/{connection}/{connectionId}")
-    public Observable<Response<ConnectedAccount>> updateConnectionName(@s("connection") String connection, @s("connectionId") String connectionId, @a RestAPIParams$ConnectedAccountNameOnly connectedAccountName) {
+    @i0.f0.n("users/@me/connections/{connection}/{connectionId}")
+    public Observable<Response<ConnectedAccount>> updateConnectionName(@s("connection") String connection, @s("connectionId") String connectionId, @i0.f0.a RestAPIParams.ConnectedAccountNameOnly connectedAccountName) {
         m.checkNotNullParameter(connection, "connection");
         m.checkNotNullParameter(connectionId, "connectionId");
         m.checkNotNullParameter(connectedAccountName, "connectedAccountName");
@@ -2208,64 +2586,64 @@ public final class RestAPI implements RestAPIInterface {
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}")
-    public Observable<Guild> updateGuild(@s("guildId") long guildId, @a RestAPIParams$UpdateGuild body) {
+    @i0.f0.n("guilds/{guildId}")
+    public Observable<Guild> updateGuild(@s("guildId") long guildId, @i0.f0.a RestAPIParams.UpdateGuild body) {
         m.checkNotNullParameter(body, "body");
         return this._api.updateGuild(guildId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}/integrations/{integrationId}")
-    public Observable<Void> updateGuildIntegration(@s("guildId") long guildId, @s("integrationId") long integrationId, @a RestAPIParams$GuildIntegration body) {
+    @i0.f0.n("guilds/{guildId}/integrations/{integrationId}")
+    public Observable<Void> updateGuildIntegration(@s("guildId") long guildId, @s("integrationId") long integrationId, @i0.f0.a RestAPIParams.GuildIntegration body) {
         m.checkNotNullParameter(body, "body");
         return this._api.updateGuildIntegration(guildId, integrationId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}/role-subscriptions/group-listings/{groupListingId}")
-    public Observable<GuildRoleSubscriptionGroupListing> updateGuildRoleSubscriptionGroupListing(@s("guildId") long guildId, @s("groupListingId") long groupListingId, @a RestAPIParams$UpdateGuildRoleSubscriptionGroupListing body) {
+    @i0.f0.n("guilds/{guildId}/role-subscriptions/group-listings/{groupListingId}")
+    public Observable<GuildRoleSubscriptionGroupListing> updateGuildRoleSubscriptionGroupListing(@s("guildId") long guildId, @s("groupListingId") long groupListingId, @i0.f0.a RestAPIParams.UpdateGuildRoleSubscriptionGroupListing body) {
         m.checkNotNullParameter(body, "body");
         return this._api.updateGuildRoleSubscriptionGroupListing(guildId, groupListingId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}/role-subscriptions/subscription-listings/{listingId}/trial")
-    public Observable<GuildRoleSubscriptionTierFreeTrial> updateGuildRoleSubscriptionTierFreeTrial(@s("guildId") long guildId, @s("listingId") long listingId, @a RestAPIParams$UpdateGuildRoleSubscriptionTierFreeTrial body) {
+    @i0.f0.n("guilds/{guildId}/role-subscriptions/subscription-listings/{listingId}/trial")
+    public Observable<GuildRoleSubscriptionTierFreeTrial> updateGuildRoleSubscriptionTierFreeTrial(@s("guildId") long guildId, @s("listingId") long listingId, @i0.f0.a RestAPIParams.UpdateGuildRoleSubscriptionTierFreeTrial body) {
         m.checkNotNullParameter(body, "body");
         return this._api.updateGuildRoleSubscriptionTierFreeTrial(guildId, listingId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}/role-subscriptions/group-listings/{groupListingId}/subscription-listings/{listingId}")
-    public Observable<GuildRoleSubscriptionTierListing> updateGuildRoleSubscriptionTierListing(@s("guildId") long guildId, @s("groupListingId") long groupListingId, @s("listingId") long tierListingId, @a RestAPIParams$UpdateGuildRoleSubscriptionTierListing body) {
+    @i0.f0.n("guilds/{guildId}/role-subscriptions/group-listings/{groupListingId}/subscription-listings/{listingId}")
+    public Observable<GuildRoleSubscriptionTierListing> updateGuildRoleSubscriptionTierListing(@s("guildId") long guildId, @s("groupListingId") long groupListingId, @s("listingId") long tierListingId, @i0.f0.a RestAPIParams.UpdateGuildRoleSubscriptionTierListing body) {
         m.checkNotNullParameter(body, "body");
         return this._api.updateGuildRoleSubscriptionTierListing(guildId, groupListingId, tierListingId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}/scheduled-events/{eventId}")
-    public Observable<Unit> updateGuildScheduledEvent(@s("guildId") long guildId, @s("eventId") long eventId, @a RestAPIParams$UpdateGuildScheduledEventBody body) {
+    @i0.f0.n("guilds/{guildId}/scheduled-events/{eventId}")
+    public Observable<Unit> updateGuildScheduledEvent(@s("guildId") long guildId, @s("eventId") long eventId, @i0.f0.a RestAPIParams.UpdateGuildScheduledEventBody body) {
         m.checkNotNullParameter(body, "body");
         return this._api.updateGuildScheduledEvent(guildId, eventId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}/members/@me")
-    public Observable<GuildMember> updateMeGuildMember(@s("guildId") long guildId, @a PatchGuildMemberBody body) {
+    @i0.f0.n("guilds/{guildId}/members/@me")
+    public Observable<GuildMember> updateMeGuildMember(@s("guildId") long guildId, @i0.f0.a PatchGuildMemberBody body) {
         m.checkNotNullParameter(body, "body");
         return this._api.updateMeGuildMember(guildId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}/voice-states/@me")
-    public Observable<Void> updateMyVoiceStates(@s("guildId") long guildId, @a RestAPIParams$ChannelVoiceStateUpdate body) {
+    @i0.f0.n("guilds/{guildId}/voice-states/@me")
+    public Observable<Void> updateMyVoiceStates(@s("guildId") long guildId, @i0.f0.a RestAPIParams.ChannelVoiceStateUpdate body) {
         m.checkNotNullParameter(body, "body");
         return this._api.updateMyVoiceStates(guildId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("users/@me/billing/payment-sources/{paymentSourceId}")
-    public Observable<Void> updatePaymentSource(@s("paymentSourceId") String paymentSourceId, @a PatchPaymentSourceRaw PatchPaymentSourceRaw) {
+    @i0.f0.n("users/@me/billing/payment-sources/{paymentSourceId}")
+    public Observable<Void> updatePaymentSource(@s("paymentSourceId") String paymentSourceId, @i0.f0.a PatchPaymentSourceRaw PatchPaymentSourceRaw) {
         m.checkNotNullParameter(paymentSourceId, "paymentSourceId");
         m.checkNotNullParameter(PatchPaymentSourceRaw, "PatchPaymentSourceRaw");
         return this._api.updatePaymentSource(paymentSourceId, PatchPaymentSourceRaw);
@@ -2273,98 +2651,98 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @p("channels/{channelId}/permissions/{targetId}")
-    public Observable<Void> updatePermissionOverwrites(@s("channelId") long channelId, @s("targetId") long targetId, @a RestAPIParams$ChannelPermissionOverwrites body) {
+    public Observable<Void> updatePermissionOverwrites(@s("channelId") long channelId, @s("targetId") long targetId, @i0.f0.a RestAPIParams.ChannelPermissionOverwrites body) {
         m.checkNotNullParameter(body, "body");
         return this._api.updatePermissionOverwrites(channelId, targetId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("users/@me/guilds/@me/settings")
-    public Observable<ModelNotificationSettings> updatePrivateChannelSettings(@a RestAPIParams$UserGuildSettings userGuildSettings) {
+    @i0.f0.n("users/@me/guilds/@me/settings")
+    public Observable<ModelNotificationSettings> updatePrivateChannelSettings(@i0.f0.a RestAPIParams.UserGuildSettings userGuildSettings) {
         m.checkNotNullParameter(userGuildSettings, "userGuildSettings");
         return this._api.updatePrivateChannelSettings(userGuildSettings);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}/roles/{roleId}")
-    public Observable<Void> updateRole(@s("guildId") long guildId, @s("roleId") long roleId, @a RestAPIParams$Role body) {
+    @i0.f0.n("guilds/{guildId}/roles/{roleId}")
+    public Observable<Void> updateRole(@s("guildId") long guildId, @s("roleId") long roleId, @i0.f0.a RestAPIParams.Role body) {
         m.checkNotNullParameter(body, "body");
         return this._api.updateRole(guildId, roleId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("stage-instances/{channelId}")
-    public Observable<StageInstance> updateStageInstance(@s("channelId") long channelId, @a RestAPIParams$UpdateStageInstanceBody body) {
+    @i0.f0.n("stage-instances/{channelId}")
+    public Observable<StageInstance> updateStageInstance(@s("channelId") long channelId, @i0.f0.a RestAPIParams.UpdateStageInstanceBody body) {
         m.checkNotNullParameter(body, "body");
         return this._api.updateStageInstance(channelId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("users/@me/billing/subscriptions/{subscriptionId}")
-    public Observable<Void> updateSubscription(@s("subscriptionId") String subscriptionId, @a RestAPIParams$UpdateSubscription updateSubscription) {
+    @i0.f0.n("users/@me/billing/subscriptions/{subscriptionId}")
+    public Observable<Void> updateSubscription(@s("subscriptionId") String subscriptionId, @i0.f0.a RestAPIParams.UpdateSubscription updateSubscription) {
         m.checkNotNullParameter(subscriptionId, "subscriptionId");
         m.checkNotNullParameter(updateSubscription, "updateSubscription");
         return this._api.updateSubscription(subscriptionId, updateSubscription);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("channels/{channelId}/thread-members/@me/settings")
-    public Observable<ThreadMember> updateThreadMemberSettings(@s("channelId") long channelId, @a RestAPIParams$ThreadMemberSettings body) {
+    @i0.f0.n("channels/{channelId}/thread-members/@me/settings")
+    public Observable<ThreadMember> updateThreadMemberSettings(@s("channelId") long channelId, @i0.f0.a RestAPIParams.ThreadMemberSettings body) {
         m.checkNotNullParameter(body, "body");
         return this._api.updateThreadMemberSettings(channelId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    public Observable<ModelNotificationSettings> updateUserGuildSettings(long guildId, RestAPIParams$UserGuildSettings userGuildSettings) {
+    public Observable<ModelNotificationSettings> updateUserGuildSettings(long guildId, RestAPIParams.UserGuildSettings userGuildSettings) {
         m.checkNotNullParameter(userGuildSettings, "userGuildSettings");
         return guildId == 0 ? this._api.updatePrivateChannelSettings(userGuildSettings) : this._api.updateUserGuildSettings(guildId, userGuildSettings);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @p("users/@me/notes/{userId}")
-    public Observable<Void> updateUserNotes(@s("userId") long userId, @a RestAPIParams$UserNoteUpdate userNoteUpdate) {
+    public Observable<Void> updateUserNotes(@s("userId") long userId, @i0.f0.a RestAPIParams.UserNoteUpdate userNoteUpdate) {
         m.checkNotNullParameter(userNoteUpdate, "userNoteUpdate");
         return this._api.updateUserNotes(userId, userNoteUpdate);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("users/@me/settings")
-    public Observable<ModelUserSettings> updateUserSettings(@a RestAPIParams$UserSettings userSettings) {
+    @i0.f0.n("users/@me/settings")
+    public Observable<ModelUserSettings> updateUserSettings(@i0.f0.a RestAPIParams.UserSettings userSettings) {
         m.checkNotNullParameter(userSettings, "userSettings");
         return this._api.updateUserSettings(userSettings);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("users/@me/settings")
-    public Observable<ModelUserSettings> updateUserSettingsCustomStatus(@a RestAPIParams$UserSettingsCustomStatus userSettingsCustomStatus) {
+    @i0.f0.n("users/@me/settings")
+    public Observable<ModelUserSettings> updateUserSettingsCustomStatus(@i0.f0.a RestAPIParams.UserSettingsCustomStatus userSettingsCustomStatus) {
         m.checkNotNullParameter(userSettingsCustomStatus, "userSettingsCustomStatus");
         return this._api.updateUserSettingsCustomStatus(userSettingsCustomStatus);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}/voice-states/{userId}")
-    public Observable<Void> updateUserVoiceStates(@s("guildId") long guildId, @s("userId") long userId, @a RestAPIParams$ChannelVoiceStateUpdate body) {
+    @i0.f0.n("guilds/{guildId}/voice-states/{userId}")
+    public Observable<Void> updateUserVoiceStates(@s("guildId") long guildId, @s("userId") long userId, @i0.f0.a RestAPIParams.ChannelVoiceStateUpdate body) {
         m.checkNotNullParameter(body, "body");
         return this._api.updateUserVoiceStates(guildId, userId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("guilds/{guildId}/vanity-url")
-    public Observable<VanityUrlResponse> updateVanityUrl(@s("guildId") long guildId, @a RestAPIParams$VanityUrl body) {
+    @i0.f0.n("guilds/{guildId}/vanity-url")
+    public Observable<VanityUrlResponse> updateVanityUrl(@s("guildId") long guildId, @i0.f0.a RestAPIParams.VanityUrl body) {
         m.checkNotNullParameter(body, "body");
         return this._api.updateVanityUrl(guildId, body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @p("users/@me/connections/contacts/@me/external-friend-list-entries")
-    public Observable<Response<BulkFriendSuggestions>> uploadContacts(@a RestAPIParams$UploadContacts uploadContacts) {
+    public Observable<Response<BulkFriendSuggestions>> uploadContacts(@i0.f0.a RestAPIParams.UploadContacts uploadContacts) {
         m.checkNotNullParameter(uploadContacts, "uploadContacts");
         return this._api.uploadContacts(uploadContacts);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("debug-logs/4/{filename}")
-    public Observable<Void> uploadLog(@s("filename") String filename, @a String content) {
+    public Observable<Void> uploadLog(@s("filename") String filename, @i0.f0.a String content) {
         m.checkNotNullParameter(filename, "filename");
         m.checkNotNullParameter(content, "content");
         return this._api.uploadLog(filename, content);
@@ -2373,7 +2751,7 @@ public final class RestAPI implements RestAPIInterface {
     @Override // com.discord.restapi.RestAPIInterface
     @o("debug-logs/multi/4")
     @l
-    public Observable<Void> uploadLogs(@q MultipartBody$Part[] files) {
+    public Observable<Void> uploadLogs(@i0.f0.q MultipartBody.Part[] files) {
         m.checkNotNullParameter(files, ChatInputComponentTypes.FILES);
         return this._api.uploadLogs(files);
     }
@@ -2404,42 +2782,42 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/phone")
-    public Observable<Void> userAddPhone(@a RestAPIParams$Phone body) {
+    public Observable<Void> userAddPhone(@i0.f0.a RestAPIParams.Phone body) {
         m.checkNotNullParameter(body, "body");
         return this._api.userAddPhone(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/phone/verify")
-    public Observable<Void> userAddPhoneNoPassword(@a RestAPIParams$VerificationCodeOnly body) {
+    public Observable<Void> userAddPhoneNoPassword(@i0.f0.a RestAPIParams.VerificationCodeOnly body) {
         m.checkNotNullParameter(body, "body");
         return this._api.userAddPhoneNoPassword(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
-    @n("users/@me/agreements")
-    public Observable<Void> userAgreements(@a RestAPIParams$UserAgreements body) {
+    @i0.f0.n("users/@me/agreements")
+    public Observable<Void> userAgreements(@i0.f0.a RestAPIParams.UserAgreements body) {
         m.checkNotNullParameter(body, "body");
         return this._api.userAgreements(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/captcha/verify")
-    public Observable<Void> userCaptchaVerify(@a RestAPIParams$CaptchaCode body) {
+    public Observable<Void> userCaptchaVerify(@i0.f0.a RestAPIParams.CaptchaCode body) {
         m.checkNotNullParameter(body, "body");
         return this._api.userCaptchaVerify(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/channels")
-    public Observable<Channel> userCreateChannel(@a RestAPIParams$CreateChannel body) {
+    public Observable<Channel> userCreateChannel(@i0.f0.a RestAPIParams.CreateChannel body) {
         m.checkNotNullParameter(body, "body");
         return this._api.userCreateChannel(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/devices")
-    public Observable<Void> userCreateDevice(@a RestAPIParams$UserDevices body) {
+    public Observable<Void> userCreateDevice(@i0.f0.a RestAPIParams.UserDevices body) {
         m.checkNotNullParameter(body, "body");
         return this._api.userCreateDevice(body);
     }
@@ -2452,7 +2830,7 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/email/verify-code")
-    public Observable<ModelEmailChangeConfirm> userEmailVerifyCode(@a RestAPIParams$UserEmailConfirmCode body) {
+    public Observable<ModelEmailChangeConfirm> userEmailVerifyCode(@i0.f0.a RestAPIParams.UserEmailConfirmCode body) {
         m.checkNotNullParameter(body, "body");
         return this._api.userEmailVerifyCode(body);
     }
@@ -2465,14 +2843,14 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @h(hasBody = GoogleSmartLockManager.SET_DISCORD_ACCOUNT_DETAILS, method = "DELETE", path = "users/@me/phone")
-    public Observable<Void> userPhoneDelete(@a RestAPIParams$DeletePhone body) {
+    public Observable<Void> userPhoneDelete(@i0.f0.a RestAPIParams.DeletePhone body) {
         m.checkNotNullParameter(body, "body");
         return this._api.userPhoneDelete(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("users/@me/phone")
-    public Observable<Void> userPhoneWithToken(@a RestAPIParams$VerificationPhoneCode body) {
+    public Observable<Void> userPhoneWithToken(@i0.f0.a RestAPIParams.VerificationPhoneCode body) {
         m.checkNotNullParameter(body, "body");
         return this._api.userPhoneWithToken(body);
     }
@@ -2485,21 +2863,21 @@ public final class RestAPI implements RestAPIInterface {
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("guilds/automations/email-domain-lookup")
-    public Observable<Response<EmailVerification>> verifyEmail(@a RestAPIParams$VerifyEmail body) {
+    public Observable<Response<EmailVerification>> verifyEmail(@i0.f0.a RestAPIParams.VerifyEmail body) {
         m.checkNotNullParameter(body, "body");
         return this._api.verifyEmail(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("guilds/automations/email-domain-lookup/verify-code")
-    public Observable<Response<EmailVerificationCode>> verifyEmailCode(@a RestAPIParams$VerifyEmailCode body) {
+    public Observable<Response<EmailVerificationCode>> verifyEmailCode(@i0.f0.a RestAPIParams.VerifyEmailCode body) {
         m.checkNotNullParameter(body, "body");
         return this._api.verifyEmailCode(body);
     }
 
     @Override // com.discord.restapi.RestAPIInterface
     @o("google-play/verify-purchase-token")
-    public Observable<RestAPIParams$VerifyPurchaseResponse> verifyPurchaseToken(@a RestAPIParams$VerifyPurchaseTokenBody verifyPurchaseBody) {
+    public Observable<RestAPIParams.VerifyPurchaseResponse> verifyPurchaseToken(@i0.f0.a RestAPIParams.VerifyPurchaseTokenBody verifyPurchaseBody) {
         m.checkNotNullParameter(verifyPurchaseBody, "verifyPurchaseBody");
         return this._api.verifyPurchaseToken(verifyPurchaseBody);
     }

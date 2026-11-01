@@ -18,7 +18,7 @@ public final class WidgetDirectoriesSearch$adapter$1 implements DirectoryChannel
 
     @Override // com.discord.widgets.directories.DirectoryChannelItemClickInterface
     public void onAddServerClicked() {
-        DirectoryChannelItemClickInterface$DefaultImpls.onAddServerClicked(this);
+        DirectoryChannelItemClickInterface.DefaultImpls.onAddServerClicked(this);
     }
 
     @Override // com.discord.widgets.directories.DirectoryChannelItemClickInterface
@@ -33,7 +33,7 @@ public final class WidgetDirectoriesSearch$adapter$1 implements DirectoryChannel
 
     @Override // com.discord.widgets.directories.DirectoryChannelItemClickInterface
     public void onGoToGuildClicked(long guildId) {
-        StoreStream.Companion.getGuildSelected().set(guildId);
+        StoreStream.INSTANCE.getGuildSelected().set(guildId);
         FragmentActivity activity = this.this$0.getActivity();
         if (activity != null) {
             activity.onBackPressed();

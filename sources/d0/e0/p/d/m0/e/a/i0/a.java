@@ -4,17 +4,69 @@ import d0.e0.p.d.m0.c.m;
 import d0.e0.p.d.m0.e.a.k0.z;
 import d0.e0.p.d.m0.e.a.u;
 import d0.e0.p.d.m0.e.a.y;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.Lazy;
+import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: context.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class a {
+
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: context.kt */
+    public final class C0522a extends o implements Function0<y> {
+        public final /* synthetic */ d0.e0.p.d.m0.c.g $containingDeclaration;
+        public final /* synthetic */ g $this_childForClassOrPackage;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C0522a(g gVar, d0.e0.p.d.m0.c.g gVar2) {
+            super(0);
+            this.$this_childForClassOrPackage = gVar;
+            this.$containingDeclaration = gVar2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ y invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final y invoke() {
+            return a.computeNewDefaultTypeQualifiers(this.$this_childForClassOrPackage, this.$containingDeclaration.getAnnotations());
+        }
+    }
+
+    /* JADX INFO: compiled from: context.kt */
+    public final class b extends o implements Function0<y> {
+        public final /* synthetic */ d0.e0.p.d.m0.c.g1.g $additionalAnnotations;
+        public final /* synthetic */ g $this_copyWithNewDefaultTypeQualifiers;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public b(g gVar, d0.e0.p.d.m0.c.g1.g gVar2) {
+            super(0);
+            this.$this_copyWithNewDefaultTypeQualifiers = gVar;
+            this.$additionalAnnotations = gVar2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ y invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final y invoke() {
+            return a.computeNewDefaultTypeQualifiers(this.$this_copyWithNewDefaultTypeQualifiers, this.$additionalAnnotations);
+        }
+    }
+
     public static final g a(g gVar, m mVar, z zVar, int i, Lazy<y> lazy) {
-        b components = gVar.getComponents();
+        d0.e0.p.d.m0.e.a.i0.b components = gVar.getComponents();
         k hVar = zVar == null ? null : new h(gVar, mVar, zVar, i);
         if (hVar == null) {
             hVar = gVar.getTypeParameterResolver();
@@ -41,7 +93,7 @@ public final class a {
     public static final g childForClassOrPackage(g gVar, d0.e0.p.d.m0.c.g gVar2, z zVar, int i) {
         d0.z.d.m.checkNotNullParameter(gVar, "<this>");
         d0.z.d.m.checkNotNullParameter(gVar2, "containingDeclaration");
-        return a(gVar, gVar2, zVar, i, d0.g.lazy(d0.i.NONE, new a$a(gVar, gVar2)));
+        return a(gVar, gVar2, zVar, i, d0.g.lazy(d0.i.NONE, new C0522a(gVar, gVar2)));
     }
 
     public static /* synthetic */ g childForMethod$default(g gVar, m mVar, z zVar, int i, int i2, Object obj) {
@@ -83,10 +135,10 @@ public final class a {
             d0.e0.p.d.m0.e.a.c annotationTypeQualifierResolver = gVar.getComponents().getAnnotationTypeQualifierResolver();
             u uVarResolveQualifierBuiltInDefaultAnnotation = annotationTypeQualifierResolver.resolveQualifierBuiltInDefaultAnnotation(next);
             if (uVarResolveQualifierBuiltInDefaultAnnotation == null) {
-                d0.e0.p.d.m0.e.a.c$a c_aResolveTypeQualifierDefaultAnnotation = annotationTypeQualifierResolver.resolveTypeQualifierDefaultAnnotation(next);
-                if (c_aResolveTypeQualifierDefaultAnnotation != null) {
-                    d0.e0.p.d.m0.c.g1.c cVarComponent1 = c_aResolveTypeQualifierDefaultAnnotation.component1();
-                    List<d0.e0.p.d.m0.e.a.a> listComponent2 = c_aResolveTypeQualifierDefaultAnnotation.component2();
+                d0.e0.p.d.m0.e.a.c.a aVarResolveTypeQualifierDefaultAnnotation = annotationTypeQualifierResolver.resolveTypeQualifierDefaultAnnotation(next);
+                if (aVarResolveTypeQualifierDefaultAnnotation != null) {
+                    d0.e0.p.d.m0.c.g1.c cVarComponent1 = aVarResolveTypeQualifierDefaultAnnotation.component1();
+                    List<d0.e0.p.d.m0.e.a.a> listComponent2 = aVarResolveTypeQualifierDefaultAnnotation.component2();
                     d0.e0.p.d.m0.p.h hVarResolveJsr305CustomState = annotationTypeQualifierResolver.resolveJsr305CustomState(next);
                     if (hVarResolveJsr305CustomState == null) {
                         hVarResolveJsr305CustomState = annotationTypeQualifierResolver.resolveJsr305AnnotationState(cVarComponent1);
@@ -129,10 +181,10 @@ public final class a {
     public static final g copyWithNewDefaultTypeQualifiers(g gVar, d0.e0.p.d.m0.c.g1.g gVar2) {
         d0.z.d.m.checkNotNullParameter(gVar, "<this>");
         d0.z.d.m.checkNotNullParameter(gVar2, "additionalAnnotations");
-        return gVar2.isEmpty() ? gVar : new g(gVar.getComponents(), gVar.getTypeParameterResolver(), d0.g.lazy(d0.i.NONE, new a$b(gVar, gVar2)));
+        return gVar2.isEmpty() ? gVar : new g(gVar.getComponents(), gVar.getTypeParameterResolver(), d0.g.lazy(d0.i.NONE, new b(gVar, gVar2)));
     }
 
-    public static final g replaceComponents(g gVar, b bVar) {
+    public static final g replaceComponents(g gVar, d0.e0.p.d.m0.e.a.i0.b bVar) {
         d0.z.d.m.checkNotNullParameter(gVar, "<this>");
         d0.z.d.m.checkNotNullParameter(bVar, "components");
         return new g(bVar, gVar.getTypeParameterResolver(), gVar.getDelegateForDefaultTypeQualifiers$descriptors_jvm());

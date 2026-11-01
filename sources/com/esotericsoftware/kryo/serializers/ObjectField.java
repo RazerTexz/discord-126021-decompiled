@@ -1,7 +1,6 @@
 package com.esotericsoftware.kryo.serializers;
 
 import b.d.b.a.a;
-import b.e.a.a$a;
 import b.e.b.c;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoException;
@@ -9,13 +8,462 @@ import com.esotericsoftware.kryo.Registration;
 import com.esotericsoftware.kryo.Serializer;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import java.lang.reflect.Field;
 
 /* JADX INFO: loaded from: classes.dex */
-public class ObjectField extends FieldSerializer$CachedField {
+public class ObjectField extends FieldSerializer.CachedField {
     public final FieldSerializer fieldSerializer;
     public Class[] generics;
     public final Kryo kryo;
     public final Class type;
+
+    public final class ObjectBooleanField extends ObjectField {
+        public ObjectBooleanField(FieldSerializer fieldSerializer) {
+            super(fieldSerializer);
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void copy(Object obj, Object obj2) {
+            try {
+                Field field = this.field;
+                field.setBoolean(obj2, field.getBoolean(obj));
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField
+        public Object getField(Object obj) throws IllegalAccessException, IllegalArgumentException {
+            return Boolean.valueOf(this.field.getBoolean(obj));
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void read(Input input, Object obj) {
+            try {
+                this.field.setBoolean(obj, input.readBoolean());
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void write(Output output, Object obj) {
+            try {
+                output.writeBoolean(this.field.getBoolean(obj));
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+    }
+
+    public final class ObjectByteField extends ObjectField {
+        public ObjectByteField(FieldSerializer fieldSerializer) {
+            super(fieldSerializer);
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void copy(Object obj, Object obj2) {
+            try {
+                Field field = this.field;
+                field.setByte(obj2, field.getByte(obj));
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField
+        public Object getField(Object obj) throws IllegalAccessException, IllegalArgumentException {
+            return Byte.valueOf(this.field.getByte(obj));
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void read(Input input, Object obj) {
+            try {
+                this.field.setByte(obj, input.readByte());
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void write(Output output, Object obj) {
+            try {
+                output.writeByte(this.field.getByte(obj));
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+    }
+
+    public final class ObjectCharField extends ObjectField {
+        public ObjectCharField(FieldSerializer fieldSerializer) {
+            super(fieldSerializer);
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void copy(Object obj, Object obj2) {
+            try {
+                Field field = this.field;
+                field.setChar(obj2, field.getChar(obj));
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField
+        public Object getField(Object obj) throws IllegalAccessException, IllegalArgumentException {
+            return Character.valueOf(this.field.getChar(obj));
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void read(Input input, Object obj) {
+            try {
+                this.field.setChar(obj, input.readChar());
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void write(Output output, Object obj) {
+            try {
+                output.writeChar(this.field.getChar(obj));
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+    }
+
+    public final class ObjectDoubleField extends ObjectField {
+        public ObjectDoubleField(FieldSerializer fieldSerializer) {
+            super(fieldSerializer);
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void copy(Object obj, Object obj2) {
+            try {
+                Field field = this.field;
+                field.setDouble(obj2, field.getDouble(obj));
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField
+        public Object getField(Object obj) throws IllegalAccessException, IllegalArgumentException {
+            return Double.valueOf(this.field.getDouble(obj));
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void read(Input input, Object obj) {
+            try {
+                this.field.setDouble(obj, input.readDouble());
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void write(Output output, Object obj) {
+            try {
+                output.writeDouble(this.field.getDouble(obj));
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+    }
+
+    public final class ObjectFloatField extends ObjectField {
+        public ObjectFloatField(FieldSerializer fieldSerializer) {
+            super(fieldSerializer);
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void copy(Object obj, Object obj2) {
+            try {
+                Field field = this.field;
+                field.setFloat(obj2, field.getFloat(obj));
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField
+        public Object getField(Object obj) throws IllegalAccessException, IllegalArgumentException {
+            return Float.valueOf(this.field.getFloat(obj));
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void read(Input input, Object obj) {
+            try {
+                this.field.setFloat(obj, input.readFloat());
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void write(Output output, Object obj) {
+            try {
+                output.writeFloat(this.field.getFloat(obj));
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+    }
+
+    public final class ObjectIntField extends ObjectField {
+        public ObjectIntField(FieldSerializer fieldSerializer) {
+            super(fieldSerializer);
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void copy(Object obj, Object obj2) {
+            try {
+                Field field = this.field;
+                field.setInt(obj2, field.getInt(obj));
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField
+        public Object getField(Object obj) throws IllegalAccessException, IllegalArgumentException {
+            return Integer.valueOf(this.field.getInt(obj));
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void read(Input input, Object obj) {
+            try {
+                if (this.varIntsEnabled) {
+                    this.field.setInt(obj, input.readInt(false));
+                } else {
+                    this.field.setInt(obj, input.readInt());
+                }
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void write(Output output, Object obj) {
+            try {
+                if (this.varIntsEnabled) {
+                    output.writeInt(this.field.getInt(obj), false);
+                } else {
+                    output.writeInt(this.field.getInt(obj));
+                }
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+    }
+
+    public final class ObjectLongField extends ObjectField {
+        public ObjectLongField(FieldSerializer fieldSerializer) {
+            super(fieldSerializer);
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void copy(Object obj, Object obj2) {
+            try {
+                Field field = this.field;
+                field.setLong(obj2, field.getLong(obj));
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField
+        public Object getField(Object obj) throws IllegalAccessException, IllegalArgumentException {
+            return Long.valueOf(this.field.getLong(obj));
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void read(Input input, Object obj) {
+            try {
+                if (this.varIntsEnabled) {
+                    this.field.setLong(obj, input.readLong(false));
+                } else {
+                    this.field.setLong(obj, input.readLong());
+                }
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void write(Output output, Object obj) {
+            try {
+                if (this.varIntsEnabled) {
+                    output.writeLong(this.field.getLong(obj), false);
+                } else {
+                    output.writeLong(this.field.getLong(obj));
+                }
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+    }
+
+    public final class ObjectShortField extends ObjectField {
+        public ObjectShortField(FieldSerializer fieldSerializer) {
+            super(fieldSerializer);
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void copy(Object obj, Object obj2) {
+            try {
+                Field field = this.field;
+                field.setShort(obj2, field.getShort(obj));
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField
+        public Object getField(Object obj) throws IllegalAccessException, IllegalArgumentException {
+            return Short.valueOf(this.field.getShort(obj));
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void read(Input input, Object obj) {
+            try {
+                this.field.setShort(obj, input.readShort());
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+
+        @Override // com.esotericsoftware.kryo.serializers.ObjectField, com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
+        public void write(Output output, Object obj) {
+            try {
+                output.writeShort(this.field.getShort(obj));
+            } catch (Exception e) {
+                KryoException kryoException = new KryoException(e);
+                StringBuilder sb = new StringBuilder();
+                sb.append(this);
+                sb.append(" (");
+                a.m0(this.type, sb, ")", kryoException);
+                throw kryoException;
+            }
+        }
+    }
 
     public ObjectField(FieldSerializer fieldSerializer) {
         this.fieldSerializer = fieldSerializer;
@@ -23,7 +471,7 @@ public class ObjectField extends FieldSerializer$CachedField {
         this.type = fieldSerializer.type;
     }
 
-    @Override // com.esotericsoftware.kryo.serializers.FieldSerializer$CachedField
+    @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
     public void copy(Object obj, Object obj2) {
         try {
             int i = this.accessIndex;
@@ -59,13 +507,13 @@ public class ObjectField extends FieldSerializer$CachedField {
         return this.field.get(obj);
     }
 
-    @Override // com.esotericsoftware.kryo.serializers.FieldSerializer$CachedField
+    @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
     public void read(Input input, Object obj) {
         Object objectOrNull;
         try {
             try {
                 try {
-                    a$a a_a = b.e.a.a.a;
+                    b.e.a.a.C0064a c0064a = b.e.a.a.a;
                     Class cls = this.valueClass;
                     Serializer serializer = this.serializer;
                     if (cls == null) {
@@ -106,11 +554,11 @@ public class ObjectField extends FieldSerializer$CachedField {
         this.field.set(obj, obj2);
     }
 
-    @Override // com.esotericsoftware.kryo.serializers.FieldSerializer$CachedField
+    @Override // com.esotericsoftware.kryo.serializers.FieldSerializer.CachedField
     public void write(Output output, Object obj) {
         try {
             try {
-                a$a a_a = b.e.a.a.a;
+                b.e.a.a.C0064a c0064a = b.e.a.a.a;
                 Object field = getField(obj);
                 Serializer serializer = this.serializer;
                 Class cls = this.valueClass;

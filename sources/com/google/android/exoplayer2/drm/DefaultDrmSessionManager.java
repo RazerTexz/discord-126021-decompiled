@@ -1,24 +1,21 @@
 package com.google.android.exoplayer2.drm;
 
+import android.annotation.SuppressLint;
 import android.media.ResourceBusyException;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import b.c.a.a0.d;
-import b.d.b.a.a;
 import b.i.a.c.e3.w;
 import b.i.a.c.f3.q;
 import b.i.a.c.f3.t;
 import b.i.a.c.j1;
 import b.i.a.c.w2.a0;
-import b.i.a.c.w2.a0$c;
 import b.i.a.c.w2.b0;
-import b.i.a.c.w2.e;
 import b.i.a.c.w2.e0;
-import b.i.a.c.w2.s$a;
+import b.i.a.c.w2.s;
 import b.i.a.c.w2.u;
-import b.i.a.c.w2.u$b;
 import b.i.a.c.w2.z;
 import b.i.a.c.x0;
 import b.i.b.b.h;
@@ -26,7 +23,9 @@ import b.i.b.b.h0;
 import b.i.b.b.p;
 import b.i.b.b.r;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -40,18 +39,18 @@ public class DefaultDrmSessionManager implements u {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final UUID f2929b;
-    public final a0$c c;
+    public final a0.c c;
     public final e0 d;
     public final HashMap<String, String> e;
     public final boolean f;
     public final int[] g;
     public final boolean h;
-    public final DefaultDrmSessionManager$e i;
+    public final e i;
     public final w j;
-    public final DefaultDrmSessionManager$f k;
+    public final f k;
     public final long l;
     public final List<DefaultDrmSession> m;
-    public final Set<DefaultDrmSessionManager$d> n;
+    public final Set<d> n;
     public final Set<DefaultDrmSession> o;
     public int p;
 
@@ -73,21 +72,86 @@ public class DefaultDrmSessionManager implements u {
 
     /* JADX INFO: renamed from: x, reason: collision with root package name */
     @Nullable
-    public volatile DefaultDrmSessionManager$c f2931x;
+    public volatile c f2931x;
 
-    public DefaultDrmSessionManager(UUID uuid, a0$c a0_c, e0 e0Var, HashMap map, boolean z2, int[] iArr, boolean z3, w wVar, long j, DefaultDrmSessionManager$a defaultDrmSessionManager$a) {
+    public final class MissingSchemeDataException extends Exception {
+        /* JADX WARN: Illegal instructions before constructor call */
+        public MissingSchemeDataException(UUID uuid, a aVar) {
+            String strValueOf = String.valueOf(uuid);
+            super(b.d.b.a.a.j(strValueOf.length() + 29, "Media does not support uuid: ", strValueOf));
+        }
+    }
+
+    public class b implements a0.b {
+        public b(a aVar) {
+        }
+    }
+
+    @SuppressLint({"HandlerLeak"})
+    public class c extends Handler {
+        public c(Looper looper) {
+            super(looper);
+        }
+
+        @Override // android.os.Handler
+        public void handleMessage(Message message) {
+            byte[] bArr = (byte[]) message.obj;
+            if (bArr == null) {
+                return;
+            }
+            for (DefaultDrmSession defaultDrmSession : DefaultDrmSessionManager.this.m) {
+                if (Arrays.equals(defaultDrmSession.t, bArr)) {
+                    if (message.what == 2 && defaultDrmSession.e == 0 && defaultDrmSession.n == 4) {
+                        int i = b.i.a.c.f3.e0.a;
+                        defaultDrmSession.i(false);
+                        return;
+                    }
+                    return;
+                }
+            }
+        }
+    }
+
+    public class d implements u.b {
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        @Nullable
+        public final s.a f2932b;
+
+        @Nullable
+        public DrmSession c;
+        public boolean d;
+
+        public d(s.a aVar) {
+            this.f2932b = aVar;
+        }
+
+        @Override // b.i.a.c.w2.u.b
+        public void release() {
+            Handler handler = DefaultDrmSessionManager.this.u;
+            Objects.requireNonNull(handler);
+            b.i.a.c.f3.e0.E(handler, new b.i.a.c.w2.d(this));
+        }
+    }
+
+    public class f implements DefaultDrmSession.b {
+        public f(a aVar) {
+        }
+    }
+
+    public DefaultDrmSessionManager(UUID uuid, a0.c cVar, e0 e0Var, HashMap map, boolean z2, int[] iArr, boolean z3, w wVar, long j, a aVar) {
         Objects.requireNonNull(uuid);
-        d.m(!x0.f1158b.equals(uuid), "Use C.CLEARKEY_UUID instead");
+        b.c.a.a0.d.m(!x0.f1158b.equals(uuid), "Use C.CLEARKEY_UUID instead");
         this.f2929b = uuid;
-        this.c = a0_c;
+        this.c = cVar;
         this.d = e0Var;
         this.e = map;
         this.f = z2;
         this.g = iArr;
         this.h = z3;
         this.j = wVar;
-        this.i = new DefaultDrmSessionManager$e();
-        this.k = new DefaultDrmSessionManager$f(this, null);
+        this.i = new e();
+        this.k = new f(null);
         this.v = 0;
         this.m = new ArrayList();
         this.n = h.c();
@@ -105,7 +169,7 @@ public class DefaultDrmSessionManager implements u {
         if (this.q == null) {
             a0 a0VarA = this.c.a(this.f2929b);
             this.q = a0VarA;
-            a0VarA.h(new DefaultDrmSessionManager$b(this, null));
+            a0VarA.h(new b(null));
         } else if (this.l != -9223372036854775807L) {
             for (int i2 = 0; i2 < this.m.size(); i2++) {
                 this.m.get(i2).a(null);
@@ -114,22 +178,22 @@ public class DefaultDrmSessionManager implements u {
     }
 
     @Override // b.i.a.c.w2.u
-    public u$b b(Looper looper, @Nullable s$a s_a, j1 j1Var) {
-        d.D(this.p > 0);
+    public u.b b(Looper looper, @Nullable s.a aVar, j1 j1Var) {
+        b.c.a.a0.d.D(this.p > 0);
         j(looper);
-        DefaultDrmSessionManager$d defaultDrmSessionManager$d = new DefaultDrmSessionManager$d(this, s_a);
+        d dVar = new d(aVar);
         Handler handler = this.u;
         Objects.requireNonNull(handler);
-        handler.post(new e(defaultDrmSessionManager$d, j1Var));
-        return defaultDrmSessionManager$d;
+        handler.post(new b.i.a.c.w2.e(dVar, j1Var));
+        return dVar;
     }
 
     @Override // b.i.a.c.w2.u
     @Nullable
-    public DrmSession c(Looper looper, @Nullable s$a s_a, j1 j1Var) {
-        d.D(this.p > 0);
+    public DrmSession c(Looper looper, @Nullable s.a aVar, j1 j1Var) {
+        b.c.a.a0.d.D(this.p > 0);
         j(looper);
-        return e(looper, s_a, j1Var, true);
+        return e(looper, aVar, j1Var, true);
     }
 
     /* JADX WARN: Code duplicated, block: B:14:0x0029 A[ORIG_RETURN, RETURN] */
@@ -172,7 +236,7 @@ public class DefaultDrmSessionManager implements u {
             }
         } else if (drmInitData.m == 1 && drmInitData.j[0].a(x0.f1158b)) {
             String strValueOf = String.valueOf(this.f2929b);
-            a.h0(strValueOf.length() + 72, "DrmInitData only contains common PSSH SchemeData. Assuming support for: ", strValueOf, "DefaultDrmSessionMgr");
+            b.d.b.a.a.h0(strValueOf.length() + 72, "DrmInitData only contains common PSSH SchemeData. Assuming support for: ", strValueOf, "DefaultDrmSessionMgr");
             str = drmInitData.l;
             if (str != null) {
                 z2 = true;
@@ -187,10 +251,10 @@ public class DefaultDrmSessionManager implements u {
     }
 
     @Nullable
-    public final DrmSession e(Looper looper, @Nullable s$a s_a, j1 j1Var, boolean z2) {
-        List<DrmInitData$SchemeData> listI;
+    public final DrmSession e(Looper looper, @Nullable s.a aVar, j1 j1Var, boolean z2) {
+        List<DrmInitData.SchemeData> listI;
         if (this.f2931x == null) {
-            this.f2931x = new DefaultDrmSessionManager$c(this, looper);
+            this.f2931x = new c(looper);
         }
         DrmInitData drmInitData = j1Var.f1020z;
         DefaultDrmSession defaultDrmSessionH = null;
@@ -219,7 +283,7 @@ public class DefaultDrmSessionManager implements u {
             }
             DefaultDrmSession defaultDrmSession = this.r;
             if (defaultDrmSession == null) {
-                b.i.b.b.a<Object> aVar = p.k;
+                b.i.b.b.a<Object> aVar2 = p.k;
                 DefaultDrmSession defaultDrmSessionH2 = h(h0.l, true, null, z2);
                 this.m.add(defaultDrmSessionH2);
                 this.r = defaultDrmSessionH2;
@@ -231,12 +295,12 @@ public class DefaultDrmSessionManager implements u {
         if (this.w == null) {
             listI = i(drmInitData, this.f2929b, false);
             if (((ArrayList) listI).isEmpty()) {
-                DefaultDrmSessionManager$MissingSchemeDataException defaultDrmSessionManager$MissingSchemeDataException = new DefaultDrmSessionManager$MissingSchemeDataException(this.f2929b, null);
-                q.b("DefaultDrmSessionMgr", "DRM error", defaultDrmSessionManager$MissingSchemeDataException);
-                if (s_a != null) {
-                    s_a.e(defaultDrmSessionManager$MissingSchemeDataException);
+                MissingSchemeDataException missingSchemeDataException = new MissingSchemeDataException(this.f2929b, null);
+                q.b("DefaultDrmSessionMgr", "DRM error", missingSchemeDataException);
+                if (aVar != null) {
+                    aVar.e(missingSchemeDataException);
                 }
-                return new z(new DrmSession$DrmSessionException(defaultDrmSessionManager$MissingSchemeDataException, 6003));
+                return new z(new DrmSession.DrmSessionException(missingSchemeDataException, 6003));
             }
         } else {
             listI = null;
@@ -252,13 +316,13 @@ public class DefaultDrmSessionManager implements u {
             defaultDrmSessionH = this.f2930s;
         }
         if (defaultDrmSessionH == null) {
-            defaultDrmSessionH = h(listI, false, s_a, z2);
+            defaultDrmSessionH = h(listI, false, aVar, z2);
             if (!this.f) {
                 this.f2930s = defaultDrmSessionH;
             }
             this.m.add(defaultDrmSessionH);
         } else {
-            defaultDrmSessionH.a(s_a);
+            defaultDrmSessionH.a(aVar);
         }
         return defaultDrmSessionH;
     }
@@ -269,45 +333,45 @@ public class DefaultDrmSessionManager implements u {
             if (b.i.a.c.f3.e0.a < 19) {
                 return true;
             }
-            DrmSession$DrmSessionException drmSession$DrmSessionExceptionF = defaultDrmSession.f();
-            Objects.requireNonNull(drmSession$DrmSessionExceptionF);
-            if (drmSession$DrmSessionExceptionF.getCause() instanceof ResourceBusyException) {
+            DrmSession.DrmSessionException drmSessionExceptionF = defaultDrmSession.f();
+            Objects.requireNonNull(drmSessionExceptionF);
+            if (drmSessionExceptionF.getCause() instanceof ResourceBusyException) {
                 return true;
             }
         }
         return false;
     }
 
-    public final DefaultDrmSession g(@Nullable List<DrmInitData$SchemeData> list, boolean z2, @Nullable s$a s_a) {
+    public final DefaultDrmSession g(@Nullable List<DrmInitData.SchemeData> list, boolean z2, @Nullable s.a aVar) {
         Objects.requireNonNull(this.q);
         boolean z3 = this.h | z2;
         UUID uuid = this.f2929b;
         a0 a0Var = this.q;
-        DefaultDrmSessionManager$e defaultDrmSessionManager$e = this.i;
-        DefaultDrmSessionManager$f defaultDrmSessionManager$f = this.k;
+        e eVar = this.i;
+        f fVar = this.k;
         int i = this.v;
         byte[] bArr = this.w;
         HashMap<String, String> map = this.e;
         e0 e0Var = this.d;
         Looper looper = this.t;
         Objects.requireNonNull(looper);
-        DefaultDrmSession defaultDrmSession = new DefaultDrmSession(uuid, a0Var, defaultDrmSessionManager$e, defaultDrmSessionManager$f, list, i, z3, z2, bArr, map, e0Var, looper, this.j);
-        defaultDrmSession.a(s_a);
+        DefaultDrmSession defaultDrmSession = new DefaultDrmSession(uuid, a0Var, eVar, fVar, list, i, z3, z2, bArr, map, e0Var, looper, this.j);
+        defaultDrmSession.a(aVar);
         if (this.l != -9223372036854775807L) {
             defaultDrmSession.a(null);
         }
         return defaultDrmSession;
     }
 
-    public final DefaultDrmSession h(@Nullable List<DrmInitData$SchemeData> list, boolean z2, @Nullable s$a s_a, boolean z3) {
-        DefaultDrmSession defaultDrmSessionG = g(list, z2, s_a);
+    public final DefaultDrmSession h(@Nullable List<DrmInitData.SchemeData> list, boolean z2, @Nullable s.a aVar, boolean z3) {
+        DefaultDrmSession defaultDrmSessionG = g(list, z2, aVar);
         if (f(defaultDrmSessionG) && !this.o.isEmpty()) {
             l();
-            defaultDrmSessionG.b(s_a);
+            defaultDrmSessionG.b(aVar);
             if (this.l != -9223372036854775807L) {
                 defaultDrmSessionG.b(null);
             }
-            defaultDrmSessionG = g(list, z2, s_a);
+            defaultDrmSessionG = g(list, z2, aVar);
         }
         if (!f(defaultDrmSessionG) || !z3 || this.n.isEmpty()) {
             return defaultDrmSessionG;
@@ -316,19 +380,19 @@ public class DefaultDrmSessionManager implements u {
         if (!this.o.isEmpty()) {
             l();
         }
-        defaultDrmSessionG.b(s_a);
+        defaultDrmSessionG.b(aVar);
         if (this.l != -9223372036854775807L) {
             defaultDrmSessionG.b(null);
         }
-        return g(list, z2, s_a);
+        return g(list, z2, aVar);
     }
 
-    public static List<DrmInitData$SchemeData> i(DrmInitData drmInitData, UUID uuid, boolean z2) {
+    public static List<DrmInitData.SchemeData> i(DrmInitData drmInitData, UUID uuid, boolean z2) {
         ArrayList arrayList = new ArrayList(drmInitData.m);
         for (int i = 0; i < drmInitData.m; i++) {
-            DrmInitData$SchemeData drmInitData$SchemeData = drmInitData.j[i];
-            if ((drmInitData$SchemeData.a(uuid) || (x0.c.equals(uuid) && drmInitData$SchemeData.a(x0.f1158b))) && (drmInitData$SchemeData.n != null || z2)) {
-                arrayList.add(drmInitData$SchemeData);
+            DrmInitData.SchemeData schemeData = drmInitData.j[i];
+            if ((schemeData.a(uuid) || (x0.c.equals(uuid) && schemeData.a(x0.f1158b))) && (schemeData.n != null || z2)) {
+                arrayList.add(schemeData);
             }
         }
         return arrayList;
@@ -341,7 +405,7 @@ public class DefaultDrmSessionManager implements u {
             this.t = looper;
             this.u = new Handler(looper);
         } else {
-            d.D(looper2 == looper);
+            b.c.a.a0.d.D(looper2 == looper);
             Objects.requireNonNull(this.u);
         }
     }
@@ -365,10 +429,10 @@ public class DefaultDrmSessionManager implements u {
     public final void m() {
         Iterator itJ = r.m(this.n).j();
         while (itJ.hasNext()) {
-            DefaultDrmSessionManager$d defaultDrmSessionManager$d = (DefaultDrmSessionManager$d) itJ.next();
-            Handler handler = defaultDrmSessionManager$d.e.u;
+            d dVar = (d) itJ.next();
+            Handler handler = DefaultDrmSessionManager.this.u;
             Objects.requireNonNull(handler);
-            b.i.a.c.f3.e0.E(handler, new b.i.a.c.w2.d(defaultDrmSessionManager$d));
+            b.i.a.c.f3.e0.E(handler, new b.i.a.c.w2.d(dVar));
         }
     }
 
@@ -387,5 +451,23 @@ public class DefaultDrmSessionManager implements u {
         }
         m();
         k();
+    }
+
+    public class e implements DefaultDrmSession.a {
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        @Nullable
+        public DefaultDrmSession f2933b;
+        public final Set<DefaultDrmSession> a = new HashSet();
+
+        public void a(Exception exc, boolean z2) {
+            this.f2933b = null;
+            p pVarN = p.n(this.a);
+            this.a.clear();
+            b.i.b.b.a aVarP = pVarN.p();
+            while (aVarP.hasNext()) {
+                ((DefaultDrmSession) aVarP.next()).k(exc, z2 ? 1 : 3);
+            }
+        }
     }
 }

@@ -2,7 +2,7 @@ package com.discord.rlottie;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.Display;
 import android.view.WindowManager;
@@ -27,12 +27,12 @@ public class RLottieImageView extends AppCompatImageView {
     public RLottieImageView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         m.checkParameterIsNotNull(context, "context");
-        RLottieDrawable$PlaybackMode rLottieDrawable$PlaybackMode = RLottieDrawable$PlaybackMode.FREEZE;
+        RLottieDrawable.PlaybackMode playbackMode = RLottieDrawable.PlaybackMode.FREEZE;
     }
 
     @SuppressLint({"AnnotateVersionCheck"})
     public final Display a(Context context) {
-        if (Build$VERSION.SDK_INT >= 30) {
+        if (Build.VERSION.SDK_INT >= 30) {
             Display display = context.getDisplay();
             if (display == null) {
                 m.throwNpe();
@@ -62,8 +62,8 @@ public class RLottieImageView extends AppCompatImageView {
     }
 
     public final void c(int resId, int w, int h) {
-        RLottieDrawable$PlaybackMode rLottieDrawable$PlaybackMode = RLottieDrawable$PlaybackMode.LOOP;
-        m.checkParameterIsNotNull(rLottieDrawable$PlaybackMode, "playbackMode");
+        RLottieDrawable.PlaybackMode playbackMode = RLottieDrawable.PlaybackMode.LOOP;
+        m.checkParameterIsNotNull(playbackMode, "playbackMode");
         Context context = getContext();
         m.checkExpressionValueIsNotNull(context, "context");
         String strValueOf = String.valueOf(resId);
@@ -71,7 +71,7 @@ public class RLottieImageView extends AppCompatImageView {
         m.checkExpressionValueIsNotNull(context2, "context");
         RLottieDrawable rLottieDrawable = new RLottieDrawable(context, resId, strValueOf, w, h, a(context2).getRefreshRate(), false, (int[]) null);
         this.drawable = rLottieDrawable;
-        rLottieDrawable.f(rLottieDrawable$PlaybackMode);
+        rLottieDrawable.f(playbackMode);
         RLottieDrawable rLottieDrawable2 = this.drawable;
         if (rLottieDrawable2 != null) {
             rLottieDrawable2.e(true);
@@ -100,7 +100,7 @@ public class RLottieImageView extends AppCompatImageView {
         }
     }
 
-    public final void setPlaybackMode(RLottieDrawable$PlaybackMode playbackMode) {
+    public final void setPlaybackMode(RLottieDrawable.PlaybackMode playbackMode) {
         m.checkParameterIsNotNull(playbackMode, "playbackMode");
         RLottieDrawable rLottieDrawable = this.drawable;
         if (rLottieDrawable != null) {

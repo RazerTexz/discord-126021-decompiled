@@ -11,10 +11,10 @@ import kotlin.Pair;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetIncomingShare$onSendClicked$2$$special$$inlined$let$lambda$1<T, R> implements b<MessageResult, Pair<? extends MeUser, ? extends MessageResult>> {
     public final /* synthetic */ MeUser $meUser$inlined;
-    public final /* synthetic */ WidgetIncomingShare$onSendClicked$2 this$0;
+    public final /* synthetic */ WidgetIncomingShare.AnonymousClass2 this$0;
 
-    public WidgetIncomingShare$onSendClicked$2$$special$$inlined$let$lambda$1(WidgetIncomingShare$onSendClicked$2 widgetIncomingShare$onSendClicked$2, MeUser meUser) {
-        this.this$0 = widgetIncomingShare$onSendClicked$2;
+    public WidgetIncomingShare$onSendClicked$2$$special$$inlined$let$lambda$1(WidgetIncomingShare.AnonymousClass2 anonymousClass2, MeUser meUser) {
+        this.this$0 = anonymousClass2;
         this.$meUser$inlined = meUser;
     }
 

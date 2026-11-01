@@ -14,6 +14,95 @@ import java.util.Iterator;
 public abstract class c implements Iterable<Byte> {
     public static final c j = new m(new byte[0]);
 
+    /* JADX INFO: compiled from: ByteString.java */
+    public interface a extends Iterator<Byte> {
+        byte nextByte();
+    }
+
+    /* JADX INFO: compiled from: ByteString.java */
+    public final class b extends OutputStream {
+        public final int k;
+        public final ArrayList<c> l;
+        public int m;
+        public byte[] n;
+        public int o;
+        public static final byte[] j = new byte[0];
+
+        public b(int i) {
+            if (i < 0) {
+                throw new IllegalArgumentException("Buffer size < 0");
+            }
+            this.k = i;
+            this.l = new ArrayList<>();
+            this.n = new byte[i];
+        }
+
+        public final void a(int i) {
+            this.l.add(new m(this.n));
+            int length = this.m + this.n.length;
+            this.m = length;
+            this.n = new byte[Math.max(this.k, Math.max(i, length >>> 1))];
+            this.o = 0;
+        }
+
+        public final void b() {
+            int i = this.o;
+            byte[] bArr = this.n;
+            if (i >= bArr.length) {
+                this.l.add(new m(this.n));
+                this.n = j;
+            } else if (i > 0) {
+                byte[] bArr2 = new byte[i];
+                System.arraycopy(bArr, 0, bArr2, 0, Math.min(bArr.length, i));
+                this.l.add(new m(bArr2));
+            }
+            this.m += this.o;
+            this.o = 0;
+        }
+
+        public synchronized int size() {
+            return this.m + this.o;
+        }
+
+        public synchronized c toByteString() {
+            b();
+            return c.copyFrom(this.l);
+        }
+
+        public String toString() {
+            return String.format("<ByteString.Output@%s size=%d>", Integer.toHexString(System.identityHashCode(this)), Integer.valueOf(size()));
+        }
+
+        @Override // java.io.OutputStream
+        public synchronized void write(int i) {
+            if (this.o == this.n.length) {
+                a(1);
+            }
+            byte[] bArr = this.n;
+            int i2 = this.o;
+            this.o = i2 + 1;
+            bArr[i2] = (byte) i;
+        }
+
+        @Override // java.io.OutputStream
+        public synchronized void write(byte[] bArr, int i, int i2) {
+            byte[] bArr2 = this.n;
+            int length = bArr2.length;
+            int i3 = this.o;
+            if (i2 <= length - i3) {
+                System.arraycopy(bArr, i, bArr2, i3, i2);
+                this.o += i2;
+            } else {
+                int length2 = bArr2.length - i3;
+                System.arraycopy(bArr, i, bArr2, i3, length2);
+                int i4 = i2 - length2;
+                a(i4);
+                System.arraycopy(bArr, i + length2, this.n, 0, i4);
+                this.o = i4;
+            }
+        }
+    }
+
     public static c c(Iterator<c> it, int i) {
         if (i == 1) {
             return it.next();
@@ -51,12 +140,12 @@ public abstract class c implements Iterable<Byte> {
         if (size3 >= r.k[Math.max(e(), cVar.e()) + 1]) {
             return new r(this, cVar);
         }
-        r$b r_b = new r$b(null);
-        r_b.a(this);
-        r_b.a(cVar);
-        c cVarPop = r_b.a.pop();
-        while (!r_b.a.isEmpty()) {
-            cVarPop = new r(r_b.a.pop(), cVarPop);
+        r.b bVar = new r.b(null);
+        bVar.a(this);
+        bVar.a(cVar);
+        c cVarPop = bVar.a.pop();
+        while (!bVar.a.isEmpty()) {
+            cVarPop = new r(bVar.a.pop(), cVarPop);
         }
         return cVarPop;
     }
@@ -127,8 +216,8 @@ public abstract class c implements Iterable<Byte> {
 
     public abstract void k(OutputStream outputStream, int i, int i2) throws IOException;
 
-    public static c$b newOutput() {
-        return new c$b(128);
+    public static b newOutput() {
+        return new b(128);
     }
 
     public abstract int size();

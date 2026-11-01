@@ -4,16 +4,15 @@ import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.PersistableBundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
 import androidx.work.Logger;
-import androidx.work.WorkInfo$State;
+import androidx.work.WorkInfo;
 import androidx.work.impl.Scheduler;
 import androidx.work.impl.WorkDatabase;
 import androidx.work.impl.WorkManagerImpl;
@@ -27,7 +26,7 @@ import java.util.Locale;
 
 /* JADX INFO: loaded from: classes.dex */
 @RequiresApi(23)
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class SystemJobScheduler implements Scheduler {
     private final Context mContext;
     private final JobScheduler mJobScheduler;
@@ -155,7 +154,7 @@ public class SystemJobScheduler implements Scheduler {
                 if (workSpec2 == null) {
                     Logger.get().warning(TAG, "Skipping scheduling " + workSpec.f38id + " because it's no longer in the DB", new Throwable[0]);
                     workDatabase.setTransactionSuccessful();
-                } else if (workSpec2.state != WorkInfo$State.ENQUEUED) {
+                } else if (workSpec2.state != WorkInfo.State.ENQUEUED) {
                     Logger.get().warning(TAG, "Skipping scheduling " + workSpec.f38id + " because it is no longer enqueued", new Throwable[0]);
                     workDatabase.setTransactionSuccessful();
                 } else {
@@ -165,7 +164,7 @@ public class SystemJobScheduler implements Scheduler {
                         this.mWorkManager.getWorkDatabase().systemIdInfoDao().insertSystemIdInfo(new SystemIdInfo(workSpec.f38id, iNextJobSchedulerIdWithRange));
                     }
                     scheduleInternal(workSpec, iNextJobSchedulerIdWithRange);
-                    if (Build$VERSION.SDK_INT == 23 && (pendingJobIds = getPendingJobIds(this.mContext, this.mJobScheduler, workSpec.f38id)) != null) {
+                    if (Build.VERSION.SDK_INT == 23 && (pendingJobIds = getPendingJobIds(this.mContext, this.mJobScheduler, workSpec.f38id)) != null) {
                         int iIndexOf = pendingJobIds.indexOf(Integer.valueOf(iNextJobSchedulerIdWithRange));
                         if (iIndexOf >= 0) {
                             pendingJobIds.remove(iIndexOf);

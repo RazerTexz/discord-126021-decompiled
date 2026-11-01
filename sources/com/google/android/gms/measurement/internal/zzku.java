@@ -1,7 +1,7 @@
 package com.google.android.gms.measurement.internal;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.a.f.i.b.s9;
 import b.i.a.f.i.b.u9;
@@ -17,7 +17,7 @@ public final class zzku extends AbstractSafeParcelable {
     public final String n;
     public final String o;
     public final Double p;
-    public static final Parcelable$Creator<zzku> CREATOR = new s9();
+    public static final Parcelable.Creator<zzku> CREATOR = new s9();
 
     public zzku(u9 u9Var) {
         this(u9Var.c, u9Var.d, u9Var.e, u9Var.f1576b);

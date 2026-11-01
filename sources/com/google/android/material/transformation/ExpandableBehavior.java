@@ -3,24 +3,47 @@ package com.google.android.material.transformation;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout$Behavior;
-import androidx.coordinatorlayout.widget.CoordinatorLayout$LayoutParams;
 import androidx.core.view.ViewCompat;
 import com.google.android.material.expandable.ExpandableWidget;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes3.dex */
 @Deprecated
-public abstract class ExpandableBehavior extends CoordinatorLayout$Behavior<View> {
+public abstract class ExpandableBehavior extends CoordinatorLayout.Behavior<View> {
     private static final int STATE_COLLAPSED = 2;
     private static final int STATE_EXPANDED = 1;
     private static final int STATE_UNINITIALIZED = 0;
     private int currentState;
+
+    public class a implements ViewTreeObserver.OnPreDrawListener {
+        public final /* synthetic */ View j;
+        public final /* synthetic */ int k;
+        public final /* synthetic */ ExpandableWidget l;
+
+        public a(View view, int i, ExpandableWidget expandableWidget) {
+            this.j = view;
+            this.k = i;
+            this.l = expandableWidget;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // android.view.ViewTreeObserver.OnPreDrawListener
+        public boolean onPreDraw() {
+            this.j.getViewTreeObserver().removeOnPreDrawListener(this);
+            if (ExpandableBehavior.access$000(ExpandableBehavior.this) == this.k) {
+                ExpandableBehavior expandableBehavior = ExpandableBehavior.this;
+                ExpandableWidget expandableWidget = this.l;
+                expandableBehavior.onExpandedStateChange((View) expandableWidget, this.j, expandableWidget.isExpanded(), false);
+            }
+            return false;
+        }
+    }
 
     public ExpandableBehavior() {
         this.currentState = 0;
@@ -54,22 +77,22 @@ public abstract class ExpandableBehavior extends CoordinatorLayout$Behavior<View
 
     @Nullable
     public static <T extends ExpandableBehavior> T from(@NonNull View view, @NonNull Class<T> cls) {
-        ViewGroup$LayoutParams layoutParams = view.getLayoutParams();
-        if (!(layoutParams instanceof CoordinatorLayout$LayoutParams)) {
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        if (!(layoutParams instanceof CoordinatorLayout.LayoutParams)) {
             throw new IllegalArgumentException("The view is not a child of CoordinatorLayout");
         }
-        CoordinatorLayout$Behavior behavior = ((CoordinatorLayout$LayoutParams) layoutParams).getBehavior();
+        CoordinatorLayout.Behavior behavior = ((CoordinatorLayout.LayoutParams) layoutParams).getBehavior();
         if (behavior instanceof ExpandableBehavior) {
             return cls.cast(behavior);
         }
         throw new IllegalArgumentException("The view is not associated with ExpandableBehavior");
     }
 
-    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout$Behavior
+    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
     public abstract boolean layoutDependsOn(CoordinatorLayout coordinatorLayout, View view, View view2);
 
     /* JADX WARN: Multi-variable type inference failed */
-    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout$Behavior
+    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
     @CallSuper
     public boolean onDependentViewChanged(CoordinatorLayout coordinatorLayout, View view, View view2) {
         ExpandableWidget expandableWidget = (ExpandableWidget) view2;
@@ -82,7 +105,7 @@ public abstract class ExpandableBehavior extends CoordinatorLayout$Behavior<View
 
     public abstract boolean onExpandedStateChange(View view, View view2, boolean z2, boolean z3);
 
-    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout$Behavior
+    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
     @CallSuper
     public boolean onLayoutChild(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view, int i) {
         ExpandableWidget expandableWidgetFindExpandableWidget;
@@ -91,7 +114,7 @@ public abstract class ExpandableBehavior extends CoordinatorLayout$Behavior<View
         }
         int i2 = expandableWidgetFindExpandableWidget.isExpanded() ? 1 : 2;
         this.currentState = i2;
-        view.getViewTreeObserver().addOnPreDrawListener(new ExpandableBehavior$a(this, view, i2, expandableWidgetFindExpandableWidget));
+        view.getViewTreeObserver().addOnPreDrawListener(new a(view, i2, expandableWidgetFindExpandableWidget));
         return false;
     }
 

@@ -1,32 +1,31 @@
 package androidx.core.text;
 
-import android.text.Html$ImageGetter;
-import android.text.Html$TagHandler;
+import android.text.Html;
 import android.text.Spanned;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: Html.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class HtmlKt {
-    public static /* synthetic */ Spanned parseAsHtml$default(String str, int i, Html$ImageGetter html$ImageGetter, Html$TagHandler html$TagHandler, int i2, Object obj) {
+    public static /* synthetic */ Spanned parseAsHtml$default(String str, int i, Html.ImageGetter imageGetter, Html.TagHandler tagHandler, int i2, Object obj) {
         if ((i2 & 1) != 0) {
             i = 0;
         }
         if ((i2 & 2) != 0) {
-            html$ImageGetter = null;
+            imageGetter = null;
         }
         if ((i2 & 4) != 0) {
-            html$TagHandler = null;
+            tagHandler = null;
         }
         m.checkNotNullParameter(str, "<this>");
-        Spanned spannedFromHtml = HtmlCompat.fromHtml(str, i, html$ImageGetter, html$TagHandler);
+        Spanned spannedFromHtml = HtmlCompat.fromHtml(str, i, imageGetter, tagHandler);
         m.checkNotNullExpressionValue(spannedFromHtml, "fromHtml(this, flags, imageGetter, tagHandler)");
         return spannedFromHtml;
     }
 
-    public static final Spanned parseAsHtml(String str, int i, Html$ImageGetter html$ImageGetter, Html$TagHandler html$TagHandler) {
+    public static final Spanned parseAsHtml(String str, int i, Html.ImageGetter imageGetter, Html.TagHandler tagHandler) {
         m.checkNotNullParameter(str, "<this>");
-        Spanned spannedFromHtml = HtmlCompat.fromHtml(str, i, html$ImageGetter, html$TagHandler);
+        Spanned spannedFromHtml = HtmlCompat.fromHtml(str, i, imageGetter, tagHandler);
         m.checkNotNullExpressionValue(spannedFromHtml, "fromHtml(this, flags, imageGetter, tagHandler)");
         return spannedFromHtml;
     }

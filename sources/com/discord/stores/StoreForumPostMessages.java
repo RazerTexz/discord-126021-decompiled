@@ -2,23 +2,24 @@ package com.discord.stores;
 
 import android.content.Context;
 import com.discord.api.channel.Channel;
+import com.discord.api.forum.ForumPostFirstMessages;
 import com.discord.api.message.reaction.MessageReaction;
 import com.discord.api.message.reaction.MessageReactionUpdate;
 import com.discord.models.domain.ModelMessageDelete;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.message.Message;
-import com.discord.restapi.RestAPIParams$GetForumPostData;
+import com.discord.restapi.RestAPIParams;
 import com.discord.restapi.utils.RetryWithDelay;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
+import d0.f0.q;
 import d0.t.h0;
-import d0.t.o;
 import d0.t.o0;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -37,7 +38,6 @@ import rx.Observable;
 /* JADX INFO: compiled from: StoreForumPostMessages.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreForumPostMessages extends StoreV2 {
-    public static final StoreForumPostMessages$Companion Companion = new StoreForumPostMessages$Companion(null);
     public static final int MAX_REQUEST_BODY_POST_IDS = 10;
     private final Dispatcher dispatcher;
     private Map<Long, Set<Long>> forumPostFetchQueue;
@@ -48,6 +48,222 @@ public final class StoreForumPostMessages extends StoreV2 {
     private final ObservationDeck observationDeck;
     private Set<Long> shouldGetForumPostFirstMessageFromGateway;
     private final StoreUser storeUser;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreForumPostMessages$enqueueForumPostFirstMessageFetch$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreForumPostMessages.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ long $parentChannelId;
+        public final /* synthetic */ long $postId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, long j2) {
+            super(0);
+            this.$postId = j;
+            this.$parentChannelId = j2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            if (StoreForumPostMessages.access$hasForumPostFirstMessage(StoreForumPostMessages.this, this.$postId) || StoreForumPostMessages.access$isFetchingForumPostFirstMessage(StoreForumPostMessages.this, this.$postId) || StoreForumPostMessages.access$expectForumPostFirstMessageFromGateway(StoreForumPostMessages.this, this.$postId)) {
+                return;
+            }
+            Set linkedHashSet = (Set) StoreForumPostMessages.access$getForumPostFetchQueue$p(StoreForumPostMessages.this).get(Long.valueOf(this.$parentChannelId));
+            if (linkedHashSet == null) {
+                linkedHashSet = new LinkedHashSet();
+            }
+            linkedHashSet.add(Long.valueOf(this.$postId));
+            StoreForumPostMessages.access$getForumPostFetchQueue$p(StoreForumPostMessages.this).put(Long.valueOf(this.$parentChannelId), linkedHashSet);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreForumPostMessages$fetchForumPosts$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreForumPostMessages.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ Function0 $onTerminated;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreForumPostMessages$fetchForumPosts$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreForumPostMessages.kt */
+        public final class C02301 extends o implements Function0<Unit> {
+            public C02301() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                AnonymousClass1.this.$onTerminated.invoke();
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Function0 function0) {
+            super(0);
+            this.$onTerminated = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreForumPostMessages.access$getDispatcher$p(StoreForumPostMessages.this).schedule(new C02301());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreForumPostMessages$flushForumPostFirstMessageQueue$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreForumPostMessages.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ long $parentChannelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$parentChannelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            if (StoreForumPostMessages.access$getForumPostRequestQueueProcessing$p(StoreForumPostMessages.this)) {
+                return;
+            }
+            StoreForumPostMessages.access$setForumPostRequestQueueProcessing$p(StoreForumPostMessages.this, true);
+            StoreForumPostMessages.access$flushForumPostFirstMessageQueueHelper(StoreForumPostMessages.this, this.$parentChannelId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreForumPostMessages$flushForumPostFirstMessageQueueHelper$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreForumPostMessages.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ long $parentChannelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$parentChannelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Collection collection = (Collection) StoreForumPostMessages.access$getForumPostFetchQueue$p(StoreForumPostMessages.this).get(Long.valueOf(this.$parentChannelId));
+            if (collection == null || collection.isEmpty()) {
+                StoreForumPostMessages.access$setForumPostRequestQueueProcessing$p(StoreForumPostMessages.this, false);
+            } else {
+                StoreForumPostMessages.access$flushForumPostFirstMessageQueueHelper(StoreForumPostMessages.this, this.$parentChannelId);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreForumPostMessages$observeForumPostFirstMessage$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreForumPostMessages.kt */
+    public final class AnonymousClass1 extends o implements Function0<Message> {
+        public final /* synthetic */ long $postId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$postId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Message invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final Message invoke() {
+            return (Message) StoreForumPostMessages.access$getForumPostFirstMessageSnapshot$p(StoreForumPostMessages.this).get(Long.valueOf(this.$postId));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreForumPostMessages$observeForumPostFirstMessages$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreForumPostMessages.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Message>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Message> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Message> invoke2() {
+            return StoreForumPostMessages.access$getForumPostFirstMessageSnapshot$p(StoreForumPostMessages.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreForumPostMessages$fetchForumPosts$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreForumPostMessages.kt */
+    public final class AnonymousClass2 extends o implements Function1<ForumPostFirstMessages, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreForumPostMessages$fetchForumPosts$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreForumPostMessages.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public final /* synthetic */ ForumPostFirstMessages $response;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(ForumPostFirstMessages forumPostFirstMessages) {
+                super(0);
+                this.$response = forumPostFirstMessages;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreForumPostMessages.this.bulkCreateFirstMessage(q.toList(q.filterNotNull(q.map(u.asSequence(this.$response.a().values()), StoreForumPostMessages$fetchForumPosts$2$1$firstMessages$1.INSTANCE))));
+            }
+        }
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ForumPostFirstMessages forumPostFirstMessages) {
+            invoke2(forumPostFirstMessages);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ForumPostFirstMessages forumPostFirstMessages) {
+            m.checkNotNullParameter(forumPostFirstMessages, "response");
+            StoreForumPostMessages.access$getDispatcher$p(StoreForumPostMessages.this).schedule(new AnonymousClass1(forumPostFirstMessages));
+        }
+    }
 
     public /* synthetic */ StoreForumPostMessages(Dispatcher dispatcher, StoreUser storeUser, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, storeUser, (i & 4) != 0 ? ObservationDeckProvider.get() : observationDeck);
@@ -135,7 +351,7 @@ public final class StoreForumPostMessages extends StoreV2 {
     }
 
     public final void enqueueForumPostFirstMessageFetch(long parentChannelId, long postId) {
-        this.dispatcher.schedule(new StoreForumPostMessages$enqueueForumPostFirstMessageFetch$1(this, postId, parentChannelId));
+        this.dispatcher.schedule(new AnonymousClass1(postId, parentChannelId));
     }
 
     @StoreThread
@@ -146,11 +362,11 @@ public final class StoreForumPostMessages extends StoreV2 {
     @StoreThread
     private final void fetchForumPosts(long parentChannelId, List<Long> postIds, Function0<Unit> onTerminated) {
         this.forumPostFirstMessageFetchSent.addAll(postIds);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RetryWithDelay.restRetry$default(RetryWithDelay.INSTANCE, RestAPI.Companion.getApi().getForumPostData(parentChannelId, new RestAPIParams$GetForumPostData(postIds)), 0L, null, null, 7, null), false, 1, null), StoreForumPostMessages.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, new StoreForumPostMessages$fetchForumPosts$1(this, onTerminated), new StoreForumPostMessages$fetchForumPosts$2(this), 30, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RetryWithDelay.restRetry$default(RetryWithDelay.INSTANCE, RestAPI.INSTANCE.getApi().getForumPostData(parentChannelId, new RestAPIParams.GetForumPostData(postIds)), 0L, null, null, 7, null), false, 1, null), StoreForumPostMessages.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, new AnonymousClass1(onTerminated), new AnonymousClass2(), 30, (Object) null);
     }
 
     public final void flushForumPostFirstMessageQueue(long parentChannelId) {
-        this.dispatcher.schedule(new StoreForumPostMessages$flushForumPostFirstMessageQueue$1(this, parentChannelId));
+        this.dispatcher.schedule(new AnonymousClass1(parentChannelId));
     }
 
     @StoreThread
@@ -162,7 +378,7 @@ public final class StoreForumPostMessages extends StoreV2 {
         }
         List<Long> listTake = u.take(set, 10);
         this.forumPostFetchQueue.put(Long.valueOf(parentChannelId), u.toMutableSet(o0.minus((Set) set, (Iterable) listTake)));
-        fetchForumPosts(parentChannelId, listTake, new StoreForumPostMessages$flushForumPostFirstMessageQueueHelper$1(this, parentChannelId));
+        fetchForumPosts(parentChannelId, listTake, new AnonymousClass1(parentChannelId));
     }
 
     @StoreThread
@@ -234,7 +450,7 @@ public final class StoreForumPostMessages extends StoreV2 {
                 list = u.toList(arrayList);
             } else {
                 List<MessageReaction> reactions3 = firstMessageForReactionUpdate.getReactions();
-                ArrayList arrayList2 = new ArrayList(o.collectionSizeOrDefault(reactions3, 10));
+                ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(reactions3, 10));
                 for (MessageReaction messageReaction : reactions3) {
                     if (m.areEqual(messageReaction.getEmoji().c(), update.getEmoji().c())) {
                         messageReaction = new MessageReaction(messageReaction.getCount() + 1, messageReaction.getEmoji(), update.getUserId() == this.storeUser.getMeSnapshot().getId() ? true : messageReaction.getMe());
@@ -347,13 +563,13 @@ public final class StoreForumPostMessages extends StoreV2 {
             enqueueForumPostFirstMessageFetch(parentChannelId, postId);
             flushForumPostFirstMessageQueue(parentChannelId);
         }
-        Observable<Message> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreForumPostMessages$observeForumPostFirstMessage$1(this, postId), 14, null).r();
+        Observable<Message> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(postId), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Map<Long, Message>> observeForumPostFirstMessages() {
-        Observable<Map<Long, Message>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreForumPostMessages$observeForumPostFirstMessages$1(this), 14, null).r();
+        Observable<Map<Long, Message>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }

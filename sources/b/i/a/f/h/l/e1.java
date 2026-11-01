@@ -1,13 +1,14 @@
 package b.i.a.f.h.l;
 
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.RandomAccess;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class e1 extends u4<e1, e1$a> implements d6 {
+public final class e1 extends u4<e1, a> implements d6 {
     public static final /* synthetic */ int j = 0;
     private static final e1 zzax;
     private static volatile j6<e1> zzay;
@@ -58,6 +59,486 @@ public final class e1 extends u4<e1, e1$a> implements d6 {
     private boolean zzx;
     private String zzy;
     private long zzz;
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
+    public final class a extends u4.b<e1, a> implements d6 {
+        public a() {
+            super(e1.v0());
+        }
+
+        public final int A() {
+            return ((e1) this.k).E0();
+        }
+
+        public final a1 B(int i) {
+            return ((e1) this.k).u(i);
+        }
+
+        public final a D(long j) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.k0((e1) this.k, j);
+            return this;
+        }
+
+        public final a E(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.l0((e1) this.k, str);
+            return this;
+        }
+
+        public final a F() {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.v((e1) this.k);
+            return this;
+        }
+
+        public final a G(int i) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.j0((e1) this.k, i);
+            return this;
+        }
+
+        public final a H(long j) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.B0((e1) this.k, j);
+            return this;
+        }
+
+        public final a I(Iterable<? extends y0> iterable) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.C0((e1) this.k, iterable);
+            return this;
+        }
+
+        public final a J(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.D0((e1) this.k, str);
+            return this;
+        }
+
+        public final a K(long j) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.H0((e1) this.k, j);
+            return this;
+        }
+
+        public final a M(Iterable<? extends Integer> iterable) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.I0((e1) this.k, iterable);
+            return this;
+        }
+
+        public final a N(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.J0((e1) this.k, str);
+            return this;
+        }
+
+        public final i1 O(int i) {
+            return ((e1) this.k).h0(i);
+        }
+
+        public final List<i1> P() {
+            return Collections.unmodifiableList(((e1) this.k).K0());
+        }
+
+        public final int Q() {
+            return ((e1) this.k).P0();
+        }
+
+        public final a R(int i) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.A0((e1) this.k, i);
+            return this;
+        }
+
+        public final a S(long j) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.N0((e1) this.k, j);
+            return this;
+        }
+
+        public final a T(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.O0((e1) this.k, str);
+            return this;
+        }
+
+        public final long U() {
+            return ((e1) this.k).h1();
+        }
+
+        public final a V(int i) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.G0((e1) this.k, i);
+            return this;
+        }
+
+        public final a W(long j) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.S0((e1) this.k, j);
+            return this;
+        }
+
+        public final a X(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.T0((e1) this.k, str);
+            return this;
+        }
+
+        public final long Y() {
+            return ((e1) this.k).o1();
+        }
+
+        public final a Z(int i) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.M0((e1) this.k, i);
+            return this;
+        }
+
+        public final a a0(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.X0((e1) this.k, str);
+            return this;
+        }
+
+        public final a b0() {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.i0((e1) this.k);
+            return this;
+        }
+
+        public final a c0(int i) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.R0((e1) this.k, i);
+            return this;
+        }
+
+        public final a d0(long j) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.b1((e1) this.k, j);
+            return this;
+        }
+
+        public final a e0(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.c1((e1) this.k, str);
+            return this;
+        }
+
+        public final a f0() {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.z0((e1) this.k);
+            return this;
+        }
+
+        public final a g0(long j) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.e1((e1) this.k, j);
+            return this;
+        }
+
+        public final a h0(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.f1((e1) this.k, str);
+            return this;
+        }
+
+        public final a i0(long j) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.j1((e1) this.k, j);
+            return this;
+        }
+
+        public final a j0(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.k1((e1) this.k, str);
+            return this;
+        }
+
+        public final String k0() {
+            return ((e1) this.k).G1();
+        }
+
+        public final a l0(long j) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.l1((e1) this.k, j);
+            return this;
+        }
+
+        public final a m0(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.m1((e1) this.k, str);
+            return this;
+        }
+
+        public final a n0(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.q1((e1) this.k, str);
+            return this;
+        }
+
+        public final a o0(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.r1((e1) this.k, str);
+            return this;
+        }
+
+        public final a p0() {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.U0((e1) this.k);
+            return this;
+        }
+
+        public final a q() {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.G((e1) this.k);
+            return this;
+        }
+
+        public final a q0() {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1 e1Var = (e1) this.k;
+            int i = e1.j;
+            Objects.requireNonNull(e1Var);
+            throw null;
+        }
+
+        public final a r(int i, a1.a aVar) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.w((e1) this.k, i, (a1) ((u4) aVar.p()));
+            return this;
+        }
+
+        public final a r0(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.u1((e1) this.k, str);
+            return this;
+        }
+
+        public final a s(int i, i1 i1Var) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.x((e1) this.k, i, i1Var);
+            return this;
+        }
+
+        public final String s0() {
+            return ((e1) this.k).S();
+        }
+
+        public final a t(a1.a aVar) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.z((e1) this.k, (a1) ((u4) aVar.p()));
+            return this;
+        }
+
+        public final a t0() {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.a1((e1) this.k);
+            return this;
+        }
+
+        public final a u(i1.a aVar) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.A((e1) this.k, (i1) ((u4) aVar.p()));
+            return this;
+        }
+
+        public final a u0(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.x1((e1) this.k, str);
+            return this;
+        }
+
+        public final a v(i1 i1Var) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.A((e1) this.k, i1Var);
+            return this;
+        }
+
+        public final a v0() {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.d1((e1) this.k);
+            return this;
+        }
+
+        public final a w(Iterable<? extends a1> iterable) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.B((e1) this.k, iterable);
+            return this;
+        }
+
+        public final a w0(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.z1((e1) this.k, str);
+            return this;
+        }
+
+        public final a x(String str) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.C((e1) this.k, str);
+            return this;
+        }
+
+        public final String x0() {
+            return ((e1) this.k).r0();
+        }
+
+        public final a y(boolean z2) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            e1.D((e1) this.k, z2);
+            return this;
+        }
+
+        public final List<a1> z() {
+            return Collections.unmodifiableList(((e1) this.k).y0());
+        }
+
+        public a(k1 k1Var) {
+            super(e1.v0());
+        }
+    }
 
     static {
         e1 e1Var = new e1();
@@ -535,24 +1016,24 @@ public final class e1 extends u4<e1, e1$a> implements d6 {
             case 1:
                 return new e1();
             case 2:
-                return new e1$a(null);
+                return new a(null);
             case 3:
                 return new o6(zzax, "\u0001-\u0000\u0002\u00015-\u0000\u0004\u0000\u0001င\u0000\u0002\u001b\u0003\u001b\u0004ဂ\u0001\u0005ဂ\u0002\u0006ဂ\u0003\u0007ဂ\u0005\bဈ\u0006\tဈ\u0007\nဈ\b\u000bဈ\t\fင\n\rဈ\u000b\u000eဈ\f\u0010ဈ\r\u0011ဂ\u000e\u0012ဂ\u000f\u0013ဈ\u0010\u0014ဇ\u0011\u0015ဈ\u0012\u0016ဂ\u0013\u0017င\u0014\u0018ဈ\u0015\u0019ဈ\u0016\u001aဂ\u0004\u001cဇ\u0017\u001d\u001b\u001eဈ\u0018\u001fင\u0019 င\u001a!င\u001b\"ဈ\u001c#ဂ\u001d$ဂ\u001e%ဈ\u001f&ဈ 'င!)ဈ\",ဉ#-\u001d.ဂ$/ဂ%2ဈ&4ဈ'5ဌ(", new Object[]{"zzc", "zzd", "zze", "zzf", a1.class, "zzg", i1.class, "zzh", "zzi", "zzj", "zzl", "zzm", "zzn", "zzo", "zzp", "zzq", "zzr", "zzs", "zzt", "zzu", "zzv", "zzw", "zzx", "zzy", "zzz", "zzaa", "zzab", "zzac", "zzk", "zzad", "zzae", y0.class, "zzaf", "zzag", "zzah", "zzai", "zzaj", "zzak", "zzal", "zzam", "zzan", "zzao", "zzap", "zzaq", "zzar", "zzas", "zzat", "zzau", "zzav", "zzaw", l1.a});
             case 4:
                 return zzax;
             case 5:
-                j6<e1> u4_a = zzay;
-                if (u4_a == null) {
+                j6<e1> aVar = zzay;
+                if (aVar == null) {
                     synchronized (e1.class) {
-                        u4_a = zzay;
-                        if (u4_a == null) {
-                            u4_a = new u4$a<>(zzax);
-                            zzay = u4_a;
+                        aVar = zzay;
+                        if (aVar == null) {
+                            aVar = new u4.a<>(zzax);
+                            zzay = aVar;
                         }
                         break;
                     }
                 }
-                return u4_a;
+                return aVar;
             case 6:
                 return (byte) 1;
             case 7:
@@ -613,7 +1094,7 @@ public final class e1 extends u4<e1, e1$a> implements d6 {
         return this.zzf.get(i);
     }
 
-    public static e1$a u0() {
+    public static a u0() {
         return zzax.s();
     }
 

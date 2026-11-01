@@ -10,8 +10,34 @@ import java.math.BigInteger;
 public class s extends b.g.a.b.d {
     public int m;
 
+    /* JADX INFO: compiled from: TokenBuffer.java */
+    public final class a extends b.g.a.b.o.b {
+        public int n;
+        public t o;
+        public boolean p;
+
+        public a(b.g.a.b.i iVar, boolean z2, boolean z3, b.g.a.b.g gVar) {
+            super(0);
+            this.n = -1;
+            this.o = new t();
+        }
+
+        @Override // b.g.a.b.f
+        public b.g.a.b.e a() {
+            return b.g.a.b.e.j;
+        }
+
+        @Override // java.io.Closeable, java.lang.AutoCloseable
+        public void close() throws IOException {
+            if (this.p) {
+                return;
+            }
+            this.p = true;
+        }
+    }
+
     static {
-        b.g.a.b.d$a.f();
+        b.g.a.b.d.a.f();
     }
 
     @Override // b.g.a.b.d
@@ -117,8 +143,8 @@ public class s extends b.g.a.b.d {
     }
 
     @Override // b.g.a.b.d
-    public b.g.a.b.d b(b.g.a.b.d$a d_a) {
-        this.m = (~d_a.h()) & this.m;
+    public b.g.a.b.d b(b.g.a.b.d.a aVar) {
+        this.m = (~aVar.h()) & this.m;
         return this;
     }
 
@@ -142,8 +168,8 @@ public class s extends b.g.a.b.d {
     }
 
     @Override // b.g.a.b.d
-    public boolean d(b.g.a.b.d$a d_a) {
-        return (d_a.h() & this.m) != 0;
+    public boolean d(b.g.a.b.d.a aVar) {
+        return (aVar.h() & this.m) != 0;
     }
 
     @Override // b.g.a.b.d
@@ -225,7 +251,7 @@ public class s extends b.g.a.b.d {
 
     public String toString() {
         StringBuilder sbU = b.d.b.a.a.U("[TokenBuffer: ");
-        new s$a(null, false, false, null);
+        new a(null, false, false, null);
         sbU.append(']');
         return sbU.toString();
     }

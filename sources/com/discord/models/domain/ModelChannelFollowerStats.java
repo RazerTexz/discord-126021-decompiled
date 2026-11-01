@@ -9,7 +9,9 @@ import org.objectweb.asm.Opcodes;
 /* JADX INFO: compiled from: ModelChannelFollowerStats.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class ModelChannelFollowerStats {
-    public static final ModelChannelFollowerStats$Companion Companion = new ModelChannelFollowerStats$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final Integer channelsFollowing;
     private final Integer guildMembers;
     private final Integer guildsFollowing;
@@ -17,6 +19,20 @@ public final /* data */ class ModelChannelFollowerStats {
     private final Integer subscribersGainedSinceLastPost;
     private final Integer subscribersLostSinceLastPost;
     private final Integer usersSeenEver;
+
+    /* JADX INFO: compiled from: ModelChannelFollowerStats.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final ModelChannelFollowerStats fromResponse(ModelChannelFollowerStatsDto dto) {
+            return dto == null ? new ModelChannelFollowerStats(0L, null, null, null, null, null, null, Opcodes.LAND, null) : new ModelChannelFollowerStats(0L, dto.getChannelsFollowing(), dto.getGuildMembers(), dto.getGuildsFollowing(), dto.getUsersSeenEver(), dto.getSubscribersGainedSinceLastPost(), dto.getSubscribersLostSinceLastPost(), 1, null);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public ModelChannelFollowerStats() {
         this(0L, null, null, null, null, null, null, Opcodes.LAND, null);

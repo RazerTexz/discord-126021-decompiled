@@ -1,6 +1,5 @@
 package b.g.a.c.g0.u;
 
-import b.g.a.b.f$b;
 import java.io.IOException;
 
 /* JADX INFO: compiled from: NumberSerializers.java */
@@ -8,7 +7,7 @@ import java.io.IOException;
 @b.g.a.c.y.a
 public class x extends w<Object> {
     public x(Class<?> cls) {
-        super(cls, f$b.DOUBLE, "number");
+        super(cls, b.g.a.b.f.b.DOUBLE, "number");
     }
 
     @Override // b.g.a.c.n

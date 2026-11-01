@@ -1,6 +1,6 @@
 package b.c.a.y.l;
 
-import android.graphics.Path$FillType;
+import android.graphics.Path;
 import androidx.annotation.Nullable;
 
 /* JADX INFO: compiled from: ShapeFill.java */
@@ -9,7 +9,7 @@ public class l implements b {
     public final boolean a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final Path$FillType f425b;
+    public final Path.FillType f425b;
     public final String c;
 
     @Nullable
@@ -19,10 +19,10 @@ public class l implements b {
     public final b.c.a.y.k.d e;
     public final boolean f;
 
-    public l(String str, boolean z2, Path$FillType path$FillType, @Nullable b.c.a.y.k.a aVar, @Nullable b.c.a.y.k.d dVar, boolean z3) {
+    public l(String str, boolean z2, Path.FillType fillType, @Nullable b.c.a.y.k.a aVar, @Nullable b.c.a.y.k.d dVar, boolean z3) {
         this.c = str;
         this.a = z2;
-        this.f425b = path$FillType;
+        this.f425b = fillType;
         this.d = aVar;
         this.e = dVar;
         this.f = z3;

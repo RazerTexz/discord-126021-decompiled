@@ -2,10 +2,13 @@ package com.discord.i18n;
 
 import android.view.View;
 import androidx.annotation.ColorInt;
+import b.a.k.d;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
@@ -36,6 +39,28 @@ public final class RenderContext {
     /* JADX INFO: renamed from: b, reason: collision with root package name and from kotlin metadata */
     public final Map<String, Hook> hooks = new HashMap();
 
+    /* JADX INFO: compiled from: RenderContext.kt */
+    public final class a extends o implements Function1<Hook, Unit> {
+        public final /* synthetic */ Function1 $onClick;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(Function1 function1) {
+            super(1);
+            this.$onClick = function1;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public Unit invoke(Hook hook) {
+            Hook hook2 = hook;
+            m.checkNotNullParameter(hook2, "$receiver");
+            d dVar = new d(this);
+            Objects.requireNonNull(hook2);
+            m.checkNotNullParameter(dVar, "onClick");
+            hook2.clickHandler = new Hook.a(null, dVar);
+            return Unit.a;
+        }
+    }
+
     public final void a(String key, Function1<? super Hook, Unit> hookInitializer) {
         m.checkNotNullParameter(key, "key");
         m.checkNotNullParameter(hookInitializer, "hookInitializer");
@@ -48,6 +73,6 @@ public final class RenderContext {
     public final void b(String key, Function1<? super View, Unit> onClick) {
         m.checkNotNullParameter(key, "key");
         m.checkNotNullParameter(onClick, "onClick");
-        a(key, new RenderContext$a(onClick));
+        a(key, new a(onClick));
     }
 }

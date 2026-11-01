@@ -2,7 +2,7 @@ package b.c.a.x;
 
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable$Callback;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import b.c.a.b0.c;
 import b.c.a.y.j;
@@ -20,9 +20,9 @@ public class a {
     public final Map<String, Typeface> c = new HashMap();
     public String e = ".ttf";
 
-    public a(Drawable$Callback drawable$Callback) {
-        if (drawable$Callback instanceof View) {
-            this.d = ((View) drawable$Callback).getContext().getAssets();
+    public a(Drawable.Callback callback) {
+        if (callback instanceof View) {
+            this.d = ((View) callback).getContext().getAssets();
         } else {
             c.b("LottieDrawable must be inside of a view for images to work.");
             this.d = null;

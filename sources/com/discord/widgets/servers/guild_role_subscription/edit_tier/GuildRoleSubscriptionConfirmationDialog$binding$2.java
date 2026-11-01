@@ -3,7 +3,7 @@ package com.discord.widgets.servers.guild_role_subscription.edit_tier;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.DialogGuiildRoleSubscriptionConfirmationBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -27,17 +27,17 @@ public final /* synthetic */ class GuildRoleSubscriptionConfirmationDialog$bindi
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final DialogGuiildRoleSubscriptionConfirmationBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.cancel;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.cancel);
+        int i = R.id.cancel;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.cancel);
         if (materialButton != null) {
-            i = R$id.confirm;
-            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.confirm);
+            i = R.id.confirm;
+            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.confirm);
             if (materialButton2 != null) {
-                i = R$id.guild_role_subscription_confirmation_subtitle;
-                TextView textView = (TextView) view.findViewById(R$id.guild_role_subscription_confirmation_subtitle);
+                i = R.id.guild_role_subscription_confirmation_subtitle;
+                TextView textView = (TextView) view.findViewById(R.id.guild_role_subscription_confirmation_subtitle);
                 if (textView != null) {
-                    i = R$id.guild_role_subscription_confirmation_title;
-                    TextView textView2 = (TextView) view.findViewById(R$id.guild_role_subscription_confirmation_title);
+                    i = R.id.guild_role_subscription_confirmation_title;
+                    TextView textView2 = (TextView) view.findViewById(R.id.guild_role_subscription_confirmation_title);
                     if (textView2 != null) {
                         return new DialogGuiildRoleSubscriptionConfirmationBinding((LinearLayout) view, materialButton, materialButton2, textView, textView2);
                     }

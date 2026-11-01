@@ -7,17 +7,13 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintLayout$LayoutParams;
 import b.a.i.f4;
-import com.discord.R$a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.models.guild.UserGuildMember;
 import com.discord.models.user.CoreUser;
 import com.discord.utilities.icon.IconUtils;
-import com.discord.utilities.images.MGImages$ChangeDetector;
+import com.discord.utilities.images.MGImages;
 import com.discord.views.CutoutView;
-import com.discord.views.CutoutView$a$c;
-import com.discord.views.CutoutView$a$d;
 import com.facebook.drawee.view.SimpleDraweeView;
 import d0.d0.f;
 import d0.t.n;
@@ -30,7 +26,7 @@ import kotlin.jvm.functions.Function1;
 public final class UserSummaryView extends ConstraintLayout {
 
     /* JADX INFO: renamed from: j, reason: from kotlin metadata */
-    public final CutoutView$a$c cutoutStyle;
+    public final CutoutView.a.c cutoutStyle;
 
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public int avatarSizePx;
@@ -48,7 +44,7 @@ public final class UserSummaryView extends ConstraintLayout {
     public UserSummaryView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
         m.checkNotNullParameter(context, "context");
-        this.cutoutStyle = new CutoutView$a$c(0);
+        this.cutoutStyle = new CutoutView.a.c(0);
         Resources resources = getResources();
         m.checkNotNullExpressionValue(resources, "resources");
         this.avatarSizePx = (int) (16 * resources.getDisplayMetrics().density);
@@ -57,7 +53,7 @@ public final class UserSummaryView extends ConstraintLayout {
         this.overlapAmountPx = (int) (4 * resources2.getDisplayMetrics().density);
         this.members = n.emptyList();
         this.maxAvatars = 3;
-        int[] iArr = R$a.UserSummaryView;
+        int[] iArr = R.a.UserSummaryView;
         m.checkNotNullExpressionValue(iArr, "R.styleable.UserSummaryView");
         Context context2 = getContext();
         m.checkNotNullExpressionValue(context2, "context");
@@ -94,20 +90,20 @@ public final class UserSummaryView extends ConstraintLayout {
                     break;
                 }
                 int childCount = getChildCount();
-                f4 f4VarA = f4.a(LayoutInflater.from(getContext()).inflate(R$layout.view_user_summary_item, (ViewGroup) this, false));
+                f4 f4VarA = f4.a(LayoutInflater.from(getContext()).inflate(R.layout.view_user_summary_item, (ViewGroup) this, false));
                 m.checkNotNullExpressionValue(f4VarA, "ViewUserSummaryItemBindi…ext), this, false\n      )");
                 CutoutView cutoutView = f4VarA.a;
                 cutoutView.setId(childCount + 10);
                 int i = this.avatarSizePx;
-                ConstraintLayout$LayoutParams constraintLayout$LayoutParams = new ConstraintLayout$LayoutParams(i, i);
-                constraintLayout$LayoutParams.topToTop = 0;
-                constraintLayout$LayoutParams.bottomToBottom = 0;
-                constraintLayout$LayoutParams.setMarginStart(childCount != 0 ? this.avatarSizePx - this.overlapAmountPx : 0);
+                ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(i, i);
+                layoutParams.topToTop = 0;
+                layoutParams.bottomToBottom = 0;
+                layoutParams.setMarginStart(childCount != 0 ? this.avatarSizePx - this.overlapAmountPx : 0);
                 if (childCount != 0) {
                     id2 = cutoutView.getId() - 1;
                 }
-                constraintLayout$LayoutParams.startToStart = id2;
-                cutoutView.setLayoutParams(constraintLayout$LayoutParams);
+                layoutParams.startToStart = id2;
+                cutoutView.setLayoutParams(layoutParams);
                 m.checkNotNullExpressionValue(cutoutView, "ViewUserSummaryItemBindi…      }\n        }\n      }");
                 addView(cutoutView, cutoutView.getLayoutParams());
             }
@@ -115,7 +111,7 @@ public final class UserSummaryView extends ConstraintLayout {
             while (id2 < iCoerceAtMost) {
                 f4 f4VarA2 = f4.a(getChildAt(id2));
                 m.checkNotNullExpressionValue(f4VarA2, "ViewUserSummaryItemBinding.bind(getChildAt(i))");
-                f4VarA2.a.setStyle((id2 == i2 && withFullAvatarAtEnd) ? CutoutView$a$d.a : this.cutoutStyle);
+                f4VarA2.a.setStyle((id2 == i2 && withFullAvatarAtEnd) ? CutoutView.a.d.a : this.cutoutStyle);
                 int mediaProxySize = IconUtils.getMediaProxySize(this.avatarSizePx);
                 UserGuildMember userGuildMember = this.members.get(id2);
                 String forGuildMemberOrUser$default = IconUtils.getForGuildMemberOrUser$default(IconUtils.INSTANCE, userGuildMember.getUser(), userGuildMember.getGuildMember(), Integer.valueOf(mediaProxySize), false, 8, null);
@@ -127,7 +123,7 @@ public final class UserSummaryView extends ConstraintLayout {
                     simpleDraweeView2.setTag(forGuildMemberOrUser$default);
                     SimpleDraweeView simpleDraweeView3 = f4VarA2.f113b;
                     m.checkNotNullExpressionValue(simpleDraweeView3, "cutout.avatar");
-                    IconUtils.setIcon$default(simpleDraweeView3, forGuildMemberOrUser$default, 2131165298, (Function1) null, (MGImages$ChangeDetector) null, 24, (Object) null);
+                    IconUtils.setIcon$default(simpleDraweeView3, forGuildMemberOrUser$default, R.dimen.avatar_size_reply, (Function1) null, (MGImages.ChangeDetector) null, 24, (Object) null);
                 }
                 id2++;
             }

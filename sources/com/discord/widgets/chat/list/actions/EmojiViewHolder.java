@@ -1,7 +1,7 @@
 package com.discord.widgets.chat.list.actions;
 
 import android.view.View;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.databinding.ViewChatListActionsEmojiItemBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.emoji.Emoji;
@@ -18,9 +18,24 @@ import java.util.Objects;
 public final class EmojiViewHolder extends MGRecyclerViewHolder<WidgetChatListActionsEmojisAdapter, EmojiItem> {
     private final ViewChatListActionsEmojiItemBinding binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.actions.EmojiViewHolder$onConfigure$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListActionsEmojisAdapter.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ EmojiItem $data;
+
+        public AnonymousClass1(EmojiItem emojiItem) {
+            this.$data = emojiItem;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            EmojiViewHolder.access$getAdapter$p(EmojiViewHolder.this).getOnClickEmoji().invoke(((EmojiItem.EmojiData) this.$data).getEmoji());
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public EmojiViewHolder(WidgetChatListActionsEmojisAdapter widgetChatListActionsEmojisAdapter) {
-        super(R$layout.view_chat_list_actions_emoji_item, widgetChatListActionsEmojisAdapter);
+        super(R.layout.view_chat_list_actions_emoji_item, widgetChatListActionsEmojisAdapter);
         m.checkNotNullParameter(widgetChatListActionsEmojisAdapter, "adapter");
         View view = this.itemView;
         Objects.requireNonNull(view, "rootView");
@@ -43,7 +58,7 @@ public final class EmojiViewHolder extends MGRecyclerViewHolder<WidgetChatListAc
     public void onConfigure2(int position, EmojiItem data) {
         m.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
-        EmojiItem$EmojiData emojiItem$EmojiData = (EmojiItem$EmojiData) data;
+        EmojiItem.EmojiData emojiData = (EmojiItem.EmojiData) data;
         SimpleDraweeView simpleDraweeView = this.binding.f2178b;
         m.checkNotNullExpressionValue(simpleDraweeView, "binding.emojiIv");
         int i = simpleDraweeView.getLayoutParams().width;
@@ -53,13 +68,13 @@ public final class EmojiViewHolder extends MGRecyclerViewHolder<WidgetChatListAc
         SimpleDraweeView simpleDraweeView3 = this.binding.f2178b;
         m.checkNotNullExpressionValue(simpleDraweeView3, "binding.emojiIv");
         int mediaProxySize = IconUtils.getMediaProxySize(DimenUtils.pixelsToDp(paddingStart - simpleDraweeView3.getPaddingEnd()) * 2);
-        this.itemView.setOnClickListener(new EmojiViewHolder$onConfigure$1(this, data));
+        this.itemView.setOnClickListener(new AnonymousClass1(data));
         View view = this.itemView;
         m.checkNotNullExpressionValue(view, "itemView");
-        view.setContentDescription(emojiItem$EmojiData.getEmoji().getFirstName());
+        view.setContentDescription(emojiData.getEmoji().getFirstName());
         SimpleDraweeView simpleDraweeView4 = this.binding.f2178b;
         m.checkNotNullExpressionValue(simpleDraweeView4, "binding.emojiIv");
-        Emoji emoji = emojiItem$EmojiData.getEmoji();
+        Emoji emoji = emojiData.getEmoji();
         View view2 = this.itemView;
         m.checkNotNullExpressionValue(view2, "itemView");
         MGImages.setImage$default(simpleDraweeView4, emoji.getImageUri(true, mediaProxySize, view2.getContext()), 0, 0, false, null, null, 124, null);

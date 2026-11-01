@@ -3,7 +3,7 @@ package com.discord.widgets.chat;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetUrlActionsBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -26,17 +26,17 @@ public final /* synthetic */ class WidgetUrlActions$binding$2 extends k implemen
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetUrlActionsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.dialog_url_actions_copy;
-        TextView textView = (TextView) view.findViewById(R$id.dialog_url_actions_copy);
+        int i = R.id.dialog_url_actions_copy;
+        TextView textView = (TextView) view.findViewById(R.id.dialog_url_actions_copy);
         if (textView != null) {
-            i = R$id.dialog_url_actions_open;
-            TextView textView2 = (TextView) view.findViewById(R$id.dialog_url_actions_open);
+            i = R.id.dialog_url_actions_open;
+            TextView textView2 = (TextView) view.findViewById(R.id.dialog_url_actions_open);
             if (textView2 != null) {
-                i = R$id.dialog_url_actions_share;
-                TextView textView3 = (TextView) view.findViewById(R$id.dialog_url_actions_share);
+                i = R.id.dialog_url_actions_share;
+                TextView textView3 = (TextView) view.findViewById(R.id.dialog_url_actions_share);
                 if (textView3 != null) {
-                    i = R$id.dialog_url_actions_url;
-                    TextView textView4 = (TextView) view.findViewById(R$id.dialog_url_actions_url);
+                    i = R.id.dialog_url_actions_url;
+                    TextView textView4 = (TextView) view.findViewById(R.id.dialog_url_actions_url);
                     if (textView4 != null) {
                         return new WidgetUrlActionsBinding((LinearLayout) view, textView, textView2, textView3, textView4);
                     }

@@ -2,12 +2,12 @@ package b.i.a.f.h.m;
 
 import android.os.Parcel;
 import android.os.ParcelUuid;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.internal.nearby.zzgp;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class d implements Parcelable$Creator<zzgp> {
-    @Override // android.os.Parcelable$Creator
+public final class d implements Parcelable.Creator<zzgp> {
+    @Override // android.os.Parcelable.Creator
     public final zzgp createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         ParcelUuid parcelUuid = null;
@@ -60,7 +60,7 @@ public final class d implements Parcelable$Creator<zzgp> {
         return new zzgp(iG1, parcelUuid, parcelUuid2, parcelUuid3, bArrN, bArrN2, iG2, bArrN3, bArrN4);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zzgp[] newArray(int i) {
         return new zzgp[i];
     }

@@ -3,7 +3,7 @@ package com.google.android.gms.common.data;
 import android.database.CursorWindow;
 import android.os.Bundle;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import b.c.a.a0.d;
@@ -29,9 +29,13 @@ public final class DataHolder extends AbstractSafeParcelable implements Closeabl
     @Nullable
     public final Bundle o;
     public int[] p;
-    public static final Parcelable$Creator<DataHolder> CREATOR = new a();
+    public static final Parcelable.Creator<DataHolder> CREATOR = new a();
     public boolean q = false;
     public boolean r = true;
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
+    public final class zaa extends RuntimeException {
+    }
 
     static {
         Objects.requireNonNull(new String[0], "null reference");

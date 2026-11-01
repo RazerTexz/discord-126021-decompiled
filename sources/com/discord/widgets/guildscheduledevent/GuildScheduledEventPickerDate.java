@@ -4,14 +4,32 @@ import b.d.b.a.a;
 import d0.z.d.m;
 import java.io.Serializable;
 import java.util.Calendar;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: GuildScheduledEventPickerDateTime.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class GuildScheduledEventPickerDate implements Serializable {
-    public static final GuildScheduledEventPickerDate$Companion Companion = new GuildScheduledEventPickerDate$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final int dayOfMonth;
     private final int month;
     private final int year;
+
+    /* JADX INFO: compiled from: GuildScheduledEventPickerDateTime.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final GuildScheduledEventPickerDate now() {
+            Calendar calendar = Calendar.getInstance();
+            return new GuildScheduledEventPickerDate(calendar.get(1), calendar.get(2), calendar.get(5));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public GuildScheduledEventPickerDate(int i, int i2, int i3) {
         this.year = i;

@@ -5,7 +5,6 @@ import j0.l.a.e0;
 import j0.o.l;
 import java.lang.reflect.Type;
 import rx.Observable;
-import rx.Observable$a;
 import rx.Scheduler;
 
 /* JADX INFO: compiled from: RxJavaCallAdapter.java */
@@ -38,9 +37,9 @@ public final class f<R> implements i0.e<R, Object> {
     /* JADX WARN: Code duplicated, block: B:23:0x0052 A[RETURN] */
     @Override // i0.e
     public Object b(i0.d<R> dVar) {
-        Observable$a aVar;
+        Observable.a aVar;
         Observable observable;
-        Observable$a cVar = new c(dVar);
+        Observable.a cVar = new c(dVar);
         if (!this.f3736b) {
             if (this.c) {
                 aVar = new a(cVar);

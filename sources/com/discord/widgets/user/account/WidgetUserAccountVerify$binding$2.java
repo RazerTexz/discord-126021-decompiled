@@ -3,7 +3,7 @@ package com.discord.widgets.user.account;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetUserAccountVerifyBinding;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import d0.z.d.k;
@@ -27,17 +27,17 @@ public final /* synthetic */ class WidgetUserAccountVerify$binding$2 extends k i
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetUserAccountVerifyBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.verify_account_by_email;
-        RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R$id.verify_account_by_email);
+        int i = R.id.verify_account_by_email;
+        RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.verify_account_by_email);
         if (relativeLayout != null) {
-            i = R$id.verify_account_by_phone;
-            RelativeLayout relativeLayout2 = (RelativeLayout) view.findViewById(R$id.verify_account_by_phone);
+            i = R.id.verify_account_by_phone;
+            RelativeLayout relativeLayout2 = (RelativeLayout) view.findViewById(R.id.verify_account_by_phone);
             if (relativeLayout2 != null) {
-                i = R$id.verify_account_support;
-                LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R$id.verify_account_support);
+                i = R.id.verify_account_support;
+                LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R.id.verify_account_support);
                 if (linkifiedTextView != null) {
-                    i = R$id.verify_account_text_body;
-                    TextView textView = (TextView) view.findViewById(R$id.verify_account_text_body);
+                    i = R.id.verify_account_text_body;
+                    TextView textView = (TextView) view.findViewById(R.id.verify_account_text_body);
                     if (textView != null) {
                         return new WidgetUserAccountVerifyBinding((RelativeLayout) view, relativeLayout, relativeLayout2, linkifiedTextView, textView);
                     }

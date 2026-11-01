@@ -1,7 +1,6 @@
 package com.discord.utilities.voice;
 
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
 
@@ -22,7 +21,7 @@ public final class VoiceEngineServiceController$Companion$INSTANCE$2 extends o i
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final VoiceEngineServiceController invoke() {
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        return new VoiceEngineServiceController(storeStream$Companion.getAudioManagerV2(), storeStream$Companion.getMediaSettings(), storeStream$Companion.getVoiceChannelSelected(), storeStream$Companion.getRtcConnection());
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        return new VoiceEngineServiceController(companion.getAudioManagerV2(), companion.getMediaSettings(), companion.getVoiceChannelSelected(), companion.getRtcConnection());
     }
 }

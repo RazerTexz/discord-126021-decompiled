@@ -8,10 +8,10 @@ import j0.k.b;
 /* JADX INFO: compiled from: StoreSlowMode.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreSlowMode$getChannelCooldownObservable$newObservable$1<T, R> implements b<Long, Boolean> {
-    public final /* synthetic */ StoreSlowMode$Type $type;
+    public final /* synthetic */ StoreSlowMode.Type $type;
 
-    public StoreSlowMode$getChannelCooldownObservable$newObservable$1(StoreSlowMode$Type storeSlowMode$Type) {
-        this.$type = storeSlowMode$Type;
+    public StoreSlowMode$getChannelCooldownObservable$newObservable$1(StoreSlowMode.Type type) {
+        this.$type = type;
     }
 
     @Override // j0.k.b

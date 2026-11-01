@@ -4,14 +4,21 @@ import android.opengl.GLES20;
 import b.o.b.c.f;
 import d0.p;
 import d0.z.d.m;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: GlShader.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class c {
-    public static final c$a a = new c$a(null);
+    public static final a a = new a(null);
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final int f1966b;
+
+    /* JADX INFO: compiled from: GlShader.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
 
     public c(int i, String str) {
         m.checkNotNullParameter(str, "source");

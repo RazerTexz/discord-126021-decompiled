@@ -1,6 +1,11 @@
 package d0.e0.p.d;
 
 import d0.e0.p.d.m0.c.c1;
+import d0.e0.p.d.m0.c.q0;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
+import java.util.List;
+import java.util.Objects;
 import kotlin.jvm.functions.Function0;
 import kotlin.reflect.KProperty;
 import kotlin.reflect.KType;
@@ -9,20 +14,66 @@ import kotlin.reflect.KType;
 /* JADX INFO: loaded from: classes3.dex */
 public final class o implements d0.e0.f {
     public static final /* synthetic */ KProperty[] j = {d0.z.d.a0.property1(new d0.z.d.y(d0.z.d.a0.getOrCreateKotlinClass(o.class), "descriptor", "getDescriptor()Lorg/jetbrains/kotlin/descriptors/ParameterDescriptor;")), d0.z.d.a0.property1(new d0.z.d.y(d0.z.d.a0.getOrCreateKotlinClass(o.class), "annotations", "getAnnotations()Ljava/util/List;"))};
-    public final c0$a k;
+    public final c0.a k;
     public final f<?> l;
     public final int m;
-    public final d0.e0.f$a n;
+    public final d0.e0.f.a n;
 
-    public o(f<?> fVar, int i, d0.e0.f$a f_a, Function0<? extends d0.e0.p.d.m0.c.k0> function0) {
+    /* JADX INFO: compiled from: KParameterImpl.kt */
+    public final class a extends d0.z.d.o implements Function0<List<? extends Annotation>> {
+        public a() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<? extends Annotation> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<? extends Annotation> invoke2() {
+            return j0.computeAnnotations(o.access$getDescriptor$p(o.this));
+        }
+    }
+
+    /* JADX INFO: compiled from: KParameterImpl.kt */
+    public final class b extends d0.z.d.o implements Function0<Type> {
+        public b() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Type invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Type invoke2() {
+            d0.e0.p.d.m0.c.k0 k0VarAccess$getDescriptor$p = o.access$getDescriptor$p(o.this);
+            if (!(k0VarAccess$getDescriptor$p instanceof q0) || !d0.z.d.m.areEqual(j0.getInstanceReceiverParameter(o.this.getCallable().getDescriptor()), k0VarAccess$getDescriptor$p) || o.this.getCallable().getDescriptor().getKind() != d0.e0.p.d.m0.c.b.a.FAKE_OVERRIDE) {
+                return o.this.getCallable().getCaller().getParameterTypes().get(o.this.getIndex());
+            }
+            d0.e0.p.d.m0.c.m containingDeclaration = o.this.getCallable().getDescriptor().getContainingDeclaration();
+            Objects.requireNonNull(containingDeclaration, "null cannot be cast to non-null type org.jetbrains.kotlin.descriptors.ClassDescriptor");
+            Class<?> javaClass = j0.toJavaClass((d0.e0.p.d.m0.c.e) containingDeclaration);
+            if (javaClass != null) {
+                return javaClass;
+            }
+            throw new a0("Cannot determine receiver Java type of inherited declaration: " + k0VarAccess$getDescriptor$p);
+        }
+    }
+
+    public o(f<?> fVar, int i, d0.e0.f.a aVar, Function0<? extends d0.e0.p.d.m0.c.k0> function0) {
         d0.z.d.m.checkNotNullParameter(fVar, "callable");
-        d0.z.d.m.checkNotNullParameter(f_a, "kind");
+        d0.z.d.m.checkNotNullParameter(aVar, "kind");
         d0.z.d.m.checkNotNullParameter(function0, "computeDescriptor");
         this.l = fVar;
         this.m = i;
-        this.n = f_a;
+        this.n = aVar;
         this.k = c0.lazySoft(function0);
-        c0.lazySoft(new o$a(this));
+        c0.lazySoft(new a());
     }
 
     public final d0.e0.p.d.m0.c.k0 a() {
@@ -52,7 +103,7 @@ public final class o implements d0.e0.f {
     }
 
     @Override // d0.e0.f
-    public d0.e0.f$a getKind() {
+    public d0.e0.f.a getKind() {
         return this.n;
     }
 
@@ -78,7 +129,7 @@ public final class o implements d0.e0.f {
     public KType getType() {
         d0.e0.p.d.m0.n.c0 type = a().getType();
         d0.z.d.m.checkNotNullExpressionValue(type, "descriptor.type");
-        return new x(type, new o$b(this));
+        return new x(type, new b());
     }
 
     public int hashCode() {

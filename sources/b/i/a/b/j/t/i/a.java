@@ -11,7 +11,7 @@ public final class a extends d {
     public final long e;
     public final int f;
 
-    public a(long j, int i, int i2, long j2, int i3, a$a a_a) {
+    public a(long j, int i, int i2, long j2, int i3, C0090a c0090a) {
         this.f795b = j;
         this.c = i;
         this.d = i2;

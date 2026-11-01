@@ -7,8 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.google.android.material.radiobutton.MaterialRadioButton;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -40,18 +39,18 @@ public final class ViewGuildRoleSubscriptionPlanFormatRadioButtonBinding impleme
 
     @NonNull
     public static ViewGuildRoleSubscriptionPlanFormatRadioButtonBinding a(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
-        layoutInflater.inflate(R$layout.view_guild_role_subscription_plan_format_radio_button, viewGroup);
-        int i = R$id.guild_role_subscription_plan_format_button;
-        MaterialRadioButton materialRadioButton = (MaterialRadioButton) viewGroup.findViewById(R$id.guild_role_subscription_plan_format_button);
+        layoutInflater.inflate(R.layout.view_guild_role_subscription_plan_format_radio_button, viewGroup);
+        int i = R.id.guild_role_subscription_plan_format_button;
+        MaterialRadioButton materialRadioButton = (MaterialRadioButton) viewGroup.findViewById(R.id.guild_role_subscription_plan_format_button);
         if (materialRadioButton != null) {
-            i = R$id.guild_role_subscription_plan_format_button_subtitle;
-            TextView textView = (TextView) viewGroup.findViewById(R$id.guild_role_subscription_plan_format_button_subtitle);
+            i = R.id.guild_role_subscription_plan_format_button_subtitle;
+            TextView textView = (TextView) viewGroup.findViewById(R.id.guild_role_subscription_plan_format_button_subtitle);
             if (textView != null) {
-                i = R$id.guild_role_subscription_plan_format_button_title;
-                TextView textView2 = (TextView) viewGroup.findViewById(R$id.guild_role_subscription_plan_format_button_title);
+                i = R.id.guild_role_subscription_plan_format_button_title;
+                TextView textView2 = (TextView) viewGroup.findViewById(R.id.guild_role_subscription_plan_format_button_title);
                 if (textView2 != null) {
-                    i = R$id.guild_role_subscription_plan_format_image;
-                    ImageView imageView = (ImageView) viewGroup.findViewById(R$id.guild_role_subscription_plan_format_image);
+                    i = R.id.guild_role_subscription_plan_format_image;
+                    ImageView imageView = (ImageView) viewGroup.findViewById(R.id.guild_role_subscription_plan_format_image);
                     if (imageView != null) {
                         return new ViewGuildRoleSubscriptionPlanFormatRadioButtonBinding(viewGroup, materialRadioButton, textView, textView2, imageView);
                     }

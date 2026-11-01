@@ -6,7 +6,7 @@ import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.graphics.RadialGradient;
 import android.graphics.RectF;
-import android.graphics.Shader$TileMode;
+import android.graphics.Shader;
 import androidx.annotation.Nullable;
 import androidx.collection.LongSparseArray;
 
@@ -101,7 +101,7 @@ public class i extends a {
                 PointF pointFE = this.w.e();
                 PointF pointFE2 = this.f383x.e();
                 b.c.a.y.l.c cVarE = this.v.e();
-                radialGradient = new LinearGradient(pointFE.x, pointFE.y, pointFE2.x, pointFE2.y, e(cVarE.f416b), cVarE.a, Shader$TileMode.CLAMP);
+                radialGradient = new LinearGradient(pointFE.x, pointFE.y, pointFE2.x, pointFE2.y, e(cVarE.f416b), cVarE.a, Shader.TileMode.CLAMP);
                 this.q.put(jH, radialGradient);
             }
         } else {
@@ -115,7 +115,7 @@ public class i extends a {
                 float[] fArr = cVarE2.a;
                 float f = pointFE3.x;
                 float f2 = pointFE3.y;
-                radialGradient = new RadialGradient(f, f2, (float) Math.hypot(pointFE4.x - f, pointFE4.y - f2), iArrE, fArr, Shader$TileMode.CLAMP);
+                radialGradient = new RadialGradient(f, f2, (float) Math.hypot(pointFE4.x - f, pointFE4.y - f2), iArrE, fArr, Shader.TileMode.CLAMP);
                 this.r.put(jH2, radialGradient);
             }
         }

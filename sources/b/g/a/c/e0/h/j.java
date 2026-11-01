@@ -1,7 +1,6 @@
 package b.g.a.c.e0.h;
 
-import b.g.a.a.c0$a;
-import b.g.a.a.c0$b;
+import b.g.a.a.c0;
 import b.g.a.c.p;
 import b.g.a.c.v;
 import java.util.Collection;
@@ -11,8 +10,8 @@ import java.util.concurrent.ConcurrentHashMap;
 /* JADX INFO: loaded from: classes3.dex */
 public class j implements b.g.a.c.e0.f<j> {
     public b.g.a.c.e0.e _customIdResolver;
-    public c0$b _idType;
-    public c0$a _includeAs;
+    public c0.b _idType;
+    public c0.a _includeAs;
     public String _typeProperty;
 
     @Override // b.g.a.c.e0.f
@@ -21,8 +20,8 @@ public class j implements b.g.a.c.e0.f<j> {
     }
 
     @Override // b.g.a.c.e0.f
-    public /* bridge */ /* synthetic */ b.g.a.c.e0.f b(c0$b c0_b, b.g.a.c.e0.e eVar) {
-        g(c0_b, eVar);
+    public /* bridge */ /* synthetic */ b.g.a.c.e0.f b(c0.b bVar, b.g.a.c.e0.e eVar) {
+        g(bVar, eVar);
         return this;
     }
 
@@ -42,7 +41,7 @@ public class j implements b.g.a.c.e0.f<j> {
 
     @Override // b.g.a.c.e0.f
     public b.g.a.c.e0.g e(v vVar, b.g.a.c.j jVar, Collection<b.g.a.c.e0.b> collection) {
-        if (this._idType == c0$b.NONE || jVar._class.isPrimitive()) {
+        if (this._idType == c0.b.NONE || jVar._class.isPrimitive()) {
             return null;
         }
         b.g.a.c.e0.c aVar = vVar._base._typeValidator;
@@ -51,11 +50,11 @@ public class j implements b.g.a.c.e0.f<j> {
         }
         b.g.a.c.e0.e fVar = this._customIdResolver;
         if (fVar == null) {
-            c0$b c0_b = this._idType;
-            if (c0_b == null) {
+            c0.b bVar = this._idType;
+            if (bVar == null) {
                 throw new IllegalStateException("Cannot build, 'init()' not yet called");
             }
-            int iOrdinal = c0_b.ordinal();
+            int iOrdinal = bVar.ordinal();
             if (iOrdinal == 0) {
                 fVar = null;
             } else if (iOrdinal == 1) {
@@ -73,15 +72,15 @@ public class j implements b.g.a.c.e0.f<j> {
                 ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
                 vVar.q(p.ACCEPT_CASE_INSENSITIVE_VALUES);
                 if (collection != null) {
-                    for (b.g.a.c.e0.b bVar : collection) {
-                        Class<?> cls = bVar._class;
-                        concurrentHashMap.put(cls.getName(), bVar.a() ? bVar._name : l.d(cls));
+                    for (b.g.a.c.e0.b bVar2 : collection) {
+                        Class<?> cls = bVar2._class;
+                        concurrentHashMap.put(cls.getName(), bVar2.a() ? bVar2._name : l.d(cls));
                     }
                 }
                 fVar = new l(vVar, jVar, concurrentHashMap, null);
             }
         }
-        if (this._idType == c0$b.DEDUCTION) {
+        if (this._idType == c0.b.DEDUCTION) {
             return new b(fVar, null, this._typeProperty);
         }
         int iOrdinal2 = this._includeAs.ordinal();
@@ -106,21 +105,21 @@ public class j implements b.g.a.c.e0.f<j> {
     }
 
     @Override // b.g.a.c.e0.f
-    public b.g.a.c.e0.f f(c0$a c0_a) {
-        if (c0_a == null) {
+    public b.g.a.c.e0.f f(c0.a aVar) {
+        if (aVar == null) {
             throw new IllegalArgumentException("includeAs cannot be null");
         }
-        this._includeAs = c0_a;
+        this._includeAs = aVar;
         return this;
     }
 
-    public j g(c0$b c0_b, b.g.a.c.e0.e eVar) {
-        if (c0_b == null) {
+    public j g(c0.b bVar, b.g.a.c.e0.e eVar) {
+        if (bVar == null) {
             throw new IllegalArgumentException("idType cannot be null");
         }
-        this._idType = c0_b;
+        this._idType = bVar;
         this._customIdResolver = eVar;
-        this._typeProperty = c0_b.f();
+        this._typeProperty = bVar.f();
         return this;
     }
 }

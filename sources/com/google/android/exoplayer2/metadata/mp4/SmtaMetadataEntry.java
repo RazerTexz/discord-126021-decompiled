@@ -1,18 +1,29 @@
 package com.google.android.exoplayer2.metadata.mp4;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import b.i.a.c.j1;
-import b.i.a.c.p1$b;
-import b.i.a.c.z2.a;
-import com.google.android.exoplayer2.metadata.Metadata$Entry;
+import b.i.a.c.p1;
+import com.google.android.exoplayer2.metadata.Metadata;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class SmtaMetadataEntry implements Metadata$Entry {
+public final class SmtaMetadataEntry implements Metadata.Entry {
     public final float j;
     public final int k;
-    public static final Parcelable$Creator<SmtaMetadataEntry> CREATOR = new SmtaMetadataEntry$a();
+    public static final Parcelable.Creator<SmtaMetadataEntry> CREATOR = new a();
+
+    public class a implements Parcelable.Creator<SmtaMetadataEntry> {
+        @Override // android.os.Parcelable.Creator
+        public SmtaMetadataEntry createFromParcel(Parcel parcel) {
+            return new SmtaMetadataEntry(parcel, (a) null);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public SmtaMetadataEntry[] newArray(int i) {
+            return new SmtaMetadataEntry[i];
+        }
+    }
 
     public SmtaMetadataEntry(float f, int i) {
         this.j = f;
@@ -39,14 +50,14 @@ public final class SmtaMetadataEntry implements Metadata$Entry {
         return ((527 + Float.valueOf(this.j).hashCode()) * 31) + this.k;
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
-    public /* synthetic */ void n(p1$b p1_b) {
-        a.c(this, p1_b);
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
+    public /* synthetic */ void n(p1.b bVar) {
+        b.i.a.c.z2.a.c(this, bVar);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     public /* synthetic */ byte[] o0() {
-        return a.a(this);
+        return b.i.a.c.z2.a.a(this);
     }
 
     public String toString() {
@@ -66,12 +77,12 @@ public final class SmtaMetadataEntry implements Metadata$Entry {
         parcel.writeInt(this.k);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     public /* synthetic */ j1 y() {
-        return a.b(this);
+        return b.i.a.c.z2.a.b(this);
     }
 
-    public SmtaMetadataEntry(Parcel parcel, SmtaMetadataEntry$a smtaMetadataEntry$a) {
+    public SmtaMetadataEntry(Parcel parcel, a aVar) {
         this.j = parcel.readFloat();
         this.k = parcel.readInt();
     }

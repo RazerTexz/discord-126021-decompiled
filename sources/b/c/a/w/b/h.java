@@ -9,7 +9,7 @@ import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.RadialGradient;
 import android.graphics.RectF;
-import android.graphics.Shader$TileMode;
+import android.graphics.Shader;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.LongSparseArray;
@@ -18,7 +18,7 @@ import java.util.List;
 
 /* JADX INFO: compiled from: GradientFillContent.java */
 /* JADX INFO: loaded from: classes.dex */
-public class h implements e, b.c.a.w.c.a$b, k {
+public class h implements e, b.c.a.w.c.a.b, k {
 
     @NonNull
     public final String a;
@@ -77,7 +77,7 @@ public class h implements e, b.c.a.w.c.a$b, k {
         bVar.e(aVarA4);
     }
 
-    @Override // b.c.a.w.c.a$b
+    @Override // b.c.a.w.c.a.b
     public void a() {
         this.q.invalidateSelf();
     }
@@ -157,7 +157,7 @@ public class h implements e, b.c.a.w.c.a$b, k {
                 PointF pointFE = this.m.e();
                 PointF pointFE2 = this.n.e();
                 b.c.a.y.l.c cVarE = this.k.e();
-                LinearGradient linearGradient = new LinearGradient(pointFE.x, pointFE.y, pointFE2.x, pointFE2.y, e(cVarE.f416b), cVarE.a, Shader$TileMode.CLAMP);
+                LinearGradient linearGradient = new LinearGradient(pointFE.x, pointFE.y, pointFE2.x, pointFE2.y, e(cVarE.f416b), cVarE.a, Shader.TileMode.CLAMP);
                 this.d.put(jH, linearGradient);
                 radialGradient = linearGradient;
             }
@@ -173,7 +173,7 @@ public class h implements e, b.c.a.w.c.a$b, k {
                 float f = pointFE3.x;
                 float f2 = pointFE3.y;
                 float fHypot = (float) Math.hypot(pointFE4.x - f, pointFE4.y - f2);
-                radialGradient = new RadialGradient(f, f2, fHypot <= 0.0f ? 0.001f : fHypot, iArrE, fArr, Shader$TileMode.CLAMP);
+                radialGradient = new RadialGradient(f, f2, fHypot <= 0.0f ? 0.001f : fHypot, iArrE, fArr, Shader.TileMode.CLAMP);
                 this.e.put(jH2, radialGradient);
             }
         }

@@ -8,14 +8,14 @@ import java.util.List;
 /* JADX INFO: compiled from: RecentQuerySuggestion.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class RecentQuerySuggestion implements SearchSuggestion {
-    private final SearchSuggestion$Category category;
+    private final SearchSuggestion.Category category;
     private final List<QueryNode> query;
 
     /* JADX WARN: Multi-variable type inference failed */
     public RecentQuerySuggestion(List<? extends QueryNode> list) {
         m.checkNotNullParameter(list, "query");
         this.query = list;
-        this.category = SearchSuggestion$Category.RECENT_QUERY;
+        this.category = SearchSuggestion.Category.RECENT_QUERY;
     }
 
     public final List<QueryNode> component1() {
@@ -43,7 +43,7 @@ public final /* data */ class RecentQuerySuggestion implements SearchSuggestion 
     }
 
     @Override // com.discord.utilities.search.suggestion.entries.SearchSuggestion
-    public SearchSuggestion$Category getCategory() {
+    public SearchSuggestion.Category getCategory() {
         return this.category;
     }
 

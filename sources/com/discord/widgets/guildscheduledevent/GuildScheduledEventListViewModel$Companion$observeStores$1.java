@@ -26,7 +26,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: GuildScheduledEventListViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class GuildScheduledEventListViewModel$Companion$observeStores$1 extends o implements Function0<GuildScheduledEventListViewModel$StoreState> {
+public final class GuildScheduledEventListViewModel$Companion$observeStores$1 extends o implements Function0<GuildScheduledEventListViewModel.StoreState> {
     public final /* synthetic */ Long $channelId;
     public final /* synthetic */ StoreChannels $channelStore;
     public final /* synthetic */ long $guildId;
@@ -50,13 +50,13 @@ public final class GuildScheduledEventListViewModel$Companion$observeStores$1 ex
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ GuildScheduledEventListViewModel$StoreState invoke() {
+    public /* bridge */ /* synthetic */ GuildScheduledEventListViewModel.StoreState invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final GuildScheduledEventListViewModel$StoreState invoke() {
+    public final GuildScheduledEventListViewModel.StoreState invoke() {
         Map<Long, Channel> channelsForGuild = this.$channelStore.getChannelsForGuild(this.$guildId);
         List guildScheduledEvents$default = StoreGuildScheduledEvents.getGuildScheduledEvents$default(this.$guildScheduledEventsStore, this.$guildId, false, 2, null);
         if (this.$channelId != null) {
@@ -94,9 +94,9 @@ public final class GuildScheduledEventListViewModel$Companion$observeStores$1 ex
         }
         Map map = h0.toMap(arrayList3);
         Set<Long> meGuildScheduledEventIds = this.$guildScheduledEventsStore.getMeGuildScheduledEventIds(this.$guildId);
-        boolean zCanCreateAnyEvent = GuildScheduledEventUtilities.Companion.canCreateAnyEvent(this.$guildId, this.$channelStore, this.$permissionsStore);
+        boolean zCanCreateAnyEvent = GuildScheduledEventUtilities.INSTANCE.canCreateAnyEvent(this.$guildId, this.$channelStore, this.$permissionsStore);
         Map<Long, Long> permissionsByChannel = this.$permissionsStore.getPermissionsByChannel();
         Long lValueOf = Long.valueOf(this.$voiceChannelSelectedStore.getSelectedVoiceChannelId());
-        return new GuildScheduledEventListViewModel$StoreState(listSortedWith, meGuildScheduledEventIds, channelsForGuild, map, zCanCreateAnyEvent, lValueOf.longValue() != 0 ? lValueOf : null, permissionsByChannel);
+        return new GuildScheduledEventListViewModel.StoreState(listSortedWith, meGuildScheduledEventIds, channelsForGuild, map, zCanCreateAnyEvent, lValueOf.longValue() != 0 ? lValueOf : null, permissionsByChannel);
     }
 }

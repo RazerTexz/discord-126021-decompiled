@@ -2,21 +2,64 @@ package com.discord.utilities.textprocessing.node;
 
 import android.content.Context;
 import android.text.style.CharacterStyle;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import b.a.t.b.a.a;
+import com.discord.R;
 import com.discord.simpleast.core.node.StyleNode;
+import com.discord.utilities.color.ColorCompat;
 import d0.t.n;
 import d0.z.d.m;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: EditedMessageNode.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class EditedMessageNode<RC> extends StyleNode<RC, CharacterStyle> {
-    public static final EditedMessageNode$Companion Companion = new EditedMessageNode$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
+
+    /* JADX INFO: compiled from: EditedMessageNode.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static final /* synthetic */ ForegroundColorSpan access$getForegroundColorSpan(Companion companion, Context context) {
+            return companion.getForegroundColorSpan(context);
+        }
+
+        public final String getEditedString(Context context) {
+            m.checkNotNullParameter(context, "context");
+            String string = context.getString(R.string.message_edited);
+            m.checkNotNullExpressionValue(string, "context.getString(R.string.message_edited)");
+            return " (" + string + ')';
+        }
+
+        private final ForegroundColorSpan getForegroundColorSpan(Context context) {
+            return new ForegroundColorSpan(ColorCompat.getThemedColor(context, R.attr.colorTextMuted));
+        }
+
+        public static /* synthetic */ RelativeSizeSpan getRelativeSizeSpan$default(Companion companion, float f, int i, Object obj) {
+            if ((i & 1) != 0) {
+                f = 0.75f;
+            }
+            return companion.getRelativeSizeSpan(f);
+        }
+
+        private final RelativeSizeSpan getRelativeSizeSpan(float relativeSize) {
+            return new RelativeSizeSpan(relativeSize);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     /* JADX WARN: Illegal instructions before constructor call */
     public EditedMessageNode(Context context) {
         m.checkNotNullParameter(context, "context");
-        EditedMessageNode$Companion editedMessageNode$Companion = Companion;
-        super(n.listOf(EditedMessageNode$Companion.getRelativeSizeSpan$default(editedMessageNode$Companion, 0.0f, 1, null), EditedMessageNode$Companion.access$getForegroundColorSpan(editedMessageNode$Companion, context)));
-        addChild(new a(editedMessageNode$Companion.getEditedString(context)));
+        Companion companion = INSTANCE;
+        super(n.listOf(Companion.getRelativeSizeSpan$default(companion, 0.0f, 1, null), Companion.access$getForegroundColorSpan(companion, context)));
+        addChild(new a(companion.getEditedString(context)));
     }
 }

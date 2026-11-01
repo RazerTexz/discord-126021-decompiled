@@ -4,14 +4,13 @@ import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences$Editor;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager$NameNotFoundException;
 import android.content.pm.ServiceInfo;
 import android.content.pm.Signature;
 import android.net.Uri;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -357,7 +356,7 @@ public final class t9 extends r5 {
 
     public static boolean U(Context context) {
         Objects.requireNonNull(context, "null reference");
-        return Build$VERSION.SDK_INT >= 24 ? k0(context, "com.google.android.gms.measurement.AppMeasurementJobService") : k0(context, "com.google.android.gms.measurement.AppMeasurementService");
+        return Build.VERSION.SDK_INT >= 24 ? k0(context, "com.google.android.gms.measurement.AppMeasurementJobService") : k0(context, "com.google.android.gms.measurement.AppMeasurementService");
     }
 
     public static boolean V(Intent intent) {
@@ -377,10 +376,10 @@ public final class t9 extends r5 {
     @SuppressLint({"ApplySharedPref"})
     public final boolean Y(String str, double d2) {
         try {
-            SharedPreferences$Editor sharedPreferences$EditorEdit = this.a.f1570b.getSharedPreferences("google.analytics.deferred.deeplink.prefs", 0).edit();
-            sharedPreferences$EditorEdit.putString(Constants.DEEPLINK, str);
-            sharedPreferences$EditorEdit.putLong("timestamp", Double.doubleToRawLongBits(d2));
-            return sharedPreferences$EditorEdit.commit();
+            SharedPreferences.Editor editorEdit = this.a.f1570b.getSharedPreferences("google.analytics.deferred.deeplink.prefs", 0).edit();
+            editorEdit.putString(Constants.DEEPLINK, str);
+            editorEdit.putLong("timestamp", Double.doubleToRawLongBits(d2));
+            return editorEdit.commit();
         } catch (Exception e) {
             g().f.b("Failed to persist Deferred Deep Link. exception", e);
             return false;
@@ -610,7 +609,7 @@ public final class t9 extends r5 {
         try {
             PackageManager packageManager = context.getPackageManager();
             return (packageManager == null || (serviceInfo = packageManager.getServiceInfo(new ComponentName(context, str), 0)) == null || !serviceInfo.enabled) ? false : true;
-        } catch (PackageManager$NameNotFoundException unused) {
+        } catch (PackageManager.NameNotFoundException unused) {
         }
     }
 
@@ -677,7 +676,7 @@ public final class t9 extends r5 {
                 return true;
             }
             return ((X509Certificate) CertificateFactory.getInstance("X.509").generateCertificate(new ByteArrayInputStream(signatureArr[0].toByteArray()))).getSubjectX500Principal().equals(x500Principal);
-        } catch (PackageManager$NameNotFoundException e) {
+        } catch (PackageManager.NameNotFoundException e) {
             g().f.b("Package name not found", e);
             return true;
         } catch (CertificateException e2) {
@@ -1041,7 +1040,7 @@ public final class t9 extends r5 {
             int i = 0;
             try {
                 i = context.getPackageManager().getPackageInfo("com.google.android.gms", 0).versionCode;
-            } catch (PackageManager$NameNotFoundException unused) {
+            } catch (PackageManager.NameNotFoundException unused) {
                 Log.w("GooglePlayServicesUtil", "Google Play services is missing.");
             }
             this.h = Integer.valueOf(i / 1000);

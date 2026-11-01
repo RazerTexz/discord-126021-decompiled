@@ -1,25 +1,25 @@
 package com.discord.models.experiments.dto;
 
-import com.discord.models.domain.Model$JsonReader;
+import com.discord.models.domain.Model;
 import d0.z.d.k;
 import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: GuildExperimentFilter.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* synthetic */ class GuildExperimentFilter$Parser$parsers$2 extends k implements Function1<Model$JsonReader, GuildExperimentFilter$GuildIdRangeFilter> {
-    public GuildExperimentFilter$Parser$parsers$2(GuildExperimentFilter$Parser guildExperimentFilter$Parser) {
-        super(1, guildExperimentFilter$Parser, GuildExperimentFilter$Parser.class, "parseGuildIdRangeFilter", "parseGuildIdRangeFilter(Lcom/discord/models/domain/Model$JsonReader;)Lcom/discord/models/experiments/dto/GuildExperimentFilter$GuildIdRangeFilter;", 0);
+public final /* synthetic */ class GuildExperimentFilter$Parser$parsers$2 extends k implements Function1<Model.JsonReader, GuildExperimentFilter.GuildIdRangeFilter> {
+    public GuildExperimentFilter$Parser$parsers$2(GuildExperimentFilter.Parser parser) {
+        super(1, parser, GuildExperimentFilter.Parser.class, "parseGuildIdRangeFilter", "parseGuildIdRangeFilter(Lcom/discord/models/domain/Model$JsonReader;)Lcom/discord/models/experiments/dto/GuildExperimentFilter$GuildIdRangeFilter;", 0);
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public /* bridge */ /* synthetic */ GuildExperimentFilter$GuildIdRangeFilter invoke(Model$JsonReader model$JsonReader) {
-        return invoke2(model$JsonReader);
+    public /* bridge */ /* synthetic */ GuildExperimentFilter.GuildIdRangeFilter invoke(Model.JsonReader jsonReader) {
+        return invoke2(jsonReader);
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final GuildExperimentFilter$GuildIdRangeFilter invoke2(Model$JsonReader model$JsonReader) {
-        m.checkNotNullParameter(model$JsonReader, "p1");
-        return GuildExperimentFilter$Parser.access$parseGuildIdRangeFilter((GuildExperimentFilter$Parser) this.receiver, model$JsonReader);
+    public final GuildExperimentFilter.GuildIdRangeFilter invoke2(Model.JsonReader jsonReader) {
+        m.checkNotNullParameter(jsonReader, "p1");
+        return GuildExperimentFilter.Parser.access$parseGuildIdRangeFilter((GuildExperimentFilter.Parser) this.receiver, jsonReader);
     }
 }

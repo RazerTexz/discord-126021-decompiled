@@ -1,7 +1,7 @@
 package b.i.a.f.j.b.e;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.internal.nearby.zzgs;
 import com.google.android.gms.nearby.messages.Message;
 import com.google.android.gms.nearby.messages.internal.Update;
@@ -9,8 +9,8 @@ import com.google.android.gms.nearby.messages.internal.zza;
 import com.google.android.gms.nearby.messages.internal.zze;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class k0 implements Parcelable$Creator<Update> {
-    @Override // android.os.Parcelable$Creator
+public final class k0 implements Parcelable.Creator<Update> {
+    @Override // android.os.Parcelable.Creator
     public final Update createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         Message message = null;
@@ -53,7 +53,7 @@ public final class k0 implements Parcelable$Creator<Update> {
         return new Update(iG1, iG2, message, zzeVar, zzaVar, zzgsVar, bArrN);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ Update[] newArray(int i) {
         return new Update[i];
     }

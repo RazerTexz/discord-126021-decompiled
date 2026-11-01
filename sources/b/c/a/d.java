@@ -3,7 +3,6 @@ package b.c.a;
 import android.graphics.Rect;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.collection.LongSparseArray;
 import androidx.collection.SparseArrayCompat;
 import java.util.HashSet;
@@ -32,7 +31,7 @@ public class d {
     public final HashSet<String> f351b = new HashSet<>();
     public int o = 0;
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public void a(String str) {
         b.c.a.b0.c.b(str);
         this.f351b.add(str);
@@ -70,7 +69,7 @@ public class d {
         return null;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public b.c.a.y.m.e e(long j) {
         return this.h.get(j);
     }

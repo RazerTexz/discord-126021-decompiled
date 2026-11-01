@@ -1,11 +1,48 @@
 package b.i.c.m.d;
 
 import androidx.annotation.NonNull;
+import java.io.File;
 
 /* JADX INFO: compiled from: MissingNativeComponent.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class c implements a {
-    public static final d a = new c$b(null);
+public final class c implements b.i.c.m.d.a {
+    public static final d a = new b(null);
+
+    /* JADX INFO: compiled from: MissingNativeComponent.java */
+    public final class b implements d {
+        public b(a aVar) {
+        }
+
+        @Override // b.i.c.m.d.d
+        public File a() {
+            return null;
+        }
+
+        @Override // b.i.c.m.d.d
+        public File b() {
+            return null;
+        }
+
+        @Override // b.i.c.m.d.d
+        public File c() {
+            return null;
+        }
+
+        @Override // b.i.c.m.d.d
+        public File d() {
+            return null;
+        }
+
+        @Override // b.i.c.m.d.d
+        public File e() {
+            return null;
+        }
+
+        @Override // b.i.c.m.d.d
+        public File f() {
+            return null;
+        }
+    }
 
     @Override // b.i.c.m.d.a
     public boolean a(@NonNull String str) {

@@ -3,12 +3,14 @@ package lombok.patcher.scripts;
 import java.util.List;
 import java.util.Set;
 import lombok.patcher.Hook;
-import lombok.patcher.PatchScript$MethodPatcher;
+import lombok.patcher.MethodLogistics;
+import lombok.patcher.PatchScript;
 import lombok.patcher.StackRequest;
 import lombok.patcher.TargetMatcher;
 import lombok.patcher.TransplantMapper;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/ReplaceMethodCallScript.SCL.lombok */
 public class ReplaceMethodCallScript extends MethodLevelPatchScript {
@@ -70,12 +72,61 @@ public class ReplaceMethodCallScript extends MethodLevelPatchScript {
         this.extraRequests = extraRequests;
     }
 
+    /* JADX INFO: renamed from: lombok.patcher.scripts.ReplaceMethodCallScript$1, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/ReplaceMethodCallScript$1.SCL.lombok */
+    class AnonymousClass1 implements PatchScript.MethodPatcherFactory {
+        private final /* synthetic */ String val$classSpec;
+
+        AnonymousClass1(String str) {
+            this.val$classSpec = str;
+        }
+
+        @Override // lombok.patcher.PatchScript.MethodPatcherFactory
+        public MethodVisitor createMethodVisitor(String name, String desc, MethodVisitor parent, MethodLogistics logistics) {
+            return ReplaceMethodCallScript.this.new ReplaceMethodCall(parent, this.val$classSpec, logistics);
+        }
+    }
+
     @Override // lombok.patcher.scripts.MethodLevelPatchScript
-    protected PatchScript$MethodPatcher createPatcher(ClassWriter writer, String classSpec, TransplantMapper transplantMapper) {
-        PatchScript$MethodPatcher patcher = new PatchScript$MethodPatcher(writer, transplantMapper, new ReplaceMethodCallScript$1(this, classSpec));
+    protected PatchScript.MethodPatcher createPatcher(ClassWriter writer, String classSpec, TransplantMapper transplantMapper) {
+        PatchScript.MethodPatcher patcher = new PatchScript.MethodPatcher(writer, transplantMapper, new AnonymousClass1(classSpec));
         if (this.transplant) {
             patcher.addTransplant(this.wrapper);
         }
         return patcher;
+    }
+
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/ReplaceMethodCallScript$ReplaceMethodCall.SCL.lombok */
+    class ReplaceMethodCall extends MethodVisitor {
+        private final String ownClassSpec;
+        private final MethodLogistics logistics;
+
+        public ReplaceMethodCall(MethodVisitor mv, String ownClassSpec, MethodLogistics logistics) {
+            super(Opcodes.ASM7, mv);
+            this.ownClassSpec = ownClassSpec;
+            this.logistics = logistics;
+        }
+
+        @Override // org.objectweb.asm.MethodVisitor
+        public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
+            if (ReplaceMethodCallScript.access$0(ReplaceMethodCallScript.this).getClassSpec().equals(owner) && ReplaceMethodCallScript.access$0(ReplaceMethodCallScript.this).getMethodName().equals(name) && ReplaceMethodCallScript.access$0(ReplaceMethodCallScript.this).getMethodDescriptor().equals(desc)) {
+                if (ReplaceMethodCallScript.access$1(ReplaceMethodCallScript.this).contains(StackRequest.THIS)) {
+                    this.logistics.generateLoadOpcodeForThis(this.mv);
+                }
+                for (StackRequest param : StackRequest.PARAMS_IN_ORDER) {
+                    if (ReplaceMethodCallScript.access$1(ReplaceMethodCallScript.this).contains(param)) {
+                        this.logistics.generateLoadOpcodeForParam(param.getParamPos(), this.mv);
+                    }
+                }
+                if (!ReplaceMethodCallScript.access$2(ReplaceMethodCallScript.this)) {
+                    super.visitMethodInsn(Opcodes.INVOKESTATIC, ReplaceMethodCallScript.access$5(ReplaceMethodCallScript.this) ? this.ownClassSpec : ReplaceMethodCallScript.access$3(ReplaceMethodCallScript.this).getClassSpec(), ReplaceMethodCallScript.access$3(ReplaceMethodCallScript.this).getMethodName(), ReplaceMethodCallScript.access$3(ReplaceMethodCallScript.this).getMethodDescriptor(), itf);
+                    return;
+                } else {
+                    ReplaceMethodCallScript.access$4(ReplaceMethodCallScript.access$3(ReplaceMethodCallScript.this), this.mv);
+                    return;
+                }
+            }
+            super.visitMethodInsn(opcode, owner, name, desc, itf);
+        }
     }
 }

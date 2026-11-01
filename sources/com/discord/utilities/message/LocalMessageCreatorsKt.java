@@ -13,7 +13,7 @@ import com.discord.api.user.User;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.NonceGenerator;
 import com.discord.models.message.Message;
-import com.discord.utilities.captcha.CaptchaHelper$CaptchaPayload;
+import com.discord.utilities.captcha.CaptchaHelper;
 import com.discord.utilities.time.Clock;
 import d0.t.n;
 import d0.t.o;
@@ -33,7 +33,7 @@ public final class LocalMessageCreatorsKt {
         m.checkNotNullParameter(user, "author");
         m.checkNotNullParameter(clock, "clock");
         m.checkNotNullParameter(list, "localAttachments");
-        long jComputeNonce = NonceGenerator.Companion.computeNonce(clock);
+        long jComputeNonce = NonceGenerator.INSTANCE.computeNonce(clock);
         UtcDateTime utcDateTime = new UtcDateTime(clock.currentTimeMillis());
         Boolean bool = Boolean.FALSE;
         return new Message(jComputeNonce, j, null, user, "", utcDateTime, null, bool, bool, n.emptyList(), n.emptyList(), n.emptyList(), n.emptyList(), n.emptyList(), String.valueOf(jComputeNonce), bool, null, -3, null, null, null, null, null, null, null, null, null, null, null, null, null, null, true, null, null, null, null, list, null, -2147483644, 94, null);
@@ -49,16 +49,16 @@ public final class LocalMessageCreatorsKt {
         return new Message(j, j2, null, user2, "", utcDateTime, null, null, null, null, null, null, null, null, String.valueOf(j), null, null, Integer.valueOf(i), null, null, Long.valueOf(user2.getId()), null, l2, null, null, null, interaction, null, null, null, null, null, false, null, null, null, null, null, null, -72499260, Opcodes.LAND, null);
     }
 
-    public static /* synthetic */ Message createLocalMessage$default(String str, long j, User user, List list, boolean z2, boolean z3, Application application, MessageActivity messageActivity, Clock clock, List list2, Long l, Long l2, Integer num, List list3, MessageReference messageReference, MessageAllowedMentions messageAllowedMentions, CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload, int i, Object obj) {
-        return createLocalMessage(str, j, user, list, z2, z3, application, messageActivity, clock, list2, l, l2, num, list3, messageReference, messageAllowedMentions, (i & 65536) != 0 ? null : captchaHelper$CaptchaPayload);
+    public static /* synthetic */ Message createLocalMessage$default(String str, long j, User user, List list, boolean z2, boolean z3, Application application, MessageActivity messageActivity, Clock clock, List list2, Long l, Long l2, Integer num, List list3, MessageReference messageReference, MessageAllowedMentions messageAllowedMentions, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
+        return createLocalMessage(str, j, user, list, z2, z3, application, messageActivity, clock, list2, l, l2, num, list3, messageReference, messageAllowedMentions, (i & 65536) != 0 ? null : captchaPayload);
     }
 
-    public static final Message createLocalMessage(String str, long j, User user, List<User> list, boolean z2, boolean z3, Application application, MessageActivity messageActivity, Clock clock, List<LocalAttachment> list2, Long l, Long l2, Integer num, List<? extends BaseSticker> list3, MessageReference messageReference, MessageAllowedMentions messageAllowedMentions, CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload) {
+    public static final Message createLocalMessage(String str, long j, User user, List<User> list, boolean z2, boolean z3, Application application, MessageActivity messageActivity, Clock clock, List<LocalAttachment> list2, Long l, Long l2, Integer num, List<? extends BaseSticker> list3, MessageReference messageReference, MessageAllowedMentions messageAllowedMentions, CaptchaHelper.CaptchaPayload captchaPayload) {
         ArrayList arrayList;
         m.checkNotNullParameter(str, "content");
         m.checkNotNullParameter(user, "author");
         m.checkNotNullParameter(clock, "clock");
-        long jComputeNonce = NonceGenerator.Companion.computeNonce(clock);
+        long jComputeNonce = NonceGenerator.INSTANCE.computeNonce(clock);
         int i = z2 ? -2 : -1;
         UtcDateTime utcDateTime = new UtcDateTime(clock.currentTimeMillis());
         Boolean bool = Boolean.FALSE;
@@ -77,13 +77,13 @@ public final class LocalMessageCreatorsKt {
         } else {
             arrayList = null;
         }
-        return new Message(jComputeNonce, j, null, user, str, utcDateTime, null, bool, bool, list, listEmptyList, listEmptyList2, listEmptyList3, listEmptyList4, strValueOf, bool, null, numValueOf, messageActivity, application, null, messageReference, null, null, arrayList, null, null, null, null, null, Boolean.FALSE, null, z3, messageAllowedMentions, num, l, l2, list2, captchaHelper$CaptchaPayload, -2147483644, 0, null);
+        return new Message(jComputeNonce, j, null, user, str, utcDateTime, null, bool, bool, list, listEmptyList, listEmptyList2, listEmptyList3, listEmptyList4, strValueOf, bool, null, numValueOf, messageActivity, application, null, messageReference, null, null, arrayList, null, null, null, null, null, Boolean.FALSE, null, z3, messageAllowedMentions, num, l, l2, list2, captchaPayload, -2147483644, 0, null);
     }
 
     public static final Message createThreadStarterMessageNotFoundMessage(long j, User user, Clock clock) {
         m.checkNotNullParameter(user, "author");
         m.checkNotNullParameter(clock, "clock");
-        long jComputeNonce = NonceGenerator.Companion.computeNonce(clock);
+        long jComputeNonce = NonceGenerator.INSTANCE.computeNonce(clock);
         return new Message(jComputeNonce, j, null, user, "", new UtcDateTime(clock.currentTimeMillis()), null, null, null, null, null, null, null, null, String.valueOf(jComputeNonce), null, null, -7, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false, null, null, null, null, null, null, -147516, Opcodes.LAND, null);
     }
 
@@ -101,13 +101,13 @@ public final class LocalMessageCreatorsKt {
         m.checkNotNullParameter(message, "other");
         m.checkNotNullParameter(clock, "clock");
         Interaction interaction = message.getInteraction();
-        String strB = interaction != null ? interaction.getName() : null;
+        String name = interaction != null ? interaction.getName() : null;
         Interaction interaction2 = message.getInteraction();
-        User userC = interaction2 != null ? interaction2.getUser() : null;
+        User user = interaction2 != null ? interaction2.getUser() : null;
         long id2 = message.getId();
         long channelId = message.getChannelId();
         User author = message.getAuthor();
         m.checkNotNull(author);
-        return createLocalApplicationCommandMessage(id2, strB, channelId, userC, author, z2, z3, l, clock);
+        return createLocalApplicationCommandMessage(id2, name, channelId, user, author, z2, z3, l, clock);
     }
 }

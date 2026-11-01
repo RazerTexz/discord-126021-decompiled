@@ -6,7 +6,7 @@ import java.util.Objects;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class b implements v$b$a {
+public final /* synthetic */ class b implements v.b.a {
     public final /* synthetic */ v a;
 
     public /* synthetic */ b(v vVar) {

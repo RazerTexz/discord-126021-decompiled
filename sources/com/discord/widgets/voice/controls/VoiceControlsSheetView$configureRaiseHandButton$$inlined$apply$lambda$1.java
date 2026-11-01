@@ -1,14 +1,13 @@
 package com.discord.widgets.voice.controls;
 
 import android.view.View;
-import android.view.View$OnClickListener;
 import com.discord.widgets.stage.StageRoles;
 import com.discord.widgets.voice.model.CallModel;
 import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: VoiceControlsSheetView.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class VoiceControlsSheetView$configureRaiseHandButton$$inlined$apply$lambda$1 implements View$OnClickListener {
+public final class VoiceControlsSheetView$configureRaiseHandButton$$inlined$apply$lambda$1 implements View.OnClickListener {
     public final /* synthetic */ boolean $isUpdatingRequestToSpeak$inlined;
     public final /* synthetic */ CallModel $model$inlined;
     public final /* synthetic */ Function0 $onRaiseHandClick$inlined;
@@ -23,7 +22,7 @@ public final class VoiceControlsSheetView$configureRaiseHandButton$$inlined$appl
         this.$onRaiseHandClick$inlined = function0;
     }
 
-    @Override // android.view.View$OnClickListener
+    @Override // android.view.View.OnClickListener
     public final void onClick(View view) {
         this.$onRaiseHandClick$inlined.invoke();
     }

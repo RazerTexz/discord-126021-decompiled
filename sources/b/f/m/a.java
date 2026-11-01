@@ -2,7 +2,6 @@ package b.f.m;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager$NameNotFoundException;
 import android.os.Parcel;
 import java.io.File;
 import java.io.IOException;
@@ -11,6 +10,19 @@ import java.io.IOException;
 /* JADX INFO: loaded from: classes3.dex */
 public class a extends f {
     public final int h;
+
+    /* JADX INFO: renamed from: b.f.m.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: ApkSoSource.java */
+    public class C0078a extends f.c {
+        public File n;
+        public final int o;
+
+        public C0078a(f fVar) throws IOException {
+            super(fVar);
+            this.n = new File(a.this.c.getApplicationInfo().nativeLibraryDir);
+            this.o = a.this.h;
+        }
+    }
 
     public a(Context context, File file, String str, int i) {
         super(context, str, file, "^lib/([^/]+)/([^/]+\\.so)$");
@@ -31,7 +43,7 @@ public class a extends f {
             if (packageManager != null) {
                 try {
                     i = packageManager.getPackageInfo(context.getPackageName(), 0).versionCode;
-                } catch (PackageManager$NameNotFoundException | RuntimeException unused) {
+                } catch (PackageManager.NameNotFoundException | RuntimeException unused) {
                     i = 0;
                 }
             } else {
@@ -62,7 +74,7 @@ public class a extends f {
     }
 
     @Override // b.f.m.m
-    public m$f i() throws IOException {
-        return new a$a(this, this);
+    public m.f i() throws IOException {
+        return new C0078a(this);
     }
 }

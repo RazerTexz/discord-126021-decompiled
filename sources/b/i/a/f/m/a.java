@@ -2,15 +2,13 @@ package b.i.a.f.m;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.os.PowerManager;
-import android.os.PowerManager$WakeLock;
 import android.os.WorkSource;
 import android.text.TextUtils;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import b.c.a.a0.d;
-import b.i.a.f.e.m.a$a;
 import b.i.a.f.e.o.h;
 import b.i.a.f.e.o.i;
 import java.lang.reflect.Method;
@@ -32,7 +30,7 @@ public class a {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final Object f1591b;
-    public final PowerManager$WakeLock c;
+    public final PowerManager.WakeLock c;
     public WorkSource d;
     public final int e;
     public final String f;
@@ -43,7 +41,7 @@ public class a {
     public AtomicInteger k;
 
     public a(@NonNull Context context, int i, @NonNull String str) {
-        a$a a_a;
+        b.i.a.f.e.m.a.InterfaceC0115a interfaceC0115a;
         WorkSource workSource = null;
         String packageName = context == null ? null : context.getPackageName();
         this.f1591b = this;
@@ -89,7 +87,7 @@ public class a {
                             }
                         }
                     }
-                } catch (PackageManager$NameNotFoundException unused) {
+                } catch (PackageManager.NameNotFoundException unused) {
                     Log.e("WorkSourceUtil", packageName.length() != 0 ? "Could not find package: ".concat(packageName) : new String("Could not find package: "));
                 }
             }
@@ -113,9 +111,9 @@ public class a {
                 if (b.i.a.f.e.m.a.a == null) {
                     b.i.a.f.e.m.a.a = new b.i.a.f.e.m.b();
                 }
-                a_a = b.i.a.f.e.m.a.a;
+                interfaceC0115a = b.i.a.f.e.m.a.a;
             }
-            Objects.requireNonNull((b.i.a.f.e.m.b) a_a);
+            Objects.requireNonNull((b.i.a.f.e.m.b) interfaceC0115a);
             a = Executors.unconfigurableScheduledExecutorService(Executors.newScheduledThreadPool(1));
         }
     }

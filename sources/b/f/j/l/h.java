@@ -2,7 +2,6 @@ package b.f.j.l;
 
 import android.annotation.TargetApi;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
 import com.facebook.imagepipeline.memory.BasePool;
 
 /* JADX INFO: compiled from: BucketsBitmapPool.java */
@@ -17,7 +16,7 @@ public class h extends BasePool<Bitmap> implements d {
 
     @Override // com.facebook.imagepipeline.memory.BasePool
     public Bitmap e(int i) {
-        return Bitmap.createBitmap(1, (int) Math.ceil(((double) i) / 2.0d), Bitmap$Config.RGB_565);
+        return Bitmap.createBitmap(1, (int) Math.ceil(((double) i) / 2.0d), Bitmap.Config.RGB_565);
     }
 
     @Override // com.facebook.imagepipeline.memory.BasePool

@@ -1,17 +1,78 @@
 package b.f.l.b;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.graphics.Matrix;
 import android.view.animation.DecelerateInterpolator;
 import androidx.annotation.Nullable;
+import java.util.Objects;
 
 /* JADX INFO: compiled from: AnimatedZoomableController.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class b extends a {
+public class b extends b.f.l.b.a {
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public final ValueAnimator f649s;
+
+    /* JADX INFO: renamed from: b.f.l.b.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: AnimatedZoomableController.java */
+    public class C0077b extends AnimatorListenerAdapter {
+        public final /* synthetic */ Runnable a;
+
+        public C0077b(Runnable runnable) {
+            this.a = runnable;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationCancel(Animator animator) {
+            Objects.requireNonNull(b.this);
+            b.f.d.e.a.i(b.class, "setTransformAnimated: animation cancelled");
+            Runnable runnable = this.a;
+            if (runnable != null) {
+                runnable.run();
+            }
+            b bVar = b.this;
+            bVar.m = false;
+            bVar.a.d();
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            Objects.requireNonNull(b.this);
+            b.f.d.e.a.i(b.class, "setTransformAnimated: animation finished");
+            Runnable runnable = this.a;
+            if (runnable != null) {
+                runnable.run();
+            }
+            b bVar = b.this;
+            bVar.m = false;
+            bVar.a.d();
+        }
+    }
+
+    /* JADX INFO: compiled from: AnimatedZoomableController.java */
+    public class a implements ValueAnimator.AnimatorUpdateListener {
+        public a() {
+        }
+
+        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            b bVar = b.this;
+            Matrix matrix = bVar.r;
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            for (int i = 0; i < 9; i++) {
+                bVar.p[i] = (bVar.o[i] * fFloatValue) + ((1.0f - fFloatValue) * bVar.n[i]);
+            }
+            matrix.setValues(bVar.p);
+            b bVar2 = b.this;
+            Matrix matrix2 = bVar2.r;
+            b.f.d.e.a.i(c.class, "setTransform");
+            bVar2.h.set(matrix2);
+            bVar2.i();
+        }
+    }
 
     @SuppressLint({"NewApi"})
     public b(b.f.l.a.b bVar) {
@@ -37,8 +98,8 @@ public class b extends a {
         this.f649s.setDuration(j);
         this.h.getValues(this.n);
         matrix.getValues(this.o);
-        this.f649s.addUpdateListener(new b$a(this));
-        this.f649s.addListener(new b$b(this, runnable));
+        this.f649s.addUpdateListener(new a());
+        this.f649s.addListener(new C0077b(runnable));
         this.f649s.start();
     }
 

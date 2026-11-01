@@ -1,14 +1,15 @@
 package com.discord.widgets.chat.input.autocomplete.adapter;
 
 import android.content.res.Resources;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
+import androidx.recyclerview.widget.RecyclerView;
 import b.a.k.b;
-import com.discord.R$plurals;
+import com.discord.R;
 import com.discord.databinding.WidgetChatInputEmojiAutocompleteUpsellItemBinding;
 import com.discord.models.domain.emoji.Emoji;
-import com.discord.views.PileView$c;
+import com.discord.views.PileView;
 import com.discord.widgets.chat.input.autocomplete.Autocompletable;
 import com.discord.widgets.chat.input.autocomplete.EmojiUpsellPlaceholder;
 import d0.t.o;
@@ -21,9 +22,24 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: EmojiAutocompleteUpsellViewHolder.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class EmojiAutocompleteUpsellViewHolder extends RecyclerView$ViewHolder {
+public final class EmojiAutocompleteUpsellViewHolder extends RecyclerView.ViewHolder {
     private final WidgetChatInputEmojiAutocompleteUpsellItemBinding binding;
     private final Function1<Autocompletable, Unit> onItemSelected;
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.adapter.EmojiAutocompleteUpsellViewHolder$bind$1, reason: invalid class name */
+    /* JADX INFO: compiled from: EmojiAutocompleteUpsellViewHolder.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ EmojiUpsellPlaceholder $emojiUpsellPlaceholder;
+
+        public AnonymousClass1(EmojiUpsellPlaceholder emojiUpsellPlaceholder) {
+            this.$emojiUpsellPlaceholder = emojiUpsellPlaceholder;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            EmojiAutocompleteUpsellViewHolder.access$getOnItemSelected$p(EmojiAutocompleteUpsellViewHolder.this).invoke(this.$emojiUpsellPlaceholder);
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     /* JADX WARN: Multi-variable type inference failed */
@@ -49,9 +65,9 @@ public final class EmojiAutocompleteUpsellViewHolder extends RecyclerView$ViewHo
         LinearLayout linearLayout = this.binding.a;
         m.checkNotNullExpressionValue(linearLayout, "binding.root");
         Resources resources = linearLayout.getResources();
-        String string = resources.getString(2131886946);
+        String string = resources.getString(R.string.autocomplete_emoji_upsell);
         m.checkNotNullExpressionValue(string, "resources.getString(R.st…utocomplete_emoji_upsell)");
-        String quantityString = resources.getQuantityString(R$plurals.autocomplete_emoji_upsell_count, lockedTotal);
+        String quantityString = resources.getQuantityString(R.plurals.autocomplete_emoji_upsell_count, lockedTotal);
         m.checkNotNullExpressionValue(quantityString, "resources.getQuantityStr…moji_upsell_count, count)");
         TextView textView = this.binding.c;
         m.checkNotNullExpressionValue(textView, "binding.chatInputEmojiUpsellText");
@@ -60,9 +76,9 @@ public final class EmojiAutocompleteUpsellViewHolder extends RecyclerView$ViewHo
         ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(lockedFirstThree, 10));
         Iterator<T> it = lockedFirstThree.iterator();
         while (it.hasNext()) {
-            arrayList.add(new PileView$c(new EmojiAutocompleteUpsellViewHolder$bind$$inlined$map$lambda$1((Emoji) it.next(), this, emojiUpsellPlaceholder), null));
+            arrayList.add(new PileView.c(new EmojiAutocompleteUpsellViewHolder$bind$$inlined$map$lambda$1((Emoji) it.next(), this, emojiUpsellPlaceholder), null));
         }
         this.binding.f2306b.setItems(arrayList);
-        this.binding.a.setOnClickListener(new EmojiAutocompleteUpsellViewHolder$bind$1(this, emojiUpsellPlaceholder));
+        this.binding.a.setOnClickListener(new AnonymousClass1(emojiUpsellPlaceholder));
     }
 }

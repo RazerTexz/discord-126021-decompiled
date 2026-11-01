@@ -1,8 +1,61 @@
 package b.i.a.c.s2;
 
+import androidx.annotation.Nullable;
+import b.i.a.c.o2;
+import java.util.Arrays;
+
 /* JADX INFO: compiled from: AnalyticsListener.java */
 /* JADX INFO: loaded from: classes3.dex */
 public interface h1 {
+
+    /* JADX INFO: compiled from: AnalyticsListener.java */
+    public final class a {
+        public final long a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final o2 f1084b;
+        public final int c;
+
+        @Nullable
+        public final b.i.a.c.a3.a0.a d;
+        public final long e;
+        public final o2 f;
+        public final int g;
+
+        @Nullable
+        public final b.i.a.c.a3.a0.a h;
+        public final long i;
+        public final long j;
+
+        public a(long j, o2 o2Var, int i, @Nullable b.i.a.c.a3.a0.a aVar, long j2, o2 o2Var2, int i2, @Nullable b.i.a.c.a3.a0.a aVar2, long j3, long j4) {
+            this.a = j;
+            this.f1084b = o2Var;
+            this.c = i;
+            this.d = aVar;
+            this.e = j2;
+            this.f = o2Var2;
+            this.g = i2;
+            this.h = aVar2;
+            this.i = j3;
+            this.j = j4;
+        }
+
+        public boolean equals(@Nullable Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || a.class != obj.getClass()) {
+                return false;
+            }
+            a aVar = (a) obj;
+            return this.a == aVar.a && this.c == aVar.c && this.e == aVar.e && this.g == aVar.g && this.i == aVar.i && this.j == aVar.j && b.i.a.f.e.o.f.V(this.f1084b, aVar.f1084b) && b.i.a.f.e.o.f.V(this.d, aVar.d) && b.i.a.f.e.o.f.V(this.f, aVar.f) && b.i.a.f.e.o.f.V(this.h, aVar.h);
+        }
+
+        public int hashCode() {
+            return Arrays.hashCode(new Object[]{Long.valueOf(this.a), this.f1084b, Integer.valueOf(this.c), this.d, Long.valueOf(this.e), this.f, Integer.valueOf(this.g), this.h, Long.valueOf(this.i), Long.valueOf(this.j)});
+        }
+    }
+
     void A();
 
     void B();

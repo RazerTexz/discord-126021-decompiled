@@ -1,6 +1,8 @@
 package b.i.a.c;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Handler;
@@ -15,30 +17,46 @@ public final class m2 {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final Handler f1033b;
-    public final m2$b c;
+    public final b c;
     public final AudioManager d;
 
     @Nullable
-    public m2$c e;
+    public c e;
     public int f;
     public int g;
     public boolean h;
 
-    public m2(Context context, Handler handler, m2$b m2_b) {
+    /* JADX INFO: compiled from: StreamVolumeManager.java */
+    public interface b {
+    }
+
+    /* JADX INFO: compiled from: StreamVolumeManager.java */
+    public final class c extends BroadcastReceiver {
+        public c(a aVar) {
+        }
+
+        @Override // android.content.BroadcastReceiver
+        public void onReceive(Context context, Intent intent) {
+            m2 m2Var = m2.this;
+            m2Var.f1033b.post(new p0(m2Var));
+        }
+    }
+
+    public m2(Context context, Handler handler, b bVar) {
         Context applicationContext = context.getApplicationContext();
         this.a = applicationContext;
         this.f1033b = handler;
-        this.c = m2_b;
+        this.c = bVar;
         AudioManager audioManager = (AudioManager) applicationContext.getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
         b.c.a.a0.d.H(audioManager);
         this.d = audioManager;
         this.f = 3;
         this.g = b(audioManager, 3);
         this.h = a(audioManager, this.f);
-        m2$c m2_c = new m2$c(this, null);
+        c cVar = new c(null);
         try {
-            applicationContext.registerReceiver(m2_c, new IntentFilter("android.media.VOLUME_CHANGED_ACTION"));
-            this.e = m2_c;
+            applicationContext.registerReceiver(cVar, new IntentFilter("android.media.VOLUME_CHANGED_ACTION"));
+            this.e = cVar;
         } catch (RuntimeException e) {
             b.i.a.c.f3.q.c("StreamVolumeManager", "Error registering stream volume receiver", e);
         }
@@ -69,14 +87,14 @@ public final class m2 {
         }
         this.f = i;
         d();
-        k2$b k2_b = (k2$b) this.c;
-        c1 c1VarF0 = k2.f0(k2_b.j.l);
-        if (c1VarF0.equals(k2_b.j.H)) {
+        k2.b bVar = (k2.b) this.c;
+        c1 c1VarF0 = k2.f0(k2.this.l);
+        if (c1VarF0.equals(k2.this.H)) {
             return;
         }
-        k2 k2Var = k2_b.j;
+        k2 k2Var = k2.this;
         k2Var.H = c1VarF0;
-        Iterator<y1$e> it = k2Var.h.iterator();
+        Iterator<y1.e> it = k2Var.h.iterator();
         while (it.hasNext()) {
             it.next().z(c1VarF0);
         }
@@ -90,7 +108,7 @@ public final class m2 {
         }
         this.g = iB;
         this.h = zA;
-        Iterator<y1$e> it = ((k2$b) this.c).j.h.iterator();
+        Iterator<y1.e> it = k2.this.h.iterator();
         while (it.hasNext()) {
             it.next().G(iB, zA);
         }

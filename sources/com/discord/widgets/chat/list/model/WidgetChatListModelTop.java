@@ -2,15 +2,70 @@ package com.discord.widgets.chat.list.model;
 
 import b.d.b.a.a;
 import com.discord.api.channel.Channel;
+import com.discord.api.channel.ChannelUtils;
+import com.discord.models.guild.Guild;
+import com.discord.models.member.GuildMember;
+import com.discord.models.user.User;
+import com.discord.stores.StoreStream;
+import com.discord.stores.StoreUser;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
+import com.discord.widgets.forums.ForumUtils;
+import com.discord.widgets.user.UserMutualGuildsManager;
 import d0.z.d.m;
+import java.util.concurrent.TimeUnit;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
 
 /* JADX INFO: compiled from: WidgetChatListModelTop.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class WidgetChatListModelTop {
-    public static final WidgetChatListModelTop$Companion Companion = new WidgetChatListModelTop$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final ChatListEntry item;
+
+    /* JADX INFO: compiled from: WidgetChatListModelTop.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static final /* synthetic */ Observable access$getWelcomeEntry(Companion companion, Channel channel) {
+            return companion.getWelcomeEntry(channel);
+        }
+
+        public final Observable<WidgetChatListModelTop> get(Channel channel) {
+            m.checkNotNullParameter(channel, "channel");
+            Observable<WidgetChatListModelTop> observableR = StoreStream.INSTANCE.getMessagesLoader().getMessagesLoadedState(channel.getId()).Y(new WidgetChatListModelTop$Companion$get$1(channel)).r();
+            m.checkNotNullExpressionValue(observableR, "StoreStream\n          .g…  .distinctUntilChanged()");
+            return observableR;
+        }
+
+        private final Observable<ChatListEntry> getWelcomeEntry(Channel channel) {
+            StoreStream.Companion companion = StoreStream.INSTANCE;
+            Observable<Guild> observableObserveGuild = companion.getGuilds().observeGuild(channel.getGuildId());
+            Observable observableObserveMe$default = StoreUser.observeMe$default(companion.getUsers(), false, 1, null);
+            Observable<Long> observableObservePermissionsForChannel = companion.getPermissions().observePermissionsForChannel(channel.getId());
+            Observable observableR = companion.getChannels().observeDefaultChannel(channel.getGuildId()).G(WidgetChatListModelTop$Companion$getWelcomeEntry$1.INSTANCE).r();
+            Observable<GuildMember> observableObserveGuildMember = observeGuildMember(channel.getGuildId(), channel.getOwnerId());
+            Observable<User> observableObserveUser = companion.getUsers().observeUser(channel.getOwnerId());
+            UserMutualGuildsManager userMutualGuildsManager = new UserMutualGuildsManager(null, null, null, 7, null);
+            User userA = ChannelUtils.a(channel);
+            Observable<ChatListEntry> observableC = Observable.c(observableObserveGuild, observableObserveMe$default, observableObservePermissionsForChannel, observableR, observableObserveGuildMember, observableObserveUser, userMutualGuildsManager.observeMutualGuilds(d0.t.m.listOf(Long.valueOf(userA != null ? userA.getId() : 0L))), companion.getChannels().observeChannel(channel.getParentId()), ForumUtils.observeCanAccessRedesignedForumChannels$default(ForumUtils.INSTANCE, channel.getGuildId(), null, null, 6, null), new WidgetChatListModelTop$Companion$getWelcomeEntry$2(channel));
+            m.checkNotNullExpressionValue(observableC, "Observable.combineLatest…      )\n        }\n      }");
+            return observableC;
+        }
+
+        private final Observable<GuildMember> observeGuildMember(long guildId, long userId) {
+            Observable<GuildMember> observableObserveGuildMember = StoreStream.INSTANCE.getGuilds().observeGuildMember(guildId, userId);
+            m.checkNotNullExpressionValue(observableObserveGuildMember, "StoreStream.getGuilds().…ldMember(guildId, userId)");
+            return ObservableExtensionsKt.computationLatest(ObservableExtensionsKt.leadingEdgeThrottle(observableObserveGuildMember, 1L, TimeUnit.SECONDS));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public WidgetChatListModelTop(ChatListEntry chatListEntry) {
         m.checkNotNullParameter(chatListEntry, "item");
@@ -37,7 +92,7 @@ public final /* data */ class WidgetChatListModelTop {
     }
 
     public static final Observable<WidgetChatListModelTop> get(Channel channel) {
-        return Companion.get(channel);
+        return INSTANCE.get(channel);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */

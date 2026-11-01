@@ -1,7 +1,9 @@
 package com.discord.stores;
 
 import android.content.Context;
-import com.discord.utilities.analytics.Traits$Payment$Type;
+import androidx.core.app.NotificationCompat;
+import com.discord.simpleast.core.parser.Parser;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.search.query.FilterType;
 import com.discord.utilities.search.query.node.QueryNode;
@@ -17,12 +19,18 @@ import com.discord.utilities.search.suggestion.entries.ChannelSuggestion;
 import com.discord.utilities.search.suggestion.entries.UserSuggestion;
 import d0.t.n;
 import d0.t.u;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import j0.p.a;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import kotlin.NoWhenBranchMatchedException;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import rx.Observable;
@@ -43,6 +51,129 @@ public final class StoreSearchInput {
     private final Observable<Boolean> isInputValid;
     private final SerializedSubject<Boolean, Boolean> isInputValidSubject;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreSearchInput$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreSearchInput.kt */
+    public final class AnonymousClass1<T, R> implements b<List<? extends QueryNode>, Boolean> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Boolean call(List<? extends QueryNode> list) {
+            return call2(list);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Boolean call2(List<? extends QueryNode> list) {
+            m.checkNotNullExpressionValue(list, "it");
+            boolean z2 = true;
+            if ((list instanceof Collection) && list.isEmpty()) {
+                z2 = false;
+            } else {
+                Iterator<T> it = list.iterator();
+                while (it.hasNext()) {
+                    if (!(((QueryNode) it.next()) instanceof FilterNode)) {
+                    }
+                }
+                z2 = false;
+            }
+            return Boolean.valueOf(z2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreSearchInput$init$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreSearchInput.kt */
+    public final class AnonymousClass1<T, R> implements b<String, List<QueryNode>> {
+        public final /* synthetic */ QueryParser $queryParser;
+
+        public AnonymousClass1(QueryParser queryParser) {
+            this.$queryParser = queryParser;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ List<QueryNode> call(String str) {
+            return call2(str);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final List<QueryNode> call2(String str) {
+            QueryParser queryParser = this.$queryParser;
+            m.checkNotNullExpressionValue(str, "it");
+            return Parser.parse$default(queryParser, str, null, null, 4, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreSearchInput$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreSearchInput.kt */
+    public final class AnonymousClass2 extends o implements Function1<Boolean, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke2(bool);
+            return Unit.a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Boolean bool) {
+            StoreSearchInput.access$isInputValidSubject$p(StoreSearchInput.this).k.onNext((T) bool);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreSearchInput$init$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreSearchInput.kt */
+    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<Subscription, Unit> {
+        public AnonymousClass2(StoreSearchInput storeSearchInput) {
+            super(1, storeSearchInput, StoreSearchInput.class, "handleInputSubscription", "handleInputSubscription(Lrx/Subscription;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            StoreSearchInput.access$handleInputSubscription((StoreSearchInput) this.receiver, subscription);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreSearchInput$init$3, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreSearchInput.kt */
+    public final /* synthetic */ class AnonymousClass3 extends k implements Function1<List<? extends QueryNode>, Unit> {
+        public AnonymousClass3(SerializedSubject serializedSubject) {
+            super(1, serializedSubject, SerializedSubject.class, "onNext", "onNext(Ljava/lang/Object;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends QueryNode> list) {
+            invoke2(list);
+            return Unit.a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<? extends QueryNode> list) {
+            ((SerializedSubject) this.receiver).k.onNext((T) list);
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            FilterType.values();
+            int[] iArr = new int[4];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[FilterType.FROM.ordinal()] = 1;
+            iArr[FilterType.MENTIONS.ordinal()] = 2;
+            iArr[FilterType.IN.ordinal()] = 3;
+            iArr[FilterType.HAS.ordinal()] = 4;
+        }
+    }
+
     public StoreSearchInput() {
         SerializedSubject<List<QueryNode>, List<QueryNode>> serializedSubject = new SerializedSubject<>(BehaviorSubject.k0());
         this.astSubject = serializedSubject;
@@ -55,9 +186,9 @@ public final class StoreSearchInput {
         this.currentParsedInput = serializedSubject;
         m.checkNotNullExpressionValue(publishSubjectK0, "forcedInputSubject");
         this.forcedInput = publishSubjectK0;
-        Observable observableX = ObservableExtensionsKt.leadingEdgeThrottle(serializedSubject, 50L, TimeUnit.MILLISECONDS).G(StoreSearchInput$1.INSTANCE).X(a.a());
+        Observable observableX = ObservableExtensionsKt.leadingEdgeThrottle(serializedSubject, 50L, TimeUnit.MILLISECONDS).G(AnonymousClass1.INSTANCE).X(a.a());
         m.checkNotNullExpressionValue(observableX, "astSubject\n        .lead…Schedulers.computation())");
-        ObservableExtensionsKt.appSubscribe$default(observableX, (Context) null, "validateSearchInput", (Function1) null, new StoreSearchInput$2(this), (Function1) null, (Function0) null, (Function0) null, 117, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(observableX, (Context) null, "validateSearchInput", (Function1) null, new AnonymousClass2(), (Function1) null, (Function0) null, (Function0) null, 117, (Object) null);
     }
 
     public static final /* synthetic */ void access$handleInputSubscription(StoreSearchInput storeSearchInput, Subscription subscription) {
@@ -108,9 +239,9 @@ public final class StoreSearchInput {
 
     public final void init(SearchStringProvider searchStringProvider) {
         m.checkNotNullParameter(searchStringProvider, "searchStringProvider");
-        Observable observableX = ObservableExtensionsKt.leadingEdgeThrottle(this.inputSubject, 100L, TimeUnit.MILLISECONDS).r().G(new StoreSearchInput$init$1(new QueryParser(searchStringProvider))).X(a.a());
+        Observable observableX = ObservableExtensionsKt.leadingEdgeThrottle(this.inputSubject, 100L, TimeUnit.MILLISECONDS).r().G(new AnonymousClass1(new QueryParser(searchStringProvider))).X(a.a());
         m.checkNotNullExpressionValue(observableX, "inputSubject\n        .le…Schedulers.computation())");
-        ObservableExtensionsKt.appSubscribe$default(observableX, StoreSearchInput.class, (Context) null, new StoreSearchInput$init$2(this), (Function1) null, (Function0) null, (Function0) null, new StoreSearchInput$init$3(this.astSubject), 58, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(observableX, StoreSearchInput.class, (Context) null, new AnonymousClass2(this), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass3(this.astSubject), 58, (Object) null);
     }
 
     public final Observable<Boolean> isInputValid() {

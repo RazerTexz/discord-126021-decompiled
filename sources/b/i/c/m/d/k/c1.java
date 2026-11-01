@@ -1,6 +1,5 @@
 package b.i.c.m.d.k;
 
-import b.i.c.m.d.m.v$b;
 import java.util.Comparator;
 
 /* JADX INFO: compiled from: SessionReportingCoordinator.java */
@@ -10,6 +9,6 @@ public final /* synthetic */ class c1 implements Comparator {
 
     @Override // java.util.Comparator
     public int compare(Object obj, Object obj2) {
-        return ((v$b) obj).a().compareTo(((v$b) obj2).a());
+        return ((b.i.c.m.d.m.v.b) obj).a().compareTo(((b.i.c.m.d.m.v.b) obj2).a());
     }
 }

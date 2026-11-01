@@ -1,7 +1,7 @@
 package androidx.core.util;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import d0.g0.c;
 import d0.z.d.l;
 import d0.z.d.m;
@@ -80,7 +80,7 @@ public final class AtomicFileKt {
     @RequiresApi(17)
     public static final void writeText(android.util.AtomicFile atomicFile, String str, Charset charset) throws IOException {
         m.checkNotNullParameter(atomicFile, "<this>");
-        m.checkNotNullParameter(str, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkNotNullParameter(str, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         m.checkNotNullParameter(charset, "charset");
         byte[] bytes = str.getBytes(charset);
         m.checkNotNullExpressionValue(bytes, "(this as java.lang.String).getBytes(charset)");

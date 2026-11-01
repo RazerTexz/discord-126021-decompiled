@@ -3,7 +3,9 @@ package d0.e0.p.d.m0.p;
 import java.lang.reflect.Array;
 import java.util.AbstractList;
 import java.util.Arrays;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.RandomAccess;
 
 /* JADX INFO: compiled from: SmartList.java */
@@ -11,6 +13,83 @@ import java.util.RandomAccess;
 public class i<E> extends AbstractList<E> implements RandomAccess {
     public int j;
     public Object k;
+
+    /* JADX INFO: compiled from: SmartList.java */
+    public class b<T> implements Iterator<T> {
+        public static final b j = new b();
+
+        public static <T> b<T> getInstance() {
+            return j;
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override // java.util.Iterator
+        public T next() {
+            throw new NoSuchElementException();
+        }
+
+        @Override // java.util.Iterator
+        public void remove() {
+            throw new IllegalStateException();
+        }
+    }
+
+    /* JADX INFO: compiled from: SmartList.java */
+    public class c extends d<E> {
+        public final int k;
+
+        public c() {
+            super(null);
+            this.k = i.d(i.this);
+        }
+
+        @Override // d0.e0.p.d.m0.p.i.d
+        public void a() {
+            if (i.e(i.this) == this.k) {
+                return;
+            }
+            StringBuilder sbU = b.d.b.a.a.U("ModCount: ");
+            sbU.append(i.g(i.this));
+            sbU.append("; expected: ");
+            sbU.append(this.k);
+            throw new ConcurrentModificationException(sbU.toString());
+        }
+
+        @Override // java.util.Iterator
+        public void remove() {
+            a();
+            i.this.clear();
+        }
+    }
+
+    /* JADX INFO: compiled from: SmartList.java */
+    public abstract class d<T> implements Iterator<T> {
+        public boolean j;
+
+        public d(a aVar) {
+        }
+
+        public abstract void a();
+
+        @Override // java.util.Iterator
+        public final boolean hasNext() {
+            return !this.j;
+        }
+
+        @Override // java.util.Iterator
+        public final T next() {
+            if (this.j) {
+                throw new NoSuchElementException();
+            }
+            this.j = true;
+            a();
+            return (T) i.this.k;
+        }
+    }
 
     @Override // java.util.AbstractList, java.util.AbstractCollection, java.util.Collection, java.util.List
     public boolean add(E e) {
@@ -120,15 +199,15 @@ public class i<E> extends AbstractList<E> implements RandomAccess {
     public Iterator<E> iterator() {
         int i = this.j;
         if (i == 0) {
-            i$b i_b = i$b.getInstance();
-            if (i_b != null) {
-                return i_b;
+            b bVar = b.getInstance();
+            if (bVar != null) {
+                return bVar;
             }
             c(2);
             throw null;
         }
         if (i == 1) {
-            return new i$c(this);
+            return new c();
         }
         Iterator<E> it = super.iterator();
         if (it != null) {

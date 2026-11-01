@@ -5,7 +5,6 @@ import g0.x;
 import java.io.IOException;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.Response$a;
 
 /* JADX INFO: compiled from: ExchangeCodec.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -18,7 +17,7 @@ public interface d {
 
     void cancel();
 
-    Response$a d(boolean z2) throws IOException;
+    Response.a d(boolean z2) throws IOException;
 
     f0.e0.g.j e();
 

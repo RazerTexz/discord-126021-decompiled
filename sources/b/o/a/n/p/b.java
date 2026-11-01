@@ -4,7 +4,7 @@ import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.TotalCaptureResult;
-import android.os.Build$VERSION;
+import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
@@ -47,7 +47,7 @@ public class b extends a {
 
     @Override // b.o.a.n.p.a
     public void o(@NonNull b.o.a.n.o.c cVar) {
-        ((b.o.a.n.d) cVar).f1921i0.set(CaptureRequest.CONTROL_AE_PRECAPTURE_TRIGGER, Integer.valueOf(Build$VERSION.SDK_INT >= 23 ? 2 : 0));
+        ((b.o.a.n.d) cVar).f1921i0.set(CaptureRequest.CONTROL_AE_PRECAPTURE_TRIGGER, Integer.valueOf(Build.VERSION.SDK_INT >= 23 ? 2 : 0));
         b.o.a.n.d dVar = (b.o.a.n.d) cVar;
         dVar.f1921i0.set(CaptureRequest.CONTROL_AE_LOCK, Boolean.TRUE);
         dVar.k1();

@@ -3,7 +3,7 @@ package com.discord.widgets.user.phone;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetUserPhoneManageBinding;
 import com.discord.utilities.dimmer.DimmerView;
 import com.discord.views.phone.PhoneOrEmailInputView;
@@ -29,23 +29,23 @@ public final /* synthetic */ class WidgetUserPhoneManage$binding$2 extends k imp
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetUserPhoneManageBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = 2131363051;
-        DimmerView dimmerView = (DimmerView) view.findViewById(2131363051);
+        int i = R.id.dimmer_view;
+        DimmerView dimmerView = (DimmerView) view.findViewById(R.id.dimmer_view);
         if (dimmerView != null) {
-            i = R$id.remove_phone;
-            TextView textView = (TextView) view.findViewById(R$id.remove_phone);
+            i = R.id.remove_phone;
+            TextView textView = (TextView) view.findViewById(R.id.remove_phone);
             if (textView != null) {
-                i = R$id.user_phone_add_description_note;
-                TextView textView2 = (TextView) view.findViewById(R$id.user_phone_add_description_note);
+                i = R.id.user_phone_add_description_note;
+                TextView textView2 = (TextView) view.findViewById(R.id.user_phone_add_description_note);
                 if (textView2 != null) {
-                    i = R$id.user_phone_add_next;
-                    MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.user_phone_add_next);
+                    i = R.id.user_phone_add_next;
+                    MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.user_phone_add_next);
                     if (materialButton != null) {
-                        i = R$id.user_phone_add_number;
-                        PhoneOrEmailInputView phoneOrEmailInputView = (PhoneOrEmailInputView) view.findViewById(R$id.user_phone_add_number);
+                        i = R.id.user_phone_add_number;
+                        PhoneOrEmailInputView phoneOrEmailInputView = (PhoneOrEmailInputView) view.findViewById(R.id.user_phone_add_number);
                         if (phoneOrEmailInputView != null) {
-                            i = R$id.user_phone_title;
-                            TextView textView3 = (TextView) view.findViewById(R$id.user_phone_title);
+                            i = R.id.user_phone_title;
+                            TextView textView3 = (TextView) view.findViewById(R.id.user_phone_title);
                             if (textView3 != null) {
                                 return new WidgetUserPhoneManageBinding((FrameLayout) view, dimmerView, textView, textView2, materialButton, phoneOrEmailInputView, textView3);
                             }

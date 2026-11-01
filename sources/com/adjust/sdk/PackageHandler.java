@@ -27,9 +27,94 @@ public class PackageHandler implements IPackageHandler {
     private BackoffStrategy backoffStrategy = AdjustFactory.getPackageHandlerBackoffStrategy();
     private BackoffStrategy backoffStrategyForInstallSession = AdjustFactory.getInstallSessionBackoffStrategy();
 
+    /* JADX INFO: renamed from: com.adjust.sdk.PackageHandler$1, reason: invalid class name */
+    public class AnonymousClass1 implements Runnable {
+        public AnonymousClass1() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            PackageHandler.access$000(PackageHandler.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.PackageHandler$2, reason: invalid class name */
+    public class AnonymousClass2 implements Runnable {
+        public final /* synthetic */ ActivityPackage val$activityPackage;
+
+        public AnonymousClass2(ActivityPackage activityPackage) {
+            this.val$activityPackage = activityPackage;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            PackageHandler.access$100(PackageHandler.this, this.val$activityPackage);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.PackageHandler$3, reason: invalid class name */
+    public class AnonymousClass3 implements Runnable {
+        public AnonymousClass3() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            PackageHandler.access$200(PackageHandler.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.PackageHandler$4, reason: invalid class name */
+    public class AnonymousClass4 implements Runnable {
+        public AnonymousClass4() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            PackageHandler.access$300(PackageHandler.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.PackageHandler$5, reason: invalid class name */
+    public class AnonymousClass5 implements Runnable {
+        public AnonymousClass5() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            PackageHandler.access$400(PackageHandler.this).verbose("Package handler can send", new Object[0]);
+            PackageHandler.access$500(PackageHandler.this).set(false);
+            PackageHandler.this.sendFirstPackage();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.PackageHandler$6, reason: invalid class name */
+    public class AnonymousClass6 implements Runnable {
+        public final /* synthetic */ SessionParameters val$sessionParametersCopy;
+
+        public AnonymousClass6(SessionParameters sessionParameters) {
+            this.val$sessionParametersCopy = sessionParameters;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            PackageHandler.this.updatePackagesI(this.val$sessionParametersCopy);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.PackageHandler$7, reason: invalid class name */
+    public class AnonymousClass7 implements Runnable {
+        public AnonymousClass7() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            PackageHandler.access$600(PackageHandler.this);
+        }
+    }
+
     public PackageHandler(IActivityHandler iActivityHandler, Context context, boolean z2) {
         init(iActivityHandler, context, z2);
-        this.scheduler.submit(new PackageHandler$1(this));
+        this.scheduler.submit(new AnonymousClass1());
     }
 
     public static /* synthetic */ void access$000(PackageHandler packageHandler) {
@@ -69,7 +154,7 @@ public class PackageHandler implements IPackageHandler {
 
     @Override // com.adjust.sdk.IPackageHandler
     public void addPackage(ActivityPackage activityPackage) {
-        this.scheduler.submit(new PackageHandler$2(this, activityPackage));
+        this.scheduler.submit(new AnonymousClass2(activityPackage));
     }
 
     @Override // com.adjust.sdk.IPackageHandler
@@ -79,15 +164,15 @@ public class PackageHandler implements IPackageHandler {
         if (iActivityHandler != null) {
             iActivityHandler.finishedTrackingActivity(responseData);
         }
-        PackageHandler$5 packageHandler$5 = new PackageHandler$5(this);
+        AnonymousClass5 anonymousClass5 = new AnonymousClass5();
         if (activityPackage == null) {
-            packageHandler$5.run();
+            anonymousClass5.run();
             return;
         }
         int iIncreaseRetries = activityPackage.increaseRetries();
         long waitingTime = (activityPackage.getActivityKind() != ActivityKind.SESSION || new SharedPreferencesManager(this.context).getInstallTracked()) ? Util.getWaitingTime(iIncreaseRetries, this.backoffStrategy) : Util.getWaitingTime(iIncreaseRetries, this.backoffStrategyForInstallSession);
         this.logger.verbose("Waiting for %s seconds before retrying the %d time", Util.SecondsDisplayFormat.format(waitingTime / 1000.0d), Integer.valueOf(iIncreaseRetries));
-        this.scheduler.schedule(packageHandler$5, waitingTime);
+        this.scheduler.schedule(anonymousClass5, waitingTime);
     }
 
     public static Boolean deletePackageQueue(Context context) {
@@ -100,7 +185,7 @@ public class PackageHandler implements IPackageHandler {
 
     @Override // com.adjust.sdk.IPackageHandler
     public void flush() {
-        this.scheduler.submit(new PackageHandler$7(this));
+        this.scheduler.submit(new AnonymousClass7());
     }
 
     private void flushI() {
@@ -179,7 +264,7 @@ public class PackageHandler implements IPackageHandler {
 
     @Override // com.adjust.sdk.IPackageHandler
     public void sendFirstPackage() {
-        this.scheduler.submit(new PackageHandler$3(this));
+        this.scheduler.submit(new AnonymousClass3());
     }
 
     private void sendNextI() {
@@ -195,7 +280,7 @@ public class PackageHandler implements IPackageHandler {
 
     @Override // com.adjust.sdk.IPackageHandler
     public void sendNextPackage(ResponseData responseData) {
-        this.scheduler.submit(new PackageHandler$4(this));
+        this.scheduler.submit(new AnonymousClass4());
         IActivityHandler iActivityHandler = this.activityHandlerWeakRef.get();
         if (iActivityHandler != null) {
             iActivityHandler.finishedTrackingActivity(responseData);
@@ -233,7 +318,7 @@ public class PackageHandler implements IPackageHandler {
 
     @Override // com.adjust.sdk.IPackageHandler
     public void updatePackages(SessionParameters sessionParameters) {
-        this.scheduler.submit(new PackageHandler$6(this, sessionParameters != null ? sessionParameters.deepCopy() : null));
+        this.scheduler.submit(new AnonymousClass6(sessionParameters != null ? sessionParameters.deepCopy() : null));
     }
 
     public void updatePackagesI(SessionParameters sessionParameters) {

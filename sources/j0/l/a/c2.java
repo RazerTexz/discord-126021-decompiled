@@ -1,11 +1,11 @@
 package j0.l.a;
 
-import rx.Observable$b;
+import rx.Observable;
 import rx.Subscriber;
 
 /* JADX INFO: compiled from: OperatorTake.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class c2<T> implements Observable$b<T, T> {
+public final class c2<T> implements Observable.b<T, T> {
     public final int j;
 
     public c2(int i) {

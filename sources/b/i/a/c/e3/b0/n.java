@@ -8,7 +8,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: DefaultContentMetadata.java */
@@ -33,16 +32,16 @@ public final class n implements l {
             map.remove(listUnmodifiableList.get(i));
         }
         HashMap map2 = new HashMap(mVar.a);
-        for (Map$Entry map$Entry : map2.entrySet()) {
-            Object value = map$Entry.getValue();
+        for (Map.Entry entry : map2.entrySet()) {
+            Object value = entry.getValue();
             if (value instanceof byte[]) {
                 byte[] bArr = (byte[]) value;
-                map$Entry.setValue(Arrays.copyOf(bArr, bArr.length));
+                entry.setValue(Arrays.copyOf(bArr, bArr.length));
             }
         }
-        for (Map$Entry map$Entry2 : Collections.unmodifiableMap(map2).entrySet()) {
-            String str = (String) map$Entry2.getKey();
-            Object value2 = map$Entry2.getValue();
+        for (Map.Entry entry2 : Collections.unmodifiableMap(map2).entrySet()) {
+            String str = (String) entry2.getKey();
+            Object value2 = entry2.getValue();
             if (value2 instanceof Long) {
                 bytes = ByteBuffer.allocate(8).putLong(((Long) value2).longValue()).array();
             } else if (value2 instanceof String) {
@@ -62,8 +61,8 @@ public final class n implements l {
         if (map.size() != map2.size()) {
             return false;
         }
-        for (Map$Entry<String, byte[]> map$Entry : map.entrySet()) {
-            if (!Arrays.equals(map$Entry.getValue(), map2.get(map$Entry.getKey()))) {
+        for (Map.Entry<String, byte[]> entry : map.entrySet()) {
+            if (!Arrays.equals(entry.getValue(), map2.get(entry.getKey()))) {
                 return false;
             }
         }
@@ -83,8 +82,8 @@ public final class n implements l {
     public int hashCode() {
         if (this.f936b == 0) {
             int iHashCode = 0;
-            for (Map$Entry<String, byte[]> map$Entry : this.c.entrySet()) {
-                iHashCode += Arrays.hashCode(map$Entry.getValue()) ^ map$Entry.getKey().hashCode();
+            for (Map.Entry<String, byte[]> entry : this.c.entrySet()) {
+                iHashCode += Arrays.hashCode(entry.getValue()) ^ entry.getKey().hashCode();
             }
             this.f936b = iHashCode;
         }

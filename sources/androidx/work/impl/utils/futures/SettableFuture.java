@@ -2,11 +2,10 @@ package androidx.work.impl.utils.futures;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import b.i.b.d.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public final class SettableFuture<V> extends AbstractFuture<V> {
     private SettableFuture() {
     }

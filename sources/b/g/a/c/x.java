@@ -1,7 +1,6 @@
 package b.g.a.c;
 
 import b.g.a.a.i0;
-import b.g.a.c.z.i$a;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
 import java.io.IOException;
@@ -223,12 +222,12 @@ public abstract class x extends e {
 
     public Object w(Object obj) {
         Object obj2;
-        i$a i_a = (i$a) this.l;
-        Map<Object, Object> map = i_a.l;
+        b.g.a.c.z.i.a aVar = (b.g.a.c.z.i.a) this.l;
+        Map<Object, Object> map = aVar.l;
         if (map == null || (obj2 = map.get(obj)) == null) {
-            return i_a._shared.get(obj);
+            return aVar._shared.get(obj);
         }
-        if (obj2 == i$a.k) {
+        if (obj2 == b.g.a.c.z.i.a.k) {
             return null;
         }
         return obj2;

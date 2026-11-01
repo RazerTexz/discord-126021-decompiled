@@ -13,6 +13,6 @@ public final class f0 implements Runnable {
 
     @Override // java.lang.Runnable
     public final void run() {
-        ((g$b) this.j.h).b(new ConnectionResult(4));
+        ((g.b) this.j.h).b(new ConnectionResult(4));
     }
 }

@@ -28,27 +28,27 @@ public final class WidgetContactSync$loggingConfig$1 extends o implements Functi
     @Override // kotlin.jvm.functions.Function0
     public final AnalyticsSchema invoke() {
         int iAccess$getDisplayedChildIndex$p = WidgetContactSync.access$getDisplayedChildIndex$p(this.this$0);
-        if (iAccess$getDisplayedChildIndex$p == WidgetContactSyncViewModel$Views.VIEW_LANDING.ordinal()) {
+        if (iAccess$getDisplayedChildIndex$p == WidgetContactSyncViewModel.Views.VIEW_LANDING.ordinal()) {
             TrackImpressionContactSyncStart trackImpressionContactSyncStart = new TrackImpressionContactSyncStart();
             trackImpressionContactSyncStart.e(WidgetContactSync.access$getContactSyncFlowMetadata$p(this.this$0));
             return trackImpressionContactSyncStart;
         }
-        if (iAccess$getDisplayedChildIndex$p == WidgetContactSyncViewModel$Views.VIEW_ADD_PHONE.ordinal()) {
+        if (iAccess$getDisplayedChildIndex$p == WidgetContactSyncViewModel.Views.VIEW_ADD_PHONE.ordinal()) {
             TrackImpressionUserAddPhone trackImpressionUserAddPhone = new TrackImpressionUserAddPhone();
             trackImpressionUserAddPhone.e(WidgetContactSync.access$getContactSyncFlowMetadata$p(this.this$0));
             return trackImpressionUserAddPhone;
         }
-        if (iAccess$getDisplayedChildIndex$p == WidgetContactSyncViewModel$Views.VIEW_NAME_INPUT.ordinal()) {
+        if (iAccess$getDisplayedChildIndex$p == WidgetContactSyncViewModel.Views.VIEW_NAME_INPUT.ordinal()) {
             TrackImpressionContactSyncInputName trackImpressionContactSyncInputName = new TrackImpressionContactSyncInputName();
             trackImpressionContactSyncInputName.e(WidgetContactSync.access$getContactSyncFlowMetadata$p(this.this$0));
             return trackImpressionContactSyncInputName;
         }
-        if (iAccess$getDisplayedChildIndex$p == WidgetContactSyncViewModel$Views.VIEW_SUGGESTIONS.ordinal()) {
+        if (iAccess$getDisplayedChildIndex$p == WidgetContactSyncViewModel.Views.VIEW_SUGGESTIONS.ordinal()) {
             TrackImpressionContactSyncSuggestions trackImpressionContactSyncSuggestions = new TrackImpressionContactSyncSuggestions();
             trackImpressionContactSyncSuggestions.e(WidgetContactSync.access$getContactSyncFlowMetadata$p(this.this$0));
             return trackImpressionContactSyncSuggestions;
         }
-        if (iAccess$getDisplayedChildIndex$p != WidgetContactSyncViewModel$Views.VIEW_SUGGESTIONS_EMPTY.ordinal()) {
+        if (iAccess$getDisplayedChildIndex$p != WidgetContactSyncViewModel.Views.VIEW_SUGGESTIONS_EMPTY.ordinal()) {
             return null;
         }
         TrackImpressionContactSyncSuggestions trackImpressionContactSyncSuggestions2 = new TrackImpressionContactSyncSuggestions();

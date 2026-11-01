@@ -2,7 +2,6 @@ package b.i.a.f.h.j;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager$NameNotFoundException;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -36,7 +35,7 @@ public final class q extends e {
                             }
                             str = packageInfo.versionName;
                         }
-                    } catch (PackageManager$NameNotFoundException unused) {
+                    } catch (PackageManager.NameNotFoundException unused) {
                         String strValueOf = String.valueOf(packageName);
                         Log.e("GAv4", strValueOf.length() != 0 ? "Error retrieving package info: appName set to ".concat(strValueOf) : new String("Error retrieving package info: appName set to "));
                     }

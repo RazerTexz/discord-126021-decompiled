@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.fragment.app.FragmentContainerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetChannelSettingsAddMemberSheetBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -27,17 +27,17 @@ public final /* synthetic */ class WidgetChannelSettingsAddMemberSheet$binding$2
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetChannelSettingsAddMemberSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.add_button;
-        TextView textView = (TextView) view.findViewById(R$id.add_button);
+        int i = R.id.add_button;
+        TextView textView = (TextView) view.findViewById(R.id.add_button);
         if (textView != null) {
-            i = 2131362884;
-            FragmentContainerView fragmentContainerView = (FragmentContainerView) view.findViewById(2131362884);
+            i = R.id.content;
+            FragmentContainerView fragmentContainerView = (FragmentContainerView) view.findViewById(R.id.content);
             if (fragmentContainerView != null) {
-                i = R$id.subtitle;
-                TextView textView2 = (TextView) view.findViewById(R$id.subtitle);
+                i = R.id.subtitle;
+                TextView textView2 = (TextView) view.findViewById(R.id.subtitle);
                 if (textView2 != null) {
-                    i = 2131365869;
-                    TextView textView3 = (TextView) view.findViewById(2131365869);
+                    i = R.id.title;
+                    TextView textView3 = (TextView) view.findViewById(R.id.title);
                     if (textView3 != null) {
                         return new WidgetChannelSettingsAddMemberSheetBinding((LinearLayout) view, textView, fragmentContainerView, textView2, textView3);
                     }

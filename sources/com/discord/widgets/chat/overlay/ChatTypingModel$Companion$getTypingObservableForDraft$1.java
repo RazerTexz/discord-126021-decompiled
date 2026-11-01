@@ -28,6 +28,6 @@ public final class ChatTypingModel$Companion$getTypingObservableForDraft$1<T, R>
         List listEmptyList = n.emptyList();
         int rateLimitPerUser = this.$parentChannel.getRateLimitPerUser();
         m.checkNotNullExpressionValue(num, "cooldownSecs");
-        return new k(new ChatTypingModel$Typing(listEmptyList, rateLimitPerUser, num.intValue()));
+        return new k(new ChatTypingModel.Typing(listEmptyList, rateLimitPerUser, num.intValue()));
     }
 }

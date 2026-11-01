@@ -13,14 +13,50 @@ public final class ModelMemberVerificationForm$FormField$Parser$parse$1<T> imple
     public final /* synthetic */ Ref$ObjectRef $choices;
     public final /* synthetic */ Ref$ObjectRef $fieldType;
     public final /* synthetic */ Ref$ObjectRef $label;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
     public final /* synthetic */ Ref$BooleanRef $required;
     public final /* synthetic */ Ref$ObjectRef $response;
     public final /* synthetic */ Ref$ObjectRef $values;
 
-    public ModelMemberVerificationForm$FormField$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model$JsonReader model$JsonReader, Ref$ObjectRef ref$ObjectRef2, Ref$BooleanRef ref$BooleanRef, Ref$ObjectRef ref$ObjectRef3, Ref$ObjectRef ref$ObjectRef4, Ref$ObjectRef ref$ObjectRef5) {
+    /* JADX INFO: renamed from: com.discord.models.domain.ModelMemberVerificationForm$FormField$Parser$parse$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ModelMemberVerificationForm.kt */
+    public final class AnonymousClass1<T> implements Model.JsonReader.ItemFactory<String> {
+        public AnonymousClass1() {
+        }
+
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public /* bridge */ /* synthetic */ String get() {
+            return get2();
+        }
+
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        /* JADX INFO: renamed from: get, reason: avoid collision after fix types in other method */
+        public final String get2() {
+            return ModelMemberVerificationForm$FormField$Parser$parse$1.this.$reader.nextString("");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.models.domain.ModelMemberVerificationForm$FormField$Parser$parse$1$2, reason: invalid class name */
+    /* JADX INFO: compiled from: ModelMemberVerificationForm.kt */
+    public final class AnonymousClass2<T> implements Model.JsonReader.ItemFactory<String> {
+        public AnonymousClass2() {
+        }
+
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public /* bridge */ /* synthetic */ String get() {
+            return get2();
+        }
+
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        /* JADX INFO: renamed from: get, reason: avoid collision after fix types in other method */
+        public final String get2() {
+            return ModelMemberVerificationForm$FormField$Parser$parse$1.this.$reader.nextString("");
+        }
+    }
+
+    public ModelMemberVerificationForm$FormField$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model.JsonReader jsonReader, Ref$ObjectRef ref$ObjectRef2, Ref$BooleanRef ref$BooleanRef, Ref$ObjectRef ref$ObjectRef3, Ref$ObjectRef ref$ObjectRef4, Ref$ObjectRef ref$ObjectRef5) {
         this.$fieldType = ref$ObjectRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
         this.$label = ref$ObjectRef2;
         this.$required = ref$BooleanRef;
         this.$values = ref$ObjectRef3;
@@ -41,7 +77,7 @@ public final class ModelMemberVerificationForm$FormField$Parser$parse$1<T> imple
                 case -823812830:
                     if (str.equals("values")) {
                         Ref$ObjectRef ref$ObjectRef = this.$values;
-                        T t = (T) this.$reader.nextList(new ModelMemberVerificationForm$FormField$Parser$parse$1$1(this));
+                        T t = (T) this.$reader.nextList(new AnonymousClass1());
                         m.checkNotNullExpressionValue(t, "reader.nextList { reader.nextString(\"\") }");
                         ref$ObjectRef.element = t;
                         return;
@@ -93,7 +129,7 @@ public final class ModelMemberVerificationForm$FormField$Parser$parse$1<T> imple
                 case 751720178:
                     if (str.equals("choices")) {
                         Ref$ObjectRef ref$ObjectRef5 = this.$choices;
-                        T t6 = (T) this.$reader.nextList(new ModelMemberVerificationForm$FormField$Parser$parse$1$2(this));
+                        T t6 = (T) this.$reader.nextList(new AnonymousClass2());
                         m.checkNotNullExpressionValue(t6, "reader.nextList { reader.nextString(\"\") }");
                         ref$ObjectRef5.element = t6;
                         return;

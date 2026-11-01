@@ -9,10 +9,10 @@ public class m0 extends e {
     public final /* synthetic */ Pair a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final /* synthetic */ l0$b f625b;
+    public final /* synthetic */ l0.b f625b;
 
-    public m0(l0$b l0_b, Pair pair) {
-        this.f625b = l0_b;
+    public m0(l0.b bVar, Pair pair) {
+        this.f625b = bVar;
         this.a = pair;
     }
 
@@ -44,7 +44,7 @@ public class m0 extends e {
         d.t(listL);
         d.r(listJ);
         if (dVar != null) {
-            if (!this.f625b.h.c || dVar.k()) {
+            if (!l0.this.c || dVar.k()) {
                 dVar.u();
             } else {
                 d.t(dVar.v(b.f.j.d.d.LOW));

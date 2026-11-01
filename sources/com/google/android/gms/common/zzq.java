@@ -1,7 +1,7 @@
 package com.google.android.gms.common;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.a.f.e.d0;
 import b.i.a.f.e.o.f;
@@ -10,7 +10,7 @@ import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzq extends AbstractSafeParcelable {
-    public static final Parcelable$Creator<zzq> CREATOR = new d0();
+    public static final Parcelable.Creator<zzq> CREATOR = new d0();
     public final boolean j;
     public final String k;
     public final int l;

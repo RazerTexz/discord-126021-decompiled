@@ -3,27 +3,29 @@ package androidx.work.impl.model;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.arch.core.util.Function;
 import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+import androidx.room.Relation;
 import androidx.work.BackoffPolicy;
 import androidx.work.Constraints;
 import androidx.work.Data;
 import androidx.work.Logger;
 import androidx.work.WorkInfo;
-import androidx.work.WorkInfo$State;
 import androidx.work.WorkRequest;
 import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 /* JADX INFO: loaded from: classes.dex */
 @Entity(indices = {@Index({"schedule_requested_at"}), @Index({"period_start_time"})})
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public final class WorkSpec {
     public static final long SCHEDULE_NOT_REQUESTED_YET = -1;
 
@@ -82,16 +84,140 @@ public final class WorkSpec {
 
     @NonNull
     @ColumnInfo(name = "state")
-    public WorkInfo$State state;
+    public WorkInfo.State state;
 
     @NonNull
     @ColumnInfo(name = "worker_class_name")
     public String workerClassName;
     private static final String TAG = Logger.tagWithPrefix("WorkSpec");
-    public static final Function<List<WorkSpec$WorkInfoPojo>, List<WorkInfo>> WORK_INFO_MAPPER = new WorkSpec$1();
+    public static final Function<List<WorkInfoPojo>, List<WorkInfo>> WORK_INFO_MAPPER = new AnonymousClass1();
+
+    /* JADX INFO: renamed from: androidx.work.impl.model.WorkSpec$1, reason: invalid class name */
+    public class AnonymousClass1 implements Function<List<WorkInfoPojo>, List<WorkInfo>> {
+        @Override // androidx.arch.core.util.Function
+        public /* bridge */ /* synthetic */ List<WorkInfo> apply(List<WorkInfoPojo> list) {
+            return apply2(list);
+        }
+
+        /* JADX INFO: renamed from: apply, reason: avoid collision after fix types in other method */
+        public List<WorkInfo> apply2(List<WorkInfoPojo> list) {
+            if (list == null) {
+                return null;
+            }
+            ArrayList arrayList = new ArrayList(list.size());
+            Iterator<WorkInfoPojo> it = list.iterator();
+            while (it.hasNext()) {
+                arrayList.add(it.next().toWorkInfo());
+            }
+            return arrayList;
+        }
+    }
+
+    public class IdAndState {
+
+        /* JADX INFO: renamed from: id, reason: collision with root package name */
+        @ColumnInfo(name = ModelAuditLogEntry.CHANGE_KEY_ID)
+        public String f39id;
+
+        @ColumnInfo(name = "state")
+        public WorkInfo.State state;
+
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof IdAndState)) {
+                return false;
+            }
+            IdAndState idAndState = (IdAndState) obj;
+            if (this.state != idAndState.state) {
+                return false;
+            }
+            return this.f39id.equals(idAndState.f39id);
+        }
+
+        public int hashCode() {
+            return this.state.hashCode() + (this.f39id.hashCode() * 31);
+        }
+    }
+
+    public class WorkInfoPojo {
+
+        /* JADX INFO: renamed from: id, reason: collision with root package name */
+        @ColumnInfo(name = ModelAuditLogEntry.CHANGE_KEY_ID)
+        public String f40id;
+
+        @ColumnInfo(name = "output")
+        public Data output;
+
+        @Relation(entity = WorkProgress.class, entityColumn = "work_spec_id", parentColumn = ModelAuditLogEntry.CHANGE_KEY_ID, projection = {"progress"})
+        public List<Data> progress;
+
+        @ColumnInfo(name = "run_attempt_count")
+        public int runAttemptCount;
+
+        @ColumnInfo(name = "state")
+        public WorkInfo.State state;
+
+        @Relation(entity = WorkTag.class, entityColumn = "work_spec_id", parentColumn = ModelAuditLogEntry.CHANGE_KEY_ID, projection = {"tag"})
+        public List<String> tags;
+
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof WorkInfoPojo)) {
+                return false;
+            }
+            WorkInfoPojo workInfoPojo = (WorkInfoPojo) obj;
+            if (this.runAttemptCount != workInfoPojo.runAttemptCount) {
+                return false;
+            }
+            String str = this.f40id;
+            if (str == null ? workInfoPojo.f40id != null : !str.equals(workInfoPojo.f40id)) {
+                return false;
+            }
+            if (this.state != workInfoPojo.state) {
+                return false;
+            }
+            Data data = this.output;
+            if (data == null ? workInfoPojo.output != null : !data.equals(workInfoPojo.output)) {
+                return false;
+            }
+            List<String> list = this.tags;
+            if (list == null ? workInfoPojo.tags != null : !list.equals(workInfoPojo.tags)) {
+                return false;
+            }
+            List<Data> list2 = this.progress;
+            List<Data> list3 = workInfoPojo.progress;
+            if (list2 != null) {
+                return list2.equals(list3);
+            }
+            return list3 == null;
+        }
+
+        public int hashCode() {
+            String str = this.f40id;
+            int iHashCode = (str != null ? str.hashCode() : 0) * 31;
+            WorkInfo.State state = this.state;
+            int iHashCode2 = (iHashCode + (state != null ? state.hashCode() : 0)) * 31;
+            Data data = this.output;
+            int iHashCode3 = (((iHashCode2 + (data != null ? data.hashCode() : 0)) * 31) + this.runAttemptCount) * 31;
+            List<String> list = this.tags;
+            int iHashCode4 = (iHashCode3 + (list != null ? list.hashCode() : 0)) * 31;
+            List<Data> list2 = this.progress;
+            return iHashCode4 + (list2 != null ? list2.hashCode() : 0);
+        }
+
+        @NonNull
+        public WorkInfo toWorkInfo() {
+            List<Data> list = this.progress;
+            return new WorkInfo(UUID.fromString(this.f40id), this.state, this.output, this.tags, (list == null || list.isEmpty()) ? Data.EMPTY : this.progress.get(0), this.runAttemptCount);
+        }
+    }
 
     public WorkSpec(@NonNull String str, @NonNull String str2) {
-        this.state = WorkInfo$State.ENQUEUED;
+        this.state = WorkInfo.State.ENQUEUED;
         Data data = Data.EMPTY;
         this.input = data;
         this.output = data;
@@ -174,7 +300,7 @@ public final class WorkSpec {
     }
 
     public boolean isBackedOff() {
-        return this.state == WorkInfo$State.ENQUEUED && this.runAttemptCount > 0;
+        return this.state == WorkInfo.State.ENQUEUED && this.runAttemptCount > 0;
     }
 
     public boolean isPeriodic() {
@@ -224,7 +350,7 @@ public final class WorkSpec {
     }
 
     public WorkSpec(@NonNull WorkSpec workSpec) {
-        this.state = WorkInfo$State.ENQUEUED;
+        this.state = WorkInfo.State.ENQUEUED;
         Data data = Data.EMPTY;
         this.input = data;
         this.output = data;

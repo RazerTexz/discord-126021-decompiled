@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
-import android.os.Build$VERSION;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -46,7 +45,7 @@ public final class e0 {
     public static final int[] l;
 
     static {
-        int i2 = Build$VERSION.SDK_INT;
+        int i2 = Build.VERSION.SDK_INT;
         a = i2;
         String str = Build.DEVICE;
         f968b = str;

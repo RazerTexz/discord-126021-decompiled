@@ -1,13 +1,13 @@
 package com.discord.stores;
 
-import com.discord.utilities.fcm.NotificationClient$SettingsV2;
+import com.discord.utilities.fcm.NotificationClient;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: StoreNotifications.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StoreNotifications$setEnabledInApp$oldValue$1 extends o implements Function1<NotificationClient$SettingsV2, NotificationClient$SettingsV2> {
+public final class StoreNotifications$setEnabledInApp$oldValue$1 extends o implements Function1<NotificationClient.SettingsV2, NotificationClient.SettingsV2> {
     public final /* synthetic */ boolean $isEnabledInApp;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -17,13 +17,13 @@ public final class StoreNotifications$setEnabledInApp$oldValue$1 extends o imple
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public /* bridge */ /* synthetic */ NotificationClient$SettingsV2 invoke(NotificationClient$SettingsV2 notificationClient$SettingsV2) {
-        return invoke2(notificationClient$SettingsV2);
+    public /* bridge */ /* synthetic */ NotificationClient.SettingsV2 invoke(NotificationClient.SettingsV2 settingsV2) {
+        return invoke2(settingsV2);
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final NotificationClient$SettingsV2 invoke2(NotificationClient$SettingsV2 notificationClient$SettingsV2) {
-        m.checkNotNullParameter(notificationClient$SettingsV2, "it");
-        return NotificationClient$SettingsV2.copy$default(notificationClient$SettingsV2, false, this.$isEnabledInApp, false, false, false, false, null, null, null, 509, null);
+    public final NotificationClient.SettingsV2 invoke2(NotificationClient.SettingsV2 settingsV2) {
+        m.checkNotNullParameter(settingsV2, "it");
+        return NotificationClient.SettingsV2.copy$default(settingsV2, false, this.$isEnabledInApp, false, false, false, false, null, null, null, 509, null);
     }
 }

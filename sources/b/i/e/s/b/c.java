@@ -15,27 +15,124 @@ public abstract class c {
     public static final c q;
     public static final /* synthetic */ c[] r;
 
-    static {
-        c$a c_a = new c$a("DATA_MASK_000", 0);
-        j = c_a;
-        c$b c_b = new c$b("DATA_MASK_001", 1);
-        k = c_b;
-        c$c c_c = new c$c("DATA_MASK_010", 2);
-        l = c_c;
-        c$d c_d = new c$d("DATA_MASK_011", 3);
-        m = c_d;
-        c$e c_e = new c$e("DATA_MASK_100", 4);
-        n = c_e;
-        c$f c_f = new c$f("DATA_MASK_101", 5);
-        o = c_f;
-        c$g c_g = new c$g("DATA_MASK_110", 6);
-        p = c_g;
-        c$h c_h = new c$h("DATA_MASK_111", 7);
-        q = c_h;
-        r = new c[]{c_a, c_b, c_c, c_d, c_e, c_f, c_g, c_h};
+    /* JADX INFO: renamed from: b.i.e.s.b.c$c, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: DataMask.java */
+    public final enum C0160c extends c {
+        public C0160c(String str, int i) {
+            super(str, i, null);
+        }
+
+        @Override // b.i.e.s.b.c
+        public boolean f(int i, int i2) {
+            return i2 % 3 == 0;
+        }
     }
 
-    public c(String str, int i, c$a c_a) {
+    /* JADX INFO: compiled from: DataMask.java */
+    public final enum a extends c {
+        public a(String str, int i) {
+            super(str, i, null);
+        }
+
+        @Override // b.i.e.s.b.c
+        public boolean f(int i, int i2) {
+            return ((i + i2) & 1) == 0;
+        }
+    }
+
+    /* JADX INFO: compiled from: DataMask.java */
+    public final enum b extends c {
+        public b(String str, int i) {
+            super(str, i, null);
+        }
+
+        @Override // b.i.e.s.b.c
+        public boolean f(int i, int i2) {
+            return (i & 1) == 0;
+        }
+    }
+
+    /* JADX INFO: compiled from: DataMask.java */
+    public final enum d extends c {
+        public d(String str, int i) {
+            super(str, i, null);
+        }
+
+        @Override // b.i.e.s.b.c
+        public boolean f(int i, int i2) {
+            return (i + i2) % 3 == 0;
+        }
+    }
+
+    /* JADX INFO: compiled from: DataMask.java */
+    public final enum e extends c {
+        public e(String str, int i) {
+            super(str, i, null);
+        }
+
+        @Override // b.i.e.s.b.c
+        public boolean f(int i, int i2) {
+            return (((i2 / 3) + (i / 2)) & 1) == 0;
+        }
+    }
+
+    /* JADX INFO: compiled from: DataMask.java */
+    public final enum f extends c {
+        public f(String str, int i) {
+            super(str, i, null);
+        }
+
+        @Override // b.i.e.s.b.c
+        public boolean f(int i, int i2) {
+            return (i * i2) % 6 == 0;
+        }
+    }
+
+    /* JADX INFO: compiled from: DataMask.java */
+    public final enum g extends c {
+        public g(String str, int i) {
+            super(str, i, null);
+        }
+
+        @Override // b.i.e.s.b.c
+        public boolean f(int i, int i2) {
+            return (i * i2) % 6 < 3;
+        }
+    }
+
+    /* JADX INFO: compiled from: DataMask.java */
+    public final enum h extends c {
+        public h(String str, int i) {
+            super(str, i, null);
+        }
+
+        @Override // b.i.e.s.b.c
+        public boolean f(int i, int i2) {
+            return ((((i * i2) % 3) + (i + i2)) & 1) == 0;
+        }
+    }
+
+    static {
+        a aVar = new a("DATA_MASK_000", 0);
+        j = aVar;
+        b bVar = new b("DATA_MASK_001", 1);
+        k = bVar;
+        C0160c c0160c = new C0160c("DATA_MASK_010", 2);
+        l = c0160c;
+        d dVar = new d("DATA_MASK_011", 3);
+        m = dVar;
+        e eVar = new e("DATA_MASK_100", 4);
+        n = eVar;
+        f fVar = new f("DATA_MASK_101", 5);
+        o = fVar;
+        g gVar = new g("DATA_MASK_110", 6);
+        p = gVar;
+        h hVar = new h("DATA_MASK_111", 7);
+        q = hVar;
+        r = new c[]{aVar, bVar, c0160c, dVar, eVar, fVar, gVar, hVar};
+    }
+
+    public c(String str, int i, a aVar) {
         super(str, i);
     }
 

@@ -9,12 +9,12 @@ import kotlin.jvm.functions.Function0;
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreLurking$startLurkingAndNavigate$1$1$jumpToDestination$1 extends o implements Function0<Unit> {
     public final /* synthetic */ Long $channelId;
-    public final /* synthetic */ StoreLurking$startLurkingAndNavigate$1$1 this$0;
+    public final /* synthetic */ StoreLurking.AnonymousClass1.C02661 this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public StoreLurking$startLurkingAndNavigate$1$1$jumpToDestination$1(StoreLurking$startLurkingAndNavigate$1$1 storeLurking$startLurkingAndNavigate$1$1, Long l) {
+    public StoreLurking$startLurkingAndNavigate$1$1$jumpToDestination$1(StoreLurking.AnonymousClass1.C02661 c02661, Long l) {
         super(0);
-        this.this$0 = storeLurking$startLurkingAndNavigate$1$1;
+        this.this$0 = c02661;
         this.$channelId = l;
     }
 
@@ -29,9 +29,9 @@ public final class StoreLurking$startLurkingAndNavigate$1$1$jumpToDestination$1 
         Long l;
         Long l2 = this.$channelId;
         if (l2 == null || ((l2 != null && l2.longValue() == 0) || ((l = this.$channelId) != null && l.longValue() == -1))) {
-            StoreLurking.access$getStream$p(this.this$0.this$0.this$0).getGuildSelected().set(this.this$0.this$0.$guildId);
+            StoreLurking.access$getStream$p(StoreLurking.this).getGuildSelected().set(StoreLurking.AnonymousClass1.this.$guildId);
         } else {
-            ChannelSelector.selectChannel$default(ChannelSelector.Companion.getInstance(), this.this$0.this$0.$guildId, this.$channelId.longValue(), null, null, 12, null);
+            ChannelSelector.selectChannel$default(ChannelSelector.INSTANCE.getInstance(), StoreLurking.AnonymousClass1.this.$guildId, this.$channelId.longValue(), null, null, 12, null);
         }
     }
 }

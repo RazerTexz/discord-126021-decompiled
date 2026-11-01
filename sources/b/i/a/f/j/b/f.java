@@ -1,13 +1,13 @@
 package b.i.a.f.j.b;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.internal.nearby.zzgs;
 import com.google.android.gms.nearby.messages.Message;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class f implements Parcelable$Creator<Message> {
-    @Override // android.os.Parcelable$Creator
+public final class f implements Parcelable.Creator<Message> {
+    @Override // android.os.Parcelable.Creator
     public final Message createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         byte[] bArrN = null;
@@ -39,7 +39,7 @@ public final class f implements Parcelable$Creator<Message> {
         return new Message(iG1, bArrN, strR, strR2, zzgsVarArr, jH1);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ Message[] newArray(int i) {
         return new Message[i];
     }

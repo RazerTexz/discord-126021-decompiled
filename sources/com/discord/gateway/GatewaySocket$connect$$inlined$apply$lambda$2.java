@@ -1,6 +1,6 @@
 package com.discord.gateway;
 
-import com.discord.utilities.websocket.WebSocket$Closed;
+import com.discord.utilities.websocket.WebSocket;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -8,7 +8,7 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: GatewaySocket.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class GatewaySocket$connect$$inlined$apply$lambda$2 extends o implements Function1<WebSocket$Closed, Unit> {
+public final class GatewaySocket$connect$$inlined$apply$lambda$2 extends o implements Function1<WebSocket.Closed, Unit> {
     public final /* synthetic */ String $gatewayUrl$inlined;
     public final /* synthetic */ GatewaySocket this$0;
 
@@ -20,14 +20,14 @@ public final class GatewaySocket$connect$$inlined$apply$lambda$2 extends o imple
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public /* bridge */ /* synthetic */ Unit invoke(WebSocket$Closed webSocket$Closed) {
-        invoke2(webSocket$Closed);
+    public /* bridge */ /* synthetic */ Unit invoke(WebSocket.Closed closed) {
+        invoke2(closed);
         return Unit.a;
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final void invoke2(WebSocket$Closed webSocket$Closed) {
-        m.checkNotNullParameter(webSocket$Closed, "it");
-        GatewaySocket.access$handleWebSocketClose(this.this$0, webSocket$Closed);
+    public final void invoke2(WebSocket.Closed closed) {
+        m.checkNotNullParameter(closed, "it");
+        GatewaySocket.access$handleWebSocketClose(this.this$0, closed);
     }
 }

@@ -10,8 +10,8 @@ public class DefaultVideoEncoderFactory implements VideoEncoderFactory {
     private final VideoEncoderFactory hardwareVideoEncoderFactory;
     private final VideoEncoderFactory softwareVideoEncoderFactory = new SoftwareVideoEncoderFactory();
 
-    public DefaultVideoEncoderFactory(EglBase$Context eglBase$Context, boolean z2, boolean z3) {
-        this.hardwareVideoEncoderFactory = new HardwareVideoEncoderFactory(eglBase$Context, z2, z3);
+    public DefaultVideoEncoderFactory(EglBase.Context context, boolean z2, boolean z3) {
+        this.hardwareVideoEncoderFactory = new HardwareVideoEncoderFactory(context, z2, z3);
     }
 
     @Override // org.webrtc.VideoEncoderFactory
@@ -26,7 +26,7 @@ public class DefaultVideoEncoderFactory implements VideoEncoderFactory {
     }
 
     @Override // org.webrtc.VideoEncoderFactory
-    public /* synthetic */ VideoEncoderFactory$VideoEncoderSelector getEncoderSelector() {
+    public /* synthetic */ VideoEncoderFactory.VideoEncoderSelector getEncoderSelector() {
         return s0.a(this);
     }
 

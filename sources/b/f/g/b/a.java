@@ -5,5 +5,11 @@ package b.f.g.b;
 public abstract class a {
     public static a a;
 
-    public abstract void a(a$a a_a);
+    /* JADX INFO: renamed from: b.f.g.b.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: DeferredReleaser.java */
+    public interface InterfaceC0068a {
+        void release();
+    }
+
+    public abstract void a(InterfaceC0068a interfaceC0068a);
 }

@@ -5,24 +5,24 @@ import androidx.annotation.Nullable;
 
 /* JADX INFO: compiled from: AutoValue_CrashlyticsReport_FilesPayload.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class d extends v$c {
-    public final w<v$c$a> a;
+public final class d extends v.c {
+    public final w<v.c.a> a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final String f1716b;
 
-    public d(w wVar, String str, d$a d_a) {
+    public d(w wVar, String str, a aVar) {
         this.a = wVar;
         this.f1716b = str;
     }
 
-    @Override // b.i.c.m.d.m.v$c
+    @Override // b.i.c.m.d.m.v.c
     @NonNull
-    public w<v$c$a> a() {
+    public w<v.c.a> a() {
         return this.a;
     }
 
-    @Override // b.i.c.m.d.m.v$c
+    @Override // b.i.c.m.d.m.v.c
     @Nullable
     public String b() {
         return this.f1716b;
@@ -32,17 +32,17 @@ public final class d extends v$c {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof v$c)) {
+        if (!(obj instanceof v.c)) {
             return false;
         }
-        v$c v_c = (v$c) obj;
-        if (this.a.equals(v_c.a())) {
+        v.c cVar = (v.c) obj;
+        if (this.a.equals(cVar.a())) {
             String str = this.f1716b;
             if (str == null) {
-                if (v_c.b() == null) {
+                if (cVar.b() == null) {
                     return true;
                 }
-            } else if (str.equals(v_c.b())) {
+            } else if (str.equals(cVar.b())) {
                 return true;
             }
         }

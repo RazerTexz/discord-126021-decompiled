@@ -1,12 +1,11 @@
 package b.i.a.f.e.h.j;
 
-import android.R$attr;
+import android.R;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.AlertDialog$Builder;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.DialogInterface$OnClickListener;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.widget.ProgressBar;
@@ -71,14 +70,14 @@ public final class v0 implements Runnable {
             }
             Activity activityB3 = this.k.b();
             t0 t0Var4 = this.k;
-            ProgressBar progressBar = new ProgressBar(activityB3, null, R$attr.progressBarStyleLarge);
+            ProgressBar progressBar = new ProgressBar(activityB3, null, R.attr.progressBarStyleLarge);
             progressBar.setIndeterminate(true);
             progressBar.setVisibility(0);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activityB3);
-            alertDialog$Builder.setView(progressBar);
-            alertDialog$Builder.setMessage(b.i.a.f.e.k.l.e(activityB3, 18));
-            alertDialog$Builder.setPositiveButton("", (DialogInterface$OnClickListener) null);
-            AlertDialog alertDialogCreate = alertDialog$Builder.create();
+            AlertDialog.Builder builder = new AlertDialog.Builder(activityB3);
+            builder.setView(progressBar);
+            builder.setMessage(b.i.a.f.e.k.l.e(activityB3, 18));
+            builder.setPositiveButton("", (DialogInterface.OnClickListener) null);
+            AlertDialog alertDialogCreate = builder.create();
             GoogleApiAvailability.h(activityB3, alertDialogCreate, "GooglePlayServicesUpdatingDialog", t0Var4);
             t0 t0Var5 = this.k;
             GoogleApiAvailability googleApiAvailability2 = t0Var5.n;

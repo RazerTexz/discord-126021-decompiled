@@ -12,7 +12,7 @@ public final class WidgetGuildInviteShare$onViewBoundOrOnResume$$inlined$filterI
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // j0.k.b
     public final Boolean call(Object obj) {
-        return Boolean.valueOf(obj instanceof WidgetGuildInviteShareViewModel$ViewState$Loaded);
+        return Boolean.valueOf(obj instanceof WidgetGuildInviteShareViewModel.ViewState.Loaded);
     }
 
     @Override // j0.k.b

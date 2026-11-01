@@ -3,8 +3,6 @@ package b.c.a.a0;
 import android.graphics.Rect;
 import androidx.collection.LongSparseArray;
 import androidx.collection.SparseArrayCompat;
-import b.c.a.a0.i0.c$a;
-import b.c.a.y.m.e$a;
 import com.discord.models.domain.ModelAuditLogEntry;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,12 +11,12 @@ import java.util.HashMap;
 /* JADX INFO: compiled from: LottieCompositionMoshiParser.java */
 /* JADX INFO: loaded from: classes.dex */
 public class t {
-    public static final c$a a = c$a.a("w", "h", "ip", "op", "fr", "v", "layers", "assets", "fonts", "chars", "markers");
+    public static final b.c.a.a0.i0.c.a a = b.c.a.a0.i0.c.a.a("w", "h", "ip", "op", "fr", "v", "layers", "assets", "fonts", "chars", "markers");
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static c$a f343b = c$a.a(ModelAuditLogEntry.CHANGE_KEY_ID, "layers", "w", "h", "p", "u");
-    public static final c$a c = c$a.a("list");
-    public static final c$a d = c$a.a("cm", "tm", "dr");
+    public static b.c.a.a0.i0.c.a f343b = b.c.a.a0.i0.c.a.a(ModelAuditLogEntry.CHANGE_KEY_ID, "layers", "w", "h", "p", "u");
+    public static final b.c.a.a0.i0.c.a c = b.c.a.a0.i0.c.a.a("list");
+    public static final b.c.a.a0.i0.c.a d = b.c.a.a0.i0.c.a.a("cm", "tm", "dr");
 
     /* JADX WARN: Failed to find 'out' block for switch in B:6:0x0046. Please report as an issue. */
     public static b.c.a.d a(b.c.a.a0.i0.c cVar) throws IOException {
@@ -101,7 +99,7 @@ public class t {
                     int i4 = 0;
                     while (cVar.e()) {
                         b.c.a.y.m.e eVarA = s.a(cVar, dVar);
-                        if (eVarA.e == e$a.IMAGE) {
+                        if (eVarA.e == b.c.a.y.m.e.a.IMAGE) {
                             i4++;
                         }
                         arrayList2.add(eVarA);
@@ -182,7 +180,7 @@ public class t {
                         } else {
                             cVar.a();
                             while (cVar.e()) {
-                                c$a c_a = k.a;
+                                b.c.a.a0.i0.c.a aVar = k.a;
                                 cVar.b();
                                 String strT4 = null;
                                 String strT5 = null;
@@ -229,7 +227,7 @@ public class t {
                     f2 = fN3;
                     cVar.a();
                     while (cVar.e()) {
-                        c$a c_a2 = j.a;
+                        b.c.a.a0.i0.c.a aVar2 = j.a;
                         ArrayList arrayList5 = new ArrayList();
                         cVar.b();
                         double dN = 0.0d;

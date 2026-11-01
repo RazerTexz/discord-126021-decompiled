@@ -1,19 +1,35 @@
 package com.discord.widgets.hubs;
 
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.discord.databinding.DiscordHubAddServerListItemBinding;
 import com.discord.utilities.guilds.GuildUtilsKt;
-import com.discord.utilities.views.SimpleRecyclerAdapter$ViewHolder;
+import com.discord.utilities.views.SimpleRecyclerAdapter;
 import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetHubDomains.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class HubDomainViewHolder extends SimpleRecyclerAdapter$ViewHolder<DomainGuildInfo> {
+public final class HubDomainViewHolder extends SimpleRecyclerAdapter.ViewHolder<DomainGuildInfo> {
     private final DiscordHubAddServerListItemBinding binding;
     private final Function1<DomainGuildInfo, Unit> onClickListener;
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.HubDomainViewHolder$bind$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubDomains.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ DomainGuildInfo $data;
+
+        public AnonymousClass1(DomainGuildInfo domainGuildInfo) {
+            this.$data = domainGuildInfo;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            HubDomainViewHolder.this.getOnClickListener().invoke(this.$data);
+        }
+    }
 
     /* JADX WARN: Illegal instructions before constructor call */
     /* JADX WARN: Multi-variable type inference failed */
@@ -27,7 +43,7 @@ public final class HubDomainViewHolder extends SimpleRecyclerAdapter$ViewHolder<
         this.onClickListener = function1;
     }
 
-    @Override // com.discord.utilities.views.SimpleRecyclerAdapter$ViewHolder
+    @Override // com.discord.utilities.views.SimpleRecyclerAdapter.ViewHolder
     public /* bridge */ /* synthetic */ void bind(DomainGuildInfo domainGuildInfo) {
         bind2(domainGuildInfo);
     }
@@ -48,6 +64,6 @@ public final class HubDomainViewHolder extends SimpleRecyclerAdapter$ViewHolder<
         m.checkNotNullExpressionValue(textView, "binding.discordUAddServerListItemText");
         textView.setText(data.getName());
         this.binding.f2098b.a(data.getIcon(), GuildUtilsKt.computeShortName(data.getName()));
-        this.binding.c.setOnClickListener(new HubDomainViewHolder$bind$1(this, data));
+        this.binding.c.setOnClickListener(new AnonymousClass1(data));
     }
 }

@@ -11,54 +11,191 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AlertDialog$Builder;
+import androidx.core.app.NotificationCompat;
+import b.a.d.o;
 import b.a.i.y5;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.user.User;
 import com.discord.databinding.WidgetServerSettingsIntegrationListItemBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
+import com.discord.restapi.RestAPIParams;
 import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
+import com.discord.utilities.rest.RestAPI;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.views.CheckedSetting;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.m;
+import rx.Observable;
+import rx.functions.Action1;
 
 /* JADX INFO: compiled from: WidgetServerSettingsIntegrationsListItem.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetServerSettingsIntegrationsListItem extends MGRecyclerViewHolder<WidgetServerSettingsIntegrations$Adapter, WidgetServerSettingsIntegrations$Model$IntegrationItem> {
+public final class WidgetServerSettingsIntegrationsListItem extends MGRecyclerViewHolder<WidgetServerSettingsIntegrations.Adapter, WidgetServerSettingsIntegrations.Model.IntegrationItem> {
     private final WidgetServerSettingsIntegrationListItemBinding binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsIntegrationsListItem$onConfigure$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsIntegrationsListItem.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ long $integrationId;
+
+        public AnonymousClass1(long j) {
+            this.$integrationId = j;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetServerSettingsIntegrationsListItem.access$getAdapter$p(WidgetServerSettingsIntegrationsListItem.this).onIntegrationSelected(this.$integrationId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsIntegrationsListItem$showDisableSyncDialog$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsIntegrationsListItem.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ AlertDialog $dialog;
+
+        public AnonymousClass1(AlertDialog alertDialog) {
+            this.$dialog = alertDialog;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$dialog.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsIntegrationsListItem$onConfigure$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsIntegrationsListItem.kt */
+    public final class AnonymousClass2<T> implements Action1<Boolean> {
+        public final /* synthetic */ WidgetServerSettingsIntegrations.Model.IntegrationItem $data;
+        public final /* synthetic */ long $integrationId;
+        public final /* synthetic */ boolean $isTwitch;
+
+        /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsIntegrationsListItem$onConfigure$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetServerSettingsIntegrationsListItem.kt */
+        public final class AnonymousClass1<T> implements Action1<Void> {
+            public AnonymousClass1() {
+            }
+
+            @Override // rx.functions.Action1
+            public /* bridge */ /* synthetic */ void call(Void r1) {
+                call2(r1);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final void call2(Void r3) {
+                CheckedSetting checkedSetting = WidgetServerSettingsIntegrationsListItem.access$getBinding$p(WidgetServerSettingsIntegrationsListItem.this).h;
+                m.checkNotNullExpressionValue(checkedSetting, "binding.integrationSyncSwitch");
+                checkedSetting.setChecked(true);
+                CheckedSetting checkedSetting2 = WidgetServerSettingsIntegrationsListItem.access$getBinding$p(WidgetServerSettingsIntegrationsListItem.this).h;
+                m.checkNotNullExpressionValue(checkedSetting2, "binding.integrationSyncSwitch");
+                checkedSetting2.setEnabled(false);
+                WidgetServerSettingsIntegrationsListItem.access$showSyncingUI(WidgetServerSettingsIntegrationsListItem.this, true);
+            }
+        }
+
+        public AnonymousClass2(WidgetServerSettingsIntegrations.Model.IntegrationItem integrationItem, long j, boolean z2) {
+            this.$data = integrationItem;
+            this.$integrationId = j;
+            this.$isTwitch = z2;
+        }
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(Boolean bool) {
+            call2(bool);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(Boolean bool) {
+            m.checkNotNullExpressionValue(bool, "checked");
+            if (!bool.booleanValue()) {
+                Observable observableUi = ObservableExtensionsKt.ui(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().enableIntegration(this.$data.getGuildId(), new RestAPIParams.EnableIntegration(this.$data.getIntegration().getType(), String.valueOf(this.$integrationId))), false, 1, null));
+                AnonymousClass1 anonymousClass1 = new AnonymousClass1();
+                CheckedSetting checkedSetting = WidgetServerSettingsIntegrationsListItem.access$getBinding$p(WidgetServerSettingsIntegrationsListItem.this).h;
+                m.checkNotNullExpressionValue(checkedSetting, "binding.integrationSyncSwitch");
+                observableUi.k(o.j(anonymousClass1, checkedSetting.getContext(), null, 4));
+                return;
+            }
+            WidgetServerSettingsIntegrationsListItem widgetServerSettingsIntegrationsListItem = WidgetServerSettingsIntegrationsListItem.this;
+            long guildId = this.$data.getGuildId();
+            long j = this.$integrationId;
+            boolean z2 = this.$isTwitch;
+            CheckedSetting checkedSetting2 = WidgetServerSettingsIntegrationsListItem.access$getBinding$p(WidgetServerSettingsIntegrationsListItem.this).h;
+            m.checkNotNullExpressionValue(checkedSetting2, "binding.integrationSyncSwitch");
+            Context context = checkedSetting2.getContext();
+            m.checkNotNullExpressionValue(context, "binding.integrationSyncSwitch.context");
+            WidgetServerSettingsIntegrationsListItem.access$showDisableSyncDialog(widgetServerSettingsIntegrationsListItem, guildId, j, z2, context);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsIntegrationsListItem$showDisableSyncDialog$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsIntegrationsListItem.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ Context $context;
+        public final /* synthetic */ AlertDialog $dialog;
+        public final /* synthetic */ long $guildId;
+        public final /* synthetic */ long $integrationId;
+
+        /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsIntegrationsListItem$showDisableSyncDialog$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetServerSettingsIntegrationsListItem.kt */
+        public final class AnonymousClass1<T> implements Action1<Void> {
+            public AnonymousClass1() {
+            }
+
+            @Override // rx.functions.Action1
+            public /* bridge */ /* synthetic */ void call(Void r1) {
+                call2(r1);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final void call2(Void r1) {
+                AnonymousClass2.this.$dialog.dismiss();
+            }
+        }
+
+        public AnonymousClass2(long j, long j2, AlertDialog alertDialog, Context context) {
+            this.$guildId = j;
+            this.$integrationId = j2;
+            this.$dialog = alertDialog;
+            this.$context = context;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            ObservableExtensionsKt.ui(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().deleteGuildIntegration(this.$guildId, this.$integrationId), false, 1, null)).k(o.j(new AnonymousClass1(), this.$context, null, 4));
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetServerSettingsIntegrationsListItem(WidgetServerSettingsIntegrations$Adapter widgetServerSettingsIntegrations$Adapter) {
-        super(R$layout.widget_server_settings_integration_list_item, widgetServerSettingsIntegrations$Adapter);
-        m.checkNotNullParameter(widgetServerSettingsIntegrations$Adapter, "adapter");
+    public WidgetServerSettingsIntegrationsListItem(WidgetServerSettingsIntegrations.Adapter adapter) {
+        super(R.layout.widget_server_settings_integration_list_item, adapter);
+        m.checkNotNullParameter(adapter, "adapter");
         View view = this.itemView;
-        int i = R$id.integration_header_container;
-        RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R$id.integration_header_container);
+        int i = R.id.integration_header_container;
+        RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.integration_header_container);
         if (relativeLayout != null) {
-            i = R$id.integration_header_disabled_overlay;
-            View viewFindViewById = view.findViewById(R$id.integration_header_disabled_overlay);
+            i = R.id.integration_header_disabled_overlay;
+            View viewFindViewById = view.findViewById(R.id.integration_header_disabled_overlay);
             if (viewFindViewById != null) {
-                i = R$id.integration_icon;
-                ImageView imageView = (ImageView) view.findViewById(R$id.integration_icon);
+                i = R.id.integration_icon;
+                ImageView imageView = (ImageView) view.findViewById(R.id.integration_icon);
                 if (imageView != null) {
-                    i = R$id.integration_name;
-                    TextView textView = (TextView) view.findViewById(R$id.integration_name);
+                    i = R.id.integration_name;
+                    TextView textView = (TextView) view.findViewById(R.id.integration_name);
                     if (textView != null) {
-                        i = R$id.integration_name_container;
-                        LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.integration_name_container);
+                        i = R.id.integration_name_container;
+                        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.integration_name_container);
                         if (linearLayout != null) {
-                            i = R$id.integration_owner_name;
-                            TextView textView2 = (TextView) view.findViewById(R$id.integration_owner_name);
+                            i = R.id.integration_owner_name;
+                            TextView textView2 = (TextView) view.findViewById(R.id.integration_owner_name);
                             if (textView2 != null) {
-                                i = R$id.integration_settings_icon;
-                                ImageView imageView2 = (ImageView) view.findViewById(R$id.integration_settings_icon);
+                                i = R.id.integration_settings_icon;
+                                ImageView imageView2 = (ImageView) view.findViewById(R.id.integration_settings_icon);
                                 if (imageView2 != null) {
-                                    i = R$id.integration_sync_switch;
-                                    CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R$id.integration_sync_switch);
+                                    i = R.id.integration_sync_switch;
+                                    CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R.id.integration_sync_switch);
                                     if (checkedSetting != null) {
-                                        i = R$id.integration_syncing_progress_bar;
-                                        ProgressBar progressBar = (ProgressBar) view.findViewById(R$id.integration_syncing_progress_bar);
+                                        i = R.id.integration_syncing_progress_bar;
+                                        ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.integration_syncing_progress_bar);
                                         if (progressBar != null) {
                                             WidgetServerSettingsIntegrationListItemBinding widgetServerSettingsIntegrationListItemBinding = new WidgetServerSettingsIntegrationListItemBinding((FrameLayout) view, relativeLayout, viewFindViewById, imageView, textView, linearLayout, textView2, imageView2, checkedSetting, progressBar);
                                             m.checkNotNullExpressionValue(widgetServerSettingsIntegrationListItemBinding, "WidgetServerSettingsInte…temBinding.bind(itemView)");
@@ -76,8 +213,8 @@ public final class WidgetServerSettingsIntegrationsListItem extends MGRecyclerVi
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
     }
 
-    public static final /* synthetic */ WidgetServerSettingsIntegrations$Adapter access$getAdapter$p(WidgetServerSettingsIntegrationsListItem widgetServerSettingsIntegrationsListItem) {
-        return (WidgetServerSettingsIntegrations$Adapter) widgetServerSettingsIntegrationsListItem.adapter;
+    public static final /* synthetic */ WidgetServerSettingsIntegrations.Adapter access$getAdapter$p(WidgetServerSettingsIntegrationsListItem widgetServerSettingsIntegrationsListItem) {
+        return (WidgetServerSettingsIntegrations.Adapter) widgetServerSettingsIntegrationsListItem.adapter;
     }
 
     public static final /* synthetic */ WidgetServerSettingsIntegrationListItemBinding access$getBinding$p(WidgetServerSettingsIntegrationsListItem widgetServerSettingsIntegrationsListItem) {
@@ -93,31 +230,31 @@ public final class WidgetServerSettingsIntegrationsListItem extends MGRecyclerVi
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
-    public /* bridge */ /* synthetic */ void onConfigure(int i, WidgetServerSettingsIntegrations$Model$IntegrationItem widgetServerSettingsIntegrations$Model$IntegrationItem) {
-        onConfigure2(i, widgetServerSettingsIntegrations$Model$IntegrationItem);
+    public /* bridge */ /* synthetic */ void onConfigure(int i, WidgetServerSettingsIntegrations.Model.IntegrationItem integrationItem) {
+        onConfigure2(i, integrationItem);
     }
 
     private final void showDisableSyncDialog(long guildId, long integrationId, boolean isTwitch, Context context) {
-        View viewInflate = LayoutInflater.from(context).inflate(R$layout.widget_server_settings_confirm_disable_integration, (ViewGroup) null, false);
-        int i = R$id.server_settings_confirm_disable_integration_body;
-        TextView textView = (TextView) viewInflate.findViewById(R$id.server_settings_confirm_disable_integration_body);
+        View viewInflate = LayoutInflater.from(context).inflate(R.layout.widget_server_settings_confirm_disable_integration, (ViewGroup) null, false);
+        int i = R.id.server_settings_confirm_disable_integration_body;
+        TextView textView = (TextView) viewInflate.findViewById(R.id.server_settings_confirm_disable_integration_body);
         if (textView != null) {
-            i = R$id.server_settings_confirm_disable_integration_cancel;
-            MaterialButton materialButton = (MaterialButton) viewInflate.findViewById(R$id.server_settings_confirm_disable_integration_cancel);
+            i = R.id.server_settings_confirm_disable_integration_cancel;
+            MaterialButton materialButton = (MaterialButton) viewInflate.findViewById(R.id.server_settings_confirm_disable_integration_cancel);
             if (materialButton != null) {
-                i = R$id.server_settings_confirm_disable_integration_confirm;
-                MaterialButton materialButton2 = (MaterialButton) viewInflate.findViewById(R$id.server_settings_confirm_disable_integration_confirm);
+                i = R.id.server_settings_confirm_disable_integration_confirm;
+                MaterialButton materialButton2 = (MaterialButton) viewInflate.findViewById(R.id.server_settings_confirm_disable_integration_confirm);
                 if (materialButton2 != null) {
-                    i = R$id.server_settings_confirm_disable_integration_header;
-                    TextView textView2 = (TextView) viewInflate.findViewById(R$id.server_settings_confirm_disable_integration_header);
+                    i = R.id.server_settings_confirm_disable_integration_header;
+                    TextView textView2 = (TextView) viewInflate.findViewById(R.id.server_settings_confirm_disable_integration_header);
                     if (textView2 != null) {
                         LinearLayout linearLayout = (LinearLayout) viewInflate;
                         m.checkNotNullExpressionValue(new y5(linearLayout, textView, materialButton, materialButton2, textView2), "WidgetServerSettingsConf…om(context), null, false)");
-                        AlertDialog alertDialogCreate = new AlertDialog$Builder(context).setView(linearLayout).create();
+                        AlertDialog alertDialogCreate = new AlertDialog.Builder(context).setView(linearLayout).create();
                         m.checkNotNullExpressionValue(alertDialogCreate, "AlertDialog.Builder(cont…ew(binding.root).create()");
-                        materialButton.setOnClickListener(new WidgetServerSettingsIntegrationsListItem$showDisableSyncDialog$1(alertDialogCreate));
-                        materialButton2.setOnClickListener(new WidgetServerSettingsIntegrationsListItem$showDisableSyncDialog$2(guildId, integrationId, alertDialogCreate, context));
-                        textView.setText(isTwitch ? 2131888477 : 2131888478);
+                        materialButton.setOnClickListener(new AnonymousClass1(alertDialogCreate));
+                        materialButton2.setOnClickListener(new AnonymousClass2(guildId, integrationId, alertDialogCreate, context));
+                        textView.setText(isTwitch ? R.string.disable_integration_twitch_body : R.string.disable_integration_youtube_body);
                         alertDialogCreate.show();
                         return;
                     }
@@ -143,7 +280,7 @@ public final class WidgetServerSettingsIntegrationsListItem extends MGRecyclerVi
     }
 
     /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
-    public void onConfigure2(int position, WidgetServerSettingsIntegrations$Model$IntegrationItem data) {
+    public void onConfigure2(int position, WidgetServerSettingsIntegrations.Model.IntegrationItem data) {
         m.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
         boolean zAreEqual = m.areEqual(data.getIntegration().getType(), "twitch");
@@ -153,7 +290,7 @@ public final class WidgetServerSettingsIntegrationsListItem extends MGRecyclerVi
         if (zIsSyncing) {
             this.binding.f2576b.setOnClickListener(null);
         } else {
-            this.binding.f2576b.setOnClickListener(new WidgetServerSettingsIntegrationsListItem$onConfigure$1(this, id2));
+            this.binding.f2576b.setOnClickListener(new AnonymousClass1(id2));
         }
         TextView textView = this.binding.e;
         m.checkNotNullExpressionValue(textView, "binding.integrationName");
@@ -162,7 +299,7 @@ public final class WidgetServerSettingsIntegrationsListItem extends MGRecyclerVi
         m.checkNotNullExpressionValue(textView2, "binding.integrationOwnerName");
         User user = data.getIntegration().getUser();
         textView2.setText(user != null ? user.getUsername() : null);
-        this.binding.d.setImageResource(zAreEqual ? 2131230949 : 2131230950);
+        this.binding.d.setImageResource(zAreEqual ? R.drawable.asset_account_sync_twitch : R.drawable.asset_account_sync_youtube);
         View view = this.binding.c;
         m.checkNotNullExpressionValue(view, "binding.integrationHeaderDisabledOverlay");
         view.setVisibility(zIsSyncing || !zIsEnabled ? 0 : 8);
@@ -176,7 +313,7 @@ public final class WidgetServerSettingsIntegrationsListItem extends MGRecyclerVi
         if (zIsSyncing) {
             this.binding.h.setOnCheckedListener(null);
         } else {
-            this.binding.h.setOnCheckedListener(new WidgetServerSettingsIntegrationsListItem$onConfigure$2(this, data, id2, zAreEqual));
+            this.binding.h.setOnCheckedListener(new AnonymousClass2(data, id2, zAreEqual));
         }
     }
 }

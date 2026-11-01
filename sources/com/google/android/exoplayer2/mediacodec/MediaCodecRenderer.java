@@ -1,9 +1,7 @@
 package com.google.android.exoplayer2.mediacodec;
 
 import android.annotation.TargetApi;
-import android.media.MediaCodec$BufferInfo;
-import android.media.MediaCodec$CodecException;
-import android.media.MediaCodec$CryptoException;
+import android.media.MediaCodec;
 import android.media.MediaCrypto;
 import android.media.MediaCryptoException;
 import android.media.MediaFormat;
@@ -31,15 +29,11 @@ import b.i.a.c.x0;
 import b.i.a.c.y2.p;
 import b.i.a.c.y2.q;
 import b.i.a.c.y2.t;
-import b.i.a.c.y2.t$a;
-import b.i.a.c.y2.t$b;
 import b.i.a.c.y2.u;
 import b.i.a.c.y2.v;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.decoder.DecoderInputBuffer;
-import com.google.android.exoplayer2.decoder.DecoderInputBuffer$InsufficientCapacityException;
 import com.google.android.exoplayer2.drm.DrmSession;
-import com.google.android.exoplayer2.drm.DrmSession$DrmSessionException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayDeque;
@@ -61,7 +55,7 @@ public abstract class MediaCodecRenderer extends v0 {
     public boolean E0;
     public final ArrayList<Long> E;
     public boolean F0;
-    public final MediaCodec$BufferInfo F;
+    public final MediaCodec.BufferInfo F;
     public boolean G0;
     public final long[] G;
     public boolean H0;
@@ -109,7 +103,7 @@ public abstract class MediaCodecRenderer extends v0 {
     public ArrayDeque<u> X;
 
     @Nullable
-    public MediaCodecRenderer$DecoderInitializationException Y;
+    public DecoderInitializationException Y;
 
     @Nullable
     public u Z;
@@ -169,16 +163,16 @@ public abstract class MediaCodecRenderer extends v0 {
     public boolean u0;
     public static final byte[] u = {0, 0, 1, 103, 66, -64, 11, -38, 37, -112, 0, 0, 1, 104, -50, 15, 19, 32, 0, 0, 1, 101, -120, -124, 13, -50, 113, 24, -96, 0, 47, -65, 28, 49, -61, 39, 93, 120};
     public boolean v0;
-    public final t$b v;
+    public final t.b v;
     public int w0;
     public final v w;
     public int x0;
     public int y0;
     public boolean z0;
 
-    public MediaCodecRenderer(int i, t$b t_b, v vVar, boolean z2, float f) {
+    public MediaCodecRenderer(int i, t.b bVar, v vVar, boolean z2, float f) {
         super(i);
-        this.v = t_b;
+        this.v = bVar;
         Objects.requireNonNull(vVar);
         this.w = vVar;
         this.f2944x = z2;
@@ -190,7 +184,7 @@ public abstract class MediaCodecRenderer extends v0 {
         this.C = pVar;
         this.D = new c0<>();
         this.E = new ArrayList<>();
-        this.F = new MediaCodec$BufferInfo();
+        this.F = new MediaCodec.BufferInfo();
         this.Q = 1.0f;
         this.R = 1.0f;
         this.P = -9223372036854775807L;
@@ -464,8 +458,8 @@ public abstract class MediaCodecRenderer extends v0 {
                 this.S.releaseOutputBuffer(iE, false);
                 return true;
             }
-            MediaCodec$BufferInfo mediaCodec$BufferInfo = this.F;
-            if (mediaCodec$BufferInfo.size == 0 && (mediaCodec$BufferInfo.flags & 4) != 0) {
+            MediaCodec.BufferInfo bufferInfo = this.F;
+            if (bufferInfo.size == 0 && (bufferInfo.flags & 4) != 0) {
                 l0();
                 return false;
             }
@@ -475,15 +469,15 @@ public abstract class MediaCodecRenderer extends v0 {
             if (byteBufferJ != null) {
                 byteBufferJ.position(this.F.offset);
                 ByteBuffer byteBuffer = this.p0;
-                MediaCodec$BufferInfo mediaCodec$BufferInfo2 = this.F;
-                byteBuffer.limit(mediaCodec$BufferInfo2.offset + mediaCodec$BufferInfo2.size);
+                MediaCodec.BufferInfo bufferInfo2 = this.F;
+                byteBuffer.limit(bufferInfo2.offset + bufferInfo2.size);
             }
             if (this.f2940g0) {
-                MediaCodec$BufferInfo mediaCodec$BufferInfo3 = this.F;
-                if (mediaCodec$BufferInfo3.presentationTimeUs == 0 && (mediaCodec$BufferInfo3.flags & 4) != 0) {
+                MediaCodec.BufferInfo bufferInfo3 = this.F;
+                if (bufferInfo3.presentationTimeUs == 0 && (bufferInfo3.flags & 4) != 0) {
                     long j3 = this.C0;
                     if (j3 != -9223372036854775807L) {
-                        mediaCodec$BufferInfo3.presentationTimeUs = j3;
+                        bufferInfo3.presentationTimeUs = j3;
                     }
                 }
             }
@@ -513,11 +507,11 @@ public abstract class MediaCodecRenderer extends v0 {
                 t tVar = this.S;
                 ByteBuffer byteBuffer2 = this.p0;
                 int i2 = this.o0;
-                MediaCodec$BufferInfo mediaCodec$BufferInfo4 = this.F;
+                MediaCodec.BufferInfo bufferInfo4 = this.F;
                 z3 = false;
                 z2 = true;
                 try {
-                    zM0 = m0(j, j2, tVar, byteBuffer2, i2, mediaCodec$BufferInfo4.flags, 1, mediaCodec$BufferInfo4.presentationTimeUs, this.q0, this.r0, this.K);
+                    zM0 = m0(j, j2, tVar, byteBuffer2, i2, bufferInfo4.flags, 1, bufferInfo4.presentationTimeUs, this.q0, this.r0, this.K);
                 } catch (IllegalStateException unused2) {
                     l0();
                     if (this.F0) {
@@ -534,8 +528,8 @@ public abstract class MediaCodecRenderer extends v0 {
             t tVar2 = this.S;
             ByteBuffer byteBuffer3 = this.p0;
             int i3 = this.o0;
-            MediaCodec$BufferInfo mediaCodec$BufferInfo5 = this.F;
-            zM0 = m0(j, j2, tVar2, byteBuffer3, i3, mediaCodec$BufferInfo5.flags, 1, mediaCodec$BufferInfo5.presentationTimeUs, this.q0, this.r0, this.K);
+            MediaCodec.BufferInfo bufferInfo5 = this.F;
+            zM0 = m0(j, j2, tVar2, byteBuffer3, i3, bufferInfo5.flags, 1, bufferInfo5.presentationTimeUs, this.q0, this.r0, this.K);
         }
         if (zM0) {
             i0(this.F.presentationTimeUs);
@@ -628,7 +622,7 @@ public abstract class MediaCodecRenderer extends v0 {
                         s0();
                     }
                     return false;
-                } catch (MediaCodec$CryptoException e) {
+                } catch (MediaCodec.CryptoException e) {
                     throw z(e, this.J, false, e0.p(e.getErrorCode()));
                 }
             }
@@ -749,10 +743,10 @@ public abstract class MediaCodecRenderer extends v0 {
                 z2 = eVar.c + 1;
                 eVar.c = z2;
                 return true;
-            } catch (MediaCodec$CryptoException e2) {
+            } catch (MediaCodec.CryptoException e2) {
                 throw z(e2, this.J, z2, e0.p(e2.getErrorCode()));
             }
-        } catch (DecoderInputBuffer$InsufficientCapacityException e3) {
+        } catch (DecoderInputBuffer.InsufficientCapacityException e3) {
             d0(e3);
             n0(0);
             R();
@@ -780,7 +774,7 @@ public abstract class MediaCodecRenderer extends v0 {
         return false;
     }
 
-    public final List<u> T(boolean z2) throws MediaCodecUtil$DecoderQueryException {
+    public final List<u> T(boolean z2) throws MediaCodecUtil.DecoderQueryException {
         List<u> listW = W(this.w, this.J, z2);
         if (listW.isEmpty() && z2) {
             listW = W(this.w, this.J, false);
@@ -799,7 +793,7 @@ public abstract class MediaCodecRenderer extends v0 {
 
     public abstract float V(float f, j1 j1Var, j1[] j1VarArr);
 
-    public abstract List<u> W(v vVar, j1 j1Var, boolean z2) throws MediaCodecUtil$DecoderQueryException;
+    public abstract List<u> W(v vVar, j1 j1Var, boolean z2) throws MediaCodecUtil.DecoderQueryException;
 
     @Nullable
     public final b0 X(DrmSession drmSession) throws ExoPlaybackException {
@@ -811,7 +805,7 @@ public abstract class MediaCodecRenderer extends v0 {
         throw z(new IllegalArgumentException(a.j(strValueOf.length() + 43, "Expecting FrameworkCryptoConfig but found: ", strValueOf)), this.J, false, 6001);
     }
 
-    public abstract t$a Y(u uVar, j1 j1Var, @Nullable MediaCrypto mediaCrypto, float f);
+    public abstract t.a Y(u uVar, j1 j1Var, @Nullable MediaCrypto mediaCrypto, float f);
 
     public void Z(DecoderInputBuffer decoderInputBuffer) throws ExoPlaybackException {
     }
@@ -820,7 +814,7 @@ public abstract class MediaCodecRenderer extends v0 {
     public final int a(j1 j1Var) throws ExoPlaybackException {
         try {
             return y0(this.w, j1Var);
-        } catch (MediaCodecUtil$DecoderQueryException e) {
+        } catch (MediaCodecUtil.DecoderQueryException e) {
             throw y(e, j1Var, 4002);
         }
     }
@@ -963,9 +957,9 @@ public abstract class MediaCodecRenderer extends v0 {
             if (b0.a) {
                 int state = this.L.getState();
                 if (state == 1) {
-                    DrmSession$DrmSessionException drmSession$DrmSessionExceptionF = this.L.f();
-                    Objects.requireNonNull(drmSession$DrmSessionExceptionF);
-                    throw z(drmSession$DrmSessionExceptionF, this.J, false, drmSession$DrmSessionExceptionF.errorCode);
+                    DrmSession.DrmSessionException drmSessionExceptionF = this.L.f();
+                    Objects.requireNonNull(drmSessionExceptionF);
+                    throw z(drmSessionExceptionF, this.J, false, drmSessionExceptionF.errorCode);
                 }
                 if (state != 4) {
                     return;
@@ -974,12 +968,12 @@ public abstract class MediaCodecRenderer extends v0 {
         }
         try {
             c0(this.N, this.O);
-        } catch (MediaCodecRenderer$DecoderInitializationException e2) {
+        } catch (DecoderInitializationException e2) {
             throw z(e2, this.J, false, 4001);
         }
     }
 
-    public final void c0(MediaCrypto mediaCrypto, boolean z2) throws MediaCodecRenderer$DecoderInitializationException {
+    public final void c0(MediaCrypto mediaCrypto, boolean z2) throws DecoderInitializationException {
         if (this.X == null) {
             try {
                 List<u> listT = T(z2);
@@ -991,12 +985,12 @@ public abstract class MediaCodecRenderer extends v0 {
                     this.X.add(listT.get(0));
                 }
                 this.Y = null;
-            } catch (MediaCodecUtil$DecoderQueryException e) {
-                throw new MediaCodecRenderer$DecoderInitializationException(this.J, e, z2, -49998);
+            } catch (MediaCodecUtil.DecoderQueryException e) {
+                throw new DecoderInitializationException(this.J, e, z2, -49998);
             }
         }
         if (this.X.isEmpty()) {
-            throw new MediaCodecRenderer$DecoderInitializationException(this.J, null, z2, -49999);
+            throw new DecoderInitializationException(this.J, null, z2, -49999);
         }
         while (this.S == null) {
             u uVarPeekFirst = this.X.peekFirst();
@@ -1015,13 +1009,13 @@ public abstract class MediaCodecRenderer extends v0 {
                 j1 j1Var = this.J;
                 String str = uVarPeekFirst.a;
                 String strValueOf2 = String.valueOf(j1Var);
-                MediaCodecRenderer$DecoderInitializationException mediaCodecRenderer$DecoderInitializationException = new MediaCodecRenderer$DecoderInitializationException(a.l(strValueOf2.length() + a.b(str, 23), "Decoder init failed: ", str, ", ", strValueOf2), e2, j1Var.w, z2, uVarPeekFirst, (e0.a < 21 || !(e2 instanceof MediaCodec$CodecException)) ? null : ((MediaCodec$CodecException) e2).getDiagnosticInfo(), null);
-                d0(mediaCodecRenderer$DecoderInitializationException);
-                MediaCodecRenderer$DecoderInitializationException mediaCodecRenderer$DecoderInitializationException2 = this.Y;
-                if (mediaCodecRenderer$DecoderInitializationException2 == null) {
-                    this.Y = mediaCodecRenderer$DecoderInitializationException;
+                DecoderInitializationException decoderInitializationException = new DecoderInitializationException(a.l(strValueOf2.length() + a.b(str, 23), "Decoder init failed: ", str, ", ", strValueOf2), e2, j1Var.w, z2, uVarPeekFirst, (e0.a < 21 || !(e2 instanceof MediaCodec.CodecException)) ? null : ((MediaCodec.CodecException) e2).getDiagnosticInfo(), null);
+                d0(decoderInitializationException);
+                DecoderInitializationException decoderInitializationException2 = this.Y;
+                if (decoderInitializationException2 == null) {
+                    this.Y = decoderInitializationException;
                 } else {
-                    this.Y = new MediaCodecRenderer$DecoderInitializationException(mediaCodecRenderer$DecoderInitializationException2.getMessage(), mediaCodecRenderer$DecoderInitializationException2.getCause(), mediaCodecRenderer$DecoderInitializationException2.mimeType, mediaCodecRenderer$DecoderInitializationException2.secureDecoderRequired, mediaCodecRenderer$DecoderInitializationException2.codecInfo, mediaCodecRenderer$DecoderInitializationException2.diagnosticInfo, mediaCodecRenderer$DecoderInitializationException);
+                    this.Y = new DecoderInitializationException(decoderInitializationException2.getMessage(), decoderInitializationException2.getCause(), decoderInitializationException2.mimeType, decoderInitializationException2.secureDecoderRequired, decoderInitializationException2.codecInfo, decoderInitializationException2.diagnosticInfo, decoderInitializationException);
                 }
                 if (this.X.isEmpty()) {
                     throw this.Y;
@@ -1321,7 +1315,7 @@ public abstract class MediaCodecRenderer extends v0 {
             }
         } catch (IllegalStateException e) {
             int i2 = e0.a;
-            if (i2 < 21 || !(e instanceof MediaCodec$CodecException)) {
+            if (i2 < 21 || !(e instanceof MediaCodec.CodecException)) {
                 StackTraceElement[] stackTrace = e.getStackTrace();
                 if (stackTrace.length <= 0 || !stackTrace[0].getClassName().equals("android.media.MediaCodec")) {
                     z2 = false;
@@ -1336,7 +1330,7 @@ public abstract class MediaCodecRenderer extends v0 {
             }
             d0(e);
             if (i2 >= 21) {
-                if (e instanceof MediaCodec$CodecException ? ((MediaCodec$CodecException) e).isRecoverable() : false) {
+                if (e instanceof MediaCodec.CodecException ? ((MediaCodec.CodecException) e).isRecoverable() : false) {
                     z3 = true;
                 }
             }
@@ -1442,7 +1436,7 @@ public abstract class MediaCodecRenderer extends v0 {
         return false;
     }
 
-    public abstract int y0(v vVar, j1 j1Var) throws MediaCodecUtil$DecoderQueryException;
+    public abstract int y0(v vVar, j1 j1Var) throws MediaCodecUtil.DecoderQueryException;
 
     public final boolean z0(j1 j1Var) throws ExoPlaybackException {
         if (e0.a >= 23 && this.S != null && this.y0 != 3 && this.n != 0) {
@@ -1467,5 +1461,46 @@ public abstract class MediaCodecRenderer extends v0 {
             this.W = fV;
         }
         return true;
+    }
+
+    public class DecoderInitializationException extends Exception {
+
+        @Nullable
+        public final u codecInfo;
+
+        @Nullable
+        public final String diagnosticInfo;
+
+        @Nullable
+        public final DecoderInitializationException fallbackDecoderInitializationException;
+        public final String mimeType;
+        public final boolean secureDecoderRequired;
+
+        public DecoderInitializationException(j1 j1Var, @Nullable Throwable th, boolean z2, int i) {
+            String strValueOf = String.valueOf(j1Var);
+            StringBuilder sb = new StringBuilder(strValueOf.length() + 36);
+            sb.append("Decoder init failed: [");
+            sb.append(i);
+            sb.append("], ");
+            sb.append(strValueOf);
+            String string = sb.toString();
+            String str = j1Var.w;
+            String str2 = i < 0 ? "neg_" : "";
+            int iAbs = Math.abs(i);
+            StringBuilder sb2 = new StringBuilder(str2.length() + 71);
+            sb2.append("com.google.android.exoplayer2.mediacodec.MediaCodecRenderer_");
+            sb2.append(str2);
+            sb2.append(iAbs);
+            this(string, th, str, z2, null, sb2.toString(), null);
+        }
+
+        public DecoderInitializationException(String str, @Nullable Throwable th, String str2, boolean z2, @Nullable u uVar, @Nullable String str3, @Nullable DecoderInitializationException decoderInitializationException) {
+            super(str, th);
+            this.mimeType = str2;
+            this.secureDecoderRequired = z2;
+            this.codecInfo = uVar;
+            this.diagnosticInfo = str3;
+            this.fallbackDecoderInitializationException = decoderInitializationException;
+        }
     }
 }

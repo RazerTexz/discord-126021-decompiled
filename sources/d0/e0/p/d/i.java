@@ -8,19 +8,124 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
 import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import kotlin.reflect.KProperty;
 import kotlin.text.MatchResult;
 import kotlin.text.Regex;
 
 /* JADX INFO: compiled from: KDeclarationContainerImpl.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class i implements d0.z.d.e {
-    public static final i$a l = new i$a(null);
+    public static final a l = new a(null);
     public static final Class<?> j = Class.forName("kotlin.jvm.internal.DefaultConstructorMarker");
     public static final Regex k = new Regex("<v#(\\d+)>");
+
+    /* JADX INFO: compiled from: KDeclarationContainerImpl.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final Regex getLOCAL_PROPERTY_SIGNATURE$kotlin_reflection() {
+            return i.access$getLOCAL_PROPERTY_SIGNATURE$cp();
+        }
+    }
+
+    /* JADX INFO: compiled from: KDeclarationContainerImpl.kt */
+    public enum c {
+        DECLARED,
+        INHERITED;
+
+        public final boolean accept(d0.e0.p.d.m0.c.b bVar) {
+            d0.z.d.m.checkNotNullParameter(bVar, "member");
+            d0.e0.p.d.m0.c.b.a kind = bVar.getKind();
+            d0.z.d.m.checkNotNullExpressionValue(kind, "member.kind");
+            return kind.isReal() == (this == DECLARED);
+        }
+    }
+
+    /* JADX INFO: compiled from: KDeclarationContainerImpl.kt */
+    public final class d extends d0.z.d.o implements Function1<d0.e0.p.d.m0.c.x, CharSequence> {
+        public static final d j = new d();
+
+        public d() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ CharSequence invoke(d0.e0.p.d.m0.c.x xVar) {
+            return invoke2(xVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final CharSequence invoke2(d0.e0.p.d.m0.c.x xVar) {
+            d0.z.d.m.checkNotNullParameter(xVar, "descriptor");
+            return d0.e0.p.d.m0.j.c.c.render(xVar) + " | " + f0.f3198b.mapSignature(xVar).asString();
+        }
+    }
+
+    /* JADX INFO: compiled from: KDeclarationContainerImpl.kt */
+    public final class e extends d0.z.d.o implements Function1<n0, CharSequence> {
+        public static final e j = new e();
+
+        public e() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ CharSequence invoke(n0 n0Var) {
+            return invoke2(n0Var);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final CharSequence invoke2(n0 n0Var) {
+            d0.z.d.m.checkNotNullParameter(n0Var, "descriptor");
+            return d0.e0.p.d.m0.j.c.c.render(n0Var) + " | " + f0.f3198b.mapPropertySignature(n0Var).asString();
+        }
+    }
+
+    /* JADX INFO: compiled from: KDeclarationContainerImpl.kt */
+    public final class f<T> implements Comparator<d0.e0.p.d.m0.c.u> {
+        public static final f j = new f();
+
+        @Override // java.util.Comparator
+        public /* bridge */ /* synthetic */ int compare(d0.e0.p.d.m0.c.u uVar, d0.e0.p.d.m0.c.u uVar2) {
+            return compare2(uVar, uVar2);
+        }
+
+        /* JADX INFO: renamed from: compare, reason: avoid collision after fix types in other method */
+        public final int compare2(d0.e0.p.d.m0.c.u uVar, d0.e0.p.d.m0.c.u uVar2) {
+            Integer numCompare = d0.e0.p.d.m0.c.t.compare(uVar, uVar2);
+            if (numCompare != null) {
+                return numCompare.intValue();
+            }
+            return 0;
+        }
+    }
+
+    /* JADX INFO: compiled from: KDeclarationContainerImpl.kt */
+    public final class g extends d0.e0.p.d.a {
+        public g(i iVar, i iVar2) {
+            super(iVar2);
+        }
+
+        @Override // d0.e0.p.d.m0.c.i1.m, d0.e0.p.d.m0.c.o
+        public /* bridge */ /* synthetic */ Object visitConstructorDescriptor(d0.e0.p.d.m0.c.l lVar, Object obj) {
+            return visitConstructorDescriptor(lVar, (Unit) obj);
+        }
+
+        public d0.e0.p.d.f<?> visitConstructorDescriptor(d0.e0.p.d.m0.c.l lVar, Unit unit) {
+            d0.z.d.m.checkNotNullParameter(lVar, "descriptor");
+            d0.z.d.m.checkNotNullParameter(unit, "data");
+            throw new IllegalStateException("No constructors should appear here: " + lVar);
+        }
+    }
 
     public final void a(List<Class<?>> list, String str, boolean z2) {
         List<Class<?>> listD = d(str);
@@ -41,18 +146,18 @@ public abstract class i implements d0.z.d.e {
     }
 
     /* JADX WARN: Code duplicated, block: B:12:0x004e  */
-    public final Collection<f<?>> b(d0.e0.p.d.m0.k.a0.i iVar, i$c i_c) {
-        f fVar;
+    public final Collection<d0.e0.p.d.f<?>> b(d0.e0.p.d.m0.k.a0.i iVar, c cVar) {
+        d0.e0.p.d.f fVar;
         d0.z.d.m.checkNotNullParameter(iVar, "scope");
-        d0.z.d.m.checkNotNullParameter(i_c, "belonginess");
-        i$g i_g = new i$g(this, this);
-        Collection<d0.e0.p.d.m0.c.m> contributedDescriptors$default = d0.e0.p.d.m0.k.a0.l$a.getContributedDescriptors$default(iVar, null, null, 3, null);
+        d0.z.d.m.checkNotNullParameter(cVar, "belonginess");
+        g gVar = new g(this, this);
+        Collection<d0.e0.p.d.m0.c.m> contributedDescriptors$default = d0.e0.p.d.m0.k.a0.l.a.getContributedDescriptors$default(iVar, null, null, 3, null);
         ArrayList arrayList = new ArrayList();
         for (d0.e0.p.d.m0.c.m mVar : contributedDescriptors$default) {
             if (mVar instanceof d0.e0.p.d.m0.c.b) {
                 d0.e0.p.d.m0.c.b bVar = (d0.e0.p.d.m0.c.b) mVar;
-                if ((!d0.z.d.m.areEqual(bVar.getVisibility(), d0.e0.p.d.m0.c.t.h)) && i_c.accept(bVar)) {
-                    fVar = (f) mVar.accept(i_g, Unit.a);
+                if ((!d0.z.d.m.areEqual(bVar.getVisibility(), d0.e0.p.d.m0.c.t.h)) && cVar.accept(bVar)) {
+                    fVar = (d0.e0.p.d.f) mVar.accept(gVar, Unit.a);
                 } else {
                     fVar = null;
                 }
@@ -184,7 +289,7 @@ public abstract class i implements d0.z.d.e {
         if (arrayList.size() == 1) {
             return (d0.e0.p.d.m0.c.x) d0.t.u.single((List) arrayList);
         }
-        String strJoinToString$default = d0.t.u.joinToString$default(collection, "\n", null, null, 0, null, i$d.j, 30, null);
+        String strJoinToString$default = d0.t.u.joinToString$default(collection, "\n", null, null, 0, null, d.j, 30, null);
         StringBuilder sb = new StringBuilder();
         sb.append("Function '");
         sb.append(str);
@@ -257,7 +362,7 @@ public abstract class i implements d0.z.d.e {
             }
             ((List) arrayList2).add(obj2);
         }
-        Collection collectionValues = d0.t.g0.toSortedMap(linkedHashMap, i$f.j).values();
+        Collection collectionValues = d0.t.g0.toSortedMap(linkedHashMap, f.j).values();
         d0.z.d.m.checkNotNullExpressionValue(collectionValues, "properties\n             …                }).values");
         List list = (List) d0.t.u.last(collectionValues);
         if (list.size() == 1) {
@@ -266,7 +371,7 @@ public abstract class i implements d0.z.d.e {
         }
         d0.e0.p.d.m0.g.e eVarIdentifier2 = d0.e0.p.d.m0.g.e.identifier(str);
         d0.z.d.m.checkNotNullExpressionValue(eVarIdentifier2, "Name.identifier(name)");
-        String strJoinToString$default = d0.t.u.joinToString$default(getProperties(eVarIdentifier2), "\n", null, null, 0, null, i$e.j, 30, null);
+        String strJoinToString$default = d0.t.u.joinToString$default(getProperties(eVarIdentifier2), "\n", null, null, 0, null, e.j, 30, null);
         StringBuilder sb = new StringBuilder();
         sb.append("Property '");
         sb.append(str);
@@ -376,6 +481,40 @@ public abstract class i implements d0.z.d.e {
             return null;
         } catch (NoSuchMethodException unused) {
             return null;
+        }
+    }
+
+    /* JADX INFO: compiled from: KDeclarationContainerImpl.kt */
+    public abstract class b {
+        public static final /* synthetic */ KProperty[] a = {d0.z.d.a0.property1(new d0.z.d.y(d0.z.d.a0.getOrCreateKotlinClass(b.class), "moduleData", "getModuleData()Lorg/jetbrains/kotlin/descriptors/runtime/components/RuntimeModuleData;"))};
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final c0.a f3199b = c0.lazySoft(new a());
+
+        /* JADX INFO: compiled from: KDeclarationContainerImpl.kt */
+        public final class a extends d0.z.d.o implements Function0<d0.e0.p.d.m0.c.k1.a.k> {
+            public a() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.k1.a.k invoke() {
+                return invoke();
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // kotlin.jvm.functions.Function0
+            public final d0.e0.p.d.m0.c.k1.a.k invoke() {
+                return b0.getOrCreateModule(i.this.getJClass());
+            }
+        }
+
+        public b() {
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public final d0.e0.p.d.m0.c.k1.a.k getModuleData() {
+            return (d0.e0.p.d.m0.c.k1.a.k) this.f3199b.getValue(this, a[0]);
         }
     }
 }

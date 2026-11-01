@@ -2,32 +2,95 @@ package com.discord.widgets.settings;
 
 import android.content.Context;
 import android.view.View;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
+import b.a.d.j;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
+import com.discord.app.AppActivity;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetSettingsActivityStatusBinding;
 import com.discord.stores.StoreStream;
+import com.discord.stores.StoreUserSettings;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.discord.views.CheckedSetting;
 import d0.z.d.m;
+import d0.z.d.o;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
+import rx.functions.Action1;
 
 /* JADX INFO: compiled from: WidgetSettingsActivityStatus.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsActivityStatus extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetSettingsActivityStatus.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsActivityStatusBinding;", 0)};
-    public static final WidgetSettingsActivityStatus$Companion Companion = new WidgetSettingsActivityStatus$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsActivityStatus$configureUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsActivityStatus.kt */
+    public final class AnonymousClass1<T> implements Action1<Boolean> {
+        public AnonymousClass1() {
+        }
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(Boolean bool) {
+            call2(bool);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(Boolean bool) {
+            StoreUserSettings userSettings = StoreStream.INSTANCE.getUserSettings();
+            AppActivity appActivity = WidgetSettingsActivityStatus.this.getAppActivity();
+            m.checkNotNullExpressionValue(bool, "checked");
+            userSettings.setIsShowCurrentGameEnabled(appActivity, bool.booleanValue());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.WidgetSettingsActivityStatus$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsActivityStatus.kt */
+    public final class AnonymousClass1 extends o implements Function1<Boolean, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.a;
+        }
+
+        public final void invoke(boolean z2) {
+            WidgetSettingsActivityStatus.access$configureUI(WidgetSettingsActivityStatus.this, z2);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsActivityStatus.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            m.checkNotNullParameter(context, "context");
+            j.e(context, WidgetSettingsActivityStatus.class, null, 4);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetSettingsActivityStatus() {
-        super(R$layout.widget_settings_activity_status);
+        super(R.layout.widget_settings_activity_status);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetSettingsActivityStatus$binding$2.INSTANCE, null, 2, null);
     }
 
@@ -39,7 +102,7 @@ public final class WidgetSettingsActivityStatus extends AppFragment {
         CheckedSetting checkedSetting = getBinding().f2601b;
         m.checkNotNullExpressionValue(checkedSetting, "binding.showCurrentActivity");
         checkedSetting.setChecked(showCurrentGame);
-        getBinding().f2601b.setOnCheckedListener(new WidgetSettingsActivityStatus$configureUI$1(this));
+        getBinding().f2601b.setOnCheckedListener(new AnonymousClass1());
     }
 
     private final WidgetSettingsActivityStatusBinding getBinding() {
@@ -50,14 +113,14 @@ public final class WidgetSettingsActivityStatus extends AppFragment {
     public void onViewBound(View view) {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
-        setActionBarSubtitle(2131896797);
-        setActionBarTitle(2131886307);
+        setActionBarSubtitle(R.string.user_settings);
+        setActionBarTitle(R.string.activity_status);
         AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(StoreStream.Companion.getUserSettings().observeIsShowCurrentGameEnabled(), this, null, 2, null), WidgetSettingsActivityStatus.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetSettingsActivityStatus$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(StoreStream.INSTANCE.getUserSettings().observeIsShowCurrentGameEnabled(), this, null, 2, null), WidgetSettingsActivityStatus.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 }

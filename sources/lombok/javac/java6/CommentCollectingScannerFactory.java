@@ -1,17 +1,33 @@
 package lombok.javac.java6;
 
 import com.sun.tools.javac.parser.Scanner;
-import com.sun.tools.javac.parser.Scanner$Factory;
 import com.sun.tools.javac.util.Context;
-import com.sun.tools.javac.util.Context$Factory;
 import java.nio.CharBuffer;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/java6/CommentCollectingScannerFactory.SCL.lombok */
-public class CommentCollectingScannerFactory extends Scanner$Factory {
+public class CommentCollectingScannerFactory extends Scanner.Factory {
     public static void preRegister(Context context) {
         if (context.get(scannerFactoryKey) == null) {
-            Context$Factory<Scanner$Factory> factory = new CommentCollectingScannerFactory$1MyFactory(context);
+            Context.Factory<Scanner.Factory> factory = new C1MyFactory(context);
             context.put(scannerFactoryKey, factory);
+        }
+    }
+
+    /* JADX INFO: renamed from: lombok.javac.java6.CommentCollectingScannerFactory$1MyFactory, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/java6/CommentCollectingScannerFactory$1MyFactory.SCL.lombok */
+    class C1MyFactory implements Context.Factory {
+        private final /* synthetic */ Context val$context;
+
+        C1MyFactory(Context context) {
+            this.val$context = context;
+        }
+
+        public Object make() {
+            return new CommentCollectingScannerFactory(this.val$context);
+        }
+
+        public Object make(Context c) {
+            return new CommentCollectingScannerFactory(c);
         }
     }
 

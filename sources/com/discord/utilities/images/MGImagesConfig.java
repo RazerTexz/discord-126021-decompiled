@@ -11,18 +11,18 @@ import b.f.g.a.a.e;
 import b.f.j.e.g;
 import b.f.j.e.h;
 import b.f.j.e.j;
-import b.f.j.e.j$a;
-import b.f.j.e.l$b;
+import b.f.j.e.l;
 import b.f.j.e.n;
 import b.f.j.r.b;
 import b.f.m.n.c;
 import com.facebook.cache.disk.DiskCacheConfig;
-import com.facebook.cache.disk.DiskCacheConfig$b;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.cache.DefaultBitmapMemoryCacheParamsSupplier;
+import com.facebook.imagepipeline.cache.MemoryCacheParams;
 import d0.z.d.m;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /* JADX INFO: compiled from: MGImagesConfig.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -33,6 +33,31 @@ public final class MGImagesConfig {
     private static final long MAX_DISK_CACHE_SIZE = 41943040;
     public static final MGImagesConfig INSTANCE = new MGImagesConfig();
 
+    /* JADX INFO: renamed from: com.discord.utilities.images.MGImagesConfig$getAppBitmapMemoryCacheParamsSupplier$1, reason: invalid class name */
+    /* JADX INFO: compiled from: MGImagesConfig.kt */
+    public final class AnonymousClass1 extends DefaultBitmapMemoryCacheParamsSupplier {
+        public final /* synthetic */ ActivityManager $activityManager;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(ActivityManager activityManager, ActivityManager activityManager2) {
+            super(activityManager2);
+            this.$activityManager = activityManager;
+        }
+
+        @Override // com.facebook.imagepipeline.cache.DefaultBitmapMemoryCacheParamsSupplier, com.facebook.common.internal.Supplier
+        public /* bridge */ /* synthetic */ MemoryCacheParams get() {
+            return get();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // com.facebook.imagepipeline.cache.DefaultBitmapMemoryCacheParamsSupplier, com.facebook.common.internal.Supplier
+        public MemoryCacheParams get() {
+            MemoryCacheParams memoryCacheParams = super.get();
+            int i = memoryCacheParams.a;
+            return new MemoryCacheParams(i, memoryCacheParams.f2895b, memoryCacheParams.c, memoryCacheParams.d, i / 3, TimeUnit.MINUTES.toMillis(5L));
+        }
+    }
+
     private MGImagesConfig() {
     }
 
@@ -40,23 +65,23 @@ public final class MGImagesConfig {
         Object systemService = context.getSystemService(ActivityChooserModel.ATTRIBUTE_ACTIVITY);
         Objects.requireNonNull(systemService, "null cannot be cast to non-null type android.app.ActivityManager");
         ActivityManager activityManager = (ActivityManager) systemService;
-        return new MGImagesConfig$getAppBitmapMemoryCacheParamsSupplier$1(activityManager, activityManager);
+        return new AnonymousClass1(activityManager, activityManager);
     }
 
     public final void init(Application context) {
         m.checkNotNullParameter(context, "context");
-        j$a j_a = new j$a(context, null);
-        j_a.c = true;
-        j_a.d = newDiskCacheConfig(context, CACHE_DIR);
-        j_a.e = newDiskCacheConfig(context, CACHE_DIR_SMALL);
+        j.a aVar = new j.a(context, null);
+        aVar.c = true;
+        aVar.d = newDiskCacheConfig(context, CACHE_DIR);
+        aVar.e = newDiskCacheConfig(context, CACHE_DIR_SMALL);
         DefaultBitmapMemoryCacheParamsSupplier appBitmapMemoryCacheParamsSupplier = getAppBitmapMemoryCacheParamsSupplier(context);
         Objects.requireNonNull(appBitmapMemoryCacheParamsSupplier);
-        j_a.a = appBitmapMemoryCacheParamsSupplier;
-        l$b l_b = j_a.f;
-        l_b.f576b = true;
-        j$a j_a2 = l_b.a;
-        Objects.requireNonNull(j_a2);
-        j jVar = new j(j_a2, null);
+        aVar.a = appBitmapMemoryCacheParamsSupplier;
+        l.b bVar = aVar.f;
+        bVar.f576b = true;
+        j.a aVar2 = bVar.a;
+        Objects.requireNonNull(aVar2);
+        j jVar = new j(aVar2, null);
         b.b();
         if (b.f.g.a.a.b.f477b) {
             a.k(b.f.g.a.a.b.class, "Fresco has already been initialized! `Fresco.initialize(...)` should only be called 1 single time to avoid memory leaks!");
@@ -95,11 +120,11 @@ public final class MGImagesConfig {
     }
 
     private final DiskCacheConfig newDiskCacheConfig(Context context, String str) {
-        DiskCacheConfig$b diskCacheConfig$b = new DiskCacheConfig$b(context, null);
-        diskCacheConfig$b.f2883b = new k(context.getCacheDir());
-        diskCacheConfig$b.a = str;
-        diskCacheConfig$b.c = MAX_DISK_CACHE_SIZE;
-        DiskCacheConfig diskCacheConfig = new DiskCacheConfig(diskCacheConfig$b);
+        DiskCacheConfig.b bVar = new DiskCacheConfig.b(context, null);
+        bVar.f2883b = new k(context.getCacheDir());
+        bVar.a = str;
+        bVar.c = MAX_DISK_CACHE_SIZE;
+        DiskCacheConfig diskCacheConfig = new DiskCacheConfig(bVar);
         m.checkNotNullExpressionValue(diskCacheConfig, "DiskCacheConfig\n        …HE_SIZE)\n        .build()");
         return diskCacheConfig;
     }

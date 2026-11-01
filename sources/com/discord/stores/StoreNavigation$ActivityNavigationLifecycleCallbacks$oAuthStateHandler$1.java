@@ -11,30 +11,30 @@ import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: StoreNavigation.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$oAuthStateHandler$1 extends o implements Function2<AppActivity, StoreNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation, Boolean> {
-    public final /* synthetic */ StoreNavigation$ActivityNavigationLifecycleCallbacks this$0;
+public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$oAuthStateHandler$1 extends o implements Function2<AppActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation, Boolean> {
+    public final /* synthetic */ StoreNavigation.ActivityNavigationLifecycleCallbacks this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public StoreNavigation$ActivityNavigationLifecycleCallbacks$oAuthStateHandler$1(StoreNavigation$ActivityNavigationLifecycleCallbacks storeNavigation$ActivityNavigationLifecycleCallbacks) {
+    public StoreNavigation$ActivityNavigationLifecycleCallbacks$oAuthStateHandler$1(StoreNavigation.ActivityNavigationLifecycleCallbacks activityNavigationLifecycleCallbacks) {
         super(2);
-        this.this$0 = storeNavigation$ActivityNavigationLifecycleCallbacks;
+        this.this$0 = activityNavigationLifecycleCallbacks;
     }
 
     @Override // kotlin.jvm.functions.Function2
-    public /* bridge */ /* synthetic */ Boolean invoke(AppActivity appActivity, StoreNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation) {
-        return Boolean.valueOf(invoke2(appActivity, storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation));
+    public /* bridge */ /* synthetic */ Boolean invoke(AppActivity appActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation modelGlobalNavigation) {
+        return Boolean.valueOf(invoke2(appActivity, modelGlobalNavigation));
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final boolean invoke2(AppActivity appActivity, StoreNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation) {
+    public final boolean invoke2(AppActivity appActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation modelGlobalNavigation) {
         m.checkNotNullParameter(appActivity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
-        m.checkNotNullParameter(storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation, "model");
-        Uri oAuthUri = storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation.getOAuthUri();
+        m.checkNotNullParameter(modelGlobalNavigation, "model");
+        Uri oAuthUri = modelGlobalNavigation.getOAuthUri();
         if (!m.areEqual(oAuthUri, Uri.EMPTY)) {
             j jVar = j.g;
             if (!appActivity.g(j.c)) {
-                WidgetOauth2Authorize.Companion.launch(appActivity, oAuthUri);
-                StoreAuthentication authentication = StoreNavigation$ActivityNavigationLifecycleCallbacks.access$getStream$p(this.this$0).getAuthentication();
+                WidgetOauth2Authorize.INSTANCE.launch(appActivity, oAuthUri);
+                StoreAuthentication authentication = StoreNavigation.ActivityNavigationLifecycleCallbacks.access$getStream$p(this.this$0).getAuthentication();
                 Uri uri = Uri.EMPTY;
                 m.checkNotNullExpressionValue(uri, "Uri.EMPTY");
                 authentication.setOAuthUriSubject(uri);

@@ -35,13 +35,13 @@ public final class WidgetNoticeNuxSamsungLink$Companion$enqueue$2 extends o impl
         if (!boolComponent1.booleanValue()) {
             m.checkNotNullParameter("google", "flavorVendor");
             if (!m.areEqual("google", "samsung")) {
-                StoreNotices.markSeen$default(StoreStream.Companion.getNotices(), "NUX/SamsungLink", 0L, 2, null);
+                StoreNotices.markSeen$default(StoreStream.INSTANCE.getNotices(), "NUX/SamsungLink", 0L, 2, null);
             }
         }
         UserUtils userUtils = UserUtils.INSTANCE;
         m.checkNotNullExpressionValue(meUserComponent2, "meUser");
         if (userUtils.getAgeMs(meUserComponent2, this.$clock) > 2419200000L) {
-            WidgetNoticeNuxSamsungLink$Companion.access$internalEnqueue(WidgetNoticeNuxSamsungLink.Companion);
+            WidgetNoticeNuxSamsungLink.Companion.access$internalEnqueue(WidgetNoticeNuxSamsungLink.INSTANCE);
         }
     }
 }

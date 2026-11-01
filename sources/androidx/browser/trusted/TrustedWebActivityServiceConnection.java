@@ -10,8 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
-import b.d.b.a.a;
+import x.a.a.d.a;
 import x.a.a.d.b;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -25,30 +24,155 @@ public final class TrustedWebActivityServiceConnection {
     private final ComponentName mComponentName;
     private final b mService;
 
+    public class ActiveNotificationsArgs {
+        public final Parcelable[] notifications;
+
+        public ActiveNotificationsArgs(Parcelable[] parcelableArr) {
+            this.notifications = parcelableArr;
+        }
+
+        public static ActiveNotificationsArgs fromBundle(Bundle bundle) {
+            TrustedWebActivityServiceConnection.ensureBundleContains(bundle, TrustedWebActivityServiceConnection.KEY_ACTIVE_NOTIFICATIONS);
+            return new ActiveNotificationsArgs(bundle.getParcelableArray(TrustedWebActivityServiceConnection.KEY_ACTIVE_NOTIFICATIONS));
+        }
+
+        public Bundle toBundle() {
+            Bundle bundle = new Bundle();
+            bundle.putParcelableArray(TrustedWebActivityServiceConnection.KEY_ACTIVE_NOTIFICATIONS, this.notifications);
+            return bundle;
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.browser.trusted.TrustedWebActivityServiceConnection$1, reason: invalid class name */
+    public class AnonymousClass1 extends a.AbstractBinderC0654a {
+        public final /* synthetic */ TrustedWebActivityCallback val$callback;
+
+        public AnonymousClass1(TrustedWebActivityCallback trustedWebActivityCallback) {
+            this.val$callback = trustedWebActivityCallback;
+        }
+
+        @Override // x.a.a.d.a
+        public void onExtraCallback(String str, Bundle bundle) throws RemoteException {
+            this.val$callback.onExtraCallback(str, bundle);
+        }
+    }
+
+    public class CancelNotificationArgs {
+        public final int platformId;
+        public final String platformTag;
+
+        public CancelNotificationArgs(String str, int i) {
+            this.platformTag = str;
+            this.platformId = i;
+        }
+
+        public static CancelNotificationArgs fromBundle(Bundle bundle) {
+            TrustedWebActivityServiceConnection.ensureBundleContains(bundle, TrustedWebActivityServiceConnection.KEY_PLATFORM_TAG);
+            TrustedWebActivityServiceConnection.ensureBundleContains(bundle, TrustedWebActivityServiceConnection.KEY_PLATFORM_ID);
+            return new CancelNotificationArgs(bundle.getString(TrustedWebActivityServiceConnection.KEY_PLATFORM_TAG), bundle.getInt(TrustedWebActivityServiceConnection.KEY_PLATFORM_ID));
+        }
+
+        public Bundle toBundle() {
+            Bundle bundle = new Bundle();
+            bundle.putString(TrustedWebActivityServiceConnection.KEY_PLATFORM_TAG, this.platformTag);
+            bundle.putInt(TrustedWebActivityServiceConnection.KEY_PLATFORM_ID, this.platformId);
+            return bundle;
+        }
+    }
+
+    public class NotificationsEnabledArgs {
+        public final String channelName;
+
+        public NotificationsEnabledArgs(String str) {
+            this.channelName = str;
+        }
+
+        public static NotificationsEnabledArgs fromBundle(Bundle bundle) {
+            TrustedWebActivityServiceConnection.ensureBundleContains(bundle, TrustedWebActivityServiceConnection.KEY_CHANNEL_NAME);
+            return new NotificationsEnabledArgs(bundle.getString(TrustedWebActivityServiceConnection.KEY_CHANNEL_NAME));
+        }
+
+        public Bundle toBundle() {
+            Bundle bundle = new Bundle();
+            bundle.putString(TrustedWebActivityServiceConnection.KEY_CHANNEL_NAME, this.channelName);
+            return bundle;
+        }
+    }
+
+    public class NotifyNotificationArgs {
+        public final String channelName;
+        public final Notification notification;
+        public final int platformId;
+        public final String platformTag;
+
+        public NotifyNotificationArgs(String str, int i, Notification notification, String str2) {
+            this.platformTag = str;
+            this.platformId = i;
+            this.notification = notification;
+            this.channelName = str2;
+        }
+
+        public static NotifyNotificationArgs fromBundle(Bundle bundle) {
+            TrustedWebActivityServiceConnection.ensureBundleContains(bundle, TrustedWebActivityServiceConnection.KEY_PLATFORM_TAG);
+            TrustedWebActivityServiceConnection.ensureBundleContains(bundle, TrustedWebActivityServiceConnection.KEY_PLATFORM_ID);
+            TrustedWebActivityServiceConnection.ensureBundleContains(bundle, TrustedWebActivityServiceConnection.KEY_NOTIFICATION);
+            TrustedWebActivityServiceConnection.ensureBundleContains(bundle, TrustedWebActivityServiceConnection.KEY_CHANNEL_NAME);
+            return new NotifyNotificationArgs(bundle.getString(TrustedWebActivityServiceConnection.KEY_PLATFORM_TAG), bundle.getInt(TrustedWebActivityServiceConnection.KEY_PLATFORM_ID), (Notification) bundle.getParcelable(TrustedWebActivityServiceConnection.KEY_NOTIFICATION), bundle.getString(TrustedWebActivityServiceConnection.KEY_CHANNEL_NAME));
+        }
+
+        public Bundle toBundle() {
+            Bundle bundle = new Bundle();
+            bundle.putString(TrustedWebActivityServiceConnection.KEY_PLATFORM_TAG, this.platformTag);
+            bundle.putInt(TrustedWebActivityServiceConnection.KEY_PLATFORM_ID, this.platformId);
+            bundle.putParcelable(TrustedWebActivityServiceConnection.KEY_NOTIFICATION, this.notification);
+            bundle.putString(TrustedWebActivityServiceConnection.KEY_CHANNEL_NAME, this.channelName);
+            return bundle;
+        }
+    }
+
+    public class ResultArgs {
+        public final boolean success;
+
+        public ResultArgs(boolean z2) {
+            this.success = z2;
+        }
+
+        public static ResultArgs fromBundle(Bundle bundle) {
+            TrustedWebActivityServiceConnection.ensureBundleContains(bundle, TrustedWebActivityServiceConnection.KEY_NOTIFICATION_SUCCESS);
+            return new ResultArgs(bundle.getBoolean(TrustedWebActivityServiceConnection.KEY_NOTIFICATION_SUCCESS));
+        }
+
+        public Bundle toBundle() {
+            Bundle bundle = new Bundle();
+            bundle.putBoolean(TrustedWebActivityServiceConnection.KEY_NOTIFICATION_SUCCESS, this.success);
+            return bundle;
+        }
+    }
+
     public TrustedWebActivityServiceConnection(@NonNull b bVar, @NonNull ComponentName componentName) {
         this.mService = bVar;
         this.mComponentName = componentName;
     }
 
     public boolean areNotificationsEnabled(@NonNull String str) throws RemoteException {
-        return TrustedWebActivityServiceConnection$ResultArgs.fromBundle(this.mService.areNotificationsEnabled(new TrustedWebActivityServiceConnection$NotificationsEnabledArgs(str).toBundle())).success;
+        return ResultArgs.fromBundle(this.mService.areNotificationsEnabled(new NotificationsEnabledArgs(str).toBundle())).success;
     }
 
     public void cancel(@NonNull String str, int i) throws RemoteException {
-        this.mService.cancelNotification(new TrustedWebActivityServiceConnection$CancelNotificationArgs(str, i).toBundle());
+        this.mService.cancelNotification(new CancelNotificationArgs(str, i).toBundle());
     }
 
     public static void ensureBundleContains(Bundle bundle, String str) {
         if (!bundle.containsKey(str)) {
-            throw new IllegalArgumentException(a.w("Bundle must contain ", str));
+            throw new IllegalArgumentException(b.d.b.a.a.w("Bundle must contain ", str));
         }
     }
 
     @NonNull
     @RequiresApi(23)
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public Parcelable[] getActiveNotifications() throws RemoteException {
-        return TrustedWebActivityServiceConnection$ActiveNotificationsArgs.fromBundle(this.mService.getActiveNotifications()).notifications;
+        return ActiveNotificationsArgs.fromBundle(this.mService.getActiveNotifications()).notifications;
     }
 
     @NonNull
@@ -66,20 +190,20 @@ public final class TrustedWebActivityServiceConnection {
     }
 
     public boolean notify(@NonNull String str, int i, @NonNull Notification notification, @NonNull String str2) throws RemoteException {
-        return TrustedWebActivityServiceConnection$ResultArgs.fromBundle(this.mService.notifyNotificationWithChannel(new TrustedWebActivityServiceConnection$NotifyNotificationArgs(str, i, notification, str2).toBundle())).success;
+        return ResultArgs.fromBundle(this.mService.notifyNotificationWithChannel(new NotifyNotificationArgs(str, i, notification, str2).toBundle())).success;
     }
 
     @Nullable
     public Bundle sendExtraCommand(@NonNull String str, @NonNull Bundle bundle, @Nullable TrustedWebActivityCallback trustedWebActivityCallback) throws RemoteException {
-        x.a.a.d.a aVarWrapCallback = wrapCallback(trustedWebActivityCallback);
+        a aVarWrapCallback = wrapCallback(trustedWebActivityCallback);
         return this.mService.extraCommand(str, bundle, aVarWrapCallback == null ? null : aVarWrapCallback.asBinder());
     }
 
     @Nullable
-    private static x.a.a.d.a wrapCallback(@Nullable TrustedWebActivityCallback trustedWebActivityCallback) {
+    private static a wrapCallback(@Nullable TrustedWebActivityCallback trustedWebActivityCallback) {
         if (trustedWebActivityCallback == null) {
             return null;
         }
-        return new TrustedWebActivityServiceConnection$1(trustedWebActivityCallback);
+        return new AnonymousClass1(trustedWebActivityCallback);
     }
 }

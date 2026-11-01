@@ -8,7 +8,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import kotlin.jvm.functions.Function0;
 import kotlin.ranges.IntRange;
 
@@ -38,9 +37,9 @@ public final class GuildSubscriptions$serializedRanges$2 extends o implements Fu
         LinkedHashMap linkedHashMap = new LinkedHashMap(g0.mapCapacity(channels.size()));
         Iterator<T> it = channels.entrySet().iterator();
         while (it.hasNext()) {
-            Map$Entry map$Entry = (Map$Entry) it.next();
-            Object key = map$Entry.getKey();
-            List<IntRange> list = (List) map$Entry.getValue();
+            Map.Entry entry = (Map.Entry) it.next();
+            Object key = entry.getKey();
+            List<IntRange> list = (List) entry.getValue();
             ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(list, 10));
             for (IntRange intRange : list) {
                 arrayList.add(n.listOf((Object[]) new Integer[]{Integer.valueOf(intRange.getFirst()), Integer.valueOf(intRange.getLast())}));

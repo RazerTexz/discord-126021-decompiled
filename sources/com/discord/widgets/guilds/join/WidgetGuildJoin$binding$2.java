@@ -2,7 +2,7 @@ package com.discord.widgets.guilds.join;
 
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetGuildJoinBinding;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -27,11 +27,11 @@ public final /* synthetic */ class WidgetGuildJoin$binding$2 extends k implement
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGuildJoinBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.guild_join_action_btn;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.guild_join_action_btn);
+        int i = R.id.guild_join_action_btn;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.guild_join_action_btn);
         if (materialButton != null) {
-            i = R$id.guild_join_invite;
-            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.guild_join_invite);
+            i = R.id.guild_join_invite;
+            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.guild_join_invite);
             if (textInputLayout != null) {
                 return new WidgetGuildJoinBinding((CoordinatorLayout) view, materialButton, textInputLayout);
             }

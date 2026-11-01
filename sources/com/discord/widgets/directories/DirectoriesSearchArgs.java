@@ -3,15 +3,39 @@ package com.discord.widgets.directories;
 import a0.a.a.b;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import b.d.b.a.a;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: WidgetDirectoriesSearch.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class DirectoriesSearchArgs implements Parcelable {
-    public static final Parcelable$Creator<DirectoriesSearchArgs> CREATOR = new DirectoriesSearchArgs$Creator();
+    public static final Parcelable.Creator<DirectoriesSearchArgs> CREATOR = new Creator();
     private final long channelId;
+
+    public final class Creator implements Parcelable.Creator<DirectoriesSearchArgs> {
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final DirectoriesSearchArgs createFromParcel(Parcel parcel) {
+            m.checkNotNullParameter(parcel, "in");
+            return new DirectoriesSearchArgs(parcel.readLong());
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ DirectoriesSearchArgs createFromParcel(Parcel parcel) {
+            return createFromParcel(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final DirectoriesSearchArgs[] newArray(int i) {
+            return new DirectoriesSearchArgs[i];
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ DirectoriesSearchArgs[] newArray(int i) {
+            return newArray(i);
+        }
+    }
 
     public DirectoriesSearchArgs(long j) {
         this.channelId = j;

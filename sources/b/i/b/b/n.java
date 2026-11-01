@@ -15,6 +15,38 @@ import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 public abstract class n<E> extends AbstractCollection<E> implements Serializable {
     public static final Object[] j = new Object[0];
 
+    /* JADX INFO: compiled from: ImmutableCollection.java */
+    public abstract class a<E> extends b<E> {
+        public Object[] a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public int f1647b;
+        public boolean c;
+
+        public a(int i) {
+            b.i.a.f.e.o.f.A(i, "initialCapacity");
+            this.a = new Object[i];
+            this.f1647b = 0;
+        }
+    }
+
+    /* JADX INFO: compiled from: ImmutableCollection.java */
+    public abstract class b<E> {
+        public static int a(int i, int i2) {
+            if (i2 < 0) {
+                throw new AssertionError("cannot store more than MAX_VALUE elements");
+            }
+            int iHighestOneBit = i + (i >> 1) + 1;
+            if (iHighestOneBit < i2) {
+                iHighestOneBit = Integer.highestOneBit(i2 - 1) << 1;
+            }
+            if (iHighestOneBit < 0) {
+                return Integer.MAX_VALUE;
+            }
+            return iHighestOneBit;
+        }
+    }
+
     @Override // java.util.AbstractCollection, java.util.Collection
     @CanIgnoreReturnValue
     @Deprecated
@@ -33,7 +65,7 @@ public abstract class n<E> extends AbstractCollection<E> implements Serializable
         if (!isEmpty()) {
             return p.k(toArray());
         }
-        a<Object> aVar = p.k;
+        b.i.b.b.a<Object> aVar = p.k;
         return (p<E>) h0.l;
     }
 
@@ -104,7 +136,7 @@ public abstract class n<E> extends AbstractCollection<E> implements Serializable
     }
 
     public Object writeReplace() {
-        return new p$c(toArray());
+        return new p.c(toArray());
     }
 
     @Override // java.util.AbstractCollection, java.util.Collection

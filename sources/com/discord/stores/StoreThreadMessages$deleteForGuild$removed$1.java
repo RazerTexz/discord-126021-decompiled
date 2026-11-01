@@ -6,7 +6,7 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: StoreThreadMessages.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StoreThreadMessages$deleteForGuild$removed$1 extends o implements Function1<StoreThreadMessages$ThreadState, Boolean> {
+public final class StoreThreadMessages$deleteForGuild$removed$1 extends o implements Function1<StoreThreadMessages.ThreadState, Boolean> {
     public final /* synthetic */ long $guildId;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -16,13 +16,13 @@ public final class StoreThreadMessages$deleteForGuild$removed$1 extends o implem
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public /* bridge */ /* synthetic */ Boolean invoke(StoreThreadMessages$ThreadState storeThreadMessages$ThreadState) {
-        return Boolean.valueOf(invoke2(storeThreadMessages$ThreadState));
+    public /* bridge */ /* synthetic */ Boolean invoke(StoreThreadMessages.ThreadState threadState) {
+        return Boolean.valueOf(invoke2(threadState));
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final boolean invoke2(StoreThreadMessages$ThreadState storeThreadMessages$ThreadState) {
-        m.checkNotNullParameter(storeThreadMessages$ThreadState, "thread");
-        return storeThreadMessages$ThreadState.getGuildId() == this.$guildId;
+    public final boolean invoke2(StoreThreadMessages.ThreadState threadState) {
+        m.checkNotNullParameter(threadState, "thread");
+        return threadState.getGuildId() == this.$guildId;
     }
 }

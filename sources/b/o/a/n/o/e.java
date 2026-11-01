@@ -1,6 +1,6 @@
 package b.o.a.n.o;
 
-import android.hardware.camera2.CameraCharacteristics$Key;
+import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.TotalCaptureResult;
@@ -87,8 +87,8 @@ public abstract class e implements a {
     }
 
     @NonNull
-    public <T> T k(@NonNull CameraCharacteristics$Key<T> cameraCharacteristics$Key, @NonNull T t) {
-        T t2 = (T) ((b.o.a.n.d) this.c).f1919g0.get(cameraCharacteristics$Key);
+    public <T> T k(@NonNull CameraCharacteristics.Key<T> key, @NonNull T t) {
+        T t2 = (T) ((b.o.a.n.d) this.c).f1919g0.get(key);
         return t2 == null ? t : t2;
     }
 

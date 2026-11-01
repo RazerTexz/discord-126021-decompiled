@@ -1,18 +1,20 @@
 package b.o.a.r;
 
 import android.content.Context;
-import android.hardware.display.DisplayManager$DisplayListener;
+import android.hardware.display.DisplayManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.OrientationEventListener;
 import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
+import b.o.a.j;
+import com.otaliastudios.cameraview.CameraView;
 
 /* JADX INFO: compiled from: OrientationHelper.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class f {
-    public final f$c c;
+    public final c c;
 
     @VisibleForTesting
     public final OrientationEventListener d;
@@ -25,12 +27,97 @@ public class f {
     public int g = -1;
 
     @VisibleForTesting
-    public final DisplayManager$DisplayListener f = new f$b(this);
+    public final DisplayManager.DisplayListener f = new b();
 
-    public f(@NonNull Context context, @NonNull f$c f_c) {
+    /* JADX INFO: compiled from: OrientationHelper.java */
+    public class a extends OrientationEventListener {
+        public a(Context context, int i) {
+            super(context, i);
+        }
+
+        /* JADX WARN: Code duplicated, block: B:23:0x002d  */
+        @Override // android.view.OrientationEventListener
+        public void onOrientationChanged(int i) {
+            int i2;
+            if (i == -1) {
+                i2 = f.this.e;
+                if (i2 == -1) {
+                    i2 = 0;
+                }
+            } else if (i >= 315 || i < 45) {
+                i2 = 0;
+            } else if (i >= 45 && i < 135) {
+                i2 = 90;
+            } else if (i >= 135 && i < 225) {
+                i2 = 180;
+            } else if (i < 225 || i >= 315) {
+                i2 = 0;
+            } else {
+                i2 = 270;
+            }
+            f fVar = f.this;
+            if (i2 != fVar.e) {
+                fVar.e = i2;
+                CameraView.b bVar = (CameraView.b) fVar.c;
+                bVar.f3177b.a(1, "onDeviceOrientationChanged", Integer.valueOf(i2));
+                CameraView cameraView = CameraView.this;
+                int i3 = cameraView.f3175y.g;
+                if (cameraView.m) {
+                    b.o.a.n.t.a aVarE = cameraView.f3176z.e();
+                    aVarE.e(i2);
+                    aVarE.e = i2;
+                    aVarE.d();
+                } else {
+                    int i4 = (360 - i3) % 360;
+                    b.o.a.n.t.a aVarE2 = cameraView.f3176z.e();
+                    aVarE2.e(i4);
+                    aVarE2.e = i4;
+                    aVarE2.d();
+                }
+                CameraView.this.u.post(new j(bVar, (i2 + i3) % 360));
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: OrientationHelper.java */
+    public class b implements DisplayManager.DisplayListener {
+        public b() {
+        }
+
+        @Override // android.hardware.display.DisplayManager.DisplayListener
+        public void onDisplayAdded(int i) {
+        }
+
+        @Override // android.hardware.display.DisplayManager.DisplayListener
+        public void onDisplayChanged(int i) {
+            f fVar = f.this;
+            int i2 = fVar.g;
+            int iA = fVar.a();
+            if (iA != i2) {
+                f fVar2 = f.this;
+                fVar2.g = iA;
+                CameraView.b bVar = (CameraView.b) fVar2.c;
+                if (CameraView.this.d()) {
+                    bVar.f3177b.a(2, "onDisplayOffsetChanged", "restarting the camera.");
+                    CameraView.this.close();
+                    CameraView.this.open();
+                }
+            }
+        }
+
+        @Override // android.hardware.display.DisplayManager.DisplayListener
+        public void onDisplayRemoved(int i) {
+        }
+    }
+
+    /* JADX INFO: compiled from: OrientationHelper.java */
+    public interface c {
+    }
+
+    public f(@NonNull Context context, @NonNull c cVar) {
         this.f1951b = context;
-        this.c = f_c;
-        this.d = new f$a(this, context.getApplicationContext(), 3);
+        this.c = cVar;
+        this.d = new a(context.getApplicationContext(), 3);
     }
 
     public final int a() {

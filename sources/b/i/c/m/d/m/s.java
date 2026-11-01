@@ -4,14 +4,14 @@ import androidx.annotation.NonNull;
 
 /* JADX INFO: compiled from: AutoValue_CrashlyticsReport_Session_Event_Log.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class s extends v$d$d$c {
+public final class s extends v.d.AbstractC0143d.c {
     public final String a;
 
-    public s(String str, s$a s_a) {
+    public s(String str, a aVar) {
         this.a = str;
     }
 
-    @Override // b.i.c.m.d.m.v$d$d$c
+    @Override // b.i.c.m.d.m.v.d.AbstractC0143d.c
     @NonNull
     public String a() {
         return this.a;
@@ -21,8 +21,8 @@ public final class s extends v$d$d$c {
         if (obj == this) {
             return true;
         }
-        if (obj instanceof v$d$d$c) {
-            return this.a.equals(((v$d$d$c) obj).a());
+        if (obj instanceof v.d.AbstractC0143d.c) {
+            return this.a.equals(((v.d.AbstractC0143d.c) obj).a());
         }
         return false;
     }

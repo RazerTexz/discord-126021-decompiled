@@ -15,12 +15,12 @@ public final /* data */ class GuildRoleSubscriptionTier {
     private final Integer activeTrialUserLimit;
     private final Long applicationId;
     private final Boolean canAccessAllChannels;
-    private final List<Benefit$ChannelBenefit> channelBenefits;
+    private final List<Benefit.ChannelBenefit> channelBenefits;
     private final String description;
     private final GuildRole guildRole;
     private final String image;
     private final Long imageAssetId;
-    private final List<Benefit$IntangibleBenefit> intangibleBenefits;
+    private final List<Benefit.IntangibleBenefit> intangibleBenefits;
     private final Boolean isPublished;
     private final Integer memberColor;
     private final String memberIcon;
@@ -32,7 +32,7 @@ public final /* data */ class GuildRoleSubscriptionTier {
         this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 32767, null);
     }
 
-    public GuildRoleSubscriptionTier(String str, Long l, Integer num, Integer num2, String str2, GuildRole guildRole, String str3, Long l2, String str4, Boolean bool, Boolean bool2, List<Benefit$ChannelBenefit> list, List<Benefit$IntangibleBenefit> list2, SubscriptionTrialInterval subscriptionTrialInterval, Integer num3) {
+    public GuildRoleSubscriptionTier(String str, Long l, Integer num, Integer num2, String str2, GuildRole guildRole, String str3, Long l2, String str4, Boolean bool, Boolean bool2, List<Benefit.ChannelBenefit> list, List<Benefit.IntangibleBenefit> list2, SubscriptionTrialInterval subscriptionTrialInterval, Integer num3) {
         m.checkNotNullParameter(list, "channelBenefits");
         m.checkNotNullParameter(list2, "intangibleBenefits");
         this.name = str;
@@ -57,11 +57,11 @@ public final /* data */ class GuildRoleSubscriptionTier {
         return m.areEqual(isFullServerGating, bool) && (m.areEqual(this.canAccessAllChannels, bool) || this.canAccessAllChannels == null);
     }
 
-    public final List<Benefit$ChannelBenefit> component12() {
+    public final List<Benefit.ChannelBenefit> component12() {
         return this.channelBenefits;
     }
 
-    public final List<Benefit$IntangibleBenefit> component13() {
+    public final List<Benefit.IntangibleBenefit> component13() {
         return this.intangibleBenefits;
     }
 
@@ -70,7 +70,7 @@ public final /* data */ class GuildRoleSubscriptionTier {
         return guildRoleSubscriptionTier.copy((i & 1) != 0 ? guildRoleSubscriptionTier.name : str, (i & 2) != 0 ? guildRoleSubscriptionTier.applicationId : l, (i & 4) != 0 ? guildRoleSubscriptionTier.priceTier : num, (i & 8) != 0 ? guildRoleSubscriptionTier.memberColor : num2, (i & 16) != 0 ? guildRoleSubscriptionTier.memberIcon : str2, (i & 32) != 0 ? guildRoleSubscriptionTier.guildRole : guildRole, (i & 64) != 0 ? guildRoleSubscriptionTier.image : str3, (i & 128) != 0 ? guildRoleSubscriptionTier.imageAssetId : l2, (i & 256) != 0 ? guildRoleSubscriptionTier.description : str4, (i & 512) != 0 ? guildRoleSubscriptionTier.isPublished : bool, (i & 1024) != 0 ? guildRoleSubscriptionTier.canAccessAllChannels : bool2, (i & 2048) != 0 ? guildRoleSubscriptionTier.channelBenefits : list, (i & 4096) != 0 ? guildRoleSubscriptionTier.intangibleBenefits : list2, (i & 8192) != 0 ? guildRoleSubscriptionTier.trialInterval : subscriptionTrialInterval, (i & 16384) != 0 ? guildRoleSubscriptionTier.activeTrialUserLimit : num3);
     }
 
-    public final GuildRoleSubscriptionTier copy(String name, Long applicationId, Integer priceTier, Integer memberColor, String memberIcon, GuildRole guildRole, String image, Long imageAssetId, String description, Boolean isPublished, Boolean canAccessAllChannels, List<Benefit$ChannelBenefit> channelBenefits, List<Benefit$IntangibleBenefit> intangibleBenefits, SubscriptionTrialInterval trialInterval, Integer activeTrialUserLimit) {
+    public final GuildRoleSubscriptionTier copy(String name, Long applicationId, Integer priceTier, Integer memberColor, String memberIcon, GuildRole guildRole, String image, Long imageAssetId, String description, Boolean isPublished, Boolean canAccessAllChannels, List<Benefit.ChannelBenefit> channelBenefits, List<Benefit.IntangibleBenefit> intangibleBenefits, SubscriptionTrialInterval trialInterval, Integer activeTrialUserLimit) {
         m.checkNotNullParameter(channelBenefits, "channelBenefits");
         m.checkNotNullParameter(intangibleBenefits, "intangibleBenefits");
         return new GuildRoleSubscriptionTier(name, applicationId, priceTier, memberColor, memberIcon, guildRole, image, imageAssetId, description, isPublished, canAccessAllChannels, channelBenefits, intangibleBenefits, trialInterval, activeTrialUserLimit);
@@ -110,7 +110,7 @@ public final /* data */ class GuildRoleSubscriptionTier {
         return this.canAccessAllChannels;
     }
 
-    public final List<Benefit$ChannelBenefit> getChannelBenefits() {
+    public final List<Benefit.ChannelBenefit> getChannelBenefits() {
         return this.channelBenefits;
     }
 
@@ -150,7 +150,7 @@ public final /* data */ class GuildRoleSubscriptionTier {
         return this.imageAssetId;
     }
 
-    public final List<Benefit$IntangibleBenefit> getIntangibleBenefits() {
+    public final List<Benefit.IntangibleBenefit> getIntangibleBenefits() {
         return this.intangibleBenefits;
     }
 
@@ -227,9 +227,9 @@ public final /* data */ class GuildRoleSubscriptionTier {
         int iHashCode10 = (iHashCode9 + (bool != null ? bool.hashCode() : 0)) * 31;
         Boolean bool2 = this.canAccessAllChannels;
         int iHashCode11 = (iHashCode10 + (bool2 != null ? bool2.hashCode() : 0)) * 31;
-        List<Benefit$ChannelBenefit> list = this.channelBenefits;
+        List<Benefit.ChannelBenefit> list = this.channelBenefits;
         int iHashCode12 = (iHashCode11 + (list != null ? list.hashCode() : 0)) * 31;
-        List<Benefit$IntangibleBenefit> list2 = this.intangibleBenefits;
+        List<Benefit.IntangibleBenefit> list2 = this.intangibleBenefits;
         int iHashCode13 = (iHashCode12 + (list2 != null ? list2.hashCode() : 0)) * 31;
         SubscriptionTrialInterval subscriptionTrialInterval = this.trialInterval;
         int iHashCode14 = (iHashCode13 + (subscriptionTrialInterval != null ? subscriptionTrialInterval.hashCode() : 0)) * 31;

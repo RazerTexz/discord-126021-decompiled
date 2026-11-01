@@ -14,9 +14,10 @@ import b.a.d.g0;
 import b.a.d.i0;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.guild.GuildFeature;
 import com.discord.api.sticker.Sticker;
+import com.discord.api.sticker.StickerType;
 import com.discord.app.AppBottomSheet;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetGuildStickerSheetBinding;
@@ -24,7 +25,7 @@ import com.discord.models.guild.Guild;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.utilities.icon.IconUtils;
-import com.discord.utilities.images.MGImages$ChangeDetector;
+import com.discord.utilities.images.MGImages;
 import com.discord.utilities.locale.LocaleManager;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
@@ -33,10 +34,13 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.text.NumberFormat;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 import rx.Observable;
 import rx.subscriptions.CompositeSubscription;
@@ -45,7 +49,9 @@ import rx.subscriptions.CompositeSubscription;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGuildStickerSheet extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGuildStickerSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildStickerSheetBinding;", 0)};
-    public static final WidgetGuildStickerSheet$Companion Companion = new WidgetGuildStickerSheet$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final int VIEW_CONTENT = 0;
     private static final int VIEW_LOADING = 1;
 
@@ -55,6 +61,54 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.stickers.WidgetGuildStickerSheet$bindSubscriptions$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildStickerSheet.kt */
+    public final class AnonymousClass1 extends o implements Function1<GuildStickerSheetViewModel.ViewState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildStickerSheetViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildStickerSheetViewModel.ViewState viewState) {
+            if (m.areEqual(viewState, GuildStickerSheetViewModel.ViewState.Loading.INSTANCE)) {
+                WidgetGuildStickerSheet.access$showLoading(WidgetGuildStickerSheet.this);
+            } else if (m.areEqual(viewState, GuildStickerSheetViewModel.ViewState.Dismiss.INSTANCE)) {
+                WidgetGuildStickerSheet.this.dismiss();
+            } else if (viewState instanceof GuildStickerSheetViewModel.ViewState.Loaded) {
+                WidgetGuildStickerSheet.access$configureUI(WidgetGuildStickerSheet.this, (GuildStickerSheetViewModel.ViewState.Loaded) viewState);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildStickerSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, Sticker sticker) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            m.checkNotNullParameter(sticker, "sticker");
+            if (sticker.getType() != StickerType.GUILD) {
+                return;
+            }
+            WidgetGuildStickerSheet widgetGuildStickerSheet = new WidgetGuildStickerSheet();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("com.discord.intent.extra.EXTRA_STICKER", sticker);
+            widgetGuildStickerSheet.setArguments(bundle);
+            widgetGuildStickerSheet.show(fragmentManager, WidgetGuildStickerSheet.class.getName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetGuildStickerSheet() {
         super(false, 1, null);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildStickerSheet$binding$2.INSTANCE, null, 2, null);
@@ -63,8 +117,8 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(GuildStickerSheetViewModel.class), new WidgetGuildStickerSheet$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetGuildStickerSheet$viewModel$2));
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetGuildStickerSheet widgetGuildStickerSheet, GuildStickerSheetViewModel$ViewState$Loaded guildStickerSheetViewModel$ViewState$Loaded) {
-        widgetGuildStickerSheet.configureUI(guildStickerSheetViewModel$ViewState$Loaded);
+    public static final /* synthetic */ void access$configureUI(WidgetGuildStickerSheet widgetGuildStickerSheet, GuildStickerSheetViewModel.ViewState.Loaded loaded) {
+        widgetGuildStickerSheet.configureUI(loaded);
     }
 
     public static final /* synthetic */ Bundle access$getArgumentsOrDefault$p(WidgetGuildStickerSheet widgetGuildStickerSheet) {
@@ -84,7 +138,7 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
         m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
         Observable observableR = ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null).r();
         m.checkNotNullExpressionValue(observableR, "viewModel\n        .obser…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe$default(observableR, WidgetGuildStickerSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildStickerSheet$bindSubscriptions$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(observableR, WidgetGuildStickerSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
     private final void configureButtons(boolean isUserPremium, boolean isUserInGuild, Guild guild) {
@@ -141,10 +195,10 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
         if (guild.hasIcon()) {
             SimpleDraweeView simpleDraweeView = binding.f;
             m.checkNotNullExpressionValue(simpleDraweeView, "guildStickerSheetGuildIcon");
-            IconUtils.setIcon$default((ImageView) simpleDraweeView, guild, 0, (MGImages$ChangeDetector) null, true, 12, (Object) null);
+            IconUtils.setIcon$default((ImageView) simpleDraweeView, guild, 0, (MGImages.ChangeDetector) null, true, 12, (Object) null);
         } else {
-            binding.h.setBackgroundResource(2131231172);
-            int themedColor = ColorCompat.getThemedColor(requireContext(), 2130968912);
+            binding.h.setBackgroundResource(R.drawable.drawable_circle_black);
+            int themedColor = ColorCompat.getThemedColor(requireContext(), R.attr.colorBackgroundSecondary);
             FrameLayout frameLayout = binding.h;
             m.checkNotNullExpressionValue(frameLayout, "guildStickerSheetGuildIconWrapper");
             frameLayout.setBackgroundTintList(ColorStateList.valueOf(themedColor));
@@ -153,9 +207,9 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
             textView.setText(guild.getShortName());
         }
         if (guild.getFeatures().contains(GuildFeature.PARTNERED)) {
-            i = 2131231996;
+            i = R.drawable.ic_partnered_badge_banner;
         } else {
-            i = guild.getFeatures().contains(GuildFeature.VERIFIED) ? 2131232242 : 0;
+            i = guild.getFeatures().contains(GuildFeature.VERIFIED) ? R.drawable.ic_verified_badge_banner : 0;
         }
         TextView textView2 = binding.j;
         m.checkNotNullExpressionValue(textView2, "guildStickerSheetGuildName");
@@ -163,11 +217,11 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
         TextView textView3 = binding.j;
         m.checkNotNullExpressionValue(textView3, "guildStickerSheetGuildName");
         textView3.setText(guild.getName());
-        int i2 = isGuildPublic ? 2131895973 : 2131895972;
+        int i2 = isGuildPublic ? R.string.sticker_popout_public_server : R.string.sticker_popout_private_server;
         String str = null;
         CharSequence charSequenceK = b.k(this, i2, new Object[0], null, 4);
         if (approximateOnline != null) {
-            str = b.k(this, 2131892068, new Object[]{NumberFormat.getNumberInstance(new LocaleManager().getPrimaryLocale(requireContext())).format(Integer.valueOf(approximateOnline.intValue()))}, null, 4).toString() + " • ";
+            str = b.k(this, R.string.instant_invite_guild_members_online, new Object[]{NumberFormat.getNumberInstance(new LocaleManager().getPrimaryLocale(requireContext())).format(Integer.valueOf(approximateOnline.intValue()))}, null, 4).toString() + " • ";
         }
         if (str == null) {
             str = "";
@@ -177,26 +231,26 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
         textView4.setText(str + charSequenceK);
     }
 
-    private final void configureUI(GuildStickerSheetViewModel$ViewState$Loaded viewState) {
-        Sticker stickerComponent1 = viewState.getSticker();
-        boolean zComponent2 = viewState.getIsUserPremium();
-        boolean zComponent3 = viewState.getIsCurrentGuild();
+    private final void configureUI(GuildStickerSheetViewModel.ViewState.Loaded viewState) {
+        Sticker sticker = viewState.getSticker();
+        boolean isUserPremium = viewState.getIsUserPremium();
+        boolean isCurrentGuild = viewState.getIsCurrentGuild();
         boolean isPublic = viewState.getGuildStickerGuildInfo().getIsPublic();
         boolean isUserInGuild = viewState.getGuildStickerGuildInfo().getIsUserInGuild();
-        GuildStickerSheetViewModel$Companion$GuildStickerGuildInfo guildStickerGuildInfo = viewState.getGuildStickerGuildInfo();
-        if (!(guildStickerGuildInfo instanceof GuildStickerSheetViewModel$Companion$GuildStickerGuildInfo$Known)) {
+        GuildStickerSheetViewModel.Companion.GuildStickerGuildInfo guildStickerGuildInfo = viewState.getGuildStickerGuildInfo();
+        if (!(guildStickerGuildInfo instanceof GuildStickerSheetViewModel.Companion.GuildStickerGuildInfo.Known)) {
             guildStickerGuildInfo = null;
         }
-        GuildStickerSheetViewModel$Companion$GuildStickerGuildInfo$Known guildStickerSheetViewModel$Companion$GuildStickerGuildInfo$Known = (GuildStickerSheetViewModel$Companion$GuildStickerGuildInfo$Known) guildStickerGuildInfo;
-        getBinding().m.d(stickerComponent1, 0);
+        GuildStickerSheetViewModel.Companion.GuildStickerGuildInfo.Known known = (GuildStickerSheetViewModel.Companion.GuildStickerGuildInfo.Known) guildStickerGuildInfo;
+        getBinding().m.d(sticker, 0);
         TextView textView = getBinding().n;
         m.checkNotNullExpressionValue(textView, "binding.guildStickerSheetStickerName");
-        textView.setText(stickerComponent1.getName());
+        textView.setText(sticker.getName());
         TextView textView2 = getBinding().c;
         m.checkNotNullExpressionValue(textView2, "binding.guildStickerSheetDescription");
-        textView2.setText(getString(getCustomStickerInfoText(zComponent3, isUserInGuild, isPublic, zComponent2)));
-        configureButtons(zComponent2, isUserInGuild, guildStickerSheetViewModel$Companion$GuildStickerGuildInfo$Known != null ? guildStickerSheetViewModel$Companion$GuildStickerGuildInfo$Known.getGuild() : null);
-        configureGuildSection(guildStickerSheetViewModel$Companion$GuildStickerGuildInfo$Known != null ? guildStickerSheetViewModel$Companion$GuildStickerGuildInfo$Known.getGuild() : null, zComponent3, isPublic, guildStickerSheetViewModel$Companion$GuildStickerGuildInfo$Known != null ? guildStickerSheetViewModel$Companion$GuildStickerGuildInfo$Known.getApproximateOnline() : null);
+        textView2.setText(getString(getCustomStickerInfoText(isCurrentGuild, isUserInGuild, isPublic, isUserPremium)));
+        configureButtons(isUserPremium, isUserInGuild, known != null ? known.getGuild() : null);
+        configureGuildSection(known != null ? known.getGuild() : null, isCurrentGuild, isPublic, known != null ? known.getApproximateOnline() : null);
         AppViewFlipper appViewFlipper = getBinding().d;
         m.checkNotNullExpressionValue(appViewFlipper, "binding.guildStickerSheetFlipper");
         appViewFlipper.setDisplayedChild(0);
@@ -208,26 +262,26 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
-        return R$layout.widget_guild_sticker_sheet;
+        return R.layout.widget_guild_sticker_sheet;
     }
 
     private final int getCustomStickerInfoText(boolean isCurrentGuild, boolean isUserInGuild, boolean isGuildPublic, boolean isUserPremium) {
         if (isCurrentGuild && !isUserPremium) {
-            return 2131895960;
+            return R.string.sticker_popout_current_guild_description;
         }
         if (isCurrentGuild && isUserPremium) {
-            return 2131895968;
+            return R.string.sticker_popout_premium_current_guild_description;
         }
         if (isUserInGuild && !isUserPremium) {
-            return 2131895962;
+            return R.string.sticker_popout_joined_guild_description;
         }
         if (isUserInGuild && isUserPremium) {
-            return 2131895969;
+            return R.string.sticker_popout_premium_joined_guild_description;
         }
         if (!isGuildPublic || isUserPremium) {
-            return (isGuildPublic && isUserPremium) ? 2131895970 : 2131895971;
+            return (isGuildPublic && isUserPremium) ? R.string.sticker_popout_premium_unjoined_discoverable_guild_description : R.string.sticker_popout_premium_unjoined_private_guild_description;
         }
-        return 2131895975;
+        return R.string.sticker_popout_unjoined_discoverable_guild_description;
     }
 
     private final GuildStickerSheetViewModel getViewModel() {
@@ -235,7 +289,7 @@ public final class WidgetGuildStickerSheet extends AppBottomSheet {
     }
 
     public static final void show(FragmentManager fragmentManager, Sticker sticker) {
-        Companion.show(fragmentManager, sticker);
+        INSTANCE.show(fragmentManager, sticker);
     }
 
     private final void showLoading() {

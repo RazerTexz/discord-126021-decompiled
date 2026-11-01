@@ -1,13 +1,12 @@
 package defpackage;
 
 import android.view.View;
-import android.view.View$OnClickListener;
-import com.lytefast.flexinput.adapters.AttachmentPreviewAdapter$b;
+import com.lytefast.flexinput.adapters.AttachmentPreviewAdapter;
 import com.lytefast.flexinput.model.Attachment;
 
 /* JADX INFO: compiled from: java-style lambda group */
 /* JADX INFO: loaded from: classes.dex */
-public final class e implements View$OnClickListener {
+public final class e implements View.OnClickListener {
     public final /* synthetic */ int j;
     public final /* synthetic */ Object k;
     public final /* synthetic */ Object l;
@@ -28,21 +27,21 @@ public final class e implements View$OnClickListener {
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
      */
-    @Override // android.view.View$OnClickListener
+    @Override // android.view.View.OnClickListener
     public final void onClick(View view) {
         int i = this.j;
         if (i == 0) {
-            ((AttachmentPreviewAdapter$b) this.k).r.selectionAggregator.unselectItem((Attachment) this.l);
+            ((AttachmentPreviewAdapter.b) this.k).r.selectionAggregator.unselectItem((Attachment) this.l);
             return;
         }
         if (i == 1) {
-            AttachmentPreviewAdapter$b attachmentPreviewAdapter$b = (AttachmentPreviewAdapter$b) this.k;
-            attachmentPreviewAdapter$b.q.invoke(attachmentPreviewAdapter$b.r.selectionAggregator, (Attachment) this.l);
+            AttachmentPreviewAdapter.b bVar = (AttachmentPreviewAdapter.b) this.k;
+            bVar.q.invoke(bVar.r.selectionAggregator, (Attachment) this.l);
         } else {
             if (i != 2) {
                 throw null;
             }
-            ((AttachmentPreviewAdapter$b) this.k).r.selectionAggregator.unselectItem((Attachment) this.l);
+            ((AttachmentPreviewAdapter.b) this.k).r.selectionAggregator.unselectItem((Attachment) this.l);
         }
     }
 }

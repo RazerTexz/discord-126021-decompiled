@@ -5,7 +5,7 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import b.a.i.s1;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetThreadBrowserArchivedBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -29,21 +29,21 @@ public final /* synthetic */ class WidgetThreadBrowserArchived$binding$2 extends
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetThreadBrowserArchivedBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.empty_view;
-        View viewFindViewById = view.findViewById(R$id.empty_view);
+        int i = R.id.empty_view;
+        View viewFindViewById = view.findViewById(R.id.empty_view);
         if (viewFindViewById != null) {
             s1 s1VarA = s1.a(viewFindViewById);
-            i = 2131364898;
-            RecyclerView recyclerView = (RecyclerView) view.findViewById(2131364898);
+            i = R.id.recycler_view;
+            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
             if (recyclerView != null) {
-                i = R$id.thread_browser_error_msg;
-                TextView textView = (TextView) view.findViewById(R$id.thread_browser_error_msg);
+                i = R.id.thread_browser_error_msg;
+                TextView textView = (TextView) view.findViewById(R.id.thread_browser_error_msg);
                 if (textView != null) {
-                    i = R$id.thread_browser_error_overlay;
-                    ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(R$id.thread_browser_error_overlay);
+                    i = R.id.thread_browser_error_overlay;
+                    ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(R.id.thread_browser_error_overlay);
                     if (constraintLayout != null) {
-                        i = R$id.thread_browser_try_again;
-                        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.thread_browser_try_again);
+                        i = R.id.thread_browser_try_again;
+                        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.thread_browser_try_again);
                         if (materialButton != null) {
                             return new WidgetThreadBrowserArchivedBinding((ConstraintLayout) view, s1VarA, recyclerView, textView, constraintLayout, materialButton);
                         }

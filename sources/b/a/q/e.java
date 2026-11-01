@@ -8,17 +8,113 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: MediaSinkWantsLadder.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class e {
-    public static final e$b a = new e$b(null);
+    public static final b a = new b(null);
     public final Map<EncodeQuality, n> c;
-    public final List<e$c> d;
+    public final List<c> d;
     public final j0 e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final int f257b;
+
+    /* JADX INFO: compiled from: MediaSinkWantsLadder.kt */
+    public final class a {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f258b;
+        public final double c;
+        public final int d;
+
+        public a(int i, int i2, double d, int i3) {
+            this.a = i;
+            this.f258b = i2;
+            this.c = d;
+            this.d = i3;
+        }
+
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof a)) {
+                return false;
+            }
+            a aVar = (a) obj;
+            return this.a == aVar.a && this.f258b == aVar.f258b && Double.compare(this.c, aVar.c) == 0 && this.d == aVar.d;
+        }
+
+        public int hashCode() {
+            return ((a0.a.a.a.a(this.c) + (((this.a * 31) + this.f258b) * 31)) * 31) + this.d;
+        }
+
+        public String toString() {
+            StringBuilder sbU = b.d.b.a.a.U("CandidateResolution(width=");
+            sbU.append(this.a);
+            sbU.append(", height=");
+            sbU.append(this.f258b);
+            sbU.append(", budgetPortion=");
+            sbU.append(this.c);
+            sbU.append(", pixelCount=");
+            return b.d.b.a.a.B(sbU, this.d, ")");
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaSinkWantsLadder.kt */
+    public final class b {
+        public b(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaSinkWantsLadder.kt */
+    public final class c {
+        public final n a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f259b;
+        public final EncodeQuality c;
+
+        public c(n nVar, int i, EncodeQuality encodeQuality) {
+            d0.z.d.m.checkNotNullParameter(nVar, "budget");
+            d0.z.d.m.checkNotNullParameter(encodeQuality, "wantValue");
+            this.a = nVar;
+            this.f259b = i;
+            this.c = encodeQuality;
+        }
+
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof c)) {
+                return false;
+            }
+            c cVar = (c) obj;
+            return d0.z.d.m.areEqual(this.a, cVar.a) && this.f259b == cVar.f259b && d0.z.d.m.areEqual(this.c, cVar.c);
+        }
+
+        public int hashCode() {
+            n nVar = this.a;
+            int iHashCode = (((nVar != null ? nVar.hashCode() : 0) * 31) + this.f259b) * 31;
+            EncodeQuality encodeQuality = this.c;
+            return iHashCode + (encodeQuality != null ? encodeQuality.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = b.d.b.a.a.U("OrderedLadder(budget=");
+            sbU.append(this.a);
+            sbU.append(", pixelCount=");
+            sbU.append(this.f259b);
+            sbU.append(", wantValue=");
+            sbU.append(this.c);
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
 
     public e(j0 j0Var, int i) {
         n nVar;
@@ -27,7 +123,7 @@ public final class e {
         j0 j0Var2 = (i & 1) != 0 ? f.a : null;
         d0.z.d.m.checkNotNullParameter(j0Var2, "options");
         this.e = j0Var2;
-        b bVar = j0Var2.a;
+        b.a.q.b bVar = j0Var2.a;
         int i2 = bVar.a * bVar.f256b;
         this.f257b = i2;
         Set of = n0.setOf((Object[]) new Double[]{Double.valueOf(0.0d), Double.valueOf(4.0d), Double.valueOf(8.0d), Double.valueOf(10.0d)});
@@ -37,7 +133,7 @@ public final class e {
             double d2 = (d * 16.0d) / 9.0d;
             if (of.contains(Double.valueOf(d2 % 16.0d)) && of.contains(Double.valueOf(d % 16.0d))) {
                 double d3 = d * d2;
-                arrayList.add(new e$a((int) d2, i3, d3 / ((double) i2), (int) d3));
+                arrayList.add(new a((int) d2, i3, d3 / ((double) i2), (int) d3));
             }
         }
         LinkedHashMap linkedHashMap = new LinkedHashMap();
@@ -52,11 +148,11 @@ public final class e {
                     break;
                 }
                 objPrevious = listIterator.previous();
-            } while (!(((e$a) objPrevious).d * i4 <= i2));
-            e$a e_a = (e$a) objPrevious;
-            e_a = e_a == null ? (e$a) d0.t.u.first((List) arrayList) : e_a;
-            if (i5 != e_a.a) {
-                linkedHashMap.put(encodeQuality2, new n(e_a.a, e_a.f258b, e_a.c, encodeQuality2.compareTo(EncodeQuality.Twenty) <= 0 ? 12 : 20, 30));
+            } while (!(((a) objPrevious).d * i4 <= i2));
+            a aVar = (a) objPrevious;
+            aVar = aVar == null ? (a) d0.t.u.first((List) arrayList) : aVar;
+            if (i5 != aVar.a) {
+                linkedHashMap.put(encodeQuality2, new n(aVar.a, aVar.f258b, aVar.c, encodeQuality2.compareTo(EncodeQuality.Twenty) <= 0 ? 12 : 20, 30));
                 EncodeQuality[] encodeQualityArrValues = EncodeQuality.values();
                 int i6 = 10;
                 while (true) {
@@ -72,7 +168,7 @@ public final class e {
                     }
                 }
                 encodeQuality2 = encodeQuality == null ? EncodeQuality.Zero : encodeQuality;
-                i5 = e_a.a;
+                i5 = aVar.a;
             }
             i4++;
             i2 = i2;
@@ -82,7 +178,7 @@ public final class e {
         ArrayList arrayList2 = new ArrayList(11);
         for (int i7 = 0; i7 < 11; i7++) {
             EncodeQuality encodeQuality3 = encodeQualityArrValues2[i7];
-            arrayList2.add((encodeQuality3 == EncodeQuality.Zero || (nVar = (n) linkedHashMap.get(encodeQuality3)) == null) ? null : new e$c(nVar, nVar.f274b * nVar.a, encodeQuality3));
+            arrayList2.add((encodeQuality3 == EncodeQuality.Zero || (nVar = (n) linkedHashMap.get(encodeQuality3)) == null) ? null : new c(nVar, nVar.f274b * nVar.a, encodeQuality3));
         }
         this.d = d0.t.u.filterNotNull(arrayList2);
     }

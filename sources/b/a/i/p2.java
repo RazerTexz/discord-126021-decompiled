@@ -5,7 +5,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.views.GuildView;
 
@@ -35,14 +35,14 @@ public final class p2 implements ViewBinding {
 
     @NonNull
     public static p2 a(@NonNull View view) {
-        int i = 2131364034;
-        GuildView guildView = (GuildView) view.findViewById(2131364034);
+        int i = R.id.image;
+        GuildView guildView = (GuildView) view.findViewById(R.id.image);
         if (guildView != null) {
-            i = R$id.kicker;
-            TextView textView = (TextView) view.findViewById(R$id.kicker);
+            i = R.id.kicker;
+            TextView textView = (TextView) view.findViewById(R.id.kicker);
             if (textView != null) {
-                i = 2131365767;
-                LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(2131365767);
+                i = R.id.text;
+                LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R.id.text);
                 if (linkifiedTextView != null) {
                     return new p2((ConstraintLayout) view, guildView, textView, linkifiedTextView);
                 }

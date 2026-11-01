@@ -1,11 +1,12 @@
 package com.google.android.material.datepicker;
 
+import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.ObjectsCompat;
+import b.i.a.g.d.l;
 import java.util.Arrays;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -22,12 +23,91 @@ public final class CalendarConstraints implements Parcelable {
     private final Month start;
 
     @NonNull
-    private final CalendarConstraints$DateValidator validator;
+    private final DateValidator validator;
     private final int yearSpan;
-    public static final Parcelable$Creator<CalendarConstraints> CREATOR = new CalendarConstraints$a();
+    public static final Parcelable.Creator<CalendarConstraints> CREATOR = new a();
 
-    public /* synthetic */ CalendarConstraints(Month month, Month month2, CalendarConstraints$DateValidator calendarConstraints$DateValidator, Month month3, CalendarConstraints$a calendarConstraints$a) {
-        this(month, month2, calendarConstraints$DateValidator, month3);
+    public final class Builder {
+        private static final String DEEP_COPY_VALIDATOR_KEY = "DEEP_COPY_VALIDATOR_KEY";
+        private long end;
+        private Long openAt;
+        private long start;
+        private DateValidator validator;
+        public static final long DEFAULT_START = l.a(Month.g(1900, 0).o);
+        public static final long DEFAULT_END = l.a(Month.g(2100, 11).o);
+
+        public Builder() {
+            this.start = DEFAULT_START;
+            this.end = DEFAULT_END;
+            this.validator = DateValidatorPointForward.from(Long.MIN_VALUE);
+        }
+
+        @NonNull
+        public CalendarConstraints build() {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(DEEP_COPY_VALIDATOR_KEY, this.validator);
+            Month monthH = Month.h(this.start);
+            Month monthH2 = Month.h(this.end);
+            DateValidator dateValidator = (DateValidator) bundle.getParcelable(DEEP_COPY_VALIDATOR_KEY);
+            Long l = this.openAt;
+            return new CalendarConstraints(monthH, monthH2, dateValidator, l == null ? null : Month.h(l.longValue()), null);
+        }
+
+        @NonNull
+        public Builder setEnd(long j) {
+            this.end = j;
+            return this;
+        }
+
+        @NonNull
+        public Builder setOpenAt(long j) {
+            this.openAt = Long.valueOf(j);
+            return this;
+        }
+
+        @NonNull
+        public Builder setStart(long j) {
+            this.start = j;
+            return this;
+        }
+
+        @NonNull
+        public Builder setValidator(@NonNull DateValidator dateValidator) {
+            this.validator = dateValidator;
+            return this;
+        }
+
+        public Builder(@NonNull CalendarConstraints calendarConstraints) {
+            this.start = DEFAULT_START;
+            this.end = DEFAULT_END;
+            this.validator = DateValidatorPointForward.from(Long.MIN_VALUE);
+            this.start = CalendarConstraints.access$100(calendarConstraints).o;
+            this.end = CalendarConstraints.access$200(calendarConstraints).o;
+            this.openAt = Long.valueOf(CalendarConstraints.access$300(calendarConstraints).o);
+            this.validator = CalendarConstraints.access$400(calendarConstraints);
+        }
+    }
+
+    public interface DateValidator extends Parcelable {
+        boolean isValid(long j);
+    }
+
+    public final class a implements Parcelable.Creator<CalendarConstraints> {
+        @Override // android.os.Parcelable.Creator
+        @NonNull
+        public CalendarConstraints createFromParcel(@NonNull Parcel parcel) {
+            return new CalendarConstraints((Month) parcel.readParcelable(Month.class.getClassLoader()), (Month) parcel.readParcelable(Month.class.getClassLoader()), (DateValidator) parcel.readParcelable(DateValidator.class.getClassLoader()), (Month) parcel.readParcelable(Month.class.getClassLoader()), null);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        @NonNull
+        public CalendarConstraints[] newArray(int i) {
+            return new CalendarConstraints[i];
+        }
+    }
+
+    public /* synthetic */ CalendarConstraints(Month month, Month month2, DateValidator dateValidator, Month month3, a aVar) {
+        this(month, month2, dateValidator, month3);
     }
 
     public static /* synthetic */ Month access$100(CalendarConstraints calendarConstraints) {
@@ -42,7 +122,7 @@ public final class CalendarConstraints implements Parcelable {
         return calendarConstraints.openAt;
     }
 
-    public static /* synthetic */ CalendarConstraints$DateValidator access$400(CalendarConstraints calendarConstraints) {
+    public static /* synthetic */ DateValidator access$400(CalendarConstraints calendarConstraints) {
         return calendarConstraints.validator;
     }
 
@@ -69,7 +149,7 @@ public final class CalendarConstraints implements Parcelable {
         return this.start.equals(calendarConstraints.start) && this.end.equals(calendarConstraints.end) && ObjectsCompat.equals(this.openAt, calendarConstraints.openAt) && this.validator.equals(calendarConstraints.validator);
     }
 
-    public CalendarConstraints$DateValidator getDateValidator() {
+    public DateValidator getDateValidator() {
         return this.validator;
     }
 
@@ -122,11 +202,11 @@ public final class CalendarConstraints implements Parcelable {
         parcel.writeParcelable(this.validator, 0);
     }
 
-    private CalendarConstraints(@NonNull Month month, @NonNull Month month2, @NonNull CalendarConstraints$DateValidator calendarConstraints$DateValidator, @Nullable Month month3) {
+    private CalendarConstraints(@NonNull Month month, @NonNull Month month2, @NonNull DateValidator dateValidator, @Nullable Month month3) {
         this.start = month;
         this.end = month2;
         this.openAt = month3;
-        this.validator = calendarConstraints$DateValidator;
+        this.validator = dateValidator;
         if (month3 != null && month.j.compareTo(month3.j) > 0) {
             throw new IllegalArgumentException("start Month cannot be after current Month");
         }

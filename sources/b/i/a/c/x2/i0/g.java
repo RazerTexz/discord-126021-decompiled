@@ -10,15 +10,11 @@ import b.i.a.c.f3.e0;
 import b.i.a.c.f3.u;
 import b.i.a.c.f3.x;
 import b.i.a.c.j1;
-import b.i.a.c.j1$b;
 import b.i.a.c.x2.s;
 import b.i.a.c.x2.t;
-import b.i.a.c.x2.t$b;
 import b.i.a.c.x2.w;
-import b.i.a.c.x2.w$a;
 import com.google.android.exoplayer2.ParserException;
 import com.google.android.exoplayer2.drm.DrmInitData;
-import com.google.android.exoplayer2.drm.DrmInitData$SchemeData;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayDeque;
@@ -43,7 +39,7 @@ public class g implements b.i.a.c.x2.h {
     public static final byte[] a = {-94, 57, 79, 82, 90, -101, 79, 20, -94, 68, 108, 66, 124, 100, -115, -12};
     public final int c;
     public final List<j1> d;
-    public final SparseArray<g$b> e;
+    public final SparseArray<b> e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final j1 f1215b;
@@ -57,7 +53,7 @@ public class g implements b.i.a.c.x2.h {
 
     /* JADX INFO: renamed from: y, reason: collision with root package name */
     @Nullable
-    public g$b f1218y;
+    public b f1218y;
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
     public int f1219z;
@@ -68,8 +64,8 @@ public class g implements b.i.a.c.x2.h {
     public final x j;
     public final b.i.a.c.z2.i.b k;
     public final x l;
-    public final ArrayDeque<d$a> m;
-    public final ArrayDeque<g$a> n;
+    public final ArrayDeque<d.a> m;
+    public final ArrayDeque<a> n;
     public int o;
     public int p;
     public long q;
@@ -79,10 +75,23 @@ public class g implements b.i.a.c.x2.h {
     public long v;
     public long w;
 
+    /* JADX INFO: compiled from: FragmentedMp4Extractor.java */
+    public final class a {
+        public final long a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f1220b;
+
+        public a(long j, int i) {
+            this.a = j;
+            this.f1220b = i;
+        }
+    }
+
     static {
-        j1$b j1_b = new j1$b();
-        j1_b.k = "application/x-emsg";
-        f1215b = j1_b.a();
+        j1.b bVar = new j1.b();
+        bVar.k = "application/x-emsg";
+        f1215b = bVar.a();
     }
 
     public g(int i) {
@@ -224,8 +233,8 @@ public class g implements b.i.a.c.x2.h {
         int i3;
         int i4;
         n nVarB;
-        w$a w_a;
-        g$a g_aRemoveFirst;
+        w.a aVar;
+        a aVarRemoveFirst;
         long j3;
         w[] wVarArr;
         int length;
@@ -289,7 +298,7 @@ public class g implements b.i.a.c.x2.h {
                     position = iVar.getPosition() - ((long) this.r);
                     i11 = this.p;
                     if ((i11 != 1836019558 || i11 == 1835295092) && !this.G) {
-                        this.D.a(new t$b(this.w, position));
+                        this.D.a(new t.b(this.w, position));
                         this.G = true;
                     }
                     if (this.p == 1836019558) {
@@ -314,7 +323,7 @@ public class g implements b.i.a.c.x2.h {
                         }
                         if (z4) {
                             position2 = (iVar.getPosition() + this.q) - 8;
-                            this.m.push(new d$a(this.p, position2));
+                            this.m.push(new d.a(this.p, position2));
                             if (this.q == this.r) {
                                 j(position2);
                             } else {
@@ -373,10 +382,10 @@ public class g implements b.i.a.c.x2.h {
                     position = iVar.getPosition() - ((long) this.r);
                     i11 = this.p;
                     if (i11 != 1836019558) {
-                        this.D.a(new t$b(this.w, position));
+                        this.D.a(new t.b(this.w, position));
                         this.G = true;
                     } else {
-                        this.D.a(new t$b(this.w, position));
+                        this.D.a(new t.b(this.w, position));
                         this.G = true;
                     }
                     if (this.p == 1836019558) {
@@ -401,7 +410,7 @@ public class g implements b.i.a.c.x2.h {
                         }
                         if (z4) {
                             position2 = (iVar.getPosition() + this.q) - 8;
-                            this.m.push(new d$a(this.p, position2));
+                            this.m.push(new d.a(this.p, position2));
                             if (this.q == this.r) {
                                 j(position2);
                             } else {
@@ -447,10 +456,10 @@ public class g implements b.i.a.c.x2.h {
                 if (xVar4 != null) {
                     iVar.readFully(xVar4.a, 8, i16);
                     int i17 = this.p;
-                    d$b d_b = new d$b(i17, xVar4);
+                    d.b bVar = new d.b(i17, xVar4);
                     long position3 = iVar.getPosition();
                     if (!this.m.isEmpty()) {
-                        this.m.peek().c.add(d_b);
+                        this.m.peek().c.add(bVar);
                     } else if (i17 == 1936286840) {
                         xVar4.E(8);
                         int iF2 = (xVar4.f() >> 24) & 255;
@@ -536,27 +545,27 @@ public class g implements b.i.a.c.x2.h {
                         int iA = xVar4.a();
                         System.arraycopy(xVar4.a, xVar4.f984b, bArr2, 0, iA);
                         xVar4.f984b += iA;
-                        b.i.a.c.z2.i.b bVar = this.k;
-                        bVar.a.reset();
+                        b.i.a.c.z2.i.b bVar2 = this.k;
+                        bVar2.a.reset();
                         try {
-                            DataOutputStream dataOutputStream = bVar.f1322b;
+                            DataOutputStream dataOutputStream = bVar2.f1322b;
                             dataOutputStream.writeBytes(strN);
                             dataOutputStream.writeByte(0);
-                            DataOutputStream dataOutputStream2 = bVar.f1322b;
+                            DataOutputStream dataOutputStream2 = bVar2.f1322b;
                             dataOutputStream2.writeBytes(strN2);
                             dataOutputStream2.writeByte(0);
-                            bVar.f1322b.writeLong(jF);
-                            bVar.f1322b.writeLong(jU);
-                            bVar.f1322b.write(bArr2);
-                            bVar.f1322b.flush();
-                            x xVar5 = new x(bVar.a.toByteArray());
+                            bVar2.f1322b.writeLong(jF);
+                            bVar2.f1322b.writeLong(jU);
+                            bVar2.f1322b.write(bArr2);
+                            bVar2.f1322b.flush();
+                            x xVar5 = new x(bVar2.a.toByteArray());
                             int iA2 = xVar5.a();
                             for (w wVar2 : this.E) {
                                 xVar5.E(0);
                                 wVar2.c(xVar5, iA2);
                             }
                             if (j4 == -9223372036854775807L) {
-                                this.n.addLast(new g$a(j9, iA2));
+                                this.n.addLast(new a(j9, iA2));
                                 this.u += iA2;
                             } else {
                                 for (w wVar3 : this.E) {
@@ -572,24 +581,24 @@ public class g implements b.i.a.c.x2.h {
                 }
                 j(iVar.getPosition());
             } else if (i14 != 2) {
-                g$b g_b = this.f1218y;
-                if (g_b == null) {
-                    SparseArray<g$b> sparseArray = this.e;
+                b bVar3 = this.f1218y;
+                if (bVar3 == null) {
+                    SparseArray<b> sparseArray = this.e;
                     int size2 = sparseArray.size();
                     long j11 = Long.MAX_VALUE;
-                    g$b g_b2 = null;
+                    b bVar4 = null;
                     for (int i21 = 0; i21 < size2; i21++) {
-                        g$b g_bValueAt = sparseArray.valueAt(i21);
-                        boolean z7 = g_bValueAt.l;
-                        if ((z7 || g_bValueAt.f != g_bValueAt.d.f1233b) && (!z7 || g_bValueAt.h != g_bValueAt.f1221b.d)) {
-                            long jA = g_bValueAt.a();
+                        b bVarValueAt = sparseArray.valueAt(i21);
+                        boolean z7 = bVarValueAt.l;
+                        if ((z7 || bVarValueAt.f != bVarValueAt.d.f1233b) && (!z7 || bVarValueAt.h != bVarValueAt.f1221b.d)) {
+                            long jA = bVarValueAt.a();
                             if (jA < j11) {
-                                g_b2 = g_bValueAt;
+                                bVar4 = bVarValueAt;
                                 j11 = jA;
                             }
                         }
                     }
-                    if (g_b2 == null) {
+                    if (bVar4 == null) {
                         int position4 = (int) (this.t - iVar.getPosition());
                         if (position4 < 0) {
                             throw ParserException.a("Offset to end of mdat was negative.", null);
@@ -598,23 +607,23 @@ public class g implements b.i.a.c.x2.h {
                         c();
                         i15 = 0;
                     } else {
-                        int iA3 = (int) (g_b2.a() - iVar.getPosition());
+                        int iA3 = (int) (bVar4.a() - iVar.getPosition());
                         if (iA3 < 0) {
                             Log.w("FragmentedMp4Extractor", "Ignoring negative offset to sample data.");
                             iA3 = 0;
                         }
                         iVar.l(iA3);
-                        this.f1218y = g_b2;
-                        g_b = g_b2;
+                        this.f1218y = bVar4;
+                        bVar3 = bVar4;
                         c = 6;
                         if (this.o != 3) {
-                            pVar = g_b.d;
+                            pVar = bVar3.d;
                             mVar = pVar.a;
-                            wVar = g_b.a;
-                            if (g_b.l) {
-                                j = g_b.f1221b.i[g_b.f];
+                            wVar = bVar3.a;
+                            if (bVar3.l) {
+                                j = bVar3.f1221b.i[bVar3.f];
                             } else {
-                                j = pVar.f[g_b.f];
+                                j = pVar.f[bVar3.f];
                             }
                             j2 = j;
                             i = mVar.j;
@@ -683,58 +692,58 @@ public class g implements b.i.a.c.x2.h {
                                     }
                                 }
                             }
-                            if (!g_b.l) {
-                                i4 = g_b.d.g[g_b.f];
-                            } else if (g_b.f1221b.j[g_b.f]) {
+                            if (!bVar3.l) {
+                                i4 = bVar3.d.g[bVar3.f];
+                            } else if (bVar3.f1221b.j[bVar3.f]) {
                                 i4 = 1;
                             } else {
                                 i4 = 0;
                             }
-                            if (g_b.b() != null) {
+                            if (bVar3.b() != null) {
                                 i4 |= BasicMeasure.EXACTLY;
                             }
                             int i22 = i4;
-                            nVarB = g_b.b();
+                            nVarB = bVar3.b();
                             if (nVarB != null) {
-                                w_a = nVarB.c;
+                                aVar = nVarB.c;
                             } else {
-                                w_a = null;
+                                aVar = null;
                             }
-                            wVar.d(j2, i22, this.f1219z, 0, w_a);
+                            wVar.d(j2, i22, this.f1219z, 0, aVar);
                             while (!this.n.isEmpty()) {
-                                g_aRemoveFirst = this.n.removeFirst();
-                                this.u -= g_aRemoveFirst.f1220b;
-                                j3 = g_aRemoveFirst.a + j2;
+                                aVarRemoveFirst = this.n.removeFirst();
+                                this.u -= aVarRemoveFirst.f1220b;
+                                j3 = aVarRemoveFirst.a + j2;
                                 wVarArr = this.E;
                                 i5 = 0;
                                 for (length = wVarArr.length; i5 < length; length = length) {
-                                    wVarArr[i5].d(j3, 1, g_aRemoveFirst.f1220b, this.u, null);
+                                    wVarArr[i5].d(j3, 1, aVarRemoveFirst.f1220b, this.u, null);
                                     i5++;
                                 }
                             }
-                            if (!g_b.c()) {
+                            if (!bVar3.c()) {
                                 this.f1218y = null;
                             }
                             this.o = 3;
                             i15 = 1;
                         } else {
-                            if (g_b.l) {
-                                i9 = g_b.f1221b.h[g_b.f];
+                            if (bVar3.l) {
+                                i9 = bVar3.f1221b.h[bVar3.f];
                             } else {
-                                i9 = g_b.d.d[g_b.f];
+                                i9 = bVar3.d.d[bVar3.f];
                             }
                             this.f1219z = i9;
-                            if (g_b.f < g_b.i) {
+                            if (bVar3.f < bVar3.i) {
                                 iVar.l(i9);
-                                nVarB2 = g_b.b();
+                                nVarB2 = bVar3.b();
                                 if (nVarB2 != null) {
-                                    xVar = g_b.f1221b.n;
+                                    xVar = bVar3.f1221b.n;
                                     i10 = nVarB2.d;
                                     if (i10 != 0) {
                                         xVar.F(i10);
                                     }
-                                    oVar = g_b.f1221b;
-                                    int i23 = g_b.f;
+                                    oVar = bVar3.f1221b;
+                                    int i23 = bVar3.f;
                                     if (oVar.k || !oVar.l[i23]) {
                                         z3 = false;
                                     } else {
@@ -744,33 +753,33 @@ public class g implements b.i.a.c.x2.h {
                                         xVar.F(xVar.y() * 6);
                                     }
                                 }
-                                if (!g_b.c()) {
+                                if (!bVar3.c()) {
                                     this.f1218y = null;
                                 }
                                 this.o = 3;
                             } else {
-                                if (g_b.d.a.g == 1) {
+                                if (bVar3.d.a.g == 1) {
                                     this.f1219z = i9 - 8;
                                     iVar.l(8);
                                 }
-                                if ("audio/ac4".equals(g_b.d.a.f.w)) {
-                                    this.A = g_b.d(this.f1219z, 7);
+                                if ("audio/ac4".equals(bVar3.d.a.f.w)) {
+                                    this.A = bVar3.d(this.f1219z, 7);
                                     b.i.a.c.t2.n.a(this.f1219z, this.j);
-                                    g_b.a.c(this.j, 7);
+                                    bVar3.a.c(this.j, 7);
                                     this.A += 7;
                                 } else {
-                                    this.A = g_b.d(this.f1219z, 0);
+                                    this.A = bVar3.d(this.f1219z, 0);
                                 }
                                 this.f1219z += this.A;
                                 this.o = 4;
                                 this.B = 0;
-                                pVar = g_b.d;
+                                pVar = bVar3.d;
                                 mVar = pVar.a;
-                                wVar = g_b.a;
-                                if (g_b.l) {
-                                    j = pVar.f[g_b.f];
+                                wVar = bVar3.a;
+                                if (bVar3.l) {
+                                    j = pVar.f[bVar3.f];
                                 } else {
-                                    j = g_b.f1221b.i[g_b.f];
+                                    j = bVar3.f1221b.i[bVar3.f];
                                 }
                                 j2 = j;
                                 i = mVar.j;
@@ -840,36 +849,36 @@ public class g implements b.i.a.c.x2.h {
                                         }
                                     }
                                 }
-                                if (!g_b.l) {
-                                    i4 = g_b.d.g[g_b.f];
-                                } else if (g_b.f1221b.j[g_b.f]) {
+                                if (!bVar3.l) {
+                                    i4 = bVar3.d.g[bVar3.f];
+                                } else if (bVar3.f1221b.j[bVar3.f]) {
                                     i4 = 1;
                                 } else {
                                     i4 = 0;
                                 }
-                                if (g_b.b() != null) {
+                                if (bVar3.b() != null) {
                                     i4 |= BasicMeasure.EXACTLY;
                                 }
                                 int i24 = i4;
-                                nVarB = g_b.b();
+                                nVarB = bVar3.b();
                                 if (nVarB != null) {
-                                    w_a = nVarB.c;
+                                    aVar = nVarB.c;
                                 } else {
-                                    w_a = null;
+                                    aVar = null;
                                 }
-                                wVar.d(j2, i24, this.f1219z, 0, w_a);
+                                wVar.d(j2, i24, this.f1219z, 0, aVar);
                                 while (!this.n.isEmpty()) {
-                                    g_aRemoveFirst = this.n.removeFirst();
-                                    this.u -= g_aRemoveFirst.f1220b;
-                                    j3 = g_aRemoveFirst.a + j2;
+                                    aVarRemoveFirst = this.n.removeFirst();
+                                    this.u -= aVarRemoveFirst.f1220b;
+                                    j3 = aVarRemoveFirst.a + j2;
                                     wVarArr = this.E;
                                     i5 = 0;
                                     while (i5 < length) {
-                                        wVarArr[i5].d(j3, 1, g_aRemoveFirst.f1220b, this.u, null);
+                                        wVarArr[i5].d(j3, 1, aVarRemoveFirst.f1220b, this.u, null);
                                         i5++;
                                     }
                                 }
-                                if (!g_b.c()) {
+                                if (!bVar3.c()) {
                                     this.f1218y = null;
                                 }
                                 this.o = 3;
@@ -880,13 +889,13 @@ public class g implements b.i.a.c.x2.h {
                 } else {
                     c = 6;
                     if (this.o != 3) {
-                        pVar = g_b.d;
+                        pVar = bVar3.d;
                         mVar = pVar.a;
-                        wVar = g_b.a;
-                        if (g_b.l) {
-                            j = pVar.f[g_b.f];
+                        wVar = bVar3.a;
+                        if (bVar3.l) {
+                            j = pVar.f[bVar3.f];
                         } else {
-                            j = g_b.f1221b.i[g_b.f];
+                            j = bVar3.f1221b.i[bVar3.f];
                         }
                         j2 = j;
                         i = mVar.j;
@@ -956,58 +965,58 @@ public class g implements b.i.a.c.x2.h {
                                 }
                             }
                         }
-                        if (!g_b.l) {
-                            i4 = g_b.d.g[g_b.f];
-                        } else if (g_b.f1221b.j[g_b.f]) {
+                        if (!bVar3.l) {
+                            i4 = bVar3.d.g[bVar3.f];
+                        } else if (bVar3.f1221b.j[bVar3.f]) {
                             i4 = 1;
                         } else {
                             i4 = 0;
                         }
-                        if (g_b.b() != null) {
+                        if (bVar3.b() != null) {
                             i4 |= BasicMeasure.EXACTLY;
                         }
                         int i25 = i4;
-                        nVarB = g_b.b();
+                        nVarB = bVar3.b();
                         if (nVarB != null) {
-                            w_a = nVarB.c;
+                            aVar = nVarB.c;
                         } else {
-                            w_a = null;
+                            aVar = null;
                         }
-                        wVar.d(j2, i25, this.f1219z, 0, w_a);
+                        wVar.d(j2, i25, this.f1219z, 0, aVar);
                         while (!this.n.isEmpty()) {
-                            g_aRemoveFirst = this.n.removeFirst();
-                            this.u -= g_aRemoveFirst.f1220b;
-                            j3 = g_aRemoveFirst.a + j2;
+                            aVarRemoveFirst = this.n.removeFirst();
+                            this.u -= aVarRemoveFirst.f1220b;
+                            j3 = aVarRemoveFirst.a + j2;
                             wVarArr = this.E;
                             i5 = 0;
                             while (i5 < length) {
-                                wVarArr[i5].d(j3, 1, g_aRemoveFirst.f1220b, this.u, null);
+                                wVarArr[i5].d(j3, 1, aVarRemoveFirst.f1220b, this.u, null);
                                 i5++;
                             }
                         }
-                        if (!g_b.c()) {
+                        if (!bVar3.c()) {
                             this.f1218y = null;
                         }
                         this.o = 3;
                         i15 = 1;
                     } else {
-                        if (g_b.l) {
-                            i9 = g_b.d.d[g_b.f];
+                        if (bVar3.l) {
+                            i9 = bVar3.d.d[bVar3.f];
                         } else {
-                            i9 = g_b.f1221b.h[g_b.f];
+                            i9 = bVar3.f1221b.h[bVar3.f];
                         }
                         this.f1219z = i9;
-                        if (g_b.f < g_b.i) {
+                        if (bVar3.f < bVar3.i) {
                             iVar.l(i9);
-                            nVarB2 = g_b.b();
+                            nVarB2 = bVar3.b();
                             if (nVarB2 != null) {
-                                xVar = g_b.f1221b.n;
+                                xVar = bVar3.f1221b.n;
                                 i10 = nVarB2.d;
                                 if (i10 != 0) {
                                     xVar.F(i10);
                                 }
-                                oVar = g_b.f1221b;
-                                int i26 = g_b.f;
+                                oVar = bVar3.f1221b;
+                                int i26 = bVar3.f;
                                 if (oVar.k) {
                                     z3 = false;
                                 } else {
@@ -1017,33 +1026,33 @@ public class g implements b.i.a.c.x2.h {
                                     xVar.F(xVar.y() * 6);
                                 }
                             }
-                            if (!g_b.c()) {
+                            if (!bVar3.c()) {
                                 this.f1218y = null;
                             }
                             this.o = 3;
                         } else {
-                            if (g_b.d.a.g == 1) {
+                            if (bVar3.d.a.g == 1) {
                                 this.f1219z = i9 - 8;
                                 iVar.l(8);
                             }
-                            if ("audio/ac4".equals(g_b.d.a.f.w)) {
-                                this.A = g_b.d(this.f1219z, 7);
+                            if ("audio/ac4".equals(bVar3.d.a.f.w)) {
+                                this.A = bVar3.d(this.f1219z, 7);
                                 b.i.a.c.t2.n.a(this.f1219z, this.j);
-                                g_b.a.c(this.j, 7);
+                                bVar3.a.c(this.j, 7);
                                 this.A += 7;
                             } else {
-                                this.A = g_b.d(this.f1219z, 0);
+                                this.A = bVar3.d(this.f1219z, 0);
                             }
                             this.f1219z += this.A;
                             this.o = 4;
                             this.B = 0;
-                            pVar = g_b.d;
+                            pVar = bVar3.d;
                             mVar = pVar.a;
-                            wVar = g_b.a;
-                            if (g_b.l) {
-                                j = pVar.f[g_b.f];
+                            wVar = bVar3.a;
+                            if (bVar3.l) {
+                                j = pVar.f[bVar3.f];
                             } else {
-                                j = g_b.f1221b.i[g_b.f];
+                                j = bVar3.f1221b.i[bVar3.f];
                             }
                             j2 = j;
                             i = mVar.j;
@@ -1113,36 +1122,36 @@ public class g implements b.i.a.c.x2.h {
                                     }
                                 }
                             }
-                            if (!g_b.l) {
-                                i4 = g_b.d.g[g_b.f];
-                            } else if (g_b.f1221b.j[g_b.f]) {
+                            if (!bVar3.l) {
+                                i4 = bVar3.d.g[bVar3.f];
+                            } else if (bVar3.f1221b.j[bVar3.f]) {
                                 i4 = 1;
                             } else {
                                 i4 = 0;
                             }
-                            if (g_b.b() != null) {
+                            if (bVar3.b() != null) {
                                 i4 |= BasicMeasure.EXACTLY;
                             }
                             int i27 = i4;
-                            nVarB = g_b.b();
+                            nVarB = bVar3.b();
                             if (nVarB != null) {
-                                w_a = nVarB.c;
+                                aVar = nVarB.c;
                             } else {
-                                w_a = null;
+                                aVar = null;
                             }
-                            wVar.d(j2, i27, this.f1219z, 0, w_a);
+                            wVar.d(j2, i27, this.f1219z, 0, aVar);
                             while (!this.n.isEmpty()) {
-                                g_aRemoveFirst = this.n.removeFirst();
-                                this.u -= g_aRemoveFirst.f1220b;
-                                j3 = g_aRemoveFirst.a + j2;
+                                aVarRemoveFirst = this.n.removeFirst();
+                                this.u -= aVarRemoveFirst.f1220b;
+                                j3 = aVarRemoveFirst.a + j2;
                                 wVarArr = this.E;
                                 i5 = 0;
                                 while (i5 < length) {
-                                    wVarArr[i5].d(j3, 1, g_aRemoveFirst.f1220b, this.u, null);
+                                    wVarArr[i5].d(j3, 1, aVarRemoveFirst.f1220b, this.u, null);
                                     i5++;
                                 }
                             }
-                            if (!g_b.c()) {
+                            if (!bVar3.c()) {
                                 this.f1218y = null;
                             }
                             this.o = 3;
@@ -1156,18 +1165,18 @@ public class g implements b.i.a.c.x2.h {
             } else {
                 int size3 = this.e.size();
                 long j12 = Long.MAX_VALUE;
-                g$b g_bValueAt2 = null;
+                b bVarValueAt2 = null;
                 for (int i28 = 0; i28 < size3; i28++) {
                     o oVar4 = this.e.valueAt(i28).f1221b;
                     if (oVar4.o) {
                         long j13 = oVar4.c;
                         if (j13 < j12) {
-                            g_bValueAt2 = this.e.valueAt(i28);
+                            bVarValueAt2 = this.e.valueAt(i28);
                             j12 = j13;
                         }
                     }
                 }
-                if (g_bValueAt2 == null) {
+                if (bVarValueAt2 == null) {
                     this.o = 3;
                 } else {
                     int position5 = (int) (j12 - iVar.getPosition());
@@ -1175,7 +1184,7 @@ public class g implements b.i.a.c.x2.h {
                         throw ParserException.a("Offset to encryption data was negative.", null);
                     }
                     iVar.l(position5);
-                    o oVar5 = g_bValueAt2.f1221b;
+                    o oVar5 = bVarValueAt2.f1221b;
                     x xVar10 = oVar5.n;
                     iVar.readFully(xVar10.a, 0, xVar10.c);
                     oVar5.n.E(0);
@@ -1230,29 +1239,29 @@ public class g implements b.i.a.c.x2.h {
     }
 
     @Nullable
-    public static DrmInitData h(List<d$b> list) {
+    public static DrmInitData h(List<d.b> list) {
         int size = list.size();
         ArrayList arrayList = null;
         for (int i = 0; i < size; i++) {
-            d$b d_b = list.get(i);
-            if (d_b.a == 1886614376) {
+            d.b bVar = list.get(i);
+            if (bVar.a == 1886614376) {
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                 }
-                byte[] bArr = d_b.f1210b.a;
+                byte[] bArr = bVar.f1210b.a;
                 j jVarV1 = b.c.a.a0.d.v1(bArr);
                 UUID uuid = jVarV1 == null ? null : jVarV1.a;
                 if (uuid == null) {
                     Log.w("FragmentedMp4Extractor", "Skipped pssh atom (failed to extract uuid)");
                 } else {
-                    arrayList.add(new DrmInitData$SchemeData(uuid, "video/mp4", bArr));
+                    arrayList.add(new DrmInitData.SchemeData(uuid, "video/mp4", bArr));
                 }
             }
         }
         if (arrayList == null) {
             return null;
         }
-        return new DrmInitData(null, false, (DrmInitData$SchemeData[]) arrayList.toArray(new DrmInitData$SchemeData[0]));
+        return new DrmInitData(null, false, (DrmInitData.SchemeData[]) arrayList.toArray(new DrmInitData.SchemeData[0]));
     }
 
     public static void i(x xVar, int i, o oVar) throws ParserException {
@@ -1306,8 +1315,8 @@ public class g implements b.i.a.c.x2.h {
     public final void j(long j) throws ParserException {
         g gVar;
         byte[] bArr;
-        SparseArray<g$b> sparseArray;
-        d$a d_a;
+        SparseArray<b> sparseArray;
+        d.a aVar;
         int i;
         int i2;
         int i3;
@@ -1333,29 +1342,29 @@ public class g implements b.i.a.c.x2.h {
         g gVar2 = this;
         g gVar3 = gVar2;
         while (!gVar3.m.isEmpty() && gVar3.m.peek().f1209b == j) {
-            d$a d_aPop = gVar3.m.pop();
-            int i9 = d_aPop.a;
+            d.a aVarPop = gVar3.m.pop();
+            int i9 = aVarPop.a;
             int i10 = 12;
             if (i9 == 1836019574) {
                 b.c.a.a0.d.E(true, "Unexpected moov box.");
-                DrmInitData drmInitDataH = h(d_aPop.c);
-                d$a d_aB = d_aPop.b(1836475768);
-                Objects.requireNonNull(d_aB);
+                DrmInitData drmInitDataH = h(aVarPop.c);
+                d.a aVarB = aVarPop.b(1836475768);
+                Objects.requireNonNull(aVarB);
                 SparseArray<f> sparseArray2 = new SparseArray<>();
-                int size = d_aB.c.size();
+                int size = aVarB.c.size();
                 long jU = -9223372036854775807L;
                 int i11 = 0;
                 while (i11 < size) {
-                    d$b d_b = d_aB.c.get(i11);
-                    int i12 = d_b.a;
+                    d.b bVar = aVarB.c.get(i11);
+                    int i12 = bVar.a;
                     if (i12 == 1953654136) {
-                        x xVar = d_b.f1210b;
+                        x xVar = bVar.f1210b;
                         xVar.E(i10);
                         Pair pairCreate = Pair.create(Integer.valueOf(xVar.f()), new f(xVar.f() - 1, xVar.f(), xVar.f(), xVar.f()));
                         sparseArray2.put(((Integer) pairCreate.first).intValue(), (f) pairCreate.second);
                     } else {
                         if (i12 == 1835362404) {
-                            x xVar2 = d_b.f1210b;
+                            x xVar2 = bVar.f1210b;
                             xVar2.E(8);
                             jU = ((xVar2.f() >> 24) & 255) == 0 ? xVar2.u() : xVar2.x();
                         }
@@ -1365,13 +1374,13 @@ public class g implements b.i.a.c.x2.h {
                     i11++;
                     i10 = 12;
                 }
-                ArrayList arrayList = (ArrayList) e.e(d_aPop, new b.i.a.c.x2.p(), jU, drmInitDataH, (gVar3.c & 16) != 0, false, new c(gVar3));
+                ArrayList arrayList = (ArrayList) e.e(aVarPop, new b.i.a.c.x2.p(), jU, drmInitDataH, (gVar3.c & 16) != 0, false, new c(gVar3));
                 int size2 = arrayList.size();
                 if (gVar3.e.size() == 0) {
                     for (int i13 = 0; i13 < size2; i13++) {
                         p pVar = (p) arrayList.get(i13);
                         m mVar = pVar.a;
-                        gVar3.e.put(mVar.a, new g$b(gVar3.D.p(i13, mVar.f1230b), pVar, gVar3.d(sparseArray2, mVar.a)));
+                        gVar3.e.put(mVar.a, new b(gVar3.D.p(i13, mVar.f1230b), pVar, gVar3.d(sparseArray2, mVar.a)));
                         gVar3.w = Math.max(gVar3.w, mVar.e);
                     }
                     gVar3.D.j();
@@ -1380,68 +1389,68 @@ public class g implements b.i.a.c.x2.h {
                     for (int i14 = 0; i14 < size2; i14++) {
                         p pVar2 = (p) arrayList.get(i14);
                         m mVar2 = pVar2.a;
-                        g$b g_b = gVar3.e.get(mVar2.a);
+                        b bVar2 = gVar3.e.get(mVar2.a);
                         f fVarD = gVar3.d(sparseArray2, mVar2.a);
-                        g_b.d = pVar2;
-                        g_b.e = fVarD;
-                        g_b.a.e(pVar2.a.f);
-                        g_b.e();
+                        bVar2.d = pVar2;
+                        bVar2.e = fVarD;
+                        bVar2.a.e(pVar2.a.f);
+                        bVar2.e();
                     }
                 }
                 gVar = gVar2;
             } else {
                 int i15 = 8;
                 if (i9 == 1836019558) {
-                    SparseArray<g$b> sparseArray3 = gVar3.e;
+                    SparseArray<b> sparseArray3 = gVar3.e;
                     int i16 = gVar3.c;
                     byte[] bArr3 = gVar3.i;
-                    int size3 = d_aPop.d.size();
+                    int size3 = aVarPop.d.size();
                     int i17 = 0;
                     while (i17 < size3) {
-                        d$a d_a2 = d_aPop.d.get(i17);
-                        if (d_a2.a == 1953653094) {
-                            d$b d_bC = d_a2.c(1952868452);
-                            Objects.requireNonNull(d_bC);
-                            x xVar3 = d_bC.f1210b;
+                        d.a aVar2 = aVarPop.d.get(i17);
+                        if (aVar2.a == 1953653094) {
+                            d.b bVarC = aVar2.c(1952868452);
+                            Objects.requireNonNull(bVarC);
+                            x xVar3 = bVarC.f1210b;
                             xVar3.E(i15);
                             int iF5 = xVar3.f() & ViewCompat.MEASURED_SIZE_MASK;
-                            g$b g_b2 = sparseArray3.get(xVar3.f());
-                            if (g_b2 == null) {
-                                g_b2 = null;
+                            b bVar3 = sparseArray3.get(xVar3.f());
+                            if (bVar3 == null) {
+                                bVar3 = null;
                             } else {
                                 if ((iF5 & 1) != 0) {
                                     long jX = xVar3.x();
-                                    o oVar2 = g_b2.f1221b;
+                                    o oVar2 = bVar3.f1221b;
                                     oVar2.f1232b = jX;
                                     oVar2.c = jX;
                                 }
-                                f fVar = g_b2.e;
-                                g_b2.f1221b.a = new f((iF5 & 2) != 0 ? xVar3.f() - 1 : fVar.a, (iF5 & 8) != 0 ? xVar3.f() : fVar.f1214b, (iF5 & 16) != 0 ? xVar3.f() : fVar.c, (iF5 & 32) != 0 ? xVar3.f() : fVar.d);
+                                f fVar = bVar3.e;
+                                bVar3.f1221b.a = new f((iF5 & 2) != 0 ? xVar3.f() - 1 : fVar.a, (iF5 & 8) != 0 ? xVar3.f() : fVar.f1214b, (iF5 & 16) != 0 ? xVar3.f() : fVar.c, (iF5 & 32) != 0 ? xVar3.f() : fVar.d);
                             }
-                            if (g_b2 == null) {
+                            if (bVar3 == null) {
                                 bArr = bArr3;
                                 sparseArray = sparseArray3;
-                                d_a = d_aPop;
+                                aVar = aVarPop;
                                 i = i16;
                                 i2 = size3;
                                 i3 = i17;
                             } else {
-                                o oVar3 = g_b2.f1221b;
+                                o oVar3 = bVar3.f1221b;
                                 long j5 = oVar3.p;
                                 boolean z4 = oVar3.q;
-                                g_b2.e();
-                                g_b2.l = true;
-                                d$b d_bC2 = d_a2.c(1952867444);
-                                if (d_bC2 == null || (i16 & 2) != 0) {
+                                bVar3.e();
+                                bVar3.l = true;
+                                d.b bVarC2 = aVar2.c(1952867444);
+                                if (bVarC2 == null || (i16 & 2) != 0) {
                                     oVar3.p = j5;
                                     oVar3.q = z4;
                                 } else {
-                                    x xVar4 = d_bC2.f1210b;
+                                    x xVar4 = bVarC2.f1210b;
                                     xVar4.E(i15);
                                     oVar3.p = ((xVar4.f() >> 24) & 255) == 1 ? xVar4.x() : xVar4.u();
                                     oVar3.q = true;
                                 }
-                                List<d$b> list = d_a2.c;
+                                List<d.b> list = aVar2.c;
                                 int size4 = list.size();
                                 int i18 = 0;
                                 int i19 = 0;
@@ -1451,11 +1460,11 @@ public class g implements b.i.a.c.x2.h {
                                     if (i18 >= size4) {
                                         break;
                                     }
-                                    SparseArray<g$b> sparseArray4 = sparseArray3;
-                                    d$b d_b2 = list.get(i18);
+                                    SparseArray<b> sparseArray4 = sparseArray3;
+                                    d.b bVar4 = list.get(i18);
                                     int i21 = size3;
-                                    if (d_b2.a == 1953658222) {
-                                        x xVar5 = d_b2.f1210b;
+                                    if (bVar4.a == 1953658222) {
+                                        x xVar5 = bVar4.f1210b;
                                         xVar5.E(12);
                                         int iW = xVar5.w();
                                         if (iW > 0) {
@@ -1469,10 +1478,10 @@ public class g implements b.i.a.c.x2.h {
                                 }
                                 sparseArray = sparseArray3;
                                 i2 = size3;
-                                g_b2.h = 0;
-                                g_b2.g = 0;
-                                g_b2.f = 0;
-                                o oVar4 = g_b2.f1221b;
+                                bVar3.h = 0;
+                                bVar3.g = 0;
+                                bVar3.f = 0;
+                                o oVar4 = bVar3.f1221b;
                                 oVar4.d = i19;
                                 oVar4.e = i20;
                                 if (oVar4.g.length < i19) {
@@ -1490,14 +1499,14 @@ public class g implements b.i.a.c.x2.h {
                                 int i24 = 0;
                                 int i25 = 0;
                                 while (i23 < size4) {
-                                    d$b d_b3 = list.get(i23);
-                                    if (d_b3.a == i4) {
+                                    d.b bVar5 = list.get(i23);
+                                    if (bVar5.a == i4) {
                                         int i26 = i25 + 1;
-                                        x xVar6 = d_b3.f1210b;
+                                        x xVar6 = bVar5.f1210b;
                                         xVar6.E(8);
                                         int iF6 = xVar6.f() & ViewCompat.MEASURED_SIZE_MASK;
-                                        m mVar3 = g_b2.d.a;
-                                        o oVar5 = g_b2.f1221b;
+                                        m mVar3 = bVar3.d.a;
+                                        o oVar5 = bVar3.f1221b;
                                         f fVar2 = oVar5.a;
                                         int i27 = e0.a;
                                         oVar5.g[i25] = xVar6.w();
@@ -1561,7 +1570,7 @@ public class g implements b.i.a.c.x2.h {
                                                 }
                                                 jArr[i8] = e0.F((((long) iF4) + j4) - j2, 1000000L, j3);
                                                 if (!oVar5.q) {
-                                                    jArr[i8] = jArr[i8] + g_b2.d.h;
+                                                    jArr[i8] = jArr[i8] + bVar3.d.h;
                                                 }
                                                 iArr[i8] = iF2;
                                                 if (((iF3 >> 16) & 1) == 0 || (z2 && i8 != 0)) {
@@ -1628,7 +1637,7 @@ public class g implements b.i.a.c.x2.h {
                                             }
                                             jArr[i8] = e0.F((((long) iF4) + j4) - j2, 1000000L, j3);
                                             if (!oVar5.q) {
-                                                jArr[i8] = jArr[i8] + g_b2.d.h;
+                                                jArr[i8] = jArr[i8] + bVar3.d.h;
                                             }
                                             iArr[i8] = iF2;
                                             if (((iF3 >> 16) & 1) == 0) {
@@ -1654,7 +1663,7 @@ public class g implements b.i.a.c.x2.h {
                                     } else {
                                         bArr3 = bArr3;
                                         i23 = i23;
-                                        d_aPop = d_aPop;
+                                        aVarPop = aVarPop;
                                         oVar = oVar3;
                                     }
                                     i23++;
@@ -1662,25 +1671,25 @@ public class g implements b.i.a.c.x2.h {
                                     list = list;
                                     size4 = size4;
                                     i17 = i17;
-                                    d_a2 = d_a2;
-                                    d_aPop = d_aPop;
+                                    aVar2 = aVar2;
+                                    aVarPop = aVarPop;
                                     bArr3 = bArr3;
                                     oVar3 = oVar;
                                     i4 = 1953658222;
                                 }
                                 byte[] bArr4 = bArr3;
-                                d_a = d_aPop;
+                                aVar = aVarPop;
                                 i = i16;
                                 i3 = i17;
                                 o oVar6 = oVar3;
-                                m mVar4 = g_b2.d.a;
+                                m mVar4 = bVar3.d.a;
                                 f fVar3 = oVar6.a;
                                 Objects.requireNonNull(fVar3);
                                 n nVarA = mVar4.a(fVar3.a);
-                                d$b d_bC3 = d_a2.c(1935763834);
-                                if (d_bC3 != null) {
+                                d.b bVarC3 = aVar2.c(1935763834);
+                                if (bVarC3 != null) {
                                     Objects.requireNonNull(nVarA);
-                                    x xVar7 = d_bC3.f1210b;
+                                    x xVar7 = bVarC3.f1210b;
                                     int i30 = nVarA.d;
                                     xVar7.E(8);
                                     if ((xVar7.f() & ViewCompat.MEASURED_SIZE_MASK & 1) == 1) {
@@ -1716,9 +1725,9 @@ public class g implements b.i.a.c.x2.h {
                                         oVar6.o = true;
                                     }
                                 }
-                                d$b d_bC4 = d_a2.c(1935763823);
-                                if (d_bC4 != null) {
-                                    x xVar9 = d_bC4.f1210b;
+                                d.b bVarC4 = aVar2.c(1935763823);
+                                if (bVarC4 != null) {
+                                    x xVar9 = bVarC4.f1210b;
                                     xVar9.E(8);
                                     int iF8 = xVar9.f();
                                     if ((16777215 & iF8 & 1) == 1) {
@@ -1731,17 +1740,17 @@ public class g implements b.i.a.c.x2.h {
                                     oVar6.c += ((iF8 >> 24) & 255) == 0 ? xVar9.u() : xVar9.x();
                                 }
                                 byte[] bArr6 = null;
-                                d$b d_bC5 = d_a2.c(1936027235);
-                                if (d_bC5 != null) {
-                                    i(d_bC5.f1210b, 0, oVar6);
+                                d.b bVarC5 = aVar2.c(1936027235);
+                                if (bVarC5 != null) {
+                                    i(bVarC5.f1210b, 0, oVar6);
                                 }
                                 String str = nVarA != null ? nVarA.f1231b : null;
                                 x xVar10 = null;
                                 x xVar11 = null;
-                                for (int i33 = 0; i33 < d_a2.c.size(); i33++) {
-                                    d$b d_b4 = d_a2.c.get(i33);
-                                    x xVar12 = d_b4.f1210b;
-                                    int i34 = d_b4.a;
+                                for (int i33 = 0; i33 < aVar2.c.size(); i33++) {
+                                    d.b bVar6 = aVar2.c.get(i33);
+                                    x xVar12 = bVar6.f1210b;
+                                    int i34 = bVar6.a;
                                     if (i34 == 1935828848) {
                                         xVar12.E(12);
                                         if (xVar12.f() == 1936025959) {
@@ -1797,12 +1806,12 @@ public class g implements b.i.a.c.x2.h {
                                         oVar6.m = new n(z10, str, iT4, bArr7, i35, i36, bArr6);
                                     }
                                 }
-                                int size5 = d_a2.c.size();
+                                int size5 = aVar2.c.size();
                                 int i37 = 0;
                                 while (i37 < size5) {
-                                    d$b d_b5 = d_a2.c.get(i37);
-                                    if (d_b5.a == 1970628964) {
-                                        x xVar13 = d_b5.f1210b;
+                                    d.b bVar7 = aVar2.c.get(i37);
+                                    if (bVar7.a == 1970628964) {
+                                        x xVar13 = bVar7.f1210b;
                                         xVar13.E(8);
                                         bArr2 = bArr4;
                                         System.arraycopy(xVar13.a, xVar13.f984b, bArr2, 0, 16);
@@ -1821,7 +1830,7 @@ public class g implements b.i.a.c.x2.h {
                         } else {
                             bArr = bArr3;
                             sparseArray = sparseArray3;
-                            d_a = d_aPop;
+                            aVar = aVarPop;
                             i = i16;
                             i2 = size3;
                             i3 = i17;
@@ -1832,37 +1841,37 @@ public class g implements b.i.a.c.x2.h {
                         i16 = i;
                         size3 = i2;
                         sparseArray3 = sparseArray;
-                        d_aPop = d_a;
+                        aVarPop = aVar;
                     }
-                    DrmInitData drmInitDataH2 = h(d_aPop.c);
+                    DrmInitData drmInitDataH2 = h(aVarPop.c);
                     gVar = this;
                     if (drmInitDataH2 != null) {
                         int size6 = gVar.e.size();
                         for (int i38 = 0; i38 < size6; i38++) {
-                            g$b g_bValueAt = gVar.e.valueAt(i38);
-                            m mVar5 = g_bValueAt.d.a;
-                            f fVar4 = g_bValueAt.f1221b.a;
+                            b bVarValueAt = gVar.e.valueAt(i38);
+                            m mVar5 = bVarValueAt.d.a;
+                            f fVar4 = bVarValueAt.f1221b.a;
                             int i39 = e0.a;
                             n nVarA2 = mVar5.a(fVar4.a);
                             DrmInitData drmInitDataA = drmInitDataH2.a(nVarA2 != null ? nVarA2.f1231b : null);
-                            j1$b j1_bA = g_bValueAt.d.a.f.a();
-                            j1_bA.n = drmInitDataA;
-                            g_bValueAt.a.e(j1_bA.a());
+                            j1.b bVarA = bVarValueAt.d.a.f.a();
+                            bVarA.n = drmInitDataA;
+                            bVarValueAt.a.e(bVarA.a());
                         }
                     }
                     if (gVar.v != -9223372036854775807L) {
                         int size7 = gVar.e.size();
                         for (int i40 = 0; i40 < size7; i40++) {
-                            g$b g_bValueAt2 = gVar.e.valueAt(i40);
+                            b bVarValueAt2 = gVar.e.valueAt(i40);
                             long j6 = gVar.v;
-                            int i41 = g_bValueAt2.f;
+                            int i41 = bVarValueAt2.f;
                             while (true) {
-                                o oVar7 = g_bValueAt2.f1221b;
+                                o oVar7 = bVarValueAt2.f1221b;
                                 if (i41 >= oVar7.e || oVar7.i[i41] >= j6) {
                                     break;
                                 }
                                 if (oVar7.j[i41]) {
-                                    g_bValueAt2.i = i41;
+                                    bVarValueAt2.i = i41;
                                 }
                                 i41++;
                             }
@@ -1873,7 +1882,7 @@ public class g implements b.i.a.c.x2.h {
                 } else {
                     gVar = gVar2;
                     if (!gVar3.m.isEmpty()) {
-                        gVar3.m.peek().d.add(d_aPop);
+                        gVar3.m.peek().d.add(aVarPop);
                     }
                 }
             }
@@ -1884,5 +1893,151 @@ public class g implements b.i.a.c.x2.h {
 
     @Override // b.i.a.c.x2.h
     public void release() {
+    }
+
+    /* JADX INFO: compiled from: FragmentedMp4Extractor.java */
+    public final class b {
+        public final w a;
+        public p d;
+        public f e;
+        public int f;
+        public int g;
+        public int h;
+        public int i;
+        public boolean l;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final o f1221b = new o();
+        public final x c = new x();
+        public final x j = new x(1);
+        public final x k = new x();
+
+        public b(w wVar, p pVar, f fVar) {
+            this.a = wVar;
+            this.d = pVar;
+            this.e = fVar;
+            this.d = pVar;
+            this.e = fVar;
+            wVar.e(pVar.a.f);
+            e();
+        }
+
+        public long a() {
+            return !this.l ? this.d.c[this.f] : this.f1221b.f[this.h];
+        }
+
+        @Nullable
+        public n b() {
+            if (!this.l) {
+                return null;
+            }
+            o oVar = this.f1221b;
+            f fVar = oVar.a;
+            int i = e0.a;
+            int i2 = fVar.a;
+            n nVarA = oVar.m;
+            if (nVarA == null) {
+                nVarA = this.d.a.a(i2);
+            }
+            if (nVarA == null || !nVarA.a) {
+                return null;
+            }
+            return nVarA;
+        }
+
+        public boolean c() {
+            this.f++;
+            if (!this.l) {
+                return false;
+            }
+            int i = this.g + 1;
+            this.g = i;
+            int[] iArr = this.f1221b.g;
+            int i2 = this.h;
+            if (i != iArr[i2]) {
+                return true;
+            }
+            this.h = i2 + 1;
+            this.g = 0;
+            return false;
+        }
+
+        public int d(int i, int i2) {
+            x xVar;
+            n nVarB = b();
+            if (nVarB == null) {
+                return 0;
+            }
+            int length = nVarB.d;
+            if (length != 0) {
+                xVar = this.f1221b.n;
+            } else {
+                byte[] bArr = nVarB.e;
+                int i3 = e0.a;
+                x xVar2 = this.k;
+                int length2 = bArr.length;
+                xVar2.a = bArr;
+                xVar2.c = length2;
+                xVar2.f984b = 0;
+                length = bArr.length;
+                xVar = xVar2;
+            }
+            o oVar = this.f1221b;
+            boolean z2 = oVar.k && oVar.l[this.f];
+            boolean z3 = z2 || i2 != 0;
+            x xVar3 = this.j;
+            xVar3.a[0] = (byte) ((z3 ? 128 : 0) | length);
+            xVar3.E(0);
+            this.a.f(this.j, 1, 1);
+            this.a.f(xVar, length, 1);
+            if (!z3) {
+                return length + 1;
+            }
+            if (!z2) {
+                this.c.A(8);
+                x xVar4 = this.c;
+                byte[] bArr2 = xVar4.a;
+                bArr2[0] = 0;
+                bArr2[1] = 1;
+                bArr2[2] = (byte) ((i2 >> 8) & 255);
+                bArr2[3] = (byte) (i2 & 255);
+                bArr2[4] = (byte) ((i >> 24) & 255);
+                bArr2[5] = (byte) ((i >> 16) & 255);
+                bArr2[6] = (byte) ((i >> 8) & 255);
+                bArr2[7] = (byte) (i & 255);
+                this.a.f(xVar4, 8, 1);
+                return length + 1 + 8;
+            }
+            x xVar5 = this.f1221b.n;
+            int iY = xVar5.y();
+            xVar5.F(-2);
+            int i4 = (iY * 6) + 2;
+            if (i2 != 0) {
+                this.c.A(i4);
+                byte[] bArr3 = this.c.a;
+                xVar5.e(bArr3, 0, i4);
+                int i5 = (((bArr3[2] & 255) << 8) | (bArr3[3] & 255)) + i2;
+                bArr3[2] = (byte) ((i5 >> 8) & 255);
+                bArr3[3] = (byte) (i5 & 255);
+                xVar5 = this.c;
+            }
+            this.a.f(xVar5, i4, 1);
+            return length + 1 + i4;
+        }
+
+        public void e() {
+            o oVar = this.f1221b;
+            oVar.d = 0;
+            oVar.p = 0L;
+            oVar.q = false;
+            oVar.k = false;
+            oVar.o = false;
+            oVar.m = null;
+            this.f = 0;
+            this.h = 0;
+            this.g = 0;
+            this.i = 0;
+            this.l = false;
+        }
     }
 }

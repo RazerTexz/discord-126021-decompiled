@@ -2,7 +2,7 @@ package b.f.j.e;
 
 import android.content.ContentResolver;
 import android.net.Uri;
-import android.os.Build$VERSION;
+import android.os.Build;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import b.f.j.c.w;
@@ -172,7 +172,7 @@ public class q {
                         }
                         break;
                     case 4:
-                        if (imageRequest.h && Build$VERSION.SDK_INT >= 29) {
+                        if (imageRequest.h && Build.VERSION.SDK_INT >= 29) {
                             synchronized (this) {
                                 if (this.v == null) {
                                     p pVar2 = this.f583b;

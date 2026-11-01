@@ -2,7 +2,7 @@ package com.discord.utilities.intent;
 
 import android.content.Context;
 import android.net.Uri;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.jvm.functions.Function3;
@@ -10,7 +10,7 @@ import kotlin.text.MatchResult;
 
 /* JADX INFO: compiled from: IntentUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class IntentUtils$pathRouterMap$1 extends o implements Function3<Uri, MatchResult, Context, RouteHandlers$AnalyticsMetadata> {
+public final class IntentUtils$pathRouterMap$1 extends o implements Function3<Uri, MatchResult, Context, RouteHandlers.AnalyticsMetadata> {
     public static final IntentUtils$pathRouterMap$1 INSTANCE = new IntentUtils$pathRouterMap$1();
 
     public IntentUtils$pathRouterMap$1() {
@@ -18,13 +18,13 @@ public final class IntentUtils$pathRouterMap$1 extends o implements Function3<Ur
     }
 
     @Override // kotlin.jvm.functions.Function3
-    public /* bridge */ /* synthetic */ RouteHandlers$AnalyticsMetadata invoke(Uri uri, MatchResult matchResult, Context context) {
+    public /* bridge */ /* synthetic */ RouteHandlers.AnalyticsMetadata invoke(Uri uri, MatchResult matchResult, Context context) {
         return invoke2(uri, matchResult, context);
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final RouteHandlers$AnalyticsMetadata invoke2(Uri uri, MatchResult matchResult, Context context) {
-        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+    public final RouteHandlers.AnalyticsMetadata invoke2(Uri uri, MatchResult matchResult, Context context) {
+        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         m.checkNotNullParameter(context, "context");
         return RouteHandlers.INSTANCE.selectChannel(context, uri, matchResult);
     }

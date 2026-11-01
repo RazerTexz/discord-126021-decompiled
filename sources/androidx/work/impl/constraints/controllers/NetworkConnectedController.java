@@ -1,7 +1,7 @@
 package androidx.work.impl.constraints.controllers;
 
 import android.content.Context;
-import android.os.Build$VERSION;
+import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.work.NetworkType;
 import androidx.work.impl.constraints.NetworkState;
@@ -27,7 +27,7 @@ public class NetworkConnectedController extends ConstraintController<NetworkStat
 
     /* JADX INFO: renamed from: isConstrained, reason: avoid collision after fix types in other method */
     public boolean isConstrained2(@NonNull NetworkState networkState) {
-        if (Build$VERSION.SDK_INT >= 26) {
+        if (Build.VERSION.SDK_INT >= 26) {
             return (networkState.isConnected() && networkState.isValidated()) ? false : true;
         }
         return !networkState.isConnected();

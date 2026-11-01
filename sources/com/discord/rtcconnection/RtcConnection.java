@@ -3,19 +3,16 @@ package com.discord.rtcconnection;
 import android.content.Intent;
 import android.util.Log;
 import androidx.annotation.AnyThread;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import androidx.exifinterface.media.ExifInterface;
 import b.a.q.a0;
 import b.a.q.b0;
-import b.a.q.c;
 import b.a.q.f0;
 import b.a.q.g;
 import b.a.q.g0;
 import b.a.q.h0;
 import b.a.q.j;
 import b.a.q.n0.a;
-import b.a.q.o0.d;
-import b.a.q.o0.e;
 import b.a.q.p;
 import b.a.q.q;
 import b.a.q.r;
@@ -28,8 +25,6 @@ import co.discord.media_engine.VoiceQuality;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.rtcconnection.mediaengine.MediaEngine;
 import com.discord.rtcconnection.mediaengine.MediaEngineConnection;
-import com.discord.rtcconnection.mediaengine.MediaEngineConnection$TransportInfo;
-import com.discord.rtcconnection.mediaengine.MediaEngineConnection$TransportInfo$Protocol;
 import com.discord.rtcconnection.mediaengine.ThumbnailEmitter;
 import com.discord.utilities.debug.DebugPrintBuilder;
 import com.discord.utilities.debug.DebugPrintable;
@@ -38,9 +33,9 @@ import com.discord.utilities.networking.Backoff;
 import com.discord.utilities.networking.NetworkMonitor;
 import com.discord.utilities.time.Clock;
 import d0.g0.s;
-import d0.o;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -52,13 +47,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
 import rx.Subscription;
 import rx.subjects.BehaviorSubject;
 
 /* JADX INFO: compiled from: RtcConnection.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class RtcConnection implements DebugPrintable, MediaSinkWantsManager$a {
+public final class RtcConnection implements DebugPrintable, MediaSinkWantsManager.a {
 
     /* JADX INFO: renamed from: P, reason: from kotlin metadata */
     public final long channelId;
@@ -79,10 +75,10 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
     public boolean connected;
 
     /* JADX INFO: renamed from: s, reason: collision with root package name and from kotlin metadata */
-    public RtcConnection$StateChange connectionStateChange;
+    public StateChange connectionStateChange;
 
     /* JADX INFO: renamed from: t, reason: from kotlin metadata */
-    public BehaviorSubject<RtcConnection$StateChange> connectionStateSubject;
+    public BehaviorSubject<StateChange> connectionStateSubject;
 
     /* JADX INFO: renamed from: u, reason: from kotlin metadata */
     public boolean destroyed;
@@ -102,10 +98,9 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
     /* JADX INFO: renamed from: R, reason: from kotlin metadata */
     public final boolean isVideoEnabled;
     public static int j;
-    public static final RtcConnection$a k = new RtcConnection$a(null);
 
     /* JADX INFO: renamed from: n, reason: from kotlin metadata */
-    public final CopyOnWriteArrayList<RtcConnection$c> listeners;
+    public final CopyOnWriteArrayList<c> listeners;
 
     /* JADX INFO: renamed from: H, reason: from kotlin metadata */
     public final MediaSinkWantsManager localMediaSinkWantsManager;
@@ -159,13 +154,13 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
     public final Backoff reconnectBackoff;
 
     /* JADX INFO: renamed from: X, reason: from kotlin metadata */
-    public final RtcConnection$d rtcConnectionType;
+    public final d rtcConnectionType;
 
     /* JADX INFO: renamed from: S, reason: from kotlin metadata */
     public final String rtcServerId;
 
     /* JADX INFO: renamed from: o, reason: from kotlin metadata */
-    public d rtcStatsCollector;
+    public b.a.q.o0.d rtcStatsCollector;
 
     /* JADX INFO: renamed from: p, reason: from kotlin metadata */
     public boolean sentVideo;
@@ -183,7 +178,7 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
     public final String streamKey;
 
     /* JADX INFO: renamed from: r, reason: from kotlin metadata */
-    public MediaEngineConnection$TransportInfo transportInfo;
+    public MediaEngineConnection.TransportInfo transportInfo;
 
     /* JADX INFO: renamed from: T, reason: from kotlin metadata */
     public final long userId;
@@ -192,15 +187,394 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
     public final Map<Long, Float> userVolumes;
 
     /* JADX INFO: renamed from: B, reason: from kotlin metadata */
-    public final e videoQuality;
+    public final b.a.q.o0.e videoQuality;
 
     /* JADX INFO: renamed from: L, reason: from kotlin metadata */
     public long videoSsrc;
 
-    public RtcConnection(Long l, long j2, String str, boolean z2, String str2, long j3, MediaEngine mediaEngine, Logger logger, Clock clock, RtcConnection$d rtcConnection$d, NetworkMonitor networkMonitor, Map map, Map map2, String str3, boolean z3, String str4, String str5, int i) {
+    /* JADX INFO: compiled from: RtcConnection.kt */
+    public enum AnalyticsEvent {
+        VOICE_CONNECTION_SUCCESS,
+        VOICE_CONNECTION_FAILURE,
+        VOICE_DISCONNECT,
+        VIDEO_STREAM_ENDED,
+        MEDIA_SESSION_JOINED
+    }
+
+    /* JADX INFO: compiled from: RtcConnection.kt */
+    public final /* data */ class Metadata {
+
+        /* JADX INFO: renamed from: a, reason: from kotlin metadata */
+        public final String rtcConnectionId;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name and from kotlin metadata */
+        public final String mediaSessionId;
+
+        /* JADX INFO: renamed from: c, reason: from kotlin metadata */
+        public final Long channelId;
+
+        /* JADX INFO: renamed from: d, reason: from kotlin metadata */
+        public final Long guildId;
+
+        /* JADX INFO: renamed from: e, reason: from kotlin metadata */
+        public final String streamKey;
+
+        public Metadata(String str, String str2, Long l, Long l2, String str3) {
+            m.checkNotNullParameter(str, "rtcConnectionId");
+            this.rtcConnectionId = str;
+            this.mediaSessionId = str2;
+            this.channelId = l;
+            this.guildId = l2;
+            this.streamKey = str3;
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof Metadata)) {
+                return false;
+            }
+            Metadata metadata = (Metadata) other;
+            return m.areEqual(this.rtcConnectionId, metadata.rtcConnectionId) && m.areEqual(this.mediaSessionId, metadata.mediaSessionId) && m.areEqual(this.channelId, metadata.channelId) && m.areEqual(this.guildId, metadata.guildId) && m.areEqual(this.streamKey, metadata.streamKey);
+        }
+
+        public int hashCode() {
+            String str = this.rtcConnectionId;
+            int iHashCode = (str != null ? str.hashCode() : 0) * 31;
+            String str2 = this.mediaSessionId;
+            int iHashCode2 = (iHashCode + (str2 != null ? str2.hashCode() : 0)) * 31;
+            Long l = this.channelId;
+            int iHashCode3 = (iHashCode2 + (l != null ? l.hashCode() : 0)) * 31;
+            Long l2 = this.guildId;
+            int iHashCode4 = (iHashCode3 + (l2 != null ? l2.hashCode() : 0)) * 31;
+            String str3 = this.streamKey;
+            return iHashCode4 + (str3 != null ? str3.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = b.d.b.a.a.U("Metadata(rtcConnectionId=");
+            sbU.append(this.rtcConnectionId);
+            sbU.append(", mediaSessionId=");
+            sbU.append(this.mediaSessionId);
+            sbU.append(", channelId=");
+            sbU.append(this.channelId);
+            sbU.append(", guildId=");
+            sbU.append(this.guildId);
+            sbU.append(", streamKey=");
+            return b.d.b.a.a.J(sbU, this.streamKey, ")");
+        }
+    }
+
+    /* JADX INFO: compiled from: RtcConnection.kt */
+    public enum Quality {
+        UNKNOWN,
+        BAD,
+        AVERAGE,
+        FINE;
+
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
+
+        /* JADX INFO: renamed from: com.discord.rtcconnection.RtcConnection$Quality$a, reason: from kotlin metadata */
+        /* JADX INFO: compiled from: RtcConnection.kt */
+        public final class Companion {
+            public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: RtcConnection.kt */
+    public abstract class State {
+
+        /* JADX INFO: compiled from: RtcConnection.kt */
+        public final class a extends State {
+            public static final a a = new a();
+
+            public a() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: RtcConnection.kt */
+        public final class b extends State {
+            public static final b a = new b();
+
+            public b() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: RtcConnection.kt */
+        public final class c extends State {
+            public static final c a = new c();
+
+            public c() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: RtcConnection.kt */
+        public final class d extends State {
+            public final boolean a;
+
+            public d(boolean z2) {
+                super(null);
+                this.a = z2;
+            }
+
+            public boolean equals(Object obj) {
+                if (this != obj) {
+                    return (obj instanceof d) && this.a == ((d) obj).a;
+                }
+                return true;
+            }
+
+            public int hashCode() {
+                boolean z2 = this.a;
+                if (z2) {
+                    return 1;
+                }
+                return z2 ? 1 : 0;
+            }
+
+            @Override // com.discord.rtcconnection.RtcConnection.State
+            public String toString() {
+                return b.d.b.a.a.O(b.d.b.a.a.U("Disconnected(willReconnect="), this.a, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: RtcConnection.kt */
+        public final class e extends State {
+            public static final e a = new e();
+
+            public e() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: RtcConnection.kt */
+        public final class f extends State {
+            public static final f a = new f();
+
+            public f() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: RtcConnection.kt */
+        public final class g extends State {
+            public static final g a = new g();
+
+            public g() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: RtcConnection.kt */
+        public final class h extends State {
+            public static final h a = new h();
+
+            public h() {
+                super(null);
+            }
+        }
+
+        public State() {
+        }
+
+        public String toString() {
+            if (this instanceof d) {
+                return super.toString();
+            }
+            String simpleName = getClass().getSimpleName();
+            m.checkNotNullExpressionValue(simpleName, "javaClass.simpleName");
+            return simpleName;
+        }
+
+        public State(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    /* JADX INFO: compiled from: RtcConnection.kt */
+    public final /* data */ class StateChange {
+
+        /* JADX INFO: renamed from: a, reason: from kotlin metadata */
+        public final State state;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name and from kotlin metadata */
+        public final Metadata metadata;
+
+        public StateChange(State state, Metadata metadata) {
+            m.checkNotNullParameter(state, "state");
+            this.state = state;
+            this.metadata = metadata;
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof StateChange)) {
+                return false;
+            }
+            StateChange stateChange = (StateChange) other;
+            return m.areEqual(this.state, stateChange.state) && m.areEqual(this.metadata, stateChange.metadata);
+        }
+
+        public int hashCode() {
+            State state = this.state;
+            int iHashCode = (state != null ? state.hashCode() : 0) * 31;
+            Metadata metadata = this.metadata;
+            return iHashCode + (metadata != null ? metadata.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = b.d.b.a.a.U("StateChange(state=");
+            sbU.append(this.state);
+            sbU.append(", metadata=");
+            sbU.append(this.metadata);
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    /* JADX INFO: compiled from: RtcConnection.kt */
+    public abstract class b implements c {
+        @Override // com.discord.rtcconnection.RtcConnection.c
+        public void onAnalyticsEvent(AnalyticsEvent analyticsEvent, Map<String, Object> map) {
+            m.checkNotNullParameter(analyticsEvent, "event");
+            m.checkNotNullParameter(map, "properties");
+        }
+
+        @Override // com.discord.rtcconnection.RtcConnection.c
+        public void onFatalClose() {
+        }
+
+        public void onFirstFrameReceived(long j) {
+        }
+
+        public void onFirstFrameSent() {
+        }
+
+        @Override // com.discord.rtcconnection.RtcConnection.c
+        public void onMediaEngineConnectionConnected(RtcConnection rtcConnection) {
+            m.checkNotNullParameter(rtcConnection, "connection");
+        }
+
+        @Override // com.discord.rtcconnection.RtcConnection.c
+        public void onMediaSessionIdReceived() {
+        }
+
+        @Override // com.discord.rtcconnection.RtcConnection.c
+        public void onQualityUpdate(Quality quality) {
+            m.checkNotNullParameter(quality, "quality");
+        }
+
+        @Override // com.discord.rtcconnection.RtcConnection.c
+        public void onSpeaking(long j, boolean z2) {
+        }
+
+        @Override // com.discord.rtcconnection.RtcConnection.c
+        public abstract void onStateChange(StateChange stateChange);
+
+        @Override // com.discord.rtcconnection.RtcConnection.c
+        public void onUserCreated(RtcConnection rtcConnection, long j) {
+            m.checkNotNullParameter(rtcConnection, "connection");
+        }
+
+        @Override // com.discord.rtcconnection.RtcConnection.c
+        public void onVideoMetadata(VideoMetadata videoMetadata) {
+            m.checkNotNullParameter(videoMetadata, "metadata");
+        }
+
+        @Override // com.discord.rtcconnection.RtcConnection.c
+        public void onVideoStream(long j, Integer num, int i, int i2, int i3) {
+        }
+    }
+
+    /* JADX INFO: compiled from: RtcConnection.kt */
+    public interface c {
+        void onAnalyticsEvent(AnalyticsEvent analyticsEvent, Map<String, Object> map);
+
+        void onFatalClose();
+
+        void onMediaEngineConnectionConnected(RtcConnection rtcConnection);
+
+        void onMediaSessionIdReceived();
+
+        void onQualityUpdate(Quality quality);
+
+        void onSpeaking(long j, boolean z2);
+
+        void onStateChange(StateChange stateChange);
+
+        void onUserCreated(RtcConnection rtcConnection, long j);
+
+        void onVideoMetadata(VideoMetadata videoMetadata);
+
+        void onVideoStream(long j, Integer num, int i, int i2, int i3);
+    }
+
+    /* JADX INFO: compiled from: RtcConnection.kt */
+    public abstract class d {
+
+        /* JADX INFO: compiled from: RtcConnection.kt */
+        public final class a extends d {
+            public static final a a = new a();
+
+            public a() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: RtcConnection.kt */
+        public final class b extends d {
+            public final long a;
+
+            public b(long j) {
+                super(null);
+                this.a = j;
+            }
+
+            public boolean equals(Object obj) {
+                if (this != obj) {
+                    return (obj instanceof b) && this.a == ((b) obj).a;
+                }
+                return true;
+            }
+
+            public int hashCode() {
+                return a0.a.a.b.a(this.a);
+            }
+
+            public String toString() {
+                return b.d.b.a.a.C(b.d.b.a.a.U("Stream(senderId="), this.a, ")");
+            }
+        }
+
+        public d(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    /* JADX INFO: compiled from: RtcConnection.kt */
+    public final class e extends o implements Function0<Unit> {
+        public e() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public Unit invoke() {
+            RtcConnection.this.f("Force Close");
+            return Unit.a;
+        }
+    }
+
+    public RtcConnection(Long l, long j2, String str, boolean z2, String str2, long j3, MediaEngine mediaEngine, Logger logger, Clock clock, d dVar, NetworkMonitor networkMonitor, Map map, Map map2, String str3, boolean z3, String str4, String str5, int i) {
         MediaSinkWantsManager mediaSinkWantsManager;
         Subscription subscriptionV;
-        RtcConnection$d rtcConnection$d2 = (i & 512) != 0 ? RtcConnection$d$a.a : rtcConnection$d;
+        d dVar2 = (i & 512) != 0 ? d.a.a : dVar;
         Map linkedHashMap = (i & 2048) != 0 ? new LinkedHashMap() : map;
         LinkedHashMap linkedHashMap2 = (i & 4096) != 0 ? new LinkedHashMap() : null;
         String str6 = (i & 8192) != 0 ? null : str3;
@@ -211,7 +585,7 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
         m.checkNotNullParameter(mediaEngine, "mediaEngine");
         m.checkNotNullParameter(logger, "logger");
         m.checkNotNullParameter(clock, "clock");
-        m.checkNotNullParameter(rtcConnection$d2, "rtcConnectionType");
+        m.checkNotNullParameter(dVar2, "rtcConnectionType");
         boolean z5 = z4;
         m.checkNotNullParameter(networkMonitor, "networkMonitor");
         m.checkNotNullParameter(linkedHashMap, "mutedUsers");
@@ -226,7 +600,7 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
         this.mediaEngine = mediaEngine;
         this.logger = logger;
         this.clock = clock;
-        this.rtcConnectionType = rtcConnection$d2;
+        this.rtcConnectionType = dVar2;
         this.mutedUsers = linkedHashMap;
         this.userVolumes = linkedHashMap2;
         this.parentMediaSessionId = str6;
@@ -241,14 +615,14 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
         String string = UUID.randomUUID().toString();
         m.checkNotNullExpressionValue(string, "UUID.randomUUID().toString()");
         this.id = string;
-        CopyOnWriteArrayList<RtcConnection$c> copyOnWriteArrayList = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<c> copyOnWriteArrayList = new CopyOnWriteArrayList<>();
         this.listeners = copyOnWriteArrayList;
         this.reconnectBackoff = new Backoff(1000L, 10000L, 0, false, null, 28, null);
-        RtcConnection$StateChange rtcConnection$StateChange = new RtcConnection$StateChange(new RtcConnection$State$d(false), null);
-        this.connectionStateChange = rtcConnection$StateChange;
-        this.connectionStateSubject = BehaviorSubject.l0(rtcConnection$StateChange);
+        StateChange stateChange = new StateChange(new State.d(false), null);
+        this.connectionStateChange = stateChange;
+        this.connectionStateSubject = BehaviorSubject.l0(stateChange);
         this.pings = new ArrayList();
-        e eVar = new e(logger, clock);
+        b.a.q.o0.e eVar = new b.a.q.o0.e(logger, clock);
         eVar.f.add(new x(this));
         this.videoQuality = eVar;
         if (z5) {
@@ -273,7 +647,7 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
         this.mediaEngineConnectionListener = new b0(this);
     }
 
-    @Override // com.discord.rtcconnection.MediaSinkWantsManager$a
+    @Override // com.discord.rtcconnection.MediaSinkWantsManager.a
     public void a(long userId, long audioSsrc, long videoSSRC, VideoMetadata metadata) {
         d(userId, audioSsrc, videoSSRC, metadata);
     }
@@ -290,7 +664,7 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
         return map;
     }
 
-    public final void c(RtcConnection$c listener) {
+    public final void c(c listener) {
         m.checkNotNullParameter(listener, "listener");
         this.listeners.add(listener);
     }
@@ -302,12 +676,12 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
         }
         Iterator<T> it = this.listeners.iterator();
         while (it.hasNext()) {
-            ((RtcConnection$c) it.next()).onUserCreated(this, userId);
+            ((c) it.next()).onUserCreated(this, userId);
         }
         if (metadata != null) {
             Iterator<T> it2 = this.listeners.iterator();
             while (it2.hasNext()) {
-                ((RtcConnection$c) it2.next()).onVideoMetadata(metadata);
+                ((c) it2.next()).onVideoMetadata(metadata);
             }
         }
     }
@@ -332,7 +706,7 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
     }
 
     public final void e() {
-        s(new RtcConnection$e(this));
+        s(new e());
     }
 
     public final void f(String reason) {
@@ -343,18 +717,18 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
             aVar.c();
         }
         this.socket = null;
-        e eVar = this.videoQuality;
+        b.a.q.o0.e eVar = this.videoQuality;
         synchronized (eVar) {
             eVar.o.stop();
             eVar.h = Long.valueOf(eVar.q.currentTimeMillis());
         }
-        if (!(this.connectionStateChange.state instanceof RtcConnection$State$d)) {
+        if (!(this.connectionStateChange.state instanceof State.d)) {
             n(false, reason);
-            RtcConnection$d rtcConnection$d = this.rtcConnectionType;
-            if (rtcConnection$d instanceof RtcConnection$d$b) {
-                Map<String, Object> mapC = this.videoQuality.c(String.valueOf(((RtcConnection$d$b) rtcConnection$d).a));
+            d dVar = this.rtcConnectionType;
+            if (dVar instanceof d.b) {
+                Map<String, Object> mapC = this.videoQuality.c(String.valueOf(((d.b) dVar).a));
                 if (mapC != null) {
-                    l(((RtcConnection$d$b) this.rtcConnectionType).a, mapC);
+                    l(((d.b) this.rtcConnectionType).a, mapC);
                 }
                 if (this.sentVideo) {
                     m(this.userId, this.videoQuality.d());
@@ -379,7 +753,7 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
             mediaEngineConnection.destroy();
         }
         this.mediaEngineConnection = null;
-        u(new RtcConnection$State$d(false));
+        u(new State.d(false));
         r("Destroy internal RTC connection: " + reason);
         this.listeners.clear();
         this.sentVideo = false;
@@ -402,8 +776,8 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
         return 1.0f;
     }
 
-    public final RtcConnection$Metadata i() {
-        return new RtcConnection$Metadata(this.id, this.mediaSessionId, Long.valueOf(this.channelId), this.guildId, this.streamKey);
+    public final Metadata i() {
+        return new Metadata(this.id, this.mediaSessionId, Long.valueOf(this.channelId), this.guildId, this.streamKey);
     }
 
     public static void j(RtcConnection rtcConnection, boolean z2, String str, Throwable th, boolean z3, int i) {
@@ -418,7 +792,7 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
         } else {
             rtcConnection.logger.i(rtcConnection.loggingTag, str, th);
         }
-        d dVar = rtcConnection.rtcStatsCollector;
+        b.a.q.o0.d dVar = rtcConnection.rtcStatsCollector;
         if (dVar != null) {
             dVar.a();
         }
@@ -430,14 +804,14 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
         rtcConnection.mediaEngineConnection = null;
         rtcConnection.sentVideo = false;
         rtcConnection.reconnectBackoff.cancel();
-        rtcConnection.u(new RtcConnection$State$d(z2));
+        rtcConnection.u(new State.d(z2));
         if (z2) {
             rtcConnection.q();
             return;
         }
         Iterator<T> it = rtcConnection.listeners.iterator();
         while (it.hasNext()) {
-            ((RtcConnection$c) it.next()).onFatalClose();
+            ((c) it.next()).onFatalClose();
         }
         rtcConnection.f(str);
     }
@@ -452,18 +826,18 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
         map.put(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID, Long.valueOf(this.channelId));
         map.put("sender_user_id", Long.valueOf(senderId));
         map.putAll(properties);
-        p(RtcConnection$AnalyticsEvent.VIDEO_STREAM_ENDED, map);
+        p(AnalyticsEvent.VIDEO_STREAM_ENDED, map);
     }
 
     public final void l(long senderId, Map<String, ? extends Object> properties) {
         if (properties != null) {
-            k(senderId, d0.t.h0.plus(properties, d0.t.g0.mapOf(o.to("participant_type", "receiver"))));
+            k(senderId, d0.t.h0.plus(properties, d0.t.g0.mapOf(d0.o.to("participant_type", "receiver"))));
         }
     }
 
     public final void m(long senderId, Map<String, ? extends Object> properties) {
         if (properties != null) {
-            k(senderId, d0.t.h0.plus(properties, d0.t.g0.mapOf(o.to("participant_type", this.rtcConnectionType instanceof RtcConnection$d$b ? "streamer" : NotificationCompat$MessagingStyle$Message.KEY_SENDER))));
+            k(senderId, d0.t.h0.plus(properties, d0.t.g0.mapOf(d0.o.to("participant_type", this.rtcConnectionType instanceof d.b ? "streamer" : NotificationCompat.MessagingStyle.Message.KEY_SENDER))));
         }
     }
 
@@ -472,7 +846,7 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
         String str;
         Stats stats;
         VoiceQuality voiceQuality;
-        Map<String, Object> mapMutableMapOf = d0.t.h0.mutableMapOf(o.to("ping_bad_count", Integer.valueOf(this.pingBadCount)), o.to("connect_count", Integer.valueOf(this.connectCount)), o.to("channel_count", 1));
+        Map<String, Object> mapMutableMapOf = d0.t.h0.mutableMapOf(d0.o.to("ping_bad_count", Integer.valueOf(this.pingBadCount)), d0.o.to("connect_count", Integer.valueOf(this.connectCount)), d0.o.to("channel_count", 1));
         b(mapMutableMapOf);
         mapMutableMapOf.put("reconnect", Boolean.valueOf(willReconnect));
         if (reason != null) {
@@ -486,7 +860,7 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
         if (str2 != null) {
             mapMutableMapOf.put("media_session_id", str2);
         }
-        d dVar = this.rtcStatsCollector;
+        b.a.q.o0.d dVar = this.rtcStatsCollector;
         if (dVar != null && (stats = (Stats) u.lastOrNull(dVar.a)) != null) {
             OutboundRtpAudio outboundRtpAudio = stats.getOutboundRtpAudio();
             if (outboundRtpAudio != null) {
@@ -501,7 +875,7 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
             }
             mapMutableMapOf.put("packets_received", Long.valueOf(packetsReceived));
             mapMutableMapOf.put("packets_received_lost", Long.valueOf(packetsLost));
-            d dVar2 = this.rtcStatsCollector;
+            b.a.q.o0.d dVar2 = this.rtcStatsCollector;
             if (dVar2 != null && (voiceQuality = dVar2.f) != null) {
                 voiceQuality.getDurationStats(mapMutableMapOf);
                 voiceQuality.getMosStats(mapMutableMapOf);
@@ -515,10 +889,10 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
         if (lValueOf != null) {
             mapMutableMapOf.put("duration", Long.valueOf(lValueOf.longValue()));
         }
-        MediaEngineConnection$TransportInfo mediaEngineConnection$TransportInfo = this.transportInfo;
-        MediaEngineConnection$TransportInfo$Protocol mediaEngineConnection$TransportInfo$Protocol = mediaEngineConnection$TransportInfo != null ? mediaEngineConnection$TransportInfo.protocol : null;
-        if (mediaEngineConnection$TransportInfo$Protocol != null) {
-            int iOrdinal = mediaEngineConnection$TransportInfo$Protocol.ordinal();
+        MediaEngineConnection.TransportInfo transportInfo = this.transportInfo;
+        MediaEngineConnection.TransportInfo.Protocol protocol = transportInfo != null ? transportInfo.protocol : null;
+        if (protocol != null) {
+            int iOrdinal = protocol.ordinal();
             if (iOrdinal == 0) {
                 str = "udp";
             } else {
@@ -529,9 +903,9 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
             }
             mapMutableMapOf.put("protocol", str);
         }
-        p(RtcConnection$AnalyticsEvent.VOICE_DISCONNECT, mapMutableMapOf);
-        if (this.rtcConnectionType instanceof RtcConnection$d$a) {
-            e eVar = this.videoQuality;
+        p(AnalyticsEvent.VOICE_DISCONNECT, mapMutableMapOf);
+        if (this.rtcConnectionType instanceof d.a) {
+            b.a.q.o0.e eVar = this.videoQuality;
             synchronized (eVar) {
                 list = u.toList(eVar.m.keySet());
             }
@@ -555,14 +929,14 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
         rtcConnection.logger.e(rtcConnection.loggingTag, str, th, null);
     }
 
-    public final void p(RtcConnection$AnalyticsEvent event, Map<String, Object> properties) {
+    public final void p(AnalyticsEvent event, Map<String, Object> properties) {
         String str;
         properties.put("rtc_connection_id", this.id);
-        RtcConnection$d rtcConnection$d = this.rtcConnectionType;
-        if (m.areEqual(rtcConnection$d, RtcConnection$d$a.a)) {
+        d dVar = this.rtcConnectionType;
+        if (m.areEqual(dVar, d.a.a)) {
             str = "default";
         } else {
-            if (!(rtcConnection$d instanceof RtcConnection$d$b)) {
+            if (!(dVar instanceof d.b)) {
                 throw new NoWhenBranchMatchedException();
             }
             str = "stream";
@@ -578,7 +952,7 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
         }
         Iterator<T> it = this.listeners.iterator();
         while (it.hasNext()) {
-            ((RtcConnection$c) it.next()).onAnalyticsEvent(event, properties);
+            ((c) it.next()).onAnalyticsEvent(event, properties);
         }
     }
 
@@ -601,7 +975,7 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
 
     @AnyThread
     public final void s(Function0<Unit> action) {
-        c cVarC = this.mediaEngine.c();
+        b.a.q.c cVarC = this.mediaEngine.c();
         Object f0Var = action;
         if (action != null) {
             f0Var = new f0(action);
@@ -610,7 +984,7 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
     }
 
     public final void t(Intent intent, ThumbnailEmitter thumbnailEmitter) {
-        if (this.rtcConnectionType instanceof RtcConnection$d$b) {
+        if (this.rtcConnectionType instanceof d.b) {
             r("Setting screenshare " + intent + ' ' + this.mediaEngineConnection);
             MediaEngineConnection mediaEngineConnection = this.mediaEngineConnection;
             if (mediaEngineConnection == null) {
@@ -623,13 +997,13 @@ public final class RtcConnection implements DebugPrintable, MediaSinkWantsManage
         }
     }
 
-    public final void u(RtcConnection$State state) {
+    public final void u(State state) {
         if (!m.areEqual(this.connectionStateChange.state, state)) {
-            RtcConnection$StateChange rtcConnection$StateChange = new RtcConnection$StateChange(state, i());
-            this.connectionStateChange = rtcConnection$StateChange;
+            StateChange stateChange = new StateChange(state, i());
+            this.connectionStateChange = stateChange;
             Iterator<T> it = this.listeners.iterator();
             while (it.hasNext()) {
-                ((RtcConnection$c) it.next()).onStateChange(rtcConnection$StateChange);
+                ((c) it.next()).onStateChange(stateChange);
             }
         }
     }

@@ -6,13 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import b.a.i.a1;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppComponent;
 import com.discord.overlay.views.OverlayBubbleWrap;
 import com.discord.stores.StoreStream;
+import com.discord.stores.StoreVoiceParticipants;
+import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.Objects;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import rx.Observable;
@@ -32,11 +35,48 @@ public final class w extends OverlayBubbleWrap implements AppComponent {
     /* JADX INFO: renamed from: z, reason: collision with root package name */
     public final Subject<Void, Void> f317z;
 
+    /* JADX INFO: compiled from: OverlayVoiceBubble.kt */
+    public final class a<T, R> implements j0.k.b<Long, Observable<? extends StoreVoiceParticipants.VoiceUser>> {
+        public static final a j = new a();
+
+        @Override // j0.k.b
+        public Observable<? extends StoreVoiceParticipants.VoiceUser> call(Long l) {
+            Long l2 = l;
+            if (l2 != null && l2.longValue() == 0) {
+                return new j0.l.e.k(null);
+            }
+            StoreVoiceParticipants voiceParticipants = StoreStream.INSTANCE.getVoiceParticipants();
+            d0.z.d.m.checkNotNullExpressionValue(l2, "channelId");
+            return voiceParticipants.get(l2.longValue()).G(v.j).r();
+        }
+    }
+
+    /* JADX INFO: compiled from: OverlayVoiceBubble.kt */
+    public final class b extends d0.z.d.o implements Function1<StoreVoiceParticipants.VoiceUser, Unit> {
+        public b() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public Unit invoke(StoreVoiceParticipants.VoiceUser voiceUser) {
+            StoreVoiceParticipants.VoiceUser voiceUser2 = voiceUser;
+            w wVar = w.this;
+            int i = w.f315x;
+            if (voiceUser2 == null) {
+                wVar.h();
+            } else {
+                IconUtils.setIcon$default(wVar.getImageView$app_productionGoogleRelease(), voiceUser2.getUser(), 0, null, null, voiceUser2.getGuildMember(), 28, null);
+                wVar.g();
+            }
+            return Unit.a;
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public w(Context context) {
         super(context);
         d0.z.d.m.checkNotNullParameter(context, "context");
-        View viewInflate = LayoutInflater.from(getContext()).inflate(R$layout.overlay_voice_bubble, (ViewGroup) this, false);
+        View viewInflate = LayoutInflater.from(getContext()).inflate(R.layout.overlay_voice_bubble, (ViewGroup) this, false);
         addView(viewInflate);
         Objects.requireNonNull(viewInflate, "rootView");
         SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate;
@@ -83,9 +123,9 @@ public final class w extends OverlayBubbleWrap implements AppComponent {
     @Override // android.view.ViewGroup, android.view.View
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        Observable<R> observableY = StoreStream.Companion.getVoiceChannelSelected().observeSelectedVoiceChannelId().Y(w$a.j);
+        Observable<R> observableY = StoreStream.INSTANCE.getVoiceChannelSelected().observeSelectedVoiceChannelId().Y(a.j);
         d0.z.d.m.checkNotNullExpressionValue(observableY, "StoreStream\n        .get…d()\n          }\n        }");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableY), this, null, 2, null), w.class, getContext(), (Function1) null, (Function1) null, (Function0) null, (Function0) null, new w$b(this), 60, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableY), this, null, 2, null), w.class, getContext(), (Function1) null, (Function1) null, (Function0) null, (Function0) null, new b(), 60, (Object) null);
     }
 
     @Override // com.discord.overlay.views.OverlayBubbleWrap, android.view.View

@@ -6,9 +6,9 @@ import java.io.Serializable;
 /* JADX INFO: compiled from: DefaultPrettyPrinter.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class d implements b.g.a.b.j, e<d>, Serializable {
-    public d$b _arrayIndenter;
+    public b _arrayIndenter;
     public String _objectFieldValueSeparatorWithSpaces;
-    public d$b _objectIndenter;
+    public b _objectIndenter;
     public final b.g.a.b.k _rootSeparator;
     public j _separators;
     public boolean _spacesInObjectEntries;
@@ -16,10 +16,40 @@ public class d implements b.g.a.b.j, e<d>, Serializable {
     private static final long serialVersionUID = 1;
     public static final b.g.a.b.p.j j = new b.g.a.b.p.j(" ");
 
+    /* JADX INFO: compiled from: DefaultPrettyPrinter.java */
+    public class a extends c {
+        public static final a j = new a();
+
+        @Override // b.g.a.b.t.d.b
+        public void a(b.g.a.b.d dVar, int i) throws IOException {
+            dVar.R(' ');
+        }
+
+        @Override // b.g.a.b.t.d.c, b.g.a.b.t.d.b
+        public boolean isInline() {
+            return true;
+        }
+    }
+
+    /* JADX INFO: compiled from: DefaultPrettyPrinter.java */
+    public interface b {
+        void a(b.g.a.b.d dVar, int i) throws IOException;
+
+        boolean isInline();
+    }
+
+    /* JADX INFO: compiled from: DefaultPrettyPrinter.java */
+    public class c implements b, Serializable {
+        @Override // b.g.a.b.t.d.b
+        public boolean isInline() {
+            return !(this instanceof b.g.a.b.t.c);
+        }
+    }
+
     public d() {
         b.g.a.b.p.j jVar = j;
-        this._arrayIndenter = d$a.j;
-        this._objectIndenter = c.k;
+        this._arrayIndenter = a.j;
+        this._objectIndenter = b.g.a.b.t.c.k;
         this._spacesInObjectEntries = true;
         this._rootSeparator = jVar;
         j jVar2 = b.g.a.b.j.f663b;
@@ -122,8 +152,8 @@ public class d implements b.g.a.b.j, e<d>, Serializable {
 
     public d(d dVar) {
         b.g.a.b.k kVar = dVar._rootSeparator;
-        this._arrayIndenter = d$a.j;
-        this._objectIndenter = c.k;
+        this._arrayIndenter = a.j;
+        this._objectIndenter = b.g.a.b.t.c.k;
         this._spacesInObjectEntries = true;
         this._arrayIndenter = dVar._arrayIndenter;
         this._objectIndenter = dVar._objectIndenter;

@@ -7,16 +7,14 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.view.ViewCompat;
-import com.google.android.material.R$id;
-import com.google.android.material.R$layout;
-import com.google.android.material.R$styleable;
+import com.google.android.material.R;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.RelativeCornerSize;
 
@@ -26,6 +24,17 @@ public class e extends ConstraintLayout {
     public final Runnable j;
     public int k;
     public MaterialShapeDrawable l;
+
+    /* JADX INFO: compiled from: RadialViewGroup.java */
+    public class a implements Runnable {
+        public a() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            e.this.a();
+        }
+    }
 
     public e(@NonNull Context context, @Nullable AttributeSet attributeSet) {
         this(context, attributeSet, 0);
@@ -45,7 +54,7 @@ public class e extends ConstraintLayout {
         for (int i3 = 0; i3 < childCount; i3++) {
             View childAt = getChildAt(i3);
             int id2 = childAt.getId();
-            int i4 = R$id.circle_center;
+            int i4 = R.id.circle_center;
             if (id2 != i4 && !"skip".equals(childAt.getTag())) {
                 constraintSet.constrainCircle(childAt.getId(), i4, this.k, f);
                 f = (360.0f / (childCount - i)) + f;
@@ -55,8 +64,8 @@ public class e extends ConstraintLayout {
     }
 
     @Override // androidx.constraintlayout.widget.ConstraintLayout, android.view.ViewGroup
-    public void addView(View view, int i, ViewGroup$LayoutParams viewGroup$LayoutParams) {
-        super.addView(view, i, viewGroup$LayoutParams);
+    public void addView(View view, int i, ViewGroup.LayoutParams layoutParams) {
+        super.addView(view, i, layoutParams);
         if (view.getId() == -1) {
             view.setId(ViewCompat.generateViewId());
         }
@@ -90,15 +99,15 @@ public class e extends ConstraintLayout {
 
     public e(@NonNull Context context, @Nullable AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
-        LayoutInflater.from(context).inflate(R$layout.material_radial_view_group, this);
+        LayoutInflater.from(context).inflate(R.layout.material_radial_view_group, this);
         MaterialShapeDrawable materialShapeDrawable = new MaterialShapeDrawable();
         this.l = materialShapeDrawable;
         materialShapeDrawable.setCornerSize(new RelativeCornerSize(0.5f));
         this.l.setFillColor(ColorStateList.valueOf(-1));
         ViewCompat.setBackground(this, this.l);
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$styleable.RadialViewGroup, i, 0);
-        this.k = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$styleable.RadialViewGroup_materialCircleRadius, 0);
-        this.j = new e$a(this);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.RadialViewGroup, i, 0);
+        this.k = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.RadialViewGroup_materialCircleRadius, 0);
+        this.j = new a();
         typedArrayObtainStyledAttributes.recycle();
     }
 }

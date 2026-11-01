@@ -3,14 +3,13 @@ package b.c.a.y.m;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory$Options;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable$Callback;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.view.View;
@@ -99,7 +98,7 @@ public class d extends b {
         } else {
             b.c.a.x.b bVar2 = jVar.f352s;
             if (bVar2 != null) {
-                Drawable$Callback callback = jVar.getCallback();
+                Drawable.Callback callback = jVar.getCallback();
                 Context context = (callback != null && (callback instanceof View)) ? ((View) callback).getContext() : null;
                 if (!((context == null && bVar2.f398b == null) || bVar2.f398b.equals(context))) {
                     jVar.f352s = null;
@@ -127,13 +126,13 @@ public class d extends b {
             return bitmapA;
         }
         String str2 = kVar.d;
-        BitmapFactory$Options bitmapFactory$Options = new BitmapFactory$Options();
-        bitmapFactory$Options.inScaled = true;
-        bitmapFactory$Options.inDensity = Opcodes.IF_ICMPNE;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inScaled = true;
+        options.inDensity = Opcodes.IF_ICMPNE;
         if (str2.startsWith("data:") && str2.indexOf("base64,") > 0) {
             try {
                 byte[] bArrDecode = Base64.decode(str2.substring(str2.indexOf(44) + 1), 0);
-                Bitmap bitmapDecodeByteArray = BitmapFactory.decodeByteArray(bArrDecode, 0, bArrDecode.length, bitmapFactory$Options);
+                Bitmap bitmapDecodeByteArray = BitmapFactory.decodeByteArray(bArrDecode, 0, bArrDecode.length, options);
                 bVar.a(str, bitmapDecodeByteArray);
                 return bitmapDecodeByteArray;
             } catch (IllegalArgumentException e) {
@@ -145,7 +144,7 @@ public class d extends b {
             if (TextUtils.isEmpty(bVar.c)) {
                 throw new IllegalStateException("You must set an images folder before loading an image. Set it with LottieComposition#setImagesFolder or LottieDrawable#setImagesFolder");
             }
-            Bitmap bitmapE = b.c.a.b0.g.e(BitmapFactory.decodeStream(bVar.f398b.getAssets().open(bVar.c + str2), null, bitmapFactory$Options), kVar.a, kVar.f367b);
+            Bitmap bitmapE = b.c.a.b0.g.e(BitmapFactory.decodeStream(bVar.f398b.getAssets().open(bVar.c + str2), null, options), kVar.a, kVar.f367b);
             bVar.a(str, bitmapE);
             return bitmapE;
         } catch (IOException e2) {

@@ -4,19 +4,15 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View$OnAttachStateChangeListener;
-import android.view.View$OnHoverListener;
-import android.view.View$OnLongClickListener;
 import android.view.ViewConfiguration;
 import android.view.accessibility.AccessibilityManager;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.ViewConfigurationCompat;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
-public class TooltipCompatHandler implements View$OnLongClickListener, View$OnHoverListener, View$OnAttachStateChangeListener {
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+public class TooltipCompatHandler implements View.OnLongClickListener, View.OnHoverListener, View.OnAttachStateChangeListener {
     private static final long HOVER_HIDE_TIMEOUT_MS = 15000;
     private static final long HOVER_HIDE_TIMEOUT_SHORT_MS = 3000;
     private static final long LONG_CLICK_HIDE_TIMEOUT_MS = 2500;
@@ -30,8 +26,30 @@ public class TooltipCompatHandler implements View$OnLongClickListener, View$OnHo
     private final CharSequence mTooltipText;
     private static TooltipCompatHandler sActiveHandler;
     private static TooltipCompatHandler sPendingHandler;
-    private final Runnable mShowRunnable = new TooltipCompatHandler$1(this);
-    private final Runnable mHideRunnable = new TooltipCompatHandler$2(this);
+    private final Runnable mShowRunnable = new AnonymousClass1();
+    private final Runnable mHideRunnable = new AnonymousClass2();
+
+    /* JADX INFO: renamed from: androidx.appcompat.widget.TooltipCompatHandler$1, reason: invalid class name */
+    public class AnonymousClass1 implements Runnable {
+        public AnonymousClass1() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            TooltipCompatHandler.this.show(false);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.appcompat.widget.TooltipCompatHandler$2, reason: invalid class name */
+    public class AnonymousClass2 implements Runnable {
+        public AnonymousClass2() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            TooltipCompatHandler.this.hide();
+        }
+    }
 
     private TooltipCompatHandler(View view, CharSequence charSequence) {
         this.mAnchor = view;
@@ -70,7 +88,7 @@ public class TooltipCompatHandler implements View$OnLongClickListener, View$OnHo
         this.mAnchor.removeCallbacks(this.mHideRunnable);
     }
 
-    @Override // android.view.View$OnHoverListener
+    @Override // android.view.View.OnHoverListener
     public boolean onHover(View view, MotionEvent motionEvent) {
         if (this.mPopup != null && this.mFromTouch) {
             return false;
@@ -91,7 +109,7 @@ public class TooltipCompatHandler implements View$OnLongClickListener, View$OnHo
         return false;
     }
 
-    @Override // android.view.View$OnLongClickListener
+    @Override // android.view.View.OnLongClickListener
     public boolean onLongClick(View view) {
         this.mAnchorX = view.getWidth() / 2;
         this.mAnchorY = view.getHeight() / 2;
@@ -99,11 +117,11 @@ public class TooltipCompatHandler implements View$OnLongClickListener, View$OnHo
         return true;
     }
 
-    @Override // android.view.View$OnAttachStateChangeListener
+    @Override // android.view.View.OnAttachStateChangeListener
     public void onViewAttachedToWindow(View view) {
     }
 
-    @Override // android.view.View$OnAttachStateChangeListener
+    @Override // android.view.View.OnAttachStateChangeListener
     public void onViewDetachedFromWindow(View view) {
         hide();
     }

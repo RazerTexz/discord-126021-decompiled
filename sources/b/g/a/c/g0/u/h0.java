@@ -1,7 +1,5 @@
 package b.g.a.c.g0.u;
 
-import b.g.a.a.i$a;
-import b.g.a.a.i$d;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import java.io.IOException;
 import java.util.Collection;
@@ -33,8 +31,8 @@ public abstract class h0<T extends Collection<?>> extends q0<T> implements b.g.a
         } else {
             nVarH = null;
         }
-        i$d i_dL = l(xVar, dVar, this._handledType);
-        Boolean boolB = i_dL != null ? i_dL.b(i$a.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED) : null;
+        b.g.a.a.i.d dVarL = l(xVar, dVar, this._handledType);
+        Boolean boolB = dVarL != null ? dVarL.b(b.g.a.a.i.a.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED) : null;
         b.g.a.c.n<?> nVarK = k(xVar, dVar, nVarH);
         if (nVarK == null) {
             nVarK = xVar.n(String.class, dVar);

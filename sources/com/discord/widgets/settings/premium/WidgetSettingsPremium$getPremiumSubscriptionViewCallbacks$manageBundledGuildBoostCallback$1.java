@@ -24,6 +24,6 @@ public final class WidgetSettingsPremium$getPremiumSubscriptionViewCallbacks$man
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2() {
-        WidgetSettingsGuildBoost.Companion.launch(this.this$0.requireContext());
+        WidgetSettingsGuildBoost.INSTANCE.launch(this.this$0.requireContext());
     }
 }

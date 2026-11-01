@@ -4,8 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
-import android.view.ViewGroup$MarginLayoutParams;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,14 +17,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView$LayoutManager;
 import b.a.d.g0;
 import b.a.d.i0;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$id;
-import com.discord.R$layout;
-import com.discord.R$plurals;
+import com.discord.R;
 import com.discord.app.AppBottomSheet;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetGuildHubProfileActionsBinding;
@@ -33,13 +29,14 @@ import com.discord.databinding.WidgetGuildProfileActionsBinding;
 import com.discord.databinding.WidgetGuildProfileSheetBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.emoji.Emoji;
+import com.discord.models.experiments.domain.Experiment;
 import com.discord.models.user.MeUser;
+import com.discord.stores.StoreStream;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.color.ColorCompatKt;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
-import com.discord.utilities.images.MGImages$ChangeDetector;
 import com.discord.utilities.resources.StringResourceUtilsKt;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.string.StringUtilsKt;
@@ -47,14 +44,16 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.discord.views.CheckedSetting;
 import com.discord.widgets.guilds.invite.WidgetGuildInviteShare;
-import com.discord.widgets.guilds.invite.WidgetGuildInviteShare$Companion;
 import com.discord.widgets.guilds.leave.WidgetLeaveGuildDialog;
-import com.discord.widgets.guilds.leave.WidgetLeaveGuildDialog$Companion;
+import com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
 import d0.g;
 import d0.z.d.a0;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
+import d0.z.d.q;
 import java.util.List;
 import java.util.Objects;
 import kotlin.Lazy;
@@ -62,14 +61,17 @@ import kotlin.NoWhenBranchMatchedException;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildProfileSheet extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGuildProfileSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildProfileSheetBinding;", 0)};
-    public static final WidgetGuildProfileSheet$Companion Companion = new WidgetGuildProfileSheet$Companion(null);
     private static final String EXTRA_FROM_UPSELL = "EXTRA_FROM_UPSELL";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final int LOADED_VIEW_INDEX = 1;
     private static final int LOADING_VIEW_INDEX = 0;
     private static final int NUM_ROWS_EMOJIS = 2;
@@ -87,6 +89,221 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheet$configureGuildActions$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ long $guildId;
+
+        public AnonymousClass1(long j) {
+            this.$guildId = j;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetGuildProfileSheet.access$getViewModel$p(WidgetGuildProfileSheet.this).onClickMarkAsRead(this.$guildId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheet$configureGuildHubActions$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ long $guildId;
+
+        public AnonymousClass1(long j) {
+            this.$guildId = j;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetGuildProfileSheet.access$launchInvite(WidgetGuildProfileSheet.this, this.$guildId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheet$configureUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
+    public final /* synthetic */ class AnonymousClass1 extends q {
+        public AnonymousClass1(WidgetGuildProfileSheet widgetGuildProfileSheet) {
+            super(widgetGuildProfileSheet, WidgetGuildProfileSheet.class, "guildHubActionBinding", "getGuildHubActionBinding()Lcom/discord/databinding/WidgetGuildHubProfileActionsBinding;", 0);
+        }
+
+        @Override // d0.z.d.q, kotlin.reflect.KProperty0
+        public Object get() {
+            return WidgetGuildProfileSheet.access$getGuildHubActionBinding$p((WidgetGuildProfileSheet) this.receiver);
+        }
+
+        @Override // d0.z.d.q
+        public void set(Object obj) {
+            WidgetGuildProfileSheet.access$setGuildHubActionBinding$p((WidgetGuildProfileSheet) this.receiver, (WidgetGuildHubProfileActionsBinding) obj);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheet$onViewCreated$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<WidgetGuildProfileSheetViewModel.ViewState, Unit> {
+        public AnonymousClass1(WidgetGuildProfileSheet widgetGuildProfileSheet) {
+            super(1, widgetGuildProfileSheet, WidgetGuildProfileSheet.class, "handleViewState", "handleViewState(Lcom/discord/widgets/guilds/profile/WidgetGuildProfileSheetViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetGuildProfileSheetViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetGuildProfileSheetViewModel.ViewState viewState) {
+            m.checkNotNullParameter(viewState, "p1");
+            WidgetGuildProfileSheet.access$handleViewState((WidgetGuildProfileSheet) this.receiver, viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheet$configureGuildActions$11, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
+    public final class AnonymousClass11 implements View.OnClickListener {
+        public final /* synthetic */ long $guildId;
+
+        public AnonymousClass11(long j) {
+            this.$guildId = j;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            Context contextRequireContext = WidgetGuildProfileSheet.this.requireContext();
+            m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+            b.a.d.m.c(contextRequireContext, String.valueOf(this.$guildId), 0, 4);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheet$configureGuildHubActions$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
+    public final class AnonymousClass2 extends o implements Function1<View, Unit> {
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(long j) {
+            super(1);
+            this.$guildId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+            Experiment userExperiment = StoreStream.INSTANCE.getExperiments().getUserExperiment("2021-10_premium_guild_member_profiles", true);
+            if (userExperiment != null && userExperiment.getBucket() == 1) {
+                WidgetEditUserOrGuildMemberProfile.Companion companion = WidgetEditUserOrGuildMemberProfile.INSTANCE;
+                Context context = view.getContext();
+                m.checkNotNullExpressionValue(context, "it.context");
+                WidgetEditUserOrGuildMemberProfile.Companion.launch$default(companion, context, null, Long.valueOf(this.$guildId), 2, null);
+                return;
+            }
+            WidgetChangeGuildIdentity.Companion companion2 = WidgetChangeGuildIdentity.INSTANCE;
+            long j = this.$guildId;
+            Context context2 = view.getContext();
+            m.checkNotNullExpressionValue(context2, "it.context");
+            companion2.launch(j, "Guild Bottom Sheet", context2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheet$configureUI$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
+    public final /* synthetic */ class AnonymousClass2 extends q {
+        public AnonymousClass2(WidgetGuildProfileSheet widgetGuildProfileSheet) {
+            super(widgetGuildProfileSheet, WidgetGuildProfileSheet.class, "guildActionBinding", "getGuildActionBinding()Lcom/discord/databinding/WidgetGuildProfileActionsBinding;", 0);
+        }
+
+        @Override // d0.z.d.q, kotlin.reflect.KProperty0
+        public Object get() {
+            return WidgetGuildProfileSheet.access$getGuildActionBinding$p((WidgetGuildProfileSheet) this.receiver);
+        }
+
+        @Override // d0.z.d.q
+        public void set(Object obj) {
+            WidgetGuildProfileSheet.access$setGuildActionBinding$p((WidgetGuildProfileSheet) this.receiver, (WidgetGuildProfileActionsBinding) obj);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheet$onViewCreated$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
+    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<WidgetGuildProfileSheetViewModel.Event, Unit> {
+        public AnonymousClass2(WidgetGuildProfileSheet widgetGuildProfileSheet) {
+            super(1, widgetGuildProfileSheet, WidgetGuildProfileSheet.class, "handleEvent", "handleEvent(Lcom/discord/widgets/guilds/profile/WidgetGuildProfileSheetViewModel$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetGuildProfileSheetViewModel.Event event) {
+            invoke2(event);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetGuildProfileSheetViewModel.Event event) {
+            m.checkNotNullParameter(event, "p1");
+            WidgetGuildProfileSheet.access$handleEvent((WidgetGuildProfileSheet) this.receiver, event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheet$onViewCreated$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
+    public final class AnonymousClass3 extends o implements Function0<Unit> {
+        public AnonymousClass3() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetGuildProfileSheet.access$getViewModel$p(WidgetGuildProfileSheet.this).onClickEmoji();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static /* synthetic */ void show$default(Companion companion, FragmentManager fragmentManager, boolean z2, long j, long j2, boolean z3, int i, Object obj) {
+            companion.show(fragmentManager, z2, j, (i & 8) != 0 ? 0L : j2, (i & 16) != 0 ? false : z3);
+        }
+
+        public final void show(FragmentManager fragmentManager, boolean viewingGuild, long guildId, long channelId, boolean fromGuildEventUpsell) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            WidgetGuildProfileSheet widgetGuildProfileSheet = new WidgetGuildProfileSheet();
+            Bundle bundleT = a.T("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
+            bundleT.putLong("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
+            bundleT.putBoolean("com.discord.intent.extra.EXTRA_VIEWING_GUILD", viewingGuild);
+            bundleT.putBoolean(WidgetGuildProfileSheet.EXTRA_FROM_UPSELL, fromGuildEventUpsell);
+            widgetGuildProfileSheet.setArguments(bundleT);
+            widgetGuildProfileSheet.show(fragmentManager, WidgetGuildProfileSheet.class.getName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            WidgetGuildProfileSheetViewModel.Banner.Type.values();
+            int[] iArr = new int[2];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[WidgetGuildProfileSheetViewModel.Banner.Type.BANNER.ordinal()] = 1;
+            iArr[WidgetGuildProfileSheetViewModel.Banner.Type.SPLASH.ordinal()] = 2;
+        }
+    }
 
     public WidgetGuildProfileSheet() {
         super(false, 1, null);
@@ -122,12 +339,12 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         return widgetGuildProfileSheet.getViewModel();
     }
 
-    public static final /* synthetic */ void access$handleEvent(WidgetGuildProfileSheet widgetGuildProfileSheet, WidgetGuildProfileSheetViewModel$Event widgetGuildProfileSheetViewModel$Event) {
-        widgetGuildProfileSheet.handleEvent(widgetGuildProfileSheetViewModel$Event);
+    public static final /* synthetic */ void access$handleEvent(WidgetGuildProfileSheet widgetGuildProfileSheet, WidgetGuildProfileSheetViewModel.Event event) {
+        widgetGuildProfileSheet.handleEvent(event);
     }
 
-    public static final /* synthetic */ void access$handleViewState(WidgetGuildProfileSheet widgetGuildProfileSheet, WidgetGuildProfileSheetViewModel$ViewState widgetGuildProfileSheetViewModel$ViewState) {
-        widgetGuildProfileSheet.handleViewState(widgetGuildProfileSheetViewModel$ViewState);
+    public static final /* synthetic */ void access$handleViewState(WidgetGuildProfileSheet widgetGuildProfileSheet, WidgetGuildProfileSheetViewModel.ViewState viewState) {
+        widgetGuildProfileSheet.handleViewState(viewState);
     }
 
     public static final /* synthetic */ void access$launchInvite(WidgetGuildProfileSheet widgetGuildProfileSheet, long j) {
@@ -146,7 +363,7 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         widgetGuildProfileSheet.showLeaveServerDialog(j);
     }
 
-    private final void configureBottomActions(long guildId, Long channelId, WidgetGuildProfileSheetViewModel$BottomActions bottomActions) {
+    private final void configureBottomActions(long guildId, Long channelId, WidgetGuildProfileSheetViewModel.BottomActions bottomActions) {
         boolean showUploadEmoji = bottomActions.getShowUploadEmoji();
         boolean showJoinServer = bottomActions.getShowJoinServer();
         boolean showViewServer = bottomActions.getShowViewServer();
@@ -191,7 +408,7 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         m.checkNotNullExpressionValue(view2, "guildActionBinding.guild…dId, channelId) }\n      }");
     }
 
-    private final void configureEmojis(WidgetGuildProfileSheetViewModel$EmojisData emojisData) {
+    private final void configureEmojis(WidgetGuildProfileSheetViewModel.EmojisData emojisData) {
         boolean zIsPremium = emojisData.isPremium();
         boolean zIsExpanded = emojisData.isExpanded();
         List<Emoji> emojis = emojisData.getEmojis();
@@ -204,7 +421,7 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         m.checkNotNullExpressionValue(textView, "guildActionBinding.guildProfileSheetEmojisCount");
         Resources resources = getResources();
         m.checkNotNullExpressionValue(resources, "resources");
-        textView.setText(StringResourceUtilsKt.getQuantityString(resources, R$plurals.emojis_title_count, 2131893248, size, Integer.valueOf(size)));
+        textView.setText(StringResourceUtilsKt.getQuantityString(resources, R.plurals.emojis_title_count, R.string.no_emoji_title, size, Integer.valueOf(size)));
         WidgetGuildProfileActionsBinding widgetGuildProfileActionsBinding2 = this.guildActionBinding;
         if (widgetGuildProfileActionsBinding2 == null) {
             m.throwUninitializedPropertyAccessException("guildActionBinding");
@@ -243,13 +460,13 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         }
         RecyclerView recyclerView = widgetGuildProfileActionsBinding6.m;
         m.checkNotNullExpressionValue(recyclerView, "guildActionBinding.guildProfileSheetEmojis");
-        RecyclerView$LayoutManager layoutManager = recyclerView.getLayoutManager();
+        RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
         Objects.requireNonNull(layoutManager, "null cannot be cast to non-null type androidx.recyclerview.widget.GridLayoutManager");
         ((GridLayoutManager) layoutManager).setSpanCount(iMaxEmojisPerRow);
         this.emojisAdapter.setData(emojis, zIsExpanded ? emojis.size() : iMaxEmojisPerRow * 2);
     }
 
-    private final void configureGuildActions(long guildId, long userId, WidgetGuildProfileSheetViewModel$Actions actions) {
+    private final void configureGuildActions(long guildId, long userId, WidgetGuildProfileSheetViewModel.Actions actions) {
         if (actions == null) {
             WidgetGuildProfileActionsBinding widgetGuildProfileActionsBinding = this.guildActionBinding;
             if (widgetGuildProfileActionsBinding == null) {
@@ -282,7 +499,7 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         if (widgetGuildProfileActionsBinding4 == null) {
             m.throwUninitializedPropertyAccessException("guildActionBinding");
         }
-        widgetGuildProfileActionsBinding4.t.setOnClickListener(new WidgetGuildProfileSheet$configureGuildActions$1(this, guildId));
+        widgetGuildProfileActionsBinding4.t.setOnClickListener(new AnonymousClass1(guildId));
         WidgetGuildProfileActionsBinding widgetGuildProfileActionsBinding5 = this.guildActionBinding;
         if (widgetGuildProfileActionsBinding5 == null) {
             m.throwUninitializedPropertyAccessException("guildActionBinding");
@@ -380,10 +597,10 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         if (widgetGuildProfileActionsBinding18 == null) {
             m.throwUninitializedPropertyAccessException("guildActionBinding");
         }
-        widgetGuildProfileActionsBinding18.g.setOnClickListener(new WidgetGuildProfileSheet$configureGuildActions$11(this, guildId));
+        widgetGuildProfileActionsBinding18.g.setOnClickListener(new AnonymousClass11(guildId));
     }
 
-    private final void configureGuildBanner(WidgetGuildProfileSheetViewModel$Banner guildBanner) {
+    private final void configureGuildBanner(WidgetGuildProfileSheetViewModel.Banner guildBanner) {
         String bannerForGuild$default;
         if (guildBanner.getHash() == null) {
             SimpleDraweeView simpleDraweeView = getBinding().f2431b;
@@ -394,12 +611,12 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         }
         int iOrdinal = guildBanner.getType().ordinal();
         if (iOrdinal == 0) {
-            bannerForGuild$default = IconUtils.getBannerForGuild$default(IconUtils.INSTANCE, Long.valueOf(guildBanner.getGuildId()), guildBanner.getHash(), Integer.valueOf(getResources().getDimensionPixelSize(2131165700)), false, 8, null);
+            bannerForGuild$default = IconUtils.getBannerForGuild$default(IconUtils.INSTANCE, Long.valueOf(guildBanner.getGuildId()), guildBanner.getHash(), Integer.valueOf(getResources().getDimensionPixelSize(R.dimen.nav_panel_width)), false, 8, null);
         } else {
             if (iOrdinal != 1) {
                 throw new NoWhenBranchMatchedException();
             }
-            bannerForGuild$default = IconUtils.INSTANCE.getGuildSplashUrl(guildBanner.getGuildId(), guildBanner.getHash(), Integer.valueOf(getResources().getDimensionPixelSize(2131165700)));
+            bannerForGuild$default = IconUtils.INSTANCE.getGuildSplashUrl(guildBanner.getGuildId(), guildBanner.getHash(), Integer.valueOf(getResources().getDimensionPixelSize(R.dimen.nav_panel_width)));
         }
         SimpleDraweeView simpleDraweeView2 = getBinding().f2431b;
         m.checkNotNullExpressionValue(simpleDraweeView2, "binding.guildProfileSheetBanner");
@@ -445,20 +662,20 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         }
     }
 
-    private final void configureGuildHubActions(long guildId, long userId, WidgetGuildProfileSheetViewModel$Actions actions) {
+    private final void configureGuildHubActions(long guildId, long userId, WidgetGuildProfileSheetViewModel.Actions actions) {
         if (actions != null) {
             WidgetGuildHubProfileActionsBinding widgetGuildHubProfileActionsBinding = this.guildHubActionBinding;
             if (widgetGuildHubProfileActionsBinding == null) {
                 m.throwUninitializedPropertyAccessException("guildHubActionBinding");
             }
-            widgetGuildHubProfileActionsBinding.d.setOnClickListener(new WidgetGuildProfileSheet$configureGuildHubActions$1(this, guildId));
+            widgetGuildHubProfileActionsBinding.d.setOnClickListener(new AnonymousClass1(guildId));
             WidgetGuildHubProfileActionsBinding widgetGuildHubProfileActionsBinding2 = this.guildHubActionBinding;
             if (widgetGuildHubProfileActionsBinding2 == null) {
                 m.throwUninitializedPropertyAccessException("guildHubActionBinding");
             }
             View view = widgetGuildHubProfileActionsBinding2.f2414b;
             m.checkNotNullExpressionValue(view, "guildHubActionBinding.gu…rofileSheetChangeNickname");
-            setOnClickAndDismissListener(view, new WidgetGuildProfileSheet$configureGuildHubActions$2(guildId));
+            setOnClickAndDismissListener(view, new AnonymousClass2(guildId));
             WidgetGuildHubProfileActionsBinding widgetGuildHubProfileActionsBinding3 = this.guildHubActionBinding;
             if (widgetGuildHubProfileActionsBinding3 == null) {
                 m.throwUninitializedPropertyAccessException("guildHubActionBinding");
@@ -496,19 +713,19 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
     }
 
     private final void configureGuildIcon(long guildId, String iconHash, String shortName) {
-        String forGuild$default = IconUtils.getForGuild$default(Long.valueOf(guildId), iconHash, null, true, Integer.valueOf(IconUtils.getMediaProxySize(getResources().getDimensionPixelSize(2131165302))), 4, null);
+        String forGuild$default = IconUtils.getForGuild$default(Long.valueOf(guildId), iconHash, null, true, Integer.valueOf(IconUtils.getMediaProxySize(getResources().getDimensionPixelSize(R.dimen.avatar_size_xxlarge))), 4, null);
         if (forGuild$default != null) {
             TextView textView = getBinding().k;
             m.checkNotNullExpressionValue(textView, "binding.guildProfileSheetIconName");
             textView.setVisibility(8);
             SimpleDraweeView simpleDraweeView = getBinding().i;
             m.checkNotNullExpressionValue(simpleDraweeView, "binding.guildProfileSheetIcon");
-            IconUtils.setIcon$default(simpleDraweeView, forGuild$default, 0, (Function1) null, (MGImages$ChangeDetector) null, 28, (Object) null);
+            IconUtils.setIcon$default(simpleDraweeView, forGuild$default, 0, (Function1) null, (MGImages.ChangeDetector) null, 28, (Object) null);
             return;
         }
         SimpleDraweeView simpleDraweeView2 = getBinding().i;
         m.checkNotNullExpressionValue(simpleDraweeView2, "binding.guildProfileSheetIcon");
-        IconUtils.setIcon$default(simpleDraweeView2, IconUtils.DEFAULT_ICON_BLURPLE, 0, (Function1) null, (MGImages$ChangeDetector) null, 28, (Object) null);
+        IconUtils.setIcon$default(simpleDraweeView2, IconUtils.DEFAULT_ICON_BLURPLE, 0, (Function1) null, (MGImages.ChangeDetector) null, 28, (Object) null);
         TextView textView2 = getBinding().k;
         m.checkNotNullExpressionValue(textView2, "binding.guildProfileSheetIconName");
         textView2.setVisibility(0);
@@ -529,7 +746,7 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
             m.checkNotNullExpressionValue(linearLayout2, "binding.guildProfileSheetOnlineCount");
             Context context = linearLayout2.getContext();
             m.checkNotNullExpressionValue(context, "binding.guildProfileSheetOnlineCount.context");
-            b.n(textView, 2131892068, new Object[]{StringUtilsKt.format(iIntValue, context)}, null, 4);
+            b.n(textView, R.string.instant_invite_guild_members_online, new Object[]{StringUtilsKt.format(iIntValue, context)}, null, 4);
         } else {
             LinearLayout linearLayout3 = getBinding().q;
             m.checkNotNullExpressionValue(linearLayout3, "binding.guildProfileSheetOnlineCount");
@@ -548,13 +765,13 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         m.checkNotNullExpressionValue(resources, "resources");
         Context contextRequireContext = requireContext();
         m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
-        CharSequence quantityString = StringResourceUtilsKt.getQuantityString(resources, contextRequireContext, R$plurals.instant_invite_guild_members_total_count, approximateMemberCount.intValue(), approximateMemberCount);
+        CharSequence quantityString = StringResourceUtilsKt.getQuantityString(resources, contextRequireContext, R.plurals.instant_invite_guild_members_total_count, approximateMemberCount.intValue(), approximateMemberCount);
         TextView textView2 = getBinding().n;
         m.checkNotNullExpressionValue(textView2, "binding.guildProfileSheetMemberCountText");
-        b.n(textView2, 2131892069, new Object[]{quantityString}, null, 4);
+        b.n(textView2, R.string.instant_invite_guild_members_total, new Object[]{quantityString}, null, 4);
     }
 
-    private final void configureTabItems(long guildId, WidgetGuildProfileSheetViewModel$TabItems tabItems, boolean isGuildHub) {
+    private final void configureTabItems(long guildId, WidgetGuildProfileSheetViewModel.TabItems tabItems, boolean isGuildHub) {
         if (tabItems == null || isGuildHub) {
             LinearLayout linearLayout = getBinding().t;
             m.checkNotNullExpressionValue(linearLayout, "binding.guildProfileSheetTabItems");
@@ -573,11 +790,11 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         View view2 = getBinding().e;
         m.checkNotNullExpressionValue(view2, "binding.guildProfileShee…entContainerBottomDivider");
         view2.setVisibility(0);
-        int themedColor = ColorCompat.getThemedColor(this, 2130969008);
+        int themedColor = ColorCompat.getThemedColor(this, R.attr.colorInteractiveNormal);
         MaterialButton materialButton = getBinding().c;
         Resources resources = materialButton.getResources();
         m.checkNotNullExpressionValue(resources, "resources");
-        materialButton.setText(StringResourceUtilsKt.getQuantityString(resources, R$plurals.premium_guild_perks_modal_header_subscription_count_subscriptions, 2131894081, premiumSubscriptionCount, Integer.valueOf(premiumSubscriptionCount)));
+        materialButton.setText(StringResourceUtilsKt.getQuantityString(resources, R.plurals.premium_guild_perks_modal_header_subscription_count_subscriptions, R.string.premium_guild_subscription, premiumSubscriptionCount, Integer.valueOf(premiumSubscriptionCount)));
         materialButton.setTextColor(themedColor);
         setOnClickAndDismissListener(materialButton, new WidgetGuildProfileSheet$configureTabItems$$inlined$apply$lambda$1(this, premiumSubscriptionCount, themedColor, guildId));
         MaterialButton materialButton2 = getBinding().p;
@@ -599,155 +816,155 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
 
     /* JADX WARN: Code duplicated, block: B:127:0x0347  */
     /* JADX WARN: Code duplicated, block: B:128:0x0354  */
-    private final void configureUI(WidgetGuildProfileSheetViewModel$ViewState$Loaded viewState) {
-        WidgetGuildProfileSheetViewModel$Actions widgetGuildProfileSheetViewModel$Actions;
+    private final void configureUI(WidgetGuildProfileSheetViewModel.ViewState.Loaded viewState) {
+        WidgetGuildProfileSheetViewModel.Actions actions;
         int i;
         int i2;
-        long guildId = viewState.getGuildId();
-        String guildName = viewState.getGuildName();
-        String guildShortName = viewState.getGuildShortName();
-        String guildIcon = viewState.getGuildIcon();
-        String guildDescription = viewState.getGuildDescription();
-        Integer verifiedPartneredIconRes = viewState.getVerifiedPartneredIconRes();
-        WidgetGuildProfileSheetViewModel$Banner banner = viewState.getBanner();
-        Integer onlineCount = viewState.getOnlineCount();
-        Integer memberCount = viewState.getMemberCount();
-        WidgetGuildProfileSheetViewModel$TabItems tabItems = viewState.getTabItems();
-        WidgetGuildProfileSheetViewModel$Actions actions = viewState.getActions();
-        WidgetGuildProfileSheetViewModel$EmojisData emojisData = viewState.getEmojisData();
-        WidgetGuildProfileSheetViewModel$BottomActions bottomActions = viewState.getBottomActions();
-        boolean isGuildHub = viewState.getIsGuildHub();
-        MeUser meUser = viewState.getMeUser();
-        if (isGuildHub && this.guildHubActionBinding == null) {
+        long jComponent1 = viewState.getGuildId();
+        String strComponent2 = viewState.getGuildName();
+        String strComponent3 = viewState.getGuildShortName();
+        String strComponent4 = viewState.getGuildIcon();
+        String strComponent5 = viewState.getGuildDescription();
+        Integer numComponent6 = viewState.getVerifiedPartneredIconRes();
+        WidgetGuildProfileSheetViewModel.Banner bannerComponent7 = viewState.getBanner();
+        Integer numComponent8 = viewState.getOnlineCount();
+        Integer numComponent9 = viewState.getMemberCount();
+        WidgetGuildProfileSheetViewModel.TabItems tabItemsComponent10 = viewState.getTabItems();
+        WidgetGuildProfileSheetViewModel.Actions actionsComponent11 = viewState.getActions();
+        WidgetGuildProfileSheetViewModel.EmojisData emojisDataComponent12 = viewState.getEmojisData();
+        WidgetGuildProfileSheetViewModel.BottomActions bottomActionsComponent13 = viewState.getBottomActions();
+        boolean zComponent14 = viewState.getIsGuildHub();
+        MeUser meUserComponent15 = viewState.getMeUser();
+        if (zComponent14 && this.guildHubActionBinding == null) {
             View viewInflate = getBinding().u.inflate();
-            widgetGuildProfileSheetViewModel$Actions = actions;
-            LinearLayout linearLayout = (LinearLayout) viewInflate.findViewById(R$id.guild_profile_sheet_actions);
+            actions = actionsComponent11;
+            LinearLayout linearLayout = (LinearLayout) viewInflate.findViewById(R.id.guild_profile_sheet_actions);
             if (linearLayout != null) {
                 LinearLayout linearLayout2 = (LinearLayout) viewInflate;
-                LinearLayout linearLayout3 = (LinearLayout) viewInflate.findViewById(R$id.guild_profile_sheet_change_nickname);
+                LinearLayout linearLayout3 = (LinearLayout) viewInflate.findViewById(R.id.guild_profile_sheet_change_nickname);
                 if (linearLayout3 != null) {
-                    SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate.findViewById(R$id.guild_profile_sheet_guild_avatar);
+                    SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate.findViewById(R.id.guild_profile_sheet_guild_avatar);
                     if (simpleDraweeView != null) {
-                        i2 = R$id.guild_profile_sheet_invite;
-                        TextView textView = (TextView) viewInflate.findViewById(R$id.guild_profile_sheet_invite);
+                        i2 = R.id.guild_profile_sheet_invite;
+                        TextView textView = (TextView) viewInflate.findViewById(R.id.guild_profile_sheet_invite);
                         if (textView != null) {
-                            CardView cardView = (CardView) viewInflate.findViewById(R$id.guild_profile_sheet_invite_action);
+                            CardView cardView = (CardView) viewInflate.findViewById(R.id.guild_profile_sheet_invite_action);
                             if (cardView != null) {
-                                TextView textView2 = (TextView) viewInflate.findViewById(R$id.guild_profile_sheet_leave_server);
+                                TextView textView2 = (TextView) viewInflate.findViewById(R.id.guild_profile_sheet_leave_server);
                                 if (textView2 != null) {
-                                    TextView textView3 = (TextView) viewInflate.findViewById(R$id.guild_profile_sheet_nickname);
+                                    TextView textView3 = (TextView) viewInflate.findViewById(R.id.guild_profile_sheet_nickname);
                                     if (textView3 != null) {
-                                        TextView textView4 = (TextView) viewInflate.findViewById(R$id.guild_profile_sheet_notifications);
+                                        TextView textView4 = (TextView) viewInflate.findViewById(R.id.guild_profile_sheet_notifications);
                                         if (textView4 != null) {
-                                            CardView cardView2 = (CardView) viewInflate.findViewById(R$id.guild_profile_sheet_secondary_actions);
+                                            CardView cardView2 = (CardView) viewInflate.findViewById(R.id.guild_profile_sheet_secondary_actions);
                                             if (cardView2 != null) {
-                                                LinearLayout linearLayout4 = (LinearLayout) viewInflate.findViewById(R$id.per_guild_identity_container);
+                                                LinearLayout linearLayout4 = (LinearLayout) viewInflate.findViewById(R.id.per_guild_identity_container);
                                                 if (linearLayout4 != null) {
                                                     WidgetGuildHubProfileActionsBinding widgetGuildHubProfileActionsBinding = new WidgetGuildHubProfileActionsBinding(linearLayout2, linearLayout, linearLayout2, linearLayout3, simpleDraweeView, textView, cardView, textView2, textView3, textView4, cardView2, linearLayout4);
                                                     m.checkNotNullExpressionValue(widgetGuildHubProfileActionsBinding, "WidgetGuildHubProfileActionsBinding.bind(view)");
                                                     this.guildHubActionBinding = widgetGuildHubProfileActionsBinding;
                                                 } else {
-                                                    i2 = R$id.per_guild_identity_container;
+                                                    i2 = R.id.per_guild_identity_container;
                                                 }
                                             } else {
-                                                i2 = R$id.guild_profile_sheet_secondary_actions;
+                                                i2 = R.id.guild_profile_sheet_secondary_actions;
                                             }
                                         } else {
-                                            i2 = R$id.guild_profile_sheet_notifications;
+                                            i2 = R.id.guild_profile_sheet_notifications;
                                         }
                                     } else {
-                                        i2 = R$id.guild_profile_sheet_nickname;
+                                        i2 = R.id.guild_profile_sheet_nickname;
                                     }
                                 } else {
-                                    i2 = R$id.guild_profile_sheet_leave_server;
+                                    i2 = R.id.guild_profile_sheet_leave_server;
                                 }
                             } else {
-                                i2 = R$id.guild_profile_sheet_invite_action;
+                                i2 = R.id.guild_profile_sheet_invite_action;
                             }
                         }
                     } else {
-                        i2 = R$id.guild_profile_sheet_guild_avatar;
+                        i2 = R.id.guild_profile_sheet_guild_avatar;
                     }
                 } else {
-                    i2 = R$id.guild_profile_sheet_change_nickname;
+                    i2 = R.id.guild_profile_sheet_change_nickname;
                 }
             } else {
-                i2 = R$id.guild_profile_sheet_actions;
+                i2 = R.id.guild_profile_sheet_actions;
             }
             throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i2)));
         }
-        widgetGuildProfileSheetViewModel$Actions = actions;
-        if (!isGuildHub && this.guildActionBinding == null) {
+        actions = actionsComponent11;
+        if (!zComponent14 && this.guildActionBinding == null) {
             View viewInflate2 = getBinding().v.inflate();
-            LinearLayout linearLayout5 = (LinearLayout) viewInflate2.findViewById(R$id.change_identity);
+            LinearLayout linearLayout5 = (LinearLayout) viewInflate2.findViewById(R.id.change_identity);
             if (linearLayout5 != null) {
-                TextView textView5 = (TextView) viewInflate2.findViewById(R$id.change_identity_header);
+                TextView textView5 = (TextView) viewInflate2.findViewById(R.id.change_identity_header);
                 if (textView5 != null) {
-                    LinearLayout linearLayout6 = (LinearLayout) viewInflate2.findViewById(R$id.guild_profile_sheet_actions);
+                    LinearLayout linearLayout6 = (LinearLayout) viewInflate2.findViewById(R.id.guild_profile_sheet_actions);
                     if (linearLayout6 != null) {
-                        CheckedSetting checkedSetting = (CheckedSetting) viewInflate2.findViewById(R$id.guild_profile_sheet_allow_dm);
+                        CheckedSetting checkedSetting = (CheckedSetting) viewInflate2.findViewById(R.id.guild_profile_sheet_allow_dm);
                         if (checkedSetting != null) {
-                            LinearLayout linearLayout7 = (LinearLayout) viewInflate2.findViewById(R$id.guild_profile_sheet_bottom_actions);
+                            LinearLayout linearLayout7 = (LinearLayout) viewInflate2.findViewById(R.id.guild_profile_sheet_bottom_actions);
                             if (linearLayout7 != null) {
                                 LinearLayout linearLayout8 = (LinearLayout) viewInflate2;
-                                TextView textView6 = (TextView) viewInflate2.findViewById(R$id.guild_profile_sheet_copy_id);
+                                TextView textView6 = (TextView) viewInflate2.findViewById(R.id.guild_profile_sheet_copy_id);
                                 if (textView6 != null) {
-                                    TextView textView7 = (TextView) viewInflate2.findViewById(R$id.guild_profile_sheet_create_category);
+                                    TextView textView7 = (TextView) viewInflate2.findViewById(R.id.guild_profile_sheet_create_category);
                                     if (textView7 != null) {
-                                        TextView textView8 = (TextView) viewInflate2.findViewById(R$id.guild_profile_sheet_create_channel);
+                                        TextView textView8 = (TextView) viewInflate2.findViewById(R.id.guild_profile_sheet_create_channel);
                                         if (textView8 != null) {
-                                            ConstraintLayout constraintLayout = (ConstraintLayout) viewInflate2.findViewById(R$id.guild_profile_sheet_create_event);
+                                            ConstraintLayout constraintLayout = (ConstraintLayout) viewInflate2.findViewById(R.id.guild_profile_sheet_create_event);
                                             if (constraintLayout != null) {
-                                                TextView textView9 = (TextView) viewInflate2.findViewById(R$id.guild_profile_sheet_create_event_label);
+                                                TextView textView9 = (TextView) viewInflate2.findViewById(R.id.guild_profile_sheet_create_event_label);
                                                 if (textView9 != null) {
-                                                    TextView textView10 = (TextView) viewInflate2.findViewById(R$id.guild_profile_sheet_create_event_new);
+                                                    TextView textView10 = (TextView) viewInflate2.findViewById(R.id.guild_profile_sheet_create_event_new);
                                                     if (textView10 != null) {
-                                                        CardView cardView3 = (CardView) viewInflate2.findViewById(R$id.guild_profile_sheet_developer_actions);
+                                                        CardView cardView3 = (CardView) viewInflate2.findViewById(R.id.guild_profile_sheet_developer_actions);
                                                         if (cardView3 != null) {
-                                                            RecyclerView recyclerView = (RecyclerView) viewInflate2.findViewById(R$id.guild_profile_sheet_emojis);
+                                                            RecyclerView recyclerView = (RecyclerView) viewInflate2.findViewById(R.id.guild_profile_sheet_emojis);
                                                             if (recyclerView != null) {
-                                                                i = R$id.guild_profile_sheet_emojis_card;
-                                                                CardView cardView4 = (CardView) viewInflate2.findViewById(R$id.guild_profile_sheet_emojis_card);
+                                                                i = R.id.guild_profile_sheet_emojis_card;
+                                                                CardView cardView4 = (CardView) viewInflate2.findViewById(R.id.guild_profile_sheet_emojis_card);
                                                                 if (cardView4 != null) {
-                                                                    TextView textView11 = (TextView) viewInflate2.findViewById(R$id.guild_profile_sheet_emojis_count);
+                                                                    TextView textView11 = (TextView) viewInflate2.findViewById(R.id.guild_profile_sheet_emojis_count);
                                                                     if (textView11 != null) {
-                                                                        i = R$id.guild_profile_sheet_guild_avatar;
-                                                                        SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) viewInflate2.findViewById(R$id.guild_profile_sheet_guild_avatar);
+                                                                        i = R.id.guild_profile_sheet_guild_avatar;
+                                                                        SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) viewInflate2.findViewById(R.id.guild_profile_sheet_guild_avatar);
                                                                         if (simpleDraweeView2 != null) {
-                                                                            i = R$id.guild_profile_sheet_hide_muted_channels;
-                                                                            CheckedSetting checkedSetting2 = (CheckedSetting) viewInflate2.findViewById(R$id.guild_profile_sheet_hide_muted_channels);
+                                                                            i = R.id.guild_profile_sheet_hide_muted_channels;
+                                                                            CheckedSetting checkedSetting2 = (CheckedSetting) viewInflate2.findViewById(R.id.guild_profile_sheet_hide_muted_channels);
                                                                             if (checkedSetting2 != null) {
-                                                                                MaterialButton materialButton = (MaterialButton) viewInflate2.findViewById(R$id.guild_profile_sheet_join_server);
+                                                                                MaterialButton materialButton = (MaterialButton) viewInflate2.findViewById(R.id.guild_profile_sheet_join_server);
                                                                                 if (materialButton != null) {
-                                                                                    i = R$id.guild_profile_sheet_leave_server;
-                                                                                    TextView textView12 = (TextView) viewInflate2.findViewById(R$id.guild_profile_sheet_leave_server);
+                                                                                    i = R.id.guild_profile_sheet_leave_server;
+                                                                                    TextView textView12 = (TextView) viewInflate2.findViewById(R.id.guild_profile_sheet_leave_server);
                                                                                     if (textView12 != null) {
-                                                                                        i = R$id.guild_profile_sheet_mark_as_read;
-                                                                                        TextView textView13 = (TextView) viewInflate2.findViewById(R$id.guild_profile_sheet_mark_as_read);
+                                                                                        i = R.id.guild_profile_sheet_mark_as_read;
+                                                                                        TextView textView13 = (TextView) viewInflate2.findViewById(R.id.guild_profile_sheet_mark_as_read);
                                                                                         if (textView13 != null) {
-                                                                                            CardView cardView5 = (CardView) viewInflate2.findViewById(R$id.guild_profile_sheet_mark_as_read_action);
+                                                                                            CardView cardView5 = (CardView) viewInflate2.findViewById(R.id.guild_profile_sheet_mark_as_read_action);
                                                                                             if (cardView5 != null) {
-                                                                                                i = R$id.guild_profile_sheet_nickname;
-                                                                                                TextView textView14 = (TextView) viewInflate2.findViewById(R$id.guild_profile_sheet_nickname);
+                                                                                                i = R.id.guild_profile_sheet_nickname;
+                                                                                                TextView textView14 = (TextView) viewInflate2.findViewById(R.id.guild_profile_sheet_nickname);
                                                                                                 if (textView14 != null) {
-                                                                                                    i = R$id.guild_profile_sheet_premium_upsell_dot_separator;
-                                                                                                    ImageView imageView = (ImageView) viewInflate2.findViewById(R$id.guild_profile_sheet_premium_upsell_dot_separator);
+                                                                                                    i = R.id.guild_profile_sheet_premium_upsell_dot_separator;
+                                                                                                    ImageView imageView = (ImageView) viewInflate2.findViewById(R.id.guild_profile_sheet_premium_upsell_dot_separator);
                                                                                                     if (imageView != null) {
-                                                                                                        i = R$id.guild_profile_sheet_premium_upsell_text;
-                                                                                                        TextView textView15 = (TextView) viewInflate2.findViewById(R$id.guild_profile_sheet_premium_upsell_text);
+                                                                                                        i = R.id.guild_profile_sheet_premium_upsell_text;
+                                                                                                        TextView textView15 = (TextView) viewInflate2.findViewById(R.id.guild_profile_sheet_premium_upsell_text);
                                                                                                         if (textView15 != null) {
-                                                                                                            CardView cardView6 = (CardView) viewInflate2.findViewById(R$id.guild_profile_sheet_primary_actions);
+                                                                                                            CardView cardView6 = (CardView) viewInflate2.findViewById(R.id.guild_profile_sheet_primary_actions);
                                                                                                             if (cardView6 != null) {
-                                                                                                                i = R$id.guild_profile_sheet_secondary_actions;
-                                                                                                                CardView cardView7 = (CardView) viewInflate2.findViewById(R$id.guild_profile_sheet_secondary_actions);
+                                                                                                                i = R.id.guild_profile_sheet_secondary_actions;
+                                                                                                                CardView cardView7 = (CardView) viewInflate2.findViewById(R.id.guild_profile_sheet_secondary_actions);
                                                                                                                 if (cardView7 != null) {
-                                                                                                                    i = R$id.guild_profile_sheet_upload_emoji;
-                                                                                                                    MaterialButton materialButton2 = (MaterialButton) viewInflate2.findViewById(R$id.guild_profile_sheet_upload_emoji);
+                                                                                                                    i = R.id.guild_profile_sheet_upload_emoji;
+                                                                                                                    MaterialButton materialButton2 = (MaterialButton) viewInflate2.findViewById(R.id.guild_profile_sheet_upload_emoji);
                                                                                                                     if (materialButton2 != null) {
-                                                                                                                        MaterialButton materialButton3 = (MaterialButton) viewInflate2.findViewById(R$id.guild_profile_sheet_view_server);
+                                                                                                                        MaterialButton materialButton3 = (MaterialButton) viewInflate2.findViewById(R.id.guild_profile_sheet_view_server);
                                                                                                                         if (materialButton3 != null) {
-                                                                                                                            i = R$id.per_guild_identity_container;
-                                                                                                                            LinearLayout linearLayout9 = (LinearLayout) viewInflate2.findViewById(R$id.per_guild_identity_container);
+                                                                                                                            i = R.id.per_guild_identity_container;
+                                                                                                                            LinearLayout linearLayout9 = (LinearLayout) viewInflate2.findViewById(R.id.per_guild_identity_container);
                                                                                                                             if (linearLayout9 != null) {
                                                                                                                                 WidgetGuildProfileActionsBinding widgetGuildProfileActionsBinding = new WidgetGuildProfileActionsBinding(linearLayout8, linearLayout5, textView5, linearLayout6, checkedSetting, linearLayout7, linearLayout8, textView6, textView7, textView8, constraintLayout, textView9, textView10, cardView3, recyclerView, cardView4, textView11, simpleDraweeView2, checkedSetting2, materialButton, textView12, textView13, cardView5, textView14, imageView, textView15, cardView6, cardView7, materialButton2, materialButton3, linearLayout9);
                                                                                                                                 m.checkNotNullExpressionValue(widgetGuildProfileActionsBinding, "WidgetGuildProfileActionsBinding.bind(view)");
@@ -759,95 +976,95 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
                                                                                                                                 recyclerView.setAdapter(this.emojisAdapter);
                                                                                                                             }
                                                                                                                         } else {
-                                                                                                                            i = R$id.guild_profile_sheet_view_server;
+                                                                                                                            i = R.id.guild_profile_sheet_view_server;
                                                                                                                         }
                                                                                                                     }
                                                                                                                 }
                                                                                                             } else {
-                                                                                                                i = R$id.guild_profile_sheet_primary_actions;
+                                                                                                                i = R.id.guild_profile_sheet_primary_actions;
                                                                                                             }
                                                                                                         }
                                                                                                     }
                                                                                                 }
                                                                                             } else {
-                                                                                                i = R$id.guild_profile_sheet_mark_as_read_action;
+                                                                                                i = R.id.guild_profile_sheet_mark_as_read_action;
                                                                                             }
                                                                                         }
                                                                                     }
                                                                                 } else {
-                                                                                    i = R$id.guild_profile_sheet_join_server;
+                                                                                    i = R.id.guild_profile_sheet_join_server;
                                                                                 }
                                                                             }
                                                                         }
                                                                     } else {
-                                                                        i = R$id.guild_profile_sheet_emojis_count;
+                                                                        i = R.id.guild_profile_sheet_emojis_count;
                                                                     }
                                                                 }
                                                             } else {
-                                                                i = R$id.guild_profile_sheet_emojis;
+                                                                i = R.id.guild_profile_sheet_emojis;
                                                             }
                                                         } else {
-                                                            i = R$id.guild_profile_sheet_developer_actions;
+                                                            i = R.id.guild_profile_sheet_developer_actions;
                                                         }
                                                     } else {
-                                                        i = R$id.guild_profile_sheet_create_event_new;
+                                                        i = R.id.guild_profile_sheet_create_event_new;
                                                     }
                                                 } else {
-                                                    i = R$id.guild_profile_sheet_create_event_label;
+                                                    i = R.id.guild_profile_sheet_create_event_label;
                                                 }
                                             } else {
-                                                i = R$id.guild_profile_sheet_create_event;
+                                                i = R.id.guild_profile_sheet_create_event;
                                             }
                                         } else {
-                                            i = R$id.guild_profile_sheet_create_channel;
+                                            i = R.id.guild_profile_sheet_create_channel;
                                         }
                                     } else {
-                                        i = R$id.guild_profile_sheet_create_category;
+                                        i = R.id.guild_profile_sheet_create_category;
                                     }
                                 } else {
-                                    i = R$id.guild_profile_sheet_copy_id;
+                                    i = R.id.guild_profile_sheet_copy_id;
                                 }
                             } else {
-                                i = R$id.guild_profile_sheet_bottom_actions;
+                                i = R.id.guild_profile_sheet_bottom_actions;
                             }
                         } else {
-                            i = R$id.guild_profile_sheet_allow_dm;
+                            i = R.id.guild_profile_sheet_allow_dm;
                         }
                     } else {
-                        i = R$id.guild_profile_sheet_actions;
+                        i = R.id.guild_profile_sheet_actions;
                     }
                 } else {
-                    i = R$id.change_identity_header;
+                    i = R.id.change_identity_header;
                 }
             } else {
-                i = R$id.change_identity;
+                i = R.id.change_identity;
             }
             throw new NullPointerException("Missing required view with ID: ".concat(viewInflate2.getResources().getResourceName(i)));
         }
-        configureGuildIcon(guildId, guildIcon, guildShortName);
-        configureGuildBanner(banner);
-        configureGuildContent(guildName, guildDescription, verifiedPartneredIconRes);
-        configureMemberCount(onlineCount, memberCount);
-        configureTabItems(guildId, tabItems, isGuildHub);
-        if (isGuildHub) {
-            configureGuildHubActions(guildId, meUser.getId(), widgetGuildProfileSheetViewModel$Actions);
+        configureGuildIcon(jComponent1, strComponent4, strComponent3);
+        configureGuildBanner(bannerComponent7);
+        configureGuildContent(strComponent2, strComponent5, numComponent6);
+        configureMemberCount(numComponent8, numComponent9);
+        configureTabItems(jComponent1, tabItemsComponent10, zComponent14);
+        if (zComponent14) {
+            configureGuildHubActions(jComponent1, meUserComponent15.getId(), actions);
             return;
         }
-        configureGuildActions(guildId, meUser.getId(), widgetGuildProfileSheetViewModel$Actions);
-        configureEmojis(emojisData);
-        configureBottomActions(guildId, this.channelId, bottomActions);
-        configureGuildIcon(guildId, guildIcon, guildShortName);
-        configureGuildBanner(banner);
-        configureGuildContent(guildName, guildDescription, verifiedPartneredIconRes);
-        configureMemberCount(onlineCount, memberCount);
-        configureTabItems(guildId, tabItems, isGuildHub);
-        if (isGuildHub) {
-            configureGuildHubActions(guildId, meUser.getId(), widgetGuildProfileSheetViewModel$Actions);
+        configureGuildActions(jComponent1, meUserComponent15.getId(), actions);
+        configureEmojis(emojisDataComponent12);
+        configureBottomActions(jComponent1, this.channelId, bottomActionsComponent13);
+        configureGuildIcon(jComponent1, strComponent4, strComponent3);
+        configureGuildBanner(bannerComponent7);
+        configureGuildContent(strComponent2, strComponent5, numComponent6);
+        configureMemberCount(numComponent8, numComponent9);
+        configureTabItems(jComponent1, tabItemsComponent10, zComponent14);
+        if (zComponent14) {
+            configureGuildHubActions(jComponent1, meUserComponent15.getId(), actions);
             return;
         }
-        configureGuildActions(guildId, meUser.getId(), widgetGuildProfileSheetViewModel$Actions);
-        configureEmojis(emojisData);
-        configureBottomActions(guildId, this.channelId, bottomActions);
+        configureGuildActions(jComponent1, meUserComponent15.getId(), actions);
+        configureEmojis(emojisDataComponent12);
+        configureBottomActions(jComponent1, this.channelId, bottomActionsComponent13);
     }
 
     private final void constrainIconToBanner() {
@@ -891,9 +1108,9 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         int id3 = constraintLayout.getId();
         CardView cardView4 = getBinding().j;
         m.checkNotNullExpressionValue(cardView4, "binding.guildProfileSheetIconCard");
-        ViewGroup$LayoutParams layoutParams = cardView4.getLayoutParams();
-        ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams = layoutParams instanceof ViewGroup$MarginLayoutParams ? (ViewGroup$MarginLayoutParams) layoutParams : null;
-        constraintSet.connect(id2, 3, id3, 3, viewGroup$MarginLayoutParams == null ? 0 : viewGroup$MarginLayoutParams.topMargin);
+        ViewGroup.LayoutParams layoutParams = cardView4.getLayoutParams();
+        ViewGroup.MarginLayoutParams marginLayoutParams = layoutParams instanceof ViewGroup.MarginLayoutParams ? (ViewGroup.MarginLayoutParams) layoutParams : null;
+        constraintSet.connect(id2, 3, id3, 3, marginLayoutParams == null ? 0 : marginLayoutParams.topMargin);
         constraintSet.applyTo(getBinding().d);
     }
 
@@ -916,7 +1133,7 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
-        return R$layout.widget_guild_profile_sheet;
+        return R.layout.widget_guild_profile_sheet;
     }
 
     private final boolean getFromGuildEventUpsell() {
@@ -927,38 +1144,38 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         return (WidgetGuildProfileSheetViewModel) this.viewModel.getValue();
     }
 
-    private final void handleDismissAndShowToast(WidgetGuildProfileSheetViewModel$Event$DismissAndShowToast event) {
+    private final void handleDismissAndShowToast(WidgetGuildProfileSheetViewModel.Event.DismissAndShowToast event) {
         b.a.d.m.i(this, event.getStringRes(), 0, 4);
         dismiss();
     }
 
-    private final void handleEvent(WidgetGuildProfileSheetViewModel$Event event) {
-        if (event instanceof WidgetGuildProfileSheetViewModel$Event$DismissAndShowToast) {
-            handleDismissAndShowToast((WidgetGuildProfileSheetViewModel$Event$DismissAndShowToast) event);
+    private final void handleEvent(WidgetGuildProfileSheetViewModel.Event event) {
+        if (event instanceof WidgetGuildProfileSheetViewModel.Event.DismissAndShowToast) {
+            handleDismissAndShowToast((WidgetGuildProfileSheetViewModel.Event.DismissAndShowToast) event);
         }
     }
 
-    private final void handleViewState(WidgetGuildProfileSheetViewModel$ViewState viewState) {
-        if (viewState instanceof WidgetGuildProfileSheetViewModel$ViewState$Loading) {
+    private final void handleViewState(WidgetGuildProfileSheetViewModel.ViewState viewState) {
+        if (viewState instanceof WidgetGuildProfileSheetViewModel.ViewState.Loading) {
             showLoadingView();
-        } else if (viewState instanceof WidgetGuildProfileSheetViewModel$ViewState$Invalid) {
+        } else if (viewState instanceof WidgetGuildProfileSheetViewModel.ViewState.Invalid) {
             dismiss();
         } else {
-            if (!(viewState instanceof WidgetGuildProfileSheetViewModel$ViewState$Loaded)) {
+            if (!(viewState instanceof WidgetGuildProfileSheetViewModel.ViewState.Loaded)) {
                 throw new NoWhenBranchMatchedException();
             }
-            updateView((WidgetGuildProfileSheetViewModel$ViewState$Loaded) viewState);
+            updateView((WidgetGuildProfileSheetViewModel.ViewState.Loaded) viewState);
         }
     }
 
     private final void launchInvite(long guildId) {
-        WidgetGuildInviteShare$Companion widgetGuildInviteShare$Companion = WidgetGuildInviteShare.Companion;
+        WidgetGuildInviteShare.Companion companion = WidgetGuildInviteShare.INSTANCE;
         Context context = getContext();
         if (context != null) {
             m.checkNotNullExpressionValue(context, "context ?: return");
             FragmentManager parentFragmentManager = getParentFragmentManager();
             m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            WidgetGuildInviteShare$Companion.launch$default(widgetGuildInviteShare$Companion, context, parentFragmentManager, guildId, null, false, null, null, "Guild Profile", 120, null);
+            WidgetGuildInviteShare.Companion.launch$default(companion, context, parentFragmentManager, guildId, null, false, null, null, "Guild Profile", 120, null);
         }
     }
 
@@ -993,7 +1210,7 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         }
         LinearLayout linearLayout2 = widgetGuildProfileActionsBinding4.f;
         m.checkNotNullExpressionValue(linearLayout2, "guildActionBinding.guild…ofileSheetBottomContainer");
-        return ((i - contentPaddingRight) - (linearLayout2.getPaddingEnd() + paddingStart)) / getResources().getDimensionPixelSize(2131165401);
+        return ((i - contentPaddingRight) - (linearLayout2.getPaddingEnd() + paddingStart)) / getResources().getDimensionPixelSize(R.dimen.emoji_size);
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
@@ -1001,20 +1218,20 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         m.checkNotNullParameter(view, "view");
         super.onViewCreated(view, savedInstanceState);
         this.channelId = Long.valueOf(getArgumentsOrDefault().getLong("com.discord.intent.extra.EXTRA_CHANNEL_ID"));
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetGuildProfileSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildProfileSheet$onViewCreated$1(this), 62, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetGuildProfileSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildProfileSheet$onViewCreated$2(this), 62, (Object) null);
-        this.emojisAdapter.setOnClickEmoji(new WidgetGuildProfileSheet$onViewCreated$3(this));
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetGuildProfileSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetGuildProfileSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(this), 62, (Object) null);
+        this.emojisAdapter.setOnClickEmoji(new AnonymousClass3());
     }
 
     public static final void show(FragmentManager fragmentManager, boolean z2, long j, long j2, boolean z3) {
-        Companion.show(fragmentManager, z2, j, j2, z3);
+        INSTANCE.show(fragmentManager, z2, j, j2, z3);
     }
 
     private final void showLeaveServerDialog(long guildId) {
-        WidgetLeaveGuildDialog$Companion widgetLeaveGuildDialog$Companion = WidgetLeaveGuildDialog.Companion;
+        WidgetLeaveGuildDialog.Companion companion = WidgetLeaveGuildDialog.INSTANCE;
         FragmentManager parentFragmentManager = getParentFragmentManager();
         m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        widgetLeaveGuildDialog$Companion.show(parentFragmentManager, guildId);
+        companion.show(parentFragmentManager, guildId);
         dismissAlert();
     }
 
@@ -1024,7 +1241,7 @@ public final class WidgetGuildProfileSheet extends AppBottomSheet {
         appViewFlipper.setDisplayedChild(0);
     }
 
-    private final void updateView(WidgetGuildProfileSheetViewModel$ViewState$Loaded viewState) {
+    private final void updateView(WidgetGuildProfileSheetViewModel.ViewState.Loaded viewState) {
         AppViewFlipper appViewFlipper = getBinding().g;
         m.checkNotNullExpressionValue(appViewFlipper, "binding.guildProfileSheetFlipper");
         appViewFlipper.setDisplayedChild(1);

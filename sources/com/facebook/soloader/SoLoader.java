@@ -1,25 +1,31 @@
 package com.facebook.soloader;
 
+import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.StrictMode;
-import android.os.StrictMode$ThreadPolicy;
 import android.os.Trace;
 import android.text.TextUtils;
 import android.util.Log;
-import b.c.a.a0.d;
-import b.d.b.a.a;
-import b.f.m.b;
 import b.f.m.c;
+import b.f.m.d;
 import b.f.m.e;
 import b.f.m.j;
 import b.f.m.k;
 import b.f.m.l;
 import b.f.m.m;
+import com.adjust.sdk.Constants;
+import dalvik.system.BaseDexClassLoader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -35,7 +41,7 @@ public class SoLoader {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static k f2906b;
     public static m[] f;
-    public static b g;
+    public static b.f.m.b g;
     public static int k;
     public static boolean l;
     public static final ReentrantReadWriteLock c = new ReentrantReadWriteLock();
@@ -46,12 +52,183 @@ public class SoLoader {
     public static final Set<String> j = Collections.newSetFromMap(new ConcurrentHashMap());
     public static final boolean a = true;
 
-    /* JADX WARN: Bottom block not found for handler: all -> 0x0118 */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-    */
-    public static void a(String str, int i2, StrictMode$ThreadPolicy strictMode$ThreadPolicy) throws UnsatisfiedLinkError {
+    @d
+    @TargetApi(14)
+    public class Api14Utils {
+        private Api14Utils() {
+        }
+
+        public static String a() {
+            ClassLoader classLoader = SoLoader.class.getClassLoader();
+            if (classLoader == null || (classLoader instanceof BaseDexClassLoader)) {
+                try {
+                    return (String) BaseDexClassLoader.class.getMethod("getLdLibraryPath", new Class[0]).invoke((BaseDexClassLoader) classLoader, new Object[0]);
+                } catch (Exception e) {
+                    throw new RuntimeException("Cannot call getLdLibraryPath", e);
+                }
+            }
+            StringBuilder sbU = b.d.b.a.a.U("ClassLoader ");
+            sbU.append(classLoader.getClass().getName());
+            sbU.append(" should be of type BaseDexClassLoader");
+            throw new IllegalStateException(sbU.toString());
+        }
+    }
+
+    public final class a implements k {
+        public final /* synthetic */ boolean a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final /* synthetic */ String f2907b;
+        public final /* synthetic */ String c;
+        public final /* synthetic */ Runtime d;
+        public final /* synthetic */ Method e;
+
+        public a(boolean z2, String str, String str2, Runtime runtime, Method method) {
+            this.a = z2;
+            this.f2907b = str;
+            this.c = str2;
+            this.d = runtime;
+            this.e = method;
+        }
+
+        public final String a(String str) {
+            try {
+                File file = new File(str);
+                MessageDigest messageDigest = MessageDigest.getInstance(Constants.MD5);
+                FileInputStream fileInputStream = new FileInputStream(file);
+                try {
+                    byte[] bArr = new byte[4096];
+                    while (true) {
+                        int i = fileInputStream.read(bArr);
+                        if (i <= 0) {
+                            String str2 = String.format("%32x", new BigInteger(1, messageDigest.digest()));
+                            fileInputStream.close();
+                            return str2;
+                        }
+                        messageDigest.update(bArr, 0, i);
+                    }
+                } catch (Throwable th) {
+                    try {
+                        throw th;
+                    } catch (Throwable th2) {
+                        try {
+                            fileInputStream.close();
+                        } catch (Throwable th3) {
+                            th.addSuppressed(th3);
+                        }
+                        throw th2;
+                    }
+                }
+            } catch (IOException e) {
+                return e.toString();
+            } catch (SecurityException e2) {
+                return e2.toString();
+            } catch (NoSuchAlgorithmException e3) {
+                return e3.toString();
+            }
+        }
+
+        /* JADX WARN: Bottom block not found for handler: all -> 0x006f */
+        /* JADX WARN: Code duplicated, block: B:47:0x0094  */
+        /*
+            Code decompiled incorrectly, please refer to instructions dump.
+        */
+        public void b(String str, int i) throws Throwable {
+            String str2;
+            if (!this.a) {
+                System.load(str);
+                return;
+            }
+            a aVar = null;
+            String str3 = (i & 4) == 4 ? this.f2907b : this.c;
+            try {
+                try {
+                    synchronized (this.d) {
+                        try {
+                            str2 = (String) this.e.invoke(this.d, str, SoLoader.class.getClassLoader(), str3);
+                            try {
+                                if (str2 != null) {
+                                    throw new UnsatisfiedLinkError(str2);
+                                }
+                            } catch (Throwable th) {
+                                th = th;
+                                while (true) {
+                                    try {
+                                        break;
+                                    } catch (IllegalAccessException e) {
+                                        e = e;
+                                        throw new RuntimeException("Error: Cannot load " + str, e);
+                                    } catch (IllegalArgumentException e2) {
+                                        e = e2;
+                                        throw new RuntimeException("Error: Cannot load " + str, e);
+                                    } catch (InvocationTargetException e3) {
+                                        e = e3;
+                                        throw new RuntimeException("Error: Cannot load " + str, e);
+                                    }
+                                }
+                                throw th;
+                            }
+                        } catch (Throwable th2) {
+                            th = th2;
+                        }
+                    }
+                    if (str2 != null) {
+                        StringBuilder sbY = b.d.b.a.a.Y("Error when loading lib: ", str2, " lib hash: ");
+                        sbY.append(a(str));
+                        sbY.append(" search path is ");
+                        sbY.append(str3);
+                        Log.e("SoLoader", sbY.toString());
+                    }
+                } catch (Throwable th3) {
+                    th = th3;
+                    if (0 != 0) {
+                        StringBuilder sbY2 = b.d.b.a.a.Y("Error when loading lib: ", null, " lib hash: ");
+                        sbY2.append(aVar.a(str));
+                        sbY2.append(" search path is ");
+                        sbY2.append(str3);
+                        Log.e("SoLoader", sbY2.toString());
+                    }
+                    throw th;
+                }
+            } catch (IllegalAccessException e4) {
+                e = e4;
+                throw new RuntimeException("Error: Cannot load " + str, e);
+            } catch (IllegalArgumentException e5) {
+                e = e5;
+                throw new RuntimeException("Error: Cannot load " + str, e);
+            } catch (InvocationTargetException e6) {
+                e = e6;
+                throw new RuntimeException("Error: Cannot load " + str, e);
+            } catch (Throwable th4) {
+                th = th4;
+                aVar = this;
+                if (0 != 0) {
+                    StringBuilder sbY3 = b.d.b.a.a.Y("Error when loading lib: ", null, " lib hash: ");
+                    sbY3.append(aVar.a(str));
+                    sbY3.append(" search path is ");
+                    sbY3.append(str3);
+                    Log.e("SoLoader", sbY3.toString());
+                }
+                throw th;
+            }
+        }
+    }
+
+    public final class b extends UnsatisfiedLinkError {
+        /* JADX WARN: Illegal instructions before constructor call */
+        public b(Throwable th, String str) {
+            StringBuilder sbU = b.d.b.a.a.U("APK was built for a different platform. Supported ABIs: ");
+            sbU.append(Arrays.toString(b.c.a.a0.d.C0()));
+            sbU.append(" error: ");
+            sbU.append(str);
+            super(sbU.toString());
+            initCause(th);
+        }
+    }
+
+    public static void a(String str, int i2, StrictMode.ThreadPolicy threadPolicy) throws UnsatisfiedLinkError {
         boolean z2;
+        int iA;
         ReentrantReadWriteLock reentrantReadWriteLock = c;
         reentrantReadWriteLock.readLock().lock();
         try {
@@ -61,8 +238,8 @@ public class SoLoader {
             }
             reentrantReadWriteLock.readLock().unlock();
             int i3 = 0;
-            if (strictMode$ThreadPolicy == null) {
-                strictMode$ThreadPolicy = StrictMode.allowThreadDiskReads();
+            if (threadPolicy == null) {
+                threadPolicy = StrictMode.allowThreadDiskReads();
                 z2 = true;
             } else {
                 z2 = false;
@@ -70,111 +247,118 @@ public class SoLoader {
             if (a) {
                 Api18TraceUtils.a("SoLoader.loadLibrary[", str, "]");
             }
-            reentrantReadWriteLock.readLock().lock();
-            int iA = 0;
-            int i4 = 0;
-            while (iA == 0) {
-                try {
-                    l[] lVarArr = d;
-                    if (i4 >= lVarArr.length) {
-                        break;
-                    }
-                    iA = lVarArr[i4].a(str, i2, strictMode$ThreadPolicy);
-                    if (iA != 3 || f == null) {
-                        i4++;
-                    } else {
-                        Log.d("SoLoader", "Trying backup SoSource for " + str);
-                        for (m mVar : f) {
-                            synchronized (mVar) {
-                                try {
-                                    synchronized (mVar.h(str)) {
-                                        try {
-                                            mVar.d = str;
-                                            mVar.b(2);
-                                        } catch (Throwable th) {
-                                            throw th;
+            try {
+                reentrantReadWriteLock.readLock().lock();
+                iA = 0;
+                int i4 = 0;
+                while (iA == 0) {
+                    try {
+                        l[] lVarArr = d;
+                        if (i4 >= lVarArr.length) {
+                            break;
+                        }
+                        iA = lVarArr[i4].a(str, i2, threadPolicy);
+                        if (iA != 3 || f == null) {
+                            i4++;
+                        } else {
+                            Log.d("SoLoader", "Trying backup SoSource for " + str);
+                            for (m mVar : f) {
+                                synchronized (mVar) {
+                                    try {
+                                        synchronized (mVar.h(str)) {
+                                            try {
+                                                mVar.d = str;
+                                                mVar.b(2);
+                                            } catch (Throwable th) {
+                                                throw th;
+                                            }
                                         }
+                                    } catch (Throwable th2) {
+                                        throw th2;
                                     }
-                                } catch (Throwable th2) {
-                                    throw th2;
+                                }
+                                int iA2 = mVar.a(str, i2, threadPolicy);
+                                if (iA2 == 1) {
+                                    iA = iA2;
+                                    break;
                                 }
                             }
-                            int iA2 = mVar.a(str, i2, strictMode$ThreadPolicy);
-                            if (iA2 == 1) {
-                                iA = iA2;
-                                break;
-                            }
                         }
+                        th = th;
+                        iA = i3;
+                        if (a) {
+                            Trace.endSection();
+                        }
+                        if (z2) {
+                            StrictMode.setThreadPolicy(threadPolicy);
+                        }
+                        if (iA == 0 || iA == 3) {
+                            StringBuilder sbX = b.d.b.a.a.X("couldn't find DSO to load: ", str);
+                            String message = th.getMessage();
+                            if (message == null) {
+                                message = th.toString();
+                            }
+                            sbX.append(" caused by: ");
+                            sbX.append(message);
+                            th.printStackTrace();
+                            sbX.append(" result: ");
+                            sbX.append(iA);
+                            String string = sbX.toString();
+                            Log.e("SoLoader", string);
+                            UnsatisfiedLinkError unsatisfiedLinkError = new UnsatisfiedLinkError(string);
+                            unsatisfiedLinkError.initCause(th);
+                            throw unsatisfiedLinkError;
+                        }
+                        return;
+                    } catch (Throwable th3) {
+                        i3 = iA;
+                        c.readLock().unlock();
+                        throw th3;
                     }
+                }
+                try {
+                    ReentrantReadWriteLock reentrantReadWriteLock2 = c;
+                    reentrantReadWriteLock2.readLock().unlock();
                     if (a) {
                         Trace.endSection();
                     }
                     if (z2) {
-                        StrictMode.setThreadPolicy(strictMode$ThreadPolicy);
+                        StrictMode.setThreadPolicy(threadPolicy);
                     }
                     if (iA == 0 || iA == 3) {
-                        StringBuilder sbX = a.X("couldn't find DSO to load: ", str);
-                        String message = th.getMessage();
-                        if (message == null) {
-                            message = th.toString();
+                        StringBuilder sbX2 = b.d.b.a.a.X("couldn't find DSO to load: ", str);
+                        reentrantReadWriteLock2.readLock().lock();
+                        while (i3 < d.length) {
+                            sbX2.append("\n\tSoSource ");
+                            sbX2.append(i3);
+                            sbX2.append(": ");
+                            sbX2.append(d[i3].toString());
+                            i3++;
                         }
-                        sbX.append(" caused by: ");
-                        sbX.append(message);
-                        th.printStackTrace();
-                        sbX.append(" result: ");
-                        sbX.append(iA);
-                        String string = sbX.toString();
-                        Log.e("SoLoader", string);
-                        UnsatisfiedLinkError unsatisfiedLinkError = new UnsatisfiedLinkError(string);
-                        unsatisfiedLinkError.initCause(th);
-                        throw unsatisfiedLinkError;
+                        b.f.m.b bVar = g;
+                        if (bVar != null) {
+                            File fileD = b.f.m.b.d(bVar.e());
+                            sbX2.append("\n\tNative lib dir: ");
+                            sbX2.append(fileD.getAbsolutePath());
+                            sbX2.append("\n");
+                        }
+                        c.readLock().unlock();
+                        sbX2.append(" result: ");
+                        sbX2.append(iA);
+                        String string2 = sbX2.toString();
+                        Log.e("SoLoader", string2);
+                        throw new UnsatisfiedLinkError(string2);
                     }
-                    return;
-                } catch (Throwable th3) {
-                    i3 = iA;
-                    c.readLock().unlock();
-                    throw th3;
+                } catch (Throwable th4) {
+                    th = th4;
                 }
+            } catch (Throwable th5) {
+                th = th5;
+                iA = i3;
             }
-            try {
-                ReentrantReadWriteLock reentrantReadWriteLock2 = c;
-                reentrantReadWriteLock2.readLock().unlock();
-                if (a) {
-                    Trace.endSection();
-                }
-                if (z2) {
-                    StrictMode.setThreadPolicy(strictMode$ThreadPolicy);
-                }
-                if (iA == 0 || iA == 3) {
-                    StringBuilder sbX2 = a.X("couldn't find DSO to load: ", str);
-                    reentrantReadWriteLock2.readLock().lock();
-                    while (i3 < d.length) {
-                        sbX2.append("\n\tSoSource ");
-                        sbX2.append(i3);
-                        sbX2.append(": ");
-                        sbX2.append(d[i3].toString());
-                        i3++;
-                    }
-                    b bVar = g;
-                    if (bVar != null) {
-                        File fileD = b.d(bVar.e());
-                        sbX2.append("\n\tNative lib dir: ");
-                        sbX2.append(fileD.getAbsolutePath());
-                        sbX2.append("\n");
-                    }
-                    c.readLock().unlock();
-                    sbX2.append(" result: ");
-                    sbX2.append(iA);
-                    String string2 = sbX2.toString();
-                    Log.e("SoLoader", string2);
-                    throw new UnsatisfiedLinkError(string2);
-                }
-            } catch (Throwable th4) {
-                th = th4;
-            }
-        } catch (Throwable th5) {
+        } catch (Throwable th6) {
             c.readLock().unlock();
-            throw th5;
+            throw th6;
         }
     }
 
@@ -187,7 +371,7 @@ public class SoLoader {
                 return;
             }
             Runtime runtime = Runtime.getRuntime();
-            int i2 = Build$VERSION.SDK_INT;
+            int i2 = Build.VERSION.SDK_INT;
             if (i2 < 23 || i2 > 27) {
                 declaredMethod = null;
             } else {
@@ -200,7 +384,7 @@ public class SoLoader {
                 }
             }
             boolean z2 = declaredMethod != null;
-            String strA = z2 ? SoLoader$Api14Utils.a() : null;
+            String strA = z2 ? Api14Utils.a() : null;
             if (strA == null) {
                 strJoin = null;
             } else {
@@ -213,7 +397,7 @@ public class SoLoader {
                 }
                 strJoin = TextUtils.join(":", arrayList);
             }
-            f2906b = new SoLoader$a(z2, strA, strJoin, runtime, declaredMethod);
+            f2906b = new a(z2, strA, strJoin, runtime, declaredMethod);
         } catch (Throwable th) {
             throw th;
         }
@@ -230,7 +414,7 @@ public class SoLoader {
                 ArrayList arrayList = new ArrayList();
                 String str = System.getenv("LD_LIBRARY_PATH");
                 if (str == null) {
-                    if (Build$VERSION.SDK_INT >= 23) {
+                    if (Build.VERSION.SDK_INT >= 23) {
                         zIs64Bit = SysUtil$MarshmallowSysdeps.is64Bit();
                     } else {
                         try {
@@ -255,7 +439,7 @@ public class SoLoader {
                         if (l) {
                             i3 = 0;
                         } else {
-                            g = new b(context, 0);
+                            g = new b.f.m.b(context, 0);
                             Log.d("SoLoader", "adding application source: " + g.toString());
                             arrayList.add(0, g);
                             i3 = 1;
@@ -328,7 +512,7 @@ public class SoLoader {
     /* JADX WARN: Code duplicated, block: B:57:0x00c2 A[Catch: all -> 0x0137, TryCatch #5 {, blocks: (B:23:0x0046, B:28:0x0050, B:34:0x005d, B:35:0x0076, B:41:0x0094, B:43:0x0096, B:45:0x009c, B:47:0x00a4, B:48:0x00b3, B:49:0x00b4, B:52:0x00b7, B:53:0x00b8, B:55:0x00bc, B:57:0x00c2, B:62:0x00cf, B:64:0x00d3, B:72:0x0124, B:74:0x0128, B:75:0x012b, B:76:0x012c, B:36:0x0077, B:37:0x0090, B:24:0x0047, B:27:0x004f, B:32:0x005a, B:65:0x00da, B:66:0x00fc, B:70:0x0100, B:71:0x0123), top: B:96:0x0046, outer: #6, inners: #0, #2, #3, #7 }] */
     /* JADX WARN: Code duplicated, block: B:61:0x00cd A[ADDED_TO_REGION] */
     /* JADX WARN: Code duplicated, block: B:64:0x00d3 A[Catch: all -> 0x0137, TRY_LEAVE, TryCatch #5 {, blocks: (B:23:0x0046, B:28:0x0050, B:34:0x005d, B:35:0x0076, B:41:0x0094, B:43:0x0096, B:45:0x009c, B:47:0x00a4, B:48:0x00b3, B:49:0x00b4, B:52:0x00b7, B:53:0x00b8, B:55:0x00bc, B:57:0x00c2, B:62:0x00cf, B:64:0x00d3, B:72:0x0124, B:74:0x0128, B:75:0x012b, B:76:0x012c, B:36:0x0077, B:37:0x0090, B:24:0x0047, B:27:0x004f, B:32:0x005a, B:65:0x00da, B:66:0x00fc, B:70:0x0100, B:71:0x0123), top: B:96:0x0046, outer: #6, inners: #0, #2, #3, #7 }] */
-    public static boolean d(String str, String str2, String str3, int i2, StrictMode$ThreadPolicy strictMode$ThreadPolicy) {
+    public static boolean d(String str, String str2, String str3, int i2, StrictMode.ThreadPolicy threadPolicy) {
         boolean z2;
         Object obj;
         boolean z3 = false;
@@ -367,7 +551,7 @@ public class SoLoader {
                                     Api18TraceUtils.a("MergedSoMapping.invokeJniOnload[", str2, "]");
                                 }
                                 Log.d("SoLoader", "About to merge: " + str2 + " / " + str);
-                                d.Q0(str2);
+                                b.c.a.a0.d.Q0(str2);
                                 throw null;
                             }
                         }
@@ -392,7 +576,7 @@ public class SoLoader {
                                         Api18TraceUtils.a("MergedSoMapping.invokeJniOnload[", str2, "]");
                                     }
                                     Log.d("SoLoader", "About to merge: " + str2 + " / " + str);
-                                    d.Q0(str2);
+                                    b.c.a.a0.d.Q0(str2);
                                     throw null;
                                 }
                             }
@@ -401,7 +585,7 @@ public class SoLoader {
                         }
                         try {
                             Log.d("SoLoader", "About to load: " + str);
-                            a(str, i2, strictMode$ThreadPolicy);
+                            a(str, i2, threadPolicy);
                             synchronized (SoLoader.class) {
                                 Log.d("SoLoader", "Loaded: " + str);
                                 hashSet.add(str);
@@ -417,7 +601,7 @@ public class SoLoader {
                                     try {
                                         try {
                                             Log.d("SoLoader", "About to merge: " + str2 + " / " + str);
-                                            d.Q0(str2);
+                                            b.c.a.a0.d.Q0(str2);
                                             throw null;
                                         } catch (UnsatisfiedLinkError e2) {
                                             throw new RuntimeException("Failed to call JNI_OnLoad from '" + str2 + "', which has been merged into '" + str + "'.  See comment for details.", e2);
@@ -437,7 +621,7 @@ public class SoLoader {
                             if (message == null || !message.contains("unexpected e_machine:")) {
                                 throw e3;
                             }
-                            throw new SoLoader$b(e3, message.substring(message.lastIndexOf("unexpected e_machine:")));
+                            throw new b(e3, message.substring(message.lastIndexOf("unexpected e_machine:")));
                         }
                     }
                 }
@@ -449,7 +633,7 @@ public class SoLoader {
     }
 
     public static void init(Context context, int i2) throws IOException {
-        StrictMode$ThreadPolicy strictMode$ThreadPolicyAllowThreadDiskWrites = StrictMode.allowThreadDiskWrites();
+        StrictMode.ThreadPolicy threadPolicyAllowThreadDiskWrites = StrictMode.allowThreadDiskWrites();
         boolean z2 = false;
         if ((i2 & 32) == 0 && context != null) {
             try {
@@ -457,7 +641,7 @@ public class SoLoader {
                     z2 = true;
                 }
             } finally {
-                StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskWrites);
+                StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskWrites);
             }
         }
         l = z2;

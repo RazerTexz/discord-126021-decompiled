@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map$Entry;
 import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: CollectionExtensions.kt */
@@ -42,9 +41,9 @@ public final class CollectionExtensionsKt {
         HashMap map2 = new HashMap(map.size());
         Iterator<T> it = map.entrySet().iterator();
         while (it.hasNext()) {
-            Map$Entry map$Entry = (Map$Entry) it.next();
-            Object key = map$Entry.getKey();
-            Object value = map$Entry.getValue();
+            Map.Entry entry = (Map.Entry) it.next();
+            Object key = entry.getKey();
+            Object value = entry.getValue();
             if (value != null) {
                 map2.put(key, value);
             }

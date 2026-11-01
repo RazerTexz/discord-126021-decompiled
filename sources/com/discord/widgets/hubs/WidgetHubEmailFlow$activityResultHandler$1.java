@@ -46,7 +46,7 @@ public final class WidgetHubEmailFlow$activityResultHandler$1<O> implements Acti
                     }
                     return;
                 }
-                StoreStream.Companion.getGuildSelected().set(((AuthenticationResult) multipleDomainResult).getGuildId());
+                StoreStream.INSTANCE.getGuildSelected().set(((AuthenticationResult) multipleDomainResult).getGuildId());
                 FragmentActivity activity2 = this.this$0.getActivity();
                 if (activity2 != null) {
                     activity2.finish();

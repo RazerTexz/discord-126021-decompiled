@@ -3,10 +3,10 @@ package androidx.appcompat.widget;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.view.ActionMode$Callback;
+import android.view.ActionMode;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
@@ -14,8 +14,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
-import androidx.appcompat.R$attr;
+import androidx.appcompat.R;
 import androidx.core.view.TintableBackgroundView;
 import androidx.core.widget.AutoSizeableTextView;
 import androidx.core.widget.TextViewCompat;
@@ -44,7 +43,7 @@ public class AppCompatButton extends Button implements TintableBackgroundView, A
     }
 
     @Override // android.widget.TextView, androidx.core.widget.AutoSizeableTextView
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public int getAutoSizeMaxTextSize() {
         if (AutoSizeableTextView.PLATFORM_SUPPORTS_AUTOSIZE) {
             return super.getAutoSizeMaxTextSize();
@@ -57,7 +56,7 @@ public class AppCompatButton extends Button implements TintableBackgroundView, A
     }
 
     @Override // android.widget.TextView, androidx.core.widget.AutoSizeableTextView
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public int getAutoSizeMinTextSize() {
         if (AutoSizeableTextView.PLATFORM_SUPPORTS_AUTOSIZE) {
             return super.getAutoSizeMinTextSize();
@@ -70,7 +69,7 @@ public class AppCompatButton extends Button implements TintableBackgroundView, A
     }
 
     @Override // android.widget.TextView, androidx.core.widget.AutoSizeableTextView
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public int getAutoSizeStepGranularity() {
         if (AutoSizeableTextView.PLATFORM_SUPPORTS_AUTOSIZE) {
             return super.getAutoSizeStepGranularity();
@@ -83,7 +82,7 @@ public class AppCompatButton extends Button implements TintableBackgroundView, A
     }
 
     @Override // android.widget.TextView, androidx.core.widget.AutoSizeableTextView
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public int[] getAutoSizeTextAvailableSizes() {
         if (AutoSizeableTextView.PLATFORM_SUPPORTS_AUTOSIZE) {
             return super.getAutoSizeTextAvailableSizes();
@@ -94,7 +93,7 @@ public class AppCompatButton extends Button implements TintableBackgroundView, A
 
     @Override // android.widget.TextView, androidx.core.widget.AutoSizeableTextView
     @SuppressLint({"WrongConstant"})
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public int getAutoSizeTextType() {
         if (AutoSizeableTextView.PLATFORM_SUPPORTS_AUTOSIZE) {
             return super.getAutoSizeTextType() == 1 ? 1 : 0;
@@ -108,7 +107,7 @@ public class AppCompatButton extends Button implements TintableBackgroundView, A
 
     @Override // androidx.core.view.TintableBackgroundView
     @Nullable
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public ColorStateList getSupportBackgroundTintList() {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
@@ -119,8 +118,8 @@ public class AppCompatButton extends Button implements TintableBackgroundView, A
 
     @Override // androidx.core.view.TintableBackgroundView
     @Nullable
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
-    public PorterDuff$Mode getSupportBackgroundTintMode() {
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public PorterDuff.Mode getSupportBackgroundTintMode() {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
             return appCompatBackgroundHelper.getSupportBackgroundTintMode();
@@ -130,15 +129,15 @@ public class AppCompatButton extends Button implements TintableBackgroundView, A
 
     @Override // androidx.core.widget.TintableCompoundDrawablesView
     @Nullable
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public ColorStateList getSupportCompoundDrawablesTintList() {
         return this.mTextHelper.getCompoundDrawableTintList();
     }
 
     @Override // androidx.core.widget.TintableCompoundDrawablesView
     @Nullable
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
-    public PorterDuff$Mode getSupportCompoundDrawablesTintMode() {
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
         return this.mTextHelper.getCompoundDrawableTintMode();
     }
 
@@ -174,7 +173,7 @@ public class AppCompatButton extends Button implements TintableBackgroundView, A
     }
 
     @Override // android.widget.TextView, androidx.core.widget.AutoSizeableTextView
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void setAutoSizeTextTypeUniformWithConfiguration(int i, int i2, int i3, int i4) throws IllegalArgumentException {
         if (AutoSizeableTextView.PLATFORM_SUPPORTS_AUTOSIZE) {
             super.setAutoSizeTextTypeUniformWithConfiguration(i, i2, i3, i4);
@@ -187,7 +186,7 @@ public class AppCompatButton extends Button implements TintableBackgroundView, A
     }
 
     @Override // android.widget.TextView, androidx.core.widget.AutoSizeableTextView
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void setAutoSizeTextTypeUniformWithPresetSizes(@NonNull int[] iArr, int i) throws IllegalArgumentException {
         if (AutoSizeableTextView.PLATFORM_SUPPORTS_AUTOSIZE) {
             super.setAutoSizeTextTypeUniformWithPresetSizes(iArr, i);
@@ -200,7 +199,7 @@ public class AppCompatButton extends Button implements TintableBackgroundView, A
     }
 
     @Override // android.widget.TextView, androidx.core.widget.AutoSizeableTextView
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void setAutoSizeTextTypeWithDefaults(int i) {
         if (AutoSizeableTextView.PLATFORM_SUPPORTS_AUTOSIZE) {
             super.setAutoSizeTextTypeWithDefaults(i);
@@ -231,8 +230,8 @@ public class AppCompatButton extends Button implements TintableBackgroundView, A
     }
 
     @Override // android.widget.TextView
-    public void setCustomSelectionActionModeCallback(ActionMode$Callback actionMode$Callback) {
-        super.setCustomSelectionActionModeCallback(TextViewCompat.wrapCustomSelectionActionModeCallback(this, actionMode$Callback));
+    public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
+        super.setCustomSelectionActionModeCallback(TextViewCompat.wrapCustomSelectionActionModeCallback(this, callback));
     }
 
     public void setSupportAllCaps(boolean z2) {
@@ -243,7 +242,7 @@ public class AppCompatButton extends Button implements TintableBackgroundView, A
     }
 
     @Override // androidx.core.view.TintableBackgroundView
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void setSupportBackgroundTintList(@Nullable ColorStateList colorStateList) {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
@@ -252,25 +251,25 @@ public class AppCompatButton extends Button implements TintableBackgroundView, A
     }
 
     @Override // androidx.core.view.TintableBackgroundView
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
-    public void setSupportBackgroundTintMode(@Nullable PorterDuff$Mode porterDuff$Mode) {
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public void setSupportBackgroundTintMode(@Nullable PorterDuff.Mode mode) {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
-            appCompatBackgroundHelper.setSupportBackgroundTintMode(porterDuff$Mode);
+            appCompatBackgroundHelper.setSupportBackgroundTintMode(mode);
         }
     }
 
     @Override // androidx.core.widget.TintableCompoundDrawablesView
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void setSupportCompoundDrawablesTintList(@Nullable ColorStateList colorStateList) {
         this.mTextHelper.setCompoundDrawableTintList(colorStateList);
         this.mTextHelper.applyCompoundDrawablesTints();
     }
 
     @Override // androidx.core.widget.TintableCompoundDrawablesView
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
-    public void setSupportCompoundDrawablesTintMode(@Nullable PorterDuff$Mode porterDuff$Mode) {
-        this.mTextHelper.setCompoundDrawableTintMode(porterDuff$Mode);
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public void setSupportCompoundDrawablesTintMode(@Nullable PorterDuff.Mode mode) {
+        this.mTextHelper.setCompoundDrawableTintMode(mode);
         this.mTextHelper.applyCompoundDrawablesTints();
     }
 
@@ -296,7 +295,7 @@ public class AppCompatButton extends Button implements TintableBackgroundView, A
     }
 
     public AppCompatButton(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, R$attr.buttonStyle);
+        this(context, attributeSet, R.attr.buttonStyle);
     }
 
     public AppCompatButton(@NonNull Context context, @Nullable AttributeSet attributeSet, int i) {

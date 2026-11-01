@@ -5,7 +5,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetVoiceCallIncomingBinding;
 import com.discord.widgets.voice.fullscreen.grid.PrivateCallBlurredGridView;
 import com.discord.widgets.voice.fullscreen.grid.PrivateCallGridView;
@@ -31,35 +31,35 @@ public final /* synthetic */ class WidgetVoiceCallIncoming$binding$2 extends k i
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetVoiceCallIncomingBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.incoming_call_accept_alt_container;
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.incoming_call_accept_alt_container);
+        int i = R.id.incoming_call_accept_alt_container;
+        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.incoming_call_accept_alt_container);
         if (linearLayout != null) {
-            i = R$id.incoming_call_accept_button;
-            FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R$id.incoming_call_accept_button);
+            i = R.id.incoming_call_accept_button;
+            FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.incoming_call_accept_button);
             if (floatingActionButton != null) {
-                i = R$id.incoming_call_accept_video_button;
-                FloatingActionButton floatingActionButton2 = (FloatingActionButton) view.findViewById(R$id.incoming_call_accept_video_button);
+                i = R.id.incoming_call_accept_video_button;
+                FloatingActionButton floatingActionButton2 = (FloatingActionButton) view.findViewById(R.id.incoming_call_accept_video_button);
                 if (floatingActionButton2 != null) {
-                    i = R$id.incoming_call_blurred_view;
-                    PrivateCallBlurredGridView privateCallBlurredGridView = (PrivateCallBlurredGridView) view.findViewById(R$id.incoming_call_blurred_view);
+                    i = R.id.incoming_call_blurred_view;
+                    PrivateCallBlurredGridView privateCallBlurredGridView = (PrivateCallBlurredGridView) view.findViewById(R.id.incoming_call_blurred_view);
                     if (privateCallBlurredGridView != null) {
-                        i = R$id.incoming_call_decline_button;
-                        FloatingActionButton floatingActionButton3 = (FloatingActionButton) view.findViewById(R$id.incoming_call_decline_button);
+                        i = R.id.incoming_call_decline_button;
+                        FloatingActionButton floatingActionButton3 = (FloatingActionButton) view.findViewById(R.id.incoming_call_decline_button);
                         if (floatingActionButton3 != null) {
-                            i = R$id.incoming_call_status_container;
-                            LinearLayout linearLayout2 = (LinearLayout) view.findViewById(R$id.incoming_call_status_container);
+                            i = R.id.incoming_call_status_container;
+                            LinearLayout linearLayout2 = (LinearLayout) view.findViewById(R.id.incoming_call_status_container);
                             if (linearLayout2 != null) {
-                                i = R$id.incoming_call_status_primary;
-                                TextView textView = (TextView) view.findViewById(R$id.incoming_call_status_primary);
+                                i = R.id.incoming_call_status_primary;
+                                TextView textView = (TextView) view.findViewById(R.id.incoming_call_status_primary);
                                 if (textView != null) {
-                                    i = R$id.incoming_call_status_secondary;
-                                    TextView textView2 = (TextView) view.findViewById(R$id.incoming_call_status_secondary);
+                                    i = R.id.incoming_call_status_secondary;
+                                    TextView textView2 = (TextView) view.findViewById(R.id.incoming_call_status_secondary);
                                     if (textView2 != null) {
-                                        i = R$id.incoming_call_top_guideline;
-                                        Guideline guideline = (Guideline) view.findViewById(R$id.incoming_call_top_guideline);
+                                        i = R.id.incoming_call_top_guideline;
+                                        Guideline guideline = (Guideline) view.findViewById(R.id.incoming_call_top_guideline);
                                         if (guideline != null) {
-                                            i = R$id.incoming_call_users_grid_view;
-                                            PrivateCallGridView privateCallGridView = (PrivateCallGridView) view.findViewById(R$id.incoming_call_users_grid_view);
+                                            i = R.id.incoming_call_users_grid_view;
+                                            PrivateCallGridView privateCallGridView = (PrivateCallGridView) view.findViewById(R.id.incoming_call_users_grid_view);
                                             if (privateCallGridView != null) {
                                                 return new WidgetVoiceCallIncomingBinding((ConstraintLayout) view, linearLayout, floatingActionButton, floatingActionButton2, privateCallBlurredGridView, floatingActionButton3, linearLayout2, textView, textView2, guideline, privateCallGridView);
                                             }

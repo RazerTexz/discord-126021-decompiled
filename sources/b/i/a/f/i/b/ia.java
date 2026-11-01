@@ -1,15 +1,15 @@
 package b.i.a.f.i.b;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.measurement.internal.zzaq;
 import com.google.android.gms.measurement.internal.zzku;
 import com.google.android.gms.measurement.internal.zzz;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-impl@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class ia implements Parcelable$Creator<zzz> {
-    @Override // android.os.Parcelable$Creator
+public final class ia implements Parcelable.Creator<zzz> {
+    @Override // android.os.Parcelable.Creator
     public final zzz createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         long jH1 = 0;
@@ -68,7 +68,7 @@ public final class ia implements Parcelable$Creator<zzz> {
         return new zzz(strR, strR2, zzkuVar, jH1, zE1, strR3, zzaqVar, jH2, zzaqVar2, jH3, zzaqVar3);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zzz[] newArray(int i) {
         return new zzz[i];
     }

@@ -1,12 +1,20 @@
 package b.i.a.c.b3.n;
 
+import android.text.Layout;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.core.view.InputDeviceCompat;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import b.i.a.c.b3.g;
 import b.i.a.c.b3.j;
 import b.i.a.c.b3.k;
+import b.i.a.c.f3.e0;
 import b.i.a.c.f3.x;
 import com.google.android.exoplayer2.decoder.DecoderException;
 import com.google.android.exoplayer2.text.SubtitleDecoderException;
@@ -56,8 +64,8 @@ public final class c extends e {
     @Nullable
     public List<b.i.a.c.b3.b> w;
     public final x o = new x();
-    public final ArrayList<c$a> t = new ArrayList<>();
-    public c$a u = new c$a(0, 4);
+    public final ArrayList<a> t = new ArrayList<>();
+    public a u = new a(0, 4);
     public int D = 0;
 
     public c(String str, int i2, long j2) {
@@ -203,27 +211,27 @@ public final class c extends e {
                                             } else if (i5 == 17 && (b3 & 240) == 32) {
                                                 this.u.a(' ');
                                                 boolean z6 = (b3 & 1) == 1;
-                                                c$a c_a = this.u;
-                                                c_a.a.add(new c$a$a((b3 >> 1) & 7, z6, c_a.c.length()));
+                                                a aVar = this.u;
+                                                aVar.a.add(new a.C0094a((b3 >> 1) & 7, z6, aVar.c.length()));
                                             } else if ((b2 & 240) == 16 && (b3 & 192) == 64) {
                                                 int i7 = g[b2 & 7];
                                                 if ((b3 & 32) != 0) {
                                                     i7++;
                                                 }
-                                                c$a c_a2 = this.u;
-                                                if (i7 != c_a2.d) {
-                                                    if (this.f848x != 1 && !c_a2.e()) {
-                                                        c$a c_a3 = new c$a(this.f848x, this.f849y);
-                                                        this.u = c_a3;
-                                                        this.t.add(c_a3);
+                                                a aVar2 = this.u;
+                                                if (i7 != aVar2.d) {
+                                                    if (this.f848x != 1 && !aVar2.e()) {
+                                                        a aVar3 = new a(this.f848x, this.f849y);
+                                                        this.u = aVar3;
+                                                        this.t.add(aVar3);
                                                     }
                                                     this.u.d = i7;
                                                 }
                                                 boolean z7 = (b3 & 16) == 16;
                                                 boolean z8 = (b3 & 1) == 1;
                                                 int i8 = (b3 >> 1) & 7;
-                                                c$a c_a4 = this.u;
-                                                c_a4.a.add(new c$a$a(z7 ? 8 : i8, z8, c_a4.c.length()));
+                                                a aVar4 = this.u;
+                                                aVar4.a.add(new a.C0094a(z7 ? 8 : i8, z8, aVar4.c.length()));
                                                 if (z7) {
                                                     this.u.e = h[i8];
                                                 }
@@ -260,13 +268,13 @@ public final class c extends e {
                                                                             break;
                                                                         case 45:
                                                                             if (i9 == 1 && !this.u.e()) {
-                                                                                c$a c_a5 = this.u;
-                                                                                c_a5.f851b.add(c_a5.d());
-                                                                                c_a5.c.setLength(0);
-                                                                                c_a5.a.clear();
-                                                                                int iMin = Math.min(c_a5.h, c_a5.d);
-                                                                                while (c_a5.f851b.size() >= iMin) {
-                                                                                    c_a5.f851b.remove(0);
+                                                                                a aVar5 = this.u;
+                                                                                aVar5.f851b.add(aVar5.d());
+                                                                                aVar5.c.setLength(0);
+                                                                                aVar5.a.clear();
+                                                                                int iMin = Math.min(aVar5.h, aVar5.d);
+                                                                                while (aVar5.f851b.size() >= iMin) {
+                                                                                    aVar5.f851b.remove(0);
                                                                                 }
                                                                             }
                                                                             break;
@@ -291,9 +299,9 @@ public final class c extends e {
                                             }
                                         }
                                     } else {
-                                        c$a c_a6 = this.u;
+                                        a aVar6 = this.u;
                                         int[] iArr = j;
-                                        c_a6.a((char) iArr[(b2 & 127) - 32]);
+                                        aVar6.a((char) iArr[(b2 & 127) - 32]);
                                         if ((b3 & 224) != 0) {
                                             this.u.a((char) iArr[(b3 & 127) - 32]);
                                         }
@@ -417,5 +425,185 @@ public final class c extends e {
 
     @Override // b.i.a.c.b3.n.e, b.i.a.c.v2.d
     public void release() {
+    }
+
+    /* JADX INFO: compiled from: Cea608Decoder.java */
+    public final class a {
+        public int d;
+        public int e;
+        public int f;
+        public int g;
+        public int h;
+        public final List<C0094a> a = new ArrayList();
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final List<SpannableString> f851b = new ArrayList();
+        public final StringBuilder c = new StringBuilder();
+
+        /* JADX INFO: renamed from: b.i.a.c.b3.n.c$a$a, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: Cea608Decoder.java */
+        public class C0094a {
+            public final int a;
+
+            /* JADX INFO: renamed from: b, reason: collision with root package name */
+            public final boolean f852b;
+            public int c;
+
+            public C0094a(int i, boolean z2, int i2) {
+                this.a = i;
+                this.f852b = z2;
+                this.c = i2;
+            }
+        }
+
+        public a(int i, int i2) {
+            f(i);
+            this.h = i2;
+        }
+
+        public void a(char c) {
+            if (this.c.length() < 32) {
+                this.c.append(c);
+            }
+        }
+
+        public void b() {
+            int length = this.c.length();
+            if (length > 0) {
+                this.c.delete(length - 1, length);
+                for (int size = this.a.size() - 1; size >= 0; size--) {
+                    C0094a c0094a = this.a.get(size);
+                    int i = c0094a.c;
+                    if (i != length) {
+                        return;
+                    }
+                    c0094a.c = i - 1;
+                }
+            }
+        }
+
+        @Nullable
+        public b.i.a.c.b3.b c(int i) {
+            int i2;
+            float f;
+            int i3 = this.e + this.f;
+            int i4 = 32 - i3;
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            for (int i5 = 0; i5 < this.f851b.size(); i5++) {
+                SpannableString spannableStringSubSequence = this.f851b.get(i5);
+                int i6 = e0.a;
+                if (spannableStringSubSequence.length() > i4) {
+                    spannableStringSubSequence = spannableStringSubSequence.subSequence(0, i4);
+                }
+                spannableStringBuilder.append(spannableStringSubSequence);
+                spannableStringBuilder.append('\n');
+            }
+            SpannableString spannableStringD = d();
+            int i7 = e0.a;
+            int length = spannableStringD.length();
+            SpannableString spannableStringSubSequence2 = spannableStringD;
+            if (length > i4) {
+                spannableStringSubSequence2 = spannableStringD.subSequence(0, i4);
+            }
+            spannableStringBuilder.append((CharSequence) spannableStringSubSequence2);
+            if (spannableStringBuilder.length() == 0) {
+                return null;
+            }
+            int length2 = i4 - spannableStringBuilder.length();
+            int i8 = i3 - length2;
+            if (i != Integer.MIN_VALUE) {
+                i2 = i;
+            } else if (this.g != 2 || (Math.abs(i8) >= 3 && length2 >= 0)) {
+                i2 = (this.g != 2 || i8 <= 0) ? 0 : 2;
+            } else {
+                i2 = 1;
+            }
+            if (i2 != 1) {
+                if (i2 == 2) {
+                    i3 = 32 - length2;
+                }
+                f = ((i3 / 32.0f) * 0.8f) + 0.1f;
+            } else {
+                f = 0.5f;
+            }
+            int i9 = this.d;
+            if (i9 > 7) {
+                i9 = (i9 - 15) - 2;
+            } else if (this.g == 1) {
+                i9 -= this.h - 1;
+            }
+            return new b.i.a.c.b3.b(spannableStringBuilder, Layout.Alignment.ALIGN_NORMAL, null, null, i9, 1, Integer.MIN_VALUE, f, i2, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, -3.4028235E38f, false, ViewCompat.MEASURED_STATE_MASK, Integer.MIN_VALUE, 0.0f, null);
+        }
+
+        public final SpannableString d() {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.c);
+            int length = spannableStringBuilder.length();
+            int i = 0;
+            int i2 = -1;
+            int i3 = -1;
+            int i4 = 0;
+            int i5 = -1;
+            boolean z2 = false;
+            int i6 = -1;
+            while (i < this.a.size()) {
+                C0094a c0094a = this.a.get(i);
+                boolean z3 = c0094a.f852b;
+                int i7 = c0094a.a;
+                if (i7 != 8) {
+                    boolean z4 = i7 == 7;
+                    if (i7 != 7) {
+                        i6 = c.i[i7];
+                    }
+                    z2 = z4;
+                }
+                int i8 = c0094a.c;
+                i++;
+                if (i8 != (i < this.a.size() ? this.a.get(i).c : length)) {
+                    if (i2 != -1 && !z3) {
+                        spannableStringBuilder.setSpan(new UnderlineSpan(), i2, i8, 33);
+                        i2 = -1;
+                    } else if (i2 == -1 && z3) {
+                        i2 = i8;
+                    }
+                    if (i3 != -1 && !z2) {
+                        spannableStringBuilder.setSpan(new StyleSpan(2), i3, i8, 33);
+                        i3 = -1;
+                    } else if (i3 == -1 && z2) {
+                        i3 = i8;
+                    }
+                    if (i6 != i5) {
+                        if (i5 != -1) {
+                            spannableStringBuilder.setSpan(new ForegroundColorSpan(i5), i4, i8, 33);
+                        }
+                        i4 = i8;
+                        i5 = i6;
+                    }
+                }
+            }
+            if (i2 != -1 && i2 != length) {
+                spannableStringBuilder.setSpan(new UnderlineSpan(), i2, length, 33);
+            }
+            if (i3 != -1 && i3 != length) {
+                spannableStringBuilder.setSpan(new StyleSpan(2), i3, length, 33);
+            }
+            if (i4 != length && i5 != -1) {
+                spannableStringBuilder.setSpan(new ForegroundColorSpan(i5), i4, length, 33);
+            }
+            return new SpannableString(spannableStringBuilder);
+        }
+
+        public boolean e() {
+            return this.a.isEmpty() && this.f851b.isEmpty() && this.c.length() == 0;
+        }
+
+        public void f(int i) {
+            this.g = i;
+            this.a.clear();
+            this.f851b.clear();
+            this.c.setLength(0);
+            this.d = 15;
+            this.e = 0;
+            this.f = 0;
+        }
     }
 }

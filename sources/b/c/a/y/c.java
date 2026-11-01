@@ -2,11 +2,10 @@ package b.c.a.y;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: compiled from: DocumentData.java */
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY})
+@RestrictTo({RestrictTo.Scope.LIBRARY})
 public class c {
     public final String a;
 

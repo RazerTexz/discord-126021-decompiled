@@ -3,7 +3,7 @@ package b.i.a.f.h.j;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.content.pm.ServiceInfo;
 import android.os.Handler;
 import androidx.annotation.RequiresPermission;
@@ -65,7 +65,7 @@ public final class t0<T extends Context & x0> {
             if (serviceInfo != null && serviceInfo.enabled) {
                 z2 = true;
             }
-        } catch (PackageManager$NameNotFoundException unused) {
+        } catch (PackageManager.NameNotFoundException unused) {
         }
         a = Boolean.valueOf(z2);
         return z2;

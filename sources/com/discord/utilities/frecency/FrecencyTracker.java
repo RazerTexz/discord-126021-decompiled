@@ -4,12 +4,14 @@ import androidx.exifinterface.media.ExifInterface;
 import com.discord.utilities.time.ClockFactory;
 import d0.t.n;
 import d0.t.u;
+import d0.u.a;
 import d0.z.d.m;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map$Entry;
+import java.util.Map;
 import java.util.Set;
 
 /* JADX INFO: compiled from: FrecencyTracker.kt */
@@ -20,6 +22,32 @@ public abstract class FrecencyTracker<T> {
     private final HashMap<T, List<Long>> history = new HashMap<>();
     private transient boolean dirty = true;
     private transient List<? extends T> sortedKeys = n.emptyList();
+
+    /* JADX INFO: renamed from: com.discord.utilities.frecency.FrecencyTracker$computeScores$1, reason: invalid class name */
+    /* JADX INFO: compiled from: FrecencyTracker.kt */
+    public final class AnonymousClass1<T> implements Comparator<T> {
+        public final /* synthetic */ HashMap $scores;
+
+        public AnonymousClass1(HashMap map) {
+            this.$scores = map;
+        }
+
+        @Override // java.util.Comparator
+        public final int compare(T t, T t2) {
+            int iCompareValues;
+            Integer num = (Integer) this.$scores.get(t);
+            Integer num2 = (Integer) this.$scores.get(t2);
+            if (!m.areEqual(num, num2)) {
+                iCompareValues = a.compareValues(num, num2);
+            } else {
+                List list = (List) FrecencyTracker.access$getHistory$p(FrecencyTracker.this).get(t);
+                Long l = list != null ? (Long) u.last(list) : null;
+                List list2 = (List) FrecencyTracker.access$getHistory$p(FrecencyTracker.this).get(t2);
+                iCompareValues = a.compareValues(l, list2 != null ? (Long) u.last(list2) : null);
+            }
+            return iCompareValues * (-1);
+        }
+    }
 
     public FrecencyTracker(int i, int i2) {
         this.minScoreThreshold = i;
@@ -34,9 +62,9 @@ public abstract class FrecencyTracker<T> {
 
     private final void computeScores(long currentTime) {
         HashMap map = new HashMap(this.history.size());
-        Iterator<Map$Entry<T, List<Long>>> it = this.history.entrySet().iterator();
+        Iterator<Map.Entry<T, List<Long>>> it = this.history.entrySet().iterator();
         while (it.hasNext()) {
-            Map$Entry<T, List<Long>> next = it.next();
+            Map.Entry<T, List<Long>> next = it.next();
             T key = next.getKey();
             int iComputeScore = computeScore(next.getValue(), currentTime);
             if (iComputeScore > this.minScoreThreshold) {
@@ -47,7 +75,7 @@ public abstract class FrecencyTracker<T> {
         }
         Set setKeySet = map.keySet();
         m.checkNotNullExpressionValue(setKeySet, "scores.keys");
-        this.sortedKeys = u.sortedWith(setKeySet, new FrecencyTracker$computeScores$1(this, map));
+        this.sortedKeys = u.sortedWith(setKeySet, new AnonymousClass1(map));
         this.dirty = false;
     }
 

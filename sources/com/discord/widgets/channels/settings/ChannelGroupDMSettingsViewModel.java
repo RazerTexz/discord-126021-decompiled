@@ -3,15 +3,22 @@ package com.discord.widgets.channels.settings;
 import android.content.Context;
 import androidx.annotation.MainThread;
 import b.a.d.d0;
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.discord.restapi.RestAPIParams$GroupDM;
+import com.discord.models.domain.ModelNotificationSettings;
+import com.discord.restapi.RestAPIParams;
+import com.discord.stores.StoreChannels;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUserGuildSettings;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
+import d0.g;
 import d0.z.d.m;
+import d0.z.d.o;
+import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -20,80 +27,434 @@ import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ChannelGroupDMSettingsViewModel extends d0<ChannelGroupDMSettingsViewModel$ViewState> {
-    public static final ChannelGroupDMSettingsViewModel$Companion Companion = new ChannelGroupDMSettingsViewModel$Companion(null);
+public final class ChannelGroupDMSettingsViewModel extends d0<ViewState> {
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final long channelId;
-    private final PublishSubject<ChannelGroupDMSettingsViewModel$Event> eventSubject;
+    private final PublishSubject<Event> eventSubject;
     private final RestAPI restApi;
     private final StoreUserGuildSettings storeUserGuildSettings;
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.ChannelGroupDMSettingsViewModel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
+    public final class AnonymousClass1 extends o implements Function1<StoreState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
+            invoke2(storeState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreState storeState) {
+            m.checkNotNullParameter(storeState, "storeState");
+            ChannelGroupDMSettingsViewModel.access$handleStoreState(ChannelGroupDMSettingsViewModel.this, storeState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.ChannelGroupDMSettingsViewModel$editGroup$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
+    public final class AnonymousClass1 extends o implements Function1<Channel, Unit> {
+        public final /* synthetic */ ViewState.Valid $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(ViewState.Valid valid) {
+            super(1);
+            this.$viewState = valid;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
+            invoke2(channel);
+            return Unit.a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Channel channel) {
+            m.checkNotNullParameter(channel, "it");
+            ChannelGroupDMSettingsViewModel.access$getEventSubject$p(ChannelGroupDMSettingsViewModel.this).k.onNext((T) Event.SettingsSaved.INSTANCE);
+            ChannelGroupDMSettingsViewModel channelGroupDMSettingsViewModel = ChannelGroupDMSettingsViewModel.this;
+            ViewState.Valid valid = this.$viewState;
+            ChannelGroupDMSettingsViewModel.access$updateViewState(channelGroupDMSettingsViewModel, valid.copy(ChannelSettings.copy$default(valid.getChannelSettings(), channel, false, null, 6, null), IconUtils.getForChannel(channel, null), IconUtils.getForChannel(channel, null)));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.ChannelGroupDMSettingsViewModel$leaveGroup$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
+    public final class AnonymousClass1 extends o implements Function1<Channel, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
+            invoke2(channel);
+            return Unit.a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Channel channel) {
+            m.checkNotNullParameter(channel, "it");
+            ChannelGroupDMSettingsViewModel.access$getEventSubject$p(ChannelGroupDMSettingsViewModel.this).k.onNext((T) Event.LeaveGroupSuccess.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static /* synthetic */ Observable observeStoreState$default(Companion companion, long j, StoreChannels storeChannels, StoreUserGuildSettings storeUserGuildSettings, int i, Object obj) {
+            if ((i & 2) != 0) {
+                storeChannels = StoreStream.INSTANCE.getChannels();
+            }
+            if ((i & 4) != 0) {
+                storeUserGuildSettings = StoreStream.INSTANCE.getUserGuildSettings();
+            }
+            return companion.observeStoreState(j, storeChannels, storeUserGuildSettings);
+        }
+
+        private final Observable<StoreState> observeStoreState(long channelId, StoreChannels storeChannels, StoreUserGuildSettings storeUserGuildSettings) {
+            Observable observableY = storeChannels.observeChannel(channelId).Y(new ChannelGroupDMSettingsViewModel$Companion$observeStoreState$1(storeUserGuildSettings));
+            m.checkNotNullExpressionValue(observableY, "storeChannels\n          …            }\n          }");
+            return observableY;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
+    public abstract class Event {
+
+        /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
+        public final class LeaveGroupSuccess extends Event {
+            public static final LeaveGroupSuccess INSTANCE = new LeaveGroupSuccess();
+
+            private LeaveGroupSuccess() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
+        public final class SettingsSaved extends Event {
+            public static final SettingsSaved INSTANCE = new SettingsSaved();
+
+            private SettingsSaved() {
+                super(null);
+            }
+        }
+
+        private Event() {
+        }
+
+        public /* synthetic */ Event(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
+    public abstract class StoreState {
+
+        /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
+        public final class Invalid extends StoreState {
+            public static final Invalid INSTANCE = new Invalid();
+
+            private Invalid() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
+        public final /* data */ class Valid extends StoreState {
+            private final Channel channel;
+            private final ModelNotificationSettings notificationSettings;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Valid(Channel channel, ModelNotificationSettings modelNotificationSettings) {
+                super(null);
+                m.checkNotNullParameter(channel, "channel");
+                m.checkNotNullParameter(modelNotificationSettings, "notificationSettings");
+                this.channel = channel;
+                this.notificationSettings = modelNotificationSettings;
+            }
+
+            public static /* synthetic */ Valid copy$default(Valid valid, Channel channel, ModelNotificationSettings modelNotificationSettings, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    channel = valid.channel;
+                }
+                if ((i & 2) != 0) {
+                    modelNotificationSettings = valid.notificationSettings;
+                }
+                return valid.copy(channel, modelNotificationSettings);
+            }
+
+            public final Valid copy(Channel channel, ModelNotificationSettings notificationSettings) {
+                m.checkNotNullParameter(channel, "channel");
+                m.checkNotNullParameter(notificationSettings, "notificationSettings");
+                return new Valid(channel, notificationSettings);
+            }
+
+            public boolean equals(Object other) {
+                if (this == other) {
+                    return true;
+                }
+                if (!(other instanceof Valid)) {
+                    return false;
+                }
+                Valid valid = (Valid) other;
+                return m.areEqual(this.channel, valid.channel) && m.areEqual(this.notificationSettings, valid.notificationSettings);
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Channel getChannel() {
+                return this.channel;
+            }
+
+            public final Channel getChannel() {
+                return this.channel;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final ModelNotificationSettings getNotificationSettings() {
+                return this.notificationSettings;
+            }
+
+            public final ModelNotificationSettings getNotificationSettings() {
+                return this.notificationSettings;
+            }
+
+            public int hashCode() {
+                Channel channel = this.channel;
+                int iHashCode = (channel != null ? channel.hashCode() : 0) * 31;
+                ModelNotificationSettings modelNotificationSettings = this.notificationSettings;
+                return iHashCode + (modelNotificationSettings != null ? modelNotificationSettings.hashCode() : 0);
+            }
+
+            public String toString() {
+                StringBuilder sbU = a.U("Valid(channel=");
+                sbU.append(this.channel);
+                sbU.append(", notificationSettings=");
+                sbU.append(this.notificationSettings);
+                sbU.append(")");
+                return sbU.toString();
+            }
+        }
+
+        private StoreState() {
+        }
+
+        public /* synthetic */ StoreState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
+    public abstract class ViewState {
+
+        /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
+        public final class Invalid extends ViewState {
+            public static final Invalid INSTANCE = new Invalid();
+
+            private Invalid() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
+        public final /* data */ class Valid extends ViewState {
+            private final ChannelSettings channelSettings;
+            private final String editedIconUrl;
+            private final boolean hasUnsavedIconChange;
+
+            /* JADX INFO: renamed from: isDefaultPhoto$delegate, reason: from kotlin metadata */
+            private final Lazy isDefaultPhoto;
+            private final String originalIconUrl;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Valid(ChannelSettings channelSettings, String str, String str2) {
+                super(null);
+                m.checkNotNullParameter(channelSettings, "channelSettings");
+                this.channelSettings = channelSettings;
+                this.originalIconUrl = str;
+                this.editedIconUrl = str2;
+                this.hasUnsavedIconChange = !m.areEqual(str, str2);
+                this.isDefaultPhoto = g.lazy(new ChannelGroupDMSettingsViewModel$ViewState$Valid$isDefaultPhoto$2(this));
+            }
+
+            public static /* synthetic */ Valid copy$default(Valid valid, ChannelSettings channelSettings, String str, String str2, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    channelSettings = valid.channelSettings;
+                }
+                if ((i & 2) != 0) {
+                    str = valid.originalIconUrl;
+                }
+                if ((i & 4) != 0) {
+                    str2 = valid.editedIconUrl;
+                }
+                return valid.copy(channelSettings, str, str2);
+            }
+
+            public final Valid copy(ChannelSettings channelSettings, String originalIconUrl, String editedIconUrl) {
+                m.checkNotNullParameter(channelSettings, "channelSettings");
+                return new Valid(channelSettings, originalIconUrl, editedIconUrl);
+            }
+
+            public boolean equals(Object other) {
+                if (this == other) {
+                    return true;
+                }
+                if (!(other instanceof Valid)) {
+                    return false;
+                }
+                Valid valid = (Valid) other;
+                return m.areEqual(this.channelSettings, valid.channelSettings) && m.areEqual(this.originalIconUrl, valid.originalIconUrl) && m.areEqual(this.editedIconUrl, valid.editedIconUrl);
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ChannelSettings getChannelSettings() {
+                return this.channelSettings;
+            }
+
+            public final ChannelSettings getChannelSettings() {
+                return this.channelSettings;
+            }
+
+            public final String getCurrentIconUrl() {
+                if (!this.hasUnsavedIconChange) {
+                    return IconUtils.getForChannel(this.channelSettings.getChannel(), null);
+                }
+                String str = this.editedIconUrl;
+                return str != null ? str : IconUtils.INSTANCE.getDefaultForGroupDM(this.channelSettings.getChannel().getId());
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final String getEditedIconUrl() {
+                return this.editedIconUrl;
+            }
+
+            public final String getEditedIconUrl() {
+                return this.editedIconUrl;
+            }
+
+            public final boolean getHasUnsavedIconChange() {
+                return this.hasUnsavedIconChange;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final String getOriginalIconUrl() {
+                return this.originalIconUrl;
+            }
+
+            public final String getOriginalIconUrl() {
+                return this.originalIconUrl;
+            }
+
+            public int hashCode() {
+                ChannelSettings channelSettings = this.channelSettings;
+                int iHashCode = (channelSettings != null ? channelSettings.hashCode() : 0) * 31;
+                String str = this.originalIconUrl;
+                int iHashCode2 = (iHashCode + (str != null ? str.hashCode() : 0)) * 31;
+                String str2 = this.editedIconUrl;
+                return iHashCode2 + (str2 != null ? str2.hashCode() : 0);
+            }
+
+            public final boolean isDefaultPhoto() {
+                return ((Boolean) this.isDefaultPhoto.getValue()).booleanValue();
+            }
+
+            public String toString() {
+                StringBuilder sbU = a.U("Valid(channelSettings=");
+                sbU.append(this.channelSettings);
+                sbU.append(", originalIconUrl=");
+                sbU.append(this.originalIconUrl);
+                sbU.append(", editedIconUrl=");
+                return a.J(sbU, this.editedIconUrl, ")");
+            }
+        }
+
+        private ViewState() {
+        }
+
+        public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public /* synthetic */ ChannelGroupDMSettingsViewModel(long j, RestAPI restAPI, StoreUserGuildSettings storeUserGuildSettings, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(j, (i & 2) != 0 ? RestAPI.Companion.getApi() : restAPI, (i & 4) != 0 ? StoreStream.Companion.getUserGuildSettings() : storeUserGuildSettings, (i & 8) != 0 ? ChannelGroupDMSettingsViewModel$Companion.observeStoreState$default(Companion, j, null, null, 6, null) : observable);
+        this(j, (i & 2) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 4) != 0 ? StoreStream.INSTANCE.getUserGuildSettings() : storeUserGuildSettings, (i & 8) != 0 ? Companion.observeStoreState$default(INSTANCE, j, null, null, 6, null) : observable);
     }
 
     public static final /* synthetic */ PublishSubject access$getEventSubject$p(ChannelGroupDMSettingsViewModel channelGroupDMSettingsViewModel) {
         return channelGroupDMSettingsViewModel.eventSubject;
     }
 
-    public static final /* synthetic */ void access$handleStoreState(ChannelGroupDMSettingsViewModel channelGroupDMSettingsViewModel, ChannelGroupDMSettingsViewModel$StoreState channelGroupDMSettingsViewModel$StoreState) {
-        channelGroupDMSettingsViewModel.handleStoreState(channelGroupDMSettingsViewModel$StoreState);
+    public static final /* synthetic */ void access$handleStoreState(ChannelGroupDMSettingsViewModel channelGroupDMSettingsViewModel, StoreState storeState) {
+        channelGroupDMSettingsViewModel.handleStoreState(storeState);
     }
 
-    public static final /* synthetic */ void access$updateViewState(ChannelGroupDMSettingsViewModel channelGroupDMSettingsViewModel, ChannelGroupDMSettingsViewModel$ViewState channelGroupDMSettingsViewModel$ViewState) {
-        channelGroupDMSettingsViewModel.updateViewState(channelGroupDMSettingsViewModel$ViewState);
+    public static final /* synthetic */ void access$updateViewState(ChannelGroupDMSettingsViewModel channelGroupDMSettingsViewModel, ViewState viewState) {
+        channelGroupDMSettingsViewModel.updateViewState(viewState);
     }
 
     @MainThread
     public final void editGroup(long groupId, String name) {
         String originalIconUrl;
-        ChannelGroupDMSettingsViewModel$ViewState viewState = getViewState();
-        if (!(viewState instanceof ChannelGroupDMSettingsViewModel$ViewState$Valid)) {
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Valid)) {
             viewState = null;
         }
-        ChannelGroupDMSettingsViewModel$ViewState$Valid channelGroupDMSettingsViewModel$ViewState$Valid = (ChannelGroupDMSettingsViewModel$ViewState$Valid) viewState;
-        if (channelGroupDMSettingsViewModel$ViewState$Valid != null) {
-            if (channelGroupDMSettingsViewModel$ViewState$Valid.getHasUnsavedIconChange()) {
-                originalIconUrl = channelGroupDMSettingsViewModel$ViewState$Valid.getEditedIconUrl();
+        ViewState.Valid valid = (ViewState.Valid) viewState;
+        if (valid != null) {
+            if (valid.getHasUnsavedIconChange()) {
+                originalIconUrl = valid.getEditedIconUrl();
                 if (originalIconUrl == null) {
                     originalIconUrl = "";
                 }
             } else {
-                originalIconUrl = channelGroupDMSettingsViewModel$ViewState$Valid.getOriginalIconUrl();
+                originalIconUrl = valid.getOriginalIconUrl();
             }
-            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.editGroupDM(groupId, new RestAPIParams$GroupDM(name, originalIconUrl)), false, 1, null), this, null, 2, null), ChannelGroupDMSettingsViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new ChannelGroupDMSettingsViewModel$editGroup$1(this, channelGroupDMSettingsViewModel$ViewState$Valid), 62, (Object) null);
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.editGroupDM(groupId, new RestAPIParams.GroupDM(name, originalIconUrl)), false, 1, null), this, null, 2, null), ChannelGroupDMSettingsViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(valid), 62, (Object) null);
         }
     }
 
     @MainThread
-    private final void handleStoreState(ChannelGroupDMSettingsViewModel$StoreState storeState) {
-        if (m.areEqual(storeState, ChannelGroupDMSettingsViewModel$StoreState$Invalid.INSTANCE)) {
-            updateViewState(ChannelGroupDMSettingsViewModel$ViewState$Invalid.INSTANCE);
+    private final void handleStoreState(StoreState storeState) {
+        if (m.areEqual(storeState, StoreState.Invalid.INSTANCE)) {
+            updateViewState(ViewState.Invalid.INSTANCE);
             return;
         }
-        if (storeState instanceof ChannelGroupDMSettingsViewModel$StoreState$Valid) {
-            ChannelGroupDMSettingsViewModel$StoreState$Valid channelGroupDMSettingsViewModel$StoreState$Valid = (ChannelGroupDMSettingsViewModel$StoreState$Valid) storeState;
-            Channel channel = channelGroupDMSettingsViewModel$StoreState$Valid.getChannel();
-            ChannelSettings channelSettingsCreateFromNotificationSettings = ChannelSettings.Companion.createFromNotificationSettings(channel, channelGroupDMSettingsViewModel$StoreState$Valid.getNotificationSettings());
-            ChannelGroupDMSettingsViewModel$ViewState viewState = getViewState();
-            updateViewState(viewState instanceof ChannelGroupDMSettingsViewModel$ViewState$Valid ? ChannelGroupDMSettingsViewModel$ViewState$Valid.copy$default((ChannelGroupDMSettingsViewModel$ViewState$Valid) viewState, channelSettingsCreateFromNotificationSettings, null, null, 6, null) : new ChannelGroupDMSettingsViewModel$ViewState$Valid(channelSettingsCreateFromNotificationSettings, IconUtils.getForChannel(channel, null), IconUtils.getForChannel(channel, null)));
+        if (storeState instanceof StoreState.Valid) {
+            StoreState.Valid valid = (StoreState.Valid) storeState;
+            Channel channel = valid.getChannel();
+            ChannelSettings channelSettingsCreateFromNotificationSettings = ChannelSettings.INSTANCE.createFromNotificationSettings(channel, valid.getNotificationSettings());
+            ViewState viewState = getViewState();
+            updateViewState(viewState instanceof ViewState.Valid ? ViewState.Valid.copy$default((ViewState.Valid) viewState, channelSettingsCreateFromNotificationSettings, null, null, 6, null) : new ViewState.Valid(channelSettingsCreateFromNotificationSettings, IconUtils.getForChannel(channel, null), IconUtils.getForChannel(channel, null)));
         }
     }
 
     @MainThread
     public final void leaveGroup() {
-        ChannelGroupDMSettingsViewModel$ViewState viewState = getViewState();
-        if (!(viewState instanceof ChannelGroupDMSettingsViewModel$ViewState$Valid)) {
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Valid)) {
             viewState = null;
         }
-        ChannelGroupDMSettingsViewModel$ViewState$Valid channelGroupDMSettingsViewModel$ViewState$Valid = (ChannelGroupDMSettingsViewModel$ViewState$Valid) viewState;
-        if (channelGroupDMSettingsViewModel$ViewState$Valid != null) {
-            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.deleteChannel(channelGroupDMSettingsViewModel$ViewState$Valid.getChannelSettings().getChannel().getId()), false, 1, null), this, null, 2, null), ChannelGroupDMSettingsViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new ChannelGroupDMSettingsViewModel$leaveGroup$1(this), 62, (Object) null);
+        ViewState.Valid valid = (ViewState.Valid) viewState;
+        if (valid != null) {
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.deleteChannel(valid.getChannelSettings().getChannel().getId()), false, 1, null), this, null, 2, null), ChannelGroupDMSettingsViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
         }
     }
 
     @MainThread
-    public final Observable<ChannelGroupDMSettingsViewModel$Event> observeEvents() {
-        PublishSubject<ChannelGroupDMSettingsViewModel$Event> publishSubject = this.eventSubject;
+    public final Observable<Event> observeEvents() {
+        PublishSubject<Event> publishSubject = this.eventSubject;
         m.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
     }
@@ -101,25 +462,25 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ChannelGroupDMSett
     @MainThread
     public final void onIconEdited(String iconUrl) {
         m.checkNotNullParameter(iconUrl, "iconUrl");
-        ChannelGroupDMSettingsViewModel$ViewState viewState = getViewState();
-        if (!(viewState instanceof ChannelGroupDMSettingsViewModel$ViewState$Valid)) {
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Valid)) {
             viewState = null;
         }
-        ChannelGroupDMSettingsViewModel$ViewState$Valid channelGroupDMSettingsViewModel$ViewState$Valid = (ChannelGroupDMSettingsViewModel$ViewState$Valid) viewState;
-        if (channelGroupDMSettingsViewModel$ViewState$Valid != null) {
-            updateViewState(ChannelGroupDMSettingsViewModel$ViewState$Valid.copy$default(channelGroupDMSettingsViewModel$ViewState$Valid, null, null, iconUrl, 3, null));
+        ViewState.Valid valid = (ViewState.Valid) viewState;
+        if (valid != null) {
+            updateViewState(ViewState.Valid.copy$default(valid, null, null, iconUrl, 3, null));
         }
     }
 
     @MainThread
     public final void removeEditedIcon() {
-        ChannelGroupDMSettingsViewModel$ViewState viewState = getViewState();
-        if (!(viewState instanceof ChannelGroupDMSettingsViewModel$ViewState$Valid)) {
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Valid)) {
             viewState = null;
         }
-        ChannelGroupDMSettingsViewModel$ViewState$Valid channelGroupDMSettingsViewModel$ViewState$Valid = (ChannelGroupDMSettingsViewModel$ViewState$Valid) viewState;
-        if (channelGroupDMSettingsViewModel$ViewState$Valid != null) {
-            updateViewState(ChannelGroupDMSettingsViewModel$ViewState$Valid.copy$default(channelGroupDMSettingsViewModel$ViewState$Valid, null, null, null, 3, null));
+        ViewState.Valid valid = (ViewState.Valid) viewState;
+        if (valid != null) {
+            updateViewState(ViewState.Valid.copy$default(valid, null, null, null, 3, null));
         }
     }
 
@@ -129,7 +490,7 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ChannelGroupDMSett
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public ChannelGroupDMSettingsViewModel(long j, RestAPI restAPI, StoreUserGuildSettings storeUserGuildSettings, Observable<ChannelGroupDMSettingsViewModel$StoreState> observable) {
+    public ChannelGroupDMSettingsViewModel(long j, RestAPI restAPI, StoreUserGuildSettings storeUserGuildSettings, Observable<StoreState> observable) {
         super(null, 1, null);
         m.checkNotNullParameter(restAPI, "restApi");
         m.checkNotNullParameter(storeUserGuildSettings, "storeUserGuildSettings");
@@ -138,6 +499,6 @@ public final class ChannelGroupDMSettingsViewModel extends d0<ChannelGroupDMSett
         this.restApi = restAPI;
         this.storeUserGuildSettings = storeUserGuildSettings;
         this.eventSubject = PublishSubject.k0();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observable), this, null, 2, null), ChannelGroupDMSettingsViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new ChannelGroupDMSettingsViewModel$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observable), this, null, 2, null), ChannelGroupDMSettingsViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 }

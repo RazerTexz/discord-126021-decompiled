@@ -1,7 +1,6 @@
 package com.discord.widgets.channels.permissions;
 
 import com.discord.api.permission.PermissionOverwrite;
-import com.discord.api.permission.PermissionOverwrite$Type;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.jvm.functions.Function1;
@@ -23,6 +22,6 @@ public final class WidgetStageChannelModeratorPermissionsViewModel$handleStoreSt
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(PermissionOverwrite permissionOverwrite) {
         m.checkNotNullParameter(permissionOverwrite, "overwrite");
-        return permissionOverwrite.getType() == PermissionOverwrite$Type.MEMBER;
+        return permissionOverwrite.getType() == PermissionOverwrite.Type.MEMBER;
     }
 }

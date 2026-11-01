@@ -35,7 +35,7 @@ public final class e implements f0.f {
         f0.e0.g.c cVar = response.exchange;
         try {
             this.a.h(response, cVar);
-            d$c d_cD = cVar.d();
+            d.c cVarD = cVar.d();
             Headers headers = response.headers;
             m.checkParameterIsNotNull(headers, "responseHeaders");
             int size = headers.size();
@@ -123,7 +123,7 @@ public final class e implements f0.f {
                 }
             }
             try {
-                this.a.j(f0.e0.c.g + " WebSocket " + this.f3663b.url.h(), d_cD);
+                this.a.j(f0.e0.c.g + " WebSocket " + this.f3663b.url.h(), cVarD);
                 d dVar = this.a;
                 dVar.v.onOpen(dVar, response);
                 this.a.k();

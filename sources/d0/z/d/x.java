@@ -1,6 +1,5 @@
 package d0.z.d;
 
-import d0.e0.g$a;
 import kotlin.reflect.KCallable;
 
 /* JADX INFO: compiled from: PropertyReference1.java */
@@ -15,7 +14,7 @@ public abstract class x extends z implements d0.e0.g {
     }
 
     @Override // d0.e0.g
-    public g$a getGetter() {
+    public d0.e0.g.a getGetter() {
         return ((d0.e0.g) getReflected()).getGetter();
     }
 

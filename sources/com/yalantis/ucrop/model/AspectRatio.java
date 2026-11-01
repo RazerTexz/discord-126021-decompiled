@@ -2,7 +2,6 @@ package com.yalantis.ucrop.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import androidx.annotation.Nullable;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -12,7 +11,19 @@ public class AspectRatio implements Parcelable {
     public final String j;
     public final float k;
     public final float l;
-    public static final Parcelable$Creator<AspectRatio> CREATOR = new AspectRatio$a();
+    public static final Parcelable.Creator<AspectRatio> CREATOR = new a();
+
+    public final class a implements Parcelable.Creator<AspectRatio> {
+        @Override // android.os.Parcelable.Creator
+        public AspectRatio createFromParcel(Parcel parcel) {
+            return new AspectRatio(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public AspectRatio[] newArray(int i) {
+            return new AspectRatio[i];
+        }
+    }
 
     public AspectRatio(@Nullable String str, float f, float f2) {
         this.j = str;

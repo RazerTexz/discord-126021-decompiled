@@ -3,21 +3,18 @@ package e0.a.a.a;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
-import android.hardware.Camera$Parameters;
-import android.hardware.Camera$PreviewCallback;
+import android.hardware.Camera;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import androidx.annotation.ColorInt;
 import androidx.core.view.ViewCompat;
-import me.dm7.barcodescanner.core.R$a;
-import me.dm7.barcodescanner.core.R$b;
-import me.dm7.barcodescanner.core.R$c;
+import me.dm7.barcodescanner.core.R;
 
 /* JADX INFO: compiled from: BarcodeScannerView.java */
 /* JADX INFO: loaded from: classes3.dex */
-public abstract class a extends FrameLayout implements Camera$PreviewCallback {
+public abstract class a extends FrameLayout implements Camera.PreviewCallback {
     public float A;
     public int B;
     public float C;
@@ -55,31 +52,31 @@ public abstract class a extends FrameLayout implements Camera$PreviewCallback {
         this.p = true;
         this.q = true;
         this.r = true;
-        this.f3593s = getResources().getColor(R$a.viewfinder_laser);
-        this.t = getResources().getColor(R$a.viewfinder_border);
-        this.u = getResources().getColor(R$a.viewfinder_mask);
-        this.v = getResources().getInteger(R$b.viewfinder_border_width);
-        this.w = getResources().getInteger(R$b.viewfinder_border_length);
+        this.f3593s = getResources().getColor(R.a.viewfinder_laser);
+        this.t = getResources().getColor(R.a.viewfinder_border);
+        this.u = getResources().getColor(R.a.viewfinder_mask);
+        this.v = getResources().getInteger(R.b.viewfinder_border_width);
+        this.w = getResources().getInteger(R.b.viewfinder_border_length);
         this.f3594x = false;
         this.f3595y = 0;
         this.f3596z = false;
         this.A = 1.0f;
         this.B = 0;
         this.C = 0.1f;
-        TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet, R$c.BarcodeScannerView, 0, 0);
+        TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet, R.c.BarcodeScannerView, 0, 0);
         try {
-            setShouldScaleToFill(typedArrayObtainStyledAttributes.getBoolean(R$c.BarcodeScannerView_shouldScaleToFill, true));
-            this.r = typedArrayObtainStyledAttributes.getBoolean(R$c.BarcodeScannerView_laserEnabled, this.r);
-            this.f3593s = typedArrayObtainStyledAttributes.getColor(R$c.BarcodeScannerView_laserColor, this.f3593s);
-            this.t = typedArrayObtainStyledAttributes.getColor(R$c.BarcodeScannerView_borderColor, this.t);
-            this.u = typedArrayObtainStyledAttributes.getColor(R$c.BarcodeScannerView_maskColor, this.u);
-            this.v = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$c.BarcodeScannerView_borderWidth, this.v);
-            this.w = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$c.BarcodeScannerView_borderLength, this.w);
-            this.f3594x = typedArrayObtainStyledAttributes.getBoolean(R$c.BarcodeScannerView_roundedCorner, this.f3594x);
-            this.f3595y = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$c.BarcodeScannerView_cornerRadius, this.f3595y);
-            this.f3596z = typedArrayObtainStyledAttributes.getBoolean(R$c.BarcodeScannerView_squaredFinder, this.f3596z);
-            this.A = typedArrayObtainStyledAttributes.getFloat(R$c.BarcodeScannerView_borderAlpha, this.A);
-            this.B = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$c.BarcodeScannerView_finderOffset, this.B);
+            setShouldScaleToFill(typedArrayObtainStyledAttributes.getBoolean(R.c.BarcodeScannerView_shouldScaleToFill, true));
+            this.r = typedArrayObtainStyledAttributes.getBoolean(R.c.BarcodeScannerView_laserEnabled, this.r);
+            this.f3593s = typedArrayObtainStyledAttributes.getColor(R.c.BarcodeScannerView_laserColor, this.f3593s);
+            this.t = typedArrayObtainStyledAttributes.getColor(R.c.BarcodeScannerView_borderColor, this.t);
+            this.u = typedArrayObtainStyledAttributes.getColor(R.c.BarcodeScannerView_maskColor, this.u);
+            this.v = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.c.BarcodeScannerView_borderWidth, this.v);
+            this.w = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.c.BarcodeScannerView_borderLength, this.w);
+            this.f3594x = typedArrayObtainStyledAttributes.getBoolean(R.c.BarcodeScannerView_roundedCorner, this.f3594x);
+            this.f3595y = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.c.BarcodeScannerView_cornerRadius, this.f3595y);
+            this.f3596z = typedArrayObtainStyledAttributes.getBoolean(R.c.BarcodeScannerView_squaredFinder, this.f3596z);
+            this.A = typedArrayObtainStyledAttributes.getFloat(R.c.BarcodeScannerView_borderAlpha, this.A);
+            this.B = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.c.BarcodeScannerView_finderOffset, this.B);
             typedArrayObtainStyledAttributes.recycle();
             g gVar = new g(getContext());
             gVar.setBorderColor(this.t);
@@ -182,7 +179,7 @@ public abstract class a extends FrameLayout implements Camera$PreviewCallback {
         if (eVar == null || !b.i.a.f.e.o.f.C0(eVar.a)) {
             return;
         }
-        Camera$Parameters parameters = this.j.a.getParameters();
+        Camera.Parameters parameters = this.j.a.getParameters();
         if (z2) {
             if (parameters.getFlashMode().equals("torch")) {
                 return;

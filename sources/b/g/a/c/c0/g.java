@@ -8,8 +8,20 @@ import java.lang.reflect.Member;
 /* JADX INFO: loaded from: classes3.dex */
 public final class g extends i implements Serializable {
     private static final long serialVersionUID = 1;
-    public g$a _serialization;
+    public a _serialization;
     public final transient Field l;
+
+    /* JADX INFO: compiled from: AnnotatedField.java */
+    public final class a implements Serializable {
+        private static final long serialVersionUID = 1;
+        public Class<?> clazz;
+        public String name;
+
+        public a(Field field) {
+            this.clazz = field.getDeclaringClass();
+            this.name = field.getName();
+        }
+    }
 
     public g(e0 e0Var, Field field, p pVar) {
         super(e0Var, pVar);
@@ -73,10 +85,10 @@ public final class g extends i implements Serializable {
     }
 
     public Object readResolve() {
-        g$a g_a = this._serialization;
-        Class<?> cls = g_a.clazz;
+        a aVar = this._serialization;
+        Class<?> cls = aVar.clazz;
         try {
-            Field declaredField = cls.getDeclaredField(g_a.name);
+            Field declaredField = cls.getDeclaredField(aVar.name);
             if (!declaredField.isAccessible()) {
                 b.g.a.c.i0.d.d(declaredField, false);
             }
@@ -98,12 +110,12 @@ public final class g extends i implements Serializable {
     }
 
     public Object writeReplace() {
-        return new g(new g$a(this.l));
+        return new g(new a(this.l));
     }
 
-    public g(g$a g_a) {
+    public g(a aVar) {
         super(null, null);
         this.l = null;
-        this._serialization = g_a;
+        this._serialization = aVar;
     }
 }

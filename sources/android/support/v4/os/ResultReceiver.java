@@ -6,39 +6,58 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import android.os.RemoteException;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
-import x.a.b.c.a;
-import x.a.b.c.a$a;
-import x.a.b.c.a$a$a;
+import java.util.Objects;
 
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"BanParcelableUsage"})
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class ResultReceiver implements Parcelable {
-    public a j;
-    public static final Parcelable$Creator<ResultReceiver> CREATOR = new ResultReceiver$a();
+    public x.a.b.c.a j;
+    public static final Parcelable.Creator<ResultReceiver> CREATOR = new a();
+
+    public class a implements Parcelable.Creator<ResultReceiver> {
+        @Override // android.os.Parcelable.Creator
+        public ResultReceiver createFromParcel(Parcel parcel) {
+            return new ResultReceiver(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public ResultReceiver[] newArray(int i) {
+            return new ResultReceiver[i];
+        }
+    }
+
+    public class b extends x.a.b.c.a.AbstractBinderC0661a {
+        public b() {
+        }
+
+        @Override // x.a.b.c.a
+        public void r0(int i, Bundle bundle) {
+            Objects.requireNonNull(ResultReceiver.this);
+            ResultReceiver.this.a(i, bundle);
+        }
+    }
 
     public ResultReceiver(Parcel parcel) {
-        a a_a_a;
+        x.a.b.c.a c0662a;
         IBinder strongBinder = parcel.readStrongBinder();
-        int i = a$a.a;
+        int i = x.a.b.c.a.AbstractBinderC0661a.a;
         if (strongBinder == null) {
-            a_a_a = null;
+            c0662a = null;
         } else {
             IInterface iInterfaceQueryLocalInterface = strongBinder.queryLocalInterface("android.support.v4.os.IResultReceiver");
-            a_a_a = (iInterfaceQueryLocalInterface == null || !(iInterfaceQueryLocalInterface instanceof a)) ? new a$a$a(strongBinder) : (a) iInterfaceQueryLocalInterface;
+            c0662a = (iInterfaceQueryLocalInterface == null || !(iInterfaceQueryLocalInterface instanceof x.a.b.c.a)) ? new x.a.b.c.a.AbstractBinderC0661a.C0662a(strongBinder) : (x.a.b.c.a) iInterfaceQueryLocalInterface;
         }
-        this.j = a_a_a;
+        this.j = c0662a;
     }
 
     public void a(int i, Bundle bundle) {
     }
 
     public void b(int i, Bundle bundle) {
-        a aVar = this.j;
+        x.a.b.c.a aVar = this.j;
         if (aVar != null) {
             try {
                 aVar.r0(i, bundle);
@@ -56,7 +75,7 @@ public class ResultReceiver implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         synchronized (this) {
             if (this.j == null) {
-                this.j = new ResultReceiver$b(this);
+                this.j = new b();
             }
             parcel.writeStrongBinder(this.j.asBinder());
         }

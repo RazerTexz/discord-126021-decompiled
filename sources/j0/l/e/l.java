@@ -1,17 +1,17 @@
 package j0.l.e;
 
-import rx.Scheduler$Worker;
+import rx.Scheduler;
 import rx.functions.Action0;
 
 /* JADX INFO: compiled from: ScalarSynchronousObservable.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class l implements Action0 {
     public final /* synthetic */ Action0 j;
-    public final /* synthetic */ Scheduler$Worker k;
+    public final /* synthetic */ Scheduler.Worker k;
 
-    public l(k$b k_b, Action0 action0, Scheduler$Worker scheduler$Worker) {
+    public l(k.b bVar, Action0 action0, Scheduler.Worker worker) {
         this.j = action0;
-        this.k = scheduler$Worker;
+        this.k = worker;
     }
 
     @Override // rx.functions.Action0

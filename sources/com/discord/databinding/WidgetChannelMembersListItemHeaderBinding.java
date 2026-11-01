@@ -8,8 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.widgets.roles.RoleIconView;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -33,15 +32,15 @@ public final class WidgetChannelMembersListItemHeaderBinding implements ViewBind
 
     @NonNull
     public static WidgetChannelMembersListItemHeaderBinding a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
-        View viewInflate = layoutInflater.inflate(R$layout.widget_channel_members_list_item_header, viewGroup, false);
+        View viewInflate = layoutInflater.inflate(R.layout.widget_channel_members_list_item_header, viewGroup, false);
         if (z2) {
             viewGroup.addView(viewInflate);
         }
-        int i = R$id.channel_members_list_item_header_role_icon;
-        RoleIconView roleIconView = (RoleIconView) viewInflate.findViewById(R$id.channel_members_list_item_header_role_icon);
+        int i = R.id.channel_members_list_item_header_role_icon;
+        RoleIconView roleIconView = (RoleIconView) viewInflate.findViewById(R.id.channel_members_list_item_header_role_icon);
         if (roleIconView != null) {
-            i = R$id.channel_members_list_item_header_text;
-            TextView textView = (TextView) viewInflate.findViewById(R$id.channel_members_list_item_header_text);
+            i = R.id.channel_members_list_item_header_text;
+            TextView textView = (TextView) viewInflate.findViewById(R.id.channel_members_list_item_header_text);
             if (textView != null) {
                 return new WidgetChannelMembersListItemHeaderBinding((LinearLayout) viewInflate, roleIconView, textView);
             }

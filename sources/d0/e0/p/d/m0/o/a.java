@@ -14,7 +14,7 @@ public abstract class a {
                 return dVar.checkAll(xVar);
             }
         }
-        return c$a.f3545b;
+        return c.a.f3545b;
     }
 
     public abstract List<d> getChecks$descriptors();

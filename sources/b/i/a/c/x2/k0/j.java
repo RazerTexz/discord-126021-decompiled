@@ -1,6 +1,5 @@
 package b.i.a.c.x2.k0;
 
-import b.i.a.c.x2.t$b;
 import com.google.android.exoplayer2.ParserException;
 import java.io.EOFException;
 import java.io.IOException;
@@ -159,10 +158,10 @@ public final class j implements b.i.a.c.x2.h {
                         int i5 = this.i;
                         jVar.a(new b.i.a.c.x2.d(jB, this.h, (int) ((((long) (i5 * 8)) * 1000000) / j2), i5, z4));
                     } else {
-                        this.f.a(new t$b(-9223372036854775807L, 0L));
+                        this.f.a(new b.i.a.c.x2.t.b(-9223372036854775807L, 0L));
                     }
                 } else {
-                    this.f.a(new t$b(-9223372036854775807L, 0L));
+                    this.f.a(new b.i.a.c.x2.t.b(-9223372036854775807L, 0L));
                 }
                 this.l = true;
             }
@@ -183,7 +182,7 @@ public final class j implements b.i.a.c.x2.h {
     @Override // b.i.a.c.x2.h
     public void f(b.i.a.c.x2.j jVar) {
         this.f = jVar;
-        this.f1260b.e(jVar, new i0$d(Integer.MIN_VALUE, 0, 1));
+        this.f1260b.e(jVar, new i0.d(Integer.MIN_VALUE, 0, 1));
         jVar.j();
     }
 

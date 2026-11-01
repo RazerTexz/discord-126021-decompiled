@@ -1,7 +1,7 @@
 package b.i.a.g.d;
 
 import android.annotation.SuppressLint;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.google.android.material.R$layout;
-import com.google.android.material.R$string;
+import com.google.android.material.R;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -25,7 +24,7 @@ public class e extends BaseAdapter {
     public final int m;
 
     static {
-        j = Build$VERSION.SDK_INT >= 26 ? 4 : 1;
+        j = Build.VERSION.SDK_INT >= 26 ? 4 : 1;
     }
 
     public e() {
@@ -65,7 +64,7 @@ public class e extends BaseAdapter {
     public View getView(int i, @Nullable View view, @NonNull ViewGroup viewGroup) {
         TextView textView = (TextView) view;
         if (view == null) {
-            textView = (TextView) LayoutInflater.from(viewGroup.getContext()).inflate(R$layout.mtrl_calendar_day_of_week, viewGroup, false);
+            textView = (TextView) LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mtrl_calendar_day_of_week, viewGroup, false);
         }
         Calendar calendar = this.k;
         int i2 = i + this.m;
@@ -75,7 +74,7 @@ public class e extends BaseAdapter {
         }
         calendar.set(7, i2);
         textView.setText(this.k.getDisplayName(7, j, textView.getResources().getConfiguration().locale));
-        textView.setContentDescription(String.format(viewGroup.getContext().getString(R$string.mtrl_picker_day_of_week_column_header), this.k.getDisplayName(7, 2, Locale.getDefault())));
+        textView.setContentDescription(String.format(viewGroup.getContext().getString(R.string.mtrl_picker_day_of_week_column_header), this.k.getDisplayName(7, 2, Locale.getDefault())));
         return textView;
     }
 }

@@ -1,9 +1,6 @@
 package b.i.a.c.y2;
 
 import android.media.MediaCodec;
-import android.media.MediaCodec$BufferInfo;
-import android.media.MediaCodec$Callback;
-import android.media.MediaCodec$CodecException;
 import android.media.MediaFormat;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -15,7 +12,7 @@ import java.util.ArrayDeque;
 /* JADX INFO: compiled from: AsynchronousMediaCodecCallback.java */
 /* JADX INFO: loaded from: classes3.dex */
 @RequiresApi(23)
-public final class o extends MediaCodec$Callback {
+public final class o extends MediaCodec.Callback {
     public Handler c;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -31,7 +28,7 @@ public final class o extends MediaCodec$Callback {
 
     @Nullable
     @GuardedBy("lock")
-    public MediaCodec$CodecException j;
+    public MediaCodec.CodecException j;
 
     @GuardedBy("lock")
     public long k;
@@ -51,7 +48,7 @@ public final class o extends MediaCodec$Callback {
     public final s e = new s();
 
     @GuardedBy("lock")
-    public final ArrayDeque<MediaCodec$BufferInfo> f = new ArrayDeque<>();
+    public final ArrayDeque<MediaCodec.BufferInfo> f = new ArrayDeque<>();
 
     @GuardedBy("lock")
     public final ArrayDeque<MediaFormat> g = new ArrayDeque<>();
@@ -89,22 +86,22 @@ public final class o extends MediaCodec$Callback {
         }
     }
 
-    @Override // android.media.MediaCodec$Callback
-    public void onError(MediaCodec mediaCodec, MediaCodec$CodecException mediaCodec$CodecException) {
+    @Override // android.media.MediaCodec.Callback
+    public void onError(MediaCodec mediaCodec, MediaCodec.CodecException codecException) {
         synchronized (this.a) {
-            this.j = mediaCodec$CodecException;
+            this.j = codecException;
         }
     }
 
-    @Override // android.media.MediaCodec$Callback
+    @Override // android.media.MediaCodec.Callback
     public void onInputBufferAvailable(MediaCodec mediaCodec, int i) {
         synchronized (this.a) {
             this.d.a(i);
         }
     }
 
-    @Override // android.media.MediaCodec$Callback
-    public void onOutputBufferAvailable(MediaCodec mediaCodec, int i, MediaCodec$BufferInfo mediaCodec$BufferInfo) {
+    @Override // android.media.MediaCodec.Callback
+    public void onOutputBufferAvailable(MediaCodec mediaCodec, int i, MediaCodec.BufferInfo bufferInfo) {
         synchronized (this.a) {
             MediaFormat mediaFormat = this.i;
             if (mediaFormat != null) {
@@ -113,11 +110,11 @@ public final class o extends MediaCodec$Callback {
                 this.i = null;
             }
             this.e.a(i);
-            this.f.add(mediaCodec$BufferInfo);
+            this.f.add(bufferInfo);
         }
     }
 
-    @Override // android.media.MediaCodec$Callback
+    @Override // android.media.MediaCodec.Callback
     public void onOutputFormatChanged(MediaCodec mediaCodec, MediaFormat mediaFormat) {
         synchronized (this.a) {
             this.e.a(-2);

@@ -9,11 +9,10 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
+import androidx.core.app.NotificationCompat;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$attr;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.user.User;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.databinding.WidgetChatListAdapterItemApplicationCommandBinding;
@@ -27,43 +26,110 @@ import com.discord.widgets.chat.list.entries.ChatListEntry;
 import com.discord.widgets.chat.list.entries.MessageEntry;
 import d0.g0.t;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetChatListAdapterItemApplicationCommand.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChatListAdapterItemApplicationCommand extends WidgetChatListItem {
     private final WidgetChatListAdapterItemApplicationCommandBinding binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemApplicationCommand$onConfigure$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemApplicationCommand.kt */
+    public final class AnonymousClass1 extends o implements Function1<TextView, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemApplicationCommand$onConfigure$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: WidgetChatListAdapterItemApplicationCommand.kt */
+        public final class ViewOnLongClickListenerC03881 implements View.OnLongClickListener {
+            public final /* synthetic */ TextView $this_copyTextOnLongPress;
+
+            public ViewOnLongClickListenerC03881(TextView textView) {
+                this.$this_copyTextOnLongPress = textView;
+            }
+
+            @Override // android.view.View.OnLongClickListener
+            public final boolean onLongClick(View view) {
+                Context context = this.$this_copyTextOnLongPress.getContext();
+                m.checkNotNullExpressionValue(context, "context");
+                CharSequence text = this.$this_copyTextOnLongPress.getText();
+                m.checkNotNullExpressionValue(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+                b.a.d.m.c(context, text, 0, 4);
+                return false;
+            }
+        }
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(TextView textView) {
+            invoke2(textView);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(TextView textView) {
+            m.checkNotNullParameter(textView, "$this$copyTextOnLongPress");
+            textView.setOnLongClickListener(new ViewOnLongClickListenerC03881(textView));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemApplicationCommand$onConfigure$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemApplicationCommand.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            TextView textView = WidgetChatListAdapterItemApplicationCommand.access$getBinding$p(WidgetChatListAdapterItemApplicationCommand.this).f2308b;
+            m.checkNotNullExpressionValue(textView, "binding.chatListAdapterItemTextCommand");
+            if (textView.getMaxLines() == 1) {
+                TextView textView2 = WidgetChatListAdapterItemApplicationCommand.access$getBinding$p(WidgetChatListAdapterItemApplicationCommand.this).f2308b;
+                m.checkNotNullExpressionValue(textView2, "binding.chatListAdapterItemTextCommand");
+                textView2.setMaxLines(Integer.MAX_VALUE);
+            } else {
+                TextView textView3 = WidgetChatListAdapterItemApplicationCommand.access$getBinding$p(WidgetChatListAdapterItemApplicationCommand.this).f2308b;
+                m.checkNotNullExpressionValue(textView3, "binding.chatListAdapterItemTextCommand");
+                textView3.setMaxLines(1);
+            }
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemApplicationCommand(WidgetChatListAdapter widgetChatListAdapter) {
-        super(R$layout.widget_chat_list_adapter_item_application_command, widgetChatListAdapter);
+        super(R.layout.widget_chat_list_adapter_item_application_command, widgetChatListAdapter);
         m.checkNotNullParameter(widgetChatListAdapter, "adapter");
         View view = this.itemView;
-        int i = R$id.chat_list_adapter_item_text_avatar;
-        ImageView imageView = (ImageView) view.findViewById(R$id.chat_list_adapter_item_text_avatar);
+        int i = R.id.chat_list_adapter_item_text_avatar;
+        ImageView imageView = (ImageView) view.findViewById(R.id.chat_list_adapter_item_text_avatar);
         if (imageView != null) {
-            i = R$id.chat_list_adapter_item_text_command;
-            TextView textView = (TextView) view.findViewById(R$id.chat_list_adapter_item_text_command);
+            i = R.id.chat_list_adapter_item_text_command;
+            TextView textView = (TextView) view.findViewById(R.id.chat_list_adapter_item_text_command);
             if (textView != null) {
-                i = R$id.chat_list_adapter_item_text_decorator;
-                CardView cardView = (CardView) view.findViewById(R$id.chat_list_adapter_item_text_decorator);
+                i = R.id.chat_list_adapter_item_text_decorator;
+                CardView cardView = (CardView) view.findViewById(R.id.chat_list_adapter_item_text_decorator);
                 if (cardView != null) {
-                    i = R$id.chat_list_adapter_item_text_decorator_reply_link_icon;
-                    FrameLayout frameLayout = (FrameLayout) view.findViewById(R$id.chat_list_adapter_item_text_decorator_reply_link_icon);
+                    i = R.id.chat_list_adapter_item_text_decorator_reply_link_icon;
+                    FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.chat_list_adapter_item_text_decorator_reply_link_icon);
                     if (frameLayout != null) {
-                        i = R$id.chat_list_adapter_item_text_header;
-                        ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(R$id.chat_list_adapter_item_text_header);
+                        i = R.id.chat_list_adapter_item_text_header;
+                        ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(R.id.chat_list_adapter_item_text_header);
                         if (constraintLayout != null) {
-                            i = R$id.chat_list_adapter_item_text_name;
-                            TextView textView2 = (TextView) view.findViewById(R$id.chat_list_adapter_item_text_name);
+                            i = R.id.chat_list_adapter_item_text_name;
+                            TextView textView2 = (TextView) view.findViewById(R.id.chat_list_adapter_item_text_name);
                             if (textView2 != null) {
-                                i = R$id.chat_list_adapter_item_text_timestamp;
-                                TextView textView3 = (TextView) view.findViewById(R$id.chat_list_adapter_item_text_timestamp);
+                                i = R.id.chat_list_adapter_item_text_timestamp;
+                                TextView textView3 = (TextView) view.findViewById(R.id.chat_list_adapter_item_text_timestamp);
                                 if (textView3 != null) {
-                                    i = 2131365922;
-                                    Guideline guideline = (Guideline) view.findViewById(2131365922);
+                                    i = R.id.uikit_chat_guideline;
+                                    Guideline guideline = (Guideline) view.findViewById(R.id.uikit_chat_guideline);
                                     if (guideline != null) {
                                         WidgetChatListAdapterItemApplicationCommandBinding widgetChatListAdapterItemApplicationCommandBinding = new WidgetChatListAdapterItemApplicationCommandBinding((ConstraintLayout) view, imageView, textView, cardView, frameLayout, constraintLayout, textView2, textView3, guideline);
                                         m.checkNotNullExpressionValue(widgetChatListAdapterItemApplicationCommandBinding, "WidgetChatListAdapterIte…andBinding.bind(itemView)");
@@ -91,7 +157,7 @@ public final class WidgetChatListAdapterItemApplicationCommand extends WidgetCha
     private final int getAuthorTextColor(GuildMember member) {
         View view = this.itemView;
         m.checkNotNullExpressionValue(view, "itemView");
-        return GuildMember.Companion.getColor(member, ColorCompat.getThemedColor(view.getContext(), 2130968989));
+        return GuildMember.INSTANCE.getColor(member, ColorCompat.getThemedColor(view.getContext(), R.attr.colorHeaderPrimary));
     }
 
     @Override // com.discord.widgets.chat.list.adapter.WidgetChatListItem, com.discord.utilities.mg_recycler.MGRecyclerViewHolder
@@ -127,7 +193,7 @@ public final class WidgetChatListAdapterItemApplicationCommand extends WidgetCha
         GuildMember author2 = messageEntry.getAuthor();
         Map<Long, String> nickOrUsernames = messageEntry.getNickOrUsernames();
         int authorTextColor = getAuthorTextColor(author2);
-        WidgetChatListAdapterItemApplicationCommand$onConfigure$1 widgetChatListAdapterItemApplicationCommand$onConfigure$1 = WidgetChatListAdapterItemApplicationCommand$onConfigure$1.INSTANCE;
+        AnonymousClass1 anonymousClass1 = AnonymousClass1.INSTANCE;
         Pattern patternCompile = Pattern.compile("^<(/[^:]+):([0-9]*)>(.*)");
         String content = message.getContent();
         String str2 = "";
@@ -155,10 +221,10 @@ public final class WidgetChatListAdapterItemApplicationCommand extends WidgetCha
             }
             View view = this.itemView;
             m.checkNotNullExpressionValue(view, "itemView");
-            int themedColor = ColorCompat.getThemedColor(view, R$attr.color_brand_500);
+            int themedColor = ColorCompat.getThemedColor(view, R.attr.color_brand_500);
             TextView textView = this.binding.e;
             m.checkNotNullExpressionValue(textView, "binding.chatListAdapterItemTextName");
-            CharSequence charSequenceD = b.d(textView, 2131896173, new Object[]{str, strGroup}, new WidgetChatListAdapterItemApplicationCommand$onConfigure$content$1(this, authorTextColor, message, themedColor));
+            CharSequence charSequenceD = b.d(textView, R.string.system_message_application_command_used_short_mobile, new Object[]{str, strGroup}, new WidgetChatListAdapterItemApplicationCommand$onConfigure$content$1(this, authorTextColor, message, themedColor));
             TextView textView2 = this.binding.e;
             m.checkNotNullExpressionValue(textView2, "binding.chatListAdapterItemTextName");
             textView2.setMovementMethod(LinkMovementMethod.getInstance());
@@ -168,7 +234,7 @@ public final class WidgetChatListAdapterItemApplicationCommand extends WidgetCha
             TextView textView4 = this.binding.f2308b;
             m.checkNotNullExpressionValue(textView4, "binding.chatListAdapterItemTextCommand");
             textView4.setMaxLines(1);
-            this.binding.f2308b.setOnClickListener(new WidgetChatListAdapterItemApplicationCommand$onConfigure$2(this));
+            this.binding.f2308b.setOnClickListener(new AnonymousClass2());
             z2 = !t.isBlank(strGroup2);
             CardView cardView = this.binding.c;
             m.checkNotNullExpressionValue(cardView, "binding.chatListAdapterItemTextDecorator");
@@ -191,10 +257,10 @@ public final class WidgetChatListAdapterItemApplicationCommand extends WidgetCha
             }
             objArr[0] = str2;
             objArr[1] = strGroup2;
-            textView5.setText(b.h(contextX, 2131887724, objArr, null, 4));
+            textView5.setText(b.h(contextX, R.string.command_display_string, objArr, null, 4));
             TextView textView6 = this.binding.f2308b;
             m.checkNotNullExpressionValue(textView6, "binding.chatListAdapterItemTextCommand");
-            widgetChatListAdapterItemApplicationCommand$onConfigure$1.invoke2(textView6);
+            anonymousClass1.invoke2(textView6);
             TextView textView7 = this.binding.f;
             m.checkNotNullExpressionValue(textView7, "binding.chatListAdapterItemTextTimestamp");
             Context contextX2 = a.x(this.itemView, "itemView", "itemView.context");
@@ -220,10 +286,10 @@ public final class WidgetChatListAdapterItemApplicationCommand extends WidgetCha
         }
         View view2 = this.itemView;
         m.checkNotNullExpressionValue(view2, "itemView");
-        int themedColor2 = ColorCompat.getThemedColor(view2, R$attr.color_brand_500);
+        int themedColor2 = ColorCompat.getThemedColor(view2, R.attr.color_brand_500);
         TextView textView8 = this.binding.e;
         m.checkNotNullExpressionValue(textView8, "binding.chatListAdapterItemTextName");
-        CharSequence charSequenceD2 = b.d(textView8, 2131896173, new Object[]{str, strGroup}, new WidgetChatListAdapterItemApplicationCommand$onConfigure$content$1(this, authorTextColor, message, themedColor2));
+        CharSequence charSequenceD2 = b.d(textView8, R.string.system_message_application_command_used_short_mobile, new Object[]{str, strGroup}, new WidgetChatListAdapterItemApplicationCommand$onConfigure$content$1(this, authorTextColor, message, themedColor2));
         TextView textView9 = this.binding.e;
         m.checkNotNullExpressionValue(textView9, "binding.chatListAdapterItemTextName");
         textView9.setMovementMethod(LinkMovementMethod.getInstance());
@@ -233,7 +299,7 @@ public final class WidgetChatListAdapterItemApplicationCommand extends WidgetCha
         TextView textView11 = this.binding.f2308b;
         m.checkNotNullExpressionValue(textView11, "binding.chatListAdapterItemTextCommand");
         textView11.setMaxLines(1);
-        this.binding.f2308b.setOnClickListener(new WidgetChatListAdapterItemApplicationCommand$onConfigure$2(this));
+        this.binding.f2308b.setOnClickListener(new AnonymousClass2());
         z2 = !t.isBlank(strGroup2);
         CardView cardView2 = this.binding.c;
         m.checkNotNullExpressionValue(cardView2, "binding.chatListAdapterItemTextDecorator");
@@ -256,10 +322,10 @@ public final class WidgetChatListAdapterItemApplicationCommand extends WidgetCha
         }
         objArr2[0] = str2;
         objArr2[1] = strGroup2;
-        textView12.setText(b.h(contextX3, 2131887724, objArr2, null, 4));
+        textView12.setText(b.h(contextX3, R.string.command_display_string, objArr2, null, 4));
         TextView textView13 = this.binding.f2308b;
         m.checkNotNullExpressionValue(textView13, "binding.chatListAdapterItemTextCommand");
-        widgetChatListAdapterItemApplicationCommand$onConfigure$1.invoke2(textView13);
+        anonymousClass1.invoke2(textView13);
         TextView textView14 = this.binding.f;
         m.checkNotNullExpressionValue(textView14, "binding.chatListAdapterItemTextTimestamp");
         Context contextX4 = a.x(this.itemView, "itemView", "itemView.context");

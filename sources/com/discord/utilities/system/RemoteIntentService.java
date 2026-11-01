@@ -1,26 +1,106 @@
 package com.discord.utilities.system;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.Process;
 import android.os.RemoteException;
 import android.util.Log;
+import androidx.core.app.NotificationCompat;
 import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import com.discord.utilities.logging.Logger;
+import com.discord.utilities.logging.LoggingProvider;
 import com.discord.utilities.time.NtpClock;
 import d0.z.d.m;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: RemoteIntentService.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public abstract class RemoteIntentService extends IntentService {
-    public static final RemoteIntentService$Companion Companion = new RemoteIntentService$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String MESSENGER_KEY = "com.discord.utilities.analytics.RemoteIntentService.MESSENGER_KEY";
     private static final String TAG = "RemoteIntentService";
     private static final int WHAT_CALLBACK_RESULT = 1;
     private final String name;
+
+    /* JADX INFO: compiled from: RemoteIntentService.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static final /* synthetic */ String access$messageToString(Companion companion, Message message) {
+            return companion.messageToString(message);
+        }
+
+        private final String messageToString(Message msg) {
+            StringBuilder sbU = a.U("Message(what=");
+            sbU.append(msg.what);
+            sbU.append(", arg1=");
+            sbU.append(msg.arg1);
+            sbU.append(", arg2=");
+            sbU.append(msg.arg2);
+            sbU.append(", obj=");
+            sbU.append(msg.obj);
+            sbU.append(", replyTo=");
+            sbU.append(msg.replyTo);
+            sbU.append(')');
+            return sbU.toString();
+        }
+
+        public final void startRemoteServiceWithCallback(Context context, Class<?> serviceClass, IpcCallback callback) {
+            m.checkNotNullParameter(context, "context");
+            m.checkNotNullParameter(serviceClass, "serviceClass");
+            m.checkNotNullParameter(callback, "callback");
+            Logger logger = LoggingProvider.INSTANCE.get();
+            StringBuilder sbU = a.U("Starting service in remote process: ");
+            sbU.append(serviceClass.getSimpleName());
+            sbU.append(", app pid=");
+            sbU.append(Process.myPid());
+            Logger.d$default(logger, RemoteIntentService.TAG, sbU.toString(), null, 4, null);
+            Intent intent = new Intent(context, serviceClass);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(RemoteIntentService.MESSENGER_KEY, callback.getMessenger());
+            intent.putExtras(bundle);
+            context.startService(intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: RemoteIntentService.kt */
+    public abstract class IpcCallback {
+        private final Handler handler;
+        private final String name;
+
+        public IpcCallback(String str, Looper looper) {
+            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            m.checkNotNullParameter(looper, "callbackLooper");
+            this.name = str;
+            this.handler = new Handler(looper, new RemoteIntentService$IpcCallback$handler$1(this));
+        }
+
+        public static final /* synthetic */ String access$getName$p(IpcCallback ipcCallback) {
+            return ipcCallback.name;
+        }
+
+        public final Messenger getMessenger() {
+            return new Messenger(this.handler);
+        }
+
+        public abstract void onFailure(Throwable throwable);
+
+        public abstract void onSuccess(Bundle bundle);
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public RemoteIntentService(String str) {

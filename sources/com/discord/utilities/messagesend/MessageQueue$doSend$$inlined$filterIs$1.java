@@ -2,7 +2,7 @@ package com.discord.utilities.messagesend;
 
 import androidx.core.app.NotificationCompat;
 import androidx.exifinterface.media.ExifInterface;
-import com.discord.utilities.rest.SendUtils$SendPayload$ReadyToSend;
+import com.discord.utilities.rest.SendUtils;
 import j0.k.b;
 
 /* JADX INFO: compiled from: ObservableExtensions.kt */
@@ -13,7 +13,7 @@ public final class MessageQueue$doSend$$inlined$filterIs$1<T, R> implements b<Ob
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // j0.k.b
     public final Boolean call(Object obj) {
-        return Boolean.valueOf(obj instanceof SendUtils$SendPayload$ReadyToSend);
+        return Boolean.valueOf(obj instanceof SendUtils.SendPayload.ReadyToSend);
     }
 
     @Override // j0.k.b

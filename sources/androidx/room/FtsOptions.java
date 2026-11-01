@@ -11,6 +11,16 @@ public class FtsOptions {
     @RequiresApi(21)
     public static final String TOKENIZER_UNICODE61 = "unicode61";
 
+    public enum MatchInfo {
+        FTS3,
+        FTS4
+    }
+
+    public enum Order {
+        ASC,
+        DESC
+    }
+
     private FtsOptions() {
     }
 }

@@ -2,7 +2,7 @@ package f0.e0.k;
 
 import android.annotation.SuppressLint;
 import android.net.http.X509TrustManagerExtensions;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.security.NetworkSecurityPolicy;
 import d0.t.n;
 import d0.z.d.m;
@@ -24,13 +24,13 @@ public final class a extends h {
     public final List<k> f;
 
     static {
-        d = h.c.c() && Build$VERSION.SDK_INT >= 29;
+        d = h.c.c() && Build.VERSION.SDK_INT >= 29;
     }
 
     public a() {
         k[] kVarArr = new k[4];
-        kVarArr[0] = m.areEqual("Dalvik", System.getProperty("java.vm.name")) && Build$VERSION.SDK_INT >= 29 ? new f0.e0.k.i.a() : null;
-        f0.e0.k.i.f$a f_a = f0.e0.k.i.f.f3653b;
+        kVarArr[0] = m.areEqual("Dalvik", System.getProperty("java.vm.name")) && Build.VERSION.SDK_INT >= 29 ? new f0.e0.k.i.a() : null;
+        f0.e0.k.i.f.a aVar = f0.e0.k.i.f.f3653b;
         kVarArr[1] = new j(f0.e0.k.i.f.a);
         kVarArr[2] = new j(i.a);
         kVarArr[3] = new j(f0.e0.k.i.g.a);

@@ -1,25 +1,123 @@
 package androidx.sqlite.db.framework;
 
 import android.content.Context;
-import android.os.Build$VERSION;
+import android.database.DatabaseErrorHandler;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
 import androidx.annotation.RequiresApi;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
-import androidx.sqlite.db.SupportSQLiteOpenHelper$Callback;
 import java.io.File;
 
 /* JADX INFO: loaded from: classes.dex */
 public class FrameworkSQLiteOpenHelper implements SupportSQLiteOpenHelper {
-    private final SupportSQLiteOpenHelper$Callback mCallback;
+    private final SupportSQLiteOpenHelper.Callback mCallback;
     private final Context mContext;
-    private FrameworkSQLiteOpenHelper$OpenHelper mDelegate;
+    private OpenHelper mDelegate;
     private final Object mLock;
     private final String mName;
     private final boolean mUseNoBackupDirectory;
     private boolean mWriteAheadLoggingEnabled;
 
-    public FrameworkSQLiteOpenHelper(Context context, String str, SupportSQLiteOpenHelper$Callback supportSQLiteOpenHelper$Callback) {
-        this(context, str, supportSQLiteOpenHelper$Callback, false);
+    public class OpenHelper extends SQLiteOpenHelper {
+        public final SupportSQLiteOpenHelper.Callback mCallback;
+        public final FrameworkSQLiteDatabase[] mDbRef;
+        private boolean mMigrated;
+
+        /* JADX INFO: renamed from: androidx.sqlite.db.framework.FrameworkSQLiteOpenHelper$OpenHelper$1, reason: invalid class name */
+        public class AnonymousClass1 implements DatabaseErrorHandler {
+            public final /* synthetic */ SupportSQLiteOpenHelper.Callback val$callback;
+            public final /* synthetic */ FrameworkSQLiteDatabase[] val$dbRef;
+
+            public AnonymousClass1(SupportSQLiteOpenHelper.Callback callback, FrameworkSQLiteDatabase[] frameworkSQLiteDatabaseArr) {
+                this.val$callback = callback;
+                this.val$dbRef = frameworkSQLiteDatabaseArr;
+            }
+
+            @Override // android.database.DatabaseErrorHandler
+            public void onCorruption(SQLiteDatabase sQLiteDatabase) {
+                this.val$callback.onCorruption(OpenHelper.getWrappedDb(this.val$dbRef, sQLiteDatabase));
+            }
+        }
+
+        public OpenHelper(Context context, String str, FrameworkSQLiteDatabase[] frameworkSQLiteDatabaseArr, SupportSQLiteOpenHelper.Callback callback) {
+            super(context, str, null, callback.version, new AnonymousClass1(callback, frameworkSQLiteDatabaseArr));
+            this.mCallback = callback;
+            this.mDbRef = frameworkSQLiteDatabaseArr;
+        }
+
+        @Override // android.database.sqlite.SQLiteOpenHelper, java.lang.AutoCloseable
+        public synchronized void close() {
+            super.close();
+            this.mDbRef[0] = null;
+        }
+
+        public synchronized SupportSQLiteDatabase getReadableSupportDatabase() {
+            this.mMigrated = false;
+            SQLiteDatabase readableDatabase = super.getReadableDatabase();
+            if (!this.mMigrated) {
+                return getWrappedDb(readableDatabase);
+            }
+            close();
+            return getReadableSupportDatabase();
+        }
+
+        public FrameworkSQLiteDatabase getWrappedDb(SQLiteDatabase sQLiteDatabase) {
+            return getWrappedDb(this.mDbRef, sQLiteDatabase);
+        }
+
+        public synchronized SupportSQLiteDatabase getWritableSupportDatabase() {
+            this.mMigrated = false;
+            SQLiteDatabase writableDatabase = super.getWritableDatabase();
+            if (!this.mMigrated) {
+                return getWrappedDb(writableDatabase);
+            }
+            close();
+            return getWritableSupportDatabase();
+        }
+
+        @Override // android.database.sqlite.SQLiteOpenHelper
+        public void onConfigure(SQLiteDatabase sQLiteDatabase) {
+            this.mCallback.onConfigure(getWrappedDb(sQLiteDatabase));
+        }
+
+        @Override // android.database.sqlite.SQLiteOpenHelper
+        public void onCreate(SQLiteDatabase sQLiteDatabase) {
+            this.mCallback.onCreate(getWrappedDb(sQLiteDatabase));
+        }
+
+        @Override // android.database.sqlite.SQLiteOpenHelper
+        public void onDowngrade(SQLiteDatabase sQLiteDatabase, int i, int i2) {
+            this.mMigrated = true;
+            this.mCallback.onDowngrade(getWrappedDb(sQLiteDatabase), i, i2);
+        }
+
+        @Override // android.database.sqlite.SQLiteOpenHelper
+        public void onOpen(SQLiteDatabase sQLiteDatabase) {
+            if (this.mMigrated) {
+                return;
+            }
+            this.mCallback.onOpen(getWrappedDb(sQLiteDatabase));
+        }
+
+        @Override // android.database.sqlite.SQLiteOpenHelper
+        public void onUpgrade(SQLiteDatabase sQLiteDatabase, int i, int i2) {
+            this.mMigrated = true;
+            this.mCallback.onUpgrade(getWrappedDb(sQLiteDatabase), i, i2);
+        }
+
+        public static FrameworkSQLiteDatabase getWrappedDb(FrameworkSQLiteDatabase[] frameworkSQLiteDatabaseArr, SQLiteDatabase sQLiteDatabase) {
+            FrameworkSQLiteDatabase frameworkSQLiteDatabase = frameworkSQLiteDatabaseArr[0];
+            if (frameworkSQLiteDatabase == null || !frameworkSQLiteDatabase.isDelegate(sQLiteDatabase)) {
+                frameworkSQLiteDatabaseArr[0] = new FrameworkSQLiteDatabase(sQLiteDatabase);
+            }
+            return frameworkSQLiteDatabaseArr[0];
+        }
+    }
+
+    public FrameworkSQLiteOpenHelper(Context context, String str, SupportSQLiteOpenHelper.Callback callback) {
+        this(context, str, callback, false);
     }
 
     @Override // androidx.sqlite.db.SupportSQLiteOpenHelper, java.io.Closeable, java.lang.AutoCloseable
@@ -32,21 +130,21 @@ public class FrameworkSQLiteOpenHelper implements SupportSQLiteOpenHelper {
         return this.mName;
     }
 
-    private FrameworkSQLiteOpenHelper$OpenHelper getDelegate() {
-        FrameworkSQLiteOpenHelper$OpenHelper frameworkSQLiteOpenHelper$OpenHelper;
+    private OpenHelper getDelegate() {
+        OpenHelper openHelper;
         synchronized (this.mLock) {
             if (this.mDelegate == null) {
                 FrameworkSQLiteDatabase[] frameworkSQLiteDatabaseArr = new FrameworkSQLiteDatabase[1];
-                if (Build$VERSION.SDK_INT < 23 || this.mName == null || !this.mUseNoBackupDirectory) {
-                    this.mDelegate = new FrameworkSQLiteOpenHelper$OpenHelper(this.mContext, this.mName, frameworkSQLiteDatabaseArr, this.mCallback);
+                if (Build.VERSION.SDK_INT < 23 || this.mName == null || !this.mUseNoBackupDirectory) {
+                    this.mDelegate = new OpenHelper(this.mContext, this.mName, frameworkSQLiteDatabaseArr, this.mCallback);
                 } else {
-                    this.mDelegate = new FrameworkSQLiteOpenHelper$OpenHelper(this.mContext, new File(this.mContext.getNoBackupFilesDir(), this.mName).getAbsolutePath(), frameworkSQLiteDatabaseArr, this.mCallback);
+                    this.mDelegate = new OpenHelper(this.mContext, new File(this.mContext.getNoBackupFilesDir(), this.mName).getAbsolutePath(), frameworkSQLiteDatabaseArr, this.mCallback);
                 }
                 this.mDelegate.setWriteAheadLoggingEnabled(this.mWriteAheadLoggingEnabled);
             }
-            frameworkSQLiteOpenHelper$OpenHelper = this.mDelegate;
+            openHelper = this.mDelegate;
         }
-        return frameworkSQLiteOpenHelper$OpenHelper;
+        return openHelper;
     }
 
     @Override // androidx.sqlite.db.SupportSQLiteOpenHelper
@@ -63,18 +161,18 @@ public class FrameworkSQLiteOpenHelper implements SupportSQLiteOpenHelper {
     @RequiresApi(api = 16)
     public void setWriteAheadLoggingEnabled(boolean z2) {
         synchronized (this.mLock) {
-            FrameworkSQLiteOpenHelper$OpenHelper frameworkSQLiteOpenHelper$OpenHelper = this.mDelegate;
-            if (frameworkSQLiteOpenHelper$OpenHelper != null) {
-                frameworkSQLiteOpenHelper$OpenHelper.setWriteAheadLoggingEnabled(z2);
+            OpenHelper openHelper = this.mDelegate;
+            if (openHelper != null) {
+                openHelper.setWriteAheadLoggingEnabled(z2);
             }
             this.mWriteAheadLoggingEnabled = z2;
         }
     }
 
-    public FrameworkSQLiteOpenHelper(Context context, String str, SupportSQLiteOpenHelper$Callback supportSQLiteOpenHelper$Callback, boolean z2) {
+    public FrameworkSQLiteOpenHelper(Context context, String str, SupportSQLiteOpenHelper.Callback callback, boolean z2) {
         this.mContext = context;
         this.mName = str;
-        this.mCallback = supportSQLiteOpenHelper$Callback;
+        this.mCallback = callback;
         this.mUseNoBackupDirectory = z2;
         this.mLock = new Object();
     }

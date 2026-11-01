@@ -4,7 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
 import androidx.core.content.FileProvider;
-import com.lytefast.flexinput.R$h;
+import com.lytefast.flexinput.R;
 import com.lytefast.flexinput.managers.FileManager;
 import d0.z.d.m;
 import java.io.File;
@@ -30,7 +30,7 @@ public class b implements FileManager {
             str3 = null;
         }
         if ((i & 4) != 0) {
-            string = context.getString(R$h.discord);
+            string = context.getString(R.h.discord);
             m.checkNotNullExpressionValue(string, "context.getString(R.string.discord)");
         }
         m.checkNotNullParameter(context, "context");

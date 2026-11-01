@@ -6,10 +6,10 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.os.Build$VERSION;
+import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.vectordrawable.graphics.drawable.Animatable2Compat$AnimationCallback;
+import androidx.vectordrawable.graphics.drawable.Animatable2Compat;
 import b.i.a.g.g.a;
 import b.i.a.g.g.d;
 import b.i.a.g.g.e;
@@ -126,8 +126,8 @@ public final class IndeterminateDrawable<S extends BaseProgressIndicatorSpec> ex
     }
 
     @Override // b.i.a.g.g.e, androidx.vectordrawable.graphics.drawable.Animatable2Compat
-    public /* bridge */ /* synthetic */ void registerAnimationCallback(@NonNull Animatable2Compat$AnimationCallback animatable2Compat$AnimationCallback) {
-        super.registerAnimationCallback(animatable2Compat$AnimationCallback);
+    public /* bridge */ /* synthetic */ void registerAnimationCallback(@NonNull Animatable2Compat.AnimationCallback animationCallback) {
+        super.registerAnimationCallback(animationCallback);
     }
 
     @Override // b.i.a.g.g.e, android.graphics.drawable.Drawable
@@ -162,7 +162,7 @@ public final class IndeterminateDrawable<S extends BaseProgressIndicatorSpec> ex
             this.animatorDelegate.a();
         }
         float systemAnimatorDurationScale = this.animatorDurationScaleProvider.getSystemAnimatorDurationScale(this.context.getContentResolver());
-        if (z2 && (z4 || (Build$VERSION.SDK_INT <= 21 && systemAnimatorDurationScale > 0.0f))) {
+        if (z2 && (z4 || (Build.VERSION.SDK_INT <= 21 && systemAnimatorDurationScale > 0.0f))) {
             this.animatorDelegate.f();
         }
         return visibleInternal;
@@ -179,8 +179,8 @@ public final class IndeterminateDrawable<S extends BaseProgressIndicatorSpec> ex
     }
 
     @Override // b.i.a.g.g.e, androidx.vectordrawable.graphics.drawable.Animatable2Compat
-    public /* bridge */ /* synthetic */ boolean unregisterAnimationCallback(@NonNull Animatable2Compat$AnimationCallback animatable2Compat$AnimationCallback) {
-        return super.unregisterAnimationCallback(animatable2Compat$AnimationCallback);
+    public /* bridge */ /* synthetic */ boolean unregisterAnimationCallback(@NonNull Animatable2Compat.AnimationCallback animationCallback) {
+        return super.unregisterAnimationCallback(animationCallback);
     }
 
     @Override // b.i.a.g.g.e

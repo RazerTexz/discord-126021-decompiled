@@ -4,12 +4,41 @@ import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
 import d0.z.d.m;
 import java.io.Serializable;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: GuildScheduledEventEntityMetadata.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class GuildScheduledEventEntityMetadata implements Serializable {
-    public static final GuildScheduledEventEntityMetadata$Companion Companion = new GuildScheduledEventEntityMetadata$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final String location;
+
+    /* JADX INFO: compiled from: GuildScheduledEventEntityMetadata.kt */
+    public final class Companion {
+
+        public final /* synthetic */ class WhenMappings {
+            public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+            static {
+                GuildScheduledEventEntityType.values();
+                int[] iArr = new int[5];
+                $EnumSwitchMapping$0 = iArr;
+                iArr[GuildScheduledEventEntityType.EXTERNAL.ordinal()] = 1;
+            }
+        }
+
+        public Companion() {
+        }
+
+        public final GuildScheduledEventEntityMetadata a(GuildScheduledEventEntityType entityType, String location) {
+            m.checkNotNullParameter(entityType, "entityType");
+            return entityType.ordinal() != 3 ? new GuildScheduledEventEntityMetadata(null, 1) : new GuildScheduledEventEntityMetadata(location);
+        }
+
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
 
     public GuildScheduledEventEntityMetadata() {
         this.location = null;

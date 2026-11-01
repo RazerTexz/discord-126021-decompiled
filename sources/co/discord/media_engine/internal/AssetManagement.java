@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.hammerandchisel.libdiscord.R$string;
+import com.hammerandchisel.libdiscord.R;
 import d0.y.h;
 import d0.z.d.m;
 import java.io.File;
@@ -53,7 +53,7 @@ public final class AssetManagement {
         }
         try {
             File file = new File(this.ctx.getFilesDir(), "thz");
-            String string = this.ctx.getString(R$string.krisp_model_version);
+            String string = this.ctx.getString(R.string.krisp_model_version);
             m.checkNotNullExpressionValue(string, "ctx.getString(R.string.krisp_model_version)");
             if (new File(file, string).exists()) {
                 return;

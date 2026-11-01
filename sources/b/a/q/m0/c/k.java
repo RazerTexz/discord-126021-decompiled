@@ -7,22 +7,13 @@ import b.a.q.e0;
 import co.discord.media_engine.RtcRegion;
 import co.discord.media_engine.VideoInputDeviceDescription;
 import com.discord.rtcconnection.mediaengine.MediaEngine;
-import com.discord.rtcconnection.mediaengine.MediaEngine$AudioInfo;
-import com.discord.rtcconnection.mediaengine.MediaEngine$EchoCancellationInfo;
-import com.discord.rtcconnection.mediaengine.MediaEngine$LocalVoiceStatus;
-import com.discord.rtcconnection.mediaengine.MediaEngine$OpenSLESConfig;
-import com.discord.rtcconnection.mediaengine.MediaEngine$OpenSLUsageMode;
-import com.discord.rtcconnection.mediaengine.MediaEngine$VoiceConfig;
-import com.discord.rtcconnection.mediaengine.MediaEngine$a;
-import com.discord.rtcconnection.mediaengine.MediaEngine$b;
-import com.discord.rtcconnection.mediaengine.MediaEngine$c;
 import com.discord.rtcconnection.mediaengine.MediaEngineConnection;
-import com.discord.rtcconnection.mediaengine.MediaEngineConnection$Type;
 import com.discord.utilities.logging.Logger;
 import com.hammerandchisel.libdiscord.Discord;
 import d0.t.n0;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Future;
 import kotlin.Unit;
@@ -30,8 +21,10 @@ import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import org.webrtc.Logging;
 import org.webrtc.voiceengine.WebRtcAudioManager;
-import rx.Emitter$BackpressureMode;
+import org.webrtc.voiceengine.WebRtcAudioUtils;
+import rx.Emitter;
 import rx.Observable;
+import rx.functions.Action1;
 
 /* JADX INFO: compiled from: MediaEngineLegacy.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -41,15 +34,15 @@ public final class k implements MediaEngine {
     public boolean e;
     public Discord f;
     public List<b.a.q.m0.a> g;
-    public MediaEngine$OpenSLUsageMode h;
-    public MediaEngine$EchoCancellationInfo i;
+    public MediaEngine.OpenSLUsageMode h;
+    public MediaEngine.EchoCancellationInfo i;
     public final Context j;
-    public final MediaEngine$c k;
+    public final MediaEngine.c k;
     public final b.a.q.c l;
-    public final MediaEngine$OpenSLESConfig m;
+    public final MediaEngine.OpenSLESConfig m;
     public final Logger n;
     public final b.a.q.k0.g o;
-    public final MediaEngine$b p;
+    public final MediaEngine.b p;
     public final Set<String> q;
     public final Set<String> r;
     public static final Set<String> a = n0.setOf((Object[]) new String[]{"Pixel", "Pixel XL", "Pixel 3a XL", "Pixel 4", "Pixel 4 XL", "Pixel 5"});
@@ -57,31 +50,369 @@ public final class k implements MediaEngine {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final Set<String> f271b = n0.setOf((Object[]) new String[]{"Pixel 3a", "Redmi Note 8 Pro", "Redmi Note 8 pro"});
 
-    public k(Context context, MediaEngine$c mediaEngine$c, b.a.q.c cVar, MediaEngine$OpenSLESConfig mediaEngine$OpenSLESConfig, Logger logger, b.a.q.k0.g gVar, MediaEngine$b mediaEngine$b, Set set, Set set2, int i) {
-        Set<String> set3 = (i & 128) != 0 ? a : null;
-        Set<String> set4 = (i & 256) != 0 ? f271b : null;
+    /* JADX INFO: renamed from: b.a.q.m0.c.k$k, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: MediaEngineLegacy.kt */
+    public final class C0045k extends d0.z.d.o implements Function0<Unit> {
+        public final /* synthetic */ MediaEngine.VoiceConfig $voiceConfig;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C0045k(MediaEngine.VoiceConfig voiceConfig) {
+            super(0);
+            this.$voiceConfig = voiceConfig;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public Unit invoke() {
+            boolean z2;
+            StringBuilder sbU = b.d.b.a.a.U("updateVoiceConfig: ");
+            sbU.append(this.$voiceConfig);
+            b.c.a.a0.d.b1("MediaEngineLegacy", sbU.toString());
+            MediaEngine.VoiceConfig voiceConfig = this.$voiceConfig;
+            k kVar = k.this;
+            float f = voiceConfig.outputVolume;
+            Discord discord = kVar.f;
+            if (discord != null) {
+                discord.setSpeakerVolume(Math.min(300.0f, Math.max(0.0f, f)) / 100.0f);
+            }
+            k kVar2 = k.this;
+            boolean z3 = voiceConfig.echoCancellation;
+            kVar2.l.a();
+            b.a.q.k0.g gVar = kVar2.o;
+            if (gVar.g && gVar.d) {
+                z2 = false;
+            } else {
+                b.a.q.k0.g gVar2 = kVar2.o;
+                z2 = gVar2.f && !gVar2.d ? true : z3;
+            }
+            if (z2 != z3) {
+                b.c.a.a0.d.b1("MediaEngineLegacy", "ignoring call to setEchoCancellation(" + z3 + "), config=" + kVar2.o);
+            }
+            Discord discord2 = kVar2.f;
+            if (discord2 != null) {
+                discord2.setEchoCancellation(z2, false, new m(kVar2));
+            }
+            k kVar3 = k.this;
+            boolean z4 = voiceConfig.noiseSuppression;
+            Discord discord3 = kVar3.f;
+            if (discord3 != null) {
+                discord3.setNoiseSuppression(z4);
+            }
+            k kVar4 = k.this;
+            boolean z5 = voiceConfig.noiseCancellation;
+            kVar4.c.a = z5;
+            Discord discord4 = kVar4.f;
+            if (discord4 != null) {
+                discord4.setNoiseCancellation(z5);
+            }
+            k kVar5 = k.this;
+            boolean z6 = voiceConfig.automaticGainControl;
+            Discord discord5 = kVar5.f;
+            if (discord5 != null) {
+                discord5.setAutomaticGainControl(z6);
+            }
+            for (MediaEngineConnection mediaEngineConnection : k.this.getConnections()) {
+                mediaEngineConnection.k(voiceConfig.inputMode, voiceConfig.inputModeOptions);
+                mediaEngineConnection.v(voiceConfig.isSelfDeafened);
+                mediaEngineConnection.c(voiceConfig.isSelfMuted || mediaEngineConnection.getType() == MediaEngineConnection.Type.STREAM);
+            }
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaEngineLegacy.kt */
+    public final class a extends d0.z.d.o implements Function0<Unit> {
+        public a() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public Unit invoke() {
+            k kVar = k.this;
+            b.a.q.m0.c.j jVar = b.a.q.m0.c.j.j;
+            Set<String> set = k.a;
+            kVar.n(jVar);
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaEngineLegacy.kt */
+    public final class b extends d0.z.d.o implements Function1<MediaEngine.c, Unit> {
+        public final /* synthetic */ b.a.q.m0.c.e $connection;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public b(b.a.q.m0.c.e eVar) {
+            super(1);
+            this.$connection = eVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public Unit invoke(MediaEngine.c cVar) {
+            MediaEngine.c cVar2 = cVar;
+            d0.z.d.m.checkNotNullParameter(cVar2, "it");
+            cVar2.onNewConnection(this.$connection);
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaEngineLegacy.kt */
+    public final class c extends MediaEngineConnection.a {
+
+        /* JADX INFO: renamed from: b.a.q.m0.c.k$c$c, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: MediaEngineLegacy.kt */
+        public final class C0044c extends d0.z.d.o implements Function0<Unit> {
+            public final /* synthetic */ MediaEngineConnection $connection;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C0044c(MediaEngineConnection mediaEngineConnection) {
+                super(0);
+                this.$connection = mediaEngineConnection;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public Unit invoke() {
+                k.m(k.this, this.$connection);
+                return Unit.a;
+            }
+        }
+
+        /* JADX INFO: compiled from: MediaEngineLegacy.kt */
+        public final class a extends d0.z.d.o implements Function0<Unit> {
+            public a() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public Unit invoke() {
+                k kVar = k.this;
+                l lVar = l.j;
+                Set<String> set = k.a;
+                kVar.n(lVar);
+                return Unit.a;
+            }
+        }
+
+        /* JADX INFO: compiled from: MediaEngineLegacy.kt */
+        public final class b extends d0.z.d.o implements Function0<Unit> {
+            public final /* synthetic */ MediaEngineConnection $connection;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public b(MediaEngineConnection mediaEngineConnection) {
+                super(0);
+                this.$connection = mediaEngineConnection;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public Unit invoke() {
+                k.m(k.this, this.$connection);
+                return Unit.a;
+            }
+        }
+
+        /* JADX INFO: compiled from: MediaEngineLegacy.kt */
+        public final class d extends d0.z.d.o implements Function0<Unit> {
+            public final /* synthetic */ MediaEngineConnection $connection;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public d(MediaEngineConnection mediaEngineConnection) {
+                super(0);
+                this.$connection = mediaEngineConnection;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public Unit invoke() {
+                k.m(k.this, this.$connection);
+                return Unit.a;
+            }
+        }
+
+        public c() {
+        }
+
+        @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.a, com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
+        public void onConnected(MediaEngineConnection mediaEngineConnection, MediaEngineConnection.TransportInfo transportInfo, List<b.a.q.m0.a> list) {
+            d0.z.d.m.checkNotNullParameter(mediaEngineConnection, "connection");
+            d0.z.d.m.checkNotNullParameter(transportInfo, "transportInfo");
+            d0.z.d.m.checkNotNullParameter(list, "supportedVideoCodecs");
+            k.this.o(new a());
+        }
+
+        @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.a, com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
+        public void onConnectionStateChange(MediaEngineConnection mediaEngineConnection, MediaEngineConnection.ConnectionState connectionState) {
+            d0.z.d.m.checkNotNullParameter(mediaEngineConnection, "connection");
+            d0.z.d.m.checkNotNullParameter(connectionState, "connectionState");
+            if (connectionState == MediaEngineConnection.ConnectionState.DISCONNECTED) {
+                k.this.o(new b(mediaEngineConnection));
+            }
+        }
+
+        @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.a, com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
+        public void onDestroy(MediaEngineConnection mediaEngineConnection) {
+            d0.z.d.m.checkNotNullParameter(mediaEngineConnection, "connection");
+            k.this.o(new C0044c(mediaEngineConnection));
+        }
+
+        @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.a, com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
+        public void onError(MediaEngineConnection mediaEngineConnection, MediaEngineConnection.FailedConnectionException failedConnectionException) {
+            d0.z.d.m.checkNotNullParameter(mediaEngineConnection, "connection");
+            d0.z.d.m.checkNotNullParameter(failedConnectionException, "exception");
+            k.this.o(new d(mediaEngineConnection));
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaEngineLegacy.kt */
+    public final class d<T> implements Action1<Emitter<MediaEngine.AudioInfo>> {
+        public d() {
+        }
+
+        @Override // rx.functions.Action1
+        public void call(Emitter<MediaEngine.AudioInfo> emitter) {
+            Emitter<MediaEngine.AudioInfo> emitter2 = emitter;
+            Discord discord = k.this.f;
+            if (discord != null) {
+                discord.getAudioSubsystem(new o(emitter2));
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaEngineLegacy.kt */
+    public final class e<T> implements Action1<List<? extends b.a.q.m0.a>> {
+        public e() {
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // rx.functions.Action1
+        public void call(List<? extends b.a.q.m0.a> list) {
+            List<? extends b.a.q.m0.a> list2 = list;
+            k kVar = k.this;
+            d0.z.d.m.checkNotNullExpressionValue(list2, "codecs");
+            kVar.g = list2;
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaEngineLegacy.kt */
+    public final class f<T, R> implements j0.k.b<List<? extends b.a.q.m0.a>, Unit> {
+        public static final f j = new f();
+
+        @Override // j0.k.b
+        public Unit call(List<? extends b.a.q.m0.a> list) {
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaEngineLegacy.kt */
+    public final class g implements Discord.LocalVoiceLevelChangedCallback {
+        public final /* synthetic */ Function1 a;
+
+        public g(Function1 function1) {
+            this.a = function1;
+        }
+
+        @Override // com.hammerandchisel.libdiscord.Discord.LocalVoiceLevelChangedCallback
+        public final void onLocalVoiceLevelChanged(float f, int i) {
+            this.a.invoke(new MediaEngine.LocalVoiceStatus(f, (i & 1) != 0));
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaEngineLegacy.kt */
+    public final class h implements Discord.BuiltinAECCallback {
+        public final /* synthetic */ b.a.q.k0.g a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final /* synthetic */ k f272b;
+
+        /* JADX INFO: compiled from: MediaEngineLegacy.kt */
+        public final class a extends d0.z.d.o implements Function0<Unit> {
+            public final /* synthetic */ boolean $available;
+            public final /* synthetic */ boolean $enabled;
+            public final /* synthetic */ boolean $requestEnabled;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public a(boolean z2, boolean z3, boolean z4) {
+                super(0);
+                this.$enabled = z2;
+                this.$requestEnabled = z3;
+                this.$available = z4;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public Unit invoke() {
+                h.this.a.d = this.$enabled;
+                k kVar = h.this.f272b;
+                boolean z2 = this.$requestEnabled;
+                boolean z3 = this.$available;
+                Objects.requireNonNull(kVar.o);
+                kVar.i = new MediaEngine.EchoCancellationInfo(z2, z3, WebRtcAudioUtils.isAcousticEchoCancelerSupported(), this.$enabled, false, false, false, false, false, 496);
+                return Unit.a;
+            }
+        }
+
+        public h(b.a.q.k0.g gVar, Discord discord, k kVar) {
+            this.a = gVar;
+            this.f272b = kVar;
+        }
+
+        @Override // com.hammerandchisel.libdiscord.Discord.BuiltinAECCallback
+        public final void onConfigureBuiltinAEC(boolean z2, boolean z3, boolean z4) {
+            this.f272b.o(new a(z4, z2, z3));
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaEngineLegacy.kt */
+    public final class i implements Logging.ExternalReporter {
+        public i() {
+        }
+
+        @Override // org.webrtc.Logging.ExternalReporter
+        public final void e(String str, String str2, Throwable th) {
+            Logger logger = k.this.n;
+            d0.z.d.m.checkNotNullExpressionValue(str, "tag");
+            d0.z.d.m.checkNotNullExpressionValue(str2, "message");
+            Logger.e$default(logger, str, str2, th, null, 8, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaEngineLegacy.kt */
+    public final /* synthetic */ class j extends d0.z.d.k implements Function1<MediaEngine.c, Unit> {
+        public static final j j = new j();
+
+        public j() {
+            super(1, MediaEngine.c.class, "onNativeEngineInitialized", "onNativeEngineInitialized()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public Unit invoke(MediaEngine.c cVar) {
+            MediaEngine.c cVar2 = cVar;
+            d0.z.d.m.checkNotNullParameter(cVar2, "p1");
+            cVar2.onNativeEngineInitialized();
+            return Unit.a;
+        }
+    }
+
+    public k(Context context, MediaEngine.c cVar, b.a.q.c cVar2, MediaEngine.OpenSLESConfig openSLESConfig, Logger logger, b.a.q.k0.g gVar, MediaEngine.b bVar, Set set, Set set2, int i2) {
+        Set<String> set3 = (i2 & 128) != 0 ? a : null;
+        Set<String> set4 = (i2 & 256) != 0 ? f271b : null;
         d0.z.d.m.checkNotNullParameter(context, "context");
-        d0.z.d.m.checkNotNullParameter(mediaEngine$c, "listener");
-        d0.z.d.m.checkNotNullParameter(cVar, "mediaEngineThreadExecutor");
-        d0.z.d.m.checkNotNullParameter(mediaEngine$OpenSLESConfig, "openSLESConfig");
+        d0.z.d.m.checkNotNullParameter(cVar, "listener");
+        d0.z.d.m.checkNotNullParameter(cVar2, "mediaEngineThreadExecutor");
+        d0.z.d.m.checkNotNullParameter(openSLESConfig, "openSLESConfig");
         d0.z.d.m.checkNotNullParameter(logger, "logger");
         d0.z.d.m.checkNotNullParameter(gVar, "echoCancellation");
-        d0.z.d.m.checkNotNullParameter(mediaEngine$b, "echoCancellationCallback");
+        d0.z.d.m.checkNotNullParameter(bVar, "echoCancellationCallback");
         d0.z.d.m.checkNotNullParameter(set3, "defaultOpenSLAllowList");
         d0.z.d.m.checkNotNullParameter(set4, "defaultOpenSLExcludeList");
         this.j = context;
-        this.k = mediaEngine$c;
-        this.l = cVar;
-        this.m = mediaEngine$OpenSLESConfig;
+        this.k = cVar;
+        this.l = cVar2;
+        this.m = openSLESConfig;
         this.n = logger;
         this.o = gVar;
-        this.p = mediaEngine$b;
+        this.p = bVar;
         this.q = set3;
         this.r = set4;
         this.c = new u();
         this.d = new ArrayList();
         this.e = true;
-        this.h = MediaEngine$OpenSLUsageMode.ALLOW_LIST;
+        this.h = MediaEngine.OpenSLUsageMode.ALLOW_LIST;
     }
 
     @Override // com.discord.rtcconnection.mediaengine.MediaEngine
@@ -97,9 +428,9 @@ public final class k implements MediaEngine {
             d0.z.d.m.checkNotNullExpressionValue(observableX, "Observable.error(Illegal…ze native media engine\"))");
             return observableX;
         }
-        Observable observableO = Observable.o(new q(this), Emitter$BackpressureMode.NONE);
+        Observable observableO = Observable.o(new q(this), Emitter.BackpressureMode.NONE);
         d0.z.d.m.checkNotNullExpressionValue(observableO, "Observable.create({ emit…er.BackpressureMode.NONE)");
-        Observable<Unit> observableG = observableO.u(new k$e(this)).G(k$f.j);
+        Observable<Unit> observableG = observableO.u(new e()).G(f.j);
         d0.z.d.m.checkNotNullExpressionValue(observableG, "getSupportedVideoCodecs(…s }\n        .map { Unit }");
         return observableG;
     }
@@ -122,30 +453,30 @@ public final class k implements MediaEngine {
 
     @Override // com.discord.rtcconnection.mediaengine.MediaEngine
     @AnyThread
-    public void d(MediaEngine$VoiceConfig mediaEngine$VoiceConfig) {
-        d0.z.d.m.checkNotNullParameter(mediaEngine$VoiceConfig, "voiceConfig");
-        o(new k$k(this, mediaEngine$VoiceConfig));
+    public void d(MediaEngine.VoiceConfig voiceConfig) {
+        d0.z.d.m.checkNotNullParameter(voiceConfig, "voiceConfig");
+        o(new C0045k(voiceConfig));
     }
 
     @Override // com.discord.rtcconnection.mediaengine.MediaEngine
-    public Observable<MediaEngine$AudioInfo> e() {
-        Observable<MediaEngine$AudioInfo> observableO = Observable.o(new k$d(this), Emitter$BackpressureMode.LATEST);
+    public Observable<MediaEngine.AudioInfo> e() {
+        Observable<MediaEngine.AudioInfo> observableO = Observable.o(new d(), Emitter.BackpressureMode.LATEST);
         d0.z.d.m.checkNotNullExpressionValue(observableO, "Observable.create({ emit….BackpressureMode.LATEST)");
         return observableO;
     }
 
     @Override // com.discord.rtcconnection.mediaengine.MediaEngine
-    public void f(int i) {
+    public void f(int i2) {
         Discord discord = this.f;
         if (discord != null) {
-            discord.setVideoInputDevice(i);
+            discord.setVideoInputDevice(i2);
         }
     }
 
     @Override // com.discord.rtcconnection.mediaengine.MediaEngine
-    public synchronized MediaEngineConnection g(long j, MediaEngine$a mediaEngine$a, MediaEngineConnection$Type mediaEngineConnection$Type, Function1<? super Exception, Unit> function1) {
-        d0.z.d.m.checkNotNullParameter(mediaEngine$a, "options");
-        d0.z.d.m.checkNotNullParameter(mediaEngineConnection$Type, "type");
+    public synchronized MediaEngineConnection g(long j2, MediaEngine.a aVar, MediaEngineConnection.Type type, Function1<? super Exception, Unit> function1) {
+        d0.z.d.m.checkNotNullParameter(aVar, "options");
+        d0.z.d.m.checkNotNullParameter(type, "type");
         d0.z.d.m.checkNotNullParameter(function1, "onFailure");
         if (!(this.g != null)) {
             ((e0) function1).invoke(new IllegalStateException("connect() called on unprepared media engine."));
@@ -156,19 +487,19 @@ public final class k implements MediaEngine {
             Logger.e$default(this.n, "MediaEngineLegacy", "connect() called without voiceEngineLegacy.", null, null, 12, null);
             return null;
         }
-        o(new k$a(this));
-        Logger.i$default(this.n, "MediaEngineLegacy", "Connecting with options: " + mediaEngine$a, null, 4, null);
-        k$c k_c = new k$c(this);
-        b.a.q.c cVar = this.l;
+        o(new a());
+        Logger.i$default(this.n, "MediaEngineLegacy", "Connecting with options: " + aVar, null, 4, null);
+        c cVar = new c();
+        b.a.q.c cVar2 = this.l;
         Logger logger = this.n;
         u uVar = this.c;
         List<b.a.q.m0.a> list = this.g;
         if (list == null) {
             d0.z.d.m.throwUninitializedPropertyAccessException("supportedVideoCodecs");
         }
-        e eVar = new e(cVar, logger, uVar, discord, list, mediaEngineConnection$Type, j, mediaEngine$a, d0.t.m.listOf(k_c));
+        b.a.q.m0.c.e eVar = new b.a.q.m0.c.e(cVar2, logger, uVar, discord, list, type, j2, aVar, d0.t.m.listOf(cVar));
         this.d.add(eVar);
-        n(new k$b(eVar));
+        n(new b(eVar));
         return eVar;
     }
 
@@ -178,12 +509,12 @@ public final class k implements MediaEngine {
     }
 
     @Override // com.discord.rtcconnection.mediaengine.MediaEngine
-    public void h(MediaEngine$OpenSLUsageMode mediaEngine$OpenSLUsageMode) {
-        d0.z.d.m.checkNotNullParameter(mediaEngine$OpenSLUsageMode, "openSLUsageMode");
+    public void h(MediaEngine.OpenSLUsageMode openSLUsageMode) {
+        d0.z.d.m.checkNotNullParameter(openSLUsageMode, "openSLUsageMode");
         if (this.f != null) {
             Logger.e$default(this.n, "MediaEngineLegacy", "setting openSLUsageMode too late", null, null, 12, null);
         }
-        this.h = mediaEngine$OpenSLUsageMode;
+        this.h = openSLUsageMode;
     }
 
     @Override // com.discord.rtcconnection.mediaengine.MediaEngine
@@ -211,7 +542,7 @@ public final class k implements MediaEngine {
     }
 
     @Override // com.discord.rtcconnection.mediaengine.MediaEngine
-    public void l(Function1<? super MediaEngine$LocalVoiceStatus, Unit> function1) {
+    public void l(Function1<? super MediaEngine.LocalVoiceStatus, Unit> function1) {
         if (function1 == null) {
             Discord discord = this.f;
             if (discord != null) {
@@ -223,7 +554,7 @@ public final class k implements MediaEngine {
         p();
         Discord discord2 = this.f;
         if (discord2 != null) {
-            discord2.setLocalVoiceLevelChangedCallback(new k$g(function1));
+            discord2.setLocalVoiceLevelChangedCallback(new g(function1));
         }
     }
 
@@ -237,11 +568,11 @@ public final class k implements MediaEngine {
         }
     }
 
-    public final void n(Function1<? super MediaEngine$c, Unit> function1) {
+    public final void n(Function1<? super MediaEngine.c, Unit> function1) {
         try {
             function1.invoke(this.k);
-        } catch (Exception e) {
-            Logger.e$default(this.n, "MediaEngineLegacy", "Error in listener", e, null, 8, null);
+        } catch (Exception e2) {
+            Logger.e$default(this.n, "MediaEngineLegacy", "Error in listener", e2, null, 8, null);
         }
     }
 
@@ -267,7 +598,7 @@ public final class k implements MediaEngine {
         int iOrdinal = this.m.ordinal();
         boolean zContains = false;
         if (iOrdinal == 0) {
-            if (this.h == MediaEngine$OpenSLUsageMode.ALLOW_LIST) {
+            if (this.h == MediaEngine.OpenSLUsageMode.ALLOW_LIST) {
                 zContains = this.q.contains(Build.MODEL);
             } else if (!this.r.contains(Build.MODEL)) {
                 zContains = true;
@@ -285,24 +616,24 @@ public final class k implements MediaEngine {
         } else if (iOrdinal == 2) {
             WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
         }
-        Logging.externalReporter = new k$i(this);
+        Logging.externalReporter = new i();
         try {
             Discord discord = new Discord(this.j, 2);
             b.a.q.k0.g gVar = this.o;
             if (gVar.e) {
-                discord.enableBuiltInAEC(true, new k$h(gVar, discord, this));
+                discord.enableBuiltInAEC(true, new h(gVar, discord, this));
             }
             discord.setAudioInputEnabled(this.e);
             this.f = discord;
-        } catch (ExceptionInInitializerError e) {
-            Logger.e$default(this.n, "MediaEngineLegacy", "Unable to initialize voice engine.", e, null, 8, null);
-        } catch (UnsatisfiedLinkError e2) {
+        } catch (ExceptionInInitializerError e2) {
             Logger.e$default(this.n, "MediaEngineLegacy", "Unable to initialize voice engine.", e2, null, 8, null);
+        } catch (UnsatisfiedLinkError e3) {
+            Logger.e$default(this.n, "MediaEngineLegacy", "Unable to initialize voice engine.", e3, null, 8, null);
         } catch (Throwable th) {
             Logger.e$default(this.n, "MediaEngineLegacy", "Unable to initialize voice engine, new error discovered", th, null, 8, null);
         }
         if (this.f != null) {
-            n(k$j.j);
+            n(j.j);
         }
     }
 }

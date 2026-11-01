@@ -1,20 +1,20 @@
 package b.i.c.m.d.k;
 
-import android.os.Build$VERSION;
+import android.os.Build;
 
 /* JADX INFO: compiled from: CrashlyticsController.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class w implements x$g {
+public class w implements x.g {
     public final /* synthetic */ boolean a;
 
     public w(x xVar, String str, String str2, boolean z2) {
         this.a = z2;
     }
 
-    @Override // b.i.c.m.d.k.x$g
+    @Override // b.i.c.m.d.k.x.g
     public void a(b.i.c.m.d.p.c cVar) throws Exception {
-        String str = Build$VERSION.RELEASE;
-        String str2 = Build$VERSION.CODENAME;
+        String str = Build.VERSION.RELEASE;
+        String str2 = Build.VERSION.CODENAME;
         boolean z2 = this.a;
         b.i.c.m.d.p.a aVar = b.i.c.m.d.p.d.a;
         b.i.c.m.d.p.a aVarA = b.i.c.m.d.p.a.a(str);

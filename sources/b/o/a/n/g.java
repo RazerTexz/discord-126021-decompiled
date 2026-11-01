@@ -4,9 +4,8 @@ import android.location.Location;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
-import b.o.a.l$a;
 import com.otaliastudios.cameraview.CameraException;
-import com.otaliastudios.cameraview.CameraView$b;
+import com.otaliastudios.cameraview.CameraView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -74,8 +73,94 @@ public abstract class g extends i {
     /* JADX INFO: renamed from: z, reason: collision with root package name */
     public b.o.a.m.b f1934z;
 
-    public g(@NonNull i$g i_g) {
-        super(i_g);
+    /* JADX INFO: compiled from: CameraBaseEngine.java */
+    public class a implements Runnable {
+        public final /* synthetic */ b.o.a.m.e j;
+        public final /* synthetic */ b.o.a.m.e k;
+
+        public a(b.o.a.m.e eVar, b.o.a.m.e eVar2) {
+            this.j = eVar;
+            this.k = eVar2;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            if (g.this.c(this.j)) {
+                g.this.X();
+            } else {
+                g.this.P = this.k;
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: CameraBaseEngine.java */
+    public class b implements Runnable {
+        public b() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            g.this.X();
+        }
+    }
+
+    /* JADX INFO: compiled from: CameraBaseEngine.java */
+    public class c implements Runnable {
+        public final /* synthetic */ b.o.a.l.a j;
+        public final /* synthetic */ boolean k;
+
+        public c(b.o.a.l.a aVar, boolean z2) {
+            this.j = aVar;
+            this.k = z2;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            i.j.a(1, "takePicture:", "running. isTakingPicture:", Boolean.valueOf(g.this.W0()));
+            if (g.this.W0()) {
+                return;
+            }
+            g gVar = g.this;
+            if (gVar.Q == b.o.a.m.i.VIDEO) {
+                throw new IllegalStateException("Can't take hq pictures while in VIDEO mode");
+            }
+            b.o.a.l.a aVar = this.j;
+            aVar.a = false;
+            aVar.f1912b = gVar.C;
+            aVar.e = gVar.P;
+            aVar.g = gVar.B;
+            gVar.Y0(aVar, this.k);
+        }
+    }
+
+    /* JADX INFO: compiled from: CameraBaseEngine.java */
+    public class d implements Runnable {
+        public final /* synthetic */ b.o.a.l.a j;
+        public final /* synthetic */ boolean k;
+
+        public d(b.o.a.l.a aVar, boolean z2) {
+            this.j = aVar;
+            this.k = z2;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            i.j.a(1, "takePictureSnapshot:", "running. isTakingPicture:", Boolean.valueOf(g.this.W0()));
+            if (g.this.W0()) {
+                return;
+            }
+            b.o.a.l.a aVar = this.j;
+            g gVar = g.this;
+            aVar.f1912b = gVar.C;
+            aVar.a = true;
+            aVar.e = gVar.P;
+            aVar.g = b.o.a.m.j.JPEG;
+            g.this.Z0(this.j, b.o.a.x.a.g(gVar.U0(b.o.a.n.t.b.OUTPUT)), this.k);
+        }
+    }
+
+    public g(@NonNull i.g gVar) {
+        super(gVar);
         this.L = new b.o.a.n.t.a();
         b.i.a.f.e.o.f.Z(null);
         b.i.a.f.e.o.f.Z(null);
@@ -217,17 +302,17 @@ public abstract class g extends i {
     }
 
     @Override // b.o.a.n.i
-    public void O0(@NonNull l$a l_a) {
+    public void O0(@NonNull b.o.a.l.a aVar) {
         boolean z2 = this.G;
         b.o.a.n.v.f fVar = this.n;
-        fVar.b("take picture", true, new b.o.a.n.v.h(fVar, b.o.a.n.v.e.BIND, new g$c(this, l_a, z2)));
+        fVar.b("take picture", true, new b.o.a.n.v.h(fVar, b.o.a.n.v.e.BIND, new c(aVar, z2)));
     }
 
     @Override // b.o.a.n.i
-    public void P0(@NonNull l$a l_a) {
+    public void P0(@NonNull b.o.a.l.a aVar) {
         boolean z2 = this.H;
         b.o.a.n.v.f fVar = this.n;
-        fVar.b("take picture snapshot", true, new b.o.a.n.v.h(fVar, b.o.a.n.v.e.BIND, new g$d(this, l_a, z2)));
+        fVar.b("take picture snapshot", true, new b.o.a.n.v.h(fVar, b.o.a.n.v.e.BIND, new d(aVar, z2)));
     }
 
     @NonNull
@@ -332,7 +417,7 @@ public abstract class g extends i {
 
     public abstract void X0();
 
-    public abstract void Y0(@NonNull l$a l_a, boolean z2);
+    public abstract void Y0(@NonNull b.o.a.l.a aVar, boolean z2);
 
     @Override // b.o.a.n.i
     public final void Z(@NonNull b.o.a.m.a aVar) {
@@ -341,17 +426,17 @@ public abstract class g extends i {
         }
     }
 
-    public abstract void Z0(@NonNull l$a l_a, @NonNull b.o.a.x.a aVar, boolean z2);
+    public abstract void Z0(@NonNull b.o.a.l.a aVar, @NonNull b.o.a.x.a aVar2, boolean z2);
 
-    public void a(@Nullable l$a l_a, @Nullable Exception exc) {
+    public void a(@Nullable b.o.a.l.a aVar, @Nullable Exception exc) {
         this.q = null;
-        if (l_a == null) {
+        if (aVar == null) {
             i.j.a(3, "onPictureResult", "result is null: something went wrong.", exc);
-            ((CameraView$b) this.m).a(new CameraException(exc, 4));
+            ((CameraView.b) this.m).a(new CameraException(exc, 4));
         } else {
-            CameraView$b cameraView$b = (CameraView$b) this.m;
-            cameraView$b.f3177b.a(1, "dispatchOnPictureTaken", l_a);
-            cameraView$b.c.u.post(new b.o.a.i(cameraView$b, l_a));
+            CameraView.b bVar = (CameraView.b) this.m;
+            bVar.f3177b.a(1, "dispatchOnPictureTaken", aVar);
+            CameraView.this.u.post(new b.o.a.i(bVar, aVar));
         }
     }
 
@@ -387,7 +472,7 @@ public abstract class g extends i {
         if (eVar != eVar2) {
             this.P = eVar;
             b.o.a.n.v.f fVar = this.n;
-            fVar.b("facing", true, new b.o.a.n.v.h(fVar, b.o.a.n.v.e.ENGINE, new g$a(this, eVar, eVar2)));
+            fVar.b("facing", true, new b.o.a.n.v.h(fVar, b.o.a.n.v.e.ENGINE, new a(eVar, eVar2)));
         }
     }
 
@@ -461,7 +546,7 @@ public abstract class g extends i {
         if (iVar != this.Q) {
             this.Q = iVar;
             b.o.a.n.v.f fVar = this.n;
-            fVar.b("mode", true, new b.o.a.n.v.h(fVar, b.o.a.n.v.e.ENGINE, new g$b(this)));
+            fVar.b("mode", true, new b.o.a.n.v.h(fVar, b.o.a.n.v.e.ENGINE, new b()));
         }
     }
 

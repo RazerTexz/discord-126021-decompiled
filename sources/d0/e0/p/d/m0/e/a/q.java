@@ -16,9 +16,9 @@ public final class q {
         q qVar = new q();
         a = qVar;
         f3356b = new HashMap<>();
-        qVar.b(d0.e0.p.d.m0.b.k$a.S, qVar.a("java.util.ArrayList", "java.util.LinkedList"));
-        qVar.b(d0.e0.p.d.m0.b.k$a.U, qVar.a("java.util.HashSet", "java.util.TreeSet", "java.util.LinkedHashSet"));
-        qVar.b(d0.e0.p.d.m0.b.k$a.V, qVar.a("java.util.HashMap", "java.util.TreeMap", "java.util.LinkedHashMap", "java.util.concurrent.ConcurrentHashMap", "java.util.concurrent.ConcurrentSkipListMap"));
+        qVar.b(d0.e0.p.d.m0.b.k.a.S, qVar.a("java.util.ArrayList", "java.util.LinkedList"));
+        qVar.b(d0.e0.p.d.m0.b.k.a.U, qVar.a("java.util.HashSet", "java.util.TreeSet", "java.util.LinkedHashSet"));
+        qVar.b(d0.e0.p.d.m0.b.k.a.V, qVar.a("java.util.HashMap", "java.util.TreeMap", "java.util.LinkedHashMap", "java.util.concurrent.ConcurrentHashMap", "java.util.concurrent.ConcurrentSkipListMap"));
         qVar.b(new d0.e0.p.d.m0.g.b("java.util.function.Function"), qVar.a("java.util.function.UnaryOperator"));
         qVar.b(new d0.e0.p.d.m0.g.b("java.util.function.BiFunction"), qVar.a("java.util.function.BinaryOperator"));
     }

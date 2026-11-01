@@ -2,6 +2,7 @@ package com.discord.api.channel;
 
 import android.content.Context;
 import androidx.exifinterface.media.ExifInterface;
+import com.discord.R;
 import com.discord.api.guild.GuildFeature;
 import com.discord.api.permission.Permission;
 import com.discord.api.permission.PermissionOverwrite;
@@ -111,12 +112,15 @@ public final class ChannelUtils {
     public static final Integer b(Channel channel) {
         m.checkNotNullParameter(channel, "$this$getDeletedMessage");
         if (k(channel)) {
-            return 2131887467;
+            return Integer.valueOf(R.string.category_has_been_deleted);
         }
         if (H(channel)) {
-            return 2131896374;
+            return Integer.valueOf(R.string.thread_has_been_deleted);
         }
-        return B(channel) ? null : 2131887547;
+        if (B(channel)) {
+            return null;
+        }
+        return Integer.valueOf(R.string.channel_has_been_deleted);
     }
 
     /* JADX WARN: Code duplicated, block: B:18:0x0038  */
@@ -153,38 +157,38 @@ public final class ChannelUtils {
         String strC = c(channel);
         if (u(channel) || i(channel)) {
             if (strC.length() == 0) {
-                String string = context.getString(2131892213);
+                String string = context.getString(R.string.invalid_text_channel);
                 m.checkNotNullExpressionValue(string, "context.getString(R.string.invalid_text_channel)");
                 return string;
             }
             if (z2) {
                 StringBuilder sb = new StringBuilder();
-                m.checkNotNullParameter(Channel.Companion, "$this$DISPLAY_PREFIX_GUILD");
+                m.checkNotNullParameter(Channel.INSTANCE, "$this$DISPLAY_PREFIX_GUILD");
                 sb.append("#");
                 sb.append(strC);
                 return sb.toString();
             }
         } else if (w(channel)) {
             if (strC.length() == 0) {
-                String string2 = context.getString(2131892214);
+                String string2 = context.getString(R.string.invalid_voice_channel);
                 m.checkNotNullExpressionValue(string2, "context.getString(R.string.invalid_voice_channel)");
                 return string2;
             }
         } else if (p(channel)) {
             if (strC.length() == 0) {
-                String string3 = context.getString(2131896595);
+                String string3 = context.getString(R.string.unnamed);
                 m.checkNotNullExpressionValue(string3, "context.getString(R.string.unnamed)");
                 return string3;
             }
         } else if (m(channel)) {
             if (strC.length() == 0) {
-                String string4 = context.getString(2131888439);
+                String string4 = context.getString(R.string.direct_message);
                 m.checkNotNullExpressionValue(string4, "context.getString(R.string.direct_message)");
                 return string4;
             }
             if (z2) {
                 StringBuilder sb2 = new StringBuilder();
-                m.checkNotNullParameter(Channel.Companion, "$this$DISPLAY_PREFIX_DM");
+                m.checkNotNullParameter(Channel.INSTANCE, "$this$DISPLAY_PREFIX_DM");
                 sb2.append("@");
                 sb2.append(strC);
                 return sb2.toString();
@@ -230,9 +234,9 @@ public final class ChannelUtils {
         return arrayList;
     }
 
-    public static final Comparator<Channel> h(Channel$Companion channel$Companion) {
-        m.checkNotNullParameter(channel$Companion, "$this$getSortByNameAndType");
-        return new ChannelUtils$getSortByNameAndType$1(channel$Companion);
+    public static final Comparator<Channel> h(Channel.Companion companion) {
+        m.checkNotNullParameter(companion, "$this$getSortByNameAndType");
+        return new ChannelUtils$getSortByNameAndType$1(companion);
     }
 
     public static final boolean i(Channel channel) {
@@ -287,7 +291,7 @@ public final class ChannelUtils {
     }
 
     public static /* synthetic */ boolean s(Channel channel, Channel channel2, int i) {
-        return r(channel, (i & 1) != 0 ? StoreStream.Companion.getChannels().getChannel(channel.getParentId()) : null);
+        return r(channel, (i & 1) != 0 ? StoreStream.INSTANCE.getChannels().getChannel(channel.getParentId()) : null);
     }
 
     public static final boolean t(Channel channel, Guild guild, GuildRole guildRole, Map<Long, GuildRole> map) {

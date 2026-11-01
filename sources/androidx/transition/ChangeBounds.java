@@ -1,6 +1,7 @@
 package androidx.transition;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
@@ -8,7 +9,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
 import android.graphics.Canvas;
 import android.graphics.PointF;
 import android.graphics.Rect;
@@ -36,13 +36,290 @@ public class ChangeBounds extends Transition {
     private static final String PROPNAME_WINDOW_X = "android:changeBounds:windowX";
     private static final String PROPNAME_WINDOW_Y = "android:changeBounds:windowY";
     private static final String[] sTransitionProperties = {PROPNAME_BOUNDS, PROPNAME_CLIP, PROPNAME_PARENT, PROPNAME_WINDOW_X, PROPNAME_WINDOW_Y};
-    private static final Property<Drawable, PointF> DRAWABLE_ORIGIN_PROPERTY = new ChangeBounds$1(PointF.class, "boundsOrigin");
-    private static final Property<ChangeBounds$ViewBounds, PointF> TOP_LEFT_PROPERTY = new ChangeBounds$2(PointF.class, "topLeft");
-    private static final Property<ChangeBounds$ViewBounds, PointF> BOTTOM_RIGHT_PROPERTY = new ChangeBounds$3(PointF.class, "bottomRight");
-    private static final Property<View, PointF> BOTTOM_RIGHT_ONLY_PROPERTY = new ChangeBounds$4(PointF.class, "bottomRight");
-    private static final Property<View, PointF> TOP_LEFT_ONLY_PROPERTY = new ChangeBounds$5(PointF.class, "topLeft");
-    private static final Property<View, PointF> POSITION_PROPERTY = new ChangeBounds$6(PointF.class, ModelAuditLogEntry.CHANGE_KEY_POSITION);
+    private static final Property<Drawable, PointF> DRAWABLE_ORIGIN_PROPERTY = new AnonymousClass1(PointF.class, "boundsOrigin");
+    private static final Property<ViewBounds, PointF> TOP_LEFT_PROPERTY = new AnonymousClass2(PointF.class, "topLeft");
+    private static final Property<ViewBounds, PointF> BOTTOM_RIGHT_PROPERTY = new AnonymousClass3(PointF.class, "bottomRight");
+    private static final Property<View, PointF> BOTTOM_RIGHT_ONLY_PROPERTY = new AnonymousClass4(PointF.class, "bottomRight");
+    private static final Property<View, PointF> TOP_LEFT_ONLY_PROPERTY = new AnonymousClass5(PointF.class, "topLeft");
+    private static final Property<View, PointF> POSITION_PROPERTY = new AnonymousClass6(PointF.class, ModelAuditLogEntry.CHANGE_KEY_POSITION);
     private static RectEvaluator sRectEvaluator = new RectEvaluator();
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$1, reason: invalid class name */
+    public final class AnonymousClass1 extends Property<Drawable, PointF> {
+        private Rect mBounds;
+
+        public AnonymousClass1(Class cls, String str) {
+            super(cls, str);
+            this.mBounds = new Rect();
+        }
+
+        @Override // android.util.Property
+        public /* bridge */ /* synthetic */ PointF get(Drawable drawable) {
+            return get2(drawable);
+        }
+
+        @Override // android.util.Property
+        public /* bridge */ /* synthetic */ void set(Drawable drawable, PointF pointF) {
+            set2(drawable, pointF);
+        }
+
+        /* JADX INFO: renamed from: get, reason: avoid collision after fix types in other method */
+        public PointF get2(Drawable drawable) {
+            drawable.copyBounds(this.mBounds);
+            Rect rect = this.mBounds;
+            return new PointF(rect.left, rect.top);
+        }
+
+        /* JADX INFO: renamed from: set, reason: avoid collision after fix types in other method */
+        public void set2(Drawable drawable, PointF pointF) {
+            drawable.copyBounds(this.mBounds);
+            this.mBounds.offsetTo(Math.round(pointF.x), Math.round(pointF.y));
+            drawable.setBounds(this.mBounds);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$10, reason: invalid class name */
+    public class AnonymousClass10 extends AnimatorListenerAdapter {
+        public final /* synthetic */ BitmapDrawable val$drawable;
+        public final /* synthetic */ ViewGroup val$sceneRoot;
+        public final /* synthetic */ float val$transitionAlpha;
+        public final /* synthetic */ View val$view;
+
+        public AnonymousClass10(ViewGroup viewGroup, BitmapDrawable bitmapDrawable, View view, float f) {
+            this.val$sceneRoot = viewGroup;
+            this.val$drawable = bitmapDrawable;
+            this.val$view = view;
+            this.val$transitionAlpha = f;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            ViewUtils.getOverlay(this.val$sceneRoot).remove(this.val$drawable);
+            ViewUtils.setTransitionAlpha(this.val$view, this.val$transitionAlpha);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$2, reason: invalid class name */
+    public final class AnonymousClass2 extends Property<ViewBounds, PointF> {
+        public AnonymousClass2(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public /* bridge */ /* synthetic */ PointF get(ViewBounds viewBounds) {
+            return get2(viewBounds);
+        }
+
+        /* JADX INFO: renamed from: get, reason: avoid collision after fix types in other method */
+        public PointF get2(ViewBounds viewBounds) {
+            return null;
+        }
+
+        @Override // android.util.Property
+        public /* bridge */ /* synthetic */ void set(ViewBounds viewBounds, PointF pointF) {
+            set2(viewBounds, pointF);
+        }
+
+        /* JADX INFO: renamed from: set, reason: avoid collision after fix types in other method */
+        public void set2(ViewBounds viewBounds, PointF pointF) {
+            viewBounds.setTopLeft(pointF);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$3, reason: invalid class name */
+    public final class AnonymousClass3 extends Property<ViewBounds, PointF> {
+        public AnonymousClass3(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public /* bridge */ /* synthetic */ PointF get(ViewBounds viewBounds) {
+            return get2(viewBounds);
+        }
+
+        /* JADX INFO: renamed from: get, reason: avoid collision after fix types in other method */
+        public PointF get2(ViewBounds viewBounds) {
+            return null;
+        }
+
+        @Override // android.util.Property
+        public /* bridge */ /* synthetic */ void set(ViewBounds viewBounds, PointF pointF) {
+            set2(viewBounds, pointF);
+        }
+
+        /* JADX INFO: renamed from: set, reason: avoid collision after fix types in other method */
+        public void set2(ViewBounds viewBounds, PointF pointF) {
+            viewBounds.setBottomRight(pointF);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$4, reason: invalid class name */
+    public final class AnonymousClass4 extends Property<View, PointF> {
+        public AnonymousClass4(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public /* bridge */ /* synthetic */ PointF get(View view) {
+            return get2(view);
+        }
+
+        /* JADX INFO: renamed from: get, reason: avoid collision after fix types in other method */
+        public PointF get2(View view) {
+            return null;
+        }
+
+        @Override // android.util.Property
+        public /* bridge */ /* synthetic */ void set(View view, PointF pointF) {
+            set2(view, pointF);
+        }
+
+        /* JADX INFO: renamed from: set, reason: avoid collision after fix types in other method */
+        public void set2(View view, PointF pointF) {
+            ViewUtils.setLeftTopRightBottom(view, view.getLeft(), view.getTop(), Math.round(pointF.x), Math.round(pointF.y));
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$5, reason: invalid class name */
+    public final class AnonymousClass5 extends Property<View, PointF> {
+        public AnonymousClass5(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public /* bridge */ /* synthetic */ PointF get(View view) {
+            return get2(view);
+        }
+
+        /* JADX INFO: renamed from: get, reason: avoid collision after fix types in other method */
+        public PointF get2(View view) {
+            return null;
+        }
+
+        @Override // android.util.Property
+        public /* bridge */ /* synthetic */ void set(View view, PointF pointF) {
+            set2(view, pointF);
+        }
+
+        /* JADX INFO: renamed from: set, reason: avoid collision after fix types in other method */
+        public void set2(View view, PointF pointF) {
+            ViewUtils.setLeftTopRightBottom(view, Math.round(pointF.x), Math.round(pointF.y), view.getRight(), view.getBottom());
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$6, reason: invalid class name */
+    public final class AnonymousClass6 extends Property<View, PointF> {
+        public AnonymousClass6(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public /* bridge */ /* synthetic */ PointF get(View view) {
+            return get2(view);
+        }
+
+        /* JADX INFO: renamed from: get, reason: avoid collision after fix types in other method */
+        public PointF get2(View view) {
+            return null;
+        }
+
+        @Override // android.util.Property
+        public /* bridge */ /* synthetic */ void set(View view, PointF pointF) {
+            set2(view, pointF);
+        }
+
+        /* JADX INFO: renamed from: set, reason: avoid collision after fix types in other method */
+        public void set2(View view, PointF pointF) {
+            int iRound = Math.round(pointF.x);
+            int iRound2 = Math.round(pointF.y);
+            ViewUtils.setLeftTopRightBottom(view, iRound, iRound2, view.getWidth() + iRound, view.getHeight() + iRound2);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$7, reason: invalid class name */
+    public class AnonymousClass7 extends AnimatorListenerAdapter {
+        private ViewBounds mViewBounds;
+        public final /* synthetic */ ViewBounds val$viewBounds;
+
+        public AnonymousClass7(ViewBounds viewBounds) {
+            this.val$viewBounds = viewBounds;
+            this.mViewBounds = viewBounds;
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$8, reason: invalid class name */
+    public class AnonymousClass8 extends AnimatorListenerAdapter {
+        private boolean mIsCanceled;
+        public final /* synthetic */ int val$endBottom;
+        public final /* synthetic */ int val$endLeft;
+        public final /* synthetic */ int val$endRight;
+        public final /* synthetic */ int val$endTop;
+        public final /* synthetic */ Rect val$finalClip;
+        public final /* synthetic */ View val$view;
+
+        public AnonymousClass8(View view, Rect rect, int i, int i2, int i3, int i4) {
+            this.val$view = view;
+            this.val$finalClip = rect;
+            this.val$endLeft = i;
+            this.val$endTop = i2;
+            this.val$endRight = i3;
+            this.val$endBottom = i4;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationCancel(Animator animator) {
+            this.mIsCanceled = true;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            if (this.mIsCanceled) {
+                return;
+            }
+            ViewCompat.setClipBounds(this.val$view, this.val$finalClip);
+            ViewUtils.setLeftTopRightBottom(this.val$view, this.val$endLeft, this.val$endTop, this.val$endRight, this.val$endBottom);
+        }
+    }
+
+    public class ViewBounds {
+        private int mBottom;
+        private int mBottomRightCalls;
+        private int mLeft;
+        private int mRight;
+        private int mTop;
+        private int mTopLeftCalls;
+        private View mView;
+
+        public ViewBounds(View view) {
+            this.mView = view;
+        }
+
+        public void setBottomRight(PointF pointF) {
+            this.mRight = Math.round(pointF.x);
+            this.mBottom = Math.round(pointF.y);
+            int i = this.mBottomRightCalls + 1;
+            this.mBottomRightCalls = i;
+            if (this.mTopLeftCalls == i) {
+                setLeftTopRightBottom();
+            }
+        }
+
+        private void setLeftTopRightBottom() {
+            ViewUtils.setLeftTopRightBottom(this.mView, this.mLeft, this.mTop, this.mRight, this.mBottom);
+            this.mTopLeftCalls = 0;
+            this.mBottomRightCalls = 0;
+        }
+
+        public void setTopLeft(PointF pointF) {
+            this.mLeft = Math.round(pointF.x);
+            this.mTop = Math.round(pointF.y);
+            int i = this.mTopLeftCalls + 1;
+            this.mTopLeftCalls = i;
+            if (i == this.mBottomRightCalls) {
+                setLeftTopRightBottom();
+            }
+        }
+    }
 
     public ChangeBounds() {
         this.mTempLocation = new int[2];
@@ -106,7 +383,7 @@ public class ChangeBounds extends Transition {
                 return null;
             }
             viewGroup.getLocationInWindow(this.mTempLocation);
-            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(view2.getWidth(), view2.getHeight(), Bitmap$Config.ARGB_8888);
+            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(view2.getWidth(), view2.getHeight(), Bitmap.Config.ARGB_8888);
             view2.draw(new Canvas(bitmapCreateBitmap));
             BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmapCreateBitmap);
             float transitionAlpha = ViewUtils.getTransitionAlpha(view2);
@@ -115,7 +392,7 @@ public class ChangeBounds extends Transition {
             PathMotion pathMotion = getPathMotion();
             int[] iArr = this.mTempLocation;
             ObjectAnimator objectAnimatorOfPropertyValuesHolder = ObjectAnimator.ofPropertyValuesHolder(bitmapDrawable, PropertyValuesHolderUtils.ofPointF(DRAWABLE_ORIGIN_PROPERTY, pathMotion.getPath(iIntValue - iArr[0], iIntValue2 - iArr[1], iIntValue3 - iArr[0], iIntValue4 - iArr[1])));
-            objectAnimatorOfPropertyValuesHolder.addListener(new ChangeBounds$10(this, viewGroup, bitmapDrawable, view2, transitionAlpha));
+            objectAnimatorOfPropertyValuesHolder.addListener(new AnonymousClass10(viewGroup, bitmapDrawable, view2, transitionAlpha));
             return objectAnimatorOfPropertyValuesHolder;
         }
         Rect rect2 = (Rect) transitionValues.values.get(PROPNAME_BOUNDS);
@@ -169,7 +446,7 @@ public class ChangeBounds extends Transition {
                 objArr[i2] = rect;
                 objArr[1] = rect6;
                 ObjectAnimator objectAnimatorOfObject = ObjectAnimator.ofObject(view, "clipBounds", rectEvaluator, objArr);
-                objectAnimatorOfObject.addListener(new ChangeBounds$8(this, view, rect5, i4, i6, i8, i10));
+                objectAnimatorOfObject.addListener(new AnonymousClass8(view, rect5, i4, i6, i8, i10));
                 objectAnimator = objectAnimatorOfObject;
             }
             animatorMergeAnimators = TransitionUtils.mergeAnimators(objectAnimatorOfPointF, objectAnimator);
@@ -181,19 +458,19 @@ public class ChangeBounds extends Transition {
             } else if (i11 == i13 && i12 == i14) {
                 animatorMergeAnimators = ObjectAnimatorUtils.ofPointF(view, POSITION_PROPERTY, getPathMotion().getPath(i3, i5, i4, i6));
             } else {
-                ChangeBounds$ViewBounds changeBounds$ViewBounds = new ChangeBounds$ViewBounds(view);
-                ObjectAnimator objectAnimatorOfPointF2 = ObjectAnimatorUtils.ofPointF(changeBounds$ViewBounds, TOP_LEFT_PROPERTY, getPathMotion().getPath(i3, i5, i4, i6));
-                ObjectAnimator objectAnimatorOfPointF3 = ObjectAnimatorUtils.ofPointF(changeBounds$ViewBounds, BOTTOM_RIGHT_PROPERTY, getPathMotion().getPath(i7, i9, i8, i10));
+                ViewBounds viewBounds = new ViewBounds(view);
+                ObjectAnimator objectAnimatorOfPointF2 = ObjectAnimatorUtils.ofPointF(viewBounds, TOP_LEFT_PROPERTY, getPathMotion().getPath(i3, i5, i4, i6));
+                ObjectAnimator objectAnimatorOfPointF3 = ObjectAnimatorUtils.ofPointF(viewBounds, BOTTOM_RIGHT_PROPERTY, getPathMotion().getPath(i7, i9, i8, i10));
                 AnimatorSet animatorSet = new AnimatorSet();
                 animatorSet.playTogether(objectAnimatorOfPointF2, objectAnimatorOfPointF3);
-                animatorSet.addListener(new ChangeBounds$7(this, changeBounds$ViewBounds));
+                animatorSet.addListener(new AnonymousClass7(viewBounds));
                 animatorMergeAnimators = animatorSet;
             }
         }
         if (view.getParent() instanceof ViewGroup) {
             ViewGroup viewGroup4 = (ViewGroup) view.getParent();
             ViewGroupUtils.suppressLayout(viewGroup4, true);
-            addListener(new ChangeBounds$9(this, viewGroup4));
+            addListener(new AnonymousClass9(viewGroup4));
         }
         return animatorMergeAnimators;
     }
@@ -225,6 +502,40 @@ public class ChangeBounds extends Transition {
 
     public void setResizeClip(boolean z2) {
         this.mResizeClip = z2;
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeBounds$9, reason: invalid class name */
+    public class AnonymousClass9 extends TransitionListenerAdapter {
+        public final /* synthetic */ ViewGroup val$parent;
+        public boolean mCanceled = false;
+
+        public AnonymousClass9(ViewGroup viewGroup) {
+            this.val$parent = viewGroup;
+        }
+
+        @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
+        public void onTransitionCancel(@NonNull Transition transition) {
+            ViewGroupUtils.suppressLayout(this.val$parent, false);
+            this.mCanceled = true;
+        }
+
+        @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
+        public void onTransitionEnd(@NonNull Transition transition) {
+            if (!this.mCanceled) {
+                ViewGroupUtils.suppressLayout(this.val$parent, false);
+            }
+            transition.removeListener(this);
+        }
+
+        @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
+        public void onTransitionPause(@NonNull Transition transition) {
+            ViewGroupUtils.suppressLayout(this.val$parent, false);
+        }
+
+        @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
+        public void onTransitionResume(@NonNull Transition transition) {
+            ViewGroupUtils.suppressLayout(this.val$parent, true);
+        }
     }
 
     @SuppressLint({"RestrictedApi"})

@@ -13,7 +13,7 @@ public class FileSystemSourceCache {
     private static final long NEVER_CHECKED = -1;
     private static final long FULL_CACHE_CLEAR_INTERVAL = TimeUnit.MINUTES.toMillis(30);
     private static final long RECHECK_FILESYSTEM = TimeUnit.SECONDS.toMillis(2);
-    private final ConcurrentMap<ConfigurationFile, FileSystemSourceCache$Content> fileCache = new ConcurrentHashMap();
+    private final ConcurrentMap<ConfigurationFile, Content> fileCache = new ConcurrentHashMap();
     private final ConcurrentMap<URI, ConfigurationFile> uriCache = new ConcurrentHashMap();
     private volatile long lastCacheClear = System.currentTimeMillis();
 
@@ -27,8 +27,23 @@ public class FileSystemSourceCache {
         }
     }
 
+    /* JADX INFO: renamed from: lombok.core.configuration.FileSystemSourceCache$1, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/FileSystemSourceCache$1.SCL.lombok */
+    class AnonymousClass1 implements ConfigurationFileToSource {
+        private final /* synthetic */ ConfigurationParser val$parser;
+
+        AnonymousClass1(ConfigurationParser configurationParser) {
+            this.val$parser = configurationParser;
+        }
+
+        @Override // lombok.core.configuration.ConfigurationFileToSource
+        public ConfigurationSource parsed(ConfigurationFile fileLocation) {
+            return FileSystemSourceCache.access$0(FileSystemSourceCache.this, fileLocation, this.val$parser);
+        }
+    }
+
     public ConfigurationFileToSource fileToSource(ConfigurationParser parser) {
-        return new FileSystemSourceCache$1(this, parser);
+        return new AnonymousClass1(parser);
     }
 
     public ConfigurationFile forUri(URI javaFile) {
@@ -86,12 +101,29 @@ public class FileSystemSourceCache {
         }
     }
 
-    private FileSystemSourceCache$Content ensureContent(ConfigurationFile context) {
-        FileSystemSourceCache$Content content = this.fileCache.get(context);
+    private Content ensureContent(ConfigurationFile context) {
+        Content content = this.fileCache.get(context);
         if (content != null) {
             return content;
         }
-        this.fileCache.putIfAbsent(context, FileSystemSourceCache$Content.empty());
+        this.fileCache.putIfAbsent(context, Content.empty());
         return this.fileCache.get(context);
+    }
+
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/FileSystemSourceCache$Content.SCL.lombok */
+    class Content {
+        ConfigurationSource source;
+        long lastModified;
+        long lastChecked;
+
+        private Content(ConfigurationSource source, long lastModified, long lastChecked) {
+            this.source = source;
+            this.lastModified = lastModified;
+            this.lastChecked = lastChecked;
+        }
+
+        static Content empty() {
+            return new Content(null, FileSystemSourceCache.MISSING, -1L);
+        }
     }
 }

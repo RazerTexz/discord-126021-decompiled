@@ -9,11 +9,8 @@ import android.os.Looper;
 import android.os.RemoteException;
 import android.util.Log;
 import androidx.annotation.Nullable;
-import b.i.a.f.e.h.c$a;
-import b.i.a.f.e.h.c$b;
 import b.i.a.f.e.h.j.g0;
 import b.i.a.f.e.h.j.i0;
-import b.i.a.f.e.k.b$d;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.internal.zas;
 import com.google.android.gms.signin.internal.zak;
@@ -30,8 +27,8 @@ public class a extends b.i.a.f.e.k.d<e> implements b.i.a.f.l.f {
     @Nullable
     public final Integer D;
 
-    public a(Context context, Looper looper, boolean z2, b.i.a.f.e.k.c cVar, Bundle bundle, c$a c_a, c$b c_b) {
-        super(context, looper, 44, cVar, c_a, c_b);
+    public a(Context context, Looper looper, boolean z2, b.i.a.f.e.k.c cVar, Bundle bundle, b.i.a.f.e.h.c.a aVar, b.i.a.f.e.h.c.b bVar) {
+        super(context, looper, 44, cVar, aVar, bVar);
         this.A = z2;
         this.B = cVar;
         this.C = bundle;
@@ -61,19 +58,19 @@ public class a extends b.i.a.f.e.k.d<e> implements b.i.a.f.l.f {
         }
     }
 
-    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a$f
+    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a.f
     public int l() {
         return 12451000;
     }
 
-    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a$f
+    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a.f
     public boolean o() {
         return this.A;
     }
 
     @Override // b.i.a.f.l.f
     public final void p() {
-        g(new b$d(this));
+        g(new b.i.a.f.e.k.b.d());
     }
 
     @Override // b.i.a.f.e.k.b

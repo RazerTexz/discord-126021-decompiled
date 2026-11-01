@@ -41,9 +41,9 @@ public final class p extends r implements d0.e0.p.d.m0.e.a.k0.n {
 
     @Override // d0.e0.p.d.m0.e.a.k0.n
     public w getType() {
-        w$a w_a = w.a;
+        w.a aVar = w.a;
         Type genericType = getMember().getGenericType();
         d0.z.d.m.checkNotNullExpressionValue(genericType, "member.genericType");
-        return w_a.create(genericType);
+        return aVar.create(genericType);
     }
 }

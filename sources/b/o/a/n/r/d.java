@@ -5,7 +5,7 @@ import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.MeteringRectangle;
-import android.os.Build$VERSION;
+import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -41,7 +41,7 @@ public class d extends b {
         bVar.a(1, "onStarted:", "last precapture trigger is", num);
         if (num != null && num.intValue() == 1) {
             bVar.a(1, "onStarted:", "canceling precapture.");
-            ((b.o.a.n.d) cVar).f1921i0.set(CaptureRequest.CONTROL_AE_PRECAPTURE_TRIGGER, Integer.valueOf(Build$VERSION.SDK_INT < 23 ? 0 : 2));
+            ((b.o.a.n.d) cVar).f1921i0.set(CaptureRequest.CONTROL_AE_PRECAPTURE_TRIGGER, Integer.valueOf(Build.VERSION.SDK_INT < 23 ? 0 : 2));
         }
         b.o.a.n.d dVar = (b.o.a.n.d) cVar;
         dVar.f1921i0.set(CaptureRequest.CONTROL_AE_LOCK, Boolean.TRUE);

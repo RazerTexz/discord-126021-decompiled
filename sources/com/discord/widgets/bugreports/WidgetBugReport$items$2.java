@@ -27,7 +27,7 @@ public final class WidgetBugReport$items$2 extends o implements Function0<List<?
     @Override // kotlin.jvm.functions.Function0
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final List<? extends c0> invoke2() {
-        List<Priority> priorityLevels = WidgetBugReport.Companion.getPriorityLevels();
+        List<Priority> priorityLevels = WidgetBugReport.INSTANCE.getPriorityLevels();
         ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(priorityLevels, 10));
         for (Priority priority : priorityLevels) {
             arrayList.add(new c0(this.this$0.getString(priority.getTitle()), b.k(this.this$0, priority.getDescription(), new Object[0], null, 4), null, ModelEmojiCustom.getImageUri(priority.getEmojiId(), true, 64), null, null, null, 116));

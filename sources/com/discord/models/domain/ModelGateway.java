@@ -8,11 +8,11 @@ public class ModelGateway implements Model {
     private String url;
 
     @Override // com.discord.models.domain.Model
-    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
-        String strNextName = model$JsonReader.nextName();
+    public void assignField(Model.JsonReader jsonReader) throws IOException {
+        String strNextName = jsonReader.nextName();
         strNextName.hashCode();
         if (strNextName.equals("url")) {
-            this.url = model$JsonReader.nextString(this.url);
+            this.url = jsonReader.nextString(this.url);
         }
     }
 

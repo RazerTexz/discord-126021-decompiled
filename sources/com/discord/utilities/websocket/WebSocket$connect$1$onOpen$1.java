@@ -10,12 +10,12 @@ import okhttp3.Response;
 public final class WebSocket$connect$1$onOpen$1 extends o implements Function0<Unit> {
     public final /* synthetic */ Response $response;
     public final /* synthetic */ okhttp3.WebSocket $webSocket;
-    public final /* synthetic */ WebSocket$connect$1 this$0;
+    public final /* synthetic */ WebSocket.AnonymousClass1 this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WebSocket$connect$1$onOpen$1(WebSocket$connect$1 webSocket$connect$1, okhttp3.WebSocket webSocket, Response response) {
+    public WebSocket$connect$1$onOpen$1(WebSocket.AnonymousClass1 anonymousClass1, okhttp3.WebSocket webSocket, Response response) {
         super(0);
-        this.this$0 = webSocket$connect$1;
+        this.this$0 = anonymousClass1;
         this.$webSocket = webSocket;
         this.$response = response;
     }
@@ -28,8 +28,8 @@ public final class WebSocket$connect$1$onOpen$1 extends o implements Function0<U
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2() {
-        WebSocket.access$setClient$p(this.this$0.this$0, this.$webSocket);
-        WebSocket.access$setState$p(this.this$0.this$0, WebSocket$State.CONNECTED);
-        this.this$0.this$0.getOnOpened().invoke(new WebSocket$Opened(this.$response));
+        WebSocket.access$setClient$p(WebSocket.this, this.$webSocket);
+        WebSocket.access$setState$p(WebSocket.this, WebSocket.State.CONNECTED);
+        WebSocket.this.getOnOpened().invoke(new WebSocket.Opened(this.$response));
     }
 }

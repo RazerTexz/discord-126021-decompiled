@@ -11,9 +11,27 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: ViewThreadsFeatureFlag.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ViewThreadsFeatureFlag {
-    public static final ViewThreadsFeatureFlag$Companion Companion = new ViewThreadsFeatureFlag$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final StoreExperiments storeExperiments;
     private static final Lazy INSTANCE$delegate = g.lazy(ViewThreadsFeatureFlag$Companion$INSTANCE$2.INSTANCE);
+
+    /* JADX INFO: compiled from: ViewThreadsFeatureFlag.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final ViewThreadsFeatureFlag getINSTANCE() {
+            Lazy lazyAccess$getINSTANCE$cp = ViewThreadsFeatureFlag.access$getINSTANCE$cp();
+            Companion companion = ViewThreadsFeatureFlag.INSTANCE;
+            return (ViewThreadsFeatureFlag) lazyAccess$getINSTANCE$cp.getValue();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public ViewThreadsFeatureFlag() {
         this(null, 1, null);
@@ -34,6 +52,6 @@ public final class ViewThreadsFeatureFlag {
     }
 
     public /* synthetic */ ViewThreadsFeatureFlag(StoreExperiments storeExperiments, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i & 1) != 0 ? StoreStream.Companion.getExperiments() : storeExperiments);
+        this((i & 1) != 0 ? StoreStream.INSTANCE.getExperiments() : storeExperiments);
     }
 }

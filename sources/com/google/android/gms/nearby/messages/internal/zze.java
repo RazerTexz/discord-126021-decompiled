@@ -1,7 +1,7 @@
 package com.google.android.gms.nearby.messages.internal;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import b.c.a.a0.d;
 import b.i.a.f.j.b.e.m0;
@@ -12,7 +12,7 @@ import java.util.Locale;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class zze extends AbstractSafeParcelable implements Distance {
-    public static final Parcelable$Creator<zze> CREATOR = new m0();
+    public static final Parcelable.Creator<zze> CREATOR = new m0();
     public final int j;
     public final int k;
     public final double l;

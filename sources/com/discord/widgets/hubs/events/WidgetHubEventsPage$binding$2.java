@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+import com.discord.R;
 import com.discord.databinding.WidgetHubEventsPageBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -26,11 +27,11 @@ public final /* synthetic */ class WidgetHubEventsPage$binding$2 extends k imple
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetHubEventsPageBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = 2131364898;
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(2131364898);
+        int i = R.id.recycler_view;
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         if (recyclerView != null) {
-            i = 2131365869;
-            TextView textView = (TextView) view.findViewById(2131365869);
+            i = R.id.title;
+            TextView textView = (TextView) view.findViewById(R.id.title);
             if (textView != null) {
                 return new WidgetHubEventsPageBinding((LinearLayout) view, recyclerView, textView);
             }

@@ -10,8 +10,7 @@ import androidx.core.content.ContextCompat;
 import b.a.i.x;
 import b.a.y.k0.a;
 import b.a.y.k0.b;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.m;
@@ -30,18 +29,18 @@ public final class GuildChannelSideBarActionsView extends LinearLayout {
     public GuildChannelSideBarActionsView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(getContext()).inflate(R$layout.guild_channel_side_bar_actions_view, this);
-        int i = R$id.channel_sidebar_actions_notifications;
-        MaterialButton materialButton = (MaterialButton) findViewById(R$id.channel_sidebar_actions_notifications);
+        LayoutInflater.from(getContext()).inflate(R.layout.guild_channel_side_bar_actions_view, this);
+        int i = R.id.channel_sidebar_actions_notifications;
+        MaterialButton materialButton = (MaterialButton) findViewById(R.id.channel_sidebar_actions_notifications);
         if (materialButton != null) {
-            i = R$id.channel_sidebar_actions_pins;
-            MaterialButton materialButton2 = (MaterialButton) findViewById(R$id.channel_sidebar_actions_pins);
+            i = R.id.channel_sidebar_actions_pins;
+            MaterialButton materialButton2 = (MaterialButton) findViewById(R.id.channel_sidebar_actions_pins);
             if (materialButton2 != null) {
-                i = R$id.channel_sidebar_actions_search_or_threads;
-                MaterialButton materialButton3 = (MaterialButton) findViewById(R$id.channel_sidebar_actions_search_or_threads);
+                i = R.id.channel_sidebar_actions_search_or_threads;
+                MaterialButton materialButton3 = (MaterialButton) findViewById(R.id.channel_sidebar_actions_search_or_threads);
                 if (materialButton3 != null) {
-                    i = R$id.channel_sidebar_actions_settings;
-                    MaterialButton materialButton4 = (MaterialButton) findViewById(R$id.channel_sidebar_actions_settings);
+                    i = R.id.channel_sidebar_actions_settings;
+                    MaterialButton materialButton4 = (MaterialButton) findViewById(R.id.channel_sidebar_actions_settings);
                     if (materialButton4 != null) {
                         x xVar = new x(this, materialButton, materialButton2, materialButton3, materialButton4);
                         m.checkNotNullExpressionValue(xVar, "GuildChannelSideBarActio…ater.from(context), this)");
@@ -61,24 +60,24 @@ public final class GuildChannelSideBarActionsView extends LinearLayout {
         m.checkNotNullParameter(onNotificationsClicked, "onNotificationsClicked");
         m.checkNotNullParameter(onPinsClicked, "onPinsClicked");
         m.checkNotNullParameter(onSettingsClicked, "onSettingsClicked");
-        int themedDrawableRes$default = hasUnseenPins ? DrawableCompat.getThemedDrawableRes$default(this, 2130969545, 0, 2, (Object) null) : DrawableCompat.getThemedDrawableRes$default(this, 2130969544, 0, 2, (Object) null);
-        int themedDrawableRes$default2 = channelIsMuted ? DrawableCompat.getThemedDrawableRes$default(this, 2130969542, 0, 2, (Object) null) : DrawableCompat.getThemedDrawableRes$default(this, 2130969543, 0, 2, (Object) null);
+        int themedDrawableRes$default = hasUnseenPins ? DrawableCompat.getThemedDrawableRes$default(this, R.attr.ic_sidebar_pins_on_24dp, 0, 2, (Object) null) : DrawableCompat.getThemedDrawableRes$default(this, R.attr.ic_sidebar_pins_off_24dp, 0, 2, (Object) null);
+        int themedDrawableRes$default2 = channelIsMuted ? DrawableCompat.getThemedDrawableRes$default(this, R.attr.ic_sidebar_notifications_off_24dp, 0, 2, (Object) null) : DrawableCompat.getThemedDrawableRes$default(this, R.attr.ic_sidebar_notifications_on_24dp, 0, 2, (Object) null);
         if (showSearch) {
             MaterialButton materialButton = this.binding.d;
             m.checkNotNullExpressionValue(materialButton, "binding.channelSidebarActionsSearchOrThreads");
-            DrawableCompat.setCompoundDrawablesCompat$default(materialButton, 0, 2131232128, 0, 0, 13, (Object) null);
+            DrawableCompat.setCompoundDrawablesCompat$default(materialButton, 0, R.drawable.ic_sidebar_search_24dp, 0, 0, 13, (Object) null);
             this.binding.d.setOnClickListener(new a(onSearchClicked));
             MaterialButton materialButton2 = this.binding.d;
             m.checkNotNullExpressionValue(materialButton2, "binding.channelSidebarActionsSearchOrThreads");
-            materialButton2.setText(getContext().getString(2131895292));
+            materialButton2.setText(getContext().getString(R.string.search));
         } else {
             MaterialButton materialButton3 = this.binding.d;
             m.checkNotNullExpressionValue(materialButton3, "binding.channelSidebarActionsSearchOrThreads");
-            DrawableCompat.setCompoundDrawablesCompat$default(materialButton3, 0, 2131232193, 0, 0, 13, (Object) null);
+            DrawableCompat.setCompoundDrawablesCompat$default(materialButton3, 0, R.drawable.ic_thread, 0, 0, 13, (Object) null);
             this.binding.d.setOnClickListener(new a(onThreadBrowserClicked));
             MaterialButton materialButton4 = this.binding.d;
             m.checkNotNullExpressionValue(materialButton4, "binding.channelSidebarActionsSearchOrThreads");
-            materialButton4.setText(getContext().getString(2131896399));
+            materialButton4.setText(getContext().getString(R.string.threads));
         }
         this.binding.e.setOnClickListener(new a(onSettingsClicked));
         MaterialButton materialButton5 = this.binding.c;
@@ -90,6 +89,6 @@ public final class GuildChannelSideBarActionsView extends LinearLayout {
         MaterialButton materialButton7 = this.binding.f226b;
         DrawableCompat.setCompoundDrawablesCompat(materialButton7, (Drawable) null, ContextCompat.getDrawable(materialButton7.getContext(), themedDrawableRes$default2), (Drawable) null, (Drawable) null);
         materialButton7.setOnClickListener(new b(onNotificationsClicked));
-        materialButton7.setContentDescription(channelIsMuted ? materialButton7.getContext().getString(2131893386) : materialButton7.getContext().getString(2131893385));
+        materialButton7.setContentDescription(channelIsMuted ? materialButton7.getContext().getString(R.string.notifications_muted) : materialButton7.getContext().getString(R.string.notifications));
     }
 }

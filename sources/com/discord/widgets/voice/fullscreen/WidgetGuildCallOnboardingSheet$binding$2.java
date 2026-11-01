@@ -2,7 +2,7 @@ package com.discord.widgets.voice.fullscreen;
 
 import android.view.View;
 import android.widget.LinearLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetGuildCallOnboardingBinding;
 import com.discord.views.JoinVoiceChannelButton;
 import d0.z.d.k;
@@ -26,10 +26,10 @@ public final /* synthetic */ class WidgetGuildCallOnboardingSheet$binding$2 exte
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGuildCallOnboardingBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        JoinVoiceChannelButton joinVoiceChannelButton = (JoinVoiceChannelButton) view.findViewById(R$id.guild_call_onboarding_connect);
+        JoinVoiceChannelButton joinVoiceChannelButton = (JoinVoiceChannelButton) view.findViewById(R.id.guild_call_onboarding_connect);
         if (joinVoiceChannelButton != null) {
             return new WidgetGuildCallOnboardingBinding((LinearLayout) view, joinVoiceChannelButton);
         }
-        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R$id.guild_call_onboarding_connect)));
+        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R.id.guild_call_onboarding_connect)));
     }
 }

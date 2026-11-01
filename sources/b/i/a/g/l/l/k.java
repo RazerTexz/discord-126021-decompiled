@@ -16,6 +16,11 @@ import androidx.annotation.RequiresApi;
 public class k {
     public static final RectF a = new RectF();
 
+    /* JADX INFO: compiled from: TransitionUtils.java */
+    public interface a {
+        void a(Canvas canvas);
+    }
+
     @NonNull
     public static <T> T a(@Nullable T t, @NonNull T t2) {
         return t != null ? t : t2;
@@ -70,7 +75,7 @@ public class k {
         return f3 > f2 ? i2 : (int) d(i, i2, (f3 - f) / (f2 - f));
     }
 
-    public static void h(Canvas canvas, Rect rect, float f, float f2, float f3, int i, k$a k_a) {
+    public static void h(Canvas canvas, Rect rect, float f, float f2, float f3, int i, a aVar) {
         if (i <= 0) {
             return;
         }
@@ -82,7 +87,7 @@ public class k {
             rectF.set(rect);
             canvas.saveLayerAlpha(rectF, i);
         }
-        k_a.a(canvas);
+        aVar.a(canvas);
         canvas.restoreToCount(iSave);
     }
 }

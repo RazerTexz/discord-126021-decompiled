@@ -23,7 +23,7 @@ public class FileLog {
         try {
             if (fos == null) {
                 fos = new FileOutputStream(new File(System.getProperty("user.home"), "LOMBOK-DEBUG-OUT.txt"));
-                Runtime.getRuntime().addShutdownHook(new FileLog$1());
+                Runtime.getRuntime().addShutdownHook(new AnonymousClass1());
             }
             fos.write(message.getBytes(Constants.ENCODING));
             fos.write(10);
@@ -36,6 +36,21 @@ public class FileLog {
             fos.flush();
         } catch (IOException e) {
             throw new IllegalStateException("Internal lombok file-based debugging not possible", e);
+        }
+    }
+
+    /* JADX INFO: renamed from: lombok.core.debug.FileLog$1, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/debug/FileLog$1.SCL.lombok */
+    class AnonymousClass1 extends Thread {
+        AnonymousClass1() {
+        }
+
+        @Override // java.lang.Thread, java.lang.Runnable
+        public void run() {
+            try {
+                FileLog.access$0().close();
+            } catch (Throwable unused) {
+            }
         }
     }
 }

@@ -1,6 +1,5 @@
 package d0.f0;
 
-import d0.k$a;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import kotlin.Unit;
@@ -60,7 +59,7 @@ public final class j<T> extends k<T> implements Iterator<T>, Continuation<Unit>,
             d0.z.d.m.checkNotNull(continuation);
             this.m = null;
             Unit unit = Unit.a;
-            k$a k_a = d0.k.j;
+            d0.k.a aVar = d0.k.j;
             continuation.resumeWith(d0.k.m97constructorimpl(unit));
         }
     }

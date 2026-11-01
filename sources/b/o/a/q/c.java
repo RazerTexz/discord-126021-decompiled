@@ -11,10 +11,14 @@ public abstract class c {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     @VisibleForTesting
-    public a f1947b;
+    public b.o.a.q.a f1947b;
     public PointF[] c;
 
-    public c(@NonNull c$a c_a, int i) {
+    /* JADX INFO: compiled from: GestureFinder.java */
+    public interface a {
+    }
+
+    public c(@NonNull a aVar, int i) {
         this.c = new PointF[i];
         for (int i2 = 0; i2 < i; i2++) {
             this.c[i2] = new PointF(0.0f, 0.0f);

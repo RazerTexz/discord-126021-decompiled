@@ -1,8 +1,11 @@
 package b.i.b.b;
 
+import java.util.AbstractCollection;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.NavigableMap;
+import java.util.Objects;
 import java.util.Set;
 import java.util.SortedMap;
 import org.checkerframework.checker.nullness.compatqual.MonotonicNonNullDecl;
@@ -21,19 +24,53 @@ public abstract class g<K, V> implements b0<K, V> {
     @MonotonicNonNullDecl
     public transient Map<K, Collection<V>> l;
 
+    /* JADX INFO: compiled from: AbstractMultimap.java */
+    public class a extends AbstractCollection<V> {
+        public a() {
+        }
+
+        @Override // java.util.AbstractCollection, java.util.Collection
+        public void clear() {
+            ((e) g.this).d();
+        }
+
+        @Override // java.util.AbstractCollection, java.util.Collection
+        public boolean contains(@NullableDecl Object obj) {
+            Iterator<Collection<V>> it = g.this.a().values().iterator();
+            while (it.hasNext()) {
+                if (it.next().contains(obj)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        @Override // java.util.AbstractCollection, java.util.Collection, java.lang.Iterable
+        public Iterator<V> iterator() {
+            e eVar = (e) g.this;
+            Objects.requireNonNull(eVar);
+            return new d(eVar);
+        }
+
+        @Override // java.util.AbstractCollection, java.util.Collection
+        public int size() {
+            return ((e) g.this).n;
+        }
+    }
+
     @Override // b.i.b.b.b0
     public Map<K, Collection<V>> a() {
-        Map<K, Collection<V>> e_g;
+        Map<K, Collection<V>> gVar;
         Map<K, Collection<V>> map = this.l;
         if (map == null) {
             d0 d0Var = (d0) this;
             Map<K, Collection<V>> map2 = d0Var.m;
             if (map2 instanceof NavigableMap) {
-                e_g = new e$d<>(d0Var, (NavigableMap) d0Var.m);
+                gVar = new e.d((NavigableMap) d0Var.m);
             } else {
-                e_g = map2 instanceof SortedMap ? new e$g<>(d0Var, (SortedMap) d0Var.m) : new e$a<>(d0Var, d0Var.m);
+                gVar = map2 instanceof SortedMap ? new e.g((SortedMap) d0Var.m) : new e.a(d0Var.m);
             }
-            map = e_g;
+            map = gVar;
             this.l = map;
         }
         return map;

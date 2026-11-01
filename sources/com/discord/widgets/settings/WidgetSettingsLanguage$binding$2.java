@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetSettingsLanguageBinding;
 import com.discord.views.CheckedSetting;
 import d0.z.d.k;
@@ -29,23 +29,23 @@ public final /* synthetic */ class WidgetSettingsLanguage$binding$2 extends k im
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSettingsLanguageBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.settings_language_current;
-        RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R$id.settings_language_current);
+        int i = R.id.settings_language_current;
+        RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.settings_language_current);
         if (relativeLayout != null) {
-            i = R$id.settings_language_current_flag;
-            ImageView imageView = (ImageView) view.findViewById(R$id.settings_language_current_flag);
+            i = R.id.settings_language_current_flag;
+            ImageView imageView = (ImageView) view.findViewById(R.id.settings_language_current_flag);
             if (imageView != null) {
-                i = R$id.settings_language_current_text;
-                TextView textView = (TextView) view.findViewById(R$id.settings_language_current_text);
+                i = R.id.settings_language_current_text;
+                TextView textView = (TextView) view.findViewById(R.id.settings_language_current_text);
                 if (textView != null) {
-                    i = R$id.settings_language_header;
-                    TextView textView2 = (TextView) view.findViewById(R$id.settings_language_header);
+                    i = R.id.settings_language_header;
+                    TextView textView2 = (TextView) view.findViewById(R.id.settings_language_header);
                     if (textView2 != null) {
-                        i = R$id.settings_language_sync_check;
-                        CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R$id.settings_language_sync_check);
+                        i = R.id.settings_language_sync_check;
+                        CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R.id.settings_language_sync_check);
                         if (checkedSetting != null) {
-                            i = R$id.settings_language_sync_header;
-                            TextView textView3 = (TextView) view.findViewById(R$id.settings_language_sync_header);
+                            i = R.id.settings_language_sync_header;
+                            TextView textView3 = (TextView) view.findViewById(R.id.settings_language_sync_header);
                             if (textView3 != null) {
                                 return new WidgetSettingsLanguageBinding((CoordinatorLayout) view, relativeLayout, imageView, textView, textView2, checkedSetting, textView3);
                             }

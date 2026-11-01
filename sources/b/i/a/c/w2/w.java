@@ -1,6 +1,6 @@
 package b.i.a.c.w2;
 
-import android.media.MediaDrm$MediaDrmStateException;
+import android.media.MediaDrm;
 import androidx.annotation.DoNotInline;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -12,14 +12,14 @@ import java.util.Objects;
 public final class w {
     @DoNotInline
     public static boolean a(@Nullable Throwable th) {
-        return th instanceof MediaDrm$MediaDrmStateException;
+        return th instanceof MediaDrm.MediaDrmStateException;
     }
 
     @DoNotInline
     public static int b(Throwable th) {
         String[] strArrSplit;
         int length;
-        String diagnosticInfo = ((MediaDrm$MediaDrmStateException) th).getDiagnosticInfo();
+        String diagnosticInfo = ((MediaDrm.MediaDrmStateException) th).getDiagnosticInfo();
         int i = b.i.a.c.f3.e0.a;
         int i2 = 0;
         if (diagnosticInfo != null && (length = (strArrSplit = diagnosticInfo.split("_", -1)).length) >= 2) {

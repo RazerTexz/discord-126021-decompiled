@@ -4,18 +4,16 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
-import android.content.res.Resources$Theme;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class TintContextWrapper extends ContextWrapper {
     private final Resources mResources;
-    private final Resources$Theme mTheme;
+    private final Resources.Theme mTheme;
     private static ArrayList<WeakReference<TintContextWrapper>> sCache;
     private static final Object CACHE_LOCK = new Object();
 
@@ -28,9 +26,9 @@ public class TintContextWrapper extends ContextWrapper {
         }
         VectorEnabledTintResources vectorEnabledTintResources = new VectorEnabledTintResources(this, context.getResources());
         this.mResources = vectorEnabledTintResources;
-        Resources$Theme resources$ThemeNewTheme = vectorEnabledTintResources.newTheme();
-        this.mTheme = resources$ThemeNewTheme;
-        resources$ThemeNewTheme.setTo(context.getTheme());
+        Resources.Theme themeNewTheme = vectorEnabledTintResources.newTheme();
+        this.mTheme = themeNewTheme;
+        themeNewTheme.setTo(context.getTheme());
     }
 
     @Override // android.content.ContextWrapper, android.content.Context
@@ -44,18 +42,18 @@ public class TintContextWrapper extends ContextWrapper {
     }
 
     @Override // android.content.ContextWrapper, android.content.Context
-    public Resources$Theme getTheme() {
-        Resources$Theme resources$Theme = this.mTheme;
-        return resources$Theme == null ? super.getTheme() : resources$Theme;
+    public Resources.Theme getTheme() {
+        Resources.Theme theme = this.mTheme;
+        return theme == null ? super.getTheme() : theme;
     }
 
     @Override // android.content.ContextWrapper, android.content.Context
     public void setTheme(int i) {
-        Resources$Theme resources$Theme = this.mTheme;
-        if (resources$Theme == null) {
+        Resources.Theme theme = this.mTheme;
+        if (theme == null) {
             super.setTheme(i);
         } else {
-            resources$Theme.applyStyle(i, true);
+            theme.applyStyle(i, true);
         }
     }
 

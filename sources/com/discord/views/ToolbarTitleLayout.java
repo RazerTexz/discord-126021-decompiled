@@ -10,8 +10,7 @@ import androidx.annotation.DrawableRes;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 import b.a.i.b4;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import d0.z.d.m;
@@ -28,21 +27,21 @@ public final class ToolbarTitleLayout extends ConstraintLayout {
     public ToolbarTitleLayout(Context context) {
         super(context);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(getContext()).inflate(R$layout.view_toolbar_title, this);
-        int i = R$id.toolbar_icon;
-        ImageView imageView = (ImageView) findViewById(R$id.toolbar_icon);
+        LayoutInflater.from(getContext()).inflate(R.layout.view_toolbar_title, this);
+        int i = R.id.toolbar_icon;
+        ImageView imageView = (ImageView) findViewById(R.id.toolbar_icon);
         if (imageView != null) {
-            i = R$id.toolbar_presence;
-            StatusView statusView = (StatusView) findViewById(R$id.toolbar_presence);
+            i = R.id.toolbar_presence;
+            StatusView statusView = (StatusView) findViewById(R.id.toolbar_presence);
             if (statusView != null) {
-                i = R$id.toolbar_title;
-                TextView textView = (TextView) findViewById(R$id.toolbar_title);
+                i = R.id.toolbar_title;
+                TextView textView = (TextView) findViewById(R.id.toolbar_title);
                 if (textView != null) {
-                    i = R$id.toolbar_title_subtext;
-                    TextView textView2 = (TextView) findViewById(R$id.toolbar_title_subtext);
+                    i = R.id.toolbar_title_subtext;
+                    TextView textView2 = (TextView) findViewById(R.id.toolbar_title_subtext);
                     if (textView2 != null) {
-                        i = R$id.toolbar_title_trailing_icon;
-                        ImageView imageView2 = (ImageView) findViewById(R$id.toolbar_title_trailing_icon);
+                        i = R.id.toolbar_title_trailing_icon;
+                        ImageView imageView2 = (ImageView) findViewById(R.id.toolbar_title_trailing_icon);
                         if (imageView2 != null) {
                             b4 b4Var = new b4(this, imageView, statusView, textView, textView2, imageView2);
                             m.checkNotNullExpressionValue(b4Var, "ViewToolbarTitleBinding.…ater.from(context), this)");

@@ -4,6 +4,7 @@ import d0.e0.p.d.m0.c.f1;
 import d0.e0.p.d.m0.e.a.k0.a0;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Member;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.List;
 /* JADX INFO: compiled from: ReflectJavaMember.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class r extends n implements f, t, d0.e0.p.d.m0.e.a.k0.q {
-    public final List<a0> a(Type[] typeArr, Annotation[][] annotationArr, boolean z2) {
+    public final List<a0> a(Type[] typeArr, Annotation[][] annotationArr, boolean z2) throws IllegalAccessException, InvocationTargetException {
         String str;
         d0.z.d.m.checkNotNullParameter(typeArr, "parameterTypes");
         d0.z.d.m.checkNotNullParameter(annotationArr, "parameterAnnotations");
@@ -60,7 +61,7 @@ public abstract class r extends n implements f, t, d0.e0.p.d.m0.e.a.k0.q {
 
     @Override // d0.e0.p.d.m0.e.a.k0.d
     public c findAnnotation(d0.e0.p.d.m0.g.b bVar) {
-        return f$a.findAnnotation(this, bVar);
+        return f.a.findAnnotation(this, bVar);
     }
 
     @Override // d0.e0.p.d.m0.e.a.k0.d
@@ -99,7 +100,7 @@ public abstract class r extends n implements f, t, d0.e0.p.d.m0.e.a.k0.q {
 
     @Override // d0.e0.p.d.m0.e.a.k0.s
     public f1 getVisibility() {
-        return t$a.getVisibility(this);
+        return t.a.getVisibility(this);
     }
 
     public int hashCode() {
@@ -108,22 +109,22 @@ public abstract class r extends n implements f, t, d0.e0.p.d.m0.e.a.k0.q {
 
     @Override // d0.e0.p.d.m0.e.a.k0.s
     public boolean isAbstract() {
-        return t$a.isAbstract(this);
+        return t.a.isAbstract(this);
     }
 
     @Override // d0.e0.p.d.m0.e.a.k0.d
     public boolean isDeprecatedInJavaDoc() {
-        return f$a.isDeprecatedInJavaDoc(this);
+        return f.a.isDeprecatedInJavaDoc(this);
     }
 
     @Override // d0.e0.p.d.m0.e.a.k0.s
     public boolean isFinal() {
-        return t$a.isFinal(this);
+        return t.a.isFinal(this);
     }
 
     @Override // d0.e0.p.d.m0.e.a.k0.s
     public boolean isStatic() {
-        return t$a.isStatic(this);
+        return t.a.isStatic(this);
     }
 
     public String toString() {
@@ -137,7 +138,7 @@ public abstract class r extends n implements f, t, d0.e0.p.d.m0.e.a.k0.q {
 
     @Override // d0.e0.p.d.m0.e.a.k0.d
     public List<c> getAnnotations() {
-        return f$a.getAnnotations(this);
+        return f.a.getAnnotations(this);
     }
 
     @Override // d0.e0.p.d.m0.e.a.k0.q

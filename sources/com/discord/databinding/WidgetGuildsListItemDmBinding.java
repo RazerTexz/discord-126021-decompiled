@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
+import com.discord.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -28,11 +28,11 @@ public final class WidgetGuildsListItemDmBinding implements ViewBinding {
 
     @NonNull
     public static WidgetGuildsListItemDmBinding a(@NonNull View view) {
-        int i = R$id.guilds_item_dm_avatar;
-        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.guilds_item_dm_avatar);
+        int i = R.id.guilds_item_dm_avatar;
+        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.guilds_item_dm_avatar);
         if (simpleDraweeView != null) {
-            i = R$id.guilds_item_dm_count;
-            TextView textView = (TextView) view.findViewById(R$id.guilds_item_dm_count);
+            i = R.id.guilds_item_dm_count;
+            TextView textView = (TextView) view.findViewById(R.id.guilds_item_dm_count);
             if (textView != null) {
                 return new WidgetGuildsListItemDmBinding(view, simpleDraweeView, textView);
             }

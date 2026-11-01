@@ -16,14 +16,14 @@ public final class x {
     public int g;
     public final byte[] a = new byte[10];
 
-    public void a(w wVar, @Nullable w$a w_a) {
+    public void a(w wVar, @Nullable w.a aVar) {
         if (this.c > 0) {
-            wVar.d(this.d, this.e, this.f, this.g, w_a);
+            wVar.d(this.d, this.e, this.f, this.g, aVar);
             this.c = 0;
         }
     }
 
-    public void b(w wVar, long j, int i, int i2, int i3, @Nullable w$a w_a) {
+    public void b(w wVar, long j, int i, int i2, int i3, @Nullable w.a aVar) {
         b.c.a.a0.d.E(this.g <= i2 + i3, "TrueHD chunk samples must be contiguous in the sample queue.");
         if (this.f1300b) {
             int i4 = this.c;
@@ -37,7 +37,7 @@ public final class x {
             this.f += i2;
             this.g = i3;
             if (i5 >= 16) {
-                a(wVar, w_a);
+                a(wVar, aVar);
             }
         }
     }

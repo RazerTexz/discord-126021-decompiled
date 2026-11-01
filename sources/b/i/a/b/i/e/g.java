@@ -16,7 +16,7 @@ public final class g extends m {
     public final List<l> f;
     public final p g;
 
-    public g(long j, long j2, k kVar, Integer num, String str, List list, p pVar, g$a g_a) {
+    public g(long j, long j2, k kVar, Integer num, String str, List list, p pVar, a aVar) {
         this.a = j;
         this.f751b = j2;
         this.c = kVar;

@@ -6,7 +6,7 @@ import androidx.constraintlayout.widget.Barrier;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Group;
 import androidx.viewpager2.widget.ViewPager2;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetServerSettingsGuildRoleSubscriptionEditTierBinding;
 import com.google.android.material.appbar.AppBarLayout;
@@ -34,35 +34,35 @@ public final /* synthetic */ class WidgetServerSettingsGuildRoleSubscriptionEdit
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetServerSettingsGuildRoleSubscriptionEditTierBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.guild_role_subscription_edit_tier_publish;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.guild_role_subscription_edit_tier_publish);
+        int i = R.id.guild_role_subscription_edit_tier_publish;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.guild_role_subscription_edit_tier_publish);
         if (materialButton != null) {
-            i = R$id.guild_role_subscription_edit_tier_publish_description;
-            TextView textView = (TextView) view.findViewById(R$id.guild_role_subscription_edit_tier_publish_description);
+            i = R.id.guild_role_subscription_edit_tier_publish_description;
+            TextView textView = (TextView) view.findViewById(R.id.guild_role_subscription_edit_tier_publish_description);
             if (textView != null) {
-                i = R$id.guild_role_subscription_edit_tier_publish_group;
-                Group group = (Group) view.findViewById(R$id.guild_role_subscription_edit_tier_publish_group);
+                i = R.id.guild_role_subscription_edit_tier_publish_group;
+                Group group = (Group) view.findViewById(R.id.guild_role_subscription_edit_tier_publish_group);
                 if (group != null) {
-                    i = R$id.guild_role_subscription_edit_tier_tabs;
-                    TabLayout tabLayout = (TabLayout) view.findViewById(R$id.guild_role_subscription_edit_tier_tabs);
+                    i = R.id.guild_role_subscription_edit_tier_tabs;
+                    TabLayout tabLayout = (TabLayout) view.findViewById(R.id.guild_role_subscription_edit_tier_tabs);
                     if (tabLayout != null) {
-                        i = R$id.guild_role_subscription_edit_tier_view_pager;
-                        ViewPager2 viewPager2 = (ViewPager2) view.findViewById(R$id.guild_role_subscription_edit_tier_view_pager);
+                        i = R.id.guild_role_subscription_edit_tier_view_pager;
+                        ViewPager2 viewPager2 = (ViewPager2) view.findViewById(R.id.guild_role_subscription_edit_tier_view_pager);
                         if (viewPager2 != null) {
-                            i = R$id.guild_role_subscription_edit_tier_view_pager_top_barrier;
-                            Barrier barrier = (Barrier) view.findViewById(R$id.guild_role_subscription_edit_tier_view_pager_top_barrier);
+                            i = R.id.guild_role_subscription_edit_tier_view_pager_top_barrier;
+                            Barrier barrier = (Barrier) view.findViewById(R.id.guild_role_subscription_edit_tier_view_pager_top_barrier);
                             if (barrier != null) {
-                                i = R$id.server_settings_guild_role_subscription_edit_tier_app_bar;
-                                AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R$id.server_settings_guild_role_subscription_edit_tier_app_bar);
+                                i = R.id.server_settings_guild_role_subscription_edit_tier_app_bar;
+                                AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R.id.server_settings_guild_role_subscription_edit_tier_app_bar);
                                 if (appBarLayout != null) {
-                                    i = R$id.server_settings_guild_role_subscription_edit_tier_delete;
-                                    MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.server_settings_guild_role_subscription_edit_tier_delete);
+                                    i = R.id.server_settings_guild_role_subscription_edit_tier_delete;
+                                    MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.server_settings_guild_role_subscription_edit_tier_delete);
                                     if (materialButton2 != null) {
-                                        i = R$id.server_settings_guild_role_subscription_edit_tier_save;
-                                        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R$id.server_settings_guild_role_subscription_edit_tier_save);
+                                        i = R.id.server_settings_guild_role_subscription_edit_tier_save;
+                                        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.server_settings_guild_role_subscription_edit_tier_save);
                                         if (floatingActionButton != null) {
-                                            i = R$id.server_settings_guild_role_subscription_edit_tier_view_flipper;
-                                            AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R$id.server_settings_guild_role_subscription_edit_tier_view_flipper);
+                                            i = R.id.server_settings_guild_role_subscription_edit_tier_view_flipper;
+                                            AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R.id.server_settings_guild_role_subscription_edit_tier_view_flipper);
                                             if (appViewFlipper != null) {
                                                 return new WidgetServerSettingsGuildRoleSubscriptionEditTierBinding((ConstraintLayout) view, materialButton, textView, group, tabLayout, viewPager2, barrier, appBarLayout, materialButton2, floatingActionButton, appViewFlipper);
                                             }

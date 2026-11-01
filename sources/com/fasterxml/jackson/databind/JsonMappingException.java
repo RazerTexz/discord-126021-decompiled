@@ -1,19 +1,20 @@
 package com.fasterxml.jackson.databind;
 
-import b.d.b.a.a;
 import b.g.a.a.m;
 import b.g.a.b.f;
 import b.g.a.c.i0.d;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.Closeable;
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Objects;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class JsonMappingException extends JsonProcessingException {
     public static final /* synthetic */ int j = 0;
     private static final long serialVersionUID = 1;
-    public LinkedList<JsonMappingException$a> _path;
+    public LinkedList<a> _path;
     public transient Closeable k;
 
     public JsonMappingException(Closeable closeable, String str) {
@@ -37,9 +38,9 @@ public class JsonMappingException extends JsonProcessingException {
         }
         StringBuilder sb = message == null ? new StringBuilder() : new StringBuilder(message);
         sb.append(" (through reference chain: ");
-        LinkedList<JsonMappingException$a> linkedList = this._path;
+        LinkedList<a> linkedList = this._path;
         if (linkedList != null) {
-            Iterator<JsonMappingException$a> it = linkedList.iterator();
+            Iterator<a> it = linkedList.iterator();
             while (it.hasNext()) {
                 sb.append(it.next().a());
                 if (it.hasNext()) {
@@ -51,23 +52,23 @@ public class JsonMappingException extends JsonProcessingException {
         return sb.toString();
     }
 
-    public void e(JsonMappingException$a jsonMappingException$a) {
+    public void e(a aVar) {
         if (this._path == null) {
             this._path = new LinkedList<>();
         }
         if (this._path.size() < 1000) {
-            this._path.addFirst(jsonMappingException$a);
+            this._path.addFirst(aVar);
         }
     }
 
-    public static JsonMappingException f(Throwable th, JsonMappingException$a jsonMappingException$a) {
+    public static JsonMappingException f(Throwable th, a aVar) {
         JsonMappingException jsonMappingException;
         if (th instanceof JsonMappingException) {
             jsonMappingException = (JsonMappingException) th;
         } else {
             String strH = d.h(th);
             if (strH == null || strH.isEmpty()) {
-                StringBuilder sbU = a.U("(was ");
+                StringBuilder sbU = b.d.b.a.a.U("(was ");
                 sbU.append(th.getClass().getName());
                 sbU.append(")");
                 strH = sbU.toString();
@@ -81,7 +82,7 @@ public class JsonMappingException extends JsonProcessingException {
             }
             jsonMappingException = new JsonMappingException(closeable, strH, th);
         }
-        jsonMappingException.e(jsonMappingException$a);
+        jsonMappingException.e(aVar);
         return jsonMappingException;
     }
 
@@ -98,6 +99,81 @@ public class JsonMappingException extends JsonProcessingException {
     @Override // com.fasterxml.jackson.core.JsonProcessingException, java.lang.Throwable
     public String toString() {
         return getClass().getName() + ": " + getMessage();
+    }
+
+    public class a implements Serializable {
+        private static final long serialVersionUID = 2;
+        public String _desc;
+        public String _fieldName;
+        public int _index;
+        public transient Object j;
+
+        public a() {
+            this._index = -1;
+        }
+
+        public String a() {
+            if (this._desc == null) {
+                StringBuilder sb = new StringBuilder();
+                Object obj = this.j;
+                if (obj != null) {
+                    Class<?> componentType = obj instanceof Class ? (Class) obj : obj.getClass();
+                    int i = 0;
+                    while (componentType.isArray()) {
+                        componentType = componentType.getComponentType();
+                        i++;
+                    }
+                    sb.append(componentType.getName());
+                    while (true) {
+                        i--;
+                        if (i < 0) {
+                            break;
+                        }
+                        sb.append("[]");
+                    }
+                } else {
+                    sb.append("UNKNOWN");
+                }
+                sb.append('[');
+                if (this._fieldName != null) {
+                    sb.append('\"');
+                    sb.append(this._fieldName);
+                    sb.append('\"');
+                } else {
+                    int i2 = this._index;
+                    if (i2 >= 0) {
+                        sb.append(i2);
+                    } else {
+                        sb.append('?');
+                    }
+                }
+                sb.append(']');
+                this._desc = sb.toString();
+            }
+            return this._desc;
+        }
+
+        public String toString() {
+            return a();
+        }
+
+        public Object writeReplace() {
+            a();
+            return this;
+        }
+
+        public a(Object obj, String str) {
+            this._index = -1;
+            this.j = obj;
+            Objects.requireNonNull(str, "Cannot pass null fieldName");
+            this._fieldName = str;
+        }
+
+        public a(Object obj, int i) {
+            this._index = -1;
+            this.j = obj;
+            this._index = i;
+        }
     }
 
     public JsonMappingException(Closeable closeable, String str, Throwable th) {

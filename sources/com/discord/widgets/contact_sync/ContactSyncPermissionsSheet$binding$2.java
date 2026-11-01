@@ -3,7 +3,7 @@ package com.discord.widgets.contact_sync;
 import android.view.View;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.ContactSyncPermissionsSheetBinding;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.views.CheckedSetting;
@@ -28,26 +28,26 @@ public final /* synthetic */ class ContactSyncPermissionsSheet$binding$2 extends
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final ContactSyncPermissionsSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.contact_sync_permissions_discoverable_toggle;
-        CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R$id.contact_sync_permissions_discoverable_toggle);
+        int i = R.id.contact_sync_permissions_discoverable_toggle;
+        CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R.id.contact_sync_permissions_discoverable_toggle);
         if (checkedSetting != null) {
-            i = R$id.contact_sync_permissions_discovery_info_1;
-            TextView textView = (TextView) view.findViewById(R$id.contact_sync_permissions_discovery_info_1);
+            i = R.id.contact_sync_permissions_discovery_info_1;
+            TextView textView = (TextView) view.findViewById(R.id.contact_sync_permissions_discovery_info_1);
             if (textView != null) {
-                i = R$id.contact_sync_permissions_discovery_info_2;
-                TextView textView2 = (TextView) view.findViewById(R$id.contact_sync_permissions_discovery_info_2);
+                i = R.id.contact_sync_permissions_discovery_info_2;
+                TextView textView2 = (TextView) view.findViewById(R.id.contact_sync_permissions_discovery_info_2);
                 if (textView2 != null) {
-                    i = R$id.contact_sync_permissions_email_toggle;
-                    CheckedSetting checkedSetting2 = (CheckedSetting) view.findViewById(R$id.contact_sync_permissions_email_toggle);
+                    i = R.id.contact_sync_permissions_email_toggle;
+                    CheckedSetting checkedSetting2 = (CheckedSetting) view.findViewById(R.id.contact_sync_permissions_email_toggle);
                     if (checkedSetting2 != null) {
-                        i = R$id.contact_sync_permissions_learn_more;
-                        LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R$id.contact_sync_permissions_learn_more);
+                        i = R.id.contact_sync_permissions_learn_more;
+                        LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R.id.contact_sync_permissions_learn_more);
                         if (linkifiedTextView != null) {
-                            i = R$id.contact_sync_permissions_phone_toggle;
-                            CheckedSetting checkedSetting3 = (CheckedSetting) view.findViewById(R$id.contact_sync_permissions_phone_toggle);
+                            i = R.id.contact_sync_permissions_phone_toggle;
+                            CheckedSetting checkedSetting3 = (CheckedSetting) view.findViewById(R.id.contact_sync_permissions_phone_toggle);
                             if (checkedSetting3 != null) {
-                                i = R$id.contact_sync_permissions_subtitle;
-                                TextView textView3 = (TextView) view.findViewById(R$id.contact_sync_permissions_subtitle);
+                                i = R.id.contact_sync_permissions_subtitle;
+                                TextView textView3 = (TextView) view.findViewById(R.id.contact_sync_permissions_subtitle);
                                 if (textView3 != null) {
                                     return new ContactSyncPermissionsSheetBinding((ConstraintLayout) view, checkedSetting, textView, textView2, checkedSetting2, linkifiedTextView, checkedSetting3, textView3);
                                 }

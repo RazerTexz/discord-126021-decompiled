@@ -81,9 +81,23 @@ public class MethodNode extends MethodVisitor {
         this.parameters.add(new ParameterNode(name, access));
     }
 
+    /* JADX INFO: renamed from: org.objectweb.asm.tree.MethodNode$1, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/tree/MethodNode$1.SCL.lombok */
+    class AnonymousClass1 extends ArrayList<Object> {
+        AnonymousClass1(int x0) {
+            super(x0);
+        }
+
+        @Override // java.util.ArrayList, java.util.AbstractList, java.util.AbstractCollection, java.util.Collection, java.util.List
+        public boolean add(Object o) {
+            MethodNode.this.annotationDefault = o;
+            return super.add(o);
+        }
+    }
+
     @Override // org.objectweb.asm.MethodVisitor
     public AnnotationVisitor visitAnnotationDefault() {
-        return new AnnotationNode(new MethodNode$1(this, 0));
+        return new AnnotationNode(new AnonymousClass1(0));
     }
 
     @Override // org.objectweb.asm.MethodVisitor

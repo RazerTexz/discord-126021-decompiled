@@ -2,8 +2,6 @@ package b.g.a.c;
 
 import b.g.a.c.c0.b0;
 import b.g.a.c.c0.d0;
-import b.g.a.c.c0.w$b;
-import b.g.a.c.c0.w$c;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
@@ -58,11 +56,11 @@ public final class v extends b.g.a.c.z.m<w, v> implements Serializable {
         }
         b.g.a.c.c0.c cVarB = rVar.b(this, jVar, this);
         if (jVar.A()) {
-            Objects.requireNonNull((w$b) this._base._accessorNaming);
-            wVar = new w$c(this, cVarB);
+            Objects.requireNonNull((b.g.a.c.c0.w.b) this._base._accessorNaming);
+            wVar = new b.g.a.c.c0.w.c(this, cVarB);
         } else {
-            w$b w_b = (w$b) this._base._accessorNaming;
-            wVar = new b.g.a.c.c0.w(this, cVarB, w_b._setterPrefix, w_b._getterPrefix, w_b._isGetterPrefix, w_b._baseNameValidator);
+            b.g.a.c.c0.w.b bVar = (b.g.a.c.c0.w.b) this._base._accessorNaming;
+            wVar = new b.g.a.c.c0.w(this, cVarB, bVar._setterPrefix, bVar._getterPrefix, bVar._isGetterPrefix, bVar._baseNameValidator);
         }
         return new b.g.a.c.c0.q(new b0(this, true, jVar, cVarB, wVar));
     }

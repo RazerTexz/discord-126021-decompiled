@@ -2,7 +2,7 @@ package com.discord.rtcconnection;
 
 import a0.a.a.b;
 import b.d.b.a.a;
-import com.discord.rtcconnection.socket.io.Payloads$ResolutionType;
+import com.discord.rtcconnection.socket.io.Payloads;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: VideoMetadata.kt */
@@ -22,15 +22,15 @@ public final /* data */ class VideoMetadata {
     public final Integer maxFrameRate;
 
     /* JADX INFO: renamed from: e, reason: from kotlin metadata */
-    public final Payloads$ResolutionType type;
+    public final Payloads.ResolutionType type;
 
-    public VideoMetadata(long j, int i, int i2, Integer num, Payloads$ResolutionType payloads$ResolutionType) {
-        m.checkNotNullParameter(payloads$ResolutionType, "type");
+    public VideoMetadata(long j, int i, int i2, Integer num, Payloads.ResolutionType resolutionType) {
+        m.checkNotNullParameter(resolutionType, "type");
         this.userID = j;
         this.maxWidth = i;
         this.maxHeight = i2;
         this.maxFrameRate = num;
-        this.type = payloads$ResolutionType;
+        this.type = resolutionType;
     }
 
     public boolean equals(Object other) {
@@ -48,8 +48,8 @@ public final /* data */ class VideoMetadata {
         int iA = ((((b.a(this.userID) * 31) + this.maxWidth) * 31) + this.maxHeight) * 31;
         Integer num = this.maxFrameRate;
         int iHashCode = (iA + (num != null ? num.hashCode() : 0)) * 31;
-        Payloads$ResolutionType payloads$ResolutionType = this.type;
-        return iHashCode + (payloads$ResolutionType != null ? payloads$ResolutionType.hashCode() : 0);
+        Payloads.ResolutionType resolutionType = this.type;
+        return iHashCode + (resolutionType != null ? resolutionType.hashCode() : 0);
     }
 
     public String toString() {

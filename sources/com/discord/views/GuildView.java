@@ -8,9 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import b.a.i.k2;
 import b.f.g.f.c;
-import com.discord.R$a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
@@ -35,12 +33,12 @@ public final class GuildView extends FrameLayout {
     public GuildView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(R$layout.view_guild, this);
-        int i = R$id.guild_avatar;
-        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R$id.guild_avatar);
+        LayoutInflater.from(context).inflate(R.layout.view_guild, this);
+        int i = R.id.guild_avatar;
+        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R.id.guild_avatar);
         if (simpleDraweeView != null) {
-            i = R$id.guild_text;
-            TextView textView = (TextView) findViewById(R$id.guild_text);
+            i = R.id.guild_text;
+            TextView textView = (TextView) findViewById(R.id.guild_text);
             if (textView != null) {
                 k2 k2Var = new k2(this, simpleDraweeView, textView);
                 m.checkNotNullExpressionValue(k2Var, "ViewGuildBinding.inflate…ater.from(context), this)");
@@ -48,9 +46,9 @@ public final class GuildView extends FrameLayout {
                 this.targetImageSize = -1;
                 this.textSize = -1;
                 setClipToOutline(true);
-                setBackgroundResource(2131231317);
+                setBackgroundResource(R.drawable.drawable_squircle_transparent);
                 if (attributeSet != null) {
-                    TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$a.GuildView, 0, 0);
+                    TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.a.GuildView, 0, 0);
                     m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…tyleable.GuildView, 0, 0)");
                     try {
                         this.targetImageSize = typedArrayObtainStyledAttributes.getDimensionPixelSize(0, -1);
@@ -91,7 +89,7 @@ public final class GuildView extends FrameLayout {
     }
 
     public final void b() {
-        c cVarA = c.a(getResources().getDimensionPixelSize(2131165449));
+        c cVarA = c.a(getResources().getDimensionPixelSize(R.dimen.guild_icon_radius));
         m.checkNotNullExpressionValue(cVarA, "RoundingParams.fromCorne…d_icon_radius).toFloat())");
         setRoundingParams(cVarA);
     }

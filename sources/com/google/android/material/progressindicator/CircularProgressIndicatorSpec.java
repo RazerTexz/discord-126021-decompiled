@@ -9,9 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.StyleRes;
 import b.d.b.a.a;
-import com.google.android.material.R$attr;
-import com.google.android.material.R$dimen;
-import com.google.android.material.R$styleable;
+import com.google.android.material.R;
 import com.google.android.material.internal.ThemeEnforcement;
 import com.google.android.material.resources.MaterialResources;
 
@@ -26,7 +24,7 @@ public final class CircularProgressIndicatorSpec extends BaseProgressIndicatorSp
     public int indicatorSize;
 
     public CircularProgressIndicatorSpec(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, R$attr.circularProgressIndicatorStyle);
+        this(context, attributeSet, R.attr.circularProgressIndicatorStyle);
     }
 
     @Override // com.google.android.material.progressindicator.BaseProgressIndicatorSpec
@@ -46,12 +44,12 @@ public final class CircularProgressIndicatorSpec extends BaseProgressIndicatorSp
 
     public CircularProgressIndicatorSpec(@NonNull Context context, @Nullable AttributeSet attributeSet, @AttrRes int i, @StyleRes int i2) {
         super(context, attributeSet, i, i2);
-        int dimensionPixelSize = context.getResources().getDimensionPixelSize(R$dimen.mtrl_progress_circular_size_medium);
-        int dimensionPixelSize2 = context.getResources().getDimensionPixelSize(R$dimen.mtrl_progress_circular_inset_medium);
-        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R$styleable.CircularProgressIndicator, i, i2, new int[0]);
-        this.indicatorSize = MaterialResources.getDimensionPixelSize(context, typedArrayObtainStyledAttributes, R$styleable.CircularProgressIndicator_indicatorSize, dimensionPixelSize);
-        this.indicatorInset = MaterialResources.getDimensionPixelSize(context, typedArrayObtainStyledAttributes, R$styleable.CircularProgressIndicator_indicatorInset, dimensionPixelSize2);
-        this.indicatorDirection = typedArrayObtainStyledAttributes.getInt(R$styleable.CircularProgressIndicator_indicatorDirectionCircular, 0);
+        int dimensionPixelSize = context.getResources().getDimensionPixelSize(R.dimen.mtrl_progress_circular_size_medium);
+        int dimensionPixelSize2 = context.getResources().getDimensionPixelSize(R.dimen.mtrl_progress_circular_inset_medium);
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R.styleable.CircularProgressIndicator, i, i2, new int[0]);
+        this.indicatorSize = MaterialResources.getDimensionPixelSize(context, typedArrayObtainStyledAttributes, R.styleable.CircularProgressIndicator_indicatorSize, dimensionPixelSize);
+        this.indicatorInset = MaterialResources.getDimensionPixelSize(context, typedArrayObtainStyledAttributes, R.styleable.CircularProgressIndicator_indicatorInset, dimensionPixelSize2);
+        this.indicatorDirection = typedArrayObtainStyledAttributes.getInt(R.styleable.CircularProgressIndicator_indicatorDirectionCircular, 0);
         typedArrayObtainStyledAttributes.recycle();
         validateSpec();
     }

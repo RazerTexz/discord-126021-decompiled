@@ -3,20 +3,18 @@ package b.f.l.b;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.view.MotionEvent;
-import b.f.l.a.a$a;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.facebook.samples.zoomable.ZoomableDraweeView;
-import com.facebook.samples.zoomable.ZoomableDraweeView$b;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: DefaultZoomableController.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class c implements e, b.f.l.a.b$a {
+public class c implements e, b.f.l.a.b.a {
     public b.f.l.a.b a;
     public boolean l;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public e$a f651b = null;
+    public e.a f651b = null;
     public boolean c = false;
     public final RectF d = new RectF();
     public final RectF e = new RectF();
@@ -176,23 +174,23 @@ public class c implements e, b.f.l.a.b$a {
     public boolean h(MotionEvent motionEvent) {
         int pointerCount;
         int i;
-        a$a a_a;
+        b.f.l.a.a.InterfaceC0076a interfaceC0076a;
         b.f.l.a.b bVar;
-        b.f.l.a.b$a b_a;
+        b.f.l.a.b.a aVar;
         motionEvent.getAction();
         int i2 = b.f.d.e.a.a;
         int i3 = 0;
         if (!this.c) {
             return false;
         }
-        b.f.l.a.a aVar = this.a.a;
-        Objects.requireNonNull(aVar);
+        b.f.l.a.a aVar2 = this.a.a;
+        Objects.requireNonNull(aVar2);
         int actionMasked = motionEvent.getActionMasked();
         if (actionMasked == 0 || actionMasked == 1) {
             motionEvent.getPointerCount();
             motionEvent.getActionMasked();
-            aVar.c();
-            aVar.f647b = 0;
+            aVar2.c();
+            aVar2.f647b = 0;
             while (i3 < 2) {
                 pointerCount = motionEvent.getPointerCount();
                 int actionMasked2 = motionEvent.getActionMasked();
@@ -201,49 +199,49 @@ public class c implements e, b.f.l.a.b$a {
                     i = -1;
                 }
                 if (i == -1) {
-                    aVar.c[i3] = -1;
+                    aVar2.c[i3] = -1;
                 } else {
-                    aVar.c[i3] = motionEvent.getPointerId(i);
-                    float[] fArr = aVar.f;
-                    float[] fArr2 = aVar.d;
+                    aVar2.c[i3] = motionEvent.getPointerId(i);
+                    float[] fArr = aVar2.f;
+                    float[] fArr2 = aVar2.d;
                     float x2 = motionEvent.getX(i);
                     fArr2[i3] = x2;
                     fArr[i3] = x2;
-                    float[] fArr3 = aVar.g;
-                    float[] fArr4 = aVar.e;
+                    float[] fArr3 = aVar2.g;
+                    float[] fArr4 = aVar2.e;
                     float y2 = motionEvent.getY(i);
                     fArr4[i3] = y2;
                     fArr3[i3] = y2;
-                    aVar.f647b++;
+                    aVar2.f647b++;
                 }
                 i3++;
             }
-            if (aVar.f647b > 0) {
-                aVar.b();
+            if (aVar2.f647b > 0) {
+                aVar2.b();
             }
         } else if (actionMasked == 2) {
             while (i3 < 2) {
-                int iFindPointerIndex = motionEvent.findPointerIndex(aVar.c[i3]);
+                int iFindPointerIndex = motionEvent.findPointerIndex(aVar2.c[i3]);
                 if (iFindPointerIndex != -1) {
-                    aVar.f[i3] = motionEvent.getX(iFindPointerIndex);
-                    aVar.g[i3] = motionEvent.getY(iFindPointerIndex);
+                    aVar2.f[i3] = motionEvent.getX(iFindPointerIndex);
+                    aVar2.g[i3] = motionEvent.getY(iFindPointerIndex);
                 }
                 i3++;
             }
-            if (!aVar.a && aVar.f647b > 0) {
-                aVar.b();
+            if (!aVar2.a && aVar2.f647b > 0) {
+                aVar2.b();
             }
-            if (aVar.a && (a_a = aVar.h) != null && (b_a = (bVar = (b.f.l.a.b) a_a).f648b) != null) {
-                b_a.b(bVar);
+            if (aVar2.a && (interfaceC0076a = aVar2.h) != null && (aVar = (bVar = (b.f.l.a.b) interfaceC0076a).f648b) != null) {
+                aVar.b(bVar);
             }
         } else if (actionMasked == 3) {
-            aVar.c();
-            aVar.a();
+            aVar2.c();
+            aVar2.a();
         } else if (actionMasked == 5 || actionMasked == 6) {
             motionEvent.getPointerCount();
             motionEvent.getActionMasked();
-            aVar.c();
-            aVar.f647b = 0;
+            aVar2.c();
+            aVar2.f647b = 0;
             while (i3 < 2) {
                 pointerCount = motionEvent.getPointerCount();
                 int actionMasked3 = motionEvent.getActionMasked();
@@ -253,25 +251,25 @@ public class c implements e, b.f.l.a.b$a {
                     i = -1;
                 }
                 if (i == -1) {
-                    aVar.c[i3] = -1;
+                    aVar2.c[i3] = -1;
                 } else {
-                    aVar.c[i3] = motionEvent.getPointerId(i);
-                    float[] fArr5 = aVar.f;
-                    float[] fArr6 = aVar.d;
+                    aVar2.c[i3] = motionEvent.getPointerId(i);
+                    float[] fArr5 = aVar2.f;
+                    float[] fArr6 = aVar2.d;
                     float x3 = motionEvent.getX(i);
                     fArr6[i3] = x3;
                     fArr5[i3] = x3;
-                    float[] fArr7 = aVar.g;
-                    float[] fArr8 = aVar.e;
+                    float[] fArr7 = aVar2.g;
+                    float[] fArr8 = aVar2.e;
                     float y3 = motionEvent.getY(i);
                     fArr8[i3] = y3;
                     fArr7[i3] = y3;
-                    aVar.f647b++;
+                    aVar2.f647b++;
                 }
                 i3++;
             }
-            if (aVar.f647b > 0) {
-                aVar.b();
+            if (aVar2.f647b > 0) {
+                aVar2.b();
             }
         }
         return true;
@@ -279,11 +277,11 @@ public class c implements e, b.f.l.a.b$a {
 
     public final void i() {
         this.h.mapRect(this.f, this.e);
-        e$a e_a = this.f651b;
-        if (e_a == null || !this.c) {
+        e.a aVar = this.f651b;
+        if (aVar == null || !this.c) {
             return;
         }
-        ZoomableDraweeView zoomableDraweeView = ((ZoomableDraweeView$b) e_a).a;
+        ZoomableDraweeView zoomableDraweeView = ZoomableDraweeView.this;
         zoomableDraweeView.getLogTag();
         zoomableDraweeView.hashCode();
         int i = b.f.d.e.a.a;

@@ -9,14 +9,14 @@ import kotlin.jvm.functions.Function0;
 /* JADX INFO: compiled from: WidgetChannelNotificationSettings.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChannelNotificationSettings$configureUI$onUnmute$1 extends o implements Function0<Unit> {
-    public final /* synthetic */ WidgetChannelNotificationSettings$Model $this_configureUI;
+    public final /* synthetic */ WidgetChannelNotificationSettings.Model $this_configureUI;
     public final /* synthetic */ WidgetChannelNotificationSettings this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetChannelNotificationSettings$configureUI$onUnmute$1(WidgetChannelNotificationSettings widgetChannelNotificationSettings, WidgetChannelNotificationSettings$Model widgetChannelNotificationSettings$Model) {
+    public WidgetChannelNotificationSettings$configureUI$onUnmute$1(WidgetChannelNotificationSettings widgetChannelNotificationSettings, WidgetChannelNotificationSettings.Model model) {
         super(0);
         this.this$0 = widgetChannelNotificationSettings;
-        this.$this_configureUI = widgetChannelNotificationSettings$Model;
+        this.$this_configureUI = model;
     }
 
     @Override // kotlin.jvm.functions.Function0
@@ -27,6 +27,6 @@ public final class WidgetChannelNotificationSettings$configureUI$onUnmute$1 exte
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2() {
-        StoreUserGuildSettings.setChannelMuted$default(StoreStream.Companion.getUserGuildSettings(), this.this$0.requireContext(), this.$this_configureUI.getChannel().getId(), false, null, 8, null);
+        StoreUserGuildSettings.setChannelMuted$default(StoreStream.INSTANCE.getUserGuildSettings(), this.this$0.requireContext(), this.$this_configureUI.getChannel().getId(), false, null, 8, null);
     }
 }

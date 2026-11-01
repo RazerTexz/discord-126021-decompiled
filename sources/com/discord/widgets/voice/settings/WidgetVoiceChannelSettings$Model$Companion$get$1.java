@@ -23,7 +23,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetVoiceChannelSettings.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetVoiceChannelSettings$Model$Companion$get$1 extends o implements Function0<WidgetVoiceChannelSettings$Model> {
+public final class WidgetVoiceChannelSettings$Model$Companion$get$1 extends o implements Function0<WidgetVoiceChannelSettings.Model> {
     public final /* synthetic */ long $channelId;
     public final /* synthetic */ StoreChannels $channelStore;
     public final /* synthetic */ StoreGuilds $guildStore;
@@ -43,13 +43,13 @@ public final class WidgetVoiceChannelSettings$Model$Companion$get$1 extends o im
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ WidgetVoiceChannelSettings$Model invoke() {
+    public /* bridge */ /* synthetic */ WidgetVoiceChannelSettings.Model invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final WidgetVoiceChannelSettings$Model invoke() {
+    public final WidgetVoiceChannelSettings.Model invoke() {
         Channel channel = this.$channelStore.getChannel(this.$channelId);
         if (channel == null) {
             return null;
@@ -70,6 +70,6 @@ public final class WidgetVoiceChannelSettings$Model$Companion$get$1 extends o im
                 arrayList.add(obj);
             }
         }
-        return new WidgetVoiceChannelSettings$Model(channel, PermissionUtils.canAndIsElevated(16L, Long.valueOf(jLongValue), meSnapshot.getMfaEnabled(), guild.getMfaLevel()), PermissionUtils.canAndIsElevated(Permission.MANAGE_ROLES, Long.valueOf(jLongValue), meSnapshot.getMfaEnabled(), guild.getMfaLevel()), GuildUtilsKt.getMaxVoiceBitrateKbps(guild, channel), u.sortedWith(arrayList, new WidgetVoiceChannelSettings$Model$Companion$get$1$$special$$inlined$compareBy$1(t.getCASE_INSENSITIVE_ORDER(d0.a))), guild.getId());
+        return new WidgetVoiceChannelSettings.Model(channel, PermissionUtils.canAndIsElevated(16L, Long.valueOf(jLongValue), meSnapshot.getMfaEnabled(), guild.getMfaLevel()), PermissionUtils.canAndIsElevated(Permission.MANAGE_ROLES, Long.valueOf(jLongValue), meSnapshot.getMfaEnabled(), guild.getMfaLevel()), GuildUtilsKt.getMaxVoiceBitrateKbps(guild, channel), u.sortedWith(arrayList, new WidgetVoiceChannelSettings$Model$Companion$get$1$$special$$inlined$compareBy$1(t.getCASE_INSENSITIVE_ORDER(d0.a))), guild.getId());
     }
 }

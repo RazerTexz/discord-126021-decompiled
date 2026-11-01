@@ -1,6 +1,6 @@
 package com.discord.utilities.sms;
 
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import com.discord.app.AppLog;
 import com.discord.utilities.logging.Logger;
@@ -35,21 +35,21 @@ public final class AppSignatureHelper$appSignatures$2 extends o implements Funct
             m.checkNotNullExpressionValue(signatureArr, "packageManager.getPackag…ATURES\n      ).signatures");
             ArrayList<String> arrayList2 = new ArrayList();
             for (Signature signature : signatureArr) {
-                AppSignatureHelper$Companion appSignatureHelper$Companion = AppSignatureHelper.Companion;
+                AppSignatureHelper.Companion companion = AppSignatureHelper.INSTANCE;
                 m.checkNotNullExpressionValue(packageName, "packageName");
                 String charsString = signature.toCharsString();
                 m.checkNotNullExpressionValue(charsString, "signature.toCharsString()");
-                String strAccess$hash = AppSignatureHelper$Companion.access$hash(appSignatureHelper$Companion, packageName, charsString);
+                String strAccess$hash = AppSignatureHelper.Companion.access$hash(companion, packageName, charsString);
                 if (strAccess$hash != null) {
                     arrayList2.add(strAccess$hash);
                 }
             }
             for (String str : arrayList2) {
                 arrayList.add(str);
-                Logger.d$default(AppLog.g, AppSignatureHelper.Companion.getTAG(), "Hash " + str, null, 4, null);
+                Logger.d$default(AppLog.g, AppSignatureHelper.INSTANCE.getTAG(), "Hash " + str, null, 4, null);
             }
-        } catch (PackageManager$NameNotFoundException e) {
-            Logger.e$default(AppLog.g, AppSignatureHelper.Companion.getTAG(), "Unable to find package to obtain hash.", e, null, 8, null);
+        } catch (PackageManager.NameNotFoundException e) {
+            Logger.e$default(AppLog.g, AppSignatureHelper.INSTANCE.getTAG(), "Unable to find package to obtain hash.", e, null, 8, null);
         }
         return arrayList;
     }

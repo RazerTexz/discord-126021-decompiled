@@ -3,9 +3,9 @@ package b.i.a.c.b3.o;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Paint$Style;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.util.SparseArray;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import b.i.a.c.f3.e0;
@@ -23,26 +23,152 @@ public final class b {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final byte[] f862b = {0, 119, -120, -1};
     public final Canvas f;
-    public final b$b g;
-    public final b$a h;
-    public final b$h i;
+    public final C0095b g;
+    public final a h;
+    public final h i;
     public Bitmap j;
+
+    /* JADX INFO: renamed from: b.i.a.c.b3.o.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: DvbParser.java */
+    public final class C0095b {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f864b;
+        public final int c;
+        public final int d;
+        public final int e;
+        public final int f;
+
+        public C0095b(int i, int i2, int i3, int i4, int i5, int i6) {
+            this.a = i;
+            this.f864b = i2;
+            this.c = i3;
+            this.d = i4;
+            this.e = i5;
+            this.f = i6;
+        }
+    }
+
+    /* JADX INFO: compiled from: DvbParser.java */
+    public final class a {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int[] f863b;
+        public final int[] c;
+        public final int[] d;
+
+        public a(int i, int[] iArr, int[] iArr2, int[] iArr3) {
+            this.a = i;
+            this.f863b = iArr;
+            this.c = iArr2;
+            this.d = iArr3;
+        }
+    }
+
+    /* JADX INFO: compiled from: DvbParser.java */
+    public final class c {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final boolean f865b;
+        public final byte[] c;
+        public final byte[] d;
+
+        public c(int i, boolean z2, byte[] bArr, byte[] bArr2) {
+            this.a = i;
+            this.f865b = z2;
+            this.c = bArr;
+            this.d = bArr2;
+        }
+    }
+
+    /* JADX INFO: compiled from: DvbParser.java */
+    public final class d {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f866b;
+        public final SparseArray<e> c;
+
+        public d(int i, int i2, int i3, SparseArray<e> sparseArray) {
+            this.a = i2;
+            this.f866b = i3;
+            this.c = sparseArray;
+        }
+    }
+
+    /* JADX INFO: compiled from: DvbParser.java */
+    public final class e {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f867b;
+
+        public e(int i, int i2) {
+            this.a = i;
+            this.f867b = i2;
+        }
+    }
+
+    /* JADX INFO: compiled from: DvbParser.java */
+    public final class f {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final boolean f868b;
+        public final int c;
+        public final int d;
+        public final int e;
+        public final int f;
+        public final int g;
+        public final int h;
+        public final int i;
+        public final SparseArray<g> j;
+
+        public f(int i, boolean z2, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, SparseArray<g> sparseArray) {
+            this.a = i;
+            this.f868b = z2;
+            this.c = i2;
+            this.d = i3;
+            this.e = i5;
+            this.f = i6;
+            this.g = i7;
+            this.h = i8;
+            this.i = i9;
+            this.j = sparseArray;
+        }
+    }
+
+    /* JADX INFO: compiled from: DvbParser.java */
+    public final class g {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f869b;
+
+        public g(int i, int i2, int i3, int i4, int i5, int i6) {
+            this.a = i3;
+            this.f869b = i4;
+        }
+    }
 
     public b(int i, int i2) {
         Paint paint = new Paint();
         this.d = paint;
-        paint.setStyle(Paint$Style.FILL_AND_STROKE);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff$Mode.SRC));
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
         paint.setPathEffect(null);
         Paint paint2 = new Paint();
         this.e = paint2;
-        paint2.setStyle(Paint$Style.FILL);
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff$Mode.DST_OVER));
+        paint2.setStyle(Paint.Style.FILL);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OVER));
         paint2.setPathEffect(null);
         this.f = new Canvas();
-        this.g = new b$b(719, 575, 0, 719, 0, 575);
-        this.h = new b$a(0, new int[]{0, -1, ViewCompat.MEASURED_STATE_MASK, -8421505}, b(), c());
-        this.i = new b$h(i, i2);
+        this.g = new C0095b(719, 575, 0, 719, 0, 575);
+        this.h = new a(0, new int[]{0, -1, ViewCompat.MEASURED_STATE_MASK, -8421505}, b(), c());
+        this.i = new h(i, i2);
     }
 
     public static byte[] a(int i, int i2, w wVar) {
@@ -405,7 +531,7 @@ public final class b {
         }
     }
 
-    public static b$a f(w wVar, int i) {
+    public static a f(w wVar, int i) {
         int[] iArr;
         int iG;
         int iG2;
@@ -449,19 +575,19 @@ public final class b {
                 iG4 = 0;
                 iG2 = 255;
             }
-            double d = iG3;
-            double d2 = iG - 128;
-            double d3 = iG4 - 128;
-            iArr[iG6] = d((byte) (255 - (iG2 & 255)), e0.h((int) ((1.402d * d2) + d), 0, 255), e0.h((int) ((d - (0.34414d * d3)) - (d2 * 0.71414d)), 0, 255), e0.h((int) ((d3 * 1.772d) + d), 0, 255));
+            double d2 = iG3;
+            double d3 = iG - 128;
+            double d4 = iG4 - 128;
+            iArr[iG6] = d((byte) (255 - (iG2 & 255)), e0.h((int) ((1.402d * d3) + d2), 0, 255), e0.h((int) ((d2 - (0.34414d * d4)) - (d3 * 0.71414d)), 0, 255), e0.h((int) ((d4 * 1.772d) + d2), 0, 255));
             iArr2 = iArr2;
             iG5 = iG5;
             i2 = 8;
             i4 = 4;
         }
-        return new b$a(iG5, iArr2, iArrB, iArrC);
+        return new a(iG5, iArr2, iArrB, iArrC);
     }
 
-    public static b$c g(w wVar) {
+    public static c g(w wVar) {
         byte[] bArr;
         int iG = wVar.g(16);
         wVar.m(4);
@@ -482,10 +608,34 @@ public final class b {
                     wVar.i(bArr, 0, iG4);
                 }
             }
-            return new b$c(iG, zF, bArr2, bArr);
+            return new c(iG, zF, bArr2, bArr);
         }
         wVar.m(wVar.g(8) * 16);
         bArr = bArr2;
-        return new b$c(iG, zF, bArr2, bArr);
+        return new c(iG, zF, bArr2, bArr);
+    }
+
+    /* JADX INFO: compiled from: DvbParser.java */
+    public final class h {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f870b;
+
+        @Nullable
+        public C0095b h;
+
+        @Nullable
+        public d i;
+        public final SparseArray<f> c = new SparseArray<>();
+        public final SparseArray<a> d = new SparseArray<>();
+        public final SparseArray<c> e = new SparseArray<>();
+        public final SparseArray<a> f = new SparseArray<>();
+        public final SparseArray<c> g = new SparseArray<>();
+
+        public h(int i, int i2) {
+            this.a = i;
+            this.f870b = i2;
+        }
     }
 }

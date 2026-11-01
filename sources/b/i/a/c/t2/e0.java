@@ -2,8 +2,6 @@ package b.i.a.c.t2;
 
 import androidx.annotation.Nullable;
 import com.google.android.exoplayer2.audio.AudioProcessor;
-import com.google.android.exoplayer2.audio.AudioProcessor$UnhandledAudioFormatException;
-import com.google.android.exoplayer2.audio.AudioProcessor$a;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.ShortBuffer;
@@ -12,13 +10,13 @@ import java.util.Objects;
 /* JADX INFO: compiled from: SonicAudioProcessor.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class e0 implements AudioProcessor {
-    public AudioProcessor$a e;
+    public AudioProcessor.a e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public int f1120b;
-    public AudioProcessor$a f;
-    public AudioProcessor$a g;
-    public AudioProcessor$a h;
+    public AudioProcessor.a f;
+    public AudioProcessor.a g;
+    public AudioProcessor.a h;
     public boolean i;
 
     @Nullable
@@ -33,11 +31,11 @@ public final class e0 implements AudioProcessor {
     public float d = 1.0f;
 
     public e0() {
-        AudioProcessor$a audioProcessor$a = AudioProcessor$a.a;
-        this.e = audioProcessor$a;
-        this.f = audioProcessor$a;
-        this.g = audioProcessor$a;
-        this.h = audioProcessor$a;
+        AudioProcessor.a aVar = AudioProcessor.a.a;
+        this.e = aVar;
+        this.f = aVar;
+        this.g = aVar;
+        this.h = aVar;
         ByteBuffer byteBuffer = AudioProcessor.a;
         this.k = byteBuffer;
         this.l = byteBuffer.asShortBuffer();
@@ -77,19 +75,19 @@ public final class e0 implements AudioProcessor {
     }
 
     @Override // com.google.android.exoplayer2.audio.AudioProcessor
-    public AudioProcessor$a d(AudioProcessor$a audioProcessor$a) throws AudioProcessor$UnhandledAudioFormatException {
-        if (audioProcessor$a.d != 2) {
-            throw new AudioProcessor$UnhandledAudioFormatException(audioProcessor$a);
+    public AudioProcessor.a d(AudioProcessor.a aVar) throws AudioProcessor.UnhandledAudioFormatException {
+        if (aVar.d != 2) {
+            throw new AudioProcessor.UnhandledAudioFormatException(aVar);
         }
         int i = this.f1120b;
         if (i == -1) {
-            i = audioProcessor$a.f2914b;
+            i = aVar.f2914b;
         }
-        this.e = audioProcessor$a;
-        AudioProcessor$a audioProcessor$a2 = new AudioProcessor$a(i, audioProcessor$a.c, 2);
-        this.f = audioProcessor$a2;
+        this.e = aVar;
+        AudioProcessor.a aVar2 = new AudioProcessor.a(i, aVar.c, 2);
+        this.f = aVar2;
         this.i = true;
-        return audioProcessor$a2;
+        return aVar2;
     }
 
     @Override // com.google.android.exoplayer2.audio.AudioProcessor
@@ -127,12 +125,12 @@ public final class e0 implements AudioProcessor {
     @Override // com.google.android.exoplayer2.audio.AudioProcessor
     public void flush() {
         if (a()) {
-            AudioProcessor$a audioProcessor$a = this.e;
-            this.g = audioProcessor$a;
-            AudioProcessor$a audioProcessor$a2 = this.f;
-            this.h = audioProcessor$a2;
+            AudioProcessor.a aVar = this.e;
+            this.g = aVar;
+            AudioProcessor.a aVar2 = this.f;
+            this.h = aVar2;
             if (this.i) {
-                this.j = new d0(audioProcessor$a.f2914b, audioProcessor$a.c, this.c, this.d, audioProcessor$a2.f2914b);
+                this.j = new d0(aVar.f2914b, aVar.c, this.c, this.d, aVar2.f2914b);
             } else {
                 d0 d0Var = this.j;
                 if (d0Var != null) {
@@ -189,11 +187,11 @@ public final class e0 implements AudioProcessor {
     public void reset() {
         this.c = 1.0f;
         this.d = 1.0f;
-        AudioProcessor$a audioProcessor$a = AudioProcessor$a.a;
-        this.e = audioProcessor$a;
-        this.f = audioProcessor$a;
-        this.g = audioProcessor$a;
-        this.h = audioProcessor$a;
+        AudioProcessor.a aVar = AudioProcessor.a.a;
+        this.e = aVar;
+        this.f = aVar;
+        this.g = aVar;
+        this.h = aVar;
         ByteBuffer byteBuffer = AudioProcessor.a;
         this.k = byteBuffer;
         this.l = byteBuffer.asShortBuffer();

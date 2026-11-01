@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 /* JADX INFO: compiled from: SQLiteEventStore.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class i implements t$b {
+public final /* synthetic */ class i implements t.b {
     public final long a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -16,7 +16,7 @@ public final /* synthetic */ class i implements t$b {
         this.f798b = iVar;
     }
 
-    @Override // b.i.a.b.j.t.i.t$b
+    @Override // b.i.a.b.j.t.i.t.b
     public Object apply(Object obj) {
         long j = this.a;
         b.i.a.b.j.i iVar = this.f798b;

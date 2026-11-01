@@ -3,7 +3,7 @@ package com.discord.widgets.auth;
 import android.content.Intent;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
-import com.discord.utilities.captcha.CaptchaHelper$CaptchaPayload;
+import com.discord.utilities.captcha.CaptchaHelper;
 import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
 
@@ -30,7 +30,7 @@ public final class WidgetAuthCaptcha$Companion$registerForResult$1<O> implements
             Intent data2 = activityResult.getData();
             String stringExtra2 = data2 != null ? data2.getStringExtra("RESULT_EXTRA_RQTOKEN") : null;
             if (stringExtra != null) {
-                this.$callback.invoke(new CaptchaHelper$CaptchaPayload(stringExtra, stringExtra2));
+                this.$callback.invoke(new CaptchaHelper.CaptchaPayload(stringExtra, stringExtra2));
             }
         }
     }

@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.views.typing.TypingDots;
 import com.discord.widgets.botuikit.views.select.SelectComponentView;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -45,20 +45,20 @@ public final class b5 implements ViewBinding {
 
     @NonNull
     public static b5 a(@NonNull View view) {
-        int i = R$id.select_component_chevron;
-        ImageView imageView = (ImageView) view.findViewById(R$id.select_component_chevron);
+        int i = R.id.select_component_chevron;
+        ImageView imageView = (ImageView) view.findViewById(R.id.select_component_chevron);
         if (imageView != null) {
-            i = R$id.select_component_loading;
-            TypingDots typingDots = (TypingDots) view.findViewById(R$id.select_component_loading);
+            i = R.id.select_component_loading;
+            TypingDots typingDots = (TypingDots) view.findViewById(R.id.select_component_loading);
             if (typingDots != null) {
-                i = R$id.select_component_selection_icon;
-                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.select_component_selection_icon);
+                i = R.id.select_component_selection_icon;
+                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.select_component_selection_icon);
                 if (simpleDraweeView != null) {
-                    i = R$id.select_component_selection_text;
-                    MaterialTextView materialTextView = (MaterialTextView) view.findViewById(R$id.select_component_selection_text);
+                    i = R.id.select_component_selection_text;
+                    MaterialTextView materialTextView = (MaterialTextView) view.findViewById(R.id.select_component_selection_text);
                     if (materialTextView != null) {
-                        i = R$id.select_component_selections_root;
-                        FlexboxLayout flexboxLayout = (FlexboxLayout) view.findViewById(R$id.select_component_selections_root);
+                        i = R.id.select_component_selections_root;
+                        FlexboxLayout flexboxLayout = (FlexboxLayout) view.findViewById(R.id.select_component_selections_root);
                         if (flexboxLayout != null) {
                             return new b5((SelectComponentView) view, imageView, typingDots, simpleDraweeView, materialTextView, flexboxLayout);
                         }

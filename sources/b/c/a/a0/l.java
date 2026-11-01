@@ -2,7 +2,6 @@ package b.c.a.a0;
 
 import android.graphics.Color;
 import android.graphics.PointF;
-import b.c.a.a0.i0.c$b;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -21,7 +20,7 @@ public class l implements h0<b.c.a.y.l.c> {
         double d;
         ArrayList arrayList = new ArrayList();
         int i2 = 0;
-        boolean z2 = cVar.u() == c$b.BEGIN_ARRAY;
+        boolean z2 = cVar.u() == b.c.a.a0.i0.c.b.BEGIN_ARRAY;
         if (z2) {
             cVar.a();
         }

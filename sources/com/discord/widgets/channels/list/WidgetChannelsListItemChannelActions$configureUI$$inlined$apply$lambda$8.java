@@ -10,14 +10,14 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: WidgetChannelsListItemChannelActions.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChannelsListItemChannelActions$configureUI$$inlined$apply$lambda$8 extends o implements Function1<View, Unit> {
-    public final /* synthetic */ WidgetChannelsListItemChannelActions$Model $this_configureUI$inlined;
+    public final /* synthetic */ WidgetChannelsListItemChannelActions.Model $this_configureUI$inlined;
     public final /* synthetic */ WidgetChannelsListItemChannelActions this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetChannelsListItemChannelActions$configureUI$$inlined$apply$lambda$8(WidgetChannelsListItemChannelActions widgetChannelsListItemChannelActions, WidgetChannelsListItemChannelActions$Model widgetChannelsListItemChannelActions$Model) {
+    public WidgetChannelsListItemChannelActions$configureUI$$inlined$apply$lambda$8(WidgetChannelsListItemChannelActions widgetChannelsListItemChannelActions, WidgetChannelsListItemChannelActions.Model model) {
         super(1);
         this.this$0 = widgetChannelsListItemChannelActions;
-        this.$this_configureUI$inlined = widgetChannelsListItemChannelActions$Model;
+        this.$this_configureUI$inlined = model;
     }
 
     @Override // kotlin.jvm.functions.Function1

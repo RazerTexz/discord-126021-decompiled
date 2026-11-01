@@ -4,8 +4,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Space;
 import android.widget.TextView;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.databinding.WidgetChatListAdapterItemMessageHeaderBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
@@ -19,20 +18,20 @@ public final class WidgetChatListAdapterItemMessageHeader extends WidgetChatList
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemMessageHeader(WidgetChatListAdapter widgetChatListAdapter) {
-        super(R$layout.widget_chat_list_adapter_item_message_header, widgetChatListAdapter);
+        super(R.layout.widget_chat_list_adapter_item_message_header, widgetChatListAdapter);
         m.checkNotNullParameter(widgetChatListAdapter, "adapter");
         View view = this.itemView;
-        int i = R$id.chat_list_item_message_header_channel;
-        TextView textView = (TextView) view.findViewById(R$id.chat_list_item_message_header_channel);
+        int i = R.id.chat_list_item_message_header_channel;
+        TextView textView = (TextView) view.findViewById(R.id.chat_list_item_message_header_channel);
         if (textView != null) {
-            i = R$id.chat_list_item_message_header_divider;
-            View viewFindViewById = view.findViewById(R$id.chat_list_item_message_header_divider);
+            i = R.id.chat_list_item_message_header_divider;
+            View viewFindViewById = view.findViewById(R.id.chat_list_item_message_header_divider);
             if (viewFindViewById != null) {
-                i = R$id.chat_list_item_message_header_guild;
-                TextView textView2 = (TextView) view.findViewById(R$id.chat_list_item_message_header_guild);
+                i = R.id.chat_list_item_message_header_guild;
+                TextView textView2 = (TextView) view.findViewById(R.id.chat_list_item_message_header_guild);
                 if (textView2 != null) {
-                    i = R$id.chat_list_item_message_header_spacer;
-                    Space space = (Space) view.findViewById(R$id.chat_list_item_message_header_spacer);
+                    i = R.id.chat_list_item_message_header_spacer;
+                    Space space = (Space) view.findViewById(R.id.chat_list_item_message_header_spacer);
                     if (space != null) {
                         WidgetChatListAdapterItemMessageHeaderBinding widgetChatListAdapterItemMessageHeaderBinding = new WidgetChatListAdapterItemMessageHeaderBinding((RelativeLayout) view, textView, viewFindViewById, textView2, space);
                         m.checkNotNullExpressionValue(widgetChatListAdapterItemMessageHeaderBinding, "WidgetChatListAdapterIte…derBinding.bind(itemView)");

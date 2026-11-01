@@ -1,11 +1,12 @@
 package com.discord.widgets.chat.input.gifpicker;
 
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
+import androidx.recyclerview.widget.RecyclerView;
+import com.discord.R;
 import com.discord.databinding.GifCategoryItemViewBinding;
 import com.discord.models.gifpicker.domain.ModelGifCategory;
 import com.discord.utilities.images.MGImages;
@@ -16,8 +17,27 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: GifCategoryViewHolder.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class GifCategoryViewHolder extends RecyclerView$ViewHolder {
+public final class GifCategoryViewHolder extends RecyclerView.ViewHolder {
     private final GifCategoryItemViewBinding binding;
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.GifCategoryViewHolder$configure$1, reason: invalid class name */
+    /* JADX INFO: compiled from: GifCategoryViewHolder.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ GifCategoryItem $gifCategoryItem;
+        public final /* synthetic */ Function1 $onSelectGifCategory;
+
+        public AnonymousClass1(Function1 function1, GifCategoryItem gifCategoryItem) {
+            this.$onSelectGifCategory = function1;
+            this.$gifCategoryItem = gifCategoryItem;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            Function1 function1 = this.$onSelectGifCategory;
+            if (function1 != null) {
+            }
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public GifCategoryViewHolder(GifCategoryItemViewBinding gifCategoryItemViewBinding) {
@@ -29,8 +49,8 @@ public final class GifCategoryViewHolder extends RecyclerView$ViewHolder {
 
     public final void configure(GifCategoryItem gifCategoryItem, Function1<? super GifCategoryItem, Unit> onSelectGifCategory) {
         m.checkNotNullParameter(gifCategoryItem, "gifCategoryItem");
-        if (gifCategoryItem instanceof GifCategoryItem$Standard) {
-            ModelGifCategory gifCategory = ((GifCategoryItem$Standard) gifCategoryItem).getGifCategory();
+        if (gifCategoryItem instanceof GifCategoryItem.Standard) {
+            ModelGifCategory gifCategory = ((GifCategoryItem.Standard) gifCategoryItem).getGifCategory();
             setPreviewImage(gifCategory.getGifPreviewUrl());
             TextView textView = this.binding.d;
             m.checkNotNullExpressionValue(textView, "binding.gifCategoryItemTitle");
@@ -38,28 +58,28 @@ public final class GifCategoryViewHolder extends RecyclerView$ViewHolder {
             ImageView imageView = this.binding.f2111b;
             m.checkNotNullExpressionValue(imageView, "binding.gifCategoryItemIcon");
             imageView.setVisibility(8);
-        } else if (gifCategoryItem instanceof GifCategoryItem$Trending) {
-            setPreviewImage(((GifCategoryItem$Trending) gifCategoryItem).getGifPreviewUrl());
+        } else if (gifCategoryItem instanceof GifCategoryItem.Trending) {
+            setPreviewImage(((GifCategoryItem.Trending) gifCategoryItem).getGifPreviewUrl());
             TextView textView2 = this.binding.d;
             m.checkNotNullExpressionValue(textView2, "binding.gifCategoryItemTitle");
             View view = this.itemView;
             m.checkNotNullExpressionValue(view, "itemView");
-            textView2.setText(view.getResources().getString(2131889628));
+            textView2.setText(view.getResources().getString(R.string.gif_picker_result_type_trending_gifs));
             ImageView imageView2 = this.binding.f2111b;
             m.checkNotNullExpressionValue(imageView2, "binding.gifCategoryItemIcon");
             imageView2.setVisibility(0);
             ImageView imageView3 = this.binding.f2111b;
             View view2 = this.itemView;
             m.checkNotNullExpressionValue(view2, "itemView");
-            imageView3.setImageDrawable(ResourcesCompat.getDrawable(view2.getResources(), 2131231514, null));
+            imageView3.setImageDrawable(ResourcesCompat.getDrawable(view2.getResources(), R.drawable.ic_analytics_16dp, null));
         }
-        this.itemView.setOnClickListener(new GifCategoryViewHolder$configure$1(onSelectGifCategory, gifCategoryItem));
+        this.itemView.setOnClickListener(new AnonymousClass1(onSelectGifCategory, gifCategoryItem));
     }
 
     private final void setPreviewImage(String imageUrl) {
         SimpleDraweeView simpleDraweeView = this.binding.c;
         m.checkNotNullExpressionValue(simpleDraweeView, "binding.gifCategoryItemPreview");
-        ViewGroup$LayoutParams layoutParams = simpleDraweeView.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = simpleDraweeView.getLayoutParams();
         int i = layoutParams.width;
         int i2 = layoutParams.height;
         SimpleDraweeView simpleDraweeView2 = this.binding.c;

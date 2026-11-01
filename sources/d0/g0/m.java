@@ -9,8 +9,51 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: Indent.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class m extends l {
+
+    /* JADX INFO: compiled from: Indent.kt */
+    public final class a extends d0.z.d.o implements Function1<String, String> {
+        public static final a j = new a();
+
+        public a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ String invoke(String str) {
+            return invoke2(str);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final String invoke2(String str) {
+            d0.z.d.m.checkNotNullParameter(str, "line");
+            return str;
+        }
+    }
+
+    /* JADX INFO: compiled from: Indent.kt */
+    public final class b extends d0.z.d.o implements Function1<String, String> {
+        public final /* synthetic */ String $indent;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public b(String str) {
+            super(1);
+            this.$indent = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ String invoke(String str) {
+            return invoke2(str);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final String invoke2(String str) {
+            d0.z.d.m.checkNotNullParameter(str, "line");
+            return b.d.b.a.a.J(new StringBuilder(), this.$indent, str);
+        }
+    }
+
     public static final Function1<String, String> a(String str) {
-        return str.length() == 0 ? m$a.j : new m$b(str);
+        return str.length() == 0 ? a.j : new b(str);
     }
 
     public static final String replaceIndent(String str, String str2) {
@@ -39,7 +82,7 @@ public class m extends l {
                     length = -1;
                     break;
                 }
-                if (!a.isWhitespace(str3.charAt(length))) {
+                if (!d0.g0.a.isWhitespace(str3.charAt(length))) {
                     break;
                 }
                 length++;
@@ -109,7 +152,7 @@ public class m extends l {
                         i = -1;
                         break;
                     }
-                    if (!a.isWhitespace(str4.charAt(i4))) {
+                    if (!d0.g0.a.isWhitespace(str4.charAt(i4))) {
                         i = i4;
                         break;
                     }

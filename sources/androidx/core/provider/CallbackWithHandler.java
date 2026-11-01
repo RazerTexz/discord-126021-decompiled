@@ -8,34 +8,66 @@ import androidx.annotation.NonNull;
 public class CallbackWithHandler {
 
     @NonNull
-    private final FontsContractCompat$FontRequestCallback mCallback;
+    private final FontsContractCompat.FontRequestCallback mCallback;
 
     @NonNull
     private final Handler mCallbackHandler;
 
-    public CallbackWithHandler(@NonNull FontsContractCompat$FontRequestCallback fontsContractCompat$FontRequestCallback, @NonNull Handler handler) {
-        this.mCallback = fontsContractCompat$FontRequestCallback;
+    /* JADX INFO: renamed from: androidx.core.provider.CallbackWithHandler$1, reason: invalid class name */
+    public class AnonymousClass1 implements Runnable {
+        public final /* synthetic */ FontsContractCompat.FontRequestCallback val$callback;
+        public final /* synthetic */ Typeface val$typeface;
+
+        public AnonymousClass1(FontsContractCompat.FontRequestCallback fontRequestCallback, Typeface typeface) {
+            this.val$callback = fontRequestCallback;
+            this.val$typeface = typeface;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            this.val$callback.onTypefaceRetrieved(this.val$typeface);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.core.provider.CallbackWithHandler$2, reason: invalid class name */
+    public class AnonymousClass2 implements Runnable {
+        public final /* synthetic */ FontsContractCompat.FontRequestCallback val$callback;
+        public final /* synthetic */ int val$reason;
+
+        public AnonymousClass2(FontsContractCompat.FontRequestCallback fontRequestCallback, int i) {
+            this.val$callback = fontRequestCallback;
+            this.val$reason = i;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            this.val$callback.onTypefaceRequestFailed(this.val$reason);
+        }
+    }
+
+    public CallbackWithHandler(@NonNull FontsContractCompat.FontRequestCallback fontRequestCallback, @NonNull Handler handler) {
+        this.mCallback = fontRequestCallback;
         this.mCallbackHandler = handler;
     }
 
     private void onTypefaceRequestFailed(int i) {
-        this.mCallbackHandler.post(new CallbackWithHandler$2(this, this.mCallback, i));
+        this.mCallbackHandler.post(new AnonymousClass2(this.mCallback, i));
     }
 
-    public void onTypefaceResult(@NonNull FontRequestWorker$TypefaceResult fontRequestWorker$TypefaceResult) {
-        if (fontRequestWorker$TypefaceResult.isSuccess()) {
-            onTypefaceRetrieved(fontRequestWorker$TypefaceResult.mTypeface);
+    public void onTypefaceResult(@NonNull FontRequestWorker.TypefaceResult typefaceResult) {
+        if (typefaceResult.isSuccess()) {
+            onTypefaceRetrieved(typefaceResult.mTypeface);
         } else {
-            onTypefaceRequestFailed(fontRequestWorker$TypefaceResult.mResult);
+            onTypefaceRequestFailed(typefaceResult.mResult);
         }
     }
 
     private void onTypefaceRetrieved(@NonNull Typeface typeface) {
-        this.mCallbackHandler.post(new CallbackWithHandler$1(this, this.mCallback, typeface));
+        this.mCallbackHandler.post(new AnonymousClass1(this.mCallback, typeface));
     }
 
-    public CallbackWithHandler(@NonNull FontsContractCompat$FontRequestCallback fontsContractCompat$FontRequestCallback) {
-        this.mCallback = fontsContractCompat$FontRequestCallback;
+    public CallbackWithHandler(@NonNull FontsContractCompat.FontRequestCallback fontRequestCallback) {
+        this.mCallback = fontRequestCallback;
         this.mCallbackHandler = CalleeHandler.create();
     }
 }

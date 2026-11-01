@@ -4,15 +4,13 @@ import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.permission.Permission;
-import com.discord.api.permission.Permission$AllowList;
 import com.discord.api.permission.PermissionOverwrite;
 import com.discord.api.role.GuildRole;
 import com.discord.api.stageinstance.StageInstance;
 import com.discord.api.stageinstance.StageInstancePrivacyLevel;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.member.GuildMember;
-import com.discord.stores.StoreSlowMode$Type;
-import com.discord.stores.StoreSlowMode$Type$MessageSend;
+import com.discord.stores.StoreSlowMode;
 import com.discord.utilities.PermissionOverwriteUtilsKt;
 import com.discord.utilities.guildmember.GuildMemberUtilsKt;
 import com.discord.widgets.chat.list.NewThreadsPermissionsFeatureFlag;
@@ -208,7 +206,7 @@ public final class PermissionUtils {
         if (ChannelUtils.D(channel)) {
             StageInstance stageInstance = (StageInstance) a.d(channel, mapEmptyMap);
             if ((stageInstance != null ? stageInstance.getPrivacyLevel() : null) == StageInstancePrivacyLevel.PUBLIC) {
-                j = Permission$AllowList.LURKER_STAGE_CHANNEL;
+                j = Permission.AllowList.LURKER_STAGE_CHANNEL;
             }
         }
         return jComputeNonThreadPermissions & j;
@@ -223,7 +221,7 @@ public final class PermissionUtils {
             listV = n.emptyList();
         }
         long jComputeNonThreadPermissions = computeNonThreadPermissions(userId, guildId, guildOwnerId, member, guildRoles, listV);
-        if (NewThreadsPermissionsFeatureFlag.Companion.getINSTANCE().isEnabled(thread.getGuildId())) {
+        if (NewThreadsPermissionsFeatureFlag.INSTANCE.getINSTANCE().isEnabled(thread.getGuildId())) {
             if (ChannelUtils.C(thread) && !hasJoined) {
                 can(Permission.MANAGE_THREADS, Long.valueOf(jComputeNonThreadPermissions));
             }
@@ -253,9 +251,9 @@ public final class PermissionUtils {
         return ChannelUtils.B(channel) || can(3072L, computedPermission);
     }
 
-    public final boolean hasBypassSlowmodePermissions(Long channelPermissions, StoreSlowMode$Type type) {
+    public final boolean hasBypassSlowmodePermissions(Long channelPermissions, StoreSlowMode.Type type) {
         m.checkNotNullParameter(type, "type");
-        if (m.areEqual(type, StoreSlowMode$Type$MessageSend.INSTANCE)) {
+        if (m.areEqual(type, StoreSlowMode.Type.MessageSend.INSTANCE)) {
             return can(16L, channelPermissions) || can(Permission.MANAGE_MESSAGES, channelPermissions);
         }
         return can(Permission.MANAGE_THREADS, channelPermissions);

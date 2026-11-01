@@ -1,24 +1,41 @@
 package com.discord.stores;
 
+import android.content.Context;
 import androidx.annotation.MainThread;
+import androidx.core.app.NotificationCompat;
+import b.d.b.a.a;
 import b.i.a.f.e.o.f;
 import com.discord.api.stageinstance.RecommendedStageInstance;
 import com.discord.api.stageinstance.StageInstance;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
+import com.discord.utilities.rx.ObservableExtensionsKt;
+import d0.l;
 import d0.t.h0;
 import d0.t.u;
+import d0.w.h.c;
+import d0.w.i.a.e;
+import d0.w.i.a.k;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import kotlin.Unit;
+import kotlin.coroutines.Continuation;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlinx.coroutines.CoroutineDispatcher;
+import kotlinx.coroutines.CoroutineScope;
 import kotlinx.coroutines.Job;
 import rx.Observable;
 import s.a.a.n;
@@ -28,18 +45,322 @@ import s.a.x0;
 /* JADX INFO: compiled from: StoreRequestedStageChannels.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreRequestedStageChannels extends StoreV2 {
-    public static final StoreRequestedStageChannels$Companion Companion = new StoreRequestedStageChannels$Companion(null);
     private static final long ENQUEUE_DEBOUNCE_DELAY_MS = 22;
     private final Dispatcher dispatcher;
     private Job enqueuedChannelFetchJob;
     private Set<Long> enqueuedChannelFetches;
     private final ObservationDeck observationDeck;
-    private final Map<Long, StoreRequestedStageChannels$StageInstanceState> requestedStageChannels;
-    private Map<Long, StoreRequestedStageChannels$StageInstanceState> requestedStageChannelsSnapshot;
+    private final Map<Long, StageInstanceState> requestedStageChannels;
+    private Map<Long, StageInstanceState> requestedStageChannelsSnapshot;
     private final RestAPI restAPI;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreRequestedStageChannels$enqueueStageChannelFetch$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRequestedStageChannels.kt */
+    @e(c = "com.discord.stores.StoreRequestedStageChannels$enqueueStageChannelFetch$1", f = "StoreRequestedStageChannels.kt", l = {60}, m = "invokeSuspend")
+    public final class AnonymousClass1 extends k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+        public int label;
+
+        public AnonymousClass1(Continuation continuation) {
+            super(2, continuation);
+        }
+
+        @Override // d0.w.i.a.a
+        public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
+            m.checkNotNullParameter(continuation, "completion");
+            return StoreRequestedStageChannels.this.new AnonymousClass1(continuation);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public final Object invoke(CoroutineScope coroutineScope, Continuation<? super Unit> continuation) {
+            return ((AnonymousClass1) create(coroutineScope, continuation)).invokeSuspend(Unit.a);
+        }
+
+        @Override // d0.w.i.a.a
+        public final Object invokeSuspend(Object obj) throws Throwable {
+            Object coroutine_suspended = c.getCOROUTINE_SUSPENDED();
+            int i = this.label;
+            if (i == 0) {
+                l.throwOnFailure(obj);
+                this.label = 1;
+                if (f.P(StoreRequestedStageChannels.ENQUEUE_DEBOUNCE_DELAY_MS, this) == coroutine_suspended) {
+                    return coroutine_suspended;
+                }
+            } else {
+                if (i != 1) {
+                    throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+                }
+                l.throwOnFailure(obj);
+            }
+            Set<Long> setAccess$getEnqueuedChannelFetches$p = StoreRequestedStageChannels.access$getEnqueuedChannelFetches$p(StoreRequestedStageChannels.this);
+            StoreRequestedStageChannels.access$setEnqueuedChannelFetches$p(StoreRequestedStageChannels.this, new LinkedHashSet());
+            StoreRequestedStageChannels.this.fetchStageChannels(setAccess$getEnqueuedChannelFetches$p);
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRequestedStageChannels$fetchStageChannels$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRequestedStageChannels.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ Set $channelIds;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreRequestedStageChannels$fetchStageChannels$1$2, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreRequestedStageChannels.kt */
+        public final class AnonymousClass2 extends o implements Function1<List<? extends RecommendedStageInstance>, Unit> {
+            public final /* synthetic */ Set $channelIdsToRequest;
+
+            /* JADX INFO: renamed from: com.discord.stores.StoreRequestedStageChannels$fetchStageChannels$1$2$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: StoreRequestedStageChannels.kt */
+            public final class C02881 extends o implements Function0<Unit> {
+                public final /* synthetic */ List $stageInstances;
+
+                /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+                public C02881(List list) {
+                    super(0);
+                    this.$stageInstances = list;
+                }
+
+                @Override // kotlin.jvm.functions.Function0
+                public /* bridge */ /* synthetic */ Unit invoke() {
+                    invoke2();
+                    return Unit.a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2() {
+                    AnonymousClass2 anonymousClass2 = AnonymousClass2.this;
+                    StoreRequestedStageChannels.access$onLoaded(StoreRequestedStageChannels.this, anonymousClass2.$channelIdsToRequest, this.$stageInstances);
+                }
+            }
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass2(Set set) {
+                super(1);
+                this.$channelIdsToRequest = set;
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(List<? extends RecommendedStageInstance> list) {
+                invoke2((List<RecommendedStageInstance>) list);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(List<RecommendedStageInstance> list) {
+                m.checkNotNullParameter(list, "stageInstances");
+                StoreRequestedStageChannels.access$getDispatcher$p(StoreRequestedStageChannels.this).schedule(new C02881(list));
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreRequestedStageChannels$fetchStageChannels$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreRequestedStageChannels.kt */
+        public final class C02861 extends o implements Function1<Error, Unit> {
+            public final /* synthetic */ Set $channelIdsToRequest;
+
+            /* JADX INFO: renamed from: com.discord.stores.StoreRequestedStageChannels$fetchStageChannels$1$1$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: StoreRequestedStageChannels.kt */
+            public final class C02871 extends o implements Function0<Unit> {
+                public C02871() {
+                    super(0);
+                }
+
+                @Override // kotlin.jvm.functions.Function0
+                public /* bridge */ /* synthetic */ Unit invoke() {
+                    invoke2();
+                    return Unit.a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2() {
+                    C02861 c02861 = C02861.this;
+                    StoreRequestedStageChannels.access$updateStatus(StoreRequestedStageChannels.this, c02861.$channelIdsToRequest, FetchStatus.ERROR);
+                }
+            }
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C02861(Set set) {
+                super(1);
+                this.$channelIdsToRequest = set;
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+                invoke2(error);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Error error) {
+                m.checkNotNullParameter(error, "it");
+                StoreRequestedStageChannels.access$getDispatcher$p(StoreRequestedStageChannels.this).schedule(new C02871());
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Set set) {
+            super(0);
+            this.$channelIds = set;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Set set = this.$channelIds;
+            ArrayList arrayList = new ArrayList();
+            Iterator it = set.iterator();
+            while (true) {
+                if (!it.hasNext()) {
+                    Set<Long> set2 = u.toSet(arrayList);
+                    StoreRequestedStageChannels.access$updateStatus(StoreRequestedStageChannels.this, set2, FetchStatus.LOADING);
+                    ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(StoreRequestedStageChannels.access$getRestAPI$p(StoreRequestedStageChannels.this).getStageInstancesForChannels(set2), false, 1, null), StoreRequestedStageChannels.this.getClass(), (Context) null, (Function1) null, new C02861(set2), (Function0) null, (Function0) null, new AnonymousClass2(set2), 54, (Object) null);
+                    return;
+                } else {
+                    Object next = it.next();
+                    StageInstanceState stageInstanceState = (StageInstanceState) StoreRequestedStageChannels.access$getRequestedStageChannelsSnapshot$p(StoreRequestedStageChannels.this).get(Long.valueOf(((Number) next).longValue()));
+                    if (stageInstanceState == null || !stageInstanceState.isLoading()) {
+                        arrayList.add(next);
+                    }
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRequestedStageChannels$observeRequestedStageChannel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRequestedStageChannels.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends StageInstanceState>, StageInstanceState> {
+        public final /* synthetic */ long $channelId;
+
+        public AnonymousClass1(long j) {
+            this.$channelId = j;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ StageInstanceState call(Map<Long, ? extends StageInstanceState> map) {
+            return call2((Map<Long, StageInstanceState>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final StageInstanceState call2(Map<Long, StageInstanceState> map) {
+            return map.get(Long.valueOf(this.$channelId));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRequestedStageChannels$observeRequestedStageChannels$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRequestedStageChannels.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends StageInstanceState>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends StageInstanceState> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends StageInstanceState> invoke2() {
+            return StoreRequestedStageChannels.this.getRequestedInstanceStatesByChannel();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreRequestedStageChannels.kt */
+    public enum FetchStatus {
+        ERROR,
+        LOADING,
+        LOADED
+    }
+
+    /* JADX INFO: compiled from: StoreRequestedStageChannels.kt */
+    public final /* data */ class StageInstanceState {
+        private final RecommendedStageInstance stageInstance;
+        private final FetchStatus status;
+
+        public StageInstanceState(RecommendedStageInstance recommendedStageInstance, FetchStatus fetchStatus) {
+            m.checkNotNullParameter(fetchStatus, "status");
+            this.stageInstance = recommendedStageInstance;
+            this.status = fetchStatus;
+        }
+
+        public static /* synthetic */ StageInstanceState copy$default(StageInstanceState stageInstanceState, RecommendedStageInstance recommendedStageInstance, FetchStatus fetchStatus, int i, Object obj) {
+            if ((i & 1) != 0) {
+                recommendedStageInstance = stageInstanceState.stageInstance;
+            }
+            if ((i & 2) != 0) {
+                fetchStatus = stageInstanceState.status;
+            }
+            return stageInstanceState.copy(recommendedStageInstance, fetchStatus);
+        }
+
+        public final StageInstanceState copy(RecommendedStageInstance stageInstance, FetchStatus status) {
+            m.checkNotNullParameter(status, "status");
+            return new StageInstanceState(stageInstance, status);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof StageInstanceState)) {
+                return false;
+            }
+            StageInstanceState stageInstanceState = (StageInstanceState) other;
+            return m.areEqual(this.stageInstance, stageInstanceState.stageInstance) && m.areEqual(this.status, stageInstanceState.status);
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final RecommendedStageInstance getStageInstance() {
+            return this.stageInstance;
+        }
+
+        public final RecommendedStageInstance getStageInstance() {
+            return this.stageInstance;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final FetchStatus getStatus() {
+            return this.status;
+        }
+
+        public final FetchStatus getStatus() {
+            return this.status;
+        }
+
+        public int hashCode() {
+            RecommendedStageInstance recommendedStageInstance = this.stageInstance;
+            int iHashCode = (recommendedStageInstance != null ? recommendedStageInstance.hashCode() : 0) * 31;
+            FetchStatus fetchStatus = this.status;
+            return iHashCode + (fetchStatus != null ? fetchStatus.hashCode() : 0);
+        }
+
+        public final boolean isError() {
+            return this.status == FetchStatus.ERROR;
+        }
+
+        public final boolean isLoaded() {
+            return this.status == FetchStatus.LOADED;
+        }
+
+        public final boolean isLoading() {
+            return this.status == FetchStatus.LOADING;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("StageInstanceState(stageInstance=");
+            sbU.append(this.stageInstance);
+            sbU.append(", status=");
+            sbU.append(this.status);
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
     public /* synthetic */ StoreRequestedStageChannels(Dispatcher dispatcher, ObservationDeck observationDeck, RestAPI restAPI, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 4) != 0 ? RestAPI.Companion.getApi() : restAPI);
+        this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 4) != 0 ? RestAPI.INSTANCE.getApi() : restAPI);
     }
 
     public static final /* synthetic */ Dispatcher access$getDispatcher$p(StoreRequestedStageChannels storeRequestedStageChannels) {
@@ -70,50 +391,50 @@ public final class StoreRequestedStageChannels extends StoreV2 {
         storeRequestedStageChannels.requestedStageChannelsSnapshot = map;
     }
 
-    public static final /* synthetic */ void access$updateStatus(StoreRequestedStageChannels storeRequestedStageChannels, Set set, StoreRequestedStageChannels$FetchStatus storeRequestedStageChannels$FetchStatus) {
-        storeRequestedStageChannels.updateStatus(set, storeRequestedStageChannels$FetchStatus);
+    public static final /* synthetic */ void access$updateStatus(StoreRequestedStageChannels storeRequestedStageChannels, Set set, FetchStatus fetchStatus) {
+        storeRequestedStageChannels.updateStatus(set, fetchStatus);
     }
 
     @MainThread
     public final void enqueueStageChannelFetch(long channelId) {
-        StoreRequestedStageChannels$StageInstanceState storeRequestedStageChannels$StageInstanceState = this.requestedStageChannelsSnapshot.get(Long.valueOf(channelId));
-        if (storeRequestedStageChannels$StageInstanceState == null || storeRequestedStageChannels$StageInstanceState.isError()) {
+        StageInstanceState stageInstanceState = this.requestedStageChannelsSnapshot.get(Long.valueOf(channelId));
+        if (stageInstanceState == null || stageInstanceState.isError()) {
             this.enqueuedChannelFetches.add(Long.valueOf(channelId));
             Job job = this.enqueuedChannelFetchJob;
             if (job == null || !job.a()) {
                 x0 x0Var = x0.j;
                 CoroutineDispatcher coroutineDispatcher = k0.a;
-                this.enqueuedChannelFetchJob = f.H0(x0Var, n.f3830b, null, new StoreRequestedStageChannels$enqueueStageChannelFetch$1(this, null), 2, null);
+                this.enqueuedChannelFetchJob = f.H0(x0Var, n.f3830b, null, new AnonymousClass1(null), 2, null);
             }
         }
     }
 
     public final void fetchStageChannels(Set<Long> channelIds) {
         m.checkNotNullParameter(channelIds, "channelIds");
-        this.dispatcher.schedule(new StoreRequestedStageChannels$fetchStageChannels$1(this, channelIds));
+        this.dispatcher.schedule(new AnonymousClass1(channelIds));
     }
 
-    public final Map<Long, StoreRequestedStageChannels$StageInstanceState> getRequestedInstanceStatesByChannel() {
+    public final Map<Long, StageInstanceState> getRequestedInstanceStatesByChannel() {
         return this.requestedStageChannelsSnapshot;
     }
 
     public final StageInstance getStageInstanceForChannel(long channelId) {
         RecommendedStageInstance stageInstance;
-        StoreRequestedStageChannels$StageInstanceState storeRequestedStageChannels$StageInstanceState = getRequestedInstanceStatesByChannel().get(Long.valueOf(channelId));
-        if (storeRequestedStageChannels$StageInstanceState == null || (stageInstance = storeRequestedStageChannels$StageInstanceState.getStageInstance()) == null) {
+        StageInstanceState stageInstanceState = getRequestedInstanceStatesByChannel().get(Long.valueOf(channelId));
+        if (stageInstanceState == null || (stageInstance = stageInstanceState.getStageInstance()) == null) {
             return null;
         }
         return stageInstance.getInstance();
     }
 
-    public final Observable<StoreRequestedStageChannels$StageInstanceState> observeRequestedStageChannel(long channelId) {
-        Observable observableG = observeRequestedStageChannels().G(new StoreRequestedStageChannels$observeRequestedStageChannel$1(channelId));
+    public final Observable<StageInstanceState> observeRequestedStageChannel(long channelId) {
+        Observable observableG = observeRequestedStageChannels().G(new AnonymousClass1(channelId));
         m.checkNotNullExpressionValue(observableG, "observeRequestedStageCha…s().map { it[channelId] }");
         return observableG;
     }
 
-    public final Observable<Map<Long, StoreRequestedStageChannels$StageInstanceState>> observeRequestedStageChannels() {
-        Observable<Map<Long, StoreRequestedStageChannels$StageInstanceState>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreRequestedStageChannels$observeRequestedStageChannels$1(this), 14, null).r();
+    public final Observable<Map<Long, StageInstanceState>> observeRequestedStageChannels() {
+        Observable<Map<Long, StageInstanceState>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }
@@ -122,12 +443,12 @@ public final class StoreRequestedStageChannels extends StoreV2 {
     private final void onLoaded(Set<Long> channelIds, List<RecommendedStageInstance> stageInstances) {
         Set mutableSet = u.toMutableSet(channelIds);
         for (RecommendedStageInstance recommendedStageInstance : stageInstances) {
-            this.requestedStageChannels.put(Long.valueOf(recommendedStageInstance.getInstance().getChannelId()), new StoreRequestedStageChannels$StageInstanceState(recommendedStageInstance, StoreRequestedStageChannels$FetchStatus.LOADED));
+            this.requestedStageChannels.put(Long.valueOf(recommendedStageInstance.getInstance().getChannelId()), new StageInstanceState(recommendedStageInstance, FetchStatus.LOADED));
             mutableSet.remove(Long.valueOf(recommendedStageInstance.getInstance().getChannelId()));
         }
         Iterator it = mutableSet.iterator();
         while (it.hasNext()) {
-            this.requestedStageChannels.put(Long.valueOf(((Number) it.next()).longValue()), new StoreRequestedStageChannels$StageInstanceState(null, StoreRequestedStageChannels$FetchStatus.LOADED));
+            this.requestedStageChannels.put(Long.valueOf(((Number) it.next()).longValue()), new StageInstanceState(null, FetchStatus.LOADED));
         }
         markChanged();
     }
@@ -139,12 +460,12 @@ public final class StoreRequestedStageChannels extends StoreV2 {
     }
 
     @StoreThread
-    private final void updateStatus(Set<Long> channelIds, StoreRequestedStageChannels$FetchStatus status) {
+    private final void updateStatus(Set<Long> channelIds, FetchStatus status) {
         Iterator<T> it = channelIds.iterator();
         while (it.hasNext()) {
             long jLongValue = ((Number) it.next()).longValue();
-            StoreRequestedStageChannels$StageInstanceState storeRequestedStageChannels$StageInstanceState = this.requestedStageChannels.get(Long.valueOf(jLongValue));
-            this.requestedStageChannels.put(Long.valueOf(jLongValue), new StoreRequestedStageChannels$StageInstanceState(storeRequestedStageChannels$StageInstanceState != null ? storeRequestedStageChannels$StageInstanceState.getStageInstance() : null, status));
+            StageInstanceState stageInstanceState = this.requestedStageChannels.get(Long.valueOf(jLongValue));
+            this.requestedStageChannels.put(Long.valueOf(jLongValue), new StageInstanceState(stageInstanceState != null ? stageInstanceState.getStageInstance() : null, status));
         }
         markChanged();
     }

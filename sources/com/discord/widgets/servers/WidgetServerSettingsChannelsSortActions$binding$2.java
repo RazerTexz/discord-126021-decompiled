@@ -3,7 +3,7 @@ package com.discord.widgets.servers;
 import android.view.View;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetServerSettingsChannelsSortActionsBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -26,17 +26,17 @@ public final /* synthetic */ class WidgetServerSettingsChannelsSortActions$bindi
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetServerSettingsChannelsSortActionsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.guild_actions_overview_header_tv;
-        TextView textView = (TextView) view.findViewById(R$id.guild_actions_overview_header_tv);
+        int i = R.id.guild_actions_overview_header_tv;
+        TextView textView = (TextView) view.findViewById(R.id.guild_actions_overview_header_tv);
         if (textView != null) {
-            i = R$id.server_settings_channels_sort_actions_category;
-            TextView textView2 = (TextView) view.findViewById(R$id.server_settings_channels_sort_actions_category);
+            i = R.id.server_settings_channels_sort_actions_category;
+            TextView textView2 = (TextView) view.findViewById(R.id.server_settings_channels_sort_actions_category);
             if (textView2 != null) {
-                i = R$id.server_settings_channels_sort_actions_text;
-                TextView textView3 = (TextView) view.findViewById(R$id.server_settings_channels_sort_actions_text);
+                i = R.id.server_settings_channels_sort_actions_text;
+                TextView textView3 = (TextView) view.findViewById(R.id.server_settings_channels_sort_actions_text);
                 if (textView3 != null) {
-                    i = R$id.server_settings_channels_sort_actions_voice;
-                    TextView textView4 = (TextView) view.findViewById(R$id.server_settings_channels_sort_actions_voice);
+                    i = R.id.server_settings_channels_sort_actions_voice;
+                    TextView textView4 = (TextView) view.findViewById(R.id.server_settings_channels_sort_actions_voice);
                     if (textView4 != null) {
                         return new WidgetServerSettingsChannelsSortActionsBinding((NestedScrollView) view, textView, textView2, textView3, textView4);
                     }

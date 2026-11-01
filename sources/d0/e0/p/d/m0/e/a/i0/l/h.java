@@ -3,7 +3,6 @@ package d0.e0.p.d.m0.e.a.i0.l;
 import com.discord.models.domain.ModelAuditLogEntry;
 import d0.e0.p.d.m0.c.c1;
 import d0.e0.p.d.m0.c.i1.e0;
-import d0.e0.p.d.m0.c.i1.g0;
 import d0.e0.p.d.m0.c.i1.l0;
 import d0.e0.p.d.m0.c.n0;
 import d0.e0.p.d.m0.c.p0;
@@ -11,31 +10,32 @@ import d0.e0.p.d.m0.c.q0;
 import d0.e0.p.d.m0.c.t;
 import d0.e0.p.d.m0.c.t0;
 import d0.e0.p.d.m0.c.x;
-import d0.e0.p.d.m0.c.x$a;
 import d0.e0.p.d.m0.c.z0;
-import d0.e0.p.d.m0.e.a.a0;
 import d0.e0.p.d.m0.e.a.d0;
 import d0.e0.p.d.m0.e.a.f0;
-import d0.e0.p.d.m0.e.a.g0.g$a;
 import d0.e0.p.d.m0.e.a.k0.y;
 import d0.e0.p.d.m0.e.a.w;
 import d0.e0.p.d.m0.e.a.z;
-import d0.e0.p.d.m0.k.k$d$a;
 import d0.e0.p.d.m0.n.c0;
 import d0.e0.p.d.m0.n.e1;
+import d0.t.g0;
 import d0.t.o0;
 import d0.t.u;
+import d0.z.d.a0;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import kotlin.Pair;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
+import kotlin.reflect.KDeclarationContainer;
 
 /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -50,8 +50,302 @@ public final class h extends k {
     public final d0.e0.p.d.m0.m.j<Map<d0.e0.p.d.m0.g.e, d0.e0.p.d.m0.e.a.k0.n>> f3332s;
     public final d0.e0.p.d.m0.m.i<d0.e0.p.d.m0.g.e, d0.e0.p.d.m0.c.i1.h> t;
 
-    public /* synthetic */ h(d0.e0.p.d.m0.e.a.i0.g gVar, d0.e0.p.d.m0.c.e eVar, d0.e0.p.d.m0.e.a.k0.g gVar2, boolean z2, h hVar, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(gVar, eVar, gVar2, z2, (i & 16) != 0 ? null : hVar);
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.i0.l.h$h, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
+    public final class C0524h extends d0.z.d.o implements Function0<Set<? extends d0.e0.p.d.m0.g.e>> {
+        public C0524h() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Set<? extends d0.e0.p.d.m0.g.e> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Set<? extends d0.e0.p.d.m0.g.e> invoke2() {
+            return u.toSet(h.access$getJClass$p(h.this).getInnerClassNames());
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
+    public final /* synthetic */ class a extends d0.z.d.j implements Function1<d0.e0.p.d.m0.g.e, Collection<? extends t0>> {
+        public a(h hVar) {
+            super(1, hVar);
+        }
+
+        @Override // d0.z.d.d, kotlin.reflect.KCallable
+        public final String getName() {
+            return "searchMethodsByNameWithoutBuiltinMagic";
+        }
+
+        @Override // d0.z.d.d
+        public final KDeclarationContainer getOwner() {
+            return a0.getOrCreateKotlinClass(h.class);
+        }
+
+        @Override // d0.z.d.d
+        public final String getSignature() {
+            return "searchMethodsByNameWithoutBuiltinMagic(Lorg/jetbrains/kotlin/name/Name;)Ljava/util/Collection;";
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Collection<? extends t0> invoke(d0.e0.p.d.m0.g.e eVar) {
+            return invoke2(eVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Collection<t0> invoke2(d0.e0.p.d.m0.g.e eVar) {
+            d0.z.d.m.checkNotNullParameter(eVar, "p0");
+            return h.access$searchMethodsByNameWithoutBuiltinMagic((h) this.receiver, eVar);
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
+    public final /* synthetic */ class b extends d0.z.d.j implements Function1<d0.e0.p.d.m0.g.e, Collection<? extends t0>> {
+        public b(h hVar) {
+            super(1, hVar);
+        }
+
+        @Override // d0.z.d.d, kotlin.reflect.KCallable
+        public final String getName() {
+            return "searchMethodsInSupertypesWithoutBuiltinMagic";
+        }
+
+        @Override // d0.z.d.d
+        public final KDeclarationContainer getOwner() {
+            return a0.getOrCreateKotlinClass(h.class);
+        }
+
+        @Override // d0.z.d.d
+        public final String getSignature() {
+            return "searchMethodsInSupertypesWithoutBuiltinMagic(Lorg/jetbrains/kotlin/name/Name;)Ljava/util/Collection;";
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Collection<? extends t0> invoke(d0.e0.p.d.m0.g.e eVar) {
+            return invoke2(eVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Collection<t0> invoke2(d0.e0.p.d.m0.g.e eVar) {
+            d0.z.d.m.checkNotNullParameter(eVar, "p0");
+            return h.access$searchMethodsInSupertypesWithoutBuiltinMagic((h) this.receiver, eVar);
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
+    public final class c extends d0.z.d.o implements Function1<d0.e0.p.d.m0.g.e, Collection<? extends t0>> {
+        public c() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Collection<? extends t0> invoke(d0.e0.p.d.m0.g.e eVar) {
+            return invoke2(eVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Collection<t0> invoke2(d0.e0.p.d.m0.g.e eVar) {
+            d0.z.d.m.checkNotNullParameter(eVar, "it");
+            return h.access$searchMethodsByNameWithoutBuiltinMagic(h.this, eVar);
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
+    public final class d extends d0.z.d.o implements Function1<d0.e0.p.d.m0.g.e, Collection<? extends t0>> {
+        public d() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Collection<? extends t0> invoke(d0.e0.p.d.m0.g.e eVar) {
+            return invoke2(eVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Collection<t0> invoke2(d0.e0.p.d.m0.g.e eVar) {
+            d0.z.d.m.checkNotNullParameter(eVar, "it");
+            return h.access$searchMethodsInSupertypesWithoutBuiltinMagic(h.this, eVar);
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
+    public final class e extends d0.z.d.o implements Function0<List<? extends d0.e0.p.d.m0.c.d>> {
+        public final /* synthetic */ d0.e0.p.d.m0.e.a.i0.g $c;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public e(d0.e0.p.d.m0.e.a.i0.g gVar) {
+            super(0);
+            this.$c = gVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<? extends d0.e0.p.d.m0.c.d> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<? extends d0.e0.p.d.m0.c.d> invoke2() {
+            Collection<d0.e0.p.d.m0.e.a.k0.k> constructors = h.access$getJClass$p(h.this).getConstructors();
+            ArrayList arrayList = new ArrayList(constructors.size());
+            Iterator<d0.e0.p.d.m0.e.a.k0.k> it = constructors.iterator();
+            while (it.hasNext()) {
+                arrayList.add(h.access$resolveConstructor(h.this, it.next()));
+            }
+            if (h.access$getJClass$p(h.this).isRecord()) {
+                d0.e0.p.d.m0.c.d dVarAccess$createDefaultRecordConstructor = h.access$createDefaultRecordConstructor(h.this);
+                boolean z2 = false;
+                String strComputeJvmDescriptor$default = d0.e0.p.d.m0.e.b.u.computeJvmDescriptor$default(dVarAccess$createDefaultRecordConstructor, false, false, 2, null);
+                if (!arrayList.isEmpty()) {
+                    Iterator it2 = arrayList.iterator();
+                    do {
+                        if (!it2.hasNext()) {
+                            z2 = true;
+                            break;
+                        }
+                    } while (!d0.z.d.m.areEqual(d0.e0.p.d.m0.e.b.u.computeJvmDescriptor$default((d0.e0.p.d.m0.c.d) it2.next(), false, false, 2, null), strComputeJvmDescriptor$default));
+                } else {
+                    z2 = true;
+                    break;
+                }
+                if (z2) {
+                    arrayList.add(dVarAccess$createDefaultRecordConstructor);
+                    ((d0.e0.p.d.m0.e.a.g0.g.a) this.$c.getComponents().getJavaResolverCache()).recordConstructor(h.access$getJClass$p(h.this), dVarAccess$createDefaultRecordConstructor);
+                }
+            }
+            d0.e0.p.d.m0.e.a.l0.l signatureEnhancement = this.$c.getComponents().getSignatureEnhancement();
+            d0.e0.p.d.m0.e.a.i0.g gVar = this.$c;
+            h hVar = h.this;
+            boolean zIsEmpty = arrayList.isEmpty();
+            List listListOfNotNull = arrayList;
+            if (zIsEmpty) {
+                listListOfNotNull = d0.t.n.listOfNotNull(h.access$createDefaultConstructor(hVar));
+            }
+            return u.toList(signatureEnhancement.enhanceSignatures(gVar, listListOfNotNull));
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
+    public final class f extends d0.z.d.o implements Function0<Map<d0.e0.p.d.m0.g.e, ? extends d0.e0.p.d.m0.e.a.k0.n>> {
+        public f() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<d0.e0.p.d.m0.g.e, ? extends d0.e0.p.d.m0.e.a.k0.n> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<d0.e0.p.d.m0.g.e, ? extends d0.e0.p.d.m0.e.a.k0.n> invoke2() {
+            Collection<d0.e0.p.d.m0.e.a.k0.n> fields = h.access$getJClass$p(h.this).getFields();
+            ArrayList arrayList = new ArrayList();
+            for (Object obj : fields) {
+                if (((d0.e0.p.d.m0.e.a.k0.n) obj).isEnumEntry()) {
+                    arrayList.add(obj);
+                }
+            }
+            LinkedHashMap linkedHashMap = new LinkedHashMap(d0.d0.f.coerceAtLeast(g0.mapCapacity(d0.t.o.collectionSizeOrDefault(arrayList, 10)), 16));
+            for (Object obj2 : arrayList) {
+                linkedHashMap.put(((d0.e0.p.d.m0.e.a.k0.n) obj2).getName(), obj2);
+            }
+            return linkedHashMap;
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
+    public final class g extends d0.z.d.o implements Function1<d0.e0.p.d.m0.g.e, Collection<? extends t0>> {
+        public final /* synthetic */ t0 $function;
+        public final /* synthetic */ h this$0;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public g(t0 t0Var, h hVar) {
+            super(1);
+            this.$function = t0Var;
+            this.this$0 = hVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Collection<? extends t0> invoke(d0.e0.p.d.m0.g.e eVar) {
+            return invoke2(eVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Collection<t0> invoke2(d0.e0.p.d.m0.g.e eVar) {
+            d0.z.d.m.checkNotNullParameter(eVar, "accessorName");
+            return d0.z.d.m.areEqual(this.$function.getName(), eVar) ? d0.t.m.listOf(this.$function) : u.plus(h.access$searchMethodsByNameWithoutBuiltinMagic(this.this$0, eVar), (Iterable) h.access$searchMethodsInSupertypesWithoutBuiltinMagic(this.this$0, eVar));
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
+    public final class i extends d0.z.d.o implements Function1<d0.e0.p.d.m0.g.e, d0.e0.p.d.m0.c.i1.h> {
+        public final /* synthetic */ d0.e0.p.d.m0.e.a.i0.g $c;
+
+        /* JADX INFO: compiled from: LazyJavaClassMemberScope.kt */
+        public final class a extends d0.z.d.o implements Function0<Set<? extends d0.e0.p.d.m0.g.e>> {
+            public final /* synthetic */ h this$0;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public a(h hVar) {
+                super(0);
+                this.this$0 = hVar;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Set<? extends d0.e0.p.d.m0.g.e> invoke() {
+                return invoke2();
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final Set<? extends d0.e0.p.d.m0.g.e> invoke2() {
+                return o0.plus((Set) this.this$0.getFunctionNames(), (Iterable) this.this$0.getVariableNames());
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public i(d0.e0.p.d.m0.e.a.i0.g gVar) {
+            super(1);
+            this.$c = gVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.i1.h invoke(d0.e0.p.d.m0.g.e eVar) {
+            return invoke2(eVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final d0.e0.p.d.m0.c.i1.h invoke2(d0.e0.p.d.m0.g.e eVar) {
+            d0.z.d.m.checkNotNullParameter(eVar, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            if (!((Set) h.access$getNestedClassIndex$p(h.this).invoke()).contains(eVar)) {
+                d0.e0.p.d.m0.e.a.k0.n nVar = (d0.e0.p.d.m0.e.a.k0.n) ((Map) h.access$getEnumEntryIndex$p(h.this).invoke()).get(eVar);
+                if (nVar == null) {
+                    return null;
+                }
+                return d0.e0.p.d.m0.c.i1.o.create(this.$c.getStorageManager(), h.this.n, eVar, this.$c.getStorageManager().createLazyValue(new a(h.this)), d0.e0.p.d.m0.e.a.i0.e.resolveAnnotations(this.$c, nVar), this.$c.getComponents().getSourceElementFactory().source(nVar));
+            }
+            d0.e0.p.d.m0.e.a.s finder = this.$c.getComponents().getFinder();
+            d0.e0.p.d.m0.g.a classId = d0.e0.p.d.m0.k.x.a.getClassId(h.this.n);
+            d0.z.d.m.checkNotNull(classId);
+            d0.e0.p.d.m0.g.a aVarCreateNestedClassId = classId.createNestedClassId(eVar);
+            d0.z.d.m.checkNotNullExpressionValue(aVarCreateNestedClassId, "ownerDescriptor.classId!!.createNestedClassId(name)");
+            d0.e0.p.d.m0.e.a.k0.g gVarFindClass = finder.findClass(new d0.e0.p.d.m0.e.a.s.a(aVarCreateNestedClassId, null, h.access$getJClass$p(h.this), 2, null));
+            if (gVarFindClass == null) {
+                return null;
+            }
+            d0.e0.p.d.m0.e.a.i0.g gVar = this.$c;
+            d0.e0.p.d.m0.e.a.i0.l.f fVar = new d0.e0.p.d.m0.e.a.i0.l.f(gVar, h.this.n, gVarFindClass, null, 8, null);
+            gVar.getComponents().getJavaClassesTracker().reportClass(fVar);
+            return fVar;
+        }
+    }
+
+    public /* synthetic */ h(d0.e0.p.d.m0.e.a.i0.g gVar, d0.e0.p.d.m0.c.e eVar, d0.e0.p.d.m0.e.a.k0.g gVar2, boolean z2, h hVar, int i2, DefaultConstructorMarker defaultConstructorMarker) {
+        this(gVar, eVar, gVar2, z2, (i2 & 16) != 0 ? null : hVar);
     }
 
     public final t0 A(n0 n0Var, Function1<? super d0.e0.p.d.m0.g.e, ? extends Collection<? extends t0>> function1) {
@@ -156,7 +450,7 @@ public final class h extends k {
                             break;
                         }
                         n0 n0Var = (n0) it2.next();
-                        if (v(n0Var, new h$g(t0Var, this))) {
+                        if (v(n0Var, new g(t0Var, this))) {
                             if (!n0Var.isVar()) {
                                 z zVar = z.a;
                                 String strAsString = t0Var.getName().asString();
@@ -214,11 +508,11 @@ public final class h extends k {
                     z5 = false;
                     break;
                 }
-                x$a<? extends t0> x_aNewCopyBuilder = t0Var.newCopyBuilder();
-                x_aNewCopyBuilder.setName(eVar);
-                x_aNewCopyBuilder.setSignatureChange();
-                x_aNewCopyBuilder.setPreserveSourceElement();
-                x xVar = (t0) x_aNewCopyBuilder.build();
+                x.a<? extends t0> aVarNewCopyBuilder = t0Var.newCopyBuilder();
+                aVarNewCopyBuilder.setName(eVar);
+                aVarNewCopyBuilder.setSignatureChange();
+                aVarNewCopyBuilder.setPreserveSourceElement();
+                x xVar = (t0) aVarNewCopyBuilder.build();
                 d0.z.d.m.checkNotNull(xVar);
                 if (arrayList.isEmpty()) {
                     z5 = false;
@@ -330,7 +624,7 @@ public final class h extends k {
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
             for (Object obj : methods) {
-                if (d0.z.d.m.areEqual(((d0.e0.p.d.m0.e.a.k0.r) obj).getName(), a0.f3305b)) {
+                if (d0.z.d.m.areEqual(((d0.e0.p.d.m0.e.a.k0.r) obj).getName(), d0.e0.p.d.m0.e.a.a0.f3305b)) {
                     arrayList.add(obj);
                 } else {
                     arrayList2.add(obj);
@@ -351,11 +645,11 @@ public final class h extends k {
                 }
                 hVar.o(listEmptyList, cVarCreateJavaConstructor, 0, rVar, (c0) pair.component1(), (c0) pair.component2());
             }
-            int i = rVar != null ? 1 : 0;
-            int i2 = 0;
+            int i2 = rVar != null ? 1 : 0;
+            int i3 = 0;
             for (d0.e0.p.d.m0.e.a.k0.r rVar2 : list2) {
-                hVar.o(listEmptyList, cVarCreateJavaConstructor, i2 + i, rVar2, hVar.c.getTypeResolver().transformJavaType(rVar2.getReturnType(), attributes$default), null);
-                i2++;
+                hVar.o(listEmptyList, cVarCreateJavaConstructor, i3 + i2, rVar2, hVar.c.getTypeResolver().transformJavaType(rVar2.getReturnType(), attributes$default), null);
+                i3++;
             }
         } else {
             listEmptyList = Collections.emptyList();
@@ -364,7 +658,7 @@ public final class h extends k {
         cVarCreateJavaConstructor.initialize(listEmptyList, hVar.B(eVar));
         cVarCreateJavaConstructor.setHasStableParameterNames(true);
         cVarCreateJavaConstructor.setReturnType(eVar.getDefaultType());
-        ((g$a) hVar.c.getComponents().getJavaResolverCache()).recordConstructor(hVar.o, cVarCreateJavaConstructor);
+        ((d0.e0.p.d.m0.e.a.g0.g.a) hVar.c.getComponents().getJavaResolverCache()).recordConstructor(hVar.o, cVarCreateJavaConstructor);
         return cVarCreateJavaConstructor;
     }
 
@@ -376,12 +670,12 @@ public final class h extends k {
         ArrayList arrayList = new ArrayList(recordComponents.size());
         c0 c0Var = null;
         d0.e0.p.d.m0.e.a.i0.m.a attributes$default = d0.e0.p.d.m0.e.a.i0.m.e.toAttributes$default(d0.e0.p.d.m0.e.a.g0.k.COMMON, false, null, 2, null);
-        int i = 0;
+        int i2 = 0;
         for (d0.e0.p.d.m0.e.a.k0.w wVar : recordComponents) {
-            int i2 = i + 1;
+            int i3 = i2 + 1;
             c0 c0VarTransformJavaType = hVar.c.getTypeResolver().transformJavaType(wVar.getType(), attributes$default);
-            arrayList.add(new l0(cVarCreateJavaConstructor, null, i, d0.e0.p.d.m0.c.g1.g.f.getEMPTY(), wVar.getName(), c0VarTransformJavaType, false, false, false, wVar.isVararg() ? hVar.c.getComponents().getModule().getBuiltIns().getArrayElementType(c0VarTransformJavaType) : c0Var, hVar.c.getComponents().getSourceElementFactory().source(wVar)));
-            i = i2;
+            arrayList.add(new l0(cVarCreateJavaConstructor, null, i2, d0.e0.p.d.m0.c.g1.g.f.getEMPTY(), wVar.getName(), c0VarTransformJavaType, false, false, false, wVar.isVararg() ? hVar.c.getComponents().getModule().getBuiltIns().getArrayElementType(c0VarTransformJavaType) : c0Var, hVar.c.getComponents().getSourceElementFactory().source(wVar)));
+            i2 = i3;
             attributes$default = attributes$default;
             c0Var = c0Var;
         }
@@ -409,7 +703,7 @@ public final class h extends k {
         d0.e0.p.d.m0.e.a.h0.c cVarCreateJavaConstructor = d0.e0.p.d.m0.e.a.h0.c.createJavaConstructor(eVar, d0.e0.p.d.m0.e.a.i0.e.resolveAnnotations(hVar.c, kVar), false, hVar.c.getComponents().getSourceElementFactory().source(kVar));
         d0.z.d.m.checkNotNullExpressionValue(cVarCreateJavaConstructor, "createJavaConstructor(\n            classDescriptor,\n            c.resolveAnnotations(constructor), /* isPrimary = */\n            false,\n            c.components.sourceElementFactory.source(constructor)\n        )");
         d0.e0.p.d.m0.e.a.i0.g gVarChildForMethod = d0.e0.p.d.m0.e.a.i0.a.childForMethod(hVar.c, cVarCreateJavaConstructor, kVar, eVar.getDeclaredTypeParameters().size());
-        k$b k_bN = hVar.n(gVarChildForMethod, cVarCreateJavaConstructor, kVar.getValueParameters());
+        k.b bVarN = hVar.n(gVarChildForMethod, cVarCreateJavaConstructor, kVar.getValueParameters());
         List<z0> declaredTypeParameters = eVar.getDeclaredTypeParameters();
         d0.z.d.m.checkNotNullExpressionValue(declaredTypeParameters, "classDescriptor.declaredTypeParameters");
         List<y> typeParameters = kVar.getTypeParameters();
@@ -420,11 +714,11 @@ public final class h extends k {
             d0.z.d.m.checkNotNull(z0VarResolveTypeParameter);
             arrayList.add(z0VarResolveTypeParameter);
         }
-        cVarCreateJavaConstructor.initialize(k_bN.getDescriptors(), f0.toDescriptorVisibility(kVar.getVisibility()), u.plus((Collection) declaredTypeParameters, (Iterable) arrayList));
+        cVarCreateJavaConstructor.initialize(bVarN.getDescriptors(), f0.toDescriptorVisibility(kVar.getVisibility()), u.plus((Collection) declaredTypeParameters, (Iterable) arrayList));
         cVarCreateJavaConstructor.setHasStableParameterNames(false);
-        cVarCreateJavaConstructor.setHasSynthesizedParameterNames(k_bN.getHasSynthesizedNames());
+        cVarCreateJavaConstructor.setHasSynthesizedParameterNames(bVarN.getHasSynthesizedNames());
         cVarCreateJavaConstructor.setReturnType(eVar.getDefaultType());
-        ((g$a) gVarChildForMethod.getComponents().getJavaResolverCache()).recordConstructor(kVar, cVarCreateJavaConstructor);
+        ((d0.e0.p.d.m0.e.a.g0.g.a) gVarChildForMethod.getComponents().getJavaResolverCache()).recordConstructor(kVar, cVarCreateJavaConstructor);
         return cVarCreateJavaConstructor;
     }
 
@@ -508,14 +802,14 @@ public final class h extends k {
             d0.z.d.m.checkNotNullExpressionValue(fVarCreateJavaMethod, "createJavaMethod(\n            ownerDescriptor, annotations, recordComponent.name, c.components.sourceElementFactory.source(recordComponent), true\n        )");
             fVarCreateJavaMethod.initialize(null, i(), d0.t.n.emptyList(), d0.t.n.emptyList(), this.c.getTypeResolver().transformJavaType(wVarFindRecordComponentByName.getType(), d0.e0.p.d.m0.e.a.i0.m.e.toAttributes$default(d0.e0.p.d.m0.e.a.g0.k.COMMON, false, null, 2, null)), d0.e0.p.d.m0.c.z.j.convertFromFlags(false, false, true), t.e, null);
             fVarCreateJavaMethod.setParameterNamesStatus(false, false);
-            ((g$a) this.c.getComponents().getJavaResolverCache()).recordMethod(wVarFindRecordComponentByName, fVarCreateJavaMethod);
+            ((d0.e0.p.d.m0.e.a.g0.g.a) this.c.getComponents().getJavaResolverCache()).recordMethod(wVarFindRecordComponentByName, fVarCreateJavaMethod);
             collection.add(fVarCreateJavaMethod);
         }
     }
 
     @Override // d0.e0.p.d.m0.e.a.i0.l.k
-    public b d() {
-        return new a(this.o, g.j);
+    public d0.e0.p.d.m0.e.a.i0.l.b d() {
+        return new d0.e0.p.d.m0.e.a.i0.l.a(this.o, d0.e0.p.d.m0.e.a.i0.l.g.j);
     }
 
     @Override // d0.e0.p.d.m0.e.a.i0.l.k
@@ -555,8 +849,8 @@ public final class h extends k {
         Collection<t0> collectionCreate = d0.e0.p.d.m0.p.j.j.create();
         Collection<? extends t0> collectionResolveOverridesForNonStaticMembers = d0.e0.p.d.m0.e.a.g0.a.resolveOverridesForNonStaticMembers(eVar, setC, d0.t.n.emptyList(), this.n, d0.e0.p.d.m0.l.b.p.a, this.c.getComponents().getKotlinTypeChecker().getOverridingUtil());
         d0.z.d.m.checkNotNullExpressionValue(collectionResolveOverridesForNonStaticMembers, "resolveOverridesForNonStaticMembers(\n            name, functionsFromSupertypes, emptyList(), ownerDescriptor, ErrorReporter.DO_NOTHING,\n            c.components.kotlinTypeChecker.overridingUtil\n        )");
-        q(eVar, collection, collectionResolveOverridesForNonStaticMembers, collection, new h$a(this));
-        q(eVar, collection, collectionResolveOverridesForNonStaticMembers, collectionCreate, new h$b(this));
+        q(eVar, collection, collectionResolveOverridesForNonStaticMembers, collection, new a(this));
+        q(eVar, collection, collectionResolveOverridesForNonStaticMembers, collectionCreate, new b(this));
         ArrayList arrayList2 = new ArrayList();
         for (Object obj2 : setC) {
             if (F((t0) obj2)) {
@@ -586,11 +880,11 @@ public final class h extends k {
         if (setD.isEmpty()) {
             return;
         }
-        d0.e0.p.d.m0.p.j$b j_b = d0.e0.p.d.m0.p.j.j;
-        d0.e0.p.d.m0.p.j jVarCreate = j_b.create();
-        d0.e0.p.d.m0.p.j jVarCreate2 = j_b.create();
-        r(setD, collection, jVarCreate, new h$c(this));
-        r(o0.minus((Set) setD, (Iterable) jVarCreate), jVarCreate2, null, new h$d(this));
+        d0.e0.p.d.m0.p.j.b bVar = d0.e0.p.d.m0.p.j.j;
+        d0.e0.p.d.m0.p.j jVarCreate = bVar.create();
+        d0.e0.p.d.m0.p.j jVarCreate2 = bVar.create();
+        r(setD, collection, jVarCreate, new c());
+        r(o0.minus((Set) setD, (Iterable) jVarCreate), jVarCreate2, null, new d());
         Collection<? extends n0> collectionResolveOverridesForNonStaticMembers = d0.e0.p.d.m0.e.a.g0.a.resolveOverridesForNonStaticMembers(eVar, o0.plus((Set) setD, (Iterable) jVarCreate2), collection, this.n, this.c.getComponents().getErrorReporter(), this.c.getComponents().getKotlinTypeChecker().getOverridingUtil());
         d0.z.d.m.checkNotNullExpressionValue(collectionResolveOverridesForNonStaticMembers, "resolveOverridesForNonStaticMembers(\n                name,\n                propertiesFromSupertypes + propertiesOverridesFromSuperTypes,\n                result,\n                ownerDescriptor,\n                c.components.errorReporter,\n                c.components.kotlinTypeChecker.overridingUtil\n            )");
         collection.addAll(collectionResolveOverridesForNonStaticMembers);
@@ -666,32 +960,32 @@ public final class h extends k {
     }
 
     @Override // d0.e0.p.d.m0.e.a.i0.l.k
-    public k$a l(d0.e0.p.d.m0.e.a.k0.r rVar, List<? extends z0> list, c0 c0Var, List<? extends c1> list2) {
+    public k.a l(d0.e0.p.d.m0.e.a.k0.r rVar, List<? extends z0> list, c0 c0Var, List<? extends c1> list2) {
         d0.z.d.m.checkNotNullParameter(rVar, "method");
         d0.z.d.m.checkNotNullParameter(list, "methodTypeParameters");
         d0.z.d.m.checkNotNullParameter(c0Var, "returnType");
         d0.z.d.m.checkNotNullParameter(list2, "valueParameters");
-        d0.e0.p.d.m0.e.a.g0.j$b j_bResolvePropagatedSignature = ((d0.e0.p.d.m0.e.a.g0.j$a) this.c.getComponents().getSignaturePropagator()).resolvePropagatedSignature(rVar, this.n, c0Var, null, list2, list);
-        d0.z.d.m.checkNotNullExpressionValue(j_bResolvePropagatedSignature, "c.components.signaturePropagator.resolvePropagatedSignature(\n            method, ownerDescriptor, returnType, null, valueParameters, methodTypeParameters\n        )");
-        c0 returnType = j_bResolvePropagatedSignature.getReturnType();
+        d0.e0.p.d.m0.e.a.g0.j.b bVarResolvePropagatedSignature = ((d0.e0.p.d.m0.e.a.g0.j.a) this.c.getComponents().getSignaturePropagator()).resolvePropagatedSignature(rVar, this.n, c0Var, null, list2, list);
+        d0.z.d.m.checkNotNullExpressionValue(bVarResolvePropagatedSignature, "c.components.signaturePropagator.resolvePropagatedSignature(\n            method, ownerDescriptor, returnType, null, valueParameters, methodTypeParameters\n        )");
+        c0 returnType = bVarResolvePropagatedSignature.getReturnType();
         d0.z.d.m.checkNotNullExpressionValue(returnType, "propagated.returnType");
-        c0 receiverType = j_bResolvePropagatedSignature.getReceiverType();
-        List<c1> valueParameters = j_bResolvePropagatedSignature.getValueParameters();
+        c0 receiverType = bVarResolvePropagatedSignature.getReceiverType();
+        List<c1> valueParameters = bVarResolvePropagatedSignature.getValueParameters();
         d0.z.d.m.checkNotNullExpressionValue(valueParameters, "propagated.valueParameters");
-        List<z0> typeParameters = j_bResolvePropagatedSignature.getTypeParameters();
+        List<z0> typeParameters = bVarResolvePropagatedSignature.getTypeParameters();
         d0.z.d.m.checkNotNullExpressionValue(typeParameters, "propagated.typeParameters");
-        boolean zHasStableParameterNames = j_bResolvePropagatedSignature.hasStableParameterNames();
-        List<String> errors = j_bResolvePropagatedSignature.getErrors();
+        boolean zHasStableParameterNames = bVarResolvePropagatedSignature.hasStableParameterNames();
+        List<String> errors = bVarResolvePropagatedSignature.getErrors();
         d0.z.d.m.checkNotNullExpressionValue(errors, "propagated.errors");
-        return new k$a(returnType, receiverType, valueParameters, typeParameters, zHasStableParameterNames, errors);
+        return new k.a(returnType, receiverType, valueParameters, typeParameters, zHasStableParameterNames, errors);
     }
 
-    public final void o(List<c1> list, d0.e0.p.d.m0.c.l lVar, int i, d0.e0.p.d.m0.e.a.k0.r rVar, c0 c0Var, c0 c0Var2) {
+    public final void o(List<c1> list, d0.e0.p.d.m0.c.l lVar, int i2, d0.e0.p.d.m0.e.a.k0.r rVar, c0 c0Var, c0 c0Var2) {
         d0.e0.p.d.m0.c.g1.g empty = d0.e0.p.d.m0.c.g1.g.f.getEMPTY();
         d0.e0.p.d.m0.g.e name = rVar.getName();
         c0 c0VarMakeNotNullable = e1.makeNotNullable(c0Var);
         d0.z.d.m.checkNotNullExpressionValue(c0VarMakeNotNullable, "makeNotNullable(returnType)");
-        list.add(new l0(lVar, null, i, empty, name, c0VarMakeNotNullable, rVar.getHasAnnotationParameterDefaultValue(), false, false, c0Var2 == null ? null : e1.makeNotNullable(c0Var2), this.c.getComponents().getSourceElementFactory().source(rVar)));
+        list.add(new l0(lVar, null, i2, empty, name, c0VarMakeNotNullable, rVar.getHasAnnotationParameterDefaultValue(), false, false, c0Var2 == null ? null : e1.makeNotNullable(c0Var2), this.c.getComponents().getSourceElementFactory().source(rVar)));
     }
 
     public final void p(Collection<t0> collection, d0.e0.p.d.m0.g.e eVar, Collection<? extends t0> collection2, boolean z2) {
@@ -735,11 +1029,11 @@ public final class h extends k {
                 Iterator<? extends t0> it = function1.invoke(eVarIdentifier).iterator();
                 while (true) {
                     if (it.hasNext()) {
-                        x$a<? extends t0> x_aNewCopyBuilder = it.next().newCopyBuilder();
-                        x_aNewCopyBuilder.setName(eVar);
-                        x_aNewCopyBuilder.setSignatureChange();
-                        x_aNewCopyBuilder.setPreserveSourceElement();
-                        t0 t0Var4 = (t0) x_aNewCopyBuilder.build();
+                        x.a<? extends t0> aVarNewCopyBuilder = it.next().newCopyBuilder();
+                        aVarNewCopyBuilder.setName(eVar);
+                        aVarNewCopyBuilder.setSignatureChange();
+                        aVarNewCopyBuilder.setPreserveSourceElement();
+                        t0 t0Var4 = (t0) aVarNewCopyBuilder.build();
                         d0.z.d.m.checkNotNull(t0Var4);
                         if (x(t0Var3, t0Var4)) {
                             t0VarT = t(t0Var4, t0Var3, collection);
@@ -769,7 +1063,7 @@ public final class h extends k {
                 if (t0Var5 == null) {
                     t0Var = null;
                 } else {
-                    x$a<? extends t0> x_aNewCopyBuilder2 = t0Var5.newCopyBuilder();
+                    x.a<? extends t0> aVarNewCopyBuilder2 = t0Var5.newCopyBuilder();
                     List<c1> valueParameters = overriddenBuiltinFunctionWithErasedValueParametersInJava.getValueParameters();
                     d0.z.d.m.checkNotNullExpressionValue(valueParameters, "overridden.valueParameters");
                     ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(valueParameters, 10));
@@ -780,10 +1074,10 @@ public final class h extends k {
                     }
                     List<c1> valueParameters2 = t0Var5.getValueParameters();
                     d0.z.d.m.checkNotNullExpressionValue(valueParameters2, "override.valueParameters");
-                    x_aNewCopyBuilder2.setValueParameters(d0.e0.p.d.m0.e.a.h0.k.copyValueParameters(arrayList, valueParameters2, overriddenBuiltinFunctionWithErasedValueParametersInJava));
-                    x_aNewCopyBuilder2.setSignatureChange();
-                    x_aNewCopyBuilder2.setPreserveSourceElement();
-                    t0Var = (t0) x_aNewCopyBuilder2.build();
+                    aVarNewCopyBuilder2.setValueParameters(d0.e0.p.d.m0.e.a.h0.k.copyValueParameters(arrayList, valueParameters2, overriddenBuiltinFunctionWithErasedValueParametersInJava));
+                    aVarNewCopyBuilder2.setSignatureChange();
+                    aVarNewCopyBuilder2.setPreserveSourceElement();
+                    t0Var = (t0) aVarNewCopyBuilder2.build();
                 }
                 if (t0Var != null) {
                     if (!F(t0Var)) {
@@ -947,11 +1241,11 @@ public final class h extends k {
         if (c1Var == null) {
             return null;
         }
-        x$a<? extends t0> x_aNewCopyBuilder = t0Var.newCopyBuilder();
+        x.a<? extends t0> aVarNewCopyBuilder = t0Var.newCopyBuilder();
         List<c1> valueParameters2 = t0Var.getValueParameters();
         d0.z.d.m.checkNotNullExpressionValue(valueParameters2, "valueParameters");
-        t0 t0Var2 = (t0) x_aNewCopyBuilder.setValueParameters(u.dropLast(valueParameters2, 1)).setReturnType(c1Var.getType().getArguments().get(0).getType()).build();
-        g0 g0Var = (g0) t0Var2;
+        t0 t0Var2 = (t0) aVarNewCopyBuilder.setValueParameters(u.dropLast(valueParameters2, 1)).setReturnType(c1Var.getType().getArguments().get(0).getType()).build();
+        d0.e0.p.d.m0.c.i1.g0 g0Var = (d0.e0.p.d.m0.c.i1.g0) t0Var2;
         if (g0Var != null) {
             g0Var.setSuspend(true);
         }
@@ -959,7 +1253,7 @@ public final class h extends k {
     }
 
     public final boolean v(n0 n0Var, Function1<? super d0.e0.p.d.m0.g.e, ? extends Collection<? extends t0>> function1) {
-        if (c.isJavaField(n0Var)) {
+        if (d0.e0.p.d.m0.e.a.i0.l.c.isJavaField(n0Var)) {
             return false;
         }
         t0 t0VarZ = z(n0Var, function1);
@@ -974,9 +1268,9 @@ public final class h extends k {
     }
 
     public final boolean w(d0.e0.p.d.m0.c.a aVar, d0.e0.p.d.m0.c.a aVar2) {
-        k$d$a result = d0.e0.p.d.m0.k.k.f3468b.isOverridableByWithoutExternalConditions(aVar2, aVar, true).getResult();
+        d0.e0.p.d.m0.k.k.d.a result = d0.e0.p.d.m0.k.k.f3468b.isOverridableByWithoutExternalConditions(aVar2, aVar, true).getResult();
         d0.z.d.m.checkNotNullExpressionValue(result, "DEFAULT.isOverridableByWithoutExternalConditions(superDescriptor, this, true).result");
-        return result == k$d$a.OVERRIDABLE && !d0.e0.p.d.m0.e.a.x.a.doesJavaOverrideHaveIncompatibleValueParameterKinds(aVar2, aVar);
+        return result == d0.e0.p.d.m0.k.k.d.a.OVERRIDABLE && !d0.e0.p.d.m0.e.a.x.a.doesJavaOverrideHaveIncompatibleValueParameterKinds(aVar2, aVar);
     }
 
     public final boolean x(t0 t0Var, x xVar) {
@@ -1031,9 +1325,9 @@ public final class h extends k {
         this.n = eVar;
         this.o = gVar2;
         this.p = z2;
-        this.q = gVar.getStorageManager().createLazyValue(new h$e(this, gVar));
-        this.r = gVar.getStorageManager().createLazyValue(new h$h(this));
-        this.f3332s = gVar.getStorageManager().createLazyValue(new h$f(this));
-        this.t = gVar.getStorageManager().createMemoizedFunctionWithNullableValues(new h$i(this, gVar));
+        this.q = gVar.getStorageManager().createLazyValue(new e(gVar));
+        this.r = gVar.getStorageManager().createLazyValue(new C0524h());
+        this.f3332s = gVar.getStorageManager().createLazyValue(new f());
+        this.t = gVar.getStorageManager().createMemoizedFunctionWithNullableValues(new i(gVar));
     }
 }

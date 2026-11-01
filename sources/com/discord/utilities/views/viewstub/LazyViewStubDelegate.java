@@ -1,23 +1,40 @@
 package com.discord.utilities.views.viewstub;
 
 import android.view.View;
-import android.view.View$OnClickListener;
 import android.view.ViewStub;
 import d0.g;
 import d0.i;
 import d0.z.d.m;
 import kotlin.Lazy;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: LazyViewStubDelegate.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class LazyViewStubDelegate {
-    public static final LazyViewStubDelegate$Companion Companion = new LazyViewStubDelegate$Companion(null);
-    private View$OnClickListener listener;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
+    private View.OnClickListener listener;
 
     /* JADX INFO: renamed from: view$delegate, reason: from kotlin metadata */
     private final Lazy view;
     private final Lazy<View> viewField;
+
+    /* JADX INFO: compiled from: LazyViewStubDelegate.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final Lazy<LazyViewStubDelegate> lazyViewStub(Function0<ViewStub> getViewStub) {
+            m.checkNotNullParameter(getViewStub, "getViewStub");
+            return g.lazy(i.NONE, new LazyViewStubDelegate$Companion$lazyViewStub$1(getViewStub));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     private LazyViewStubDelegate(ViewStub viewStub) {
         Lazy<View> lazy = g.lazy(i.NONE, new LazyViewStubDelegate$viewField$1(this, viewStub));
@@ -25,12 +42,12 @@ public final class LazyViewStubDelegate {
         this.view = lazy;
     }
 
-    public static final /* synthetic */ View$OnClickListener access$getListener$p(LazyViewStubDelegate lazyViewStubDelegate) {
+    public static final /* synthetic */ View.OnClickListener access$getListener$p(LazyViewStubDelegate lazyViewStubDelegate) {
         return lazyViewStubDelegate.listener;
     }
 
-    public static final /* synthetic */ void access$setListener$p(LazyViewStubDelegate lazyViewStubDelegate, View$OnClickListener view$OnClickListener) {
-        lazyViewStubDelegate.listener = view$OnClickListener;
+    public static final /* synthetic */ void access$setListener$p(LazyViewStubDelegate lazyViewStubDelegate, View.OnClickListener onClickListener) {
+        lazyViewStubDelegate.listener = onClickListener;
     }
 
     public final View getForceInitializedView() {
@@ -61,7 +78,7 @@ public final class LazyViewStubDelegate {
         return false;
     }
 
-    public final void setOnClickListener(View$OnClickListener listener) {
+    public final void setOnClickListener(View.OnClickListener listener) {
         if (this.viewField.isInitialized()) {
             getView().setOnClickListener(listener);
         } else {

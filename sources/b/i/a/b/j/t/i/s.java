@@ -3,15 +3,15 @@ package b.i.a.b.j.t.i;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Base64;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import com.discord.models.domain.ModelAuditLogEntry;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Map$Entry;
+import java.util.Map;
 
 /* JADX INFO: compiled from: SQLiteEventStore.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class s implements t$b {
+public final /* synthetic */ class s implements t.b {
     public final t a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -24,7 +24,7 @@ public final /* synthetic */ class s implements t$b {
         this.c = fVar;
     }
 
-    @Override // b.i.a.b.j.t.i.t$b
+    @Override // b.i.a.b.j.t.i.t.b
     public Object apply(Object obj) {
         long jInsert;
         t tVar = this.a;
@@ -44,7 +44,7 @@ public final /* synthetic */ class s implements t$b {
             contentValues.put("priority", Integer.valueOf(b.i.a.b.j.w.a.a(iVar.d())));
             contentValues.put("next_request_ms", (Integer) 0);
             if (iVar.c() != null) {
-                contentValues.put(NotificationCompat$MessagingStyle$Message.KEY_EXTRAS_BUNDLE, Base64.encodeToString(iVar.c(), 0));
+                contentValues.put(NotificationCompat.MessagingStyle.Message.KEY_EXTRAS_BUNDLE, Base64.encodeToString(iVar.c(), 0));
             }
             jInsert = sQLiteDatabase.insert("transport_contexts", null, contentValues);
         }
@@ -73,11 +73,11 @@ public final /* synthetic */ class s implements t$b {
                 sQLiteDatabase.insert("event_payloads", null, contentValues3);
             }
         }
-        for (Map$Entry map$Entry : Collections.unmodifiableMap(fVar.b()).entrySet()) {
+        for (Map.Entry entry : Collections.unmodifiableMap(fVar.b()).entrySet()) {
             ContentValues contentValues4 = new ContentValues();
             contentValues4.put("event_id", Long.valueOf(jInsert2));
-            contentValues4.put(ModelAuditLogEntry.CHANGE_KEY_NAME, (String) map$Entry.getKey());
-            contentValues4.put("value", (String) map$Entry.getValue());
+            contentValues4.put(ModelAuditLogEntry.CHANGE_KEY_NAME, (String) entry.getKey());
+            contentValues4.put("value", (String) entry.getValue());
             sQLiteDatabase.insert("event_metadata", null, contentValues4);
         }
         return Long.valueOf(jInsert2);

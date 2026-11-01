@@ -9,7 +9,7 @@ import androidx.annotation.LayoutRes;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import b.d.b.a.a;
+import com.discord.R;
 import com.discord.utilities.accessibility.AccessibilityUtils;
 import com.discord.utilities.display.DisplayUtils;
 import com.discord.utilities.logging.Logger;
@@ -27,6 +27,22 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
     private boolean isRecreated;
     private boolean onViewBoundOrOnResumeInvoked;
     private final Subject<Void, Void> unsubscribeSignal;
+
+    /* JADX INFO: compiled from: AppDialog.kt */
+    public final class a implements View.OnClickListener {
+        public final /* synthetic */ View k;
+        public final /* synthetic */ Function1 l;
+
+        public a(View view, Function1 function1) {
+            this.k = view;
+            this.l = function1;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            AppDialog.this.dismiss();
+        }
+    }
 
     public AppDialog() {
         PublishSubject publishSubjectK0 = PublishSubject.k0();
@@ -93,7 +109,7 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
         m.checkNotNullExpressionValue(dialogOnCreateDialog, "super.onCreateDialog(savedInstanceState)");
         dialogOnCreateDialog.requestWindowFeature(1);
         if (AccessibilityUtils.INSTANCE.isReducedMotionEnabled() && (window = dialogOnCreateDialog.getWindow()) != null) {
-            window.setWindowAnimations(2131951962);
+            window.setWindowAnimations(R.style.FadeInOut);
         }
         return dialogOnCreateDialog;
     }
@@ -101,7 +117,7 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
     @Override // androidx.fragment.app.DialogFragment, androidx.fragment.app.Fragment
     public void onDestroyView() {
         super.onDestroyView();
-        TextWatcher.Companion.reset(this);
+        TextWatcher.INSTANCE.reset(this);
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -130,7 +146,7 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
                 ((WidgetNoticeDialog) this).logOnStartError(e);
             } else {
                 AppLog appLog = AppLog.g;
-                StringBuilder sbU = a.U("Failed to start AppDialog: ");
+                StringBuilder sbU = b.d.b.a.a.U("Failed to start AppDialog: ");
                 sbU.append(getClass().getName());
                 Logger.e$default(appLog, sbU.toString(), e, null, 4, null);
             }
@@ -139,7 +155,7 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
         if (dialog == null || (window = dialog.getWindow()) == null) {
             return;
         }
-        window.setBackgroundDrawableResource(2131100438);
+        window.setBackgroundDrawableResource(R.color.transparent);
     }
 
     @CallSuper
@@ -165,7 +181,7 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
     public final void setOnClickAndDismissListener(View view, Function1<? super View, Unit> function1) {
         m.checkNotNullParameter(view, "$this$setOnClickAndDismissListener");
         m.checkNotNullParameter(function1, "onClickListener");
-        view.setOnClickListener(new AppDialog$a(this, view, function1));
+        view.setOnClickListener(new a(view, function1));
     }
 
     @Override // androidx.fragment.app.DialogFragment
@@ -178,7 +194,7 @@ public abstract class AppDialog extends DialogFragment implements AppComponent {
             }
         } else {
             AppLog appLog = AppLog.g;
-            StringBuilder sbU = a.U("failed to show ");
+            StringBuilder sbU = b.d.b.a.a.U("failed to show ");
             sbU.append(manager.getClass().getName());
             Logger.e$default(appLog, "Could not show dialog because of detached FragmentManager", new IllegalStateException(sbU.toString()), null, 4, null);
         }

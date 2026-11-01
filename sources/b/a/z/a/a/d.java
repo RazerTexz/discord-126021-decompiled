@@ -2,7 +2,7 @@ package b.a.z.a.a;
 
 import com.discord.models.member.GuildMember;
 import com.discord.models.user.User;
-import com.discord.widgets.channels.SimpleMembersAdapter$MemberItem;
+import com.discord.widgets.channels.SimpleMembersAdapter;
 import java.util.Map;
 
 /* JADX INFO: compiled from: lambda */
@@ -17,6 +17,6 @@ public final /* synthetic */ class d implements j0.k.b {
     @Override // j0.k.b
     public final Object call(Object obj) {
         User user = (User) obj;
-        return new SimpleMembersAdapter$MemberItem(user, (GuildMember) b.d.b.a.a.f(user, this.j));
+        return new SimpleMembersAdapter.MemberItem(user, (GuildMember) b.d.b.a.a.f(user, this.j));
     }
 }

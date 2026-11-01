@@ -1,7 +1,6 @@
 package com.discord.stores;
 
 import co.discord.media_engine.VideoInputDeviceDescription;
-import d0.k$a;
 import d0.w.e;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -26,7 +25,7 @@ public final /* synthetic */ class StoreMediaEngine$getVideoInputDevicesNativeAs
     public final void invoke2(VideoInputDeviceDescription[] videoInputDeviceDescriptionArr) {
         m.checkNotNullParameter(videoInputDeviceDescriptionArr, "p1");
         CancellableContinuation cancellableContinuation = (CancellableContinuation) this.receiver;
-        k$a k_a = d0.k.j;
+        d0.k.a aVar = d0.k.j;
         cancellableContinuation.resumeWith(d0.k.m97constructorimpl(videoInputDeviceDescriptionArr));
     }
 }

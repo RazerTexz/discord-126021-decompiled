@@ -2,17 +2,25 @@ package b.i.a.c.g3;
 
 import android.content.Context;
 import android.hardware.display.DisplayManager;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
+import android.os.Message;
+import android.view.Choreographer;
 import android.view.Surface;
 import android.view.WindowManager;
+import androidx.annotation.DoNotInline;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import b.i.a.c.f3.e0;
+import java.util.Objects;
 
 /* JADX INFO: compiled from: VideoFrameReleaseHelper.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class v {
 
     @Nullable
-    public final v$e c;
+    public final e c;
     public boolean d;
 
     @Nullable
@@ -20,7 +28,7 @@ public final class v {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     @Nullable
-    public final v$b f993b;
+    public final b f993b;
     public float f;
     public float g;
     public float h;
@@ -35,26 +43,173 @@ public final class v {
     public long q;
     public final p a = new p();
 
+    /* JADX INFO: compiled from: VideoFrameReleaseHelper.java */
+    @RequiresApi(30)
+    public final class a {
+        @DoNotInline
+        public static void a(Surface surface, float f) {
+            try {
+                surface.setFrameRate(f, f == 0.0f ? 0 : 1);
+            } catch (IllegalStateException e) {
+                b.i.a.c.f3.q.b("VideoFrameReleaseHelper", "Failed to call Surface.setFrameRate", e);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: VideoFrameReleaseHelper.java */
+    public interface b {
+
+        /* JADX INFO: compiled from: VideoFrameReleaseHelper.java */
+        public interface a {
+        }
+
+        void a(a aVar);
+
+        void unregister();
+    }
+
+    /* JADX INFO: compiled from: VideoFrameReleaseHelper.java */
+    public final class c implements b {
+        public final WindowManager a;
+
+        public c(WindowManager windowManager) {
+            this.a = windowManager;
+        }
+
+        @Override // b.i.a.c.g3.v.b
+        public void a(b.a aVar) {
+            ((b.i.a.c.g3.b) aVar).a(this.a.getDefaultDisplay());
+        }
+
+        @Override // b.i.a.c.g3.v.b
+        public void unregister() {
+        }
+    }
+
+    /* JADX INFO: compiled from: VideoFrameReleaseHelper.java */
+    @RequiresApi(17)
+    public final class d implements b, DisplayManager.DisplayListener {
+        public final DisplayManager a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        @Nullable
+        public b.a f994b;
+
+        public d(DisplayManager displayManager) {
+            this.a = displayManager;
+        }
+
+        @Override // b.i.a.c.g3.v.b
+        public void a(b.a aVar) {
+            this.f994b = aVar;
+            this.a.registerDisplayListener(this, e0.j());
+            ((b.i.a.c.g3.b) aVar).a(this.a.getDisplay(0));
+        }
+
+        @Override // android.hardware.display.DisplayManager.DisplayListener
+        public void onDisplayAdded(int i) {
+        }
+
+        @Override // android.hardware.display.DisplayManager.DisplayListener
+        public void onDisplayChanged(int i) {
+            b.a aVar = this.f994b;
+            if (aVar == null || i != 0) {
+                return;
+            }
+            ((b.i.a.c.g3.b) aVar).a(this.a.getDisplay(0));
+        }
+
+        @Override // android.hardware.display.DisplayManager.DisplayListener
+        public void onDisplayRemoved(int i) {
+        }
+
+        @Override // b.i.a.c.g3.v.b
+        public void unregister() {
+            this.a.unregisterDisplayListener(this);
+            this.f994b = null;
+        }
+    }
+
+    /* JADX INFO: compiled from: VideoFrameReleaseHelper.java */
+    public final class e implements Choreographer.FrameCallback, Handler.Callback {
+        public final Handler l;
+        public final HandlerThread m;
+        public Choreographer n;
+        public int o;
+        public static final e j = new e();
+        public volatile long k = -9223372036854775807L;
+
+        public e() {
+            HandlerThread handlerThread = new HandlerThread("ExoPlayer:FrameReleaseChoreographer");
+            this.m = handlerThread;
+            handlerThread.start();
+            Looper looper = handlerThread.getLooper();
+            int i = e0.a;
+            Handler handler = new Handler(looper, this);
+            this.l = handler;
+            handler.sendEmptyMessage(0);
+        }
+
+        @Override // android.view.Choreographer.FrameCallback
+        public void doFrame(long j2) {
+            this.k = j2;
+            Choreographer choreographer = this.n;
+            Objects.requireNonNull(choreographer);
+            choreographer.postFrameCallbackDelayed(this, 500L);
+        }
+
+        @Override // android.os.Handler.Callback
+        public boolean handleMessage(Message message) {
+            int i = message.what;
+            if (i == 0) {
+                this.n = Choreographer.getInstance();
+                return true;
+            }
+            if (i == 1) {
+                int i2 = this.o + 1;
+                this.o = i2;
+                if (i2 == 1) {
+                    Choreographer choreographer = this.n;
+                    Objects.requireNonNull(choreographer);
+                    choreographer.postFrameCallback(this);
+                }
+                return true;
+            }
+            if (i != 2) {
+                return false;
+            }
+            int i3 = this.o - 1;
+            this.o = i3;
+            if (i3 == 0) {
+                Choreographer choreographer2 = this.n;
+                Objects.requireNonNull(choreographer2);
+                choreographer2.removeFrameCallback(this);
+                this.k = -9223372036854775807L;
+            }
+            return true;
+        }
+    }
+
     /* JADX WARN: Code duplicated, block: B:14:0x003b  */
     public v(@Nullable Context context) {
-        v$b v_d;
+        b dVar;
         DisplayManager displayManager;
         if (context != null) {
             Context applicationContext = context.getApplicationContext();
-            v_d = (e0.a < 17 || (displayManager = (DisplayManager) applicationContext.getSystemService("display")) == null) ? null : new v$d(displayManager);
-            if (v_d == null) {
+            dVar = (e0.a < 17 || (displayManager = (DisplayManager) applicationContext.getSystemService("display")) == null) ? null : new d(displayManager);
+            if (dVar == null) {
                 WindowManager windowManager = (WindowManager) applicationContext.getSystemService("window");
                 if (windowManager != null) {
-                    v_d = new v$c(windowManager);
+                    dVar = new c(windowManager);
                 } else {
-                    v_d = null;
+                    dVar = null;
                 }
             }
         } else {
-            v_d = null;
+            dVar = null;
         }
-        this.f993b = v_d;
-        this.c = v_d != null ? v$e.j : null;
+        this.f993b = dVar;
+        this.c = dVar != null ? e.j : null;
         this.k = -9223372036854775807L;
         this.l = -9223372036854775807L;
         this.f = -1.0f;
@@ -68,7 +223,7 @@ public final class v {
             return;
         }
         this.h = 0.0f;
-        v$a.a(surface, 0.0f);
+        a.a(surface, 0.0f);
     }
 
     public final void b() {
@@ -88,9 +243,9 @@ public final class v {
         if (this.a.a()) {
             p pVar = this.a;
             if (pVar.a()) {
-                p$a p_a = pVar.a;
-                long j = p_a.e;
-                f = (float) (1.0E9d / (j != 0 ? p_a.f / j : 0L));
+                p.a aVar = pVar.a;
+                long j = aVar.e;
+                f = (float) (1.0E9d / (j != 0 ? aVar.f / j : 0L));
             } else {
                 f = -1.0f;
             }
@@ -139,7 +294,7 @@ public final class v {
         }
         if (z2 || this.h != f) {
             this.h = f;
-            v$a.a(surface, f);
+            a.a(surface, f);
         }
     }
 }

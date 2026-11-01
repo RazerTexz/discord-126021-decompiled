@@ -6,7 +6,7 @@ import android.content.res.Resources;
 import b.a.d.m;
 import b.a.k.b;
 import com.discord.BuildConfig;
-import com.discord.R$plurals;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.models.domain.ModelInvite;
 import com.discord.models.experiments.domain.Experiment;
@@ -19,7 +19,7 @@ import com.discord.utilities.resources.StringResourceUtilsKt;
 /* JADX INFO: loaded from: classes2.dex */
 public final class GuildInviteUiHelperKt {
     private static final void copyLink(Context context, String str) {
-        m.a(context, str, 2131892298);
+        m.a(context, str, R.string.invite_link_copied);
     }
 
     public static final void copyLinkClick(Context context, ModelInvite modelInvite, Intent intent) {
@@ -43,25 +43,25 @@ public final class GuildInviteUiHelperKt {
 
     public static final CharSequence getInviteLinkText(Context context, Experiment experiment) {
         d0.z.d.m.checkNotNullParameter(context, "context");
-        return b.h(context, 2131892302, new Object[]{(experiment == null || experiment.getBucket() != 1) ? StringResourceUtilsKt.getI18nPluralString(context, R$plurals.duration_days_days, 1, 1) : StringResourceUtilsKt.getI18nPluralString(context, R$plurals.duration_days_days, 7, 7)}, null, 4);
+        return b.h(context, R.string.invite_links_expire_after_default, new Object[]{(experiment == null || experiment.getBucket() != 1) ? StringResourceUtilsKt.getI18nPluralString(context, R.plurals.duration_days_days, 1, 1) : StringResourceUtilsKt.getI18nPluralString(context, R.plurals.duration_days_days, 7, 7)}, null, 4);
     }
 
     public static final CharSequence getInviteSettingsText(Context context, long j, int i) {
         Object quantityString;
         d0.z.d.m.checkNotNullParameter(context, "context");
         if (i == 0) {
-            quantityString = context.getString(2131892769);
+            quantityString = context.getString(R.string.max_uses_description_unlimited_uses);
             d0.z.d.m.checkNotNullExpressionValue(quantityString, "context.getString(R.stri…scription_unlimited_uses)");
         } else {
             Resources resources = context.getResources();
             d0.z.d.m.checkNotNullExpressionValue(resources, "context.resources");
-            quantityString = StringResourceUtilsKt.getQuantityString(resources, context, R$plurals.max_uses_description_mobile_maxUses, i, Integer.valueOf(i));
+            quantityString = StringResourceUtilsKt.getQuantityString(resources, context, R.plurals.max_uses_description_mobile_maxUses, i, Integer.valueOf(i));
         }
-        return j <= 0 ? b.h(context, 2131892323, new Object[]{context.getString(2131892764), quantityString}, null, 4) : b.h(context, 2131892324, new Object[]{DurationUtilsKt.humanizeDurationRounded(context, j), quantityString}, null, 4);
+        return j <= 0 ? b.h(context, R.string.invite_settings_description_no_expiration, new Object[]{context.getString(R.string.max_age_never_description_mobile), quantityString}, null, 4) : b.h(context, R.string.invite_settings_expired_description, new Object[]{DurationUtilsKt.humanizeDurationRounded(context, j), quantityString}, null, 4);
     }
 
     private static final void shareLink(Context context, String str) {
-        String string = context.getResources().getString(2131896415);
+        String string = context.getResources().getString(R.string.tip_instant_invite_title3);
         d0.z.d.m.checkNotNullExpressionValue(string, "context.resources.getStr…ip_instant_invite_title3)");
         IntentUtils.performChooserSendIntent(context, str, string);
     }
@@ -104,8 +104,8 @@ public final class GuildInviteUiHelperKt {
     public static final CharSequence getInviteSettingsText(Context context, long j) {
         d0.z.d.m.checkNotNullParameter(context, "context");
         if (j <= 0) {
-            return b.h(context, 2131892764, new Object[0], null, 4);
+            return b.h(context, R.string.max_age_never_description_mobile, new Object[0], null, 4);
         }
-        return b.h(context, 2131892278, new Object[]{DurationUtilsKt.humanizeDurationRounded(context, j)}, null, 4);
+        return b.h(context, R.string.invite_expired_subtext_mobile, new Object[]{DurationUtilsKt.humanizeDurationRounded(context, j)}, null, 4);
     }
 }

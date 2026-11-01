@@ -1,17 +1,17 @@
 package com.discord.models.experiments.dto;
 
-import com.discord.models.domain.Model$JsonReader;
+import com.discord.models.domain.Model;
 import kotlin.jvm.internal.Ref$IntRef;
 
 /* JADX INFO: compiled from: GuildExperimentDto.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class GuildExperimentBucketDto$Parser$parse$1 implements Runnable {
     public final /* synthetic */ Ref$IntRef $bucketInt;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
 
-    public GuildExperimentBucketDto$Parser$parse$1(Ref$IntRef ref$IntRef, Model$JsonReader model$JsonReader) {
+    public GuildExperimentBucketDto$Parser$parse$1(Ref$IntRef ref$IntRef, Model.JsonReader jsonReader) {
         this.$bucketInt = ref$IntRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
     }
 
     @Override // java.lang.Runnable

@@ -18,6 +18,116 @@ import kotlin.sequences.Sequence;
 /* JADX INFO: compiled from: _Sequences.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class q extends p {
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: Iterables.kt */
+    public final class a<T> implements Iterable<T>, d0.z.d.g0.a {
+        public final /* synthetic */ Sequence j;
+
+        public a(Sequence sequence) {
+            this.j = sequence;
+        }
+
+        @Override // java.lang.Iterable
+        public Iterator<T> iterator() {
+            return this.j.iterator();
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: _Sequences.kt */
+    public final class b<T> extends d0.z.d.o implements Function1<T, T> {
+        public static final b j = new b();
+
+        public b() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final T invoke(T t) {
+            return t;
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: _Sequences.kt */
+    public final class c<T> extends d0.z.d.o implements Function1<T, Boolean> {
+        public static final c j = new c();
+
+        public c() {
+            super(1);
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(Object obj) {
+            return Boolean.valueOf(invoke2(obj));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(T t) {
+            return t == null;
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [R] */
+    /* JADX INFO: compiled from: _Sequences.kt */
+    public final /* synthetic */ class d<R> extends d0.z.d.k implements Function1<Sequence<? extends R>, Iterator<? extends R>> {
+        public static final d j = new d();
+
+        public d() {
+            super(1, Sequence.class, "iterator", "iterator()Ljava/util/Iterator;", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Object invoke(Object obj) {
+            return invoke((Sequence) obj);
+        }
+
+        public final Iterator<R> invoke(Sequence<? extends R> sequence) {
+            d0.z.d.m.checkNotNullParameter(sequence, "p1");
+            return sequence.iterator();
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: _Sequences.kt */
+    public final class e<T> implements Sequence<T> {
+        public final /* synthetic */ Sequence a;
+
+        public e(Sequence<? extends T> sequence) {
+            this.a = sequence;
+        }
+
+        @Override // kotlin.sequences.Sequence
+        public Iterator<T> iterator() {
+            List mutableList = q.toMutableList(this.a);
+            d0.t.q.sort(mutableList);
+            return mutableList.iterator();
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: _Sequences.kt */
+    public final class f<T> implements Sequence<T> {
+        public final /* synthetic */ Sequence a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final /* synthetic */ Comparator f3574b;
+
+        public f(Sequence<? extends T> sequence, Comparator comparator) {
+            this.a = sequence;
+            this.f3574b = comparator;
+        }
+
+        @Override // kotlin.sequences.Sequence
+        public Iterator<T> iterator() {
+            List mutableList = q.toMutableList(this.a);
+            d0.t.q.sortWith(mutableList, this.f3574b);
+            return mutableList.iterator();
+        }
+    }
+
     public static final <T> boolean any(Sequence<? extends T> sequence) {
         d0.z.d.m.checkNotNullParameter(sequence, "$this$any");
         return sequence.iterator().hasNext();
@@ -25,7 +135,7 @@ public class q extends p {
 
     public static final <T> Iterable<T> asIterable(Sequence<? extends T> sequence) {
         d0.z.d.m.checkNotNullParameter(sequence, "$this$asIterable");
-        return new q$a(sequence);
+        return new a(sequence);
     }
 
     public static final <T> int count(Sequence<? extends T> sequence) {
@@ -44,13 +154,13 @@ public class q extends p {
 
     public static final <T> Sequence<T> distinct(Sequence<? extends T> sequence) {
         d0.z.d.m.checkNotNullParameter(sequence, "$this$distinct");
-        return distinctBy(sequence, q$b.j);
+        return distinctBy(sequence, b.j);
     }
 
     public static final <T, K> Sequence<T> distinctBy(Sequence<? extends T> sequence, Function1<? super T, ? extends K> function1) {
         d0.z.d.m.checkNotNullParameter(sequence, "$this$distinctBy");
         d0.z.d.m.checkNotNullParameter(function1, "selector");
-        return new c(sequence, function1);
+        return new d0.f0.c(sequence, function1);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -62,7 +172,7 @@ public class q extends p {
         if (i == 0) {
             return sequence;
         }
-        return sequence instanceof e ? ((e) sequence).drop(i) : new d(sequence, i);
+        return sequence instanceof d0.f0.e ? ((d0.f0.e) sequence).drop(i) : new d0.f0.d(sequence, i);
     }
 
     public static final <T> Sequence<T> filter(Sequence<? extends T> sequence, Function1<? super T, Boolean> function1) {
@@ -79,7 +189,7 @@ public class q extends p {
 
     public static final <T> Sequence<T> filterNotNull(Sequence<? extends T> sequence) {
         d0.z.d.m.checkNotNullParameter(sequence, "$this$filterNotNull");
-        Sequence<T> sequenceFilterNot = filterNot(sequence, q$c.j);
+        Sequence<T> sequenceFilterNot = filterNot(sequence, c.j);
         Objects.requireNonNull(sequenceFilterNot, "null cannot be cast to non-null type kotlin.sequences.Sequence<T>");
         return sequenceFilterNot;
     }
@@ -96,33 +206,33 @@ public class q extends p {
     public static final <T, R> Sequence<R> flatMap(Sequence<? extends T> sequence, Function1<? super T, ? extends Sequence<? extends R>> function1) {
         d0.z.d.m.checkNotNullParameter(sequence, "$this$flatMap");
         d0.z.d.m.checkNotNullParameter(function1, "transform");
-        return new h(sequence, function1, q$d.j);
+        return new h(sequence, function1, d.j);
     }
 
-    public static final <T, A extends Appendable> A joinTo(Sequence<? extends T> sequence, A a, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1<? super T, ? extends CharSequence> function1) throws IOException {
+    public static final <T, A extends Appendable> A joinTo(Sequence<? extends T> sequence, A a2, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1<? super T, ? extends CharSequence> function1) throws IOException {
         d0.z.d.m.checkNotNullParameter(sequence, "$this$joinTo");
-        d0.z.d.m.checkNotNullParameter(a, "buffer");
+        d0.z.d.m.checkNotNullParameter(a2, "buffer");
         d0.z.d.m.checkNotNullParameter(charSequence, "separator");
         d0.z.d.m.checkNotNullParameter(charSequence2, "prefix");
         d0.z.d.m.checkNotNullParameter(charSequence3, "postfix");
         d0.z.d.m.checkNotNullParameter(charSequence4, "truncated");
-        a.append(charSequence2);
+        a2.append(charSequence2);
         int i2 = 0;
         for (T t : sequence) {
             i2++;
             if (i2 > 1) {
-                a.append(charSequence);
+                a2.append(charSequence);
             }
             if (i >= 0 && i2 > i) {
                 break;
             }
-            d0.g0.l.appendElement(a, t, function1);
+            d0.g0.l.appendElement(a2, t, function1);
         }
         if (i >= 0 && i2 > i) {
-            a.append(charSequence4);
+            a2.append(charSequence4);
         }
-        a.append(charSequence3);
-        return a;
+        a2.append(charSequence3);
+        return a2;
     }
 
     public static /* synthetic */ String joinToString$default(Sequence sequence, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1 function1, int i2, Object obj) {
@@ -185,13 +295,13 @@ public class q extends p {
 
     public static final <T extends Comparable<? super T>> Sequence<T> sorted(Sequence<? extends T> sequence) {
         d0.z.d.m.checkNotNullParameter(sequence, "$this$sorted");
-        return new q$e(sequence);
+        return new e(sequence);
     }
 
     public static final <T> Sequence<T> sortedWith(Sequence<? extends T> sequence, Comparator<? super T> comparator) {
         d0.z.d.m.checkNotNullParameter(sequence, "$this$sortedWith");
         d0.z.d.m.checkNotNullParameter(comparator, "comparator");
-        return new q$f(sequence, comparator);
+        return new f(sequence, comparator);
     }
 
     public static final <T> Sequence<T> take(Sequence<? extends T> sequence, int i) {
@@ -202,7 +312,7 @@ public class q extends p {
         if (i == 0) {
             return n.emptySequence();
         }
-        return sequence instanceof e ? ((e) sequence).take(i) : new s(sequence, i);
+        return sequence instanceof d0.f0.e ? ((d0.f0.e) sequence).take(i) : new s(sequence, i);
     }
 
     public static final <T> Sequence<T> takeWhile(Sequence<? extends T> sequence, Function1<? super T, Boolean> function1) {
@@ -211,14 +321,14 @@ public class q extends p {
         return new t(sequence, function1);
     }
 
-    public static final <T, C extends Collection<? super T>> C toCollection(Sequence<? extends T> sequence, C c) {
+    public static final <T, C extends Collection<? super T>> C toCollection(Sequence<? extends T> sequence, C c2) {
         d0.z.d.m.checkNotNullParameter(sequence, "$this$toCollection");
-        d0.z.d.m.checkNotNullParameter(c, "destination");
+        d0.z.d.m.checkNotNullParameter(c2, "destination");
         Iterator<? extends T> it = sequence.iterator();
         while (it.hasNext()) {
-            c.add(it.next());
+            c2.add(it.next());
         }
-        return c;
+        return c2;
     }
 
     public static final <T> HashSet<T> toHashSet(Sequence<? extends T> sequence) {

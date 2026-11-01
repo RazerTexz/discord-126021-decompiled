@@ -5,7 +5,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import b.a.i.o0;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.ContactSyncUpsellSheetBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -29,23 +29,23 @@ public final /* synthetic */ class ContactSyncUpsellSheet$binding$2 extends k im
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final ContactSyncUpsellSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.contact_sync_upsell_cta;
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.contact_sync_upsell_cta);
+        int i = R.id.contact_sync_upsell_cta;
+        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.contact_sync_upsell_cta);
         if (linearLayout != null) {
-            i = R$id.contact_sync_upsell_next_button;
-            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.contact_sync_upsell_next_button);
+            i = R.id.contact_sync_upsell_next_button;
+            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.contact_sync_upsell_next_button);
             if (materialButton != null) {
-                i = R$id.contact_sync_upsell_skip_button;
-                MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.contact_sync_upsell_skip_button);
+                i = R.id.contact_sync_upsell_skip_button;
+                MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.contact_sync_upsell_skip_button);
                 if (materialButton2 != null) {
-                    i = R$id.contact_sync_upsell_subtitle;
-                    TextView textView = (TextView) view.findViewById(R$id.contact_sync_upsell_subtitle);
+                    i = R.id.contact_sync_upsell_subtitle;
+                    TextView textView = (TextView) view.findViewById(R.id.contact_sync_upsell_subtitle);
                     if (textView != null) {
-                        i = R$id.contact_sync_upsell_title;
-                        TextView textView2 = (TextView) view.findViewById(R$id.contact_sync_upsell_title);
+                        i = R.id.contact_sync_upsell_title;
+                        TextView textView2 = (TextView) view.findViewById(R.id.contact_sync_upsell_title);
                         if (textView2 != null) {
-                            i = R$id.contact_sync_upsell_toggle_info;
-                            View viewFindViewById = view.findViewById(R$id.contact_sync_upsell_toggle_info);
+                            i = R.id.contact_sync_upsell_toggle_info;
+                            View viewFindViewById = view.findViewById(R.id.contact_sync_upsell_toggle_info);
                             if (viewFindViewById != null) {
                                 return new ContactSyncUpsellSheetBinding((ConstraintLayout) view, linearLayout, materialButton, materialButton2, textView, textView2, o0.a(viewFindViewById));
                             }

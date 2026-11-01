@@ -3,14 +3,17 @@ package com.discord.widgets.guild_role_subscriptions;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import androidx.core.os.BundleKt;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentKt;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.RecyclerView;
 import b.a.d.g0;
 import b.a.d.i0;
 import b.a.y.f;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppBottomSheet;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetPriceTierPickerBottomSheetBinding;
@@ -19,10 +22,12 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Lazy;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 import rx.Observable;
 import rx.subscriptions.CompositeSubscription;
@@ -32,7 +37,9 @@ import rx.subscriptions.CompositeSubscription;
 public final class WidgetPriceTierPickerBottomSheet extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetPriceTierPickerBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetPriceTierPickerBottomSheetBinding;", 0)};
     private static final String ARG_REQUEST_KEY = "INTENT_EXTRA_REQUEST_CODE";
-    public static final WidgetPriceTierPickerBottomSheet$Companion Companion = new WidgetPriceTierPickerBottomSheet$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final int PRICE_TIER_PICKER_VIEW_FLIPPER_LOADING_STATE = 0;
     private static final int PRICE_TIER_PICKER_VIEW_FLIPPER_RESULT = 1;
     private static final String RESULT_EXTRA_PRICE_TIER = "RESULT_EXTRA_PRICE_TIER";
@@ -45,6 +52,54 @@ public final class WidgetPriceTierPickerBottomSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.WidgetPriceTierPickerBottomSheet$bindSubscriptions$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetPriceTierPickerBottomSheet.kt */
+    public final class AnonymousClass1 extends o implements Function1<PriceTierPickerBottomSheetViewModel.ViewState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(PriceTierPickerBottomSheetViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(PriceTierPickerBottomSheetViewModel.ViewState viewState) {
+            WidgetPriceTierPickerBottomSheet widgetPriceTierPickerBottomSheet = WidgetPriceTierPickerBottomSheet.this;
+            m.checkNotNullExpressionValue(viewState, "it");
+            WidgetPriceTierPickerBottomSheet.access$configureUI(widgetPriceTierPickerBottomSheet, viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetPriceTierPickerBottomSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Fragment fragment, String requestKey) {
+            m.checkNotNullParameter(fragment, "fragment");
+            m.checkNotNullParameter(requestKey, "requestKey");
+            WidgetPriceTierPickerBottomSheet widgetPriceTierPickerBottomSheet = new WidgetPriceTierPickerBottomSheet();
+            widgetPriceTierPickerBottomSheet.setArguments(BundleKt.bundleOf(d0.o.to(WidgetPriceTierPickerBottomSheet.ARG_REQUEST_KEY, requestKey)));
+            FragmentManager parentFragmentManager = fragment.getParentFragmentManager();
+            m.checkNotNullExpressionValue(parentFragmentManager, "fragment.parentFragmentManager");
+            widgetPriceTierPickerBottomSheet.show(parentFragmentManager, WidgetPriceTierPickerBottomSheet.class.getName());
+        }
+
+        public final void registerForResult(Fragment fragment, String requestKey, Function1<? super Integer, Unit> onPriceTierSelected) {
+            m.checkNotNullParameter(fragment, "fragment");
+            m.checkNotNullParameter(requestKey, "requestKey");
+            m.checkNotNullParameter(onPriceTierSelected, "onPriceTierSelected");
+            FragmentKt.setFragmentResultListener(fragment, requestKey, new WidgetPriceTierPickerBottomSheet$Companion$registerForResult$1(requestKey, onPriceTierSelected));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetPriceTierPickerBottomSheet() {
         super(false, 1, null);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetPriceTierPickerBottomSheet$binding$2.INSTANCE, null, 2, null);
@@ -54,8 +109,8 @@ public final class WidgetPriceTierPickerBottomSheet extends AppBottomSheet {
         this.itemClickListener = new WidgetPriceTierPickerBottomSheet$itemClickListener$1(this);
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetPriceTierPickerBottomSheet widgetPriceTierPickerBottomSheet, PriceTierPickerBottomSheetViewModel$ViewState priceTierPickerBottomSheetViewModel$ViewState) {
-        widgetPriceTierPickerBottomSheet.configureUI(priceTierPickerBottomSheetViewModel$ViewState);
+    public static final /* synthetic */ void access$configureUI(WidgetPriceTierPickerBottomSheet widgetPriceTierPickerBottomSheet, PriceTierPickerBottomSheetViewModel.ViewState viewState) {
+        widgetPriceTierPickerBottomSheet.configureUI(viewState);
     }
 
     public static final /* synthetic */ Bundle access$getArgumentsOrDefault$p(WidgetPriceTierPickerBottomSheet widgetPriceTierPickerBottomSheet) {
@@ -66,20 +121,20 @@ public final class WidgetPriceTierPickerBottomSheet extends AppBottomSheet {
     public void bindSubscriptions(CompositeSubscription compositeSubscription) {
         m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
         super.bindSubscriptions(compositeSubscription);
-        Observable<PriceTierPickerBottomSheetViewModel$ViewState> observableR = getViewModel().observeViewState().r();
+        Observable<PriceTierPickerBottomSheetViewModel.ViewState> observableR = getViewModel().observeViewState().r();
         m.checkNotNullExpressionValue(observableR, "viewModel\n        .obser…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableR, this, null, 2, null), WidgetPriceTierPickerBottomSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetPriceTierPickerBottomSheet$bindSubscriptions$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableR, this, null, 2, null), WidgetPriceTierPickerBottomSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
-    private final void configureUI(PriceTierPickerBottomSheetViewModel$ViewState viewState) {
-        if (viewState instanceof PriceTierPickerBottomSheetViewModel$ViewState$Loading) {
+    private final void configureUI(PriceTierPickerBottomSheetViewModel.ViewState viewState) {
+        if (viewState instanceof PriceTierPickerBottomSheetViewModel.ViewState.Loading) {
             AppViewFlipper appViewFlipper = getBinding().f2513b;
             m.checkNotNullExpressionValue(appViewFlipper, "binding.priceTierPickerAppFlipper");
             appViewFlipper.setDisplayedChild(0);
         } else {
-            if (!(viewState instanceof PriceTierPickerBottomSheetViewModel$ViewState$Loaded)) {
-                if (viewState instanceof PriceTierPickerBottomSheetViewModel$ViewState$Failed) {
-                    b.a.d.m.g(requireContext(), 2131888366, 0, null, 12);
+            if (!(viewState instanceof PriceTierPickerBottomSheetViewModel.ViewState.Loaded)) {
+                if (viewState instanceof PriceTierPickerBottomSheetViewModel.ViewState.Failed) {
+                    b.a.d.m.g(requireContext(), R.string.default_failure_to_perform_action_message, 0, null, 12);
                     dismiss();
                     return;
                 }
@@ -92,7 +147,7 @@ public final class WidgetPriceTierPickerBottomSheet extends AppBottomSheet {
             if (priceTierPickerAdapter == null) {
                 m.throwUninitializedPropertyAccessException("adapter");
             }
-            priceTierPickerAdapter.setItems(((PriceTierPickerBottomSheetViewModel$ViewState$Loaded) viewState).getPriceTiers());
+            priceTierPickerAdapter.setItems(((PriceTierPickerBottomSheetViewModel.ViewState.Loaded) viewState).getPriceTiers());
         }
     }
 
@@ -102,7 +157,7 @@ public final class WidgetPriceTierPickerBottomSheet extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
-        return R$layout.widget_price_tier_picker_bottom_sheet;
+        return R.layout.widget_price_tier_picker_bottom_sheet;
     }
 
     private final PriceTierPickerBottomSheetViewModel getViewModel() {
@@ -121,7 +176,7 @@ public final class WidgetPriceTierPickerBottomSheet extends AppBottomSheet {
             m.throwUninitializedPropertyAccessException("adapter");
         }
         recyclerView.setAdapter(priceTierPickerAdapter);
-        int dimensionPixelSize = getResources().getDimensionPixelSize(2131165456);
+        int dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.guild_role_subscription_setup_default_padding);
         Context contextRequireContext = requireContext();
         m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
         getBinding().c.addItemDecoration(new f(contextRequireContext, 1, 0, dimensionPixelSize, dimensionPixelSize, 4));

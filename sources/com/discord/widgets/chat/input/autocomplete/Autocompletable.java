@@ -1,6 +1,6 @@
 package com.discord.widgets.chat.input.autocomplete;
 
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import com.discord.utilities.collections.MultiListIterator;
 import d0.z.d.m;
 import java.util.Iterator;
@@ -50,7 +50,7 @@ public abstract class Autocompletable {
     }
 
     public final boolean matchesText(String text) {
-        m.checkNotNullParameter(text, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         if (getInputTextMatchers().contains(text)) {
             return true;
         }

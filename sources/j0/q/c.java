@@ -1,120 +1,192 @@
 package j0.q;
 
+import j0.g;
+import j0.l.a.e;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
-import rx.Observable$a;
+import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Action1;
 
 /* JADX INFO: compiled from: SubjectSubscriptionManager.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class c<T> extends AtomicReference<c$a<T>> implements Observable$a<T> {
+public final class c<T> extends AtomicReference<a<T>> implements Observable.a<T> {
     private static final long serialVersionUID = 6035251036011671568L;
     public boolean active;
     public volatile Object latest;
-    public Action1<c$b<T>> onAdded;
-    public Action1<c$b<T>> onStart;
-    public Action1<c$b<T>> onTerminated;
+    public Action1<b<T>> onAdded;
+    public Action1<b<T>> onStart;
+    public Action1<b<T>> onTerminated;
 
-    public c() {
-        super(c$a.c);
-        this.active = true;
-        j0.k.a$a a_a = j0.k.a.a;
-        this.onStart = a_a;
-        this.onAdded = a_a;
-        this.onTerminated = a_a;
+    /* JADX INFO: compiled from: SubjectSubscriptionManager.java */
+    public final class a<T> {
+        public static final b[] a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public static final a f3805b;
+        public static final a c;
+        public final boolean d;
+        public final b[] e;
+
+        static {
+            b[] bVarArr = new b[0];
+            a = bVarArr;
+            f3805b = new a(true, bVarArr);
+            c = new a(false, bVarArr);
+        }
+
+        public a(boolean z2, b[] bVarArr) {
+            this.d = z2;
+            this.e = bVarArr;
+        }
     }
 
-    public void a(c$b<T> c_b) {
-        c$a<T> c_a;
-        c$a<T> c_a2;
+    public c() {
+        super(a.c);
+        this.active = true;
+        j0.k.a.C0620a c0620a = j0.k.a.a;
+        this.onStart = c0620a;
+        this.onAdded = c0620a;
+        this.onTerminated = c0620a;
+    }
+
+    public void a(b<T> bVar) {
+        a<T> aVar;
+        a<T> aVar2;
         do {
-            c_a = get();
-            if (c_a.d) {
+            aVar = get();
+            if (aVar.d) {
                 return;
             }
-            c$b<T>[] c_bArr = c_a.e;
-            int length = c_bArr.length;
-            if (length != 1 || c_bArr[0] != c_b) {
+            b<T>[] bVarArr = aVar.e;
+            int length = bVarArr.length;
+            if (length != 1 || bVarArr[0] != bVar) {
                 if (length != 0) {
                     int i = length - 1;
-                    c$b[] c_bArr2 = new c$b[i];
+                    b[] bVarArr2 = new b[i];
                     int i2 = 0;
                     int i3 = 0;
                     while (true) {
                         if (i2 >= length) {
                             if (i3 != 0) {
                                 if (i3 < i) {
-                                    c$b[] c_bArr3 = new c$b[i3];
-                                    System.arraycopy(c_bArr2, 0, c_bArr3, 0, i3);
-                                    c_bArr2 = c_bArr3;
+                                    b[] bVarArr3 = new b[i3];
+                                    System.arraycopy(bVarArr2, 0, bVarArr3, 0, i3);
+                                    bVarArr2 = bVarArr3;
                                 }
-                                c_a2 = new c$a<>(c_a.d, c_bArr2);
+                                aVar2 = new a<>(aVar.d, bVarArr2);
                                 break;
                             }
-                            c_a2 = c$a.c;
+                            aVar2 = a.c;
                             break;
                         }
-                        c$b<T> c_b2 = c_bArr[i2];
-                        if (c_b2 != c_b) {
+                        b<T> bVar2 = bVarArr[i2];
+                        if (bVar2 != bVar) {
                             if (i3 == i) {
-                                c_a2 = c_a;
+                                aVar2 = aVar;
                                 break;
                             } else {
-                                c_bArr2[i3] = c_b2;
+                                bVarArr2[i3] = bVar2;
                                 i3++;
                             }
                         }
                         i2++;
                     }
                 } else {
-                    c_a2 = c_a;
+                    aVar2 = aVar;
                     break;
                 }
             } else {
-                c_a2 = c$a.c;
+                aVar2 = a.c;
             }
-            if (c_a2 == c_a) {
+            if (aVar2 == aVar) {
                 return;
             }
-        } while (!compareAndSet(c_a, c_a2));
+        } while (!compareAndSet(aVar, aVar2));
     }
 
-    public c$b<T>[] b(Object obj) {
+    public b<T>[] b(Object obj) {
         this.latest = obj;
         this.active = false;
-        return get().d ? c$a.a : getAndSet(c$a.f3805b).e;
+        return get().d ? a.a : getAndSet(a.f3805b).e;
     }
 
     @Override // rx.functions.Action1
     public void call(Object obj) {
         boolean z2;
         Subscriber subscriber = (Subscriber) obj;
-        c$b<T> c_b = new c$b<>(subscriber);
-        subscriber.add(new j0.r.a(new b(this, c_b)));
-        this.onStart.call(c_b);
+        b<T> bVar = new b<>(subscriber);
+        subscriber.add(new j0.r.a(new j0.q.b(this, bVar)));
+        this.onStart.call(bVar);
         if (subscriber.isUnsubscribed()) {
             return;
         }
         while (true) {
-            c$a<T> c_a = get();
+            a<T> aVar = get();
             z2 = false;
-            if (c_a.d) {
-                this.onTerminated.call(c_b);
+            if (aVar.d) {
+                this.onTerminated.call(bVar);
                 break;
             }
-            c$b[] c_bArr = c_a.e;
-            int length = c_bArr.length;
-            c$b[] c_bArr2 = new c$b[length + 1];
-            System.arraycopy(c_bArr, 0, c_bArr2, 0, length);
-            c_bArr2[length] = c_b;
-            if (compareAndSet(c_a, new c$a(c_a.d, c_bArr2))) {
-                this.onAdded.call(c_b);
+            b[] bVarArr = aVar.e;
+            int length = bVarArr.length;
+            b[] bVarArr2 = new b[length + 1];
+            System.arraycopy(bVarArr, 0, bVarArr2, 0, length);
+            bVarArr2[length] = bVar;
+            if (compareAndSet(aVar, new a(aVar.d, bVarArr2))) {
+                this.onAdded.call(bVar);
                 z2 = true;
                 break;
             }
         }
         if (z2 && subscriber.isUnsubscribed()) {
-            a(c_b);
+            a(bVar);
+        }
+    }
+
+    /* JADX INFO: compiled from: SubjectSubscriptionManager.java */
+    public final class b<T> implements g<T> {
+        public final Subscriber<? super T> j;
+        public boolean l;
+        public List<Object> m;
+        public boolean n;
+        public boolean k = true;
+
+        public b(Subscriber<? super T> subscriber) {
+            this.j = subscriber;
+        }
+
+        public void a(Object obj) {
+            if (!this.n) {
+                synchronized (this) {
+                    this.k = false;
+                    if (this.l) {
+                        if (this.m == null) {
+                            this.m = new ArrayList();
+                        }
+                        this.m.add(obj);
+                        return;
+                    }
+                    this.n = true;
+                }
+            }
+            e.a(this.j, obj);
+        }
+
+        @Override // j0.g
+        public void onCompleted() {
+            this.j.onCompleted();
+        }
+
+        @Override // j0.g
+        public void onError(Throwable th) {
+            this.j.onError(th);
+        }
+
+        @Override // j0.g
+        public void onNext(T t) {
+            this.j.onNext(t);
         }
     }
 }

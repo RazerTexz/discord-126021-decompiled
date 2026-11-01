@@ -1,7 +1,7 @@
 package com.discord.utilities.threads;
 
 import android.content.Context;
-import com.discord.R$plurals;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.guild.GuildFeature;
@@ -12,14 +12,13 @@ import com.discord.models.domain.ModelNotificationSettings;
 import com.discord.models.guild.Guild;
 import com.discord.models.message.Message;
 import com.discord.models.user.User;
-import com.discord.restapi.RestAPIParams$ThreadCreationSettings;
-import com.discord.stores.StoreSlowMode$Type$ThreadCreate;
+import com.discord.restapi.RestAPIParams;
+import com.discord.stores.StoreSlowMode;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreThreadsActiveJoined$ActiveJoinedThread;
-import com.discord.stores.StoreThreadsJoined$JoinedThread;
+import com.discord.stores.StoreThreadsActiveJoined;
+import com.discord.stores.StoreThreadsJoined;
 import com.discord.utilities.SnowflakeUtils;
 import com.discord.utilities.error.Error;
-import com.discord.utilities.error.Error$Response;
 import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rest.RestAPIAbortMessages;
@@ -42,7 +41,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.SortedSet;
 import rx.Observable;
 
@@ -52,7 +50,35 @@ public final class ThreadUtils {
     public static final int DEFAULT_AUTO_ARCHIVE_DURATION = 1440;
     public static final int MAX_DISPLAYED_THREAD_BROWSER_ICON_COUNT = 99;
     public static final ThreadUtils INSTANCE = new ThreadUtils();
-    private static final LinkedHashMap<Integer, Integer> THREAD_AUTO_ARCHIVE_DURATION_NAMES = h0.linkedMapOf(o.to(60, 2131886935), o.to(1440, 2131886937), o.to(Integer.valueOf(ThreadUtils$ThreadArchiveDurations.THREE_DAYS_IN_MINUTES), 2131886938), o.to(Integer.valueOf(ThreadUtils$ThreadArchiveDurations.SEVEN_DAYS_IN_MINUTES), 2131886936));
+    private static final LinkedHashMap<Integer, Integer> THREAD_AUTO_ARCHIVE_DURATION_NAMES = h0.linkedMapOf(o.to(60, Integer.valueOf(R.string.auto_archive_duration_1_hour)), o.to(1440, Integer.valueOf(R.string.auto_archive_duration_24_hours)), o.to(Integer.valueOf(ThreadArchiveDurations.THREE_DAYS_IN_MINUTES), Integer.valueOf(R.string.auto_archive_duration_3_days)), o.to(Integer.valueOf(ThreadArchiveDurations.SEVEN_DAYS_IN_MINUTES), Integer.valueOf(R.string.auto_archive_duration_1_week)));
+
+    /* JADX INFO: renamed from: com.discord.utilities.threads.ThreadUtils$getThreadTimestampComparator$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ThreadUtils.kt */
+    public final class AnonymousClass1<T> implements Comparator<StoreThreadsActiveJoined.ActiveJoinedThread> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // java.util.Comparator
+        public /* bridge */ /* synthetic */ int compare(StoreThreadsActiveJoined.ActiveJoinedThread activeJoinedThread, StoreThreadsActiveJoined.ActiveJoinedThread activeJoinedThread2) {
+            return compare2(activeJoinedThread, activeJoinedThread2);
+        }
+
+        /* JADX INFO: renamed from: compare, reason: avoid collision after fix types in other method */
+        public final int compare2(StoreThreadsActiveJoined.ActiveJoinedThread activeJoinedThread, StoreThreadsActiveJoined.ActiveJoinedThread activeJoinedThread2) {
+            return (activeJoinedThread2.getJoinTimestamp().getDateTimeMillis() > activeJoinedThread.getJoinTimestamp().getDateTimeMillis() ? 1 : (activeJoinedThread2.getJoinTimestamp().getDateTimeMillis() == activeJoinedThread.getJoinTimestamp().getDateTimeMillis() ? 0 : -1));
+        }
+    }
+
+    /* JADX INFO: compiled from: ThreadUtils.kt */
+    public final class ThreadArchiveDurations {
+        public static final int ONE_DAY_IN_MINUTES = 1440;
+        public static final int ONE_HOUR_IN_MINUTES = 60;
+        public static final int SEVEN_DAYS_IN_MINUTES = 10080;
+        public static final int THREE_DAYS_IN_MINUTES = 4320;
+        public static final ThreadArchiveDurations INSTANCE = new ThreadArchiveDurations();
+
+        private ThreadArchiveDurations() {
+        }
+    }
 
     private ThreadUtils() {
     }
@@ -67,7 +93,7 @@ public final class ThreadUtils {
                 return string;
             }
         }
-        String quantityString = context.getResources().getQuantityString(R$plurals.duration_hours_hours, minutes / 60);
+        String quantityString = context.getResources().getQuantityString(R.plurals.duration_hours_hours, minutes / 60);
         m.checkNotNullExpressionValue(quantityString, "context.resources.getQua…ours_hours, minutes / 60)");
         return quantityString;
     }
@@ -85,7 +111,7 @@ public final class ThreadUtils {
         }
         boolean zHasAccessWrite = PermissionUtils.INSTANCE.hasAccessWrite(parentChannel, parentChannelPermissions);
         boolean zCan = PermissionUtils.can(Permission.CREATE_PRIVATE_THREADS, parentChannelPermissions);
-        if (!NewThreadsPermissionsFeatureFlag.Companion.getINSTANCE().isEnabled(guild.getId())) {
+        if (!NewThreadsPermissionsFeatureFlag.INSTANCE.getINSTANCE().isEnabled(guild.getId())) {
             zCan = zHasAccessWrite && zCan;
         }
         return isThreadsEnabled(guild.getId()) && zCan && (!ChannelUtils.H(parentChannel) && !ChannelUtils.J(parentChannel)) && (!checkGuildFeature || guild.hasFeature(GuildFeature.PRIVATE_THREADS)) && !ChannelUtils.i(parentChannel);
@@ -98,7 +124,7 @@ public final class ThreadUtils {
         boolean zHasAccessWrite = PermissionUtils.INSTANCE.hasAccessWrite(parentChannel, parentChannelPermissions);
         boolean zCan = PermissionUtils.can(Permission.CREATE_PUBLIC_THREADS, parentChannelPermissions);
         boolean z2 = message == null || PermissionUtils.can(Permission.READ_MESSAGE_HISTORY, parentChannelPermissions);
-        return isThreadsEnabled(guild.getId()) && (!NewThreadsPermissionsFeatureFlag.Companion.getINSTANCE().isEnabled(guild.getId()) ? !(!zHasAccessWrite || !zCan || !z2) : !(!zCan || !z2)) && ((message == null || !message.isSystemMessage()) && !ChannelUtils.H(parentChannel) && ((message == null || !message.hasThread()) && !ChannelUtils.J(parentChannel)));
+        return isThreadsEnabled(guild.getId()) && (!NewThreadsPermissionsFeatureFlag.INSTANCE.getINSTANCE().isEnabled(guild.getId()) ? !(!zHasAccessWrite || !zCan || !z2) : !(!zCan || !z2)) && ((message == null || !message.isSystemMessage()) && !ChannelUtils.H(parentChannel) && ((message == null || !message.hasThread()) && !ChannelUtils.J(parentChannel)));
     }
 
     public final boolean canCreateThread(Long parentChannelPermissions, Channel parentChannel, Message message, Guild guild) {
@@ -141,7 +167,7 @@ public final class ThreadUtils {
         return Math.max(lastMessageId, (threadMetadata2 == null || (archiveTimestamp = threadMetadata2.getArchiveTimestamp()) == null) ? 0L : TimeUtils.parseUTCDate(archiveTimestamp)) + ((long) autoArchiveDuration);
     }
 
-    public final int computeThreadNotificationSetting(StoreThreadsJoined$JoinedThread joinedThread, boolean isGuildOrCategoryOrParentMuted, Integer parentNotificationSetting) {
+    public final int computeThreadNotificationSetting(StoreThreadsJoined.JoinedThread joinedThread, boolean isGuildOrCategoryOrParentMuted, Integer parentNotificationSetting) {
         Integer numValueOf = joinedThread != null ? Integer.valueOf(joinedThread.getFlags()) : null;
         if (numValueOf != null) {
             if ((numValueOf.intValue() & 2) == 0) {
@@ -169,8 +195,8 @@ public final class ThreadUtils {
 
     public final Observable<Channel> createThread(long parentChannelId, Long parentMessageId, int type, String name, Integer autoArchiveDuration, String location) {
         m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        RestAPIParams$ThreadCreationSettings restAPIParams$ThreadCreationSettings = new RestAPIParams$ThreadCreationSettings(name, type, autoArchiveDuration);
-        return parentMessageId == null ? RestAPI.Companion.getApi().createThread(parentChannelId, location, restAPIParams$ThreadCreationSettings) : RestAPI.Companion.getApi().createThreadFromMessage(parentChannelId, parentMessageId.longValue(), location, restAPIParams$ThreadCreationSettings);
+        RestAPIParams.ThreadCreationSettings threadCreationSettings = new RestAPIParams.ThreadCreationSettings(name, type, autoArchiveDuration);
+        return parentMessageId == null ? RestAPI.INSTANCE.getApi().createThread(parentChannelId, location, threadCreationSettings) : RestAPI.INSTANCE.getApi().createThreadFromMessage(parentChannelId, parentMessageId.longValue(), location, threadCreationSettings);
     }
 
     public final LinkedHashMap<Integer, Integer> getTHREAD_AUTO_ARCHIVE_DURATION_NAMES() {
@@ -198,29 +224,29 @@ public final class ThreadUtils {
         return Math.max(jLongValue, jMax);
     }
 
-    private final Comparator<StoreThreadsActiveJoined$ActiveJoinedThread> getThreadTimestampComparator() {
-        return ThreadUtils$getThreadTimestampComparator$1.INSTANCE;
+    private final Comparator<StoreThreadsActiveJoined.ActiveJoinedThread> getThreadTimestampComparator() {
+        return AnonymousClass1.INSTANCE;
     }
 
     public final void handleThreadCreateError(Context context, Error error, long channelId) {
         m.checkNotNullParameter(context, "context");
         m.checkNotNullParameter(error, "error");
-        Error$Response response = error.getResponse();
+        Error.Response response = error.getResponse();
         m.checkNotNullExpressionValue(response, "error.response");
         Integer abortCodeMessageResId = RestAPIAbortMessages.getAbortCodeMessageResId(response.getCode());
-        Error$Response response2 = error.getResponse();
+        Error.Response response2 = error.getResponse();
         m.checkNotNullExpressionValue(response2, "error.response");
         if (response2.getCode() == 20016) {
-            Error$Response response3 = error.getResponse();
+            Error.Response response3 = error.getResponse();
             m.checkNotNullExpressionValue(response3, "error.response");
             Long retryAfterMs = response3.getRetryAfterMs();
             if (retryAfterMs == null) {
                 retryAfterMs = 0L;
             }
             m.checkNotNullExpressionValue(retryAfterMs, "error.response.retryAfterMs ?: 0");
-            StoreStream.Companion.getSlowMode().onCooldown(channelId, retryAfterMs.longValue(), StoreSlowMode$Type$ThreadCreate.INSTANCE);
+            StoreStream.INSTANCE.getSlowMode().onCooldown(channelId, retryAfterMs.longValue(), StoreSlowMode.Type.ThreadCreate.INSTANCE);
         }
-        b.a.d.m.g(context, abortCodeMessageResId != null ? abortCodeMessageResId.intValue() : 2131893169, 0, null, 12);
+        b.a.d.m.g(context, abortCodeMessageResId != null ? abortCodeMessageResId.intValue() : R.string.network_error_bad_request, 0, null, 12);
     }
 
     public final boolean isThreadModerator(Long channelPermissions) {
@@ -228,7 +254,7 @@ public final class ThreadUtils {
     }
 
     public final boolean isThreadsEnabled(long guildId) {
-        return ViewThreadsFeatureFlag.Companion.getINSTANCE().isEnabled() && CreateThreadsFeatureFlag.Companion.getINSTANCE().isEnabled(guildId);
+        return ViewThreadsFeatureFlag.INSTANCE.getINSTANCE().isEnabled() && CreateThreadsFeatureFlag.INSTANCE.getINSTANCE().isEnabled(guildId);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -265,26 +291,26 @@ public final class ThreadUtils {
         return mutableMap;
     }
 
-    private final Map<Long, Collection<Channel>> sortThreadsByJoinedDate(Map<Long, ? extends Map<Long, StoreThreadsActiveJoined$ActiveJoinedThread>> threadsMap) {
+    private final Map<Long, Collection<Channel>> sortThreadsByJoinedDate(Map<Long, ? extends Map<Long, StoreThreadsActiveJoined.ActiveJoinedThread>> threadsMap) {
         LinkedHashMap linkedHashMap = new LinkedHashMap(g0.mapCapacity(threadsMap.size()));
         Iterator<T> it = threadsMap.entrySet().iterator();
         while (it.hasNext()) {
-            Map$Entry map$Entry = (Map$Entry) it.next();
-            Object key = map$Entry.getKey();
-            SortedSet sortedSet = t.toSortedSet(((Map) map$Entry.getValue()).values(), INSTANCE.getThreadTimestampComparator());
+            Map.Entry entry = (Map.Entry) it.next();
+            Object key = entry.getKey();
+            SortedSet sortedSet = t.toSortedSet(((Map) entry.getValue()).values(), INSTANCE.getThreadTimestampComparator());
             ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(sortedSet, 10));
             Iterator it2 = sortedSet.iterator();
             while (it2.hasNext()) {
-                arrayList.add(((StoreThreadsActiveJoined$ActiveJoinedThread) it2.next()).getChannel());
+                arrayList.add(((StoreThreadsActiveJoined.ActiveJoinedThread) it2.next()).getChannel());
             }
             linkedHashMap.put(key, arrayList);
         }
         return linkedHashMap;
     }
 
-    public final Map<Long, Collection<Channel>> sortThreadsForChannelList(Map<Long, ? extends Map<Long, StoreThreadsActiveJoined$ActiveJoinedThread>> threadsMap, Channel selectedChannel) {
+    public final Map<Long, Collection<Channel>> sortThreadsForChannelList(Map<Long, ? extends Map<Long, StoreThreadsActiveJoined.ActiveJoinedThread>> threadsMap, Channel selectedChannel) {
         m.checkNotNullParameter(threadsMap, "threadsMap");
-        if (!ViewThreadsFeatureFlag.Companion.getINSTANCE().isEnabled()) {
+        if (!ViewThreadsFeatureFlag.INSTANCE.getINSTANCE().isEnabled()) {
             return h0.emptyMap();
         }
         Map<Long, Collection<Channel>> mapSortThreadsByJoinedDate = sortThreadsByJoinedDate(threadsMap);

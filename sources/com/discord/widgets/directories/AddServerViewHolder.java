@@ -1,5 +1,6 @@
 package com.discord.widgets.directories;
 
+import android.view.View;
 import android.widget.TextView;
 import com.discord.databinding.DirectoryAddServerListItemBinding;
 import d0.z.d.m;
@@ -8,6 +9,21 @@ import d0.z.d.m;
 /* JADX INFO: loaded from: classes2.dex */
 public final class AddServerViewHolder extends DirectoryChannelViewHolder {
     private final DirectoryAddServerListItemBinding viewBinding;
+
+    /* JADX INFO: renamed from: com.discord.widgets.directories.AddServerViewHolder$bind$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetDirectoryEntryViewHolder.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ DirectoryChannelItemClickInterface $listener;
+
+        public AnonymousClass1(DirectoryChannelItemClickInterface directoryChannelItemClickInterface) {
+            this.$listener = directoryChannelItemClickInterface;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$listener.onAddServerClicked();
+        }
+    }
 
     /* JADX WARN: Illegal instructions before constructor call */
     public AddServerViewHolder(DirectoryAddServerListItemBinding directoryAddServerListItemBinding) {
@@ -22,7 +38,7 @@ public final class AddServerViewHolder extends DirectoryChannelViewHolder {
     public void bind(DirectoryChannelItem item, DirectoryChannelItemClickInterface listener) {
         m.checkNotNullParameter(item, "item");
         m.checkNotNullParameter(listener, "listener");
-        this.viewBinding.f2095b.setOnClickListener(new AddServerViewHolder$bind$1(listener));
+        this.viewBinding.f2095b.setOnClickListener(new AnonymousClass1(listener));
     }
 
     public final DirectoryAddServerListItemBinding getViewBinding() {

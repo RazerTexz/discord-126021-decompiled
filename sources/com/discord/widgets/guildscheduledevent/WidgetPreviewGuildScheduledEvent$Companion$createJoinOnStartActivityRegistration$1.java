@@ -38,7 +38,7 @@ public final class WidgetPreviewGuildScheduledEvent$Companion$createJoinOnStartA
         if (activityResult.getResultCode() != -1 || (data = activityResult.getData()) == null || (longExtraOrNull = IntentUtilsKt.getLongExtraOrNull(data, "com.discord.intent.extra.EXTRA_CHANNEL_ID")) == null) {
             return;
         }
-        Channel channel = StoreStream.Companion.getChannels().getChannel(longExtraOrNull.longValue());
+        Channel channel = StoreStream.INSTANCE.getChannels().getChannel(longExtraOrNull.longValue());
         if (channel != null) {
             Fragment fragment = this.$fragment;
             if (fragment instanceof AppFragment) {

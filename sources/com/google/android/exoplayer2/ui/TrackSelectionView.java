@@ -1,18 +1,17 @@
 package com.google.android.exoplayer2.ui;
 
-import android.R$attr;
-import android.R$layout;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckedTextView;
 import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 import b.i.a.c.a3.o0;
-import b.i.a.c.c3.h$f;
+import b.i.a.c.c3.h;
 import b.i.a.c.d3.l;
 import b.i.a.c.d3.p;
 import java.util.ArrayList;
@@ -25,8 +24,8 @@ public class TrackSelectionView extends LinearLayout {
     public final LayoutInflater k;
     public final CheckedTextView l;
     public final CheckedTextView m;
-    public final TrackSelectionView$b n;
-    public final SparseArray<h$f> o;
+    public final b n;
+    public final SparseArray<h.f> o;
     public boolean p;
     public boolean q;
     public p r;
@@ -35,38 +34,68 @@ public class TrackSelectionView extends LinearLayout {
     public o0 f2977s;
     public boolean t;
 
+    public class b implements View.OnClickListener {
+        public b(a aVar) {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public void onClick(View view) {
+            TrackSelectionView trackSelectionView = TrackSelectionView.this;
+            if (view == trackSelectionView.l) {
+                trackSelectionView.t = true;
+                trackSelectionView.o.clear();
+            } else {
+                if (view != trackSelectionView.m) {
+                    trackSelectionView.t = false;
+                    Object tag = view.getTag();
+                    Objects.requireNonNull(tag);
+                    trackSelectionView.o.get(((c) tag).a);
+                    Objects.requireNonNull(null);
+                    throw null;
+                }
+                trackSelectionView.t = false;
+                trackSelectionView.o.clear();
+            }
+            trackSelectionView.a();
+        }
+    }
+
+    public final class c {
+        public final int a;
+    }
+
     public TrackSelectionView(Context context, @Nullable AttributeSet attributeSet) {
         super(context, attributeSet, 0);
         setOrientation(1);
         this.o = new SparseArray<>();
         setSaveFromParentEnabled(false);
-        TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(new int[]{R$attr.selectableItemBackground});
+        TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(new int[]{android.R.attr.selectableItemBackground});
         int resourceId = typedArrayObtainStyledAttributes.getResourceId(0, 0);
         this.j = resourceId;
         typedArrayObtainStyledAttributes.recycle();
         LayoutInflater layoutInflaterFrom = LayoutInflater.from(context);
         this.k = layoutInflaterFrom;
-        TrackSelectionView$b trackSelectionView$b = new TrackSelectionView$b(this, null);
-        this.n = trackSelectionView$b;
+        b bVar = new b(null);
+        this.n = bVar;
         this.r = new l(getResources());
         this.f2977s = o0.j;
-        CheckedTextView checkedTextView = (CheckedTextView) layoutInflaterFrom.inflate(R$layout.simple_list_item_single_choice, (ViewGroup) this, false);
+        CheckedTextView checkedTextView = (CheckedTextView) layoutInflaterFrom.inflate(android.R.layout.simple_list_item_single_choice, (ViewGroup) this, false);
         this.l = checkedTextView;
         checkedTextView.setBackgroundResource(resourceId);
-        checkedTextView.setText(R$f.exo_track_selection_none);
+        checkedTextView.setText(R.f.exo_track_selection_none);
         checkedTextView.setEnabled(false);
         checkedTextView.setFocusable(true);
-        checkedTextView.setOnClickListener(trackSelectionView$b);
+        checkedTextView.setOnClickListener(bVar);
         checkedTextView.setVisibility(8);
         addView(checkedTextView);
-        addView(layoutInflaterFrom.inflate(R$e.exo_list_divider, (ViewGroup) this, false));
-        CheckedTextView checkedTextView2 = (CheckedTextView) layoutInflaterFrom.inflate(R$layout.simple_list_item_single_choice, (ViewGroup) this, false);
+        addView(layoutInflaterFrom.inflate(R.e.exo_list_divider, (ViewGroup) this, false));
+        CheckedTextView checkedTextView2 = (CheckedTextView) layoutInflaterFrom.inflate(android.R.layout.simple_list_item_single_choice, (ViewGroup) this, false);
         this.m = checkedTextView2;
         checkedTextView2.setBackgroundResource(resourceId);
-        checkedTextView2.setText(R$f.exo_track_selection_auto);
+        checkedTextView2.setText(R.f.exo_track_selection_auto);
         checkedTextView2.setEnabled(false);
         checkedTextView2.setFocusable(true);
-        checkedTextView2.setOnClickListener(trackSelectionView$b);
+        checkedTextView2.setOnClickListener(bVar);
         addView(checkedTextView2);
     }
 
@@ -93,7 +122,7 @@ public class TrackSelectionView extends LinearLayout {
         return this.t;
     }
 
-    public List<h$f> getOverrides() {
+    public List<h.f> getOverrides() {
         ArrayList arrayList = new ArrayList(this.o.size());
         for (int i = 0; i < this.o.size(); i++) {
             arrayList.add(this.o.valueAt(i));

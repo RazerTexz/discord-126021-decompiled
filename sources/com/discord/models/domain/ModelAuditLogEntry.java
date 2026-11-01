@@ -2,6 +2,7 @@ package com.discord.models.domain;
 
 import b.a.m.a.h;
 import b.d.b.a.a;
+import com.google.gson.stream.JsonToken;
 import java.io.IOException;
 import java.util.List;
 
@@ -131,48 +132,408 @@ public class ModelAuditLogEntry implements Model {
     public static final String CHANGE_KEY_WIDGET_CHANNEL_ID = "widget_channel_id";
     public static final String CHANGE_KEY_WIDGET_ENABLED = "widget_enabled";
     private int actionTypeId;
-    private List<ModelAuditLogEntry$Change> changes;
+    private List<Change> changes;
     private Long guildId;
 
     /* JADX INFO: renamed from: id, reason: collision with root package name */
     private long f2715id;
-    private ModelAuditLogEntry$Options options;
+    private Options options;
     private String reason;
     private long targetId;
     private Long timestampEnd;
     private long userId;
 
+    public enum ActionType {
+        ALL,
+        CREATE,
+        UPDATE,
+        DELETE
+    }
+
+    /* JADX INFO: renamed from: com.discord.models.domain.ModelAuditLogEntry$1, reason: invalid class name */
+    public /* synthetic */ class AnonymousClass1 {
+        public static final /* synthetic */ int[] $SwitchMap$com$google$gson$stream$JsonToken;
+
+        static {
+            JsonToken.values();
+            int[] iArr = new int[10];
+            $SwitchMap$com$google$gson$stream$JsonToken = iArr;
+            try {
+                iArr[6] = 1;
+            } catch (NoSuchFieldError unused) {
+            }
+            try {
+                $SwitchMap$com$google$gson$stream$JsonToken[5] = 2;
+            } catch (NoSuchFieldError unused2) {
+            }
+            try {
+                $SwitchMap$com$google$gson$stream$JsonToken[2] = 3;
+            } catch (NoSuchFieldError unused3) {
+            }
+        }
+    }
+
+    public class Change implements Model {
+        private String key;
+        private Object newValue;
+        private Object oldValue;
+
+        public Change() {
+        }
+
+        @Override // com.discord.models.domain.Model
+        public void assignField(Model.JsonReader jsonReader) throws IOException {
+            ValueFactory valueFactory = new ValueFactory(jsonReader);
+            String strNextName = jsonReader.nextName();
+            strNextName.hashCode();
+            switch (strNextName) {
+                case "new_value":
+                    this.newValue = jsonReader.parseUnknown(valueFactory);
+                    break;
+                case "key":
+                    this.key = jsonReader.nextString(this.key);
+                    break;
+                case "old_value":
+                    this.oldValue = jsonReader.parseUnknown(valueFactory);
+                    break;
+                default:
+                    jsonReader.skipValue();
+                    break;
+            }
+        }
+
+        public boolean canEqual(Object obj) {
+            return obj instanceof Change;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof Change)) {
+                return false;
+            }
+            Change change = (Change) obj;
+            if (!change.canEqual(this)) {
+                return false;
+            }
+            String key = getKey();
+            String key2 = change.getKey();
+            if (key != null ? !key.equals(key2) : key2 != null) {
+                return false;
+            }
+            Object oldValue = getOldValue();
+            Object oldValue2 = change.getOldValue();
+            if (oldValue != null ? !oldValue.equals(oldValue2) : oldValue2 != null) {
+                return false;
+            }
+            Object newValue = getNewValue();
+            Object newValue2 = change.getNewValue();
+            return newValue != null ? newValue.equals(newValue2) : newValue2 == null;
+        }
+
+        public String getKey() {
+            return this.key;
+        }
+
+        public Object getNewValue() {
+            return this.newValue;
+        }
+
+        public Object getOldValue() {
+            return this.oldValue;
+        }
+
+        public Object getValue() {
+            Object obj = this.newValue;
+            return obj != null ? obj : this.oldValue;
+        }
+
+        public int hashCode() {
+            String key = getKey();
+            int iHashCode = key == null ? 43 : key.hashCode();
+            Object oldValue = getOldValue();
+            int iHashCode2 = ((iHashCode + 59) * 59) + (oldValue == null ? 43 : oldValue.hashCode());
+            Object newValue = getNewValue();
+            return (iHashCode2 * 59) + (newValue != null ? newValue.hashCode() : 43);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("ModelAuditLogEntry.Change(key=");
+            sbU.append(getKey());
+            sbU.append(", oldValue=");
+            sbU.append(getOldValue());
+            sbU.append(", newValue=");
+            sbU.append(getNewValue());
+            sbU.append(")");
+            return sbU.toString();
+        }
+
+        public Change(String str, Object obj, Object obj2) {
+            this.key = str;
+            this.oldValue = obj;
+            this.newValue = obj2;
+        }
+    }
+
+    public class ChangeNameId implements Model {
+
+        /* JADX INFO: renamed from: id, reason: collision with root package name */
+        private long f2716id;
+        private String name;
+
+        @Override // com.discord.models.domain.Model
+        public void assignField(Model.JsonReader jsonReader) throws IOException {
+            String strNextName = jsonReader.nextName();
+            strNextName.hashCode();
+            if (strNextName.equals(ModelAuditLogEntry.CHANGE_KEY_ID)) {
+                this.f2716id = jsonReader.nextLong(this.f2716id);
+            } else if (strNextName.equals(ModelAuditLogEntry.CHANGE_KEY_NAME)) {
+                this.name = jsonReader.nextString(this.name);
+            } else {
+                jsonReader.skipValue();
+            }
+        }
+
+        public boolean canEqual(Object obj) {
+            return obj instanceof ChangeNameId;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof ChangeNameId)) {
+                return false;
+            }
+            ChangeNameId changeNameId = (ChangeNameId) obj;
+            if (!changeNameId.canEqual(this) || getId() != changeNameId.getId()) {
+                return false;
+            }
+            String name = getName();
+            String name2 = changeNameId.getName();
+            return name != null ? name.equals(name2) : name2 == null;
+        }
+
+        public long getId() {
+            return this.f2716id;
+        }
+
+        public String getName() {
+            return this.name;
+        }
+
+        public int hashCode() {
+            long id2 = getId();
+            String name = getName();
+            return ((((int) (id2 ^ (id2 >>> 32))) + 59) * 59) + (name == null ? 43 : name.hashCode());
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("ModelAuditLogEntry.ChangeNameId(name=");
+            sbU.append(getName());
+            sbU.append(", id=");
+            sbU.append(getId());
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    public class Options implements Model {
+        private long channelId;
+        private int count;
+        private int deleteMemberDays;
+
+        /* JADX INFO: renamed from: id, reason: collision with root package name */
+        private long f2717id;
+        private int membersRemoved;
+        private String roleName;
+        private int type;
+
+        public Options() {
+        }
+
+        @Override // com.discord.models.domain.Model
+        public void assignField(Model.JsonReader jsonReader) throws IOException {
+            String strNextName = jsonReader.nextName();
+            strNextName.hashCode();
+            switch (strNextName) {
+                case "channel_id":
+                    this.channelId = jsonReader.nextLong(this.channelId);
+                    break;
+                case "members_removed":
+                    this.membersRemoved = jsonReader.nextInt(this.membersRemoved);
+                    break;
+                case "delete_member_days":
+                    this.deleteMemberDays = jsonReader.nextInt(this.deleteMemberDays);
+                    break;
+                case "id":
+                    this.f2717id = jsonReader.nextLong(this.f2717id);
+                    break;
+                case "type":
+                    this.type = jsonReader.nextInt(this.type);
+                    break;
+                case "count":
+                    this.count = jsonReader.nextInt(this.count);
+                    break;
+                case "role_name":
+                    this.roleName = jsonReader.nextString(this.roleName);
+                    break;
+                default:
+                    jsonReader.skipValue();
+                    break;
+            }
+        }
+
+        public boolean canEqual(Object obj) {
+            return obj instanceof Options;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof Options)) {
+                return false;
+            }
+            Options options = (Options) obj;
+            if (!options.canEqual(this) || getCount() != options.getCount() || getChannelId() != options.getChannelId() || getDeleteMemberDays() != options.getDeleteMemberDays() || getMembersRemoved() != options.getMembersRemoved() || getType() != options.getType() || getId() != options.getId()) {
+                return false;
+            }
+            String roleName = getRoleName();
+            String roleName2 = options.getRoleName();
+            return roleName != null ? roleName.equals(roleName2) : roleName2 == null;
+        }
+
+        public long getChannelId() {
+            return this.channelId;
+        }
+
+        public int getCount() {
+            return this.count;
+        }
+
+        public int getDeleteMemberDays() {
+            return this.deleteMemberDays;
+        }
+
+        public long getId() {
+            return this.f2717id;
+        }
+
+        public int getMembersRemoved() {
+            return this.membersRemoved;
+        }
+
+        public String getRoleName() {
+            return this.roleName;
+        }
+
+        public int getType() {
+            return this.type;
+        }
+
+        public int hashCode() {
+            int count = getCount() + 59;
+            long channelId = getChannelId();
+            int type = getType() + ((getMembersRemoved() + ((getDeleteMemberDays() + (((count * 59) + ((int) (channelId ^ (channelId >>> 32)))) * 59)) * 59)) * 59);
+            long id2 = getId();
+            String roleName = getRoleName();
+            return (((type * 59) + ((int) ((id2 >>> 32) ^ id2))) * 59) + (roleName == null ? 43 : roleName.hashCode());
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("ModelAuditLogEntry.Options(count=");
+            sbU.append(getCount());
+            sbU.append(", channelId=");
+            sbU.append(getChannelId());
+            sbU.append(", roleName=");
+            sbU.append(getRoleName());
+            sbU.append(", deleteMemberDays=");
+            sbU.append(getDeleteMemberDays());
+            sbU.append(", membersRemoved=");
+            sbU.append(getMembersRemoved());
+            sbU.append(", type=");
+            sbU.append(getType());
+            sbU.append(", id=");
+            sbU.append(getId());
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    public enum TargetType {
+        ALL,
+        UNKNOWN,
+        GUILD,
+        CHANNEL,
+        CHANNEL_OVERWRITE,
+        USER,
+        ROLE,
+        INVITE,
+        WEBHOOK,
+        EMOJI,
+        INTEGRATION,
+        STAGE_INSTANCE,
+        GUILD_SCHEDULED_EVENT,
+        STICKER,
+        THREAD
+    }
+
+    public class ValueFactory implements Model.JsonReader.ItemFactory<Object> {
+        private final Model.JsonReader reader;
+
+        public ValueFactory(Model.JsonReader jsonReader) {
+            this.reader = jsonReader;
+        }
+
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public Object get() throws IOException {
+            int iOrdinal = this.reader.peek().ordinal();
+            if (iOrdinal == 2) {
+                return this.reader.parse(new ChangeNameId());
+            }
+            if (iOrdinal == 5) {
+                return this.reader.nextStringOrNull();
+            }
+            if (iOrdinal != 6) {
+                return null;
+            }
+            return this.reader.nextLongOrNull();
+        }
+    }
+
     public ModelAuditLogEntry() {
     }
 
     @Override // com.discord.models.domain.Model
-    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
-        String strNextName = model$JsonReader.nextName();
+    public void assignField(Model.JsonReader jsonReader) throws IOException {
+        String strNextName = jsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "options":
-                this.options = (ModelAuditLogEntry$Options) model$JsonReader.parse(new ModelAuditLogEntry$Options(this));
+                this.options = (Options) jsonReader.parse(new Options());
                 break;
             case "reason":
-                this.reason = model$JsonReader.nextString(this.reason);
+                this.reason = jsonReader.nextString(this.reason);
                 break;
             case "target_id":
-                this.targetId = model$JsonReader.nextLong(this.targetId);
+                this.targetId = jsonReader.nextLong(this.targetId);
                 break;
             case "user_id":
-                this.userId = model$JsonReader.nextLong(this.userId);
+                this.userId = jsonReader.nextLong(this.userId);
                 break;
             case "id":
-                this.f2715id = model$JsonReader.nextLong(this.f2715id);
+                this.f2715id = jsonReader.nextLong(this.f2715id);
                 break;
             case "changes":
-                this.changes = model$JsonReader.nextList(new h(model$JsonReader));
+                this.changes = jsonReader.nextList(new h(jsonReader));
                 break;
             case "action_type":
-                this.actionTypeId = model$JsonReader.nextInt(this.actionTypeId);
+                this.actionTypeId = jsonReader.nextInt(this.actionTypeId);
                 break;
             default:
-                model$JsonReader.skipValue();
+                jsonReader.skipValue();
                 break;
         }
     }
@@ -202,13 +563,13 @@ public class ModelAuditLogEntry implements Model {
         if (timestampEnd != null ? !timestampEnd.equals(timestampEnd2) : timestampEnd2 != null) {
             return false;
         }
-        List<ModelAuditLogEntry$Change> changes = getChanges();
-        List<ModelAuditLogEntry$Change> changes2 = modelAuditLogEntry.getChanges();
+        List<Change> changes = getChanges();
+        List<Change> changes2 = modelAuditLogEntry.getChanges();
         if (changes != null ? !changes.equals(changes2) : changes2 != null) {
             return false;
         }
-        ModelAuditLogEntry$Options options = getOptions();
-        ModelAuditLogEntry$Options options2 = modelAuditLogEntry.getOptions();
+        Options options = getOptions();
+        Options options2 = modelAuditLogEntry.getOptions();
         if (options != null ? !options.equals(options2) : options2 != null) {
             return false;
         }
@@ -217,7 +578,7 @@ public class ModelAuditLogEntry implements Model {
         return reason != null ? reason.equals(reason2) : reason2 == null;
     }
 
-    public ModelAuditLogEntry$ActionType getActionType() {
+    public ActionType getActionType() {
         return getActionType(this.actionTypeId);
     }
 
@@ -225,7 +586,7 @@ public class ModelAuditLogEntry implements Model {
         return this.actionTypeId;
     }
 
-    public List<ModelAuditLogEntry$Change> getChanges() {
+    public List<Change> getChanges() {
         return this.changes;
     }
 
@@ -237,7 +598,7 @@ public class ModelAuditLogEntry implements Model {
         return this.f2715id;
     }
 
-    public ModelAuditLogEntry$Options getOptions() {
+    public Options getOptions() {
         return this.options;
     }
 
@@ -249,7 +610,7 @@ public class ModelAuditLogEntry implements Model {
         return this.targetId;
     }
 
-    public ModelAuditLogEntry$TargetType getTargetType() {
+    public TargetType getTargetType() {
         return getTargetType(this.actionTypeId);
     }
 
@@ -271,9 +632,9 @@ public class ModelAuditLogEntry implements Model {
         int iHashCode = (((i * 59) + ((int) ((userId >>> 32) ^ userId))) * 59) + (guildId == null ? 43 : guildId.hashCode());
         Long timestampEnd = getTimestampEnd();
         int iHashCode2 = (iHashCode * 59) + (timestampEnd == null ? 43 : timestampEnd.hashCode());
-        List<ModelAuditLogEntry$Change> changes = getChanges();
+        List<Change> changes = getChanges();
         int iHashCode3 = (iHashCode2 * 59) + (changes == null ? 43 : changes.hashCode());
-        ModelAuditLogEntry$Options options = getOptions();
+        Options options = getOptions();
         int iHashCode4 = (iHashCode3 * 59) + (options == null ? 43 : options.hashCode());
         String reason = getReason();
         return (iHashCode4 * 59) + (reason != null ? reason.hashCode() : 43);
@@ -302,13 +663,13 @@ public class ModelAuditLogEntry implements Model {
         return sbU.toString();
     }
 
-    public ModelAuditLogEntry(long j, int i, long j2, long j3, List<ModelAuditLogEntry$Change> list, ModelAuditLogEntry$Options modelAuditLogEntry$Options, long j4, Long l) {
+    public ModelAuditLogEntry(long j, int i, long j2, long j3, List<Change> list, Options options, long j4, Long l) {
         this.f2715id = j;
         this.actionTypeId = i;
         this.targetId = j2;
         this.userId = j3;
         this.changes = list;
-        this.options = modelAuditLogEntry$Options;
+        this.options = options;
         this.guildId = Long.valueOf(j4);
         this.timestampEnd = l;
     }
@@ -316,104 +677,104 @@ public class ModelAuditLogEntry implements Model {
     /* JADX WARN: Code duplicated, block: B:14:0x0021  */
     /* JADX WARN: Code duplicated, block: B:16:0x0024  */
     /* JADX WARN: Code duplicated, block: B:18:0x0027  */
-    public static ModelAuditLogEntry$ActionType getActionType(int i) {
+    public static ActionType getActionType(int i) {
         switch (i) {
             case 1:
             case 24:
             case 25:
             case 26:
             case 111:
-                return ModelAuditLogEntry$ActionType.UPDATE;
+                return ActionType.UPDATE;
             case 20:
             case 21:
             case 22:
             case 27:
             case 112:
-                return ModelAuditLogEntry$ActionType.DELETE;
+                return ActionType.DELETE;
             case 23:
             case 28:
             case 110:
-                return ModelAuditLogEntry$ActionType.CREATE;
+                return ActionType.CREATE;
             default:
                 switch (i) {
                     case 10:
                     case 13:
-                        return ModelAuditLogEntry$ActionType.CREATE;
+                        return ActionType.CREATE;
                     case 11:
                     case 14:
-                        return ModelAuditLogEntry$ActionType.UPDATE;
+                        return ActionType.UPDATE;
                     case 12:
                     case 15:
-                        return ModelAuditLogEntry$ActionType.DELETE;
+                        return ActionType.DELETE;
                     default:
                         switch (i) {
                             case 30:
-                                return ModelAuditLogEntry$ActionType.CREATE;
+                                return ActionType.CREATE;
                             case 31:
-                                return ModelAuditLogEntry$ActionType.UPDATE;
+                                return ActionType.UPDATE;
                             case 32:
-                                return ModelAuditLogEntry$ActionType.DELETE;
+                                return ActionType.DELETE;
                             default:
                                 switch (i) {
                                     case 40:
-                                        return ModelAuditLogEntry$ActionType.CREATE;
+                                        return ActionType.CREATE;
                                     case 41:
-                                        return ModelAuditLogEntry$ActionType.UPDATE;
+                                        return ActionType.UPDATE;
                                     case 42:
-                                        return ModelAuditLogEntry$ActionType.DELETE;
+                                        return ActionType.DELETE;
                                     default:
                                         switch (i) {
                                             case 50:
-                                                return ModelAuditLogEntry$ActionType.CREATE;
+                                                return ActionType.CREATE;
                                             case 51:
-                                                return ModelAuditLogEntry$ActionType.UPDATE;
+                                                return ActionType.UPDATE;
                                             case 52:
-                                                return ModelAuditLogEntry$ActionType.DELETE;
+                                                return ActionType.DELETE;
                                             default:
                                                 switch (i) {
                                                     case 60:
-                                                        return ModelAuditLogEntry$ActionType.CREATE;
+                                                        return ActionType.CREATE;
                                                     case 61:
-                                                        return ModelAuditLogEntry$ActionType.UPDATE;
+                                                        return ActionType.UPDATE;
                                                     case 62:
-                                                        return ModelAuditLogEntry$ActionType.DELETE;
+                                                        return ActionType.DELETE;
                                                     default:
                                                         switch (i) {
                                                             case 72:
                                                             case 73:
                                                             case 75:
-                                                                return ModelAuditLogEntry$ActionType.DELETE;
+                                                                return ActionType.DELETE;
                                                             case 74:
-                                                                return ModelAuditLogEntry$ActionType.CREATE;
+                                                                return ActionType.CREATE;
                                                             default:
                                                                 switch (i) {
                                                                     case 80:
                                                                     case 83:
-                                                                        return ModelAuditLogEntry$ActionType.CREATE;
+                                                                        return ActionType.CREATE;
                                                                     case 81:
                                                                     case 84:
-                                                                        return ModelAuditLogEntry$ActionType.UPDATE;
+                                                                        return ActionType.UPDATE;
                                                                     case 82:
                                                                     case 85:
-                                                                        return ModelAuditLogEntry$ActionType.DELETE;
+                                                                        return ActionType.DELETE;
                                                                     default:
                                                                         switch (i) {
                                                                             case 90:
-                                                                                return ModelAuditLogEntry$ActionType.CREATE;
+                                                                                return ActionType.CREATE;
                                                                             case 91:
-                                                                                return ModelAuditLogEntry$ActionType.UPDATE;
+                                                                                return ActionType.UPDATE;
                                                                             case 92:
-                                                                                return ModelAuditLogEntry$ActionType.DELETE;
+                                                                                return ActionType.DELETE;
                                                                             default:
                                                                                 switch (i) {
                                                                                     case 100:
-                                                                                        return ModelAuditLogEntry$ActionType.CREATE;
+                                                                                        return ActionType.CREATE;
                                                                                     case 101:
-                                                                                        return ModelAuditLogEntry$ActionType.UPDATE;
+                                                                                        return ActionType.UPDATE;
                                                                                     case 102:
-                                                                                        return ModelAuditLogEntry$ActionType.DELETE;
+                                                                                        return ActionType.DELETE;
                                                                                     default:
-                                                                                        return ModelAuditLogEntry$ActionType.ALL;
+                                                                                        return ActionType.ALL;
                                                                                 }
                                                                         }
                                                                 }
@@ -426,46 +787,46 @@ public class ModelAuditLogEntry implements Model {
         }
     }
 
-    public static ModelAuditLogEntry$TargetType getTargetType(int i) {
+    public static TargetType getTargetType(int i) {
         if (i == 0) {
-            return ModelAuditLogEntry$TargetType.ALL;
+            return TargetType.ALL;
         }
         if (i <= 1) {
-            return ModelAuditLogEntry$TargetType.GUILD;
+            return TargetType.GUILD;
         }
         if (i <= 12 || i == 73) {
-            return ModelAuditLogEntry$TargetType.CHANNEL;
+            return TargetType.CHANNEL;
         }
         if (i <= 15) {
-            return ModelAuditLogEntry$TargetType.CHANNEL_OVERWRITE;
+            return TargetType.CHANNEL_OVERWRITE;
         }
         if (i <= 28 || i == 72 || i == 74 || i == 75) {
-            return ModelAuditLogEntry$TargetType.USER;
+            return TargetType.USER;
         }
         if (i <= 32) {
-            return ModelAuditLogEntry$TargetType.ROLE;
+            return TargetType.ROLE;
         }
         if (i <= 42) {
-            return ModelAuditLogEntry$TargetType.INVITE;
+            return TargetType.INVITE;
         }
         if (i <= 52) {
-            return ModelAuditLogEntry$TargetType.WEBHOOK;
+            return TargetType.WEBHOOK;
         }
         if (i <= 62) {
-            return ModelAuditLogEntry$TargetType.EMOJI;
+            return TargetType.EMOJI;
         }
         if (i <= 82) {
-            return ModelAuditLogEntry$TargetType.INTEGRATION;
+            return TargetType.INTEGRATION;
         }
         if (i <= 85) {
-            return ModelAuditLogEntry$TargetType.STAGE_INSTANCE;
+            return TargetType.STAGE_INSTANCE;
         }
         if (i <= 92) {
-            return ModelAuditLogEntry$TargetType.STICKER;
+            return TargetType.STICKER;
         }
         if (i <= 102) {
-            return ModelAuditLogEntry$TargetType.GUILD_SCHEDULED_EVENT;
+            return TargetType.GUILD_SCHEDULED_EVENT;
         }
-        return i <= 112 ? ModelAuditLogEntry$TargetType.THREAD : ModelAuditLogEntry$TargetType.ALL;
+        return i <= 112 ? TargetType.THREAD : TargetType.ALL;
     }
 }

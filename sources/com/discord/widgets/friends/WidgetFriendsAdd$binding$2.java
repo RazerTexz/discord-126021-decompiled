@@ -2,7 +2,7 @@ package com.discord.widgets.friends;
 
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetFriendsAddBinding;
 import com.discord.utilities.simple_pager.SimplePager;
 import com.google.android.material.appbar.AppBarLayout;
@@ -28,14 +28,14 @@ public final /* synthetic */ class WidgetFriendsAdd$binding$2 extends k implemen
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetFriendsAddBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.action_bar_tabs;
-        TabLayout tabLayout = (TabLayout) view.findViewById(R$id.action_bar_tabs);
+        int i = R.id.action_bar_tabs;
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.action_bar_tabs);
         if (tabLayout != null) {
-            i = 2131361879;
-            AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(2131361879);
+            i = R.id.action_bar_toolbar_layout;
+            AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R.id.action_bar_toolbar_layout);
             if (appBarLayout != null) {
-                i = R$id.add_friend_view_pager;
-                SimplePager simplePager = (SimplePager) view.findViewById(R$id.add_friend_view_pager);
+                i = R.id.add_friend_view_pager;
+                SimplePager simplePager = (SimplePager) view.findViewById(R.id.add_friend_view_pager);
                 if (simplePager != null) {
                     return new WidgetFriendsAddBinding((CoordinatorLayout) view, tabLayout, appBarLayout, simplePager);
                 }

@@ -135,7 +135,7 @@ public class d implements b.i.a.c.x2.h {
                 g gVar = iVar3.j.f1240b;
                 if (gVar == null) {
                     if (iVar.b() == -1) {
-                        iVar3.d = new i$c(null);
+                        iVar3.d = new i.c(null);
                     } else {
                         f fVar = iVar3.a.a;
                         i = 2;

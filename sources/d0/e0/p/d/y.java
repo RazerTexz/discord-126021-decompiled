@@ -1,10 +1,13 @@
 package d0.e0.p.d;
 
 import d0.e0.p.d.m0.c.z0;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 import kotlin.reflect.KProperty;
 import kotlin.reflect.KType;
 
@@ -12,9 +15,34 @@ import kotlin.reflect.KType;
 /* JADX INFO: loaded from: classes3.dex */
 public final class y implements d0.e0.h {
     public static final /* synthetic */ KProperty[] j = {d0.z.d.a0.property1(new d0.z.d.y(d0.z.d.a0.getOrCreateKotlinClass(y.class), "upperBounds", "getUpperBounds()Ljava/util/List;"))};
-    public final c0$a k;
+    public final c0.a k;
     public final z l;
     public final z0 m;
+
+    /* JADX INFO: compiled from: KTypeParameterImpl.kt */
+    public final class a extends d0.z.d.o implements Function0<List<? extends x>> {
+        public a() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<? extends x> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<? extends x> invoke2() {
+            List<d0.e0.p.d.m0.n.c0> upperBounds = y.this.getDescriptor().getUpperBounds();
+            d0.z.d.m.checkNotNullExpressionValue(upperBounds, "descriptor.upperBounds");
+            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(upperBounds, 10));
+            Iterator<T> it = upperBounds.iterator();
+            while (it.hasNext()) {
+                arrayList.add(new x((d0.e0.p.d.m0.n.c0) it.next(), null, 2, null));
+            }
+            return arrayList;
+        }
+    }
 
     public y(z zVar, z0 z0Var) {
         Class<?> klass;
@@ -22,7 +50,7 @@ public final class y implements d0.e0.h {
         Object objAccept;
         d0.z.d.m.checkNotNullParameter(z0Var, "descriptor");
         this.m = z0Var;
-        this.k = c0.lazySoft(new y$a(this));
+        this.k = c0.lazySoft(new a());
         if (zVar == null) {
             d0.e0.p.d.m0.c.m containingDeclaration = getDescriptor().getContainingDeclaration();
             d0.z.d.m.checkNotNullExpressionValue(containingDeclaration, "descriptor.containingDeclaration");
@@ -52,7 +80,7 @@ public final class y implements d0.e0.h {
                     Objects.requireNonNull(kotlinClass, "null cannot be cast to non-null type kotlin.reflect.jvm.internal.KClassImpl<*>");
                     hVarA = (h) kotlinClass;
                 }
-                objAccept = containingDeclaration.accept(new a(hVarA), Unit.a);
+                objAccept = containingDeclaration.accept(new d0.e0.p.d.a(hVarA), Unit.a);
             }
             d0.z.d.m.checkNotNullExpressionValue(objAccept, "when (val declaration = … $declaration\")\n        }");
             zVar = (z) objAccept;

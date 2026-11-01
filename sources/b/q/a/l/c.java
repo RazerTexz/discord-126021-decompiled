@@ -11,13 +11,12 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
-import android.widget.ImageView$ScaleType;
+import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import b.i.a.f.e.o.f;
 import com.yalantis.ucrop.UCropActivity;
-import com.yalantis.ucrop.UCropActivity$a;
 
 /* JADX INFO: compiled from: TransformImageView.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -28,7 +27,7 @@ public class c extends AppCompatImageView {
     public Matrix m;
     public int n;
     public int o;
-    public c$a p;
+    public a p;
     public float[] q;
     public float[] r;
 
@@ -41,6 +40,10 @@ public class c extends AppCompatImageView {
 
     /* JADX INFO: renamed from: x, reason: collision with root package name */
     public b.q.a.i.b f1991x;
+
+    /* JADX INFO: compiled from: TransformImageView.java */
+    public interface a {
+    }
 
     public c(Context context, AttributeSet attributeSet) {
         this(context, attributeSet, 0);
@@ -62,7 +65,7 @@ public class c extends AppCompatImageView {
     }
 
     public void c() {
-        setScaleType(ImageView$ScaleType.MATRIX);
+        setScaleType(ImageView.ScaleType.MATRIX);
     }
 
     public void d() {
@@ -77,12 +80,12 @@ public class c extends AppCompatImageView {
         this.q = f.f0(rectF);
         this.r = f.d0(rectF);
         this.t = true;
-        c$a c_a = this.p;
-        if (c_a != null) {
-            UCropActivity$a uCropActivity$a = (UCropActivity$a) c_a;
-            uCropActivity$a.a.v.animate().alpha(1.0f).setDuration(300L).setInterpolator(new AccelerateInterpolator());
-            uCropActivity$a.a.H.setClickable(false);
-            UCropActivity uCropActivity = uCropActivity$a.a;
+        a aVar = this.p;
+        if (aVar != null) {
+            UCropActivity.a aVar2 = (UCropActivity.a) aVar;
+            UCropActivity.this.v.animate().alpha(1.0f).setDuration(300L).setInterpolator(new AccelerateInterpolator());
+            UCropActivity.this.H.setClickable(false);
+            UCropActivity uCropActivity = UCropActivity.this;
             uCropActivity.u = false;
             uCropActivity.supportInvalidateOptionsMenu();
         }
@@ -92,9 +95,9 @@ public class c extends AppCompatImageView {
         if (f != 0.0f) {
             this.m.postRotate(f, f2, f3);
             setImageMatrix(this.m);
-            c$a c_a = this.p;
-            if (c_a != null) {
-                ((UCropActivity$a) c_a).a(a(this.m));
+            a aVar = this.p;
+            if (aVar != null) {
+                ((UCropActivity.a) aVar).a(a(this.m));
             }
         }
     }
@@ -103,9 +106,9 @@ public class c extends AppCompatImageView {
         if (f != 0.0f) {
             this.m.postScale(f, f, f2, f3);
             setImageMatrix(this.m);
-            c$a c_a = this.p;
-            if (c_a != null) {
-                ((UCropActivity$a) c_a).b(b(this.m));
+            a aVar = this.p;
+            if (aVar != null) {
+                ((UCropActivity.a) aVar).b(b(this.m));
             }
         }
     }
@@ -208,16 +211,16 @@ public class c extends AppCompatImageView {
     }
 
     @Override // android.widget.ImageView
-    public void setScaleType(ImageView$ScaleType imageView$ScaleType) {
-        if (imageView$ScaleType == ImageView$ScaleType.MATRIX) {
-            super.setScaleType(imageView$ScaleType);
+    public void setScaleType(ImageView.ScaleType scaleType) {
+        if (scaleType == ImageView.ScaleType.MATRIX) {
+            super.setScaleType(scaleType);
         } else {
             Log.w("TransformImageView", "Invalid ScaleType. Only ScaleType.MATRIX can be used");
         }
     }
 
-    public void setTransformImageListener(c$a c_a) {
-        this.p = c_a;
+    public void setTransformImageListener(a aVar) {
+        this.p = aVar;
     }
 
     public c(Context context, AttributeSet attributeSet, int i) {

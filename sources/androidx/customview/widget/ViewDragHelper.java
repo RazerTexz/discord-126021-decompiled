@@ -34,7 +34,7 @@ public class ViewDragHelper {
     public static final int STATE_IDLE = 0;
     public static final int STATE_SETTLING = 2;
     private static final String TAG = "ViewDragHelper";
-    private final ViewDragHelper$Callback mCallback;
+    private final Callback mCallback;
     private View mCapturedView;
     private int mDragState;
     private int[] mEdgeDragsInProgress;
@@ -54,19 +54,85 @@ public class ViewDragHelper {
     private int mTouchSlop;
     private int mTrackingEdges;
     private VelocityTracker mVelocityTracker;
-    private static final Interpolator sInterpolator = new ViewDragHelper$1();
+    private static final Interpolator sInterpolator = new AnonymousClass1();
     private int mActivePointerId = -1;
-    private final Runnable mSetIdleRunnable = new ViewDragHelper$2(this);
+    private final Runnable mSetIdleRunnable = new AnonymousClass2();
 
-    private ViewDragHelper(@NonNull Context context, @NonNull ViewGroup viewGroup, @NonNull ViewDragHelper$Callback viewDragHelper$Callback) {
+    /* JADX INFO: renamed from: androidx.customview.widget.ViewDragHelper$1, reason: invalid class name */
+    public final class AnonymousClass1 implements Interpolator {
+        @Override // android.animation.TimeInterpolator
+        public float getInterpolation(float f) {
+            float f2 = f - 1.0f;
+            return (f2 * f2 * f2 * f2 * f2) + 1.0f;
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.customview.widget.ViewDragHelper$2, reason: invalid class name */
+    public class AnonymousClass2 implements Runnable {
+        public AnonymousClass2() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            ViewDragHelper.this.setDragState(0);
+        }
+    }
+
+    public abstract class Callback {
+        public int clampViewPositionHorizontal(@NonNull View view, int i, int i2) {
+            return 0;
+        }
+
+        public int clampViewPositionVertical(@NonNull View view, int i, int i2) {
+            return 0;
+        }
+
+        public int getOrderedChildIndex(int i) {
+            return i;
+        }
+
+        public int getViewHorizontalDragRange(@NonNull View view) {
+            return 0;
+        }
+
+        public int getViewVerticalDragRange(@NonNull View view) {
+            return 0;
+        }
+
+        public void onEdgeDragStarted(int i, int i2) {
+        }
+
+        public boolean onEdgeLock(int i) {
+            return false;
+        }
+
+        public void onEdgeTouched(int i, int i2) {
+        }
+
+        public void onViewCaptured(@NonNull View view, int i) {
+        }
+
+        public void onViewDragStateChanged(int i) {
+        }
+
+        public void onViewPositionChanged(@NonNull View view, int i, int i2, @Px int i3, @Px int i4) {
+        }
+
+        public void onViewReleased(@NonNull View view, float f, float f2) {
+        }
+
+        public abstract boolean tryCaptureView(@NonNull View view, int i);
+    }
+
+    private ViewDragHelper(@NonNull Context context, @NonNull ViewGroup viewGroup, @NonNull Callback callback) {
         if (viewGroup == null) {
             throw new IllegalArgumentException("Parent view may not be null");
         }
-        if (viewDragHelper$Callback == null) {
+        if (callback == null) {
             throw new IllegalArgumentException("Callback may not be null");
         }
         this.mParentView = viewGroup;
-        this.mCallback = viewDragHelper$Callback;
+        this.mCallback = callback;
         ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
         this.mEdgeSize = (int) ((context.getResources().getDisplayMetrics().density * 20.0f) + 0.5f);
         this.mTouchSlop = viewConfiguration.getScaledTouchSlop();
@@ -262,8 +328,8 @@ public class ViewDragHelper {
         return this.mDragState == 2;
     }
 
-    public static ViewDragHelper create(@NonNull ViewGroup viewGroup, @NonNull ViewDragHelper$Callback viewDragHelper$Callback) {
-        return new ViewDragHelper(viewGroup.getContext(), viewGroup, viewDragHelper$Callback);
+    public static ViewDragHelper create(@NonNull ViewGroup viewGroup, @NonNull Callback callback) {
+        return new ViewDragHelper(viewGroup.getContext(), viewGroup, callback);
     }
 
     private void dispatchViewReleased(float f, float f2) {
@@ -772,8 +838,8 @@ public class ViewDragHelper {
         return f;
     }
 
-    public static ViewDragHelper create(@NonNull ViewGroup viewGroup, float f, @NonNull ViewDragHelper$Callback viewDragHelper$Callback) {
-        ViewDragHelper viewDragHelperCreate = create(viewGroup, viewDragHelper$Callback);
+    public static ViewDragHelper create(@NonNull ViewGroup viewGroup, float f, @NonNull Callback callback) {
+        ViewDragHelper viewDragHelperCreate = create(viewGroup, callback);
         viewDragHelperCreate.mTouchSlop = (int) ((1.0f / f) * viewDragHelperCreate.mTouchSlop);
         return viewDragHelperCreate;
     }

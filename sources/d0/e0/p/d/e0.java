@@ -4,6 +4,7 @@ import d0.e0.p.d.m0.c.c1;
 import d0.e0.p.d.m0.c.n0;
 import d0.e0.p.d.m0.c.q0;
 import java.util.List;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: ReflectionObjectRenderer.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -12,6 +13,52 @@ public final class e0 {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final e0 f3197b = new e0();
     public static final d0.e0.p.d.m0.j.c a = d0.e0.p.d.m0.j.c.f3439b;
+
+    /* JADX INFO: compiled from: ReflectionObjectRenderer.kt */
+    public final class a extends d0.z.d.o implements Function1<c1, CharSequence> {
+        public static final a j = new a();
+
+        public a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ CharSequence invoke(c1 c1Var) {
+            return invoke2(c1Var);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final CharSequence invoke2(c1 c1Var) {
+            e0 e0Var = e0.f3197b;
+            d0.z.d.m.checkNotNullExpressionValue(c1Var, "it");
+            d0.e0.p.d.m0.n.c0 type = c1Var.getType();
+            d0.z.d.m.checkNotNullExpressionValue(type, "it.type");
+            return e0Var.renderType(type);
+        }
+    }
+
+    /* JADX INFO: compiled from: ReflectionObjectRenderer.kt */
+    public final class b extends d0.z.d.o implements Function1<c1, CharSequence> {
+        public static final b j = new b();
+
+        public b() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ CharSequence invoke(c1 c1Var) {
+            return invoke2(c1Var);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final CharSequence invoke2(c1 c1Var) {
+            e0 e0Var = e0.f3197b;
+            d0.z.d.m.checkNotNullExpressionValue(c1Var, "it");
+            d0.e0.p.d.m0.n.c0 type = c1Var.getType();
+            d0.z.d.m.checkNotNullExpressionValue(type, "it.type");
+            return e0Var.renderType(type);
+        }
+    }
 
     public final void a(StringBuilder sb, q0 q0Var) {
         if (q0Var != null) {
@@ -48,7 +95,7 @@ public final class e0 {
         sb.append(cVar.renderName(name, true));
         List<c1> valueParameters = xVar.getValueParameters();
         d0.z.d.m.checkNotNullExpressionValue(valueParameters, "descriptor.valueParameters");
-        d0.t.u.joinTo$default(valueParameters, sb, ", ", "(", ")", 0, null, e0$a.j, 48, null);
+        d0.t.u.joinTo$default(valueParameters, sb, ", ", "(", ")", 0, null, a.j, 48, null);
         sb.append(": ");
         d0.e0.p.d.m0.n.c0 returnType = xVar.getReturnType();
         d0.z.d.m.checkNotNull(returnType);
@@ -66,7 +113,7 @@ public final class e0 {
         e0Var.b(sb, xVar);
         List<c1> valueParameters = xVar.getValueParameters();
         d0.z.d.m.checkNotNullExpressionValue(valueParameters, "invoke.valueParameters");
-        d0.t.u.joinTo$default(valueParameters, sb, ", ", "(", ")", 0, null, e0$b.j, 48, null);
+        d0.t.u.joinTo$default(valueParameters, sb, ", ", "(", ")", 0, null, b.j, 48, null);
         sb.append(" -> ");
         d0.e0.p.d.m0.n.c0 returnType = xVar.getReturnType();
         d0.z.d.m.checkNotNull(returnType);

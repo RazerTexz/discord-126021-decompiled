@@ -3,7 +3,6 @@ package b.i.a.c.x2.k0;
 import android.util.SparseArray;
 import androidx.annotation.Nullable;
 import b.i.a.c.j1;
-import b.i.a.c.j1$b;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,7 +10,7 @@ import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: compiled from: DefaultTsPayloadReaderFactory.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class l implements i0$c {
+public final class l implements i0.c {
     public final int a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -24,12 +23,12 @@ public final class l implements i0$c {
         this.f1264b = pVar;
     }
 
-    @Override // b.i.a.c.x2.k0.i0$c
+    @Override // b.i.a.c.x2.k0.i0.c
     @Nullable
-    public i0 a(int i, i0$b i0_b) {
+    public i0 a(int i, i0.b bVar) {
         if (i != 2) {
             if (i == 3 || i == 4) {
-                return new y(new v(i0_b.f1258b));
+                return new y(new v(bVar.f1258b));
             }
             if (i == 21) {
                 return new y(new t());
@@ -38,17 +37,17 @@ public final class l implements i0$c {
                 if (d(4)) {
                     return null;
                 }
-                return new y(new r(new e0(c(i0_b)), d(1), d(8)));
+                return new y(new r(new e0(c(bVar)), d(1), d(8)));
             }
             if (i == 36) {
-                return new y(new s(new e0(c(i0_b))));
+                return new y(new s(new e0(c(bVar))));
             }
             if (i == 89) {
-                return new y(new n(i0_b.c));
+                return new y(new n(bVar.c));
             }
             if (i != 138) {
                 if (i == 172) {
-                    return new y(new i(i0_b.f1258b));
+                    return new y(new i(bVar.f1258b));
                 }
                 if (i == 257) {
                     return new d0(new x("application/vnd.dvb.ait"));
@@ -65,14 +64,14 @@ public final class l implements i0$c {
                             if (d(2)) {
                                 return null;
                             }
-                            return new y(new k(false, i0_b.f1258b));
+                            return new y(new k(false, bVar.f1258b));
                         case 16:
-                            return new y(new q(new j0(c(i0_b))));
+                            return new y(new q(new j0(c(bVar))));
                         case 17:
                             if (d(2)) {
                                 return null;
                             }
-                            return new y(new u(i0_b.f1258b));
+                            return new y(new u(bVar.f1258b));
                         default:
                             switch (i) {
                                 case 128:
@@ -90,11 +89,11 @@ public final class l implements i0$c {
                             break;
                     }
                 }
-                return new y(new g(i0_b.f1258b));
+                return new y(new g(bVar.f1258b));
             }
-            return new y(new m(i0_b.f1258b));
+            return new y(new m(bVar.f1258b));
         }
-        return new y(new p(new j0(c(i0_b))));
+        return new y(new p(new j0(c(bVar))));
     }
 
     public SparseArray<i0> b() {
@@ -103,13 +102,13 @@ public final class l implements i0$c {
 
     /* JADX WARN: Multi-variable type inference failed */
     /* JADX WARN: Type inference failed for: r1v2 */
-    public final List<j1> c(i0$b i0_b) {
+    public final List<j1> c(i0.b bVar) {
         String str;
         int i;
         if (d(32)) {
             return this.f1264b;
         }
-        byte[] bArr = i0_b.d;
+        byte[] bArr = bVar.d;
         int length = bArr.length;
         int i2 = 0;
         ArrayList arrayList = this.f1264b;
@@ -145,12 +144,12 @@ public final class l implements i0$c {
                     if (z3) {
                         listSingletonList = Collections.singletonList((b2 & 64) != 0 ? new byte[]{1} : new byte[]{0});
                     }
-                    j1$b j1_b = new j1$b();
-                    j1_b.k = str;
-                    j1_b.c = str2;
-                    j1_b.C = i;
-                    j1_b.m = listSingletonList;
-                    arrayList.add(j1_b.a());
+                    j1.b bVar2 = new j1.b();
+                    bVar2.k = str;
+                    bVar2.c = str2;
+                    bVar2.C = i;
+                    bVar2.m = listSingletonList;
+                    arrayList.add(bVar2.a());
                     i9++;
                     i7 = i14;
                 }

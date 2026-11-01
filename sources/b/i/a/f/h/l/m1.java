@@ -7,12 +7,12 @@ public final class m1 implements a5 {
 
     @Override // b.i.a.f.h.l.a5
     public final boolean f(int i) {
-        f1$b f1_b;
+        f1.b bVar;
         if (i != 1) {
-            f1_b = i != 2 ? null : f1$b.PROVISIONING;
+            bVar = i != 2 ? null : f1.b.PROVISIONING;
         } else {
-            f1_b = f1$b.RADS;
+            bVar = f1.b.RADS;
         }
-        return f1_b != null;
+        return bVar != null;
     }
 }

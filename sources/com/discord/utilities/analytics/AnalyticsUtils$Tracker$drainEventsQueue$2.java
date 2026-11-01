@@ -1,6 +1,6 @@
 package com.discord.utilities.analytics;
 
-import com.discord.api.science.Science$Event;
+import com.discord.api.science.Science;
 import com.discord.app.AppLog;
 import com.discord.utilities.error.Error;
 import d0.z.d.m;
@@ -14,12 +14,12 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: loaded from: classes2.dex */
 public final class AnalyticsUtils$Tracker$drainEventsQueue$2 extends o implements Function1<Error, Unit> {
     public final /* synthetic */ ArrayList $copy;
-    public final /* synthetic */ AnalyticsUtils$Tracker this$0;
+    public final /* synthetic */ AnalyticsUtils.Tracker this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public AnalyticsUtils$Tracker$drainEventsQueue$2(AnalyticsUtils$Tracker analyticsUtils$Tracker, ArrayList arrayList) {
+    public AnalyticsUtils$Tracker$drainEventsQueue$2(AnalyticsUtils.Tracker tracker, ArrayList arrayList) {
         super(1);
-        this.this$0 = analyticsUtils$Tracker;
+        this.this$0 = tracker;
         this.$copy = arrayList;
     }
 
@@ -36,9 +36,9 @@ public final class AnalyticsUtils$Tracker$drainEventsQueue$2 extends o implement
         ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(arrayList, 10));
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
-            arrayList2.add(((Science$Event) it.next()).getType());
+            arrayList2.add(((Science.Event) it.next()).getType());
         }
         AppLog.g.w("failed to log events: " + arrayList2, error.getThrowable());
-        AnalyticsUtils$Tracker.access$getEventsQueue$p(this.this$0).addAll(this.$copy);
+        AnalyticsUtils.Tracker.access$getEventsQueue$p(this.this$0).addAll(this.$copy);
     }
 }

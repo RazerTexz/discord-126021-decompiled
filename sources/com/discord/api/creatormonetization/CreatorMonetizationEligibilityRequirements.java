@@ -2,6 +2,7 @@ package com.discord.api.creatormonetization;
 
 import b.d.b.a.a;
 import d0.z.d.m;
+import java.util.Date;
 import java.util.Map;
 import java.util.Objects;
 
@@ -12,19 +13,124 @@ public final /* data */ class CreatorMonetizationEligibilityRequirements {
     private final boolean canApply;
     private final boolean engagementHealthy;
     private final long guildId;
-    private final CreatorMonetizationEligibilityRequirements$HealthScore healthScore;
+    private final HealthScore healthScore;
     private final boolean healthScorePending;
     private final CreatorMonetizationEnableRequest latestRequest;
     private final int minimumAgeInDays;
     private final int minimumSize;
     private final Map<String, Object> nsfwProperties;
-    private final CreatorMonetizationEligibilityRequirements$Rejection rejection;
+    private final Rejection rejection;
     private final boolean retentionHealthy;
     private final boolean safeEnvironment;
     private final boolean size;
     private final boolean sufficient;
 
-    public CreatorMonetizationEligibilityRequirements(long j, CreatorMonetizationEnableRequest creatorMonetizationEnableRequest, boolean z2, boolean z3, boolean z4, boolean z5, Map<String, ? extends Object> map, boolean z6, boolean z7, boolean z8, CreatorMonetizationEligibilityRequirements$HealthScore creatorMonetizationEligibilityRequirements$HealthScore, boolean z9, CreatorMonetizationEligibilityRequirements$Rejection creatorMonetizationEligibilityRequirements$Rejection, int i, int i2) {
+    /* JADX INFO: compiled from: CreatorMonetizationEligibilityRequirements.kt */
+    public final /* data */ class HealthScore {
+        private final Integer avgNonnewCommunicators;
+        private final Integer avgNonnewParticipators;
+        private final Integer communicators;
+        private final Integer guildSize;
+        private final Integer numIntentfulJoiners;
+        private final Double percRetW1;
+        private final Double percRetW1Intentful;
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof HealthScore)) {
+                return false;
+            }
+            HealthScore healthScore = (HealthScore) other;
+            return m.areEqual(this.avgNonnewParticipators, healthScore.avgNonnewParticipators) && m.areEqual(this.avgNonnewCommunicators, healthScore.avgNonnewCommunicators) && m.areEqual(this.numIntentfulJoiners, healthScore.numIntentfulJoiners) && m.areEqual(this.percRetW1Intentful, healthScore.percRetW1Intentful) && m.areEqual(this.guildSize, healthScore.guildSize) && m.areEqual(this.communicators, healthScore.communicators) && m.areEqual(this.percRetW1, healthScore.percRetW1);
+        }
+
+        /* JADX INFO: renamed from: a, reason: from getter */
+        public final Integer getCommunicators() {
+            return this.communicators;
+        }
+
+        /* JADX INFO: renamed from: b, reason: from getter */
+        public final Integer getGuildSize() {
+            return this.guildSize;
+        }
+
+        /* JADX INFO: renamed from: c, reason: from getter */
+        public final Double getPercRetW1() {
+            return this.percRetW1;
+        }
+
+        public int hashCode() {
+            Integer num = this.avgNonnewParticipators;
+            int iHashCode = (num != null ? num.hashCode() : 0) * 31;
+            Integer num2 = this.avgNonnewCommunicators;
+            int iHashCode2 = (iHashCode + (num2 != null ? num2.hashCode() : 0)) * 31;
+            Integer num3 = this.numIntentfulJoiners;
+            int iHashCode3 = (iHashCode2 + (num3 != null ? num3.hashCode() : 0)) * 31;
+            Double d = this.percRetW1Intentful;
+            int iHashCode4 = (iHashCode3 + (d != null ? d.hashCode() : 0)) * 31;
+            Integer num4 = this.guildSize;
+            int iHashCode5 = (iHashCode4 + (num4 != null ? num4.hashCode() : 0)) * 31;
+            Integer num5 = this.communicators;
+            int iHashCode6 = (iHashCode5 + (num5 != null ? num5.hashCode() : 0)) * 31;
+            Double d2 = this.percRetW1;
+            return iHashCode6 + (d2 != null ? d2.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("HealthScore(avgNonnewParticipators=");
+            sbU.append(this.avgNonnewParticipators);
+            sbU.append(", avgNonnewCommunicators=");
+            sbU.append(this.avgNonnewCommunicators);
+            sbU.append(", numIntentfulJoiners=");
+            sbU.append(this.numIntentfulJoiners);
+            sbU.append(", percRetW1Intentful=");
+            sbU.append(this.percRetW1Intentful);
+            sbU.append(", guildSize=");
+            sbU.append(this.guildSize);
+            sbU.append(", communicators=");
+            sbU.append(this.communicators);
+            sbU.append(", percRetW1=");
+            sbU.append(this.percRetW1);
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    /* JADX INFO: compiled from: CreatorMonetizationEligibilityRequirements.kt */
+    public final /* data */ class Rejection {
+        private final Date canReapplyAt;
+
+        public boolean equals(Object other) {
+            if (this != other) {
+                return (other instanceof Rejection) && m.areEqual(this.canReapplyAt, ((Rejection) other).canReapplyAt);
+            }
+            return true;
+        }
+
+        /* JADX INFO: renamed from: a, reason: from getter */
+        public final Date getCanReapplyAt() {
+            return this.canReapplyAt;
+        }
+
+        public int hashCode() {
+            Date date = this.canReapplyAt;
+            if (date != null) {
+                return date.hashCode();
+            }
+            return 0;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("Rejection(canReapplyAt=");
+            sbU.append(this.canReapplyAt);
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    public CreatorMonetizationEligibilityRequirements(long j, CreatorMonetizationEnableRequest creatorMonetizationEnableRequest, boolean z2, boolean z3, boolean z4, boolean z5, Map<String, ? extends Object> map, boolean z6, boolean z7, boolean z8, HealthScore healthScore, boolean z9, Rejection rejection, int i, int i2) {
         m.checkNotNullParameter(map, "nsfwProperties");
         this.guildId = j;
         this.latestRequest = creatorMonetizationEnableRequest;
@@ -36,14 +142,14 @@ public final /* data */ class CreatorMonetizationEligibilityRequirements {
         this.retentionHealthy = z6;
         this.safeEnvironment = z7;
         this.size = z8;
-        this.healthScore = creatorMonetizationEligibilityRequirements$HealthScore;
+        this.healthScore = healthScore;
         this.healthScorePending = z9;
-        this.rejection = creatorMonetizationEligibilityRequirements$Rejection;
+        this.rejection = rejection;
         this.minimumAgeInDays = i;
         this.minimumSize = i2;
     }
 
-    public static CreatorMonetizationEligibilityRequirements a(CreatorMonetizationEligibilityRequirements creatorMonetizationEligibilityRequirements, long j, CreatorMonetizationEnableRequest creatorMonetizationEnableRequest, boolean z2, boolean z3, boolean z4, boolean z5, Map map, boolean z6, boolean z7, boolean z8, CreatorMonetizationEligibilityRequirements$HealthScore creatorMonetizationEligibilityRequirements$HealthScore, boolean z9, CreatorMonetizationEligibilityRequirements$Rejection creatorMonetizationEligibilityRequirements$Rejection, int i, int i2, int i3) {
+    public static CreatorMonetizationEligibilityRequirements a(CreatorMonetizationEligibilityRequirements creatorMonetizationEligibilityRequirements, long j, CreatorMonetizationEnableRequest creatorMonetizationEnableRequest, boolean z2, boolean z3, boolean z4, boolean z5, Map map, boolean z6, boolean z7, boolean z8, HealthScore healthScore, boolean z9, Rejection rejection, int i, int i2, int i3) {
         long j2 = (i3 & 1) != 0 ? creatorMonetizationEligibilityRequirements.guildId : j;
         CreatorMonetizationEnableRequest creatorMonetizationEnableRequest2 = (i3 & 2) != 0 ? creatorMonetizationEligibilityRequirements.latestRequest : creatorMonetizationEnableRequest;
         boolean z10 = (i3 & 4) != 0 ? creatorMonetizationEligibilityRequirements.canApply : z2;
@@ -54,14 +160,14 @@ public final /* data */ class CreatorMonetizationEligibilityRequirements {
         boolean z14 = (i3 & 128) != 0 ? creatorMonetizationEligibilityRequirements.retentionHealthy : z6;
         boolean z15 = (i3 & 256) != 0 ? creatorMonetizationEligibilityRequirements.safeEnvironment : z7;
         boolean z16 = (i3 & 512) != 0 ? creatorMonetizationEligibilityRequirements.size : z8;
-        CreatorMonetizationEligibilityRequirements$HealthScore creatorMonetizationEligibilityRequirements$HealthScore2 = (i3 & 1024) != 0 ? creatorMonetizationEligibilityRequirements.healthScore : null;
+        HealthScore healthScore2 = (i3 & 1024) != 0 ? creatorMonetizationEligibilityRequirements.healthScore : null;
         boolean z17 = (i3 & 2048) != 0 ? creatorMonetizationEligibilityRequirements.healthScorePending : z9;
-        CreatorMonetizationEligibilityRequirements$Rejection creatorMonetizationEligibilityRequirements$Rejection2 = (i3 & 4096) != 0 ? creatorMonetizationEligibilityRequirements.rejection : null;
+        Rejection rejection2 = (i3 & 4096) != 0 ? creatorMonetizationEligibilityRequirements.rejection : null;
         int i4 = (i3 & 8192) != 0 ? creatorMonetizationEligibilityRequirements.minimumAgeInDays : i;
         int i5 = (i3 & 16384) != 0 ? creatorMonetizationEligibilityRequirements.minimumSize : i2;
         Objects.requireNonNull(creatorMonetizationEligibilityRequirements);
         m.checkNotNullParameter(map2, "nsfwProperties");
-        return new CreatorMonetizationEligibilityRequirements(j2, creatorMonetizationEnableRequest2, z10, z11, z12, z13, map2, z14, z15, z16, creatorMonetizationEligibilityRequirements$HealthScore2, z17, creatorMonetizationEligibilityRequirements$Rejection2, i4, i5);
+        return new CreatorMonetizationEligibilityRequirements(j2, creatorMonetizationEnableRequest2, z10, z11, z12, z13, map2, z14, z15, z16, healthScore2, z17, rejection2, i4, i5);
     }
 
     public boolean equals(Object other) {
@@ -91,7 +197,7 @@ public final /* data */ class CreatorMonetizationEligibilityRequirements {
     }
 
     /* JADX INFO: renamed from: e, reason: from getter */
-    public final CreatorMonetizationEligibilityRequirements$HealthScore getHealthScore() {
+    public final HealthScore getHealthScore() {
         return this.healthScore;
     }
 
@@ -111,7 +217,7 @@ public final /* data */ class CreatorMonetizationEligibilityRequirements {
     }
 
     /* JADX INFO: renamed from: j, reason: from getter */
-    public final CreatorMonetizationEligibilityRequirements$Rejection getRejection() {
+    public final Rejection getRejection() {
         return this.rejection;
     }
 
@@ -210,12 +316,12 @@ public final /* data */ class CreatorMonetizationEligibilityRequirements {
             r6 = 1;
         }
         int i8 = (i7 + r6) * 31;
-        CreatorMonetizationEligibilityRequirements$HealthScore creatorMonetizationEligibilityRequirements$HealthScore = this.healthScore;
-        int iHashCode3 = (i8 + (creatorMonetizationEligibilityRequirements$HealthScore != null ? creatorMonetizationEligibilityRequirements$HealthScore.hashCode() : 0)) * 31;
+        HealthScore healthScore = this.healthScore;
+        int iHashCode3 = (i8 + (healthScore != null ? healthScore.hashCode() : 0)) * 31;
         boolean z9 = this.healthScorePending;
         int i9 = (iHashCode3 + (z9 ? 1 : z9)) * 31;
-        CreatorMonetizationEligibilityRequirements$Rejection creatorMonetizationEligibilityRequirements$Rejection = this.rejection;
-        return ((((i9 + (creatorMonetizationEligibilityRequirements$Rejection != null ? creatorMonetizationEligibilityRequirements$Rejection.hashCode() : 0)) * 31) + this.minimumAgeInDays) * 31) + this.minimumSize;
+        Rejection rejection = this.rejection;
+        return ((((i9 + (rejection != null ? rejection.hashCode() : 0)) * 31) + this.minimumAgeInDays) * 31) + this.minimumSize;
     }
 
     public final Map<String, Object> i() {

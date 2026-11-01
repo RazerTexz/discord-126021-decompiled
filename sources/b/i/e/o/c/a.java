@@ -2,20 +2,53 @@ package b.i.e.o.c;
 
 import b.i.a.f.e.o.f;
 import b.i.e.k;
-import b.i.e.n.b;
 import b.i.e.n.i;
+import com.discord.widgets.chat.input.MentionUtilsKt;
+import com.discord.widgets.chat.input.autocomplete.AutocompleteViewModel;
 import com.google.zxing.NotFoundException;
+import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Map;
 
 /* JADX INFO: compiled from: Detector.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class a {
-    public final b a;
+    public final b.i.e.n.b a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final b.i.e.n.k.a f1850b;
 
-    public a(b bVar) throws NotFoundException {
+    /* JADX INFO: compiled from: Detector.java */
+    public final class b {
+        public final k a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final k f1851b;
+        public final int c;
+
+        public b(k kVar, k kVar2, int i, C0159a c0159a) {
+            this.a = kVar;
+            this.f1851b = kVar2;
+            this.c = i;
+        }
+
+        public String toString() {
+            return this.a + AutocompleteViewModel.COMMAND_DISCOVER_TOKEN + this.f1851b + MentionUtilsKt.SLASH_CHAR + this.c;
+        }
+    }
+
+    /* JADX INFO: compiled from: Detector.java */
+    public final class c implements Serializable, Comparator<b> {
+        public c(C0159a c0159a) {
+        }
+
+        @Override // java.util.Comparator
+        public int compare(b bVar, b bVar2) {
+            return bVar.c - bVar2.c;
+        }
+    }
+
+    public a(b.i.e.n.b bVar) throws NotFoundException {
         this.a = bVar;
         this.f1850b = new b.i.e.n.k.a(bVar, 10, bVar.j / 2, bVar.k / 2);
     }
@@ -34,7 +67,7 @@ public final class a {
         if (f < 0.0f) {
             return false;
         }
-        b bVar = this.a;
+        b.i.e.n.b bVar = this.a;
         if (f >= bVar.j) {
             return false;
         }
@@ -42,13 +75,13 @@ public final class a {
         return f2 > 0.0f && f2 < ((float) bVar.k);
     }
 
-    public static b d(b bVar, k kVar, k kVar2, k kVar3, k kVar4, int i, int i2) throws NotFoundException {
+    public static b.i.e.n.b d(b.i.e.n.b bVar, k kVar, k kVar2, k kVar3, k kVar4, int i, int i2) throws NotFoundException {
         float f = i - 0.5f;
         float f2 = i2 - 0.5f;
         return b.i.e.n.f.a.a(bVar, i, i2, i.a(0.5f, 0.5f, f, 0.5f, f, f2, 0.5f, f2, kVar.a, kVar.f1826b, kVar4.a, kVar4.f1826b, kVar3.a, kVar3.f1826b, kVar2.a, kVar2.f1826b));
     }
 
-    public final a$b e(k kVar, k kVar2) {
+    public final b e(k kVar, k kVar2) {
         a aVar = this;
         int i = (int) kVar.a;
         int i2 = (int) kVar.f1826b;
@@ -85,6 +118,6 @@ public final class a {
             i += i7;
             aVar = this;
         }
-        return new a$b(kVar, kVar2, i8, null);
+        return new b(kVar, kVar2, i8, null);
     }
 }

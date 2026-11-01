@@ -1,6 +1,5 @@
 package d0.e0.p.d.m0.k;
 
-import d0.e0.p.d.m0.c.g1.g$a;
 import d0.e0.p.d.m0.c.i1.d0;
 import d0.e0.p.d.m0.c.i1.e0;
 import d0.e0.p.d.m0.c.i1.f0;
@@ -20,6 +19,36 @@ import java.util.Collections;
 /* JADX INFO: compiled from: DescriptorFactory.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class d {
+
+    /* JADX INFO: compiled from: DescriptorFactory.java */
+    public class a extends d0.e0.p.d.m0.c.i1.g {
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(d0.e0.p.d.m0.c.e eVar, u0 u0Var, boolean z2) {
+            super(eVar, null, d0.e0.p.d.m0.c.g1.g.f.getEMPTY(), true, d0.e0.p.d.m0.c.b.a.DECLARATION, u0Var);
+            if (eVar == null) {
+                a(0);
+                throw null;
+            }
+            if (u0Var == null) {
+                a(1);
+                throw null;
+            }
+            initialize(Collections.emptyList(), e.getDefaultConstructorVisibility(eVar, z2));
+        }
+
+        public static /* synthetic */ void a(int i) {
+            Object[] objArr = new Object[3];
+            if (i != 1) {
+                objArr[0] = "containingClass";
+            } else {
+                objArr[0] = "source";
+            }
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/resolve/DescriptorFactory$DefaultClassConstructorDescriptor";
+            objArr[2] = "<init>";
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+    }
+
     public static /* synthetic */ void a(int i) {
         String str = (i == 12 || i == 23 || i == 25) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
         Object[] objArr = new Object[(i == 12 || i == 23 || i == 25) ? 2 : 3];
@@ -149,7 +178,7 @@ public class d {
     }
 
     public static boolean b(x xVar) {
-        return xVar.getKind() == d0.e0.p.d.m0.c.b$a.SYNTHESIZED && e.isEnumClass(xVar.getContainingDeclaration());
+        return xVar.getKind() == d0.e0.p.d.m0.c.b.a.SYNTHESIZED && e.isEnumClass(xVar.getContainingDeclaration());
     }
 
     public static d0 createDefaultGetter(n0 n0Var, d0.e0.p.d.m0.c.g1.g gVar) {
@@ -185,9 +214,9 @@ public class d {
             a(24);
             throw null;
         }
-        g$a g_a = d0.e0.p.d.m0.c.g1.g.f;
-        g0 g0VarCreate = g0.create(eVar, g_a.getEMPTY(), d0.e0.p.d.m0.b.k.c, d0.e0.p.d.m0.c.b$a.SYNTHESIZED, eVar.getSource());
-        g0 g0VarInitialize = g0VarCreate.initialize((q0) null, (q0) null, Collections.emptyList(), Collections.singletonList(new l0(g0VarCreate, null, 0, g_a.getEMPTY(), d0.e0.p.d.m0.g.e.identifier("value"), d0.e0.p.d.m0.k.x.a.getBuiltIns(eVar).getStringType(), false, false, false, null, eVar.getSource())), (c0) eVar.getDefaultType(), z.FINAL, d0.e0.p.d.m0.c.t.e);
+        d0.e0.p.d.m0.c.g1.g.a aVar = d0.e0.p.d.m0.c.g1.g.f;
+        g0 g0VarCreate = g0.create(eVar, aVar.getEMPTY(), d0.e0.p.d.m0.b.k.c, d0.e0.p.d.m0.c.b.a.SYNTHESIZED, eVar.getSource());
+        g0 g0VarInitialize = g0VarCreate.initialize((q0) null, (q0) null, Collections.emptyList(), Collections.singletonList(new l0(g0VarCreate, null, 0, aVar.getEMPTY(), d0.e0.p.d.m0.g.e.identifier("value"), d0.e0.p.d.m0.k.x.a.getBuiltIns(eVar).getStringType(), false, false, false, null, eVar.getSource())), (c0) eVar.getDefaultType(), z.FINAL, d0.e0.p.d.m0.c.t.e);
         if (g0VarInitialize != null) {
             return g0VarInitialize;
         }
@@ -200,7 +229,7 @@ public class d {
             a(22);
             throw null;
         }
-        g0 g0VarInitialize = g0.create(eVar, d0.e0.p.d.m0.c.g1.g.f.getEMPTY(), d0.e0.p.d.m0.b.k.f3215b, d0.e0.p.d.m0.c.b$a.SYNTHESIZED, eVar.getSource()).initialize((q0) null, (q0) null, Collections.emptyList(), Collections.emptyList(), (c0) d0.e0.p.d.m0.k.x.a.getBuiltIns(eVar).getArrayType(j1.INVARIANT, eVar.getDefaultType()), z.FINAL, d0.e0.p.d.m0.c.t.e);
+        g0 g0VarInitialize = g0.create(eVar, d0.e0.p.d.m0.c.g1.g.f.getEMPTY(), d0.e0.p.d.m0.b.k.f3215b, d0.e0.p.d.m0.c.b.a.SYNTHESIZED, eVar.getSource()).initialize((q0) null, (q0) null, Collections.emptyList(), Collections.emptyList(), (c0) d0.e0.p.d.m0.k.x.a.getBuiltIns(eVar).getArrayType(j1.INVARIANT, eVar.getDefaultType()), z.FINAL, d0.e0.p.d.m0.c.t.e);
         if (g0VarInitialize != null) {
             return g0VarInitialize;
         }
@@ -241,7 +270,7 @@ public class d {
             throw null;
         }
         if (u0Var != null) {
-            return new d$a(eVar, u0Var, false);
+            return new a(eVar, u0Var, false);
         }
         a(21);
         throw null;
@@ -293,7 +322,7 @@ public class d {
             throw null;
         }
         if (u0Var != null) {
-            return new d0(n0Var, gVar, n0Var.getModality(), n0Var.getVisibility(), z2, z3, z4, d0.e0.p.d.m0.c.b$a.DECLARATION, null, u0Var);
+            return new d0(n0Var, gVar, n0Var.getModality(), n0Var.getVisibility(), z2, z3, z4, d0.e0.p.d.m0.c.b.a.DECLARATION, null, u0Var);
         }
         a(19);
         throw null;
@@ -317,7 +346,7 @@ public class d {
             throw null;
         }
         if (u0Var != null) {
-            e0 e0Var = new e0(n0Var, gVar, n0Var.getModality(), uVar, z2, z3, z4, d0.e0.p.d.m0.c.b$a.DECLARATION, null, u0Var);
+            e0 e0Var = new e0(n0Var, gVar, n0Var.getModality(), uVar, z2, z3, z4, d0.e0.p.d.m0.c.b.a.DECLARATION, null, u0Var);
             e0Var.initialize(e0.createSetterParameter(e0Var, n0Var.getType(), gVar2));
             return e0Var;
         }

@@ -1,8 +1,8 @@
 package com.discord.models.domain;
 
 import android.text.TextUtils;
-import b.a.m.a.a;
 import b.a.m.a.d0;
+import b.d.b.a.a;
 import com.discord.api.presence.ClientStatus;
 import com.discord.models.deserialization.gson.InboundGatewayGsonParser;
 import java.io.IOException;
@@ -31,7 +31,7 @@ public class ModelUserSettings implements Model {
     private Boolean developerMode;
     private Integer explicitContentFilter;
     private Integer friendDiscoveryFlags;
-    private ModelUserSettings$FriendSourceFlags friendSourceFlags;
+    private FriendSourceFlags friendSourceFlags;
     private List<ModelGuildFolder> guildFolders;
     private Boolean inlineAttachmentMedia;
     private Boolean inlineEmbedMedia;
@@ -42,81 +42,146 @@ public class ModelUserSettings implements Model {
     private ClientStatus status;
     private String theme;
 
+    public class FriendSourceFlags implements Model {
+        private boolean all;
+        private boolean mutualFriends;
+        private boolean mutualGuilds;
+
+        @Override // com.discord.models.domain.Model
+        public void assignField(Model.JsonReader jsonReader) throws IOException {
+            String strNextName = jsonReader.nextName();
+            strNextName.hashCode();
+            switch (strNextName) {
+                case "mutual_guilds":
+                    this.mutualGuilds = jsonReader.nextBoolean(this.mutualGuilds);
+                    break;
+                case "all":
+                    this.all = jsonReader.nextBoolean(this.all);
+                    break;
+                case "mutual_friends":
+                    this.mutualFriends = jsonReader.nextBoolean(this.mutualFriends);
+                    break;
+            }
+        }
+
+        public boolean canEqual(Object obj) {
+            return obj instanceof FriendSourceFlags;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof FriendSourceFlags)) {
+                return false;
+            }
+            FriendSourceFlags friendSourceFlags = (FriendSourceFlags) obj;
+            return friendSourceFlags.canEqual(this) && isAll() == friendSourceFlags.isAll() && isMutualGuilds() == friendSourceFlags.isMutualGuilds() && isMutualFriends() == friendSourceFlags.isMutualFriends();
+        }
+
+        public int hashCode() {
+            return (((((isAll() ? 79 : 97) + 59) * 59) + (isMutualGuilds() ? 79 : 97)) * 59) + (isMutualFriends() ? 79 : 97);
+        }
+
+        public boolean isAll() {
+            return this.all;
+        }
+
+        public boolean isMutualFriends() {
+            return this.mutualFriends;
+        }
+
+        public boolean isMutualGuilds() {
+            return this.mutualGuilds;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("ModelUserSettings.FriendSourceFlags(all=");
+            sbU.append(isAll());
+            sbU.append(", mutualGuilds=");
+            sbU.append(isMutualGuilds());
+            sbU.append(", mutualFriends=");
+            sbU.append(isMutualFriends());
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
     @Override // com.discord.models.domain.Model
-    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
-        String strNextName = model$JsonReader.nextName();
+    public void assignField(Model.JsonReader jsonReader) throws IOException {
+        String strNextName = jsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "animate_emoji":
-                this.animateEmoji = model$JsonReader.nextBooleanOrNull();
+                this.animateEmoji = jsonReader.nextBooleanOrNull();
                 break;
             case "inline_attachment_media":
-                this.inlineAttachmentMedia = model$JsonReader.nextBooleanOrNull();
+                this.inlineAttachmentMedia = jsonReader.nextBooleanOrNull();
                 break;
             case "explicit_content_filter":
-                this.explicitContentFilter = model$JsonReader.nextIntOrNull();
+                this.explicitContentFilter = jsonReader.nextIntOrNull();
                 break;
             case "guild_positions":
                 List<ModelGuildFolder> list = this.guildFolders;
                 if (list == null || list.isEmpty()) {
-                    this.guildFolders = convertFromPositions(model$JsonReader.nextList(new a(model$JsonReader)));
+                    this.guildFolders = convertFromPositions(jsonReader.nextList(new b.a.m.a.a(jsonReader)));
                     break;
                 }
                 break;
             case "show_current_game":
-                this.showCurrentGame = Boolean.valueOf(model$JsonReader.nextBoolean(false));
+                this.showCurrentGame = Boolean.valueOf(jsonReader.nextBoolean(false));
                 break;
             case "restricted_guilds":
-                this.restrictedGuilds = model$JsonReader.nextList(new a(model$JsonReader));
+                this.restrictedGuilds = jsonReader.nextList(new b.a.m.a.a(jsonReader));
                 break;
             case "render_embeds":
-                this.renderEmbeds = model$JsonReader.nextBooleanOrNull();
+                this.renderEmbeds = jsonReader.nextBooleanOrNull();
                 break;
             case "locale":
-                this.locale = model$JsonReader.nextString(this.locale);
+                this.locale = jsonReader.nextString(this.locale);
                 break;
             case "allow_accessibility_detection":
-                this.allowAccessibilityDetection = model$JsonReader.nextBooleanOrNull();
+                this.allowAccessibilityDetection = jsonReader.nextBooleanOrNull();
                 break;
             case "status":
-                this.status = (ClientStatus) InboundGatewayGsonParser.fromJson(model$JsonReader, ClientStatus.class);
+                this.status = (ClientStatus) InboundGatewayGsonParser.fromJson(jsonReader, ClientStatus.class);
                 break;
             case "guild_folders":
-                List<ModelGuildFolder> listNextList = model$JsonReader.nextList(new d0(model$JsonReader));
+                List<ModelGuildFolder> listNextList = jsonReader.nextList(new d0(jsonReader));
                 if (!listNextList.isEmpty()) {
                     this.guildFolders = listNextList;
                     break;
                 }
                 break;
             case "theme":
-                this.theme = model$JsonReader.nextString(this.theme);
+                this.theme = jsonReader.nextString(this.theme);
                 break;
             case "developer_mode":
-                this.developerMode = Boolean.valueOf(model$JsonReader.nextBoolean(false));
+                this.developerMode = Boolean.valueOf(jsonReader.nextBoolean(false));
                 break;
             case "inline_embed_media":
-                this.inlineEmbedMedia = model$JsonReader.nextBooleanOrNull();
+                this.inlineEmbedMedia = jsonReader.nextBooleanOrNull();
                 break;
             case "contact_sync_enabled":
-                this.contactSyncUpsellShown = model$JsonReader.nextBooleanOrNull();
+                this.contactSyncUpsellShown = jsonReader.nextBooleanOrNull();
                 break;
             case "custom_status":
-                this.customStatus = ModelCustomStatusSetting$Parser.INSTANCE.parse(model$JsonReader);
+                this.customStatus = ModelCustomStatusSetting.Parser.INSTANCE.parse(jsonReader);
                 break;
             case "friend_source_flags":
-                this.friendSourceFlags = (ModelUserSettings$FriendSourceFlags) model$JsonReader.parse(new ModelUserSettings$FriendSourceFlags());
+                this.friendSourceFlags = (FriendSourceFlags) jsonReader.parse(new FriendSourceFlags());
                 break;
             case "animate_stickers":
-                this.animateStickers = model$JsonReader.nextIntOrNull();
+                this.animateStickers = jsonReader.nextIntOrNull();
                 break;
             case "friend_discovery_flags":
-                this.friendDiscoveryFlags = Integer.valueOf(model$JsonReader.nextInt(0));
+                this.friendDiscoveryFlags = Integer.valueOf(jsonReader.nextInt(0));
                 break;
             case "default_guilds_restricted":
-                this.defaultGuildsRestricted = model$JsonReader.nextBooleanOrNull();
+                this.defaultGuildsRestricted = jsonReader.nextBooleanOrNull();
                 break;
             default:
-                model$JsonReader.skipValue();
+                jsonReader.skipValue();
                 break;
         }
     }
@@ -224,8 +289,8 @@ public class ModelUserSettings implements Model {
         if (restrictedGuilds != null ? !restrictedGuilds.equals(restrictedGuilds2) : restrictedGuilds2 != null) {
             return false;
         }
-        ModelUserSettings$FriendSourceFlags friendSourceFlags = getFriendSourceFlags();
-        ModelUserSettings$FriendSourceFlags friendSourceFlags2 = modelUserSettings.getFriendSourceFlags();
+        FriendSourceFlags friendSourceFlags = getFriendSourceFlags();
+        FriendSourceFlags friendSourceFlags2 = modelUserSettings.getFriendSourceFlags();
         if (friendSourceFlags != null ? !friendSourceFlags.equals(friendSourceFlags2) : friendSourceFlags2 != null) {
             return false;
         }
@@ -279,7 +344,7 @@ public class ModelUserSettings implements Model {
         return this.friendDiscoveryFlags;
     }
 
-    public ModelUserSettings$FriendSourceFlags getFriendSourceFlags() {
+    public FriendSourceFlags getFriendSourceFlags() {
         return this.friendSourceFlags;
     }
 
@@ -308,7 +373,7 @@ public class ModelUserSettings implements Model {
         if (TextUtils.isEmpty(locale.getCountry())) {
             string = "";
         } else {
-            StringBuilder sbQ = b.d.b.a.a.Q('-');
+            StringBuilder sbQ = a.Q('-');
             sbQ.append(locale.getCountry().toUpperCase(Locale.getDefault()));
             string = sbQ.toString();
         }
@@ -368,7 +433,7 @@ public class ModelUserSettings implements Model {
         int iHashCode15 = (iHashCode14 * 59) + (locale == null ? 43 : locale.hashCode());
         List<Long> restrictedGuilds = getRestrictedGuilds();
         int iHashCode16 = (iHashCode15 * 59) + (restrictedGuilds == null ? 43 : restrictedGuilds.hashCode());
-        ModelUserSettings$FriendSourceFlags friendSourceFlags = getFriendSourceFlags();
+        FriendSourceFlags friendSourceFlags = getFriendSourceFlags();
         int iHashCode17 = (iHashCode16 * 59) + (friendSourceFlags == null ? 43 : friendSourceFlags.hashCode());
         ClientStatus status = getStatus();
         int iHashCode18 = (iHashCode17 * 59) + (status == null ? 43 : status.hashCode());
@@ -377,7 +442,7 @@ public class ModelUserSettings implements Model {
     }
 
     public String toString() {
-        StringBuilder sbU = b.d.b.a.a.U("ModelUserSettings(theme=");
+        StringBuilder sbU = a.U("ModelUserSettings(theme=");
         sbU.append(getTheme());
         sbU.append(", guildFolders=");
         sbU.append(getGuildFolders());

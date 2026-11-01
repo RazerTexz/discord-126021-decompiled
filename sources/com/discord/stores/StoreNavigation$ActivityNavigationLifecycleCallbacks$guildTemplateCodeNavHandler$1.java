@@ -6,34 +6,56 @@ import com.discord.widgets.guilds.create.WidgetGuildClone;
 import d0.z.d.a0;
 import d0.z.d.m;
 import d0.z.d.o;
+import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: StoreNavigation.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$guildTemplateCodeNavHandler$1 extends o implements Function2<AppActivity, StoreNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation, Boolean> {
-    public final /* synthetic */ StoreNavigation$ActivityNavigationLifecycleCallbacks this$0;
+public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$guildTemplateCodeNavHandler$1 extends o implements Function2<AppActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation, Boolean> {
+    public final /* synthetic */ StoreNavigation.ActivityNavigationLifecycleCallbacks this$0;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreNavigation$ActivityNavigationLifecycleCallbacks$guildTemplateCodeNavHandler$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreNavigation.kt */
+    public final class AnonymousClass1 extends o implements Function1<StoreNux.NuxState, StoreNux.NuxState> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ StoreNux.NuxState invoke(StoreNux.NuxState nuxState) {
+            return invoke2(nuxState);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final StoreNux.NuxState invoke2(StoreNux.NuxState nuxState) {
+            m.checkNotNullParameter(nuxState, "it");
+            return StoreNux.NuxState.copy$default(nuxState, false, false, false, false, false, null, 62, null);
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public StoreNavigation$ActivityNavigationLifecycleCallbacks$guildTemplateCodeNavHandler$1(StoreNavigation$ActivityNavigationLifecycleCallbacks storeNavigation$ActivityNavigationLifecycleCallbacks) {
+    public StoreNavigation$ActivityNavigationLifecycleCallbacks$guildTemplateCodeNavHandler$1(StoreNavigation.ActivityNavigationLifecycleCallbacks activityNavigationLifecycleCallbacks) {
         super(2);
-        this.this$0 = storeNavigation$ActivityNavigationLifecycleCallbacks;
+        this.this$0 = activityNavigationLifecycleCallbacks;
     }
 
     @Override // kotlin.jvm.functions.Function2
-    public /* bridge */ /* synthetic */ Boolean invoke(AppActivity appActivity, StoreNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation) {
-        return Boolean.valueOf(invoke2(appActivity, storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation));
+    public /* bridge */ /* synthetic */ Boolean invoke(AppActivity appActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation modelGlobalNavigation) {
+        return Boolean.valueOf(invoke2(appActivity, modelGlobalNavigation));
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final boolean invoke2(AppActivity appActivity, StoreNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation) {
+    public final boolean invoke2(AppActivity appActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation modelGlobalNavigation) {
         m.checkNotNullParameter(appActivity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
-        m.checkNotNullParameter(storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation, "model");
-        String guildTemplateCode = storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation.getGuildTemplateCode();
+        m.checkNotNullParameter(modelGlobalNavigation, "model");
+        String guildTemplateCode = modelGlobalNavigation.getGuildTemplateCode();
         if (guildTemplateCode == null || appActivity.h(a0.getOrCreateKotlinClass(WidgetGuildClone.class))) {
             return false;
         }
-        WidgetGuildClone.Companion.show(appActivity, guildTemplateCode, "Dynamic Link");
-        StoreNavigation$ActivityNavigationLifecycleCallbacks.access$getStream$p(this.this$0).getNux().updateNux(StoreNavigation$ActivityNavigationLifecycleCallbacks$guildTemplateCodeNavHandler$1$1.INSTANCE);
+        WidgetGuildClone.INSTANCE.show(appActivity, guildTemplateCode, "Dynamic Link");
+        StoreNavigation.ActivityNavigationLifecycleCallbacks.access$getStream$p(this.this$0).getNux().updateNux(AnonymousClass1.INSTANCE);
         return true;
     }
 }

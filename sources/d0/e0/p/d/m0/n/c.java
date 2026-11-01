@@ -22,10 +22,10 @@ public final class c {
         return fVar.areEqualTypeConstructors(fVar.typeConstructor(iVar), lVar);
     }
 
-    public final boolean hasNotNullSupertype(f fVar, d0.e0.p.d.m0.n.n1.i iVar, f$b f_b) {
+    public final boolean hasNotNullSupertype(f fVar, d0.e0.p.d.m0.n.n1.i iVar, f.b bVar) {
         d0.z.d.m.checkNotNullParameter(fVar, "<this>");
         d0.z.d.m.checkNotNullParameter(iVar, "type");
-        d0.z.d.m.checkNotNullParameter(f_b, "supertypesPolicy");
+        d0.z.d.m.checkNotNullParameter(bVar, "supertypesPolicy");
         if (!((fVar.isClassType(iVar) && !fVar.isMarkedNullable(iVar)) || fVar.isDefinitelyNotNullType(iVar))) {
             fVar.initialize();
             ArrayDeque<d0.e0.p.d.m0.n.n1.i> supertypesDeque = fVar.getSupertypesDeque();
@@ -42,16 +42,16 @@ public final class c {
                 d0.e0.p.d.m0.n.n1.i iVarPop = supertypesDeque.pop();
                 d0.z.d.m.checkNotNullExpressionValue(iVarPop, "current");
                 if (supertypesSet.add(iVarPop)) {
-                    f$b f_b2 = fVar.isMarkedNullable(iVarPop) ? f$b$c.a : f_b;
-                    if (!(!d0.z.d.m.areEqual(f_b2, f$b$c.a))) {
-                        f_b2 = null;
+                    f.b bVar2 = fVar.isMarkedNullable(iVarPop) ? f.b.c.a : bVar;
+                    if (!(!d0.z.d.m.areEqual(bVar2, f.b.c.a))) {
+                        bVar2 = null;
                     }
-                    if (f_b2 == null) {
+                    if (bVar2 == null) {
                         continue;
                     } else {
                         Iterator<d0.e0.p.d.m0.n.n1.h> it = fVar.supertypes(fVar.typeConstructor(iVarPop)).iterator();
                         while (it.hasNext()) {
-                            d0.e0.p.d.m0.n.n1.i iVarTransformType = f_b2.transformType(fVar, it.next());
+                            d0.e0.p.d.m0.n.n1.i iVarTransformType = bVar2.transformType(fVar, it.next());
                             if ((fVar.isClassType(iVarTransformType) && !fVar.isMarkedNullable(iVarTransformType)) || fVar.isDefinitelyNotNullType(iVarTransformType)) {
                                 fVar.clear();
                             } else {
@@ -89,16 +89,16 @@ public final class c {
             d0.e0.p.d.m0.n.n1.i iVarPop = supertypesDeque.pop();
             d0.z.d.m.checkNotNullExpressionValue(iVarPop, "current");
             if (supertypesSet.add(iVarPop)) {
-                f$b f_b = fVar.isMarkedNullable(iVarPop) ? f$b$c.a : f$b$b.a;
-                if (!(!d0.z.d.m.areEqual(f_b, f$b$c.a))) {
-                    f_b = null;
+                f.b bVar = fVar.isMarkedNullable(iVarPop) ? f.b.c.a : f.b.C0579b.a;
+                if (!(!d0.z.d.m.areEqual(bVar, f.b.c.a))) {
+                    bVar = null;
                 }
-                if (f_b == null) {
+                if (bVar == null) {
                     continue;
                 } else {
                     Iterator<d0.e0.p.d.m0.n.n1.h> it = fVar.supertypes(fVar.typeConstructor(iVarPop)).iterator();
                     while (it.hasNext()) {
-                        d0.e0.p.d.m0.n.n1.i iVarTransformType = f_b.transformType(fVar, it.next());
+                        d0.e0.p.d.m0.n.n1.i iVarTransformType = bVar.transformType(fVar, it.next());
                         if (a(fVar, iVarTransformType, lVar)) {
                             fVar.clear();
                             return true;
@@ -119,10 +119,10 @@ public final class c {
         if (fVar.isMarkedNullable(iVar2) || fVar.isDefinitelyNotNullType(iVar)) {
             return true;
         }
-        if (((iVar instanceof d0.e0.p.d.m0.n.n1.c) && fVar.isProjectionNotNull((d0.e0.p.d.m0.n.n1.c) iVar)) || hasNotNullSupertype(fVar, iVar, f$b$b.a)) {
+        if (((iVar instanceof d0.e0.p.d.m0.n.n1.c) && fVar.isProjectionNotNull((d0.e0.p.d.m0.n.n1.c) iVar)) || hasNotNullSupertype(fVar, iVar, f.b.C0579b.a)) {
             return true;
         }
-        if (fVar.isDefinitelyNotNullType(iVar2) || hasNotNullSupertype(fVar, iVar2, f$b$d.a) || fVar.isClassType(iVar)) {
+        if (fVar.isDefinitelyNotNullType(iVar2) || hasNotNullSupertype(fVar, iVar2, f.b.d.a) || fVar.isClassType(iVar)) {
             return false;
         }
         return hasPathByNotMarkedNullableNodes(fVar, iVar, fVar.typeConstructor(iVar2));

@@ -22,7 +22,7 @@ public final class WidgetServerSettingsAuditLogFilter$Model$Companion$get$1<T, R
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
     public final Observable<? extends Map<Long, User>> call2(Set<Long> set) {
-        StoreUser users = StoreStream.Companion.getUsers();
+        StoreUser users = StoreStream.INSTANCE.getUsers();
         m.checkNotNullExpressionValue(set, "it");
         return users.observeUsers(set);
     }

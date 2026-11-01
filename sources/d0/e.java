@@ -1,5 +1,7 @@
 package d0;
 
+import kotlin.jvm.internal.DefaultConstructorMarker;
+
 /* JADX INFO: compiled from: KotlinVersion.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class e implements Comparable<e> {
@@ -9,8 +11,14 @@ public final class e implements Comparable<e> {
     public final int m;
     public final int n;
 
+    /* JADX INFO: compiled from: KotlinVersion.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     static {
-        new e$a(null);
+        new a(null);
         j = f.get();
     }
 

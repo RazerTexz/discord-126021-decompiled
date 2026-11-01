@@ -1,8 +1,9 @@
 package com.discord.widgets.auth;
 
+import com.discord.R;
 import com.discord.utilities.auth.AuthUtils;
 import com.discord.utilities.view.validators.BasicTextInputValidator;
-import com.discord.utilities.view.validators.Input$TextInputLayoutInput;
+import com.discord.utilities.view.validators.Input;
 import com.discord.utilities.view.validators.ValidationManager;
 import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
@@ -26,6 +27,6 @@ public final class WidgetAuthRegisterIdentity$phoneValidationManager$2 extends o
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final ValidationManager invoke() {
-        return new ValidationManager(new Input$TextInputLayoutInput("phone", WidgetAuthRegisterIdentity.access$getBinding$p(this.this$0).d.getMainTextInputLayout(), BasicTextInputValidator.Companion.createRequiredInputValidator(2131893786), AuthUtils.INSTANCE.createPhoneInputValidator(2131893782)));
+        return new ValidationManager(new Input.TextInputLayoutInput("phone", WidgetAuthRegisterIdentity.access$getBinding$p(this.this$0).d.getMainTextInputLayout(), BasicTextInputValidator.INSTANCE.createRequiredInputValidator(R.string.phone_required), AuthUtils.INSTANCE.createPhoneInputValidator(R.string.phone_invalid)));
     }
 }

@@ -21,7 +21,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import rx.Observable;
@@ -63,9 +62,9 @@ public final class StoreLocalMessagesHolder {
 
     @StoreThread
     public final void clearCache() {
-        for (Map$Entry<Long, TreeMap<Long, Message>> map$Entry : this.messages.entrySet()) {
-            Long key = map$Entry.getKey();
-            TreeMap<Long, Message> value = map$Entry.getValue();
+        for (Map.Entry<Long, TreeMap<Long, Message>> entry : this.messages.entrySet()) {
+            Long key = entry.getKey();
+            TreeMap<Long, Message> value = entry.getValue();
             Set<Long> set = this.updatedChannels;
             m.checkNotNullExpressionValue(key, "channelId");
             set.add(key);
@@ -137,14 +136,14 @@ public final class StoreLocalMessagesHolder {
                     m.throwUninitializedPropertyAccessException("sharedPreferences");
                 }
                 String string = sharedPreferences.getString("STORE_LOCAL_MESSAGES_CACHE_V11", null);
-                for (Map$Entry map$Entry : (string != null ? (Map) this.gson.g(string, new StoreLocalMessagesHolder$init$type$1().getType()) : h0.emptyMap()).entrySet()) {
-                    long jLongValue = ((Number) map$Entry.getKey()).longValue();
+                for (Map.Entry entry : (string != null ? (Map) this.gson.g(string, new StoreLocalMessagesHolder$init$type$1().getType()) : h0.emptyMap()).entrySet()) {
+                    long jLongValue = ((Number) entry.getKey()).longValue();
                     this.messages.put(Long.valueOf(jLongValue), new TreeMap<>(MessageUtils.getSORT_BY_IDS_COMPARATOR()));
                     TreeMap<Long, Message> treeMap = this.messages.get(Long.valueOf(jLongValue));
                     if (treeMap == null) {
                         treeMap = new TreeMap<>();
                     }
-                    for (Message message : (List) map$Entry.getValue()) {
+                    for (Message message : (List) entry.getValue()) {
                         treeMap.put(Long.valueOf(message.getId()), message);
                     }
                     this.messages.put(Long.valueOf(jLongValue), treeMap);
@@ -163,9 +162,9 @@ public final class StoreLocalMessagesHolder {
     private final void messageCacheTryPersist() {
         if (this.cacheEnabled) {
             HashMap map = new HashMap();
-            for (Map$Entry<Long, TreeMap<Long, Message>> map$Entry : this.messages.entrySet()) {
-                Long key = map$Entry.getKey();
-                Collection<Message> collectionValues = map$Entry.getValue().values();
+            for (Map.Entry<Long, TreeMap<Long, Message>> entry : this.messages.entrySet()) {
+                Long key = entry.getKey();
+                Collection<Message> collectionValues = entry.getValue().values();
                 m.checkNotNullExpressionValue(collectionValues, "entry.value.values");
                 map.put(key, u.toList(collectionValues));
             }

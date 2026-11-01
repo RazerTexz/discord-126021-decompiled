@@ -13,12 +13,23 @@ public class DependencyNode implements Dependency {
     public Dependency updateDelegate = null;
     public boolean delegateToWidgetRun = false;
     public boolean readyToSolve = false;
-    public DependencyNode$Type type = DependencyNode$Type.UNKNOWN;
+    public Type type = Type.UNKNOWN;
     public int marginFactor = 1;
     public DimensionDependency marginDependency = null;
     public boolean resolved = false;
     public List<Dependency> dependencies = new ArrayList();
     public List<DependencyNode> targets = new ArrayList();
+
+    public enum Type {
+        UNKNOWN,
+        HORIZONTAL_DIMENSION,
+        VERTICAL_DIMENSION,
+        LEFT,
+        RIGHT,
+        TOP,
+        BOTTOM,
+        BASELINE
+    }
 
     public DependencyNode(WidgetRun widgetRun) {
         this.run = widgetRun;
@@ -42,8 +53,8 @@ public class DependencyNode implements Dependency {
 
     public String name() {
         String debugName = this.run.widget.getDebugName();
-        DependencyNode$Type dependencyNode$Type = this.type;
-        StringBuilder sbX = a.X((dependencyNode$Type == DependencyNode$Type.LEFT || dependencyNode$Type == DependencyNode$Type.RIGHT) ? a.w(debugName, "_HORIZONTAL") : a.w(debugName, "_VERTICAL"), ":");
+        Type type = this.type;
+        StringBuilder sbX = a.X((type == Type.LEFT || type == Type.RIGHT) ? a.w(debugName, "_HORIZONTAL") : a.w(debugName, "_VERTICAL"), ":");
         sbX.append(this.type.name());
         return sbX.toString();
     }

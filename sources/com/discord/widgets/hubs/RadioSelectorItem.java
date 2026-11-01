@@ -2,8 +2,7 @@ package com.discord.widgets.hubs;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
 import d0.z.d.m;
@@ -11,13 +10,38 @@ import d0.z.d.m;
 /* JADX INFO: compiled from: WidgetRadioSelectorBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class RadioSelectorItem implements Parcelable {
-    public static final Parcelable$Creator<RadioSelectorItem> CREATOR = new RadioSelectorItem$Creator();
+    public static final Parcelable.Creator<RadioSelectorItem> CREATOR = new Creator();
     private final int id;
     private final boolean selected;
     private final String text;
 
+    public final class Creator implements Parcelable.Creator<RadioSelectorItem> {
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final RadioSelectorItem createFromParcel(Parcel parcel) {
+            m.checkNotNullParameter(parcel, "in");
+            return new RadioSelectorItem(parcel.readInt(), parcel.readString(), parcel.readInt() != 0);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ RadioSelectorItem createFromParcel(Parcel parcel) {
+            return createFromParcel(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final RadioSelectorItem[] newArray(int i) {
+            return new RadioSelectorItem[i];
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ RadioSelectorItem[] newArray(int i) {
+            return newArray(i);
+        }
+    }
+
     public RadioSelectorItem(int i, String str, boolean z2) {
-        m.checkNotNullParameter(str, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkNotNullParameter(str, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         this.id = i;
         this.text = str;
         this.selected = z2;
@@ -37,7 +61,7 @@ public final /* data */ class RadioSelectorItem implements Parcelable {
     }
 
     public final RadioSelectorItem copy(int id2, String text, boolean selected) {
-        m.checkNotNullParameter(text, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         return new RadioSelectorItem(id2, text, selected);
     }
 

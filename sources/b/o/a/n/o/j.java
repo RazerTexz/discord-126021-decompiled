@@ -16,12 +16,28 @@ public class j extends e {
     public final List<e> e;
     public final List<e> f;
 
+    /* JADX INFO: compiled from: TogetherAction.java */
+    public class a implements b {
+        public a() {
+        }
+
+        @Override // b.o.a.n.o.b
+        public void a(@NonNull b.o.a.n.o.a aVar, int i) {
+            if (i == Integer.MAX_VALUE) {
+                j.this.f.remove(aVar);
+            }
+            if (j.this.f.isEmpty()) {
+                j.this.l(Integer.MAX_VALUE);
+            }
+        }
+    }
+
     public j(@NonNull List<e> list) {
         this.e = new ArrayList(list);
         this.f = new ArrayList(list);
         Iterator<e> it = list.iterator();
         while (it.hasNext()) {
-            it.next().f(new j$a(this));
+            it.next().f(new a());
         }
     }
 

@@ -3,7 +3,6 @@ package b.g.a.c.g0.t;
 import b.g.a.c.w;
 import b.g.a.c.x;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonMappingException$a;
 import java.io.IOException;
 import java.util.Set;
 
@@ -106,7 +105,7 @@ public class b extends b.g.a.c.g0.u.d {
             throw null;
         } catch (StackOverflowError e2) {
             JsonMappingException jsonMappingException = new JsonMappingException(dVar, "Infinite recursion (StackOverflowError)", e2);
-            jsonMappingException.e(new JsonMappingException$a(obj, i != cVarArr.length ? cVarArr[i]._name._value : "[anySetter]"));
+            jsonMappingException.e(new JsonMappingException.a(obj, i != cVarArr.length ? cVarArr[i]._name._value : "[anySetter]"));
             throw jsonMappingException;
         }
     }

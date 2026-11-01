@@ -10,10 +10,16 @@ import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class ConstraintController<T> implements ConstraintListener<T> {
-    private ConstraintController$OnConstraintUpdatedCallback mCallback;
+    private OnConstraintUpdatedCallback mCallback;
     private T mCurrentValue;
     private ConstraintTracker<T> mTracker;
     private final List<String> mMatchingWorkSpecIds = new ArrayList();
+
+    public interface OnConstraintUpdatedCallback {
+        void onConstraintMet(@NonNull List<String> list);
+
+        void onConstraintNotMet(@NonNull List<String> list);
+    }
 
     public ConstraintController(ConstraintTracker<T> constraintTracker) {
         this.mTracker = constraintTracker;
@@ -57,21 +63,21 @@ public abstract class ConstraintController<T> implements ConstraintListener<T> {
         this.mTracker.removeListener(this);
     }
 
-    public void setCallback(@Nullable ConstraintController$OnConstraintUpdatedCallback constraintController$OnConstraintUpdatedCallback) {
-        if (this.mCallback != constraintController$OnConstraintUpdatedCallback) {
-            this.mCallback = constraintController$OnConstraintUpdatedCallback;
-            updateCallback(constraintController$OnConstraintUpdatedCallback, this.mCurrentValue);
+    public void setCallback(@Nullable OnConstraintUpdatedCallback onConstraintUpdatedCallback) {
+        if (this.mCallback != onConstraintUpdatedCallback) {
+            this.mCallback = onConstraintUpdatedCallback;
+            updateCallback(onConstraintUpdatedCallback, this.mCurrentValue);
         }
     }
 
-    private void updateCallback(@Nullable ConstraintController$OnConstraintUpdatedCallback constraintController$OnConstraintUpdatedCallback, @Nullable T t) {
-        if (this.mMatchingWorkSpecIds.isEmpty() || constraintController$OnConstraintUpdatedCallback == null) {
+    private void updateCallback(@Nullable OnConstraintUpdatedCallback onConstraintUpdatedCallback, @Nullable T t) {
+        if (this.mMatchingWorkSpecIds.isEmpty() || onConstraintUpdatedCallback == null) {
             return;
         }
         if (t == null || isConstrained(t)) {
-            constraintController$OnConstraintUpdatedCallback.onConstraintNotMet(this.mMatchingWorkSpecIds);
+            onConstraintUpdatedCallback.onConstraintNotMet(this.mMatchingWorkSpecIds);
         } else {
-            constraintController$OnConstraintUpdatedCallback.onConstraintMet(this.mMatchingWorkSpecIds);
+            onConstraintUpdatedCallback.onConstraintMet(this.mMatchingWorkSpecIds);
         }
     }
 }

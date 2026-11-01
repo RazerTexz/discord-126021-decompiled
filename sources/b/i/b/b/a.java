@@ -37,7 +37,7 @@ public abstract class a<E> implements ListIterator {
         }
         int i = this.k;
         this.k = i + 1;
-        return ((p$b) this).l.get(i);
+        return ((p.b) this).l.get(i);
     }
 
     @Override // java.util.ListIterator
@@ -52,7 +52,7 @@ public abstract class a<E> implements ListIterator {
         }
         int i = this.k - 1;
         this.k = i;
-        return ((p$b) this).l.get(i);
+        return ((p.b) this).l.get(i);
     }
 
     @Override // java.util.ListIterator

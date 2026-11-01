@@ -14,7 +14,12 @@ public class a {
     public final float[] e = new float[2];
     public final float[] f = new float[2];
     public final float[] g = new float[2];
-    public a$a h = null;
+    public InterfaceC0076a h = null;
+
+    /* JADX INFO: renamed from: b.f.l.a.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: MultiPointerGestureDetector.java */
+    public interface InterfaceC0076a {
+    }
 
     public a() {
         a();
@@ -30,23 +35,23 @@ public class a {
 
     public final void b() {
         b bVar;
-        b$a b_a;
+        b.a aVar;
         if (this.a) {
             return;
         }
-        a$a a_a = this.h;
-        if (a_a != null && (b_a = (bVar = (b) a_a).f648b) != null) {
-            b_a.c(bVar);
+        InterfaceC0076a interfaceC0076a = this.h;
+        if (interfaceC0076a != null && (aVar = (bVar = (b) interfaceC0076a).f648b) != null) {
+            aVar.c(bVar);
         }
         this.a = true;
     }
 
     public final void c() {
-        b$a b_a;
+        b.a aVar;
         if (this.a) {
             this.a = false;
-            a$a a_a = this.h;
-            if (a_a == null || (b_a = ((b) a_a).f648b) == null) {
+            InterfaceC0076a interfaceC0076a = this.h;
+            if (interfaceC0076a == null || (aVar = ((b) interfaceC0076a).f648b) == null) {
                 return;
             }
             b.f.d.e.a.i(c.class, "onGestureEnd");

@@ -5,10 +5,10 @@ import com.facebook.common.references.CloseableReference;
 /* JADX INFO: compiled from: PostprocessorProducer.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class u0 implements Runnable {
-    public final /* synthetic */ t0$b j;
+    public final /* synthetic */ t0.b j;
 
-    public u0(t0$b t0_b) {
-        this.j = t0_b;
+    public u0(t0.b bVar) {
+        this.j = bVar;
     }
 
     @Override // java.lang.Runnable
@@ -17,15 +17,15 @@ public class u0 implements Runnable {
         int i;
         boolean zS;
         synchronized (this.j) {
-            t0$b t0_b = this.j;
-            closeableReference = t0_b.g;
-            i = t0_b.h;
-            t0_b.g = null;
-            t0_b.i = false;
+            t0.b bVar = this.j;
+            closeableReference = bVar.g;
+            i = bVar.h;
+            bVar.g = null;
+            bVar.i = false;
         }
         if (CloseableReference.y(closeableReference)) {
             try {
-                t0$b.n(this.j, closeableReference, i);
+                t0.b.n(this.j, closeableReference, i);
                 closeableReference.close();
             } catch (Throwable th) {
                 if (closeableReference != null) {
@@ -34,13 +34,13 @@ public class u0 implements Runnable {
                 throw th;
             }
         }
-        t0$b t0_b2 = this.j;
-        synchronized (t0_b2) {
-            t0_b2.j = false;
-            zS = t0_b2.s();
+        t0.b bVar2 = this.j;
+        synchronized (bVar2) {
+            bVar2.j = false;
+            zS = bVar2.s();
         }
         if (zS) {
-            t0_b2.k.c.execute(new u0(t0_b2));
+            t0.this.c.execute(new u0(bVar2));
         }
     }
 }

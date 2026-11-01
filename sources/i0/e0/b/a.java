@@ -2,7 +2,6 @@ package i0.e0.b;
 
 import java.io.IOException;
 import okhttp3.MediaType;
-import okhttp3.MediaType$a;
 import okhttp3.RequestBody;
 
 /* JADX INFO: compiled from: ScalarRequestBodyConverter.java */
@@ -14,8 +13,8 @@ public final class a<T> implements i0.h<T, RequestBody> {
     public static final a<Object> a = new a<>();
 
     static {
-        MediaType$a mediaType$a = MediaType.c;
-        f3739b = MediaType$a.a("text/plain; charset=UTF-8");
+        MediaType.Companion companion = MediaType.INSTANCE;
+        f3739b = MediaType.Companion.a("text/plain; charset=UTF-8");
     }
 
     @Override // i0.h

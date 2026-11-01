@@ -9,11 +9,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.RecyclerView;
-import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.message.call.MessageCall;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.databinding.WidgetChatListAdapterItemCallBinding;
@@ -22,13 +21,13 @@ import com.discord.models.message.Message;
 import com.discord.models.user.CoreUser;
 import com.discord.models.user.User;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreVoiceParticipants$VoiceUser;
+import com.discord.stores.StoreVoiceParticipants;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.color.ColorCompatKt;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.duration.DurationUtilsKt;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapter;
-import com.discord.utilities.mg_recycler.MGRecyclerAdapter$Companion;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.Clock;
 import com.discord.utilities.time.ClockFactory;
@@ -40,17 +39,18 @@ import com.discord.widgets.chat.list.entries.ChatListEntry;
 import com.discord.widgets.chat.list.entries.MessageEntry;
 import d0.d0.f;
 import d0.t.c0;
-import d0.t.o;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import kotlin.NoWhenBranchMatchedException;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import rx.Observable;
@@ -66,37 +66,305 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
     private Subscription stateSubscription;
     private final WidgetCollapsedUsersListAdapter usersAdapter;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemCallMessage$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
+    public final class AnonymousClass1 implements View.OnAttachStateChangeListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnAttachStateChangeListener
+        public void onViewAttachedToWindow(View v) {
+            m.checkNotNullParameter(v, "v");
+            WidgetChatListAdapterItemCallMessage.access$resetCurrentChatListEntry(WidgetChatListAdapterItemCallMessage.this);
+        }
+
+        @Override // android.view.View.OnAttachStateChangeListener
+        public void onViewDetachedFromWindow(View v) {
+            m.checkNotNullParameter(v, "v");
+            WidgetChatListAdapterItemCallMessage.access$clearSubscriptions(WidgetChatListAdapterItemCallMessage.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemCallMessage$configure$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
+    public final class AnonymousClass1 extends o implements Function1<Subscription, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            WidgetChatListAdapterItemCallMessage.access$setStateSubscription$p(WidgetChatListAdapterItemCallMessage.this, subscription);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemCallMessage$configureSubtitle$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
+    public final class AnonymousClass1 extends o implements Function1<Long, Unit> {
+        public final /* synthetic */ long $callJoinedTimestampMs;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(1);
+            this.$callJoinedTimestampMs = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            String string = TimeUtils.toFriendlyString$default(TimeUtils.INSTANCE, this.$callJoinedTimestampMs, WidgetChatListAdapterItemCallMessage.access$getClock$p(WidgetChatListAdapterItemCallMessage.this).currentTimeMillis(), null, null, 12, null).toString();
+            int iAccess$getMinWidthPxForTime = WidgetChatListAdapterItemCallMessage.access$getMinWidthPxForTime(WidgetChatListAdapterItemCallMessage.this, string);
+            TextView textView = WidgetChatListAdapterItemCallMessage.access$getBinding$p(WidgetChatListAdapterItemCallMessage.this).d;
+            m.checkNotNullExpressionValue(textView, "binding.chatListAdapterItemCallSubtitle");
+            textView.setText(string);
+            TextView textView2 = WidgetChatListAdapterItemCallMessage.access$getBinding$p(WidgetChatListAdapterItemCallMessage.this).g;
+            m.checkNotNullExpressionValue(textView2, "binding.chatListAdapterItemUnjoinedCallDuration");
+            textView2.setText(string);
+            TextView textView3 = WidgetChatListAdapterItemCallMessage.access$getBinding$p(WidgetChatListAdapterItemCallMessage.this).g;
+            m.checkNotNullExpressionValue(textView3, "binding.chatListAdapterItemUnjoinedCallDuration");
+            TextView textView4 = WidgetChatListAdapterItemCallMessage.access$getBinding$p(WidgetChatListAdapterItemCallMessage.this).g;
+            m.checkNotNullExpressionValue(textView4, "binding.chatListAdapterItemUnjoinedCallDuration");
+            textView3.setMinWidth(textView4.getPaddingStart() + iAccess$getMinWidthPxForTime);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemCallMessage$handleState$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ CallStatus $callStatus;
+        public final /* synthetic */ Message $message;
+
+        public AnonymousClass1(CallStatus callStatus, Message message) {
+            this.$callStatus = callStatus;
+            this.$message = message;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetChatListAdapterItemCallMessage.access$onItemClick(WidgetChatListAdapterItemCallMessage.this, this.$callStatus, this.$message.getChannelId());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemCallMessage$observeState$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends StoreVoiceParticipants.VoiceUser>, State> {
+        public final /* synthetic */ MessageEntry $messageEntry;
+
+        public AnonymousClass1(MessageEntry messageEntry) {
+            this.$messageEntry = messageEntry;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ State call(Map<Long, ? extends StoreVoiceParticipants.VoiceUser> map) {
+            return call2((Map<Long, StoreVoiceParticipants.VoiceUser>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final State call2(Map<Long, StoreVoiceParticipants.VoiceUser> map) {
+            m.checkNotNullExpressionValue(map, "voiceParticipants");
+            return new State(map, this.$messageEntry);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemCallMessage$configure$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
+    public final class AnonymousClass2 extends o implements Function1<State, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(State state) {
+            invoke2(state);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(State state) {
+            m.checkNotNullParameter(state, "state");
+            WidgetChatListAdapterItemCallMessage.access$handleState(WidgetChatListAdapterItemCallMessage.this, state);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemCallMessage$configureSubtitle$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
+    public final class AnonymousClass2 extends o implements Function1<Subscription, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            WidgetChatListAdapterItemCallMessage.access$setOngoingCallDurationSubscription$p(WidgetChatListAdapterItemCallMessage.this, subscription);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
+    public enum CallStatus {
+        ACTIVE_UNJOINED,
+        ACTIVE_JOINED,
+        INACTIVE_UNJOINED,
+        INACTIVE_JOINED
+    }
+
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemCallMessage.kt */
+    public final /* data */ class State {
+        private final MessageEntry messageEntry;
+        private final Map<Long, StoreVoiceParticipants.VoiceUser> voiceParticipants;
+
+        public State(Map<Long, StoreVoiceParticipants.VoiceUser> map, MessageEntry messageEntry) {
+            m.checkNotNullParameter(map, "voiceParticipants");
+            m.checkNotNullParameter(messageEntry, "messageEntry");
+            this.voiceParticipants = map;
+            this.messageEntry = messageEntry;
+        }
+
+        public final Map<Long, StoreVoiceParticipants.VoiceUser> component1() {
+            return this.voiceParticipants;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ State copy$default(State state, Map map, MessageEntry messageEntry, int i, Object obj) {
+            if ((i & 1) != 0) {
+                map = state.voiceParticipants;
+            }
+            if ((i & 2) != 0) {
+                messageEntry = state.messageEntry;
+            }
+            return state.copy(map, messageEntry);
+        }
+
+        public final State copy(Map<Long, StoreVoiceParticipants.VoiceUser> voiceParticipants, MessageEntry messageEntry) {
+            m.checkNotNullParameter(voiceParticipants, "voiceParticipants");
+            m.checkNotNullParameter(messageEntry, "messageEntry");
+            return new State(voiceParticipants, messageEntry);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof State)) {
+                return false;
+            }
+            State state = (State) other;
+            return m.areEqual(this.voiceParticipants, state.voiceParticipants) && m.areEqual(this.messageEntry, state.messageEntry);
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final MessageEntry getMessageEntry() {
+            return this.messageEntry;
+        }
+
+        public final MessageEntry getMessageEntry() {
+            return this.messageEntry;
+        }
+
+        public final Map<Long, StoreVoiceParticipants.VoiceUser> getVoiceParticipants() {
+            return this.voiceParticipants;
+        }
+
+        public int hashCode() {
+            Map<Long, StoreVoiceParticipants.VoiceUser> map = this.voiceParticipants;
+            int iHashCode = (map != null ? map.hashCode() : 0) * 31;
+            MessageEntry messageEntry = this.messageEntry;
+            return iHashCode + (messageEntry != null ? messageEntry.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("State(voiceParticipants=");
+            sbU.append(this.voiceParticipants);
+            sbU.append(", messageEntry=");
+            sbU.append(this.messageEntry);
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$2;
+
+        static {
+            CallStatus.values();
+            int[] iArr = new int[4];
+            $EnumSwitchMapping$0 = iArr;
+            CallStatus callStatus = CallStatus.INACTIVE_UNJOINED;
+            iArr[callStatus.ordinal()] = 1;
+            CallStatus callStatus2 = CallStatus.INACTIVE_JOINED;
+            iArr[callStatus2.ordinal()] = 2;
+            CallStatus callStatus3 = CallStatus.ACTIVE_JOINED;
+            iArr[callStatus3.ordinal()] = 3;
+            CallStatus callStatus4 = CallStatus.ACTIVE_UNJOINED;
+            iArr[callStatus4.ordinal()] = 4;
+            CallStatus.values();
+            int[] iArr2 = new int[4];
+            $EnumSwitchMapping$1 = iArr2;
+            iArr2[callStatus.ordinal()] = 1;
+            iArr2[callStatus2.ordinal()] = 2;
+            iArr2[callStatus3.ordinal()] = 3;
+            iArr2[callStatus4.ordinal()] = 4;
+            CallStatus.values();
+            int[] iArr3 = new int[4];
+            $EnumSwitchMapping$2 = iArr3;
+            iArr3[callStatus.ordinal()] = 1;
+            iArr3[callStatus2.ordinal()] = 2;
+            iArr3[callStatus3.ordinal()] = 3;
+            iArr3[callStatus4.ordinal()] = 4;
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemCallMessage(WidgetChatListAdapter widgetChatListAdapter) {
-        super(R$layout.widget_chat_list_adapter_item_call, widgetChatListAdapter);
+        super(R.layout.widget_chat_list_adapter_item_call, widgetChatListAdapter);
         m.checkNotNullParameter(widgetChatListAdapter, "adapter");
         View view = this.itemView;
-        int i = R$id.chat_list_adapter_item_call_icon;
-        ImageView imageView = (ImageView) view.findViewById(R$id.chat_list_adapter_item_call_icon);
+        int i = R.id.chat_list_adapter_item_call_icon;
+        ImageView imageView = (ImageView) view.findViewById(R.id.chat_list_adapter_item_call_icon);
         if (imageView != null) {
-            i = R$id.chat_list_adapter_item_call_participants;
-            RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.chat_list_adapter_item_call_participants);
+            i = R.id.chat_list_adapter_item_call_participants;
+            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.chat_list_adapter_item_call_participants);
             if (recyclerView != null) {
-                i = R$id.chat_list_adapter_item_call_subtitle;
-                TextView textView = (TextView) view.findViewById(R$id.chat_list_adapter_item_call_subtitle);
+                i = R.id.chat_list_adapter_item_call_subtitle;
+                TextView textView = (TextView) view.findViewById(R.id.chat_list_adapter_item_call_subtitle);
                 if (textView != null) {
-                    i = R$id.chat_list_adapter_item_call_title;
-                    TextView textView2 = (TextView) view.findViewById(R$id.chat_list_adapter_item_call_title);
+                    i = R.id.chat_list_adapter_item_call_title;
+                    TextView textView2 = (TextView) view.findViewById(R.id.chat_list_adapter_item_call_title);
                     if (textView2 != null) {
-                        i = R$id.chat_list_adapter_item_call_unjoined_ongoing_subtitle;
-                        LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.chat_list_adapter_item_call_unjoined_ongoing_subtitle);
+                        i = R.id.chat_list_adapter_item_call_unjoined_ongoing_subtitle;
+                        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.chat_list_adapter_item_call_unjoined_ongoing_subtitle);
                         if (linearLayout != null) {
-                            i = R$id.chat_list_adapter_item_unjoined_call_duration;
-                            TextView textView3 = (TextView) view.findViewById(R$id.chat_list_adapter_item_unjoined_call_duration);
+                            i = R.id.chat_list_adapter_item_unjoined_call_duration;
+                            TextView textView3 = (TextView) view.findViewById(R.id.chat_list_adapter_item_unjoined_call_duration);
                             if (textView3 != null) {
                                 WidgetChatListAdapterItemCallBinding widgetChatListAdapterItemCallBinding = new WidgetChatListAdapterItemCallBinding((CardView) view, imageView, recyclerView, textView, textView2, linearLayout, textView3);
                                 m.checkNotNullExpressionValue(widgetChatListAdapterItemCallBinding, "WidgetChatListAdapterIte…allBinding.bind(itemView)");
                                 this.binding = widgetChatListAdapterItemCallBinding;
                                 this.clock = ClockFactory.get();
-                                MGRecyclerAdapter$Companion mGRecyclerAdapter$Companion = MGRecyclerAdapter.Companion;
+                                MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
                                 m.checkNotNullExpressionValue(recyclerView, "binding.chatListAdapterItemCallParticipants");
-                                this.usersAdapter = (WidgetCollapsedUsersListAdapter) mGRecyclerAdapter$Companion.configure(new WidgetCollapsedUsersListAdapter(recyclerView));
-                                this.itemView.addOnAttachStateChangeListener(new WidgetChatListAdapterItemCallMessage$1(this));
+                                this.usersAdapter = (WidgetCollapsedUsersListAdapter) companion.configure(new WidgetCollapsedUsersListAdapter(recyclerView));
+                                this.itemView.addOnAttachStateChangeListener(new AnonymousClass1());
                                 recyclerView.setHasFixedSize(false);
                                 return;
                             }
@@ -132,12 +400,12 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
         return widgetChatListAdapterItemCallMessage.stateSubscription;
     }
 
-    public static final /* synthetic */ void access$handleState(WidgetChatListAdapterItemCallMessage widgetChatListAdapterItemCallMessage, WidgetChatListAdapterItemCallMessage$State widgetChatListAdapterItemCallMessage$State) {
-        widgetChatListAdapterItemCallMessage.handleState(widgetChatListAdapterItemCallMessage$State);
+    public static final /* synthetic */ void access$handleState(WidgetChatListAdapterItemCallMessage widgetChatListAdapterItemCallMessage, State state) {
+        widgetChatListAdapterItemCallMessage.handleState(state);
     }
 
-    public static final /* synthetic */ void access$onItemClick(WidgetChatListAdapterItemCallMessage widgetChatListAdapterItemCallMessage, WidgetChatListAdapterItemCallMessage$CallStatus widgetChatListAdapterItemCallMessage$CallStatus, long j) {
-        widgetChatListAdapterItemCallMessage.onItemClick(widgetChatListAdapterItemCallMessage$CallStatus, j);
+    public static final /* synthetic */ void access$onItemClick(WidgetChatListAdapterItemCallMessage widgetChatListAdapterItemCallMessage, CallStatus callStatus, long j) {
+        widgetChatListAdapterItemCallMessage.onItemClick(callStatus, j);
     }
 
     public static final /* synthetic */ void access$resetCurrentChatListEntry(WidgetChatListAdapterItemCallMessage widgetChatListAdapterItemCallMessage) {
@@ -167,10 +435,10 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
         this.chatListEntry = data;
         Objects.requireNonNull(data, "null cannot be cast to non-null type com.discord.widgets.chat.list.entries.MessageEntry");
         clearSubscriptions();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(ObservableExtensionsKt.computationLatest(observeState((MessageEntry) data))), WidgetChatListAdapterItemCallMessage.class, (Context) null, new WidgetChatListAdapterItemCallMessage$configure$1(this), (Function1) null, (Function0) null, (Function0) null, new WidgetChatListAdapterItemCallMessage$configure$2(this), 58, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(ObservableExtensionsKt.computationLatest(observeState((MessageEntry) data))), WidgetChatListAdapterItemCallMessage.class, (Context) null, new AnonymousClass1(), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 58, (Object) null);
     }
 
-    private final void configureSubtitle(MessageEntry messageEntry, WidgetChatListAdapterItemCallMessage$CallStatus callStatus, Context context) {
+    private final void configureSubtitle(MessageEntry messageEntry, CallStatus callStatus, Context context) {
         Subscription subscription = this.ongoingCallDurationSubscription;
         if (subscription != null) {
             subscription.unsubscribe();
@@ -182,7 +450,7 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
         String string = TimeUtils.toReadableTimeString$default(contextX, timestamp != null ? timestamp.getDateTimeMillis() : 0L, null, 4, null).toString();
         LinearLayout linearLayout = this.binding.f;
         m.checkNotNullExpressionValue(linearLayout, "binding.chatListAdapterI…llUnjoinedOngoingSubtitle");
-        linearLayout.setVisibility(callStatus == WidgetChatListAdapterItemCallMessage$CallStatus.ACTIVE_UNJOINED ? 0 : 8);
+        linearLayout.setVisibility(callStatus == CallStatus.ACTIVE_UNJOINED ? 0 : 8);
         TextView textView = this.binding.d;
         m.checkNotNullExpressionValue(textView, "binding.chatListAdapterItemCallSubtitle");
         LinearLayout linearLayout2 = this.binding.f;
@@ -194,25 +462,25 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
             long dateTimeMillis = timestamp2 != null ? timestamp2.getDateTimeMillis() : 0L;
             Observable<Long> observableE = Observable.E(0L, 1L, TimeUnit.SECONDS);
             m.checkNotNullExpressionValue(observableE, "Observable\n            .…0L, 1L, TimeUnit.SECONDS)");
-            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(observableE), WidgetChatListAdapterItemCallMessage.class, (Context) null, new WidgetChatListAdapterItemCallMessage$configureSubtitle$2(this), (Function1) null, (Function0) null, (Function0) null, new WidgetChatListAdapterItemCallMessage$configureSubtitle$1(this, dateTimeMillis), 58, (Object) null);
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(observableE), WidgetChatListAdapterItemCallMessage.class, (Context) null, new AnonymousClass2(), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(dateTimeMillis), 58, (Object) null);
             return;
         }
         if (iOrdinal == 2) {
             TextView textView2 = this.binding.d;
             m.checkNotNullExpressionValue(textView2, "binding.chatListAdapterItemCallSubtitle");
-            b.n(textView2, 2131887363, new Object[]{charSequenceHumanizeDuration, string}, null, 4);
+            b.a.k.b.n(textView2, R.string.call_ended_description, new Object[]{charSequenceHumanizeDuration, string}, null, 4);
         } else {
             if (iOrdinal != 3) {
                 return;
             }
             TextView textView3 = this.binding.d;
             m.checkNotNullExpressionValue(textView3, "binding.chatListAdapterItemCallSubtitle");
-            b.n(textView3, 2131887363, new Object[]{charSequenceHumanizeDuration, string}, null, 4);
+            b.a.k.b.n(textView3, R.string.call_ended_description, new Object[]{charSequenceHumanizeDuration, string}, null, 4);
         }
     }
 
-    private final List<CollapsedUser> createCallParticipantUsers(Map<Long, StoreVoiceParticipants$VoiceUser> voiceParticipants, WidgetChatListAdapterItemCallMessage$CallStatus callStatus, User messageAuthor) {
-        if (callStatus == WidgetChatListAdapterItemCallMessage$CallStatus.INACTIVE_JOINED || callStatus == WidgetChatListAdapterItemCallMessage$CallStatus.INACTIVE_UNJOINED) {
+    private final List<CollapsedUser> createCallParticipantUsers(Map<Long, StoreVoiceParticipants.VoiceUser> voiceParticipants, CallStatus callStatus, User messageAuthor) {
+        if (callStatus == CallStatus.INACTIVE_JOINED || callStatus == CallStatus.INACTIVE_UNJOINED) {
             return d0.t.m.listOf(new CollapsedUser(messageAuthor, false, 0L, 6, null));
         }
         List list = u.toList(voiceParticipants.values());
@@ -223,7 +491,7 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
                 break;
             }
             Object next = it.next();
-            if (((StoreVoiceParticipants$VoiceUser) next).getVoiceState() != null) {
+            if (((StoreVoiceParticipants.VoiceUser) next).getVoiceState() != null) {
                 arrayList.add(next);
             }
         }
@@ -232,46 +500,46 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
         int i = size - 3;
         Iterator<Integer> it2 = f.until(0, Math.min(size, 3)).iterator();
         while (it2.hasNext()) {
-            arrayList2.add(new CollapsedUser(((StoreVoiceParticipants$VoiceUser) arrayList.get(((c0) it2).nextInt())).getUser(), false, 0L, 6, null));
+            arrayList2.add(new CollapsedUser(((StoreVoiceParticipants.VoiceUser) arrayList.get(((c0) it2).nextInt())).getUser(), false, 0L, 6, null));
         }
         if (i > 0) {
-            arrayList2.add(CollapsedUser.Companion.createEmptyUser(i));
+            arrayList2.add(CollapsedUser.INSTANCE.createEmptyUser(i));
         }
         return arrayList2;
     }
 
-    private final Drawable getCallDrawable(WidgetChatListAdapterItemCallMessage$CallStatus callStatus, Context context) {
+    private final Drawable getCallDrawable(CallStatus callStatus, Context context) {
         Drawable drawable;
         int iOrdinal = callStatus.ordinal();
         if (iOrdinal == 0 || iOrdinal == 1) {
-            drawable = AppCompatResources.getDrawable(context, 2131231589);
+            drawable = AppCompatResources.getDrawable(context, R.drawable.ic_call_24dp);
             if (drawable == null) {
                 return null;
             }
-            ColorCompatKt.setTint(drawable, ColorCompat.getColor(context, 2131100304), false);
+            ColorCompatKt.setTint(drawable, ColorCompat.getColor(context, R.color.status_green_600), false);
         } else if (iOrdinal == 2) {
-            drawable = AppCompatResources.getDrawable(context, 2131231590);
+            drawable = AppCompatResources.getDrawable(context, R.drawable.ic_call_disconnect_24dp);
             if (drawable == null) {
                 return null;
             }
-            ColorCompatKt.setTint(drawable, ColorCompat.getColor(context, 2131100368), false);
+            ColorCompatKt.setTint(drawable, ColorCompat.getColor(context, R.color.status_red), false);
         } else {
             if (iOrdinal != 3) {
                 throw new NoWhenBranchMatchedException();
             }
-            drawable = AppCompatResources.getDrawable(context, 2131231589);
+            drawable = AppCompatResources.getDrawable(context, R.drawable.ic_call_24dp);
             if (drawable == null) {
                 return null;
             }
-            ColorCompatKt.setTint(drawable, ColorCompat.getThemedColor(context, 2130969008), false);
+            ColorCompatKt.setTint(drawable, ColorCompat.getThemedColor(context, R.attr.colorInteractiveNormal), false);
         }
         return drawable;
     }
 
-    private final WidgetChatListAdapterItemCallMessage$CallStatus getCallStatus(Message message, Map<Long, StoreVoiceParticipants$VoiceUser> voiceParticipants) {
+    private final CallStatus getCallStatus(Message message, Map<Long, StoreVoiceParticipants.VoiceUser> voiceParticipants) {
         MessageCall call = message.getCall();
         if (call == null) {
-            return WidgetChatListAdapterItemCallMessage$CallStatus.INACTIVE_UNJOINED;
+            return CallStatus.INACTIVE_UNJOINED;
         }
         long userId = ((WidgetChatListAdapter) this.adapter).getData().getUserId();
         List list = u.toList(voiceParticipants.entrySet());
@@ -282,25 +550,25 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
                 break;
             }
             Object next = it.next();
-            if (((StoreVoiceParticipants$VoiceUser) ((Map$Entry) next).getValue()).getVoiceState() != null) {
+            if (((StoreVoiceParticipants.VoiceUser) ((Map.Entry) next).getValue()).getVoiceState() != null) {
                 arrayList.add(next);
             }
         }
-        ArrayList arrayList2 = new ArrayList(o.collectionSizeOrDefault(arrayList, 10));
+        ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(arrayList, 10));
         Iterator it2 = arrayList.iterator();
         while (it2.hasNext()) {
-            arrayList2.add(Long.valueOf(((Number) ((Map$Entry) it2.next()).getKey()).longValue()));
+            arrayList2.add(Long.valueOf(((Number) ((Map.Entry) it2.next()).getKey()).longValue()));
         }
         boolean zContains = call.b().contains(Long.valueOf(userId));
         boolean zContains2 = arrayList2.contains(Long.valueOf(userId));
         boolean z2 = call.getEndedTimestamp() == null;
         if (z2 && zContains2) {
-            return WidgetChatListAdapterItemCallMessage$CallStatus.ACTIVE_JOINED;
+            return CallStatus.ACTIVE_JOINED;
         }
         if (z2) {
-            return WidgetChatListAdapterItemCallMessage$CallStatus.ACTIVE_UNJOINED;
+            return CallStatus.ACTIVE_UNJOINED;
         }
-        return zContains ? WidgetChatListAdapterItemCallMessage$CallStatus.INACTIVE_JOINED : WidgetChatListAdapterItemCallMessage$CallStatus.INACTIVE_UNJOINED;
+        return zContains ? CallStatus.INACTIVE_JOINED : CallStatus.INACTIVE_UNJOINED;
     }
 
     private final int getMinWidthPxForTime(String time) {
@@ -313,25 +581,25 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
         return (i * DimenUtils.dpToPixels(3.047619f)) + ((time.length() - i) * DimenUtils.dpToPixels(7.6190476f));
     }
 
-    private final CharSequence getTitleString(WidgetChatListAdapterItemCallMessage$CallStatus callStatus, Resources resources) {
+    private final CharSequence getTitleString(CallStatus callStatus, Resources resources) {
         int iOrdinal = callStatus.ordinal();
         if (iOrdinal == 0 || iOrdinal == 1) {
-            return b.i(resources, 2131893512, new Object[0], null, 4);
+            return b.a.k.b.i(resources, R.string.ongoing_call, new Object[0], null, 4);
         }
         if (iOrdinal == 2) {
-            return b.i(resources, 2131893004, new Object[0], null, 4);
+            return b.a.k.b.i(resources, R.string.missed_call, new Object[0], null, 4);
         }
         if (iOrdinal == 3) {
-            return b.i(resources, 2131887362, new Object[0], null, 4);
+            return b.a.k.b.i(resources, R.string.call_ended, new Object[0], null, 4);
         }
         throw new NoWhenBranchMatchedException();
     }
 
-    private final void handleState(WidgetChatListAdapterItemCallMessage$State state) {
+    private final void handleState(State state) {
         MessageEntry messageEntry = state.getMessageEntry();
         Message message = messageEntry.getMessage();
-        Map<Long, StoreVoiceParticipants$VoiceUser> voiceParticipants = state.getVoiceParticipants();
-        WidgetChatListAdapterItemCallMessage$CallStatus callStatus = getCallStatus(message, voiceParticipants);
+        Map<Long, StoreVoiceParticipants.VoiceUser> voiceParticipants = state.getVoiceParticipants();
+        CallStatus callStatus = getCallStatus(message, voiceParticipants);
         com.discord.api.user.User author = message.getAuthor();
         m.checkNotNull(author);
         List<CollapsedUser> listCreateCallParticipantUsers = createCallParticipantUsers(voiceParticipants, callStatus, new CoreUser(author));
@@ -344,12 +612,12 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
         Resources resources = view.getResources();
         m.checkNotNullExpressionValue(resources, "itemView.resources");
         textView.setText(getTitleString(callStatus, resources));
-        this.itemView.setOnClickListener(new WidgetChatListAdapterItemCallMessage$handleState$1(this, callStatus, message));
+        this.itemView.setOnClickListener(new AnonymousClass1(callStatus, message));
         this.usersAdapter.setData(u.toList(listCreateCallParticipantUsers));
     }
 
-    private final Observable<WidgetChatListAdapterItemCallMessage$State> observeState(MessageEntry messageEntry) {
-        Observable observableG = StoreStream.Companion.getVoiceParticipants().get(messageEntry.getMessage().getChannelId()).G(new WidgetChatListAdapterItemCallMessage$observeState$1(messageEntry));
+    private final Observable<State> observeState(MessageEntry messageEntry) {
+        Observable observableG = StoreStream.INSTANCE.getVoiceParticipants().get(messageEntry.getMessage().getChannelId()).G(new AnonymousClass1(messageEntry));
         m.checkNotNullExpressionValue(observableG, "StoreStream.getVoicePart…, messageEntry)\n        }");
         return observableG;
     }
@@ -359,7 +627,7 @@ public final class WidgetChatListAdapterItemCallMessage extends WidgetChatListIt
         onConfigure(i, chatListEntry);
     }
 
-    private final void onItemClick(WidgetChatListAdapterItemCallMessage$CallStatus callStatus, long channelId) {
+    private final void onItemClick(CallStatus callStatus, long channelId) {
         ((WidgetChatListAdapter) this.adapter).getEventHandler().onCallMessageClicked(channelId, callStatus);
     }
 

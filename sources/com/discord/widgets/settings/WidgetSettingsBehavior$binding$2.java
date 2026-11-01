@@ -3,7 +3,7 @@ package com.discord.widgets.settings;
 import android.view.View;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetSettingsBehaviorBinding;
 import com.discord.views.CheckedSetting;
 import d0.z.d.k;
@@ -27,20 +27,20 @@ public final /* synthetic */ class WidgetSettingsBehavior$binding$2 extends k im
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSettingsBehaviorBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.settings_behavior_browser_switch;
-        CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R$id.settings_behavior_browser_switch);
+        int i = R.id.settings_behavior_browser_switch;
+        CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R.id.settings_behavior_browser_switch);
         if (checkedSetting != null) {
-            i = R$id.settings_behavior_chat_header;
-            TextView textView = (TextView) view.findViewById(R$id.settings_behavior_chat_header);
+            i = R.id.settings_behavior_chat_header;
+            TextView textView = (TextView) view.findViewById(R.id.settings_behavior_chat_header);
             if (textView != null) {
-                i = R$id.settings_behavior_dev_mode_switch;
-                CheckedSetting checkedSetting2 = (CheckedSetting) view.findViewById(R$id.settings_behavior_dev_mode_switch);
+                i = R.id.settings_behavior_dev_mode_switch;
+                CheckedSetting checkedSetting2 = (CheckedSetting) view.findViewById(R.id.settings_behavior_dev_mode_switch);
                 if (checkedSetting2 != null) {
-                    i = R$id.settings_behavior_keyboard_header;
-                    TextView textView2 = (TextView) view.findViewById(R$id.settings_behavior_keyboard_header);
+                    i = R.id.settings_behavior_keyboard_header;
+                    TextView textView2 = (TextView) view.findViewById(R.id.settings_behavior_keyboard_header);
                     if (textView2 != null) {
-                        i = R$id.settings_behavior_shift_send_toggle;
-                        CheckedSetting checkedSetting3 = (CheckedSetting) view.findViewById(R$id.settings_behavior_shift_send_toggle);
+                        i = R.id.settings_behavior_shift_send_toggle;
+                        CheckedSetting checkedSetting3 = (CheckedSetting) view.findViewById(R.id.settings_behavior_shift_send_toggle);
                         if (checkedSetting3 != null) {
                             return new WidgetSettingsBehaviorBinding((CoordinatorLayout) view, checkedSetting, textView, checkedSetting2, textView2, checkedSetting3);
                         }

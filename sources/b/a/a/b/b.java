@@ -1,24 +1,34 @@
 package b.a.a.b;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import b.a.i.f1;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppDialog;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.google.android.material.button.MaterialButton;
+import d0.z.d.k;
 import d0.z.d.m;
 import java.text.NumberFormat;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: UpgradePremiumYearlyDialog.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class b extends AppDialog {
+
+    /* JADX INFO: renamed from: k, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: q, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
@@ -26,7 +36,6 @@ public final class b extends AppDialog {
     /* JADX INFO: renamed from: p, reason: from kotlin metadata */
     public boolean hasMonthlyPlan;
     public static final /* synthetic */ KProperty[] j = {b.d.b.a.a.d0(b.class, "binding", "getBinding()Lcom/discord/databinding/PremiumUpgradeYearlyDialogBinding;", 0)};
-    public static final b$b k = new b$b(null);
 
     /* JADX INFO: renamed from: n, reason: from kotlin metadata */
     public Function0<Unit> onDismissCallback;
@@ -40,9 +49,99 @@ public final class b extends AppDialog {
     /* JADX INFO: renamed from: o, reason: from kotlin metadata */
     public String upgradePrice;
 
+    /* JADX INFO: renamed from: b.a.a.b.b$b, reason: collision with other inner class name and from kotlin metadata */
+    /* JADX INFO: compiled from: UpgradePremiumYearlyDialog.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    /* JADX INFO: compiled from: java-style lambda group */
+    public final class a implements View.OnClickListener {
+        public final /* synthetic */ int j;
+        public final /* synthetic */ Object k;
+
+        public a(int i, Object obj) {
+            this.j = i;
+            this.k = obj;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            int i = this.j;
+            if (i == 0) {
+                Function0<Unit> function0 = ((b) this.k).onMonthlyClickListener;
+                if (function0 != null) {
+                    function0.invoke();
+                }
+                ((b) this.k).dismiss();
+                return;
+            }
+            if (i != 1) {
+                throw null;
+            }
+            Function0<Unit> function1 = ((b) this.k).onYearlyClickListener;
+            if (function1 != null) {
+                function1.invoke();
+            }
+            ((b) this.k).dismiss();
+        }
+    }
+
+    /* JADX INFO: compiled from: UpgradePremiumYearlyDialog.kt */
+    public final /* synthetic */ class c extends k implements Function1<View, f1> {
+        public static final c j = new c();
+
+        public c() {
+            super(1, f1.class, "bind", "bind(Landroid/view/View;)Lcom/discord/databinding/PremiumUpgradeYearlyDialogBinding;", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public f1 invoke(View view) {
+            View view2 = view;
+            m.checkNotNullParameter(view2, "p1");
+            int i = R.id.premium_upsell_header;
+            ImageView imageView = (ImageView) view2.findViewById(R.id.premium_upsell_header);
+            if (imageView != null) {
+                i = R.id.premium_upsell_yearly_description;
+                TextView textView = (TextView) view2.findViewById(R.id.premium_upsell_yearly_description);
+                if (textView != null) {
+                    i = R.id.premium_upsell_yearly_title;
+                    TextView textView2 = (TextView) view2.findViewById(R.id.premium_upsell_yearly_title);
+                    if (textView2 != null) {
+                        i = R.id.purchase_premium_monthly;
+                        TextView textView3 = (TextView) view2.findViewById(R.id.purchase_premium_monthly);
+                        if (textView3 != null) {
+                            i = R.id.purchase_premium_yearly;
+                            MaterialButton materialButton = (MaterialButton) view2.findViewById(R.id.purchase_premium_yearly);
+                            if (materialButton != null) {
+                                return new f1((LinearLayout) view2, imageView, textView, textView2, textView3, materialButton);
+                            }
+                        }
+                    }
+                }
+            }
+            throw new NullPointerException("Missing required view with ID: ".concat(view2.getResources().getResourceName(i)));
+        }
+    }
+
+    /* JADX INFO: compiled from: UpgradePremiumYearlyDialog.kt */
+    public final class d implements DialogInterface.OnCancelListener {
+        public d() {
+        }
+
+        @Override // android.content.DialogInterface.OnCancelListener
+        public final void onCancel(DialogInterface dialogInterface) {
+            Function0<Unit> function0 = b.this.onDismissCallback;
+            if (function0 != null) {
+                function0.invoke();
+            }
+        }
+    }
+
     public b() {
-        super(R$layout.premium_upgrade_yearly_dialog);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, b$c.j, null, 2, null);
+        super(R.layout.premium_upgrade_yearly_dialog);
+        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, c.j, null, 2, null);
     }
 
     public final f1 g() {
@@ -67,23 +166,23 @@ public final class b extends AppDialog {
             dismiss();
         }
         requireDialog().setCanceledOnTouchOutside(true);
-        requireDialog().setOnCancelListener(new b$d(this));
+        requireDialog().setOnCancelListener(new d());
         boolean z2 = getArgumentsOrDefault().getBoolean("ARG_IS_TIER_1");
-        CharSequence charSequenceK = b.a.k.b.k(this, z2 ? 2131894441 : 2131894444, new Object[0], null, 4);
+        CharSequence charSequenceK = b.a.k.b.k(this, z2 ? R.string.premium_tier_1 : R.string.premium_tier_2, new Object[0], null, 4);
         TextView textView = g().d;
         m.checkNotNullExpressionValue(textView, "binding.premiumUpsellYearlyTitle");
-        b.a.k.b.n(textView, 2131894524, new Object[]{NumberFormat.getPercentInstance().format(Float.valueOf(0.16f)), charSequenceK}, null, 4);
+        b.a.k.b.n(textView, R.string.premium_upsell_yearly_title, new Object[]{NumberFormat.getPercentInstance().format(Float.valueOf(0.16f)), charSequenceK}, null, 4);
         TextView textView2 = g().c;
         m.checkNotNullExpressionValue(textView2, "binding.premiumUpsellYearlyDescription");
-        b.a.k.b.n(textView2, 2131894523, new Object[]{NumberFormat.getPercentInstance().format(Float.valueOf(0.16f))}, null, 4);
+        b.a.k.b.n(textView2, R.string.premium_upsell_yearly_description, new Object[]{NumberFormat.getPercentInstance().format(Float.valueOf(0.16f))}, null, 4);
         MaterialButton materialButton = g().f;
         m.checkNotNullExpressionValue(materialButton, "binding.purchasePremiumYearly");
-        b.a.k.b.n(materialButton, 2131894522, new Object[]{this.upgradePrice}, null, 4);
-        g().f111b.setImageResource(z2 ? 2131232431 : 2131232432);
+        b.a.k.b.n(materialButton, R.string.premium_upsell_yearly_cta, new Object[]{this.upgradePrice}, null, 4);
+        g().f111b.setImageResource(z2 ? R.drawable.img_premium_guild_subscription_purchase_header_tier_1 : R.drawable.img_premium_guild_subscription_purchase_header_tier_2);
         TextView textView3 = g().e;
         m.checkNotNullExpressionValue(textView3, "binding.purchasePremiumMonthly");
         textView3.setVisibility(this.hasMonthlyPlan ^ true ? 0 : 8);
-        g().e.setOnClickListener(new b$a(0, this));
-        g().f.setOnClickListener(new b$a(1, this));
+        g().e.setOnClickListener(new a(0, this));
+        g().f.setOnClickListener(new a(1, this));
     }
 }

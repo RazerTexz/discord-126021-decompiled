@@ -10,7 +10,22 @@ public final class p extends z0 {
     public final z0 d;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final p$a f3533b = new p$a(null);
+    public static final a f3533b = new a(null);
+
+    /* JADX INFO: compiled from: DisjointKeysUnionTypeSubstitution.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final z0 create(z0 z0Var, z0 z0Var2) {
+            d0.z.d.m.checkNotNullParameter(z0Var, "first");
+            d0.z.d.m.checkNotNullParameter(z0Var2, "second");
+            if (z0Var.isEmpty()) {
+                return z0Var2;
+            }
+            return z0Var2.isEmpty() ? z0Var : new p(z0Var, z0Var2, null);
+        }
+    }
 
     public p(z0 z0Var, z0 z0Var2, DefaultConstructorMarker defaultConstructorMarker) {
         this.c = z0Var;

@@ -22,9 +22,9 @@ import com.discord.utilities.guilds.GuildUtilsKt;
 import d0.d0.f;
 import d0.t.g0;
 import d0.t.n;
-import d0.t.o;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -34,12 +34,309 @@ import java.util.List;
 import java.util.Map;
 import kotlin.Triple;
 import kotlin.jvm.functions.Function2;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ReadyPayloadUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ReadyPayloadUtils {
     public static final ReadyPayloadUtils INSTANCE = new ReadyPayloadUtils();
-    private static final HashMap<Long, ReadyPayloadUtils$GuildCache> cache = new HashMap<>();
+    private static final HashMap<Long, GuildCache> cache = new HashMap<>();
+
+    /* JADX INFO: renamed from: com.discord.stores.ReadyPayloadUtils$hydrateGuild$6, reason: invalid class name */
+    /* JADX INFO: compiled from: ReadyPayloadUtils.kt */
+    public final class AnonymousClass6 extends o implements Function2<Channel, Channel, Channel> {
+        public static final AnonymousClass6 INSTANCE = new AnonymousClass6();
+
+        public AnonymousClass6() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Channel invoke(Channel channel, Channel channel2) {
+            return invoke2(channel, channel2);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Channel invoke2(Channel channel, Channel channel2) {
+            m.checkNotNullParameter(channel, "channel");
+            m.checkNotNullParameter(channel2, "channelUpdate");
+            return ReadyPayloadUtils.access$hydrate(ReadyPayloadUtils.INSTANCE, channel, channel2);
+        }
+    }
+
+    /* JADX INFO: compiled from: ReadyPayloadUtils.kt */
+    public final /* data */ class GuildCache {
+        private final List<Channel> channels;
+        private final List<GuildEmoji> emojis;
+        private final Guild guild;
+        private final List<GuildRole> roles;
+        private final List<Sticker> stickers;
+
+        public GuildCache(Guild guild, List<GuildEmoji> list, List<Sticker> list2, List<Channel> list3, List<GuildRole> list4) {
+            m.checkNotNullParameter(guild, "guild");
+            this.guild = guild;
+            this.emojis = list;
+            this.stickers = list2;
+            this.channels = list3;
+            this.roles = list4;
+        }
+
+        public final List<GuildEmoji> component2() {
+            return this.emojis;
+        }
+
+        public final List<Sticker> component3() {
+            return this.stickers;
+        }
+
+        public final List<Channel> component4() {
+            return this.channels;
+        }
+
+        public final List<GuildRole> component5() {
+            return this.roles;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ GuildCache copy$default(GuildCache guildCache, Guild guild, List list, List list2, List list3, List list4, int i, Object obj) {
+            if ((i & 1) != 0) {
+                guild = guildCache.guild;
+            }
+            if ((i & 2) != 0) {
+                list = guildCache.emojis;
+            }
+            List list5 = list;
+            if ((i & 4) != 0) {
+                list2 = guildCache.stickers;
+            }
+            List list6 = list2;
+            if ((i & 8) != 0) {
+                list3 = guildCache.channels;
+            }
+            List list7 = list3;
+            if ((i & 16) != 0) {
+                list4 = guildCache.roles;
+            }
+            return guildCache.copy(guild, list5, list6, list7, list4);
+        }
+
+        public final GuildCache copy(Guild guild, List<GuildEmoji> emojis, List<Sticker> stickers, List<Channel> channels, List<GuildRole> roles) {
+            m.checkNotNullParameter(guild, "guild");
+            return new GuildCache(guild, emojis, stickers, channels, roles);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof GuildCache)) {
+                return false;
+            }
+            GuildCache guildCache = (GuildCache) other;
+            return m.areEqual(this.guild, guildCache.guild) && m.areEqual(this.emojis, guildCache.emojis) && m.areEqual(this.stickers, guildCache.stickers) && m.areEqual(this.channels, guildCache.channels) && m.areEqual(this.roles, guildCache.roles);
+        }
+
+        public final List<Channel> getChannels() {
+            return this.channels;
+        }
+
+        public final List<GuildEmoji> getEmojis() {
+            return this.emojis;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        public final List<GuildRole> getRoles() {
+            return this.roles;
+        }
+
+        public final List<Sticker> getStickers() {
+            return this.stickers;
+        }
+
+        public int hashCode() {
+            Guild guild = this.guild;
+            int iHashCode = (guild != null ? guild.hashCode() : 0) * 31;
+            List<GuildEmoji> list = this.emojis;
+            int iHashCode2 = (iHashCode + (list != null ? list.hashCode() : 0)) * 31;
+            List<Sticker> list2 = this.stickers;
+            int iHashCode3 = (iHashCode2 + (list2 != null ? list2.hashCode() : 0)) * 31;
+            List<Channel> list3 = this.channels;
+            int iHashCode4 = (iHashCode3 + (list3 != null ? list3.hashCode() : 0)) * 31;
+            List<GuildRole> list4 = this.roles;
+            return iHashCode4 + (list4 != null ? list4.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("GuildCache(guild=");
+            sbU.append(this.guild);
+            sbU.append(", emojis=");
+            sbU.append(this.emojis);
+            sbU.append(", stickers=");
+            sbU.append(this.stickers);
+            sbU.append(", channels=");
+            sbU.append(this.channels);
+            sbU.append(", roles=");
+            return a.L(sbU, this.roles, ")");
+        }
+    }
+
+    /* JADX INFO: compiled from: ReadyPayloadUtils.kt */
+    public abstract class HydrateGuildResult {
+
+        /* JADX INFO: compiled from: ReadyPayloadUtils.kt */
+        public final class Error extends HydrateGuildResult {
+            public static final Error INSTANCE = new Error();
+
+            private Error() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: ReadyPayloadUtils.kt */
+        public final /* data */ class Success extends HydrateGuildResult {
+            private final Guild guild;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Success(Guild guild) {
+                super(null);
+                m.checkNotNullParameter(guild, "guild");
+                this.guild = guild;
+            }
+
+            public static /* synthetic */ Success copy$default(Success success, Guild guild, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    guild = success.guild;
+                }
+                return success.copy(guild);
+            }
+
+            public final Success copy(Guild guild) {
+                m.checkNotNullParameter(guild, "guild");
+                return new Success(guild);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Success) && m.areEqual(this.guild, ((Success) other).guild);
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Guild getGuild() {
+                return this.guild;
+            }
+
+            public final Guild getGuild() {
+                return this.guild;
+            }
+
+            public int hashCode() {
+                Guild guild = this.guild;
+                if (guild != null) {
+                    return guild.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                StringBuilder sbU = a.U("Success(guild=");
+                sbU.append(this.guild);
+                sbU.append(")");
+                return sbU.toString();
+            }
+        }
+
+        private HydrateGuildResult() {
+        }
+
+        public /* synthetic */ HydrateGuildResult(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: ReadyPayloadUtils.kt */
+    public abstract class HydrateResult {
+
+        /* JADX INFO: compiled from: ReadyPayloadUtils.kt */
+        public final class Error extends HydrateResult {
+            public static final Error INSTANCE = new Error();
+
+            private Error() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: ReadyPayloadUtils.kt */
+        public final /* data */ class Success extends HydrateResult {
+            private final ModelPayload payload;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Success(ModelPayload modelPayload) {
+                super(null);
+                m.checkNotNullParameter(modelPayload, "payload");
+                this.payload = modelPayload;
+            }
+
+            public static /* synthetic */ Success copy$default(Success success, ModelPayload modelPayload, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    modelPayload = success.payload;
+                }
+                return success.copy(modelPayload);
+            }
+
+            public final Success copy(ModelPayload payload) {
+                m.checkNotNullParameter(payload, "payload");
+                return new Success(payload);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Success) && m.areEqual(this.payload, ((Success) other).payload);
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ModelPayload getPayload() {
+                return this.payload;
+            }
+
+            public final ModelPayload getPayload() {
+                return this.payload;
+            }
+
+            public int hashCode() {
+                ModelPayload modelPayload = this.payload;
+                if (modelPayload != null) {
+                    return modelPayload.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                StringBuilder sbU = a.U("Success(payload=");
+                sbU.append(this.payload);
+                sbU.append(")");
+                return sbU.toString();
+            }
+        }
+
+        private HydrateResult() {
+        }
+
+        public /* synthetic */ HydrateResult(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     private ReadyPayloadUtils() {
     }
@@ -48,7 +345,7 @@ public final class ReadyPayloadUtils {
         return readyPayloadUtils.hydrate(channel, channel2);
     }
 
-    public final HashMap<Long, ReadyPayloadUtils$GuildCache> getCache() {
+    public final HashMap<Long, GuildCache> getCache() {
         return cache;
     }
 
@@ -57,7 +354,7 @@ public final class ReadyPayloadUtils {
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ ReadyPayloadUtils$HydrateGuildResult hydrateGuild$default(ReadyPayloadUtils readyPayloadUtils, Guild guild, List list, Map map, int i, Object obj) {
+    public static /* synthetic */ HydrateGuildResult hydrateGuild$default(ReadyPayloadUtils readyPayloadUtils, Guild guild, List list, Map map, int i, Object obj) {
         if ((i & 2) != 0) {
             list = null;
         }
@@ -73,7 +370,7 @@ public final class ReadyPayloadUtils {
     /* JADX WARN: Code duplicated, block: B:58:0x00d1  */
     /* JADX WARN: Code duplicated, block: B:65:0x00e0  */
     @StoreThread
-    public final ReadyPayloadUtils$HydrateGuildResult hydrateGuild(Guild guild, List<Presence> presences, Map<Long, GuildMember> members) {
+    public final HydrateGuildResult hydrateGuild(Guild guild, List<Presence> presences, Map<Long, GuildMember> members) {
         Triple triple;
         Guild guild2;
         List<GuildEmoji> emojis;
@@ -97,65 +394,65 @@ public final class ReadyPayloadUtils {
         boolean zBooleanValue2 = ((Boolean) triple.component2()).booleanValue();
         boolean zBooleanValue3 = ((Boolean) triple.component3()).booleanValue();
         if (guild.getUnavailable()) {
-            return new ReadyPayloadUtils$HydrateGuildResult$Success(guild);
+            return new HydrateGuildResult.Success(guild);
         }
-        ReadyPayloadUtils$GuildCache readyPayloadUtils$GuildCacheRemove = cache.remove(Long.valueOf(guild.getId()));
-        if ((zBooleanValue || zBooleanValue2 || zBooleanValue3) && readyPayloadUtils$GuildCacheRemove == null) {
-            return ReadyPayloadUtils$HydrateGuildResult$Error.INSTANCE;
+        GuildCache guildCacheRemove = cache.remove(Long.valueOf(guild.getId()));
+        if ((zBooleanValue || zBooleanValue2 || zBooleanValue3) && guildCacheRemove == null) {
+            return HydrateGuildResult.Error.INSTANCE;
         }
-        if (readyPayloadUtils$GuildCacheRemove == null) {
+        if (guildCacheRemove == null) {
             guild2 = null;
         } else {
-            ReadyPayloadUtils$GuildCache readyPayloadUtils$GuildCache = zBooleanValue ? readyPayloadUtils$GuildCacheRemove : null;
-            if (readyPayloadUtils$GuildCache != null) {
-                guild2 = readyPayloadUtils$GuildCache.getGuild();
+            GuildCache guildCache = zBooleanValue ? guildCacheRemove : null;
+            if (guildCache != null) {
+                guild2 = guildCache.getGuild();
             } else {
                 guild2 = null;
             }
         }
-        if (readyPayloadUtils$GuildCacheRemove == null) {
+        if (guildCacheRemove == null) {
             emojis = null;
         } else {
-            ReadyPayloadUtils$GuildCache readyPayloadUtils$GuildCache2 = zBooleanValue ? readyPayloadUtils$GuildCacheRemove : null;
-            if (readyPayloadUtils$GuildCache2 != null) {
-                emojis = readyPayloadUtils$GuildCache2.getEmojis();
+            GuildCache guildCache2 = zBooleanValue ? guildCacheRemove : null;
+            if (guildCache2 != null) {
+                emojis = guildCache2.getEmojis();
             } else {
                 emojis = null;
             }
         }
-        if (readyPayloadUtils$GuildCacheRemove == null) {
+        if (guildCacheRemove == null) {
             stickers = null;
         } else {
-            ReadyPayloadUtils$GuildCache readyPayloadUtils$GuildCache3 = zBooleanValue ? readyPayloadUtils$GuildCacheRemove : null;
-            if (readyPayloadUtils$GuildCache3 != null) {
-                stickers = readyPayloadUtils$GuildCache3.getStickers();
+            GuildCache guildCache3 = zBooleanValue ? guildCacheRemove : null;
+            if (guildCache3 != null) {
+                stickers = guildCache3.getStickers();
             } else {
                 stickers = null;
             }
         }
-        if (readyPayloadUtils$GuildCacheRemove == null) {
+        if (guildCacheRemove == null) {
             channels = null;
         } else {
-            ReadyPayloadUtils$GuildCache readyPayloadUtils$GuildCache4 = zBooleanValue2 ? readyPayloadUtils$GuildCacheRemove : null;
-            if (readyPayloadUtils$GuildCache4 != null) {
-                channels = readyPayloadUtils$GuildCache4.getChannels();
+            GuildCache guildCache4 = zBooleanValue2 ? guildCacheRemove : null;
+            if (guildCache4 != null) {
+                channels = guildCache4.getChannels();
             } else {
                 channels = null;
             }
         }
-        if (readyPayloadUtils$GuildCacheRemove == null) {
+        if (guildCacheRemove == null) {
             roles = null;
         } else {
             if (!zBooleanValue3) {
-                readyPayloadUtils$GuildCacheRemove = null;
+                guildCacheRemove = null;
             }
-            if (readyPayloadUtils$GuildCacheRemove != null) {
-                roles = readyPayloadUtils$GuildCacheRemove.getRoles();
+            if (guildCacheRemove != null) {
+                roles = guildCacheRemove.getRoles();
             } else {
                 roles = null;
             }
         }
-        return new ReadyPayloadUtils$HydrateGuildResult$Success(hydrate(guild, guild2, emojis, stickers, channels, roles, presences, members, ReadyPayloadUtils$hydrateGuild$6.INSTANCE));
+        return new HydrateGuildResult.Success(hydrate(guild, guild2, emojis, stickers, channels, roles, presences, members, AnonymousClass6.INSTANCE));
     }
 
     public final GuildMember hydrateGuildMember(GuildMember guildMember, Map<Long, User> users) {
@@ -172,7 +469,7 @@ public final class ReadyPayloadUtils {
     }
 
     @StoreThread
-    public final ReadyPayloadUtils$HydrateResult hydrateReadyPayload(ModelPayload payload_, StoreGuilds storeGuilds, StoreChannels storeChannels, StoreEmojiCustom storeEmojiCustom, StoreGuildStickers storeGuildStickers) {
+    public final HydrateResult hydrateReadyPayload(ModelPayload payload_, StoreGuilds storeGuilds, StoreChannels storeChannels, StoreEmojiCustom storeEmojiCustom, StoreGuildStickers storeGuildStickers) {
         LinkedHashMap linkedHashMap;
         List<GuildMember> list;
         ArrayList arrayList;
@@ -197,11 +494,11 @@ public final class ReadyPayloadUtils {
             Map<Long, ModelEmojiCustom> emojiForGuildInternal = storeEmojiCustom.getEmojiForGuildInternal(guild.getId());
             Collection<ModelEmojiCustom> collectionValues3 = emojiForGuildInternal != null ? emojiForGuildInternal.values() : null;
             Collection<Sticker> collectionValues4 = storeGuildStickers.getStickersForGuild(guild.getId()).values();
-            HashMap<Long, ReadyPayloadUtils$GuildCache> map2 = cache;
+            HashMap<Long, GuildCache> map2 = cache;
             Long lValueOf = Long.valueOf(guild.getId());
             Guild guildCreateApiGuild = GuildUtilsKt.createApiGuild(guild);
             if (collectionValues3 != null) {
-                ArrayList arrayList2 = new ArrayList(o.collectionSizeOrDefault(collectionValues3, 10));
+                ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(collectionValues3, 10));
                 Iterator<T> it2 = collectionValues3.iterator();
                 while (it2.hasNext()) {
                     arrayList2.add(((ModelEmojiCustom) it2.next()).toApiEmoji());
@@ -215,7 +512,7 @@ public final class ReadyPayloadUtils {
             if (collectionValues != null) {
                 list2 = u.toList(collectionValues);
             }
-            map2.put(lValueOf, new ReadyPayloadUtils$GuildCache(guildCreateApiGuild, arrayList, list3, list4, list2));
+            map2.put(lValueOf, new GuildCache(guildCreateApiGuild, arrayList, list3, list4, list2));
         }
         ArrayList arrayList3 = new ArrayList();
         List<Guild> guilds = modelPayloadHydrateUsers.getGuilds();
@@ -233,23 +530,23 @@ public final class ReadyPayloadUtils {
             if (guildMembers == null || (list = guildMembers.get(i)) == null) {
                 linkedHashMap = null;
             } else {
-                linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(o.collectionSizeOrDefault(list, 10)), 16));
+                linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(d0.t.o.collectionSizeOrDefault(list, 10)), 16));
                 for (Object obj2 : list) {
                     linkedHashMap.put(Long.valueOf(((GuildMember) obj2).getUser().getId()), obj2);
                 }
             }
             ReadyPayloadUtils readyPayloadUtils = INSTANCE;
             m.checkNotNullExpressionValue(guild2, "guild");
-            ReadyPayloadUtils$HydrateGuildResult readyPayloadUtils$HydrateGuildResultHydrateGuild = readyPayloadUtils.hydrateGuild(guild2, list5, linkedHashMap);
-            if (!(readyPayloadUtils$HydrateGuildResultHydrateGuild instanceof ReadyPayloadUtils$HydrateGuildResult$Success)) {
-                return ReadyPayloadUtils$HydrateResult$Error.INSTANCE;
+            HydrateGuildResult hydrateGuildResultHydrateGuild = readyPayloadUtils.hydrateGuild(guild2, list5, linkedHashMap);
+            if (!(hydrateGuildResultHydrateGuild instanceof HydrateGuildResult.Success)) {
+                return HydrateResult.Error.INSTANCE;
             }
-            arrayList3.add(((ReadyPayloadUtils$HydrateGuildResult$Success) readyPayloadUtils$HydrateGuildResultHydrateGuild).getGuild());
+            arrayList3.add(((HydrateGuildResult.Success) hydrateGuildResultHydrateGuild).getGuild());
             i = i2;
         }
         ModelPayload modelPayloadWithGuilds = modelPayloadHydrateUsers.withGuilds(arrayList3);
         m.checkNotNullExpressionValue(modelPayloadWithGuilds, "payload.withGuilds(guilds)");
-        return new ReadyPayloadUtils$HydrateResult$Success(modelPayloadWithGuilds);
+        return new HydrateResult.Success(modelPayloadWithGuilds);
     }
 
     @StoreThread
@@ -263,14 +560,14 @@ public final class ReadyPayloadUtils {
         if (users == null) {
             return payload;
         }
-        LinkedHashMap linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(o.collectionSizeOrDefault(users, 10)), 16));
+        LinkedHashMap linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(d0.t.o.collectionSizeOrDefault(users, 10)), 16));
         for (Object obj : users) {
             linkedHashMap.put(Long.valueOf(((User) obj).getId()), obj);
         }
         List<ModelUserRelationship> relationships = payload.getRelationships();
         ArrayList arrayList5 = null;
         if (relationships != null) {
-            ArrayList arrayList6 = new ArrayList(o.collectionSizeOrDefault(relationships, 10));
+            ArrayList arrayList6 = new ArrayList(d0.t.o.collectionSizeOrDefault(relationships, 10));
             Iterator<T> it = relationships.iterator();
             while (it.hasNext()) {
                 arrayList6.add(((ModelUserRelationship) it.next()).hydrate(linkedHashMap));
@@ -281,7 +578,7 @@ public final class ReadyPayloadUtils {
         }
         List<Channel> privateChannels = payload.getPrivateChannels();
         if (privateChannels != null) {
-            ArrayList arrayList7 = new ArrayList(o.collectionSizeOrDefault(privateChannels, 10));
+            ArrayList arrayList7 = new ArrayList(d0.t.o.collectionSizeOrDefault(privateChannels, 10));
             for (Channel channel : privateChannels) {
                 ReadyPayloadUtils readyPayloadUtils = INSTANCE;
                 m.checkNotNullExpressionValue(channel, "channel");
@@ -293,12 +590,12 @@ public final class ReadyPayloadUtils {
         }
         List<List<Presence>> guildPresences = payload.getGuildPresences();
         if (guildPresences != null) {
-            ArrayList arrayList8 = new ArrayList(o.collectionSizeOrDefault(guildPresences, 10));
+            ArrayList arrayList8 = new ArrayList(d0.t.o.collectionSizeOrDefault(guildPresences, 10));
             Iterator<T> it2 = guildPresences.iterator();
             while (it2.hasNext()) {
                 List<Presence> list = (List) it2.next();
                 m.checkNotNullExpressionValue(list, "guildPresences");
-                ArrayList arrayList9 = new ArrayList(o.collectionSizeOrDefault(list, 10));
+                ArrayList arrayList9 = new ArrayList(d0.t.o.collectionSizeOrDefault(list, 10));
                 for (Presence presence : list) {
                     ReadyPayloadUtils readyPayloadUtils2 = INSTANCE;
                     m.checkNotNullExpressionValue(presence, "presence");
@@ -312,7 +609,7 @@ public final class ReadyPayloadUtils {
         }
         List<Presence> presences = payload.getPresences();
         if (presences != null) {
-            ArrayList arrayList10 = new ArrayList(o.collectionSizeOrDefault(presences, 10));
+            ArrayList arrayList10 = new ArrayList(d0.t.o.collectionSizeOrDefault(presences, 10));
             for (Presence presence2 : presences) {
                 ReadyPayloadUtils readyPayloadUtils3 = INSTANCE;
                 m.checkNotNullExpressionValue(presence2, "presence");
@@ -324,12 +621,12 @@ public final class ReadyPayloadUtils {
         }
         List<List<GuildMember>> guildMembers = payload.getGuildMembers();
         if (guildMembers != null) {
-            arrayList5 = new ArrayList(o.collectionSizeOrDefault(guildMembers, 10));
+            arrayList5 = new ArrayList(d0.t.o.collectionSizeOrDefault(guildMembers, 10));
             Iterator<T> it3 = guildMembers.iterator();
             while (it3.hasNext()) {
                 List<GuildMember> list2 = (List) it3.next();
                 m.checkNotNullExpressionValue(list2, "members");
-                ArrayList arrayList11 = new ArrayList(o.collectionSizeOrDefault(list2, 10));
+                ArrayList arrayList11 = new ArrayList(d0.t.o.collectionSizeOrDefault(list2, 10));
                 for (GuildMember guildMember : list2) {
                     ReadyPayloadUtils readyPayloadUtils4 = INSTANCE;
                     m.checkNotNullExpressionValue(guildMember, "member");

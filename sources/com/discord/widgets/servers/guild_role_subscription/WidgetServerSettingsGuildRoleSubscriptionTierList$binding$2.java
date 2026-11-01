@@ -3,7 +3,7 @@ package com.discord.widgets.servers.guild_role_subscription;
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetServerSettingsGuildRoleSubscriptionTierListBinding;
 import d0.z.d.k;
@@ -27,11 +27,11 @@ public final /* synthetic */ class WidgetServerSettingsGuildRoleSubscriptionTier
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetServerSettingsGuildRoleSubscriptionTierListBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.server_settings_guild_role_subscription_tier_list;
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.server_settings_guild_role_subscription_tier_list);
+        int i = R.id.server_settings_guild_role_subscription_tier_list;
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.server_settings_guild_role_subscription_tier_list);
         if (recyclerView != null) {
-            i = R$id.server_settings_guild_role_subscription_tier_list_view_flipper;
-            AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R$id.server_settings_guild_role_subscription_tier_list_view_flipper);
+            i = R.id.server_settings_guild_role_subscription_tier_list_view_flipper;
+            AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R.id.server_settings_guild_role_subscription_tier_list_view_flipper);
             if (appViewFlipper != null) {
                 return new WidgetServerSettingsGuildRoleSubscriptionTierListBinding((CoordinatorLayout) view, recyclerView, appViewFlipper);
             }

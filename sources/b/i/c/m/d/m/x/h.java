@@ -3,24 +3,18 @@ package b.i.c.m.d.m.x;
 import android.util.Base64;
 import android.util.JsonReader;
 import androidx.annotation.NonNull;
-import b.i.c.m.d.m.b$b;
-import b.i.c.m.d.m.f$b;
-import b.i.c.m.d.m.i$b;
+import b.i.c.m.d.m.i;
 import b.i.c.m.d.m.j;
 import b.i.c.m.d.m.k;
 import b.i.c.m.d.m.l;
 import b.i.c.m.d.m.n;
 import b.i.c.m.d.m.o;
-import b.i.c.m.d.m.q$b;
-import b.i.c.m.d.m.r$b;
+import b.i.c.m.d.m.q;
+import b.i.c.m.d.m.r;
 import b.i.c.m.d.m.s;
 import b.i.c.m.d.m.t;
 import b.i.c.m.d.m.u;
 import b.i.c.m.d.m.v;
-import b.i.c.m.d.m.v$d$d;
-import b.i.c.m.d.m.v$d$d$a$b$b;
-import b.i.c.m.d.m.v$d$d$a$b$d$a;
-import b.i.c.m.d.m.v$d$d$b;
 import b.i.c.m.d.m.w;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.analytics.ChatInputComponentTypes;
@@ -35,6 +29,11 @@ import java.util.Objects;
 public class h {
     public static final b.i.c.p.a a;
 
+    /* JADX INFO: compiled from: CrashlyticsReportJsonTransform.java */
+    public interface a<T> {
+        T a(@NonNull JsonReader jsonReader) throws IOException;
+    }
+
     static {
         b.i.c.p.h.e eVar = new b.i.c.p.h.e();
         ((b.i.c.m.d.m.a) b.i.c.m.d.m.a.a).a(eVar);
@@ -43,11 +42,11 @@ public class h {
     }
 
     @NonNull
-    public static <T> w<T> a(@NonNull JsonReader jsonReader, @NonNull h$a<T> h_a) throws IOException {
+    public static <T> w<T> a(@NonNull JsonReader jsonReader, @NonNull a<T> aVar) throws IOException {
         ArrayList arrayList = new ArrayList();
         jsonReader.beginArray();
         while (jsonReader.hasNext()) {
-            arrayList.add(h_a.a(jsonReader));
+            arrayList.add(aVar.a(jsonReader));
         }
         jsonReader.endArray();
         return new w<>(arrayList);
@@ -83,7 +82,7 @@ public class h {
     /* JADX WARN: Type inference failed for: r3v70 */
     /* JADX WARN: Type inference failed for: r3v71, types: [java.lang.Object, java.lang.String] */
     @NonNull
-    public static v$d$d b(@NonNull JsonReader jsonReader) throws IOException {
+    public static v.d.AbstractC0143d b(@NonNull JsonReader jsonReader) throws IOException {
         String strW;
         byte b2;
         byte b3;
@@ -95,7 +94,7 @@ public class h {
         ?? ValueOf = 0;
         String str = null;
         k kVar = null;
-        v$d$d$b v_d_d_bA = null;
+        v.d.AbstractC0143d.b bVarA = null;
         s sVar = null;
         while (true) {
             if (!jsonReader.hasNext()) {
@@ -107,11 +106,11 @@ public class h {
                 if (kVar == null) {
                     strW = b.d.b.a.a.w(strW, " app");
                 }
-                if (v_d_d_bA == null) {
+                if (bVarA == null) {
                     strW = b.d.b.a.a.w(strW, " device");
                 }
                 if (strW.isEmpty()) {
-                    return new j(lValueOf.longValue(), str, kVar, v_d_d_bA, sVar, null);
+                    return new j(lValueOf.longValue(), str, kVar, bVarA, sVar, null);
                 }
                 throw new IllegalStateException(b.d.b.a.a.w("Missing required properties:", strW));
             }
@@ -138,7 +137,7 @@ public class h {
                     break;
             }
             if (b2 == 0) {
-                r$b r_b = new r$b();
+                r.b bVar = new r.b();
                 jsonReader.beginObject();
                 while (jsonReader.hasNext()) {
                     String strNextName2 = jsonReader.nextName();
@@ -167,23 +166,23 @@ public class h {
                             break;
                     }
                     if (b3 == 0) {
-                        r_b.a = Double.valueOf(jsonReader.nextDouble());
+                        bVar.a = Double.valueOf(jsonReader.nextDouble());
                     } else if (b3 == 1) {
-                        r_b.f1734b = Integer.valueOf(jsonReader.nextInt());
+                        bVar.f1734b = Integer.valueOf(jsonReader.nextInt());
                     } else if (b3 == 2) {
-                        r_b.d = Integer.valueOf(jsonReader.nextInt());
+                        bVar.d = Integer.valueOf(jsonReader.nextInt());
                     } else if (b3 == 3) {
-                        r_b.f = Long.valueOf(jsonReader.nextLong());
+                        bVar.f = Long.valueOf(jsonReader.nextLong());
                     } else if (b3 == 4) {
-                        r_b.e = Long.valueOf(jsonReader.nextLong());
+                        bVar.e = Long.valueOf(jsonReader.nextLong());
                     } else if (b3 != 5) {
                         jsonReader.skipValue();
                     } else {
-                        r_b.c = Boolean.valueOf(jsonReader.nextBoolean());
+                        bVar.c = Boolean.valueOf(jsonReader.nextBoolean());
                     }
                 }
                 jsonReader.endObject();
-                v_d_d_bA = r_b.a();
+                bVarA = bVar.a();
             } else if (b2 == 1) {
                 jsonReader.beginObject();
                 ?? lVar = ValueOf;
@@ -226,7 +225,7 @@ public class h {
                         ValueOf2 = Boolean.valueOf(jsonReader.nextBoolean());
                     } else if (b4 == 1) {
                         jsonReader.beginObject();
-                        v$d$d$a$b$b v_d_d_a_b_bC = null;
+                        v.d.AbstractC0143d.a.b.AbstractC0146b abstractC0146bC = null;
                         o oVar = null;
                         w wVarA = null;
                         w wVarA2 = null;
@@ -309,13 +308,13 @@ public class h {
                             } else if (b5 != c) {
                                 jsonReader.skipValue();
                             } else {
-                                v_d_d_a_b_bC = c(jsonReader);
+                                abstractC0146bC = c(jsonReader);
                             }
                             c = 3;
                         }
                         jsonReader.endObject();
                         String strW3 = wVarA2 == null ? " threads" : "";
-                        if (v_d_d_a_b_bC == null) {
+                        if (abstractC0146bC == null) {
                             strW3 = b.d.b.a.a.w(strW3, " exception");
                         }
                         if (oVar == null) {
@@ -327,7 +326,7 @@ public class h {
                         if (!strW3.isEmpty()) {
                             throw new IllegalStateException(b.d.b.a.a.w("Missing required properties:", strW3));
                         }
-                        lVar = new l(wVarA2, v_d_d_a_b_bC, oVar, wVarA, null);
+                        lVar = new l(wVarA2, abstractC0146bC, oVar, wVarA, null);
                     } else if (b4 == 2) {
                         A = a(jsonReader, c.a);
                     } else if (b4 != 3) {
@@ -369,13 +368,13 @@ public class h {
     }
 
     @NonNull
-    public static v$d$d$a$b$b c(@NonNull JsonReader jsonReader) throws IOException {
+    public static v.d.AbstractC0143d.a.b.AbstractC0146b c(@NonNull JsonReader jsonReader) throws IOException {
         jsonReader.beginObject();
         Integer numValueOf = null;
         String strNextString = null;
         String strNextString2 = null;
         w wVarA = null;
-        v$d$d$a$b$b v_d_d_a_b_bC = null;
+        v.d.AbstractC0143d.a.b.AbstractC0146b abstractC0146bC = null;
         while (jsonReader.hasNext()) {
             String strNextName = jsonReader.nextName();
             strNextName.hashCode();
@@ -392,7 +391,7 @@ public class h {
                     Objects.requireNonNull(strNextString, "Null type");
                     break;
                 case "causedBy":
-                    v_d_d_a_b_bC = c(jsonReader);
+                    abstractC0146bC = c(jsonReader);
                     break;
                 case "overflowCount":
                     numValueOf = Integer.valueOf(jsonReader.nextInt());
@@ -411,35 +410,35 @@ public class h {
             strW = b.d.b.a.a.w(strW, " overflowCount");
         }
         if (strW.isEmpty()) {
-            return new n(strNextString, strNextString2, wVarA, v_d_d_a_b_bC, numValueOf.intValue(), null);
+            return new n(strNextString, strNextString2, wVarA, abstractC0146bC, numValueOf.intValue(), null);
         }
         throw new IllegalStateException(b.d.b.a.a.w("Missing required properties:", strW));
     }
 
     @NonNull
-    public static v$d$d$a$b$d$a d(@NonNull JsonReader jsonReader) throws IOException {
-        q$b q_b = new q$b();
+    public static v.d.AbstractC0143d.a.b.AbstractC0147d.AbstractC0148a d(@NonNull JsonReader jsonReader) throws IOException {
+        q.b bVar = new q.b();
         jsonReader.beginObject();
         while (jsonReader.hasNext()) {
             String strNextName = jsonReader.nextName();
             strNextName.hashCode();
             switch (strNextName) {
                 case "offset":
-                    q_b.d = Long.valueOf(jsonReader.nextLong());
+                    bVar.d = Long.valueOf(jsonReader.nextLong());
                     break;
                 case "symbol":
                     String strNextString = jsonReader.nextString();
                     Objects.requireNonNull(strNextString, "Null symbol");
-                    q_b.f1732b = strNextString;
+                    bVar.f1732b = strNextString;
                     break;
                 case "pc":
-                    q_b.a = Long.valueOf(jsonReader.nextLong());
+                    bVar.a = Long.valueOf(jsonReader.nextLong());
                     break;
                 case "file":
-                    q_b.c = jsonReader.nextString();
+                    bVar.c = jsonReader.nextString();
                     break;
                 case "importance":
-                    q_b.e = Integer.valueOf(jsonReader.nextInt());
+                    bVar.e = Integer.valueOf(jsonReader.nextInt());
                     break;
                 default:
                     jsonReader.skipValue();
@@ -447,7 +446,7 @@ public class h {
             }
         }
         jsonReader.endObject();
-        return q_b.a();
+        return bVar.a();
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
@@ -473,7 +472,7 @@ public class h {
         String str2;
         byte b4;
         Charset charset = v.a;
-        b$b b_b = new b$b();
+        b.i.c.m.d.m.b.C0141b c0141b = new b.i.c.m.d.m.b.C0141b();
         jsonReader.beginObject();
         while (jsonReader.hasNext()) {
             String strNextName = jsonReader.nextName();
@@ -529,40 +528,40 @@ public class h {
                     if (!str4.isEmpty()) {
                         throw new IllegalStateException(b.d.b.a.a.w("Missing required properties:", str4));
                     }
-                    b_b.h = new b.i.c.m.d.m.d(wVarA, strNextString, null);
+                    c0141b.h = new b.i.c.m.d.m.d(wVarA, strNextString, null);
                     break;
                     break;
                 case 1:
                     String strNextString2 = jsonReader.nextString();
                     Objects.requireNonNull(strNextString2, "Null sdkVersion");
-                    b_b.a = strNextString2;
+                    c0141b.a = strNextString2;
                     break;
                 case 2:
                     String strNextString3 = jsonReader.nextString();
                     Objects.requireNonNull(strNextString3, "Null buildVersion");
-                    b_b.e = strNextString3;
+                    c0141b.e = strNextString3;
                     break;
                 case 3:
                     String strNextString4 = jsonReader.nextString();
                     Objects.requireNonNull(strNextString4, "Null gmpAppId");
-                    b_b.f1714b = strNextString4;
+                    c0141b.f1714b = strNextString4;
                     break;
                 case 4:
                     String strNextString5 = jsonReader.nextString();
                     Objects.requireNonNull(strNextString5, "Null installationUuid");
-                    b_b.d = strNextString5;
+                    c0141b.d = strNextString5;
                     break;
                 case 5:
-                    b_b.c = Integer.valueOf(jsonReader.nextInt());
+                    c0141b.c = Integer.valueOf(jsonReader.nextInt());
                     break;
                 case 6:
                     String strNextString6 = jsonReader.nextString();
                     Objects.requireNonNull(strNextString6, "Null displayVersion");
-                    b_b.f = strNextString6;
+                    c0141b.f = strNextString6;
                     break;
                 case 7:
-                    f$b f_b = new f$b();
-                    f_b.b(false);
+                    b.i.c.m.d.m.f.b bVar = new b.i.c.m.d.m.f.b();
+                    bVar.b(false);
                     jsonReader.beginObject();
                     while (jsonReader.hasNext()) {
                         String strNextName3 = jsonReader.nextName();
@@ -570,59 +569,59 @@ public class h {
                         switch (strNextName3) {
                             case "startedAt":
                                 str = str3;
-                                f_b.c = Long.valueOf(jsonReader.nextLong());
+                                bVar.c = Long.valueOf(jsonReader.nextLong());
                                 str3 = str;
                                 break;
                             case "identifier":
                                 str = str3;
-                                f_b.f1719b = new String(Base64.decode(jsonReader.nextString(), 2), v.a);
+                                bVar.f1719b = new String(Base64.decode(jsonReader.nextString(), 2), v.a);
                                 str3 = str;
                                 break;
                             case "endedAt":
                                 str = str3;
-                                f_b.d = Long.valueOf(jsonReader.nextLong());
+                                bVar.d = Long.valueOf(jsonReader.nextLong());
                                 str3 = str;
                                 break;
                             case "device":
                                 str = str3;
-                                i$b i_b = new i$b();
+                                i.b bVar2 = new i.b();
                                 jsonReader.beginObject();
                                 while (jsonReader.hasNext()) {
                                     String strNextName4 = jsonReader.nextName();
                                     strNextName4.hashCode();
                                     switch (strNextName4) {
                                         case "simulator":
-                                            i_b.f = Boolean.valueOf(jsonReader.nextBoolean());
+                                            bVar2.f = Boolean.valueOf(jsonReader.nextBoolean());
                                             break;
                                         case "manufacturer":
                                             String strNextString7 = jsonReader.nextString();
                                             Objects.requireNonNull(strNextString7, "Null manufacturer");
-                                            i_b.h = strNextString7;
+                                            bVar2.h = strNextString7;
                                             break;
                                         case "ram":
-                                            i_b.d = Long.valueOf(jsonReader.nextLong());
+                                            bVar2.d = Long.valueOf(jsonReader.nextLong());
                                             break;
                                         case "arch":
-                                            i_b.a = Integer.valueOf(jsonReader.nextInt());
+                                            bVar2.a = Integer.valueOf(jsonReader.nextInt());
                                             break;
                                         case "diskSpace":
-                                            i_b.e = Long.valueOf(jsonReader.nextLong());
+                                            bVar2.e = Long.valueOf(jsonReader.nextLong());
                                             break;
                                         case "cores":
-                                            i_b.c = Integer.valueOf(jsonReader.nextInt());
+                                            bVar2.c = Integer.valueOf(jsonReader.nextInt());
                                             break;
                                         case "model":
                                             String strNextString8 = jsonReader.nextString();
                                             Objects.requireNonNull(strNextString8, "Null model");
-                                            i_b.f1722b = strNextString8;
+                                            bVar2.f1722b = strNextString8;
                                             break;
                                         case "state":
-                                            i_b.g = Integer.valueOf(jsonReader.nextInt());
+                                            bVar2.g = Integer.valueOf(jsonReader.nextInt());
                                             break;
                                         case "modelClass":
                                             String strNextString9 = jsonReader.nextString();
                                             Objects.requireNonNull(strNextString9, "Null modelClass");
-                                            i_b.i = strNextString9;
+                                            bVar2.i = strNextString9;
                                             break;
                                         default:
                                             jsonReader.skipValue();
@@ -630,12 +629,12 @@ public class h {
                                     }
                                 }
                                 jsonReader.endObject();
-                                f_b.i = i_b.a();
+                                bVar.i = bVar2.a();
                                 str3 = str;
                                 break;
                             case "events":
                                 str = str3;
-                                f_b.j = a(jsonReader, a.a);
+                                bVar.j = a(jsonReader, b.i.c.m.d.m.x.a.a);
                                 str3 = str;
                                 break;
                             case "os":
@@ -695,7 +694,7 @@ public class h {
                                 if (!strW.isEmpty()) {
                                     throw new IllegalStateException(b.d.b.a.a.w("Missing required properties:", strW));
                                 }
-                                f_b.h = new t(numValueOf.intValue(), str5, str6, boolValueOf.booleanValue(), null);
+                                bVar.h = new t(numValueOf.intValue(), str5, str6, boolValueOf.booleanValue(), null);
                                 str3 = str;
                                 break;
                                 break;
@@ -797,7 +796,7 @@ public class h {
                                 if (!strW2.isEmpty()) {
                                     throw new IllegalStateException(b.d.b.a.a.w("Missing required properties:", strW2));
                                 }
-                                f_b.f = new b.i.c.m.d.m.g(str7, str8, strNextString12, null, strNextString13, strNextString14, strNextString15, null);
+                                bVar.f = new b.i.c.m.d.m.g(str7, str8, strNextString12, null, strNextString13, strNextString14, strNextString15, null);
                                 str3 = str;
                                 break;
                                 break;
@@ -819,7 +818,7 @@ public class h {
                                 if (!str9.isEmpty()) {
                                     throw new IllegalStateException(b.d.b.a.a.w("Missing required properties:", str9));
                                 }
-                                f_b.g = new u(strNextString18, null);
+                                bVar.g = new u(strNextString18, null);
                                 str = str3;
                                 str3 = str;
                                 break;
@@ -827,17 +826,17 @@ public class h {
                             case "generator":
                                 String strNextString19 = jsonReader.nextString();
                                 Objects.requireNonNull(strNextString19, "Null generator");
-                                f_b.a = strNextString19;
+                                bVar.a = strNextString19;
                                 str = str3;
                                 str3 = str;
                                 break;
                             case "crashed":
-                                f_b.b(jsonReader.nextBoolean());
+                                bVar.b(jsonReader.nextBoolean());
                                 str = str3;
                                 str3 = str;
                                 break;
                             case "generatorType":
-                                f_b.k = Integer.valueOf(jsonReader.nextInt());
+                                bVar.k = Integer.valueOf(jsonReader.nextInt());
                                 str = str3;
                                 str3 = str;
                                 break;
@@ -849,7 +848,7 @@ public class h {
                         }
                     }
                     jsonReader.endObject();
-                    b_b.g = f_b.a();
+                    c0141b.g = bVar.a();
                     break;
                 default:
                     jsonReader.skipValue();
@@ -857,7 +856,7 @@ public class h {
             }
         }
         jsonReader.endObject();
-        return b_b.a();
+        return c0141b.a();
     }
 
     @NonNull

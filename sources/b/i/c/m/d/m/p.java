@@ -4,31 +4,31 @@ import androidx.annotation.NonNull;
 
 /* JADX INFO: compiled from: AutoValue_CrashlyticsReport_Session_Event_Application_Execution_Thread.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class p extends v$d$d$a$b$d {
+public final class p extends v.d.AbstractC0143d.a.b.AbstractC0147d {
     public final String a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final int f1730b;
-    public final w<v$d$d$a$b$d$a> c;
+    public final w<v.d.AbstractC0143d.a.b.AbstractC0147d.AbstractC0148a> c;
 
-    public p(String str, int i, w wVar, p$a p_a) {
+    public p(String str, int i, w wVar, a aVar) {
         this.a = str;
         this.f1730b = i;
         this.c = wVar;
     }
 
-    @Override // b.i.c.m.d.m.v$d$d$a$b$d
+    @Override // b.i.c.m.d.m.v.d.AbstractC0143d.a.b.AbstractC0147d
     @NonNull
-    public w<v$d$d$a$b$d$a> a() {
+    public w<v.d.AbstractC0143d.a.b.AbstractC0147d.AbstractC0148a> a() {
         return this.c;
     }
 
-    @Override // b.i.c.m.d.m.v$d$d$a$b$d
+    @Override // b.i.c.m.d.m.v.d.AbstractC0143d.a.b.AbstractC0147d
     public int b() {
         return this.f1730b;
     }
 
-    @Override // b.i.c.m.d.m.v$d$d$a$b$d
+    @Override // b.i.c.m.d.m.v.d.AbstractC0143d.a.b.AbstractC0147d
     @NonNull
     public String c() {
         return this.a;
@@ -38,11 +38,11 @@ public final class p extends v$d$d$a$b$d {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof v$d$d$a$b$d)) {
+        if (!(obj instanceof v.d.AbstractC0143d.a.b.AbstractC0147d)) {
             return false;
         }
-        v$d$d$a$b$d v_d_d_a_b_d = (v$d$d$a$b$d) obj;
-        return this.a.equals(v_d_d_a_b_d.c()) && this.f1730b == v_d_d_a_b_d.b() && this.c.equals(v_d_d_a_b_d.a());
+        v.d.AbstractC0143d.a.b.AbstractC0147d abstractC0147d = (v.d.AbstractC0143d.a.b.AbstractC0147d) obj;
+        return this.a.equals(abstractC0147d.c()) && this.f1730b == abstractC0147d.b() && this.c.equals(abstractC0147d.a());
     }
 
     public int hashCode() {

@@ -74,7 +74,7 @@ public class d implements c {
 
     @Override // d0.e0.p.d.m0.c.g1.c
     public d0.e0.p.d.m0.g.b getFqName() {
-        return c$a.getFqName(this);
+        return c.a.getFqName(this);
     }
 
     @Override // d0.e0.p.d.m0.c.g1.c

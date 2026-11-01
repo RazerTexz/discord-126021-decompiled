@@ -1,7 +1,6 @@
 package b.g.a.c.e0;
 
-import b.g.a.a.c0$a;
-import b.g.a.a.c0$b;
+import b.g.a.a.c0;
 import b.g.a.c.e0.f;
 import b.g.a.c.j;
 import b.g.a.c.v;
@@ -12,7 +11,7 @@ import java.util.Collection;
 public interface f<T extends f<T>> {
     T a(boolean z2);
 
-    T b(c0$b c0_b, e eVar);
+    T b(c0.b bVar, e eVar);
 
     T c(String str);
 
@@ -20,5 +19,5 @@ public interface f<T extends f<T>> {
 
     g e(v vVar, j jVar, Collection<b> collection);
 
-    T f(c0$a c0_a);
+    T f(c0.a aVar);
 }

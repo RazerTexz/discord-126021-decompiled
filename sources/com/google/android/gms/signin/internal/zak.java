@@ -1,7 +1,7 @@
 package com.google.android.gms.signin.internal;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.a.f.l.b.i;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
@@ -12,7 +12,7 @@ import com.google.android.gms.common.internal.zas;
 public final class zak extends AbstractSafeParcelable {
     public final int j;
     public final zas k;
-    public static final Parcelable$Creator<zak> CREATOR = new i();
+    public static final Parcelable.Creator<zak> CREATOR = new i();
 
     public zak(int i, zas zasVar) {
         this.j = i;

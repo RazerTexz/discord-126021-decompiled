@@ -2,16 +2,23 @@ package b.a.g;
 
 import d0.z.d.m;
 import java.util.Arrays;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ColorHistogram.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class b {
-    public static final b$a a = new b$a(null);
+    public static final a a = new a(null);
     public final int[] c;
     public final int d;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final int[] f70b;
+
+    /* JADX INFO: compiled from: ColorHistogram.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
 
     public b(int[] iArr) {
         int length;

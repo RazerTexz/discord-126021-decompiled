@@ -30,10 +30,10 @@ public final class WidgetGuildScheduledEventDetailsBottomSheet$Companion$enqueue
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(FragmentActivity fragmentActivity) {
         m.checkNotNullParameter(fragmentActivity, "appActivity");
-        WidgetGuildScheduledEventDetailsBottomSheet$Companion widgetGuildScheduledEventDetailsBottomSheet$Companion = WidgetGuildScheduledEventDetailsBottomSheet.Companion;
+        WidgetGuildScheduledEventDetailsBottomSheet.Companion companion = WidgetGuildScheduledEventDetailsBottomSheet.INSTANCE;
         FragmentManager supportFragmentManager = fragmentActivity.getSupportFragmentManager();
         m.checkNotNullExpressionValue(supportFragmentManager, "appActivity.supportFragmentManager");
-        widgetGuildScheduledEventDetailsBottomSheet$Companion.showForGuild(supportFragmentManager, this.$guildScheduledEventId);
+        companion.showForGuild(supportFragmentManager, this.$guildScheduledEventId);
         StoreNotices.markSeen$default(this.$storeNotices, this.$noticeName, 0L, 2, null);
         return true;
     }

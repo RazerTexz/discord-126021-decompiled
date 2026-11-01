@@ -11,7 +11,6 @@ import com.facebook.common.memory.PooledByteBuffer;
 import com.facebook.common.references.CloseableReference;
 import com.facebook.datasource.DataSource;
 import com.facebook.imagepipeline.request.ImageRequest;
-import com.facebook.imagepipeline.request.ImageRequest$c;
 import java.util.Set;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.atomic.AtomicLong;
@@ -51,42 +50,42 @@ public class h {
         this.l = kVar;
     }
 
-    public DataSource<CloseableReference<b.f.j.j.c>> a(ImageRequest imageRequest, Object obj, ImageRequest$c imageRequest$c, b.f.j.k.e eVar, String str) {
+    public DataSource<CloseableReference<b.f.j.j.c>> a(ImageRequest imageRequest, Object obj, ImageRequest.c cVar, b.f.j.k.e eVar, String str) {
         try {
-            return b(this.a.c(imageRequest), imageRequest, imageRequest$c, obj, eVar, str);
+            return b(this.a.c(imageRequest), imageRequest, cVar, obj, eVar, str);
         } catch (Exception e) {
             return b.c.a.a0.d.N0(e);
         }
     }
 
-    public final <T> DataSource<CloseableReference<T>> b(w0<CloseableReference<T>> w0Var, ImageRequest imageRequest, ImageRequest$c imageRequest$c, Object obj, b.f.j.k.e eVar, String str) {
-        b.f.j.k.c cVar;
-        b.f.j.k.e cVar2;
+    public final <T> DataSource<CloseableReference<T>> b(w0<CloseableReference<T>> w0Var, ImageRequest imageRequest, ImageRequest.c cVar, Object obj, b.f.j.k.e eVar, String str) {
+        b.f.j.k.c cVar2;
+        b.f.j.k.e cVar3;
         b.f.j.r.b.b();
         if (eVar == null) {
             b.f.j.k.e eVar2 = imageRequest.t;
             if (eVar2 == null) {
-                cVar2 = this.f569b;
+                cVar3 = this.f569b;
             } else {
-                cVar = new b.f.j.k.c(this.f569b, eVar2);
-                cVar2 = cVar;
+                cVar2 = new b.f.j.k.c(this.f569b, eVar2);
+                cVar3 = cVar2;
             }
         } else {
             b.f.j.k.e eVar3 = imageRequest.t;
             if (eVar3 == null) {
-                cVar2 = new b.f.j.k.c(this.f569b, eVar);
+                cVar3 = new b.f.j.k.c(this.f569b, eVar);
             } else {
-                cVar = new b.f.j.k.c(this.f569b, eVar, eVar3);
-                cVar2 = cVar;
+                cVar2 = new b.f.j.k.c(this.f569b, eVar, eVar3);
+                cVar3 = cVar2;
             }
         }
-        b0 b0Var = new b0(cVar2, this.c);
+        b0 b0Var = new b0(cVar3, this.c);
         b.f.c.a aVar = this.k;
         if (aVar != null) {
             aVar.a(obj, false);
         }
         try {
-            d1 d1Var = new d1(imageRequest, String.valueOf(this.i.getAndIncrement()), str, b0Var, obj, ImageRequest$c.f(imageRequest.n, imageRequest$c), false, imageRequest.f || !b.f.d.l.b.e(imageRequest.c), imageRequest.m, this.l);
+            d1 d1Var = new d1(imageRequest, String.valueOf(this.i.getAndIncrement()), str, b0Var, obj, ImageRequest.c.f(imageRequest.n, cVar), false, imageRequest.f || !b.f.d.l.b.e(imageRequest.c), imageRequest.m, this.l);
             b.f.j.r.b.b();
             b.f.j.f.d dVar = new b.f.j.f.d(w0Var, d1Var, b0Var);
             b.f.j.r.b.b();

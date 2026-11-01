@@ -15,7 +15,6 @@ import java.util.TimeZone;
 /* JADX INFO: compiled from: UtcDateTime.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class UtcDateTimeTypeAdapter extends TypeAdapter<UtcDateTime> {
-    public static final UtcDateTimeTypeAdapter$Companion Companion = new UtcDateTimeTypeAdapter$Companion(null);
     private static final String FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
 
     @Override // com.google.gson.TypeAdapter

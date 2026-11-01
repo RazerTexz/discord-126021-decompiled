@@ -2,7 +2,6 @@ package b.i.a.f.h.c;
 
 import android.content.Context;
 import android.os.RemoteException;
-import b.i.a.f.e.h.a$b;
 import b.i.a.f.e.h.h;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
@@ -18,8 +17,8 @@ public abstract class m<R extends b.i.a.f.e.h.h> extends b.i.a.f.e.h.j.d<R, o> {
     }
 
     @Override // b.i.a.f.e.h.j.d
-    public void k(a$b a_b) throws RemoteException {
-        o oVar = (o) a_b;
+    public void k(b.i.a.f.e.h.a.b bVar) throws RemoteException {
+        o oVar = (o) bVar;
         m(oVar.d, (t) oVar.w());
     }
 

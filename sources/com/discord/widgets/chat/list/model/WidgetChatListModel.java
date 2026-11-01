@@ -2,19 +2,37 @@ package com.discord.widgets.chat.list.model;
 
 import a0.a.a.b;
 import b.d.b.a.a;
+import com.discord.api.channel.Channel;
+import com.discord.api.channel.ChannelUtils;
+import com.discord.api.sticker.Sticker;
 import com.discord.models.guild.Guild;
-import com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$Data;
+import com.discord.models.member.GuildMember;
+import com.discord.models.message.Message;
+import com.discord.models.user.User;
+import com.discord.stores.StoreMessagesLoader;
+import com.discord.stores.StoreStickers;
+import com.discord.stores.StoreStream;
+import com.discord.stores.StoreThreadDraft;
+import com.discord.widgets.chat.list.adapter.WidgetChatListAdapter;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
+import com.discord.widgets.chat.list.entries.StickerGreetCompactEntry;
+import com.discord.widgets.chat.list.entries.StickerGreetEntry;
 import d0.z.d.m;
+import j0.l.e.k;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import kotlin.jvm.internal.DefaultConstructorMarker;
+import rx.Observable;
+import rx.functions.Func2;
 
 /* JADX INFO: compiled from: WidgetChatListModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* data */ class WidgetChatListModel implements WidgetChatListAdapter$Data {
-    public static final WidgetChatListModel$Companion Companion = new WidgetChatListModel$Companion(null);
+public final /* data */ class WidgetChatListModel implements WidgetChatListAdapter.Data {
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final int MAX_MESSAGES_PER_CHANNEL = 25;
     private static final long WUMPUS_PACK_ID = 847199849233514549L;
     private static final long WUMPUS_WAVE_STICKER_ID = 749054660769218631L;
@@ -30,6 +48,147 @@ public final /* data */ class WidgetChatListModel implements WidgetChatListAdapt
     private final long newestKnownMessageId;
     private final long oldestMessageId;
     private final long userId;
+
+    /* JADX INFO: compiled from: WidgetChatListModel.kt */
+    public enum ChatListState {
+        DETACHED,
+        DETACHED_UNTOUCHED,
+        ATTACHED;
+
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
+
+        /* JADX INFO: compiled from: WidgetChatListModel.kt */
+        public final class Companion {
+            private Companion() {
+            }
+
+            public final Observable<ChatListState> get(long channelId) {
+                Observable observableY = StoreStream.INSTANCE.getMessages().observeIsDetached(channelId).Y(new WidgetChatListModel$ChatListState$Companion$get$1(channelId));
+                m.checkNotNullExpressionValue(observableY, "StoreStream\n            …        }\n              }");
+                return observableY;
+            }
+
+            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+                this();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChatListModel.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static final /* synthetic */ Observable access$getChannel(Companion companion, Channel channel) {
+            return companion.getChannel(channel);
+        }
+
+        public static final /* synthetic */ ChatListEntry access$getGreetMessageItem(Companion companion, WidgetChatListModelMessages widgetChatListModelMessages, Channel channel) {
+            return companion.getGreetMessageItem(widgetChatListModelMessages, channel);
+        }
+
+        public static final /* synthetic */ Observable access$getThreadDraft(Companion companion, Channel channel, Long l) {
+            return companion.getThreadDraft(channel, l);
+        }
+
+        public static final /* synthetic */ boolean access$shouldShowStickerGreet(Companion companion, StoreMessagesLoader.ChannelLoadedState channelLoadedState, WidgetChatListModelMessages widgetChatListModelMessages, Channel channel, Map map) {
+            return companion.shouldShowStickerGreet(channelLoadedState, widgetChatListModelMessages, channel, map);
+        }
+
+        public final Observable<WidgetChatListModel> get() {
+            Observable observableY = StoreStream.INSTANCE.getChannelsSelected().observeResolvedSelectedChannel().Y(WidgetChatListModel$Companion$get$1.INSTANCE);
+            m.checkNotNullExpressionValue(observableY, "StoreStream\n          .g…            }\n          }");
+            return observableY;
+        }
+
+        private final Observable<WidgetChatListModel> getChannel(Channel channel) {
+            Observable<WidgetChatListModelTop> observable = WidgetChatListModelTop.INSTANCE.get(channel);
+            Observable<WidgetChatListModelMessages> observable2 = WidgetChatListModelMessages.INSTANCE.get(channel);
+            StoreStream.Companion companion = StoreStream.INSTANCE;
+            Observable<WidgetChatListModel> observableC = Observable.c(observable, observable2, observeIsLoadingMessages(companion.getMessagesLoader(), channel.getId()), companion.getChannels().observeNames(), companion.getUsers().observeMeId(), companion.getGuilds().observeComputed(channel.getGuildId()), companion.getGuilds().observeGuild(channel.getGuildId()), companion.getUserRelationships().observe(), ChatListState.INSTANCE.get(channel.getId()), new WidgetChatListModel$Companion$getChannel$1(channel));
+            m.checkNotNullExpressionValue(observableC, "Observable\n            .…          )\n            }");
+            return observableC;
+        }
+
+        private final ChatListEntry getGreetMessageItem(WidgetChatListModelMessages messages, Channel channel) {
+            StoreStream.Companion companion = StoreStream.INSTANCE;
+            StoreStickers stickers = companion.getStickers();
+            Map<Long, Sticker> stickers2 = stickers.getStickers();
+            Long lValueOf = Long.valueOf(WidgetChatListModel.WUMPUS_WAVE_STICKER_ID);
+            if (stickers2.get(lValueOf) == null) {
+                stickers.fetchStickerPack(WidgetChatListModel.WUMPUS_PACK_ID);
+            }
+            Sticker sticker = stickers.getStickers().get(lValueOf);
+            if (sticker != null) {
+                Guild guild = companion.getGuilds().getGuild(channel.getGuildId());
+                if (!(((guild != null ? guild.getSystemChannelFlags() : 0) & 8) == 0)) {
+                    return null;
+                }
+                if (messages.getItems().isEmpty()) {
+                    return new StickerGreetEntry(sticker, channel.getId(), ChannelUtils.c(channel), channel.getType());
+                }
+                if (messages.getItems().size() < 25) {
+                    return new StickerGreetCompactEntry(sticker, channel.getId(), ChannelUtils.c(channel), channel.getType());
+                }
+            }
+            return null;
+        }
+
+        private final Observable<WidgetChatListModel> getThreadDraft(Channel parentChannel, Long parentMessageId) {
+            Observable observableJ;
+            long guildId = parentChannel.getGuildId();
+            StoreStream.Companion companion = StoreStream.INSTANCE;
+            Observable<Map<Long, String>> observableObserveNames = companion.getChannels().observeNames();
+            Observable<Long> observableObserveMeId = companion.getUsers().observeMeId();
+            Observable<Map<Long, GuildMember>> observableObserveComputed = companion.getGuilds().observeComputed(guildId);
+            Observable<Guild> observableObserveGuild = companion.getGuilds().observeGuild(guildId);
+            Observable<StoreThreadDraft.ThreadDraftState> observableObserveDraftState = companion.getThreadDraft().observeDraftState();
+            Observable<Long> observableObservePermissionsForChannel = companion.getPermissions().observePermissionsForChannel(parentChannel.getId());
+            if (parentMessageId != null) {
+                Observable<Message> observableObserveMessagesForChannel = companion.getMessages().observeMessagesForChannel(parentChannel.getId(), parentMessageId.longValue());
+                Observable<List<ChatListEntry>> singleMessage = WidgetChatListModelMessages.INSTANCE.getSingleMessage(parentChannel, parentMessageId.longValue());
+                WidgetChatListModel$Companion$getThreadDraft$1 widgetChatListModel$Companion$getThreadDraft$1 = WidgetChatListModel$Companion$getThreadDraft$1.INSTANCE;
+                Object widgetChatListModel$sam$rx_functions_Func2$0 = widgetChatListModel$Companion$getThreadDraft$1;
+                if (widgetChatListModel$Companion$getThreadDraft$1 != null) {
+                    widgetChatListModel$sam$rx_functions_Func2$0 = new WidgetChatListModel$sam$rx_functions_Func2$0(widgetChatListModel$Companion$getThreadDraft$1);
+                }
+                observableJ = Observable.j(observableObserveMessagesForChannel, singleMessage, (Func2) widgetChatListModel$sam$rx_functions_Func2$0);
+            } else {
+                k kVar = new k(null);
+                k kVar2 = new k(new ArrayList());
+                WidgetChatListModel$Companion$getThreadDraft$2 widgetChatListModel$Companion$getThreadDraft$2 = WidgetChatListModel$Companion$getThreadDraft$2.INSTANCE;
+                Object widgetChatListModel$sam$rx_functions_Func2$1 = widgetChatListModel$Companion$getThreadDraft$2;
+                if (widgetChatListModel$Companion$getThreadDraft$2 != null) {
+                    widgetChatListModel$sam$rx_functions_Func2$1 = new WidgetChatListModel$sam$rx_functions_Func2$0(widgetChatListModel$Companion$getThreadDraft$2);
+                }
+                observableJ = Observable.j(kVar, kVar2, (Func2) widgetChatListModel$sam$rx_functions_Func2$1);
+            }
+            Observable<WidgetChatListModel> observableE = Observable.e(observableObserveNames, observableObserveMeId, observableObserveComputed, observableObserveGuild, observableObserveDraftState, observableObservePermissionsForChannel, observableJ, new WidgetChatListModel$Companion$getThreadDraft$3(parentChannel, parentMessageId, guildId));
+            m.checkNotNullExpressionValue(observableE, "Observable\n          .co…            )\n          }");
+            return observableE;
+        }
+
+        private final Observable<StoreMessagesLoader.ChannelLoadedState> observeIsLoadingMessages(StoreMessagesLoader storeMessagesLoader, long j) {
+            return storeMessagesLoader.getMessagesLoadedState(j).r();
+        }
+
+        private final boolean shouldShowStickerGreet(StoreMessagesLoader.ChannelLoadedState loadingState, WidgetChatListModelMessages messages, Channel channel, Map<Long, Integer> relationships) {
+            if (loadingState.isOldestMessagesLoaded() && loadingState.isInitialMessagesLoaded() && loadingState.getNewestSentByUserMessageId() == null && messages.getNewestSentByUserMessageId() == null && messages.getItems().size() < 25 && ChannelUtils.m(channel) && !ChannelUtils.E(channel)) {
+                User userA = ChannelUtils.a(channel);
+                Integer num = relationships.get(userA != null ? Long.valueOf(userA.getId()) : null);
+                if (num == null || num.intValue() != 2) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     /* JADX WARN: Multi-variable type inference failed */
     public WidgetChatListModel(long j, long j2, Guild guild, long j3, Map<Long, String> map, long j4, List<? extends ChatListEntry> list, Set<Long> set, long j5, long j6, boolean z2) {
@@ -109,22 +268,22 @@ public final /* data */ class WidgetChatListModel implements WidgetChatListAdapt
         return getUserId() == widgetChatListModel.getUserId() && getChannelId() == widgetChatListModel.getChannelId() && m.areEqual(getGuild(), widgetChatListModel.getGuild()) && getGuildId() == widgetChatListModel.getGuildId() && m.areEqual(getChannelNames(), widgetChatListModel.getChannelNames()) && getOldestMessageId() == widgetChatListModel.getOldestMessageId() && m.areEqual(getList(), widgetChatListModel.getList()) && m.areEqual(getMyRoleIds(), widgetChatListModel.getMyRoleIds()) && getNewMessagesMarkerMessageId() == widgetChatListModel.getNewMessagesMarkerMessageId() && this.newestKnownMessageId == widgetChatListModel.newestKnownMessageId && this.isLoadingMessages == widgetChatListModel.isLoadingMessages;
     }
 
-    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$Data
+    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
     public long getChannelId() {
         return this.channelId;
     }
 
-    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$Data
+    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
     public Map<Long, String> getChannelNames() {
         return this.channelNames;
     }
 
-    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$Data
+    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
     public Guild getGuild() {
         return this.guild;
     }
 
-    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$Data
+    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
     public long getGuildId() {
         return this.guildId;
     }
@@ -134,23 +293,23 @@ public final /* data */ class WidgetChatListModel implements WidgetChatListAdapt
         return this.isLoadingMessages;
     }
 
-    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$Data
+    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
     /* JADX INFO: renamed from: isSpoilerClickAllowed, reason: from getter */
     public boolean getIsSpoilerClickAllowed() {
         return this.isSpoilerClickAllowed;
     }
 
-    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$Data
+    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
     public List<ChatListEntry> getList() {
         return this.list;
     }
 
-    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$Data
+    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
     public Set<Long> getMyRoleIds() {
         return this.myRoleIds;
     }
 
-    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$Data
+    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
     public long getNewMessagesMarkerMessageId() {
         return this.newMessagesMarkerMessageId;
     }
@@ -164,12 +323,12 @@ public final /* data */ class WidgetChatListModel implements WidgetChatListAdapt
         return this.newestKnownMessageId;
     }
 
-    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$Data
+    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
     public long getOldestMessageId() {
         return this.oldestMessageId;
     }
 
-    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter$Data
+    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListAdapter.Data
     public long getUserId() {
         return this.userId;
     }

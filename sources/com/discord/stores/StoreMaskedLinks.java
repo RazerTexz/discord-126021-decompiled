@@ -1,26 +1,35 @@
 package com.discord.stores;
 
 import android.content.Context;
-import android.content.SharedPreferences$Editor;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import androidx.annotation.VisibleForTesting;
 import com.discord.BuildConfig;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
+import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.ModelUserRelationship;
 import com.discord.models.user.User;
 import d0.t.n;
 import d0.t.n0;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.text.Regex;
 
 /* JADX INFO: compiled from: StoreMaskedLinks.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreMaskedLinks extends StoreV2 {
-    public static final StoreMaskedLinks$Companion Companion;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE;
     private static final Regex DISCORD_DOMAINS_REGEX;
     private static final String HOST_SPOTIFY = "https://spotify.com";
     private static final String HOST_SPOTIFY_OPEN = "https://open.spotify.com";
@@ -32,10 +41,67 @@ public final class StoreMaskedLinks extends StoreV2 {
     private Set<String> userTrustedDomains;
     private Set<String> userTrustedDomainsSnapshot;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreMaskedLinks$trustDomain$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMaskedLinks.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ String $url;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(String str) {
+            super(0);
+            this.$url = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            String strAccess$getDomainName = Companion.access$getDomainName(StoreMaskedLinks.INSTANCE, this.$url);
+            if (strAccess$getDomainName != null) {
+                StoreMaskedLinks.access$getUserTrustedDomains$p(StoreMaskedLinks.this).add(strAccess$getDomainName);
+                StoreMaskedLinks.this.markChanged();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreMaskedLinks.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static final /* synthetic */ String access$getDomainName(Companion companion, String str) {
+            return companion.getDomainName(str);
+        }
+
+        private final String getDomainName(String url) {
+            try {
+                Uri uri = Uri.parse(url);
+                m.checkNotNullExpressionValue(uri, "Uri.parse(url)");
+                return uri.getHost();
+            } catch (Exception unused) {
+                return null;
+            }
+        }
+
+        @VisibleForTesting
+        public final boolean isImplicitlyTrustedDomain$app_productionGoogleRelease(String name) {
+            m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            return StoreMaskedLinks.access$getTRUSTED_DOMAINS$cp().contains(name) || StoreMaskedLinks.access$getDISCORD_DOMAINS_REGEX$cp().containsMatchIn(name);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     static {
-        StoreMaskedLinks$Companion storeMaskedLinks$Companion = new StoreMaskedLinks$Companion(null);
-        Companion = storeMaskedLinks$Companion;
-        TRUSTED_DOMAINS = n.listOfNotNull((Object[]) new String[]{StoreMaskedLinks$Companion.access$getDomainName(storeMaskedLinks$Companion, BuildConfig.HOST), StoreMaskedLinks$Companion.access$getDomainName(storeMaskedLinks$Companion, BuildConfig.HOST_ALTERNATE), StoreMaskedLinks$Companion.access$getDomainName(storeMaskedLinks$Companion, BuildConfig.HOST_CDN), StoreMaskedLinks$Companion.access$getDomainName(storeMaskedLinks$Companion, BuildConfig.HOST_GIFT), StoreMaskedLinks$Companion.access$getDomainName(storeMaskedLinks$Companion, BuildConfig.HOST_INVITE), StoreMaskedLinks$Companion.access$getDomainName(storeMaskedLinks$Companion, BuildConfig.HOST_GUILD_TEMPLATE), StoreMaskedLinks$Companion.access$getDomainName(storeMaskedLinks$Companion, HOST_SPOTIFY), StoreMaskedLinks$Companion.access$getDomainName(storeMaskedLinks$Companion, HOST_SPOTIFY_OPEN)});
+        Companion companion = new Companion(null);
+        INSTANCE = companion;
+        TRUSTED_DOMAINS = n.listOfNotNull((Object[]) new String[]{Companion.access$getDomainName(companion, BuildConfig.HOST), Companion.access$getDomainName(companion, BuildConfig.HOST_ALTERNATE), Companion.access$getDomainName(companion, BuildConfig.HOST_CDN), Companion.access$getDomainName(companion, BuildConfig.HOST_GIFT), Companion.access$getDomainName(companion, BuildConfig.HOST_INVITE), Companion.access$getDomainName(companion, BuildConfig.HOST_GUILD_TEMPLATE), Companion.access$getDomainName(companion, HOST_SPOTIFY), Companion.access$getDomainName(companion, HOST_SPOTIFY_OPEN)});
         DISCORD_DOMAINS_REGEX = new Regex("(?:^|\\.)(?:discordapp|discord)\\.com$");
     }
 
@@ -102,20 +168,20 @@ public final class StoreMaskedLinks extends StoreV2 {
     public void snapshotData() {
         super.snapshotData();
         this.userTrustedDomainsSnapshot = new HashSet(this.userTrustedDomains);
-        SharedPreferences$Editor sharedPreferences$EditorEdit = getPrefs().edit();
-        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
-        sharedPreferences$EditorEdit.putStringSet(USER_TRUSTED_DOMAINS_CACHE_KEY, this.userTrustedDomainsSnapshot);
-        sharedPreferences$EditorEdit.apply();
+        SharedPreferences.Editor editorEdit = getPrefs().edit();
+        m.checkNotNullExpressionValue(editorEdit, "editor");
+        editorEdit.putStringSet(USER_TRUSTED_DOMAINS_CACHE_KEY, this.userTrustedDomainsSnapshot);
+        editorEdit.apply();
     }
 
     public final void trustDomain(String url) {
         m.checkNotNullParameter(url, "url");
-        this.dispatcher.schedule(new StoreMaskedLinks$trustDomain$1(this, url));
+        this.dispatcher.schedule(new AnonymousClass1(url));
     }
 
     private final boolean isTrustedDomain(String url) {
-        StoreMaskedLinks$Companion storeMaskedLinks$Companion = Companion;
-        String strAccess$getDomainName = StoreMaskedLinks$Companion.access$getDomainName(storeMaskedLinks$Companion, url);
-        return u.contains(this.userTrustedDomainsSnapshot, strAccess$getDomainName) || (strAccess$getDomainName != null && storeMaskedLinks$Companion.isImplicitlyTrustedDomain$app_productionGoogleRelease(strAccess$getDomainName));
+        Companion companion = INSTANCE;
+        String strAccess$getDomainName = Companion.access$getDomainName(companion, url);
+        return u.contains(this.userTrustedDomainsSnapshot, strAccess$getDomainName) || (strAccess$getDomainName != null && companion.isImplicitlyTrustedDomain$app_productionGoogleRelease(strAccess$getDomainName));
     }
 }

@@ -7,7 +7,6 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Build$VERSION;
 import android.util.DisplayMetrics;
 import androidx.core.app.NotificationCompat;
 import androidx.vectordrawable.graphics.drawable.PathInterpolatorCompat;
@@ -87,7 +86,7 @@ public class DeviceInfo {
 
     private String getApiLevel() {
         StringBuilder sbU = a.U("");
-        sbU.append(Build$VERSION.SDK_INT);
+        sbU.append(Build.VERSION.SDK_INT);
         return sbU.toString();
     }
 
@@ -210,7 +209,7 @@ public class DeviceInfo {
     }
 
     private String getOsVersion() {
-        return Build$VERSION.RELEASE;
+        return Build.VERSION.RELEASE;
     }
 
     private String getPackageName(Context context) {
@@ -279,7 +278,7 @@ public class DeviceInfo {
         this.playAdIdAttempt = -1;
         for (int i = 1; i <= 3; i++) {
             try {
-                GooglePlayServicesClient$GooglePlayServicesInfo googlePlayServicesInfo = GooglePlayServicesClient.getGooglePlayServicesInfo(context, i * PathInterpolatorCompat.MAX_NUM_POINTS);
+                GooglePlayServicesClient.GooglePlayServicesInfo googlePlayServicesInfo = GooglePlayServicesClient.getGooglePlayServicesInfo(context, i * PathInterpolatorCompat.MAX_NUM_POINTS);
                 if (this.playAdId == null) {
                     this.playAdId = googlePlayServicesInfo.getGpsAdid();
                 }

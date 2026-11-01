@@ -3,7 +3,6 @@ package b.i.e.r.d;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map$Entry;
 
 /* JADX INFO: compiled from: BarcodeValue.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -13,13 +12,13 @@ public final class b {
     public int[] a() {
         ArrayList arrayList = new ArrayList();
         int iIntValue = -1;
-        for (Map$Entry<Integer, Integer> map$Entry : this.a.entrySet()) {
-            if (map$Entry.getValue().intValue() > iIntValue) {
-                iIntValue = map$Entry.getValue().intValue();
+        for (Map.Entry<Integer, Integer> entry : this.a.entrySet()) {
+            if (entry.getValue().intValue() > iIntValue) {
+                iIntValue = entry.getValue().intValue();
                 arrayList.clear();
-                arrayList.add(map$Entry.getKey());
-            } else if (map$Entry.getValue().intValue() == iIntValue) {
-                arrayList.add(map$Entry.getKey());
+                arrayList.add(entry.getKey());
+            } else if (entry.getValue().intValue() == iIntValue) {
+                arrayList.add(entry.getKey());
             }
         }
         return b.i.e.r.a.b(arrayList);

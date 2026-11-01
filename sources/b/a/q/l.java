@@ -2,9 +2,8 @@ package b.a.q;
 
 import com.discord.rtcconnection.EncodeQuality;
 import com.discord.rtcconnection.MediaSinkWantsManager;
-import com.discord.rtcconnection.MediaSinkWantsManager$b;
 import com.discord.rtcconnection.VideoMetadata;
-import com.discord.rtcconnection.socket.io.Payloads$Stream;
+import com.discord.rtcconnection.socket.io.Payloads;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -34,17 +33,17 @@ public final class l extends d0.z.d.o implements Function0<Unit> {
         EncodeQuality encodeQuality;
         boolean z2;
         List list = this.$ssrcs;
-        ArrayList<Payloads$Stream> arrayList = new ArrayList();
+        ArrayList<Payloads.Stream> arrayList = new ArrayList();
         Iterator it = list.iterator();
         while (true) {
             if (!it.hasNext()) {
                 break;
             }
             Object next = it.next();
-            Payloads$Stream payloads$Stream = (Payloads$Stream) next;
-            Boolean active = payloads$Stream.getActive();
+            Payloads.Stream stream = (Payloads.Stream) next;
+            Boolean active = stream.getActive();
             if (active != null ? active.booleanValue() : false) {
-                Integer ssrc = payloads$Stream.getSsrc();
+                Integer ssrc = stream.getSsrc();
                 z2 = (ssrc != null ? ssrc.intValue() : 0) > 0;
             }
             if (z2) {
@@ -52,12 +51,12 @@ public final class l extends d0.z.d.o implements Function0<Unit> {
             }
         }
         ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(arrayList, 10));
-        for (Payloads$Stream payloads$Stream2 : arrayList) {
-            Integer quality = payloads$Stream2.getQuality();
+        for (Payloads.Stream stream2 : arrayList) {
+            Integer quality = stream2.getQuality();
             VideoMetadata videoMetadata = null;
             if (quality != null) {
                 int iIntValue = quality.intValue();
-                Objects.requireNonNull(EncodeQuality.Companion);
+                Objects.requireNonNull(EncodeQuality.INSTANCE);
                 EncodeQuality[] encodeQualityArrValues = EncodeQuality.values();
                 int i = 0;
                 while (true) {
@@ -77,18 +76,18 @@ public final class l extends d0.z.d.o implements Function0<Unit> {
             } else {
                 encodeQuality = EncodeQuality.Hundred;
             }
-            Integer ssrc2 = payloads$Stream2.getSsrc();
+            Integer ssrc2 = stream2.getSsrc();
             d0.z.d.m.checkNotNull(ssrc2);
             long jIntValue = ssrc2.intValue();
             MediaSinkWantsManager mediaSinkWantsManager = this.this$0;
             long j = this.$userId;
             Objects.requireNonNull(mediaSinkWantsManager);
-            if (payloads$Stream2.getMaxResolution() != null) {
-                videoMetadata = new VideoMetadata(j, payloads$Stream2.getMaxResolution().getWidth(), payloads$Stream2.getMaxResolution().getHeight(), payloads$Stream2.getMaxFrameRate(), payloads$Stream2.getMaxResolution().getType());
+            if (stream2.getMaxResolution() != null) {
+                videoMetadata = new VideoMetadata(j, stream2.getMaxResolution().getWidth(), stream2.getMaxResolution().getHeight(), stream2.getMaxFrameRate(), stream2.getMaxResolution().getType());
             } else {
-                mediaSinkWantsManager.a("metadataOf: " + payloads$Stream2 + " has no maxResolution!");
+                mediaSinkWantsManager.a("metadataOf: " + stream2 + " has no maxResolution!");
             }
-            arrayList2.add(new MediaSinkWantsManager$b(encodeQuality, jIntValue, videoMetadata));
+            arrayList2.add(new MediaSinkWantsManager.b(encodeQuality, jIntValue, videoMetadata));
         }
         if (arrayList2.isEmpty()) {
             this.this$0.f2771b.remove(Long.valueOf(this.$userId));

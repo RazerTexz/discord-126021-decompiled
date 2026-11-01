@@ -1,6 +1,7 @@
 package com.google.android.material.transition;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.util.Property;
@@ -17,6 +18,26 @@ public final class ScaleProvider implements VisibilityAnimatorProvider {
     private float outgoingEndScale;
     private float outgoingStartScale;
     private boolean scaleOnDisappear;
+
+    public final class a extends AnimatorListenerAdapter {
+        public final /* synthetic */ View a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final /* synthetic */ float f3092b;
+        public final /* synthetic */ float c;
+
+        public a(View view, float f, float f2) {
+            this.a = view;
+            this.f3092b = f;
+            this.c = f2;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            this.a.setScaleX(this.f3092b);
+            this.a.setScaleY(this.c);
+        }
+    }
 
     public ScaleProvider() {
         this(true);
@@ -41,7 +62,7 @@ public final class ScaleProvider implements VisibilityAnimatorProvider {
         float scaleX = view.getScaleX();
         float scaleY = view.getScaleY();
         ObjectAnimator objectAnimatorOfPropertyValuesHolder = ObjectAnimator.ofPropertyValuesHolder(view, PropertyValuesHolder.ofFloat((Property<?, Float>) View.SCALE_X, scaleX * f, scaleX * f2), PropertyValuesHolder.ofFloat((Property<?, Float>) View.SCALE_Y, f * scaleY, f2 * scaleY));
-        objectAnimatorOfPropertyValuesHolder.addListener(new ScaleProvider$a(view, scaleX, scaleY));
+        objectAnimatorOfPropertyValuesHolder.addListener(new a(view, scaleX, scaleY));
         return objectAnimatorOfPropertyValuesHolder;
     }
 

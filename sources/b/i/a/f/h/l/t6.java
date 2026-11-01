@@ -2,7 +2,7 @@ package b.i.a.f.h.l;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map$Entry;
+import java.util.Map;
 
 /* JADX INFO: Add missing generic type declarations: [FieldDescriptorType] */
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
@@ -16,14 +16,14 @@ public final class t6<FieldDescriptorType> extends r6<FieldDescriptorType, Objec
     public final void c() {
         if (!this.n) {
             for (int i = 0; i < e(); i++) {
-                Map$Entry<FieldDescriptorType, Object> map$EntryD = d(i);
-                if (((p4) map$EntryD.getKey()).d()) {
-                    map$EntryD.setValue(Collections.unmodifiableList((List) map$EntryD.getValue()));
+                Map.Entry<FieldDescriptorType, Object> entryD = d(i);
+                if (((p4) entryD.getKey()).d()) {
+                    entryD.setValue(Collections.unmodifiableList((List) entryD.getValue()));
                 }
             }
-            for (Map$Entry<FieldDescriptorType, Object> map$Entry : g()) {
-                if (((p4) map$Entry.getKey()).d()) {
-                    map$Entry.setValue(Collections.unmodifiableList((List) map$Entry.getValue()));
+            for (Map.Entry<FieldDescriptorType, Object> entry : g()) {
+                if (((p4) entry.getKey()).d()) {
+                    entry.setValue(Collections.unmodifiableList((List) entry.getValue()));
                 }
             }
         }

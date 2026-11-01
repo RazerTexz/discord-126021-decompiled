@@ -5,7 +5,7 @@ import java.util.Date;
 
 /* JADX INFO: compiled from: CrashlyticsController.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class b0 implements p0$a {
+public class b0 implements p0.a {
     public final /* synthetic */ x a;
 
     public b0(x xVar) {

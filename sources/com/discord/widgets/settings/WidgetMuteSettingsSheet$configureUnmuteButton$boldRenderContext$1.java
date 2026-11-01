@@ -1,6 +1,7 @@
 package com.discord.widgets.settings;
 
 import android.widget.TextView;
+import com.discord.R;
 import com.discord.i18n.RenderContext;
 import com.discord.utilities.color.ColorCompat;
 import d0.z.d.m;
@@ -30,6 +31,6 @@ public final class WidgetMuteSettingsSheet$configureUnmuteButton$boldRenderConte
         m.checkNotNullParameter(renderContext, "$receiver");
         TextView textView = WidgetMuteSettingsSheet.access$getBinding$p(this.this$0).q;
         m.checkNotNullExpressionValue(textView, "binding.unmuteButtonLabel");
-        renderContext.boldColor = Integer.valueOf(ColorCompat.getThemedColor(textView, 2130968989));
+        renderContext.boldColor = Integer.valueOf(ColorCompat.getThemedColor(textView, R.attr.colorHeaderPrimary));
     }
 }

@@ -5,7 +5,7 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetGuildWelcomeSheetBinding;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -30,26 +30,26 @@ public final /* synthetic */ class WidgetGuildWelcomeSheet$binding$2 extends k i
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGuildWelcomeSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.guild_welcome_sheet_channels;
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.guild_welcome_sheet_channels);
+        int i = R.id.guild_welcome_sheet_channels;
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.guild_welcome_sheet_channels);
         if (recyclerView != null) {
-            i = R$id.guild_welcome_sheet_description;
-            TextView textView = (TextView) view.findViewById(R$id.guild_welcome_sheet_description);
+            i = R.id.guild_welcome_sheet_description;
+            TextView textView = (TextView) view.findViewById(R.id.guild_welcome_sheet_description);
             if (textView != null) {
-                i = R$id.guild_welcome_sheet_flipper;
-                AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R$id.guild_welcome_sheet_flipper);
+                i = R.id.guild_welcome_sheet_flipper;
+                AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R.id.guild_welcome_sheet_flipper);
                 if (appViewFlipper != null) {
-                    i = R$id.guild_welcome_sheet_icon;
-                    SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.guild_welcome_sheet_icon);
+                    i = R.id.guild_welcome_sheet_icon;
+                    SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.guild_welcome_sheet_icon);
                     if (simpleDraweeView != null) {
-                        i = R$id.guild_welcome_sheet_icon_card;
-                        CardView cardView = (CardView) view.findViewById(R$id.guild_welcome_sheet_icon_card);
+                        i = R.id.guild_welcome_sheet_icon_card;
+                        CardView cardView = (CardView) view.findViewById(R.id.guild_welcome_sheet_icon_card);
                         if (cardView != null) {
-                            i = R$id.guild_welcome_sheet_icon_name;
-                            TextView textView2 = (TextView) view.findViewById(R$id.guild_welcome_sheet_icon_name);
+                            i = R.id.guild_welcome_sheet_icon_name;
+                            TextView textView2 = (TextView) view.findViewById(R.id.guild_welcome_sheet_icon_name);
                             if (textView2 != null) {
-                                i = R$id.guild_welcome_sheet_name;
-                                TextView textView3 = (TextView) view.findViewById(R$id.guild_welcome_sheet_name);
+                                i = R.id.guild_welcome_sheet_name;
+                                TextView textView3 = (TextView) view.findViewById(R.id.guild_welcome_sheet_name);
                                 if (textView3 != null) {
                                     return new WidgetGuildWelcomeSheetBinding((NestedScrollView) view, recyclerView, textView, appViewFlipper, simpleDraweeView, cardView, textView2, textView3);
                                 }

@@ -10,5 +10,12 @@ import java.lang.annotation.Target;
 @Target({ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.CLASS)
 public @interface RequiresOptIn {
-    RequiresOptIn$Level level() default RequiresOptIn$Level.ERROR;
+
+    /* JADX INFO: compiled from: RequiresOptIn.kt */
+    public enum Level {
+        WARNING,
+        ERROR
+    }
+
+    Level level() default Level.ERROR;
 }

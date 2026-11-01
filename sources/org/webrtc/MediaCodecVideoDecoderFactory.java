@@ -2,7 +2,7 @@ package org.webrtc;
 
 import android.media.MediaCodecInfo;
 import android.media.MediaCodecList;
-import android.os.Build$VERSION;
+import android.os.Build;
 import androidx.annotation.Nullable;
 import h0.c.q0;
 import java.util.ArrayList;
@@ -15,10 +15,10 @@ public class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
     private final Predicate<MediaCodecInfo> codecAllowedPredicate;
 
     @Nullable
-    private final EglBase$Context sharedContext;
+    private final EglBase.Context sharedContext;
 
-    public MediaCodecVideoDecoderFactory(@Nullable EglBase$Context eglBase$Context, @Nullable Predicate<MediaCodecInfo> predicate) {
-        this.sharedContext = eglBase$Context;
+    public MediaCodecVideoDecoderFactory(@Nullable EglBase.Context context, @Nullable Predicate<MediaCodecInfo> predicate) {
+        this.sharedContext = context;
         this.codecAllowedPredicate = predicate;
     }
 
@@ -86,7 +86,7 @@ public class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
 
     private boolean isH264HighProfileSupported(MediaCodecInfo mediaCodecInfo) {
         String name = mediaCodecInfo.getName();
-        int i = Build$VERSION.SDK_INT;
+        int i = Build.VERSION.SDK_INT;
         if (name.startsWith(MediaCodecUtils.QCOM_PREFIX)) {
             return true;
         }

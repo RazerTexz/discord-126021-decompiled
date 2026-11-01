@@ -9,13 +9,42 @@ import java.io.IOException;
 /* JADX INFO: compiled from: MediaSource.java */
 /* JADX INFO: loaded from: classes3.dex */
 public interface a0 {
-    void a(a0$b a0_b);
+
+    /* JADX INFO: compiled from: MediaSource.java */
+    public final class a extends y {
+        public a(Object obj) {
+            super(obj);
+        }
+
+        public a b(Object obj) {
+            return new a(this.a.equals(obj) ? this : new y(obj, this.f835b, this.c, this.d, this.e));
+        }
+
+        public a(Object obj, long j, int i) {
+            super(obj, j, i);
+        }
+
+        public a(Object obj, int i, int i2, long j) {
+            super(obj, i, i2, j);
+        }
+
+        public a(y yVar) {
+            super(yVar);
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaSource.java */
+    public interface b {
+        void a(a0 a0Var, o2 o2Var);
+    }
+
+    void a(b bVar);
 
     void b(Handler handler, b0 b0Var);
 
     void c(b0 b0Var);
 
-    void d(a0$b a0_b);
+    void d(b bVar);
 
     o1 e();
 
@@ -32,9 +61,9 @@ public interface a0 {
     @Nullable
     o2 k();
 
-    void l(a0$b a0_b, @Nullable b.i.a.c.e3.a0 a0Var);
+    void l(b bVar, @Nullable b.i.a.c.e3.a0 a0Var);
 
-    void m(a0$b a0_b);
+    void m(b bVar);
 
-    x n(a0$a a0_a, b.i.a.c.e3.o oVar, long j);
+    x n(a aVar, b.i.a.c.e3.o oVar, long j);
 }

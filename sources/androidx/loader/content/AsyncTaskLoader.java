@@ -6,26 +6,79 @@ import android.os.SystemClock;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
+import androidx.core.os.OperationCanceledException;
 import androidx.core.util.TimeUtils;
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class AsyncTaskLoader<D> extends Loader<D> {
     public static final boolean DEBUG = false;
     public static final String TAG = "AsyncTaskLoader";
-
-    /* JADX WARN: Incorrect inner types in field signature: Landroidx/loader/content/AsyncTaskLoader<TD;>.LoadTask; */
-    public volatile AsyncTaskLoader$LoadTask mCancellingTask;
+    public volatile AsyncTaskLoader<D>.LoadTask mCancellingTask;
     private final Executor mExecutor;
     public Handler mHandler;
     public long mLastLoadCompleteTime;
-
-    /* JADX WARN: Incorrect inner types in field signature: Landroidx/loader/content/AsyncTaskLoader<TD;>.LoadTask; */
-    public volatile AsyncTaskLoader$LoadTask mTask;
+    public volatile AsyncTaskLoader<D>.LoadTask mTask;
     public long mUpdateThrottle;
+
+    public final class LoadTask extends ModernAsyncTask<Void, Void, D> implements Runnable {
+        public boolean waiting;
+        private final CountDownLatch mDone = new CountDownLatch(1);
+
+        public LoadTask() {
+        }
+
+        @Override // androidx.loader.content.ModernAsyncTask
+        public /* bridge */ /* synthetic */ Object doInBackground(Void[] voidArr) {
+            return doInBackground2(voidArr);
+        }
+
+        @Override // androidx.loader.content.ModernAsyncTask
+        public void onCancelled(D d) {
+            try {
+                AsyncTaskLoader.this.dispatchOnCancelled(this, d);
+            } finally {
+                this.mDone.countDown();
+            }
+        }
+
+        @Override // androidx.loader.content.ModernAsyncTask
+        public void onPostExecute(D d) {
+            try {
+                AsyncTaskLoader.this.dispatchOnLoadComplete(this, d);
+            } finally {
+                this.mDone.countDown();
+            }
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            this.waiting = false;
+            AsyncTaskLoader.this.executePendingTask();
+        }
+
+        public void waitForLoader() {
+            try {
+                this.mDone.await();
+            } catch (InterruptedException unused) {
+            }
+        }
+
+        /* JADX INFO: renamed from: doInBackground, reason: avoid collision after fix types in other method */
+        public D doInBackground2(Void... voidArr) {
+            try {
+                return (D) AsyncTaskLoader.this.onLoadInBackground();
+            } catch (OperationCanceledException e) {
+                if (isCancelled()) {
+                    return null;
+                }
+                throw e;
+            }
+        }
+    }
 
     public AsyncTaskLoader(@NonNull Context context) {
         this(context, ModernAsyncTask.THREAD_POOL_EXECUTOR);
@@ -34,11 +87,9 @@ public abstract class AsyncTaskLoader<D> extends Loader<D> {
     public void cancelLoadInBackground() {
     }
 
-    /* JADX WARN: Incorrect inner types in method signature: (Landroidx/loader/content/AsyncTaskLoader<TD;>.LoadTask;TD;)V */
-    /* JADX WARN: Multi-variable type inference failed */
-    public void dispatchOnCancelled(AsyncTaskLoader$LoadTask asyncTaskLoader$LoadTask, Object obj) {
-        onCanceled(obj);
-        if (this.mCancellingTask == asyncTaskLoader$LoadTask) {
+    public void dispatchOnCancelled(AsyncTaskLoader<D>.LoadTask loadTask, D d) {
+        onCanceled(d);
+        if (this.mCancellingTask == loadTask) {
             rollbackContentChanged();
             this.mLastLoadCompleteTime = SystemClock.uptimeMillis();
             this.mCancellingTask = null;
@@ -47,21 +98,19 @@ public abstract class AsyncTaskLoader<D> extends Loader<D> {
         }
     }
 
-    /* JADX WARN: Incorrect inner types in method signature: (Landroidx/loader/content/AsyncTaskLoader<TD;>.LoadTask;TD;)V */
-    /* JADX WARN: Multi-variable type inference failed */
-    public void dispatchOnLoadComplete(AsyncTaskLoader$LoadTask asyncTaskLoader$LoadTask, Object obj) {
-        if (this.mTask != asyncTaskLoader$LoadTask) {
-            dispatchOnCancelled(asyncTaskLoader$LoadTask, obj);
+    public void dispatchOnLoadComplete(AsyncTaskLoader<D>.LoadTask loadTask, D d) {
+        if (this.mTask != loadTask) {
+            dispatchOnCancelled(loadTask, d);
             return;
         }
         if (isAbandoned()) {
-            onCanceled(obj);
+            onCanceled(d);
             return;
         }
         commitContentChanged();
         this.mLastLoadCompleteTime = SystemClock.uptimeMillis();
         this.mTask = null;
-        deliverResult(obj);
+        deliverResult(d);
     }
 
     @Override // androidx.loader.content.Loader
@@ -153,7 +202,7 @@ public abstract class AsyncTaskLoader<D> extends Loader<D> {
     public void onForceLoad() {
         super.onForceLoad();
         cancelLoad();
-        this.mTask = new AsyncTaskLoader$LoadTask(this);
+        this.mTask = new LoadTask();
         executePendingTask();
     }
 
@@ -169,11 +218,11 @@ public abstract class AsyncTaskLoader<D> extends Loader<D> {
         }
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public void waitForLoader() {
-        AsyncTaskLoader$LoadTask asyncTaskLoader$LoadTask = this.mTask;
-        if (asyncTaskLoader$LoadTask != null) {
-            asyncTaskLoader$LoadTask.waitForLoader();
+        AsyncTaskLoader<D>.LoadTask loadTask = this.mTask;
+        if (loadTask != null) {
+            loadTask.waitForLoader();
         }
     }
 

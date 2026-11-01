@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
@@ -45,7 +44,7 @@ public final class GuildThreadSubscriptionsManager {
 
     public final void retainAll(List<Long> guildIds) {
         m.checkNotNullParameter(guildIds, "guildIds");
-        Iterator<Map$Entry<Long, LruCache<Long, Long>>> it = this.subscriptions.entrySet().iterator();
+        Iterator<Map.Entry<Long, LruCache<Long, Long>>> it = this.subscriptions.entrySet().iterator();
         while (it.hasNext()) {
             if (!guildIds.contains(Long.valueOf(it.next().getKey().longValue()))) {
                 it.remove();

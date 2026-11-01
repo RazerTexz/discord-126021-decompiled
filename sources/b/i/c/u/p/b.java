@@ -10,17 +10,42 @@ public final class b extends f {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final long f1789b;
-    public final f$b c;
+    public final f.b c;
 
-    public b(String str, long j, f$b f_b, b$a b_a) {
+    /* JADX INFO: renamed from: b.i.c.u.p.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: AutoValue_TokenResult.java */
+    public final class C0154b extends f.a {
+        public String a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public Long f1790b;
+        public f.b c;
+
+        @Override // b.i.c.u.p.f.a
+        public f a() {
+            String str = this.f1790b == null ? " tokenExpirationTimestamp" : "";
+            if (str.isEmpty()) {
+                return new b(this.a, this.f1790b.longValue(), this.c, null);
+            }
+            throw new IllegalStateException(b.d.b.a.a.w("Missing required properties:", str));
+        }
+
+        @Override // b.i.c.u.p.f.a
+        public f.a b(long j) {
+            this.f1790b = Long.valueOf(j);
+            return this;
+        }
+    }
+
+    public b(String str, long j, f.b bVar, a aVar) {
         this.a = str;
         this.f1789b = j;
-        this.c = f_b;
+        this.c = bVar;
     }
 
     @Override // b.i.c.u.p.f
     @Nullable
-    public f$b b() {
+    public f.b b() {
         return this.c;
     }
 
@@ -47,12 +72,12 @@ public final class b extends f {
         String str = this.a;
         if (str != null ? str.equals(fVar.c()) : fVar.c() == null) {
             if (this.f1789b == fVar.d()) {
-                f$b f_b = this.c;
-                if (f_b == null) {
+                f.b bVar = this.c;
+                if (bVar == null) {
                     if (fVar.b() == null) {
                         return true;
                     }
-                } else if (f_b.equals(fVar.b())) {
+                } else if (bVar.equals(fVar.b())) {
                     return true;
                 }
             }
@@ -65,8 +90,8 @@ public final class b extends f {
         int iHashCode = str == null ? 0 : str.hashCode();
         long j = this.f1789b;
         int i = (((iHashCode ^ 1000003) * 1000003) ^ ((int) (j ^ (j >>> 32)))) * 1000003;
-        f$b f_b = this.c;
-        return i ^ (f_b != null ? f_b.hashCode() : 0);
+        f.b bVar = this.c;
+        return i ^ (bVar != null ? bVar.hashCode() : 0);
     }
 
     public String toString() {

@@ -1,7 +1,5 @@
 package b.g.a.c.g0.u;
 
-import b.g.a.a.i$a;
-import b.g.a.a.i$d;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import java.io.IOException;
 import java.util.Objects;
@@ -19,9 +17,9 @@ public abstract class a<T> extends b.g.a.c.g0.h<T> implements b.g.a.c.g0.i {
     }
 
     public b.g.a.c.n<?> a(b.g.a.c.x xVar, b.g.a.c.d dVar) throws JsonMappingException {
-        i$d i_dL;
-        if (dVar != null && (i_dL = l(xVar, dVar, this._handledType)) != null) {
-            Boolean boolB = i_dL.b(i$a.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED);
+        b.g.a.a.i.d dVarL;
+        if (dVar != null && (dVarL = l(xVar, dVar, this._handledType)) != null) {
+            Boolean boolB = dVarL.b(b.g.a.a.i.a.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED);
             if (!Objects.equals(boolB, this._unwrapSingle)) {
                 return s(dVar, boolB);
             }

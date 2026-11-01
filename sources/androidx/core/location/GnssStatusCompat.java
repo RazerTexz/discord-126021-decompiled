@@ -7,6 +7,9 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.RestrictTo;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class GnssStatusCompat {
@@ -34,6 +37,25 @@ public abstract class GnssStatusCompat {
 
     @SuppressLint({"InlinedApi"})
     public static final int CONSTELLATION_UNKNOWN = 0;
+
+    public abstract class Callback {
+        public void onFirstFix(@IntRange(from = 0) int i) {
+        }
+
+        public void onSatelliteStatusChanged(@NonNull GnssStatusCompat gnssStatusCompat) {
+        }
+
+        public void onStarted() {
+        }
+
+        public void onStopped() {
+        }
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    public @interface ConstellationType {
+    }
 
     @FloatRange(from = 0.0d, to = 360.0d)
     public abstract float getAzimuthDegrees(@IntRange(from = 0) int i);

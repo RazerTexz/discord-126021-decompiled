@@ -14,7 +14,7 @@ public final class j9 implements Runnable {
     }
 
     @Override // java.lang.Runnable
-    public final void run() {
+    public final void run() throws Throwable {
         k9 k9Var = this.k;
         k9Var.k.f().b();
         g gVar = new g(k9Var);

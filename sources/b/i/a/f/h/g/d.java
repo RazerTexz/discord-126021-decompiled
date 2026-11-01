@@ -1,7 +1,6 @@
 package b.i.a.f.h.g;
 
 import android.os.Handler;
-import android.os.Handler$Callback;
 import android.os.Looper;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
@@ -11,7 +10,7 @@ public class d extends Handler {
         super(looper);
     }
 
-    public d(Looper looper, Handler$Callback handler$Callback) {
-        super(looper, handler$Callback);
+    public d(Looper looper, Handler.Callback callback) {
+        super(looper, callback);
     }
 }

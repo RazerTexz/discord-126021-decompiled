@@ -2,14 +2,16 @@ package com.discord.widgets.guilds.leave;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.d.g0;
 import b.a.d.i0;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppDialog;
 import com.discord.databinding.LeaveGuildDialogBinding;
 import com.discord.utilities.rx.ObservableExtensionsKt;
@@ -17,16 +19,21 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: WidgetLeaveGuildDialog.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetLeaveGuildDialog extends AppDialog {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetLeaveGuildDialog.class, "binding", "getBinding()Lcom/discord/databinding/LeaveGuildDialogBinding;", 0)};
-    public static final WidgetLeaveGuildDialog$Companion Companion = new WidgetLeaveGuildDialog$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -34,16 +41,99 @@ public final class WidgetLeaveGuildDialog extends AppDialog {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.leave.WidgetLeaveGuildDialog$onResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetLeaveGuildDialog.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetLeaveGuildDialog.access$getViewModel$p(WidgetLeaveGuildDialog.this).leaveGuild();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.leave.WidgetLeaveGuildDialog$onResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetLeaveGuildDialog.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetLeaveGuildDialog.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.leave.WidgetLeaveGuildDialog$onResume$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetLeaveGuildDialog.kt */
+    public final class AnonymousClass3 extends o implements Function1<LeaveGuildDialogViewModel.ViewState, Unit> {
+        public AnonymousClass3() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(LeaveGuildDialogViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(LeaveGuildDialogViewModel.ViewState viewState) {
+            m.checkNotNullParameter(viewState, "viewState");
+            WidgetLeaveGuildDialog.access$configureUI(WidgetLeaveGuildDialog.this, viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.leave.WidgetLeaveGuildDialog$onResume$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetLeaveGuildDialog.kt */
+    public final class AnonymousClass4 extends o implements Function1<LeaveGuildDialogViewModel.Event, Unit> {
+        public AnonymousClass4() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(LeaveGuildDialogViewModel.Event event) {
+            invoke2(event);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(LeaveGuildDialogViewModel.Event event) {
+            m.checkNotNullParameter(event, "event");
+            WidgetLeaveGuildDialog.access$handleEvent(WidgetLeaveGuildDialog.this, event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetLeaveGuildDialog.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, long guildId) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            Bundle bundle = new Bundle();
+            bundle.putLong("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
+            WidgetLeaveGuildDialog widgetLeaveGuildDialog = new WidgetLeaveGuildDialog();
+            widgetLeaveGuildDialog.setArguments(bundle);
+            widgetLeaveGuildDialog.show(fragmentManager, WidgetLeaveGuildDialog.class.getSimpleName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetLeaveGuildDialog() {
-        super(R$layout.leave_guild_dialog);
+        super(R.layout.leave_guild_dialog);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetLeaveGuildDialog$binding$2.INSTANCE, null, 2, null);
         WidgetLeaveGuildDialog$viewModel$2 widgetLeaveGuildDialog$viewModel$2 = new WidgetLeaveGuildDialog$viewModel$2(this);
         g0 g0Var = new g0(this);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(LeaveGuildDialogViewModel.class), new WidgetLeaveGuildDialog$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetLeaveGuildDialog$viewModel$2));
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetLeaveGuildDialog widgetLeaveGuildDialog, LeaveGuildDialogViewModel$ViewState leaveGuildDialogViewModel$ViewState) {
-        widgetLeaveGuildDialog.configureUI(leaveGuildDialogViewModel$ViewState);
+    public static final /* synthetic */ void access$configureUI(WidgetLeaveGuildDialog widgetLeaveGuildDialog, LeaveGuildDialogViewModel.ViewState viewState) {
+        widgetLeaveGuildDialog.configureUI(viewState);
     }
 
     public static final /* synthetic */ Bundle access$getArgumentsOrDefault$p(WidgetLeaveGuildDialog widgetLeaveGuildDialog) {
@@ -54,13 +144,13 @@ public final class WidgetLeaveGuildDialog extends AppDialog {
         return widgetLeaveGuildDialog.getViewModel();
     }
 
-    public static final /* synthetic */ void access$handleEvent(WidgetLeaveGuildDialog widgetLeaveGuildDialog, LeaveGuildDialogViewModel$Event leaveGuildDialogViewModel$Event) {
-        widgetLeaveGuildDialog.handleEvent(leaveGuildDialogViewModel$Event);
+    public static final /* synthetic */ void access$handleEvent(WidgetLeaveGuildDialog widgetLeaveGuildDialog, LeaveGuildDialogViewModel.Event event) {
+        widgetLeaveGuildDialog.handleEvent(event);
     }
 
-    private final void configureUI(LeaveGuildDialogViewModel$ViewState viewState) {
-        if (!(viewState instanceof LeaveGuildDialogViewModel$ViewState$Valid)) {
-            if (m.areEqual(viewState, LeaveGuildDialogViewModel$ViewState$Invalid.INSTANCE)) {
+    private final void configureUI(LeaveGuildDialogViewModel.ViewState viewState) {
+        if (!(viewState instanceof LeaveGuildDialogViewModel.ViewState.Valid)) {
+            if (m.areEqual(viewState, LeaveGuildDialogViewModel.ViewState.Invalid.INSTANCE)) {
                 dismiss();
                 return;
             }
@@ -68,13 +158,13 @@ public final class WidgetLeaveGuildDialog extends AppDialog {
         }
         TextView textView = getBinding().e;
         m.checkNotNullExpressionValue(textView, "binding.leaveGuildDialogHeader");
-        LeaveGuildDialogViewModel$ViewState$Valid leaveGuildDialogViewModel$ViewState$Valid = (LeaveGuildDialogViewModel$ViewState$Valid) viewState;
-        b.n(textView, 2131892539, new Object[]{leaveGuildDialogViewModel$ViewState$Valid.getGuild().getName()}, null, 4);
+        LeaveGuildDialogViewModel.ViewState.Valid valid = (LeaveGuildDialogViewModel.ViewState.Valid) viewState;
+        b.n(textView, R.string.leave_server_title, new Object[]{valid.getGuild().getName()}, null, 4);
         TextView textView2 = getBinding().d;
         m.checkNotNullExpressionValue(textView2, "binding.leaveGuildDialogBody");
-        b.n(textView2, leaveGuildDialogViewModel$ViewState$Valid.getGuild().isHub() ? 2131892535 : 2131892538, new Object[]{leaveGuildDialogViewModel$ViewState$Valid.getGuild().getName()}, null, 4);
-        getBinding().c.setText(getString(leaveGuildDialogViewModel$ViewState$Valid.getGuild().isHub() ? 2131892534 : 2131892536));
-        getBinding().c.setIsLoading(leaveGuildDialogViewModel$ViewState$Valid.isLoading());
+        b.n(textView2, valid.getGuild().isHub() ? R.string.leave_hub_body : R.string.leave_server_body_mobile, new Object[]{valid.getGuild().getName()}, null, 4);
+        getBinding().c.setText(getString(valid.getGuild().isHub() ? R.string.leave_hub : R.string.leave_server));
+        getBinding().c.setIsLoading(valid.isLoading());
     }
 
     private final LeaveGuildDialogBinding getBinding() {
@@ -85,8 +175,8 @@ public final class WidgetLeaveGuildDialog extends AppDialog {
         return (LeaveGuildDialogViewModel) this.viewModel.getValue();
     }
 
-    private final void handleEvent(LeaveGuildDialogViewModel$Event event) {
-        if (m.areEqual(event, LeaveGuildDialogViewModel$Event$Dismiss.INSTANCE)) {
+    private final void handleEvent(LeaveGuildDialogViewModel.Event event) {
+        if (m.areEqual(event, LeaveGuildDialogViewModel.Event.Dismiss.INSTANCE)) {
             dismiss();
         }
     }
@@ -95,9 +185,9 @@ public final class WidgetLeaveGuildDialog extends AppDialog {
     public void onResume() {
         super.onResume();
         requireDialog().setCanceledOnTouchOutside(true);
-        getBinding().c.setOnClickListener(new WidgetLeaveGuildDialog$onResume$1(this));
-        getBinding().f2128b.setOnClickListener(new WidgetLeaveGuildDialog$onResume$2(this));
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetLeaveGuildDialog.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetLeaveGuildDialog$onResume$3(this), 62, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetLeaveGuildDialog.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetLeaveGuildDialog$onResume$4(this), 62, (Object) null);
+        getBinding().c.setOnClickListener(new AnonymousClass1());
+        getBinding().f2128b.setOnClickListener(new AnonymousClass2());
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetLeaveGuildDialog.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass3(), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetLeaveGuildDialog.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass4(), 62, (Object) null);
     }
 }

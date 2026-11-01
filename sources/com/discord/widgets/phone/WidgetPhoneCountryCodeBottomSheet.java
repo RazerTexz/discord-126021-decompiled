@@ -1,10 +1,12 @@
 package com.discord.widgets.phone;
 
 import android.content.Context;
+import android.text.Editable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppBottomSheet;
 import com.discord.databinding.WidgetPhoneCountryCodeBottomSheetBinding;
 import com.discord.models.phone.PhoneCountryCode;
@@ -18,12 +20,15 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.google.android.material.textfield.TextInputLayout;
 import d0.g0.w;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 import rx.Observable;
 import rx.subjects.BehaviorSubject;
@@ -32,12 +37,87 @@ import rx.subjects.BehaviorSubject;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetPhoneCountryCodeBottomSheet extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetPhoneCountryCodeBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetPhoneCountryCodeBottomSheetBinding;", 0)};
-    public static final WidgetPhoneCountryCodeBottomSheet$Companion Companion = new WidgetPhoneCountryCodeBottomSheet$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final PhoneCountryCodeAdapter adapter;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
     private final BehaviorSubject<String> nameFilterSubject;
+
+    /* JADX INFO: renamed from: com.discord.widgets.phone.WidgetPhoneCountryCodeBottomSheet$configureUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetPhoneCountryCodeBottomSheet.kt */
+    public final class AnonymousClass1 implements OnCountryCodeSelectedListener {
+        public final /* synthetic */ StorePhone $phoneStore;
+
+        public AnonymousClass1(StorePhone storePhone) {
+            this.$phoneStore = storePhone;
+        }
+
+        @Override // com.discord.widgets.phone.OnCountryCodeSelectedListener
+        public final void onCountryCodeSelected(PhoneCountryCode phoneCountryCode) {
+            m.checkNotNullParameter(phoneCountryCode, "it");
+            this.$phoneStore.updateSelectedCountryCode(phoneCountryCode);
+            WidgetPhoneCountryCodeBottomSheet.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.phone.WidgetPhoneCountryCodeBottomSheet$onResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetPhoneCountryCodeBottomSheet.kt */
+    public final class AnonymousClass1 extends o implements Function1<Editable, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            m.checkNotNullParameter(editable, "it");
+            WidgetPhoneCountryCodeBottomSheet.access$getNameFilterSubject$p(WidgetPhoneCountryCodeBottomSheet.this).onNext(editable.toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.phone.WidgetPhoneCountryCodeBottomSheet$onResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetPhoneCountryCodeBottomSheet.kt */
+    public final class AnonymousClass2 extends o implements Function1<String, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            WidgetPhoneCountryCodeBottomSheet widgetPhoneCountryCodeBottomSheet = WidgetPhoneCountryCodeBottomSheet.this;
+            m.checkNotNullExpressionValue(str, "it");
+            WidgetPhoneCountryCodeBottomSheet.access$configureUI(widgetPhoneCountryCodeBottomSheet, str);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetPhoneCountryCodeBottomSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager context) {
+            m.checkNotNullParameter(context, "context");
+            new WidgetPhoneCountryCodeBottomSheet().show(context, WidgetPhoneCountryCodeBottomSheet.class.getName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public WidgetPhoneCountryCodeBottomSheet() {
         super(false, 1, null);
@@ -59,7 +139,7 @@ public final class WidgetPhoneCountryCodeBottomSheet extends AppBottomSheet {
     /* JADX WARN: Code duplicated, block: B:9:0x0041  */
     private final void configureUI(String filter) {
         boolean z2;
-        StorePhone phone = StoreStream.Companion.getPhone();
+        StorePhone phone = StoreStream.INSTANCE.getPhone();
         List<PhoneCountryCode> countryCodes = phone.getCountryCodes();
         ArrayList arrayList = new ArrayList();
         Iterator<T> it = countryCodes.iterator();
@@ -69,7 +149,7 @@ public final class WidgetPhoneCountryCodeBottomSheet extends AppBottomSheet {
                 RecyclerView recyclerView = getBinding().f2509b;
                 m.checkNotNullExpressionValue(recyclerView, "binding.phoneCountryCodeRecycler");
                 recyclerView.setAdapter(this.adapter);
-                this.adapter.configure(arrayList, new WidgetPhoneCountryCodeBottomSheet$configureUI$1(this, phone));
+                this.adapter.configure(arrayList, new AnonymousClass1(phone));
                 return;
             }
             Object next = it.next();
@@ -92,7 +172,7 @@ public final class WidgetPhoneCountryCodeBottomSheet extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
-        return R$layout.widget_phone_country_code_bottom_sheet;
+        return R.layout.widget_phone_country_code_bottom_sheet;
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
@@ -100,10 +180,10 @@ public final class WidgetPhoneCountryCodeBottomSheet extends AppBottomSheet {
         super.onResume();
         TextInputLayout textInputLayout = getBinding().c;
         m.checkNotNullExpressionValue(textInputLayout, "binding.phoneCountryCodeSearch");
-        ViewExtensions.addBindedTextWatcher(textInputLayout, this, new WidgetPhoneCountryCodeBottomSheet$onResume$1(this));
+        ViewExtensions.addBindedTextWatcher(textInputLayout, this, new AnonymousClass1());
         Observable<String> observableP = this.nameFilterSubject.p(200L, TimeUnit.MILLISECONDS);
         m.checkNotNullExpressionValue(observableP, "nameFilterSubject.deboun…0, TimeUnit.MILLISECONDS)");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableP, this, null, 2, null), WidgetPhoneCountryCodeBottomSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetPhoneCountryCodeBottomSheet$onResume$2(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableP, this, null, 2, null), WidgetPhoneCountryCodeBottomSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
         configureUI("");
     }
 }

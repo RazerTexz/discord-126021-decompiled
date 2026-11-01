@@ -5,7 +5,6 @@ import android.util.Pair;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
-import com.google.android.gms.ads.identifier.AdvertisingIdClient$Info;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.Locale;
@@ -59,7 +58,7 @@ public final class q8 extends i9 {
         Objects.requireNonNull(cVar);
         this.f = jElapsedRealtime + cVar.n(str, p.f1552b);
         try {
-            AdvertisingIdClient$Info advertisingIdInfo = AdvertisingIdClient.getAdvertisingIdInfo(this.a.f1570b);
+            AdvertisingIdClient.Info advertisingIdInfo = AdvertisingIdClient.getAdvertisingIdInfo(this.a.f1570b);
             if (advertisingIdInfo != null) {
                 this.d = advertisingIdInfo.getId();
                 this.e = advertisingIdInfo.isLimitAdTrackingEnabled();

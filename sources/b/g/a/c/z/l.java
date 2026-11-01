@@ -1,29 +1,26 @@
 package b.g.a.c.z;
 
-import b.g.a.a.i$d;
-import b.g.a.a.p$b;
-import b.g.a.a.z$a;
+import b.g.a.a.p;
 import b.g.a.c.c0.g0;
 import b.g.a.c.c0.q;
 import b.g.a.c.c0.r;
-import b.g.a.c.c0.t$a;
+import b.g.a.c.c0.t;
 import b.g.a.c.c0.z;
-import b.g.a.c.p;
 import b.g.a.c.z.l;
 import java.io.Serializable;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: MapperConfig.java */
 /* JADX INFO: loaded from: classes3.dex */
-public abstract class l<T extends l<T>> implements t$a, Serializable {
+public abstract class l<T extends l<T>> implements t.a, Serializable {
     private static final long serialVersionUID = 2;
     public final a _base;
     public final int _mapperFeatures;
 
     static {
-        p$b p_b = p$b.j;
-        p$b p_b2 = p$b.j;
-        i$d i_d = i$d.j;
+        p.b bVar = p.b.j;
+        p.b bVar2 = p.b.j;
+        b.g.a.a.i.d dVar = b.g.a.a.i.d.j;
     }
 
     public l(a aVar, int i) {
@@ -32,7 +29,7 @@ public abstract class l<T extends l<T>> implements t$a, Serializable {
     }
 
     public final boolean b() {
-        return q(p.CAN_OVERRIDE_ACCESS_MODIFIERS);
+        return q(b.g.a.c.p.CAN_OVERRIDE_ACCESS_MODIFIERS);
     }
 
     public static <F extends Enum<F> & e> int c(Class<F> cls) {
@@ -51,25 +48,25 @@ public abstract class l<T extends l<T>> implements t$a, Serializable {
     }
 
     public b.g.a.c.b e() {
-        return q(p.USE_ANNOTATIONS) ? this._base._annotationIntrospector : z.j;
+        return q(b.g.a.c.p.USE_ANNOTATIONS) ? this._base._annotationIntrospector : z.j;
     }
 
     public abstract f f(Class<?> cls);
 
-    public abstract p$b g(Class<?> cls, Class<?> cls2);
+    public abstract p.b g(Class<?> cls, Class<?> cls2);
 
     public abstract Boolean h();
 
-    public abstract i$d i(Class<?> cls);
+    public abstract b.g.a.a.i.d i(Class<?> cls);
 
-    public abstract p$b j(Class<?> cls);
+    public abstract p.b j(Class<?> cls);
 
-    public p$b k(Class<?> cls, p$b p_b) {
+    public p.b k(Class<?> cls, p.b bVar) {
         Objects.requireNonNull(f(cls));
-        return p_b;
+        return bVar;
     }
 
-    public abstract z$a l();
+    public abstract b.g.a.a.z.a l();
 
     public abstract g0<?> m(Class<?> cls, b.g.a.c.c0.c cVar);
 
@@ -84,10 +81,10 @@ public abstract class l<T extends l<T>> implements t$a, Serializable {
     }
 
     public final boolean p() {
-        return q(p.USE_ANNOTATIONS);
+        return q(b.g.a.c.p.USE_ANNOTATIONS);
     }
 
-    public final boolean q(p pVar) {
+    public final boolean q(b.g.a.c.p pVar) {
         return pVar.h(this._mapperFeatures);
     }
 

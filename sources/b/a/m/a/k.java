@@ -1,23 +1,21 @@
 package b.a.m.a;
 
-import com.discord.models.domain.Model$JsonReader;
-import com.discord.models.domain.Model$JsonReader$ItemFactory;
+import com.discord.models.domain.Model;
 import com.discord.models.domain.ModelNotificationSettings;
-import com.discord.models.domain.ModelNotificationSettings$ChannelOverride;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes.dex */
-public final /* synthetic */ class k implements Model$JsonReader$ItemFactory {
-    public final /* synthetic */ Model$JsonReader a;
+public final /* synthetic */ class k implements Model.JsonReader.ItemFactory {
+    public final /* synthetic */ Model.JsonReader a;
 
-    public /* synthetic */ k(Model$JsonReader model$JsonReader) {
-        this.a = model$JsonReader;
+    public /* synthetic */ k(Model.JsonReader jsonReader) {
+        this.a = jsonReader;
     }
 
-    @Override // com.discord.models.domain.Model$JsonReader$ItemFactory
+    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
     public final Object get() {
-        Model$JsonReader model$JsonReader = this.a;
+        Model.JsonReader jsonReader = this.a;
         int i = ModelNotificationSettings.FREQUENCY_ALL;
-        return (ModelNotificationSettings$ChannelOverride) model$JsonReader.parse(new ModelNotificationSettings$ChannelOverride());
+        return (ModelNotificationSettings.ChannelOverride) jsonReader.parse(new ModelNotificationSettings.ChannelOverride());
     }
 }

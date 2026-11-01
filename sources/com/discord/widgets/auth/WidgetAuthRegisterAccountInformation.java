@@ -1,32 +1,31 @@
 package com.discord.widgets.auth;
 
 import android.content.Intent;
+import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import b.a.d.j;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
+import com.discord.api.auth.RegisterResponse;
 import com.discord.app.AppFragment;
 import com.discord.app.LoggingConfig;
 import com.discord.databinding.WidgetAuthRegisterAccountInformationBinding;
 import com.discord.models.experiments.domain.Experiment;
 import com.discord.stores.StoreAuthentication;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.auth.RegistrationFlowRepo;
-import com.discord.utilities.auth.RegistrationFlowRepo$Companion;
 import com.discord.utilities.birthday.BirthdayHelper;
-import com.discord.utilities.captcha.CaptchaHelper$CaptchaPayload;
+import com.discord.utilities.captcha.CaptchaHelper;
 import com.discord.utilities.error.Error;
-import com.discord.utilities.error.Error$Response;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.TimeUtils;
-import com.discord.utilities.time.TimeUtils$UTCFormat;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.utilities.view.validators.ValidationManager;
@@ -40,6 +39,7 @@ import d0.g;
 import d0.t.n;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -47,6 +47,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.reflect.KProperty;
@@ -68,14 +69,137 @@ public final class WidgetAuthRegisterAccountInformation extends AppFragment {
     /* JADX INFO: renamed from: validationManager$delegate, reason: from kotlin metadata */
     private final Lazy validationManager;
 
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterAccountInformation$configureUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetAuthRegisterAccountInformation.kt */
+    public final class AnonymousClass1 extends o implements Function1<TextView, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(TextView textView) {
+            invoke2(textView);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(TextView textView) {
+            m.checkNotNullParameter(textView, "it");
+            WidgetAuthRegisterAccountInformation.register$default(WidgetAuthRegisterAccountInformation.this, null, 1, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterAccountInformation$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetAuthRegisterAccountInformation.kt */
+    public final class AnonymousClass1 extends o implements Function1<Editable, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            m.checkNotNullParameter(editable, "it");
+            RegistrationFlowRepo instance = RegistrationFlowRepo.INSTANCE.getINSTANCE();
+            TextInputLayout textInputLayout = WidgetAuthRegisterAccountInformation.access$getBinding$p(WidgetAuthRegisterAccountInformation.this).e;
+            m.checkNotNullExpressionValue(textInputLayout, "binding.authRegisterAccountInformationUsernameWrap");
+            instance.setUsername(ViewExtensions.getTextOrEmpty(textInputLayout));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterAccountInformation$register$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetAuthRegisterAccountInformation.kt */
+    public final class AnonymousClass1 extends o implements Function1<RegisterResponse, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RegisterResponse registerResponse) {
+            invoke2(registerResponse);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RegisterResponse registerResponse) {
+            m.checkNotNullParameter(registerResponse, "it");
+            AnalyticsTracker.INSTANCE.registered(true);
+            RegistrationFlowRepo.trackTransition$default(RegistrationFlowRepo.INSTANCE.getINSTANCE(), "Account Information", "success", null, 4, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterAccountInformation$configureUI$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetAuthRegisterAccountInformation.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetAuthRegisterAccountInformation.register$default(WidgetAuthRegisterAccountInformation.this, null, 1, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterAccountInformation$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetAuthRegisterAccountInformation.kt */
+    public final class AnonymousClass2 extends o implements Function1<Editable, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            m.checkNotNullParameter(editable, "it");
+            RegistrationFlowRepo instance = RegistrationFlowRepo.INSTANCE.getINSTANCE();
+            TextInputLayout textInputLayout = WidgetAuthRegisterAccountInformation.access$getBinding$p(WidgetAuthRegisterAccountInformation.this).d;
+            m.checkNotNullExpressionValue(textInputLayout, "binding.authRegisterAccountInformationPasswordWrap");
+            instance.setPassword(ViewExtensions.getTextOrEmpty(textInputLayout));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.auth.WidgetAuthRegisterAccountInformation$register$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetAuthRegisterAccountInformation.kt */
+    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            m.checkNotNullParameter(error, "it");
+            AnalyticsTracker.INSTANCE.registered(false);
+            WidgetAuthRegisterAccountInformation.access$getBinding$p(WidgetAuthRegisterAccountInformation.this).c.setIsLoading(false);
+            WidgetAuthRegisterAccountInformation.access$handleError(WidgetAuthRegisterAccountInformation.this, error);
+        }
+    }
+
     public WidgetAuthRegisterAccountInformation() {
-        super(R$layout.widget_auth_register_account_information);
+        super(R.layout.widget_auth_register_account_information);
         this.loggingConfig = new LoggingConfig(false, null, WidgetAuthRegisterAccountInformation$loggingConfig$1.INSTANCE, 3);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetAuthRegisterAccountInformation$binding$2.INSTANCE, null, 2, null);
         this.shouldValidateInputs = true;
         this.shouldShowAgeGate = true;
-        this.captchaLauncher = WidgetAuthCaptcha.Companion.registerForResult(this, new WidgetAuthRegisterAccountInformation$captchaLauncher$1(this));
-        this.birthdayLauncher = WidgetAuthBirthday.Companion.registerForResult(this, new WidgetAuthRegisterAccountInformation$birthdayLauncher$1(this));
+        this.captchaLauncher = WidgetAuthCaptcha.INSTANCE.registerForResult(this, new WidgetAuthRegisterAccountInformation$captchaLauncher$1(this));
+        this.birthdayLauncher = WidgetAuthBirthday.INSTANCE.registerForResult(this, new WidgetAuthRegisterAccountInformation$birthdayLauncher$1(this));
         this.validationManager = g.lazy(new WidgetAuthRegisterAccountInformation$validationManager$2(this));
     }
 
@@ -91,8 +215,8 @@ public final class WidgetAuthRegisterAccountInformation extends AppFragment {
         return widgetAuthRegisterAccountInformation.isConsentRequired;
     }
 
-    public static final /* synthetic */ void access$register(WidgetAuthRegisterAccountInformation widgetAuthRegisterAccountInformation, CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload) {
-        widgetAuthRegisterAccountInformation.register(captchaHelper$CaptchaPayload);
+    public static final /* synthetic */ void access$register(WidgetAuthRegisterAccountInformation widgetAuthRegisterAccountInformation, CaptchaHelper.CaptchaPayload captchaPayload) {
+        widgetAuthRegisterAccountInformation.register(captchaPayload);
     }
 
     public static final /* synthetic */ void access$setConsentRequired$p(WidgetAuthRegisterAccountInformation widgetAuthRegisterAccountInformation, boolean z2) {
@@ -111,13 +235,13 @@ public final class WidgetAuthRegisterAccountInformation extends AppFragment {
         } else {
             TextInputLayout textInputLayout2 = getBinding().d;
             m.checkNotNullExpressionValue(textInputLayout2, "binding.authRegisterAccountInformationPasswordWrap");
-            ViewExtensions.setOnImeActionDone$default(textInputLayout2, false, new WidgetAuthRegisterAccountInformation$configureUI$1(this), 1, null);
+            ViewExtensions.setOnImeActionDone$default(textInputLayout2, false, new AnonymousClass1(), 1, null);
         }
-        getBinding().c.setOnClickListener(new WidgetAuthRegisterAccountInformation$configureUI$2(this));
-        if (RegistrationFlowRepo.Companion.getINSTANCE().getBirthday() == null && this.shouldShowAgeGate) {
-            getBinding().c.setText(getText(2131893214));
+        getBinding().c.setOnClickListener(new AnonymousClass2());
+        if (RegistrationFlowRepo.INSTANCE.getINSTANCE().getBirthday() == null && this.shouldShowAgeGate) {
+            getBinding().c.setText(getText(R.string.next));
         } else {
-            getBinding().c.setText(getText(2131894730));
+            getBinding().c.setText(getText(R.string.register));
         }
     }
 
@@ -125,7 +249,7 @@ public final class WidgetAuthRegisterAccountInformation extends AppFragment {
         return (WidgetAuthRegisterAccountInformationBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger$a
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.a
     public LoggingConfig getLoggingConfig() {
         return this.loggingConfig;
     }
@@ -135,14 +259,14 @@ public final class WidgetAuthRegisterAccountInformation extends AppFragment {
     }
 
     private final void handleError(Error error) {
-        Error$Response response = error.getResponse();
+        Error.Response response = error.getResponse();
         m.checkNotNullExpressionValue(response, "error.response");
         Map<String, List<String>> messages = response.getMessages();
         m.checkNotNullExpressionValue(messages, "error.response.messages");
         if (messages.containsKey(BirthdayHelper.DATE_OF_BIRTH_KEY)) {
-            RegistrationFlowRepo.Companion.getINSTANCE().trackTransition("Account Information", "response_error", d0.t.m.listOf(BirthdayHelper.DATE_OF_BIRTH_KEY));
+            RegistrationFlowRepo.INSTANCE.getINSTANCE().trackTransition("Account Information", "response_error", d0.t.m.listOf(BirthdayHelper.DATE_OF_BIRTH_KEY));
             error.setShowErrorToasts(false);
-            Error$Response response2 = error.getResponse();
+            Error.Response response2 = error.getResponse();
             m.checkNotNullExpressionValue(response2, "error.response");
             Map<String, List<String>> messages2 = response2.getMessages();
             m.checkNotNullExpressionValue(messages2, "error.response.messages");
@@ -151,40 +275,40 @@ public final class WidgetAuthRegisterAccountInformation extends AppFragment {
                 listEmptyList = n.emptyList();
             }
             m.checkNotNullExpressionValue(listEmptyList, "error.response.messages\n…IRTH_KEY) { emptyList() }");
-            StoreStream.Companion.getAuthentication().setAgeGateError(u.joinToString$default(listEmptyList, "\n", null, null, 0, null, null, 62, null));
+            StoreStream.INSTANCE.getAuthentication().setAgeGateError(u.joinToString$default(listEmptyList, "\n", null, null, 0, null, null, 62, null));
             j.b(requireContext(), false, new Intent().putExtra("com.discord.intent.extra.EXTRA_HOME_CONFIG", new HomeConfig(null, null, true, 3, null)));
             return;
         }
-        Error$Response response3 = error.getResponse();
+        Error.Response response3 = error.getResponse();
         m.checkNotNullExpressionValue(response3, "error.response");
         if (response3.getMessages().isEmpty()) {
-            RegistrationFlowRepo instance = RegistrationFlowRepo.Companion.getINSTANCE();
-            Error$Response response4 = error.getResponse();
+            RegistrationFlowRepo instance = RegistrationFlowRepo.INSTANCE.getINSTANCE();
+            Error.Response response4 = error.getResponse();
             m.checkNotNullExpressionValue(response4, "error.response");
             instance.trackTransition("Register", "response_error", n.listOf((Object[]) new String[]{"connection_error", error.getType().toString(), String.valueOf(response4.getCode())}));
             return;
         }
         ValidationManager validationManager = getValidationManager();
-        Error$Response response5 = error.getResponse();
+        Error.Response response5 = error.getResponse();
         m.checkNotNullExpressionValue(response5, "error.response");
         Map<String, List<String>> messages3 = response5.getMessages();
         m.checkNotNullExpressionValue(messages3, "error.response.messages");
         List<String> mutableList = u.toMutableList((Collection) validationManager.setErrors(messages3));
-        Error$Response response6 = error.getResponse();
+        Error.Response response6 = error.getResponse();
         m.checkNotNullExpressionValue(response6, "error.response");
         List<String> mutableList2 = u.toMutableList((Collection) response6.getMessages().keySet());
-        RegistrationFlowRepo$Companion registrationFlowRepo$Companion = RegistrationFlowRepo.Companion;
-        RegistrationFlowRepo instance2 = registrationFlowRepo$Companion.getINSTANCE();
-        Error$Response response7 = error.getResponse();
+        RegistrationFlowRepo.Companion companion = RegistrationFlowRepo.INSTANCE;
+        RegistrationFlowRepo instance2 = companion.getINSTANCE();
+        Error.Response response7 = error.getResponse();
         m.checkNotNullExpressionValue(response7, "error.response");
         instance2.setErrors(response7.getMessages());
-        WidgetAuthCaptcha.Companion.processErrorsForCaptcha(requireContext(), this.captchaLauncher, mutableList, error);
+        WidgetAuthCaptcha.INSTANCE.processErrorsForCaptcha(requireContext(), this.captchaLauncher, mutableList, error);
         if (mutableList.contains(NotificationCompat.CATEGORY_EMAIL)) {
             requireActivity().onBackPressed();
             mutableList.remove(NotificationCompat.CATEGORY_EMAIL);
             mutableList2.remove(NotificationCompat.CATEGORY_EMAIL);
         }
-        registrationFlowRepo$Companion.getINSTANCE().trackTransition("Account Information", "response_error", mutableList2);
+        companion.getINSTANCE().trackTransition("Account Information", "response_error", mutableList2);
         error.setShowErrorToasts(!mutableList.isEmpty());
     }
 
@@ -203,15 +327,15 @@ public final class WidgetAuthRegisterAccountInformation extends AppFragment {
     public void onViewBound(View view) {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
-        RegistrationFlowRepo$Companion registrationFlowRepo$Companion = RegistrationFlowRepo.Companion;
-        RegistrationFlowRepo.trackTransition$default(registrationFlowRepo$Companion.getINSTANCE(), "Account Information", "submitted", null, 4, null);
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        Experiment userExperiment = storeStream$Companion.getExperiments().getUserExperiment("2021-01_android_registration_flow", true);
+        RegistrationFlowRepo.Companion companion = RegistrationFlowRepo.INSTANCE;
+        RegistrationFlowRepo.trackTransition$default(companion.getINSTANCE(), "Account Information", "submitted", null, 4, null);
+        StoreStream.Companion companion2 = StoreStream.INSTANCE;
+        Experiment userExperiment = companion2.getExperiments().getUserExperiment("2021-01_android_registration_flow", true);
         this.shouldValidateInputs = (userExperiment == null || userExperiment.getBucket() != 1) && (userExperiment == null || userExperiment.getBucket() != 3);
         boolean z2 = (userExperiment == null || userExperiment.getBucket() != 2) && (userExperiment == null || userExperiment.getBucket() != 3);
         this.shouldShowAgeGate = z2;
         if (!z2) {
-            this.isConsentRequired = storeStream$Companion.getAuthentication().isConsentRequired();
+            this.isConsentRequired = companion2.getAuthentication().isConsentRequired();
         } else {
             this.isConsentRequired = false;
             LinkifiedTextView linkifiedTextView = getBinding().f2236b;
@@ -223,27 +347,27 @@ public final class WidgetAuthRegisterAccountInformation extends AppFragment {
         materialCheckBox.setVisibility(this.isConsentRequired ? 0 : 8);
         LinkifiedTextView linkifiedTextView2 = getBinding().f2236b;
         m.checkNotNullExpressionValue(linkifiedTextView2, "binding.authPolicyLinks");
-        b.n(linkifiedTextView2, this.isConsentRequired ? 2131896293 : 2131896290, new Object[]{getString(2131896289), getString(2131894539)}, null, 4);
+        b.n(linkifiedTextView2, this.isConsentRequired ? R.string.terms_privacy_opt_in : R.string.terms_privacy, new Object[]{getString(R.string.terms_of_service_url), getString(R.string.privacy_policy_url)}, null, 4);
         getBinding().c.setIsLoading(false);
-        RegistrationFlowRepo.trackTransition$default(registrationFlowRepo$Companion.getINSTANCE(), "Account Information", "viewed", null, 4, null);
+        RegistrationFlowRepo.trackTransition$default(companion.getINSTANCE(), "Account Information", "viewed", null, 4, null);
         TextInputLayout textInputLayout = getBinding().e;
         m.checkNotNullExpressionValue(textInputLayout, "binding.authRegisterAccountInformationUsernameWrap");
-        ViewExtensions.setText(textInputLayout, registrationFlowRepo$Companion.getINSTANCE().getUsername());
+        ViewExtensions.setText(textInputLayout, companion.getINSTANCE().getUsername());
         TextInputLayout textInputLayout2 = getBinding().d;
         m.checkNotNullExpressionValue(textInputLayout2, "binding.authRegisterAccountInformationPasswordWrap");
-        ViewExtensions.setText(textInputLayout2, registrationFlowRepo$Companion.getINSTANCE().getPassword());
+        ViewExtensions.setText(textInputLayout2, companion.getINSTANCE().getPassword());
         TextInputLayout textInputLayout3 = getBinding().e;
         m.checkNotNullExpressionValue(textInputLayout3, "binding.authRegisterAccountInformationUsernameWrap");
-        ViewExtensions.addBindedTextWatcher(textInputLayout3, this, new WidgetAuthRegisterAccountInformation$onViewBound$1(this));
+        ViewExtensions.addBindedTextWatcher(textInputLayout3, this, new AnonymousClass1());
         TextInputLayout textInputLayout4 = getBinding().d;
         m.checkNotNullExpressionValue(textInputLayout4, "binding.authRegisterAccountInformationPasswordWrap");
-        ViewExtensions.addBindedTextWatcher(textInputLayout4, this, new WidgetAuthRegisterAccountInformation$onViewBound$2(this));
+        ViewExtensions.addBindedTextWatcher(textInputLayout4, this, new AnonymousClass2());
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        Map<String, List<String>> errors = RegistrationFlowRepo.Companion.getINSTANCE().getErrors();
+        Map<String, List<String>> errors = RegistrationFlowRepo.INSTANCE.getINSTANCE().getErrors();
         if (errors != null) {
             getValidationManager().setErrors(errors);
             Set<String> setKeySet = errors.keySet();
@@ -265,41 +389,41 @@ public final class WidgetAuthRegisterAccountInformation extends AppFragment {
             }
             List<String> list = u.toList(arrayList);
             if (!list.isEmpty()) {
-                RegistrationFlowRepo.Companion.getINSTANCE().trackTransition("Account Information", "response_error", list);
+                RegistrationFlowRepo.INSTANCE.getINSTANCE().trackTransition("Account Information", "response_error", list);
             }
         }
         configureUI();
     }
 
-    public static /* synthetic */ void register$default(WidgetAuthRegisterAccountInformation widgetAuthRegisterAccountInformation, CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload, int i, Object obj) {
+    public static /* synthetic */ void register$default(WidgetAuthRegisterAccountInformation widgetAuthRegisterAccountInformation, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
         if ((i & 1) != 0) {
-            captchaHelper$CaptchaPayload = null;
+            captchaPayload = null;
         }
-        widgetAuthRegisterAccountInformation.register(captchaHelper$CaptchaPayload);
+        widgetAuthRegisterAccountInformation.register(captchaPayload);
     }
 
-    private final void register(CaptchaHelper$CaptchaPayload captchaPayload) {
+    private final void register(CaptchaHelper.CaptchaPayload captchaPayload) {
         if (this.shouldValidateInputs && !ValidationManager.validate$default(getValidationManager(), false, 1, null)) {
-            RegistrationFlowRepo.trackTransition$default(RegistrationFlowRepo.Companion.getINSTANCE(), "Account Information", "input_error", null, 4, null);
+            RegistrationFlowRepo.trackTransition$default(RegistrationFlowRepo.INSTANCE.getINSTANCE(), "Account Information", "input_error", null, 4, null);
             return;
         }
-        RegistrationFlowRepo$Companion registrationFlowRepo$Companion = RegistrationFlowRepo.Companion;
-        if (registrationFlowRepo$Companion.getINSTANCE().getBirthday() == null && this.shouldShowAgeGate) {
-            RegistrationFlowRepo.trackTransition$default(registrationFlowRepo$Companion.getINSTANCE(), "Account Information", "success", null, 4, null);
+        RegistrationFlowRepo.Companion companion = RegistrationFlowRepo.INSTANCE;
+        if (companion.getINSTANCE().getBirthday() == null && this.shouldShowAgeGate) {
+            RegistrationFlowRepo.trackTransition$default(companion.getINSTANCE(), "Account Information", "success", null, 4, null);
             AnalyticsTracker.openModal$default("Enter Your Birthday", "Register", null, 4, null);
-            WidgetAuthBirthday.Companion.launch(requireContext(), this.birthdayLauncher);
+            WidgetAuthBirthday.INSTANCE.launch(requireContext(), this.birthdayLauncher);
             return;
         }
-        String uTCDateTime = registrationFlowRepo$Companion.getINSTANCE().getBirthday() != null ? TimeUtils.toUTCDateTime(registrationFlowRepo$Companion.getINSTANCE().getBirthday(), TimeUtils$UTCFormat.SHORT) : null;
+        String uTCDateTime = companion.getINSTANCE().getBirthday() != null ? TimeUtils.toUTCDateTime(companion.getINSTANCE().getBirthday(), TimeUtils.UTCFormat.SHORT) : null;
         getBinding().c.setIsLoading(true);
-        StoreAuthentication authentication = StoreStream.Companion.getAuthentication();
+        StoreAuthentication authentication = StoreStream.INSTANCE.getAuthentication();
         TextInputLayout textInputLayout = getBinding().e;
         m.checkNotNullExpressionValue(textInputLayout, "binding.authRegisterAccountInformationUsernameWrap");
         String textOrEmpty = ViewExtensions.getTextOrEmpty(textInputLayout);
-        String email = registrationFlowRepo$Companion.getINSTANCE().getEmail();
-        String phoneToken = registrationFlowRepo$Companion.getINSTANCE().getPhoneToken();
+        String email = companion.getINSTANCE().getEmail();
+        String phoneToken = companion.getINSTANCE().getPhoneToken();
         TextInputLayout textInputLayout2 = getBinding().d;
         m.checkNotNullExpressionValue(textInputLayout2, "binding.authRegisterAccountInformationPasswordWrap");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(authentication.register(textOrEmpty, email, phoneToken, ViewExtensions.getTextOrEmpty(textInputLayout2), captchaPayload, isConsented(), uTCDateTime), this, null, 2, null), WidgetAuthRegisterAccountInformation.class, getContext(), (Function1) null, new WidgetAuthRegisterAccountInformation$register$2(this), (Function0) null, (Function0) null, WidgetAuthRegisterAccountInformation$register$1.INSTANCE, 52, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(authentication.register(textOrEmpty, email, phoneToken, ViewExtensions.getTextOrEmpty(textInputLayout2), captchaPayload, isConsented(), uTCDateTime), this, null, 2, null), WidgetAuthRegisterAccountInformation.class, getContext(), (Function1) null, new AnonymousClass2(), (Function0) null, (Function0) null, AnonymousClass1.INSTANCE, 52, (Object) null);
     }
 }

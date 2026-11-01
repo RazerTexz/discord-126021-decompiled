@@ -13,9 +13,9 @@ public final class CommandTypeAdapter extends TypeAdapter<ApplicationCommandType
     @Override // com.google.gson.TypeAdapter
     public ApplicationCommandType read(JsonReader jsonReader) throws IOException {
         m.checkNotNullParameter(jsonReader, "in");
-        ApplicationCommandType$Companion applicationCommandType$Companion = ApplicationCommandType.Companion;
+        ApplicationCommandType.Companion companion = ApplicationCommandType.INSTANCE;
         int iY = jsonReader.y();
-        Objects.requireNonNull(applicationCommandType$Companion);
+        Objects.requireNonNull(companion);
         switch (iY) {
             case 1:
                 return ApplicationCommandType.SUBCOMMAND;

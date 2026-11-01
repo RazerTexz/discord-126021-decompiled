@@ -30,7 +30,7 @@ public final class NullSerializableTypeAdapter<T> extends TypeAdapter<NullSerial
     public Object read(JsonReader jsonReader) throws IOException {
         m.checkNotNullParameter(jsonReader, "in");
         T t = this.delegateTypeAdapter.read(jsonReader);
-        return t == null ? new NullSerializable$a(null, 1) : new NullSerializable$b(t);
+        return t == null ? new NullSerializable.a(null, 1) : new NullSerializable.b(t);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -38,7 +38,7 @@ public final class NullSerializableTypeAdapter<T> extends TypeAdapter<NullSerial
     public void write(JsonWriter jsonWriter, Object obj) throws IOException {
         NullSerializable nullSerializable = (NullSerializable) obj;
         m.checkNotNullParameter(jsonWriter, "out");
-        if (nullSerializable instanceof NullSerializable$b) {
+        if (nullSerializable instanceof NullSerializable.b) {
             Object objA = nullSerializable.a();
             Gson gson = this.gsonInstance;
             m.checkNotNull(objA);
@@ -47,7 +47,7 @@ public final class NullSerializableTypeAdapter<T> extends TypeAdapter<NullSerial
             typeAdapterI.write(jsonWriter, objA);
             return;
         }
-        if (nullSerializable instanceof NullSerializable$a) {
+        if (nullSerializable instanceof NullSerializable.a) {
             boolean z2 = jsonWriter.t;
             jsonWriter.t = true;
             jsonWriter.s();

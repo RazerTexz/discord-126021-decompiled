@@ -3,16 +3,23 @@ package b.a.q.k0;
 import android.content.Context;
 import android.os.Process;
 import d0.z.d.m;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: AudioPermissions.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class b {
-    public static final b$a a = new b$a(null);
+    public static final a a = new a(null);
     public final boolean c;
     public final boolean d;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final boolean f262b;
+
+    /* JADX INFO: compiled from: AudioPermissions.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
 
     public b(Context context) {
         m.checkNotNullParameter(context, "context");

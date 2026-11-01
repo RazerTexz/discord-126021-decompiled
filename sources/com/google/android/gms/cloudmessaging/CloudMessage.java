@@ -2,7 +2,7 @@ package com.google.android.gms.cloudmessaging;
 
 import android.content.Intent;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import b.c.a.a0.d;
 import b.i.a.f.d.c;
@@ -16,7 +16,7 @@ public final class CloudMessage extends AbstractSafeParcelable {
     public Intent j;
 
     @NonNull
-    public static final Parcelable$Creator<CloudMessage> CREATOR = new c();
+    public static final Parcelable.Creator<CloudMessage> CREATOR = new c();
 
     public CloudMessage(@NonNull Intent intent) {
         this.j = intent;

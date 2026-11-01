@@ -1,7 +1,7 @@
 package b.i.a.c.d3;
 
 import android.content.Context;
-import android.text.Layout$Alignment;
+import android.text.Layout;
 import android.text.Spanned;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.BackgroundColorSpan;
@@ -18,7 +18,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.Nullable;
 import b.i.a.c.f3.e0;
 import b.i.b.b.i0;
-import com.google.android.exoplayer2.ui.SubtitleView$a;
+import com.google.android.exoplayer2.ui.SubtitleView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 
 /* JADX INFO: compiled from: WebViewSubtitleOutput.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class r extends FrameLayout implements SubtitleView$a {
+public final class r extends FrameLayout implements SubtitleView.a {
     public final j j;
     public final WebView k;
     public List<b.i.a.c.b3.b> l;
@@ -38,6 +38,28 @@ public final class r extends FrameLayout implements SubtitleView$a {
     public float n;
     public int o;
     public float p;
+
+    /* JADX INFO: compiled from: WebViewSubtitleOutput.java */
+    public /* synthetic */ class a {
+        public static final /* synthetic */ int[] a;
+
+        static {
+            int[] iArr = new int[Layout.Alignment.values().length];
+            a = iArr;
+            try {
+                iArr[Layout.Alignment.ALIGN_NORMAL.ordinal()] = 1;
+            } catch (NoSuchFieldError unused) {
+            }
+            try {
+                a[Layout.Alignment.ALIGN_OPPOSITE.ordinal()] = 2;
+            } catch (NoSuchFieldError unused2) {
+            }
+            try {
+                a[Layout.Alignment.ALIGN_CENTER.ordinal()] = 3;
+            } catch (NoSuchFieldError unused3) {
+            }
+        }
+    }
 
     public r(Context context) {
         super(context, null);
@@ -55,7 +77,7 @@ public final class r extends FrameLayout implements SubtitleView$a {
         addView(qVar);
     }
 
-    @Override // com.google.android.exoplayer2.ui.SubtitleView$a
+    @Override // com.google.android.exoplayer2.ui.SubtitleView.a
     public void a(List<b.i.a.c.b3.b> list, k kVar, float f, int i, float f2) {
         this.m = kVar;
         this.n = f;
@@ -86,11 +108,11 @@ public final class r extends FrameLayout implements SubtitleView$a {
         return -50;
     }
 
-    public static String c(@Nullable Layout$Alignment layout$Alignment) {
-        if (layout$Alignment == null) {
+    public static String c(@Nullable Layout.Alignment alignment) {
+        if (alignment == null) {
             return "center";
         }
-        int i = r$a.a[layout$Alignment.ordinal()];
+        int i = a.a[alignment.ordinal()];
         if (i != 1) {
             return i != 2 ? "center" : "end";
         }
@@ -125,7 +147,7 @@ public final class r extends FrameLayout implements SubtitleView$a {
         String str4;
         String str5;
         String str6;
-        m$b m_b;
+        m.b bVar;
         String str7;
         String str8;
         int i2;
@@ -135,7 +157,7 @@ public final class r extends FrameLayout implements SubtitleView$a {
         float f;
         int i3;
         String strK6;
-        Layout$Alignment layout$Alignment;
+        Layout.Alignment alignment;
         String str10;
         int i4;
         String str11;
@@ -169,11 +191,11 @@ public final class r extends FrameLayout implements SubtitleView$a {
         map.put(b.c.a.a0.d.W("default_bg"), e0.k("background-color:%s;", b.c.a.a0.d.f2(rVar.m.c)));
         int i7 = 0;
         while (i7 < rVar.l.size()) {
-            b.i.a.c.b3.b bVar = rVar.l.get(i7);
-            float f3 = bVar.f838s;
+            b.i.a.c.b3.b bVar2 = rVar.l.get(i7);
+            float f3 = bVar2.f838s;
             float f4 = f3 != -3.4028235E38f ? f3 * 100.0f : 50.0f;
-            int iB2 = b(bVar.t);
-            float f5 = bVar.p;
+            int iB2 = b(bVar2.t);
+            float f5 = bVar2.p;
             if (f5 == -3.4028235E38f) {
                 c = 0;
                 Object[] objArr2 = new Object[i5];
@@ -181,12 +203,12 @@ public final class r extends FrameLayout implements SubtitleView$a {
                 strK2 = e0.k("%.2f%%", objArr2);
                 c2 = 0;
                 iB = -100;
-            } else if (bVar.q != i5) {
+            } else if (bVar2.q != i5) {
                 Object[] objArr3 = new Object[i5];
                 objArr3[c2] = Float.valueOf(f5 * 100.0f);
                 strK2 = e0.k("%.2f%%", objArr3);
                 c = 0;
-                iB = bVar.A == i5 ? -b(bVar.r) : b(bVar.r);
+                iB = bVar2.A == i5 ? -b(bVar2.r) : b(bVar2.r);
             } else {
                 if (f5 >= 0.0f) {
                     Object[] objArr4 = new Object[i5];
@@ -205,7 +227,7 @@ public final class r extends FrameLayout implements SubtitleView$a {
                 }
                 iB = 0;
             }
-            float f6 = bVar.u;
+            float f6 = bVar2.u;
             if (f6 != -3.4028235E38f) {
                 Object[] objArr6 = new Object[i5];
                 objArr6[c] = Float.valueOf(f6 * 100.0f);
@@ -213,12 +235,12 @@ public final class r extends FrameLayout implements SubtitleView$a {
             } else {
                 strK3 = "fit-content";
             }
-            String strC = c(bVar.m);
-            int i8 = bVar.A;
+            String strC = c(bVar2.m);
+            int i8 = bVar2.A;
             String str15 = i8 != i5 ? i8 != 2 ? "horizontal-tb" : "vertical-lr" : "vertical-rl";
-            String strD = rVar.d(bVar.f840y, bVar.f841z);
-            String strF2 = b.c.a.a0.d.f2(bVar.w ? bVar.f839x : rVar.m.d);
-            int i9 = bVar.A;
+            String strD = rVar.d(bVar2.f840y, bVar2.f841z);
+            String strF2 = b.c.a.a0.d.f2(bVar2.w ? bVar2.f839x : rVar.m.d);
+            int i9 = bVar2.A;
             String str16 = "right";
             String str17 = "left";
             String str18 = str13;
@@ -247,13 +269,13 @@ public final class r extends FrameLayout implements SubtitleView$a {
                 iB2 = iB;
                 iB = iB2;
             }
-            CharSequence charSequence = bVar.l;
+            CharSequence charSequence = bVar2.l;
             float f7 = getContext().getResources().getDisplayMetrics().density;
             Pattern pattern = m.a;
             StringBuilder sb2 = sb;
             String str19 = "";
             if (charSequence == null) {
-                m_b = new m$b("", i0.m, null);
+                bVar = new m.b("", i0.m, null);
             } else {
                 if (charSequence instanceof Spanned) {
                     str19 = "";
@@ -393,19 +415,19 @@ public final class r extends FrameLayout implements SubtitleView$a {
                         int spanEnd = spanned.getSpanEnd(obj);
                         if (str20 != null) {
                             Objects.requireNonNull(str9);
-                            m$c m_c = new m$c(spanStart, spanEnd, str20, str9, null);
-                            m$d m_d = (m$d) sparseArray.get(spanStart);
-                            if (m_d == null) {
-                                m_d = new m$d();
-                                sparseArray.put(spanStart, m_d);
+                            m.c cVar = new m.c(spanStart, spanEnd, str20, str9, null);
+                            m.d dVar2 = (m.d) sparseArray.get(spanStart);
+                            if (dVar2 == null) {
+                                dVar2 = new m.d();
+                                sparseArray.put(spanStart, dVar2);
                             }
-                            m_d.a.add(m_c);
-                            m$d m_d2 = (m$d) sparseArray.get(spanEnd);
-                            if (m_d2 == null) {
-                                m_d2 = new m$d();
-                                sparseArray.put(spanEnd, m_d2);
+                            dVar2.a.add(cVar);
+                            m.d dVar3 = (m.d) sparseArray.get(spanEnd);
+                            if (dVar3 == null) {
+                                dVar3 = new m.d();
+                                sparseArray.put(spanEnd, dVar3);
                             }
-                            m_d2.f917b.add(m_c);
+                            dVar3.f917b.add(cVar);
                         }
                         i11++;
                         length2 = i12;
@@ -426,14 +448,14 @@ public final class r extends FrameLayout implements SubtitleView$a {
                     while (i16 < sparseArray.size()) {
                         int iKeyAt = sparseArray.keyAt(i16);
                         sb5.append(m.a(spanned.subSequence(i17, iKeyAt)));
-                        m$d m_d3 = (m$d) sparseArray.get(iKeyAt);
-                        Collections.sort(m_d3.f917b, f.j);
-                        Iterator<m$c> it2 = m_d3.f917b.iterator();
+                        m.d dVar4 = (m.d) sparseArray.get(iKeyAt);
+                        Collections.sort(dVar4.f917b, f.j);
+                        Iterator<m.c> it2 = dVar4.f917b.iterator();
                         while (it2.hasNext()) {
                             sb5.append(it2.next().d);
                         }
-                        Collections.sort(m_d3.a, e.j);
-                        Iterator<m$c> it3 = m_d3.a.iterator();
+                        Collections.sort(dVar4.a, e.j);
+                        Iterator<m.c> it3 = dVar4.a.iterator();
                         while (it3.hasNext()) {
                             sb5.append(it3.next().c);
                         }
@@ -441,9 +463,9 @@ public final class r extends FrameLayout implements SubtitleView$a {
                         i17 = iKeyAt;
                     }
                     sb5.append(m.a(spanned.subSequence(i17, spanned.length())));
-                    m_b = new m$b(sb5.toString(), map2, null);
+                    bVar = new m.b(sb5.toString(), map2, null);
                 } else {
-                    m_b = new m$b(m.a(charSequence), i0.m, null);
+                    bVar = new m.b(m.a(charSequence), i0.m, null);
                 }
                 for (String str21 : map.keySet()) {
                     str12 = (String) map.put(str21, (String) map.get(str21));
@@ -468,9 +490,9 @@ public final class r extends FrameLayout implements SubtitleView$a {
                 objArr8[10] = strF2;
                 objArr8[11] = Integer.valueOf(iB);
                 objArr8[12] = Integer.valueOf(iB2);
-                f = bVar.B;
+                f = bVar2.B;
                 if (f != 0.0f) {
-                    i4 = bVar.A;
+                    i4 = bVar2.A;
                     i3 = 1;
                     if (i4 != 2 || i4 == 1) {
                         str11 = "skewY";
@@ -488,17 +510,17 @@ public final class r extends FrameLayout implements SubtitleView$a {
                 Object[] objArr9 = new Object[i3];
                 objArr9[0] = str18;
                 sb.append(e0.k("<span class='%s'>", objArr9));
-                layout$Alignment = bVar.n;
-                if (layout$Alignment != null) {
+                alignment = bVar2.n;
+                if (alignment != null) {
                     Object[] objArr10 = new Object[i3];
-                    objArr10[0] = c(layout$Alignment);
+                    objArr10[0] = c(alignment);
                     sb.append(e0.k("<span style='display:inline-block; text-align:%s;'>", objArr10));
-                    sb.append(m_b.a);
+                    sb.append(bVar.a);
                     str10 = "</span>";
                     sb.append(str10);
                 } else {
                     str10 = "</span>";
-                    sb.append(m_b.a);
+                    sb.append(bVar.a);
                 }
                 sb.append(str10);
                 sb.append("</div>");
@@ -537,9 +559,9 @@ public final class r extends FrameLayout implements SubtitleView$a {
             objArr11[10] = strF2;
             objArr11[11] = Integer.valueOf(iB);
             objArr11[12] = Integer.valueOf(iB2);
-            f = bVar.B;
+            f = bVar2.B;
             if (f != 0.0f) {
-                i4 = bVar.A;
+                i4 = bVar2.A;
                 i3 = 1;
                 if (i4 != 2) {
                     str11 = "skewY";
@@ -557,17 +579,17 @@ public final class r extends FrameLayout implements SubtitleView$a {
             Object[] objArr12 = new Object[i3];
             objArr12[0] = str18;
             sb.append(e0.k("<span class='%s'>", objArr12));
-            layout$Alignment = bVar.n;
-            if (layout$Alignment != null) {
+            alignment = bVar2.n;
+            if (alignment != null) {
                 Object[] objArr13 = new Object[i3];
-                objArr13[0] = c(layout$Alignment);
+                objArr13[0] = c(alignment);
                 sb.append(e0.k("<span style='display:inline-block; text-align:%s;'>", objArr13));
-                sb.append(m_b.a);
+                sb.append(bVar.a);
                 str10 = "</span>";
                 sb.append(str10);
             } else {
                 str10 = "</span>";
-                sb.append(m_b.a);
+                sb.append(bVar.a);
             }
             sb.append(str10);
             sb.append("</div>");

@@ -1,6 +1,6 @@
 package b.i.a.f.c.a.f;
 
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.Scope;
 import java.util.Comparator;
@@ -12,7 +12,7 @@ public final /* synthetic */ class c implements Comparator {
 
     @Override // java.util.Comparator
     public final int compare(Object obj, Object obj2) {
-        Parcelable$Creator<GoogleSignInAccount> parcelable$Creator = GoogleSignInAccount.CREATOR;
+        Parcelable.Creator<GoogleSignInAccount> creator = GoogleSignInAccount.CREATOR;
         return ((Scope) obj).k.compareTo(((Scope) obj2).k);
     }
 }

@@ -30,7 +30,7 @@ public final class WidgetUserSheet$viewModel$2 extends o implements Function0<Wi
         boolean z2 = WidgetUserSheet.access$getArgumentsOrDefault$p(this.this$0).getBoolean("ARG_IS_VOICE_CONTEXT");
         Serializable serializable = WidgetUserSheet.access$getArgumentsOrDefault$p(this.this$0).getSerializable("ARG_STREAM_PREVIEW_CLICK_BEHAVIOR");
         Objects.requireNonNull(serializable, "null cannot be cast to non-null type com.discord.widgets.user.usersheet.WidgetUserSheet.StreamPreviewClickBehavior");
-        WidgetUserSheet$StreamPreviewClickBehavior widgetUserSheet$StreamPreviewClickBehavior = (WidgetUserSheet$StreamPreviewClickBehavior) serializable;
-        return new WidgetUserSheetViewModel(j, j2, Long.valueOf(j3), WidgetUserSheet.access$getArgumentsOrDefault$p(this.this$0).getString("ARG_FRIEND_TOKEN"), z2, null, widgetUserSheet$StreamPreviewClickBehavior, null, null, null, null, null, null, null, null, 32672, null);
+        WidgetUserSheet.StreamPreviewClickBehavior streamPreviewClickBehavior = (WidgetUserSheet.StreamPreviewClickBehavior) serializable;
+        return new WidgetUserSheetViewModel(j, j2, Long.valueOf(j3), WidgetUserSheet.access$getArgumentsOrDefault$p(this.this$0).getString("ARG_FRIEND_TOKEN"), z2, null, streamPreviewClickBehavior, null, null, null, null, null, null, null, null, 32672, null);
     }
 }

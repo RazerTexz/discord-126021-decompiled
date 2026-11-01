@@ -5,7 +5,7 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: typeQualifiers.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class e {
-    public static final e$a a = new e$a(null);
+    public static final a a = new a(null);
     public final h c;
     public final f d;
     public final boolean e;
@@ -13,6 +13,16 @@ public final class e {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final e f3344b = new e(null, null, false, false, 8, null);
+
+    /* JADX INFO: compiled from: typeQualifiers.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final e getNONE() {
+            return e.access$getNONE$cp();
+        }
+    }
 
     public e(h hVar, f fVar, boolean z2, boolean z3) {
         this.c = hVar;

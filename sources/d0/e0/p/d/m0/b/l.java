@@ -2,7 +2,6 @@ package d0.e0.p.d.m0.b;
 
 import androidx.exifinterface.media.ExifInterface;
 import d0.e0.p.d.m0.c.c0;
-import d0.e0.p.d.m0.c.g1.g$a;
 import d0.e0.p.d.m0.c.i1.k0;
 import d0.e0.p.d.m0.c.i1.z;
 import d0.e0.p.d.m0.c.u;
@@ -38,8 +37,8 @@ public final class l {
         zVar.setModality(zVar2);
         u uVar = d0.e0.p.d.m0.c.t.e;
         zVar.setVisibility(uVar);
-        g$a g_a = d0.e0.p.d.m0.c.g1.g.f;
-        d0.e0.p.d.m0.c.g1.g empty = g_a.getEMPTY();
+        d0.e0.p.d.m0.c.g1.g.a aVar = d0.e0.p.d.m0.c.g1.g.f;
+        d0.e0.p.d.m0.c.g1.g empty = aVar.getEMPTY();
         j1 j1Var = j1.IN_VARIANCE;
         zVar.setTypeParameterDescriptors(d0.t.m.listOf(k0.createWithDefaultBound(zVar, empty, false, j1Var, d0.e0.p.d.m0.g.e.identifier(ExifInterface.GPS_DIRECTION_TRUE), 0, oVar)));
         zVar.createTypeConstructor();
@@ -49,7 +48,7 @@ public final class l {
         z zVar3 = new z(new d0.e0.p.d.m0.c.i1.n(errorModule2, k.d), fVar, false, false, k.g.shortName(), u0Var, oVar);
         zVar3.setModality(zVar2);
         zVar3.setVisibility(uVar);
-        zVar3.setTypeParameterDescriptors(d0.t.m.listOf(k0.createWithDefaultBound(zVar3, g_a.getEMPTY(), false, j1Var, d0.e0.p.d.m0.g.e.identifier(ExifInterface.GPS_DIRECTION_TRUE), 0, oVar)));
+        zVar3.setTypeParameterDescriptors(d0.t.m.listOf(k0.createWithDefaultBound(zVar3, aVar.getEMPTY(), false, j1Var, d0.e0.p.d.m0.g.e.identifier(ExifInterface.GPS_DIRECTION_TRUE), 0, oVar)));
         zVar3.createTypeConstructor();
         f3231b = zVar3;
     }

@@ -13,11 +13,9 @@ import com.discord.stores.StoreExperiments;
 import com.discord.stores.StoreFriendSuggestions;
 import com.discord.stores.StoreUser;
 import com.discord.stores.StoreUserConnections;
-import com.discord.stores.StoreUserConnections$State;
 import com.discord.stores.StoreUserPresence;
 import com.discord.stores.StoreUserRelationships;
-import com.discord.stores.StoreUserRelationships$UserRelationshipsState;
-import com.discord.utilities.collections.SnowflakePartitionMap$CopiablePartitionMap;
+import com.discord.utilities.collections.SnowflakePartitionMap;
 import d0.t.h0;
 import d0.z.d.m;
 import j0.k.b;
@@ -28,7 +26,7 @@ import kotlin.Unit;
 
 /* JADX INFO: compiled from: FriendsListViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class FriendsListViewModel$Companion$observeStores$1<T, R> implements b<Unit, FriendsListViewModel$StoreState> {
+public final class FriendsListViewModel$Companion$observeStores$1<T, R> implements b<Unit, FriendsListViewModel.StoreState> {
     public final /* synthetic */ StoreApplicationStreaming $storeApplicationStreaming;
     public final /* synthetic */ StoreChannelsSelected $storeChannelsSelected;
     public final /* synthetic */ StoreContactSync $storeContactSync;
@@ -52,20 +50,20 @@ public final class FriendsListViewModel$Companion$observeStores$1<T, R> implemen
     }
 
     @Override // j0.k.b
-    public /* bridge */ /* synthetic */ FriendsListViewModel$StoreState call(Unit unit) {
+    public /* bridge */ /* synthetic */ FriendsListViewModel.StoreState call(Unit unit) {
         return call2(unit);
     }
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-    public final FriendsListViewModel$StoreState call2(Unit unit) {
+    public final FriendsListViewModel.StoreState call2(Unit unit) {
         boolean z2;
         boolean z3;
         long id2 = this.$storeChannelsSelected.getId();
-        SnowflakePartitionMap$CopiablePartitionMap<Presence> presences = this.$storePresences.getPresences();
+        SnowflakePartitionMap.CopiablePartitionMap<Presence> presences = this.$storePresences.getPresences();
         Map<Long, User> users = this.$storeUsers.getUsers();
-        StoreUserRelationships$UserRelationshipsState relationshipsStateSnapshot = this.$storeUserRelationships.getRelationshipsStateSnapshot();
+        StoreUserRelationships.UserRelationshipsState relationshipsStateSnapshot = this.$storeUserRelationships.getRelationshipsStateSnapshot();
         Map<Long, ModelApplicationStream> streamsByUser = this.$storeApplicationStreaming.getStreamsByUser();
-        StoreUserConnections$State stateSnapshot = this.$storeUserConnections.getStateSnapshot();
+        StoreUserConnections.State stateSnapshot = this.$storeUserConnections.getStateSnapshot();
         boolean z4 = stateSnapshot instanceof Collection;
         if (!z4 || !stateSnapshot.isEmpty()) {
             Iterator<ConnectedAccount> it = stateSnapshot.iterator();
@@ -103,6 +101,6 @@ public final class FriendsListViewModel$Companion$observeStores$1<T, R> implemen
         Experiment userExperiment = this.$storeExperiments.getUserExperiment("2021-04_contact_sync_android_main", !z2);
         boolean z5 = (userExperiment == null || userExperiment.getBucket() != 1 || z2) ? false : true;
         boolean z6 = !this.$storeContactSync.getFriendsListUpsellDismissed() && (userExperiment != null && userExperiment.getBucket() == 1 && !z3);
-        return new FriendsListViewModel$StoreState(z5 && !z6, z6, id2, relationshipsStateSnapshot, users, presences, streamsByUser, (userExperiment == null || userExperiment.getBucket() != 1) ? h0.emptyMap() : this.$storeFriendSuggestions.getFriendSuggestions());
+        return new FriendsListViewModel.StoreState(z5 && !z6, z6, id2, relationshipsStateSnapshot, users, presences, streamsByUser, (userExperiment == null || userExperiment.getBucket() != 1) ? h0.emptyMap() : this.$storeFriendSuggestions.getFriendSuggestions());
     }
 }

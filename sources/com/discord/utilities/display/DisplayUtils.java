@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
@@ -25,7 +25,7 @@ public final class DisplayUtils {
 
     @SuppressLint({"AnnotateVersionCheck"})
     private static final Display getDisplayCompat(Context context) {
-        if (Build$VERSION.SDK_INT >= 30) {
+        if (Build.VERSION.SDK_INT >= 30) {
             Display display = context.getDisplay();
             m.checkNotNull(display);
             m.checkNotNullExpressionValue(display, "display!!");
@@ -83,7 +83,7 @@ public final class DisplayUtils {
 
     public static final boolean isGestureNavigationEnabled(Resources resources) {
         m.checkNotNullParameter(resources, "resources");
-        if (Build$VERSION.SDK_INT < 29) {
+        if (Build.VERSION.SDK_INT < 29) {
             return false;
         }
         int identifier = resources.getIdentifier("config_navBarInteractionMode", "integer", "android");

@@ -74,12 +74,12 @@ public class h extends b.g.a.c.g0.u.b<Iterator<?>> {
                     b.g.a.c.n<Object> nVarC = lVar.c(cls);
                     if (nVarC == null) {
                         if (this._elementType.r()) {
-                            l$d l_dA = lVar.a(xVar.k(this._elementType, cls), xVar, this._property);
-                            l lVar2 = l_dA.f708b;
+                            l.d dVarA = lVar.a(xVar.k(this._elementType, cls), xVar, this._property);
+                            l lVar2 = dVarA.f708b;
                             if (lVar != lVar2) {
                                 this._dynamicSerializers = lVar2;
                             }
-                            nVarR = l_dA.a;
+                            nVarR = dVarA.a;
                         } else {
                             nVarR = r(lVar, cls, xVar);
                         }

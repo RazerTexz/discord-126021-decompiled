@@ -14,7 +14,7 @@ public final class h<RC, S> extends Rule<RC, Node<RC>, S> {
     public final /* synthetic */ f a;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public h(i$a$a i_a_a, f fVar, Pattern pattern) {
+    public h(i.a.C0050a c0050a, f fVar, Pattern pattern) {
         super(pattern);
         this.a = fVar;
     }
@@ -28,8 +28,8 @@ public final class h<RC, S> extends Rule<RC, Node<RC>, S> {
         String strGroup3 = matcher.group(3);
         d0.z.d.m.checkNotNull(strGroup);
         d0.z.d.m.checkNotNull(strGroup2);
-        i$a i_a = new i$a(strGroup, strGroup2, strGroup3, this.a);
-        d0.z.d.m.checkNotNullParameter(i_a, "node");
-        return new ParseSpec<>(i_a, s2);
+        i.a aVar = new i.a(strGroup, strGroup2, strGroup3, this.a);
+        d0.z.d.m.checkNotNullParameter(aVar, "node");
+        return new ParseSpec<>(aVar, s2);
     }
 }

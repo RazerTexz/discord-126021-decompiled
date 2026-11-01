@@ -51,11 +51,11 @@ public class n implements m {
         } else {
             setSingleton = Collections.singleton(new b.i.a.b.b("proto"));
         }
-        i$a i_aA = i.a();
+        i.a aVarA = i.a();
         Objects.requireNonNull(dVar);
-        i_aA.b("cct");
-        b$b b_b = (b$b) i_aA;
-        b_b.f764b = ((b.i.a.b.i.a) dVar).b();
-        return new j(setSingleton, b_b.a(), this);
+        aVarA.b("cct");
+        b.C0087b c0087b = (b.C0087b) aVarA;
+        c0087b.f764b = ((b.i.a.b.i.a) dVar).b();
+        return new j(setSingleton, c0087b.a(), this);
     }
 }

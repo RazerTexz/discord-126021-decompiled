@@ -8,13 +8,13 @@ import rx.functions.Action1;
 /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildProfileSheet$configureGuildActions$$inlined$apply$lambda$5<T> implements Action1<Boolean> {
-    public final /* synthetic */ WidgetGuildProfileSheetViewModel$Actions $actions$inlined;
+    public final /* synthetic */ WidgetGuildProfileSheetViewModel.Actions $actions$inlined;
     public final /* synthetic */ long $guildId$inlined;
     public final /* synthetic */ WidgetGuildProfileSheet this$0;
 
-    public WidgetGuildProfileSheet$configureGuildActions$$inlined$apply$lambda$5(WidgetGuildProfileSheet widgetGuildProfileSheet, WidgetGuildProfileSheetViewModel$Actions widgetGuildProfileSheetViewModel$Actions, long j) {
+    public WidgetGuildProfileSheet$configureGuildActions$$inlined$apply$lambda$5(WidgetGuildProfileSheet widgetGuildProfileSheet, WidgetGuildProfileSheetViewModel.Actions actions, long j) {
         this.this$0 = widgetGuildProfileSheet;
-        this.$actions$inlined = widgetGuildProfileSheetViewModel$Actions;
+        this.$actions$inlined = actions;
         this.$guildId$inlined = j;
     }
 

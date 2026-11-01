@@ -1,6 +1,6 @@
 package b.c.a.y.l;
 
-import android.graphics.Path$FillType;
+import android.graphics.Path;
 
 /* JADX INFO: compiled from: GradientFill.java */
 /* JADX INFO: loaded from: classes.dex */
@@ -8,7 +8,7 @@ public class d implements b {
     public final int a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final Path$FillType f417b;
+    public final Path.FillType f417b;
     public final b.c.a.y.k.c c;
     public final b.c.a.y.k.d d;
     public final b.c.a.y.k.f e;
@@ -16,9 +16,9 @@ public class d implements b {
     public final String g;
     public final boolean h;
 
-    public d(String str, int i, Path$FillType path$FillType, b.c.a.y.k.c cVar, b.c.a.y.k.d dVar, b.c.a.y.k.f fVar, b.c.a.y.k.f fVar2, b.c.a.y.k.b bVar, b.c.a.y.k.b bVar2, boolean z2) {
+    public d(String str, int i, Path.FillType fillType, b.c.a.y.k.c cVar, b.c.a.y.k.d dVar, b.c.a.y.k.f fVar, b.c.a.y.k.f fVar2, b.c.a.y.k.b bVar, b.c.a.y.k.b bVar2, boolean z2) {
         this.a = i;
-        this.f417b = path$FillType;
+        this.f417b = fillType;
         this.c = cVar;
         this.d = dVar;
         this.e = fVar;

@@ -2,7 +2,6 @@ package androidx.room.util;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import b.d.b.a.a;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,7 +13,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class CopyLock {
     private final File mCopyLockFile;
     private final boolean mFileLevelLock;

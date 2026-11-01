@@ -2,7 +2,7 @@ package com.discord.widgets.hubs;
 
 import android.view.View;
 import android.widget.LinearLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetHubWaitlistBinding;
 import com.discord.views.LoadingButton;
 import com.discord.views.ScreenTitleView;
@@ -29,17 +29,17 @@ public final /* synthetic */ class WidgetHubWaitlist$binding$2 extends k impleme
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetHubWaitlistBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.hub_waitlist_button;
-        LoadingButton loadingButton = (LoadingButton) view.findViewById(R$id.hub_waitlist_button);
+        int i = R.id.hub_waitlist_button;
+        LoadingButton loadingButton = (LoadingButton) view.findViewById(R.id.hub_waitlist_button);
         if (loadingButton != null) {
-            i = R$id.hub_waitlist_edit_text;
-            TextInputEditText textInputEditText = (TextInputEditText) view.findViewById(R$id.hub_waitlist_edit_text);
+            i = R.id.hub_waitlist_edit_text;
+            TextInputEditText textInputEditText = (TextInputEditText) view.findViewById(R.id.hub_waitlist_edit_text);
             if (textInputEditText != null) {
-                i = R$id.hub_waitlist_header;
-                ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(R$id.hub_waitlist_header);
+                i = R.id.hub_waitlist_header;
+                ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(R.id.hub_waitlist_header);
                 if (screenTitleView != null) {
-                    i = R$id.hub_waitlist_layout;
-                    TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.hub_waitlist_layout);
+                    i = R.id.hub_waitlist_layout;
+                    TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.hub_waitlist_layout);
                     if (textInputLayout != null) {
                         return new WidgetHubWaitlistBinding((LinearLayout) view, loadingButton, textInputEditText, screenTitleView, textInputLayout);
                     }

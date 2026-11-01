@@ -3,7 +3,7 @@ package com.discord.widgets.quickmentions;
 import android.view.View;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager2.widget.ViewPager2;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetQuickMentionsDialogBinding;
 import com.google.android.material.tabs.TabLayout;
 import d0.z.d.k;
@@ -27,11 +27,11 @@ public final /* synthetic */ class WidgetQuickMentionsDialog$binding$2 extends k
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetQuickMentionsDialogBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.tab_contents;
-        ViewPager2 viewPager2 = (ViewPager2) view.findViewById(R$id.tab_contents);
+        int i = R.id.tab_contents;
+        ViewPager2 viewPager2 = (ViewPager2) view.findViewById(R.id.tab_contents);
         if (viewPager2 != null) {
-            i = R$id.tabs;
-            TabLayout tabLayout = (TabLayout) view.findViewById(R$id.tabs);
+            i = R.id.tabs;
+            TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
             if (tabLayout != null) {
                 return new WidgetQuickMentionsDialogBinding((ConstraintLayout) view, viewPager2, tabLayout);
             }

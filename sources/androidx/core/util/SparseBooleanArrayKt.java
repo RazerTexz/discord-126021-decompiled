@@ -11,6 +11,71 @@ import kotlin.jvm.functions.Function2;
 /* JADX INFO: compiled from: SparseBooleanArray.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class SparseBooleanArrayKt {
+
+    /* JADX INFO: renamed from: androidx.core.util.SparseBooleanArrayKt$keyIterator$1, reason: invalid class name */
+    /* JADX INFO: compiled from: SparseBooleanArray.kt */
+    public final class AnonymousClass1 extends c0 {
+        public final /* synthetic */ SparseBooleanArray $this_keyIterator;
+        private int index;
+
+        public AnonymousClass1(SparseBooleanArray sparseBooleanArray) {
+            this.$this_keyIterator = sparseBooleanArray;
+        }
+
+        public final int getIndex() {
+            return this.index;
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.index < this.$this_keyIterator.size();
+        }
+
+        @Override // d0.t.c0
+        public int nextInt() {
+            SparseBooleanArray sparseBooleanArray = this.$this_keyIterator;
+            int i = this.index;
+            this.index = i + 1;
+            return sparseBooleanArray.keyAt(i);
+        }
+
+        public final void setIndex(int i) {
+            this.index = i;
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.core.util.SparseBooleanArrayKt$valueIterator$1, reason: invalid class name */
+    /* JADX INFO: compiled from: SparseBooleanArray.kt */
+    public final class AnonymousClass1 extends l {
+        public final /* synthetic */ SparseBooleanArray $this_valueIterator;
+        private int index;
+
+        public AnonymousClass1(SparseBooleanArray sparseBooleanArray) {
+            this.$this_valueIterator = sparseBooleanArray;
+        }
+
+        public final int getIndex() {
+            return this.index;
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.index < this.$this_valueIterator.size();
+        }
+
+        @Override // d0.t.l
+        public boolean nextBoolean() {
+            SparseBooleanArray sparseBooleanArray = this.$this_valueIterator;
+            int i = this.index;
+            this.index = i + 1;
+            return sparseBooleanArray.valueAt(i);
+        }
+
+        public final void setIndex(int i) {
+            this.index = i;
+        }
+    }
+
     public static final boolean contains(SparseBooleanArray sparseBooleanArray, int i) {
         m.checkNotNullParameter(sparseBooleanArray, "<this>");
         return sparseBooleanArray.indexOfKey(i) >= 0;
@@ -74,7 +139,7 @@ public final class SparseBooleanArrayKt {
 
     public static final c0 keyIterator(SparseBooleanArray sparseBooleanArray) {
         m.checkNotNullParameter(sparseBooleanArray, "<this>");
-        return new SparseBooleanArrayKt$keyIterator$1(sparseBooleanArray);
+        return new AnonymousClass1(sparseBooleanArray);
     }
 
     public static final SparseBooleanArray plus(SparseBooleanArray sparseBooleanArray, SparseBooleanArray sparseBooleanArray2) {
@@ -122,6 +187,6 @@ public final class SparseBooleanArrayKt {
 
     public static final l valueIterator(SparseBooleanArray sparseBooleanArray) {
         m.checkNotNullParameter(sparseBooleanArray, "<this>");
-        return new SparseBooleanArrayKt$valueIterator$1(sparseBooleanArray);
+        return new AnonymousClass1(sparseBooleanArray);
     }
 }

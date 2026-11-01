@@ -12,7 +12,7 @@ import java.util.Set;
 
 /* JADX INFO: compiled from: SQLiteEventStore.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class j implements t$b {
+public final /* synthetic */ class j implements t.b {
     public final t a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -23,7 +23,7 @@ public final /* synthetic */ class j implements t$b {
         this.f799b = iVar;
     }
 
-    @Override // b.i.a.b.j.t.i.t$b
+    @Override // b.i.a.b.j.t.i.t.b
     public Object apply(Object obj) {
         t tVar = this.a;
         b.i.a.b.j.i iVar = this.f799b;
@@ -53,7 +53,7 @@ public final /* synthetic */ class j implements t$b {
                     hashSet = new HashSet();
                     map.put(Long.valueOf(j), hashSet);
                 }
-                hashSet.add(new t$c(cursorQuery.getString(1), cursorQuery.getString(2), null));
+                hashSet.add(new t.c(cursorQuery.getString(1), cursorQuery.getString(2), null));
             } catch (Throwable th) {
                 cursorQuery.close();
                 throw th;
@@ -64,11 +64,11 @@ public final /* synthetic */ class j implements t$b {
         while (listIterator.hasNext()) {
             h hVar = (h) listIterator.next();
             if (map.containsKey(Long.valueOf(hVar.b()))) {
-                b.i.a.b.j.f$a f_aI = hVar.a().i();
-                for (t$c t_c : (Set) map.get(Long.valueOf(hVar.b()))) {
-                    f_aI.a(t_c.a, t_c.f802b);
+                b.i.a.b.j.f.a aVarI = hVar.a().i();
+                for (t.c cVar : (Set) map.get(Long.valueOf(hVar.b()))) {
+                    aVarI.a(cVar.a, cVar.f802b);
                 }
-                listIterator.set(new b(hVar.b(), hVar.c(), f_aI.b()));
+                listIterator.set(new b(hVar.b(), hVar.c(), aVarI.b()));
             }
         }
         return arrayList;

@@ -25,6 +25,6 @@ public final class RouteHandlers$selectFeature$settingMap$13 extends o implement
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(FragmentActivity fragmentActivity) {
         m.checkNotNullParameter(fragmentActivity, "ctx");
-        WidgetDonutBetaPopup.Companion.show(fragmentActivity, "Deep Link");
+        WidgetDonutBetaPopup.INSTANCE.show(fragmentActivity, "Deep Link");
     }
 }

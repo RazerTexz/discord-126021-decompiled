@@ -6,7 +6,6 @@ import android.accounts.AuthenticatorException;
 import android.accounts.OperationCanceledException;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager$NameNotFoundException;
 import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
 import java.io.IOException;
@@ -51,7 +50,7 @@ public final class j extends r5 {
                     packageManager.getPackageInfo("com.google.android.gms", 128);
                     this.e = Boolean.TRUE;
                 }
-            } catch (PackageManager$NameNotFoundException unused) {
+            } catch (PackageManager.NameNotFoundException unused) {
             }
         }
         return this.e.booleanValue();

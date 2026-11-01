@@ -2,6 +2,7 @@ package com.discord.widgets.status;
 
 import android.content.res.ColorStateList;
 import androidx.core.content.ContextCompat;
+import com.discord.R;
 import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
 
@@ -24,6 +25,6 @@ public final class WidgetForumPostStatus$defaultReactionMeTextColor$2 extends o 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final ColorStateList invoke() {
-        return ContextCompat.getColorStateList(this.this$0.requireContext(), 2131100382);
+        return ContextCompat.getColorStateList(this.this$0.requireContext(), R.color.status_red_500);
     }
 }

@@ -1,7 +1,7 @@
 package com.google.android.gms.nearby.messages;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import androidx.annotation.Nullable;
 import b.c.a.a0.d;
@@ -15,7 +15,7 @@ import java.util.Objects;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class Message extends AbstractSafeParcelable implements ReflectedParcelable {
-    public static final Parcelable$Creator<Message> CREATOR = new f();
+    public static final Parcelable.Creator<Message> CREATOR = new f();
     public static final zzgs[] j = {zzgs.j};
     public final int k;
     public final byte[] l;

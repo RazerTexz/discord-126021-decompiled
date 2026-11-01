@@ -7,7 +7,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
@@ -50,8 +49,8 @@ public final class c4 implements Runnable {
             try {
                 Map<String, String> map3 = this.n;
                 if (map3 != null) {
-                    for (Map$Entry<String, String> map$Entry : map3.entrySet()) {
-                        httpURLConnectionS.addRequestProperty(map$Entry.getKey(), map$Entry.getValue());
+                    for (Map.Entry<String, String> entry : map3.entrySet()) {
+                        httpURLConnectionS.addRequestProperty(entry.getKey(), entry.getValue());
                     }
                 }
                 if (this.k != null) {

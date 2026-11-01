@@ -1,6 +1,6 @@
 package b0.a.a;
 
-import android.graphics.Bitmap$CompressFormat;
+import android.graphics.Bitmap;
 import d0.z.d.m;
 import d0.z.d.o;
 import java.util.Objects;
@@ -20,10 +20,10 @@ public final class a extends o implements Function1<b0.a.a.e.a, Unit> {
     public Unit invoke(b0.a.a.e.a aVar) {
         b0.a.a.e.a aVar2 = aVar;
         m.checkParameterIsNotNull(aVar2, "$receiver");
-        Bitmap$CompressFormat bitmap$CompressFormat = Bitmap$CompressFormat.JPEG;
+        Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.JPEG;
         m.checkParameterIsNotNull(aVar2, "$this$default");
-        m.checkParameterIsNotNull(bitmap$CompressFormat, "format");
-        b0.a.a.e.c cVar = new b0.a.a.e.c(612, 816, bitmap$CompressFormat, 80);
+        m.checkParameterIsNotNull(compressFormat, "format");
+        b0.a.a.e.c cVar = new b0.a.a.e.c(612, 816, compressFormat, 80);
         Objects.requireNonNull(aVar2);
         m.checkParameterIsNotNull(cVar, "constraint");
         aVar2.a.add(cVar);

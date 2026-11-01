@@ -1,6 +1,6 @@
 package b.i.c.s;
 
-import android.content.SharedPreferences$Editor;
+import android.content.SharedPreferences;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -32,11 +32,11 @@ public final /* synthetic */ class l implements b.i.a.f.n.f {
         String strH = firebaseInstanceId.h();
         String strA = firebaseInstanceId.g.a();
         synchronized (wVar) {
-            String strA2 = w$a.a(str4, strA, System.currentTimeMillis());
+            String strA2 = w.a.a(str4, strA, System.currentTimeMillis());
             if (strA2 != null) {
-                SharedPreferences$Editor sharedPreferences$EditorEdit = wVar.a.edit();
-                sharedPreferences$EditorEdit.putString(wVar.b(strH, str, str2), strA2);
-                sharedPreferences$EditorEdit.commit();
+                SharedPreferences.Editor editorEdit = wVar.a.edit();
+                editorEdit.putString(wVar.b(strH, str, str2), strA2);
+                editorEdit.commit();
             }
         }
         return b.i.a.f.e.o.f.Z(new p(str3, str4));

@@ -2,7 +2,7 @@ package b.i.c.u.p;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.text.TextUtils;
 import android.util.JsonReader;
@@ -14,7 +14,6 @@ import com.adjust.sdk.Constants;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.restapi.RestAPIBuilder;
 import com.google.firebase.installations.FirebaseInstallationsException;
-import com.google.firebase.installations.FirebaseInstallationsException$a;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,7 +52,7 @@ public class c {
         try {
             return new URL(String.format("https://%s/%s/%s", "firebaseinstallations.googleapis.com", "v1", str));
         } catch (MalformedURLException e) {
-            throw new FirebaseInstallationsException(e.getMessage(), FirebaseInstallationsException$a.UNAVAILABLE);
+            throw new FirebaseInstallationsException(e.getMessage(), FirebaseInstallationsException.a.UNAVAILABLE);
         }
     }
 
@@ -99,7 +98,7 @@ public class c {
 
     public final HttpURLConnection c(URL url, String str) throws FirebaseInstallationsException {
         MessageDigest messageDigestA;
-        b.i.c.r.d$a d_aA;
+        b.i.c.r.d.a aVarA;
         try {
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setConnectTimeout(10000);
@@ -110,9 +109,9 @@ public class c {
             httpURLConnection.addRequestProperty("Content-Encoding", "gzip");
             httpURLConnection.addRequestProperty("Cache-Control", "no-cache");
             httpURLConnection.addRequestProperty("X-Android-Package", this.c.getPackageName());
-            if (this.e.get() != null && this.d.get() != null && (d_aA = this.e.get().a("fire-installations-id")) != b.i.c.r.d$a.NONE) {
+            if (this.e.get() != null && this.d.get() != null && (aVarA = this.e.get().a("fire-installations-id")) != b.i.c.r.d.a.NONE) {
                 httpURLConnection.addRequestProperty("x-firebase-client", this.d.get().getUserAgent());
-                httpURLConnection.addRequestProperty("x-firebase-client-log-type", Integer.toString(d_aA.f()));
+                httpURLConnection.addRequestProperty("x-firebase-client-log-type", Integer.toString(aVarA.f()));
             }
             String strA = null;
             try {
@@ -125,7 +124,7 @@ public class c {
                 } else {
                     strA = b.i.a.f.e.o.d.a(bArrDigest, false);
                 }
-            } catch (PackageManager$NameNotFoundException e) {
+            } catch (PackageManager.NameNotFoundException e) {
                 StringBuilder sbU = b.d.b.a.a.U("No such package: ");
                 sbU.append(this.c.getPackageName());
                 Log.e("ContentValues", sbU.toString(), e);
@@ -134,7 +133,7 @@ public class c {
             httpURLConnection.addRequestProperty("x-goog-api-key", str);
             return httpURLConnection;
         } catch (IOException unused) {
-            throw new FirebaseInstallationsException("Firebase Installations Service is unavailable. Please try again later.", FirebaseInstallationsException$a.UNAVAILABLE);
+            throw new FirebaseInstallationsException("Firebase Installations Service is unavailable. Please try again later.", FirebaseInstallationsException.a.UNAVAILABLE);
         }
     }
 
@@ -149,7 +148,7 @@ public class c {
     public final d e(HttpURLConnection httpURLConnection) throws IOException, AssertionError {
         InputStream inputStream = httpURLConnection.getInputStream();
         JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f1791b));
-        f$a f_aA = f.a();
+        f.a aVarA = f.a();
         jsonReader.beginObject();
         String strNextString = null;
         String strNextString2 = null;
@@ -168,14 +167,14 @@ public class c {
                 while (jsonReader.hasNext()) {
                     String strNextName2 = jsonReader.nextName();
                     if (strNextName2.equals("token")) {
-                        ((b$b) f_aA).a = jsonReader.nextString();
+                        ((b.C0154b) aVarA).a = jsonReader.nextString();
                     } else if (strNextName2.equals("expiresIn")) {
-                        f_aA.b(d(jsonReader.nextString()));
+                        aVarA.b(d(jsonReader.nextString()));
                     } else {
                         jsonReader.skipValue();
                     }
                 }
-                fVarA = f_aA.a();
+                fVarA = aVarA.a();
                 jsonReader.endObject();
             } else {
                 jsonReader.skipValue();
@@ -184,20 +183,20 @@ public class c {
         jsonReader.endObject();
         jsonReader.close();
         inputStream.close();
-        return new a(strNextString, strNextString2, strNextString3, fVarA, d$a.OK, null);
+        return new a(strNextString, strNextString2, strNextString3, fVarA, d.a.OK, null);
     }
 
     public final f f(HttpURLConnection httpURLConnection) throws IOException, AssertionError {
         InputStream inputStream = httpURLConnection.getInputStream();
         JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f1791b));
-        f$a f_aA = f.a();
+        f.a aVarA = f.a();
         jsonReader.beginObject();
         while (jsonReader.hasNext()) {
             String strNextName = jsonReader.nextName();
             if (strNextName.equals("token")) {
-                ((b$b) f_aA).a = jsonReader.nextString();
+                ((b.C0154b) aVarA).a = jsonReader.nextString();
             } else if (strNextName.equals("expiresIn")) {
-                f_aA.b(d(jsonReader.nextString()));
+                aVarA.b(d(jsonReader.nextString()));
             } else {
                 jsonReader.skipValue();
             }
@@ -205,9 +204,9 @@ public class c {
         jsonReader.endObject();
         jsonReader.close();
         inputStream.close();
-        b$b b_b = (b$b) f_aA;
-        b_b.c = f$b.OK;
-        return b_b.a();
+        b.C0154b c0154b = (b.C0154b) aVarA;
+        c0154b.c = f.b.OK;
+        return c0154b.a();
     }
 
     public final void g(HttpURLConnection httpURLConnection, @Nullable String str, @NonNull String str2) throws IOException {

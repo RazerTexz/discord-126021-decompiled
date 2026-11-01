@@ -5,16 +5,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Pair;
 import androidx.annotation.WorkerThread;
 import androidx.collection.ArrayMap;
-import b.i.a.f.h.l.a1$a;
-import b.i.a.f.h.l.e1$a;
-import b.i.a.f.h.l.l0$a;
-import b.i.a.f.h.l.o0$a;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.google.android.gms.measurement.internal.zzaq;
 import com.google.android.gms.measurement.internal.zzku;
@@ -220,17 +216,17 @@ public final class g extends i9 {
                             break;
                         }
                         try {
-                            e1$a e1_a = (e1$a) q9.x(b.i.a.f.h.l.e1.u0(), bArrS);
+                            b.i.a.f.h.l.e1.a aVar = (b.i.a.f.h.l.e1.a) q9.x(b.i.a.f.h.l.e1.u0(), bArrS);
                             if (!cursorQuery.isNull(2)) {
                                 int i4 = cursorQuery.getInt(2);
-                                if (e1_a.l) {
-                                    e1_a.n();
-                                    e1_a.l = false;
+                                if (aVar.l) {
+                                    aVar.n();
+                                    aVar.l = false;
                                 }
-                                b.i.a.f.h.l.e1.V0((b.i.a.f.h.l.e1) e1_a.k, i4);
+                                b.i.a.f.h.l.e1.V0((b.i.a.f.h.l.e1) aVar.k, i4);
                             }
                             length += bArrS.length;
-                            arrayList.add(Pair.create((b.i.a.f.h.l.e1) ((b.i.a.f.h.l.u4) e1_a.p()), Long.valueOf(j2)));
+                            arrayList.add(Pair.create((b.i.a.f.h.l.e1) ((b.i.a.f.h.l.u4) aVar.p()), Long.valueOf(j2)));
                         } catch (IOException e2) {
                             g().f.c("Failed to merge queued bundle. appId", q3.s(str), e2);
                         }
@@ -379,9 +375,9 @@ public final class g extends i9 {
                     long j2 = cursorQuery.getLong(6);
                     q9 q9VarM = m();
                     byte[] blob = cursorQuery.getBlob(7);
-                    Parcelable$Creator<zzaq> parcelable$Creator = zzaq.CREATOR;
-                    zzaq zzaqVar = (zzaq) q9VarM.u(blob, parcelable$Creator);
-                    arrayList.add(new zzz(string, string2, new zzku(string3, cursorQuery.getLong(10), objA, string2), cursorQuery.getLong(8), z2, string4, zzaqVar, j2, (zzaq) m().u(cursorQuery.getBlob(9), parcelable$Creator), cursorQuery.getLong(11), (zzaq) m().u(cursorQuery.getBlob(12), parcelable$Creator)));
+                    Parcelable.Creator<zzaq> creator = zzaq.CREATOR;
+                    zzaq zzaqVar = (zzaq) q9VarM.u(blob, creator);
+                    arrayList.add(new zzz(string, string2, new zzku(string3, cursorQuery.getLong(10), objA, string2), cursorQuery.getLong(8), z2, string4, zzaqVar, j2, (zzaq) m().u(cursorQuery.getBlob(9), creator), cursorQuery.getLong(11), (zzaq) m().u(cursorQuery.getBlob(12), creator)));
                     if (!cursorQuery.moveToNext()) {
                         cursorQuery.close();
                         return arrayList;
@@ -1049,8 +1045,8 @@ public final class g extends i9 {
                         long j2 = cursorQuery.getLong(4);
                         q9 q9VarM = m();
                         byte[] blob = cursorQuery.getBlob(5);
-                        Parcelable$Creator<zzaq> parcelable$Creator = zzaq.CREATOR;
-                        zzz zzzVar = new zzz(str, string, new zzku(str2, cursorQuery.getLong(8), objA, string), cursorQuery.getLong(6), z2, string2, (zzaq) q9VarM.u(blob, parcelable$Creator), j2, (zzaq) m().u(cursorQuery.getBlob(7), parcelable$Creator), cursorQuery.getLong(9), (zzaq) m().u(cursorQuery.getBlob(10), parcelable$Creator));
+                        Parcelable.Creator<zzaq> creator = zzaq.CREATOR;
+                        zzz zzzVar = new zzz(str, string, new zzku(str2, cursorQuery.getLong(8), objA, string), cursorQuery.getLong(6), z2, string2, (zzaq) q9VarM.u(blob, creator), j2, (zzaq) m().u(cursorQuery.getBlob(7), creator), cursorQuery.getLong(9), (zzaq) m().u(cursorQuery.getBlob(10), creator));
                         if (cursorQuery.moveToNext()) {
                             g().f.c("Got multiple records for conditional property, expected one", q3.s(str), d().y(str2));
                         }
@@ -1133,7 +1129,7 @@ public final class g extends i9 {
                     }
                     do {
                         try {
-                            b.i.a.f.h.l.l0 l0Var = (b.i.a.f.h.l.l0) ((b.i.a.f.h.l.u4) ((l0$a) q9.x(b.i.a.f.h.l.l0.I(), cursorQuery.getBlob(1))).p());
+                            b.i.a.f.h.l.l0 l0Var = (b.i.a.f.h.l.l0) ((b.i.a.f.h.l.u4) ((b.i.a.f.h.l.l0.a) q9.x(b.i.a.f.h.l.l0.I(), cursorQuery.getBlob(1))).p());
                             int i2 = cursorQuery.getInt(0);
                             List arrayList = (List) arrayMap.get(Integer.valueOf(i2));
                             if (arrayList == null) {
@@ -1206,7 +1202,7 @@ public final class g extends i9 {
                     }
                     do {
                         try {
-                            b.i.a.f.h.l.o0 o0Var = (b.i.a.f.h.l.o0) ((b.i.a.f.h.l.u4) ((o0$a) q9.x(b.i.a.f.h.l.o0.D(), cursorQuery.getBlob(1))).p());
+                            b.i.a.f.h.l.o0 o0Var = (b.i.a.f.h.l.o0) ((b.i.a.f.h.l.u4) ((b.i.a.f.h.l.o0.a) q9.x(b.i.a.f.h.l.o0.D(), cursorQuery.getBlob(1))).p());
                             int i2 = cursorQuery.getInt(0);
                             List arrayList = (List) arrayMap.get(Integer.valueOf(i2));
                             if (arrayList == null) {
@@ -1347,7 +1343,7 @@ public final class g extends i9 {
                         return null;
                     }
                     try {
-                        b.i.a.f.h.l.a1 a1Var = (b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) ((a1$a) q9.x(b.i.a.f.h.l.a1.M(), cursorRawQuery.getBlob(0))).p());
+                        b.i.a.f.h.l.a1 a1Var = (b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) ((b.i.a.f.h.l.a1.a) q9.x(b.i.a.f.h.l.a1.M(), cursorRawQuery.getBlob(0))).p());
                         m();
                         List<b.i.a.f.h.l.c1> listV = a1Var.v();
                         Bundle bundle = new Bundle();

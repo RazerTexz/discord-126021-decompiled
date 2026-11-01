@@ -8,7 +8,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetPruneUsersViewModel$Companion$observeStoreState$1 extends o implements Function0<WidgetPruneUsersViewModel$StoreData> {
+public final class WidgetPruneUsersViewModel$Companion$observeStoreState$1 extends o implements Function0<WidgetPruneUsersViewModel.StoreData> {
     public final /* synthetic */ long $guildId;
     public final /* synthetic */ StoreGuilds $storeGuilds;
     public final /* synthetic */ StorePermissions $storePermissions;
@@ -24,13 +24,13 @@ public final class WidgetPruneUsersViewModel$Companion$observeStoreState$1 exten
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ WidgetPruneUsersViewModel$StoreData invoke() {
+    public /* bridge */ /* synthetic */ WidgetPruneUsersViewModel.StoreData invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final WidgetPruneUsersViewModel$StoreData invoke() {
-        return new WidgetPruneUsersViewModel$StoreData(this.$storePermissions.getGuildPermissions().get(Long.valueOf(this.$guildId)), this.$storeGuilds.getGuilds().get(Long.valueOf(this.$guildId)), this.$storeUsers.getMeSnapshot());
+    public final WidgetPruneUsersViewModel.StoreData invoke() {
+        return new WidgetPruneUsersViewModel.StoreData(this.$storePermissions.getGuildPermissions().get(Long.valueOf(this.$guildId)), this.$storeGuilds.getGuilds().get(Long.valueOf(this.$guildId)), this.$storeUsers.getMeSnapshot());
     }
 }

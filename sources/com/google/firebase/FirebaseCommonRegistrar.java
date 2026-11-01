@@ -2,10 +2,8 @@ package com.google.firebase;
 
 import android.content.Context;
 import android.os.Build;
-import android.os.Build$VERSION;
 import b.i.a.f.e.o.f;
 import b.i.c.l.d;
-import b.i.c.l.d$b;
 import b.i.c.l.g;
 import b.i.c.l.o;
 import b.i.c.x.b;
@@ -25,15 +23,15 @@ public class FirebaseCommonRegistrar implements g {
     public List<d<?>> getComponents() {
         String string;
         ArrayList arrayList = new ArrayList();
-        d$b d_bA = d.a(h.class);
-        d_bA.a(new o(e.class, 2, 0));
-        d_bA.c(b.a);
-        arrayList.add(d_bA.b());
-        d$b d_bA2 = d.a(b.i.c.r.d.class);
-        d_bA2.a(new o(Context.class, 1, 0));
-        d_bA2.c(b.i.c.r.b.a);
-        arrayList.add(d_bA2.b());
-        arrayList.add(f.N("fire-android", String.valueOf(Build$VERSION.SDK_INT)));
+        d.b bVarA = d.a(h.class);
+        bVarA.a(new o(e.class, 2, 0));
+        bVarA.c(b.a);
+        arrayList.add(bVarA.b());
+        d.b bVarA2 = d.a(b.i.c.r.d.class);
+        bVarA2.a(new o(Context.class, 1, 0));
+        bVarA2.c(b.i.c.r.b.a);
+        arrayList.add(bVarA2.b());
+        arrayList.add(f.N("fire-android", String.valueOf(Build.VERSION.SDK_INT)));
         arrayList.add(f.N("fire-core", "19.4.0"));
         arrayList.add(f.N("device-name", a(Build.PRODUCT)));
         arrayList.add(f.N("device-model", a(Build.DEVICE)));

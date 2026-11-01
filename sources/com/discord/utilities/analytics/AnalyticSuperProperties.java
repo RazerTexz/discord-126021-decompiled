@@ -1,7 +1,6 @@
 package com.discord.utilities.analytics;
 
 import android.os.Build;
-import android.os.Build$VERSION;
 import com.discord.BuildConfig;
 import com.discord.utilities.accessibility.AccessibilityFeatureFlags;
 import d0.g0.t;
@@ -116,7 +115,7 @@ public final class AnalyticSuperProperties {
     private final void setBaselineProperties() {
         String string = Locale.getDefault().toString();
         m.checkNotNullExpressionValue(string, "Locale.getDefault().toString()");
-        updateSuperProperties(h0.mapOf(o.to(PROPERTY_BROWSER, "Discord Android"), o.to(PROPERTY_BROWSER_USER_AGENT, BuildConfig.USER_AGENT), o.to(PROPERTY_CLIENT_BUILD_NUMBER, Integer.valueOf(BuildConfig.VERSION_CODE)), o.to(PROPERTY_CLIENT_VERSION, BuildConfig.VERSION_NAME), o.to(PROPERTY_DEVICE, Build.MODEL + ", " + Build.PRODUCT), o.to(PROPERTY_OS, "Android"), o.to(PROPERTY_OS_SDK_VERSION, String.valueOf(Build$VERSION.SDK_INT)), o.to(PROPERTY_OS_VERSION, Build$VERSION.RELEASE), o.to(PROPERTY_SYSTEM_LOCALE, t.replace$default(string, "_", "-", false, 4, (Object) null))));
+        updateSuperProperties(h0.mapOf(o.to(PROPERTY_BROWSER, "Discord Android"), o.to(PROPERTY_BROWSER_USER_AGENT, BuildConfig.USER_AGENT), o.to(PROPERTY_CLIENT_BUILD_NUMBER, Integer.valueOf(BuildConfig.VERSION_CODE)), o.to(PROPERTY_CLIENT_VERSION, BuildConfig.VERSION_NAME), o.to(PROPERTY_DEVICE, Build.MODEL + ", " + Build.PRODUCT), o.to(PROPERTY_OS, "Android"), o.to(PROPERTY_OS_SDK_VERSION, String.valueOf(Build.VERSION.SDK_INT)), o.to(PROPERTY_OS_VERSION, Build.VERSION.RELEASE), o.to(PROPERTY_SYSTEM_LOCALE, t.replace$default(string, "_", "-", false, 4, (Object) null))));
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */

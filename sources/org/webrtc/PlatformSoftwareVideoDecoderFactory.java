@@ -5,10 +5,38 @@ import androidx.annotation.Nullable;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class PlatformSoftwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
-    private static final Predicate<MediaCodecInfo> defaultAllowedPredicate = new PlatformSoftwareVideoDecoderFactory$1();
+    private static final Predicate<MediaCodecInfo> defaultAllowedPredicate = new AnonymousClass1();
 
-    public PlatformSoftwareVideoDecoderFactory(@Nullable EglBase$Context eglBase$Context) {
-        super(eglBase$Context, defaultAllowedPredicate);
+    /* JADX INFO: renamed from: org.webrtc.PlatformSoftwareVideoDecoderFactory$1, reason: invalid class name */
+    public class AnonymousClass1 implements Predicate<MediaCodecInfo> {
+        @Override // org.webrtc.Predicate
+        public /* synthetic */ Predicate<MediaCodecInfo> and(Predicate<? super MediaCodecInfo> predicate) {
+            return Predicate.CC.a(this, predicate);
+        }
+
+        @Override // org.webrtc.Predicate
+        public /* synthetic */ Predicate<MediaCodecInfo> negate() {
+            return Predicate.CC.b(this);
+        }
+
+        @Override // org.webrtc.Predicate
+        public /* synthetic */ Predicate<MediaCodecInfo> or(Predicate<? super MediaCodecInfo> predicate) {
+            return Predicate.CC.c(this, predicate);
+        }
+
+        @Override // org.webrtc.Predicate
+        public /* bridge */ /* synthetic */ boolean test(MediaCodecInfo mediaCodecInfo) {
+            return test2(mediaCodecInfo);
+        }
+
+        /* JADX INFO: renamed from: test, reason: avoid collision after fix types in other method */
+        public boolean test2(MediaCodecInfo mediaCodecInfo) {
+            return MediaCodecUtils.isSoftwareOnly(mediaCodecInfo);
+        }
+    }
+
+    public PlatformSoftwareVideoDecoderFactory(@Nullable EglBase.Context context) {
+        super(context, defaultAllowedPredicate);
     }
 
     @Override // org.webrtc.MediaCodecVideoDecoderFactory, org.webrtc.VideoDecoderFactory

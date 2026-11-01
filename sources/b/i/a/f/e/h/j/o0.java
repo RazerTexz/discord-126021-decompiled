@@ -2,13 +2,12 @@ package b.i.a.f.e.h.j;
 
 import android.os.DeadObjectException;
 import androidx.annotation.NonNull;
-import b.i.a.f.e.h.a$b;
 import b.i.a.f.e.h.j.d;
 import com.google.android.gms.common.api.Status;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class o0<A extends d<? extends b.i.a.f.e.h.h, a$b>> extends s {
+public final class o0<A extends d<? extends b.i.a.f.e.h.h, b.i.a.f.e.h.a.b>> extends s {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final A f1368b;
@@ -25,9 +24,9 @@ public final class o0<A extends d<? extends b.i.a.f.e.h.h, a$b>> extends s {
     }
 
     @Override // b.i.a.f.e.h.j.s
-    public final void c(g$a<?> g_a) throws DeadObjectException {
+    public final void c(g.a<?> aVar) throws DeadObjectException {
         try {
-            this.f1368b.l(g_a.f1361b);
+            this.f1368b.l(aVar.f1361b);
         } catch (RuntimeException e) {
             e(e);
         }

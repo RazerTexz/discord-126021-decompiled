@@ -2,32 +2,122 @@ package com.discord.widgets.channels.permissions;
 
 import android.content.Context;
 import b.a.d.d0;
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.permission.PermissionOverwrite;
-import com.discord.api.permission.PermissionOverwrite$Type;
-import com.discord.restapi.RestAPIParams$ChannelPermissionOverwrites;
+import com.discord.restapi.RestAPIParams;
 import com.discord.stores.StoreChannels;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.t.n;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.NoWhenBranchMatchedException;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ConfirmRemovePermissionDialogViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ConfirmRemovePermissionDialogViewModel extends d0<ConfirmRemovePermissionDialogViewModel$ViewState> {
+public final class ConfirmRemovePermissionDialogViewModel extends d0<ViewState> {
     private final long channelId;
     private final StoreChannels channelStore;
     private final PermissionOwner permissionOwner;
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.ConfirmRemovePermissionDialogViewModel$submit$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ConfirmRemovePermissionDialogViewModel.kt */
+    public final class AnonymousClass1 extends o implements Function1<Void, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+            ConfirmRemovePermissionDialogViewModel.access$handleSubmissionComplete(ConfirmRemovePermissionDialogViewModel.this);
+        }
+    }
+
+    /* JADX INFO: compiled from: ConfirmRemovePermissionDialogViewModel.kt */
+    public abstract class ViewState {
+
+        /* JADX INFO: compiled from: ConfirmRemovePermissionDialogViewModel.kt */
+        public final class Complete extends ViewState {
+            public static final Complete INSTANCE = new Complete();
+
+            private Complete() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: ConfirmRemovePermissionDialogViewModel.kt */
+        public final /* data */ class Default extends ViewState {
+            private final boolean isSubmitting;
+
+            public Default(boolean z2) {
+                super(null);
+                this.isSubmitting = z2;
+            }
+
+            public static /* synthetic */ Default copy$default(Default r0, boolean z2, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    z2 = r0.isSubmitting;
+                }
+                return r0.copy(z2);
+            }
+
+            public final Default copy(boolean isSubmitting) {
+                return new Default(isSubmitting);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Default) && this.isSubmitting == ((Default) other).isSubmitting;
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final boolean getIsSubmitting() {
+                return this.isSubmitting;
+            }
+
+            public int hashCode() {
+                boolean z2 = this.isSubmitting;
+                if (z2) {
+                    return 1;
+                }
+                return z2 ? 1 : 0;
+            }
+
+            public final boolean isSubmitting() {
+                return this.isSubmitting;
+            }
+
+            public String toString() {
+                return a.O(a.U("Default(isSubmitting="), this.isSubmitting, ")");
+            }
+        }
+
+        private ViewState() {
+        }
+
+        public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public /* synthetic */ ConfirmRemovePermissionDialogViewModel(PermissionOwner permissionOwner, long j, StoreChannels storeChannels, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(permissionOwner, j, (i & 4) != 0 ? StoreStream.Companion.getChannels() : storeChannels);
+        this(permissionOwner, j, (i & 4) != 0 ? StoreStream.INSTANCE.getChannels() : storeChannels);
     }
 
     public static final /* synthetic */ void access$handleSubmissionComplete(ConfirmRemovePermissionDialogViewModel confirmRemovePermissionDialogViewModel) {
@@ -36,7 +126,7 @@ public final class ConfirmRemovePermissionDialogViewModel extends d0<ConfirmRemo
 
     private final PermissionOverwrite getNewPermissionOverwrite() {
         List<PermissionOverwrite> listEmptyList;
-        PermissionOverwrite$Type permissionOverwrite$Type;
+        PermissionOverwrite.Type type;
         Object next;
         PermissionOverwrite permissionOverwrite;
         Channel channel = this.channelStore.getChannel(this.channelId);
@@ -44,13 +134,13 @@ public final class ConfirmRemovePermissionDialogViewModel extends d0<ConfirmRemo
             listEmptyList = n.emptyList();
         }
         PermissionOwner permissionOwner = this.permissionOwner;
-        if (permissionOwner instanceof PermissionOwner$Role) {
-            permissionOverwrite$Type = PermissionOverwrite$Type.ROLE;
+        if (permissionOwner instanceof PermissionOwner.Role) {
+            type = PermissionOverwrite.Type.ROLE;
         } else {
-            if (!(permissionOwner instanceof PermissionOwner$Member)) {
+            if (!(permissionOwner instanceof PermissionOwner.Member)) {
                 throw new NoWhenBranchMatchedException();
             }
-            permissionOverwrite$Type = PermissionOverwrite$Type.MEMBER;
+            type = PermissionOverwrite.Type.MEMBER;
         }
         Iterator<T> it = listEmptyList.iterator();
         do {
@@ -60,7 +150,7 @@ public final class ConfirmRemovePermissionDialogViewModel extends d0<ConfirmRemo
             }
             next = it.next();
             permissionOverwrite = (PermissionOverwrite) next;
-        } while (!(permissionOverwrite.getType() == permissionOverwrite$Type && permissionOverwrite.e() == this.permissionOwner.getEntityId()));
+        } while (!(permissionOverwrite.getType() == type && permissionOverwrite.e() == this.permissionOwner.getEntityId()));
         PermissionOverwrite permissionOverwrite2 = (PermissionOverwrite) next;
         if (permissionOverwrite2 == null) {
             return null;
@@ -73,18 +163,18 @@ public final class ConfirmRemovePermissionDialogViewModel extends d0<ConfirmRemo
     }
 
     private final void handleSubmissionComplete() {
-        updateViewState(ConfirmRemovePermissionDialogViewModel$ViewState$Complete.INSTANCE);
+        updateViewState(ViewState.Complete.INSTANCE);
     }
 
     public final void submit() {
-        updateViewState(new ConfirmRemovePermissionDialogViewModel$ViewState$Default(true));
+        updateViewState(new ViewState.Default(true));
         PermissionOverwrite newPermissionOverwrite = getNewPermissionOverwrite();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(newPermissionOverwrite != null ? RestAPI.Companion.getApi().updatePermissionOverwrites(this.channelId, newPermissionOverwrite.e(), RestAPIParams$ChannelPermissionOverwrites.Companion.fromPermissionOverwrite(newPermissionOverwrite)) : RestAPI.Companion.getApi().deletePermissionOverwrites(this.channelId, this.permissionOwner.getEntityId()), false, 1, null), this, null, 2, null), ConfirmRemovePermissionDialogViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new ConfirmRemovePermissionDialogViewModel$submit$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(newPermissionOverwrite != null ? RestAPI.INSTANCE.getApi().updatePermissionOverwrites(this.channelId, newPermissionOverwrite.e(), RestAPIParams.ChannelPermissionOverwrites.INSTANCE.fromPermissionOverwrite(newPermissionOverwrite)) : RestAPI.INSTANCE.getApi().deletePermissionOverwrites(this.channelId, this.permissionOwner.getEntityId()), false, 1, null), this, null, 2, null), ConfirmRemovePermissionDialogViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ConfirmRemovePermissionDialogViewModel(PermissionOwner permissionOwner, long j, StoreChannels storeChannels) {
-        super(new ConfirmRemovePermissionDialogViewModel$ViewState$Default(false));
+        super(new ViewState.Default(false));
         m.checkNotNullParameter(permissionOwner, "permissionOwner");
         m.checkNotNullParameter(storeChannels, "channelStore");
         this.permissionOwner = permissionOwner;

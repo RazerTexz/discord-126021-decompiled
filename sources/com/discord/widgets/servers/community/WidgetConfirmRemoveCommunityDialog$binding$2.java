@@ -3,7 +3,7 @@ package com.discord.widgets.servers.community;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetConfirmRemoveCommunityDialogBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -27,20 +27,20 @@ public final /* synthetic */ class WidgetConfirmRemoveCommunityDialog$binding$2 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetConfirmRemoveCommunityDialogBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.confirm_deleting_community_body_text;
-        TextView textView = (TextView) view.findViewById(R$id.confirm_deleting_community_body_text);
+        int i = R.id.confirm_deleting_community_body_text;
+        TextView textView = (TextView) view.findViewById(R.id.confirm_deleting_community_body_text);
         if (textView != null) {
-            i = R$id.confirm_deleting_community_cancel;
-            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.confirm_deleting_community_cancel);
+            i = R.id.confirm_deleting_community_cancel;
+            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.confirm_deleting_community_cancel);
             if (materialButton != null) {
-                i = R$id.confirm_deleting_community_header;
-                TextView textView2 = (TextView) view.findViewById(R$id.confirm_deleting_community_header);
+                i = R.id.confirm_deleting_community_header;
+                TextView textView2 = (TextView) view.findViewById(R.id.confirm_deleting_community_header);
                 if (textView2 != null) {
-                    i = R$id.confirm_deleting_community_header_container;
-                    LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.confirm_deleting_community_header_container);
+                    i = R.id.confirm_deleting_community_header_container;
+                    LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.confirm_deleting_community_header_container);
                     if (linearLayout != null) {
-                        i = R$id.confirm_deleting_community_ok;
-                        MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.confirm_deleting_community_ok);
+                        i = R.id.confirm_deleting_community_ok;
+                        MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.confirm_deleting_community_ok);
                         if (materialButton2 != null) {
                             return new WidgetConfirmRemoveCommunityDialogBinding((LinearLayout) view, textView, materialButton, textView2, linearLayout, materialButton2);
                         }

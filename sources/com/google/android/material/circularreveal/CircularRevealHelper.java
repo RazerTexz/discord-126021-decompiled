@@ -1,15 +1,13 @@
 package com.google.android.material.circularreveal;
 
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Path$Direction;
 import android.graphics.Rect;
-import android.graphics.Shader$TileMode;
+import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import androidx.annotation.ColorInt;
@@ -18,6 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import b.d.b.a.a;
 import com.google.android.material.math.MathUtils;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class CircularRevealHelper {
@@ -27,14 +27,14 @@ public class CircularRevealHelper {
     public static final int REVEAL_ANIMATOR = 2;
     private boolean buildingCircularRevealCache;
     private Paint debugPaint;
-    private final CircularRevealHelper$Delegate delegate;
+    private final Delegate delegate;
     private boolean hasCircularRevealCache;
 
     @Nullable
     private Drawable overlayDrawable;
 
     @Nullable
-    private CircularRevealWidget$RevealInfo revealInfo;
+    private CircularRevealWidget.RevealInfo revealInfo;
 
     @NonNull
     private final Paint revealPaint;
@@ -49,10 +49,20 @@ public class CircularRevealHelper {
     private final View view;
     public static final int STRATEGY = 2;
 
+    public interface Delegate {
+        void actualDraw(Canvas canvas);
+
+        boolean actualIsOpaque();
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface Strategy {
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
-    public CircularRevealHelper(CircularRevealHelper$Delegate circularRevealHelper$Delegate) {
-        this.delegate = circularRevealHelper$Delegate;
-        View view = (View) circularRevealHelper$Delegate;
+    public CircularRevealHelper(Delegate delegate) {
+        this.delegate = delegate;
+        View view = (View) delegate;
         this.view = view;
         view.setWillNotDraw(false);
         this.revealPath = new Path();
@@ -69,13 +79,13 @@ public class CircularRevealHelper {
             this.view.buildDrawingCache();
             Bitmap drawingCache = this.view.getDrawingCache();
             if (drawingCache == null && this.view.getWidth() != 0 && this.view.getHeight() != 0) {
-                drawingCache = Bitmap.createBitmap(this.view.getWidth(), this.view.getHeight(), Bitmap$Config.ARGB_8888);
+                drawingCache = Bitmap.createBitmap(this.view.getWidth(), this.view.getHeight(), Bitmap.Config.ARGB_8888);
                 this.view.draw(new Canvas(drawingCache));
             }
             if (drawingCache != null) {
                 Paint paint = this.revealPaint;
-                Shader$TileMode shader$TileMode = Shader$TileMode.CLAMP;
-                paint.setShader(new BitmapShader(drawingCache, shader$TileMode, shader$TileMode));
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                paint.setShader(new BitmapShader(drawingCache, tileMode, tileMode));
             }
             this.buildingCircularRevealCache = false;
             this.hasCircularRevealCache = true;
@@ -95,11 +105,11 @@ public class CircularRevealHelper {
         if (shouldDrawCircularReveal()) {
             int i = STRATEGY;
             if (i == 0) {
-                CircularRevealWidget$RevealInfo circularRevealWidget$RevealInfo = this.revealInfo;
-                canvas.drawCircle(circularRevealWidget$RevealInfo.centerX, circularRevealWidget$RevealInfo.centerY, circularRevealWidget$RevealInfo.radius, this.revealPaint);
+                CircularRevealWidget.RevealInfo revealInfo = this.revealInfo;
+                canvas.drawCircle(revealInfo.centerX, revealInfo.centerY, revealInfo.radius, this.revealPaint);
                 if (shouldDrawScrim()) {
-                    CircularRevealWidget$RevealInfo circularRevealWidget$RevealInfo2 = this.revealInfo;
-                    canvas.drawCircle(circularRevealWidget$RevealInfo2.centerX, circularRevealWidget$RevealInfo2.centerY, circularRevealWidget$RevealInfo2.radius, this.scrimPaint);
+                    CircularRevealWidget.RevealInfo revealInfo2 = this.revealInfo;
+                    canvas.drawCircle(revealInfo2.centerX, revealInfo2.centerY, revealInfo2.radius, this.scrimPaint);
                 }
             } else if (i == 1) {
                 int iSave = canvas.save();
@@ -130,15 +140,15 @@ public class CircularRevealHelper {
     private void drawDebugCircle(@NonNull Canvas canvas, int i, float f) {
         this.debugPaint.setColor(i);
         this.debugPaint.setStrokeWidth(f);
-        CircularRevealWidget$RevealInfo circularRevealWidget$RevealInfo = this.revealInfo;
-        canvas.drawCircle(circularRevealWidget$RevealInfo.centerX, circularRevealWidget$RevealInfo.centerY, circularRevealWidget$RevealInfo.radius - (f / 2.0f), this.debugPaint);
+        CircularRevealWidget.RevealInfo revealInfo = this.revealInfo;
+        canvas.drawCircle(revealInfo.centerX, revealInfo.centerY, revealInfo.radius - (f / 2.0f), this.debugPaint);
     }
 
     private void drawDebugMode(@NonNull Canvas canvas) {
         this.delegate.actualDraw(canvas);
         if (shouldDrawScrim()) {
-            CircularRevealWidget$RevealInfo circularRevealWidget$RevealInfo = this.revealInfo;
-            canvas.drawCircle(circularRevealWidget$RevealInfo.centerX, circularRevealWidget$RevealInfo.centerY, circularRevealWidget$RevealInfo.radius, this.scrimPaint);
+            CircularRevealWidget.RevealInfo revealInfo = this.revealInfo;
+            canvas.drawCircle(revealInfo.centerX, revealInfo.centerY, revealInfo.radius, this.scrimPaint);
         }
         if (shouldDrawCircularReveal()) {
             drawDebugCircle(canvas, ViewCompat.MEASURED_STATE_MASK, 10.0f);
@@ -168,29 +178,29 @@ public class CircularRevealHelper {
         return this.scrimPaint.getColor();
     }
 
-    private float getDistanceToFurthestCorner(@NonNull CircularRevealWidget$RevealInfo circularRevealWidget$RevealInfo) {
-        return MathUtils.distanceToFurthestCorner(circularRevealWidget$RevealInfo.centerX, circularRevealWidget$RevealInfo.centerY, 0.0f, 0.0f, this.view.getWidth(), this.view.getHeight());
+    private float getDistanceToFurthestCorner(@NonNull CircularRevealWidget.RevealInfo revealInfo) {
+        return MathUtils.distanceToFurthestCorner(revealInfo.centerX, revealInfo.centerY, 0.0f, 0.0f, this.view.getWidth(), this.view.getHeight());
     }
 
     @Nullable
-    public CircularRevealWidget$RevealInfo getRevealInfo() {
-        CircularRevealWidget$RevealInfo circularRevealWidget$RevealInfo = this.revealInfo;
-        if (circularRevealWidget$RevealInfo == null) {
+    public CircularRevealWidget.RevealInfo getRevealInfo() {
+        CircularRevealWidget.RevealInfo revealInfo = this.revealInfo;
+        if (revealInfo == null) {
             return null;
         }
-        CircularRevealWidget$RevealInfo circularRevealWidget$RevealInfo2 = new CircularRevealWidget$RevealInfo(circularRevealWidget$RevealInfo);
-        if (circularRevealWidget$RevealInfo2.isInvalid()) {
-            circularRevealWidget$RevealInfo2.radius = getDistanceToFurthestCorner(circularRevealWidget$RevealInfo2);
+        CircularRevealWidget.RevealInfo revealInfo2 = new CircularRevealWidget.RevealInfo(revealInfo);
+        if (revealInfo2.isInvalid()) {
+            revealInfo2.radius = getDistanceToFurthestCorner(revealInfo2);
         }
-        return circularRevealWidget$RevealInfo2;
+        return revealInfo2;
     }
 
     private void invalidateRevealInfo() {
         if (STRATEGY == 1) {
             this.revealPath.rewind();
-            CircularRevealWidget$RevealInfo circularRevealWidget$RevealInfo = this.revealInfo;
-            if (circularRevealWidget$RevealInfo != null) {
-                this.revealPath.addCircle(circularRevealWidget$RevealInfo.centerX, circularRevealWidget$RevealInfo.centerY, circularRevealWidget$RevealInfo.radius, Path$Direction.CW);
+            CircularRevealWidget.RevealInfo revealInfo = this.revealInfo;
+            if (revealInfo != null) {
+                this.revealPath.addCircle(revealInfo.centerX, revealInfo.centerY, revealInfo.radius, Path.Direction.CW);
             }
         }
         this.view.invalidate();
@@ -210,17 +220,17 @@ public class CircularRevealHelper {
         this.view.invalidate();
     }
 
-    public void setRevealInfo(@Nullable CircularRevealWidget$RevealInfo circularRevealWidget$RevealInfo) {
-        if (circularRevealWidget$RevealInfo == null) {
+    public void setRevealInfo(@Nullable CircularRevealWidget.RevealInfo revealInfo) {
+        if (revealInfo == null) {
             this.revealInfo = null;
         } else {
-            CircularRevealWidget$RevealInfo circularRevealWidget$RevealInfo2 = this.revealInfo;
-            if (circularRevealWidget$RevealInfo2 == null) {
-                this.revealInfo = new CircularRevealWidget$RevealInfo(circularRevealWidget$RevealInfo);
+            CircularRevealWidget.RevealInfo revealInfo2 = this.revealInfo;
+            if (revealInfo2 == null) {
+                this.revealInfo = new CircularRevealWidget.RevealInfo(revealInfo);
             } else {
-                circularRevealWidget$RevealInfo2.set(circularRevealWidget$RevealInfo);
+                revealInfo2.set(revealInfo);
             }
-            if (MathUtils.geq(circularRevealWidget$RevealInfo.radius, getDistanceToFurthestCorner(circularRevealWidget$RevealInfo), 1.0E-4f)) {
+            if (MathUtils.geq(revealInfo.radius, getDistanceToFurthestCorner(revealInfo), 1.0E-4f)) {
                 this.revealInfo.radius = Float.MAX_VALUE;
             }
         }
@@ -228,8 +238,8 @@ public class CircularRevealHelper {
     }
 
     private boolean shouldDrawCircularReveal() {
-        CircularRevealWidget$RevealInfo circularRevealWidget$RevealInfo = this.revealInfo;
-        boolean z2 = circularRevealWidget$RevealInfo == null || circularRevealWidget$RevealInfo.isInvalid();
+        CircularRevealWidget.RevealInfo revealInfo = this.revealInfo;
+        boolean z2 = revealInfo == null || revealInfo.isInvalid();
         if (STRATEGY == 0) {
             return !z2 && this.hasCircularRevealCache;
         }

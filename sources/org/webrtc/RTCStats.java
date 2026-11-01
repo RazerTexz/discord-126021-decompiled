@@ -2,7 +2,6 @@ package org.webrtc;
 
 import b.d.b.a.a;
 import java.util.Map;
-import java.util.Map$Entry;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class RTCStats {
@@ -70,11 +69,11 @@ public class RTCStats {
         sbU.append(this.type);
         sbU.append(", id: ");
         sbU.append(this.f3820id);
-        for (Map$Entry<String, Object> map$Entry : this.members.entrySet()) {
+        for (Map.Entry<String, Object> entry : this.members.entrySet()) {
             sbU.append(", ");
-            sbU.append(map$Entry.getKey());
+            sbU.append(entry.getKey());
             sbU.append(": ");
-            appendValue(sbU, map$Entry.getValue());
+            appendValue(sbU, entry.getValue());
         }
         sbU.append(" }");
         return sbU.toString();

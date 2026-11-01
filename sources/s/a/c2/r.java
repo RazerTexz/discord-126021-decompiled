@@ -1,7 +1,5 @@
 package s.a.c2;
 
-import s.a.a.k$b;
-
 /* JADX INFO: compiled from: AbstractChannel.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class r extends s.a.a.k {
@@ -11,7 +9,7 @@ public abstract class r extends s.a.a.k {
 
     public abstract void s(i<?> iVar);
 
-    public abstract s.a.a.t t(k$b k_b);
+    public abstract s.a.a.t t(s.a.a.k.b bVar);
 
     public void u() {
     }

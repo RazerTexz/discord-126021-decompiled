@@ -2,12 +2,10 @@ package com.discord.utilities.textprocessing;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Paint$FontMetricsInt;
 import android.graphics.Path;
-import android.graphics.Path$Direction;
 import android.graphics.RectF;
 import android.text.style.ReplacementSpan;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import com.discord.utilities.string.StringUtilsKt;
 import d0.a0.a;
 import d0.g0.t;
@@ -61,7 +59,7 @@ public class SimpleRoundedBackgroundSpan extends ReplacementSpan {
                 }
                 RectF rectF = new RectF(x2, top, fMeasureText + x2 + i2, bottom);
                 Path path = new Path();
-                path.addRoundRect(rectF, calculateCornerRadius(start, end, text), Path$Direction.CW);
+                path.addRoundRect(rectF, calculateCornerRadius(start, end, text), Path.Direction.CW);
                 Paint paint2 = new Paint(paint);
                 paint2.setColor(this.backgroundColor);
                 canvas.drawPath(path, paint2);
@@ -77,7 +75,7 @@ public class SimpleRoundedBackgroundSpan extends ReplacementSpan {
             i2 += i;
             RectF rectF2 = new RectF(x2, top, fMeasureText + x2 + i2, bottom);
             Path path2 = new Path();
-            path2.addRoundRect(rectF2, calculateCornerRadius(start, end, text), Path$Direction.CW);
+            path2.addRoundRect(rectF2, calculateCornerRadius(start, end, text), Path.Direction.CW);
             Paint paint3 = new Paint(paint);
             paint3.setColor(this.backgroundColor);
             canvas.drawPath(path2, paint3);
@@ -90,7 +88,7 @@ public class SimpleRoundedBackgroundSpan extends ReplacementSpan {
     }
 
     @Override // android.text.style.ReplacementSpan
-    public int getSize(Paint paint, CharSequence text, int start, int end, Paint$FontMetricsInt fm) {
+    public int getSize(Paint paint, CharSequence text, int start, int end, Paint.FontMetricsInt fm) {
         m.checkNotNullParameter(paint, "paint");
         int iRoundToInt = a.roundToInt(paint.measureText(StringUtilsKt.transformOrEmpty(text != null ? text.subSequence(start, end).toString() : null, this.transformSpannedText)));
         if (start == this.startIndex) {

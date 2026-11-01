@@ -1,5 +1,6 @@
 package com.discord.widgets.chat.list;
 
+import androidx.core.app.NotificationCompat;
 import com.discord.api.guild.GuildFeature;
 import com.discord.models.experiments.domain.Experiment;
 import com.discord.models.guild.Guild;
@@ -12,14 +13,50 @@ import j0.l.e.k;
 import kotlin.Lazy;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
+import rx.functions.Func2;
 
 /* JADX INFO: compiled from: TextInVoiceFeatureFlag.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class TextInVoiceFeatureFlag {
-    public static final TextInVoiceFeatureFlag$Companion Companion = new TextInVoiceFeatureFlag$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final StoreExperiments storeExperiments;
     private final StoreGuilds storeGuilds;
     private static final Lazy INSTANCE$delegate = g.lazy(TextInVoiceFeatureFlag$Companion$INSTANCE$2.INSTANCE);
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.TextInVoiceFeatureFlag$observeEnabled$1, reason: invalid class name */
+    /* JADX INFO: compiled from: TextInVoiceFeatureFlag.kt */
+    public final class AnonymousClass1<T1, T2, R> implements Func2<Experiment, Guild, Boolean> {
+        public AnonymousClass1() {
+        }
+
+        @Override // rx.functions.Func2
+        public /* bridge */ /* synthetic */ Boolean call(Experiment experiment, Guild guild) {
+            return call2(experiment, guild);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Boolean call2(Experiment experiment, Guild guild) {
+            return Boolean.valueOf(TextInVoiceFeatureFlag.access$isEnabled(TextInVoiceFeatureFlag.this, experiment, guild));
+        }
+    }
+
+    /* JADX INFO: compiled from: TextInVoiceFeatureFlag.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final TextInVoiceFeatureFlag getINSTANCE() {
+            Lazy lazyAccess$getINSTANCE$cp = TextInVoiceFeatureFlag.access$getINSTANCE$cp();
+            Companion companion = TextInVoiceFeatureFlag.INSTANCE;
+            return (TextInVoiceFeatureFlag) lazyAccess$getINSTANCE$cp.getValue();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public TextInVoiceFeatureFlag() {
         this(null, null, 3, null);
@@ -53,13 +90,13 @@ public final class TextInVoiceFeatureFlag {
             m.checkNotNullExpressionValue(kVar, "Observable.just(false)");
             return kVar;
         }
-        Observable<Boolean> observableJ = Observable.j(this.storeExperiments.observeGuildExperiment("2022-03_text_in_voice", guildId.longValue(), true), this.storeGuilds.observeGuild(guildId.longValue()), new TextInVoiceFeatureFlag$observeEnabled$1(this));
+        Observable<Boolean> observableJ = Observable.j(this.storeExperiments.observeGuildExperiment("2022-03_text_in_voice", guildId.longValue(), true), this.storeGuilds.observeGuild(guildId.longValue()), new AnonymousClass1());
         m.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…xperiment, guild)\n      }");
         return observableJ;
     }
 
     public /* synthetic */ TextInVoiceFeatureFlag(StoreExperiments storeExperiments, StoreGuilds storeGuilds, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i & 1) != 0 ? StoreStream.Companion.getExperiments() : storeExperiments, (i & 2) != 0 ? StoreStream.Companion.getGuilds() : storeGuilds);
+        this((i & 1) != 0 ? StoreStream.INSTANCE.getExperiments() : storeExperiments, (i & 2) != 0 ? StoreStream.INSTANCE.getGuilds() : storeGuilds);
     }
 
     private final boolean isEnabled(Experiment experiment, Guild guild) {

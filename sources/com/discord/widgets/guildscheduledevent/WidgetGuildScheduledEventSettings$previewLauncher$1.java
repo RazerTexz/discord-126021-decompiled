@@ -28,9 +28,9 @@ public final class WidgetGuildScheduledEventSettings$previewLauncher$1 extends o
         if (activity != null) {
             activity.setResult(-1);
             if (z2) {
-                WidgetGuildScheduledEventCreateSuccess$Companion widgetGuildScheduledEventCreateSuccess$Companion = WidgetGuildScheduledEventCreateSuccess.Companion;
+                WidgetGuildScheduledEventCreateSuccess.Companion companion = WidgetGuildScheduledEventCreateSuccess.INSTANCE;
                 m.checkNotNullExpressionValue(activity, "this");
-                widgetGuildScheduledEventCreateSuccess$Companion.launch(activity, l, WidgetGuildScheduledEventSettings.access$getGuildId$p(this.this$0), j);
+                companion.launch(activity, l, WidgetGuildScheduledEventSettings.access$getGuildId$p(this.this$0), j);
             }
             activity.finish();
         }

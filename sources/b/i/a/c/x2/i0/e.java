@@ -10,8 +10,6 @@ import b.i.a.c.f3.w;
 import b.i.a.c.f3.x;
 import b.i.a.c.g3.q;
 import b.i.a.c.j1;
-import b.i.a.c.j1$b;
-import b.i.a.c.t2.l$b;
 import com.google.android.exoplayer2.ParserException;
 import com.google.android.exoplayer2.drm.DrmInitData;
 import java.nio.ByteBuffer;
@@ -26,6 +24,104 @@ import org.objectweb.asm.Opcodes;
 /* JADX INFO: loaded from: classes3.dex */
 public final class e {
     public static final byte[] a = e0.w("OpusHead");
+
+    /* JADX INFO: compiled from: AtomParsers.java */
+    public interface a {
+        int a();
+
+        int b();
+
+        int c();
+    }
+
+    /* JADX INFO: compiled from: AtomParsers.java */
+    public final class c implements a {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f1212b;
+        public final x c;
+
+        public c(b.i.a.c.x2.i0.d.b bVar, j1 j1Var) {
+            x xVar = bVar.f1210b;
+            this.c = xVar;
+            xVar.E(12);
+            int iW = xVar.w();
+            if ("audio/raw".equals(j1Var.w)) {
+                int iS = e0.s(j1Var.L, j1Var.J);
+                if (iW == 0 || iW % iS != 0) {
+                    Log.w("AtomParsers", b.d.b.a.a.h(88, "Audio sample size mismatch. stsd sample size: ", iS, ", stsz sample size: ", iW));
+                    iW = iS;
+                }
+            }
+            this.a = iW == 0 ? -1 : iW;
+            this.f1212b = xVar.w();
+        }
+
+        @Override // b.i.a.c.x2.i0.e.a
+        public int a() {
+            return this.a;
+        }
+
+        @Override // b.i.a.c.x2.i0.e.a
+        public int b() {
+            return this.f1212b;
+        }
+
+        @Override // b.i.a.c.x2.i0.e.a
+        public int c() {
+            int i = this.a;
+            return i == -1 ? this.c.w() : i;
+        }
+    }
+
+    /* JADX INFO: compiled from: AtomParsers.java */
+    public final class d implements a {
+        public final x a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f1213b;
+        public final int c;
+        public int d;
+        public int e;
+
+        public d(b.i.a.c.x2.i0.d.b bVar) {
+            x xVar = bVar.f1210b;
+            this.a = xVar;
+            xVar.E(12);
+            this.c = xVar.w() & 255;
+            this.f1213b = xVar.w();
+        }
+
+        @Override // b.i.a.c.x2.i0.e.a
+        public int a() {
+            return -1;
+        }
+
+        @Override // b.i.a.c.x2.i0.e.a
+        public int b() {
+            return this.f1213b;
+        }
+
+        @Override // b.i.a.c.x2.i0.e.a
+        public int c() {
+            int i = this.c;
+            if (i == 8) {
+                return this.a.t();
+            }
+            if (i == 16) {
+                return this.a.y();
+            }
+            int i2 = this.d;
+            this.d = i2 + 1;
+            if (i2 % 2 != 0) {
+                return this.e & 15;
+            }
+            int iT = this.a.t();
+            this.e = iT;
+            return (iT & 240) >> 4;
+        }
+    }
 
     public static Pair<String, byte[]> a(x xVar, int i) {
         xVar.E(i + 8 + 4);
@@ -206,7 +302,7 @@ public final class e {
     /* JADX WARN: Code duplicated, block: B:515:0x04e0 A[SYNTHETIC] */
     /* JADX WARN: Code duplicated, block: B:524:0x0616 A[SYNTHETIC] */
     /* JADX WARN: Code duplicated, block: B:525:0x060c A[SYNTHETIC] */
-    public static e$b d(x xVar, int i, int i2, String str, @Nullable DrmInitData drmInitData, boolean z2) throws ParserException {
+    public static b d(x xVar, int i, int i2, String str, @Nullable DrmInitData drmInitData, boolean z2) throws ParserException {
         int i3;
         int i4;
         int i5;
@@ -216,7 +312,7 @@ public final class e {
         int i6;
         int i7;
         int i8;
-        e$b e_b;
+        b bVar;
         float f;
         List<byte[]> listU;
         int i9;
@@ -268,7 +364,7 @@ public final class e {
         String str10;
         xVar.E(12);
         int iF4 = xVar.f();
-        e$b e_b2 = new e$b(iF4);
+        b bVar2 = new b(iF4);
         int i28 = 0;
         while (i28 < iF4) {
             int i29 = xVar.f984b;
@@ -292,7 +388,7 @@ public final class e {
                     if (pairC != null) {
                         iF6 = ((Integer) pairC.first).intValue();
                         drmInitDataA = drmInitData == null ? null : drmInitData.a(((n) pairC.second).f1231b);
-                        e_b2.a[i3] = (n) pairC.second;
+                        bVar2.a[i3] = (n) pairC.second;
                     } else {
                         drmInitDataA = drmInitData;
                     }
@@ -340,7 +436,7 @@ public final class e {
                         xVar.E(i34 + 8);
                         b.i.a.c.g3.m mVarB = b.i.a.c.g3.m.b(xVar);
                         list = mVarB.a;
-                        e_b2.c = mVarB.f986b;
+                        bVar2.c = mVarB.f986b;
                         if (!z6) {
                             fW = mVarB.e;
                         }
@@ -351,7 +447,7 @@ public final class e {
                         xVar.E(i34 + 8);
                         q qVarA = q.a(xVar);
                         list = qVarA.a;
-                        e_b2.c = qVarA.f989b;
+                        bVar2.c = qVarA.f989b;
                         if (!z6) {
                             fW = qVarA.c;
                         }
@@ -361,7 +457,7 @@ public final class e {
                         if (iF8 == 1685480259 || iF8 == 1685485123) {
                             iY2 = iY2;
                             iY3 = iY3;
-                            e_b2 = e_b2;
+                            bVar2 = bVar2;
                             i4 = i4;
                             i5 = i5;
                             iF6 = iF6;
@@ -424,7 +520,7 @@ public final class e {
                                 } else {
                                     iY2 = iY2;
                                     iY3 = iY3;
-                                    e_b2 = e_b2;
+                                    bVar2 = bVar2;
                                     i4 = i4;
                                     i5 = i5;
                                     iF6 = iF6;
@@ -493,7 +589,7 @@ public final class e {
                                                 iB = b.i.a.c.g3.n.b(iY5);
                                                 i31 = i36;
                                             } else {
-                                                String strValueOf = String.valueOf(d.a(iF10));
+                                                String strValueOf = String.valueOf(b.i.a.c.x2.i0.d.a(iF10));
                                                 Log.w("AtomParsers", strValueOf.length() != 0 ? "Unsupported color type: ".concat(strValueOf) : new String("Unsupported color type: "));
                                             }
                                         }
@@ -511,7 +607,7 @@ public final class e {
                             iF6 = iF6;
                             i4 = i4;
                             i5 = i5;
-                            e_b2 = e_b2;
+                            bVar2 = bVar2;
                             iY3 = iY3;
                             iY2 = iY2;
                         }
@@ -526,7 +622,7 @@ public final class e {
                         iF6 = iF6;
                         i4 = i4;
                         i5 = i5;
-                        e_b2 = e_b2;
+                        bVar2 = bVar2;
                         iY3 = iY3;
                         iY2 = iY2;
                     }
@@ -539,43 +635,43 @@ public final class e {
                     iF6 = iF6;
                     i4 = i4;
                     i5 = i5;
-                    e_b2 = e_b2;
+                    bVar2 = bVar2;
                     iY3 = iY3;
                     iY2 = iY2;
                 }
                 float f3 = fW;
                 if (str2 == null) {
-                    e_b = e_b2;
+                    bVar = bVar2;
                 } else {
-                    j1$b j1_b = new j1$b();
-                    j1_b.b(i);
-                    j1_b.k = str2;
-                    j1_b.h = str12;
-                    j1_b.p = iY2;
-                    j1_b.q = iY3;
-                    j1_b.t = f3;
-                    j1_b.f1022s = i2;
-                    j1_b.u = bArr;
-                    j1_b.v = i6;
-                    j1_b.m = list2;
-                    j1_b.n = drmInitData2;
+                    j1.b bVar3 = new j1.b();
+                    bVar3.b(i);
+                    bVar3.k = str2;
+                    bVar3.h = str12;
+                    bVar3.p = iY2;
+                    bVar3.q = iY3;
+                    bVar3.t = f3;
+                    bVar3.f1022s = i2;
+                    bVar3.u = bArr;
+                    bVar3.v = i6;
+                    bVar3.m = list2;
+                    bVar3.n = drmInitData2;
                     int i37 = i32;
                     if (i37 == -1) {
                         i8 = i31;
                         i7 = iB;
                         if (i8 != -1 || i7 != -1 || byteBufferOrder != null) {
                         }
-                        j1 j1VarA = j1_b.a();
-                        e_b = e_b2;
-                        e_b.f1211b = j1VarA;
+                        j1 j1VarA = bVar3.a();
+                        bVar = bVar2;
+                        bVar.f1211b = j1VarA;
                     } else {
                         i7 = iB;
                         i8 = i31;
                     }
-                    j1_b.w = new b.i.a.c.g3.n(i37, i8, i7, byteBufferOrder != null ? byteBufferOrder.array() : null);
-                    j1 j1VarA2 = j1_b.a();
-                    e_b = e_b2;
-                    e_b.f1211b = j1VarA2;
+                    bVar3.w = new b.i.a.c.g3.n(i37, i8, i7, byteBufferOrder != null ? byteBufferOrder.array() : null);
+                    j1 j1VarA2 = bVar3.a();
+                    bVar = bVar2;
+                    bVar.f1211b = j1VarA2;
                 }
             } else if (iF6 == 1836069985 || iF6 == 1701733217 || iF6 == 1633889587 || iF6 == 1700998451 || iF6 == 1633889588 || iF6 == 1835823201 || iF6 == 1685353315 || iF6 == 1685353317 || iF6 == 1685353320 || iF6 == 1685353324 || iF6 == 1685353336 || iF6 == 1935764850 || iF6 == 1935767394 || iF6 == 1819304813 || iF6 == 1936684916 || iF6 == 1953984371 || iF6 == 778924082 || iF6 == 778924083 || iF6 == 1835557169 || iF6 == 1835560241 || iF6 == 1634492771 || iF6 == 1634492791 || iF6 == 1970037111 || iF6 == 1332770163 || iF6 == 1716281667) {
                 xVar.E(i29 + 8 + 8);
@@ -619,7 +715,7 @@ public final class e {
                         i12 = i29;
                         i11 = iF5;
                     }
-                    e_b = e_b2;
+                    bVar = bVar2;
                     i4 = i12;
                     i5 = i11;
                 }
@@ -629,7 +725,7 @@ public final class e {
                     if (pairC2 != null) {
                         int iIntValue3 = ((Integer) pairC2.first).intValue();
                         drmInitDataA2 = drmInitData == 0 ? null : drmInitData.a(((n) pairC2.second).f1231b);
-                        e_b2.a[i28] = (n) pairC2.second;
+                        bVar2.a[i28] = (n) pairC2.second;
                         iF6 = iIntValue3;
                     } else {
                         drmInitDataA2 = drmInitData;
@@ -734,14 +830,14 @@ public final class e {
                                             if ((iT2 & 4) != 0) {
                                                 i27++;
                                             }
-                                            j1$b j1_b2 = new j1$b();
-                                            j1_b2.a = string;
-                                            j1_b2.k = str14;
-                                            j1_b2.f1023x = i27;
-                                            j1_b2.f1024y = i47;
-                                            j1_b2.n = drmInitDataA2;
-                                            j1_b2.c = str;
-                                            e_b2.f1211b = j1_b2.a();
+                                            j1.b bVar4 = new j1.b();
+                                            bVar4.a = string;
+                                            bVar4.k = str14;
+                                            bVar4.f1023x = i27;
+                                            bVar4.f1024y = i47;
+                                            bVar4.n = drmInitDataA2;
+                                            bVar4.c = str;
+                                            bVar2.f1211b = bVar4.a();
                                         } else if (iF2 == 1684366131) {
                                             xVar.E(i16 + 8);
                                             String string2 = Integer.toString(i);
@@ -760,14 +856,14 @@ public final class e {
                                             } else {
                                                 str9 = "audio/eac3-joc";
                                             }
-                                            j1$b j1_b3 = new j1$b();
-                                            j1_b3.a = string2;
-                                            j1_b3.k = str9;
-                                            j1_b3.f1023x = i26;
-                                            j1_b3.f1024y = i48;
-                                            j1_b3.n = drmInitDataA2;
-                                            j1_b3.c = str;
-                                            e_b2.f1211b = j1_b3.a();
+                                            j1.b bVar5 = new j1.b();
+                                            bVar5.a = string2;
+                                            bVar5.k = str9;
+                                            bVar5.f1023x = i26;
+                                            bVar5.f1024y = i48;
+                                            bVar5.n = drmInitDataA2;
+                                            bVar5.c = str;
+                                            bVar2.f1211b = bVar5.a();
                                         } else {
                                             if (iF2 == 1684103988) {
                                                 xVar.E(i16 + 8);
@@ -778,14 +874,14 @@ public final class e {
                                                 } else {
                                                     i25 = 44100;
                                                 }
-                                                j1$b j1_b4 = new j1$b();
-                                                j1_b4.a = string3;
-                                                j1_b4.k = "audio/ac4";
-                                                j1_b4.f1023x = 2;
-                                                j1_b4.f1024y = i25;
-                                                j1_b4.n = drmInitDataA2;
-                                                j1_b4.c = str;
-                                                e_b2.f1211b = j1_b4.a();
+                                                j1.b bVar6 = new j1.b();
+                                                bVar6.a = string3;
+                                                bVar6.k = "audio/ac4";
+                                                bVar6.f1023x = 2;
+                                                bVar6.f1024y = i25;
+                                                bVar6.n = drmInitDataA2;
+                                                bVar6.c = str;
+                                                bVar2.f1211b = bVar6.a();
                                             } else {
                                                 if (iF2 == 1684892784) {
                                                     if (i10 > 0) {
@@ -795,15 +891,15 @@ public final class e {
                                                     i14 = i10;
                                                     listG = listU2;
                                                 } else if (iF2 == 1684305011) {
-                                                    j1$b j1_b5 = new j1$b();
-                                                    j1_b5.b(i);
-                                                    j1_b5.k = str6;
-                                                    j1_b5.f1023x = iIntValue;
+                                                    j1.b bVar7 = new j1.b();
+                                                    bVar7.b(i);
+                                                    bVar7.k = str6;
+                                                    bVar7.f1023x = iIntValue;
                                                     iIntValue2 = i18;
-                                                    j1_b5.f1024y = iIntValue2;
-                                                    j1_b5.n = drmInitDataA2;
-                                                    j1_b5.c = str;
-                                                    e_b2.f1211b = j1_b5.a();
+                                                    bVar7.f1024y = iIntValue2;
+                                                    bVar7.n = drmInitDataA2;
+                                                    bVar7.c = str;
+                                                    bVar2.f1211b = bVar7.a();
                                                     str14 = str14;
                                                     i14 = iIntValue2;
                                                     listG = listU2;
@@ -921,10 +1017,10 @@ public final class e {
                                         bArr2 = (byte[]) pairA2.second;
                                         if (bArr2 != null) {
                                             if ("audio/mp4a-latm".equals(str6)) {
-                                                l$b l_bB = b.i.a.c.t2.l.b(new w(bArr2), false);
-                                                i18 = l_bB.a;
-                                                iIntValue = l_bB.f1122b;
-                                                str8 = l_bB.c;
+                                                b.i.a.c.t2.l.b bVarB = b.i.a.c.t2.l.b(new w(bArr2), false);
+                                                i18 = bVarB.a;
+                                                iIntValue = bVarB.f1122b;
+                                                str8 = bVarB.c;
                                             } else {
                                                 str8 = str5;
                                             }
@@ -944,10 +1040,10 @@ public final class e {
                                     bArr2 = (byte[]) pairA3.second;
                                     if (bArr2 != null) {
                                         if ("audio/mp4a-latm".equals(str6)) {
-                                            l$b l_bB2 = b.i.a.c.t2.l.b(new w(bArr2), false);
-                                            i18 = l_bB2.a;
-                                            iIntValue = l_bB2.f1122b;
-                                            str8 = l_bB2.c;
+                                            b.i.a.c.t2.l.b bVarB2 = b.i.a.c.t2.l.b(new w(bArr2), false);
+                                            i18 = bVarB2.a;
+                                            iIntValue = bVarB2.f1122b;
+                                            str8 = bVarB2.c;
                                         } else {
                                             str8 = str5;
                                         }
@@ -969,20 +1065,20 @@ public final class e {
                         i17 = i14;
                         i12 = i29;
                         i11 = iF5;
-                        if (e_b2.f1211b == null && str6 != null) {
-                            j1$b j1_b6 = new j1$b();
-                            j1_b6.b(i);
-                            j1_b6.k = str6;
-                            j1_b6.h = str5;
-                            j1_b6.f1023x = iIntValue;
-                            j1_b6.f1024y = i17;
-                            j1_b6.f1025z = i15;
-                            j1_b6.m = listU2;
-                            j1_b6.n = drmInitDataA2;
-                            j1_b6.c = str;
-                            e_b2.f1211b = j1_b6.a();
+                        if (bVar2.f1211b == null && str6 != null) {
+                            j1.b bVar8 = new j1.b();
+                            bVar8.b(i);
+                            bVar8.k = str6;
+                            bVar8.h = str5;
+                            bVar8.f1023x = iIntValue;
+                            bVar8.f1024y = i17;
+                            bVar8.f1025z = i15;
+                            bVar8.m = listU2;
+                            bVar8.n = drmInitDataA2;
+                            bVar8.c = str;
+                            bVar2.f1211b = bVar8.a();
                         }
-                        e_b = e_b2;
+                        bVar = bVar2;
                         i4 = i12;
                         i5 = i11;
                     }
@@ -1037,14 +1133,14 @@ public final class e {
                                 if ((iT2 & 4) != 0) {
                                     i27++;
                                 }
-                                j1$b j1_b7 = new j1$b();
-                                j1_b7.a = string4;
-                                j1_b7.k = str14;
-                                j1_b7.f1023x = i27;
-                                j1_b7.f1024y = i412;
-                                j1_b7.n = drmInitDataA2;
-                                j1_b7.c = str;
-                                e_b2.f1211b = j1_b7.a();
+                                j1.b bVar9 = new j1.b();
+                                bVar9.a = string4;
+                                bVar9.k = str14;
+                                bVar9.f1023x = i27;
+                                bVar9.f1024y = i412;
+                                bVar9.n = drmInitDataA2;
+                                bVar9.c = str;
+                                bVar2.f1211b = bVar9.a();
                             } else if (iF2 == 1684366131) {
                                 xVar.E(i16 + 8);
                                 String string5 = Integer.toString(i);
@@ -1063,14 +1159,14 @@ public final class e {
                                 } else {
                                     str9 = "audio/eac3";
                                 }
-                                j1$b j1_b8 = new j1$b();
-                                j1_b8.a = string5;
-                                j1_b8.k = str9;
-                                j1_b8.f1023x = i26;
-                                j1_b8.f1024y = i413;
-                                j1_b8.n = drmInitDataA2;
-                                j1_b8.c = str;
-                                e_b2.f1211b = j1_b8.a();
+                                j1.b bVar10 = new j1.b();
+                                bVar10.a = string5;
+                                bVar10.k = str9;
+                                bVar10.f1023x = i26;
+                                bVar10.f1024y = i413;
+                                bVar10.n = drmInitDataA2;
+                                bVar10.c = str;
+                                bVar2.f1211b = bVar10.a();
                             } else {
                                 if (iF2 == 1684103988) {
                                     xVar.E(i16 + 8);
@@ -1081,14 +1177,14 @@ public final class e {
                                     } else {
                                         i25 = 44100;
                                     }
-                                    j1$b j1_b9 = new j1$b();
-                                    j1_b9.a = string6;
-                                    j1_b9.k = "audio/ac4";
-                                    j1_b9.f1023x = 2;
-                                    j1_b9.f1024y = i25;
-                                    j1_b9.n = drmInitDataA2;
-                                    j1_b9.c = str;
-                                    e_b2.f1211b = j1_b9.a();
+                                    j1.b bVar11 = new j1.b();
+                                    bVar11.a = string6;
+                                    bVar11.k = "audio/ac4";
+                                    bVar11.f1023x = 2;
+                                    bVar11.f1024y = i25;
+                                    bVar11.n = drmInitDataA2;
+                                    bVar11.c = str;
+                                    bVar2.f1211b = bVar11.a();
                                 } else {
                                     if (iF2 == 1684892784) {
                                         if (i10 > 0) {
@@ -1098,15 +1194,15 @@ public final class e {
                                         i14 = i10;
                                         listG = listU2;
                                     } else if (iF2 == 1684305011) {
-                                        j1$b j1_b10 = new j1$b();
-                                        j1_b10.b(i);
-                                        j1_b10.k = str6;
-                                        j1_b10.f1023x = iIntValue;
+                                        j1.b bVar12 = new j1.b();
+                                        bVar12.b(i);
+                                        bVar12.k = str6;
+                                        bVar12.f1023x = iIntValue;
                                         iIntValue2 = i18;
-                                        j1_b10.f1024y = iIntValue2;
-                                        j1_b10.n = drmInitDataA2;
-                                        j1_b10.c = str;
-                                        e_b2.f1211b = j1_b10.a();
+                                        bVar12.f1024y = iIntValue2;
+                                        bVar12.n = drmInitDataA2;
+                                        bVar12.c = str;
+                                        bVar2.f1211b = bVar12.a();
                                         str14 = str14;
                                         i14 = iIntValue2;
                                         listG = listU2;
@@ -1222,10 +1318,10 @@ public final class e {
                                 bArr2 = (byte[]) pairA4.second;
                                 if (bArr2 != null) {
                                     if ("audio/mp4a-latm".equals(str6)) {
-                                        l$b l_bB3 = b.i.a.c.t2.l.b(new w(bArr2), false);
-                                        i18 = l_bB3.a;
-                                        iIntValue = l_bB3.f1122b;
-                                        str8 = l_bB3.c;
+                                        b.i.a.c.t2.l.b bVarB3 = b.i.a.c.t2.l.b(new w(bArr2), false);
+                                        i18 = bVarB3.a;
+                                        iIntValue = bVarB3.f1122b;
+                                        str8 = bVarB3.c;
                                     } else {
                                         str8 = str5;
                                     }
@@ -1245,10 +1341,10 @@ public final class e {
                             bArr2 = (byte[]) pairA5.second;
                             if (bArr2 != null) {
                                 if ("audio/mp4a-latm".equals(str6)) {
-                                    l$b l_bB4 = b.i.a.c.t2.l.b(new w(bArr2), false);
-                                    i18 = l_bB4.a;
-                                    iIntValue = l_bB4.f1122b;
-                                    str8 = l_bB4.c;
+                                    b.i.a.c.t2.l.b bVarB4 = b.i.a.c.t2.l.b(new w(bArr2), false);
+                                    i18 = bVarB4.a;
+                                    iIntValue = bVarB4.f1122b;
+                                    str8 = bVarB4.c;
                                 } else {
                                     str8 = str5;
                                 }
@@ -1270,20 +1366,20 @@ public final class e {
                 i17 = i14;
                 i12 = i29;
                 i11 = iF5;
-                if (e_b2.f1211b == null) {
-                    j1$b j1_b11 = new j1$b();
-                    j1_b11.b(i);
-                    j1_b11.k = str6;
-                    j1_b11.h = str5;
-                    j1_b11.f1023x = iIntValue;
-                    j1_b11.f1024y = i17;
-                    j1_b11.f1025z = i15;
-                    j1_b11.m = listU2;
-                    j1_b11.n = drmInitDataA2;
-                    j1_b11.c = str;
-                    e_b2.f1211b = j1_b11.a();
+                if (bVar2.f1211b == null) {
+                    j1.b bVar13 = new j1.b();
+                    bVar13.b(i);
+                    bVar13.k = str6;
+                    bVar13.h = str5;
+                    bVar13.f1023x = iIntValue;
+                    bVar13.f1024y = i17;
+                    bVar13.f1025z = i15;
+                    bVar13.m = listU2;
+                    bVar13.n = drmInitDataA2;
+                    bVar13.c = str;
+                    bVar2.f1211b = bVar13.a();
                 }
-                e_b = e_b2;
+                bVar = bVar2;
                 i4 = i12;
                 i5 = i11;
             } else {
@@ -1310,49 +1406,49 @@ public final class e {
                             if (iF6 != 1664495672) {
                                 throw new IllegalStateException();
                             }
-                            e_b2.d = 1;
+                            bVar2.d = 1;
                             str18 = "application/x-mp4-cea-608";
                         }
                         pVarU2 = null;
                         str10 = str18;
                     }
-                    j1$b j1_b12 = new j1$b();
-                    j1_b12.b(i);
-                    j1_b12.k = str10;
-                    j1_b12.c = str;
-                    j1_b12.o = j;
-                    j1_b12.m = pVarU2;
-                    e_b2.f1211b = j1_b12.a();
+                    j1.b bVar14 = new j1.b();
+                    bVar14.b(i);
+                    bVar14.k = str10;
+                    bVar14.c = str;
+                    bVar14.o = j;
+                    bVar14.m = pVarU2;
+                    bVar2.f1211b = bVar14.a();
                 } else if (iF6 == 1835365492) {
                     xVar.E(i29 + 8 + 8);
                     if (iF6 == 1835365492) {
                         xVar.n();
                         String strN = xVar.n();
                         if (strN != null) {
-                            j1$b j1_b13 = new j1$b();
-                            j1_b13.b(i);
-                            j1_b13.k = strN;
-                            e_b2.f1211b = j1_b13.a();
+                            j1.b bVar15 = new j1.b();
+                            bVar15.b(i);
+                            bVar15.k = strN;
+                            bVar2.f1211b = bVar15.a();
                         }
                     }
                 } else if (iF6 == 1667329389) {
-                    j1$b j1_b14 = new j1$b();
-                    j1_b14.b(i);
-                    j1_b14.k = "application/x-camera-motion";
-                    e_b2.f1211b = j1_b14.a();
+                    j1.b bVar16 = new j1.b();
+                    bVar16.b(i);
+                    bVar16.k = "application/x-camera-motion";
+                    bVar2.f1211b = bVar16.a();
                 }
                 iF4 = iF4;
-                e_b = e_b2;
+                bVar = bVar2;
                 i3 = i28;
                 i4 = i29;
                 i5 = iF5;
             }
             xVar.E(i4 + i5);
             i28 = i3 + 1;
-            e_b2 = e_b;
+            bVar2 = bVar;
             iF4 = iF4;
         }
-        return e_b2;
+        return bVar2;
     }
 
     /* JADX WARN: Code duplicated, block: B:117:0x0284  */
@@ -1450,10 +1546,10 @@ public final class e {
     /* JADX WARN: Code duplicated, block: B:87:0x019f  */
     /* JADX WARN: Code duplicated, block: B:90:0x01aa  */
     /* JADX WARN: Code duplicated, block: B:91:0x01ac  */
-    public static List<p> e(d$a d_a, b.i.a.c.x2.p pVar, long j, @Nullable DrmInitData drmInitData, boolean z2, boolean z3, b.i.b.a.e<m, m> eVar) throws ParserException {
+    public static List<p> e(b.i.a.c.x2.i0.d.a aVar, b.i.a.c.x2.p pVar, long j, @Nullable DrmInitData drmInitData, boolean z2, boolean z3, b.i.b.a.e<m, m> eVar) throws ParserException {
         int i;
         m mVar;
-        e$a e_d;
+        a dVar;
         boolean z4;
         int iW;
         int iW2;
@@ -1571,26 +1667,26 @@ public final class e {
         int i39;
         int i40;
         Pair pairCreate;
-        e$b e_bD;
+        b bVarD;
         long[] jArr11;
         long[] jArr12;
-        d$a d_aB;
+        b.i.a.c.x2.i0.d.a aVarB;
         Pair pairCreate2;
         ArrayList arrayList3 = new ArrayList();
         int i41 = 0;
-        while (i41 < d_a.d.size()) {
-            d$a d_a2 = d_a.d.get(i41);
-            if (d_a2.a != 1953653099) {
+        while (i41 < aVar.d.size()) {
+            b.i.a.c.x2.i0.d.a aVar2 = aVar.d.get(i41);
+            if (aVar2.a != 1953653099) {
                 arrayList2 = arrayList3;
                 i2 = i41;
             } else {
-                d$b d_bC = d_a.c(1836476516);
-                Objects.requireNonNull(d_bC);
-                d$a d_aB2 = d_a2.b(1835297121);
-                Objects.requireNonNull(d_aB2);
-                d$b d_bC2 = d_aB2.c(1751411826);
-                Objects.requireNonNull(d_bC2);
-                x xVar2 = d_bC2.f1210b;
+                b.i.a.c.x2.i0.d.b bVarC = aVar.c(1836476516);
+                Objects.requireNonNull(bVarC);
+                b.i.a.c.x2.i0.d.a aVarB2 = aVar2.b(1835297121);
+                Objects.requireNonNull(aVarB2);
+                b.i.a.c.x2.i0.d.b bVarC2 = aVarB2.c(1751411826);
+                Objects.requireNonNull(bVarC2);
+                x xVar2 = bVarC2.f1210b;
                 xVar2.E(16);
                 int iF5 = xVar2.f();
                 if (iF5 == 1936684398) {
@@ -1605,9 +1701,9 @@ public final class e {
                 if (i == -1) {
                     mVar = null;
                 } else {
-                    d$b d_bC3 = d_a2.c(1953196132);
-                    Objects.requireNonNull(d_bC3);
-                    x xVar3 = d_bC3.f1210b;
+                    b.i.a.c.x2.i0.d.b bVarC3 = aVar2.c(1953196132);
+                    Objects.requireNonNull(bVarC3);
+                    x xVar3 = bVarC3.f1210b;
                     xVar3.E(8);
                     int iF6 = (xVar3.f() >> 24) & 255;
                     xVar3.F(iF6 != 0 ? 16 : 8);
@@ -1654,7 +1750,7 @@ public final class e {
                         } else {
                             j10 = j;
                         }
-                        xVar = d_bC.f1210b;
+                        xVar = bVarC.f1210b;
                         xVar.E(8);
                         if (((xVar.f() >> 24) & 255) == 0) {
                             i38 = 8;
@@ -1664,13 +1760,13 @@ public final class e {
                         xVar.F(i38);
                         jU4 = xVar.u();
                         jF2 = j10 != -9223372036854775807L ? e0.F(j10, 1000000L, jU4) : -9223372036854775807L;
-                        d$a d_aB3 = d_aB2.b(1835626086);
-                        Objects.requireNonNull(d_aB3);
-                        d$a d_aB4 = d_aB3.b(1937007212);
-                        Objects.requireNonNull(d_aB4);
-                        d$b d_bC4 = d_aB2.c(1835296868);
-                        Objects.requireNonNull(d_bC4);
-                        x xVar4 = d_bC4.f1210b;
+                        b.i.a.c.x2.i0.d.a aVarB3 = aVarB2.b(1835626086);
+                        Objects.requireNonNull(aVarB3);
+                        b.i.a.c.x2.i0.d.a aVarB4 = aVarB3.b(1937007212);
+                        Objects.requireNonNull(aVarB4);
+                        b.i.a.c.x2.i0.d.b bVarC4 = aVarB2.c(1835296868);
+                        Objects.requireNonNull(bVarC4);
+                        x xVar4 = bVarC4.f1210b;
                         xVar4.E(8);
                         iF4 = (xVar4.f() >> 24) & 255;
                         if (iF4 == 0) {
@@ -1692,18 +1788,18 @@ public final class e {
                         sb.append((char) (((iY >> 5) & 31) + 96));
                         sb.append((char) ((iY & 31) + 96));
                         pairCreate = Pair.create(Long.valueOf(jU5), sb.toString());
-                        d$b d_bC5 = d_aB4.c(1937011556);
-                        Objects.requireNonNull(d_bC5);
-                        e_bD = d(d_bC5.f1210b, iF7, i37, (String) pairCreate.second, drmInitData, z3);
-                        if (!z2 || (d_aB = d_a2.b(1701082227)) == null) {
+                        b.i.a.c.x2.i0.d.b bVarC5 = aVarB4.c(1937011556);
+                        Objects.requireNonNull(bVarC5);
+                        bVarD = d(bVarC5.f1210b, iF7, i37, (String) pairCreate.second, drmInitData, z3);
+                        if (!z2 || (aVarB = aVar2.b(1701082227)) == null) {
                             jArr11 = null;
                             jArr12 = null;
                         } else {
-                            d$b d_bC6 = d_aB.c(1701606260);
-                            if (d_bC6 == null) {
+                            b.i.a.c.x2.i0.d.b bVarC6 = aVarB.c(1701606260);
+                            if (bVarC6 == null) {
                                 pairCreate2 = null;
                             } else {
-                                x xVar5 = d_bC6.f1210b;
+                                x xVar5 = bVarC6.f1210b;
                                 xVar5.E(8);
                                 int iF11 = (xVar5.f() >> 24) & 255;
                                 int iW11 = xVar5.w();
@@ -1732,10 +1828,10 @@ public final class e {
                                 jArr12 = null;
                             }
                         }
-                        if (e_bD.f1211b == null) {
+                        if (bVarD.f1211b == null) {
                             mVar = null;
                         } else {
-                            mVar = new m(iF7, i, ((Long) pairCreate.first).longValue(), jU4, jF2, e_bD.f1211b, e_bD.d, e_bD.a, e_bD.c, jArr11, jArr12);
+                            mVar = new m(iF7, i, ((Long) pairCreate.first).longValue(), jU4, jF2, bVarD.f1211b, bVarD.d, bVarD.a, bVarD.c, jArr11, jArr12);
                         }
                     }
                     i36 = 16;
@@ -1774,7 +1870,7 @@ public final class e {
                     } else {
                         j10 = j;
                     }
-                    xVar = d_bC.f1210b;
+                    xVar = bVarC.f1210b;
                     xVar.E(8);
                     if (((xVar.f() >> 24) & 255) == 0) {
                         i38 = 8;
@@ -1784,13 +1880,13 @@ public final class e {
                     xVar.F(i38);
                     jU4 = xVar.u();
                     jF2 = j10 != -9223372036854775807L ? e0.F(j10, 1000000L, jU4) : -9223372036854775807L;
-                    d$a d_aB5 = d_aB2.b(1835626086);
-                    Objects.requireNonNull(d_aB5);
-                    d$a d_aB6 = d_aB5.b(1937007212);
-                    Objects.requireNonNull(d_aB6);
-                    d$b d_bC7 = d_aB2.c(1835296868);
-                    Objects.requireNonNull(d_bC7);
-                    x xVar6 = d_bC7.f1210b;
+                    b.i.a.c.x2.i0.d.a aVarB5 = aVarB2.b(1835626086);
+                    Objects.requireNonNull(aVarB5);
+                    b.i.a.c.x2.i0.d.a aVarB6 = aVarB5.b(1937007212);
+                    Objects.requireNonNull(aVarB6);
+                    b.i.a.c.x2.i0.d.b bVarC7 = aVarB2.c(1835296868);
+                    Objects.requireNonNull(bVarC7);
+                    x xVar6 = bVarC7.f1210b;
                     xVar6.E(8);
                     iF4 = (xVar6.f() >> 24) & 255;
                     if (iF4 == 0) {
@@ -1812,9 +1908,9 @@ public final class e {
                     sb2.append((char) (((iY2 >> 5) & 31) + 96));
                     sb2.append((char) ((iY2 & 31) + 96));
                     pairCreate = Pair.create(Long.valueOf(jU6), sb2.toString());
-                    d$b d_bC8 = d_aB6.c(1937011556);
-                    Objects.requireNonNull(d_bC8);
-                    e_bD = d(d_bC8.f1210b, iF7, i37, (String) pairCreate.second, drmInitData, z3);
+                    b.i.a.c.x2.i0.d.b bVarC8 = aVarB6.c(1937011556);
+                    Objects.requireNonNull(bVarC8);
+                    bVarD = d(bVarC8.f1210b, iF7, i37, (String) pairCreate.second, drmInitData, z3);
                     if (z2) {
                         jArr11 = null;
                         jArr12 = null;
@@ -1822,10 +1918,10 @@ public final class e {
                         jArr11 = null;
                         jArr12 = null;
                     }
-                    if (e_bD.f1211b == null) {
+                    if (bVarD.f1211b == null) {
                         mVar = null;
                     } else {
-                        mVar = new m(iF7, i, ((Long) pairCreate.first).longValue(), jU4, jF2, e_bD.f1211b, e_bD.d, e_bD.a, e_bD.c, jArr11, jArr12);
+                        mVar = new m(iF7, i, ((Long) pairCreate.first).longValue(), jU4, jF2, bVarD.f1211b, bVarD.d, bVarD.a, bVarD.c, jArr11, jArr12);
                     }
                 }
                 m mVarApply = eVar.apply(mVar);
@@ -1833,47 +1929,47 @@ public final class e {
                     arrayList2 = arrayList3;
                     i2 = i41;
                 } else {
-                    d$a d_aB7 = d_a2.b(1835297121);
-                    Objects.requireNonNull(d_aB7);
-                    d$a d_aB8 = d_aB7.b(1835626086);
-                    Objects.requireNonNull(d_aB8);
-                    d$a d_aB9 = d_aB8.b(1937007212);
-                    Objects.requireNonNull(d_aB9);
-                    d$b d_bC9 = d_aB9.c(1937011578);
-                    if (d_bC9 != null) {
-                        e_d = new e$c(d_bC9, mVarApply.f);
+                    b.i.a.c.x2.i0.d.a aVarB7 = aVar2.b(1835297121);
+                    Objects.requireNonNull(aVarB7);
+                    b.i.a.c.x2.i0.d.a aVarB8 = aVarB7.b(1835626086);
+                    Objects.requireNonNull(aVarB8);
+                    b.i.a.c.x2.i0.d.a aVarB9 = aVarB8.b(1937007212);
+                    Objects.requireNonNull(aVarB9);
+                    b.i.a.c.x2.i0.d.b bVarC9 = aVarB9.c(1937011578);
+                    if (bVarC9 != null) {
+                        dVar = new c(bVarC9, mVarApply.f);
                     } else {
-                        d$b d_bC10 = d_aB9.c(1937013298);
-                        if (d_bC10 == null) {
+                        b.i.a.c.x2.i0.d.b bVarC10 = aVarB9.c(1937013298);
+                        if (bVarC10 == null) {
                             throw ParserException.a("Track has no sample table size information", null);
                         }
-                        e_d = new e$d(d_bC10);
+                        dVar = new d(bVarC10);
                     }
-                    int iB = e_d.b();
+                    int iB = dVar.b();
                     if (iB == 0) {
                         pVar2 = new p(mVarApply, new long[0], new int[0], 0, new long[0], new int[0], 0L);
                         arrayList = arrayList3;
                         i2 = i41;
                     } else {
-                        d$b d_bC11 = d_aB9.c(1937007471);
-                        if (d_bC11 == null) {
-                            d_bC11 = d_aB9.c(1668232756);
-                            Objects.requireNonNull(d_bC11);
+                        b.i.a.c.x2.i0.d.b bVarC11 = aVarB9.c(1937007471);
+                        if (bVarC11 == null) {
+                            bVarC11 = aVarB9.c(1668232756);
+                            Objects.requireNonNull(bVarC11);
                             z4 = true;
                         } else {
                             z4 = false;
                         }
-                        x xVar7 = d_bC11.f1210b;
-                        d$b d_bC12 = d_aB9.c(1937011555);
-                        Objects.requireNonNull(d_bC12);
-                        x xVar8 = d_bC12.f1210b;
-                        d$b d_bC13 = d_aB9.c(1937011827);
-                        Objects.requireNonNull(d_bC13);
-                        x xVar9 = d_bC13.f1210b;
-                        d$b d_bC14 = d_aB9.c(1937011571);
-                        x xVar10 = d_bC14 != null ? d_bC14.f1210b : null;
-                        d$b d_bC15 = d_aB9.c(1668576371);
-                        x xVar11 = d_bC15 != null ? d_bC15.f1210b : null;
+                        x xVar7 = bVarC11.f1210b;
+                        b.i.a.c.x2.i0.d.b bVarC12 = aVarB9.c(1937011555);
+                        Objects.requireNonNull(bVarC12);
+                        x xVar8 = bVarC12.f1210b;
+                        b.i.a.c.x2.i0.d.b bVarC13 = aVarB9.c(1937011827);
+                        Objects.requireNonNull(bVarC13);
+                        x xVar9 = bVarC13.f1210b;
+                        b.i.a.c.x2.i0.d.b bVarC14 = aVarB9.c(1937011571);
+                        x xVar10 = bVarC14 != null ? bVarC14.f1210b : null;
+                        b.i.a.c.x2.i0.d.b bVarC15 = aVarB9.c(1668576371);
+                        x xVar11 = bVarC15 != null ? bVarC15.f1210b : null;
                         xVar7.E(12);
                         int iW12 = xVar7.w();
                         xVar8.E(12);
@@ -1899,7 +1995,7 @@ public final class e {
                                 xVar10 = null;
                             }
                             i2 = i41;
-                            iA = e_d.a();
+                            iA = dVar.a();
                             arrayList = arrayList3;
                             String str2 = mVarApply.f.w;
                             if (iA == -1 && (("audio/raw".equals(str2) || "audio/g711-mlaw".equals(str2) || "audio/g711-alaw".equals(str2)) && iW14 == 0 && iW == 0 && iW2 == 0)) {
@@ -2071,7 +2167,7 @@ public final class e {
                                     }
                                     int i51 = iF;
                                     jArrCopyOf[i10] = j3;
-                                    iArrCopyOf[i10] = e_d.c();
+                                    iArrCopyOf[i10] = dVar.c();
                                     if (iArrCopyOf[i10] > i11) {
                                         i11 = iArrCopyOf[i10];
                                     }
@@ -2342,7 +2438,7 @@ public final class e {
                         }
                         iW3 = -1;
                         i2 = i41;
-                        iA = e_d.a();
+                        iA = dVar.a();
                         arrayList = arrayList3;
                         String str3 = mVarApply.f.w;
                         if (iA == -1) {
@@ -2516,7 +2612,7 @@ public final class e {
                                 }
                                 int i510 = iF;
                                 jArrCopyOf[i10] = j3;
-                                iArrCopyOf[i10] = e_d.c();
+                                iArrCopyOf[i10] = dVar.c();
                                 if (iArrCopyOf[i10] > i11) {
                                     i11 = iArrCopyOf[i10];
                                 }
@@ -2898,5 +2994,20 @@ public final class e {
             arrayList3 = arrayList2;
         }
         return arrayList3;
+    }
+
+    /* JADX INFO: compiled from: AtomParsers.java */
+    public final class b {
+        public final n[] a;
+        public int c;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        @Nullable
+        public j1 f1211b;
+        public int d = 0;
+
+        public b(int i) {
+            this.a = new n[i];
+        }
     }
 }

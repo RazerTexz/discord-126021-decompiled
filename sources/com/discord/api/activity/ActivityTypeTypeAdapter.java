@@ -14,9 +14,9 @@ public final class ActivityTypeTypeAdapter extends TypeAdapter<ActivityType> {
     @Override // com.google.gson.TypeAdapter
     public ActivityType read(JsonReader jsonReader) throws IOException {
         m.checkNotNullParameter(jsonReader, "in");
-        ActivityType$Companion activityType$Companion = ActivityType.Companion;
+        ActivityType.Companion companion = ActivityType.INSTANCE;
         Integer numN1 = d.n1(jsonReader);
-        Objects.requireNonNull(activityType$Companion);
+        Objects.requireNonNull(companion);
         ActivityType activityType = ActivityType.PLAYING;
         int apiInt = activityType.getApiInt();
         if (numN1 != null && numN1.intValue() == apiInt) {

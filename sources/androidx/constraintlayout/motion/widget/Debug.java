@@ -1,12 +1,11 @@
 package androidx.constraintlayout.motion.widget;
 
 import android.content.Context;
-import android.content.res.Resources$NotFoundException;
+import android.content.res.Resources;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup$LayoutParams;
 import b.d.b.a.a;
 import java.io.PrintStream;
 import java.lang.reflect.Field;
@@ -32,7 +31,7 @@ public class Debug {
             StringBuilder sbX = a.X(string, "     ");
             sbX.append(getName(childAt));
             printStream.println(sbX.toString());
-            ViewGroup$LayoutParams layoutParams = childAt.getLayoutParams();
+            ViewGroup.LayoutParams layoutParams = childAt.getLayoutParams();
             for (Field field : layoutParams.getClass().getFields()) {
                 try {
                     Object obj = field.get(layoutParams);
@@ -200,7 +199,7 @@ public class Debug {
                 String string = sb.toString();
                 try {
                     resourceEntryName = context.getResources().getResourceEntryName(iArr[i]);
-                } catch (Resources$NotFoundException unused) {
+                } catch (Resources.NotFoundException unused) {
                     resourceEntryName = "? " + iArr[i] + " ";
                 }
                 str = string + resourceEntryName;
@@ -213,7 +212,7 @@ public class Debug {
         }
     }
 
-    public static void dumpLayoutParams(ViewGroup$LayoutParams viewGroup$LayoutParams, String str) {
+    public static void dumpLayoutParams(ViewGroup.LayoutParams layoutParams, String str) {
         StackTraceElement stackTraceElement = new Throwable().getStackTrace()[1];
         StringBuilder sbU = a.U(".(");
         sbU.append(stackTraceElement.getFileName());
@@ -225,11 +224,11 @@ public class Debug {
         String string = sbU.toString();
         PrintStream printStream = System.out;
         StringBuilder sbY = a.Y(" >>>>>>>>>>>>>>>>>>. dump ", string, "  ");
-        sbY.append(viewGroup$LayoutParams.getClass().getName());
+        sbY.append(layoutParams.getClass().getName());
         printStream.println(sbY.toString());
-        for (Field field : viewGroup$LayoutParams.getClass().getFields()) {
+        for (Field field : layoutParams.getClass().getFields()) {
             try {
-                Object obj = field.get(viewGroup$LayoutParams);
+                Object obj = field.get(layoutParams);
                 String name = field.getName();
                 if (name.contains("To") && !obj.toString().equals("-1")) {
                     System.out.println(string + "       " + name + " " + obj);

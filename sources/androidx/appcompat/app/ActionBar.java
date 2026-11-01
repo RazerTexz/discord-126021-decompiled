@@ -2,17 +2,23 @@ package androidx.appcompat.app;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.SpinnerAdapter;
 import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.StringRes;
+import androidx.appcompat.R;
 import androidx.appcompat.view.ActionMode;
-import androidx.appcompat.view.ActionMode$Callback;
+import androidx.fragment.app.FragmentTransaction;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class ActionBar {
@@ -31,31 +37,98 @@ public abstract class ActionBar {
     @Deprecated
     public static final int NAVIGATION_MODE_TABS = 2;
 
-    public abstract void addOnMenuVisibilityListener(ActionBar$OnMenuVisibilityListener actionBar$OnMenuVisibilityListener);
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public @interface DisplayOptions {
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public @interface NavigationMode {
+    }
+
+    public interface OnMenuVisibilityListener {
+        void onMenuVisibilityChanged(boolean z2);
+    }
 
     @Deprecated
-    public abstract void addTab(ActionBar$Tab actionBar$Tab);
+    public interface OnNavigationListener {
+        boolean onNavigationItemSelected(int i, long j);
+    }
 
     @Deprecated
-    public abstract void addTab(ActionBar$Tab actionBar$Tab, int i);
+    public abstract class Tab {
+        public static final int INVALID_POSITION = -1;
+
+        public abstract CharSequence getContentDescription();
+
+        public abstract View getCustomView();
+
+        public abstract Drawable getIcon();
+
+        public abstract int getPosition();
+
+        public abstract Object getTag();
+
+        public abstract CharSequence getText();
+
+        public abstract void select();
+
+        public abstract Tab setContentDescription(@StringRes int i);
+
+        public abstract Tab setContentDescription(CharSequence charSequence);
+
+        public abstract Tab setCustomView(int i);
+
+        public abstract Tab setCustomView(View view);
+
+        public abstract Tab setIcon(@DrawableRes int i);
+
+        public abstract Tab setIcon(Drawable drawable);
+
+        public abstract Tab setTabListener(TabListener tabListener);
+
+        public abstract Tab setTag(Object obj);
+
+        public abstract Tab setText(int i);
+
+        public abstract Tab setText(CharSequence charSequence);
+    }
 
     @Deprecated
-    public abstract void addTab(ActionBar$Tab actionBar$Tab, int i, boolean z2);
+    public interface TabListener {
+        void onTabReselected(Tab tab, FragmentTransaction fragmentTransaction);
+
+        void onTabSelected(Tab tab, FragmentTransaction fragmentTransaction);
+
+        void onTabUnselected(Tab tab, FragmentTransaction fragmentTransaction);
+    }
+
+    public abstract void addOnMenuVisibilityListener(OnMenuVisibilityListener onMenuVisibilityListener);
 
     @Deprecated
-    public abstract void addTab(ActionBar$Tab actionBar$Tab, boolean z2);
+    public abstract void addTab(Tab tab);
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @Deprecated
+    public abstract void addTab(Tab tab, int i);
+
+    @Deprecated
+    public abstract void addTab(Tab tab, int i, boolean z2);
+
+    @Deprecated
+    public abstract void addTab(Tab tab, boolean z2);
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public boolean closeOptionsMenu() {
         return false;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public boolean collapseActionView() {
         return false;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void dispatchMenuVisibilityChanged(boolean z2) {
     }
 
@@ -84,13 +157,13 @@ public abstract class ActionBar {
 
     @Nullable
     @Deprecated
-    public abstract ActionBar$Tab getSelectedTab();
+    public abstract Tab getSelectedTab();
 
     @Nullable
     public abstract CharSequence getSubtitle();
 
     @Deprecated
-    public abstract ActionBar$Tab getTabAt(int i);
+    public abstract Tab getTabAt(int i);
 
     @Deprecated
     public abstract int getTabCount();
@@ -104,7 +177,7 @@ public abstract class ActionBar {
 
     public abstract void hide();
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public boolean invalidateOptionsMenu() {
         return false;
     }
@@ -115,32 +188,32 @@ public abstract class ActionBar {
 
     public abstract boolean isShowing();
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public boolean isTitleTruncated() {
         return false;
     }
 
     @Deprecated
-    public abstract ActionBar$Tab newTab();
+    public abstract Tab newTab();
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void onConfigurationChanged(Configuration configuration) {
     }
 
     public void onDestroy() {
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public boolean onKeyShortcut(int i, KeyEvent keyEvent) {
         return false;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public boolean onMenuKeyEvent(KeyEvent keyEvent) {
         return false;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public boolean openOptionsMenu() {
         return false;
     }
@@ -148,21 +221,21 @@ public abstract class ActionBar {
     @Deprecated
     public abstract void removeAllTabs();
 
-    public abstract void removeOnMenuVisibilityListener(ActionBar$OnMenuVisibilityListener actionBar$OnMenuVisibilityListener);
+    public abstract void removeOnMenuVisibilityListener(OnMenuVisibilityListener onMenuVisibilityListener);
 
     @Deprecated
-    public abstract void removeTab(ActionBar$Tab actionBar$Tab);
+    public abstract void removeTab(Tab tab);
 
     @Deprecated
     public abstract void removeTabAt(int i);
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public boolean requestFocus() {
         return false;
     }
 
     @Deprecated
-    public abstract void selectTab(ActionBar$Tab actionBar$Tab);
+    public abstract void selectTab(Tab tab);
 
     public abstract void setBackgroundDrawable(@Nullable Drawable drawable);
 
@@ -170,9 +243,9 @@ public abstract class ActionBar {
 
     public abstract void setCustomView(View view);
 
-    public abstract void setCustomView(View view, ActionBar$LayoutParams actionBar$LayoutParams);
+    public abstract void setCustomView(View view, LayoutParams layoutParams);
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void setDefaultDisplayHomeAsUpEnabled(boolean z2) {
     }
 
@@ -228,7 +301,7 @@ public abstract class ActionBar {
     public abstract void setIcon(Drawable drawable);
 
     @Deprecated
-    public abstract void setListNavigationCallbacks(SpinnerAdapter spinnerAdapter, ActionBar$OnNavigationListener actionBar$OnNavigationListener);
+    public abstract void setListNavigationCallbacks(SpinnerAdapter spinnerAdapter, OnNavigationListener onNavigationListener);
 
     public abstract void setLogo(@DrawableRes int i);
 
@@ -240,7 +313,7 @@ public abstract class ActionBar {
     @Deprecated
     public abstract void setSelectedNavigationItem(int i);
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void setShowHideAnimationEnabled(boolean z2) {
     }
 
@@ -258,14 +331,53 @@ public abstract class ActionBar {
 
     public abstract void setTitle(CharSequence charSequence);
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void setWindowTitle(CharSequence charSequence) {
     }
 
     public abstract void show();
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
-    public ActionMode startActionMode(ActionMode$Callback actionMode$Callback) {
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public ActionMode startActionMode(ActionMode.Callback callback) {
         return null;
+    }
+
+    public class LayoutParams extends ViewGroup.MarginLayoutParams {
+        public int gravity;
+
+        public LayoutParams(@NonNull Context context, AttributeSet attributeSet) {
+            super(context, attributeSet);
+            this.gravity = 0;
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.ActionBarLayout);
+            this.gravity = typedArrayObtainStyledAttributes.getInt(R.styleable.ActionBarLayout_android_layout_gravity, 0);
+            typedArrayObtainStyledAttributes.recycle();
+        }
+
+        public LayoutParams(int i, int i2) {
+            super(i, i2);
+            this.gravity = 0;
+            this.gravity = 8388627;
+        }
+
+        public LayoutParams(int i, int i2, int i3) {
+            super(i, i2);
+            this.gravity = 0;
+            this.gravity = i3;
+        }
+
+        public LayoutParams(int i) {
+            this(-2, -1, i);
+        }
+
+        public LayoutParams(LayoutParams layoutParams) {
+            super((ViewGroup.MarginLayoutParams) layoutParams);
+            this.gravity = 0;
+            this.gravity = layoutParams.gravity;
+        }
+
+        public LayoutParams(ViewGroup.LayoutParams layoutParams) {
+            super(layoutParams);
+            this.gravity = 0;
+        }
     }
 }

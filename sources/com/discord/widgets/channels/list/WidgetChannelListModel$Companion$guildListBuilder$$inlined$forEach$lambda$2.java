@@ -21,7 +21,7 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetChannelListModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetChannelListModel$Companion$guildListBuilder$$inlined$forEach$lambda$2 extends o implements Function1<Channel, WidgetChannelListModel$Companion$VocalChannelData> {
+public final class WidgetChannelListModel$Companion$guildListBuilder$$inlined$forEach$lambda$2 extends o implements Function1<Channel, WidgetChannelListModel.Companion.VocalChannelData> {
     public final /* synthetic */ WidgetChannelListModel$Companion$guildListBuilder$4 $areAllChildThreadsRead$4$inlined;
     public final /* synthetic */ WidgetChannelListModel$Companion$guildListBuilder$5 $areAnyChildThreadsSelected$5$inlined;
     public final /* synthetic */ boolean $canSeeGuildRoleSubscriptions$inlined;
@@ -87,12 +87,12 @@ public final class WidgetChannelListModel$Companion$guildListBuilder$$inlined$fo
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public /* bridge */ /* synthetic */ WidgetChannelListModel$Companion$VocalChannelData invoke(Channel channel) {
+    public /* bridge */ /* synthetic */ WidgetChannelListModel.Companion.VocalChannelData invoke(Channel channel) {
         return invoke2(channel);
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final WidgetChannelListModel$Companion$VocalChannelData invoke2(Channel channel) {
+    public final WidgetChannelListModel.Companion.VocalChannelData invoke2(Channel channel) {
         PermissionOverwrite permissionOverwrite;
         Object obj;
         m.checkNotNullParameter(channel, "vocalChannel");
@@ -135,6 +135,6 @@ public final class WidgetChannelListModel$Companion$guildListBuilder$$inlined$fo
         if (this.$collapsedCategories$inlined.contains(Long.valueOf(channel.getParentId())) && size == 0 && !z2) {
             return null;
         }
-        return new WidgetChannelListModel$Companion$VocalChannelData(z2, z3, iIntValue, zContains, z5, nsfw, this.$permissions, size, !(zCan && PermissionUtils.can(Permission.CONNECT, this.$permissions)) && z4, z4);
+        return new WidgetChannelListModel.Companion.VocalChannelData(z2, z3, iIntValue, zContains, z5, nsfw, this.$permissions, size, !(zCan && PermissionUtils.can(Permission.CONNECT, this.$permissions)) && z4, z4);
     }
 }

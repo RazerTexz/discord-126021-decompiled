@@ -2,7 +2,6 @@ package b.f.j.c;
 
 import android.os.SystemClock;
 import androidx.annotation.VisibleForTesting;
-import b.f.j.a.c.c$a;
 import com.facebook.common.internal.Supplier;
 import com.facebook.common.references.CloseableReference;
 import com.facebook.imagepipeline.cache.MemoryCacheParams;
@@ -14,14 +13,14 @@ import java.util.WeakHashMap;
 /* JADX INFO: compiled from: LruCountingMemoryCache.java */
 /* JADX INFO: loaded from: classes.dex */
 public class v<K, V> implements m<K, V>, w<K, V> {
-    public final m$b<K> a;
+    public final m.b<K> a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     @VisibleForTesting
-    public final l<K, m$a<K, V>> f561b;
+    public final l<K, m.a<K, V>> f561b;
 
     @VisibleForTesting
-    public final l<K, m$a<K, V>> c;
+    public final l<K, m.a<K, V>> c;
     public final b0<V> d;
     public final Supplier<MemoryCacheParams> e;
     public MemoryCacheParams f;
@@ -29,7 +28,58 @@ public class v<K, V> implements m<K, V>, w<K, V> {
     public final boolean h;
     public final boolean i;
 
-    public v(b0<V> b0Var, w$a w_a, Supplier<MemoryCacheParams> supplier, m$b<K> m_b, boolean z2, boolean z3) {
+    /* JADX INFO: compiled from: LruCountingMemoryCache.java */
+    public class a implements b.f.d.h.f<V> {
+        public final /* synthetic */ m.a a;
+
+        public a(m.a aVar) {
+            this.a = aVar;
+        }
+
+        /* JADX WARN: Code duplicated, block: B:25:0x003d  */
+        @Override // b.f.d.h.f
+        public void release(V v) {
+            boolean z2;
+            m.b<K> bVar;
+            v vVar = v.this;
+            m.a<K, V> aVar = this.a;
+            Objects.requireNonNull(vVar);
+            Objects.requireNonNull(aVar);
+            synchronized (vVar) {
+                synchronized (vVar) {
+                    z2 = false;
+                    b.c.a.a0.d.B(aVar.c > 0);
+                    aVar.c--;
+                }
+                CloseableReference.s(vVar.o(aVar));
+                if (!z2) {
+                    aVar = null;
+                }
+                if (aVar != null && (bVar = aVar.e) != null) {
+                    ((b.f.j.a.c.c.a) bVar).a(aVar.a, true);
+                }
+                vVar.m();
+                vVar.j();
+            }
+            synchronized (vVar) {
+                if (!aVar.d && aVar.c == 0) {
+                    vVar.f561b.d(aVar.a, aVar);
+                    z2 = true;
+                }
+            }
+            CloseableReference.s(vVar.o(aVar));
+            if (!z2) {
+                aVar = null;
+            }
+            if (aVar != null) {
+                ((b.f.j.a.c.c.a) bVar).a(aVar.a, true);
+            }
+            vVar.m();
+            vVar.j();
+        }
+    }
+
+    public v(b0<V> b0Var, w.a aVar, Supplier<MemoryCacheParams> supplier, m.b<K> bVar, boolean z2, boolean z3) {
         new WeakHashMap();
         this.d = b0Var;
         this.f561b = new l<>(new u(this, b0Var));
@@ -39,7 +89,7 @@ public class v<K, V> implements m<K, V>, w<K, V> {
         b.c.a.a0.d.y(memoryCacheParams, "mMemoryCacheParamsSupplier returned null");
         this.f = memoryCacheParams;
         this.g = SystemClock.uptimeMillis();
-        this.a = m_b;
+        this.a = bVar;
         this.h = z2;
         this.i = z3;
     }
@@ -51,32 +101,32 @@ public class v<K, V> implements m<K, V>, w<K, V> {
 
     @Override // b.f.j.c.m
     public CloseableReference<V> b(K k) {
-        m$a<K, V> m_aE;
+        m.a<K, V> aVarE;
         boolean z2;
         CloseableReference<V> closeableReference;
         Objects.requireNonNull(k);
         synchronized (this) {
-            m_aE = this.f561b.e(k);
+            aVarE = this.f561b.e(k);
             z2 = false;
-            if (m_aE != null) {
-                m$a<K, V> m_aE2 = this.c.e(k);
-                Objects.requireNonNull(m_aE2);
-                b.c.a.a0.d.B(m_aE2.c == 0);
-                closeableReference = m_aE2.f558b;
+            if (aVarE != null) {
+                m.a<K, V> aVarE2 = this.c.e(k);
+                Objects.requireNonNull(aVarE2);
+                b.c.a.a0.d.B(aVarE2.c == 0);
+                closeableReference = aVarE2.f558b;
                 z2 = true;
             } else {
                 closeableReference = null;
             }
         }
         if (z2) {
-            k(m_aE);
+            k(aVarE);
         }
         return closeableReference;
     }
 
     /* JADX WARN: Code duplicated, block: B:28:0x006f  */
     @Override // b.f.j.c.m
-    public CloseableReference<V> c(K k, CloseableReference<V> closeableReference, m$b<K> m_b) {
+    public CloseableReference<V> c(K k, CloseableReference<V> closeableReference, m.b<K> bVar) {
         CloseableReference<V> closeableReferenceN;
         CloseableReference<V> closeableReferenceO;
         int iA;
@@ -85,12 +135,12 @@ public class v<K, V> implements m<K, V>, w<K, V> {
         Objects.requireNonNull(closeableReference);
         m();
         synchronized (this) {
-            m$a<K, V> m_aE = this.f561b.e(k);
-            m$a<K, V> m_aE2 = this.c.e(k);
+            m.a<K, V> aVarE = this.f561b.e(k);
+            m.a<K, V> aVarE2 = this.c.e(k);
             closeableReferenceN = null;
-            if (m_aE2 != null) {
-                g(m_aE2);
-                closeableReferenceO = o(m_aE2);
+            if (aVarE2 != null) {
+                g(aVarE2);
+                closeableReferenceO = o(aVarE2);
             } else {
                 closeableReferenceO = null;
             }
@@ -101,19 +151,19 @@ public class v<K, V> implements m<K, V>, w<K, V> {
             if (closeableReferenceO != null) {
                 closeableReferenceO.close();
             }
-            k(m_aE);
+            k(aVarE);
             j();
             return closeableReferenceN;
         }
         if (z2) {
-            m$a<K, V> m_a = this.h ? new m$a<>(k, closeableReference, m_b, iA) : new m$a<>(k, closeableReference, m_b, -1);
-            this.c.d(k, m_a);
-            closeableReferenceN = n(m_a);
+            m.a<K, V> aVar = this.h ? new m.a<>(k, closeableReference, bVar, iA) : new m.a<>(k, closeableReference, bVar, -1);
+            this.c.d(k, aVar);
+            closeableReferenceN = n(aVar);
         }
         if (closeableReferenceO != null) {
             closeableReferenceO.close();
         }
-        k(m_aE);
+        k(aVarE);
         j();
         return closeableReferenceN;
     }
@@ -121,7 +171,7 @@ public class v<K, V> implements m<K, V>, w<K, V> {
     @Override // b.f.j.c.w
     public synchronized boolean contains(K k) {
         boolean zContainsKey;
-        l<K, m$a<K, V>> lVar = this.c;
+        l<K, m.a<K, V>> lVar = this.c;
         synchronized (lVar) {
             zContainsKey = lVar.f557b.containsKey(k);
         }
@@ -130,8 +180,8 @@ public class v<K, V> implements m<K, V>, w<K, V> {
 
     @Override // b.f.j.c.w
     public int d(b.f.d.d.j<K> jVar) {
-        ArrayList<m$a<K, V>> arrayListF;
-        ArrayList<m$a<K, V>> arrayListF2;
+        ArrayList<m.a<K, V>> arrayListF;
+        ArrayList<m.a<K, V>> arrayListF2;
         synchronized (this) {
             arrayListF = this.f561b.f(jVar);
             arrayListF2 = this.c.f(jVar);
@@ -152,45 +202,45 @@ public class v<K, V> implements m<K, V>, w<K, V> {
         return this.c.b() - this.f561b.b();
     }
 
-    public final synchronized void g(m$a<K, V> m_a) {
-        Objects.requireNonNull(m_a);
-        b.c.a.a0.d.B(!m_a.d);
-        m_a.d = true;
+    public final synchronized void g(m.a<K, V> aVar) {
+        Objects.requireNonNull(aVar);
+        b.c.a.a0.d.B(!aVar.d);
+        aVar.d = true;
     }
 
     @Override // b.f.j.c.w
     public CloseableReference<V> get(K k) {
-        m$a<K, V> m_aE;
-        m$a<K, V> m_a;
+        m.a<K, V> aVarE;
+        m.a<K, V> aVar;
         CloseableReference<V> closeableReferenceN;
         Objects.requireNonNull(k);
         synchronized (this) {
-            m_aE = this.f561b.e(k);
-            l<K, m$a<K, V>> lVar = this.c;
+            aVarE = this.f561b.e(k);
+            l<K, m.a<K, V>> lVar = this.c;
             synchronized (lVar) {
-                m_a = lVar.f557b.get(k);
+                aVar = lVar.f557b.get(k);
             }
-            m$a<K, V> m_a2 = m_a;
-            closeableReferenceN = m_a2 != null ? n(m_a2) : null;
+            m.a<K, V> aVar2 = aVar;
+            closeableReferenceN = aVar2 != null ? n(aVar2) : null;
         }
-        k(m_aE);
+        k(aVarE);
         m();
         j();
         return closeableReferenceN;
     }
 
-    public final synchronized void h(ArrayList<m$a<K, V>> arrayList) {
+    public final synchronized void h(ArrayList<m.a<K, V>> arrayList) {
         if (arrayList != null) {
-            Iterator<m$a<K, V>> it = arrayList.iterator();
+            Iterator<m.a<K, V>> it = arrayList.iterator();
             while (it.hasNext()) {
                 g(it.next());
             }
         }
     }
 
-    public final void i(ArrayList<m$a<K, V>> arrayList) {
+    public final void i(ArrayList<m.a<K, V>> arrayList) {
         if (arrayList != null) {
-            Iterator<m$a<K, V>> it = arrayList.iterator();
+            Iterator<m.a<K, V>> it = arrayList.iterator();
             while (it.hasNext()) {
                 CloseableReference.s(o(it.next()));
             }
@@ -198,7 +248,7 @@ public class v<K, V> implements m<K, V>, w<K, V> {
     }
 
     public void j() {
-        ArrayList<m$a<K, V>> arrayListP;
+        ArrayList<m.a<K, V>> arrayListP;
         synchronized (this) {
             MemoryCacheParams memoryCacheParams = this.f;
             int iMin = Math.min(memoryCacheParams.d, memoryCacheParams.f2895b - e());
@@ -210,17 +260,17 @@ public class v<K, V> implements m<K, V>, w<K, V> {
         l(arrayListP);
     }
 
-    public static <K, V> void k(m$a<K, V> m_a) {
-        m$b<K> m_b;
-        if (m_a == null || (m_b = m_a.e) == null) {
+    public static <K, V> void k(m.a<K, V> aVar) {
+        m.b<K> bVar;
+        if (aVar == null || (bVar = aVar.e) == null) {
             return;
         }
-        ((c$a) m_b).a(m_a.a, false);
+        ((b.f.j.a.c.c.a) bVar).a(aVar.a, false);
     }
 
-    public final void l(ArrayList<m$a<K, V>> arrayList) {
+    public final void l(ArrayList<m.a<K, V>> arrayList) {
         if (arrayList != null) {
-            Iterator<m$a<K, V>> it = arrayList.iterator();
+            Iterator<m.a<K, V>> it = arrayList.iterator();
             while (it.hasNext()) {
                 k(it.next());
             }
@@ -237,33 +287,33 @@ public class v<K, V> implements m<K, V>, w<K, V> {
         this.f = memoryCacheParams;
     }
 
-    public final synchronized CloseableReference<V> n(m$a<K, V> m_a) {
+    public final synchronized CloseableReference<V> n(m.a<K, V> aVar) {
         synchronized (this) {
-            b.c.a.a0.d.B(!m_a.d);
-            m_a.c++;
+            b.c.a.a0.d.B(!aVar.d);
+            aVar.c++;
         }
-        return CloseableReference.D(m_a.f558b.u(), new v$a(this, m_a));
-        return CloseableReference.D(m_a.f558b.u(), new v$a(this, m_a));
+        return CloseableReference.D(aVar.f558b.u(), new a(aVar));
+        return CloseableReference.D(aVar.f558b.u(), new a(aVar));
     }
 
-    public final synchronized CloseableReference<V> o(m$a<K, V> m_a) {
-        Objects.requireNonNull(m_a);
-        return (m_a.d && m_a.c == 0) ? m_a.f558b : null;
+    public final synchronized CloseableReference<V> o(m.a<K, V> aVar) {
+        Objects.requireNonNull(aVar);
+        return (aVar.d && aVar.c == 0) ? aVar.f558b : null;
     }
 
-    public final synchronized ArrayList<m$a<K, V>> p(int i, int i2) {
+    public final synchronized ArrayList<m.a<K, V>> p(int i, int i2) {
         K next;
         int iMax = Math.max(i, 0);
         int iMax2 = Math.max(i2, 0);
         if (this.f561b.a() <= iMax && this.f561b.b() <= iMax2) {
             return null;
         }
-        ArrayList<m$a<K, V>> arrayList = new ArrayList<>();
+        ArrayList<m.a<K, V>> arrayList = new ArrayList<>();
         while (true) {
             if (this.f561b.a() <= iMax && this.f561b.b() <= iMax2) {
                 break;
             }
-            l<K, m$a<K, V>> lVar = this.f561b;
+            l<K, m.a<K, V>> lVar = this.f561b;
             synchronized (lVar) {
                 next = lVar.f557b.isEmpty() ? null : lVar.f557b.keySet().iterator().next();
             }
@@ -271,7 +321,7 @@ public class v<K, V> implements m<K, V>, w<K, V> {
                 if (!this.i) {
                     throw new IllegalStateException(String.format("key is null, but exclusiveEntries count: %d, size: %d", Integer.valueOf(this.f561b.a()), Integer.valueOf(this.f561b.b())));
                 }
-                l<K, m$a<K, V>> lVar2 = this.f561b;
+                l<K, m.a<K, V>> lVar2 = this.f561b;
                 synchronized (lVar2) {
                     if (lVar2.f557b.isEmpty()) {
                         lVar2.c = 0;

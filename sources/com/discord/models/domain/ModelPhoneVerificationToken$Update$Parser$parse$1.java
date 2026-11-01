@@ -9,12 +9,12 @@ import rx.functions.Action1;
 /* JADX INFO: compiled from: ModelPhoneVerificationToken.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class ModelPhoneVerificationToken$Update$Parser$parse$1<T> implements Action1<String> {
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
     public final /* synthetic */ Ref$ObjectRef $token;
 
-    public ModelPhoneVerificationToken$Update$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model$JsonReader model$JsonReader) {
+    public ModelPhoneVerificationToken$Update$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model.JsonReader jsonReader) {
         this.$token = ref$ObjectRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
     }
 
     @Override // rx.functions.Action1

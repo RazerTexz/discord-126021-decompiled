@@ -13,7 +13,7 @@ import org.objectweb.asm.Opcodes;
 /* JADX INFO: loaded from: classes3.dex */
 public final class g implements SensorEventListener {
     public final Display e;
-    public final g$a[] f;
+    public final a[] f;
     public boolean g;
     public final float[] a = new float[16];
 
@@ -22,9 +22,14 @@ public final class g implements SensorEventListener {
     public final float[] c = new float[16];
     public final float[] d = new float[3];
 
-    public g(Display display, g$a... g_aArr) {
+    /* JADX INFO: compiled from: OrientationListener.java */
+    public interface a {
+        void a(float[] fArr, float f);
+    }
+
+    public g(Display display, a... aVarArr) {
         this.e = display;
-        this.f = g_aArr;
+        this.f = aVarArr;
     }
 
     @Override // android.hardware.SensorEventListener
@@ -67,8 +72,8 @@ public final class g implements SensorEventListener {
         System.arraycopy(fArr3, 0, fArr4, 0, fArr4.length);
         Matrix.multiplyMM(fArr3, 0, this.f999b, 0, this.c, 0);
         float[] fArr5 = this.a;
-        for (g$a g_a : this.f) {
-            g_a.a(fArr5, f);
+        for (a aVar : this.f) {
+            aVar.a(fArr5, f);
         }
     }
 }

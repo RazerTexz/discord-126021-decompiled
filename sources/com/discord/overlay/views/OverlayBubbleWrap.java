@@ -5,21 +5,18 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.WindowManager$LayoutParams;
 import android.widget.FrameLayout;
 import androidx.annotation.CallSuper;
 import androidx.core.view.ViewCompat;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
-import b.d.b.a.a;
-import com.discord.overlay.R$b;
-import com.discord.overlay.R$c;
+import com.discord.overlay.R;
 import com.discord.utilities.display.DisplayUtils;
 import d0.z.d.a0;
 import d0.z.d.m;
@@ -69,10 +66,55 @@ public class OverlayBubbleWrap extends FrameLayout {
     public final SpringAnimation springAnimationY;
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
-    public WindowManager$LayoutParams windowLayoutParams;
+    public WindowManager.LayoutParams windowLayoutParams;
 
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public final WindowManager windowManager;
+
+    /* JADX INFO: compiled from: Delegates.kt */
+    public final class a extends d0.b0.a<Boolean> {
+        public final /* synthetic */ OverlayBubbleWrap a;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(Object obj, Object obj2, OverlayBubbleWrap overlayBubbleWrap) {
+            super(obj2);
+            this.a = overlayBubbleWrap;
+        }
+
+        @Override // d0.b0.a
+        public void afterChange(KProperty<?> kProperty, Boolean bool, Boolean bool2) {
+            m.checkNotNullParameter(kProperty, "property");
+            boolean zBooleanValue = bool2.booleanValue();
+            if (bool.booleanValue() == zBooleanValue) {
+                return;
+            }
+            Function1<Boolean, Unit> onMovingStateChanged = this.a.getOnMovingStateChanged();
+            if (onMovingStateChanged != null) {
+                onMovingStateChanged.invoke(Boolean.valueOf(zBooleanValue));
+            }
+            if (zBooleanValue) {
+                this.a.performHapticFeedback(1);
+                this.a.getSpringAnimationX().cancel();
+                this.a.getSpringAnimationY().cancel();
+            }
+            this.a.setPressed(zBooleanValue);
+        }
+    }
+
+    /* JADX INFO: compiled from: View.kt */
+    public final class b implements View.OnLayoutChangeListener {
+        public b() {
+        }
+
+        @Override // android.view.View.OnLayoutChangeListener
+        public void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+            m.checkNotNullParameter(view, "view");
+            view.removeOnLayoutChangeListener(this);
+            OverlayBubbleWrap overlayBubbleWrap = OverlayBubbleWrap.this;
+            KProperty[] kPropertyArr = OverlayBubbleWrap.j;
+            overlayBubbleWrap.d();
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public OverlayBubbleWrap(Context context) {
@@ -81,14 +123,14 @@ public class OverlayBubbleWrap extends FrameLayout {
         Object systemService = getContext().getSystemService("window");
         Objects.requireNonNull(systemService, "null cannot be cast to non-null type android.view.WindowManager");
         this.windowManager = (WindowManager) systemService;
-        WindowManager$LayoutParams windowManager$LayoutParams = new WindowManager$LayoutParams(-2, -2, Build$VERSION.SDK_INT <= 25 ? 2007 : 2038, 16777768, -3);
-        windowManager$LayoutParams.gravity = 51;
-        this.windowLayoutParams = windowManager$LayoutParams;
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(-2, -2, Build.VERSION.SDK_INT <= 25 ? 2007 : 2038, 16777768, -3);
+        layoutParams.gravity = 51;
+        this.windowLayoutParams = layoutParams;
         this.insetMargins = new Rect();
-        this.moveThresholdPx = getResources().getDimensionPixelOffset(R$b.movement_threshold_dp);
-        setStateListAnimator(AnimatorInflater.loadStateListAnimator(getContext(), R$c.bubble_state_selector));
+        this.moveThresholdPx = getResources().getDimensionPixelOffset(R.b.movement_threshold_dp);
+        setStateListAnimator(AnimatorInflater.loadStateListAnimator(getContext(), R.c.bubble_state_selector));
         Boolean bool = Boolean.FALSE;
-        this.isMoving = new OverlayBubbleWrap$a(bool, bool, this);
+        this.isMoving = new a(bool, bool, this);
         this.screenOffset = new int[2];
         SpringAnimation springAnimation = new SpringAnimation(this, DynamicAnimation.X, 0.0f);
         springAnimation.setStartVelocity(50.0f);
@@ -108,13 +150,13 @@ public class OverlayBubbleWrap extends FrameLayout {
         m.checkNotNullExpressionValue(spring4, "spring");
         spring4.setStiffness(200.0f);
         this.springAnimationY = springAnimation2;
-        WindowManager$LayoutParams windowManager$LayoutParams2 = this.windowLayoutParams;
-        this.actualPosition = new Point(windowManager$LayoutParams2.x, windowManager$LayoutParams2.y);
+        WindowManager.LayoutParams layoutParams2 = this.windowLayoutParams;
+        this.actualPosition = new Point(layoutParams2.x, layoutParams2.y);
     }
 
     public void a(boolean animate) {
         String simpleName = getClass().getSimpleName();
-        StringBuilder sbU = a.U("Unanchoring[");
+        StringBuilder sbU = b.d.b.a.a.U("Unanchoring[");
         sbU.append(this.anchorPosition);
         sbU.append("] -> ");
         sbU.append(this.actualPosition);
@@ -127,11 +169,11 @@ public class OverlayBubbleWrap extends FrameLayout {
             c(this, point.x, point.y, null, 4, null);
             return;
         }
-        WindowManager$LayoutParams windowManager$LayoutParams = this.windowLayoutParams;
+        WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
         Point point2 = this.actualPosition;
-        windowManager$LayoutParams.x = point2.x;
-        windowManager$LayoutParams.y = point2.y;
-        this.windowManager.updateViewLayout(this, windowManager$LayoutParams);
+        layoutParams.x = point2.x;
+        layoutParams.y = point2.y;
+        this.windowManager.updateViewLayout(this, layoutParams);
     }
 
     public void b(View targetView) {
@@ -148,7 +190,7 @@ public class OverlayBubbleWrap extends FrameLayout {
         setAnchorAt(point);
         c(this, point.x, point.y, null, 4, null);
         String simpleName = getClass().getSimpleName();
-        StringBuilder sbU = a.U("Anchored[");
+        StringBuilder sbU = b.d.b.a.a.U("Anchored[");
         sbU.append(this.actualPosition);
         sbU.append("] -> ");
         sbU.append(targetView);
@@ -185,9 +227,9 @@ public class OverlayBubbleWrap extends FrameLayout {
         getLocationOnScreen(this.screenOffset);
         int[] iArr = this.screenOffset;
         int i = iArr[0];
-        WindowManager$LayoutParams windowManager$LayoutParams = this.windowLayoutParams;
-        iArr[0] = i - windowManager$LayoutParams.x;
-        iArr[1] = iArr[1] - windowManager$LayoutParams.y;
+        WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
+        iArr[0] = i - layoutParams.x;
+        iArr[1] = iArr[1] - layoutParams.y;
     }
 
     @Override // android.view.ViewGroup, android.view.View
@@ -201,11 +243,11 @@ public class OverlayBubbleWrap extends FrameLayout {
                         this.actualPosition.x = ((int) motionEvent.getRawX()) - this.deltaX;
                         this.actualPosition.y = ((int) motionEvent.getRawY()) - this.deltaY;
                         if (ViewCompat.isAttachedToWindow(this) && this.anchorPosition == null) {
-                            WindowManager$LayoutParams windowManager$LayoutParams = this.windowLayoutParams;
+                            WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
                             Point point = this.actualPosition;
-                            windowManager$LayoutParams.x = point.x;
-                            windowManager$LayoutParams.y = point.y;
-                            this.windowManager.updateViewLayout(this, windowManager$LayoutParams);
+                            layoutParams.x = point.x;
+                            layoutParams.y = point.y;
+                            this.windowManager.updateViewLayout(this, layoutParams);
                         }
                     } else {
                         if (Math.abs((this.deltaX + this.windowLayoutParams.x) - ((int) motionEvent.getRawX())) > this.moveThresholdPx) {
@@ -277,7 +319,7 @@ public class OverlayBubbleWrap extends FrameLayout {
         return this.springAnimationY;
     }
 
-    public final WindowManager$LayoutParams getWindowLayoutParams() {
+    public final WindowManager.LayoutParams getWindowLayoutParams() {
         return this.windowLayoutParams;
     }
 
@@ -301,7 +343,7 @@ public class OverlayBubbleWrap extends FrameLayout {
         super.onConfigurationChanged(newConfig);
         this.windowManager.updateViewLayout(this, this.windowLayoutParams);
         if (!ViewCompat.isLaidOut(this) || isLayoutRequested()) {
-            addOnLayoutChangeListener(new OverlayBubbleWrap$b(this));
+            addOnLayoutChangeListener(new b());
         } else {
             d();
         }
@@ -327,7 +369,7 @@ public class OverlayBubbleWrap extends FrameLayout {
         this.actualPosition.y = (int) getY();
         this.anchorPosition = newAnchorPoint;
         String simpleName = getClass().getSimpleName();
-        StringBuilder sbU = a.U("Anchoring[");
+        StringBuilder sbU = b.d.b.a.a.U("Anchoring[");
         sbU.append(this.actualPosition);
         sbU.append("] -> ");
         sbU.append(this.anchorPosition);
@@ -335,14 +377,14 @@ public class OverlayBubbleWrap extends FrameLayout {
     }
 
     public final void setBubbleTouchable(boolean isTouchable) {
-        WindowManager$LayoutParams windowManager$LayoutParams = this.windowLayoutParams;
-        m.checkNotNullParameter(windowManager$LayoutParams, "$this$setFlagTouchable");
+        WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
+        m.checkNotNullParameter(layoutParams, "$this$setFlagTouchable");
         if (isTouchable) {
-            m.checkNotNullParameter(windowManager$LayoutParams, "$this$removeFlag");
-            windowManager$LayoutParams.flags &= -17;
+            m.checkNotNullParameter(layoutParams, "$this$removeFlag");
+            layoutParams.flags &= -17;
         } else {
-            m.checkNotNullParameter(windowManager$LayoutParams, "$this$addFlag");
-            windowManager$LayoutParams.flags = 16 | windowManager$LayoutParams.flags;
+            m.checkNotNullParameter(layoutParams, "$this$addFlag");
+            layoutParams.flags = 16 | layoutParams.flags;
         }
         this.windowManager.updateViewLayout(this, this.windowLayoutParams);
     }
@@ -355,9 +397,9 @@ public class OverlayBubbleWrap extends FrameLayout {
         this.onMovingStateChanged = function1;
     }
 
-    public final void setWindowLayoutParams(WindowManager$LayoutParams windowManager$LayoutParams) {
-        m.checkNotNullParameter(windowManager$LayoutParams, "<set-?>");
-        this.windowLayoutParams = windowManager$LayoutParams;
+    public final void setWindowLayoutParams(WindowManager.LayoutParams layoutParams) {
+        m.checkNotNullParameter(layoutParams, "<set-?>");
+        this.windowLayoutParams = layoutParams;
     }
 
     @Override // android.view.View

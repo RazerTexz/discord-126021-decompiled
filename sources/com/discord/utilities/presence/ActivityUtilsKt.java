@@ -16,7 +16,6 @@ import com.discord.api.stageinstance.StageInstancePrivacyLevel;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.guild.Guild;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import com.discord.stores.StoreThread;
 import com.discord.utilities.platform.Platform;
 import com.discord.utilities.time.ClockFactory;
@@ -72,16 +71,16 @@ public final class ActivityUtilsKt {
         String strValueOf;
         ActivityTimestamps timestamps;
         Collection<StageRoles> collectionValues;
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        long selectedVoiceChannelId = storeStream$Companion.getVoiceChannelSelected().getSelectedVoiceChannelId();
-        Channel channel = storeStream$Companion.getChannels().getChannel(selectedVoiceChannelId);
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        long selectedVoiceChannelId = companion.getVoiceChannelSelected().getSelectedVoiceChannelId();
+        Channel channel = companion.getChannels().getChannel(selectedVoiceChannelId);
         if (channel == null || !ChannelUtils.D(channel)) {
             return null;
         }
-        Map<Long, StageRoles> channelRolesInternal = storeStream$Companion.getStageChannels().getChannelRolesInternal(selectedVoiceChannelId);
-        StageRoles stageRolesM16getMyRolesInternalvisDeB4 = storeStream$Companion.getStageChannels().m16getMyRolesInternalvisDeB4(selectedVoiceChannelId);
-        StageInstance stageInstanceForChannelInternal = storeStream$Companion.getStageInstances().getStageInstanceForChannelInternal(channel.getId());
-        if (stageInstanceForChannelInternal != null && (guild = storeStream$Companion.getGuilds().getGuild(channel.getGuildId())) != null) {
+        Map<Long, StageRoles> channelRolesInternal = companion.getStageChannels().getChannelRolesInternal(selectedVoiceChannelId);
+        StageRoles stageRolesM16getMyRolesInternalvisDeB4 = companion.getStageChannels().m16getMyRolesInternalvisDeB4(selectedVoiceChannelId);
+        StageInstance stageInstanceForChannelInternal = companion.getStageInstances().getStageInstanceForChannelInternal(channel.getId());
+        if (stageInstanceForChannelInternal != null && (guild = companion.getGuilds().getGuild(channel.getGuildId())) != null) {
             String strM21packStageChannelPartyIdhLOU_GE = m21packStageChannelPartyIdhLOU_GE(channel, guild, stageRolesM16getMyRolesInternalvisDeB4, stageInstanceForChannelInternal);
             if (channelRolesInternal == null || (collectionValues = channelRolesInternal.values()) == null) {
                 size = 0;
@@ -95,8 +94,8 @@ public final class ActivityUtilsKt {
                 size = arrayList.size();
             }
             int size2 = channelRolesInternal != null ? channelRolesInternal.size() : 0;
-            StoreStream$Companion storeStream$Companion2 = StoreStream.Companion;
-            Activity applicationActivity = storeStream$Companion2.getPresences().getApplicationActivity(storeStream$Companion2.getUsers().getMeSnapshot().getId(), STAGE_PRESENCE_APPLICATION_ID);
+            StoreStream.Companion companion2 = StoreStream.INSTANCE;
+            Activity applicationActivity = companion2.getPresences().getApplicationActivity(companion2.getUsers().getMeSnapshot().getId(), STAGE_PRESENCE_APPLICATION_ID);
             StageCallRichPresencePartyData stageCallRichPresencePartyDataUnpackStageChannelParty = unpackStageChannelParty(applicationActivity);
             if (!(stageCallRichPresencePartyDataUnpackStageChannelParty != null && stageCallRichPresencePartyDataUnpackStageChannelParty.getGuildId() == guild.getId() && stageCallRichPresencePartyDataUnpackStageChannelParty.getChannelId() == channel.getId())) {
                 applicationActivity = null;

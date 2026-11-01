@@ -3,7 +3,7 @@ package com.discord.widgets.user.email;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetUserEmailUpdateBinding;
 import com.discord.utilities.dimmer.DimmerView;
 import com.google.android.material.button.MaterialButton;
@@ -29,20 +29,20 @@ public final /* synthetic */ class WidgetUserEmailUpdate$binding$2 extends k imp
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetUserEmailUpdateBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.alert_verify_email_anchor;
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.alert_verify_email_anchor);
+        int i = R.id.alert_verify_email_anchor;
+        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.alert_verify_email_anchor);
         if (linearLayout != null) {
-            i = R$id.alert_verify_email_change;
-            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.alert_verify_email_change);
+            i = R.id.alert_verify_email_change;
+            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.alert_verify_email_change);
             if (materialButton != null) {
-                i = R$id.alert_verify_email_change_email;
-                TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.alert_verify_email_change_email);
+                i = R.id.alert_verify_email_change_email;
+                TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.alert_verify_email_change_email);
                 if (textInputLayout != null) {
-                    i = R$id.alert_verify_email_change_password;
-                    TextInputLayout textInputLayout2 = (TextInputLayout) view.findViewById(R$id.alert_verify_email_change_password);
+                    i = R.id.alert_verify_email_change_password;
+                    TextInputLayout textInputLayout2 = (TextInputLayout) view.findViewById(R.id.alert_verify_email_change_password);
                     if (textInputLayout2 != null) {
-                        i = 2131363051;
-                        DimmerView dimmerView = (DimmerView) view.findViewById(2131363051);
+                        i = R.id.dimmer_view;
+                        DimmerView dimmerView = (DimmerView) view.findViewById(R.id.dimmer_view);
                         if (dimmerView != null) {
                             return new WidgetUserEmailUpdateBinding((RelativeLayout) view, linearLayout, materialButton, textInputLayout, textInputLayout2, dimmerView);
                         }

@@ -34,10 +34,10 @@ public final class WidgetGuildInviteShareSheet$Companion$enqueueNoticeForHomeTab
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(FragmentActivity fragmentActivity) {
         m.checkNotNullParameter(fragmentActivity, "fragmentActivity");
-        WidgetGuildInviteShareSheet$Companion widgetGuildInviteShareSheet$Companion = WidgetGuildInviteShareSheet.Companion;
+        WidgetGuildInviteShareSheet.Companion companion = WidgetGuildInviteShareSheet.INSTANCE;
         FragmentManager supportFragmentManager = fragmentActivity.getSupportFragmentManager();
         m.checkNotNullExpressionValue(supportFragmentManager, "fragmentActivity.supportFragmentManager");
-        widgetGuildInviteShareSheet$Companion.show(supportFragmentManager, this.$channelId, this.$guildId, this.$source);
+        companion.show(supportFragmentManager, this.$channelId, this.$guildId, this.$source);
         StoreNotices.markSeen$default(this.$storeNotices, this.$noticeName, 0L, 2, null);
         return true;
     }

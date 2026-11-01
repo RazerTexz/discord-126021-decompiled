@@ -1,10 +1,15 @@
 package androidx.appcompat.widget;
 
+import android.graphics.Rect;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public interface FitWindowsViewGroup {
-    void setOnFitSystemWindowsListener(FitWindowsViewGroup$OnFitSystemWindowsListener fitWindowsViewGroup$OnFitSystemWindowsListener);
+
+    public interface OnFitSystemWindowsListener {
+        void onFitSystemWindows(Rect rect);
+    }
+
+    void setOnFitSystemWindowsListener(OnFitSystemWindowsListener onFitSystemWindowsListener);
 }

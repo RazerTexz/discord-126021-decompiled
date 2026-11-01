@@ -3,7 +3,6 @@ package com.google.android.exoplayer2.upstream;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.Resources;
-import android.content.res.Resources$NotFoundException;
 import android.net.Uri;
 import android.text.TextUtils;
 import androidx.annotation.Nullable;
@@ -36,6 +35,12 @@ public final class RawResourceDataSource extends g {
     public long j;
     public boolean k;
 
+    public class RawResourceDataSourceException extends DataSourceException {
+        public RawResourceDataSourceException(@Nullable String str, @Nullable Throwable th, int i) {
+            super(str, th, i);
+        }
+    }
+
     public RawResourceDataSource(Context context) {
         super(false);
         this.e = context.getResources();
@@ -44,7 +49,7 @@ public final class RawResourceDataSource extends g {
 
     /* JADX WARN: Code duplicated, block: B:86:0x00a5 A[EXC_TOP_SPLITTER, SYNTHETIC] */
     @Override // b.i.a.c.e3.l
-    public long a(n nVar) throws RawResourceDataSource$RawResourceDataSourceException {
+    public long a(n nVar) throws RawResourceDataSourceException {
         int identifier;
         Uri uri = nVar.a;
         this.g = uri;
@@ -54,7 +59,7 @@ public final class RawResourceDataSource extends g {
                 Objects.requireNonNull(lastPathSegment);
                 identifier = Integer.parseInt(lastPathSegment);
             } catch (NumberFormatException unused) {
-                throw new RawResourceDataSource$RawResourceDataSourceException("Resource identifier must be an integer.", null, PointerIconCompat.TYPE_WAIT);
+                throw new RawResourceDataSourceException("Resource identifier must be an integer.", null, PointerIconCompat.TYPE_WAIT);
             }
         } else {
             if (TextUtils.equals("android.resource", uri.getScheme()) && uri.getPathSegments().size() == 1) {
@@ -67,7 +72,7 @@ public final class RawResourceDataSource extends g {
                 }
             }
             if (!TextUtils.equals("android.resource", uri.getScheme())) {
-                throw new RawResourceDataSource$RawResourceDataSourceException("URI must either use scheme rawresource or android.resource", null, PointerIconCompat.TYPE_WAIT);
+                throw new RawResourceDataSourceException("URI must either use scheme rawresource or android.resource", null, PointerIconCompat.TYPE_WAIT);
             }
             String path = uri.getPath();
             Objects.requireNonNull(path);
@@ -79,7 +84,7 @@ public final class RawResourceDataSource extends g {
             String strValueOf2 = String.valueOf(path);
             identifier = this.e.getIdentifier(strValueOf2.length() != 0 ? strValueOf.concat(strValueOf2) : new String(strValueOf), "raw", this.f);
             if (identifier == 0) {
-                throw new RawResourceDataSource$RawResourceDataSourceException("Resource not found.", null, 2005);
+                throw new RawResourceDataSourceException("Resource not found.", null, 2005);
             }
         }
         r(nVar);
@@ -88,7 +93,7 @@ public final class RawResourceDataSource extends g {
             this.h = assetFileDescriptorOpenRawResourceFd;
             if (assetFileDescriptorOpenRawResourceFd == null) {
                 String strValueOf3 = String.valueOf(uri);
-                throw new RawResourceDataSource$RawResourceDataSourceException(a.j(strValueOf3.length() + 24, "Resource is compressed: ", strValueOf3), null, 2000);
+                throw new RawResourceDataSourceException(a.j(strValueOf3.length() + 24, "Resource is compressed: ", strValueOf3), null, 2000);
             }
             long length = assetFileDescriptorOpenRawResourceFd.getLength();
             FileInputStream fileInputStream = new FileInputStream(assetFileDescriptorOpenRawResourceFd.getFileDescriptor());
@@ -96,18 +101,18 @@ public final class RawResourceDataSource extends g {
             if (length != -1) {
                 try {
                     if (nVar.f > length) {
-                        throw new RawResourceDataSource$RawResourceDataSourceException(null, null, 2008);
+                        throw new RawResourceDataSourceException(null, null, 2008);
                     }
-                } catch (RawResourceDataSource$RawResourceDataSourceException e) {
+                } catch (RawResourceDataSourceException e) {
                     throw e;
                 } catch (IOException e2) {
-                    throw new RawResourceDataSource$RawResourceDataSourceException(null, e2, 2000);
+                    throw new RawResourceDataSourceException(null, e2, 2000);
                 }
             }
             long startOffset = assetFileDescriptorOpenRawResourceFd.getStartOffset();
             long jSkip = fileInputStream.skip(nVar.f + startOffset) - startOffset;
             if (jSkip != nVar.f) {
-                throw new RawResourceDataSource$RawResourceDataSourceException(null, null, 2008);
+                throw new RawResourceDataSourceException(null, null, 2008);
             }
             if (length == -1) {
                 FileChannel channel = fileInputStream.getChannel();
@@ -117,7 +122,7 @@ public final class RawResourceDataSource extends g {
                     long size = channel.size() - channel.position();
                     this.j = size;
                     if (size < 0) {
-                        throw new RawResourceDataSource$RawResourceDataSourceException(null, null, 2008);
+                        throw new RawResourceDataSourceException(null, null, 2008);
                     }
                 }
             } else {
@@ -139,8 +144,8 @@ public final class RawResourceDataSource extends g {
             s(nVar);
             long j3 = nVar.g;
             return j3 != -1 ? j3 : this.j;
-        } catch (Resources$NotFoundException e3) {
-            throw new RawResourceDataSource$RawResourceDataSourceException(null, e3, 2005);
+        } catch (Resources.NotFoundException e3) {
+            throw new RawResourceDataSourceException(null, e3, 2005);
         }
     }
 
@@ -157,7 +162,7 @@ public final class RawResourceDataSource extends g {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    public void close() throws RawResourceDataSource$RawResourceDataSourceException {
+    public void close() throws RawResourceDataSourceException {
         this.g = null;
         try {
             InputStream inputStream = this.i;
@@ -177,7 +182,7 @@ public final class RawResourceDataSource extends g {
                         q();
                     }
                 } catch (IOException e) {
-                    throw new RawResourceDataSource$RawResourceDataSourceException(null, e, 2000);
+                    throw new RawResourceDataSourceException(null, e, 2000);
                 }
             } catch (Throwable th) {
                 this.h = null;
@@ -188,7 +193,7 @@ public final class RawResourceDataSource extends g {
                 throw th;
             }
         } catch (IOException e2) {
-            throw new RawResourceDataSource$RawResourceDataSourceException(null, e2, 2000);
+            throw new RawResourceDataSourceException(null, e2, 2000);
         }
     }
 
@@ -199,7 +204,7 @@ public final class RawResourceDataSource extends g {
     }
 
     @Override // b.i.a.c.e3.h
-    public int read(byte[] bArr, int i, int i2) throws RawResourceDataSource$RawResourceDataSourceException {
+    public int read(byte[] bArr, int i, int i2) throws RawResourceDataSourceException {
         if (i2 == 0) {
             return 0;
         }
@@ -211,7 +216,7 @@ public final class RawResourceDataSource extends g {
             try {
                 i2 = (int) Math.min(j, i2);
             } catch (IOException e) {
-                throw new RawResourceDataSource$RawResourceDataSourceException(null, e, 2000);
+                throw new RawResourceDataSourceException(null, e, 2000);
             }
         }
         InputStream inputStream = this.i;
@@ -221,7 +226,7 @@ public final class RawResourceDataSource extends g {
             if (this.j == -1) {
                 return -1;
             }
-            throw new RawResourceDataSource$RawResourceDataSourceException("End of stream reached having not read sufficient data.", new EOFException(), 2000);
+            throw new RawResourceDataSourceException("End of stream reached having not read sufficient data.", new EOFException(), 2000);
         }
         long j2 = this.j;
         if (j2 != -1) {

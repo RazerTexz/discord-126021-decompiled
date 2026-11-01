@@ -1,20 +1,12 @@
 package com.discord.utilities.voice;
 
 import android.content.Context;
-import android.os.Build$VERSION;
+import android.os.Build;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import b.a.k.b;
-import com.discord.rtcconnection.RtcConnection$Quality;
-import com.discord.rtcconnection.RtcConnection$State;
-import com.discord.rtcconnection.RtcConnection$State$a;
-import com.discord.rtcconnection.RtcConnection$State$b;
-import com.discord.rtcconnection.RtcConnection$State$c;
-import com.discord.rtcconnection.RtcConnection$State$d;
-import com.discord.rtcconnection.RtcConnection$State$e;
-import com.discord.rtcconnection.RtcConnection$State$f;
-import com.discord.rtcconnection.RtcConnection$State$g;
-import com.discord.rtcconnection.RtcConnection$State$h;
+import com.discord.R;
+import com.discord.rtcconnection.RtcConnection;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.streams.StreamContext;
 import d0.z.d.m;
@@ -25,30 +17,56 @@ import kotlin.NoWhenBranchMatchedException;
 public final class VoiceViewUtils {
     public static final VoiceViewUtils INSTANCE = new VoiceViewUtils();
 
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
+
+        static {
+            RtcConnection.Quality.values();
+            int[] iArr = new int[4];
+            $EnumSwitchMapping$0 = iArr;
+            RtcConnection.Quality quality = RtcConnection.Quality.BAD;
+            iArr[quality.ordinal()] = 1;
+            RtcConnection.Quality quality2 = RtcConnection.Quality.AVERAGE;
+            iArr[quality2.ordinal()] = 2;
+            RtcConnection.Quality quality3 = RtcConnection.Quality.FINE;
+            iArr[quality3.ordinal()] = 3;
+            RtcConnection.Quality quality4 = RtcConnection.Quality.UNKNOWN;
+            iArr[quality4.ordinal()] = 4;
+            RtcConnection.Quality.values();
+            int[] iArr2 = new int[4];
+            $EnumSwitchMapping$1 = iArr2;
+            iArr2[quality.ordinal()] = 1;
+            iArr2[quality2.ordinal()] = 2;
+            iArr2[quality3.ordinal()] = 3;
+            iArr2[quality4.ordinal()] = 4;
+        }
+    }
+
     private VoiceViewUtils() {
     }
 
     public final int getCallIndicatorIcon(boolean hasVideo, StreamContext streamContext) {
         if (streamContext == null || !streamContext.isCurrentUserParticipating()) {
-            return hasVideo ? 2131232247 : 2131231593;
+            return hasVideo ? R.drawable.ic_videocam_white_16dp : R.drawable.ic_call_indicator_voice_16dp;
         }
-        return streamContext.isSelfStream() ? 2131231591 : 2131231592;
+        return streamContext.isSelfStream() ? R.drawable.ic_call_indicator_mobile_screenshare_16dp : R.drawable.ic_call_indicator_streaming_16dp;
     }
 
-    public static /* synthetic */ CharSequence getConnectedText$default(VoiceViewUtils voiceViewUtils, Context context, RtcConnection$State rtcConnection$State, StreamContext streamContext, boolean z2, int i, Object obj) {
+    public static /* synthetic */ CharSequence getConnectedText$default(VoiceViewUtils voiceViewUtils, Context context, RtcConnection.State state, StreamContext streamContext, boolean z2, int i, Object obj) {
         if ((i & 8) != 0) {
             z2 = false;
         }
-        return voiceViewUtils.getConnectedText(context, rtcConnection$State, streamContext, z2);
+        return voiceViewUtils.getConnectedText(context, state, streamContext, z2);
     }
 
-    public final CharSequence getConnectedText(Context context, RtcConnection$State rtcConnectionState, StreamContext streamContext, boolean hasVideo) {
+    public final CharSequence getConnectedText(Context context, RtcConnection.State rtcConnectionState, StreamContext streamContext, boolean hasVideo) {
         int i;
         m.checkNotNullParameter(context, "context");
-        RtcConnection$State$f rtcConnection$State$f = RtcConnection$State$f.a;
-        if (rtcConnectionState == rtcConnection$State$f && streamContext != null && streamContext.isCurrentUserParticipating()) {
+        RtcConnection.State.f fVar = RtcConnection.State.f.a;
+        if (rtcConnectionState == fVar && streamContext != null && streamContext.isCurrentUserParticipating()) {
             if (streamContext.isSelfStream()) {
-                return b.h(context, 2131887868, new Object[0], null, 4);
+                return b.h(context, R.string.connection_status_stream_self_connected, new Object[0], null, 4);
             }
             Object[] objArr = new Object[1];
             String userNickname = streamContext.getUserNickname();
@@ -56,25 +74,25 @@ public final class VoiceViewUtils {
                 userNickname = streamContext.getUser().getUsername();
             }
             objArr[0] = userNickname;
-            return b.h(context, 2131887867, objArr, null, 4);
+            return b.h(context, R.string.connection_status_stream_connected, objArr, null, 4);
         }
-        if (m.areEqual(rtcConnectionState, RtcConnection$State$c.a)) {
-            i = 2131887861;
-        } else if (m.areEqual(rtcConnectionState, RtcConnection$State$e.a)) {
-            i = 2131887864;
-        } else if (m.areEqual(rtcConnectionState, RtcConnection$State$b.a)) {
-            i = 2131887860;
-        } else if (m.areEqual(rtcConnectionState, RtcConnection$State$a.a)) {
-            i = 2131887859;
-        } else if (m.areEqual(rtcConnectionState, RtcConnection$State$g.a)) {
-            i = 2131887865;
-        } else if (m.areEqual(rtcConnectionState, rtcConnection$State$f)) {
-            i = hasVideo ? 2131887869 : 2131887870;
+        if (m.areEqual(rtcConnectionState, RtcConnection.State.c.a)) {
+            i = R.string.connection_status_connecting;
+        } else if (m.areEqual(rtcConnectionState, RtcConnection.State.e.a)) {
+            i = R.string.connection_status_no_route;
+        } else if (m.areEqual(rtcConnectionState, RtcConnection.State.b.a)) {
+            i = R.string.connection_status_awaiting_endpoint;
+        } else if (m.areEqual(rtcConnectionState, RtcConnection.State.a.a)) {
+            i = R.string.connection_status_authenticating;
+        } else if (m.areEqual(rtcConnectionState, RtcConnection.State.g.a)) {
+            i = R.string.connection_status_rtc_connecting;
+        } else if (m.areEqual(rtcConnectionState, fVar)) {
+            i = hasVideo ? R.string.connection_status_video_connected : R.string.connection_status_voice_connected;
         } else {
-            if (!(rtcConnectionState instanceof RtcConnection$State$d) && !m.areEqual(rtcConnectionState, RtcConnection$State$h.a) && rtcConnectionState != null) {
+            if (!(rtcConnectionState instanceof RtcConnection.State.d) && !m.areEqual(rtcConnectionState, RtcConnection.State.h.a) && rtcConnectionState != null) {
                 throw new NoWhenBranchMatchedException();
             }
-            i = 2131887862;
+            i = R.string.connection_status_disconnected;
         }
         String string = context.getString(i);
         m.checkNotNullExpressionValue(string, "context.getString(resId)");
@@ -89,48 +107,48 @@ public final class VoiceViewUtils {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    public final int getConnectionStatusColor(RtcConnection$State connectionState, RtcConnection$Quality connectionQuality, Context context) {
+    public final int getConnectionStatusColor(RtcConnection.State connectionState, RtcConnection.Quality connectionQuality, Context context) {
         m.checkNotNullParameter(context, "context");
-        if (!m.areEqual(connectionState, RtcConnection$State$f.a)) {
-            if (m.areEqual(connectionState, RtcConnection$State$b.a) || m.areEqual(connectionState, RtcConnection$State$c.a) || m.areEqual(connectionState, RtcConnection$State$a.a) || m.areEqual(connectionState, RtcConnection$State$g.a)) {
-                return ColorCompat.getColor(context, 2131100410);
+        if (!m.areEqual(connectionState, RtcConnection.State.f.a)) {
+            if (m.areEqual(connectionState, RtcConnection.State.b.a) || m.areEqual(connectionState, RtcConnection.State.c.a) || m.areEqual(connectionState, RtcConnection.State.a.a) || m.areEqual(connectionState, RtcConnection.State.g.a)) {
+                return ColorCompat.getColor(context, R.color.status_yellow_500);
             }
-            if (m.areEqual(connectionState, RtcConnection$State$e.a)) {
-                return ColorCompat.getColor(context, 2131100382);
+            if (m.areEqual(connectionState, RtcConnection.State.e.a)) {
+                return ColorCompat.getColor(context, R.color.status_red_500);
             }
-            return ((connectionState instanceof RtcConnection$State$d) || m.areEqual(connectionState, RtcConnection$State$h.a)) ? ColorCompat.getColor(context, 2131100382) : ColorCompat.getColor(context, 2131100382);
+            return ((connectionState instanceof RtcConnection.State.d) || m.areEqual(connectionState, RtcConnection.State.h.a)) ? ColorCompat.getColor(context, R.color.status_red_500) : ColorCompat.getColor(context, R.color.status_red_500);
         }
         if (connectionQuality != null) {
             int iOrdinal = connectionQuality.ordinal();
             if (iOrdinal != 0) {
                 if (iOrdinal == 1) {
-                    return ColorCompat.getColor(context, 2131100382);
+                    return ColorCompat.getColor(context, R.color.status_red_500);
                 }
                 if (iOrdinal == 2) {
-                    return ColorCompat.getColor(context, 2131100410);
+                    return ColorCompat.getColor(context, R.color.status_yellow_500);
                 }
             }
-            return ColorCompat.getColor(context, 2131100304);
+            return ColorCompat.getColor(context, R.color.status_green_600);
         }
-        return ColorCompat.getColor(context, 2131100304);
+        return ColorCompat.getColor(context, R.color.status_green_600);
     }
 
     public final boolean getIsSoundshareSupported() {
-        return Build$VERSION.SDK_INT >= 29;
+        return Build.VERSION.SDK_INT >= 29;
     }
 
     @DrawableRes
-    public final int getQualityIndicator(RtcConnection$Quality connectionQuality) {
+    public final int getQualityIndicator(RtcConnection.Quality connectionQuality) {
         int iOrdinal;
         if (connectionQuality == null || (iOrdinal = connectionQuality.ordinal()) == 0) {
-            return 2131232258;
+            return R.drawable.ic_voice_quality_unknown;
         }
         if (iOrdinal == 1) {
-            return 2131232256;
+            return R.drawable.ic_voice_quality_bad;
         }
         if (iOrdinal != 2) {
-            return iOrdinal != 3 ? 2131232258 : 2131232257;
+            return iOrdinal != 3 ? R.drawable.ic_voice_quality_unknown : R.drawable.ic_voice_quality_fine;
         }
-        return 2131232255;
+        return R.drawable.ic_voice_quality_average;
     }
 }

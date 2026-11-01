@@ -1,7 +1,7 @@
 package com.discord.stores;
 
 import android.content.Context;
-import android.content.SharedPreferences$Editor;
+import android.content.SharedPreferences;
 import com.discord.api.guild.Guild;
 import com.discord.models.domain.ModelPayload;
 import com.discord.utilities.analytics.AnalyticsTracker;
@@ -13,7 +13,6 @@ import java.util.List;
 /* JADX INFO: compiled from: StoreReviewRequest.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreReviewRequest extends Store {
-    public static final StoreReviewRequest$Companion Companion = new StoreReviewRequest$Companion(null);
     private static final int MINIMUM_GUILD_MEMBER_COUNT = 5;
     private static final long MINIMUM_INSTALL_AGE = 864000000;
     private static final int REVIEW_REQUEST_REVISION = 693;
@@ -65,7 +64,7 @@ public final class StoreReviewRequest extends Store {
         if (this.clock.currentTimeMillis() <= this.stream.getNotices().getFirstUseTimestamp() + MINIMUM_INSTALL_AGE) {
             return;
         }
-        this.stream.getNotices().requestToShow(StoreNotices$Dialog$Type.buildPassiveNotice$default(StoreNotices$Dialog$Type.REQUEST_RATING_MODAL, 0, 31536000000L, 0L, true, 5, null));
+        this.stream.getNotices().requestToShow(StoreNotices.Dialog.Type.buildPassiveNotice$default(StoreNotices.Dialog.Type.REQUEST_RATING_MODAL, 0, 31536000000L, 0L, true, 5, null));
     }
 
     @Override // com.discord.stores.Store
@@ -78,20 +77,20 @@ public final class StoreReviewRequest extends Store {
 
     public final void onReviewRequestShown() {
         this.requestedReviewRevision = REVIEW_REQUEST_REVISION;
-        SharedPreferences$Editor sharedPreferences$EditorEdit = getPrefsSessionDurable().edit();
-        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
-        sharedPreferences$EditorEdit.putInt("CACHE_KEY_VIEWED_REVIEW_REQUEST_REVISION", REVIEW_REQUEST_REVISION);
-        sharedPreferences$EditorEdit.apply();
-        this.stream.getNotices().markSeen(StoreNotices$Dialog$Type.REQUEST_RATING_MODAL);
+        SharedPreferences.Editor editorEdit = getPrefsSessionDurable().edit();
+        m.checkNotNullExpressionValue(editorEdit, "editor");
+        editorEdit.putInt("CACHE_KEY_VIEWED_REVIEW_REQUEST_REVISION", REVIEW_REQUEST_REVISION);
+        editorEdit.apply();
+        this.stream.getNotices().markSeen(StoreNotices.Dialog.Type.REQUEST_RATING_MODAL);
         AnalyticsTracker.INSTANCE.reviewRequestTriggered();
     }
 
     public final void onUserAcceptedRequest() {
         this.hasUserAcceptedReviewRequest = true;
-        SharedPreferences$Editor sharedPreferences$EditorEdit = getPrefsSessionDurable().edit();
-        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
-        sharedPreferences$EditorEdit.putBoolean("CACHE_KEY_HAS_ACCEPTED_REVIEW_REQUEST", true);
-        sharedPreferences$EditorEdit.apply();
+        SharedPreferences.Editor editorEdit = getPrefsSessionDurable().edit();
+        m.checkNotNullExpressionValue(editorEdit, "editor");
+        editorEdit.putBoolean("CACHE_KEY_HAS_ACCEPTED_REVIEW_REQUEST", true);
+        editorEdit.apply();
         AnalyticsTracker.INSTANCE.reviewRequestAccepted();
     }
 

@@ -9,12 +9,12 @@ import rx.functions.Action1;
 /* JADX INFO: loaded from: classes.dex */
 public final class ModelStoreListing$Parser$parse$1<T> implements Action1<String> {
     public final /* synthetic */ Ref$ObjectRef $id;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
     public final /* synthetic */ Ref$ObjectRef $sku;
 
-    public ModelStoreListing$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model$JsonReader model$JsonReader, Ref$ObjectRef ref$ObjectRef2) {
+    public ModelStoreListing$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model.JsonReader jsonReader, Ref$ObjectRef ref$ObjectRef2) {
         this.$sku = ref$ObjectRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
         this.$id = ref$ObjectRef2;
     }
 
@@ -29,7 +29,7 @@ public final class ModelStoreListing$Parser$parse$1<T> implements Action1<String
             int iHashCode = str.hashCode();
             if (iHashCode != 3355) {
                 if (iHashCode == 113949 && str.equals("sku")) {
-                    this.$sku.element = (T) ModelSku$Parser.INSTANCE.parse(this.$reader);
+                    this.$sku.element = (T) ModelSku.Parser.INSTANCE.parse(this.$reader);
                     return;
                 }
             } else if (str.equals(ModelAuditLogEntry.CHANGE_KEY_ID)) {

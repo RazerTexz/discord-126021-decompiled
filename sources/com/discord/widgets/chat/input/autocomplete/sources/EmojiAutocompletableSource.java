@@ -1,5 +1,6 @@
 package com.discord.widgets.chat.input.autocomplete.sources;
 
+import androidx.core.app.NotificationCompat;
 import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.models.domain.emoji.Emoji;
@@ -21,12 +22,33 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 import rx.Observable;
+import rx.functions.Func2;
 
 /* JADX INFO: compiled from: EmojiAutocompletableSource.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class EmojiAutocompletableSource {
     private final StoreEmoji emojiStore;
     private final StoreUserSettings userSettingsStore;
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.sources.EmojiAutocompletableSource$observeEmojiAutocompletables$1, reason: invalid class name */
+    /* JADX INFO: compiled from: EmojiAutocompletableSource.kt */
+    public final class AnonymousClass1<T1, T2, R> implements Func2<EmojiSet, Boolean, Map<LeadingIdentifier, ? extends TreeSet<Autocompletable>>> {
+        public AnonymousClass1() {
+        }
+
+        @Override // rx.functions.Func2
+        public /* bridge */ /* synthetic */ Map<LeadingIdentifier, ? extends TreeSet<Autocompletable>> call(EmojiSet emojiSet, Boolean bool) {
+            return call2(emojiSet, bool);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Map<LeadingIdentifier, TreeSet<Autocompletable>> call2(EmojiSet emojiSet, Boolean bool) {
+            EmojiAutocompletableSource emojiAutocompletableSource = EmojiAutocompletableSource.this;
+            m.checkNotNullExpressionValue(emojiSet, "emojiSet");
+            m.checkNotNullExpressionValue(bool, "animationsEnabled");
+            return EmojiAutocompletableSource.access$createFromEmojiSet(emojiAutocompletableSource, emojiSet, bool.booleanValue());
+        }
+    }
 
     public EmojiAutocompletableSource(StoreEmoji storeEmoji, StoreUserSettings storeUserSettings) {
         m.checkNotNullParameter(storeEmoji, "emojiStore");
@@ -71,7 +93,7 @@ public final class EmojiAutocompletableSource {
 
     public final Observable<Map<LeadingIdentifier, TreeSet<Autocompletable>>> observeEmojiAutocompletables(Channel channel) {
         m.checkNotNullParameter(channel, "channel");
-        Observable observableJ = Observable.j(ObservableExtensionsKt.computationLatest(this.emojiStore.getEmojiSet(channel.getGuildId(), channel.getId(), EmojiAutocompletePremiumUpsellFeatureFlag.Companion.getINSTANCE().isEnabled(), false)), ObservableExtensionsKt.computationLatest(this.userSettingsStore.observeIsAnimatedEmojisEnabled(true)), new EmojiAutocompletableSource$observeEmojiAutocompletables$1(this));
+        Observable observableJ = Observable.j(ObservableExtensionsKt.computationLatest(this.emojiStore.getEmojiSet(channel.getGuildId(), channel.getId(), EmojiAutocompletePremiumUpsellFeatureFlag.INSTANCE.getINSTANCE().isEnabled(), false)), ObservableExtensionsKt.computationLatest(this.userSettingsStore.observeIsAnimatedEmojisEnabled(true)), new AnonymousClass1());
         m.checkNotNullExpressionValue(observableJ, "Observable.combineLatest… animationsEnabled)\n    }");
         Observable<Map<LeadingIdentifier, TreeSet<Autocompletable>>> observableR = ObservableExtensionsKt.computationLatest(observableJ).r();
         m.checkNotNullExpressionValue(observableR, "Observable.combineLatest…  .distinctUntilChanged()");

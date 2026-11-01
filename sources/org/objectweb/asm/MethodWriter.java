@@ -1356,7 +1356,7 @@ final class MethodWriter extends MethodVisitor {
         }
     }
 
-    final void collectAttributePrototypes(Attribute$Set attributePrototypes) {
+    final void collectAttributePrototypes(Attribute.Set attributePrototypes) {
         attributePrototypes.addAttributes(this.firstAttribute);
         attributePrototypes.addAttributes(this.firstCodeAttribute);
     }

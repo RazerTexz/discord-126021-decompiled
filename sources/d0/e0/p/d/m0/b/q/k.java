@@ -1,21 +1,20 @@
 package d0.e0.p.d.m0.b.q;
 
 import d0.e0.p.d.m0.n.c0;
-import d0.e0.p.d.m0.p.b$c;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
 /* JADX INFO: compiled from: JvmBuiltInsCustomizer.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class k implements b$c<d0.e0.p.d.m0.c.e> {
+public final class k implements d0.e0.p.d.m0.p.b.c<d0.e0.p.d.m0.c.e> {
     public final /* synthetic */ g a;
 
     public k(g gVar) {
         this.a = gVar;
     }
 
-    @Override // d0.e0.p.d.m0.p.b$c
+    @Override // d0.e0.p.d.m0.p.b.c
     public /* bridge */ /* synthetic */ Iterable<? extends d0.e0.p.d.m0.c.e> getNeighbors(d0.e0.p.d.m0.c.e eVar) {
         return getNeighbors2(eVar);
     }

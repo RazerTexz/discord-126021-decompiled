@@ -9,12 +9,12 @@ import kotlin.jvm.functions.Function0;
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreStreamRtcConnection$RtcConnectionListener$onAnalyticsEvent$1 extends o implements Function0<Unit> {
     public final /* synthetic */ Map $properties;
-    public final /* synthetic */ StoreStreamRtcConnection$RtcConnectionListener this$0;
+    public final /* synthetic */ StoreStreamRtcConnection.RtcConnectionListener this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public StoreStreamRtcConnection$RtcConnectionListener$onAnalyticsEvent$1(StoreStreamRtcConnection$RtcConnectionListener storeStreamRtcConnection$RtcConnectionListener, Map map) {
+    public StoreStreamRtcConnection$RtcConnectionListener$onAnalyticsEvent$1(StoreStreamRtcConnection.RtcConnectionListener rtcConnectionListener, Map map) {
         super(0);
-        this.this$0 = storeStreamRtcConnection$RtcConnectionListener;
+        this.this$0 = rtcConnectionListener;
         this.$properties = map;
     }
 
@@ -26,6 +26,6 @@ public final class StoreStreamRtcConnection$RtcConnectionListener$onAnalyticsEve
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2() {
-        StoreStreamRtcConnection.access$handleVideoStreamEndedAnalyticsEvent(this.this$0.this$0, this.$properties);
+        StoreStreamRtcConnection.access$handleVideoStreamEndedAnalyticsEvent(StoreStreamRtcConnection.this, this.$properties);
     }
 }

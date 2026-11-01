@@ -1,13 +1,12 @@
 package kotlinx.coroutines.android;
 
-import android.os.Build$VERSION;
+import android.os.Build;
 import androidx.annotation.Keep;
 import d0.w.a;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import kotlin.coroutines.CoroutineContext;
 import kotlinx.coroutines.CoroutineExceptionHandler;
-import kotlinx.coroutines.CoroutineExceptionHandler$a;
 
 /* JADX INFO: compiled from: AndroidExceptionPreHandler.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -16,22 +15,22 @@ public final class AndroidExceptionPreHandler extends a implements CoroutineExce
     private volatile Object _preHandler;
 
     public AndroidExceptionPreHandler() {
-        super(CoroutineExceptionHandler$a.a);
+        super(CoroutineExceptionHandler.a.a);
         this._preHandler = this;
     }
 
     @Override // kotlinx.coroutines.CoroutineExceptionHandler
     public void handleException(CoroutineContext context, Throwable exception) {
         Thread threadCurrentThread = Thread.currentThread();
-        if (Build$VERSION.SDK_INT >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             threadCurrentThread.getUncaughtExceptionHandler().uncaughtException(threadCurrentThread, exception);
             return;
         }
         Method methodPreHandler = preHandler();
         Object objInvoke = methodPreHandler != null ? methodPreHandler.invoke(null, new Object[0]) : null;
-        Thread$UncaughtExceptionHandler thread$UncaughtExceptionHandler = (Thread$UncaughtExceptionHandler) (objInvoke instanceof Thread$UncaughtExceptionHandler ? objInvoke : null);
-        if (thread$UncaughtExceptionHandler != null) {
-            thread$UncaughtExceptionHandler.uncaughtException(threadCurrentThread, exception);
+        Thread.UncaughtExceptionHandler uncaughtExceptionHandler = (Thread.UncaughtExceptionHandler) (objInvoke instanceof Thread.UncaughtExceptionHandler ? objInvoke : null);
+        if (uncaughtExceptionHandler != null) {
+            uncaughtExceptionHandler.uncaughtException(threadCurrentThread, exception);
         }
     }
 

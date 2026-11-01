@@ -2,6 +2,7 @@ package com.discord.widgets.guild_automod;
 
 import android.content.Context;
 import b.a.d.d0;
+import b.d.b.a.a;
 import com.discord.api.message.embed.MessageEmbed;
 import com.discord.models.message.Message;
 import com.discord.stores.StoreMessages;
@@ -10,6 +11,7 @@ import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.guildautomod.AutoModUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.t.u;
+import d0.z.d.k;
 import d0.z.d.m;
 import java.util.List;
 import kotlin.Unit;
@@ -20,75 +22,262 @@ import rx.Observable;
 
 /* JADX INFO: compiled from: ReportIssueWithAutoModViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ReportIssueWithAutoModViewModel extends d0<ReportIssueWithAutoModViewModel$ViewState> {
-    public static final ReportIssueWithAutoModViewModel$Companion Companion = new ReportIssueWithAutoModViewModel$Companion(null);
+public final class ReportIssueWithAutoModViewModel extends d0<ViewState> {
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final long channelId;
     private final long messageId;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guild_automod.ReportIssueWithAutoModViewModel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ReportIssueWithAutoModViewModel.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<StoreState, Unit> {
+        public AnonymousClass1(ReportIssueWithAutoModViewModel reportIssueWithAutoModViewModel) {
+            super(1, reportIssueWithAutoModViewModel, ReportIssueWithAutoModViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/guild_automod/ReportIssueWithAutoModViewModel$StoreState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
+            invoke2(storeState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreState storeState) {
+            m.checkNotNullParameter(storeState, "p1");
+            ReportIssueWithAutoModViewModel.access$handleStoreState((ReportIssueWithAutoModViewModel) this.receiver, storeState);
+        }
+    }
+
+    /* JADX INFO: compiled from: ReportIssueWithAutoModViewModel.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static final /* synthetic */ Observable access$observeStores(Companion companion, long j, long j2, StoreMessages storeMessages) {
+            return companion.observeStores(j, j2, storeMessages);
+        }
+
+        private final Observable<StoreState> observeStores(long channelId, long messageId, StoreMessages messageStore) {
+            Observable observableG = messageStore.observeMessagesForChannel(channelId, messageId).G(ReportIssueWithAutoModViewModel$Companion$observeStores$1.INSTANCE);
+            m.checkNotNullExpressionValue(observableG, "messageStore.observeMess…te(clientMessage)\n      }");
+            return observableG;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: ReportIssueWithAutoModViewModel.kt */
+    public final /* data */ class StoreState {
+        private final Message message;
+
+        public StoreState(Message message) {
+            this.message = message;
+        }
+
+        public static /* synthetic */ StoreState copy$default(StoreState storeState, Message message, int i, Object obj) {
+            if ((i & 1) != 0) {
+                message = storeState.message;
+            }
+            return storeState.copy(message);
+        }
+
+        public final StoreState copy(Message message) {
+            return new StoreState(message);
+        }
+
+        public boolean equals(Object other) {
+            if (this != other) {
+                return (other instanceof StoreState) && m.areEqual(this.message, ((StoreState) other).message);
+            }
+            return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Message getMessage() {
+            return this.message;
+        }
+
+        public final Message getMessage() {
+            return this.message;
+        }
+
+        public int hashCode() {
+            Message message = this.message;
+            if (message != null) {
+                return message.hashCode();
+            }
+            return 0;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("StoreState(message=");
+            sbU.append(this.message);
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    /* JADX INFO: compiled from: ReportIssueWithAutoModViewModel.kt */
+    public abstract class ViewState {
+
+        /* JADX INFO: compiled from: ReportIssueWithAutoModViewModel.kt */
+        public final class Invalid extends ViewState {
+            public static final Invalid INSTANCE = new Invalid();
+
+            private Invalid() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: ReportIssueWithAutoModViewModel.kt */
+        public final /* data */ class Valid extends ViewState {
+            private final Message message;
+            private final String selectedOption;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Valid(Message message, String str) {
+                super(null);
+                m.checkNotNullParameter(message, "message");
+                m.checkNotNullParameter(str, "selectedOption");
+                this.message = message;
+                this.selectedOption = str;
+            }
+
+            public static /* synthetic */ Valid copy$default(Valid valid, Message message, String str, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    message = valid.message;
+                }
+                if ((i & 2) != 0) {
+                    str = valid.selectedOption;
+                }
+                return valid.copy(message, str);
+            }
+
+            public final Valid copy(Message message, String selectedOption) {
+                m.checkNotNullParameter(message, "message");
+                m.checkNotNullParameter(selectedOption, "selectedOption");
+                return new Valid(message, selectedOption);
+            }
+
+            public boolean equals(Object other) {
+                if (this == other) {
+                    return true;
+                }
+                if (!(other instanceof Valid)) {
+                    return false;
+                }
+                Valid valid = (Valid) other;
+                return m.areEqual(this.message, valid.message) && m.areEqual(this.selectedOption, valid.selectedOption);
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Message getMessage() {
+                return this.message;
+            }
+
+            public final Message getMessage() {
+                return this.message;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final String getSelectedOption() {
+                return this.selectedOption;
+            }
+
+            public final String getSelectedOption() {
+                return this.selectedOption;
+            }
+
+            public int hashCode() {
+                Message message = this.message;
+                int iHashCode = (message != null ? message.hashCode() : 0) * 31;
+                String str = this.selectedOption;
+                return iHashCode + (str != null ? str.hashCode() : 0);
+            }
+
+            public String toString() {
+                StringBuilder sbU = a.U("Valid(message=");
+                sbU.append(this.message);
+                sbU.append(", selectedOption=");
+                return a.J(sbU, this.selectedOption, ")");
+            }
+        }
+
+        private ViewState() {
+        }
+
+        public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     /* JADX WARN: Illegal instructions before constructor call */
     public /* synthetic */ ReportIssueWithAutoModViewModel(long j, long j2, StoreMessages storeMessages, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        storeMessages = (i & 4) != 0 ? StoreStream.Companion.getMessages() : storeMessages;
-        this(j, j2, storeMessages, (i & 8) != 0 ? ReportIssueWithAutoModViewModel$Companion.access$observeStores(Companion, j, j2, storeMessages) : observable);
+        storeMessages = (i & 4) != 0 ? StoreStream.INSTANCE.getMessages() : storeMessages;
+        this(j, j2, storeMessages, (i & 8) != 0 ? Companion.access$observeStores(INSTANCE, j, j2, storeMessages) : observable);
     }
 
-    public static final /* synthetic */ void access$handleStoreState(ReportIssueWithAutoModViewModel reportIssueWithAutoModViewModel, ReportIssueWithAutoModViewModel$StoreState reportIssueWithAutoModViewModel$StoreState) {
-        reportIssueWithAutoModViewModel.handleStoreState(reportIssueWithAutoModViewModel$StoreState);
+    public static final /* synthetic */ void access$handleStoreState(ReportIssueWithAutoModViewModel reportIssueWithAutoModViewModel, StoreState storeState) {
+        reportIssueWithAutoModViewModel.handleStoreState(storeState);
     }
 
-    private final void handleStoreState(ReportIssueWithAutoModViewModel$StoreState storeState) {
+    private final void handleStoreState(StoreState storeState) {
         String value;
-        ReportIssueWithAutoModViewModel$ViewState reportIssueWithAutoModViewModel$ViewState$Valid;
-        ReportIssueWithAutoModViewModel$ViewState viewState = getViewState();
-        if (!(viewState instanceof ReportIssueWithAutoModViewModel$ViewState$Valid)) {
+        ViewState valid;
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Valid)) {
             viewState = null;
         }
-        ReportIssueWithAutoModViewModel$ViewState$Valid reportIssueWithAutoModViewModel$ViewState$Valid2 = (ReportIssueWithAutoModViewModel$ViewState$Valid) viewState;
+        ViewState.Valid valid2 = (ViewState.Valid) viewState;
         if (storeState.getMessage() == null) {
-            reportIssueWithAutoModViewModel$ViewState$Valid = ReportIssueWithAutoModViewModel$ViewState$Invalid.INSTANCE;
+            valid = ViewState.Invalid.INSTANCE;
         } else {
             Message message = storeState.getMessage();
-            if (reportIssueWithAutoModViewModel$ViewState$Valid2 == null || (value = reportIssueWithAutoModViewModel$ViewState$Valid2.getSelectedOption()) == null) {
+            if (valid2 == null || (value = valid2.getSelectedOption()) == null) {
                 value = FeedbackType.ALLOWED.getValue();
             }
-            reportIssueWithAutoModViewModel$ViewState$Valid = new ReportIssueWithAutoModViewModel$ViewState$Valid(message, value);
+            valid = new ViewState.Valid(message, value);
         }
-        updateViewState(reportIssueWithAutoModViewModel$ViewState$Valid);
+        updateViewState(valid);
     }
 
     public final void onFeedbackTypeSelected(FeedbackType feedbackType) {
         m.checkNotNullParameter(feedbackType, "feedbackType");
-        ReportIssueWithAutoModViewModel$ViewState viewState = getViewState();
-        if (viewState instanceof ReportIssueWithAutoModViewModel$ViewState$Valid) {
-            updateViewState(ReportIssueWithAutoModViewModel$ViewState$Valid.copy$default((ReportIssueWithAutoModViewModel$ViewState$Valid) viewState, null, feedbackType.getValue(), 1, null));
+        ViewState viewState = getViewState();
+        if (viewState instanceof ViewState.Valid) {
+            updateViewState(ViewState.Valid.copy$default((ViewState.Valid) viewState, null, feedbackType.getValue(), 1, null));
         }
     }
 
     public final void onSubmit(Function0<Unit> onCompleted) {
         String embedFieldValue;
         m.checkNotNullParameter(onCompleted, "onCompleted");
-        ReportIssueWithAutoModViewModel$ViewState viewState = getViewState();
-        if (viewState instanceof ReportIssueWithAutoModViewModel$ViewState$Valid) {
-            ReportIssueWithAutoModViewModel$ViewState$Valid reportIssueWithAutoModViewModel$ViewState$Valid = (ReportIssueWithAutoModViewModel$ViewState$Valid) viewState;
-            List<MessageEmbed> embeds = reportIssueWithAutoModViewModel$ViewState$Valid.getMessage().getEmbeds();
+        ViewState viewState = getViewState();
+        if (viewState instanceof ViewState.Valid) {
+            ViewState.Valid valid = (ViewState.Valid) viewState;
+            List<MessageEmbed> embeds = valid.getMessage().getEmbeds();
             MessageEmbed messageEmbed = embeds != null ? (MessageEmbed) u.first((List) embeds) : null;
             AnalyticsTracker analyticsTracker = AnalyticsTracker.INSTANCE;
             if (messageEmbed == null || (embedFieldValue = AutoModUtils.INSTANCE.getEmbedFieldValue(messageEmbed, "decision_id")) == null) {
                 embedFieldValue = "";
             }
-            long id2 = reportIssueWithAutoModViewModel$ViewState$Valid.getMessage().getId();
-            String content = reportIssueWithAutoModViewModel$ViewState$Valid.getMessage().getContent();
-            analyticsTracker.trackReportIssueWithAutoMod(embedFieldValue, id2, reportIssueWithAutoModViewModel$ViewState$Valid.getSelectedOption(), content != null ? content : "");
+            long id2 = valid.getMessage().getId();
+            String content = valid.getMessage().getContent();
+            analyticsTracker.trackReportIssueWithAutoMod(embedFieldValue, id2, valid.getSelectedOption(), content != null ? content : "");
             onCompleted.invoke();
         }
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public ReportIssueWithAutoModViewModel(long j, long j2, StoreMessages storeMessages, Observable<ReportIssueWithAutoModViewModel$StoreState> observable) {
+    public ReportIssueWithAutoModViewModel(long j, long j2, StoreMessages storeMessages, Observable<StoreState> observable) {
         super(null, 1, null);
         m.checkNotNullParameter(storeMessages, "messageStore");
         m.checkNotNullParameter(observable, "storeStateObservable");
         this.channelId = j;
         this.messageId = j2;
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observable), this, null, 2, null), ReportIssueWithAutoModViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new ReportIssueWithAutoModViewModel$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observable), this, null, 2, null), ReportIssueWithAutoModViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
     }
 }

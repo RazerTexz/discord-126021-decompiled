@@ -9,6 +9,6 @@ public final /* synthetic */ class a implements Comparator {
 
     @Override // java.util.Comparator
     public final int compare(Object obj, Object obj2) {
-        return Integer.compare(((h$b) obj).f892b.f893b, ((h$b) obj2).f892b.f893b);
+        return Integer.compare(((h.b) obj).f892b.f893b, ((h.b) obj2).f892b.f893b);
     }
 }

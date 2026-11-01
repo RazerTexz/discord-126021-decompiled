@@ -41,7 +41,7 @@ public final class a0 {
             d0.e0.p.d.m0.g.a aVarMapKotlinToJava = classFqNameUnsafe == null ? null : d0.e0.p.d.m0.b.q.c.a.mapKotlinToJava(classFqNameUnsafe);
             if (aVarMapKotlinToJava != null) {
                 if (!zVar.getKotlinCollectionsToJavaCollections()) {
-                    List<d0.e0.p.d.m0.b.q.c$a> mutabilityMappings = d0.e0.p.d.m0.b.q.c.a.getMutabilityMappings();
+                    List<d0.e0.p.d.m0.b.q.c.a> mutabilityMappings = d0.e0.p.d.m0.b.q.c.a.getMutabilityMappings();
                     if (!(mutabilityMappings instanceof Collection) || !mutabilityMappings.isEmpty()) {
                         Iterator<T> it = mutabilityMappings.iterator();
                         do {
@@ -49,7 +49,7 @@ public final class a0 {
                                 z2 = false;
                                 break;
                             }
-                        } while (!d0.z.d.m.areEqual(((d0.e0.p.d.m0.b.q.c$a) it.next()).getJavaClass(), aVarMapKotlinToJava));
+                        } while (!d0.z.d.m.areEqual(((d0.e0.p.d.m0.b.q.c.a) it.next()).getJavaClass(), aVarMapKotlinToJava));
                     } else {
                         z2 = false;
                         break;

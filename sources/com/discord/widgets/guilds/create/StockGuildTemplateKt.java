@@ -1,6 +1,6 @@
 package com.discord.widgets.guilds.create;
 
-import com.discord.restapi.RestAPIParams$CreateGuildChannel;
+import com.discord.restapi.RestAPIParams;
 import d0.t.m;
 import d0.t.u;
 import java.util.ArrayList;
@@ -16,11 +16,11 @@ public final class StockGuildTemplateKt {
         return createCategorySection(str, j, i, channelTemplateArr);
     }
 
-    private static final List<RestAPIParams$CreateGuildChannel> createCategorySection(String str, long j, int i, ChannelTemplate... channelTemplateArr) {
-        List listListOf = m.listOf(new RestAPIParams$CreateGuildChannel(4, Long.valueOf(j), str, null, null, null));
+    private static final List<RestAPIParams.CreateGuildChannel> createCategorySection(String str, long j, int i, ChannelTemplate... channelTemplateArr) {
+        List listListOf = m.listOf(new RestAPIParams.CreateGuildChannel(4, Long.valueOf(j), str, null, null, null));
         ArrayList arrayList = new ArrayList(channelTemplateArr.length);
         for (ChannelTemplate channelTemplate : channelTemplateArr) {
-            arrayList.add(new RestAPIParams$CreateGuildChannel(i, channelTemplate.getId(), channelTemplate.getName(), Long.valueOf(j), null, null));
+            arrayList.add(new RestAPIParams.CreateGuildChannel(i, channelTemplate.getId(), channelTemplate.getName(), Long.valueOf(j), null, null));
         }
         return u.plus((Collection) listListOf, (Iterable) arrayList);
     }

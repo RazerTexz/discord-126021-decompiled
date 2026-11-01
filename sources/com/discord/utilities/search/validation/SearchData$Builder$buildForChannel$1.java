@@ -17,12 +17,12 @@ public final class SearchData$Builder$buildForChannel$1 extends o implements Fun
     public final /* synthetic */ Map $guildMembers;
     public final /* synthetic */ HashMap $usernameAndDiscriminatorIndex;
     public final /* synthetic */ HashMap $users;
-    public final /* synthetic */ SearchData$Builder this$0;
+    public final /* synthetic */ SearchData.Builder this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public SearchData$Builder$buildForChannel$1(SearchData$Builder searchData$Builder, HashMap map, Map map2, HashMap map3) {
+    public SearchData$Builder$buildForChannel$1(SearchData.Builder builder, HashMap map, Map map2, HashMap map3) {
         super(1);
-        this.this$0 = searchData$Builder;
+        this.this$0 = builder;
         this.$users = map;
         this.$guildMembers = map2;
         this.$usernameAndDiscriminatorIndex = map3;
@@ -38,6 +38,6 @@ public final class SearchData$Builder$buildForChannel$1 extends o implements Fun
     public final void invoke2(User user) {
         m.checkNotNullParameter(user, "recipient");
         this.$users.put(Long.valueOf(user.getId()), new UserGuildMember(user, (GuildMember) a.f(user, this.$guildMembers)));
-        this.$usernameAndDiscriminatorIndex.put(SearchData$Builder.access$getUsernameWithDiscrim(this.this$0, user), Long.valueOf(user.getId()));
+        this.$usernameAndDiscriminatorIndex.put(SearchData.Builder.access$getUsernameWithDiscrim(this.this$0, user), Long.valueOf(user.getId()));
     }
 }

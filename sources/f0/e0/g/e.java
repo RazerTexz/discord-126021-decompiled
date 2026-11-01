@@ -2,13 +2,13 @@ package f0.e0.g;
 
 import androidx.core.app.NotificationCompat;
 import d0.t.r;
-import f0.e0.k.h$a;
 import f0.q;
 import f0.t;
 import f0.x;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.lang.ref.Reference;
+import java.lang.ref.WeakReference;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import kotlin.TypeCastException;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -26,20 +27,20 @@ public final class e implements f0.e {
     public final boolean A;
     public final k j;
     public final t k;
-    public final e$c l;
+    public final c l;
     public final AtomicBoolean m;
     public Object n;
     public d o;
     public j p;
     public boolean q;
-    public c r;
+    public f0.e0.g.c r;
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public boolean f3616s;
     public boolean t;
     public boolean u;
     public volatile boolean v;
-    public volatile c w;
+    public volatile f0.e0.g.c w;
 
     /* JADX INFO: renamed from: x, reason: collision with root package name */
     public volatile j f3617x;
@@ -50,6 +51,103 @@ public final class e implements f0.e {
     /* JADX INFO: renamed from: z, reason: collision with root package name */
     public final Request f3619z;
 
+    /* JADX INFO: compiled from: RealCall.kt */
+    public final class a implements Runnable {
+        public volatile AtomicInteger j;
+        public final f0.f k;
+        public final /* synthetic */ e l;
+
+        public a(e eVar, f0.f fVar) {
+            d0.z.d.m.checkParameterIsNotNull(fVar, "responseCallback");
+            this.l = eVar;
+            this.k = fVar;
+            this.j = new AtomicInteger(0);
+        }
+
+        public final String a() {
+            return this.l.f3619z.url.g;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            e eVar;
+            StringBuilder sbU = b.d.b.a.a.U("OkHttp ");
+            sbU.append(this.l.f3619z.url.h());
+            String string = sbU.toString();
+            Thread threadCurrentThread = Thread.currentThread();
+            d0.z.d.m.checkExpressionValueIsNotNull(threadCurrentThread, "currentThread");
+            String name = threadCurrentThread.getName();
+            threadCurrentThread.setName(string);
+            try {
+                this.l.l.i();
+                boolean z2 = false;
+                try {
+                    try {
+                        try {
+                            this.k.a(this.l, this.l.j());
+                            eVar = this.l;
+                        } catch (IOException e) {
+                            e = e;
+                            z2 = true;
+                            if (z2) {
+                                f0.e0.k.h.a aVar = f0.e0.k.h.c;
+                                f0.e0.k.h.a.i("Callback failure for " + e.b(this.l), 4, e);
+                            } else {
+                                this.k.b(this.l, e);
+                            }
+                            eVar = this.l;
+                        } catch (Throwable th) {
+                            th = th;
+                            z2 = true;
+                            this.l.cancel();
+                            if (!z2) {
+                                IOException iOException = new IOException("canceled due to " + th);
+                                iOException.addSuppressed(th);
+                                this.k.b(this.l, iOException);
+                            }
+                            throw th;
+                        }
+                    } catch (Throwable th2) {
+                        this.l.f3618y.m.c(this);
+                        throw th2;
+                    }
+                } catch (IOException e2) {
+                    e = e2;
+                } catch (Throwable th3) {
+                    th = th3;
+                }
+                eVar.f3618y.m.c(this);
+                threadCurrentThread.setName(name);
+            } catch (Throwable th4) {
+                threadCurrentThread.setName(name);
+                throw th4;
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: RealCall.kt */
+    public final class b extends WeakReference<e> {
+        public final Object a;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public b(e eVar, Object obj) {
+            super(eVar);
+            d0.z.d.m.checkParameterIsNotNull(eVar, "referent");
+            this.a = obj;
+        }
+    }
+
+    /* JADX INFO: compiled from: RealCall.kt */
+    public final class c extends g0.b {
+        public c() {
+        }
+
+        @Override // g0.b
+        public void l() {
+            e.this.cancel();
+        }
+    }
+
     public e(x xVar, Request request, boolean z2) {
         d0.z.d.m.checkParameterIsNotNull(xVar, "client");
         d0.z.d.m.checkParameterIsNotNull(request, "originalRequest");
@@ -58,9 +156,9 @@ public final class e implements f0.e {
         this.A = z2;
         this.j = xVar.n.a;
         this.k = xVar.q.a(this);
-        e$c e_c = new e$c(this);
-        e_c.g(xVar.I, TimeUnit.MILLISECONDS);
-        this.l = e_c;
+        c cVar = new c();
+        cVar.g(xVar.I, TimeUnit.MILLISECONDS);
+        this.l = cVar;
         this.m = new AtomicBoolean();
         this.u = true;
     }
@@ -86,7 +184,7 @@ public final class e implements f0.e {
             return;
         }
         this.v = true;
-        c cVar = this.w;
+        f0.e0.g.c cVar = this.w;
         if (cVar != null) {
             cVar.f.cancel();
         }
@@ -109,24 +207,24 @@ public final class e implements f0.e {
 
     @Override // f0.e
     public void e(f0.f fVar) {
-        e$a next;
+        a next;
         d0.z.d.m.checkParameterIsNotNull(fVar, "responseCallback");
         if (!this.m.compareAndSet(false, true)) {
             throw new IllegalStateException("Already Executed".toString());
         }
         h();
         q qVar = this.f3618y.m;
-        e$a e_a = new e$a(this, fVar);
+        a aVar = new a(this, fVar);
         Objects.requireNonNull(qVar);
-        d0.z.d.m.checkParameterIsNotNull(e_a, NotificationCompat.CATEGORY_CALL);
+        d0.z.d.m.checkParameterIsNotNull(aVar, NotificationCompat.CATEGORY_CALL);
         synchronized (qVar) {
-            qVar.f3677b.add(e_a);
-            if (!e_a.l.A) {
-                String strA = e_a.a();
-                Iterator<e$a> it = qVar.c.iterator();
+            qVar.f3677b.add(aVar);
+            if (!aVar.l.A) {
+                String strA = aVar.a();
+                Iterator<a> it = qVar.c.iterator();
                 do {
                     if (!it.hasNext()) {
-                        Iterator<e$a> it2 = qVar.f3677b.iterator();
+                        Iterator<a> it2 = qVar.f3677b.iterator();
                         do {
                             if (!it2.hasNext()) {
                                 next = null;
@@ -140,7 +238,7 @@ public final class e implements f0.e {
                 } while (!d0.z.d.m.areEqual(next.a(), strA));
                 if (next != null) {
                     d0.z.d.m.checkParameterIsNotNull(next, "other");
-                    e_a.j = next.j;
+                    aVar.j = next.j;
                 }
             }
         }
@@ -182,7 +280,7 @@ public final class e implements f0.e {
             throw new IllegalStateException("Check failed.".toString());
         }
         this.p = jVar;
-        jVar.o.add(new e$b(this, this.n));
+        jVar.o.add(new b(this, this.n));
     }
 
     public final <E extends IOException> E g(E e) {
@@ -231,14 +329,14 @@ public final class e implements f0.e {
     }
 
     public final void h() {
-        h$a h_a = f0.e0.k.h.c;
+        f0.e0.k.h.a aVar = f0.e0.k.h.c;
         this.n = f0.e0.k.h.a.g("response.body().close()");
         Objects.requireNonNull(this.k);
         d0.z.d.m.checkParameterIsNotNull(this, NotificationCompat.CATEGORY_CALL);
     }
 
     public final void i(boolean z2) {
-        c cVar;
+        f0.e0.g.c cVar;
         synchronized (this) {
             if (!this.u) {
                 throw new IllegalStateException("released".toString());
@@ -259,7 +357,7 @@ public final class e implements f0.e {
         arrayList.add(new f0.e0.h.a(this.f3618y.v));
         Objects.requireNonNull(this.f3618y);
         arrayList.add(new f0.e0.e.a());
-        arrayList.add(a.f3612b);
+        arrayList.add(f0.e0.g.a.f3612b);
         if (!this.A) {
             r.addAll(arrayList, this.f3618y.p);
         }
@@ -312,7 +410,7 @@ public final class e implements f0.e {
     /* JADX WARN: Code duplicated, block: B:17:0x0023 A[Catch: all -> 0x0019, TryCatch #1 {all -> 0x0019, blocks: (B:8:0x0014, B:17:0x0023, B:19:0x0027, B:20:0x0029, B:22:0x002d, B:27:0x0036, B:29:0x003a, B:14:0x001d), top: B:53:0x0014 }] */
     /* JADX WARN: Code duplicated, block: B:19:0x0027 A[Catch: all -> 0x0019, TryCatch #1 {all -> 0x0019, blocks: (B:8:0x0014, B:17:0x0023, B:19:0x0027, B:20:0x0029, B:22:0x002d, B:27:0x0036, B:29:0x003a, B:14:0x001d), top: B:53:0x0014 }] */
     /* JADX WARN: Code duplicated, block: B:25:0x0033  */
-    public final <E extends IOException> E k(c cVar, boolean z2, boolean z3, E e) {
+    public final <E extends IOException> E k(f0.e0.g.c cVar, boolean z2, boolean z3, E e) {
         boolean z4;
         boolean z5;
         boolean z6;

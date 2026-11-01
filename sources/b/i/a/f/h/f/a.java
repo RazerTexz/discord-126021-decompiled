@@ -1,7 +1,6 @@
 package b.i.a.f.h.f;
 
 import android.os.Handler;
-import android.os.Handler$Callback;
 import android.os.Looper;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-cloud-messaging@@16.0.0 */
@@ -11,7 +10,7 @@ public class a extends Handler {
         super(looper);
     }
 
-    public a(Looper looper, Handler$Callback handler$Callback) {
-        super(looper, handler$Callback);
+    public a(Looper looper, Handler.Callback callback) {
+        super(looper, callback);
     }
 }

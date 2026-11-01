@@ -37,7 +37,7 @@ public final class WidgetChannelPickerBottomSheet$Companion$registerForResult$1 
             long j = bundle.getLong("RESULT_EXTRA_CHANNEL_ID", -1L);
             String string = bundle.getString("RESULT_EXTRA_CHANNEL_NAME", "");
             int i = bundle.getInt("RESULT_EXTRA_CHANNEL_ICON_RES_ID", -1);
-            int iOrdinal = WidgetChannelPickerBottomSheet$SelectionType.Companion.fromInt(bundle.getInt("RESULT_EXTRA_SELECTION_TYPE", WidgetChannelPickerBottomSheet$SelectionType.UNKNOWN.ordinal())).ordinal();
+            int iOrdinal = WidgetChannelPickerBottomSheet.SelectionType.INSTANCE.fromInt(bundle.getInt("RESULT_EXTRA_SELECTION_TYPE", WidgetChannelPickerBottomSheet.SelectionType.UNKNOWN.ordinal())).ordinal();
             if (iOrdinal == 1) {
                 this.$onCreateChannelSelected.invoke();
                 return;

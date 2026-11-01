@@ -17,8 +17,8 @@ public final /* synthetic */ class i implements Runnable {
         if (e0Var.W) {
             return;
         }
-        x$a x_a = e0Var.B;
-        Objects.requireNonNull(x_a);
-        x_a.a(e0Var);
+        x.a aVar = e0Var.B;
+        Objects.requireNonNull(aVar);
+        aVar.a(e0Var);
     }
 }

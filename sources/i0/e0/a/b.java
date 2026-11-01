@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import okhttp3.MediaType;
-import okhttp3.MediaType$a;
 import okhttp3.RequestBody;
 
 /* JADX INFO: compiled from: GsonRequestBodyConverter.java */
@@ -25,8 +24,8 @@ public final class b<T> implements h<T, RequestBody> {
     public final TypeAdapter<T> d;
 
     static {
-        MediaType$a mediaType$a = MediaType.c;
-        a = MediaType$a.a("application/json; charset=UTF-8");
+        MediaType.Companion companion = MediaType.INSTANCE;
+        a = MediaType.Companion.a("application/json; charset=UTF-8");
         f3737b = Charset.forName(Constants.ENCODING);
     }
 

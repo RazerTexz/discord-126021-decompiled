@@ -3,7 +3,6 @@ package com.discord.widgets.user.usersheet;
 import android.content.Context;
 import com.discord.models.user.User;
 import com.discord.widgets.user.WidgetUserMutualGuilds;
-import com.discord.widgets.user.WidgetUserMutualGuilds$Companion;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -30,9 +29,9 @@ public final class WidgetUserSheet$configureConnectionsSection$onMutualGuildsIte
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2() {
-        WidgetUserMutualGuilds$Companion widgetUserMutualGuilds$Companion = WidgetUserMutualGuilds.Companion;
+        WidgetUserMutualGuilds.Companion companion = WidgetUserMutualGuilds.INSTANCE;
         Context contextRequireContext = this.this$0.requireContext();
         m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
-        widgetUserMutualGuilds$Companion.show(contextRequireContext, this.$user.getId());
+        companion.show(contextRequireContext, this.$user.getId());
     }
 }

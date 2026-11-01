@@ -2,7 +2,7 @@ package com.discord.utilities.mg_recycler;
 
 import androidx.exifinterface.media.ExifInterface;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.utilities.mg_recycler.CategoricalDragAndDropAdapter$Payload;
+import com.discord.utilities.mg_recycler.CategoricalDragAndDropAdapter.Payload;
 import d0.t.c0;
 import d0.z.d.m;
 import java.util.Collection;
@@ -13,7 +13,13 @@ import kotlin.ranges.IntRange;
 
 /* JADX INFO: compiled from: CategoricalDragAndDropAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public abstract class CategoricalDragAndDropAdapter<T extends CategoricalDragAndDropAdapter$Payload> extends DragAndDropAdapter<T> {
+public abstract class CategoricalDragAndDropAdapter<T extends Payload> extends DragAndDropAdapter<T> {
+
+    /* JADX INFO: compiled from: CategoricalDragAndDropAdapter.kt */
+    public interface Payload extends DragAndDropAdapter.Payload {
+        String getCategory();
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public CategoricalDragAndDropAdapter(RecyclerView recyclerView) {
         super(recyclerView);
@@ -44,7 +50,7 @@ public abstract class CategoricalDragAndDropAdapter<T extends CategoricalDragAnd
         return map;
     }
 
-    @Override // com.discord.utilities.mg_recycler.DragAndDropHelper$Adapter
+    @Override // com.discord.utilities.mg_recycler.DragAndDropHelper.Adapter
     public boolean isValidMove(int fromPosition, int toPosition) {
         String category = getDataCopy().get(fromPosition).getCategory();
         Iterable intRange = new IntRange(Math.min(fromPosition, toPosition), Math.max(fromPosition, toPosition));

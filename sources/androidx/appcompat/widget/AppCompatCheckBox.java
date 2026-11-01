@@ -2,7 +2,7 @@ package androidx.appcompat.widget;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.CheckBox;
@@ -10,8 +10,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
-import androidx.appcompat.R$attr;
+import androidx.appcompat.R;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.view.TintableBackgroundView;
 import androidx.core.widget.TintableCompoundButton;
@@ -48,7 +47,7 @@ public class AppCompatCheckBox extends CheckBox implements TintableCompoundButto
 
     @Override // androidx.core.view.TintableBackgroundView
     @Nullable
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public ColorStateList getSupportBackgroundTintList() {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
@@ -59,8 +58,8 @@ public class AppCompatCheckBox extends CheckBox implements TintableCompoundButto
 
     @Override // androidx.core.view.TintableBackgroundView
     @Nullable
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
-    public PorterDuff$Mode getSupportBackgroundTintMode() {
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public PorterDuff.Mode getSupportBackgroundTintMode() {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
             return appCompatBackgroundHelper.getSupportBackgroundTintMode();
@@ -70,7 +69,7 @@ public class AppCompatCheckBox extends CheckBox implements TintableCompoundButto
 
     @Override // androidx.core.widget.TintableCompoundButton
     @Nullable
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public ColorStateList getSupportButtonTintList() {
         AppCompatCompoundButtonHelper appCompatCompoundButtonHelper = this.mCompoundButtonHelper;
         if (appCompatCompoundButtonHelper != null) {
@@ -81,8 +80,8 @@ public class AppCompatCheckBox extends CheckBox implements TintableCompoundButto
 
     @Override // androidx.core.widget.TintableCompoundButton
     @Nullable
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
-    public PorterDuff$Mode getSupportButtonTintMode() {
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public PorterDuff.Mode getSupportButtonTintMode() {
         AppCompatCompoundButtonHelper appCompatCompoundButtonHelper = this.mCompoundButtonHelper;
         if (appCompatCompoundButtonHelper != null) {
             return appCompatCompoundButtonHelper.getSupportButtonTintMode();
@@ -118,7 +117,7 @@ public class AppCompatCheckBox extends CheckBox implements TintableCompoundButto
     }
 
     @Override // androidx.core.view.TintableBackgroundView
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void setSupportBackgroundTintList(@Nullable ColorStateList colorStateList) {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
@@ -127,16 +126,16 @@ public class AppCompatCheckBox extends CheckBox implements TintableCompoundButto
     }
 
     @Override // androidx.core.view.TintableBackgroundView
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
-    public void setSupportBackgroundTintMode(@Nullable PorterDuff$Mode porterDuff$Mode) {
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public void setSupportBackgroundTintMode(@Nullable PorterDuff.Mode mode) {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
-            appCompatBackgroundHelper.setSupportBackgroundTintMode(porterDuff$Mode);
+            appCompatBackgroundHelper.setSupportBackgroundTintMode(mode);
         }
     }
 
     @Override // androidx.core.widget.TintableCompoundButton
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void setSupportButtonTintList(@Nullable ColorStateList colorStateList) {
         AppCompatCompoundButtonHelper appCompatCompoundButtonHelper = this.mCompoundButtonHelper;
         if (appCompatCompoundButtonHelper != null) {
@@ -145,16 +144,16 @@ public class AppCompatCheckBox extends CheckBox implements TintableCompoundButto
     }
 
     @Override // androidx.core.widget.TintableCompoundButton
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
-    public void setSupportButtonTintMode(@Nullable PorterDuff$Mode porterDuff$Mode) {
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public void setSupportButtonTintMode(@Nullable PorterDuff.Mode mode) {
         AppCompatCompoundButtonHelper appCompatCompoundButtonHelper = this.mCompoundButtonHelper;
         if (appCompatCompoundButtonHelper != null) {
-            appCompatCompoundButtonHelper.setSupportButtonTintMode(porterDuff$Mode);
+            appCompatCompoundButtonHelper.setSupportButtonTintMode(mode);
         }
     }
 
     public AppCompatCheckBox(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, R$attr.checkboxStyle);
+        this(context, attributeSet, R.attr.checkboxStyle);
     }
 
     public AppCompatCheckBox(@NonNull Context context, @Nullable AttributeSet attributeSet, int i) {

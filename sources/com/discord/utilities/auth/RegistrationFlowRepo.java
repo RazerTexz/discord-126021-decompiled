@@ -10,11 +10,14 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import kotlin.Lazy;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: RegistrationFlowRepo.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class RegistrationFlowRepo {
-    public static final RegistrationFlowRepo$Companion Companion = new RegistrationFlowRepo$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private Long birthday;
     private String email;
     private Map<String, ? extends List<String>> errors;
@@ -25,6 +28,22 @@ public final class RegistrationFlowRepo {
     private static final Lazy INSTANCE$delegate = g.lazy(RegistrationFlowRepo$Companion$INSTANCE$2.INSTANCE);
     private String username = "";
     private String password = "";
+
+    /* JADX INFO: compiled from: RegistrationFlowRepo.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final RegistrationFlowRepo getINSTANCE() {
+            Lazy lazyAccess$getINSTANCE$cp = RegistrationFlowRepo.access$getINSTANCE$cp();
+            Companion companion = RegistrationFlowRepo.INSTANCE;
+            return (RegistrationFlowRepo) lazyAccess$getINSTANCE$cp.getValue();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public static final /* synthetic */ Lazy access$getINSTANCE$cp() {
         return INSTANCE$delegate;

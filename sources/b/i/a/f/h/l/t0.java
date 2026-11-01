@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class t0 extends u4<t0, t0$a> implements d6 {
+public final class t0 extends u4<t0, a> implements d6 {
     private int zzc;
     private boolean zze;
     private boolean zzf;
@@ -12,6 +12,25 @@ public final class t0 extends u4<t0, t0$a> implements d6 {
     private static final t0 zzh;
     private static volatile j6<t0> zzi;
     private String zzd = "";
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
+    public final class a extends u4.b<t0, a> implements d6 {
+        public a() {
+            super(t0.A());
+        }
+
+        public final String q() {
+            return ((t0) this.k).u();
+        }
+
+        public final int r() {
+            return ((t0) this.k).z();
+        }
+
+        public a(x0 x0Var) {
+            super(t0.A());
+        }
+    }
 
     static {
         t0 t0Var = new t0();
@@ -29,24 +48,24 @@ public final class t0 extends u4<t0, t0$a> implements d6 {
             case 1:
                 return new t0();
             case 2:
-                return new t0$a(null);
+                return new a(null);
             case 3:
                 return new o6(zzh, "\u0001\u0004\u0000\u0001\u0001\u0004\u0004\u0000\u0000\u0000\u0001ဈ\u0000\u0002ဇ\u0001\u0003ဇ\u0002\u0004င\u0003", new Object[]{"zzc", "zzd", "zze", "zzf", "zzg"});
             case 4:
                 return zzh;
             case 5:
-                j6<t0> u4_a = zzi;
-                if (u4_a == null) {
+                j6<t0> aVar = zzi;
+                if (aVar == null) {
                     synchronized (t0.class) {
-                        u4_a = zzi;
-                        if (u4_a == null) {
-                            u4_a = new u4$a<>(zzh);
-                            zzi = u4_a;
+                        aVar = zzi;
+                        if (aVar == null) {
+                            aVar = new u4.a<>(zzh);
+                            zzi = aVar;
                         }
                         break;
                     }
                 }
-                return u4_a;
+                return aVar;
             case 6:
                 return (byte) 1;
             case 7:

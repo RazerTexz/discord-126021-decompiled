@@ -2,7 +2,6 @@ package androidx.vectordrawable.graphics.drawable;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.content.res.Resources$Theme;
 import android.content.res.TypedArray;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
@@ -10,14 +9,13 @@ import android.util.AttributeSet;
 import android.view.InflateException;
 import android.view.animation.Interpolator;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.core.content.res.TypedArrayUtils;
 import androidx.core.graphics.PathParser;
 import b.d.b.a.a;
 import org.xmlpull.v1.XmlPullParser;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class PathInterpolatorCompat implements Interpolator {
     public static final double EPSILON = 1.0E-5d;
     public static final int MAX_NUM_POINTS = 3000;
@@ -152,8 +150,8 @@ public class PathInterpolatorCompat implements Interpolator {
         }
     }
 
-    public PathInterpolatorCompat(Resources resources, Resources$Theme resources$Theme, AttributeSet attributeSet, XmlPullParser xmlPullParser) {
-        TypedArray typedArrayObtainAttributes = TypedArrayUtils.obtainAttributes(resources, resources$Theme, attributeSet, AndroidResources.STYLEABLE_PATH_INTERPOLATOR);
+    public PathInterpolatorCompat(Resources resources, Resources.Theme theme, AttributeSet attributeSet, XmlPullParser xmlPullParser) {
+        TypedArray typedArrayObtainAttributes = TypedArrayUtils.obtainAttributes(resources, theme, attributeSet, AndroidResources.STYLEABLE_PATH_INTERPOLATOR);
         parseInterpolatorFromTypeArray(typedArrayObtainAttributes, xmlPullParser);
         typedArrayObtainAttributes.recycle();
     }

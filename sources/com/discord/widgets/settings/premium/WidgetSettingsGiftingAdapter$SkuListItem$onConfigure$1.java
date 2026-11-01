@@ -13,16 +13,16 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: WidgetSettingsGiftingAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsGiftingAdapter$SkuListItem$onConfigure$1 extends o implements Function1<RenderContext, Unit> {
-    public final /* synthetic */ WidgetSettingsGiftingAdapter$GiftItem $data;
+    public final /* synthetic */ WidgetSettingsGiftingAdapter.GiftItem $data;
     public final /* synthetic */ int $numMonthsOrYears;
     public final /* synthetic */ int $quantityString;
-    public final /* synthetic */ WidgetSettingsGiftingAdapter$SkuListItem this$0;
+    public final /* synthetic */ WidgetSettingsGiftingAdapter.SkuListItem this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetSettingsGiftingAdapter$SkuListItem$onConfigure$1(WidgetSettingsGiftingAdapter$SkuListItem widgetSettingsGiftingAdapter$SkuListItem, WidgetSettingsGiftingAdapter$GiftItem widgetSettingsGiftingAdapter$GiftItem, int i, int i2) {
+    public WidgetSettingsGiftingAdapter$SkuListItem$onConfigure$1(WidgetSettingsGiftingAdapter.SkuListItem skuListItem, WidgetSettingsGiftingAdapter.GiftItem giftItem, int i, int i2) {
         super(1);
-        this.this$0 = widgetSettingsGiftingAdapter$SkuListItem;
-        this.$data = widgetSettingsGiftingAdapter$GiftItem;
+        this.this$0 = skuListItem;
+        this.$data = giftItem;
         this.$quantityString = i;
         this.$numMonthsOrYears = i2;
     }

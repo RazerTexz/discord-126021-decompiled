@@ -4,7 +4,7 @@ import com.google.android.gms.internal.measurement.zzhi;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map$Entry;
+import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Logger;
 
@@ -569,7 +569,7 @@ public final class s6 {
         }
         Iterator<T> it = n4VarB.f1461b.g().iterator();
         while (it.hasNext()) {
-            n4VarF.j((Map$Entry) it.next());
+            n4VarF.j((Map.Entry) it.next());
         }
     }
 

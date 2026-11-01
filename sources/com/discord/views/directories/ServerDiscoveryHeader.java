@@ -3,14 +3,13 @@ package com.discord.views.directories;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View$OnClickListener;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import b.a.i.f3;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.models.domain.ModelAuditLogEntry;
 import d0.z.d.m;
 
@@ -25,18 +24,18 @@ public final class ServerDiscoveryHeader extends ConstraintLayout {
     public ServerDiscoveryHeader(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(R$layout.view_server_discovery_header, this);
-        int i = R$id.server_discovery_header_description;
-        TextView textView = (TextView) findViewById(R$id.server_discovery_header_description);
+        LayoutInflater.from(context).inflate(R.layout.view_server_discovery_header, this);
+        int i = R.id.server_discovery_header_description;
+        TextView textView = (TextView) findViewById(R.id.server_discovery_header_description);
         if (textView != null) {
-            i = R$id.server_discovery_header_image;
-            ImageView imageView = (ImageView) findViewById(R$id.server_discovery_header_image);
+            i = R.id.server_discovery_header_image;
+            ImageView imageView = (ImageView) findViewById(R.id.server_discovery_header_image);
             if (imageView != null) {
-                i = R$id.server_discovery_header_search_layout;
-                FrameLayout frameLayout = (FrameLayout) findViewById(R$id.server_discovery_header_search_layout);
+                i = R.id.server_discovery_header_search_layout;
+                FrameLayout frameLayout = (FrameLayout) findViewById(R.id.server_discovery_header_search_layout);
                 if (frameLayout != null) {
-                    i = R$id.server_discovery_header_title;
-                    TextView textView2 = (TextView) findViewById(R$id.server_discovery_header_title);
+                    i = R.id.server_discovery_header_title;
+                    TextView textView2 = (TextView) findViewById(R.id.server_discovery_header_title);
                     if (textView2 != null) {
                         f3 f3Var = new f3(this, textView, imageView, frameLayout, textView2);
                         m.checkNotNullExpressionValue(f3Var, "ViewServerDiscoveryHeade…ater.from(context), this)");
@@ -49,7 +48,7 @@ public final class ServerDiscoveryHeader extends ConstraintLayout {
         throw new NullPointerException("Missing required view with ID: ".concat(getResources().getResourceName(i)));
     }
 
-    public final void setButtonOnClickListener(View$OnClickListener listener) {
+    public final void setButtonOnClickListener(View.OnClickListener listener) {
         this.binding.c.setOnClickListener(listener);
     }
 

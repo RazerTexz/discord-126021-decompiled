@@ -3,7 +3,7 @@ package com.discord.widgets.hubs;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetHubDescriptionBinding;
 import com.discord.views.LoadingButton;
 import com.discord.views.ScreenTitleView;
@@ -30,29 +30,29 @@ public final /* synthetic */ class WidgetHubDescription$binding$2 extends k impl
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetHubDescriptionBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.add_server;
-        LoadingButton loadingButton = (LoadingButton) view.findViewById(R$id.add_server);
+        int i = R.id.add_server;
+        LoadingButton loadingButton = (LoadingButton) view.findViewById(R.id.add_server);
         if (loadingButton != null) {
-            i = R$id.category;
-            TextView textView = (TextView) view.findViewById(R$id.category);
+            i = R.id.category;
+            TextView textView = (TextView) view.findViewById(R.id.category);
             if (textView != null) {
-                i = R$id.category_error;
-                TextView textView2 = (TextView) view.findViewById(R$id.category_error);
+                i = R.id.category_error;
+                TextView textView2 = (TextView) view.findViewById(R.id.category_error);
                 if (textView2 != null) {
-                    i = R$id.category_layout;
-                    LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.category_layout);
+                    i = R.id.category_layout;
+                    LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.category_layout);
                     if (linearLayout != null) {
-                        i = R$id.contact_sync_permissions_subtitle;
-                        TextView textView3 = (TextView) view.findViewById(R$id.contact_sync_permissions_subtitle);
+                        i = R.id.contact_sync_permissions_subtitle;
+                        TextView textView3 = (TextView) view.findViewById(R.id.contact_sync_permissions_subtitle);
                         if (textView3 != null) {
-                            i = R$id.description;
-                            TextInputEditText textInputEditText = (TextInputEditText) view.findViewById(R$id.description);
+                            i = R.id.description;
+                            TextInputEditText textInputEditText = (TextInputEditText) view.findViewById(R.id.description);
                             if (textInputEditText != null) {
-                                i = R$id.description_layout;
-                                TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.description_layout);
+                                i = R.id.description_layout;
+                                TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.description_layout);
                                 if (textInputLayout != null) {
-                                    i = R$id.header;
-                                    ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(R$id.header);
+                                    i = R.id.header;
+                                    ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(R.id.header);
                                     if (screenTitleView != null) {
                                         return new WidgetHubDescriptionBinding((LinearLayout) view, loadingButton, textView, textView2, linearLayout, textView3, textInputEditText, textInputLayout, screenTitleView);
                                     }

@@ -3,7 +3,6 @@ package lombok.javac;
 import com.sun.source.tree.LabeledStatementTree;
 import com.sun.source.tree.VariableTree;
 import com.sun.tools.javac.tree.JCTree;
-import com.sun.tools.javac.tree.JCTree$JCVariableDecl;
 import com.sun.tools.javac.tree.TreeCopier;
 import com.sun.tools.javac.util.Context;
 import com.sun.tools.javac.util.List;
@@ -78,8 +77,8 @@ public class TreeMirrorMaker extends TreeCopier<Void> {
     }
 
     public JCTree visitVariable(VariableTree node, Void p) {
-        JCTree$JCVariableDecl original = node instanceof JCTree$JCVariableDecl ? (JCTree$JCVariableDecl) node : null;
-        JCTree$JCVariableDecl copy = super.visitVariable(node, p);
+        JCTree.JCVariableDecl original = node instanceof JCTree.JCVariableDecl ? (JCTree.JCVariableDecl) node : null;
+        JCTree.JCVariableDecl copy = super.visitVariable(node, p);
         if (original == null) {
             return copy;
         }
@@ -90,7 +89,7 @@ public class TreeMirrorMaker extends TreeCopier<Void> {
         if (copy.type != null) {
             boolean wipeSymAndType = copy.type.isErroneous();
             if (!wipeSymAndType) {
-                JavacTreeMaker$TypeTag typeTag = JavacTreeMaker$TypeTag.typeTag(copy.type);
+                JavacTreeMaker.TypeTag typeTag = JavacTreeMaker.TypeTag.typeTag(copy.type);
                 wipeSymAndType = Javac.CTC_NONE.equals(typeTag) || Javac.CTC_ERROR.equals(typeTag) || Javac.CTC_UNKNOWN.equals(typeTag) || Javac.CTC_UNDETVAR.equals(typeTag);
             }
             if (wipeSymAndType) {

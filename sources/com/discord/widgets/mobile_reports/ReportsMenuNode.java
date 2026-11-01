@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import androidx.core.view.ViewGroupKt;
 import b.a.i.o2;
 import b.a.i.p2;
@@ -19,15 +19,10 @@ import b.a.i.q2;
 import b.a.i.r2;
 import b.a.i.z4;
 import b.a.k.b;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.report.NodeResult;
 import com.discord.api.report.ReportNode;
 import com.discord.api.report.ReportNodeBottomButton;
-import com.discord.api.report.ReportNodeBottomButton$Cancel;
-import com.discord.api.report.ReportNodeBottomButton$Done;
-import com.discord.api.report.ReportNodeBottomButton$Next;
-import com.discord.api.report.ReportNodeBottomButton$Submit;
 import com.discord.api.report.ReportNodeChild;
 import com.discord.api.report.ReportNodeElementData;
 import com.discord.databinding.ViewReportsMenuNodeBinding;
@@ -42,6 +37,7 @@ import com.discord.views.CheckedSetting;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
+import d0.z.d.k;
 import d0.z.d.m;
 import java.util.Iterator;
 import java.util.List;
@@ -59,9 +55,41 @@ public final class ReportsMenuNode extends ConstraintLayout {
     private Function0<Unit> handleBlock;
     private Function0<Unit> handleCancel;
     private Function1<? super ReportNodeBottomButton, Unit> handlePressBottomButton;
-    private Function2<? super ReportNodeChild, ? super MobileReportsViewModel$NodeState, Unit> handleSelectChild;
+    private Function2<? super ReportNodeChild, ? super MobileReportsViewModel.NodeState, Unit> handleSelectChild;
     private Function0<Unit> handleSubmit;
-    private MobileReportsViewModel$NodeState prevViewState;
+    private MobileReportsViewModel.NodeState prevViewState;
+
+    /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.ReportsMenuNode$setupBlockUser$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ReportsMenuNode.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            ReportsMenuNode.access$blockUserClickListener(ReportsMenuNode.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.mobile_reports.ReportsMenuNode$setupBottomButton$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ReportsMenuNode.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<ReportNodeBottomButton, Unit> {
+        public AnonymousClass1(ReportsMenuNode reportsMenuNode) {
+            super(1, reportsMenuNode, ReportsMenuNode.class, "bottomButtonClickListener", "bottomButtonClickListener(Lcom/discord/api/report/ReportNodeBottomButton;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ReportNodeBottomButton reportNodeBottomButton) {
+            invoke2(reportNodeBottomButton);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ReportNodeBottomButton reportNodeBottomButton) {
+            m.checkNotNullParameter(reportNodeBottomButton, "p1");
+            ReportsMenuNode.access$bottomButtonClickListener((ReportsMenuNode) this.receiver, reportNodeBottomButton);
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ReportsMenuNode(Context context) {
@@ -93,8 +121,8 @@ public final class ReportsMenuNode extends ConstraintLayout {
 
     private final void bottomButtonClickListener(ReportNodeBottomButton button) {
         Function0<Unit> function0;
-        Function2<? super ReportNodeChild, ? super MobileReportsViewModel$NodeState, Unit> function2;
-        if ((button instanceof ReportNodeBottomButton$Done) || (button instanceof ReportNodeBottomButton$Cancel)) {
+        Function2<? super ReportNodeChild, ? super MobileReportsViewModel.NodeState, Unit> function2;
+        if ((button instanceof ReportNodeBottomButton.Done) || (button instanceof ReportNodeBottomButton.Cancel)) {
             Function0<Unit> function1 = this.handleCancel;
             if (function1 != null) {
                 function1.invoke();
@@ -102,28 +130,28 @@ public final class ReportsMenuNode extends ConstraintLayout {
             }
             return;
         }
-        if (!(button instanceof ReportNodeBottomButton$Next)) {
-            if (!(button instanceof ReportNodeBottomButton$Submit) || (function0 = this.handleSubmit) == null) {
+        if (!(button instanceof ReportNodeBottomButton.Next)) {
+            if (!(button instanceof ReportNodeBottomButton.Submit) || (function0 = this.handleSubmit) == null) {
                 return;
             }
             function0.invoke();
             return;
         }
-        ReportNodeChild reportNodeChild = new ReportNodeChild("", ((ReportNodeBottomButton$Next) button).getTarget());
-        MobileReportsViewModel$NodeState mobileReportsViewModel$NodeState = this.prevViewState;
-        if (mobileReportsViewModel$NodeState == null || (function2 = this.handleSelectChild) == null) {
+        ReportNodeChild reportNodeChild = new ReportNodeChild("", ((ReportNodeBottomButton.Next) button).getTarget());
+        MobileReportsViewModel.NodeState nodeState = this.prevViewState;
+        if (nodeState == null || (function2 = this.handleSelectChild) == null) {
             return;
         }
-        function2.invoke(reportNodeChild, mobileReportsViewModel$NodeState);
+        function2.invoke(reportNodeChild, nodeState);
     }
 
     private final void childClickListener(ReportNodeChild destination) {
-        Function2<? super ReportNodeChild, ? super MobileReportsViewModel$NodeState, Unit> function2;
-        MobileReportsViewModel$NodeState mobileReportsViewModel$NodeState = this.prevViewState;
-        if (mobileReportsViewModel$NodeState == null || (function2 = this.handleSelectChild) == null) {
+        Function2<? super ReportNodeChild, ? super MobileReportsViewModel.NodeState, Unit> function2;
+        MobileReportsViewModel.NodeState nodeState = this.prevViewState;
+        if (nodeState == null || (function2 = this.handleSelectChild) == null) {
             return;
         }
-        function2.invoke(destination, mobileReportsViewModel$NodeState);
+        function2.invoke(destination, nodeState);
     }
 
     public final Function0<Unit> getHandleBlock() {
@@ -138,7 +166,7 @@ public final class ReportsMenuNode extends ConstraintLayout {
         return this.handlePressBottomButton;
     }
 
-    public final Function2<ReportNodeChild, MobileReportsViewModel$NodeState, Unit> getHandleSelectChild() {
+    public final Function2<ReportNodeChild, MobileReportsViewModel.NodeState, Unit> getHandleSelectChild() {
         return this.handleSelectChild;
     }
 
@@ -147,7 +175,7 @@ public final class ReportsMenuNode extends ConstraintLayout {
     }
 
     /* JADX INFO: renamed from: getViewState, reason: from getter */
-    public final MobileReportsViewModel$NodeState getPrevViewState() {
+    public final MobileReportsViewModel.NodeState getPrevViewState() {
         return this.prevViewState;
     }
 
@@ -163,7 +191,7 @@ public final class ReportsMenuNode extends ConstraintLayout {
         this.handlePressBottomButton = function1;
     }
 
-    public final void setHandleSelectChild(Function2<? super ReportNodeChild, ? super MobileReportsViewModel$NodeState, Unit> function2) {
+    public final void setHandleSelectChild(Function2<? super ReportNodeChild, ? super MobileReportsViewModel.NodeState, Unit> function2) {
         this.handleSelectChild = function2;
     }
 
@@ -171,7 +199,7 @@ public final class ReportsMenuNode extends ConstraintLayout {
         this.handleSubmit = function0;
     }
 
-    public final void setup(MobileReportsViewModel$NodeState viewState) {
+    public final void setup(MobileReportsViewModel.NodeState viewState) {
         m.checkNotNullParameter(viewState, "viewState");
         setupSuccess(viewState.getSuccessElement());
         setupMessagePreview(viewState);
@@ -187,10 +215,10 @@ public final class ReportsMenuNode extends ConstraintLayout {
         this.prevViewState = viewState;
     }
 
-    private final void setupBlockUser(MobileReportsViewModel$NodeState viewState) {
+    private final void setupBlockUser(MobileReportsViewModel.NodeState viewState) {
         Context context;
         int i;
-        MobileReportsViewModel$BlockUserElement blockUserElement = viewState.getBlockUserElement();
+        MobileReportsViewModel.BlockUserElement blockUserElement = viewState.getBlockUserElement();
         o2 o2Var = this.binding.f;
         m.checkNotNullExpressionValue(o2Var, "binding.mobileReportsNodeBlockUser");
         LinearLayout linearLayout = o2Var.a;
@@ -203,11 +231,11 @@ public final class ReportsMenuNode extends ConstraintLayout {
         boolean zIsBlocked = blockUserElement.isBlocked();
         TextView textView = this.binding.f.d;
         m.checkNotNullExpressionValue(textView, "binding.mobileReportsNod…obileReportsBlockUserName");
-        textView.setText(UserUtils.INSTANCE.getUserNameWithDiscriminator(user, Integer.valueOf(ColorCompat.getThemedColor(getContext(), 2130968990)), Float.valueOf(0.8f)));
+        textView.setText(UserUtils.INSTANCE.getUserNameWithDiscriminator(user, Integer.valueOf(ColorCompat.getThemedColor(getContext(), R.attr.colorHeaderSecondary)), Float.valueOf(0.8f)));
         SimpleDraweeView simpleDraweeView = this.binding.f.f173b;
         m.checkNotNullExpressionValue(simpleDraweeView, "binding.mobileReportsNod…ileReportsBlockUserAvatar");
-        IconUtils.setIcon$default(simpleDraweeView, user, 2131165300, null, null, null, 56, null);
-        this.binding.f.c.setOnClickListener(new ReportsMenuNode$setupBlockUser$1(this));
+        IconUtils.setIcon$default(simpleDraweeView, user, R.dimen.avatar_size_standard, null, null, null, 56, null);
+        this.binding.f.c.setOnClickListener(new AnonymousClass1());
         MaterialButton materialButton = this.binding.f.c;
         m.checkNotNullExpressionValue(materialButton, "binding.mobileReportsNod…ileReportsBlockUserButton");
         ViewExtensions.setEnabledAndAlpha(materialButton, !zIsBlocked, 0.5f);
@@ -215,35 +243,35 @@ public final class ReportsMenuNode extends ConstraintLayout {
         m.checkNotNullExpressionValue(materialButton2, "binding.mobileReportsNod…ileReportsBlockUserButton");
         if (zIsBlocked) {
             context = getContext();
-            i = 2131887260;
+            i = R.string.blocked;
         } else {
             context = getContext();
-            i = 2131887257;
+            i = R.string.block;
         }
         materialButton2.setText(context.getString(i));
     }
 
-    private final void setupBottomButton(MobileReportsViewModel$NodeState viewState) {
+    private final void setupBottomButton(MobileReportsViewModel.NodeState viewState) {
         ReportNodeBottomButton bottomButton = viewState.getBottomButton();
         MobileReportsBottomButton mobileReportsBottomButton = this.binding.g;
         m.checkNotNullExpressionValue(mobileReportsBottomButton, "binding.mobileReportsNodeBottomButton");
         mobileReportsBottomButton.setVisibility(bottomButton != null ? 0 : 8);
-        this.binding.g.setup(bottomButton, viewState.getSubmitState(), new ReportsMenuNode$setupBottomButton$1(this));
+        this.binding.g.setup(bottomButton, viewState.getSubmitState(), new AnonymousClass1(this));
     }
 
-    private final void setupBreadCrumbs(MobileReportsViewModel$NodeState viewState) {
+    private final void setupBreadCrumbs(MobileReportsViewModel.NodeState viewState) {
         MobileReportsBreadcrumbs mobileReportsBreadcrumbs = this.binding.h;
         m.checkNotNullExpressionValue(mobileReportsBreadcrumbs, "binding.mobileReportsNodeBreadcrumbs");
         mobileReportsBreadcrumbs.setVisibility(viewState.getBreadcrumbsElement() != null ? 0 : 8);
         List<NodeResult> breadcrumbsElement = viewState.getBreadcrumbsElement();
-        MobileReportsViewModel$NodeState mobileReportsViewModel$NodeState = this.prevViewState;
-        if (!m.areEqual(breadcrumbsElement, mobileReportsViewModel$NodeState != null ? mobileReportsViewModel$NodeState.getBreadcrumbsElement() : null)) {
+        MobileReportsViewModel.NodeState nodeState = this.prevViewState;
+        if (!m.areEqual(breadcrumbsElement, nodeState != null ? nodeState.getBreadcrumbsElement() : null)) {
             this.binding.h.setup(viewState.getBreadcrumbsElement());
         }
     }
 
-    private final void setupChannelPreview(MobileReportsViewModel$NodeState viewState) {
-        MobileReportsViewModel$ChannelPreview channelPreviewElement = viewState.getChannelPreviewElement();
+    private final void setupChannelPreview(MobileReportsViewModel.NodeState viewState) {
+        MobileReportsViewModel.ChannelPreview channelPreviewElement = viewState.getChannelPreviewElement();
         ViewReportsMenuNodeBinding viewReportsMenuNodeBinding = this.binding;
         p2 p2Var = viewReportsMenuNodeBinding.f2206b;
         if (channelPreviewElement == null) {
@@ -256,7 +284,7 @@ public final class ReportsMenuNode extends ConstraintLayout {
         m.checkNotNullExpressionValue(textView, "kicker");
         textView.setText(channelPreviewElement.getStageInstance().getTopic());
         LinkifiedTextView linkifiedTextView = p2Var.d;
-        m.checkNotNullExpressionValue(linkifiedTextView, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkNotNullExpressionValue(linkifiedTextView, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         linkifiedTextView.setText(channelPreviewElement.getGuild().getName());
         p2Var.f179b.a(IconUtils.getForGuild$default(channelPreviewElement.getGuild(), null, false, null, 14, null), channelPreviewElement.getGuild().getShortName());
         MaterialCardView materialCardView2 = this.binding.i;
@@ -264,15 +292,15 @@ public final class ReportsMenuNode extends ConstraintLayout {
         materialCardView2.setVisibility(0);
     }
 
-    private final void setupCheckbox(MobileReportsViewModel$NodeState viewState) {
+    private final void setupCheckbox(MobileReportsViewModel.NodeState viewState) {
         List<ReportNodeElementData> data;
-        MobileReportsViewModel$CheckboxElement checkboxElement = viewState.getCheckboxElement();
+        MobileReportsViewModel.CheckboxElement checkboxElement = viewState.getCheckboxElement();
         LinearLayout linearLayout = this.binding.e;
         m.checkNotNullExpressionValue(linearLayout, "binding.mobileReportsMultiselect");
         linearLayout.setVisibility(checkboxElement != null ? 0 : 8);
-        MobileReportsViewModel$CheckboxElement checkboxElement2 = viewState.getCheckboxElement();
-        MobileReportsViewModel$NodeState mobileReportsViewModel$NodeState = this.prevViewState;
-        if (!m.areEqual(checkboxElement2, mobileReportsViewModel$NodeState != null ? mobileReportsViewModel$NodeState.getCheckboxElement() : null)) {
+        MobileReportsViewModel.CheckboxElement checkboxElement2 = viewState.getCheckboxElement();
+        MobileReportsViewModel.NodeState nodeState = this.prevViewState;
+        if (!m.areEqual(checkboxElement2, nodeState != null ? nodeState.getCheckboxElement() : null)) {
             this.binding.e.removeAllViewsInLayout();
             if (checkboxElement == null || (data = checkboxElement.getData()) == null) {
                 return;
@@ -280,7 +308,7 @@ public final class ReportsMenuNode extends ConstraintLayout {
             for (ReportNodeElementData reportNodeElementData : data) {
                 LayoutInflater layoutInflaterFrom = LayoutInflater.from(getContext());
                 LinearLayout linearLayout2 = this.binding.e;
-                View viewInflate = layoutInflaterFrom.inflate(R$layout.view_mobile_reports_multicheck_item, (ViewGroup) linearLayout2, false);
+                View viewInflate = layoutInflaterFrom.inflate(R.layout.view_mobile_reports_multicheck_item, (ViewGroup) linearLayout2, false);
                 linearLayout2.addView(viewInflate);
                 Objects.requireNonNull(viewInflate, "rootView");
                 CheckedSetting checkedSetting = (CheckedSetting) viewInflate;
@@ -293,10 +321,10 @@ public final class ReportsMenuNode extends ConstraintLayout {
         }
     }
 
-    private final void setupChildren(MobileReportsViewModel$NodeState viewState) {
+    private final void setupChildren(MobileReportsViewModel.NodeState viewState) {
         ReportNode node;
-        MobileReportsViewModel$NodeState mobileReportsViewModel$NodeState = this.prevViewState;
-        if (!m.areEqual((mobileReportsViewModel$NodeState == null || (node = mobileReportsViewModel$NodeState.getNode()) == null) ? null : node.b(), viewState.getNode().b())) {
+        MobileReportsViewModel.NodeState nodeState = this.prevViewState;
+        if (!m.areEqual((nodeState == null || (node = nodeState.getNode()) == null) ? null : node.b(), viewState.getNode().b())) {
             LinearLayout linearLayout = this.binding.j;
             m.checkNotNullExpressionValue(linearLayout, "binding.mobileReportsNodeChildList");
             Iterator<View> it = ViewGroupKt.getChildren(linearLayout).iterator();
@@ -307,13 +335,13 @@ public final class ReportsMenuNode extends ConstraintLayout {
             for (ReportNodeChild reportNodeChild : viewState.getNode().b()) {
                 LayoutInflater layoutInflaterFrom = LayoutInflater.from(getContext());
                 LinearLayout linearLayout2 = this.binding.j;
-                View viewInflate = layoutInflaterFrom.inflate(R$layout.view_mobile_reports_child, (ViewGroup) linearLayout2, false);
+                View viewInflate = layoutInflaterFrom.inflate(R.layout.view_mobile_reports_child, (ViewGroup) linearLayout2, false);
                 linearLayout2.addView(viewInflate);
-                int i = R$id.mobile_reports_child;
-                CardView cardView = (CardView) viewInflate.findViewById(R$id.mobile_reports_child);
+                int i = R.id.mobile_reports_child;
+                CardView cardView = (CardView) viewInflate.findViewById(R.id.mobile_reports_child);
                 if (cardView != null) {
-                    i = R$id.mobile_reports_child_menu_title;
-                    TextView textView = (TextView) viewInflate.findViewById(R$id.mobile_reports_child_menu_title);
+                    i = R.id.mobile_reports_child_menu_title;
+                    TextView textView = (TextView) viewInflate.findViewById(R.id.mobile_reports_child_menu_title);
                     if (textView != null) {
                         FrameLayout frameLayout = (FrameLayout) viewInflate;
                         m.checkNotNullExpressionValue(new q2(frameLayout, cardView, textView), "childView");
@@ -327,18 +355,18 @@ public final class ReportsMenuNode extends ConstraintLayout {
         }
     }
 
-    private final void setupDirectoryServerPreview(MobileReportsViewModel$NodeState viewState) {
+    private final void setupDirectoryServerPreview(MobileReportsViewModel.NodeState viewState) {
         MaterialCardView materialCardView = this.binding.k;
         m.checkNotNullExpressionValue(materialCardView, "binding.mobileReportsNodeDirectoryChannelPreview");
         materialCardView.setVisibility(viewState.getDirectoryServerPreviewElement() != null ? 0 : 8);
         TextView textView = this.binding.l;
         m.checkNotNullExpressionValue(textView, "binding.mobileReportsNod…ectoryChannelPreviewTitle");
         textView.setVisibility(viewState.getDirectoryServerPreviewElement() != null ? 0 : 8);
-        MobileReportsViewModel$DirectoryServerPreview directoryServerPreviewElement = viewState.getDirectoryServerPreviewElement();
+        MobileReportsViewModel.DirectoryServerPreview directoryServerPreviewElement = viewState.getDirectoryServerPreviewElement();
         if (directoryServerPreviewElement != null) {
             p2 p2Var = this.binding.c;
             LinkifiedTextView linkifiedTextView = p2Var.d;
-            m.checkNotNullExpressionValue(linkifiedTextView, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+            m.checkNotNullExpressionValue(linkifiedTextView, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
             linkifiedTextView.setText(directoryServerPreviewElement.getDirectoryEntry().getGuild().getName());
             TextView textView2 = p2Var.c;
             m.checkNotNullExpressionValue(textView2, "kicker");
@@ -347,8 +375,8 @@ public final class ReportsMenuNode extends ConstraintLayout {
         }
     }
 
-    private final void setupEventPreview(MobileReportsViewModel$NodeState viewState) {
-        MobileReportsViewModel$GuildScheduledEventPreview eventPreviewElement = viewState.getEventPreviewElement();
+    private final void setupEventPreview(MobileReportsViewModel.NodeState viewState) {
+        MobileReportsViewModel.GuildScheduledEventPreview eventPreviewElement = viewState.getEventPreviewElement();
         ViewReportsMenuNodeBinding viewReportsMenuNodeBinding = this.binding;
         p2 p2Var = viewReportsMenuNodeBinding.f2206b;
         if (eventPreviewElement == null) {
@@ -361,7 +389,7 @@ public final class ReportsMenuNode extends ConstraintLayout {
         m.checkNotNullExpressionValue(textView, "kicker");
         textView.setText(eventPreviewElement.getGuild().getName());
         LinkifiedTextView linkifiedTextView = p2Var.d;
-        m.checkNotNullExpressionValue(linkifiedTextView, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkNotNullExpressionValue(linkifiedTextView, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         linkifiedTextView.setText(eventPreviewElement.getEvent().getName());
         p2Var.f179b.a(IconUtils.getForGuild$default(eventPreviewElement.getGuild(), null, false, null, 14, null), eventPreviewElement.getGuild().getShortName());
         MaterialCardView materialCardView2 = this.binding.i;
@@ -369,8 +397,8 @@ public final class ReportsMenuNode extends ConstraintLayout {
         materialCardView2.setVisibility(0);
     }
 
-    private final void setupMessagePreview(MobileReportsViewModel$NodeState viewState) {
-        MobileReportsViewModel$MessagePreview messagePreviewElement = viewState.getMessagePreviewElement();
+    private final void setupMessagePreview(MobileReportsViewModel.NodeState viewState) {
+        MobileReportsViewModel.MessagePreview messagePreviewElement = viewState.getMessagePreviewElement();
         ViewReportsMenuNodeBinding viewReportsMenuNodeBinding = this.binding;
         if (messagePreviewElement == null) {
             z4 z4Var = viewReportsMenuNodeBinding.d;
@@ -386,7 +414,7 @@ public final class ReportsMenuNode extends ConstraintLayout {
         viewReportsMenuNodeBinding.d.e.setTextColor(messagePreviewElement.getAuthorNameColor());
         SimpleDraweeView simpleDraweeView = viewReportsMenuNodeBinding.d.d;
         m.checkNotNullExpressionValue(simpleDraweeView, "mobileReportsMessagePrev…ListAdapterItemTextAvatar");
-        IconUtils.setIcon$default(simpleDraweeView, messagePreviewElement.getAuthor(), 2131165299, null, null, null, 56, null);
+        IconUtils.setIcon$default(simpleDraweeView, messagePreviewElement.getAuthor(), R.dimen.avatar_size_small, null, null, null, 56, null);
         viewReportsMenuNodeBinding.d.c.setDraweeSpanStringBuilder(messagePreviewElement.getText());
         ImageView imageView = viewReportsMenuNodeBinding.d.f241b;
         m.checkNotNullExpressionValue(imageView, "mobileReportsMessagePrev…terItemChatAttachmentIcon");
@@ -404,7 +432,7 @@ public final class ReportsMenuNode extends ConstraintLayout {
         imageView.setVisibility(showSuccess ? 0 : 8);
     }
 
-    private final void setupTextElements(MobileReportsViewModel$NodeState viewState) {
+    private final void setupTextElements(MobileReportsViewModel.NodeState viewState) {
         TextView textView = this.binding.m;
         m.checkNotNullExpressionValue(textView, "binding.mobileReportsNodeHeader");
         textView.setText(b.l(viewState.getNode().getHeader(), new Object[0], null, 2));

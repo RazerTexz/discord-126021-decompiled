@@ -1,5 +1,6 @@
 package j0.l.a;
 
+import java.util.concurrent.atomic.AtomicLong;
 import rx.Producer;
 import rx.Subscriber;
 
@@ -66,6 +67,33 @@ public class b2<T> extends Subscriber<T> {
 
     @Override // rx.Subscriber
     public void setProducer(Producer producer) {
-        this.l.setProducer(new b2$a(this, producer));
+        this.l.setProducer(new a(producer));
+    }
+
+    /* JADX INFO: compiled from: OperatorTake.java */
+    public class a implements Producer {
+        public final /* synthetic */ Producer k;
+        public final AtomicLong j = new AtomicLong(0);
+
+        public a(Producer producer) {
+            this.k = producer;
+        }
+
+        @Override // rx.Producer
+        public void j(long j) {
+            long j2;
+            long jMin;
+            if (j <= 0 || b2.this.k) {
+                return;
+            }
+            do {
+                j2 = this.j.get();
+                jMin = Math.min(j, ((long) b2.this.m.j) - j2);
+                if (jMin == 0) {
+                    return;
+                }
+            } while (!this.j.compareAndSet(j2, j2 + jMin));
+            this.k.j(jMin);
+        }
     }
 }

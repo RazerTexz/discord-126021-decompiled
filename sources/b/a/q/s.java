@@ -1,7 +1,6 @@
 package b.a.q;
 
 import com.discord.rtcconnection.RtcConnection;
-import com.discord.rtcconnection.RtcConnection$State$b;
 import java.net.URI;
 import javax.net.ssl.SSLSocketFactory;
 import kotlin.Unit;
@@ -32,7 +31,7 @@ public final class s extends d0.z.d.o implements Function0<Unit> {
             if (aVar != null) {
                 aVar.c();
             }
-            rtcConnection.u(RtcConnection$State$b.a);
+            rtcConnection.u(RtcConnection.State.b.a);
         } else {
             String strReplace$default = d0.g0.t.replace$default(str, ".gg", ".media", false, 4, (Object) null);
             String strY = b.d.b.a.a.y(str3, "://", strReplace$default);

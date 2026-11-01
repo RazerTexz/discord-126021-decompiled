@@ -1,8 +1,8 @@
 package com.discord.widgets.channels.list;
 
 import com.discord.api.channel.Channel;
-import com.discord.models.domain.ModelNotificationSettings$ChannelOverride;
-import com.discord.stores.StoreThreadsJoined$JoinedThread;
+import com.discord.models.domain.ModelNotificationSettings;
+import com.discord.stores.StoreThreadsJoined;
 import com.discord.utilities.channel.GuildChannelsInfo;
 import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.widgets.channels.list.items.ChannelListItemThread;
@@ -17,7 +17,7 @@ import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: WidgetChannelListModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetChannelListModel$Companion$guildListBuilder$$inlined$forEach$lambda$4 extends o implements Function2<Channel, StoreThreadsJoined$JoinedThread, ChannelListItemThread> {
+public final class WidgetChannelListModel$Companion$guildListBuilder$$inlined$forEach$lambda$4 extends o implements Function2<Channel, StoreThreadsJoined.JoinedThread, ChannelListItemThread> {
     public final /* synthetic */ WidgetChannelListModel$Companion$guildListBuilder$4 $areAllChildThreadsRead$4$inlined;
     public final /* synthetic */ WidgetChannelListModel$Companion$guildListBuilder$5 $areAnyChildThreadsSelected$5$inlined;
     public final /* synthetic */ boolean $canSeeGuildRoleSubscriptions$inlined;
@@ -79,24 +79,24 @@ public final class WidgetChannelListModel$Companion$guildListBuilder$$inlined$fo
     }
 
     @Override // kotlin.jvm.functions.Function2
-    public /* bridge */ /* synthetic */ ChannelListItemThread invoke(Channel channel, StoreThreadsJoined$JoinedThread storeThreadsJoined$JoinedThread) {
-        return invoke2(channel, storeThreadsJoined$JoinedThread);
+    public /* bridge */ /* synthetic */ ChannelListItemThread invoke(Channel channel, StoreThreadsJoined.JoinedThread joinedThread) {
+        return invoke2(channel, joinedThread);
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final ChannelListItemThread invoke2(Channel channel, StoreThreadsJoined$JoinedThread storeThreadsJoined$JoinedThread) {
+    public final ChannelListItemThread invoke2(Channel channel, StoreThreadsJoined.JoinedThread joinedThread) {
         m.checkNotNullParameter(channel, "thread");
         Long l = this.$guild$inlined.getChannelPermissions().get(Long.valueOf(channel.getId()));
-        ModelNotificationSettings$ChannelOverride channelOverride = this.$guild$inlined.getNotificationSettings().getChannelOverride(channel.getParentId());
+        ModelNotificationSettings.ChannelOverride channelOverride = this.$guild$inlined.getNotificationSettings().getChannelOverride(channel.getParentId());
         boolean z2 = channelOverride != null && channelOverride.isMuted();
-        boolean z3 = storeThreadsJoined$JoinedThread != null && storeThreadsJoined$JoinedThread.getMuted();
+        boolean z3 = joinedThread != null && joinedThread.getMuted();
         if (!PermissionUtils.INSTANCE.hasAccess(channel, l)) {
             return null;
         }
-        WidgetChannelListModel$Companion$TextLikeChannelData widgetChannelListModel$Companion$TextLikeChannelDataInvoke = this.$getTextLikeChannelData$1.invoke(channel, z3, Boolean.valueOf(z2));
-        if (widgetChannelListModel$Companion$TextLikeChannelDataInvoke.getHide()) {
+        WidgetChannelListModel.Companion.TextLikeChannelData textLikeChannelDataInvoke = this.$getTextLikeChannelData$1.invoke(channel, z3, Boolean.valueOf(z2));
+        if (textLikeChannelDataInvoke.getHide()) {
             return null;
         }
-        return new ChannelListItemThread(channel, widgetChannelListModel$Companion$TextLikeChannelDataInvoke.getSelected(), widgetChannelListModel$Companion$TextLikeChannelDataInvoke.getMentionCount(), widgetChannelListModel$Companion$TextLikeChannelDataInvoke.getUnread(), widgetChannelListModel$Companion$TextLikeChannelDataInvoke.getLocked(), z3);
+        return new ChannelListItemThread(channel, textLikeChannelDataInvoke.getSelected(), textLikeChannelDataInvoke.getMentionCount(), textLikeChannelDataInvoke.getUnread(), textLikeChannelDataInvoke.getLocked(), z3);
     }
 }

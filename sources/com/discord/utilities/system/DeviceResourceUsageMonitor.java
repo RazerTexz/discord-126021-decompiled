@@ -1,15 +1,15 @@
 package com.discord.utilities.system;
 
+import a0.a.a.b;
 import android.system.Os;
 import android.system.OsConstants;
 import androidx.annotation.AnyThread;
+import b.d.b.a.a;
 import com.discord.api.permission.Permission;
 import com.discord.utilities.time.Clock;
 import com.discord.utilities.time.TimeSpan;
 import d0.k;
-import d0.k$a;
 import d0.l;
-import d0.v.a;
 import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -17,26 +17,106 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: DeviceResourceUsageMonitor.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class DeviceResourceUsageMonitor {
-    public static final DeviceResourceUsageMonitor$Companion Companion = new DeviceResourceUsageMonitor$Companion(null);
     private static final long SC_CLK_TCK;
     private static final long SC_PAGE_SIZE;
     private Long activeThreadId;
-    private final Function1<DeviceResourceUsageMonitor$ResourceUsage, Unit> callback;
+    private final Function1<ResourceUsage, Unit> callback;
     private final Clock clock;
     private static final int cpuCoreCount;
     private Thread thread;
     private final Object threadSync;
     private final TimeSpan timeSpan;
 
+    /* JADX INFO: compiled from: DeviceResourceUsageMonitor.kt */
+    public final /* data */ class ResourceUsage {
+        private final int cpuCoreCount;
+        private final int cpuUsagePercent;
+        private final long memoryRssBytes;
+
+        public ResourceUsage(int i, long j, int i2) {
+            this.cpuUsagePercent = i;
+            this.memoryRssBytes = j;
+            this.cpuCoreCount = i2;
+        }
+
+        public static /* synthetic */ ResourceUsage copy$default(ResourceUsage resourceUsage, int i, long j, int i2, int i3, Object obj) {
+            if ((i3 & 1) != 0) {
+                i = resourceUsage.cpuUsagePercent;
+            }
+            if ((i3 & 2) != 0) {
+                j = resourceUsage.memoryRssBytes;
+            }
+            if ((i3 & 4) != 0) {
+                i2 = resourceUsage.cpuCoreCount;
+            }
+            return resourceUsage.copy(i, j, i2);
+        }
+
+        public final ResourceUsage copy(int cpuUsagePercent, long memoryRssBytes, int cpuCoreCount) {
+            return new ResourceUsage(cpuUsagePercent, memoryRssBytes, cpuCoreCount);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof ResourceUsage)) {
+                return false;
+            }
+            ResourceUsage resourceUsage = (ResourceUsage) other;
+            return this.cpuUsagePercent == resourceUsage.cpuUsagePercent && this.memoryRssBytes == resourceUsage.memoryRssBytes && this.cpuCoreCount == resourceUsage.cpuCoreCount;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getCpuCoreCount() {
+            return this.cpuCoreCount;
+        }
+
+        public final int getCpuCoreCount() {
+            return this.cpuCoreCount;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getCpuUsagePercent() {
+            return this.cpuUsagePercent;
+        }
+
+        public final int getCpuUsagePercent() {
+            return this.cpuUsagePercent;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getMemoryRssBytes() {
+            return this.memoryRssBytes;
+        }
+
+        public final long getMemoryRssBytes() {
+            return this.memoryRssBytes;
+        }
+
+        public int hashCode() {
+            return ((b.a(this.memoryRssBytes) + (this.cpuUsagePercent * 31)) * 31) + this.cpuCoreCount;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("ResourceUsage(cpuUsagePercent=");
+            sbU.append(this.cpuUsagePercent);
+            sbU.append(", memoryRssBytes=");
+            sbU.append(this.memoryRssBytes);
+            sbU.append(", cpuCoreCount=");
+            return a.B(sbU, this.cpuCoreCount, ")");
+        }
+    }
+
     static {
         Object objM97constructorimpl;
         Object objM97constructorimpl2;
         Object objM97constructorimpl3;
         try {
-            k$a k_a = k.j;
+            k.a aVar = k.j;
             objM97constructorimpl = k.m97constructorimpl(Long.valueOf(Os.sysconf(OsConstants._SC_CLK_TCK)));
         } catch (Throwable th) {
-            k$a k_a2 = k.j;
+            k.a aVar2 = k.j;
             objM97constructorimpl = k.m97constructorimpl(l.createFailure(th));
         }
         if (k.m101isFailureimpl(objM97constructorimpl)) {
@@ -44,10 +124,10 @@ public final class DeviceResourceUsageMonitor {
         }
         SC_CLK_TCK = ((Number) objM97constructorimpl).longValue();
         try {
-            k$a k_a3 = k.j;
+            k.a aVar3 = k.j;
             objM97constructorimpl2 = k.m97constructorimpl(Long.valueOf(Os.sysconf(OsConstants._SC_PAGE_SIZE)));
         } catch (Throwable th2) {
-            k$a k_a4 = k.j;
+            k.a aVar4 = k.j;
             objM97constructorimpl2 = k.m97constructorimpl(l.createFailure(th2));
         }
         Long lValueOf = Long.valueOf(Permission.SEND_TTS_MESSAGES);
@@ -56,10 +136,10 @@ public final class DeviceResourceUsageMonitor {
         }
         SC_PAGE_SIZE = ((Number) objM97constructorimpl2).longValue();
         try {
-            k$a k_a5 = k.j;
+            k.a aVar5 = k.j;
             objM97constructorimpl3 = k.m97constructorimpl(Integer.valueOf(Runtime.getRuntime().availableProcessors()));
         } catch (Throwable th3) {
-            k$a k_a6 = k.j;
+            k.a aVar6 = k.j;
             objM97constructorimpl3 = k.m97constructorimpl(l.createFailure(th3));
         }
         if (k.m101isFailureimpl(objM97constructorimpl3)) {
@@ -69,7 +149,7 @@ public final class DeviceResourceUsageMonitor {
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    public DeviceResourceUsageMonitor(TimeSpan timeSpan, Clock clock, Function1<? super DeviceResourceUsageMonitor$ResourceUsage, Unit> function1) {
+    public DeviceResourceUsageMonitor(TimeSpan timeSpan, Clock clock, Function1<? super ResourceUsage, Unit> function1) {
         m.checkNotNullParameter(timeSpan, "timeSpan");
         m.checkNotNullParameter(clock, "clock");
         m.checkNotNullParameter(function1, "callback");
@@ -89,7 +169,7 @@ public final class DeviceResourceUsageMonitor {
     }
 
     private final void monitor() throws InterruptedException {
-        ProcfsReader$Stat procfsReader$Stat = null;
+        ProcfsReader.Stat stat = null;
         Long lValueOf = null;
         while (true) {
             synchronized (this.threadSync) {
@@ -104,19 +184,19 @@ public final class DeviceResourceUsageMonitor {
                 if (Thread.interrupted()) {
                     return;
                 }
-                ProcfsReader$Stat statFile = ProcfsReader.INSTANCE.readStatFile();
+                ProcfsReader.Stat statFile = ProcfsReader.INSTANCE.readStatFile();
                 long jCurrentTimeMillis = this.clock.currentTimeMillis();
-                if (procfsReader$Stat != null && lValueOf != null) {
-                    double totalTime = ((statFile.getTotalTime() - procfsReader$Stat.getTotalTime()) * ((long) 100)) / (SC_CLK_TCK * ((jCurrentTimeMillis - lValueOf.longValue()) / 1000.0d));
+                if (stat != null && lValueOf != null) {
+                    double totalTime = ((statFile.getTotalTime() - stat.getTotalTime()) * ((long) 100)) / (SC_CLK_TCK * ((jCurrentTimeMillis - lValueOf.longValue()) / 1000.0d));
                     int i = cpuCoreCount;
                     if (i == 0) {
                         i = 1;
                     }
-                    this.callback.invoke(new DeviceResourceUsageMonitor$ResourceUsage((int) (totalTime / ((double) i)), statFile.getRssPages() * SC_PAGE_SIZE, i));
+                    this.callback.invoke(new ResourceUsage((int) (totalTime / ((double) i)), statFile.getRssPages() * SC_PAGE_SIZE, i));
                 }
                 lValueOf = Long.valueOf(jCurrentTimeMillis);
                 Thread.sleep(this.timeSpan.toMillis());
-                procfsReader$Stat = statFile;
+                stat = statFile;
             }
         }
     }
@@ -126,7 +206,7 @@ public final class DeviceResourceUsageMonitor {
         Thread thread;
         synchronized (this.threadSync) {
             thread = this.thread;
-            Thread threadThread$default = a.thread$default(true, true, null, "DeviceResourceUsageMonitor", 2, new DeviceResourceUsageMonitor$start$$inlined$synchronized$lambda$1(this), 4, null);
+            Thread threadThread$default = d0.v.a.thread$default(true, true, null, "DeviceResourceUsageMonitor", 2, new DeviceResourceUsageMonitor$start$$inlined$synchronized$lambda$1(this), 4, null);
             this.activeThreadId = Long.valueOf(threadThread$default.getId());
             this.thread = threadThread$default;
         }

@@ -8,7 +8,6 @@ import d0.g0.t;
 import d0.t.h0;
 import d0.z.d.m;
 import f0.n;
-import f0.n$a;
 import f0.p;
 import f0.w;
 import java.io.EOFException;
@@ -23,9 +22,7 @@ import kotlin.text.Regex;
 import okhttp3.Headers;
 import okhttp3.Response;
 import okhttp3.internal.publicsuffix.PublicSuffixDatabase;
-import okhttp3.internal.publicsuffix.PublicSuffixDatabase$a;
 import okio.ByteString;
-import okio.ByteString$a;
 
 /* JADX INFO: compiled from: HttpHeaders.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -36,9 +33,9 @@ public final class e {
     public static final ByteString f3627b;
 
     static {
-        ByteString$a byteString$a = ByteString.k;
-        a = byteString$a.c("\"\\");
-        f3627b = byteString$a.c("\t ,=");
+        ByteString.Companion companion = ByteString.INSTANCE;
+        a = companion.c("\"\\");
+        f3627b = companion.c("\t ,=");
     }
 
     public static final boolean a(Response response) {
@@ -236,7 +233,7 @@ public final class e {
         if (pVar == p.a) {
             return;
         }
-        n$a n_a = n.e;
+        n.a aVar = n.e;
         m.checkParameterIsNotNull(wVar, "url");
         m.checkParameterIsNotNull(headers, "headers");
         Objects.requireNonNull(headers);
@@ -323,7 +320,7 @@ public final class e {
                                 int i8 = size2;
                                 if (t.equals(strC3, "expires", true)) {
                                     try {
-                                        jC = n_a.c(strC4, 0, strC4.length());
+                                        jC = aVar.c(strC4, 0, strC4.length());
                                         i3 = length;
                                         z4 = true;
                                     } catch (NumberFormatException | IllegalArgumentException unused) {
@@ -401,10 +398,10 @@ public final class e {
                                 String str8 = wVar.g;
                                 if (str5 == null) {
                                     str5 = str8;
-                                } else if (n_a.b(str8, str5)) {
+                                } else if (aVar.b(str8, str5)) {
                                 }
                                 if (str8.length() != str5.length()) {
-                                    PublicSuffixDatabase$a publicSuffixDatabase$a = PublicSuffixDatabase.d;
+                                    PublicSuffixDatabase.a aVar2 = PublicSuffixDatabase.d;
                                     if (PublicSuffixDatabase.c.a(str5) == null) {
                                     }
                                 }

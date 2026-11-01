@@ -10,21 +10,21 @@ public class ModelConnectionState implements Model {
     private String state;
 
     @Override // com.discord.models.domain.Model
-    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
-        String strNextName = model$JsonReader.nextName();
+    public void assignField(Model.JsonReader jsonReader) throws IOException {
+        String strNextName = jsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "code":
-                this.code = model$JsonReader.nextString("");
+                this.code = jsonReader.nextString("");
                 break;
             case "state":
-                this.state = model$JsonReader.nextString("");
+                this.state = jsonReader.nextString("");
                 break;
             case "provider_id":
-                this.providerId = model$JsonReader.nextString("");
+                this.providerId = jsonReader.nextString("");
                 break;
             default:
-                model$JsonReader.skipValue();
+                jsonReader.skipValue();
                 break;
         }
     }

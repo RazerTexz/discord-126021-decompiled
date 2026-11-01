@@ -3,8 +3,6 @@ package d0.e0.p.d.m0.f.z;
 import com.discord.widgets.chat.input.MentionUtilsKt;
 import com.discord.widgets.chat.input.autocomplete.AutocompleteViewModel;
 import d0.e0.p.d.m0.f.o;
-import d0.e0.p.d.m0.f.o$c;
-import d0.e0.p.d.m0.f.o$c$c;
 import d0.e0.p.d.m0.f.p;
 import d0.t.u;
 import d0.z.d.m;
@@ -32,9 +30,9 @@ public final class d implements c {
         LinkedList linkedList2 = new LinkedList();
         boolean z2 = false;
         while (i != -1) {
-            o$c qualifiedName = this.f3418b.getQualifiedName(i);
+            o.c qualifiedName = this.f3418b.getQualifiedName(i);
             String string = this.a.getString(qualifiedName.getShortName());
-            o$c$c kind = qualifiedName.getKind();
+            o.c.EnumC0551c kind = qualifiedName.getKind();
             m.checkNotNull(kind);
             int iOrdinal = kind.ordinal();
             if (iOrdinal == 0) {

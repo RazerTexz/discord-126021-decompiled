@@ -2,7 +2,7 @@ package com.discord.widgets.stage.sheet;
 
 import android.view.View;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetStageAudienceBlockedBottomSheetBinding;
 import com.discord.utilities.view.recycler.MaxHeightRecyclerView;
 import com.google.android.material.button.MaterialButton;
@@ -27,14 +27,14 @@ public final /* synthetic */ class WidgetStageAudienceBlockedBottomSheet$binding
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetStageAudienceBlockedBottomSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.accept_button;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.accept_button);
+        int i = R.id.accept_button;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.accept_button);
         if (materialButton != null) {
-            i = R$id.blocked_users;
-            MaxHeightRecyclerView maxHeightRecyclerView = (MaxHeightRecyclerView) view.findViewById(R$id.blocked_users);
+            i = R.id.blocked_users;
+            MaxHeightRecyclerView maxHeightRecyclerView = (MaxHeightRecyclerView) view.findViewById(R.id.blocked_users);
             if (maxHeightRecyclerView != null) {
-                i = 2131362294;
-                MaterialButton materialButton2 = (MaterialButton) view.findViewById(2131362294);
+                i = R.id.cancel_button;
+                MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.cancel_button);
                 if (materialButton2 != null) {
                     return new WidgetStageAudienceBlockedBottomSheetBinding((ConstraintLayout) view, materialButton, maxHeightRecyclerView, materialButton2);
                 }

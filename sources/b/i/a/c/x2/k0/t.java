@@ -1,7 +1,7 @@
 package b.i.a.c.x2.k0;
 
 import android.util.Log;
-import b.i.a.c.j1$b;
+import b.i.a.c.j1;
 
 /* JADX INFO: compiled from: Id3Reader.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -62,14 +62,14 @@ public final class t implements o {
     }
 
     @Override // b.i.a.c.x2.k0.o
-    public void e(b.i.a.c.x2.j jVar, i0$d i0_d) {
-        i0_d.a();
-        b.i.a.c.x2.w wVarP = jVar.p(i0_d.c(), 5);
+    public void e(b.i.a.c.x2.j jVar, i0.d dVar) {
+        dVar.a();
+        b.i.a.c.x2.w wVarP = jVar.p(dVar.c(), 5);
         this.f1277b = wVarP;
-        j1$b j1_b = new j1$b();
-        j1_b.a = i0_d.b();
-        j1_b.k = "application/id3";
-        wVarP.e(j1_b.a());
+        j1.b bVar = new j1.b();
+        bVar.a = dVar.b();
+        bVar.k = "application/id3";
+        wVarP.e(bVar.a());
     }
 
     @Override // b.i.a.c.x2.k0.o

@@ -9,7 +9,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetUserMutualGuilds.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetUserMutualGuilds$Model$Companion$get$1 extends o implements Function0<WidgetUserMutualGuilds$Model> {
+public final class WidgetUserMutualGuilds$Model$Companion$get$1 extends o implements Function0<WidgetUserMutualGuilds.Model> {
     public final /* synthetic */ StoreGuilds $storeGuilds;
     public final /* synthetic */ StoreGuildsSorted $storeGuildsSorted;
     public final /* synthetic */ StoreUser $storeUser;
@@ -27,13 +27,13 @@ public final class WidgetUserMutualGuilds$Model$Companion$get$1 extends o implem
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ WidgetUserMutualGuilds$Model invoke() {
+    public /* bridge */ /* synthetic */ WidgetUserMutualGuilds.Model invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final WidgetUserMutualGuilds$Model invoke() {
-        return new WidgetUserMutualGuilds$Model(this.$storeUserProfile.getUserProfile(this.$userId), this.$storeGuildsSorted.getOrderedGuilds(), this.$storeUser.getUsers().get(Long.valueOf(this.$userId)), this.$storeGuilds.getMembers());
+    public final WidgetUserMutualGuilds.Model invoke() {
+        return new WidgetUserMutualGuilds.Model(this.$storeUserProfile.getUserProfile(this.$userId), this.$storeGuildsSorted.getOrderedGuilds(), this.$storeUser.getUsers().get(Long.valueOf(this.$userId)), this.$storeGuilds.getMembers());
     }
 }

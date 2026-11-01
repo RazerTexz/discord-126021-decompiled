@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetStickerSheetBinding;
 import com.discord.views.LoadingButton;
 import com.discord.views.sticker.StickerView;
@@ -31,38 +31,38 @@ public final /* synthetic */ class WidgetStickerSheet$binding$2 extends k implem
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetStickerSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.sticker_sheet_buy_button;
-        LoadingButton loadingButton = (LoadingButton) view.findViewById(R$id.sticker_sheet_buy_button);
+        int i = R.id.sticker_sheet_buy_button;
+        LoadingButton loadingButton = (LoadingButton) view.findViewById(R.id.sticker_sheet_buy_button);
         if (loadingButton != null) {
-            i = R$id.sticker_sheet_sticker_info;
-            TextView textView = (TextView) view.findViewById(R$id.sticker_sheet_sticker_info);
+            i = R.id.sticker_sheet_sticker_info;
+            TextView textView = (TextView) view.findViewById(R.id.sticker_sheet_sticker_info);
             if (textView != null) {
-                i = R$id.sticker_sheet_sticker_name;
-                TextView textView2 = (TextView) view.findViewById(R$id.sticker_sheet_sticker_name);
+                i = R.id.sticker_sheet_sticker_name;
+                TextView textView2 = (TextView) view.findViewById(R.id.sticker_sheet_sticker_name);
                 if (textView2 != null) {
-                    i = R$id.sticker_sheet_stickers_container;
-                    LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.sticker_sheet_stickers_container);
+                    i = R.id.sticker_sheet_stickers_container;
+                    LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.sticker_sheet_stickers_container);
                     if (linearLayout != null) {
-                        i = R$id.sticker_sheet_view_button;
-                        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.sticker_sheet_view_button);
+                        i = R.id.sticker_sheet_view_button;
+                        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.sticker_sheet_view_button);
                         if (materialButton != null) {
-                            i = R$id.sticker_sheet_view_limited_chip;
-                            Chip chip = (Chip) view.findViewById(R$id.sticker_sheet_view_limited_chip);
+                            i = R.id.sticker_sheet_view_limited_chip;
+                            Chip chip = (Chip) view.findViewById(R.id.sticker_sheet_view_limited_chip);
                             if (chip != null) {
-                                i = R$id.sticker_sheet_view_limited_container;
-                                RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R$id.sticker_sheet_view_limited_container);
+                                i = R.id.sticker_sheet_view_limited_container;
+                                RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.sticker_sheet_view_limited_container);
                                 if (relativeLayout != null) {
-                                    i = R$id.stickers_sheet_sticker_1;
-                                    StickerView stickerView = (StickerView) view.findViewById(R$id.stickers_sheet_sticker_1);
+                                    i = R.id.stickers_sheet_sticker_1;
+                                    StickerView stickerView = (StickerView) view.findViewById(R.id.stickers_sheet_sticker_1);
                                     if (stickerView != null) {
-                                        i = R$id.stickers_sheet_sticker_2;
-                                        StickerView stickerView2 = (StickerView) view.findViewById(R$id.stickers_sheet_sticker_2);
+                                        i = R.id.stickers_sheet_sticker_2;
+                                        StickerView stickerView2 = (StickerView) view.findViewById(R.id.stickers_sheet_sticker_2);
                                         if (stickerView2 != null) {
-                                            i = R$id.stickers_sheet_sticker_3;
-                                            StickerView stickerView3 = (StickerView) view.findViewById(R$id.stickers_sheet_sticker_3);
+                                            i = R.id.stickers_sheet_sticker_3;
+                                            StickerView stickerView3 = (StickerView) view.findViewById(R.id.stickers_sheet_sticker_3);
                                             if (stickerView3 != null) {
-                                                i = R$id.stickers_sheet_sticker_4;
-                                                StickerView stickerView4 = (StickerView) view.findViewById(R$id.stickers_sheet_sticker_4);
+                                                i = R.id.stickers_sheet_sticker_4;
+                                                StickerView stickerView4 = (StickerView) view.findViewById(R.id.stickers_sheet_sticker_4);
                                                 if (stickerView4 != null) {
                                                     return new WidgetStickerSheetBinding((LinearLayout) view, loadingButton, textView, textView2, linearLayout, materialButton, chip, relativeLayout, stickerView, stickerView2, stickerView3, stickerView4);
                                                 }

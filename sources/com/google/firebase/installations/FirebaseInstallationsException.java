@@ -7,14 +7,20 @@ import com.google.firebase.FirebaseException;
 public class FirebaseInstallationsException extends FirebaseException {
 
     @NonNull
-    private final FirebaseInstallationsException$a status;
+    private final a status;
 
-    public FirebaseInstallationsException(@NonNull FirebaseInstallationsException$a firebaseInstallationsException$a) {
-        this.status = firebaseInstallationsException$a;
+    public enum a {
+        BAD_CONFIG,
+        UNAVAILABLE,
+        TOO_MANY_REQUESTS
     }
 
-    public FirebaseInstallationsException(@NonNull String str, @NonNull FirebaseInstallationsException$a firebaseInstallationsException$a) {
+    public FirebaseInstallationsException(@NonNull a aVar) {
+        this.status = aVar;
+    }
+
+    public FirebaseInstallationsException(@NonNull String str, @NonNull a aVar) {
         super(str);
-        this.status = firebaseInstallationsException$a;
+        this.status = aVar;
     }
 }

@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetMobileReportsBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -27,11 +27,11 @@ public final /* synthetic */ class WidgetMobileReports$binding$2 extends k imple
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetMobileReportsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.menu_reports_node_view_holder;
-        FrameLayout frameLayout = (FrameLayout) view.findViewById(R$id.menu_reports_node_view_holder);
+        int i = R.id.menu_reports_node_view_holder;
+        FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.menu_reports_node_view_holder);
         if (frameLayout != null) {
-            i = R$id.mobile_reports_progress_bar;
-            ProgressBar progressBar = (ProgressBar) view.findViewById(R$id.mobile_reports_progress_bar);
+            i = R.id.mobile_reports_progress_bar;
+            ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.mobile_reports_progress_bar);
             if (progressBar != null) {
                 return new WidgetMobileReportsBinding((CoordinatorLayout) view, frameLayout, progressBar);
             }

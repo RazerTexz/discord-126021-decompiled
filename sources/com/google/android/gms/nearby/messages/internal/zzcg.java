@@ -4,7 +4,7 @@ import android.app.PendingIntent;
 import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import b.c.a.a0.d;
@@ -17,7 +17,7 @@ import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzcg extends AbstractSafeParcelable {
-    public static final Parcelable$Creator<zzcg> CREATOR = new j0();
+    public static final Parcelable.Creator<zzcg> CREATOR = new j0();
     public final int j;
 
     @Nullable

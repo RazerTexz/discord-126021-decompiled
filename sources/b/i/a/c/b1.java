@@ -4,11 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Handler;
-import android.provider.Settings$Global;
-import b.i.a.c.t2.p$a;
+import android.provider.Settings;
 import com.google.android.exoplayer2.audio.AudioProcessor;
 import com.google.android.exoplayer2.audio.DefaultAudioSink;
-import com.google.android.exoplayer2.audio.DefaultAudioSink$d;
 import java.util.ArrayList;
 
 /* JADX INFO: compiled from: DefaultRenderersFactory.java */
@@ -49,7 +47,7 @@ public class b1 implements i2 {
         } else {
             z2 = false;
         }
-        if (z2 && Settings$Global.getInt(context.getContentResolver(), "external_surround_sound_enabled", 0) == 1) {
+        if (z2 && Settings.Global.getInt(context.getContentResolver(), "external_surround_sound_enabled", 0) == 1) {
             pVar = b.i.a.c.t2.p.f1125b;
         } else if (i >= 29) {
             if (!b.i.a.c.f3.e0.A(context)) {
@@ -61,13 +59,13 @@ public class b1 implements i2 {
                     }
                 }
             }
-            pVar = new b.i.a.c.t2.p(p$a.a(), 8);
+            pVar = new b.i.a.c.t2.p(b.i.a.c.t2.p.a.a(), 8);
         } else if (intentRegisterReceiver != null || intentRegisterReceiver.getIntExtra("android.media.extra.AUDIO_PLUG_STATE", 0) == 0) {
             pVar = b.i.a.c.t2.p.a;
         } else {
             pVar = new b.i.a.c.t2.p(intentRegisterReceiver.getIntArrayExtra("android.media.extra.ENCODINGS"), intentRegisterReceiver.getIntExtra("android.media.extra.MAX_CHANNEL_COUNT", 8));
         }
-        arrayList.add(new b.i.a.c.t2.z(this.a, this.f836b, this.c, false, handler, rVar, new DefaultAudioSink(pVar, new DefaultAudioSink$d(new AudioProcessor[0]), false, false, 0)));
+        arrayList.add(new b.i.a.c.t2.z(this.a, this.f836b, this.c, false, handler, rVar, new DefaultAudioSink(pVar, new DefaultAudioSink.d(new AudioProcessor[0]), false, false, 0)));
         arrayList.add(new b.i.a.c.b3.m(lVar, handler.getLooper()));
         arrayList.add(new b.i.a.c.z2.f(eVar, handler.getLooper()));
         arrayList.add(new b.i.a.c.g3.z.e());

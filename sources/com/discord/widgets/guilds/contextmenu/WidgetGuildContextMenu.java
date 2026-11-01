@@ -1,38 +1,58 @@
 package com.discord.widgets.guilds.contextmenu;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.graphics.PointF;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.FrameLayout;
 import android.widget.TextView;
+import androidx.appcompat.widget.ActivityChooserModel;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.d.g0;
 import b.a.d.i0;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetGuildContextMenuBinding;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.widgets.guilds.leave.WidgetLeaveGuildDialog;
+import com.discord.widgets.guilds.profile.WidgetGuildProfileSheet;
+import com.discord.widgets.servers.WidgetServerNotifications;
+import d0.d0.f;
 import d0.z.d.a0;
+import d0.z.d.k;
 import d0.z.d.m;
+import java.util.Objects;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: WidgetGuildContextMenu.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildContextMenu extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGuildContextMenu.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildContextMenuBinding;", 0)};
-    public static final WidgetGuildContextMenu$Companion Companion = new WidgetGuildContextMenu$Companion(null);
     private static final String FRAGMENT_TAG = "WidgetGuildContextMenu";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String VIEW_CONTAINER_TAG = "WidgetGuildContextMenuViewContainer";
-    private WidgetGuildContextMenu$AnimationState animationState;
+    private AnimationState animationState;
     private Animator animator;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -43,23 +63,259 @@ public final class WidgetGuildContextMenu extends AppFragment {
     private final Lazy viewModel;
     private static final int SCREEN_BOTTOM_BUFFER = DimenUtils.dpToPixels(96);
 
+    /* JADX INFO: compiled from: WidgetGuildContextMenu.kt */
+    public enum AnimationState {
+        ANIMATING_IN,
+        ANIMATING_OUT
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu$configureValidUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildContextMenu.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetGuildContextMenu.access$doCircularRemove(WidgetGuildContextMenu.this);
+            WidgetGuildContextMenu.access$getViewModel$p(WidgetGuildContextMenu.this).onMarkAsReadClicked();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu$doCircularRemove$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildContextMenu.kt */
+    public final class AnonymousClass1 extends AnimatorListenerAdapter {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animation) {
+            super.onAnimationEnd(animation);
+            FragmentActivity activity = WidgetGuildContextMenu.this.getActivity();
+            if (activity != null) {
+                Companion companion = WidgetGuildContextMenu.INSTANCE;
+                m.checkNotNullExpressionValue(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
+                companion.hide(activity, false);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu$doCircularReveal$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildContextMenu.kt */
+    public final class AnonymousClass1 extends AnimatorListenerAdapter {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animation) {
+            super.onAnimationEnd(animation);
+            WidgetGuildContextMenu.access$setAnimationState$p(WidgetGuildContextMenu.this, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu$onResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildContextMenu.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<GuildContextMenuViewModel.ViewState, Unit> {
+        public AnonymousClass1(WidgetGuildContextMenu widgetGuildContextMenu) {
+            super(1, widgetGuildContextMenu, WidgetGuildContextMenu.class, "configureUI", "configureUI(Lcom/discord/widgets/guilds/contextmenu/GuildContextMenuViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildContextMenuViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildContextMenuViewModel.ViewState viewState) {
+            m.checkNotNullParameter(viewState, "p1");
+            WidgetGuildContextMenu.access$configureUI((WidgetGuildContextMenu) this.receiver, viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu$configureValidUI$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildContextMenu.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ GuildContextMenuViewModel.ViewState.Valid $viewState;
+
+        public AnonymousClass2(GuildContextMenuViewModel.ViewState.Valid valid) {
+            this.$viewState = valid;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetGuildContextMenu.access$doCircularRemove(WidgetGuildContextMenu.this);
+            WidgetServerNotifications.Companion companion = WidgetServerNotifications.INSTANCE;
+            long id2 = this.$viewState.getGuild().getId();
+            FragmentActivity fragmentActivityRequireActivity = WidgetGuildContextMenu.this.requireActivity();
+            m.checkNotNullExpressionValue(fragmentActivityRequireActivity, "requireActivity()");
+            companion.launch(id2, fragmentActivityRequireActivity);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu$onResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildContextMenu.kt */
+    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<GuildContextMenuViewModel.Event, Unit> {
+        public AnonymousClass2(WidgetGuildContextMenu widgetGuildContextMenu) {
+            super(1, widgetGuildContextMenu, WidgetGuildContextMenu.class, "handleEvent", "handleEvent(Lcom/discord/widgets/guilds/contextmenu/GuildContextMenuViewModel$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildContextMenuViewModel.Event event) {
+            invoke2(event);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildContextMenuViewModel.Event event) {
+            m.checkNotNullParameter(event, "p1");
+            WidgetGuildContextMenu.access$handleEvent((WidgetGuildContextMenu) this.receiver, event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu$configureValidUI$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildContextMenu.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public final /* synthetic */ GuildContextMenuViewModel.ViewState.Valid $viewState;
+
+        public AnonymousClass3(GuildContextMenuViewModel.ViewState.Valid valid) {
+            this.$viewState = valid;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetGuildContextMenu.access$doCircularRemove(WidgetGuildContextMenu.this);
+            WidgetLeaveGuildDialog.Companion companion = WidgetLeaveGuildDialog.INSTANCE;
+            FragmentManager parentFragmentManager = WidgetGuildContextMenu.this.getParentFragmentManager();
+            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            companion.show(parentFragmentManager, this.$viewState.getGuild().getId());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu$configureValidUI$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildContextMenu.kt */
+    public final class AnonymousClass4 implements View.OnClickListener {
+        public final /* synthetic */ GuildContextMenuViewModel.ViewState.Valid $viewState;
+
+        public AnonymousClass4(GuildContextMenuViewModel.ViewState.Valid valid) {
+            this.$viewState = valid;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetGuildContextMenu.access$doCircularRemove(WidgetGuildContextMenu.this);
+            WidgetGuildProfileSheet.Companion companion = WidgetGuildProfileSheet.INSTANCE;
+            FragmentManager parentFragmentManager = WidgetGuildContextMenu.this.getParentFragmentManager();
+            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            WidgetGuildProfileSheet.Companion.show$default(companion, parentFragmentManager, this.$viewState.isGuildSelected(), this.$viewState.getGuild().getId(), 0L, false, 24, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildContextMenu.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        private final int computeMaxContextMenuHeight(Context context) {
+            WidgetGuildContextMenuBinding widgetGuildContextMenuBindingA = WidgetGuildContextMenuBinding.a(LayoutInflater.from(context).inflate(R.layout.widget_guild_context_menu, (ViewGroup) null, false));
+            m.checkNotNullExpressionValue(widgetGuildContextMenuBindingA, "WidgetGuildContextMenuBi…om(context), null, false)");
+            CardView cardView = widgetGuildContextMenuBindingA.a;
+            m.checkNotNullExpressionValue(cardView, "WidgetGuildContextMenuBi…ntext), null, false).root");
+            cardView.measure(0, 0);
+            return cardView.getMeasuredHeight();
+        }
+
+        public final void hide(FragmentActivity activity, boolean animate) {
+            m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
+            Fragment fragmentFindFragmentByTag = activity.getSupportFragmentManager().findFragmentByTag(WidgetGuildContextMenu.FRAGMENT_TAG);
+            if (!(fragmentFindFragmentByTag instanceof WidgetGuildContextMenu)) {
+                fragmentFindFragmentByTag = null;
+            }
+            WidgetGuildContextMenu widgetGuildContextMenu = (WidgetGuildContextMenu) fragmentFindFragmentByTag;
+            if (widgetGuildContextMenu != null) {
+                if (animate) {
+                    WidgetGuildContextMenu.access$doCircularRemove(widgetGuildContextMenu);
+                    return;
+                }
+                activity.getSupportFragmentManager().beginTransaction().remove(widgetGuildContextMenu).commitAllowingStateLoss();
+                Window window = activity.getWindow();
+                m.checkNotNullExpressionValue(window, "activity.window");
+                View decorView = window.getDecorView();
+                m.checkNotNullExpressionValue(decorView, "activity.window.decorView");
+                View rootView = decorView.getRootView();
+                Objects.requireNonNull(rootView, "null cannot be cast to non-null type android.view.ViewGroup");
+                ViewGroup viewGroup = (ViewGroup) rootView;
+                Window window2 = activity.getWindow();
+                m.checkNotNullExpressionValue(window2, "activity.window");
+                View decorView2 = window2.getDecorView();
+                m.checkNotNullExpressionValue(decorView2, "activity.window.decorView");
+                FrameLayout frameLayout = (FrameLayout) decorView2.getRootView().findViewWithTag(WidgetGuildContextMenu.VIEW_CONTAINER_TAG);
+                if (frameLayout != null) {
+                    viewGroup.removeView(frameLayout);
+                }
+                WidgetGuildContextMenu.access$setShowingContextMenu$cp(false);
+            }
+        }
+
+        private final WidgetGuildContextMenu newInstance(long guildId) {
+            Bundle bundleT = a.T("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
+            WidgetGuildContextMenu widgetGuildContextMenu = new WidgetGuildContextMenu();
+            widgetGuildContextMenu.setArguments(bundleT);
+            return widgetGuildContextMenu;
+        }
+
+        public final void show(FragmentActivity activity, PointF absolutePosition, long guildId) {
+            m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
+            m.checkNotNullParameter(absolutePosition, "absolutePosition");
+            if (WidgetGuildContextMenu.access$isShowingContextMenu$cp()) {
+                return;
+            }
+            WidgetGuildContextMenu.access$setShowingContextMenu$cp(true);
+            computeMaxContextMenuHeight(activity);
+            hide(activity, false);
+            FrameLayout frameLayout = new FrameLayout(activity);
+            frameLayout.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
+            frameLayout.setTag(WidgetGuildContextMenu.VIEW_CONTAINER_TAG);
+            Window window = activity.getWindow();
+            m.checkNotNullExpressionValue(window, "activity.window");
+            View decorView = window.getDecorView();
+            m.checkNotNullExpressionValue(decorView, "activity.window.decorView");
+            View rootView = decorView.getRootView();
+            Objects.requireNonNull(rootView, "null cannot be cast to non-null type android.view.ViewGroup");
+            ViewGroup viewGroup = (ViewGroup) rootView;
+            viewGroup.addView(frameLayout);
+            frameLayout.setOnClickListener(new WidgetGuildContextMenu$Companion$show$1(activity));
+            FrameLayout frameLayout2 = new FrameLayout(activity);
+            frameLayout2.setId(View.generateViewId());
+            frameLayout2.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
+            frameLayout.addView(frameLayout2);
+            frameLayout2.setX(absolutePosition.x);
+            frameLayout2.setY(f.coerceAtMost(absolutePosition.y, (viewGroup.getHeight() - computeMaxContextMenuHeight(activity)) - WidgetGuildContextMenu.access$getSCREEN_BOTTOM_BUFFER$cp()));
+            activity.getSupportFragmentManager().beginTransaction().add(frameLayout2.getId(), newInstance(guildId), WidgetGuildContextMenu.FRAGMENT_TAG).commit();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetGuildContextMenu() {
-        super(R$layout.widget_guild_context_menu);
+        super(R.layout.widget_guild_context_menu);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildContextMenu$binding$2.INSTANCE, null, 2, null);
         WidgetGuildContextMenu$viewModel$2 widgetGuildContextMenu$viewModel$2 = new WidgetGuildContextMenu$viewModel$2(this);
         g0 g0Var = new g0(this);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(GuildContextMenuViewModel.class), new WidgetGuildContextMenu$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetGuildContextMenu$viewModel$2));
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetGuildContextMenu widgetGuildContextMenu, GuildContextMenuViewModel$ViewState guildContextMenuViewModel$ViewState) {
-        widgetGuildContextMenu.configureUI(guildContextMenuViewModel$ViewState);
+    public static final /* synthetic */ void access$configureUI(WidgetGuildContextMenu widgetGuildContextMenu, GuildContextMenuViewModel.ViewState viewState) {
+        widgetGuildContextMenu.configureUI(viewState);
     }
 
     public static final /* synthetic */ void access$doCircularRemove(WidgetGuildContextMenu widgetGuildContextMenu) {
         widgetGuildContextMenu.doCircularRemove();
     }
 
-    public static final /* synthetic */ WidgetGuildContextMenu$AnimationState access$getAnimationState$p(WidgetGuildContextMenu widgetGuildContextMenu) {
+    public static final /* synthetic */ AnimationState access$getAnimationState$p(WidgetGuildContextMenu widgetGuildContextMenu) {
         return widgetGuildContextMenu.animationState;
     }
 
@@ -71,41 +327,41 @@ public final class WidgetGuildContextMenu extends AppFragment {
         return widgetGuildContextMenu.getViewModel();
     }
 
-    public static final /* synthetic */ void access$handleEvent(WidgetGuildContextMenu widgetGuildContextMenu, GuildContextMenuViewModel$Event guildContextMenuViewModel$Event) {
-        widgetGuildContextMenu.handleEvent(guildContextMenuViewModel$Event);
+    public static final /* synthetic */ void access$handleEvent(WidgetGuildContextMenu widgetGuildContextMenu, GuildContextMenuViewModel.Event event) {
+        widgetGuildContextMenu.handleEvent(event);
     }
 
     public static final /* synthetic */ boolean access$isShowingContextMenu$cp() {
         return isShowingContextMenu;
     }
 
-    public static final /* synthetic */ void access$setAnimationState$p(WidgetGuildContextMenu widgetGuildContextMenu, WidgetGuildContextMenu$AnimationState widgetGuildContextMenu$AnimationState) {
-        widgetGuildContextMenu.animationState = widgetGuildContextMenu$AnimationState;
+    public static final /* synthetic */ void access$setAnimationState$p(WidgetGuildContextMenu widgetGuildContextMenu, AnimationState animationState) {
+        widgetGuildContextMenu.animationState = animationState;
     }
 
     public static final /* synthetic */ void access$setShowingContextMenu$cp(boolean z2) {
         isShowingContextMenu = z2;
     }
 
-    private final void configureUI(GuildContextMenuViewModel$ViewState viewState) {
-        if (viewState instanceof GuildContextMenuViewModel$ViewState$Valid) {
-            configureValidUI((GuildContextMenuViewModel$ViewState$Valid) viewState);
-        } else if (m.areEqual(viewState, GuildContextMenuViewModel$ViewState$Invalid.INSTANCE)) {
-            WidgetGuildContextMenu$Companion widgetGuildContextMenu$Companion = Companion;
+    private final void configureUI(GuildContextMenuViewModel.ViewState viewState) {
+        if (viewState instanceof GuildContextMenuViewModel.ViewState.Valid) {
+            configureValidUI((GuildContextMenuViewModel.ViewState.Valid) viewState);
+        } else if (m.areEqual(viewState, GuildContextMenuViewModel.ViewState.Invalid.INSTANCE)) {
+            Companion companion = INSTANCE;
             FragmentActivity fragmentActivityRequireActivity = requireActivity();
             m.checkNotNullExpressionValue(fragmentActivityRequireActivity, "requireActivity()");
-            widgetGuildContextMenu$Companion.hide(fragmentActivityRequireActivity, false);
+            companion.hide(fragmentActivityRequireActivity, false);
         }
     }
 
-    private final void configureValidUI(GuildContextMenuViewModel$ViewState$Valid viewState) {
+    private final void configureValidUI(GuildContextMenuViewModel.ViewState.Valid viewState) {
         TextView textView = getBinding().c;
         m.checkNotNullExpressionValue(textView, "binding.guildContextMenuHeader");
         textView.setText(viewState.getGuild().getName());
-        getBinding().e.setOnClickListener(new WidgetGuildContextMenu$configureValidUI$1(this));
-        getBinding().g.setOnClickListener(new WidgetGuildContextMenu$configureValidUI$2(this, viewState));
-        getBinding().d.setOnClickListener(new WidgetGuildContextMenu$configureValidUI$3(this, viewState));
-        getBinding().f.setOnClickListener(new WidgetGuildContextMenu$configureValidUI$4(this, viewState));
+        getBinding().e.setOnClickListener(new AnonymousClass1());
+        getBinding().g.setOnClickListener(new AnonymousClass2(viewState));
+        getBinding().d.setOnClickListener(new AnonymousClass3(viewState));
+        getBinding().f.setOnClickListener(new AnonymousClass4(viewState));
         TextView textView2 = getBinding().d;
         m.checkNotNullExpressionValue(textView2, "binding.guildContextMenuLeaveGuild");
         textView2.setVisibility(viewState.getShowLeaveGuild() ? 0 : 8);
@@ -122,20 +378,20 @@ public final class WidgetGuildContextMenu extends AppFragment {
     }
 
     private final void doCircularRemove() {
-        WidgetGuildContextMenu$AnimationState widgetGuildContextMenu$AnimationState = this.animationState;
-        if (widgetGuildContextMenu$AnimationState == WidgetGuildContextMenu$AnimationState.ANIMATING_IN) {
+        AnimationState animationState = this.animationState;
+        if (animationState == AnimationState.ANIMATING_IN) {
             Animator animator = this.animator;
             if (animator != null) {
                 animator.cancel();
             }
-            WidgetGuildContextMenu$Companion widgetGuildContextMenu$Companion = Companion;
+            Companion companion = INSTANCE;
             FragmentActivity fragmentActivityRequireActivity = requireActivity();
             m.checkNotNullExpressionValue(fragmentActivityRequireActivity, "requireActivity()");
-            widgetGuildContextMenu$Companion.hide(fragmentActivityRequireActivity, false);
+            companion.hide(fragmentActivityRequireActivity, false);
             return;
         }
-        WidgetGuildContextMenu$AnimationState widgetGuildContextMenu$AnimationState2 = WidgetGuildContextMenu$AnimationState.ANIMATING_OUT;
-        if (widgetGuildContextMenu$AnimationState == widgetGuildContextMenu$AnimationState2) {
+        AnimationState animationState2 = AnimationState.ANIMATING_OUT;
+        if (animationState == animationState2) {
             return;
         }
         CardView cardView = getBinding().f2411b;
@@ -157,10 +413,10 @@ public final class WidgetGuildContextMenu extends AppFragment {
         }
         Animator animatorCreateCircularReveal = ViewAnimationUtils.createCircularReveal(getBinding().f2411b, 0, height, fHypot, 0.0f);
         this.animator = animatorCreateCircularReveal;
-        this.animationState = widgetGuildContextMenu$AnimationState2;
+        this.animationState = animationState2;
         m.checkNotNullExpressionValue(animatorCreateCircularReveal, "animator");
         animatorCreateCircularReveal.setDuration(200L);
-        animatorCreateCircularReveal.addListener(new WidgetGuildContextMenu$doCircularRemove$1(this));
+        animatorCreateCircularReveal.addListener(new AnonymousClass1());
         animatorCreateCircularReveal.start();
     }
 
@@ -183,10 +439,10 @@ public final class WidgetGuildContextMenu extends AppFragment {
         m.checkNotNullExpressionValue(cardView5, "binding.guildContextMenuCard");
         Animator animatorCreateCircularReveal = ViewAnimationUtils.createCircularReveal(getBinding().f2411b, 0, height, 0.0f, (float) Math.hypot(width, cardView5.getHeight() / 2));
         this.animator = animatorCreateCircularReveal;
-        this.animationState = WidgetGuildContextMenu$AnimationState.ANIMATING_IN;
+        this.animationState = AnimationState.ANIMATING_IN;
         m.checkNotNullExpressionValue(animatorCreateCircularReveal, "animator");
         animatorCreateCircularReveal.setDuration(200L);
-        animatorCreateCircularReveal.addListener(new WidgetGuildContextMenu$doCircularReveal$1(this));
+        animatorCreateCircularReveal.addListener(new AnonymousClass1());
         CardView cardView6 = getBinding().f2411b;
         m.checkNotNullExpressionValue(cardView6, "binding.guildContextMenuCard");
         cardView6.setVisibility(0);
@@ -201,8 +457,8 @@ public final class WidgetGuildContextMenu extends AppFragment {
         return (GuildContextMenuViewModel) this.viewModel.getValue();
     }
 
-    private final void handleEvent(GuildContextMenuViewModel$Event event) {
-        if (m.areEqual(event, GuildContextMenuViewModel$Event$Dismiss.INSTANCE)) {
+    private final void handleEvent(GuildContextMenuViewModel.Event event) {
+        if (m.areEqual(event, GuildContextMenuViewModel.Event.Dismiss.INSTANCE)) {
             doCircularRemove();
         }
     }
@@ -216,7 +472,7 @@ public final class WidgetGuildContextMenu extends AppFragment {
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetGuildContextMenu.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildContextMenu$onResume$1(this), 62, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetGuildContextMenu.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildContextMenu$onResume$2(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetGuildContextMenu.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetGuildContextMenu.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(this), 62, (Object) null);
     }
 }

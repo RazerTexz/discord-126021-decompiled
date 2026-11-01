@@ -1,7 +1,6 @@
 package androidx.core.graphics.drawable;
 
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
@@ -12,7 +11,7 @@ import d0.z.d.m;
 /* JADX INFO: compiled from: Drawable.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class DrawableKt {
-    public static /* synthetic */ Bitmap toBitmap$default(Drawable drawable, int i, int i2, Bitmap$Config bitmap$Config, int i3, Object obj) {
+    public static /* synthetic */ Bitmap toBitmap$default(Drawable drawable, int i, int i2, Bitmap.Config config, int i3, Object obj) {
         if ((i3 & 1) != 0) {
             i = drawable.getIntrinsicWidth();
         }
@@ -20,14 +19,14 @@ public final class DrawableKt {
             i2 = drawable.getIntrinsicHeight();
         }
         if ((i3 & 4) != 0) {
-            bitmap$Config = null;
+            config = null;
         }
-        return toBitmap(drawable, i, i2, bitmap$Config);
+        return toBitmap(drawable, i, i2, config);
     }
 
-    public static final Bitmap toBitmap(Drawable drawable, @Px int i, @Px int i2, Bitmap$Config bitmap$Config) {
+    public static final Bitmap toBitmap(Drawable drawable, @Px int i, @Px int i2, Bitmap.Config config) {
         m.checkNotNullParameter(drawable, "<this>");
-        if ((drawable instanceof BitmapDrawable) && (bitmap$Config == null || ((BitmapDrawable) drawable).getBitmap().getConfig() == bitmap$Config)) {
+        if ((drawable instanceof BitmapDrawable) && (config == null || ((BitmapDrawable) drawable).getBitmap().getConfig() == config)) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
             if (i == bitmapDrawable.getIntrinsicWidth() && i2 == bitmapDrawable.getIntrinsicHeight()) {
                 Bitmap bitmap = bitmapDrawable.getBitmap();
@@ -44,10 +43,10 @@ public final class DrawableKt {
         int i4 = bounds.top;
         int i5 = bounds.right;
         int i6 = bounds.bottom;
-        if (bitmap$Config == null) {
-            bitmap$Config = Bitmap$Config.ARGB_8888;
+        if (config == null) {
+            config = Bitmap.Config.ARGB_8888;
         }
-        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i, i2, bitmap$Config);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i, i2, config);
         drawable.setBounds(0, 0, i, i2);
         drawable.draw(new Canvas(bitmapCreateBitmap));
         drawable.setBounds(i3, i4, i5, i6);

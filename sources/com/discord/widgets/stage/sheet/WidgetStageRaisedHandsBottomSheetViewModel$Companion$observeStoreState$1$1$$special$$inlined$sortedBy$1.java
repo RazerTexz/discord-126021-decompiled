@@ -10,6 +10,6 @@ public final class WidgetStageRaisedHandsBottomSheetViewModel$Companion$observeS
     /* JADX WARN: Multi-variable type inference failed */
     @Override // java.util.Comparator
     public final int compare(T t, T t2) {
-        return a.compareValues(((WidgetStageRaisedHandsBottomSheetAdapter$ListItem$Participant) t).getRequestToSpeakTimestamp(), ((WidgetStageRaisedHandsBottomSheetAdapter$ListItem$Participant) t2).getRequestToSpeakTimestamp());
+        return a.compareValues(((WidgetStageRaisedHandsBottomSheetAdapter.ListItem.Participant) t).getRequestToSpeakTimestamp(), ((WidgetStageRaisedHandsBottomSheetAdapter.ListItem.Participant) t2).getRequestToSpeakTimestamp());
     }
 }

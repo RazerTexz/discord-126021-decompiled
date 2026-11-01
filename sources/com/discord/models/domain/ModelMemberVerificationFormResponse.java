@@ -9,11 +9,11 @@ import java.util.List;
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class ModelMemberVerificationFormResponse {
     private final ApplicationStatus applicationStatus;
-    private final List<ModelMemberVerificationForm$FormField> formResponses;
+    private final List<ModelMemberVerificationForm.FormField> formResponses;
     private final Long guildId;
     private final String lastSeen;
 
-    public ModelMemberVerificationFormResponse(String str, ApplicationStatus applicationStatus, List<ModelMemberVerificationForm$FormField> list, Long l) {
+    public ModelMemberVerificationFormResponse(String str, ApplicationStatus applicationStatus, List<ModelMemberVerificationForm.FormField> list, Long l) {
         m.checkNotNullParameter(applicationStatus, "applicationStatus");
         this.lastSeen = str;
         this.applicationStatus = applicationStatus;
@@ -21,7 +21,7 @@ public final /* data */ class ModelMemberVerificationFormResponse {
         this.guildId = l;
     }
 
-    public final List<ModelMemberVerificationForm$FormField> component3() {
+    public final List<ModelMemberVerificationForm.FormField> component3() {
         return this.formResponses;
     }
 
@@ -42,7 +42,7 @@ public final /* data */ class ModelMemberVerificationFormResponse {
         return modelMemberVerificationFormResponse.copy(str, applicationStatus, list, l);
     }
 
-    public final ModelMemberVerificationFormResponse copy(String lastSeen, ApplicationStatus applicationStatus, List<ModelMemberVerificationForm$FormField> formResponses, Long guildId) {
+    public final ModelMemberVerificationFormResponse copy(String lastSeen, ApplicationStatus applicationStatus, List<ModelMemberVerificationForm.FormField> formResponses, Long guildId) {
         m.checkNotNullParameter(applicationStatus, "applicationStatus");
         return new ModelMemberVerificationFormResponse(lastSeen, applicationStatus, formResponses, guildId);
     }
@@ -67,7 +67,7 @@ public final /* data */ class ModelMemberVerificationFormResponse {
         return this.applicationStatus;
     }
 
-    public final List<ModelMemberVerificationForm$FormField> getFormResponses() {
+    public final List<ModelMemberVerificationForm.FormField> getFormResponses() {
         return this.formResponses;
     }
 
@@ -94,7 +94,7 @@ public final /* data */ class ModelMemberVerificationFormResponse {
         int iHashCode = (str != null ? str.hashCode() : 0) * 31;
         ApplicationStatus applicationStatus = this.applicationStatus;
         int iHashCode2 = (iHashCode + (applicationStatus != null ? applicationStatus.hashCode() : 0)) * 31;
-        List<ModelMemberVerificationForm$FormField> list = this.formResponses;
+        List<ModelMemberVerificationForm.FormField> list = this.formResponses;
         int iHashCode3 = (iHashCode2 + (list != null ? list.hashCode() : 0)) * 31;
         Long l = this.guildId;
         return iHashCode3 + (l != null ? l.hashCode() : 0);

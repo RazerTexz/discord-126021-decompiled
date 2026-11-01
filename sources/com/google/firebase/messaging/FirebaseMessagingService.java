@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager$NameNotFoundException;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -18,7 +17,6 @@ import b.i.c.p.h.d;
 import b.i.c.s.v;
 import b.i.c.w.c;
 import b.i.c.w.m;
-import b.i.c.w.m$b;
 import b.i.c.w.p;
 import b.i.c.w.q;
 import b.i.c.w.r;
@@ -208,7 +206,7 @@ public class FirebaseMessagingService extends EnhancedIntentService {
                                     z2 = applicationInfo.metaData.getBoolean("delivery_metrics_exported_to_big_query_enabled", false);
                                 }
                                 break;
-                            } catch (PackageManager$NameNotFoundException unused) {
+                            } catch (PackageManager.NameNotFoundException unused) {
                             }
                         }
                     } catch (IllegalStateException unused2) {
@@ -219,7 +217,7 @@ public class FirebaseMessagingService extends EnhancedIntentService {
                     g gVar = FirebaseMessaging.a;
                     if (gVar != null) {
                         try {
-                            gVar.a("FCM_CLIENT_EVENT_LOGGING", String.class, new b("json"), p.a).a(new b.i.a.b.a(null, ((d) q.a).a(new m$b(new m("MESSAGE_DELIVERED", intent))), b.i.a.b.d.VERY_LOW));
+                            gVar.a("FCM_CLIENT_EVENT_LOGGING", String.class, new b("json"), p.a).a(new b.i.a.b.a(null, ((d) q.a).a(new m.b(new m("MESSAGE_DELIVERED", intent))), b.i.a.b.d.VERY_LOW));
                         } catch (EncodingException unused3) {
                             Log.d("FirebaseMessaging", "Failed to encode big query analytics payload. Skip sending");
                         }

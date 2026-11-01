@@ -5,7 +5,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.VideoView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetTextInVoiceOnboardingBinding;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
@@ -30,23 +30,23 @@ public final /* synthetic */ class WidgetTextInVoiceOnboarding$binding$2 extends
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetTextInVoiceOnboardingBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.text_in_voice_onboarding_close;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.text_in_voice_onboarding_close);
+        int i = R.id.text_in_voice_onboarding_close;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.text_in_voice_onboarding_close);
         if (materialButton != null) {
-            i = R$id.text_in_voice_onboarding_cta;
-            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.text_in_voice_onboarding_cta);
+            i = R.id.text_in_voice_onboarding_cta;
+            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.text_in_voice_onboarding_cta);
             if (materialButton2 != null) {
-                i = R$id.text_in_voice_onboarding_video;
-                VideoView videoView = (VideoView) view.findViewById(R$id.text_in_voice_onboarding_video);
+                i = R.id.text_in_voice_onboarding_video;
+                VideoView videoView = (VideoView) view.findViewById(R.id.text_in_voice_onboarding_video);
                 if (videoView != null) {
-                    i = R$id.text_in_voice_onboarding_video_container;
-                    FrameLayout frameLayout = (FrameLayout) view.findViewById(R$id.text_in_voice_onboarding_video_container);
+                    i = R.id.text_in_voice_onboarding_video_container;
+                    FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.text_in_voice_onboarding_video_container);
                     if (frameLayout != null) {
-                        i = R$id.text_in_voice_onboarding_video_overlay;
-                        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.text_in_voice_onboarding_video_overlay);
+                        i = R.id.text_in_voice_onboarding_video_overlay;
+                        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.text_in_voice_onboarding_video_overlay);
                         if (simpleDraweeView != null) {
-                            i = R$id.text_in_voice_onboarding_video_placeholder;
-                            ImageView imageView = (ImageView) view.findViewById(R$id.text_in_voice_onboarding_video_placeholder);
+                            i = R.id.text_in_voice_onboarding_video_placeholder;
+                            ImageView imageView = (ImageView) view.findViewById(R.id.text_in_voice_onboarding_video_placeholder);
                             if (imageView != null) {
                                 return new WidgetTextInVoiceOnboardingBinding((ConstraintLayout) view, materialButton, materialButton2, videoView, frameLayout, simpleDraweeView, imageView);
                             }

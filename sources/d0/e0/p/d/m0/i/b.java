@@ -36,7 +36,7 @@ public abstract class b<MessageType extends n> implements p<MessageType> {
             if (i == -1) {
                 return null;
             }
-            return (MessageType) parsePartialFrom(new a$a$a(inputStream, d.readRawVarint32(i, inputStream)), eVar);
+            return (MessageType) parsePartialFrom(new a.AbstractC0556a.C0557a(inputStream, d.readRawVarint32(i, inputStream)), eVar);
         } catch (IOException e) {
             throw new InvalidProtocolBufferException(e.getMessage());
         }

@@ -1,5 +1,6 @@
 package b.g.a.c.c0;
 
+import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Member;
 import java.lang.reflect.Type;
@@ -9,7 +10,19 @@ import java.lang.reflect.Type;
 public final class e extends n {
     private static final long serialVersionUID = 1;
     public final Constructor<?> _constructor;
-    public e$a _serialization;
+    public a _serialization;
+
+    /* JADX INFO: compiled from: AnnotatedConstructor.java */
+    public final class a implements Serializable {
+        private static final long serialVersionUID = 1;
+        public Class<?>[] args;
+        public Class<?> clazz;
+
+        public a(Constructor<?> constructor) {
+            this.clazz = constructor.getDeclaringClass();
+            this.args = constructor.getParameterTypes();
+        }
+    }
 
     public e(e0 e0Var, Constructor<?> constructor, p pVar, p[] pVarArr) {
         super(e0Var, pVar, pVarArr);
@@ -79,10 +92,10 @@ public final class e extends n {
     }
 
     public Object readResolve() {
-        e$a e_a = this._serialization;
-        Class<?> cls = e_a.clazz;
+        a aVar = this._serialization;
+        Class<?> cls = aVar.clazz;
         try {
-            Constructor<?> declaredConstructor = cls.getDeclaredConstructor(e_a.args);
+            Constructor<?> declaredConstructor = cls.getDeclaredConstructor(aVar.args);
             if (!declaredConstructor.isAccessible()) {
                 b.g.a.c.i0.d.d(declaredConstructor, false);
             }
@@ -107,12 +120,12 @@ public final class e extends n {
     }
 
     public Object writeReplace() {
-        return new e(new e$a(this._constructor));
+        return new e(new a(this._constructor));
     }
 
-    public e(e$a e_a) {
+    public e(a aVar) {
         super(null, null, null);
         this._constructor = null;
-        this._serialization = e_a;
+        this._serialization = aVar;
     }
 }

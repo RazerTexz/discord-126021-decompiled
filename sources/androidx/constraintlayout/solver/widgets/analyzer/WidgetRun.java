@@ -2,11 +2,10 @@ package androidx.constraintlayout.solver.widgets.analyzer;
 
 import androidx.constraintlayout.solver.widgets.ConstraintAnchor;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
-import androidx.constraintlayout.solver.widgets.ConstraintWidget$DimensionBehaviour;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class WidgetRun implements Dependency {
-    public ConstraintWidget$DimensionBehaviour dimensionBehavior;
+    public ConstraintWidget.DimensionBehaviour dimensionBehavior;
     public int matchConstraintsType;
     public RunGroup runGroup;
     public ConstraintWidget widget;
@@ -15,7 +14,45 @@ public abstract class WidgetRun implements Dependency {
     public boolean resolved = false;
     public DependencyNode start = new DependencyNode(this);
     public DependencyNode end = new DependencyNode(this);
-    public WidgetRun$RunType mRunType = WidgetRun$RunType.NONE;
+    public RunType mRunType = RunType.NONE;
+
+    /* JADX INFO: renamed from: androidx.constraintlayout.solver.widgets.analyzer.WidgetRun$1, reason: invalid class name */
+    public /* synthetic */ class AnonymousClass1 {
+        public static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type;
+
+        static {
+            ConstraintAnchor.Type.values();
+            int[] iArr = new int[9];
+            $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type = iArr;
+            try {
+                iArr[ConstraintAnchor.Type.LEFT.ordinal()] = 1;
+            } catch (NoSuchFieldError unused) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.RIGHT.ordinal()] = 2;
+            } catch (NoSuchFieldError unused2) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.TOP.ordinal()] = 3;
+            } catch (NoSuchFieldError unused3) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.BASELINE.ordinal()] = 4;
+            } catch (NoSuchFieldError unused4) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.BOTTOM.ordinal()] = 5;
+            } catch (NoSuchFieldError unused5) {
+            }
+        }
+    }
+
+    public enum RunType {
+        NONE,
+        START,
+        END,
+        CENTER
+    }
 
     public WidgetRun(ConstraintWidget constraintWidget) {
         this.widget = constraintWidget;
@@ -147,11 +184,11 @@ public abstract class WidgetRun implements Dependency {
         }
         ConstraintWidget constraintWidget2 = this.widget;
         WidgetRun widgetRun = constraintWidget2.horizontalRun;
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour = widgetRun.dimensionBehavior;
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour2 = ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT;
-        if (constraintWidget$DimensionBehaviour == constraintWidget$DimensionBehaviour2 && widgetRun.matchConstraintsType == 3) {
+        ConstraintWidget.DimensionBehaviour dimensionBehaviour = widgetRun.dimensionBehavior;
+        ConstraintWidget.DimensionBehaviour dimensionBehaviour2 = ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT;
+        if (dimensionBehaviour == dimensionBehaviour2 && widgetRun.matchConstraintsType == 3) {
             VerticalWidgetRun verticalWidgetRun = constraintWidget2.verticalRun;
-            if (verticalWidgetRun.dimensionBehavior == constraintWidget$DimensionBehaviour2 && verticalWidgetRun.matchConstraintsType == 3) {
+            if (verticalWidgetRun.dimensionBehavior == dimensionBehaviour2 && verticalWidgetRun.matchConstraintsType == 3) {
                 return;
             }
         }
@@ -177,7 +214,7 @@ public abstract class WidgetRun implements Dependency {
             int margin = constraintAnchor.getMargin() + target.value;
             int margin2 = target2.value - constraintAnchor2.getMargin();
             int i2 = margin2 - margin;
-            if (!this.dimension.resolved && this.dimensionBehavior == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT) {
+            if (!this.dimension.resolved && this.dimensionBehavior == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) {
                 resolveDimension(i, i2);
             }
             DimensionDependency dimensionDependency = this.dimension;

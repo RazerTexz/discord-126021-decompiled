@@ -9,6 +9,7 @@ import androidx.annotation.MainThread;
 import androidx.core.view.ViewKt;
 import androidx.fragment.app.FragmentManager;
 import b.a.k.b;
+import com.discord.R;
 import com.discord.api.activity.Activity;
 import com.discord.api.activity.ActivityAssets;
 import com.discord.api.activity.ActivityTimestamps;
@@ -67,7 +68,7 @@ public final class ViewHolderStageChannelRichPresence extends ViewHolderUserRich
         getRichPresenceImageLarge().setVisibility(zHasIcon ? 0 : 8);
         this.richPresenceImageLargeText.setVisibility(zHasIcon ^ true ? 0 : 8);
         if (zHasIcon) {
-            SimpleDraweeViewExtensionsKt.setGuildIcon$default(getRichPresenceImageLarge(), true, guild, resources.getDimensionPixelSize(2131165449), Integer.valueOf(IconUtils.getMediaProxySize(resources.getDimensionPixelSize(2131165293))), null, null, null, false, null, 496, null);
+            SimpleDraweeViewExtensionsKt.setGuildIcon$default(getRichPresenceImageLarge(), true, guild, resources.getDimensionPixelSize(R.dimen.guild_icon_radius), Integer.valueOf(IconUtils.getMediaProxySize(resources.getDimensionPixelSize(R.dimen.avatar_size_large))), null, null, null, false, null, 496, null);
         } else {
             this.richPresenceImageLargeText.setText(guild.getShortName());
         }
@@ -109,7 +110,7 @@ public final class ViewHolderStageChannelRichPresence extends ViewHolderUserRich
             if (assets2 == null || (smallText = assets2.getSmallText()) == null) {
                 return;
             }
-            b.n(richPresenceDetails, 2131895819, new Object[]{smallText}, null, 4);
+            b.n(richPresenceDetails, R.string.stage_discovery_origin_text, new Object[]{smallText}, null, 4);
         }
     }
 

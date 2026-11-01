@@ -29,7 +29,7 @@ public final class f {
 
     @SuppressLint({"DefaultLocale"})
     public final String b() {
-        String locale = StoreStream.Companion.getUserSettingsSystem().getLocale();
+        String locale = StoreStream.INSTANCE.getUserSettingsSystem().getLocale();
         Objects.requireNonNull(locale, "null cannot be cast to non-null type java.lang.String");
         String lowerCase = locale.toLowerCase();
         d0.z.d.m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase()");
@@ -38,7 +38,7 @@ public final class f {
 
     public static final String c() {
         StringBuilder sbX = b.d.b.a.a.X("https://support.discord.com", "/hc/");
-        String locale = StoreStream.Companion.getUserSettingsSystem().getLocale();
+        String locale = StoreStream.INSTANCE.getUserSettingsSystem().getLocale();
         Objects.requireNonNull(locale, "null cannot be cast to non-null type java.lang.String");
         String lowerCase = locale.toLowerCase();
         d0.z.d.m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase()");

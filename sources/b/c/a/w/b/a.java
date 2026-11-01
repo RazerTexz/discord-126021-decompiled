@@ -5,9 +5,6 @@ import android.graphics.ColorFilter;
 import android.graphics.DashPathEffect;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Paint$Cap;
-import android.graphics.Paint$Join;
-import android.graphics.Paint$Style;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
 import android.graphics.RectF;
@@ -18,7 +15,7 @@ import java.util.List;
 
 /* JADX INFO: compiled from: BaseStrokeContent.java */
 /* JADX INFO: loaded from: classes.dex */
-public abstract class a implements b.c.a.w.c.a$b, k, e {
+public abstract class a implements b.c.a.w.c.a.b, k, e {
     public final b.c.a.j e;
     public final b.c.a.y.m.b f;
     public final float[] h;
@@ -38,16 +35,16 @@ public abstract class a implements b.c.a.w.c.a$b, k, e {
     public final Path f376b = new Path();
     public final Path c = new Path();
     public final RectF d = new RectF();
-    public final List<a$b> g = new ArrayList();
+    public final List<b> g = new ArrayList();
 
-    public a(b.c.a.j jVar, b.c.a.y.m.b bVar, Paint$Cap paint$Cap, Paint$Join paint$Join, float f, b.c.a.y.k.d dVar, b.c.a.y.k.b bVar2, List<b.c.a.y.k.b> list, b.c.a.y.k.b bVar3) {
+    public a(b.c.a.j jVar, b.c.a.y.m.b bVar, Paint.Cap cap, Paint.Join join, float f, b.c.a.y.k.d dVar, b.c.a.y.k.b bVar2, List<b.c.a.y.k.b> list, b.c.a.y.k.b bVar3) {
         b.c.a.w.a aVar = new b.c.a.w.a(1);
         this.i = aVar;
         this.e = jVar;
         this.f = bVar;
-        aVar.setStyle(Paint$Style.STROKE);
-        aVar.setStrokeCap(paint$Cap);
-        aVar.setStrokeJoin(paint$Join);
+        aVar.setStyle(Paint.Style.STROKE);
+        aVar.setStrokeCap(cap);
+        aVar.setStrokeJoin(join);
         aVar.setStrokeMiter(f);
         this.k = dVar.a();
         this.j = bVar2.a();
@@ -81,7 +78,7 @@ public abstract class a implements b.c.a.w.c.a$b, k, e {
         }
     }
 
-    @Override // b.c.a.w.c.a$b
+    @Override // b.c.a.w.c.a.b
     public void a() {
         this.e.invalidateSelf();
     }
@@ -105,32 +102,32 @@ public abstract class a implements b.c.a.w.c.a$b, k, e {
         if (sVar != null) {
             sVar.f391b.add(this);
         }
-        a$b a_b = null;
+        b bVar = null;
         for (int size2 = list2.size() - 1; size2 >= 0; size2--) {
             c cVar2 = list2.get(size2);
             if (cVar2 instanceof s) {
                 s sVar3 = (s) cVar2;
                 if (sVar3.c == 2) {
-                    if (a_b != null) {
-                        this.g.add(a_b);
+                    if (bVar != null) {
+                        this.g.add(bVar);
                     }
-                    a_b = new a$b(sVar3, null);
+                    bVar = new b(sVar3, null);
                     sVar3.f391b.add(this);
                 } else if (!(cVar2 instanceof m)) {
-                    if (a_b == null) {
-                        a_b = new a$b(sVar, null);
+                    if (bVar == null) {
+                        bVar = new b(sVar, null);
                     }
-                    a_b.a.add((m) cVar2);
+                    bVar.a.add((m) cVar2);
                 }
             } else if (!(cVar2 instanceof m)) {
-                if (a_b == null) {
-                    a_b = new a$b(sVar, null);
+                if (bVar == null) {
+                    bVar = new b(sVar, null);
                 }
-                a_b.a.add((m) cVar2);
+                bVar.a.add((m) cVar2);
             }
         }
-        if (a_b != null) {
-            this.g.add(a_b);
+        if (bVar != null) {
+            this.g.add(bVar);
         }
     }
 
@@ -143,9 +140,9 @@ public abstract class a implements b.c.a.w.c.a$b, k, e {
     public void d(RectF rectF, Matrix matrix, boolean z2) {
         this.f376b.reset();
         for (int i = 0; i < this.g.size(); i++) {
-            a$b a_b = this.g.get(i);
-            for (int i2 = 0; i2 < a_b.a.size(); i2++) {
-                this.f376b.addPath(a_b.a.get(i2).getPath(), matrix);
+            b bVar = this.g.get(i);
+            for (int i2 = 0; i2 < bVar.a.size(); i2++) {
+                this.f376b.addPath(bVar.a.get(i2).getPath(), matrix);
             }
         }
         this.f376b.computeBounds(this.d, false);
@@ -213,12 +210,12 @@ public abstract class a implements b.c.a.w.c.a$b, k, e {
         }
         int i3 = 0;
         while (i3 < this.g.size()) {
-            a$b a_b = this.g.get(i3);
-            s sVar = a_b.f377b;
+            b bVar = this.g.get(i3);
+            s sVar = bVar.f377b;
             if (sVar == null) {
                 this.f376b.reset();
-                for (int size = a_b.a.size() - 1; size >= 0; size--) {
-                    this.f376b.addPath(a_b.a.get(size).getPath(), matrix);
+                for (int size = bVar.a.size() - 1; size >= 0; size--) {
+                    this.f376b.addPath(bVar.a.get(size).getPath(), matrix);
                 }
                 b.c.a.c.a("StrokeContent#buildPath");
                 canvas.drawPath(this.f376b, this.i);
@@ -227,13 +224,13 @@ public abstract class a implements b.c.a.w.c.a$b, k, e {
                 b.c.a.c.a("StrokeContent#applyTrimPath");
             } else {
                 this.f376b.reset();
-                int size2 = a_b.a.size();
+                int size2 = bVar.a.size();
                 while (true) {
                     size2--;
                     if (size2 < 0) {
                         break;
                     } else {
-                        this.f376b.addPath(a_b.a.get(size2).getPath(), matrix);
+                        this.f376b.addPath(bVar.a.get(size2).getPath(), matrix);
                     }
                 }
                 this.a.setPath(this.f376b, z2);
@@ -241,13 +238,13 @@ public abstract class a implements b.c.a.w.c.a$b, k, e {
                 while (this.a.nextContour()) {
                     length += this.a.getLength();
                 }
-                float fFloatValue = (a_b.f377b.f.e().floatValue() * length) / 360.0f;
-                float fFloatValue2 = ((a_b.f377b.d.e().floatValue() * length) / f2) + fFloatValue;
-                float fFloatValue3 = ((a_b.f377b.e.e().floatValue() * length) / f2) + fFloatValue;
-                int size3 = a_b.a.size() - 1;
+                float fFloatValue = (bVar.f377b.f.e().floatValue() * length) / 360.0f;
+                float fFloatValue2 = ((bVar.f377b.d.e().floatValue() * length) / f2) + fFloatValue;
+                float fFloatValue3 = ((bVar.f377b.e.e().floatValue() * length) / f2) + fFloatValue;
+                int size3 = bVar.a.size() - 1;
                 float f4 = 0.0f;
                 while (size3 >= 0) {
-                    this.c.set(a_b.a.get(size3).getPath());
+                    this.c.set(bVar.a.get(size3).getPath());
                     this.c.transform(matrix);
                     this.a.setPath(this.c, z2);
                     float length2 = this.a.getLength();
@@ -314,6 +311,19 @@ public abstract class a implements b.c.a.w.c.a$b, k, e {
             this.n = pVar;
             pVar.a.add(this);
             this.f.e(this.n);
+        }
+    }
+
+    /* JADX INFO: compiled from: BaseStrokeContent.java */
+    public final class b {
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        @Nullable
+        public final s f377b;
+        public final List<m> a = new ArrayList();
+
+        public b(s sVar, C0062a c0062a) {
+            this.f377b = sVar;
         }
     }
 }

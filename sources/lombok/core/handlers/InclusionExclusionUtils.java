@@ -4,16 +4,12 @@ import com.discord.models.domain.ModelAuditLogEntry;
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import lombok.EqualsAndHashCode;
-import lombok.EqualsAndHashCode$Exclude;
-import lombok.EqualsAndHashCode$Include;
 import lombok.ToString;
-import lombok.ToString$Exclude;
-import lombok.ToString$Include;
 import lombok.core.AST;
-import lombok.core.AST$Kind;
 import lombok.core.AnnotationValues;
 import lombok.core.LombokNode;
 
@@ -25,7 +21,7 @@ public class InclusionExclusionUtils {
             if (list.isEmpty()) {
                 break;
             }
-            if (child.getKind() == AST$Kind.FIELD && (!excludeStandard || (!child.isStatic() && !child.getName().startsWith("$")))) {
+            if (child.getKind() == AST.Kind.FIELD && (!excludeStandard || (!child.isStatic() && !child.getName().startsWith("$")))) {
                 if (!excludeTransient || !child.isTransient()) {
                     int idx = list.indexOf(child.getName());
                     if (idx > -1) {
@@ -64,6 +60,41 @@ public class InclusionExclusionUtils {
         }
     }
 
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/handlers/InclusionExclusionUtils$Included.SCL.lombok */
+    public class Included<L, I extends Annotation> {
+        private final L node;
+        private final I inc;
+        private final boolean defaultInclude;
+        private final boolean explicitRank;
+
+        static /* synthetic */ Object access$0(Included included) {
+            return included.node;
+        }
+
+        public Included(L node, I inc, boolean defaultInclude, boolean explicitRank) {
+            this.node = node;
+            this.inc = inc;
+            this.defaultInclude = defaultInclude;
+            this.explicitRank = explicitRank;
+        }
+
+        public L getNode() {
+            return this.node;
+        }
+
+        public I getInc() {
+            return this.inc;
+        }
+
+        public boolean isDefaultInclude() {
+            return this.defaultInclude;
+        }
+
+        public boolean hasExplicitRank() {
+            return this.explicitRank;
+        }
+    }
+
     private static String innerAnnName(Class<? extends Annotation> type) {
         String name = type.getSimpleName();
         Class<?> enclosingClass = type.getEnclosingClass();
@@ -78,14 +109,14 @@ public class InclusionExclusionUtils {
         }
     }
 
-    private static <A extends AST<A, L, N>, L extends LombokNode<A, L, N>, N, I extends Annotation> List<InclusionExclusionUtils$Included<L, I>> handleIncludeExcludeMarking(Class<I> inclType, String replaceName, Class<? extends Annotation> exclType, LombokNode<A, L, N> typeNode, AnnotationValues<?> annotation, LombokNode<A, L, N> annotationNode, boolean includeTransient) {
+    private static <A extends AST<A, L, N>, L extends LombokNode<A, L, N>, N, I extends Annotation> List<Included<L, I>> handleIncludeExcludeMarking(Class<I> inclType, String replaceName, Class<? extends Annotation> exclType, LombokNode<A, L, N> typeNode, AnnotationValues<?> annotation, LombokNode<A, L, N> annotationNode, boolean includeTransient) {
         List<String> oldExcludes = (annotation == null || !annotation.isExplicit("exclude")) ? null : annotation.getAsStringList("exclude");
         List<String> oldIncludes = (annotation == null || !annotation.isExplicit("of")) ? null : annotation.getAsStringList("of");
         boolean onlyExplicitlyIncluded = annotation != null ? annotation.getAsBoolean("onlyExplicitlyIncluded") : false;
         boolean memberAnnotationMode = onlyExplicitlyIncluded;
-        List<InclusionExclusionUtils$Included<L, I>> members = new ArrayList<>();
+        List<Included<L, I>> members = new ArrayList<>();
         List<String> namesToAutoExclude = new ArrayList<>();
-        if (typeNode == null || typeNode.getKind() != AST$Kind.TYPE) {
+        if (typeNode == null || typeNode.getKind() != AST.Kind.TYPE) {
             return null;
         }
         checkForBogusFieldNames(typeNode, annotation, oldExcludes, oldIncludes);
@@ -96,8 +127,8 @@ public class InclusionExclusionUtils {
             }
         }
         for (L child : typeNode.down()) {
-            boolean markExclude = child.getKind() == AST$Kind.FIELD && child.hasAnnotation(exclType);
-            AnnotationValues<I> markInclude = (child.getKind() == AST$Kind.FIELD || child.getKind() == AST$Kind.METHOD) ? child.findAnnotation(inclType) : null;
+            boolean markExclude = child.getKind() == AST.Kind.FIELD && child.hasAnnotation(exclType);
+            AnnotationValues<I> markInclude = (child.getKind() == AST.Kind.FIELD || child.getKind() == AST.Kind.METHOD) ? child.findAnnotation(inclType) : null;
             if (markExclude || markInclude != null) {
                 memberAnnotationMode = true;
             }
@@ -117,7 +148,7 @@ public class InclusionExclusionUtils {
             } else if (oldExcludes == null || !oldExcludes.contains(name)) {
                 if (markInclude != null) {
                     Annotation annotationValues = markInclude.getInstance();
-                    if (child.getKind() == AST$Kind.METHOD) {
+                    if (child.getKind() == AST.Kind.METHOD) {
                         if (child.countMethodParameters() > 0) {
                             child.addError("Methods included with @" + innerAnnName(inclType) + " must have no arguments; it will not be included");
                         } else {
@@ -128,23 +159,23 @@ public class InclusionExclusionUtils {
                             namesToAutoExclude.add(n);
                         }
                     }
-                    members.add(new InclusionExclusionUtils$Included<>(child, annotationValues, false, markInclude.isExplicit("rank")));
+                    members.add(new Included<>(child, annotationValues, false, markInclude.isExplicit("rank")));
                 } else if (!onlyExplicitlyIncluded) {
                     if (oldIncludes != null) {
-                        if (child.getKind() == AST$Kind.FIELD && oldIncludes.contains(name)) {
-                            members.add(new InclusionExclusionUtils$Included<>(child, null, false, false));
+                        if (child.getKind() == AST.Kind.FIELD && oldIncludes.contains(name)) {
+                            members.add(new Included<>(child, null, false, false));
                         }
-                    } else if (child.getKind() == AST$Kind.FIELD && !child.isStatic() && (!child.isTransient() || includeTransient)) {
+                    } else if (child.getKind() == AST.Kind.FIELD && !child.isStatic() && (!child.isTransient() || includeTransient)) {
                         if (!name.startsWith("$") && !child.isEnumMember()) {
-                            members.add(new InclusionExclusionUtils$Included<>(child, null, true, false));
+                            members.add(new Included<>(child, null, true, false));
                         }
                     }
                 }
             }
         }
-        Iterator<InclusionExclusionUtils$Included<L, I>> it = members.iterator();
+        Iterator<Included<L, I>> it = members.iterator();
         while (it.hasNext()) {
-            InclusionExclusionUtils$Included<L, I> m = it.next();
+            Included<L, I> m = it.next();
             if (m.isDefaultInclude() && namesToAutoExclude.contains(m.getNode().getName())) {
                 it.remove();
             }
@@ -162,16 +193,50 @@ public class InclusionExclusionUtils {
         return members;
     }
 
-    public static <A extends AST<A, L, N>, L extends LombokNode<A, L, N>, N> List<InclusionExclusionUtils$Included<L, ToString$Include>> handleToStringMarking(LombokNode<A, L, N> typeNode, AnnotationValues<ToString> annotation, LombokNode<A, L, N> annotationNode) {
-        List<InclusionExclusionUtils$Included<L, ToString$Include>> members = handleIncludeExcludeMarking(ToString$Include.class, ModelAuditLogEntry.CHANGE_KEY_NAME, ToString$Exclude.class, typeNode, annotation, annotationNode, true);
-        Collections.sort(members, new InclusionExclusionUtils$1());
+    public static <A extends AST<A, L, N>, L extends LombokNode<A, L, N>, N> List<Included<L, ToString.Include>> handleToStringMarking(LombokNode<A, L, N> typeNode, AnnotationValues<ToString> annotation, LombokNode<A, L, N> annotationNode) {
+        List<Included<L, ToString.Include>> members = handleIncludeExcludeMarking(ToString.Include.class, ModelAuditLogEntry.CHANGE_KEY_NAME, ToString.Exclude.class, typeNode, annotation, annotationNode, true);
+        Collections.sort(members, new AnonymousClass1());
         return members;
     }
 
-    public static <A extends AST<A, L, N>, L extends LombokNode<A, L, N>, N> List<InclusionExclusionUtils$Included<L, EqualsAndHashCode$Include>> handleEqualsAndHashCodeMarking(LombokNode<A, L, N> typeNode, AnnotationValues<EqualsAndHashCode> annotation, LombokNode<A, L, N> annotationNode) {
-        List<InclusionExclusionUtils$Included<L, EqualsAndHashCode$Include>> members = handleIncludeExcludeMarking(EqualsAndHashCode$Include.class, "replaces", EqualsAndHashCode$Exclude.class, typeNode, annotation, annotationNode, false);
-        Collections.sort(members, new InclusionExclusionUtils$2());
+    /* JADX INFO: Add missing generic type declarations: [L] */
+    /* JADX INFO: renamed from: lombok.core.handlers.InclusionExclusionUtils$1, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/handlers/InclusionExclusionUtils$1.SCL.lombok */
+    class AnonymousClass1<L> implements Comparator<Included<L, ToString.Include>> {
+        @Override // java.util.Comparator
+        public /* bridge */ /* synthetic */ int compare(Object obj, Object obj2) {
+            return compare((Included) obj, (Included) obj2);
+        }
+
+        AnonymousClass1() {
+        }
+
+        public int compare(Included<L, ToString.Include> included, Included<L, ToString.Include> included2) {
+            return InclusionExclusionUtils.access$0(included.getInc() == null ? 0 : included.getInc().rank(), included2.getInc() == null ? 0 : included2.getInc().rank(), (LombokNode) included.getNode(), (LombokNode) included2.getNode());
+        }
+    }
+
+    public static <A extends AST<A, L, N>, L extends LombokNode<A, L, N>, N> List<Included<L, EqualsAndHashCode.Include>> handleEqualsAndHashCodeMarking(LombokNode<A, L, N> typeNode, AnnotationValues<EqualsAndHashCode> annotation, LombokNode<A, L, N> annotationNode) {
+        List<Included<L, EqualsAndHashCode.Include>> members = handleIncludeExcludeMarking(EqualsAndHashCode.Include.class, "replaces", EqualsAndHashCode.Exclude.class, typeNode, annotation, annotationNode, false);
+        Collections.sort(members, new AnonymousClass2());
         return members;
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [L] */
+    /* JADX INFO: renamed from: lombok.core.handlers.InclusionExclusionUtils$2, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/handlers/InclusionExclusionUtils$2.SCL.lombok */
+    class AnonymousClass2<L> implements Comparator<Included<L, EqualsAndHashCode.Include>> {
+        @Override // java.util.Comparator
+        public /* bridge */ /* synthetic */ int compare(Object obj, Object obj2) {
+            return compare((Included) obj, (Included) obj2);
+        }
+
+        AnonymousClass2() {
+        }
+
+        public int compare(Included<L, EqualsAndHashCode.Include> included, Included<L, EqualsAndHashCode.Include> included2) {
+            return InclusionExclusionUtils.access$0(included.hasExplicitRank() ? included.getInc().rank() : HandlerUtil.defaultEqualsAndHashcodeIncludeRank(((LombokNode) Included.access$0(included)).fieldOrMethodBaseType()), included2.hasExplicitRank() ? included2.getInc().rank() : HandlerUtil.defaultEqualsAndHashcodeIncludeRank(((LombokNode) Included.access$0(included2)).fieldOrMethodBaseType()), (LombokNode) included.getNode(), (LombokNode) included2.getNode());
+        }
     }
 
     static /* synthetic */ int access$0(int i, int i2, LombokNode lombokNode, LombokNode lombokNode2) {

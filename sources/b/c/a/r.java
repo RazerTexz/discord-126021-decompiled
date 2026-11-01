@@ -4,12 +4,13 @@ import android.os.Handler;
 import android.os.Looper;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
 
 /* JADX INFO: compiled from: LottieTask.java */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,9 +25,28 @@ public class r<T> {
     @Nullable
     public volatile p<T> e = null;
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    /* JADX INFO: compiled from: LottieTask.java */
+    public class a extends FutureTask<p<T>> {
+        public a(Callable<p<T>> callable) {
+            super(callable);
+        }
+
+        @Override // java.util.concurrent.FutureTask
+        public void done() {
+            if (isCancelled()) {
+                return;
+            }
+            try {
+                r.this.c(get());
+            } catch (InterruptedException | ExecutionException e) {
+                r.this.c(new p<>(e));
+            }
+        }
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public r(Callable<p<T>> callable) {
-        a.execute(new r$a(this, callable));
+        a.execute(new a(callable));
     }
 
     public synchronized r<T> a(l<Throwable> lVar) {

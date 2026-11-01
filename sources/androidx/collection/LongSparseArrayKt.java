@@ -2,6 +2,7 @@ package androidx.collection;
 
 import androidx.exifinterface.media.ExifInterface;
 import d0.t.d0;
+import d0.z.d.g0.a;
 import d0.z.d.m;
 import java.util.Iterator;
 import kotlin.Unit;
@@ -11,6 +12,77 @@ import kotlin.jvm.functions.Function2;
 /* JADX INFO: compiled from: LongSparseArray.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class LongSparseArrayKt {
+
+    /* JADX INFO: renamed from: androidx.collection.LongSparseArrayKt$keyIterator$1, reason: invalid class name */
+    /* JADX INFO: compiled from: LongSparseArray.kt */
+    public final class AnonymousClass1 extends d0 {
+        public final /* synthetic */ LongSparseArray $this_keyIterator;
+        private int index;
+
+        public AnonymousClass1(LongSparseArray<T> longSparseArray) {
+            this.$this_keyIterator = longSparseArray;
+        }
+
+        public final int getIndex() {
+            return this.index;
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.index < this.$this_keyIterator.size();
+        }
+
+        @Override // d0.t.d0
+        public long nextLong() {
+            LongSparseArray longSparseArray = this.$this_keyIterator;
+            int i = this.index;
+            this.index = i + 1;
+            return longSparseArray.keyAt(i);
+        }
+
+        public final void setIndex(int i) {
+            this.index = i;
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: renamed from: androidx.collection.LongSparseArrayKt$valueIterator$1, reason: invalid class name */
+    /* JADX INFO: compiled from: LongSparseArray.kt */
+    public final class AnonymousClass1<T> implements Iterator<T>, a {
+        public final /* synthetic */ LongSparseArray $this_valueIterator;
+        private int index;
+
+        public AnonymousClass1(LongSparseArray<T> longSparseArray) {
+            this.$this_valueIterator = longSparseArray;
+        }
+
+        public final int getIndex() {
+            return this.index;
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.index < this.$this_valueIterator.size();
+        }
+
+        @Override // java.util.Iterator
+        public T next() {
+            LongSparseArray longSparseArray = this.$this_valueIterator;
+            int i = this.index;
+            this.index = i + 1;
+            return (T) longSparseArray.valueAt(i);
+        }
+
+        @Override // java.util.Iterator
+        public void remove() {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        public final void setIndex(int i) {
+            this.index = i;
+        }
+    }
+
     public static final <T> boolean contains(LongSparseArray<T> longSparseArray, long j) {
         m.checkParameterIsNotNull(longSparseArray, "receiver$0");
         return longSparseArray.containsKey(j);
@@ -49,7 +121,7 @@ public final class LongSparseArrayKt {
 
     public static final <T> d0 keyIterator(LongSparseArray<T> longSparseArray) {
         m.checkParameterIsNotNull(longSparseArray, "receiver$0");
-        return new LongSparseArrayKt$keyIterator$1(longSparseArray);
+        return new AnonymousClass1(longSparseArray);
     }
 
     public static final <T> LongSparseArray<T> plus(LongSparseArray<T> longSparseArray, LongSparseArray<T> longSparseArray2) {
@@ -73,6 +145,6 @@ public final class LongSparseArrayKt {
 
     public static final <T> Iterator<T> valueIterator(LongSparseArray<T> longSparseArray) {
         m.checkParameterIsNotNull(longSparseArray, "receiver$0");
-        return new LongSparseArrayKt$valueIterator$1(longSparseArray);
+        return new AnonymousClass1(longSparseArray);
     }
 }

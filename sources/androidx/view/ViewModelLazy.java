@@ -11,12 +11,12 @@ import kotlin.jvm.functions.Function0;
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewModelLazy<VM extends ViewModel> implements Lazy<VM> {
     private VM cached;
-    private final Function0<ViewModelProvider$Factory> factoryProducer;
+    private final Function0<ViewModelProvider.Factory> factoryProducer;
     private final Function0<ViewModelStore> storeProducer;
     private final c<VM> viewModelClass;
 
     /* JADX WARN: Multi-variable type inference failed */
-    public ViewModelLazy(c<VM> cVar, Function0<? extends ViewModelStore> function0, Function0<? extends ViewModelProvider$Factory> function1) {
+    public ViewModelLazy(c<VM> cVar, Function0<? extends ViewModelStore> function0, Function0<? extends ViewModelProvider.Factory> function1) {
         m.checkNotNullParameter(cVar, "viewModelClass");
         m.checkNotNullParameter(function0, "storeProducer");
         m.checkNotNullParameter(function1, "factoryProducer");

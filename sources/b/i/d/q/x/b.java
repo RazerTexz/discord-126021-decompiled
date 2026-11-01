@@ -21,8 +21,26 @@ public final class b extends JsonWriter {
     /* JADX INFO: renamed from: y, reason: collision with root package name */
     public JsonElement f1815y;
     public final List<JsonElement> w;
-    public static final Writer u = new b$a();
+    public static final Writer u = new a();
     public static final k v = new k("closed");
+
+    /* JADX INFO: compiled from: JsonTreeWriter.java */
+    public class a extends Writer {
+        @Override // java.io.Writer, java.io.Closeable, java.lang.AutoCloseable
+        public void close() throws IOException {
+            throw new AssertionError();
+        }
+
+        @Override // java.io.Writer, java.io.Flushable
+        public void flush() throws IOException {
+            throw new AssertionError();
+        }
+
+        @Override // java.io.Writer
+        public void write(char[] cArr, int i, int i2) {
+            throw new AssertionError();
+        }
+    }
 
     public b() {
         super(u);

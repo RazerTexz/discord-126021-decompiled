@@ -1,13 +1,20 @@
 package com.discord.utilities.networking;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
-import android.os.Build$VERSION;
+import android.net.NetworkRequest;
+import android.os.Build;
+import androidx.core.app.NotificationCompat;
 import com.discord.utilities.io.NetworkUtils;
 import com.discord.utilities.logging.Logger;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 import rx.Observable;
 import rx.subjects.BehaviorSubject;
 
@@ -15,7 +22,89 @@ import rx.subjects.BehaviorSubject;
 /* JADX INFO: loaded from: classes2.dex */
 public final class NetworkMonitor {
     private Logger logger;
-    private final BehaviorSubject<NetworkMonitor$State> networkStateSubject;
+    private final BehaviorSubject<State> networkStateSubject;
+
+    /* JADX INFO: renamed from: com.discord.utilities.networking.NetworkMonitor$observeIsConnected$1, reason: invalid class name */
+    /* JADX INFO: compiled from: NetworkMonitor.kt */
+    public final class AnonymousClass1<T, R> implements b<State, Boolean> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Boolean call(State state) {
+            return call2(state);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Boolean call2(State state) {
+            return Boolean.valueOf(state == State.ONLINE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.networking.NetworkMonitor$registerBroadcastAirplaneMode$1, reason: invalid class name */
+    /* JADX INFO: compiled from: NetworkMonitor.kt */
+    public final class AnonymousClass1 extends BroadcastReceiver {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.content.BroadcastReceiver
+        public void onReceive(Context context, Intent intent) {
+            m.checkNotNullParameter(context, "context");
+            m.checkNotNullParameter(intent, "intent");
+            Logger.i$default(NetworkMonitor.access$getLogger$p(NetworkMonitor.this), "[NetworkMonitor]", "Got airplane mode broadcast intent.", null, 4, null);
+            NetworkMonitor.updateNetworkState$default(NetworkMonitor.this, context, null, 2, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.networking.NetworkMonitor$registerBroadcastConnectivityNetworkMonitor$1, reason: invalid class name */
+    /* JADX INFO: compiled from: NetworkMonitor.kt */
+    public final class AnonymousClass1 extends BroadcastReceiver {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.content.BroadcastReceiver
+        public void onReceive(Context context, Intent intent) {
+            m.checkNotNullParameter(context, "context");
+            m.checkNotNullParameter(intent, "intent");
+            Logger.i$default(NetworkMonitor.access$getLogger$p(NetworkMonitor.this), "[NetworkMonitor]", "Got connectivity action broadcast intent.", null, 4, null);
+            NetworkMonitor.access$updateNetworkState(NetworkMonitor.this, context, intent);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.networking.NetworkMonitor$registerConnectivityNetworkMonitor$1, reason: invalid class name */
+    /* JADX INFO: compiled from: NetworkMonitor.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ ConnectivityManager $connectivityManager;
+        public final /* synthetic */ NetworkMonitor$registerConnectivityNetworkMonitor$networkCallback$1 $networkCallback;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(ConnectivityManager connectivityManager, NetworkMonitor$registerConnectivityNetworkMonitor$networkCallback$1 networkMonitor$registerConnectivityNetworkMonitor$networkCallback$1) {
+            super(0);
+            this.$connectivityManager = connectivityManager;
+            this.$networkCallback = networkMonitor$registerConnectivityNetworkMonitor$networkCallback$1;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            try {
+                this.$connectivityManager.registerNetworkCallback(new NetworkRequest.Builder().build(), this.$networkCallback);
+            } catch (Exception e) {
+                NetworkMonitor.access$getLogger$p(NetworkMonitor.this).i("[NetworkMonitor]", "Unable to register network callback.", e);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: NetworkMonitor.kt */
+    public enum State {
+        ONLINE,
+        OFFLINE,
+        OFFLINE_AIRPLANE_MODE
+    }
 
     public NetworkMonitor(Context context, Logger logger) {
         m.checkNotNullParameter(context, "context");
@@ -37,43 +126,43 @@ public final class NetworkMonitor {
         networkMonitor.updateNetworkState(context, intent);
     }
 
-    public static /* synthetic */ NetworkMonitor$State getState$default(NetworkMonitor networkMonitor, Context context, Intent intent, int i, Object obj) {
+    public static /* synthetic */ State getState$default(NetworkMonitor networkMonitor, Context context, Intent intent, int i, Object obj) {
         if ((i & 2) != 0) {
             intent = null;
         }
         return networkMonitor.getState(context, intent);
     }
 
-    private final NetworkMonitor$State getState(Context context, Intent intent) {
-        NetworkMonitor$State networkMonitor$State;
+    private final State getState(Context context, Intent intent) {
+        State state;
         NetworkUtils networkUtils = NetworkUtils.INSTANCE;
         if (networkUtils.isDeviceConnected(context, intent, this.logger)) {
-            networkMonitor$State = NetworkMonitor$State.ONLINE;
+            state = State.ONLINE;
         } else {
-            networkMonitor$State = networkUtils.isAirplaneModeOn(context) ? NetworkMonitor$State.OFFLINE_AIRPLANE_MODE : NetworkMonitor$State.OFFLINE;
+            state = networkUtils.isAirplaneModeOn(context) ? State.OFFLINE_AIRPLANE_MODE : State.OFFLINE;
         }
-        Logger.i$default(this.logger, "[NetworkMonitor]", "Updating network state to " + networkMonitor$State + ", API: " + Build$VERSION.SDK_INT, null, 4, null);
-        return networkMonitor$State;
+        Logger.i$default(this.logger, "[NetworkMonitor]", "Updating network state to " + state + ", API: " + Build.VERSION.SDK_INT, null, 4, null);
+        return state;
     }
 
     public final Observable<Boolean> observeIsConnected() {
-        Observable<Boolean> observableR = observeState().G(NetworkMonitor$observeIsConnected$1.INSTANCE).r();
+        Observable<Boolean> observableR = observeState().G(AnonymousClass1.INSTANCE).r();
         m.checkNotNullExpressionValue(observableR, "observeState().map { sta… }.distinctUntilChanged()");
         return observableR;
     }
 
-    public final Observable<NetworkMonitor$State> observeState() {
-        Observable<NetworkMonitor$State> observableR = this.networkStateSubject.K().r();
+    public final Observable<State> observeState() {
+        Observable<State> observableR = this.networkStateSubject.K().r();
         m.checkNotNullExpressionValue(observableR, "networkStateSubject.onBa…().distinctUntilChanged()");
         return observableR;
     }
 
     private final void registerBroadcastAirplaneMode(Context context) {
-        context.registerReceiver(new NetworkMonitor$registerBroadcastAirplaneMode$1(this), new IntentFilter("android.intent.action.AIRPLANE_MODE"));
+        context.registerReceiver(new AnonymousClass1(), new IntentFilter("android.intent.action.AIRPLANE_MODE"));
     }
 
     private final void registerBroadcastConnectivityNetworkMonitor(Context context) {
-        context.registerReceiver(new NetworkMonitor$registerBroadcastConnectivityNetworkMonitor$1(this), new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
+        context.registerReceiver(new AnonymousClass1(), new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
     }
 
     private final void registerConnectivityNetworkMonitor(Context context) {
@@ -84,15 +173,15 @@ public final class NetworkMonitor {
         ConnectivityManager connectivityManager = (ConnectivityManager) systemService;
         if (connectivityManager != null) {
             NetworkMonitor$registerConnectivityNetworkMonitor$networkCallback$1 networkMonitor$registerConnectivityNetworkMonitor$networkCallback$1 = new NetworkMonitor$registerConnectivityNetworkMonitor$networkCallback$1(this, context);
-            NetworkMonitor$registerConnectivityNetworkMonitor$1 networkMonitor$registerConnectivityNetworkMonitor$1 = new NetworkMonitor$registerConnectivityNetworkMonitor$1(this, connectivityManager, networkMonitor$registerConnectivityNetworkMonitor$networkCallback$1);
-            if (Build$VERSION.SDK_INT >= 24) {
+            AnonymousClass1 anonymousClass1 = new AnonymousClass1(connectivityManager, networkMonitor$registerConnectivityNetworkMonitor$networkCallback$1);
+            if (Build.VERSION.SDK_INT >= 24) {
                 try {
                     connectivityManager.registerDefaultNetworkCallback(networkMonitor$registerConnectivityNetworkMonitor$networkCallback$1);
                 } catch (Exception unused) {
-                    networkMonitor$registerConnectivityNetworkMonitor$1.invoke2();
+                    anonymousClass1.invoke2();
                 }
             } else {
-                networkMonitor$registerConnectivityNetworkMonitor$1.invoke2();
+                anonymousClass1.invoke2();
             }
             registerBroadcastConnectivityNetworkMonitor(context);
             registerBroadcastAirplaneMode(context);

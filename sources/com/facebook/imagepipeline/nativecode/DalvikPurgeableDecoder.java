@@ -1,12 +1,10 @@
 package com.facebook.imagepipeline.nativecode;
 
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
-import android.graphics.BitmapFactory$Options;
+import android.graphics.BitmapFactory;
 import android.graphics.ColorSpace;
-import android.graphics.ColorSpace$Named;
 import android.graphics.Rect;
-import android.os.Build$VERSION;
+import android.os.Build;
 import androidx.annotation.VisibleForTesting;
 import androidx.exifinterface.media.ExifInterface;
 import b.f.d.d.c;
@@ -30,6 +28,12 @@ public abstract class DalvikPurgeableDecoder implements d {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final b f2898b;
 
+    @b.f.m.d
+    public class OreoUtils {
+        private OreoUtils() {
+        }
+    }
+
     static {
         List<String> list = a.a;
         b.f.m.n.a.c("imagepipeline");
@@ -48,52 +52,52 @@ public abstract class DalvikPurgeableDecoder implements d {
     }
 
     @Override // b.f.j.n.d
-    public CloseableReference<Bitmap> a(e eVar, Bitmap$Config bitmap$Config, Rect rect, ColorSpace colorSpace) {
+    public CloseableReference<Bitmap> a(e eVar, Bitmap.Config config, Rect rect, ColorSpace colorSpace) {
         int i = eVar.q;
-        BitmapFactory$Options bitmapFactory$Options = new BitmapFactory$Options();
-        bitmapFactory$Options.inDither = true;
-        bitmapFactory$Options.inPreferredConfig = bitmap$Config;
-        bitmapFactory$Options.inPurgeable = true;
-        bitmapFactory$Options.inInputShareable = true;
-        bitmapFactory$Options.inSampleSize = i;
-        bitmapFactory$Options.inMutable = true;
-        if (Build$VERSION.SDK_INT >= 26) {
-            bitmapFactory$Options.inPreferredColorSpace = ColorSpace.get(ColorSpace$Named.SRGB);
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inDither = true;
+        options.inPreferredConfig = config;
+        options.inPurgeable = true;
+        options.inInputShareable = true;
+        options.inSampleSize = i;
+        options.inMutable = true;
+        if (Build.VERSION.SDK_INT >= 26) {
+            options.inPreferredColorSpace = ColorSpace.get(ColorSpace.Named.SRGB);
         }
         CloseableReference<PooledByteBuffer> closeableReferenceC = eVar.c();
         Objects.requireNonNull(closeableReferenceC);
         try {
-            return f(c(closeableReferenceC, bitmapFactory$Options));
+            return f(c(closeableReferenceC, options));
         } finally {
             closeableReferenceC.close();
         }
     }
 
     @Override // b.f.j.n.d
-    public CloseableReference<Bitmap> b(e eVar, Bitmap$Config bitmap$Config, Rect rect, int i, ColorSpace colorSpace) {
+    public CloseableReference<Bitmap> b(e eVar, Bitmap.Config config, Rect rect, int i, ColorSpace colorSpace) {
         int i2 = eVar.q;
-        BitmapFactory$Options bitmapFactory$Options = new BitmapFactory$Options();
-        bitmapFactory$Options.inDither = true;
-        bitmapFactory$Options.inPreferredConfig = bitmap$Config;
-        bitmapFactory$Options.inPurgeable = true;
-        bitmapFactory$Options.inInputShareable = true;
-        bitmapFactory$Options.inSampleSize = i2;
-        bitmapFactory$Options.inMutable = true;
-        if (Build$VERSION.SDK_INT >= 26) {
-            bitmapFactory$Options.inPreferredColorSpace = ColorSpace.get(ColorSpace$Named.SRGB);
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inDither = true;
+        options.inPreferredConfig = config;
+        options.inPurgeable = true;
+        options.inInputShareable = true;
+        options.inSampleSize = i2;
+        options.inMutable = true;
+        if (Build.VERSION.SDK_INT >= 26) {
+            options.inPreferredColorSpace = ColorSpace.get(ColorSpace.Named.SRGB);
         }
         CloseableReference<PooledByteBuffer> closeableReferenceC = eVar.c();
         Objects.requireNonNull(closeableReferenceC);
         try {
-            return f(d(closeableReferenceC, i, bitmapFactory$Options));
+            return f(d(closeableReferenceC, i, options));
         } finally {
             closeableReferenceC.close();
         }
     }
 
-    public abstract Bitmap c(CloseableReference<PooledByteBuffer> closeableReference, BitmapFactory$Options bitmapFactory$Options);
+    public abstract Bitmap c(CloseableReference<PooledByteBuffer> closeableReference, BitmapFactory.Options options);
 
-    public abstract Bitmap d(CloseableReference<PooledByteBuffer> closeableReference, int i, BitmapFactory$Options bitmapFactory$Options);
+    public abstract Bitmap d(CloseableReference<PooledByteBuffer> closeableReference, int i, BitmapFactory.Options options);
 
     @VisibleForTesting
     public static boolean e(CloseableReference<PooledByteBuffer> closeableReference, int i) {

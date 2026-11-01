@@ -25,8 +25,14 @@ public final class z {
     public final z l;
     public final boolean m;
 
+    /* JADX INFO: compiled from: TypeMappingMode.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     static {
-        new z$a(null);
+        new a(null);
         z zVar = new z(false, false, false, false, false, null, false, null, null, false, AudioAttributesCompat.FLAG_ALL, null);
         a = zVar;
         z zVar2 = new z(false, false, false, false, false, null, false, null, null, true, FrameMetricsAggregator.EVERY_DURATION, null);

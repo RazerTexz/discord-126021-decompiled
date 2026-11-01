@@ -17,7 +17,7 @@ public abstract class WidgetExpressionPickerSheet extends AppBottomSheet {
         super(false, 1, null);
     }
 
-    @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface$OnCancelListener
+    @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnCancelListener
     public void onCancel(DialogInterface dialog) {
         m.checkNotNullParameter(dialog, "dialog");
         super.onCancel(dialog);

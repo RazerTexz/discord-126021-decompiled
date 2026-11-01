@@ -5,6 +5,14 @@ import java.util.concurrent.atomic.AtomicReference;
 /* JADX INFO: compiled from: ByteQuadsCanonicalizer.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class a {
+
+    /* JADX INFO: renamed from: b.g.a.b.r.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: ByteQuadsCanonicalizer.java */
+    public final class C0081a {
+        public C0081a(int i, int i2, int i3, int[] iArr, String[] strArr, int i4, int i5) {
+        }
+    }
+
     public a(int i, boolean z2, int i2, boolean z3) {
         int i3;
         int i4 = 16;
@@ -20,7 +28,7 @@ public final class a {
         }
         int i5 = i3 << 3;
         int i6 = i3 >> 2;
-        new AtomicReference(new a$a(i3, 0, i6 < 64 ? 4 : i6 <= 256 ? 5 : i6 <= 1024 ? 6 : 7, new int[i5], new String[i3 << 1], i5 - i3, i5));
+        new AtomicReference(new C0081a(i3, 0, i6 < 64 ? 4 : i6 <= 256 ? 5 : i6 <= 1024 ? 6 : 7, new int[i5], new String[i3 << 1], i5 - i3, i5));
     }
 
     public static a a() {

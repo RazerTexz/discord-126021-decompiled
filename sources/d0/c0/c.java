@@ -1,12 +1,81 @@
 package d0.c0;
 
 import d0.z.d.m;
+import java.io.Serializable;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: Random.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class c {
-    public static final c$a k = new c$a(null);
+    public static final a k = new a(null);
     public static final c j = d0.x.b.a.defaultPlatformRandom();
+
+    /* JADX INFO: compiled from: Random.kt */
+    public final class a extends c implements Serializable {
+
+        /* JADX INFO: renamed from: d0.c0.c$a$a, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: Random.kt */
+        public final class C0492a implements Serializable {
+            private static final long serialVersionUID = 0;
+            public static final C0492a j = new C0492a();
+
+            private final Object readResolve() {
+                return c.k;
+            }
+        }
+
+        public a() {
+        }
+
+        @Override // d0.c0.c
+        public int nextBits(int i) {
+            return c.access$getDefaultRandom$cp().nextBits(i);
+        }
+
+        @Override // d0.c0.c
+        public byte[] nextBytes(byte[] bArr) {
+            m.checkNotNullParameter(bArr, "array");
+            return c.access$getDefaultRandom$cp().nextBytes(bArr);
+        }
+
+        @Override // d0.c0.c
+        public int nextInt() {
+            return c.access$getDefaultRandom$cp().nextInt();
+        }
+
+        @Override // d0.c0.c
+        public long nextLong() {
+            return c.access$getDefaultRandom$cp().nextLong();
+        }
+
+        private final Object writeReplace() {
+            return C0492a.j;
+        }
+
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        @Override // d0.c0.c
+        public byte[] nextBytes(int i) {
+            return c.access$getDefaultRandom$cp().nextBytes(i);
+        }
+
+        @Override // d0.c0.c
+        public int nextInt(int i) {
+            return c.access$getDefaultRandom$cp().nextInt(i);
+        }
+
+        @Override // d0.c0.c
+        public byte[] nextBytes(byte[] bArr, int i, int i2) {
+            m.checkNotNullParameter(bArr, "array");
+            return c.access$getDefaultRandom$cp().nextBytes(bArr, i, i2);
+        }
+
+        @Override // d0.c0.c
+        public int nextInt(int i, int i2) {
+            return c.access$getDefaultRandom$cp().nextInt(i, i2);
+        }
+    }
 
     public static final /* synthetic */ c access$getDefaultRandom$cp() {
         return j;

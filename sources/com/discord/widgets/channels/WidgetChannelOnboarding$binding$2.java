@@ -2,7 +2,7 @@ package com.discord.widgets.channels;
 
 import android.view.View;
 import android.widget.LinearLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetChannelOnboardingBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -26,10 +26,10 @@ public final /* synthetic */ class WidgetChannelOnboarding$binding$2 extends k i
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetChannelOnboardingBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.channel_actions_view);
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.channel_actions_view);
         if (materialButton != null) {
             return new WidgetChannelOnboardingBinding((LinearLayout) view, materialButton);
         }
-        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R$id.channel_actions_view)));
+        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R.id.channel_actions_view)));
     }
 }

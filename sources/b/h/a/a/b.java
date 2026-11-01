@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.renderscript.RSRuntimeException;
 import androidx.renderscript.Allocation;
-import androidx.renderscript.Allocation$MipmapControl;
 import androidx.renderscript.Element;
 import androidx.renderscript.RenderScript;
 import androidx.renderscript.ScriptIntrinsicBlur;
@@ -47,7 +46,7 @@ public class b implements c {
             }
         }
         this.c.setRadius(f);
-        Allocation allocationCreateFromBitmap = Allocation.createFromBitmap(this.f740b, bitmap, Allocation$MipmapControl.MIPMAP_NONE, 1);
+        Allocation allocationCreateFromBitmap = Allocation.createFromBitmap(this.f740b, bitmap, Allocation.MipmapControl.MIPMAP_NONE, 1);
         this.d = allocationCreateFromBitmap;
         this.e = Allocation.createTyped(this.f740b, allocationCreateFromBitmap.getType());
         return true;

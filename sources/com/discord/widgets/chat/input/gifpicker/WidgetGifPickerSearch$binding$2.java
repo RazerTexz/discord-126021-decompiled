@@ -4,7 +4,7 @@ import android.view.View;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetGifPickerSearchBinding;
 import com.discord.views.SearchInputView;
@@ -30,23 +30,23 @@ public final /* synthetic */ class WidgetGifPickerSearch$binding$2 extends k imp
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGifPickerSearchBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.gif_search_app_bar;
-        AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R$id.gif_search_app_bar);
+        int i = R.id.gif_search_app_bar;
+        AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R.id.gif_search_app_bar);
         if (appBarLayout != null) {
-            i = R$id.gif_search_gif_recycler;
-            RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.gif_search_gif_recycler);
+            i = R.id.gif_search_gif_recycler;
+            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.gif_search_gif_recycler);
             if (recyclerView != null) {
-                i = R$id.gif_search_loading_view;
-                GifLoadingView gifLoadingView = (GifLoadingView) view.findViewById(R$id.gif_search_loading_view);
+                i = R.id.gif_search_loading_view;
+                GifLoadingView gifLoadingView = (GifLoadingView) view.findViewById(R.id.gif_search_loading_view);
                 if (gifLoadingView != null) {
-                    i = R$id.gif_search_toolbar;
-                    Toolbar toolbar = (Toolbar) view.findViewById(R$id.gif_search_toolbar);
+                    i = R.id.gif_search_toolbar;
+                    Toolbar toolbar = (Toolbar) view.findViewById(R.id.gif_search_toolbar);
                     if (toolbar != null) {
-                        i = R$id.gif_search_view_flipper;
-                        AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R$id.gif_search_view_flipper);
+                        i = R.id.gif_search_view_flipper;
+                        AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R.id.gif_search_view_flipper);
                         if (appViewFlipper != null) {
-                            i = R$id.search_input;
-                            SearchInputView searchInputView = (SearchInputView) view.findViewById(R$id.search_input);
+                            i = R.id.search_input;
+                            SearchInputView searchInputView = (SearchInputView) view.findViewById(R.id.search_input);
                             if (searchInputView != null) {
                                 return new WidgetGifPickerSearchBinding((CoordinatorLayout) view, appBarLayout, recyclerView, gifLoadingView, toolbar, appViewFlipper, searchInputView);
                             }

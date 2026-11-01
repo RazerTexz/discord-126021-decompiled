@@ -1,14 +1,14 @@
 package b.i.a.f.c.a.d;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.auth.api.credentials.CredentialPickerConfig;
 import com.google.android.gms.auth.api.credentials.CredentialRequest;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class g implements Parcelable$Creator<CredentialRequest> {
-    @Override // android.os.Parcelable$Creator
+public final class g implements Parcelable.Creator<CredentialRequest> {
+    @Override // android.os.Parcelable.Creator
     public final CredentialRequest createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         String[] strArrS = null;
@@ -61,7 +61,7 @@ public final class g implements Parcelable$Creator<CredentialRequest> {
         return new CredentialRequest(iG1, zE1, strArrS, credentialPickerConfig, credentialPickerConfig2, zE2, strR, strR2, zE3);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ CredentialRequest[] newArray(int i) {
         return new CredentialRequest[i];
     }

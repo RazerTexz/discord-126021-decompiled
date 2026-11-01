@@ -4,16 +4,16 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.LayoutInflater$Factory2;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.R$styleable;
+import androidx.fragment.R;
 import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
-public class FragmentLayoutInflaterFactory implements LayoutInflater$Factory2 {
+public class FragmentLayoutInflaterFactory implements LayoutInflater.Factory2 {
     private static final String TAG = "FragmentManager";
     private final FragmentManager mFragmentManager;
 
@@ -21,13 +21,13 @@ public class FragmentLayoutInflaterFactory implements LayoutInflater$Factory2 {
         this.mFragmentManager = fragmentManager;
     }
 
-    @Override // android.view.LayoutInflater$Factory
+    @Override // android.view.LayoutInflater.Factory
     @Nullable
     public View onCreateView(@NonNull String str, @NonNull Context context, @NonNull AttributeSet attributeSet) {
         return onCreateView(null, str, context, attributeSet);
     }
 
-    @Override // android.view.LayoutInflater$Factory2
+    @Override // android.view.LayoutInflater.Factory2
     @Nullable
     public View onCreateView(@Nullable View view, @NonNull String str, @NonNull Context context, @NonNull AttributeSet attributeSet) {
         FragmentStateManager fragmentStateManagerCreateOrGetFragmentStateManager;
@@ -38,12 +38,12 @@ public class FragmentLayoutInflaterFactory implements LayoutInflater$Factory2 {
             return null;
         }
         String attributeValue = attributeSet.getAttributeValue(null, "class");
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$styleable.Fragment);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.Fragment);
         if (attributeValue == null) {
-            attributeValue = typedArrayObtainStyledAttributes.getString(R$styleable.Fragment_android_name);
+            attributeValue = typedArrayObtainStyledAttributes.getString(R.styleable.Fragment_android_name);
         }
-        int resourceId = typedArrayObtainStyledAttributes.getResourceId(R$styleable.Fragment_android_id, -1);
-        String string = typedArrayObtainStyledAttributes.getString(R$styleable.Fragment_android_tag);
+        int resourceId = typedArrayObtainStyledAttributes.getResourceId(R.styleable.Fragment_android_id, -1);
+        String string = typedArrayObtainStyledAttributes.getString(R.styleable.Fragment_android_tag);
         typedArrayObtainStyledAttributes.recycle();
         if (attributeValue == null || !FragmentFactory.isFragmentClass(context.getClassLoader(), attributeValue)) {
             return null;

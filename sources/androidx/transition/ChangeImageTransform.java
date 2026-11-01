@@ -20,8 +20,66 @@ public class ChangeImageTransform extends Transition {
     private static final String PROPNAME_MATRIX = "android:changeImageTransform:matrix";
     private static final String PROPNAME_BOUNDS = "android:changeImageTransform:bounds";
     private static final String[] sTransitionProperties = {PROPNAME_MATRIX, PROPNAME_BOUNDS};
-    private static final TypeEvaluator<Matrix> NULL_MATRIX_EVALUATOR = new ChangeImageTransform$1();
-    private static final Property<ImageView, Matrix> ANIMATED_TRANSFORM_PROPERTY = new ChangeImageTransform$2(Matrix.class, "animatedTransform");
+    private static final TypeEvaluator<Matrix> NULL_MATRIX_EVALUATOR = new AnonymousClass1();
+    private static final Property<ImageView, Matrix> ANIMATED_TRANSFORM_PROPERTY = new AnonymousClass2(Matrix.class, "animatedTransform");
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeImageTransform$1, reason: invalid class name */
+    public final class AnonymousClass1 implements TypeEvaluator<Matrix> {
+        @Override // android.animation.TypeEvaluator
+        public /* bridge */ /* synthetic */ Matrix evaluate(float f, Matrix matrix, Matrix matrix2) {
+            return evaluate2(f, matrix, matrix2);
+        }
+
+        /* JADX INFO: renamed from: evaluate, reason: avoid collision after fix types in other method */
+        public Matrix evaluate2(float f, Matrix matrix, Matrix matrix2) {
+            return null;
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeImageTransform$2, reason: invalid class name */
+    public final class AnonymousClass2 extends Property<ImageView, Matrix> {
+        public AnonymousClass2(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public /* bridge */ /* synthetic */ Matrix get(ImageView imageView) {
+            return get2(imageView);
+        }
+
+        /* JADX INFO: renamed from: get, reason: avoid collision after fix types in other method */
+        public Matrix get2(ImageView imageView) {
+            return null;
+        }
+
+        @Override // android.util.Property
+        public /* bridge */ /* synthetic */ void set(ImageView imageView, Matrix matrix) {
+            set2(imageView, matrix);
+        }
+
+        /* JADX INFO: renamed from: set, reason: avoid collision after fix types in other method */
+        public void set2(ImageView imageView, Matrix matrix) {
+            ImageViewUtils.animateTransform(imageView, matrix);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeImageTransform$3, reason: invalid class name */
+    public /* synthetic */ class AnonymousClass3 {
+        public static final /* synthetic */ int[] $SwitchMap$android$widget$ImageView$ScaleType;
+
+        static {
+            int[] iArr = new int[ImageView.ScaleType.values().length];
+            $SwitchMap$android$widget$ImageView$ScaleType = iArr;
+            try {
+                iArr[ImageView.ScaleType.FIT_XY.ordinal()] = 1;
+            } catch (NoSuchFieldError unused) {
+            }
+            try {
+                $SwitchMap$android$widget$ImageView$ScaleType[ImageView.ScaleType.CENTER_CROP.ordinal()] = 2;
+            } catch (NoSuchFieldError unused2) {
+            }
+        }
+    }
 
     public ChangeImageTransform() {
     }
@@ -70,7 +128,7 @@ public class ChangeImageTransform extends Transition {
     private static Matrix copyImageMatrix(@NonNull ImageView imageView) {
         Drawable drawable = imageView.getDrawable();
         if (drawable.getIntrinsicWidth() > 0 && drawable.getIntrinsicHeight() > 0) {
-            int i = ChangeImageTransform$3.$SwitchMap$android$widget$ImageView$ScaleType[imageView.getScaleType().ordinal()];
+            int i = AnonymousClass3.$SwitchMap$android$widget$ImageView$ScaleType[imageView.getScaleType().ordinal()];
             if (i == 1) {
                 return fitXYMatrix(imageView);
             }
@@ -115,7 +173,7 @@ public class ChangeImageTransform extends Transition {
     }
 
     private ObjectAnimator createMatrixAnimator(ImageView imageView, Matrix matrix, Matrix matrix2) {
-        return ObjectAnimator.ofObject(imageView, (Property<ImageView, V>) ANIMATED_TRANSFORM_PROPERTY, (TypeEvaluator) new TransitionUtils$MatrixEvaluator(), (Object[]) new Matrix[]{matrix, matrix2});
+        return ObjectAnimator.ofObject(imageView, (Property<ImageView, V>) ANIMATED_TRANSFORM_PROPERTY, (TypeEvaluator) new TransitionUtils.MatrixEvaluator(), (Object[]) new Matrix[]{matrix, matrix2});
     }
 
     @NonNull

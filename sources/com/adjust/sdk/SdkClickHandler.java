@@ -9,6 +9,8 @@ import java.lang.ref.WeakReference;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 /* JADX INFO: loaded from: classes.dex */
 public class SdkClickHandler implements ISdkClickHandler {
@@ -23,6 +25,80 @@ public class SdkClickHandler implements ISdkClickHandler {
     private List<ActivityPackage> packageQueue;
     private boolean paused;
     private ThreadScheduler scheduler;
+
+    /* JADX INFO: renamed from: com.adjust.sdk.SdkClickHandler$1, reason: invalid class name */
+    public class AnonymousClass1 implements Runnable {
+        public final /* synthetic */ ActivityPackage val$sdkClick;
+
+        public AnonymousClass1(ActivityPackage activityPackage) {
+            this.val$sdkClick = activityPackage;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            SdkClickHandler.access$000(SdkClickHandler.this).add(this.val$sdkClick);
+            SdkClickHandler.access$100(SdkClickHandler.this).debug("Added sdk_click %d", Integer.valueOf(SdkClickHandler.access$000(SdkClickHandler.this).size()));
+            SdkClickHandler.access$100(SdkClickHandler.this).verbose("%s", this.val$sdkClick.getExtendedString());
+            SdkClickHandler.access$200(SdkClickHandler.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.SdkClickHandler$2, reason: invalid class name */
+    public class AnonymousClass2 implements Runnable {
+        public AnonymousClass2() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            IActivityHandler iActivityHandler = (IActivityHandler) SdkClickHandler.access$300(SdkClickHandler.this).get();
+            SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(iActivityHandler.getContext());
+            try {
+                JSONArray rawReferrerArray = sharedPreferencesManager.getRawReferrerArray();
+                boolean z2 = false;
+                for (int i = 0; i < rawReferrerArray.length(); i++) {
+                    JSONArray jSONArray = rawReferrerArray.getJSONArray(i);
+                    if (jSONArray.optInt(2, -1) == 0) {
+                        String strOptString = jSONArray.optString(0, null);
+                        long jOptLong = jSONArray.optLong(1, -1L);
+                        jSONArray.put(2, 1);
+                        SdkClickHandler.this.sendSdkClick(PackageFactory.buildReftagSdkClickPackage(strOptString, jOptLong, iActivityHandler.getActivityState(), iActivityHandler.getAdjustConfig(), iActivityHandler.getDeviceInfo(), iActivityHandler.getSessionParameters()));
+                        z2 = true;
+                    }
+                }
+                if (z2) {
+                    sharedPreferencesManager.saveRawReferrerArray(rawReferrerArray);
+                }
+            } catch (JSONException e) {
+                SdkClickHandler.access$100(SdkClickHandler.this).error("Send saved raw referrers error (%s)", e.getMessage());
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.SdkClickHandler$3, reason: invalid class name */
+    public class AnonymousClass3 implements Runnable {
+        public AnonymousClass3() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            SdkClickHandler.access$400(SdkClickHandler.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.SdkClickHandler$4, reason: invalid class name */
+    public class AnonymousClass4 implements Runnable {
+        public final /* synthetic */ ActivityPackage val$sdkClickPackage;
+
+        public AnonymousClass4(ActivityPackage activityPackage) {
+            this.val$sdkClickPackage = activityPackage;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            SdkClickHandler.access$500(SdkClickHandler.this, this.val$sdkClickPackage);
+            SdkClickHandler.access$200(SdkClickHandler.this);
+        }
+    }
 
     public SdkClickHandler(IActivityHandler iActivityHandler, boolean z2) {
         init(iActivityHandler, z2);
@@ -84,7 +160,7 @@ public class SdkClickHandler implements ISdkClickHandler {
     }
 
     private void sendNextSdkClick() {
-        this.scheduler.submit(new SdkClickHandler$3(this));
+        this.scheduler.submit(new AnonymousClass3());
     }
 
     private void sendNextSdkClickI() {
@@ -94,24 +170,24 @@ public class SdkClickHandler implements ISdkClickHandler {
         }
         ActivityPackage activityPackageRemove = this.packageQueue.remove(0);
         int retries = activityPackageRemove.getRetries();
-        SdkClickHandler$4 sdkClickHandler$4 = new SdkClickHandler$4(this, activityPackageRemove);
+        AnonymousClass4 anonymousClass4 = new AnonymousClass4(activityPackageRemove);
         if (retries <= 0) {
-            sdkClickHandler$4.run();
+            anonymousClass4.run();
             return;
         }
         long waitingTime = Util.getWaitingTime(retries, this.backoffStrategy);
         this.logger.verbose("Waiting for %s seconds before retrying sdk_click for the %d time", Util.SecondsDisplayFormat.format(waitingTime / MILLISECONDS_TO_SECONDS_DIVISOR), Integer.valueOf(retries));
-        this.scheduler.schedule(sdkClickHandler$4, waitingTime);
+        this.scheduler.schedule(anonymousClass4, waitingTime);
     }
 
     @Override // com.adjust.sdk.ISdkClickHandler
     public void sendReftagReferrers() {
-        this.scheduler.submit(new SdkClickHandler$2(this));
+        this.scheduler.submit(new AnonymousClass2());
     }
 
     @Override // com.adjust.sdk.ISdkClickHandler
     public void sendSdkClick(ActivityPackage activityPackage) {
-        this.scheduler.submit(new SdkClickHandler$1(this, activityPackage));
+        this.scheduler.submit(new AnonymousClass1(activityPackage));
     }
 
     private void sendSdkClickI(ActivityPackage activityPackage) {

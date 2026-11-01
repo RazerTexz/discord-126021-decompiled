@@ -5,7 +5,7 @@ import android.app.PendingIntent;
 import android.app.job.JobScheduler;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build$VERSION;
+import android.os.Build;
 import androidx.core.app.NotificationCompat;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
@@ -24,7 +24,7 @@ public final class h9 extends i9 {
     @Override // b.i.a.f.i.b.i9
     public final boolean p() {
         this.d.cancel(u());
-        if (Build$VERSION.SDK_INT < 24) {
+        if (Build.VERSION.SDK_INT < 24) {
             return false;
         }
         ((JobScheduler) this.a.f1570b.getSystemService("jobscheduler")).cancel(t());
@@ -36,7 +36,7 @@ public final class h9 extends i9 {
         g().n.a("Unscheduling upload");
         this.d.cancel(u());
         this.e.c();
-        if (Build$VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= 24) {
             ((JobScheduler) this.a.f1570b.getSystemService("jobscheduler")).cancel(t());
         }
     }

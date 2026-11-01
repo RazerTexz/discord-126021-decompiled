@@ -5,7 +5,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
+import com.discord.R;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetFolderContextMenuBinding implements ViewBinding {
@@ -37,17 +37,17 @@ public final class WidgetFolderContextMenuBinding implements ViewBinding {
     @NonNull
     public static WidgetFolderContextMenuBinding a(@NonNull View view) {
         CardView cardView = (CardView) view;
-        int i = R$id.folder_context_menu_header;
-        TextView textView = (TextView) view.findViewById(R$id.folder_context_menu_header);
+        int i = R.id.folder_context_menu_header;
+        TextView textView = (TextView) view.findViewById(R.id.folder_context_menu_header);
         if (textView != null) {
-            i = R$id.folder_context_menu_header_divider;
-            View viewFindViewById = view.findViewById(R$id.folder_context_menu_header_divider);
+            i = R.id.folder_context_menu_header_divider;
+            View viewFindViewById = view.findViewById(R.id.folder_context_menu_header_divider);
             if (viewFindViewById != null) {
-                i = R$id.folder_context_menu_mark_as_read;
-                TextView textView2 = (TextView) view.findViewById(R$id.folder_context_menu_mark_as_read);
+                i = R.id.folder_context_menu_mark_as_read;
+                TextView textView2 = (TextView) view.findViewById(R.id.folder_context_menu_mark_as_read);
                 if (textView2 != null) {
-                    i = R$id.folder_context_menu_settings;
-                    TextView textView3 = (TextView) view.findViewById(R$id.folder_context_menu_settings);
+                    i = R.id.folder_context_menu_settings;
+                    TextView textView3 = (TextView) view.findViewById(R.id.folder_context_menu_settings);
                     if (textView3 != null) {
                         return new WidgetFolderContextMenuBinding((CardView) view, cardView, textView, viewFindViewById, textView2, textView3);
                     }

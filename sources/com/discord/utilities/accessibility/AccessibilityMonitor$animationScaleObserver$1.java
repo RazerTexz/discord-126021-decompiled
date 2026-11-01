@@ -3,7 +3,7 @@ package com.discord.utilities.accessibility;
 import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.Handler;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 
 /* JADX INFO: compiled from: AccessibilityMonitor.kt */
 /* JADX INFO: loaded from: classes2.dex */

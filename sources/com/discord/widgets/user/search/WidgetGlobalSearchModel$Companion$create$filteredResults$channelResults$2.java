@@ -11,30 +11,30 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGlobalSearchModel$Companion$create$filteredResults$channelResults$2 extends o implements Function1<Channel, WidgetGlobalSearchModel$ItemDataPayload> {
+public final class WidgetGlobalSearchModel$Companion$create$filteredResults$channelResults$2 extends o implements Function1<Channel, WidgetGlobalSearchModel.ItemDataPayload> {
     public final /* synthetic */ String $sanitizedFilter;
     public final /* synthetic */ HashSet $seenUsersIds;
     public final /* synthetic */ WidgetGlobalSearchModel$Companion$create$4 $toItemChannel$4;
     public final /* synthetic */ WidgetGlobalSearchModel$Companion$create$2 $toItemUser$2;
-    public final /* synthetic */ WidgetGlobalSearchModel$UsersContext $usersContext;
+    public final /* synthetic */ WidgetGlobalSearchModel.UsersContext $usersContext;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetGlobalSearchModel$Companion$create$filteredResults$channelResults$2(HashSet hashSet, WidgetGlobalSearchModel$Companion$create$2 widgetGlobalSearchModel$Companion$create$2, WidgetGlobalSearchModel$UsersContext widgetGlobalSearchModel$UsersContext, String str, WidgetGlobalSearchModel$Companion$create$4 widgetGlobalSearchModel$Companion$create$4) {
+    public WidgetGlobalSearchModel$Companion$create$filteredResults$channelResults$2(HashSet hashSet, WidgetGlobalSearchModel$Companion$create$2 widgetGlobalSearchModel$Companion$create$2, WidgetGlobalSearchModel.UsersContext usersContext, String str, WidgetGlobalSearchModel$Companion$create$4 widgetGlobalSearchModel$Companion$create$4) {
         super(1);
         this.$seenUsersIds = hashSet;
         this.$toItemUser$2 = widgetGlobalSearchModel$Companion$create$2;
-        this.$usersContext = widgetGlobalSearchModel$UsersContext;
+        this.$usersContext = usersContext;
         this.$sanitizedFilter = str;
         this.$toItemChannel$4 = widgetGlobalSearchModel$Companion$create$4;
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public /* bridge */ /* synthetic */ WidgetGlobalSearchModel$ItemDataPayload invoke(Channel channel) {
+    public /* bridge */ /* synthetic */ WidgetGlobalSearchModel.ItemDataPayload invoke(Channel channel) {
         return invoke2(channel);
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final WidgetGlobalSearchModel$ItemDataPayload invoke2(Channel channel) {
+    public final WidgetGlobalSearchModel.ItemDataPayload invoke2(Channel channel) {
         m.checkNotNullParameter(channel, "channel");
         User userA = ChannelUtils.a(channel);
         if (userA != null) {
@@ -44,9 +44,9 @@ public final class WidgetGlobalSearchModel$Companion$create$filteredResults$chan
             if (user != null) {
                 userA = user;
             }
-            WidgetGlobalSearchModel$ItemUser widgetGlobalSearchModel$ItemUserInvoke2 = widgetGlobalSearchModel$Companion$create$2.invoke2(userA, this.$sanitizedFilter, channel);
-            if (widgetGlobalSearchModel$ItemUserInvoke2 != null) {
-                return widgetGlobalSearchModel$ItemUserInvoke2;
+            WidgetGlobalSearchModel.ItemUser itemUserInvoke2 = widgetGlobalSearchModel$Companion$create$2.invoke2(userA, this.$sanitizedFilter, channel);
+            if (itemUserInvoke2 != null) {
+                return itemUserInvoke2;
             }
         }
         return this.$toItemChannel$4.invoke2(channel, this.$sanitizedFilter);

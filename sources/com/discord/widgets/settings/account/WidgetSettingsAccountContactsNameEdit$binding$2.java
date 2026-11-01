@@ -2,7 +2,7 @@ package com.discord.widgets.settings.account;
 
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetSettingsAccountContactsNameEditBinding;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,14 +28,14 @@ public final /* synthetic */ class WidgetSettingsAccountContactsNameEdit$binding
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSettingsAccountContactsNameEditBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.edit_account_name_wrap;
-        TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.edit_account_name_wrap);
+        int i = R.id.edit_account_name_wrap;
+        TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.edit_account_name_wrap);
         if (textInputLayout != null) {
-            i = R$id.settings_account_name_clear;
-            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.settings_account_name_clear);
+            i = R.id.settings_account_name_clear;
+            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.settings_account_name_clear);
             if (materialButton != null) {
-                i = R$id.settings_account_save;
-                FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R$id.settings_account_save);
+                i = R.id.settings_account_save;
+                FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.settings_account_save);
                 if (floatingActionButton != null) {
                     return new WidgetSettingsAccountContactsNameEditBinding((CoordinatorLayout) view, textInputLayout, materialButton, floatingActionButton);
                 }

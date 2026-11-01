@@ -1,8 +1,5 @@
 package d0.e0.p.d.m0.l.b;
 
-import d0.e0.p.d.m0.f.c$c;
-import d0.e0.p.d.m0.f.q$b$c;
-import d0.e0.p.d.m0.f.s$c;
 import d0.e0.p.d.m0.n.j1;
 import kotlin.NoWhenBranchMatchedException;
 
@@ -11,9 +8,38 @@ import kotlin.NoWhenBranchMatchedException;
 public final class z {
     public static final z a = new z();
 
-    public final d0.e0.p.d.m0.c.f classKind(c$c c_c) {
+    /* JADX INFO: compiled from: ProtoEnumFlags.kt */
+    public final /* synthetic */ class a {
+        public static final /* synthetic */ int[] a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public static final /* synthetic */ int[] f3511b;
+        public static final /* synthetic */ int[] c;
+        public static final /* synthetic */ int[] d;
+
+        static {
+            d0.e0.p.d.m0.f.k.values();
+            a = new int[]{1, 2, 3, 4};
+            d0.e0.p.d.m0.c.z.valuesCustom();
+            d0.e0.p.d.m0.c.z zVar = d0.e0.p.d.m0.c.z.FINAL;
+            d0.e0.p.d.m0.c.z zVar2 = d0.e0.p.d.m0.c.z.OPEN;
+            d0.e0.p.d.m0.c.z zVar3 = d0.e0.p.d.m0.c.z.ABSTRACT;
+            d0.e0.p.d.m0.c.z zVar4 = d0.e0.p.d.m0.c.z.SEALED;
+            d0.e0.p.d.m0.f.x.values();
+            d0.e0.p.d.m0.f.c.EnumC0550c.values();
+            f3511b = new int[]{1, 2, 3, 4, 5, 6, 7};
+            d0.e0.p.d.m0.c.f.values();
+            d0.e0.p.d.m0.f.s.c.values();
+            c = new int[]{1, 2, 3};
+            d0.e0.p.d.m0.f.q.b.c.values();
+            d = new int[]{1, 2, 3, 4};
+            j1.valuesCustom();
+        }
+    }
+
+    public final d0.e0.p.d.m0.c.f classKind(d0.e0.p.d.m0.f.c.EnumC0550c enumC0550c) {
         d0.e0.p.d.m0.c.f fVar = d0.e0.p.d.m0.c.f.CLASS;
-        switch (c_c == null ? -1 : z$a.f3511b[c_c.ordinal()]) {
+        switch (enumC0550c == null ? -1 : a.f3511b[enumC0550c.ordinal()]) {
             case 1:
             default:
                 return fVar;
@@ -32,7 +58,7 @@ public final class z {
     }
 
     public final d0.e0.p.d.m0.c.z modality(d0.e0.p.d.m0.f.k kVar) {
-        int i = kVar == null ? -1 : z$a.a[kVar.ordinal()];
+        int i = kVar == null ? -1 : a.a[kVar.ordinal()];
         if (i == 1) {
             return d0.e0.p.d.m0.c.z.FINAL;
         }
@@ -45,9 +71,9 @@ public final class z {
         return d0.e0.p.d.m0.c.z.ABSTRACT;
     }
 
-    public final j1 variance(s$c s_c) {
-        d0.z.d.m.checkNotNullParameter(s_c, "variance");
-        int iOrdinal = s_c.ordinal();
+    public final j1 variance(d0.e0.p.d.m0.f.s.c cVar) {
+        d0.z.d.m.checkNotNullParameter(cVar, "variance");
+        int iOrdinal = cVar.ordinal();
         if (iOrdinal == 0) {
             return j1.IN_VARIANCE;
         }
@@ -60,9 +86,9 @@ public final class z {
         throw new NoWhenBranchMatchedException();
     }
 
-    public final j1 variance(q$b$c q_b_c) {
-        d0.z.d.m.checkNotNullParameter(q_b_c, "projection");
-        int iOrdinal = q_b_c.ordinal();
+    public final j1 variance(d0.e0.p.d.m0.f.q.b.c cVar) {
+        d0.z.d.m.checkNotNullParameter(cVar, "projection");
+        int iOrdinal = cVar.ordinal();
         if (iOrdinal == 0) {
             return j1.IN_VARIANCE;
         }
@@ -75,6 +101,6 @@ public final class z {
         if (iOrdinal != 3) {
             throw new NoWhenBranchMatchedException();
         }
-        throw new IllegalArgumentException(d0.z.d.m.stringPlus("Only IN, OUT and INV are supported. Actual argument: ", q_b_c));
+        throw new IllegalArgumentException(d0.z.d.m.stringPlus("Only IN, OUT and INV are supported. Actual argument: ", cVar));
     }
 }

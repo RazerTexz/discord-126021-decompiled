@@ -1,10 +1,10 @@
 package com.lytefast.flexinput.fragment;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View$OnClickListener;
 import android.view.ViewGroup;
 import androidx.activity.result.ActivityResultCaller;
 import androidx.core.content.ContextCompat;
@@ -12,27 +12,105 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import b.b.a.b;
 import b.b.a.d.h;
 import com.discord.utilities.display.DisplayUtils;
-import com.lytefast.flexinput.R$f;
-import com.lytefast.flexinput.R$g;
+import com.lytefast.flexinput.R;
 import com.lytefast.flexinput.adapters.EmptyListAdapter;
 import com.lytefast.flexinput.model.Attachment;
 import com.lytefast.flexinput.model.Media;
 import com.lytefast.flexinput.utils.SelectionAggregator;
 import com.lytefast.flexinput.utils.SelectionCoordinator;
 import d0.z.d.m;
+import d0.z.d.o;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: MediaFragment.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class MediaFragment extends Fragment {
-    public static final MediaFragment$Companion Companion = new MediaFragment$Companion(null);
     private static final int GRID_LAYOUT_SPAN_COUNT = 3;
     private static final String REQUIRED_PERMISSION = "android.permission.READ_EXTERNAL_STORAGE";
     private RecyclerView recyclerView;
     private SelectionCoordinator<Attachment<Object>, Media> selectionCoordinator;
     private SwipeRefreshLayout swipeRefreshLayout;
+
+    /* JADX INFO: compiled from: MediaFragment.kt */
+    public final class a implements View.OnClickListener {
+        public final /* synthetic */ View j;
+        public final /* synthetic */ h k;
+        public final /* synthetic */ MediaFragment l;
+        public final /* synthetic */ b.b.a.b m;
+
+        /* JADX INFO: renamed from: com.lytefast.flexinput.fragment.MediaFragment$a$a, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: MediaFragment.kt */
+        public final class C0490a extends o implements Function0<Unit> {
+            public C0490a() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public Unit invoke() {
+                RecyclerView recyclerView = a.this.l.getRecyclerView();
+                m.checkNotNull(recyclerView);
+                recyclerView.setLayoutManager(new GridLayoutManager(a.this.j.getContext(), 3));
+                RecyclerView recyclerView2 = a.this.l.getRecyclerView();
+                m.checkNotNull(recyclerView2);
+                recyclerView2.setAdapter(a.this.k);
+                RecyclerView recyclerView3 = a.this.l.getRecyclerView();
+                m.checkNotNull(recyclerView3);
+                recyclerView3.invalidateItemDecorations();
+                return Unit.a;
+            }
+        }
+
+        public a(View view, h hVar, MediaFragment mediaFragment, b.b.a.b bVar) {
+            this.j = view;
+            this.k = hVar;
+            this.l = mediaFragment;
+            this.m = bVar;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            b.b.a.b bVar = this.m;
+            if (bVar != null) {
+                bVar.requestMediaPermissions(new C0490a());
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaFragment.kt */
+    public final class b implements SwipeRefreshLayout.OnRefreshListener {
+        public final /* synthetic */ View a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final /* synthetic */ h f3167b;
+        public final /* synthetic */ MediaFragment c;
+        public final /* synthetic */ b.b.a.b d;
+
+        public b(View view, h hVar, MediaFragment mediaFragment, b.b.a.b bVar) {
+            this.a = view;
+            this.f3167b = hVar;
+            this.c = mediaFragment;
+            this.d = bVar;
+        }
+
+        @Override // androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
+        public final void onRefresh() {
+            if (MediaFragment.access$hasPermissions(this.c, MediaFragment.REQUIRED_PERMISSION)) {
+                h hVar = this.f3167b;
+                Context context = this.a.getContext();
+                m.checkNotNullExpressionValue(context, "context");
+                ContentResolver contentResolver = context.getContentResolver();
+                m.checkNotNullExpressionValue(contentResolver, "context.contentResolver");
+                hVar.b(contentResolver);
+            }
+            SwipeRefreshLayout swipeRefreshLayoutAccess$getSwipeRefreshLayout$p = MediaFragment.access$getSwipeRefreshLayout$p(this.c);
+            if (swipeRefreshLayoutAccess$getSwipeRefreshLayout$p != null) {
+                swipeRefreshLayoutAccess$getSwipeRefreshLayout$p.setRefreshing(false);
+            }
+        }
+    }
 
     public static final /* synthetic */ SwipeRefreshLayout access$getSwipeRefreshLayout$p(MediaFragment mediaFragment) {
         return mediaFragment.swipeRefreshLayout;
@@ -65,9 +143,9 @@ public class MediaFragment extends Fragment {
         }
     }
 
-    public EmptyListAdapter newPermissionsRequestAdapter(View$OnClickListener onClickListener) {
+    public EmptyListAdapter newPermissionsRequestAdapter(View.OnClickListener onClickListener) {
         m.checkNotNullParameter(onClickListener, "onClickListener");
-        return new EmptyListAdapter(R$g.item_permission_storage, R$f.permissions_req_btn, onClickListener);
+        return new EmptyListAdapter(R.g.item_permission_storage, R.f.permissions_req_btn, onClickListener);
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -76,21 +154,21 @@ public class MediaFragment extends Fragment {
         this.selectionCoordinator = new SelectionCoordinator<>(null, null, 3);
         Fragment parentFragment = getParentFragment();
         ActivityResultCaller parentFragment2 = parentFragment != null ? parentFragment.getParentFragment() : null;
-        if (!(parentFragment2 instanceof b)) {
+        if (!(parentFragment2 instanceof b.b.a.b)) {
             parentFragment2 = null;
         }
-        b bVar = (b) parentFragment2;
+        b.b.a.b bVar = (b.b.a.b) parentFragment2;
         if (bVar != null) {
             SelectionAggregator selectionAggregatorB = bVar.b();
             SelectionCoordinator<Attachment<Object>, Media> selectionCoordinator = this.selectionCoordinator;
             m.checkNotNull(selectionCoordinator);
             selectionAggregatorB.registerSelectionCoordinator(selectionCoordinator);
         }
-        View viewInflate = inflater.inflate(R$g.fragment_recycler_view, container, false);
+        View viewInflate = inflater.inflate(R.g.fragment_recycler_view, container, false);
         if (viewInflate == null) {
             return null;
         }
-        this.recyclerView = (RecyclerView) viewInflate.findViewById(R$f.list);
+        this.recyclerView = (RecyclerView) viewInflate.findViewById(R.f.list);
         Context context = viewInflate.getContext();
         m.checkNotNullExpressionValue(context, "context");
         int iWidth = (int) (DisplayUtils.getScreenSize(context).width() / 3);
@@ -109,13 +187,13 @@ public class MediaFragment extends Fragment {
         } else {
             RecyclerView recyclerView3 = this.recyclerView;
             if (recyclerView3 != null) {
-                recyclerView3.setAdapter(newPermissionsRequestAdapter(new MediaFragment$a(viewInflate, hVar, this, bVar)));
+                recyclerView3.setAdapter(newPermissionsRequestAdapter(new a(viewInflate, hVar, this, bVar)));
             }
         }
-        SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) viewInflate.findViewById(R$f.swipeRefreshLayout);
+        SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) viewInflate.findViewById(R.f.swipeRefreshLayout);
         this.swipeRefreshLayout = swipeRefreshLayout;
         if (swipeRefreshLayout != null) {
-            swipeRefreshLayout.setOnRefreshListener(new MediaFragment$b(viewInflate, hVar, this, bVar));
+            swipeRefreshLayout.setOnRefreshListener(new b(viewInflate, hVar, this, bVar));
         }
         return viewInflate;
     }

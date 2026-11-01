@@ -23,15 +23,40 @@ public final class SavedStateHandle {
     private static final Class[] ACCEPTABLE_CLASSES = {Boolean.TYPE, boolean[].class, Double.TYPE, double[].class, Integer.TYPE, int[].class, Long.TYPE, long[].class, String.class, String[].class, Binder.class, Bundle.class, Byte.TYPE, byte[].class, Character.TYPE, char[].class, CharSequence.class, CharSequence[].class, ArrayList.class, Float.TYPE, float[].class, Parcelable.class, Parcelable[].class, Serializable.class, Short.TYPE, short[].class, SparseArray.class, Size.class, SizeF.class};
     private static final String KEYS = "keys";
     private static final String VALUES = "values";
-    private final Map<String, SavedStateHandle$SavingStateLiveData<?>> mLiveDatas;
+    private final Map<String, SavingStateLiveData<?>> mLiveDatas;
     public final Map<String, Object> mRegular;
-    private final SavedStateRegistry$SavedStateProvider mSavedStateProvider;
-    public final Map<String, SavedStateRegistry$SavedStateProvider> mSavedStateProviders;
+    private final SavedStateRegistry.SavedStateProvider mSavedStateProvider;
+    public final Map<String, SavedStateRegistry.SavedStateProvider> mSavedStateProviders;
+
+    /* JADX INFO: renamed from: androidx.lifecycle.SavedStateHandle$1, reason: invalid class name */
+    public class AnonymousClass1 implements SavedStateRegistry.SavedStateProvider {
+        public AnonymousClass1() {
+        }
+
+        @Override // androidx.savedstate.SavedStateRegistry.SavedStateProvider
+        @NonNull
+        public Bundle saveState() {
+            for (Map.Entry entry : new HashMap(SavedStateHandle.this.mSavedStateProviders).entrySet()) {
+                SavedStateHandle.this.set((String) entry.getKey(), ((SavedStateRegistry.SavedStateProvider) entry.getValue()).saveState());
+            }
+            Set<String> setKeySet = SavedStateHandle.this.mRegular.keySet();
+            ArrayList<? extends Parcelable> arrayList = new ArrayList<>(setKeySet.size());
+            ArrayList<? extends Parcelable> arrayList2 = new ArrayList<>(arrayList.size());
+            for (String str : setKeySet) {
+                arrayList.add(str);
+                arrayList2.add(SavedStateHandle.this.mRegular.get(str));
+            }
+            Bundle bundle = new Bundle();
+            bundle.putParcelableArrayList(SavedStateHandle.KEYS, arrayList);
+            bundle.putParcelableArrayList(SavedStateHandle.VALUES, arrayList2);
+            return bundle;
+        }
+    }
 
     public SavedStateHandle(@NonNull Map<String, Object> map) {
         this.mSavedStateProviders = new HashMap();
         this.mLiveDatas = new HashMap();
-        this.mSavedStateProvider = new SavedStateHandle$1(this);
+        this.mSavedStateProvider = new AnonymousClass1();
         this.mRegular = new HashMap(map);
     }
 
@@ -83,18 +108,18 @@ public final class SavedStateHandle {
 
     @NonNull
     private <T> MutableLiveData<T> getLiveDataInternal(@NonNull String str, boolean z2, @Nullable T t) {
-        SavedStateHandle$SavingStateLiveData<?> savedStateHandle$SavingStateLiveData;
-        SavedStateHandle$SavingStateLiveData<?> savedStateHandle$SavingStateLiveData2 = this.mLiveDatas.get(str);
-        if (savedStateHandle$SavingStateLiveData2 != null) {
-            return savedStateHandle$SavingStateLiveData2;
+        SavingStateLiveData<?> savingStateLiveData;
+        SavingStateLiveData<?> savingStateLiveData2 = this.mLiveDatas.get(str);
+        if (savingStateLiveData2 != null) {
+            return savingStateLiveData2;
         }
         if (this.mRegular.containsKey(str)) {
-            savedStateHandle$SavingStateLiveData = new SavedStateHandle$SavingStateLiveData<>(this, str, this.mRegular.get(str));
+            savingStateLiveData = new SavingStateLiveData<>(this, str, this.mRegular.get(str));
         } else {
-            savedStateHandle$SavingStateLiveData = z2 ? new SavedStateHandle$SavingStateLiveData<>(this, str, t) : new SavedStateHandle$SavingStateLiveData<>(this, str);
+            savingStateLiveData = z2 ? new SavingStateLiveData<>(this, str, t) : new SavingStateLiveData<>(this, str);
         }
-        this.mLiveDatas.put(str, savedStateHandle$SavingStateLiveData);
-        return savedStateHandle$SavingStateLiveData;
+        this.mLiveDatas.put(str, savingStateLiveData);
+        return savingStateLiveData;
     }
 
     @NonNull
@@ -110,32 +135,32 @@ public final class SavedStateHandle {
     @MainThread
     public <T> T remove(@NonNull String str) {
         T t = (T) this.mRegular.remove(str);
-        SavedStateHandle$SavingStateLiveData<?> savedStateHandle$SavingStateLiveDataRemove = this.mLiveDatas.remove(str);
-        if (savedStateHandle$SavingStateLiveDataRemove != null) {
-            savedStateHandle$SavingStateLiveDataRemove.detach();
+        SavingStateLiveData<?> savingStateLiveDataRemove = this.mLiveDatas.remove(str);
+        if (savingStateLiveDataRemove != null) {
+            savingStateLiveDataRemove.detach();
         }
         return t;
     }
 
     @NonNull
-    public SavedStateRegistry$SavedStateProvider savedStateProvider() {
+    public SavedStateRegistry.SavedStateProvider savedStateProvider() {
         return this.mSavedStateProvider;
     }
 
     @MainThread
     public <T> void set(@NonNull String str, @Nullable T t) {
         validateValue(t);
-        SavedStateHandle$SavingStateLiveData<?> savedStateHandle$SavingStateLiveData = this.mLiveDatas.get(str);
-        if (savedStateHandle$SavingStateLiveData != null) {
-            savedStateHandle$SavingStateLiveData.setValue(t);
+        SavingStateLiveData<?> savingStateLiveData = this.mLiveDatas.get(str);
+        if (savingStateLiveData != null) {
+            savingStateLiveData.setValue(t);
         } else {
             this.mRegular.put(str, t);
         }
     }
 
     @MainThread
-    public void setSavedStateProvider(@NonNull String str, @NonNull SavedStateRegistry$SavedStateProvider savedStateRegistry$SavedStateProvider) {
-        this.mSavedStateProviders.put(str, savedStateRegistry$SavedStateProvider);
+    public void setSavedStateProvider(@NonNull String str, @NonNull SavedStateRegistry.SavedStateProvider savedStateProvider) {
+        this.mSavedStateProviders.put(str, savedStateProvider);
     }
 
     private static void validateValue(Object obj) {
@@ -159,10 +184,39 @@ public final class SavedStateHandle {
         return getLiveDataInternal(str, true, t);
     }
 
+    public class SavingStateLiveData<T> extends MutableLiveData<T> {
+        private SavedStateHandle mHandle;
+        private String mKey;
+
+        public SavingStateLiveData(SavedStateHandle savedStateHandle, String str, T t) {
+            super(t);
+            this.mKey = str;
+            this.mHandle = savedStateHandle;
+        }
+
+        public void detach() {
+            this.mHandle = null;
+        }
+
+        @Override // androidx.view.MutableLiveData, androidx.view.LiveData
+        public void setValue(T t) {
+            SavedStateHandle savedStateHandle = this.mHandle;
+            if (savedStateHandle != null) {
+                savedStateHandle.mRegular.put(this.mKey, t);
+            }
+            super.setValue(t);
+        }
+
+        public SavingStateLiveData(SavedStateHandle savedStateHandle, String str) {
+            this.mKey = str;
+            this.mHandle = savedStateHandle;
+        }
+    }
+
     public SavedStateHandle() {
         this.mSavedStateProviders = new HashMap();
         this.mLiveDatas = new HashMap();
-        this.mSavedStateProvider = new SavedStateHandle$1(this);
+        this.mSavedStateProvider = new AnonymousClass1();
         this.mRegular = new HashMap();
     }
 }

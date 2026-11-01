@@ -2,7 +2,7 @@ package b.i.a.c.x2.k0;
 
 import android.util.Log;
 import androidx.annotation.Nullable;
-import b.i.a.c.j1$b;
+import b.i.a.c.j1;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Objects;
@@ -16,13 +16,13 @@ public final class q implements o {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     @Nullable
     public final j0 f1269b;
-    public q$b g;
+    public b g;
     public long h;
     public String i;
     public b.i.a.c.x2.w j;
     public boolean k;
     public final boolean[] d = new boolean[4];
-    public final q$a e = new q$a(128);
+    public final a e = new a(128);
     public long l = -9223372036854775807L;
 
     @Nullable
@@ -30,6 +30,73 @@ public final class q implements o {
 
     @Nullable
     public final b.i.a.c.f3.x c = new b.i.a.c.f3.x();
+
+    /* JADX INFO: compiled from: H263Reader.java */
+    public final class a {
+        public static final byte[] a = {0, 0, 1};
+        public int c;
+        public int d;
+        public int e;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public boolean f1270b;
+        public byte[] f;
+
+        public a(int i) {
+            this.f = new byte[i];
+        }
+
+        public void a(byte[] bArr, int i, int i2) {
+            if (this.f1270b) {
+                int i3 = i2 - i;
+                byte[] bArr2 = this.f;
+                int length = bArr2.length;
+                int i4 = this.d;
+                if (length < i4 + i3) {
+                    this.f = Arrays.copyOf(bArr2, (i4 + i3) * 2);
+                }
+                System.arraycopy(bArr, i, this.f, this.d, i3);
+                this.d += i3;
+            }
+        }
+
+        public void b() {
+            this.f1270b = false;
+            this.d = 0;
+            this.c = 0;
+        }
+    }
+
+    /* JADX INFO: compiled from: H263Reader.java */
+    public final class b {
+        public final b.i.a.c.x2.w a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public boolean f1271b;
+        public boolean c;
+        public boolean d;
+        public int e;
+        public int f;
+        public long g;
+        public long h;
+
+        public b(b.i.a.c.x2.w wVar) {
+            this.a = wVar;
+        }
+
+        public void a(byte[] bArr, int i, int i2) {
+            if (this.c) {
+                int i3 = this.f;
+                int i4 = (i + 1) - i3;
+                if (i4 >= i2) {
+                    this.f = (i2 - i) + i3;
+                } else {
+                    this.d = ((bArr[i4] & 192) >> 6) == 0;
+                    this.c = false;
+                }
+            }
+        }
+    }
 
     public q(@Nullable j0 j0Var) {
         this.f1269b = j0Var;
@@ -107,8 +174,8 @@ public final class q implements o {
                     this.e.a(bArr, i5, iB);
                 }
                 int i10 = i9 < 0 ? -i9 : 0;
-                q$a q_a = this.e;
-                int i11 = q_a.c;
+                a aVar = this.e;
+                int i11 = aVar.c;
                 if (i11 != 0) {
                     if (i11 != 1) {
                         if (i11 != 2) {
@@ -117,17 +184,17 @@ public final class q implements o {
                                     throw new IllegalStateException();
                                 }
                                 if (i8 == 179 || i8 == 181) {
-                                    q_a.d -= i10;
-                                    q_a.f1270b = false;
+                                    aVar.d -= i10;
+                                    aVar.f1270b = false;
                                     z2 = true;
                                 }
                                 if (z2) {
                                     b.i.a.c.x2.w wVar3 = this.j;
-                                    q$a q_a2 = this.e;
-                                    int i12 = q_a2.e;
+                                    a aVar2 = this.e;
+                                    int i12 = aVar2.e;
                                     String str = this.i;
                                     Objects.requireNonNull(str);
-                                    byte[] bArrCopyOf = Arrays.copyOf(q_a2.f, q_a2.d);
+                                    byte[] bArrCopyOf = Arrays.copyOf(aVar2.f, aVar2.d);
                                     wVar = new b.i.a.c.f3.w(bArrCopyOf);
                                     wVar.n(i12);
                                     wVar.n(4);
@@ -199,51 +266,51 @@ public final class q implements o {
                                     int iG6 = wVar.g(13);
                                     wVar.l();
                                     wVar.l();
-                                    j1$b j1_b = new j1$b();
-                                    j1_b.a = str;
-                                    j1_b.k = "video/mp4v-es";
-                                    j1_b.p = iG5;
-                                    j1_b.q = iG6;
-                                    j1_b.t = f;
-                                    j1_b.m = Collections.singletonList(bArrCopyOf);
-                                    wVar3.e(j1_b.a());
+                                    j1.b bVar = new j1.b();
+                                    bVar.a = str;
+                                    bVar.k = "video/mp4v-es";
+                                    bVar.p = iG5;
+                                    bVar.q = iG6;
+                                    bVar.t = f;
+                                    bVar.m = Collections.singletonList(bArrCopyOf);
+                                    wVar3.e(bVar.a());
                                     this.k = true;
                                 } else {
                                     i = i6;
                                 }
                             } else if ((i8 & 240) != 32) {
                                 Log.w("H263Reader", "Unexpected start code value");
-                                q_a.b();
+                                aVar.b();
                             } else {
-                                q_a.e = q_a.d;
-                                q_a.c = 4;
+                                aVar.e = aVar.d;
+                                aVar.c = 4;
                             }
                         } else if (i8 > 31) {
                             Log.w("H263Reader", "Unexpected start code value");
-                            q_a.b();
+                            aVar.b();
                         } else {
-                            q_a.c = 3;
+                            aVar.c = 3;
                         }
                     } else if (i8 != 181) {
                         Log.w("H263Reader", "Unexpected start code value");
-                        q_a.b();
+                        aVar.b();
                     } else {
-                        q_a.c = 2;
+                        aVar.c = 2;
                     }
                 } else if (i8 == 176) {
-                    q_a.c = 1;
-                    q_a.f1270b = true;
+                    aVar.c = 1;
+                    aVar.f1270b = true;
                 }
-                byte[] bArr2 = q$a.a;
-                q_a.a(bArr2, 0, bArr2.length);
+                byte[] bArr2 = a.a;
+                aVar.a(bArr2, 0, bArr2.length);
                 z2 = false;
                 if (z2) {
                     b.i.a.c.x2.w wVar4 = this.j;
-                    q$a q_a3 = this.e;
-                    int i13 = q_a3.e;
+                    a aVar3 = this.e;
+                    int i13 = aVar3.e;
                     String str2 = this.i;
                     Objects.requireNonNull(str2);
-                    byte[] bArrCopyOf2 = Arrays.copyOf(q_a3.f, q_a3.d);
+                    byte[] bArrCopyOf2 = Arrays.copyOf(aVar3.f, aVar3.d);
                     wVar = new b.i.a.c.f3.w(bArrCopyOf2);
                     wVar.n(i13);
                     wVar.n(4);
@@ -315,14 +382,14 @@ public final class q implements o {
                     int iG8 = wVar.g(13);
                     wVar.l();
                     wVar.l();
-                    j1$b j1_b2 = new j1$b();
-                    j1_b2.a = str2;
-                    j1_b2.k = "video/mp4v-es";
-                    j1_b2.p = iG7;
-                    j1_b2.q = iG8;
-                    j1_b2.t = f;
-                    j1_b2.m = Collections.singletonList(bArrCopyOf2);
-                    wVar4.e(j1_b2.a());
+                    j1.b bVar2 = new j1.b();
+                    bVar2.a = str2;
+                    bVar2.k = "video/mp4v-es";
+                    bVar2.p = iG7;
+                    bVar2.q = iG8;
+                    bVar2.t = f;
+                    bVar2.m = Collections.singletonList(bArrCopyOf2);
+                    wVar4.e(bVar2.a());
                     this.k = true;
                 } else {
                     i = i6;
@@ -353,25 +420,25 @@ public final class q implements o {
             }
             int i15 = i - iB;
             long j = this.h - ((long) i15);
-            q$b q_b = this.g;
+            b bVar3 = this.g;
             boolean z3 = this.k;
-            if (q_b.e == 182 && z3 && q_b.f1271b) {
-                long j2 = q_b.h;
+            if (bVar3.e == 182 && z3 && bVar3.f1271b) {
+                long j2 = bVar3.h;
                 if (j2 != -9223372036854775807L) {
-                    q_b.a.d(j2, q_b.d ? 1 : 0, (int) (j - q_b.g), i15, null);
+                    bVar3.a.d(j2, bVar3.d ? 1 : 0, (int) (j - bVar3.g), i15, null);
                 }
             }
-            if (q_b.e != 179) {
-                q_b.g = j;
+            if (bVar3.e != 179) {
+                bVar3.g = j;
             }
-            q$b q_b2 = this.g;
+            b bVar4 = this.g;
             long j3 = this.l;
-            q_b2.e = i8;
-            q_b2.d = false;
-            q_b2.f1271b = i8 == 182 || i8 == 179;
-            q_b2.c = i8 == 182;
-            q_b2.f = 0;
-            q_b2.h = j3;
+            bVar4.e = i8;
+            bVar4.d = false;
+            bVar4.f1271b = i8 == 182 || i8 == 179;
+            bVar4.c = i8 == 182;
+            bVar4.f = 0;
+            bVar4.h = j3;
             i6 = i;
             i5 = i7;
         }
@@ -381,12 +448,12 @@ public final class q implements o {
     public void c() {
         b.i.a.c.f3.u.a(this.d);
         this.e.b();
-        q$b q_b = this.g;
-        if (q_b != null) {
-            q_b.f1271b = false;
-            q_b.c = false;
-            q_b.d = false;
-            q_b.e = -1;
+        b bVar = this.g;
+        if (bVar != null) {
+            bVar.f1271b = false;
+            bVar.c = false;
+            bVar.d = false;
+            bVar.e = -1;
         }
         w wVar = this.f;
         if (wVar != null) {
@@ -401,15 +468,15 @@ public final class q implements o {
     }
 
     @Override // b.i.a.c.x2.k0.o
-    public void e(b.i.a.c.x2.j jVar, i0$d i0_d) {
-        i0_d.a();
-        this.i = i0_d.b();
-        b.i.a.c.x2.w wVarP = jVar.p(i0_d.c(), 2);
+    public void e(b.i.a.c.x2.j jVar, i0.d dVar) {
+        dVar.a();
+        this.i = dVar.b();
+        b.i.a.c.x2.w wVarP = jVar.p(dVar.c(), 2);
         this.j = wVarP;
-        this.g = new q$b(wVarP);
+        this.g = new b(wVarP);
         j0 j0Var = this.f1269b;
         if (j0Var != null) {
-            j0Var.b(jVar, i0_d);
+            j0Var.b(jVar, dVar);
         }
     }
 

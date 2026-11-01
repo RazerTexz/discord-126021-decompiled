@@ -1,6 +1,5 @@
 package d0.e0.p.d.m0.e.a.l0;
 
-import d0.e0.p.d.m0.c.g1.c$a;
 import d0.e0.p.d.m0.c.u0;
 import d0.e0.p.d.m0.n.c0;
 import java.util.Map;
@@ -22,7 +21,7 @@ public final class a implements d0.e0.p.d.m0.c.g1.c {
 
     @Override // d0.e0.p.d.m0.c.g1.c
     public d0.e0.p.d.m0.g.b getFqName() {
-        return c$a.getFqName(this);
+        return d0.e0.p.d.m0.c.g1.c.a.getFqName(this);
     }
 
     @Override // d0.e0.p.d.m0.c.g1.c

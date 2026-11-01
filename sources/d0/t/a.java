@@ -3,10 +3,31 @@ package d0.t;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Objects;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: AbstractCollection.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class a<E> implements Collection<E>, d0.z.d.g0.a {
+
+    /* JADX INFO: renamed from: d0.t.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: AbstractCollection.kt */
+    public final class C0594a extends d0.z.d.o implements Function1<E, CharSequence> {
+        public C0594a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ CharSequence invoke(Object obj) {
+            return invoke(obj);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function1
+        public final CharSequence invoke(E e) {
+            return e == a.this ? "(this Collection)" : String.valueOf(e);
+        }
+    }
+
     @Override // java.util.Collection
     public boolean add(E e) {
         throw new UnsupportedOperationException("Operation is not supported for read-only collection");
@@ -84,7 +105,7 @@ public abstract class a<E> implements Collection<E>, d0.z.d.g0.a {
     }
 
     public String toString() {
-        return u.joinToString$default(this, ", ", "[", "]", 0, null, new a$a(this), 24, null);
+        return u.joinToString$default(this, ", ", "[", "]", 0, null, new C0594a(), 24, null);
     }
 
     @Override // java.util.Collection

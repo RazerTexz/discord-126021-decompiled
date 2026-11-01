@@ -12,6 +12,19 @@ public class ConfigurationParser {
     private static final Pattern NEWLINE_FINDER = Pattern.compile("^[\t ]*(.*?)[\t\r ]*$", 8);
     private static final Pattern IMPORT = Pattern.compile("import\\s+(.+?)");
 
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationParser$Collector.SCL.lombok */
+    public interface Collector {
+        void add(ConfigurationKey<?> configurationKey, Object obj, ConfigurationFile configurationFile, int i);
+
+        void addImport(ConfigurationFile configurationFile, ConfigurationFile configurationFile2, int i);
+
+        void clear(ConfigurationKey<?> configurationKey, ConfigurationFile configurationFile, int i);
+
+        void remove(ConfigurationKey<?> configurationKey, Object obj, ConfigurationFile configurationFile, int i);
+
+        void set(ConfigurationKey<?> configurationKey, Object obj, ConfigurationFile configurationFile, int i);
+    }
+
     public ConfigurationParser(ConfigurationProblemReporter reporter) {
         if (reporter == null) {
             throw new NullPointerException("reporter");
@@ -19,7 +32,7 @@ public class ConfigurationParser {
         this.reporter = reporter;
     }
 
-    public void parse(ConfigurationFile context, ConfigurationParser$Collector collector) {
+    public void parse(ConfigurationFile context, Collector collector) {
         String keyName;
         String operator;
         String stringValue;

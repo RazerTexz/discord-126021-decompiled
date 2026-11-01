@@ -3,11 +3,12 @@ package d0.e0.p.d.m0.e.a.i0;
 import d0.e0.p.d.m0.c.e0;
 import d0.e0.p.d.m0.c.i0;
 import d0.e0.p.d.m0.e.a.k0.u;
-import d0.e0.p.d.m0.m.f$d;
 import d0.t.n;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Collection;
 import java.util.List;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: LazyJavaPackageFragmentProvider.kt */
@@ -18,9 +19,31 @@ public final class f implements i0 {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final d0.e0.p.d.m0.m.a<d0.e0.p.d.m0.g.b, d0.e0.p.d.m0.e.a.i0.l.i> f3322b;
 
+    /* JADX INFO: compiled from: LazyJavaPackageFragmentProvider.kt */
+    public final class a extends o implements Function0<d0.e0.p.d.m0.e.a.i0.l.i> {
+        public final /* synthetic */ u $jPackage;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(u uVar) {
+            super(0);
+            this.$jPackage = uVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.e.a.i0.l.i invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final d0.e0.p.d.m0.e.a.i0.l.i invoke() {
+            return new d0.e0.p.d.m0.e.a.i0.l.i(f.access$getC$p(f.this), this.$jPackage);
+        }
+    }
+
     public f(b bVar) {
         m.checkNotNullParameter(bVar, "components");
-        g gVar = new g(bVar, k$a.a, d0.h.lazyOf(null));
+        g gVar = new g(bVar, k.a.a, d0.h.lazyOf(null));
         this.a = gVar;
         this.f3322b = gVar.getStorageManager().createCacheWithNotNullValues();
     }
@@ -30,7 +53,7 @@ public final class f implements i0 {
         if (uVarFindPackage == null) {
             return null;
         }
-        return (d0.e0.p.d.m0.e.a.i0.l.i) ((f$d) this.f3322b).computeIfAbsent(bVar, new f$a(this, uVarFindPackage));
+        return (d0.e0.p.d.m0.e.a.i0.l.i) ((d0.e0.p.d.m0.m.f.d) this.f3322b).computeIfAbsent(bVar, new a(uVarFindPackage));
     }
 
     public static final /* synthetic */ g access$getC$p(f fVar) {

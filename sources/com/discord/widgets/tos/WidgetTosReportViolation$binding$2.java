@@ -5,7 +5,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetTosReportViolationBinding;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.views.LoadingButton;
@@ -30,23 +30,23 @@ public final /* synthetic */ class WidgetTosReportViolation$binding$2 extends k 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetTosReportViolationBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.report_button;
-        LoadingButton loadingButton = (LoadingButton) view.findViewById(R$id.report_button);
+        int i = R.id.report_button;
+        LoadingButton loadingButton = (LoadingButton) view.findViewById(R.id.report_button);
         if (loadingButton != null) {
-            i = R$id.report_header;
-            TextView textView = (TextView) view.findViewById(R$id.report_header);
+            i = R.id.report_header;
+            TextView textView = (TextView) view.findViewById(R.id.report_header);
             if (textView != null) {
-                i = R$id.report_reasons_container;
-                LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.report_reasons_container);
+                i = R.id.report_reasons_container;
+                LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.report_reasons_container);
                 if (linearLayout != null) {
-                    i = R$id.report_reasons_header;
-                    TextView textView2 = (TextView) view.findViewById(R$id.report_reasons_header);
+                    i = R.id.report_reasons_header;
+                    TextView textView2 = (TextView) view.findViewById(R.id.report_reasons_header);
                     if (textView2 != null) {
-                        i = R$id.report_reasons_loading;
-                        ProgressBar progressBar = (ProgressBar) view.findViewById(R$id.report_reasons_loading);
+                        i = R.id.report_reasons_loading;
+                        ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.report_reasons_loading);
                         if (progressBar != null) {
-                            i = R$id.report_tooltip;
-                            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R$id.report_tooltip);
+                            i = R.id.report_tooltip;
+                            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R.id.report_tooltip);
                             if (linkifiedTextView != null) {
                                 return new WidgetTosReportViolationBinding((CoordinatorLayout) view, loadingButton, textView, linearLayout, textView2, progressBar, linkifiedTextView);
                             }

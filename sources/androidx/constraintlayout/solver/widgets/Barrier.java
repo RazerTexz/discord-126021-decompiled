@@ -73,7 +73,7 @@ public class Barrier extends HelperWidget {
                 break;
             }
             ConstraintWidget constraintWidget = this.mWidgets[i7];
-            if ((this.mAllowsGoneWidget || constraintWidget.allowedInBarrier()) && ((((i2 = this.mBarrierType) == 0 || i2 == 1) && constraintWidget.getHorizontalDimensionBehaviour() == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT && constraintWidget.mLeft.mTarget != null && constraintWidget.mRight.mTarget != null) || (((i3 = this.mBarrierType) == 2 || i3 == 3) && constraintWidget.getVerticalDimensionBehaviour() == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT && constraintWidget.mTop.mTarget != null && constraintWidget.mBottom.mTarget != null))) {
+            if ((this.mAllowsGoneWidget || constraintWidget.allowedInBarrier()) && ((((i2 = this.mBarrierType) == 0 || i2 == 1) && constraintWidget.getHorizontalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT && constraintWidget.mLeft.mTarget != null && constraintWidget.mRight.mTarget != null) || (((i3 = this.mBarrierType) == 2 || i3 == 3) && constraintWidget.getVerticalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT && constraintWidget.mTop.mTarget != null && constraintWidget.mBottom.mTarget != null))) {
                 z3 = true;
                 break;
             }
@@ -148,25 +148,25 @@ public class Barrier extends HelperWidget {
                 if (!z3) {
                     int i6 = this.mBarrierType;
                     if (i6 == 0) {
-                        iMax = constraintWidget2.getAnchor(ConstraintAnchor$Type.LEFT).getFinalValue();
+                        iMax = constraintWidget2.getAnchor(ConstraintAnchor.Type.LEFT).getFinalValue();
                     } else if (i6 == 1) {
-                        iMax = constraintWidget2.getAnchor(ConstraintAnchor$Type.RIGHT).getFinalValue();
+                        iMax = constraintWidget2.getAnchor(ConstraintAnchor.Type.RIGHT).getFinalValue();
                     } else if (i6 == 2) {
-                        iMax = constraintWidget2.getAnchor(ConstraintAnchor$Type.TOP).getFinalValue();
+                        iMax = constraintWidget2.getAnchor(ConstraintAnchor.Type.TOP).getFinalValue();
                     } else if (i6 == 3) {
-                        iMax = constraintWidget2.getAnchor(ConstraintAnchor$Type.BOTTOM).getFinalValue();
+                        iMax = constraintWidget2.getAnchor(ConstraintAnchor.Type.BOTTOM).getFinalValue();
                     }
                     z3 = true;
                 }
                 int i7 = this.mBarrierType;
                 if (i7 == 0) {
-                    iMax = Math.min(iMax, constraintWidget2.getAnchor(ConstraintAnchor$Type.LEFT).getFinalValue());
+                    iMax = Math.min(iMax, constraintWidget2.getAnchor(ConstraintAnchor.Type.LEFT).getFinalValue());
                 } else if (i7 == 1) {
-                    iMax = Math.max(iMax, constraintWidget2.getAnchor(ConstraintAnchor$Type.RIGHT).getFinalValue());
+                    iMax = Math.max(iMax, constraintWidget2.getAnchor(ConstraintAnchor.Type.RIGHT).getFinalValue());
                 } else if (i7 == 2) {
-                    iMax = Math.min(iMax, constraintWidget2.getAnchor(ConstraintAnchor$Type.TOP).getFinalValue());
+                    iMax = Math.min(iMax, constraintWidget2.getAnchor(ConstraintAnchor.Type.TOP).getFinalValue());
                 } else if (i7 == 3) {
-                    iMax = Math.max(iMax, constraintWidget2.getAnchor(ConstraintAnchor$Type.BOTTOM).getFinalValue());
+                    iMax = Math.max(iMax, constraintWidget2.getAnchor(ConstraintAnchor.Type.BOTTOM).getFinalValue());
                 }
             }
         }

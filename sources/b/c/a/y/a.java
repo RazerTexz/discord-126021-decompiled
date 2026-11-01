@@ -2,11 +2,10 @@ package b.c.a.y;
 
 import android.graphics.PointF;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: compiled from: CubicCurveData.java */
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY})
+@RestrictTo({RestrictTo.Scope.LIBRARY})
 public class a {
     public final PointF a;
 

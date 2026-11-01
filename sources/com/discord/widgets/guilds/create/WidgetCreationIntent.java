@@ -6,12 +6,14 @@ import android.widget.TextView;
 import androidx.annotation.LayoutRes;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import b.a.d.j;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.app.LoggingConfig;
 import com.discord.databinding.WidgetCreationIntentBinding;
+import com.discord.i18n.RenderContext;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
@@ -20,7 +22,10 @@ import com.discord.widgets.nux.GuildTemplateAnalytics;
 import com.google.android.material.card.MaterialCardView;
 import d0.g;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Lazy;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
@@ -28,7 +33,9 @@ import kotlin.reflect.KProperty;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetCreationIntent extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetCreationIntent.class, "binding", "getBinding()Lcom/discord/databinding/WidgetCreationIntentBinding;", 0)};
-    public static final WidgetCreationIntent$Companion Companion = new WidgetCreationIntent$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final boolean IS_FRIENDS_FIRST;
 
     /* JADX INFO: renamed from: args$delegate, reason: from kotlin metadata */
@@ -37,6 +44,88 @@ public final class WidgetCreationIntent extends AppFragment {
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
     private final LoggingConfig loggingConfig;
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.create.WidgetCreationIntent$configureCommunityButton$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCreationIntent.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetCreationIntent.access$onSelectionPressed(WidgetCreationIntent.this, Boolean.TRUE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.create.WidgetCreationIntent$configureFriendsButton$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCreationIntent.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetCreationIntent.access$onSelectionPressed(WidgetCreationIntent.this, Boolean.FALSE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.create.WidgetCreationIntent$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCreationIntent.kt */
+    public final class AnonymousClass1 extends o implements Function1<RenderContext, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.widgets.guilds.create.WidgetCreationIntent$onViewBound$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: WidgetCreationIntent.kt */
+        public final class C04121 extends o implements Function1<View, Unit> {
+            public C04121() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(View view) {
+                invoke2(view);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(View view) {
+                m.checkNotNullParameter(view, "it");
+                WidgetCreationIntent.access$onSelectionPressed(WidgetCreationIntent.this, null);
+            }
+        }
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.b("onSkip", new C04121());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetCreationIntent.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(AppFragment fragment, CreateGuildTrigger trigger, WidgetGuildCreate.Options createGuildOptions) {
+            m.checkNotNullParameter(fragment, "fragment");
+            m.checkNotNullParameter(trigger, "trigger");
+            m.checkNotNullParameter(createGuildOptions, "createGuildOptions");
+            j.g(j.g, fragment.getParentFragmentManager(), fragment.requireContext(), WidgetCreationIntent.class, 0, true, null, new CreationIntentArgs(trigger, createGuildOptions), 40);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     static {
         IS_FRIENDS_FIRST = Math.random() < 0.5d;
@@ -58,15 +147,15 @@ public final class WidgetCreationIntent extends AppFragment {
     }
 
     private final void configureCommunityButton(View container, TextView textView) {
-        textView.setText(getString(2131888271));
-        textView.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), 2131231237), (Drawable) null, ContextCompat.getDrawable(requireContext(), 2131232268), (Drawable) null);
-        container.setOnClickListener(new WidgetCreationIntent$configureCommunityButton$1(this));
+        textView.setText(getString(R.string.creation_intent_option_community));
+        textView.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.drawable_guild_template_creator), (Drawable) null, ContextCompat.getDrawable(requireContext(), R.drawable.icon_carrot), (Drawable) null);
+        container.setOnClickListener(new AnonymousClass1());
     }
 
     private final void configureFriendsButton(View container, TextView textView) {
-        textView.setText(getString(2131888272));
-        textView.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), 2131231235), (Drawable) null, ContextCompat.getDrawable(requireContext(), 2131232268), (Drawable) null);
-        container.setOnClickListener(new WidgetCreationIntent$configureFriendsButton$1(this));
+        textView.setText(getString(R.string.creation_intent_option_friends));
+        textView.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(requireContext(), R.drawable.drawable_guild_template_community), (Drawable) null, ContextCompat.getDrawable(requireContext(), R.drawable.icon_carrot), (Drawable) null);
+        container.setOnClickListener(new AnonymousClass1());
     }
 
     public final CreationIntentArgs getArgs() {
@@ -77,7 +166,7 @@ public final class WidgetCreationIntent extends AppFragment {
         return (WidgetCreationIntentBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger$a
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.a
     public LoggingConfig getLoggingConfig() {
         return this.loggingConfig;
     }
@@ -89,7 +178,7 @@ public final class WidgetCreationIntent extends AppFragment {
         } else {
             AnalyticsTracker.openModal$default("Create Guild Step 2", getArgs().getCreateGuildOptions().getAnalyticsLocation(), null, 4, null);
         }
-        WidgetGuildCreate.Companion.showFragment(this, getArgs().getCreateGuildOptions());
+        WidgetGuildCreate.INSTANCE.showFragment(this, getArgs().getCreateGuildOptions());
     }
 
     @Override // com.discord.app.AppFragment
@@ -121,10 +210,10 @@ public final class WidgetCreationIntent extends AppFragment {
         }
         LinkifiedTextView linkifiedTextView = getBinding().f;
         m.checkNotNullExpressionValue(linkifiedTextView, "binding.creationIntentSkipText");
-        b.m(linkifiedTextView, 2131888273, new Object[0], new WidgetCreationIntent$onViewBound$1(this));
+        b.m(linkifiedTextView, R.string.creation_intent_skip, new Object[0], new AnonymousClass1());
     }
 
     public /* synthetic */ WidgetCreationIntent(int i, int i2, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i2 & 1) != 0 ? R$layout.widget_creation_intent : i);
+        this((i2 & 1) != 0 ? R.layout.widget_creation_intent : i);
     }
 }

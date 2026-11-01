@@ -21,7 +21,7 @@ public final class StoreStream$Companion$initialize$1 extends o implements Funct
     @Override // kotlin.jvm.functions.Function0
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final String invoke2() {
-        AuthState authState = StoreStream$Companion.access$getCollector$p(StoreStream.Companion).getAuthentication().getAuthState();
+        AuthState authState = StoreStream.Companion.access$getCollector$p(StoreStream.INSTANCE).getAuthentication().getAuthState();
         if (authState != null) {
             return authState.getToken();
         }

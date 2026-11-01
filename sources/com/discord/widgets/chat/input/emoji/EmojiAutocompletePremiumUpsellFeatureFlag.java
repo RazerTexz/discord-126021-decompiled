@@ -11,9 +11,27 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: EmojiAutocompletePremiumUpsellFeatureFlag.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class EmojiAutocompletePremiumUpsellFeatureFlag {
-    public static final EmojiAutocompletePremiumUpsellFeatureFlag$Companion Companion = new EmojiAutocompletePremiumUpsellFeatureFlag$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final StoreExperiments storeExperiments;
     private static final Lazy INSTANCE$delegate = g.lazy(EmojiAutocompletePremiumUpsellFeatureFlag$Companion$INSTANCE$2.INSTANCE);
+
+    /* JADX INFO: compiled from: EmojiAutocompletePremiumUpsellFeatureFlag.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final EmojiAutocompletePremiumUpsellFeatureFlag getINSTANCE() {
+            Lazy lazyAccess$getINSTANCE$cp = EmojiAutocompletePremiumUpsellFeatureFlag.access$getINSTANCE$cp();
+            Companion companion = EmojiAutocompletePremiumUpsellFeatureFlag.INSTANCE;
+            return (EmojiAutocompletePremiumUpsellFeatureFlag) lazyAccess$getINSTANCE$cp.getValue();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public EmojiAutocompletePremiumUpsellFeatureFlag() {
         this(null, 1, null);
@@ -34,6 +52,6 @@ public final class EmojiAutocompletePremiumUpsellFeatureFlag {
     }
 
     public /* synthetic */ EmojiAutocompletePremiumUpsellFeatureFlag(StoreExperiments storeExperiments, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i & 1) != 0 ? StoreStream.Companion.getExperiments() : storeExperiments);
+        this((i & 1) != 0 ? StoreStream.INSTANCE.getExperiments() : storeExperiments);
     }
 }

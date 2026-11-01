@@ -1,22 +1,18 @@
 package b.a.n.h;
 
-import android.R$interpolator;
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.content.Context;
 import android.graphics.Rect;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.view.LayoutInflater;
-import android.view.WindowManager$LayoutParams;
+import android.view.WindowManager;
 import android.view.animation.ScaleAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import b.a.n.f;
-import com.discord.overlay.R$a;
-import com.discord.overlay.R$c;
-import com.discord.overlay.R$d;
-import com.discord.overlay.R$e;
+import com.discord.overlay.R;
 import com.discord.overlay.views.OverlayBubbleWrap;
 import d0.z.d.m;
 import kotlin.reflect.KProperty;
@@ -25,53 +21,108 @@ import kotlin.reflect.KProperty;
 /* JADX INFO: loaded from: classes.dex */
 public final class a extends FrameLayout implements f {
     public final b.a.n.g.a j;
-    public WindowManager$LayoutParams k;
+    public WindowManager.LayoutParams k;
     public final Animator l;
     public final Animator m;
     public final Rect n;
     public final int[] o;
     public OverlayBubbleWrap p;
 
+    /* JADX INFO: renamed from: b.a.n.h.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: Animator.kt */
+    public final class C0037a implements Animator.AnimatorListener {
+        public C0037a() {
+        }
+
+        @Override // android.animation.Animator.AnimatorListener
+        public void onAnimationCancel(Animator animator) {
+            m.checkNotNullParameter(animator, "animator");
+        }
+
+        @Override // android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            m.checkNotNullParameter(animator, "animator");
+        }
+
+        @Override // android.animation.Animator.AnimatorListener
+        public void onAnimationRepeat(Animator animator) {
+            m.checkNotNullParameter(animator, "animator");
+        }
+
+        @Override // android.animation.Animator.AnimatorListener
+        public void onAnimationStart(Animator animator) {
+            m.checkNotNullParameter(animator, "animator");
+            a.this.setVisibility(0);
+        }
+    }
+
+    /* JADX INFO: compiled from: Animator.kt */
+    public final class b implements Animator.AnimatorListener {
+        public b() {
+        }
+
+        @Override // android.animation.Animator.AnimatorListener
+        public void onAnimationCancel(Animator animator) {
+            m.checkNotNullParameter(animator, "animator");
+        }
+
+        @Override // android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            m.checkNotNullParameter(animator, "animator");
+            a.this.setVisibility(4);
+        }
+
+        @Override // android.animation.Animator.AnimatorListener
+        public void onAnimationRepeat(Animator animator) {
+            m.checkNotNullParameter(animator, "animator");
+        }
+
+        @Override // android.animation.Animator.AnimatorListener
+        public void onAnimationStart(Animator animator) {
+            m.checkNotNullParameter(animator, "animator");
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public a(Context context) {
         super(context);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(getContext()).inflate(R$e.trash_wrap, this);
-        int i = R$d.trash_wrap_icon;
+        LayoutInflater.from(getContext()).inflate(R.e.trash_wrap, this);
+        int i = R.d.trash_wrap_icon;
         ImageView imageView = (ImageView) findViewById(i);
         if (imageView != null) {
-            i = R$d.trash_wrap_target_container;
+            i = R.d.trash_wrap_target_container;
             FrameLayout frameLayout = (FrameLayout) findViewById(i);
             if (frameLayout != null) {
-                i = R$d.trash_wrap_target_zone;
+                i = R.d.trash_wrap_target_zone;
                 FrameLayout frameLayout2 = (FrameLayout) findViewById(i);
                 if (frameLayout2 != null) {
                     b.a.n.g.a aVar = new b.a.n.g.a(this, imageView, frameLayout, frameLayout2);
                     m.checkNotNullExpressionValue(aVar, "TrashWrapBinding.inflate…ater.from(context), this)");
                     this.j = aVar;
-                    WindowManager$LayoutParams windowManager$LayoutParams = new WindowManager$LayoutParams(-2, -2, Build$VERSION.SDK_INT <= 25 ? 2007 : 2038, 16777768, -3);
-                    windowManager$LayoutParams.width = -1;
-                    windowManager$LayoutParams.gravity = 81;
-                    m.checkNotNullParameter(windowManager$LayoutParams, "$this$addFlag");
-                    windowManager$LayoutParams.flags = 16 | windowManager$LayoutParams.flags;
-                    this.k = windowManager$LayoutParams;
-                    setBackgroundResource(R$c.trash_bg);
+                    WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(-2, -2, Build.VERSION.SDK_INT <= 25 ? 2007 : 2038, 16777768, -3);
+                    layoutParams.width = -1;
+                    layoutParams.gravity = 81;
+                    m.checkNotNullParameter(layoutParams, "$this$addFlag");
+                    layoutParams.flags = 16 | layoutParams.flags;
+                    this.k = layoutParams;
+                    setBackgroundResource(R.c.trash_bg);
                     setVisibility(4);
                     AnimatorSet animatorSet = new AnimatorSet();
-                    Animator animatorLoadAnimator = AnimatorInflater.loadAnimator(getContext(), R$a.fade_in);
+                    Animator animatorLoadAnimator = AnimatorInflater.loadAnimator(getContext(), R.a.fade_in);
                     animatorLoadAnimator.setTarget(this);
-                    Animator animatorLoadAnimator2 = AnimatorInflater.loadAnimator(getContext(), R$a.slide_in_bottom);
+                    Animator animatorLoadAnimator2 = AnimatorInflater.loadAnimator(getContext(), R.a.slide_in_bottom);
                     animatorLoadAnimator2.setTarget(frameLayout2);
                     animatorSet.playTogether(animatorLoadAnimator, animatorLoadAnimator2);
-                    animatorSet.addListener(new a$a(this));
+                    animatorSet.addListener(new C0037a());
                     this.l = animatorSet;
                     AnimatorSet animatorSet2 = new AnimatorSet();
-                    Animator animatorLoadAnimator3 = AnimatorInflater.loadAnimator(getContext(), R$a.fade_out);
+                    Animator animatorLoadAnimator3 = AnimatorInflater.loadAnimator(getContext(), R.a.fade_out);
                     animatorLoadAnimator3.setTarget(this);
-                    Animator animatorLoadAnimator4 = AnimatorInflater.loadAnimator(getContext(), R$a.slide_out_bottom);
+                    Animator animatorLoadAnimator4 = AnimatorInflater.loadAnimator(getContext(), R.a.slide_out_bottom);
                     animatorLoadAnimator4.setTarget(frameLayout2);
                     animatorSet2.playTogether(animatorLoadAnimator3, animatorLoadAnimator4);
-                    animatorSet2.addListener(new a$b(this));
+                    animatorSet2.addListener(new b());
                     this.m = animatorSet2;
                     this.n = new Rect();
                     this.o = new int[]{0, 0};
@@ -108,7 +159,7 @@ public final class a extends FrameLayout implements f {
             m.checkNotNullExpressionValue(frameLayout7, "binding.trashWrapTargetContainer");
             ScaleAnimation scaleAnimation = new ScaleAnimation(scaleX, width, scaleY, width, pivotX, frameLayout7.getPivotY());
             scaleAnimation.setDuration(200L);
-            scaleAnimation.setInterpolator(getContext(), R$interpolator.overshoot);
+            scaleAnimation.setInterpolator(getContext(), android.R.interpolator.overshoot);
             scaleAnimation.setFillAfter(true);
             this.j.c.startAnimation(scaleAnimation);
         } else {
@@ -123,7 +174,7 @@ public final class a extends FrameLayout implements f {
             m.checkNotNullExpressionValue(frameLayout10, "binding.trashWrapTargetContainer");
             ScaleAnimation scaleAnimation2 = new ScaleAnimation(scaleX2, 1.0f, frameLayout10.getScaleY(), 1.0f);
             scaleAnimation2.setDuration(200L);
-            scaleAnimation2.setInterpolator(getContext(), R$interpolator.anticipate);
+            scaleAnimation2.setInterpolator(getContext(), android.R.interpolator.anticipate);
             scaleAnimation2.setFillAfter(true);
             this.j.c.startAnimation(scaleAnimation2);
         }
@@ -133,7 +184,7 @@ public final class a extends FrameLayout implements f {
                 m.checkNotNullExpressionValue(imageView, "binding.trashWrapIcon");
                 overlayBubbleWrap.b(imageView);
             }
-            performHapticFeedback(Build$VERSION.SDK_INT >= 23 ? 6 : 0);
+            performHapticFeedback(Build.VERSION.SDK_INT >= 23 ? 6 : 0);
             OverlayBubbleWrap overlayBubbleWrap2 = this.p;
             if (overlayBubbleWrap2 != null) {
                 KProperty[] kPropertyArr = OverlayBubbleWrap.j;
@@ -149,7 +200,7 @@ public final class a extends FrameLayout implements f {
         m.checkNotNullParameter(overlayBubbleWrap, "bubble");
     }
 
-    public final WindowManager$LayoutParams getWindowLayoutParams() {
+    public final WindowManager.LayoutParams getWindowLayoutParams() {
         return this.k;
     }
 
@@ -171,8 +222,8 @@ public final class a extends FrameLayout implements f {
         }
     }
 
-    public final void setWindowLayoutParams(WindowManager$LayoutParams windowManager$LayoutParams) {
-        m.checkNotNullParameter(windowManager$LayoutParams, "<set-?>");
-        this.k = windowManager$LayoutParams;
+    public final void setWindowLayoutParams(WindowManager.LayoutParams layoutParams) {
+        m.checkNotNullParameter(layoutParams, "<set-?>");
+        this.k = layoutParams;
     }
 }

@@ -14,7 +14,7 @@ public final class o implements Closeable {
     public final g0.e k;
     public int l;
     public boolean m;
-    public final c$b n;
+    public final c.b n;
     public final BufferedSink o;
     public final boolean p;
     public static final Logger j = Logger.getLogger(d.class.getName());
@@ -26,7 +26,7 @@ public final class o implements Closeable {
         g0.e eVar = new g0.e();
         this.k = eVar;
         this.l = 16384;
-        this.n = new c$b(0, false, eVar, 3);
+        this.n = new c.b(0, false, eVar, 3);
     }
 
     public final synchronized void a(s sVar) throws IOException {
@@ -42,23 +42,23 @@ public final class o implements Closeable {
         this.l = i;
         int i3 = i2 & 2;
         if ((i3 != 0 ? sVar.f3647b[1] : -1) != -1) {
-            c$b c_b = this.n;
+            c.b bVar = this.n;
             int i4 = i3 != 0 ? sVar.f3647b[1] : -1;
-            c_b.h = i4;
+            bVar.h = i4;
             int iMin = Math.min(i4, 16384);
-            int i5 = c_b.c;
+            int i5 = bVar.c;
             if (i5 != iMin) {
                 if (iMin < i5) {
-                    c_b.a = Math.min(c_b.a, iMin);
+                    bVar.a = Math.min(bVar.a, iMin);
                 }
-                c_b.f3636b = true;
-                c_b.c = iMin;
-                int i6 = c_b.g;
+                bVar.f3636b = true;
+                bVar.c = iMin;
+                int i6 = bVar.g;
                 if (iMin < i6) {
                     if (iMin == 0) {
-                        c_b.a();
+                        bVar.a();
                     } else {
-                        c_b.b(i6 - iMin);
+                        bVar.b(i6 - iMin);
                     }
                 }
             }

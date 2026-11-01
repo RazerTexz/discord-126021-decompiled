@@ -3,15 +3,12 @@ package com.facebook.webpsupport;
 import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
 import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory$Options;
 import android.graphics.Rect;
 import android.util.TypedValue;
 import b.f.d.d.c;
 import b.f.d.m.a;
 import b.f.d.m.b;
-import b.f.d.m.b$a;
 import java.io.BufferedInputStream;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
@@ -22,20 +19,20 @@ import org.objectweb.asm.Opcodes;
 /* JADX INFO: loaded from: classes3.dex */
 @c
 public class WebpBitmapFactoryImpl implements b {
-    public static b$a a;
+    public static b.a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static a f2908b;
 
     @Override // b.f.d.m.b
-    public Bitmap a(FileDescriptor fileDescriptor, Rect rect, BitmapFactory$Options bitmapFactory$Options) {
-        return hookDecodeFileDescriptor(fileDescriptor, null, bitmapFactory$Options);
+    public Bitmap a(FileDescriptor fileDescriptor, Rect rect, BitmapFactory.Options options) {
+        return hookDecodeFileDescriptor(fileDescriptor, null, options);
     }
 
-    public static byte[] b(InputStream inputStream, BitmapFactory$Options bitmapFactory$Options) {
+    public static byte[] b(InputStream inputStream, BitmapFactory.Options options) {
         byte[] bArr;
         inputStream.mark(20);
-        if (bitmapFactory$Options == null || (bArr = bitmapFactory$Options.inTempStorage) == null || bArr.length < 20) {
+        if (options == null || (bArr = options.inTempStorage) == null || bArr.length < 20) {
             bArr = new byte[20];
         }
         try {
@@ -48,44 +45,44 @@ public class WebpBitmapFactoryImpl implements b {
     }
 
     public static void c(String str) {
-        b$a b_a = a;
-        if (b_a != null) {
-            b_a.a(str, "decoding_failure");
+        b.a aVar = a;
+        if (aVar != null) {
+            aVar.a(str, "decoding_failure");
         }
     }
 
     @c
-    private static Bitmap createBitmap(int i, int i2, BitmapFactory$Options bitmapFactory$Options) {
+    private static Bitmap createBitmap(int i, int i2, BitmapFactory.Options options) {
         Bitmap bitmap;
-        return (bitmapFactory$Options == null || (bitmap = bitmapFactory$Options.inBitmap) == null || !bitmap.isMutable()) ? f2908b.a(i, i2, Bitmap$Config.ARGB_8888) : bitmapFactory$Options.inBitmap;
+        return (options == null || (bitmap = options.inBitmap) == null || !bitmap.isMutable()) ? f2908b.a(i, i2, Bitmap.Config.ARGB_8888) : options.inBitmap;
     }
 
     @c
-    private static byte[] getInTempStorageFromOptions(BitmapFactory$Options bitmapFactory$Options) {
+    private static byte[] getInTempStorageFromOptions(BitmapFactory.Options options) {
         byte[] bArr;
-        return (bitmapFactory$Options == null || (bArr = bitmapFactory$Options.inTempStorage) == null) ? new byte[8192] : bArr;
+        return (options == null || (bArr = options.inTempStorage) == null) ? new byte[8192] : bArr;
     }
 
     @c
-    private static float getScaleFromOptions(BitmapFactory$Options bitmapFactory$Options) {
-        if (bitmapFactory$Options == null) {
+    private static float getScaleFromOptions(BitmapFactory.Options options) {
+        if (options == null) {
             return 1.0f;
         }
-        int i = bitmapFactory$Options.inSampleSize;
+        int i = options.inSampleSize;
         float f = i > 1 ? 1.0f / i : 1.0f;
-        if (!bitmapFactory$Options.inScaled) {
+        if (!options.inScaled) {
             return f;
         }
-        int i2 = bitmapFactory$Options.inDensity;
-        int i3 = bitmapFactory$Options.inTargetDensity;
-        return (i2 == 0 || i3 == 0 || i2 == bitmapFactory$Options.inScreenDensity) ? f : i3 / i2;
+        int i2 = options.inDensity;
+        int i3 = options.inTargetDensity;
+        return (i2 == 0 || i3 == 0 || i2 == options.inScreenDensity) ? f : i3 / i2;
     }
 
     @c
-    public static Bitmap hookDecodeByteArray(byte[] bArr, int i, int i2, BitmapFactory$Options bitmapFactory$Options) {
+    public static Bitmap hookDecodeByteArray(byte[] bArr, int i, int i2, BitmapFactory.Options options) {
         b.f.j.m.b.a();
         b bVar = b.f.d.m.c.a;
-        Bitmap bitmapOriginalDecodeByteArray = originalDecodeByteArray(bArr, i, i2, bitmapFactory$Options);
+        Bitmap bitmapOriginalDecodeByteArray = originalDecodeByteArray(bArr, i, i2, options);
         if (bitmapOriginalDecodeByteArray == null) {
             c("webp_direct_decode_array_failed_on_no_webp");
         }
@@ -93,12 +90,12 @@ public class WebpBitmapFactoryImpl implements b {
     }
 
     @c
-    public static Bitmap hookDecodeFile(String str, BitmapFactory$Options bitmapFactory$Options) {
+    public static Bitmap hookDecodeFile(String str, BitmapFactory.Options options) {
         Bitmap bitmapHookDecodeStream = null;
         try {
             FileInputStream fileInputStream = new FileInputStream(str);
             try {
-                bitmapHookDecodeStream = hookDecodeStream(fileInputStream, null, bitmapFactory$Options);
+                bitmapHookDecodeStream = hookDecodeStream(fileInputStream, null, options);
                 fileInputStream.close();
             } catch (Throwable th) {
                 try {
@@ -118,11 +115,11 @@ public class WebpBitmapFactoryImpl implements b {
     }
 
     @c
-    public static Bitmap hookDecodeFileDescriptor(FileDescriptor fileDescriptor, Rect rect, BitmapFactory$Options bitmapFactory$Options) {
+    public static Bitmap hookDecodeFileDescriptor(FileDescriptor fileDescriptor, Rect rect, BitmapFactory.Options options) {
         b.f.j.m.b.a();
         long jNativeSeek = nativeSeek(fileDescriptor, 0L, false);
         if (jNativeSeek == -1) {
-            Bitmap bitmapHookDecodeStream = hookDecodeStream(new FileInputStream(fileDescriptor), rect, bitmapFactory$Options);
+            Bitmap bitmapHookDecodeStream = hookDecodeStream(new FileInputStream(fileDescriptor), rect, options);
             setPaddingDefaultValues(rect);
             return bitmapHookDecodeStream;
         }
@@ -131,10 +128,10 @@ public class WebpBitmapFactoryImpl implements b {
             fileInputStream = new BufferedInputStream(fileInputStream, 20);
         }
         try {
-            b(fileInputStream, bitmapFactory$Options);
+            b(fileInputStream, options);
             b bVar = b.f.d.m.c.a;
             nativeSeek(fileDescriptor, jNativeSeek, true);
-            Bitmap bitmapOriginalDecodeFileDescriptor = originalDecodeFileDescriptor(fileDescriptor, rect, bitmapFactory$Options);
+            Bitmap bitmapOriginalDecodeFileDescriptor = originalDecodeFileDescriptor(fileDescriptor, rect, options);
             if (bitmapOriginalDecodeFileDescriptor == null) {
                 c("webp_direct_decode_fd_failed_on_no_webp");
             }
@@ -152,13 +149,13 @@ public class WebpBitmapFactoryImpl implements b {
     }
 
     @c
-    public static Bitmap hookDecodeResource(Resources resources, int i, BitmapFactory$Options bitmapFactory$Options) {
+    public static Bitmap hookDecodeResource(Resources resources, int i, BitmapFactory.Options options) {
         TypedValue typedValue = new TypedValue();
         Bitmap bitmapHookDecodeResourceStream = null;
         try {
             InputStream inputStreamOpenRawResource = resources.openRawResource(i, typedValue);
             try {
-                bitmapHookDecodeResourceStream = hookDecodeResourceStream(resources, typedValue, inputStreamOpenRawResource, null, bitmapFactory$Options);
+                bitmapHookDecodeResourceStream = hookDecodeResourceStream(resources, typedValue, inputStreamOpenRawResource, null, options);
                 if (inputStreamOpenRawResource != null) {
                     inputStreamOpenRawResource.close();
                 }
@@ -178,40 +175,40 @@ public class WebpBitmapFactoryImpl implements b {
             }
         } catch (Exception unused) {
         }
-        if (bitmapHookDecodeResourceStream != null || bitmapFactory$Options == null || bitmapFactory$Options.inBitmap == null) {
+        if (bitmapHookDecodeResourceStream != null || options == null || options.inBitmap == null) {
             return bitmapHookDecodeResourceStream;
         }
         throw new IllegalArgumentException("Problem decoding into existing bitmap");
     }
 
     @c
-    public static Bitmap hookDecodeResourceStream(Resources resources, TypedValue typedValue, InputStream inputStream, Rect rect, BitmapFactory$Options bitmapFactory$Options) {
-        if (bitmapFactory$Options == null) {
-            bitmapFactory$Options = new BitmapFactory$Options();
+    public static Bitmap hookDecodeResourceStream(Resources resources, TypedValue typedValue, InputStream inputStream, Rect rect, BitmapFactory.Options options) {
+        if (options == null) {
+            options = new BitmapFactory.Options();
         }
-        if (bitmapFactory$Options.inDensity == 0 && typedValue != null) {
+        if (options.inDensity == 0 && typedValue != null) {
             int i = typedValue.density;
             if (i == 0) {
-                bitmapFactory$Options.inDensity = Opcodes.IF_ICMPNE;
+                options.inDensity = Opcodes.IF_ICMPNE;
             } else if (i != 65535) {
-                bitmapFactory$Options.inDensity = i;
+                options.inDensity = i;
             }
         }
-        if (bitmapFactory$Options.inTargetDensity == 0 && resources != null) {
-            bitmapFactory$Options.inTargetDensity = resources.getDisplayMetrics().densityDpi;
+        if (options.inTargetDensity == 0 && resources != null) {
+            options.inTargetDensity = resources.getDisplayMetrics().densityDpi;
         }
-        return hookDecodeStream(inputStream, rect, bitmapFactory$Options);
+        return hookDecodeStream(inputStream, rect, options);
     }
 
     @c
-    public static Bitmap hookDecodeStream(InputStream inputStream, Rect rect, BitmapFactory$Options bitmapFactory$Options) {
+    public static Bitmap hookDecodeStream(InputStream inputStream, Rect rect, BitmapFactory.Options options) {
         b.f.j.m.b.a();
         if (!inputStream.markSupported()) {
             inputStream = new BufferedInputStream(inputStream, 20);
         }
-        b(inputStream, bitmapFactory$Options);
+        b(inputStream, options);
         b bVar = b.f.d.m.c.a;
-        Bitmap bitmapOriginalDecodeStream = originalDecodeStream(inputStream, rect, bitmapFactory$Options);
+        Bitmap bitmapOriginalDecodeStream = originalDecodeStream(inputStream, rect, options);
         if (bitmapOriginalDecodeStream == null) {
             c("webp_direct_decode_stream_failed_on_no_webp");
         }
@@ -219,59 +216,59 @@ public class WebpBitmapFactoryImpl implements b {
     }
 
     @c
-    private static native Bitmap nativeDecodeByteArray(byte[] bArr, int i, int i2, BitmapFactory$Options bitmapFactory$Options, float f, byte[] bArr2);
+    private static native Bitmap nativeDecodeByteArray(byte[] bArr, int i, int i2, BitmapFactory.Options options, float f, byte[] bArr2);
 
     @c
-    private static native Bitmap nativeDecodeStream(InputStream inputStream, BitmapFactory$Options bitmapFactory$Options, float f, byte[] bArr);
+    private static native Bitmap nativeDecodeStream(InputStream inputStream, BitmapFactory.Options options, float f, byte[] bArr);
 
     @c
     private static native long nativeSeek(FileDescriptor fileDescriptor, long j, boolean z2);
 
     @c
-    private static Bitmap originalDecodeByteArray(byte[] bArr, int i, int i2, BitmapFactory$Options bitmapFactory$Options) {
-        return BitmapFactory.decodeByteArray(bArr, i, i2, bitmapFactory$Options);
+    private static Bitmap originalDecodeByteArray(byte[] bArr, int i, int i2, BitmapFactory.Options options) {
+        return BitmapFactory.decodeByteArray(bArr, i, i2, options);
     }
 
     @c
-    private static Bitmap originalDecodeFile(String str, BitmapFactory$Options bitmapFactory$Options) {
-        return BitmapFactory.decodeFile(str, bitmapFactory$Options);
+    private static Bitmap originalDecodeFile(String str, BitmapFactory.Options options) {
+        return BitmapFactory.decodeFile(str, options);
     }
 
     @c
-    private static Bitmap originalDecodeFileDescriptor(FileDescriptor fileDescriptor, Rect rect, BitmapFactory$Options bitmapFactory$Options) {
-        return BitmapFactory.decodeFileDescriptor(fileDescriptor, rect, bitmapFactory$Options);
+    private static Bitmap originalDecodeFileDescriptor(FileDescriptor fileDescriptor, Rect rect, BitmapFactory.Options options) {
+        return BitmapFactory.decodeFileDescriptor(fileDescriptor, rect, options);
     }
 
     @c
-    private static Bitmap originalDecodeResource(Resources resources, int i, BitmapFactory$Options bitmapFactory$Options) {
-        return BitmapFactory.decodeResource(resources, i, bitmapFactory$Options);
+    private static Bitmap originalDecodeResource(Resources resources, int i, BitmapFactory.Options options) {
+        return BitmapFactory.decodeResource(resources, i, options);
     }
 
     @c
-    private static Bitmap originalDecodeResourceStream(Resources resources, TypedValue typedValue, InputStream inputStream, Rect rect, BitmapFactory$Options bitmapFactory$Options) {
-        return BitmapFactory.decodeResourceStream(resources, typedValue, inputStream, rect, bitmapFactory$Options);
+    private static Bitmap originalDecodeResourceStream(Resources resources, TypedValue typedValue, InputStream inputStream, Rect rect, BitmapFactory.Options options) {
+        return BitmapFactory.decodeResourceStream(resources, typedValue, inputStream, rect, options);
     }
 
     @c
-    private static Bitmap originalDecodeStream(InputStream inputStream, Rect rect, BitmapFactory$Options bitmapFactory$Options) {
-        return BitmapFactory.decodeStream(inputStream, rect, bitmapFactory$Options);
+    private static Bitmap originalDecodeStream(InputStream inputStream, Rect rect, BitmapFactory.Options options) {
+        return BitmapFactory.decodeStream(inputStream, rect, options);
     }
 
     @c
-    private static void setBitmapSize(BitmapFactory$Options bitmapFactory$Options, int i, int i2) {
-        if (bitmapFactory$Options != null) {
-            bitmapFactory$Options.outWidth = i;
-            bitmapFactory$Options.outHeight = i2;
+    private static void setBitmapSize(BitmapFactory.Options options, int i, int i2) {
+        if (options != null) {
+            options.outWidth = i;
+            options.outHeight = i2;
         }
     }
 
     @c
-    private static boolean setOutDimensions(BitmapFactory$Options bitmapFactory$Options, int i, int i2) {
-        if (bitmapFactory$Options == null || !bitmapFactory$Options.inJustDecodeBounds) {
+    private static boolean setOutDimensions(BitmapFactory.Options options, int i, int i2) {
+        if (options == null || !options.inJustDecodeBounds) {
             return false;
         }
-        bitmapFactory$Options.outWidth = i;
-        bitmapFactory$Options.outHeight = i2;
+        options.outWidth = i;
+        options.outHeight = i2;
         return true;
     }
 
@@ -287,9 +284,9 @@ public class WebpBitmapFactoryImpl implements b {
 
     @c
     @SuppressLint({"NewApi"})
-    private static boolean shouldPremultiply(BitmapFactory$Options bitmapFactory$Options) {
-        if (bitmapFactory$Options != null) {
-            return bitmapFactory$Options.inPremultiplied;
+    private static boolean shouldPremultiply(BitmapFactory.Options options) {
+        if (options != null) {
+            return options.inPremultiplied;
         }
         return true;
     }

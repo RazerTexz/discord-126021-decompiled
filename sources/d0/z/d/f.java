@@ -1,15 +1,17 @@
 package d0.z.d;
 
 import com.adjust.sdk.Constants;
+import com.discord.models.domain.ModelAuditLogEntry;
 import d0.t.g0;
 import d0.t.h0;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import kotlin.Pair;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -30,6 +32,7 @@ import kotlin.jvm.functions.Function6;
 import kotlin.jvm.functions.Function7;
 import kotlin.jvm.functions.Function8;
 import kotlin.jvm.functions.Function9;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ClassReference.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -39,8 +42,90 @@ public final class f implements d0.e0.c<Object>, e {
     public static final HashMap<String, String> l;
     public static final HashMap<String, String> m;
     public static final Map<String, String> n;
-    public static final f$a o = new f$a(null);
+    public static final a o = new a(null);
     public final Class<?> p;
+
+    /* JADX INFO: compiled from: ClassReference.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final String getClassQualifiedName(Class<?> cls) {
+            String str;
+            m.checkNotNullParameter(cls, "jClass");
+            String strW = null;
+            if (cls.isAnonymousClass() || cls.isLocalClass()) {
+                return null;
+            }
+            if (!cls.isArray()) {
+                String str2 = (String) f.access$getClassFqNames$cp().get(cls.getName());
+                return str2 != null ? str2 : cls.getCanonicalName();
+            }
+            Class<?> componentType = cls.getComponentType();
+            m.checkNotNullExpressionValue(componentType, "componentType");
+            if (componentType.isPrimitive() && (str = (String) f.access$getClassFqNames$cp().get(componentType.getName())) != null) {
+                strW = b.d.b.a.a.w(str, "Array");
+            }
+            return strW != null ? strW : "kotlin.Array";
+        }
+
+        /* JADX WARN: Code duplicated, block: B:12:0x0043  */
+        /* JADX WARN: Code duplicated, block: B:14:0x0049  */
+        /* JADX WARN: Code duplicated, block: B:15:0x0065  */
+        /* JADX WARN: Instruction removed from duplicated block: B:14:0x0049, please report this as an issue */
+        public final String getClassSimpleName(Class<?> cls) {
+            String str;
+            Constructor<?> enclosingConstructor;
+            String strSubstringAfter$default;
+            m.checkNotNullParameter(cls, "jClass");
+            String strW = null;
+            if (!cls.isAnonymousClass()) {
+                if (cls.isLocalClass()) {
+                    String simpleName = cls.getSimpleName();
+                    Method enclosingMethod = cls.getEnclosingMethod();
+                    if (enclosingMethod != null) {
+                        m.checkNotNullExpressionValue(simpleName, ModelAuditLogEntry.CHANGE_KEY_NAME);
+                        strSubstringAfter$default = d0.g0.w.substringAfter$default(simpleName, enclosingMethod.getName() + "$", (String) null, 2, (Object) null);
+                        if (strSubstringAfter$default == null) {
+                            enclosingConstructor = cls.getEnclosingConstructor();
+                            if (enclosingConstructor != null) {
+                                m.checkNotNullExpressionValue(simpleName, ModelAuditLogEntry.CHANGE_KEY_NAME);
+                                strSubstringAfter$default = d0.g0.w.substringAfter$default(simpleName, enclosingConstructor.getName() + "$", (String) null, 2, (Object) null);
+                            } else {
+                                strSubstringAfter$default = null;
+                            }
+                        }
+                    } else {
+                        enclosingConstructor = cls.getEnclosingConstructor();
+                        if (enclosingConstructor != null) {
+                            m.checkNotNullExpressionValue(simpleName, ModelAuditLogEntry.CHANGE_KEY_NAME);
+                            strSubstringAfter$default = d0.g0.w.substringAfter$default(simpleName, enclosingConstructor.getName() + "$", (String) null, 2, (Object) null);
+                        } else {
+                            strSubstringAfter$default = null;
+                        }
+                    }
+                    if (strSubstringAfter$default != null) {
+                        return strSubstringAfter$default;
+                    }
+                    m.checkNotNullExpressionValue(simpleName, ModelAuditLogEntry.CHANGE_KEY_NAME);
+                    return d0.g0.w.substringAfter$default(simpleName, '$', (String) null, 2, (Object) null);
+                }
+                if (!cls.isArray()) {
+                    String str2 = (String) f.access$getSimpleNames$cp().get(cls.getName());
+                    return str2 != null ? str2 : cls.getSimpleName();
+                }
+                Class<?> componentType = cls.getComponentType();
+                m.checkNotNullExpressionValue(componentType, "componentType");
+                if (componentType.isPrimitive() && (str = (String) f.access$getSimpleNames$cp().get(componentType.getName())) != null) {
+                    strW = b.d.b.a.a.w(str, "Array");
+                }
+                if (strW == null) {
+                    return "Array";
+                }
+            }
+            return strW;
+        }
+    }
 
     /* JADX WARN: Multi-variable type inference failed */
     static {
@@ -109,13 +194,13 @@ public final class f implements d0.e0.c<Object>, e {
             Pair pair = d0.o.to(sb.toString(), str + ".Companion");
             map3.put(pair.getFirst(), pair.getSecond());
         }
-        for (Map$Entry<Class<? extends d0.c<?>>, Integer> map$Entry : j.entrySet()) {
-            map3.put(map$Entry.getKey().getName(), "kotlin.Function" + map$Entry.getValue().intValue());
+        for (Map.Entry<Class<? extends d0.c<?>>, Integer> entry : j.entrySet()) {
+            map3.put(entry.getKey().getName(), "kotlin.Function" + entry.getValue().intValue());
         }
         m = map3;
         LinkedHashMap linkedHashMap = new LinkedHashMap(g0.mapCapacity(map3.size()));
-        for (Map$Entry map$Entry2 : map3.entrySet()) {
-            linkedHashMap.put(map$Entry2.getKey(), d0.g0.w.substringAfterLast$default((String) map$Entry2.getValue(), '.', null, 2, null));
+        for (Map.Entry entry2 : map3.entrySet()) {
+            linkedHashMap.put(entry2.getKey(), d0.g0.w.substringAfterLast$default((String) entry2.getValue(), '.', null, 2, null));
         }
         n = linkedHashMap;
     }

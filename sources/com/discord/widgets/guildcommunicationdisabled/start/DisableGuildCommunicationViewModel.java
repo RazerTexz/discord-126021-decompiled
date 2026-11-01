@@ -1,10 +1,15 @@
 package com.discord.widgets.guildcommunicationdisabled.start;
 
+import a0.a.a.b;
 import android.content.Context;
 import b.a.d.d0;
+import b.d.b.a.a;
+import com.discord.analytics.generated.events.network_action.TrackNetworkActionUserCommunicationDisabledUpdate;
+import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
 import com.discord.models.domain.ModelAuditLogEntry;
+import com.discord.models.guild.Guild;
 import com.discord.models.user.User;
-import com.discord.restapi.RestAPIParams$DisableGuildCommunication;
+import com.discord.restapi.RestAPIParams;
 import com.discord.stores.StoreGuilds;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUser;
@@ -13,7 +18,9 @@ import com.discord.stores.updates.ObservationDeckProvider;
 import com.discord.stores.utilities.RestCallStateKt;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.lang.ref.WeakReference;
 import kotlin.Pair;
 import kotlin.Unit;
@@ -24,17 +31,286 @@ import rx.Observable;
 
 /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class DisableGuildCommunicationViewModel extends d0<DisableGuildCommunicationViewModel$ViewState> {
-    public static final DisableGuildCommunicationViewModel$Companion Companion = new DisableGuildCommunicationViewModel$Companion(null);
+public final class DisableGuildCommunicationViewModel extends d0<ViewState> {
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final long guildId;
     private final long userId;
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.DisableGuildCommunicationViewModel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<StoreState, Unit> {
+        public AnonymousClass1(DisableGuildCommunicationViewModel disableGuildCommunicationViewModel) {
+            super(1, disableGuildCommunicationViewModel, DisableGuildCommunicationViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/guildcommunicationdisabled/start/DisableGuildCommunicationViewModel$StoreState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
+            invoke2(storeState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreState storeState) {
+            m.checkNotNullParameter(storeState, "p1");
+            DisableGuildCommunicationViewModel.access$handleStoreState((DisableGuildCommunicationViewModel) this.receiver, storeState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.DisableGuildCommunicationViewModel$onDisableCommunicationConfirm$1, reason: invalid class name */
+    /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
+    public final class AnonymousClass1 extends o implements Function1<Void, TrackNetworkMetadataReceiver> {
+        public final /* synthetic */ long $disabledUntilTimestamp;
+        public final /* synthetic */ long $durationS;
+        public final /* synthetic */ String $reason;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, long j2, String str) {
+            super(1);
+            this.$durationS = j;
+            this.$disabledUntilTimestamp = j2;
+            this.$reason = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ TrackNetworkMetadataReceiver invoke(Void r1) {
+            return invoke2(r1);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final TrackNetworkMetadataReceiver invoke2(Void r7) {
+            return new TrackNetworkActionUserCommunicationDisabledUpdate(Long.valueOf(DisableGuildCommunicationViewModel.access$getGuildId$p(DisableGuildCommunicationViewModel.this)), Long.valueOf(DisableGuildCommunicationViewModel.access$getUserId$p(DisableGuildCommunicationViewModel.this)), Float.valueOf(this.$durationS), this.$reason, Long.valueOf(this.$disabledUntilTimestamp));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.DisableGuildCommunicationViewModel$onDisableCommunicationConfirm$2, reason: invalid class name */
+    /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
+    public final class AnonymousClass2 extends o implements Function1<Void, Unit> {
+        public final /* synthetic */ Function0 $onFinished;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(Function0 function0) {
+            super(1);
+            this.$onFinished = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+            this.$onFinished.invoke();
+        }
+    }
+
+    /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static final /* synthetic */ Observable access$observeStores(Companion companion, long j, long j2, ObservationDeck observationDeck, StoreUser storeUser, StoreGuilds storeGuilds) {
+            return companion.observeStores(j, j2, observationDeck, storeUser, storeGuilds);
+        }
+
+        private final Observable<StoreState> observeStores(long userId, long guildId, ObservationDeck observationDeck, StoreUser userStore, StoreGuilds guildsStore) {
+            return ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{userStore, guildsStore}, false, null, null, new DisableGuildCommunicationViewModel$Companion$observeStores$1(userStore, userId, guildsStore, guildId), 14, null);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
+    public final /* data */ class StoreState {
+        private final Guild guild;
+        private final User user;
+
+        public StoreState(User user, Guild guild) {
+            this.user = user;
+            this.guild = guild;
+        }
+
+        public static /* synthetic */ StoreState copy$default(StoreState storeState, User user, Guild guild, int i, Object obj) {
+            if ((i & 1) != 0) {
+                user = storeState.user;
+            }
+            if ((i & 2) != 0) {
+                guild = storeState.guild;
+            }
+            return storeState.copy(user, guild);
+        }
+
+        public final StoreState copy(User user, Guild guild) {
+            return new StoreState(user, guild);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof StoreState)) {
+                return false;
+            }
+            StoreState storeState = (StoreState) other;
+            return m.areEqual(this.user, storeState.user) && m.areEqual(this.guild, storeState.guild);
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final User getUser() {
+            return this.user;
+        }
+
+        public final User getUser() {
+            return this.user;
+        }
+
+        public int hashCode() {
+            User user = this.user;
+            int iHashCode = (user != null ? user.hashCode() : 0) * 31;
+            Guild guild = this.guild;
+            return iHashCode + (guild != null ? guild.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("StoreState(user=");
+            sbU.append(this.user);
+            sbU.append(", guild=");
+            sbU.append(this.guild);
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
+    public abstract class ViewState {
+
+        /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
+        public final class Invalid extends ViewState {
+            public static final Invalid INSTANCE = new Invalid();
+
+            private Invalid() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: DisableGuildCommunicationViewModel.kt */
+        public final /* data */ class Valid extends ViewState {
+            private final long guildId;
+            private final TimeDurationDisabledCommunication selectedDurationOption;
+            private final User user;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Valid(User user, long j, TimeDurationDisabledCommunication timeDurationDisabledCommunication) {
+                super(null);
+                m.checkNotNullParameter(timeDurationDisabledCommunication, "selectedDurationOption");
+                this.user = user;
+                this.guildId = j;
+                this.selectedDurationOption = timeDurationDisabledCommunication;
+            }
+
+            public static /* synthetic */ Valid copy$default(Valid valid, User user, long j, TimeDurationDisabledCommunication timeDurationDisabledCommunication, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    user = valid.user;
+                }
+                if ((i & 2) != 0) {
+                    j = valid.guildId;
+                }
+                if ((i & 4) != 0) {
+                    timeDurationDisabledCommunication = valid.selectedDurationOption;
+                }
+                return valid.copy(user, j, timeDurationDisabledCommunication);
+            }
+
+            public final Valid copy(User user, long guildId, TimeDurationDisabledCommunication selectedDurationOption) {
+                m.checkNotNullParameter(selectedDurationOption, "selectedDurationOption");
+                return new Valid(user, guildId, selectedDurationOption);
+            }
+
+            public boolean equals(Object other) {
+                if (this == other) {
+                    return true;
+                }
+                if (!(other instanceof Valid)) {
+                    return false;
+                }
+                Valid valid = (Valid) other;
+                return m.areEqual(this.user, valid.user) && this.guildId == valid.guildId && m.areEqual(this.selectedDurationOption, valid.selectedDurationOption);
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final TimeDurationDisabledCommunication getSelectedDurationOption() {
+                return this.selectedDurationOption;
+            }
+
+            public final TimeDurationDisabledCommunication getSelectedDurationOption() {
+                return this.selectedDurationOption;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final User getUser() {
+                return this.user;
+            }
+
+            public final User getUser() {
+                return this.user;
+            }
+
+            public int hashCode() {
+                User user = this.user;
+                int iA = (b.a(this.guildId) + ((user != null ? user.hashCode() : 0) * 31)) * 31;
+                TimeDurationDisabledCommunication timeDurationDisabledCommunication = this.selectedDurationOption;
+                return iA + (timeDurationDisabledCommunication != null ? timeDurationDisabledCommunication.hashCode() : 0);
+            }
+
+            public String toString() {
+                StringBuilder sbU = a.U("Valid(user=");
+                sbU.append(this.user);
+                sbU.append(", guildId=");
+                sbU.append(this.guildId);
+                sbU.append(", selectedDurationOption=");
+                sbU.append(this.selectedDurationOption);
+                sbU.append(")");
+                return sbU.toString();
+            }
+        }
+
+        private ViewState() {
+        }
+
+        public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     /* JADX WARN: Illegal instructions before constructor call */
     public /* synthetic */ DisableGuildCommunicationViewModel(long j, long j2, ObservationDeck observationDeck, StoreUser storeUser, StoreGuilds storeGuilds, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         ObservationDeck observationDeck2 = (i & 4) != 0 ? ObservationDeckProvider.get() : observationDeck;
-        StoreUser users = (i & 8) != 0 ? StoreStream.Companion.getUsers() : storeUser;
-        StoreGuilds guilds = (i & 16) != 0 ? StoreStream.Companion.getGuilds() : storeGuilds;
-        this(j, j2, observationDeck2, users, guilds, (i & 32) != 0 ? DisableGuildCommunicationViewModel$Companion.access$observeStores(Companion, j, j2, observationDeck2, users, guilds) : observable);
+        StoreUser users = (i & 8) != 0 ? StoreStream.INSTANCE.getUsers() : storeUser;
+        StoreGuilds guilds = (i & 16) != 0 ? StoreStream.INSTANCE.getGuilds() : storeGuilds;
+        this(j, j2, observationDeck2, users, guilds, (i & 32) != 0 ? Companion.access$observeStores(INSTANCE, j, j2, observationDeck2, users, guilds) : observable);
     }
 
     public static final /* synthetic */ long access$getGuildId$p(DisableGuildCommunicationViewModel disableGuildCommunicationViewModel) {
@@ -45,54 +321,54 @@ public final class DisableGuildCommunicationViewModel extends d0<DisableGuildCom
         return disableGuildCommunicationViewModel.userId;
     }
 
-    public static final /* synthetic */ void access$handleStoreState(DisableGuildCommunicationViewModel disableGuildCommunicationViewModel, DisableGuildCommunicationViewModel$StoreState disableGuildCommunicationViewModel$StoreState) {
-        disableGuildCommunicationViewModel.handleStoreState(disableGuildCommunicationViewModel$StoreState);
+    public static final /* synthetic */ void access$handleStoreState(DisableGuildCommunicationViewModel disableGuildCommunicationViewModel, StoreState storeState) {
+        disableGuildCommunicationViewModel.handleStoreState(storeState);
     }
 
-    private final void handleStoreState(DisableGuildCommunicationViewModel$StoreState storeState) {
+    private final void handleStoreState(StoreState storeState) {
         TimeDurationDisabledCommunication selectedDurationOption;
-        DisableGuildCommunicationViewModel$ViewState disableGuildCommunicationViewModel$ViewState$Valid;
-        DisableGuildCommunicationViewModel$ViewState viewState = getViewState();
-        if (!(viewState instanceof DisableGuildCommunicationViewModel$ViewState$Valid)) {
+        ViewState valid;
+        ViewState viewState = getViewState();
+        if (!(viewState instanceof ViewState.Valid)) {
             viewState = null;
         }
-        DisableGuildCommunicationViewModel$ViewState$Valid disableGuildCommunicationViewModel$ViewState$Valid2 = (DisableGuildCommunicationViewModel$ViewState$Valid) viewState;
+        ViewState.Valid valid2 = (ViewState.Valid) viewState;
         if (storeState.getGuild() == null) {
-            disableGuildCommunicationViewModel$ViewState$Valid = DisableGuildCommunicationViewModel$ViewState$Invalid.INSTANCE;
+            valid = ViewState.Invalid.INSTANCE;
         } else {
             User user = storeState.getUser();
             long id2 = storeState.getGuild().getId();
-            if (disableGuildCommunicationViewModel$ViewState$Valid2 == null || (selectedDurationOption = disableGuildCommunicationViewModel$ViewState$Valid2.getSelectedDurationOption()) == null) {
+            if (valid2 == null || (selectedDurationOption = valid2.getSelectedDurationOption()) == null) {
                 selectedDurationOption = TimeDurationDisabledCommunication.SECONDS_60;
             }
-            disableGuildCommunicationViewModel$ViewState$Valid = new DisableGuildCommunicationViewModel$ViewState$Valid(user, id2, selectedDurationOption);
+            valid = new ViewState.Valid(user, id2, selectedDurationOption);
         }
-        updateViewState(disableGuildCommunicationViewModel$ViewState$Valid);
+        updateViewState(valid);
     }
 
     public final void onDisableCommunicationConfirm(WeakReference<Context> context, String reason, Function0<Unit> onFinished) {
         m.checkNotNullParameter(context, "context");
         m.checkNotNullParameter(onFinished, "onFinished");
-        DisableGuildCommunicationViewModel$ViewState viewState = getViewState();
-        if (viewState instanceof DisableGuildCommunicationViewModel$ViewState$Valid) {
-            DisableGuildCommunicationViewModel$ViewState$Valid disableGuildCommunicationViewModel$ViewState$Valid = (DisableGuildCommunicationViewModel$ViewState$Valid) viewState;
-            Pair<String, Long> futureTimestamp = GuildCommunicationDisabledDateUtils.INSTANCE.getFutureTimestamp(disableGuildCommunicationViewModel$ViewState$Valid.getSelectedDurationOption().getDurationMs());
+        ViewState viewState = getViewState();
+        if (viewState instanceof ViewState.Valid) {
+            ViewState.Valid valid = (ViewState.Valid) viewState;
+            Pair<String, Long> futureTimestamp = GuildCommunicationDisabledDateUtils.INSTANCE.getFutureTimestamp(valid.getSelectedDurationOption().getDurationMs());
             String strComponent1 = futureTimestamp.component1();
             long jLongValue = futureTimestamp.component2().longValue();
-            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(RestCallStateKt.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().disableGuildCommunication(this.guildId, this.userId, new RestAPIParams$DisableGuildCommunication(strComponent1), reason), false, 1, null), new DisableGuildCommunicationViewModel$onDisableCommunicationConfirm$1(this, ((long) disableGuildCommunicationViewModel$ViewState$Valid.getSelectedDurationOption().getDurationMs()) / 1000, jLongValue, reason)), this, null, 2, null), DisableGuildCommunicationViewModel.class, context.get(), (Function1) null, (Function1) null, (Function0) null, (Function0) null, new DisableGuildCommunicationViewModel$onDisableCommunicationConfirm$2(onFinished), 60, (Object) null);
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(RestCallStateKt.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().disableGuildCommunication(this.guildId, this.userId, new RestAPIParams.DisableGuildCommunication(strComponent1), reason), false, 1, null), new AnonymousClass1(((long) valid.getSelectedDurationOption().getDurationMs()) / 1000, jLongValue, reason)), this, null, 2, null), DisableGuildCommunicationViewModel.class, context.get(), (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(onFinished), 60, (Object) null);
         }
     }
 
     public final void onDurationLengthSelected(TimeDurationDisabledCommunication duration) {
         m.checkNotNullParameter(duration, "duration");
-        DisableGuildCommunicationViewModel$ViewState viewState = getViewState();
-        if (viewState instanceof DisableGuildCommunicationViewModel$ViewState$Valid) {
-            updateViewState(DisableGuildCommunicationViewModel$ViewState$Valid.copy$default((DisableGuildCommunicationViewModel$ViewState$Valid) viewState, null, 0L, duration, 3, null));
+        ViewState viewState = getViewState();
+        if (viewState instanceof ViewState.Valid) {
+            updateViewState(ViewState.Valid.copy$default((ViewState.Valid) viewState, null, 0L, duration, 3, null));
         }
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public DisableGuildCommunicationViewModel(long j, long j2, ObservationDeck observationDeck, StoreUser storeUser, StoreGuilds storeGuilds, Observable<DisableGuildCommunicationViewModel$StoreState> observable) {
+    public DisableGuildCommunicationViewModel(long j, long j2, ObservationDeck observationDeck, StoreUser storeUser, StoreGuilds storeGuilds, Observable<StoreState> observable) {
         super(null, 1, null);
         m.checkNotNullParameter(observationDeck, "observationDeck");
         m.checkNotNullParameter(storeUser, "userStore");
@@ -100,6 +376,6 @@ public final class DisableGuildCommunicationViewModel extends d0<DisableGuildCom
         m.checkNotNullParameter(observable, "storeStateObservable");
         this.userId = j;
         this.guildId = j2;
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observable), this, null, 2, null), DisableGuildCommunicationViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new DisableGuildCommunicationViewModel$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observable), this, null, 2, null), DisableGuildCommunicationViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
     }
 }

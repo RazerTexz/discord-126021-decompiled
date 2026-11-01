@@ -6,13 +6,30 @@ import com.discord.utilities.view.extensions.ViewExtensions;
 import com.google.android.material.textfield.TextInputLayout;
 import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: BasicTextInputValidator.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class BasicTextInputValidator implements InputValidator<TextInputLayout> {
-    public static final BasicTextInputValidator$Companion Companion = new BasicTextInputValidator$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final Function1<String, Boolean> inputPredicate;
     private final int messageResId;
+
+    /* JADX INFO: compiled from: BasicTextInputValidator.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final BasicTextInputValidator createRequiredInputValidator(@StringRes int messageResId) {
+            return new BasicTextInputValidator(messageResId, BasicTextInputValidator$Companion$createRequiredInputValidator$1.INSTANCE);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     /* JADX WARN: Multi-variable type inference failed */
     public BasicTextInputValidator(@StringRes int i, Function1<? super String, Boolean> function1) {

@@ -9,11 +9,12 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.d.f0;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetForumPostStatusBinding;
 import com.discord.utilities.color.ColorCompat;
@@ -28,7 +29,9 @@ import com.discord.widgets.forums.ForumUtils;
 import d0.g;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.reflect.KProperty;
@@ -51,8 +54,98 @@ public final class WidgetForumPostStatus extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatus$configureFollow$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetForumPostStatus.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ WidgetForumPostStatusViewModel.ViewState.Valid $viewState;
+
+        public AnonymousClass1(WidgetForumPostStatusViewModel.ViewState.Valid valid) {
+            this.$viewState = valid;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            if (this.$viewState.getFollowRequestInProgress()) {
+                return;
+            }
+            WidgetForumPostStatusViewModel widgetForumPostStatusViewModelAccess$getViewModel$p = WidgetForumPostStatus.access$getViewModel$p(WidgetForumPostStatus.this);
+            Context contextRequireContext = WidgetForumPostStatus.this.requireContext();
+            FragmentManager parentFragmentManager = WidgetForumPostStatus.this.getParentFragmentManager();
+            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            widgetForumPostStatusViewModelAccess$getViewModel$p.onFollowPress(contextRequireContext, parentFragmentManager, this.$viewState.getGuildId(), this.$viewState.getChannelId(), this.$viewState.isArchivedThread(), this.$viewState.isFollowedThread());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatus$onResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetForumPostStatus.kt */
+    public final class AnonymousClass1 extends o implements Function1<WidgetForumPostStatusViewModel.ViewState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetForumPostStatusViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetForumPostStatusViewModel.ViewState viewState) {
+            WidgetForumPostStatus widgetForumPostStatus = WidgetForumPostStatus.this;
+            m.checkNotNullExpressionValue(viewState, "viewState");
+            widgetForumPostStatus.handleViewState(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatus$configureReactions$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetForumPostStatus.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ WidgetForumPostStatusViewModel.ViewState.Valid $viewState;
+
+        public AnonymousClass2(WidgetForumPostStatusViewModel.ViewState.Valid valid) {
+            this.$viewState = valid;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetForumPostStatusViewModel widgetForumPostStatusViewModelAccess$getViewModel$p = WidgetForumPostStatus.access$getViewModel$p(WidgetForumPostStatus.this);
+            Context contextRequireContext = WidgetForumPostStatus.this.requireContext();
+            FragmentManager parentFragmentManager = WidgetForumPostStatus.this.getParentFragmentManager();
+            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            widgetForumPostStatusViewModelAccess$getViewModel$p.onReactionPress(contextRequireContext, parentFragmentManager, this.$viewState.getMyUserId(), this.$viewState.getMessageId().longValue(), this.$viewState.getGuildId(), this.$viewState.getChannelId(), this.$viewState.isArchivedThread(), this.$viewState.getReaction(), this.$viewState.getHasAddReactionPermission());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetForumPostStatus$configureReactions$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetForumPostStatus.kt */
+    public final class AnonymousClass3 extends o implements Function1<View, Unit> {
+        public final /* synthetic */ WidgetForumPostStatusViewModel.ViewState.Valid $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass3(WidgetForumPostStatusViewModel.ViewState.Valid valid) {
+            super(1);
+            this.$viewState = valid;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+            WidgetForumPostStatusViewModel widgetForumPostStatusViewModelAccess$getViewModel$p = WidgetForumPostStatus.access$getViewModel$p(WidgetForumPostStatus.this);
+            Context contextRequireContext = WidgetForumPostStatus.this.requireContext();
+            FragmentManager parentFragmentManager = WidgetForumPostStatus.this.getParentFragmentManager();
+            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            widgetForumPostStatusViewModelAccess$getViewModel$p.onReactionLongPress(contextRequireContext, parentFragmentManager, this.$viewState.getMessageId().longValue(), this.$viewState.getGuildId(), this.$viewState.getChannelId(), this.$viewState.isArchivedThread(), this.$viewState.getReaction());
+        }
+    }
+
     public WidgetForumPostStatus() {
-        super(R$layout.widget_forum_post_status);
+        super(R.layout.widget_forum_post_status);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetForumPostStatus$binding$2.INSTANCE, null, 2, null);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetForumPostStatusViewModel.class), new WidgetForumPostStatus$appActivityViewModels$$inlined$activityViewModels$1(this), new f0(new WidgetForumPostStatus$viewModel$2(this)));
         this.defaultReactionMeTextColor = g.lazy(new WidgetForumPostStatus$defaultReactionMeTextColor$2(this));
@@ -63,10 +156,10 @@ public final class WidgetForumPostStatus extends AppFragment {
         return widgetForumPostStatus.getViewModel();
     }
 
-    private final void configureFollow(WidgetForumPostStatusViewModel$ViewState$Valid viewState) {
-        int i = viewState.isFollowedThread() ? 2131889428 : 2131889364;
-        int color = viewState.isFollowedThread() ? ColorCompat.getColor(getContext(), 2131099738) : ColorCompat.getThemedColor(getContext(), 2130969978);
-        Drawable drawable = viewState.isFollowedThread() ? ContextCompat.getDrawable(requireContext(), 2131231651) : ContextCompat.getDrawable(requireContext(), 2131231575);
+    private final void configureFollow(WidgetForumPostStatusViewModel.ViewState.Valid viewState) {
+        int i = viewState.isFollowedThread() ? R.string.forum_unfollow_button : R.string.forum_follow_button;
+        int color = viewState.isFollowedThread() ? ColorCompat.getColor(getContext(), R.color.brand_500) : ColorCompat.getThemedColor(getContext(), R.attr.primary_300);
+        Drawable drawable = viewState.isFollowedThread() ? ContextCompat.getDrawable(requireContext(), R.drawable.ic_check_16dp) : ContextCompat.getDrawable(requireContext(), R.drawable.ic_bell_16dp);
         ProgressBar progressBar = getBinding().f2389b;
         m.checkNotNullExpressionValue(progressBar, "binding.followLoadingIndicator");
         progressBar.setVisibility(viewState.getFollowRequestInProgress() ? 0 : 8);
@@ -83,10 +176,10 @@ public final class WidgetForumPostStatus extends AppFragment {
         TextView textView4 = getBinding().c;
         m.checkNotNullExpressionValue(textView4, "binding.following");
         ColorCompatKt.setDrawableColor(textView4, color);
-        getBinding().d.setOnClickListener(new WidgetForumPostStatus$configureFollow$1(this, viewState));
+        getBinding().d.setOnClickListener(new AnonymousClass1(viewState));
     }
 
-    private final void configureMessageCount(WidgetForumPostStatusViewModel$ViewState$Valid viewState) {
+    private final void configureMessageCount(WidgetForumPostStatusViewModel.ViewState.Valid viewState) {
         String messageCountString = ForumUtils.INSTANCE.getMessageCountString(Integer.valueOf(viewState.getMessageCount()));
         if (messageCountString == null) {
             messageCountString = "0";
@@ -96,7 +189,7 @@ public final class WidgetForumPostStatus extends AppFragment {
         textView.setText(messageCountString);
     }
 
-    private final void configureReactions(WidgetForumPostStatusViewModel$ViewState$Valid viewState) {
+    private final void configureReactions(WidgetForumPostStatusViewModel.ViewState.Valid viewState) {
         ReactionView reactionView = getBinding().f;
         m.checkNotNullExpressionValue(reactionView, "binding.reaction");
         reactionView.setVisibility(viewState.getReaction() != null ? 0 : 8);
@@ -110,14 +203,14 @@ public final class WidgetForumPostStatus extends AppFragment {
         getBinding().f.a(viewState.getReaction(), viewState.getMessageId().longValue(), true);
         ReactionView reactionView2 = getBinding().f;
         m.checkNotNullExpressionValue(reactionView2, "binding.reaction");
-        reactionView2.setBackground(viewState.getHasAddReactionPermission() ? ContextCompat.getDrawable(requireContext(), 2131231027) : null);
-        getBinding().f.setOnClickListener(new WidgetForumPostStatus$configureReactions$2(this, viewState));
+        reactionView2.setBackground(viewState.getHasAddReactionPermission() ? ContextCompat.getDrawable(requireContext(), R.drawable.bg_pressed_highlight) : null);
+        getBinding().f.setOnClickListener(new AnonymousClass2(viewState));
         ReactionView reactionView3 = getBinding().f;
         m.checkNotNullExpressionValue(reactionView3, "binding.reaction");
-        ViewExtensions.setOnLongClickListenerConsumeClick(reactionView3, new WidgetForumPostStatus$configureReactions$3(this, viewState));
+        ViewExtensions.setOnLongClickListenerConsumeClick(reactionView3, new AnonymousClass3(viewState));
     }
 
-    public final void configureUI(WidgetForumPostStatusViewModel$ViewState$Valid viewState) {
+    public final void configureUI(WidgetForumPostStatusViewModel.ViewState.Valid viewState) {
         m.checkNotNullParameter(viewState, "viewState");
         if (viewState.getMessageId() == null) {
             WidgetForumPostStatusBinding binding = getBinding();
@@ -156,10 +249,10 @@ public final class WidgetForumPostStatus extends AppFragment {
         return (WidgetForumPostStatusViewModel) this.viewModel.getValue();
     }
 
-    public final void handleViewState(WidgetForumPostStatusViewModel$ViewState viewState) {
+    public final void handleViewState(WidgetForumPostStatusViewModel.ViewState viewState) {
         m.checkNotNullParameter(viewState, "viewState");
-        if (viewState instanceof WidgetForumPostStatusViewModel$ViewState$Valid) {
-            configureUI((WidgetForumPostStatusViewModel$ViewState$Valid) viewState);
+        if (viewState instanceof WidgetForumPostStatusViewModel.ViewState.Valid) {
+            configureUI((WidgetForumPostStatusViewModel.ViewState.Valid) viewState);
             return;
         }
         WidgetForumPostStatusBinding binding = getBinding();
@@ -172,8 +265,8 @@ public final class WidgetForumPostStatus extends AppFragment {
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
-        Observable<WidgetForumPostStatusViewModel$ViewState> observableR = getViewModel().observeViewState().r();
+        Observable<WidgetForumPostStatusViewModel.ViewState> observableR = getViewModel().observeViewState().r();
         m.checkNotNullExpressionValue(observableR, "viewModel\n        .obser…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableR, this, null, 2, null), WidgetForumPostStatus.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetForumPostStatus$onResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableR, this, null, 2, null), WidgetForumPostStatus.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 }

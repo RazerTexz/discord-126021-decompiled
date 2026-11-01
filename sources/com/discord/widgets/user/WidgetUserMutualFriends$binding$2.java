@@ -3,7 +3,7 @@ package com.discord.widgets.user;
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetUserMutualFriendsBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -26,10 +26,10 @@ public final /* synthetic */ class WidgetUserMutualFriends$binding$2 extends k i
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetUserMutualFriendsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.user_mutual_friends_recycler_view);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.user_mutual_friends_recycler_view);
         if (recyclerView != null) {
             return new WidgetUserMutualFriendsBinding((CoordinatorLayout) view, recyclerView);
         }
-        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R$id.user_mutual_friends_recycler_view)));
+        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R.id.user_mutual_friends_recycler_view)));
     }
 }

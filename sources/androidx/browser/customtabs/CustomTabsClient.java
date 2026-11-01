@@ -7,18 +7,19 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.RemoteException;
 import android.text.TextUtils;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import java.util.ArrayList;
 import java.util.List;
-import x.a.a.a$a;
+import x.a.a.a;
 import x.a.a.b;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -28,6 +29,25 @@ public class CustomTabsClient {
     private final b mService;
     private final ComponentName mServiceComponentName;
 
+    /* JADX INFO: renamed from: androidx.browser.customtabs.CustomTabsClient$1, reason: invalid class name */
+    public class AnonymousClass1 extends CustomTabsServiceConnection {
+        public final /* synthetic */ Context val$applicationContext;
+
+        public AnonymousClass1(Context context) {
+            this.val$applicationContext = context;
+        }
+
+        @Override // androidx.browser.customtabs.CustomTabsServiceConnection
+        public final void onCustomTabsServiceConnected(@NonNull ComponentName componentName, @NonNull CustomTabsClient customTabsClient) {
+            customTabsClient.warmup(0L);
+            this.val$applicationContext.unbindService(this);
+        }
+
+        @Override // android.content.ServiceConnection
+        public void onServiceDisconnected(ComponentName componentName) {
+        }
+    }
+
     public CustomTabsClient(b bVar, ComponentName componentName, Context context) {
         this.mService = bVar;
         this.mServiceComponentName = componentName;
@@ -35,9 +55,9 @@ public class CustomTabsClient {
     }
 
     @Nullable
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
-    public CustomTabsSession attachSession(@NonNull CustomTabsSession$PendingSession customTabsSession$PendingSession) {
-        return newSessionInternal(customTabsSession$PendingSession.getCallback(), customTabsSession$PendingSession.getId());
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    public CustomTabsSession attachSession(@NonNull CustomTabsSession.PendingSession pendingSession) {
+        return newSessionInternal(pendingSession.getCallback(), pendingSession.getId());
     }
 
     public static boolean bindCustomTabsService(@NonNull Context context, @Nullable String str, @NonNull CustomTabsServiceConnection customTabsServiceConnection) {
@@ -64,14 +84,14 @@ public class CustomTabsClient {
         }
         Context applicationContext = context.getApplicationContext();
         try {
-            return bindCustomTabsService(applicationContext, str, new CustomTabsClient$1(applicationContext));
+            return bindCustomTabsService(applicationContext, str, new AnonymousClass1(applicationContext));
         } catch (SecurityException unused) {
             return false;
         }
     }
 
-    private a$a createCallbackWrapper(@Nullable CustomTabsCallback customTabsCallback) {
-        return new CustomTabsClient$2(this, customTabsCallback);
+    private a.AbstractBinderC0650a createCallbackWrapper(@Nullable CustomTabsCallback customTabsCallback) {
+        return new AnonymousClass2(customTabsCallback);
     }
 
     private static PendingIntent createSessionId(Context context, int i) {
@@ -93,9 +113,9 @@ public class CustomTabsClient {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
-    public static CustomTabsSession$PendingSession newPendingSession(@NonNull Context context, @Nullable CustomTabsCallback customTabsCallback, int i) {
-        return new CustomTabsSession$PendingSession(customTabsCallback, createSessionId(context, i));
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    public static CustomTabsSession.PendingSession newPendingSession(@NonNull Context context, @Nullable CustomTabsCallback customTabsCallback, int i) {
+        return new CustomTabsSession.PendingSession(customTabsCallback, createSessionId(context, i));
     }
 
     @Nullable
@@ -106,17 +126,17 @@ public class CustomTabsClient {
     @Nullable
     private CustomTabsSession newSessionInternal(@Nullable CustomTabsCallback customTabsCallback, @Nullable PendingIntent pendingIntent) {
         boolean zNewSession;
-        a$a a_aCreateCallbackWrapper = createCallbackWrapper(customTabsCallback);
+        a.AbstractBinderC0650a abstractBinderC0650aCreateCallbackWrapper = createCallbackWrapper(customTabsCallback);
         try {
             if (pendingIntent != null) {
                 Bundle bundle = new Bundle();
                 bundle.putParcelable(CustomTabsIntent.EXTRA_SESSION_ID, pendingIntent);
-                zNewSession = this.mService.newSessionWithExtras(a_aCreateCallbackWrapper, bundle);
+                zNewSession = this.mService.newSessionWithExtras(abstractBinderC0650aCreateCallbackWrapper, bundle);
             } else {
-                zNewSession = this.mService.newSession(a_aCreateCallbackWrapper);
+                zNewSession = this.mService.newSession(abstractBinderC0650aCreateCallbackWrapper);
             }
             if (zNewSession) {
-                return new CustomTabsSession(this.mService, a_aCreateCallbackWrapper, this.mServiceComponentName, pendingIntent);
+                return new CustomTabsSession(this.mService, abstractBinderC0650aCreateCallbackWrapper, this.mServiceComponentName, pendingIntent);
             }
             return null;
         } catch (RemoteException unused) {
@@ -129,6 +149,147 @@ public class CustomTabsClient {
             return this.mService.warmup(j);
         } catch (RemoteException unused) {
             return false;
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.browser.customtabs.CustomTabsClient$2, reason: invalid class name */
+    public class AnonymousClass2 extends a.AbstractBinderC0650a {
+        public final /* synthetic */ CustomTabsCallback val$callback;
+        private Handler mHandler = new Handler(Looper.getMainLooper());
+
+        /* JADX INFO: renamed from: androidx.browser.customtabs.CustomTabsClient$2$1, reason: invalid class name */
+        public class AnonymousClass1 implements Runnable {
+            public final /* synthetic */ Bundle val$extras;
+            public final /* synthetic */ int val$navigationEvent;
+
+            public AnonymousClass1(int i, Bundle bundle) {
+                this.val$navigationEvent = i;
+                this.val$extras = bundle;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                AnonymousClass2.this.val$callback.onNavigationEvent(this.val$navigationEvent, this.val$extras);
+            }
+        }
+
+        /* JADX INFO: renamed from: androidx.browser.customtabs.CustomTabsClient$2$3, reason: invalid class name */
+        public class AnonymousClass3 implements Runnable {
+            public final /* synthetic */ Bundle val$extras;
+
+            public AnonymousClass3(Bundle bundle) {
+                this.val$extras = bundle;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                AnonymousClass2.this.val$callback.onMessageChannelReady(this.val$extras);
+            }
+        }
+
+        /* JADX INFO: renamed from: androidx.browser.customtabs.CustomTabsClient$2$4, reason: invalid class name */
+        public class AnonymousClass4 implements Runnable {
+            public final /* synthetic */ Bundle val$extras;
+            public final /* synthetic */ String val$message;
+
+            public AnonymousClass4(String str, Bundle bundle) {
+                this.val$message = str;
+                this.val$extras = bundle;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                AnonymousClass2.this.val$callback.onPostMessage(this.val$message, this.val$extras);
+            }
+        }
+
+        /* JADX INFO: renamed from: androidx.browser.customtabs.CustomTabsClient$2$5, reason: invalid class name */
+        public class AnonymousClass5 implements Runnable {
+            public final /* synthetic */ Bundle val$extras;
+            public final /* synthetic */ int val$relation;
+            public final /* synthetic */ Uri val$requestedOrigin;
+            public final /* synthetic */ boolean val$result;
+
+            public AnonymousClass5(int i, Uri uri, boolean z2, Bundle bundle) {
+                this.val$relation = i;
+                this.val$requestedOrigin = uri;
+                this.val$result = z2;
+                this.val$extras = bundle;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                AnonymousClass2.this.val$callback.onRelationshipValidationResult(this.val$relation, this.val$requestedOrigin, this.val$result, this.val$extras);
+            }
+        }
+
+        /* JADX INFO: renamed from: androidx.browser.customtabs.CustomTabsClient$2$2, reason: invalid class name and collision with other inner class name */
+        public class RunnableC00012 implements Runnable {
+            public final /* synthetic */ Bundle val$args;
+            public final /* synthetic */ String val$callbackName;
+
+            public RunnableC00012(String str, Bundle bundle) {
+                this.val$callbackName = str;
+                this.val$args = bundle;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                AnonymousClass2.this.val$callback.extraCallback(this.val$callbackName, this.val$args);
+            }
+        }
+
+        public AnonymousClass2(CustomTabsCallback customTabsCallback) {
+            this.val$callback = customTabsCallback;
+        }
+
+        @Override // x.a.a.a
+        public void extraCallback(String str, Bundle bundle) throws RemoteException {
+            if (this.val$callback == null) {
+                return;
+            }
+            this.mHandler.post(new RunnableC00012(str, bundle));
+        }
+
+        @Override // x.a.a.a
+        public Bundle extraCallbackWithResult(@NonNull String str, @Nullable Bundle bundle) throws RemoteException {
+            CustomTabsCallback customTabsCallback = this.val$callback;
+            if (customTabsCallback == null) {
+                return null;
+            }
+            return customTabsCallback.extraCallbackWithResult(str, bundle);
+        }
+
+        @Override // x.a.a.a
+        public void onMessageChannelReady(Bundle bundle) throws RemoteException {
+            if (this.val$callback == null) {
+                return;
+            }
+            this.mHandler.post(new AnonymousClass3(bundle));
+        }
+
+        @Override // x.a.a.a
+        public void onNavigationEvent(int i, Bundle bundle) {
+            if (this.val$callback == null) {
+                return;
+            }
+            this.mHandler.post(new AnonymousClass1(i, bundle));
+        }
+
+        @Override // x.a.a.a
+        public void onPostMessage(String str, Bundle bundle) throws RemoteException {
+            if (this.val$callback == null) {
+                return;
+            }
+            this.mHandler.post(new AnonymousClass4(str, bundle));
+        }
+
+        @Override // x.a.a.a
+        public void onRelationshipValidationResult(int i, Uri uri, boolean z2, @Nullable Bundle bundle) throws RemoteException {
+            if (this.val$callback == null) {
+                return;
+            }
+            this.mHandler.post(new AnonymousClass5(i, uri, z2, bundle));
         }
     }
 
@@ -154,7 +315,7 @@ public class CustomTabsClient {
                 return str2;
             }
         }
-        if (Build$VERSION.SDK_INT < 30) {
+        if (Build.VERSION.SDK_INT < 30) {
             return null;
         }
         Log.w(TAG, "Unable to find any Custom Tabs packages, you may need to add a <queries> element to your manifest. See the docs for CustomTabsClient#getPackageName.");

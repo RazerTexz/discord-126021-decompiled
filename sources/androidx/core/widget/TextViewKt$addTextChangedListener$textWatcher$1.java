@@ -2,7 +2,7 @@ package androidx.core.widget;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function4;

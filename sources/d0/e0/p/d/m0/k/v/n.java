@@ -2,20 +2,24 @@ package d0.e0.p.d.m0.k.v;
 
 import d0.e0.p.d.m0.c.c0;
 import d0.e0.p.d.m0.c.z0;
+import d0.e0.p.d.m0.n.a1;
 import d0.e0.p.d.m0.n.d0;
 import d0.e0.p.d.m0.n.j0;
+import d0.e0.p.d.m0.n.j1;
 import d0.e0.p.d.m0.n.u0;
+import d0.e0.p.d.m0.n.y0;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import kotlin.Lazy;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: IntegerLiteralTypeConstructor.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class n implements u0 {
-    public static final n$a a = new n$a(null);
+    public static final a a = new a(null);
     public final c0 c;
     public final Set<d0.e0.p.d.m0.n.c0> d;
     public final j0 e;
@@ -24,10 +28,83 @@ public final class n implements u0 {
     public final long f3475b;
     public final Lazy f;
 
+    /* JADX INFO: compiled from: IntegerLiteralTypeConstructor.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v11 */
+        /* JADX WARN: Type inference failed for: r0v14, types: [d0.e0.p.d.m0.n.j0] */
+        /* JADX WARN: Type inference failed for: r0v4, types: [java.lang.Object] */
+        /* JADX WARN: Type inference failed for: r0v5 */
+        /* JADX WARN: Type inference failed for: r0v6, types: [d0.e0.p.d.m0.n.c0, d0.e0.p.d.m0.n.j0, java.lang.Object] */
+        /* JADX WARN: Type inference failed for: r0v7 */
+        /* JADX WARN: Type inference failed for: r0v8 */
+        /* JADX WARN: Type inference failed for: r1v1 */
+        public final j0 findIntersectionType(Collection<? extends j0> collection) {
+            d0.z.d.m.checkNotNullParameter(collection, "types");
+            if (collection.isEmpty()) {
+                return null;
+            }
+            Iterator it = collection.iterator();
+            if (!it.hasNext()) {
+                throw new UnsupportedOperationException("Empty collection can't be reduced.");
+            }
+            ?? next = it.next();
+            while (it.hasNext()) {
+                j0 j0Var = (j0) it.next();
+                next = (j0) next;
+                if (next != 0 && j0Var != null) {
+                    u0 constructor = next.getConstructor();
+                    u0 constructor2 = j0Var.getConstructor();
+                    boolean z2 = constructor instanceof n;
+                    if (z2 && (constructor2 instanceof n)) {
+                        n nVar = (n) constructor;
+                        n nVar2 = new n(n.access$getValue$p(nVar), n.access$getModule$p(nVar), d0.t.u.union(nVar.getPossibleTypes(), ((n) constructor2).getPossibleTypes()), null);
+                        d0 d0Var = d0.a;
+                        next = d0.integerLiteralType(d0.e0.p.d.m0.c.g1.g.f.getEMPTY(), nVar2, false);
+                    } else if (z2) {
+                        if (((n) constructor).getPossibleTypes().contains(j0Var)) {
+                            next = j0Var;
+                        }
+                    } else if (!(constructor2 instanceof n) || !((n) constructor2).getPossibleTypes().contains(next)) {
+                    }
+                }
+                next = 0;
+            }
+            return (j0) next;
+        }
+    }
+
+    /* JADX INFO: compiled from: IntegerLiteralTypeConstructor.kt */
+    public final class b extends d0.z.d.o implements Function0<List<j0>> {
+        public b() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<j0> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<j0> invoke2() {
+            j0 defaultType = n.this.getBuiltIns().getComparable().getDefaultType();
+            d0.z.d.m.checkNotNullExpressionValue(defaultType, "builtIns.comparable.defaultType");
+            List<j0> listMutableListOf = d0.t.n.mutableListOf(a1.replace$default(defaultType, d0.t.m.listOf(new y0(j1.IN_VARIANCE, n.access$getType$p(n.this))), null, 2, null));
+            if (!n.access$isContainsOnlyUnsignedTypes(n.this)) {
+                listMutableListOf.add(n.this.getBuiltIns().getNumberType());
+            }
+            return listMutableListOf;
+        }
+    }
+
     public n(long j, c0 c0Var, Set set, DefaultConstructorMarker defaultConstructorMarker) {
         d0 d0Var = d0.a;
         this.e = d0.integerLiteralType(d0.e0.p.d.m0.c.g1.g.f.getEMPTY(), this, false);
-        this.f = d0.g.lazy(new n$b(this));
+        this.f = d0.g.lazy(new b());
         this.f3475b = j;
         this.c = c0Var;
         this.d = set;

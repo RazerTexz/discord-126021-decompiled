@@ -1,34 +1,27 @@
 package com.jaredrummler.android.colorpicker;
 
-import android.R$attr;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ComposeShader;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.Paint$Align;
-import android.graphics.Paint$Style;
 import android.graphics.Point;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.graphics.Shader$TileMode;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View$MeasureSpec;
 import androidx.constraintlayout.motion.widget.Key;
 import androidx.core.view.ViewCompat;
 import b.i.a.f.e.o.f;
-import b.k.a.a.a;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class ColorPickerView extends View {
@@ -45,8 +38,8 @@ public class ColorPickerView extends View {
     public Rect K;
     public Rect L;
     public Point M;
-    public a N;
-    public ColorPickerView$c O;
+    public b.k.a.a.a N;
+    public c O;
     public int j;
     public int k;
     public int l;
@@ -68,10 +61,24 @@ public class ColorPickerView extends View {
     public Shader f3153x;
 
     /* JADX INFO: renamed from: y, reason: collision with root package name */
-    public ColorPickerView$b f3154y;
+    public b f3154y;
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
-    public ColorPickerView$b f3155z;
+    public b f3155z;
+
+    public class b {
+        public Canvas a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public Bitmap f3156b;
+        public float c;
+
+        public b(ColorPickerView colorPickerView, a aVar) {
+        }
+    }
+
+    public interface c {
+    }
 
     public ColorPickerView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
@@ -84,13 +91,13 @@ public class ColorPickerView extends View {
         this.G = -4342339;
         this.H = -9539986;
         this.M = null;
-        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R$f.ColorPickerView);
-        this.E = typedArrayObtainStyledAttributes.getBoolean(R$f.ColorPickerView_cpv_alphaChannelVisible, false);
-        this.F = typedArrayObtainStyledAttributes.getString(R$f.ColorPickerView_cpv_alphaChannelText);
-        this.G = typedArrayObtainStyledAttributes.getColor(R$f.ColorPickerView_cpv_sliderColor, -4342339);
-        this.H = typedArrayObtainStyledAttributes.getColor(R$f.ColorPickerView_cpv_borderColor, -9539986);
+        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.f.ColorPickerView);
+        this.E = typedArrayObtainStyledAttributes.getBoolean(R.f.ColorPickerView_cpv_alphaChannelVisible, false);
+        this.F = typedArrayObtainStyledAttributes.getString(R.f.ColorPickerView_cpv_alphaChannelText);
+        this.G = typedArrayObtainStyledAttributes.getColor(R.f.ColorPickerView_cpv_sliderColor, -4342339);
+        this.H = typedArrayObtainStyledAttributes.getColor(R.f.ColorPickerView_cpv_borderColor, -9539986);
         typedArrayObtainStyledAttributes.recycle();
-        TypedArray typedArrayObtainStyledAttributes2 = context.obtainStyledAttributes(new TypedValue().data, new int[]{R$attr.textColorSecondary});
+        TypedArray typedArrayObtainStyledAttributes2 = context.obtainStyledAttributes(new TypedValue().data, new int[]{android.R.attr.textColorSecondary});
         if (this.H == -9539986) {
             this.H = typedArrayObtainStyledAttributes2.getColor(0, -9539986);
         }
@@ -110,17 +117,17 @@ public class ColorPickerView extends View {
         this.r = new Paint();
         this.f3152s = new Paint();
         this.u = new Paint();
-        this.q.setStyle(Paint$Style.STROKE);
+        this.q.setStyle(Paint.Style.STROKE);
         this.q.setStrokeWidth(f.S(getContext(), 2.0f));
         this.q.setAntiAlias(true);
         this.t.setColor(this.G);
-        this.t.setStyle(Paint$Style.STROKE);
+        this.t.setStyle(Paint.Style.STROKE);
         this.t.setStrokeWidth(f.S(getContext(), 2.0f));
         this.t.setAntiAlias(true);
         this.f3152s.setColor(-14935012);
         this.f3152s.setTextSize(f.S(getContext(), 14.0f));
         this.f3152s.setAntiAlias(true);
-        this.f3152s.setTextAlign(Paint$Align.CENTER);
+        this.f3152s.setTextAlign(Paint.Align.CENTER);
         this.f3152s.setFakeBoldText(true);
         setFocusable(true);
         setFocusableInTouchMode(true);
@@ -184,7 +191,7 @@ public class ColorPickerView extends View {
     }
 
     public void b(int i, boolean z2) {
-        ColorPickerView$c colorPickerView$c;
+        c cVar;
         int iAlpha = Color.alpha(i);
         float[] fArr = new float[3];
         Color.RGBToHSV(Color.red(i), Color.green(i), Color.blue(i), fArr);
@@ -195,8 +202,8 @@ public class ColorPickerView extends View {
         this.C = f2;
         float f3 = fArr[2];
         this.D = f3;
-        if (z2 && (colorPickerView$c = this.O) != null) {
-            ((ColorPickerDialog) colorPickerView$c).k(Color.HSVToColor(iAlpha, new float[]{f, f2, f3}));
+        if (z2 && (cVar = this.O) != null) {
+            ((ColorPickerDialog) cVar).k(Color.HSVToColor(iAlpha, new float[]{f, f2, f3}));
         }
         invalidate();
     }
@@ -258,28 +265,28 @@ public class ColorPickerView extends View {
         canvas.drawRect(rect3.left, rect3.top, rect2.right + 1, rect2.bottom + 1, this.u);
         if (this.v == null) {
             float f = rect2.left;
-            this.v = new LinearGradient(f, rect2.top, f, rect2.bottom, -1, ViewCompat.MEASURED_STATE_MASK, Shader$TileMode.CLAMP);
+            this.v = new LinearGradient(f, rect2.top, f, rect2.bottom, -1, ViewCompat.MEASURED_STATE_MASK, Shader.TileMode.CLAMP);
         }
-        ColorPickerView$b colorPickerView$b = this.f3154y;
-        if (colorPickerView$b == null || colorPickerView$b.c != this.B) {
-            if (colorPickerView$b == null) {
-                this.f3154y = new ColorPickerView$b(this, null);
+        b bVar = this.f3154y;
+        if (bVar == null || bVar.c != this.B) {
+            if (bVar == null) {
+                this.f3154y = new b(this, null);
             }
-            ColorPickerView$b colorPickerView$b2 = this.f3154y;
-            if (colorPickerView$b2.f3156b == null) {
-                colorPickerView$b2.f3156b = Bitmap.createBitmap(rect2.width(), rect2.height(), Bitmap$Config.ARGB_8888);
+            b bVar2 = this.f3154y;
+            if (bVar2.f3156b == null) {
+                bVar2.f3156b = Bitmap.createBitmap(rect2.width(), rect2.height(), Bitmap.Config.ARGB_8888);
             }
-            ColorPickerView$b colorPickerView$b3 = this.f3154y;
-            if (colorPickerView$b3.a == null) {
-                colorPickerView$b3.a = new Canvas(this.f3154y.f3156b);
+            b bVar3 = this.f3154y;
+            if (bVar3.a == null) {
+                bVar3.a = new Canvas(this.f3154y.f3156b);
             }
             int iHSVToColor = Color.HSVToColor(new float[]{this.B, 1.0f, 1.0f});
             float f2 = rect2.left;
             float f3 = rect2.top;
-            this.w = new LinearGradient(f2, f3, rect2.right, f3, -1, iHSVToColor, Shader$TileMode.CLAMP);
-            this.p.setShader(new ComposeShader(this.v, this.w, PorterDuff$Mode.MULTIPLY));
-            ColorPickerView$b colorPickerView$b4 = this.f3154y;
-            colorPickerView$b4.a.drawRect(0.0f, 0.0f, colorPickerView$b4.f3156b.getWidth(), this.f3154y.f3156b.getHeight(), this.p);
+            this.w = new LinearGradient(f2, f3, rect2.right, f3, -1, iHSVToColor, Shader.TileMode.CLAMP);
+            this.p.setShader(new ComposeShader(this.v, this.w, PorterDuff.Mode.MULTIPLY));
+            b bVar4 = this.f3154y;
+            bVar4.a.drawRect(0.0f, 0.0f, bVar4.f3156b.getWidth(), this.f3154y.f3156b.getHeight(), this.p);
             this.f3154y.c = this.B;
         }
         canvas.drawBitmap(this.f3154y.f3156b, (Rect) null, rect2, (Paint) null);
@@ -299,9 +306,9 @@ public class ColorPickerView extends View {
         this.u.setColor(this.H);
         canvas.drawRect(rect5.left - 1, rect5.top - 1, rect5.right + 1, rect5.bottom + 1, this.u);
         if (this.f3155z == null) {
-            ColorPickerView$b colorPickerView$b5 = new ColorPickerView$b(this, null);
-            this.f3155z = colorPickerView$b5;
-            colorPickerView$b5.f3156b = Bitmap.createBitmap(rect5.width(), rect5.height(), Bitmap$Config.ARGB_8888);
+            b bVar5 = new b(this, null);
+            this.f3155z = bVar5;
+            bVar5.f3156b = Bitmap.createBitmap(rect5.width(), rect5.height(), Bitmap.Config.ARGB_8888);
             this.f3155z.a = new Canvas(this.f3155z.f3156b);
             int iHeight = (int) (rect5.height() + 0.5f);
             int[] iArr = new int[iHeight];
@@ -314,9 +321,9 @@ public class ColorPickerView extends View {
             paint.setStrokeWidth(0.0f);
             for (int i2 = 0; i2 < iHeight; i2++) {
                 paint.setColor(iArr[i2]);
-                ColorPickerView$b colorPickerView$b6 = this.f3155z;
+                b bVar6 = this.f3155z;
                 float f7 = i2;
-                colorPickerView$b6.a.drawLine(0.0f, f7, colorPickerView$b6.f3156b.getWidth(), f7, paint);
+                bVar6.a.drawLine(0.0f, f7, bVar6.f3156b.getWidth(), f7, paint);
             }
         }
         canvas.drawBitmap(this.f3155z.f3156b, (Rect) null, rect5, (Paint) null);
@@ -347,7 +354,7 @@ public class ColorPickerView extends View {
         int iHSVToColor3 = Color.HSVToColor(0, fArr);
         float f9 = rect.left;
         float f10 = rect.top;
-        LinearGradient linearGradient = new LinearGradient(f9, f10, rect.right, f10, iHSVToColor2, iHSVToColor3, Shader$TileMode.CLAMP);
+        LinearGradient linearGradient = new LinearGradient(f9, f10, rect.right, f10, iHSVToColor2, iHSVToColor3, Shader.TileMode.CLAMP);
         this.f3153x = linearGradient;
         this.r.setShader(linearGradient);
         canvas.drawRect(rect, this.r);
@@ -379,10 +386,10 @@ public class ColorPickerView extends View {
     @Override // android.view.View
     public void onMeasure(int i, int i2) {
         int i3;
-        int mode = View$MeasureSpec.getMode(i);
-        int mode2 = View$MeasureSpec.getMode(i2);
-        int size = (View$MeasureSpec.getSize(i) - getPaddingLeft()) - getPaddingRight();
-        int size2 = (View$MeasureSpec.getSize(i2) - getPaddingBottom()) - getPaddingTop();
+        int mode = View.MeasureSpec.getMode(i);
+        int mode2 = View.MeasureSpec.getMode(i2);
+        int size = (View.MeasureSpec.getSize(i) - getPaddingLeft()) - getPaddingRight();
+        int size2 = (View.MeasureSpec.getSize(i2) - getPaddingBottom()) - getPaddingTop();
         if (mode != 1073741824 && mode2 != 1073741824) {
             int i4 = this.l;
             int i5 = this.j;
@@ -485,7 +492,7 @@ public class ColorPickerView extends View {
             int i12 = rect4.left + 1;
             int i13 = rect4.bottom;
             this.L = new Rect(i12, (i13 - this.k) + 1, rect4.right - 1, i13 - 1);
-            a aVar = new a(f.S(getContext(), 4.0f));
+            b.k.a.a.a aVar = new b.k.a.a.a(f.S(getContext(), 4.0f));
             this.N = aVar;
             aVar.setBounds(Math.round(this.L.left), Math.round(this.L.top), Math.round(this.L.right), Math.round(this.L.bottom));
         }
@@ -507,9 +514,9 @@ public class ColorPickerView extends View {
         if (!zA) {
             return super.onTouchEvent(motionEvent);
         }
-        ColorPickerView$c colorPickerView$c = this.O;
-        if (colorPickerView$c != null) {
-            ((ColorPickerDialog) colorPickerView$c).k(Color.HSVToColor(this.A, new float[]{this.B, this.C, this.D}));
+        c cVar = this.O;
+        if (cVar != null) {
+            ((ColorPickerDialog) cVar).k(Color.HSVToColor(this.A, new float[]{this.B, this.C, this.D}));
         }
         invalidate();
         return true;
@@ -540,8 +547,8 @@ public class ColorPickerView extends View {
         b(i, false);
     }
 
-    public void setOnColorChangedListener(ColorPickerView$c colorPickerView$c) {
-        this.O = colorPickerView$c;
+    public void setOnColorChangedListener(c cVar) {
+        this.O = cVar;
     }
 
     public void setSliderTrackerColor(int i) {

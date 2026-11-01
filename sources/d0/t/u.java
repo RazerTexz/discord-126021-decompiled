@@ -14,6 +14,7 @@ import java.util.Objects;
 import java.util.RandomAccess;
 import java.util.Set;
 import kotlin.Pair;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.ranges.IntRange;
 import kotlin.sequences.Sequence;
@@ -21,6 +22,65 @@ import kotlin.sequences.Sequence;
 /* JADX INFO: compiled from: _Collections.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class u extends t {
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: Sequences.kt */
+    public final class a<T> implements Sequence<T> {
+        public final /* synthetic */ Iterable a;
+
+        public a(Iterable iterable) {
+            this.a = iterable;
+        }
+
+        @Override // kotlin.sequences.Sequence
+        public Iterator<T> iterator() {
+            return this.a.iterator();
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: _Collections.kt */
+    public final class b<T> extends d0.z.d.o implements Function1<Integer, T> {
+        public final /* synthetic */ int $index;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public b(int i) {
+            super(1);
+            this.$index = i;
+        }
+
+        public final T invoke(int i) {
+            throw new IndexOutOfBoundsException(b.d.b.a.a.A(b.d.b.a.a.U("Collection doesn't contain element at index "), this.$index, '.'));
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Object invoke(Integer num) {
+            return invoke(num.intValue());
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: _Collections.kt */
+    public final class c<T> extends d0.z.d.o implements Function0<Iterator<? extends T>> {
+        public final /* synthetic */ Iterable $this_withIndex;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public c(Iterable iterable) {
+            super(0);
+            this.$this_withIndex = iterable;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Object invoke() {
+            return invoke();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final Iterator<T> invoke() {
+            return this.$this_withIndex.iterator();
+        }
+    }
+
     public static final <T> boolean all(Iterable<? extends T> iterable, Function1<? super T, Boolean> function1) {
         d0.z.d.m.checkNotNullParameter(iterable, "$this$all");
         d0.z.d.m.checkNotNullParameter(function1, "predicate");
@@ -38,7 +98,7 @@ public class u extends t {
 
     public static final <T> Sequence<T> asSequence(Iterable<? extends T> iterable) {
         d0.z.d.m.checkNotNullParameter(iterable, "$this$asSequence");
-        return new u$a(iterable);
+        return new a(iterable);
     }
 
     public static final double averageOfLong(Iterable<Long> iterable) {
@@ -152,7 +212,7 @@ public class u extends t {
 
     public static final <T> T elementAt(Iterable<? extends T> iterable, int i) {
         d0.z.d.m.checkNotNullParameter(iterable, "$this$elementAt");
-        return iterable instanceof List ? (T) ((List) iterable).get(i) : (T) elementAtOrElse(iterable, i, new u$b(i));
+        return iterable instanceof List ? (T) ((List) iterable).get(i) : (T) elementAtOrElse(iterable, i, new b(i));
     }
 
     public static final <T> T elementAtOrElse(Iterable<? extends T> iterable, int i, Function1<? super Integer, ? extends T> function1) {
@@ -193,15 +253,15 @@ public class u extends t {
         return (List) filterNotNullTo(iterable, new ArrayList());
     }
 
-    public static final <C extends Collection<? super T>, T> C filterNotNullTo(Iterable<? extends T> iterable, C c) {
+    public static final <C extends Collection<? super T>, T> C filterNotNullTo(Iterable<? extends T> iterable, C c2) {
         d0.z.d.m.checkNotNullParameter(iterable, "$this$filterNotNullTo");
-        d0.z.d.m.checkNotNullParameter(c, "destination");
+        d0.z.d.m.checkNotNullParameter(c2, "destination");
         for (T t : iterable) {
             if (t != null) {
-                c.add(t);
+                c2.add(t);
             }
         }
-        return c;
+        return c2;
     }
 
     public static final <T> T first(Iterable<? extends T> iterable) {
@@ -270,30 +330,30 @@ public class u extends t {
         return joinTo(iterable, appendable, (i2 & 2) != 0 ? ", " : charSequence, (i2 & 4) != 0 ? "" : charSequence2, (i2 & 8) == 0 ? charSequence3 : "", (i2 & 16) != 0 ? -1 : i, (i2 & 32) != 0 ? "..." : charSequence4, (i2 & 64) != 0 ? null : function1);
     }
 
-    public static final <T, A extends Appendable> A joinTo(Iterable<? extends T> iterable, A a, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1<? super T, ? extends CharSequence> function1) throws IOException {
+    public static final <T, A extends Appendable> A joinTo(Iterable<? extends T> iterable, A a2, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1<? super T, ? extends CharSequence> function1) throws IOException {
         d0.z.d.m.checkNotNullParameter(iterable, "$this$joinTo");
-        d0.z.d.m.checkNotNullParameter(a, "buffer");
+        d0.z.d.m.checkNotNullParameter(a2, "buffer");
         d0.z.d.m.checkNotNullParameter(charSequence, "separator");
         d0.z.d.m.checkNotNullParameter(charSequence2, "prefix");
         d0.z.d.m.checkNotNullParameter(charSequence3, "postfix");
         d0.z.d.m.checkNotNullParameter(charSequence4, "truncated");
-        a.append(charSequence2);
+        a2.append(charSequence2);
         int i2 = 0;
         for (T t : iterable) {
             i2++;
             if (i2 > 1) {
-                a.append(charSequence);
+                a2.append(charSequence);
             }
             if (i >= 0 && i2 > i) {
                 break;
             }
-            d0.g0.l.appendElement(a, t, function1);
+            d0.g0.l.appendElement(a2, t, function1);
         }
         if (i >= 0 && i2 > i) {
-            a.append(charSequence4);
+            a2.append(charSequence4);
         }
-        a.append(charSequence3);
-        return a;
+        a2.append(charSequence3);
+        return a2;
     }
 
     public static /* synthetic */ String joinToString$default(Iterable iterable, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, int i, CharSequence charSequence4, Function1 function1, int i2, Object obj) {
@@ -632,14 +692,14 @@ public class u extends t {
         return arrayList;
     }
 
-    public static final <T, C extends Collection<? super T>> C toCollection(Iterable<? extends T> iterable, C c) {
+    public static final <T, C extends Collection<? super T>> C toCollection(Iterable<? extends T> iterable, C c2) {
         d0.z.d.m.checkNotNullParameter(iterable, "$this$toCollection");
-        d0.z.d.m.checkNotNullParameter(c, "destination");
+        d0.z.d.m.checkNotNullParameter(c2, "destination");
         Iterator<? extends T> it = iterable.iterator();
         while (it.hasNext()) {
-            c.add(it.next());
+            c2.add(it.next());
         }
-        return c;
+        return c2;
     }
 
     public static final <T> HashSet<T> toHashSet(Iterable<? extends T> iterable) {
@@ -741,7 +801,7 @@ public class u extends t {
 
     public static final <T> Iterable<z<T>> withIndex(Iterable<? extends T> iterable) {
         d0.z.d.m.checkNotNullParameter(iterable, "$this$withIndex");
-        return new a0(new u$c(iterable));
+        return new a0(new c(iterable));
     }
 
     public static final <T, R> List<Pair<T, R>> zip(Iterable<? extends T> iterable, Iterable<? extends R> iterable2) {

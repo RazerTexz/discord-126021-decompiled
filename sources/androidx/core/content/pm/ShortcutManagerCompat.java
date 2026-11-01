@@ -1,6 +1,7 @@
 package androidx.core.content.pm;
 
 import android.app.ActivityManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -11,18 +12,22 @@ import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.annotation.RestrictTo;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.widget.ActivityChooserModel;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.IconCompat;
 import androidx.core.util.Preconditions;
 import java.io.InputStream;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -49,11 +54,51 @@ public class ShortcutManagerCompat {
     private static volatile List<ShortcutInfoChangeListener> sShortcutInfoChangeListeners;
     private static volatile ShortcutInfoCompatSaver<?> sShortcutInfoCompatSaver;
 
+    /* JADX INFO: renamed from: androidx.core.content.pm.ShortcutManagerCompat$1, reason: invalid class name */
+    public class AnonymousClass1 extends BroadcastReceiver {
+        public final /* synthetic */ IntentSender val$callback;
+
+        public AnonymousClass1(IntentSender intentSender) {
+            this.val$callback = intentSender;
+        }
+
+        @Override // android.content.BroadcastReceiver
+        public void onReceive(Context context, Intent intent) {
+            try {
+                this.val$callback.sendIntent(context, 0, null, null, null);
+            } catch (IntentSender.SendIntentException unused) {
+            }
+        }
+    }
+
+    @RequiresApi(25)
+    public class Api25Impl {
+        private Api25Impl() {
+        }
+
+        public static String getShortcutInfoWithLowestRank(@NonNull List<ShortcutInfo> list) {
+            int rank = -1;
+            String id2 = null;
+            for (ShortcutInfo shortcutInfo : list) {
+                if (shortcutInfo.getRank() > rank) {
+                    id2 = shortcutInfo.getId();
+                    rank = shortcutInfo.getRank();
+                }
+            }
+            return id2;
+        }
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public @interface ShortcutMatchFlags {
+    }
+
     private ShortcutManagerCompat() {
     }
 
     public static boolean addDynamicShortcuts(@NonNull Context context, @NonNull List<ShortcutInfoCompat> list) {
-        int i = Build$VERSION.SDK_INT;
+        int i = Build.VERSION.SDK_INT;
         if (i <= 29) {
             convertUriIconsToBitmapIcons(context, list);
         }
@@ -105,7 +150,7 @@ public class ShortcutManagerCompat {
 
     @NonNull
     public static Intent createShortcutResultIntent(@NonNull Context context, @NonNull ShortcutInfoCompat shortcutInfoCompat) {
-        Intent intentCreateShortcutResultIntent = Build$VERSION.SDK_INT >= 26 ? ((ShortcutManager) context.getSystemService(ShortcutManager.class)).createShortcutResultIntent(shortcutInfoCompat.toShortcutInfo()) : null;
+        Intent intentCreateShortcutResultIntent = Build.VERSION.SDK_INT >= 26 ? ((ShortcutManager) context.getSystemService(ShortcutManager.class)).createShortcutResultIntent(shortcutInfoCompat.toShortcutInfo()) : null;
         if (intentCreateShortcutResultIntent == null) {
             intentCreateShortcutResultIntent = new Intent();
         }
@@ -113,7 +158,7 @@ public class ShortcutManagerCompat {
     }
 
     public static void disableShortcuts(@NonNull Context context, @NonNull List<String> list, @Nullable CharSequence charSequence) {
-        if (Build$VERSION.SDK_INT >= 25) {
+        if (Build.VERSION.SDK_INT >= 25) {
             ((ShortcutManager) context.getSystemService(ShortcutManager.class)).disableShortcuts(list, charSequence);
         }
         getShortcutInfoSaverInstance(context).removeShortcuts(list);
@@ -124,7 +169,7 @@ public class ShortcutManagerCompat {
     }
 
     public static void enableShortcuts(@NonNull Context context, @NonNull List<ShortcutInfoCompat> list) {
-        if (Build$VERSION.SDK_INT >= 25) {
+        if (Build.VERSION.SDK_INT >= 25) {
             ArrayList arrayList = new ArrayList(list.size());
             Iterator<ShortcutInfoCompat> it = list.iterator();
             while (it.hasNext()) {
@@ -141,7 +186,7 @@ public class ShortcutManagerCompat {
 
     @NonNull
     public static List<ShortcutInfoCompat> getDynamicShortcuts(@NonNull Context context) {
-        if (Build$VERSION.SDK_INT < 25) {
+        if (Build.VERSION.SDK_INT < 25) {
             try {
                 return getShortcutInfoSaverInstance(context).getShortcuts();
             } catch (Exception unused) {
@@ -152,7 +197,7 @@ public class ShortcutManagerCompat {
         ArrayList arrayList = new ArrayList(dynamicShortcuts.size());
         Iterator<ShortcutInfo> it = dynamicShortcuts.iterator();
         while (it.hasNext()) {
-            arrayList.add(new ShortcutInfoCompat$Builder(context, it.next()).build());
+            arrayList.add(new ShortcutInfoCompat.Builder(context, it.next()).build());
         }
         return arrayList;
     }
@@ -166,17 +211,17 @@ public class ShortcutManagerCompat {
 
     public static int getIconMaxHeight(@NonNull Context context) {
         Preconditions.checkNotNull(context);
-        return Build$VERSION.SDK_INT >= 25 ? ((ShortcutManager) context.getSystemService(ShortcutManager.class)).getIconMaxHeight() : getIconDimensionInternal(context, false);
+        return Build.VERSION.SDK_INT >= 25 ? ((ShortcutManager) context.getSystemService(ShortcutManager.class)).getIconMaxHeight() : getIconDimensionInternal(context, false);
     }
 
     public static int getIconMaxWidth(@NonNull Context context) {
         Preconditions.checkNotNull(context);
-        return Build$VERSION.SDK_INT >= 25 ? ((ShortcutManager) context.getSystemService(ShortcutManager.class)).getIconMaxWidth() : getIconDimensionInternal(context, true);
+        return Build.VERSION.SDK_INT >= 25 ? ((ShortcutManager) context.getSystemService(ShortcutManager.class)).getIconMaxWidth() : getIconDimensionInternal(context, true);
     }
 
     public static int getMaxShortcutCountPerActivity(@NonNull Context context) {
         Preconditions.checkNotNull(context);
-        if (Build$VERSION.SDK_INT >= 25) {
+        if (Build.VERSION.SDK_INT >= 25) {
             return ((ShortcutManager) context.getSystemService(ShortcutManager.class)).getMaxShortcutCountPerActivity();
         }
         return 5;
@@ -226,14 +271,14 @@ public class ShortcutManagerCompat {
 
     private static ShortcutInfoCompatSaver<?> getShortcutInfoSaverInstance(Context context) {
         if (sShortcutInfoCompatSaver == null) {
-            if (Build$VERSION.SDK_INT >= 23) {
+            if (Build.VERSION.SDK_INT >= 23) {
                 try {
                     sShortcutInfoCompatSaver = (ShortcutInfoCompatSaver) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, ShortcutManagerCompat.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
                 } catch (Exception unused) {
                 }
             }
             if (sShortcutInfoCompatSaver == null) {
-                sShortcutInfoCompatSaver = new ShortcutInfoCompatSaver$NoopImpl();
+                sShortcutInfoCompatSaver = new ShortcutInfoCompatSaver.NoopImpl();
             }
         }
         return sShortcutInfoCompatSaver;
@@ -241,7 +286,7 @@ public class ShortcutManagerCompat {
 
     @NonNull
     public static List<ShortcutInfoCompat> getShortcuts(@NonNull Context context, int i) {
-        int i2 = Build$VERSION.SDK_INT;
+        int i2 = Build.VERSION.SDK_INT;
         if (i2 >= 30) {
             return ShortcutInfoCompat.fromShortcuts(context, ((ShortcutManager) context.getSystemService(ShortcutManager.class)).getShortcuts(i));
         }
@@ -270,14 +315,14 @@ public class ShortcutManagerCompat {
 
     public static boolean isRateLimitingActive(@NonNull Context context) {
         Preconditions.checkNotNull(context);
-        if (Build$VERSION.SDK_INT >= 25) {
+        if (Build.VERSION.SDK_INT >= 25) {
             return ((ShortcutManager) context.getSystemService(ShortcutManager.class)).isRateLimitingActive();
         }
         return getShortcuts(context, 3).size() == getMaxShortcutCountPerActivity(context);
     }
 
     public static boolean isRequestPinShortcutSupported(@NonNull Context context) {
-        if (Build$VERSION.SDK_INT >= 26) {
+        if (Build.VERSION.SDK_INT >= 26) {
             return ((ShortcutManager) context.getSystemService(ShortcutManager.class)).isRequestPinShortcutSupported();
         }
         if (ContextCompat.checkSelfPermission(context, INSTALL_SHORTCUT_PERMISSION) != 0) {
@@ -300,7 +345,7 @@ public class ShortcutManagerCompat {
         if (maxShortcutCountPerActivity == 0) {
             return false;
         }
-        int i = Build$VERSION.SDK_INT;
+        int i = Build.VERSION.SDK_INT;
         if (i <= 29) {
             convertUriIconToBitmapIcon(context, shortcutInfoCompat);
         }
@@ -313,7 +358,7 @@ public class ShortcutManagerCompat {
             }
             List<ShortcutInfo> dynamicShortcuts = shortcutManager.getDynamicShortcuts();
             if (dynamicShortcuts.size() >= maxShortcutCountPerActivity) {
-                shortcutManager.removeDynamicShortcuts(Arrays.asList(ShortcutManagerCompat$Api25Impl.getShortcutInfoWithLowestRank(dynamicShortcuts)));
+                shortcutManager.removeDynamicShortcuts(Arrays.asList(Api25Impl.getShortcutInfoWithLowestRank(dynamicShortcuts)));
             }
             shortcutManager.addDynamicShortcuts(Arrays.asList(shortcutInfoCompat.toShortcutInfo()));
         }
@@ -337,7 +382,7 @@ public class ShortcutManagerCompat {
     }
 
     public static void removeAllDynamicShortcuts(@NonNull Context context) {
-        if (Build$VERSION.SDK_INT >= 25) {
+        if (Build.VERSION.SDK_INT >= 25) {
             ((ShortcutManager) context.getSystemService(ShortcutManager.class)).removeAllDynamicShortcuts();
         }
         getShortcutInfoSaverInstance(context).removeAllShortcuts();
@@ -348,7 +393,7 @@ public class ShortcutManagerCompat {
     }
 
     public static void removeDynamicShortcuts(@NonNull Context context, @NonNull List<String> list) {
-        if (Build$VERSION.SDK_INT >= 25) {
+        if (Build.VERSION.SDK_INT >= 25) {
             ((ShortcutManager) context.getSystemService(ShortcutManager.class)).removeDynamicShortcuts(list);
         }
         getShortcutInfoSaverInstance(context).removeShortcuts(list);
@@ -359,7 +404,7 @@ public class ShortcutManagerCompat {
     }
 
     public static void removeLongLivedShortcuts(@NonNull Context context, @NonNull List<String> list) {
-        if (Build$VERSION.SDK_INT < 30) {
+        if (Build.VERSION.SDK_INT < 30) {
             removeDynamicShortcuts(context, list);
             return;
         }
@@ -374,7 +419,7 @@ public class ShortcutManagerCompat {
     public static void reportShortcutUsed(@NonNull Context context, @NonNull String str) {
         Preconditions.checkNotNull(context);
         Preconditions.checkNotNull(str);
-        if (Build$VERSION.SDK_INT >= 25) {
+        if (Build.VERSION.SDK_INT >= 25) {
             ((ShortcutManager) context.getSystemService(ShortcutManager.class)).reportShortcutUsed(str);
         }
         Iterator<ShortcutInfoChangeListener> it = getShortcutInfoListeners(context).iterator();
@@ -384,7 +429,7 @@ public class ShortcutManagerCompat {
     }
 
     public static boolean requestPinShortcut(@NonNull Context context, @NonNull ShortcutInfoCompat shortcutInfoCompat, @Nullable IntentSender intentSender) {
-        if (Build$VERSION.SDK_INT >= 26) {
+        if (Build.VERSION.SDK_INT >= 26) {
             return ((ShortcutManager) context.getSystemService(ShortcutManager.class)).requestPinShortcut(shortcutInfoCompat.toShortcutInfo(), intentSender);
         }
         if (!isRequestPinShortcutSupported(context)) {
@@ -395,14 +440,14 @@ public class ShortcutManagerCompat {
             context.sendBroadcast(intentAddToIntent);
             return true;
         }
-        context.sendOrderedBroadcast(intentAddToIntent, null, new ShortcutManagerCompat$1(intentSender), null, -1, null, null);
+        context.sendOrderedBroadcast(intentAddToIntent, null, new AnonymousClass1(intentSender), null, -1, null, null);
         return true;
     }
 
     public static boolean setDynamicShortcuts(@NonNull Context context, @NonNull List<ShortcutInfoCompat> list) {
         Preconditions.checkNotNull(context);
         Preconditions.checkNotNull(list);
-        if (Build$VERSION.SDK_INT >= 25) {
+        if (Build.VERSION.SDK_INT >= 25) {
             ArrayList arrayList = new ArrayList(list.size());
             Iterator<ShortcutInfoCompat> it = list.iterator();
             while (it.hasNext()) {
@@ -432,7 +477,7 @@ public class ShortcutManagerCompat {
     }
 
     public static boolean updateShortcuts(@NonNull Context context, @NonNull List<ShortcutInfoCompat> list) {
-        int i = Build$VERSION.SDK_INT;
+        int i = Build.VERSION.SDK_INT;
         if (i <= 29) {
             convertUriIconsToBitmapIcons(context, list);
         }

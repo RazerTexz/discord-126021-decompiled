@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetAuthLoginBinding;
 import com.discord.utilities.dimmer.DimmerView;
 import com.discord.views.phone.PhoneOrEmailInputView;
@@ -31,26 +31,26 @@ public final /* synthetic */ class WidgetAuthLogin$binding$2 extends k implement
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetAuthLoginBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.auth_login;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.auth_login);
+        int i = R.id.auth_login;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.auth_login);
         if (materialButton != null) {
-            i = R$id.auth_login_container;
-            LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.auth_login_container);
+            i = R.id.auth_login_container;
+            LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.auth_login_container);
             if (linearLayout != null) {
-                i = R$id.auth_login_forgot_password;
-                TextView textView = (TextView) view.findViewById(R$id.auth_login_forgot_password);
+                i = R.id.auth_login_forgot_password;
+                TextView textView = (TextView) view.findViewById(R.id.auth_login_forgot_password);
                 if (textView != null) {
-                    i = R$id.auth_login_login_input;
-                    PhoneOrEmailInputView phoneOrEmailInputView = (PhoneOrEmailInputView) view.findViewById(R$id.auth_login_login_input);
+                    i = R.id.auth_login_login_input;
+                    PhoneOrEmailInputView phoneOrEmailInputView = (PhoneOrEmailInputView) view.findViewById(R.id.auth_login_login_input);
                     if (phoneOrEmailInputView != null) {
-                        i = R$id.auth_login_password_manager_link;
-                        TextView textView2 = (TextView) view.findViewById(R$id.auth_login_password_manager_link);
+                        i = R.id.auth_login_password_manager_link;
+                        TextView textView2 = (TextView) view.findViewById(R.id.auth_login_password_manager_link);
                         if (textView2 != null) {
-                            i = R$id.auth_login_password_wrap;
-                            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.auth_login_password_wrap);
+                            i = R.id.auth_login_password_wrap;
+                            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.auth_login_password_wrap);
                             if (textInputLayout != null) {
-                                i = 2131363051;
-                                DimmerView dimmerView = (DimmerView) view.findViewById(2131363051);
+                                i = R.id.dimmer_view;
+                                DimmerView dimmerView = (DimmerView) view.findViewById(R.id.dimmer_view);
                                 if (dimmerView != null) {
                                     return new WidgetAuthLoginBinding((CoordinatorLayout) view, materialButton, linearLayout, textView, phoneOrEmailInputView, textView2, textInputLayout, dimmerView);
                                 }

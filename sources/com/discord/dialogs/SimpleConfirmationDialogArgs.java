@@ -2,18 +2,29 @@ package com.discord.dialogs;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
-import b.d.b.a.a;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: SimpleConfirmationDialog.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class SimpleConfirmationDialogArgs implements Parcelable {
-    public static final Parcelable$Creator<SimpleConfirmationDialogArgs> CREATOR = new SimpleConfirmationDialogArgs$a();
+    public static final Parcelable.Creator<SimpleConfirmationDialogArgs> CREATOR = new a();
     public final String j;
     public final String k;
     public final String l;
     public final String m;
+
+    public final class a implements Parcelable.Creator<SimpleConfirmationDialogArgs> {
+        @Override // android.os.Parcelable.Creator
+        public SimpleConfirmationDialogArgs createFromParcel(Parcel parcel) {
+            m.checkNotNullParameter(parcel, "in");
+            return new SimpleConfirmationDialogArgs(parcel.readString(), parcel.readString(), parcel.readString(), parcel.readString());
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public SimpleConfirmationDialogArgs[] newArray(int i) {
+            return new SimpleConfirmationDialogArgs[i];
+        }
+    }
 
     public SimpleConfirmationDialogArgs(String str, String str2, String str3, String str4) {
         this.j = str;
@@ -50,14 +61,14 @@ public final class SimpleConfirmationDialogArgs implements Parcelable {
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("SimpleConfirmationDialogArgs(title=");
+        StringBuilder sbU = b.d.b.a.a.U("SimpleConfirmationDialogArgs(title=");
         sbU.append(this.j);
         sbU.append(", description=");
         sbU.append(this.k);
         sbU.append(", positiveButtonText=");
         sbU.append(this.l);
         sbU.append(", negativeButtonText=");
-        return a.J(sbU, this.m, ")");
+        return b.d.b.a.a.J(sbU, this.m, ")");
     }
 
     @Override // android.os.Parcelable

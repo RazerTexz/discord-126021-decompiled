@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
 
 /* JADX INFO: compiled from: FileReadWrite.kt */
@@ -17,7 +18,7 @@ public class f {
         return readText(file, charset);
     }
 
-    public static final String readText(File file, Charset charset) throws IOException {
+    public static final String readText(File file, Charset charset) throws IllegalAccessException, IOException, InvocationTargetException {
         m.checkNotNullParameter(file, "$this$readText");
         m.checkNotNullParameter(charset, "charset");
         InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(file), charset);

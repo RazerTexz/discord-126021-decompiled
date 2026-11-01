@@ -7,12 +7,10 @@ import b.i.a.c.x2.h;
 import b.i.a.c.x2.i;
 import b.i.a.c.x2.j;
 import b.i.a.c.x2.m;
-import b.i.a.c.x2.m$a;
 import b.i.a.c.x2.n;
 import b.i.a.c.x2.o;
 import b.i.a.c.x2.s;
 import b.i.a.c.x2.t;
-import b.i.a.c.x2.t$b;
 import b.i.a.c.x2.w;
 import com.google.android.exoplayer2.ParserException;
 import com.google.android.exoplayer2.metadata.Metadata;
@@ -26,7 +24,7 @@ import java.util.Objects;
 /* JADX INFO: loaded from: classes3.dex */
 public final class d implements h {
     public final boolean c;
-    public final m$a d;
+    public final m.a d;
     public j e;
     public w f;
     public int g;
@@ -50,7 +48,7 @@ public final class d implements h {
 
     public d(int i) {
         this.c = (i & 1) != 0;
-        this.d = new m$a();
+        this.d = new m.a();
         this.g = 0;
     }
 
@@ -77,7 +75,7 @@ public final class d implements h {
     public int e(i iVar, s sVar) throws IOException {
         boolean z2;
         o oVar;
-        t t_b;
+        t bVar;
         long j;
         boolean zB;
         int i = this.g;
@@ -209,15 +207,15 @@ public final class d implements h {
             Objects.requireNonNull(this.i);
             o oVar2 = this.i;
             if (oVar2.k != null) {
-                t_b = new n(oVar2, position);
+                bVar = new n(oVar2, position);
             } else if (jB == -1 || oVar2.j <= 0) {
-                t_b = new t$b(oVar2.d(), 0L);
+                bVar = new t.b(oVar2.d(), 0L);
             } else {
                 c cVar = new c(oVar2, this.k, position, jB);
                 this.l = cVar;
-                t_b = cVar.a;
+                bVar = cVar.a;
             }
-            jVar.a(t_b);
+            jVar.a(bVar);
             this.g = 5;
             return 0;
         }

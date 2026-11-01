@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,20 +13,16 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.core.util.Pair;
 import androidx.core.util.Preconditions;
 import b.i.a.f.e.o.f;
 import b.i.a.g.d.l;
-import com.google.android.material.R$attr;
-import com.google.android.material.R$dimen;
-import com.google.android.material.R$id;
-import com.google.android.material.R$layout;
-import com.google.android.material.R$string;
+import com.google.android.material.R;
 import com.google.android.material.internal.ManufacturerUtils;
 import com.google.android.material.internal.ViewUtils;
 import com.google.android.material.resources.MaterialAttributes;
 import com.google.android.material.textfield.TextInputLayout;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,10 +30,10 @@ import java.util.Collection;
 import java.util.Locale;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class RangeDateSelector implements DateSelector<Pair<Long, Long>> {
     private String invalidRangeStartError;
-    public static final Parcelable$Creator<RangeDateSelector> CREATOR = new RangeDateSelector$c();
+    public static final Parcelable.Creator<RangeDateSelector> CREATOR = new c();
     private final String invalidRangeEndError = " ";
 
     @Nullable
@@ -51,6 +47,75 @@ public class RangeDateSelector implements DateSelector<Pair<Long, Long>> {
 
     @Nullable
     private Long proposedTextEnd = null;
+
+    public class a extends b.i.a.g.d.c {
+        public final /* synthetic */ TextInputLayout p;
+        public final /* synthetic */ TextInputLayout q;
+        public final /* synthetic */ OnSelectionChangedListener r;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(String str, DateFormat dateFormat, TextInputLayout textInputLayout, CalendarConstraints calendarConstraints, TextInputLayout textInputLayout2, TextInputLayout textInputLayout3, OnSelectionChangedListener onSelectionChangedListener) {
+            super(str, dateFormat, textInputLayout, calendarConstraints);
+            this.p = textInputLayout2;
+            this.q = textInputLayout3;
+            this.r = onSelectionChangedListener;
+        }
+
+        @Override // b.i.a.g.d.c
+        public void a() {
+            RangeDateSelector.access$002(RangeDateSelector.this, null);
+            RangeDateSelector.access$100(RangeDateSelector.this, this.p, this.q, this.r);
+        }
+
+        @Override // b.i.a.g.d.c
+        public void b(@Nullable Long l) {
+            RangeDateSelector.access$002(RangeDateSelector.this, l);
+            RangeDateSelector.access$100(RangeDateSelector.this, this.p, this.q, this.r);
+        }
+    }
+
+    public class b extends b.i.a.g.d.c {
+        public final /* synthetic */ TextInputLayout p;
+        public final /* synthetic */ TextInputLayout q;
+        public final /* synthetic */ OnSelectionChangedListener r;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public b(String str, DateFormat dateFormat, TextInputLayout textInputLayout, CalendarConstraints calendarConstraints, TextInputLayout textInputLayout2, TextInputLayout textInputLayout3, OnSelectionChangedListener onSelectionChangedListener) {
+            super(str, dateFormat, textInputLayout, calendarConstraints);
+            this.p = textInputLayout2;
+            this.q = textInputLayout3;
+            this.r = onSelectionChangedListener;
+        }
+
+        @Override // b.i.a.g.d.c
+        public void a() {
+            RangeDateSelector.access$202(RangeDateSelector.this, null);
+            RangeDateSelector.access$100(RangeDateSelector.this, this.p, this.q, this.r);
+        }
+
+        @Override // b.i.a.g.d.c
+        public void b(@Nullable Long l) {
+            RangeDateSelector.access$202(RangeDateSelector.this, l);
+            RangeDateSelector.access$100(RangeDateSelector.this, this.p, this.q, this.r);
+        }
+    }
+
+    public final class c implements Parcelable.Creator<RangeDateSelector> {
+        @Override // android.os.Parcelable.Creator
+        @NonNull
+        public RangeDateSelector createFromParcel(@NonNull Parcel parcel) {
+            RangeDateSelector rangeDateSelector = new RangeDateSelector();
+            RangeDateSelector.access$302(rangeDateSelector, (Long) parcel.readValue(Long.class.getClassLoader()));
+            RangeDateSelector.access$402(rangeDateSelector, (Long) parcel.readValue(Long.class.getClassLoader()));
+            return rangeDateSelector;
+        }
+
+        @Override // android.os.Parcelable.Creator
+        @NonNull
+        public RangeDateSelector[] newArray(int i) {
+            return new RangeDateSelector[i];
+        }
+    }
 
     public static /* synthetic */ Long access$002(RangeDateSelector rangeDateSelector, Long l) {
         rangeDateSelector.proposedTextStart = l;
@@ -95,12 +160,12 @@ public class RangeDateSelector implements DateSelector<Pair<Long, Long>> {
     public int getDefaultThemeResId(@NonNull Context context) {
         Resources resources = context.getResources();
         DisplayMetrics displayMetrics = resources.getDisplayMetrics();
-        return MaterialAttributes.resolveOrThrow(context, Math.min(displayMetrics.widthPixels, displayMetrics.heightPixels) > resources.getDimensionPixelSize(R$dimen.mtrl_calendar_maximum_default_fullscreen_minor_axis) ? R$attr.materialCalendarTheme : R$attr.materialCalendarFullscreenTheme, MaterialDatePicker.class.getCanonicalName());
+        return MaterialAttributes.resolveOrThrow(context, Math.min(displayMetrics.widthPixels, displayMetrics.heightPixels) > resources.getDimensionPixelSize(R.dimen.mtrl_calendar_maximum_default_fullscreen_minor_axis) ? R.attr.materialCalendarTheme : R.attr.materialCalendarFullscreenTheme, MaterialDatePicker.class.getCanonicalName());
     }
 
     @Override // com.google.android.material.datepicker.DateSelector
     public int getDefaultTitleResId() {
-        return R$string.mtrl_picker_range_header_title;
+        return R.string.mtrl_picker_range_header_title;
     }
 
     @Override // com.google.android.material.datepicker.DateSelector
@@ -142,14 +207,14 @@ public class RangeDateSelector implements DateSelector<Pair<Long, Long>> {
         Resources resources = context.getResources();
         Long l = this.selectedStartItem;
         if (l == null && this.selectedEndItem == null) {
-            return resources.getString(R$string.mtrl_picker_range_header_unselected);
+            return resources.getString(R.string.mtrl_picker_range_header_unselected);
         }
         Long l2 = this.selectedEndItem;
         if (l2 == null) {
-            return resources.getString(R$string.mtrl_picker_range_header_only_start_selected, f.g0(l.longValue()));
+            return resources.getString(R.string.mtrl_picker_range_header_only_start_selected, f.g0(l.longValue()));
         }
         if (l == null) {
-            return resources.getString(R$string.mtrl_picker_range_header_only_end_selected, f.g0(l2.longValue()));
+            return resources.getString(R.string.mtrl_picker_range_header_only_end_selected, f.g0(l2.longValue()));
         }
         if (l == null && l2 == null) {
             pairCreate = Pair.create(null, null);
@@ -169,7 +234,7 @@ public class RangeDateSelector implements DateSelector<Pair<Long, Long>> {
                 pairCreate = Pair.create(f.s0(l.longValue(), Locale.getDefault()), f.s0(l2.longValue(), Locale.getDefault()));
             }
         }
-        return resources.getString(R$string.mtrl_picker_range_header_selected, pairCreate.first, pairCreate.second);
+        return resources.getString(R.string.mtrl_picker_range_header_selected, pairCreate.first, pairCreate.second);
     }
 
     @Override // com.google.android.material.datepicker.DateSelector
@@ -184,16 +249,16 @@ public class RangeDateSelector implements DateSelector<Pair<Long, Long>> {
 
     @Override // com.google.android.material.datepicker.DateSelector
     public View onCreateTextInputView(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle, CalendarConstraints calendarConstraints, @NonNull OnSelectionChangedListener<Pair<Long, Long>> onSelectionChangedListener) {
-        View viewInflate = layoutInflater.inflate(R$layout.mtrl_picker_text_input_date_range, viewGroup, false);
-        TextInputLayout textInputLayout = (TextInputLayout) viewInflate.findViewById(R$id.mtrl_picker_text_input_range_start);
-        TextInputLayout textInputLayout2 = (TextInputLayout) viewInflate.findViewById(R$id.mtrl_picker_text_input_range_end);
+        View viewInflate = layoutInflater.inflate(R.layout.mtrl_picker_text_input_date_range, viewGroup, false);
+        TextInputLayout textInputLayout = (TextInputLayout) viewInflate.findViewById(R.id.mtrl_picker_text_input_range_start);
+        TextInputLayout textInputLayout2 = (TextInputLayout) viewInflate.findViewById(R.id.mtrl_picker_text_input_range_end);
         EditText editText = textInputLayout.getEditText();
         EditText editText2 = textInputLayout2.getEditText();
         if (ManufacturerUtils.isDateInputKeyboardMissingSeparatorCharacters()) {
             editText.setInputType(17);
             editText2.setInputType(17);
         }
-        this.invalidRangeStartError = viewInflate.getResources().getString(R$string.mtrl_picker_invalid_range);
+        this.invalidRangeStartError = viewInflate.getResources().getString(R.string.mtrl_picker_invalid_range);
         SimpleDateFormat simpleDateFormatE = l.e();
         Long l = this.selectedStartItem;
         if (l != null) {
@@ -208,8 +273,8 @@ public class RangeDateSelector implements DateSelector<Pair<Long, Long>> {
         String strF = l.f(viewInflate.getResources(), simpleDateFormatE);
         textInputLayout.setPlaceholderText(strF);
         textInputLayout2.setPlaceholderText(strF);
-        editText.addTextChangedListener(new RangeDateSelector$a(this, strF, simpleDateFormatE, textInputLayout, calendarConstraints, textInputLayout, textInputLayout2, onSelectionChangedListener));
-        editText2.addTextChangedListener(new RangeDateSelector$b(this, strF, simpleDateFormatE, textInputLayout2, calendarConstraints, textInputLayout, textInputLayout2, onSelectionChangedListener));
+        editText.addTextChangedListener(new a(strF, simpleDateFormatE, textInputLayout, calendarConstraints, textInputLayout, textInputLayout2, onSelectionChangedListener));
+        editText2.addTextChangedListener(new b(strF, simpleDateFormatE, textInputLayout2, calendarConstraints, textInputLayout, textInputLayout2, onSelectionChangedListener));
         ViewUtils.requestFocusAndShowKeyboard(editText);
         return viewInflate;
     }

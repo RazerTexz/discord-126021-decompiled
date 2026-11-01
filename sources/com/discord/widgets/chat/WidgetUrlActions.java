@@ -1,29 +1,40 @@
 package com.discord.widgets.chat;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import b.a.d.m;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppBottomSheet;
 import com.discord.databinding.WidgetUrlActionsBinding;
 import com.discord.stores.StoreNotices;
 import com.discord.stores.StoreStream;
+import com.discord.utilities.intent.IntentUtils;
+import com.discord.utilities.uri.UriHandler;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.widgets.home.WidgetHome;
+import com.discord.widgets.search.results.WidgetSearchResults;
+import d0.e0.c;
 import d0.g;
-import d0.z.d.m;
+import d0.t.n;
+import d0.z.d.a0;
 import kotlin.Lazy;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: WidgetUrlActions.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetUrlActions extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetUrlActions.class, "binding", "getBinding()Lcom/discord/databinding/WidgetUrlActionsBinding;", 0)};
-    public static final WidgetUrlActions$Companion Companion = new WidgetUrlActions$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String INTENT_URL = "INTENT_URL";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -31,6 +42,75 @@ public final class WidgetUrlActions extends AppBottomSheet {
 
     /* JADX INFO: renamed from: url$delegate, reason: from kotlin metadata */
     private final Lazy url;
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.WidgetUrlActions$onViewCreated$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetUrlActions.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            m.c(a.x(view, "it", "it.context"), WidgetUrlActions.access$getUrl$p(WidgetUrlActions.this), 0, 4);
+            WidgetUrlActions.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.WidgetUrlActions$onViewCreated$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetUrlActions.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            UriHandler.handle$default(UriHandler.INSTANCE, a.x(view, "it", "it.context"), WidgetUrlActions.access$getUrl$p(WidgetUrlActions.this), false, false, null, 28, null);
+            WidgetUrlActions.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.WidgetUrlActions$onViewCreated$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetUrlActions.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public AnonymousClass3() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            Context contextRequireContext = WidgetUrlActions.this.requireContext();
+            d0.z.d.m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+            String strAccess$getUrl$p = WidgetUrlActions.access$getUrl$p(WidgetUrlActions.this);
+            String string = WidgetUrlActions.this.getString(R.string.form_label_send_to);
+            d0.z.d.m.checkNotNullExpressionValue(string, "getString(R.string.form_label_send_to)");
+            IntentUtils.performChooserSendIntent(contextRequireContext, strAccess$getUrl$p, string);
+            WidgetUrlActions.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetUrlActions.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(FragmentManager fragmentManager, String url) {
+            d0.z.d.m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            d0.z.d.m.checkNotNullParameter(url, "url");
+            WidgetUrlActions widgetUrlActions = new WidgetUrlActions();
+            Bundle bundle = new Bundle();
+            bundle.putString(WidgetUrlActions.INTENT_URL, url);
+            widgetUrlActions.setArguments(bundle);
+            widgetUrlActions.show(fragmentManager, WidgetUrlActions.class.getName());
+        }
+
+        public final void requestNotice(String url) {
+            d0.z.d.m.checkNotNullParameter(url, "url");
+            StoreStream.INSTANCE.getNotices().requestToShow(new StoreNotices.Notice(url, null, 0L, 0, false, n.listOf((Object[]) new c[]{a0.getOrCreateKotlinClass(WidgetHome.class), a0.getOrCreateKotlinClass(WidgetSearchResults.class)}), 0L, false, 0L, new WidgetUrlActions$Companion$requestNotice$notice$1(url), 150, null));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public WidgetUrlActions() {
         super(false, 1, null);
@@ -52,7 +132,7 @@ public final class WidgetUrlActions extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
-        return R$layout.widget_url_actions;
+        return R.layout.widget_url_actions;
     }
 
     private final String getUrl() {
@@ -60,12 +140,12 @@ public final class WidgetUrlActions extends AppBottomSheet {
     }
 
     public static final void launch(FragmentManager fragmentManager, String str) {
-        Companion.launch(fragmentManager, str);
+        INSTANCE.launch(fragmentManager, str);
     }
 
     @Override // androidx.fragment.app.Fragment
     public void onDestroy() {
-        StoreNotices.markSeen$default(StoreStream.Companion.getNotices(), getUrl(), 0L, 2, null);
+        StoreNotices.markSeen$default(StoreStream.INSTANCE.getNotices(), getUrl(), 0L, 2, null);
         super.onDestroy();
     }
 
@@ -83,17 +163,17 @@ public final class WidgetUrlActions extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        m.checkNotNullParameter(view, "view");
+        d0.z.d.m.checkNotNullParameter(view, "view");
         super.onViewCreated(view, savedInstanceState);
         TextView textView = getBinding().e;
-        m.checkNotNullExpressionValue(textView, "binding.dialogUrlActionsUrl");
+        d0.z.d.m.checkNotNullExpressionValue(textView, "binding.dialogUrlActionsUrl");
         ViewExtensions.setTextAndVisibilityBy(textView, getUrl());
-        getBinding().f2678b.setOnClickListener(new WidgetUrlActions$onViewCreated$1(this));
-        getBinding().c.setOnClickListener(new WidgetUrlActions$onViewCreated$2(this));
-        getBinding().d.setOnClickListener(new WidgetUrlActions$onViewCreated$3(this));
+        getBinding().f2678b.setOnClickListener(new AnonymousClass1());
+        getBinding().c.setOnClickListener(new AnonymousClass2());
+        getBinding().d.setOnClickListener(new AnonymousClass3());
     }
 
     public static final void requestNotice(String str) {
-        Companion.requestNotice(str);
+        INSTANCE.requestNotice(str);
     }
 }

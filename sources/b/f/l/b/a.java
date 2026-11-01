@@ -30,7 +30,7 @@ public abstract class a extends c {
         return !this.m && super.a();
     }
 
-    @Override // b.f.l.b.c, b.f.l.a.b$a
+    @Override // b.f.l.b.c, b.f.l.a.b.a
     public void b(b.f.l.a.b bVar) {
         m();
         boolean z2 = this.m;
@@ -41,7 +41,7 @@ public abstract class a extends c {
         super.b(bVar);
     }
 
-    @Override // b.f.l.b.c, b.f.l.a.b$a
+    @Override // b.f.l.b.c, b.f.l.a.b.a
     public void c(b.f.l.a.b bVar) {
         b.f.d.e.a.i(m(), "onGestureBegin");
         o();

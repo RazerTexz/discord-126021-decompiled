@@ -37,14 +37,53 @@ public class SolverVariable {
     public ArrayRow[] mClientEquations;
     public int mClientEquationsCount;
     private String mName;
-    public SolverVariable$Type mType;
+    public Type mType;
     public int strength;
     public float[] strengthVector;
     public int synonym;
     public float synonymDelta;
     public int usageInRowCount;
 
-    public SolverVariable(String str, SolverVariable$Type solverVariable$Type) {
+    /* JADX INFO: renamed from: androidx.constraintlayout.solver.SolverVariable$1, reason: invalid class name */
+    public /* synthetic */ class AnonymousClass1 {
+        public static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$SolverVariable$Type;
+
+        static {
+            Type.values();
+            int[] iArr = new int[5];
+            $SwitchMap$androidx$constraintlayout$solver$SolverVariable$Type = iArr;
+            try {
+                iArr[Type.UNRESTRICTED.ordinal()] = 1;
+            } catch (NoSuchFieldError unused) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$SolverVariable$Type[Type.CONSTANT.ordinal()] = 2;
+            } catch (NoSuchFieldError unused2) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$SolverVariable$Type[Type.SLACK.ordinal()] = 3;
+            } catch (NoSuchFieldError unused3) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$SolverVariable$Type[Type.ERROR.ordinal()] = 4;
+            } catch (NoSuchFieldError unused4) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$SolverVariable$Type[Type.UNKNOWN.ordinal()] = 5;
+            } catch (NoSuchFieldError unused5) {
+            }
+        }
+    }
+
+    public enum Type {
+        UNRESTRICTED,
+        CONSTANT,
+        SLACK,
+        ERROR,
+        UNKNOWN
+    }
+
+    public SolverVariable(String str, Type type) {
         this.f30id = -1;
         this.definitionId = -1;
         this.strength = 0;
@@ -59,7 +98,7 @@ public class SolverVariable {
         this.synonymDelta = 0.0f;
         this.inRows = null;
         this.mName = str;
-        this.mType = solverVariable$Type;
+        this.mType = type;
     }
 
     public final void addToRow(ArrayRow arrayRow) {
@@ -95,13 +134,13 @@ public class SolverVariable {
         return this.mName;
     }
 
-    private static String getUniqueName(SolverVariable$Type solverVariable$Type, String str) {
+    private static String getUniqueName(Type type, String str) {
         if (str != null) {
             StringBuilder sbU = a.U(str);
             sbU.append(uniqueErrorId);
             return sbU.toString();
         }
-        int iOrdinal = solverVariable$Type.ordinal();
+        int iOrdinal = type.ordinal();
         if (iOrdinal == 0) {
             StringBuilder sbU2 = a.U("U");
             int i = uniqueUnrestrictedId + 1;
@@ -131,7 +170,7 @@ public class SolverVariable {
             return sbU5.toString();
         }
         if (iOrdinal != 4) {
-            throw new AssertionError(solverVariable$Type.name());
+            throw new AssertionError(type.name());
         }
         StringBuilder sbU6 = a.U(ExifInterface.GPS_MEASUREMENT_INTERRUPTED);
         int i5 = uniqueId + 1;
@@ -164,7 +203,7 @@ public class SolverVariable {
 
     public void reset() {
         this.mName = null;
-        this.mType = SolverVariable$Type.UNKNOWN;
+        this.mType = Type.UNKNOWN;
         this.strength = 0;
         this.f30id = -1;
         this.definitionId = -1;
@@ -214,8 +253,8 @@ public class SolverVariable {
         linearSystem.displayReadableRows();
     }
 
-    public void setType(SolverVariable$Type solverVariable$Type, String str) {
-        this.mType = solverVariable$Type;
+    public void setType(Type type, String str) {
+        this.mType = type;
     }
 
     public String strengthsToString() {
@@ -264,7 +303,7 @@ public class SolverVariable {
         this.mClientEquationsCount = 0;
     }
 
-    public SolverVariable(SolverVariable$Type solverVariable$Type, String str) {
+    public SolverVariable(Type type, String str) {
         this.f30id = -1;
         this.definitionId = -1;
         this.strength = 0;
@@ -278,6 +317,6 @@ public class SolverVariable {
         this.synonym = -1;
         this.synonymDelta = 0.0f;
         this.inRows = null;
-        this.mType = solverVariable$Type;
+        this.mType = type;
     }
 }

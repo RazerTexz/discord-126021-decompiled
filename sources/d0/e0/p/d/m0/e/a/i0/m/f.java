@@ -14,21 +14,59 @@ import d0.e0.p.d.m0.n.w0;
 import d0.e0.p.d.m0.n.y;
 import d0.e0.p.d.m0.n.y0;
 import d0.e0.p.d.m0.n.z0;
-import d0.o;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.List;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.Pair;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: RawType.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class f extends z0 {
-    public static final a c;
-    public static final a d;
+    public static final d0.e0.p.d.m0.e.a.i0.m.a c;
+    public static final d0.e0.p.d.m0.e.a.i0.m.a d;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final f f3341b = new f();
+
+    /* JADX INFO: compiled from: RawType.kt */
+    public final class a extends o implements Function1<d0.e0.p.d.m0.n.l1.g, j0> {
+        public final /* synthetic */ d0.e0.p.d.m0.e.a.i0.m.a $attr;
+        public final /* synthetic */ d0.e0.p.d.m0.c.e $declaration;
+        public final /* synthetic */ j0 $type;
+        public final /* synthetic */ f this$0;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(d0.e0.p.d.m0.c.e eVar, f fVar, j0 j0Var, d0.e0.p.d.m0.e.a.i0.m.a aVar) {
+            super(1);
+            this.$declaration = eVar;
+            this.this$0 = fVar;
+            this.$type = j0Var;
+            this.$attr = aVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ j0 invoke(d0.e0.p.d.m0.n.l1.g gVar) {
+            return invoke2(gVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final j0 invoke2(d0.e0.p.d.m0.n.l1.g gVar) {
+            d0.e0.p.d.m0.c.e eVarFindClassAcrossModuleDependencies;
+            m.checkNotNullParameter(gVar, "kotlinTypeRefiner");
+            d0.e0.p.d.m0.c.e eVar = this.$declaration;
+            if (!(eVar instanceof d0.e0.p.d.m0.c.e)) {
+                eVar = null;
+            }
+            d0.e0.p.d.m0.g.a classId = eVar == null ? null : d0.e0.p.d.m0.k.x.a.getClassId(eVar);
+            if (classId == null || (eVarFindClassAcrossModuleDependencies = gVar.findClassAcrossModuleDependencies(classId)) == null || m.areEqual(eVarFindClassAcrossModuleDependencies, this.$declaration)) {
+                return null;
+            }
+            return (j0) f.access$eraseInflexibleBasedOnClassDescriptor(this.this$0, this.$type, eVarFindClassAcrossModuleDependencies, this.$attr).getFirst();
+        }
+    }
 
     static {
         k kVar = k.COMMON;
@@ -36,9 +74,9 @@ public final class f extends z0 {
         d = e.toAttributes$default(kVar, false, null, 3, null).withFlexibility(b.FLEXIBLE_UPPER_BOUND);
     }
 
-    public final Pair<j0, Boolean> a(j0 j0Var, d0.e0.p.d.m0.c.e eVar, a aVar) {
+    public final Pair<j0, Boolean> a(j0 j0Var, d0.e0.p.d.m0.c.e eVar, d0.e0.p.d.m0.e.a.i0.m.a aVar) {
         if (j0Var.getConstructor().getParameters().isEmpty()) {
-            return o.to(j0Var, Boolean.FALSE);
+            return d0.o.to(j0Var, Boolean.FALSE);
         }
         if (h.isArray(j0Var)) {
             w0 w0Var = j0Var.getArguments().get(0);
@@ -47,12 +85,12 @@ public final class f extends z0 {
             m.checkNotNullExpressionValue(type, "componentTypeProjection.type");
             List listListOf = d0.t.m.listOf(new y0(projectionKind, b(type)));
             d0 d0Var = d0.a;
-            return o.to(d0.simpleType$default(j0Var.getAnnotations(), j0Var.getConstructor(), listListOf, j0Var.isMarkedNullable(), null, 16, null), Boolean.FALSE);
+            return d0.o.to(d0.simpleType$default(j0Var.getAnnotations(), j0Var.getConstructor(), listListOf, j0Var.isMarkedNullable(), null, 16, null), Boolean.FALSE);
         }
         if (e0.isError(j0Var)) {
             j0 j0VarCreateErrorType = t.createErrorType(m.stringPlus("Raw error type: ", j0Var.getConstructor()));
             m.checkNotNullExpressionValue(j0VarCreateErrorType, "createErrorType(\"Raw error type: ${type.constructor}\")");
-            return o.to(j0VarCreateErrorType, Boolean.FALSE);
+            return d0.o.to(j0VarCreateErrorType, Boolean.FALSE);
         }
         i memberScope = eVar.getMemberScope(this);
         m.checkNotNullExpressionValue(memberScope, "declaration.getMemberScope(RawSubstitution)");
@@ -67,10 +105,10 @@ public final class f extends z0 {
             m.checkNotNullExpressionValue(z0Var, "parameter");
             arrayList.add(computeProjection$default(this, z0Var, aVar, null, 4, null));
         }
-        return o.to(d0.simpleTypeWithNonTrivialMemberScope(annotations, typeConstructor, arrayList, j0Var.isMarkedNullable(), memberScope, new f$a(eVar, this, j0Var, aVar)), Boolean.TRUE);
+        return d0.o.to(d0.simpleTypeWithNonTrivialMemberScope(annotations, typeConstructor, arrayList, j0Var.isMarkedNullable(), memberScope, new a(eVar, this, j0Var, aVar)), Boolean.TRUE);
     }
 
-    public static final /* synthetic */ Pair access$eraseInflexibleBasedOnClassDescriptor(f fVar, j0 j0Var, d0.e0.p.d.m0.c.e eVar, a aVar) {
+    public static final /* synthetic */ Pair access$eraseInflexibleBasedOnClassDescriptor(f fVar, j0 j0Var, d0.e0.p.d.m0.c.e eVar, d0.e0.p.d.m0.e.a.i0.m.a aVar) {
         return fVar.a(j0Var, eVar, aVar);
     }
 
@@ -99,14 +137,14 @@ public final class f extends z0 {
         return d0.flexibleType(j0VarComponent1, j0VarComponent2);
     }
 
-    public static /* synthetic */ w0 computeProjection$default(f fVar, d0.e0.p.d.m0.c.z0 z0Var, a aVar, c0 c0Var, int i, Object obj) {
+    public static /* synthetic */ w0 computeProjection$default(f fVar, d0.e0.p.d.m0.c.z0 z0Var, d0.e0.p.d.m0.e.a.i0.m.a aVar, c0 c0Var, int i, Object obj) {
         if ((i & 4) != 0) {
             c0Var = e.getErasedUpperBound$default(z0Var, null, null, 3, null);
         }
         return fVar.computeProjection(z0Var, aVar, c0Var);
     }
 
-    public final w0 computeProjection(d0.e0.p.d.m0.c.z0 z0Var, a aVar, c0 c0Var) {
+    public final w0 computeProjection(d0.e0.p.d.m0.c.z0 z0Var, d0.e0.p.d.m0.e.a.i0.m.a aVar, c0 c0Var) {
         j1 j1Var = j1.INVARIANT;
         m.checkNotNullParameter(z0Var, "parameter");
         m.checkNotNullParameter(aVar, "attr");

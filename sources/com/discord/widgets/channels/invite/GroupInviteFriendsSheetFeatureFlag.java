@@ -11,9 +11,27 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: GroupInviteFriendsSheetFeatureFlag.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class GroupInviteFriendsSheetFeatureFlag {
-    public static final GroupInviteFriendsSheetFeatureFlag$Companion Companion = new GroupInviteFriendsSheetFeatureFlag$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final StoreExperiments storeExperiments;
     private static final Lazy INSTANCE$delegate = g.lazy(GroupInviteFriendsSheetFeatureFlag$Companion$INSTANCE$2.INSTANCE);
+
+    /* JADX INFO: compiled from: GroupInviteFriendsSheetFeatureFlag.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final GroupInviteFriendsSheetFeatureFlag getINSTANCE() {
+            Lazy lazyAccess$getINSTANCE$cp = GroupInviteFriendsSheetFeatureFlag.access$getINSTANCE$cp();
+            Companion companion = GroupInviteFriendsSheetFeatureFlag.INSTANCE;
+            return (GroupInviteFriendsSheetFeatureFlag) lazyAccess$getINSTANCE$cp.getValue();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public GroupInviteFriendsSheetFeatureFlag() {
         this(null, 1, null);
@@ -34,6 +52,6 @@ public final class GroupInviteFriendsSheetFeatureFlag {
     }
 
     public /* synthetic */ GroupInviteFriendsSheetFeatureFlag(StoreExperiments storeExperiments, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i & 1) != 0 ? StoreStream.Companion.getExperiments() : storeExperiments);
+        this((i & 1) != 0 ? StoreStream.INSTANCE.getExperiments() : storeExperiments);
     }
 }

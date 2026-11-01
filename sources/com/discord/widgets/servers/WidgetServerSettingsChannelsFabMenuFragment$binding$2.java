@@ -3,7 +3,7 @@ package com.discord.widgets.servers;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetServerSettingsChannelsSortFabMenuBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import d0.z.d.k;
@@ -27,20 +27,20 @@ public final /* synthetic */ class WidgetServerSettingsChannelsFabMenuFragment$b
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetServerSettingsChannelsSortFabMenuBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.fab_menu_add_category;
-        TableRow tableRow = (TableRow) view.findViewById(R$id.fab_menu_add_category);
+        int i = R.id.fab_menu_add_category;
+        TableRow tableRow = (TableRow) view.findViewById(R.id.fab_menu_add_category);
         if (tableRow != null) {
-            i = R$id.fab_menu_add_text;
-            TableRow tableRow2 = (TableRow) view.findViewById(R$id.fab_menu_add_text);
+            i = R.id.fab_menu_add_text;
+            TableRow tableRow2 = (TableRow) view.findViewById(R.id.fab_menu_add_text);
             if (tableRow2 != null) {
-                i = R$id.fab_menu_add_voice;
-                TableRow tableRow3 = (TableRow) view.findViewById(R$id.fab_menu_add_voice);
+                i = R.id.fab_menu_add_voice;
+                TableRow tableRow3 = (TableRow) view.findViewById(R.id.fab_menu_add_voice);
                 if (tableRow3 != null) {
-                    i = R$id.fab_menu_main;
-                    TableRow tableRow4 = (TableRow) view.findViewById(R$id.fab_menu_main);
+                    i = R.id.fab_menu_main;
+                    TableRow tableRow4 = (TableRow) view.findViewById(R.id.fab_menu_main);
                     if (tableRow4 != null) {
-                        i = R$id.fab_menu_main_fab;
-                        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R$id.fab_menu_main_fab);
+                        i = R.id.fab_menu_main_fab;
+                        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.fab_menu_main_fab);
                         if (floatingActionButton != null) {
                             TableLayout tableLayout = (TableLayout) view;
                             return new WidgetServerSettingsChannelsSortFabMenuBinding(tableLayout, tableRow, tableRow2, tableRow3, tableRow4, floatingActionButton, tableLayout);

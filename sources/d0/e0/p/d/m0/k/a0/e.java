@@ -6,6 +6,7 @@ import d0.e0.p.d.m0.c.t0;
 import d0.e0.p.d.m0.c.x;
 import d0.e0.p.d.m0.n.c0;
 import d0.t.r;
+import d0.t.u;
 import d0.z.d.a0;
 import d0.z.d.y;
 import java.util.ArrayList;
@@ -13,8 +14,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map$Entry;
+import java.util.Map;
 import java.util.Objects;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.reflect.KProperty;
 
@@ -27,11 +29,30 @@ public abstract class e extends j {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final /* synthetic */ KProperty<Object>[] f3456b = {a0.property1(new y(a0.getOrCreateKotlinClass(e.class), "allDescriptors", "getAllDescriptors()Ljava/util/List;"))};
 
+    /* JADX INFO: compiled from: GivenFunctionsMemberScope.kt */
+    public final class a extends d0.z.d.o implements Function0<List<? extends d0.e0.p.d.m0.c.m>> {
+        public a() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<? extends d0.e0.p.d.m0.c.m> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<? extends d0.e0.p.d.m0.c.m> invoke2() {
+            List<x> listA = e.this.a();
+            return u.plus((Collection) listA, (Iterable) e.access$createFakeOverrides(e.this, listA));
+        }
+    }
+
     public e(d0.e0.p.d.m0.m.o oVar, d0.e0.p.d.m0.c.e eVar) {
         d0.z.d.m.checkNotNullParameter(oVar, "storageManager");
         d0.z.d.m.checkNotNullParameter(eVar, "containingClass");
         this.c = eVar;
-        this.d = oVar.createLazyValue(new e$a(this));
+        this.d = oVar.createLazyValue(new a());
     }
 
     public abstract List<x> a();
@@ -61,7 +82,7 @@ public abstract class e extends j {
         ArrayList arrayList2 = new ArrayList();
         Iterator it = supertypes.iterator();
         while (it.hasNext()) {
-            r.addAll(arrayList2, l$a.getContributedDescriptors$default(((c0) it.next()).getMemberScope(), null, null, 3, null));
+            r.addAll(arrayList2, l.a.getContributedDescriptors$default(((c0) it.next()).getMemberScope(), null, null, 3, null));
         }
         ArrayList arrayList3 = new ArrayList();
         for (Object obj : arrayList2) {
@@ -79,9 +100,9 @@ public abstract class e extends j {
             }
             ((List) arrayList4).add(obj2);
         }
-        for (Map$Entry map$Entry : linkedHashMap.entrySet()) {
-            d0.e0.p.d.m0.g.e eVar2 = (d0.e0.p.d.m0.g.e) map$Entry.getKey();
-            List list2 = (List) map$Entry.getValue();
+        for (Map.Entry entry : linkedHashMap.entrySet()) {
+            d0.e0.p.d.m0.g.e eVar2 = (d0.e0.p.d.m0.g.e) entry.getKey();
+            List list2 = (List) entry.getValue();
             LinkedHashMap linkedHashMap2 = new LinkedHashMap();
             for (Object obj3 : list2) {
                 Boolean boolValueOf = Boolean.valueOf(((d0.e0.p.d.m0.c.b) obj3) instanceof x);
@@ -92,9 +113,9 @@ public abstract class e extends j {
                 }
                 ((List) arrayList5).add(obj3);
             }
-            for (Map$Entry map$Entry2 : linkedHashMap2.entrySet()) {
-                boolean zBooleanValue = ((Boolean) map$Entry2.getKey()).booleanValue();
-                List list3 = (List) map$Entry2.getValue();
+            for (Map.Entry entry2 : linkedHashMap2.entrySet()) {
+                boolean zBooleanValue = ((Boolean) entry2.getKey()).booleanValue();
+                List list3 = (List) entry2.getValue();
                 ?? r4 = d0.e0.p.d.m0.k.k.f3468b;
                 if (zBooleanValue) {
                     EmptyList = new ArrayList();

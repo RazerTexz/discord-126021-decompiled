@@ -213,13 +213,13 @@ public final /* data */ class ModelGift {
     public final boolean isNitroClassicGift() {
         ModelSku sku;
         ModelStoreListing modelStoreListing = this.storeListing;
-        return ((modelStoreListing == null || (sku = modelStoreListing.getSku()) == null) ? null : sku.getSkuCategory()) == ModelSku$SkuCategory.NITRO_CLASSIC;
+        return ((modelStoreListing == null || (sku = modelStoreListing.getSku()) == null) ? null : sku.getSkuCategory()) == ModelSku.SkuCategory.NITRO_CLASSIC;
     }
 
     public final boolean isNitroGift() {
         ModelSku sku;
         ModelStoreListing modelStoreListing = this.storeListing;
-        return ((modelStoreListing == null || (sku = modelStoreListing.getSku()) == null) ? null : sku.getSkuCategory()) == ModelSku$SkuCategory.NITRO;
+        return ((modelStoreListing == null || (sku = modelStoreListing.getSku()) == null) ? null : sku.getSkuCategory()) == ModelSku.SkuCategory.NITRO;
     }
 
     public String toString() {

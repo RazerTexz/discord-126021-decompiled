@@ -4,8 +4,6 @@ import android.os.Handler;
 import android.util.Pair;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
-import b.i.a.c.a3.a0$a;
-import b.i.b.b.p$a;
 
 /* JADX INFO: compiled from: MediaPeriodQueue.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -31,10 +29,10 @@ public final class s1 {
     @Nullable
     public Object l;
     public long m;
-    public final o2$b a = new o2$b();
+    public final o2.b a = new o2.b();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final o2$c f1062b = new o2$c();
+    public final o2.c f1062b = new o2.c();
 
     public s1(@Nullable b.i.a.c.s2.g1 g1Var, Handler handler) {
         this.c = g1Var;
@@ -119,65 +117,65 @@ public final class s1 {
             }
             return d(o2Var, p(o2Var, obj, j2, j5, this.a), j4, j2);
         }
-        a0$a a0_a = r1Var.a;
-        o2Var.h(a0_a.a, this.a);
-        if (!a0_a.a()) {
-            int iD2 = this.a.d(a0_a.e);
-            if (iD2 != this.a.p.a(a0_a.e).l) {
-                return e(o2Var, a0_a.a, a0_a.e, iD2, r1Var.e, a0_a.d);
+        b.i.a.c.a3.a0.a aVar = r1Var.a;
+        o2Var.h(aVar.a, this.a);
+        if (!aVar.a()) {
+            int iD2 = this.a.d(aVar.e);
+            if (iD2 != this.a.p.a(aVar.e).l) {
+                return e(o2Var, aVar.a, aVar.e, iD2, r1Var.e, aVar.d);
             }
-            return f(o2Var, a0_a.a, g(o2Var, a0_a.a, a0_a.e), r1Var.e, a0_a.d);
+            return f(o2Var, aVar.a, g(o2Var, aVar.a, aVar.e), r1Var.e, aVar.d);
         }
-        int i2 = a0_a.f835b;
+        int i2 = aVar.f835b;
         int i3 = this.a.p.a(i2).l;
         if (i3 == -1) {
             return null;
         }
-        int iA = this.a.p.a(i2).a(a0_a.c);
+        int iA = this.a.p.a(i2).a(aVar.c);
         if (iA < i3) {
-            return e(o2Var, a0_a.a, i2, iA, r1Var.c, a0_a.d);
+            return e(o2Var, aVar.a, i2, iA, r1Var.c, aVar.d);
         }
         long jLongValue2 = r1Var.c;
         if (jLongValue2 == -9223372036854775807L) {
-            o2$c o2_c = this.f1062b;
-            o2$b o2_b = this.a;
-            Pair<Object, Long> pairK2 = o2Var.k(o2_c, o2_b, o2_b.l, -9223372036854775807L, Math.max(0L, j3));
+            o2.c cVar = this.f1062b;
+            o2.b bVar = this.a;
+            Pair<Object, Long> pairK2 = o2Var.k(cVar, bVar, bVar.l, -9223372036854775807L, Math.max(0L, j3));
             if (pairK2 == null) {
                 return null;
             }
             jLongValue2 = ((Long) pairK2.second).longValue();
         }
-        return f(o2Var, a0_a.a, Math.max(g(o2Var, a0_a.a, a0_a.f835b), jLongValue2), r1Var.c, a0_a.d);
+        return f(o2Var, aVar.a, Math.max(g(o2Var, aVar.a, aVar.f835b), jLongValue2), r1Var.c, aVar.d);
     }
 
     @Nullable
-    public final r1 d(o2 o2Var, a0$a a0_a, long j, long j2) {
-        o2Var.h(a0_a.a, this.a);
-        return a0_a.a() ? e(o2Var, a0_a.a, a0_a.f835b, a0_a.c, j, a0_a.d) : f(o2Var, a0_a.a, j2, j, a0_a.d);
+    public final r1 d(o2 o2Var, b.i.a.c.a3.a0.a aVar, long j, long j2) {
+        o2Var.h(aVar.a, this.a);
+        return aVar.a() ? e(o2Var, aVar.a, aVar.f835b, aVar.c, j, aVar.d) : f(o2Var, aVar.a, j2, j, aVar.d);
     }
 
     public final r1 e(o2 o2Var, Object obj, int i, int i2, long j, long j2) {
-        a0$a a0_a = new a0$a(obj, i, i2, j2);
+        b.i.a.c.a3.a0.a aVar = new b.i.a.c.a3.a0.a(obj, i, i2, j2);
         long jA = o2Var.h(obj, this.a).a(i, i2);
         long j3 = i2 == this.a.p.a(i).a(-1) ? this.a.p.o : 0L;
-        return new r1(a0_a, (jA == -9223372036854775807L || j3 < jA) ? j3 : Math.max(0L, jA - 1), j, -9223372036854775807L, jA, this.a.p.a(i).q, false, false, false);
+        return new r1(aVar, (jA == -9223372036854775807L || j3 < jA) ? j3 : Math.max(0L, jA - 1), j, -9223372036854775807L, jA, this.a.p.a(i).q, false, false, false);
     }
 
     public final r1 f(o2 o2Var, Object obj, long j, long j2, long j3) {
         long jMax = j;
         o2Var.h(obj, this.a);
         int iB = this.a.b(jMax);
-        a0$a a0_a = new a0$a(obj, j3, iB);
-        boolean zI = i(a0_a);
-        boolean zK = k(o2Var, a0_a);
-        boolean zJ = j(o2Var, a0_a, zI);
+        b.i.a.c.a3.a0.a aVar = new b.i.a.c.a3.a0.a(obj, j3, iB);
+        boolean zI = i(aVar);
+        boolean zK = k(o2Var, aVar);
+        boolean zJ = j(o2Var, aVar, zI);
         boolean z2 = iB != -1 && this.a.e(iB);
         long jC = iB != -1 ? this.a.c(iB) : -9223372036854775807L;
         long j4 = (jC == -9223372036854775807L || jC == Long.MIN_VALUE) ? this.a.m : jC;
         if (j4 != -9223372036854775807L && jMax >= j4) {
             jMax = Math.max(0L, j4 - 1);
         }
-        return new r1(a0_a, jMax, j2, jC, j4, z2, zI, zK, zJ);
+        return new r1(aVar, jMax, j2, jC, j4, z2, zI, zK, zJ);
     }
 
     public final long g(o2 o2Var, Object obj, int i) {
@@ -195,60 +193,60 @@ public final class s1 {
         int i;
         boolean zE;
         int i2;
-        a0$a a0_a = r1Var.a;
-        boolean zI = i(a0_a);
-        boolean zK = k(o2Var, a0_a);
-        boolean zJ = j(o2Var, a0_a, zI);
+        b.i.a.c.a3.a0.a aVar = r1Var.a;
+        boolean zI = i(aVar);
+        boolean zK = k(o2Var, aVar);
+        boolean zJ = j(o2Var, aVar, zI);
         o2Var.h(r1Var.a.a, this.a);
-        long jC = (a0_a.a() || (i2 = a0_a.e) == -1) ? -9223372036854775807L : this.a.c(i2);
-        if (!a0_a.a()) {
+        long jC = (aVar.a() || (i2 = aVar.e) == -1) ? -9223372036854775807L : this.a.c(i2);
+        if (!aVar.a()) {
             if (jC == -9223372036854775807L || jC == Long.MIN_VALUE) {
                 jA = this.a.m;
             } else {
                 j = jC;
             }
-            if (a0_a.a()) {
-                zE = this.a.e(a0_a.f835b);
+            if (aVar.a()) {
+                zE = this.a.e(aVar.f835b);
             } else {
-                i = a0_a.e;
+                i = aVar.e;
                 if (i == -1 && this.a.e(i)) {
                     zE = true;
                 } else {
                     zE = false;
                 }
             }
-            return new r1(a0_a, r1Var.f1058b, r1Var.c, jC, j, zE, zI, zK, zJ);
+            return new r1(aVar, r1Var.f1058b, r1Var.c, jC, j, zE, zI, zK, zJ);
         }
-        jA = this.a.a(a0_a.f835b, a0_a.c);
+        jA = this.a.a(aVar.f835b, aVar.c);
         j = jA;
-        if (a0_a.a()) {
-            zE = this.a.e(a0_a.f835b);
+        if (aVar.a()) {
+            zE = this.a.e(aVar.f835b);
         } else {
-            i = a0_a.e;
+            i = aVar.e;
             if (i == -1) {
                 zE = false;
             } else {
                 zE = false;
             }
         }
-        return new r1(a0_a, r1Var.f1058b, r1Var.c, jC, j, zE, zI, zK, zJ);
+        return new r1(aVar, r1Var.f1058b, r1Var.c, jC, j, zE, zI, zK, zJ);
     }
 
-    public final boolean i(a0$a a0_a) {
-        return !a0_a.a() && a0_a.e == -1;
+    public final boolean i(b.i.a.c.a3.a0.a aVar) {
+        return !aVar.a() && aVar.e == -1;
     }
 
-    public final boolean j(o2 o2Var, a0$a a0_a, boolean z2) {
-        int iB = o2Var.b(a0_a.a);
+    public final boolean j(o2 o2Var, b.i.a.c.a3.a0.a aVar, boolean z2) {
+        int iB = o2Var.b(aVar.a);
         if (o2Var.n(o2Var.f(iB, this.a).l, this.f1062b).v) {
             return false;
         }
         return (o2Var.d(iB, this.a, this.f1062b, this.f, this.g) == -1) && z2;
     }
 
-    public final boolean k(o2 o2Var, a0$a a0_a) {
-        if (i(a0_a)) {
-            return o2Var.n(o2Var.h(a0_a.a, this.a).l, this.f1062b).C == o2Var.b(a0_a.a);
+    public final boolean k(o2 o2Var, b.i.a.c.a3.a0.a aVar) {
+        if (i(aVar)) {
+            return o2Var.n(o2Var.h(aVar.a, this.a).l, this.f1062b).C == o2Var.b(aVar.a);
         }
         return false;
     }
@@ -256,12 +254,12 @@ public final class s1 {
     public final void l() {
         if (this.c != null) {
             b.i.b.b.a<Object> aVar = b.i.b.b.p.k;
-            p$a p_a = new p$a();
+            b.i.b.b.p.a aVar2 = new b.i.b.b.p.a();
             for (q1 q1Var = this.h; q1Var != null; q1Var = q1Var.l) {
-                p_a.b(q1Var.f.a);
+                aVar2.b(q1Var.f.a);
             }
             q1 q1Var2 = this.i;
-            this.d.post(new m0(this, p_a, q1Var2 == null ? null : q1Var2.f.a));
+            this.d.post(new m0(this, aVar2, q1Var2 == null ? null : q1Var2.f.a));
         }
     }
 
@@ -304,7 +302,7 @@ public final class s1 {
         return z2;
     }
 
-    public a0$a o(o2 o2Var, Object obj, long j) {
+    public b.i.a.c.a3.a0.a o(o2 o2Var, Object obj, long j) {
         long j2;
         int iB;
         int i = o2Var.h(obj, this.a).l;
@@ -333,10 +331,10 @@ public final class s1 {
         return p(o2Var, obj, j, j2, this.a);
     }
 
-    public static a0$a p(o2 o2Var, Object obj, long j, long j2, o2$b o2_b) {
-        o2Var.h(obj, o2_b);
-        b.i.a.c.a3.p0.c cVar = o2_b.p;
-        long j3 = o2_b.m;
+    public static b.i.a.c.a3.a0.a p(o2 o2Var, Object obj, long j, long j2, o2.b bVar) {
+        o2Var.h(obj, bVar);
+        b.i.a.c.a3.p0.c cVar = bVar.p;
+        long j3 = bVar.m;
         int i = cVar.n - 1;
         while (i >= 0) {
             boolean z2 = false;
@@ -355,9 +353,9 @@ public final class s1 {
             i = -1;
         }
         if (i == -1) {
-            return new a0$a(obj, j2, o2_b.b(j));
+            return new b.i.a.c.a3.a0.a(obj, j2, bVar.b(j));
         }
-        return new a0$a(obj, i, o2_b.d(i), j2);
+        return new b.i.a.c.a3.a0.a(obj, i, bVar.d(i), j2);
     }
 
     public final boolean q(o2 o2Var) {

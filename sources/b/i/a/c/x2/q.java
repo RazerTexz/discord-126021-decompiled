@@ -1,7 +1,6 @@
 package b.i.a.c.x2;
 
 import androidx.annotation.Nullable;
-import b.i.a.c.z2.k.b$a;
 import com.google.android.exoplayer2.metadata.Metadata;
 import java.io.EOFException;
 import java.io.IOException;
@@ -12,7 +11,7 @@ public final class q {
     public final b.i.a.c.f3.x a = new b.i.a.c.f3.x(10);
 
     @Nullable
-    public Metadata a(i iVar, @Nullable b$a b_a) throws IOException {
+    public Metadata a(i iVar, @Nullable b.i.a.c.z2.k.b.a aVar) throws IOException {
         Metadata metadataD = null;
         int i = 0;
         while (true) {
@@ -29,7 +28,7 @@ public final class q {
                     byte[] bArr = new byte[i2];
                     System.arraycopy(this.a.a, 0, bArr, 0, 10);
                     iVar.o(bArr, 10, iS);
-                    metadataD = new b.i.a.c.z2.k.b(b_a).d(bArr, i2);
+                    metadataD = new b.i.a.c.z2.k.b(aVar).d(bArr, i2);
                 } else {
                     iVar.g(iS);
                 }

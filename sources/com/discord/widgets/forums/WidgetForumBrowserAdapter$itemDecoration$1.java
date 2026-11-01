@@ -3,22 +3,20 @@ package com.discord.widgets.forums;
 import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView$ItemDecoration;
-import androidx.recyclerview.widget.RecyclerView$State;
 import com.discord.utilities.dimen.DimenUtils;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: WidgetForumBrowserAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetForumBrowserAdapter$itemDecoration$1 extends RecyclerView$ItemDecoration {
+public final class WidgetForumBrowserAdapter$itemDecoration$1 extends RecyclerView.ItemDecoration {
     public final /* synthetic */ WidgetForumBrowserAdapter this$0;
 
     public WidgetForumBrowserAdapter$itemDecoration$1(WidgetForumBrowserAdapter widgetForumBrowserAdapter) {
         this.this$0 = widgetForumBrowserAdapter;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$ItemDecoration
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView$State state) {
+    @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         m.checkNotNullParameter(outRect, "outRect");
         m.checkNotNullParameter(view, "view");
         m.checkNotNullParameter(parent, "parent");

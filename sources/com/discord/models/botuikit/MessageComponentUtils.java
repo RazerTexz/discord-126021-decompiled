@@ -10,13 +10,13 @@ public final class MessageComponentUtils {
     private MessageComponentUtils() {
     }
 
-    public final ActionInteractionComponentState$Failed getChildError(LayoutMessageComponent layoutMessageComponent) {
+    public final ActionInteractionComponentState.Failed getChildError(LayoutMessageComponent layoutMessageComponent) {
         m.checkNotNullParameter(layoutMessageComponent, "$this$getChildError");
         for (MessageComponent messageComponent : layoutMessageComponent.getChildren()) {
             if (messageComponent instanceof ActionMessageComponent) {
                 ActionInteractionComponentState stateInteraction = ((ActionMessageComponent) messageComponent).getStateInteraction();
-                if (stateInteraction instanceof ActionInteractionComponentState$Failed) {
-                    return (ActionInteractionComponentState$Failed) stateInteraction;
+                if (stateInteraction instanceof ActionInteractionComponentState.Failed) {
+                    return (ActionInteractionComponentState.Failed) stateInteraction;
                 }
             }
         }

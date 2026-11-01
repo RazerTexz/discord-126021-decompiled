@@ -1,10 +1,8 @@
 package j0.l.a;
 
-import j0.l.c.m$a;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 import rx.Observable;
-import rx.Observable$a;
 import rx.Scheduler;
 import rx.Subscriber;
 import rx.subjects.BehaviorSubject;
@@ -13,7 +11,7 @@ import rx.subscriptions.SerialSubscription;
 
 /* JADX INFO: compiled from: OnSubscribeRedo.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class y<T> implements Observable$a<T> {
+public final class y<T> implements Observable.a<T> {
     public final Observable<T> j;
     public final j0.k.b<? super Observable<? extends j0.f<?>>, ? extends Observable<?>> k;
     public final boolean l;
@@ -31,15 +29,15 @@ public final class y<T> implements Observable$a<T> {
         Subscriber subscriber = (Subscriber) obj;
         AtomicBoolean atomicBoolean = new AtomicBoolean(true);
         AtomicLong atomicLong = new AtomicLong();
-        m$a m_a = new m$a();
-        subscriber.add(m_a);
+        j0.l.c.m.a aVar = new j0.l.c.m.a();
+        subscriber.add(aVar);
         SerialSubscription serialSubscription = new SerialSubscription();
         subscriber.add(serialSubscription);
         SerializedSubject serializedSubject = new SerializedSubject(BehaviorSubject.k0());
         serializedSubject.U(new j0.n.d(j0.n.a.a));
-        j0.l.b.a aVar = new j0.l.b.a();
-        t tVar = new t(this, subscriber, serializedSubject, aVar, atomicLong, serialSubscription);
-        m_a.a(new w(this, this.k.call(Observable.h0(new r(serializedSubject.j, new v(this)))), subscriber, atomicLong, m_a, tVar, atomicBoolean));
-        subscriber.setProducer(new x(this, atomicLong, aVar, atomicBoolean, m_a, tVar));
+        j0.l.b.a aVar2 = new j0.l.b.a();
+        t tVar = new t(this, subscriber, serializedSubject, aVar2, atomicLong, serialSubscription);
+        aVar.a(new w(this, this.k.call(Observable.h0(new r(serializedSubject.j, new v(this)))), subscriber, atomicLong, aVar, tVar, atomicBoolean));
+        subscriber.setProducer(new x(this, atomicLong, aVar2, atomicBoolean, aVar, tVar));
     }
 }

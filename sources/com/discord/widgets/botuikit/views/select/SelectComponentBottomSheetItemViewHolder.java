@@ -2,7 +2,7 @@ package com.discord.widgets.botuikit.views.select;
 
 import android.view.View;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
+import androidx.recyclerview.widget.RecyclerView;
 import com.discord.api.botuikit.ComponentEmoji;
 import com.discord.api.botuikit.SelectItem;
 import com.discord.databinding.WidgetSelectComponentBottomSheetItemBinding;
@@ -18,9 +18,24 @@ import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: SelectComponentBottomSheetAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class SelectComponentBottomSheetItemViewHolder extends RecyclerView$ViewHolder {
+public final class SelectComponentBottomSheetItemViewHolder extends RecyclerView.ViewHolder {
     private final WidgetSelectComponentBottomSheetItemBinding binding;
     private final Function2<SelectItem, Boolean, Unit> onItemSelected;
+
+    /* JADX INFO: renamed from: com.discord.widgets.botuikit.views.select.SelectComponentBottomSheetItemViewHolder$bind$1, reason: invalid class name */
+    /* JADX INFO: compiled from: SelectComponentBottomSheetAdapter.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ SelectComponentBottomSheetItem $data;
+
+        public AnonymousClass1(SelectComponentBottomSheetItem selectComponentBottomSheetItem) {
+            this.$data = selectComponentBottomSheetItem;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            SelectComponentBottomSheetItemViewHolder.access$getOnItemSelected$p(SelectComponentBottomSheetItemViewHolder.this).invoke(this.$data.getSelectItem(), Boolean.valueOf(!this.$data.getSelected()));
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     /* JADX WARN: Multi-variable type inference failed */
@@ -42,7 +57,7 @@ public final class SelectComponentBottomSheetItemViewHolder extends RecyclerView
         ConstraintLayout constraintLayout = this.binding.a;
         m.checkNotNullExpressionValue(constraintLayout, "binding.root");
         constraintLayout.setEnabled(!z2);
-        this.binding.a.setOnClickListener(new SelectComponentBottomSheetItemViewHolder$bind$1(this, data));
+        this.binding.a.setOnClickListener(new AnonymousClass1(data));
         ConstraintLayout constraintLayout2 = this.binding.a;
         m.checkNotNullExpressionValue(constraintLayout2, "binding.root");
         ViewExtensions.setEnabledAlpha(constraintLayout2, !z2, 0.3f);

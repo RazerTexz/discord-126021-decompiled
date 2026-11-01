@@ -1,6 +1,7 @@
 package d0.e0;
 
 import kotlin.NoWhenBranchMatchedException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KType;
 
 /* JADX INFO: compiled from: KTypeProjection.kt */
@@ -10,8 +11,33 @@ public final class i {
     public final KType d;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final i$a f3190b = new i$a(null);
+    public static final a f3190b = new a(null);
     public static final i a = new i(null, null);
+
+    /* JADX INFO: compiled from: KTypeProjection.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final i contravariant(KType kType) {
+            d0.z.d.m.checkNotNullParameter(kType, "type");
+            return new i(j.IN, kType);
+        }
+
+        public final i covariant(KType kType) {
+            d0.z.d.m.checkNotNullParameter(kType, "type");
+            return new i(j.OUT, kType);
+        }
+
+        public final i getSTAR() {
+            return i.a;
+        }
+
+        public final i invariant(KType kType) {
+            d0.z.d.m.checkNotNullParameter(kType, "type");
+            return new i(j.INVARIANT, kType);
+        }
+    }
 
     public i(j jVar, KType kType) {
         String str;

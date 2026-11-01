@@ -4,23 +4,30 @@ import android.annotation.SuppressLint;
 import android.util.Patterns;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
+import b.a.k.b;
+import com.discord.R;
+import com.discord.utilities.phone.PhoneUtils;
 import com.discord.utilities.string.StringUtilsKt;
 import com.discord.utilities.time.ClockFactory;
+import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.view.validators.BasicTextInputValidator;
-import com.discord.utilities.view.validators.Input$TextInputLayoutInput;
+import com.discord.utilities.view.validators.Input;
 import com.discord.utilities.view.validators.InputValidator;
 import com.discord.utilities.view.validators.ValidationManager;
 import com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword;
 import com.google.android.material.textfield.TextInputLayout;
 import d0.c0.d;
+import d0.g0.s;
 import d0.g0.t;
 import d0.g0.w;
 import d0.t.n;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Objects;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: AuthUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -34,6 +41,100 @@ public final class AuthUtils {
     private static final String URL_PLAY_STORE = "https://play.google.com/store/apps/details";
     public static final AuthUtils INSTANCE = new AuthUtils();
 
+    /* JADX INFO: renamed from: com.discord.utilities.auth.AuthUtils$createDiscriminatorInputValidator$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AuthUtils.kt */
+    public final class AnonymousClass1 implements InputValidator<TextInputLayout> {
+        public final /* synthetic */ int $invalidFormatResId;
+        public final /* synthetic */ int $invalidValueResId;
+
+        public AnonymousClass1(int i, int i2) {
+            this.$invalidFormatResId = i;
+            this.$invalidValueResId = i2;
+        }
+
+        @Override // com.discord.utilities.view.validators.InputValidator
+        public /* bridge */ /* synthetic */ CharSequence getErrorMessage(TextInputLayout textInputLayout) {
+            return getErrorMessage2(textInputLayout);
+        }
+
+        /* JADX INFO: renamed from: getErrorMessage, reason: avoid collision after fix types in other method */
+        public CharSequence getErrorMessage2(TextInputLayout view) {
+            m.checkNotNullParameter(view, "view");
+            String textOrEmpty = ViewExtensions.getTextOrEmpty(view);
+            Integer intOrNull = s.toIntOrNull(textOrEmpty);
+            if (intOrNull == null || textOrEmpty.length() != 4) {
+                return b.j(view, this.$invalidFormatResId, new Object[0], null, 4);
+            }
+            if (intOrNull.intValue() <= 0) {
+                return b.j(view, this.$invalidValueResId, new Object[0], null, 4);
+            }
+            return null;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.auth.AuthUtils$createEmailInputValidator$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AuthUtils.kt */
+    public final class AnonymousClass1 extends o implements Function1<String, Boolean> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(String str) {
+            return Boolean.valueOf(invoke2(str));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(String str) {
+            m.checkNotNullParameter(str, "it");
+            return AuthUtils.access$isValidEmail(AuthUtils.INSTANCE, str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.auth.AuthUtils$createPasswordInputValidator$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AuthUtils.kt */
+    public final class AnonymousClass1 extends o implements Function1<String, Boolean> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(String str) {
+            return Boolean.valueOf(invoke2(str));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(String str) {
+            m.checkNotNullParameter(str, "it");
+            return AuthUtils.INSTANCE.isValidPasswordLength(str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.auth.AuthUtils$createPhoneInputValidator$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AuthUtils.kt */
+    public final class AnonymousClass1 extends o implements Function1<String, Boolean> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(String str) {
+            return Boolean.valueOf(invoke2(str));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(String str) {
+            m.checkNotNullParameter(str, "it");
+            return PhoneUtils.INSTANCE.isValidPhoneFragment(str);
+        }
+    }
+
     private AuthUtils() {
     }
 
@@ -42,24 +143,24 @@ public final class AuthUtils {
     }
 
     public final InputValidator<TextInputLayout> createDiscriminatorInputValidator(@StringRes int invalidFormatResId, @StringRes int invalidValueResId) {
-        return new AuthUtils$createDiscriminatorInputValidator$1(invalidFormatResId, invalidValueResId);
+        return new AnonymousClass1(invalidFormatResId, invalidValueResId);
     }
 
     public final BasicTextInputValidator createEmailInputValidator(@StringRes int messageResId) {
-        return new BasicTextInputValidator(messageResId, AuthUtils$createEmailInputValidator$1.INSTANCE);
+        return new BasicTextInputValidator(messageResId, AnonymousClass1.INSTANCE);
     }
 
     public final ValidationManager createEmailValidationManager(TextInputLayout emailInput) {
         m.checkNotNullParameter(emailInput, "emailInput");
-        return new ValidationManager(new Input$TextInputLayoutInput(NotificationCompat.CATEGORY_EMAIL, emailInput, BasicTextInputValidator.Companion.createRequiredInputValidator(2131888660), createEmailInputValidator(2131888659)));
+        return new ValidationManager(new Input.TextInputLayoutInput(NotificationCompat.CATEGORY_EMAIL, emailInput, BasicTextInputValidator.INSTANCE.createRequiredInputValidator(R.string.email_required), createEmailInputValidator(R.string.email_invalid)));
     }
 
     public final BasicTextInputValidator createPasswordInputValidator(@StringRes int messageResId) {
-        return new BasicTextInputValidator(messageResId, AuthUtils$createPasswordInputValidator$1.INSTANCE);
+        return new BasicTextInputValidator(messageResId, AnonymousClass1.INSTANCE);
     }
 
     public final BasicTextInputValidator createPhoneInputValidator(@StringRes int messageResId) {
-        return new BasicTextInputValidator(messageResId, AuthUtils$createPhoneInputValidator$1.INSTANCE);
+        return new BasicTextInputValidator(messageResId, AnonymousClass1.INSTANCE);
     }
 
     @SuppressLint({"DefaultLocale"})

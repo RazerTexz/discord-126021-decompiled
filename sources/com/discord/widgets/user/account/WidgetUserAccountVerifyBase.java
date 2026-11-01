@@ -2,35 +2,142 @@ package com.discord.widgets.user.account;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.MenuItem;
 import android.view.View;
 import androidx.annotation.LayoutRes;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentActivity;
 import b.a.d.j;
 import b.d.b.a.a;
-import com.discord.R$menu;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.app.AppLog;
 import com.discord.models.requiredaction.RequiredAction;
+import com.discord.models.user.MeUser;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import com.discord.stores.StoreUser;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.rx.ObservableExtensionsKt;
+import com.discord.utilities.user.UserUtils;
+import d0.z.d.k;
 import d0.z.d.m;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
+import rx.functions.Action2;
+import rx.functions.Func2;
 
 /* JADX INFO: compiled from: WidgetUserAccountVerifyBase.kt */
 /* JADX INFO: loaded from: classes.dex */
 public abstract class WidgetUserAccountVerifyBase extends AppFragment {
-    public static final WidgetUserAccountVerifyBase$Companion Companion = new WidgetUserAccountVerifyBase$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String INTENT_EMAIL_ALLOWED = "INTENT_EMAIL_ALLOWED";
     private static final String INTENT_MODE = "INTENT_MODE";
     private static final String INTENT_PHONE_ALLOWED = "INTENT_PHONE_ALLOWED";
     private boolean isEmailAllowed;
     private boolean isPhoneAllowed;
-    public WidgetUserAccountVerifyBase$Mode mode;
+    public Mode mode;
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.account.WidgetUserAccountVerifyBase$getShouldDismissObservable$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetUserAccountVerifyBase.kt */
+    public final class AnonymousClass1<T1, T2, R> implements Func2<RequiredAction, MeUser, Boolean> {
+        public AnonymousClass1() {
+        }
+
+        @Override // rx.functions.Func2
+        public /* bridge */ /* synthetic */ Boolean call(RequiredAction requiredAction, MeUser meUser) {
+            return call2(requiredAction, meUser);
+        }
+
+        /* JADX WARN: Code duplicated, block: B:7:0x001a  */
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Boolean call2(RequiredAction requiredAction, MeUser meUser) {
+            boolean z2;
+            if (WidgetUserAccountVerifyBase.this.getIsPhoneAllowed()) {
+                UserUtils userUtils = UserUtils.INSTANCE;
+                m.checkNotNullExpressionValue(meUser, "me");
+                if (userUtils.getHasPhone(meUser)) {
+                    z2 = false;
+                } else {
+                    z2 = true;
+                }
+            } else {
+                z2 = false;
+            }
+            boolean z3 = WidgetUserAccountVerifyBase.this.getIsEmailAllowed() && !meUser.isVerified();
+            WidgetUserAccountVerifyBase widgetUserAccountVerifyBase = WidgetUserAccountVerifyBase.this;
+            m.checkNotNullExpressionValue(requiredAction, "requiredAction");
+            return Boolean.valueOf(WidgetUserAccountVerifyBase.access$computeShouldDismiss(widgetUserAccountVerifyBase, z2, z3, requiredAction));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.account.WidgetUserAccountVerifyBase$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetUserAccountVerifyBase.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<Boolean, Unit> {
+        public AnonymousClass1(WidgetUserAccountVerifyBase widgetUserAccountVerifyBase) {
+            super(1, widgetUserAccountVerifyBase, WidgetUserAccountVerifyBase.class, "handleIsAuthorized", "handleIsAuthorized(Z)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.a;
+        }
+
+        public final void invoke(boolean z2) {
+            WidgetUserAccountVerifyBase.access$handleIsAuthorized((WidgetUserAccountVerifyBase) this.receiver, z2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.account.WidgetUserAccountVerifyBase$setOptionsMenu$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetUserAccountVerifyBase.kt */
+    public final class AnonymousClass1<T1, T2> implements Action2<MenuItem, Context> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // rx.functions.Action2
+        public /* bridge */ /* synthetic */ void call(MenuItem menuItem, Context context) {
+            call2(menuItem, context);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(MenuItem menuItem, Context context) {
+            m.checkNotNullExpressionValue(menuItem, "menuItem");
+            if (menuItem.getItemId() != R.id.menu_settings_log_out) {
+                return;
+            }
+            StoreStream.INSTANCE.getAuthentication().logout();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetUserAccountVerifyBase.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final Intent getLaunchIntent(Mode mode, boolean phoneAllowed, boolean emailAllowed) {
+            m.checkNotNullParameter(mode, "mode");
+            Intent intent = new Intent();
+            intent.putExtra(WidgetUserAccountVerifyBase.INTENT_PHONE_ALLOWED, phoneAllowed);
+            intent.putExtra(WidgetUserAccountVerifyBase.INTENT_EMAIL_ALLOWED, emailAllowed);
+            intent.putExtra(WidgetUserAccountVerifyBase.INTENT_MODE, mode.ordinal());
+            return intent;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetUserAccountVerifyBase.kt */
+    public enum Mode {
+        UNFORCED,
+        FORCED,
+        NO_HISTORY_FROM_USER_SETTINGS
+    }
 
     public WidgetUserAccountVerifyBase(@LayoutRes int i) {
         super(i);
@@ -47,18 +154,18 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
     }
 
     private final boolean computeShouldDismiss(boolean isMissingPhone, boolean isMissingEmailOrUnverified, RequiredAction requiredAction) {
-        WidgetUserAccountVerifyBase$Mode widgetUserAccountVerifyBase$Mode = this.mode;
-        if (widgetUserAccountVerifyBase$Mode == null) {
+        Mode mode = this.mode;
+        if (mode == null) {
             m.throwUninitializedPropertyAccessException("mode");
         }
-        if (widgetUserAccountVerifyBase$Mode == WidgetUserAccountVerifyBase$Mode.UNFORCED) {
+        if (mode == Mode.UNFORCED) {
             return true;
         }
-        WidgetUserAccountVerifyBase$Mode widgetUserAccountVerifyBase$Mode2 = this.mode;
-        if (widgetUserAccountVerifyBase$Mode2 == null) {
+        Mode mode2 = this.mode;
+        if (mode2 == null) {
             m.throwUninitializedPropertyAccessException("mode");
         }
-        if (widgetUserAccountVerifyBase$Mode2 == WidgetUserAccountVerifyBase$Mode.NO_HISTORY_FROM_USER_SETTINGS) {
+        if (mode2 == Mode.NO_HISTORY_FROM_USER_SETTINGS) {
             return true;
         }
         if (isMissingPhone && requiredAction == RequiredAction.REQUIRE_VERIFIED_PHONE) {
@@ -77,21 +184,21 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
         return this.isPhoneAllowed;
     }
 
-    public static final Intent getLaunchIntent(WidgetUserAccountVerifyBase$Mode widgetUserAccountVerifyBase$Mode, boolean z2, boolean z3) {
-        return Companion.getLaunchIntent(widgetUserAccountVerifyBase$Mode, z2, z3);
+    public static final Intent getLaunchIntent(Mode mode, boolean z2, boolean z3) {
+        return INSTANCE.getLaunchIntent(mode, z2, z3);
     }
 
-    public final WidgetUserAccountVerifyBase$Mode getMode() {
-        WidgetUserAccountVerifyBase$Mode widgetUserAccountVerifyBase$Mode = this.mode;
-        if (widgetUserAccountVerifyBase$Mode == null) {
+    public final Mode getMode() {
+        Mode mode = this.mode;
+        if (mode == null) {
             m.throwUninitializedPropertyAccessException("mode");
         }
-        return widgetUserAccountVerifyBase$Mode;
+        return mode;
     }
 
     private final Observable<Boolean> getShouldDismissObservable() {
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        Observable observableJ = Observable.j(storeStream$Companion.getUserRequiredActions().observeUserRequiredAction(), StoreUser.observeMe$default(storeStream$Companion.getUsers(), false, 1, null), new WidgetUserAccountVerifyBase$getShouldDismissObservable$1(this));
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        Observable observableJ = Observable.j(companion.getUserRequiredActions().observeUserRequiredAction(), StoreUser.observeMe$default(companion.getUsers(), false, 1, null), new AnonymousClass1());
         m.checkNotNullExpressionValue(observableJ, "Observable\n        .comb…requiredAction)\n        }");
         Observable<Boolean> observableR = ObservableExtensionsKt.computationBuffered(observableJ).r();
         m.checkNotNullExpressionValue(observableR, "Observable\n        .comb…  .distinctUntilChanged()");
@@ -110,11 +217,11 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
     }
 
     public final boolean isForced() {
-        WidgetUserAccountVerifyBase$Mode widgetUserAccountVerifyBase$Mode = this.mode;
-        if (widgetUserAccountVerifyBase$Mode == null) {
+        Mode mode = this.mode;
+        if (mode == null) {
             m.throwUninitializedPropertyAccessException("mode");
         }
-        return widgetUserAccountVerifyBase$Mode == WidgetUserAccountVerifyBase$Mode.FORCED;
+        return mode == Mode.FORCED;
     }
 
     @Override // com.discord.app.AppFragment
@@ -122,9 +229,9 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         int intExtra = getMostRecentIntent().getIntExtra(INTENT_MODE, -1);
-        WidgetUserAccountVerifyBase$Mode.values();
+        Mode.values();
         if (intExtra >= 0 && 3 > intExtra) {
-            this.mode = WidgetUserAccountVerifyBase$Mode.values()[intExtra];
+            this.mode = Mode.values()[intExtra];
             setOptionsMenu();
             this.isPhoneAllowed = getMostRecentIntent().getBooleanExtra(INTENT_PHONE_ALLOWED, this.isPhoneAllowed);
             this.isEmailAllowed = getMostRecentIntent().getBooleanExtra(INTENT_EMAIL_ALLOWED, this.isEmailAllowed);
@@ -143,24 +250,24 @@ public abstract class WidgetUserAccountVerifyBase extends AppFragment {
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(getShouldDismissObservable(), this, null, 2, null), getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetUserAccountVerifyBase$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(getShouldDismissObservable(), this, null, 2, null), getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
     }
 
     public final void setEmailAllowed(boolean z2) {
         this.isEmailAllowed = z2;
     }
 
-    public final void setMode(WidgetUserAccountVerifyBase$Mode widgetUserAccountVerifyBase$Mode) {
-        m.checkNotNullParameter(widgetUserAccountVerifyBase$Mode, "<set-?>");
-        this.mode = widgetUserAccountVerifyBase$Mode;
+    public final void setMode(Mode mode) {
+        m.checkNotNullParameter(mode, "<set-?>");
+        this.mode = mode;
     }
 
     private final void setOptionsMenu() {
-        WidgetUserAccountVerifyBase$Mode widgetUserAccountVerifyBase$Mode = this.mode;
-        if (widgetUserAccountVerifyBase$Mode == null) {
+        Mode mode = this.mode;
+        if (mode == null) {
             m.throwUninitializedPropertyAccessException("mode");
         }
-        AppFragment.setActionBarOptionsMenu$default(this, widgetUserAccountVerifyBase$Mode == WidgetUserAccountVerifyBase$Mode.FORCED ? R$menu.menu_settings_logout : R$menu.menu_empty, WidgetUserAccountVerifyBase$setOptionsMenu$1.INSTANCE, null, 4, null);
+        AppFragment.setActionBarOptionsMenu$default(this, mode == Mode.FORCED ? R.menu.menu_settings_logout : R.menu.menu_empty, AnonymousClass1.INSTANCE, null, 4, null);
     }
 
     public final void setPhoneAllowed(boolean z2) {

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.TextView;
 import b.a.k.b;
 import b.d.b.a.a;
+import com.discord.R;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: DurationUtils.kt */
@@ -18,7 +19,7 @@ public final class DurationUtilsKt {
     public static final CharSequence formatInviteExpireAfterString(Context context, int i) {
         m.checkNotNullParameter(context, "$this$formatInviteExpireAfterString");
         if (i == 0) {
-            return b.h(context, 2131893290, new Object[0], null, 4);
+            return b.h(context, R.string.no_user_limit, new Object[0], null, 4);
         }
         if (i == 1800) {
             return formatDuration(context, DurationUnit.MINS, 30);

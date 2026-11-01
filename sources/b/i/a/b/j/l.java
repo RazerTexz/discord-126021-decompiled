@@ -42,19 +42,19 @@ public final class l<T> implements b.i.a.b.f<T> {
         n nVar = (n) mVar;
         b.i.a.b.j.t.e eVar2 = nVar.d;
         b.i.a.b.d dVarC = cVar.c();
-        i$a i_aA = i.a();
-        i_aA.b(iVar.b());
-        i_aA.c(dVarC);
-        b$b b_b = (b$b) i_aA;
-        b_b.f764b = iVar.c();
-        i iVarA = b_b.a();
-        a$b a_b = new a$b();
-        a_b.f = new HashMap();
-        a_b.e(nVar.f769b.a());
-        a_b.g(nVar.c.a());
-        a_b.f(str);
-        a_b.d(new e(bVar, eVar.apply(cVar.b())));
-        a_b.f762b = cVar.a();
-        eVar2.a(iVarA, a_b.b(), hVar);
+        i.a aVarA = i.a();
+        aVarA.b(iVar.b());
+        aVarA.c(dVarC);
+        b.C0087b c0087b = (b.C0087b) aVarA;
+        c0087b.f764b = iVar.c();
+        i iVarA = c0087b.a();
+        a.b bVar2 = new a.b();
+        bVar2.f = new HashMap();
+        bVar2.e(nVar.f769b.a());
+        bVar2.g(nVar.c.a());
+        bVar2.f(str);
+        bVar2.d(new e(bVar, eVar.apply(cVar.b())));
+        bVar2.f762b = cVar.a();
+        eVar2.a(iVarA, bVar2.b(), hVar);
     }
 }

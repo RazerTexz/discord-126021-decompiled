@@ -14,18 +14,72 @@ public final class b extends v {
     public final String e;
     public final String f;
     public final String g;
-    public final v$d h;
-    public final v$c i;
+    public final v.d h;
+    public final v.c i;
 
-    public b(String str, String str2, int i, String str3, String str4, String str5, v$d v_d, v$c v_c, b$a b_a) {
+    /* JADX INFO: renamed from: b.i.c.m.d.m.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: AutoValue_CrashlyticsReport.java */
+    public final class C0141b extends v.a {
+        public String a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public String f1714b;
+        public Integer c;
+        public String d;
+        public String e;
+        public String f;
+        public v.d g;
+        public v.c h;
+
+        public C0141b() {
+        }
+
+        @Override // b.i.c.m.d.m.v.a
+        public v a() {
+            String strW = this.a == null ? " sdkVersion" : "";
+            if (this.f1714b == null) {
+                strW = b.d.b.a.a.w(strW, " gmpAppId");
+            }
+            if (this.c == null) {
+                strW = b.d.b.a.a.w(strW, " platform");
+            }
+            if (this.d == null) {
+                strW = b.d.b.a.a.w(strW, " installationUuid");
+            }
+            if (this.e == null) {
+                strW = b.d.b.a.a.w(strW, " buildVersion");
+            }
+            if (this.f == null) {
+                strW = b.d.b.a.a.w(strW, " displayVersion");
+            }
+            if (strW.isEmpty()) {
+                return new b(this.a, this.f1714b, this.c.intValue(), this.d, this.e, this.f, this.g, this.h, null);
+            }
+            throw new IllegalStateException(b.d.b.a.a.w("Missing required properties:", strW));
+        }
+
+        public C0141b(v vVar, a aVar) {
+            b bVar = (b) vVar;
+            this.a = bVar.f1713b;
+            this.f1714b = bVar.c;
+            this.c = Integer.valueOf(bVar.d);
+            this.d = bVar.e;
+            this.e = bVar.f;
+            this.f = bVar.g;
+            this.g = bVar.h;
+            this.h = bVar.i;
+        }
+    }
+
+    public b(String str, String str2, int i, String str3, String str4, String str5, v.d dVar, v.c cVar, a aVar) {
         this.f1713b = str;
         this.c = str2;
         this.d = i;
         this.e = str3;
         this.f = str4;
         this.g = str5;
-        this.h = v_d;
-        this.i = v_c;
+        this.h = dVar;
+        this.i = cVar;
     }
 
     @Override // b.i.c.m.d.m.v
@@ -54,12 +108,12 @@ public final class b extends v {
 
     @Override // b.i.c.m.d.m.v
     @Nullable
-    public v$c e() {
+    public v.c e() {
         return this.i;
     }
 
     public boolean equals(Object obj) {
-        v$d v_d;
+        v.d dVar;
         if (obj == this) {
             return true;
         }
@@ -67,13 +121,13 @@ public final class b extends v {
             return false;
         }
         v vVar = (v) obj;
-        if (this.f1713b.equals(vVar.g()) && this.c.equals(vVar.c()) && this.d == vVar.f() && this.e.equals(vVar.d()) && this.f.equals(vVar.a()) && this.g.equals(vVar.b()) && ((v_d = this.h) != null ? v_d.equals(vVar.h()) : vVar.h() == null)) {
-            v$c v_c = this.i;
-            if (v_c == null) {
+        if (this.f1713b.equals(vVar.g()) && this.c.equals(vVar.c()) && this.d == vVar.f() && this.e.equals(vVar.d()) && this.f.equals(vVar.a()) && this.g.equals(vVar.b()) && ((dVar = this.h) != null ? dVar.equals(vVar.h()) : vVar.h() == null)) {
+            v.c cVar = this.i;
+            if (cVar == null) {
                 if (vVar.e() == null) {
                     return true;
                 }
-            } else if (v_c.equals(vVar.e())) {
+            } else if (cVar.equals(vVar.e())) {
                 return true;
             }
         }
@@ -93,21 +147,21 @@ public final class b extends v {
 
     @Override // b.i.c.m.d.m.v
     @Nullable
-    public v$d h() {
+    public v.d h() {
         return this.h;
     }
 
     public int hashCode() {
         int iHashCode = (((((((((((this.f1713b.hashCode() ^ 1000003) * 1000003) ^ this.c.hashCode()) * 1000003) ^ this.d) * 1000003) ^ this.e.hashCode()) * 1000003) ^ this.f.hashCode()) * 1000003) ^ this.g.hashCode()) * 1000003;
-        v$d v_d = this.h;
-        int iHashCode2 = (iHashCode ^ (v_d == null ? 0 : v_d.hashCode())) * 1000003;
-        v$c v_c = this.i;
-        return iHashCode2 ^ (v_c != null ? v_c.hashCode() : 0);
+        v.d dVar = this.h;
+        int iHashCode2 = (iHashCode ^ (dVar == null ? 0 : dVar.hashCode())) * 1000003;
+        v.c cVar = this.i;
+        return iHashCode2 ^ (cVar != null ? cVar.hashCode() : 0);
     }
 
     @Override // b.i.c.m.d.m.v
-    public v$a i() {
-        return new b$b(this, null);
+    public v.a i() {
+        return new C0141b(this, null);
     }
 
     public String toString() {

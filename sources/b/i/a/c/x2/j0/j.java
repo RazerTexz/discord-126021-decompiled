@@ -3,7 +3,7 @@ package b.i.a.c.x2.j0;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import b.i.a.c.f3.x;
-import b.i.a.c.j1$b;
+import b.i.a.c.j1;
 import b.i.a.c.x2.a0;
 import b.i.a.c.x2.b0;
 import b.i.a.c.x2.y;
@@ -20,7 +20,7 @@ import org.checkerframework.checker.nullness.qual.EnsuresNonNullIf;
 public final class j extends i {
 
     @Nullable
-    public j$a n;
+    public a n;
     public int o;
     public boolean p;
 
@@ -29,6 +29,23 @@ public final class j extends i {
 
     @Nullable
     public z r;
+
+    /* JADX INFO: compiled from: VorbisReader.java */
+    public final class a {
+        public final b0 a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final byte[] f1241b;
+        public final a0[] c;
+        public final int d;
+
+        public a(b0 b0Var, z zVar, byte[] bArr, a0[] a0VarArr, int i) {
+            this.a = b0Var;
+            this.f1241b = bArr;
+            this.c = a0VarArr;
+            this.d = i;
+        }
+    }
 
     @Override // b.i.a.c.x2.j0.i
     public void b(long j) {
@@ -45,10 +62,10 @@ public final class j extends i {
             return -1L;
         }
         byte b2 = bArr[0];
-        j$a j_a = this.n;
-        b.c.a.a0.d.H(j_a);
-        j$a j_a2 = j_a;
-        int i = !j_a2.c[(b2 >> 1) & (255 >>> (8 - j_a2.d))].a ? j_a2.a.e : j_a2.a.f;
+        a aVar = this.n;
+        b.c.a.a0.d.H(aVar);
+        a aVar2 = aVar;
+        int i = !aVar2.c[(b2 >> 1) & (255 >>> (8 - aVar2.d))].a ? aVar2.a.e : aVar2.a.f;
         long j = this.p ? (this.o + i) / 4 : 0;
         byte[] bArr2 = xVar.a;
         int length = bArr2.length;
@@ -73,14 +90,14 @@ public final class j extends i {
     /* JADX WARN: Code duplicated, block: B:171:0x03bb  */
     @Override // b.i.a.c.x2.j0.i
     @EnsuresNonNullIf(expression = {"#3.format"}, result = false)
-    public boolean d(x xVar, long j, i$b i_b) throws IOException {
-        j$a j_a;
+    public boolean d(x xVar, long j, i.b bVar) throws IOException {
+        a aVar;
         int i;
         int iB;
         int i2;
         int i3;
         if (this.n != null) {
-            Objects.requireNonNull(i_b.a);
+            Objects.requireNonNull(bVar.a);
             return false;
         }
         b0 b0Var = this.q;
@@ -198,7 +215,7 @@ public final class j extends i {
                                 if (!yVar.a()) {
                                     throw ParserException.a("framing bit after modes not set as expected", null);
                                 }
-                                j_a = new j$a(b0Var, zVar2, bArr2, a0VarArr, b.c.a.a0.d.M0(iB9 - 1));
+                                aVar = new a(b0Var, zVar2, bArr2, a0VarArr, b.c.a.a0.d.M0(iB9 - 1));
                                 break;
                             }
                             int iB10 = yVar.b(i8);
@@ -333,22 +350,22 @@ public final class j extends i {
                     }
                 }
             }
-            this.n = j_a;
-            if (j_a == null) {
+            this.n = aVar;
+            if (aVar == null) {
                 return true;
             }
-            b0 b0Var2 = j_a.a;
+            b0 b0Var2 = aVar.a;
             ArrayList arrayList = new ArrayList();
             arrayList.add(b0Var2.g);
-            arrayList.add(j_a.f1241b);
-            j1$b j1_b = new j1$b();
-            j1_b.k = "audio/vorbis";
-            j1_b.f = b0Var2.d;
-            j1_b.g = b0Var2.c;
-            j1_b.f1023x = b0Var2.a;
-            j1_b.f1024y = b0Var2.f1163b;
-            j1_b.m = arrayList;
-            i_b.a = j1_b.a();
+            arrayList.add(aVar.f1241b);
+            j1.b bVar2 = new j1.b();
+            bVar2.k = "audio/vorbis";
+            bVar2.f = b0Var2.d;
+            bVar2.g = b0Var2.c;
+            bVar2.f1023x = b0Var2.a;
+            bVar2.f1024y = b0Var2.f1163b;
+            bVar2.m = arrayList;
+            bVar.a = bVar2.a();
             return true;
         }
         b.c.a.a0.d.n2(1, xVar, false);
@@ -363,23 +380,23 @@ public final class j extends i {
         int i44 = iH3 <= 0 ? -1 : iH3;
         int iT3 = xVar.t();
         this.q = new b0(iK, iT2, iK2, i42, i43, i44, (int) Math.pow(2.0d, iT3 & 15), (int) Math.pow(2.0d, (iT3 & 240) >> 4), (xVar.t() & 1) > 0, Arrays.copyOf(xVar.a, xVar.c));
-        j_a = null;
-        this.n = j_a;
-        if (j_a == null) {
+        aVar = null;
+        this.n = aVar;
+        if (aVar == null) {
             return true;
         }
-        b0 b0Var3 = j_a.a;
+        b0 b0Var3 = aVar.a;
         ArrayList arrayList2 = new ArrayList();
         arrayList2.add(b0Var3.g);
-        arrayList2.add(j_a.f1241b);
-        j1$b j1_b2 = new j1$b();
-        j1_b2.k = "audio/vorbis";
-        j1_b2.f = b0Var3.d;
-        j1_b2.g = b0Var3.c;
-        j1_b2.f1023x = b0Var3.a;
-        j1_b2.f1024y = b0Var3.f1163b;
-        j1_b2.m = arrayList2;
-        i_b.a = j1_b2.a();
+        arrayList2.add(aVar.f1241b);
+        j1.b bVar3 = new j1.b();
+        bVar3.k = "audio/vorbis";
+        bVar3.f = b0Var3.d;
+        bVar3.g = b0Var3.c;
+        bVar3.f1023x = b0Var3.a;
+        bVar3.f1024y = b0Var3.f1163b;
+        bVar3.m = arrayList2;
+        bVar.a = bVar3.a();
         return true;
     }
 

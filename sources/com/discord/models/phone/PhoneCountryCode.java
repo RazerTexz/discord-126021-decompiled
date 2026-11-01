@@ -3,16 +3,37 @@ package com.discord.models.phone;
 import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
 import d0.z.d.m;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: PhoneCountryCode.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class PhoneCountryCode {
-    public static final PhoneCountryCode$Companion Companion = new PhoneCountryCode$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final String alpha2;
     private final String name;
     private final String phoneCountryCode;
     private static final PhoneCountryCode DEFAULT_COUNTRY_CODE = new PhoneCountryCode("United States", "US", "+1");
     private static final PhoneCountryCode MISSING_COUNTRY_CODE = new PhoneCountryCode("", "", "");
+
+    /* JADX INFO: compiled from: PhoneCountryCode.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final PhoneCountryCode getDEFAULT_COUNTRY_CODE() {
+            return PhoneCountryCode.access$getDEFAULT_COUNTRY_CODE$cp();
+        }
+
+        public final PhoneCountryCode getMISSING_COUNTRY_CODE() {
+            return PhoneCountryCode.access$getMISSING_COUNTRY_CODE$cp();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public PhoneCountryCode(String str, String str2, String str3) {
         a.q0(str, ModelAuditLogEntry.CHANGE_KEY_NAME, str2, "alpha2", str3, "phoneCountryCode");

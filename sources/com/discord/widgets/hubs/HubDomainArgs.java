@@ -2,19 +2,51 @@ package com.discord.widgets.hubs;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import androidx.core.app.NotificationCompat;
 import b.d.b.a.a;
 import d0.z.d.m;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 /* JADX INFO: compiled from: WidgetHubDomains.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class HubDomainArgs implements Parcelable {
-    public static final Parcelable$Creator<HubDomainArgs> CREATOR = new HubDomainArgs$Creator();
+    public static final Parcelable.Creator<HubDomainArgs> CREATOR = new Creator();
     private final String email;
     private final List<DomainGuildInfo> guildInfos;
+
+    public final class Creator implements Parcelable.Creator<HubDomainArgs> {
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final HubDomainArgs createFromParcel(Parcel parcel) {
+            m.checkNotNullParameter(parcel, "in");
+            String string = parcel.readString();
+            int i = parcel.readInt();
+            ArrayList arrayList = new ArrayList(i);
+            while (i != 0) {
+                arrayList.add(DomainGuildInfo.CREATOR.createFromParcel(parcel));
+                i--;
+            }
+            return new HubDomainArgs(string, arrayList);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ HubDomainArgs createFromParcel(Parcel parcel) {
+            return createFromParcel(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final HubDomainArgs[] newArray(int i) {
+            return new HubDomainArgs[i];
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ HubDomainArgs[] newArray(int i) {
+            return newArray(i);
+        }
+    }
 
     public HubDomainArgs(String str, List<DomainGuildInfo> list) {
         m.checkNotNullParameter(str, NotificationCompat.CATEGORY_EMAIL);

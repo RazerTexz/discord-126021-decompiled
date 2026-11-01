@@ -1,17 +1,17 @@
 package com.discord.utilities.resources;
 
-import com.discord.R$plurals;
+import com.discord.R;
 
 /* JADX INFO: compiled from: DurationUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public enum DurationUnit {
-    SECONDS(2131888616, R$plurals.duration_seconds_seconds),
-    MINUTES(2131888611, R$plurals.duration_minutes_minutes),
-    MINS(2131888610, R$plurals.duration_mins_mins),
-    HOURS(2131888606, R$plurals.duration_hours_hours),
-    DAYS(2131888603, R$plurals.duration_days_days),
-    WEEKS(2131888620, R$plurals.duration_weeks_weeks),
-    MONTHS(2131888614, R$plurals.duration_months_months);
+    SECONDS(R.string.duration_seconds, R.plurals.duration_seconds_seconds),
+    MINUTES(R.string.duration_minutes, R.plurals.duration_minutes_minutes),
+    MINS(R.string.duration_mins, R.plurals.duration_mins_mins),
+    HOURS(R.string.duration_hours, R.plurals.duration_hours_hours),
+    DAYS(R.string.duration_days, R.plurals.duration_days_days),
+    WEEKS(R.string.duration_weeks, R.plurals.duration_weeks_weeks),
+    MONTHS(R.string.duration_months, R.plurals.duration_months_months);
 
     private final int quantityPluralRes;
     private final int stringRes;

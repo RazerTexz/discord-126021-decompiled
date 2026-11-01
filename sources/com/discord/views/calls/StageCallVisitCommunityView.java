@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import b.a.i.x3;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 import d0.z.d.m;
 
@@ -24,16 +23,16 @@ public final class StageCallVisitCommunityView extends ConstraintLayout {
     public StageCallVisitCommunityView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
         m.checkNotNullParameter(context, "context");
-        View viewInflate = LayoutInflater.from(context).inflate(R$layout.view_stage_channel_visit_community, (ViewGroup) this, false);
+        View viewInflate = LayoutInflater.from(context).inflate(R.layout.view_stage_channel_visit_community, (ViewGroup) this, false);
         addView(viewInflate);
-        int i = R$id.visit_community_icon;
-        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate.findViewById(R$id.visit_community_icon);
+        int i = R.id.visit_community_icon;
+        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate.findViewById(R.id.visit_community_icon);
         if (simpleDraweeView != null) {
-            i = R$id.visit_community_icon_text;
-            TextView textView = (TextView) viewInflate.findViewById(R$id.visit_community_icon_text);
+            i = R.id.visit_community_icon_text;
+            TextView textView = (TextView) viewInflate.findViewById(R.id.visit_community_icon_text);
             if (textView != null) {
-                i = R$id.visit_community_text;
-                TextView textView2 = (TextView) viewInflate.findViewById(R$id.visit_community_text);
+                i = R.id.visit_community_text;
+                TextView textView2 = (TextView) viewInflate.findViewById(R.id.visit_community_text);
                 if (textView2 != null) {
                     x3 x3Var = new x3((ConstraintLayout) viewInflate, simpleDraweeView, textView, textView2);
                     m.checkNotNullExpressionValue(x3Var, "ViewStageChannelVisitCom…rom(context), this, true)");

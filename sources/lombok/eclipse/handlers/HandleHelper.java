@@ -1,10 +1,11 @@
 package lombok.eclipse.handlers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import lombok.ConfigurationKeys;
-import lombok.core.AST$Kind;
+import lombok.core.AST;
 import lombok.core.AnnotationValues;
 import lombok.core.handlers.HandlerUtil;
 import lombok.eclipse.EclipseAnnotationHandler;
@@ -17,10 +18,13 @@ import org.eclipse.jdt.internal.compiler.ast.AllocationExpression;
 import org.eclipse.jdt.internal.compiler.ast.Annotation;
 import org.eclipse.jdt.internal.compiler.ast.Block;
 import org.eclipse.jdt.internal.compiler.ast.LocalDeclaration;
+import org.eclipse.jdt.internal.compiler.ast.MessageSend;
 import org.eclipse.jdt.internal.compiler.ast.MethodDeclaration;
+import org.eclipse.jdt.internal.compiler.ast.SingleNameReference;
 import org.eclipse.jdt.internal.compiler.ast.SingleTypeReference;
 import org.eclipse.jdt.internal.compiler.ast.Statement;
 import org.eclipse.jdt.internal.compiler.ast.SwitchStatement;
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 import org.eclipse.jdt.internal.compiler.ast.TypeDeclaration;
 import org.eclipse.jdt.internal.compiler.lookup.BlockScope;
 
@@ -61,7 +65,7 @@ public class HandleHelper extends EclipseAnnotationHandler<Helper> {
         EclipseNode annotatedType = annotationNode.up();
         EclipseNode containingBlock = annotatedType == null ? null : annotatedType.directUp();
         Statement[] origStatements = getStatementsFromAstNode(containingBlock == null ? null : containingBlock.get());
-        if (annotatedType == null || annotatedType.getKind() != AST$Kind.TYPE || origStatements == null) {
+        if (annotatedType == null || annotatedType.getKind() != AST.Kind.TYPE || origStatements == null) {
             annotationNode.addError("@Helper is legal only on method-local classes.");
             return;
         }
@@ -85,7 +89,7 @@ public class HandleHelper extends EclipseAnnotationHandler<Helper> {
         boolean[] helperUsed = new boolean[1];
         helperName[0] = '$';
         System.arraycopy(((TypeDeclaration) statement).name, 0, helperName, 1, helperName.length - 1);
-        ASTVisitor visitor = new HandleHelper$1(this, knownMethodNames_, helperName, helperUsed);
+        ASTVisitor visitor = new AnonymousClass1(knownMethodNames_, helperName, helperUsed);
         for (int i2 = indexOfType + 1; i2 < origStatements.length; i2++) {
             origStatements[i2].traverse(visitor, (BlockScope) null);
         }
@@ -106,5 +110,40 @@ public class HandleHelper extends EclipseAnnotationHandler<Helper> {
         decl.traverse(sgbvVisitor, (BlockScope) null);
         newStatements[indexOfType + 1] = decl;
         setStatementsOfAstNode(containingBlock.get(), newStatements);
+    }
+
+    /* JADX INFO: renamed from: lombok.eclipse.handlers.HandleHelper$1, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleHelper$1.SCL.lombok */
+    class AnonymousClass1 extends ASTVisitor {
+        private final /* synthetic */ String[] val$knownMethodNames_;
+        private final /* synthetic */ char[] val$helperName;
+        private final /* synthetic */ boolean[] val$helperUsed;
+
+        AnonymousClass1(String[] strArr, char[] cArr, boolean[] zArr) {
+            this.val$knownMethodNames_ = strArr;
+            this.val$helperName = cArr;
+            this.val$helperUsed = zArr;
+        }
+
+        public boolean visit(MessageSend messageSend, BlockScope scope) {
+            if (messageSend.receiver instanceof ThisReference) {
+                if ((messageSend.receiver.bits & 4) == 0) {
+                    return true;
+                }
+            } else if (messageSend.receiver != null) {
+                return true;
+            }
+            char[] name = messageSend.selector;
+            if (name == null || name.length == 0 || name[0] == '<') {
+                return true;
+            }
+            String n = new String(name);
+            if (Arrays.binarySearch(this.val$knownMethodNames_, n) < 0) {
+                return true;
+            }
+            messageSend.receiver = new SingleNameReference(this.val$helperName, messageSend.nameSourcePosition);
+            this.val$helperUsed[0] = true;
+            return true;
+        }
     }
 }

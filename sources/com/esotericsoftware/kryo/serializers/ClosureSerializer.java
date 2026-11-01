@@ -12,6 +12,9 @@ public class ClosureSerializer extends Serializer {
     private static Method readResolve;
     private static Class serializedLambda = SerializedLambda.class;
 
+    public class Closure {
+    }
+
     static {
         try {
             Method declaredMethod = SerializedLambda.class.getDeclaredMethod("readResolve", new Class[0]);

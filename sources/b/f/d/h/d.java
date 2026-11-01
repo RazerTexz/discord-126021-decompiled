@@ -1,13 +1,12 @@
 package b.f.d.h;
 
 import com.facebook.common.references.CloseableReference;
-import com.facebook.common.references.CloseableReference$c;
 
 /* JADX INFO: compiled from: NoOpCloseableReference.java */
 /* JADX INFO: loaded from: classes.dex */
 public class d<T> extends CloseableReference<T> {
-    public d(T t, f<T> fVar, CloseableReference$c closeableReference$c, Throwable th) {
-        super(t, fVar, closeableReference$c, th);
+    public d(T t, f<T> fVar, CloseableReference.c cVar, Throwable th) {
+        super(t, fVar, cVar, th);
     }
 
     @Override // com.facebook.common.references.CloseableReference

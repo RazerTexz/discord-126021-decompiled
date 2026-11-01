@@ -2,7 +2,6 @@ package j0.n;
 
 import b.i.a.f.e.o.f;
 import j0.g;
-import j0.l.a.e$c;
 import rx.exceptions.OnErrorThrowable;
 
 /* JADX INFO: compiled from: SerializedObserver.java */
@@ -11,7 +10,31 @@ public class c<T> implements g<T> {
     public final g<? super T> j;
     public boolean k;
     public volatile boolean l;
-    public c$a m;
+    public a m;
+
+    /* JADX INFO: compiled from: SerializedObserver.java */
+    public final class a {
+        public Object[] a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public int f3800b;
+
+        public void a(Object obj) {
+            int i = this.f3800b;
+            Object[] objArr = this.a;
+            if (objArr == null) {
+                objArr = new Object[16];
+                this.a = objArr;
+            } else if (i == objArr.length) {
+                Object[] objArr2 = new Object[(i >> 2) + i];
+                System.arraycopy(objArr, 0, objArr2, 0, i);
+                this.a = objArr2;
+                objArr = objArr2;
+            }
+            objArr[i] = obj;
+            this.f3800b = i + 1;
+        }
+    }
 
     public c(g<? super T> gVar) {
         this.j = gVar;
@@ -32,12 +55,12 @@ public class c<T> implements g<T> {
                 this.j.onCompleted();
                 return;
             }
-            c$a c_a = this.m;
-            if (c_a == null) {
-                c_a = new c$a();
-                this.m = c_a;
+            a aVar = this.m;
+            if (aVar == null) {
+                aVar = new a();
+                this.m = aVar;
             }
-            c_a.a(j0.l.a.e.a);
+            aVar.a(j0.l.a.e.a);
         }
     }
 
@@ -57,12 +80,12 @@ public class c<T> implements g<T> {
                 this.j.onError(th);
                 return;
             }
-            c$a c_a = this.m;
-            if (c_a == null) {
-                c_a = new c$a();
-                this.m = c_a;
+            a aVar = this.m;
+            if (aVar == null) {
+                aVar = new a();
+                this.m = aVar;
             }
-            c_a.a(new e$c(th));
+            aVar.a(new j0.l.a.e.c(th));
         }
     }
 
@@ -76,15 +99,15 @@ public class c<T> implements g<T> {
                 return;
             }
             if (this.k) {
-                c$a c_a = this.m;
-                if (c_a == null) {
-                    c_a = new c$a();
-                    this.m = c_a;
+                a aVar = this.m;
+                if (aVar == null) {
+                    aVar = new a();
+                    this.m = aVar;
                 }
                 if (t == null) {
                     t = (T) j0.l.a.e.f3771b;
                 }
-                c_a.a(t);
+                aVar.a(t);
                 return;
             }
             this.k = true;
@@ -92,13 +115,13 @@ public class c<T> implements g<T> {
                 this.j.onNext(t);
                 while (true) {
                     synchronized (this) {
-                        c$a c_a2 = this.m;
-                        if (c_a2 == null) {
+                        a aVar2 = this.m;
+                        if (aVar2 == null) {
                             this.k = false;
                             return;
                         }
                         this.m = null;
-                        for (Object obj : c_a2.a) {
+                        for (Object obj : aVar2.a) {
                             if (obj == null) {
                                 break;
                             }

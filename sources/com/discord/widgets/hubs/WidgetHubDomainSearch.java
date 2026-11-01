@@ -5,15 +5,20 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.RecyclerView;
 import b.a.d.f0;
+import b.a.d.j;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetHubDomainSearchBinding;
+import com.discord.i18n.RenderContext;
 import com.discord.stores.utilities.RestCallStateKt;
+import com.discord.stores.utilities.Success;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.view.text.LinkifiedTextView;
@@ -26,12 +31,14 @@ import d0.g;
 import d0.g0.w;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.reflect.KProperty;
@@ -52,8 +59,150 @@ public final class WidgetHubDomainSearch extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDomainSearch$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubDomainSearch.kt */
+    public final class AnonymousClass1 extends o implements Function1<DomainsState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(DomainsState domainsState) {
+            invoke2(domainsState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(DomainsState domainsState) {
+            WidgetHubDomainSearch widgetHubDomainSearch = WidgetHubDomainSearch.this;
+            m.checkNotNullExpressionValue(domainsState, "viewState");
+            WidgetHubDomainSearch.access$updateView(widgetHubDomainSearch, domainsState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDomainSearch$updateView$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubDomainSearch.kt */
+    public final class AnonymousClass1 extends o implements Function1<Success<? extends Object>, Unit> {
+        public final /* synthetic */ Context $context;
+        public final /* synthetic */ DomainsState $state;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Context context, DomainsState domainsState) {
+            super(1);
+            this.$context = context;
+            this.$state = domainsState;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Success<? extends Object> success) {
+            invoke2(success);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Success<? extends Object> success) {
+            m.checkNotNullParameter(success, "it");
+            j.g(j.g, WidgetHubDomainSearch.this.getParentFragmentManager(), this.$context, WidgetHubAuthentication.class, 0, true, null, new HubAuthenticationArgs(WidgetHubDomainSearch.this.getArgs().getEmail(), this.$state.getSelectedGuildId()), 40);
+            WidgetHubDomainSearch.this.getViewModel().reset();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDomainSearch$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubDomainSearch.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            FragmentActivity activity = WidgetHubDomainSearch.this.getActivity();
+            if (activity != null) {
+                activity.onBackPressed();
+            }
+            WidgetHubDomainSearch widgetHubDomainSearch = WidgetHubDomainSearch.this;
+            widgetHubDomainSearch.hideKeyboard(widgetHubDomainSearch.getView());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDomainSearch$onViewBound$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubDomainSearch.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public AnonymousClass3() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetHubDomainSearch.access$searchForGuild(WidgetHubDomainSearch.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDomainSearch$onViewBound$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubDomainSearch.kt */
+    public final class AnonymousClass4 extends o implements Function1<TextView, Unit> {
+        public AnonymousClass4() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(TextView textView) {
+            invoke2(textView);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(TextView textView) {
+            m.checkNotNullParameter(textView, "it");
+            WidgetHubDomainSearch.access$searchForGuild(WidgetHubDomainSearch.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDomainSearch$onViewBound$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubDomainSearch.kt */
+    public final class AnonymousClass5 extends o implements Function1<RenderContext, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDomainSearch$onViewBound$5$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetHubDomainSearch.kt */
+        public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(View view) {
+                invoke2(view);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(View view) {
+                m.checkNotNullParameter(view, "it");
+                j jVar = j.g;
+                FragmentManager parentFragmentManager = WidgetHubDomainSearch.this.getParentFragmentManager();
+                Context context = view.getContext();
+                m.checkNotNullExpressionValue(context, "it.context");
+                j.g(jVar, parentFragmentManager, context, WidgetHubWaitlist.class, 0, true, null, new HubWaitlistArgs(WidgetHubDomainSearch.this.getArgs().getEmail()), 40);
+            }
+        }
+
+        public AnonymousClass5() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.b("onJoinWaitlist", new AnonymousClass1());
+        }
+    }
+
     public WidgetHubDomainSearch() {
-        super(R$layout.widget_hub_domain_search);
+        super(R.layout.widget_hub_domain_search);
         this.args = g.lazy(new WidgetHubDomainSearch$$special$$inlined$args$1(this, "intent_args_key"));
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetHubDomainSearch$binding$2.INSTANCE, null, 2, null);
         this.adapter = new SimpleRecyclerAdapter<>(null, new WidgetHubDomainSearch$adapter$1(this), 1, null);
@@ -94,17 +243,17 @@ public final class WidgetHubDomainSearch extends AppFragment {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         getBinding().e.setAdapter(this.adapter);
-        getBinding().g.setStartIconOnClickListener(new WidgetHubDomainSearch$onViewBound$2(this));
-        getBinding().f.setOnClickListener(new WidgetHubDomainSearch$onViewBound$3(this));
+        getBinding().g.setStartIconOnClickListener(new AnonymousClass2());
+        getBinding().f.setOnClickListener(new AnonymousClass3());
         TextInputLayout textInputLayout = getBinding().g;
         m.checkNotNullExpressionValue(textInputLayout, "binding.searchBar");
         CharSequence charSequenceB = null;
-        ViewExtensions.setOnImeActionDone$default(textInputLayout, false, new WidgetHubDomainSearch$onViewBound$4(this), 1, null);
+        ViewExtensions.setOnImeActionDone$default(textInputLayout, false, new AnonymousClass4(), 1, null);
         LinkifiedTextView linkifiedTextView = getBinding().f2471b;
         m.checkNotNullExpressionValue(linkifiedTextView, "binding.emptyDescription");
         Context context = getContext();
         if (context != null) {
-            charSequenceB = b.b(context, 2131891790, new Object[0], new WidgetHubDomainSearch$onViewBound$5(this));
+            charSequenceB = b.b(context, R.string.hub_email_connection_guild_select_subheader, new Object[0], new AnonymousClass5());
         }
         linkifiedTextView.setText(charSequenceB);
         TextInputEditText textInputEditText = getBinding().h;
@@ -117,7 +266,7 @@ public final class WidgetHubDomainSearch extends AppFragment {
         super.onViewBoundOrOnResume();
         Observable<DomainsState> observableR = getViewModel().observeViewState().r();
         m.checkNotNullExpressionValue(observableR, "viewModel\n        .obser…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableR, this, null, 2, null), WidgetHubDomainSearch.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetHubDomainSearch$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableR, this, null, 2, null), WidgetHubDomainSearch.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
     private final void searchForGuild() {
@@ -148,7 +297,7 @@ public final class WidgetHubDomainSearch extends AppFragment {
         }
         TextView textView = getBinding().d;
         m.checkNotNullExpressionValue(textView, "binding.emptyTitle");
-        textView.setText(getString(arrayList.isEmpty() ? 2131888459 : 2131888455));
+        textView.setText(getString(arrayList.isEmpty() ? R.string.directory_search_no_results_title : R.string.directory_search_initial_title));
         LinearLayout linearLayout = getBinding().c;
         m.checkNotNullExpressionValue(linearLayout, "binding.emptyState");
         linearLayout.setVisibility(arrayList.isEmpty() ? 0 : 8);
@@ -162,7 +311,7 @@ public final class WidgetHubDomainSearch extends AppFragment {
         Context context = getContext();
         if (context != null) {
             m.checkNotNullExpressionValue(context, "context ?: return");
-            RestCallStateKt.handleResponse$default(state.getVerifyEmailAsync(), context, null, null, new WidgetHubDomainSearch$updateView$1(this, context, state), 6, null);
+            RestCallStateKt.handleResponse$default(state.getVerifyEmailAsync(), context, null, null, new AnonymousClass1(context, state), 6, null);
         }
     }
 }

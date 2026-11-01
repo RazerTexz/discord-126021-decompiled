@@ -20,6 +20,6 @@ public final class n extends d0.z.d.o implements Function1<d0.e0.p.d.m0.c.b, Boo
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final Boolean invoke2(d0.e0.p.d.m0.c.b bVar) {
-        return Boolean.valueOf(bVar.getKind() == d0.e0.p.d.m0.c.b$a.DECLARATION && g.access$getJ2kClassMapper$p(this.this$0).isMutable((d0.e0.p.d.m0.c.e) bVar.getContainingDeclaration()));
+        return Boolean.valueOf(bVar.getKind() == d0.e0.p.d.m0.c.b.a.DECLARATION && g.access$getJ2kClassMapper$p(this.this$0).isMutable((d0.e0.p.d.m0.c.e) bVar.getContainingDeclaration()));
     }
 }

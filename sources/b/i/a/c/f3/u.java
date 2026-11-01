@@ -12,6 +12,83 @@ public final class u {
     public static final Object c = new Object();
     public static int[] d = new int[10];
 
+    /* JADX INFO: compiled from: NalUnitUtil.java */
+    public final class a {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final boolean f979b;
+        public final int c;
+        public final int d;
+        public final int[] e;
+        public final int f;
+        public final int g;
+        public final int h;
+        public final float i;
+
+        public a(int i, boolean z2, int i2, int i3, int[] iArr, int i4, int i5, int i6, int i7, float f) {
+            this.a = i;
+            this.f979b = z2;
+            this.c = i2;
+            this.d = i3;
+            this.e = iArr;
+            this.f = i4;
+            this.g = i6;
+            this.h = i7;
+            this.i = f;
+        }
+    }
+
+    /* JADX INFO: compiled from: NalUnitUtil.java */
+    public final class b {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f980b;
+        public final boolean c;
+
+        public b(int i, int i2, boolean z2) {
+            this.a = i;
+            this.f980b = i2;
+            this.c = z2;
+        }
+    }
+
+    /* JADX INFO: compiled from: NalUnitUtil.java */
+    public final class c {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f981b;
+        public final int c;
+        public final int d;
+        public final int e;
+        public final int f;
+        public final float g;
+        public final boolean h;
+        public final boolean i;
+        public final int j;
+        public final int k;
+        public final int l;
+        public final boolean m;
+
+        public c(int i, int i2, int i3, int i4, int i5, int i6, float f, boolean z2, boolean z3, int i7, int i8, int i9, boolean z4) {
+            this.a = i;
+            this.f981b = i2;
+            this.c = i3;
+            this.d = i4;
+            this.e = i5;
+            this.f = i6;
+            this.g = f;
+            this.h = z2;
+            this.i = z3;
+            this.j = i7;
+            this.k = i8;
+            this.l = i9;
+            this.m = z4;
+        }
+    }
+
     public static void a(boolean[] zArr) {
         zArr[0] = false;
         zArr[1] = false;
@@ -63,7 +140,7 @@ public final class u {
         return i2;
     }
 
-    public static u$a c(byte[] bArr, int i, int i2) {
+    public static a c(byte[] bArr, int i, int i2) {
         int i3 = 2;
         y yVar = new y(bArr, i + 2, i2);
         yVar.j(4);
@@ -232,15 +309,15 @@ public final class u {
                 iF4 *= 2;
             }
         }
-        return new u$a(iE2, zD, iE3, i4, iArr, iE4, iF, iF3, iF4, f);
+        return new a(iE2, zD, iE3, i4, iArr, iE4, iF, iF3, iF4, f);
     }
 
-    public static u$b d(byte[] bArr, int i, int i2) {
+    public static b d(byte[] bArr, int i, int i2) {
         y yVar = new y(bArr, i + 1, i2);
         int iF = yVar.f();
         int iF2 = yVar.f();
         yVar.i();
-        return new u$b(iF, iF2, yVar.d());
+        return new b(iF, iF2, yVar.d());
     }
 
     /* JADX WARN: Code duplicated, block: B:64:0x00f8  */
@@ -252,7 +329,7 @@ public final class u {
     /* JADX WARN: Code duplicated, block: B:76:0x012d  */
     /* JADX WARN: Code duplicated, block: B:79:0x013c  */
     /* JADX WARN: Code duplicated, block: B:94:0x017d  */
-    public static u$c e(byte[] bArr, int i, int i2) {
+    public static c e(byte[] bArr, int i, int i2) {
         int iF;
         boolean z2;
         int iF2;
@@ -376,7 +453,7 @@ public final class u {
                     }
                 }
             }
-            return new u$c(iE, iE2, iE3, iF3, i16, i17, f, z2, zD, iF4, iF5, i3, z3);
+            return new c(iE, iE2, iE3, iF3, i16, i17, f, z2, zD, iF4, iF5, i3, z3);
         }
         iF2 = yVar.f() + 4;
         i3 = iF2;
@@ -422,7 +499,7 @@ public final class u {
         } else {
             f = 1.0f;
         }
-        return new u$c(iE, iE2, iE3, iF3, i19, i110, f, z2, zD, iF4, iF5, i3, z3);
+        return new c(iE, iE2, iE3, iF3, i19, i110, f, z2, zD, iF4, iF5, i3, z3);
     }
 
     public static int f(byte[] bArr, int i) {

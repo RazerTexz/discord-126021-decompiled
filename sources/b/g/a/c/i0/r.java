@@ -1,7 +1,7 @@
 package b.g.a.c.i0;
 
 import androidx.core.app.NotificationManagerCompat;
-import com.discord.utilities.time.TimeUtils$UTCFormat;
+import com.discord.utilities.time.TimeUtils;
 import com.discord.widgets.chat.input.MentionUtilsKt;
 import java.text.DateFormat;
 import java.text.FieldPosition;
@@ -39,7 +39,7 @@ public class r extends DateFormat {
     static {
         try {
             k = Pattern.compile("\\d\\d\\d\\d[-]\\d\\d[-]\\d\\d[T]\\d\\d[:]\\d\\d(?:[:]\\d\\d)?(\\.\\d+)?(Z|[+-]\\d\\d(?:[:]?\\d\\d)?)?");
-            l = new String[]{"yyyy-MM-dd'T'HH:mm:ss.SSSX", "yyyy-MM-dd'T'HH:mm:ss.SSS", "EEE, dd MMM yyyy HH:mm:ss zzz", TimeUtils$UTCFormat.SHORT};
+            l = new String[]{"yyyy-MM-dd'T'HH:mm:ss.SSSX", "yyyy-MM-dd'T'HH:mm:ss.SSS", "EEE, dd MMM yyyy HH:mm:ss zzz", TimeUtils.UTCFormat.SHORT};
             TimeZone timeZone = TimeZone.getTimeZone("UTC");
             m = timeZone;
             Locale locale = Locale.US;
@@ -210,7 +210,7 @@ public class r extends DateFormat {
                 calendarB.set(14, 0);
                 return calendarB.getTime();
             }
-            str2 = TimeUtils$UTCFormat.SHORT;
+            str2 = TimeUtils.UTCFormat.SHORT;
             c = 1;
         }
         Object[] objArr = new Object[3];

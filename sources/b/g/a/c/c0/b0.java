@@ -1,7 +1,5 @@
 package b.g.a.c.c0;
 
-import b.g.a.a.b$a;
-import b.g.a.a.u$a;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Modifier;
 import java.util.Collection;
@@ -12,7 +10,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
@@ -64,7 +61,7 @@ public class b0 {
 
     public void a(Map<String, c0> map, m mVar) {
         c0 c0VarF;
-        b.g.a.a.g$a g_aD;
+        b.g.a.a.g.a aVarD;
         String strI = this.g.i(mVar);
         if (strI == null) {
             strI = "";
@@ -72,7 +69,7 @@ public class b0 {
         b.g.a.c.t tVarN = this.g.n(mVar);
         boolean z2 = (tVarN == null || tVarN.d()) ? false : true;
         if (!z2) {
-            if (strI.isEmpty() || (g_aD = this.g.d(this.a, mVar._owner)) == null || g_aD == b.g.a.a.g$a.DISABLED) {
+            if (strI.isEmpty() || (aVarD = this.g.d(this.a, mVar._owner)) == null || aVarD == b.g.a.a.g.a.DISABLED) {
                 return;
             } else {
                 tVarN = b.g.a.c.t.a(strI);
@@ -90,7 +87,7 @@ public class b0 {
         } else {
             c0VarF = f(map, strB);
         }
-        c0VarF.r = new c0$d<>(mVar, c0VarF.r, tVar, z2, true, false);
+        c0VarF.r = new c0.d<>(mVar, c0VarF.r, tVar, z2, true, false);
         this.k.add(c0VarF);
     }
 
@@ -110,11 +107,11 @@ public class b0 {
         this.f683s.add(str);
     }
 
-    public void d(b$a b_a, i iVar) {
-        if (b_a == null) {
+    public void d(b.g.a.a.b.a aVar, i iVar) {
+        if (aVar == null) {
             return;
         }
-        Object obj = b_a._id;
+        Object obj = aVar._id;
         if (this.t == null) {
             this.t = new LinkedHashMap<>();
         }
@@ -162,15 +159,15 @@ public class b0 {
         Collection<c0> collectionValues;
         String strC;
         HashSet<String> hashSet;
-        u$a u_aT;
-        c0$d<m> c0_d;
-        c0$d<j> c0_d2;
-        c0$d<g> c0_d3;
-        c0$d<j> c0_d4;
-        c0$d<j> c0_d5;
-        c0$d<g> c0_d6;
-        c0$d<m> c0_d7;
-        c0$d<j> c0_d8;
+        b.g.a.a.u.a aVarT;
+        c0.d<m> dVar;
+        c0.d<j> dVar2;
+        c0.d<g> dVar3;
+        c0.d<j> dVar4;
+        c0.d<j> dVar5;
+        c0.d<g> dVar6;
+        c0.d<m> dVar7;
+        c0.d<j> dVar8;
         boolean z3;
         String strI;
         b.g.a.c.t tVar;
@@ -244,9 +241,9 @@ public class b0 {
                         }
                         boolean zF3 = tVarE != null;
                         if (!zF3) {
-                            g0$a g0_a = (g0$a) this.f;
-                            Objects.requireNonNull(g0_a);
-                            zF3 = g0_a._fieldMinLevel.f(gVar.l);
+                            g0.a aVar = (g0.a) this.f;
+                            Objects.requireNonNull(aVar);
+                            zF3 = aVar._fieldMinLevel.f(gVar.l);
                         }
                         boolean Z = bVar.Z(gVar);
                         if (!Modifier.isTransient(gVar.l.getModifiers()) || z11) {
@@ -261,7 +258,7 @@ public class b0 {
                         }
                         if (!z10 || tVarE != null || z8 || !Modifier.isFinal(gVar.l.getModifiers())) {
                             c0 c0VarF = f(linkedHashMap, strI3);
-                            c0VarF.q = new c0$d<>(gVar, c0VarF.q, tVarE, z7, z9, z8);
+                            c0VarF.q = new c0.d<>(gVar, c0VarF.q, tVarE, z7, z9, z8);
                         }
                     }
                 }
@@ -315,14 +312,14 @@ public class b0 {
                             if (strI == null) {
                                 strI = this.f682b.a(jVar, jVar.c());
                                 if (strI != null) {
-                                    g0$a g0_a2 = (g0$a) this.f;
-                                    Objects.requireNonNull(g0_a2);
-                                    zF = g0_a2._isGetterMinLevel.f(jVar.l);
+                                    g0.a aVar2 = (g0.a) this.f;
+                                    Objects.requireNonNull(aVar2);
+                                    zF = aVar2._isGetterMinLevel.f(jVar.l);
                                 }
                             } else {
-                                g0$a g0_a3 = (g0$a) this.f;
-                                Objects.requireNonNull(g0_a3);
-                                zF = g0_a3._getterMinLevel.f(jVar.l);
+                                g0.a aVar3 = (g0.a) this.f;
+                                Objects.requireNonNull(aVar3);
+                                zF = aVar3._getterMinLevel.f(jVar.l);
                             }
                             z4 = z12;
                             z5 = zF;
@@ -331,7 +328,7 @@ public class b0 {
                         String strB = b(strI);
                         boolean Z2 = bVar2.Z(jVar);
                         c0 c0VarF2 = f(linkedHashMap, strB);
-                        c0VarF2.f687s = new c0$d<>(jVar, c0VarF2.f687s, tVar, z4, z5, Z2);
+                        c0VarF2.f687s = new c0.d<>(jVar, c0VarF2.f687s, tVar, z4, z5, Z2);
                     }
                 }
             } else if (iO == 1) {
@@ -359,17 +356,17 @@ public class b0 {
                         strI2 = this.f682b.b(jVar, jVar.c());
                     }
                     if (strI2 != null) {
-                        g0$a g0_a4 = (g0$a) this.f;
-                        Objects.requireNonNull(g0_a4);
+                        g0.a aVar4 = (g0.a) this.f;
+                        Objects.requireNonNull(aVar4);
                         z6 = z13;
-                        zF2 = g0_a4._setterMinLevel.f(jVar.l);
+                        zF2 = aVar4._setterMinLevel.f(jVar.l);
                         tVar2 = tVarN;
                     }
                 }
                 String strB2 = b(strI2);
                 boolean Z3 = bVar3.Z(jVar);
                 c0 c0VarF3 = f(linkedHashMap, strB2);
-                c0VarF3.t = new c0$d<>(jVar, c0VarF3.t, tVar2, z6, zF2, Z3);
+                c0VarF3.t = new c0.d<>(jVar, c0VarF3.t, tVar2, z6, zF2, Z3);
             } else if (iO == 2 && Boolean.TRUE.equals(this.g.U(jVar))) {
                 if (this.o == null) {
                     this.o = new LinkedList<>();
@@ -435,15 +432,15 @@ public class b0 {
         boolean zQ2 = this.a.q(b.g.a.c.p.INFER_PROPERTY_MUTATORS);
         for (c0 c0Var : linkedHashMap.values()) {
             b0 b0Var = this.c ? null : this;
-            u$a u_a = u$a.AUTO;
+            b.g.a.a.u.a aVar5 = b.g.a.a.u.a.AUTO;
             b.g.a.c.b bVar4 = c0Var.n;
-            if (bVar4 == null || (!c0Var.l ? ((c0_d = c0Var.r) == null || (u_aT = bVar4.t(c0_d.a)) == null || u_aT == u_a) && (((c0_d2 = c0Var.t) == null || (u_aT = c0Var.n.t(c0_d2.a)) == null || u_aT == u_a) && (((c0_d3 = c0Var.q) == null || (u_aT = c0Var.n.t(c0_d3.a)) == null || u_aT == u_a) && ((c0_d4 = c0Var.f687s) == null || (u_aT = c0Var.n.t(c0_d4.a)) == null || u_aT == u_a))) : ((c0_d5 = c0Var.f687s) == null || (u_aT = bVar4.t(c0_d5.a)) == null || u_aT == u_a) && (((c0_d6 = c0Var.q) == null || (u_aT = c0Var.n.t(c0_d6.a)) == null || u_aT == u_a) && (((c0_d7 = c0Var.r) == null || (u_aT = c0Var.n.t(c0_d7.a)) == null || u_aT == u_a) && ((c0_d8 = c0Var.t) == null || (u_aT = c0Var.n.t(c0_d8.a)) == null || u_aT == u_a))))) {
-                u_aT = null;
+            if (bVar4 == null || (!c0Var.l ? ((dVar = c0Var.r) == null || (aVarT = bVar4.t(dVar.a)) == null || aVarT == aVar5) && (((dVar2 = c0Var.t) == null || (aVarT = c0Var.n.t(dVar2.a)) == null || aVarT == aVar5) && (((dVar3 = c0Var.q) == null || (aVarT = c0Var.n.t(dVar3.a)) == null || aVarT == aVar5) && ((dVar4 = c0Var.f687s) == null || (aVarT = c0Var.n.t(dVar4.a)) == null || aVarT == aVar5))) : ((dVar5 = c0Var.f687s) == null || (aVarT = bVar4.t(dVar5.a)) == null || aVarT == aVar5) && (((dVar6 = c0Var.q) == null || (aVarT = c0Var.n.t(dVar6.a)) == null || aVarT == aVar5) && (((dVar7 = c0Var.r) == null || (aVarT = c0Var.n.t(dVar7.a)) == null || aVarT == aVar5) && ((dVar8 = c0Var.t) == null || (aVarT = c0Var.n.t(dVar8.a)) == null || aVarT == aVar5))))) {
+                aVarT = null;
             }
-            if (u_aT != null) {
-                u_a = u_aT;
+            if (aVarT != null) {
+                aVar5 = aVarT;
             }
-            int iOrdinal = u_a.ordinal();
+            int iOrdinal = aVar5.ordinal();
             if (iOrdinal == 1) {
                 if (b0Var != null) {
                     b0Var.c(c0Var.p());
@@ -471,7 +468,7 @@ public class b0 {
                 }
             }
         }
-        Iterator<Map$Entry<String, c0>> it3 = linkedHashMap.entrySet().iterator();
+        Iterator<Map.Entry<String, c0>> it3 = linkedHashMap.entrySet().iterator();
         LinkedList<c0> linkedList = null;
         while (it3.hasNext()) {
             c0 value = it3.next().getValue();
@@ -517,27 +514,27 @@ public class b0 {
         }
         for (c0 c0Var4 : linkedHashMap.values()) {
             if (this.c) {
-                c0$d<j> c0_d9 = c0Var4.f687s;
-                if (c0_d9 != null) {
-                    c0Var4.f687s = c0Var4.A(c0Var4.f687s, c0Var4.F(0, c0_d9, c0Var4.q, c0Var4.r, c0Var4.t));
+                c0.d<j> dVar9 = c0Var4.f687s;
+                if (dVar9 != null) {
+                    c0Var4.f687s = c0Var4.A(c0Var4.f687s, c0Var4.F(0, dVar9, c0Var4.q, c0Var4.r, c0Var4.t));
                 } else {
-                    c0$d<g> c0_d10 = c0Var4.q;
-                    if (c0_d10 != null) {
-                        c0Var4.q = c0Var4.A(c0Var4.q, c0Var4.F(0, c0_d10, c0Var4.r, c0Var4.t));
+                    c0.d<g> dVar10 = c0Var4.q;
+                    if (dVar10 != null) {
+                        c0Var4.q = c0Var4.A(c0Var4.q, c0Var4.F(0, dVar10, c0Var4.r, c0Var4.t));
                     }
                 }
             } else {
-                c0$d<m> c0_d11 = c0Var4.r;
-                if (c0_d11 != null) {
-                    c0Var4.r = c0Var4.A(c0Var4.r, c0Var4.F(0, c0_d11, c0Var4.t, c0Var4.q, c0Var4.f687s));
+                c0.d<m> dVar11 = c0Var4.r;
+                if (dVar11 != null) {
+                    c0Var4.r = c0Var4.A(c0Var4.r, c0Var4.F(0, dVar11, c0Var4.t, c0Var4.q, c0Var4.f687s));
                 } else {
-                    c0$d<j> c0_d12 = c0Var4.t;
-                    if (c0_d12 != null) {
-                        c0Var4.t = c0Var4.A(c0Var4.t, c0Var4.F(0, c0_d12, c0Var4.q, c0Var4.f687s));
+                    c0.d<j> dVar12 = c0Var4.t;
+                    if (dVar12 != null) {
+                        c0Var4.t = c0Var4.A(c0Var4.t, c0Var4.F(0, dVar12, c0Var4.q, c0Var4.f687s));
                     } else {
-                        c0$d<g> c0_d13 = c0Var4.q;
-                        if (c0_d13 != null) {
-                            c0Var4.q = c0Var4.A(c0Var4.q, c0Var4.F(0, c0_d13, c0Var4.f687s));
+                        c0.d<g> dVar13 = c0Var4.q;
+                        if (dVar13 != null) {
+                            c0Var4.q = c0Var4.A(c0Var4.q, c0Var4.F(0, dVar13, c0Var4.f687s));
                         }
                     }
                 }
@@ -619,7 +616,7 @@ public class b0 {
             }
         }
         if (this.a.q(b.g.a.c.p.USE_WRAPPER_NAME_AS_PROPERTY_NAME)) {
-            Iterator<Map$Entry<String, c0>> it4 = linkedHashMap.entrySet().iterator();
+            Iterator<Map.Entry<String, c0>> it4 = linkedHashMap.entrySet().iterator();
             while (it4.hasNext()) {
                 if (it4.next().getValue().q() != null) {
                     Objects.requireNonNull(this.g);
@@ -674,7 +671,7 @@ public class b0 {
             }
             if (z2) {
                 TreeMap treeMap2 = new TreeMap();
-                Iterator<Map$Entry<? extends Object, ? extends Object>> it6 = treeMap.entrySet().iterator();
+                Iterator<Map.Entry<? extends Object, ? extends Object>> it6 = treeMap.entrySet().iterator();
                 while (it6.hasNext()) {
                     c0 c0Var11 = (c0) it6.next().getValue();
                     Integer num = c0Var11.o()._index;

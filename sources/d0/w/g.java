@@ -1,11 +1,12 @@
 package d0.w;
 
-import d0.k$b;
+import d0.k;
 import d0.z.d.m;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.coroutines.jvm.internal.CoroutineStackFrame;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: SafeContinuationJvm.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -16,8 +17,14 @@ public final class g<T> implements Continuation<T>, CoroutineStackFrame {
     public final Continuation<T> k;
     public volatile Object result;
 
+    /* JADX INFO: compiled from: SafeContinuationJvm.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     static {
-        new g$a(null);
+        new a(null);
         j = AtomicReferenceFieldUpdater.newUpdater(g.class, Object.class, "result");
     }
 
@@ -45,8 +52,8 @@ public final class g<T> implements Continuation<T>, CoroutineStackFrame {
         if (obj == d0.w.h.a.RESUMED) {
             return d0.w.h.c.getCOROUTINE_SUSPENDED();
         }
-        if (obj instanceof k$b) {
-            throw ((k$b) obj).exception;
+        if (obj instanceof k.b) {
+            throw ((k.b) obj).exception;
         }
         return obj;
     }

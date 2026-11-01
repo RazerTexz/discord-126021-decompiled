@@ -6,7 +6,15 @@ import java.io.IOException;
 
 /* JADX INFO: compiled from: Renderer.java */
 /* JADX INFO: loaded from: classes3.dex */
-public interface f2 extends b2$b {
+public interface f2 extends b2.b {
+
+    /* JADX INFO: compiled from: Renderer.java */
+    public interface a {
+        void a();
+
+        void b(long j);
+    }
+
     boolean b();
 
     boolean d();

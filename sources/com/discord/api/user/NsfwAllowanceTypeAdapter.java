@@ -11,6 +11,20 @@ import kotlin.NoWhenBranchMatchedException;
 /* JADX INFO: compiled from: NsfwAllowance.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class NsfwAllowanceTypeAdapter extends TypeAdapter<NsfwAllowance> {
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            NsfwAllowance.values();
+            int[] iArr = new int[3];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[NsfwAllowance.UNKNOWN.ordinal()] = 1;
+            iArr[NsfwAllowance.ALLOWED.ordinal()] = 2;
+            iArr[NsfwAllowance.DISALLOWED.ordinal()] = 3;
+        }
+    }
+
     @Override // com.google.gson.TypeAdapter
     public NsfwAllowance read(JsonReader jsonReader) throws IOException {
         Boolean boolValueOf;

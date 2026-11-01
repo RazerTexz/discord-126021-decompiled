@@ -2,23 +2,23 @@ package b.q.a;
 
 import com.yalantis.ucrop.UCropActivity;
 import com.yalantis.ucrop.view.GestureCropImageView;
-import com.yalantis.ucrop.view.widget.HorizontalProgressWheelView$a;
+import com.yalantis.ucrop.view.widget.HorizontalProgressWheelView;
 
 /* JADX INFO: compiled from: UCropActivity.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class f implements HorizontalProgressWheelView$a {
+public class f implements HorizontalProgressWheelView.a {
     public final /* synthetic */ UCropActivity a;
 
     public f(UCropActivity uCropActivity) {
         this.a = uCropActivity;
     }
 
-    @Override // com.yalantis.ucrop.view.widget.HorizontalProgressWheelView$a
+    @Override // com.yalantis.ucrop.view.widget.HorizontalProgressWheelView.a
     public void a() {
         this.a.w.setImageToWrapCropBounds(true);
     }
 
-    @Override // com.yalantis.ucrop.view.widget.HorizontalProgressWheelView$a
+    @Override // com.yalantis.ucrop.view.widget.HorizontalProgressWheelView.a
     public void b(float f, float f2) {
         if (f > 0.0f) {
             GestureCropImageView gestureCropImageView = this.a.w;
@@ -34,7 +34,7 @@ public class f implements HorizontalProgressWheelView$a {
         }
     }
 
-    @Override // com.yalantis.ucrop.view.widget.HorizontalProgressWheelView$a
+    @Override // com.yalantis.ucrop.view.widget.HorizontalProgressWheelView.a
     public void c() {
         this.a.w.i();
     }

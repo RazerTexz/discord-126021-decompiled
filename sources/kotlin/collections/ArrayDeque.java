@@ -1,6 +1,7 @@
 package kotlin.collections;
 
 import androidx.exifinterface.media.ExifInterface;
+import com.esotericsoftware.kryo.io.Util;
 import d0.d0.f;
 import d0.t.c;
 import d0.t.e;
@@ -13,21 +14,45 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ArrayDeque.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class ArrayDeque<E> extends e<E> {
+
+    /* JADX INFO: renamed from: k, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public Object[] elementData;
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public int head;
-    public static final ArrayDeque$a k = new ArrayDeque$a(null);
 
     /* JADX INFO: renamed from: n, reason: from kotlin metadata */
     public int size;
     public static final Object[] j = new Object[0];
+
+    /* JADX INFO: renamed from: kotlin.collections.ArrayDeque$a, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: ArrayDeque.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final int newCapacity$kotlin_stdlib(int i, int i2) {
+            int i3 = i + (i >> 1);
+            if (i3 - i2 < 0) {
+                i3 = i2;
+            }
+            if (i3 - Util.MAX_SAFE_ARRAY_SIZE <= 0) {
+                return i3;
+            }
+            if (i2 > 2147483639) {
+                return Integer.MAX_VALUE;
+            }
+            return Util.MAX_SAFE_ARRAY_SIZE;
+        }
+    }
 
     public ArrayDeque() {
         this.elementData = j;
@@ -140,7 +165,7 @@ public final class ArrayDeque<E> extends e<E> {
             this.elementData = new Object[f.coerceAtLeast(minCapacity, 10)];
             return;
         }
-        Object[] objArr2 = new Object[k.newCapacity$kotlin_stdlib(objArr.length, minCapacity)];
+        Object[] objArr2 = new Object[INSTANCE.newCapacity$kotlin_stdlib(objArr.length, minCapacity)];
         Object[] objArr3 = this.elementData;
         j.copyInto(objArr3, objArr2, 0, this.head, objArr3.length);
         Object[] objArr4 = this.elementData;

@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.NestedScrollView;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
+import com.discord.R;
 import com.google.android.material.radiobutton.MaterialRadioButton;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -67,44 +67,44 @@ public final class WidgetThreadArchiveActionsSheetBinding implements ViewBinding
 
     @NonNull
     public static WidgetThreadArchiveActionsSheetBinding a(@NonNull View view) {
-        int i = R$id.archive_now;
-        TextView textView = (TextView) view.findViewById(R$id.archive_now);
+        int i = R.id.archive_now;
+        TextView textView = (TextView) view.findViewById(R.id.archive_now);
         if (textView != null) {
-            i = R$id.auto_archive_header;
-            LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.auto_archive_header);
+            i = R.id.auto_archive_header;
+            LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.auto_archive_header);
             if (linearLayout != null) {
-                i = R$id.auto_archive_sheet_duration_options;
-                LinearLayout linearLayout2 = (LinearLayout) view.findViewById(R$id.auto_archive_sheet_duration_options);
+                i = R.id.auto_archive_sheet_duration_options;
+                LinearLayout linearLayout2 = (LinearLayout) view.findViewById(R.id.auto_archive_sheet_duration_options);
                 if (linearLayout2 != null) {
-                    i = R$id.option_one_hour;
-                    ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(R$id.option_one_hour);
+                    i = R.id.option_one_hour;
+                    ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(R.id.option_one_hour);
                     if (constraintLayout != null) {
-                        i = R$id.option_one_hour_radio;
-                        MaterialRadioButton materialRadioButton = (MaterialRadioButton) view.findViewById(R$id.option_one_hour_radio);
+                        i = R.id.option_one_hour_radio;
+                        MaterialRadioButton materialRadioButton = (MaterialRadioButton) view.findViewById(R.id.option_one_hour_radio);
                         if (materialRadioButton != null) {
-                            i = R$id.option_seven_days;
-                            ConstraintLayout constraintLayout2 = (ConstraintLayout) view.findViewById(R$id.option_seven_days);
+                            i = R.id.option_seven_days;
+                            ConstraintLayout constraintLayout2 = (ConstraintLayout) view.findViewById(R.id.option_seven_days);
                             if (constraintLayout2 != null) {
-                                i = R$id.option_seven_days_radio;
-                                MaterialRadioButton materialRadioButton2 = (MaterialRadioButton) view.findViewById(R$id.option_seven_days_radio);
+                                i = R.id.option_seven_days_radio;
+                                MaterialRadioButton materialRadioButton2 = (MaterialRadioButton) view.findViewById(R.id.option_seven_days_radio);
                                 if (materialRadioButton2 != null) {
-                                    i = R$id.option_three_days;
-                                    ConstraintLayout constraintLayout3 = (ConstraintLayout) view.findViewById(R$id.option_three_days);
+                                    i = R.id.option_three_days;
+                                    ConstraintLayout constraintLayout3 = (ConstraintLayout) view.findViewById(R.id.option_three_days);
                                     if (constraintLayout3 != null) {
-                                        i = R$id.option_three_days_radio;
-                                        MaterialRadioButton materialRadioButton3 = (MaterialRadioButton) view.findViewById(R$id.option_three_days_radio);
+                                        i = R.id.option_three_days_radio;
+                                        MaterialRadioButton materialRadioButton3 = (MaterialRadioButton) view.findViewById(R.id.option_three_days_radio);
                                         if (materialRadioButton3 != null) {
-                                            i = R$id.option_twenty_four_hours;
-                                            ConstraintLayout constraintLayout4 = (ConstraintLayout) view.findViewById(R$id.option_twenty_four_hours);
+                                            i = R.id.option_twenty_four_hours;
+                                            ConstraintLayout constraintLayout4 = (ConstraintLayout) view.findViewById(R.id.option_twenty_four_hours);
                                             if (constraintLayout4 != null) {
-                                                i = R$id.option_twenty_four_hours_radio;
-                                                MaterialRadioButton materialRadioButton4 = (MaterialRadioButton) view.findViewById(R$id.option_twenty_four_hours_radio);
+                                                i = R.id.option_twenty_four_hours_radio;
+                                                MaterialRadioButton materialRadioButton4 = (MaterialRadioButton) view.findViewById(R.id.option_twenty_four_hours_radio);
                                                 if (materialRadioButton4 != null) {
-                                                    i = R$id.subtitle;
-                                                    TextView textView2 = (TextView) view.findViewById(R$id.subtitle);
+                                                    i = R.id.subtitle;
+                                                    TextView textView2 = (TextView) view.findViewById(R.id.subtitle);
                                                     if (textView2 != null) {
-                                                        i = 2131365869;
-                                                        TextView textView3 = (TextView) view.findViewById(2131365869);
+                                                        i = R.id.title;
+                                                        TextView textView3 = (TextView) view.findViewById(R.id.title);
                                                         if (textView3 != null) {
                                                             return new WidgetThreadArchiveActionsSheetBinding((NestedScrollView) view, textView, linearLayout, linearLayout2, constraintLayout, materialRadioButton, constraintLayout2, materialRadioButton2, constraintLayout3, materialRadioButton3, constraintLayout4, materialRadioButton4, textView2, textView3);
                                                         }

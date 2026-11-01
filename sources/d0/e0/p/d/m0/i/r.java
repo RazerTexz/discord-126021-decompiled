@@ -4,18 +4,123 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Stack;
 
 /* JADX INFO: compiled from: RopeByteString.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class r extends c {
+public class r extends d0.e0.p.d.m0.i.c {
     public static final int[] k;
     public final int l;
-    public final c m;
-    public final c n;
+    public final d0.e0.p.d.m0.i.c m;
+    public final d0.e0.p.d.m0.i.c n;
     public final int o;
     public final int p;
     public int q = 0;
+
+    /* JADX INFO: compiled from: RopeByteString.java */
+    public class c implements Iterator<m> {
+        public m k;
+        public final Stack<r> j = new Stack<>();
+
+        public c(d0.e0.p.d.m0.i.c cVar, a aVar) {
+            while (cVar instanceof r) {
+                r rVar = (r) cVar;
+                this.j.push(rVar);
+                cVar = rVar.m;
+            }
+            this.k = (m) cVar;
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.k != null;
+        }
+
+        @Override // java.util.Iterator
+        public /* bridge */ /* synthetic */ m next() {
+            return next();
+        }
+
+        @Override // java.util.Iterator
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // java.util.Iterator
+        public m next() {
+            m mVar;
+            m mVar2 = this.k;
+            if (mVar2 == null) {
+                throw new NoSuchElementException();
+            }
+            while (!this.j.isEmpty()) {
+                d0.e0.p.d.m0.i.c cVar = this.j.pop().n;
+                while (cVar instanceof r) {
+                    r rVar = (r) cVar;
+                    this.j.push(rVar);
+                    cVar = rVar.m;
+                }
+                mVar = (m) cVar;
+                if (!mVar.isEmpty()) {
+                    this.k = mVar;
+                    return mVar2;
+                }
+            }
+            mVar = null;
+            this.k = mVar;
+            return mVar2;
+        }
+    }
+
+    /* JADX INFO: compiled from: RopeByteString.java */
+    public class d implements d0.e0.p.d.m0.i.c.a {
+        public final c j;
+        public d0.e0.p.d.m0.i.c.a k;
+        public int l;
+
+        /* JADX WARN: Type inference failed for: r3v3, types: [d0.e0.p.d.m0.i.c$a] */
+        public d(r rVar, a aVar) {
+            c cVar = new c(rVar, null);
+            this.j = cVar;
+            this.k = cVar.next().iterator();
+            this.l = rVar.size();
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.l > 0;
+        }
+
+        @Override // java.util.Iterator
+        public /* bridge */ /* synthetic */ Byte next() {
+            return next();
+        }
+
+        /* JADX WARN: Type inference failed for: r0v8, types: [d0.e0.p.d.m0.i.c$a] */
+        @Override // d0.e0.p.d.m0.i.c.a
+        public byte nextByte() {
+            if (!this.k.hasNext()) {
+                this.k = this.j.next().iterator();
+            }
+            this.l--;
+            return this.k.nextByte();
+        }
+
+        @Override // java.util.Iterator
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // java.util.Iterator
+        public Byte next() {
+            return Byte.valueOf(nextByte());
+        }
+    }
 
     static {
         ArrayList arrayList = new ArrayList();
@@ -40,7 +145,7 @@ public class r extends c {
         }
     }
 
-    public r(c cVar, c cVar2) {
+    public r(d0.e0.p.d.m0.i.c cVar, d0.e0.p.d.m0.i.c cVar2) {
         this.m = cVar;
         this.n = cVar2;
         int size = cVar.size();
@@ -76,10 +181,10 @@ public class r extends c {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof c)) {
+        if (!(obj instanceof d0.e0.p.d.m0.i.c)) {
             return false;
         }
-        c cVar = (c) obj;
+        d0.e0.p.d.m0.i.c cVar = (d0.e0.p.d.m0.i.c) obj;
         if (this.l != cVar.size()) {
             return false;
         }
@@ -89,10 +194,10 @@ public class r extends c {
         if (this.q != 0 && (iJ = cVar.j()) != 0 && this.q != iJ) {
             return false;
         }
-        r$c r_c = new r$c(this, null);
-        m next = r_c.next();
-        r$c r_c2 = new r$c(cVar, null);
-        m next2 = r_c2.next();
+        c cVar2 = new c(this, null);
+        m next = cVar2.next();
+        c cVar3 = new c(cVar, null);
+        m next2 = cVar3.next();
         int i = 0;
         int i2 = 0;
         int i3 = 0;
@@ -112,13 +217,13 @@ public class r extends c {
                 throw new IllegalStateException();
             }
             if (iMin == size) {
-                next = r_c.next();
+                next = cVar2.next();
                 i = 0;
             } else {
                 i += iMin;
             }
             if (iMin == size2) {
-                next2 = r_c2.next();
+                next2 = cVar3.next();
                 i2 = 0;
             } else {
                 i2 += iMin;
@@ -175,7 +280,7 @@ public class r extends c {
     @Override // d0.e0.p.d.m0.i.c
     public boolean isValidUtf8() {
         int i = this.m.i(0, 0, this.o);
-        c cVar = this.n;
+        d0.e0.p.d.m0.i.c cVar = this.n;
         return cVar.i(i, 0, cVar.size()) == 0;
     }
 
@@ -207,7 +312,7 @@ public class r extends c {
         }
     }
 
-    public static m l(c cVar, c cVar2) {
+    public static m l(d0.e0.p.d.m0.i.c cVar, d0.e0.p.d.m0.i.c cVar2) {
         int size = cVar.size();
         int size2 = cVar2.size();
         byte[] bArr = new byte[size + size2];
@@ -226,8 +331,60 @@ public class r extends c {
         return new String(toByteArray(), str);
     }
 
+    /* JADX INFO: compiled from: RopeByteString.java */
+    public class b {
+        public final Stack<d0.e0.p.d.m0.i.c> a = new Stack<>();
+
+        public b(a aVar) {
+        }
+
+        public final void a(d0.e0.p.d.m0.i.c cVar) {
+            if (!cVar.g()) {
+                if (!(cVar instanceof r)) {
+                    String strValueOf = String.valueOf(cVar.getClass());
+                    throw new IllegalArgumentException(b.d.b.a.a.J(new StringBuilder(strValueOf.length() + 49), "Has a new type of ByteString been created? Found ", strValueOf));
+                }
+                r rVar = (r) cVar;
+                a(rVar.m);
+                a(rVar.n);
+                return;
+            }
+            int size = cVar.size();
+            int[] iArr = r.k;
+            int iBinarySearch = Arrays.binarySearch(iArr, size);
+            if (iBinarySearch < 0) {
+                iBinarySearch = (-(iBinarySearch + 1)) - 1;
+            }
+            int i = iArr[iBinarySearch + 1];
+            if (this.a.isEmpty() || this.a.peek().size() >= i) {
+                this.a.push(cVar);
+                return;
+            }
+            int i2 = iArr[iBinarySearch];
+            d0.e0.p.d.m0.i.c cVarPop = this.a.pop();
+            while (!this.a.isEmpty() && this.a.peek().size() < i2) {
+                cVarPop = new r(this.a.pop(), cVarPop);
+            }
+            r rVar2 = new r(cVarPop, cVar);
+            while (!this.a.isEmpty()) {
+                int size2 = rVar2.size();
+                int[] iArr2 = r.k;
+                int iBinarySearch2 = Arrays.binarySearch(iArr2, size2);
+                if (iBinarySearch2 < 0) {
+                    iBinarySearch2 = (-(iBinarySearch2 + 1)) - 1;
+                }
+                if (this.a.peek().size() >= iArr2[iBinarySearch2 + 1]) {
+                    break;
+                } else {
+                    rVar2 = new r(this.a.pop(), rVar2);
+                }
+            }
+            this.a.push(rVar2);
+        }
+    }
+
     @Override // d0.e0.p.d.m0.i.c, java.lang.Iterable
     public Iterator<Byte> iterator() {
-        return new r$d(this, null);
+        return new d(this, null);
     }
 }

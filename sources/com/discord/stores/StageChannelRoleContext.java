@@ -65,6 +65,6 @@ public final class StageChannelRoleContext {
     /* JADX INFO: renamed from: getRole-K-6mKVE, reason: not valid java name */
     public final int m7getRoleK6mKVE(long userId, GuildMember member) {
         m.checkNotNullParameter(member, "member");
-        return StageRoles.Companion.m38invokeH48EO60(isSpeaker(userId, member), isModerator(userId, member), getRequestToSpeakState(userId) == StageRequestToSpeakState.REQUESTED_TO_SPEAK_AND_AWAITING_USER_ACK);
+        return StageRoles.INSTANCE.m38invokeH48EO60(isSpeaker(userId, member), isModerator(userId, member), getRequestToSpeakState(userId) == StageRequestToSpeakState.REQUESTED_TO_SPEAK_AND_AWAITING_USER_ACK);
     }
 }

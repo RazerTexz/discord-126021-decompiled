@@ -1,38 +1,38 @@
 package b.a.t.a;
 
-import com.discord.simpleast.core.node.StyleNode$a;
+import com.discord.simpleast.core.node.StyleNode;
 
 /* JADX INFO: compiled from: CodeStyleProviders.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class f<R> {
-    public final StyleNode$a<R> a;
+    public final StyleNode.a<R> a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final StyleNode$a<R> f291b;
-    public final StyleNode$a<R> c;
-    public final StyleNode$a<R> d;
-    public final StyleNode$a<R> e;
-    public final StyleNode$a<R> f;
-    public final StyleNode$a<R> g;
-    public final StyleNode$a<R> h;
+    public final StyleNode.a<R> f291b;
+    public final StyleNode.a<R> c;
+    public final StyleNode.a<R> d;
+    public final StyleNode.a<R> e;
+    public final StyleNode.a<R> f;
+    public final StyleNode.a<R> g;
+    public final StyleNode.a<R> h;
 
-    public f(StyleNode$a<R> styleNode$a, StyleNode$a<R> styleNode$a2, StyleNode$a<R> styleNode$a3, StyleNode$a<R> styleNode$a4, StyleNode$a<R> styleNode$a5, StyleNode$a<R> styleNode$a6, StyleNode$a<R> styleNode$a7, StyleNode$a<R> styleNode$a8) {
-        d0.z.d.m.checkNotNullParameter(styleNode$a, "defaultStyleProvider");
-        d0.z.d.m.checkNotNullParameter(styleNode$a2, "commentStyleProvider");
-        d0.z.d.m.checkNotNullParameter(styleNode$a3, "literalStyleProvider");
-        d0.z.d.m.checkNotNullParameter(styleNode$a4, "keywordStyleProvider");
-        d0.z.d.m.checkNotNullParameter(styleNode$a5, "identifierStyleProvider");
-        d0.z.d.m.checkNotNullParameter(styleNode$a6, "typesStyleProvider");
-        d0.z.d.m.checkNotNullParameter(styleNode$a7, "genericsStyleProvider");
-        d0.z.d.m.checkNotNullParameter(styleNode$a8, "paramsStyleProvider");
-        this.a = styleNode$a;
-        this.f291b = styleNode$a2;
-        this.c = styleNode$a3;
-        this.d = styleNode$a4;
-        this.e = styleNode$a5;
-        this.f = styleNode$a6;
-        this.g = styleNode$a7;
-        this.h = styleNode$a8;
+    public f(StyleNode.a<R> aVar, StyleNode.a<R> aVar2, StyleNode.a<R> aVar3, StyleNode.a<R> aVar4, StyleNode.a<R> aVar5, StyleNode.a<R> aVar6, StyleNode.a<R> aVar7, StyleNode.a<R> aVar8) {
+        d0.z.d.m.checkNotNullParameter(aVar, "defaultStyleProvider");
+        d0.z.d.m.checkNotNullParameter(aVar2, "commentStyleProvider");
+        d0.z.d.m.checkNotNullParameter(aVar3, "literalStyleProvider");
+        d0.z.d.m.checkNotNullParameter(aVar4, "keywordStyleProvider");
+        d0.z.d.m.checkNotNullParameter(aVar5, "identifierStyleProvider");
+        d0.z.d.m.checkNotNullParameter(aVar6, "typesStyleProvider");
+        d0.z.d.m.checkNotNullParameter(aVar7, "genericsStyleProvider");
+        d0.z.d.m.checkNotNullParameter(aVar8, "paramsStyleProvider");
+        this.a = aVar;
+        this.f291b = aVar2;
+        this.c = aVar3;
+        this.d = aVar4;
+        this.e = aVar5;
+        this.f = aVar6;
+        this.g = aVar7;
+        this.h = aVar8;
     }
 
     public boolean equals(Object obj) {
@@ -47,22 +47,22 @@ public final class f<R> {
     }
 
     public int hashCode() {
-        StyleNode$a<R> styleNode$a = this.a;
-        int iHashCode = (styleNode$a != null ? styleNode$a.hashCode() : 0) * 31;
-        StyleNode$a<R> styleNode$a2 = this.f291b;
-        int iHashCode2 = (iHashCode + (styleNode$a2 != null ? styleNode$a2.hashCode() : 0)) * 31;
-        StyleNode$a<R> styleNode$a3 = this.c;
-        int iHashCode3 = (iHashCode2 + (styleNode$a3 != null ? styleNode$a3.hashCode() : 0)) * 31;
-        StyleNode$a<R> styleNode$a4 = this.d;
-        int iHashCode4 = (iHashCode3 + (styleNode$a4 != null ? styleNode$a4.hashCode() : 0)) * 31;
-        StyleNode$a<R> styleNode$a5 = this.e;
-        int iHashCode5 = (iHashCode4 + (styleNode$a5 != null ? styleNode$a5.hashCode() : 0)) * 31;
-        StyleNode$a<R> styleNode$a6 = this.f;
-        int iHashCode6 = (iHashCode5 + (styleNode$a6 != null ? styleNode$a6.hashCode() : 0)) * 31;
-        StyleNode$a<R> styleNode$a7 = this.g;
-        int iHashCode7 = (iHashCode6 + (styleNode$a7 != null ? styleNode$a7.hashCode() : 0)) * 31;
-        StyleNode$a<R> styleNode$a8 = this.h;
-        return iHashCode7 + (styleNode$a8 != null ? styleNode$a8.hashCode() : 0);
+        StyleNode.a<R> aVar = this.a;
+        int iHashCode = (aVar != null ? aVar.hashCode() : 0) * 31;
+        StyleNode.a<R> aVar2 = this.f291b;
+        int iHashCode2 = (iHashCode + (aVar2 != null ? aVar2.hashCode() : 0)) * 31;
+        StyleNode.a<R> aVar3 = this.c;
+        int iHashCode3 = (iHashCode2 + (aVar3 != null ? aVar3.hashCode() : 0)) * 31;
+        StyleNode.a<R> aVar4 = this.d;
+        int iHashCode4 = (iHashCode3 + (aVar4 != null ? aVar4.hashCode() : 0)) * 31;
+        StyleNode.a<R> aVar5 = this.e;
+        int iHashCode5 = (iHashCode4 + (aVar5 != null ? aVar5.hashCode() : 0)) * 31;
+        StyleNode.a<R> aVar6 = this.f;
+        int iHashCode6 = (iHashCode5 + (aVar6 != null ? aVar6.hashCode() : 0)) * 31;
+        StyleNode.a<R> aVar7 = this.g;
+        int iHashCode7 = (iHashCode6 + (aVar7 != null ? aVar7.hashCode() : 0)) * 31;
+        StyleNode.a<R> aVar8 = this.h;
+        return iHashCode7 + (aVar8 != null ? aVar8.hashCode() : 0);
     }
 
     public String toString() {

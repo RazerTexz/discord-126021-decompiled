@@ -21,7 +21,7 @@ public final class y0 implements m1 {
     public long n = -9223372036854775807L;
     public long o = -9223372036854775807L;
 
-    public y0(float f, float f2, long j, float f3, long j2, long j3, float f4, y0$a y0_a) {
+    public y0(float f, float f2, long j, float f3, long j2, long j3, float f4, a aVar) {
         this.a = j2;
         this.f1302b = j3;
         this.c = f4;

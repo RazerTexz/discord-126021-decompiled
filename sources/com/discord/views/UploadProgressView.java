@@ -2,7 +2,7 @@ package com.discord.views;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +15,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import b.a.i.c4;
 import b.d.b.a.a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import d0.z.d.m;
@@ -39,25 +38,25 @@ public final class UploadProgressView extends ConstraintLayout {
     public UploadProgressView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         m.checkNotNullParameter(context, "context");
-        View viewInflate = LayoutInflater.from(getContext()).inflate(R$layout.view_upload_progress, (ViewGroup) this, false);
+        View viewInflate = LayoutInflater.from(getContext()).inflate(R.layout.view_upload_progress, (ViewGroup) this, false);
         addView(viewInflate);
-        int i = R$id.progress_bar;
-        ProgressBar progressBar = (ProgressBar) viewInflate.findViewById(R$id.progress_bar);
+        int i = R.id.progress_bar;
+        ProgressBar progressBar = (ProgressBar) viewInflate.findViewById(R.id.progress_bar);
         if (progressBar != null) {
-            i = R$id.progress_file_image;
-            ImageView imageView = (ImageView) viewInflate.findViewById(R$id.progress_file_image);
+            i = R.id.progress_file_image;
+            ImageView imageView = (ImageView) viewInflate.findViewById(R.id.progress_file_image);
             if (imageView != null) {
-                i = R$id.progress_subtext;
-                TextView textView = (TextView) viewInflate.findViewById(R$id.progress_subtext);
+                i = R.id.progress_subtext;
+                TextView textView = (TextView) viewInflate.findViewById(R.id.progress_subtext);
                 if (textView != null) {
-                    i = R$id.progress_text;
-                    TextView textView2 = (TextView) viewInflate.findViewById(R$id.progress_text);
+                    i = R.id.progress_text;
+                    TextView textView2 = (TextView) viewInflate.findViewById(R.id.progress_text);
                     if (textView2 != null) {
                         c4 c4Var = new c4((ConstraintLayout) viewInflate, progressBar, imageView, textView, textView2);
                         m.checkNotNullExpressionValue(c4Var, "ViewUploadProgressBindin…rom(context), this, true)");
                         this.binding = c4Var;
-                        this.drawableComplete = ContextCompat.getDrawable(getContext(), 2131231292);
-                        this.drawableInProgress = ContextCompat.getDrawable(getContext(), DrawableCompat.getThemedDrawableRes$default(this, 2130970014, 0, 2, (Object) null));
+                        this.drawableComplete = ContextCompat.getDrawable(getContext(), R.drawable.drawable_progress_green);
+                        this.drawableInProgress = ContextCompat.getDrawable(getContext(), DrawableCompat.getThemedDrawableRes$default(this, R.attr.progress_gradient, 0, 2, (Object) null));
                         return;
                     }
                 }
@@ -76,7 +75,7 @@ public final class UploadProgressView extends ConstraintLayout {
             ProgressBar progressBar = c4Var.f93b;
             m.checkNotNullExpressionValue(progressBar, "progressBar");
             progressBar.setIndeterminate(false);
-            if (Build$VERSION.SDK_INT >= 24) {
+            if (Build.VERSION.SDK_INT >= 24) {
                 ProgressBar progressBar2 = c4Var.f93b;
                 m.checkNotNullExpressionValue(progressBar2, "progressBar");
                 c4Var.f93b.setProgress(progress, progress >= progressBar2.getProgress());

@@ -1,21 +1,94 @@
 package com.google.android.exoplayer2.metadata.mp4;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import b.c.a.a0.d;
+import b.i.a.c.f3.e0;
 import b.i.a.c.j1;
-import b.i.a.c.p1$b;
-import b.i.a.c.z2.a;
-import com.google.android.exoplayer2.metadata.Metadata$Entry;
+import b.i.a.c.p1;
+import com.google.android.exoplayer2.metadata.Metadata;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class SlowMotionData implements Metadata$Entry {
-    public final List<SlowMotionData$Segment> j;
-    public static final Parcelable$Creator<SlowMotionData> CREATOR = new SlowMotionData$a();
+public final class SlowMotionData implements Metadata.Entry {
+    public final List<Segment> j;
+    public static final Parcelable.Creator<SlowMotionData> CREATOR = new a();
 
-    public SlowMotionData(List<SlowMotionData$Segment> list) {
+    public final class Segment implements Parcelable {
+        public final long j;
+        public final long k;
+        public final int l;
+        public static final Parcelable.Creator<Segment> CREATOR = new a();
+
+        public class a implements Parcelable.Creator<Segment> {
+            @Override // android.os.Parcelable.Creator
+            public Segment createFromParcel(Parcel parcel) {
+                return new Segment(parcel.readLong(), parcel.readLong(), parcel.readInt());
+            }
+
+            @Override // android.os.Parcelable.Creator
+            public Segment[] newArray(int i) {
+                return new Segment[i];
+            }
+        }
+
+        public Segment(long j, long j2, int i) {
+            d.j(j < j2);
+            this.j = j;
+            this.k = j2;
+            this.l = i;
+        }
+
+        @Override // android.os.Parcelable
+        public int describeContents() {
+            return 0;
+        }
+
+        public boolean equals(@Nullable Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || Segment.class != obj.getClass()) {
+                return false;
+            }
+            Segment segment = (Segment) obj;
+            return this.j == segment.j && this.k == segment.k && this.l == segment.l;
+        }
+
+        public int hashCode() {
+            return Arrays.hashCode(new Object[]{Long.valueOf(this.j), Long.valueOf(this.k), Integer.valueOf(this.l)});
+        }
+
+        public String toString() {
+            return e0.k("Segment: startTimeMs=%d, endTimeMs=%d, speedDivisor=%d", Long.valueOf(this.j), Long.valueOf(this.k), Integer.valueOf(this.l));
+        }
+
+        @Override // android.os.Parcelable
+        public void writeToParcel(Parcel parcel, int i) {
+            parcel.writeLong(this.j);
+            parcel.writeLong(this.k);
+            parcel.writeInt(this.l);
+        }
+    }
+
+    public class a implements Parcelable.Creator<SlowMotionData> {
+        @Override // android.os.Parcelable.Creator
+        public SlowMotionData createFromParcel(Parcel parcel) {
+            ArrayList arrayList = new ArrayList();
+            parcel.readList(arrayList, Segment.class.getClassLoader());
+            return new SlowMotionData(arrayList);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public SlowMotionData[] newArray(int i) {
+            return new SlowMotionData[i];
+        }
+    }
+
+    public SlowMotionData(List<Segment> list) {
         this.j = list;
         boolean z2 = false;
         if (!list.isEmpty()) {
@@ -50,14 +123,14 @@ public final class SlowMotionData implements Metadata$Entry {
         return this.j.hashCode();
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
-    public /* synthetic */ void n(p1$b p1_b) {
-        a.c(this, p1_b);
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
+    public /* synthetic */ void n(p1.b bVar) {
+        b.i.a.c.z2.a.c(this, bVar);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     public /* synthetic */ byte[] o0() {
-        return a.a(this);
+        return b.i.a.c.z2.a.a(this);
     }
 
     public String toString() {
@@ -70,8 +143,8 @@ public final class SlowMotionData implements Metadata$Entry {
         parcel.writeList(this.j);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     public /* synthetic */ j1 y() {
-        return a.b(this);
+        return b.i.a.c.z2.a.b(this);
     }
 }

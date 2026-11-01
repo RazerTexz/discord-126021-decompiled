@@ -11,7 +11,7 @@ import java.util.List;
 
 /* JADX INFO: compiled from: ContentGroup.java */
 /* JADX INFO: loaded from: classes.dex */
-public class d implements e, m, b.c.a.w.c.a$b, b.c.a.y.g {
+public class d implements e, m, b.c.a.w.c.a.b, b.c.a.y.g {
     public Paint a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -54,7 +54,7 @@ public class d implements e, m, b.c.a.w.c.a$b, b.c.a.y.g {
         this(jVar, bVar, str, z2, arrayList, lVar);
     }
 
-    @Override // b.c.a.w.c.a$b
+    @Override // b.c.a.w.c.a.b
     public void a() {
         this.i.invalidateSelf();
     }

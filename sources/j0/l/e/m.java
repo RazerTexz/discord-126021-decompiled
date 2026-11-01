@@ -5,6 +5,17 @@ import org.objectweb.asm.Opcodes;
 /* JADX INFO: compiled from: UtilityFunctions.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class m {
+
+    /* JADX INFO: compiled from: UtilityFunctions.java */
+    public enum a implements j0.k.b<Object, Object> {
+        INSTANCE;
+
+        @Override // j0.k.b
+        public Object call(Object obj) {
+            return obj;
+        }
+    }
+
     public static int a(CharSequence charSequence, int i, int i2, int i3) {
         int i4 = i + i2;
         int i5 = i;

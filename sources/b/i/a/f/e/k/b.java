@@ -2,7 +2,7 @@ package b.i.a.f.e.k;
 
 import android.accounts.Account;
 import android.content.Context;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.DeadObjectException;
 import android.os.Handler;
@@ -35,7 +35,7 @@ public abstract class b<T extends IInterface> {
     public static final Feature[] a = new Feature[0];
     public v0 c;
     public final Context d;
-    public final e e;
+    public final b.i.a.f.e.k.e e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     @Nullable
@@ -53,7 +53,7 @@ public abstract class b<T extends IInterface> {
     public i j;
 
     @RecentlyNonNull
-    public b$c k;
+    public c k;
 
     @Nullable
     public T l;
@@ -63,10 +63,10 @@ public abstract class b<T extends IInterface> {
     public int o = 1;
 
     @Nullable
-    public final b$a p;
+    public final a p;
 
     @Nullable
-    public final b$b q;
+    public final InterfaceC0114b q;
     public final int r;
 
     @Nullable
@@ -80,7 +80,48 @@ public abstract class b<T extends IInterface> {
     @RecentlyNonNull
     public AtomicInteger w = new AtomicInteger(0);
 
-    public b(@RecentlyNonNull Context context, @RecentlyNonNull Looper looper, @RecentlyNonNull e eVar, @RecentlyNonNull b.i.a.f.e.c cVar, int i, @Nullable b$a b_a, @Nullable b$b b_b, @Nullable String str) {
+    /* JADX INFO: renamed from: b.i.a.f.e.k.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
+    public interface InterfaceC0114b {
+        void g(@RecentlyNonNull ConnectionResult connectionResult);
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
+    public interface a {
+        void c(int i);
+
+        void i(@Nullable Bundle bundle);
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
+    public interface c {
+        void a(@RecentlyNonNull ConnectionResult connectionResult);
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
+    public class d implements c {
+        public d() {
+        }
+
+        @Override // b.i.a.f.e.k.b.c
+        public final void a(@RecentlyNonNull ConnectionResult connectionResult) {
+            if (connectionResult.x0()) {
+                b bVar = b.this;
+                bVar.b(null, bVar.v());
+            } else {
+                InterfaceC0114b interfaceC0114b = b.this.q;
+                if (interfaceC0114b != null) {
+                    interfaceC0114b.g(connectionResult);
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
+    public interface e {
+    }
+
+    public b(@RecentlyNonNull Context context, @RecentlyNonNull Looper looper, @RecentlyNonNull b.i.a.f.e.k.e eVar, @RecentlyNonNull b.i.a.f.e.c cVar, int i, @Nullable a aVar, @Nullable InterfaceC0114b interfaceC0114b, @Nullable String str) {
         b.c.a.a0.d.z(context, "Context must not be null");
         this.d = context;
         b.c.a.a0.d.z(looper, "Looper must not be null");
@@ -90,8 +131,8 @@ public abstract class b<T extends IInterface> {
         this.f = cVar;
         this.g = new h0(this, looper);
         this.r = i;
-        this.p = b_a;
-        this.q = b_b;
+        this.p = aVar;
+        this.q = interfaceC0114b;
         this.f1379s = str;
     }
 
@@ -154,7 +195,7 @@ public abstract class b<T extends IInterface> {
                 if (i == 1) {
                     k0 k0Var = this.n;
                     if (k0Var != null) {
-                        e eVar = this.e;
+                        b.i.a.f.e.k.e eVar = this.e;
                         String str = this.c.a;
                         Objects.requireNonNull(str, "null reference");
                         Objects.requireNonNull(this.c);
@@ -173,7 +214,7 @@ public abstract class b<T extends IInterface> {
                         sb.append(" on ");
                         sb.append("com.google.android.gms");
                         Log.e("GmsClient", sb.toString());
-                        e eVar2 = this.e;
+                        b.i.a.f.e.k.e eVar2 = this.e;
                         String str3 = this.c.a;
                         Objects.requireNonNull(str3, "null reference");
                         Objects.requireNonNull(this.c);
@@ -185,9 +226,9 @@ public abstract class b<T extends IInterface> {
                     k0 k0Var3 = new k0(this, this.w.get());
                     this.n = k0Var3;
                     String strY = y();
-                    Object obj = e.a;
+                    Object obj = b.i.a.f.e.k.e.a;
                     this.c = new v0("com.google.android.gms", strY, 4225, false);
-                    e eVar3 = this.e;
+                    b.i.a.f.e.k.e eVar3 = this.e;
                     Objects.requireNonNull(strY, "null reference");
                     Objects.requireNonNull(this.c);
                     String strB3 = B();
@@ -244,20 +285,20 @@ public abstract class b<T extends IInterface> {
                     Log.w("GmsClient", "mServiceBroker is null, client disconnected");
                 }
             }
-        } catch (DeadObjectException e) {
-            Log.w("GmsClient", "IGmsServiceBroker.getService failed", e);
+        } catch (DeadObjectException e2) {
+            Log.w("GmsClient", "IGmsServiceBroker.getService failed", e2);
             Handler handler = this.g;
             handler.sendMessage(handler.obtainMessage(6, this.w.get(), 3));
-        } catch (RemoteException e2) {
-            e = e2;
+        } catch (RemoteException e3) {
+            e = e3;
             Log.w("GmsClient", "IGmsServiceBroker.getService failed", e);
             int i = this.w.get();
             Handler handler2 = this.g;
             handler2.sendMessage(handler2.obtainMessage(1, i, -1, new l0(this, 8, null, null)));
-        } catch (SecurityException e3) {
-            throw e3;
-        } catch (RuntimeException e4) {
-            e = e4;
+        } catch (SecurityException e4) {
+            throw e4;
+        } catch (RuntimeException e5) {
+            e = e5;
             Log.w("GmsClient", "IGmsServiceBroker.getService failed", e);
             int i2 = this.w.get();
             Handler handler3 = this.g;
@@ -290,9 +331,9 @@ public abstract class b<T extends IInterface> {
         return "com.google.android.gms";
     }
 
-    public void g(@RecentlyNonNull b$c b_c) {
-        b.c.a.a0.d.z(b_c, "Connection progress callbacks cannot be null.");
-        this.k = b_c;
+    public void g(@RecentlyNonNull c cVar) {
+        b.c.a.a0.d.z(cVar, "Connection progress callbacks cannot be null.");
+        this.k = cVar;
         F(2, null);
     }
 
@@ -314,9 +355,9 @@ public abstract class b<T extends IInterface> {
         F(1, null);
     }
 
-    public void i(@RecentlyNonNull b$e b_e) {
-        b.i.a.f.e.h.j.x xVar = (b.i.a.f.e.h.j.x) b_e;
-        xVar.a.m.f1359x.post(new b.i.a.f.e.h.j.w(xVar));
+    public void i(@RecentlyNonNull e eVar) {
+        b.i.a.f.e.h.j.x xVar = (b.i.a.f.e.h.j.x) eVar;
+        b.i.a.f.e.h.j.g.this.f1359x.post(new b.i.a.f.e.h.j.w(xVar));
     }
 
     public boolean j() {
@@ -353,16 +394,16 @@ public abstract class b<T extends IInterface> {
         return false;
     }
 
-    public void q() throws PackageManager$NameNotFoundException {
+    public void q() throws PackageManager.NameNotFoundException {
         int iB = this.f.b(this.d, l());
         if (iB == 0) {
-            g(new b$d(this));
+            g(new d());
             return;
         }
         F(1, null);
-        b$d b_d = new b$d(this);
-        b.c.a.a0.d.z(b_d, "Connection progress callbacks cannot be null.");
-        this.k = b_d;
+        d dVar = new d();
+        b.c.a.a0.d.z(dVar, "Connection progress callbacks cannot be null.");
+        this.k = dVar;
         Handler handler = this.g;
         handler.sendMessage(handler.obtainMessage(3, this.w.get(), iB, null));
     }

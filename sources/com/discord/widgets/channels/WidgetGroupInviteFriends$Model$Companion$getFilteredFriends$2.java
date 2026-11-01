@@ -1,7 +1,10 @@
 package com.discord.widgets.channels;
 
 import androidx.core.app.NotificationCompat;
+import com.discord.models.user.User;
 import com.discord.stores.StoreStream;
+import d0.g0.w;
+import d0.z.d.m;
 import j0.k.b;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +14,124 @@ import rx.Observable;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGroupInviteFriends$Model$Companion$getFilteredFriends$2<T, R> implements b<List<Long>, Observable<? extends Map<Long, Integer>>> {
     public final /* synthetic */ String $nameFilter;
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetGroupInviteFriends$Model$Companion$getFilteredFriends$2$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGroupInviteFriends.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Integer>, Observable<? extends Map<Long, Integer>>> {
+        public final /* synthetic */ List $excludeUserIds;
+
+        /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetGroupInviteFriends$Model$Companion$getFilteredFriends$2$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: WidgetGroupInviteFriends.kt */
+        public final class C03611<T, R> implements b<Map<Long, ? extends User>, Observable<? extends Map<Long, Integer>>> {
+            public final /* synthetic */ Map $relationships;
+
+            /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetGroupInviteFriends$Model$Companion$getFilteredFriends$2$1$1$2, reason: invalid class name */
+            /* JADX INFO: compiled from: WidgetGroupInviteFriends.kt */
+            public final class AnonymousClass2<T, R> implements b<Map.Entry<? extends Long, ? extends Integer>, Long> {
+                public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+                @Override // j0.k.b
+                public /* bridge */ /* synthetic */ Long call(Map.Entry<? extends Long, ? extends Integer> entry) {
+                    return call2((Map.Entry<Long, Integer>) entry);
+                }
+
+                /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+                public final Long call2(Map.Entry<Long, Integer> entry) {
+                    return entry.getKey();
+                }
+            }
+
+            /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetGroupInviteFriends$Model$Companion$getFilteredFriends$2$1$1$3, reason: invalid class name */
+            /* JADX INFO: compiled from: WidgetGroupInviteFriends.kt */
+            public final class AnonymousClass3<T, R> implements b<Map.Entry<? extends Long, ? extends Integer>, Integer> {
+                public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
+
+                @Override // j0.k.b
+                public /* bridge */ /* synthetic */ Integer call(Map.Entry<? extends Long, ? extends Integer> entry) {
+                    return call2((Map.Entry<Long, Integer>) entry);
+                }
+
+                /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+                public final Integer call2(Map.Entry<Long, Integer> entry) {
+                    return entry.getValue();
+                }
+            }
+
+            /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetGroupInviteFriends$Model$Companion$getFilteredFriends$2$1$1$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: WidgetGroupInviteFriends.kt */
+            public final class C03621<T, R> implements b<Map.Entry<? extends Long, ? extends Integer>, Boolean> {
+                public final /* synthetic */ Map $users;
+
+                public C03621(Map map) {
+                    this.$users = map;
+                }
+
+                @Override // j0.k.b
+                public /* bridge */ /* synthetic */ Boolean call(Map.Entry<? extends Long, ? extends Integer> entry) {
+                    return call2((Map.Entry<Long, Integer>) entry);
+                }
+
+                /* JADX WARN: Code duplicated, block: B:17:0x004a  */
+                /* JADX WARN: Code duplicated, block: B:22:0x0055  */
+                /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+                public final Boolean call2(Map.Entry<Long, Integer> entry) {
+                    boolean z2;
+                    boolean zContains;
+                    User user;
+                    String username;
+                    String lowerCase;
+                    if (!AnonymousClass1.this.$excludeUserIds.contains(entry.getKey()) && this.$users.containsKey(entry.getKey())) {
+                        Map map = this.$users;
+                        if (map == null || (user = (User) map.get(entry.getKey())) == null || (username = user.getUsername()) == null) {
+                            zContains = false;
+                        } else {
+                            String str = WidgetGroupInviteFriends$Model$Companion$getFilteredFriends$2.this.$nameFilter;
+                            if (str != null) {
+                                lowerCase = str.toLowerCase();
+                                m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase()");
+                                if (lowerCase == null) {
+                                    lowerCase = "";
+                                }
+                            } else {
+                                lowerCase = "";
+                            }
+                            zContains = w.contains((CharSequence) username, (CharSequence) lowerCase, true);
+                        }
+                        z2 = zContains;
+                    }
+                    return Boolean.valueOf(z2);
+                }
+            }
+
+            public C03611(Map map) {
+                this.$relationships = map;
+            }
+
+            @Override // j0.k.b
+            public /* bridge */ /* synthetic */ Observable<? extends Map<Long, Integer>> call(Map<Long, ? extends User> map) {
+                return call2(map);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final Observable<? extends Map<Long, Integer>> call2(Map<Long, ? extends User> map) {
+                return Observable.B(this.$relationships.entrySet()).y(new C03621(map)).g0(AnonymousClass2.INSTANCE, AnonymousClass3.INSTANCE);
+            }
+        }
+
+        public AnonymousClass1(List list) {
+            this.$excludeUserIds = list;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends Map<Long, Integer>> call(Map<Long, ? extends Integer> map) {
+            return call2((Map<Long, Integer>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends Map<Long, Integer>> call2(Map<Long, Integer> map) {
+            return StoreStream.INSTANCE.getUsers().observeUsers(map.keySet()).Y(new C03611(map));
+        }
+    }
 
     public WidgetGroupInviteFriends$Model$Companion$getFilteredFriends$2(String str) {
         this.$nameFilter = str;
@@ -23,6 +144,6 @@ public final class WidgetGroupInviteFriends$Model$Companion$getFilteredFriends$2
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
     public final Observable<? extends Map<Long, Integer>> call2(List<Long> list) {
-        return StoreStream.Companion.getUserRelationships().observeForType(1).Y(new WidgetGroupInviteFriends$Model$Companion$getFilteredFriends$2$1(this, list));
+        return StoreStream.INSTANCE.getUserRelationships().observeForType(1).Y(new AnonymousClass1(list));
     }
 }

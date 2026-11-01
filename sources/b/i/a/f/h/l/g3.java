@@ -8,8 +8,15 @@ import org.objectweb.asm.Opcodes;
 public final class g3 {
     public static final f3 a;
 
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
+    public final class a extends f3 {
+        @Override // b.i.a.f.h.l.f3
+        public final void a(Throwable th, Throwable th2) {
+        }
+    }
+
     static {
-        f3 g3_a;
+        f3 aVar;
         Integer num = null;
         try {
             try {
@@ -19,22 +26,22 @@ public final class g3 {
                 e.printStackTrace(System.err);
             }
             if (num == null || num.intValue() < 19) {
-                g3_a = Boolean.getBoolean("com.google.devtools.build.android.desugar.runtime.twr_disable_mimic") ^ true ? new j3() : new g3$a();
+                aVar = Boolean.getBoolean("com.google.devtools.build.android.desugar.runtime.twr_disable_mimic") ^ true ? new j3() : new a();
             } else {
-                g3_a = new k3();
+                aVar = new k3();
             }
         } catch (Throwable th) {
             PrintStream printStream = System.err;
-            String name = g3$a.class.getName();
+            String name = a.class.getName();
             StringBuilder sb = new StringBuilder(name.length() + Opcodes.I2L);
             sb.append("An error has occurred when initializing the try-with-resources desuguring strategy. The default strategy ");
             sb.append(name);
             sb.append("will be used. The error is: ");
             printStream.println(sb.toString());
             th.printStackTrace(System.err);
-            g3_a = new g3$a();
+            aVar = new a();
         }
-        a = g3_a;
+        a = aVar;
         if (num == null) {
             return;
         }

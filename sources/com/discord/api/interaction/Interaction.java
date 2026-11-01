@@ -8,7 +8,6 @@ import d0.z.d.m;
 /* JADX INFO: compiled from: Interaction.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class Interaction {
-    public static final Interaction$Companion Companion = new Interaction$Companion(null);
     public static final int TYPE_INTERACTION_APPLICATION_COMMAND = 2;
     public static final int TYPE_INTERACTION_PING = 1;
     private final Long id;

@@ -4,10 +4,8 @@ import android.content.Context;
 import android.widget.ImageView;
 import com.discord.api.sticker.BaseSticker;
 import com.discord.rlottie.RLottieDrawable;
-import com.discord.rlottie.RLottieDrawable$PlaybackMode;
 import com.discord.rlottie.RLottieImageView;
-import com.discord.utilities.file.DownloadUtils$DownloadState;
-import com.discord.utilities.file.DownloadUtils$DownloadState$Completed;
+import com.discord.utilities.file.DownloadUtils;
 import com.discord.utilities.stickers.StickerUtils;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.views.sticker.StickerView;
@@ -21,7 +19,7 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: StickerView.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class h extends o implements Function1<Pair<? extends DownloadUtils$DownloadState, ? extends Integer>, Unit> {
+public final class h extends o implements Function1<Pair<? extends DownloadUtils.DownloadState, ? extends Integer>, Unit> {
     public final /* synthetic */ Integer $localAnimationSettings;
     public final /* synthetic */ BaseSticker $sticker;
     public final /* synthetic */ StickerView this$0;
@@ -35,16 +33,16 @@ public final class h extends o implements Function1<Pair<? extends DownloadUtils
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public Unit invoke(Pair<? extends DownloadUtils$DownloadState, ? extends Integer> pair) {
-        Pair<? extends DownloadUtils$DownloadState, ? extends Integer> pair2 = pair;
-        DownloadUtils$DownloadState downloadUtils$DownloadStateComponent1 = pair2.component1();
+    public Unit invoke(Pair<? extends DownloadUtils.DownloadState, ? extends Integer> pair) {
+        Pair<? extends DownloadUtils.DownloadState, ? extends Integer> pair2 = pair;
+        DownloadUtils.DownloadState downloadStateComponent1 = pair2.component1();
         Integer numComponent2 = pair2.component2();
-        if (downloadUtils$DownloadStateComponent1 instanceof DownloadUtils$DownloadState$Completed) {
+        if (downloadStateComponent1 instanceof DownloadUtils.DownloadState.Completed) {
             Integer num = this.$localAnimationSettings;
             if (num != null) {
                 numComponent2 = num;
             }
-            RLottieDrawable$PlaybackMode rLottieDrawable$PlaybackMode = (numComponent2 != null && numComponent2.intValue() == 0) ? RLottieDrawable$PlaybackMode.LOOP : RLottieDrawable$PlaybackMode.FREEZE;
+            RLottieDrawable.PlaybackMode playbackMode = (numComponent2 != null && numComponent2.intValue() == 0) ? RLottieDrawable.PlaybackMode.LOOP : RLottieDrawable.PlaybackMode.FREEZE;
             ImageView imageView = this.this$0.binding.d;
             m.checkNotNullExpressionValue(imageView, "binding.stickerViewPlaceholder");
             imageView.setVisibility(8);
@@ -55,17 +53,17 @@ public final class h extends o implements Function1<Pair<? extends DownloadUtils
             RLottieImageView rLottieImageView2 = stickerView.binding.c;
             Context context = stickerView.getContext();
             m.checkNotNullExpressionValue(context, "context");
-            File file = ((DownloadUtils$DownloadState$Completed) downloadUtils$DownloadStateComponent1).getFile();
+            File file = ((DownloadUtils.DownloadState.Completed) downloadStateComponent1).getFile();
             StickerUtils stickerUtils = StickerUtils.INSTANCE;
             int default_sticker_size_px = stickerUtils.getDEFAULT_STICKER_SIZE_PX();
             int default_sticker_size_px2 = stickerUtils.getDEFAULT_STICKER_SIZE_PX();
             Objects.requireNonNull(rLottieImageView2);
             m.checkParameterIsNotNull(context, "context");
             m.checkParameterIsNotNull(file, "file");
-            m.checkParameterIsNotNull(rLottieDrawable$PlaybackMode, "playbackMode");
+            m.checkParameterIsNotNull(playbackMode, "playbackMode");
             RLottieDrawable rLottieDrawable = new RLottieDrawable(file, default_sticker_size_px, default_sticker_size_px2, false, true, rLottieImageView2.a(context).getRefreshRate(), (int[]) null, 64);
             rLottieImageView2.drawable = rLottieDrawable;
-            rLottieDrawable.f(rLottieDrawable$PlaybackMode);
+            rLottieDrawable.f(playbackMode);
             RLottieDrawable rLottieDrawable2 = rLottieImageView2.drawable;
             if (rLottieDrawable2 != null) {
                 rLottieDrawable2.e(true);

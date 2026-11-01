@@ -1,14 +1,11 @@
 package androidx.constraintlayout.motion.widget;
 
 import android.view.View;
-import android.view.View$MeasureSpec;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.motion.utils.Easing;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.constraintlayout.widget.ConstraintAttribute;
-import androidx.constraintlayout.widget.ConstraintAttribute$AttributeType;
-import androidx.constraintlayout.widget.ConstraintSet$Constraint;
-import androidx.constraintlayout.widget.ConstraintSet$Motion;
+import androidx.constraintlayout.widget.ConstraintSet;
 import com.discord.models.domain.ModelAuditLogEntry;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -59,16 +56,16 @@ public class MotionPaths implements Comparable<MotionPaths> {
         this.mTempDelta = new double[18];
     }
 
-    public void applyParameters(ConstraintSet$Constraint constraintSet$Constraint) {
-        this.mKeyFrameEasing = Easing.getInterpolator(constraintSet$Constraint.motion.mTransitionEasing);
-        ConstraintSet$Motion constraintSet$Motion = constraintSet$Constraint.motion;
-        this.mPathMotionArc = constraintSet$Motion.mPathMotionArc;
-        this.mPathRotate = constraintSet$Motion.mPathRotate;
-        this.mDrawPath = constraintSet$Motion.mDrawPath;
-        this.mProgress = constraintSet$Constraint.propertySet.mProgress;
-        for (String str : constraintSet$Constraint.mCustomConstraints.keySet()) {
-            ConstraintAttribute constraintAttribute = constraintSet$Constraint.mCustomConstraints.get(str);
-            if (constraintAttribute.getType() != ConstraintAttribute$AttributeType.STRING_TYPE) {
+    public void applyParameters(ConstraintSet.Constraint constraint) {
+        this.mKeyFrameEasing = Easing.getInterpolator(constraint.motion.mTransitionEasing);
+        ConstraintSet.Motion motion = constraint.motion;
+        this.mPathMotionArc = motion.mPathMotionArc;
+        this.mPathRotate = motion.mPathRotate;
+        this.mDrawPath = motion.mDrawPath;
+        this.mProgress = constraint.propertySet.mProgress;
+        for (String str : constraint.mCustomConstraints.keySet()) {
+            ConstraintAttribute constraintAttribute = constraint.mCustomConstraints.get(str);
+            if (constraintAttribute.getType() != ConstraintAttribute.AttributeType.STRING_TYPE) {
                 this.attributes.put(str, constraintAttribute);
             }
         }
@@ -425,7 +422,7 @@ public class MotionPaths implements Comparable<MotionPaths> {
         int i8 = i6 - i4;
         int i9 = i7 - i5;
         if ((i8 == view.getMeasuredWidth() && i9 == view.getMeasuredHeight()) ? false : true) {
-            view.measure(View$MeasureSpec.makeMeasureSpec(i8, BasicMeasure.EXACTLY), View$MeasureSpec.makeMeasureSpec(i9, BasicMeasure.EXACTLY));
+            view.measure(View.MeasureSpec.makeMeasureSpec(i8, BasicMeasure.EXACTLY), View.MeasureSpec.makeMeasureSpec(i9, BasicMeasure.EXACTLY));
         }
         view.layout(i4, i5, i6, i7);
     }

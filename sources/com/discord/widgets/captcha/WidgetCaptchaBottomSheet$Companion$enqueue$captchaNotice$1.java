@@ -43,11 +43,11 @@ public final class WidgetCaptchaBottomSheet$Companion$enqueue$captchaNotice$1 ex
     public final boolean invoke2(FragmentActivity fragmentActivity) {
         Object next;
         m.checkNotNullParameter(fragmentActivity, "appActivity");
-        WidgetCaptchaBottomSheet$Companion widgetCaptchaBottomSheet$Companion = WidgetCaptchaBottomSheet.Companion;
+        WidgetCaptchaBottomSheet.Companion companion = WidgetCaptchaBottomSheet.INSTANCE;
         FragmentManager supportFragmentManager = fragmentActivity.getSupportFragmentManager();
         m.checkNotNullExpressionValue(supportFragmentManager, "appActivity.supportFragmentManager");
-        widgetCaptchaBottomSheet$Companion.show(supportFragmentManager, this.$requestKey, this.$error, this.$onCaptchaAttemptFailed);
-        StoreNotices.markSeen$default(StoreStream.Companion.getNotices(), "captcha notice", 0L, 2, null);
+        companion.show(supportFragmentManager, this.$requestKey, this.$error, this.$onCaptchaAttemptFailed);
+        StoreNotices.markSeen$default(StoreStream.INSTANCE.getNotices(), "captcha notice", 0L, 2, null);
         FragmentManager supportFragmentManager2 = fragmentActivity.getSupportFragmentManager();
         m.checkNotNullExpressionValue(supportFragmentManager2, "appActivity.supportFragmentManager");
         List<Fragment> fragments = supportFragmentManager2.getFragments();
@@ -64,7 +64,7 @@ public final class WidgetCaptchaBottomSheet$Companion$enqueue$captchaNotice$1 ex
         if (fragment == null) {
             return true;
         }
-        WidgetCaptchaBottomSheet.Companion.registerForResult((AppFragment) fragment, this.$requestKey, this.$onCaptchaPayloadReceived);
+        WidgetCaptchaBottomSheet.INSTANCE.registerForResult((AppFragment) fragment, this.$requestKey, this.$onCaptchaPayloadReceived);
         return true;
     }
 }

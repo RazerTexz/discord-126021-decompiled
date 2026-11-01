@@ -1,6 +1,8 @@
 package com.discord.widgets.chat.list.adapter;
 
+import com.discord.i18n.Hook;
 import com.discord.i18n.RenderContext;
+import com.discord.utilities.textprocessing.FontColorSpan;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -25,10 +27,50 @@ public final class WidgetChatListAdapterItemSystemMessage$getSystemMessage$usern
         return Unit.a;
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage$getSystemMessage$usernameRenderContext$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemSystemMessage.kt */
+    public final class AnonymousClass1 extends o implements Function1<Hook, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Hook hook) {
+            m.checkNotNullParameter(hook, "$receiver");
+            hook.styles.add(new FontColorSpan(WidgetChatListAdapterItemSystemMessage$getSystemMessage$usernameRenderContext$1.this.$authorRoleColor));
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Hook hook) {
+            invoke2(hook);
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage$getSystemMessage$usernameRenderContext$1$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemSystemMessage.kt */
+    public final class AnonymousClass2 extends o implements Function1<Hook, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Hook hook) {
+            m.checkNotNullParameter(hook, "$receiver");
+            hook.styles.add(new FontColorSpan(WidgetChatListAdapterItemSystemMessage$getSystemMessage$usernameRenderContext$1.this.$otherRoleColor));
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Hook hook) {
+            invoke2(hook);
+            return Unit.a;
+        }
+    }
+
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(RenderContext renderContext) {
         m.checkNotNullParameter(renderContext, "$receiver");
-        renderContext.a("usernameOnClick", new WidgetChatListAdapterItemSystemMessage$getSystemMessage$usernameRenderContext$1$1(this));
-        renderContext.a("otherUsernameOnClick", new WidgetChatListAdapterItemSystemMessage$getSystemMessage$usernameRenderContext$1$2(this));
+        renderContext.a("usernameOnClick", new AnonymousClass1());
+        renderContext.a("otherUsernameOnClick", new AnonymousClass2());
     }
 }

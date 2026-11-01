@@ -1,7 +1,6 @@
 package com.discord.widgets.tos;
 
 import android.view.View;
-import android.view.View$OnClickListener;
 import android.widget.LinearLayout;
 import androidx.core.view.ViewGroupKt;
 import com.discord.api.report.ReportReason;
@@ -11,7 +10,7 @@ import java.util.Objects;
 
 /* JADX INFO: compiled from: WidgetTosReportViolation.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetTosReportViolation$handleLoaded$$inlined$forEach$lambda$1 implements View$OnClickListener {
+public final class WidgetTosReportViolation$handleLoaded$$inlined$forEach$lambda$1 implements View.OnClickListener {
     public final /* synthetic */ ReportReason $reason$inlined;
     public final /* synthetic */ WidgetTosReportViolationReasonView $reasonView$inlined;
     public final /* synthetic */ WidgetTosReportViolation this$0;
@@ -22,7 +21,7 @@ public final class WidgetTosReportViolation$handleLoaded$$inlined$forEach$lambda
         this.this$0 = widgetTosReportViolation;
     }
 
-    @Override // android.view.View$OnClickListener
+    @Override // android.view.View.OnClickListener
     public final void onClick(View view) {
         if (!m.areEqual(WidgetTosReportViolation.access$getViewModel$p(this.this$0).getReasonSelected(), this.$reasonView$inlined.getReason())) {
             WidgetTosReportViolation.access$getViewModel$p(this.this$0).setReasonSelected(this.$reasonView$inlined.getReason());

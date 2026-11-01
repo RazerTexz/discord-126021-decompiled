@@ -3,7 +3,6 @@ package com.discord.widgets.guilds.profile;
 import android.content.Context;
 import android.view.View;
 import com.discord.widgets.servers.WidgetServerNotifications;
-import com.discord.widgets.servers.WidgetServerNotifications$Companion;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -33,10 +32,10 @@ public final class WidgetGuildProfileSheet$configureTabItems$$inlined$apply$lamb
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(View view) {
         m.checkNotNullParameter(view, "view");
-        WidgetServerNotifications$Companion widgetServerNotifications$Companion = WidgetServerNotifications.Companion;
+        WidgetServerNotifications.Companion companion = WidgetServerNotifications.INSTANCE;
         long j = this.$guildId$inlined;
         Context context = view.getContext();
         m.checkNotNullExpressionValue(context, "view.context");
-        widgetServerNotifications$Companion.launch(j, context);
+        companion.launch(j, context);
     }
 }

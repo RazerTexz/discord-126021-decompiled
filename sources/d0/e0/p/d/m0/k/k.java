@@ -13,7 +13,7 @@ import d0.e0.p.d.m0.c.z;
 import d0.e0.p.d.m0.c.z0;
 import d0.e0.p.d.m0.n.c0;
 import d0.e0.p.d.m0.n.e0;
-import d0.e0.p.d.m0.n.l1.g$a;
+import d0.e0.p.d.m0.n.u0;
 import d0.t.u;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,6 +25,7 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.ServiceLoader;
 import java.util.Set;
 import kotlin.Pair;
@@ -36,22 +37,250 @@ import kotlin.jvm.functions.Function2;
 /* JADX INFO: compiled from: OverridingUtil.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class k {
-    public static final d0.e0.p.d.m0.n.l1.f$a c;
+    public static final d0.e0.p.d.m0.n.l1.f.a c;
     public final d0.e0.p.d.m0.n.l1.g d;
-    public final d0.e0.p.d.m0.n.l1.f$a e;
+    public final d0.e0.p.d.m0.n.l1.f.a e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final k f3468b;
     public static final List<f> a = u.toList(ServiceLoader.load(f.class, f.class.getClassLoader()));
 
-    static {
-        k$a k_a = new k$a();
-        c = k_a;
-        f3468b = new k(k_a, g$a.a);
+    /* JADX INFO: compiled from: OverridingUtil.java */
+    public final class a implements d0.e0.p.d.m0.n.l1.f.a {
+        public static /* synthetic */ void a(int i) {
+            Object[] objArr = new Object[3];
+            if (i != 1) {
+                objArr[0] = "a";
+            } else {
+                objArr[0] = "b";
+            }
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/resolve/OverridingUtil$1";
+            objArr[2] = "equals";
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+
+        @Override // d0.e0.p.d.m0.n.l1.f.a
+        public boolean equals(u0 u0Var, u0 u0Var2) {
+            if (u0Var == null) {
+                a(0);
+                throw null;
+            }
+            if (u0Var2 != null) {
+                return u0Var.equals(u0Var2);
+            }
+            a(1);
+            throw null;
+        }
     }
 
-    public k(d0.e0.p.d.m0.n.l1.f$a f_a, d0.e0.p.d.m0.n.l1.g gVar) {
-        if (f_a == null) {
+    /* JADX INFO: Add missing generic type declarations: [D] */
+    /* JADX INFO: compiled from: OverridingUtil.java */
+    public final class b<D> implements Function2<D, D, Pair<d0.e0.p.d.m0.c.a, d0.e0.p.d.m0.c.a>> {
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Pair<d0.e0.p.d.m0.c.a, d0.e0.p.d.m0.c.a> invoke(Object obj, Object obj2) {
+            return invoke((d0.e0.p.d.m0.c.a) obj, (d0.e0.p.d.m0.c.a) obj2);
+        }
+
+        /* JADX WARN: Incorrect types in method signature: (TD;TD;)Lkotlin/Pair<Ld0/e0/p/d/m0/c/a;Ld0/e0/p/d/m0/c/a;>; */
+        public Pair invoke(d0.e0.p.d.m0.c.a aVar, d0.e0.p.d.m0.c.a aVar2) {
+            return new Pair(aVar, aVar2);
+        }
+    }
+
+    /* JADX INFO: compiled from: OverridingUtil.java */
+    public final class c implements Function1<d0.e0.p.d.m0.c.b, d0.e0.p.d.m0.c.a> {
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.a invoke(d0.e0.p.d.m0.c.b bVar) {
+            return invoke2(bVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public d0.e0.p.d.m0.c.b invoke2(d0.e0.p.d.m0.c.b bVar) {
+            return bVar;
+        }
+    }
+
+    /* JADX INFO: compiled from: OverridingUtil.java */
+    public class d {
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final a f3469b;
+        public static final d a = new d(a.OVERRIDABLE, "SUCCESS");
+
+        /* JADX INFO: compiled from: OverridingUtil.java */
+        public enum a {
+            OVERRIDABLE,
+            INCOMPATIBLE,
+            CONFLICT
+        }
+
+        public d(a aVar, String str) {
+            if (aVar == null) {
+                a(3);
+                throw null;
+            }
+            if (str != null) {
+                this.f3469b = aVar;
+            } else {
+                a(4);
+                throw null;
+            }
+        }
+
+        /* JADX WARN: Code duplicated, block: B:22:0x0031  */
+        public static /* synthetic */ void a(int i) {
+            String str = (i == 1 || i == 2 || i == 3 || i == 4) ? "Argument for @NotNull parameter '%s' of %s.%s must not be null" : "@NotNull method %s.%s must not return null";
+            Object[] objArr = new Object[(i == 1 || i == 2 || i == 3 || i == 4) ? 3 : 2];
+            if (i == 1 || i == 2) {
+                objArr[0] = "debugMessage";
+            } else if (i == 3) {
+                objArr[0] = "success";
+            } else if (i != 4) {
+                objArr[0] = "kotlin/reflect/jvm/internal/impl/resolve/OverridingUtil$OverrideCompatibilityInfo";
+            } else {
+                objArr[0] = "debugMessage";
+            }
+            switch (i) {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    objArr[1] = "kotlin/reflect/jvm/internal/impl/resolve/OverridingUtil$OverrideCompatibilityInfo";
+                    break;
+                case 5:
+                    objArr[1] = "getResult";
+                    break;
+                case 6:
+                    objArr[1] = "getDebugMessage";
+                    break;
+                default:
+                    objArr[1] = "success";
+                    break;
+            }
+            if (i == 1) {
+                objArr[2] = "incompatible";
+            } else if (i == 2) {
+                objArr[2] = "conflict";
+            } else if (i == 3 || i == 4) {
+                objArr[2] = "<init>";
+            }
+            String str2 = String.format(str, objArr);
+            if (i != 1 && i != 2 && i != 3 && i != 4) {
+                throw new IllegalStateException(str2);
+            }
+            throw new IllegalArgumentException(str2);
+        }
+
+        public static d conflict(String str) {
+            if (str != null) {
+                return new d(a.CONFLICT, str);
+            }
+            a(2);
+            throw null;
+        }
+
+        public a getResult() {
+            a aVar = this.f3469b;
+            if (aVar != null) {
+                return aVar;
+            }
+            a(5);
+            throw null;
+        }
+
+        public static d incompatible(String str) {
+            if (str != null) {
+                return new d(a.INCOMPATIBLE, str);
+            }
+            a(1);
+            throw null;
+        }
+
+        public static d success() {
+            d dVar = a;
+            if (dVar != null) {
+                return dVar;
+            }
+            a(0);
+            throw null;
+        }
+    }
+
+    /* JADX INFO: compiled from: OverridingUtil.java */
+    public class e extends d0.e0.p.d.m0.n.l1.a {
+        public final Map<u0, u0> j;
+
+        public e(Map<u0, u0> map) {
+            super(true, true, true, k.this.d);
+            this.j = map;
+        }
+
+        public static /* synthetic */ void a(int i) {
+            Object[] objArr = new Object[3];
+            if (i == 1 || i == 3) {
+                objArr[0] = "b";
+            } else {
+                objArr[0] = "a";
+            }
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/resolve/OverridingUtil$OverridingUtilTypeCheckerContext";
+            if (i == 2 || i == 3) {
+                objArr[2] = "areEqualTypeConstructorsByAxioms";
+            } else {
+                objArr[2] = "areEqualTypeConstructors";
+            }
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+
+        /* JADX WARN: Code duplicated, block: B:23:0x003f  */
+        @Override // d0.e0.p.d.m0.n.l1.a
+        public boolean areEqualTypeConstructors(u0 u0Var, u0 u0Var2) {
+            boolean z2;
+            if (u0Var == null) {
+                a(0);
+                throw null;
+            }
+            if (u0Var2 == null) {
+                a(1);
+                throw null;
+            }
+            if (!super.areEqualTypeConstructors(u0Var, u0Var2)) {
+                if (u0Var == null) {
+                    a(2);
+                    throw null;
+                }
+                if (u0Var2 == null) {
+                    a(3);
+                    throw null;
+                }
+                if (k.this.e.equals(u0Var, u0Var2)) {
+                    z2 = true;
+                } else {
+                    Map<u0, u0> map = this.j;
+                    if (map != null) {
+                        u0 u0Var3 = map.get(u0Var);
+                        u0 u0Var4 = this.j.get(u0Var2);
+                        if ((u0Var3 != null && u0Var3.equals(u0Var2)) || (u0Var4 != null && u0Var4.equals(u0Var))) {
+                            z2 = true;
+                        }
+                    }
+                    z2 = false;
+                }
+                if (!z2) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
+    static {
+        a aVar = new a();
+        c = aVar;
+        f3468b = new k(aVar, d0.e0.p.d.m0.n.l1.g.a.a);
+    }
+
+    public k(d0.e0.p.d.m0.n.l1.f.a aVar, d0.e0.p.d.m0.n.l1.g gVar) {
+        if (aVar == null) {
             a(4);
             throw null;
         }
@@ -59,7 +288,7 @@ public class k {
             a(5);
             throw null;
         }
-        this.e = f_a;
+        this.e = aVar;
         this.d = gVar;
     }
 
@@ -689,13 +918,13 @@ public class k {
         }
     }
 
-    public static k create(d0.e0.p.d.m0.n.l1.g gVar, d0.e0.p.d.m0.n.l1.f$a f_a) {
+    public static k create(d0.e0.p.d.m0.n.l1.g gVar, d0.e0.p.d.m0.n.l1.f.a aVar) {
         if (gVar == null) {
             a(2);
             throw null;
         }
-        if (f_a != null) {
-            return new k(f_a, gVar);
+        if (aVar != null) {
+            return new k(aVar, gVar);
         }
         a(3);
         throw null;
@@ -820,7 +1049,7 @@ public class k {
             zVar = modality;
             break;
         }
-        d0.e0.p.d.m0.c.b bVarCopy = ((d0.e0.p.d.m0.c.b) selectMostSpecificMember(collection2, new k$c())).copy(eVar, zVar, zIsEmpty ? d0.e0.p.d.m0.c.t.h : d0.e0.p.d.m0.c.t.g, d0.e0.p.d.m0.c.b$a.FAKE_OVERRIDE, false);
+        d0.e0.p.d.m0.c.b bVarCopy = ((d0.e0.p.d.m0.c.b) selectMostSpecificMember(collection2, new c())).copy(eVar, zVar, zIsEmpty ? d0.e0.p.d.m0.c.t.h : d0.e0.p.d.m0.c.t.g, d0.e0.p.d.m0.c.b.a.FAKE_OVERRIDE, false);
         jVar.setOverriddenDescriptors(bVarCopy, collection2);
         jVar.addFakeOverride(bVarCopy);
     }
@@ -852,11 +1081,11 @@ public class k {
             if (h == next) {
                 it.remove();
             } else {
-                k$d$a bothWaysOverridability = getBothWaysOverridability(aVarInvoke, aVarInvoke2);
-                if (bothWaysOverridability == k$d$a.OVERRIDABLE) {
+                d.a bothWaysOverridability = getBothWaysOverridability(aVarInvoke, aVarInvoke2);
+                if (bothWaysOverridability == d.a.OVERRIDABLE) {
                     arrayList.add(next);
                     it.remove();
-                } else if (bothWaysOverridability == k$d$a.CONFLICT) {
+                } else if (bothWaysOverridability == d.a.CONFLICT) {
                     function2.invoke(next);
                     it.remove();
                 }
@@ -866,7 +1095,7 @@ public class k {
     }
 
     public final Pair<d0.e0.p.d.m0.n.l1.m, d0.e0.p.d.m0.n.l1.a> f(List<z0> list, List<z0> list2) {
-        k$e k_e;
+        e eVar;
         if (list == null) {
             a(40);
             throw null;
@@ -885,20 +1114,20 @@ public class k {
             throw null;
         }
         if (list.isEmpty()) {
-            k_e = new k$e(this, null);
+            eVar = new e(null);
         } else {
             HashMap map = new HashMap();
             for (int i = 0; i < list.size(); i++) {
                 map.put(list.get(i).getTypeConstructor(), list2.get(i).getTypeConstructor());
             }
-            k_e = new k$e(this, map);
+            eVar = new e(map);
         }
-        return new Pair<>(mVar, k_e);
+        return new Pair<>(mVar, eVar);
     }
 
     public static <D extends d0.e0.p.d.m0.c.a> Set<D> filterOutOverridden(Set<D> set) {
         if (set != null) {
-            return filterOverrides(set, !set.isEmpty() && d0.e0.p.d.m0.k.x.a.isTypeRefinementEnabled(d0.e0.p.d.m0.k.x.a.getModule(set.iterator().next())), null, new k$b());
+            return filterOverrides(set, !set.isEmpty() && d0.e0.p.d.m0.k.x.a.isTypeRefinementEnabled(d0.e0.p.d.m0.k.x.a.getModule(set.iterator().next())), null, new b());
         }
         a(6);
         throw null;
@@ -1037,7 +1266,7 @@ public class k {
             ArrayList arrayList = new ArrayList(collection.size());
             d0.e0.p.d.m0.p.j jVarCreate = d0.e0.p.d.m0.p.j.create();
             for (d0.e0.p.d.m0.c.b bVar2 : collection) {
-                k$d$a result = isOverridableBy(bVar2, bVar, eVar2).getResult();
+                d.a result = isOverridableBy(bVar2, bVar, eVar2).getResult();
                 boolean zIsVisibleForOverride = isVisibleForOverride(bVar, bVar2);
                 int iOrdinal = result.ordinal();
                 if (iOrdinal == 0) {
@@ -1081,9 +1310,9 @@ public class k {
         }
     }
 
-    public static k$d getBasicOverridabilityProblem(d0.e0.p.d.m0.c.a aVar, d0.e0.p.d.m0.c.a aVar2) {
+    public static d getBasicOverridabilityProblem(d0.e0.p.d.m0.c.a aVar, d0.e0.p.d.m0.c.a aVar2) {
         boolean z2;
-        k$d k_dIncompatible;
+        d dVarIncompatible;
         if (aVar == null) {
             a(38);
             throw null;
@@ -1094,35 +1323,35 @@ public class k {
         }
         boolean z3 = aVar instanceof x;
         if ((z3 && !(aVar2 instanceof x)) || (((z2 = aVar instanceof n0)) && !(aVar2 instanceof n0))) {
-            return k$d.incompatible("Member kind mismatch");
+            return d.incompatible("Member kind mismatch");
         }
         if (!z3 && !z2) {
             throw new IllegalArgumentException("This type of CallableDescriptor cannot be checked for overridability: " + aVar);
         }
         if (!aVar.getName().equals(aVar2.getName())) {
-            return k$d.incompatible("Name mismatch");
+            return d.incompatible("Name mismatch");
         }
         if ((aVar.getExtensionReceiverParameter() == null) != (aVar2.getExtensionReceiverParameter() == null)) {
-            k_dIncompatible = k$d.incompatible("Receiver presence mismatch");
+            dVarIncompatible = d.incompatible("Receiver presence mismatch");
         } else {
-            k_dIncompatible = aVar.getValueParameters().size() != aVar2.getValueParameters().size() ? k$d.incompatible("Value parameter number mismatch") : null;
+            dVarIncompatible = aVar.getValueParameters().size() != aVar2.getValueParameters().size() ? d.incompatible("Value parameter number mismatch") : null;
         }
-        if (k_dIncompatible != null) {
-            return k_dIncompatible;
+        if (dVarIncompatible != null) {
+            return dVarIncompatible;
         }
         return null;
     }
 
-    public static k$d$a getBothWaysOverridability(d0.e0.p.d.m0.c.a aVar, d0.e0.p.d.m0.c.a aVar2) {
+    public static d.a getBothWaysOverridability(d0.e0.p.d.m0.c.a aVar, d0.e0.p.d.m0.c.a aVar2) {
         k kVar = f3468b;
-        k$d$a result = kVar.isOverridableBy(aVar2, aVar, null).getResult();
-        k$d$a result2 = kVar.isOverridableBy(aVar, aVar2, null).getResult();
-        k$d$a k_d_a = k$d$a.OVERRIDABLE;
-        if (result == k_d_a && result2 == k_d_a) {
-            return k_d_a;
+        d.a result = kVar.isOverridableBy(aVar2, aVar, null).getResult();
+        d.a result2 = kVar.isOverridableBy(aVar, aVar2, null).getResult();
+        d.a aVar3 = d.a.OVERRIDABLE;
+        if (result == aVar3 && result2 == aVar3) {
+            return aVar3;
         }
-        k$d$a k_d_a2 = k$d$a.CONFLICT;
-        return (result == k_d_a2 || result2 == k_d_a2) ? k_d_a2 : k$d$a.INCOMPATIBLE;
+        d.a aVar4 = d.a.CONFLICT;
+        return (result == aVar4 || result2 == aVar4) ? aVar4 : d.a.INCOMPATIBLE;
     }
 
     public static Set<d0.e0.p.d.m0.c.b> getOverriddenDeclarations(d0.e0.p.d.m0.c.b bVar) {
@@ -1176,7 +1405,7 @@ public class k {
         return (n0Var.isVar() || !n0Var2.isVar()) && g(aVar, returnType, aVar2, returnType2, pairF);
     }
 
-    public k$d isOverridableBy(d0.e0.p.d.m0.c.a aVar, d0.e0.p.d.m0.c.a aVar2, d0.e0.p.d.m0.c.e eVar) {
+    public d isOverridableBy(d0.e0.p.d.m0.c.a aVar, d0.e0.p.d.m0.c.a aVar2, d0.e0.p.d.m0.c.e eVar) {
         if (aVar == null) {
             a(17);
             throw null;
@@ -1185,15 +1414,15 @@ public class k {
             a(18);
             throw null;
         }
-        k$d k_dIsOverridableBy = isOverridableBy(aVar, aVar2, eVar, false);
-        if (k_dIsOverridableBy != null) {
-            return k_dIsOverridableBy;
+        d dVarIsOverridableBy = isOverridableBy(aVar, aVar2, eVar, false);
+        if (dVarIsOverridableBy != null) {
+            return dVarIsOverridableBy;
         }
         a(19);
         throw null;
     }
 
-    public k$d isOverridableByWithoutExternalConditions(d0.e0.p.d.m0.c.a aVar, d0.e0.p.d.m0.c.a aVar2, boolean z2) {
+    public d isOverridableByWithoutExternalConditions(d0.e0.p.d.m0.c.a aVar, d0.e0.p.d.m0.c.a aVar2, boolean z2) {
         if (aVar == null) {
             a(28);
             throw null;
@@ -1202,7 +1431,7 @@ public class k {
             a(29);
             throw null;
         }
-        k$d basicOverridabilityProblem = getBasicOverridabilityProblem(aVar, aVar2);
+        d basicOverridabilityProblem = getBasicOverridabilityProblem(aVar, aVar2);
         if (basicOverridabilityProblem != null) {
             return basicOverridabilityProblem;
         }
@@ -1215,17 +1444,17 @@ public class k {
             while (true) {
                 ArrayList arrayList = (ArrayList) listD;
                 if (i >= arrayList.size()) {
-                    k$d k_dConflict = k$d.conflict("Type parameter number mismatch");
-                    if (k_dConflict != null) {
-                        return k_dConflict;
+                    d dVarConflict = d.conflict("Type parameter number mismatch");
+                    if (dVarConflict != null) {
+                        return dVarConflict;
                     }
                     a(32);
                     throw null;
                 }
                 if (!d0.e0.p.d.m0.n.l1.f.a.equalTypes((c0) arrayList.get(i), (c0) ((ArrayList) listD2).get(i))) {
-                    k$d k_dIncompatible = k$d.incompatible("Type parameter number mismatch");
-                    if (k_dIncompatible != null) {
-                        return k_dIncompatible;
+                    d dVarIncompatible = d.incompatible("Type parameter number mismatch");
+                    if (dVarIncompatible != null) {
+                        return dVarIncompatible;
                     }
                     a(31);
                     throw null;
@@ -1267,9 +1496,9 @@ public class k {
                         }
                     }
                     if (!z3) {
-                        k$d k_dIncompatible2 = k$d.incompatible("Type parameter bounds mismatch");
-                        if (k_dIncompatible2 != null) {
-                            return k_dIncompatible2;
+                        d dVarIncompatible2 = d.incompatible("Type parameter bounds mismatch");
+                        if (dVarIncompatible2 != null) {
+                            return dVarIncompatible2;
                         }
                         a(33);
                         throw null;
@@ -1281,9 +1510,9 @@ public class k {
                         ArrayList arrayList3 = (ArrayList) listD;
                         if (i3 >= arrayList3.size()) {
                             if ((aVar instanceof x) && (aVar2 instanceof x) && ((x) aVar).isSuspend() != ((x) aVar2).isSuspend()) {
-                                k$d k_dConflict2 = k$d.conflict("Incompatible suspendability");
-                                if (k_dConflict2 != null) {
-                                    return k_dConflict2;
+                                d dVarConflict2 = d.conflict("Incompatible suspendability");
+                                if (dVarConflict2 != null) {
+                                    return dVarConflict2;
                                 }
                                 a(35);
                                 throw null;
@@ -1293,26 +1522,26 @@ public class k {
                                 c0 returnType2 = aVar2.getReturnType();
                                 if (returnType != null && returnType2 != null) {
                                     if (!(e0.isError(returnType2) && e0.isError(returnType)) && !pairF.getFirst().isSubtypeOf(pairF.getSecond(), returnType2.unwrap(), returnType.unwrap())) {
-                                        k$d k_dConflict3 = k$d.conflict("Return type mismatch");
-                                        if (k_dConflict3 != null) {
-                                            return k_dConflict3;
+                                        d dVarConflict3 = d.conflict("Return type mismatch");
+                                        if (dVarConflict3 != null) {
+                                            return dVarConflict3;
                                         }
                                         a(36);
                                         throw null;
                                     }
                                 }
                             }
-                            k$d k_dSuccess = k$d.success();
-                            if (k_dSuccess != null) {
-                                return k_dSuccess;
+                            d dVarSuccess = d.success();
+                            if (dVarSuccess != null) {
+                                return dVarSuccess;
                             }
                             a(37);
                             throw null;
                         }
                         if (!b((c0) arrayList3.get(i3), (c0) ((ArrayList) listD2).get(i3), pairF)) {
-                            k$d k_dIncompatible3 = k$d.incompatible("Value parameter type mismatch");
-                            if (k_dIncompatible3 != null) {
-                                return k_dIncompatible3;
+                            d dVarIncompatible3 = d.incompatible("Value parameter type mismatch");
+                            if (dVarIncompatible3 != null) {
+                                return dVarIncompatible3;
                             }
                             a(34);
                             throw null;
@@ -1336,22 +1565,22 @@ public class k {
         throw null;
     }
 
-    public static <D extends d0.e0.p.d.m0.c.a> boolean overrides(D d, D d2, boolean z2, boolean z3) {
-        if (d == null) {
+    public static <D extends d0.e0.p.d.m0.c.a> boolean overrides(D d2, D d3, boolean z2, boolean z3) {
+        if (d2 == null) {
             a(11);
             throw null;
         }
-        if (d2 == null) {
+        if (d3 == null) {
             a(12);
             throw null;
         }
-        if (!d.equals(d2) && b.a.areEquivalent(d.getOriginal(), d2.getOriginal(), z2, z3)) {
+        if (!d2.equals(d3) && d0.e0.p.d.m0.k.b.a.areEquivalent(d2.getOriginal(), d3.getOriginal(), z2, z3)) {
             return true;
         }
-        d0.e0.p.d.m0.c.a original = d2.getOriginal();
-        Iterator it = e.getAllOverriddenDescriptors(d).iterator();
+        d0.e0.p.d.m0.c.a original = d3.getOriginal();
+        Iterator it = d0.e0.p.d.m0.k.e.getAllOverriddenDescriptors(d2).iterator();
         while (it.hasNext()) {
-            if (b.a.areEquivalent(original, (d0.e0.p.d.m0.c.a) it.next(), z2, z3)) {
+            if (d0.e0.p.d.m0.k.b.a.areEquivalent(original, (d0.e0.p.d.m0.c.a) it.next(), z2, z3)) {
                 return true;
             }
         }
@@ -1378,7 +1607,7 @@ public class k {
             uVarFindMaxVisibility = null;
             break;
         }
-        if (bVar.getKind() == d0.e0.p.d.m0.c.b$a.FAKE_OVERRIDE) {
+        if (bVar.getKind() == d0.e0.p.d.m0.c.b.a.FAKE_OVERRIDE) {
             for (d0.e0.p.d.m0.c.b bVar3 : overriddenDescriptors) {
                 if (bVar3.getModality() != z.ABSTRACT && !bVar3.getVisibility().equals(uVarFindMaxVisibility)) {
                     uVarFindMaxVisibility = null;
@@ -1500,33 +1729,33 @@ public class k {
         throw null;
     }
 
-    public k$d isOverridableBy(d0.e0.p.d.m0.c.a aVar, d0.e0.p.d.m0.c.a aVar2, d0.e0.p.d.m0.c.e eVar, boolean z2) {
-        f$a f_a = f$a.CONFLICTS_ONLY;
+    public d isOverridableBy(d0.e0.p.d.m0.c.a aVar, d0.e0.p.d.m0.c.a aVar2, d0.e0.p.d.m0.c.e eVar, boolean z2) {
+        f.a aVar3 = f.a.CONFLICTS_ONLY;
         if (aVar == null) {
             a(20);
             throw null;
         }
         if (aVar2 != null) {
-            k$d k_dIsOverridableByWithoutExternalConditions = isOverridableByWithoutExternalConditions(aVar, aVar2, z2);
-            boolean z3 = k_dIsOverridableByWithoutExternalConditions.getResult() == k$d$a.OVERRIDABLE;
+            d dVarIsOverridableByWithoutExternalConditions = isOverridableByWithoutExternalConditions(aVar, aVar2, z2);
+            boolean z3 = dVarIsOverridableByWithoutExternalConditions.getResult() == d.a.OVERRIDABLE;
             for (f fVar : a) {
-                if (fVar.getContract() != f_a && (!z3 || fVar.getContract() != f$a.SUCCESS_ONLY)) {
+                if (fVar.getContract() != aVar3 && (!z3 || fVar.getContract() != f.a.SUCCESS_ONLY)) {
                     int iOrdinal = fVar.isOverridable(aVar, aVar2, eVar).ordinal();
                     if (iOrdinal == 0) {
                         z3 = true;
                     } else {
                         if (iOrdinal == 1) {
-                            k$d k_dConflict = k$d.conflict("External condition failed");
-                            if (k_dConflict != null) {
-                                return k_dConflict;
+                            d dVarConflict = d.conflict("External condition failed");
+                            if (dVarConflict != null) {
+                                return dVarConflict;
                             }
                             a(22);
                             throw null;
                         }
                         if (iOrdinal == 2) {
-                            k$d k_dIncompatible = k$d.incompatible("External condition");
-                            if (k_dIncompatible != null) {
-                                return k_dIncompatible;
+                            d dVarIncompatible = d.incompatible("External condition");
+                            if (dVarIncompatible != null) {
+                                return dVarIncompatible;
                             }
                             a(23);
                             throw null;
@@ -1535,10 +1764,10 @@ public class k {
                 }
             }
             if (!z3) {
-                return k_dIsOverridableByWithoutExternalConditions;
+                return dVarIsOverridableByWithoutExternalConditions;
             }
             for (f fVar2 : a) {
-                if (fVar2.getContract() == f_a) {
+                if (fVar2.getContract() == aVar3) {
                     int iOrdinal2 = fVar2.isOverridable(aVar, aVar2, eVar).ordinal();
                     if (iOrdinal2 == 0) {
                         StringBuilder sbU = b.d.b.a.a.U("Contract violation in ");
@@ -1547,26 +1776,26 @@ public class k {
                         throw new IllegalStateException(sbU.toString());
                     }
                     if (iOrdinal2 == 1) {
-                        k$d k_dConflict2 = k$d.conflict("External condition failed");
-                        if (k_dConflict2 != null) {
-                            return k_dConflict2;
+                        d dVarConflict2 = d.conflict("External condition failed");
+                        if (dVarConflict2 != null) {
+                            return dVarConflict2;
                         }
                         a(25);
                         throw null;
                     }
                     if (iOrdinal2 == 2) {
-                        k$d k_dIncompatible2 = k$d.incompatible("External condition");
-                        if (k_dIncompatible2 != null) {
-                            return k_dIncompatible2;
+                        d dVarIncompatible2 = d.incompatible("External condition");
+                        if (dVarIncompatible2 != null) {
+                            return dVarIncompatible2;
                         }
                         a(26);
                         throw null;
                     }
                 }
             }
-            k$d k_dSuccess = k$d.success();
-            if (k_dSuccess != null) {
-                return k_dSuccess;
+            d dVarSuccess = d.success();
+            if (dVarSuccess != null) {
+                return dVarSuccess;
             }
             a(27);
             throw null;

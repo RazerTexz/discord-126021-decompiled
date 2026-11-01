@@ -1,133 +1,251 @@
 package d0.e0.p.d.m0.f.z;
 
-import d0.e0.p.d.m0.f.c$c;
 import d0.e0.p.d.m0.f.k;
 import d0.e0.p.d.m0.f.x;
 
 /* JADX INFO: compiled from: Flags.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class b {
-    public static final b$b A;
-    public static final b$b B;
-    public static final b$b C;
-    public static final b$b D;
-    public static final b$b E;
-    public static final b$b F;
-    public static final b$b G;
-    public static final b$b H;
-    public static final b$b I;
-    public static final b$b J;
-    public static final b$b K;
-    public static final b$b L;
-    public static final b$b M;
-    public static final b$d<x> c;
-    public static final b$d<k> d;
-    public static final b$d<c$c> e;
+    public static final C0555b A;
+    public static final C0555b B;
+    public static final C0555b C;
+    public static final C0555b D;
+    public static final C0555b E;
+    public static final C0555b F;
+    public static final C0555b G;
+    public static final C0555b H;
+    public static final C0555b I;
+    public static final C0555b J;
+    public static final C0555b K;
+    public static final C0555b L;
+    public static final C0555b M;
+    public static final d<x> c;
+    public static final d<k> d;
+    public static final d<d0.e0.p.d.m0.f.c.EnumC0550c> e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final b$b f3412b;
+    public static final C0555b f3412b;
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
-    public static final b$b f3413s;
+    public static final C0555b f3413s;
 
     /* JADX INFO: renamed from: x, reason: collision with root package name */
-    public static final b$b f3414x;
+    public static final C0555b f3414x;
 
     /* JADX INFO: renamed from: y, reason: collision with root package name */
-    public static final b$b f3415y;
+    public static final C0555b f3415y;
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
-    public static final b$b f3416z;
-    public static final b$b f;
-    public static final b$b g;
-    public static final b$b h;
-    public static final b$b i;
-    public static final b$b j;
-    public static final b$b k;
-    public static final b$b l;
-    public static final b$b m;
-    public static final b$d<d0.e0.p.d.m0.f.j> n;
-    public static final b$b o;
-    public static final b$b p;
-    public static final b$b q;
-    public static final b$b r;
-    public static final b$b t;
-    public static final b$b u;
-    public static final b$b v;
-    public static final b$b w;
-    public static final b$b a = b$d.booleanFirst();
+    public static final C0555b f3416z;
+    public static final C0555b f;
+    public static final C0555b g;
+    public static final C0555b h;
+    public static final C0555b i;
+    public static final C0555b j;
+    public static final C0555b k;
+    public static final C0555b l;
+    public static final C0555b m;
+    public static final d<d0.e0.p.d.m0.f.j> n;
+    public static final C0555b o;
+    public static final C0555b p;
+    public static final C0555b q;
+    public static final C0555b r;
+    public static final C0555b t;
+    public static final C0555b u;
+    public static final C0555b v;
+    public static final C0555b w;
+    public static final C0555b a = d.booleanFirst();
+
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.f.z.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: Flags.java */
+    public class C0555b extends d<Boolean> {
+        public C0555b(int i) {
+            super(i, 1, null);
+        }
+
+        @Override // d0.e0.p.d.m0.f.z.b.d
+        public /* bridge */ /* synthetic */ Boolean get(int i) {
+            return get(i);
+        }
+
+        @Override // d0.e0.p.d.m0.f.z.b.d
+        public /* bridge */ /* synthetic */ int toFlags(Boolean bool) {
+            return toFlags2(bool);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // d0.e0.p.d.m0.f.z.b.d
+        public Boolean get(int i) {
+            Boolean boolValueOf = Boolean.valueOf((i & (1 << this.a)) != 0);
+            if (boolValueOf != null) {
+                return boolValueOf;
+            }
+            throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", "kotlin/reflect/jvm/internal/impl/metadata/deserialization/Flags$BooleanFlagField", "get"));
+        }
+
+        /* JADX INFO: renamed from: toFlags, reason: avoid collision after fix types in other method */
+        public int toFlags2(Boolean bool) {
+            if (bool.booleanValue()) {
+                return 1 << this.a;
+            }
+            return 0;
+        }
+    }
+
+    /* JADX INFO: compiled from: Flags.java */
+    public class c<E extends d0.e0.p.d.m0.i.h.a> extends d<E> {
+        public final E[] c;
+
+        /* JADX WARN: Illegal instructions before constructor call */
+        public c(int i, E[] eArr) {
+            int i2 = 1;
+            if (eArr == null) {
+                throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "enumEntries", "kotlin/reflect/jvm/internal/impl/metadata/deserialization/Flags$EnumLiteFlagField", "bitWidth"));
+            }
+            int length = eArr.length - 1;
+            if (length != 0) {
+                for (int i3 = 31; i3 >= 0; i3--) {
+                    if (((1 << i3) & length) != 0) {
+                        i2 = 1 + i3;
+                    }
+                }
+                StringBuilder sbU = b.d.b.a.a.U("Empty enum: ");
+                sbU.append(eArr.getClass());
+                throw new IllegalStateException(sbU.toString());
+            }
+            super(i, i2, null);
+            this.c = eArr;
+        }
+
+        @Override // d0.e0.p.d.m0.f.z.b.d
+        public /* bridge */ /* synthetic */ Object get(int i) {
+            return get(i);
+        }
+
+        @Override // d0.e0.p.d.m0.f.z.b.d
+        public /* bridge */ /* synthetic */ int toFlags(Object obj) {
+            return toFlags((d0.e0.p.d.m0.i.h.a) obj);
+        }
+
+        @Override // d0.e0.p.d.m0.f.z.b.d
+        public E get(int i) {
+            int i2 = (1 << this.f3417b) - 1;
+            int i3 = this.a;
+            int i4 = (i & (i2 << i3)) >> i3;
+            for (E e : this.c) {
+                if (e.getNumber() == i4) {
+                    return e;
+                }
+            }
+            return null;
+        }
+
+        public int toFlags(E e) {
+            return e.getNumber() << this.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: Flags.java */
+    public abstract class d<E> {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f3417b;
+
+        public d(int i, int i2, a aVar) {
+            this.a = i;
+            this.f3417b = i2;
+        }
+
+        /* JADX WARN: Incorrect types in method signature: <E::Ld0/e0/p/d/m0/i/h$a;>(Ld0/e0/p/d/m0/f/z/b$d<*>;[TE;)Ld0/e0/p/d/m0/f/z/b$d<TE;>; */
+        public static d after(d dVar, d0.e0.p.d.m0.i.h.a[] aVarArr) {
+            return new c(dVar.a + dVar.f3417b, aVarArr);
+        }
+
+        public static C0555b booleanAfter(d<?> dVar) {
+            return new C0555b(dVar.a + dVar.f3417b);
+        }
+
+        public static C0555b booleanFirst() {
+            return new C0555b(0);
+        }
+
+        public abstract E get(int i);
+
+        public abstract int toFlags(E e);
+    }
 
     static {
-        b$b b_bBooleanFirst = b$d.booleanFirst();
-        f3412b = b_bBooleanFirst;
-        b$d<x> b_dAfter = b$d.after(b_bBooleanFirst, x.values());
-        c = b_dAfter;
-        b$d<k> b_dAfter2 = b$d.after(b_dAfter, k.values());
-        d = b_dAfter2;
-        b$d<c$c> b_dAfter3 = b$d.after(b_dAfter2, c$c.values());
-        e = b_dAfter3;
-        b$b b_bBooleanAfter = b$d.booleanAfter(b_dAfter3);
-        f = b_bBooleanAfter;
-        b$b b_bBooleanAfter2 = b$d.booleanAfter(b_bBooleanAfter);
-        g = b_bBooleanAfter2;
-        b$b b_bBooleanAfter3 = b$d.booleanAfter(b_bBooleanAfter2);
-        h = b_bBooleanAfter3;
-        b$b b_bBooleanAfter4 = b$d.booleanAfter(b_bBooleanAfter3);
-        i = b_bBooleanAfter4;
-        b$b b_bBooleanAfter5 = b$d.booleanAfter(b_bBooleanAfter4);
-        j = b_bBooleanAfter5;
-        k = b$d.booleanAfter(b_bBooleanAfter5);
-        b$b b_bBooleanAfter6 = b$d.booleanAfter(b_dAfter);
-        l = b_bBooleanAfter6;
-        m = b$d.booleanAfter(b_bBooleanAfter6);
-        b$d<d0.e0.p.d.m0.f.j> b_dAfter4 = b$d.after(b_dAfter2, d0.e0.p.d.m0.f.j.values());
-        n = b_dAfter4;
-        b$b b_bBooleanAfter7 = b$d.booleanAfter(b_dAfter4);
-        o = b_bBooleanAfter7;
-        b$b b_bBooleanAfter8 = b$d.booleanAfter(b_bBooleanAfter7);
-        p = b_bBooleanAfter8;
-        b$b b_bBooleanAfter9 = b$d.booleanAfter(b_bBooleanAfter8);
-        q = b_bBooleanAfter9;
-        b$b b_bBooleanAfter10 = b$d.booleanAfter(b_bBooleanAfter9);
-        r = b_bBooleanAfter10;
-        b$b b_bBooleanAfter11 = b$d.booleanAfter(b_bBooleanAfter10);
-        f3413s = b_bBooleanAfter11;
-        b$b b_bBooleanAfter12 = b$d.booleanAfter(b_bBooleanAfter11);
-        t = b_bBooleanAfter12;
-        b$b b_bBooleanAfter13 = b$d.booleanAfter(b_bBooleanAfter12);
-        u = b_bBooleanAfter13;
-        v = b$d.booleanAfter(b_bBooleanAfter13);
-        b$b b_bBooleanAfter14 = b$d.booleanAfter(b_dAfter4);
-        w = b_bBooleanAfter14;
-        b$b b_bBooleanAfter15 = b$d.booleanAfter(b_bBooleanAfter14);
-        f3414x = b_bBooleanAfter15;
-        b$b b_bBooleanAfter16 = b$d.booleanAfter(b_bBooleanAfter15);
-        f3415y = b_bBooleanAfter16;
-        b$b b_bBooleanAfter17 = b$d.booleanAfter(b_bBooleanAfter16);
-        f3416z = b_bBooleanAfter17;
-        b$b b_bBooleanAfter18 = b$d.booleanAfter(b_bBooleanAfter17);
-        A = b_bBooleanAfter18;
-        b$b b_bBooleanAfter19 = b$d.booleanAfter(b_bBooleanAfter18);
-        B = b_bBooleanAfter19;
-        b$b b_bBooleanAfter20 = b$d.booleanAfter(b_bBooleanAfter19);
-        C = b_bBooleanAfter20;
-        b$b b_bBooleanAfter21 = b$d.booleanAfter(b_bBooleanAfter20);
-        D = b_bBooleanAfter21;
-        E = b$d.booleanAfter(b_bBooleanAfter21);
-        b$b b_bBooleanAfter22 = b$d.booleanAfter(b_bBooleanFirst);
-        F = b_bBooleanAfter22;
-        b$b b_bBooleanAfter23 = b$d.booleanAfter(b_bBooleanAfter22);
-        G = b_bBooleanAfter23;
-        H = b$d.booleanAfter(b_bBooleanAfter23);
-        b$b b_bBooleanAfter24 = b$d.booleanAfter(b_dAfter2);
-        I = b_bBooleanAfter24;
-        b$b b_bBooleanAfter25 = b$d.booleanAfter(b_bBooleanAfter24);
-        J = b_bBooleanAfter25;
-        K = b$d.booleanAfter(b_bBooleanAfter25);
-        b$b b_bBooleanFirst2 = b$d.booleanFirst();
-        L = b_bBooleanFirst2;
-        b$d.booleanAfter(b_bBooleanFirst2);
-        M = b$d.booleanFirst();
+        C0555b c0555bBooleanFirst = d.booleanFirst();
+        f3412b = c0555bBooleanFirst;
+        d<x> dVarAfter = d.after(c0555bBooleanFirst, x.values());
+        c = dVarAfter;
+        d<k> dVarAfter2 = d.after(dVarAfter, k.values());
+        d = dVarAfter2;
+        d<d0.e0.p.d.m0.f.c.EnumC0550c> dVarAfter3 = d.after(dVarAfter2, d0.e0.p.d.m0.f.c.EnumC0550c.values());
+        e = dVarAfter3;
+        C0555b c0555bBooleanAfter = d.booleanAfter(dVarAfter3);
+        f = c0555bBooleanAfter;
+        C0555b c0555bBooleanAfter2 = d.booleanAfter(c0555bBooleanAfter);
+        g = c0555bBooleanAfter2;
+        C0555b c0555bBooleanAfter3 = d.booleanAfter(c0555bBooleanAfter2);
+        h = c0555bBooleanAfter3;
+        C0555b c0555bBooleanAfter4 = d.booleanAfter(c0555bBooleanAfter3);
+        i = c0555bBooleanAfter4;
+        C0555b c0555bBooleanAfter5 = d.booleanAfter(c0555bBooleanAfter4);
+        j = c0555bBooleanAfter5;
+        k = d.booleanAfter(c0555bBooleanAfter5);
+        C0555b c0555bBooleanAfter6 = d.booleanAfter(dVarAfter);
+        l = c0555bBooleanAfter6;
+        m = d.booleanAfter(c0555bBooleanAfter6);
+        d<d0.e0.p.d.m0.f.j> dVarAfter4 = d.after(dVarAfter2, d0.e0.p.d.m0.f.j.values());
+        n = dVarAfter4;
+        C0555b c0555bBooleanAfter7 = d.booleanAfter(dVarAfter4);
+        o = c0555bBooleanAfter7;
+        C0555b c0555bBooleanAfter8 = d.booleanAfter(c0555bBooleanAfter7);
+        p = c0555bBooleanAfter8;
+        C0555b c0555bBooleanAfter9 = d.booleanAfter(c0555bBooleanAfter8);
+        q = c0555bBooleanAfter9;
+        C0555b c0555bBooleanAfter10 = d.booleanAfter(c0555bBooleanAfter9);
+        r = c0555bBooleanAfter10;
+        C0555b c0555bBooleanAfter11 = d.booleanAfter(c0555bBooleanAfter10);
+        f3413s = c0555bBooleanAfter11;
+        C0555b c0555bBooleanAfter12 = d.booleanAfter(c0555bBooleanAfter11);
+        t = c0555bBooleanAfter12;
+        C0555b c0555bBooleanAfter13 = d.booleanAfter(c0555bBooleanAfter12);
+        u = c0555bBooleanAfter13;
+        v = d.booleanAfter(c0555bBooleanAfter13);
+        C0555b c0555bBooleanAfter14 = d.booleanAfter(dVarAfter4);
+        w = c0555bBooleanAfter14;
+        C0555b c0555bBooleanAfter15 = d.booleanAfter(c0555bBooleanAfter14);
+        f3414x = c0555bBooleanAfter15;
+        C0555b c0555bBooleanAfter16 = d.booleanAfter(c0555bBooleanAfter15);
+        f3415y = c0555bBooleanAfter16;
+        C0555b c0555bBooleanAfter17 = d.booleanAfter(c0555bBooleanAfter16);
+        f3416z = c0555bBooleanAfter17;
+        C0555b c0555bBooleanAfter18 = d.booleanAfter(c0555bBooleanAfter17);
+        A = c0555bBooleanAfter18;
+        C0555b c0555bBooleanAfter19 = d.booleanAfter(c0555bBooleanAfter18);
+        B = c0555bBooleanAfter19;
+        C0555b c0555bBooleanAfter20 = d.booleanAfter(c0555bBooleanAfter19);
+        C = c0555bBooleanAfter20;
+        C0555b c0555bBooleanAfter21 = d.booleanAfter(c0555bBooleanAfter20);
+        D = c0555bBooleanAfter21;
+        E = d.booleanAfter(c0555bBooleanAfter21);
+        C0555b c0555bBooleanAfter22 = d.booleanAfter(c0555bBooleanFirst);
+        F = c0555bBooleanAfter22;
+        C0555b c0555bBooleanAfter23 = d.booleanAfter(c0555bBooleanAfter22);
+        G = c0555bBooleanAfter23;
+        H = d.booleanAfter(c0555bBooleanAfter23);
+        C0555b c0555bBooleanAfter24 = d.booleanAfter(dVarAfter2);
+        I = c0555bBooleanAfter24;
+        C0555b c0555bBooleanAfter25 = d.booleanAfter(c0555bBooleanAfter24);
+        J = c0555bBooleanAfter25;
+        K = d.booleanAfter(c0555bBooleanAfter25);
+        C0555b c0555bBooleanFirst2 = d.booleanFirst();
+        L = c0555bBooleanFirst2;
+        d.booleanAfter(c0555bBooleanFirst2);
+        M = d.booleanFirst();
     }
 
     /* JADX WARN: Code duplicated, block: B:16:0x0021  */

@@ -23,7 +23,7 @@ public final class WidgetHubEventsPageFooterViewHolder extends WidgetHubEventsPa
         this.listener = hubEventsEventListener;
     }
 
-    public final void bind(HubEventsPage$Footer footer) {
+    public final void bind(HubEventsPage.Footer footer) {
         m.checkNotNullParameter(footer, "footer");
         LoadingButton loadingButton = this.binding.f2475b;
         loadingButton.setOnClickListener(new WidgetHubEventsPageFooterViewHolder$bind$$inlined$apply$lambda$1(this, footer));

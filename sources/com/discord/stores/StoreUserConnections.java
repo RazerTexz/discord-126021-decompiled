@@ -1,21 +1,34 @@
 package com.discord.stores;
 
 import android.content.Context;
+import com.discord.analytics.generated.events.network_action.TrackNetworkActionUserConnectionsUpdate;
+import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
 import com.discord.api.connectedaccounts.ConnectedAccount;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.ModelPayload;
-import com.discord.restapi.RestAPIParams$ConnectedAccount;
+import com.discord.models.domain.ModelUrl;
+import com.discord.restapi.RestAPIParams;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
 import com.discord.stores.utilities.RestCallStateKt;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
+import com.discord.utilities.uri.UriHandler;
+import d0.t.n;
+import d0.z.d.g;
+import d0.z.d.g0.a;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.function.UnaryOperator;
 import kotlin.NoWhenBranchMatchedException;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -26,9 +39,464 @@ import rx.Observable;
 public final class StoreUserConnections extends StoreV2 {
     private final Dispatcher dispatcher;
     private final ObservationDeck observationDeck;
-    private StoreUserConnections$State state;
-    private StoreUserConnections$State stateSnapshot;
+    private State state;
+    private State stateSnapshot;
     private final StoreStream stream;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserConnections$authorizeConnection$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserConnections.kt */
+    public final class AnonymousClass1 extends o implements Function1<ModelUrl, Unit> {
+        public final /* synthetic */ Context $context;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Context context) {
+            super(1);
+            this.$context = context;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelUrl modelUrl) {
+            invoke2(modelUrl);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelUrl modelUrl) {
+            m.checkNotNullParameter(modelUrl, "response");
+            UriHandler.handle$default(UriHandler.INSTANCE, this.$context, modelUrl.getUrl(), false, false, null, 28, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserConnections$deleteUserConnection$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserConnections.kt */
+    public final class AnonymousClass1 extends o implements Function1<Void, TrackNetworkMetadataReceiver> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ TrackNetworkMetadataReceiver invoke(Void r1) {
+            return invoke2(r1);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final TrackNetworkMetadataReceiver invoke2(Void r7) {
+            return new TrackNetworkActionUserConnectionsUpdate(null, null, null, null, 15);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserConnections$fetchConnectedAccounts$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserConnections.kt */
+    public final class AnonymousClass1 extends o implements Function1<List<? extends ConnectedAccount>, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreUserConnections$fetchConnectedAccounts$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreUserConnections.kt */
+        public final class C03041 extends o implements Function0<Unit> {
+            public final /* synthetic */ List $connectedAccounts;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C03041(List list) {
+                super(0);
+                this.$connectedAccounts = list;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreUserConnections.this.getStream().handleUserConnections(this.$connectedAccounts);
+            }
+        }
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ConnectedAccount> list) {
+            invoke2((List<ConnectedAccount>) list);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<ConnectedAccount> list) {
+            m.checkNotNullParameter(list, "connectedAccounts");
+            StoreUserConnections.this.getDispatcher().schedule(new C03041(list));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserConnections$init$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserConnections.kt */
+    public final class AnonymousClass1 extends o implements Function1<Unit, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
+            invoke2(unit);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Unit unit) {
+            StoreUserConnections.this.fetchConnectedAccounts();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserConnections$observeConnectedAccounts$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserConnections.kt */
+    public final class AnonymousClass1 extends o implements Function0<State> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ State invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final State invoke() {
+            return StoreUserConnections.this.getStateSnapshot();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserConnections$updateUserConnection$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserConnections.kt */
+    public final class AnonymousClass1 extends o implements Function1<ConnectedAccount, TrackNetworkMetadataReceiver> {
+        public final /* synthetic */ ConnectedAccount $connectedAccount;
+        public final /* synthetic */ boolean $syncFriends;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(ConnectedAccount connectedAccount, boolean z2) {
+            super(1);
+            this.$connectedAccount = connectedAccount;
+            this.$syncFriends = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ TrackNetworkMetadataReceiver invoke(ConnectedAccount connectedAccount) {
+            return invoke2(connectedAccount);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final TrackNetworkMetadataReceiver invoke2(ConnectedAccount connectedAccount) {
+            return new TrackNetworkActionUserConnectionsUpdate(this.$connectedAccount.getName(), Boolean.valueOf(this.$syncFriends), null, null, 12);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserConnections$deleteUserConnection$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserConnections.kt */
+    public final class AnonymousClass2 extends o implements Function1<Void, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+            StoreUserConnections.this.fetchConnectedAccounts();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserConnections$updateUserConnection$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserConnections.kt */
+    public final class AnonymousClass2 extends o implements Function1<ConnectedAccount, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ConnectedAccount connectedAccount) {
+            invoke2(connectedAccount);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ConnectedAccount connectedAccount) {
+            m.checkNotNullParameter(connectedAccount, "it");
+            StoreUserConnections.this.fetchConnectedAccounts();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreUserConnections.kt */
+    public abstract class State implements List<ConnectedAccount>, a {
+        private final List<ConnectedAccount> connectedAccounts;
+
+        /* JADX INFO: compiled from: StoreUserConnections.kt */
+        public final /* data */ class ConnectedAccounts extends State {
+            private final List<ConnectedAccount> connectedAccounts;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public ConnectedAccounts(List<ConnectedAccount> list) {
+                super(list, null);
+                m.checkNotNullParameter(list, "connectedAccounts");
+                this.connectedAccounts = list;
+            }
+
+            public final List<ConnectedAccount> component1() {
+                return getConnectedAccounts();
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ ConnectedAccounts copy$default(ConnectedAccounts connectedAccounts, List list, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    list = connectedAccounts.getConnectedAccounts();
+                }
+                return connectedAccounts.copy(list);
+            }
+
+            public final ConnectedAccounts copy(List<ConnectedAccount> connectedAccounts) {
+                m.checkNotNullParameter(connectedAccounts, "connectedAccounts");
+                return new ConnectedAccounts(connectedAccounts);
+            }
+
+            @Override // java.util.List, java.util.Collection
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof ConnectedAccounts) && m.areEqual(getConnectedAccounts(), ((ConnectedAccounts) other).getConnectedAccounts());
+                }
+                return true;
+            }
+
+            @Override // com.discord.stores.StoreUserConnections.State
+            public List<ConnectedAccount> getConnectedAccounts() {
+                return this.connectedAccounts;
+            }
+
+            @Override // java.util.List, java.util.Collection
+            public int hashCode() {
+                List<ConnectedAccount> connectedAccounts = getConnectedAccounts();
+                if (connectedAccounts != null) {
+                    return connectedAccounts.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                StringBuilder sbU = b.d.b.a.a.U("ConnectedAccounts(connectedAccounts=");
+                sbU.append(getConnectedAccounts());
+                sbU.append(")");
+                return sbU.toString();
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreUserConnections.kt */
+        public final class Loading extends State {
+            public static final Loading INSTANCE = new Loading();
+
+            private Loading() {
+                super(n.emptyList(), null);
+            }
+        }
+
+        private State(List<ConnectedAccount> list) {
+            this.connectedAccounts = list;
+        }
+
+        @Override // java.util.List
+        public /* synthetic */ void add(int i, ConnectedAccount connectedAccount) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        public boolean add(ConnectedAccount connectedAccount) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        @Override // java.util.List, java.util.Collection
+        public /* synthetic */ boolean add(Object obj) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        /* JADX INFO: renamed from: add, reason: avoid collision after fix types in other method */
+        public void add2(int i, ConnectedAccount connectedAccount) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        @Override // java.util.List
+        public boolean addAll(int i, Collection<? extends ConnectedAccount> collection) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        @Override // java.util.List, java.util.Collection
+        public boolean addAll(Collection<? extends ConnectedAccount> collection) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        @Override // java.util.List, java.util.Collection
+        public void clear() {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        public boolean contains(ConnectedAccount element) {
+            m.checkNotNullParameter(element, "element");
+            return this.connectedAccounts.contains(element);
+        }
+
+        @Override // java.util.List, java.util.Collection
+        public final /* bridge */ boolean contains(Object obj) {
+            if (obj instanceof ConnectedAccount) {
+                return contains((ConnectedAccount) obj);
+            }
+            return false;
+        }
+
+        @Override // java.util.List, java.util.Collection
+        public boolean containsAll(Collection<? extends Object> elements) {
+            m.checkNotNullParameter(elements, "elements");
+            return this.connectedAccounts.containsAll(elements);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // java.util.List
+        public ConnectedAccount get(int index) {
+            ConnectedAccount connectedAccount = this.connectedAccounts.get(index);
+            m.checkNotNullExpressionValue(connectedAccount, "get(...)");
+            return connectedAccount;
+        }
+
+        @Override // java.util.List
+        public /* bridge */ /* synthetic */ ConnectedAccount get(int i) {
+            return get(i);
+        }
+
+        public List<ConnectedAccount> getConnectedAccounts() {
+            return this.connectedAccounts;
+        }
+
+        public int getSize() {
+            return this.connectedAccounts.size();
+        }
+
+        public int indexOf(ConnectedAccount element) {
+            m.checkNotNullParameter(element, "element");
+            return this.connectedAccounts.indexOf(element);
+        }
+
+        @Override // java.util.List
+        public final /* bridge */ int indexOf(Object obj) {
+            if (obj instanceof ConnectedAccount) {
+                return indexOf((ConnectedAccount) obj);
+            }
+            return -1;
+        }
+
+        @Override // java.util.List, java.util.Collection
+        public boolean isEmpty() {
+            return this.connectedAccounts.isEmpty();
+        }
+
+        @Override // java.util.List, java.util.Collection, java.lang.Iterable
+        public Iterator<ConnectedAccount> iterator() {
+            return this.connectedAccounts.iterator();
+        }
+
+        public int lastIndexOf(ConnectedAccount element) {
+            m.checkNotNullParameter(element, "element");
+            return this.connectedAccounts.lastIndexOf(element);
+        }
+
+        @Override // java.util.List
+        public final /* bridge */ int lastIndexOf(Object obj) {
+            if (obj instanceof ConnectedAccount) {
+                return lastIndexOf((ConnectedAccount) obj);
+            }
+            return -1;
+        }
+
+        @Override // java.util.List
+        public ListIterator<ConnectedAccount> listIterator() {
+            return this.connectedAccounts.listIterator();
+        }
+
+        @Override // java.util.List
+        public ListIterator<ConnectedAccount> listIterator(int index) {
+            return this.connectedAccounts.listIterator(index);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // java.util.List
+        public ConnectedAccount remove(int i) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        @Override // java.util.List
+        public /* synthetic */ ConnectedAccount remove(int i) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        @Override // java.util.List, java.util.Collection
+        public boolean remove(Object obj) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        @Override // java.util.List, java.util.Collection
+        public boolean removeAll(Collection<? extends Object> collection) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        @Override // java.util.List
+        public void replaceAll(UnaryOperator<ConnectedAccount> unaryOperator) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        @Override // java.util.List, java.util.Collection
+        public boolean retainAll(Collection<? extends Object> collection) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        @Override // java.util.List
+        public /* synthetic */ ConnectedAccount set(int i, ConnectedAccount connectedAccount) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        /* JADX INFO: renamed from: set, reason: avoid collision after fix types in other method */
+        public ConnectedAccount set2(int i, ConnectedAccount connectedAccount) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        @Override // java.util.List, java.util.Collection
+        public final /* bridge */ int size() {
+            return getSize();
+        }
+
+        @Override // java.util.List
+        public void sort(Comparator<? super ConnectedAccount> comparator) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        @Override // java.util.List
+        public List<ConnectedAccount> subList(int fromIndex, int toIndex) {
+            return this.connectedAccounts.subList(fromIndex, toIndex);
+        }
+
+        @Override // java.util.List, java.util.Collection
+        public Object[] toArray() {
+            return g.toArray(this);
+        }
+
+        @Override // java.util.List, java.util.Collection
+        public <T> T[] toArray(T[] tArr) {
+            return (T[]) g.toArray(this, tArr);
+        }
+
+        public /* synthetic */ State(List list, DefaultConstructorMarker defaultConstructorMarker) {
+            this(list);
+        }
+    }
 
     public /* synthetic */ StoreUserConnections(StoreStream storeStream, Dispatcher dispatcher, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(storeStream, dispatcher, (i & 4) != 0 ? ObservationDeckProvider.get() : observationDeck);
@@ -39,17 +507,17 @@ public final class StoreUserConnections extends StoreV2 {
         m.checkNotNullParameter(context, "context");
         m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
         AnalyticsTracker.INSTANCE.trackConnectedAccountInitiated(platformName, location);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().authorizeConnection(platformName), false, 1, null), StoreUserConnections.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreUserConnections$authorizeConnection$1(context), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().authorizeConnection(platformName), false, 1, null), StoreUserConnections.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(context), 62, (Object) null);
     }
 
     public final void deleteUserConnection(String platformName, String connectionId) {
         m.checkNotNullParameter(platformName, "platformName");
         m.checkNotNullParameter(connectionId, "connectionId");
-        ObservableExtensionsKt.appSubscribe$default(RestCallStateKt.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().deleteConnection(platformName, connectionId), false, 1, null), StoreUserConnections$deleteUserConnection$1.INSTANCE), StoreUserConnections.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreUserConnections$deleteUserConnection$2(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(RestCallStateKt.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().deleteConnection(platformName, connectionId), false, 1, null), AnonymousClass1.INSTANCE), StoreUserConnections.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
     }
 
     public final void fetchConnectedAccounts() {
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().getConnections(), false, 1, null), StoreUserConnections.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreUserConnections$fetchConnectedAccounts$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getConnections(), false, 1, null), StoreUserConnections.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
     public final Dispatcher getDispatcher() {
@@ -57,7 +525,7 @@ public final class StoreUserConnections extends StoreV2 {
     }
 
     /* JADX INFO: renamed from: getConnectedAccounts, reason: from getter */
-    public final StoreUserConnections$State getStateSnapshot() {
+    public final State getStateSnapshot() {
         return this.stateSnapshot;
     }
 
@@ -76,7 +544,7 @@ public final class StoreUserConnections extends StoreV2 {
     @StoreThread
     public final void handleUserConnections(List<ConnectedAccount> accounts) {
         m.checkNotNullParameter(accounts, "accounts");
-        this.state = new StoreUserConnections$State$ConnectedAccounts(accounts);
+        this.state = new State.ConnectedAccounts(accounts);
         markChanged();
     }
 
@@ -84,31 +552,31 @@ public final class StoreUserConnections extends StoreV2 {
     public void init(Context context) {
         m.checkNotNullParameter(context, "context");
         super.init(context);
-        ObservableExtensionsKt.appSubscribe$default(this.stream.getGatewaySocket().getUserConnectionUpdate(), StoreUserConnections.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreUserConnections$init$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(this.stream.getGatewaySocket().getUserConnectionUpdate(), StoreUserConnections.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
-    public final Observable<StoreUserConnections$State> observeConnectedAccounts() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreUserConnections$observeConnectedAccounts$1(this), 14, null);
+    public final Observable<State> observeConnectedAccounts() {
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     @Override // com.discord.stores.StoreV2
     @StoreThread
     public void snapshotData() {
         super.snapshotData();
-        StoreUserConnections$State storeUserConnections$State = this.state;
-        StoreUserConnections$State storeUserConnections$State$ConnectedAccounts = StoreUserConnections$State$Loading.INSTANCE;
-        if (!m.areEqual(storeUserConnections$State, storeUserConnections$State$ConnectedAccounts)) {
-            if (!(storeUserConnections$State instanceof StoreUserConnections$State$ConnectedAccounts)) {
+        State state = this.state;
+        State connectedAccounts = State.Loading.INSTANCE;
+        if (!m.areEqual(state, connectedAccounts)) {
+            if (!(state instanceof State.ConnectedAccounts)) {
                 throw new NoWhenBranchMatchedException();
             }
-            storeUserConnections$State$ConnectedAccounts = new StoreUserConnections$State$ConnectedAccounts(new ArrayList(storeUserConnections$State.getConnectedAccounts()));
+            connectedAccounts = new State.ConnectedAccounts(new ArrayList(state.getConnectedAccounts()));
         }
-        this.stateSnapshot = storeUserConnections$State$ConnectedAccounts;
+        this.stateSnapshot = connectedAccounts;
     }
 
     public final void updateUserConnection(ConnectedAccount connectedAccount, boolean syncFriends, boolean showActivity, boolean isVisible) {
         m.checkNotNullParameter(connectedAccount, "connectedAccount");
-        ObservableExtensionsKt.appSubscribe$default(RestCallStateKt.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().updateConnection(connectedAccount.getType(), connectedAccount.getId(), RestAPIParams$ConnectedAccount.Companion.create(connectedAccount, syncFriends, showActivity, isVisible ? 1 : 0)), false, 1, null), new StoreUserConnections$updateUserConnection$1(connectedAccount, syncFriends)), StoreUserConnections.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreUserConnections$updateUserConnection$2(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(RestCallStateKt.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateConnection(connectedAccount.getType(), connectedAccount.getId(), RestAPIParams.ConnectedAccount.INSTANCE.create(connectedAccount, syncFriends, showActivity, isVisible ? 1 : 0)), false, 1, null), new AnonymousClass1(connectedAccount, syncFriends)), StoreUserConnections.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
     }
 
     public StoreUserConnections(StoreStream storeStream, Dispatcher dispatcher, ObservationDeck observationDeck) {
@@ -118,8 +586,8 @@ public final class StoreUserConnections extends StoreV2 {
         this.stream = storeStream;
         this.dispatcher = dispatcher;
         this.observationDeck = observationDeck;
-        StoreUserConnections$State$Loading storeUserConnections$State$Loading = StoreUserConnections$State$Loading.INSTANCE;
-        this.state = storeUserConnections$State$Loading;
-        this.stateSnapshot = storeUserConnections$State$Loading;
+        State.Loading loading = State.Loading.INSTANCE;
+        this.state = loading;
+        this.stateSnapshot = loading;
     }
 }

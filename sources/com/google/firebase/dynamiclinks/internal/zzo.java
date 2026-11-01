@@ -2,7 +2,7 @@ package com.google.firebase.dynamiclinks.internal;
 
 import android.net.Uri;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.c.o.b.m;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
@@ -14,7 +14,7 @@ public final class zzo extends AbstractSafeParcelable {
     public final Uri j;
     public final Uri k;
     public final List<zzr> l;
-    public static final Parcelable$Creator<zzo> CREATOR = new m();
+    public static final Parcelable.Creator<zzo> CREATOR = new m();
 
     public zzo(Uri uri, Uri uri2, List<zzr> list) {
         this.j = uri;

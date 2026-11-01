@@ -1,5 +1,6 @@
 package com.discord.widgets.settings.premium;
 
+import android.view.View;
 import com.discord.i18n.RenderContext;
 import d0.z.d.m;
 import d0.z.d.o;
@@ -9,14 +10,34 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: WidgetSettingsGiftingAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsGiftingAdapter$EntitlementListItem$onConfigure$4 extends o implements Function1<RenderContext, Unit> {
-    public final /* synthetic */ WidgetSettingsGiftingAdapter$GiftItem $data;
-    public final /* synthetic */ WidgetSettingsGiftingAdapter$EntitlementListItem this$0;
+    public final /* synthetic */ WidgetSettingsGiftingAdapter.GiftItem $data;
+    public final /* synthetic */ WidgetSettingsGiftingAdapter.EntitlementListItem this$0;
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGiftingAdapter$EntitlementListItem$onConfigure$4$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsGiftingAdapter.kt */
+    public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+            WidgetSettingsGiftingAdapter.access$getOnRevokeClickListener$p(WidgetSettingsGiftingAdapter.EntitlementListItem.access$getAdapter$p(WidgetSettingsGiftingAdapter$EntitlementListItem$onConfigure$4.this.this$0)).invoke(WidgetSettingsGiftingAdapter$EntitlementListItem$onConfigure$4.this.$data.getGift());
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetSettingsGiftingAdapter$EntitlementListItem$onConfigure$4(WidgetSettingsGiftingAdapter$EntitlementListItem widgetSettingsGiftingAdapter$EntitlementListItem, WidgetSettingsGiftingAdapter$GiftItem widgetSettingsGiftingAdapter$GiftItem) {
+    public WidgetSettingsGiftingAdapter$EntitlementListItem$onConfigure$4(WidgetSettingsGiftingAdapter.EntitlementListItem entitlementListItem, WidgetSettingsGiftingAdapter.GiftItem giftItem) {
         super(1);
-        this.this$0 = widgetSettingsGiftingAdapter$EntitlementListItem;
-        this.$data = widgetSettingsGiftingAdapter$GiftItem;
+        this.this$0 = entitlementListItem;
+        this.$data = giftItem;
     }
 
     @Override // kotlin.jvm.functions.Function1
@@ -28,6 +49,6 @@ public final class WidgetSettingsGiftingAdapter$EntitlementListItem$onConfigure$
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(RenderContext renderContext) {
         m.checkNotNullParameter(renderContext, "$receiver");
-        renderContext.b("revokeHook", new WidgetSettingsGiftingAdapter$EntitlementListItem$onConfigure$4$1(this));
+        renderContext.b("revokeHook", new AnonymousClass1());
     }
 }

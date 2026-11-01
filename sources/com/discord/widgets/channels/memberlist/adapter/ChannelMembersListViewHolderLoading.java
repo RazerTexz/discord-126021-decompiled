@@ -1,7 +1,7 @@
 package com.discord.widgets.channels.memberlist.adapter;
 
 import androidx.constraintlayout.widget.Guideline;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
+import androidx.recyclerview.widget.RecyclerView;
 import com.discord.databinding.WidgetChannelMembersListItemLoadingBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import d0.o;
@@ -11,8 +11,7 @@ import java.util.Map;
 
 /* JADX INFO: compiled from: ChannelMembersListViewHolderLoading.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ChannelMembersListViewHolderLoading extends RecyclerView$ViewHolder {
-    public static final ChannelMembersListViewHolderLoading$Companion Companion = new ChannelMembersListViewHolderLoading$Companion(null);
+public final class ChannelMembersListViewHolderLoading extends RecyclerView.ViewHolder {
     private static final Map<Integer, Float> POSITION_PERCENT_MAP;
     private final WidgetChannelMembersListItemLoadingBinding binding;
 

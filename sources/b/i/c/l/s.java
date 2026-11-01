@@ -6,7 +6,7 @@ import java.util.Set;
 
 /* JADX INFO: compiled from: RestrictedComponentContainer.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class s extends a {
+public final class s extends b.i.c.l.a {
     public final Set<Class<?>> a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -15,6 +15,15 @@ public final class s extends a {
     public final Set<Class<?>> d;
     public final Set<Class<?>> e;
     public final e f;
+
+    /* JADX INFO: compiled from: RestrictedComponentContainer.java */
+    public class a implements b.i.c.q.c {
+        public final b.i.c.q.c a;
+
+        public a(Set<Class<?>> set, b.i.c.q.c cVar) {
+            this.a = cVar;
+        }
+    }
 
     public s(d<?> dVar, e eVar) {
         HashSet hashSet = new HashSet();
@@ -51,7 +60,7 @@ public final class s extends a {
             throw new IllegalArgumentException(String.format("Attempting to request an undeclared dependency %s.", cls));
         }
         T t = (T) this.f.a(cls);
-        return !cls.equals(b.i.c.q.c.class) ? t : (T) new s$a(this.e, (b.i.c.q.c) t);
+        return !cls.equals(b.i.c.q.c.class) ? t : (T) new a(this.e, (b.i.c.q.c) t);
     }
 
     @Override // b.i.c.l.e

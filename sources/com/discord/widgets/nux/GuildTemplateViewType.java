@@ -1,14 +1,100 @@
 package com.discord.widgets.nux;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: GuildTemplatesAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public abstract class GuildTemplateViewType {
-    public static final GuildTemplateViewType$Companion Companion = new GuildTemplateViewType$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final int TEXT = 0;
     private final int viewType;
     private static final int TEMPLATE = 1;
+
+    /* JADX INFO: compiled from: GuildTemplatesAdapter.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final int getTEMPLATE() {
+            return GuildTemplateViewType.access$getTEMPLATE$cp();
+        }
+
+        public final int getTEXT() {
+            return GuildTemplateViewType.access$getTEXT$cp();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: GuildTemplatesAdapter.kt */
+    public final /* data */ class Template extends GuildTemplateViewType {
+        private final GuildTemplate guildTemplate;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public Template(GuildTemplate guildTemplate) {
+            super(GuildTemplateViewType.INSTANCE.getTEMPLATE(), null);
+            m.checkNotNullParameter(guildTemplate, "guildTemplate");
+            this.guildTemplate = guildTemplate;
+        }
+
+        public static /* synthetic */ Template copy$default(Template template, GuildTemplate guildTemplate, int i, Object obj) {
+            if ((i & 1) != 0) {
+                guildTemplate = template.guildTemplate;
+            }
+            return template.copy(guildTemplate);
+        }
+
+        public final Template copy(GuildTemplate guildTemplate) {
+            m.checkNotNullParameter(guildTemplate, "guildTemplate");
+            return new Template(guildTemplate);
+        }
+
+        public boolean equals(Object other) {
+            if (this != other) {
+                return (other instanceof Template) && m.areEqual(this.guildTemplate, ((Template) other).guildTemplate);
+            }
+            return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final GuildTemplate getGuildTemplate() {
+            return this.guildTemplate;
+        }
+
+        public final GuildTemplate getGuildTemplate() {
+            return this.guildTemplate;
+        }
+
+        public int hashCode() {
+            GuildTemplate guildTemplate = this.guildTemplate;
+            if (guildTemplate != null) {
+                return guildTemplate.hashCode();
+            }
+            return 0;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("Template(guildTemplate=");
+            sbU.append(this.guildTemplate);
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    /* JADX INFO: compiled from: GuildTemplatesAdapter.kt */
+    public final class Text extends GuildTemplateViewType {
+        public static final Text INSTANCE = new Text();
+
+        private Text() {
+            super(GuildTemplateViewType.INSTANCE.getTEXT(), null);
+        }
+    }
 
     private GuildTemplateViewType(int i) {
         this.viewType = i;

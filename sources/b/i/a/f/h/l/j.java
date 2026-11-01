@@ -4,14 +4,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import com.google.android.gms.dynamite.DynamiteModule;
-import com.google.android.gms.dynamite.DynamiteModule$LoadingException;
 import com.google.android.gms.dynamite.descriptors.com.google.android.gms.measurement.dynamite.ModuleDescriptor;
 import com.google.android.gms.internal.measurement.zzae;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-sdk-api@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class j extends g$a {
+public final class j extends g.a {
     public final /* synthetic */ String n;
     public final /* synthetic */ String o;
     public final /* synthetic */ Context p;
@@ -20,7 +19,7 @@ public final class j extends g$a {
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public j(g gVar, String str, String str2, Context context, Bundle bundle) {
-        super(gVar, true);
+        super(true);
         this.r = gVar;
         this.n = str;
         this.o = str2;
@@ -28,7 +27,7 @@ public final class j extends g$a {
         this.q = bundle;
     }
 
-    @Override // b.i.a.f.h.l.g$a
+    @Override // b.i.a.f.h.l.g.a
     public final void a() {
         String str;
         String str2;
@@ -53,7 +52,7 @@ public final class j extends g$a {
             Objects.requireNonNull(gVar);
             try {
                 ecVarAsInterface = dc.asInterface(DynamiteModule.c(context, z3 ? DynamiteModule.c : DynamiteModule.a, ModuleDescriptor.MODULE_ID).b("com.google.android.gms.measurement.internal.AppMeasurementDynamiteService"));
-            } catch (DynamiteModule$LoadingException e) {
+            } catch (DynamiteModule.LoadingException e) {
                 gVar.b(e, true, false);
             }
             gVar.j = ecVarAsInterface;

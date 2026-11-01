@@ -10,9 +10,7 @@ import androidx.annotation.StringRes;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.TextViewCompat;
 import b.a.i.g4;
-import com.discord.R$a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.widgets.user.profile.DraweeSpanStringBuilderExtensionsKt;
 import com.facebook.drawee.span.DraweeSpanStringBuilder;
@@ -30,18 +28,18 @@ public final class UsernameView extends ConstraintLayout {
     public UsernameView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(getContext()).inflate(R$layout.view_username, this);
-        int i = R$id.username_tag;
-        TextView textView = (TextView) findViewById(R$id.username_tag);
+        LayoutInflater.from(getContext()).inflate(R.layout.view_username, this);
+        int i = R.id.username_tag;
+        TextView textView = (TextView) findViewById(R.id.username_tag);
         if (textView != null) {
-            i = R$id.username_text;
-            SimpleDraweeSpanTextView simpleDraweeSpanTextView = (SimpleDraweeSpanTextView) findViewById(R$id.username_text);
+            i = R.id.username_text;
+            SimpleDraweeSpanTextView simpleDraweeSpanTextView = (SimpleDraweeSpanTextView) findViewById(R.id.username_text);
             if (simpleDraweeSpanTextView != null) {
                 g4 g4Var = new g4(this, textView, simpleDraweeSpanTextView);
                 m.checkNotNullExpressionValue(g4Var, "ViewUsernameBinding.infl…ater.from(context), this)");
                 this.binding = g4Var;
                 if (attributeSet != null) {
-                    TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R$a.UsernameView, 0, 0);
+                    TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.a.UsernameView, 0, 0);
                     m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…eable.UsernameView, 0, 0)");
                     try {
                         m.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.usernameText");
@@ -52,14 +50,14 @@ public final class UsernameView extends ConstraintLayout {
                         if (resourceId != 0) {
                             TextViewCompat.setTextAppearance(simpleDraweeSpanTextView, resourceId);
                         }
-                        simpleDraweeSpanTextView.setTextSize(0, getResources().getDimension(typedArrayObtainStyledAttributes.getResourceId(6, 2131165796)));
+                        simpleDraweeSpanTextView.setTextSize(0, getResources().getDimension(typedArrayObtainStyledAttributes.getResourceId(6, R.dimen.uikit_textsize_medium)));
                         m.checkNotNullExpressionValue(textView, "binding.usernameTag");
                         textView.setText(typedArrayObtainStyledAttributes.getText(0));
                         float f = typedArrayObtainStyledAttributes.getFloat(2, 0.0f);
                         if (f > 0) {
                             simpleDraweeSpanTextView.setLineSpacing(0.0f, f);
                         }
-                        setUsernameColor(typedArrayObtainStyledAttributes.getColor(5, 2130969005));
+                        setUsernameColor(typedArrayObtainStyledAttributes.getColor(5, R.attr.colorInteractiveActive));
                         return;
                     } finally {
                         typedArrayObtainStyledAttributes.recycle();
@@ -103,7 +101,7 @@ public final class UsernameView extends ConstraintLayout {
     }
 
     private final void setIsVerified(boolean isVerified) {
-        this.binding.f120b.setCompoundDrawablesWithIntrinsicBounds(isVerified ? 2131232240 : 0, 0, 0, 0);
+        this.binding.f120b.setCompoundDrawablesWithIntrinsicBounds(isVerified ? R.drawable.ic_verified_10dp : 0, 0, 0, 0);
     }
 
     public final void setUsernameColor(@ColorInt int color) {

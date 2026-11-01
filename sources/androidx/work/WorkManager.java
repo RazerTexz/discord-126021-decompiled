@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.view.LiveData;
 import androidx.work.impl.WorkManagerImpl;
 import b.i.b.d.a.a;
@@ -16,7 +15,7 @@ import java.util.UUID;
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"AddedAbstractMethod"})
 public abstract class WorkManager {
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public WorkManager() {
     }
 

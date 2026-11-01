@@ -9,7 +9,6 @@ import android.graphics.RectF;
 import android.os.Parcelable;
 import android.transition.Transition;
 import android.view.View;
-import android.view.View$MeasureSpec;
 import android.view.Window;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,10 +16,12 @@ import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.core.graphics.BlendModeColorFilterCompat;
 import androidx.core.graphics.BlendModeCompat;
+import b.i.a.g.l.l.i;
 import b.i.a.g.l.l.k;
-import com.google.android.material.R$id;
+import com.google.android.material.R;
 import com.google.android.material.internal.ContextUtils;
 import com.google.android.material.shape.ShapeAppearanceModel;
+import com.google.android.material.shape.Shapeable;
 import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,74 @@ public class MaterialContainerTransformSharedElementCallback extends SharedEleme
     private boolean sharedElementReenterTransitionEnabled = false;
 
     @Nullable
-    private MaterialContainerTransformSharedElementCallback$ShapeProvider shapeProvider = new MaterialContainerTransformSharedElementCallback$ShapeableViewShapeProvider();
+    private ShapeProvider shapeProvider = new ShapeableViewShapeProvider();
+
+    public interface ShapeProvider {
+        @Nullable
+        ShapeAppearanceModel provideShape(@NonNull View view);
+    }
+
+    public class ShapeableViewShapeProvider implements ShapeProvider {
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback.ShapeProvider
+        @Nullable
+        public ShapeAppearanceModel provideShape(@NonNull View view) {
+            if (view instanceof Shapeable) {
+                return ((Shapeable) view).getShapeAppearanceModel();
+            }
+            return null;
+        }
+    }
+
+    public class a extends i {
+        public final /* synthetic */ Window a;
+
+        public a(MaterialContainerTransformSharedElementCallback materialContainerTransformSharedElementCallback, Window window) {
+            this.a = window;
+        }
+
+        @Override // b.i.a.g.l.l.i, android.transition.Transition.TransitionListener
+        public void onTransitionEnd(Transition transition) {
+            MaterialContainerTransformSharedElementCallback.access$100(this.a);
+        }
+
+        @Override // b.i.a.g.l.l.i, android.transition.Transition.TransitionListener
+        public void onTransitionStart(Transition transition) {
+            MaterialContainerTransformSharedElementCallback.access$000(this.a);
+        }
+    }
+
+    public class b extends i {
+        public final /* synthetic */ Activity a;
+
+        public b(MaterialContainerTransformSharedElementCallback materialContainerTransformSharedElementCallback, Activity activity) {
+            this.a = activity;
+        }
+
+        @Override // b.i.a.g.l.l.i, android.transition.Transition.TransitionListener
+        public void onTransitionEnd(Transition transition) {
+            View view;
+            if (MaterialContainerTransformSharedElementCallback.access$200() != null && (view = (View) MaterialContainerTransformSharedElementCallback.access$200().get()) != null) {
+                view.setAlpha(1.0f);
+                MaterialContainerTransformSharedElementCallback.access$202(null);
+            }
+            this.a.finish();
+            this.a.overridePendingTransition(0, 0);
+        }
+    }
+
+    public class c extends i {
+        public final /* synthetic */ Window a;
+
+        public c(MaterialContainerTransformSharedElementCallback materialContainerTransformSharedElementCallback, Window window) {
+            this.a = window;
+        }
+
+        @Override // b.i.a.g.l.l.i, android.transition.Transition.TransitionListener
+        public void onTransitionStart(Transition transition) {
+            MaterialContainerTransformSharedElementCallback.access$000(this.a);
+        }
+    }
 
     public static /* synthetic */ void access$000(Window window) {
         removeWindowBackground(window);
@@ -59,7 +127,7 @@ public class MaterialContainerTransformSharedElementCallback extends SharedEleme
     }
 
     @Nullable
-    public MaterialContainerTransformSharedElementCallback$ShapeProvider getShapeProvider() {
+    public ShapeProvider getShapeProvider() {
         return this.shapeProvider;
     }
 
@@ -86,7 +154,7 @@ public class MaterialContainerTransformSharedElementCallback extends SharedEleme
         ShapeAppearanceModel shapeAppearanceModelProvideShape;
         View viewOnCreateSnapshotView = super.onCreateSnapshotView(context, parcelable);
         if (viewOnCreateSnapshotView != null && (weakReference = capturedSharedElement) != null && this.shapeProvider != null && (view = weakReference.get()) != null && (shapeAppearanceModelProvideShape = this.shapeProvider.provideShape(view)) != null) {
-            viewOnCreateSnapshotView.setTag(R$id.mtrl_motion_snapshot_view, shapeAppearanceModelProvideShape);
+            viewOnCreateSnapshotView.setTag(R.id.mtrl_motion_snapshot_view, shapeAppearanceModelProvideShape);
         }
         return viewOnCreateSnapshotView;
     }
@@ -110,7 +178,7 @@ public class MaterialContainerTransformSharedElementCallback extends SharedEleme
     public void onSharedElementEnd(@NonNull List<String> list, @NonNull List<View> list2, @NonNull List<View> list3) {
         if (!list2.isEmpty()) {
             View view = list2.get(0);
-            int i = R$id.mtrl_motion_snapshot_view;
+            int i = R.id.mtrl_motion_snapshot_view;
             if (view.getTag(i) instanceof View) {
                 list2.get(0).setTag(i, null);
             }
@@ -126,13 +194,13 @@ public class MaterialContainerTransformSharedElementCallback extends SharedEleme
     @Override // android.app.SharedElementCallback
     public void onSharedElementStart(@NonNull List<String> list, @NonNull List<View> list2, @NonNull List<View> list3) {
         if (!list2.isEmpty() && !list3.isEmpty()) {
-            list2.get(0).setTag(R$id.mtrl_motion_snapshot_view, list3.get(0));
+            list2.get(0).setTag(R.id.mtrl_motion_snapshot_view, list3.get(0));
         }
         if (this.entering || list2.isEmpty() || this.returnEndBounds == null) {
             return;
         }
         View view = list2.get(0);
-        view.measure(View$MeasureSpec.makeMeasureSpec(this.returnEndBounds.width(), BasicMeasure.EXACTLY), View$MeasureSpec.makeMeasureSpec(this.returnEndBounds.height(), BasicMeasure.EXACTLY));
+        view.measure(View.MeasureSpec.makeMeasureSpec(this.returnEndBounds.width(), BasicMeasure.EXACTLY), View.MeasureSpec.makeMeasureSpec(this.returnEndBounds.height(), BasicMeasure.EXACTLY));
         Rect rect = this.returnEndBounds;
         view.layout(rect.left, rect.top, rect.right, rect.bottom);
     }
@@ -145,8 +213,8 @@ public class MaterialContainerTransformSharedElementCallback extends SharedEleme
         window.getDecorView().getBackground().mutate().clearColorFilter();
     }
 
-    public void setShapeProvider(@Nullable MaterialContainerTransformSharedElementCallback$ShapeProvider materialContainerTransformSharedElementCallback$ShapeProvider) {
-        this.shapeProvider = materialContainerTransformSharedElementCallback$ShapeProvider;
+    public void setShapeProvider(@Nullable ShapeProvider shapeProvider) {
+        this.shapeProvider = shapeProvider;
     }
 
     public void setSharedElementReenterTransitionEnabled(boolean z2) {
@@ -166,7 +234,7 @@ public class MaterialContainerTransformSharedElementCallback extends SharedEleme
             }
             if (this.transparentWindowBackgroundEnabled) {
                 updateBackgroundFadeDuration(window, materialContainerTransform);
-                materialContainerTransform.addListener(new MaterialContainerTransformSharedElementCallback$a(this, window));
+                materialContainerTransform.addListener(new a(this, window));
             }
         }
     }
@@ -176,10 +244,10 @@ public class MaterialContainerTransformSharedElementCallback extends SharedEleme
         if (sharedElementReturnTransition instanceof MaterialContainerTransform) {
             MaterialContainerTransform materialContainerTransform = (MaterialContainerTransform) sharedElementReturnTransition;
             materialContainerTransform.setHoldAtEndEnabled(true);
-            materialContainerTransform.addListener(new MaterialContainerTransformSharedElementCallback$b(this, activity));
+            materialContainerTransform.addListener(new b(this, activity));
             if (this.transparentWindowBackgroundEnabled) {
                 updateBackgroundFadeDuration(window, materialContainerTransform);
-                materialContainerTransform.addListener(new MaterialContainerTransformSharedElementCallback$c(this, window));
+                materialContainerTransform.addListener(new c(this, window));
             }
         }
     }

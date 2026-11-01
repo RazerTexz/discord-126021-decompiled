@@ -1,45 +1,69 @@
 package com.discord.widgets.chat.list.adapter;
 
+import a0.a.a.b;
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.exifinterface.media.ExifInterface;
-import androidx.recyclerview.widget.RecyclerView$ItemDecoration;
-import b.a.y.o0.d$a;
-import b.a.y.o0.d$b;
-import com.discord.R$id;
-import com.discord.R$layout;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.RecyclerView;
+import b.a.y.o0.d;
+import b.d.b.a.a;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.guild.Guild;
+import com.discord.api.guildmember.GuildMember;
+import com.discord.api.stageinstance.RecommendedStageInstance;
 import com.discord.api.stageinstance.StageInstance;
 import com.discord.databinding.WidgetChatListAdapterItemStageInviteBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
+import com.discord.models.domain.ModelInvite;
+import com.discord.models.user.CoreUser;
+import com.discord.models.user.User;
+import com.discord.stores.StoreAccessibility;
+import com.discord.stores.StoreChannels;
+import com.discord.stores.StoreGuilds;
 import com.discord.stores.StoreInstantInvites;
+import com.discord.stores.StoreRequestedStageChannels;
+import com.discord.stores.StoreStageChannels;
+import com.discord.stores.StoreStageInstances;
 import com.discord.stores.StoreStream;
-import com.discord.utilities.analytics.Traits$Payment$Type;
+import com.discord.stores.StoreUser;
+import com.discord.stores.updates.ObservationDeck;
+import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.guilds.GuildUtilsKt;
 import com.discord.utilities.icon.IconUtils;
-import com.discord.utilities.images.MGImages$ChangeDetector;
+import com.discord.utilities.images.MGImages;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import com.discord.utilities.rx.ObservableExtensionsKt$filterNull$1;
-import com.discord.utilities.rx.ObservableExtensionsKt$filterNull$2;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.views.stages.StageCardSpeakersView;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
 import com.discord.widgets.chat.list.entries.StageInviteEntry;
 import com.discord.widgets.stage.StageCardSpeaker;
+import com.discord.widgets.stage.StageChannelJoinHelper;
+import com.discord.widgets.stage.StageRoles;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
+import d0.l;
 import d0.t.n;
-import d0.t.o;
 import d0.t.u;
+import d0.w.h.c;
+import d0.w.i.a.e;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import kotlin.Unit;
+import kotlin.coroutines.Continuation;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function2;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlinx.coroutines.Job;
 import rx.Observable;
 import rx.Subscription;
@@ -53,35 +77,423 @@ public final class WidgetChatListAdapterItemStageInvite extends WidgetChatListAd
     private StageInviteEntry item;
     private Subscription subscription;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemStageInvite$onConfigure$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemStageInvite.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<Model, Unit> {
+        public AnonymousClass1(WidgetChatListAdapterItemStageInvite widgetChatListAdapterItemStageInvite) {
+            super(1, widgetChatListAdapterItemStageInvite, WidgetChatListAdapterItemStageInvite.class, "configureUI", "configureUI(Lcom/discord/widgets/chat/list/adapter/WidgetChatListAdapterItemStageInvite$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            m.checkNotNullParameter(model, "p1");
+            WidgetChatListAdapterItemStageInvite.access$configureUI((WidgetChatListAdapterItemStageInvite) this.receiver, model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemStageInvite$configureUI$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemStageInvite.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ Context $context;
+        public final /* synthetic */ Model $model;
+
+        /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemStageInvite$configureUI$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetChatListAdapterItemStageInvite.kt */
+        @e(c = "com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemStageInvite$configureUI$2$1", f = "WidgetChatListAdapterItemStageInvite.kt", l = {121}, m = "invokeSuspend")
+        public final class AnonymousClass1 extends d0.w.i.a.k implements Function2<ModelInvite, Continuation<? super Unit>, Object> {
+            public final /* synthetic */ long $channelId;
+            public final /* synthetic */ long $guildId;
+            public int label;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(long j, long j2, Continuation continuation) {
+                super(2, continuation);
+                this.$guildId = j;
+                this.$channelId = j2;
+            }
+
+            @Override // d0.w.i.a.a
+            public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
+                m.checkNotNullParameter(continuation, "completion");
+                return AnonymousClass2.this.new AnonymousClass1(this.$guildId, this.$channelId, continuation);
+            }
+
+            @Override // kotlin.jvm.functions.Function2
+            public final Object invoke(ModelInvite modelInvite, Continuation<? super Unit> continuation) {
+                return ((AnonymousClass1) create(modelInvite, continuation)).invokeSuspend(Unit.a);
+            }
+
+            @Override // d0.w.i.a.a
+            public final Object invokeSuspend(Object obj) throws Throwable {
+                Object coroutine_suspended = c.getCOROUTINE_SUSPENDED();
+                int i = this.label;
+                if (i == 0) {
+                    l.throwOnFailure(obj);
+                    StageChannelJoinHelper stageChannelJoinHelper = StageChannelJoinHelper.INSTANCE;
+                    Context context = AnonymousClass2.this.$context;
+                    m.checkNotNullExpressionValue(context, "context");
+                    FragmentManager fragmentManager = WidgetChatListAdapterItemStageInvite.access$getAdapter$p(WidgetChatListAdapterItemStageInvite.this).getFragmentManager();
+                    long j = this.$guildId;
+                    long j2 = this.$channelId;
+                    this.label = 1;
+                    if (StageChannelJoinHelper.lurkAndJoinStageAsync$default(stageChannelJoinHelper, context, fragmentManager, j, j2, true, null, null, null, this, 224, null) == coroutine_suspended) {
+                        return coroutine_suspended;
+                    }
+                } else {
+                    if (i != 1) {
+                        throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+                    }
+                    l.throwOnFailure(obj);
+                }
+                return Unit.a;
+            }
+        }
+
+        public AnonymousClass2(Model model, Context context) {
+            this.$model = model;
+            this.$context = context;
+        }
+
+        /* JADX WARN: Code duplicated, block: B:11:0x0023  */
+        /* JADX WARN: Code duplicated, block: B:13:0x002f  */
+        /* JADX WARN: Code duplicated, block: B:20:? A[RETURN, SYNTHETIC] */
+        /* JADX WARN: Code duplicated, block: B:21:? A[RETURN, SYNTHETIC] */
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            Long lValueOf;
+            long guildId;
+            long jLongValue;
+            Channel channel;
+            Job jobAccess$getInviteJoinJob$p;
+            Guild guild = this.$model.getInvite().guild;
+            if (guild == null) {
+                Channel channel2 = this.$model.getChannel();
+                if (channel2 != null) {
+                    guildId = channel2.getGuildId();
+                } else {
+                    lValueOf = null;
+                }
+                if (lValueOf != null) {
+                    jLongValue = lValueOf.longValue();
+                    channel = this.$model.getChannel();
+                    if (channel != null) {
+                        long id2 = channel.getId();
+                        jobAccess$getInviteJoinJob$p = WidgetChatListAdapterItemStageInvite.access$getInviteJoinJob$p(WidgetChatListAdapterItemStageInvite.this);
+                        if (jobAccess$getInviteJoinJob$p == null && jobAccess$getInviteJoinJob$p.a()) {
+                            return;
+                        }
+                        WidgetChatListAdapterItemStageInvite widgetChatListAdapterItemStageInvite = WidgetChatListAdapterItemStageInvite.this;
+                        WidgetChatListAdapterItemStageInvite.access$setInviteJoinJob$p(widgetChatListAdapterItemStageInvite, WidgetChatListAdapterItemInviteBase.joinServerOrDM$default(widgetChatListAdapterItemStageInvite, widgetChatListAdapterItemStageInvite.getClass(), this.$model.getInvite(), new AnonymousClass1(jLongValue, id2, null), null, 8, null));
+                    }
+                }
+            }
+            guildId = guild.getId();
+            lValueOf = Long.valueOf(guildId);
+            if (lValueOf != null) {
+                jLongValue = lValueOf.longValue();
+                channel = this.$model.getChannel();
+                if (channel != null) {
+                    long id3 = channel.getId();
+                    jobAccess$getInviteJoinJob$p = WidgetChatListAdapterItemStageInvite.access$getInviteJoinJob$p(WidgetChatListAdapterItemStageInvite.this);
+                    if (jobAccess$getInviteJoinJob$p == null) {
+                    }
+                    WidgetChatListAdapterItemStageInvite widgetChatListAdapterItemStageInvite2 = WidgetChatListAdapterItemStageInvite.this;
+                    WidgetChatListAdapterItemStageInvite.access$setInviteJoinJob$p(widgetChatListAdapterItemStageInvite2, WidgetChatListAdapterItemInviteBase.joinServerOrDM$default(widgetChatListAdapterItemStageInvite2, widgetChatListAdapterItemStageInvite2.getClass(), this.$model.getInvite(), new AnonymousClass1(jLongValue, id3, null), null, 8, null));
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemStageInvite$onConfigure$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemStageInvite.kt */
+    public final class AnonymousClass2 extends o implements Function1<Subscription, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            m.checkNotNullParameter(subscription, "it");
+            WidgetChatListAdapterItemStageInvite.access$setSubscription$p(WidgetChatListAdapterItemStageInvite.this, subscription);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemStageInvite.kt */
+    public final /* data */ class Model {
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
+        private final User authorUser;
+        private final Channel channel;
+        private final ModelInvite invite;
+        private final Integer listenersCount;
+        private final long meId;
+        private final boolean shouldAnimateGuildIcon;
+        private final List<StageCardSpeaker> speakers;
+        private final StageInstance stageInstance;
+
+        /* JADX INFO: compiled from: WidgetChatListAdapterItemStageInvite.kt */
+        public final class Companion {
+            private Companion() {
+            }
+
+            public static final /* synthetic */ List access$speakersFromLocalStore(Companion companion, StoreGuilds storeGuilds, StoreUser storeUser, StoreStageChannels storeStageChannels, long j, long j2) {
+                return companion.speakersFromLocalStore(storeGuilds, storeUser, storeStageChannels, j, j2);
+            }
+
+            public static final /* synthetic */ List access$speakersFromRequest(Companion companion, StoreRequestedStageChannels.StageInstanceState stageInstanceState) {
+                return companion.speakersFromRequest(stageInstanceState);
+            }
+
+            public static /* synthetic */ Observable observe$default(Companion companion, StageInviteEntry stageInviteEntry, StoreUser storeUser, StoreChannels storeChannels, StoreGuilds storeGuilds, StoreAccessibility storeAccessibility, StoreStageInstances storeStageInstances, StoreRequestedStageChannels storeRequestedStageChannels, StoreStageChannels storeStageChannels, ObservationDeck observationDeck, int i, Object obj) {
+                return companion.observe(stageInviteEntry, (i & 2) != 0 ? StoreStream.INSTANCE.getUsers() : storeUser, (i & 4) != 0 ? StoreStream.INSTANCE.getChannels() : storeChannels, (i & 8) != 0 ? StoreStream.INSTANCE.getGuilds() : storeGuilds, (i & 16) != 0 ? StoreStream.INSTANCE.getAccessibility() : storeAccessibility, (i & 32) != 0 ? StoreStream.INSTANCE.getStageInstances() : storeStageInstances, (i & 64) != 0 ? StoreStream.INSTANCE.getRequestedStageChannels() : storeRequestedStageChannels, (i & 128) != 0 ? StoreStream.INSTANCE.getStageChannels() : storeStageChannels, (i & 256) != 0 ? ObservationDeckProvider.get() : observationDeck);
+            }
+
+            public final Observable<Model> observe(StageInviteEntry item, StoreUser userStore, StoreChannels channelStore, StoreGuilds guildStore, StoreAccessibility accessibilityStore, StoreStageInstances stageInstanceStore, StoreRequestedStageChannels requestedInstanceStore, StoreStageChannels stageChannelStore, ObservationDeck observationDeck) {
+                m.checkNotNullParameter(item, "item");
+                m.checkNotNullParameter(userStore, "userStore");
+                m.checkNotNullParameter(channelStore, "channelStore");
+                m.checkNotNullParameter(guildStore, "guildStore");
+                m.checkNotNullParameter(accessibilityStore, "accessibilityStore");
+                m.checkNotNullParameter(stageInstanceStore, "stageInstanceStore");
+                m.checkNotNullParameter(requestedInstanceStore, "requestedInstanceStore");
+                m.checkNotNullParameter(stageChannelStore, "stageChannelStore");
+                m.checkNotNullParameter(observationDeck, "observationDeck");
+                return ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{userStore, channelStore, guildStore, accessibilityStore, stageInstanceStore, requestedInstanceStore, stageChannelStore}, false, null, null, new WidgetChatListAdapterItemStageInvite$Model$Companion$observe$1(userStore, item, channelStore, accessibilityStore, stageInstanceStore, requestedInstanceStore, stageChannelStore, guildStore), 14, null);
+            }
+
+            private final List<StageCardSpeaker> speakersFromLocalStore(StoreGuilds guildStore, StoreUser userStore, StoreStageChannels stageChannelStore, long channelId, long guildId) {
+                User user;
+                Map<Long, StageRoles> channelRoles = stageChannelStore.getChannelRoles(channelId);
+                if (channelRoles == null) {
+                    return null;
+                }
+                ArrayList arrayList = new ArrayList();
+                for (Map.Entry<Long, StageRoles> entry : channelRoles.entrySet()) {
+                    long jLongValue = entry.getKey().longValue();
+                    StageCardSpeaker stageCardSpeaker = (!StageRoles.m33isSpeakerimpl(entry.getValue().m35unboximpl()) || (user = userStore.getUsers().get(Long.valueOf(jLongValue))) == null) ? null : Model.INSTANCE.toStageCardSpeaker(user, guildStore.getMember(guildId, jLongValue));
+                    if (stageCardSpeaker != null) {
+                        arrayList.add(stageCardSpeaker);
+                    }
+                }
+                return arrayList;
+            }
+
+            private final List<StageCardSpeaker> speakersFromRequest(StoreRequestedStageChannels.StageInstanceState stageInstanceState) {
+                RecommendedStageInstance stageInstance;
+                if (stageInstanceState == null || (stageInstance = stageInstanceState.getStageInstance()) == null) {
+                    return null;
+                }
+                List<GuildMember> listC = stageInstance.c();
+                ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(listC, 10));
+                for (GuildMember guildMember : listC) {
+                    arrayList.add(new StageCardSpeaker(new CoreUser(guildMember.getUser()), com.discord.models.member.GuildMember.Companion.from$default(com.discord.models.member.GuildMember.INSTANCE, guildMember, guildMember.getGuildId(), null, StoreStream.INSTANCE.getGuilds(), 4, null)));
+                }
+                return arrayList;
+            }
+
+            private final StageCardSpeaker toStageCardSpeaker(User user, com.discord.models.member.GuildMember guildMember) {
+                return new StageCardSpeaker(user, guildMember);
+            }
+
+            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+                this();
+            }
+        }
+
+        public Model(ModelInvite modelInvite, long j, User user, Channel channel, boolean z2, StageInstance stageInstance, List<StageCardSpeaker> list, Integer num) {
+            m.checkNotNullParameter(modelInvite, "invite");
+            m.checkNotNullParameter(list, "speakers");
+            this.invite = modelInvite;
+            this.meId = j;
+            this.authorUser = user;
+            this.channel = channel;
+            this.shouldAnimateGuildIcon = z2;
+            this.stageInstance = stageInstance;
+            this.speakers = list;
+            this.listenersCount = num;
+        }
+
+        public final List<StageCardSpeaker> component7() {
+            return this.speakers;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ Model copy$default(Model model, ModelInvite modelInvite, long j, User user, Channel channel, boolean z2, StageInstance stageInstance, List list, Integer num, int i, Object obj) {
+            return model.copy((i & 1) != 0 ? model.invite : modelInvite, (i & 2) != 0 ? model.meId : j, (i & 4) != 0 ? model.authorUser : user, (i & 8) != 0 ? model.channel : channel, (i & 16) != 0 ? model.shouldAnimateGuildIcon : z2, (i & 32) != 0 ? model.stageInstance : stageInstance, (i & 64) != 0 ? model.speakers : list, (i & 128) != 0 ? model.listenersCount : num);
+        }
+
+        public final Model copy(ModelInvite invite, long meId, User authorUser, Channel channel, boolean shouldAnimateGuildIcon, StageInstance stageInstance, List<StageCardSpeaker> speakers, Integer listenersCount) {
+            m.checkNotNullParameter(invite, "invite");
+            m.checkNotNullParameter(speakers, "speakers");
+            return new Model(invite, meId, authorUser, channel, shouldAnimateGuildIcon, stageInstance, speakers, listenersCount);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof Model)) {
+                return false;
+            }
+            Model model = (Model) other;
+            return m.areEqual(this.invite, model.invite) && this.meId == model.meId && m.areEqual(this.authorUser, model.authorUser) && m.areEqual(this.channel, model.channel) && this.shouldAnimateGuildIcon == model.shouldAnimateGuildIcon && m.areEqual(this.stageInstance, model.stageInstance) && m.areEqual(this.speakers, model.speakers) && m.areEqual(this.listenersCount, model.listenersCount);
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final User getAuthorUser() {
+            return this.authorUser;
+        }
+
+        public final User getAuthorUser() {
+            return this.authorUser;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final ModelInvite getInvite() {
+            return this.invite;
+        }
+
+        public final ModelInvite getInvite() {
+            return this.invite;
+        }
+
+        /* JADX INFO: renamed from: component8, reason: from getter */
+        public final Integer getListenersCount() {
+            return this.listenersCount;
+        }
+
+        public final Integer getListenersCount() {
+            return this.listenersCount;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getMeId() {
+            return this.meId;
+        }
+
+        public final long getMeId() {
+            return this.meId;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getShouldAnimateGuildIcon() {
+            return this.shouldAnimateGuildIcon;
+        }
+
+        public final boolean getShouldAnimateGuildIcon() {
+            return this.shouldAnimateGuildIcon;
+        }
+
+        public final List<StageCardSpeaker> getSpeakers() {
+            return this.speakers;
+        }
+
+        /* JADX INFO: renamed from: component6, reason: from getter */
+        public final StageInstance getStageInstance() {
+            return this.stageInstance;
+        }
+
+        public final StageInstance getStageInstance() {
+            return this.stageInstance;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v11, types: [int] */
+        /* JADX WARN: Type inference failed for: r0v21 */
+        /* JADX WARN: Type inference failed for: r0v25 */
+        /* JADX WARN: Type inference failed for: r2v8, types: [int] */
+        public int hashCode() {
+            ModelInvite modelInvite = this.invite;
+            int iA = (b.a(this.meId) + ((modelInvite != null ? modelInvite.hashCode() : 0) * 31)) * 31;
+            User user = this.authorUser;
+            int iHashCode = (iA + (user != null ? user.hashCode() : 0)) * 31;
+            Channel channel = this.channel;
+            int iHashCode2 = (iHashCode + (channel != null ? channel.hashCode() : 0)) * 31;
+            boolean z2 = this.shouldAnimateGuildIcon;
+            ?? r0 = z2;
+            if (z2) {
+                r0 = 1;
+            }
+            int i = (iHashCode2 + r0) * 31;
+            StageInstance stageInstance = this.stageInstance;
+            int iHashCode3 = (i + (stageInstance != null ? stageInstance.hashCode() : 0)) * 31;
+            List<StageCardSpeaker> list = this.speakers;
+            int iHashCode4 = (iHashCode3 + (list != null ? list.hashCode() : 0)) * 31;
+            Integer num = this.listenersCount;
+            return iHashCode4 + (num != null ? num.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("Model(invite=");
+            sbU.append(this.invite);
+            sbU.append(", meId=");
+            sbU.append(this.meId);
+            sbU.append(", authorUser=");
+            sbU.append(this.authorUser);
+            sbU.append(", channel=");
+            sbU.append(this.channel);
+            sbU.append(", shouldAnimateGuildIcon=");
+            sbU.append(this.shouldAnimateGuildIcon);
+            sbU.append(", stageInstance=");
+            sbU.append(this.stageInstance);
+            sbU.append(", speakers=");
+            sbU.append(this.speakers);
+            sbU.append(", listenersCount=");
+            return a.F(sbU, this.listenersCount, ")");
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemStageInvite(WidgetChatListAdapter widgetChatListAdapter) {
-        super(R$layout.widget_chat_list_adapter_item_stage_invite, widgetChatListAdapter);
+        super(R.layout.widget_chat_list_adapter_item_stage_invite, widgetChatListAdapter);
         m.checkNotNullParameter(widgetChatListAdapter, "adapter");
         View view = this.itemView;
-        int i = R$id.item_invite_channel_topic;
-        TextView textView = (TextView) view.findViewById(R$id.item_invite_channel_topic);
+        int i = R.id.item_invite_channel_topic;
+        TextView textView = (TextView) view.findViewById(R.id.item_invite_channel_topic);
         if (textView != null) {
-            i = R$id.item_invite_guild_name;
-            TextView textView2 = (TextView) view.findViewById(R$id.item_invite_guild_name);
+            i = R.id.item_invite_guild_name;
+            TextView textView2 = (TextView) view.findViewById(R.id.item_invite_guild_name);
             if (textView2 != null) {
-                i = R$id.item_invite_header;
-                TextView textView3 = (TextView) view.findViewById(R$id.item_invite_header);
+                i = R.id.item_invite_header;
+                TextView textView3 = (TextView) view.findViewById(R.id.item_invite_header);
                 if (textView3 != null) {
-                    i = R$id.item_invite_image;
-                    SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.item_invite_image);
+                    i = R.id.item_invite_image;
+                    SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.item_invite_image);
                     if (simpleDraweeView != null) {
-                        i = R$id.item_invite_image_text;
-                        TextView textView4 = (TextView) view.findViewById(R$id.item_invite_image_text);
+                        i = R.id.item_invite_image_text;
+                        TextView textView4 = (TextView) view.findViewById(R.id.item_invite_image_text);
                         if (textView4 != null) {
-                            i = R$id.item_invite_join_button;
-                            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.item_invite_join_button);
+                            i = R.id.item_invite_join_button;
+                            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.item_invite_join_button);
                             if (materialButton != null) {
                                 ConstraintLayout constraintLayout = (ConstraintLayout) view;
-                                i = R$id.item_listeners_count;
-                                TextView textView5 = (TextView) view.findViewById(R$id.item_listeners_count);
+                                i = R.id.item_listeners_count;
+                                TextView textView5 = (TextView) view.findViewById(R.id.item_listeners_count);
                                 if (textView5 != null) {
-                                    i = R$id.stage_discovery_speakers_view;
-                                    StageCardSpeakersView stageCardSpeakersView = (StageCardSpeakersView) view.findViewById(R$id.stage_discovery_speakers_view);
+                                    i = R.id.stage_discovery_speakers_view;
+                                    StageCardSpeakersView stageCardSpeakersView = (StageCardSpeakersView) view.findViewById(R.id.stage_discovery_speakers_view);
                                     if (stageCardSpeakersView != null) {
                                         WidgetChatListAdapterItemStageInviteBinding widgetChatListAdapterItemStageInviteBinding = new WidgetChatListAdapterItemStageInviteBinding(constraintLayout, textView, textView2, textView3, simpleDraweeView, textView4, materialButton, constraintLayout, textView5, stageCardSpeakersView);
                                         m.checkNotNullExpressionValue(widgetChatListAdapterItemStageInviteBinding, "WidgetChatListAdapterIte…iteBinding.bind(itemView)");
@@ -98,8 +510,8 @@ public final class WidgetChatListAdapterItemStageInvite extends WidgetChatListAd
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetChatListAdapterItemStageInvite widgetChatListAdapterItemStageInvite, WidgetChatListAdapterItemStageInvite$Model widgetChatListAdapterItemStageInvite$Model) {
-        widgetChatListAdapterItemStageInvite.configureUI(widgetChatListAdapterItemStageInvite$Model);
+    public static final /* synthetic */ void access$configureUI(WidgetChatListAdapterItemStageInvite widgetChatListAdapterItemStageInvite, Model model) {
+        widgetChatListAdapterItemStageInvite.configureUI(model);
     }
 
     public static final /* synthetic */ WidgetChatListAdapter access$getAdapter$p(WidgetChatListAdapterItemStageInvite widgetChatListAdapterItemStageInvite) {
@@ -123,7 +535,7 @@ public final class WidgetChatListAdapterItemStageInvite extends WidgetChatListAd
     }
 
     /* JADX WARN: Code duplicated, block: B:20:0x005c  */
-    private final void configureUI(WidgetChatListAdapterItemStageInvite$Model model) {
+    private final void configureUI(Model model) {
         boolean z2;
         Guild guild;
         String name;
@@ -175,19 +587,19 @@ public final class WidgetChatListAdapterItemStageInvite extends WidgetChatListAd
         ViewExtensions.setTextAndVisibilityBy(textView4, listenersCount != null ? String.valueOf(listenersCount.intValue()) : null);
         StageCardSpeakersView stageCardSpeakersView = this.binding.h;
         List<StageCardSpeaker> speakers = model.getSpeakers();
-        RecyclerView$ItemDecoration recyclerView$ItemDecoration = StageCardSpeakersView.j;
+        RecyclerView.ItemDecoration itemDecoration = StageCardSpeakersView.j;
         int size = speakers.size();
         Objects.requireNonNull(stageCardSpeakersView);
         m.checkNotNullParameter(speakers, "speakers");
         List listTake = u.take(speakers, 3);
-        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(listTake, 10));
+        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(listTake, 10));
         for (Object obj : listTake) {
             int i2 = i + 1;
             if (i < 0) {
                 n.throwIndexOverflow();
             }
             StageCardSpeaker stageCardSpeaker = (StageCardSpeaker) obj;
-            arrayList.add(new d$a(stageCardSpeaker.getUser(), stageCardSpeaker.getGuildMember(), stageCardSpeaker.getDisplayName(), "" + size + '-' + i));
+            arrayList.add(new d.a(stageCardSpeaker.getUser(), stageCardSpeaker.getGuildMember(), stageCardSpeaker.getDisplayName(), "" + size + '-' + i));
             i = i2;
         }
         int size2 = size - arrayList.size();
@@ -195,10 +607,10 @@ public final class WidgetChatListAdapterItemStageInvite extends WidgetChatListAd
         ArrayList arrayList2 = new ArrayList();
         arrayList2.addAll(arrayList);
         if (size2 > 0) {
-            arrayList2.add(new d$b(size2, "" + size + '-' + (arrayList.size() + 1)));
+            arrayList2.add(new d.b(size2, "" + size + '-' + (arrayList.size() + 1)));
         }
         stageCardSpeakersView.speakersAdapter.setData(arrayList2);
-        this.binding.f.setOnClickListener(new WidgetChatListAdapterItemStageInvite$configureUI$2(this, model, context));
+        this.binding.f.setOnClickListener(new AnonymousClass2(model, context));
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
@@ -215,7 +627,7 @@ public final class WidgetChatListAdapterItemStageInvite extends WidgetChatListAd
         if (!m.areEqual(this.iconUrl, iconUrl)) {
             SimpleDraweeView simpleDraweeView = this.binding.d;
             m.checkNotNullExpressionValue(simpleDraweeView, "binding.itemInviteImage");
-            IconUtils.setIcon$default(simpleDraweeView, iconUrl, 2131165293, (Function1) null, (MGImages$ChangeDetector) null, 24, (Object) null);
+            IconUtils.setIcon$default(simpleDraweeView, iconUrl, R.dimen.avatar_size_large, (Function1) null, (MGImages.ChangeDetector) null, 24, (Object) null);
             this.iconUrl = iconUrl;
         }
     }
@@ -226,19 +638,19 @@ public final class WidgetChatListAdapterItemStageInvite extends WidgetChatListAd
         m.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
         this.item = (StageInviteEntry) data;
-        StoreInstantInvites instantInvites = StoreStream.Companion.getInstantInvites();
+        StoreInstantInvites instantInvites = StoreStream.INSTANCE.getInstantInvites();
         StageInviteEntry stageInviteEntry = this.item;
         if (stageInviteEntry == null) {
             m.throwUninitializedPropertyAccessException("item");
         }
         StoreInstantInvites.fetchInviteIfNotLoaded$default(instantInvites, stageInviteEntry.getInviteCode(), null, "Invite Button Embed", null, null, 26, null);
-        WidgetChatListAdapterItemStageInvite$Model$Companion widgetChatListAdapterItemStageInvite$Model$Companion = WidgetChatListAdapterItemStageInvite$Model.Companion;
+        Model.Companion companion = Model.INSTANCE;
         StageInviteEntry stageInviteEntry2 = this.item;
         if (stageInviteEntry2 == null) {
             m.throwUninitializedPropertyAccessException("item");
         }
-        Observable observableG = ObservableExtensionsKt.ui(WidgetChatListAdapterItemStageInvite$Model$Companion.observe$default(widgetChatListAdapterItemStageInvite$Model$Companion, stageInviteEntry2, null, null, null, null, null, null, null, null, 510, null)).y(ObservableExtensionsKt$filterNull$1.INSTANCE).G(ObservableExtensionsKt$filterNull$2.INSTANCE);
+        Observable observableG = ObservableExtensionsKt.ui(Model.Companion.observe$default(companion, stageInviteEntry2, null, null, null, null, null, null, null, null, 510, null)).y(ObservableExtensionsKt.AnonymousClass1.INSTANCE).G(ObservableExtensionsKt.AnonymousClass2.INSTANCE);
         m.checkNotNullExpressionValue(observableG, "filter { it != null }.map { it!! }");
-        ObservableExtensionsKt.appSubscribe$default(observableG, WidgetChatListAdapterItemStageInvite.class, (Context) null, new WidgetChatListAdapterItemStageInvite$onConfigure$2(this), (Function1) null, (Function0) null, (Function0) null, new WidgetChatListAdapterItemStageInvite$onConfigure$1(this), 58, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(observableG, WidgetChatListAdapterItemStageInvite.class, (Context) null, new AnonymousClass2(), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 58, (Object) null);
     }
 }

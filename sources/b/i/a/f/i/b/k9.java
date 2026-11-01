@@ -1,7 +1,6 @@
 package b.i.a.f.i.b;
 
 import android.app.job.JobInfo;
-import android.app.job.JobInfo$Builder;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.ContentValues;
@@ -9,29 +8,23 @@ import android.content.Context;
 import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.net.Uri$Builder;
+import android.net.Uri;
 import android.os.Build;
-import android.os.Build$VERSION;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.os.SystemClock;
-import android.provider.Settings$Secure;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.collection.ArrayMap;
-import b.i.a.f.h.l.a1$a;
-import b.i.a.f.h.l.c1$a;
-import b.i.a.f.h.l.d1$a;
-import b.i.a.f.h.l.e1$a;
 import b.i.a.f.h.l.hb;
-import b.i.a.f.h.l.i1$a;
 import com.google.android.gms.measurement.internal.zzap;
 import com.google.android.gms.measurement.internal.zzaq;
 import com.google.android.gms.measurement.internal.zzku;
@@ -100,6 +93,43 @@ public class k9 implements t5 {
     public boolean l = false;
     public final v9 A = new n9(this);
 
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
+    public final class a {
+        public b.i.a.f.h.l.e1 a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public List<Long> f1547b;
+        public List<b.i.a.f.h.l.a1> c;
+        public long d;
+
+        public a(k9 k9Var, j9 j9Var) {
+        }
+
+        public final void a(b.i.a.f.h.l.e1 e1Var) {
+            this.a = e1Var;
+        }
+
+        public final boolean b(long j, b.i.a.f.h.l.a1 a1Var) {
+            if (this.c == null) {
+                this.c = new ArrayList();
+            }
+            if (this.f1547b == null) {
+                this.f1547b = new ArrayList();
+            }
+            if (this.c.size() > 0 && ((this.c.get(0).H() / 1000) / 60) / 60 != ((a1Var.H() / 1000) / 60) / 60) {
+                return false;
+            }
+            long jG = this.d + ((long) a1Var.g());
+            if (jG >= Math.max(0, p.i.a(null).intValue())) {
+                return false;
+            }
+            this.d = jG;
+            this.c.add(a1Var);
+            this.f1547b.add(Long.valueOf(j));
+            return this.c.size() < Math.max(1, p.j.a(null).intValue());
+        }
+    }
+
     public k9(r9 r9Var) {
         u4 u4VarB = u4.b(r9Var.a, null, null);
         this.k = u4VarB;
@@ -117,23 +147,23 @@ public class k9 implements t5 {
         u4VarB.f().v(new j9(this, r9Var));
     }
 
-    public final void A(a1$a a1_a, a1$a a1_a2) {
-        b.c.a.a0.d.l("_e".equals(a1_a.y()));
+    public final void A(b.i.a.f.h.l.a1.a aVar, b.i.a.f.h.l.a1.a aVar2) {
+        b.c.a.a0.d.l("_e".equals(aVar.y()));
         N();
-        b.i.a.f.h.l.c1 c1VarW = q9.w((b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) a1_a.p()), "_et");
+        b.i.a.f.h.l.c1 c1VarW = q9.w((b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) aVar.p()), "_et");
         if (!c1VarW.I() || c1VarW.J() <= 0) {
             return;
         }
         long J = c1VarW.J();
         N();
-        b.i.a.f.h.l.c1 c1VarW2 = q9.w((b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) a1_a2.p()), "_et");
+        b.i.a.f.h.l.c1 c1VarW2 = q9.w((b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) aVar2.p()), "_et");
         if (c1VarW2 != null && c1VarW2.J() > 0) {
             J += c1VarW2.J();
         }
         N();
-        q9.E(a1_a2, "_et", Long.valueOf(J));
+        q9.E(aVar2, "_et", Long.valueOf(J));
         N();
-        q9.E(a1_a, "_fr", 1L);
+        q9.E(aVar, "_fr", 1L);
     }
 
     @WorkerThread
@@ -333,7 +363,7 @@ public class k9 implements t5 {
                         } else {
                             try {
                                 packageInfoB = b.i.a.f.e.p.b.a(this.k.f1570b).b(zznVar.j, 0);
-                            } catch (PackageManager$NameNotFoundException e2) {
+                            } catch (PackageManager.NameNotFoundException e2) {
                                 this.k.g().f.c("Package info is null, first open report might be inaccurate. appId", q3.s(zznVar.j), e2);
                                 packageInfoB = a4Var;
                             }
@@ -353,7 +383,7 @@ public class k9 implements t5 {
                             }
                             try {
                                 applicationInfoA = b.i.a.f.e.p.b.a(this.k.f1570b).a(zznVar.j, 0);
-                            } catch (PackageManager$NameNotFoundException e3) {
+                            } catch (PackageManager.NameNotFoundException e3) {
                                 this.k.g().f.c("Application info is null, first open report might be inaccurate. appId", q3.s(zznVar.j), e3);
                                 applicationInfoA = a4Var;
                             }
@@ -956,87 +986,87 @@ public class k9 implements t5 {
                 b.c.a.a0.d.A(zznVar);
                 b.c.a.a0.d.w(mVar.a);
                 b.c.a.a0.d.l(mVar.a.equals(zznVar.j));
-                e1$a e1_aU0 = b.i.a.f.h.l.e1.u0();
-                e1_aU0.q();
-                e1_aU0.x("android");
+                b.i.a.f.h.l.e1.a aVarU0 = b.i.a.f.h.l.e1.u0();
+                aVarU0.q();
+                aVarU0.x("android");
                 if (!TextUtils.isEmpty(zznVar.j)) {
-                    e1_aU0.X(zznVar.j);
+                    aVarU0.X(zznVar.j);
                 }
                 if (!TextUtils.isEmpty(zznVar.m)) {
-                    e1_aU0.T(zznVar.m);
+                    aVarU0.T(zznVar.m);
                 }
                 if (!TextUtils.isEmpty(zznVar.l)) {
-                    e1_aU0.a0(zznVar.l);
+                    aVarU0.a0(zznVar.l);
                 }
                 long j = zznVar.f3012s;
                 if (j != -2147483648L) {
-                    e1_aU0.c0((int) j);
+                    aVarU0.c0((int) j);
                 }
-                e1_aU0.W(zznVar.n);
+                aVarU0.W(zznVar.n);
                 if (!TextUtils.isEmpty(zznVar.k)) {
-                    e1_aU0.m0(zznVar.k);
+                    aVarU0.m0(zznVar.k);
                 }
                 if (b.i.a.f.h.l.t8.b() && this.k.a().o(p.J0)) {
-                    e1_aU0.w0(a(zznVar.j).h(d.b(zznVar.F)).d());
+                    aVarU0.w0(a(zznVar.j).h(d.b(zznVar.F)).d());
                 }
                 if (b.i.a.f.h.l.da.b() && this.k.a().v(zznVar.j, p.f1561j0)) {
-                    if (TextUtils.isEmpty(e1_aU0.s0()) && !TextUtils.isEmpty(zznVar.E)) {
-                        e1_aU0.u0(zznVar.E);
+                    if (TextUtils.isEmpty(aVarU0.s0()) && !TextUtils.isEmpty(zznVar.E)) {
+                        aVarU0.u0(zznVar.E);
                     }
-                    if (TextUtils.isEmpty(e1_aU0.s0()) && TextUtils.isEmpty(e1_aU0.x0()) && !TextUtils.isEmpty(zznVar.A)) {
-                        e1_aU0.r0(zznVar.A);
+                    if (TextUtils.isEmpty(aVarU0.s0()) && TextUtils.isEmpty(aVarU0.x0()) && !TextUtils.isEmpty(zznVar.A)) {
+                        aVarU0.r0(zznVar.A);
                     }
-                } else if (TextUtils.isEmpty(e1_aU0.s0()) && !TextUtils.isEmpty(zznVar.A)) {
-                    e1_aU0.r0(zznVar.A);
+                } else if (TextUtils.isEmpty(aVarU0.s0()) && !TextUtils.isEmpty(zznVar.A)) {
+                    aVarU0.r0(zznVar.A);
                 }
                 long j2 = zznVar.o;
                 if (j2 != 0) {
-                    e1_aU0.d0(j2);
+                    aVarU0.d0(j2);
                 }
-                e1_aU0.l0(zznVar.C);
+                aVarU0.l0(zznVar.C);
                 List<Integer> listU = N().U();
                 if (listU != null) {
-                    e1_aU0.M(listU);
+                    aVarU0.M(listU);
                 }
                 d dVarH = a(zznVar.j).h(d.b(zznVar.F));
                 if (!b.i.a.f.h.l.t8.b() || !this.k.a().o(p.J0) || dVarH.j()) {
                     Pair<String, Boolean> pairS = this.j.s(zznVar.j, dVarH);
                     if (TextUtils.isEmpty((CharSequence) pairS.first)) {
                         if (!this.k.y().s(this.k.j()) && zznVar.f3014y && (!hb.b() || !this.k.a().v(zznVar.j, p.G0))) {
-                            String string = Settings$Secure.getString(this.k.j().getContentResolver(), "android_id");
+                            String string = Settings.Secure.getString(this.k.j().getContentResolver(), "android_id");
                             if (string == null) {
-                                this.k.g().A().b("null secure ID. appId", q3.s(e1_aU0.k0()));
+                                this.k.g().A().b("null secure ID. appId", q3.s(aVarU0.k0()));
                                 string = "null";
                             } else if (string.isEmpty()) {
-                                this.k.g().A().b("empty secure ID. appId", q3.s(e1_aU0.k0()));
+                                this.k.g().A().b("empty secure ID. appId", q3.s(aVarU0.k0()));
                             }
-                            e1_aU0.o0(string);
+                            aVarU0.o0(string);
                         }
                     } else if (zznVar.f3013x) {
-                        e1_aU0.e0((String) pairS.first);
+                        aVarU0.e0((String) pairS.first);
                         Object obj2 = pairS.second;
                         if (obj2 != null) {
-                            e1_aU0.y(((Boolean) obj2).booleanValue());
+                            aVarU0.y(((Boolean) obj2).booleanValue());
                         }
                     }
                 }
                 this.k.y().o();
-                e1_aU0.J(Build.MODEL);
+                aVarU0.J(Build.MODEL);
                 this.k.y().o();
-                e1_aU0.E(Build$VERSION.RELEASE);
-                e1_aU0.V((int) this.k.y().t());
-                e1_aU0.N(this.k.y().u());
+                aVarU0.E(Build.VERSION.RELEASE);
+                aVarU0.V((int) this.k.y().t());
+                aVarU0.N(this.k.y().u());
                 if (!this.k.a().o(p.y0)) {
-                    e1_aU0.i0(zznVar.u);
+                    aVarU0.i0(zznVar.u);
                 }
                 if (this.k.d()) {
                     if (b.i.a.f.h.l.t8.b() && this.k.a().o(p.J0)) {
-                        e1_aU0.k0();
+                        aVarU0.k0();
                     } else {
-                        e1_aU0.k0();
+                        aVarU0.k0();
                     }
                     if (!TextUtils.isEmpty(null)) {
-                        e1_aU0.q0();
+                        aVarU0.q0();
                         throw null;
                     }
                 }
@@ -1069,21 +1099,21 @@ public class k9 implements t5 {
                     K().I(a4VarT2);
                 }
                 if ((!b.i.a.f.h.l.t8.b() || !this.k.a().o(p.J0) || dVarH.k()) && !TextUtils.isEmpty(a4VarT2.s())) {
-                    e1_aU0.h0(a4VarT2.s());
+                    aVarU0.h0(a4VarT2.s());
                 }
                 if (!TextUtils.isEmpty(a4VarT2.H())) {
-                    e1_aU0.n0(a4VarT2.H());
+                    aVarU0.n0(a4VarT2.H());
                 }
                 List<u9> listC = K().C(zznVar.j);
                 for (int i2 = 0; i2 < listC.size(); i2++) {
-                    i1$a i1_aL = b.i.a.f.h.l.i1.L();
-                    i1_aL.r(listC.get(i2).c);
-                    i1_aL.q(listC.get(i2).d);
-                    N().G(i1_aL, listC.get(i2).e);
-                    e1_aU0.u(i1_aL);
+                    b.i.a.f.h.l.i1.a aVarL = b.i.a.f.h.l.i1.L();
+                    aVarL.r(listC.get(i2).c);
+                    aVarL.q(listC.get(i2).d);
+                    N().G(aVarL, listC.get(i2).e);
+                    aVarU0.u(aVarL);
                 }
                 try {
-                    long jV = K().v((b.i.a.f.h.l.e1) ((b.i.a.f.h.l.u4) e1_aU0.p()));
+                    long jV = K().v((b.i.a.f.h.l.e1) ((b.i.a.f.h.l.u4) aVarU0.p()));
                     g gVarK2 = K();
                     zzap zzapVar = mVar.f;
                     if (zzapVar != null) {
@@ -1100,7 +1130,7 @@ public class k9 implements t5 {
                         this.n = 0L;
                     }
                 } catch (IOException e2) {
-                    this.k.g().z().c("Data loss. Failed to insert raw event metadata. appId", q3.s(e1_aU0.k0()), e2);
+                    this.k.g().z().c("Data loss. Failed to insert raw event metadata. appId", q3.s(aVarU0.k0()), e2);
                 }
                 K().s();
                 K().e0();
@@ -1237,7 +1267,7 @@ public class k9 implements t5 {
                             }
                         }
                     }
-                    d1$a d1_aX = b.i.a.f.h.l.d1.x();
+                    b.i.a.f.h.l.d1.a aVarX = b.i.a.f.h.l.d1.x();
                     int size = listD.size();
                     ArrayList arrayList = new ArrayList(listD.size());
                     boolean z2 = "1".equals(this.k.h.c.h(strU, "gaia_collection_enabled")) && !(b.i.a.f.h.l.t8.b() && this.k.h.o(p.J0) && !a(strU).j());
@@ -1245,68 +1275,68 @@ public class k9 implements t5 {
                     boolean z4 = (b.i.a.f.h.l.t8.b() && this.k.h.o(p.J0) && !a(strU).k()) ? false : true;
                     int i3 = 0;
                     while (i3 < size) {
-                        e1$a e1_aT = ((b.i.a.f.h.l.e1) listD.get(i3).first).t();
+                        b.i.a.f.h.l.e1.a aVarT = ((b.i.a.f.h.l.e1) listD.get(i3).first).t();
                         arrayList.add((Long) listD.get(i3).second);
                         ArrayList arrayList2 = arrayList;
-                        if (e1_aT.l) {
-                            e1_aT.n();
-                            e1_aT.l = false;
+                        if (aVarT.l) {
+                            aVarT.n();
+                            aVarT.l = false;
                         }
-                        b.i.a.f.h.l.e1.W0((b.i.a.f.h.l.e1) e1_aT.k, 33025L);
-                        if (e1_aT.l) {
-                            e1_aT.n();
-                            e1_aT.l = false;
+                        b.i.a.f.h.l.e1.W0((b.i.a.f.h.l.e1) aVarT.k, 33025L);
+                        if (aVarT.l) {
+                            aVarT.n();
+                            aVarT.l = false;
                         }
-                        b.i.a.f.h.l.e1.y((b.i.a.f.h.l.e1) e1_aT.k, jCurrentTimeMillis);
-                        if (e1_aT.l) {
-                            e1_aT.n();
-                            e1_aT.l = false;
+                        b.i.a.f.h.l.e1.y((b.i.a.f.h.l.e1) aVarT.k, jCurrentTimeMillis);
+                        if (aVarT.l) {
+                            aVarT.n();
+                            aVarT.l = false;
                         }
-                        b.i.a.f.h.l.e1.m0((b.i.a.f.h.l.e1) e1_aT.k, false);
+                        b.i.a.f.h.l.e1.m0((b.i.a.f.h.l.e1) aVarT.k, false);
                         if (!z2) {
-                            if (e1_aT.l) {
-                                e1_aT.n();
-                                e1_aT.l = false;
+                            if (aVarT.l) {
+                                aVarT.n();
+                                aVarT.l = false;
                             }
-                            b.i.a.f.h.l.e1.i1((b.i.a.f.h.l.e1) e1_aT.k);
+                            b.i.a.f.h.l.e1.i1((b.i.a.f.h.l.e1) aVarT.k);
                         }
                         if (b.i.a.f.h.l.t8.b() && this.k.h.o(p.J0)) {
                             if (!z3) {
-                                if (e1_aT.l) {
-                                    e1_aT.n();
-                                    e1_aT.l = false;
+                                if (aVarT.l) {
+                                    aVarT.n();
+                                    aVarT.l = false;
                                 }
-                                b.i.a.f.h.l.e1.F0((b.i.a.f.h.l.e1) e1_aT.k);
-                                if (e1_aT.l) {
-                                    e1_aT.n();
-                                    e1_aT.l = false;
+                                b.i.a.f.h.l.e1.F0((b.i.a.f.h.l.e1) aVarT.k);
+                                if (aVarT.l) {
+                                    aVarT.n();
+                                    aVarT.l = false;
                                 }
-                                b.i.a.f.h.l.e1.L0((b.i.a.f.h.l.e1) e1_aT.k);
+                                b.i.a.f.h.l.e1.L0((b.i.a.f.h.l.e1) aVarT.k);
                             }
                             if (!z4) {
-                                if (e1_aT.l) {
-                                    e1_aT.n();
-                                    e1_aT.l = false;
+                                if (aVarT.l) {
+                                    aVarT.n();
+                                    aVarT.l = false;
                                 }
-                                b.i.a.f.h.l.e1.Q0((b.i.a.f.h.l.e1) e1_aT.k);
+                                b.i.a.f.h.l.e1.Q0((b.i.a.f.h.l.e1) aVarT.k);
                             }
                         }
                         if (this.k.h.u(strU, p.X)) {
-                            long jT = N().t(((b.i.a.f.h.l.e1) ((b.i.a.f.h.l.u4) e1_aT.p())).d());
-                            if (e1_aT.l) {
-                                e1_aT.n();
-                                e1_aT.l = false;
+                            long jT = N().t(((b.i.a.f.h.l.e1) ((b.i.a.f.h.l.u4) aVarT.p())).d());
+                            if (aVarT.l) {
+                                aVarT.n();
+                                aVarT.l = false;
                             }
-                            b.i.a.f.h.l.e1.p1((b.i.a.f.h.l.e1) e1_aT.k, jT);
+                            b.i.a.f.h.l.e1.p1((b.i.a.f.h.l.e1) aVarT.k, jT);
                         }
-                        d1_aX.q(e1_aT);
+                        aVarX.q(aVarT);
                         i3++;
                         arrayList = arrayList2;
                     }
                     ArrayList arrayList3 = arrayList;
-                    String strZ = this.k.g().x(2) ? N().z((b.i.a.f.h.l.d1) ((b.i.a.f.h.l.u4) d1_aX.p())) : null;
+                    String strZ = this.k.g().x(2) ? N().z((b.i.a.f.h.l.d1) ((b.i.a.f.h.l.u4) aVarX.p())) : null;
                     N();
-                    byte[] bArrD = ((b.i.a.f.h.l.d1) ((b.i.a.f.h.l.u4) d1_aX.p())).d();
+                    byte[] bArrD = ((b.i.a.f.h.l.d1) ((b.i.a.f.h.l.u4) aVarX.p())).d();
                     String strA = p.q.a(null);
                     try {
                         URL url = new URL(strA);
@@ -1317,7 +1347,7 @@ public class k9 implements t5 {
                             this.w = new ArrayList(arrayList3);
                         }
                         this.k.o().g.b(jCurrentTimeMillis);
-                        this.k.g().n.d("Uploading data. app, uncompressed size, data", size > 0 ? ((b.i.a.f.h.l.d1) d1_aX.k).u().G1() : "?", Integer.valueOf(bArrD.length), strZ);
+                        this.k.g().n.d("Uploading data. app, uncompressed size, data", size > 0 ? ((b.i.a.f.h.l.d1) aVarX.k).u().G1() : "?", Integer.valueOf(bArrD.length), strZ);
                         this.f1543s = true;
                         x3 x3VarJ = J();
                         m9 m9Var = new m9(this, strU);
@@ -1615,38 +1645,38 @@ public class k9 implements t5 {
         return W();
     }
 
-    public static void d(a1$a a1_a, int i, String str) {
-        List<b.i.a.f.h.l.c1> listV = a1_a.v();
+    public static void d(b.i.a.f.h.l.a1.a aVar, int i, String str) {
+        List<b.i.a.f.h.l.c1> listV = aVar.v();
         for (int i2 = 0; i2 < listV.size(); i2++) {
             if ("_err".equals(listV.get(i2).B())) {
                 return;
             }
         }
-        c1$a c1_aQ = b.i.a.f.h.l.c1.Q();
-        c1_aQ.s("_err");
-        c1_aQ.r(Long.valueOf(i).longValue());
-        b.i.a.f.h.l.c1 c1Var = (b.i.a.f.h.l.c1) ((b.i.a.f.h.l.u4) c1_aQ.p());
-        c1$a c1_aQ2 = b.i.a.f.h.l.c1.Q();
-        c1_aQ2.s("_ev");
-        c1_aQ2.t(str);
-        b.i.a.f.h.l.c1 c1Var2 = (b.i.a.f.h.l.c1) ((b.i.a.f.h.l.u4) c1_aQ2.p());
-        if (a1_a.l) {
-            a1_a.n();
-            a1_a.l = false;
+        b.i.a.f.h.l.c1.a aVarQ = b.i.a.f.h.l.c1.Q();
+        aVarQ.s("_err");
+        aVarQ.r(Long.valueOf(i).longValue());
+        b.i.a.f.h.l.c1 c1Var = (b.i.a.f.h.l.c1) ((b.i.a.f.h.l.u4) aVarQ.p());
+        b.i.a.f.h.l.c1.a aVarQ2 = b.i.a.f.h.l.c1.Q();
+        aVarQ2.s("_ev");
+        aVarQ2.t(str);
+        b.i.a.f.h.l.c1 c1Var2 = (b.i.a.f.h.l.c1) ((b.i.a.f.h.l.u4) aVarQ2.p());
+        if (aVar.l) {
+            aVar.n();
+            aVar.l = false;
         }
-        b.i.a.f.h.l.a1.A((b.i.a.f.h.l.a1) a1_a.k, c1Var);
-        if (a1_a.l) {
-            a1_a.n();
-            a1_a.l = false;
+        b.i.a.f.h.l.a1.A((b.i.a.f.h.l.a1) aVar.k, c1Var);
+        if (aVar.l) {
+            aVar.n();
+            aVar.l = false;
         }
-        b.i.a.f.h.l.a1.A((b.i.a.f.h.l.a1) a1_a.k, c1Var2);
+        b.i.a.f.h.l.a1.A((b.i.a.f.h.l.a1) aVar.k, c1Var2);
     }
 
-    public static void e(a1$a a1_a, @NonNull String str) {
-        List<b.i.a.f.h.l.c1> listV = a1_a.v();
+    public static void e(b.i.a.f.h.l.a1.a aVar, @NonNull String str) {
+        List<b.i.a.f.h.l.c1> listV = aVar.v();
         for (int i = 0; i < listV.size(); i++) {
             if (str.equals(listV.get(i).B())) {
-                a1_a.x(i);
+                aVar.x(i);
                 return;
             }
         }
@@ -1662,43 +1692,43 @@ public class k9 implements t5 {
         return this.k.g();
     }
 
-    public final void h(e1$a e1_a, long j, boolean z2) throws Throwable {
+    public final void h(b.i.a.f.h.l.e1.a aVar, long j, boolean z2) throws Throwable {
         u9 u9Var;
         boolean z3;
         String str = z2 ? "_se" : "_lte";
-        u9 u9VarY = K().Y(e1_a.k0(), str);
+        u9 u9VarY = K().Y(aVar.k0(), str);
         if (u9VarY == null || u9VarY.e == null) {
-            String strK0 = e1_a.k0();
+            String strK0 = aVar.k0();
             Objects.requireNonNull((b.i.a.f.e.o.c) this.k.o);
             u9Var = new u9(strK0, "auto", str, System.currentTimeMillis(), Long.valueOf(j));
         } else {
-            String strK1 = e1_a.k0();
+            String strK1 = aVar.k0();
             Objects.requireNonNull((b.i.a.f.e.o.c) this.k.o);
             u9Var = new u9(strK1, "auto", str, System.currentTimeMillis(), Long.valueOf(((Long) u9VarY.e).longValue() + j));
         }
-        i1$a i1_aL = b.i.a.f.h.l.i1.L();
-        i1_aL.r(str);
+        b.i.a.f.h.l.i1.a aVarL = b.i.a.f.h.l.i1.L();
+        aVarL.r(str);
         Objects.requireNonNull((b.i.a.f.e.o.c) this.k.o);
-        i1_aL.q(System.currentTimeMillis());
-        i1_aL.s(((Long) u9Var.e).longValue());
-        b.i.a.f.h.l.i1 i1Var = (b.i.a.f.h.l.i1) ((b.i.a.f.h.l.u4) i1_aL.p());
-        int iS = q9.s(e1_a, str);
+        aVarL.q(System.currentTimeMillis());
+        aVarL.s(((Long) u9Var.e).longValue());
+        b.i.a.f.h.l.i1 i1Var = (b.i.a.f.h.l.i1) ((b.i.a.f.h.l.u4) aVarL.p());
+        int iS = q9.s(aVar, str);
         if (iS >= 0) {
-            if (e1_a.l) {
-                e1_a.n();
-                e1_a.l = false;
+            if (aVar.l) {
+                aVar.n();
+                aVar.l = false;
             }
-            b.i.a.f.h.l.e1.x((b.i.a.f.h.l.e1) e1_a.k, iS, i1Var);
+            b.i.a.f.h.l.e1.x((b.i.a.f.h.l.e1) aVar.k, iS, i1Var);
             z3 = true;
         } else {
             z3 = false;
         }
         if (!z3) {
-            if (e1_a.l) {
-                e1_a.n();
-                e1_a.l = false;
+            if (aVar.l) {
+                aVar.n();
+                aVar.l = false;
             }
-            b.i.a.f.h.l.e1.A((b.i.a.f.h.l.e1) e1_a.k, i1Var);
+            b.i.a.f.h.l.e1.A((b.i.a.f.h.l.e1) aVar.k, i1Var);
         }
         if (j > 0) {
             K().M(u9Var);
@@ -1915,7 +1945,7 @@ public class k9 implements t5 {
         }
         c cVar = this.k.h;
         Objects.requireNonNull(cVar);
-        Uri$Builder uri$Builder = new Uri$Builder();
+        Uri.Builder builder = new Uri.Builder();
         String strV = a4Var.v();
         if (TextUtils.isEmpty(strV)) {
             if (b.i.a.f.h.l.da.b() && cVar.a.h.u(a4Var.o(), p.f1561j0)) {
@@ -1928,10 +1958,10 @@ public class k9 implements t5 {
             }
         }
         ArrayMap arrayMap = null;
-        Uri$Builder uri$BuilderEncodedAuthority = uri$Builder.scheme(p.e.a(null)).encodedAuthority(p.f.a(null));
+        Uri.Builder builderEncodedAuthority = builder.scheme(p.e.a(null)).encodedAuthority(p.f.a(null));
         String strValueOf = String.valueOf(strV);
-        uri$BuilderEncodedAuthority.path(strValueOf.length() != 0 ? "config/app/".concat(strValueOf) : new String("config/app/")).appendQueryParameter("app_instance_id", a4Var.s()).appendQueryParameter("platform", "android").appendQueryParameter("gmp_version", "33025");
-        String string = uri$Builder.build().toString();
+        builderEncodedAuthority.path(strValueOf.length() != 0 ? "config/app/".concat(strValueOf) : new String("config/app/")).appendQueryParameter("app_instance_id", a4Var.s()).appendQueryParameter("platform", "android").appendQueryParameter("gmp_version", "33025");
+        String string = builder.build().toString();
         try {
             URL url = new URL(string);
             this.k.g().n.b("Fetching remote configuration", a4Var.o());
@@ -2244,22 +2274,22 @@ public class k9 implements t5 {
         throw new UnsupportedOperationException("Method not decompiled: b.i.a.f.i.b.k9.t(long):boolean");
     }
 
-    public final boolean u(a1$a a1_a, a1$a a1_a2) {
-        b.c.a.a0.d.l("_e".equals(a1_a.y()));
+    public final boolean u(b.i.a.f.h.l.a1.a aVar, b.i.a.f.h.l.a1.a aVar2) {
+        b.c.a.a0.d.l("_e".equals(aVar.y()));
         N();
-        b.i.a.f.h.l.c1 c1VarW = q9.w((b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) a1_a.p()), "_sc");
+        b.i.a.f.h.l.c1 c1VarW = q9.w((b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) aVar.p()), "_sc");
         String strG = c1VarW == null ? null : c1VarW.G();
         N();
-        b.i.a.f.h.l.c1 c1VarW2 = q9.w((b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) a1_a2.p()), "_pc");
+        b.i.a.f.h.l.c1 c1VarW2 = q9.w((b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) aVar2.p()), "_pc");
         String strG2 = c1VarW2 != null ? c1VarW2.G() : null;
         if (strG2 == null || !strG2.equals(strG)) {
             return false;
         }
-        A(a1_a, a1_a2);
+        A(aVar, aVar2);
         return true;
     }
 
-    public final boolean v() {
+    public final boolean v() throws Throwable {
         U();
         P();
         return ((K().S("select count(1) > 0 from raw_events", null) > 0L ? 1 : (K().S("select count(1) > 0 from raw_events", null) == 0L ? 0 : -1)) != 0) || !TextUtils.isEmpty(K().u());
@@ -2267,7 +2297,7 @@ public class k9 implements t5 {
 
     /* JADX WARN: Code duplicated, block: B:26:0x00a5  */
     @WorkerThread
-    public final void w() {
+    public final void w() throws Throwable {
         boolean z2;
         long jMax;
         long jMax2;
@@ -2397,7 +2427,7 @@ public class k9 implements t5 {
                 h9VarT.e.b(jCurrentTimeMillis2);
             }
         }
-        if (Build$VERSION.SDK_INT < 24) {
+        if (Build.VERSION.SDK_INT < 24) {
             h9VarT.d.setInexactRepeating(2, jElapsedRealtime, Math.max(p.f1562s.a(null).longValue(), jCurrentTimeMillis2), h9VarT.u());
             return;
         }
@@ -2406,7 +2436,7 @@ public class k9 implements t5 {
         int iT = h9VarT.t();
         PersistableBundle persistableBundle = new PersistableBundle();
         persistableBundle.putString("action", "com.google.android.gms.measurement.UPLOAD");
-        JobInfo jobInfoBuild = new JobInfo$Builder(iT, componentName).setMinimumLatency(jCurrentTimeMillis2).setOverrideDeadline(jCurrentTimeMillis2 << 1).setExtras(persistableBundle).build();
+        JobInfo jobInfoBuild = new JobInfo.Builder(iT, componentName).setMinimumLatency(jCurrentTimeMillis2).setOverrideDeadline(jCurrentTimeMillis2 << 1).setExtras(persistableBundle).build();
         Method method = b.i.a.f.h.l.a4.a;
         JobScheduler jobScheduler = (JobScheduler) context2.getSystemService("jobscheduler");
         if (b.i.a.f.h.l.a4.a == null || context2.checkSelfPermission("android.permission.UPDATE_DEVICE_STATS") != 0) {
@@ -2486,7 +2516,7 @@ public class k9 implements t5 {
                 }
             }
             return Boolean.FALSE;
-        } catch (PackageManager$NameNotFoundException unused) {
+        } catch (PackageManager.NameNotFoundException unused) {
             return null;
         }
     }

@@ -6,10 +6,7 @@ import androidx.annotation.GuardedBy;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import b.i.a.c.j1;
-import b.i.a.c.j1$b;
 import b.i.a.c.k1;
-import b.i.a.c.w2.u$b;
-import b.i.a.c.x2.w$a;
 import com.google.android.exoplayer2.drm.DrmInitData;
 import com.google.android.exoplayer2.drm.DrmSession;
 import java.io.EOFException;
@@ -33,7 +30,7 @@ public class h0 implements b.i.a.c.x2.w {
     public final b.i.a.c.w2.u d;
 
     @Nullable
-    public final b.i.a.c.w2.s$a e;
+    public final b.i.a.c.w2.s.a e;
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public int f820s;
@@ -45,7 +42,7 @@ public class h0 implements b.i.a.c.x2.w {
     public final Looper f;
 
     @Nullable
-    public h0$d g;
+    public d g;
 
     @Nullable
     public j1 h;
@@ -57,15 +54,15 @@ public class h0 implements b.i.a.c.x2.w {
     public int t;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final h0$b f819b = new h0$b();
+    public final b f819b = new b();
     public int j = 1000;
     public int[] k = new int[1000];
     public long[] l = new long[1000];
     public long[] o = new long[1000];
     public int[] n = new int[1000];
     public int[] m = new int[1000];
-    public w$a[] p = new w$a[1000];
-    public final m0<h0$c> c = new m0<>(k.a);
+    public b.i.a.c.x2.w.a[] p = new b.i.a.c.x2.w.a[1000];
+    public final m0<c> c = new m0<>(k.a);
     public long u = Long.MIN_VALUE;
     public long v = Long.MIN_VALUE;
     public long w = Long.MIN_VALUE;
@@ -76,10 +73,38 @@ public class h0 implements b.i.a.c.x2.w {
     /* JADX INFO: renamed from: y, reason: collision with root package name */
     public boolean f822y = true;
 
-    public h0(b.i.a.c.e3.o oVar, @Nullable Looper looper, @Nullable b.i.a.c.w2.u uVar, @Nullable b.i.a.c.w2.s$a s_a) {
+    /* JADX INFO: compiled from: SampleQueue.java */
+    public final class b {
+        public int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public long f824b;
+
+        @Nullable
+        public b.i.a.c.x2.w.a c;
+    }
+
+    /* JADX INFO: compiled from: SampleQueue.java */
+    public final class c {
+        public final j1 a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final b.i.a.c.w2.u.b f825b;
+
+        public c(j1 j1Var, b.i.a.c.w2.u.b bVar, a aVar) {
+            this.a = j1Var;
+            this.f825b = bVar;
+        }
+    }
+
+    /* JADX INFO: compiled from: SampleQueue.java */
+    public interface d {
+    }
+
+    public h0(b.i.a.c.e3.o oVar, @Nullable Looper looper, @Nullable b.i.a.c.w2.u uVar, @Nullable b.i.a.c.w2.s.a aVar) {
         this.f = looper;
         this.d = uVar;
-        this.e = s_a;
+        this.e = aVar;
         this.a = new g0(oVar);
     }
 
@@ -87,8 +112,8 @@ public class h0 implements b.i.a.c.x2.w {
     public final int a(b.i.a.c.e3.h hVar, int i, boolean z2, int i2) throws IOException {
         g0 g0Var = this.a;
         int iC = g0Var.c(i);
-        g0$a g0_a = g0Var.f;
-        int i3 = hVar.read(g0_a.d.a, g0_a.a(g0Var.g), iC);
+        g0.a aVar = g0Var.f;
+        int i3 = hVar.read(aVar.d.a, aVar.a(g0Var.g), iC);
         if (i3 != -1) {
             g0Var.b(i3);
             return i3;
@@ -110,8 +135,8 @@ public class h0 implements b.i.a.c.x2.w {
     }
 
     @Override // b.i.a.c.x2.w
-    public void d(long j, int i, int i2, int i3, @Nullable w$a w_a) {
-        u$b u_bB;
+    public void d(long j, int i, int i2, int i3, @Nullable b.i.a.c.x2.w.a aVar) {
+        b.i.a.c.w2.u.b bVarB;
         int i4 = i & 1;
         boolean z2 = i4 != 0;
         if (this.f822y) {
@@ -149,22 +174,22 @@ public class h0 implements b.i.a.c.x2.w {
             this.l[iL2] = j3;
             this.m[iL2] = i2;
             this.n[iL2] = i;
-            this.p[iL2] = w_a;
+            this.p[iL2] = aVar;
             this.k[iL2] = 0;
             if ((this.c.f829b.size() == 0) || !this.c.c().a.equals(this.B)) {
                 b.i.a.c.w2.u uVar = this.d;
                 if (uVar != null) {
                     Looper looper = this.f;
                     Objects.requireNonNull(looper);
-                    u_bB = uVar.b(looper, this.e, this.B);
+                    bVarB = uVar.b(looper, this.e, this.B);
                 } else {
-                    u_bB = b.i.a.c.w2.m.f1153b;
+                    bVarB = b.i.a.c.w2.m.f1153b;
                 }
-                m0<h0$c> m0Var = this.c;
+                m0<c> m0Var = this.c;
                 int iN = n();
                 j1 j1Var = this.B;
                 Objects.requireNonNull(j1Var);
-                m0Var.a(iN, new h0$c(j1Var, u_bB, null));
+                m0Var.a(iN, new c(j1Var, bVarB, null));
             }
             int i6 = this.q + 1;
             this.q = i6;
@@ -176,27 +201,27 @@ public class h0 implements b.i.a.c.x2.w {
                 long[] jArr2 = new long[i8];
                 int[] iArr2 = new int[i8];
                 int[] iArr3 = new int[i8];
-                w$a[] w_aArr = new w$a[i8];
+                b.i.a.c.x2.w.a[] aVarArr = new b.i.a.c.x2.w.a[i8];
                 int i9 = this.f820s;
                 int i10 = i7 - i9;
                 System.arraycopy(this.l, i9, jArr, 0, i10);
                 System.arraycopy(this.o, this.f820s, jArr2, 0, i10);
                 System.arraycopy(this.n, this.f820s, iArr2, 0, i10);
                 System.arraycopy(this.m, this.f820s, iArr3, 0, i10);
-                System.arraycopy(this.p, this.f820s, w_aArr, 0, i10);
+                System.arraycopy(this.p, this.f820s, aVarArr, 0, i10);
                 System.arraycopy(this.k, this.f820s, iArr, 0, i10);
                 int i11 = this.f820s;
                 System.arraycopy(this.l, 0, jArr, i10, i11);
                 System.arraycopy(this.o, 0, jArr2, i10, i11);
                 System.arraycopy(this.n, 0, iArr2, i10, i11);
                 System.arraycopy(this.m, 0, iArr3, i10, i11);
-                System.arraycopy(this.p, 0, w_aArr, i10, i11);
+                System.arraycopy(this.p, 0, aVarArr, i10, i11);
                 System.arraycopy(this.k, 0, iArr, i10, i11);
                 this.l = jArr;
                 this.o = jArr2;
                 this.n = iArr2;
                 this.m = iArr3;
-                this.p = w_aArr;
+                this.p = aVarArr;
                 this.k = iArr;
                 this.f820s = 0;
                 this.j = i8;
@@ -223,11 +248,11 @@ public class h0 implements b.i.a.c.x2.w {
                 z2 = true;
             }
         }
-        h0$d h0_d = this.g;
-        if (h0_d == null || !z2) {
+        d dVar = this.g;
+        if (dVar == null || !z2) {
             return;
         }
-        e0 e0Var = (e0) h0_d;
+        e0 e0Var = (e0) dVar;
         e0Var.A.post(e0Var.f811y);
     }
 
@@ -237,8 +262,8 @@ public class h0 implements b.i.a.c.x2.w {
         Objects.requireNonNull(g0Var);
         while (i > 0) {
             int iC = g0Var.c(i);
-            g0$a g0_a = g0Var.f;
-            xVar.e(g0_a.d.a, g0_a.a(g0Var.g), iC);
+            g0.a aVar = g0Var.f;
+            xVar.e(aVar.d.a, aVar.a(g0Var.g), iC);
             i -= iC;
             g0Var.b(iC);
         }
@@ -263,7 +288,7 @@ public class h0 implements b.i.a.c.x2.w {
         if (i5 < 0) {
             this.t = 0;
         }
-        m0<h0$c> m0Var = this.c;
+        m0<c> m0Var = this.c;
         while (i6 < m0Var.f829b.size() - 1) {
             int i7 = i6 + 1;
             if (i2 < m0Var.f829b.keyAt(i7)) {
@@ -392,9 +417,9 @@ public class h0 implements b.i.a.c.x2.w {
         b.i.a.c.w2.u uVar = this.d;
         if (uVar != null) {
             int iD = uVar.d(j1Var);
-            j1$b j1_bA = j1Var.a();
-            j1_bA.D = iD;
-            j1VarA = j1_bA.a();
+            j1.b bVarA = j1Var.a();
+            bVarA.D = iD;
+            j1VarA = bVarA.a();
         } else {
             j1VarA = j1Var;
         }
@@ -421,26 +446,26 @@ public class h0 implements b.i.a.c.x2.w {
     @CallSuper
     public void s(boolean z2) {
         g0 g0Var = this.a;
-        g0$a g0_a = g0Var.d;
-        if (g0_a.c) {
-            g0$a g0_a2 = g0Var.f;
-            int i = (((int) (g0_a2.a - g0_a.a)) / g0Var.f817b) + g0_a2.c;
+        g0.a aVar = g0Var.d;
+        if (aVar.c) {
+            g0.a aVar2 = g0Var.f;
+            int i = (((int) (aVar2.a - aVar.a)) / g0Var.f817b) + aVar2.c;
             b.i.a.c.e3.e[] eVarArr = new b.i.a.c.e3.e[i];
             int i2 = 0;
             while (i2 < i) {
-                eVarArr[i2] = g0_a.d;
-                g0_a.d = null;
-                g0$a g0_a3 = g0_a.e;
-                g0_a.e = null;
+                eVarArr[i2] = aVar.d;
+                aVar.d = null;
+                g0.a aVar3 = aVar.e;
+                aVar.e = null;
                 i2++;
-                g0_a = g0_a3;
+                aVar = aVar3;
             }
             g0Var.a.a(eVarArr);
         }
-        g0$a g0_a4 = new g0$a(0L, g0Var.f817b);
-        g0Var.d = g0_a4;
-        g0Var.e = g0_a4;
-        g0Var.f = g0_a4;
+        g0.a aVar4 = new g0.a(0L, g0Var.f817b);
+        g0Var.d = aVar4;
+        g0Var.e = aVar4;
+        g0Var.f = aVar4;
         g0Var.g = 0L;
         g0Var.a.c();
         this.q = 0;
@@ -452,7 +477,7 @@ public class h0 implements b.i.a.c.x2.w {
         this.v = Long.MIN_VALUE;
         this.w = Long.MIN_VALUE;
         this.f821x = false;
-        m0<h0$c> m0Var = this.c;
+        m0<c> m0Var = this.c;
         for (int i3 = 0; i3 < m0Var.f829b.size(); i3++) {
             m0Var.c.accept((V) m0Var.f829b.valueAt(i3));
         }

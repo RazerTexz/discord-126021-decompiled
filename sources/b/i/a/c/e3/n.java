@@ -30,6 +30,50 @@ public final class n {
     @Nullable
     public final Object j;
 
+    /* JADX INFO: compiled from: DataSpec.java */
+    public final class b {
+
+        @Nullable
+        public Uri a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public long f943b;
+        public int c;
+
+        @Nullable
+        public byte[] d;
+        public Map<String, String> e;
+        public long f;
+        public long g;
+
+        @Nullable
+        public String h;
+        public int i;
+
+        @Nullable
+        public Object j;
+
+        public b(n nVar, a aVar) {
+            this.a = nVar.a;
+            this.f943b = nVar.f942b;
+            this.c = nVar.c;
+            this.d = nVar.d;
+            this.e = nVar.e;
+            this.f = nVar.f;
+            this.g = nVar.g;
+            this.h = nVar.h;
+            this.i = nVar.i;
+            this.j = nVar.j;
+        }
+
+        public n a() {
+            if (this.a != null) {
+                return new n(this.a, this.f943b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j);
+            }
+            throw new IllegalStateException("The uri must be set.");
+        }
+    }
+
     static {
         i1.a("goog.exo.datasource");
     }
@@ -55,8 +99,8 @@ public final class n {
         this.j = obj;
     }
 
-    public n$b a() {
-        return new n$b(this, null);
+    public b a() {
+        return new b(this, null);
     }
 
     public static String b(int i) {

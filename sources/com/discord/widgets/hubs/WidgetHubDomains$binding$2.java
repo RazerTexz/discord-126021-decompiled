@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetHubDomainsBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -28,14 +28,14 @@ public final /* synthetic */ class WidgetHubDomains$binding$2 extends k implemen
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetHubDomainsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.hub_domains_section_title;
-        TextView textView = (TextView) view.findViewById(R$id.hub_domains_section_title);
+        int i = R.id.hub_domains_section_title;
+        TextView textView = (TextView) view.findViewById(R.id.hub_domains_section_title);
         if (textView != null) {
-            i = 2131364898;
-            RecyclerView recyclerView = (RecyclerView) view.findViewById(2131364898);
+            i = R.id.recycler_view;
+            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
             if (recyclerView != null) {
-                i = R$id.waitlist_button;
-                MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.waitlist_button);
+                i = R.id.waitlist_button;
+                MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.waitlist_button);
                 if (materialButton != null) {
                     return new WidgetHubDomainsBinding((LinearLayout) view, textView, recyclerView, materialButton);
                 }

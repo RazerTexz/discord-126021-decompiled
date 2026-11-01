@@ -5,10 +5,78 @@ import d0.e0.p.d.m0.c.m0;
 import d0.e0.p.d.m0.c.n0;
 import d0.e0.p.d.m0.c.t0;
 import d0.e0.p.d.m0.n.j0;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: specialBuiltinMembers.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class d0 {
+
+    /* JADX INFO: compiled from: specialBuiltinMembers.kt */
+    public final class a extends d0.z.d.o implements Function1<d0.e0.p.d.m0.c.b, Boolean> {
+        public static final a j = new a();
+
+        public a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(d0.e0.p.d.m0.c.b bVar) {
+            return Boolean.valueOf(invoke2(bVar));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(d0.e0.p.d.m0.c.b bVar) {
+            d0.z.d.m.checkNotNullParameter(bVar, "it");
+            return k.a.hasBuiltinSpecialPropertyFqName(d0.e0.p.d.m0.k.x.a.getPropertyIfAccessor(bVar));
+        }
+    }
+
+    /* JADX INFO: compiled from: specialBuiltinMembers.kt */
+    public final class b extends d0.z.d.o implements Function1<d0.e0.p.d.m0.c.b, Boolean> {
+        public static final b j = new b();
+
+        public b() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(d0.e0.p.d.m0.c.b bVar) {
+            return Boolean.valueOf(invoke2(bVar));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(d0.e0.p.d.m0.c.b bVar) {
+            d0.z.d.m.checkNotNullParameter(bVar, "it");
+            return g.m.isBuiltinFunctionWithDifferentNameInJvm((t0) bVar);
+        }
+    }
+
+    /* JADX INFO: compiled from: specialBuiltinMembers.kt */
+    public final class c extends d0.z.d.o implements Function1<d0.e0.p.d.m0.c.b, Boolean> {
+        public static final c j = new c();
+
+        public c() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(d0.e0.p.d.m0.c.b bVar) {
+            return Boolean.valueOf(invoke2(bVar));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(d0.e0.p.d.m0.c.b bVar) {
+            d0.z.d.m.checkNotNullParameter(bVar, "it");
+            if (d0.e0.p.d.m0.b.h.isBuiltIn(bVar)) {
+                h hVar = h.m;
+                if (h.getSpecialSignatureInfo(bVar) != null) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
     public static final boolean doesOverrideBuiltinWithDifferentJvmName(d0.e0.p.d.m0.c.b bVar) {
         d0.z.d.m.checkNotNullParameter(bVar, "<this>");
         return getOverriddenBuiltinWithDifferentJvmName(bVar) != null;
@@ -37,10 +105,10 @@ public final class d0 {
             return null;
         }
         if (t instanceof n0 ? true : t instanceof m0) {
-            return (T) d0.e0.p.d.m0.k.x.a.firstOverridden$default(t, false, d0$a.j, 1, null);
+            return (T) d0.e0.p.d.m0.k.x.a.firstOverridden$default(t, false, a.j, 1, null);
         }
         if (t instanceof t0) {
-            return (T) d0.e0.p.d.m0.k.x.a.firstOverridden$default(t, false, d0$b.j, 1, null);
+            return (T) d0.e0.p.d.m0.k.x.a.firstOverridden$default(t, false, b.j, 1, null);
         }
         return null;
     }
@@ -55,7 +123,7 @@ public final class d0 {
         d0.e0.p.d.m0.g.e name = t.getName();
         d0.z.d.m.checkNotNullExpressionValue(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         if (hVar.getSameAsBuiltinMethodWithErasedValueParameters(name)) {
-            return (T) d0.e0.p.d.m0.k.x.a.firstOverridden$default(t, false, d0$c.j, 1, null);
+            return (T) d0.e0.p.d.m0.k.x.a.firstOverridden$default(t, false, c.j, 1, null);
         }
         return null;
     }

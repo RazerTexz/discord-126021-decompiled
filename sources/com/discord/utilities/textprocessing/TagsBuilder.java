@@ -6,20 +6,39 @@ import com.discord.simpleast.core.node.Node;
 import com.discord.utilities.textprocessing.node.ChannelMentionNode;
 import com.discord.utilities.textprocessing.node.RoleMentionNode;
 import com.discord.utilities.textprocessing.node.UserMentionNode;
-import com.discord.utilities.textprocessing.node.UserMentionNode$Type;
 import d0.z.d.m;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: TagsBuilder.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class TagsBuilder implements a {
-    public static final TagsBuilder$Companion Companion = new TagsBuilder$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private Set<Long> taggedChannelIds;
     private Set<Long> taggedRoleIds;
     private Set<Long> taggedUserIds;
+
+    /* JADX INFO: compiled from: TagsBuilder.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final Tags extractTags(Collection<? extends Node<?>> ast) {
+            m.checkNotNullParameter(ast, "ast");
+            TagsBuilder tagsBuilder = new TagsBuilder();
+            tagsBuilder.processAst(ast);
+            return tagsBuilder.build();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     private final void addChannel(long channelId) {
         Set<Long> hashSet = this.taggedChannelIds;
@@ -76,7 +95,7 @@ public final class TagsBuilder implements a {
     public void processNode(Node<?> node) {
         if (node instanceof UserMentionNode) {
             UserMentionNode userMentionNode = (UserMentionNode) node;
-            if (userMentionNode.getType() == UserMentionNode$Type.USER) {
+            if (userMentionNode.getType() == UserMentionNode.Type.USER) {
                 addUser(userMentionNode.getUserId());
                 return;
             }

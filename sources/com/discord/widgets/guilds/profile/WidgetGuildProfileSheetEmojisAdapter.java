@@ -4,10 +4,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import androidx.recyclerview.widget.RecyclerView$Adapter;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
+import androidx.recyclerview.widget.RecyclerView;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.databinding.WidgetGuildProfileEmojiExtraBinding;
 import com.discord.databinding.WidgetGuildProfileEmojiItemBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
@@ -25,16 +24,28 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetGuildProfileSheetEmojisAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetGuildProfileSheetEmojisAdapter extends RecyclerView$Adapter<BaseEmojiViewHolder> {
+public final class WidgetGuildProfileSheetEmojisAdapter extends RecyclerView.Adapter<BaseEmojiViewHolder> {
     private List<? extends EmojiItem> data = n.emptyList();
     private Function0<Unit> onClickEmoji = WidgetGuildProfileSheetEmojisAdapter$onClickEmoji$1.INSTANCE;
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetEmojisAdapter$onBindViewHolder$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildProfileSheetEmojisAdapter.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetGuildProfileSheetEmojisAdapter.this.getOnClickEmoji().invoke();
+        }
+    }
 
     private final List<EmojiItem> getEmojiItems(List<? extends Emoji> emojis, int maxEmojisToShow) {
         List listTake = u.take(emojis, maxEmojisToShow);
         ArrayList arrayList = new ArrayList();
         Iterator it = listTake.iterator();
         while (it.hasNext()) {
-            arrayList.add(new EmojiItem$EmojiData((Emoji) it.next()));
+            arrayList.add(new EmojiItem.EmojiData((Emoji) it.next()));
         }
         int size = emojis.size() - arrayList.size();
         if (size > 0) {
@@ -42,17 +53,12 @@ public final class WidgetGuildProfileSheetEmojisAdapter extends RecyclerView$Ada
                 arrayList.remove(n.getLastIndex(arrayList));
                 size++;
             }
-            arrayList.add(new EmojiItem$MoreEmoji(Math.min(size, 99)));
+            arrayList.add(new EmojiItem.MoreEmoji(Math.min(size, 99)));
         }
         return arrayList;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public int getItemCount() {
-        return this.data.size();
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemViewType(int position) {
         return this.data.get(position).getType();
     }
@@ -61,13 +67,19 @@ public final class WidgetGuildProfileSheetEmojisAdapter extends RecyclerView$Ada
         return this.onClickEmoji;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public /* bridge */ /* synthetic */ void onBindViewHolder(RecyclerView$ViewHolder recyclerView$ViewHolder, int i) {
-        onBindViewHolder((BaseEmojiViewHolder) recyclerView$ViewHolder, i);
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        return this.data.size();
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public /* bridge */ /* synthetic */ RecyclerView$ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public /* bridge */ /* synthetic */ void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        onBindViewHolder((BaseEmojiViewHolder) viewHolder, i);
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public /* bridge */ /* synthetic */ RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         return onCreateViewHolder(viewGroup, i);
     }
 
@@ -85,14 +97,14 @@ public final class WidgetGuildProfileSheetEmojisAdapter extends RecyclerView$Ada
     public void onBindViewHolder(BaseEmojiViewHolder holder, int position) {
         m.checkNotNullParameter(holder, "holder");
         holder.bind(this.data.get(position));
-        holder.itemView.setOnClickListener(new WidgetGuildProfileSheetEmojisAdapter$onBindViewHolder$1(this));
+        holder.itemView.setOnClickListener(new AnonymousClass1());
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public BaseEmojiViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         m.checkNotNullParameter(parent, "parent");
         if (viewType == 0) {
-            View viewInflate = LayoutInflater.from(parent.getContext()).inflate(R$layout.widget_guild_profile_emoji_item, parent, false);
+            View viewInflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.widget_guild_profile_emoji_item, parent, false);
             Objects.requireNonNull(viewInflate, "rootView");
             SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate;
             WidgetGuildProfileEmojiItemBinding widgetGuildProfileEmojiItemBinding = new WidgetGuildProfileEmojiItemBinding(simpleDraweeView, simpleDraweeView);
@@ -102,7 +114,7 @@ public final class WidgetGuildProfileSheetEmojisAdapter extends RecyclerView$Ada
         if (viewType != 1) {
             throw new IllegalArgumentException(a.q("invalid view type: ", viewType));
         }
-        View viewInflate2 = LayoutInflater.from(parent.getContext()).inflate(R$layout.widget_guild_profile_emoji_extra, parent, false);
+        View viewInflate2 = LayoutInflater.from(parent.getContext()).inflate(R.layout.widget_guild_profile_emoji_extra, parent, false);
         Objects.requireNonNull(viewInflate2, "rootView");
         WidgetGuildProfileEmojiExtraBinding widgetGuildProfileEmojiExtraBinding = new WidgetGuildProfileEmojiExtraBinding((TextView) viewInflate2);
         m.checkNotNullExpressionValue(widgetGuildProfileEmojiExtraBinding, "WidgetGuildProfileEmojiE….context), parent, false)");

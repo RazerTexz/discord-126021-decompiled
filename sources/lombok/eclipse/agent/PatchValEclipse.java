@@ -1,7 +1,9 @@
 package lombok.eclipse.agent;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 import lombok.Lombok;
 import lombok.permit.Permit;
@@ -9,7 +11,6 @@ import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.IExtendedModifier;
 import org.eclipse.jdt.core.dom.MarkerAnnotation;
 import org.eclipse.jdt.core.dom.Modifier;
-import org.eclipse.jdt.core.dom.Modifier$ModifierKeyword;
 import org.eclipse.jdt.core.dom.Name;
 import org.eclipse.jdt.core.dom.QualifiedName;
 import org.eclipse.jdt.core.dom.SimpleName;
@@ -33,8 +34,8 @@ public class PatchValEclipse {
 
     public static void copyInitializationOfForEachIterable(Parser parser) {
         try {
-            ForeachStatement[] foreachStatementArr = (ASTNode[]) PatchValEclipse$Reflection.access$0().get(parser);
-            int astPtr = ((Integer) PatchValEclipse$Reflection.access$1().get(parser)).intValue();
+            ForeachStatement[] foreachStatementArr = (ASTNode[]) Reflection.access$0().get(parser);
+            int astPtr = ((Integer) Reflection.access$1().get(parser)).intValue();
             ForeachStatement foreachDecl = foreachStatementArr[astPtr];
             Expression expression = foreachDecl.collection;
             if (expression == null) {
@@ -47,8 +48,8 @@ public class PatchValEclipse {
             if (foreachDecl.elementVariable != null) {
                 if (val || var) {
                     try {
-                        if (PatchValEclipse$Reflection.access$2() != null) {
-                            PatchValEclipse$Reflection.access$2().set(foreachDecl.elementVariable, expression);
+                        if (Reflection.access$2() != null) {
+                            Reflection.access$2().set(foreachDecl.elementVariable, expression);
                         }
                     } catch (Exception unused) {
                     }
@@ -61,8 +62,8 @@ public class PatchValEclipse {
     public static void copyInitializationOfLocalDeclaration(Parser parser) {
         Expression expression;
         try {
-            AbstractVariableDeclaration[] abstractVariableDeclarationArr = (ASTNode[]) PatchValEclipse$Reflection.access$0().get(parser);
-            int astPtr = ((Integer) PatchValEclipse$Reflection.access$1().get(parser)).intValue();
+            AbstractVariableDeclaration[] abstractVariableDeclarationArr = (ASTNode[]) Reflection.access$0().get(parser);
+            int astPtr = ((Integer) Reflection.access$1().get(parser)).intValue();
             AbstractVariableDeclaration variableDecl = abstractVariableDeclarationArr[astPtr];
             if ((variableDecl instanceof LocalDeclaration) && (expression = variableDecl.initialization) != null) {
                 ImportReference[] importReferenceArr = (parser == null || parser.compilationUnit == null) ? null : parser.compilationUnit.imports;
@@ -71,8 +72,8 @@ public class PatchValEclipse {
                 boolean var = couldBeVar(importReferenceArr2, variableDecl.type);
                 if (val || var) {
                     try {
-                        if (PatchValEclipse$Reflection.access$3() != null) {
-                            PatchValEclipse$Reflection.access$3().set(variableDecl, expression);
+                        if (Reflection.access$3() != null) {
+                            Reflection.access$3().set(variableDecl, expression);
                         }
                     } catch (Exception unused) {
                     }
@@ -124,7 +125,7 @@ public class PatchValEclipse {
             boolean varIsPresent = false;
             for (Object present : modifiers) {
                 if (present instanceof Modifier) {
-                    Modifier$ModifierKeyword keyword = ((Modifier) present).getKeyword();
+                    Modifier.ModifierKeyword keyword = ((Modifier) present).getKeyword();
                     if (keyword != null) {
                         if (keyword.toFlagValue() == 16) {
                             finalIsPresent = true;
@@ -142,13 +143,13 @@ public class PatchValEclipse {
                 }
             }
             if (!finalIsPresent && valAnnotation != null) {
-                modifiers.add(createModifier(ast, Modifier$ModifierKeyword.FINAL_KEYWORD, valAnnotation.sourceStart, valAnnotation.sourceEnd));
+                modifiers.add(createModifier(ast, Modifier.ModifierKeyword.FINAL_KEYWORD, valAnnotation.sourceStart, valAnnotation.sourceEnd));
             }
             if (!valIsPresent && valAnnotation != null) {
                 MarkerAnnotation newAnnotation = createValVarAnnotation(ast, valAnnotation, valAnnotation.sourceStart, valAnnotation.sourceEnd);
                 try {
-                    PatchValEclipse$Reflection.access$4().invoke(converter, newAnnotation, valAnnotation);
-                    PatchValEclipse$Reflection.access$4().invoke(converter, newAnnotation.getTypeName(), valAnnotation.type);
+                    Reflection.access$4().invoke(converter, newAnnotation, valAnnotation);
+                    Reflection.access$4().invoke(converter, newAnnotation.getTypeName(), valAnnotation.type);
                     modifiers.add(newAnnotation);
                 } catch (IllegalAccessException e) {
                     throw Lombok.sneakyThrow(e);
@@ -159,8 +160,8 @@ public class PatchValEclipse {
             if (!varIsPresent && varAnnotation != null) {
                 MarkerAnnotation newAnnotation2 = createValVarAnnotation(ast, varAnnotation, varAnnotation.sourceStart, varAnnotation.sourceEnd);
                 try {
-                    PatchValEclipse$Reflection.access$4().invoke(converter, newAnnotation2, varAnnotation);
-                    PatchValEclipse$Reflection.access$4().invoke(converter, newAnnotation2.getTypeName(), varAnnotation.type);
+                    Reflection.access$4().invoke(converter, newAnnotation2, varAnnotation);
+                    Reflection.access$4().invoke(converter, newAnnotation2.getTypeName(), varAnnotation.type);
                     modifiers.add(newAnnotation2);
                 } catch (IllegalAccessException e3) {
                     throw Lombok.sneakyThrow(e3);
@@ -171,9 +172,9 @@ public class PatchValEclipse {
         }
     }
 
-    public static Modifier createModifier(AST ast, Modifier$ModifierKeyword keyword, int start, int end) {
+    public static Modifier createModifier(AST ast, Modifier.ModifierKeyword keyword, int start, int end) {
         try {
-            Modifier modifier = (Modifier) PatchValEclipse$Reflection.access$5().newInstance(ast);
+            Modifier modifier = (Modifier) Reflection.access$5().newInstance(ast);
             if (modifier != null) {
                 modifier.setKeyword(keyword);
                 modifier.setSourceRange(start, (end - start) + 1);
@@ -191,7 +192,7 @@ public class PatchValEclipse {
     public static MarkerAnnotation createValVarAnnotation(AST ast, Annotation original, int start, int end) {
         char[][] tokens;
         try {
-            MarkerAnnotation out = (MarkerAnnotation) PatchValEclipse$Reflection.access$6().newInstance(ast);
+            MarkerAnnotation out = (MarkerAnnotation) Reflection.access$6().newInstance(ast);
             if (original.type instanceof SingleTypeReference) {
                 tokens = new char[][]{original.type.token};
             } else if (original.type instanceof QualifiedTypeReference) {
@@ -257,6 +258,76 @@ public class PatchValEclipse {
                 FIELD_NAME_INDEX.set(name, Integer.valueOf(index));
             }
         } catch (Exception unused) {
+        }
+    }
+
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchValEclipse$Reflection.SCL.lombok */
+    public final class Reflection {
+        private static final Field initCopyField;
+        private static final Field iterableCopyField;
+        private static final Field astStackField;
+        private static final Field astPtrField;
+        private static final Constructor<Modifier> modifierConstructor;
+        private static final Constructor<MarkerAnnotation> markerAnnotationConstructor;
+        private static final Method astConverterRecordNodes;
+
+        static /* synthetic */ Field access$2() {
+            return iterableCopyField;
+        }
+
+        static /* synthetic */ Field access$3() {
+            return initCopyField;
+        }
+
+        static /* synthetic */ Field access$0() {
+            return astStackField;
+        }
+
+        static /* synthetic */ Field access$1() {
+            return astPtrField;
+        }
+
+        static /* synthetic */ Constructor access$5() {
+            return modifierConstructor;
+        }
+
+        static /* synthetic */ Constructor access$6() {
+            return markerAnnotationConstructor;
+        }
+
+        static /* synthetic */ Method access$4() {
+            return astConverterRecordNodes;
+        }
+
+        static {
+            Field a = null;
+            Field b2 = null;
+            Field c = null;
+            Field d = null;
+            Constructor<Modifier> f = null;
+            Constructor<MarkerAnnotation> g = null;
+            Method h = null;
+            try {
+                a = Permit.getField(LocalDeclaration.class, "$initCopy");
+                b2 = Permit.getField(LocalDeclaration.class, "$iterableCopy");
+            } catch (Throwable unused) {
+            }
+            try {
+                c = Permit.getField(Parser.class, "astStack");
+                d = Permit.getField(Parser.class, "astPtr");
+                f = Permit.getConstructor(Modifier.class, AST.class);
+                g = Permit.getConstructor(MarkerAnnotation.class, AST.class);
+                Class<?> z2 = Class.forName("org.eclipse.jdt.core.dom.ASTConverter");
+                h = Permit.getMethod(z2, "recordNodes", org.eclipse.jdt.core.dom.ASTNode.class, ASTNode.class);
+            } catch (Throwable unused2) {
+            }
+            initCopyField = a;
+            iterableCopyField = b2;
+            astStackField = c;
+            astPtrField = d;
+            modifierConstructor = f;
+            markerAnnotationConstructor = g;
+            astConverterRecordNodes = h;
         }
     }
 }

@@ -3,7 +3,6 @@ package b.f.h.a.b.d;
 import android.graphics.Bitmap;
 import android.util.SparseArray;
 import androidx.annotation.VisibleForTesting;
-import b.f.j.a.c.c$b;
 import b.f.j.j.h;
 import com.facebook.cache.common.CacheKey;
 import com.facebook.common.references.CloseableReference;
@@ -67,7 +66,7 @@ public class b implements b.f.h.a.b.b {
                 return;
             }
             b.f.j.a.c.c cVar = this.a;
-            CloseableReference<b.f.j.j.c> closeableReferenceC = cVar.f549b.c(new c$b(cVar.a, i), closeableReferenceA, cVar.c);
+            CloseableReference<b.f.j.j.c> closeableReferenceC = cVar.f549b.c(new b.f.j.a.c.c.b(cVar.a, i), closeableReferenceA, cVar.c);
             if (CloseableReference.y(closeableReferenceC)) {
                 CloseableReference<b.f.j.j.c> closeableReference3 = this.c.get(i);
                 if (closeableReference3 != null) {
@@ -89,7 +88,7 @@ public class b implements b.f.h.a.b.b {
     public synchronized boolean c(int i) {
         b.f.j.a.c.c cVar;
         cVar = this.a;
-        return cVar.f549b.contains(new c$b(cVar.a, i));
+        return cVar.f549b.contains(new b.f.j.a.c.c.b(cVar.a, i));
     }
 
     @Override // b.f.h.a.b.b
@@ -113,7 +112,7 @@ public class b implements b.f.h.a.b.b {
     public synchronized CloseableReference<Bitmap> d(int i) {
         b.f.j.a.c.c cVar;
         cVar = this.a;
-        return g(cVar.f549b.get(new c$b(cVar.a, i)));
+        return g(cVar.f549b.get(new b.f.j.a.c.c.b(cVar.a, i)));
     }
 
     @Override // b.f.h.a.b.b
@@ -140,7 +139,7 @@ public class b implements b.f.h.a.b.b {
                     closeableReference3.close();
                 }
                 b.f.j.a.c.c cVar = this.a;
-                this.d = cVar.f549b.c(new c$b(cVar.a, i), closeableReferenceA, cVar.c);
+                this.d = cVar.f549b.c(new b.f.j.a.c.c.b(cVar.a, i), closeableReferenceA, cVar.c);
             }
             if (closeableReferenceA != null) {
                 closeableReferenceA.close();

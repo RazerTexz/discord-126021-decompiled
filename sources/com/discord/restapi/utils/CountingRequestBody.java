@@ -3,14 +3,18 @@ package com.discord.restapi.utils;
 import b.d.b.a.a;
 import d0.g0.c;
 import d0.z.d.m;
+import g0.e;
+import g0.i;
 import g0.q;
+import g0.v;
 import java.io.IOException;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okio.BufferedSink;
 import okio.ByteString;
-import okio.ByteString$a;
 import rx.Observable;
 import rx.subjects.BehaviorSubject;
 
@@ -22,6 +26,30 @@ public final class CountingRequestBody extends RequestBody {
     private final long estimatedContentLength;
     private final int ignoreWriteToCount;
     private int numWriteToCalls;
+
+    /* JADX INFO: compiled from: CountingRequestBody.kt */
+    public final class CountingSink extends i {
+        private long bytesWritten;
+        private final Function1<Long, Unit> listener;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        /* JADX WARN: Multi-variable type inference failed */
+        public CountingSink(v vVar, Function1<? super Long, Unit> function1) {
+            super(vVar);
+            m.checkNotNullParameter(vVar, "delegate");
+            m.checkNotNullParameter(function1, "listener");
+            this.listener = function1;
+        }
+
+        @Override // g0.i, g0.v
+        public void write(e source, long byteCount) throws IOException {
+            m.checkNotNullParameter(source, "source");
+            super.write(source, byteCount);
+            long j = this.bytesWritten + byteCount;
+            this.bytesWritten = j;
+            this.listener.invoke(Long.valueOf(j));
+        }
+    }
 
     public /* synthetic */ CountingRequestBody(RequestBody requestBody, int i, int i2, DefaultConstructorMarker defaultConstructorMarker) {
         this(requestBody, (i2 & 2) != 0 ? 0 : i);
@@ -63,16 +91,16 @@ public final class CountingRequestBody extends RequestBody {
         int i = this.numWriteToCalls;
         this.numWriteToCalls = i + 1;
         if (i < this.ignoreWriteToCount) {
-            ByteString$a byteString$a = ByteString.k;
+            ByteString.Companion companion = ByteString.INSTANCE;
             StringBuilder sbQ = a.Q('<');
             sbQ.append(this.delegate);
             sbQ.append('>');
-            sink.e0(byteString$a.b(sbQ.toString(), c.a));
+            sink.e0(companion.b(sbQ.toString(), c.a));
             return;
         }
-        CountingRequestBody$CountingSink countingRequestBody$CountingSink = new CountingRequestBody$CountingSink(sink, new CountingRequestBody$writeTo$countingSink$1(this));
-        m.checkParameterIsNotNull(countingRequestBody$CountingSink, "$this$buffer");
-        q qVar = new q(countingRequestBody$CountingSink);
+        CountingSink countingSink = new CountingSink(sink, new CountingRequestBody$writeTo$countingSink$1(this));
+        m.checkParameterIsNotNull(countingSink, "$this$buffer");
+        q qVar = new q(countingSink);
         this.delegate.writeTo(qVar);
         qVar.flush();
     }

@@ -15,7 +15,7 @@ public class c implements d {
 
     @Override // b.i.c.r.d
     @NonNull
-    public d$a a(@NonNull String str) {
+    public d.a a(@NonNull String str) {
         boolean zA;
         long jCurrentTimeMillis = System.currentTimeMillis();
         boolean zA2 = this.a.get().a(str, jCurrentTimeMillis);
@@ -24,11 +24,11 @@ public class c implements d {
             zA = eVar.a("fire-global", jCurrentTimeMillis);
         }
         if (zA2 && zA) {
-            return d$a.COMBINED;
+            return d.a.COMBINED;
         }
         if (zA) {
-            return d$a.GLOBAL;
+            return d.a.GLOBAL;
         }
-        return zA2 ? d$a.SDK : d$a.NONE;
+        return zA2 ? d.a.SDK : d.a.NONE;
     }
 }

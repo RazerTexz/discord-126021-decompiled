@@ -24,6 +24,6 @@ public final class NoticePopupChannel$createModel$messageRenderContext$1 extends
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(String str) {
         m.checkNotNullParameter(str, "url");
-        WidgetUrlActions.Companion.requestNotice(str);
+        WidgetUrlActions.INSTANCE.requestNotice(str);
     }
 }

@@ -2,7 +2,7 @@ package b.f.j.j;
 
 import android.graphics.ColorSpace;
 import android.media.ExifInterface;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.util.Pair;
 import com.facebook.common.internal.Supplier;
 import com.facebook.common.memory.PooledByteBuffer;
@@ -282,7 +282,7 @@ public class e implements Closeable {
                 return;
             }
             InputStream inputStreamE3 = e();
-            if (Build$VERSION.SDK_INT >= 24) {
+            if (Build.VERSION.SDK_INT >= 24) {
                 try {
                     attributeInt = new ExifInterface(inputStreamE3).getAttributeInt(androidx.exifinterface.media.ExifInterface.TAG_ORIENTATION, 1);
                 } catch (IOException unused3) {

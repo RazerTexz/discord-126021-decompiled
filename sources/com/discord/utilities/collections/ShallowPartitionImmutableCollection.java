@@ -2,7 +2,9 @@ package com.discord.utilities.collections;
 
 import androidx.exifinterface.media.ExifInterface;
 import d0.z.d.g0.a;
+import d0.z.d.g0.e;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -13,6 +15,36 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: loaded from: classes2.dex */
 public class ShallowPartitionImmutableCollection<E, T extends Collection<E>> extends ShallowPartitionCollection<E, T> implements Collection<E>, a {
     private final Function1<E, Integer> readOnlyPartitionStrategy;
+
+    /* JADX INFO: renamed from: com.discord.utilities.collections.ShallowPartitionImmutableCollection$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ShallowPartitionImmutableCollection.kt */
+    public final class AnonymousClass1 extends o implements Function1<E, Integer> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Integer invoke(Object obj) {
+            return Integer.valueOf(invoke2(obj));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final int invoke2(E e) {
+            return -1;
+        }
+    }
+
+    /* JADX INFO: compiled from: ShallowPartitionImmutableCollection.kt */
+    public final class Set<E, T extends java.util.Set<E>> extends ShallowPartitionImmutableCollection<E, T> implements java.util.Set<E>, e {
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public Set(List<? extends T> list, Function1<? super E, Integer> function1) {
+            super(list, function1);
+            m.checkNotNullParameter(list, "partitions");
+            m.checkNotNullParameter(function1, "partitionStrategy");
+        }
+    }
 
     public /* synthetic */ ShallowPartitionImmutableCollection(List list, Function1 function1, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(list, (i & 2) != 0 ? null : function1);
@@ -74,7 +106,7 @@ public class ShallowPartitionImmutableCollection<E, T extends Collection<E>> ext
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     /* JADX WARN: Multi-variable type inference failed */
     public ShallowPartitionImmutableCollection(List<? extends T> list, Function1<? super E, Integer> function1) {
-        super(list, ShallowPartitionImmutableCollection$1.INSTANCE);
+        super(list, AnonymousClass1.INSTANCE);
         m.checkNotNullParameter(list, "partitions");
         this.readOnlyPartitionStrategy = function1;
     }

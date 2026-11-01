@@ -11,7 +11,7 @@ import java.util.Objects;
 /* JADX INFO: loaded from: classes.dex */
 public class d {
     public static d a;
-    public List<c$a> c;
+    public List<c.a> c;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public int f542b;
@@ -45,9 +45,9 @@ public class d {
         if (cVarB != c.a) {
             return cVarB;
         }
-        List<c$a> list = dVarC.c;
+        List<c.a> list = dVarC.c;
         if (list != null) {
-            Iterator<c$a> it = list.iterator();
+            Iterator<c.a> it = list.iterator();
             while (it.hasNext()) {
                 c cVarB2 = it.next().b(bArr, iB1);
                 if (cVarB2 != null && cVarB2 != c.a) {
@@ -76,9 +76,9 @@ public class d {
 
     public final void d() {
         this.f542b = this.d.p;
-        List<c$a> list = this.c;
+        List<c.a> list = this.c;
         if (list != null) {
-            Iterator<c$a> it = list.iterator();
+            Iterator<c.a> it = list.iterator();
             while (it.hasNext()) {
                 this.f542b = Math.max(this.f542b, it.next().a());
             }

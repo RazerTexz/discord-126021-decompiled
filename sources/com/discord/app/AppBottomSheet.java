@@ -1,27 +1,34 @@
 package com.discord.app;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View$OnLayoutChangeListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup$LayoutParams;
 import android.view.Window;
+import android.widget.FrameLayout;
 import androidx.annotation.CallSuper;
 import androidx.annotation.LayoutRes;
-import androidx.coordinatorlayout.widget.CoordinatorLayout$Behavior;
-import androidx.coordinatorlayout.widget.CoordinatorLayout$LayoutParams;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.graphics.Insets;
+import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import com.discord.R;
 import com.discord.utilities.accessibility.AccessibilityUtils;
 import com.discord.utilities.display.DisplayUtils;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.text.TextWatcher;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import d0.g;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.l.e.k;
 import kotlin.Lazy;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -33,16 +40,164 @@ import rx.subscriptions.CompositeSubscription;
 
 /* JADX INFO: compiled from: AppBottomSheet.kt */
 /* JADX INFO: loaded from: classes.dex */
-public abstract class AppBottomSheet extends BottomSheetDialogFragment implements AppPermissionsRequests, AppComponent, AppLogger$a {
+public abstract class AppBottomSheet extends BottomSheetDialogFragment implements AppPermissionsRequests, AppComponent, AppLogger.a {
 
     /* JADX INFO: renamed from: appLogger$delegate, reason: from kotlin metadata */
     private final Lazy appLogger;
     private CompositeSubscription compositeSubscription;
     private final LoggingConfig loggingConfig;
     private View peekBottomView;
-    private final View$OnLayoutChangeListener peekLayoutListener;
+    private final View.OnLayoutChangeListener peekLayoutListener;
     private final boolean shouldAvoidKeyboard;
     private final Subject<Void, Void> unsubscribeSignal;
+
+    /* JADX INFO: compiled from: java-style lambda group */
+    public final class a implements OnApplyWindowInsetsListener {
+        public static final a a = new a(0);
+        public final /* synthetic */ int c;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public static final a f2078b = new a(1);
+
+        public a(int i) {
+            this.c = i;
+        }
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            int i = this.c;
+            if (i == 0) {
+                m.checkNotNullParameter(view, "v");
+                m.checkNotNullParameter(windowInsetsCompat, "insets");
+                view.setPadding(view.getPaddingLeft(), windowInsetsCompat.getSystemWindowInsetTop(), view.getPaddingRight(), view.getPaddingBottom());
+                return new WindowInsetsCompat.Builder(windowInsetsCompat).setSystemWindowInsets(Insets.of(windowInsetsCompat.getSystemWindowInsetLeft(), 0, windowInsetsCompat.getSystemWindowInsetRight(), windowInsetsCompat.getSystemWindowInsetBottom())).build();
+            }
+            if (i != 1) {
+                throw null;
+            }
+            m.checkNotNullExpressionValue(view, "v");
+            m.checkNotNullExpressionValue(windowInsetsCompat, "insets");
+            view.setPadding(windowInsetsCompat.getSystemWindowInsetLeft(), windowInsetsCompat.getSystemWindowInsetTop(), windowInsetsCompat.getSystemWindowInsetRight(), windowInsetsCompat.getSystemWindowInsetBottom());
+            return windowInsetsCompat.consumeSystemWindowInsets();
+        }
+    }
+
+    /* JADX INFO: compiled from: AppBottomSheet.kt */
+    public final class b extends o implements Function0<AppLogger> {
+        public b() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public AppLogger invoke() {
+            return new AppLogger(AppBottomSheet.this, null, false, 6);
+        }
+    }
+
+    /* JADX INFO: compiled from: AppBottomSheet.kt */
+    public final class c implements DialogInterface.OnShowListener {
+        public final /* synthetic */ Dialog a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final /* synthetic */ AppBottomSheet f2079b;
+
+        /* JADX INFO: compiled from: AppBottomSheet.kt */
+        public final class a extends o implements Function1<Unit, Unit> {
+            public a() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public Unit invoke(Unit unit) {
+                BottomSheetBehavior<FrameLayout> behavior;
+                Dialog dialog = c.this.a;
+                if (!(dialog instanceof BottomSheetDialog)) {
+                    dialog = null;
+                }
+                BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) dialog;
+                if (bottomSheetDialog != null && (behavior = bottomSheetDialog.getBehavior()) != null) {
+                    behavior.setState(3);
+                }
+                return Unit.a;
+            }
+        }
+
+        public c(Dialog dialog, AppBottomSheet appBottomSheet) {
+            this.a = dialog;
+            this.f2079b = appBottomSheet;
+        }
+
+        @Override // android.content.DialogInterface.OnShowListener
+        public final void onShow(DialogInterface dialogInterface) {
+            k kVar = new k(Unit.a);
+            m.checkNotNullExpressionValue(kVar, "Observable.just(Unit)");
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(kVar, this.f2079b, null, 2, null), this.f2079b.getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new a(), 62, (Object) null);
+        }
+    }
+
+    /* JADX INFO: compiled from: AppBottomSheet.kt */
+    public final class d extends BottomSheetBehavior.BottomSheetCallback {
+        public d() {
+        }
+
+        @Override // com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
+        public void onSlide(View view, float f) {
+            m.checkNotNullParameter(view, "bottomSheet");
+        }
+
+        @Override // com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
+        public void onStateChanged(View view, int i) {
+            m.checkNotNullParameter(view, "bottomSheet");
+            AppBottomSheet.this.onStateChanged(i);
+            if (i == 5) {
+                AppBottomSheet.this.dismiss();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: AppBottomSheet.kt */
+    public final class e implements View.OnLayoutChangeListener {
+        public e() {
+        }
+
+        @Override // android.view.View.OnLayoutChangeListener
+        public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+            AppBottomSheet.this.updatePeekHeightPx(i4);
+        }
+    }
+
+    /* JADX INFO: compiled from: AppBottomSheet.kt */
+    public final class f implements DialogInterface.OnShowListener {
+        public final /* synthetic */ Dialog a;
+
+        public f(Dialog dialog) {
+            this.a = dialog;
+        }
+
+        @Override // android.content.DialogInterface.OnShowListener
+        public final void onShow(DialogInterface dialogInterface) {
+            BottomSheetBehavior bottomSheetBehaviorFrom = BottomSheetBehavior.from(this.a.findViewById(R.id.design_bottom_sheet));
+            m.checkNotNullExpressionValue(bottomSheetBehaviorFrom, "BottomSheetBehavior.from(bottomSheet)");
+            bottomSheetBehaviorFrom.setSkipCollapsed(true);
+            bottomSheetBehaviorFrom.setState(3);
+        }
+    }
+
+    /* JADX INFO: compiled from: AppBottomSheet.kt */
+    public final class g implements View.OnClickListener {
+        public final /* synthetic */ View k;
+        public final /* synthetic */ Function1 l;
+
+        public g(View view, Function1 function1) {
+            this.k = view;
+            this.l = function1;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            AppBottomSheet.this.dismiss();
+        }
+    }
 
     public AppBottomSheet() {
         this(false, 1, null);
@@ -67,15 +222,15 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
     private final void fixWindowInsetHandling() {
         View viewFindViewById;
         View view = getView();
-        if (view == null || (viewFindViewById = view.getRootView().findViewById(2131362883)) == null) {
+        if (view == null || (viewFindViewById = view.getRootView().findViewById(R.id.container)) == null) {
             return;
         }
-        ViewCompat.setOnApplyWindowInsetsListener(viewFindViewById, AppBottomSheet$a.a);
-        View viewFindViewById2 = view.getRootView().findViewById(2131363003);
+        ViewCompat.setOnApplyWindowInsetsListener(viewFindViewById, a.a);
+        View viewFindViewById2 = view.getRootView().findViewById(R.id.design_bottom_sheet);
         m.checkNotNullExpressionValue(viewFindViewById2, "designBottomSheet");
         viewFindViewById2.setFitsSystemWindows(true);
         ViewCompat.setOnApplyWindowInsetsListener(viewFindViewById2, DisplayUtils.getNO_OP_WINDOW_INSETS_LISTENER());
-        ViewCompat.setOnApplyWindowInsetsListener(view, AppBottomSheet$a.f2078b);
+        ViewCompat.setOnApplyWindowInsetsListener(view, a.f2078b);
     }
 
     public final AppActivity getAppActivity() {
@@ -102,19 +257,19 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
             parent = null;
         }
         View view2 = (View) parent;
-        ViewGroup$LayoutParams layoutParams = view2 != null ? view2.getLayoutParams() : null;
-        if (!(layoutParams instanceof CoordinatorLayout$LayoutParams)) {
+        ViewGroup.LayoutParams layoutParams = view2 != null ? view2.getLayoutParams() : null;
+        if (!(layoutParams instanceof CoordinatorLayout.LayoutParams)) {
             layoutParams = null;
         }
-        CoordinatorLayout$LayoutParams coordinatorLayout$LayoutParams = (CoordinatorLayout$LayoutParams) layoutParams;
-        CoordinatorLayout$Behavior behavior = coordinatorLayout$LayoutParams != null ? coordinatorLayout$LayoutParams.getBehavior() : null;
+        CoordinatorLayout.LayoutParams layoutParams2 = (CoordinatorLayout.LayoutParams) layoutParams;
+        CoordinatorLayout.Behavior behavior = layoutParams2 != null ? layoutParams2.getBehavior() : null;
         return (BottomSheetBehavior) (behavior instanceof BottomSheetBehavior ? behavior : null);
     }
 
     @LayoutRes
     public abstract int getContentViewResId();
 
-    @Override // com.discord.app.AppLogger$a
+    @Override // com.discord.app.AppLogger.a
     public LoggingConfig getLoggingConfig() {
         return this.loggingConfig;
     }
@@ -162,11 +317,11 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
             m.checkNotNullExpressionValue(dialogOnCreateDialog, "dialog");
             Window window = dialogOnCreateDialog.getWindow();
             if (window != null) {
-                window.setWindowAnimations(2131951962);
+                window.setWindowAnimations(R.style.FadeInOut);
             }
         }
         if (this.shouldAvoidKeyboard) {
-            dialogOnCreateDialog.setOnShowListener(new AppBottomSheet$c(dialogOnCreateDialog, this));
+            dialogOnCreateDialog.setOnShowListener(new c(dialogOnCreateDialog, this));
         }
         m.checkNotNullExpressionValue(dialogOnCreateDialog, "super.onCreateDialog(sav…      }\n      }\n    }\n  }");
         return dialogOnCreateDialog;
@@ -180,7 +335,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
 
     @Override // androidx.fragment.app.DialogFragment, androidx.fragment.app.Fragment
     public void onDestroyView() {
-        TextWatcher.Companion.reset(this);
+        TextWatcher.INSTANCE.reset(this);
         super.onDestroyView();
     }
 
@@ -214,7 +369,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
         DisplayUtils.drawUnderSystemBars(view);
         BottomSheetBehavior<View> bottomSheetBehavior = getBottomSheetBehavior();
         if (bottomSheetBehavior != null) {
-            bottomSheetBehavior.setBottomSheetCallback(new AppBottomSheet$d(this));
+            bottomSheetBehavior.setBottomSheetCallback(new d());
         }
         getAppLogger().b();
     }
@@ -277,7 +432,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
             return null;
         }
         resizeContentForSoftInput();
-        dialog.setOnShowListener(new AppBottomSheet$f(dialog));
+        dialog.setOnShowListener(new f(dialog));
         return Unit.a;
     }
 
@@ -291,7 +446,7 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
     public final void setOnClickAndDismissListener(View view, Function1<? super View, Unit> function1) {
         m.checkNotNullParameter(view, "$this$setOnClickAndDismissListener");
         m.checkNotNullParameter(function1, "onClickListener");
-        view.setOnClickListener(new AppBottomSheet$g(this, view, function1));
+        view.setOnClickListener(new g(view, function1));
     }
 
     public final void setPeekHeightBottomView(View targetView) {
@@ -343,8 +498,8 @@ public abstract class AppBottomSheet extends BottomSheetDialogFragment implement
         PublishSubject publishSubjectK0 = PublishSubject.k0();
         m.checkNotNullExpressionValue(publishSubjectK0, "PublishSubject.create()");
         this.unsubscribeSignal = publishSubjectK0;
-        this.peekLayoutListener = new AppBottomSheet$e(this);
-        this.appLogger = g.lazy(new AppBottomSheet$b(this));
+        this.peekLayoutListener = new e();
+        this.appLogger = d0.g.lazy(new b());
     }
 
     @Override // androidx.fragment.app.DialogFragment

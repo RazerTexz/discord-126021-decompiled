@@ -1,17 +1,36 @@
 package d0.e0.p.d.m0.e.a;
 
 import java.util.Collection;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: ClassicBuiltinSpecialProperties.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class k {
     public static final k a = new k();
 
+    /* JADX INFO: compiled from: ClassicBuiltinSpecialProperties.kt */
+    public final class a extends d0.z.d.o implements Function1<d0.e0.p.d.m0.c.b, Boolean> {
+        public a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(d0.e0.p.d.m0.c.b bVar) {
+            return Boolean.valueOf(invoke2(bVar));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(d0.e0.p.d.m0.c.b bVar) {
+            d0.z.d.m.checkNotNullParameter(bVar, "it");
+            return k.this.hasBuiltinSpecialPropertyFqName(bVar);
+        }
+    }
+
     public final String getBuiltinSpecialPropertyGetterName(d0.e0.p.d.m0.c.b bVar) {
         d0.e0.p.d.m0.g.e eVar;
         d0.z.d.m.checkNotNullParameter(bVar, "<this>");
         d0.e0.p.d.m0.b.h.isBuiltIn(bVar);
-        d0.e0.p.d.m0.c.b bVarFirstOverridden$default = d0.e0.p.d.m0.k.x.a.firstOverridden$default(d0.e0.p.d.m0.k.x.a.getPropertyIfAccessor(bVar), false, new k$a(this), 1, null);
+        d0.e0.p.d.m0.c.b bVarFirstOverridden$default = d0.e0.p.d.m0.k.x.a.firstOverridden$default(d0.e0.p.d.m0.k.x.a.getPropertyIfAccessor(bVar), false, new a(), 1, null);
         if (bVarFirstOverridden$default == null || (eVar = i.a.getPROPERTY_FQ_NAME_TO_JVM_GETTER_NAME_MAP().get(d0.e0.p.d.m0.k.x.a.getFqNameSafe(bVarFirstOverridden$default))) == null) {
             return null;
         }

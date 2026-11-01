@@ -6,22 +6,26 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ForegroundColorSpan;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.d.g0;
 import b.a.d.i0;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.commands.ApplicationCommandData;
 import com.discord.api.commands.ApplicationCommandValue;
 import com.discord.api.user.User;
 import com.discord.app.AppBottomSheet;
 import com.discord.databinding.WidgetApplicationCommandBottomSheetBinding;
 import com.discord.models.commands.Application;
+import com.discord.models.experiments.domain.Experiment;
 import com.discord.models.member.GuildMember;
+import com.discord.stores.StoreStream;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
@@ -33,11 +37,14 @@ import com.google.android.material.button.MaterialButton;
 import d0.g0.t;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheet.kt */
@@ -45,13 +52,87 @@ import kotlin.reflect.KProperty;
 public final class WidgetApplicationCommandBottomSheet extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetApplicationCommandBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetApplicationCommandBottomSheetBinding;", 0)};
     public static final String ARG_MESSAGE_NONCE = "arg_message_nonce";
-    public static final WidgetApplicationCommandBottomSheet$Companion Companion = new WidgetApplicationCommandBottomSheet$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.sheet.WidgetApplicationCommandBottomSheet$configureLoaded$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheet.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ WidgetApplicationCommandBottomSheetViewModel.ViewState.Loaded $viewState;
+
+        public AnonymousClass1(WidgetApplicationCommandBottomSheetViewModel.ViewState.Loaded loaded) {
+            this.$viewState = loaded;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            Context contextRequireContext = WidgetApplicationCommandBottomSheet.this.requireContext();
+            m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+            b.a.d.m.c(contextRequireContext, WidgetApplicationCommandBottomSheetKt.toSlashCommandCopyString(this.$viewState.getApplicationCommandData(), this.$viewState.getCommandValues()), 0, 4);
+            WidgetApplicationCommandBottomSheet.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.sheet.WidgetApplicationCommandBottomSheet$onResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheet.kt */
+    public final class AnonymousClass1 extends o implements Function1<WidgetApplicationCommandBottomSheetViewModel.ViewState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetApplicationCommandBottomSheetViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetApplicationCommandBottomSheetViewModel.ViewState viewState) {
+            m.checkNotNullParameter(viewState, "viewState");
+            WidgetApplicationCommandBottomSheet.access$configureUI(WidgetApplicationCommandBottomSheet.this, viewState);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetApplicationCommandBottomSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, long interactionId, long messageId, long channelId, Long guildId, long userId, long applicationId, String messageNonce) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            boolean z2 = false;
+            Experiment userExperiment = StoreStream.INSTANCE.getExperiments().getUserExperiment("2021-03_android_app_slash_commands_bottom_sheet_disabled", false);
+            if (userExperiment != null && userExperiment.getBucket() == 1) {
+                z2 = true;
+            }
+            if (z2) {
+                return;
+            }
+            WidgetApplicationCommandBottomSheet widgetApplicationCommandBottomSheet = new WidgetApplicationCommandBottomSheet();
+            Bundle bundleT = a.T("com.discord.intent.extra.EXTRA_INTERACTION_ID", interactionId);
+            bundleT.putLong("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
+            bundleT.putLong("com.discord.intent.extra.EXTRA_MESSAGE_ID", messageId);
+            if (guildId != null) {
+                bundleT.putLong("com.discord.intent.extra.EXTRA_GUILD_ID", guildId.longValue());
+            }
+            bundleT.putLong("com.discord.intent.extra.EXTRA_USER_ID", userId);
+            bundleT.putLong("com.discord.intent.extra.EXTRA_APPLICATION_ID", applicationId);
+            bundleT.putString(WidgetApplicationCommandBottomSheet.ARG_MESSAGE_NONCE, messageNonce);
+            widgetApplicationCommandBottomSheet.setArguments(bundleT);
+            widgetApplicationCommandBottomSheet.show(fragmentManager, WidgetApplicationCommandBottomSheet.class.getName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public WidgetApplicationCommandBottomSheet() {
         super(false, 1, null);
@@ -61,15 +142,15 @@ public final class WidgetApplicationCommandBottomSheet extends AppBottomSheet {
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetApplicationCommandBottomSheetViewModel.class), new WidgetApplicationCommandBottomSheet$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetApplicationCommandBottomSheet$viewModel$2));
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetApplicationCommandBottomSheet widgetApplicationCommandBottomSheet, WidgetApplicationCommandBottomSheetViewModel$ViewState widgetApplicationCommandBottomSheetViewModel$ViewState) {
-        widgetApplicationCommandBottomSheet.configureUI(widgetApplicationCommandBottomSheetViewModel$ViewState);
+    public static final /* synthetic */ void access$configureUI(WidgetApplicationCommandBottomSheet widgetApplicationCommandBottomSheet, WidgetApplicationCommandBottomSheetViewModel.ViewState viewState) {
+        widgetApplicationCommandBottomSheet.configureUI(viewState);
     }
 
     public static final /* synthetic */ Bundle access$getArgumentsOrDefault$p(WidgetApplicationCommandBottomSheet widgetApplicationCommandBottomSheet) {
         return widgetApplicationCommandBottomSheet.getArgumentsOrDefault();
     }
 
-    private final void configureCommandTitle(WidgetApplicationCommandBottomSheetViewModel$ViewState$Loaded viewState) {
+    private final void configureCommandTitle(WidgetApplicationCommandBottomSheetViewModel.ViewState.Loaded viewState) {
         String name;
         String nick;
         User bot;
@@ -82,7 +163,7 @@ public final class WidgetApplicationCommandBottomSheet extends AppBottomSheet {
             Application application2 = viewState.getApplication();
             name = application2 != null ? application2.getName() : null;
         }
-        int themedColor = ColorCompat.getThemedColor(requireContext(), 2130969057);
+        int themedColor = ColorCompat.getThemedColor(requireContext(), R.attr.colorTextNormal);
         Application application3 = viewState.getApplication();
         if (application3 != null) {
             SimpleDraweeView simpleDraweeView = getBinding().f2226b;
@@ -103,7 +184,7 @@ public final class WidgetApplicationCommandBottomSheet extends AppBottomSheet {
         }
         objArr[0] = username;
         objArr[1] = string;
-        CharSequence charSequenceD = b.d(textView, 2131896170, objArr, new WidgetApplicationCommandBottomSheet$configureCommandTitle$content$1(this, viewState, themedColor));
+        CharSequence charSequenceD = b.d(textView, R.string.system_message_application_command_used_as_title, objArr, new WidgetApplicationCommandBottomSheet$configureCommandTitle$content$1(this, viewState, themedColor));
         TextView textView2 = getBinding().f;
         m.checkNotNullExpressionValue(textView2, "binding.commandBottomSheetCommandTitle");
         textView2.setMovementMethod(LinkMovementMethod.getInstance());
@@ -118,14 +199,14 @@ public final class WidgetApplicationCommandBottomSheet extends AppBottomSheet {
         textView5.setText(name);
     }
 
-    public final void configureLoaded(WidgetApplicationCommandBottomSheetViewModel$ViewState$Loaded viewState) {
+    public final void configureLoaded(WidgetApplicationCommandBottomSheetViewModel.ViewState.Loaded viewState) {
         m.checkNotNullParameter(viewState, "viewState");
         configureCommandTitle(viewState);
         configureSlashCommandString(viewState);
-        getBinding().d.setOnClickListener(new WidgetApplicationCommandBottomSheet$configureLoaded$1(this, viewState));
+        getBinding().d.setOnClickListener(new AnonymousClass1(viewState));
     }
 
-    private final void configureSlashCommandString(WidgetApplicationCommandBottomSheetViewModel$ViewState$Loaded viewState) {
+    private final void configureSlashCommandString(WidgetApplicationCommandBottomSheetViewModel.ViewState.Loaded viewState) {
         ApplicationCommandData applicationCommandData = viewState.getApplicationCommandData();
         List<ApplicationCommandValue> listB = viewState.getApplicationCommandData().b();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -144,14 +225,14 @@ public final class WidgetApplicationCommandBottomSheet extends AppBottomSheet {
         textView.setText(spannableStringBuilder);
     }
 
-    private final Spannable configureSlashCommandStringOptions(WidgetApplicationCommandBottomSheetViewModel$ViewState$Loaded viewState, ApplicationCommandValue option) {
+    private final Spannable configureSlashCommandStringOptions(WidgetApplicationCommandBottomSheetViewModel.ViewState.Loaded viewState, ApplicationCommandValue option) {
         Integer valueColor;
-        int themedColor = ColorCompat.getThemedColor(this, 2130968989);
-        WidgetApplicationCommandBottomSheetViewModel$SlashCommandParam widgetApplicationCommandBottomSheetViewModel$SlashCommandParam = viewState.getCommandValues().get(option.getName());
-        if ((widgetApplicationCommandBottomSheetViewModel$SlashCommandParam != null ? widgetApplicationCommandBottomSheetViewModel$SlashCommandParam.getValueColor() : null) != null && ((valueColor = widgetApplicationCommandBottomSheetViewModel$SlashCommandParam.getValueColor()) == null || valueColor.intValue() != 0)) {
-            themedColor = widgetApplicationCommandBottomSheetViewModel$SlashCommandParam.getValueColor().intValue();
+        int themedColor = ColorCompat.getThemedColor(this, R.attr.colorHeaderPrimary);
+        WidgetApplicationCommandBottomSheetViewModel.SlashCommandParam slashCommandParam = viewState.getCommandValues().get(option.getName());
+        if ((slashCommandParam != null ? slashCommandParam.getValueColor() : null) != null && ((valueColor = slashCommandParam.getValueColor()) == null || valueColor.intValue() != 0)) {
+            themedColor = slashCommandParam.getValueColor().intValue();
         }
-        String value = widgetApplicationCommandBottomSheetViewModel$SlashCommandParam != null ? widgetApplicationCommandBottomSheetViewModel$SlashCommandParam.getValue() : null;
+        String value = slashCommandParam != null ? slashCommandParam.getValue() : null;
         SpannableStringBuilder spannableStringBuilderAppend = new SpannableStringBuilder().append((CharSequence) option.getName());
         if (!(value == null || t.isBlank(value))) {
             SpannableStringBuilder spannableStringBuilderAppend2 = spannableStringBuilderAppend.append((CharSequence) ": ");
@@ -165,23 +246,23 @@ public final class WidgetApplicationCommandBottomSheet extends AppBottomSheet {
         return spannableStringBuilderAppend;
     }
 
-    private final void configureUI(WidgetApplicationCommandBottomSheetViewModel$ViewState viewState) {
-        boolean z2 = viewState instanceof WidgetApplicationCommandBottomSheetViewModel$ViewState$Loading;
+    private final void configureUI(WidgetApplicationCommandBottomSheetViewModel.ViewState viewState) {
+        boolean z2 = viewState instanceof WidgetApplicationCommandBottomSheetViewModel.ViewState.Loading;
         ProgressBar progressBar = getBinding().e;
         m.checkNotNullExpressionValue(progressBar, "binding.commandBottomSheetCommandLoader");
         progressBar.setVisibility(z2 ? 0 : 8);
         MaterialButton materialButton = getBinding().d;
         m.checkNotNullExpressionValue(materialButton, "binding.commandBottomSheetCommandCopyButton");
         materialButton.setEnabled(!z2);
-        if (!(viewState instanceof WidgetApplicationCommandBottomSheetViewModel$ViewState$Loaded)) {
-            if (viewState instanceof WidgetApplicationCommandBottomSheetViewModel$ViewState$Failed) {
+        if (!(viewState instanceof WidgetApplicationCommandBottomSheetViewModel.ViewState.Loaded)) {
+            if (viewState instanceof WidgetApplicationCommandBottomSheetViewModel.ViewState.Failed) {
                 dismiss();
             }
         } else {
             MaterialButton materialButton2 = getBinding().d;
             m.checkNotNullExpressionValue(materialButton2, "binding.commandBottomSheetCommandCopyButton");
             materialButton2.setEnabled(true);
-            configureLoaded((WidgetApplicationCommandBottomSheetViewModel$ViewState$Loaded) viewState);
+            configureLoaded((WidgetApplicationCommandBottomSheetViewModel.ViewState.Loaded) viewState);
         }
     }
 
@@ -191,7 +272,7 @@ public final class WidgetApplicationCommandBottomSheet extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
-        return R$layout.widget_application_command_bottom_sheet;
+        return R.layout.widget_application_command_bottom_sheet;
     }
 
     private final WidgetApplicationCommandBottomSheetViewModel getViewModel() {
@@ -202,10 +283,10 @@ public final class WidgetApplicationCommandBottomSheet extends AppBottomSheet {
     public void onResume() {
         super.onResume();
         AppBottomSheet.hideKeyboard$default(this, null, 1, null);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetApplicationCommandBottomSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetApplicationCommandBottomSheet$onResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetApplicationCommandBottomSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
-    private final Spannable configureSlashCommandString(WidgetApplicationCommandBottomSheetViewModel$ViewState$Loaded viewState, ApplicationCommandValue option) {
+    private final Spannable configureSlashCommandString(WidgetApplicationCommandBottomSheetViewModel.ViewState.Loaded viewState, ApplicationCommandValue option) {
         List<ApplicationCommandValue> listC = option.c();
         if (listC == null || listC.isEmpty()) {
             return configureSlashCommandStringOptions(viewState, option);

@@ -1,5 +1,7 @@
 package b.i.a.g.g;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -12,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat;
-import androidx.vectordrawable.graphics.drawable.Animatable2Compat$AnimationCallback;
 import com.google.android.material.animation.AnimationUtils;
 import com.google.android.material.progressindicator.AnimatorDurationScaleProvider;
 import com.google.android.material.progressindicator.BaseProgressIndicatorSpec;
@@ -25,21 +26,63 @@ import java.util.List;
 public abstract class e extends Drawable implements Animatable2Compat {
     private static final boolean DEFAULT_DRAWABLE_RESTART = false;
     private static final int GROW_DURATION = 500;
-    private List<Animatable2Compat$AnimationCallback> animationCallbacks;
+    private List<Animatable2Compat.AnimationCallback> animationCallbacks;
     public final BaseProgressIndicatorSpec baseSpec;
     public final Context context;
     private float growFraction;
     private ValueAnimator hideAnimator;
     private boolean ignoreCallbacks;
-    private Animatable2Compat$AnimationCallback internalAnimationCallback;
+    private Animatable2Compat.AnimationCallback internalAnimationCallback;
     private float mockGrowFraction;
     private boolean mockHideAnimationRunning;
     private boolean mockShowAnimationRunning;
     private ValueAnimator showAnimator;
     private int totalAlpha;
-    private static final Property<e, Float> GROW_FRACTION = new e$c(Float.class, "growFraction");
+    private static final Property<e, Float> GROW_FRACTION = new c(Float.class, "growFraction");
     public final Paint paint = new Paint();
     public AnimatorDurationScaleProvider animatorDurationScaleProvider = new AnimatorDurationScaleProvider();
+
+    /* JADX INFO: compiled from: DrawableWithAnimatedVisibilityChange.java */
+    public class a extends AnimatorListenerAdapter {
+        public a() {
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationStart(Animator animator) {
+            super.onAnimationStart(animator);
+            e.access$000(e.this);
+        }
+    }
+
+    /* JADX INFO: compiled from: DrawableWithAnimatedVisibilityChange.java */
+    public class b extends AnimatorListenerAdapter {
+        public b() {
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            super.onAnimationEnd(animator);
+            e.access$101(e.this, false, false);
+            e.access$200(e.this);
+        }
+    }
+
+    /* JADX INFO: compiled from: DrawableWithAnimatedVisibilityChange.java */
+    public final class c extends Property<e, Float> {
+        public c(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public Float get(e eVar) {
+            return Float.valueOf(eVar.getGrowFraction());
+        }
+
+        @Override // android.util.Property
+        public void set(e eVar, Float f) {
+            eVar.setGrowFraction(f.floatValue());
+        }
+    }
 
     public e(@NonNull Context context, @NonNull BaseProgressIndicatorSpec baseProgressIndicatorSpec) {
         this.context = context;
@@ -66,30 +109,30 @@ public abstract class e extends Drawable implements Animatable2Compat {
     }
 
     private void dispatchAnimationEnd() {
-        Animatable2Compat$AnimationCallback animatable2Compat$AnimationCallback = this.internalAnimationCallback;
-        if (animatable2Compat$AnimationCallback != null) {
-            animatable2Compat$AnimationCallback.onAnimationEnd(this);
+        Animatable2Compat.AnimationCallback animationCallback = this.internalAnimationCallback;
+        if (animationCallback != null) {
+            animationCallback.onAnimationEnd(this);
         }
-        List<Animatable2Compat$AnimationCallback> list = this.animationCallbacks;
+        List<Animatable2Compat.AnimationCallback> list = this.animationCallbacks;
         if (list == null || this.ignoreCallbacks) {
             return;
         }
-        Iterator<Animatable2Compat$AnimationCallback> it = list.iterator();
+        Iterator<Animatable2Compat.AnimationCallback> it = list.iterator();
         while (it.hasNext()) {
             it.next().onAnimationEnd(this);
         }
     }
 
     private void dispatchAnimationStart() {
-        Animatable2Compat$AnimationCallback animatable2Compat$AnimationCallback = this.internalAnimationCallback;
-        if (animatable2Compat$AnimationCallback != null) {
-            animatable2Compat$AnimationCallback.onAnimationStart(this);
+        Animatable2Compat.AnimationCallback animationCallback = this.internalAnimationCallback;
+        if (animationCallback != null) {
+            animationCallback.onAnimationStart(this);
         }
-        List<Animatable2Compat$AnimationCallback> list = this.animationCallbacks;
+        List<Animatable2Compat.AnimationCallback> list = this.animationCallbacks;
         if (list == null || this.ignoreCallbacks) {
             return;
         }
-        Iterator<Animatable2Compat$AnimationCallback> it = list.iterator();
+        Iterator<Animatable2Compat.AnimationCallback> it = list.iterator();
         while (it.hasNext()) {
             it.next().onAnimationStart(this);
         }
@@ -163,14 +206,14 @@ public abstract class e extends Drawable implements Animatable2Compat {
     }
 
     @Override // androidx.vectordrawable.graphics.drawable.Animatable2Compat
-    public void registerAnimationCallback(@NonNull Animatable2Compat$AnimationCallback animatable2Compat$AnimationCallback) {
+    public void registerAnimationCallback(@NonNull Animatable2Compat.AnimationCallback animationCallback) {
         if (this.animationCallbacks == null) {
             this.animationCallbacks = new ArrayList();
         }
-        if (this.animationCallbacks.contains(animatable2Compat$AnimationCallback)) {
+        if (this.animationCallbacks.contains(animationCallback)) {
             return;
         }
-        this.animationCallbacks.add(animatable2Compat$AnimationCallback);
+        this.animationCallbacks.add(animationCallback);
     }
 
     @Override // android.graphics.drawable.Drawable
@@ -198,11 +241,11 @@ public abstract class e extends Drawable implements Animatable2Compat {
             throw new IllegalArgumentException("Cannot set hideAnimator while the current hideAnimator is running.");
         }
         this.hideAnimator = valueAnimator;
-        valueAnimator.addListener(new e$b(this));
+        valueAnimator.addListener(new b());
     }
 
-    public void setInternalAnimationCallback(@NonNull Animatable2Compat$AnimationCallback animatable2Compat$AnimationCallback) {
-        this.internalAnimationCallback = animatable2Compat$AnimationCallback;
+    public void setInternalAnimationCallback(@NonNull Animatable2Compat.AnimationCallback animationCallback) {
+        this.internalAnimationCallback = animationCallback;
     }
 
     @VisibleForTesting
@@ -223,7 +266,7 @@ public abstract class e extends Drawable implements Animatable2Compat {
             throw new IllegalArgumentException("Cannot set showAnimator while the current showAnimator is running.");
         }
         this.showAnimator = valueAnimator;
-        valueAnimator.addListener(new e$a(this));
+        valueAnimator.addListener(new a());
     }
 
     @Override // android.graphics.drawable.Drawable
@@ -272,12 +315,12 @@ public abstract class e extends Drawable implements Animatable2Compat {
     }
 
     @Override // androidx.vectordrawable.graphics.drawable.Animatable2Compat
-    public boolean unregisterAnimationCallback(@NonNull Animatable2Compat$AnimationCallback animatable2Compat$AnimationCallback) {
-        List<Animatable2Compat$AnimationCallback> list = this.animationCallbacks;
-        if (list == null || !list.contains(animatable2Compat$AnimationCallback)) {
+    public boolean unregisterAnimationCallback(@NonNull Animatable2Compat.AnimationCallback animationCallback) {
+        List<Animatable2Compat.AnimationCallback> list = this.animationCallbacks;
+        if (list == null || !list.contains(animationCallback)) {
             return false;
         }
-        this.animationCallbacks.remove(animatable2Compat$AnimationCallback);
+        this.animationCallbacks.remove(animationCallback);
         if (!this.animationCallbacks.isEmpty()) {
             return true;
         }

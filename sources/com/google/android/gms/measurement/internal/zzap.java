@@ -2,7 +2,7 @@ package com.google.android.gms.measurement.internal;
 
 import android.os.Bundle;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.a.f.i.b.n;
 import b.i.a.f.i.b.o;
@@ -13,7 +13,7 @@ import java.util.Iterator;
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzap extends AbstractSafeParcelable implements Iterable<String> {
     public final Bundle j;
-    public static final Parcelable$Creator<zzap> CREATOR = new o();
+    public static final Parcelable.Creator<zzap> CREATOR = new o();
 
     public zzap(Bundle bundle) {
         this.j = bundle;

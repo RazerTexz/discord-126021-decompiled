@@ -5,11 +5,39 @@ import d0.t.u;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: overridingUtils.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class p {
+
+    /* JADX INFO: Add missing generic type declarations: [H] */
+    /* JADX INFO: compiled from: overridingUtils.kt */
+    public final class a<H> extends d0.z.d.o implements Function1<H, Unit> {
+        public final /* synthetic */ d0.e0.p.d.m0.p.j<H> $conflictedHandles;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(d0.e0.p.d.m0.p.j<H> jVar) {
+            super(1);
+            this.$conflictedHandles = jVar;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Object obj) {
+            invoke2(obj);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(H h) {
+            d0.e0.p.d.m0.p.j<H> jVar = this.$conflictedHandles;
+            d0.z.d.m.checkNotNullExpressionValue(h, "it");
+            jVar.add(h);
+        }
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static final <H> Collection<H> selectMostSpecificInEachOverridableGroup(Collection<? extends H> collection, Function1<? super H, ? extends d0.e0.p.d.m0.c.a> function1) {
         d0.z.d.m.checkNotNullParameter(collection, "<this>");
@@ -22,7 +50,7 @@ public final class p {
         while (!linkedList.isEmpty()) {
             Object objFirst = u.first((List<? extends Object>) linkedList);
             d0.e0.p.d.m0.p.j jVarCreate2 = d0.e0.p.d.m0.p.j.j.create();
-            Collection<R> collectionExtractMembersOverridableInBothWays = k.extractMembersOverridableInBothWays(objFirst, linkedList, function1, new p$a(jVarCreate2));
+            Collection<R> collectionExtractMembersOverridableInBothWays = k.extractMembersOverridableInBothWays(objFirst, linkedList, function1, new a(jVarCreate2));
             d0.z.d.m.checkNotNullExpressionValue(collectionExtractMembersOverridableInBothWays, "val conflictedHandles = SmartSet.create<H>()\n\n        val overridableGroup =\n            OverridingUtil.extractMembersOverridableInBothWays(nextHandle, queue, descriptorByHandle) { conflictedHandles.add(it) }");
             if (collectionExtractMembersOverridableInBothWays.size() == 1 && jVarCreate2.isEmpty()) {
                 Object objSingle = u.single(collectionExtractMembersOverridableInBothWays);

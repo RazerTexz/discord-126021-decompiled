@@ -6,7 +6,7 @@ import com.discord.api.message.embed.MessageEmbed;
 import com.discord.simpleast.code.CodeNode;
 import com.discord.simpleast.core.node.Node;
 import com.discord.simpleast.core.node.StyleNode;
-import com.discord.stores.StoreMessageState$State;
+import com.discord.stores.StoreMessageState;
 import com.discord.utilities.embed.EmbedResourceUtils;
 import com.discord.utilities.textprocessing.node.BasicRenderContext;
 import com.discord.utilities.textprocessing.node.BlockQuoteNode;
@@ -27,7 +27,6 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: MessagePreprocessor.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class MessagePreprocessor implements a {
-    public static final MessagePreprocessor$Companion Companion = new MessagePreprocessor$Companion(null);
     private static final int MAX_JUMBO_EMOJI_COUNT = 27;
     private int customEmojiCount;
     private final List<MessageEmbed> embeds;
@@ -37,6 +36,82 @@ public final class MessagePreprocessor implements a {
     private boolean shouldJumboify;
     private List<SpoilerNode<?>> spoilers;
     private final Collection<Integer> visibleSpoilerNodeIndices;
+
+    /* JADX INFO: renamed from: com.discord.utilities.textprocessing.MessagePreprocessor$process$1, reason: invalid class name */
+    /* JADX INFO: compiled from: MessagePreprocessor.kt */
+    public final class AnonymousClass1 implements a {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // b.a.t.b.c.a
+        public final void processNode(Node<Object> node) {
+            if (node instanceof EmojiNode) {
+                ((EmojiNode) node).setJumbo(true);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.textprocessing.MessagePreprocessor$processQuoteChildren$1, reason: invalid class name */
+    /* JADX INFO: compiled from: MessagePreprocessor.kt */
+    public final class AnonymousClass1 implements a {
+        public AnonymousClass1() {
+        }
+
+        @Override // b.a.t.b.c.a
+        public final void processNode(Node<Object> node) {
+            Collection<Node<Object>> children = node.getChildren();
+            if (children != null) {
+                MessagePreprocessor.access$mergeConsecutiveQuoteNodes(MessagePreprocessor.this, e0.asMutableCollection(children));
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: MessagePreprocessor.kt */
+    public final /* data */ class ConstrainState {
+        private int limit;
+
+        public ConstrainState(int i) {
+            this.limit = i;
+        }
+
+        public static /* synthetic */ ConstrainState copy$default(ConstrainState constrainState, int i, int i2, Object obj) {
+            if ((i2 & 1) != 0) {
+                i = constrainState.limit;
+            }
+            return constrainState.copy(i);
+        }
+
+        public final ConstrainState copy(int limit) {
+            return new ConstrainState(limit);
+        }
+
+        public boolean equals(Object other) {
+            if (this != other) {
+                return (other instanceof ConstrainState) && this.limit == ((ConstrainState) other).limit;
+            }
+            return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getLimit() {
+            return this.limit;
+        }
+
+        public final int getLimit() {
+            return this.limit;
+        }
+
+        public int hashCode() {
+            return this.limit;
+        }
+
+        public final void setLimit(int i) {
+            this.limit = i;
+        }
+
+        public String toString() {
+            return b.d.b.a.a.B(b.d.b.a.a.U("ConstrainState(limit="), this.limit, ")");
+        }
+    }
 
     public MessagePreprocessor(long j, Collection<Integer> collection, List<MessageEmbed> list, boolean z2, Integer num) {
         this.myUserId = j;
@@ -53,7 +128,7 @@ public final class MessagePreprocessor implements a {
     private final <R extends BasicRenderContext> void constrainAST(Collection<? extends Node<R>> nodes) {
         if (this.maxNodes != null) {
             Objects.requireNonNull(nodes, "null cannot be cast to non-null type kotlin.collections.MutableCollection<com.discord.simpleast.core.node.Node<R>>");
-            constrainAST(e0.asMutableCollection(nodes), new MessagePreprocessor$ConstrainState(this.maxNodes.intValue()));
+            constrainAST(e0.asMutableCollection(nodes), new ConstrainState(this.maxNodes.intValue()));
         }
     }
 
@@ -110,7 +185,7 @@ public final class MessagePreprocessor implements a {
         stripSimpleEmbedLink(e0.asMutableCollection(ast));
         d.i2(ast, this);
         if (this.shouldJumboify) {
-            d.i2(ast, MessagePreprocessor$process$1.INSTANCE);
+            d.i2(ast, AnonymousClass1.INSTANCE);
         }
         processSpoilerChildren();
         processQuoteChildren(ast);
@@ -174,10 +249,10 @@ public final class MessagePreprocessor implements a {
     private final <R extends BasicRenderContext> void processQuoteChildren(Collection<? extends Node<R>> ast) {
         Objects.requireNonNull(ast, "null cannot be cast to non-null type kotlin.collections.MutableCollection<com.discord.simpleast.core.node.Node<R>>");
         mergeConsecutiveQuoteNodes(e0.asMutableCollection(ast));
-        MessagePreprocessor$processQuoteChildren$1 messagePreprocessor$processQuoteChildren$1 = new MessagePreprocessor$processQuoteChildren$1(this);
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1();
         Iterator<? extends Node<R>> it = ast.iterator();
         while (it.hasNext()) {
-            d.k2(it.next(), messagePreprocessor$processQuoteChildren$1);
+            d.k2(it.next(), anonymousClass1);
         }
     }
 
@@ -215,11 +290,11 @@ public final class MessagePreprocessor implements a {
         this(j, (Collection<Integer>) ((i & 2) != 0 ? null : collection), (List<MessageEmbed>) ((i & 4) != 0 ? null : list), (i & 8) != 0 ? true : z2, (i & 16) != 0 ? null : num);
     }
 
-    public MessagePreprocessor(long j, StoreMessageState$State storeMessageState$State) {
-        this(j, storeMessageState$State != null ? storeMessageState$State.getVisibleSpoilerNodeIndices() : null, null, false, null, 24, null);
+    public MessagePreprocessor(long j, StoreMessageState.State state) {
+        this(j, state != null ? state.getVisibleSpoilerNodeIndices() : null, null, false, null, 24, null);
     }
 
-    private final <R extends BasicRenderContext> void constrainAST(Collection<Node<R>> nodes, MessagePreprocessor$ConstrainState state) {
+    private final <R extends BasicRenderContext> void constrainAST(Collection<Node<R>> nodes, ConstrainState state) {
         Iterator<Node<R>> it = nodes.iterator();
         while (it.hasNext()) {
             Node<R> next = it.next();
@@ -239,7 +314,7 @@ public final class MessagePreprocessor implements a {
         }
     }
 
-    public MessagePreprocessor(long j, StoreMessageState$State storeMessageState$State, List<MessageEmbed> list, boolean z2, Integer num) {
-        this(j, storeMessageState$State != null ? storeMessageState$State.getVisibleSpoilerNodeIndices() : null, list, z2, num);
+    public MessagePreprocessor(long j, StoreMessageState.State state, List<MessageEmbed> list, boolean z2, Integer num) {
+        this(j, state != null ? state.getVisibleSpoilerNodeIndices() : null, list, z2, num);
     }
 }

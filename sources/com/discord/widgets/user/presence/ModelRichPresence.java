@@ -4,6 +4,7 @@ import b.d.b.a.a;
 import com.discord.api.activity.Activity;
 import com.discord.api.application.Application;
 import com.discord.models.presence.Presence;
+import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUserPresence;
 import com.discord.utilities.presence.PresenceUtils;
 import d0.z.d.m;
@@ -13,9 +14,35 @@ import rx.Observable;
 /* JADX INFO: compiled from: ModelRichPresence.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class ModelRichPresence {
-    public static final ModelRichPresence$Companion Companion = new ModelRichPresence$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final Presence presence;
     private final Application primaryApplication;
+
+    /* JADX INFO: compiled from: ModelRichPresence.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static /* synthetic */ Observable get$default(Companion companion, long j, StoreUserPresence storeUserPresence, int i, Object obj) {
+            if ((i & 2) != 0) {
+                storeUserPresence = StoreStream.INSTANCE.getPresences();
+            }
+            return companion.get(j, storeUserPresence);
+        }
+
+        public final Observable<ModelRichPresence> get(long userId, StoreUserPresence storeUserPresence) {
+            m.checkNotNullParameter(storeUserPresence, "storeUserPresence");
+            Observable observableY = storeUserPresence.observePresenceForUser(userId).Y(ModelRichPresence$Companion$get$1.INSTANCE);
+            m.checkNotNullExpressionValue(observableY, "storeUserPresence\n      …          }\n            }");
+            return observableY;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public ModelRichPresence(Presence presence, Application application) {
         m.checkNotNullParameter(presence, "presence");
@@ -50,7 +77,7 @@ public final /* data */ class ModelRichPresence {
     }
 
     public static final Observable<ModelRichPresence> get(long j, StoreUserPresence storeUserPresence) {
-        return Companion.get(j, storeUserPresence);
+        return INSTANCE.get(j, storeUserPresence);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */

@@ -5,15 +5,39 @@ import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: FragmentViewBindingDelegate.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class FragmentViewBindingDelegateKt {
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: renamed from: com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt$viewBinding$1, reason: invalid class name */
+    /* JADX INFO: compiled from: FragmentViewBindingDelegate.kt */
+    public final class AnonymousClass1<T> extends o implements Function1<T, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        /* JADX WARN: Incorrect types in method signature: (TT;)V */
+        public final void invoke(ViewBinding viewBinding) {
+            m.checkNotNullParameter(viewBinding, "it");
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Object obj) {
+            invoke((ViewBinding) obj);
+            return Unit.a;
+        }
+    }
+
     public static /* synthetic */ FragmentViewBindingDelegate viewBinding$default(Fragment fragment, Function1 function1, Function1 function2, int i, Object obj) {
         if ((i & 2) != 0) {
-            function2 = FragmentViewBindingDelegateKt$viewBinding$1.INSTANCE;
+            function2 = AnonymousClass1.INSTANCE;
         }
         return viewBinding(fragment, function1, function2);
     }

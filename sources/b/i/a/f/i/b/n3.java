@@ -3,15 +3,13 @@ package b.i.a.f.i.b;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager$NameNotFoundException;
 import android.content.res.Resources;
-import android.content.res.Resources$NotFoundException;
 import android.os.Bundle;
 import android.text.TextUtils;
 import androidx.core.os.EnvironmentCompat;
 import b.i.a.f.h.l.ib;
 import b.i.a.f.h.l.lb;
-import com.google.android.gms.common.R$a;
+import com.google.android.gms.common.R;
 import com.google.android.gms.common.api.Status;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -44,7 +42,7 @@ public final class n3 extends a5 {
     }
 
     /* JADX WARN: Code duplicated, block: B:125:0x02d6  */
-    /* JADX WARN: Code duplicated, block: B:126:0x02d7 A[Catch: Resources$NotFoundException -> 0x02dc, TRY_LEAVE, TryCatch #2 {Resources$NotFoundException -> 0x02dc, blocks: (B:123:0x02c4, B:126:0x02d7), top: B:155:0x02c4 }] */
+    /* JADX WARN: Code duplicated, block: B:126:0x02d7 A[Catch: NotFoundException -> 0x02dc, TRY_LEAVE, TryCatch #2 {NotFoundException -> 0x02dc, blocks: (B:123:0x02c4, B:126:0x02d7), top: B:155:0x02c4 }] */
     /* JADX WARN: Code duplicated, block: B:131:0x02ea  */
     /* JADX WARN: Code duplicated, block: B:133:0x02f0  */
     /* JADX WARN: Code duplicated, block: B:135:0x02fd  */
@@ -90,7 +88,7 @@ public final class n3 extends a5 {
                     str = packageInfo.versionName;
                     i = packageInfo.versionCode;
                 }
-            } catch (PackageManager$NameNotFoundException unused2) {
+            } catch (PackageManager.NameNotFoundException unused2) {
                 g().f.c("Error retrieving package info. appId, appName", q3.s(packageName), "Unknown");
             }
         }
@@ -176,7 +174,7 @@ public final class n3 extends a5 {
                 Context context2 = this.a.f1570b;
                 Objects.requireNonNull(context2, "null reference");
                 Resources resources = context2.getResources();
-                String resourcePackageName = resources.getResourcePackageName(R$a.common_google_play_services_unknown_issue);
+                String resourcePackageName = resources.getResourcePackageName(R.a.common_google_play_services_unknown_issue);
                 int identifier = resources.getIdentifier("ga_app_id", "string", resourcePackageName);
                 String string = identifier == 0 ? null : resources.getString(identifier);
                 this.m = TextUtils.isEmpty(string) ? "" : string;
@@ -188,7 +186,7 @@ public final class n3 extends a5 {
                 Context context3 = this.a.f1570b;
                 Objects.requireNonNull(context3, "null reference");
                 Resources resources2 = context3.getResources();
-                int identifier3 = resources2.getIdentifier("admob_app_id", "string", resources2.getResourcePackageName(R$a.common_google_play_services_unknown_issue));
+                int identifier3 = resources2.getIdentifier("admob_app_id", "string", resources2.getResourcePackageName(R.a.common_google_play_services_unknown_issue));
                 this.l = identifier3 == 0 ? null : resources2.getString(identifier3);
             }
             if (z2) {
@@ -212,7 +210,7 @@ public final class n3 extends a5 {
                     if (stringArray == null) {
                         listAsList = Arrays.asList(stringArray);
                     }
-                } catch (Resources$NotFoundException e2) {
+                } catch (Resources.NotFoundException e2) {
                     cVar.g().f.b("Failed to load string array from metadata: resource not found", e2);
                 }
             }

@@ -18,6 +18,22 @@ public class RequestHandler implements IRequestHandler {
     private ILogger logger = AdjustFactory.getLogger();
     private ThreadExecutor executor = new SingleThreadCachedScheduler("RequestHandler");
 
+    /* JADX INFO: renamed from: com.adjust.sdk.RequestHandler$1, reason: invalid class name */
+    public class AnonymousClass1 implements Runnable {
+        public final /* synthetic */ ActivityPackage val$activityPackage;
+        public final /* synthetic */ int val$queueSize;
+
+        public AnonymousClass1(ActivityPackage activityPackage, int i) {
+            this.val$activityPackage = activityPackage;
+            this.val$queueSize = i;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            RequestHandler.access$000(RequestHandler.this, this.val$activityPackage, this.val$queueSize);
+        }
+    }
+
     public RequestHandler(IActivityHandler iActivityHandler, IPackageHandler iPackageHandler) {
         init(iActivityHandler, iPackageHandler);
         this.basePath = iPackageHandler.getBasePath();
@@ -112,7 +128,7 @@ public class RequestHandler implements IRequestHandler {
 
     @Override // com.adjust.sdk.IRequestHandler
     public void sendPackage(ActivityPackage activityPackage, int i) {
-        this.executor.submit(new RequestHandler$1(this, activityPackage, i));
+        this.executor.submit(new AnonymousClass1(activityPackage, i));
     }
 
     @Override // com.adjust.sdk.IRequestHandler

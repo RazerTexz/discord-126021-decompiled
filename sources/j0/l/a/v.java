@@ -1,11 +1,11 @@
 package j0.l.a;
 
-import rx.Observable$b;
+import rx.Observable;
 import rx.Subscriber;
 
 /* JADX INFO: compiled from: OnSubscribeRedo.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class v implements Observable$b<j0.f<?>, j0.f<?>> {
+public class v implements Observable.b<j0.f<?>, j0.f<?>> {
     public final /* synthetic */ y j;
 
     public v(y yVar) {

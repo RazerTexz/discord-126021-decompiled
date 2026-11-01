@@ -11,11 +11,19 @@ public class c {
     public float f1986b;
     public float g;
     public boolean h;
-    public c$a i;
+    public a i;
     public int e = -1;
     public int f = -1;
 
-    public c(c$a c_a) {
-        this.i = c_a;
+    /* JADX INFO: compiled from: RotationGestureDetector.java */
+    public interface a {
+    }
+
+    /* JADX INFO: compiled from: RotationGestureDetector.java */
+    public class b implements a {
+    }
+
+    public c(a aVar) {
+        this.i = aVar;
     }
 }

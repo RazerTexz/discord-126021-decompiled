@@ -3,9 +3,10 @@ package f0;
 import androidx.browser.trusted.sharing.ShareTarget;
 import java.io.EOFException;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 import okhttp3.MediaType;
-import okhttp3.MediaType$a;
 import okhttp3.RequestBody;
 import okio.BufferedSink;
 
@@ -19,8 +20,8 @@ public final class u extends RequestBody {
     public final List<String> c;
 
     static {
-        MediaType$a mediaType$a = MediaType.c;
-        a = MediaType$a.a(ShareTarget.ENCODING_TYPE_URL_ENCODED);
+        MediaType.Companion companion = MediaType.INSTANCE;
+        a = MediaType.Companion.a(ShareTarget.ENCODING_TYPE_URL_ENCODED);
     }
 
     public u(List<String> list, List<String> list2) {
@@ -72,5 +73,14 @@ public final class u extends RequestBody {
     public void writeTo(BufferedSink bufferedSink) throws IOException {
         d0.z.d.m.checkParameterIsNotNull(bufferedSink, "sink");
         a(bufferedSink, false);
+    }
+
+    /* JADX INFO: compiled from: FormBody.kt */
+    public final class a {
+        public final Charset c = null;
+        public final List<String> a = new ArrayList();
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final List<String> f3679b = new ArrayList();
     }
 }

@@ -8,12 +8,21 @@ public class g implements b {
     public final String a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final g$a f420b;
+    public final a f420b;
     public final boolean c;
 
-    public g(String str, g$a g_a, boolean z2) {
+    /* JADX INFO: compiled from: MergePaths.java */
+    public enum a {
+        MERGE,
+        ADD,
+        SUBTRACT,
+        INTERSECT,
+        EXCLUDE_INTERSECTIONS
+    }
+
+    public g(String str, a aVar, boolean z2) {
         this.a = str;
-        this.f420b = g_a;
+        this.f420b = aVar;
         this.c = z2;
     }
 

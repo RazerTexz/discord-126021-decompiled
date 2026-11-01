@@ -7,12 +7,12 @@ import java.util.ArrayList;
 public class HelperReference {
     private HelperWidget mHelperWidget;
     public final State mState;
-    public final State$Helper mType;
+    public final State.Helper mType;
     public ArrayList<Object> mReferences = new ArrayList<>();
 
-    public HelperReference(State state, State$Helper state$Helper) {
+    public HelperReference(State state, State.Helper helper) {
         this.mState = state;
-        this.mType = state$Helper;
+        this.mType = helper;
     }
 
     public HelperReference add(Object... objArr) {
@@ -29,7 +29,7 @@ public class HelperReference {
         return this.mHelperWidget;
     }
 
-    public State$Helper getType() {
+    public State.Helper getType() {
         return this.mType;
     }
 

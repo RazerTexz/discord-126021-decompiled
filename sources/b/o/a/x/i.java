@@ -1,7 +1,6 @@
 package b.o.a.x;
 
 import androidx.annotation.NonNull;
-import b.i.a.f.e.o.f$a;
 import java.util.List;
 
 /* JADX INFO: compiled from: SizeSelectors.java */
@@ -9,7 +8,7 @@ import java.util.List;
 public class i implements c {
     public c[] a;
 
-    public i(c[] cVarArr, f$a f_a) {
+    public i(c[] cVarArr, b.i.a.f.e.o.f.a aVar) {
         this.a = cVarArr;
     }
 

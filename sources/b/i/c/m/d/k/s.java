@@ -16,7 +16,7 @@ public class s implements Runnable {
     @Override // java.lang.Runnable
     public void run() {
         x xVar = this.j;
-        File[] fileArrR = x.r(xVar.l(), new x$i());
+        File[] fileArrR = x.r(xVar.l(), new x.i());
         Objects.requireNonNull(xVar);
         HashSet hashSet = new HashSet();
         for (File file : fileArrR) {

@@ -6,12 +6,15 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.EnumMap;
+import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -21,8 +24,52 @@ public final class d {
     public static final Annotation[] a = new Annotation[0];
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final d$a[] f726b = new d$a[0];
+    public static final a[] f726b = new a[0];
     public static final Iterator<?> c = Collections.emptyIterator();
+
+    /* JADX INFO: compiled from: ClassUtil.java */
+    public class b {
+        public static final b a = new b();
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final Field f728b = a(EnumSet.class, "elementType", Class.class);
+        public final Field c = a(EnumMap.class, "elementType", Class.class);
+
+        public static Field a(Class<?> cls, String str, Class<?> cls2) {
+            Field field;
+            Field[] declaredFields = cls.getDeclaredFields();
+            int length = declaredFields.length;
+            int i = 0;
+            while (true) {
+                if (i >= length) {
+                    field = null;
+                    break;
+                }
+                field = declaredFields[i];
+                if (str.equals(field.getName()) && field.getType() == cls2) {
+                    break;
+                }
+                i++;
+            }
+            if (field == null) {
+                for (Field field2 : declaredFields) {
+                    if (field2.getType() == cls2) {
+                        if (field != null) {
+                            return null;
+                        }
+                        field = field2;
+                    }
+                }
+            }
+            if (field != null) {
+                try {
+                    field.setAccessible(true);
+                } catch (Throwable unused) {
+                }
+            }
+            return field;
+        }
+    }
 
     public static void a(Class<?> cls, Class<?> cls2, Collection<Class<?>> collection, boolean z2) {
         if (cls == cls2 || cls == null || cls == Object.class) {
@@ -83,7 +130,7 @@ public final class d {
 
     public static void f(b.g.a.b.d dVar, Closeable closeable, Exception exc) throws IOException {
         if (dVar != null) {
-            dVar.b(b.g.a.b.d$a.AUTO_CLOSE_JSON_CONTENT);
+            dVar.b(b.g.a.b.d.a.AUTO_CLOSE_JSON_CONTENT);
             try {
                 dVar.close();
             } catch (Exception e) {
@@ -190,17 +237,17 @@ public final class d {
         }
     }
 
-    public static d$a[] l(Class<?> cls) {
+    public static a[] l(Class<?> cls) {
         if (cls.isInterface() || t(cls)) {
             return f726b;
         }
         Constructor<?>[] declaredConstructors = cls.getDeclaredConstructors();
         int length = declaredConstructors.length;
-        d$a[] d_aArr = new d$a[length];
+        a[] aVarArr = new a[length];
         for (int i = 0; i < length; i++) {
-            d_aArr[i] = new d$a(declaredConstructors[i]);
+            aVarArr[i] = new a(declaredConstructors[i]);
         }
-        return d_aArr;
+        return aVarArr;
     }
 
     public static Class<?> m(Class<?> cls) {
@@ -341,6 +388,30 @@ public final class d {
     public static void z(Class<?> cls, Object obj, String str) {
         if (obj.getClass() != cls) {
             throw new IllegalStateException(String.format("Sub-class %s (of class %s) must override method '%s'", obj.getClass().getName(), cls.getName(), str));
+        }
+    }
+
+    /* JADX INFO: compiled from: ClassUtil.java */
+    public final class a {
+        public final Constructor<?> a;
+        public transient Annotation[][] c;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public transient Annotation[] f727b;
+        public int d = -1;
+
+        public a(Constructor<?> constructor) {
+            this.a = constructor;
+        }
+
+        public int a() {
+            int i = this.d;
+            if (i >= 0) {
+                return i;
+            }
+            int length = this.a.getParameterTypes().length;
+            this.d = length;
+            return length;
         }
     }
 }

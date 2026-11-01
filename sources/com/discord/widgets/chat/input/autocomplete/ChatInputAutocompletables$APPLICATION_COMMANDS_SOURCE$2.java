@@ -1,7 +1,6 @@
 package com.discord.widgets.chat.input.autocomplete;
 
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import com.discord.widgets.chat.input.autocomplete.sources.ApplicationCommandsAutocompletableSource;
 import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
@@ -23,7 +22,7 @@ public final class ChatInputAutocompletables$APPLICATION_COMMANDS_SOURCE$2 exten
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final ApplicationCommandsAutocompletableSource invoke() {
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        return new ApplicationCommandsAutocompletableSource(storeStream$Companion.getUsers(), storeStream$Companion.getGuilds(), storeStream$Companion.getApplicationCommands());
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        return new ApplicationCommandsAutocompletableSource(companion.getUsers(), companion.getGuilds(), companion.getApplicationCommands());
     }
 }

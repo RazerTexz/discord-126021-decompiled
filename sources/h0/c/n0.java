@@ -2,10 +2,9 @@ package h0.c;
 
 import androidx.annotation.Nullable;
 import org.webrtc.EglBase;
-import org.webrtc.EglBase$Context;
-import org.webrtc.EglBase10$Context;
+import org.webrtc.EglBase10;
 import org.webrtc.EglBase10Impl;
-import org.webrtc.EglBase14$Context;
+import org.webrtc.EglBase14;
 import org.webrtc.EglBase14Impl;
 
 /* JADX INFO: compiled from: EglBase.java */
@@ -15,15 +14,15 @@ public final /* synthetic */ class n0 {
         return b(null, EglBase.CONFIG_PLAIN);
     }
 
-    public static EglBase b(@Nullable EglBase$Context eglBase$Context, int[] iArr) {
-        if (eglBase$Context == null) {
+    public static EglBase b(@Nullable EglBase.Context context, int[] iArr) {
+        if (context == null) {
             return EglBase14Impl.isEGL14Supported() ? new EglBase14Impl(null, iArr) : new EglBase10Impl(null, iArr);
         }
-        if (eglBase$Context instanceof EglBase14$Context) {
-            return new EglBase14Impl(((EglBase14$Context) eglBase$Context).getRawContext(), iArr);
+        if (context instanceof EglBase14.Context) {
+            return new EglBase14Impl(((EglBase14.Context) context).getRawContext(), iArr);
         }
-        if (eglBase$Context instanceof EglBase10$Context) {
-            return new EglBase10Impl(((EglBase10$Context) eglBase$Context).getRawContext(), iArr);
+        if (context instanceof EglBase10.Context) {
+            return new EglBase10Impl(((EglBase10.Context) context).getRawContext(), iArr);
         }
         throw new IllegalArgumentException("Unrecognized Context");
     }

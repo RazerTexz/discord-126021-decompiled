@@ -1,6 +1,6 @@
 package com.discord.widgets.guilds.invite;
 
-import com.discord.stores.StoreInviteSettings$InviteCode;
+import com.discord.stores.StoreInviteSettings;
 import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
 
@@ -23,6 +23,6 @@ public final class WidgetGuildInvite$viewModel$2 extends o implements Function0<
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final GuildInviteViewModel invoke() {
-        return new GuildInviteViewModel((StoreInviteSettings$InviteCode) this.this$0.getMostRecentIntent().getParcelableExtra("EXTRA_CODE"), null, null, 6, null);
+        return new GuildInviteViewModel((StoreInviteSettings.InviteCode) this.this$0.getMostRecentIntent().getParcelableExtra("EXTRA_CODE"), null, null, 6, null);
     }
 }

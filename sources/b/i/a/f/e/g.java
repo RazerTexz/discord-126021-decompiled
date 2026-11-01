@@ -2,7 +2,6 @@ package b.i.a.f.e;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.DialogInterface$OnCancelListener;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,13 +12,13 @@ import androidx.fragment.app.FragmentManager;
 /* JADX INFO: loaded from: classes3.dex */
 public class g extends DialogFragment {
     public Dialog j;
-    public DialogInterface$OnCancelListener k;
+    public DialogInterface.OnCancelListener k;
 
-    @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface$OnCancelListener
+    @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnCancelListener
     public void onCancel(DialogInterface dialogInterface) {
-        DialogInterface$OnCancelListener dialogInterface$OnCancelListener = this.k;
-        if (dialogInterface$OnCancelListener != null) {
-            dialogInterface$OnCancelListener.onCancel(dialogInterface);
+        DialogInterface.OnCancelListener onCancelListener = this.k;
+        if (onCancelListener != null) {
+            onCancelListener.onCancel(dialogInterface);
         }
     }
 

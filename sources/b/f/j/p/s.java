@@ -3,8 +3,6 @@ package b.f.j.p;
 import androidx.annotation.VisibleForTesting;
 import com.facebook.cache.common.CacheKey;
 import com.facebook.imagepipeline.request.ImageRequest;
-import com.facebook.imagepipeline.request.ImageRequest$b;
-import com.facebook.imagepipeline.request.ImageRequest$c;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -29,7 +27,7 @@ public class s implements w0<b.f.j.j.e> {
     public void b(l<b.f.j.j.e> lVar, x0 x0Var) {
         ImageRequest imageRequestE = x0Var.e();
         if (!x0Var.e().b(16)) {
-            if (x0Var.q().g() < ImageRequest$c.DISK_CACHE.g()) {
+            if (x0Var.q().g() < ImageRequest.c.DISK_CACHE.g()) {
                 this.d.b(lVar, x0Var);
                 return;
             } else {
@@ -40,7 +38,7 @@ public class s implements w0<b.f.j.j.e> {
         }
         x0Var.o().e(x0Var, "DiskCacheProducer");
         CacheKey cacheKeyB = ((b.f.j.c.n) this.c).b(imageRequestE, x0Var.b());
-        b.f.j.c.f fVar = imageRequestE.f2902b == ImageRequest$b.SMALL ? this.f636b : this.a;
+        b.f.j.c.f fVar = imageRequestE.f2902b == ImageRequest.b.SMALL ? this.f636b : this.a;
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         fVar.e(cacheKeyB, atomicBoolean).b(new q(this, x0Var.o(), x0Var, lVar));
         x0Var.f(new r(this, atomicBoolean));

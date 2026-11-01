@@ -12,20 +12,17 @@ import f0.c;
 import f0.c0;
 import f0.e0.h.e;
 import f0.e0.k.h;
-import f0.e0.k.h$a;
 import f0.i;
 import f0.s;
 import f0.w;
 import java.io.EOFException;
 import java.io.IOException;
 import java.net.Authenticator;
-import java.net.Authenticator$RequestorType;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
 import java.net.PasswordAuthentication;
 import java.net.Proxy;
-import java.net.Proxy$Type;
 import java.net.SocketAddress;
 import java.net.URL;
 import java.nio.charset.Charset;
@@ -36,8 +33,6 @@ import java.util.List;
 import java.util.Map;
 import kotlin.TypeCastException;
 import okhttp3.Headers;
-import okhttp3.Headers$a;
-import okhttp3.Headers$b;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
@@ -93,7 +88,7 @@ public final class b implements c {
         String str4;
         RequestBody requestBody;
         Map mutableMap;
-        Headers$a headers$aE;
+        Headers.a aVarE;
         SocketAddress socketAddressAddress;
         f0.a aVar;
         m.checkParameterIsNotNull(response, "response");
@@ -126,7 +121,7 @@ public final class b implements c {
                         String hostName = inetSocketAddress.getHostName();
                         m.checkExpressionValueIsNotNull(proxy, "proxy");
                         try {
-                            passwordAuthenticationRequestPasswordAuthentication = Authenticator.requestPasswordAuthentication(hostName, b(proxy, wVar, sVar), inetSocketAddress.getPort(), wVar.d, iVar.a.get("realm"), iVar.f3671b, new URL(wVar.l), Authenticator$RequestorType.PROXY);
+                            passwordAuthenticationRequestPasswordAuthentication = Authenticator.requestPasswordAuthentication(hostName, b(proxy, wVar, sVar), inetSocketAddress.getPort(), wVar.d, iVar.a.get("realm"), iVar.f3671b, new URL(wVar.l), Authenticator.RequestorType.PROXY);
                         } catch (MalformedURLException e) {
                             throw new RuntimeException(e);
                         }
@@ -134,7 +129,7 @@ public final class b implements c {
                         String str5 = wVar.g;
                         m.checkExpressionValueIsNotNull(proxy, "proxy");
                         try {
-                            passwordAuthenticationRequestPasswordAuthentication = Authenticator.requestPasswordAuthentication(str5, b(proxy, wVar, sVar), wVar.h, wVar.d, iVar.a.get("realm"), iVar.f3671b, new URL(wVar.l), Authenticator$RequestorType.SERVER);
+                            passwordAuthenticationRequestPasswordAuthentication = Authenticator.requestPasswordAuthentication(str5, b(proxy, wVar, sVar), wVar.h, wVar.d, iVar.a.get("realm"), iVar.f3671b, new URL(wVar.l), Authenticator.RequestorType.SERVER);
                         } catch (MalformedURLException e2) {
                             throw new RuntimeException(e2);
                         }
@@ -166,7 +161,7 @@ public final class b implements c {
                         m.checkParameterIsNotNull(userName, "username");
                         m.checkParameterIsNotNull(str6, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
                         m.checkParameterIsNotNull(charsetForName, "charset");
-                        String strF = ByteString.k.b(userName + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + str6, charsetForName).f();
+                        String strF = ByteString.INSTANCE.b(userName + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + str6, charsetForName).f();
                         StringBuilder sb = new StringBuilder();
                         sb.append("Basic ");
                         sb.append(strF);
@@ -181,18 +176,18 @@ public final class b implements c {
                         } else {
                             mutableMap = h0.toMutableMap(request.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_TAGS java.lang.String);
                         }
-                        headers$aE = request.headers.e();
+                        aVarE = request.headers.e();
                         m.checkParameterIsNotNull(str2, ModelAuditLogEntry.CHANGE_KEY_NAME);
                         m.checkParameterIsNotNull(string, "value");
                         m.checkParameterIsNotNull(str2, ModelAuditLogEntry.CHANGE_KEY_NAME);
                         m.checkParameterIsNotNull(string, "value");
-                        Headers$b headers$b = Headers.j;
-                        headers$b.a(str2);
-                        headers$b.b(string, str2);
-                        headers$aE.d(str2);
-                        headers$aE.b(str2, string);
+                        Headers.Companion companion = Headers.INSTANCE;
+                        companion.a(str2);
+                        companion.b(string, str2);
+                        aVarE.d(str2);
+                        aVarE.b(str2, string);
                         if (wVar2 != null) {
-                            return new Request(wVar2, str4, headers$aE.c(), requestBody, f0.e0.c.A(mutableMap));
+                            return new Request(wVar2, str4, aVarE.c(), requestBody, f0.e0.c.A(mutableMap));
                         }
                         throw new IllegalStateException("url == null".toString());
                     }
@@ -215,7 +210,7 @@ public final class b implements c {
                 try {
                     e.b(eVar, arrayList);
                 } catch (EOFException e3) {
-                    h$a h_a = h.c;
+                    h.a aVar2 = h.c;
                     h.a.i("Unable to parse challenge", 5, e3);
                 }
             }
@@ -245,11 +240,11 @@ public final class b implements c {
                     InetSocketAddress inetSocketAddress2 = (InetSocketAddress) socketAddressAddress;
                     String hostName2 = inetSocketAddress2.getHostName();
                     m.checkExpressionValueIsNotNull(proxy, "proxy");
-                    passwordAuthenticationRequestPasswordAuthentication = Authenticator.requestPasswordAuthentication(hostName2, b(proxy, wVar, sVar), inetSocketAddress2.getPort(), wVar.d, iVar.a.get("realm"), iVar.f3671b, new URL(wVar.l), Authenticator$RequestorType.PROXY);
+                    passwordAuthenticationRequestPasswordAuthentication = Authenticator.requestPasswordAuthentication(hostName2, b(proxy, wVar, sVar), inetSocketAddress2.getPort(), wVar.d, iVar.a.get("realm"), iVar.f3671b, new URL(wVar.l), Authenticator.RequestorType.PROXY);
                 } else {
                     String str8 = wVar.g;
                     m.checkExpressionValueIsNotNull(proxy, "proxy");
-                    passwordAuthenticationRequestPasswordAuthentication = Authenticator.requestPasswordAuthentication(str8, b(proxy, wVar, sVar), wVar.h, wVar.d, iVar.a.get("realm"), iVar.f3671b, new URL(wVar.l), Authenticator$RequestorType.SERVER);
+                    passwordAuthenticationRequestPasswordAuthentication = Authenticator.requestPasswordAuthentication(str8, b(proxy, wVar, sVar), wVar.h, wVar.d, iVar.a.get("realm"), iVar.f3671b, new URL(wVar.l), Authenticator.RequestorType.SERVER);
                 }
                 if (passwordAuthenticationRequestPasswordAuthentication != null) {
                     if (z2) {
@@ -273,7 +268,7 @@ public final class b implements c {
                     m.checkParameterIsNotNull(userName2, "username");
                     m.checkParameterIsNotNull(str9, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
                     m.checkParameterIsNotNull(charsetForName, "charset");
-                    String strF2 = ByteString.k.b(userName2 + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + str9, charsetForName).f();
+                    String strF2 = ByteString.INSTANCE.b(userName2 + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + str9, charsetForName).f();
                     StringBuilder sb2 = new StringBuilder();
                     sb2.append("Basic ");
                     sb2.append(strF2);
@@ -288,18 +283,18 @@ public final class b implements c {
                     } else {
                         mutableMap = h0.toMutableMap(request.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_TAGS java.lang.String);
                     }
-                    headers$aE = request.headers.e();
+                    aVarE = request.headers.e();
                     m.checkParameterIsNotNull(str2, ModelAuditLogEntry.CHANGE_KEY_NAME);
                     m.checkParameterIsNotNull(string2, "value");
                     m.checkParameterIsNotNull(str2, ModelAuditLogEntry.CHANGE_KEY_NAME);
                     m.checkParameterIsNotNull(string2, "value");
-                    Headers$b headers$b2 = Headers.j;
-                    headers$b2.a(str2);
-                    headers$b2.b(string2, str2);
-                    headers$aE.d(str2);
-                    headers$aE.b(str2, string2);
+                    Headers.Companion companion2 = Headers.INSTANCE;
+                    companion2.a(str2);
+                    companion2.b(string2, str2);
+                    aVarE.d(str2);
+                    aVarE.b(str2, string2);
                     if (wVar2 != null) {
-                        return new Request(wVar2, str4, headers$aE.c(), requestBody, f0.e0.c.A(mutableMap));
+                        return new Request(wVar2, str4, aVarE.c(), requestBody, f0.e0.c.A(mutableMap));
                     }
                     throw new IllegalStateException("url == null".toString());
                 }
@@ -310,8 +305,8 @@ public final class b implements c {
     }
 
     public final InetAddress b(Proxy proxy, w wVar, s sVar) throws IOException {
-        Proxy$Type proxy$TypeType = proxy.type();
-        if (proxy$TypeType != null && a.a[proxy$TypeType.ordinal()] == 1) {
+        Proxy.Type type = proxy.type();
+        if (type != null && a.a[type.ordinal()] == 1) {
             return (InetAddress) u.first((List) sVar.a(wVar.g));
         }
         SocketAddress socketAddressAddress = proxy.address();

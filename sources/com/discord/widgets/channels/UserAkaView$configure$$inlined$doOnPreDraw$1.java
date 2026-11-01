@@ -1,7 +1,7 @@
 package com.discord.widgets.channels;
 
 import android.text.SpannableString;
-import android.text.style.LeadingMarginSpan$Standard;
+import android.text.style.LeadingMarginSpan;
 import android.view.View;
 import android.widget.TextView;
 import com.discord.models.member.GuildMember;
@@ -59,7 +59,7 @@ public final class UserAkaView$configure$$inlined$doOnPreDraw$1 implements Runna
         m.checkNotNullExpressionValue(pileView, "binding.avatarsPileView");
         float fFloatValue = numberValueOf.floatValue() + measuredWidth + pileView.getMeasuredWidth();
         SpannableString spannableString = new SpannableString(u.joinToString$default(arrayList2, ", ", null, null, 0, null, null, 62, null));
-        spannableString.setSpan(new LeadingMarginSpan$Standard((int) fFloatValue, 0), 0, spannableString.length(), 33);
+        spannableString.setSpan(new LeadingMarginSpan.Standard((int) fFloatValue, 0), 0, spannableString.length(), 33);
         TextView textView3 = UserAkaView.access$getBinding$p(this.this$0).d;
         m.checkNotNullExpressionValue(textView3, "binding.nicknames");
         textView3.setText(spannableString);

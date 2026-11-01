@@ -1,6 +1,8 @@
 package androidx.loader.content;
 
 import android.content.Context;
+import android.database.ContentObserver;
+import android.os.Handler;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,13 +15,37 @@ import java.io.PrintWriter;
 public class Loader<D> {
     public Context mContext;
     public int mId;
-    public Loader$OnLoadCompleteListener<D> mListener;
-    public Loader$OnLoadCanceledListener<D> mOnLoadCanceledListener;
+    public OnLoadCompleteListener<D> mListener;
+    public OnLoadCanceledListener<D> mOnLoadCanceledListener;
     public boolean mStarted = false;
     public boolean mAbandoned = false;
     public boolean mReset = true;
     public boolean mContentChanged = false;
     public boolean mProcessingChange = false;
+
+    public final class ForceLoadContentObserver extends ContentObserver {
+        public ForceLoadContentObserver() {
+            super(new Handler());
+        }
+
+        @Override // android.database.ContentObserver
+        public boolean deliverSelfNotifications() {
+            return true;
+        }
+
+        @Override // android.database.ContentObserver
+        public void onChange(boolean z2) {
+            Loader.this.onContentChanged();
+        }
+    }
+
+    public interface OnLoadCanceledListener<D> {
+        void onLoadCanceled(@NonNull Loader<D> loader);
+    }
+
+    public interface OnLoadCompleteListener<D> {
+        void onLoadComplete(@NonNull Loader<D> loader, @Nullable D d);
+    }
 
     public Loader(@NonNull Context context) {
         this.mContext = context.getApplicationContext();
@@ -50,17 +76,17 @@ public class Loader<D> {
 
     @MainThread
     public void deliverCancellation() {
-        Loader$OnLoadCanceledListener<D> loader$OnLoadCanceledListener = this.mOnLoadCanceledListener;
-        if (loader$OnLoadCanceledListener != null) {
-            loader$OnLoadCanceledListener.onLoadCanceled(this);
+        OnLoadCanceledListener<D> onLoadCanceledListener = this.mOnLoadCanceledListener;
+        if (onLoadCanceledListener != null) {
+            onLoadCanceledListener.onLoadCanceled(this);
         }
     }
 
     @MainThread
     public void deliverResult(@Nullable D d) {
-        Loader$OnLoadCompleteListener<D> loader$OnLoadCompleteListener = this.mListener;
-        if (loader$OnLoadCompleteListener != null) {
-            loader$OnLoadCompleteListener.onLoadComplete(this, d);
+        OnLoadCompleteListener<D> onLoadCompleteListener = this.mListener;
+        if (onLoadCompleteListener != null) {
+            onLoadCompleteListener.onLoadComplete(this, d);
         }
     }
 
@@ -150,20 +176,20 @@ public class Loader<D> {
     }
 
     @MainThread
-    public void registerListener(int i, @NonNull Loader$OnLoadCompleteListener<D> loader$OnLoadCompleteListener) {
+    public void registerListener(int i, @NonNull OnLoadCompleteListener<D> onLoadCompleteListener) {
         if (this.mListener != null) {
             throw new IllegalStateException("There is already a listener registered");
         }
-        this.mListener = loader$OnLoadCompleteListener;
+        this.mListener = onLoadCompleteListener;
         this.mId = i;
     }
 
     @MainThread
-    public void registerOnLoadCanceledListener(@NonNull Loader$OnLoadCanceledListener<D> loader$OnLoadCanceledListener) {
+    public void registerOnLoadCanceledListener(@NonNull OnLoadCanceledListener<D> onLoadCanceledListener) {
         if (this.mOnLoadCanceledListener != null) {
             throw new IllegalStateException("There is already a listener registered");
         }
-        this.mOnLoadCanceledListener = loader$OnLoadCanceledListener;
+        this.mOnLoadCanceledListener = onLoadCanceledListener;
     }
 
     @MainThread
@@ -211,24 +237,24 @@ public class Loader<D> {
     }
 
     @MainThread
-    public void unregisterListener(@NonNull Loader$OnLoadCompleteListener<D> loader$OnLoadCompleteListener) {
-        Loader$OnLoadCompleteListener<D> loader$OnLoadCompleteListener2 = this.mListener;
-        if (loader$OnLoadCompleteListener2 == null) {
+    public void unregisterListener(@NonNull OnLoadCompleteListener<D> onLoadCompleteListener) {
+        OnLoadCompleteListener<D> onLoadCompleteListener2 = this.mListener;
+        if (onLoadCompleteListener2 == null) {
             throw new IllegalStateException("No listener register");
         }
-        if (loader$OnLoadCompleteListener2 != loader$OnLoadCompleteListener) {
+        if (onLoadCompleteListener2 != onLoadCompleteListener) {
             throw new IllegalArgumentException("Attempting to unregister the wrong listener");
         }
         this.mListener = null;
     }
 
     @MainThread
-    public void unregisterOnLoadCanceledListener(@NonNull Loader$OnLoadCanceledListener<D> loader$OnLoadCanceledListener) {
-        Loader$OnLoadCanceledListener<D> loader$OnLoadCanceledListener2 = this.mOnLoadCanceledListener;
-        if (loader$OnLoadCanceledListener2 == null) {
+    public void unregisterOnLoadCanceledListener(@NonNull OnLoadCanceledListener<D> onLoadCanceledListener) {
+        OnLoadCanceledListener<D> onLoadCanceledListener2 = this.mOnLoadCanceledListener;
+        if (onLoadCanceledListener2 == null) {
             throw new IllegalStateException("No listener register");
         }
-        if (loader$OnLoadCanceledListener2 != loader$OnLoadCanceledListener) {
+        if (onLoadCanceledListener2 != onLoadCanceledListener) {
             throw new IllegalArgumentException("Attempting to unregister the wrong listener");
         }
         this.mOnLoadCanceledListener = null;

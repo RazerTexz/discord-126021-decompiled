@@ -6,20 +6,20 @@ import android.os.RemoteException;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-sdk-api@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class e0 extends g$a {
+public final class e0 extends g.a {
     public final /* synthetic */ Bundle n;
     public final /* synthetic */ Activity o;
-    public final /* synthetic */ g$b p;
+    public final /* synthetic */ g.b p;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public e0(g$b g_b, Bundle bundle, Activity activity) {
-        super(g_b.j, true);
-        this.p = g_b;
+    public e0(g.b bVar, Bundle bundle, Activity activity) {
+        super(true);
+        this.p = bVar;
         this.n = bundle;
         this.o = activity;
     }
 
-    @Override // b.i.a.f.h.l.g$a
+    @Override // b.i.a.f.h.l.g.a
     public final void a() throws RemoteException {
         Bundle bundle;
         if (this.n != null) {
@@ -33,6 +33,6 @@ public final class e0 extends g$a {
         } else {
             bundle = null;
         }
-        this.p.j.j.onActivityCreated(new b.i.a.f.f.b(this.o), bundle, this.k);
+        g.this.j.onActivityCreated(new b.i.a.f.f.b(this.o), bundle, this.k);
     }
 }

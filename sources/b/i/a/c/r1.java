@@ -1,12 +1,11 @@
 package b.i.a.c;
 
 import androidx.annotation.Nullable;
-import b.i.a.c.a3.a0$a;
 
 /* JADX INFO: compiled from: MediaPeriodInfo.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class r1 {
-    public final a0$a a;
+    public final b.i.a.c.a3.a0.a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final long f1058b;
@@ -18,7 +17,7 @@ public final class r1 {
     public final boolean h;
     public final boolean i;
 
-    public r1(a0$a a0_a, long j, long j2, long j3, long j4, boolean z2, boolean z3, boolean z4, boolean z5) {
+    public r1(b.i.a.c.a3.a0.a aVar, long j, long j2, long j3, long j4, boolean z2, boolean z3, boolean z4, boolean z5) {
         boolean z6 = false;
         b.c.a.a0.d.j(!z5 || z3);
         b.c.a.a0.d.j(!z4 || z3);
@@ -26,7 +25,7 @@ public final class r1 {
             z6 = true;
         }
         b.c.a.a0.d.j(z6);
-        this.a = a0_a;
+        this.a = aVar;
         this.f1058b = j;
         this.c = j2;
         this.d = j3;

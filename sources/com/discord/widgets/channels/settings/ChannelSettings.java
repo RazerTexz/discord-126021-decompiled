@@ -2,15 +2,45 @@ package com.discord.widgets.channels.settings;
 
 import b.d.b.a.a;
 import com.discord.api.channel.Channel;
+import com.discord.models.domain.ModelNotificationSettings;
 import d0.z.d.m;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ChannelSettings.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class ChannelSettings {
-    public static final ChannelSettings$Companion Companion = new ChannelSettings$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final Channel channel;
     private final boolean isMuted;
     private final String muteEndTime;
+
+    /* JADX INFO: compiled from: ChannelSettings.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final ChannelSettings createFromNotificationSettings(Channel channel, ModelNotificationSettings notificationSettings) {
+            m.checkNotNullParameter(channel, "channel");
+            m.checkNotNullParameter(notificationSettings, "notificationSettings");
+            boolean zIsMuted = notificationSettings.isMuted();
+            String muteEndTime = notificationSettings.getMuteEndTime();
+            for (ModelNotificationSettings.ChannelOverride channelOverride : notificationSettings.getChannelOverrides()) {
+                m.checkNotNullExpressionValue(channelOverride, "override");
+                if (channelOverride.getChannelId() == channel.getId()) {
+                    zIsMuted = channelOverride.isMuted();
+                    muteEndTime = channelOverride.getMuteEndTime();
+                    break;
+                }
+            }
+            return new ChannelSettings(channel, zIsMuted, muteEndTime);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public ChannelSettings(Channel channel, boolean z2, String str) {
         m.checkNotNullParameter(channel, "channel");

@@ -6,7 +6,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: PriceTierPickerBottomSheetViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class PriceTierPickerBottomSheetViewModel$Companion$observeStoreState$1 extends o implements Function0<PriceTierPickerBottomSheetViewModel$StoreState> {
+public final class PriceTierPickerBottomSheetViewModel$Companion$observeStoreState$1 extends o implements Function0<PriceTierPickerBottomSheetViewModel.StoreState> {
     public final /* synthetic */ StoreGuildRoleSubscriptions $storeGuildRoleSubscriptions;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -16,13 +16,13 @@ public final class PriceTierPickerBottomSheetViewModel$Companion$observeStoreSta
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ PriceTierPickerBottomSheetViewModel$StoreState invoke() {
+    public /* bridge */ /* synthetic */ PriceTierPickerBottomSheetViewModel.StoreState invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final PriceTierPickerBottomSheetViewModel$StoreState invoke() {
-        return new PriceTierPickerBottomSheetViewModel$StoreState(this.$storeGuildRoleSubscriptions.getPriceTierStateSnapshot());
+    public final PriceTierPickerBottomSheetViewModel.StoreState invoke() {
+        return new PriceTierPickerBottomSheetViewModel.StoreState(this.$storeGuildRoleSubscriptions.getPriceTierStateSnapshot());
     }
 }

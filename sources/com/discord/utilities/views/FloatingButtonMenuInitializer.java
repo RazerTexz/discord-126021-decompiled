@@ -1,15 +1,18 @@
 package com.discord.utilities.views;
 
-import android.R$integer;
-import android.R$interpolator;
+import android.R;
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.util.Property;
 import android.view.View;
-import android.view.View$OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.animation.AnimationUtils;
 import android.widget.TableRow;
+import androidx.exifinterface.media.ExifInterface;
 import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,13 +22,75 @@ import java.util.Objects;
 /* JADX INFO: compiled from: FloatingButtonMenuInitializer.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class FloatingButtonMenuInitializer {
-    private final FloatingButtonMenuInitializer$AnimatorFactory<View> animatorFactoryFadeIn;
-    private final FloatingButtonMenuInitializer$AnimatorFactory<View> animatorFactorySlideUp;
+    private final AnimatorFactory<View> animatorFactoryFadeIn;
+    private final AnimatorFactory<View> animatorFactorySlideUp;
     private final Context context;
-    private final Map<Integer, View$OnClickListener> onClickListenerMap;
+    private final Map<Integer, View.OnClickListener> onClickListenerMap;
+
+    /* JADX INFO: compiled from: FloatingButtonMenuInitializer.kt */
+    public interface AnimatorFactory<T extends View> {
+        Animator createAnimator(T view);
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.views.FloatingButtonMenuInitializer$getAnimatorFactoryScaleUp$1, reason: invalid class name */
+    /* JADX INFO: compiled from: FloatingButtonMenuInitializer.kt */
+    public final class AnonymousClass1 implements AnimatorFactory<ViewGroup> {
+        public final /* synthetic */ View $mainFab;
+
+        public AnonymousClass1(View view) {
+            this.$mainFab = view;
+        }
+
+        @Override // com.discord.utilities.views.FloatingButtonMenuInitializer.AnimatorFactory
+        public /* bridge */ /* synthetic */ Animator createAnimator(View view) {
+            return createAnimator((ViewGroup) view);
+        }
+
+        public Animator createAnimator(ViewGroup view) {
+            m.checkNotNullParameter(view, "view");
+            AnimatorSet animatorSet = new AnimatorSet();
+            animatorSet.playTogether(ObjectAnimator.ofFloat(this.$mainFab, (Property<View, Float>) View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.$mainFab, (Property<View, Float>) View.SCALE_Y, 0.0f, 1.0f));
+            return animatorSet;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.views.FloatingButtonMenuInitializer$getMenuAnimators$1, reason: invalid class name */
+    /* JADX INFO: compiled from: FloatingButtonMenuInitializer.kt */
+    public final class AnonymousClass1 extends AnimatorListenerAdapter {
+        public final /* synthetic */ ViewGroup $row;
+
+        public AnonymousClass1(ViewGroup viewGroup) {
+            this.$row = viewGroup;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationStart(Animator animation) {
+            m.checkNotNullParameter(animation, "animation");
+            this.$row.setVisibility(0);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.views.FloatingButtonMenuInitializer$initialize$1, reason: invalid class name */
+    /* JADX INFO: compiled from: FloatingButtonMenuInitializer.kt */
+    public final class AnonymousClass1 implements ViewTreeObserver.OnGlobalLayoutListener {
+        public final /* synthetic */ View $mainFab;
+        public final /* synthetic */ ViewGroup $menuContainer;
+
+        public AnonymousClass1(ViewGroup viewGroup, View view) {
+            this.$menuContainer = viewGroup;
+            this.$mainFab = view;
+        }
+
+        @Override // android.view.ViewTreeObserver.OnGlobalLayoutListener
+        public void onGlobalLayout() {
+            FloatingButtonMenuInitializer floatingButtonMenuInitializer = FloatingButtonMenuInitializer.this;
+            FloatingButtonMenuInitializer.access$configureEntranceAnimator(floatingButtonMenuInitializer, FloatingButtonMenuInitializer.access$getMenuAnimators(floatingButtonMenuInitializer, this.$menuContainer, this.$mainFab)).start();
+            this.$menuContainer.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        }
+    }
 
     /* JADX WARN: Multi-variable type inference failed */
-    public FloatingButtonMenuInitializer(Context context, Map<Integer, ? extends View$OnClickListener> map) {
+    public FloatingButtonMenuInitializer(Context context, Map<Integer, ? extends View.OnClickListener> map) {
         m.checkNotNullParameter(context, "context");
         m.checkNotNullParameter(map, "onClickListenerMap");
         this.context = context;
@@ -49,20 +114,20 @@ public final class FloatingButtonMenuInitializer {
     private final Animator configureEntranceAnimator(Animator[] menuRowAnimators) {
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playTogether((Animator[]) Arrays.copyOf(menuRowAnimators, menuRowAnimators.length));
-        animatorSet.setInterpolator(AnimationUtils.loadInterpolator(this.context, R$interpolator.accelerate_decelerate));
-        AnimatorSet duration = animatorSet.setDuration(this.context.getResources().getInteger(R$integer.config_shortAnimTime));
+        animatorSet.setInterpolator(AnimationUtils.loadInterpolator(this.context, R.interpolator.accelerate_decelerate));
+        AnimatorSet duration = animatorSet.setDuration(this.context.getResources().getInteger(R.integer.config_shortAnimTime));
         m.checkNotNullExpressionValue(duration, "animatorEntrance.setDura…n(totalDuration.toLong())");
         return duration;
     }
 
     private final Animator createDefaultMenuRowAnimation(ViewGroup row, View mainFab) {
-        return row.getId() == 2131363376 ? this.animatorFactoryFadeIn.createAnimator(row) : createMenuRowAnimation(row, this.animatorFactoryFadeIn, getAnimatorFactoryScaleUp(mainFab), this.animatorFactorySlideUp);
+        return row.getId() == com.discord.R.id.fab_menu_main ? this.animatorFactoryFadeIn.createAnimator(row) : createMenuRowAnimation(row, this.animatorFactoryFadeIn, getAnimatorFactoryScaleUp(mainFab), this.animatorFactorySlideUp);
     }
 
-    private final Animator createMenuRowAnimation(ViewGroup row, FloatingButtonMenuInitializer$AnimatorFactory<? super ViewGroup>... factories) {
+    private final Animator createMenuRowAnimation(ViewGroup row, AnimatorFactory<? super ViewGroup>... factories) {
         ArrayList arrayList = new ArrayList(factories.length);
-        for (FloatingButtonMenuInitializer$AnimatorFactory<? super ViewGroup> floatingButtonMenuInitializer$AnimatorFactory : factories) {
-            Animator animatorCreateAnimator = floatingButtonMenuInitializer$AnimatorFactory.createAnimator(row);
+        for (AnimatorFactory<? super ViewGroup> animatorFactory : factories) {
+            Animator animatorCreateAnimator = animatorFactory.createAnimator(row);
             if (animatorCreateAnimator != null) {
                 arrayList.add(animatorCreateAnimator);
             }
@@ -72,8 +137,8 @@ public final class FloatingButtonMenuInitializer {
         return animatorSet;
     }
 
-    private final FloatingButtonMenuInitializer$getAnimatorFactoryScaleUp$1 getAnimatorFactoryScaleUp(View mainFab) {
-        return new FloatingButtonMenuInitializer$getAnimatorFactoryScaleUp$1(mainFab);
+    private final AnonymousClass1 getAnimatorFactoryScaleUp(View mainFab) {
+        return new AnonymousClass1(mainFab);
     }
 
     private final Animator[] getMenuAnimators(ViewGroup menuContainer, View mainFab) {
@@ -86,14 +151,14 @@ public final class FloatingButtonMenuInitializer {
             viewGroup.setVisibility(4);
             Animator animatorCreateDefaultMenuRowAnimation = createDefaultMenuRowAnimation(viewGroup, mainFab);
             if (animatorCreateDefaultMenuRowAnimation != null) {
-                animatorCreateDefaultMenuRowAnimation.addListener(new FloatingButtonMenuInitializer$getMenuAnimators$1(viewGroup));
+                animatorCreateDefaultMenuRowAnimation.addListener(new AnonymousClass1(viewGroup));
             }
             animatorArr[(childCount - 1) - i] = animatorCreateDefaultMenuRowAnimation;
         }
         return animatorArr;
     }
 
-    public final FloatingButtonMenuInitializer initialize(ViewGroup menuContainer, View mainFab, View$OnClickListener defaultRowOnClickListener) {
+    public final FloatingButtonMenuInitializer initialize(ViewGroup menuContainer, View mainFab, View.OnClickListener defaultRowOnClickListener) {
         m.checkNotNullParameter(menuContainer, "menuContainer");
         m.checkNotNullParameter(mainFab, "mainFab");
         m.checkNotNullParameter(defaultRowOnClickListener, "defaultRowOnClickListener");
@@ -105,11 +170,11 @@ public final class FloatingButtonMenuInitializer {
             tableRow.setOnClickListener(defaultRowOnClickListener);
             setFabMenuOnClickListener(tableRow, this.onClickListenerMap.get(Integer.valueOf(tableRow.getId())));
         }
-        menuContainer.getViewTreeObserver().addOnGlobalLayoutListener(new FloatingButtonMenuInitializer$initialize$1(this, menuContainer, mainFab));
+        menuContainer.getViewTreeObserver().addOnGlobalLayoutListener(new AnonymousClass1(menuContainer, mainFab));
         return this;
     }
 
-    private final void setFabMenuOnClickListener(TableRow row, View$OnClickListener listener) {
+    private final void setFabMenuOnClickListener(TableRow row, View.OnClickListener listener) {
         int childCount = row.getChildCount();
         for (int i = 0; i < childCount; i++) {
             row.getChildAt(i).setOnClickListener(listener);

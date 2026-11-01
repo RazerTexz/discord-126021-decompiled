@@ -1,13 +1,22 @@
 package com.discord.stores;
 
+import android.content.Context;
+import b.d.b.a.a;
 import com.discord.models.domain.ModelSubscription;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
+import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import kotlin.NoWhenBranchMatchedException;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
 
 /* JADX INFO: compiled from: StoreSubscriptions.kt */
@@ -16,8 +25,238 @@ public final class StoreSubscriptions extends StoreV2 {
     private final Dispatcher dispatcher;
     private final ObservationDeck observationDeck;
     private final RestAPI restAPI;
-    private StoreSubscriptions$SubscriptionsState subscriptionsState;
-    private StoreSubscriptions$SubscriptionsState subscriptionsStateSnapshot;
+    private SubscriptionsState subscriptionsState;
+    private SubscriptionsState subscriptionsStateSnapshot;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreSubscriptions$fetchSubscriptions$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreSubscriptions.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreSubscriptions$fetchSubscriptions$1$2, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreSubscriptions.kt */
+        public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+
+            /* JADX INFO: renamed from: com.discord.stores.StoreSubscriptions$fetchSubscriptions$1$2$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: StoreSubscriptions.kt */
+            public final class C03021 extends o implements Function0<Unit> {
+                public C03021() {
+                    super(0);
+                }
+
+                @Override // kotlin.jvm.functions.Function0
+                public /* bridge */ /* synthetic */ Unit invoke() {
+                    invoke2();
+                    return Unit.a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2() {
+                    StoreSubscriptions.access$handleSubscriptionsFetchFailure(StoreSubscriptions.this);
+                }
+            }
+
+            public AnonymousClass2() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+                invoke2(error);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Error error) {
+                m.checkNotNullParameter(error, "it");
+                StoreSubscriptions.access$getDispatcher$p(StoreSubscriptions.this).schedule(new C03021());
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreSubscriptions$fetchSubscriptions$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreSubscriptions.kt */
+        public final class C03001 extends o implements Function1<List<? extends ModelSubscription>, Unit> {
+
+            /* JADX INFO: renamed from: com.discord.stores.StoreSubscriptions$fetchSubscriptions$1$1$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: StoreSubscriptions.kt */
+            public final class C03011 extends o implements Function0<Unit> {
+                public final /* synthetic */ List $subscriptions;
+
+                /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+                public C03011(List list) {
+                    super(0);
+                    this.$subscriptions = list;
+                }
+
+                @Override // kotlin.jvm.functions.Function0
+                public /* bridge */ /* synthetic */ Unit invoke() {
+                    invoke2();
+                    return Unit.a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2() {
+                    StoreSubscriptions.access$handleSubscriptionsFetchSuccess(StoreSubscriptions.this, this.$subscriptions);
+                }
+            }
+
+            public C03001() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(List<? extends ModelSubscription> list) {
+                invoke2((List<ModelSubscription>) list);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(List<ModelSubscription> list) {
+                m.checkNotNullParameter(list, "subscriptions");
+                StoreSubscriptions.access$getDispatcher$p(StoreSubscriptions.this).schedule(new C03011(list));
+            }
+        }
+
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            if (StoreSubscriptions.access$getSubscriptionsState$p(StoreSubscriptions.this) instanceof SubscriptionsState.Loading) {
+                return;
+            }
+            StoreSubscriptions.access$handleSubscriptionsFetchStart(StoreSubscriptions.this);
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(StoreSubscriptions.access$getRestAPI$p(StoreSubscriptions.this).getSubscriptions(), false, 1, null), StoreSubscriptions.this.getClass(), (Context) null, (Function1) null, new AnonymousClass2(), (Function0) null, (Function0) null, new C03001(), 54, (Object) null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreSubscriptions$observeSubscriptions$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreSubscriptions.kt */
+    public final class AnonymousClass1 extends o implements Function0<SubscriptionsState> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ SubscriptionsState invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final SubscriptionsState invoke() {
+            return StoreSubscriptions.this.getSubscriptionsStateSnapshot();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreSubscriptions.kt */
+    public abstract class SubscriptionsState {
+
+        /* JADX INFO: compiled from: StoreSubscriptions.kt */
+        public final class Failure extends SubscriptionsState {
+            public static final Failure INSTANCE = new Failure();
+
+            private Failure() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreSubscriptions.kt */
+        public final /* data */ class Loaded extends SubscriptionsState {
+            private final List<ModelSubscription> subscriptions;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Loaded(List<ModelSubscription> list) {
+                super(null);
+                m.checkNotNullParameter(list, "subscriptions");
+                this.subscriptions = list;
+            }
+
+            public final List<ModelSubscription> component1() {
+                return this.subscriptions;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Loaded copy$default(Loaded loaded, List list, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    list = loaded.subscriptions;
+                }
+                return loaded.copy(list);
+            }
+
+            public final Loaded copy(List<ModelSubscription> subscriptions) {
+                m.checkNotNullParameter(subscriptions, "subscriptions");
+                return new Loaded(subscriptions);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Loaded) && m.areEqual(this.subscriptions, ((Loaded) other).subscriptions);
+                }
+                return true;
+            }
+
+            public final ModelSubscription getPremiumSubscription() {
+                Object next;
+                Iterator<T> it = this.subscriptions.iterator();
+                while (it.hasNext()) {
+                    next = it.next();
+                    if (((ModelSubscription) next).getType() == ModelSubscription.Type.PREMIUM) {
+                        return (ModelSubscription) next;
+                    }
+                }
+                next = null;
+                return (ModelSubscription) next;
+            }
+
+            public final List<ModelSubscription> getSubscriptions() {
+                return this.subscriptions;
+            }
+
+            public int hashCode() {
+                List<ModelSubscription> list = this.subscriptions;
+                if (list != null) {
+                    return list.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                return a.L(a.U("Loaded(subscriptions="), this.subscriptions, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreSubscriptions.kt */
+        public final class Loading extends SubscriptionsState {
+            public static final Loading INSTANCE = new Loading();
+
+            private Loading() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreSubscriptions.kt */
+        public final class Unfetched extends SubscriptionsState {
+            public static final Unfetched INSTANCE = new Unfetched();
+
+            private Unfetched() {
+                super(null);
+            }
+        }
+
+        private SubscriptionsState() {
+        }
+
+        public /* synthetic */ SubscriptionsState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public StoreSubscriptions(ObservationDeck observationDeck, Dispatcher dispatcher, RestAPI restAPI) {
         m.checkNotNullParameter(observationDeck, "observationDeck");
@@ -26,9 +265,9 @@ public final class StoreSubscriptions extends StoreV2 {
         this.observationDeck = observationDeck;
         this.dispatcher = dispatcher;
         this.restAPI = restAPI;
-        StoreSubscriptions$SubscriptionsState$Unfetched storeSubscriptions$SubscriptionsState$Unfetched = StoreSubscriptions$SubscriptionsState$Unfetched.INSTANCE;
-        this.subscriptionsState = storeSubscriptions$SubscriptionsState$Unfetched;
-        this.subscriptionsStateSnapshot = storeSubscriptions$SubscriptionsState$Unfetched;
+        SubscriptionsState.Unfetched unfetched = SubscriptionsState.Unfetched.INSTANCE;
+        this.subscriptionsState = unfetched;
+        this.subscriptionsStateSnapshot = unfetched;
     }
 
     public static final /* synthetic */ Dispatcher access$getDispatcher$p(StoreSubscriptions storeSubscriptions) {
@@ -39,7 +278,7 @@ public final class StoreSubscriptions extends StoreV2 {
         return storeSubscriptions.restAPI;
     }
 
-    public static final /* synthetic */ StoreSubscriptions$SubscriptionsState access$getSubscriptionsState$p(StoreSubscriptions storeSubscriptions) {
+    public static final /* synthetic */ SubscriptionsState access$getSubscriptionsState$p(StoreSubscriptions storeSubscriptions) {
         return storeSubscriptions.subscriptionsState;
     }
 
@@ -55,40 +294,40 @@ public final class StoreSubscriptions extends StoreV2 {
         storeSubscriptions.handleSubscriptionsFetchSuccess(list);
     }
 
-    public static final /* synthetic */ void access$setSubscriptionsState$p(StoreSubscriptions storeSubscriptions, StoreSubscriptions$SubscriptionsState storeSubscriptions$SubscriptionsState) {
-        storeSubscriptions.subscriptionsState = storeSubscriptions$SubscriptionsState;
+    public static final /* synthetic */ void access$setSubscriptionsState$p(StoreSubscriptions storeSubscriptions, SubscriptionsState subscriptionsState) {
+        storeSubscriptions.subscriptionsState = subscriptionsState;
     }
 
     public final void fetchSubscriptions() {
-        this.dispatcher.schedule(new StoreSubscriptions$fetchSubscriptions$1(this));
+        this.dispatcher.schedule(new AnonymousClass1());
     }
 
     /* JADX INFO: renamed from: getSubscriptions, reason: from getter */
-    public final StoreSubscriptions$SubscriptionsState getSubscriptionsStateSnapshot() {
+    public final SubscriptionsState getSubscriptionsStateSnapshot() {
         return this.subscriptionsStateSnapshot;
     }
 
     @StoreThread
     public final void handlePreLogout() {
-        this.subscriptionsState = StoreSubscriptions$SubscriptionsState$Unfetched.INSTANCE;
+        this.subscriptionsState = SubscriptionsState.Unfetched.INSTANCE;
         markChanged();
     }
 
     @StoreThread
     private final void handleSubscriptionsFetchFailure() {
-        this.subscriptionsState = StoreSubscriptions$SubscriptionsState$Failure.INSTANCE;
+        this.subscriptionsState = SubscriptionsState.Failure.INSTANCE;
         markChanged();
     }
 
     @StoreThread
     private final void handleSubscriptionsFetchStart() {
-        this.subscriptionsState = StoreSubscriptions$SubscriptionsState$Loading.INSTANCE;
+        this.subscriptionsState = SubscriptionsState.Loading.INSTANCE;
         markChanged();
     }
 
     @StoreThread
     private final void handleSubscriptionsFetchSuccess(List<ModelSubscription> subscriptions) {
-        this.subscriptionsState = new StoreSubscriptions$SubscriptionsState$Loaded(subscriptions);
+        this.subscriptionsState = new SubscriptionsState.Loaded(subscriptions);
         markChanged();
     }
 
@@ -98,15 +337,15 @@ public final class StoreSubscriptions extends StoreV2 {
     }
 
     public final boolean hasFetchedSubscriptions() {
-        return this.subscriptionsStateSnapshot instanceof StoreSubscriptions$SubscriptionsState$Loaded;
+        return this.subscriptionsStateSnapshot instanceof SubscriptionsState.Loaded;
     }
 
     public final boolean isFetchingSubscriptions() {
-        return this.subscriptionsStateSnapshot instanceof StoreSubscriptions$SubscriptionsState$Loading;
+        return this.subscriptionsStateSnapshot instanceof SubscriptionsState.Loading;
     }
 
-    public final Observable<StoreSubscriptions$SubscriptionsState> observeSubscriptions() {
-        Observable<StoreSubscriptions$SubscriptionsState> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreSubscriptions$observeSubscriptions$1(this), 14, null).r();
+    public final Observable<SubscriptionsState> observeSubscriptions() {
+        Observable<SubscriptionsState> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
         return observableR;
     }
@@ -114,13 +353,13 @@ public final class StoreSubscriptions extends StoreV2 {
     @Override // com.discord.stores.StoreV2
     public void snapshotData() {
         super.snapshotData();
-        StoreSubscriptions$SubscriptionsState storeSubscriptions$SubscriptionsStateCopy = this.subscriptionsState;
-        if (storeSubscriptions$SubscriptionsStateCopy instanceof StoreSubscriptions$SubscriptionsState$Loaded) {
-            StoreSubscriptions$SubscriptionsState$Loaded storeSubscriptions$SubscriptionsState$Loaded = (StoreSubscriptions$SubscriptionsState$Loaded) storeSubscriptions$SubscriptionsStateCopy;
-            storeSubscriptions$SubscriptionsStateCopy = storeSubscriptions$SubscriptionsState$Loaded.copy(new ArrayList(storeSubscriptions$SubscriptionsState$Loaded.getSubscriptions()));
-        } else if (!m.areEqual(storeSubscriptions$SubscriptionsStateCopy, StoreSubscriptions$SubscriptionsState$Failure.INSTANCE) && !m.areEqual(storeSubscriptions$SubscriptionsStateCopy, StoreSubscriptions$SubscriptionsState$Loading.INSTANCE) && !m.areEqual(storeSubscriptions$SubscriptionsStateCopy, StoreSubscriptions$SubscriptionsState$Unfetched.INSTANCE)) {
+        SubscriptionsState subscriptionsStateCopy = this.subscriptionsState;
+        if (subscriptionsStateCopy instanceof SubscriptionsState.Loaded) {
+            SubscriptionsState.Loaded loaded = (SubscriptionsState.Loaded) subscriptionsStateCopy;
+            subscriptionsStateCopy = loaded.copy(new ArrayList(loaded.getSubscriptions()));
+        } else if (!m.areEqual(subscriptionsStateCopy, SubscriptionsState.Failure.INSTANCE) && !m.areEqual(subscriptionsStateCopy, SubscriptionsState.Loading.INSTANCE) && !m.areEqual(subscriptionsStateCopy, SubscriptionsState.Unfetched.INSTANCE)) {
             throw new NoWhenBranchMatchedException();
         }
-        this.subscriptionsStateSnapshot = storeSubscriptions$SubscriptionsStateCopy;
+        this.subscriptionsStateSnapshot = subscriptionsStateCopy;
     }
 }

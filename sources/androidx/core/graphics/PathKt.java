@@ -1,7 +1,6 @@
 package androidx.core.graphics;
 
 import android.graphics.Path;
-import android.graphics.Path$Op;
 import androidx.annotation.RequiresApi;
 import d0.z.d.m;
 import java.util.Collection;
@@ -14,7 +13,7 @@ public final class PathKt {
         m.checkNotNullParameter(path, "<this>");
         m.checkNotNullParameter(path2, "p");
         Path path3 = new Path();
-        path3.op(path, path2, Path$Op.INTERSECT);
+        path3.op(path, path2, Path.Op.INTERSECT);
         return path3;
     }
 
@@ -38,7 +37,7 @@ public final class PathKt {
         m.checkNotNullParameter(path, "<this>");
         m.checkNotNullParameter(path2, "p");
         Path path3 = new Path(path);
-        path3.op(path2, Path$Op.DIFFERENCE);
+        path3.op(path2, Path.Op.DIFFERENCE);
         return path3;
     }
 
@@ -47,7 +46,7 @@ public final class PathKt {
         m.checkNotNullParameter(path, "<this>");
         m.checkNotNullParameter(path2, "p");
         Path path3 = new Path(path);
-        path3.op(path2, Path$Op.UNION);
+        path3.op(path2, Path.Op.UNION);
         return path3;
     }
 
@@ -56,7 +55,7 @@ public final class PathKt {
         m.checkNotNullParameter(path, "<this>");
         m.checkNotNullParameter(path2, "p");
         Path path3 = new Path(path);
-        path3.op(path2, Path$Op.UNION);
+        path3.op(path2, Path.Op.UNION);
         return path3;
     }
 
@@ -65,7 +64,7 @@ public final class PathKt {
         m.checkNotNullParameter(path, "<this>");
         m.checkNotNullParameter(path2, "p");
         Path path3 = new Path(path);
-        path3.op(path2, Path$Op.XOR);
+        path3.op(path2, Path.Op.XOR);
         return path3;
     }
 }

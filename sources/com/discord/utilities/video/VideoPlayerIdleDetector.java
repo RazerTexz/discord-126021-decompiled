@@ -3,6 +3,7 @@ package com.discord.utilities.video;
 import android.content.Context;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.z.d.m;
+import d0.z.d.o;
 import j0.j.b.a;
 import java.util.concurrent.TimeUnit;
 import kotlin.Unit;
@@ -22,6 +23,45 @@ public final class VideoPlayerIdleDetector {
     private Subscription idleDetectionSubscription;
     private boolean isIdle;
     private final Function1<Boolean, Unit> onIdleStateChanged;
+
+    /* JADX INFO: renamed from: com.discord.utilities.video.VideoPlayerIdleDetector$beginIdleDetectionTimer$1, reason: invalid class name */
+    /* JADX INFO: compiled from: VideoPlayerIdleDetector.kt */
+    public final class AnonymousClass1 extends o implements Function1<Long, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            VideoPlayerIdleDetector.access$setIdle(VideoPlayerIdleDetector.this, true);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.video.VideoPlayerIdleDetector$beginIdleDetectionTimer$2, reason: invalid class name */
+    /* JADX INFO: compiled from: VideoPlayerIdleDetector.kt */
+    public final class AnonymousClass2 extends o implements Function1<Subscription, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            m.checkNotNullParameter(subscription, "it");
+            VideoPlayerIdleDetector.access$setIdleDetectionSubscription$p(VideoPlayerIdleDetector.this, subscription);
+        }
+    }
 
     /* JADX WARN: Multi-variable type inference failed */
     public VideoPlayerIdleDetector(long j, Scheduler scheduler, Scheduler scheduler2, Function1<? super Boolean, Unit> function1) {
@@ -57,7 +97,7 @@ public final class VideoPlayerIdleDetector {
         cancelIdleDetectionTimer();
         Observable<Long> observableJ = Observable.e0(this.idleDetectionMs, TimeUnit.MILLISECONDS, this.backgroundThreadScheduler).J(this.idleDetectionScheduler);
         m.checkNotNullExpressionValue(observableJ, "Observable\n        .time…n(idleDetectionScheduler)");
-        ObservableExtensionsKt.appSubscribe$default(observableJ, VideoPlayerIdleDetector.class, (Context) null, new VideoPlayerIdleDetector$beginIdleDetectionTimer$2(this), (Function1) null, (Function0) null, (Function0) null, new VideoPlayerIdleDetector$beginIdleDetectionTimer$1(this), 58, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(observableJ, VideoPlayerIdleDetector.class, (Context) null, new AnonymousClass2(), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 58, (Object) null);
     }
 
     private final void cancelIdleDetectionTimer() {

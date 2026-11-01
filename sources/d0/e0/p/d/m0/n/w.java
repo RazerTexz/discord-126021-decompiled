@@ -1,12 +1,20 @@
 package d0.e0.p.d.m0.n;
 
 import kotlin.NoWhenBranchMatchedException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: flexibleTypes.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class w extends v implements j {
+
+    /* JADX INFO: compiled from: flexibleTypes.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     static {
-        new w$a(null);
+        new a(null);
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

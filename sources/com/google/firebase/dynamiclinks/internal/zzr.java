@@ -1,7 +1,7 @@
 package com.google.firebase.dynamiclinks.internal;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.c.o.b.n;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
@@ -10,7 +10,7 @@ import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzr extends AbstractSafeParcelable {
     public final String j;
-    public static final Parcelable$Creator<zzr> CREATOR = new n();
+    public static final Parcelable.Creator<zzr> CREATOR = new n();
 
     public zzr(String str) {
         this.j = str;

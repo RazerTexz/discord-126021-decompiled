@@ -4,12 +4,10 @@ import android.net.Uri;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import b.i.a.c.e3.a0;
-import b.i.a.c.e3.n$b;
 import b.i.a.c.e3.z;
 import b.i.a.c.f3.e0;
 import com.google.android.exoplayer2.upstream.DataSourceException;
 import com.google.android.exoplayer2.upstream.cache.Cache;
-import com.google.android.exoplayer2.upstream.cache.Cache$CacheException;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.util.Collections;
@@ -31,7 +29,7 @@ public final class c implements b.i.a.c.e3.l {
     public final g e;
 
     @Nullable
-    public final c$a f;
+    public final a f;
     public final boolean g;
     public final boolean h;
     public final boolean i;
@@ -60,11 +58,18 @@ public final class c implements b.i.a.c.e3.l {
     public long t;
     public long u;
 
-    public c(Cache cache, @Nullable b.i.a.c.e3.l lVar, b.i.a.c.e3.l lVar2, @Nullable b.i.a.c.e3.j jVar, int i, @Nullable c$a c_a) {
+    /* JADX INFO: compiled from: CacheDataSource.java */
+    public interface a {
+        void a(int i);
+
+        void b(long j, long j2);
+    }
+
+    public c(Cache cache, @Nullable b.i.a.c.e3.l lVar, b.i.a.c.e3.l lVar2, @Nullable b.i.a.c.e3.j jVar, int i, @Nullable a aVar) {
         this.a = cache;
         this.f926b = lVar2;
         int i2 = g.a;
-        this.e = a.f925b;
+        this.e = b.i.a.c.e3.b0.a.f925b;
         this.g = (i & 1) != 0;
         this.h = (i & 2) != 0;
         this.i = (i & 4) != 0;
@@ -76,16 +81,16 @@ public final class c implements b.i.a.c.e3.l {
     @Override // b.i.a.c.e3.l
     public long a(b.i.a.c.e3.n nVar) throws IOException {
         int i;
-        c$a c_a;
+        a aVar;
         try {
-            Objects.requireNonNull((a) this.e);
+            Objects.requireNonNull((b.i.a.c.e3.b0.a) this.e);
             String string = nVar.h;
             if (string == null) {
                 string = nVar.a.toString();
             }
-            n$b n_bA = nVar.a();
-            n_bA.h = string;
-            b.i.a.c.e3.n nVarA = n_bA.a();
+            b.i.a.c.e3.n.b bVarA = nVar.a();
+            bVarA.h = string;
+            b.i.a.c.e3.n nVarA = bVarA.a();
             this.k = nVarA;
             Cache cache = this.a;
             Uri uri = nVarA.a;
@@ -110,8 +115,8 @@ public final class c implements b.i.a.c.e3.l {
                 z2 = false;
             }
             this.f927s = z2;
-            if (z2 && (c_a = this.f) != null) {
-                c_a.a(i);
+            if (z2 && (aVar = this.f) != null) {
+                aVar.a(i);
             }
             if (this.f927s) {
                 this.p = -1L;
@@ -151,9 +156,9 @@ public final class c implements b.i.a.c.e3.l {
         this.k = null;
         this.j = null;
         this.o = 0L;
-        c$a c_a = this.f;
-        if (c_a != null && this.t > 0) {
-            c_a.b(this.a.h(), this.t);
+        a aVar = this.f;
+        if (aVar != null && this.t > 0) {
+            aVar.b(this.a.h(), this.t);
             this.t = 0L;
         }
         try {
@@ -202,7 +207,7 @@ public final class c implements b.i.a.c.e3.l {
     }
 
     public final void q(Throwable th) {
-        if (r() || (th instanceof Cache$CacheException)) {
+        if (r() || (th instanceof Cache.CacheException)) {
             this.r = true;
         }
     }
@@ -307,10 +312,10 @@ public final class c implements b.i.a.c.e3.l {
         }
         if (hVarF == null) {
             lVar = this.d;
-            n$b n_bA = nVar.a();
-            n_bA.f = this.o;
-            n_bA.g = this.p;
-            nVarA = n_bA.a();
+            b.i.a.c.e3.n.b bVarA = nVar.a();
+            bVarA.f = this.o;
+            bVarA.g = this.p;
+            nVarA = bVarA.a();
         } else if (hVarF.m) {
             Uri uriFromFile = Uri.fromFile(hVarF.n);
             long j = hVarF.k;
@@ -320,12 +325,12 @@ public final class c implements b.i.a.c.e3.l {
             if (j3 != -1) {
                 jMin = Math.min(jMin, j3);
             }
-            n$b n_bA2 = nVar.a();
-            n_bA2.a = uriFromFile;
-            n_bA2.f943b = j;
-            n_bA2.f = j2;
-            n_bA2.g = jMin;
-            nVarA = n_bA2.a();
+            b.i.a.c.e3.n.b bVarA2 = nVar.a();
+            bVarA2.a = uriFromFile;
+            bVarA2.f943b = j;
+            bVarA2.f = j2;
+            bVarA2.g = jMin;
+            nVarA = bVarA2.a();
             lVar = this.f926b;
         } else {
             long jMin2 = hVarF.l;
@@ -337,10 +342,10 @@ public final class c implements b.i.a.c.e3.l {
                     jMin2 = Math.min(jMin2, j4);
                 }
             }
-            n$b n_bA3 = nVar.a();
-            n_bA3.f = this.o;
-            n_bA3.g = jMin2;
-            nVarA = n_bA3.a();
+            b.i.a.c.e3.n.b bVarA3 = nVar.a();
+            bVarA3.f = this.o;
+            bVarA3.g = jMin2;
+            nVarA = bVarA3.a();
             lVar = this.c;
             if (lVar == null) {
                 lVar = this.d;

@@ -1,7 +1,6 @@
 package com.discord.utilities.images;
 
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$CompressFormat;
 import android.util.Base64;
 import b.d.b.a.a;
 import d0.z.d.m;
@@ -22,7 +21,7 @@ public final class ImageEncoder {
     public final String encodeBitmapAsJpegDataUrl(Bitmap bitmap, int jpegQuality) {
         m.checkNotNullParameter(bitmap, "bitmap");
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap$CompressFormat.JPEG, jpegQuality, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, jpegQuality, byteArrayOutputStream);
         String strEncodeToString = Base64.encodeToString(byteArrayOutputStream.toByteArray(), 2);
         m.checkNotNullExpressionValue(strEncodeToString, "Base64.encodeToString(jp…eArray(), Base64.NO_WRAP)");
         return a.P(new Object[]{"image/jpeg", strEncodeToString}, 2, "data:%s;base64,%s", "java.lang.String.format(format, *args)");

@@ -17,6 +17,57 @@ public final class CompositeException extends RuntimeException {
     private final List<Throwable> exceptions;
     private final String message;
 
+    public final class a extends RuntimeException {
+        private static final long serialVersionUID = 3875212506787802066L;
+
+        @Override // java.lang.Throwable
+        public String getMessage() {
+            return "Chain of Causes for CompositeException In Order Received =>";
+        }
+    }
+
+    public abstract class b {
+        public abstract Object a();
+
+        public abstract void b(Object obj);
+    }
+
+    public final class c extends b {
+        public final PrintStream a;
+
+        public c(PrintStream printStream) {
+            this.a = printStream;
+        }
+
+        @Override // rx.exceptions.CompositeException.b
+        public Object a() {
+            return this.a;
+        }
+
+        @Override // rx.exceptions.CompositeException.b
+        public void b(Object obj) {
+            this.a.println(obj);
+        }
+    }
+
+    public final class d extends b {
+        public final PrintWriter a;
+
+        public d(PrintWriter printWriter) {
+            this.a = printWriter;
+        }
+
+        @Override // rx.exceptions.CompositeException.b
+        public Object a() {
+            return this.a;
+        }
+
+        @Override // rx.exceptions.CompositeException.b
+        public void b(Object obj) {
+            this.a.println(obj);
+        }
+    }
+
     public CompositeException(Collection<? extends Throwable> collection) {
         LinkedHashSet linkedHashSet = new LinkedHashSet();
         ArrayList arrayList = new ArrayList();
@@ -58,7 +109,7 @@ public final class CompositeException extends RuntimeException {
         return this.exceptions;
     }
 
-    public final void c(CompositeException$b compositeException$b) {
+    public final void c(b bVar) {
         StringBuilder sb = new StringBuilder(128);
         sb.append(this);
         sb.append('\n');
@@ -75,18 +126,18 @@ public final class CompositeException extends RuntimeException {
             a(sb, th, "\t");
             i++;
         }
-        synchronized (compositeException$b.a()) {
-            compositeException$b.b(sb.toString());
+        synchronized (bVar.a()) {
+            bVar.b(sb.toString());
         }
     }
 
     @Override // java.lang.Throwable
     public synchronized Throwable getCause() {
         if (this.cause == null) {
-            CompositeException$a compositeException$a = new CompositeException$a();
+            a aVar = new a();
             HashSet hashSet = new HashSet();
             Iterator<Throwable> it = this.exceptions.iterator();
-            CompositeException$a compositeException$a2 = compositeException$a;
+            a aVar2 = aVar;
             while (it.hasNext()) {
                 Throwable next = it.next();
                 if (!hashSet.contains(next)) {
@@ -112,11 +163,11 @@ public final class CompositeException extends RuntimeException {
                         }
                     }
                     try {
-                        compositeException$a2.initCause(next);
+                        aVar2.initCause(next);
                     } catch (Throwable unused) {
                     }
-                    Throwable cause3 = compositeException$a2.getCause();
-                    if (cause3 != null && cause3 != compositeException$a2) {
+                    Throwable cause3 = aVar2.getCause();
+                    if (cause3 != null && cause3 != aVar2) {
                         while (true) {
                             Throwable cause4 = cause3.getCause();
                             if (cause4 == null || cause4 == cause3) {
@@ -125,11 +176,11 @@ public final class CompositeException extends RuntimeException {
                             }
                             cause3 = cause3.getCause();
                         }
-                        compositeException$a2 = cause3;
+                        aVar2 = cause3;
                     }
                 }
             }
-            this.cause = compositeException$a;
+            this.cause = aVar;
         }
         return this.cause;
     }
@@ -146,12 +197,12 @@ public final class CompositeException extends RuntimeException {
 
     @Override // java.lang.Throwable
     public void printStackTrace(PrintStream printStream) {
-        c(new CompositeException$c(printStream));
+        c(new c(printStream));
     }
 
     @Override // java.lang.Throwable
     public void printStackTrace(PrintWriter printWriter) {
-        c(new CompositeException$d(printWriter));
+        c(new d(printWriter));
     }
 
     public CompositeException(Throwable... thArr) {

@@ -1,6 +1,6 @@
 package b.f.h.a.d;
 
-import android.graphics.Bitmap$Config;
+import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import b.f.j.c.m;
@@ -65,7 +65,7 @@ public class e implements b.f.j.i.a {
             eVar = aVar.l;
         }
         Objects.requireNonNull(eVar);
-        Bitmap$Config bitmap$ConfigD = cVar2 != null ? cVar2.d() : null;
+        Bitmap.Config configD = cVar2 != null ? cVar2.d() : null;
         b.f.j.a.a.c cVar4 = eVar.a;
         b.f.j.a.a.a aVarA = this.a.a(eVar, new Rect(0, 0, cVar4.getWidth(), cVar4.getHeight()));
         int iIntValue2 = this.g.get().intValue();
@@ -81,11 +81,11 @@ public class e implements b.f.j.i.a {
             if (iIntValue > 0) {
                 b.f.h.a.b.e.d dVar3 = new b.f.h.a.b.e.d(iIntValue);
                 PlatformBitmapFactory platformBitmapFactory = this.e;
-                if (bitmap$ConfigD == null) {
-                    bitmap$ConfigD = Bitmap$Config.ARGB_8888;
+                if (configD == null) {
+                    configD = Bitmap.Config.ARGB_8888;
                 }
                 dVar2 = dVar3;
-                cVar3 = new b.f.h.a.b.e.c(platformBitmapFactory, bVar2, bitmap$ConfigD, this.c);
+                cVar3 = new b.f.h.a.b.e.c(platformBitmapFactory, bVar2, configD, this.c);
             } else {
                 dVar2 = null;
                 cVar3 = null;
@@ -101,11 +101,11 @@ public class e implements b.f.j.i.a {
         if (iIntValue > 0) {
             b.f.h.a.b.e.d dVar4 = new b.f.h.a.b.e.d(iIntValue);
             PlatformBitmapFactory platformBitmapFactory2 = this.e;
-            if (bitmap$ConfigD == null) {
-                bitmap$ConfigD = Bitmap$Config.ARGB_8888;
+            if (configD == null) {
+                configD = Bitmap.Config.ARGB_8888;
             }
             dVar2 = dVar4;
-            cVar3 = new b.f.h.a.b.e.c(platformBitmapFactory2, bVar2, bitmap$ConfigD, this.c);
+            cVar3 = new b.f.h.a.b.e.c(platformBitmapFactory2, bVar2, configD, this.c);
         } else {
             dVar2 = null;
             cVar3 = null;

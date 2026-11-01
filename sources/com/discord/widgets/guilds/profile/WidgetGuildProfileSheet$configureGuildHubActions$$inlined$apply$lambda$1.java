@@ -9,15 +9,15 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: WidgetGuildProfileSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildProfileSheet$configureGuildHubActions$$inlined$apply$lambda$1 extends o implements Function1<View, Unit> {
-    public final /* synthetic */ WidgetGuildProfileSheetViewModel$Actions $actions$inlined;
+    public final /* synthetic */ WidgetGuildProfileSheetViewModel.Actions $actions$inlined;
     public final /* synthetic */ long $guildId$inlined;
     public final /* synthetic */ WidgetGuildProfileSheet this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetGuildProfileSheet$configureGuildHubActions$$inlined$apply$lambda$1(WidgetGuildProfileSheet widgetGuildProfileSheet, WidgetGuildProfileSheetViewModel$Actions widgetGuildProfileSheetViewModel$Actions, long j) {
+    public WidgetGuildProfileSheet$configureGuildHubActions$$inlined$apply$lambda$1(WidgetGuildProfileSheet widgetGuildProfileSheet, WidgetGuildProfileSheetViewModel.Actions actions, long j) {
         super(1);
         this.this$0 = widgetGuildProfileSheet;
-        this.$actions$inlined = widgetGuildProfileSheetViewModel$Actions;
+        this.$actions$inlined = actions;
         this.$guildId$inlined = j;
     }
 

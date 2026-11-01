@@ -73,9 +73,9 @@ public abstract class v0 implements f2, g2 {
             j1 j1Var = k1Var.f1027b;
             Objects.requireNonNull(j1Var);
             if (j1Var.A != RecyclerView.FOREVER_NS) {
-                j1$b j1_bA = j1Var.a();
-                j1_bA.o = j1Var.A + this.q;
-                k1Var.f1027b = j1_bA.a();
+                j1.b bVarA = j1Var.a();
+                bVarA.o = j1Var.A + this.q;
+                k1Var.f1027b = bVarA.a();
             }
         }
         return iA;
@@ -155,7 +155,7 @@ public abstract class v0 implements f2, g2 {
         return 0;
     }
 
-    @Override // b.i.a.c.b2$b
+    @Override // b.i.a.c.b2.b
     public void r(int i, @Nullable Object obj) throws ExoPlaybackException {
     }
 

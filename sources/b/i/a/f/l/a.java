@@ -1,13 +1,12 @@
 package b.i.a.f.l;
 
 import androidx.annotation.Nullable;
-import b.i.a.f.e.h.a$d;
 import java.util.Arrays;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class a implements a$d {
+public final class a implements b.i.a.f.e.h.a.d {
     public static final a j = new a();
 
     public final boolean equals(@Nullable Object obj) {

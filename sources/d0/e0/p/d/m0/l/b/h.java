@@ -9,30 +9,89 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ClassDeserializer.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class h {
-    public static final h$b a = new h$b(null);
+    public static final b a = new b(null);
     public final j c;
-    public final Function1<h$a, d0.e0.p.d.m0.c.e> d;
+    public final Function1<a, d0.e0.p.d.m0.c.e> d;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final Set<d0.e0.p.d.m0.g.a> f3500b = m0.setOf(d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k$a.d.toSafe()));
+    public static final Set<d0.e0.p.d.m0.g.a> f3500b = m0.setOf(d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k.a.d.toSafe()));
+
+    /* JADX INFO: compiled from: ClassDeserializer.kt */
+    public final class a {
+        public final d0.e0.p.d.m0.g.a a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final f f3501b;
+
+        public a(d0.e0.p.d.m0.g.a aVar, f fVar) {
+            d0.z.d.m.checkNotNullParameter(aVar, "classId");
+            this.a = aVar;
+            this.f3501b = fVar;
+        }
+
+        public boolean equals(Object obj) {
+            return (obj instanceof a) && d0.z.d.m.areEqual(this.a, ((a) obj).a);
+        }
+
+        public final f getClassData() {
+            return this.f3501b;
+        }
+
+        public final d0.e0.p.d.m0.g.a getClassId() {
+            return this.a;
+        }
+
+        public int hashCode() {
+            return this.a.hashCode();
+        }
+    }
+
+    /* JADX INFO: compiled from: ClassDeserializer.kt */
+    public final class b {
+        public b(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final Set<d0.e0.p.d.m0.g.a> getBLACK_LIST() {
+            return h.access$getBLACK_LIST$cp();
+        }
+    }
+
+    /* JADX INFO: compiled from: ClassDeserializer.kt */
+    public final class c extends d0.z.d.o implements Function1<a, d0.e0.p.d.m0.c.e> {
+        public c() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.e invoke(a aVar) {
+            return invoke2(aVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final d0.e0.p.d.m0.c.e invoke2(a aVar) {
+            d0.z.d.m.checkNotNullParameter(aVar, "key");
+            return h.access$createClass(h.this, aVar);
+        }
+    }
 
     public h(j jVar) {
         d0.z.d.m.checkNotNullParameter(jVar, "components");
         this.c = jVar;
-        this.d = jVar.getStorageManager().createMemoizedFunctionWithNullableValues(new h$c(this));
+        this.d = jVar.getStorageManager().createMemoizedFunctionWithNullableValues(new c());
     }
 
     /* JADX WARN: Code duplicated, block: B:37:0x00bf  */
-    public static final d0.e0.p.d.m0.c.e access$createClass(h hVar, h$a h_a) {
+    public static final d0.e0.p.d.m0.c.e access$createClass(h hVar, a aVar) {
         Object next;
         l lVarCreateContext;
         boolean z2;
         Objects.requireNonNull(hVar);
-        d0.e0.p.d.m0.g.a classId = h_a.getClassId();
+        d0.e0.p.d.m0.g.a classId = aVar.getClassId();
         Iterator<d0.e0.p.d.m0.c.h1.b> it = hVar.c.getFictitiousClassDescriptorFactories().iterator();
         while (it.hasNext()) {
             d0.e0.p.d.m0.c.e eVarCreateClass = it.next().createClass(classId);
@@ -43,7 +102,7 @@ public final class h {
         if (a.getBLACK_LIST().contains(classId)) {
             return null;
         }
-        f classData = h_a.getClassData();
+        f classData = aVar.getClassData();
         if (classData == null && (classData = hVar.c.getClassDataFinder().findClassData(classId)) == null) {
             return null;
         }
@@ -96,10 +155,10 @@ public final class h {
             d0.e0.p.d.m0.f.t typeTable = cVarComponent2.getTypeTable();
             d0.z.d.m.checkNotNullExpressionValue(typeTable, "classProto.typeTable");
             d0.e0.p.d.m0.f.z.g gVar = new d0.e0.p.d.m0.f.z.g(typeTable);
-            d0.e0.p.d.m0.f.z.i$a i_a = d0.e0.p.d.m0.f.z.i.a;
+            d0.e0.p.d.m0.f.z.i.a aVar2 = d0.e0.p.d.m0.f.z.i.a;
             d0.e0.p.d.m0.f.w versionRequirementTable = cVarComponent2.getVersionRequirementTable();
             d0.z.d.m.checkNotNullExpressionValue(versionRequirementTable, "classProto.versionRequirementTable");
-            lVarCreateContext = jVar.createContext(e0Var2, cVarComponent1, gVar, i_a.create(versionRequirementTable), aVarComponent3, null);
+            lVarCreateContext = jVar.createContext(e0Var2, cVarComponent1, gVar, aVar2.create(versionRequirementTable), aVarComponent3, null);
         }
         return new d0.e0.p.d.m0.l.b.e0.d(lVarCreateContext, cVarComponent2, cVarComponent1, aVarComponent3, u0VarComponent4);
     }
@@ -117,6 +176,6 @@ public final class h {
 
     public final d0.e0.p.d.m0.c.e deserializeClass(d0.e0.p.d.m0.g.a aVar, f fVar) {
         d0.z.d.m.checkNotNullParameter(aVar, "classId");
-        return this.d.invoke(new h$a(aVar, fVar));
+        return this.d.invoke(new a(aVar, fVar));
     }
 }

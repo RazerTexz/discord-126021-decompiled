@@ -4,7 +4,7 @@ import a0.a.a.b;
 import b.d.b.a.a;
 import com.discord.api.message.attachment.MessageAttachment;
 import com.discord.models.message.Message;
-import com.discord.stores.StoreMessageState$State;
+import com.discord.stores.StoreMessageState;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: AttachmentEntry.kt */
@@ -19,16 +19,16 @@ public final /* data */ class AttachmentEntry extends ChatListEntry {
     private final boolean isThreadStarterMessage;
     private final String key;
     private final Message message;
-    private final StoreMessageState$State messageState;
+    private final StoreMessageState.State messageState;
     private final int type;
 
-    public AttachmentEntry(int i, long j, Message message, StoreMessageState$State storeMessageState$State, MessageAttachment messageAttachment, boolean z2, boolean z3, boolean z4, boolean z5) {
+    public AttachmentEntry(int i, long j, Message message, StoreMessageState.State state, MessageAttachment messageAttachment, boolean z2, boolean z3, boolean z4, boolean z5) {
         m.checkNotNullParameter(message, "message");
         m.checkNotNullParameter(messageAttachment, "attachment");
         this.embedIndex = i;
         this.guildId = j;
         this.message = message;
-        this.messageState = storeMessageState$State;
+        this.messageState = state;
         this.attachment = messageAttachment;
         this.isBlockedExpanded = z2;
         this.allowAnimatedEmojis = z3;
@@ -38,11 +38,11 @@ public final /* data */ class AttachmentEntry extends ChatListEntry {
         this.key = "" + getType() + message.getId();
     }
 
-    public static /* synthetic */ AttachmentEntry copy$default(AttachmentEntry attachmentEntry, int i, long j, Message message, StoreMessageState$State storeMessageState$State, MessageAttachment messageAttachment, boolean z2, boolean z3, boolean z4, boolean z5, int i2, Object obj) {
-        return attachmentEntry.copy((i2 & 1) != 0 ? attachmentEntry.embedIndex : i, (i2 & 2) != 0 ? attachmentEntry.guildId : j, (i2 & 4) != 0 ? attachmentEntry.message : message, (i2 & 8) != 0 ? attachmentEntry.messageState : storeMessageState$State, (i2 & 16) != 0 ? attachmentEntry.attachment : messageAttachment, (i2 & 32) != 0 ? attachmentEntry.isBlockedExpanded : z2, (i2 & 64) != 0 ? attachmentEntry.allowAnimatedEmojis : z3, (i2 & 128) != 0 ? attachmentEntry.autoPlayGifs : z4, (i2 & 256) != 0 ? attachmentEntry.isThreadStarterMessage : z5);
+    public static /* synthetic */ AttachmentEntry copy$default(AttachmentEntry attachmentEntry, int i, long j, Message message, StoreMessageState.State state, MessageAttachment messageAttachment, boolean z2, boolean z3, boolean z4, boolean z5, int i2, Object obj) {
+        return attachmentEntry.copy((i2 & 1) != 0 ? attachmentEntry.embedIndex : i, (i2 & 2) != 0 ? attachmentEntry.guildId : j, (i2 & 4) != 0 ? attachmentEntry.message : message, (i2 & 8) != 0 ? attachmentEntry.messageState : state, (i2 & 16) != 0 ? attachmentEntry.attachment : messageAttachment, (i2 & 32) != 0 ? attachmentEntry.isBlockedExpanded : z2, (i2 & 64) != 0 ? attachmentEntry.allowAnimatedEmojis : z3, (i2 & 128) != 0 ? attachmentEntry.autoPlayGifs : z4, (i2 & 256) != 0 ? attachmentEntry.isThreadStarterMessage : z5);
     }
 
-    public final AttachmentEntry copy(int embedIndex, long guildId, Message message, StoreMessageState$State messageState, MessageAttachment attachment, boolean isBlockedExpanded, boolean allowAnimatedEmojis, boolean autoPlayGifs, boolean isThreadStarterMessage) {
+    public final AttachmentEntry copy(int embedIndex, long guildId, Message message, StoreMessageState.State messageState, MessageAttachment attachment, boolean isBlockedExpanded, boolean allowAnimatedEmojis, boolean autoPlayGifs, boolean isThreadStarterMessage) {
         m.checkNotNullParameter(message, "message");
         m.checkNotNullParameter(attachment, "attachment");
         return new AttachmentEntry(embedIndex, guildId, message, messageState, attachment, isBlockedExpanded, allowAnimatedEmojis, autoPlayGifs, isThreadStarterMessage);
@@ -129,11 +129,11 @@ public final /* data */ class AttachmentEntry extends ChatListEntry {
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
-    public final StoreMessageState$State getMessageState() {
+    public final StoreMessageState.State getMessageState() {
         return this.messageState;
     }
 
-    public final StoreMessageState$State getMessageState() {
+    public final StoreMessageState.State getMessageState() {
         return this.messageState;
     }
 
@@ -163,8 +163,8 @@ public final /* data */ class AttachmentEntry extends ChatListEntry {
         int iA = (b.a(this.guildId) + (this.embedIndex * 31)) * 31;
         Message message = this.message;
         int iHashCode = (iA + (message != null ? message.hashCode() : 0)) * 31;
-        StoreMessageState$State storeMessageState$State = this.messageState;
-        int iHashCode2 = (iHashCode + (storeMessageState$State != null ? storeMessageState$State.hashCode() : 0)) * 31;
+        StoreMessageState.State state = this.messageState;
+        int iHashCode2 = (iHashCode + (state != null ? state.hashCode() : 0)) * 31;
         MessageAttachment messageAttachment = this.attachment;
         int iHashCode3 = (iHashCode2 + (messageAttachment != null ? messageAttachment.hashCode() : 0)) * 31;
         boolean z2 = this.isBlockedExpanded;

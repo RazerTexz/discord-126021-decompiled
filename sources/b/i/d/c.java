@@ -1,10 +1,13 @@
 package b.i.d;
 
+import java.lang.reflect.Field;
+import java.util.Locale;
+
 /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
 /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
 /* JADX INFO: compiled from: FieldNamingPolicy.java */
 /* JADX INFO: loaded from: classes3.dex */
-public abstract class c implements d {
+public abstract class c implements b.i.d.d {
     public static final c j;
     public static final c k;
     public static final c l;
@@ -13,23 +16,96 @@ public abstract class c implements d {
     public static final c o;
     public static final /* synthetic */ c[] p;
 
-    static {
-        c$a c_a = new c$a("IDENTITY", 0);
-        j = c_a;
-        c$b c_b = new c$b("UPPER_CAMEL_CASE", 1);
-        k = c_b;
-        c$c c_c = new c$c("UPPER_CAMEL_CASE_WITH_SPACES", 2);
-        l = c_c;
-        c$d c_d = new c$d("LOWER_CASE_WITH_UNDERSCORES", 3);
-        m = c_d;
-        c$e c_e = new c$e("LOWER_CASE_WITH_DASHES", 4);
-        n = c_e;
-        c$f c_f = new c$f("LOWER_CASE_WITH_DOTS", 5);
-        o = c_f;
-        p = new c[]{c_a, c_b, c_c, c_d, c_e, c_f};
+    /* JADX INFO: renamed from: b.i.d.c$c, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: FieldNamingPolicy.java */
+    public final enum C0155c extends c {
+        public C0155c(String str, int i) {
+            super(str, i, null);
+        }
+
+        @Override // b.i.d.d
+        public String f(Field field) {
+            return c.h(c.g(field.getName(), " "));
+        }
     }
 
-    public c(String str, int i, c$a c_a) {
+    /* JADX INFO: compiled from: FieldNamingPolicy.java */
+    public final enum a extends c {
+        public a(String str, int i) {
+            super(str, i, null);
+        }
+
+        @Override // b.i.d.d
+        public String f(Field field) {
+            return field.getName();
+        }
+    }
+
+    /* JADX INFO: compiled from: FieldNamingPolicy.java */
+    public final enum b extends c {
+        public b(String str, int i) {
+            super(str, i, null);
+        }
+
+        @Override // b.i.d.d
+        public String f(Field field) {
+            return c.h(field.getName());
+        }
+    }
+
+    /* JADX INFO: compiled from: FieldNamingPolicy.java */
+    public final enum d extends c {
+        public d(String str, int i) {
+            super(str, i, null);
+        }
+
+        @Override // b.i.d.d
+        public String f(Field field) {
+            return c.g(field.getName(), "_").toLowerCase(Locale.ENGLISH);
+        }
+    }
+
+    /* JADX INFO: compiled from: FieldNamingPolicy.java */
+    public final enum e extends c {
+        public e(String str, int i) {
+            super(str, i, null);
+        }
+
+        @Override // b.i.d.d
+        public String f(Field field) {
+            return c.g(field.getName(), "-").toLowerCase(Locale.ENGLISH);
+        }
+    }
+
+    /* JADX INFO: compiled from: FieldNamingPolicy.java */
+    public final enum f extends c {
+        public f(String str, int i) {
+            super(str, i, null);
+        }
+
+        @Override // b.i.d.d
+        public String f(Field field) {
+            return c.g(field.getName(), ".").toLowerCase(Locale.ENGLISH);
+        }
+    }
+
+    static {
+        a aVar = new a("IDENTITY", 0);
+        j = aVar;
+        b bVar = new b("UPPER_CAMEL_CASE", 1);
+        k = bVar;
+        C0155c c0155c = new C0155c("UPPER_CAMEL_CASE_WITH_SPACES", 2);
+        l = c0155c;
+        d dVar = new d("LOWER_CASE_WITH_UNDERSCORES", 3);
+        m = dVar;
+        e eVar = new e("LOWER_CASE_WITH_DASHES", 4);
+        n = eVar;
+        f fVar = new f("LOWER_CASE_WITH_DOTS", 5);
+        o = fVar;
+        p = new c[]{aVar, bVar, c0155c, dVar, eVar, fVar};
+    }
+
+    public c(String str, int i, a aVar) {
         super(str, i);
     }
 

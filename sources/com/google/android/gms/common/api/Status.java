@@ -2,7 +2,7 @@ package com.google.android.gms.common.api;
 
 import android.app.PendingIntent;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import androidx.annotation.RecentlyNonNull;
 import b.c.a.a0.d;
@@ -19,7 +19,7 @@ import java.util.Arrays;
 public final class Status extends AbstractSafeParcelable implements h, ReflectedParcelable {
 
     @RecentlyNonNull
-    public static final Parcelable$Creator<Status> CREATOR;
+    public static final Parcelable.Creator<Status> CREATOR;
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     @Nullable

@@ -18,11 +18,11 @@ public final class g implements f {
     }
 
     @Override // b.m.a.g.d.f
-    public void a(e$b e_b) {
-        m.checkParameterIsNotNull(e_b, "response");
-        this.a.f(e_b.a);
-        this.a.a(e_b.f1907b);
-        this.a.b(e_b.c);
+    public void a(e.b bVar) {
+        m.checkParameterIsNotNull(bVar, "response");
+        this.a.f(bVar.a);
+        this.a.a(bVar.f1907b);
+        this.a.b(bVar.c);
     }
 
     @Override // b.m.a.g.d.f
@@ -31,13 +31,13 @@ public final class g implements f {
     }
 
     @Override // b.m.a.g.d.f
-    public e$b get() {
+    public e.b get() {
         long jE = this.a.e();
         long jC = this.a.c();
         long jD = this.a.d();
         if (jC == 0) {
             return null;
         }
-        return new e$b(jE, jC, jD, this.f1908b);
+        return new e.b(jE, jC, jD, this.f1908b);
     }
 }

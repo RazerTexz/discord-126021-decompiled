@@ -3,7 +3,6 @@ package com.facebook.drawee.span;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.TextView;
-import android.widget.TextView$BufferType;
 
 /* JADX INFO: loaded from: classes.dex */
 public class SimpleDraweeSpanTextView extends TextView {
@@ -66,7 +65,7 @@ public class SimpleDraweeSpanTextView extends TextView {
     }
 
     public void setDraweeSpanStringBuilder(DraweeSpanStringBuilder draweeSpanStringBuilder) {
-        setText(draweeSpanStringBuilder, TextView$BufferType.SPANNABLE);
+        setText(draweeSpanStringBuilder, TextView.BufferType.SPANNABLE);
         this.j = draweeSpanStringBuilder;
         if (draweeSpanStringBuilder == null || !this.k) {
             return;

@@ -1,6 +1,5 @@
 package b.i.a.c.b3.v;
 
-import b.i.a.c.b3.b$b;
 import b.i.a.c.f3.e0;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -65,10 +64,10 @@ public final class k implements b.i.a.c.b3.g {
         }
         Collections.sort(arrayList2, b.j);
         for (int i3 = 0; i3 < arrayList2.size(); i3++) {
-            b$b b_bA = ((g) arrayList2.get(i3)).a.a();
-            b_bA.e = (-1) - i3;
-            b_bA.f = 1;
-            arrayList.add(b_bA.a());
+            b.i.a.c.b3.b.C0093b c0093bA = ((g) arrayList2.get(i3)).a.a();
+            c0093bA.e = (-1) - i3;
+            c0093bA.f = 1;
+            arrayList.add(c0093bA.a());
         }
         return arrayList;
     }

@@ -3,31 +3,28 @@ package com.google.android.material.button;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.text.TextUtils$TruncateAt;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout$LayoutParams;
 import androidx.annotation.BoolRes;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
+import androidx.core.view.AccessibilityDelegateCompat;
 import androidx.core.view.MarginLayoutParamsCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
-import androidx.core.view.accessibility.AccessibilityNodeInfoCompat$CollectionInfoCompat;
-import com.google.android.material.R$attr;
-import com.google.android.material.R$style;
-import com.google.android.material.R$styleable;
+import com.google.android.material.R;
 import com.google.android.material.internal.ThemeEnforcement;
 import com.google.android.material.internal.ViewUtils;
+import com.google.android.material.shape.AbsoluteCornerSize;
 import com.google.android.material.shape.CornerSize;
 import com.google.android.material.shape.ShapeAppearanceModel;
-import com.google.android.material.shape.ShapeAppearanceModel$Builder;
 import com.google.android.material.theme.overlay.MaterialThemeOverlay;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -41,17 +38,90 @@ public class MaterialButtonToggleGroup extends LinearLayout {
 
     @IdRes
     private int checkedId;
-    private final MaterialButtonToggleGroup$c checkedStateTracker;
+    private final c checkedStateTracker;
     private Integer[] childOrder;
     private final Comparator<MaterialButton> childOrderComparator;
-    private final LinkedHashSet<MaterialButtonToggleGroup$OnButtonCheckedListener> onButtonCheckedListeners;
-    private final List<MaterialButtonToggleGroup$d> originalCornerData;
-    private final MaterialButtonToggleGroup$e pressedStateTracker;
+    private final LinkedHashSet<OnButtonCheckedListener> onButtonCheckedListeners;
+    private final List<d> originalCornerData;
+    private final e pressedStateTracker;
     private boolean selectionRequired;
     private boolean singleSelection;
     private boolean skipCheckedStateTracker;
     private static final String LOG_TAG = MaterialButtonToggleGroup.class.getSimpleName();
-    private static final int DEF_STYLE_RES = R$style.Widget_MaterialComponents_MaterialButtonToggleGroup;
+    private static final int DEF_STYLE_RES = R.style.Widget_MaterialComponents_MaterialButtonToggleGroup;
+
+    public interface OnButtonCheckedListener {
+        void onButtonChecked(MaterialButtonToggleGroup materialButtonToggleGroup, @IdRes int i, boolean z2);
+    }
+
+    public class a implements Comparator<MaterialButton> {
+        public a() {
+        }
+
+        @Override // java.util.Comparator
+        public int compare(MaterialButton materialButton, MaterialButton materialButton2) {
+            MaterialButton materialButton3 = materialButton;
+            MaterialButton materialButton4 = materialButton2;
+            int iCompareTo = Boolean.valueOf(materialButton3.isChecked()).compareTo(Boolean.valueOf(materialButton4.isChecked()));
+            if (iCompareTo != 0) {
+                return iCompareTo;
+            }
+            int iCompareTo2 = Boolean.valueOf(materialButton3.isPressed()).compareTo(Boolean.valueOf(materialButton4.isPressed()));
+            return iCompareTo2 != 0 ? iCompareTo2 : Integer.valueOf(MaterialButtonToggleGroup.this.indexOfChild(materialButton3)).compareTo(Integer.valueOf(MaterialButtonToggleGroup.this.indexOfChild(materialButton4)));
+        }
+    }
+
+    public class b extends AccessibilityDelegateCompat {
+        public b() {
+        }
+
+        @Override // androidx.core.view.AccessibilityDelegateCompat
+        public void onInitializeAccessibilityNodeInfo(View view, @NonNull AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
+            super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompat);
+            accessibilityNodeInfoCompat.setCollectionItemInfo(AccessibilityNodeInfoCompat.CollectionItemInfoCompat.obtain(0, 1, MaterialButtonToggleGroup.access$200(MaterialButtonToggleGroup.this, view), 1, false, ((MaterialButton) view).isChecked()));
+        }
+    }
+
+    public class c implements MaterialButton.OnCheckedChangeListener {
+        public c(a aVar) {
+        }
+
+        @Override // com.google.android.material.button.MaterialButton.OnCheckedChangeListener
+        public void onCheckedChanged(@NonNull MaterialButton materialButton, boolean z2) {
+            if (MaterialButtonToggleGroup.access$300(MaterialButtonToggleGroup.this)) {
+                return;
+            }
+            if (MaterialButtonToggleGroup.access$400(MaterialButtonToggleGroup.this)) {
+                MaterialButtonToggleGroup.access$502(MaterialButtonToggleGroup.this, z2 ? materialButton.getId() : -1);
+            }
+            if (MaterialButtonToggleGroup.access$600(MaterialButtonToggleGroup.this, materialButton.getId(), z2)) {
+                MaterialButtonToggleGroup.access$700(MaterialButtonToggleGroup.this, materialButton.getId(), materialButton.isChecked());
+            }
+            MaterialButtonToggleGroup.this.invalidate();
+        }
+    }
+
+    public class d {
+        public CornerSize c;
+        public CornerSize d;
+        public CornerSize e;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public CornerSize f3033b;
+        public static final CornerSize a = new AbsoluteCornerSize(0.0f);
+
+        public d(CornerSize cornerSize, CornerSize cornerSize2, CornerSize cornerSize3, CornerSize cornerSize4) {
+            this.f3033b = cornerSize;
+            this.c = cornerSize3;
+            this.d = cornerSize4;
+            this.e = cornerSize2;
+        }
+    }
+
+    public class e implements MaterialButton.a {
+        public e(a aVar) {
+        }
+    }
 
     public MaterialButtonToggleGroup(@NonNull Context context) {
         this(context, null);
@@ -82,17 +152,17 @@ public class MaterialButtonToggleGroup extends LinearLayout {
         materialButtonToggleGroup.dispatchOnButtonChecked(i, z2);
     }
 
-    public void addOnButtonCheckedListener(@NonNull MaterialButtonToggleGroup$OnButtonCheckedListener materialButtonToggleGroup$OnButtonCheckedListener) {
-        this.onButtonCheckedListeners.add(materialButtonToggleGroup$OnButtonCheckedListener);
+    public void addOnButtonCheckedListener(@NonNull OnButtonCheckedListener onButtonCheckedListener) {
+        this.onButtonCheckedListeners.add(onButtonCheckedListener);
     }
 
     @Override // android.view.ViewGroup
-    public void addView(View view, int i, ViewGroup$LayoutParams viewGroup$LayoutParams) {
+    public void addView(View view, int i, ViewGroup.LayoutParams layoutParams) {
         if (!(view instanceof MaterialButton)) {
             Log.e(LOG_TAG, "Child views must be of type MaterialButton.");
             return;
         }
-        super.addView(view, i, viewGroup$LayoutParams);
+        super.addView(view, i, layoutParams);
         MaterialButton materialButton = (MaterialButton) view;
         setGeneratedIdIfNeeded(materialButton);
         setupButtonChild(materialButton);
@@ -101,8 +171,8 @@ public class MaterialButtonToggleGroup extends LinearLayout {
             setCheckedId(materialButton.getId());
         }
         ShapeAppearanceModel shapeAppearanceModel = materialButton.getShapeAppearanceModel();
-        this.originalCornerData.add(new MaterialButtonToggleGroup$d(shapeAppearanceModel.getTopLeftCornerSize(), shapeAppearanceModel.getBottomLeftCornerSize(), shapeAppearanceModel.getTopRightCornerSize(), shapeAppearanceModel.getBottomRightCornerSize()));
-        ViewCompat.setAccessibilityDelegate(materialButton, new MaterialButtonToggleGroup$b(this));
+        this.originalCornerData.add(new d(shapeAppearanceModel.getTopLeftCornerSize(), shapeAppearanceModel.getBottomLeftCornerSize(), shapeAppearanceModel.getTopRightCornerSize(), shapeAppearanceModel.getBottomRightCornerSize()));
+        ViewCompat.setAccessibilityDelegate(materialButton, new b());
     }
 
     private void adjustChildMarginsAndUpdateLayout() {
@@ -113,25 +183,25 @@ public class MaterialButtonToggleGroup extends LinearLayout {
         for (int i = firstVisibleChildIndex + 1; i < getChildCount(); i++) {
             MaterialButton childButton = getChildButton(i);
             int iMin = Math.min(childButton.getStrokeWidth(), getChildButton(i - 1).getStrokeWidth());
-            LinearLayout$LayoutParams linearLayout$LayoutParamsBuildLayoutParams = buildLayoutParams(childButton);
+            LinearLayout.LayoutParams layoutParamsBuildLayoutParams = buildLayoutParams(childButton);
             if (getOrientation() == 0) {
-                MarginLayoutParamsCompat.setMarginEnd(linearLayout$LayoutParamsBuildLayoutParams, 0);
-                MarginLayoutParamsCompat.setMarginStart(linearLayout$LayoutParamsBuildLayoutParams, -iMin);
-                linearLayout$LayoutParamsBuildLayoutParams.topMargin = 0;
+                MarginLayoutParamsCompat.setMarginEnd(layoutParamsBuildLayoutParams, 0);
+                MarginLayoutParamsCompat.setMarginStart(layoutParamsBuildLayoutParams, -iMin);
+                layoutParamsBuildLayoutParams.topMargin = 0;
             } else {
-                linearLayout$LayoutParamsBuildLayoutParams.bottomMargin = 0;
-                linearLayout$LayoutParamsBuildLayoutParams.topMargin = -iMin;
-                MarginLayoutParamsCompat.setMarginStart(linearLayout$LayoutParamsBuildLayoutParams, 0);
+                layoutParamsBuildLayoutParams.bottomMargin = 0;
+                layoutParamsBuildLayoutParams.topMargin = -iMin;
+                MarginLayoutParamsCompat.setMarginStart(layoutParamsBuildLayoutParams, 0);
             }
-            childButton.setLayoutParams(linearLayout$LayoutParamsBuildLayoutParams);
+            childButton.setLayoutParams(layoutParamsBuildLayoutParams);
         }
         resetChildMargins(firstVisibleChildIndex);
     }
 
     @NonNull
-    private LinearLayout$LayoutParams buildLayoutParams(@NonNull View view) {
-        ViewGroup$LayoutParams layoutParams = view.getLayoutParams();
-        return layoutParams instanceof LinearLayout$LayoutParams ? (LinearLayout$LayoutParams) layoutParams : new LinearLayout$LayoutParams(layoutParams.width, layoutParams.height);
+    private LinearLayout.LayoutParams buildLayoutParams(@NonNull View view) {
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        return layoutParams instanceof LinearLayout.LayoutParams ? (LinearLayout.LayoutParams) layoutParams : new LinearLayout.LayoutParams(layoutParams.width, layoutParams.height);
     }
 
     public void check(@IdRes int i) {
@@ -169,7 +239,7 @@ public class MaterialButtonToggleGroup extends LinearLayout {
     }
 
     private void dispatchOnButtonChecked(@IdRes int i, boolean z2) {
-        Iterator<MaterialButtonToggleGroup$OnButtonCheckedListener> it = this.onButtonCheckedListeners.iterator();
+        Iterator<OnButtonCheckedListener> it = this.onButtonCheckedListeners.iterator();
         while (it.hasNext()) {
             it.next().onButtonChecked(this, i, z2);
         }
@@ -251,44 +321,44 @@ public class MaterialButtonToggleGroup extends LinearLayout {
     }
 
     @Nullable
-    private MaterialButtonToggleGroup$d getNewCornerData(int i, int i2, int i3) {
-        MaterialButtonToggleGroup$d materialButtonToggleGroup$d = this.originalCornerData.get(i);
+    private d getNewCornerData(int i, int i2, int i3) {
+        d dVar = this.originalCornerData.get(i);
         if (i2 == i3) {
-            return materialButtonToggleGroup$d;
+            return dVar;
         }
         boolean z2 = getOrientation() == 0;
         if (i == i2) {
             if (!z2) {
-                CornerSize cornerSize = materialButtonToggleGroup$d.f3033b;
-                CornerSize cornerSize2 = MaterialButtonToggleGroup$d.a;
-                return new MaterialButtonToggleGroup$d(cornerSize, cornerSize2, materialButtonToggleGroup$d.c, cornerSize2);
+                CornerSize cornerSize = dVar.f3033b;
+                CornerSize cornerSize2 = d.a;
+                return new d(cornerSize, cornerSize2, dVar.c, cornerSize2);
             }
-            CornerSize cornerSize3 = MaterialButtonToggleGroup$d.a;
+            CornerSize cornerSize3 = d.a;
             if (ViewUtils.isLayoutRtl(this)) {
-                CornerSize cornerSize4 = MaterialButtonToggleGroup$d.a;
-                return new MaterialButtonToggleGroup$d(cornerSize4, cornerSize4, materialButtonToggleGroup$d.c, materialButtonToggleGroup$d.d);
+                CornerSize cornerSize4 = d.a;
+                return new d(cornerSize4, cornerSize4, dVar.c, dVar.d);
             }
-            CornerSize cornerSize5 = materialButtonToggleGroup$d.f3033b;
-            CornerSize cornerSize6 = materialButtonToggleGroup$d.e;
-            CornerSize cornerSize7 = MaterialButtonToggleGroup$d.a;
-            return new MaterialButtonToggleGroup$d(cornerSize5, cornerSize6, cornerSize7, cornerSize7);
+            CornerSize cornerSize5 = dVar.f3033b;
+            CornerSize cornerSize6 = dVar.e;
+            CornerSize cornerSize7 = d.a;
+            return new d(cornerSize5, cornerSize6, cornerSize7, cornerSize7);
         }
         if (i != i3) {
             return null;
         }
         if (!z2) {
-            CornerSize cornerSize8 = MaterialButtonToggleGroup$d.a;
-            return new MaterialButtonToggleGroup$d(cornerSize8, materialButtonToggleGroup$d.e, cornerSize8, materialButtonToggleGroup$d.d);
+            CornerSize cornerSize8 = d.a;
+            return new d(cornerSize8, dVar.e, cornerSize8, dVar.d);
         }
-        CornerSize cornerSize9 = MaterialButtonToggleGroup$d.a;
+        CornerSize cornerSize9 = d.a;
         if (!ViewUtils.isLayoutRtl(this)) {
-            CornerSize cornerSize10 = MaterialButtonToggleGroup$d.a;
-            return new MaterialButtonToggleGroup$d(cornerSize10, cornerSize10, materialButtonToggleGroup$d.c, materialButtonToggleGroup$d.d);
+            CornerSize cornerSize10 = d.a;
+            return new d(cornerSize10, cornerSize10, dVar.c, dVar.d);
         }
-        CornerSize cornerSize11 = materialButtonToggleGroup$d.f3033b;
-        CornerSize cornerSize12 = materialButtonToggleGroup$d.e;
-        CornerSize cornerSize13 = MaterialButtonToggleGroup$d.a;
-        return new MaterialButtonToggleGroup$d(cornerSize11, cornerSize12, cornerSize13, cornerSize13);
+        CornerSize cornerSize11 = dVar.f3033b;
+        CornerSize cornerSize12 = dVar.e;
+        CornerSize cornerSize13 = d.a;
+        return new d(cornerSize11, cornerSize12, cornerSize13, cornerSize13);
     }
 
     private int getVisibleButtonCount() {
@@ -325,7 +395,7 @@ public class MaterialButtonToggleGroup extends LinearLayout {
     @Override // android.view.View
     public void onInitializeAccessibilityNodeInfo(@NonNull AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        AccessibilityNodeInfoCompat.wrap(accessibilityNodeInfo).setCollectionInfo(AccessibilityNodeInfoCompat$CollectionInfoCompat.obtain(1, getVisibleButtonCount(), false, isSingleSelection() ? 1 : 2));
+        AccessibilityNodeInfoCompat.wrap(accessibilityNodeInfo).setCollectionInfo(AccessibilityNodeInfoCompat.CollectionInfoCompat.obtain(1, getVisibleButtonCount(), false, isSingleSelection() ? 1 : 2));
     }
 
     @Override // android.widget.LinearLayout, android.view.View
@@ -351,23 +421,23 @@ public class MaterialButtonToggleGroup extends LinearLayout {
         adjustChildMarginsAndUpdateLayout();
     }
 
-    public void removeOnButtonCheckedListener(@NonNull MaterialButtonToggleGroup$OnButtonCheckedListener materialButtonToggleGroup$OnButtonCheckedListener) {
-        this.onButtonCheckedListeners.remove(materialButtonToggleGroup$OnButtonCheckedListener);
+    public void removeOnButtonCheckedListener(@NonNull OnButtonCheckedListener onButtonCheckedListener) {
+        this.onButtonCheckedListeners.remove(onButtonCheckedListener);
     }
 
     private void resetChildMargins(int i) {
         if (getChildCount() == 0 || i == -1) {
             return;
         }
-        LinearLayout$LayoutParams linearLayout$LayoutParams = (LinearLayout$LayoutParams) getChildButton(i).getLayoutParams();
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) getChildButton(i).getLayoutParams();
         if (getOrientation() == 1) {
-            linearLayout$LayoutParams.topMargin = 0;
-            linearLayout$LayoutParams.bottomMargin = 0;
+            layoutParams.topMargin = 0;
+            layoutParams.bottomMargin = 0;
         } else {
-            MarginLayoutParamsCompat.setMarginEnd(linearLayout$LayoutParams, 0);
-            MarginLayoutParamsCompat.setMarginStart(linearLayout$LayoutParams, 0);
-            linearLayout$LayoutParams.leftMargin = 0;
-            linearLayout$LayoutParams.rightMargin = 0;
+            MarginLayoutParamsCompat.setMarginEnd(layoutParams, 0);
+            MarginLayoutParamsCompat.setMarginStart(layoutParams, 0);
+            layoutParams.leftMargin = 0;
+            layoutParams.rightMargin = 0;
         }
     }
 
@@ -404,7 +474,7 @@ public class MaterialButtonToggleGroup extends LinearLayout {
 
     private void setupButtonChild(@NonNull MaterialButton materialButton) {
         materialButton.setMaxLines(1);
-        materialButton.setEllipsize(TextUtils$TruncateAt.END);
+        materialButton.setEllipsize(TextUtils.TruncateAt.END);
         materialButton.setCheckable(true);
         materialButton.addOnCheckedChangeListener(this.checkedStateTracker);
         materialButton.setOnPressedChangeListenerInternal(this.pressedStateTracker);
@@ -418,11 +488,11 @@ public class MaterialButtonToggleGroup extends LinearLayout {
         dispatchOnButtonChecked(i, false);
     }
 
-    private static void updateBuilderWithCornerData(ShapeAppearanceModel$Builder shapeAppearanceModel$Builder, @Nullable MaterialButtonToggleGroup$d materialButtonToggleGroup$d) {
-        if (materialButtonToggleGroup$d == null) {
-            shapeAppearanceModel$Builder.setAllCornerSizes(0.0f);
+    private static void updateBuilderWithCornerData(ShapeAppearanceModel.Builder builder, @Nullable d dVar) {
+        if (dVar == null) {
+            builder.setAllCornerSizes(0.0f);
         } else {
-            shapeAppearanceModel$Builder.setTopLeftCornerSize(materialButtonToggleGroup$d.f3033b).setBottomLeftCornerSize(materialButtonToggleGroup$d.e).setTopRightCornerSize(materialButtonToggleGroup$d.c).setBottomRightCornerSize(materialButtonToggleGroup$d.d);
+            builder.setTopLeftCornerSize(dVar.f3033b).setBottomLeftCornerSize(dVar.e).setTopRightCornerSize(dVar.c).setBottomRightCornerSize(dVar.d);
         }
     }
 
@@ -462,7 +532,7 @@ public class MaterialButtonToggleGroup extends LinearLayout {
         for (int i = 0; i < childCount; i++) {
             MaterialButton childButton = getChildButton(i);
             if (childButton.getVisibility() != 8) {
-                ShapeAppearanceModel$Builder builder = childButton.getShapeAppearanceModel().toBuilder();
+                ShapeAppearanceModel.Builder builder = childButton.getShapeAppearanceModel().toBuilder();
                 updateBuilderWithCornerData(builder, getNewCornerData(i, firstVisibleChildIndex, lastVisibleChildIndex));
                 childButton.setShapeAppearanceModel(builder.build());
             }
@@ -470,7 +540,7 @@ public class MaterialButtonToggleGroup extends LinearLayout {
     }
 
     public MaterialButtonToggleGroup(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, R$attr.materialButtonToggleGroupStyle);
+        this(context, attributeSet, R.attr.materialButtonToggleGroupStyle);
     }
 
     /* JADX WARN: Illegal instructions before constructor call */
@@ -478,15 +548,15 @@ public class MaterialButtonToggleGroup extends LinearLayout {
         int i2 = DEF_STYLE_RES;
         super(MaterialThemeOverlay.wrap(context, attributeSet, i, i2), attributeSet, i);
         this.originalCornerData = new ArrayList();
-        this.checkedStateTracker = new MaterialButtonToggleGroup$c(this, null);
-        this.pressedStateTracker = new MaterialButtonToggleGroup$e(this, null);
+        this.checkedStateTracker = new c(null);
+        this.pressedStateTracker = new e(null);
         this.onButtonCheckedListeners = new LinkedHashSet<>();
-        this.childOrderComparator = new MaterialButtonToggleGroup$a(this);
+        this.childOrderComparator = new a();
         this.skipCheckedStateTracker = false;
-        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(getContext(), attributeSet, R$styleable.MaterialButtonToggleGroup, i, i2, new int[0]);
-        setSingleSelection(typedArrayObtainStyledAttributes.getBoolean(R$styleable.MaterialButtonToggleGroup_singleSelection, false));
-        this.checkedId = typedArrayObtainStyledAttributes.getResourceId(R$styleable.MaterialButtonToggleGroup_checkedButton, -1);
-        this.selectionRequired = typedArrayObtainStyledAttributes.getBoolean(R$styleable.MaterialButtonToggleGroup_selectionRequired, false);
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(getContext(), attributeSet, R.styleable.MaterialButtonToggleGroup, i, i2, new int[0]);
+        setSingleSelection(typedArrayObtainStyledAttributes.getBoolean(R.styleable.MaterialButtonToggleGroup_singleSelection, false));
+        this.checkedId = typedArrayObtainStyledAttributes.getResourceId(R.styleable.MaterialButtonToggleGroup_checkedButton, -1);
+        this.selectionRequired = typedArrayObtainStyledAttributes.getBoolean(R.styleable.MaterialButtonToggleGroup_selectionRequired, false);
         setChildrenDrawingOrderEnabled(true);
         typedArrayObtainStyledAttributes.recycle();
         ViewCompat.setImportantForAccessibility(this, 1);

@@ -2,7 +2,6 @@ package com.discord.widgets.hubs;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import b.d.b.a.a;
 import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -10,10 +9,35 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: WidgetHubEmailViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class HubEmailArgs implements Parcelable {
-    public static final Parcelable$Creator<HubEmailArgs> CREATOR = new HubEmailArgs$Creator();
+    public static final Parcelable.Creator<HubEmailArgs> CREATOR = new Creator();
     private final HubEmailEntryPoint entryPoint;
     private final int guildMemberCount;
     private final String guildName;
+
+    public final class Creator implements Parcelable.Creator<HubEmailArgs> {
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final HubEmailArgs createFromParcel(Parcel parcel) {
+            m.checkNotNullParameter(parcel, "in");
+            return new HubEmailArgs(parcel.readString(), parcel.readInt(), (HubEmailEntryPoint) Enum.valueOf(HubEmailEntryPoint.class, parcel.readString()));
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ HubEmailArgs createFromParcel(Parcel parcel) {
+            return createFromParcel(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final HubEmailArgs[] newArray(int i) {
+            return new HubEmailArgs[i];
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ HubEmailArgs[] newArray(int i) {
+            return newArray(i);
+        }
+    }
 
     public HubEmailArgs() {
         this(null, 0, null, 7, null);

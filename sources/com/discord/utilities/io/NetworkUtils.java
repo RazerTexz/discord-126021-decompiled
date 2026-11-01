@@ -1,25 +1,30 @@
 package com.discord.utilities.io;
 
 import android.app.DownloadManager;
-import android.app.DownloadManager$Request;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.Environment;
-import android.provider.Settings$Global;
+import android.provider.Settings;
 import androidx.annotation.MainThread;
 import androidx.annotation.RequiresPermission;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import com.discord.utilities.auth.GoogleSmartLockManager;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.string.StringUtilsKt;
 import d0.t.j;
+import d0.y.b;
 import d0.z.d.m;
+import d0.z.d.o;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -33,6 +38,85 @@ public final class NetworkUtils {
     public static final NetworkUtils INSTANCE = new NetworkUtils();
     private static final Map<Long, Function0<Unit>> onDownloadListeners = new LinkedHashMap();
 
+    /* JADX INFO: renamed from: com.discord.utilities.io.NetworkUtils$downloadFile$1, reason: invalid class name */
+    /* JADX INFO: compiled from: NetworkUtils.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ long $downloadId;
+        public final /* synthetic */ DownloadManager $manager;
+        public final /* synthetic */ Function1 $onError;
+        public final /* synthetic */ Function1 $onSuccess;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, DownloadManager downloadManager, Function1 function1, Function1 function2) {
+            super(0);
+            this.$downloadId = j;
+            this.$manager = downloadManager;
+            this.$onSuccess = function1;
+            this.$onError = function2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() throws IllegalAccessException, IOException, InvocationTargetException {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() throws IllegalAccessException, IOException, InvocationTargetException {
+            Cursor cursorQuery;
+            NetworkUtils.access$getOnDownloadListeners$p(NetworkUtils.INSTANCE).remove(Long.valueOf(this.$downloadId));
+            DownloadManager downloadManager = this.$manager;
+            if (downloadManager == null || (cursorQuery = downloadManager.query(new DownloadManager.Query().setFilterById(this.$downloadId))) == null) {
+                return;
+            }
+            try {
+                if (cursorQuery.moveToFirst()) {
+                    int columnIndex = cursorQuery.getColumnIndex("title");
+                    String string = columnIndex > 0 ? cursorQuery.getString(columnIndex) : "";
+                    Function1 function1 = this.$onSuccess;
+                    m.checkNotNullExpressionValue(string, "downloadedFileName");
+                    function1.invoke(string);
+                } else {
+                    this.$onError.invoke(new DownloadManagerFileNoFound());
+                }
+                b.closeFinally(cursorQuery, null);
+            } catch (Throwable th) {
+                try {
+                    throw th;
+                } catch (Throwable th2) {
+                    b.closeFinally(cursorQuery, th);
+                    throw th2;
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: NetworkUtils.kt */
+    public final class DownloadManagerEnqueueFailure extends Throwable {
+    }
+
+    /* JADX INFO: compiled from: NetworkUtils.kt */
+    public final class DownloadManagerFileNoFound extends Throwable {
+    }
+
+    /* JADX INFO: compiled from: NetworkUtils.kt */
+    public final class DownloadManagerNotFound extends Throwable {
+    }
+
+    /* JADX INFO: compiled from: NetworkUtils.kt */
+    public final class NetworkDownloadReceiver extends BroadcastReceiver {
+        @Override // android.content.BroadcastReceiver
+        public void onReceive(Context context, Intent intent) {
+            m.checkNotNullParameter(context, "context");
+            String action = intent != null ? intent.getAction() : null;
+            if (action != null && action.hashCode() == 1248865515 && action.equals("android.intent.action.DOWNLOAD_COMPLETE")) {
+                Function0 function0 = (Function0) NetworkUtils.access$getOnDownloadListeners$p(NetworkUtils.INSTANCE).get(Long.valueOf(intent.getLongExtra("extra_download_id", 0L)));
+                if (function0 != null) {
+                }
+            }
+        }
+    }
+
     private NetworkUtils() {
     }
 
@@ -45,7 +129,7 @@ public final class NetworkUtils {
     public static final void downloadFile(Context context, Uri uri, String fileName, String desc, Function1<? super String, Unit> onSuccess, Function1<? super Throwable, Unit> onError) {
         long jEnqueue;
         String strFilenameSanitized;
-        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         m.checkNotNullParameter(onSuccess, "onSuccess");
         m.checkNotNullParameter(onError, "onError");
         Object systemService = context != null ? context.getSystemService("download") : null;
@@ -59,23 +143,23 @@ public final class NetworkUtils {
                     return;
                 }
             }
-            DownloadManager$Request notificationVisibility = new DownloadManager$Request(uri).setTitle(fileName).setDescription(desc).setNotificationVisibility(1);
+            DownloadManager.Request notificationVisibility = new DownloadManager.Request(uri).setTitle(fileName).setDescription(desc).setNotificationVisibility(1);
             String str = Environment.DIRECTORY_DOWNLOADS;
             if (fileName == null || (strFilenameSanitized = StringUtilsKt.filenameSanitized(fileName)) == null) {
                 strFilenameSanitized = "file";
             }
-            DownloadManager$Request destinationInExternalPublicDir = notificationVisibility.setDestinationInExternalPublicDir(str, strFilenameSanitized);
+            DownloadManager.Request destinationInExternalPublicDir = notificationVisibility.setDestinationInExternalPublicDir(str, strFilenameSanitized);
             destinationInExternalPublicDir.allowScanningByMediaScanner();
             jEnqueue = downloadManager.enqueue(destinationInExternalPublicDir);
         } else {
             jEnqueue = 1;
         }
         if (jEnqueue == 1) {
-            onError.invoke(new NetworkUtils$DownloadManagerNotFound());
+            onError.invoke(new DownloadManagerNotFound());
         } else if (jEnqueue == 0) {
-            onError.invoke(new NetworkUtils$DownloadManagerEnqueueFailure());
+            onError.invoke(new DownloadManagerEnqueueFailure());
         } else {
-            onDownloadListeners.put(Long.valueOf(jEnqueue), new NetworkUtils$downloadFile$1(jEnqueue, downloadManager, onSuccess, onError));
+            onDownloadListeners.put(Long.valueOf(jEnqueue), new AnonymousClass1(jEnqueue, downloadManager, onSuccess, onError));
         }
     }
 
@@ -98,7 +182,7 @@ public final class NetworkUtils {
 
     public final boolean isAirplaneModeOn(Context context) {
         m.checkNotNullParameter(context, "context");
-        return Settings$Global.getInt(context.getContentResolver(), "airplane_mode_on", 0) != 0;
+        return Settings.Global.getInt(context.getContentResolver(), "airplane_mode_on", 0) != 0;
     }
 
     public static /* synthetic */ boolean isDeviceConnected$default(NetworkUtils networkUtils, Context context, Intent intent, Logger logger, int i, Object obj) {
@@ -120,7 +204,7 @@ public final class NetworkUtils {
             }
             ConnectivityManager connectivityManager = (ConnectivityManager) systemService;
             Object obj = null;
-            if (Build$VERSION.SDK_INT >= 23) {
+            if (Build.VERSION.SDK_INT >= 23) {
                 Network[] allNetworks = connectivityManager.getAllNetworks();
                 m.checkNotNullExpressionValue(allNetworks, "connectivityManager.allNetworks");
                 for (Network network : allNetworks) {

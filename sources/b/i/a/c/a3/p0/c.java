@@ -3,51 +3,122 @@ package b.i.a.c.a3.p0;
 import android.net.Uri;
 import androidx.annotation.IntRange;
 import androidx.annotation.Nullable;
+import b.c.a.a0.d;
 import b.i.a.c.f3.e0;
 import b.i.a.c.w0;
-import b.i.a.c.w0$a;
 import java.util.Arrays;
 
 /* JADX INFO: compiled from: AdPlaybackState.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class c implements w0 {
-    public static final c$a k;
-    public static final w0$a<c> l;
+    public static final a k;
+    public static final w0.a<c> l;
     public final int n;
     public final long o;
     public final long p;
     public final int q;
-    public final c$a[] r;
-    public static final c j = new c(null, new c$a[0], 0, -9223372036854775807L, 0);
+    public final a[] r;
+    public static final c j = new c(null, new a[0], 0, -9223372036854775807L, 0);
 
     @Nullable
     public final Object m = null;
 
+    /* JADX INFO: compiled from: AdPlaybackState.java */
+    public final class a implements w0 {
+        public static final /* synthetic */ int j = 0;
+        public final long k;
+        public final int l;
+        public final Uri[] m;
+        public final int[] n;
+        public final long[] o;
+        public final long p;
+        public final boolean q;
+
+        public a(long j2, int i, int[] iArr, Uri[] uriArr, long[] jArr, long j3, boolean z2) {
+            d.j(iArr.length == uriArr.length);
+            this.k = j2;
+            this.l = i;
+            this.n = iArr;
+            this.m = uriArr;
+            this.o = jArr;
+            this.p = j3;
+            this.q = z2;
+        }
+
+        public int a(@IntRange(from = -1) int i) {
+            int i2 = i + 1;
+            while (true) {
+                int[] iArr = this.n;
+                if (i2 >= iArr.length || this.q || iArr[i2] == 0 || iArr[i2] == 1) {
+                    break;
+                }
+                i2++;
+            }
+            return i2;
+        }
+
+        public boolean b() {
+            if (this.l == -1) {
+                return true;
+            }
+            for (int i = 0; i < this.l; i++) {
+                int[] iArr = this.n;
+                if (iArr[i] == 0 || iArr[i] == 1) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static String c(int i) {
+            return Integer.toString(i, 36);
+        }
+
+        public boolean equals(@Nullable Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || a.class != obj.getClass()) {
+                return false;
+            }
+            a aVar = (a) obj;
+            return this.k == aVar.k && this.l == aVar.l && Arrays.equals(this.m, aVar.m) && Arrays.equals(this.n, aVar.n) && Arrays.equals(this.o, aVar.o) && this.p == aVar.p && this.q == aVar.q;
+        }
+
+        public int hashCode() {
+            int i = this.l * 31;
+            long j2 = this.k;
+            int iHashCode = (Arrays.hashCode(this.o) + ((Arrays.hashCode(this.n) + ((((i + ((int) (j2 ^ (j2 >>> 32)))) * 31) + Arrays.hashCode(this.m)) * 31)) * 31)) * 31;
+            long j3 = this.p;
+            return ((iHashCode + ((int) (j3 ^ (j3 >>> 32)))) * 31) + (this.q ? 1 : 0);
+        }
+    }
+
     static {
-        c$a c_a = new c$a(0L, -1, new int[0], new Uri[0], new long[0], 0L, false);
-        int[] iArr = c_a.n;
+        a aVar = new a(0L, -1, new int[0], new Uri[0], new long[0], 0L, false);
+        int[] iArr = aVar.n;
         int length = iArr.length;
         int iMax = Math.max(0, length);
         int[] iArrCopyOf = Arrays.copyOf(iArr, iMax);
         Arrays.fill(iArrCopyOf, length, iMax, 0);
-        long[] jArr = c_a.o;
+        long[] jArr = aVar.o;
         int length2 = jArr.length;
         int iMax2 = Math.max(0, length2);
         long[] jArrCopyOf = Arrays.copyOf(jArr, iMax2);
         Arrays.fill(jArrCopyOf, length2, iMax2, -9223372036854775807L);
-        k = new c$a(c_a.k, 0, iArrCopyOf, (Uri[]) Arrays.copyOf(c_a.m, 0), jArrCopyOf, c_a.p, c_a.q);
+        k = new a(aVar.k, 0, iArrCopyOf, (Uri[]) Arrays.copyOf(aVar.m, 0), jArrCopyOf, aVar.p, aVar.q);
         l = b.a;
     }
 
-    public c(@Nullable Object obj, c$a[] c_aArr, long j2, long j3, int i) {
+    public c(@Nullable Object obj, a[] aVarArr, long j2, long j3, int i) {
         this.o = j2;
         this.p = j3;
-        this.n = c_aArr.length + i;
-        this.r = c_aArr;
+        this.n = aVarArr.length + i;
+        this.r = aVarArr;
         this.q = i;
     }
 
-    public c$a a(@IntRange(from = 0) int i) {
+    public a a(@IntRange(from = 0) int i) {
         int i2 = this.q;
         return i < i2 ? k : this.r[i - i2];
     }

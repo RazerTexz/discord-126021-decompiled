@@ -10,13 +10,13 @@ import rx.functions.Action1;
 /* JADX INFO: loaded from: classes.dex */
 public final class StreamServerUpdate$Parser$parse$1<T> implements Action1<String> {
     public final /* synthetic */ Ref$ObjectRef $endpoint;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
     public final /* synthetic */ Ref$ObjectRef $streamKey;
     public final /* synthetic */ Ref$ObjectRef $token;
 
-    public StreamServerUpdate$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model$JsonReader model$JsonReader, Ref$ObjectRef ref$ObjectRef2, Ref$ObjectRef ref$ObjectRef3) {
+    public StreamServerUpdate$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model.JsonReader jsonReader, Ref$ObjectRef ref$ObjectRef2, Ref$ObjectRef ref$ObjectRef3) {
         this.$streamKey = ref$ObjectRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
         this.$endpoint = ref$ObjectRef2;
         this.$token = ref$ObjectRef3;
     }

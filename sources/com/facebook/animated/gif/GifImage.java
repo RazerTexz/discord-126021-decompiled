@@ -1,6 +1,6 @@
 package com.facebook.animated.gif;
 
-import android.graphics.Bitmap$Config;
+import android.graphics.Bitmap;
 import b.f.d.d.c;
 import b.f.j.a.a.d;
 import b.f.j.d.b;
@@ -16,7 +16,7 @@ public class GifImage implements b.f.j.a.a.c, b.f.j.a.b.c {
     private long mNativeContext;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public Bitmap$Config f2881b = null;
+    public Bitmap.Config f2881b = null;
 
     @c
     public GifImage() {
@@ -49,7 +49,7 @@ public class GifImage implements b.f.j.a.a.c, b.f.j.a.b.c {
     }
 
     @Override // b.f.j.a.a.c
-    public Bitmap$Config d() {
+    public Bitmap.Config d() {
         return this.f2881b;
     }
 

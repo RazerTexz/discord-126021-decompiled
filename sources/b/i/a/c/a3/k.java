@@ -7,6 +7,6 @@ public final /* synthetic */ class k implements b.i.a.c.f3.k {
 
     @Override // b.i.a.c.f3.k
     public final void accept(Object obj) {
-        ((h0$c) obj).f825b.release();
+        ((h0.c) obj).f825b.release();
     }
 }

@@ -1,27 +1,42 @@
 package com.discord.stores;
 
 import android.content.Context;
+import androidx.core.app.NotificationCompat;
+import com.discord.analytics.generated.events.network_action.TrackNetworkActionDirectoryGuildEntryDelete;
+import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
 import com.discord.api.directory.DirectoryEntryEvent;
 import com.discord.api.directory.DirectoryEntryGuild;
 import com.discord.api.directory.DirectoryEntryType;
+import com.discord.api.guild.preview.GuildPreview;
+import com.discord.api.guildscheduledevent.GuildScheduledEvent;
+import com.discord.models.guild.Guild;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.utilities.RestCallState;
 import com.discord.stores.utilities.RestCallStateKt;
+import com.discord.stores.utilities.Success;
 import com.discord.utilities.features.GrowthTeamFeatures;
 import com.discord.utilities.persister.Persister;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.t.h0;
+import d0.t.n;
 import d0.t.n0;
 import d0.t.o0;
+import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import kotlin.Pair;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -30,7 +45,6 @@ import rx.Observable;
 /* JADX INFO: compiled from: StoreDirectories.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreDirectories extends StoreV2 {
-    public static final StoreDirectories$Companion Companion = new StoreDirectories$Companion(null);
     private static final String DISCORD_HUB_VERIFICATION_CLICKED_KEY = "hub_verification_clicked_key";
     private static final String GUILD_SCHEDULED_EVENTS_HEADER_DISMISSED = "guild_scheduled_events_header_dismissed";
     private static final String HUB_NAME_PROMPT = "hub_name_prompt";
@@ -49,8 +63,430 @@ public final class StoreDirectories extends StoreV2 {
     private final ObservationDeck observationDeck;
     private final RestAPI restApi;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$addServerToDirectory$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreDirectories.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ DirectoryEntryGuild $directoryEntry;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, DirectoryEntryGuild directoryEntryGuild) {
+            super(0);
+            this.$channelId = j;
+            this.$directoryEntry = directoryEntryGuild;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Map mapAccess$getDirectoriesMap$p = StoreDirectories.access$getDirectoriesMap$p(StoreDirectories.this);
+            Long lValueOf = Long.valueOf(this.$channelId);
+            RestCallState restCallState = (RestCallState) StoreDirectories.access$getDirectoriesMap$p(StoreDirectories.this).get(Long.valueOf(this.$channelId));
+            List<DirectoryEntryGuild> listEmptyList = restCallState != null ? (List) restCallState.invoke() : null;
+            if (listEmptyList == null) {
+                listEmptyList = n.emptyList();
+            }
+            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(listEmptyList, 10));
+            boolean z2 = false;
+            for (DirectoryEntryGuild directoryEntryGuild : listEmptyList) {
+                if (directoryEntryGuild.getGuild().getId() == this.$directoryEntry.getGuild().getId()) {
+                    z2 = true;
+                    directoryEntryGuild = this.$directoryEntry;
+                }
+                arrayList.add(directoryEntryGuild);
+            }
+            mapAccess$getDirectoriesMap$p.put(lValueOf, new Success(u.plus((Collection) arrayList, (Iterable) n.listOfNotNull(z2 ? null : this.$directoryEntry))));
+            StoreDirectories.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$fetchDirectoriesForChannel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreDirectories.kt */
+    public final class AnonymousClass1<T, R> implements b<List<? extends DirectoryEntryGuild>, List<? extends DirectoryEntryGuild>> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ List<? extends DirectoryEntryGuild> call(List<? extends DirectoryEntryGuild> list) {
+            return call2((List<DirectoryEntryGuild>) list);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final List<DirectoryEntryGuild> call2(List<DirectoryEntryGuild> list) {
+            m.checkNotNullExpressionValue(list, "entries");
+            return u.sortedWith(list, new StoreDirectories$fetchDirectoriesForChannel$1$$special$$inlined$sortedByDescending$1());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$fetchEntryCountsForChannel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreDirectories.kt */
+    public final class AnonymousClass1 extends o implements Function1<RestCallState<? extends Map<Integer, ? extends Integer>>, Unit> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$fetchEntryCountsForChannel$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreDirectories.kt */
+        public final class C02271 extends o implements Function0<Unit> {
+            public final /* synthetic */ RestCallState $response;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C02271(RestCallState restCallState) {
+                super(0);
+                this.$response = restCallState;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreDirectories.access$getEntryCountMap$p(StoreDirectories.this).put(Long.valueOf(AnonymousClass1.this.$channelId), this.$response);
+                StoreDirectories.this.markChanged();
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(1);
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RestCallState<? extends Map<Integer, ? extends Integer>> restCallState) {
+            invoke2((RestCallState<? extends Map<Integer, Integer>>) restCallState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RestCallState<? extends Map<Integer, Integer>> restCallState) {
+            m.checkNotNullParameter(restCallState, "response");
+            StoreDirectories.access$getDispatcher$p(StoreDirectories.this).schedule(new C02271(restCallState));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$fetchGuildScheduledEventsForChannel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreDirectories.kt */
+    public final class AnonymousClass1 extends o implements Function1<RestCallState<? extends List<? extends DirectoryEntryEvent>>, Unit> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$fetchGuildScheduledEventsForChannel$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreDirectories.kt */
+        public final class C02281 extends o implements Function0<Unit> {
+            public final /* synthetic */ RestCallState $response;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C02281(RestCallState restCallState) {
+                super(0);
+                this.$response = restCallState;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreDirectories.access$getDirectoryGuildScheduledEventsMap$p(StoreDirectories.this).put(Long.valueOf(AnonymousClass1.this.$channelId), this.$response);
+                RestCallState restCallState = this.$response;
+                if (restCallState instanceof Success) {
+                    Iterable iterable = (Iterable) ((Success) restCallState).invoke();
+                    ArrayList arrayList = new ArrayList();
+                    Iterator it = iterable.iterator();
+                    while (it.hasNext()) {
+                        GuildScheduledEvent guildScheduledEvent = ((DirectoryEntryEvent) it.next()).getGuildScheduledEvent();
+                        if (!(guildScheduledEvent.getUserRsvp() != null)) {
+                            guildScheduledEvent = null;
+                        }
+                        Pair pair = guildScheduledEvent != null ? d0.o.to(Long.valueOf(guildScheduledEvent.getGuildId()), Long.valueOf(guildScheduledEvent.getId())) : null;
+                        if (pair != null) {
+                            arrayList.add(pair);
+                        }
+                    }
+                    StoreDirectories.access$getGuildScheduledEventsStore$p(StoreDirectories.this).addMeRsvpsForEvent(arrayList);
+                }
+                StoreDirectories.this.markChanged();
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(1);
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RestCallState<? extends List<? extends DirectoryEntryEvent>> restCallState) {
+            invoke2((RestCallState<? extends List<DirectoryEntryEvent>>) restCallState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RestCallState<? extends List<DirectoryEntryEvent>> restCallState) {
+            m.checkNotNullParameter(restCallState, "response");
+            StoreDirectories.access$getDispatcher$p(StoreDirectories.this).schedule(new C02281(restCallState));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$init$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreDirectories.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Guild>, Set<? extends Long>> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Set<? extends Long> call(Map<Long, ? extends Guild> map) {
+            return call2((Map<Long, Guild>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Set<Long> call2(Map<Long, Guild> map) {
+            Collection<Guild> collectionValues = map.values();
+            ArrayList arrayList = new ArrayList();
+            for (T t : collectionValues) {
+                if (((Guild) t).isHub()) {
+                    arrayList.add(t);
+                }
+            }
+            ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(arrayList, 10));
+            Iterator<T> it = arrayList.iterator();
+            while (it.hasNext()) {
+                arrayList2.add(Long.valueOf(((Guild) it.next()).getId()));
+            }
+            return u.toSet(arrayList2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$observeDirectories$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreDirectories.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends RestCallState<? extends List<? extends DirectoryEntryGuild>>>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends RestCallState<? extends List<? extends DirectoryEntryGuild>>> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends RestCallState<? extends List<? extends DirectoryEntryGuild>>> invoke2() {
+            return StoreDirectories.access$getDirectoriesMapSnapshot$p(StoreDirectories.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$observeDirectoriesForChannel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreDirectories.kt */
+    public final class AnonymousClass1 extends o implements Function0<RestCallState<? extends List<? extends DirectoryEntryGuild>>> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public /* bridge */ /* synthetic */ RestCallState<? extends List<? extends DirectoryEntryGuild>> invoke2() {
+            return invoke();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final RestCallState<? extends List<? extends DirectoryEntryGuild>> invoke() {
+            return (RestCallState) StoreDirectories.access$getDirectoriesMapSnapshot$p(StoreDirectories.this).get(Long.valueOf(this.$channelId));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$observeDirectoryGuildScheduledEvents$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreDirectories.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends RestCallState<? extends List<? extends DirectoryEntryEvent>>>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends RestCallState<? extends List<? extends DirectoryEntryEvent>>> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends RestCallState<? extends List<? extends DirectoryEntryEvent>>> invoke2() {
+            return StoreDirectories.access$getDirectoryGuildScheduledEventsMapSnapshot$p(StoreDirectories.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$removeServerFromDirectory$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreDirectories.kt */
+    public final class AnonymousClass1 extends o implements Function1<DirectoryEntryGuild, TrackNetworkMetadataReceiver> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, long j2) {
+            super(1);
+            this.$channelId = j;
+            this.$guildId = j2;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ TrackNetworkMetadataReceiver invoke(DirectoryEntryGuild directoryEntryGuild) {
+            return invoke2(directoryEntryGuild);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final TrackNetworkMetadataReceiver invoke2(DirectoryEntryGuild directoryEntryGuild) {
+            return new TrackNetworkActionDirectoryGuildEntryDelete(Long.valueOf(this.$channelId), Long.valueOf(this.$guildId));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$fetchDirectoriesForChannel$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreDirectories.kt */
+    public final class AnonymousClass2 extends o implements Function1<RestCallState<? extends List<? extends DirectoryEntryGuild>>, Unit> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$fetchDirectoriesForChannel$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreDirectories.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public final /* synthetic */ RestCallState $entriesResponse;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(RestCallState restCallState) {
+                super(0);
+                this.$entriesResponse = restCallState;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreDirectories.access$getDirectoriesMap$p(StoreDirectories.this).put(Long.valueOf(AnonymousClass2.this.$channelId), this.$entriesResponse);
+                StoreDirectories.this.markChanged();
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(long j) {
+            super(1);
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RestCallState<? extends List<? extends DirectoryEntryGuild>> restCallState) {
+            invoke2((RestCallState<? extends List<DirectoryEntryGuild>>) restCallState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RestCallState<? extends List<DirectoryEntryGuild>> restCallState) {
+            m.checkNotNullParameter(restCallState, "entriesResponse");
+            StoreDirectories.access$getDispatcher$p(StoreDirectories.this).schedule(new AnonymousClass1(restCallState));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$init$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreDirectories.kt */
+    public final class AnonymousClass2 extends o implements Function1<Set<? extends Long>, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Set<? extends Long> set) {
+            invoke2((Set<Long>) set);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Set<Long> set) {
+            Set set2 = (Set) StoreDirectories.access$getHubNamePromptPersister$p(StoreDirectories.this).get();
+            Persister persisterAccess$getHubNamePromptPersister$p = StoreDirectories.access$getHubNamePromptPersister$p(StoreDirectories.this);
+            ArrayList arrayList = new ArrayList();
+            for (Object obj : set2) {
+                if (set.contains(Long.valueOf(((Number) obj).longValue()))) {
+                    arrayList.add(obj);
+                }
+            }
+            Persister.set$default(persisterAccess$getHubNamePromptPersister$p, u.toSet(arrayList), false, 2, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$removeServerFromDirectory$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreDirectories.kt */
+    public final class AnonymousClass2 extends o implements Function1<RestCallState<? extends DirectoryEntryGuild>, Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ long $guildId;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreDirectories$removeServerFromDirectory$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreDirectories.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public AnonymousClass1() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                Map mapAccess$getDirectoriesMap$p = StoreDirectories.access$getDirectoriesMap$p(StoreDirectories.this);
+                Long lValueOf = Long.valueOf(AnonymousClass2.this.$channelId);
+                RestCallState restCallState = (RestCallState) StoreDirectories.access$getDirectoriesMap$p(StoreDirectories.this).get(Long.valueOf(AnonymousClass2.this.$channelId));
+                List listEmptyList = restCallState != null ? (List) restCallState.invoke() : null;
+                if (listEmptyList == null) {
+                    listEmptyList = n.emptyList();
+                }
+                ArrayList arrayList = new ArrayList();
+                for (Object obj : listEmptyList) {
+                    GuildPreview guild = ((DirectoryEntryGuild) obj).getGuild();
+                    if (guild == null || guild.getId() != AnonymousClass2.this.$guildId) {
+                        arrayList.add(obj);
+                    }
+                }
+                mapAccess$getDirectoriesMap$p.put(lValueOf, new Success(arrayList));
+                StoreDirectories.this.markChanged();
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(long j, long j2) {
+            super(1);
+            this.$channelId = j;
+            this.$guildId = j2;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RestCallState<? extends DirectoryEntryGuild> restCallState) {
+            invoke2((RestCallState<DirectoryEntryGuild>) restCallState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RestCallState<DirectoryEntryGuild> restCallState) {
+            m.checkNotNullParameter(restCallState, "request");
+            if (restCallState instanceof Success) {
+                StoreDirectories.access$getDispatcher$p(StoreDirectories.this).schedule(new AnonymousClass1());
+            }
+        }
+    }
+
     public /* synthetic */ StoreDirectories(Dispatcher dispatcher, ObservationDeck observationDeck, StoreGuilds storeGuilds, StoreGuildScheduledEvents storeGuildScheduledEvents, RestAPI restAPI, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(dispatcher, observationDeck, storeGuilds, storeGuildScheduledEvents, (i & 16) != 0 ? RestAPI.Companion.getApi() : restAPI);
+        this(dispatcher, observationDeck, storeGuilds, storeGuildScheduledEvents, (i & 16) != 0 ? RestAPI.INSTANCE.getApi() : restAPI);
     }
 
     public static final /* synthetic */ Map access$getDirectoriesMap$p(StoreDirectories storeDirectories) {
@@ -107,22 +543,22 @@ public final class StoreDirectories extends StoreV2 {
 
     public final void addServerToDirectory(long channelId, DirectoryEntryGuild directoryEntry) {
         m.checkNotNullParameter(directoryEntry, "directoryEntry");
-        this.dispatcher.schedule(new StoreDirectories$addServerToDirectory$1(this, channelId, directoryEntry));
+        this.dispatcher.schedule(new AnonymousClass1(channelId, directoryEntry));
     }
 
     public final void fetchDirectoriesForChannel(long channelId) {
-        Observable<R> observableG = this.restApi.getDirectoryEntries(channelId).G(StoreDirectories$fetchDirectoriesForChannel$1.INSTANCE);
+        Observable<R> observableG = this.restApi.getDirectoryEntries(channelId).G(AnonymousClass1.INSTANCE);
         m.checkNotNullExpressionValue(observableG, "restApi\n        .getDire…imateMemberCount ?: 0 } }");
-        RestCallStateKt.executeRequest(observableG, new StoreDirectories$fetchDirectoriesForChannel$2(this, channelId));
+        RestCallStateKt.executeRequest(observableG, new AnonymousClass2(channelId));
     }
 
     public final void fetchEntryCountsForChannel(long channelId) {
-        RestCallStateKt.executeRequest(this.restApi.getEntryCounts(channelId), new StoreDirectories$fetchEntryCountsForChannel$1(this, channelId));
+        RestCallStateKt.executeRequest(this.restApi.getEntryCounts(channelId), new AnonymousClass1(channelId));
     }
 
     public final void fetchGuildScheduledEventsForChannel(long guildId, long channelId) {
         if (GrowthTeamFeatures.INSTANCE.hubEventsEnabled(guildId, false)) {
-            RestCallStateKt.executeRequest(this.restApi.getDirectoryGuildScheduledEvents(channelId, DirectoryEntryType.GuildScheduledEvent.getKey()), new StoreDirectories$fetchGuildScheduledEventsForChannel$1(this, channelId));
+            RestCallStateKt.executeRequest(this.restApi.getDirectoryGuildScheduledEvents(channelId, DirectoryEntryType.GuildScheduledEvent.getKey()), new AnonymousClass1(channelId));
         }
     }
 
@@ -153,9 +589,9 @@ public final class StoreDirectories extends StoreV2 {
     public void init(Context context) {
         m.checkNotNullParameter(context, "context");
         super.init(context);
-        Observable observableR = ObservableExtensionsKt.computationLatest(ObservableExtensionsKt.leadingEdgeThrottle(this.guildStore.observeGuilds(), 1L, TimeUnit.SECONDS)).G(StoreDirectories$init$1.INSTANCE).r();
+        Observable observableR = ObservableExtensionsKt.computationLatest(ObservableExtensionsKt.leadingEdgeThrottle(this.guildStore.observeGuilds(), 1L, TimeUnit.SECONDS)).G(AnonymousClass1.INSTANCE).r();
         m.checkNotNullExpressionValue(observableR, "guildStore\n        .obse…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe$default(observableR, StoreDirectories.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreDirectories$init$2(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(observableR, StoreDirectories.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
     }
 
     public final void markDiscordHubClicked() {
@@ -167,15 +603,15 @@ public final class StoreDirectories extends StoreV2 {
     }
 
     public final Observable<Map<Long, RestCallState<List<DirectoryEntryGuild>>>> observeDirectories() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreDirectories$observeDirectories$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     public final Observable<RestCallState<List<DirectoryEntryGuild>>> observeDirectoriesForChannel(long channelId) {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreDirectories$observeDirectoriesForChannel$1(this, channelId), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(channelId), 14, null);
     }
 
     public final Observable<Map<Long, RestCallState<List<DirectoryEntryEvent>>>> observeDirectoryGuildScheduledEvents() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreDirectories$observeDirectoryGuildScheduledEvents$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     public final Observable<Boolean> observeDiscordHubClicked() {
@@ -185,7 +621,7 @@ public final class StoreDirectories extends StoreV2 {
     }
 
     public final void removeServerFromDirectory(long channelId, long guildId) {
-        RestCallStateKt.executeRequest(RestCallStateKt.logNetworkAction(this.restApi.removeServerFromHub(channelId, guildId), new StoreDirectories$removeServerFromDirectory$1(channelId, guildId)), new StoreDirectories$removeServerFromDirectory$2(this, channelId, guildId));
+        RestCallStateKt.executeRequest(RestCallStateKt.logNetworkAction(this.restApi.removeServerFromHub(channelId, guildId), new AnonymousClass1(channelId, guildId)), new AnonymousClass2(channelId, guildId));
     }
 
     @Override // com.discord.stores.StoreV2

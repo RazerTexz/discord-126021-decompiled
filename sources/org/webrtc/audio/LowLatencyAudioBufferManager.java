@@ -1,7 +1,7 @@
 package org.webrtc.audio;
 
 import android.media.AudioTrack;
-import android.os.Build$VERSION;
+import android.os.Build;
 import org.webrtc.Logging;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -13,7 +13,7 @@ public class LowLatencyAudioBufferManager {
     private int bufferIncreaseCounter = 0;
 
     public void maybeAdjustBufferSize(AudioTrack audioTrack) {
-        if (Build$VERSION.SDK_INT >= 26) {
+        if (Build.VERSION.SDK_INT >= 26) {
             int underrunCount = audioTrack.getUnderrunCount();
             if (underrunCount > this.prevUnderrunCount) {
                 if (this.bufferIncreaseCounter < 5) {

@@ -23,6 +23,6 @@ public final class GuildChannelsInfo$getSortedCategories$sortedCategories$1<T> i
     /* JADX WARN: Multi-variable type inference failed */
     /* JADX INFO: renamed from: compare, reason: avoid collision after fix types in other method */
     public final int compare2(Long l, Long l2) {
-        return ((ChannelUtils$getSortByNameAndType$1) ChannelUtils.h(Channel.Companion)).compare(this.$guildChannels.get(l), this.$guildChannels.get(l2));
+        return ((ChannelUtils$getSortByNameAndType$1) ChannelUtils.h(Channel.INSTANCE)).compare(this.$guildChannels.get(l), this.$guildChannels.get(l2));
     }
 }

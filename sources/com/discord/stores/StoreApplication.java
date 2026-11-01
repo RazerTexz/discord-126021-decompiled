@@ -1,14 +1,24 @@
 package com.discord.stores;
 
+import android.content.Context;
 import com.discord.api.application.Application;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
+import com.discord.utilities.error.Error;
+import com.discord.utilities.rest.RestAPI;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.z.d.m;
+import d0.z.d.o;
 import j0.l.e.k;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
 import rx.Observable;
 
 /* JADX INFO: compiled from: StoreApplication.kt */
@@ -19,6 +29,184 @@ public final class StoreApplication extends StoreV2 {
     private HashMap<Long, Application> applicationsSnapshot;
     private final Dispatcher dispatcher;
     private final ObservationDeck observationDeck;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplication$fetchIfNonexisting$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplication.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ long $appId;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreApplication$fetchIfNonexisting$1$2, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreApplication.kt */
+        public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+
+            /* JADX INFO: renamed from: com.discord.stores.StoreApplication$fetchIfNonexisting$1$2$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: StoreApplication.kt */
+            public final class C01981 extends o implements Function0<Unit> {
+                public C01981() {
+                    super(0);
+                }
+
+                @Override // kotlin.jvm.functions.Function0
+                public /* bridge */ /* synthetic */ Unit invoke() {
+                    invoke2();
+                    return Unit.a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2() {
+                    StoreApplication.access$getApplicationsLoading$p(StoreApplication.this).remove(Long.valueOf(AnonymousClass1.this.$appId));
+                }
+            }
+
+            public AnonymousClass2() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+                invoke2(error);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Error error) {
+                m.checkNotNullParameter(error, "it");
+                StoreApplication.access$getDispatcher$p(StoreApplication.this).schedule(new C01981());
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreApplication$fetchIfNonexisting$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreApplication.kt */
+        public final class C01961 extends o implements Function1<List<? extends Application>, Unit> {
+
+            /* JADX INFO: renamed from: com.discord.stores.StoreApplication$fetchIfNonexisting$1$1$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: StoreApplication.kt */
+            public final class C01971 extends o implements Function0<Unit> {
+                public final /* synthetic */ List $results;
+
+                /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+                public C01971(List list) {
+                    super(0);
+                    this.$results = list;
+                }
+
+                @Override // kotlin.jvm.functions.Function0
+                public /* bridge */ /* synthetic */ Unit invoke() {
+                    invoke2();
+                    return Unit.a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2() {
+                    Object next;
+                    StoreApplication.access$getApplicationsLoading$p(StoreApplication.this).remove(Long.valueOf(AnonymousClass1.this.$appId));
+                    Iterator it = this.$results.iterator();
+                    do {
+                        if (!it.hasNext()) {
+                            next = null;
+                            break;
+                        }
+                        next = it.next();
+                    } while (!(((Application) next).getId() == AnonymousClass1.this.$appId));
+                    Application application = (Application) next;
+                    if (application != null) {
+                        StoreApplication.access$getApplications$p(StoreApplication.this).put(Long.valueOf(AnonymousClass1.this.$appId), application);
+                        StoreApplication.this.markChanged();
+                    }
+                }
+            }
+
+            public C01961() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(List<? extends Application> list) {
+                invoke2((List<Application>) list);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(List<Application> list) {
+                m.checkNotNullParameter(list, "results");
+                StoreApplication.access$getDispatcher$p(StoreApplication.this).schedule(new C01971(list));
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$appId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            if (StoreApplication.access$getApplications$p(StoreApplication.this).containsKey(Long.valueOf(this.$appId)) || StoreApplication.access$getApplicationsLoading$p(StoreApplication.this).contains(Long.valueOf(this.$appId))) {
+                return;
+            }
+            StoreApplication.access$getApplicationsLoading$p(StoreApplication.this).add(Long.valueOf(this.$appId));
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getApplications(this.$appId), false, 1, null), StoreApplication.this.getClass(), (Context) null, (Function1) null, new AnonymousClass2(), (Function0) null, (Function0) null, new C01961(), 54, (Object) null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplication$observeApplication$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplication.kt */
+    public final class AnonymousClass1 extends o implements Function0<Application> {
+        public final /* synthetic */ Long $appId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Long l) {
+            super(0);
+            this.$appId = l;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Application invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final Application invoke() {
+            return (Application) StoreApplication.access$getApplicationsSnapshot$p(StoreApplication.this).get(this.$appId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplication$observeApplications$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplication.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Application>> {
+        public final /* synthetic */ Collection $applicationIds;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Collection collection) {
+            super(0);
+            this.$applicationIds = collection;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Application> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Application> invoke2() {
+            HashMap mapAccess$getApplicationsSnapshot$p = StoreApplication.access$getApplicationsSnapshot$p(StoreApplication.this);
+            LinkedHashMap linkedHashMap = new LinkedHashMap();
+            for (Map.Entry entry : mapAccess$getApplicationsSnapshot$p.entrySet()) {
+                if (this.$applicationIds.contains(Long.valueOf(((Number) entry.getKey()).longValue()))) {
+                    linkedHashMap.put(entry.getKey(), entry.getValue());
+                }
+            }
+            return linkedHashMap;
+        }
+    }
 
     public StoreApplication(Dispatcher dispatcher, ObservationDeck observationDeck) {
         m.checkNotNullParameter(dispatcher, "dispatcher");
@@ -51,13 +239,13 @@ public final class StoreApplication extends StoreV2 {
     }
 
     public final void fetchIfNonexisting(long appId) {
-        this.dispatcher.schedule(new StoreApplication$fetchIfNonexisting$1(this, appId));
+        this.dispatcher.schedule(new AnonymousClass1(appId));
     }
 
     public final Observable<Application> observeApplication(Long appId) {
         if (appId != null) {
             fetchIfNonexisting(appId.longValue());
-            return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreApplication$observeApplication$1(this, appId), 14, null);
+            return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(appId), 14, null);
         }
         k kVar = new k(null);
         m.checkNotNullExpressionValue(kVar, "Observable\n          .just(null)");
@@ -66,7 +254,7 @@ public final class StoreApplication extends StoreV2 {
 
     public final Observable<Map<Long, Application>> observeApplications(Collection<Long> applicationIds) {
         m.checkNotNullParameter(applicationIds, "applicationIds");
-        Observable<Map<Long, Application>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreApplication$observeApplications$1(this, applicationIds), 14, null).r();
+        Observable<Map<Long, Application>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(applicationIds), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }

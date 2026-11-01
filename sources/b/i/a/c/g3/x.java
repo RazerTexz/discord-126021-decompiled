@@ -1,11 +1,35 @@
 package b.i.a.c.g3;
 
+import android.os.Handler;
 import androidx.annotation.Nullable;
 import b.i.a.c.j1;
+import java.util.Objects;
 
 /* JADX INFO: compiled from: VideoRendererEventListener.java */
 /* JADX INFO: loaded from: classes3.dex */
 public interface x {
+
+    /* JADX INFO: compiled from: VideoRendererEventListener.java */
+    public final class a {
+
+        @Nullable
+        public final Handler a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        @Nullable
+        public final x f995b;
+
+        public a(@Nullable Handler handler, @Nullable x xVar) {
+            if (xVar != null) {
+                Objects.requireNonNull(handler);
+            } else {
+                handler = null;
+            }
+            this.a = handler;
+            this.f995b = xVar;
+        }
+    }
+
     void F(int i, long j);
 
     void K(Object obj, long j);

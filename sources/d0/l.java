@@ -5,12 +5,12 @@ package d0;
 public final class l {
     public static final Object createFailure(Throwable th) {
         d0.z.d.m.checkNotNullParameter(th, "exception");
-        return new k$b(th);
+        return new k.b(th);
     }
 
     public static final void throwOnFailure(Object obj) throws Throwable {
-        if (obj instanceof k$b) {
-            throw ((k$b) obj).exception;
+        if (obj instanceof k.b) {
+            throw ((k.b) obj).exception;
         }
     }
 }

@@ -9,14 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.FrameLayout$LayoutParams;
 import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import b.a.i.c1;
 import b.a.i.v2;
-import com.discord.R$a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
@@ -24,12 +21,13 @@ import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.ShapeAppearanceModel;
-import com.google.android.material.shape.ShapeAppearanceModel$Builder;
 import d0.t.n;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Collection;
 import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: PileView.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -65,7 +63,7 @@ public final class PileView extends FrameLayout {
     public int cutoutThicknessPx;
 
     /* JADX INFO: renamed from: s, reason: collision with root package name and from kotlin metadata */
-    public final CutoutView$a cutoutStyle;
+    public final CutoutView.a cutoutStyle;
 
     /* JADX INFO: renamed from: t, reason: from kotlin metadata */
     public int overflowTextSizePx;
@@ -77,6 +75,76 @@ public final class PileView extends FrameLayout {
     @ColorInt
     public int overflowBackgroundColor;
 
+    /* JADX INFO: compiled from: kotlin-style lambda group */
+    public final class a extends o implements Function1<Integer, String> {
+        public static final a j = new a(0);
+        public static final a k = new a(1);
+        public static final a l = new a(2);
+        public final /* synthetic */ int m;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(int i) {
+            super(1);
+            this.m = i;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final String invoke(Integer num) {
+            int i = this.m;
+            if (i == 0) {
+                num.intValue();
+                return "asset://asset/images/default_avatar_0.jpg";
+            }
+            if (i == 1) {
+                num.intValue();
+                return "asset://asset/images/default_avatar_1.jpg";
+            }
+            if (i != 2) {
+                throw null;
+            }
+            num.intValue();
+            return "asset://asset/images/default_avatar_2.jpg";
+        }
+    }
+
+    /* JADX INFO: compiled from: kotlin-style lambda group */
+    public final class b extends o implements Function0<String> {
+        public static final b j = new b(0);
+        public static final b k = new b(1);
+        public static final b l = new b(2);
+        public final /* synthetic */ int m;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public b(int i) {
+            super(0);
+            this.m = i;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final String invoke() {
+            int i = this.m;
+            if (i == 0 || i == 1 || i == 2) {
+                return "";
+            }
+            throw null;
+        }
+    }
+
+    /* JADX INFO: compiled from: PileView.kt */
+    public final class c {
+        public final Function1<Integer, String> a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final Function0<String> f2835b;
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public c(Function1<? super Integer, String> function1, Function0<String> function0) {
+            m.checkNotNullParameter(function1, "getImageURI");
+            this.a = function1;
+            this.f2835b = function0;
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public PileView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
@@ -87,7 +155,7 @@ public final class PileView extends FrameLayout {
         this.itemSizePx = DimenUtils.dpToPixels(16);
         this.cutoutThicknessPx = DimenUtils.dpToPixels(2);
         this.overflowTextSizePx = DimenUtils.dpToPixels(14);
-        int[] iArr = R$a.PileView;
+        int[] iArr = R.a.PileView;
         m.checkNotNullExpressionValue(iArr, "R.styleable.PileView");
         Context context2 = getContext();
         m.checkNotNullExpressionValue(context2, "context");
@@ -109,13 +177,13 @@ public final class PileView extends FrameLayout {
         int i = this.itemSizePx / 2;
         int i2 = this.overlapPx;
         int i3 = this.cutoutThicknessPx;
-        this.cutoutStyle = new CutoutView$a$b(i + i3, i2 + i3);
+        this.cutoutStyle = new CutoutView.a.b(i + i3, i2 + i3);
         if (isInEditMode()) {
-            setItems(n.listOf((Object[]) new PileView$c[]{new PileView$c(PileView$a.j, PileView$b.j), new PileView$c(PileView$a.k, PileView$b.k), new PileView$c(PileView$a.l, PileView$b.l)}));
+            setItems(n.listOf((Object[]) new c[]{new c(a.j, b.j), new c(a.k, b.k), new c(a.l, b.l)}));
         }
     }
 
-    public final void setItems(Collection<PileView$c> items) {
+    public final void setItems(Collection<c> items) {
         m.checkNotNullParameter(items, "items");
         removeAllViews();
         boolean z2 = false;
@@ -128,25 +196,25 @@ public final class PileView extends FrameLayout {
             if (i2 < 0) {
                 n.throwIndexOverflow();
             }
-            PileView$c pileView$c = (PileView$c) obj;
+            c cVar = (c) obj;
             int i4 = this.itemSizePx * i2;
             int i5 = this.overlapPx * i2;
-            View viewInflate = LayoutInflater.from(getContext()).inflate(R$layout.view_pile_item, this, z2);
-            int i6 = R$id.pileItemBg;
-            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate.findViewById(R$id.pileItemBg);
+            View viewInflate = LayoutInflater.from(getContext()).inflate(R.layout.view_pile_item, this, z2);
+            int i6 = R.id.pileItemBg;
+            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate.findViewById(R.id.pileItemBg);
             if (simpleDraweeView != null) {
-                i6 = R$id.pileItemImage;
-                SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) viewInflate.findViewById(R$id.pileItemImage);
+                i6 = R.id.pileItemImage;
+                SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) viewInflate.findViewById(R.id.pileItemImage);
                 if (simpleDraweeView2 != null) {
-                    TextView textView = (TextView) viewInflate.findViewById(R$id.pileItemInitials);
+                    TextView textView = (TextView) viewInflate.findViewById(R.id.pileItemInitials);
                     if (textView != null) {
                         CutoutView cutoutView = (CutoutView) viewInflate;
                         m.checkNotNullExpressionValue(new v2(cutoutView, simpleDraweeView, simpleDraweeView2, textView), "ViewPileItemBinding.infl…om(context), this, false)");
                         cutoutView.setId(FrameLayout.generateViewId());
                         int i7 = this.itemSizePx;
-                        FrameLayout$LayoutParams frameLayout$LayoutParams = new FrameLayout$LayoutParams(i7, i7);
-                        frameLayout$LayoutParams.setMarginStart(i4 - i5);
-                        cutoutView.setLayoutParams(frameLayout$LayoutParams);
+                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(i7, i7);
+                        layoutParams.setMarginStart(i4 - i5);
+                        cutoutView.setLayoutParams(layoutParams);
                         m.checkNotNullExpressionValue(cutoutView, "itemBinding.root");
                         addView(cutoutView, cutoutView.getLayoutParams());
                         m.checkNotNullExpressionValue(simpleDraweeView2, "itemBinding.pileItemImage");
@@ -173,8 +241,8 @@ public final class PileView extends FrameLayout {
                         if (i2 != i || size > 0) {
                             cutoutView.setStyle(this.cutoutStyle);
                         }
-                        String strInvoke = pileView$c.a.invoke(Integer.valueOf(IconUtils.getMediaProxySize(this.itemSizePx)));
-                        Function0<String> function0 = pileView$c.f2835b;
+                        String strInvoke = cVar.a.invoke(Integer.valueOf(IconUtils.getMediaProxySize(this.itemSizePx)));
+                        Function0<String> function0 = cVar.f2835b;
                         String strInvoke2 = function0 != null ? function0.invoke() : null;
                         m.checkNotNullExpressionValue(textView, "itemBinding.pileItemInitials");
                         textView.setVisibility(strInvoke == null ? 0 : 8);
@@ -193,7 +261,7 @@ public final class PileView extends FrameLayout {
                         i2 = i3;
                         z2 = false;
                     } else {
-                        i6 = R$id.pileItemInitials;
+                        i6 = R.id.pileItemInitials;
                     }
                 }
             }
@@ -203,24 +271,24 @@ public final class PileView extends FrameLayout {
             int i10 = this.maxItems - 1;
             int i11 = this.itemSizePx * i10;
             int i12 = i10 * this.overlapPx;
-            View viewInflate2 = LayoutInflater.from(getContext()).inflate(R$layout.pile_item_overflow_view, (ViewGroup) this, false);
-            TextView textView2 = (TextView) viewInflate2.findViewById(R$id.pile_item_text);
+            View viewInflate2 = LayoutInflater.from(getContext()).inflate(R.layout.pile_item_overflow_view, (ViewGroup) this, false);
+            TextView textView2 = (TextView) viewInflate2.findViewById(R.id.pile_item_text);
             if (textView2 == null) {
-                throw new NullPointerException("Missing required view with ID: ".concat(viewInflate2.getResources().getResourceName(R$id.pile_item_text)));
+                throw new NullPointerException("Missing required view with ID: ".concat(viewInflate2.getResources().getResourceName(R.id.pile_item_text)));
             }
             CutoutView cutoutView2 = (CutoutView) viewInflate2;
             m.checkNotNullExpressionValue(new c1(cutoutView2, textView2), "PileItemOverflowViewBind…om(context), this, false)");
             cutoutView2.setId(FrameLayout.generateViewId());
-            FrameLayout$LayoutParams frameLayout$LayoutParams2 = new FrameLayout$LayoutParams(-2, this.itemSizePx);
-            frameLayout$LayoutParams2.setMarginStart(i11 - i12);
-            cutoutView2.setLayoutParams(frameLayout$LayoutParams2);
+            FrameLayout.LayoutParams layoutParams2 = new FrameLayout.LayoutParams(-2, this.itemSizePx);
+            layoutParams2.setMarginStart(i11 - i12);
+            cutoutView2.setLayoutParams(layoutParams2);
             m.checkNotNullExpressionValue(textView2, "overflowItemBinding.pileItemText");
             textView2.setText("" + '+' + size);
             textView2.setTextSize(0, (float) this.overflowTextSizePx);
             m.checkNotNullExpressionValue(cutoutView2, "overflowItemBinding.root");
             addView(cutoutView2, cutoutView2.getLayoutParams());
             m.checkNotNullExpressionValue(textView2, "overflowItemBinding.pileItemText");
-            MaterialShapeDrawable materialShapeDrawable = new MaterialShapeDrawable(new ShapeAppearanceModel$Builder().setAllCornerSizes(ShapeAppearanceModel.PILL).build());
+            MaterialShapeDrawable materialShapeDrawable = new MaterialShapeDrawable(new ShapeAppearanceModel.Builder().setAllCornerSizes(ShapeAppearanceModel.PILL).build());
             int i13 = this.overflowBackgroundColor;
             if (i13 == 0) {
                 i13 = this.itemBackgroundColor;

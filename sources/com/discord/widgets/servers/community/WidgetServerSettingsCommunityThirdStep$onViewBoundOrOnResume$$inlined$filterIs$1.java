@@ -12,7 +12,7 @@ public final class WidgetServerSettingsCommunityThirdStep$onViewBoundOrOnResume$
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // j0.k.b
     public final Boolean call(Object obj) {
-        return Boolean.valueOf(obj instanceof WidgetServerSettingsEnableCommunityViewModel$ViewState$Loaded);
+        return Boolean.valueOf(obj instanceof WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded);
     }
 
     @Override // j0.k.b

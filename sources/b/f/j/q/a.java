@@ -1,7 +1,6 @@
 package b.f.j.q;
 
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import b.f.j.e.n;
@@ -15,7 +14,7 @@ import java.lang.reflect.Method;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class a implements b {
     private static Method sCopyBitmap;
-    public static final Bitmap$Config FALLBACK_BITMAP_CONFIGURATION = Bitmap$Config.ARGB_8888;
+    public static final Bitmap.Config FALLBACK_BITMAP_CONFIGURATION = Bitmap.Config.ARGB_8888;
 
     @Override // b.f.j.q.b
     public String getName() {
@@ -53,7 +52,7 @@ public abstract class a implements b {
 
     @Override // b.f.j.q.b
     public CloseableReference<Bitmap> process(Bitmap bitmap, PlatformBitmapFactory platformBitmapFactory) {
-        Bitmap$Config config = bitmap.getConfig();
+        Bitmap.Config config = bitmap.getConfig();
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
         if (config == null) {

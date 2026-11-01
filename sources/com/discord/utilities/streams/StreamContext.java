@@ -4,7 +4,7 @@ import b.d.b.a.a;
 import com.discord.models.domain.ModelApplicationStream;
 import com.discord.models.guild.Guild;
 import com.discord.models.user.User;
-import com.discord.stores.StoreApplicationStreamPreviews$StreamPreview;
+import com.discord.stores.StoreApplicationStreamPreviews;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: StreamContext.kt */
@@ -13,31 +13,38 @@ public final /* data */ class StreamContext {
     private final Guild guild;
     private final boolean isCurrentUserParticipating;
     private final boolean isSelfStream;
-    private final StreamContext$Joinability joinability;
-    private final StoreApplicationStreamPreviews$StreamPreview preview;
+    private final Joinability joinability;
+    private final StoreApplicationStreamPreviews.StreamPreview preview;
     private final ModelApplicationStream stream;
     private final User user;
     private final String userNickname;
 
-    public StreamContext(ModelApplicationStream modelApplicationStream, Guild guild, StoreApplicationStreamPreviews$StreamPreview storeApplicationStreamPreviews$StreamPreview, StreamContext$Joinability streamContext$Joinability, User user, String str, boolean z2, boolean z3) {
+    /* JADX INFO: compiled from: StreamContext.kt */
+    public enum Joinability {
+        CAN_CONNECT,
+        VOICE_CHANNEL_FULL,
+        MISSING_PERMISSIONS
+    }
+
+    public StreamContext(ModelApplicationStream modelApplicationStream, Guild guild, StoreApplicationStreamPreviews.StreamPreview streamPreview, Joinability joinability, User user, String str, boolean z2, boolean z3) {
         m.checkNotNullParameter(modelApplicationStream, "stream");
-        m.checkNotNullParameter(streamContext$Joinability, "joinability");
+        m.checkNotNullParameter(joinability, "joinability");
         m.checkNotNullParameter(user, "user");
         this.stream = modelApplicationStream;
         this.guild = guild;
-        this.preview = storeApplicationStreamPreviews$StreamPreview;
-        this.joinability = streamContext$Joinability;
+        this.preview = streamPreview;
+        this.joinability = joinability;
         this.user = user;
         this.userNickname = str;
         this.isCurrentUserParticipating = z2;
         this.isSelfStream = z3;
     }
 
-    public static /* synthetic */ StreamContext copy$default(StreamContext streamContext, ModelApplicationStream modelApplicationStream, Guild guild, StoreApplicationStreamPreviews$StreamPreview storeApplicationStreamPreviews$StreamPreview, StreamContext$Joinability streamContext$Joinability, User user, String str, boolean z2, boolean z3, int i, Object obj) {
-        return streamContext.copy((i & 1) != 0 ? streamContext.stream : modelApplicationStream, (i & 2) != 0 ? streamContext.guild : guild, (i & 4) != 0 ? streamContext.preview : storeApplicationStreamPreviews$StreamPreview, (i & 8) != 0 ? streamContext.joinability : streamContext$Joinability, (i & 16) != 0 ? streamContext.user : user, (i & 32) != 0 ? streamContext.userNickname : str, (i & 64) != 0 ? streamContext.isCurrentUserParticipating : z2, (i & 128) != 0 ? streamContext.isSelfStream : z3);
+    public static /* synthetic */ StreamContext copy$default(StreamContext streamContext, ModelApplicationStream modelApplicationStream, Guild guild, StoreApplicationStreamPreviews.StreamPreview streamPreview, Joinability joinability, User user, String str, boolean z2, boolean z3, int i, Object obj) {
+        return streamContext.copy((i & 1) != 0 ? streamContext.stream : modelApplicationStream, (i & 2) != 0 ? streamContext.guild : guild, (i & 4) != 0 ? streamContext.preview : streamPreview, (i & 8) != 0 ? streamContext.joinability : joinability, (i & 16) != 0 ? streamContext.user : user, (i & 32) != 0 ? streamContext.userNickname : str, (i & 64) != 0 ? streamContext.isCurrentUserParticipating : z2, (i & 128) != 0 ? streamContext.isSelfStream : z3);
     }
 
-    public final StreamContext copy(ModelApplicationStream stream, Guild guild, StoreApplicationStreamPreviews$StreamPreview preview, StreamContext$Joinability joinability, User user, String userNickname, boolean isCurrentUserParticipating, boolean isSelfStream) {
+    public final StreamContext copy(ModelApplicationStream stream, Guild guild, StoreApplicationStreamPreviews.StreamPreview preview, Joinability joinability, User user, String userNickname, boolean isCurrentUserParticipating, boolean isSelfStream) {
         m.checkNotNullParameter(stream, "stream");
         m.checkNotNullParameter(joinability, "joinability");
         m.checkNotNullParameter(user, "user");
@@ -75,20 +82,20 @@ public final /* data */ class StreamContext {
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
-    public final StreamContext$Joinability getJoinability() {
+    public final Joinability getJoinability() {
         return this.joinability;
     }
 
-    public final StreamContext$Joinability getJoinability() {
+    public final Joinability getJoinability() {
         return this.joinability;
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
-    public final StoreApplicationStreamPreviews$StreamPreview getPreview() {
+    public final StoreApplicationStreamPreviews.StreamPreview getPreview() {
         return this.preview;
     }
 
-    public final StoreApplicationStreamPreviews$StreamPreview getPreview() {
+    public final StoreApplicationStreamPreviews.StreamPreview getPreview() {
         return this.preview;
     }
 
@@ -133,10 +140,10 @@ public final /* data */ class StreamContext {
         int iHashCode = (modelApplicationStream != null ? modelApplicationStream.hashCode() : 0) * 31;
         Guild guild = this.guild;
         int iHashCode2 = (iHashCode + (guild != null ? guild.hashCode() : 0)) * 31;
-        StoreApplicationStreamPreviews$StreamPreview storeApplicationStreamPreviews$StreamPreview = this.preview;
-        int iHashCode3 = (iHashCode2 + (storeApplicationStreamPreviews$StreamPreview != null ? storeApplicationStreamPreviews$StreamPreview.hashCode() : 0)) * 31;
-        StreamContext$Joinability streamContext$Joinability = this.joinability;
-        int iHashCode4 = (iHashCode3 + (streamContext$Joinability != null ? streamContext$Joinability.hashCode() : 0)) * 31;
+        StoreApplicationStreamPreviews.StreamPreview streamPreview = this.preview;
+        int iHashCode3 = (iHashCode2 + (streamPreview != null ? streamPreview.hashCode() : 0)) * 31;
+        Joinability joinability = this.joinability;
+        int iHashCode4 = (iHashCode3 + (joinability != null ? joinability.hashCode() : 0)) * 31;
         User user = this.user;
         int iHashCode5 = (iHashCode4 + (user != null ? user.hashCode() : 0)) * 31;
         String str = this.userNickname;

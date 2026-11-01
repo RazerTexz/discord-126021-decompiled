@@ -3,6 +3,7 @@ package d0.e0.p.d.m0.j;
 import d0.t.u;
 import java.util.ArrayList;
 import java.util.Set;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: DescriptorRenderer.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -26,8 +27,14 @@ public enum g {
     public static final Set<g> k;
     private final boolean includeByDefault;
 
+    /* JADX INFO: compiled from: DescriptorRenderer.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     static {
-        new g$a(null);
+        new a(null);
         g[] gVarArrValuesCustom = valuesCustom();
         ArrayList arrayList = new ArrayList();
         for (int i = 0; i < 14; i++) {

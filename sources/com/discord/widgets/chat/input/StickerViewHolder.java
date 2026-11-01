@@ -2,8 +2,7 @@ package com.discord.widgets.chat.input;
 
 import android.view.View;
 import android.widget.FrameLayout;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.databinding.StickerAutocompleteItemBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
@@ -15,14 +14,29 @@ import d0.z.d.m;
 public final class StickerViewHolder extends MGRecyclerViewHolder<WidgetChatInputAutocompleteStickerAdapter, AutocompleteStickerItem> {
     private final StickerAutocompleteItemBinding binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.StickerViewHolder$onConfigure$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatInputAutocompleteStickerAdapter.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ AutocompleteStickerItem $data;
+
+        public AnonymousClass1(AutocompleteStickerItem autocompleteStickerItem) {
+            this.$data = autocompleteStickerItem;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            StickerViewHolder.access$getAdapter$p(StickerViewHolder.this).getOnClickSticker().invoke(this.$data.getSticker());
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public StickerViewHolder(WidgetChatInputAutocompleteStickerAdapter widgetChatInputAutocompleteStickerAdapter) {
-        super(R$layout.sticker_autocomplete_item, widgetChatInputAutocompleteStickerAdapter);
+        super(R.layout.sticker_autocomplete_item, widgetChatInputAutocompleteStickerAdapter);
         m.checkNotNullParameter(widgetChatInputAutocompleteStickerAdapter, "adapter");
         View view = this.itemView;
-        StickerView stickerView = (StickerView) view.findViewById(R$id.sticker_autocomplete_sticker);
+        StickerView stickerView = (StickerView) view.findViewById(R.id.sticker_autocomplete_sticker);
         if (stickerView == null) {
-            throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R$id.sticker_autocomplete_sticker)));
+            throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R.id.sticker_autocomplete_sticker)));
         }
         StickerAutocompleteItemBinding stickerAutocompleteItemBinding = new StickerAutocompleteItemBinding((FrameLayout) view, stickerView);
         m.checkNotNullExpressionValue(stickerAutocompleteItemBinding, "StickerAutocompleteItemBinding.bind(itemView)");
@@ -44,6 +58,6 @@ public final class StickerViewHolder extends MGRecyclerViewHolder<WidgetChatInpu
         super.onConfigure(position, data);
         StickerView.e(this.binding.f2147b, data.getSticker(), null, 2);
         this.binding.f2147b.b();
-        this.binding.a.setOnClickListener(new StickerViewHolder$onConfigure$1(this, data));
+        this.binding.a.setOnClickListener(new AnonymousClass1(data));
     }
 }

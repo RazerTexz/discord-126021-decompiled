@@ -1,9 +1,7 @@
 package androidx.constraintlayout.solver.widgets.analyzer;
 
 import androidx.constraintlayout.solver.widgets.ConstraintAnchor;
-import androidx.constraintlayout.solver.widgets.ConstraintAnchor$Type;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
-import androidx.constraintlayout.solver.widgets.ConstraintWidget$DimensionBehaviour;
 import androidx.constraintlayout.solver.widgets.Helper;
 import b.d.b.a.a;
 
@@ -11,10 +9,33 @@ import b.d.b.a.a;
 public class HorizontalWidgetRun extends WidgetRun {
     private static int[] tempDimensions = new int[2];
 
+    /* JADX INFO: renamed from: androidx.constraintlayout.solver.widgets.analyzer.HorizontalWidgetRun$1, reason: invalid class name */
+    public /* synthetic */ class AnonymousClass1 {
+        public static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType;
+
+        static {
+            WidgetRun.RunType.values();
+            int[] iArr = new int[4];
+            $SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType = iArr;
+            try {
+                iArr[WidgetRun.RunType.START.ordinal()] = 1;
+            } catch (NoSuchFieldError unused) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType[WidgetRun.RunType.END.ordinal()] = 2;
+            } catch (NoSuchFieldError unused2) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType[WidgetRun.RunType.CENTER.ordinal()] = 3;
+            } catch (NoSuchFieldError unused3) {
+            }
+        }
+    }
+
     public HorizontalWidgetRun(ConstraintWidget constraintWidget) {
         super(constraintWidget);
-        this.start.type = DependencyNode$Type.LEFT;
-        this.end.type = DependencyNode$Type.RIGHT;
+        this.start.type = DependencyNode.Type.LEFT;
+        this.end.type = DependencyNode.Type.RIGHT;
         this.orientation = 0;
     }
 
@@ -27,26 +48,26 @@ public class HorizontalWidgetRun extends WidgetRun {
             this.dimension.resolve(constraintWidget.getWidth());
         }
         if (this.dimension.resolved) {
-            ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour = this.dimensionBehavior;
-            ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour2 = ConstraintWidget$DimensionBehaviour.MATCH_PARENT;
-            if (constraintWidget$DimensionBehaviour == constraintWidget$DimensionBehaviour2 && (((parent = this.widget.getParent()) != null && parent.getHorizontalDimensionBehaviour() == ConstraintWidget$DimensionBehaviour.FIXED) || parent.getHorizontalDimensionBehaviour() == constraintWidget$DimensionBehaviour2)) {
+            ConstraintWidget.DimensionBehaviour dimensionBehaviour = this.dimensionBehavior;
+            ConstraintWidget.DimensionBehaviour dimensionBehaviour2 = ConstraintWidget.DimensionBehaviour.MATCH_PARENT;
+            if (dimensionBehaviour == dimensionBehaviour2 && (((parent = this.widget.getParent()) != null && parent.getHorizontalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.FIXED) || parent.getHorizontalDimensionBehaviour() == dimensionBehaviour2)) {
                 addTarget(this.start, parent.horizontalRun.start, this.widget.mLeft.getMargin());
                 addTarget(this.end, parent.horizontalRun.end, -this.widget.mRight.getMargin());
                 return;
             }
         } else {
-            ConstraintWidget$DimensionBehaviour horizontalDimensionBehaviour = this.widget.getHorizontalDimensionBehaviour();
+            ConstraintWidget.DimensionBehaviour horizontalDimensionBehaviour = this.widget.getHorizontalDimensionBehaviour();
             this.dimensionBehavior = horizontalDimensionBehaviour;
-            if (horizontalDimensionBehaviour != ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT) {
-                ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour3 = ConstraintWidget$DimensionBehaviour.MATCH_PARENT;
-                if (horizontalDimensionBehaviour == constraintWidget$DimensionBehaviour3 && (((parent2 = this.widget.getParent()) != null && parent2.getHorizontalDimensionBehaviour() == ConstraintWidget$DimensionBehaviour.FIXED) || parent2.getHorizontalDimensionBehaviour() == constraintWidget$DimensionBehaviour3)) {
+            if (horizontalDimensionBehaviour != ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) {
+                ConstraintWidget.DimensionBehaviour dimensionBehaviour3 = ConstraintWidget.DimensionBehaviour.MATCH_PARENT;
+                if (horizontalDimensionBehaviour == dimensionBehaviour3 && (((parent2 = this.widget.getParent()) != null && parent2.getHorizontalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.FIXED) || parent2.getHorizontalDimensionBehaviour() == dimensionBehaviour3)) {
                     int width = (parent2.getWidth() - this.widget.mLeft.getMargin()) - this.widget.mRight.getMargin();
                     addTarget(this.start, parent2.horizontalRun.start, this.widget.mLeft.getMargin());
                     addTarget(this.end, parent2.horizontalRun.end, -this.widget.mRight.getMargin());
                     this.dimension.resolve(width);
                     return;
                 }
-                if (this.dimensionBehavior == ConstraintWidget$DimensionBehaviour.FIXED) {
+                if (this.dimensionBehavior == ConstraintWidget.DimensionBehaviour.FIXED) {
                     this.dimension.resolve(this.widget.getWidth());
                 }
             }
@@ -92,7 +113,7 @@ public class HorizontalWidgetRun extends WidgetRun {
                     }
                     return;
                 }
-                if ((constraintWidget2 instanceof Helper) || constraintWidget2.getParent() == null || this.widget.getAnchor(ConstraintAnchor$Type.CENTER).mTarget != null) {
+                if ((constraintWidget2 instanceof Helper) || constraintWidget2.getParent() == null || this.widget.getAnchor(ConstraintAnchor.Type.CENTER).mTarget != null) {
                     return;
                 }
                 addTarget(this.start, this.widget.getParent().horizontalRun.start, this.widget.getX());
@@ -100,7 +121,7 @@ public class HorizontalWidgetRun extends WidgetRun {
                 return;
             }
         }
-        if (this.dimensionBehavior == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT) {
+        if (this.dimensionBehavior == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) {
             ConstraintWidget constraintWidget3 = this.widget;
             int i = constraintWidget3.mMatchConstraintDefaultWidth;
             if (i == 2) {
@@ -164,7 +185,7 @@ public class HorizontalWidgetRun extends WidgetRun {
             DependencyNode target6 = getTarget(this.widget.mListAnchors[1]);
             target5.addDependency(this);
             target6.addDependency(this);
-            this.mRunType = WidgetRun$RunType.CENTER;
+            this.mRunType = WidgetRun.RunType.CENTER;
             return;
         }
         if (constraintAnchorArr2[0].mTarget != null) {
@@ -252,7 +273,7 @@ public class HorizontalWidgetRun extends WidgetRun {
 
     @Override // androidx.constraintlayout.solver.widgets.analyzer.WidgetRun
     public boolean supportsWrapComputation() {
-        return this.dimensionBehavior != ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT || this.widget.mMatchConstraintDefaultWidth == 0;
+        return this.dimensionBehavior != ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT || this.widget.mMatchConstraintDefaultWidth == 0;
     }
 
     public String toString() {
@@ -281,7 +302,7 @@ public class HorizontalWidgetRun extends WidgetRun {
             updateRunCenter(dependency, constraintWidget.mLeft, constraintWidget.mRight, 0);
             return;
         }
-        if (!this.dimension.resolved && this.dimensionBehavior == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT) {
+        if (!this.dimension.resolved && this.dimensionBehavior == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) {
             ConstraintWidget constraintWidget2 = this.widget;
             int i2 = constraintWidget2.mMatchConstraintDefaultWidth;
             if (i2 == 2) {
@@ -427,7 +448,7 @@ public class HorizontalWidgetRun extends WidgetRun {
                 if (dependencyNode7.resolved && dependencyNode8.resolved && this.dimension.resolved) {
                     return;
                 }
-                if (!this.dimension.resolved && this.dimensionBehavior == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT) {
+                if (!this.dimension.resolved && this.dimensionBehavior == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) {
                     ConstraintWidget constraintWidget6 = this.widget;
                     if (constraintWidget6.mMatchConstraintDefaultWidth == 0 && !constraintWidget6.isInHorizontalChain()) {
                         DependencyNode dependencyNode9 = this.start.targets.get(0);
@@ -442,7 +463,7 @@ public class HorizontalWidgetRun extends WidgetRun {
                         return;
                     }
                 }
-                if (!this.dimension.resolved && this.dimensionBehavior == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT && this.matchConstraintsType == 1 && this.start.targets.size() > 0 && this.end.targets.size() > 0) {
+                if (!this.dimension.resolved && this.dimensionBehavior == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT && this.matchConstraintsType == 1 && this.start.targets.size() > 0 && this.end.targets.size() > 0) {
                     int iMin = Math.min((this.end.targets.get(0).value + this.end.margin) - (this.start.targets.get(0).value + this.start.margin), this.dimension.wrapValue);
                     ConstraintWidget constraintWidget7 = this.widget;
                     int i14 = constraintWidget7.mMatchConstraintMaxWidth;

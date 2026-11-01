@@ -16,7 +16,6 @@ import com.discord.stores.StoreUserSettings;
 import com.discord.stores.StoreVoiceChannelSelected;
 import com.discord.stores.utilities.RestCallState;
 import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilities;
-import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilities$Companion;
 import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilitiesKt;
 import com.discord.utilities.permissions.PermissionUtils;
 import d0.f0.q;
@@ -29,7 +28,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: GuildScheduledEventDetailsViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class GuildScheduledEventDetailsViewModel$Companion$observeStores$1 extends o implements Function0<GuildScheduledEventDetailsViewModel$StoreState> {
+public final class GuildScheduledEventDetailsViewModel$Companion$observeStores$1 extends o implements Function0<GuildScheduledEventDetailsViewModel.StoreState> {
     public final /* synthetic */ GuildScheduledEventDetailsArgs $args;
     public final /* synthetic */ StoreChannels $channelsStore;
     public final /* synthetic */ StoreDirectories $directoriesStore;
@@ -53,7 +52,7 @@ public final class GuildScheduledEventDetailsViewModel$Companion$observeStores$1
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ GuildScheduledEventDetailsViewModel$StoreState invoke() {
+    public /* bridge */ /* synthetic */ GuildScheduledEventDetailsViewModel.StoreState invoke() {
         return invoke();
     }
 
@@ -75,7 +74,7 @@ public final class GuildScheduledEventDetailsViewModel$Companion$observeStores$1
     /* JADX WARN: Code duplicated, block: B:55:0x0167  */
     /* JADX WARN: Code duplicated, block: B:58:0x0182  */
     @Override // kotlin.jvm.functions.Function0
-    public final GuildScheduledEventDetailsViewModel$StoreState invoke() {
+    public final GuildScheduledEventDetailsViewModel.StoreState invoke() {
         GuildScheduledEvent guildScheduledEventFindEventFromStore$default;
         GuildScheduledEvent guildScheduledEvent;
         int iOrdinal;
@@ -118,7 +117,7 @@ public final class GuildScheduledEventDetailsViewModel$Companion$observeStores$1
                 guildScheduledEvent = null;
             }
             if (guildScheduledEvent != null) {
-                return new GuildScheduledEventDetailsViewModel$StoreState(null, null, null, null, false, false, false, false, false, null, false, null, false, false, 16383, null);
+                return new GuildScheduledEventDetailsViewModel.StoreState(null, null, null, null, false, false, false, false, false, null, false, null, false, false, 16383, null);
             }
             iOrdinal = this.$args.getSource().ordinal();
             if (iOrdinal != 0) {
@@ -150,21 +149,21 @@ public final class GuildScheduledEventDetailsViewModel$Companion$observeStores$1
             Channel channel = channelId3 != null ? this.$channelsStore.getChannel(channelId3.longValue()) : null;
             Long lValueOf = Long.valueOf(this.$selectedVoiceChannelStore.getSelectedVoiceChannelId());
             boolean zIsMeRsvpedToEvent = this.$guildScheduledEventsStore.isMeRsvpedToEvent(guildScheduledEvent.getGuildId(), this.$args.getEventId());
-            GuildScheduledEventUtilities$Companion guildScheduledEventUtilities$Companion = GuildScheduledEventUtilities.Companion;
-            boolean zCanShareEvent$default = GuildScheduledEventUtilities$Companion.canShareEvent$default(guildScheduledEventUtilities$Companion, guildScheduledEvent.getChannelId(), guildScheduledEvent.getGuildId(), this.$channelsStore, this.$guildsStore, null, null, 48, null);
-            boolean zCanStartEvent = guildScheduledEventUtilities$Companion.canStartEvent(guildScheduledEvent.getGuildId(), guildScheduledEvent.getChannelId(), this.$channelsStore, this.$permissionsStore);
+            GuildScheduledEventUtilities.Companion companion = GuildScheduledEventUtilities.INSTANCE;
+            boolean zCanShareEvent$default = GuildScheduledEventUtilities.Companion.canShareEvent$default(companion, guildScheduledEvent.getChannelId(), guildScheduledEvent.getGuildId(), this.$channelsStore, this.$guildsStore, null, null, 48, null);
+            boolean zCanStartEvent = companion.canStartEvent(guildScheduledEvent.getGuildId(), guildScheduledEvent.getChannelId(), this.$channelsStore, this.$permissionsStore);
             channelId = guildScheduledEvent.getChannelId();
             if (channelId != null) {
                 zCan = PermissionUtils.can(Permission.CONNECT, this.$permissionsStore.getPermissionsByChannel().get(Long.valueOf(channelId.longValue())));
             } else {
                 zCan = false;
             }
-            return new GuildScheduledEventDetailsViewModel$StoreState(guildScheduledEvent, channel, guild, userGuildMember, z2, zIsMeRsvpedToEvent, zCanShareEvent$default, zCanStartEvent, this.$userSettingsStore.getIsDeveloperMode(), lValueOf, zCan, list, this.$guildScheduledEventsStore.getIsFetchingGuildScheduledEventUsers(), this.$guildScheduledEventsStore.getIsGuildScheduledEventUsersError());
+            return new GuildScheduledEventDetailsViewModel.StoreState(guildScheduledEvent, channel, guild, userGuildMember, z2, zIsMeRsvpedToEvent, zCanShareEvent$default, zCanStartEvent, this.$userSettingsStore.getIsDeveloperMode(), lValueOf, zCan, list, this.$guildScheduledEventsStore.getIsFetchingGuildScheduledEventUsers(), this.$guildScheduledEventsStore.getIsGuildScheduledEventUsersError());
         }
         guildScheduledEventFindEventFromStore$default = StoreGuildScheduledEvents.findEventFromStore$default(this.$guildScheduledEventsStore, this.$args.getEventId(), null, 2, null);
         guildScheduledEvent = guildScheduledEventFindEventFromStore$default;
         if (guildScheduledEvent != null) {
-            return new GuildScheduledEventDetailsViewModel$StoreState(null, null, null, null, false, false, false, false, false, null, false, null, false, false, 16383, null);
+            return new GuildScheduledEventDetailsViewModel.StoreState(null, null, null, null, false, false, false, false, false, null, false, null, false, false, 16383, null);
         }
         iOrdinal = this.$args.getSource().ordinal();
         if (iOrdinal != 0) {
@@ -196,15 +195,15 @@ public final class GuildScheduledEventDetailsViewModel$Companion$observeStores$1
         Channel channel2 = channelId4 != null ? this.$channelsStore.getChannel(channelId4.longValue()) : null;
         Long lValueOf2 = Long.valueOf(this.$selectedVoiceChannelStore.getSelectedVoiceChannelId());
         boolean zIsMeRsvpedToEvent2 = this.$guildScheduledEventsStore.isMeRsvpedToEvent(guildScheduledEvent.getGuildId(), this.$args.getEventId());
-        GuildScheduledEventUtilities$Companion guildScheduledEventUtilities$Companion2 = GuildScheduledEventUtilities.Companion;
-        boolean zCanShareEvent$default2 = GuildScheduledEventUtilities$Companion.canShareEvent$default(guildScheduledEventUtilities$Companion2, guildScheduledEvent.getChannelId(), guildScheduledEvent.getGuildId(), this.$channelsStore, this.$guildsStore, null, null, 48, null);
-        boolean zCanStartEvent2 = guildScheduledEventUtilities$Companion2.canStartEvent(guildScheduledEvent.getGuildId(), guildScheduledEvent.getChannelId(), this.$channelsStore, this.$permissionsStore);
+        GuildScheduledEventUtilities.Companion companion2 = GuildScheduledEventUtilities.INSTANCE;
+        boolean zCanShareEvent$default2 = GuildScheduledEventUtilities.Companion.canShareEvent$default(companion2, guildScheduledEvent.getChannelId(), guildScheduledEvent.getGuildId(), this.$channelsStore, this.$guildsStore, null, null, 48, null);
+        boolean zCanStartEvent2 = companion2.canStartEvent(guildScheduledEvent.getGuildId(), guildScheduledEvent.getChannelId(), this.$channelsStore, this.$permissionsStore);
         channelId = guildScheduledEvent.getChannelId();
         if (channelId != null) {
             zCan = PermissionUtils.can(Permission.CONNECT, this.$permissionsStore.getPermissionsByChannel().get(Long.valueOf(channelId.longValue())));
         } else {
             zCan = false;
         }
-        return new GuildScheduledEventDetailsViewModel$StoreState(guildScheduledEvent, channel2, guild, userGuildMember, z2, zIsMeRsvpedToEvent2, zCanShareEvent$default2, zCanStartEvent2, this.$userSettingsStore.getIsDeveloperMode(), lValueOf2, zCan, list2, this.$guildScheduledEventsStore.getIsFetchingGuildScheduledEventUsers(), this.$guildScheduledEventsStore.getIsGuildScheduledEventUsersError());
+        return new GuildScheduledEventDetailsViewModel.StoreState(guildScheduledEvent, channel2, guild, userGuildMember, z2, zIsMeRsvpedToEvent2, zCanShareEvent$default2, zCanStartEvent2, this.$userSettingsStore.getIsDeveloperMode(), lValueOf2, zCan, list2, this.$guildScheduledEventsStore.getIsFetchingGuildScheduledEventUsers(), this.$guildScheduledEventsStore.getIsGuildScheduledEventUsersError());
     }
 }

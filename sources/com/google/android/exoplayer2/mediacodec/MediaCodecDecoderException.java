@@ -1,6 +1,6 @@
 package com.google.android.exoplayer2.mediacodec;
 
-import android.media.MediaCodec$CodecException;
+import android.media.MediaCodec;
 import androidx.annotation.Nullable;
 import b.i.a.c.f3.e0;
 import b.i.a.c.y2.u;
@@ -21,8 +21,8 @@ public class MediaCodecDecoderException extends DecoderException {
         String strValueOf = String.valueOf(uVar == null ? null : uVar.a);
         super(strValueOf.length() != 0 ? "Decoder failed: ".concat(strValueOf) : new String("Decoder failed: "), th);
         this.codecInfo = uVar;
-        if (e0.a >= 21 && (th instanceof MediaCodec$CodecException)) {
-            diagnosticInfo = ((MediaCodec$CodecException) th).getDiagnosticInfo();
+        if (e0.a >= 21 && (th instanceof MediaCodec.CodecException)) {
+            diagnosticInfo = ((MediaCodec.CodecException) th).getDiagnosticInfo();
         }
         this.diagnosticInfo = diagnosticInfo;
     }

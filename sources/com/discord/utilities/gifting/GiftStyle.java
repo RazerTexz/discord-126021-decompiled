@@ -1,23 +1,56 @@
 package com.discord.utilities.gifting;
 
 import androidx.annotation.RawRes;
-import com.discord.R$raw;
+import com.discord.R;
 import com.discord.models.domain.ModelAuditLogEntry;
+import com.discord.models.domain.ModelGift;
 import d0.g;
+import d0.z.d.m;
 import kotlin.Lazy;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: GiftStyle.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public enum GiftStyle {
-    WumpusGlobe(1, 2131231459, R$raw.anim_gift_wumpus_globe),
-    WumpusBox(2, 2131231457, R$raw.anim_gift_wumpus_box),
-    WumpusLatte(3, 2131231458, R$raw.anim_gift_wumpus_latte);
+    WumpusGlobe(1, R.drawable.gift_wumpus_snowglobe, R.raw.anim_gift_wumpus_globe),
+    WumpusBox(2, R.drawable.gift_wumpus_box, R.raw.anim_gift_wumpus_box),
+    WumpusLatte(3, R.drawable.gift_wumpus_latte, R.raw.anim_gift_wumpus_latte);
 
-    public static final GiftStyle$Companion Companion = new GiftStyle$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final int animRes;
     private final int id;
     private final int staticRes;
     private static final Lazy values$delegate = g.lazy(GiftStyle$Companion$values$2.INSTANCE);
+
+    /* JADX INFO: compiled from: GiftStyle.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final GiftStyle from(ModelGift gift) {
+            m.checkNotNullParameter(gift, "gift");
+            for (GiftStyle giftStyle : getValues()) {
+                int id2 = giftStyle.getId();
+                Integer giftStyle2 = gift.getGiftStyle();
+                if (giftStyle2 != null && id2 == giftStyle2.intValue()) {
+                    return giftStyle;
+                }
+            }
+            return null;
+        }
+
+        private final GiftStyle[] getValues() {
+            Lazy lazyAccess$getValues$cp = GiftStyle.access$getValues$cp();
+            Companion companion = GiftStyle.INSTANCE;
+            return (GiftStyle[]) lazyAccess$getValues$cp.getValue();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     GiftStyle(@RawRes int i, int i2, int i3) {
         this.id = i;

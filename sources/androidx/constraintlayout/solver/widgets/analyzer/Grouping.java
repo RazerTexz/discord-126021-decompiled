@@ -3,9 +3,7 @@ package androidx.constraintlayout.solver.widgets.analyzer;
 import androidx.constraintlayout.solver.Metrics;
 import androidx.constraintlayout.solver.widgets.Barrier;
 import androidx.constraintlayout.solver.widgets.ConstraintAnchor;
-import androidx.constraintlayout.solver.widgets.ConstraintAnchor$Type;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
-import androidx.constraintlayout.solver.widgets.ConstraintWidget$DimensionBehaviour;
 import androidx.constraintlayout.solver.widgets.ConstraintWidgetContainer;
 import androidx.constraintlayout.solver.widgets.Flow;
 import androidx.constraintlayout.solver.widgets.Guideline;
@@ -83,7 +81,7 @@ public class Grouping {
     }
 
     /* JADX WARN: Code duplicated, block: B:179:0x0349  */
-    public static boolean simpleSolvingPass(ConstraintWidgetContainer constraintWidgetContainer, BasicMeasure$Measurer basicMeasure$Measurer) {
+    public static boolean simpleSolvingPass(ConstraintWidgetContainer constraintWidgetContainer, BasicMeasure.Measurer measurer) {
         WidgetGroup widgetGroup;
         WidgetGroup widgetGroup2;
         ArrayList<ConstraintWidget> children = constraintWidgetContainer.getChildren();
@@ -107,7 +105,7 @@ public class Grouping {
         for (int i2 = 0; i2 < size; i2++) {
             ConstraintWidget constraintWidget2 = children.get(i2);
             if (!validInGroup(constraintWidgetContainer.getHorizontalDimensionBehaviour(), constraintWidgetContainer.getVerticalDimensionBehaviour(), constraintWidget2.getHorizontalDimensionBehaviour(), constraintWidget2.getVerticalDimensionBehaviour())) {
-                ConstraintWidgetContainer.measure(constraintWidget2, basicMeasure$Measurer, constraintWidgetContainer.mMeasure, BasicMeasure$Measure.SELF_DIMENSIONS);
+                ConstraintWidgetContainer.measure(constraintWidget2, measurer, constraintWidgetContainer.mMeasure, BasicMeasure.Measure.SELF_DIMENSIONS);
             }
             boolean z2 = constraintWidget2 instanceof Guideline;
             if (z2) {
@@ -183,21 +181,21 @@ public class Grouping {
                 widgetGroup3 = null;
             }
         }
-        ConstraintAnchor anchor = constraintWidgetContainer.getAnchor(ConstraintAnchor$Type.LEFT);
+        ConstraintAnchor anchor = constraintWidgetContainer.getAnchor(ConstraintAnchor.Type.LEFT);
         if (anchor.getDependents() != null) {
             Iterator<ConstraintAnchor> it2 = anchor.getDependents().iterator();
             while (it2.hasNext()) {
                 findDependents(it2.next().mOwner, 0, arrayList7, null);
             }
         }
-        ConstraintAnchor anchor2 = constraintWidgetContainer.getAnchor(ConstraintAnchor$Type.RIGHT);
+        ConstraintAnchor anchor2 = constraintWidgetContainer.getAnchor(ConstraintAnchor.Type.RIGHT);
         if (anchor2.getDependents() != null) {
             Iterator<ConstraintAnchor> it3 = anchor2.getDependents().iterator();
             while (it3.hasNext()) {
                 findDependents(it3.next().mOwner, 0, arrayList7, null);
             }
         }
-        ConstraintAnchor anchor3 = constraintWidgetContainer.getAnchor(ConstraintAnchor$Type.CENTER);
+        ConstraintAnchor anchor3 = constraintWidgetContainer.getAnchor(ConstraintAnchor.Type.CENTER);
         if (anchor3.getDependents() != null) {
             Iterator<ConstraintAnchor> it4 = anchor3.getDependents().iterator();
             while (it4.hasNext()) {
@@ -225,28 +223,28 @@ public class Grouping {
                 widgetGroup4 = null;
             }
         }
-        ConstraintAnchor anchor4 = constraintWidgetContainer.getAnchor(ConstraintAnchor$Type.TOP);
+        ConstraintAnchor anchor4 = constraintWidgetContainer.getAnchor(ConstraintAnchor.Type.TOP);
         if (anchor4.getDependents() != null) {
             Iterator<ConstraintAnchor> it7 = anchor4.getDependents().iterator();
             while (it7.hasNext()) {
                 findDependents(it7.next().mOwner, 1, arrayList7, null);
             }
         }
-        ConstraintAnchor anchor5 = constraintWidgetContainer.getAnchor(ConstraintAnchor$Type.BASELINE);
+        ConstraintAnchor anchor5 = constraintWidgetContainer.getAnchor(ConstraintAnchor.Type.BASELINE);
         if (anchor5.getDependents() != null) {
             Iterator<ConstraintAnchor> it8 = anchor5.getDependents().iterator();
             while (it8.hasNext()) {
                 findDependents(it8.next().mOwner, 1, arrayList7, null);
             }
         }
-        ConstraintAnchor anchor6 = constraintWidgetContainer.getAnchor(ConstraintAnchor$Type.BOTTOM);
+        ConstraintAnchor anchor6 = constraintWidgetContainer.getAnchor(ConstraintAnchor.Type.BOTTOM);
         if (anchor6.getDependents() != null) {
             Iterator<ConstraintAnchor> it9 = anchor6.getDependents().iterator();
             while (it9.hasNext()) {
                 findDependents(it9.next().mOwner, 1, arrayList7, null);
             }
         }
-        ConstraintAnchor anchor7 = constraintWidgetContainer.getAnchor(ConstraintAnchor$Type.CENTER);
+        ConstraintAnchor anchor7 = constraintWidgetContainer.getAnchor(ConstraintAnchor.Type.CENTER);
         if (anchor7.getDependents() != null) {
             Iterator<ConstraintAnchor> it10 = anchor7.getDependents().iterator();
             while (it10.hasNext()) {
@@ -274,7 +272,7 @@ public class Grouping {
         if (arrayList7.size() <= 1) {
             return false;
         }
-        if (constraintWidgetContainer.getHorizontalDimensionBehaviour() == ConstraintWidget$DimensionBehaviour.WRAP_CONTENT) {
+        if (constraintWidgetContainer.getHorizontalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT) {
             widgetGroup = null;
             int i5 = 0;
             for (WidgetGroup widgetGroup5 : arrayList7) {
@@ -288,7 +286,7 @@ public class Grouping {
                 }
             }
             if (widgetGroup != null) {
-                constraintWidgetContainer.setHorizontalDimensionBehaviour(ConstraintWidget$DimensionBehaviour.FIXED);
+                constraintWidgetContainer.setHorizontalDimensionBehaviour(ConstraintWidget.DimensionBehaviour.FIXED);
                 constraintWidgetContainer.setWidth(i5);
                 widgetGroup.setAuthoritative(true);
             } else {
@@ -297,7 +295,7 @@ public class Grouping {
         } else {
             widgetGroup = null;
         }
-        if (constraintWidgetContainer.getVerticalDimensionBehaviour() == ConstraintWidget$DimensionBehaviour.WRAP_CONTENT) {
+        if (constraintWidgetContainer.getVerticalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT) {
             WidgetGroup widgetGroup6 = null;
             int i6 = 0;
             for (WidgetGroup widgetGroup7 : arrayList7) {
@@ -311,7 +309,7 @@ public class Grouping {
                 }
             }
             if (widgetGroup6 != null) {
-                constraintWidgetContainer.setVerticalDimensionBehaviour(ConstraintWidget$DimensionBehaviour.FIXED);
+                constraintWidgetContainer.setVerticalDimensionBehaviour(ConstraintWidget.DimensionBehaviour.FIXED);
                 constraintWidgetContainer.setHeight(i6);
                 widgetGroup6.setAuthoritative(true);
                 widgetGroup2 = widgetGroup6;
@@ -323,10 +321,10 @@ public class Grouping {
         }
     }
 
-    public static boolean validInGroup(ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour, ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour2, ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour3, ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour4) {
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour5;
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour6;
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour7 = ConstraintWidget$DimensionBehaviour.FIXED;
-        return (constraintWidget$DimensionBehaviour3 == constraintWidget$DimensionBehaviour7 || constraintWidget$DimensionBehaviour3 == (constraintWidget$DimensionBehaviour6 = ConstraintWidget$DimensionBehaviour.WRAP_CONTENT) || (constraintWidget$DimensionBehaviour3 == ConstraintWidget$DimensionBehaviour.MATCH_PARENT && constraintWidget$DimensionBehaviour != constraintWidget$DimensionBehaviour6)) || (constraintWidget$DimensionBehaviour4 == constraintWidget$DimensionBehaviour7 || constraintWidget$DimensionBehaviour4 == (constraintWidget$DimensionBehaviour5 = ConstraintWidget$DimensionBehaviour.WRAP_CONTENT) || (constraintWidget$DimensionBehaviour4 == ConstraintWidget$DimensionBehaviour.MATCH_PARENT && constraintWidget$DimensionBehaviour2 != constraintWidget$DimensionBehaviour5));
+    public static boolean validInGroup(ConstraintWidget.DimensionBehaviour dimensionBehaviour, ConstraintWidget.DimensionBehaviour dimensionBehaviour2, ConstraintWidget.DimensionBehaviour dimensionBehaviour3, ConstraintWidget.DimensionBehaviour dimensionBehaviour4) {
+        ConstraintWidget.DimensionBehaviour dimensionBehaviour5;
+        ConstraintWidget.DimensionBehaviour dimensionBehaviour6;
+        ConstraintWidget.DimensionBehaviour dimensionBehaviour7 = ConstraintWidget.DimensionBehaviour.FIXED;
+        return (dimensionBehaviour3 == dimensionBehaviour7 || dimensionBehaviour3 == (dimensionBehaviour6 = ConstraintWidget.DimensionBehaviour.WRAP_CONTENT) || (dimensionBehaviour3 == ConstraintWidget.DimensionBehaviour.MATCH_PARENT && dimensionBehaviour != dimensionBehaviour6)) || (dimensionBehaviour4 == dimensionBehaviour7 || dimensionBehaviour4 == (dimensionBehaviour5 = ConstraintWidget.DimensionBehaviour.WRAP_CONTENT) || (dimensionBehaviour4 == ConstraintWidget.DimensionBehaviour.MATCH_PARENT && dimensionBehaviour2 != dimensionBehaviour5));
     }
 }

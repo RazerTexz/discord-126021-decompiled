@@ -1,6 +1,6 @@
 package b.g.a.c.e0.h;
 
-import b.g.a.a.c0$a;
+import b.g.a.a.c0;
 
 /* JADX INFO: compiled from: AsExistingPropertyTypeSerializer.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -15,8 +15,8 @@ public class b extends d {
     }
 
     @Override // b.g.a.c.e0.h.d, b.g.a.c.e0.h.a, b.g.a.c.e0.g
-    public c0$a c() {
-        return c0$a.EXISTING_PROPERTY;
+    public c0.a c() {
+        return c0.a.EXISTING_PROPERTY;
     }
 
     @Override // b.g.a.c.e0.h.d, b.g.a.c.e0.h.a

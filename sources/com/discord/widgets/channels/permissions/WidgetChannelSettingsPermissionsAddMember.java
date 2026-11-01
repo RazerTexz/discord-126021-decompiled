@@ -6,24 +6,34 @@ import android.text.Editable;
 import android.view.View;
 import android.widget.ViewFlipper;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import b.a.d.j;
-import b.a.z.a.a.a;
 import b.a.z.a.a.b;
 import b.a.z.a.a.c;
+import b.a.z.a.a.e;
+import b.a.z.a.a.i;
 import b.a.z.a.a.n;
 import b.a.z.a.a.o;
-import com.discord.R$id;
-import com.discord.R$layout;
+import b.d.b.a.a;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
+import com.discord.api.permission.Permission;
+import com.discord.api.permission.PermissionOverwrite;
 import com.discord.app.AppFragment;
+import com.discord.models.guild.Guild;
+import com.discord.models.user.MeUser;
+import com.discord.stores.StoreStream;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapter;
+import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.widgets.channels.SimpleMembersAdapter;
 import com.google.android.material.textfield.TextInputLayout;
 import d0.z.d.m;
+import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import kotlin.Unit;
 import rx.Observable;
@@ -43,27 +53,117 @@ public class WidgetChannelSettingsPermissionsAddMember extends AppFragment {
     private TextInputLayout searchBox;
     private ViewFlipper viewFlipper;
 
+    public class Model {
+        private final boolean canManage;
+        private final Channel channel;
+        private final List<SimpleMembersAdapter.MemberItem> memberItems;
+
+        private Model(MeUser meUser, Guild guild, Channel channel, Long l, List<SimpleMembersAdapter.MemberItem> list) {
+            this.channel = channel;
+            this.memberItems = list;
+            boolean mfaEnabled = meUser.getMfaEnabled();
+            this.canManage = guild.getOwnerId() == meUser.getId() || PermissionUtils.canAndIsElevated(Permission.MANAGE_ROLES, l, mfaEnabled, guild.getMfaLevel()) || PermissionUtils.canAndIsElevated(8L, l, mfaEnabled, guild.getMfaLevel());
+        }
+
+        public static /* synthetic */ boolean access$000(Model model) {
+            return model.canManage;
+        }
+
+        public static /* synthetic */ Channel access$100(Model model) {
+            return model.channel;
+        }
+
+        public static /* synthetic */ List access$200(Model model) {
+            return model.memberItems;
+        }
+
+        public boolean canEqual(Object obj) {
+            return obj instanceof Model;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof Model)) {
+                return false;
+            }
+            Model model = (Model) obj;
+            if (!model.canEqual(this) || this.canManage != model.canManage) {
+                return false;
+            }
+            Channel channel = this.channel;
+            Channel channel2 = model.channel;
+            if (channel != null ? !channel.equals(channel2) : channel2 != null) {
+                return false;
+            }
+            List<SimpleMembersAdapter.MemberItem> list = this.memberItems;
+            List<SimpleMembersAdapter.MemberItem> list2 = model.memberItems;
+            return list != null ? list.equals(list2) : list2 == null;
+        }
+
+        public static Observable<Model> get(long j, long j2, Observable<String> observable) {
+            return StoreStream.getChannels().observeChannel(j2).Y(new e(j, j2, observable));
+        }
+
+        private static Observable<List<SimpleMembersAdapter.MemberItem>> getMemberItems(long j, @Nullable List<PermissionOverwrite> list, String str) {
+            return StoreStream.getGuilds().observeComputed(j).Y(new i(list, str.toLowerCase(Locale.getDefault())));
+        }
+
+        public int hashCode() {
+            int i = this.canManage ? 79 : 97;
+            Channel channel = this.channel;
+            int iHashCode = ((i + 59) * 59) + (channel == null ? 43 : channel.hashCode());
+            List<SimpleMembersAdapter.MemberItem> list = this.memberItems;
+            return (iHashCode * 59) + (list != null ? list.hashCode() : 43);
+        }
+
+        private static boolean isValid(MeUser meUser, Guild guild, Channel channel, List<SimpleMembersAdapter.MemberItem> list) {
+            return (channel == null || guild == null || meUser == null || list == null) ? false : true;
+        }
+
+        public static /* synthetic */ Observable lambda$null$0(long j, Channel channel, String str) {
+            return getMemberItems(j, channel.v(), str);
+        }
+
+        public static /* synthetic */ Model lambda$null$1(Channel channel, MeUser meUser, Guild guild, Long l, List list) {
+            if (isValid(meUser, guild, channel, list)) {
+                return new Model(meUser, guild, channel, l, list);
+            }
+            return null;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("WidgetChannelSettingsPermissionsAddMember.Model(channel=");
+            sbU.append(this.channel);
+            sbU.append(", memberItems=");
+            sbU.append(this.memberItems);
+            sbU.append(", canManage=");
+            return a.O(sbU, this.canManage, ")");
+        }
+    }
+
     public WidgetChannelSettingsPermissionsAddMember() {
-        super(R$layout.widget_channel_settings_permissions_add_member);
+        super(R.layout.widget_channel_settings_permissions_add_member);
         this.nameFilterPublisher = BehaviorSubject.l0("");
     }
 
     private void configureToolbar(Channel channel) {
-        setActionBarTitle(2131886310);
+        setActionBarTitle(R.string.add_a_member);
         setActionBarSubtitle(ChannelUtils.d(channel, requireContext(), true));
     }
 
-    private void configureUI(WidgetChannelSettingsPermissionsAddMember$Model widgetChannelSettingsPermissionsAddMember$Model) {
-        if (widgetChannelSettingsPermissionsAddMember$Model == null || !WidgetChannelSettingsPermissionsAddMember$Model.access$000(widgetChannelSettingsPermissionsAddMember$Model)) {
+    private void configureUI(Model model) {
+        if (model == null || !Model.access$000(model)) {
             if (getActivity() != null) {
                 getActivity().onBackPressed();
             }
         } else {
-            configureToolbar(WidgetChannelSettingsPermissionsAddMember$Model.access$100(widgetChannelSettingsPermissionsAddMember$Model));
-            this.membersAdapter.setData(WidgetChannelSettingsPermissionsAddMember$Model.access$200(widgetChannelSettingsPermissionsAddMember$Model), new c(this, widgetChannelSettingsPermissionsAddMember$Model));
+            configureToolbar(Model.access$100(model));
+            this.membersAdapter.setData(Model.access$200(model), new c(this, model));
             ViewFlipper viewFlipper = this.viewFlipper;
             if (viewFlipper != null) {
-                viewFlipper.setDisplayedChild(WidgetChannelSettingsPermissionsAddMember$Model.access$200(widgetChannelSettingsPermissionsAddMember$Model).isEmpty() ? 1 : 0);
+                viewFlipper.setDisplayedChild(Model.access$200(model).isEmpty() ? 1 : 0);
             }
         }
     }
@@ -75,8 +175,8 @@ public class WidgetChannelSettingsPermissionsAddMember extends AppFragment {
         j.d(context, WidgetChannelSettingsPermissionsAddMember.class, intent);
     }
 
-    public static /* synthetic */ void g(WidgetChannelSettingsPermissionsAddMember widgetChannelSettingsPermissionsAddMember, WidgetChannelSettingsPermissionsAddMember$Model widgetChannelSettingsPermissionsAddMember$Model) {
-        widgetChannelSettingsPermissionsAddMember.configureUI(widgetChannelSettingsPermissionsAddMember$Model);
+    public static /* synthetic */ void g(WidgetChannelSettingsPermissionsAddMember widgetChannelSettingsPermissionsAddMember, Model model) {
+        widgetChannelSettingsPermissionsAddMember.configureUI(model);
     }
 
     public /* synthetic */ Unit h(Editable editable) {
@@ -87,9 +187,9 @@ public class WidgetChannelSettingsPermissionsAddMember extends AppFragment {
     @Override // com.discord.app.AppFragment
     public void onViewBound(@NonNull View view) {
         super.onViewBound(view);
-        this.membersRecycler = (RecyclerView) view.findViewById(R$id.channel_settings_permissions_add_member_recycler);
-        this.searchBox = (TextInputLayout) view.findViewById(R$id.channel_settings_permissions_add_member_name_search);
-        this.viewFlipper = (ViewFlipper) view.findViewById(R$id.channel_settings_permissions_add_member_view_flipper);
+        this.membersRecycler = (RecyclerView) view.findViewById(R.id.channel_settings_permissions_add_member_recycler);
+        this.searchBox = (TextInputLayout) view.findViewById(R.id.channel_settings_permissions_add_member_name_search);
+        this.viewFlipper = (ViewFlipper) view.findViewById(R.id.channel_settings_permissions_add_member_view_flipper);
         setActionBarDisplayHomeAsUpEnabled();
         this.membersAdapter = (SimpleMembersAdapter) MGRecyclerAdapter.configure(new SimpleMembersAdapter(this.membersRecycler));
     }
@@ -102,9 +202,9 @@ public class WidgetChannelSettingsPermissionsAddMember extends AppFragment {
         ViewExtensions.addBindedTextWatcher(this.searchBox, this, new n(this));
         this.nameFilterPublisher.onNext(ViewExtensions.getTextOrEmpty(this.searchBox));
         this.nameFilterPublisher.p(750L, TimeUnit.MILLISECONDS).y(o.j).k(b.a.d.o.e(new b(longExtra), getClass()));
-        Observable<WidgetChannelSettingsPermissionsAddMember$Model> observable = WidgetChannelSettingsPermissionsAddMember$Model.get(longExtra, longExtra2, this.nameFilterPublisher);
+        Observable<Model> observable = Model.get(longExtra, longExtra2, this.nameFilterPublisher);
         m.checkNotNullParameter(this, "appComponent");
         m.checkNotNullExpressionValue(observable, "it");
-        ObservableExtensionsKt.ui(observable, this, null).k(b.a.d.o.e(new a(this), getClass()));
+        ObservableExtensionsKt.ui(observable, this, null).k(b.a.d.o.e(new b.a.z.a.a.a(this), getClass()));
     }
 }

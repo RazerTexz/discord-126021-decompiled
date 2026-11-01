@@ -20,6 +20,12 @@ public final class CodedOutputStream {
     public int d = 0;
     public int c = 0;
 
+    public class OutOfSpaceException extends IOException {
+        public OutOfSpaceException() {
+            super("CodedOutputStream was writing to a flat byte array and ran out of space.");
+        }
+    }
+
     public CodedOutputStream(OutputStream outputStream, byte[] bArr) {
         this.e = outputStream;
         this.a = bArr;
@@ -29,7 +35,7 @@ public final class CodedOutputStream {
     public final void a() throws IOException {
         OutputStream outputStream = this.e;
         if (outputStream == null) {
-            throw new CodedOutputStream$OutOfSpaceException();
+            throw new OutOfSpaceException();
         }
         outputStream.write(this.a, 0, this.c);
         this.c = 0;

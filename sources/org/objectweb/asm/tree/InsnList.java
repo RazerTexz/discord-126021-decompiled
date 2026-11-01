@@ -2,6 +2,7 @@ package org.objectweb.asm.tree;
 
 import java.util.Iterator;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 import org.objectweb.asm.MethodVisitor;
 
 /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/tree/InsnList.SCL.lombok */
@@ -78,7 +79,7 @@ public class InsnList implements Iterable<AbstractInsnNode> {
     }
 
     public ListIterator<AbstractInsnNode> iterator(int index) {
-        return new InsnList$InsnListIterator(this, index);
+        return new InsnListIterator(index);
     }
 
     public AbstractInsnNode[] toArray() {
@@ -316,6 +317,129 @@ public class InsnList implements Iterable<AbstractInsnNode> {
             } else {
                 return;
             }
+        }
+    }
+
+    /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/tree/InsnList$InsnListIterator.SCL.lombok */
+    final class InsnListIterator implements ListIterator {
+        AbstractInsnNode nextInsn;
+        AbstractInsnNode previousInsn;
+        AbstractInsnNode remove;
+
+        InsnListIterator(int index) {
+            if (index < 0 || index > InsnList.this.size()) {
+                throw new IndexOutOfBoundsException();
+            }
+            if (index == InsnList.this.size()) {
+                this.nextInsn = null;
+                this.previousInsn = InsnList.this.getLast();
+                return;
+            }
+            AbstractInsnNode currentInsn = InsnList.this.getFirst();
+            for (int i = 0; i < index; i++) {
+                currentInsn = currentInsn.nextInsn;
+            }
+            this.nextInsn = currentInsn;
+            this.previousInsn = currentInsn.previousInsn;
+        }
+
+        @Override // java.util.ListIterator, java.util.Iterator
+        public boolean hasNext() {
+            return this.nextInsn != null;
+        }
+
+        @Override // java.util.ListIterator, java.util.Iterator
+        public Object next() {
+            if (this.nextInsn == null) {
+                throw new NoSuchElementException();
+            }
+            AbstractInsnNode result = this.nextInsn;
+            this.previousInsn = result;
+            this.nextInsn = result.nextInsn;
+            this.remove = result;
+            return result;
+        }
+
+        @Override // java.util.ListIterator, java.util.Iterator
+        public void remove() {
+            if (this.remove != null) {
+                if (this.remove == this.nextInsn) {
+                    this.nextInsn = this.nextInsn.nextInsn;
+                } else {
+                    this.previousInsn = this.previousInsn.previousInsn;
+                }
+                InsnList.this.remove(this.remove);
+                this.remove = null;
+                return;
+            }
+            throw new IllegalStateException();
+        }
+
+        @Override // java.util.ListIterator
+        public boolean hasPrevious() {
+            return this.previousInsn != null;
+        }
+
+        @Override // java.util.ListIterator
+        public Object previous() {
+            if (this.previousInsn == null) {
+                throw new NoSuchElementException();
+            }
+            AbstractInsnNode result = this.previousInsn;
+            this.nextInsn = result;
+            this.previousInsn = result.previousInsn;
+            this.remove = result;
+            return result;
+        }
+
+        @Override // java.util.ListIterator
+        public int nextIndex() {
+            if (this.nextInsn == null) {
+                return InsnList.this.size();
+            }
+            if (InsnList.this.cache == null) {
+                InsnList.this.cache = InsnList.this.toArray();
+            }
+            return this.nextInsn.index;
+        }
+
+        @Override // java.util.ListIterator
+        public int previousIndex() {
+            if (this.previousInsn == null) {
+                return -1;
+            }
+            if (InsnList.this.cache == null) {
+                InsnList.this.cache = InsnList.this.toArray();
+            }
+            return this.previousInsn.index;
+        }
+
+        @Override // java.util.ListIterator
+        public void add(Object o) {
+            if (this.nextInsn != null) {
+                InsnList.this.insertBefore(this.nextInsn, (AbstractInsnNode) o);
+            } else if (this.previousInsn != null) {
+                InsnList.this.insert(this.previousInsn, (AbstractInsnNode) o);
+            } else {
+                InsnList.this.add((AbstractInsnNode) o);
+            }
+            this.previousInsn = (AbstractInsnNode) o;
+            this.remove = null;
+        }
+
+        @Override // java.util.ListIterator
+        public void set(Object o) {
+            if (this.remove != null) {
+                InsnList.this.set(this.remove, (AbstractInsnNode) o);
+                if (this.remove == this.previousInsn) {
+                    this.previousInsn = (AbstractInsnNode) o;
+                    return;
+                } else {
+                    this.nextInsn = (AbstractInsnNode) o;
+                    return;
+                }
+            }
+            throw new IllegalStateException();
         }
     }
 }

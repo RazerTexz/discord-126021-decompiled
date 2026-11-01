@@ -7,14 +7,14 @@ import kotlin.jvm.functions.Function0;
 /* JADX INFO: compiled from: WidgetForumBrowser.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetForumBrowser$configureListState$$inlined$apply$lambda$3 extends o implements Function0<Unit> {
-    public final /* synthetic */ WidgetForumBrowserViewModel$ViewState$Loaded $viewState$inlined;
+    public final /* synthetic */ WidgetForumBrowserViewModel.ViewState.Loaded $viewState$inlined;
     public final /* synthetic */ WidgetForumBrowser this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetForumBrowser$configureListState$$inlined$apply$lambda$3(WidgetForumBrowser widgetForumBrowser, WidgetForumBrowserViewModel$ViewState$Loaded widgetForumBrowserViewModel$ViewState$Loaded) {
+    public WidgetForumBrowser$configureListState$$inlined$apply$lambda$3(WidgetForumBrowser widgetForumBrowser, WidgetForumBrowserViewModel.ViewState.Loaded loaded) {
         super(0);
         this.this$0 = widgetForumBrowser;
-        this.$viewState$inlined = widgetForumBrowserViewModel$ViewState$Loaded;
+        this.$viewState$inlined = loaded;
     }
 
     @Override // kotlin.jvm.functions.Function0

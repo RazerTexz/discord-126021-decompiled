@@ -1,18 +1,15 @@
 package b.c.a.a0;
 
-import android.graphics.Path$FillType;
+import android.graphics.Path;
 import android.graphics.PointF;
 import androidx.annotation.Nullable;
-import b.c.a.a0.i0.c$a;
-import b.c.a.y.l.g$a;
-import b.c.a.y.l.h$a;
 import java.io.IOException;
 import java.util.ArrayList;
 
 /* JADX INFO: compiled from: ContentModelParser.java */
 /* JADX INFO: loaded from: classes.dex */
 public class g {
-    public static c$a a = c$a.a("ty", "d");
+    public static b.c.a.a0.i0.c.a a = b.c.a.a0.i0.c.a.a("ty", "d");
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
     /* JADX WARN: Code duplicated, block: B:133:0x01fa  */
@@ -58,7 +55,7 @@ public class g {
         boolean zF2 = false;
         switch (strT2) {
             case "el":
-                c$a c_a = e.a;
+                b.c.a.a0.i0.c.a aVar2 = e.a;
                 boolean z2 = iQ == 3;
                 String strT5 = null;
                 b.c.a.y.k.m<PointF, PointF> mVarB = null;
@@ -88,7 +85,7 @@ public class g {
                 cVar.d();
                 return aVar;
             case "fl":
-                c$a c_a2 = c0.a;
+                b.c.a.a0.i0.c.a aVar3 = c0.a;
                 int iQ3 = 1;
                 String strT6 = null;
                 b.c.a.y.k.a aVarP1 = null;
@@ -114,15 +111,15 @@ public class g {
                         zF5 = cVar.f();
                     }
                 }
-                aVar = new b.c.a.y.l.l(strT6, zF4, iQ3 == 1 ? Path$FillType.WINDING : Path$FillType.EVEN_ODD, aVarP1, dVarS1, zF5);
+                aVar = new b.c.a.y.l.l(strT6, zF4, iQ3 == 1 ? Path.FillType.WINDING : Path.FillType.EVEN_ODD, aVarP1, dVarS1, zF5);
                 while (cVar.e()) {
                     cVar.C();
                 }
                 cVar.d();
                 return aVar;
             case "gf":
-                c$a c_a3 = m.a;
-                Path$FillType path$FillType = Path$FillType.WINDING;
+                b.c.a.a0.i0.c.a aVar4 = m.a;
+                Path.FillType fillType = Path.FillType.WINDING;
                 String strT7 = null;
                 b.c.a.y.k.c cVar2 = null;
                 b.c.a.y.k.d dVarS2 = null;
@@ -164,7 +161,7 @@ public class g {
                             fVarU3 = d.u1(cVar, dVar);
                             break;
                         case 6:
-                            path$FillType = cVar.q() == 1 ? Path$FillType.WINDING : Path$FillType.EVEN_ODD;
+                            fillType = cVar.q() == 1 ? Path.FillType.WINDING : Path.FillType.EVEN_ODD;
                             break;
                         case 7:
                             zF6 = cVar.f();
@@ -175,14 +172,14 @@ public class g {
                             break;
                     }
                 }
-                aVar = new b.c.a.y.l.d(strT7, i, path$FillType, cVar2, dVarS2, fVarU2, fVarU3, null, null, zF6);
+                aVar = new b.c.a.y.l.d(strT7, i, fillType, cVar2, dVarS2, fVarU2, fVarU3, null, null, zF6);
                 while (cVar.e()) {
                     cVar.C();
                 }
                 cVar.d();
                 return aVar;
             case "gr":
-                c$a c_a4 = d0.a;
+                b.c.a.a0.i0.c.a aVar5 = d0.a;
                 ArrayList arrayList = new ArrayList();
                 while (cVar.e()) {
                     int iY5 = cVar.y(d0.a);
@@ -211,7 +208,7 @@ public class g {
                 cVar.d();
                 return aVar;
             case "gs":
-                c$a c_a5 = n.a;
+                b.c.a.a0.i0.c.a aVar6 = n.a;
                 ArrayList arrayList2 = new ArrayList();
                 String strT8 = null;
                 b.c.a.y.k.c cVar3 = null;
@@ -316,27 +313,27 @@ public class g {
                 cVar.d();
                 return aVar;
             case "mm":
-                c$a c_a6 = u.a;
-                g$a g_a = null;
+                b.c.a.a0.i0.c.a aVar7 = u.a;
+                b.c.a.y.l.g.a aVar8 = null;
                 while (cVar.e()) {
                     int iY8 = cVar.y(u.a);
                     if (iY8 == 0) {
                         strT3 = cVar.t();
                     } else if (iY8 == 1) {
                         int iQ6 = cVar.q();
-                        g$a g_a2 = g$a.MERGE;
+                        b.c.a.y.l.g.a aVar9 = b.c.a.y.l.g.a.MERGE;
                         if (iQ6 != 1) {
                             if (iQ6 == 2) {
-                                g_a = g$a.ADD;
+                                aVar8 = b.c.a.y.l.g.a.ADD;
                             } else if (iQ6 == 3) {
-                                g_a = g$a.SUBTRACT;
+                                aVar8 = b.c.a.y.l.g.a.SUBTRACT;
                             } else if (iQ6 == 4) {
-                                g_a = g$a.INTERSECT;
+                                aVar8 = b.c.a.y.l.g.a.INTERSECT;
                             } else if (iQ6 == 5) {
-                                g_a = g$a.EXCLUDE_INTERSECTIONS;
+                                aVar8 = b.c.a.y.l.g.a.EXCLUDE_INTERSECTIONS;
                             }
                         }
-                        g_a = g_a2;
+                        aVar8 = aVar9;
                     } else if (iY8 != 2) {
                         cVar.A();
                         cVar.C();
@@ -344,7 +341,7 @@ public class g {
                         zF2 = cVar.f();
                     }
                 }
-                b.c.a.y.l.g gVar = new b.c.a.y.l.g(strT3, g_a, zF2);
+                b.c.a.y.l.g gVar = new b.c.a.y.l.g(strT3, aVar8, zF2);
                 dVar.a("Animation contains merge paths. Merge paths are only supported on KitKat+ and must be manually enabled by calling enableMergePathsForKitKatAndAbove().");
                 aVar = gVar;
                 while (cVar.e()) {
@@ -353,7 +350,7 @@ public class g {
                 cVar.d();
                 return aVar;
             case "rc":
-                c$a c_a7 = y.a;
+                b.c.a.a0.i0.c.a aVar10 = y.a;
                 String strT10 = null;
                 b.c.a.y.k.m<PointF, PointF> mVarB2 = null;
                 b.c.a.y.k.f fVarU6 = null;
@@ -382,7 +379,7 @@ public class g {
                 cVar.d();
                 return aVar;
             case "rp":
-                c$a c_a8 = z.a;
+                b.c.a.a0.i0.c.a aVar11 = z.a;
                 String strT11 = null;
                 b.c.a.y.k.b bVarR1 = null;
                 b.c.a.y.k.b bVarR2 = null;
@@ -411,7 +408,7 @@ public class g {
                 cVar.d();
                 return aVar;
             case "sh":
-                c$a c_a9 = e0.a;
+                b.c.a.a0.i0.c.a aVar12 = e0.a;
                 boolean zF10 = false;
                 b.c.a.y.k.h hVar = null;
                 while (cVar.e()) {
@@ -436,9 +433,9 @@ public class g {
                 cVar.d();
                 return aVar;
             case "sr":
-                c$a c_a10 = x.a;
+                b.c.a.a0.i0.c.a aVar13 = x.a;
                 String strT12 = null;
-                h$a h_aF = null;
+                b.c.a.y.l.h.a aVarF = null;
                 b.c.a.y.k.b bVarR3 = null;
                 b.c.a.y.k.m<PointF, PointF> mVarB3 = null;
                 b.c.a.y.k.b bVarR4 = null;
@@ -453,7 +450,7 @@ public class g {
                             strT12 = cVar.t();
                             break;
                         case 1:
-                            h_aF = h$a.f(cVar.q());
+                            aVarF = b.c.a.y.l.h.a.f(cVar.q());
                             break;
                         case 2:
                             bVarR3 = d.r1(cVar, dVar, false);
@@ -485,7 +482,7 @@ public class g {
                             break;
                     }
                 }
-                mVar = new b.c.a.y.l.h(strT12, h_aF, bVarR3, mVarB3, bVarR4, bVarQ4, bVarQ5, bVarR5, bVarR6, zF11);
+                mVar = new b.c.a.y.l.h(strT12, aVarF, bVarR3, mVarB3, bVarR4, bVarQ4, bVarQ5, bVarR5, bVarR6, zF11);
                 aVar = mVar;
                 while (cVar.e()) {
                     cVar.C();
@@ -493,7 +490,7 @@ public class g {
                 cVar.d();
                 return aVar;
             case "st":
-                c$a c_a11 = f0.a;
+                b.c.a.a0.i0.c.a aVar14 = f0.a;
                 ArrayList arrayList3 = new ArrayList();
                 String strT13 = null;
                 b.c.a.y.k.b bVar2 = null;
@@ -591,7 +588,7 @@ public class g {
                 cVar.d();
                 return aVar;
             case "tm":
-                c$a c_a12 = g0.a;
+                b.c.a.a0.i0.c.a aVar15 = g0.a;
                 String strT15 = null;
                 b.c.a.y.k.b bVarR7 = null;
                 b.c.a.y.k.b bVarR8 = null;

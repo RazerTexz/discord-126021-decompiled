@@ -3,16 +3,39 @@ package androidx.versionedparcelable;
 import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"BanParcelableUsage"})
-@RestrictTo({RestrictTo$Scope.LIBRARY})
+@RestrictTo({RestrictTo.Scope.LIBRARY})
 public class ParcelImpl implements Parcelable {
     private final VersionedParcelable mParcel;
-    public static final Parcelable$Creator<ParcelImpl> CREATOR = new ParcelImpl$1();
+    public static final Parcelable.Creator<ParcelImpl> CREATOR = new AnonymousClass1();
+
+    /* JADX INFO: renamed from: androidx.versionedparcelable.ParcelImpl$1, reason: invalid class name */
+    public final class AnonymousClass1 implements Parcelable.Creator<ParcelImpl> {
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ ParcelImpl createFromParcel(Parcel parcel) {
+            return createFromParcel(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ ParcelImpl[] newArray(int i) {
+            return newArray(i);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public ParcelImpl createFromParcel(Parcel parcel) {
+            return new ParcelImpl(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public ParcelImpl[] newArray(int i) {
+            return new ParcelImpl[i];
+        }
+    }
 
     public ParcelImpl(VersionedParcelable versionedParcelable) {
         this.mParcel = versionedParcelable;

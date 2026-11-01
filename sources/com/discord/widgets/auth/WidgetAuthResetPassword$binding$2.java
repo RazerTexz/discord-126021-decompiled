@@ -2,7 +2,7 @@ package com.discord.widgets.auth;
 
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetAuthResetPasswordBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -26,11 +26,11 @@ public final /* synthetic */ class WidgetAuthResetPassword$binding$2 extends k i
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetAuthResetPasswordBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.auth_reset_password_back;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.auth_reset_password_back);
+        int i = R.id.auth_reset_password_back;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.auth_reset_password_back);
         if (materialButton != null) {
-            i = R$id.auth_reset_password_submit;
-            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.auth_reset_password_submit);
+            i = R.id.auth_reset_password_submit;
+            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.auth_reset_password_submit);
             if (materialButton2 != null) {
                 return new WidgetAuthResetPasswordBinding((CoordinatorLayout) view, materialButton, materialButton2);
             }

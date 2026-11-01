@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.ViewPropertyAnimator;
 import d0.k;
-import d0.k$a;
 import kotlin.Unit;
 import kotlinx.coroutines.CancellableContinuation;
 
@@ -19,7 +18,7 @@ public final class AnimationCoroutineUtilsKt$await$$inlined$suspendCancellableCo
         this.$this_await$inlined = viewPropertyAnimator;
     }
 
-    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator$AnimatorListener
+    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
     public void onAnimationCancel(Animator animation) {
         this.$this_await$inlined.setListener(null);
         if (this.$cont.a()) {
@@ -27,13 +26,13 @@ public final class AnimationCoroutineUtilsKt$await$$inlined$suspendCancellableCo
         }
     }
 
-    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator$AnimatorListener
+    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
     public void onAnimationEnd(Animator animation) {
         this.$this_await$inlined.setListener(null);
         if (this.$cont.a()) {
             CancellableContinuation cancellableContinuation = this.$cont;
             Unit unit = Unit.a;
-            k$a k_a = k.j;
+            k.a aVar = k.j;
             cancellableContinuation.resumeWith(k.m97constructorimpl(unit));
         }
     }

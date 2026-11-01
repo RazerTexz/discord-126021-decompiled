@@ -3,7 +3,7 @@ package com.discord.widgets.notice;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetNoticeDialogBinding;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.google.android.material.button.MaterialButton;
@@ -28,23 +28,23 @@ public final /* synthetic */ class WidgetNoticeDialog$binding$2 extends k implem
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetNoticeDialogBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.notice_body_container;
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.notice_body_container);
+        int i = R.id.notice_body_container;
+        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.notice_body_container);
         if (linearLayout != null) {
-            i = R$id.notice_body_text;
-            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R$id.notice_body_text);
+            i = R.id.notice_body_text;
+            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R.id.notice_body_text);
             if (linkifiedTextView != null) {
-                i = 2131364550;
-                MaterialButton materialButton = (MaterialButton) view.findViewById(2131364550);
+                i = R.id.notice_cancel;
+                MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.notice_cancel);
                 if (materialButton != null) {
-                    i = R$id.notice_header;
-                    TextView textView = (TextView) view.findViewById(R$id.notice_header);
+                    i = R.id.notice_header;
+                    TextView textView = (TextView) view.findViewById(R.id.notice_header);
                     if (textView != null) {
-                        i = R$id.notice_header_container;
-                        LinearLayout linearLayout2 = (LinearLayout) view.findViewById(R$id.notice_header_container);
+                        i = R.id.notice_header_container;
+                        LinearLayout linearLayout2 = (LinearLayout) view.findViewById(R.id.notice_header_container);
                         if (linearLayout2 != null) {
-                            i = 2131364555;
-                            MaterialButton materialButton2 = (MaterialButton) view.findViewById(2131364555);
+                            i = R.id.notice_ok;
+                            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.notice_ok);
                             if (materialButton2 != null) {
                                 return new WidgetNoticeDialogBinding((LinearLayout) view, linearLayout, linkifiedTextView, materialButton, textView, linearLayout2, materialButton2);
                             }

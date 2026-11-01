@@ -17,12 +17,12 @@ public final class ModelSku$Parser$parse$1<T> implements Action1<String> {
     public final /* synthetic */ Ref$ObjectRef $name;
     public final /* synthetic */ Ref$ObjectRef $premium;
     public final /* synthetic */ Ref$ObjectRef $price;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
     public final /* synthetic */ Ref$ObjectRef $type;
 
-    public ModelSku$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model$JsonReader model$JsonReader, Ref$ObjectRef ref$ObjectRef2, Ref$ObjectRef ref$ObjectRef3, Ref$ObjectRef ref$ObjectRef4, Ref$ObjectRef ref$ObjectRef5, Ref$ObjectRef ref$ObjectRef6, Ref$ObjectRef ref$ObjectRef7, Ref$ObjectRef ref$ObjectRef8) {
+    public ModelSku$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model.JsonReader jsonReader, Ref$ObjectRef ref$ObjectRef2, Ref$ObjectRef ref$ObjectRef3, Ref$ObjectRef ref$ObjectRef4, Ref$ObjectRef ref$ObjectRef5, Ref$ObjectRef ref$ObjectRef6, Ref$ObjectRef ref$ObjectRef7, Ref$ObjectRef ref$ObjectRef8) {
         this.$applicationId = ref$ObjectRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
         this.$name = ref$ObjectRef2;
         this.$id = ref$ObjectRef3;
         this.$application = ref$ObjectRef4;
@@ -80,7 +80,7 @@ public final class ModelSku$Parser$parse$1<T> implements Action1<String> {
                     break;
                 case 106934601:
                     if (str.equals("price")) {
-                        this.$price.element = (T) ModelSku$Price$Parser.INSTANCE.parse(this.$reader);
+                        this.$price.element = (T) ModelSku.Price.Parser.INSTANCE.parse(this.$reader);
                         return;
                     }
                     break;

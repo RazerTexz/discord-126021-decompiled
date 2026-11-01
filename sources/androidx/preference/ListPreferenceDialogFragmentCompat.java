@@ -1,9 +1,9 @@
 package androidx.preference;
 
-import android.content.DialogInterface$OnClickListener;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog$Builder;
+import androidx.appcompat.app.AlertDialog;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ListPreferenceDialogFragmentCompat extends PreferenceDialogFragmentCompat {
@@ -13,6 +13,20 @@ public class ListPreferenceDialogFragmentCompat extends PreferenceDialogFragment
     public int mClickedDialogEntryIndex;
     private CharSequence[] mEntries;
     private CharSequence[] mEntryValues;
+
+    /* JADX INFO: renamed from: androidx.preference.ListPreferenceDialogFragmentCompat$1, reason: invalid class name */
+    public class AnonymousClass1 implements DialogInterface.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.content.DialogInterface.OnClickListener
+        public void onClick(DialogInterface dialogInterface, int i) {
+            ListPreferenceDialogFragmentCompat listPreferenceDialogFragmentCompat = ListPreferenceDialogFragmentCompat.this;
+            listPreferenceDialogFragmentCompat.mClickedDialogEntryIndex = i;
+            listPreferenceDialogFragmentCompat.onClick(dialogInterface, -1);
+            dialogInterface.dismiss();
+        }
+    }
 
     private ListPreference getListPreference() {
         return (ListPreference) getPreference();
@@ -58,10 +72,10 @@ public class ListPreferenceDialogFragmentCompat extends PreferenceDialogFragment
     }
 
     @Override // androidx.preference.PreferenceDialogFragmentCompat
-    public void onPrepareDialogBuilder(AlertDialog$Builder alertDialog$Builder) {
-        super.onPrepareDialogBuilder(alertDialog$Builder);
-        alertDialog$Builder.setSingleChoiceItems(this.mEntries, this.mClickedDialogEntryIndex, new ListPreferenceDialogFragmentCompat$1(this));
-        alertDialog$Builder.setPositiveButton((CharSequence) null, (DialogInterface$OnClickListener) null);
+    public void onPrepareDialogBuilder(AlertDialog.Builder builder) {
+        super.onPrepareDialogBuilder(builder);
+        builder.setSingleChoiceItems(this.mEntries, this.mClickedDialogEntryIndex, new AnonymousClass1());
+        builder.setPositiveButton((CharSequence) null, (DialogInterface.OnClickListener) null);
     }
 
     @Override // androidx.preference.PreferenceDialogFragmentCompat, androidx.fragment.app.DialogFragment, androidx.fragment.app.Fragment

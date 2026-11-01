@@ -9,8 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import b.a.i.i4;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: VoiceCallActiveEventView.kt */
@@ -24,16 +23,16 @@ public final class VoiceCallActiveEventView extends ConstraintLayout {
     public VoiceCallActiveEventView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         m.checkNotNullParameter(context, "context");
-        View viewInflate = LayoutInflater.from(getContext()).inflate(R$layout.view_voice_call_active_event, (ViewGroup) this, false);
+        View viewInflate = LayoutInflater.from(getContext()).inflate(R.layout.view_voice_call_active_event, (ViewGroup) this, false);
         addView(viewInflate);
-        int i = R$id.channel_name;
-        TextView textView = (TextView) viewInflate.findViewById(R$id.channel_name);
+        int i = R.id.channel_name;
+        TextView textView = (TextView) viewInflate.findViewById(R.id.channel_name);
         if (textView != null) {
-            i = R$id.event_icon;
-            ImageView imageView = (ImageView) viewInflate.findViewById(R$id.event_icon);
+            i = R.id.event_icon;
+            ImageView imageView = (ImageView) viewInflate.findViewById(R.id.event_icon);
             if (imageView != null) {
-                i = R$id.event_name;
-                TextView textView2 = (TextView) viewInflate.findViewById(R$id.event_name);
+                i = R.id.event_name;
+                TextView textView2 = (TextView) viewInflate.findViewById(R.id.event_name);
                 if (textView2 != null) {
                     i4 i4Var = new i4((ConstraintLayout) viewInflate, textView, imageView, textView2);
                     m.checkNotNullExpressionValue(i4Var, "ViewVoiceCallActiveEvent…rom(context), this, true)");

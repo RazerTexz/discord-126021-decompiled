@@ -10,17 +10,17 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreMessagesLoader$tryLoadMessages$$inlined$apply$lambda$2 extends o implements Function1<Error, Unit> {
     public final /* synthetic */ long $channelId$inlined;
-    public final /* synthetic */ StoreMessagesLoader$ChannelLoadedState $channelLoadedState$inlined;
-    public final /* synthetic */ StoreMessagesLoader$tryLoadMessages$4 $loadPagedMessages$4$inlined;
+    public final /* synthetic */ StoreMessagesLoader.ChannelLoadedState $channelLoadedState$inlined;
+    public final /* synthetic */ StoreMessagesLoader.AnonymousClass4 $loadPagedMessages$4$inlined;
     public final /* synthetic */ StoreMessagesLoader this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public StoreMessagesLoader$tryLoadMessages$$inlined$apply$lambda$2(StoreMessagesLoader storeMessagesLoader, StoreMessagesLoader$ChannelLoadedState storeMessagesLoader$ChannelLoadedState, long j, StoreMessagesLoader$tryLoadMessages$4 storeMessagesLoader$tryLoadMessages$4) {
+    public StoreMessagesLoader$tryLoadMessages$$inlined$apply$lambda$2(StoreMessagesLoader storeMessagesLoader, StoreMessagesLoader.ChannelLoadedState channelLoadedState, long j, StoreMessagesLoader.AnonymousClass4 anonymousClass4) {
         super(1);
         this.this$0 = storeMessagesLoader;
-        this.$channelLoadedState$inlined = storeMessagesLoader$ChannelLoadedState;
+        this.$channelLoadedState$inlined = channelLoadedState;
         this.$channelId$inlined = j;
-        this.$loadPagedMessages$4$inlined = storeMessagesLoader$tryLoadMessages$4;
+        this.$loadPagedMessages$4$inlined = anonymousClass4;
     }
 
     @Override // kotlin.jvm.functions.Function1

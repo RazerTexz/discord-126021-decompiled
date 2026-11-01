@@ -2,7 +2,7 @@ package f0.e0.k.i;
 
 import android.annotation.SuppressLint;
 import android.net.ssl.SSLSockets;
-import android.os.Build$VERSION;
+import android.os.Build;
 import d0.z.d.m;
 import f0.y;
 import java.io.IOException;
@@ -23,7 +23,7 @@ public final class a implements k {
 
     @Override // f0.e0.k.i.k
     public boolean b() {
-        return f0.e0.k.h.c.c() && Build$VERSION.SDK_INT >= 29;
+        return f0.e0.k.h.c.c() && Build.VERSION.SDK_INT >= 29;
     }
 
     @Override // f0.e0.k.i.k

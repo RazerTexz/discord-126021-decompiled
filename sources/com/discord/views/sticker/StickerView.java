@@ -3,7 +3,7 @@ package com.discord.views.sticker;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View$OnClickListener;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import b.a.i.r1;
@@ -14,8 +14,7 @@ import b.a.y.q0.e;
 import b.a.y.q0.f;
 import b.a.y.q0.h;
 import b.f.g.e.v;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.sticker.BaseSticker;
 import com.discord.api.sticker.Sticker;
 import com.discord.api.sticker.StickerFormatType;
@@ -24,7 +23,7 @@ import com.discord.app.AppLog;
 import com.discord.rlottie.RLottieImageView;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUserSettings;
-import com.discord.utilities.analytics.Traits$Payment$Type;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.apng.ApngUtils;
 import com.discord.utilities.images.MGImages;
 import com.discord.utilities.logging.Logger;
@@ -62,15 +61,15 @@ public final class StickerView extends FrameLayout {
     public StickerView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(getContext()).inflate(R$layout.sticker_view, this);
-        int i = R$id.sticker_view_imageview;
-        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R$id.sticker_view_imageview);
+        LayoutInflater.from(getContext()).inflate(R.layout.sticker_view, this);
+        int i = R.id.sticker_view_imageview;
+        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R.id.sticker_view_imageview);
         if (simpleDraweeView != null) {
-            i = R$id.sticker_view_lottie;
-            RLottieImageView rLottieImageView = (RLottieImageView) findViewById(R$id.sticker_view_lottie);
+            i = R.id.sticker_view_lottie;
+            RLottieImageView rLottieImageView = (RLottieImageView) findViewById(R.id.sticker_view_lottie);
             if (rLottieImageView != null) {
-                i = R$id.sticker_view_placeholder;
-                ImageView imageView = (ImageView) findViewById(R$id.sticker_view_placeholder);
+                i = R.id.sticker_view_placeholder;
+                ImageView imageView = (ImageView) findViewById(R.id.sticker_view_placeholder);
                 if (imageView != null) {
                     r1 r1Var = new r1(this, simpleDraweeView, rLottieImageView, imageView);
                     m.checkNotNullExpressionValue(r1Var, "StickerViewBinding.infla…ater.from(context), this)");
@@ -107,7 +106,7 @@ public final class StickerView extends FrameLayout {
             }
             Context context = getContext();
             m.checkNotNullExpressionValue(context, "context");
-            return b.h(context, 2131895922, new Object[]{((StickerPartial) sticker).getName()}, null, 4);
+            return b.h(context, R.string.sticker_a11y_label, new Object[]{((StickerPartial) sticker).getName()}, null, 4);
         }
         Context context2 = getContext();
         m.checkNotNullExpressionValue(context2, "context");
@@ -116,7 +115,7 @@ public final class StickerView extends FrameLayout {
         sb.append(sticker2.getName());
         sb.append(", ");
         sb.append(sticker2.getDescription());
-        return b.h(context2, 2131895922, new Object[]{sb.toString()}, null, 4);
+        return b.h(context2, R.string.sticker_a11y_label, new Object[]{sb.toString()}, null, 4);
     }
 
     public final void d(BaseSticker sticker, Integer stickerAnimationSettings) {
@@ -181,7 +180,7 @@ public final class StickerView extends FrameLayout {
             StickerUtils stickerUtils = StickerUtils.INSTANCE;
             Context context = getContext();
             m.checkNotNullExpressionValue(context, "context");
-            Observable observableJ = Observable.j(ObservableExtensionsKt.restSubscribeOn$default(stickerUtils.fetchSticker(context, sticker), false, 1, null), StoreUserSettings.observeStickerAnimationSettings$default(StoreStream.Companion.getUserSettings(), false, 1, null), a.j);
+            Observable observableJ = Observable.j(ObservableExtensionsKt.restSubscribeOn$default(stickerUtils.fetchSticker(context, sticker), false, 1, null), StoreUserSettings.observeStickerAnimationSettings$default(StoreStream.INSTANCE.getUserSettings(), false, 1, null), a.j);
             m.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…lobalAnimationSettings) }");
             ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(observableJ), StickerView.class, (Context) null, new b.a.y.q0.b(this), (Function1) null, (Function0) null, (Function0) null, new d(this, stickerAnimationSettings, sticker), 58, (Object) null);
             return;
@@ -204,7 +203,7 @@ public final class StickerView extends FrameLayout {
         StickerUtils stickerUtils2 = StickerUtils.INSTANCE;
         Context context2 = getContext();
         m.checkNotNullExpressionValue(context2, "context");
-        Observable observableJ2 = Observable.j(ObservableExtensionsKt.restSubscribeOn$default(stickerUtils2.fetchSticker(context2, sticker), false, 1, null), StoreUserSettings.observeStickerAnimationSettings$default(StoreStream.Companion.getUserSettings(), false, 1, null), e.j);
+        Observable observableJ2 = Observable.j(ObservableExtensionsKt.restSubscribeOn$default(stickerUtils2.fetchSticker(context2, sticker), false, 1, null), StoreUserSettings.observeStickerAnimationSettings$default(StoreStream.INSTANCE.getUserSettings(), false, 1, null), e.j);
         m.checkNotNullExpressionValue(observableJ2, "Observable.combineLatest…lobalAnimationSettings) }");
         ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(observableJ2), StickerView.class, (Context) null, new f(this), (Function1) null, (Function0) null, (Function0) null, new h(this, stickerAnimationSettings, sticker), 58, (Object) null);
     }
@@ -229,7 +228,7 @@ public final class StickerView extends FrameLayout {
     }
 
     @Override // android.view.View
-    public void setOnClickListener(View$OnClickListener onClickListener) {
+    public void setOnClickListener(View.OnClickListener onClickListener) {
         BaseSticker baseSticker = this.sticker;
         StickerFormatType formatType = baseSticker != null ? baseSticker.getFormatType() : null;
         if (formatType == null) {

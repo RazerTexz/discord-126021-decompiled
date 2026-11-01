@@ -6,7 +6,7 @@ import d0.z.d.m;
 
 /* JADX INFO: compiled from: EmojiNode.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class EmojiNode$Companion$renderEmoji$1 implements EmojiNode$RenderContext {
+public final class EmojiNode$Companion$renderEmoji$1 implements EmojiNode.RenderContext {
     public final /* synthetic */ boolean $isAnimationEnabled;
     public final /* synthetic */ SimpleDraweeSpanTextView $this_renderEmoji;
     private final Context context;
@@ -19,20 +19,20 @@ public final class EmojiNode$Companion$renderEmoji$1 implements EmojiNode$Render
         this.isAnimationEnabled = z2;
     }
 
-    @Override // com.discord.utilities.textprocessing.node.EmojiNode$RenderContext
+    @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
     public Context getContext() {
         return this.context;
     }
 
-    @Override // com.discord.utilities.textprocessing.node.EmojiNode$RenderContext
+    @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
     /* JADX INFO: renamed from: isAnimationEnabled, reason: from getter */
     public boolean getIsAnimationEnabled() {
         return this.isAnimationEnabled;
     }
 
-    @Override // com.discord.utilities.textprocessing.node.EmojiNode$RenderContext
-    public void onEmojiClicked(EmojiNode$EmojiIdAndType emojiNode$EmojiIdAndType) {
-        m.checkNotNullParameter(emojiNode$EmojiIdAndType, "emojiIdAndType");
-        EmojiNode$RenderContext$DefaultImpls.onEmojiClicked(this, emojiNode$EmojiIdAndType);
+    @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
+    public void onEmojiClicked(EmojiNode.EmojiIdAndType emojiIdAndType) {
+        m.checkNotNullParameter(emojiIdAndType, "emojiIdAndType");
+        EmojiNode.RenderContext.DefaultImpls.onEmojiClicked(this, emojiIdAndType);
     }
 }

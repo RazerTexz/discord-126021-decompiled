@@ -1,7 +1,6 @@
 package b.i.a.f.i.b;
 
 import android.app.ActivityManager;
-import android.app.ActivityManager$RunningAppProcessInfo;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.TextUtils;
@@ -24,9 +23,9 @@ public final class f9 {
         Objects.requireNonNull((b.i.a.f.e.o.c) this.a.a.o);
         if (d4VarL.u(System.currentTimeMillis())) {
             this.a.l().f1524s.a(true);
-            ActivityManager$RunningAppProcessInfo activityManager$RunningAppProcessInfo = new ActivityManager$RunningAppProcessInfo();
-            ActivityManager.getMyMemoryState(activityManager$RunningAppProcessInfo);
-            if (activityManager$RunningAppProcessInfo.importance == 100) {
+            ActivityManager.RunningAppProcessInfo runningAppProcessInfo = new ActivityManager.RunningAppProcessInfo();
+            ActivityManager.getMyMemoryState(runningAppProcessInfo);
+            if (runningAppProcessInfo.importance == 100) {
                 this.a.g().n.a("Detected application was in foreground");
                 Objects.requireNonNull((b.i.a.f.e.o.c) this.a.a.o);
                 c(System.currentTimeMillis(), false);

@@ -5,15 +5,15 @@ import java.io.IOException;
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class b implements Runnable {
-    public final /* synthetic */ b0$a j;
+    public final /* synthetic */ b0.a j;
     public final /* synthetic */ b0 k;
     public final /* synthetic */ t l;
     public final /* synthetic */ w m;
     public final /* synthetic */ IOException n;
     public final /* synthetic */ boolean o;
 
-    public /* synthetic */ b(b0$a b0_a, b0 b0Var, t tVar, w wVar, IOException iOException, boolean z2) {
-        this.j = b0_a;
+    public /* synthetic */ b(b0.a aVar, b0 b0Var, t tVar, w wVar, IOException iOException, boolean z2) {
+        this.j = aVar;
         this.k = b0Var;
         this.l = tVar;
         this.m = wVar;
@@ -23,7 +23,7 @@ public final /* synthetic */ class b implements Runnable {
 
     @Override // java.lang.Runnable
     public final void run() {
-        b0$a b0_a = this.j;
-        this.k.g0(b0_a.a, b0_a.f807b, this.l, this.m, this.n, this.o);
+        b0.a aVar = this.j;
+        this.k.g0(aVar.a, aVar.f807b, this.l, this.m, this.n, this.o);
     }
 }

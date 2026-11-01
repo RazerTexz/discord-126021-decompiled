@@ -7,11 +7,11 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.concurrent.futures.CallbackToFutureAdapter;
-import androidx.concurrent.futures.CallbackToFutureAdapter$Completer;
 import b.d.b.a.a;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import x.a.a.d.b;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ConnectionHolder implements ServiceConnection {
@@ -27,24 +27,31 @@ public class ConnectionHolder implements ServiceConnection {
     private final Runnable mCloseRunnable;
 
     @NonNull
-    private List<CallbackToFutureAdapter$Completer<TrustedWebActivityServiceConnection>> mCompleters;
+    private List<CallbackToFutureAdapter.Completer<TrustedWebActivityServiceConnection>> mCompleters;
 
     @Nullable
     private TrustedWebActivityServiceConnection mService;
     private int mState;
 
     @NonNull
-    private final ConnectionHolder$WrapperFactory mWrapperFactory;
+    private final WrapperFactory mWrapperFactory;
+
+    public class WrapperFactory {
+        @NonNull
+        public TrustedWebActivityServiceConnection create(ComponentName componentName, IBinder iBinder) {
+            return new TrustedWebActivityServiceConnection(b.a.asInterface(iBinder), componentName);
+        }
+    }
 
     @MainThread
     public ConnectionHolder(@NonNull Runnable runnable) {
-        this(runnable, new ConnectionHolder$WrapperFactory());
+        this(runnable, new WrapperFactory());
     }
 
-    public /* synthetic */ Object a(CallbackToFutureAdapter$Completer callbackToFutureAdapter$Completer) throws Exception {
+    public /* synthetic */ Object a(CallbackToFutureAdapter.Completer completer) throws Exception {
         int i = this.mState;
         if (i == 0) {
-            this.mCompleters.add(callbackToFutureAdapter$Completer);
+            this.mCompleters.add(completer);
         } else {
             if (i != 1) {
                 if (i == 2) {
@@ -59,7 +66,7 @@ public class ConnectionHolder implements ServiceConnection {
             if (trustedWebActivityServiceConnection == null) {
                 throw new IllegalStateException("ConnectionHolder state is incorrect.");
             }
-            callbackToFutureAdapter$Completer.set(trustedWebActivityServiceConnection);
+            completer.set(trustedWebActivityServiceConnection);
         }
         StringBuilder sbU = a.U("ConnectionHolder, state = ");
         sbU.append(this.mState);
@@ -68,7 +75,7 @@ public class ConnectionHolder implements ServiceConnection {
 
     @MainThread
     public void cancel(@NonNull Exception exc) {
-        Iterator<CallbackToFutureAdapter$Completer<TrustedWebActivityServiceConnection>> it = this.mCompleters.iterator();
+        Iterator<CallbackToFutureAdapter.Completer<TrustedWebActivityServiceConnection>> it = this.mCompleters.iterator();
         while (it.hasNext()) {
             it.next().setException(exc);
         }
@@ -88,7 +95,7 @@ public class ConnectionHolder implements ServiceConnection {
     @MainThread
     public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
         this.mService = this.mWrapperFactory.create(componentName, iBinder);
-        Iterator<CallbackToFutureAdapter$Completer<TrustedWebActivityServiceConnection>> it = this.mCompleters.iterator();
+        Iterator<CallbackToFutureAdapter.Completer<TrustedWebActivityServiceConnection>> it = this.mCompleters.iterator();
         while (it.hasNext()) {
             it.next().set(this.mService);
         }
@@ -105,10 +112,10 @@ public class ConnectionHolder implements ServiceConnection {
     }
 
     @MainThread
-    public ConnectionHolder(@NonNull Runnable runnable, @NonNull ConnectionHolder$WrapperFactory connectionHolder$WrapperFactory) {
+    public ConnectionHolder(@NonNull Runnable runnable, @NonNull WrapperFactory wrapperFactory) {
         this.mState = 0;
         this.mCompleters = new ArrayList();
         this.mCloseRunnable = runnable;
-        this.mWrapperFactory = connectionHolder$WrapperFactory;
+        this.mWrapperFactory = wrapperFactory;
     }
 }

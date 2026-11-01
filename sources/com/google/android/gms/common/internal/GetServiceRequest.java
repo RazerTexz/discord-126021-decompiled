@@ -5,7 +5,7 @@ import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import android.os.RemoteException;
 import android.util.Log;
 import androidx.annotation.Nullable;
@@ -13,7 +13,6 @@ import androidx.annotation.RecentlyNonNull;
 import b.i.a.f.e.c;
 import b.i.a.f.e.k.a;
 import b.i.a.f.e.k.g;
-import b.i.a.f.e.k.g$a;
 import b.i.a.f.e.k.p0;
 import com.google.android.gms.common.Feature;
 import com.google.android.gms.common.api.Scope;
@@ -24,7 +23,7 @@ import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 public class GetServiceRequest extends AbstractSafeParcelable {
 
     @RecentlyNonNull
-    public static final Parcelable$Creator<GetServiceRequest> CREATOR = new p0();
+    public static final Parcelable.Creator<GetServiceRequest> CREATOR = new p0();
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public Feature[] f3005s;
@@ -58,7 +57,7 @@ public class GetServiceRequest extends AbstractSafeParcelable {
         if (i < 2) {
             Account accountB = null;
             if (iBinder != null) {
-                g gVarG = g$a.g(iBinder);
+                g gVarG = g.a.g(iBinder);
                 int i5 = a.a;
                 if (gVarG != null) {
                     long jClearCallingIdentity = Binder.clearCallingIdentity();

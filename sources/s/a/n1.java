@@ -13,7 +13,7 @@ public final class n1 extends a implements Job {
     public static final n1 j = new n1();
 
     public n1() {
-        super(Job.h);
+        super(Job.INSTANCE);
     }
 
     @Override // kotlinx.coroutines.Job

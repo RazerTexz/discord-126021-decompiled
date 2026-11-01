@@ -20,18 +20,47 @@ public abstract class a<T extends View, Output> {
     public int e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public a$c f1957b;
+    public c f1957b;
     public int f;
     public int g;
     public int h;
     public int i;
     public static final b.o.a.b a = new b.o.a.b(a.class.getSimpleName());
 
+    /* JADX INFO: renamed from: b.o.a.w.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: CameraPreview.java */
+    public class RunnableC0180a implements Runnable {
+        public final /* synthetic */ TaskCompletionSource j;
+
+        public RunnableC0180a(TaskCompletionSource taskCompletionSource) {
+            this.j = taskCompletionSource;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            View viewK = a.this.k();
+            ViewParent parent = viewK.getParent();
+            if (parent instanceof ViewGroup) {
+                ((ViewGroup) parent).removeView(viewK);
+            }
+            this.j.a.s(null);
+        }
+    }
+
+    /* JADX INFO: compiled from: CameraPreview.java */
+    public interface b {
+        void a();
+    }
+
+    /* JADX INFO: compiled from: CameraPreview.java */
+    public interface c {
+    }
+
     public a(@NonNull Context context, @NonNull ViewGroup viewGroup) {
         this.c = (T) n(context, viewGroup);
     }
 
-    public void e(@Nullable a$b a_b) {
+    public void e(@Nullable b bVar) {
     }
 
     public final void f(int i, int i2) {
@@ -41,18 +70,18 @@ public abstract class a<T extends View, Output> {
         if (i > 0 && i2 > 0) {
             e(null);
         }
-        a$c a_c = this.f1957b;
-        if (a_c != null) {
-            ((b.o.a.n.i) a_c).V();
+        c cVar = this.f1957b;
+        if (cVar != null) {
+            ((b.o.a.n.i) cVar).V();
         }
     }
 
     public final void g() {
         this.e = 0;
         this.f = 0;
-        a$c a_c = this.f1957b;
-        if (a_c != null) {
-            b.o.a.n.i iVar = (b.o.a.n.i) a_c;
+        c cVar = this.f1957b;
+        if (cVar != null) {
+            b.o.a.n.i iVar = (b.o.a.n.i) cVar;
             b.o.a.n.i.j.a(1, "onSurfaceDestroyed");
             iVar.N0(false);
             iVar.M0(false);
@@ -69,9 +98,9 @@ public abstract class a<T extends View, Output> {
         if (i > 0 && i2 > 0) {
             e(null);
         }
-        a$c a_c = this.f1957b;
-        if (a_c != null) {
-            b.o.a.n.g gVar = (b.o.a.n.g) a_c;
+        c cVar = this.f1957b;
+        if (cVar != null) {
+            b.o.a.n.g gVar = (b.o.a.n.g) cVar;
             Objects.requireNonNull(gVar);
             b.o.a.n.i.j.a(1, "onSurfaceChanged:", "Size is", gVar.U0(b.o.a.n.t.b.VIEW));
             b.o.a.n.v.f fVar = gVar.n;
@@ -113,7 +142,7 @@ public abstract class a<T extends View, Output> {
         }
         Handler handler = new Handler(Looper.getMainLooper());
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        handler.post(new a$a(this, taskCompletionSource));
+        handler.post(new RunnableC0180a(taskCompletionSource));
         try {
             b.i.a.f.e.o.f.j(taskCompletionSource.a);
         } catch (Exception unused) {
@@ -140,20 +169,20 @@ public abstract class a<T extends View, Output> {
         e(null);
     }
 
-    public void t(@Nullable a$c a_c) {
-        a$c a_c2;
-        a$c a_c3;
-        if (m() && (a_c3 = this.f1957b) != null) {
-            b.o.a.n.i iVar = (b.o.a.n.i) a_c3;
+    public void t(@Nullable c cVar) {
+        c cVar2;
+        c cVar3;
+        if (m() && (cVar3 = this.f1957b) != null) {
+            b.o.a.n.i iVar = (b.o.a.n.i) cVar3;
             b.o.a.n.i.j.a(1, "onSurfaceDestroyed");
             iVar.N0(false);
             iVar.M0(false);
         }
-        this.f1957b = a_c;
-        if (!m() || (a_c2 = this.f1957b) == null) {
+        this.f1957b = cVar;
+        if (!m() || (cVar2 = this.f1957b) == null) {
             return;
         }
-        ((b.o.a.n.i) a_c2).V();
+        ((b.o.a.n.i) cVar2).V();
     }
 
     public boolean u() {

@@ -3,7 +3,6 @@ package com.discord.widgets.chat.overlay;
 import androidx.core.app.NotificationCompat;
 import com.discord.stores.StoreMessages;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import d0.z.d.m;
 import j0.k.b;
 import j0.l.e.k;
@@ -12,25 +11,49 @@ import rx.Observable;
 
 /* JADX INFO: compiled from: WidgetChatOverlay.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetChatOverlay$OldMessageModel$Companion$get$1<T, R> implements b<Long, Observable<? extends WidgetChatOverlay$OldMessageModel>> {
+public final class WidgetChatOverlay$OldMessageModel$Companion$get$1<T, R> implements b<Long, Observable<? extends WidgetChatOverlay.OldMessageModel>> {
     public static final WidgetChatOverlay$OldMessageModel$Companion$get$1 INSTANCE = new WidgetChatOverlay$OldMessageModel$Companion$get$1();
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.overlay.WidgetChatOverlay$OldMessageModel$Companion$get$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatOverlay.kt */
+    public final class AnonymousClass1<T, R> implements b<Boolean, WidgetChatOverlay.OldMessageModel> {
+        public final /* synthetic */ Long $selectedChannelId;
+
+        public AnonymousClass1(Long l) {
+            this.$selectedChannelId = l;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ WidgetChatOverlay.OldMessageModel call(Boolean bool) {
+            return call2(bool);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final WidgetChatOverlay.OldMessageModel call2(Boolean bool) {
+            Long l = this.$selectedChannelId;
+            m.checkNotNullExpressionValue(l, "selectedChannelId");
+            long jLongValue = l.longValue();
+            m.checkNotNullExpressionValue(bool, "isViewingOldMessages");
+            return new WidgetChatOverlay.OldMessageModel(jLongValue, bool.booleanValue());
+        }
+    }
+
     @Override // j0.k.b
-    public /* bridge */ /* synthetic */ Observable<? extends WidgetChatOverlay$OldMessageModel> call(Long l) {
+    public /* bridge */ /* synthetic */ Observable<? extends WidgetChatOverlay.OldMessageModel> call(Long l) {
         return call2(l);
     }
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-    public final Observable<? extends WidgetChatOverlay$OldMessageModel> call2(Long l) {
+    public final Observable<? extends WidgetChatOverlay.OldMessageModel> call2(Long l) {
         Observable observableJ;
         if (l.longValue() <= 0) {
             observableJ = new k(Boolean.FALSE);
         } else {
-            StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-            StoreMessages messages = storeStream$Companion.getMessages();
+            StoreStream.Companion companion = StoreStream.INSTANCE;
+            StoreMessages messages = companion.getMessages();
             m.checkNotNullExpressionValue(l, "selectedChannelId");
-            observableJ = Observable.j(messages.observeIsDetached(l.longValue()), storeStream$Companion.getChat().observeInteractionState().y(new WidgetChatOverlay$OldMessageModel$Companion$get$1$isViewingOldMessagesObs$1(l)).p(200L, TimeUnit.MILLISECONDS), WidgetChatOverlay$OldMessageModel$Companion$get$1$isViewingOldMessagesObs$2.INSTANCE);
+            observableJ = Observable.j(messages.observeIsDetached(l.longValue()), companion.getChat().observeInteractionState().y(new WidgetChatOverlay$OldMessageModel$Companion$get$1$isViewingOldMessagesObs$1(l)).p(200L, TimeUnit.MILLISECONDS), WidgetChatOverlay$OldMessageModel$Companion$get$1$isViewingOldMessagesObs$2.INSTANCE);
         }
-        return Observable.m(new k(Boolean.FALSE), observableJ).r().G(new WidgetChatOverlay$OldMessageModel$Companion$get$1$1(l));
+        return Observable.m(new k(Boolean.FALSE), observableJ).r().G(new AnonymousClass1(l));
     }
 }

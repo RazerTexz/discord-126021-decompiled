@@ -95,10 +95,10 @@ public final class WidgetChannelListModel$Companion$guildListBuilder$$inlined$fo
         if (!zHasAccess && !z2) {
             return null;
         }
-        WidgetChannelListModel$Companion$TextLikeChannelData widgetChannelListModel$Companion$TextLikeChannelDataInvoke$default = WidgetChannelListModel$Companion$guildListBuilder$$inlined$forEach$lambda$1.invoke$default(this.$getTextLikeChannelData$1, this.$channel, this.$muted, null, 4, null);
-        if (widgetChannelListModel$Companion$TextLikeChannelDataInvoke$default.getHide()) {
+        WidgetChannelListModel.Companion.TextLikeChannelData textLikeChannelDataInvoke$default = WidgetChannelListModel$Companion$guildListBuilder$$inlined$forEach$lambda$1.invoke$default(this.$getTextLikeChannelData$1, this.$channel, this.$muted, null, 4, null);
+        if (textLikeChannelDataInvoke$default.getHide()) {
             return null;
         }
-        return new ChannelListItemTextChannel(this.$channel, widgetChannelListModel$Companion$TextLikeChannelDataInvoke$default.getSelected(), widgetChannelListModel$Companion$TextLikeChannelDataInvoke$default.getMentionCount(), widgetChannelListModel$Companion$TextLikeChannelDataInvoke$default.getUnread(), this.$muted, widgetChannelListModel$Companion$TextLikeChannelDataInvoke$default.getLocked(), this.$channelsWithActiveThreads$inlined.contains(Long.valueOf(this.$channel.getId())), !zHasAccess && z2, z2);
+        return new ChannelListItemTextChannel(this.$channel, textLikeChannelDataInvoke$default.getSelected(), textLikeChannelDataInvoke$default.getMentionCount(), textLikeChannelDataInvoke$default.getUnread(), this.$muted, textLikeChannelDataInvoke$default.getLocked(), this.$channelsWithActiveThreads$inlined.contains(Long.valueOf(this.$channel.getId())), !zHasAccess && z2, z2);
     }
 }

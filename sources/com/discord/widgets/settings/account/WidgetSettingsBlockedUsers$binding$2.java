@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetSettingsBlockedUsersBinding;
 import d0.z.d.k;
@@ -28,14 +28,14 @@ public final /* synthetic */ class WidgetSettingsBlockedUsers$binding$2 extends 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSettingsBlockedUsersBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.blocked_users_flipper;
-        AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R$id.blocked_users_flipper);
+        int i = R.id.blocked_users_flipper;
+        AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R.id.blocked_users_flipper);
         if (appViewFlipper != null) {
-            i = R$id.blocked_users_list_recycler;
-            RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.blocked_users_list_recycler);
+            i = R.id.blocked_users_list_recycler;
+            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.blocked_users_list_recycler);
             if (recyclerView != null) {
-                i = R$id.friends_list_item_empty_no_blocked;
-                ImageView imageView = (ImageView) view.findViewById(R$id.friends_list_item_empty_no_blocked);
+                i = R.id.friends_list_item_empty_no_blocked;
+                ImageView imageView = (ImageView) view.findViewById(R.id.friends_list_item_empty_no_blocked);
                 if (imageView != null) {
                     return new WidgetSettingsBlockedUsersBinding((CoordinatorLayout) view, appViewFlipper, recyclerView, imageView);
                 }

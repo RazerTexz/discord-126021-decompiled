@@ -18,7 +18,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetDirectoriesSearchViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetDirectoriesSearchViewModel$Companion$observeStores$1 extends o implements Function0<WidgetDirectoriesSearchViewModel$ViewState> {
+public final class WidgetDirectoriesSearchViewModel$Companion$observeStores$1 extends o implements Function0<WidgetDirectoriesSearchViewModel.ViewState> {
     public final /* synthetic */ long $channelId;
     public final /* synthetic */ StoreGuildSelected $guildSelectedStore;
     public final /* synthetic */ StoreGuilds $guildsStore;
@@ -34,13 +34,13 @@ public final class WidgetDirectoriesSearchViewModel$Companion$observeStores$1 ex
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ WidgetDirectoriesSearchViewModel$ViewState invoke() {
+    public /* bridge */ /* synthetic */ WidgetDirectoriesSearchViewModel.ViewState invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final WidgetDirectoriesSearchViewModel$ViewState invoke() {
+    public final WidgetDirectoriesSearchViewModel.ViewState invoke() {
         Map<Long, Long> guildPermissions = this.$permissionsStore.getGuildPermissions();
         Guild guild = this.$guildsStore.getGuild(this.$guildSelectedStore.getSelectedGuildId());
         Map<Long, Long> permissionsByChannel = this.$permissionsStore.getPermissionsByChannel();
@@ -57,6 +57,6 @@ public final class WidgetDirectoriesSearchViewModel$Companion$observeStores$1 ex
         while (it.hasNext()) {
             arrayList2.add(Long.valueOf(((Guild) it.next()).getId()));
         }
-        return new WidgetDirectoriesSearchViewModel$ViewState(guild, null, null, setKeySet, u.toSet(arrayList2), PermissionUtils.can(Permission.SEND_MESSAGES, permissionsByChannel.get(Long.valueOf(this.$channelId))), null, 70, null);
+        return new WidgetDirectoriesSearchViewModel.ViewState(guild, null, null, setKeySet, u.toSet(arrayList2), PermissionUtils.can(Permission.SEND_MESSAGES, permissionsByChannel.get(Long.valueOf(this.$channelId))), null, 70, null);
     }
 }

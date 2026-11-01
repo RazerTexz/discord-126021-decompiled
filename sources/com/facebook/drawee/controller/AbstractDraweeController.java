@@ -10,14 +10,9 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import b.f.d.d.f;
 import b.f.d.d.i;
-import b.f.g.b.a;
-import b.f.g.b.a$a;
 import b.f.g.b.c;
-import b.f.g.b.c$a;
 import b.f.g.b.d;
 import b.f.g.e.p;
-import b.f.h.b.a.b$a;
-import b.f.j.r.b;
 import com.facebook.datasource.DataSource;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.interfaces.DraweeController;
@@ -27,9 +22,9 @@ import java.util.Objects;
 import java.util.concurrent.Executor;
 
 /* JADX INFO: loaded from: classes.dex */
-public abstract class AbstractDraweeController<T, INFO> implements DraweeController, a$a, b.f.g.g.a$a {
+public abstract class AbstractDraweeController<T, INFO> implements DraweeController, b.f.g.b.a.InterfaceC0068a, b.f.g.g.a.InterfaceC0069a {
     public final c d;
-    public final a e;
+    public final b.f.g.b.a e;
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public String f2886s;
@@ -56,7 +51,73 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
     public static final Map<String, Object> f2885b = f.of("origin", "memory_bitmap", "origin_sub", "shortcut");
     public static final Class<?> c = AbstractDraweeController.class;
 
-    public AbstractDraweeController(a aVar, Executor executor, String str, Object obj) {
+    public class a extends b.f.e.d<T> {
+        public final /* synthetic */ String a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final /* synthetic */ boolean f2887b;
+
+        public a(String str, boolean z2) {
+            this.a = str;
+            this.f2887b = z2;
+        }
+
+        @Override // b.f.e.d
+        public void onFailureImpl(DataSource<T> dataSource) {
+            AbstractDraweeController abstractDraweeController = AbstractDraweeController.this;
+            String str = this.a;
+            Throwable thD = dataSource.d();
+            Map<String, Object> map = AbstractDraweeController.a;
+            abstractDraweeController.u(str, dataSource, thD, true);
+        }
+
+        @Override // b.f.e.d
+        public void onNewResultImpl(DataSource<T> dataSource) {
+            boolean zC = dataSource.c();
+            boolean zE = dataSource.e();
+            float progress = dataSource.getProgress();
+            T result = dataSource.getResult();
+            if (result != null) {
+                AbstractDraweeController abstractDraweeController = AbstractDraweeController.this;
+                String str = this.a;
+                boolean z2 = this.f2887b;
+                Map<String, Object> map = AbstractDraweeController.a;
+                abstractDraweeController.w(str, dataSource, result, progress, zC, z2, zE);
+                return;
+            }
+            if (zC) {
+                AbstractDraweeController abstractDraweeController2 = AbstractDraweeController.this;
+                String str2 = this.a;
+                NullPointerException nullPointerException = new NullPointerException();
+                Map<String, Object> map2 = AbstractDraweeController.a;
+                abstractDraweeController2.u(str2, dataSource, nullPointerException, true);
+            }
+        }
+
+        @Override // b.f.e.d, b.f.e.f
+        public void onProgressUpdate(DataSource<T> dataSource) {
+            b.f.e.c cVar = (b.f.e.c) dataSource;
+            boolean zC = cVar.c();
+            float progress = cVar.getProgress();
+            AbstractDraweeController abstractDraweeController = AbstractDraweeController.this;
+            String str = this.a;
+            Map<String, Object> map = AbstractDraweeController.a;
+            if (!abstractDraweeController.o(str, cVar)) {
+                abstractDraweeController.p("ignore_old_datasource @ onProgress", null);
+                cVar.close();
+            } else {
+                if (zC) {
+                    return;
+                }
+                abstractDraweeController.k.d(progress, false);
+            }
+        }
+    }
+
+    public class b<INFO> extends b.f.g.c.d<INFO> {
+    }
+
+    public AbstractDraweeController(b.f.g.b.a aVar, Executor executor, String str, Object obj) {
         this.d = c.f494b ? new c() : c.a;
         this.j = new b.f.h.b.a.c<>();
         this.v = true;
@@ -68,16 +129,16 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
     public void A(ControllerListener<? super INFO> controllerListener) {
         Objects.requireNonNull(controllerListener);
         ControllerListener<INFO> controllerListener2 = this.i;
-        if (!(controllerListener2 instanceof AbstractDraweeController$b)) {
+        if (!(controllerListener2 instanceof b)) {
             if (controllerListener2 == controllerListener) {
                 this.i = null;
             }
         } else {
-            AbstractDraweeController$b abstractDraweeController$b = (AbstractDraweeController$b) controllerListener2;
-            synchronized (abstractDraweeController$b) {
-                int iIndexOf = abstractDraweeController$b.a.indexOf(controllerListener);
+            b bVar = (b) controllerListener2;
+            synchronized (bVar) {
+                int iIndexOf = bVar.a.indexOf(controllerListener);
                 if (iIndexOf != -1) {
-                    abstractDraweeController$b.a.set(iIndexOf, null);
+                    bVar.a.set(iIndexOf, null);
                 }
             }
         }
@@ -105,22 +166,22 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
     }
 
     public void E() {
-        b.b();
+        b.f.j.r.b.b();
         T tH = h();
         if (tH != null) {
-            b.b();
+            b.f.j.r.b.b();
             this.t = null;
             this.p = true;
             this.q = false;
-            this.d.a(c$a.ON_SUBMIT_CACHE_HIT);
+            this.d.a(c.a.ON_SUBMIT_CACHE_HIT);
             B(this.t, l(tH));
             v(this.m, tH);
             w(this.m, this.t, tH, 1.0f, true, true, true);
-            b.b();
-            b.b();
+            b.f.j.r.b.b();
+            b.f.j.r.b.b();
             return;
         }
-        this.d.a(c$a.ON_DATASOURCE_SUBMIT);
+        this.d.a(c.a.ON_DATASOURCE_SUBMIT);
         this.k.d(0.0f, true);
         this.p = true;
         this.q = false;
@@ -130,17 +191,17 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
         if (b.f.d.e.a.h(2)) {
             b.f.d.e.a.j(c, "controller %x %s: submitRequest: dataSource: %x", Integer.valueOf(System.identityHashCode(this)), this.m, Integer.valueOf(System.identityHashCode(this.t)));
         }
-        this.t.f(new AbstractDraweeController$a(this, this.m, this.t.b()), this.f);
-        b.b();
+        this.t.f(new a(this.m, this.t.b()), this.f);
+        b.f.j.r.b.b();
     }
 
     @Override // com.facebook.drawee.interfaces.DraweeController
     public void a() {
-        b.b();
+        b.f.j.r.b.b();
         if (b.f.d.e.a.h(2)) {
             System.identityHashCode(this);
         }
-        this.d.a(c$a.ON_DETACH_CONTROLLER);
+        this.d.a(c.a.ON_DETACH_CONTROLLER);
         this.o = false;
         b.f.g.b.b bVar = (b.f.g.b.b) this.e;
         Objects.requireNonNull(bVar);
@@ -157,7 +218,7 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
         } else {
             release();
         }
-        b.b();
+        b.f.j.r.b.b();
     }
 
     @Override // com.facebook.drawee.interfaces.DraweeController
@@ -176,18 +237,18 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
 
     @Override // com.facebook.drawee.interfaces.DraweeController
     public void d() {
-        b.b();
+        b.f.j.r.b.b();
         if (b.f.d.e.a.h(2)) {
             b.f.d.e.a.j(c, "controller %x %s: onAttach: %s", Integer.valueOf(System.identityHashCode(this)), this.m, this.p ? "request already submitted" : "request needs submit");
         }
-        this.d.a(c$a.ON_ATTACH_CONTROLLER);
+        this.d.a(c.a.ON_ATTACH_CONTROLLER);
         Objects.requireNonNull(this.k);
         this.e.a(this);
         this.o = true;
         if (!this.p) {
             E();
         }
-        b.b();
+        b.f.j.r.b.b();
     }
 
     @Override // com.facebook.drawee.interfaces.DraweeController
@@ -195,7 +256,7 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
         if (b.f.d.e.a.h(2)) {
             b.f.d.e.a.j(c, "controller %x %s: setHierarchy: %s", Integer.valueOf(System.identityHashCode(this)), this.m, draweeHierarchy);
         }
-        this.d.a(draweeHierarchy != null ? c$a.ON_SET_HIERARCHY : c$a.ON_CLEAR_HIERARCHY);
+        this.d.a(draweeHierarchy != null ? c.a.ON_SET_HIERARCHY : c.a.ON_CLEAR_HIERARCHY);
         if (this.p) {
             this.e.a(this);
             release();
@@ -217,20 +278,20 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
     public void f(ControllerListener<? super INFO> controllerListener) {
         Objects.requireNonNull(controllerListener);
         ControllerListener<INFO> controllerListener2 = this.i;
-        if (controllerListener2 instanceof AbstractDraweeController$b) {
-            ((AbstractDraweeController$b) controllerListener2).a(controllerListener);
+        if (controllerListener2 instanceof b) {
+            ((b) controllerListener2).a(controllerListener);
             return;
         }
         if (controllerListener2 == null) {
             this.i = controllerListener;
             return;
         }
-        b.b();
-        AbstractDraweeController$b abstractDraweeController$b = new AbstractDraweeController$b();
-        abstractDraweeController$b.a(controllerListener2);
-        abstractDraweeController$b.a(controllerListener);
-        b.b();
-        this.i = abstractDraweeController$b;
+        b.f.j.r.b.b();
+        b bVar = new b();
+        bVar.a(controllerListener2);
+        bVar.a(controllerListener);
+        b.f.j.r.b.b();
+        this.i = bVar;
     }
 
     public abstract Drawable g(T t);
@@ -257,9 +318,9 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
     }
 
     public final synchronized void n(String str, Object obj) {
-        a aVar;
-        b.b();
-        this.d.a(c$a.ON_INIT_CONTROLLER);
+        b.f.g.b.a aVar;
+        b.f.j.r.b.b();
+        this.d.a(c.a.ON_INIT_CONTROLLER);
         if (!this.v && (aVar = this.e) != null) {
             aVar.a(this);
         }
@@ -280,10 +341,10 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
             aVar2.a = this;
         }
         ControllerListener<INFO> controllerListener = this.i;
-        if (controllerListener instanceof AbstractDraweeController$b) {
-            AbstractDraweeController$b abstractDraweeController$b = (AbstractDraweeController$b) controllerListener;
-            synchronized (abstractDraweeController$b) {
-                abstractDraweeController$b.a.clear();
+        if (controllerListener instanceof b) {
+            b bVar = (b) controllerListener;
+            synchronized (bVar) {
+                bVar.a.clear();
             }
         } else {
             this.i = null;
@@ -300,7 +361,7 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
         }
         this.m = str;
         this.n = obj;
-        b.b();
+        b.f.j.r.b.b();
     }
 
     public final boolean o(String str, DataSource<T> dataSource) {
@@ -312,7 +373,7 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
 
     @Override // com.facebook.drawee.interfaces.DraweeController
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        b.f.g.g.a$a a_a;
+        b.f.g.g.a.InterfaceC0069a interfaceC0069a;
         boolean zH = b.f.d.e.a.h(2);
         if (zH) {
             b.f.d.e.a.j(c, "controller %x %s: onTouchEvent %s", Integer.valueOf(System.identityHashCode(this)), this.m, motionEvent);
@@ -338,8 +399,8 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
             if (Math.abs(motionEvent.getX() - aVar2.f) > aVar2.f524b || Math.abs(motionEvent.getY() - aVar2.g) > aVar2.f524b) {
                 aVar2.d = false;
             }
-            if (aVar2.d && motionEvent.getEventTime() - aVar2.e <= ViewConfiguration.getLongPressTimeout() && (a_a = aVar2.a) != null) {
-                AbstractDraweeController abstractDraweeController = (AbstractDraweeController) a_a;
+            if (aVar2.d && motionEvent.getEventTime() - aVar2.e <= ViewConfiguration.getLongPressTimeout() && (interfaceC0069a = aVar2.a) != null) {
+                AbstractDraweeController abstractDraweeController = (AbstractDraweeController) interfaceC0069a;
                 if (zH) {
                     System.identityHashCode(abstractDraweeController);
                 }
@@ -377,13 +438,13 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
         }
     }
 
-    public final b$a r(DataSource<T> dataSource, INFO info, Uri uri) {
+    public final b.f.h.b.a.b.a r(DataSource<T> dataSource, INFO info, Uri uri) {
         return s(dataSource == null ? null : dataSource.a(), t(info), uri);
     }
 
-    @Override // b.f.g.b.a$a
+    @Override // b.f.g.b.a.InterfaceC0068a
     public void release() {
-        this.d.a(c$a.ON_RELEASE_CONTROLLER);
+        this.d.a(c.a.ON_RELEASE_CONTROLLER);
         d dVar = this.g;
         if (dVar != null) {
             dVar.c = 0;
@@ -400,7 +461,7 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
         y();
     }
 
-    public final b$a s(Map<String, Object> map, Map<String, Object> map2, Uri uri) {
+    public final b.f.h.b.a.b.a s(Map<String, Object> map, Map<String, Object> map2, Uri uri) {
         b.f.g.h.a aVar = this.k;
         if (aVar instanceof GenericDraweeHierarchy) {
             GenericDraweeHierarchy genericDraweeHierarchy = (GenericDraweeHierarchy) aVar;
@@ -414,17 +475,17 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
         b.f.g.h.a aVar2 = this.k;
         Rect bounds = aVar2 != null ? aVar2.getBounds() : null;
         Object obj = this.n;
-        b$a b_a = new b$a();
+        b.f.h.b.a.b.a aVar3 = new b.f.h.b.a.b.a();
         if (bounds != null) {
             bounds.width();
             bounds.height();
         }
-        b_a.e = obj;
-        b_a.c = map;
-        b_a.d = map2;
-        b_a.f538b = map4;
-        b_a.a = map3;
-        return b_a;
+        aVar3.e = obj;
+        aVar3.c = map;
+        aVar3.d = map2;
+        aVar3.f538b = map4;
+        aVar3.a = map3;
+        return aVar3;
     }
 
     public abstract Map<String, Object> t(INFO info);
@@ -441,14 +502,14 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
 
     public final void u(String str, DataSource<T> dataSource, Throwable th, boolean z2) {
         Drawable drawable;
-        b.b();
+        b.f.j.r.b.b();
         if (!o(str, dataSource)) {
             p("ignore_old_datasource @ onFailure", th);
             dataSource.close();
-            b.b();
+            b.f.j.r.b.b();
             return;
         }
-        this.d.a(z2 ? c$a.ON_DATASOURCE_FAILURE : c$a.ON_DATASOURCE_FAILURE_INT);
+        this.d.a(z2 ? c.a.ON_DATASOURCE_FAILURE : c.a.ON_DATASOURCE_FAILURE_INT);
         if (z2) {
             p("final_failed @ onFailure", th);
             this.t = null;
@@ -463,15 +524,15 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
                     aVar.c(th);
                 }
             }
-            b$a b_aR = r(dataSource, null, null);
+            b.f.h.b.a.b.a aVarR = r(dataSource, null, null);
             i().onFailure(this.m, th);
-            this.j.b(this.m, th, b_aR);
+            this.j.b(this.m, th, aVarR);
         } else {
             p("intermediate_failed @ onFailure", th);
             i().onIntermediateImageFailed(this.m, th);
             Objects.requireNonNull(this.j);
         }
-        b.b();
+        b.f.j.r.b.b();
     }
 
     public void v(String str, T t) {
@@ -479,15 +540,15 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
 
     public final void w(String str, DataSource<T> dataSource, T t, float f, boolean z2, boolean z3, boolean z4) {
         try {
-            b.b();
+            b.f.j.r.b.b();
             if (!o(str, dataSource)) {
                 q("ignore_old_datasource @ onNewResult", t);
                 z(t);
                 dataSource.close();
-                b.b();
+                b.f.j.r.b.b();
                 return;
             }
-            this.d.a(z2 ? c$a.ON_DATASOURCE_RESULT : c$a.ON_DATASOURCE_RESULT_INT);
+            this.d.a(z2 ? c.a.ON_DATASOURCE_RESULT : c.a.ON_DATASOURCE_RESULT_INT);
             try {
                 Drawable drawableG = g(t);
                 T t2 = this.u;
@@ -517,7 +578,7 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
                         q("release_previous_result @ onNewResult", t2);
                         z(t2);
                     }
-                    b.b();
+                    b.f.j.r.b.b();
                 } catch (Throwable th) {
                     if (drawable != null && drawable != drawableG) {
                         x(drawable);
@@ -532,10 +593,10 @@ public abstract class AbstractDraweeController<T, INFO> implements DraweeControl
                 q("drawable_failed @ onNewResult", t);
                 z(t);
                 u(str, dataSource, e, z2);
-                b.b();
+                b.f.j.r.b.b();
             }
         } catch (Throwable th2) {
-            b.b();
+            b.f.j.r.b.b();
             throw th2;
         }
     }

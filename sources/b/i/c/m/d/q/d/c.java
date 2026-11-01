@@ -4,7 +4,7 @@ import android.util.Log;
 import b.i.a.f.e.o.f;
 import java.io.File;
 import java.io.IOException;
-import java.util.Map$Entry;
+import java.util.Map;
 
 /* JADX INFO: compiled from: DefaultCreateReportSpiCall.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -25,8 +25,8 @@ public class c extends b.i.c.m.d.k.a implements b {
         aVarB.e.put("X-CRASHLYTICS-GOOGLE-APP-ID", aVar.f1742b);
         aVarB.e.put("X-CRASHLYTICS-API-CLIENT-TYPE", "android");
         aVarB.e.put("X-CRASHLYTICS-API-CLIENT-VERSION", this.f);
-        for (Map$Entry<String, String> map$Entry : aVar.c.b().entrySet()) {
-            aVarB.e.put(map$Entry.getKey(), map$Entry.getValue());
+        for (Map.Entry<String, String> entry : aVar.c.b().entrySet()) {
+            aVarB.e.put(entry.getKey(), entry.getValue());
         }
         b.i.c.m.d.q.c.c cVar = aVar.c;
         aVarB.b("report[identifier]", cVar.a());

@@ -1,6 +1,5 @@
 package b.g.a.c.g0.u;
 
-import b.g.a.c.m$a;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -17,10 +16,10 @@ public class g0 extends q0<b.g.a.c.m> {
     @Override // b.g.a.c.n
     public boolean d(b.g.a.c.x xVar, Object obj) {
         b.g.a.c.m mVar = (b.g.a.c.m) obj;
-        if (!(mVar instanceof m$a)) {
+        if (!(mVar instanceof b.g.a.c.m.a)) {
             return false;
         }
-        Objects.requireNonNull((m$a) mVar);
+        Objects.requireNonNull((b.g.a.c.m.a) mVar);
         return false;
     }
 

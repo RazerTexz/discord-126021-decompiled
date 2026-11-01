@@ -12,7 +12,6 @@ import android.util.SparseBooleanArray;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.collection.ArrayMap;
 import androidx.collection.ArraySet;
 import b.d.b.a.a;
@@ -20,7 +19,10 @@ import com.discord.api.message.MessageTypes;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.ObjectStreamClass;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -29,11 +31,10 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public abstract class VersionedParcel {
     private static final int EX_BAD_PARCELABLE = -2;
     private static final int EX_ILLEGAL_ARGUMENT = -3;
@@ -54,6 +55,25 @@ public abstract class VersionedParcel {
     public final ArrayMap<String, Class> mParcelizerCache;
     public final ArrayMap<String, Method> mReadCache;
     public final ArrayMap<String, Method> mWriteCache;
+
+    /* JADX INFO: renamed from: androidx.versionedparcelable.VersionedParcel$1, reason: invalid class name */
+    public class AnonymousClass1 extends ObjectInputStream {
+        public AnonymousClass1(InputStream inputStream) {
+            super(inputStream);
+        }
+
+        @Override // java.io.ObjectInputStream
+        public Class<?> resolveClass(ObjectStreamClass objectStreamClass) throws ClassNotFoundException, IOException {
+            Class<?> cls = Class.forName(objectStreamClass.getName(), false, getClass().getClassLoader());
+            return cls != null ? cls : super.resolveClass(objectStreamClass);
+        }
+    }
+
+    public class ParcelException extends RuntimeException {
+        public ParcelException(Throwable th) {
+            super(th);
+        }
+    }
 
     public VersionedParcel(ArrayMap<String, Method> arrayMap, ArrayMap<String, Method> arrayMap2, ArrayMap<String, Class> arrayMap3) {
         this.mReadCache = arrayMap;
@@ -358,7 +378,7 @@ public abstract class VersionedParcel {
             return null;
         }
         try {
-            return (Serializable) new VersionedParcel$1(this, new ByteArrayInputStream(readByteArray())).readObject();
+            return (Serializable) new AnonymousClass1(new ByteArrayInputStream(readByteArray())).readObject();
         } catch (IOException e) {
             throw new RuntimeException(a.y("VersionedParcelable encountered IOException reading a Serializable object (name = ", string, ")"), e);
         } catch (ClassNotFoundException e2) {
@@ -594,9 +614,9 @@ public abstract class VersionedParcel {
         }
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
-        for (Map$Entry<K, V> map$Entry : map.entrySet()) {
-            arrayList.add(map$Entry.getKey());
-            arrayList2.add(map$Entry.getValue());
+        for (Map.Entry<K, V> entry : map.entrySet()) {
+            arrayList.add(entry.getKey());
+            arrayList2.add(entry.getValue());
         }
         writeCollection(arrayList);
         writeCollection(arrayList2);

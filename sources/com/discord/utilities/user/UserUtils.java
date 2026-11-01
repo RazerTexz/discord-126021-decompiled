@@ -14,8 +14,7 @@ import com.discord.models.presence.Presence;
 import com.discord.models.user.CoreUser;
 import com.discord.models.user.MeUser;
 import com.discord.models.user.User;
-import com.discord.nullserializable.NullSerializable$a;
-import com.discord.nullserializable.NullSerializable$b;
+import com.discord.nullserializable.NullSerializable;
 import com.discord.utilities.SnowflakeUtils;
 import com.discord.utilities.premium.PremiumUtilsKt;
 import com.discord.utilities.time.Clock;
@@ -286,7 +285,7 @@ public final class UserUtils {
         long id2 = user.getId();
         String username = user.getUsername();
         String avatar = user.getAvatar();
-        return new com.discord.api.user.User(id2, username, avatar != null ? new NullSerializable$b(avatar) : new NullSerializable$a(null, 1), null, String.valueOf(user.getDiscriminator()), Integer.valueOf(user.getPublicFlags()), Integer.valueOf(user.getFlags()), Boolean.valueOf(user.getIsBot()), Boolean.valueOf(user.getIsSystemUser()), null, null, null, null, null, null, null, null, null, null, null, null, null, 3145736);
+        return new com.discord.api.user.User(id2, username, avatar != null ? new NullSerializable.b(avatar) : new NullSerializable.a(null, 1), null, String.valueOf(user.getDiscriminator()), Integer.valueOf(user.getPublicFlags()), Integer.valueOf(user.getFlags()), Boolean.valueOf(user.getIsBot()), Boolean.valueOf(user.getIsSystemUser()), null, null, null, null, null, null, null, null, null, null, null, null, null, 3145736);
     }
 
     public final int compareUserNames(User user1, User user2, String user1Nickname, String user2Nickname) {

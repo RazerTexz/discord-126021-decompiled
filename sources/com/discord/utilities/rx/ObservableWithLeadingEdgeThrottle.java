@@ -1,5 +1,6 @@
 package com.discord.utilities.rx;
 
+import j0.k.b;
 import j0.k.c;
 import j0.k.d;
 import j0.k.e;
@@ -27,7 +28,29 @@ import rx.functions.FuncN;
 
 /* JADX INFO: loaded from: classes2.dex */
 public class ObservableWithLeadingEdgeThrottle {
-    private static final FuncN IDENTITY_FUNC_N = new ObservableWithLeadingEdgeThrottle$1();
+    private static final FuncN IDENTITY_FUNC_N = new AnonymousClass1();
+
+    /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableWithLeadingEdgeThrottle$1, reason: invalid class name */
+    public final class AnonymousClass1 implements FuncN {
+        @Override // rx.functions.FuncN
+        public Object call(Object... objArr) {
+            return objArr;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.rx.ObservableWithLeadingEdgeThrottle$2, reason: invalid class name */
+    public final class AnonymousClass2 implements b {
+        public final /* synthetic */ FuncN val$combineFunction;
+
+        public AnonymousClass2(FuncN funcN) {
+            this.val$combineFunction = funcN;
+        }
+
+        @Override // j0.k.b
+        public Object call(Object obj) {
+            return this.val$combineFunction.call((Object[]) obj);
+        }
+    }
 
     public static <T1, T2, R> Observable<R> combineLatest(Observable<? extends T1> observable, Observable<? extends T2> observable2, Func2<? super T1, ? super T2, ? extends R> func2, long j, TimeUnit timeUnit) {
         return combineLatest(Arrays.asList(observable, observable2), new d(func2), j, timeUnit);
@@ -95,7 +118,7 @@ public class ObservableWithLeadingEdgeThrottle {
 
     private static <T, R> Observable<R> combineLatest(List<? extends Observable<? extends T>> list, FuncN<? extends R> funcN, long j, TimeUnit timeUnit, Scheduler scheduler) {
         Observable observableB = Observable.b(list, IDENTITY_FUNC_N);
-        return Observable.h0(new r(observableB.j, new LeadingEdgeThrottle(j, timeUnit, scheduler))).G(new ObservableWithLeadingEdgeThrottle$2(funcN));
+        return Observable.h0(new r(observableB.j, new LeadingEdgeThrottle(j, timeUnit, scheduler))).G(new AnonymousClass2(funcN));
     }
 
     private static <T, R> Observable<R> combineLatest(List<? extends Observable<? extends T>> list, FuncN<? extends R> funcN, long j, TimeUnit timeUnit) {

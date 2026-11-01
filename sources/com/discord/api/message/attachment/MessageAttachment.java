@@ -14,7 +14,6 @@ import java.util.Objects;
 /* JADX INFO: compiled from: MessageAttachment.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class MessageAttachment {
-    public static final MessageAttachment$Companion Companion = new MessageAttachment$Companion(null);
     public static final String SPOILER_PREFIX = "SPOILER_";
     private final String filename;
     private final Integer height;

@@ -2,18 +2,18 @@ package com.discord.widgets.status;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.view.View;
 import androidx.annotation.MainThread;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.d.g0;
 import b.a.d.i0;
-import b.a.d.m;
 import b.d.b.a.a;
-import com.discord.R$attr;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetThreadStatusBinding;
+import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.rest.RestAPIAbortMessages;
 import com.discord.utilities.rx.ObservableExtensionsKt;
@@ -22,9 +22,14 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.discord.views.LoadingButton;
 import d0.z.d.a0;
+import d0.z.d.k;
+import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: WidgetThreadStatus.kt */
@@ -38,8 +43,128 @@ public final class WidgetThreadStatus extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetThreadStatus$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetThreadStatus.kt */
+    public final class AnonymousClass1 extends o implements Function1<WidgetThreadStatusViewModel.ViewState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetThreadStatusViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetThreadStatusViewModel.ViewState viewState) {
+            m.checkNotNullParameter(viewState, "viewState");
+            WidgetThreadStatus.access$updateView(WidgetThreadStatus.this, viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetThreadStatus$updateView$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetThreadStatus.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetThreadStatus.access$getViewModel$p(WidgetThreadStatus.this).onUnarchiveTapped();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetThreadStatus$onViewBoundOrOnResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetThreadStatus.kt */
+    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<Event, Unit> {
+        public AnonymousClass2(WidgetThreadStatus widgetThreadStatus) {
+            super(1, widgetThreadStatus, WidgetThreadStatus.class, "handleEvent", "handleEvent(Lcom/discord/widgets/status/WidgetThreadStatus$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Event event) {
+            invoke2(event);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Event event) {
+            m.checkNotNullParameter(event, "p1");
+            WidgetThreadStatus.access$handleEvent((WidgetThreadStatus) this.receiver, event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetThreadStatus$updateView$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetThreadStatus.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetThreadStatus.access$getViewModel$p(WidgetThreadStatus.this).onJoinTapped();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetThreadStatus.kt */
+    public abstract class Event {
+
+        /* JADX INFO: compiled from: WidgetThreadStatus.kt */
+        public final /* data */ class Error extends Event {
+            private final int code;
+
+            public Error(int i) {
+                super(null);
+                this.code = i;
+            }
+
+            public static /* synthetic */ Error copy$default(Error error, int i, int i2, Object obj) {
+                if ((i2 & 1) != 0) {
+                    i = error.code;
+                }
+                return error.copy(i);
+            }
+
+            public final Error copy(int code) {
+                return new Error(code);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Error) && this.code == ((Error) other).code;
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final int getCode() {
+                return this.code;
+            }
+
+            public final int getCode() {
+                return this.code;
+            }
+
+            public int hashCode() {
+                return this.code;
+            }
+
+            public String toString() {
+                return a.B(a.U("Error(code="), this.code, ")");
+            }
+        }
+
+        private Event() {
+        }
+
+        public /* synthetic */ Event(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetThreadStatus() {
-        super(R$layout.widget_thread_status);
+        super(R.layout.widget_thread_status);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetThreadStatus$binding$2.INSTANCE, null, 2, null);
         WidgetThreadStatus$viewModel$2 widgetThreadStatus$viewModel$2 = WidgetThreadStatus$viewModel$2.INSTANCE;
         g0 g0Var = new g0(this);
@@ -50,12 +175,12 @@ public final class WidgetThreadStatus extends AppFragment {
         return widgetThreadStatus.getViewModel();
     }
 
-    public static final /* synthetic */ void access$handleEvent(WidgetThreadStatus widgetThreadStatus, WidgetThreadStatus$Event widgetThreadStatus$Event) {
-        widgetThreadStatus.handleEvent(widgetThreadStatus$Event);
+    public static final /* synthetic */ void access$handleEvent(WidgetThreadStatus widgetThreadStatus, Event event) {
+        widgetThreadStatus.handleEvent(event);
     }
 
-    public static final /* synthetic */ void access$updateView(WidgetThreadStatus widgetThreadStatus, WidgetThreadStatusViewModel$ViewState widgetThreadStatusViewModel$ViewState) {
-        widgetThreadStatus.updateView(widgetThreadStatusViewModel$ViewState);
+    public static final /* synthetic */ void access$updateView(WidgetThreadStatus widgetThreadStatus, WidgetThreadStatusViewModel.ViewState viewState) {
+        widgetThreadStatus.updateView(viewState);
     }
 
     private final WidgetThreadStatusBinding getBinding() {
@@ -66,63 +191,63 @@ public final class WidgetThreadStatus extends AppFragment {
         return (WidgetThreadStatusViewModel) this.viewModel.getValue();
     }
 
-    private final void handleEvent(WidgetThreadStatus$Event event) {
-        if (event instanceof WidgetThreadStatus$Event$Error) {
-            Integer abortCodeMessageResId = RestAPIAbortMessages.getAbortCodeMessageResId(((WidgetThreadStatus$Event$Error) event).getCode());
-            m.i(this, abortCodeMessageResId != null ? abortCodeMessageResId.intValue() : 2131893169, 0, 4);
+    private final void handleEvent(Event event) {
+        if (event instanceof Event.Error) {
+            Integer abortCodeMessageResId = RestAPIAbortMessages.getAbortCodeMessageResId(((Event.Error) event).getCode());
+            b.a.d.m.i(this, abortCodeMessageResId != null ? abortCodeMessageResId.intValue() : R.string.network_error_bad_request, 0, 4);
         }
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetThreadStatus.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetThreadStatus$onViewBoundOrOnResume$1(this), 62, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetThreadStatus.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetThreadStatus$onViewBoundOrOnResume$2(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetThreadStatus.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetThreadStatus.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(this), 62, (Object) null);
     }
 
     @MainThread
-    private final void updateView(WidgetThreadStatusViewModel$ViewState viewState) {
+    private final void updateView(WidgetThreadStatusViewModel.ViewState viewState) {
         getBinding().c.setIsLoading(viewState.isLoading());
-        WidgetThreadStatusViewModel$Status threadStatus = viewState.getThreadStatus();
-        if (threadStatus instanceof WidgetThreadStatusViewModel$Status$Hide) {
+        WidgetThreadStatusViewModel.Status threadStatus = viewState.getThreadStatus();
+        if (threadStatus instanceof WidgetThreadStatusViewModel.Status.Hide) {
             ConstraintLayout constraintLayout = getBinding().f2673b;
-            d0.z.d.m.checkNotNullExpressionValue(constraintLayout, "binding.threadStatus");
+            m.checkNotNullExpressionValue(constraintLayout, "binding.threadStatus");
             constraintLayout.setVisibility(8);
             return;
         }
-        if (threadStatus instanceof WidgetThreadStatusViewModel$Status$Archived) {
+        if (threadStatus instanceof WidgetThreadStatusViewModel.Status.Archived) {
             ConstraintLayout constraintLayout2 = getBinding().f2673b;
-            d0.z.d.m.checkNotNullExpressionValue(constraintLayout2, "binding.threadStatus");
+            m.checkNotNullExpressionValue(constraintLayout2, "binding.threadStatus");
             constraintLayout2.setVisibility(0);
             LoadingButton loadingButton = getBinding().c;
-            d0.z.d.m.checkNotNullExpressionValue(loadingButton, "binding.threadStatusButton");
-            WidgetThreadStatusViewModel$Status$Archived widgetThreadStatusViewModel$Status$Archived = (WidgetThreadStatusViewModel$Status$Archived) threadStatus;
-            loadingButton.setVisibility(widgetThreadStatusViewModel$Status$Archived.getCanArchive() ? 0 : 8);
+            m.checkNotNullExpressionValue(loadingButton, "binding.threadStatusButton");
+            WidgetThreadStatusViewModel.Status.Archived archived = (WidgetThreadStatusViewModel.Status.Archived) threadStatus;
+            loadingButton.setVisibility(archived.getCanArchive() ? 0 : 8);
             LinkifiedTextView linkifiedTextView = getBinding().d;
-            d0.z.d.m.checkNotNullExpressionValue(linkifiedTextView, "binding.threadStatusText");
-            linkifiedTextView.setText(widgetThreadStatusViewModel$Status$Archived.isLocked() ? getResources().getString(2131896378) : getResources().getString(2131896376));
-            getBinding().c.setText(getResources().getString(2131896563));
+            m.checkNotNullExpressionValue(linkifiedTextView, "binding.threadStatusText");
+            linkifiedTextView.setText(archived.isLocked() ? getResources().getString(R.string.thread_header_notice_locked) : getResources().getString(R.string.thread_header_notice_archived));
+            getBinding().c.setText(getResources().getString(R.string.unarchive));
             LoadingButton loadingButton2 = getBinding().c;
-            d0.z.d.m.checkNotNullExpressionValue(loadingButton2, "binding.threadStatusButton");
-            loadingButton2.setBackgroundTintList(ColorStateList.valueOf(ColorCompat.getThemedColor(getContext(), 2130968896)));
-            getBinding().c.setOnClickListener(new WidgetThreadStatus$updateView$1(this));
+            m.checkNotNullExpressionValue(loadingButton2, "binding.threadStatusButton");
+            loadingButton2.setBackgroundTintList(ColorStateList.valueOf(ColorCompat.getThemedColor(getContext(), R.attr.colorBackgroundAccent)));
+            getBinding().c.setOnClickListener(new AnonymousClass1());
             return;
         }
-        if (threadStatus instanceof WidgetThreadStatusViewModel$Status$Unjoined) {
+        if (threadStatus instanceof WidgetThreadStatusViewModel.Status.Unjoined) {
             ConstraintLayout constraintLayout3 = getBinding().f2673b;
-            d0.z.d.m.checkNotNullExpressionValue(constraintLayout3, "binding.threadStatus");
+            m.checkNotNullExpressionValue(constraintLayout3, "binding.threadStatus");
             constraintLayout3.setVisibility(0);
             LoadingButton loadingButton3 = getBinding().c;
-            d0.z.d.m.checkNotNullExpressionValue(loadingButton3, "binding.threadStatusButton");
+            m.checkNotNullExpressionValue(loadingButton3, "binding.threadStatusButton");
             loadingButton3.setVisibility(0);
             LinkifiedTextView linkifiedTextView2 = getBinding().d;
-            d0.z.d.m.checkNotNullExpressionValue(linkifiedTextView2, "binding.threadStatusText");
-            linkifiedTextView2.setText(getResources().getString(2131896377));
-            getBinding().c.setText(getResources().getString(2131892378));
+            m.checkNotNullExpressionValue(linkifiedTextView2, "binding.threadStatusText");
+            linkifiedTextView2.setText(getResources().getString(R.string.thread_header_notice_join));
+            getBinding().c.setText(getResources().getString(R.string.join));
             LoadingButton loadingButton4 = getBinding().c;
-            d0.z.d.m.checkNotNullExpressionValue(loadingButton4, "binding.threadStatusButton");
-            loadingButton4.setBackgroundTintList(ColorStateList.valueOf(ColorCompat.getThemedColor(getContext(), R$attr.color_brand_500)));
-            getBinding().c.setOnClickListener(new WidgetThreadStatus$updateView$2(this));
+            m.checkNotNullExpressionValue(loadingButton4, "binding.threadStatusButton");
+            loadingButton4.setBackgroundTintList(ColorStateList.valueOf(ColorCompat.getThemedColor(getContext(), R.attr.color_brand_500)));
+            getBinding().c.setOnClickListener(new AnonymousClass2());
         }
     }
 }

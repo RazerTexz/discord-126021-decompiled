@@ -10,29 +10,80 @@ import b.i.a.c.f3.e0;
 import com.google.android.exoplayer2.decoder.DecoderException;
 import com.google.android.exoplayer2.text.SubtitleDecoderException;
 import java.util.ArrayDeque;
+import java.util.Objects;
 import java.util.PriorityQueue;
 
 /* JADX INFO: compiled from: CeaDecoder.java */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class e implements h {
-    public final PriorityQueue<e$b> c;
+    public final PriorityQueue<b> c;
 
     @Nullable
-    public e$b d;
+    public b d;
     public long e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final ArrayDeque<k> f860b;
     public long f;
-    public final ArrayDeque<e$b> a = new ArrayDeque<>();
+    public final ArrayDeque<b> a = new ArrayDeque<>();
+
+    /* JADX INFO: compiled from: CeaDecoder.java */
+    public final class b extends j implements Comparable<b> {
+
+        /* JADX INFO: renamed from: s, reason: collision with root package name */
+        public long f861s;
+
+        public b() {
+        }
+
+        @Override // java.lang.Comparable
+        public int compareTo(b bVar) {
+            b bVar2 = bVar;
+            if (n() == bVar2.n()) {
+                long j = this.n - bVar2.n;
+                if (j == 0) {
+                    j = this.f861s - bVar2.f861s;
+                    if (j == 0) {
+                        return 0;
+                    }
+                }
+                if (j > 0) {
+                    return 1;
+                }
+            } else if (n()) {
+                return 1;
+            }
+            return -1;
+        }
+
+        public b(a aVar) {
+        }
+    }
+
+    /* JADX INFO: compiled from: CeaDecoder.java */
+    public final class c extends k {
+        public b.i.a.c.v2.f.a<c> n;
+
+        public c(b.i.a.c.v2.f.a<c> aVar) {
+            this.n = aVar;
+        }
+
+        @Override // b.i.a.c.v2.f
+        public final void p() {
+            e eVar = ((b.i.a.c.b3.n.b) this.n).a;
+            Objects.requireNonNull(eVar);
+            q();
+            eVar.f860b.add(this);
+        }
+    }
 
     public e() {
         for (int i = 0; i < 10; i++) {
-            this.a.add(new e$b(null));
+            this.a.add(new b(null));
         }
         this.f860b = new ArrayDeque<>();
         for (int i2 = 0; i2 < 2; i2++) {
-            this.f860b.add(new e$c(new b(this)));
+            this.f860b.add(new c(new b.i.a.c.b3.n.b(this)));
         }
         this.c = new PriorityQueue<>();
     }
@@ -55,23 +106,23 @@ public abstract class e implements h {
         if (this.a.isEmpty()) {
             return null;
         }
-        e$b e_bPollFirst = this.a.pollFirst();
-        this.d = e_bPollFirst;
-        return e_bPollFirst;
+        b bVarPollFirst = this.a.pollFirst();
+        this.d = bVarPollFirst;
+        return bVarPollFirst;
     }
 
     @Override // b.i.a.c.v2.d
     public void d(j jVar) throws DecoderException {
         j jVar2 = jVar;
         b.c.a.a0.d.j(jVar2 == this.d);
-        e$b e_b = (e$b) jVar2;
-        if (e_b.m()) {
-            i(e_b);
+        b bVar = (b) jVar2;
+        if (bVar.m()) {
+            i(bVar);
         } else {
             long j = this.f;
             this.f = 1 + j;
-            e_b.f861s = j;
-            this.c.add(e_b);
+            bVar.f861s = j;
+            this.c.add(bVar);
         }
         this.d = null;
     }
@@ -85,13 +136,13 @@ public abstract class e implements h {
         this.f = 0L;
         this.e = 0L;
         while (!this.c.isEmpty()) {
-            e$b e_bPoll = this.c.poll();
+            b bVarPoll = this.c.poll();
             int i = e0.a;
-            i(e_bPoll);
+            i(bVarPoll);
         }
-        e$b e_b = this.d;
-        if (e_b != null) {
-            i(e_b);
+        b bVar = this.d;
+        if (bVar != null) {
+            i(bVar);
             this.d = null;
         }
     }
@@ -102,36 +153,36 @@ public abstract class e implements h {
             return null;
         }
         while (!this.c.isEmpty()) {
-            e$b e_bPeek = this.c.peek();
+            b bVarPeek = this.c.peek();
             int i = e0.a;
-            if (e_bPeek.n > this.e) {
+            if (bVarPeek.n > this.e) {
                 break;
             }
-            e$b e_bPoll = this.c.poll();
-            if (e_bPoll.n()) {
+            b bVarPoll = this.c.poll();
+            if (bVarPoll.n()) {
                 k kVarPollFirst = this.f860b.pollFirst();
                 kVarPollFirst.j(4);
-                i(e_bPoll);
+                i(bVarPoll);
                 return kVarPollFirst;
             }
-            f(e_bPoll);
+            f(bVarPoll);
             if (h()) {
                 g gVarE = e();
                 k kVarPollFirst2 = this.f860b.pollFirst();
-                kVarPollFirst2.r(e_bPoll.n, gVarE, RecyclerView.FOREVER_NS);
-                i(e_bPoll);
+                kVarPollFirst2.r(bVarPoll.n, gVarE, RecyclerView.FOREVER_NS);
+                i(bVarPoll);
                 return kVarPollFirst2;
             }
-            i(e_bPoll);
+            i(bVarPoll);
         }
         return null;
     }
 
     public abstract boolean h();
 
-    public final void i(e$b e_b) {
-        e_b.p();
-        this.a.add(e_b);
+    public final void i(b bVar) {
+        bVar.p();
+        this.a.add(bVar);
     }
 
     @Override // b.i.a.c.v2.d

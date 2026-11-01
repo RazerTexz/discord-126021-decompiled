@@ -8,7 +8,7 @@ public class h implements b {
     public final String a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final h$a f421b;
+    public final a f421b;
     public final b.c.a.y.k.b c;
     public final b.c.a.y.k.m<PointF, PointF> d;
     public final b.c.a.y.k.b e;
@@ -18,9 +18,32 @@ public class h implements b {
     public final b.c.a.y.k.b i;
     public final boolean j;
 
-    public h(String str, h$a h_a, b.c.a.y.k.b bVar, b.c.a.y.k.m<PointF, PointF> mVar, b.c.a.y.k.b bVar2, b.c.a.y.k.b bVar3, b.c.a.y.k.b bVar4, b.c.a.y.k.b bVar5, b.c.a.y.k.b bVar6, boolean z2) {
+    /* JADX INFO: compiled from: PolystarShape.java */
+    public enum a {
+        STAR(1),
+        POLYGON(2);
+
+        private final int value;
+
+        a(int i) {
+            this.value = i;
+        }
+
+        public static a f(int i) {
+            a[] aVarArrValues = values();
+            for (int i2 = 0; i2 < 2; i2++) {
+                a aVar = aVarArrValues[i2];
+                if (aVar.value == i) {
+                    return aVar;
+                }
+            }
+            return null;
+        }
+    }
+
+    public h(String str, a aVar, b.c.a.y.k.b bVar, b.c.a.y.k.m<PointF, PointF> mVar, b.c.a.y.k.b bVar2, b.c.a.y.k.b bVar3, b.c.a.y.k.b bVar4, b.c.a.y.k.b bVar5, b.c.a.y.k.b bVar6, boolean z2) {
         this.a = str;
-        this.f421b = h_a;
+        this.f421b = aVar;
         this.c = bVar;
         this.d = mVar;
         this.e = bVar2;

@@ -1,15 +1,9 @@
 package d0.e0.p.d.m0.f.a0.b;
 
-import d0.e0.p.d.m0.f.a0.a$b;
-import d0.e0.p.d.m0.f.a0.a$c;
-import d0.e0.p.d.m0.f.a0.a$d;
-import d0.e0.p.d.m0.f.a0.a$e;
 import d0.e0.p.d.m0.f.l;
 import d0.e0.p.d.m0.f.n;
 import d0.e0.p.d.m0.f.q;
 import d0.e0.p.d.m0.f.u;
-import d0.e0.p.d.m0.f.z.b$b;
-import d0.e0.p.d.m0.i.g$f;
 import d0.t.o;
 import d0.z.d.m;
 import java.io.ByteArrayInputStream;
@@ -47,16 +41,16 @@ public final class h {
         return f3390b;
     }
 
-    public final e$b getJvmConstructorSignature(d0.e0.p.d.m0.f.d dVar, d0.e0.p.d.m0.f.z.c cVar, d0.e0.p.d.m0.f.z.g gVar) {
+    public final e.b getJvmConstructorSignature(d0.e0.p.d.m0.f.d dVar, d0.e0.p.d.m0.f.z.c cVar, d0.e0.p.d.m0.f.z.g gVar) {
         String strJoinToString$default;
         m.checkNotNullParameter(dVar, "proto");
         m.checkNotNullParameter(cVar, "nameResolver");
         m.checkNotNullParameter(gVar, "typeTable");
-        g$f<d0.e0.p.d.m0.f.d, a$c> g_f = d0.e0.p.d.m0.f.a0.a.a;
-        m.checkNotNullExpressionValue(g_f, "constructorSignature");
-        a$c a_c = (a$c) d0.e0.p.d.m0.f.z.e.getExtensionOrNull(dVar, g_f);
-        String string = (a_c == null || !a_c.hasName()) ? "<init>" : cVar.getString(a_c.getName());
-        if (a_c == null || !a_c.hasDesc()) {
+        d0.e0.p.d.m0.i.g.f<d0.e0.p.d.m0.f.d, d0.e0.p.d.m0.f.a0.a.c> fVar = d0.e0.p.d.m0.f.a0.a.a;
+        m.checkNotNullExpressionValue(fVar, "constructorSignature");
+        d0.e0.p.d.m0.f.a0.a.c cVar2 = (d0.e0.p.d.m0.f.a0.a.c) d0.e0.p.d.m0.f.z.e.getExtensionOrNull(dVar, fVar);
+        String string = (cVar2 == null || !cVar2.hasName()) ? "<init>" : cVar.getString(cVar2.getName());
+        if (cVar2 == null || !cVar2.hasDesc()) {
             List<u> valueParameterList = dVar.getValueParameterList();
             m.checkNotNullExpressionValue(valueParameterList, "proto.valueParameterList");
             ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(valueParameterList, 10));
@@ -70,30 +64,30 @@ public final class h {
             }
             strJoinToString$default = d0.t.u.joinToString$default(arrayList, "", "(", ")V", 0, null, null, 56, null);
         } else {
-            strJoinToString$default = cVar.getString(a_c.getDesc());
+            strJoinToString$default = cVar.getString(cVar2.getDesc());
         }
-        return new e$b(string, strJoinToString$default);
+        return new e.b(string, strJoinToString$default);
     }
 
-    public static /* synthetic */ e$a getJvmFieldSignature$default(h hVar, n nVar, d0.e0.p.d.m0.f.z.c cVar, d0.e0.p.d.m0.f.z.g gVar, boolean z2, int i, Object obj) {
+    public static /* synthetic */ e.a getJvmFieldSignature$default(h hVar, n nVar, d0.e0.p.d.m0.f.z.c cVar, d0.e0.p.d.m0.f.z.g gVar, boolean z2, int i, Object obj) {
         if ((i & 8) != 0) {
             z2 = true;
         }
         return hVar.getJvmFieldSignature(nVar, cVar, gVar, z2);
     }
 
-    public final e$a getJvmFieldSignature(n nVar, d0.e0.p.d.m0.f.z.c cVar, d0.e0.p.d.m0.f.z.g gVar, boolean z2) {
+    public final e.a getJvmFieldSignature(n nVar, d0.e0.p.d.m0.f.z.c cVar, d0.e0.p.d.m0.f.z.g gVar, boolean z2) {
         String strA;
         m.checkNotNullParameter(nVar, "proto");
         m.checkNotNullParameter(cVar, "nameResolver");
         m.checkNotNullParameter(gVar, "typeTable");
-        g$f<n, a$d> g_f = d0.e0.p.d.m0.f.a0.a.d;
-        m.checkNotNullExpressionValue(g_f, "propertySignature");
-        a$d a_d = (a$d) d0.e0.p.d.m0.f.z.e.getExtensionOrNull(nVar, g_f);
-        if (a_d == null) {
+        d0.e0.p.d.m0.i.g.f<n, d0.e0.p.d.m0.f.a0.a.d> fVar = d0.e0.p.d.m0.f.a0.a.d;
+        m.checkNotNullExpressionValue(fVar, "propertySignature");
+        d0.e0.p.d.m0.f.a0.a.d dVar = (d0.e0.p.d.m0.f.a0.a.d) d0.e0.p.d.m0.f.z.e.getExtensionOrNull(nVar, fVar);
+        if (dVar == null) {
             return null;
         }
-        a$b field = a_d.hasField() ? a_d.getField() : null;
+        d0.e0.p.d.m0.f.a0.a.b field = dVar.hasField() ? dVar.getField() : null;
         if (field == null && z2) {
             return null;
         }
@@ -106,19 +100,19 @@ public final class h {
         } else {
             strA = cVar.getString(field.getDesc());
         }
-        return new e$a(cVar.getString(name), strA);
+        return new e.a(cVar.getString(name), strA);
     }
 
-    public final e$b getJvmMethodSignature(d0.e0.p.d.m0.f.i iVar, d0.e0.p.d.m0.f.z.c cVar, d0.e0.p.d.m0.f.z.g gVar) {
+    public final e.b getJvmMethodSignature(d0.e0.p.d.m0.f.i iVar, d0.e0.p.d.m0.f.z.c cVar, d0.e0.p.d.m0.f.z.g gVar) {
         String strStringPlus;
         m.checkNotNullParameter(iVar, "proto");
         m.checkNotNullParameter(cVar, "nameResolver");
         m.checkNotNullParameter(gVar, "typeTable");
-        g$f<d0.e0.p.d.m0.f.i, a$c> g_f = d0.e0.p.d.m0.f.a0.a.f3384b;
-        m.checkNotNullExpressionValue(g_f, "methodSignature");
-        a$c a_c = (a$c) d0.e0.p.d.m0.f.z.e.getExtensionOrNull(iVar, g_f);
-        int name = (a_c == null || !a_c.hasName()) ? iVar.getName() : a_c.getName();
-        if (a_c == null || !a_c.hasDesc()) {
+        d0.e0.p.d.m0.i.g.f<d0.e0.p.d.m0.f.i, d0.e0.p.d.m0.f.a0.a.c> fVar = d0.e0.p.d.m0.f.a0.a.f3384b;
+        m.checkNotNullExpressionValue(fVar, "methodSignature");
+        d0.e0.p.d.m0.f.a0.a.c cVar2 = (d0.e0.p.d.m0.f.a0.a.c) d0.e0.p.d.m0.f.z.e.getExtensionOrNull(iVar, fVar);
+        int name = (cVar2 == null || !cVar2.hasName()) ? iVar.getName() : cVar2.getName();
+        if (cVar2 == null || !cVar2.hasDesc()) {
             List listListOfNotNull = d0.t.n.listOfNotNull(d0.e0.p.d.m0.f.z.f.receiverType(iVar, gVar));
             List<u> valueParameterList = iVar.getValueParameterList();
             m.checkNotNullExpressionValue(valueParameterList, "proto.valueParameterList");
@@ -143,14 +137,14 @@ public final class h {
             }
             strStringPlus = m.stringPlus(d0.t.u.joinToString$default(arrayList2, "", "(", ")", 0, null, null, 56, null), strA2);
         } else {
-            strStringPlus = cVar.getString(a_c.getDesc());
+            strStringPlus = cVar.getString(cVar2.getDesc());
         }
-        return new e$b(cVar.getString(name), strStringPlus);
+        return new e.b(cVar.getString(name), strStringPlus);
     }
 
     public static final boolean isMovedFromInterfaceCompanion(n nVar) {
         m.checkNotNullParameter(nVar, "proto");
-        b$b is_moved_from_interface_companion = d.a.getIS_MOVED_FROM_INTERFACE_COMPANION();
+        d0.e0.p.d.m0.f.z.b.C0555b is_moved_from_interface_companion = d.a.getIS_MOVED_FROM_INTERFACE_COMPANION();
         Object extension = nVar.getExtension(d0.e0.p.d.m0.f.a0.a.e);
         m.checkNotNullExpressionValue(extension, "proto.getExtension(JvmProtoBuf.flags)");
         Boolean bool = is_moved_from_interface_companion.get(((Number) extension).intValue());
@@ -170,7 +164,7 @@ public final class h {
         m.checkNotNullParameter(strArr, "data");
         m.checkNotNullParameter(strArr2, "strings");
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(a.decodeBytes(strArr));
-        a$e delimitedFrom = a$e.parseDelimitedFrom(byteArrayInputStream, f3390b);
+        d0.e0.p.d.m0.f.a0.a.e delimitedFrom = d0.e0.p.d.m0.f.a0.a.e.parseDelimitedFrom(byteArrayInputStream, f3390b);
         m.checkNotNullExpressionValue(delimitedFrom, "parseDelimitedFrom(this, EXTENSION_REGISTRY)");
         return new Pair<>(new g(delimitedFrom, strArr2), d0.e0.p.d.m0.f.i.parseFrom(byteArrayInputStream, f3390b));
     }
@@ -187,7 +181,7 @@ public final class h {
         m.checkNotNullParameter(bArr, "bytes");
         m.checkNotNullParameter(strArr, "strings");
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bArr);
-        a$e delimitedFrom = a$e.parseDelimitedFrom(byteArrayInputStream, f3390b);
+        d0.e0.p.d.m0.f.a0.a.e delimitedFrom = d0.e0.p.d.m0.f.a0.a.e.parseDelimitedFrom(byteArrayInputStream, f3390b);
         m.checkNotNullExpressionValue(delimitedFrom, "parseDelimitedFrom(this, EXTENSION_REGISTRY)");
         return new Pair<>(new g(delimitedFrom, strArr), d0.e0.p.d.m0.f.c.parseFrom(byteArrayInputStream, f3390b));
     }
@@ -196,7 +190,7 @@ public final class h {
         m.checkNotNullParameter(bArr, "bytes");
         m.checkNotNullParameter(strArr, "strings");
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bArr);
-        a$e delimitedFrom = a$e.parseDelimitedFrom(byteArrayInputStream, f3390b);
+        d0.e0.p.d.m0.f.a0.a.e delimitedFrom = d0.e0.p.d.m0.f.a0.a.e.parseDelimitedFrom(byteArrayInputStream, f3390b);
         m.checkNotNullExpressionValue(delimitedFrom, "parseDelimitedFrom(this, EXTENSION_REGISTRY)");
         return new Pair<>(new g(delimitedFrom, strArr), l.parseFrom(byteArrayInputStream, f3390b));
     }

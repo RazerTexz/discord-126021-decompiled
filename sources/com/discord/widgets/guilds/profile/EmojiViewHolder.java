@@ -31,7 +31,7 @@ public final class EmojiViewHolder extends BaseEmojiViewHolder {
         int mediaProxySize = IconUtils.getMediaProxySize(simpleDraweeView.getLayoutParams().width);
         SimpleDraweeView simpleDraweeView2 = this.binding.f2430b;
         m.checkNotNullExpressionValue(simpleDraweeView2, "binding.guildProfileSheetEmojiImageview");
-        Emoji emoji = ((EmojiItem$EmojiData) data).getEmoji();
+        Emoji emoji = ((EmojiItem.EmojiData) data).getEmoji();
         View view = this.itemView;
         m.checkNotNullExpressionValue(view, "itemView");
         MGImages.setImage$default(simpleDraweeView2, emoji.getImageUri(true, mediaProxySize, view.getContext()), 0, 0, false, null, null, 124, null);

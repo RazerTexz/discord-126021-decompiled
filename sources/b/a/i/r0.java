@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Group;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
+import com.discord.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /* JADX INFO: compiled from: LayoutIconUploaderBinding.java */
@@ -32,23 +32,23 @@ public final class r0 implements ViewBinding {
 
     @NonNull
     public static r0 a(@NonNull View view) {
-        int i = R$id.icon_uploader_image;
-        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.icon_uploader_image);
+        int i = R.id.icon_uploader_image;
+        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.icon_uploader_image);
         if (simpleDraweeView != null) {
-            i = R$id.icon_uploader_placeholder_border;
-            ImageView imageView = (ImageView) view.findViewById(R$id.icon_uploader_placeholder_border);
+            i = R.id.icon_uploader_placeholder_border;
+            ImageView imageView = (ImageView) view.findViewById(R.id.icon_uploader_placeholder_border);
             if (imageView != null) {
-                i = R$id.icon_uploader_placeholder_icon;
-                ImageView imageView2 = (ImageView) view.findViewById(R$id.icon_uploader_placeholder_icon);
+                i = R.id.icon_uploader_placeholder_icon;
+                ImageView imageView2 = (ImageView) view.findViewById(R.id.icon_uploader_placeholder_icon);
                 if (imageView2 != null) {
-                    i = R$id.icon_uploader_placeholder_text;
-                    TextView textView = (TextView) view.findViewById(R$id.icon_uploader_placeholder_text);
+                    i = R.id.icon_uploader_placeholder_text;
+                    TextView textView = (TextView) view.findViewById(R.id.icon_uploader_placeholder_text);
                     if (textView != null) {
-                        i = R$id.icon_uploader_plus;
-                        ImageView imageView3 = (ImageView) view.findViewById(R$id.icon_uploader_plus);
+                        i = R.id.icon_uploader_plus;
+                        ImageView imageView3 = (ImageView) view.findViewById(R.id.icon_uploader_plus);
                         if (imageView3 != null) {
-                            i = R$id.placeholder_group;
-                            Group group = (Group) view.findViewById(R$id.placeholder_group);
+                            i = R.id.placeholder_group;
+                            Group group = (Group) view.findViewById(R.id.placeholder_group);
                             if (group != null) {
                                 return new r0((ConstraintLayout) view, simpleDraweeView, imageView, imageView2, textView, imageView3, group);
                             }

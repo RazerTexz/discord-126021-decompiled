@@ -2,7 +2,6 @@ package b.g.a.c;
 
 import b.g.a.a.i0;
 import b.g.a.c.c0.a0;
-import b.g.a.c.i0.e$a;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import java.lang.reflect.Type;
 import java.util.Objects;
@@ -35,7 +34,7 @@ public abstract class e {
             throw new IllegalStateException(sbU.toString());
         }
         Class cls = (Class) obj;
-        if (cls == e$a.class || b.g.a.c.i0.d.p(cls)) {
+        if (cls == b.g.a.c.i0.e.a.class || b.g.a.c.i0.d.p(cls)) {
             return null;
         }
         if (!b.g.a.c.i0.e.class.isAssignableFrom(cls)) {

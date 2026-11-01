@@ -1,9 +1,16 @@
 package b.i.a.c.b3.n;
 
-import android.text.Layout$Alignment;
+import android.graphics.Color;
+import android.text.Layout;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.style.BackgroundColorSpan;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 import b.i.a.c.b3.g;
 import b.i.a.c.b3.j;
 import b.i.a.c.f3.w;
@@ -19,8 +26,8 @@ import org.objectweb.asm.Opcodes;
 /* JADX INFO: loaded from: classes3.dex */
 public final class d extends e {
     public final int j;
-    public final d$b[] k;
-    public d$b l;
+    public final b[] k;
+    public b l;
 
     @Nullable
     public List<b.i.a.c.b3.b> m;
@@ -29,19 +36,247 @@ public final class d extends e {
     public List<b.i.a.c.b3.b> n;
 
     @Nullable
-    public d$c o;
+    public c o;
     public int p;
     public final x g = new x();
     public final w h = new w();
     public int i = -1;
 
+    /* JADX INFO: compiled from: Cea708Decoder.java */
+    public final class a {
+        public final b.i.a.c.b3.b a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f853b;
+
+        public a(CharSequence charSequence, Layout.Alignment alignment, float f, int i, int i2, float f2, int i3, float f3, boolean z2, int i4, int i5) {
+            boolean z3;
+            int i6;
+            if (z2) {
+                i6 = i4;
+                z3 = true;
+            } else {
+                z3 = false;
+                i6 = ViewCompat.MEASURED_STATE_MASK;
+            }
+            this.a = new b.i.a.c.b3.b(charSequence, alignment, null, null, f, i, i2, f2, i3, Integer.MIN_VALUE, -3.4028235E38f, f3, -3.4028235E38f, z3, i6, Integer.MIN_VALUE, 0.0f, null);
+            this.f853b = i5;
+        }
+    }
+
+    /* JADX INFO: compiled from: Cea708Decoder.java */
+    public final class b {
+        public int A;
+        public int B;
+        public int C;
+        public int D;
+        public int E;
+        public int F;
+        public int G;
+        public static final int c;
+        public static final int[] d;
+        public static final int[] e;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public static final int f854b;
+
+        /* JADX INFO: renamed from: s, reason: collision with root package name */
+        public int f855s;
+
+        /* JADX INFO: renamed from: x, reason: collision with root package name */
+        public int f856x;
+
+        /* JADX INFO: renamed from: y, reason: collision with root package name */
+        public int f857y;
+
+        /* JADX INFO: renamed from: z, reason: collision with root package name */
+        public int f858z;
+        public static final int[] f;
+        public static final boolean[] g;
+        public static final int[] h;
+        public static final int[] i;
+        public static final int[] j;
+        public static final int[] k;
+        public boolean n;
+        public boolean o;
+        public int p;
+        public boolean q;
+        public int r;
+        public int t;
+        public int u;
+        public boolean v;
+        public int w;
+        public static final int a = d(2, 2, 2, 0);
+        public final List<SpannableString> l = new ArrayList();
+        public final SpannableStringBuilder m = new SpannableStringBuilder();
+
+        static {
+            int iD = d(0, 0, 0, 0);
+            f854b = iD;
+            int iD2 = d(0, 0, 0, 3);
+            c = iD2;
+            d = new int[]{0, 0, 0, 0, 0, 2, 0};
+            e = new int[]{0, 0, 0, 0, 0, 0, 2};
+            f = new int[]{3, 3, 3, 3, 3, 3, 1};
+            g = new boolean[]{false, false, false, true, true, true, false};
+            h = new int[]{iD, iD2, iD, iD, iD2, iD, iD};
+            i = new int[]{0, 1, 2, 3, 4, 3, 4};
+            j = new int[]{0, 0, 0, 0, 0, 3, 3};
+            k = new int[]{iD, iD, iD, iD, iD, iD2, iD2};
+        }
+
+        public b() {
+            f();
+        }
+
+        public void a(char c2) {
+            if (c2 != '\n') {
+                this.m.append(c2);
+                return;
+            }
+            this.l.add(b());
+            this.m.clear();
+            if (this.A != -1) {
+                this.A = 0;
+            }
+            if (this.B != -1) {
+                this.B = 0;
+            }
+            if (this.C != -1) {
+                this.C = 0;
+            }
+            if (this.E != -1) {
+                this.E = 0;
+            }
+            while (true) {
+                if ((!this.v || this.l.size() < this.u) && this.l.size() < 15) {
+                    return;
+                } else {
+                    this.l.remove(0);
+                }
+            }
+        }
+
+        public SpannableString b() {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.m);
+            int length = spannableStringBuilder.length();
+            if (length > 0) {
+                if (this.A != -1) {
+                    spannableStringBuilder.setSpan(new StyleSpan(2), this.A, length, 33);
+                }
+                if (this.B != -1) {
+                    spannableStringBuilder.setSpan(new UnderlineSpan(), this.B, length, 33);
+                }
+                if (this.C != -1) {
+                    spannableStringBuilder.setSpan(new ForegroundColorSpan(this.D), this.C, length, 33);
+                }
+                if (this.E != -1) {
+                    spannableStringBuilder.setSpan(new BackgroundColorSpan(this.F), this.E, length, 33);
+                }
+            }
+            return new SpannableString(spannableStringBuilder);
+        }
+
+        public void c() {
+            this.l.clear();
+            this.m.clear();
+            this.A = -1;
+            this.B = -1;
+            this.C = -1;
+            this.E = -1;
+            this.G = 0;
+        }
+
+        /* JADX WARN: Code duplicated, block: B:12:0x0021  */
+        public static int d(int i2, int i3, int i4, int i5) {
+            int i6;
+            b.c.a.a0.d.t(i2, 0, 4);
+            b.c.a.a0.d.t(i3, 0, 4);
+            b.c.a.a0.d.t(i4, 0, 4);
+            b.c.a.a0.d.t(i5, 0, 4);
+            if (i5 == 0 || i5 == 1) {
+                i6 = 255;
+            } else if (i5 == 2) {
+                i6 = Opcodes.LAND;
+            } else if (i5 != 3) {
+                i6 = 255;
+            } else {
+                i6 = 0;
+            }
+            return Color.argb(i6, i2 > 1 ? 255 : 0, i3 > 1 ? 255 : 0, i4 > 1 ? 255 : 0);
+        }
+
+        public boolean e() {
+            return !this.n || (this.l.isEmpty() && this.m.length() == 0);
+        }
+
+        public void f() {
+            c();
+            this.n = false;
+            this.o = false;
+            this.p = 4;
+            this.q = false;
+            this.r = 0;
+            this.f855s = 0;
+            this.t = 0;
+            this.u = 15;
+            this.v = true;
+            this.w = 0;
+            this.f856x = 0;
+            this.f857y = 0;
+            int i2 = f854b;
+            this.f858z = i2;
+            this.D = a;
+            this.F = i2;
+        }
+
+        public void g(boolean z2, boolean z3) {
+            if (this.A != -1) {
+                if (!z2) {
+                    this.m.setSpan(new StyleSpan(2), this.A, this.m.length(), 33);
+                    this.A = -1;
+                }
+            } else if (z2) {
+                this.A = this.m.length();
+            }
+            if (this.B == -1) {
+                if (z3) {
+                    this.B = this.m.length();
+                }
+            } else {
+                if (z3) {
+                    return;
+                }
+                this.m.setSpan(new UnderlineSpan(), this.B, this.m.length(), 33);
+                this.B = -1;
+            }
+        }
+
+        public void h(int i2, int i3) {
+            if (this.C != -1 && this.D != i2) {
+                this.m.setSpan(new ForegroundColorSpan(this.D), this.C, this.m.length(), 33);
+            }
+            if (i2 != a) {
+                this.C = this.m.length();
+                this.D = i2;
+            }
+            if (this.E != -1 && this.F != i3) {
+                this.m.setSpan(new BackgroundColorSpan(this.F), this.E, this.m.length(), 33);
+            }
+            if (i3 != f854b) {
+                this.E = this.m.length();
+                this.F = i3;
+            }
+        }
+    }
+
     public d(int i, @Nullable List<byte[]> list) {
         this.j = i == -1 ? 1 : i;
         if (list != null && (list.size() != 1 || list.get(0).length != 1 || list.get(0)[0] != 1)) {
         }
-        this.k = new d$b[8];
+        this.k = new b[8];
         for (int i2 = 0; i2 < 8; i2++) {
-            this.k[i2] = new d$b();
+            this.k[i2] = new b();
         }
         this.l = this.k[0];
     }
@@ -80,29 +315,29 @@ public final class d extends e {
                         if (i4 == 0) {
                             i4 = 64;
                         }
-                        d$c d_c = new d$c(i2, i4);
-                        this.o = d_c;
-                        byte[] bArr = d_c.c;
-                        int i5 = d_c.d;
-                        d_c.d = i5 + 1;
+                        c cVar = new c(i2, i4);
+                        this.o = cVar;
+                        byte[] bArr = cVar.c;
+                        int i5 = cVar.d;
+                        cVar.d = i5 + 1;
                         bArr[i5] = bT2;
                     } else {
                         b.c.a.a0.d.j(i == 2);
-                        d$c d_c2 = this.o;
-                        if (d_c2 == null) {
+                        c cVar2 = this.o;
+                        if (cVar2 == null) {
                             Log.e("Cea708Decoder", "Encountered DTVCC_PACKET_DATA before DTVCC_PACKET_START");
                         } else {
-                            byte[] bArr2 = d_c2.c;
-                            int i6 = d_c2.d;
+                            byte[] bArr2 = cVar2.c;
+                            int i6 = cVar2.d;
                             int i7 = i6 + 1;
-                            d_c2.d = i7;
+                            cVar2.d = i7;
                             bArr2[i6] = bT;
-                            d_c2.d = i7 + 1;
+                            cVar2.d = i7 + 1;
                             bArr2[i7] = bT2;
                         }
                     }
-                    d$c d_c3 = this.o;
-                    if (d_c3.d == (d_c3.f859b * 2) - 1) {
+                    c cVar3 = this.o;
+                    if (cVar3.d == (cVar3.f859b * 2) - 1) {
                         j();
                     }
                 }
@@ -127,14 +362,14 @@ public final class d extends e {
     }
 
     public final void j() {
-        d$c d_c = this.o;
-        if (d_c == null) {
+        c cVar = this.o;
+        if (cVar == null) {
             return;
         }
-        int i = d_c.d;
-        int i2 = (d_c.f859b * 2) - 1;
+        int i = cVar.d;
+        int i2 = (cVar.f859b * 2) - 1;
         if (i != i2) {
-            int i3 = d_c.a;
+            int i3 = cVar.a;
             StringBuilder sb = new StringBuilder(115);
             sb.append("DtvCcPacket ended prematurely; size is ");
             sb.append(i2);
@@ -146,8 +381,8 @@ public final class d extends e {
             Log.d("Cea708Decoder", sb.toString());
         }
         w wVar = this.h;
-        d$c d_c2 = this.o;
-        wVar.j(d_c2.c, d_c2.d);
+        c cVar2 = this.o;
+        wVar.j(cVar2.c, cVar2.d);
         int i4 = 3;
         int iG = this.h.g(3);
         int iG2 = this.h.g(5);
@@ -329,8 +564,8 @@ public final class d extends e {
                             case Opcodes.F2I /* 139 */:
                                 for (int i11 = 1; i11 <= 8; i11++) {
                                     if (this.h.f()) {
-                                        d$b d_b = this.k[8 - i11];
-                                        d_b.o = !d_b.o;
+                                        b bVar = this.k[8 - i11];
+                                        bVar.o = !bVar.o;
                                     }
                                 }
                                 break;
@@ -365,10 +600,10 @@ public final class d extends e {
                                 break;
                             case Opcodes.I2B /* 145 */:
                                 if (this.l.n) {
-                                    int iD = d$b.d(this.h.g(2), this.h.g(2), this.h.g(2), this.h.g(2));
-                                    int iD2 = d$b.d(this.h.g(2), this.h.g(2), this.h.g(2), this.h.g(2));
+                                    int iD = b.d(this.h.g(2), this.h.g(2), this.h.g(2), this.h.g(2));
+                                    int iD2 = b.d(this.h.g(2), this.h.g(2), this.h.g(2), this.h.g(2));
                                     this.h.m(2);
-                                    d$b.d(this.h.g(2), this.h.g(2), this.h.g(2), 0);
+                                    b.d(this.h.g(2), this.h.g(2), this.h.g(2), 0);
                                     this.l.h(iD, iD2);
                                 } else {
                                     this.h.m(24);
@@ -380,11 +615,11 @@ public final class d extends e {
                                     int iG5 = this.h.g(4);
                                     this.h.m(2);
                                     this.h.g(6);
-                                    d$b d_b2 = this.l;
-                                    if (d_b2.G != iG5) {
-                                        d_b2.a('\n');
+                                    b bVar2 = this.l;
+                                    if (bVar2.G != iG5) {
+                                        bVar2.a('\n');
                                     }
-                                    d_b2.G = iG5;
+                                    bVar2.G = iG5;
                                 } else {
                                     this.h.m(16);
                                 }
@@ -398,18 +633,18 @@ public final class d extends e {
                                 break;
                             case Opcodes.DCMPL /* 151 */:
                                 if (this.l.n) {
-                                    int iD3 = d$b.d(this.h.g(2), this.h.g(2), this.h.g(2), this.h.g(2));
+                                    int iD3 = b.d(this.h.g(2), this.h.g(2), this.h.g(2), this.h.g(2));
                                     this.h.g(2);
-                                    d$b.d(this.h.g(2), this.h.g(2), this.h.g(2), 0);
+                                    b.d(this.h.g(2), this.h.g(2), this.h.g(2), 0);
                                     this.h.f();
                                     this.h.f();
                                     this.h.g(2);
                                     this.h.g(2);
                                     int iG6 = this.h.g(2);
                                     this.h.m(8);
-                                    d$b d_b3 = this.l;
-                                    d_b3.f858z = iD3;
-                                    d_b3.w = iG6;
+                                    b bVar3 = this.l;
+                                    bVar3.f858z = iD3;
+                                    bVar3.w = iG6;
                                 } else {
                                     this.h.m(32);
                                 }
@@ -423,7 +658,7 @@ public final class d extends e {
                             case 158:
                             case Opcodes.IF_ICMPEQ /* 159 */:
                                 int i13 = iG3 - 152;
-                                d$b d_b4 = this.k[i13];
+                                b bVar4 = this.k[i13];
                                 this.h.m(2);
                                 boolean zF3 = this.h.f();
                                 boolean zF4 = this.h.f();
@@ -439,41 +674,41 @@ public final class d extends e {
                                 this.h.m(2);
                                 int iG12 = this.h.g(i4);
                                 int iG13 = this.h.g(i4);
-                                d_b4.n = true;
-                                d_b4.o = zF3;
-                                d_b4.v = zF4;
-                                d_b4.p = iG7;
-                                d_b4.q = zF5;
-                                d_b4.r = iG8;
-                                d_b4.f855s = iG9;
-                                d_b4.t = iG10;
+                                bVar4.n = true;
+                                bVar4.o = zF3;
+                                bVar4.v = zF4;
+                                bVar4.p = iG7;
+                                bVar4.q = zF5;
+                                bVar4.r = iG8;
+                                bVar4.f855s = iG9;
+                                bVar4.t = iG10;
                                 int i14 = iG11 + 1;
-                                if (d_b4.u != i14) {
-                                    d_b4.u = i14;
+                                if (bVar4.u != i14) {
+                                    bVar4.u = i14;
                                     while (true) {
-                                        if ((zF4 && d_b4.l.size() >= d_b4.u) || d_b4.l.size() >= 15) {
-                                            d_b4.l.remove(0);
+                                        if ((zF4 && bVar4.l.size() >= bVar4.u) || bVar4.l.size() >= 15) {
+                                            bVar4.l.remove(0);
                                         }
                                     }
                                 }
-                                if (iG12 != 0 && d_b4.f856x != iG12) {
-                                    d_b4.f856x = iG12;
+                                if (iG12 != 0 && bVar4.f856x != iG12) {
+                                    bVar4.f856x = iG12;
                                     int i15 = iG12 - 1;
-                                    int i16 = d$b.h[i15];
-                                    boolean z3 = d$b.g[i15];
-                                    int i17 = d$b.e[i15];
-                                    int i18 = d$b.f[i15];
-                                    int i19 = d$b.d[i15];
-                                    d_b4.f858z = i16;
-                                    d_b4.w = i19;
+                                    int i16 = b.h[i15];
+                                    boolean z3 = b.g[i15];
+                                    int i17 = b.e[i15];
+                                    int i18 = b.f[i15];
+                                    int i19 = b.d[i15];
+                                    bVar4.f858z = i16;
+                                    bVar4.w = i19;
                                 }
-                                if (iG13 != 0 && d_b4.f857y != iG13) {
-                                    d_b4.f857y = iG13;
+                                if (iG13 != 0 && bVar4.f857y != iG13) {
+                                    bVar4.f857y = iG13;
                                     int i20 = iG13 - 1;
-                                    int i21 = d$b.j[i20];
-                                    int i22 = d$b.i[i20];
-                                    d_b4.g(false, false);
-                                    d_b4.h(d$b.a, d$b.k[i20]);
+                                    int i21 = b.j[i20];
+                                    int i22 = b.i[i20];
+                                    bVar4.g(false, false);
+                                    bVar4.h(b.a, b.k[i20]);
                                 }
                                 if (this.p != i13) {
                                     this.p = i13;
@@ -513,10 +748,10 @@ public final class d extends e {
                                 break;
                         }
                     } else {
-                        d$b d_b5 = this.l;
-                        int length = d_b5.m.length();
+                        b bVar5 = this.l;
+                        int length = bVar5.m.length();
                         if (length > 0) {
-                            d_b5.m.delete(length - 1, length);
+                            bVar5.m.delete(length - 1, length);
                         }
                     }
                 }
@@ -532,65 +767,65 @@ public final class d extends e {
     }
 
     public final List<b.i.a.c.b3.b> k() {
-        Layout$Alignment layout$Alignment;
+        Layout.Alignment alignment;
         float f;
         float f2;
-        d$a d_a;
+        a aVar;
         ArrayList arrayList = new ArrayList();
         for (int i = 0; i < 8; i++) {
             if (!this.k[i].e()) {
-                d$b[] d_bArr = this.k;
-                if (d_bArr[i].o) {
-                    d$b d_b = d_bArr[i];
-                    if (d_b.e()) {
-                        d_a = null;
+                b[] bVarArr = this.k;
+                if (bVarArr[i].o) {
+                    b bVar = bVarArr[i];
+                    if (bVar.e()) {
+                        aVar = null;
                     } else {
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                        for (int i2 = 0; i2 < d_b.l.size(); i2++) {
-                            spannableStringBuilder.append((CharSequence) d_b.l.get(i2));
+                        for (int i2 = 0; i2 < bVar.l.size(); i2++) {
+                            spannableStringBuilder.append((CharSequence) bVar.l.get(i2));
                             spannableStringBuilder.append('\n');
                         }
-                        spannableStringBuilder.append((CharSequence) d_b.b());
-                        int i3 = d_b.w;
+                        spannableStringBuilder.append((CharSequence) bVar.b());
+                        int i3 = bVar.w;
                         if (i3 == 0) {
-                            layout$Alignment = Layout$Alignment.ALIGN_NORMAL;
+                            alignment = Layout.Alignment.ALIGN_NORMAL;
                         } else if (i3 == 1) {
-                            layout$Alignment = Layout$Alignment.ALIGN_OPPOSITE;
+                            alignment = Layout.Alignment.ALIGN_OPPOSITE;
                         } else if (i3 != 2) {
                             if (i3 != 3) {
-                                throw new IllegalArgumentException(b.d.b.a.a.g(43, "Unexpected justification value: ", d_b.w));
+                                throw new IllegalArgumentException(b.d.b.a.a.g(43, "Unexpected justification value: ", bVar.w));
                             }
-                            layout$Alignment = Layout$Alignment.ALIGN_NORMAL;
+                            alignment = Layout.Alignment.ALIGN_NORMAL;
                         } else {
-                            layout$Alignment = Layout$Alignment.ALIGN_CENTER;
+                            alignment = Layout.Alignment.ALIGN_CENTER;
                         }
-                        Layout$Alignment layout$Alignment2 = layout$Alignment;
-                        if (d_b.q) {
-                            f = d_b.f855s / 99.0f;
-                            f2 = d_b.r / 99.0f;
+                        Layout.Alignment alignment2 = alignment;
+                        if (bVar.q) {
+                            f = bVar.f855s / 99.0f;
+                            f2 = bVar.r / 99.0f;
                         } else {
-                            f = d_b.f855s / 209.0f;
-                            f2 = d_b.r / 74.0f;
+                            f = bVar.f855s / 209.0f;
+                            f2 = bVar.r / 74.0f;
                         }
                         float f3 = (f * 0.9f) + 0.05f;
                         float f4 = (f2 * 0.9f) + 0.05f;
-                        int i4 = d_b.t;
+                        int i4 = bVar.t;
                         int i5 = i4 / 3;
                         int i6 = i4 % 3;
-                        d_a = new d$a(spannableStringBuilder, layout$Alignment2, f4, 0, i5 == 0 ? 0 : i5 == 1 ? 1 : 2, f3, i6 == 0 ? 0 : i6 == 1 ? 1 : 2, -3.4028235E38f, d_b.f858z != d$b.f854b, d_b.f858z, d_b.p);
+                        aVar = new a(spannableStringBuilder, alignment2, f4, 0, i5 == 0 ? 0 : i5 == 1 ? 1 : 2, f3, i6 == 0 ? 0 : i6 == 1 ? 1 : 2, -3.4028235E38f, bVar.f858z != b.f854b, bVar.f858z, bVar.p);
                     }
-                    if (d_a != null) {
-                        arrayList.add(d_a);
+                    if (aVar != null) {
+                        arrayList.add(aVar);
                     }
                 } else {
                     continue;
                 }
             }
         }
-        Collections.sort(arrayList, a.j);
+        Collections.sort(arrayList, b.i.a.c.b3.n.a.j);
         ArrayList arrayList2 = new ArrayList(arrayList.size());
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            arrayList2.add(((d$a) arrayList.get(i7)).a);
+            arrayList2.add(((a) arrayList.get(i7)).a);
         }
         return Collections.unmodifiableList(arrayList2);
     }
@@ -598,6 +833,22 @@ public final class d extends e {
     public final void l() {
         for (int i = 0; i < 8; i++) {
             this.k[i].f();
+        }
+    }
+
+    /* JADX INFO: compiled from: Cea708Decoder.java */
+    public final class c {
+        public final int a;
+        public final byte[] c;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f859b;
+        public int d = 0;
+
+        public c(int i, int i2) {
+            this.a = i;
+            this.f859b = i2;
+            this.c = new byte[(i2 * 2) - 1];
         }
     }
 }

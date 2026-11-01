@@ -1,12 +1,11 @@
 package b.i.c.j.a.c;
 
 import android.os.Bundle;
-import b.i.a.f.i.a.a$a;
 import com.discord.models.domain.ModelAuditLogEntry;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-api@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class f implements a$a {
+public final class f implements b.i.a.f.i.a.a.InterfaceC0118a {
     public final /* synthetic */ d a;
 
     public f(d dVar) {

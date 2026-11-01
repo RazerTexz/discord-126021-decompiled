@@ -1,13 +1,13 @@
 package b.i.a.f.e.k;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.common.internal.RootTelemetryConfiguration;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class g0 implements Parcelable$Creator<RootTelemetryConfiguration> {
-    @Override // android.os.Parcelable$Creator
+public final class g0 implements Parcelable.Creator<RootTelemetryConfiguration> {
+    @Override // android.os.Parcelable.Creator
     public final RootTelemetryConfiguration createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         int iG1 = 0;
@@ -36,7 +36,7 @@ public final class g0 implements Parcelable$Creator<RootTelemetryConfiguration> 
         return new RootTelemetryConfiguration(iG1, zE1, zE2, iG2, iG3);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* bridge */ /* synthetic */ RootTelemetryConfiguration[] newArray(int i) {
         return new RootTelemetryConfiguration[i];
     }

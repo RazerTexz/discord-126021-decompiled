@@ -3,7 +3,7 @@ package com.discord.widgets.user.search;
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetGlobalSearchBinding;
 import com.google.android.material.button.MaterialButton;
@@ -30,26 +30,26 @@ public final /* synthetic */ class WidgetGlobalSearch$binding$2 extends k implem
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGlobalSearchBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.global_search_add_a_friend_btn;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.global_search_add_a_friend_btn);
+        int i = R.id.global_search_add_a_friend_btn;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.global_search_add_a_friend_btn);
         if (materialButton != null) {
-            i = R$id.global_search_bar;
-            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.global_search_bar);
+            i = R.id.global_search_bar;
+            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.global_search_bar);
             if (textInputLayout != null) {
-                i = R$id.global_search_bar_text;
-                TextInputEditText textInputEditText = (TextInputEditText) view.findViewById(R$id.global_search_bar_text);
+                i = R.id.global_search_bar_text;
+                TextInputEditText textInputEditText = (TextInputEditText) view.findViewById(R.id.global_search_bar_text);
                 if (textInputEditText != null) {
-                    i = R$id.global_search_guild_list;
-                    RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.global_search_guild_list);
+                    i = R.id.global_search_guild_list;
+                    RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.global_search_guild_list);
                     if (recyclerView != null) {
-                        i = R$id.global_search_join_guild_btn;
-                        MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.global_search_join_guild_btn);
+                        i = R.id.global_search_join_guild_btn;
+                        MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.global_search_join_guild_btn);
                         if (materialButton2 != null) {
-                            i = R$id.global_search_recycler;
-                            RecyclerView recyclerView2 = (RecyclerView) view.findViewById(R$id.global_search_recycler);
+                            i = R.id.global_search_recycler;
+                            RecyclerView recyclerView2 = (RecyclerView) view.findViewById(R.id.global_search_recycler);
                             if (recyclerView2 != null) {
-                                i = R$id.global_search_view_flipper;
-                                AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R$id.global_search_view_flipper);
+                                i = R.id.global_search_view_flipper;
+                                AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R.id.global_search_view_flipper);
                                 if (appViewFlipper != null) {
                                     return new WidgetGlobalSearchBinding((CoordinatorLayout) view, materialButton, textInputLayout, textInputEditText, recyclerView, materialButton2, recyclerView2, appViewFlipper);
                                 }

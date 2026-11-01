@@ -3,7 +3,7 @@ package com.discord.widgets.servers;
 import android.view.View;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetServerSettingsOverviewAfkTimeoutBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -21,23 +21,23 @@ public final /* synthetic */ class WidgetServerSettingsOverview$AfkBottomSheet$b
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetServerSettingsOverviewAfkTimeoutBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.guild_actions_overview_header_tv;
-        TextView textView = (TextView) view.findViewById(R$id.guild_actions_overview_header_tv);
+        int i = R.id.guild_actions_overview_header_tv;
+        TextView textView = (TextView) view.findViewById(R.id.guild_actions_overview_header_tv);
         if (textView != null) {
-            i = R$id.server_settings_overview_afk_timeout_01;
-            TextView textView2 = (TextView) view.findViewById(R$id.server_settings_overview_afk_timeout_01);
+            i = R.id.server_settings_overview_afk_timeout_01;
+            TextView textView2 = (TextView) view.findViewById(R.id.server_settings_overview_afk_timeout_01);
             if (textView2 != null) {
-                i = R$id.server_settings_overview_afk_timeout_05;
-                TextView textView3 = (TextView) view.findViewById(R$id.server_settings_overview_afk_timeout_05);
+                i = R.id.server_settings_overview_afk_timeout_05;
+                TextView textView3 = (TextView) view.findViewById(R.id.server_settings_overview_afk_timeout_05);
                 if (textView3 != null) {
-                    i = R$id.server_settings_overview_afk_timeout_15;
-                    TextView textView4 = (TextView) view.findViewById(R$id.server_settings_overview_afk_timeout_15);
+                    i = R.id.server_settings_overview_afk_timeout_15;
+                    TextView textView4 = (TextView) view.findViewById(R.id.server_settings_overview_afk_timeout_15);
                     if (textView4 != null) {
-                        i = R$id.server_settings_overview_afk_timeout_30;
-                        TextView textView5 = (TextView) view.findViewById(R$id.server_settings_overview_afk_timeout_30);
+                        i = R.id.server_settings_overview_afk_timeout_30;
+                        TextView textView5 = (TextView) view.findViewById(R.id.server_settings_overview_afk_timeout_30);
                         if (textView5 != null) {
-                            i = R$id.server_settings_overview_afk_timeout_60;
-                            TextView textView6 = (TextView) view.findViewById(R$id.server_settings_overview_afk_timeout_60);
+                            i = R.id.server_settings_overview_afk_timeout_60;
+                            TextView textView6 = (TextView) view.findViewById(R.id.server_settings_overview_afk_timeout_60);
                             if (textView6 != null) {
                                 return new WidgetServerSettingsOverviewAfkTimeoutBinding((NestedScrollView) view, textView, textView2, textView3, textView4, textView5, textView6);
                             }

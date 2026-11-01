@@ -6,11 +6,12 @@ import com.discord.models.domain.ModelPayload;
 import com.discord.models.experiments.domain.Experiment;
 import com.discord.models.experiments.domain.ExperimentHash;
 import com.discord.models.experiments.dto.GuildExperimentDto;
+import com.discord.models.experiments.dto.UnauthenticatedUserExperimentsDto;
 import com.discord.models.experiments.dto.UserExperimentDto;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
 import com.discord.utilities.analytics.AnalyticsTracker;
+import com.discord.utilities.error.Error;
 import com.discord.utilities.experiments.ExperimentRegistry;
 import com.discord.utilities.experiments.ExperimentUtils;
 import com.discord.utilities.experiments.RegisteredExperiment;
@@ -18,10 +19,14 @@ import com.discord.utilities.persister.Persister;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.Clock;
+import com.discord.utilities.user.UserUtils;
 import com.discord.widgets.chat.input.MentionUtilsKt;
 import com.google.gson.Gson;
+import d0.d0.f;
+import d0.t.g0;
 import d0.t.h0;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -29,8 +34,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.concurrent.TimeUnit;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -39,11 +44,13 @@ import rx.Observable;
 /* JADX INFO: compiled from: StoreExperiments.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreExperiments extends StoreV2 {
-    public static final StoreExperiments$Companion Companion = new StoreExperiments$Companion(null);
     private static final long DISCORD_TESTERS_GUILD_ID = 197038439483310086L;
     private static final String EXPERIMENT_OVERRIDES_CACHE_KEY = "EXPERIMENT_OVERRIDES_CACHE_KEY";
     private static final String EXPERIMENT_TRACKED_EXPOSURE_TIMESTAMPS_CACHE_KEY = "EXPERIMENT_TRIGGER_TIMESTAMPS_CACHE_KEY";
     private static final String GUILD_EXPERIMENTS_CACHE_KEY = "GUILD_EXPERIMENTS_CACHE_KEY";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String UNINITIALIZED = "UNINITIALIZED";
     private static final String USER_EXPERIMENTS_CACHE_KEY = "USER_EXPERIMENTS_CACHE_KEY";
     private String authToken;
@@ -69,6 +76,312 @@ public final class StoreExperiments extends StoreV2 {
     private Map<Long, UserExperimentDto> userExperimentsSnapshot;
     private static final StoreExperiments$Companion$InitializedUpdateSource$1 InitializedUpdateSource = new StoreExperiments$Companion$InitializedUpdateSource$1();
     private static final StoreExperiments$Companion$ExperimentOverridesUpdateSource$1 ExperimentOverridesUpdateSource = new StoreExperiments$Companion$ExperimentOverridesUpdateSource$1();
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$clearOverride$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreExperiments.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ String $experimentName;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(String str) {
+            super(0);
+            this.$experimentName = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreExperiments.access$handleClearOverride(StoreExperiments.this, this.$experimentName);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$getExperimentalAlpha$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreExperiments.kt */
+    public final class AnonymousClass1 extends o implements Function0<Boolean> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Boolean invoke() {
+            return Boolean.valueOf(invoke2());
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2() {
+            return StoreExperiments.INSTANCE.isExperimentalAlpha(StoreExperiments.access$getStoreGuilds$p(StoreExperiments.this), StoreExperiments.access$getStoreUser$p(StoreExperiments.this));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$getGuildExperiment$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreExperiments.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$getUserExperiment$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreExperiments.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$isInitialized$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreExperiments.kt */
+    public final class AnonymousClass1 extends o implements Function0<Boolean> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Boolean invoke() {
+            return Boolean.valueOf(invoke2());
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2() {
+            return StoreExperiments.access$getInitialized$p(StoreExperiments.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$observeGuildExperiment$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreExperiments.kt */
+    public final class AnonymousClass1 extends o implements Function0<Experiment> {
+        public final /* synthetic */ String $experimentName;
+        public final /* synthetic */ long $guildId;
+        public final /* synthetic */ boolean $trackExposure;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(String str, long j, boolean z2) {
+            super(0);
+            this.$experimentName = str;
+            this.$guildId = j;
+            this.$trackExposure = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Experiment invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final Experiment invoke() {
+            return StoreExperiments.this.getGuildExperiment(this.$experimentName, this.$guildId, this.$trackExposure);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$observeOverrides$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreExperiments.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<String, ? extends Integer>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<String, ? extends Integer> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<String, ? extends Integer> invoke2() {
+            return StoreExperiments.access$getExperimentOverrides$p(StoreExperiments.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$observeUserExperiment$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreExperiments.kt */
+    public final class AnonymousClass1 extends o implements Function0<Experiment> {
+        public final /* synthetic */ String $name;
+        public final /* synthetic */ boolean $trackExposure;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(String str, boolean z2) {
+            super(0);
+            this.$name = str;
+            this.$trackExposure = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Experiment invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final Experiment invoke() {
+            return StoreExperiments.this.getUserExperiment(this.$name, this.$trackExposure);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$setOverride$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreExperiments.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ int $bucket;
+        public final /* synthetic */ String $experimentName;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(int i, String str) {
+            super(0);
+            this.$bucket = i;
+            this.$experimentName = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Integer num = (Integer) StoreExperiments.access$getExperimentOverrides$p(StoreExperiments.this).get(this.$experimentName);
+            if (num != null && num.intValue() == this.$bucket) {
+                return;
+            }
+            StoreExperiments.access$handleSetOverride(StoreExperiments.this, this.$experimentName, this.$bucket);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$tryInitializeExperiments$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreExperiments.kt */
+    public final class AnonymousClass1 extends o implements Function1<UnauthenticatedUserExperimentsDto, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$tryInitializeExperiments$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreExperiments.kt */
+        public final class C02291 extends o implements Function0<Unit> {
+            public final /* synthetic */ UnauthenticatedUserExperimentsDto $it;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C02291(UnauthenticatedUserExperimentsDto unauthenticatedUserExperimentsDto) {
+                super(0);
+                this.$it = unauthenticatedUserExperimentsDto;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreExperiments.access$getStoreAuthentication$p(StoreExperiments.this).setFingerprint(this.$it.getFingerprint(), false);
+                StoreExperiments storeExperiments = StoreExperiments.this;
+                List<UserExperimentDto> assignments = this.$it.getAssignments();
+                LinkedHashMap linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(d0.t.o.collectionSizeOrDefault(assignments, 10)), 16));
+                for (Object obj : assignments) {
+                    linkedHashMap.put(Long.valueOf(((UserExperimentDto) obj).getNameHash()), obj);
+                }
+                StoreExperiments.access$handleLoadedUserExperiments(storeExperiments, linkedHashMap, true);
+                StoreExperiments.access$setInitialized(StoreExperiments.this);
+            }
+        }
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(UnauthenticatedUserExperimentsDto unauthenticatedUserExperimentsDto) {
+            invoke2(unauthenticatedUserExperimentsDto);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(UnauthenticatedUserExperimentsDto unauthenticatedUserExperimentsDto) {
+            StoreExperiments.access$getDispatcher$p(StoreExperiments.this).schedule(new C02291(unauthenticatedUserExperimentsDto));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$tryInitializeExperiments$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreExperiments.kt */
+    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreExperiments$tryInitializeExperiments$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreExperiments.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public AnonymousClass1() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreExperiments.access$setInitialized(StoreExperiments.this);
+            }
+        }
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            m.checkNotNullParameter(error, "it");
+            StoreExperiments.access$getDispatcher$p(StoreExperiments.this).schedule(new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreExperiments.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final boolean isExperimentalAlpha(StoreGuilds storeGuilds, StoreUser storeUser) {
+            m.checkNotNullParameter(storeGuilds, "storeGuilds");
+            m.checkNotNullParameter(storeUser, "storeUser");
+            return UserUtils.INSTANCE.isStaff(storeUser.getMeSnapshot()) || storeGuilds.getGuilds().get(Long.valueOf(StoreExperiments.DISCORD_TESTERS_GUILD_ID)) != null;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public /* synthetic */ StoreExperiments(Clock clock, Dispatcher dispatcher, StoreUser storeUser, StoreGuilds storeGuilds, StoreAuthentication storeAuthentication, StoreGuildMemberCounts storeGuildMemberCounts, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(clock, dispatcher, storeUser, storeGuilds, storeAuthentication, storeGuildMemberCounts, (i & 64) != 0 ? ObservationDeckProvider.get() : observationDeck);
@@ -166,14 +479,14 @@ public final class StoreExperiments extends StoreV2 {
     private final void cacheUserExperiments() {
         HashMap<Long, UserExperimentDto> map = this.userExperiments;
         LinkedHashMap linkedHashMap = new LinkedHashMap();
-        Iterator<Map$Entry<Long, UserExperimentDto>> it = map.entrySet().iterator();
+        Iterator<Map.Entry<Long, UserExperimentDto>> it = map.entrySet().iterator();
         while (true) {
             boolean z2 = true;
             if (!it.hasNext()) {
                 this.userExperimentsCache.set(linkedHashMap, true);
                 return;
             }
-            Map$Entry<Long, UserExperimentDto> next = it.next();
+            Map.Entry<Long, UserExperimentDto> next = it.next();
             Collection<RegisteredExperiment> collectionValues = ExperimentRegistry.INSTANCE.getRegisteredExperiments().values();
             m.checkNotNullExpressionValue(collectionValues, "ExperimentRegistry.registeredExperiments.values");
             if (!(collectionValues instanceof Collection) || !collectionValues.isEmpty()) {
@@ -196,7 +509,7 @@ public final class StoreExperiments extends StoreV2 {
 
     public final void clearOverride(String experimentName) {
         m.checkNotNullParameter(experimentName, "experimentName");
-        this.dispatcher.schedule(new StoreExperiments$clearOverride$1(this, experimentName));
+        this.dispatcher.schedule(new AnonymousClass1(experimentName));
     }
 
     private final void didTrackExposureToExperiment(String exposureKey) {
@@ -205,7 +518,7 @@ public final class StoreExperiments extends StoreV2 {
     }
 
     public final Observable<Boolean> getExperimentalAlpha() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this.storeUser, this.storeGuilds}, false, null, null, new StoreExperiments$getExperimentalAlpha$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this.storeUser, this.storeGuilds}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     public final Experiment getGuildExperiment(String experimentName, long guildId, boolean trackExposure) {
@@ -214,7 +527,7 @@ public final class StoreExperiments extends StoreV2 {
         Integer num = this.experimentOverridesSnapshot.get(experimentName);
         GuildExperimentDto guildExperimentDto = this.guildExperimentsSnapshot.get(Long.valueOf(jFrom));
         if (num != null) {
-            return new Experiment(guildExperimentDto != null ? guildExperimentDto.getRevision() : 0, num.intValue(), 0, true, StoreExperiments$getGuildExperiment$1.INSTANCE);
+            return new Experiment(guildExperimentDto != null ? guildExperimentDto.getRevision() : 0, num.intValue(), 0, true, AnonymousClass1.INSTANCE);
         }
         Experiment memoizedGuildExperiment$app_productionGoogleRelease = getMemoizedGuildExperiment$app_productionGoogleRelease("" + guildId + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + experimentName, guildId);
         if (memoizedGuildExperiment$app_productionGoogleRelease != null) {
@@ -244,7 +557,7 @@ public final class StoreExperiments extends StoreV2 {
         Integer num = this.experimentOverridesSnapshot.get(name);
         UserExperimentDto userExperimentDto = this.userExperimentsSnapshot.get(Long.valueOf(jFrom));
         if (num != null) {
-            return new Experiment(userExperimentDto != null ? userExperimentDto.getRevision() : 0, num.intValue(), userExperimentDto != null ? userExperimentDto.getPopulation() : 0, true, StoreExperiments$getUserExperiment$1.INSTANCE);
+            return new Experiment(userExperimentDto != null ? userExperimentDto.getRevision() : 0, num.intValue(), userExperimentDto != null ? userExperimentDto.getPopulation() : 0, true, AnonymousClass1.INSTANCE);
         }
         if (userExperimentDto == null) {
             return null;
@@ -334,7 +647,7 @@ public final class StoreExperiments extends StoreV2 {
     }
 
     public final Observable<Boolean> isInitialized() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{InitializedUpdateSource}, false, null, null, new StoreExperiments$isInitialized$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{InitializedUpdateSource}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     private final Map<String, Long> loadCachedExperimentTrackedExposureTimestamps() {
@@ -353,16 +666,16 @@ public final class StoreExperiments extends StoreV2 {
 
     public final Observable<Experiment> observeGuildExperiment(String experimentName, long guildId, boolean trackExposure) {
         m.checkNotNullParameter(experimentName, "experimentName");
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreExperiments$observeGuildExperiment$1(this, experimentName, guildId, trackExposure), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(experimentName, guildId, trackExposure), 14, null);
     }
 
     public final Observable<Map<String, Integer>> observeOverrides() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{ExperimentOverridesUpdateSource}, false, null, null, new StoreExperiments$observeOverrides$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{ExperimentOverridesUpdateSource}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     public final Observable<Experiment> observeUserExperiment(String name, boolean trackExposure) {
         m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        Observable<Experiment> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreExperiments$observeUserExperiment$1(this, name, trackExposure), 14, null).r();
+        Observable<Experiment> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(name, trackExposure), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
         return observableR;
     }
@@ -387,7 +700,7 @@ public final class StoreExperiments extends StoreV2 {
 
     public final void setOverride(String experimentName, int bucket) {
         m.checkNotNullParameter(experimentName, "experimentName");
-        this.dispatcher.schedule(new StoreExperiments$setOverride$1(this, bucket, experimentName));
+        this.dispatcher.schedule(new AnonymousClass1(bucket, experimentName));
     }
 
     @Override // com.discord.stores.StoreV2
@@ -429,9 +742,9 @@ public final class StoreExperiments extends StoreV2 {
             setInitialized();
             return;
         }
-        Observable observableC0 = ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().getExperiments(), false, 1, null).c0(2000L, TimeUnit.MILLISECONDS);
+        Observable observableC0 = ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getExperiments(), false, 1, null).c0(2000L, TimeUnit.MILLISECONDS);
         m.checkNotNullExpressionValue(observableC0, "RestAPI\n          .api\n …0, TimeUnit.MILLISECONDS)");
-        ObservableExtensionsKt.appSubscribe$default(observableC0, StoreExperiments.class, (Context) null, (Function1) null, new StoreExperiments$tryInitializeExperiments$2(this), (Function0) null, (Function0) null, new StoreExperiments$tryInitializeExperiments$1(this), 54, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(observableC0, StoreExperiments.class, (Context) null, (Function1) null, new AnonymousClass2(), (Function0) null, (Function0) null, new AnonymousClass1(), 54, (Object) null);
     }
 
     private final boolean wasExperimentExposureTrackedRecently(String exposureKey, long nowMs) {

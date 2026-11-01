@@ -2,7 +2,7 @@ package com.discord.widgets.forums;
 
 import androidx.core.app.NotificationCompat;
 import androidx.exifinterface.media.ExifInterface;
-import com.discord.utilities.rest.SendUtils$SendPayload$ReadyToSend;
+import com.discord.utilities.rest.SendUtils;
 import j0.k.b;
 import java.util.Objects;
 
@@ -14,6 +14,6 @@ public final class ForumPostCreateManager$sendCreateForumPostWithMessageRequest$
     @Override // j0.k.b
     public final T call(Object obj) {
         Objects.requireNonNull(obj, "null cannot be cast to non-null type com.discord.utilities.rest.SendUtils.SendPayload.ReadyToSend");
-        return (T) ((SendUtils$SendPayload$ReadyToSend) obj);
+        return (T) ((SendUtils.SendPayload.ReadyToSend) obj);
     }
 }

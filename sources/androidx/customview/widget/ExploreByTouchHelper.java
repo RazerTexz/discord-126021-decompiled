@@ -28,17 +28,77 @@ public abstract class ExploreByTouchHelper extends AccessibilityDelegateCompat {
     public static final int INVALID_ID = Integer.MIN_VALUE;
     private final View mHost;
     private final AccessibilityManager mManager;
-    private ExploreByTouchHelper$MyNodeProvider mNodeProvider;
+    private MyNodeProvider mNodeProvider;
     private static final Rect INVALID_PARENT_BOUNDS = new Rect(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
-    private static final FocusStrategy$BoundsAdapter<AccessibilityNodeInfoCompat> NODE_ADAPTER = new ExploreByTouchHelper$1();
+    private static final FocusStrategy.BoundsAdapter<AccessibilityNodeInfoCompat> NODE_ADAPTER = new AnonymousClass1();
     private final Rect mTempScreenRect = new Rect();
-    private static final FocusStrategy$CollectionAdapter<SparseArrayCompat<AccessibilityNodeInfoCompat>, AccessibilityNodeInfoCompat> SPARSE_VALUES_ADAPTER = new ExploreByTouchHelper$2();
+    private static final FocusStrategy.CollectionAdapter<SparseArrayCompat<AccessibilityNodeInfoCompat>, AccessibilityNodeInfoCompat> SPARSE_VALUES_ADAPTER = new AnonymousClass2();
     private final Rect mTempParentRect = new Rect();
     private final Rect mTempVisibleRect = new Rect();
     private final int[] mTempGlobalRect = new int[2];
     public int mAccessibilityFocusedVirtualViewId = Integer.MIN_VALUE;
     public int mKeyboardFocusedVirtualViewId = Integer.MIN_VALUE;
     private int mHoveredVirtualViewId = Integer.MIN_VALUE;
+
+    /* JADX INFO: renamed from: androidx.customview.widget.ExploreByTouchHelper$1, reason: invalid class name */
+    public final class AnonymousClass1 implements FocusStrategy.BoundsAdapter<AccessibilityNodeInfoCompat> {
+        @Override // androidx.customview.widget.FocusStrategy.BoundsAdapter
+        public /* bridge */ /* synthetic */ void obtainBounds(AccessibilityNodeInfoCompat accessibilityNodeInfoCompat, Rect rect) {
+            obtainBounds2(accessibilityNodeInfoCompat, rect);
+        }
+
+        /* JADX INFO: renamed from: obtainBounds, reason: avoid collision after fix types in other method */
+        public void obtainBounds2(AccessibilityNodeInfoCompat accessibilityNodeInfoCompat, Rect rect) {
+            accessibilityNodeInfoCompat.getBoundsInParent(rect);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.customview.widget.ExploreByTouchHelper$2, reason: invalid class name */
+    public final class AnonymousClass2 implements FocusStrategy.CollectionAdapter<SparseArrayCompat<AccessibilityNodeInfoCompat>, AccessibilityNodeInfoCompat> {
+        @Override // androidx.customview.widget.FocusStrategy.CollectionAdapter
+        public /* bridge */ /* synthetic */ AccessibilityNodeInfoCompat get(SparseArrayCompat<AccessibilityNodeInfoCompat> sparseArrayCompat, int i) {
+            return get2(sparseArrayCompat, i);
+        }
+
+        @Override // androidx.customview.widget.FocusStrategy.CollectionAdapter
+        public /* bridge */ /* synthetic */ int size(SparseArrayCompat<AccessibilityNodeInfoCompat> sparseArrayCompat) {
+            return size2(sparseArrayCompat);
+        }
+
+        /* JADX INFO: renamed from: get, reason: avoid collision after fix types in other method */
+        public AccessibilityNodeInfoCompat get2(SparseArrayCompat<AccessibilityNodeInfoCompat> sparseArrayCompat, int i) {
+            return sparseArrayCompat.valueAt(i);
+        }
+
+        /* JADX INFO: renamed from: size, reason: avoid collision after fix types in other method */
+        public int size2(SparseArrayCompat<AccessibilityNodeInfoCompat> sparseArrayCompat) {
+            return sparseArrayCompat.size();
+        }
+    }
+
+    public class MyNodeProvider extends AccessibilityNodeProviderCompat {
+        public MyNodeProvider() {
+        }
+
+        @Override // androidx.core.view.accessibility.AccessibilityNodeProviderCompat
+        public AccessibilityNodeInfoCompat createAccessibilityNodeInfo(int i) {
+            return AccessibilityNodeInfoCompat.obtain(ExploreByTouchHelper.this.obtainAccessibilityNodeInfo(i));
+        }
+
+        @Override // androidx.core.view.accessibility.AccessibilityNodeProviderCompat
+        public AccessibilityNodeInfoCompat findFocus(int i) {
+            int i2 = i == 2 ? ExploreByTouchHelper.this.mAccessibilityFocusedVirtualViewId : ExploreByTouchHelper.this.mKeyboardFocusedVirtualViewId;
+            if (i2 == Integer.MIN_VALUE) {
+                return null;
+            }
+            return createAccessibilityNodeInfo(i2);
+        }
+
+        @Override // androidx.core.view.accessibility.AccessibilityNodeProviderCompat
+        public boolean performAction(int i, int i2, Bundle bundle) {
+            return ExploreByTouchHelper.this.performAction(i, i2, bundle);
+        }
+    }
 
     public ExploreByTouchHelper(@NonNull View view) {
         if (view == null) {
@@ -263,7 +323,7 @@ public abstract class ExploreByTouchHelper extends AccessibilityDelegateCompat {
     @Override // androidx.core.view.AccessibilityDelegateCompat
     public AccessibilityNodeProviderCompat getAccessibilityNodeProvider(View view) {
         if (this.mNodeProvider == null) {
-            this.mNodeProvider = new ExploreByTouchHelper$MyNodeProvider(this);
+            this.mNodeProvider = new MyNodeProvider();
         }
         return this.mNodeProvider;
     }

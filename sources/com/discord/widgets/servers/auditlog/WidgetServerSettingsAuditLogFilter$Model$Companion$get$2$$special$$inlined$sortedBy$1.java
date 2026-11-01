@@ -10,6 +10,6 @@ public final class WidgetServerSettingsAuditLogFilter$Model$Companion$get$2$$spe
     /* JADX WARN: Multi-variable type inference failed */
     @Override // java.util.Comparator
     public final int compare(T t, T t2) {
-        return a.compareValues(Boolean.valueOf(!((WidgetServerSettingsAuditLogFilterAdapter$AuditLogUserFilterItem) t).getIsChecked()), Boolean.valueOf(!((WidgetServerSettingsAuditLogFilterAdapter$AuditLogUserFilterItem) t2).getIsChecked()));
+        return a.compareValues(Boolean.valueOf(!((WidgetServerSettingsAuditLogFilterAdapter.AuditLogUserFilterItem) t).getIsChecked()), Boolean.valueOf(!((WidgetServerSettingsAuditLogFilterAdapter.AuditLogUserFilterItem) t2).getIsChecked()));
     }
 }

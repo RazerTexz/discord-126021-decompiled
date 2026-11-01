@@ -1,30 +1,55 @@
 package com.google.android.material.internal;
 
-import android.animation.Animator$AnimatorListener;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.util.StateSet;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import java.util.ArrayList;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public final class StateListAnimator {
-    private final ArrayList<StateListAnimator$b> tuples = new ArrayList<>();
+    private final ArrayList<b> tuples = new ArrayList<>();
 
     @Nullable
-    private StateListAnimator$b lastMatch = null;
+    private b lastMatch = null;
 
     @Nullable
     public ValueAnimator runningAnimator = null;
-    private final Animator$AnimatorListener animationListener = new StateListAnimator$a(this);
+    private final Animator.AnimatorListener animationListener = new a();
+
+    public class a extends AnimatorListenerAdapter {
+        public a() {
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            StateListAnimator stateListAnimator = StateListAnimator.this;
+            if (stateListAnimator.runningAnimator == animator) {
+                stateListAnimator.runningAnimator = null;
+            }
+        }
+    }
+
+    public class b {
+        public final int[] a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final ValueAnimator f3047b;
+
+        public b(int[] iArr, ValueAnimator valueAnimator) {
+            this.a = iArr;
+            this.f3047b = valueAnimator;
+        }
+    }
 
     public void addState(int[] iArr, ValueAnimator valueAnimator) {
-        StateListAnimator$b stateListAnimator$b = new StateListAnimator$b(iArr, valueAnimator);
+        b bVar = new b(iArr, valueAnimator);
         valueAnimator.addListener(this.animationListener);
-        this.tuples.add(stateListAnimator$b);
+        this.tuples.add(bVar);
     }
 
     private void cancel() {
@@ -44,36 +69,36 @@ public final class StateListAnimator {
     }
 
     public void setState(int[] iArr) {
-        StateListAnimator$b stateListAnimator$b;
+        b bVar;
         int size = this.tuples.size();
         int i = 0;
         while (true) {
             if (i >= size) {
-                stateListAnimator$b = null;
+                bVar = null;
                 break;
             }
-            stateListAnimator$b = this.tuples.get(i);
-            if (StateSet.stateSetMatches(stateListAnimator$b.a, iArr)) {
+            bVar = this.tuples.get(i);
+            if (StateSet.stateSetMatches(bVar.a, iArr)) {
                 break;
             } else {
                 i++;
             }
         }
-        StateListAnimator$b stateListAnimator$b2 = this.lastMatch;
-        if (stateListAnimator$b == stateListAnimator$b2) {
+        b bVar2 = this.lastMatch;
+        if (bVar == bVar2) {
             return;
         }
-        if (stateListAnimator$b2 != null) {
+        if (bVar2 != null) {
             cancel();
         }
-        this.lastMatch = stateListAnimator$b;
-        if (stateListAnimator$b != null) {
-            start(stateListAnimator$b);
+        this.lastMatch = bVar;
+        if (bVar != null) {
+            start(bVar);
         }
     }
 
-    private void start(@NonNull StateListAnimator$b stateListAnimator$b) {
-        ValueAnimator valueAnimator = stateListAnimator$b.f3047b;
+    private void start(@NonNull b bVar) {
+        ValueAnimator valueAnimator = bVar.f3047b;
         this.runningAnimator = valueAnimator;
         valueAnimator.start();
     }

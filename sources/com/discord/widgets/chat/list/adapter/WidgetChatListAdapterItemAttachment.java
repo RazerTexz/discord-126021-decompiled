@@ -1,9 +1,12 @@
 package com.discord.widgets.chat.list.adapter;
 
+import a0.a.a.b;
 import android.content.Context;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.text.format.Formatter;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,39 +15,288 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
 import androidx.exifinterface.media.ExifInterface;
 import b.d.b.a.a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.message.attachment.MessageAttachment;
+import com.discord.api.message.attachment.MessageAttachmentType;
+import com.discord.api.role.GuildRole;
 import com.discord.databinding.WidgetChatListAdapterItemAttachmentBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.message.Message;
+import com.discord.stores.StoreMessageState;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUserSettings;
-import com.discord.utilities.analytics.Traits$Payment$Type;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.embed.EmbedResourceUtils;
 import com.discord.utilities.textprocessing.MessageRenderContext;
+import com.discord.utilities.uri.UriHandler;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.widgets.chat.list.FragmentLifecycleListener;
 import com.discord.widgets.chat.list.InlineMediaView;
 import com.discord.widgets.chat.list.entries.AttachmentEntry;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
+import com.discord.widgets.media.WidgetMedia;
 import com.google.android.material.card.MaterialCardView;
 import d0.z.d.m;
+import d0.z.d.o;
+import java.util.Map;
+import java.util.Set;
 import kotlin.Pair;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Subscription;
 
 /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChatListAdapterItemAttachment extends WidgetChatListItem implements FragmentLifecycleListener {
-    public static final WidgetChatListAdapterItemAttachment$Companion Companion = new WidgetChatListAdapterItemAttachment$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final WidgetChatListAdapterItemAttachmentBinding binding;
     private final int maxAttachmentImageWidth;
     private Subscription subscription;
     private final StoreUserSettings userSettings;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAttachment$configureFileData$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
+    public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+            TextView textView = (TextView) view;
+            Context context = textView.getContext();
+            m.checkNotNullExpressionValue(context, "it.context");
+            CharSequence text = textView.getText();
+            m.checkNotNullExpressionValue(text, "it.text");
+            b.a.d.m.c(context, text, 0, 4);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAttachment$configureUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
+    public final class AnonymousClass1 extends o implements Function1<ViewPropertyAnimator, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ViewPropertyAnimator viewPropertyAnimator) {
+            invoke2(viewPropertyAnimator);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ViewPropertyAnimator viewPropertyAnimator) {
+            m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
+            viewPropertyAnimator.scaleX(1.0f);
+            viewPropertyAnimator.scaleY(1.0f);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAttachment$configureFileData$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ MessageAttachment $data;
+
+        public AnonymousClass2(MessageAttachment messageAttachment) {
+            this.$data = messageAttachment;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetChatListAdapter.EventHandler eventHandler = WidgetChatListAdapterItemAttachment.access$getAdapter$p(WidgetChatListAdapterItemAttachment.this).getEventHandler();
+            Uri uri = Uri.parse(this.$data.getUrl());
+            m.checkNotNullExpressionValue(uri, "Uri.parse(data.url)");
+            boolean zOnQuickDownloadClicked = eventHandler.onQuickDownloadClicked(uri, this.$data.getFilename());
+            ImageView imageView = WidgetChatListAdapterItemAttachment.access$getBinding$p(WidgetChatListAdapterItemAttachment.this).f;
+            m.checkNotNullExpressionValue(imageView, "binding.chatListItemAttachmentDownload");
+            imageView.setEnabled(!zOnQuickDownloadClicked);
+            ImageView imageView2 = WidgetChatListAdapterItemAttachment.access$getBinding$p(WidgetChatListAdapterItemAttachment.this).f;
+            m.checkNotNullExpressionValue(imageView2, "binding.chatListItemAttachmentDownload");
+            imageView2.setAlpha(0.3f);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAttachment$configureUI$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
+    public final class AnonymousClass2 extends o implements Function1<ViewPropertyAnimator, Unit> {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ViewPropertyAnimator viewPropertyAnimator) {
+            invoke2(viewPropertyAnimator);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ViewPropertyAnimator viewPropertyAnimator) {
+            m.checkNotNullParameter(viewPropertyAnimator, "$receiver");
+            viewPropertyAnimator.scaleX(0.9f);
+            viewPropertyAnimator.scaleY(0.9f);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAttachment$configureUI$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
+    public final class AnonymousClass3 extends o implements Function1<View, Unit> {
+        public final /* synthetic */ AttachmentEntry $data;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass3(AttachmentEntry attachmentEntry) {
+            super(1);
+            this.$data = attachmentEntry;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+            WidgetChatListAdapter.EventHandler eventHandler = WidgetChatListAdapterItemAttachment.access$getAdapter$p(WidgetChatListAdapterItemAttachment.this).getEventHandler();
+            Message message = this.$data.getMessage();
+            String content = this.$data.getMessage().getContent();
+            if (content == null) {
+                content = "";
+            }
+            eventHandler.onMessageLongClicked(message, content, this.$data.isThreadStarterMessage());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAttachment$configureUI$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
+    public final class AnonymousClass4 implements View.OnClickListener {
+        public final /* synthetic */ AttachmentEntry $data;
+
+        public AnonymousClass4(AttachmentEntry attachmentEntry) {
+            this.$data = attachmentEntry;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetChatListAdapterItemAttachment.access$getAdapter$p(WidgetChatListAdapterItemAttachment.this).getEventHandler().onMessageClicked(this.$data.getMessage(), this.$data.isThreadStarterMessage());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAttachment$configureUI$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
+    public final class AnonymousClass5 implements View.OnClickListener {
+        public final /* synthetic */ AttachmentEntry $data;
+        public final /* synthetic */ Model $model;
+
+        public AnonymousClass5(Model model, AttachmentEntry attachmentEntry) {
+            this.$model = model;
+            this.$data = attachmentEntry;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            if (WidgetChatListAdapterItemAttachment.access$getAdapter$p(WidgetChatListAdapterItemAttachment.this).getData().getIsSpoilerClickAllowed()) {
+                StoreStream.INSTANCE.getMessageState().revealSpoilerEmbed(this.$model.getAttachmentEntry().getMessage().getId(), this.$data.getEmbedIndex());
+            } else {
+                WidgetChatListAdapterItemAttachment.access$getAdapter$p(WidgetChatListAdapterItemAttachment.this).getEventHandler().onMessageClicked(this.$model.getAttachmentEntry().getMessage(), this.$data.isThreadStarterMessage());
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAttachment$configureUI$6, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
+    public final class AnonymousClass6 implements View.OnClickListener {
+        public final /* synthetic */ MessageAttachment $attachment;
+
+        public AnonymousClass6(MessageAttachment messageAttachment) {
+            this.$attachment = messageAttachment;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            Companion.access$navigateToAttachment(WidgetChatListAdapterItemAttachment.INSTANCE, a.x(view, "it", "it.context"), this.$attachment);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemAttachment$configureUI$7, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
+    public final class AnonymousClass7 implements View.OnClickListener {
+        public final /* synthetic */ MessageAttachment $attachment;
+
+        public AnonymousClass7(MessageAttachment messageAttachment) {
+            this.$attachment = messageAttachment;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            Companion.access$navigateToAttachment(WidgetChatListAdapterItemAttachment.INSTANCE, a.x(view, "it", "it.context"), this.$attachment);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
+    public final class Companion {
+
+        public final /* synthetic */ class WhenMappings {
+            public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+            static {
+                MessageAttachmentType.values();
+                int[] iArr = new int[3];
+                $EnumSwitchMapping$0 = iArr;
+                iArr[MessageAttachmentType.VIDEO.ordinal()] = 1;
+                iArr[MessageAttachmentType.IMAGE.ordinal()] = 2;
+            }
+        }
+
+        private Companion() {
+        }
+
+        public static final /* synthetic */ boolean access$isInlinedAttachment$p(Companion companion, MessageAttachment messageAttachment) {
+            return companion.isInlinedAttachment(messageAttachment);
+        }
+
+        public static final /* synthetic */ void access$navigateToAttachment(Companion companion, Context context, MessageAttachment messageAttachment) {
+            companion.navigateToAttachment(context, messageAttachment);
+        }
+
+        private final boolean isInlinedAttachment(MessageAttachment messageAttachment) {
+            return messageAttachment.e() != MessageAttachmentType.FILE;
+        }
+
+        private final void navigateToAttachment(Context context, MessageAttachment attachment) {
+            int iOrdinal = attachment.e().ordinal();
+            if (iOrdinal == 0 || iOrdinal == 1) {
+                WidgetMedia.INSTANCE.launch(context, attachment);
+            } else {
+                UriHandler.handleOrUntrusted$default(context, attachment.getUrl(), null, 4, null);
+            }
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemAttachment(WidgetChatListAdapter widgetChatListAdapter) {
-        super(R$layout.widget_chat_list_adapter_item_attachment, widgetChatListAdapter);
+        super(R.layout.widget_chat_list_adapter_item_attachment, widgetChatListAdapter);
         m.checkNotNullParameter(widgetChatListAdapter, "adapter");
         EmbedResourceUtils embedResourceUtils = EmbedResourceUtils.INSTANCE;
         View view = this.itemView;
@@ -53,43 +305,43 @@ public final class WidgetChatListAdapterItemAttachment extends WidgetChatListIte
         m.checkNotNullExpressionValue(context, "itemView.context");
         this.maxAttachmentImageWidth = embedResourceUtils.computeMaximumImageWidthPx(context);
         View view2 = this.itemView;
-        int i = R$id.chat_list_adapter_item_gutter_bg;
-        View viewFindViewById = view2.findViewById(R$id.chat_list_adapter_item_gutter_bg);
+        int i = R.id.chat_list_adapter_item_gutter_bg;
+        View viewFindViewById = view2.findViewById(R.id.chat_list_adapter_item_gutter_bg);
         if (viewFindViewById != null) {
-            i = R$id.chat_list_adapter_item_highlighted_bg;
-            View viewFindViewById2 = view2.findViewById(R$id.chat_list_adapter_item_highlighted_bg);
+            i = R.id.chat_list_adapter_item_highlighted_bg;
+            View viewFindViewById2 = view2.findViewById(R.id.chat_list_adapter_item_highlighted_bg);
             if (viewFindViewById2 != null) {
-                i = R$id.chat_list_item_attachment_barrier;
-                Barrier barrier = (Barrier) view2.findViewById(R$id.chat_list_item_attachment_barrier);
+                i = R.id.chat_list_item_attachment_barrier;
+                Barrier barrier = (Barrier) view2.findViewById(R.id.chat_list_item_attachment_barrier);
                 if (barrier != null) {
-                    i = R$id.chat_list_item_attachment_card;
-                    MaterialCardView materialCardView = (MaterialCardView) view2.findViewById(R$id.chat_list_item_attachment_card);
+                    i = R.id.chat_list_item_attachment_card;
+                    MaterialCardView materialCardView = (MaterialCardView) view2.findViewById(R.id.chat_list_item_attachment_card);
                     if (materialCardView != null) {
-                        i = R$id.chat_list_item_attachment_description;
-                        TextView textView = (TextView) view2.findViewById(R$id.chat_list_item_attachment_description);
+                        i = R.id.chat_list_item_attachment_description;
+                        TextView textView = (TextView) view2.findViewById(R.id.chat_list_item_attachment_description);
                         if (textView != null) {
-                            i = R$id.chat_list_item_attachment_download;
-                            ImageView imageView = (ImageView) view2.findViewById(R$id.chat_list_item_attachment_download);
+                            i = R.id.chat_list_item_attachment_download;
+                            ImageView imageView = (ImageView) view2.findViewById(R.id.chat_list_item_attachment_download);
                             if (imageView != null) {
-                                i = R$id.chat_list_item_attachment_icon;
-                                ImageView imageView2 = (ImageView) view2.findViewById(R$id.chat_list_item_attachment_icon);
+                                i = R.id.chat_list_item_attachment_icon;
+                                ImageView imageView2 = (ImageView) view2.findViewById(R.id.chat_list_item_attachment_icon);
                                 if (imageView2 != null) {
-                                    i = R$id.chat_list_item_attachment_inline_media;
-                                    InlineMediaView inlineMediaView = (InlineMediaView) view2.findViewById(R$id.chat_list_item_attachment_inline_media);
+                                    i = R.id.chat_list_item_attachment_inline_media;
+                                    InlineMediaView inlineMediaView = (InlineMediaView) view2.findViewById(R.id.chat_list_item_attachment_inline_media);
                                     if (inlineMediaView != null) {
-                                        i = R$id.chat_list_item_attachment_name;
-                                        TextView textView2 = (TextView) view2.findViewById(R$id.chat_list_item_attachment_name);
+                                        i = R.id.chat_list_item_attachment_name;
+                                        TextView textView2 = (TextView) view2.findViewById(R.id.chat_list_item_attachment_name);
                                         if (textView2 != null) {
-                                            i = R$id.chat_list_item_attachment_spoiler;
-                                            FrameLayout frameLayout = (FrameLayout) view2.findViewById(R$id.chat_list_item_attachment_spoiler);
+                                            i = R.id.chat_list_item_attachment_spoiler;
+                                            FrameLayout frameLayout = (FrameLayout) view2.findViewById(R.id.chat_list_item_attachment_spoiler);
                                             if (frameLayout != null) {
-                                                i = 2131365922;
-                                                Guideline guideline = (Guideline) view2.findViewById(2131365922);
+                                                i = R.id.uikit_chat_guideline;
+                                                Guideline guideline = (Guideline) view2.findViewById(R.id.uikit_chat_guideline);
                                                 if (guideline != null) {
                                                     WidgetChatListAdapterItemAttachmentBinding widgetChatListAdapterItemAttachmentBinding = new WidgetChatListAdapterItemAttachmentBinding((ConstraintLayout) view2, viewFindViewById, viewFindViewById2, barrier, materialCardView, textView, imageView, imageView2, inlineMediaView, textView2, frameLayout, guideline);
                                                     m.checkNotNullExpressionValue(widgetChatListAdapterItemAttachmentBinding, "WidgetChatListAdapterIte…entBinding.bind(itemView)");
                                                     this.binding = widgetChatListAdapterItemAttachmentBinding;
-                                                    this.userSettings = StoreStream.Companion.getUserSettings();
+                                                    this.userSettings = StoreStream.INSTANCE.getUserSettings();
                                                     return;
                                                 }
                                             }
@@ -119,7 +371,7 @@ public final class WidgetChatListAdapterItemAttachment extends WidgetChatListIte
         textView.setText(data.getFilename());
         TextView textView2 = this.binding.i;
         m.checkNotNullExpressionValue(textView2, "binding.chatListItemAttachmentName");
-        ViewExtensions.setOnLongClickListenerConsumeClick(textView2, WidgetChatListAdapterItemAttachment$configureFileData$1.INSTANCE);
+        ViewExtensions.setOnLongClickListenerConsumeClick(textView2, AnonymousClass1.INSTANCE);
         TextView textView3 = this.binding.e;
         m.checkNotNullExpressionValue(textView3, "binding.chatListItemAttachmentDescription");
         textView3.setText(Formatter.formatFileSize(renderContext.getContext(), data.getSize()));
@@ -130,12 +382,12 @@ public final class WidgetChatListAdapterItemAttachment extends WidgetChatListIte
         ImageView imageView2 = this.binding.f;
         m.checkNotNullExpressionValue(imageView2, "binding.chatListItemAttachmentDownload");
         imageView2.setAlpha(1.0f);
-        this.binding.f.setOnClickListener(new WidgetChatListAdapterItemAttachment$configureFileData$2(this, data));
+        this.binding.f.setOnClickListener(new AnonymousClass2(data));
     }
 
     /* JADX WARN: Code duplicated, block: B:17:0x00a3  */
     /* JADX WARN: Code duplicated, block: B:23:0x00b8  */
-    private final void configureUI(WidgetChatListAdapterItemAttachment$Model model) {
+    private final void configureUI(Model model) {
         boolean z2;
         boolean z3;
         AttachmentEntry attachmentEntry = model.getAttachmentEntry();
@@ -143,16 +395,16 @@ public final class WidgetChatListAdapterItemAttachment extends WidgetChatListIte
         MessageRenderContext messageRenderContextCreateRenderContext = model.createRenderContext(a.x(this.itemView, "itemView", "itemView.context"), ((WidgetChatListAdapter) this.adapter).getEventHandler());
         boolean autoPlayGifs = attachmentEntry.getAutoPlayGifs();
         if (model.getIsSpoilerHidden()) {
-            ViewExtensions.fadeIn$default(this.binding.j, 50L, null, WidgetChatListAdapterItemAttachment$configureUI$1.INSTANCE, null, 10, null);
+            ViewExtensions.fadeIn$default(this.binding.j, 50L, null, AnonymousClass1.INSTANCE, null, 10, null);
         } else {
-            ViewExtensions.fadeOut$default(this.binding.j, 200L, WidgetChatListAdapterItemAttachment$configureUI$2.INSTANCE, null, 4, null);
+            ViewExtensions.fadeOut$default(this.binding.j, 200L, AnonymousClass2.INSTANCE, null, 4, null);
         }
         ConstraintLayout constraintLayout = this.binding.a;
         m.checkNotNullExpressionValue(constraintLayout, "binding.root");
-        ViewExtensions.setOnLongClickListenerConsumeClick(constraintLayout, new WidgetChatListAdapterItemAttachment$configureUI$3(this, attachmentEntry));
-        this.binding.a.setOnClickListener(new WidgetChatListAdapterItemAttachment$configureUI$4(this, attachmentEntry));
-        this.binding.j.setOnClickListener(new WidgetChatListAdapterItemAttachment$configureUI$5(this, model, attachmentEntry));
-        boolean z4 = WidgetChatListAdapterItemAttachment$Companion.access$isInlinedAttachment$p(Companion, attachment) && this.userSettings.getIsAttachmentMediaInline();
+        ViewExtensions.setOnLongClickListenerConsumeClick(constraintLayout, new AnonymousClass3(attachmentEntry));
+        this.binding.a.setOnClickListener(new AnonymousClass4(attachmentEntry));
+        this.binding.j.setOnClickListener(new AnonymousClass5(model, attachmentEntry));
+        boolean z4 = Companion.access$isInlinedAttachment$p(INSTANCE, attachment) && this.userSettings.getIsAttachmentMediaInline();
         if (attachment.getHeight() != null) {
             Integer height = attachment.getHeight();
             m.checkNotNull(height);
@@ -203,8 +455,8 @@ public final class WidgetChatListAdapterItemAttachment extends WidgetChatListIte
             InlineMediaView.updateUIWithAttachment$default(this.binding.h, attachment, null, null, autoPlayGifs, 6, null);
         }
         configureFileData(attachment, messageRenderContextCreateRenderContext);
-        this.binding.h.setOnClickListener(new WidgetChatListAdapterItemAttachment$configureUI$6(attachment));
-        this.binding.d.setOnClickListener(new WidgetChatListAdapterItemAttachment$configureUI$7(attachment));
+        this.binding.h.setOnClickListener(new AnonymousClass6(attachment));
+        this.binding.d.setOnClickListener(new AnonymousClass7(attachment));
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
@@ -227,6 +479,152 @@ public final class WidgetChatListAdapterItemAttachment extends WidgetChatListIte
         this.binding.h.onResume();
     }
 
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
+    public final /* data */ class Model {
+        private final AttachmentEntry attachmentEntry;
+        private final Map<Long, String> channelNames;
+        private final boolean isSpoilerHidden;
+        private final long myId;
+        private final Map<Long, GuildRole> roles;
+        private final Map<Long, String> userNames;
+
+        public Model(AttachmentEntry attachmentEntry, Map<Long, String> map, Map<Long, String> map2, Map<Long, GuildRole> map3, long j) {
+            m.checkNotNullParameter(attachmentEntry, "attachmentEntry");
+            this.attachmentEntry = attachmentEntry;
+            this.channelNames = map;
+            this.userNames = map2;
+            this.roles = map3;
+            this.myId = j;
+            this.isSpoilerHidden = attachmentEntry.getAttachment().h() && !isSpoilerEmbedRevealed(attachmentEntry);
+        }
+
+        public final Map<Long, String> component2() {
+            return this.channelNames;
+        }
+
+        public final Map<Long, String> component3() {
+            return this.userNames;
+        }
+
+        public final Map<Long, GuildRole> component4() {
+            return this.roles;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ Model copy$default(Model model, AttachmentEntry attachmentEntry, Map map, Map map2, Map map3, long j, int i, Object obj) {
+            if ((i & 1) != 0) {
+                attachmentEntry = model.attachmentEntry;
+            }
+            if ((i & 2) != 0) {
+                map = model.channelNames;
+            }
+            Map map4 = map;
+            if ((i & 4) != 0) {
+                map2 = model.userNames;
+            }
+            Map map5 = map2;
+            if ((i & 8) != 0) {
+                map3 = model.roles;
+            }
+            Map map6 = map3;
+            if ((i & 16) != 0) {
+                j = model.myId;
+            }
+            return model.copy(attachmentEntry, map4, map5, map6, j);
+        }
+
+        public final Model copy(AttachmentEntry attachmentEntry, Map<Long, String> channelNames, Map<Long, String> userNames, Map<Long, GuildRole> roles, long myId) {
+            m.checkNotNullParameter(attachmentEntry, "attachmentEntry");
+            return new Model(attachmentEntry, channelNames, userNames, roles, myId);
+        }
+
+        public final MessageRenderContext createRenderContext(Context androidContext, WidgetChatListAdapter.EventHandler eventHandler) {
+            m.checkNotNullParameter(androidContext, "androidContext");
+            m.checkNotNullParameter(eventHandler, "eventHandler");
+            return new MessageRenderContext(androidContext, this.myId, this.attachmentEntry.getAllowAnimatedEmojis(), this.userNames, this.channelNames, this.roles, 0, null, new WidgetChatListAdapterItemAttachment$Model$createRenderContext$1(eventHandler), 0, 0, null, null, null, 16064, null);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof Model)) {
+                return false;
+            }
+            Model model = (Model) other;
+            return m.areEqual(this.attachmentEntry, model.attachmentEntry) && m.areEqual(this.channelNames, model.channelNames) && m.areEqual(this.userNames, model.userNames) && m.areEqual(this.roles, model.roles) && this.myId == model.myId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final AttachmentEntry getAttachmentEntry() {
+            return this.attachmentEntry;
+        }
+
+        public final AttachmentEntry getAttachmentEntry() {
+            return this.attachmentEntry;
+        }
+
+        public final Map<Long, String> getChannelNames() {
+            return this.channelNames;
+        }
+
+        /* JADX INFO: renamed from: isSpoilerHidden, reason: from getter */
+        public final boolean getIsSpoilerHidden() {
+            return this.isSpoilerHidden;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final long getMyId() {
+            return this.myId;
+        }
+
+        public final long getMyId() {
+            return this.myId;
+        }
+
+        public final Map<Long, GuildRole> getRoles() {
+            return this.roles;
+        }
+
+        public final Map<Long, String> getUserNames() {
+            return this.userNames;
+        }
+
+        public int hashCode() {
+            AttachmentEntry attachmentEntry = this.attachmentEntry;
+            int iHashCode = (attachmentEntry != null ? attachmentEntry.hashCode() : 0) * 31;
+            Map<Long, String> map = this.channelNames;
+            int iHashCode2 = (iHashCode + (map != null ? map.hashCode() : 0)) * 31;
+            Map<Long, String> map2 = this.userNames;
+            int iHashCode3 = (iHashCode2 + (map2 != null ? map2.hashCode() : 0)) * 31;
+            Map<Long, GuildRole> map3 = this.roles;
+            return b.a(this.myId) + ((iHashCode3 + (map3 != null ? map3.hashCode() : 0)) * 31);
+        }
+
+        private final boolean isSpoilerEmbedRevealed(AttachmentEntry attachmentEntry) {
+            Map<Integer, Set<String>> visibleSpoilerEmbedMap;
+            StoreMessageState.State messageState = attachmentEntry.getMessageState();
+            return (messageState == null || (visibleSpoilerEmbedMap = messageState.getVisibleSpoilerEmbedMap()) == null || !visibleSpoilerEmbedMap.containsKey(Integer.valueOf(attachmentEntry.getEmbedIndex()))) ? false : true;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("Model(attachmentEntry=");
+            sbU.append(this.attachmentEntry);
+            sbU.append(", channelNames=");
+            sbU.append(this.channelNames);
+            sbU.append(", userNames=");
+            sbU.append(this.userNames);
+            sbU.append(", roles=");
+            sbU.append(this.roles);
+            sbU.append(", myId=");
+            return a.C(sbU, this.myId, ")");
+        }
+
+        public /* synthetic */ Model(AttachmentEntry attachmentEntry, Map map, Map map2, Map map3, long j, int i, DefaultConstructorMarker defaultConstructorMarker) {
+            this(attachmentEntry, (i & 2) != 0 ? null : map, (i & 4) != 0 ? null : map2, (i & 8) == 0 ? map3 : null, (i & 16) != 0 ? 0L : j);
+        }
+    }
+
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // com.discord.widgets.chat.list.adapter.WidgetChatListItem
     public void onConfigure(int position, ChatListEntry data) {
@@ -239,6 +637,6 @@ public final class WidgetChatListAdapterItemAttachment extends WidgetChatListIte
         View view2 = this.binding.f2309b;
         m.checkNotNullExpressionValue(view2, "binding.chatListAdapterItemGutterBg");
         configureCellHighlight(message, view, view2);
-        configureUI(new WidgetChatListAdapterItemAttachment$Model(attachmentEntry, null, null, null, 0L, 30, null));
+        configureUI(new Model(attachmentEntry, null, null, null, 0L, 30, null));
     }
 }

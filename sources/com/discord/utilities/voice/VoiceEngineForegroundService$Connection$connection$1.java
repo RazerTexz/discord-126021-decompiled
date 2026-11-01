@@ -8,17 +8,17 @@ import d0.z.d.m;
 /* JADX INFO: compiled from: VoiceEngineForegroundService.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class VoiceEngineForegroundService$Connection$connection$1 implements ServiceConnection {
-    public final /* synthetic */ VoiceEngineForegroundService$Connection this$0;
+    public final /* synthetic */ VoiceEngineForegroundService.Connection this$0;
 
-    public VoiceEngineForegroundService$Connection$connection$1(VoiceEngineForegroundService$Connection voiceEngineForegroundService$Connection) {
-        this.this$0 = voiceEngineForegroundService$Connection;
+    public VoiceEngineForegroundService$Connection$connection$1(VoiceEngineForegroundService.Connection connection) {
+        this.this$0 = connection;
     }
 
     @Override // android.content.ServiceConnection
     public void onServiceConnected(ComponentName className, IBinder binder) {
         m.checkNotNullParameter(className, "className");
         m.checkNotNullParameter(binder, "binder");
-        VoiceEngineForegroundService$Connection.access$setService$p(this.this$0, ((VoiceEngineForegroundService$LocalBinder) binder).getService());
+        VoiceEngineForegroundService.Connection.access$setService$p(this.this$0, ((VoiceEngineForegroundService.LocalBinder) binder).getService());
         this.this$0.setUnbinding(false);
     }
 
@@ -26,6 +26,6 @@ public final class VoiceEngineForegroundService$Connection$connection$1 implemen
     public void onServiceDisconnected(ComponentName className) {
         m.checkNotNullParameter(className, "className");
         this.this$0.setUnbinding(false);
-        VoiceEngineForegroundService$Connection.access$setService$p(this.this$0, null);
+        VoiceEngineForegroundService.Connection.access$setService$p(this.this$0, null);
     }
 }

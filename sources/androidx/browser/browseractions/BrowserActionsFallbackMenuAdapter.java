@@ -2,23 +2,80 @@ package androidx.browser.browseractions;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.browser.R$id;
-import androidx.browser.R$layout;
+import androidx.annotation.NonNull;
+import androidx.browser.R;
 import androidx.core.content.res.ResourcesCompat;
 import b.i.b.d.a.a;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
 
 /* JADX INFO: loaded from: classes.dex */
 @Deprecated
 public class BrowserActionsFallbackMenuAdapter extends BaseAdapter {
     private final Context mContext;
     private final List<BrowserActionItem> mMenuItems;
+
+    /* JADX INFO: renamed from: androidx.browser.browseractions.BrowserActionsFallbackMenuAdapter$1, reason: invalid class name */
+    public class AnonymousClass1 implements Runnable {
+        public final /* synthetic */ a val$bitmapFuture;
+        public final /* synthetic */ String val$titleText;
+        public final /* synthetic */ ViewHolderItem val$viewHolder;
+
+        public AnonymousClass1(String str, ViewHolderItem viewHolderItem, a aVar) {
+            this.val$titleText = str;
+            this.val$viewHolder = viewHolderItem;
+            this.val$bitmapFuture = aVar;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // java.lang.Runnable
+        public void run() {
+            Bitmap bitmap;
+            if (TextUtils.equals(this.val$titleText, this.val$viewHolder.mText.getText())) {
+                try {
+                    bitmap = (Bitmap) this.val$bitmapFuture.get();
+                } catch (InterruptedException | ExecutionException unused) {
+                    bitmap = null;
+                }
+                if (bitmap != null) {
+                    this.val$viewHolder.mIcon.setVisibility(0);
+                    this.val$viewHolder.mIcon.setImageBitmap(bitmap);
+                } else {
+                    this.val$viewHolder.mIcon.setVisibility(4);
+                    this.val$viewHolder.mIcon.setImageBitmap(null);
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.browser.browseractions.BrowserActionsFallbackMenuAdapter$2, reason: invalid class name */
+    public class AnonymousClass2 implements Executor {
+        public AnonymousClass2() {
+        }
+
+        @Override // java.util.concurrent.Executor
+        public void execute(@NonNull Runnable runnable) {
+            runnable.run();
+        }
+    }
+
+    public class ViewHolderItem {
+        public final ImageView mIcon;
+        public final TextView mText;
+
+        public ViewHolderItem(ImageView imageView, TextView textView) {
+            this.mIcon = imageView;
+            this.mText = textView;
+        }
+    }
 
     public BrowserActionsFallbackMenuAdapter(List<BrowserActionItem> list, Context context) {
         this.mMenuItems = list;
@@ -42,30 +99,30 @@ public class BrowserActionsFallbackMenuAdapter extends BaseAdapter {
 
     @Override // android.widget.Adapter
     public View getView(int i, View view, ViewGroup viewGroup) {
-        BrowserActionsFallbackMenuAdapter$ViewHolderItem browserActionsFallbackMenuAdapter$ViewHolderItem;
+        ViewHolderItem viewHolderItem;
         BrowserActionItem browserActionItem = this.mMenuItems.get(i);
         if (view == null) {
-            view = LayoutInflater.from(this.mContext).inflate(R$layout.browser_actions_context_menu_row, (ViewGroup) null);
-            ImageView imageView = (ImageView) view.findViewById(R$id.browser_actions_menu_item_icon);
-            TextView textView = (TextView) view.findViewById(R$id.browser_actions_menu_item_text);
+            view = LayoutInflater.from(this.mContext).inflate(R.layout.browser_actions_context_menu_row, (ViewGroup) null);
+            ImageView imageView = (ImageView) view.findViewById(R.id.browser_actions_menu_item_icon);
+            TextView textView = (TextView) view.findViewById(R.id.browser_actions_menu_item_text);
             if (imageView == null || textView == null) {
                 throw new IllegalStateException("Browser Actions fallback UI does not contain necessary Views.");
             }
-            browserActionsFallbackMenuAdapter$ViewHolderItem = new BrowserActionsFallbackMenuAdapter$ViewHolderItem(imageView, textView);
-            view.setTag(browserActionsFallbackMenuAdapter$ViewHolderItem);
+            viewHolderItem = new ViewHolderItem(imageView, textView);
+            view.setTag(viewHolderItem);
         } else {
-            browserActionsFallbackMenuAdapter$ViewHolderItem = (BrowserActionsFallbackMenuAdapter$ViewHolderItem) view.getTag();
+            viewHolderItem = (ViewHolderItem) view.getTag();
         }
         String title = browserActionItem.getTitle();
-        browserActionsFallbackMenuAdapter$ViewHolderItem.mText.setText(title);
+        viewHolderItem.mText.setText(title);
         if (browserActionItem.getIconId() != 0) {
-            browserActionsFallbackMenuAdapter$ViewHolderItem.mIcon.setImageDrawable(ResourcesCompat.getDrawable(this.mContext.getResources(), browserActionItem.getIconId(), null));
+            viewHolderItem.mIcon.setImageDrawable(ResourcesCompat.getDrawable(this.mContext.getResources(), browserActionItem.getIconId(), null));
         } else if (browserActionItem.getIconUri() != null) {
             a<Bitmap> aVarLoadBitmap = BrowserServiceFileProvider.loadBitmap(this.mContext.getContentResolver(), browserActionItem.getIconUri());
-            aVarLoadBitmap.addListener(new BrowserActionsFallbackMenuAdapter$1(this, title, browserActionsFallbackMenuAdapter$ViewHolderItem, aVarLoadBitmap), new BrowserActionsFallbackMenuAdapter$2(this));
+            aVarLoadBitmap.addListener(new AnonymousClass1(title, viewHolderItem, aVarLoadBitmap), new AnonymousClass2());
         } else {
-            browserActionsFallbackMenuAdapter$ViewHolderItem.mIcon.setImageBitmap(null);
-            browserActionsFallbackMenuAdapter$ViewHolderItem.mIcon.setVisibility(4);
+            viewHolderItem.mIcon.setImageBitmap(null);
+            viewHolderItem.mIcon.setVisibility(4);
         }
         return view;
     }

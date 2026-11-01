@@ -3,13 +3,12 @@ package androidx.work.impl.background.systemalarm;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.work.Logger;
 import androidx.work.impl.Scheduler;
 import androidx.work.impl.model.WorkSpec;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class SystemAlarmScheduler implements Scheduler {
     private final Context mContext;
     private static final String TAG = Logger.tagWithPrefix("SystemAlarmScheduler");

@@ -1,33 +1,50 @@
 package com.discord.utilities.persister;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.content.Context;
+import androidx.appcompat.widget.ActivityChooserModel;
+import androidx.core.app.NotificationCompat;
 import androidx.exifinterface.media.ExifInterface;
+import androidx.recyclerview.widget.RecyclerView;
 import b.d.b.a.a;
+import com.discord.models.domain.ModelAuditLogEntry;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.Clock;
+import com.discord.utilities.time.TimeElapsed;
 import com.discord.widgets.chat.input.MentionUtilsKt;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
-import d0.y.b;
+import d0.t.n;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
+import j0.l.e.k;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.lang.ref.WeakReference;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function3;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
+import rx.subjects.BehaviorSubject;
+import rx.subjects.SerializedSubject;
 import rx.subjects.Subject;
 
 /* JADX INFO: compiled from: Persister.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class Persister<T> {
-    public static final Persister$Companion Companion = new Persister$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static Clock clock;
 
     @SuppressLint({"StaticFieldLeak"})
@@ -35,7 +52,7 @@ public final class Persister<T> {
     private final T defaultValue;
     private static boolean initialized;
     private final String key;
-    private static Persister$Preloader preferencesPreloader;
+    private static Preloader preferencesPreloader;
     private T value;
     private boolean valueDirty;
     private Subject<T, T> valueSubject;
@@ -45,6 +62,231 @@ public final class Persister<T> {
     private static final Persister$Companion$kryos$1 kryos = new Persister$Companion$kryos$1();
     private static final List<WeakReference<Persister<?>>> preferences = new CopyOnWriteArrayList();
 
+    /* JADX INFO: renamed from: com.discord.utilities.persister.Persister$getObservable$1, reason: invalid class name */
+    /* JADX INFO: compiled from: Persister.kt */
+    public final class AnonymousClass1 extends o implements Function0<Subject<T, T>> {
+
+        /* JADX INFO: renamed from: com.discord.utilities.persister.Persister$getObservable$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: Persister.kt */
+        public final class C03401 extends o implements Function1 {
+            public final /* synthetic */ SerializedSubject $subject;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C03401(SerializedSubject serializedSubject) {
+                super(1);
+                this.$subject = serializedSubject;
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Object invoke(Object obj) {
+                invoke((Void) obj);
+                return Unit.a;
+            }
+
+            public final void invoke(Void r2) {
+                this.$subject.k.onNext((T) Persister.this.get());
+            }
+        }
+
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Object invoke() {
+            return invoke();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final Subject<T, T> invoke() {
+            SerializedSubject serializedSubject = new SerializedSubject(BehaviorSubject.k0());
+            k kVar = new k(null);
+            m.checkNotNullExpressionValue(kVar, "Observable\n          .just(null)");
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.computationBuffered(kVar), Persister.this.getClass(), (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new C03401(serializedSubject), 62, (Object) null);
+            return serializedSubject;
+        }
+    }
+
+    /* JADX INFO: compiled from: Persister.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static final /* synthetic */ long access$availableBytes(Companion companion) {
+            return companion.availableBytes();
+        }
+
+        public static final /* synthetic */ void access$persistAll(Companion companion) {
+            companion.persistAll();
+        }
+
+        private final long availableBytes() {
+            Context contextAccess$getContext$cp = Persister.access$getContext$cp();
+            if (contextAccess$getContext$cp == null) {
+                m.throwUninitializedPropertyAccessException("context");
+            }
+            Object systemService = contextAccess$getContext$cp.getSystemService(ActivityChooserModel.ATTRIBUTE_ACTIVITY);
+            if (!(systemService instanceof ActivityManager)) {
+                systemService = null;
+            }
+            ActivityManager activityManager = (ActivityManager) systemService;
+            if (activityManager == null) {
+                return RecyclerView.FOREVER_NS;
+            }
+            ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+            activityManager.getMemoryInfo(memoryInfo);
+            return memoryInfo.availMem;
+        }
+
+        public final Function1<Kryo, Unit> getKryoConfig() {
+            return Persister.access$getKryoConfig$cp();
+        }
+
+        public final Function3<Integer, String, Exception, Unit> getLogger() {
+            return Persister.access$getLogger$cp();
+        }
+
+        public final void init(Context context, Clock clock, Observable<Boolean> persistenceStrategy) {
+            m.checkNotNullParameter(context, "context");
+            m.checkNotNullParameter(clock, "clock");
+            m.checkNotNullParameter(persistenceStrategy, "persistenceStrategy");
+            if (Persister.access$getInitialized$cp()) {
+                return;
+            }
+            Persister.access$setInitialized$cp(true);
+            Persister.access$setContext$cp(context);
+            Persister.access$setClock$cp(clock);
+            Persister.access$setPreferencesPreloader$cp(new Preloader(clock));
+            Observable<Boolean> observableY = persistenceStrategy.y(Persister$Companion$init$1.INSTANCE);
+            m.checkNotNullExpressionValue(observableY, "persistenceStrategy\n    …er { persist -> persist }");
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.computationBuffered(observableY), Persister.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, Persister$Companion$init$2.INSTANCE, 62, (Object) null);
+        }
+
+        public final Observable<Boolean> isPreloaded() {
+            Preloader preloaderAccess$getPreferencesPreloader$cp = Persister.access$getPreferencesPreloader$cp();
+            if (preloaderAccess$getPreferencesPreloader$cp == null) {
+                m.throwUninitializedPropertyAccessException("preferencesPreloader");
+            }
+            return preloaderAccess$getPreferencesPreloader$cp.isPreloaded();
+        }
+
+        private final void persistAll() {
+            Iterator<T> it = Persister.access$getPreferences$cp().iterator();
+            while (it.hasNext()) {
+                k kVar = new k(((WeakReference) it.next()).get());
+                m.checkNotNullExpressionValue(kVar, "Observable\n          .just(weakPreference.get())");
+                ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.computationBuffered(kVar), Persister.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, Persister$Companion$persistAll$1$1.INSTANCE, 62, (Object) null);
+            }
+        }
+
+        public final void reset() {
+            Iterator<T> it = Persister.access$getPreferences$cp().iterator();
+            while (it.hasNext()) {
+                Persister persister = (Persister) ((WeakReference) it.next()).get();
+                if (persister != null) {
+                    Persister.clear$default(persister, false, 1, null);
+                }
+            }
+        }
+
+        public final void setKryoConfig(Function1<? super Kryo, Unit> function1) {
+            m.checkNotNullParameter(function1, "<set-?>");
+            Persister.access$setKryoConfig$cp(function1);
+        }
+
+        public final void setLogger(Function3<? super Integer, ? super String, ? super Exception, Unit> function3) {
+            m.checkNotNullParameter(function3, "<set-?>");
+            Persister.access$setLogger$cp(function3);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: Persister.kt */
+    public final class Preloader {
+        private final List<String> preloadCacheKeys;
+        private final SerializedSubject<Persister<?>, Persister<?>> preloadSubject;
+        private final TimeElapsed preloadTime;
+
+        /* JADX INFO: renamed from: com.discord.utilities.persister.Persister$Preloader$1, reason: invalid class name */
+        /* JADX INFO: compiled from: Persister.kt */
+        public final class AnonymousClass1<T, R> implements b<Persister<?>, Boolean> {
+            public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+            @Override // j0.k.b
+            public /* bridge */ /* synthetic */ Boolean call(Persister<?> persister) {
+                return call2(persister);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final Boolean call2(Persister<?> persister) {
+                return Boolean.valueOf(persister == null);
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.utilities.persister.Persister$Preloader$2, reason: invalid class name */
+        /* JADX INFO: compiled from: Persister.kt */
+        public final class AnonymousClass2 extends o implements Function1<Persister<?>, Unit> {
+            public AnonymousClass2() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Persister<?> persister) {
+                invoke2(persister);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Persister<?> persister) {
+                if (persister != null) {
+                    Preloader.access$handlePreload(Preloader.this, persister);
+                }
+            }
+        }
+
+        public Preloader(Clock clock) {
+            m.checkNotNullParameter(clock, "clock");
+            this.preloadTime = new TimeElapsed(clock, 0L, 2, null);
+            SerializedSubject<Persister<?>, Persister<?>> serializedSubject = new SerializedSubject<>(BehaviorSubject.k0());
+            this.preloadSubject = serializedSubject;
+            this.preloadCacheKeys = n.mutableListOf("STORE_USER_RELATIONSHIPS_V9", "STORE_CHANNELS_V26", "STORE_GUILDS_V34");
+            Observable<Persister<?>> observableB0 = serializedSubject.b0(AnonymousClass1.INSTANCE);
+            m.checkNotNullExpressionValue(observableB0, "preloadSubject\n          .takeUntil { it == null }");
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.computationBuffered(observableB0), Preloader.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
+        }
+
+        public static final /* synthetic */ void access$handlePreload(Preloader preloader, Persister persister) {
+            preloader.handlePreload(persister);
+        }
+
+        private final synchronized <T> void handlePreload(Persister<T> persister) {
+            if (this.preloadCacheKeys.contains(persister.getKey())) {
+                this.preloadCacheKeys.remove(persister.getKey());
+                persister.get();
+            }
+            if (this.preloadCacheKeys.isEmpty()) {
+                this.preloadSubject.k.onNext(null);
+                Persister.INSTANCE.getLogger().invoke(4, "Preloaded preferences in " + this.preloadTime.getSeconds() + " seconds.", null);
+            }
+        }
+
+        public final Observable<Boolean> isPreloaded() {
+            Observable<Boolean> observableR = this.preloadSubject.G(Persister$Preloader$isPreloaded$1.INSTANCE).r();
+            m.checkNotNullExpressionValue(observableR, "preloadSubject\n         …  .distinctUntilChanged()");
+            return observableR;
+        }
+
+        public final synchronized <T> void preload(Persister<T> preference) {
+            m.checkNotNullParameter(preference, "preference");
+            if (this.preloadCacheKeys.contains(preference.getKey())) {
+                this.preloadSubject.k.onNext(preference);
+            }
+        }
+    }
+
     public Persister(String str, T t) {
         m.checkNotNullParameter(str, "key");
         m.checkNotNullParameter(t, "defaultValue");
@@ -53,11 +295,11 @@ public final class Persister<T> {
         this.value = t;
         this.valueUnset = true;
         preferences.add(new WeakReference<>(this));
-        Persister$Preloader persister$Preloader = preferencesPreloader;
-        if (persister$Preloader == null) {
+        Preloader preloader = preferencesPreloader;
+        if (preloader == null) {
             m.throwUninitializedPropertyAccessException("preferencesPreloader");
         }
-        persister$Preloader.preload(this);
+        preloader.preload(this);
     }
 
     public static final /* synthetic */ Clock access$getClock$cp() {
@@ -84,7 +326,7 @@ public final class Persister<T> {
         return preferences;
     }
 
-    public static final /* synthetic */ Persister$Preloader access$getPreferencesPreloader$cp() {
+    public static final /* synthetic */ Preloader access$getPreferencesPreloader$cp() {
         return preferencesPreloader;
     }
 
@@ -112,8 +354,8 @@ public final class Persister<T> {
         logger = function3;
     }
 
-    public static final /* synthetic */ void access$setPreferencesPreloader$cp(Persister$Preloader persister$Preloader) {
-        preferencesPreloader = persister$Preloader;
+    public static final /* synthetic */ void access$setPreferencesPreloader$cp(Preloader preloader) {
+        preferencesPreloader = preloader;
     }
 
     public static /* synthetic */ Object clear$default(Persister persister, boolean z2, int i, Object obj) {
@@ -169,7 +411,7 @@ public final class Persister<T> {
 
     private final Input getFileInputStream() {
         File fileInput = getFileInput();
-        if (!fileInput.exists() || fileInput.length() >= Persister$Companion.access$availableBytes(Companion)) {
+        if (!fileInput.exists() || fileInput.length() >= Companion.access$availableBytes(INSTANCE)) {
             return null;
         }
         return new Input(new FileInputStream(fileInput));
@@ -214,7 +456,7 @@ public final class Persister<T> {
                     } else {
                         t = this.value;
                     }
-                    b.closeFinally(fileInputStream, null);
+                    d0.y.b.closeFinally(fileInputStream, null);
                     if (t != null) {
                         return (T) t;
                     }
@@ -222,7 +464,7 @@ public final class Persister<T> {
                     try {
                         throw th;
                     } catch (Throwable th2) {
-                        b.closeFinally(fileInputStream, th);
+                        d0.y.b.closeFinally(fileInputStream, th);
                         throw th2;
                     }
                 }
@@ -240,17 +482,17 @@ public final class Persister<T> {
 
     public final synchronized Observable<T> getObservable() {
         Subject<T, T> subjectInvoke;
-        Persister$getObservable$1 persister$getObservable$1 = new Persister$getObservable$1(this);
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1();
         subjectInvoke = this.valueSubject;
         if (subjectInvoke == null) {
-            subjectInvoke = persister$getObservable$1.invoke();
+            subjectInvoke = anonymousClass1.invoke();
             this.valueSubject = subjectInvoke;
         }
         return subjectInvoke;
     }
 
     public static final Observable<Boolean> isPreloaded() {
-        return Companion.isPreloaded();
+        return INSTANCE.isPreloaded();
     }
 
     private final synchronized void persist() {
@@ -264,12 +506,12 @@ public final class Persister<T> {
                         if (kryo != null) {
                             kryo.writeClassAndObject(output, this.value);
                         }
-                        b.closeFinally(output, null);
+                        d0.y.b.closeFinally(output, null);
                     } catch (Throwable th) {
                         try {
                             throw th;
                         } catch (Throwable th2) {
-                            b.closeFinally(output, th);
+                            d0.y.b.closeFinally(output, th);
                             throw th2;
                         }
                     }
@@ -283,7 +525,7 @@ public final class Persister<T> {
     }
 
     public static final void reset() {
-        Companion.reset();
+        INSTANCE.reset();
     }
 
     public static /* synthetic */ Object set$default(Persister persister, Object obj, boolean z2, int i, Object obj2) {

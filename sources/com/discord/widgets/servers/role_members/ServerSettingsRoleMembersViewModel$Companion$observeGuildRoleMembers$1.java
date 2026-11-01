@@ -17,7 +17,7 @@ import kotlin.sequences.Sequence;
 
 /* JADX INFO: compiled from: ServerSettingsRoleMembersViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ServerSettingsRoleMembersViewModel$Companion$observeGuildRoleMembers$1 extends o implements Function0<ServerSettingsRoleMembersViewModel$StoreState> {
+public final class ServerSettingsRoleMembersViewModel$Companion$observeGuildRoleMembers$1 extends o implements Function0<ServerSettingsRoleMembersViewModel.StoreState> {
     public final /* synthetic */ long $guildId;
     public final /* synthetic */ long $guildRoleId;
     public final /* synthetic */ StoreGuilds $storeGuilds;
@@ -33,13 +33,13 @@ public final class ServerSettingsRoleMembersViewModel$Companion$observeGuildRole
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ ServerSettingsRoleMembersViewModel$StoreState invoke() {
+    public /* bridge */ /* synthetic */ ServerSettingsRoleMembersViewModel.StoreState invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final ServerSettingsRoleMembersViewModel$StoreState invoke() {
+    public final ServerSettingsRoleMembersViewModel.StoreState invoke() {
         List listEmptyList;
         Collection<GuildMember> collectionValues;
         Sequence sequenceAsSequence;
@@ -50,6 +50,6 @@ public final class ServerSettingsRoleMembersViewModel$Companion$observeGuildRole
         }
         Map<Long, User> users = this.$storeUser.getUsers();
         Map<Long, GuildRole> map2 = this.$storeGuilds.getRoles().get(Long.valueOf(this.$guildId));
-        return new ServerSettingsRoleMembersViewModel$StoreState(listEmptyList, users, map2 != null ? map2.get(Long.valueOf(this.$guildRoleId)) : null);
+        return new ServerSettingsRoleMembersViewModel.StoreState(listEmptyList, users, map2 != null ? map2.get(Long.valueOf(this.$guildRoleId)) : null);
     }
 }

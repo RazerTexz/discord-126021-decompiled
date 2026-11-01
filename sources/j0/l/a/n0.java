@@ -1,16 +1,19 @@
 package j0.l.a;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import rx.Observable$b;
+import rx.Observable;
 import rx.Scheduler;
-import rx.Scheduler$Worker;
 import rx.Subscriber;
+import rx.functions.Action0;
 import rx.observers.SerializedSubscriber;
 
 /* JADX INFO: compiled from: OperatorBufferWithTime.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class n0<T> implements Observable$b<List<T>, T> {
+public final class n0<T> implements Observable.b<List<T>, T> {
     public final long j;
     public final long k;
     public final TimeUnit l;
@@ -28,26 +31,226 @@ public final class n0<T> implements Observable$b<List<T>, T> {
     @Override // j0.k.b
     public Object call(Object obj) {
         Subscriber subscriber = (Subscriber) obj;
-        Scheduler$Worker scheduler$WorkerA = this.n.a();
+        Scheduler.Worker workerA = this.n.a();
         SerializedSubscriber serializedSubscriber = new SerializedSubscriber(subscriber);
         if (this.j == this.k) {
-            n0$a n0_a = new n0$a(this, serializedSubscriber, scheduler$WorkerA);
-            n0_a.add(scheduler$WorkerA);
-            subscriber.add(n0_a);
-            Scheduler$Worker scheduler$Worker = n0_a.k;
-            m0 m0Var = new m0(n0_a);
+            a aVar = new a(serializedSubscriber, workerA);
+            aVar.add(workerA);
+            subscriber.add(aVar);
+            Scheduler.Worker worker = aVar.k;
+            m0 m0Var = new m0(aVar);
             long j = this.j;
-            scheduler$Worker.c(m0Var, j, j, this.l);
-            return n0_a;
+            worker.c(m0Var, j, j, this.l);
+            return aVar;
         }
-        n0$b n0_b = new n0$b(this, serializedSubscriber, scheduler$WorkerA);
-        n0_b.add(scheduler$WorkerA);
-        subscriber.add(n0_b);
-        n0_b.a();
-        Scheduler$Worker scheduler$Worker2 = n0_b.k;
-        o0 o0Var = new o0(n0_b);
+        b bVar = new b(serializedSubscriber, workerA);
+        bVar.add(workerA);
+        subscriber.add(bVar);
+        bVar.a();
+        Scheduler.Worker worker2 = bVar.k;
+        o0 o0Var = new o0(bVar);
         long j2 = this.k;
-        scheduler$Worker2.c(o0Var, j2, j2, this.l);
-        return n0_b;
+        worker2.c(o0Var, j2, j2, this.l);
+        return bVar;
+    }
+
+    /* JADX INFO: compiled from: OperatorBufferWithTime.java */
+    public final class a extends Subscriber<T> {
+        public final Subscriber<? super List<T>> j;
+        public final Scheduler.Worker k;
+        public boolean m;
+        public List<T> l = new ArrayList();
+
+        public a(Subscriber<? super List<T>> subscriber, Scheduler.Worker worker) {
+            this.j = subscriber;
+            this.k = worker;
+        }
+
+        @Override // j0.g
+        public void onCompleted() {
+            try {
+                this.k.unsubscribe();
+                synchronized (this) {
+                    if (this.m) {
+                        return;
+                    }
+                    this.m = true;
+                    List<T> list = this.l;
+                    this.l = null;
+                    this.j.onNext(list);
+                    this.j.onCompleted();
+                    unsubscribe();
+                }
+            } catch (Throwable th) {
+                Subscriber<? super List<T>> subscriber = this.j;
+                b.i.a.f.e.o.f.o1(th);
+                subscriber.onError(th);
+            }
+        }
+
+        @Override // j0.g
+        public void onError(Throwable th) {
+            synchronized (this) {
+                if (this.m) {
+                    return;
+                }
+                this.m = true;
+                this.l = null;
+                this.j.onError(th);
+                unsubscribe();
+            }
+        }
+
+        @Override // j0.g
+        public void onNext(T t) {
+            List<T> list;
+            synchronized (this) {
+                if (this.m) {
+                    return;
+                }
+                this.l.add(t);
+                if (this.l.size() == n0.this.m) {
+                    list = this.l;
+                    this.l = new ArrayList();
+                } else {
+                    list = null;
+                }
+                if (list != null) {
+                    this.j.onNext(list);
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: OperatorBufferWithTime.java */
+    public final class b extends Subscriber<T> {
+        public final Subscriber<? super List<T>> j;
+        public final Scheduler.Worker k;
+        public boolean m;
+        public final List<List<T>> l = new LinkedList();
+
+        /* JADX INFO: compiled from: OperatorBufferWithTime.java */
+        public class a implements Action0 {
+            public final /* synthetic */ List j;
+
+            public a(List list) {
+                this.j = list;
+            }
+
+            @Override // rx.functions.Action0
+            public void call() {
+                boolean z2;
+                b bVar = b.this;
+                List<T> list = this.j;
+                synchronized (bVar) {
+                    if (bVar.m) {
+                        return;
+                    }
+                    Iterator<List<T>> it = bVar.l.iterator();
+                    while (true) {
+                        if (!it.hasNext()) {
+                            z2 = false;
+                            break;
+                        } else if (it.next() == list) {
+                            it.remove();
+                            z2 = true;
+                            break;
+                        }
+                    }
+                    if (z2) {
+                        try {
+                            bVar.j.onNext(list);
+                        } catch (Throwable th) {
+                            b.i.a.f.e.o.f.o1(th);
+                            bVar.onError(th);
+                        }
+                    }
+                }
+            }
+        }
+
+        public b(Subscriber<? super List<T>> subscriber, Scheduler.Worker worker) {
+            this.j = subscriber;
+            this.k = worker;
+        }
+
+        public void a() {
+            ArrayList arrayList = new ArrayList();
+            synchronized (this) {
+                if (this.m) {
+                    return;
+                }
+                this.l.add(arrayList);
+                Scheduler.Worker worker = this.k;
+                a aVar = new a(arrayList);
+                n0 n0Var = n0.this;
+                worker.b(aVar, n0Var.j, n0Var.l);
+            }
+        }
+
+        @Override // j0.g
+        public void onCompleted() {
+            try {
+                synchronized (this) {
+                    if (this.m) {
+                        return;
+                    }
+                    this.m = true;
+                    LinkedList linkedList = new LinkedList(this.l);
+                    this.l.clear();
+                    Iterator it = linkedList.iterator();
+                    while (it.hasNext()) {
+                        this.j.onNext((List) it.next());
+                    }
+                    this.j.onCompleted();
+                    unsubscribe();
+                }
+            } catch (Throwable th) {
+                Subscriber<? super List<T>> subscriber = this.j;
+                b.i.a.f.e.o.f.o1(th);
+                subscriber.onError(th);
+            }
+        }
+
+        @Override // j0.g
+        public void onError(Throwable th) {
+            synchronized (this) {
+                if (this.m) {
+                    return;
+                }
+                this.m = true;
+                this.l.clear();
+                this.j.onError(th);
+                unsubscribe();
+            }
+        }
+
+        @Override // j0.g
+        public void onNext(T t) {
+            synchronized (this) {
+                if (this.m) {
+                    return;
+                }
+                Iterator<List<T>> it = this.l.iterator();
+                LinkedList linkedList = null;
+                while (it.hasNext()) {
+                    List<T> next = it.next();
+                    next.add(t);
+                    if (next.size() == n0.this.m) {
+                        it.remove();
+                        if (linkedList == null) {
+                            linkedList = new LinkedList();
+                        }
+                        linkedList.add(next);
+                    }
+                }
+                if (linkedList != null) {
+                    Iterator it2 = linkedList.iterator();
+                    while (it2.hasNext()) {
+                        this.j.onNext((List) it2.next());
+                    }
+                }
+            }
+        }
     }
 }

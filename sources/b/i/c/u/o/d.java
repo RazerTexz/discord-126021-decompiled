@@ -10,6 +10,16 @@ import com.google.auto.value.AutoValue;
 public abstract class d {
     public static final /* synthetic */ int a = 0;
 
+    /* JADX INFO: compiled from: PersistedInstallationEntry.java */
+    @AutoValue.Builder
+    public abstract class a {
+        @NonNull
+        public abstract d a();
+
+        @NonNull
+        public abstract a b(@NonNull c.a aVar);
+    }
+
     static {
         Long l = 0L;
         String strW = l == null ? " expiresInSecs" : "";
@@ -38,23 +48,23 @@ public abstract class d {
     public abstract String e();
 
     @NonNull
-    public abstract c$a f();
+    public abstract c.a f();
 
     public abstract long g();
 
     public boolean h() {
-        return f() == c$a.REGISTER_ERROR;
+        return f() == c.a.REGISTER_ERROR;
     }
 
     public boolean i() {
-        c$a c_a = ((a) this).c;
-        return c_a == c$a.NOT_GENERATED || c_a == c$a.ATTEMPT_MIGRATION;
+        c.a aVar = ((b.i.c.u.o.a) this).c;
+        return aVar == c.a.NOT_GENERATED || aVar == c.a.ATTEMPT_MIGRATION;
     }
 
     public boolean j() {
-        return f() == c$a.REGISTERED;
+        return f() == c.a.REGISTERED;
     }
 
     @NonNull
-    public abstract d$a k();
+    public abstract a k();
 }

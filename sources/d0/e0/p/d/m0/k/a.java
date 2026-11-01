@@ -2,7 +2,6 @@ package d0.e0.p.d.m0.k;
 
 import d0.e0.p.d.m0.c.e0;
 import d0.e0.p.d.m0.c.z;
-import d0.e0.p.d.m0.k.a0.l$a;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -14,7 +13,7 @@ public final class a extends s {
 
     /* JADX WARN: Multi-variable type inference failed */
     public static final void a(d0.e0.p.d.m0.c.e eVar, LinkedHashSet<d0.e0.p.d.m0.c.e> linkedHashSet, d0.e0.p.d.m0.k.a0.i iVar, boolean z2) {
-        for (d0.e0.p.d.m0.c.m mVar : l$a.getContributedDescriptors$default(iVar, d0.e0.p.d.m0.k.a0.d.o, null, 2, null)) {
+        for (d0.e0.p.d.m0.c.m mVar : d0.e0.p.d.m0.k.a0.l.a.getContributedDescriptors$default(iVar, d0.e0.p.d.m0.k.a0.d.o, null, 2, null)) {
             if (mVar instanceof d0.e0.p.d.m0.c.e) {
                 d0.e0.p.d.m0.c.e eVar2 = (d0.e0.p.d.m0.c.e) mVar;
                 if (e.isDirectSubclass(eVar2, eVar)) {

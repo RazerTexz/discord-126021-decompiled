@@ -1,11 +1,18 @@
 package s.a;
 
-import d0.w.a;
+import kotlin.coroutines.CoroutineContext;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: Unconfined.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class a2 extends a {
-    public static final a2$a j = new a2$a(null);
+public final class a2 extends d0.w.a {
+    public static final a j = new a(null);
+
+    /* JADX INFO: compiled from: Unconfined.kt */
+    public final class a implements CoroutineContext.Key<a2> {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
 
     public a2() {
         super(j);

@@ -7,8 +7,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
-import com.otaliastudios.cameraview.R$a;
-import com.otaliastudios.cameraview.R$b;
+import com.otaliastudios.cameraview.R;
 
 /* JADX INFO: compiled from: SurfaceCameraPreview.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -42,9 +41,9 @@ public class h extends a<SurfaceView, SurfaceHolder> {
     @Override // b.o.a.w.a
     @NonNull
     public View n(@NonNull Context context, @NonNull ViewGroup viewGroup) {
-        View viewInflate = LayoutInflater.from(context).inflate(R$b.cameraview_surface_view, viewGroup, false);
+        View viewInflate = LayoutInflater.from(context).inflate(R.b.cameraview_surface_view, viewGroup, false);
         viewGroup.addView(viewInflate, 0);
-        SurfaceView surfaceView = (SurfaceView) viewInflate.findViewById(R$a.surface_view);
+        SurfaceView surfaceView = (SurfaceView) viewInflate.findViewById(R.a.surface_view);
         SurfaceHolder holder = surfaceView.getHolder();
         holder.setType(3);
         holder.addCallback(new g(this));

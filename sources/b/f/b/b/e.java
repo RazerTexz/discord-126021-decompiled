@@ -19,7 +19,22 @@ public class e implements c {
     public final Supplier<File> f466b;
 
     @VisibleForTesting
-    public volatile e$a e = new e$a(null, null);
+    public volatile a e = new a(null, null);
+
+    /* JADX INFO: compiled from: DynamicDefaultDiskStorage.java */
+    @VisibleForTesting
+    public class a {
+        public final c a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final File f467b;
+
+        @VisibleForTesting
+        public a(File file, c cVar) {
+            this.a = cVar;
+            this.f467b = file;
+        }
+    }
 
     public e(int i, Supplier<File> supplier, String str, b.f.b.a.a aVar) {
         this.a = i;
@@ -38,7 +53,7 @@ public class e implements c {
     }
 
     @Override // b.f.b.b.c
-    public c$b b(String str, Object obj) throws IOException {
+    public c.b b(String str, Object obj) throws IOException {
         return i().b(str, obj);
     }
 
@@ -53,7 +68,7 @@ public class e implements c {
     }
 
     @Override // b.f.b.b.c
-    public Collection<c$a> e() throws IOException {
+    public Collection<c.a> e() throws IOException {
         return i().e();
     }
 
@@ -63,8 +78,8 @@ public class e implements c {
     }
 
     @Override // b.f.b.b.c
-    public long g(c$a c_a) throws IOException {
-        return i().g(c_a);
+    public long g(c.a aVar) throws IOException {
+        return i().g(aVar);
     }
 
     public final void h() throws IOException {
@@ -73,7 +88,7 @@ public class e implements c {
             b.c.a.a0.d.l1(file);
             file.getAbsolutePath();
             int i = b.f.d.e.a.a;
-            this.e = new e$a(file, new a(file, this.a, this.d));
+            this.e = new a(file, new b.f.b.b.a(file, this.a, this.d));
         } catch (FileUtils$CreateDirectoryException e) {
             Objects.requireNonNull((b.f.b.a.d) this.d);
             throw e;
@@ -84,8 +99,8 @@ public class e implements c {
     public synchronized c i() throws IOException {
         c cVar;
         File file;
-        e$a e_a = this.e;
-        if (e_a.a == null || (file = e_a.f467b) == null || !file.exists()) {
+        a aVar = this.e;
+        if (aVar.a == null || (file = aVar.f467b) == null || !file.exists()) {
             if (this.e.a != null && this.e.f467b != null) {
                 b.c.a.a0.d.Z(this.e.f467b);
             }

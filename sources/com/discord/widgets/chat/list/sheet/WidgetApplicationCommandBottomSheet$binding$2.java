@@ -5,7 +5,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetApplicationCommandBottomSheetBinding;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
@@ -30,29 +30,29 @@ public final /* synthetic */ class WidgetApplicationCommandBottomSheet$binding$2
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetApplicationCommandBottomSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = 2131362214;
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(2131362214);
+        int i = R.id.bottom;
+        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.bottom);
         if (linearLayout != null) {
-            i = R$id.command_bottom_sheet_command_avatar;
-            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.command_bottom_sheet_command_avatar);
+            i = R.id.command_bottom_sheet_command_avatar;
+            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.command_bottom_sheet_command_avatar);
             if (simpleDraweeView != null) {
-                i = R$id.command_bottom_sheet_command_content;
-                TextView textView = (TextView) view.findViewById(R$id.command_bottom_sheet_command_content);
+                i = R.id.command_bottom_sheet_command_content;
+                TextView textView = (TextView) view.findViewById(R.id.command_bottom_sheet_command_content);
                 if (textView != null) {
-                    i = R$id.command_bottom_sheet_command_copy_button;
-                    MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.command_bottom_sheet_command_copy_button);
+                    i = R.id.command_bottom_sheet_command_copy_button;
+                    MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.command_bottom_sheet_command_copy_button);
                     if (materialButton != null) {
-                        i = R$id.command_bottom_sheet_command_loader;
-                        ProgressBar progressBar = (ProgressBar) view.findViewById(R$id.command_bottom_sheet_command_loader);
+                        i = R.id.command_bottom_sheet_command_loader;
+                        ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.command_bottom_sheet_command_loader);
                         if (progressBar != null) {
-                            i = R$id.command_bottom_sheet_command_slash_heading;
-                            TextView textView2 = (TextView) view.findViewById(R$id.command_bottom_sheet_command_slash_heading);
+                            i = R.id.command_bottom_sheet_command_slash_heading;
+                            TextView textView2 = (TextView) view.findViewById(R.id.command_bottom_sheet_command_slash_heading);
                             if (textView2 != null) {
-                                i = R$id.command_bottom_sheet_command_title;
-                                TextView textView3 = (TextView) view.findViewById(R$id.command_bottom_sheet_command_title);
+                                i = R.id.command_bottom_sheet_command_title;
+                                TextView textView3 = (TextView) view.findViewById(R.id.command_bottom_sheet_command_title);
                                 if (textView3 != null) {
-                                    i = R$id.command_bottom_sheet_command_title_application_name;
-                                    TextView textView4 = (TextView) view.findViewById(R$id.command_bottom_sheet_command_title_application_name);
+                                    i = R.id.command_bottom_sheet_command_title_application_name;
+                                    TextView textView4 = (TextView) view.findViewById(R.id.command_bottom_sheet_command_title_application_name);
                                     if (textView4 != null) {
                                         return new WidgetApplicationCommandBottomSheetBinding((ConstraintLayout) view, linearLayout, simpleDraweeView, textView, materialButton, progressBar, textView2, textView3, textView4);
                                     }

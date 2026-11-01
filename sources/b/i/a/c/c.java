@@ -5,19 +5,19 @@ import java.util.Objects;
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class c implements Runnable {
-    public final /* synthetic */ t0$a j;
+    public final /* synthetic */ t0.a j;
     public final /* synthetic */ int k;
 
-    public /* synthetic */ c(t0$a t0_a, int i) {
-        this.j = t0_a;
+    public /* synthetic */ c(t0.a aVar, int i) {
+        this.j = aVar;
         this.k = i;
     }
 
     @Override // java.lang.Runnable
     public final void run() {
-        t0$a t0_a = this.j;
+        t0.a aVar = this.j;
         int i = this.k;
-        t0 t0Var = t0_a.k;
+        t0 t0Var = t0.this;
         Objects.requireNonNull(t0Var);
         if (i == -3 || i == -2) {
             if (i != -2) {

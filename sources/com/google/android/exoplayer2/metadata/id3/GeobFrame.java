@@ -1,9 +1,8 @@
 package com.google.android.exoplayer2.metadata.id3;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
 import b.i.a.c.f3.e0;
 import java.util.Arrays;
 
@@ -13,7 +12,19 @@ public final class GeobFrame extends Id3Frame {
     public final String l;
     public final String m;
     public final byte[] n;
-    public static final Parcelable$Creator<GeobFrame> CREATOR = new GeobFrame$a();
+    public static final Parcelable.Creator<GeobFrame> CREATOR = new a();
+
+    public class a implements Parcelable.Creator<GeobFrame> {
+        @Override // android.os.Parcelable.Creator
+        public GeobFrame createFromParcel(Parcel parcel) {
+            return new GeobFrame(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public GeobFrame[] newArray(int i) {
+            return new GeobFrame[i];
+        }
+    }
 
     public GeobFrame(String str, String str2, String str3, byte[] bArr) {
         super("GEOB");
@@ -49,7 +60,7 @@ public final class GeobFrame extends Id3Frame {
         String str2 = this.k;
         String str3 = this.l;
         String str4 = this.m;
-        return a.K(a.S(a.b(str4, a.b(str3, a.b(str2, a.b(str, 36)))), str, ": mimeType=", str2, ", filename="), str3, ", description=", str4);
+        return b.d.b.a.a.K(b.d.b.a.a.S(b.d.b.a.a.b(str4, b.d.b.a.a.b(str3, b.d.b.a.a.b(str2, b.d.b.a.a.b(str, 36)))), str, ": mimeType=", str2, ", filename="), str3, ", description=", str4);
     }
 
     @Override // android.os.Parcelable

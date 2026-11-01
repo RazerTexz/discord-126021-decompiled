@@ -1,7 +1,7 @@
 package b.c.a.w;
 
 import android.graphics.Paint;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.os.LocaleList;
 import androidx.annotation.NonNull;
@@ -20,12 +20,12 @@ public class a extends Paint {
         super(i);
     }
 
-    public a(PorterDuff$Mode porterDuff$Mode) {
-        setXfermode(new PorterDuffXfermode(porterDuff$Mode));
+    public a(PorterDuff.Mode mode) {
+        setXfermode(new PorterDuffXfermode(mode));
     }
 
-    public a(int i, PorterDuff$Mode porterDuff$Mode) {
+    public a(int i, PorterDuff.Mode mode) {
         super(i);
-        setXfermode(new PorterDuffXfermode(porterDuff$Mode));
+        setXfermode(new PorterDuffXfermode(mode));
     }
 }

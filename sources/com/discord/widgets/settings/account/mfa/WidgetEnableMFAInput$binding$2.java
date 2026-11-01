@@ -2,7 +2,7 @@ package com.discord.widgets.settings.account.mfa;
 
 import android.view.View;
 import android.widget.LinearLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetSettingsEnableMfaInputBinding;
 import com.discord.views.CodeVerificationView;
 import d0.z.d.k;
@@ -26,10 +26,10 @@ public final /* synthetic */ class WidgetEnableMFAInput$binding$2 extends k impl
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSettingsEnableMfaInputBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        CodeVerificationView codeVerificationView = (CodeVerificationView) view.findViewById(R$id.user_settings_mfa_enable_input_code);
+        CodeVerificationView codeVerificationView = (CodeVerificationView) view.findViewById(R.id.user_settings_mfa_enable_input_code);
         if (codeVerificationView != null) {
             return new WidgetSettingsEnableMfaInputBinding((LinearLayout) view, codeVerificationView);
         }
-        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R$id.user_settings_mfa_enable_input_code)));
+        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R.id.user_settings_mfa_enable_input_code)));
     }
 }

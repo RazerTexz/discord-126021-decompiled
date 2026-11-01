@@ -328,7 +328,7 @@ public final class r implements g {
 
     @Override // g0.g
     public InputStream u0() {
-        return new r$a(this);
+        return new a();
     }
 
     @Override // g0.g
@@ -356,5 +356,57 @@ public final class r implements g {
             return this.j.w() && this.l.i0(this.j, (long) 8192) == -1;
         }
         throw new IllegalStateException("closed".toString());
+    }
+
+    /* JADX INFO: compiled from: RealBufferedSource.kt */
+    public final class a extends InputStream {
+        public a() {
+        }
+
+        @Override // java.io.InputStream
+        public int available() throws IOException {
+            r rVar = r.this;
+            if (rVar.k) {
+                throw new IOException("closed");
+            }
+            return (int) Math.min(rVar.j.k, Integer.MAX_VALUE);
+        }
+
+        @Override // java.io.InputStream, java.io.Closeable, java.lang.AutoCloseable
+        public void close() throws IOException {
+            r.this.close();
+        }
+
+        @Override // java.io.InputStream
+        public int read() throws IOException {
+            r rVar = r.this;
+            if (rVar.k) {
+                throw new IOException("closed");
+            }
+            e eVar = rVar.j;
+            if (eVar.k == 0 && rVar.l.i0(eVar, 8192) == -1) {
+                return -1;
+            }
+            return r.this.j.readByte() & 255;
+        }
+
+        public String toString() {
+            return r.this + ".inputStream()";
+        }
+
+        @Override // java.io.InputStream
+        public int read(byte[] bArr, int i, int i2) throws IOException {
+            d0.z.d.m.checkParameterIsNotNull(bArr, "data");
+            if (!r.this.k) {
+                b.i.a.f.e.o.f.B(bArr.length, i, i2);
+                r rVar = r.this;
+                e eVar = rVar.j;
+                if (eVar.k == 0 && rVar.l.i0(eVar, 8192) == -1) {
+                    return -1;
+                }
+                return r.this.j.read(bArr, i, i2);
+            }
+            throw new IOException("closed");
+        }
     }
 }

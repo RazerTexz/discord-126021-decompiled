@@ -1,6 +1,5 @@
 package d0.e0.p.d.m0.n;
 
-import d0.e0.p.d.m0.m.f$h;
 import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: SpecialTypes.kt */
@@ -9,6 +8,30 @@ public final class f0 extends k1 {
     public final d0.e0.p.d.m0.m.o k;
     public final Function0<c0> l;
     public final d0.e0.p.d.m0.m.j<c0> m;
+
+    /* JADX INFO: compiled from: SpecialTypes.kt */
+    public final class a extends d0.z.d.o implements Function0<c0> {
+        public final /* synthetic */ d0.e0.p.d.m0.n.l1.g $kotlinTypeRefiner;
+        public final /* synthetic */ f0 this$0;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(d0.e0.p.d.m0.n.l1.g gVar, f0 f0Var) {
+            super(0);
+            this.$kotlinTypeRefiner = gVar;
+            this.this$0 = f0Var;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ c0 invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final c0 invoke() {
+            return this.$kotlinTypeRefiner.refineType((c0) f0.access$getComputation$p(this.this$0).invoke());
+        }
+    }
 
     /* JADX WARN: Multi-variable type inference failed */
     public f0(d0.e0.p.d.m0.m.o oVar, Function0<? extends c0> function0) {
@@ -30,7 +53,7 @@ public final class f0 extends k1 {
 
     @Override // d0.e0.p.d.m0.n.k1
     public boolean isComputed() {
-        return ((f$h) this.m).isComputed();
+        return ((d0.e0.p.d.m0.m.f.h) this.m).isComputed();
     }
 
     @Override // d0.e0.p.d.m0.n.c0
@@ -41,6 +64,6 @@ public final class f0 extends k1 {
     @Override // d0.e0.p.d.m0.n.c0
     public f0 refine(d0.e0.p.d.m0.n.l1.g gVar) {
         d0.z.d.m.checkNotNullParameter(gVar, "kotlinTypeRefiner");
-        return new f0(this.k, new f0$a(gVar, this));
+        return new f0(this.k, new a(gVar, this));
     }
 }

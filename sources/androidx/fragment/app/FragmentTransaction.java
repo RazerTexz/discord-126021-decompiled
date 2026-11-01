@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 import androidx.core.view.ViewCompat;
-import androidx.view.Lifecycle$State;
+import androidx.view.Lifecycle;
 import b.d.b.a.a;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -50,13 +50,42 @@ public abstract class FragmentTransaction {
 
     @Nullable
     public String mName;
-    public ArrayList<FragmentTransaction$Op> mOps;
+    public ArrayList<Op> mOps;
     public int mPopEnterAnim;
     public int mPopExitAnim;
     public boolean mReorderingAllowed;
     public ArrayList<String> mSharedElementSourceNames;
     public ArrayList<String> mSharedElementTargetNames;
     public int mTransition;
+
+    public final class Op {
+        public int mCmd;
+        public Lifecycle.State mCurrentMaxState;
+        public int mEnterAnim;
+        public int mExitAnim;
+        public Fragment mFragment;
+        public Lifecycle.State mOldMaxState;
+        public int mPopEnterAnim;
+        public int mPopExitAnim;
+
+        public Op() {
+        }
+
+        public Op(int i, Fragment fragment) {
+            this.mCmd = i;
+            this.mFragment = fragment;
+            Lifecycle.State state = Lifecycle.State.RESUMED;
+            this.mOldMaxState = state;
+            this.mCurrentMaxState = state;
+        }
+
+        public Op(int i, @NonNull Fragment fragment, Lifecycle.State state) {
+            this.mCmd = i;
+            this.mFragment = fragment;
+            this.mOldMaxState = fragment.mMaxState;
+            this.mCurrentMaxState = state;
+        }
+    }
 
     @Deprecated
     public FragmentTransaction() {
@@ -72,12 +101,12 @@ public abstract class FragmentTransaction {
         return add(createFragment(cls, bundle), str);
     }
 
-    public void addOp(FragmentTransaction$Op fragmentTransaction$Op) {
-        this.mOps.add(fragmentTransaction$Op);
-        fragmentTransaction$Op.mEnterAnim = this.mEnterAnim;
-        fragmentTransaction$Op.mExitAnim = this.mExitAnim;
-        fragmentTransaction$Op.mPopEnterAnim = this.mPopEnterAnim;
-        fragmentTransaction$Op.mPopExitAnim = this.mPopExitAnim;
+    public void addOp(Op op) {
+        this.mOps.add(op);
+        op.mEnterAnim = this.mEnterAnim;
+        op.mExitAnim = this.mExitAnim;
+        op.mPopEnterAnim = this.mPopEnterAnim;
+        op.mPopExitAnim = this.mPopExitAnim;
     }
 
     @NonNull
@@ -116,7 +145,7 @@ public abstract class FragmentTransaction {
 
     @NonNull
     public FragmentTransaction attach(@NonNull Fragment fragment) {
-        addOp(new FragmentTransaction$Op(7, fragment));
+        addOp(new Op(7, fragment));
         return this;
     }
 
@@ -147,7 +176,7 @@ public abstract class FragmentTransaction {
 
     @NonNull
     public FragmentTransaction detach(@NonNull Fragment fragment) {
-        addOp(new FragmentTransaction$Op(6, fragment));
+        addOp(new Op(6, fragment));
         return this;
     }
 
@@ -191,12 +220,12 @@ public abstract class FragmentTransaction {
             fragment.mFragmentId = i;
             fragment.mContainerId = i;
         }
-        addOp(new FragmentTransaction$Op(i2, fragment));
+        addOp(new Op(i2, fragment));
     }
 
     @NonNull
     public FragmentTransaction hide(@NonNull Fragment fragment) {
-        addOp(new FragmentTransaction$Op(4, fragment));
+        addOp(new Op(4, fragment));
         return this;
     }
 
@@ -210,7 +239,7 @@ public abstract class FragmentTransaction {
 
     @NonNull
     public FragmentTransaction remove(@NonNull Fragment fragment) {
-        addOp(new FragmentTransaction$Op(3, fragment));
+        addOp(new Op(3, fragment));
         return this;
     }
 
@@ -257,14 +286,14 @@ public abstract class FragmentTransaction {
     }
 
     @NonNull
-    public FragmentTransaction setMaxLifecycle(@NonNull Fragment fragment, @NonNull Lifecycle$State lifecycle$State) {
-        addOp(new FragmentTransaction$Op(10, fragment, lifecycle$State));
+    public FragmentTransaction setMaxLifecycle(@NonNull Fragment fragment, @NonNull Lifecycle.State state) {
+        addOp(new Op(10, fragment, state));
         return this;
     }
 
     @NonNull
     public FragmentTransaction setPrimaryNavigationFragment(@Nullable Fragment fragment) {
-        addOp(new FragmentTransaction$Op(8, fragment));
+        addOp(new Op(8, fragment));
         return this;
     }
 
@@ -288,7 +317,7 @@ public abstract class FragmentTransaction {
 
     @NonNull
     public FragmentTransaction show(@NonNull Fragment fragment) {
-        addOp(new FragmentTransaction$Op(5, fragment));
+        addOp(new Op(5, fragment));
         return this;
     }
 

@@ -2,7 +2,7 @@ package b.i.a.c.x2.h0;
 
 import androidx.annotation.Nullable;
 import b.i.a.c.f3.e0;
-import b.i.a.c.x2.t$a;
+import b.i.a.c.x2.t;
 import b.i.a.c.x2.u;
 
 /* JADX INFO: compiled from: XingSeeker.java */
@@ -58,9 +58,9 @@ public final class i implements g {
     }
 
     @Override // b.i.a.c.x2.t
-    public t$a h(long j) {
+    public t.a h(long j) {
         if (!c()) {
-            return new t$a(new u(0L, this.a + ((long) this.f1208b)));
+            return new t.a(new u(0L, this.a + ((long) this.f1208b)));
         }
         long jI = e0.i(j, 0L, this.c);
         double d = (jI * 100.0d) / this.c;
@@ -77,7 +77,7 @@ public final class i implements g {
                 d2 = d3 + (((i == 99 ? 256.0d : jArr2[i + 1]) - d3) * (d - ((double) i)));
             }
         }
-        return new t$a(new u(jI, this.a + e0.i(Math.round((d2 / 256.0d) * this.d), this.f1208b, this.d - 1)));
+        return new t.a(new u(jI, this.a + e0.i(Math.round((d2 / 256.0d) * this.d), this.f1208b, this.d - 1)));
     }
 
     @Override // b.i.a.c.x2.t

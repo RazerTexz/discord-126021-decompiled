@@ -91,7 +91,7 @@ public class ConstraintWidget {
     public ConstraintAnchor mLeft;
     public boolean mLeftHasCentered;
     public ConstraintAnchor[] mListAnchors;
-    public ConstraintWidget$DimensionBehaviour[] mListDimensionBehaviors;
+    public DimensionBehaviour[] mListDimensionBehaviors;
     public ConstraintWidget[] mListNextMatchConstraintsWidget;
     public int mMatchConstraintDefaultHeight;
     public int mMatchConstraintDefaultWidth;
@@ -139,6 +139,80 @@ public class ConstraintWidget {
     public int verticalGroup;
     public VerticalWidgetRun verticalRun;
 
+    /* JADX INFO: renamed from: androidx.constraintlayout.solver.widgets.ConstraintWidget$1, reason: invalid class name */
+    public /* synthetic */ class AnonymousClass1 {
+        public static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type;
+        public static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintWidget$DimensionBehaviour;
+
+        static {
+            DimensionBehaviour.values();
+            int[] iArr = new int[4];
+            $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintWidget$DimensionBehaviour = iArr;
+            try {
+                iArr[DimensionBehaviour.FIXED.ordinal()] = 1;
+            } catch (NoSuchFieldError unused) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintWidget$DimensionBehaviour[DimensionBehaviour.WRAP_CONTENT.ordinal()] = 2;
+            } catch (NoSuchFieldError unused2) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintWidget$DimensionBehaviour[DimensionBehaviour.MATCH_PARENT.ordinal()] = 3;
+            } catch (NoSuchFieldError unused3) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintWidget$DimensionBehaviour[DimensionBehaviour.MATCH_CONSTRAINT.ordinal()] = 4;
+            } catch (NoSuchFieldError unused4) {
+            }
+            ConstraintAnchor.Type.values();
+            int[] iArr2 = new int[9];
+            $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type = iArr2;
+            try {
+                iArr2[ConstraintAnchor.Type.LEFT.ordinal()] = 1;
+            } catch (NoSuchFieldError unused5) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.TOP.ordinal()] = 2;
+            } catch (NoSuchFieldError unused6) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.RIGHT.ordinal()] = 3;
+            } catch (NoSuchFieldError unused7) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.BOTTOM.ordinal()] = 4;
+            } catch (NoSuchFieldError unused8) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.BASELINE.ordinal()] = 5;
+            } catch (NoSuchFieldError unused9) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.CENTER.ordinal()] = 6;
+            } catch (NoSuchFieldError unused10) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.CENTER_X.ordinal()] = 7;
+            } catch (NoSuchFieldError unused11) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.CENTER_Y.ordinal()] = 8;
+            } catch (NoSuchFieldError unused12) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type[ConstraintAnchor.Type.NONE.ordinal()] = 9;
+            } catch (NoSuchFieldError unused13) {
+            }
+        }
+    }
+
+    public enum DimensionBehaviour {
+        FIXED,
+        WRAP_CONTENT,
+        MATCH_CONSTRAINT,
+        MATCH_PARENT
+    }
+
     public ConstraintWidget() {
         this.measured = false;
         this.run = new WidgetRun[2];
@@ -170,20 +244,20 @@ public class ConstraintWidget {
         this.mInVirtuaLayout = false;
         this.mLastHorizontalMeasureSpec = 0;
         this.mLastVerticalMeasureSpec = 0;
-        this.mLeft = new ConstraintAnchor(this, ConstraintAnchor$Type.LEFT);
-        this.mTop = new ConstraintAnchor(this, ConstraintAnchor$Type.TOP);
-        this.mRight = new ConstraintAnchor(this, ConstraintAnchor$Type.RIGHT);
-        this.mBottom = new ConstraintAnchor(this, ConstraintAnchor$Type.BOTTOM);
-        this.mBaseline = new ConstraintAnchor(this, ConstraintAnchor$Type.BASELINE);
-        this.mCenterX = new ConstraintAnchor(this, ConstraintAnchor$Type.CENTER_X);
-        this.mCenterY = new ConstraintAnchor(this, ConstraintAnchor$Type.CENTER_Y);
-        ConstraintAnchor constraintAnchor = new ConstraintAnchor(this, ConstraintAnchor$Type.CENTER);
+        this.mLeft = new ConstraintAnchor(this, ConstraintAnchor.Type.LEFT);
+        this.mTop = new ConstraintAnchor(this, ConstraintAnchor.Type.TOP);
+        this.mRight = new ConstraintAnchor(this, ConstraintAnchor.Type.RIGHT);
+        this.mBottom = new ConstraintAnchor(this, ConstraintAnchor.Type.BOTTOM);
+        this.mBaseline = new ConstraintAnchor(this, ConstraintAnchor.Type.BASELINE);
+        this.mCenterX = new ConstraintAnchor(this, ConstraintAnchor.Type.CENTER_X);
+        this.mCenterY = new ConstraintAnchor(this, ConstraintAnchor.Type.CENTER_Y);
+        ConstraintAnchor constraintAnchor = new ConstraintAnchor(this, ConstraintAnchor.Type.CENTER);
         this.mCenter = constraintAnchor;
         this.mListAnchors = new ConstraintAnchor[]{this.mLeft, this.mRight, this.mTop, this.mBottom, this.mBaseline, constraintAnchor};
         this.mAnchors = new ArrayList<>();
         this.mIsInBarrier = new boolean[2];
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour = ConstraintWidget$DimensionBehaviour.FIXED;
-        this.mListDimensionBehaviors = new ConstraintWidget$DimensionBehaviour[]{constraintWidget$DimensionBehaviour, constraintWidget$DimensionBehaviour};
+        DimensionBehaviour dimensionBehaviour = DimensionBehaviour.FIXED;
+        this.mListDimensionBehaviors = new DimensionBehaviour[]{dimensionBehaviour, dimensionBehaviour};
         this.mParent = null;
         this.mWidth = 0;
         this.mHeight = 0;
@@ -326,8 +400,8 @@ public class ConstraintWidget {
         boolean z7;
         int i3;
         boolean z8;
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour;
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour2;
+        DimensionBehaviour dimensionBehaviour;
+        DimensionBehaviour dimensionBehaviour2;
         boolean z9;
         int i4;
         SolverVariable solverVariable2;
@@ -345,7 +419,7 @@ public class ConstraintWidget {
         SolverVariable solverVariableCreateObjectVariable;
         ConstraintWidget constraintWidget6;
         SolverVariable solverVariableCreateObjectVariable2;
-        ConstraintWidget$DimensionBehaviour[] constraintWidget$DimensionBehaviourArr;
+        DimensionBehaviour[] dimensionBehaviourArr;
         boolean z13;
         HorizontalWidgetRun horizontalWidgetRun;
         int i7;
@@ -362,8 +436,8 @@ public class ConstraintWidget {
         SolverVariable solverVariableCreateObjectVariable7 = linearSystem.createObjectVariable(this.mBaseline);
         ConstraintWidget constraintWidget7 = this.mParent;
         if (constraintWidget7 != null) {
-            boolean z15 = constraintWidget7 != null && constraintWidget7.mListDimensionBehaviors[0] == ConstraintWidget$DimensionBehaviour.WRAP_CONTENT;
-            z4 = constraintWidget7 != null && constraintWidget7.mListDimensionBehaviors[1] == ConstraintWidget$DimensionBehaviour.WRAP_CONTENT;
+            boolean z15 = constraintWidget7 != null && constraintWidget7.mListDimensionBehaviors[0] == DimensionBehaviour.WRAP_CONTENT;
+            z4 = constraintWidget7 != null && constraintWidget7.mListDimensionBehaviors[1] == DimensionBehaviour.WRAP_CONTENT;
             z3 = z15;
         } else {
             z3 = false;
@@ -483,13 +557,13 @@ public class ConstraintWidget {
         if (i11 >= i12) {
             i12 = i11;
         }
-        ConstraintWidget$DimensionBehaviour[] constraintWidget$DimensionBehaviourArr2 = this.mListDimensionBehaviors;
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour3 = constraintWidget$DimensionBehaviourArr2[0];
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour4 = ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT;
+        DimensionBehaviour[] dimensionBehaviourArr2 = this.mListDimensionBehaviors;
+        DimensionBehaviour dimensionBehaviour3 = dimensionBehaviourArr2[0];
+        DimensionBehaviour dimensionBehaviour4 = DimensionBehaviour.MATCH_CONSTRAINT;
         int i13 = i10;
-        boolean z17 = constraintWidget$DimensionBehaviour3 != constraintWidget$DimensionBehaviour4;
+        boolean z17 = dimensionBehaviour3 != dimensionBehaviour4;
         int i14 = i12;
-        boolean z18 = constraintWidget$DimensionBehaviourArr2[1] != constraintWidget$DimensionBehaviour4;
+        boolean z18 = dimensionBehaviourArr2[1] != dimensionBehaviour4;
         int i15 = this.mDimensionRatioSide;
         this.mResolvedDimensionRatioSide = i15;
         SolverVariable solverVariable3 = solverVariableCreateObjectVariable7;
@@ -503,13 +577,13 @@ public class ConstraintWidget {
         if (f > 0.0f) {
             solverVariable = solverVariableCreateObjectVariable3;
             if (this.mVisibility != 8) {
-                if (constraintWidget$DimensionBehaviourArr2[0] == constraintWidget$DimensionBehaviour4 && i16 == 0) {
+                if (dimensionBehaviourArr2[0] == dimensionBehaviour4 && i16 == 0) {
                     i16 = 3;
                 }
-                if (constraintWidget$DimensionBehaviourArr2[1] == constraintWidget$DimensionBehaviour4 && i17 == 0) {
+                if (dimensionBehaviourArr2[1] == dimensionBehaviour4 && i17 == 0) {
                     i17 = 3;
                 }
-                if (constraintWidget$DimensionBehaviourArr2[0] == constraintWidget$DimensionBehaviour4 && constraintWidget$DimensionBehaviourArr2[1] == constraintWidget$DimensionBehaviour4) {
+                if (dimensionBehaviourArr2[0] == dimensionBehaviour4 && dimensionBehaviourArr2[1] == dimensionBehaviour4) {
                     i8 = 3;
                     if (i16 == 3 && i17 == 3) {
                         setupDimensionRatio(z3, z4, z17, z18);
@@ -521,10 +595,10 @@ public class ConstraintWidget {
                 } else {
                     i8 = 3;
                 }
-                if (constraintWidget$DimensionBehaviourArr2[0] == constraintWidget$DimensionBehaviour4 && i16 == i8) {
+                if (dimensionBehaviourArr2[0] == dimensionBehaviour4 && i16 == i8) {
                     this.mResolvedDimensionRatioSide = 0;
                     i13 = (int) (f * i11);
-                    if (constraintWidget$DimensionBehaviourArr2[1] != constraintWidget$DimensionBehaviour4) {
+                    if (dimensionBehaviourArr2[1] != dimensionBehaviour4) {
                         i17 = i17;
                         i2 = i14;
                         z7 = false;
@@ -538,7 +612,7 @@ public class ConstraintWidget {
                         c = 0;
                     }
                 } else {
-                    if (constraintWidget$DimensionBehaviourArr2[1] == constraintWidget$DimensionBehaviour4 && i17 == 3) {
+                    if (dimensionBehaviourArr2[1] == dimensionBehaviour4 && i17 == 3) {
                         this.mResolvedDimensionRatioSide = 1;
                         if (i15 == -1) {
                             this.mResolvedDimensionRatio = 1.0f / f;
@@ -546,7 +620,7 @@ public class ConstraintWidget {
                         c = 0;
                         i2 = (int) (this.mResolvedDimensionRatio * i9);
                         i = i16;
-                        if (constraintWidget$DimensionBehaviourArr2[0] != constraintWidget$DimensionBehaviour4) {
+                        if (dimensionBehaviourArr2[0] != dimensionBehaviour4) {
                             i13 = i13;
                             z7 = false;
                             i17 = 4;
@@ -572,9 +646,9 @@ public class ConstraintWidget {
                 } else {
                     z8 = true;
                 }
-                constraintWidget$DimensionBehaviour = this.mListDimensionBehaviors[0];
-                constraintWidget$DimensionBehaviour2 = ConstraintWidget$DimensionBehaviour.WRAP_CONTENT;
-                if (constraintWidget$DimensionBehaviour == constraintWidget$DimensionBehaviour2 || !(this instanceof ConstraintWidgetContainer)) {
+                dimensionBehaviour = this.mListDimensionBehaviors[0];
+                dimensionBehaviour2 = DimensionBehaviour.WRAP_CONTENT;
+                if (dimensionBehaviour == dimensionBehaviour2 || !(this instanceof ConstraintWidgetContainer)) {
                     z9 = false;
                 } else {
                     z9 = true;
@@ -605,22 +679,22 @@ public class ConstraintWidget {
                         solverVariableCreateObjectVariable2 = null;
                     }
                     boolean z23 = this.isTerminalWidget[0];
-                    constraintWidget$DimensionBehaviourArr = this.mListDimensionBehaviors;
-                    ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour5 = constraintWidget$DimensionBehaviourArr[0];
+                    dimensionBehaviourArr = this.mListDimensionBehaviors;
+                    DimensionBehaviour dimensionBehaviour5 = dimensionBehaviourArr[0];
                     ConstraintAnchor constraintAnchor = this.mLeft;
                     ConstraintAnchor constraintAnchor2 = this.mRight;
                     int i19 = this.mX;
                     int i20 = this.mMinWidth;
                     int i21 = this.mMaxDimension[0];
                     float f2 = this.mHorizontalBiasPercent;
-                    if (constraintWidget$DimensionBehaviourArr[1] == constraintWidget$DimensionBehaviour4) {
+                    if (dimensionBehaviourArr[1] == dimensionBehaviour4) {
                         z13 = true;
                     } else {
                         z13 = false;
                     }
                     solverVariable6 = solverVariable6;
                     solverVariable2 = solverVariable7;
-                    applyConstraints(linearSystem, true, z3, z4, z23, solverVariableCreateObjectVariable2, solverVariableCreateObjectVariable, constraintWidget$DimensionBehaviour5, z9, constraintAnchor, constraintAnchor2, i19, i4, i20, i21, f2, z19, z13, z6, z5, z21, i, i17, this.mMatchConstraintMinWidth, this.mMatchConstraintMaxWidth, this.mMatchConstraintPercentWidth, z20);
+                    applyConstraints(linearSystem, true, z3, z4, z23, solverVariableCreateObjectVariable2, solverVariableCreateObjectVariable, dimensionBehaviour5, z9, constraintAnchor, constraintAnchor2, i19, i4, i20, i21, f2, z19, z13, z6, z5, z21, i, i17, this.mMatchConstraintMinWidth, this.mMatchConstraintMaxWidth, this.mMatchConstraintPercentWidth, z20);
                 } else {
                     DependencyNode dependencyNode3 = horizontalWidgetRun.start;
                     if (!dependencyNode3.resolved || !horizontalWidgetRun.end.resolved) {
@@ -638,22 +712,22 @@ public class ConstraintWidget {
                             solverVariableCreateObjectVariable2 = null;
                         }
                         boolean z24 = this.isTerminalWidget[0];
-                        constraintWidget$DimensionBehaviourArr = this.mListDimensionBehaviors;
-                        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour6 = constraintWidget$DimensionBehaviourArr[0];
+                        dimensionBehaviourArr = this.mListDimensionBehaviors;
+                        DimensionBehaviour dimensionBehaviour6 = dimensionBehaviourArr[0];
                         ConstraintAnchor constraintAnchor3 = this.mLeft;
                         ConstraintAnchor constraintAnchor4 = this.mRight;
                         int i110 = this.mX;
                         int i22 = this.mMinWidth;
                         int i23 = this.mMaxDimension[0];
                         float f3 = this.mHorizontalBiasPercent;
-                        if (constraintWidget$DimensionBehaviourArr[1] == constraintWidget$DimensionBehaviour4) {
+                        if (dimensionBehaviourArr[1] == dimensionBehaviour4) {
                             z13 = true;
                         } else {
                             z13 = false;
                         }
                         solverVariable6 = solverVariable6;
                         solverVariable2 = solverVariable8;
-                        applyConstraints(linearSystem, true, z3, z4, z24, solverVariableCreateObjectVariable2, solverVariableCreateObjectVariable, constraintWidget$DimensionBehaviour6, z9, constraintAnchor3, constraintAnchor4, i110, i4, i22, i23, f3, z19, z13, z6, z5, z21, i, i17, this.mMatchConstraintMinWidth, this.mMatchConstraintMaxWidth, this.mMatchConstraintPercentWidth, z20);
+                        applyConstraints(linearSystem, true, z3, z4, z24, solverVariableCreateObjectVariable2, solverVariableCreateObjectVariable, dimensionBehaviour6, z9, constraintAnchor3, constraintAnchor4, i110, i4, i22, i23, f3, z19, z13, z6, z5, z21, i, i17, this.mMatchConstraintMinWidth, this.mMatchConstraintMaxWidth, this.mMatchConstraintPercentWidth, z20);
                     } else if (z2) {
                         SolverVariable solverVariable9 = solverVariable;
                         linearSystem.addEquality(solverVariable9, dependencyNode3.value);
@@ -704,7 +778,7 @@ public class ConstraintWidget {
                             z11 = z10;
                         }
                         if (!z11 && !constraintWidget3.resolvedVertical) {
-                            boolean z25 = constraintWidget3.mListDimensionBehaviors[c2] == constraintWidget$DimensionBehaviour2 && (constraintWidget3 instanceof ConstraintWidgetContainer);
+                            boolean z25 = constraintWidget3.mListDimensionBehaviors[c2] == dimensionBehaviour2 && (constraintWidget3 instanceof ConstraintWidgetContainer);
                             if (z25) {
                                 i2 = 0;
                             }
@@ -730,8 +804,8 @@ public class ConstraintWidget {
                                 z12 = z20;
                             }
                             boolean z26 = constraintWidget3.isTerminalWidget[c2];
-                            ConstraintWidget$DimensionBehaviour[] constraintWidget$DimensionBehaviourArr3 = constraintWidget3.mListDimensionBehaviors;
-                            applyConstraints(linearSystem, false, z4, z3, z26, solverVariableCreateObjectVariable9, solverVariableCreateObjectVariable8, constraintWidget$DimensionBehaviourArr3[c2], z25, constraintWidget3.mTop, constraintWidget3.mBottom, constraintWidget3.mY, i2, constraintWidget3.mMinHeight, constraintWidget3.mMaxDimension[c2], constraintWidget3.mVerticalBiasPercent, z8, constraintWidget$DimensionBehaviourArr3[0] == constraintWidget$DimensionBehaviour4, z5, z6, z22, i17, i, constraintWidget3.mMatchConstraintMinHeight, constraintWidget3.mMatchConstraintMaxHeight, constraintWidget3.mMatchConstraintPercentHeight, z12);
+                            DimensionBehaviour[] dimensionBehaviourArr3 = constraintWidget3.mListDimensionBehaviors;
+                            applyConstraints(linearSystem, false, z4, z3, z26, solverVariableCreateObjectVariable9, solverVariableCreateObjectVariable8, dimensionBehaviourArr3[c2], z25, constraintWidget3.mTop, constraintWidget3.mBottom, constraintWidget3.mY, i2, constraintWidget3.mMinHeight, constraintWidget3.mMaxDimension[c2], constraintWidget3.mVerticalBiasPercent, z8, dimensionBehaviourArr3[0] == dimensionBehaviour4, z5, z6, z22, i17, i, constraintWidget3.mMatchConstraintMinHeight, constraintWidget3.mMatchConstraintMaxHeight, constraintWidget3.mMatchConstraintPercentHeight, z12);
                         }
                         if (z7) {
                             constraintWidget4 = this;
@@ -788,9 +862,9 @@ public class ConstraintWidget {
             } else {
                 z8 = false;
             }
-            constraintWidget$DimensionBehaviour = this.mListDimensionBehaviors[0];
-            constraintWidget$DimensionBehaviour2 = ConstraintWidget$DimensionBehaviour.WRAP_CONTENT;
-            if (constraintWidget$DimensionBehaviour == constraintWidget$DimensionBehaviour2) {
+            dimensionBehaviour = this.mListDimensionBehaviors[0];
+            dimensionBehaviour2 = DimensionBehaviour.WRAP_CONTENT;
+            if (dimensionBehaviour == dimensionBehaviour2) {
                 z9 = false;
             } else {
                 z9 = false;
@@ -871,9 +945,9 @@ public class ConstraintWidget {
             } else {
                 z8 = false;
             }
-            constraintWidget$DimensionBehaviour = this.mListDimensionBehaviors[0];
-            constraintWidget$DimensionBehaviour2 = ConstraintWidget$DimensionBehaviour.WRAP_CONTENT;
-            if (constraintWidget$DimensionBehaviour == constraintWidget$DimensionBehaviour2) {
+            dimensionBehaviour = this.mListDimensionBehaviors[0];
+            dimensionBehaviour2 = DimensionBehaviour.WRAP_CONTENT;
+            if (dimensionBehaviour == dimensionBehaviour2) {
                 z9 = false;
             } else {
                 z9 = false;
@@ -939,9 +1013,9 @@ public class ConstraintWidget {
         } else {
             z8 = false;
         }
-        constraintWidget$DimensionBehaviour = this.mListDimensionBehaviors[0];
-        constraintWidget$DimensionBehaviour2 = ConstraintWidget$DimensionBehaviour.WRAP_CONTENT;
-        if (constraintWidget$DimensionBehaviour == constraintWidget$DimensionBehaviour2) {
+        dimensionBehaviour = this.mListDimensionBehaviors[0];
+        dimensionBehaviour2 = DimensionBehaviour.WRAP_CONTENT;
+        if (dimensionBehaviour == dimensionBehaviour2) {
             z9 = false;
         } else {
             z9 = false;
@@ -1058,7 +1132,7 @@ public class ConstraintWidget {
     /* JADX WARN: Code duplicated, block: B:91:0x015d  */
     /* JADX WARN: Code duplicated, block: B:93:0x0160  */
     /* JADX WARN: Code duplicated, block: B:99:0x018a  */
-    private void applyConstraints(LinearSystem linearSystem, boolean z2, boolean z3, boolean z4, boolean z5, SolverVariable solverVariable, SolverVariable solverVariable2, ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour, boolean z6, ConstraintAnchor constraintAnchor, ConstraintAnchor constraintAnchor2, int i, int i2, int i3, int i4, float f, boolean z7, boolean z8, boolean z9, boolean z10, boolean z11, int i5, int i6, int i7, int i8, float f2, boolean z12) {
+    private void applyConstraints(LinearSystem linearSystem, boolean z2, boolean z3, boolean z4, boolean z5, SolverVariable solverVariable, SolverVariable solverVariable2, DimensionBehaviour dimensionBehaviour, boolean z6, ConstraintAnchor constraintAnchor, ConstraintAnchor constraintAnchor2, int i, int i2, int i3, int i4, float f, boolean z7, boolean z8, boolean z9, boolean z10, boolean z11, int i5, int i6, int i7, int i8, float f2, boolean z12) {
         int i9;
         boolean z13;
         int iMin;
@@ -1067,8 +1141,8 @@ public class ConstraintWidget {
         int i12;
         int i13;
         boolean z14;
-        ConstraintAnchor$Type type;
-        ConstraintAnchor$Type constraintAnchor$Type;
+        ConstraintAnchor.Type type;
+        ConstraintAnchor.Type type2;
         SolverVariable solverVariableCreateObjectVariable;
         SolverVariable solverVariableCreateObjectVariable2;
         boolean z15;
@@ -1117,7 +1191,7 @@ public class ConstraintWidget {
             i25++;
         }
         int i26 = z7 ? 3 : i5;
-        int iOrdinal = constraintWidget$DimensionBehaviour.ordinal();
+        int iOrdinal = dimensionBehaviour.ordinal();
         if (iOrdinal != 0 && iOrdinal != 1 && iOrdinal == 2) {
             i9 = i26;
             z13 = i9 != 4;
@@ -1196,13 +1270,13 @@ public class ConstraintWidget {
                         solverVariableCreateObjectVariable6 = solverVariableCreateObjectVariable6;
                     } else if (i9 == 2) {
                         type = constraintAnchor.getType();
-                        constraintAnchor$Type = ConstraintAnchor$Type.TOP;
-                        if (type != constraintAnchor$Type || constraintAnchor.getType() == ConstraintAnchor$Type.BOTTOM) {
-                            solverVariableCreateObjectVariable = linearSystem.createObjectVariable(this.mParent.getAnchor(constraintAnchor$Type));
-                            solverVariableCreateObjectVariable2 = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor$Type.BOTTOM));
+                        type2 = ConstraintAnchor.Type.TOP;
+                        if (type != type2 || constraintAnchor.getType() == ConstraintAnchor.Type.BOTTOM) {
+                            solverVariableCreateObjectVariable = linearSystem.createObjectVariable(this.mParent.getAnchor(type2));
+                            solverVariableCreateObjectVariable2 = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor.Type.BOTTOM));
                         } else {
-                            solverVariableCreateObjectVariable = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor$Type.LEFT));
-                            solverVariableCreateObjectVariable2 = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor$Type.RIGHT));
+                            solverVariableCreateObjectVariable = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor.Type.LEFT));
+                            solverVariableCreateObjectVariable2 = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor.Type.RIGHT));
                         }
                         SolverVariable solverVariable6 = solverVariableCreateObjectVariable;
                         SolverVariable solverVariable7 = solverVariableCreateObjectVariable2;
@@ -1241,10 +1315,10 @@ public class ConstraintWidget {
                         } else {
                             ConstraintWidget constraintWidget5 = constraintAnchor3.mOwner;
                             if (constraintWidget5.mDimensionRatio != 0.0f) {
-                                ConstraintWidget$DimensionBehaviour[] constraintWidget$DimensionBehaviourArr = constraintWidget5.mListDimensionBehaviors;
-                                ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour2 = constraintWidget$DimensionBehaviourArr[0];
-                                ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour3 = ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT;
-                                if (constraintWidget$DimensionBehaviour2 == constraintWidget$DimensionBehaviour3 && constraintWidget$DimensionBehaviourArr[1] == constraintWidget$DimensionBehaviour3) {
+                                DimensionBehaviour[] dimensionBehaviourArr = constraintWidget5.mListDimensionBehaviors;
+                                DimensionBehaviour dimensionBehaviour2 = dimensionBehaviourArr[0];
+                                DimensionBehaviour dimensionBehaviour3 = DimensionBehaviour.MATCH_CONSTRAINT;
+                                if (dimensionBehaviour2 == dimensionBehaviour3 && dimensionBehaviourArr[1] == dimensionBehaviour3) {
                                     z16 = true;
                                 } else {
                                     z16 = false;
@@ -1707,13 +1781,13 @@ public class ConstraintWidget {
                 solverVariableCreateObjectVariable6 = solverVariableCreateObjectVariable6;
             } else if (i9 == 2) {
                 type = constraintAnchor.getType();
-                constraintAnchor$Type = ConstraintAnchor$Type.TOP;
-                if (type != constraintAnchor$Type) {
-                    solverVariableCreateObjectVariable = linearSystem.createObjectVariable(this.mParent.getAnchor(constraintAnchor$Type));
-                    solverVariableCreateObjectVariable2 = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor$Type.BOTTOM));
+                type2 = ConstraintAnchor.Type.TOP;
+                if (type != type2) {
+                    solverVariableCreateObjectVariable = linearSystem.createObjectVariable(this.mParent.getAnchor(type2));
+                    solverVariableCreateObjectVariable2 = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor.Type.BOTTOM));
                 } else {
-                    solverVariableCreateObjectVariable = linearSystem.createObjectVariable(this.mParent.getAnchor(constraintAnchor$Type));
-                    solverVariableCreateObjectVariable2 = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor$Type.BOTTOM));
+                    solverVariableCreateObjectVariable = linearSystem.createObjectVariable(this.mParent.getAnchor(type2));
+                    solverVariableCreateObjectVariable2 = linearSystem.createObjectVariable(this.mParent.getAnchor(ConstraintAnchor.Type.BOTTOM));
                 }
                 SolverVariable solverVariable10 = solverVariableCreateObjectVariable;
                 SolverVariable solverVariable11 = solverVariableCreateObjectVariable2;
@@ -1774,8 +1848,8 @@ public class ConstraintWidget {
     }
 
     public void connectCircularConstraint(ConstraintWidget constraintWidget, float f, int i) {
-        ConstraintAnchor$Type constraintAnchor$Type = ConstraintAnchor$Type.CENTER;
-        immediateConnect(constraintAnchor$Type, constraintWidget, constraintAnchor$Type, i, 0);
+        ConstraintAnchor.Type type = ConstraintAnchor.Type.CENTER;
+        immediateConnect(type, constraintWidget, type, i, 0);
         this.mCircleConstraintAngle = f;
     }
 
@@ -1810,7 +1884,7 @@ public class ConstraintWidget {
         this.mCenterX.reset();
         this.mCenterY.reset();
         this.mCenter.reset();
-        this.mListDimensionBehaviors = (ConstraintWidget$DimensionBehaviour[]) Arrays.copyOf(this.mListDimensionBehaviors, 2);
+        this.mListDimensionBehaviors = (DimensionBehaviour[]) Arrays.copyOf(this.mListDimensionBehaviors, 2);
         this.mParent = this.mParent == null ? null : map.get(constraintWidget.mParent);
         this.mWidth = constraintWidget.mWidth;
         this.mHeight = constraintWidget.mHeight;
@@ -1887,28 +1961,28 @@ public class ConstraintWidget {
         }
     }
 
-    public ConstraintAnchor getAnchor(ConstraintAnchor$Type constraintAnchor$Type) {
-        switch (constraintAnchor$Type) {
-            case NONE:
+    public ConstraintAnchor getAnchor(ConstraintAnchor.Type type) {
+        switch (type.ordinal()) {
+            case 0:
                 return null;
-            case LEFT:
+            case 1:
                 return this.mLeft;
-            case TOP:
+            case 2:
                 return this.mTop;
-            case RIGHT:
+            case 3:
                 return this.mRight;
-            case BOTTOM:
+            case 4:
                 return this.mBottom;
-            case BASELINE:
+            case 5:
                 return this.mBaseline;
-            case CENTER:
+            case 6:
                 return this.mCenter;
-            case CENTER_X:
+            case 7:
                 return this.mCenterX;
-            case CENTER_Y:
+            case 8:
                 return this.mCenterY;
             default:
-                throw new AssertionError(constraintAnchor$Type.name());
+                throw new AssertionError(type.name());
         }
     }
 
@@ -1946,7 +2020,7 @@ public class ConstraintWidget {
         return this.mDebugName;
     }
 
-    public ConstraintWidget$DimensionBehaviour getDimensionBehaviour(int i) {
+    public DimensionBehaviour getDimensionBehaviour(int i) {
         if (i == 0) {
             return getHorizontalDimensionBehaviour();
         }
@@ -1986,13 +2060,13 @@ public class ConstraintWidget {
         ConstraintWidget constraintWidget = this;
         ConstraintWidget constraintWidget2 = null;
         while (constraintWidget2 == null && constraintWidget != null) {
-            ConstraintAnchor anchor = constraintWidget.getAnchor(ConstraintAnchor$Type.LEFT);
+            ConstraintAnchor anchor = constraintWidget.getAnchor(ConstraintAnchor.Type.LEFT);
             ConstraintAnchor target = anchor == null ? null : anchor.getTarget();
             ConstraintWidget owner = target == null ? null : target.getOwner();
             if (owner == getParent()) {
                 return constraintWidget;
             }
-            ConstraintAnchor target2 = owner == null ? null : owner.getAnchor(ConstraintAnchor$Type.RIGHT).getTarget();
+            ConstraintAnchor target2 = owner == null ? null : owner.getAnchor(ConstraintAnchor.Type.RIGHT).getTarget();
             if (target2 == null || target2.getOwner() == constraintWidget) {
                 constraintWidget = owner;
             } else {
@@ -2006,7 +2080,7 @@ public class ConstraintWidget {
         return this.mHorizontalChainStyle;
     }
 
-    public ConstraintWidget$DimensionBehaviour getHorizontalDimensionBehaviour() {
+    public DimensionBehaviour getHorizontalDimensionBehaviour() {
         return this.mListDimensionBehaviors[0];
     }
 
@@ -2075,7 +2149,7 @@ public class ConstraintWidget {
     public int getOptimizerWrapHeight() {
         int iMax;
         int i = this.mHeight;
-        if (this.mListDimensionBehaviors[1] != ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT) {
+        if (this.mListDimensionBehaviors[1] != DimensionBehaviour.MATCH_CONSTRAINT) {
             return i;
         }
         if (this.mMatchConstraintDefaultHeight == 1) {
@@ -2095,7 +2169,7 @@ public class ConstraintWidget {
     public int getOptimizerWrapWidth() {
         int iMax;
         int i = this.mWidth;
-        if (this.mListDimensionBehaviors[0] != ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT) {
+        if (this.mListDimensionBehaviors[0] != DimensionBehaviour.MATCH_CONSTRAINT) {
             return i;
         }
         if (this.mMatchConstraintDefaultWidth == 1) {
@@ -2184,13 +2258,13 @@ public class ConstraintWidget {
         ConstraintWidget constraintWidget = this;
         ConstraintWidget constraintWidget2 = null;
         while (constraintWidget2 == null && constraintWidget != null) {
-            ConstraintAnchor anchor = constraintWidget.getAnchor(ConstraintAnchor$Type.TOP);
+            ConstraintAnchor anchor = constraintWidget.getAnchor(ConstraintAnchor.Type.TOP);
             ConstraintAnchor target = anchor == null ? null : anchor.getTarget();
             ConstraintWidget owner = target == null ? null : target.getOwner();
             if (owner == getParent()) {
                 return constraintWidget;
             }
-            ConstraintAnchor target2 = owner == null ? null : owner.getAnchor(ConstraintAnchor$Type.BOTTOM).getTarget();
+            ConstraintAnchor target2 = owner == null ? null : owner.getAnchor(ConstraintAnchor.Type.BOTTOM).getTarget();
             if (target2 == null || target2.getOwner() == constraintWidget) {
                 constraintWidget = owner;
             } else {
@@ -2204,7 +2278,7 @@ public class ConstraintWidget {
         return this.mVerticalChainStyle;
     }
 
-    public ConstraintWidget$DimensionBehaviour getVerticalDimensionBehaviour() {
+    public DimensionBehaviour getVerticalDimensionBehaviour() {
         return this.mListDimensionBehaviors[1];
     }
 
@@ -2255,8 +2329,8 @@ public class ConstraintWidget {
         return false;
     }
 
-    public void immediateConnect(ConstraintAnchor$Type constraintAnchor$Type, ConstraintWidget constraintWidget, ConstraintAnchor$Type constraintAnchor$Type2, int i, int i2) {
-        getAnchor(constraintAnchor$Type).connect(constraintWidget.getAnchor(constraintAnchor$Type2), i, i2, true);
+    public void immediateConnect(ConstraintAnchor.Type type, ConstraintWidget constraintWidget, ConstraintAnchor.Type type2, int i, int i2) {
+        getAnchor(type).connect(constraintWidget.getAnchor(type2), i, i2, true);
     }
 
     private boolean isChainHead(int i) {
@@ -2322,11 +2396,11 @@ public class ConstraintWidget {
     }
 
     public boolean isSpreadHeight() {
-        return this.mMatchConstraintDefaultHeight == 0 && this.mDimensionRatio == 0.0f && this.mMatchConstraintMinHeight == 0 && this.mMatchConstraintMaxHeight == 0 && this.mListDimensionBehaviors[1] == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT;
+        return this.mMatchConstraintDefaultHeight == 0 && this.mDimensionRatio == 0.0f && this.mMatchConstraintMinHeight == 0 && this.mMatchConstraintMaxHeight == 0 && this.mListDimensionBehaviors[1] == DimensionBehaviour.MATCH_CONSTRAINT;
     }
 
     public boolean isSpreadWidth() {
-        return this.mMatchConstraintDefaultWidth == 0 && this.mDimensionRatio == 0.0f && this.mMatchConstraintMinWidth == 0 && this.mMatchConstraintMaxWidth == 0 && this.mListDimensionBehaviors[0] == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT;
+        return this.mMatchConstraintDefaultWidth == 0 && this.mDimensionRatio == 0.0f && this.mMatchConstraintMinWidth == 0 && this.mMatchConstraintMaxWidth == 0 && this.mListDimensionBehaviors[0] == DimensionBehaviour.MATCH_CONSTRAINT;
     }
 
     public boolean isWidthWrapContent() {
@@ -2335,18 +2409,18 @@ public class ConstraintWidget {
 
     public boolean oppositeDimensionDependsOn(int i) {
         char c = i == 0 ? (char) 1 : (char) 0;
-        ConstraintWidget$DimensionBehaviour[] constraintWidget$DimensionBehaviourArr = this.mListDimensionBehaviors;
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour = constraintWidget$DimensionBehaviourArr[i];
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour2 = constraintWidget$DimensionBehaviourArr[c];
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour3 = ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT;
-        return constraintWidget$DimensionBehaviour == constraintWidget$DimensionBehaviour3 && constraintWidget$DimensionBehaviour2 == constraintWidget$DimensionBehaviour3;
+        DimensionBehaviour[] dimensionBehaviourArr = this.mListDimensionBehaviors;
+        DimensionBehaviour dimensionBehaviour = dimensionBehaviourArr[i];
+        DimensionBehaviour dimensionBehaviour2 = dimensionBehaviourArr[c];
+        DimensionBehaviour dimensionBehaviour3 = DimensionBehaviour.MATCH_CONSTRAINT;
+        return dimensionBehaviour == dimensionBehaviour3 && dimensionBehaviour2 == dimensionBehaviour3;
     }
 
     public boolean oppositeDimensionsTied() {
-        ConstraintWidget$DimensionBehaviour[] constraintWidget$DimensionBehaviourArr = this.mListDimensionBehaviors;
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour = constraintWidget$DimensionBehaviourArr[0];
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour2 = ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT;
-        return constraintWidget$DimensionBehaviour == constraintWidget$DimensionBehaviour2 && constraintWidget$DimensionBehaviourArr[1] == constraintWidget$DimensionBehaviour2;
+        DimensionBehaviour[] dimensionBehaviourArr = this.mListDimensionBehaviors;
+        DimensionBehaviour dimensionBehaviour = dimensionBehaviourArr[0];
+        DimensionBehaviour dimensionBehaviour2 = DimensionBehaviour.MATCH_CONSTRAINT;
+        return dimensionBehaviour == dimensionBehaviour2 && dimensionBehaviourArr[1] == dimensionBehaviour2;
     }
 
     public void reset() {
@@ -2374,10 +2448,10 @@ public class ConstraintWidget {
         float f = DEFAULT_BIAS;
         this.mHorizontalBiasPercent = f;
         this.mVerticalBiasPercent = f;
-        ConstraintWidget$DimensionBehaviour[] constraintWidget$DimensionBehaviourArr = this.mListDimensionBehaviors;
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour = ConstraintWidget$DimensionBehaviour.FIXED;
-        constraintWidget$DimensionBehaviourArr[0] = constraintWidget$DimensionBehaviour;
-        constraintWidget$DimensionBehaviourArr[1] = constraintWidget$DimensionBehaviour;
+        DimensionBehaviour[] dimensionBehaviourArr = this.mListDimensionBehaviors;
+        DimensionBehaviour dimensionBehaviour = DimensionBehaviour.FIXED;
+        dimensionBehaviourArr[0] = dimensionBehaviour;
+        dimensionBehaviourArr[1] = dimensionBehaviour;
         this.mCompanionWidget = null;
         this.mContainerItemSkip = 0;
         this.mVisibility = 0;
@@ -2428,13 +2502,13 @@ public class ConstraintWidget {
         if (getParent() != null && (getParent() instanceof ConstraintWidgetContainer) && ((ConstraintWidgetContainer) getParent()).handlesInternalConstraints()) {
             return;
         }
-        ConstraintAnchor anchor = getAnchor(ConstraintAnchor$Type.LEFT);
-        ConstraintAnchor anchor2 = getAnchor(ConstraintAnchor$Type.RIGHT);
-        ConstraintAnchor anchor3 = getAnchor(ConstraintAnchor$Type.TOP);
-        ConstraintAnchor anchor4 = getAnchor(ConstraintAnchor$Type.BOTTOM);
-        ConstraintAnchor anchor5 = getAnchor(ConstraintAnchor$Type.CENTER);
-        ConstraintAnchor anchor6 = getAnchor(ConstraintAnchor$Type.CENTER_X);
-        ConstraintAnchor anchor7 = getAnchor(ConstraintAnchor$Type.CENTER_Y);
+        ConstraintAnchor anchor = getAnchor(ConstraintAnchor.Type.LEFT);
+        ConstraintAnchor anchor2 = getAnchor(ConstraintAnchor.Type.RIGHT);
+        ConstraintAnchor anchor3 = getAnchor(ConstraintAnchor.Type.TOP);
+        ConstraintAnchor anchor4 = getAnchor(ConstraintAnchor.Type.BOTTOM);
+        ConstraintAnchor anchor5 = getAnchor(ConstraintAnchor.Type.CENTER);
+        ConstraintAnchor anchor6 = getAnchor(ConstraintAnchor.Type.CENTER_X);
+        ConstraintAnchor anchor7 = getAnchor(ConstraintAnchor.Type.CENTER_Y);
         if (constraintAnchor == anchor5) {
             if (anchor.isConnected() && anchor2.isConnected() && anchor.getTarget() == anchor2.getTarget()) {
                 anchor.reset();
@@ -2673,13 +2747,13 @@ public class ConstraintWidget {
             this.mHeight = 0;
             return;
         }
-        ConstraintWidget$DimensionBehaviour[] constraintWidget$DimensionBehaviourArr = this.mListDimensionBehaviors;
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour = constraintWidget$DimensionBehaviourArr[0];
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour2 = ConstraintWidget$DimensionBehaviour.FIXED;
-        if (constraintWidget$DimensionBehaviour == constraintWidget$DimensionBehaviour2 && i7 < (i6 = this.mWidth)) {
+        DimensionBehaviour[] dimensionBehaviourArr = this.mListDimensionBehaviors;
+        DimensionBehaviour dimensionBehaviour = dimensionBehaviourArr[0];
+        DimensionBehaviour dimensionBehaviour2 = DimensionBehaviour.FIXED;
+        if (dimensionBehaviour == dimensionBehaviour2 && i7 < (i6 = this.mWidth)) {
             i7 = i6;
         }
-        if (constraintWidget$DimensionBehaviourArr[1] == constraintWidget$DimensionBehaviour2 && i8 < (i5 = this.mHeight)) {
+        if (dimensionBehaviourArr[1] == dimensionBehaviour2 && i8 < (i5 = this.mHeight)) {
             i8 = i5;
         }
         this.mWidth = i7;
@@ -2694,8 +2768,8 @@ public class ConstraintWidget {
         }
     }
 
-    public void setGoneMargin(ConstraintAnchor$Type constraintAnchor$Type, int i) {
-        int iOrdinal = constraintAnchor$Type.ordinal();
+    public void setGoneMargin(ConstraintAnchor.Type type, int i) {
+        int iOrdinal = type.ordinal();
         if (iOrdinal == 1) {
             this.mLeft.mGoneMargin = i;
             return;
@@ -2746,8 +2820,8 @@ public class ConstraintWidget {
         }
     }
 
-    public void setHorizontalDimensionBehaviour(ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour) {
-        this.mListDimensionBehaviors[0] = constraintWidget$DimensionBehaviour;
+    public void setHorizontalDimensionBehaviour(DimensionBehaviour dimensionBehaviour) {
+        this.mListDimensionBehaviors[0] = dimensionBehaviour;
     }
 
     public void setHorizontalMatchStyle(int i, int i2, int i3, float f) {
@@ -2866,8 +2940,8 @@ public class ConstraintWidget {
         }
     }
 
-    public void setVerticalDimensionBehaviour(ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour) {
-        this.mListDimensionBehaviors[1] = constraintWidget$DimensionBehaviour;
+    public void setVerticalDimensionBehaviour(DimensionBehaviour dimensionBehaviour) {
+        this.mListDimensionBehaviors[1] = dimensionBehaviour;
     }
 
     public void setVerticalMatchStyle(int i, int i2, int i3, float f) {
@@ -2996,7 +3070,7 @@ public class ConstraintWidget {
             return;
         }
         if (zIsResolved) {
-            if (this.mListDimensionBehaviors[0] == ConstraintWidget$DimensionBehaviour.FIXED && i8 < (i2 = this.mWidth)) {
+            if (this.mListDimensionBehaviors[0] == DimensionBehaviour.FIXED && i8 < (i2 = this.mWidth)) {
                 i8 = i2;
             }
             this.mWidth = i8;
@@ -3006,7 +3080,7 @@ public class ConstraintWidget {
             }
         }
         if (zIsResolved2) {
-            if (this.mListDimensionBehaviors[1] == ConstraintWidget$DimensionBehaviour.FIXED && i9 < (i = this.mHeight)) {
+            if (this.mListDimensionBehaviors[1] == DimensionBehaviour.FIXED && i9 < (i = this.mHeight)) {
                 i9 = i;
             }
             this.mHeight = i9;
@@ -3054,113 +3128,113 @@ public class ConstraintWidget {
         setFrame(objectVariableValue, objectVariableValue2, objectVariableValue3, objectVariableValue4);
     }
 
-    public void connect(ConstraintAnchor$Type constraintAnchor$Type, ConstraintWidget constraintWidget, ConstraintAnchor$Type constraintAnchor$Type2) {
-        connect(constraintAnchor$Type, constraintWidget, constraintAnchor$Type2, 0);
+    public void connect(ConstraintAnchor.Type type, ConstraintWidget constraintWidget, ConstraintAnchor.Type type2) {
+        connect(type, constraintWidget, type2, 0);
     }
 
-    public void connect(ConstraintAnchor$Type constraintAnchor$Type, ConstraintWidget constraintWidget, ConstraintAnchor$Type constraintAnchor$Type2, int i) {
-        ConstraintAnchor$Type constraintAnchor$Type3;
-        ConstraintAnchor$Type constraintAnchor$Type4;
+    public void connect(ConstraintAnchor.Type type, ConstraintWidget constraintWidget, ConstraintAnchor.Type type2, int i) {
+        ConstraintAnchor.Type type3;
+        ConstraintAnchor.Type type4;
         boolean z2;
-        ConstraintAnchor$Type constraintAnchor$Type5 = ConstraintAnchor$Type.CENTER;
-        if (constraintAnchor$Type == constraintAnchor$Type5) {
-            if (constraintAnchor$Type2 == constraintAnchor$Type5) {
-                ConstraintAnchor$Type constraintAnchor$Type6 = ConstraintAnchor$Type.LEFT;
-                ConstraintAnchor anchor = getAnchor(constraintAnchor$Type6);
-                ConstraintAnchor$Type constraintAnchor$Type7 = ConstraintAnchor$Type.RIGHT;
-                ConstraintAnchor anchor2 = getAnchor(constraintAnchor$Type7);
-                ConstraintAnchor$Type constraintAnchor$Type8 = ConstraintAnchor$Type.TOP;
-                ConstraintAnchor anchor3 = getAnchor(constraintAnchor$Type8);
-                ConstraintAnchor$Type constraintAnchor$Type9 = ConstraintAnchor$Type.BOTTOM;
-                ConstraintAnchor anchor4 = getAnchor(constraintAnchor$Type9);
+        ConstraintAnchor.Type type5 = ConstraintAnchor.Type.CENTER;
+        if (type == type5) {
+            if (type2 == type5) {
+                ConstraintAnchor.Type type6 = ConstraintAnchor.Type.LEFT;
+                ConstraintAnchor anchor = getAnchor(type6);
+                ConstraintAnchor.Type type7 = ConstraintAnchor.Type.RIGHT;
+                ConstraintAnchor anchor2 = getAnchor(type7);
+                ConstraintAnchor.Type type8 = ConstraintAnchor.Type.TOP;
+                ConstraintAnchor anchor3 = getAnchor(type8);
+                ConstraintAnchor.Type type9 = ConstraintAnchor.Type.BOTTOM;
+                ConstraintAnchor anchor4 = getAnchor(type9);
                 boolean z3 = true;
                 if ((anchor == null || !anchor.isConnected()) && (anchor2 == null || !anchor2.isConnected())) {
-                    connect(constraintAnchor$Type6, constraintWidget, constraintAnchor$Type6, 0);
-                    connect(constraintAnchor$Type7, constraintWidget, constraintAnchor$Type7, 0);
+                    connect(type6, constraintWidget, type6, 0);
+                    connect(type7, constraintWidget, type7, 0);
                     z2 = true;
                 } else {
                     z2 = false;
                 }
                 if ((anchor3 == null || !anchor3.isConnected()) && (anchor4 == null || !anchor4.isConnected())) {
-                    connect(constraintAnchor$Type8, constraintWidget, constraintAnchor$Type8, 0);
-                    connect(constraintAnchor$Type9, constraintWidget, constraintAnchor$Type9, 0);
+                    connect(type8, constraintWidget, type8, 0);
+                    connect(type9, constraintWidget, type9, 0);
                 } else {
                     z3 = false;
                 }
                 if (z2 && z3) {
-                    getAnchor(constraintAnchor$Type5).connect(constraintWidget.getAnchor(constraintAnchor$Type5), 0);
+                    getAnchor(type5).connect(constraintWidget.getAnchor(type5), 0);
                     return;
                 }
                 if (z2) {
-                    ConstraintAnchor$Type constraintAnchor$Type10 = ConstraintAnchor$Type.CENTER_X;
-                    getAnchor(constraintAnchor$Type10).connect(constraintWidget.getAnchor(constraintAnchor$Type10), 0);
+                    ConstraintAnchor.Type type10 = ConstraintAnchor.Type.CENTER_X;
+                    getAnchor(type10).connect(constraintWidget.getAnchor(type10), 0);
                     return;
                 } else {
                     if (z3) {
-                        ConstraintAnchor$Type constraintAnchor$Type11 = ConstraintAnchor$Type.CENTER_Y;
-                        getAnchor(constraintAnchor$Type11).connect(constraintWidget.getAnchor(constraintAnchor$Type11), 0);
+                        ConstraintAnchor.Type type11 = ConstraintAnchor.Type.CENTER_Y;
+                        getAnchor(type11).connect(constraintWidget.getAnchor(type11), 0);
                         return;
                     }
                     return;
                 }
             }
-            ConstraintAnchor$Type constraintAnchor$Type12 = ConstraintAnchor$Type.LEFT;
-            if (constraintAnchor$Type2 != constraintAnchor$Type12 && constraintAnchor$Type2 != ConstraintAnchor$Type.RIGHT) {
-                ConstraintAnchor$Type constraintAnchor$Type13 = ConstraintAnchor$Type.TOP;
-                if (constraintAnchor$Type2 == constraintAnchor$Type13 || constraintAnchor$Type2 == ConstraintAnchor$Type.BOTTOM) {
-                    connect(constraintAnchor$Type13, constraintWidget, constraintAnchor$Type2, 0);
-                    connect(ConstraintAnchor$Type.BOTTOM, constraintWidget, constraintAnchor$Type2, 0);
-                    getAnchor(constraintAnchor$Type5).connect(constraintWidget.getAnchor(constraintAnchor$Type2), 0);
+            ConstraintAnchor.Type type12 = ConstraintAnchor.Type.LEFT;
+            if (type2 != type12 && type2 != ConstraintAnchor.Type.RIGHT) {
+                ConstraintAnchor.Type type13 = ConstraintAnchor.Type.TOP;
+                if (type2 == type13 || type2 == ConstraintAnchor.Type.BOTTOM) {
+                    connect(type13, constraintWidget, type2, 0);
+                    connect(ConstraintAnchor.Type.BOTTOM, constraintWidget, type2, 0);
+                    getAnchor(type5).connect(constraintWidget.getAnchor(type2), 0);
                     return;
                 }
                 return;
             }
-            connect(constraintAnchor$Type12, constraintWidget, constraintAnchor$Type2, 0);
-            connect(ConstraintAnchor$Type.RIGHT, constraintWidget, constraintAnchor$Type2, 0);
-            getAnchor(constraintAnchor$Type5).connect(constraintWidget.getAnchor(constraintAnchor$Type2), 0);
+            connect(type12, constraintWidget, type2, 0);
+            connect(ConstraintAnchor.Type.RIGHT, constraintWidget, type2, 0);
+            getAnchor(type5).connect(constraintWidget.getAnchor(type2), 0);
             return;
         }
-        ConstraintAnchor$Type constraintAnchor$Type14 = ConstraintAnchor$Type.CENTER_X;
-        if (constraintAnchor$Type == constraintAnchor$Type14 && (constraintAnchor$Type2 == (constraintAnchor$Type4 = ConstraintAnchor$Type.LEFT) || constraintAnchor$Type2 == ConstraintAnchor$Type.RIGHT)) {
-            ConstraintAnchor anchor5 = getAnchor(constraintAnchor$Type4);
-            ConstraintAnchor anchor6 = constraintWidget.getAnchor(constraintAnchor$Type2);
-            ConstraintAnchor anchor7 = getAnchor(ConstraintAnchor$Type.RIGHT);
+        ConstraintAnchor.Type type14 = ConstraintAnchor.Type.CENTER_X;
+        if (type == type14 && (type2 == (type4 = ConstraintAnchor.Type.LEFT) || type2 == ConstraintAnchor.Type.RIGHT)) {
+            ConstraintAnchor anchor5 = getAnchor(type4);
+            ConstraintAnchor anchor6 = constraintWidget.getAnchor(type2);
+            ConstraintAnchor anchor7 = getAnchor(ConstraintAnchor.Type.RIGHT);
             anchor5.connect(anchor6, 0);
             anchor7.connect(anchor6, 0);
-            getAnchor(constraintAnchor$Type14).connect(anchor6, 0);
+            getAnchor(type14).connect(anchor6, 0);
             return;
         }
-        ConstraintAnchor$Type constraintAnchor$Type15 = ConstraintAnchor$Type.CENTER_Y;
-        if (constraintAnchor$Type == constraintAnchor$Type15 && (constraintAnchor$Type2 == (constraintAnchor$Type3 = ConstraintAnchor$Type.TOP) || constraintAnchor$Type2 == ConstraintAnchor$Type.BOTTOM)) {
-            ConstraintAnchor anchor8 = constraintWidget.getAnchor(constraintAnchor$Type2);
-            getAnchor(constraintAnchor$Type3).connect(anchor8, 0);
-            getAnchor(ConstraintAnchor$Type.BOTTOM).connect(anchor8, 0);
-            getAnchor(constraintAnchor$Type15).connect(anchor8, 0);
+        ConstraintAnchor.Type type15 = ConstraintAnchor.Type.CENTER_Y;
+        if (type == type15 && (type2 == (type3 = ConstraintAnchor.Type.TOP) || type2 == ConstraintAnchor.Type.BOTTOM)) {
+            ConstraintAnchor anchor8 = constraintWidget.getAnchor(type2);
+            getAnchor(type3).connect(anchor8, 0);
+            getAnchor(ConstraintAnchor.Type.BOTTOM).connect(anchor8, 0);
+            getAnchor(type15).connect(anchor8, 0);
             return;
         }
-        if (constraintAnchor$Type == constraintAnchor$Type14 && constraintAnchor$Type2 == constraintAnchor$Type14) {
-            ConstraintAnchor$Type constraintAnchor$Type16 = ConstraintAnchor$Type.LEFT;
-            getAnchor(constraintAnchor$Type16).connect(constraintWidget.getAnchor(constraintAnchor$Type16), 0);
-            ConstraintAnchor$Type constraintAnchor$Type17 = ConstraintAnchor$Type.RIGHT;
-            getAnchor(constraintAnchor$Type17).connect(constraintWidget.getAnchor(constraintAnchor$Type17), 0);
-            getAnchor(constraintAnchor$Type14).connect(constraintWidget.getAnchor(constraintAnchor$Type2), 0);
+        if (type == type14 && type2 == type14) {
+            ConstraintAnchor.Type type16 = ConstraintAnchor.Type.LEFT;
+            getAnchor(type16).connect(constraintWidget.getAnchor(type16), 0);
+            ConstraintAnchor.Type type17 = ConstraintAnchor.Type.RIGHT;
+            getAnchor(type17).connect(constraintWidget.getAnchor(type17), 0);
+            getAnchor(type14).connect(constraintWidget.getAnchor(type2), 0);
             return;
         }
-        if (constraintAnchor$Type == constraintAnchor$Type15 && constraintAnchor$Type2 == constraintAnchor$Type15) {
-            ConstraintAnchor$Type constraintAnchor$Type18 = ConstraintAnchor$Type.TOP;
-            getAnchor(constraintAnchor$Type18).connect(constraintWidget.getAnchor(constraintAnchor$Type18), 0);
-            ConstraintAnchor$Type constraintAnchor$Type19 = ConstraintAnchor$Type.BOTTOM;
-            getAnchor(constraintAnchor$Type19).connect(constraintWidget.getAnchor(constraintAnchor$Type19), 0);
-            getAnchor(constraintAnchor$Type15).connect(constraintWidget.getAnchor(constraintAnchor$Type2), 0);
+        if (type == type15 && type2 == type15) {
+            ConstraintAnchor.Type type18 = ConstraintAnchor.Type.TOP;
+            getAnchor(type18).connect(constraintWidget.getAnchor(type18), 0);
+            ConstraintAnchor.Type type19 = ConstraintAnchor.Type.BOTTOM;
+            getAnchor(type19).connect(constraintWidget.getAnchor(type19), 0);
+            getAnchor(type15).connect(constraintWidget.getAnchor(type2), 0);
             return;
         }
-        ConstraintAnchor anchor9 = getAnchor(constraintAnchor$Type);
-        ConstraintAnchor anchor10 = constraintWidget.getAnchor(constraintAnchor$Type2);
+        ConstraintAnchor anchor9 = getAnchor(type);
+        ConstraintAnchor anchor10 = constraintWidget.getAnchor(type2);
         if (anchor9.isValidConnection(anchor10)) {
-            ConstraintAnchor$Type constraintAnchor$Type20 = ConstraintAnchor$Type.BASELINE;
-            if (constraintAnchor$Type == constraintAnchor$Type20) {
-                ConstraintAnchor anchor11 = getAnchor(ConstraintAnchor$Type.TOP);
-                ConstraintAnchor anchor12 = getAnchor(ConstraintAnchor$Type.BOTTOM);
+            ConstraintAnchor.Type type20 = ConstraintAnchor.Type.BASELINE;
+            if (type == type20) {
+                ConstraintAnchor anchor11 = getAnchor(ConstraintAnchor.Type.TOP);
+                ConstraintAnchor anchor12 = getAnchor(ConstraintAnchor.Type.BOTTOM);
                 if (anchor11 != null) {
                     anchor11.reset();
                 }
@@ -3168,30 +3242,30 @@ public class ConstraintWidget {
                     anchor12.reset();
                 }
                 i = 0;
-            } else if (constraintAnchor$Type != ConstraintAnchor$Type.TOP && constraintAnchor$Type != ConstraintAnchor$Type.BOTTOM) {
-                if (constraintAnchor$Type == ConstraintAnchor$Type.LEFT || constraintAnchor$Type == ConstraintAnchor$Type.RIGHT) {
-                    ConstraintAnchor anchor13 = getAnchor(constraintAnchor$Type5);
+            } else if (type != ConstraintAnchor.Type.TOP && type != ConstraintAnchor.Type.BOTTOM) {
+                if (type == ConstraintAnchor.Type.LEFT || type == ConstraintAnchor.Type.RIGHT) {
+                    ConstraintAnchor anchor13 = getAnchor(type5);
                     if (anchor13.getTarget() != anchor10) {
                         anchor13.reset();
                     }
-                    ConstraintAnchor opposite = getAnchor(constraintAnchor$Type).getOpposite();
-                    ConstraintAnchor anchor14 = getAnchor(constraintAnchor$Type14);
+                    ConstraintAnchor opposite = getAnchor(type).getOpposite();
+                    ConstraintAnchor anchor14 = getAnchor(type14);
                     if (anchor14.isConnected()) {
                         opposite.reset();
                         anchor14.reset();
                     }
                 }
             } else {
-                ConstraintAnchor anchor15 = getAnchor(constraintAnchor$Type20);
+                ConstraintAnchor anchor15 = getAnchor(type20);
                 if (anchor15 != null) {
                     anchor15.reset();
                 }
-                ConstraintAnchor anchor16 = getAnchor(constraintAnchor$Type5);
+                ConstraintAnchor anchor16 = getAnchor(type5);
                 if (anchor16.getTarget() != anchor10) {
                     anchor16.reset();
                 }
-                ConstraintAnchor opposite2 = getAnchor(constraintAnchor$Type).getOpposite();
-                ConstraintAnchor anchor17 = getAnchor(constraintAnchor$Type15);
+                ConstraintAnchor opposite2 = getAnchor(type).getOpposite();
+                ConstraintAnchor anchor17 = getAnchor(type15);
                 if (anchor17.isConnected()) {
                     opposite2.reset();
                     anchor17.reset();
@@ -3245,20 +3319,20 @@ public class ConstraintWidget {
         this.mInVirtuaLayout = false;
         this.mLastHorizontalMeasureSpec = 0;
         this.mLastVerticalMeasureSpec = 0;
-        this.mLeft = new ConstraintAnchor(this, ConstraintAnchor$Type.LEFT);
-        this.mTop = new ConstraintAnchor(this, ConstraintAnchor$Type.TOP);
-        this.mRight = new ConstraintAnchor(this, ConstraintAnchor$Type.RIGHT);
-        this.mBottom = new ConstraintAnchor(this, ConstraintAnchor$Type.BOTTOM);
-        this.mBaseline = new ConstraintAnchor(this, ConstraintAnchor$Type.BASELINE);
-        this.mCenterX = new ConstraintAnchor(this, ConstraintAnchor$Type.CENTER_X);
-        this.mCenterY = new ConstraintAnchor(this, ConstraintAnchor$Type.CENTER_Y);
-        ConstraintAnchor constraintAnchor = new ConstraintAnchor(this, ConstraintAnchor$Type.CENTER);
+        this.mLeft = new ConstraintAnchor(this, ConstraintAnchor.Type.LEFT);
+        this.mTop = new ConstraintAnchor(this, ConstraintAnchor.Type.TOP);
+        this.mRight = new ConstraintAnchor(this, ConstraintAnchor.Type.RIGHT);
+        this.mBottom = new ConstraintAnchor(this, ConstraintAnchor.Type.BOTTOM);
+        this.mBaseline = new ConstraintAnchor(this, ConstraintAnchor.Type.BASELINE);
+        this.mCenterX = new ConstraintAnchor(this, ConstraintAnchor.Type.CENTER_X);
+        this.mCenterY = new ConstraintAnchor(this, ConstraintAnchor.Type.CENTER_Y);
+        ConstraintAnchor constraintAnchor = new ConstraintAnchor(this, ConstraintAnchor.Type.CENTER);
         this.mCenter = constraintAnchor;
         this.mListAnchors = new ConstraintAnchor[]{this.mLeft, this.mRight, this.mTop, this.mBottom, this.mBaseline, constraintAnchor};
         this.mAnchors = new ArrayList<>();
         this.mIsInBarrier = new boolean[2];
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour = ConstraintWidget$DimensionBehaviour.FIXED;
-        this.mListDimensionBehaviors = new ConstraintWidget$DimensionBehaviour[]{constraintWidget$DimensionBehaviour, constraintWidget$DimensionBehaviour};
+        DimensionBehaviour dimensionBehaviour = DimensionBehaviour.FIXED;
+        this.mListDimensionBehaviors = new DimensionBehaviour[]{dimensionBehaviour, dimensionBehaviour};
         this.mParent = null;
         this.mWidth = 0;
         this.mHeight = 0;
@@ -3323,20 +3397,20 @@ public class ConstraintWidget {
         this.mInVirtuaLayout = false;
         this.mLastHorizontalMeasureSpec = 0;
         this.mLastVerticalMeasureSpec = 0;
-        this.mLeft = new ConstraintAnchor(this, ConstraintAnchor$Type.LEFT);
-        this.mTop = new ConstraintAnchor(this, ConstraintAnchor$Type.TOP);
-        this.mRight = new ConstraintAnchor(this, ConstraintAnchor$Type.RIGHT);
-        this.mBottom = new ConstraintAnchor(this, ConstraintAnchor$Type.BOTTOM);
-        this.mBaseline = new ConstraintAnchor(this, ConstraintAnchor$Type.BASELINE);
-        this.mCenterX = new ConstraintAnchor(this, ConstraintAnchor$Type.CENTER_X);
-        this.mCenterY = new ConstraintAnchor(this, ConstraintAnchor$Type.CENTER_Y);
-        ConstraintAnchor constraintAnchor = new ConstraintAnchor(this, ConstraintAnchor$Type.CENTER);
+        this.mLeft = new ConstraintAnchor(this, ConstraintAnchor.Type.LEFT);
+        this.mTop = new ConstraintAnchor(this, ConstraintAnchor.Type.TOP);
+        this.mRight = new ConstraintAnchor(this, ConstraintAnchor.Type.RIGHT);
+        this.mBottom = new ConstraintAnchor(this, ConstraintAnchor.Type.BOTTOM);
+        this.mBaseline = new ConstraintAnchor(this, ConstraintAnchor.Type.BASELINE);
+        this.mCenterX = new ConstraintAnchor(this, ConstraintAnchor.Type.CENTER_X);
+        this.mCenterY = new ConstraintAnchor(this, ConstraintAnchor.Type.CENTER_Y);
+        ConstraintAnchor constraintAnchor = new ConstraintAnchor(this, ConstraintAnchor.Type.CENTER);
         this.mCenter = constraintAnchor;
         this.mListAnchors = new ConstraintAnchor[]{this.mLeft, this.mRight, this.mTop, this.mBottom, this.mBaseline, constraintAnchor};
         this.mAnchors = new ArrayList<>();
         this.mIsInBarrier = new boolean[2];
-        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour = ConstraintWidget$DimensionBehaviour.FIXED;
-        this.mListDimensionBehaviors = new ConstraintWidget$DimensionBehaviour[]{constraintWidget$DimensionBehaviour, constraintWidget$DimensionBehaviour};
+        DimensionBehaviour dimensionBehaviour = DimensionBehaviour.FIXED;
+        this.mListDimensionBehaviors = new DimensionBehaviour[]{dimensionBehaviour, dimensionBehaviour};
         this.mParent = null;
         this.mWidth = 0;
         this.mHeight = 0;

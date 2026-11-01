@@ -20,7 +20,7 @@ public final class WidgetChannelListModel$VoiceStates$createVoiceUserComparator$
             return -1;
         }
         if (!channelListItemVoiceUser2.isApplicationStreaming() || channelListItemVoiceUser.isApplicationStreaming()) {
-            return GuildMember.Companion.compareUserNames(channelListItemVoiceUser.getUser(), channelListItemVoiceUser2.getUser(), channelListItemVoiceUser.getComputed(), channelListItemVoiceUser2.getComputed());
+            return GuildMember.INSTANCE.compareUserNames(channelListItemVoiceUser.getUser(), channelListItemVoiceUser2.getUser(), channelListItemVoiceUser.getComputed(), channelListItemVoiceUser2.getComputed());
         }
         return 1;
     }

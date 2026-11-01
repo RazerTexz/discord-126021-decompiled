@@ -13,9 +13,9 @@ public final class GuildScheduledEventStatusTypeAdapter extends TypeAdapter<Guil
     @Override // com.google.gson.TypeAdapter
     public GuildScheduledEventStatus read(JsonReader jsonReader) throws IOException {
         m.checkNotNullParameter(jsonReader, "in");
-        GuildScheduledEventStatus$Companion guildScheduledEventStatus$Companion = GuildScheduledEventStatus.Companion;
+        GuildScheduledEventStatus.Companion companion = GuildScheduledEventStatus.INSTANCE;
         int iY = jsonReader.y();
-        Objects.requireNonNull(guildScheduledEventStatus$Companion);
+        Objects.requireNonNull(companion);
         if (iY == 1) {
             return GuildScheduledEventStatus.SCHEDULED;
         }

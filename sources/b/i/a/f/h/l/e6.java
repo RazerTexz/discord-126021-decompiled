@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.RandomAccess;
 import sun.misc.Unsafe;
@@ -76,20 +75,20 @@ public final class e6<T> implements q6<T> {
     /* JADX WARN: Code duplicated, block: B:7:0x0023  */
     public final void D(T t, v7 v7Var) throws IOException {
         Iterator itL;
-        Map$Entry<?, ?> map$Entry;
+        Map.Entry<?, ?> entry;
         int i;
         if (this.h) {
             n4<T> n4VarB = this.p.b(t);
             if (n4VarB.f1461b.isEmpty()) {
                 itL = null;
-                map$Entry = null;
+                entry = null;
             } else {
                 itL = n4VarB.l();
-                map$Entry = (Map$Entry) itL.next();
+                entry = (Map.Entry) itL.next();
             }
         } else {
             itL = null;
-            map$Entry = null;
+            entry = null;
         }
         int length = this.c.length;
         Unsafe unsafe = f1441b;
@@ -111,9 +110,9 @@ public final class e6<T> implements q6<T> {
             } else {
                 i = 0;
             }
-            while (map$Entry != null && this.p.a(map$Entry) <= i5) {
-                this.p.d(v7Var, map$Entry);
-                map$Entry = itL.hasNext() ? (Map$Entry) itL.next() : null;
+            while (entry != null && this.p.a(entry) <= i5) {
+                this.p.d(v7Var, entry);
+                entry = itL.hasNext() ? (Map.Entry) itL.next() : null;
             }
             long j = I & 1048575;
             switch (i6) {
@@ -433,9 +432,9 @@ public final class e6<T> implements q6<T> {
                     break;
             }
         }
-        while (map$Entry != null) {
-            this.p.d(v7Var, map$Entry);
-            map$Entry = itL.hasNext() ? (Map$Entry) itL.next() : null;
+        while (entry != null) {
+            this.p.d(v7Var, entry);
+            entry = itL.hasNext() ? (Map.Entry) itL.next() : null;
         }
         s(this.o, t, v7Var);
     }
@@ -1793,11 +1792,11 @@ public final class e6<T> implements q6<T> {
         n4<T> n4VarB = this.p.b(t);
         int iA = 0;
         for (int i15 = 0; i15 < n4VarB.f1461b.e(); i15++) {
-            Map$Entry map$EntryD = n4VarB.f1461b.d(i15);
-            iA += n4.a((p4) map$EntryD.getKey(), map$EntryD.getValue());
+            Map.Entry entryD = n4VarB.f1461b.d(i15);
+            iA += n4.a((p4) entryD.getKey(), entryD.getValue());
         }
-        for (Map$Entry map$Entry : n4VarB.f1461b.g()) {
-            iA += n4.a((p4) map$Entry.getKey(), map$Entry.getValue());
+        for (Map.Entry entry : n4VarB.f1461b.g()) {
+            iA += n4.a((p4) entry.getKey(), entry.getValue());
         }
         return iJ + iA;
     }
@@ -1983,7 +1982,7 @@ public final class e6<T> implements q6<T> {
     @Override // b.i.a.f.h.l.q6
     public final void g(T t, v7 v7Var) throws IOException {
         Iterator itL;
-        Map$Entry<?, ?> map$Entry;
+        Map.Entry<?, ?> entry;
         Objects.requireNonNull(v7Var);
         if (!this.i) {
             D(t, v7Var);
@@ -1993,22 +1992,22 @@ public final class e6<T> implements q6<T> {
             n4<T> n4VarB = this.p.b(t);
             if (n4VarB.f1461b.isEmpty()) {
                 itL = null;
-                map$Entry = null;
+                entry = null;
             } else {
                 itL = n4VarB.l();
-                map$Entry = (Map$Entry) itL.next();
+                entry = (Map.Entry) itL.next();
             }
         } else {
             itL = null;
-            map$Entry = null;
+            entry = null;
         }
         int length = this.c.length;
         for (int i = 0; i < length; i += 3) {
             int I = I(i);
             int i2 = this.c[i];
-            while (map$Entry != null && this.p.a(map$Entry) <= i2) {
-                this.p.d(v7Var, map$Entry);
-                map$Entry = itL.hasNext() ? (Map$Entry) itL.next() : null;
+            while (entry != null && this.p.a(entry) <= i2) {
+                this.p.d(v7Var, entry);
+                entry = itL.hasNext() ? (Map.Entry) itL.next() : null;
             }
             switch ((267386880 & I) >>> 20) {
                 case 0:
@@ -2292,9 +2291,9 @@ public final class e6<T> implements q6<T> {
                     break;
             }
         }
-        while (map$Entry != null) {
-            this.p.d(v7Var, map$Entry);
-            map$Entry = itL.hasNext() ? (Map$Entry) itL.next() : null;
+        while (entry != null) {
+            this.p.d(v7Var, entry);
+            entry = itL.hasNext() ? (Map.Entry) itL.next() : null;
         }
         s(this.o, t, v7Var);
     }
@@ -4253,9 +4252,9 @@ public final class e6<T> implements q6<T> {
             Map<?, ?> mapE = this.q.e(obj);
             g4 g4Var = (g4) v7Var;
             Objects.requireNonNull(g4Var);
-            Iterator<Map$Entry<?, ?>> it = mapE.entrySet().iterator();
+            Iterator<Map.Entry<?, ?>> it = mapE.entrySet().iterator();
             if (it.hasNext()) {
-                Map$Entry<?, ?> next = it.next();
+                Map.Entry<?, ?> next = it.next();
                 g4Var.a.f(i, 2);
                 next.getKey();
                 next.getValue();

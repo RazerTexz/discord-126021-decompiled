@@ -6,31 +6,28 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Canvas;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build$VERSION;
+import android.os.Build;
+import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View$OnClickListener;
-import android.view.View$OnLongClickListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup$LayoutParams;
-import android.view.ViewGroup$MarginLayoutParams;
 import android.view.ViewStructure;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.FrameLayout$LayoutParams;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout$LayoutParams;
 import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
@@ -39,7 +36,6 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 import androidx.annotation.VisibleForTesting;
@@ -51,11 +47,13 @@ import androidx.appcompat.widget.TintTypedArray;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.text.BidiFormatter;
+import androidx.core.view.AccessibilityDelegateCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.MarginLayoutParamsCompat;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.core.widget.TextViewCompat;
-import b.d.b.a.a;
+import androidx.customview.view.AbsSavedState;
 import b.i.a.g.j.f;
 import b.i.a.g.j.g;
 import b.i.a.g.j.h;
@@ -63,14 +61,7 @@ import b.i.a.g.j.m;
 import b.i.a.g.j.n;
 import b.i.a.g.j.o;
 import b.i.a.g.j.p;
-import com.google.android.material.R$attr;
-import com.google.android.material.R$color;
-import com.google.android.material.R$dimen;
-import com.google.android.material.R$id;
-import com.google.android.material.R$layout;
-import com.google.android.material.R$string;
-import com.google.android.material.R$style;
-import com.google.android.material.R$styleable;
+import com.google.android.material.R;
 import com.google.android.material.animation.AnimationUtils;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.color.MaterialColors;
@@ -82,8 +73,9 @@ import com.google.android.material.internal.ViewUtils;
 import com.google.android.material.resources.MaterialResources;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.ShapeAppearanceModel;
-import com.google.android.material.shape.ShapeAppearanceModel$Builder;
 import com.google.android.material.theme.overlay.MaterialThemeOverlay;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -150,27 +142,27 @@ public class TextInputLayout extends LinearLayout {
     @ColorInt
     private int disabledFilledBackgroundColor;
     public EditText editText;
-    private final LinkedHashSet<TextInputLayout$OnEditTextAttachedListener> editTextAttachedListeners;
+    private final LinkedHashSet<OnEditTextAttachedListener> editTextAttachedListeners;
 
     @Nullable
     private Drawable endDummyDrawable;
     private int endDummyDrawableWidth;
-    private final LinkedHashSet<TextInputLayout$OnEndIconChangedListener> endIconChangedListeners;
+    private final LinkedHashSet<OnEndIconChangedListener> endIconChangedListeners;
     private final SparseArray<m> endIconDelegates;
 
     @NonNull
     private final FrameLayout endIconFrame;
     private int endIconMode;
-    private View$OnLongClickListener endIconOnLongClickListener;
+    private View.OnLongClickListener endIconOnLongClickListener;
     private ColorStateList endIconTintList;
-    private PorterDuff$Mode endIconTintMode;
+    private PorterDuff.Mode endIconTintMode;
 
     @NonNull
     private final CheckableImageButton endIconView;
 
     @NonNull
     private final LinearLayout endLayout;
-    private View$OnLongClickListener errorIconOnLongClickListener;
+    private View.OnLongClickListener errorIconOnLongClickListener;
     private ColorStateList errorIconTintList;
 
     @NonNull
@@ -226,9 +218,9 @@ public class TextInputLayout extends LinearLayout {
     @Nullable
     private Drawable startDummyDrawable;
     private int startDummyDrawableWidth;
-    private View$OnLongClickListener startIconOnLongClickListener;
+    private View.OnLongClickListener startIconOnLongClickListener;
     private ColorStateList startIconTintList;
-    private PorterDuff$Mode startIconTintMode;
+    private PorterDuff.Mode startIconTintMode;
 
     @NonNull
     private final CheckableImageButton startIconView;
@@ -246,7 +238,217 @@ public class TextInputLayout extends LinearLayout {
     private final Rect tmpRect;
     private final RectF tmpRectF;
     private Typeface typeface;
-    private static final int DEF_STYLE_RES = R$style.Widget_Design_TextInputLayout;
+    private static final int DEF_STYLE_RES = R.style.Widget_Design_TextInputLayout;
+
+    public class AccessibilityDelegate extends AccessibilityDelegateCompat {
+        private final TextInputLayout layout;
+
+        public AccessibilityDelegate(@NonNull TextInputLayout textInputLayout) {
+            this.layout = textInputLayout;
+        }
+
+        @Override // androidx.core.view.AccessibilityDelegateCompat
+        public void onInitializeAccessibilityNodeInfo(@NonNull View view, @NonNull AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
+            super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompat);
+            EditText editText = this.layout.getEditText();
+            CharSequence text = editText != null ? editText.getText() : null;
+            CharSequence hint = this.layout.getHint();
+            CharSequence error = this.layout.getError();
+            CharSequence placeholderText = this.layout.getPlaceholderText();
+            int counterMaxLength = this.layout.getCounterMaxLength();
+            CharSequence counterOverflowDescription = this.layout.getCounterOverflowDescription();
+            boolean z2 = !TextUtils.isEmpty(text);
+            boolean z3 = !TextUtils.isEmpty(hint);
+            boolean z4 = !this.layout.isHintExpanded();
+            boolean z5 = !TextUtils.isEmpty(error);
+            boolean z6 = z5 || !TextUtils.isEmpty(counterOverflowDescription);
+            String string = z3 ? hint.toString() : "";
+            if (z2) {
+                accessibilityNodeInfoCompat.setText(text);
+            } else if (!TextUtils.isEmpty(string)) {
+                accessibilityNodeInfoCompat.setText(string);
+                if (z4 && placeholderText != null) {
+                    accessibilityNodeInfoCompat.setText(string + ", " + ((Object) placeholderText));
+                }
+            } else if (placeholderText != null) {
+                accessibilityNodeInfoCompat.setText(placeholderText);
+            }
+            if (!TextUtils.isEmpty(string)) {
+                if (Build.VERSION.SDK_INT >= 26) {
+                    accessibilityNodeInfoCompat.setHintText(string);
+                } else {
+                    if (z2) {
+                        string = ((Object) text) + ", " + string;
+                    }
+                    accessibilityNodeInfoCompat.setText(string);
+                }
+                accessibilityNodeInfoCompat.setShowingHintText(!z2);
+            }
+            if (text == null || text.length() != counterMaxLength) {
+                counterMaxLength = -1;
+            }
+            accessibilityNodeInfoCompat.setMaxTextLength(counterMaxLength);
+            if (z6) {
+                if (!z5) {
+                    error = counterOverflowDescription;
+                }
+                accessibilityNodeInfoCompat.setError(error);
+            }
+            if (editText != null) {
+                editText.setLabelFor(R.id.textinput_helper_text);
+            }
+        }
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface BoxBackgroundMode {
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface EndIconMode {
+    }
+
+    public interface OnEditTextAttachedListener {
+        void onEditTextAttached(@NonNull TextInputLayout textInputLayout);
+    }
+
+    public interface OnEndIconChangedListener {
+        void onEndIconChanged(@NonNull TextInputLayout textInputLayout, int i);
+    }
+
+    public class SavedState extends AbsSavedState {
+
+        @Nullable
+        public CharSequence j;
+        public boolean k;
+
+        @Nullable
+        public CharSequence l;
+
+        @Nullable
+        public CharSequence m;
+
+        @Nullable
+        public CharSequence n;
+        public static final Parcelable.Creator<SavedState> CREATOR = new a();
+
+        public final class a implements Parcelable.ClassLoaderCreator<SavedState> {
+            @Override // android.os.Parcelable.ClassLoaderCreator
+            @NonNull
+            public SavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
+                return new SavedState(parcel, classLoader);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            @NonNull
+            public Object[] newArray(int i) {
+                return new SavedState[i];
+            }
+
+            @Override // android.os.Parcelable.Creator
+            @Nullable
+            public Object createFromParcel(@NonNull Parcel parcel) {
+                return new SavedState(parcel, null);
+            }
+        }
+
+        public SavedState(Parcelable parcelable) {
+            super(parcelable);
+        }
+
+        @NonNull
+        public String toString() {
+            StringBuilder sbU = b.d.b.a.a.U("TextInputLayout.SavedState{");
+            sbU.append(Integer.toHexString(System.identityHashCode(this)));
+            sbU.append(" error=");
+            sbU.append((Object) this.j);
+            sbU.append(" hint=");
+            sbU.append((Object) this.l);
+            sbU.append(" helperText=");
+            sbU.append((Object) this.m);
+            sbU.append(" placeholderText=");
+            sbU.append((Object) this.n);
+            sbU.append("}");
+            return sbU.toString();
+        }
+
+        @Override // androidx.customview.view.AbsSavedState, android.os.Parcelable
+        public void writeToParcel(@NonNull Parcel parcel, int i) {
+            super.writeToParcel(parcel, i);
+            TextUtils.writeToParcel(this.j, parcel, i);
+            parcel.writeInt(this.k ? 1 : 0);
+            TextUtils.writeToParcel(this.l, parcel, i);
+            TextUtils.writeToParcel(this.m, parcel, i);
+            TextUtils.writeToParcel(this.n, parcel, i);
+        }
+
+        public SavedState(@NonNull Parcel parcel, ClassLoader classLoader) {
+            super(parcel, classLoader);
+            this.j = (CharSequence) TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
+            this.k = parcel.readInt() == 1;
+            this.l = (CharSequence) TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
+            this.m = (CharSequence) TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
+            this.n = (CharSequence) TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
+        }
+    }
+
+    public class a implements TextWatcher {
+        public a() {
+        }
+
+        @Override // android.text.TextWatcher
+        public void afterTextChanged(@NonNull Editable editable) {
+            TextInputLayout textInputLayout = TextInputLayout.this;
+            textInputLayout.updateLabelState(!TextInputLayout.access$000(textInputLayout));
+            TextInputLayout textInputLayout2 = TextInputLayout.this;
+            if (textInputLayout2.counterEnabled) {
+                textInputLayout2.updateCounter(editable.length());
+            }
+            if (TextInputLayout.access$100(TextInputLayout.this)) {
+                TextInputLayout.access$200(TextInputLayout.this, editable.length());
+            }
+        }
+
+        @Override // android.text.TextWatcher
+        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        }
+
+        @Override // android.text.TextWatcher
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        }
+    }
+
+    public class b implements Runnable {
+        public b() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            TextInputLayout.access$300(TextInputLayout.this).performClick();
+            TextInputLayout.access$300(TextInputLayout.this).jumpDrawablesToCurrentState();
+        }
+    }
+
+    public class c implements Runnable {
+        public c() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            TextInputLayout.this.editText.requestLayout();
+        }
+    }
+
+    public class d implements ValueAnimator.AnimatorUpdateListener {
+        public d() {
+        }
+
+        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+        public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
+            TextInputLayout.this.collapsingTextHelper.setExpansionFraction(((Float) valueAnimator.getAnimatedValue()).floatValue());
+        }
+    }
 
     public TextInputLayout(@NonNull Context context) {
         this(context, null);
@@ -268,15 +470,15 @@ public class TextInputLayout extends LinearLayout {
         return textInputLayout.endIconView;
     }
 
-    public void addOnEditTextAttachedListener(@NonNull TextInputLayout$OnEditTextAttachedListener textInputLayout$OnEditTextAttachedListener) {
-        this.editTextAttachedListeners.add(textInputLayout$OnEditTextAttachedListener);
+    public void addOnEditTextAttachedListener(@NonNull OnEditTextAttachedListener onEditTextAttachedListener) {
+        this.editTextAttachedListeners.add(onEditTextAttachedListener);
         if (this.editText != null) {
-            textInputLayout$OnEditTextAttachedListener.onEditTextAttached(this);
+            onEditTextAttachedListener.onEditTextAttached(this);
         }
     }
 
-    public void addOnEndIconChangedListener(@NonNull TextInputLayout$OnEndIconChangedListener textInputLayout$OnEndIconChangedListener) {
-        this.endIconChangedListeners.add(textInputLayout$OnEndIconChangedListener);
+    public void addOnEndIconChangedListener(@NonNull OnEndIconChangedListener onEndIconChangedListener) {
+        this.endIconChangedListeners.add(onEndIconChangedListener);
     }
 
     private void addPlaceholderTextView() {
@@ -288,15 +490,15 @@ public class TextInputLayout extends LinearLayout {
     }
 
     @Override // android.view.ViewGroup
-    public void addView(@NonNull View view, int i, @NonNull ViewGroup$LayoutParams viewGroup$LayoutParams) {
+    public void addView(@NonNull View view, int i, @NonNull ViewGroup.LayoutParams layoutParams) {
         if (!(view instanceof EditText)) {
-            super.addView(view, i, viewGroup$LayoutParams);
+            super.addView(view, i, layoutParams);
             return;
         }
-        FrameLayout$LayoutParams frameLayout$LayoutParams = new FrameLayout$LayoutParams(viewGroup$LayoutParams);
-        frameLayout$LayoutParams.gravity = (frameLayout$LayoutParams.gravity & (-113)) | 16;
-        this.inputFrame.addView(view, frameLayout$LayoutParams);
-        this.inputFrame.setLayoutParams(viewGroup$LayoutParams);
+        FrameLayout.LayoutParams layoutParams2 = new FrameLayout.LayoutParams(layoutParams);
+        layoutParams2.gravity = (layoutParams2.gravity & (-113)) | 16;
+        this.inputFrame.addView(view, layoutParams2);
+        this.inputFrame.setLayoutParams(layoutParams);
         updateInputLayoutMargins();
         setEditText((EditText) view);
     }
@@ -307,10 +509,10 @@ public class TextInputLayout extends LinearLayout {
         }
         if (MaterialResources.isFontScaleAtLeast2_0(getContext())) {
             EditText editText = this.editText;
-            ViewCompat.setPaddingRelative(editText, ViewCompat.getPaddingStart(editText), getResources().getDimensionPixelSize(R$dimen.material_filled_edittext_font_2_0_padding_top), ViewCompat.getPaddingEnd(this.editText), getResources().getDimensionPixelSize(R$dimen.material_filled_edittext_font_2_0_padding_bottom));
+            ViewCompat.setPaddingRelative(editText, ViewCompat.getPaddingStart(editText), getResources().getDimensionPixelSize(R.dimen.material_filled_edittext_font_2_0_padding_top), ViewCompat.getPaddingEnd(this.editText), getResources().getDimensionPixelSize(R.dimen.material_filled_edittext_font_2_0_padding_bottom));
         } else if (MaterialResources.isFontScaleAtLeast1_3(getContext())) {
             EditText editText2 = this.editText;
-            ViewCompat.setPaddingRelative(editText2, ViewCompat.getPaddingStart(editText2), getResources().getDimensionPixelSize(R$dimen.material_filled_edittext_font_1_3_padding_top), ViewCompat.getPaddingEnd(this.editText), getResources().getDimensionPixelSize(R$dimen.material_filled_edittext_font_1_3_padding_bottom));
+            ViewCompat.setPaddingRelative(editText2, ViewCompat.getPaddingStart(editText2), getResources().getDimensionPixelSize(R.dimen.material_filled_edittext_font_1_3_padding_top), ViewCompat.getPaddingEnd(this.editText), getResources().getDimensionPixelSize(R.dimen.material_filled_edittext_font_1_3_padding_bottom));
         }
     }
 
@@ -324,7 +526,7 @@ public class TextInputLayout extends LinearLayout {
             this.animator = valueAnimator;
             valueAnimator.setInterpolator(AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
             this.animator.setDuration(167L);
-            this.animator.addUpdateListener(new TextInputLayout$d(this));
+            this.animator.addUpdateListener(new d());
         }
         this.animator.setFloatValues(this.collapsingTextHelper.getExpansionFraction(), f);
         this.animator.start();
@@ -372,7 +574,7 @@ public class TextInputLayout extends LinearLayout {
         applyIconTint(this.endIconView, this.hasEndIconTintList, this.endIconTintList, this.hasEndIconTintMode, this.endIconTintMode);
     }
 
-    private void applyIconTint(@NonNull CheckableImageButton checkableImageButton, boolean z2, ColorStateList colorStateList, boolean z3, PorterDuff$Mode porterDuff$Mode) {
+    private void applyIconTint(@NonNull CheckableImageButton checkableImageButton, boolean z2, ColorStateList colorStateList, boolean z3, PorterDuff.Mode mode) {
         Drawable drawable = checkableImageButton.getDrawable();
         if (drawable != null && (z2 || z3)) {
             drawable = DrawableCompat.wrap(drawable).mutate();
@@ -380,7 +582,7 @@ public class TextInputLayout extends LinearLayout {
                 DrawableCompat.setTintList(drawable, colorStateList);
             }
             if (z3) {
-                DrawableCompat.setTintMode(drawable, porterDuff$Mode);
+                DrawableCompat.setTintMode(drawable, mode);
             }
         }
         if (checkableImageButton.getDrawable() != drawable) {
@@ -404,7 +606,7 @@ public class TextInputLayout extends LinearLayout {
             this.boxUnderline = new MaterialShapeDrawable();
         } else {
             if (i != 2) {
-                throw new IllegalArgumentException(a.B(new StringBuilder(), this.boxBackgroundMode, " is illegal; only @BoxBackgroundMode constants are supported."));
+                throw new IllegalArgumentException(b.d.b.a.a.B(new StringBuilder(), this.boxBackgroundMode, " is illegal; only @BoxBackgroundMode constants are supported."));
             }
             if (!this.hintEnabled || (this.boxBackground instanceof g)) {
                 this.boxBackground = new MaterialShapeDrawable(this.shapeAppearanceModel);
@@ -416,7 +618,7 @@ public class TextInputLayout extends LinearLayout {
     }
 
     private int calculateBoxBackgroundColor() {
-        return this.boxBackgroundMode == 1 ? MaterialColors.layer(MaterialColors.getColor(this, R$attr.colorSurface, 0), this.boxBackgroundColor) : this.boxBackgroundColor;
+        return this.boxBackgroundMode == 1 ? MaterialColors.layer(MaterialColors.getColor(this, R.attr.colorSurface, 0), this.boxBackgroundColor) : this.boxBackgroundColor;
     }
 
     @NonNull
@@ -539,14 +741,14 @@ public class TextInputLayout extends LinearLayout {
     }
 
     private void dispatchOnEditTextAttached() {
-        Iterator<TextInputLayout$OnEditTextAttachedListener> it = this.editTextAttachedListeners.iterator();
+        Iterator<OnEditTextAttachedListener> it = this.editTextAttachedListeners.iterator();
         while (it.hasNext()) {
             it.next().onEditTextAttached(this);
         }
     }
 
     private void dispatchOnEndIconChanged(int i) {
-        Iterator<TextInputLayout$OnEndIconChangedListener> it = this.endIconChangedListeners.iterator();
+        Iterator<OnEndIconChangedListener> it = this.endIconChangedListeners.iterator();
         while (it.hasNext()) {
             it.next().onEndIconChanged(this, i);
         }
@@ -1003,7 +1205,7 @@ public class TextInputLayout extends LinearLayout {
         return this.endIconMode == 1;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public boolean isProvidingHint() {
         return this.isProvidingHint;
     }
@@ -1070,7 +1272,7 @@ public class TextInputLayout extends LinearLayout {
         boolean zUpdateEditTextHeightBasedOnIcon = updateEditTextHeightBasedOnIcon();
         boolean zUpdateDummyDrawables = updateDummyDrawables();
         if (zUpdateEditTextHeightBasedOnIcon || zUpdateDummyDrawables) {
-            this.editText.post(new TextInputLayout$c(this));
+            this.editText.post(new c());
         }
         updatePlaceholderMeasurementsBasedOnEditText();
         updatePrefixTextViewPadding();
@@ -1079,34 +1281,34 @@ public class TextInputLayout extends LinearLayout {
 
     @Override // android.view.View
     public void onRestoreInstanceState(@Nullable Parcelable parcelable) {
-        if (!(parcelable instanceof TextInputLayout$SavedState)) {
+        if (!(parcelable instanceof SavedState)) {
             super.onRestoreInstanceState(parcelable);
             return;
         }
-        TextInputLayout$SavedState textInputLayout$SavedState = (TextInputLayout$SavedState) parcelable;
-        super.onRestoreInstanceState(textInputLayout$SavedState.getSuperState());
-        setError(textInputLayout$SavedState.j);
-        if (textInputLayout$SavedState.k) {
-            this.endIconView.post(new TextInputLayout$b(this));
+        SavedState savedState = (SavedState) parcelable;
+        super.onRestoreInstanceState(savedState.getSuperState());
+        setError(savedState.j);
+        if (savedState.k) {
+            this.endIconView.post(new b());
         }
-        setHint(textInputLayout$SavedState.l);
-        setHelperText(textInputLayout$SavedState.m);
-        setPlaceholderText(textInputLayout$SavedState.n);
+        setHint(savedState.l);
+        setHelperText(savedState.m);
+        setPlaceholderText(savedState.n);
         requestLayout();
     }
 
     @Override // android.view.View
     @Nullable
     public Parcelable onSaveInstanceState() {
-        TextInputLayout$SavedState textInputLayout$SavedState = new TextInputLayout$SavedState(super.onSaveInstanceState());
+        SavedState savedState = new SavedState(super.onSaveInstanceState());
         if (this.indicatorViewController.e()) {
-            textInputLayout$SavedState.j = getError();
+            savedState.j = getError();
         }
-        textInputLayout$SavedState.k = hasEndIcon() && this.endIconView.isChecked();
-        textInputLayout$SavedState.l = getHint();
-        textInputLayout$SavedState.m = getHelperText();
-        textInputLayout$SavedState.n = getPlaceholderText();
-        return textInputLayout$SavedState;
+        savedState.k = hasEndIcon() && this.endIconView.isChecked();
+        savedState.l = getHint();
+        savedState.m = getHelperText();
+        savedState.n = getPlaceholderText();
+        return savedState;
     }
 
     private void openCutout() {
@@ -1165,12 +1367,12 @@ public class TextInputLayout extends LinearLayout {
         refreshIconDrawableState(this.startIconView, this.startIconTintList);
     }
 
-    public void removeOnEditTextAttachedListener(@NonNull TextInputLayout$OnEditTextAttachedListener textInputLayout$OnEditTextAttachedListener) {
-        this.editTextAttachedListeners.remove(textInputLayout$OnEditTextAttachedListener);
+    public void removeOnEditTextAttachedListener(@NonNull OnEditTextAttachedListener onEditTextAttachedListener) {
+        this.editTextAttachedListeners.remove(onEditTextAttachedListener);
     }
 
-    public void removeOnEndIconChangedListener(@NonNull TextInputLayout$OnEndIconChangedListener textInputLayout$OnEndIconChangedListener) {
-        this.endIconChangedListeners.remove(textInputLayout$OnEndIconChangedListener);
+    public void removeOnEndIconChangedListener(@NonNull OnEndIconChangedListener onEndIconChangedListener) {
+        this.endIconChangedListeners.remove(onEndIconChangedListener);
     }
 
     private void removePlaceholderTextView() {
@@ -1199,8 +1401,8 @@ public class TextInputLayout extends LinearLayout {
         this.defaultFilledBackgroundColor = defaultColor;
         this.boxBackgroundColor = defaultColor;
         this.disabledFilledBackgroundColor = colorStateList.getColorForState(new int[]{-16842910}, -1);
-        this.focusedFilledBackgroundColor = colorStateList.getColorForState(new int[]{android.R$attr.state_focused, android.R$attr.state_enabled}, -1);
-        this.hoveredFilledBackgroundColor = colorStateList.getColorForState(new int[]{android.R$attr.state_hovered, android.R$attr.state_enabled}, -1);
+        this.focusedFilledBackgroundColor = colorStateList.getColorForState(new int[]{android.R.attr.state_focused, android.R.attr.state_enabled}, -1);
+        this.hoveredFilledBackgroundColor = colorStateList.getColorForState(new int[]{android.R.attr.state_hovered, android.R.attr.state_enabled}, -1);
         applyBoxAttributes();
     }
 
@@ -1238,8 +1440,8 @@ public class TextInputLayout extends LinearLayout {
         if (colorStateList.isStateful()) {
             this.defaultStrokeColor = colorStateList.getDefaultColor();
             this.disabledColor = colorStateList.getColorForState(new int[]{-16842910}, -1);
-            this.hoveredStrokeColor = colorStateList.getColorForState(new int[]{android.R$attr.state_hovered, android.R$attr.state_enabled}, -1);
-            this.focusedStrokeColor = colorStateList.getColorForState(new int[]{android.R$attr.state_focused, android.R$attr.state_enabled}, -1);
+            this.hoveredStrokeColor = colorStateList.getColorForState(new int[]{android.R.attr.state_hovered, android.R.attr.state_enabled}, -1);
+            this.focusedStrokeColor = colorStateList.getColorForState(new int[]{android.R.attr.state_focused, android.R.attr.state_enabled}, -1);
         } else if (this.focusedStrokeColor != colorStateList.getDefaultColor()) {
             this.focusedStrokeColor = colorStateList.getDefaultColor();
         }
@@ -1276,14 +1478,14 @@ public class TextInputLayout extends LinearLayout {
             if (z2) {
                 AppCompatTextView appCompatTextView = new AppCompatTextView(getContext());
                 this.counterView = appCompatTextView;
-                appCompatTextView.setId(R$id.textinput_counter);
+                appCompatTextView.setId(R.id.textinput_counter);
                 Typeface typeface = this.typeface;
                 if (typeface != null) {
                     this.counterView.setTypeface(typeface);
                 }
                 this.counterView.setMaxLines(1);
                 this.indicatorViewController.a(this.counterView, 2);
-                MarginLayoutParamsCompat.setMarginStart((ViewGroup$MarginLayoutParams) this.counterView.getLayoutParams(), getResources().getDimensionPixelOffset(R$dimen.mtrl_textinput_counter_margin_start));
+                MarginLayoutParamsCompat.setMarginStart((ViewGroup.MarginLayoutParams) this.counterView.getLayoutParams(), getResources().getDimensionPixelOffset(R.dimen.mtrl_textinput_counter_margin_start));
                 updateCounterTextAppearanceAndColor();
                 updateCounter();
             } else {
@@ -1352,13 +1554,13 @@ public class TextInputLayout extends LinearLayout {
         }
         this.editText = editText;
         onApplyBoxBackgroundMode();
-        setTextInputAccessibilityDelegate(new TextInputLayout$AccessibilityDelegate(this));
+        setTextInputAccessibilityDelegate(new AccessibilityDelegate(this));
         this.collapsingTextHelper.setTypefaces(this.editText.getTypeface());
         this.collapsingTextHelper.setExpandedTextSize(this.editText.getTextSize());
         int gravity = this.editText.getGravity();
         this.collapsingTextHelper.setCollapsedTextGravity((gravity & (-113)) | 48);
         this.collapsingTextHelper.setExpandedTextGravity(gravity);
-        this.editText.addTextChangedListener(new TextInputLayout$a(this));
+        this.editText.addTextChangedListener(new a());
         if (this.defaultHintTextColor == null) {
             this.defaultHintTextColor = this.editText.getHintTextColors();
         }
@@ -1426,7 +1628,7 @@ public class TextInputLayout extends LinearLayout {
             getEndIconDelegate().a();
             applyEndIconTint();
         } else {
-            StringBuilder sbU = a.U("The current box background mode ");
+            StringBuilder sbU = b.d.b.a.a.U("The current box background mode ");
             sbU.append(this.boxBackgroundMode);
             sbU.append(" is not supported by the end icon mode ");
             sbU.append(i);
@@ -1434,13 +1636,13 @@ public class TextInputLayout extends LinearLayout {
         }
     }
 
-    public void setEndIconOnClickListener(@Nullable View$OnClickListener view$OnClickListener) {
-        setIconOnClickListener(this.endIconView, view$OnClickListener, this.endIconOnLongClickListener);
+    public void setEndIconOnClickListener(@Nullable View.OnClickListener onClickListener) {
+        setIconOnClickListener(this.endIconView, onClickListener, this.endIconOnLongClickListener);
     }
 
-    public void setEndIconOnLongClickListener(@Nullable View$OnLongClickListener view$OnLongClickListener) {
-        this.endIconOnLongClickListener = view$OnLongClickListener;
-        setIconOnLongClickListener(this.endIconView, view$OnLongClickListener);
+    public void setEndIconOnLongClickListener(@Nullable View.OnLongClickListener onLongClickListener) {
+        this.endIconOnLongClickListener = onLongClickListener;
+        setIconOnLongClickListener(this.endIconView, onLongClickListener);
     }
 
     public void setEndIconTintList(@Nullable ColorStateList colorStateList) {
@@ -1451,9 +1653,9 @@ public class TextInputLayout extends LinearLayout {
         }
     }
 
-    public void setEndIconTintMode(@Nullable PorterDuff$Mode porterDuff$Mode) {
-        if (this.endIconTintMode != porterDuff$Mode) {
-            this.endIconTintMode = porterDuff$Mode;
+    public void setEndIconTintMode(@Nullable PorterDuff.Mode mode) {
+        if (this.endIconTintMode != mode) {
+            this.endIconTintMode = mode;
             this.hasEndIconTintMode = true;
             applyEndIconTint();
         }
@@ -1508,7 +1710,7 @@ public class TextInputLayout extends LinearLayout {
         if (z2) {
             AppCompatTextView appCompatTextView = new AppCompatTextView(nVar.a);
             nVar.l = appCompatTextView;
-            appCompatTextView.setId(R$id.textinput_error);
+            appCompatTextView.setId(R.id.textinput_error);
             nVar.l.setTextAlignment(5);
             Typeface typeface = nVar.u;
             if (typeface != null) {
@@ -1550,13 +1752,13 @@ public class TextInputLayout extends LinearLayout {
         refreshErrorIconDrawableState();
     }
 
-    public void setErrorIconOnClickListener(@Nullable View$OnClickListener view$OnClickListener) {
-        setIconOnClickListener(this.errorIconView, view$OnClickListener, this.errorIconOnLongClickListener);
+    public void setErrorIconOnClickListener(@Nullable View.OnClickListener onClickListener) {
+        setIconOnClickListener(this.errorIconView, onClickListener, this.errorIconOnLongClickListener);
     }
 
-    public void setErrorIconOnLongClickListener(@Nullable View$OnLongClickListener view$OnLongClickListener) {
-        this.errorIconOnLongClickListener = view$OnLongClickListener;
-        setIconOnLongClickListener(this.errorIconView, view$OnLongClickListener);
+    public void setErrorIconOnLongClickListener(@Nullable View.OnLongClickListener onLongClickListener) {
+        this.errorIconOnLongClickListener = onLongClickListener;
+        setIconOnLongClickListener(this.errorIconView, onLongClickListener);
     }
 
     public void setErrorIconTintList(@Nullable ColorStateList colorStateList) {
@@ -1571,11 +1773,11 @@ public class TextInputLayout extends LinearLayout {
         }
     }
 
-    public void setErrorIconTintMode(@Nullable PorterDuff$Mode porterDuff$Mode) {
+    public void setErrorIconTintMode(@Nullable PorterDuff.Mode mode) {
         Drawable drawable = this.errorIconView.getDrawable();
         if (drawable != null) {
             drawable = DrawableCompat.wrap(drawable).mutate();
-            DrawableCompat.setTintMode(drawable, porterDuff$Mode);
+            DrawableCompat.setTintMode(drawable, mode);
         }
         if (this.errorIconView.getDrawable() != drawable) {
             this.errorIconView.setImageDrawable(drawable);
@@ -1659,7 +1861,7 @@ public class TextInputLayout extends LinearLayout {
         if (z2) {
             AppCompatTextView appCompatTextView = new AppCompatTextView(nVar.a);
             nVar.r = appCompatTextView;
-            appCompatTextView.setId(R$id.textinput_helper_text);
+            appCompatTextView.setId(R.id.textinput_helper_text);
             nVar.r.setTextAlignment(5);
             Typeface typeface = nVar.u;
             if (typeface != null) {
@@ -1773,9 +1975,9 @@ public class TextInputLayout extends LinearLayout {
         }
     }
 
-    private static void setIconClickable(@NonNull CheckableImageButton checkableImageButton, @Nullable View$OnLongClickListener view$OnLongClickListener) {
+    private static void setIconClickable(@NonNull CheckableImageButton checkableImageButton, @Nullable View.OnLongClickListener onLongClickListener) {
         boolean zHasOnClickListeners = ViewCompat.hasOnClickListeners(checkableImageButton);
-        boolean z2 = view$OnLongClickListener != null;
+        boolean z2 = onLongClickListener != null;
         boolean z3 = zHasOnClickListeners || z2;
         checkableImageButton.setFocusable(z3);
         checkableImageButton.setClickable(zHasOnClickListeners);
@@ -1784,14 +1986,14 @@ public class TextInputLayout extends LinearLayout {
         ViewCompat.setImportantForAccessibility(checkableImageButton, z3 ? 1 : 2);
     }
 
-    private static void setIconOnClickListener(@NonNull CheckableImageButton checkableImageButton, @Nullable View$OnClickListener view$OnClickListener, @Nullable View$OnLongClickListener view$OnLongClickListener) {
-        checkableImageButton.setOnClickListener(view$OnClickListener);
-        setIconClickable(checkableImageButton, view$OnLongClickListener);
+    private static void setIconOnClickListener(@NonNull CheckableImageButton checkableImageButton, @Nullable View.OnClickListener onClickListener, @Nullable View.OnLongClickListener onLongClickListener) {
+        checkableImageButton.setOnClickListener(onClickListener);
+        setIconClickable(checkableImageButton, onLongClickListener);
     }
 
-    private static void setIconOnLongClickListener(@NonNull CheckableImageButton checkableImageButton, @Nullable View$OnLongClickListener view$OnLongClickListener) {
-        checkableImageButton.setOnLongClickListener(view$OnLongClickListener);
-        setIconClickable(checkableImageButton, view$OnLongClickListener);
+    private static void setIconOnLongClickListener(@NonNull CheckableImageButton checkableImageButton, @Nullable View.OnLongClickListener onLongClickListener) {
+        checkableImageButton.setOnLongClickListener(onLongClickListener);
+        setIconClickable(checkableImageButton, onLongClickListener);
     }
 
     @Deprecated
@@ -1824,8 +2026,8 @@ public class TextInputLayout extends LinearLayout {
     }
 
     @Deprecated
-    public void setPasswordVisibilityToggleTintMode(@Nullable PorterDuff$Mode porterDuff$Mode) {
-        this.endIconTintMode = porterDuff$Mode;
+    public void setPasswordVisibilityToggleTintMode(@Nullable PorterDuff.Mode mode) {
+        this.endIconTintMode = mode;
         this.hasEndIconTintMode = true;
         applyEndIconTint();
     }
@@ -1868,7 +2070,7 @@ public class TextInputLayout extends LinearLayout {
         if (z2) {
             AppCompatTextView appCompatTextView = new AppCompatTextView(getContext());
             this.placeholderTextView = appCompatTextView;
-            appCompatTextView.setId(R$id.textinput_placeholder);
+            appCompatTextView.setId(R.id.textinput_placeholder);
             ViewCompat.setAccessibilityLiveRegion(this.placeholderTextView, 1);
             setPlaceholderTextAppearance(this.placeholderTextAppearance);
             setPlaceholderTextColor(this.placeholderTextColor);
@@ -1906,13 +2108,13 @@ public class TextInputLayout extends LinearLayout {
         setStartIconDrawable(i != 0 ? AppCompatResources.getDrawable(getContext(), i) : null);
     }
 
-    public void setStartIconOnClickListener(@Nullable View$OnClickListener view$OnClickListener) {
-        setIconOnClickListener(this.startIconView, view$OnClickListener, this.startIconOnLongClickListener);
+    public void setStartIconOnClickListener(@Nullable View.OnClickListener onClickListener) {
+        setIconOnClickListener(this.startIconView, onClickListener, this.startIconOnLongClickListener);
     }
 
-    public void setStartIconOnLongClickListener(@Nullable View$OnLongClickListener view$OnLongClickListener) {
-        this.startIconOnLongClickListener = view$OnLongClickListener;
-        setIconOnLongClickListener(this.startIconView, view$OnLongClickListener);
+    public void setStartIconOnLongClickListener(@Nullable View.OnLongClickListener onLongClickListener) {
+        this.startIconOnLongClickListener = onLongClickListener;
+        setIconOnLongClickListener(this.startIconView, onLongClickListener);
     }
 
     public void setStartIconTintList(@Nullable ColorStateList colorStateList) {
@@ -1923,9 +2125,9 @@ public class TextInputLayout extends LinearLayout {
         }
     }
 
-    public void setStartIconTintMode(@Nullable PorterDuff$Mode porterDuff$Mode) {
-        if (this.startIconTintMode != porterDuff$Mode) {
-            this.startIconTintMode = porterDuff$Mode;
+    public void setStartIconTintMode(@Nullable PorterDuff.Mode mode) {
+        if (this.startIconTintMode != mode) {
+            this.startIconTintMode = mode;
             this.hasStartIconTintMode = true;
             applyStartIconTint();
         }
@@ -1957,21 +2159,21 @@ public class TextInputLayout extends LinearLayout {
         boolean z2 = true;
         try {
             TextViewCompat.setTextAppearance(textView, i);
-            if (Build$VERSION.SDK_INT < 23 || textView.getTextColors().getDefaultColor() != -65281) {
+            if (Build.VERSION.SDK_INT < 23 || textView.getTextColors().getDefaultColor() != -65281) {
                 z2 = false;
             }
         } catch (Exception unused) {
         }
         if (z2) {
-            TextViewCompat.setTextAppearance(textView, R$style.TextAppearance_AppCompat_Caption);
-            textView.setTextColor(ContextCompat.getColor(getContext(), R$color.design_error));
+            TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_AppCompat_Caption);
+            textView.setTextColor(ContextCompat.getColor(getContext(), R.color.design_error));
         }
     }
 
-    public void setTextInputAccessibilityDelegate(@Nullable TextInputLayout$AccessibilityDelegate textInputLayout$AccessibilityDelegate) {
+    public void setTextInputAccessibilityDelegate(@Nullable AccessibilityDelegate accessibilityDelegate) {
         EditText editText = this.editText;
         if (editText != null) {
-            ViewCompat.setAccessibilityDelegate(editText, textInputLayout$AccessibilityDelegate);
+            ViewCompat.setAccessibilityDelegate(editText, accessibilityDelegate);
         }
     }
 
@@ -2034,9 +2236,9 @@ public class TextInputLayout extends LinearLayout {
     private void updateBoxCollapsedPaddingTop() {
         if (this.boxBackgroundMode == 1) {
             if (MaterialResources.isFontScaleAtLeast2_0(getContext())) {
-                this.boxCollapsedPaddingTopPx = getResources().getDimensionPixelSize(R$dimen.material_font_2_0_box_collapsed_padding_top);
+                this.boxCollapsedPaddingTopPx = getResources().getDimensionPixelSize(R.dimen.material_font_2_0_box_collapsed_padding_top);
             } else if (MaterialResources.isFontScaleAtLeast1_3(getContext())) {
-                this.boxCollapsedPaddingTopPx = getResources().getDimensionPixelSize(R$dimen.material_font_1_3_box_collapsed_padding_top);
+                this.boxCollapsedPaddingTopPx = getResources().getDimensionPixelSize(R.dimen.material_font_1_3_box_collapsed_padding_top);
             }
         }
     }
@@ -2057,7 +2259,7 @@ public class TextInputLayout extends LinearLayout {
     }
 
     private static void updateCounterContentDescription(@NonNull Context context, @NonNull TextView textView, int i, int i2, boolean z2) {
-        textView.setContentDescription(context.getString(z2 ? R$string.character_counter_overflowed_content_description : R$string.character_counter_content_description, Integer.valueOf(i), Integer.valueOf(i2)));
+        textView.setContentDescription(context.getString(z2 ? R.string.character_counter_overflowed_content_description : R.string.character_counter_content_description, Integer.valueOf(i), Integer.valueOf(i2)));
     }
 
     private void updateCounterTextAppearanceAndColor() {
@@ -2112,7 +2314,7 @@ public class TextInputLayout extends LinearLayout {
             int measuredWidth2 = this.suffixTextView.getMeasuredWidth() - this.editText.getPaddingRight();
             CheckableImageButton endIconToUpdateDummyDrawable = getEndIconToUpdateDummyDrawable();
             if (endIconToUpdateDummyDrawable != null) {
-                measuredWidth2 = MarginLayoutParamsCompat.getMarginStart((ViewGroup$MarginLayoutParams) endIconToUpdateDummyDrawable.getLayoutParams()) + endIconToUpdateDummyDrawable.getMeasuredWidth() + measuredWidth2;
+                measuredWidth2 = MarginLayoutParamsCompat.getMarginStart((ViewGroup.MarginLayoutParams) endIconToUpdateDummyDrawable.getLayoutParams()) + endIconToUpdateDummyDrawable.getMeasuredWidth() + measuredWidth2;
             }
             Drawable[] compoundDrawablesRelative3 = TextViewCompat.getCompoundDrawablesRelative(this.editText);
             Drawable drawable3 = this.endDummyDrawable;
@@ -2162,9 +2364,9 @@ public class TextInputLayout extends LinearLayout {
             background = background.mutate();
         }
         if (this.indicatorViewController.e()) {
-            background.setColorFilter(AppCompatDrawableManager.getPorterDuffColorFilter(this.indicatorViewController.g(), PorterDuff$Mode.SRC_IN));
+            background.setColorFilter(AppCompatDrawableManager.getPorterDuffColorFilter(this.indicatorViewController.g(), PorterDuff.Mode.SRC_IN));
         } else if (this.counterOverflowed && (textView = this.counterView) != null) {
-            background.setColorFilter(AppCompatDrawableManager.getPorterDuffColorFilter(textView.getCurrentTextColor(), PorterDuff$Mode.SRC_IN));
+            background.setColorFilter(AppCompatDrawableManager.getPorterDuffColorFilter(textView.getCurrentTextColor(), PorterDuff.Mode.SRC_IN));
         } else {
             DrawableCompat.clearColorFilter(background);
             this.editText.refreshDrawableState();
@@ -2182,10 +2384,10 @@ public class TextInputLayout extends LinearLayout {
 
     private void updateInputLayoutMargins() {
         if (this.boxBackgroundMode != 1) {
-            LinearLayout$LayoutParams linearLayout$LayoutParams = (LinearLayout$LayoutParams) this.inputFrame.getLayoutParams();
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) this.inputFrame.getLayoutParams();
             int iCalculateLabelMarginTop = calculateLabelMarginTop();
-            if (iCalculateLabelMarginTop != linearLayout$LayoutParams.topMargin) {
-                linearLayout$LayoutParams.topMargin = iCalculateLabelMarginTop;
+            if (iCalculateLabelMarginTop != layoutParams.topMargin) {
+                layoutParams.topMargin = iCalculateLabelMarginTop;
                 this.inputFrame.requestLayout();
             }
         }
@@ -2213,7 +2415,7 @@ public class TextInputLayout extends LinearLayout {
         if (this.editText == null) {
             return;
         }
-        ViewCompat.setPaddingRelative(this.prefixTextView, isStartIconVisible() ? 0 : ViewCompat.getPaddingStart(this.editText), this.editText.getCompoundPaddingTop(), getContext().getResources().getDimensionPixelSize(R$dimen.material_input_text_to_prefix_suffix_padding), this.editText.getCompoundPaddingBottom());
+        ViewCompat.setPaddingRelative(this.prefixTextView, isStartIconVisible() ? 0 : ViewCompat.getPaddingStart(this.editText), this.editText.getCompoundPaddingTop(), getContext().getResources().getDimensionPixelSize(R.dimen.material_input_text_to_prefix_suffix_padding), this.editText.getCompoundPaddingBottom());
     }
 
     private void updatePrefixTextVisibility() {
@@ -2223,8 +2425,8 @@ public class TextInputLayout extends LinearLayout {
 
     private void updateStrokeErrorColor(boolean z2, boolean z3) {
         int defaultColor = this.strokeErrorColor.getDefaultColor();
-        int colorForState = this.strokeErrorColor.getColorForState(new int[]{android.R$attr.state_hovered, android.R$attr.state_enabled}, defaultColor);
-        int colorForState2 = this.strokeErrorColor.getColorForState(new int[]{android.R$attr.state_activated, android.R$attr.state_enabled}, defaultColor);
+        int colorForState = this.strokeErrorColor.getColorForState(new int[]{android.R.attr.state_hovered, android.R.attr.state_enabled}, defaultColor);
+        int colorForState2 = this.strokeErrorColor.getColorForState(new int[]{android.R.attr.state_activated, android.R.attr.state_enabled}, defaultColor);
         if (z2) {
             this.boxStrokeColor = colorForState2;
         } else if (z3) {
@@ -2238,7 +2440,7 @@ public class TextInputLayout extends LinearLayout {
         if (this.editText == null) {
             return;
         }
-        ViewCompat.setPaddingRelative(this.suffixTextView, getContext().getResources().getDimensionPixelSize(R$dimen.material_input_text_to_prefix_suffix_padding), this.editText.getPaddingTop(), (isEndIconVisible() || isErrorIconVisible()) ? 0 : ViewCompat.getPaddingEnd(this.editText), this.editText.getPaddingBottom());
+        ViewCompat.setPaddingRelative(this.suffixTextView, getContext().getResources().getDimensionPixelSize(R.dimen.material_input_text_to_prefix_suffix_padding), this.editText.getPaddingTop(), (isEndIconVisible() || isErrorIconVisible()) ? 0 : ViewCompat.getPaddingEnd(this.editText), this.editText.getPaddingBottom());
     }
 
     private void updateSuffixTextVisibility() {
@@ -2317,7 +2519,7 @@ public class TextInputLayout extends LinearLayout {
     }
 
     public TextInputLayout(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, R$attr.textInputStyle);
+        this(context, attributeSet, R.attr.textInputStyle);
     }
 
     public void setEndIconContentDescription(@Nullable CharSequence charSequence) {
@@ -2425,42 +2627,42 @@ public class TextInputLayout extends LinearLayout {
         LinearLayout linearLayout = new LinearLayout(context2);
         this.startLayout = linearLayout;
         linearLayout.setOrientation(0);
-        linearLayout.setLayoutParams(new FrameLayout$LayoutParams(-2, -1, GravityCompat.START));
+        linearLayout.setLayoutParams(new FrameLayout.LayoutParams(-2, -1, GravityCompat.START));
         frameLayout.addView(linearLayout);
         LinearLayout linearLayout2 = new LinearLayout(context2);
         this.endLayout = linearLayout2;
         linearLayout2.setOrientation(0);
-        linearLayout2.setLayoutParams(new FrameLayout$LayoutParams(-2, -1, GravityCompat.END));
+        linearLayout2.setLayoutParams(new FrameLayout.LayoutParams(-2, -1, GravityCompat.END));
         frameLayout.addView(linearLayout2);
         FrameLayout frameLayout2 = new FrameLayout(context2);
         this.endIconFrame = frameLayout2;
-        frameLayout2.setLayoutParams(new FrameLayout$LayoutParams(-2, -1));
+        frameLayout2.setLayoutParams(new FrameLayout.LayoutParams(-2, -1));
         TimeInterpolator timeInterpolator = AnimationUtils.LINEAR_INTERPOLATOR;
         collapsingTextHelper.setTextSizeInterpolator(timeInterpolator);
         collapsingTextHelper.setPositionInterpolator(timeInterpolator);
         collapsingTextHelper.setCollapsedTextGravity(BadgeDrawable.TOP_START);
-        int[] iArr = R$styleable.TextInputLayout;
-        int i5 = R$styleable.TextInputLayout_counterTextAppearance;
-        int i6 = R$styleable.TextInputLayout_counterOverflowTextAppearance;
-        int i7 = R$styleable.TextInputLayout_errorTextAppearance;
-        int i8 = R$styleable.TextInputLayout_helperTextTextAppearance;
-        int i9 = R$styleable.TextInputLayout_hintTextAppearance;
+        int[] iArr = R.styleable.TextInputLayout;
+        int i5 = R.styleable.TextInputLayout_counterTextAppearance;
+        int i6 = R.styleable.TextInputLayout_counterOverflowTextAppearance;
+        int i7 = R.styleable.TextInputLayout_errorTextAppearance;
+        int i8 = R.styleable.TextInputLayout_helperTextTextAppearance;
+        int i9 = R.styleable.TextInputLayout_hintTextAppearance;
         TintTypedArray tintTypedArrayObtainTintedStyledAttributes = ThemeEnforcement.obtainTintedStyledAttributes(context2, attributeSet, iArr, i, i4, i5, i6, i7, i8, i9);
-        this.hintEnabled = tintTypedArrayObtainTintedStyledAttributes.getBoolean(R$styleable.TextInputLayout_hintEnabled, true);
-        setHint(tintTypedArrayObtainTintedStyledAttributes.getText(R$styleable.TextInputLayout_android_hint));
-        this.hintAnimationEnabled = tintTypedArrayObtainTintedStyledAttributes.getBoolean(R$styleable.TextInputLayout_hintAnimationEnabled, true);
-        this.expandedHintEnabled = tintTypedArrayObtainTintedStyledAttributes.getBoolean(R$styleable.TextInputLayout_expandedHintEnabled, true);
+        this.hintEnabled = tintTypedArrayObtainTintedStyledAttributes.getBoolean(R.styleable.TextInputLayout_hintEnabled, true);
+        setHint(tintTypedArrayObtainTintedStyledAttributes.getText(R.styleable.TextInputLayout_android_hint));
+        this.hintAnimationEnabled = tintTypedArrayObtainTintedStyledAttributes.getBoolean(R.styleable.TextInputLayout_hintAnimationEnabled, true);
+        this.expandedHintEnabled = tintTypedArrayObtainTintedStyledAttributes.getBoolean(R.styleable.TextInputLayout_expandedHintEnabled, true);
         this.shapeAppearanceModel = ShapeAppearanceModel.builder(context2, attributeSet, i, i4).build();
-        this.boxLabelCutoutPaddingPx = context2.getResources().getDimensionPixelOffset(R$dimen.mtrl_textinput_box_label_cutout_padding);
-        this.boxCollapsedPaddingTopPx = tintTypedArrayObtainTintedStyledAttributes.getDimensionPixelOffset(R$styleable.TextInputLayout_boxCollapsedPaddingTop, 0);
-        this.boxStrokeWidthDefaultPx = tintTypedArrayObtainTintedStyledAttributes.getDimensionPixelSize(R$styleable.TextInputLayout_boxStrokeWidth, context2.getResources().getDimensionPixelSize(R$dimen.mtrl_textinput_box_stroke_width_default));
-        this.boxStrokeWidthFocusedPx = tintTypedArrayObtainTintedStyledAttributes.getDimensionPixelSize(R$styleable.TextInputLayout_boxStrokeWidthFocused, context2.getResources().getDimensionPixelSize(R$dimen.mtrl_textinput_box_stroke_width_focused));
+        this.boxLabelCutoutPaddingPx = context2.getResources().getDimensionPixelOffset(R.dimen.mtrl_textinput_box_label_cutout_padding);
+        this.boxCollapsedPaddingTopPx = tintTypedArrayObtainTintedStyledAttributes.getDimensionPixelOffset(R.styleable.TextInputLayout_boxCollapsedPaddingTop, 0);
+        this.boxStrokeWidthDefaultPx = tintTypedArrayObtainTintedStyledAttributes.getDimensionPixelSize(R.styleable.TextInputLayout_boxStrokeWidth, context2.getResources().getDimensionPixelSize(R.dimen.mtrl_textinput_box_stroke_width_default));
+        this.boxStrokeWidthFocusedPx = tintTypedArrayObtainTintedStyledAttributes.getDimensionPixelSize(R.styleable.TextInputLayout_boxStrokeWidthFocused, context2.getResources().getDimensionPixelSize(R.dimen.mtrl_textinput_box_stroke_width_focused));
         this.boxStrokeWidthPx = this.boxStrokeWidthDefaultPx;
-        float dimension = tintTypedArrayObtainTintedStyledAttributes.getDimension(R$styleable.TextInputLayout_boxCornerRadiusTopStart, -1.0f);
-        float dimension2 = tintTypedArrayObtainTintedStyledAttributes.getDimension(R$styleable.TextInputLayout_boxCornerRadiusTopEnd, -1.0f);
-        float dimension3 = tintTypedArrayObtainTintedStyledAttributes.getDimension(R$styleable.TextInputLayout_boxCornerRadiusBottomEnd, -1.0f);
-        float dimension4 = tintTypedArrayObtainTintedStyledAttributes.getDimension(R$styleable.TextInputLayout_boxCornerRadiusBottomStart, -1.0f);
-        ShapeAppearanceModel$Builder builder = this.shapeAppearanceModel.toBuilder();
+        float dimension = tintTypedArrayObtainTintedStyledAttributes.getDimension(R.styleable.TextInputLayout_boxCornerRadiusTopStart, -1.0f);
+        float dimension2 = tintTypedArrayObtainTintedStyledAttributes.getDimension(R.styleable.TextInputLayout_boxCornerRadiusTopEnd, -1.0f);
+        float dimension3 = tintTypedArrayObtainTintedStyledAttributes.getDimension(R.styleable.TextInputLayout_boxCornerRadiusBottomEnd, -1.0f);
+        float dimension4 = tintTypedArrayObtainTintedStyledAttributes.getDimension(R.styleable.TextInputLayout_boxCornerRadiusBottomStart, -1.0f);
+        ShapeAppearanceModel.Builder builder = this.shapeAppearanceModel.toBuilder();
         if (dimension >= 0.0f) {
             builder.setTopLeftCornerSize(dimension);
         }
@@ -2474,7 +2676,7 @@ public class TextInputLayout extends LinearLayout {
             builder.setBottomLeftCornerSize(dimension4);
         }
         this.shapeAppearanceModel = builder.build();
-        ColorStateList colorStateList = MaterialResources.getColorStateList(context2, tintTypedArrayObtainTintedStyledAttributes, R$styleable.TextInputLayout_boxBackgroundColor);
+        ColorStateList colorStateList = MaterialResources.getColorStateList(context2, tintTypedArrayObtainTintedStyledAttributes, R.styleable.TextInputLayout_boxBackgroundColor);
         if (colorStateList != null) {
             int defaultColor = colorStateList.getDefaultColor();
             this.defaultFilledBackgroundColor = defaultColor;
@@ -2482,14 +2684,14 @@ public class TextInputLayout extends LinearLayout {
             if (colorStateList.isStateful()) {
                 this.disabledFilledBackgroundColor = colorStateList.getColorForState(new int[]{-16842910}, -1);
                 i2 = 2;
-                this.focusedFilledBackgroundColor = colorStateList.getColorForState(new int[]{android.R$attr.state_focused, android.R$attr.state_enabled}, -1);
-                this.hoveredFilledBackgroundColor = colorStateList.getColorForState(new int[]{android.R$attr.state_hovered, android.R$attr.state_enabled}, -1);
+                this.focusedFilledBackgroundColor = colorStateList.getColorForState(new int[]{android.R.attr.state_focused, android.R.attr.state_enabled}, -1);
+                this.hoveredFilledBackgroundColor = colorStateList.getColorForState(new int[]{android.R.attr.state_hovered, android.R.attr.state_enabled}, -1);
             } else {
                 i2 = 2;
                 this.focusedFilledBackgroundColor = this.defaultFilledBackgroundColor;
-                ColorStateList colorStateList2 = AppCompatResources.getColorStateList(context2, R$color.mtrl_filled_background_color);
+                ColorStateList colorStateList2 = AppCompatResources.getColorStateList(context2, R.color.mtrl_filled_background_color);
                 this.disabledFilledBackgroundColor = colorStateList2.getColorForState(new int[]{-16842910}, -1);
-                this.hoveredFilledBackgroundColor = colorStateList2.getColorForState(new int[]{android.R$attr.state_hovered}, -1);
+                this.hoveredFilledBackgroundColor = colorStateList2.getColorForState(new int[]{android.R.attr.state_hovered}, -1);
             }
         } else {
             i2 = 2;
@@ -2499,22 +2701,22 @@ public class TextInputLayout extends LinearLayout {
             this.focusedFilledBackgroundColor = 0;
             this.hoveredFilledBackgroundColor = 0;
         }
-        int i10 = R$styleable.TextInputLayout_android_textColorHint;
+        int i10 = R.styleable.TextInputLayout_android_textColorHint;
         if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i10)) {
             ColorStateList colorStateList3 = tintTypedArrayObtainTintedStyledAttributes.getColorStateList(i10);
             this.focusedTextColor = colorStateList3;
             this.defaultHintTextColor = colorStateList3;
         }
-        int i11 = R$styleable.TextInputLayout_boxStrokeColor;
+        int i11 = R.styleable.TextInputLayout_boxStrokeColor;
         ColorStateList colorStateList4 = MaterialResources.getColorStateList(context2, tintTypedArrayObtainTintedStyledAttributes, i11);
         this.focusedStrokeColor = tintTypedArrayObtainTintedStyledAttributes.getColor(i11, 0);
-        this.defaultStrokeColor = ContextCompat.getColor(context2, R$color.mtrl_textinput_default_box_stroke_color);
-        this.disabledColor = ContextCompat.getColor(context2, R$color.mtrl_textinput_disabled_color);
-        this.hoveredStrokeColor = ContextCompat.getColor(context2, R$color.mtrl_textinput_hovered_box_stroke_color);
+        this.defaultStrokeColor = ContextCompat.getColor(context2, R.color.mtrl_textinput_default_box_stroke_color);
+        this.disabledColor = ContextCompat.getColor(context2, R.color.mtrl_textinput_disabled_color);
+        this.hoveredStrokeColor = ContextCompat.getColor(context2, R.color.mtrl_textinput_hovered_box_stroke_color);
         if (colorStateList4 != null) {
             setBoxStrokeColorStateList(colorStateList4);
         }
-        int i12 = R$styleable.TextInputLayout_boxStrokeErrorColor;
+        int i12 = R.styleable.TextInputLayout_boxStrokeErrorColor;
         if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i12)) {
             setBoxStrokeErrorColor(MaterialResources.getColorStateList(context2, tintTypedArrayObtainTintedStyledAttributes, i12));
         }
@@ -2522,79 +2724,79 @@ public class TextInputLayout extends LinearLayout {
             setHintTextAppearance(tintTypedArrayObtainTintedStyledAttributes.getResourceId(i9, 0));
         }
         int resourceId = tintTypedArrayObtainTintedStyledAttributes.getResourceId(i7, 0);
-        CharSequence text = tintTypedArrayObtainTintedStyledAttributes.getText(R$styleable.TextInputLayout_errorContentDescription);
-        boolean z2 = tintTypedArrayObtainTintedStyledAttributes.getBoolean(R$styleable.TextInputLayout_errorEnabled, false);
+        CharSequence text = tintTypedArrayObtainTintedStyledAttributes.getText(R.styleable.TextInputLayout_errorContentDescription);
+        boolean z2 = tintTypedArrayObtainTintedStyledAttributes.getBoolean(R.styleable.TextInputLayout_errorEnabled, false);
         LayoutInflater layoutInflaterFrom = LayoutInflater.from(getContext());
-        int i13 = R$layout.design_text_input_end_icon;
+        int i13 = R.layout.design_text_input_end_icon;
         CheckableImageButton checkableImageButton = (CheckableImageButton) layoutInflaterFrom.inflate(i13, (ViewGroup) linearLayout2, false);
         this.errorIconView = checkableImageButton;
-        checkableImageButton.setId(R$id.text_input_error_icon);
+        checkableImageButton.setId(R.id.text_input_error_icon);
         checkableImageButton.setVisibility(8);
         if (MaterialResources.isFontScaleAtLeast1_3(context2)) {
-            MarginLayoutParamsCompat.setMarginStart((ViewGroup$MarginLayoutParams) checkableImageButton.getLayoutParams(), 0);
+            MarginLayoutParamsCompat.setMarginStart((ViewGroup.MarginLayoutParams) checkableImageButton.getLayoutParams(), 0);
         }
-        int i14 = R$styleable.TextInputLayout_errorIconDrawable;
+        int i14 = R.styleable.TextInputLayout_errorIconDrawable;
         if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i14)) {
             setErrorIconDrawable(tintTypedArrayObtainTintedStyledAttributes.getDrawable(i14));
         }
-        int i15 = R$styleable.TextInputLayout_errorIconTint;
+        int i15 = R.styleable.TextInputLayout_errorIconTint;
         if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i15)) {
             setErrorIconTintList(MaterialResources.getColorStateList(context2, tintTypedArrayObtainTintedStyledAttributes, i15));
         }
-        int i16 = R$styleable.TextInputLayout_errorIconTintMode;
+        int i16 = R.styleable.TextInputLayout_errorIconTintMode;
         if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i16)) {
             setErrorIconTintMode(ViewUtils.parseTintMode(tintTypedArrayObtainTintedStyledAttributes.getInt(i16, -1), null));
         }
-        checkableImageButton.setContentDescription(getResources().getText(R$string.error_icon_content_description));
+        checkableImageButton.setContentDescription(getResources().getText(R.string.error_icon_content_description));
         ViewCompat.setImportantForAccessibility(checkableImageButton, i2);
         checkableImageButton.setClickable(false);
         checkableImageButton.setPressable(false);
         checkableImageButton.setFocusable(false);
         int resourceId2 = tintTypedArrayObtainTintedStyledAttributes.getResourceId(i8, 0);
-        boolean z3 = tintTypedArrayObtainTintedStyledAttributes.getBoolean(R$styleable.TextInputLayout_helperTextEnabled, false);
-        CharSequence text2 = tintTypedArrayObtainTintedStyledAttributes.getText(R$styleable.TextInputLayout_helperText);
-        int resourceId3 = tintTypedArrayObtainTintedStyledAttributes.getResourceId(R$styleable.TextInputLayout_placeholderTextAppearance, 0);
-        CharSequence text3 = tintTypedArrayObtainTintedStyledAttributes.getText(R$styleable.TextInputLayout_placeholderText);
-        int resourceId4 = tintTypedArrayObtainTintedStyledAttributes.getResourceId(R$styleable.TextInputLayout_prefixTextAppearance, 0);
-        CharSequence text4 = tintTypedArrayObtainTintedStyledAttributes.getText(R$styleable.TextInputLayout_prefixText);
-        int resourceId5 = tintTypedArrayObtainTintedStyledAttributes.getResourceId(R$styleable.TextInputLayout_suffixTextAppearance, 0);
-        CharSequence text5 = tintTypedArrayObtainTintedStyledAttributes.getText(R$styleable.TextInputLayout_suffixText);
-        boolean z4 = tintTypedArrayObtainTintedStyledAttributes.getBoolean(R$styleable.TextInputLayout_counterEnabled, false);
-        setCounterMaxLength(tintTypedArrayObtainTintedStyledAttributes.getInt(R$styleable.TextInputLayout_counterMaxLength, -1));
+        boolean z3 = tintTypedArrayObtainTintedStyledAttributes.getBoolean(R.styleable.TextInputLayout_helperTextEnabled, false);
+        CharSequence text2 = tintTypedArrayObtainTintedStyledAttributes.getText(R.styleable.TextInputLayout_helperText);
+        int resourceId3 = tintTypedArrayObtainTintedStyledAttributes.getResourceId(R.styleable.TextInputLayout_placeholderTextAppearance, 0);
+        CharSequence text3 = tintTypedArrayObtainTintedStyledAttributes.getText(R.styleable.TextInputLayout_placeholderText);
+        int resourceId4 = tintTypedArrayObtainTintedStyledAttributes.getResourceId(R.styleable.TextInputLayout_prefixTextAppearance, 0);
+        CharSequence text4 = tintTypedArrayObtainTintedStyledAttributes.getText(R.styleable.TextInputLayout_prefixText);
+        int resourceId5 = tintTypedArrayObtainTintedStyledAttributes.getResourceId(R.styleable.TextInputLayout_suffixTextAppearance, 0);
+        CharSequence text5 = tintTypedArrayObtainTintedStyledAttributes.getText(R.styleable.TextInputLayout_suffixText);
+        boolean z4 = tintTypedArrayObtainTintedStyledAttributes.getBoolean(R.styleable.TextInputLayout_counterEnabled, false);
+        setCounterMaxLength(tintTypedArrayObtainTintedStyledAttributes.getInt(R.styleable.TextInputLayout_counterMaxLength, -1));
         this.counterTextAppearance = tintTypedArrayObtainTintedStyledAttributes.getResourceId(i5, 0);
         this.counterOverflowTextAppearance = tintTypedArrayObtainTintedStyledAttributes.getResourceId(i6, 0);
-        CheckableImageButton checkableImageButton2 = (CheckableImageButton) LayoutInflater.from(getContext()).inflate(R$layout.design_text_input_start_icon, (ViewGroup) this.startLayout, false);
+        CheckableImageButton checkableImageButton2 = (CheckableImageButton) LayoutInflater.from(getContext()).inflate(R.layout.design_text_input_start_icon, (ViewGroup) this.startLayout, false);
         this.startIconView = checkableImageButton2;
         checkableImageButton2.setVisibility(8);
         if (MaterialResources.isFontScaleAtLeast1_3(context2)) {
-            MarginLayoutParamsCompat.setMarginEnd((ViewGroup$MarginLayoutParams) checkableImageButton2.getLayoutParams(), 0);
+            MarginLayoutParamsCompat.setMarginEnd((ViewGroup.MarginLayoutParams) checkableImageButton2.getLayoutParams(), 0);
         }
         setStartIconOnClickListener(null);
         setStartIconOnLongClickListener(null);
-        int i17 = R$styleable.TextInputLayout_startIconDrawable;
+        int i17 = R.styleable.TextInputLayout_startIconDrawable;
         if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i17)) {
             setStartIconDrawable(tintTypedArrayObtainTintedStyledAttributes.getDrawable(i17));
-            int i18 = R$styleable.TextInputLayout_startIconContentDescription;
+            int i18 = R.styleable.TextInputLayout_startIconContentDescription;
             if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i18)) {
                 setStartIconContentDescription(tintTypedArrayObtainTintedStyledAttributes.getText(i18));
             }
-            setStartIconCheckable(tintTypedArrayObtainTintedStyledAttributes.getBoolean(R$styleable.TextInputLayout_startIconCheckable, true));
+            setStartIconCheckable(tintTypedArrayObtainTintedStyledAttributes.getBoolean(R.styleable.TextInputLayout_startIconCheckable, true));
         }
-        int i19 = R$styleable.TextInputLayout_startIconTint;
+        int i19 = R.styleable.TextInputLayout_startIconTint;
         if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i19)) {
             setStartIconTintList(MaterialResources.getColorStateList(context2, tintTypedArrayObtainTintedStyledAttributes, i19));
         }
-        int i20 = R$styleable.TextInputLayout_startIconTintMode;
+        int i20 = R.styleable.TextInputLayout_startIconTintMode;
         if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i20)) {
             setStartIconTintMode(ViewUtils.parseTintMode(tintTypedArrayObtainTintedStyledAttributes.getInt(i20, -1), null));
         }
-        setBoxBackgroundMode(tintTypedArrayObtainTintedStyledAttributes.getInt(R$styleable.TextInputLayout_boxBackgroundMode, 0));
+        setBoxBackgroundMode(tintTypedArrayObtainTintedStyledAttributes.getInt(R.styleable.TextInputLayout_boxBackgroundMode, 0));
         this.endIconView = (CheckableImageButton) LayoutInflater.from(getContext()).inflate(i13, (ViewGroup) this.endIconFrame, false);
         this.endIconFrame.addView(this.endIconView);
         this.endIconView.setVisibility(8);
         if (MaterialResources.isFontScaleAtLeast1_3(context2)) {
             i3 = 0;
-            MarginLayoutParamsCompat.setMarginStart((ViewGroup$MarginLayoutParams) this.endIconView.getLayoutParams(), 0);
+            MarginLayoutParamsCompat.setMarginStart((ViewGroup.MarginLayoutParams) this.endIconView.getLayoutParams(), 0);
         } else {
             i3 = 0;
         }
@@ -2603,55 +2805,55 @@ public class TextInputLayout extends LinearLayout {
         this.endIconDelegates.append(1, new p(this));
         this.endIconDelegates.append(2, new b.i.a.g.j.a(this));
         this.endIconDelegates.append(3, new h(this));
-        int i21 = R$styleable.TextInputLayout_endIconMode;
+        int i21 = R.styleable.TextInputLayout_endIconMode;
         if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i21)) {
             setEndIconMode(tintTypedArrayObtainTintedStyledAttributes.getInt(i21, 0));
-            int i22 = R$styleable.TextInputLayout_endIconDrawable;
+            int i22 = R.styleable.TextInputLayout_endIconDrawable;
             if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i22)) {
                 setEndIconDrawable(tintTypedArrayObtainTintedStyledAttributes.getDrawable(i22));
             }
-            int i23 = R$styleable.TextInputLayout_endIconContentDescription;
+            int i23 = R.styleable.TextInputLayout_endIconContentDescription;
             if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i23)) {
                 setEndIconContentDescription(tintTypedArrayObtainTintedStyledAttributes.getText(i23));
             }
-            setEndIconCheckable(tintTypedArrayObtainTintedStyledAttributes.getBoolean(R$styleable.TextInputLayout_endIconCheckable, true));
+            setEndIconCheckable(tintTypedArrayObtainTintedStyledAttributes.getBoolean(R.styleable.TextInputLayout_endIconCheckable, true));
         } else {
-            int i24 = R$styleable.TextInputLayout_passwordToggleEnabled;
+            int i24 = R.styleable.TextInputLayout_passwordToggleEnabled;
             if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i24)) {
                 setEndIconMode(tintTypedArrayObtainTintedStyledAttributes.getBoolean(i24, false) ? 1 : 0);
-                setEndIconDrawable(tintTypedArrayObtainTintedStyledAttributes.getDrawable(R$styleable.TextInputLayout_passwordToggleDrawable));
-                setEndIconContentDescription(tintTypedArrayObtainTintedStyledAttributes.getText(R$styleable.TextInputLayout_passwordToggleContentDescription));
-                int i25 = R$styleable.TextInputLayout_passwordToggleTint;
+                setEndIconDrawable(tintTypedArrayObtainTintedStyledAttributes.getDrawable(R.styleable.TextInputLayout_passwordToggleDrawable));
+                setEndIconContentDescription(tintTypedArrayObtainTintedStyledAttributes.getText(R.styleable.TextInputLayout_passwordToggleContentDescription));
+                int i25 = R.styleable.TextInputLayout_passwordToggleTint;
                 if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i25)) {
                     setEndIconTintList(MaterialResources.getColorStateList(context2, tintTypedArrayObtainTintedStyledAttributes, i25));
                 }
-                int i26 = R$styleable.TextInputLayout_passwordToggleTintMode;
+                int i26 = R.styleable.TextInputLayout_passwordToggleTintMode;
                 if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i26)) {
                     setEndIconTintMode(ViewUtils.parseTintMode(tintTypedArrayObtainTintedStyledAttributes.getInt(i26, -1), null));
                 }
             }
         }
-        if (!tintTypedArrayObtainTintedStyledAttributes.hasValue(R$styleable.TextInputLayout_passwordToggleEnabled)) {
-            int i27 = R$styleable.TextInputLayout_endIconTint;
+        if (!tintTypedArrayObtainTintedStyledAttributes.hasValue(R.styleable.TextInputLayout_passwordToggleEnabled)) {
+            int i27 = R.styleable.TextInputLayout_endIconTint;
             if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i27)) {
                 setEndIconTintList(MaterialResources.getColorStateList(context2, tintTypedArrayObtainTintedStyledAttributes, i27));
             }
-            int i28 = R$styleable.TextInputLayout_endIconTintMode;
+            int i28 = R.styleable.TextInputLayout_endIconTintMode;
             if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i28)) {
                 setEndIconTintMode(ViewUtils.parseTintMode(tintTypedArrayObtainTintedStyledAttributes.getInt(i28, -1), null));
             }
         }
         AppCompatTextView appCompatTextView = new AppCompatTextView(context2);
         this.prefixTextView = appCompatTextView;
-        appCompatTextView.setId(R$id.textinput_prefix_text);
-        appCompatTextView.setLayoutParams(new FrameLayout$LayoutParams(-2, -2));
+        appCompatTextView.setId(R.id.textinput_prefix_text);
+        appCompatTextView.setLayoutParams(new FrameLayout.LayoutParams(-2, -2));
         ViewCompat.setAccessibilityLiveRegion(appCompatTextView, 1);
         this.startLayout.addView(this.startIconView);
         this.startLayout.addView(appCompatTextView);
         AppCompatTextView appCompatTextView2 = new AppCompatTextView(context2);
         this.suffixTextView = appCompatTextView2;
-        appCompatTextView2.setId(R$id.textinput_suffix_text);
-        appCompatTextView2.setLayoutParams(new FrameLayout$LayoutParams(-2, -2, 80));
+        appCompatTextView2.setId(R.id.textinput_suffix_text);
+        appCompatTextView2.setLayoutParams(new FrameLayout.LayoutParams(-2, -2, 80));
         ViewCompat.setAccessibilityLiveRegion(appCompatTextView2, 1);
         this.endLayout.addView(appCompatTextView2);
         this.endLayout.addView(this.errorIconView);
@@ -2670,43 +2872,43 @@ public class TextInputLayout extends LinearLayout {
         setPrefixTextAppearance(resourceId4);
         setSuffixText(text5);
         setSuffixTextAppearance(resourceId5);
-        int i29 = R$styleable.TextInputLayout_errorTextColor;
+        int i29 = R.styleable.TextInputLayout_errorTextColor;
         if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i29)) {
             setErrorTextColor(tintTypedArrayObtainTintedStyledAttributes.getColorStateList(i29));
         }
-        int i30 = R$styleable.TextInputLayout_helperTextTextColor;
+        int i30 = R.styleable.TextInputLayout_helperTextTextColor;
         if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i30)) {
             setHelperTextColor(tintTypedArrayObtainTintedStyledAttributes.getColorStateList(i30));
         }
-        int i31 = R$styleable.TextInputLayout_hintTextColor;
+        int i31 = R.styleable.TextInputLayout_hintTextColor;
         if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i31)) {
             setHintTextColor(tintTypedArrayObtainTintedStyledAttributes.getColorStateList(i31));
         }
-        int i32 = R$styleable.TextInputLayout_counterTextColor;
+        int i32 = R.styleable.TextInputLayout_counterTextColor;
         if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i32)) {
             setCounterTextColor(tintTypedArrayObtainTintedStyledAttributes.getColorStateList(i32));
         }
-        int i33 = R$styleable.TextInputLayout_counterOverflowTextColor;
+        int i33 = R.styleable.TextInputLayout_counterOverflowTextColor;
         if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i33)) {
             setCounterOverflowTextColor(tintTypedArrayObtainTintedStyledAttributes.getColorStateList(i33));
         }
-        int i34 = R$styleable.TextInputLayout_placeholderTextColor;
+        int i34 = R.styleable.TextInputLayout_placeholderTextColor;
         if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i34)) {
             setPlaceholderTextColor(tintTypedArrayObtainTintedStyledAttributes.getColorStateList(i34));
         }
-        int i35 = R$styleable.TextInputLayout_prefixTextColor;
+        int i35 = R.styleable.TextInputLayout_prefixTextColor;
         if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i35)) {
             setPrefixTextColor(tintTypedArrayObtainTintedStyledAttributes.getColorStateList(i35));
         }
-        int i36 = R$styleable.TextInputLayout_suffixTextColor;
+        int i36 = R.styleable.TextInputLayout_suffixTextColor;
         if (tintTypedArrayObtainTintedStyledAttributes.hasValue(i36)) {
             setSuffixTextColor(tintTypedArrayObtainTintedStyledAttributes.getColorStateList(i36));
         }
         setCounterEnabled(z4);
-        setEnabled(tintTypedArrayObtainTintedStyledAttributes.getBoolean(R$styleable.TextInputLayout_android_enabled, true));
+        setEnabled(tintTypedArrayObtainTintedStyledAttributes.getBoolean(R.styleable.TextInputLayout_android_enabled, true));
         tintTypedArrayObtainTintedStyledAttributes.recycle();
         ViewCompat.setImportantForAccessibility(this, 2);
-        if (Build$VERSION.SDK_INT >= 26) {
+        if (Build.VERSION.SDK_INT >= 26) {
             ViewCompat.setImportantForAutofill(this, 1);
         }
     }
@@ -2739,7 +2941,7 @@ public class TextInputLayout extends LinearLayout {
             if (z2 != this.counterOverflowed) {
                 updateCounterTextAppearanceAndColor();
             }
-            this.counterView.setText(BidiFormatter.getInstance().unicodeWrap(getContext().getString(R$string.character_counter_pattern, Integer.valueOf(i), Integer.valueOf(this.counterMaxLength))));
+            this.counterView.setText(BidiFormatter.getInstance().unicodeWrap(getContext().getString(R.string.character_counter_pattern, Integer.valueOf(i), Integer.valueOf(this.counterMaxLength))));
         }
         if (this.editText == null || z2 == this.counterOverflowed) {
             return;

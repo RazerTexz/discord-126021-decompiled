@@ -1,16 +1,21 @@
 package com.discord.stores;
 
 import android.content.Context;
+import b.d.b.a.a;
+import com.discord.app.AppLog;
 import com.discord.models.domain.ModelRtcLatencyRegion;
 import com.discord.utilities.persister.Persister;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.Clock;
 import d0.z.d.m;
+import d0.z.d.o;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -19,7 +24,6 @@ import rx.Observable;
 /* JADX INFO: compiled from: StoreRtcRegion.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreRtcRegion {
-    public static final StoreRtcRegion$Companion Companion = new StoreRtcRegion$Companion(null);
     private static final int LATENCY_TEST_CACHE_TTL_MS = 86400000;
     private static final int MAX_LATENCY_TEST_CONN_OPEN_JITTER_MS = 30000;
     private static final int MIN_LATENCY_TEST_CONN_OPEN_JITTER_MS = 1000;
@@ -30,6 +34,89 @@ public final class StoreRtcRegion {
     private final RestAPI restAPI;
     private final StoreExperiments storeExperiments;
     private final StoreMediaEngine storeMediaEngine;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcRegion$fetchRtcLatencyTestRegionsIps$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcRegion.kt */
+    public final class AnonymousClass1 extends o implements Function1<List<? extends ModelRtcLatencyRegion>, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ModelRtcLatencyRegion> list) {
+            invoke2((List<ModelRtcLatencyRegion>) list);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<ModelRtcLatencyRegion> list) {
+            m.checkNotNullParameter(list, "it");
+            StoreRtcRegion.access$maybePerformLatencyTest(StoreRtcRegion.this, list);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreRtcRegion$maybePerformLatencyTest$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreRtcRegion.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ List $regionsWithIps;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreRtcRegion$maybePerformLatencyTest$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreRtcRegion.kt */
+        public final class C02901 extends o implements Function1<List<? extends String>, Unit> {
+            public final /* synthetic */ List $newGeoRankedRegions;
+            public final /* synthetic */ long $timeNowMs;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C02901(List list, long j) {
+                super(1);
+                this.$newGeoRankedRegions = list;
+                this.$timeNowMs = j;
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(List<? extends String> list) {
+                invoke2((List<String>) list);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(List<String> list) {
+                m.checkNotNullParameter(list, "latencyRankedRegions");
+                AppLog.i("RTC region latency test ranking is " + list);
+                StoreRtcRegion.access$updateLastTestResult(StoreRtcRegion.this, new RtcLatencyTestResult(list, this.$newGeoRankedRegions, this.$timeNowMs));
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(List list) {
+            super(0);
+            this.$regionsWithIps = list;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            List list = this.$regionsWithIps;
+            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(list, 10));
+            Iterator it = list.iterator();
+            while (it.hasNext()) {
+                arrayList.add(((ModelRtcLatencyRegion) it.next()).getRegion());
+            }
+            long jCurrentTimeMillis = StoreRtcRegion.access$getClock$p(StoreRtcRegion.this).currentTimeMillis();
+            if (StoreRtcRegion.access$shouldPerformLatencyTest(StoreRtcRegion.this, arrayList, jCurrentTimeMillis)) {
+                StoreRtcRegion.access$getStoreMediaEngine$p(StoreRtcRegion.this).getRankedRtcRegions(this.$regionsWithIps, new C02901(arrayList, jCurrentTimeMillis));
+                return;
+            }
+            StringBuilder sbU = a.U("RTC region latency test cached preferred region is ");
+            sbU.append(StoreRtcRegion.this.getPreferredRegion());
+            AppLog.i(sbU.toString());
+        }
+    }
 
     public StoreRtcRegion(Dispatcher dispatcher, Clock clock, StoreMediaEngine storeMediaEngine, StoreExperiments storeExperiments, RestAPI restAPI) {
         m.checkNotNullParameter(dispatcher, "dispatcher");
@@ -87,7 +174,7 @@ public final class StoreRtcRegion {
 
     private final void fetchRtcLatencyTestRegionsIps() {
         if (this.storeMediaEngine.hasNativeEngineEverInitialized()) {
-            ObservableExtensionsKt.appSubscribe$default(this.restAPI.getRtcLatencyTestRegionsIps(), StoreRtcRegion.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreRtcRegion$fetchRtcLatencyTestRegionsIps$1(this), 62, (Object) null);
+            ObservableExtensionsKt.appSubscribe$default(this.restAPI.getRtcLatencyTestRegionsIps(), StoreRtcRegion.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
         }
     }
 
@@ -111,7 +198,7 @@ public final class StoreRtcRegion {
     }
 
     private final void maybePerformLatencyTest(List<ModelRtcLatencyRegion> regionsWithIps) {
-        this.dispatcher.schedule(new StoreRtcRegion$maybePerformLatencyTest$1(this, regionsWithIps));
+        this.dispatcher.schedule(new AnonymousClass1(regionsWithIps));
     }
 
     @StoreThread
@@ -129,6 +216,6 @@ public final class StoreRtcRegion {
     }
 
     public /* synthetic */ StoreRtcRegion(Dispatcher dispatcher, Clock clock, StoreMediaEngine storeMediaEngine, StoreExperiments storeExperiments, RestAPI restAPI, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(dispatcher, clock, storeMediaEngine, storeExperiments, (i & 16) != 0 ? RestAPI.Companion.getApi() : restAPI);
+        this(dispatcher, clock, storeMediaEngine, storeExperiments, (i & 16) != 0 ? RestAPI.INSTANCE.getApi() : restAPI);
     }
 }

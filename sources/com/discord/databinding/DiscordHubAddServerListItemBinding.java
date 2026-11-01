@@ -8,8 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.views.GuildView;
 import com.google.android.material.card.MaterialCardView;
 
@@ -38,18 +37,18 @@ public final class DiscordHubAddServerListItemBinding implements ViewBinding {
 
     @NonNull
     public static DiscordHubAddServerListItemBinding a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
-        View viewInflate = layoutInflater.inflate(R$layout.discord_hub_add_server_list_item, viewGroup, false);
+        View viewInflate = layoutInflater.inflate(R.layout.discord_hub_add_server_list_item, viewGroup, false);
         if (z2) {
             viewGroup.addView(viewInflate);
         }
-        int i = R$id.discord_u_add_server_list_item_image;
-        GuildView guildView = (GuildView) viewInflate.findViewById(R$id.discord_u_add_server_list_item_image);
+        int i = R.id.discord_u_add_server_list_item_image;
+        GuildView guildView = (GuildView) viewInflate.findViewById(R.id.discord_u_add_server_list_item_image);
         if (guildView != null) {
-            i = R$id.discord_u_add_server_list_item_layout;
-            MaterialCardView materialCardView = (MaterialCardView) viewInflate.findViewById(R$id.discord_u_add_server_list_item_layout);
+            i = R.id.discord_u_add_server_list_item_layout;
+            MaterialCardView materialCardView = (MaterialCardView) viewInflate.findViewById(R.id.discord_u_add_server_list_item_layout);
             if (materialCardView != null) {
-                i = R$id.discord_u_add_server_list_item_text;
-                TextView textView = (TextView) viewInflate.findViewById(R$id.discord_u_add_server_list_item_text);
+                i = R.id.discord_u_add_server_list_item_text;
+                TextView textView = (TextView) viewInflate.findViewById(R.id.discord_u_add_server_list_item_text);
                 if (textView != null) {
                     return new DiscordHubAddServerListItemBinding((FrameLayout) viewInflate, guildView, materialCardView, textView);
                 }

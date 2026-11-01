@@ -2,21 +2,23 @@ package com.google.android.material.timepicker;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.os.Build$VERSION;
+import android.os.Build;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View$OnClickListener;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Checkable;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.google.android.material.R$layout;
+import com.google.android.material.R;
 import com.google.android.material.chip.Chip;
+import com.google.android.material.internal.TextWatcherAdapter;
 import com.google.android.material.textfield.TextInputLayout;
 import java.util.Arrays;
 
@@ -27,19 +29,35 @@ public class ChipTextInputComboView extends FrameLayout implements Checkable {
     public final EditText l;
     public TextWatcher m;
 
+    public class b extends TextWatcherAdapter {
+        public b(a aVar) {
+        }
+
+        @Override // com.google.android.material.internal.TextWatcherAdapter, android.text.TextWatcher
+        public void afterTextChanged(Editable editable) {
+            if (TextUtils.isEmpty(editable)) {
+                ChipTextInputComboView chipTextInputComboView = ChipTextInputComboView.this;
+                chipTextInputComboView.j.setText(TimeModel.a(chipTextInputComboView.getResources(), "00", "%02d"));
+            } else {
+                ChipTextInputComboView chipTextInputComboView2 = ChipTextInputComboView.this;
+                chipTextInputComboView2.j.setText(TimeModel.a(chipTextInputComboView2.getResources(), editable, "%02d"));
+            }
+        }
+    }
+
     public ChipTextInputComboView(@NonNull Context context, @Nullable AttributeSet attributeSet) {
         super(context, attributeSet, 0);
         LayoutInflater layoutInflaterFrom = LayoutInflater.from(context);
-        Chip chip = (Chip) layoutInflaterFrom.inflate(R$layout.material_time_chip, (ViewGroup) this, false);
+        Chip chip = (Chip) layoutInflaterFrom.inflate(R.layout.material_time_chip, (ViewGroup) this, false);
         this.j = chip;
-        TextInputLayout textInputLayout = (TextInputLayout) layoutInflaterFrom.inflate(R$layout.material_time_input, (ViewGroup) this, false);
+        TextInputLayout textInputLayout = (TextInputLayout) layoutInflaterFrom.inflate(R.layout.material_time_input, (ViewGroup) this, false);
         this.k = textInputLayout;
         EditText editText = textInputLayout.getEditText();
         this.l = editText;
         editText.setVisibility(4);
-        ChipTextInputComboView$b chipTextInputComboView$b = new ChipTextInputComboView$b(this, null);
-        this.m = chipTextInputComboView$b;
-        editText.addTextChangedListener(chipTextInputComboView$b);
+        b bVar = new b(null);
+        this.m = bVar;
+        editText.addTextChangedListener(bVar);
         c();
         addView(chip);
         addView(textInputLayout);
@@ -64,7 +82,7 @@ public class ChipTextInputComboView extends FrameLayout implements Checkable {
     }
 
     public final void c() {
-        if (Build$VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= 24) {
             this.l.setImeHintLocales(getContext().getResources().getConfiguration().getLocales());
         }
     }
@@ -96,8 +114,8 @@ public class ChipTextInputComboView extends FrameLayout implements Checkable {
     }
 
     @Override // android.view.View
-    public void setOnClickListener(@Nullable View$OnClickListener view$OnClickListener) {
-        this.j.setOnClickListener(view$OnClickListener);
+    public void setOnClickListener(@Nullable View.OnClickListener onClickListener) {
+        this.j.setOnClickListener(onClickListener);
     }
 
     @Override // android.view.View

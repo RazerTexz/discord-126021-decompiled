@@ -1,7 +1,6 @@
 package b.i.a.c.g3;
 
 import androidx.annotation.Nullable;
-import b.i.a.c.f3.u$a;
 import com.google.android.exoplayer2.ParserException;
 import java.util.Collections;
 import java.util.List;
@@ -63,12 +62,12 @@ public final class q {
                     int length = i7 + bArr2.length;
                     System.arraycopy(xVar.a, xVar.f984b, bArr, length, iY4);
                     if (iT3 == 33 && i10 == 0) {
-                        u$a u_aC = b.i.a.c.f3.u.c(bArr, length, length + iY4);
-                        int i12 = u_aC.g;
-                        i9 = u_aC.h;
-                        f = u_aC.i;
+                        b.i.a.c.f3.u.a aVarC = b.i.a.c.f3.u.c(bArr, length, length + iY4);
+                        int i12 = aVarC.g;
+                        i9 = aVarC.h;
+                        f = aVarC.i;
                         i8 = i12;
-                        strB = b.i.a.c.f3.h.b(u_aC.a, u_aC.f979b, u_aC.c, u_aC.d, u_aC.e, u_aC.f);
+                        strB = b.i.a.c.f3.h.b(aVarC.a, aVarC.f979b, aVarC.c, aVarC.d, aVarC.e, aVarC.f);
                     }
                     i7 = length + iY4;
                     xVar.F(iY4);

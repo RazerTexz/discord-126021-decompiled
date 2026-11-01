@@ -1,7 +1,6 @@
 package androidx.work;
 
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import b.i.b.d.a.a;
 import d0.w.h.b;
 import d0.w.h.c;
@@ -13,7 +12,7 @@ import kotlin.coroutines.Continuation;
 /* JADX INFO: compiled from: ListenableFuture.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class ListenableFutureKt {
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     private static final Object await$$forInline(a aVar, Continuation continuation) throws Throwable {
         if (aVar.isDone()) {
             try {
@@ -37,7 +36,7 @@ public final class ListenableFutureKt {
         return objU;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public static final <R> Object await(a<R> aVar, Continuation<? super R> continuation) throws Throwable {
         if (aVar.isDone()) {
             try {

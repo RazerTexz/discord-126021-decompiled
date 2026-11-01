@@ -1,13 +1,12 @@
 package b.c.a.y;
 
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
 import androidx.collection.LruCache;
 
 /* JADX INFO: compiled from: LottieCompositionCache.java */
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY})
+@RestrictTo({RestrictTo.Scope.LIBRARY})
 public class h {
     public static final h a = new h();
 

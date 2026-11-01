@@ -7,7 +7,7 @@ import rx.functions.Action1;
 
 /* JADX INFO: compiled from: AppMediaPlayer.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class c<T> implements Action1<k$b> {
+public final class c<T> implements Action1<k.b> {
     public final /* synthetic */ AppMediaPlayer j;
     public final /* synthetic */ String k;
 
@@ -17,10 +17,10 @@ public final class c<T> implements Action1<k$b> {
     }
 
     @Override // rx.functions.Action1
-    public void call(k$b k_b) {
+    public void call(k.b bVar) {
         Logger logger = this.j.logger;
         String simpleName = AppMediaPlayer.class.getSimpleName();
         m.checkNotNullExpressionValue(simpleName, "javaClass.simpleName");
-        Logger.e$default(logger, simpleName, "playback error for feature: " + this.k, k_b.a, null, 8, null);
+        Logger.e$default(logger, simpleName, "playback error for feature: " + this.k, bVar.a, null, 8, null);
     }
 }

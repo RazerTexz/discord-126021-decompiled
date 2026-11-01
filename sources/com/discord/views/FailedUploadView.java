@@ -10,8 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.DrawableRes;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import b.a.i.c2;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import d0.z.d.m;
 
@@ -26,19 +25,19 @@ public final class FailedUploadView extends ConstraintLayout {
     public FailedUploadView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         m.checkNotNullParameter(context, "context");
-        View viewInflate = LayoutInflater.from(getContext()).inflate(R$layout.view_chat_upload, (ViewGroup) this, false);
+        View viewInflate = LayoutInflater.from(getContext()).inflate(R.layout.view_chat_upload, (ViewGroup) this, false);
         addView(viewInflate);
-        int i = R$id.display_name;
-        TextView textView = (TextView) viewInflate.findViewById(R$id.display_name);
+        int i = R.id.display_name;
+        TextView textView = (TextView) viewInflate.findViewById(R.id.display_name);
         if (textView != null) {
-            i = R$id.failed_alert_icon;
-            ImageView imageView = (ImageView) viewInflate.findViewById(R$id.failed_alert_icon);
+            i = R.id.failed_alert_icon;
+            ImageView imageView = (ImageView) viewInflate.findViewById(R.id.failed_alert_icon);
             if (imageView != null) {
-                i = R$id.file_image;
-                ImageView imageView2 = (ImageView) viewInflate.findViewById(R$id.file_image);
+                i = R.id.file_image;
+                ImageView imageView2 = (ImageView) viewInflate.findViewById(R.id.file_image);
                 if (imageView2 != null) {
-                    i = R$id.subtitle_text;
-                    TextView textView2 = (TextView) viewInflate.findViewById(R$id.subtitle_text);
+                    i = R.id.subtitle_text;
+                    TextView textView2 = (TextView) viewInflate.findViewById(R.id.subtitle_text);
                     if (textView2 != null) {
                         c2 c2Var = new c2((ConstraintLayout) viewInflate, textView, imageView, imageView2, textView2);
                         m.checkNotNullExpressionValue(c2Var, "ViewChatUploadBinding.in…rom(context), this, true)");

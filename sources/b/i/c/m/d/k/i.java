@@ -14,9 +14,20 @@ public class i {
     public final Object c = new Object();
     public ThreadLocal<Boolean> d = new ThreadLocal<>();
 
+    /* JADX INFO: compiled from: CrashlyticsBackgroundWorker.java */
+    public class a implements Runnable {
+        public a() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            i.this.d.set(Boolean.TRUE);
+        }
+    }
+
     public i(Executor executor) {
         this.a = executor;
-        executor.execute(new i$a(this));
+        executor.execute(new a());
     }
 
     public void a() {

@@ -4,13 +4,44 @@ import b.d.b.a.a;
 import com.discord.api.thread.MuteConfig;
 import com.discord.utilities.time.TimeUtils;
 import d0.z.d.m;
+import java.io.IOException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import kotlin.jvm.internal.Ref$ObjectRef;
 
 /* JADX INFO: compiled from: ModelMuteConfig.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class ModelMuteConfig {
-    public static final ModelMuteConfig$Parser Parser = new ModelMuteConfig$Parser(null);
+
+    /* JADX INFO: renamed from: Parser, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final String endTime;
     private final Long endTimeMs;
+
+    /* JADX INFO: renamed from: com.discord.models.domain.ModelMuteConfig$Parser, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: ModelMuteConfig.kt */
+    public final class Companion implements Model.Parser<ModelMuteConfig> {
+        private Companion() {
+        }
+
+        @Override // com.discord.models.domain.Model.Parser
+        public /* bridge */ /* synthetic */ ModelMuteConfig parse(Model.JsonReader jsonReader) {
+            return parse(jsonReader);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // com.discord.models.domain.Model.Parser
+        public ModelMuteConfig parse(Model.JsonReader reader) throws IOException {
+            Ref$ObjectRef ref$ObjectRefC0 = a.c0(reader, "reader");
+            ref$ObjectRefC0.element = null;
+            reader.nextObject(new ModelMuteConfig$Parser$parse$1(ref$ObjectRefC0, reader));
+            return new ModelMuteConfig((String) ref$ObjectRefC0.element);
+        }
+    }
 
     public ModelMuteConfig(Long l, String str) {
         this.endTimeMs = l;
@@ -67,8 +98,8 @@ public final /* data */ class ModelMuteConfig {
         return iHashCode + (str != null ? str.hashCode() : 0);
     }
 
-    public static ModelMuteConfig parse(Model$JsonReader model$JsonReader) {
-        return Parser.parse(model$JsonReader);
+    public static ModelMuteConfig parse(Model.JsonReader jsonReader) {
+        return INSTANCE.parse(jsonReader);
     }
 
     public String toString() {

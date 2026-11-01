@@ -2,7 +2,7 @@ package b.i.a.g.e;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton$a;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /* JADX INFO: compiled from: FloatingActionButtonImpl.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -10,28 +10,28 @@ public class e extends AnimatorListenerAdapter {
     public final /* synthetic */ boolean a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final /* synthetic */ f$f f1614b;
+    public final /* synthetic */ f.InterfaceC0122f f1614b;
     public final /* synthetic */ f c;
 
-    public e(f fVar, boolean z2, f$f f_f) {
+    public e(f fVar, boolean z2, f.InterfaceC0122f interfaceC0122f) {
         this.c = fVar;
         this.a = z2;
-        this.f1614b = f_f;
+        this.f1614b = interfaceC0122f;
     }
 
-    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator$AnimatorListener
+    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
     public void onAnimationEnd(Animator animator) {
         f fVar = this.c;
         fVar.B = 0;
         fVar.v = null;
-        f$f f_f = this.f1614b;
-        if (f_f != null) {
-            FloatingActionButton$a floatingActionButton$a = (FloatingActionButton$a) f_f;
-            floatingActionButton$a.a.onShown(floatingActionButton$a.f3040b);
+        f.InterfaceC0122f interfaceC0122f = this.f1614b;
+        if (interfaceC0122f != null) {
+            FloatingActionButton.a aVar = (FloatingActionButton.a) interfaceC0122f;
+            aVar.a.onShown(FloatingActionButton.this);
         }
     }
 
-    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator$AnimatorListener
+    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
     public void onAnimationStart(Animator animator) {
         this.c.F.internalSetVisibility(0, this.a);
         f fVar = this.c;

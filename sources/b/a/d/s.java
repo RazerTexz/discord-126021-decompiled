@@ -7,10 +7,10 @@ import rx.Observable;
 /* JADX INFO: compiled from: AppTransformers.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class s<T, R, K, V, V1> implements j0.k.b<Map<K, ? extends V>, Observable<? extends Map<K, V1>>> {
-    public final /* synthetic */ o$c j;
+    public final /* synthetic */ o.c j;
 
-    public s(o$c o_c) {
-        this.j = o_c;
+    public s(o.c cVar) {
+        this.j = cVar;
     }
 
     @Override // j0.k.b

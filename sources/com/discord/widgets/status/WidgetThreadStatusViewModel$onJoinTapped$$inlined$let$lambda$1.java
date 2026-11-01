@@ -1,7 +1,6 @@
 package com.discord.widgets.status;
 
 import com.discord.utilities.error.Error;
-import com.discord.utilities.error.Error$Response;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -28,7 +27,7 @@ public final class WidgetThreadStatusViewModel$onJoinTapped$$inlined$let$lambda$
     public final void invoke2(Error error) {
         m.checkNotNullParameter(error, "error");
         WidgetThreadStatusViewModel widgetThreadStatusViewModel = this.this$0;
-        Error$Response response = error.getResponse();
+        Error.Response response = error.getResponse();
         m.checkNotNullExpressionValue(response, "error.response");
         WidgetThreadStatusViewModel.access$emitError(widgetThreadStatusViewModel, response.getCode());
     }

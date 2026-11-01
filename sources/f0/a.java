@@ -43,28 +43,28 @@ public final class a {
         this.i = cVar;
         this.j = proxy;
         this.k = proxySelector;
-        w$a w_a = new w$a();
+        w.a aVar = new w.a();
         String str2 = sSLSocketFactory != null ? Constants.SCHEME : "http";
         d0.z.d.m.checkParameterIsNotNull(str2, "scheme");
         if (d0.g0.t.equals(str2, "http", true)) {
-            w_a.f3682b = "http";
+            aVar.f3682b = "http";
         } else {
             if (!d0.g0.t.equals(str2, Constants.SCHEME, true)) {
                 throw new IllegalArgumentException(b.d.b.a.a.w("unexpected scheme: ", str2));
             }
-            w_a.f3682b = Constants.SCHEME;
+            aVar.f3682b = Constants.SCHEME;
         }
         d0.z.d.m.checkParameterIsNotNull(str, "host");
-        String strR1 = b.i.a.f.e.o.f.r1(w$b.d(w.f3681b, str, 0, 0, false, 7));
+        String strR1 = b.i.a.f.e.o.f.r1(w.b.d(w.f3681b, str, 0, 0, false, 7));
         if (strR1 == null) {
             throw new IllegalArgumentException(b.d.b.a.a.w("unexpected host: ", str));
         }
-        w_a.e = strR1;
+        aVar.e = strR1;
         if (!(1 <= i && 65535 >= i)) {
             throw new IllegalArgumentException(b.d.b.a.a.q("unexpected port: ", i).toString());
         }
-        w_a.f = i;
-        this.a = w_a.b();
+        aVar.f = i;
+        this.a = aVar.b();
         this.f3601b = f0.e0.c.z(list);
         this.c = f0.e0.c.z(list2);
     }

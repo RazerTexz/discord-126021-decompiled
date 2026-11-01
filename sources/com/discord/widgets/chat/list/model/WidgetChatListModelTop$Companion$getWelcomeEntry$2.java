@@ -66,7 +66,7 @@ public final class WidgetChatListModelTop$Companion$getWelcomeEntry$2<T1, T2, T3
         boolean zH = ChannelUtils.H(this.$channel);
         ThreadMetadata threadMetadata = this.$channel.getThreadMetadata();
         Integer numValueOf = threadMetadata != null ? Integer.valueOf(threadMetadata.getAutoArchiveDuration()) : null;
-        String nickOrUsername = user != null ? GuildMember.Companion.getNickOrUsername(guildMember, user) : "";
+        String nickOrUsername = user != null ? GuildMember.INSTANCE.getNickOrUsername(guildMember, user) : "";
         boolean z4 = channel != null && ChannelUtils.q(channel);
         m.checkNotNullExpressionValue(bool, "canAccessRedesignedForumChannels");
         return new StartOfChatEntry(id3, strC, zCan, zCan3, zCanManageThread, zH, numValueOf, guildMember, nickOrUsername, zJ, z4, bool.booleanValue(), channel != null ? channel.d() : null, this.$channel.c());

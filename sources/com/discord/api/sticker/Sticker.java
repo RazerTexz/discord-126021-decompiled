@@ -19,6 +19,20 @@ public final /* data */ class Sticker implements Serializable, BaseSticker {
     private final String tags;
     private final StickerType type;
 
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            StickerFormatType.values();
+            int[] iArr = new int[4];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[StickerFormatType.UNKNOWN.ordinal()] = 1;
+            iArr[StickerFormatType.PNG.ordinal()] = 2;
+            iArr[StickerFormatType.APNG.ordinal()] = 3;
+            iArr[StickerFormatType.LOTTIE.ordinal()] = 4;
+        }
+    }
+
     public Sticker(long j, Long l, Long l2, String str, String str2, StickerFormatType stickerFormatType, String str3, StickerType stickerType, Boolean bool, int i) {
         int i2 = i & 256;
         m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);

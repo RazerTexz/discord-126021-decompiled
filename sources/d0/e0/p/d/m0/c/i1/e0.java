@@ -1,6 +1,5 @@
 package d0.e0.p.d.m0.c.i1;
 
-import d0.e0.p.d.m0.c.b$a;
 import d0.e0.p.d.m0.c.c1;
 import d0.e0.p.d.m0.c.p0;
 import d0.e0.p.d.m0.c.u0;
@@ -16,7 +15,7 @@ public class e0 extends b0 implements p0 {
 
     /* JADX WARN: Illegal instructions before constructor call */
     /* JADX WARN: Multi-variable type inference failed */
-    public e0(d0.e0.p.d.m0.c.n0 n0Var, d0.e0.p.d.m0.c.g1.g gVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, boolean z2, boolean z3, boolean z4, b$a b_a, p0 p0Var, u0 u0Var) {
+    public e0(d0.e0.p.d.m0.c.n0 n0Var, d0.e0.p.d.m0.c.g1.g gVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, boolean z2, boolean z3, boolean z4, d0.e0.p.d.m0.c.b.a aVar, p0 p0Var, u0 u0Var) {
         p0 p0Var2;
         e0 e0Var;
         if (n0Var == null) {
@@ -35,7 +34,7 @@ public class e0 extends b0 implements p0 {
             a(3);
             throw null;
         }
-        if (b_a == null) {
+        if (aVar == null) {
             a(4);
             throw null;
         }
@@ -46,7 +45,7 @@ public class e0 extends b0 implements p0 {
         StringBuilder sbU = b.d.b.a.a.U("<set-");
         sbU.append(n0Var.getName());
         sbU.append(">");
-        super(zVar, uVar, n0Var, gVar, d0.e0.p.d.m0.g.e.special(sbU.toString()), z2, z3, z4, b_a, u0Var);
+        super(zVar, uVar, n0Var, gVar, d0.e0.p.d.m0.g.e.special(sbU.toString()), z2, z3, z4, aVar, u0Var);
         if (p0Var != null) {
             e0Var = this;
             p0Var2 = p0Var;

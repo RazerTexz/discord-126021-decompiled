@@ -1,6 +1,9 @@
 package com.esotericsoftware.kryo.util;
 
 import b.d.b.a.a;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /* JADX INFO: loaded from: classes.dex */
 public class IdentityMap<K, V> {
@@ -8,11 +11,11 @@ public class IdentityMap<K, V> {
     private static final int PRIME3 = -1262997959;
     private static final int PRIME4 = -825114047;
     public int capacity;
-    private IdentityMap$Entries entries;
+    private Entries entries;
     private int hashShift;
     private boolean isBigTable;
     public K[] keyTable;
-    private IdentityMap$Keys keys;
+    private Keys keys;
     private float loadFactor;
     private int mask;
     private int pushIterations;
@@ -21,7 +24,162 @@ public class IdentityMap<K, V> {
     public int stashSize;
     private int threshold;
     public V[] valueTable;
-    private IdentityMap$Values values;
+    private Values values;
+
+    public class Entries<K, V> extends MapIterator<K, V> implements Iterable<Entry<K, V>>, Iterator<Entry<K, V>> {
+        private Entry<K, V> entry;
+
+        public Entries(IdentityMap<K, V> identityMap) {
+            super(identityMap);
+            this.entry = new Entry<>();
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.hasNext;
+        }
+
+        @Override // java.lang.Iterable
+        public Iterator<Entry<K, V>> iterator() {
+            return this;
+        }
+
+        @Override // java.util.Iterator
+        public /* bridge */ /* synthetic */ Object next() {
+            return next();
+        }
+
+        @Override // com.esotericsoftware.kryo.util.IdentityMap.MapIterator, java.util.Iterator
+        public /* bridge */ /* synthetic */ void remove() {
+            super.remove();
+        }
+
+        @Override // com.esotericsoftware.kryo.util.IdentityMap.MapIterator
+        public /* bridge */ /* synthetic */ void reset() {
+            super.reset();
+        }
+
+        @Override // java.util.Iterator
+        public Entry<K, V> next() {
+            if (!this.hasNext) {
+                throw new NoSuchElementException();
+            }
+            IdentityMap<K, V> identityMap = this.map;
+            K[] kArr = identityMap.keyTable;
+            Entry<K, V> entry = this.entry;
+            int i = this.nextIndex;
+            entry.key = kArr[i];
+            entry.value = identityMap.valueTable[i];
+            this.currentIndex = i;
+            findNextIndex();
+            return this.entry;
+        }
+    }
+
+    public class Entry<K, V> {
+        public K key;
+        public V value;
+
+        public String toString() {
+            return this.key + "=" + this.value;
+        }
+    }
+
+    public class Keys<K> extends MapIterator<K, Object> implements Iterable<K>, Iterator<K> {
+        public Keys(IdentityMap<K, ?> identityMap) {
+            super(identityMap);
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.hasNext;
+        }
+
+        @Override // java.lang.Iterable
+        public Iterator<K> iterator() {
+            return this;
+        }
+
+        @Override // java.util.Iterator
+        public K next() {
+            K[] kArr = this.map.keyTable;
+            int i = this.nextIndex;
+            K k = kArr[i];
+            this.currentIndex = i;
+            findNextIndex();
+            return k;
+        }
+
+        @Override // com.esotericsoftware.kryo.util.IdentityMap.MapIterator, java.util.Iterator
+        public /* bridge */ /* synthetic */ void remove() {
+            super.remove();
+        }
+
+        @Override // com.esotericsoftware.kryo.util.IdentityMap.MapIterator
+        public /* bridge */ /* synthetic */ void reset() {
+            super.reset();
+        }
+
+        public ArrayList<K> toArray() {
+            ArrayList<K> arrayList = new ArrayList<>(this.map.size);
+            while (this.hasNext) {
+                arrayList.add(next());
+            }
+            return arrayList;
+        }
+    }
+
+    public class MapIterator<K, V> {
+        public int currentIndex;
+        public boolean hasNext;
+        public final IdentityMap<K, V> map;
+        public int nextIndex;
+
+        public MapIterator(IdentityMap<K, V> identityMap) {
+            this.map = identityMap;
+            reset();
+        }
+
+        public void findNextIndex() {
+            int i;
+            this.hasNext = false;
+            IdentityMap<K, V> identityMap = this.map;
+            K[] kArr = identityMap.keyTable;
+            int i2 = identityMap.capacity + identityMap.stashSize;
+            do {
+                i = this.nextIndex + 1;
+                this.nextIndex = i;
+                if (i >= i2) {
+                    return;
+                }
+            } while (kArr[i] == null);
+            this.hasNext = true;
+        }
+
+        public void remove() {
+            int i = this.currentIndex;
+            if (i < 0) {
+                throw new IllegalStateException("next must be called before remove.");
+            }
+            IdentityMap<K, V> identityMap = this.map;
+            if (i >= identityMap.capacity) {
+                identityMap.removeStashIndex(i);
+                this.nextIndex = this.currentIndex - 1;
+                findNextIndex();
+            } else {
+                identityMap.keyTable[i] = null;
+                identityMap.valueTable[i] = null;
+            }
+            this.currentIndex = -1;
+            this.map.size--;
+        }
+
+        public void reset() {
+            this.currentIndex = -1;
+            this.nextIndex = -1;
+            findNextIndex();
+        }
+    }
 
     public IdentityMap() {
         this(32, 0.8f);
@@ -118,12 +276,12 @@ public class IdentityMap<K, V> {
         }
     }
 
-    public IdentityMap$Entries<K, V> entries() {
-        IdentityMap$Entries identityMap$Entries = this.entries;
-        if (identityMap$Entries == null) {
-            this.entries = new IdentityMap$Entries(this);
+    public Entries<K, V> entries() {
+        Entries entries = this.entries;
+        if (entries == null) {
+            this.entries = new Entries(this);
         } else {
-            identityMap$Entries.reset();
+            entries.reset();
         }
         return this.entries;
     }
@@ -219,12 +377,12 @@ public class IdentityMap<K, V> {
         return (i2 ^ (i2 >>> this.hashShift)) & this.mask;
     }
 
-    public IdentityMap$Keys<K> keys() {
-        IdentityMap$Keys identityMap$Keys = this.keys;
-        if (identityMap$Keys == null) {
-            this.keys = new IdentityMap$Keys(this);
+    public Keys<K> keys() {
+        Keys keys = this.keys;
+        if (keys == null) {
+            this.keys = new Keys(this);
         } else {
-            identityMap$Keys.reset();
+            keys.reset();
         }
         return this.keys;
     }
@@ -698,18 +856,68 @@ public class IdentityMap<K, V> {
         }
     }
 
-    public IdentityMap$Values<V> values() {
-        IdentityMap$Values identityMap$Values = this.values;
-        if (identityMap$Values == null) {
-            this.values = new IdentityMap$Values(this);
+    public Values<V> values() {
+        Values values = this.values;
+        if (values == null) {
+            this.values = new Values(this);
         } else {
-            identityMap$Values.reset();
+            values.reset();
         }
         return this.values;
     }
 
     public IdentityMap(int i) {
         this(i, 0.8f);
+    }
+
+    public class Values<V> extends MapIterator<Object, V> implements Iterable<V>, Iterator<V> {
+        public Values(IdentityMap<?, V> identityMap) {
+            super(identityMap);
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.hasNext;
+        }
+
+        @Override // java.lang.Iterable
+        public Iterator<V> iterator() {
+            return this;
+        }
+
+        @Override // java.util.Iterator
+        public V next() {
+            V[] vArr = this.map.valueTable;
+            int i = this.nextIndex;
+            V v = vArr[i];
+            this.currentIndex = i;
+            findNextIndex();
+            return v;
+        }
+
+        @Override // com.esotericsoftware.kryo.util.IdentityMap.MapIterator, java.util.Iterator
+        public /* bridge */ /* synthetic */ void remove() {
+            super.remove();
+        }
+
+        @Override // com.esotericsoftware.kryo.util.IdentityMap.MapIterator
+        public /* bridge */ /* synthetic */ void reset() {
+            super.reset();
+        }
+
+        public ArrayList<V> toArray() {
+            ArrayList<V> arrayList = new ArrayList<>(this.map.size);
+            while (this.hasNext) {
+                arrayList.add(next());
+            }
+            return arrayList;
+        }
+
+        public void toArray(ArrayList<V> arrayList) {
+            while (this.hasNext) {
+                arrayList.add(next());
+            }
+        }
     }
 
     public IdentityMap(int i, float f) {

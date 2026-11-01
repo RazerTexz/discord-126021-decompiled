@@ -4,24 +4,23 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SimpleSQLiteQuery;
 import androidx.sqlite.db.SupportSQLiteDatabase;
-import androidx.sqlite.db.SupportSQLiteOpenHelper$Callback;
+import androidx.sqlite.db.SupportSQLiteOpenHelper;
 import b.d.b.a.a;
 import java.util.Iterator;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
-public class RoomOpenHelper extends SupportSQLiteOpenHelper$Callback {
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+public class RoomOpenHelper extends SupportSQLiteOpenHelper.Callback {
 
     @Nullable
     private DatabaseConfiguration mConfiguration;
 
     @NonNull
-    private final RoomOpenHelper$Delegate mDelegate;
+    private final Delegate mDelegate;
 
     @NonNull
     private final String mIdentityHash;
@@ -29,24 +28,71 @@ public class RoomOpenHelper extends SupportSQLiteOpenHelper$Callback {
     @NonNull
     private final String mLegacyHash;
 
-    public RoomOpenHelper(@NonNull DatabaseConfiguration databaseConfiguration, @NonNull RoomOpenHelper$Delegate roomOpenHelper$Delegate, @NonNull String str, @NonNull String str2) {
-        super(roomOpenHelper$Delegate.version);
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public abstract class Delegate {
+        public final int version;
+
+        public Delegate(int i) {
+            this.version = i;
+        }
+
+        public abstract void createAllTables(SupportSQLiteDatabase supportSQLiteDatabase);
+
+        public abstract void dropAllTables(SupportSQLiteDatabase supportSQLiteDatabase);
+
+        public abstract void onCreate(SupportSQLiteDatabase supportSQLiteDatabase);
+
+        public abstract void onOpen(SupportSQLiteDatabase supportSQLiteDatabase);
+
+        public void onPostMigrate(SupportSQLiteDatabase supportSQLiteDatabase) {
+        }
+
+        public void onPreMigrate(SupportSQLiteDatabase supportSQLiteDatabase) {
+        }
+
+        @NonNull
+        public ValidationResult onValidateSchema(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
+            validateMigration(supportSQLiteDatabase);
+            return new ValidationResult(true, null);
+        }
+
+        @Deprecated
+        public void validateMigration(SupportSQLiteDatabase supportSQLiteDatabase) {
+            throw new UnsupportedOperationException("validateMigration is deprecated");
+        }
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public class ValidationResult {
+
+        @Nullable
+        public final String expectedFoundMsg;
+        public final boolean isValid;
+
+        public ValidationResult(boolean z2, @Nullable String str) {
+            this.isValid = z2;
+            this.expectedFoundMsg = str;
+        }
+    }
+
+    public RoomOpenHelper(@NonNull DatabaseConfiguration databaseConfiguration, @NonNull Delegate delegate, @NonNull String str, @NonNull String str2) {
+        super(delegate.version);
         this.mConfiguration = databaseConfiguration;
-        this.mDelegate = roomOpenHelper$Delegate;
+        this.mDelegate = delegate;
         this.mIdentityHash = str;
         this.mLegacyHash = str2;
     }
 
     private void checkIdentity(SupportSQLiteDatabase supportSQLiteDatabase) {
         if (!hasRoomMasterTable(supportSQLiteDatabase)) {
-            RoomOpenHelper$ValidationResult roomOpenHelper$ValidationResultOnValidateSchema = this.mDelegate.onValidateSchema(supportSQLiteDatabase);
-            if (roomOpenHelper$ValidationResultOnValidateSchema.isValid) {
+            ValidationResult validationResultOnValidateSchema = this.mDelegate.onValidateSchema(supportSQLiteDatabase);
+            if (validationResultOnValidateSchema.isValid) {
                 this.mDelegate.onPostMigrate(supportSQLiteDatabase);
                 updateIdentity(supportSQLiteDatabase);
                 return;
             } else {
                 StringBuilder sbU = a.U("Pre-packaged database has an invalid schema: ");
-                sbU.append(roomOpenHelper$ValidationResultOnValidateSchema.expectedFoundMsg);
+                sbU.append(validationResultOnValidateSchema.expectedFoundMsg);
                 throw new IllegalStateException(sbU.toString());
             }
         }
@@ -93,20 +139,20 @@ public class RoomOpenHelper extends SupportSQLiteOpenHelper$Callback {
         }
     }
 
-    @Override // androidx.sqlite.db.SupportSQLiteOpenHelper$Callback
+    @Override // androidx.sqlite.db.SupportSQLiteOpenHelper.Callback
     public void onConfigure(SupportSQLiteDatabase supportSQLiteDatabase) {
         super.onConfigure(supportSQLiteDatabase);
     }
 
-    @Override // androidx.sqlite.db.SupportSQLiteOpenHelper$Callback
+    @Override // androidx.sqlite.db.SupportSQLiteOpenHelper.Callback
     public void onCreate(SupportSQLiteDatabase supportSQLiteDatabase) {
         boolean zHasEmptySchema = hasEmptySchema(supportSQLiteDatabase);
         this.mDelegate.createAllTables(supportSQLiteDatabase);
         if (!zHasEmptySchema) {
-            RoomOpenHelper$ValidationResult roomOpenHelper$ValidationResultOnValidateSchema = this.mDelegate.onValidateSchema(supportSQLiteDatabase);
-            if (!roomOpenHelper$ValidationResultOnValidateSchema.isValid) {
+            ValidationResult validationResultOnValidateSchema = this.mDelegate.onValidateSchema(supportSQLiteDatabase);
+            if (!validationResultOnValidateSchema.isValid) {
                 StringBuilder sbU = a.U("Pre-packaged database has an invalid schema: ");
-                sbU.append(roomOpenHelper$ValidationResultOnValidateSchema.expectedFoundMsg);
+                sbU.append(validationResultOnValidateSchema.expectedFoundMsg);
                 throw new IllegalStateException(sbU.toString());
             }
         }
@@ -114,12 +160,12 @@ public class RoomOpenHelper extends SupportSQLiteOpenHelper$Callback {
         this.mDelegate.onCreate(supportSQLiteDatabase);
     }
 
-    @Override // androidx.sqlite.db.SupportSQLiteOpenHelper$Callback
+    @Override // androidx.sqlite.db.SupportSQLiteOpenHelper.Callback
     public void onDowngrade(SupportSQLiteDatabase supportSQLiteDatabase, int i, int i2) {
         onUpgrade(supportSQLiteDatabase, i, i2);
     }
 
-    @Override // androidx.sqlite.db.SupportSQLiteOpenHelper$Callback
+    @Override // androidx.sqlite.db.SupportSQLiteOpenHelper.Callback
     public void onOpen(SupportSQLiteDatabase supportSQLiteDatabase) {
         super.onOpen(supportSQLiteDatabase);
         checkIdentity(supportSQLiteDatabase);
@@ -127,7 +173,7 @@ public class RoomOpenHelper extends SupportSQLiteOpenHelper$Callback {
         this.mConfiguration = null;
     }
 
-    @Override // androidx.sqlite.db.SupportSQLiteOpenHelper$Callback
+    @Override // androidx.sqlite.db.SupportSQLiteOpenHelper.Callback
     public void onUpgrade(SupportSQLiteDatabase supportSQLiteDatabase, int i, int i2) {
         boolean z2;
         List<Migration> listFindMigrationPath;
@@ -140,10 +186,10 @@ public class RoomOpenHelper extends SupportSQLiteOpenHelper$Callback {
             while (it.hasNext()) {
                 it.next().migrate(supportSQLiteDatabase);
             }
-            RoomOpenHelper$ValidationResult roomOpenHelper$ValidationResultOnValidateSchema = this.mDelegate.onValidateSchema(supportSQLiteDatabase);
-            if (!roomOpenHelper$ValidationResultOnValidateSchema.isValid) {
+            ValidationResult validationResultOnValidateSchema = this.mDelegate.onValidateSchema(supportSQLiteDatabase);
+            if (!validationResultOnValidateSchema.isValid) {
                 StringBuilder sbU = a.U("Migration didn't properly handle: ");
-                sbU.append(roomOpenHelper$ValidationResultOnValidateSchema.expectedFoundMsg);
+                sbU.append(validationResultOnValidateSchema.expectedFoundMsg);
                 throw new IllegalStateException(sbU.toString());
             }
             this.mDelegate.onPostMigrate(supportSQLiteDatabase);
@@ -167,7 +213,7 @@ public class RoomOpenHelper extends SupportSQLiteOpenHelper$Callback {
         supportSQLiteDatabase.execSQL(RoomMasterTable.createInsertQuery(this.mIdentityHash));
     }
 
-    public RoomOpenHelper(@NonNull DatabaseConfiguration databaseConfiguration, @NonNull RoomOpenHelper$Delegate roomOpenHelper$Delegate, @NonNull String str) {
-        this(databaseConfiguration, roomOpenHelper$Delegate, "", str);
+    public RoomOpenHelper(@NonNull DatabaseConfiguration databaseConfiguration, @NonNull Delegate delegate, @NonNull String str) {
+        this(databaseConfiguration, delegate, "", str);
     }
 }

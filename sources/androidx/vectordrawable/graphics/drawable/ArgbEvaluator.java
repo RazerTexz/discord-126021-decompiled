@@ -2,11 +2,10 @@ package androidx.vectordrawable.graphics.drawable;
 
 import android.animation.TypeEvaluator;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class ArgbEvaluator implements TypeEvaluator {
     private static final ArgbEvaluator sInstance = new ArgbEvaluator();
 

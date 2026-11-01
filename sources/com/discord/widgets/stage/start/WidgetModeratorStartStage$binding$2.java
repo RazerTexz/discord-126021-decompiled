@@ -5,7 +5,7 @@ import android.widget.Button;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetModeratorStartStageBinding;
 import com.discord.views.calls.CallEventsButtonView;
 import com.google.android.material.appbar.AppBarLayout;
@@ -30,20 +30,20 @@ public final /* synthetic */ class WidgetModeratorStartStage$binding$2 extends k
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetModeratorStartStageBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = 2131361878;
-        Toolbar toolbar = (Toolbar) view.findViewById(2131361878);
+        int i = R.id.action_bar_toolbar;
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.action_bar_toolbar);
         if (toolbar != null) {
-            i = 2131361879;
-            AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(2131361879);
+            i = R.id.action_bar_toolbar_layout;
+            AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R.id.action_bar_toolbar_layout);
             if (appBarLayout != null) {
-                i = R$id.moderator_start_stage_exit_stage_button;
-                Button button = (Button) view.findViewById(R$id.moderator_start_stage_exit_stage_button);
+                i = R.id.moderator_start_stage_exit_stage_button;
+                Button button = (Button) view.findViewById(R.id.moderator_start_stage_exit_stage_button);
                 if (button != null) {
-                    i = 2131364898;
-                    RecyclerView recyclerView = (RecyclerView) view.findViewById(2131364898);
+                    i = R.id.recycler_view;
+                    RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
                     if (recyclerView != null) {
-                        i = R$id.toolbar_events_button;
-                        CallEventsButtonView callEventsButtonView = (CallEventsButtonView) view.findViewById(R$id.toolbar_events_button);
+                        i = R.id.toolbar_events_button;
+                        CallEventsButtonView callEventsButtonView = (CallEventsButtonView) view.findViewById(R.id.toolbar_events_button);
                         if (callEventsButtonView != null) {
                             return new WidgetModeratorStartStageBinding((ConstraintLayout) view, toolbar, appBarLayout, button, recyclerView, callEventsButtonView);
                         }

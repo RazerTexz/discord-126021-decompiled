@@ -1,6 +1,5 @@
 package d0.w.i.a;
 
-import d0.k$a;
 import d0.l;
 import d0.z.d.m;
 import java.io.Serializable;
@@ -55,10 +54,10 @@ public abstract class a implements Continuation<Object>, CoroutineStackFrame, Se
                 if (objInvokeSuspend == d0.w.h.c.getCOROUTINE_SUSPENDED()) {
                     return;
                 }
-                k$a k_a = d0.k.j;
+                d0.k.a aVar2 = d0.k.j;
                 obj = d0.k.m97constructorimpl(objInvokeSuspend);
             } catch (Throwable th) {
-                k$a k_a2 = d0.k.j;
+                d0.k.a aVar3 = d0.k.j;
                 obj = d0.k.m97constructorimpl(l.createFailure(th));
             }
             aVar.releaseIntercepted();

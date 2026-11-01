@@ -3,11 +3,12 @@ package com.discord.utilities.file;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build$VERSION;
+import android.os.Build;
 import androidx.annotation.DrawableRes;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import androidx.core.net.UriKt;
 import b.d.b.a.a;
+import com.discord.R;
 import com.discord.utilities.drawable.DrawableCompat;
 import d0.g0.t;
 import d0.z.d.m;
@@ -18,8 +19,8 @@ import org.webrtc.MediaStreamTrack;
 public final class FileUtilsKt {
     public static final Long getFileSizeBytes(Context context, Uri uri) {
         m.checkNotNullParameter(context, "context");
-        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
-        if (Build$VERSION.SDK_INT < 26) {
+        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
+        if (Build.VERSION.SDK_INT < 26) {
             try {
                 return Long.valueOf(UriKt.toFile(uri).length());
             } catch (IllegalArgumentException unused) {
@@ -54,9 +55,9 @@ public final class FileUtilsKt {
         m.checkNotNullParameter(context, "context");
         m.checkNotNullParameter(str, "mimeType");
         if (t.startsWith$default(str, "image", false, 2, null)) {
-            i = 2130969556;
+            i = R.attr.ic_uploads_image;
         } else {
-            i = t.startsWith$default(str, MediaStreamTrack.VIDEO_TRACK_KIND, false, 2, null) ? 2130969557 : 2130969554;
+            i = t.startsWith$default(str, MediaStreamTrack.VIDEO_TRACK_KIND, false, 2, null) ? R.attr.ic_uploads_video : R.attr.ic_uploads_file;
         }
         return DrawableCompat.getThemedDrawableRes$default(context, i, 0, 2, (Object) null);
     }

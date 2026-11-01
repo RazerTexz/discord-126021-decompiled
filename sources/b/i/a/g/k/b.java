@@ -1,19 +1,19 @@
 package b.i.a.g.k;
 
-import android.view.ViewTreeObserver$OnPreDrawListener;
+import android.view.ViewTreeObserver;
 import com.google.android.material.timepicker.ClockFaceView;
 import com.google.android.material.timepicker.ClockHandView;
 
 /* JADX INFO: compiled from: ClockFaceView.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class b implements ViewTreeObserver$OnPreDrawListener {
+public class b implements ViewTreeObserver.OnPreDrawListener {
     public final /* synthetic */ ClockFaceView j;
 
     public b(ClockFaceView clockFaceView) {
         this.j = clockFaceView;
     }
 
-    @Override // android.view.ViewTreeObserver$OnPreDrawListener
+    @Override // android.view.ViewTreeObserver.OnPreDrawListener
     public boolean onPreDraw() {
         if (!this.j.isShown()) {
             return true;

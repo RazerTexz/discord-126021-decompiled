@@ -1,5 +1,6 @@
 package com.discord.widgets.chat.list;
 
+import androidx.core.app.NotificationCompat;
 import com.discord.api.guild.GuildFeature;
 import com.discord.models.experiments.domain.Experiment;
 import com.discord.models.guild.Guild;
@@ -11,14 +12,50 @@ import d0.z.d.m;
 import kotlin.Lazy;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
+import rx.functions.Func2;
 
 /* JADX INFO: compiled from: NewThreadsPermissionsFeatureFlag.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class NewThreadsPermissionsFeatureFlag {
-    public static final NewThreadsPermissionsFeatureFlag$Companion Companion = new NewThreadsPermissionsFeatureFlag$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final StoreExperiments storeExperiments;
     private final StoreGuilds storeGuilds;
     private static final Lazy INSTANCE$delegate = g.lazy(NewThreadsPermissionsFeatureFlag$Companion$INSTANCE$2.INSTANCE);
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.NewThreadsPermissionsFeatureFlag$observeEnabled$1, reason: invalid class name */
+    /* JADX INFO: compiled from: NewThreadsPermissionsFeatureFlag.kt */
+    public final class AnonymousClass1<T1, T2, R> implements Func2<Experiment, Guild, Boolean> {
+        public AnonymousClass1() {
+        }
+
+        @Override // rx.functions.Func2
+        public /* bridge */ /* synthetic */ Boolean call(Experiment experiment, Guild guild) {
+            return call2(experiment, guild);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Boolean call2(Experiment experiment, Guild guild) {
+            return Boolean.valueOf(NewThreadsPermissionsFeatureFlag.access$isEnabled(NewThreadsPermissionsFeatureFlag.this, experiment, guild));
+        }
+    }
+
+    /* JADX INFO: compiled from: NewThreadsPermissionsFeatureFlag.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final NewThreadsPermissionsFeatureFlag getINSTANCE() {
+            Lazy lazyAccess$getINSTANCE$cp = NewThreadsPermissionsFeatureFlag.access$getINSTANCE$cp();
+            Companion companion = NewThreadsPermissionsFeatureFlag.INSTANCE;
+            return (NewThreadsPermissionsFeatureFlag) lazyAccess$getINSTANCE$cp.getValue();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public NewThreadsPermissionsFeatureFlag() {
         this(null, null, 3, null);
@@ -44,13 +81,13 @@ public final class NewThreadsPermissionsFeatureFlag {
     }
 
     public final Observable<Boolean> observeEnabled(long guildId) {
-        Observable<Boolean> observableJ = Observable.j(this.storeExperiments.observeGuildExperiment("2021-08_threads_permissions", guildId, true), this.storeGuilds.observeGuild(guildId), new NewThreadsPermissionsFeatureFlag$observeEnabled$1(this));
+        Observable<Boolean> observableJ = Observable.j(this.storeExperiments.observeGuildExperiment("2021-08_threads_permissions", guildId, true), this.storeGuilds.observeGuild(guildId), new AnonymousClass1());
         m.checkNotNullExpressionValue(observableJ, "Observable.combineLatest…dExperiment, guild)\n    }");
         return observableJ;
     }
 
     public /* synthetic */ NewThreadsPermissionsFeatureFlag(StoreExperiments storeExperiments, StoreGuilds storeGuilds, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i & 1) != 0 ? StoreStream.Companion.getExperiments() : storeExperiments, (i & 2) != 0 ? StoreStream.Companion.getGuilds() : storeGuilds);
+        this((i & 1) != 0 ? StoreStream.INSTANCE.getExperiments() : storeExperiments, (i & 2) != 0 ? StoreStream.INSTANCE.getGuilds() : storeGuilds);
     }
 
     private final boolean isEnabled(Experiment experiment, Guild guild) {

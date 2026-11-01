@@ -7,7 +7,7 @@ import java.util.List;
 
 /* JADX INFO: compiled from: EllipseContent.java */
 /* JADX INFO: loaded from: classes.dex */
-public class f implements m, b.c.a.w.c.a$b, k {
+public class f implements m, b.c.a.w.c.a.b, k {
     public final b.c.a.j c;
     public final b.c.a.w.c.a<?, PointF> d;
     public final b.c.a.w.c.a<?, PointF> e;
@@ -33,7 +33,7 @@ public class f implements m, b.c.a.w.c.a$b, k {
         aVarA2.a.add(this);
     }
 
-    @Override // b.c.a.w.c.a$b
+    @Override // b.c.a.w.c.a.b
     public void a() {
         this.h = false;
         this.c.invalidateSelf();

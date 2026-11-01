@@ -6,11 +6,19 @@ import com.google.auto.value.AutoValue;
 /* JADX INFO: loaded from: classes3.dex */
 @AutoValue
 public abstract class g {
+
+    /* JADX INFO: compiled from: BackendResponse.java */
+    public enum a {
+        OK,
+        TRANSIENT_ERROR,
+        FATAL_ERROR
+    }
+
     public static g a() {
-        return new b(g$a.FATAL_ERROR, -1L);
+        return new b(a.FATAL_ERROR, -1L);
     }
 
     public abstract long b();
 
-    public abstract g$a c();
+    public abstract a c();
 }

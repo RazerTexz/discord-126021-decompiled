@@ -3,7 +3,7 @@ package b.i.a.f.h.l;
 import com.google.android.gms.internal.measurement.zzij;
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.Map$Entry;
+import java.util.Map;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
@@ -24,7 +24,7 @@ public final class g6<T> implements q6<T> {
 
     @Override // b.i.a.f.h.l.q6
     public final T a() {
-        return (T) ((u4$b) this.a.h()).o();
+        return (T) ((u4.b) this.a.h()).o();
     }
 
     @Override // b.i.a.f.h.l.q6
@@ -68,7 +68,7 @@ public final class g6<T> implements q6<T> {
         }
         Iterator<T> it = n4VarB.f1461b.g().iterator();
         while (it.hasNext()) {
-            iK += n4.k((Map$Entry) it.next());
+            iK += n4.k((Map.Entry) it.next());
         }
         return i + iK;
     }
@@ -88,15 +88,15 @@ public final class g6<T> implements q6<T> {
     public final void g(T t, v7 v7Var) throws IOException {
         Iterator itL = this.d.b(t).l();
         while (itL.hasNext()) {
-            Map$Entry map$Entry = (Map$Entry) itL.next();
-            p4 p4Var = (p4) map$Entry.getKey();
+            Map.Entry entry = (Map.Entry) itL.next();
+            p4 p4Var = (p4) entry.getKey();
             if (p4Var.c() != w7.MESSAGE || p4Var.d() || p4Var.e()) {
                 throw new IllegalStateException("Found invalid MessageSet item.");
             }
-            if (map$Entry instanceof f5) {
-                ((g4) v7Var).c(p4Var.a(), ((f5) map$Entry).j.getValue().c());
+            if (entry instanceof f5) {
+                ((g4) v7Var).c(p4Var.a(), ((f5) entry).j.getValue().c());
             } else {
-                ((g4) v7Var).c(p4Var.a(), map$Entry.getValue());
+                ((g4) v7Var).c(p4Var.a(), entry.getValue());
             }
         }
         d7<?, ?> d7Var = this.f1444b;
@@ -114,8 +114,8 @@ public final class g6<T> implements q6<T> {
             c7VarC = c7.c();
             u4Var.zzb = c7VarC;
         }
-        ((u4$d) t).u();
-        u4$f u4_f = null;
+        ((u4.d) t).u();
+        u4.f fVar = null;
         while (i < i2) {
             int iO1 = b.i.a.f.e.o.f.O1(bArr, i, s3Var);
             int i3 = s3Var.a;
@@ -137,11 +137,11 @@ public final class g6<T> implements q6<T> {
                         } else {
                             iO1 = b.i.a.f.e.o.f.O1(bArr, iO1, s3Var);
                             i4 = s3Var.a;
-                            u4_f = (u4$f) this.d.c(s3Var.d, this.a, i4);
+                            fVar = (u4.f) this.d.c(s3Var.d, this.a, i4);
                         }
                     } else {
                         if (i6 == 3) {
-                            if (u4_f != null) {
+                            if (fVar != null) {
                                 n6 n6Var = n6.a;
                                 throw new NoSuchMethodError();
                             }
@@ -162,8 +162,8 @@ public final class g6<T> implements q6<T> {
                 }
                 i = iO1;
             } else if ((i3 & 7) == 2) {
-                u4_f = (u4$f) this.d.c(s3Var.d, this.a, i3 >>> 3);
-                if (u4_f != null) {
+                fVar = (u4.f) this.d.c(s3Var.d, this.a, i3 >>> 3);
+                if (fVar != null) {
                     n6 n6Var2 = n6.a;
                     throw new NoSuchMethodError();
                 }

@@ -11,6 +11,20 @@ import kotlin.NoWhenBranchMatchedException;
 /* JADX INFO: compiled from: TextComponent.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TextStyleTypeAdapter extends TypeAdapter<TextStyle> {
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            TextStyle.values();
+            int[] iArr = new int[3];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[TextStyle.SMALL.ordinal()] = 1;
+            iArr[TextStyle.PARAGRAPH.ordinal()] = 2;
+            iArr[TextStyle.UNKNOWN.ordinal()] = 3;
+        }
+    }
+
     @Override // com.google.gson.TypeAdapter
     public TextStyle read(JsonReader jsonReader) throws IOException {
         m.checkNotNullParameter(jsonReader, "in");

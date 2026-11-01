@@ -6,7 +6,6 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.View$MeasureSpec;
 import android.widget.Adapter;
 import android.widget.GridView;
 import android.widget.ListAdapter;
@@ -17,7 +16,7 @@ import b.i.a.g.d.b;
 import b.i.a.g.d.f;
 import b.i.a.g.d.g;
 import b.i.a.g.d.l;
-import com.google.android.material.R$id;
+import com.google.android.material.R;
 import com.google.android.material.internal.ViewUtils;
 import java.util.Calendar;
 
@@ -30,8 +29,8 @@ public final class MaterialCalendarGridView extends GridView {
         super(context, attributeSet, 0);
         this.j = l.i();
         if (MaterialDatePicker.isFullscreen(getContext())) {
-            setNextFocusLeftId(R$id.cancel_button);
-            setNextFocusRightId(R$id.confirm_button);
+            setNextFocusLeftId(R.id.cancel_button);
+            setNextFocusRightId(R.id.confirm_button);
         }
         this.k = MaterialDatePicker.isNestedScrollable(getContext());
         ViewCompat.setAccessibilityDelegate(this, new f(this));
@@ -141,7 +140,7 @@ public final class MaterialCalendarGridView extends GridView {
         }
     }
 
-    @Override // android.widget.GridView, android.widget.AbsListView, android.view.View, android.view.KeyEvent$Callback
+    @Override // android.widget.GridView, android.widget.AbsListView, android.view.View, android.view.KeyEvent.Callback
     public boolean onKeyDown(int i, KeyEvent keyEvent) {
         if (!super.onKeyDown(i, keyEvent)) {
             return false;
@@ -162,7 +161,7 @@ public final class MaterialCalendarGridView extends GridView {
             super.onMeasure(i, i2);
             return;
         }
-        super.onMeasure(i, View$MeasureSpec.makeMeasureSpec(ViewCompat.MEASURED_SIZE_MASK, Integer.MIN_VALUE));
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(ViewCompat.MEASURED_SIZE_MASK, Integer.MIN_VALUE));
         getLayoutParams().height = getMeasuredHeight();
     }
 

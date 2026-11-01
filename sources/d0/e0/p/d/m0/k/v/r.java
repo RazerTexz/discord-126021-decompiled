@@ -1,35 +1,158 @@
 package d0.e0.p.d.m0.k.v;
 
+import d0.e0.p.d.m0.c.z0;
 import d0.e0.p.d.m0.n.c0;
 import d0.e0.p.d.m0.n.d0;
+import d0.e0.p.d.m0.n.e0;
 import d0.e0.p.d.m0.n.j0;
 import d0.e0.p.d.m0.n.j1;
+import d0.e0.p.d.m0.n.w0;
 import d0.e0.p.d.m0.n.y0;
+import java.util.List;
 import kotlin.NoWhenBranchMatchedException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: constantValues.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class r extends g<r$b> {
+public final class r extends g<b> {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final r$a f3476b = new r$a(null);
+    public static final a f3476b = new a(null);
+
+    /* JADX INFO: compiled from: constantValues.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final g<?> create(c0 c0Var) {
+            d0.z.d.m.checkNotNullParameter(c0Var, "argumentType");
+            if (e0.isError(c0Var)) {
+                return null;
+            }
+            c0 type = c0Var;
+            int i = 0;
+            while (d0.e0.p.d.m0.b.h.isArray(type)) {
+                type = ((w0) d0.t.u.single((List) type.getArguments())).getType();
+                d0.z.d.m.checkNotNullExpressionValue(type, "type.arguments.single().type");
+                i++;
+            }
+            d0.e0.p.d.m0.c.h declarationDescriptor = type.getConstructor().getDeclarationDescriptor();
+            if (declarationDescriptor instanceof d0.e0.p.d.m0.c.e) {
+                d0.e0.p.d.m0.g.a classId = d0.e0.p.d.m0.k.x.a.getClassId(declarationDescriptor);
+                return classId == null ? new r(new b.a(c0Var)) : new r(classId, i);
+            }
+            if (!(declarationDescriptor instanceof z0)) {
+                return null;
+            }
+            d0.e0.p.d.m0.g.a aVar = d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k.a.f3217b.toSafe());
+            d0.z.d.m.checkNotNullExpressionValue(aVar, "topLevel(StandardNames.FqNames.any.toSafe())");
+            return new r(aVar, 0);
+        }
+    }
+
+    /* JADX INFO: compiled from: constantValues.kt */
+    public abstract class b {
+
+        /* JADX INFO: renamed from: d0.e0.p.d.m0.k.v.r$b$b, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: constantValues.kt */
+        public final class C0566b extends b {
+            public final f a;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C0566b(f fVar) {
+                super(null);
+                d0.z.d.m.checkNotNullParameter(fVar, "value");
+                this.a = fVar;
+            }
+
+            public boolean equals(Object obj) {
+                if (this == obj) {
+                    return true;
+                }
+                return (obj instanceof C0566b) && d0.z.d.m.areEqual(this.a, ((C0566b) obj).a);
+            }
+
+            public final int getArrayDimensions() {
+                return this.a.getArrayNestedness();
+            }
+
+            public final d0.e0.p.d.m0.g.a getClassId() {
+                return this.a.getClassId();
+            }
+
+            public final f getValue() {
+                return this.a;
+            }
+
+            public int hashCode() {
+                return this.a.hashCode();
+            }
+
+            public String toString() {
+                StringBuilder sbU = b.d.b.a.a.U("NormalClass(value=");
+                sbU.append(this.a);
+                sbU.append(')');
+                return sbU.toString();
+            }
+        }
+
+        /* JADX INFO: compiled from: constantValues.kt */
+        public final class a extends b {
+            public final c0 a;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public a(c0 c0Var) {
+                super(null);
+                d0.z.d.m.checkNotNullParameter(c0Var, "type");
+                this.a = c0Var;
+            }
+
+            public boolean equals(Object obj) {
+                if (this == obj) {
+                    return true;
+                }
+                return (obj instanceof a) && d0.z.d.m.areEqual(this.a, ((a) obj).a);
+            }
+
+            public final c0 getType() {
+                return this.a;
+            }
+
+            public int hashCode() {
+                return this.a.hashCode();
+            }
+
+            public String toString() {
+                StringBuilder sbU = b.d.b.a.a.U("LocalClass(type=");
+                sbU.append(this.a);
+                sbU.append(')');
+                return sbU.toString();
+            }
+        }
+
+        public b() {
+        }
+
+        public b(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public r(r$b r_b) {
-        super(r_b);
-        d0.z.d.m.checkNotNullParameter(r_b, "value");
+    public r(b bVar) {
+        super(bVar);
+        d0.z.d.m.checkNotNullParameter(bVar, "value");
     }
 
     public final c0 getArgumentType(d0.e0.p.d.m0.c.c0 c0Var) {
         d0.z.d.m.checkNotNullParameter(c0Var, "module");
-        r$b value = getValue();
-        if (value instanceof r$b$a) {
-            return ((r$b$a) getValue()).getType();
+        b value = getValue();
+        if (value instanceof b.a) {
+            return ((b.a) getValue()).getType();
         }
-        if (!(value instanceof r$b$b)) {
+        if (!(value instanceof b.C0566b)) {
             throw new NoWhenBranchMatchedException();
         }
-        f value2 = ((r$b$b) getValue()).getValue();
+        f value2 = ((b.C0566b) getValue()).getValue();
         d0.e0.p.d.m0.g.a aVarComponent1 = value2.component1();
         int iComponent2 = value2.component2();
         d0.e0.p.d.m0.c.e eVarFindClassAcrossModuleDependencies = d0.e0.p.d.m0.c.w.findClassAcrossModuleDependencies(c0Var, aVarComponent1);
@@ -60,7 +183,7 @@ public final class r extends g<r$b> {
 
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
     public r(f fVar) {
-        this(new r$b$b(fVar));
+        this(new b.C0566b(fVar));
         d0.z.d.m.checkNotNullParameter(fVar, "value");
     }
 

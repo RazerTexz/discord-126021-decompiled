@@ -3,7 +3,7 @@ package com.discord.widgets.channels.permissions;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.ConfirmRemovePermissionDialogBinding;
 import com.discord.views.LoadingButton;
 import com.google.android.material.button.MaterialButton;
@@ -28,17 +28,17 @@ public final /* synthetic */ class ConfirmRemovePermissionDialog$binding$2 exten
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final ConfirmRemovePermissionDialogBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.body;
-        TextView textView = (TextView) view.findViewById(R$id.body);
+        int i = R.id.body;
+        TextView textView = (TextView) view.findViewById(R.id.body);
         if (textView != null) {
-            i = R$id.cancel;
-            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.cancel);
+            i = R.id.cancel;
+            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.cancel);
             if (materialButton != null) {
-                i = R$id.confirm;
-                LoadingButton loadingButton = (LoadingButton) view.findViewById(R$id.confirm);
+                i = R.id.confirm;
+                LoadingButton loadingButton = (LoadingButton) view.findViewById(R.id.confirm);
                 if (loadingButton != null) {
-                    i = R$id.notice_header_container;
-                    LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.notice_header_container);
+                    i = R.id.notice_header_container;
+                    LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.notice_header_container);
                     if (linearLayout != null) {
                         return new ConfirmRemovePermissionDialogBinding((LinearLayout) view, textView, materialButton, loadingButton, linearLayout);
                     }

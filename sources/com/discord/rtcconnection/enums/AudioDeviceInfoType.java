@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import d0.t.n0;
 import java.util.Objects;
 import java.util.Set;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: AudioDeviceInfoType.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -34,9 +35,18 @@ public enum AudioDeviceInfoType {
     HearingAid(23),
     Unknown(Integer.MIN_VALUE);
 
-    public static final AudioDeviceInfoType$a Companion;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE;
     private static final Set<AudioDeviceInfoType> supportedOutputTypes;
     private final int value;
+
+    /* JADX INFO: renamed from: com.discord.rtcconnection.enums.AudioDeviceInfoType$a, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: AudioDeviceInfoType.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
 
     static {
         AudioDeviceInfoType audioDeviceInfoType = BuiltinEarpiece;
@@ -47,7 +57,7 @@ public enum AudioDeviceInfoType {
         AudioDeviceInfoType audioDeviceInfoType6 = UsbAccessory;
         AudioDeviceInfoType audioDeviceInfoType7 = UsbDevice;
         AudioDeviceInfoType audioDeviceInfoType8 = UsbHeadset;
-        Companion = new AudioDeviceInfoType$a(null);
+        INSTANCE = new Companion(null);
         supportedOutputTypes = n0.setOf((Object[]) new AudioDeviceInfoType[]{audioDeviceInfoType, audioDeviceInfoType2, audioDeviceInfoType5, audioDeviceInfoType3, audioDeviceInfoType4, audioDeviceInfoType6, audioDeviceInfoType7, audioDeviceInfoType8});
     }
 
@@ -64,9 +74,9 @@ public enum AudioDeviceInfoType {
     }
 
     public final boolean isInputType() {
-        AudioDeviceInfoType$a audioDeviceInfoType$a = Companion;
+        Companion companion = INSTANCE;
         int i = this.value;
-        Objects.requireNonNull(audioDeviceInfoType$a);
+        Objects.requireNonNull(companion);
         switch (i) {
             case 3:
             case 5:
@@ -95,9 +105,9 @@ public enum AudioDeviceInfoType {
     }
 
     public final boolean isOutputType() {
-        AudioDeviceInfoType$a audioDeviceInfoType$a = Companion;
+        Companion companion = INSTANCE;
         int i = this.value;
-        Objects.requireNonNull(audioDeviceInfoType$a);
+        Objects.requireNonNull(companion);
         switch (i) {
             case 1:
             case 2:

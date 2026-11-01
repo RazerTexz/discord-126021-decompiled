@@ -4,7 +4,7 @@ import android.view.View;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetChannelPickerSheetBinding;
 import com.discord.views.SearchInputView;
@@ -30,20 +30,20 @@ public final /* synthetic */ class WidgetChannelPickerBottomSheet$binding$2 exte
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetChannelPickerSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.channel_picker_app_bar;
-        AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R$id.channel_picker_app_bar);
+        int i = R.id.channel_picker_app_bar;
+        AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R.id.channel_picker_app_bar);
         if (appBarLayout != null) {
-            i = R$id.channel_picker_app_flipper;
-            AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R$id.channel_picker_app_flipper);
+            i = R.id.channel_picker_app_flipper;
+            AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R.id.channel_picker_app_flipper);
             if (appViewFlipper != null) {
-                i = R$id.channel_picker_recycler;
-                RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.channel_picker_recycler);
+                i = R.id.channel_picker_recycler;
+                RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.channel_picker_recycler);
                 if (recyclerView != null) {
-                    i = R$id.channel_picker_search_input;
-                    SearchInputView searchInputView = (SearchInputView) view.findViewById(R$id.channel_picker_search_input);
+                    i = R.id.channel_picker_search_input;
+                    SearchInputView searchInputView = (SearchInputView) view.findViewById(R.id.channel_picker_search_input);
                     if (searchInputView != null) {
-                        i = R$id.channel_picker_toolbar;
-                        Toolbar toolbar = (Toolbar) view.findViewById(R$id.channel_picker_toolbar);
+                        i = R.id.channel_picker_toolbar;
+                        Toolbar toolbar = (Toolbar) view.findViewById(R.id.channel_picker_toolbar);
                         if (toolbar != null) {
                             return new WidgetChannelPickerSheetBinding((CoordinatorLayout) view, appBarLayout, appViewFlipper, recyclerView, searchInputView, toolbar);
                         }

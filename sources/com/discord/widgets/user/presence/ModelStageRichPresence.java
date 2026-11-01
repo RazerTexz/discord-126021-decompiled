@@ -3,13 +3,20 @@ package com.discord.widgets.user.presence;
 import a0.a.a.b;
 import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import com.discord.stores.StoreStream;
+import com.discord.stores.StoreUserPresence;
 import d0.z.d.m;
+import java.util.List;
 import java.util.Set;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import rx.Observable;
 
 /* JADX INFO: compiled from: ModelStageRichPresence.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class ModelStageRichPresence {
-    public static final ModelStageRichPresence$Companion Companion = new ModelStageRichPresence$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final long audienceSize;
     private final long channelId;
     private final String guildIcon;
@@ -23,6 +30,30 @@ public final /* data */ class ModelStageRichPresence {
     private final long stageInstanceId;
     private final String topic;
     private final boolean userIsSpeaker;
+
+    /* JADX INFO: compiled from: ModelStageRichPresence.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static /* synthetic */ Observable observeStageRichPresence$default(Companion companion, StoreUserPresence storeUserPresence, int i, Object obj) {
+            if ((i & 1) != 0) {
+                storeUserPresence = StoreStream.INSTANCE.getPresences();
+            }
+            return companion.observeStageRichPresence(storeUserPresence);
+        }
+
+        public final Observable<List<ModelStageRichPresence>> observeStageRichPresence(StoreUserPresence storeUserPresence) {
+            m.checkNotNullParameter(storeUserPresence, "storeUserPresence");
+            Observable observableG = storeUserPresence.observeAllPresences().G(ModelStageRichPresence$Companion$observeStageRichPresence$1.INSTANCE);
+            m.checkNotNullExpressionValue(observableG, "storeUserPresence\n      …   }.toList()\n          }");
+            return observableG;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public ModelStageRichPresence(long j, long j2, boolean z2, long j3, boolean z3, boolean z4, String str, String str2, String str3, Set<Long> set, Set<Long> set2, long j4, long j5) {
         m.checkNotNullParameter(str, "guildName");

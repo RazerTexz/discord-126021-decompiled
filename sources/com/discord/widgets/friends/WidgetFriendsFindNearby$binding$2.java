@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetFriendsNearbyBinding;
 import com.discord.rlottie.RLottieImageView;
 import com.google.android.material.button.MaterialButton;
@@ -29,23 +29,23 @@ public final /* synthetic */ class WidgetFriendsFindNearby$binding$2 extends k i
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetFriendsNearbyBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.nearby_friends_enable;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.nearby_friends_enable);
+        int i = R.id.nearby_friends_enable;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.nearby_friends_enable);
         if (materialButton != null) {
-            i = R$id.nearby_friends_learn_more;
-            TextView textView = (TextView) view.findViewById(R$id.nearby_friends_learn_more);
+            i = R.id.nearby_friends_learn_more;
+            TextView textView = (TextView) view.findViewById(R.id.nearby_friends_learn_more);
             if (textView != null) {
-                i = R$id.nearby_friends_recycler;
-                RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.nearby_friends_recycler);
+                i = R.id.nearby_friends_recycler;
+                RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.nearby_friends_recycler);
                 if (recyclerView != null) {
-                    i = R$id.nearby_friends_searching_body;
-                    TextView textView2 = (TextView) view.findViewById(R$id.nearby_friends_searching_body);
+                    i = R.id.nearby_friends_searching_body;
+                    TextView textView2 = (TextView) view.findViewById(R.id.nearby_friends_searching_body);
                     if (textView2 != null) {
-                        i = R$id.nearby_friends_searching_lottie;
-                        RLottieImageView rLottieImageView = (RLottieImageView) view.findViewById(R$id.nearby_friends_searching_lottie);
+                        i = R.id.nearby_friends_searching_lottie;
+                        RLottieImageView rLottieImageView = (RLottieImageView) view.findViewById(R.id.nearby_friends_searching_lottie);
                         if (rLottieImageView != null) {
-                            i = R$id.nearby_friends_searching_title;
-                            TextView textView3 = (TextView) view.findViewById(R$id.nearby_friends_searching_title);
+                            i = R.id.nearby_friends_searching_title;
+                            TextView textView3 = (TextView) view.findViewById(R.id.nearby_friends_searching_title);
                             if (textView3 != null) {
                                 return new WidgetFriendsNearbyBinding((NestedScrollView) view, materialButton, textView, recyclerView, textView2, rLottieImageView, textView3);
                             }

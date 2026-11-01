@@ -2,17 +2,42 @@ package com.discord.widgets.guildscheduledevent;
 
 import a0.a.a.b;
 import b.d.b.a.a;
+import com.discord.api.guildscheduledevent.ApiGuildScheduledEventUser;
 import com.discord.models.member.GuildMember;
+import com.discord.models.user.CoreUser;
 import com.discord.models.user.User;
 import d0.z.d.m;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: GuildScheduledEventUser.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class GuildScheduledEventUser {
-    public static final GuildScheduledEventUser$Companion Companion = new GuildScheduledEventUser$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final GuildMember guildMember;
     private final long guildScheduledEventId;
     private final User user;
+
+    /* JADX INFO: compiled from: GuildScheduledEventUser.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final GuildScheduledEventUser from(ApiGuildScheduledEventUser apiGuildScheduledEventUser, long guildId) {
+            m.checkNotNullParameter(apiGuildScheduledEventUser, "apiGuildScheduledEventUser");
+            com.discord.api.user.User userC = apiGuildScheduledEventUser.getUser();
+            com.discord.api.guildmember.GuildMember guildMemberA = apiGuildScheduledEventUser.a(guildId);
+            if (userC == null || guildMemberA == null) {
+                return null;
+            }
+            return new GuildScheduledEventUser(new CoreUser(userC), GuildMember.Companion.from$default(GuildMember.INSTANCE, guildMemberA, guildId, null, null, 12, null), apiGuildScheduledEventUser.getGuildScheduledEventId());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public GuildScheduledEventUser(User user, GuildMember guildMember, long j) {
         m.checkNotNullParameter(user, "user");

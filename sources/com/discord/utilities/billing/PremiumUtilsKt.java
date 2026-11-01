@@ -3,9 +3,8 @@ package com.discord.utilities.billing;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.annotation.DrawableRes;
+import com.discord.R;
 import com.discord.models.domain.ModelPaymentSource;
-import com.discord.models.domain.ModelPaymentSource$ModelPaymentSourceCard;
-import com.discord.models.domain.ModelPaymentSource$ModelPaymentSourcePaypal;
 import com.discord.utilities.locale.LocaleManager;
 import d0.z.d.m;
 import java.text.NumberFormat;
@@ -61,43 +60,43 @@ public final class PremiumUtilsKt {
     @SuppressLint({"DefaultLocale"})
     public static final int getPaymentSourceIcon(ModelPaymentSource modelPaymentSource) {
         m.checkNotNullParameter(modelPaymentSource, "paymentSource");
-        if (modelPaymentSource instanceof ModelPaymentSource$ModelPaymentSourcePaypal) {
-            return 2131231699;
+        if (modelPaymentSource instanceof ModelPaymentSource.ModelPaymentSourcePaypal) {
+            return R.drawable.ic_creditcard_paypal;
         }
-        if (!(modelPaymentSource instanceof ModelPaymentSource$ModelPaymentSourceCard)) {
-            return 2131231697;
+        if (!(modelPaymentSource instanceof ModelPaymentSource.ModelPaymentSourceCard)) {
+            return R.drawable.ic_creditcard_generic;
         }
-        String brand = ((ModelPaymentSource$ModelPaymentSourceCard) modelPaymentSource).getBrand();
+        String brand = ((ModelPaymentSource.ModelPaymentSourceCard) modelPaymentSource).getBrand();
         Objects.requireNonNull(brand, "null cannot be cast to non-null type java.lang.String");
         String lowerCase = brand.toLowerCase();
         m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase()");
         switch (lowerCase.hashCode()) {
             case -2038717326:
                 if (lowerCase.equals("mastercard")) {
-                    return 2131231698;
+                    return R.drawable.ic_creditcard_mastercard;
                 }
-                return 2131231697;
+                return R.drawable.ic_creditcard_generic;
             case 2997727:
                 if (lowerCase.equals("amex")) {
-                    return 2131231695;
+                    return R.drawable.ic_creditcard_amex;
                 }
-                return 2131231697;
+                return R.drawable.ic_creditcard_generic;
             case 3619905:
-                return lowerCase.equals("visa") ? 2131231700 : 2131231697;
+                return lowerCase.equals("visa") ? R.drawable.ic_creditcard_visa : R.drawable.ic_creditcard_generic;
             case 61060803:
                 if (lowerCase.equals("american-express")) {
-                    return 2131231695;
+                    return R.drawable.ic_creditcard_amex;
                 }
-                return 2131231697;
+                return R.drawable.ic_creditcard_generic;
             case 273184745:
-                return lowerCase.equals("discover") ? 2131231696 : 2131231697;
+                return lowerCase.equals("discover") ? R.drawable.ic_creditcard_discover : R.drawable.ic_creditcard_generic;
             case 1174445979:
                 if (lowerCase.equals("master-card")) {
-                    return 2131231698;
+                    return R.drawable.ic_creditcard_mastercard;
                 }
-                return 2131231697;
+                return R.drawable.ic_creditcard_generic;
             default:
-                return 2131231697;
+                return R.drawable.ic_creditcard_generic;
         }
     }
 }

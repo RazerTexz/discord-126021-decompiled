@@ -1,5 +1,8 @@
 package d0.e0.p.d;
 
+import d0.e0.p.d.m0.c.c1;
+import d0.e0.p.d.m0.c.q0;
+import d0.e0.p.d.m0.c.z0;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Array;
 import java.lang.reflect.ParameterizedType;
@@ -7,11 +10,13 @@ import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import kotlin.coroutines.Continuation;
+import kotlin.jvm.functions.Function0;
 import kotlin.reflect.KCallable;
 import kotlin.reflect.KType;
 import kotlin.reflect.KVisibility;
@@ -20,24 +25,239 @@ import kotlin.reflect.full.IllegalCallableAccessException;
 /* JADX INFO: compiled from: KCallableImpl.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class f<R> implements KCallable<R>, z {
-    public final c0$a<List<Annotation>> j;
-    public final c0$a<ArrayList<d0.e0.f>> k;
-    public final c0$a<x> l;
-    public final c0$a<List<y>> m;
+    public final c0.a<List<Annotation>> j;
+    public final c0.a<ArrayList<d0.e0.f>> k;
+    public final c0.a<x> l;
+    public final c0.a<List<y>> m;
+
+    /* JADX INFO: compiled from: KCallableImpl.kt */
+    public final class a extends d0.z.d.o implements Function0<List<? extends Annotation>> {
+        public a() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<? extends Annotation> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<? extends Annotation> invoke2() {
+            return j0.computeAnnotations(f.this.getDescriptor());
+        }
+    }
+
+    /* JADX INFO: compiled from: KCallableImpl.kt */
+    public final class b extends d0.z.d.o implements Function0<ArrayList<d0.e0.f>> {
+
+        /* JADX INFO: renamed from: d0.e0.p.d.f$b$b, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: KCallableImpl.kt */
+        public final class C0496b extends d0.z.d.o implements Function0<d0.e0.p.d.m0.c.k0> {
+            public final /* synthetic */ q0 $instanceReceiver;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C0496b(q0 q0Var) {
+                super(0);
+                this.$instanceReceiver = q0Var;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.k0 invoke() {
+                return invoke();
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // kotlin.jvm.functions.Function0
+            public final d0.e0.p.d.m0.c.k0 invoke() {
+                return this.$instanceReceiver;
+            }
+        }
+
+        /* JADX INFO: compiled from: Comparisons.kt */
+        public final class a<T> implements Comparator<T> {
+            @Override // java.util.Comparator
+            public final int compare(T t, T t2) {
+                return d0.u.a.compareValues(((d0.e0.f) t).getName(), ((d0.e0.f) t2).getName());
+            }
+        }
+
+        /* JADX INFO: compiled from: KCallableImpl.kt */
+        public final class c extends d0.z.d.o implements Function0<d0.e0.p.d.m0.c.k0> {
+            public final /* synthetic */ q0 $extensionReceiver;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public c(q0 q0Var) {
+                super(0);
+                this.$extensionReceiver = q0Var;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.k0 invoke() {
+                return invoke();
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // kotlin.jvm.functions.Function0
+            public final d0.e0.p.d.m0.c.k0 invoke() {
+                return this.$extensionReceiver;
+            }
+        }
+
+        /* JADX INFO: compiled from: KCallableImpl.kt */
+        public final class d extends d0.z.d.o implements Function0<d0.e0.p.d.m0.c.k0> {
+            public final /* synthetic */ d0.e0.p.d.m0.c.b $descriptor;
+            public final /* synthetic */ int $i;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public d(d0.e0.p.d.m0.c.b bVar, int i) {
+                super(0);
+                this.$descriptor = bVar;
+                this.$i = i;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.k0 invoke() {
+                return invoke();
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // kotlin.jvm.functions.Function0
+            public final d0.e0.p.d.m0.c.k0 invoke() {
+                c1 c1Var = this.$descriptor.getValueParameters().get(this.$i);
+                d0.z.d.m.checkNotNullExpressionValue(c1Var, "descriptor.valueParameters[i]");
+                return c1Var;
+            }
+        }
+
+        public b() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ ArrayList<d0.e0.f> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final ArrayList<d0.e0.f> invoke2() {
+            int i;
+            d0.e0.p.d.m0.c.b descriptor = f.this.getDescriptor();
+            ArrayList<d0.e0.f> arrayList = new ArrayList<>();
+            int i2 = 0;
+            if (f.this.isBound()) {
+                i = 0;
+            } else {
+                q0 instanceReceiverParameter = j0.getInstanceReceiverParameter(descriptor);
+                if (instanceReceiverParameter != null) {
+                    arrayList.add(new o(f.this, 0, d0.e0.f.a.INSTANCE, new C0496b(instanceReceiverParameter)));
+                    i = 1;
+                } else {
+                    i = 0;
+                }
+                q0 extensionReceiverParameter = descriptor.getExtensionReceiverParameter();
+                if (extensionReceiverParameter != null) {
+                    arrayList.add(new o(f.this, i, d0.e0.f.a.EXTENSION_RECEIVER, new c(extensionReceiverParameter)));
+                    i++;
+                }
+            }
+            List<c1> valueParameters = descriptor.getValueParameters();
+            d0.z.d.m.checkNotNullExpressionValue(valueParameters, "descriptor.valueParameters");
+            int size = valueParameters.size();
+            while (i2 < size) {
+                arrayList.add(new o(f.this, i, d0.e0.f.a.VALUE, new d(descriptor, i2)));
+                i2++;
+                i++;
+            }
+            if (f.this.b() && (descriptor instanceof d0.e0.p.d.m0.e.a.h0.b) && arrayList.size() > 1) {
+                d0.t.q.sortWith(arrayList, new a());
+            }
+            arrayList.trimToSize();
+            return arrayList;
+        }
+    }
+
+    /* JADX INFO: compiled from: KCallableImpl.kt */
+    public final class c extends d0.z.d.o implements Function0<x> {
+
+        /* JADX INFO: compiled from: KCallableImpl.kt */
+        public final class a extends d0.z.d.o implements Function0<Type> {
+            public a() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Type invoke() {
+                return invoke2();
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final Type invoke2() {
+                Type typeAccess$extractContinuationArgument = f.access$extractContinuationArgument(f.this);
+                return typeAccess$extractContinuationArgument != null ? typeAccess$extractContinuationArgument : f.this.getCaller().getReturnType();
+            }
+        }
+
+        public c() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ x invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final x invoke() {
+            d0.e0.p.d.m0.n.c0 returnType = f.this.getDescriptor().getReturnType();
+            d0.z.d.m.checkNotNull(returnType);
+            d0.z.d.m.checkNotNullExpressionValue(returnType, "descriptor.returnType!!");
+            return new x(returnType, new a());
+        }
+    }
+
+    /* JADX INFO: compiled from: KCallableImpl.kt */
+    public final class d extends d0.z.d.o implements Function0<List<? extends y>> {
+        public d() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<? extends y> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<? extends y> invoke2() {
+            List<z0> typeParameters = f.this.getDescriptor().getTypeParameters();
+            d0.z.d.m.checkNotNullExpressionValue(typeParameters, "descriptor.typeParameters");
+            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(typeParameters, 10));
+            for (z0 z0Var : typeParameters) {
+                f fVar = f.this;
+                d0.z.d.m.checkNotNullExpressionValue(z0Var, "descriptor");
+                arrayList.add(new y(fVar, z0Var));
+            }
+            return arrayList;
+        }
+    }
 
     public f() {
-        c0$a<List<Annotation>> c0_aLazySoft = c0.lazySoft(new f$a(this));
-        d0.z.d.m.checkNotNullExpressionValue(c0_aLazySoft, "ReflectProperties.lazySo…or.computeAnnotations() }");
-        this.j = c0_aLazySoft;
-        c0$a<ArrayList<d0.e0.f>> c0_aLazySoft2 = c0.lazySoft(new f$b(this));
-        d0.z.d.m.checkNotNullExpressionValue(c0_aLazySoft2, "ReflectProperties.lazySo…ze()\n        result\n    }");
-        this.k = c0_aLazySoft2;
-        c0$a<x> c0_aLazySoft3 = c0.lazySoft(new f$c(this));
-        d0.z.d.m.checkNotNullExpressionValue(c0_aLazySoft3, "ReflectProperties.lazySo…eturnType\n        }\n    }");
-        this.l = c0_aLazySoft3;
-        c0$a<List<y>> c0_aLazySoft4 = c0.lazySoft(new f$d(this));
-        d0.z.d.m.checkNotNullExpressionValue(c0_aLazySoft4, "ReflectProperties.lazySo…this, descriptor) }\n    }");
-        this.m = c0_aLazySoft4;
+        c0.a<List<Annotation>> aVarLazySoft = c0.lazySoft(new a());
+        d0.z.d.m.checkNotNullExpressionValue(aVarLazySoft, "ReflectProperties.lazySo…or.computeAnnotations() }");
+        this.j = aVarLazySoft;
+        c0.a<ArrayList<d0.e0.f>> aVarLazySoft2 = c0.lazySoft(new b());
+        d0.z.d.m.checkNotNullExpressionValue(aVarLazySoft2, "ReflectProperties.lazySo…ze()\n        result\n    }");
+        this.k = aVarLazySoft2;
+        c0.a<x> aVarLazySoft3 = c0.lazySoft(new c());
+        d0.z.d.m.checkNotNullExpressionValue(aVarLazySoft3, "ReflectProperties.lazySo…eturnType\n        }\n    }");
+        this.l = aVarLazySoft3;
+        c0.a<List<y>> aVarLazySoft4 = c0.lazySoft(new d());
+        d0.z.d.m.checkNotNullExpressionValue(aVarLazySoft4, "ReflectProperties.lazySo…this, descriptor) }\n    }");
+        this.m = aVarLazySoft4;
     }
 
     public final Object a(KType kType) {
@@ -195,7 +415,7 @@ public abstract class f<R> implements KCallable<R>, z {
                 }
                 arrayList.add(a(next.getType()));
             }
-            if (next.getKind() == d0.e0.f$a.VALUE) {
+            if (next.getKind() == d0.e0.f.a.VALUE) {
                 i++;
             }
         }

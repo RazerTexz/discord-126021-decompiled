@@ -2,7 +2,7 @@ package b.i.c.s;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences$Editor;
+import android.text.TextUtils;
 import android.util.Log;
 import androidx.annotation.GuardedBy;
 import androidx.collection.ArrayMap;
@@ -11,6 +11,9 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /* JADX INFO: compiled from: com.google.firebase:firebase-iid@@21.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
@@ -22,6 +25,54 @@ public class w {
 
     @GuardedBy("this")
     public final Map<String, Long> c = new ArrayMap();
+
+    /* JADX INFO: compiled from: com.google.firebase:firebase-iid@@21.0.0 */
+    public class a {
+        public final String c;
+        public final String d;
+        public final long e;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public static final /* synthetic */ int f1776b = 0;
+        public static final long a = TimeUnit.DAYS.toMillis(7);
+
+        public a(String str, String str2, long j) {
+            this.c = str;
+            this.d = str2;
+            this.e = j;
+        }
+
+        public static String a(String str, String str2, long j) {
+            try {
+                JSONObject jSONObject = new JSONObject();
+                jSONObject.put("token", str);
+                jSONObject.put("appVersion", str2);
+                jSONObject.put("timestamp", j);
+                return jSONObject.toString();
+            } catch (JSONException e) {
+                String strValueOf = String.valueOf(e);
+                b.d.b.a.a.h0(strValueOf.length() + 24, "Failed to encode token: ", strValueOf, "FirebaseInstanceId");
+                return null;
+            }
+        }
+
+        public static a b(String str) {
+            if (TextUtils.isEmpty(str)) {
+                return null;
+            }
+            if (!str.startsWith("{")) {
+                return new a(str, null, 0L);
+            }
+            try {
+                JSONObject jSONObject = new JSONObject(str);
+                return new a(jSONObject.getString("token"), jSONObject.getString("appVersion"), jSONObject.getLong("timestamp"));
+            } catch (JSONException e) {
+                String strValueOf = String.valueOf(e);
+                b.d.b.a.a.h0(strValueOf.length() + 23, "Failed to parse token: ", strValueOf, "FirebaseInstanceId");
+                return null;
+            }
+        }
+    }
 
     public w(Context context) {
         boolean zIsEmpty;
@@ -82,9 +133,9 @@ public class w {
             }
             return 0L;
         }
-        SharedPreferences$Editor sharedPreferences$EditorEdit = this.a.edit();
-        sharedPreferences$EditorEdit.putString(a(str, "cre"), String.valueOf(jCurrentTimeMillis));
-        sharedPreferences$EditorEdit.commit();
+        SharedPreferences.Editor editorEdit = this.a.edit();
+        editorEdit.putString(a(str, "cre"), String.valueOf(jCurrentTimeMillis));
+        editorEdit.commit();
         return jCurrentTimeMillis;
     }
 }

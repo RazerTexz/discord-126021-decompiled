@@ -10,7 +10,7 @@ import kotlin.ranges.IntRange;
 public final class LottieAnimationUtilsKt {
     public static /* synthetic */ void loopFrom$default(LottieAnimationView lottieAnimationView, int i, IntRange intRange, boolean z2, int i2, Object obj) {
         if ((i2 & 4) != 0) {
-            z2 = StoreStream.Companion.getAccessibility().getReducedMotionEnabled();
+            z2 = StoreStream.INSTANCE.getAccessibility().getReducedMotionEnabled();
         }
         loopFrom(lottieAnimationView, i, intRange, z2);
     }

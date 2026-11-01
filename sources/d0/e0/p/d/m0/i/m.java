@@ -4,12 +4,56 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /* JADX INFO: compiled from: LiteralByteString.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class m extends c {
     public final byte[] k;
     public int l = 0;
+
+    /* JADX INFO: compiled from: LiteralByteString.java */
+    public class b implements c.a {
+        public final int k;
+        public int j = 0;
+
+        public b(a aVar) {
+            this.k = m.this.size();
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.j < this.k;
+        }
+
+        @Override // java.util.Iterator
+        public /* bridge */ /* synthetic */ Byte next() {
+            return next();
+        }
+
+        @Override // d0.e0.p.d.m0.i.c.a
+        public byte nextByte() {
+            try {
+                byte[] bArr = m.this.k;
+                int i = this.j;
+                this.j = i + 1;
+                return bArr[i];
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new NoSuchElementException(e.getMessage());
+            }
+        }
+
+        @Override // java.util.Iterator
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // java.util.Iterator
+        public Byte next() {
+            return Byte.valueOf(nextByte());
+        }
+    }
 
     public m(byte[] bArr) {
         this.k = bArr;
@@ -152,6 +196,6 @@ public class m extends c {
 
     @Override // d0.e0.p.d.m0.i.c, java.lang.Iterable
     public Iterator<Byte> iterator() {
-        return new m$b(this, null);
+        return new b(null);
     }
 }

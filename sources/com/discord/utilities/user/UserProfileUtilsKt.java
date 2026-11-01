@@ -2,7 +2,6 @@ package com.discord.utilities.user;
 
 import android.content.Context;
 import com.discord.api.user.UserProfile;
-import com.discord.api.user.UserProfile$GuildReference;
 import com.discord.utilities.time.TimeUtils;
 import d0.z.d.m;
 import f0.e0.c;
@@ -32,11 +31,11 @@ public final class UserProfileUtilsKt {
         return null;
     }
 
-    public static final Map<Long, UserProfile$GuildReference> getMutualGuildsById(UserProfile userProfile) {
+    public static final Map<Long, UserProfile.GuildReference> getMutualGuildsById(UserProfile userProfile) {
         m.checkNotNullParameter(userProfile, "$this$mutualGuildsById");
         LinkedHashMap linkedHashMap = new LinkedHashMap();
         for (Object obj : userProfile.d()) {
-            linkedHashMap.put(Long.valueOf(((UserProfile$GuildReference) obj).getId()), obj);
+            linkedHashMap.put(Long.valueOf(((UserProfile.GuildReference) obj).getId()), obj);
         }
         return c.A(linkedHashMap);
     }

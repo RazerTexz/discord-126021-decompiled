@@ -1,7 +1,7 @@
 package com.google.android.gms.measurement.internal;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import b.c.a.a0.d;
 import b.i.a.f.i.b.z9;
@@ -42,7 +42,7 @@ public final class zzn extends AbstractSafeParcelable {
     public final long u;
     public final long v;
     public final int w;
-    public static final Parcelable$Creator<zzn> CREATOR = new z9();
+    public static final Parcelable.Creator<zzn> CREATOR = new z9();
 
     public zzn(String str, String str2, String str3, long j, String str4, long j2, long j3, String str5, boolean z2, boolean z3, String str6, long j4, long j5, int i, boolean z4, boolean z5, boolean z6, String str7, Boolean bool, long j6, List<String> list, String str8, String str9) {
         d.w(str);

@@ -22,7 +22,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
@@ -128,9 +127,9 @@ public class StoreMessagesHolder {
         ListIterator listIterator = new ArrayList(this.messages.entrySet()).listIterator(this.messages.size());
         int i = 8;
         while (listIterator.hasPrevious() && i > 0) {
-            Map$Entry map$Entry = (Map$Entry) listIterator.previous();
-            long jLongValue = ((Long) map$Entry.getKey()).longValue();
-            Map<?, Message> map2 = (Map) map$Entry.getValue();
+            Map.Entry entry = (Map.Entry) listIterator.previous();
+            long jLongValue = ((Long) entry.getKey()).longValue();
+            Map<?, Message> map2 = (Map) entry.getValue();
             if (map2.size() > 0) {
                 map.put(Long.valueOf(jLongValue), computeMessagesCacheSubList(jLongValue, map2));
                 i--;
@@ -173,12 +172,12 @@ public class StoreMessagesHolder {
 
     public synchronized void init(boolean z2) {
         if (z2) {
-            for (Map$Entry<Long, List<Message>> map$Entry : this.cache.get().entrySet()) {
-                if (map$Entry != null && map$Entry.getKey() != null) {
-                    long jLongValue = map$Entry.getKey().longValue();
+            for (Map.Entry<Long, List<Message>> entry : this.cache.get().entrySet()) {
+                if (entry != null && entry.getKey() != null) {
+                    long jLongValue = entry.getKey().longValue();
                     this.messages.put(Long.valueOf(jLongValue), new TreeMap<>(MessageUtils.getSORT_BY_IDS_COMPARATOR()));
                     TreeMap<Long, Message> treeMap = this.messages.get(Long.valueOf(jLongValue));
-                    for (Message message : map$Entry.getValue()) {
+                    for (Message message : entry.getValue()) {
                         this.staleMessages.add(Long.valueOf(message.getId()));
                         treeMap.put(Long.valueOf(message.getId()), message);
                     }
@@ -191,9 +190,9 @@ public class StoreMessagesHolder {
     }
 
     public synchronized void invalidate() {
-        Iterator<Map$Entry<Long, TreeMap<Long, Message>>> it = this.messages.entrySet().iterator();
+        Iterator<Map.Entry<Long, TreeMap<Long, Message>>> it = this.messages.entrySet().iterator();
         while (it.hasNext()) {
-            Iterator<Map$Entry<Long, Message>> it2 = it.next().getValue().entrySet().iterator();
+            Iterator<Map.Entry<Long, Message>> it2 = it.next().getValue().entrySet().iterator();
             while (it2.hasNext()) {
                 this.staleMessages.add(Long.valueOf(it2.next().getValue().getId()));
             }
@@ -210,18 +209,18 @@ public class StoreMessagesHolder {
         return this.detachedChannels.contains(Long.valueOf(j));
     }
 
-    public synchronized void loadMessageChunks(@NonNull List<StoreMessagesLoader$ChannelChunk> list) {
-        for (StoreMessagesLoader$ChannelChunk storeMessagesLoader$ChannelChunk : list) {
-            List<Message> messages = storeMessagesLoader$ChannelChunk.getMessages();
-            long channelId = storeMessagesLoader$ChannelChunk.getChannelId();
+    public synchronized void loadMessageChunks(@NonNull List<StoreMessagesLoader.ChannelChunk> list) {
+        for (StoreMessagesLoader.ChannelChunk channelChunk : list) {
+            List<Message> messages = channelChunk.getMessages();
+            long channelId = channelChunk.getChannelId();
             if (this.activeChannels.contains(Long.valueOf(channelId))) {
                 TreeMap<Long, Message> treeMap = this.messages.get(Long.valueOf(channelId));
                 boolean zIsChannelDetached = isChannelDetached(channelId);
-                boolean zIsJump = storeMessagesLoader$ChannelChunk.isJump();
-                boolean zIsInitial = storeMessagesLoader$ChannelChunk.isInitial();
-                boolean zIsPresent = storeMessagesLoader$ChannelChunk.isPresent();
+                boolean zIsJump = channelChunk.isJump();
+                boolean zIsInitial = channelChunk.isInitial();
+                boolean zIsPresent = channelChunk.isPresent();
                 if (zIsInitial || zIsJump) {
-                    Iterator<Map$Entry<Long, Message>> it = treeMap.entrySet().iterator();
+                    Iterator<Map.Entry<Long, Message>> it = treeMap.entrySet().iterator();
                     while (it.hasNext()) {
                         Long lValueOf = Long.valueOf(it.next().getValue().getId());
                         if (this.staleMessages.contains(lValueOf) || zIsChannelDetached || zIsJump) {
@@ -233,7 +232,7 @@ public class StoreMessagesHolder {
                 for (Message message : messages) {
                     treeMap.put(Long.valueOf(message.getId()), message);
                 }
-                updateDetachedState(channelId, treeMap, storeMessagesLoader$ChannelChunk.isAppendingTop(), zIsPresent, zIsJump);
+                updateDetachedState(channelId, treeMap, channelChunk.isAppendingTop(), zIsPresent, zIsJump);
                 this.updatedChannels.add(Long.valueOf(channelId));
             }
         }
@@ -270,10 +269,10 @@ public class StoreMessagesHolder {
                 long jLongValue = it.next().longValue();
                 map.put(Long.valueOf(jLongValue), new ArrayList(this.messages.get(Long.valueOf(jLongValue)).values()));
             }
-            for (Map$Entry<Long, List<Message>> map$Entry : this.messagesSnapshot.entrySet()) {
-                long jLongValue2 = map$Entry.getKey().longValue();
+            for (Map.Entry<Long, List<Message>> entry : this.messagesSnapshot.entrySet()) {
+                long jLongValue2 = entry.getKey().longValue();
                 if (!this.updatedChannels.contains(Long.valueOf(jLongValue2))) {
-                    map.put(Long.valueOf(jLongValue2), map$Entry.getValue());
+                    map.put(Long.valueOf(jLongValue2), entry.getValue());
                 }
             }
             this.updatedChannels.clear();
@@ -311,10 +310,10 @@ public class StoreMessagesHolder {
             Map<String, MessageReaction> reactionsMap = message.getReactionsMap();
             if (reactionsMap.containsKey(strC)) {
                 LinkedHashMap linkedHashMap = new LinkedHashMap();
-                for (Map$Entry<String, MessageReaction> map$Entry : reactionsMap.entrySet()) {
-                    String key = map$Entry.getKey();
+                for (Map.Entry<String, MessageReaction> entry : reactionsMap.entrySet()) {
+                    String key = entry.getKey();
                     if (!key.equals(strC)) {
-                        linkedHashMap.put(key, map$Entry.getValue());
+                        linkedHashMap.put(key, entry.getValue());
                     }
                 }
                 treeMap.put(Long.valueOf(messageId), LocalMessageCreatorsKt.createWithReactions(message, linkedHashMap));
@@ -367,7 +366,7 @@ public class StoreMessagesHolder {
         boolean z5 = size >= 200;
         if (z5) {
             int i = z2 ? 100 : size - 100;
-            Iterator<Map$Entry<Long, Message>> it = map.entrySet().iterator();
+            Iterator<Map.Entry<Long, Message>> it = map.entrySet().iterator();
             int i2 = 0;
             while (it.hasNext()) {
                 it.next();

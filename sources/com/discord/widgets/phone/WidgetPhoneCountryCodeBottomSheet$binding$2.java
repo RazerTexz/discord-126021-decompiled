@@ -3,7 +3,7 @@ package com.discord.widgets.phone;
 import android.view.View;
 import android.widget.LinearLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetPhoneCountryCodeBottomSheetBinding;
 import com.google.android.material.textfield.TextInputLayout;
 import d0.z.d.k;
@@ -27,11 +27,11 @@ public final /* synthetic */ class WidgetPhoneCountryCodeBottomSheet$binding$2 e
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetPhoneCountryCodeBottomSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.phone_country_code_recycler;
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.phone_country_code_recycler);
+        int i = R.id.phone_country_code_recycler;
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.phone_country_code_recycler);
         if (recyclerView != null) {
-            i = R$id.phone_country_code_search;
-            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.phone_country_code_search);
+            i = R.id.phone_country_code_search;
+            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.phone_country_code_search);
             if (textInputLayout != null) {
                 return new WidgetPhoneCountryCodeBottomSheetBinding((LinearLayout) view, recyclerView, textInputLayout);
             }

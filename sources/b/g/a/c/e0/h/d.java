@@ -1,6 +1,6 @@
 package b.g.a.c.e0.h;
 
-import b.g.a.a.c0$a;
+import b.g.a.a.c0;
 
 /* JADX INFO: compiled from: AsPropertyTypeSerializer.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -23,8 +23,8 @@ public class d extends a {
     }
 
     @Override // b.g.a.c.e0.h.a, b.g.a.c.e0.g
-    public c0$a c() {
-        return c0$a.PROPERTY;
+    public c0.a c() {
+        return c0.a.PROPERTY;
     }
 
     @Override // b.g.a.c.e0.h.a

@@ -20,7 +20,7 @@ import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: StoreNavigation.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$noticeHandler$1 extends o implements Function2<AppActivity, StoreNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation, Boolean> {
+public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$noticeHandler$1 extends o implements Function2<AppActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation, Boolean> {
     public static final StoreNavigation$ActivityNavigationLifecycleCallbacks$noticeHandler$1 INSTANCE = new StoreNavigation$ActivityNavigationLifecycleCallbacks$noticeHandler$1();
 
     public StoreNavigation$ActivityNavigationLifecycleCallbacks$noticeHandler$1() {
@@ -28,23 +28,23 @@ public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$noticeHa
     }
 
     @Override // kotlin.jvm.functions.Function2
-    public /* bridge */ /* synthetic */ Boolean invoke(AppActivity appActivity, StoreNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation) {
-        return Boolean.valueOf(invoke2(appActivity, storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation));
+    public /* bridge */ /* synthetic */ Boolean invoke(AppActivity appActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation modelGlobalNavigation) {
+        return Boolean.valueOf(invoke2(appActivity, modelGlobalNavigation));
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final boolean invoke2(AppActivity appActivity, StoreNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation) {
+    public final boolean invoke2(AppActivity appActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation modelGlobalNavigation) {
         m.checkNotNullParameter(appActivity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
-        m.checkNotNullParameter(storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation, "model");
-        if (storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation.getNotice() == null) {
+        m.checkNotNullParameter(modelGlobalNavigation, "model");
+        if (modelGlobalNavigation.getNotice() == null) {
             return false;
         }
-        List<c<? extends AppComponent>> validScreens = storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation.getNotice().getValidScreens();
+        List<c<? extends AppComponent>> validScreens = modelGlobalNavigation.getNotice().getValidScreens();
         boolean z2 = true;
-        boolean z3 = validScreens != null && validScreens.contains(a0.getOrCreateKotlinClass(WidgetHome.class)) && appActivity.h(a0.getOrCreateKotlinClass(WidgetTabsHost.class)) && storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation.getNavigationTab() == NavigationTab.HOME;
-        boolean z4 = validScreens != null && validScreens.contains(a0.getOrCreateKotlinClass(WidgetUserMentions.class)) && appActivity.h(a0.getOrCreateKotlinClass(WidgetTabsHost.class)) && storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation.getNavigationTab() == NavigationTab.MENTIONS;
-        String name = storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation.getNotice().getName();
-        Objects.requireNonNull(r.k);
+        boolean z3 = validScreens != null && validScreens.contains(a0.getOrCreateKotlinClass(WidgetHome.class)) && appActivity.h(a0.getOrCreateKotlinClass(WidgetTabsHost.class)) && modelGlobalNavigation.getNavigationTab() == NavigationTab.HOME;
+        boolean z4 = validScreens != null && validScreens.contains(a0.getOrCreateKotlinClass(WidgetUserMentions.class)) && appActivity.h(a0.getOrCreateKotlinClass(WidgetTabsHost.class)) && modelGlobalNavigation.getNavigationTab() == NavigationTab.MENTIONS;
+        String name = modelGlobalNavigation.getNotice().getName();
+        Objects.requireNonNull(r.INSTANCE);
         boolean zAreEqual = m.areEqual(name, "Block Russian Purchases Dialog");
         if (validScreens != null && !appActivity.g(validScreens) && !z3 && !z4 && !zAreEqual) {
             z2 = false;
@@ -53,13 +53,13 @@ public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$noticeHa
             return false;
         }
         AppLog appLog = AppLog.g;
-        String name2 = storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation.getNotice().getName();
+        String name2 = modelGlobalNavigation.getNotice().getName();
         Objects.requireNonNull(appLog);
         m.checkNotNullParameter(name2, "noticeName");
         appLog.recordBreadcrumb("Notice [" + name2 + ']', NotificationCompat.CATEGORY_NAVIGATION);
-        if (storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation.getNotice().getAutoMarkSeen()) {
-            StoreNotices.markSeen$default(StoreStream.Companion.getNotices(), storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation.getNotice().getName(), 0L, 2, null);
+        if (modelGlobalNavigation.getNotice().getAutoMarkSeen()) {
+            StoreNotices.markSeen$default(StoreStream.INSTANCE.getNotices(), modelGlobalNavigation.getNotice().getName(), 0L, 2, null);
         }
-        return storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation.getNotice().show(appActivity);
+        return modelGlobalNavigation.getNotice().show(appActivity);
     }
 }

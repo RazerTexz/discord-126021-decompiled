@@ -4,7 +4,7 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.CheckBox;
 import android.widget.ScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetServerSettingsCreatorMonetizationOnboardingAcceptTermsBinding;
 import com.discord.views.LoadingButton;
 import d0.z.d.o;
@@ -30,15 +30,15 @@ public final class WidgetServerSettingsCreatorMonetizationOnboarding$acceptTerms
     @Override // kotlin.jvm.functions.Function0
     public final WidgetServerSettingsCreatorMonetizationOnboardingAcceptTermsBinding invoke() {
         View viewInflate = WidgetServerSettingsCreatorMonetizationOnboarding.access$getBinding$p(this.this$0).c.inflate();
-        int i = R$id.accept_terms_button;
-        LoadingButton loadingButton = (LoadingButton) viewInflate.findViewById(R$id.accept_terms_button);
+        int i = R.id.accept_terms_button;
+        LoadingButton loadingButton = (LoadingButton) viewInflate.findViewById(R.id.accept_terms_button);
         if (loadingButton != null) {
-            i = R$id.accept_terms_checkbox;
-            CheckBox checkBox = (CheckBox) viewInflate.findViewById(R$id.accept_terms_checkbox);
+            i = R.id.accept_terms_checkbox;
+            CheckBox checkBox = (CheckBox) viewInflate.findViewById(R.id.accept_terms_checkbox);
             if (checkBox != null) {
                 ScrollView scrollView = (ScrollView) viewInflate;
-                i = R$id.only_guild_owner_notice;
-                ViewStub viewStub = (ViewStub) viewInflate.findViewById(R$id.only_guild_owner_notice);
+                i = R.id.only_guild_owner_notice;
+                ViewStub viewStub = (ViewStub) viewInflate.findViewById(R.id.only_guild_owner_notice);
                 if (viewStub != null) {
                     return new WidgetServerSettingsCreatorMonetizationOnboardingAcceptTermsBinding(scrollView, loadingButton, checkBox, scrollView, viewStub);
                 }

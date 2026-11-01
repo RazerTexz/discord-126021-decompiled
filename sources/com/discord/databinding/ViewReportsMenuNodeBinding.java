@@ -14,8 +14,7 @@ import androidx.viewbinding.ViewBinding;
 import b.a.i.o2;
 import b.a.i.p2;
 import b.a.i.z4;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.widgets.mobile_reports.MobileReportsBottomButton;
 import com.discord.widgets.mobile_reports.MobileReportsBreadcrumbs;
@@ -100,116 +99,116 @@ public final class ViewReportsMenuNodeBinding implements ViewBinding {
 
     @NonNull
     public static ViewReportsMenuNodeBinding a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
-        View viewInflate = layoutInflater.inflate(R$layout.view_reports_menu_node, viewGroup, false);
+        View viewInflate = layoutInflater.inflate(R.layout.view_reports_menu_node, viewGroup, false);
         if (z2) {
             viewGroup.addView(viewInflate);
         }
-        View viewFindViewById = viewInflate.findViewById(R$id.mobile_reports_channel_preview);
-        int i = R$id.mobile_reports_node_header;
+        View viewFindViewById = viewInflate.findViewById(R.id.mobile_reports_channel_preview);
+        int i = R.id.mobile_reports_node_header;
         if (viewFindViewById != null) {
             p2 p2VarA = p2.a(viewFindViewById);
-            View viewFindViewById2 = viewInflate.findViewById(R$id.mobile_reports_directory_channel_preview);
+            View viewFindViewById2 = viewInflate.findViewById(R.id.mobile_reports_directory_channel_preview);
             if (viewFindViewById2 != null) {
                 p2 p2VarA2 = p2.a(viewFindViewById2);
-                View viewFindViewById3 = viewInflate.findViewById(R$id.mobile_reports_message_preview);
+                View viewFindViewById3 = viewInflate.findViewById(R.id.mobile_reports_message_preview);
                 if (viewFindViewById3 != null) {
-                    int i2 = R$id.chat_list_adapter_item_chat_attachment_icon;
-                    ImageView imageView = (ImageView) viewFindViewById3.findViewById(R$id.chat_list_adapter_item_chat_attachment_icon);
+                    int i2 = R.id.chat_list_adapter_item_chat_attachment_icon;
+                    ImageView imageView = (ImageView) viewFindViewById3.findViewById(R.id.chat_list_adapter_item_chat_attachment_icon);
                     if (imageView != null) {
-                        i2 = R$id.chat_list_adapter_item_text;
-                        LinkifiedTextView linkifiedTextView = (LinkifiedTextView) viewFindViewById3.findViewById(R$id.chat_list_adapter_item_text);
+                        i2 = R.id.chat_list_adapter_item_text;
+                        LinkifiedTextView linkifiedTextView = (LinkifiedTextView) viewFindViewById3.findViewById(R.id.chat_list_adapter_item_text);
                         if (linkifiedTextView != null) {
-                            i2 = R$id.chat_list_adapter_item_text_avatar;
-                            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewFindViewById3.findViewById(R$id.chat_list_adapter_item_text_avatar);
+                            i2 = R.id.chat_list_adapter_item_text_avatar;
+                            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewFindViewById3.findViewById(R.id.chat_list_adapter_item_text_avatar);
                             if (simpleDraweeView != null) {
-                                i2 = R$id.chat_list_adapter_item_text_name;
-                                TextView textView = (TextView) viewFindViewById3.findViewById(R$id.chat_list_adapter_item_text_name);
+                                i2 = R.id.chat_list_adapter_item_text_name;
+                                TextView textView = (TextView) viewFindViewById3.findViewById(R.id.chat_list_adapter_item_text_name);
                                 if (textView != null) {
-                                    i2 = R$id.report_message_end_guideline;
-                                    Guideline guideline = (Guideline) viewFindViewById3.findViewById(R$id.report_message_end_guideline);
+                                    i2 = R.id.report_message_end_guideline;
+                                    Guideline guideline = (Guideline) viewFindViewById3.findViewById(R.id.report_message_end_guideline);
                                     if (guideline != null) {
-                                        i2 = R$id.report_message_start_guideline;
-                                        Guideline guideline2 = (Guideline) viewFindViewById3.findViewById(R$id.report_message_start_guideline);
+                                        i2 = R.id.report_message_start_guideline;
+                                        Guideline guideline2 = (Guideline) viewFindViewById3.findViewById(R.id.report_message_start_guideline);
                                         if (guideline2 != null) {
-                                            i2 = R$id.report_message_top_guideline;
-                                            Guideline guideline3 = (Guideline) viewFindViewById3.findViewById(R$id.report_message_top_guideline);
+                                            i2 = R.id.report_message_top_guideline;
+                                            Guideline guideline3 = (Guideline) viewFindViewById3.findViewById(R.id.report_message_top_guideline);
                                             if (guideline3 != null) {
                                                 z4 z4Var = new z4((ConstraintLayout) viewFindViewById3, imageView, linkifiedTextView, simpleDraweeView, textView, guideline, guideline2, guideline3);
-                                                LinearLayout linearLayout = (LinearLayout) viewInflate.findViewById(R$id.mobile_reports_multiselect);
+                                                LinearLayout linearLayout = (LinearLayout) viewInflate.findViewById(R.id.mobile_reports_multiselect);
                                                 if (linearLayout != null) {
-                                                    View viewFindViewById4 = viewInflate.findViewById(R$id.mobile_reports_node_block_user);
+                                                    View viewFindViewById4 = viewInflate.findViewById(R.id.mobile_reports_node_block_user);
                                                     if (viewFindViewById4 != null) {
-                                                        int i3 = R$id.mobile_reports_block_user_avatar;
-                                                        SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) viewFindViewById4.findViewById(R$id.mobile_reports_block_user_avatar);
+                                                        int i3 = R.id.mobile_reports_block_user_avatar;
+                                                        SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) viewFindViewById4.findViewById(R.id.mobile_reports_block_user_avatar);
                                                         if (simpleDraweeView2 != null) {
-                                                            i3 = R$id.mobile_reports_block_user_button;
-                                                            MaterialButton materialButton = (MaterialButton) viewFindViewById4.findViewById(R$id.mobile_reports_block_user_button);
+                                                            i3 = R.id.mobile_reports_block_user_button;
+                                                            MaterialButton materialButton = (MaterialButton) viewFindViewById4.findViewById(R.id.mobile_reports_block_user_button);
                                                             if (materialButton != null) {
-                                                                i3 = R$id.mobile_reports_block_user_description;
-                                                                TextView textView2 = (TextView) viewFindViewById4.findViewById(R$id.mobile_reports_block_user_description);
+                                                                i3 = R.id.mobile_reports_block_user_description;
+                                                                TextView textView2 = (TextView) viewFindViewById4.findViewById(R.id.mobile_reports_block_user_description);
                                                                 if (textView2 != null) {
-                                                                    i3 = R$id.mobile_reports_block_user_header;
-                                                                    TextView textView3 = (TextView) viewFindViewById4.findViewById(R$id.mobile_reports_block_user_header);
+                                                                    i3 = R.id.mobile_reports_block_user_header;
+                                                                    TextView textView3 = (TextView) viewFindViewById4.findViewById(R.id.mobile_reports_block_user_header);
                                                                     if (textView3 != null) {
-                                                                        i3 = R$id.mobile_reports_block_user_name;
-                                                                        TextView textView4 = (TextView) viewFindViewById4.findViewById(R$id.mobile_reports_block_user_name);
+                                                                        i3 = R.id.mobile_reports_block_user_name;
+                                                                        TextView textView4 = (TextView) viewFindViewById4.findViewById(R.id.mobile_reports_block_user_name);
                                                                         if (textView4 != null) {
                                                                             o2 o2Var = new o2((LinearLayout) viewFindViewById4, simpleDraweeView2, materialButton, textView2, textView3, textView4);
-                                                                            MobileReportsBottomButton mobileReportsBottomButton = (MobileReportsBottomButton) viewInflate.findViewById(R$id.mobile_reports_node_bottom_button);
+                                                                            MobileReportsBottomButton mobileReportsBottomButton = (MobileReportsBottomButton) viewInflate.findViewById(R.id.mobile_reports_node_bottom_button);
                                                                             if (mobileReportsBottomButton != null) {
-                                                                                MobileReportsBreadcrumbs mobileReportsBreadcrumbs = (MobileReportsBreadcrumbs) viewInflate.findViewById(R$id.mobile_reports_node_breadcrumbs);
+                                                                                MobileReportsBreadcrumbs mobileReportsBreadcrumbs = (MobileReportsBreadcrumbs) viewInflate.findViewById(R.id.mobile_reports_node_breadcrumbs);
                                                                                 if (mobileReportsBreadcrumbs != null) {
-                                                                                    MaterialCardView materialCardView = (MaterialCardView) viewInflate.findViewById(R$id.mobile_reports_node_channel_preview);
+                                                                                    MaterialCardView materialCardView = (MaterialCardView) viewInflate.findViewById(R.id.mobile_reports_node_channel_preview);
                                                                                     if (materialCardView != null) {
-                                                                                        LinearLayout linearLayout2 = (LinearLayout) viewInflate.findViewById(R$id.mobile_reports_node_child_list);
+                                                                                        LinearLayout linearLayout2 = (LinearLayout) viewInflate.findViewById(R.id.mobile_reports_node_child_list);
                                                                                         if (linearLayout2 != null) {
-                                                                                            MaterialCardView materialCardView2 = (MaterialCardView) viewInflate.findViewById(R$id.mobile_reports_node_directory_channel_preview);
+                                                                                            MaterialCardView materialCardView2 = (MaterialCardView) viewInflate.findViewById(R.id.mobile_reports_node_directory_channel_preview);
                                                                                             if (materialCardView2 != null) {
-                                                                                                TextView textView5 = (TextView) viewInflate.findViewById(R$id.mobile_reports_node_directory_channel_preview_title);
+                                                                                                TextView textView5 = (TextView) viewInflate.findViewById(R.id.mobile_reports_node_directory_channel_preview_title);
                                                                                                 if (textView5 != null) {
-                                                                                                    TextView textView6 = (TextView) viewInflate.findViewById(R$id.mobile_reports_node_header);
+                                                                                                    TextView textView6 = (TextView) viewInflate.findViewById(R.id.mobile_reports_node_header);
                                                                                                     if (textView6 != null) {
-                                                                                                        MaterialCardView materialCardView3 = (MaterialCardView) viewInflate.findViewById(R$id.mobile_reports_node_info_box);
+                                                                                                        MaterialCardView materialCardView3 = (MaterialCardView) viewInflate.findViewById(R.id.mobile_reports_node_info_box);
                                                                                                         if (materialCardView3 != null) {
-                                                                                                            i = R$id.mobile_reports_node_info_text;
-                                                                                                            TextView textView7 = (TextView) viewInflate.findViewById(R$id.mobile_reports_node_info_text);
+                                                                                                            i = R.id.mobile_reports_node_info_text;
+                                                                                                            TextView textView7 = (TextView) viewInflate.findViewById(R.id.mobile_reports_node_info_text);
                                                                                                             if (textView7 != null) {
-                                                                                                                MaterialCardView materialCardView4 = (MaterialCardView) viewInflate.findViewById(R$id.mobile_reports_node_message_preview);
+                                                                                                                MaterialCardView materialCardView4 = (MaterialCardView) viewInflate.findViewById(R.id.mobile_reports_node_message_preview);
                                                                                                                 if (materialCardView4 != null) {
-                                                                                                                    i = R$id.mobile_reports_node_subheader;
-                                                                                                                    LinkifiedTextView linkifiedTextView2 = (LinkifiedTextView) viewInflate.findViewById(R$id.mobile_reports_node_subheader);
+                                                                                                                    i = R.id.mobile_reports_node_subheader;
+                                                                                                                    LinkifiedTextView linkifiedTextView2 = (LinkifiedTextView) viewInflate.findViewById(R.id.mobile_reports_node_subheader);
                                                                                                                     if (linkifiedTextView2 != null) {
-                                                                                                                        ImageView imageView2 = (ImageView) viewInflate.findViewById(R$id.mobile_reports_node_success_shield);
+                                                                                                                        ImageView imageView2 = (ImageView) viewInflate.findViewById(R.id.mobile_reports_node_success_shield);
                                                                                                                         if (imageView2 != null) {
                                                                                                                             return new ViewReportsMenuNodeBinding((ConstraintLayout) viewInflate, p2VarA, p2VarA2, z4Var, linearLayout, o2Var, mobileReportsBottomButton, mobileReportsBreadcrumbs, materialCardView, linearLayout2, materialCardView2, textView5, textView6, materialCardView3, textView7, materialCardView4, linkifiedTextView2, imageView2);
                                                                                                                         }
-                                                                                                                        i = R$id.mobile_reports_node_success_shield;
+                                                                                                                        i = R.id.mobile_reports_node_success_shield;
                                                                                                                     }
                                                                                                                 } else {
-                                                                                                                    i = R$id.mobile_reports_node_message_preview;
+                                                                                                                    i = R.id.mobile_reports_node_message_preview;
                                                                                                                 }
                                                                                                             }
                                                                                                         } else {
-                                                                                                            i = R$id.mobile_reports_node_info_box;
+                                                                                                            i = R.id.mobile_reports_node_info_box;
                                                                                                         }
                                                                                                     }
                                                                                                 } else {
-                                                                                                    i = R$id.mobile_reports_node_directory_channel_preview_title;
+                                                                                                    i = R.id.mobile_reports_node_directory_channel_preview_title;
                                                                                                 }
                                                                                             } else {
-                                                                                                i = R$id.mobile_reports_node_directory_channel_preview;
+                                                                                                i = R.id.mobile_reports_node_directory_channel_preview;
                                                                                             }
                                                                                         } else {
-                                                                                            i = R$id.mobile_reports_node_child_list;
+                                                                                            i = R.id.mobile_reports_node_child_list;
                                                                                         }
                                                                                     } else {
-                                                                                        i = R$id.mobile_reports_node_channel_preview;
+                                                                                        i = R.id.mobile_reports_node_channel_preview;
                                                                                     }
                                                                                 } else {
-                                                                                    i = R$id.mobile_reports_node_breadcrumbs;
+                                                                                    i = R.id.mobile_reports_node_breadcrumbs;
                                                                                 }
                                                                             } else {
-                                                                                i = R$id.mobile_reports_node_bottom_button;
+                                                                                i = R.id.mobile_reports_node_bottom_button;
                                                                             }
                                                                         }
                                                                     }
@@ -218,9 +217,9 @@ public final class ViewReportsMenuNodeBinding implements ViewBinding {
                                                         }
                                                         throw new NullPointerException("Missing required view with ID: ".concat(viewFindViewById4.getResources().getResourceName(i3)));
                                                     }
-                                                    i = R$id.mobile_reports_node_block_user;
+                                                    i = R.id.mobile_reports_node_block_user;
                                                 } else {
-                                                    i = R$id.mobile_reports_multiselect;
+                                                    i = R.id.mobile_reports_multiselect;
                                                 }
                                             }
                                         }
@@ -231,12 +230,12 @@ public final class ViewReportsMenuNodeBinding implements ViewBinding {
                     }
                     throw new NullPointerException("Missing required view with ID: ".concat(viewFindViewById3.getResources().getResourceName(i2)));
                 }
-                i = R$id.mobile_reports_message_preview;
+                i = R.id.mobile_reports_message_preview;
             } else {
-                i = R$id.mobile_reports_directory_channel_preview;
+                i = R.id.mobile_reports_directory_channel_preview;
             }
         } else {
-            i = R$id.mobile_reports_channel_preview;
+            i = R.id.mobile_reports_channel_preview;
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
     }

@@ -1,12 +1,12 @@
 package j0.l.a;
 
-import rx.Observable$b;
+import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Action0;
 
 /* JADX INFO: compiled from: OperatorDoOnUnsubscribe.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class w0<T> implements Observable$b<T, T> {
+public class w0<T> implements Observable.b<T, T> {
     public final Action0 j;
 
     public w0(Action0 action0) {

@@ -4,18 +4,42 @@ import a0.a.a.b;
 import b.d.b.a.a;
 import com.discord.models.user.User;
 import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
+import com.discord.utilities.user.UserUtils;
 import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: CollapsedUser.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class CollapsedUser implements MGRecyclerDataPayload {
-    public static final CollapsedUser$Companion Companion = new CollapsedUser$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final boolean emptySlot;
     private final long extraCount;
     private final String key;
     private final int type;
     private final User user;
+
+    /* JADX INFO: compiled from: CollapsedUser.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static /* synthetic */ CollapsedUser createEmptyUser$default(Companion companion, long j, int i, Object obj) {
+            if ((i & 1) != 0) {
+                j = 0;
+            }
+            return companion.createEmptyUser(j);
+        }
+
+        public final CollapsedUser createEmptyUser(long extraCount) {
+            return new CollapsedUser(UserUtils.INSTANCE.getEMPTY_USER(), true, Math.min(99L, extraCount));
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public CollapsedUser(User user, boolean z2, long j) {
         m.checkNotNullParameter(user, "user");

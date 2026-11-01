@@ -1,7 +1,7 @@
 package com.google.android.gms.internal.icing;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.a.f.h.k.n;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
@@ -12,7 +12,7 @@ public final class zzi extends AbstractSafeParcelable {
     public final String j;
     public final String k;
     public final String l;
-    public static final Parcelable$Creator<zzi> CREATOR = new n();
+    public static final Parcelable.Creator<zzi> CREATOR = new n();
 
     public zzi(String str, String str2, String str3) {
         this.j = str;

@@ -3,7 +3,7 @@ package b.i.a.f.e.p;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.os.Binder;
 import android.os.Process;
 import androidx.annotation.RecentlyNonNull;
@@ -21,12 +21,12 @@ public class a {
     }
 
     @RecentlyNonNull
-    public ApplicationInfo a(@RecentlyNonNull String str, int i) throws PackageManager$NameNotFoundException {
+    public ApplicationInfo a(@RecentlyNonNull String str, int i) throws PackageManager.NameNotFoundException {
         return this.a.getPackageManager().getApplicationInfo(str, i);
     }
 
     @RecentlyNonNull
-    public PackageInfo b(@RecentlyNonNull String str, int i) throws PackageManager$NameNotFoundException {
+    public PackageInfo b(@RecentlyNonNull String str, int i) throws PackageManager.NameNotFoundException {
         return this.a.getPackageManager().getPackageInfo(str, i);
     }
 

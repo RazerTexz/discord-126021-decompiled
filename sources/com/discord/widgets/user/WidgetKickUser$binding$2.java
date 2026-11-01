@@ -3,7 +3,7 @@ package com.discord.widgets.user;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetKickUserBinding;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -28,20 +28,20 @@ public final /* synthetic */ class WidgetKickUser$binding$2 extends k implements
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetKickUserBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.kick_user_body;
-        TextView textView = (TextView) view.findViewById(R$id.kick_user_body);
+        int i = R.id.kick_user_body;
+        TextView textView = (TextView) view.findViewById(R.id.kick_user_body);
         if (textView != null) {
-            i = R$id.kick_user_cancel;
-            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.kick_user_cancel);
+            i = R.id.kick_user_cancel;
+            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.kick_user_cancel);
             if (materialButton != null) {
-                i = R$id.kick_user_confirm;
-                MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.kick_user_confirm);
+                i = R.id.kick_user_confirm;
+                MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.kick_user_confirm);
                 if (materialButton2 != null) {
-                    i = R$id.kick_user_reason;
-                    TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.kick_user_reason);
+                    i = R.id.kick_user_reason;
+                    TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.kick_user_reason);
                     if (textInputLayout != null) {
-                        i = R$id.kick_user_title;
-                        TextView textView2 = (TextView) view.findViewById(R$id.kick_user_title);
+                        i = R.id.kick_user_title;
+                        TextView textView2 = (TextView) view.findViewById(R.id.kick_user_title);
                         if (textView2 != null) {
                             return new WidgetKickUserBinding((LinearLayout) view, textView, materialButton, materialButton2, textInputLayout, textView2);
                         }

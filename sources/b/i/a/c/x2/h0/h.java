@@ -1,7 +1,7 @@
 package b.i.a.c.x2.h0;
 
 import b.i.a.c.f3.e0;
-import b.i.a.c.x2.t$a;
+import b.i.a.c.x2.t;
 import b.i.a.c.x2.u;
 
 /* JADX INFO: compiled from: VbriSeeker.java */
@@ -37,17 +37,17 @@ public final class h implements g {
     }
 
     @Override // b.i.a.c.x2.t
-    public t$a h(long j) {
+    public t.a h(long j) {
         int iE = e0.e(this.a, j, true, true);
         long[] jArr = this.a;
         long j2 = jArr[iE];
         long[] jArr2 = this.f1207b;
         u uVar = new u(j2, jArr2[iE]);
         if (j2 >= j || iE == jArr.length - 1) {
-            return new t$a(uVar);
+            return new t.a(uVar);
         }
         int i = iE + 1;
-        return new t$a(uVar, new u(jArr[i], jArr2[i]));
+        return new t.a(uVar, new u(jArr[i], jArr2[i]));
     }
 
     @Override // b.i.a.c.x2.t

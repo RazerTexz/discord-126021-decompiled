@@ -1,8 +1,8 @@
 package s.a.c2;
 
 import com.discord.widgets.chat.input.MentionUtilsKt;
-import d0.k$a;
 import d0.z.d.e0;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
@@ -20,22 +20,78 @@ public abstract class c<E> implements s<E> {
     public final s.a.a.i k = new s.a.a.i();
     public volatile Object onCloseHandler = null;
 
+    /* JADX INFO: compiled from: AbstractChannel.kt */
+    public final class a<E> extends r {
+        public final E m;
+
+        public a(E e) {
+            this.m = e;
+        }
+
+        @Override // s.a.c2.r
+        public void q() {
+        }
+
+        @Override // s.a.c2.r
+        public Object r() {
+            return this.m;
+        }
+
+        @Override // s.a.c2.r
+        public void s(i<?> iVar) {
+        }
+
+        @Override // s.a.c2.r
+        public s.a.a.t t(s.a.a.k.b bVar) {
+            return s.a.m.a;
+        }
+
+        @Override // s.a.a.k
+        public String toString() {
+            StringBuilder sbU = b.d.b.a.a.U("SendBuffered@");
+            sbU.append(b.i.a.f.e.o.f.l0(this));
+            sbU.append('(');
+            sbU.append(this.m);
+            sbU.append(')');
+            return sbU.toString();
+        }
+    }
+
+    /* JADX INFO: compiled from: LockFreeLinkedList.kt */
+    public final class b extends s.a.a.k.a {
+        public final /* synthetic */ c d;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public b(s.a.a.k kVar, s.a.a.k kVar2, c cVar) {
+            super(kVar2);
+            this.d = cVar;
+        }
+
+        @Override // s.a.a.d
+        public Object c(s.a.a.k kVar) {
+            if (this.d.i()) {
+                return null;
+            }
+            return s.a.a.j.a;
+        }
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public c(Function1<? super E, Unit> function1) {
         this.l = function1;
     }
 
-    public static final void a(c cVar, Continuation continuation, Object obj, i iVar) {
+    public static final void a(c cVar, Continuation continuation, Object obj, i iVar) throws IllegalAccessException, InvocationTargetException {
         UndeliveredElementException undeliveredElementExceptionQ;
         cVar.f(iVar);
         Throwable thW = iVar.w();
         Function1<E, Unit> function1 = cVar.l;
         if (function1 == null || (undeliveredElementExceptionQ = b.i.a.f.e.o.f.q(function1, obj, null, 2)) == null) {
-            k$a k_a = d0.k.j;
+            d0.k.a aVar = d0.k.j;
             ((s.a.l) continuation).resumeWith(d0.k.m97constructorimpl(d0.l.createFailure(thW)));
         } else {
             d0.b.addSuppressed(undeliveredElementExceptionQ, thW);
-            k$a k_a2 = d0.k.j;
+            d0.k.a aVar2 = d0.k.j;
             ((s.a.l) continuation).resumeWith(d0.k.m97constructorimpl(d0.l.createFailure(undeliveredElementExceptionQ)));
         }
     }
@@ -57,24 +113,24 @@ public abstract class c<E> implements s<E> {
             return null;
         }
         s.a.a.k kVar2 = this.k;
-        c$b c_b = new c$b(rVar, rVar, this);
+        b bVar = new b(rVar, rVar, this);
         do {
             s.a.a.k kVarK2 = kVar2.k();
             if (kVarK2 instanceof p) {
                 return kVarK2;
             }
-            iP = kVarK2.p(rVar, kVar2, c_b);
+            iP = kVarK2.p(rVar, kVar2, bVar);
             z2 = true;
             if (iP != 1) {
             }
             if (z2) {
                 return null;
             }
-            return b.e;
+            return s.a.c2.b.e;
         } while (iP != 2);
         z2 = false;
         if (z2) {
-            return b.e;
+            return s.a.c2.b.e;
         }
         return null;
     }
@@ -134,7 +190,7 @@ public abstract class c<E> implements s<E> {
         }
     }
 
-    public final Throwable g(E e, i<?> iVar) {
+    public final Throwable g(E e, i<?> iVar) throws IllegalAccessException, InvocationTargetException {
         UndeliveredElementException undeliveredElementExceptionQ;
         f(iVar);
         Function1<E, Unit> function1 = this.l;
@@ -171,7 +227,7 @@ public abstract class c<E> implements s<E> {
             iVar = (i) this.k.k();
         }
         f(iVar);
-        if (z2 && (obj = this.onCloseHandler) != null && obj != (tVar = b.f) && j.compareAndSet(this, obj, tVar)) {
+        if (z2 && (obj = this.onCloseHandler) != null && obj != (tVar = s.a.c2.b.f) && j.compareAndSet(this, obj, tVar)) {
             ((Function1) e0.beforeCheckcastToFunctionOfArity(obj, 1)).invoke(th);
         }
         return z2;
@@ -182,7 +238,7 @@ public abstract class c<E> implements s<E> {
         do {
             pVarN = n();
             if (pVarN == null) {
-                return b.c;
+                return s.a.c2.b.c;
             }
         } while (pVarN.d(e, null) == null);
         pVarN.c(e);
@@ -194,13 +250,13 @@ public abstract class c<E> implements s<E> {
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = j;
         if (!atomicReferenceFieldUpdater.compareAndSet(this, null, function1)) {
             Object obj = this.onCloseHandler;
-            if (obj != b.f) {
+            if (obj != s.a.c2.b.f) {
                 throw new IllegalStateException(b.d.b.a.a.v("Another handler was already registered: ", obj));
             }
             throw new IllegalStateException("Another handler was already registered and successfully invoked");
         }
         i<?> iVarE = e();
-        if (iVarE == null || !atomicReferenceFieldUpdater.compareAndSet(this, function1, b.f)) {
+        if (iVarE == null || !atomicReferenceFieldUpdater.compareAndSet(this, function1, s.a.c2.b.f)) {
             return;
         }
         function1.invoke(iVarE.m);
@@ -239,7 +295,7 @@ public abstract class c<E> implements s<E> {
     @Override // s.a.c2.s
     public final Object o(E e, Continuation<? super Unit> continuation) throws Throwable {
         Object objK;
-        if (k(e) == b.f3834b) {
+        if (k(e) == s.a.c2.b.f3834b) {
             return Unit.a;
         }
         s.a.l lVarO0 = b.i.a.f.e.o.f.o0(d0.w.h.b.intercepted(continuation));
@@ -255,17 +311,17 @@ public abstract class c<E> implements s<E> {
                     a(this, lVarO0, e, (i) objC);
                     break;
                 }
-                if (objC != b.e && !(objC instanceof n)) {
+                if (objC != s.a.c2.b.e && !(objC instanceof n)) {
                     throw new IllegalStateException(b.d.b.a.a.v("enqueueSend returned ", objC).toString());
                 }
                 objK = k(e);
-                if (objK == b.f3834b) {
+                if (objK == s.a.c2.b.f3834b) {
                     Unit unit = Unit.a;
-                    k$a k_a = d0.k.j;
+                    d0.k.a aVar = d0.k.j;
                     lVarO0.resumeWith(d0.k.m97constructorimpl(unit));
                     break;
                 }
-                if (objK == b.c) {
+                if (objK == s.a.c2.b.c) {
                     if (objK instanceof i) {
                         throw new IllegalStateException(b.d.b.a.a.v("offerInternal returned ", objK).toString());
                     }
@@ -274,13 +330,13 @@ public abstract class c<E> implements s<E> {
                 }
             } else {
                 objK = k(e);
-                if (objK == b.f3834b) {
+                if (objK == s.a.c2.b.f3834b) {
                     Unit unit2 = Unit.a;
-                    k$a k_a2 = d0.k.j;
+                    d0.k.a aVar2 = d0.k.j;
                     lVarO0.resumeWith(d0.k.m97constructorimpl(unit2));
                     break;
                 }
-                if (objK == b.c) {
+                if (objK == s.a.c2.b.c) {
                     if (objK instanceof i) {
                         throw new IllegalStateException(b.d.b.a.a.v("offerInternal returned ", objK).toString());
                     }
@@ -299,10 +355,10 @@ public abstract class c<E> implements s<E> {
     @Override // s.a.c2.s
     public final boolean offer(E e) throws Throwable {
         Object objK = k(e);
-        if (objK == b.f3834b) {
+        if (objK == s.a.c2.b.f3834b) {
             return true;
         }
-        if (objK != b.c) {
+        if (objK != s.a.c2.b.c) {
             if (!(objK instanceof i)) {
                 throw new IllegalStateException(b.d.b.a.a.v("offerInternal returned ", objK).toString());
             }

@@ -13,20 +13,20 @@ import java.util.concurrent.Executor;
 /* JADX INFO: loaded from: classes3.dex */
 public class g0 implements Callable<Task<Void>> {
     public final /* synthetic */ Boolean j;
-    public final /* synthetic */ x$e k;
+    public final /* synthetic */ x.e k;
 
-    public g0(x$e x_e, Boolean bool) {
-        this.k = x_e;
+    public g0(x.e eVar, Boolean bool) {
+        this.k = eVar;
         this.j = bool;
     }
 
     @Override // java.util.concurrent.Callable
     public Task<Void> call() throws Exception {
-        b.i.c.m.d.q.a aVar = this.k.c.u;
+        b.i.c.m.d.q.a aVar = x.this.u;
         Objects.requireNonNull(aVar);
         b.i.c.m.d.b.a.b("Checking for crash reports...");
-        File[] fileArrQ = ((x$k) aVar.a).a.q();
-        File[] fileArrListFiles = ((x$k) aVar.a).a.m().listFiles();
+        File[] fileArrQ = x.this.q();
+        File[] fileArrListFiles = x.this.m().listFiles();
         if (fileArrListFiles == null) {
             fileArrListFiles = new File[0];
         }
@@ -49,27 +49,27 @@ public class g0 implements Callable<Task<Void>> {
         if (this.j.booleanValue()) {
             b.i.c.m.d.b.a.b("Reports are being sent.");
             boolean zBooleanValue = this.j.booleanValue();
-            q0 q0Var = this.k.c.j;
+            q0 q0Var = x.this.j;
             Objects.requireNonNull(q0Var);
             if (!zBooleanValue) {
                 throw new IllegalStateException("An invalid data collection token was used.");
             }
             q0Var.h.b(null);
-            x$e x_e = this.k;
-            Executor executor = x_e.c.m.a;
-            return x_e.a.r(executor, new f0(this, linkedList, zBooleanValue, executor));
+            x.e eVar = this.k;
+            Executor executor = x.this.m.a;
+            return eVar.a.r(executor, new f0(this, linkedList, zBooleanValue, executor));
         }
         b.i.c.m.d.b.a.b("Reports are being deleted.");
-        for (File file3 : x.r(this.k.c.l(), m.a)) {
+        for (File file3 : x.r(x.this.l(), m.a)) {
             file3.delete();
         }
-        Objects.requireNonNull(this.k.c.u);
+        Objects.requireNonNull(x.this.u);
         Iterator it = linkedList.iterator();
         while (it.hasNext()) {
             ((b.i.c.m.d.q.c.c) it.next()).remove();
         }
-        this.k.c.A.f1680b.b();
-        this.k.c.E.b(null);
+        x.this.A.f1680b.b();
+        x.this.E.b(null);
         return b.i.a.f.e.o.f.Z(null);
     }
 }

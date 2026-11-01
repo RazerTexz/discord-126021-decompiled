@@ -48,11 +48,11 @@ public final class l0 extends z {
             }
             b bVar = this.h;
             bVar.t = null;
-            b$a b_a = bVar.p;
-            if (b_a == null) {
+            b.a aVar = bVar.p;
+            if (aVar == null) {
                 return true;
             }
-            b_a.i(null);
+            aVar.i(null);
             return true;
         } catch (RemoteException unused) {
             Log.w("GmsClient", "service probably died");
@@ -62,9 +62,9 @@ public final class l0 extends z {
 
     @Override // b.i.a.f.e.k.z
     public final void e(ConnectionResult connectionResult) {
-        b$b b_b = this.h.q;
-        if (b_b != null) {
-            b_b.g(connectionResult);
+        b.InterfaceC0114b interfaceC0114b = this.h.q;
+        if (interfaceC0114b != null) {
+            interfaceC0114b.g(connectionResult);
         }
         Objects.requireNonNull(this.h);
         System.currentTimeMillis();

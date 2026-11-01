@@ -2,10 +2,13 @@ package androidx.view;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import androidx.annotation.NonNull;
 import b.d.b.a.a;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"RestrictedApi"})
@@ -19,8 +22,8 @@ public final class Recreator implements GenericLifecycleObserver {
     }
 
     @Override // androidx.view.LifecycleEventObserver
-    public void onStateChanged(LifecycleOwner lifecycleOwner, Lifecycle$Event lifecycle$Event) {
-        if (lifecycle$Event != Lifecycle$Event.ON_CREATE) {
+    public void onStateChanged(LifecycleOwner lifecycleOwner, Lifecycle.Event event) {
+        if (event != Lifecycle.Event.ON_CREATE) {
             throw new AssertionError("Next event must be ON_CREATE");
         }
         lifecycleOwner.getLifecycle().removeObserver(this);
@@ -40,12 +43,12 @@ public final class Recreator implements GenericLifecycleObserver {
 
     private void reflectiveNew(String str) {
         try {
-            Class<? extends U> clsAsSubclass = Class.forName(str, false, Recreator.class.getClassLoader()).asSubclass(SavedStateRegistry$AutoRecreated.class);
+            Class<? extends U> clsAsSubclass = Class.forName(str, false, Recreator.class.getClassLoader()).asSubclass(SavedStateRegistry.AutoRecreated.class);
             try {
                 Constructor declaredConstructor = clsAsSubclass.getDeclaredConstructor(new Class[0]);
                 declaredConstructor.setAccessible(true);
                 try {
-                    ((SavedStateRegistry$AutoRecreated) declaredConstructor.newInstance(new Object[0])).onRecreated(this.mOwner);
+                    ((SavedStateRegistry.AutoRecreated) declaredConstructor.newInstance(new Object[0])).onRecreated(this.mOwner);
                 } catch (Exception e) {
                     throw new RuntimeException(a.w("Failed to instantiate ", str), e);
                 }
@@ -57,6 +60,26 @@ public final class Recreator implements GenericLifecycleObserver {
             }
         } catch (ClassNotFoundException e3) {
             throw new RuntimeException(a.y("Class ", str, " wasn't found"), e3);
+        }
+    }
+
+    public final class SavedStateProvider implements SavedStateRegistry.SavedStateProvider {
+        public final Set<String> mClasses = new HashSet();
+
+        public SavedStateProvider(SavedStateRegistry savedStateRegistry) {
+            savedStateRegistry.registerSavedStateProvider(Recreator.COMPONENT_KEY, this);
+        }
+
+        public void add(String str) {
+            this.mClasses.add(str);
+        }
+
+        @Override // androidx.savedstate.SavedStateRegistry.SavedStateProvider
+        @NonNull
+        public Bundle saveState() {
+            Bundle bundle = new Bundle();
+            bundle.putStringArrayList(Recreator.CLASSES_KEY, new ArrayList<>(this.mClasses));
+            return bundle;
         }
     }
 }

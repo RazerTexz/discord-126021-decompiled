@@ -9,30 +9,26 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.AudioAttributes$Builder;
+import android.media.AudioAttributes;
 import android.net.Uri;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.SystemClock;
+import android.view.View;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationCompat$Action;
-import androidx.core.app.NotificationCompat$BigTextStyle;
-import androidx.core.app.NotificationCompat$Builder;
-import androidx.core.app.NotificationCompat$MessagingStyle;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.app.Person;
-import androidx.core.app.Person$Builder;
 import androidx.core.graphics.drawable.IconCompat;
-import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$attr;
-import com.discord.app.AppActivity$Main;
+import com.discord.R;
+import com.discord.app.AppActivity;
 import com.discord.app.AppLog;
 import com.discord.utilities.ShareUtils;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.extensions.PendingIntentExtensionsKt;
-import com.discord.utilities.images.MGImagesBitmap$CloseableBitmaps;
-import com.discord.utilities.intent.IntentUtils$RouteBuilders;
+import com.discord.utilities.images.MGImagesBitmap;
+import com.discord.utilities.intent.IntentUtils;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.media.AppSound;
 import com.discord.utilities.rx.ObservableExtensionsKt;
@@ -40,26 +36,34 @@ import com.discord.utilities.time.ClockFactory;
 import com.discord.widgets.chat.input.MentionUtilsKt;
 import com.discord.widgets.notice.NoticePopup;
 import d0.g0.t;
-import d0.o;
+import d0.t.g0;
 import d0.t.h0;
 import d0.t.n;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import j0.l.a.d;
 import j0.l.a.d1;
 import j0.l.a.f1;
 import j0.l.a.r;
+import j0.l.e.k;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import kotlin.Pair;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import rx.Observable;
+import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
 /* JADX INFO: compiled from: NotificationRenderer.kt */
@@ -71,33 +75,288 @@ public final class NotificationRenderer {
     private static final int NOTIFICATION_LIGHT_PERIOD = 1500;
     public static final NotificationRenderer INSTANCE = new NotificationRenderer();
 
+    /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationRenderer$clear$1, reason: invalid class name */
+    /* JADX INFO: compiled from: NotificationRenderer.kt */
+    public final class AnonymousClass1 extends o implements Function1<Integer, Unit> {
+        public final /* synthetic */ Context $context;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Context context) {
+            super(1);
+            this.$context = context;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Integer num) {
+            invoke(num.intValue());
+            return Unit.a;
+        }
+
+        public final void invoke(int i) {
+            Context context = this.$context;
+            if (context != null) {
+                NotificationManagerCompat.from(context).cancel(i);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationRenderer$displayInApp$1, reason: invalid class name */
+    /* JADX INFO: compiled from: NotificationRenderer.kt */
+    public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+        public final /* synthetic */ Context $context;
+        public final /* synthetic */ NotificationData $notificationData;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(NotificationData notificationData, Context context) {
+            super(1);
+            this.$notificationData = notificationData;
+            this.$context = context;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) throws PendingIntent.CanceledException {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) throws PendingIntent.CanceledException {
+            m.checkNotNullParameter(view, "it");
+            this.$notificationData.getContentIntentInApp(this.$context).send();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationRenderer$loadNotificationBitmaps$1, reason: invalid class name */
+    /* JADX INFO: compiled from: NotificationRenderer.kt */
+    public final class AnonymousClass1<T, R> implements b<MGImagesBitmap.CloseableBitmaps, Observable<? extends MGImagesBitmap.CloseableBitmaps>> {
+        public final /* synthetic */ NotificationData $notification;
+
+        /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationRenderer$loadNotificationBitmaps$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: NotificationRenderer.kt */
+        public final class C03321<T, R> implements b<Bitmap, MGImagesBitmap.CloseableBitmaps> {
+            public final /* synthetic */ MGImagesBitmap.CloseableBitmaps $adaptive;
+
+            public C03321(MGImagesBitmap.CloseableBitmaps closeableBitmaps) {
+                this.$adaptive = closeableBitmaps;
+            }
+
+            @Override // j0.k.b
+            public /* bridge */ /* synthetic */ MGImagesBitmap.CloseableBitmaps call(Bitmap bitmap) {
+                return call2(bitmap);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final MGImagesBitmap.CloseableBitmaps call2(Bitmap bitmap) {
+                return this.$adaptive.plus(new MGImagesBitmap.CloseableBitmaps(g0.mapOf(d0.o.to(NotificationRenderer.NON_ADAPTIVE_NOTIFICATION_ICON, bitmap)), false, 2, null));
+            }
+        }
+
+        public AnonymousClass1(NotificationData notificationData) {
+            this.$notification = notificationData;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends MGImagesBitmap.CloseableBitmaps> call(MGImagesBitmap.CloseableBitmaps closeableBitmaps) {
+            return call2(closeableBitmaps);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends MGImagesBitmap.CloseableBitmaps> call2(MGImagesBitmap.CloseableBitmaps closeableBitmaps) {
+            if (m.areEqual(this.$notification.getType(), NotificationData.TYPE_GENERIC_PUSH_NOTIFICATION_SENT)) {
+                if (this.$notification.getIconUrl().length() == 0) {
+                    return new k(closeableBitmaps);
+                }
+            }
+            return MGImagesBitmap.INSTANCE.getBitmap(this.$notification.getIconUrl(), true).G(new C03321(closeableBitmaps));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationRenderer$displayAndUpdateCache$4, reason: invalid class name */
+    /* JADX INFO: compiled from: NotificationRenderer.kt */
+    public final /* synthetic */ class AnonymousClass4 extends d0.z.d.k implements Function1<Subscription, Unit> {
+        public AnonymousClass4(CompositeSubscription compositeSubscription) {
+            super(1, compositeSubscription, CompositeSubscription.class, "add", "add(Lrx/Subscription;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            ((CompositeSubscription) this.receiver).a(subscription);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationRenderer$displayAndUpdateCache$5, reason: invalid class name */
+    /* JADX INFO: compiled from: NotificationRenderer.kt */
+    public final class AnonymousClass5 extends o implements Function1<Long, Unit> {
+        public final /* synthetic */ Context $context;
+        public final /* synthetic */ NotificationData.DisplayPayload $displayPayload;
+        public final /* synthetic */ NotificationData $notification;
+        public final /* synthetic */ NotificationCompat.Builder $notificationBuilder;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass5(Context context, NotificationData.DisplayPayload displayPayload, NotificationCompat.Builder builder, NotificationData notificationData) {
+            super(1);
+            this.$context = context;
+            this.$displayPayload = displayPayload;
+            this.$notificationBuilder = builder;
+            this.$notification = notificationData;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            NotificationRenderer notificationRenderer = NotificationRenderer.INSTANCE;
+            NotificationRenderer.access$displayNotification(notificationRenderer, this.$context, this.$displayPayload.getId(), this.$notificationBuilder);
+            NotificationRenderer.pushShortcut$default(notificationRenderer, this.$context, this.$notification, this.$notificationBuilder, null, 8, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationRenderer$displayAndUpdateCache$6, reason: invalid class name */
+    /* JADX INFO: compiled from: NotificationRenderer.kt */
+    public final /* synthetic */ class AnonymousClass6 extends d0.z.d.k implements Function1<Subscription, Unit> {
+        public AnonymousClass6(CompositeSubscription compositeSubscription) {
+            super(1, compositeSubscription, CompositeSubscription.class, "add", "add(Lrx/Subscription;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            ((CompositeSubscription) this.receiver).a(subscription);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.fcm.NotificationRenderer$displayAndUpdateCache$7, reason: invalid class name */
+    /* JADX INFO: compiled from: NotificationRenderer.kt */
+    public final class AnonymousClass7 extends o implements Function1<MGImagesBitmap.CloseableBitmaps, Unit> {
+        public final /* synthetic */ Context $context;
+        public final /* synthetic */ NotificationData.DisplayPayload $displayPayload;
+        public final /* synthetic */ List $displayPayloadExtras;
+        public final /* synthetic */ NotificationData $notification;
+        public final /* synthetic */ NotificationCompat.Builder $notificationBuilder;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass7(NotificationData notificationData, NotificationCompat.Builder builder, List list, Context context, NotificationData.DisplayPayload displayPayload) {
+            super(1);
+            this.$notification = notificationData;
+            this.$notificationBuilder = builder;
+            this.$displayPayloadExtras = list;
+            this.$context = context;
+            this.$displayPayload = displayPayload;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(MGImagesBitmap.CloseableBitmaps closeableBitmaps) throws IllegalAccessException, IOException, InvocationTargetException {
+            invoke2(closeableBitmaps);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(MGImagesBitmap.CloseableBitmaps closeableBitmaps) throws IllegalAccessException, IOException, InvocationTargetException {
+            IconCompat iconCompatCreateWithBitmap;
+            m.checkNotNullParameter(closeableBitmaps, "bitmapsForIconUris");
+            try {
+                Bitmap bitmap = (Bitmap) closeableBitmaps.get(NotificationRenderer.NON_ADAPTIVE_NOTIFICATION_ICON);
+                if (bitmap == null) {
+                    bitmap = (Bitmap) closeableBitmaps.get((Object) this.$notification.getIconUrl());
+                }
+                if (bitmap != null) {
+                    this.$notificationBuilder.setLargeIcon(bitmap);
+                }
+                if (!this.$displayPayloadExtras.isEmpty()) {
+                    this.$notificationBuilder.setNumber(this.$displayPayloadExtras.size());
+                    NotificationCompat.Builder builder = this.$notificationBuilder;
+                    NotificationRenderer notificationRenderer = NotificationRenderer.INSTANCE;
+                    builder.setStyle(NotificationRenderer.access$getMessageStyle(notificationRenderer, this.$context, this.$notification, this.$displayPayloadExtras, closeableBitmaps));
+                    Bitmap bitmap2 = (Bitmap) closeableBitmaps.get((Object) this.$notification.getIconUrl());
+                    if (bitmap2 == null || (iconCompatCreateWithBitmap = IconCompat.createWithAdaptiveBitmap(bitmap2)) == null) {
+                        Bitmap bitmap3 = (Bitmap) closeableBitmaps.get(NotificationRenderer.NON_ADAPTIVE_NOTIFICATION_ICON);
+                        iconCompatCreateWithBitmap = bitmap3 != null ? IconCompat.createWithBitmap(bitmap3) : null;
+                    }
+                    NotificationRenderer.access$pushShortcut(notificationRenderer, this.$context, this.$notification, this.$notificationBuilder, iconCompatCreateWithBitmap);
+                }
+                NotificationRenderer.access$displayNotification(NotificationRenderer.INSTANCE, this.$context, this.$displayPayload.getId(), this.$notificationBuilder);
+                d0.y.b.closeFinally(closeableBitmaps, null);
+            } catch (Throwable th) {
+                try {
+                    throw th;
+                } catch (Throwable th2) {
+                    d0.y.b.closeFinally(closeableBitmaps, th);
+                    throw th2;
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: NotificationRenderer.kt */
+    public final class NotificationDisplaySubscriptionManager {
+        public static final NotificationDisplaySubscriptionManager INSTANCE = new NotificationDisplaySubscriptionManager();
+        private static final HashMap<Integer, Subscription> notificationDisplaySubscriptions = new HashMap<>();
+
+        private NotificationDisplaySubscriptionManager() {
+        }
+
+        public final void add(int displayPayloadId, Subscription subscription) {
+            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            HashMap<Integer, Subscription> map = notificationDisplaySubscriptions;
+            synchronized (map) {
+                INSTANCE.cancel(displayPayloadId);
+                map.put(Integer.valueOf(displayPayloadId), subscription);
+            }
+        }
+
+        public final void cancel(int displayPayloadId) {
+            HashMap<Integer, Subscription> map = notificationDisplaySubscriptions;
+            synchronized (map) {
+                Subscription subscriptionRemove = map.remove(Integer.valueOf(displayPayloadId));
+                if (subscriptionRemove != null) {
+                    subscriptionRemove.unsubscribe();
+                }
+            }
+        }
+    }
+
     private NotificationRenderer() {
     }
 
-    public static final /* synthetic */ void access$displayNotification(NotificationRenderer notificationRenderer, Context context, int i, NotificationCompat$Builder notificationCompat$Builder) {
-        notificationRenderer.displayNotification(context, i, notificationCompat$Builder);
+    public static final /* synthetic */ void access$displayNotification(NotificationRenderer notificationRenderer, Context context, int i, NotificationCompat.Builder builder) {
+        notificationRenderer.displayNotification(context, i, builder);
     }
 
-    public static final /* synthetic */ NotificationCompat$MessagingStyle access$getMessageStyle(NotificationRenderer notificationRenderer, Context context, NotificationData notificationData, List list, Map map) {
+    public static final /* synthetic */ NotificationCompat.MessagingStyle access$getMessageStyle(NotificationRenderer notificationRenderer, Context context, NotificationData notificationData, List list, Map map) {
         return notificationRenderer.getMessageStyle(context, notificationData, list, map);
     }
 
-    public static final /* synthetic */ void access$pushShortcut(NotificationRenderer notificationRenderer, Context context, NotificationData notificationData, NotificationCompat$Builder notificationCompat$Builder, IconCompat iconCompat) {
-        notificationRenderer.pushShortcut(context, notificationData, notificationCompat$Builder, iconCompat);
+    public static final /* synthetic */ void access$pushShortcut(NotificationRenderer notificationRenderer, Context context, NotificationData notificationData, NotificationCompat.Builder builder, IconCompat iconCompat) {
+        notificationRenderer.pushShortcut(context, notificationData, builder, iconCompat);
     }
 
     private final void autoDismissNotification(Context context, int notificationId) {
-        PendingIntent broadcast = PendingIntent.getBroadcast(context, 0, NotificationActions.Companion.cancel(context, notificationId), PendingIntentExtensionsKt.immutablePendingIntentFlag$default(0, 1, null));
+        PendingIntent broadcast = PendingIntent.getBroadcast(context, 0, NotificationActions.INSTANCE.cancel(context, notificationId), PendingIntentExtensionsKt.immutablePendingIntentFlag$default(0, 1, null));
         Object systemService = context.getSystemService(NotificationCompat.CATEGORY_ALARM);
         Objects.requireNonNull(systemService, "null cannot be cast to non-null type android.app.AlarmManager");
         ((AlarmManager) systemService).set(2, SystemClock.elapsedRealtime() + NOTIFICATION_AUTO_DISMISS, broadcast);
     }
 
     public final void clear(Context context, long channelId, boolean isAckRequest) {
-        NotificationCache.INSTANCE.remove(channelId, isAckRequest, new NotificationRenderer$clear$1(context));
+        NotificationCache.INSTANCE.remove(channelId, isAckRequest, new AnonymousClass1(context));
     }
 
-    public final void display(Context context, NotificationData notificationData, NotificationClient$SettingsV2 settings) {
+    public final void display(Context context, NotificationData notificationData, NotificationClient.SettingsV2 settings) {
         m.checkNotNullParameter(context, "context");
         m.checkNotNullParameter(notificationData, "notificationData");
         m.checkNotNullParameter(settings, "settings");
@@ -118,11 +377,11 @@ public final class NotificationRenderer {
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
      */
-    private final void displayAndUpdateCache(Context context, NotificationData notification, NotificationClient$SettingsV2 settings) {
-        NotificationCompat$Builder contentIntent = new NotificationCompat$Builder(context, notification.getNotificationChannelId()).setAutoCancel(true).setOnlyAlertOnce(true).setSmallIcon(notification.getSmallIcon()).setColor(ColorCompat.getThemedColor(context, R$attr.color_brand_500)).setCategory(notification.getNotificationCategory()).setContentTitle(notification.getTitle(context)).setContentText(notification.getContent(context)).setDefaults(getNotificationDefaults(settings.isDisableSound(), settings.isDisableVibrate())).setDeleteIntent(notification.getDeleteIntent(context)).setContentIntent(notification.getContentIntent(context));
+    private final void displayAndUpdateCache(Context context, NotificationData notification, NotificationClient.SettingsV2 settings) {
+        NotificationCompat.Builder contentIntent = new NotificationCompat.Builder(context, notification.getNotificationChannelId()).setAutoCancel(true).setOnlyAlertOnce(true).setSmallIcon(notification.getSmallIcon()).setColor(ColorCompat.getThemedColor(context, R.attr.color_brand_500)).setCategory(notification.getNotificationCategory()).setContentTitle(notification.getTitle(context)).setContentText(notification.getContent(context)).setDefaults(getNotificationDefaults(settings.isDisableSound(), settings.isDisableVibrate())).setDeleteIntent(notification.getDeleteIntent(context)).setContentIntent(notification.getContentIntent(context));
         m.checkNotNullExpressionValue(contentIntent, "NotificationCompat.Build…etContentIntent(context))");
         contentIntent.setGroup(notification.getGroupKey());
-        NotificationData$DisplayPayload andUpdate = NotificationCache.INSTANCE.getAndUpdate(notification);
+        NotificationData.DisplayPayload andUpdate = NotificationCache.INSTANCE.getAndUpdate(notification);
         List<NotificationData> extras = andUpdate.getExtras();
         PendingIntent fullScreenIntent = notification.getFullScreenIntent(context);
         if (fullScreenIntent != null) {
@@ -131,16 +390,16 @@ public final class NotificationRenderer {
         }
         if (!extras.isEmpty()) {
             contentIntent.setNumber(extras.size());
-            contentIntent.setStyle(getMessageStyle(context, notification, extras, new MGImagesBitmap$CloseableBitmaps(h0.emptyMap(), false, 2, null)));
+            contentIntent.setStyle(getMessageStyle(context, notification, extras, new MGImagesBitmap.CloseableBitmaps(h0.emptyMap(), false, 2, null)));
         }
         if (notification.getShouldUseBigText()) {
-            contentIntent.setStyle(new NotificationCompat$BigTextStyle().bigText(notification.getContent(context)));
+            contentIntent.setStyle(new NotificationCompat.BigTextStyle().bigText(notification.getContent(context)));
         }
-        int i = Build$VERSION.SDK_INT;
+        int i = Build.VERSION.SDK_INT;
         if (i < 26) {
             contentIntent.setPriority(notification.getNotificationPriority()).setVibrate(new long[]{0});
             if (!settings.isDisableBlink()) {
-                contentIntent.setLights(ColorCompat.getThemedColor(context, 2130969062), NOTIFICATION_LIGHT_PERIOD, NOTIFICATION_LIGHT_PERIOD);
+                contentIntent.setLights(ColorCompat.getThemedColor(context, R.attr.color_brand), NOTIFICATION_LIGHT_PERIOD, NOTIFICATION_LIGHT_PERIOD);
             }
             Uri notificationSound = notification.getNotificationSound(context);
             if (notificationSound != null) {
@@ -151,23 +410,23 @@ public final class NotificationRenderer {
             }
         }
         if (i >= 24) {
-            for (NotificationCompat$Action notificationCompat$Action : n.listOf((Object[]) new NotificationCompat$Action[]{notification.getMarkAsReadAction(context), notification.getDirectReplyAction(context, settings.getSendBlockedChannels()), notification.getTimedMute(context, ClockFactory.get(), extras.size()), notification.getCallAction(context, false), notification.getCallAction(context, true)})) {
-                if (notificationCompat$Action != null) {
-                    contentIntent.addAction(notificationCompat$Action);
+            for (NotificationCompat.Action action : n.listOf((Object[]) new NotificationCompat.Action[]{notification.getMarkAsReadAction(context), notification.getDirectReplyAction(context, settings.getSendBlockedChannels()), notification.getTimedMute(context, ClockFactory.get(), extras.size()), notification.getCallAction(context, false), notification.getCallAction(context, true)})) {
+                if (action != null) {
+                    contentIntent.addAction(action);
                 }
             }
         }
-        NotificationRenderer$NotificationDisplaySubscriptionManager notificationRenderer$NotificationDisplaySubscriptionManager = NotificationRenderer$NotificationDisplaySubscriptionManager.INSTANCE;
-        notificationRenderer$NotificationDisplaySubscriptionManager.cancel(andUpdate.getId());
-        Pair<Integer, Observable<MGImagesBitmap$CloseableBitmaps>> pairLoadNotificationBitmaps = loadNotificationBitmaps(andUpdate, notification);
+        NotificationDisplaySubscriptionManager notificationDisplaySubscriptionManager = NotificationDisplaySubscriptionManager.INSTANCE;
+        notificationDisplaySubscriptionManager.cancel(andUpdate.getId());
+        Pair<Integer, Observable<MGImagesBitmap.CloseableBitmaps>> pairLoadNotificationBitmaps = loadNotificationBitmaps(andUpdate, notification);
         int iIntValue = pairLoadNotificationBitmaps.component1().intValue();
-        Observable<MGImagesBitmap$CloseableBitmaps> observableComponent2 = pairLoadNotificationBitmaps.component2();
+        Observable<MGImagesBitmap.CloseableBitmaps> observableComponent2 = pairLoadNotificationBitmaps.component2();
         CompositeSubscription compositeSubscription = new CompositeSubscription();
         Observable<Long> observableA0 = Observable.d0(NOTIFICATION_ICON_FETCH_DELAY_MS, TimeUnit.MILLISECONDS).a0(Observable.h0(new r(observableComponent2.j, new f1(new d1(d.k)))));
         m.checkNotNullExpressionValue(observableA0, "Observable\n        .time…Next(Observable.never()))");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(observableA0), (Context) null, "Unable to display notification, timeout.", new NotificationRenderer$displayAndUpdateCache$4(compositeSubscription), new NotificationRenderer$displayAndUpdateCache$5(context, andUpdate, contentIntent, notification), (Function1) null, (Function0) null, (Function0) null, 112, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(observableComponent2), (Context) null, a.r("Unable to display notification multi-fetch ", iIntValue, " bitmaps."), new NotificationRenderer$displayAndUpdateCache$6(compositeSubscription), new NotificationRenderer$displayAndUpdateCache$7(notification, contentIntent, extras, context, andUpdate), (Function1) null, (Function0) null, (Function0) null, 112, (Object) null);
-        notificationRenderer$NotificationDisplaySubscriptionManager.add(andUpdate.getId(), compositeSubscription);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(observableA0), (Context) null, "Unable to display notification, timeout.", new AnonymousClass4(compositeSubscription), new AnonymousClass5(context, andUpdate, contentIntent, notification), (Function1) null, (Function0) null, (Function0) null, 112, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(observableComponent2), (Context) null, a.r("Unable to display notification multi-fetch ", iIntValue, " bitmaps."), new AnonymousClass6(compositeSubscription), new AnonymousClass7(notification, contentIntent, extras, context, andUpdate), (Function1) null, (Function0) null, (Function0) null, 112, (Object) null);
+        notificationDisplaySubscriptionManager.add(andUpdate.getId(), compositeSubscription);
     }
 
     public final void displayInApp(Context context, NotificationData notificationData) {
@@ -186,11 +445,11 @@ public final class NotificationRenderer {
             NoticePopup noticePopup = NoticePopup.INSTANCE;
             StringBuilder sbU = a.U("InAppNotif#");
             sbU.append(ClockFactory.get().currentTimeMillis());
-            NoticePopup.enqueue$default(noticePopup, sbU.toString(), title, null, charSequence, null, null, null, null, notificationData.getIconUrl(), null, null, null, null, null, new NotificationRenderer$displayInApp$1(notificationData, context), 16116, null);
+            NoticePopup.enqueue$default(noticePopup, sbU.toString(), title, null, charSequence, null, null, null, null, notificationData.getIconUrl(), null, null, null, null, null, new AnonymousClass1(notificationData, context), 16116, null);
         }
     }
 
-    private final void displayNotification(Context context, int payloadId, NotificationCompat$Builder notificationBuilder) {
+    private final void displayNotification(Context context, int payloadId, NotificationCompat.Builder notificationBuilder) {
         try {
             NotificationManagerCompat.from(context).notify(payloadId, notificationBuilder.build());
         } catch (IllegalStateException e) {
@@ -201,20 +460,20 @@ public final class NotificationRenderer {
     public final void displaySent(Context context, long channelId, CharSequence channelName, boolean success, int notificationId) {
         m.checkNotNullParameter(context, "context");
         m.checkNotNullParameter(channelName, "channelName");
-        int i = success ? 2131893381 : 2131893380;
-        PendingIntent broadcast = PendingIntent.getBroadcast(context, 0, NotificationActions.Companion.delete(context, channelId), PendingIntentExtensionsKt.immutablePendingIntentFlag(134217728));
-        Intent intentSelectChannel$default = IntentUtils$RouteBuilders.selectChannel$default(channelId, 0L, null, 6, null);
-        intentSelectChannel$default.setClass(context, AppActivity$Main.class);
-        Notification notificationBuild = new NotificationCompat$Builder(context, NotificationClient.NOTIF_CHANNEL_MESSAGES).setAutoCancel(true).setSmallIcon(2131231976).setCategory(NotificationCompat.CATEGORY_MESSAGE).setContentText(b.h(context, i, new Object[]{channelName}, null, 4)).setDeleteIntent(broadcast).setContentIntent(PendingIntent.getActivity(context, 0, intentSelectChannel$default, PendingIntentExtensionsKt.immutablePendingIntentFlag(134217728))).build();
+        int i = success ? R.string.notification_reply_success : R.string.notification_reply_failed;
+        PendingIntent broadcast = PendingIntent.getBroadcast(context, 0, NotificationActions.INSTANCE.delete(context, channelId), PendingIntentExtensionsKt.immutablePendingIntentFlag(134217728));
+        Intent intentSelectChannel$default = IntentUtils.RouteBuilders.selectChannel$default(channelId, 0L, null, 6, null);
+        intentSelectChannel$default.setClass(context, AppActivity.Main.class);
+        Notification notificationBuild = new NotificationCompat.Builder(context, NotificationClient.NOTIF_CHANNEL_MESSAGES).setAutoCancel(true).setSmallIcon(R.drawable.ic_notification_message_24dp).setCategory(NotificationCompat.CATEGORY_MESSAGE).setContentText(b.a.k.b.h(context, i, new Object[]{channelName}, null, 4)).setDeleteIntent(broadcast).setContentIntent(PendingIntent.getActivity(context, 0, intentSelectChannel$default, PendingIntentExtensionsKt.immutablePendingIntentFlag(134217728))).build();
         m.checkNotNullExpressionValue(notificationBuild, "NotificationCompat.Build…ent)\n            .build()");
         NotificationManagerCompat.from(context).notify(notificationId, notificationBuild);
         autoDismissNotification(context, notificationId);
     }
 
-    private final NotificationCompat$MessagingStyle getMessageStyle(Context context, NotificationData notification, List<NotificationData> lines, Map<String, Bitmap> bitmapsForIconUris) {
-        Person personBuild = new Person$Builder().setName(context.getString(2131892773)).setKey("me").build();
+    private final NotificationCompat.MessagingStyle getMessageStyle(Context context, NotificationData notification, List<NotificationData> lines, Map<String, Bitmap> bitmapsForIconUris) {
+        Person personBuild = new Person.Builder().setName(context.getString(R.string.f2008me)).setKey("me").build();
         m.checkNotNullExpressionValue(personBuild, "Person.Builder()\n       …ey(\"me\")\n        .build()");
-        NotificationCompat$MessagingStyle groupConversation = new NotificationCompat$MessagingStyle(personBuild).setConversationTitle(notification.getConversationTitle(context)).setGroupConversation(notification.getIsGroupConversation());
+        NotificationCompat.MessagingStyle groupConversation = new NotificationCompat.MessagingStyle(personBuild).setConversationTitle(notification.getConversationTitle(context)).setGroupConversation(notification.getIsGroupConversation());
         m.checkNotNullExpressionValue(groupConversation, "NotificationCompat.Messa…tion.isGroupConversation)");
         for (NotificationData notificationData : lines) {
             Bitmap bitmap = bitmapsForIconUris.get(notificationData.getIconUrlForAvatar());
@@ -234,24 +493,24 @@ public final class NotificationRenderer {
     @RequiresApi(26)
     public final void initNotificationChannels(Application context) {
         m.checkNotNullParameter(context, "context");
-        NotificationChannel notificationChannel = new NotificationChannel(NotificationClient.NOTIF_CHANNEL_CALLS, context.getString(2131887361), 4);
-        NotificationChannel notificationChannel2 = new NotificationChannel(NotificationClient.NOTIF_CHANNEL_MEDIA_CONNECTIONS, context.getString(2131897149), 2);
-        List<NotificationChannel> listListOf = n.listOf((Object[]) new NotificationChannel[]{notificationChannel, notificationChannel2, new NotificationChannel(NotificationClient.NOTIF_CHANNEL_MESSAGES, context.getString(2131892981), 4), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_MESSAGES_DIRECT, context.getString(2131888442), 4), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_FORUM_POST_CREATE, context.getString(2131889351), 4), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_SOCIAL, context.getString(2131889471), 2), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_GAME_DETECTION, context.getString(2131889538), 1), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_STAGE_START, context.getString(2131895843), 4), new NotificationChannel(NotificationClient.NOTIF_GUILD_SCHEDULED_EVENT_START, context.getString(2131890721), 4), new NotificationChannel(NotificationClient.NOTIF_GENERAL, context.getString(2131893536), 2), new NotificationChannel(NotificationClient.NOTIF_GENERAL_HIGH_PRIO, context.getString(2131893537), 4)});
+        NotificationChannel notificationChannel = new NotificationChannel(NotificationClient.NOTIF_CHANNEL_CALLS, context.getString(R.string.call), 4);
+        NotificationChannel notificationChannel2 = new NotificationChannel(NotificationClient.NOTIF_CHANNEL_MEDIA_CONNECTIONS, context.getString(R.string.voice), 2);
+        List<NotificationChannel> listListOf = n.listOf((Object[]) new NotificationChannel[]{notificationChannel, notificationChannel2, new NotificationChannel(NotificationClient.NOTIF_CHANNEL_MESSAGES, context.getString(R.string.messages), 4), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_MESSAGES_DIRECT, context.getString(R.string.direct_messages), 4), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_FORUM_POST_CREATE, context.getString(R.string.forum_channel_thread_created_push_description_mobile), 4), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_SOCIAL, context.getString(R.string.friends), 2), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_GAME_DETECTION, context.getString(R.string.game_detection_service), 1), new NotificationChannel(NotificationClient.NOTIF_CHANNEL_STAGE_START, context.getString(R.string.stage_start_notification_category), 4), new NotificationChannel(NotificationClient.NOTIF_GUILD_SCHEDULED_EVENT_START, context.getString(R.string.guild_scheduled_event_live), 4), new NotificationChannel(NotificationClient.NOTIF_GENERAL, context.getString(R.string.other), 2), new NotificationChannel(NotificationClient.NOTIF_GENERAL_HIGH_PRIO, context.getString(R.string.other_high_priority), 4)});
         for (NotificationChannel notificationChannel3 : listListOf) {
             notificationChannel3.setShowBadge(true);
             notificationChannel3.enableVibration(true);
             notificationChannel3.enableLights(true);
-            notificationChannel3.setLightColor(ColorCompat.getThemedColor(context, 2130969062));
+            notificationChannel3.setLightColor(ColorCompat.getThemedColor(context, R.attr.color_brand));
         }
-        notificationChannel.setDescription(context.getString(2131887361));
+        notificationChannel.setDescription(context.getString(R.string.call));
         notificationChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
         notificationChannel.setShowBadge(false);
         StringBuilder sb = new StringBuilder();
         sb.append("android.resource://");
-        sb.append(context.getPackageName() + MentionUtilsKt.SLASH_CHAR + AppSound.Companion.getSOUND_CALL_RINGING().getResId());
+        sb.append(context.getPackageName() + MentionUtilsKt.SLASH_CHAR + AppSound.INSTANCE.getSOUND_CALL_RINGING().getResId());
         String string = sb.toString();
         m.checkNotNullExpressionValue(string, "StringBuilder()\n        …)\n            .toString()");
-        notificationChannel.setSound(Uri.parse(string), new AudioAttributes$Builder().setUsage(7).setContentType(2).build());
+        notificationChannel.setSound(Uri.parse(string), new AudioAttributes.Builder().setUsage(7).setContentType(2).build());
         notificationChannel2.setShowBadge(false);
         notificationChannel2.enableVibration(false);
         Object systemService = context.getSystemService("notification");
@@ -259,7 +518,7 @@ public final class NotificationRenderer {
         ((NotificationManager) systemService).createNotificationChannels(listListOf);
     }
 
-    private final Pair<Integer, Observable<MGImagesBitmap$CloseableBitmaps>> loadNotificationBitmaps(NotificationData$DisplayPayload displayPayload, NotificationData notification) {
+    private final Pair<Integer, Observable<MGImagesBitmap.CloseableBitmaps>> loadNotificationBitmaps(NotificationData.DisplayPayload displayPayload, NotificationData notification) {
         List<NotificationData> extras = displayPayload.getExtras();
         ArrayList arrayList = new ArrayList();
         Iterator<T> it = extras.iterator();
@@ -270,17 +529,17 @@ public final class NotificationRenderer {
             }
         }
         List listPlus = u.plus((Collection<? extends String>) arrayList, notification.getIconUrl());
-        return o.to(Integer.valueOf(listPlus.size() + 1), ShareUtils.INSTANCE.loadAdaptiveBitmaps(u.asSequence(listPlus)).A(new NotificationRenderer$loadNotificationBitmaps$1(notification)));
+        return d0.o.to(Integer.valueOf(listPlus.size() + 1), ShareUtils.INSTANCE.loadAdaptiveBitmaps(u.asSequence(listPlus)).A(new AnonymousClass1(notification)));
     }
 
-    public static /* synthetic */ void pushShortcut$default(NotificationRenderer notificationRenderer, Context context, NotificationData notificationData, NotificationCompat$Builder notificationCompat$Builder, IconCompat iconCompat, int i, Object obj) {
+    public static /* synthetic */ void pushShortcut$default(NotificationRenderer notificationRenderer, Context context, NotificationData notificationData, NotificationCompat.Builder builder, IconCompat iconCompat, int i, Object obj) {
         if ((i & 8) != 0) {
             iconCompat = null;
         }
-        notificationRenderer.pushShortcut(context, notificationData, notificationCompat$Builder, iconCompat);
+        notificationRenderer.pushShortcut(context, notificationData, builder, iconCompat);
     }
 
-    private final void pushShortcut(Context context, NotificationData notification, NotificationCompat$Builder notificationBuilder, IconCompat icon) {
+    private final void pushShortcut(Context context, NotificationData notification, NotificationCompat.Builder notificationBuilder, IconCompat icon) {
         ShareUtils shareUtils = ShareUtils.INSTANCE;
         shareUtils.addShortcut(context, ShareUtils.toShortcutInfo$default(shareUtils, context, notification.getChannelId(), notification.getTitle(context), null, icon, null, 0, 104, null), notificationBuilder);
     }

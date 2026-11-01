@@ -6,9 +6,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.content.res.Resources$NotFoundException;
 import android.graphics.drawable.AdaptiveIconDrawable;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.SystemClock;
 import android.util.Log;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
@@ -25,7 +24,7 @@ public final class a {
 
     @TargetApi(26)
     public static boolean b(Resources resources, int i) {
-        if (Build$VERSION.SDK_INT != 26) {
+        if (Build.VERSION.SDK_INT != 26) {
             return true;
         }
         try {
@@ -37,7 +36,7 @@ public final class a {
             sb.append(i);
             Log.e("FirebaseMessaging", sb.toString());
             return false;
-        } catch (Resources$NotFoundException unused) {
+        } catch (Resources.NotFoundException unused) {
             StringBuilder sb2 = new StringBuilder(66);
             sb2.append("Couldn't find resource ");
             sb2.append(i);

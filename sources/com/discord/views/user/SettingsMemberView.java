@@ -8,9 +8,7 @@ import androidx.annotation.ColorInt;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import b.a.i.m1;
 import b.f.g.f.c;
-import com.discord.R$a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.models.member.GuildMember;
 import com.discord.models.user.User;
 import com.discord.utilities.color.ColorCompat;
@@ -45,23 +43,23 @@ public final class SettingsMemberView extends ConstraintLayout {
     public SettingsMemberView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(R$layout.settings_member_view, this);
-        int i = R$id.large_avatar;
-        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R$id.large_avatar);
+        LayoutInflater.from(context).inflate(R.layout.settings_member_view, this);
+        int i = R.id.large_avatar;
+        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R.id.large_avatar);
         if (simpleDraweeView != null) {
-            i = R$id.member_subtitle;
-            SimpleDraweeSpanTextView simpleDraweeSpanTextView = (SimpleDraweeSpanTextView) findViewById(R$id.member_subtitle);
+            i = R.id.member_subtitle;
+            SimpleDraweeSpanTextView simpleDraweeSpanTextView = (SimpleDraweeSpanTextView) findViewById(R.id.member_subtitle);
             if (simpleDraweeSpanTextView != null) {
-                i = R$id.member_title;
-                UsernameView usernameView = (UsernameView) findViewById(R$id.member_title);
+                i = R.id.member_title;
+                UsernameView usernameView = (UsernameView) findViewById(R.id.member_title);
                 if (usernameView != null) {
                     m1 m1Var = new m1(this, simpleDraweeView, simpleDraweeSpanTextView, usernameView);
                     m.checkNotNullExpressionValue(m1Var, "SettingsMemberViewBindin…ater.from(context), this)");
                     this.binding = m1Var;
-                    this.avatarBackgroundColor = ColorCompat.getThemedColor(this, 2130968911);
-                    TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$a.SettingsMemberView);
+                    this.avatarBackgroundColor = ColorCompat.getThemedColor(this, R.attr.colorBackgroundPrimary);
+                    TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.a.SettingsMemberView);
                     m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…eable.SettingsMemberView)");
-                    this.avatarBackgroundColor = typedArrayObtainStyledAttributes.getColor(0, ColorCompat.getThemedColor(this, 2130968911));
+                    this.avatarBackgroundColor = typedArrayObtainStyledAttributes.getColor(0, ColorCompat.getThemedColor(this, R.attr.colorBackgroundPrimary));
                     typedArrayObtainStyledAttributes.recycle();
                     setAvatarBackgroundColor(this.avatarBackgroundColor);
                     return;
@@ -80,7 +78,7 @@ public final class SettingsMemberView extends ConstraintLayout {
         boolean z3 = !(nick == null || t.isBlank(nick));
         SimpleDraweeView simpleDraweeView = this.binding.f158b;
         m.checkNotNullExpressionValue(simpleDraweeView, "binding.largeAvatar");
-        IconUtils.setIcon$default(simpleDraweeView, user, 2131165293, null, null, guildMember, 24, null);
+        IconUtils.setIcon$default(simpleDraweeView, user, R.dimen.avatar_size_large, null, null, guildMember, 24, null);
         UsernameView usernameView = this.binding.d;
         if (nick == null) {
             nick = user.getUsername();
@@ -88,13 +86,13 @@ public final class SettingsMemberView extends ConstraintLayout {
         UsernameView.c(usernameView, nick, null, false, null, null, 30);
         UsernameView usernameView2 = this.binding.d;
         boolean isBot = user.getIsBot();
-        int i = user.getIsSystemUser() ? 2131896165 : 2131887281;
+        int i = user.getIsSystemUser() ? R.string.system_dm_tag_system : R.string.bot_tag;
         UserUtils userUtils = UserUtils.INSTANCE;
         usernameView2.a(isBot, i, userUtils.isVerifiedBot(user));
         boolean z4 = guildMember != null && guildMember.hasAvatar();
         DraweeSpanStringBuilder draweeSpanStringBuilder = new DraweeSpanStringBuilder();
         if (z4) {
-            int dimension = (int) getResources().getDimension(2131165295);
+            int dimension = (int) getResources().getDimension(R.dimen.avatar_size_profile_small);
             Context context = getContext();
             m.checkNotNullExpressionValue(context, "context");
             DraweeSpanStringBuilderExtensionsKt.setAvatar$default(draweeSpanStringBuilder, context, IconUtils.getForUser$default(user, false, Integer.valueOf(dimension), 2, null), false, Integer.valueOf(dimension), Integer.valueOf(this.avatarBackgroundColor), (char) 8194, 4, null);

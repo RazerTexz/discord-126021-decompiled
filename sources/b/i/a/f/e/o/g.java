@@ -2,7 +2,6 @@ package b.i.a.f.e.o;
 
 import android.os.Process;
 import android.os.StrictMode;
-import android.os.StrictMode$ThreadPolicy;
 import androidx.annotation.RecentlyNullable;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -38,10 +37,10 @@ public class g {
                         sb.append(i);
                         sb.append("/cmdline");
                         String string = sb.toString();
-                        StrictMode$ThreadPolicy strictMode$ThreadPolicyAllowThreadDiskReads = StrictMode.allowThreadDiskReads();
+                        StrictMode.ThreadPolicy threadPolicyAllowThreadDiskReads = StrictMode.allowThreadDiskReads();
                         try {
                             bufferedReader = new BufferedReader(new FileReader(string));
-                            StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskReads);
+                            StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskReads);
                             try {
                                 String line = bufferedReader.readLine();
                                 Objects.requireNonNull(line, "null reference");
@@ -65,7 +64,7 @@ public class g {
                                 throw th;
                             }
                         } catch (Throwable th2) {
-                            StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskReads);
+                            StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskReads);
                             throw th2;
                         }
                     } catch (IOException unused3) {

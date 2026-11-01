@@ -12,12 +12,12 @@ import kotlin.jvm.functions.Function0;
 /* JADX INFO: compiled from: WidgetDirectoriesViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetDirectoriesViewModel$ViewState$directoryEntryData$2 extends o implements Function0<Map<Integer, ? extends List<? extends DirectoryEntryData>>> {
-    public final /* synthetic */ WidgetDirectoriesViewModel$ViewState this$0;
+    public final /* synthetic */ WidgetDirectoriesViewModel.ViewState this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetDirectoriesViewModel$ViewState$directoryEntryData$2(WidgetDirectoriesViewModel$ViewState widgetDirectoriesViewModel$ViewState) {
+    public WidgetDirectoriesViewModel$ViewState$directoryEntryData$2(WidgetDirectoriesViewModel.ViewState viewState) {
         super(0);
-        this.this$0 = widgetDirectoriesViewModel$ViewState;
+        this.this$0 = viewState;
     }
 
     @Override // kotlin.jvm.functions.Function0

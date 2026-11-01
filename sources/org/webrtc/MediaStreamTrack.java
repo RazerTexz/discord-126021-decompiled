@@ -1,12 +1,51 @@
 package org.webrtc;
 
 import androidx.annotation.Nullable;
+import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class MediaStreamTrack {
     public static final String AUDIO_TRACK_KIND = "audio";
     public static final String VIDEO_TRACK_KIND = "video";
     private long nativeTrack;
+
+    public enum MediaType {
+        MEDIA_TYPE_AUDIO(0),
+        MEDIA_TYPE_VIDEO(1);
+
+        private final int nativeIndex;
+
+        MediaType(int i) {
+            this.nativeIndex = i;
+        }
+
+        @CalledByNative("MediaType")
+        public static MediaType fromNativeIndex(int i) {
+            MediaType[] mediaTypeArrValues = values();
+            for (int i2 = 0; i2 < 2; i2++) {
+                MediaType mediaType = mediaTypeArrValues[i2];
+                if (mediaType.getNative() == i) {
+                    return mediaType;
+                }
+            }
+            throw new IllegalArgumentException(a.q("Unknown native media type: ", i));
+        }
+
+        @CalledByNative("MediaType")
+        public int getNative() {
+            return this.nativeIndex;
+        }
+    }
+
+    public enum State {
+        LIVE,
+        ENDED;
+
+        @CalledByNative("State")
+        public static State fromNativeIndex(int i) {
+            return values()[i];
+        }
+    }
 
     public MediaStreamTrack(long j) {
         if (j == 0) {
@@ -68,7 +107,7 @@ public class MediaStreamTrack {
 
     private static native String nativeGetKind(long j);
 
-    private static native MediaStreamTrack$State nativeGetState(long j);
+    private static native State nativeGetState(long j);
 
     private static native boolean nativeSetEnabled(long j, boolean z2);
 
@@ -77,7 +116,7 @@ public class MediaStreamTrack {
         return nativeSetEnabled(this.nativeTrack, z2);
     }
 
-    public MediaStreamTrack$State state() {
+    public State state() {
         checkMediaStreamTrackExists();
         return nativeGetState(this.nativeTrack);
     }

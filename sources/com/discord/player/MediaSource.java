@@ -5,11 +5,14 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import b.d.b.a.a;
 import d0.z.d.m;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: MediaSource.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class MediaSource implements Parcelable {
-    public static final MediaSource$a CREATOR = new MediaSource$a(null);
+
+    /* JADX INFO: renamed from: CREATOR, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public final String featureTag;
@@ -19,6 +22,32 @@ public final /* data */ class MediaSource implements Parcelable {
 
     /* JADX INFO: renamed from: j, reason: from kotlin metadata */
     public final Uri progressiveMediaUri;
+
+    /* JADX INFO: renamed from: com.discord.player.MediaSource$a, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: MediaSource.kt */
+    public final class Companion implements Parcelable.Creator<MediaSource> {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public MediaSource createFromParcel(Parcel parcel) {
+            m.checkNotNullParameter(parcel, "parcel");
+            m.checkNotNullParameter(parcel, "parcel");
+            Parcelable parcelable = parcel.readParcelable(Uri.class.getClassLoader());
+            m.checkNotNull(parcelable);
+            String string = parcel.readString();
+            m.checkNotNull(string);
+            m.checkNotNullExpressionValue(string, "parcel.readString()!!");
+            Parcelable parcelable2 = parcel.readParcelable(MediaType.class.getClassLoader());
+            m.checkNotNull(parcelable2);
+            return new MediaSource((Uri) parcelable, string, (MediaType) parcelable2);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public MediaSource[] newArray(int i) {
+            return new MediaSource[i];
+        }
+    }
 
     public MediaSource(Uri uri, String str, MediaType mediaType) {
         m.checkNotNullParameter(uri, "progressiveMediaUri");

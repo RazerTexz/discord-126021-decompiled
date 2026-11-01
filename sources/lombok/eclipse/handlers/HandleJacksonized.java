@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import lombok.Builder;
 import lombok.ConfigurationKeys;
-import lombok.core.AST$Kind;
+import lombok.core.AST;
 import lombok.core.AnnotationValues;
 import lombok.core.HandlerPriority;
 import lombok.core.handlers.HandlerUtil;
@@ -35,7 +35,7 @@ public class HandleJacksonized extends EclipseAnnotationHandler<Jacksonized> {
         EclipseNode tdNode;
         HandlerUtil.handleExperimentalFlagUsage(annotationNode, ConfigurationKeys.JACKSONIZED_FLAG_USAGE, "@Jacksonized");
         EclipseNode annotatedNode = annotationNode.up();
-        if (annotatedNode.getKind() != AST$Kind.TYPE) {
+        if (annotatedNode.getKind() != AST.Kind.TYPE) {
             tdNode = annotatedNode.up();
         } else {
             tdNode = annotatedNode;

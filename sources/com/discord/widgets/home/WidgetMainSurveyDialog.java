@@ -4,32 +4,91 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppDialog;
 import com.discord.databinding.ViewDialogConfirmationBinding;
 import com.discord.utilities.analytics.AnalyticsTracker;
+import com.discord.utilities.uri.UriHandler;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.m;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: WidgetMainSurveyDialog.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetMainSurveyDialog extends AppDialog {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetMainSurveyDialog.class, "binding", "getBinding()Lcom/discord/databinding/ViewDialogConfirmationBinding;", 0)};
-    public static final WidgetMainSurveyDialog$Companion Companion = new WidgetMainSurveyDialog$Companion(null);
     private static final String EXTRA_SURVEY_BODY = "extra_survey_body";
     private static final String EXTRA_SURVEY_ID = "extra_survey_id";
     private static final String EXTRA_SURVEY_TITLE = "extra_survey_title";
     private static final String EXTRA_SURVEY_URL = "extra_survey_url";
 
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
+
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.home.WidgetMainSurveyDialog$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetMainSurveyDialog.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetMainSurveyDialog.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.home.WidgetMainSurveyDialog$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetMainSurveyDialog.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ String $surveyUrl;
+
+        public AnonymousClass2(String str) {
+            this.$surveyUrl = str;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            UriHandler.handle$default(UriHandler.INSTANCE, a.x(view, "button", "button.context"), this.$surveyUrl, false, false, null, 28, null);
+            WidgetMainSurveyDialog.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetMainSurveyDialog.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, String surveyId, String surveyUrl, String surveyBody, String surveyTitle) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            m.checkNotNullParameter(surveyId, "surveyId");
+            m.checkNotNullParameter(surveyUrl, "surveyUrl");
+            m.checkNotNullParameter(surveyBody, "surveyBody");
+            m.checkNotNullParameter(surveyTitle, "surveyTitle");
+            WidgetMainSurveyDialog widgetMainSurveyDialog = new WidgetMainSurveyDialog();
+            Bundle bundle = new Bundle();
+            bundle.putString(WidgetMainSurveyDialog.EXTRA_SURVEY_ID, surveyId);
+            bundle.putString(WidgetMainSurveyDialog.EXTRA_SURVEY_URL, surveyUrl);
+            bundle.putString(WidgetMainSurveyDialog.EXTRA_SURVEY_BODY, surveyBody);
+            bundle.putString(WidgetMainSurveyDialog.EXTRA_SURVEY_TITLE, surveyTitle);
+            widgetMainSurveyDialog.setArguments(bundle);
+            widgetMainSurveyDialog.show(fragmentManager, "WidgetMainSurveyDialog");
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetMainSurveyDialog() {
-        super(R$layout.view_dialog_confirmation);
+        super(R.layout.view_dialog_confirmation);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetMainSurveyDialog$binding$2.INSTANCE, null, 2, null);
     }
 
@@ -59,12 +118,12 @@ public final class WidgetMainSurveyDialog extends AppDialog {
                 textView2.setText(string2);
                 MaterialButton materialButton = getBinding().f2185b;
                 m.checkNotNullExpressionValue(materialButton, "binding.viewDialogConfirmationCancel");
-                materialButton.setText(getString(2131893288));
-                getBinding().f2185b.setOnClickListener(new WidgetMainSurveyDialog$onViewBound$1(this));
+                materialButton.setText(getString(R.string.no_thanks));
+                getBinding().f2185b.setOnClickListener(new AnonymousClass1());
                 MaterialButton materialButton2 = getBinding().c;
                 m.checkNotNullExpressionValue(materialButton2, "binding.viewDialogConfirmationConfirm");
-                materialButton2.setText(getString(2131893499));
-                getBinding().c.setOnClickListener(new WidgetMainSurveyDialog$onViewBound$2(this, string));
+                materialButton2.setText(getString(R.string.okay));
+                getBinding().c.setOnClickListener(new AnonymousClass2(string));
                 AnalyticsTracker.INSTANCE.surveyViewed(string3);
                 return;
             }

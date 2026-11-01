@@ -103,7 +103,7 @@ public final class e extends v0 {
         }
     }
 
-    @Override // b.i.a.c.v0, b.i.a.c.b2$b
+    @Override // b.i.a.c.v0, b.i.a.c.b2.b
     public void r(int i, @Nullable Object obj) throws ExoPlaybackException {
         if (i == 8) {
             this.f996x = (d) obj;

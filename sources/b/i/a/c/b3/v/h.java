@@ -1,6 +1,7 @@
 package b.i.a.c.b3.v;
 
 import android.graphics.Color;
+import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.SpannedString;
 import android.text.TextUtils;
@@ -40,6 +41,53 @@ public final class h {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final Pattern f891b = Pattern.compile("(\\S+?):(\\S+)");
 
+    /* JADX INFO: compiled from: WebvttCueParser.java */
+    public class b {
+        public static final /* synthetic */ int a = 0;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final c f892b;
+        public final int c;
+
+        public b(c cVar, int i, a aVar) {
+            this.f892b = cVar;
+            this.c = i;
+        }
+    }
+
+    /* JADX INFO: compiled from: WebvttCueParser.java */
+    public final class c {
+        public final String a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f893b;
+        public final String c;
+        public final Set<String> d;
+
+        public c(String str, int i, String str2, Set<String> set) {
+            this.f893b = i;
+            this.a = str;
+            this.c = str2;
+            this.d = set;
+        }
+    }
+
+    /* JADX INFO: compiled from: WebvttCueParser.java */
+    public final class d implements Comparable<d> {
+        public final int j;
+        public final f k;
+
+        public d(int i, f fVar) {
+            this.j = i;
+            this.k = fVar;
+        }
+
+        @Override // java.lang.Comparable
+        public int compareTo(d dVar) {
+            return Integer.compare(this.j, dVar.j);
+        }
+    }
+
     static {
         HashMap map = new HashMap();
         map.put("white", Integer.valueOf(Color.rgb(255, 255, 255)));
@@ -64,11 +112,11 @@ public final class h {
     }
 
     /* JADX WARN: Code duplicated, block: B:49:0x008f  */
-    public static void a(@Nullable String str, h$c h_c, List<h$b> list, SpannableStringBuilder spannableStringBuilder, List<f> list2) {
+    public static void a(@Nullable String str, c cVar, List<b> list, SpannableStringBuilder spannableStringBuilder, List<f> list2) {
         byte b2;
-        int i = h_c.f893b;
+        int i = cVar.f893b;
         int length = spannableStringBuilder.length();
-        String str2 = h_c.a;
+        String str2 = cVar.a;
         str2.hashCode();
         int iHashCode = str2.hashCode();
         int i2 = -1;
@@ -128,7 +176,7 @@ public final class h {
                 spannableStringBuilder.setSpan(new StyleSpan(1), i, length, 33);
                 break;
             case 2:
-                for (String str3 : h_c.d) {
+                for (String str3 : cVar.d) {
                     Map<String, Integer> map = c;
                     if (map.containsKey(str3)) {
                         spannableStringBuilder.setSpan(new ForegroundColorSpan(map.get(str3).intValue()), i, length, 33);
@@ -147,23 +195,23 @@ public final class h {
                 spannableStringBuilder.setSpan(new UnderlineSpan(), i, length, 33);
                 break;
             case 7:
-                int iC = c(list2, str, h_c);
+                int iC = c(list2, str, cVar);
                 ArrayList arrayList = new ArrayList(list.size());
                 arrayList.addAll(list);
-                int i3 = h$b.a;
-                Collections.sort(arrayList, a.j);
-                int i4 = h_c.f893b;
+                int i3 = b.a;
+                Collections.sort(arrayList, b.i.a.c.b3.v.a.j);
+                int i4 = cVar.f893b;
                 int i5 = 0;
                 int length2 = 0;
                 while (i5 < arrayList.size()) {
-                    if ("rt".equals(((h$b) arrayList.get(i5)).f892b.a)) {
-                        h$b h_b = (h$b) arrayList.get(i5);
-                        int iC2 = c(list2, str, h_b.f892b);
+                    if ("rt".equals(((b) arrayList.get(i5)).f892b.a)) {
+                        b bVar = (b) arrayList.get(i5);
+                        int iC2 = c(list2, str, bVar.f892b);
                         if (iC2 == i2) {
                             iC2 = iC != i2 ? iC : 1;
                         }
-                        int i6 = h_b.f892b.f893b - length2;
-                        int i7 = h_b.c - length2;
+                        int i6 = bVar.f892b.f893b - length2;
+                        int i7 = bVar.c - length2;
                         CharSequence charSequenceSubSequence = spannableStringBuilder.subSequence(i6, i7);
                         spannableStringBuilder.delete(i6, i7);
                         spannableStringBuilder.setSpan(new b.i.a.c.b3.q.c(charSequenceSubSequence.toString(), iC2), i4, i6, 33);
@@ -177,14 +225,14 @@ public final class h {
             default:
                 return;
         }
-        List<h$d> listB = b(list2, str, h_c);
+        List<d> listB = b(list2, str, cVar);
         int i8 = 0;
         while (true) {
             ArrayList arrayList2 = (ArrayList) listB;
             if (i8 >= arrayList2.size()) {
                 return;
             }
-            f fVar = ((h$d) arrayList2.get(i8)).k;
+            f fVar = ((d) arrayList2.get(i8)).k;
             if (fVar != null) {
                 if (fVar.a() != -1) {
                     b.c.a.a0.d.c(spannableStringBuilder, new StyleSpan(fVar.a()), i, length, 33);
@@ -231,14 +279,14 @@ public final class h {
     /* JADX WARN: Type inference failed for: r4v5, types: [int] */
     /* JADX WARN: Type inference failed for: r4v7 */
     /* JADX WARN: Type inference failed for: r4v8 */
-    public static List<h$d> b(List<f> list, @Nullable String str, h$c h_c) {
+    public static List<d> b(List<f> list, @Nullable String str, c cVar) {
         ?? size;
         ArrayList arrayList = new ArrayList();
         for (int i = 0; i < list.size(); i++) {
             f fVar = list.get(i);
-            String str2 = h_c.a;
-            Set<String> set = h_c.d;
-            String str3 = h_c.c;
+            String str2 = cVar.a;
+            Set<String> set = cVar.d;
+            String str3 = cVar.c;
             if (fVar.a.isEmpty() && fVar.f889b.isEmpty() && fVar.c.isEmpty() && fVar.d.isEmpty()) {
                 size = TextUtils.isEmpty(str2);
             } else {
@@ -246,22 +294,22 @@ public final class h {
                 size = (iB == -1 || !set.containsAll(fVar.c)) ? 0 : iB + (fVar.c.size() * 4);
             }
             if (size > 0) {
-                arrayList.add(new h$d(size, fVar));
+                arrayList.add(new d(size, fVar));
             }
         }
         Collections.sort(arrayList);
         return arrayList;
     }
 
-    public static int c(List<f> list, @Nullable String str, h$c h_c) {
-        List<h$d> listB = b(list, str, h_c);
+    public static int c(List<f> list, @Nullable String str, c cVar) {
+        List<d> listB = b(list, str, cVar);
         int i = 0;
         while (true) {
             ArrayList arrayList = (ArrayList) listB;
             if (i >= arrayList.size()) {
                 return -1;
             }
-            int i2 = ((h$d) arrayList.get(i)).k.p;
+            int i2 = ((d) arrayList.get(i)).k.p;
             if (i2 != -1) {
                 return i2;
             }
@@ -271,17 +319,17 @@ public final class h {
 
     @Nullable
     public static g d(@Nullable String str, Matcher matcher, x xVar, List<f> list) {
-        h$e h_e = new h$e();
+        e eVar = new e();
         try {
             String strGroup = matcher.group(1);
             Objects.requireNonNull(strGroup);
-            h_e.a = j.b(strGroup);
+            eVar.a = j.b(strGroup);
             String strGroup2 = matcher.group(2);
             Objects.requireNonNull(strGroup2);
-            h_e.f894b = j.b(strGroup2);
+            eVar.f894b = j.b(strGroup2);
             String strGroup3 = matcher.group(3);
             Objects.requireNonNull(strGroup3);
-            e(strGroup3, h_e);
+            e(strGroup3, eVar);
             StringBuilder sb = new StringBuilder();
             String strG = xVar.g();
             while (!TextUtils.isEmpty(strG)) {
@@ -291,8 +339,8 @@ public final class h {
                 sb.append(strG.trim());
                 strG = xVar.g();
             }
-            h_e.c = f(str, sb.toString(), list);
-            return new g(h_e.a().a(), h_e.a, h_e.f894b);
+            eVar.c = f(str, sb.toString(), list);
+            return new g(eVar.a().a(), eVar.a, eVar.f894b);
         } catch (NumberFormatException unused) {
             String strValueOf = String.valueOf(matcher.group());
             Log.w("WebvttCueParser", strValueOf.length() != 0 ? "Skipping cue with bad header: ".concat(strValueOf) : new String("Skipping cue with bad header: "));
@@ -301,7 +349,7 @@ public final class h {
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
-    public static void e(String str, h$e h_e) {
+    public static void e(String str, e eVar) {
         Matcher matcher = f891b.matcher(str);
         while (matcher.find()) {
             int i = 1;
@@ -311,7 +359,7 @@ public final class h {
             Objects.requireNonNull(strGroup2);
             try {
                 if ("line".equals(strGroup)) {
-                    g(strGroup2, h_e);
+                    g(strGroup2, eVar);
                 } else if ("align".equals(strGroup)) {
                     switch (strGroup2) {
                         case "center":
@@ -334,11 +382,11 @@ public final class h {
                             i = 2;
                             break;
                     }
-                    h_e.d = i;
+                    eVar.d = i;
                 } else if (ModelAuditLogEntry.CHANGE_KEY_POSITION.equals(strGroup)) {
-                    h(strGroup2, h_e);
+                    h(strGroup2, eVar);
                 } else if ("size".equals(strGroup)) {
-                    h_e.j = j.a(strGroup2);
+                    eVar.j = j.a(strGroup2);
                 } else if ("vertical".equals(strGroup)) {
                     if (strGroup2.equals("lr")) {
                         i = 2;
@@ -346,7 +394,7 @@ public final class h {
                         Log.w("WebvttCueParser", strGroup2.length() != 0 ? "Invalid 'vertical' value: ".concat(strGroup2) : new String("Invalid 'vertical' value: "));
                         i = Integer.MIN_VALUE;
                     }
-                    h_e.k = i;
+                    eVar.k = i;
                 } else {
                     StringBuilder sb = new StringBuilder(strGroup.length() + 21 + strGroup2.length());
                     sb.append("Unknown cue setting ");
@@ -375,9 +423,9 @@ public final class h {
             String strTrim = "";
             if (i2 >= str2.length()) {
                 while (!arrayDeque.isEmpty()) {
-                    a(str, (h$c) arrayDeque.pop(), arrayList, spannableStringBuilder, list);
+                    a(str, (c) arrayDeque.pop(), arrayList, spannableStringBuilder, list);
                 }
-                a(str, new h$c("", 0, "", Collections.emptySet()), Collections.emptyList(), spannableStringBuilder, list);
+                a(str, new c("", 0, "", Collections.emptySet()), Collections.emptyList(), spannableStringBuilder, list);
                 return SpannedString.valueOf(spannableStringBuilder);
             }
             char cCharAt = str2.charAt(i2);
@@ -458,14 +506,14 @@ public final class h {
                         if (z2) {
                             if (z3) {
                                 while (!arrayDeque.isEmpty()) {
-                                    h$c h_c = (h$c) arrayDeque.pop();
-                                    a(str, h_c, arrayList, spannableStringBuilder, list);
+                                    c cVar = (c) arrayDeque.pop();
+                                    a(str, cVar, arrayList, spannableStringBuilder, list);
                                     if (arrayDeque.isEmpty()) {
                                         arrayList.clear();
                                     } else {
-                                        arrayList.add(new h$b(h_c, spannableStringBuilder.length(), null));
+                                        arrayList.add(new b(cVar, spannableStringBuilder.length(), null));
                                     }
-                                    if (h_c.a.equals(str3)) {
+                                    if (cVar.a.equals(str3)) {
                                     }
                                 }
                             } else if (!z4) {
@@ -483,7 +531,7 @@ public final class h {
                                 for (int i6 = 1; i6 < strArrH.length; i6++) {
                                     hashSet.add(strArrH[i6]);
                                 }
-                                arrayDeque.push(new h$c(str4, length2, strTrim, hashSet));
+                                arrayDeque.push(new c(str4, length2, strTrim, hashSet));
                             }
                         }
                     }
@@ -495,7 +543,7 @@ public final class h {
         }
     }
 
-    public static void g(String str, h$e h_e) {
+    public static void g(String str, e eVar) {
         int iIndexOf = str.indexOf(44);
         if (iIndexOf != -1) {
             String strSubstring = str.substring(iIndexOf + 1);
@@ -516,19 +564,19 @@ public final class h {
                     i = Integer.MIN_VALUE;
                     break;
             }
-            h_e.g = i;
+            eVar.g = i;
             str = str.substring(0, iIndexOf);
         }
         if (str.endsWith("%")) {
-            h_e.e = j.a(str);
-            h_e.f = 0;
+            eVar.e = j.a(str);
+            eVar.f = 0;
         } else {
-            h_e.e = Integer.parseInt(str);
-            h_e.f = 1;
+            eVar.e = Integer.parseInt(str);
+            eVar.f = 1;
         }
     }
 
-    public static void h(String str, h$e h_e) {
+    public static void h(String str, e eVar) {
         int iIndexOf = str.indexOf(44);
         if (iIndexOf != -1) {
             String strSubstring = str.substring(iIndexOf + 1);
@@ -551,9 +599,106 @@ public final class h {
                     i = Integer.MIN_VALUE;
                     break;
             }
-            h_e.i = i;
+            eVar.i = i;
             str = str.substring(0, iIndexOf);
         }
-        h_e.h = j.a(str);
+        eVar.h = j.a(str);
+    }
+
+    /* JADX INFO: compiled from: WebvttCueParser.java */
+    public final class e {
+        public CharSequence c;
+        public long a = 0;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public long f894b = 0;
+        public int d = 2;
+        public float e = -3.4028235E38f;
+        public int f = 1;
+        public int g = 0;
+        public float h = -3.4028235E38f;
+        public int i = Integer.MIN_VALUE;
+        public float j = 1.0f;
+        public int k = Integer.MIN_VALUE;
+
+        /* JADX WARN: Code duplicated, block: B:20:0x0034  */
+        /* JADX WARN: Code duplicated, block: B:21:0x0036  */
+        /* JADX WARN: Code duplicated, block: B:29:0x0053  */
+        /* JADX WARN: Code duplicated, block: B:31:0x0059  */
+        /* JADX WARN: Code duplicated, block: B:43:0x0076  */
+        public b.i.a.c.b3.b.C0093b a() {
+            Layout.Alignment alignment;
+            float f = this.h;
+            float f2 = -3.4028235E38f;
+            if (f == -3.4028235E38f) {
+                int i = this.d;
+                if (i != 4) {
+                    f = i != 5 ? 0.5f : 1.0f;
+                } else {
+                    f = 0.0f;
+                }
+            }
+            int i2 = this.i;
+            if (i2 == Integer.MIN_VALUE) {
+                int i3 = this.d;
+                if (i3 == 1) {
+                    i2 = 0;
+                } else if (i3 == 3) {
+                    i2 = 2;
+                } else if (i3 == 4) {
+                    i2 = 0;
+                } else if (i3 != 5) {
+                    i2 = 1;
+                } else {
+                    i2 = 2;
+                }
+            }
+            b.i.a.c.b3.b.C0093b c0093b = new b.i.a.c.b3.b.C0093b();
+            int i4 = this.d;
+            if (i4 == 1) {
+                alignment = Layout.Alignment.ALIGN_NORMAL;
+            } else if (i4 == 2) {
+                alignment = Layout.Alignment.ALIGN_CENTER;
+            } else if (i4 == 3) {
+                alignment = Layout.Alignment.ALIGN_OPPOSITE;
+            } else if (i4 == 4) {
+                alignment = Layout.Alignment.ALIGN_NORMAL;
+            } else if (i4 != 5) {
+                b.d.b.a.a.g0(34, "Unknown textAlignment: ", i4, "WebvttCueParser");
+                alignment = null;
+            } else {
+                alignment = Layout.Alignment.ALIGN_OPPOSITE;
+            }
+            c0093b.c = alignment;
+            float f3 = this.e;
+            int i5 = this.f;
+            if (f3 != -3.4028235E38f && i5 == 0 && (f3 < 0.0f || f3 > 1.0f)) {
+                f2 = 1.0f;
+            } else if (f3 != -3.4028235E38f) {
+                f2 = f3;
+            } else if (i5 == 0) {
+                f2 = 1.0f;
+            }
+            c0093b.e = f2;
+            c0093b.f = i5;
+            c0093b.g = this.g;
+            c0093b.h = f;
+            c0093b.i = i2;
+            float f4 = this.j;
+            if (i2 == 0) {
+                f = 1.0f - f;
+            } else if (i2 == 1) {
+                f = f <= 0.5f ? f * 2.0f : (1.0f - f) * 2.0f;
+            } else if (i2 != 2) {
+                throw new IllegalStateException(String.valueOf(i2));
+            }
+            c0093b.l = Math.min(f4, f);
+            c0093b.p = this.k;
+            CharSequence charSequence = this.c;
+            if (charSequence != null) {
+                c0093b.a = charSequence;
+            }
+            return c0093b;
+        }
     }
 }

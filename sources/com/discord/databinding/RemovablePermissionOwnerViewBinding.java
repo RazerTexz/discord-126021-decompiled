@@ -8,8 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.views.permissions.ChannelPermissionOwnerView;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -33,15 +32,15 @@ public final class RemovablePermissionOwnerViewBinding implements ViewBinding {
 
     @NonNull
     public static RemovablePermissionOwnerViewBinding a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
-        View viewInflate = layoutInflater.inflate(R$layout.removable_permission_owner_view, viewGroup, false);
+        View viewInflate = layoutInflater.inflate(R.layout.removable_permission_owner_view, viewGroup, false);
         if (z2) {
             viewGroup.addView(viewInflate);
         }
-        int i = R$id.permission_owner_view;
-        ChannelPermissionOwnerView channelPermissionOwnerView = (ChannelPermissionOwnerView) viewInflate.findViewById(R$id.permission_owner_view);
+        int i = R.id.permission_owner_view;
+        ChannelPermissionOwnerView channelPermissionOwnerView = (ChannelPermissionOwnerView) viewInflate.findViewById(R.id.permission_owner_view);
         if (channelPermissionOwnerView != null) {
-            i = R$id.remove;
-            ImageView imageView = (ImageView) viewInflate.findViewById(R$id.remove);
+            i = R.id.remove;
+            ImageView imageView = (ImageView) viewInflate.findViewById(R.id.remove);
             if (imageView != null) {
                 return new RemovablePermissionOwnerViewBinding((ConstraintLayout) viewInflate, channelPermissionOwnerView, imageView);
             }

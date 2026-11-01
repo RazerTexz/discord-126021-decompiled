@@ -6,8 +6,10 @@ import com.discord.api.channel.ChannelUtils;
 import com.discord.api.role.GuildRole;
 import com.discord.models.domain.ModelNotificationSettings;
 import com.discord.models.guild.Guild;
+import com.discord.stores.StoreStream;
 import com.discord.utilities.permissions.ManageGuildContext;
 import com.discord.utilities.permissions.PermissionUtils;
+import com.discord.utilities.rx.ObservableWithLeadingEdgeThrottle;
 import d0.t.n;
 import d0.t.r;
 import d0.t.u;
@@ -17,15 +19,19 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.concurrent.TimeUnit;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import rx.Observable;
 
 /* JADX INFO: compiled from: GuildChannelsInfo.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class GuildChannelsInfo {
-    public static final GuildChannelsInfo$Companion Companion = new GuildChannelsInfo$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final boolean ableToInstantInvite;
     private final boolean canChangeNickname;
     private final Map<Long, Long> channelPermissions;
@@ -37,6 +43,23 @@ public final /* data */ class GuildChannelsInfo {
     private final ManageGuildContext manageGuildContext;
     private final ModelNotificationSettings notificationSettings;
     private final boolean unelevated;
+
+    /* JADX INFO: compiled from: GuildChannelsInfo.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final Observable<GuildChannelsInfo> get(long guildId) {
+            StoreStream.Companion companion = StoreStream.INSTANCE;
+            Observable<GuildChannelsInfo> observableR = ObservableWithLeadingEdgeThrottle.combineLatest(companion.getUsers().observeMe(true), companion.getGuilds().observeGuild(guildId), companion.getUserGuildSettings().observeGuildSettings(guildId), companion.getUserGuildSettings().observeHideMutedChannels(guildId), companion.getGuilds().observeRoles(guildId), companion.getPermissions().observePermissionsForGuild(guildId), companion.getPermissions().observeChannelPermissionsForGuild(guildId), companion.getChannels().observeChannelCategories(guildId), GuildChannelsInfo$Companion$get$1.INSTANCE, 500L, TimeUnit.MILLISECONDS).r();
+            m.checkNotNullExpressionValue(observableR, "ObservableWithLeadingEdg…  .distinctUntilChanged()");
+            return observableR;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public GuildChannelsInfo(Guild guild, GuildRole guildRole, ModelNotificationSettings modelNotificationSettings, boolean z2, Map<Long, Long> map, boolean z3, boolean z4, boolean z5, ManageGuildContext manageGuildContext, boolean z6, Map<Long, GuildRole> map2) {
         m.checkNotNullParameter(modelNotificationSettings, "notificationSettings");
@@ -169,7 +192,7 @@ public final /* data */ class GuildChannelsInfo {
             Long lValueOf = Long.valueOf(ChannelUtils.k(channel) ? channel.getId() : channel.getParentId());
             Object treeSet = treeMap.get(lValueOf);
             if (treeSet == null) {
-                treeSet = new TreeSet(ChannelUtils.h(Channel.Companion));
+                treeSet = new TreeSet(ChannelUtils.h(Channel.INSTANCE));
                 treeMap.put(lValueOf, treeSet);
             }
             ((Set) treeSet).add(channel);
@@ -181,7 +204,7 @@ public final /* data */ class GuildChannelsInfo {
         m.checkNotNullParameter(guildChannels, "guildChannels");
         Map<Long, Collection<Channel>> sortedCategories = getSortedCategories(guildChannels);
         ArrayList arrayList = new ArrayList();
-        Iterator<Map$Entry<Long, Collection<Channel>>> it = sortedCategories.entrySet().iterator();
+        Iterator<Map.Entry<Long, Collection<Channel>>> it = sortedCategories.entrySet().iterator();
         while (it.hasNext()) {
             Collection<Channel> value = it.next().getValue();
             List arrayList2 = new ArrayList();

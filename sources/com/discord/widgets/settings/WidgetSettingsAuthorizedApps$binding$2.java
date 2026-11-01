@@ -3,7 +3,7 @@ package com.discord.widgets.settings;
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetSettingsAuthorizedAppsBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -26,10 +26,10 @@ public final /* synthetic */ class WidgetSettingsAuthorizedApps$binding$2 extend
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSettingsAuthorizedAppsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.authorized_apps_list);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.authorized_apps_list);
         if (recyclerView != null) {
             return new WidgetSettingsAuthorizedAppsBinding((CoordinatorLayout) view, recyclerView);
         }
-        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R$id.authorized_apps_list)));
+        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R.id.authorized_apps_list)));
     }
 }

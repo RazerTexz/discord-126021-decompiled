@@ -1,12 +1,11 @@
 package b.c.a.w.b;
 
 import android.graphics.Path;
-import android.graphics.Path$FillType;
 import java.util.List;
 
 /* JADX INFO: compiled from: ShapeContent.java */
 /* JADX INFO: loaded from: classes.dex */
-public class q implements m, b.c.a.w.c.a$b {
+public class q implements m, b.c.a.w.c.a.b {
     public final b.c.a.j c;
     public final b.c.a.w.c.a<?, Path> d;
     public boolean e;
@@ -25,7 +24,7 @@ public class q implements m, b.c.a.w.c.a$b {
         aVarA.a.add(this);
     }
 
-    @Override // b.c.a.w.c.a$b
+    @Override // b.c.a.w.c.a.b
     public void a() {
         this.e = false;
         this.c.invalidateSelf();
@@ -56,7 +55,7 @@ public class q implements m, b.c.a.w.c.a$b {
             return this.a;
         }
         this.a.set(this.d.e());
-        this.a.setFillType(Path$FillType.EVEN_ODD);
+        this.a.setFillType(Path.FillType.EVEN_ODD);
         this.f.a(this.a);
         this.e = true;
         return this.a;

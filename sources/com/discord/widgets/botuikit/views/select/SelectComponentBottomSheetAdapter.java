@@ -4,10 +4,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.RecyclerView$Adapter;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
-import com.discord.R$id;
-import com.discord.R$layout;
+import androidx.recyclerview.widget.RecyclerView;
+import com.discord.R;
 import com.discord.api.botuikit.SelectItem;
 import com.discord.databinding.WidgetSelectComponentBottomSheetItemBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
@@ -24,7 +22,7 @@ import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: SelectComponentBottomSheetAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class SelectComponentBottomSheetAdapter extends RecyclerView$Adapter<RecyclerView$ViewHolder> {
+public final class SelectComponentBottomSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<SelectComponentBottomSheetItem> data;
     private boolean emojiAnimationsEnabled;
     private boolean hasDescriptions;
@@ -42,44 +40,44 @@ public final class SelectComponentBottomSheetAdapter extends RecyclerView$Adapte
         this.emojiAnimationsEnabled = true;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public long getItemId(int position) {
         return position;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     /* JADX INFO: renamed from: getItemCount */
     public int getPageSize() {
         return this.data.size();
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public void onBindViewHolder(RecyclerView$ViewHolder holder, int position) {
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         m.checkNotNullParameter(holder, "holder");
         ((SelectComponentBottomSheetItemViewHolder) holder).bind(this.data.get(position), this.isMultiSelect, this.hasIcons, this.hasDescriptions, position == this.data.size() - 1, this.isMaxSelected, this.emojiAnimationsEnabled);
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public RecyclerView$ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         m.checkNotNullParameter(parent, "parent");
-        View viewInflate = LayoutInflater.from(parent.getContext()).inflate(R$layout.widget_select_component_bottom_sheet_item, parent, false);
-        int i = R$id.select_component_sheet_item_description;
-        MaterialTextView materialTextView = (MaterialTextView) viewInflate.findViewById(R$id.select_component_sheet_item_description);
+        View viewInflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.widget_select_component_bottom_sheet_item, parent, false);
+        int i = R.id.select_component_sheet_item_description;
+        MaterialTextView materialTextView = (MaterialTextView) viewInflate.findViewById(R.id.select_component_sheet_item_description);
         if (materialTextView != null) {
-            i = R$id.select_component_sheet_item_divider;
-            View viewFindViewById = viewInflate.findViewById(R$id.select_component_sheet_item_divider);
+            i = R.id.select_component_sheet_item_divider;
+            View viewFindViewById = viewInflate.findViewById(R.id.select_component_sheet_item_divider);
             if (viewFindViewById != null) {
-                i = R$id.select_component_sheet_item_divider_icon;
-                View viewFindViewById2 = viewInflate.findViewById(R$id.select_component_sheet_item_divider_icon);
+                i = R.id.select_component_sheet_item_divider_icon;
+                View viewFindViewById2 = viewInflate.findViewById(R.id.select_component_sheet_item_divider_icon);
                 if (viewFindViewById2 != null) {
-                    i = R$id.select_component_sheet_item_icon;
-                    SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate.findViewById(R$id.select_component_sheet_item_icon);
+                    i = R.id.select_component_sheet_item_icon;
+                    SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate.findViewById(R.id.select_component_sheet_item_icon);
                     if (simpleDraweeView != null) {
-                        i = R$id.select_component_sheet_item_selected;
-                        MaterialCheckBox materialCheckBox = (MaterialCheckBox) viewInflate.findViewById(R$id.select_component_sheet_item_selected);
+                        i = R.id.select_component_sheet_item_selected;
+                        MaterialCheckBox materialCheckBox = (MaterialCheckBox) viewInflate.findViewById(R.id.select_component_sheet_item_selected);
                         if (materialCheckBox != null) {
-                            i = R$id.select_component_sheet_item_title;
-                            MaterialTextView materialTextView2 = (MaterialTextView) viewInflate.findViewById(R$id.select_component_sheet_item_title);
+                            i = R.id.select_component_sheet_item_title;
+                            MaterialTextView materialTextView2 = (MaterialTextView) viewInflate.findViewById(R.id.select_component_sheet_item_title);
                             if (materialTextView2 != null) {
                                 WidgetSelectComponentBottomSheetItemBinding widgetSelectComponentBottomSheetItemBinding = new WidgetSelectComponentBottomSheetItemBinding((ConstraintLayout) viewInflate, materialTextView, viewFindViewById, viewFindViewById2, simpleDraweeView, materialCheckBox, materialTextView2);
                                 m.checkNotNullExpressionValue(widgetSelectComponentBottomSheetItemBinding, "WidgetSelectComponentBot…          false\n        )");

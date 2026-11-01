@@ -1,13 +1,19 @@
 package d0.e0.p.d.m0.b.q;
 
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.e0.p.d.m0.b.k$a;
 import d0.e0.p.d.m0.c.c0;
+import d0.e0.p.d.m0.c.e0;
+import d0.e0.p.d.m0.c.u0;
+import d0.e0.p.d.m0.c.z;
 import d0.t.m0;
 import d0.t.n0;
+import d0.t.u;
 import d0.z.d.a0;
 import d0.z.d.y;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
@@ -15,7 +21,7 @@ import kotlin.reflect.KProperty;
 /* JADX INFO: compiled from: JvmBuiltInClassDescriptorFactory.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class e implements d0.e0.p.d.m0.c.h1.b {
-    public static final e$b a = new e$b(null);
+    public static final b a = new b(null);
     public static final d0.e0.p.d.m0.g.e d;
     public static final d0.e0.p.d.m0.g.a e;
 
@@ -26,8 +32,69 @@ public final class e implements d0.e0.p.d.m0.c.h1.b {
     public final d0.e0.p.d.m0.m.j h;
     public static final d0.e0.p.d.m0.g.b c = d0.e0.p.d.m0.b.k.l;
 
+    /* JADX INFO: compiled from: JvmBuiltInClassDescriptorFactory.kt */
+    public final class a extends d0.z.d.o implements Function1<c0, d0.e0.p.d.m0.b.b> {
+        public static final a j = new a();
+
+        public a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.b.b invoke(c0 c0Var) {
+            return invoke2(c0Var);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final d0.e0.p.d.m0.b.b invoke2(c0 c0Var) {
+            d0.z.d.m.checkNotNullParameter(c0Var, "module");
+            List<e0> fragments = c0Var.getPackage(e.access$getKOTLIN_FQ_NAME$cp()).getFragments();
+            ArrayList arrayList = new ArrayList();
+            for (Object obj : fragments) {
+                if (obj instanceof d0.e0.p.d.m0.b.b) {
+                    arrayList.add(obj);
+                }
+            }
+            return (d0.e0.p.d.m0.b.b) u.first((List) arrayList);
+        }
+    }
+
+    /* JADX INFO: compiled from: JvmBuiltInClassDescriptorFactory.kt */
+    public final class b {
+        public b(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final d0.e0.p.d.m0.g.a getCLONEABLE_CLASS_ID() {
+            return e.access$getCLONEABLE_CLASS_ID$cp();
+        }
+    }
+
+    /* JADX INFO: compiled from: JvmBuiltInClassDescriptorFactory.kt */
+    public final class c extends d0.z.d.o implements Function0<d0.e0.p.d.m0.c.i1.i> {
+        public final /* synthetic */ d0.e0.p.d.m0.m.o $storageManager;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public c(d0.e0.p.d.m0.m.o oVar) {
+            super(0);
+            this.$storageManager = oVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.i1.i invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final d0.e0.p.d.m0.c.i1.i invoke() {
+            d0.e0.p.d.m0.c.i1.i iVar = new d0.e0.p.d.m0.c.i1.i((d0.e0.p.d.m0.c.m) e.access$getComputeContainingDeclaration$p(e.this).invoke(e.access$getModuleDescriptor$p(e.this)), e.access$getCLONEABLE_NAME$cp(), z.ABSTRACT, d0.e0.p.d.m0.c.f.INTERFACE, d0.t.m.listOf(e.access$getModuleDescriptor$p(e.this).getBuiltIns().getAnyType()), u0.a, false, this.$storageManager);
+            iVar.initialize(new d0.e0.p.d.m0.b.q.a(this.$storageManager, iVar), n0.emptySet(), null);
+            return iVar;
+        }
+    }
+
     static {
-        d0.e0.p.d.m0.g.c cVar = k$a.d;
+        d0.e0.p.d.m0.g.c cVar = d0.e0.p.d.m0.b.k.a.d;
         d0.e0.p.d.m0.g.e eVarShortName = cVar.shortName();
         d0.z.d.m.checkNotNullExpressionValue(eVarShortName, "cloneable.shortName()");
         d = eVarShortName;
@@ -43,7 +110,7 @@ public final class e implements d0.e0.p.d.m0.c.h1.b {
         d0.z.d.m.checkNotNullParameter(function1, "computeContainingDeclaration");
         this.f = c0Var;
         this.g = function1;
-        this.h = oVar.createLazyValue(new e$c(this, oVar));
+        this.h = oVar.createLazyValue(new c(oVar));
     }
 
     public static final /* synthetic */ d0.e0.p.d.m0.g.a access$getCLONEABLE_CLASS_ID$cp() {
@@ -89,6 +156,6 @@ public final class e implements d0.e0.p.d.m0.c.h1.b {
     }
 
     public /* synthetic */ e(d0.e0.p.d.m0.m.o oVar, c0 c0Var, Function1 function1, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(oVar, c0Var, (i & 4) != 0 ? e$a.j : function1);
+        this(oVar, c0Var, (i & 4) != 0 ? a.j : function1);
     }
 }

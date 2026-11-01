@@ -3,7 +3,12 @@ package com.discord.utilities.view.text;
 import android.text.Editable;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+import com.discord.models.domain.ModelAuditLogEntry;
 import d0.z.d.m;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function4;
@@ -13,10 +18,44 @@ import rx.functions.Action1;
 /* JADX INFO: compiled from: TextWatcher.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public class TextWatcher implements android.text.TextWatcher {
-    public static final TextWatcher$Companion Companion = new TextWatcher$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final Function1<Editable, Unit> onAfterTextChanged;
     private final Function4<CharSequence, Integer, Integer, Integer, Unit> onBeforeTextChanged;
     private final Function4<CharSequence, Integer, Integer, Integer, Unit> onTextChanged;
+
+    /* JADX INFO: compiled from: TextWatcher.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void addBindedTextWatcher(Fragment fragment, TextView textView, Action1<String> onAfterTextChanged) {
+            m.checkNotNullParameter(fragment, "fragment");
+            m.checkNotNullParameter(textView, "textView");
+            m.checkNotNullParameter(onAfterTextChanged, "onAfterTextChanged");
+            TextWatcherKt.addBindedTextWatcher(textView, fragment, new TextWatcher$Companion$addBindedTextWatcher$1(onAfterTextChanged));
+        }
+
+        public final void reset(Fragment fragment) {
+            m.checkNotNullParameter(fragment, "fragment");
+            HashMap map = (HashMap) TextWatcherKt.access$getBindedTextWatchers$p().get(fragment);
+            if (map != null) {
+                for (Map.Entry entry : map.entrySet()) {
+                    TextView textView = (TextView) entry.getKey();
+                    Iterator it = ((ArrayList) entry.getValue()).iterator();
+                    while (it.hasNext()) {
+                        textView.removeTextChangedListener((android.text.TextWatcher) it.next());
+                    }
+                }
+            }
+            TextWatcherKt.access$getBindedTextWatchers$p().remove(fragment);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public TextWatcher() {
         this(null, null, null, 7, null);
@@ -30,7 +69,7 @@ public class TextWatcher implements android.text.TextWatcher {
     }
 
     public static final void addBindedTextWatcher(Fragment fragment, TextView textView, Action1<String> action1) {
-        Companion.addBindedTextWatcher(fragment, textView, action1);
+        INSTANCE.addBindedTextWatcher(fragment, textView, action1);
     }
 
     @Override // android.text.TextWatcher

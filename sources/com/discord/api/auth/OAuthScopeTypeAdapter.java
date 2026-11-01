@@ -10,12 +10,24 @@ import d0.z.d.m;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Objects;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: OAuthScopeTypeAdapter.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class OAuthScopeTypeAdapter extends TypeAdapter<OAuthScope> {
-    public static final OAuthScopeTypeAdapter$Companion Companion = new OAuthScopeTypeAdapter$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final HashMap<String, OAuthScope> nameToScopeMap;
+
+    /* JADX INFO: compiled from: OAuthScopeTypeAdapter.kt */
+    public final class Companion {
+        public Companion() {
+        }
+
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
 
     static {
         HashMap<String, OAuthScope> map = new HashMap<>();
@@ -42,12 +54,12 @@ public final class OAuthScopeTypeAdapter extends TypeAdapter<OAuthScope> {
             return null;
         }
         String strJ = jsonReader.J();
-        OAuthScope oAuthScope$Invalid = nameToScopeMap.get(strJ);
-        if (oAuthScope$Invalid == null) {
+        OAuthScope invalid = nameToScopeMap.get(strJ);
+        if (invalid == null) {
             m.checkNotNullExpressionValue(strJ, "scopeName");
-            oAuthScope$Invalid = new OAuthScope$Invalid(strJ);
+            invalid = new OAuthScope.Invalid(strJ);
         }
-        return oAuthScope$Invalid;
+        return invalid;
     }
 
     @Override // com.google.gson.TypeAdapter

@@ -2,17 +2,60 @@ package androidx.customview.view;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class AbsSavedState implements Parcelable {
     private final Parcelable mSuperState;
-    public static final AbsSavedState EMPTY_STATE = new AbsSavedState$1();
-    public static final Parcelable$Creator<AbsSavedState> CREATOR = new AbsSavedState$2();
+    public static final AbsSavedState EMPTY_STATE = new AnonymousClass1();
+    public static final Parcelable.Creator<AbsSavedState> CREATOR = new AnonymousClass2();
 
-    public /* synthetic */ AbsSavedState(AbsSavedState$1 absSavedState$1) {
+    /* JADX INFO: renamed from: androidx.customview.view.AbsSavedState$1, reason: invalid class name */
+    public final class AnonymousClass1 extends AbsSavedState {
+        public AnonymousClass1() {
+            super((AnonymousClass1) null);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.customview.view.AbsSavedState$2, reason: invalid class name */
+    public final class AnonymousClass2 implements Parcelable.ClassLoaderCreator<AbsSavedState> {
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ Object createFromParcel(Parcel parcel) {
+            return createFromParcel(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ Object[] newArray(int i) {
+            return newArray(i);
+        }
+
+        @Override // android.os.Parcelable.ClassLoaderCreator
+        public /* bridge */ /* synthetic */ AbsSavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
+            return createFromParcel(parcel, classLoader);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public AbsSavedState[] newArray(int i) {
+            return new AbsSavedState[i];
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.ClassLoaderCreator
+        public AbsSavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
+            if (parcel.readParcelable(classLoader) == null) {
+                return AbsSavedState.EMPTY_STATE;
+            }
+            throw new IllegalStateException("superState must be null");
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public AbsSavedState createFromParcel(Parcel parcel) {
+            return createFromParcel(parcel, (ClassLoader) null);
+        }
+    }
+
+    public /* synthetic */ AbsSavedState(AnonymousClass1 anonymousClass1) {
         this();
     }
 

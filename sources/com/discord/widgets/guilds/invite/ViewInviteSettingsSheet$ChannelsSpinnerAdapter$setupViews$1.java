@@ -1,7 +1,7 @@
 package com.discord.widgets.guilds.invite;
 
 import androidx.annotation.IdRes;
-import com.discord.R$id;
+import com.discord.R;
 import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
 
@@ -24,6 +24,6 @@ public final class ViewInviteSettingsSheet$ChannelsSpinnerAdapter$setupViews$1 e
     @IdRes
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final int invoke2() {
-        return this.$dropDownMode ? R$id.channel_spinner_dropdown_item_textview : R$id.channel_spinner_item_textview;
+        return this.$dropDownMode ? R.id.channel_spinner_dropdown_item_textview : R.id.channel_spinner_item_textview;
     }
 }

@@ -1,38 +1,45 @@
 package com.discord.widgets.settings.account.mfa;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.a.s;
-import b.a.a.s$a;
 import b.a.d.f0;
+import b.a.d.j;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetEnableMfaStepsBinding;
 import com.discord.utilities.auth.AuthUtils;
+import com.discord.utilities.dimmer.DimmerView;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
-import com.discord.views.steps.StepsView$b$a;
-import com.discord.views.steps.StepsView$d;
+import com.discord.views.steps.StepsView;
 import d0.t.n;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Objects;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: WidgetEnableMFASteps.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetEnableMFASteps extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetEnableMFASteps.class, "binding", "getBinding()Lcom/discord/databinding/WidgetEnableMfaStepsBinding;", 0)};
-    public static final WidgetEnableMFASteps$Companion Companion = new WidgetEnableMFASteps$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     public static final int KEY_SCREEN = 2;
     private static final String STATE_TOTP_PASSWORD_KEY = "STATE_TOTP_PASSWORD_KEY";
     private static final String STATE_TOTP_SECRET_KEY = "STATE_TOTP_SECRET_KEY";
@@ -44,8 +51,108 @@ public final class WidgetEnableMFASteps extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.mfa.WidgetEnableMFASteps$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetEnableMFASteps.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            FragmentActivity activity = WidgetEnableMFASteps.this.getActivity();
+            if (activity != null) {
+                activity.onBackPressed();
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.mfa.WidgetEnableMFASteps$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetEnableMFASteps.kt */
+    public final class AnonymousClass1 extends o implements Function1<WidgetEnableMFAViewModel.ViewState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetEnableMFAViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetEnableMFAViewModel.ViewState viewState) {
+            m.checkNotNullParameter(viewState, "it");
+            DimmerView.setDimmed$default(WidgetEnableMFASteps.access$getBinding$p(WidgetEnableMFASteps.this).f2380b, viewState.isLoading(), false, 2, null);
+            Integer screenIndex = viewState.getScreenIndex();
+            if (screenIndex != null) {
+                WidgetEnableMFASteps.access$getBinding$p(WidgetEnableMFASteps.this).c.b(screenIndex.intValue());
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.mfa.WidgetEnableMFASteps$showPasswordModal$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetEnableMFASteps.kt */
+    public final class AnonymousClass1 extends o implements Function1<String, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            m.checkNotNullParameter(str, "newPassword");
+            WidgetEnableMFASteps.access$getViewModel$p(WidgetEnableMFASteps.this).setPassword(str);
+            AppFragment.hideKeyboard$default(WidgetEnableMFASteps.this, null, 1, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.account.mfa.WidgetEnableMFASteps$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetEnableMFASteps.kt */
+    public final class AnonymousClass2 extends o implements Function1<Integer, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Integer num) {
+            invoke(num.intValue());
+            return Unit.a;
+        }
+
+        public final void invoke(int i) {
+            WidgetEnableMFASteps.access$getViewModel$p(WidgetEnableMFASteps.this).updateScreenIndex(i);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetEnableMFASteps.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            m.checkNotNullParameter(context, "context");
+            j.d(context, WidgetEnableMFASteps.class, new Intent());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetEnableMFASteps() {
-        super(R$layout.widget_enable_mfa_steps);
+        super(R.layout.widget_enable_mfa_steps);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetEnableMFASteps$binding$2.INSTANCE, null, 2, null);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetEnableMFAViewModel.class), new WidgetEnableMFASteps$appActivityViewModels$$inlined$activityViewModels$1(this), new f0(WidgetEnableMFASteps$viewModel$2.INSTANCE));
     }
@@ -78,13 +185,13 @@ public final class WidgetEnableMFASteps extends AppFragment {
     public void onViewBound(View view) {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
-        getBinding().c.a(new StepsView$d(this, n.listOf((Object[]) new StepsView$b$a[]{new StepsView$b$a(WidgetEnableMFADownload.class, 0, 2131887437, 0, null, null, null, null, false, false, false, 2042), new StepsView$b$a(WidgetEnableMFAKey.class, 0, 0, 0, null, null, null, null, false, false, false, 2046), new StepsView$b$a(WidgetEnableMFAInput.class, 0, 0, 0, null, null, null, null, false, false, false, 766), new StepsView$b$a(WidgetEnableMFASuccess.class, 0, 0, 0, null, null, null, null, false, false, false, 1022)})), new WidgetEnableMFASteps$onViewBound$1(this), new WidgetEnableMFASteps$onViewBound$2(this));
+        getBinding().c.a(new StepsView.d(this, n.listOf((Object[]) new StepsView.b.a[]{new StepsView.b.a(WidgetEnableMFADownload.class, 0, R.string.cancel, 0, null, null, null, null, false, false, false, 2042), new StepsView.b.a(WidgetEnableMFAKey.class, 0, 0, 0, null, null, null, null, false, false, false, 2046), new StepsView.b.a(WidgetEnableMFAInput.class, 0, 0, 0, null, null, null, null, false, false, false, 766), new StepsView.b.a(WidgetEnableMFASuccess.class, 0, 0, 0, null, null, null, null, false, false, false, 1022)})), new AnonymousClass1(), new AnonymousClass2());
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetEnableMFASteps.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetEnableMFASteps$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetEnableMFASteps.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -105,15 +212,15 @@ public final class WidgetEnableMFASteps extends AppFragment {
     }
 
     private final void showPasswordModal() {
-        s$a s_a = s.k;
+        s.Companion aVar = s.INSTANCE;
         FragmentManager childFragmentManager = getChildFragmentManager();
         m.checkNotNullExpressionValue(childFragmentManager, "childFragmentManager");
-        WidgetEnableMFASteps$showPasswordModal$1 widgetEnableMFASteps$showPasswordModal$1 = new WidgetEnableMFASteps$showPasswordModal$1(this);
-        Objects.requireNonNull(s_a);
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1();
+        Objects.requireNonNull(aVar);
         m.checkNotNullParameter(childFragmentManager, "supportFragmentManager");
-        m.checkNotNullParameter(widgetEnableMFASteps$showPasswordModal$1, "onValidPasswordEntered");
+        m.checkNotNullParameter(anonymousClass1, "onValidPasswordEntered");
         s sVar = new s();
-        sVar.onValidPasswordEntered = widgetEnableMFASteps$showPasswordModal$1;
+        sVar.onValidPasswordEntered = anonymousClass1;
         sVar.show(childFragmentManager, s.class.getSimpleName());
     }
 }

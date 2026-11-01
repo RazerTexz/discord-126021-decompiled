@@ -21,7 +21,7 @@ public final class SettingsGiftingViewModel$Companion$observeStores$1<T, R> impl
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
     public final Observable<? extends List<ModelGift>> call2(Long l) {
-        StoreGifting gifting = StoreStream.Companion.getGifting();
+        StoreGifting gifting = StoreStream.INSTANCE.getGifting();
         m.checkNotNullExpressionValue(l, "meId");
         return gifting.getMyResolvedGifts(l.longValue());
     }

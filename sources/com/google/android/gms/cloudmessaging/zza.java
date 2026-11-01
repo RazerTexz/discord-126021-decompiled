@@ -1,10 +1,11 @@
 package com.google.android.gms.cloudmessaging;
 
+import android.os.Build;
 import android.os.IBinder;
 import android.os.Messenger;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
+import android.util.Log;
 import androidx.annotation.Nullable;
 import b.i.a.f.d.d;
 import java.util.Objects;
@@ -13,7 +14,22 @@ import java.util.Objects;
 /* JADX INFO: loaded from: classes3.dex */
 public class zza implements Parcelable {
     public Messenger j;
-    public static final Parcelable$Creator<zza> CREATOR = new d();
+    public static final Parcelable.Creator<zza> CREATOR = new d();
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-cloud-messaging@@16.0.0 */
+    public final class a extends ClassLoader {
+        @Override // java.lang.ClassLoader
+        public final Class<?> loadClass(String str, boolean z2) throws ClassNotFoundException {
+            if (!"com.google.android.gms.iid.MessengerCompat".equals(str)) {
+                return super.loadClass(str, z2);
+            }
+            if (!(Log.isLoggable("CloudMessengerCompat", 3) || (Build.VERSION.SDK_INT == 23 && Log.isLoggable("CloudMessengerCompat", 3)))) {
+                return zza.class;
+            }
+            Log.d("CloudMessengerCompat", "Using renamed FirebaseIidMessengerCompat class");
+            return zza.class;
+        }
+    }
 
     public zza(IBinder iBinder) {
         this.j = new Messenger(iBinder);

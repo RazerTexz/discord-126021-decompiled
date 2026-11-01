@@ -3,14 +3,13 @@ package b.c.a.w.b;
 import android.graphics.Path;
 import android.graphics.PointF;
 import androidx.annotation.Nullable;
-import b.c.a.y.l.h$a;
 import java.util.List;
 
 /* JADX INFO: compiled from: PolystarContent.java */
 /* JADX INFO: loaded from: classes.dex */
-public class n implements m, b.c.a.w.c.a$b, k {
+public class n implements m, b.c.a.w.c.a.b, k {
     public final b.c.a.j c;
-    public final h$a d;
+    public final b.c.a.y.l.h.a d;
     public final boolean e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -33,8 +32,8 @@ public class n implements m, b.c.a.w.c.a$b, k {
     public n(b.c.a.j jVar, b.c.a.y.m.b bVar, b.c.a.y.l.h hVar) {
         this.c = jVar;
         this.f386b = hVar.a;
-        h$a h_a = hVar.f421b;
-        this.d = h_a;
+        b.c.a.y.l.h.a aVar = hVar.f421b;
+        this.d = aVar;
         this.e = hVar.j;
         b.c.a.w.c.a<Float, Float> aVarA = hVar.c.a();
         this.f = aVarA;
@@ -46,8 +45,8 @@ public class n implements m, b.c.a.w.c.a$b, k {
         this.j = aVarA4;
         b.c.a.w.c.a<Float, Float> aVarA5 = hVar.i.a();
         this.l = aVarA5;
-        h$a h_a2 = h$a.STAR;
-        if (h_a == h_a2) {
+        b.c.a.y.l.h.a aVar2 = b.c.a.y.l.h.a.STAR;
+        if (aVar == aVar2) {
             this.i = hVar.f.a();
             this.k = hVar.h.a();
         } else {
@@ -59,7 +58,7 @@ public class n implements m, b.c.a.w.c.a$b, k {
         bVar.e(aVarA3);
         bVar.e(aVarA4);
         bVar.e(aVarA5);
-        if (h_a == h_a2) {
+        if (aVar == aVar2) {
             bVar.e(this.i);
             bVar.e(this.k);
         }
@@ -68,13 +67,13 @@ public class n implements m, b.c.a.w.c.a$b, k {
         aVarA3.a.add(this);
         aVarA4.a.add(this);
         aVarA5.a.add(this);
-        if (h_a == h_a2) {
+        if (aVar == aVar2) {
             this.i.a.add(this);
             this.k.a.add(this);
         }
     }
 
-    @Override // b.c.a.w.c.a$b
+    @Override // b.c.a.w.c.a.b
     public void a() {
         this.n = false;
         this.c.invalidateSelf();

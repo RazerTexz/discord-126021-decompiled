@@ -19,14 +19,14 @@ public abstract class q<T> {
         T t;
         g<T> gVar = this.f598b;
         synchronized (gVar) {
-            g$b<T> g_b = gVar.c;
-            if (g_b == null) {
+            g.b<T> bVar = gVar.c;
+            if (bVar == null) {
                 t = null;
             } else {
-                T tPollLast = g_b.c.pollLast();
-                if (g_b.c.isEmpty()) {
-                    gVar.b(g_b);
-                    gVar.a.remove(g_b.f596b);
+                T tPollLast = bVar.c.pollLast();
+                if (bVar.c.isEmpty()) {
+                    gVar.b(bVar);
+                    gVar.a.remove(bVar.f596b);
                 }
                 t = tPollLast;
             }

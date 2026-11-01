@@ -5,18 +5,16 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.os.Build$VERSION;
+import android.os.Build;
 import androidx.annotation.CallSuper;
 import androidx.annotation.FloatRange;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import b.c.a.j;
 import b.c.a.s;
-import b.c.a.s$a;
-import b.c.a.w.c.a$b;
 import b.c.a.w.c.o;
 import b.c.a.y.k.l;
 import b.c.a.y.l.k;
@@ -28,7 +26,7 @@ import java.util.Objects;
 
 /* JADX INFO: compiled from: BaseLayer.java */
 /* JADX INFO: loaded from: classes.dex */
-public abstract class b implements b.c.a.w.b.e, a$b, b.c.a.y.g {
+public abstract class b implements b.c.a.w.b.e, b.c.a.w.c.a.b, b.c.a.y.g {
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     @Nullable
@@ -61,13 +59,13 @@ public abstract class b implements b.c.a.w.b.e, a$b, b.c.a.y.g {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final Matrix f430b = new Matrix();
     public final Paint c = new b.c.a.w.a(1);
-    public final Paint d = new b.c.a.w.a(1, PorterDuff$Mode.DST_IN);
-    public final Paint e = new b.c.a.w.a(1, PorterDuff$Mode.DST_OUT);
+    public final Paint d = new b.c.a.w.a(1, PorterDuff.Mode.DST_IN);
+    public final Paint e = new b.c.a.w.a(1, PorterDuff.Mode.DST_OUT);
 
     public b(j jVar, e eVar) {
         b.c.a.w.a aVar = new b.c.a.w.a(1);
         this.f = aVar;
-        this.g = new b.c.a.w.a(PorterDuff$Mode.CLEAR);
+        this.g = new b.c.a.w.a(PorterDuff.Mode.CLEAR);
         this.h = new RectF();
         this.i = new RectF();
         this.j = new RectF();
@@ -79,9 +77,9 @@ public abstract class b implements b.c.a.w.b.e, a$b, b.c.a.y.g {
         this.o = eVar;
         this.l = b.d.b.a.a.J(new StringBuilder(), eVar.c, "#draw");
         if (eVar.u == 3) {
-            aVar.setXfermode(new PorterDuffXfermode(PorterDuff$Mode.DST_OUT));
+            aVar.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         } else {
-            aVar.setXfermode(new PorterDuffXfermode(PorterDuff$Mode.DST_IN));
+            aVar.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         }
         l lVar = eVar.i;
         Objects.requireNonNull(lVar);
@@ -113,7 +111,7 @@ public abstract class b implements b.c.a.w.b.e, a$b, b.c.a.y.g {
         e(this.q);
     }
 
-    @Override // b.c.a.w.c.a$b
+    @Override // b.c.a.w.c.a.b
     public void a() {
         this.n.invalidateSelf();
     }
@@ -290,7 +288,7 @@ public abstract class b implements b.c.a.w.b.e, a$b, b.c.a.y.g {
             if (k()) {
                 Matrix matrix3 = this.f430b;
                 b.c.a.b0.g.f(canvas, this.h, this.d, 19);
-                if (Build$VERSION.SDK_INT < 28) {
+                if (Build.VERSION.SDK_INT < 28) {
                     i(canvas);
                 }
                 b.c.a.c.a("Layer#saveLayer");
@@ -456,7 +454,7 @@ public abstract class b implements b.c.a.w.b.e, a$b, b.c.a.y.g {
                 eVar.f345b = i / 2;
             }
             if (str.equals("__container")) {
-                Iterator<s$a> it = sVar.f375b.iterator();
+                Iterator<s.a> it = sVar.f375b.iterator();
                 while (it.hasNext()) {
                     it.next().a(f);
                 }

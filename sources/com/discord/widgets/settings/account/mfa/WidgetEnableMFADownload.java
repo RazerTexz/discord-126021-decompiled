@@ -6,7 +6,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetSettingsEnableMfaDownloadBinding;
 import com.discord.utilities.auth.AuthUtils;
@@ -24,7 +24,7 @@ public final class WidgetEnableMFADownload extends AppFragment {
     private final FragmentViewBindingDelegate binding;
 
     public WidgetEnableMFADownload() {
-        super(R$layout.widget_settings_enable_mfa_download);
+        super(R.layout.widget_settings_enable_mfa_download);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetEnableMFADownload$binding$2.INSTANCE, null, 2, null);
     }
 
@@ -38,7 +38,7 @@ public final class WidgetEnableMFADownload extends AppFragment {
         super.onViewBound(view);
         TextView textView = getBinding().f2616b;
         m.checkNotNullExpressionValue(textView, "binding.mfaDownloadBody");
-        b.n(textView, 2131896511, new Object[]{AuthUtils.URL_AUTHY, AuthUtils.URL_GOOGLE_AUTHENTICATOR}, null, 4);
+        b.n(textView, R.string.two_fa_download_app_body, new Object[]{AuthUtils.URL_AUTHY, AuthUtils.URL_GOOGLE_AUTHENTICATOR}, null, 4);
         TextView textView2 = getBinding().f2616b;
         m.checkNotNullExpressionValue(textView2, "binding.mfaDownloadBody");
         textView2.setMovementMethod(LinkMovementMethod.getInstance());

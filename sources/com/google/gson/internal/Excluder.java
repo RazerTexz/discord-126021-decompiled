@@ -7,6 +7,9 @@ import b.i.d.p.d;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -20,6 +23,53 @@ public final class Excluder implements o, Cloneable {
     public boolean m = true;
     public List<a> n = Collections.emptyList();
     public List<a> o = Collections.emptyList();
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: renamed from: com.google.gson.internal.Excluder$1, reason: invalid class name */
+    public class AnonymousClass1<T> extends TypeAdapter<T> {
+        public TypeAdapter<T> a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final /* synthetic */ boolean f3116b;
+        public final /* synthetic */ boolean c;
+        public final /* synthetic */ Gson d;
+        public final /* synthetic */ TypeToken e;
+
+        public AnonymousClass1(boolean z2, boolean z3, Gson gson, TypeToken typeToken) {
+            this.f3116b = z2;
+            this.c = z3;
+            this.d = gson;
+            this.e = typeToken;
+        }
+
+        @Override // com.google.gson.TypeAdapter
+        public T read(JsonReader jsonReader) throws IOException {
+            if (this.f3116b) {
+                jsonReader.U();
+                return null;
+            }
+            TypeAdapter<T> typeAdapterJ = this.a;
+            if (typeAdapterJ == null) {
+                typeAdapterJ = this.d.j(Excluder.this, this.e);
+                this.a = typeAdapterJ;
+            }
+            return typeAdapterJ.read(jsonReader);
+        }
+
+        @Override // com.google.gson.TypeAdapter
+        public void write(JsonWriter jsonWriter, T t) throws IOException {
+            if (this.c) {
+                jsonWriter.s();
+                return;
+            }
+            TypeAdapter<T> typeAdapterJ = this.a;
+            if (typeAdapterJ == null) {
+                typeAdapterJ = this.d.j(Excluder.this, this.e);
+                this.a = typeAdapterJ;
+            }
+            typeAdapterJ.write(jsonWriter, t);
+        }
+    }
 
     public final boolean b(Class<?> cls) {
         if (this.k == -1.0d || i((c) cls.getAnnotation(c.class), (d) cls.getAnnotation(d.class))) {
@@ -43,7 +93,7 @@ public final class Excluder implements o, Cloneable {
         boolean z2 = zB || f(rawType, true);
         boolean z3 = zB || f(rawType, false);
         if (z2 || z3) {
-            return new Excluder$1(this, z3, z2, gson, typeToken);
+            return new AnonymousClass1(z3, z2, gson, typeToken);
         }
         return null;
     }

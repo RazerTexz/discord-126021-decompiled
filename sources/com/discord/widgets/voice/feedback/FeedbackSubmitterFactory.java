@@ -16,14 +16,14 @@ public final class FeedbackSubmitterFactory {
 
     public final FeedbackSubmitter create(PendingFeedback pendingFeedback) {
         m.checkNotNullParameter(pendingFeedback, "pendingFeedback");
-        if (pendingFeedback instanceof PendingFeedback$CallFeedback) {
-            return new CallFeedbackSubmitter((PendingFeedback$CallFeedback) pendingFeedback, null, 2, null);
+        if (pendingFeedback instanceof PendingFeedback.CallFeedback) {
+            return new CallFeedbackSubmitter((PendingFeedback.CallFeedback) pendingFeedback, null, 2, null);
         }
-        if (pendingFeedback instanceof PendingFeedback$StreamFeedback) {
-            return new StreamFeedbackSubmitter((PendingFeedback$StreamFeedback) pendingFeedback, null, 2, null);
+        if (pendingFeedback instanceof PendingFeedback.StreamFeedback) {
+            return new StreamFeedbackSubmitter((PendingFeedback.StreamFeedback) pendingFeedback, null, 2, null);
         }
-        if (pendingFeedback instanceof PendingFeedback$GuildDeleteFeedback) {
-            return new GuildDeleteFeedbackSubmitter((PendingFeedback$GuildDeleteFeedback) pendingFeedback);
+        if (pendingFeedback instanceof PendingFeedback.GuildDeleteFeedback) {
+            return new GuildDeleteFeedbackSubmitter((PendingFeedback.GuildDeleteFeedback) pendingFeedback);
         }
         throw new NoWhenBranchMatchedException();
     }

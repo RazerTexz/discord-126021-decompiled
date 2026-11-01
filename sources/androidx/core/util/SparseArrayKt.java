@@ -3,6 +3,7 @@ package androidx.core.util;
 import android.util.SparseArray;
 import androidx.exifinterface.media.ExifInterface;
 import d0.t.c0;
+import d0.z.d.g0.a;
 import d0.z.d.m;
 import java.util.Iterator;
 import kotlin.Unit;
@@ -12,6 +13,77 @@ import kotlin.jvm.functions.Function2;
 /* JADX INFO: compiled from: SparseArray.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class SparseArrayKt {
+
+    /* JADX INFO: renamed from: androidx.core.util.SparseArrayKt$keyIterator$1, reason: invalid class name */
+    /* JADX INFO: compiled from: SparseArray.kt */
+    public final class AnonymousClass1 extends c0 {
+        public final /* synthetic */ SparseArray<T> $this_keyIterator;
+        private int index;
+
+        public AnonymousClass1(SparseArray<T> sparseArray) {
+            this.$this_keyIterator = sparseArray;
+        }
+
+        public final int getIndex() {
+            return this.index;
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.index < this.$this_keyIterator.size();
+        }
+
+        @Override // d0.t.c0
+        public int nextInt() {
+            SparseArray<T> sparseArray = this.$this_keyIterator;
+            int i = this.index;
+            this.index = i + 1;
+            return sparseArray.keyAt(i);
+        }
+
+        public final void setIndex(int i) {
+            this.index = i;
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: renamed from: androidx.core.util.SparseArrayKt$valueIterator$1, reason: invalid class name */
+    /* JADX INFO: compiled from: SparseArray.kt */
+    public final class AnonymousClass1<T> implements Iterator<T>, a {
+        public final /* synthetic */ SparseArray<T> $this_valueIterator;
+        private int index;
+
+        public AnonymousClass1(SparseArray<T> sparseArray) {
+            this.$this_valueIterator = sparseArray;
+        }
+
+        public final int getIndex() {
+            return this.index;
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.index < this.$this_valueIterator.size();
+        }
+
+        @Override // java.util.Iterator
+        public T next() {
+            SparseArray<T> sparseArray = this.$this_valueIterator;
+            int i = this.index;
+            this.index = i + 1;
+            return sparseArray.valueAt(i);
+        }
+
+        @Override // java.util.Iterator
+        public void remove() {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        public final void setIndex(int i) {
+            this.index = i;
+        }
+    }
+
     public static final <T> boolean contains(SparseArray<T> sparseArray, int i) {
         m.checkNotNullParameter(sparseArray, "<this>");
         return sparseArray.indexOfKey(i) >= 0;
@@ -76,7 +148,7 @@ public final class SparseArrayKt {
 
     public static final <T> c0 keyIterator(SparseArray<T> sparseArray) {
         m.checkNotNullParameter(sparseArray, "<this>");
-        return new SparseArrayKt$keyIterator$1(sparseArray);
+        return new AnonymousClass1(sparseArray);
     }
 
     public static final <T> SparseArray<T> plus(SparseArray<T> sparseArray, SparseArray<T> sparseArray2) {
@@ -124,6 +196,6 @@ public final class SparseArrayKt {
 
     public static final <T> Iterator<T> valueIterator(SparseArray<T> sparseArray) {
         m.checkNotNullParameter(sparseArray, "<this>");
-        return new SparseArrayKt$valueIterator$1(sparseArray);
+        return new AnonymousClass1(sparseArray);
     }
 }

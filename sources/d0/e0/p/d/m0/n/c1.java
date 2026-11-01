@@ -11,6 +11,13 @@ public class c1 {
     public final z0 f3520b;
     public static final c1 a = create(z0.a);
 
+    /* JADX INFO: compiled from: TypeSubstitutor.java */
+    public final class a extends Exception {
+        public a(String str) {
+            super(str);
+        }
+    }
+
     public c1(z0 z0Var) {
         if (z0Var != null) {
             this.f3520b = z0Var;
@@ -402,7 +409,7 @@ public class c1 {
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
      */
-    public final w0 d(w0 w0Var, d0.e0.p.d.m0.c.z0 z0Var, int i) throws c1$a {
+    public final w0 d(w0 w0Var, d0.e0.p.d.m0.c.z0 z0Var, int i) throws a {
         if (w0Var == null) {
             a(17);
             throw null;
@@ -432,7 +439,7 @@ public class c1 {
         w0 y0Var = this.f3520b.get(type);
         if (y0Var == null) {
             y0Var = null;
-        } else if (type.getAnnotations().hasAnnotation(d0.e0.p.d.m0.b.k$a.G)) {
+        } else if (type.getAnnotations().hasAnnotation(d0.e0.p.d.m0.b.k.a.G)) {
             u0 constructor = y0Var.getType().getConstructor();
             if (constructor instanceof d0.e0.p.d.m0.n.l1.j) {
                 w0 projection = ((d0.e0.p.d.m0.n.l1.j) constructor).getProjection();
@@ -463,7 +470,7 @@ public class c1 {
                     return new y0(j1.OUT_VARIANCE, type.getConstructor().getBuiltIns().getNullableAnyType());
                 }
                 if (iH == 2) {
-                    throw new c1$a("Out-projection in in-position");
+                    throw new a("Out-projection in in-position");
                 }
             }
             j customTypeVariable = t0.getCustomTypeVariable(type);
@@ -477,7 +484,7 @@ public class c1 {
                     a(31);
                     throw null;
                 }
-                if (gVarFilterAnnotations.hasAnnotation(d0.e0.p.d.m0.b.k$a.G)) {
+                if (gVarFilterAnnotations.hasAnnotation(d0.e0.p.d.m0.b.k.a.G)) {
                     gVarFilterAnnotations = new d0.e0.p.d.m0.c.g1.l(gVarFilterAnnotations, new b1());
                 }
                 c0VarSubstitutionResult = d0.e0.p.d.m0.n.o1.a.replaceAnnotations(c0VarSubstitutionResult, new d0.e0.p.d.m0.c.g1.k(c0VarSubstitutionResult.getAnnotations(), gVarFilterAnnotations));
@@ -567,7 +574,7 @@ public class c1 {
             }
             a(11);
             throw null;
-        } catch (c1$a e) {
+        } catch (a e) {
             j0 j0VarCreateErrorType = t.createErrorType(e.getMessage());
             if (j0VarCreateErrorType != null) {
                 return j0VarCreateErrorType;
@@ -603,7 +610,7 @@ public class c1 {
         }
         try {
             return d(w0Var, null, 0);
-        } catch (c1$a unused) {
+        } catch (a unused) {
             return null;
         }
     }

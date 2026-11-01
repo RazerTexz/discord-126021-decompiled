@@ -19,12 +19,26 @@ public final class c implements ExecutorService {
     public final boolean m;
     public static final AtomicInteger j = new AtomicInteger();
 
+    /* JADX INFO: compiled from: MediaEngineExecutorService.kt */
+    public final class a implements Runnable {
+        public a() {
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            c.this.k = Process.myTid();
+            Thread threadCurrentThread = Thread.currentThread();
+            d0.z.d.m.checkNotNullExpressionValue(threadCurrentThread, "Thread.currentThread()");
+            threadCurrentThread.setName("MediaEngineExecutor-" + c.j.getAndIncrement());
+        }
+    }
+
     public c(ExecutorService executorService, boolean z2) {
         d0.z.d.m.checkNotNullParameter(executorService, "es");
         this.l = executorService;
         this.m = z2;
         this.k = -1;
-        executorService.submit(new c$a(this));
+        executorService.submit(new a());
     }
 
     public final void a() {

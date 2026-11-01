@@ -4,10 +4,10 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
+import androidx.annotation.NonNull;
 import b.f.g.a.a.h.f;
 import b.f.g.a.a.h.g;
 import b.f.g.a.a.h.h;
-import b.f.h.b.a.b$a;
 import com.facebook.common.internal.Supplier;
 import com.facebook.imagepipeline.image.ImageInfo;
 import java.io.Closeable;
@@ -23,6 +23,33 @@ public class a extends b.f.h.b.a.a<ImageInfo> implements Closeable {
     public final Supplier<Boolean> n;
     public final Supplier<Boolean> o;
 
+    /* JADX INFO: renamed from: b.f.g.a.a.h.i.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: ImagePerfControllerListener2.java */
+    public class HandlerC0067a extends Handler {
+        public final g a;
+
+        public HandlerC0067a(@NonNull Looper looper, @NonNull g gVar) {
+            super(looper);
+            this.a = gVar;
+        }
+
+        @Override // android.os.Handler
+        public void handleMessage(@NonNull Message message) {
+            Object obj = message.obj;
+            Objects.requireNonNull(obj);
+            h hVar = (h) obj;
+            int i = message.what;
+            if (i == 1) {
+                ((f) this.a).b(hVar, message.arg1);
+            } else {
+                if (i != 2) {
+                    return;
+                }
+                ((f) this.a).a(hVar, message.arg1);
+            }
+        }
+    }
+
     public a(b.f.d.k.b bVar, h hVar, g gVar, Supplier<Boolean> supplier, Supplier<Boolean> supplier2) {
         this.k = bVar;
         this.l = hVar;
@@ -32,14 +59,14 @@ public class a extends b.f.h.b.a.a<ImageInfo> implements Closeable {
     }
 
     @Override // b.f.h.b.a.b
-    public void a(String str, Object obj, b$a b_a) {
+    public void a(String str, Object obj, b.f.h.b.a.b.a aVar) {
         long jNow = this.k.now();
         h hVarE = e();
         hVarE.b();
         hVarE.i = jNow;
         hVarE.a = str;
         hVarE.d = obj;
-        hVarE.A = b_a;
+        hVarE.A = aVar;
         n(hVarE, 0);
         hVarE.w = 1;
         hVarE.f488x = jNow;
@@ -47,10 +74,10 @@ public class a extends b.f.h.b.a.a<ImageInfo> implements Closeable {
     }
 
     @Override // b.f.h.b.a.b
-    public void b(String str, Throwable th, b$a b_a) {
+    public void b(String str, Throwable th, b.f.h.b.a.b.a aVar) {
         long jNow = this.k.now();
         h hVarE = e();
-        hVarE.A = b_a;
+        hVarE.A = aVar;
         hVarE.l = jNow;
         hVarE.a = str;
         hVarE.u = th;
@@ -61,10 +88,10 @@ public class a extends b.f.h.b.a.a<ImageInfo> implements Closeable {
     }
 
     @Override // b.f.h.b.a.b
-    public void c(String str, b$a b_a) {
+    public void c(String str, b.f.h.b.a.b.a aVar) {
         long jNow = this.k.now();
         h hVarE = e();
-        hVarE.A = b_a;
+        hVarE.A = aVar;
         hVarE.a = str;
         int i = hVarE.v;
         if (i != 3 && i != 5 && i != 6) {
@@ -82,10 +109,10 @@ public class a extends b.f.h.b.a.a<ImageInfo> implements Closeable {
     }
 
     @Override // b.f.h.b.a.b
-    public void d(String str, Object obj, b$a b_a) {
+    public void d(String str, Object obj, b.f.h.b.a.b.a aVar) {
         long jNow = this.k.now();
         h hVarE = e();
-        hVarE.A = b_a;
+        hVarE.A = aVar;
         hVarE.k = jNow;
         hVarE.o = jNow;
         hVarE.a = str;
@@ -106,7 +133,7 @@ public class a extends b.f.h.b.a.a<ImageInfo> implements Closeable {
                     handlerThread.start();
                     Looper looper = handlerThread.getLooper();
                     Objects.requireNonNull(looper);
-                    j = new a$a(looper, this.m);
+                    j = new HandlerC0067a(looper, this.m);
                 }
             }
         }

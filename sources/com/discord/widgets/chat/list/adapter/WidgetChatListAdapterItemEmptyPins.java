@@ -4,8 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.databinding.WidgetChatListAdapterItemEmptyPinsBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
@@ -19,14 +18,14 @@ public final class WidgetChatListAdapterItemEmptyPins extends WidgetChatListItem
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemEmptyPins(WidgetChatListAdapter widgetChatListAdapter) {
-        super(R$layout.widget_chat_list_adapter_item_empty_pins, widgetChatListAdapter);
+        super(R.layout.widget_chat_list_adapter_item_empty_pins, widgetChatListAdapter);
         m.checkNotNullParameter(widgetChatListAdapter, "adapter");
         View view = this.itemView;
-        int i = R$id.chat_list_empty_image;
-        ImageView imageView = (ImageView) view.findViewById(R$id.chat_list_empty_image);
+        int i = R.id.chat_list_empty_image;
+        ImageView imageView = (ImageView) view.findViewById(R.id.chat_list_empty_image);
         if (imageView != null) {
-            i = R$id.chat_list_empty_pins_text;
-            TextView textView = (TextView) view.findViewById(R$id.chat_list_empty_pins_text);
+            i = R.id.chat_list_empty_pins_text;
+            TextView textView = (TextView) view.findViewById(R.id.chat_list_empty_pins_text);
             if (textView != null) {
                 WidgetChatListAdapterItemEmptyPinsBinding widgetChatListAdapterItemEmptyPinsBinding = new WidgetChatListAdapterItemEmptyPinsBinding((RelativeLayout) view, imageView, textView);
                 m.checkNotNullExpressionValue(widgetChatListAdapterItemEmptyPinsBinding, "WidgetChatListAdapterIte…insBinding.bind(itemView)");

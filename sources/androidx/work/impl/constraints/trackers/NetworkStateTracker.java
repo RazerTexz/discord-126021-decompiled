@@ -1,37 +1,74 @@
 package androidx.work.impl.constraints.trackers;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
+import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
-import android.os.Build$VERSION;
+import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.core.net.ConnectivityManagerCompat;
 import androidx.work.Logger;
 import androidx.work.impl.constraints.NetworkState;
 import androidx.work.impl.utils.taskexecutor.TaskExecutor;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class NetworkStateTracker extends ConstraintTracker<NetworkState> {
-    private NetworkStateTracker$NetworkStateBroadcastReceiver mBroadcastReceiver;
+    private NetworkStateBroadcastReceiver mBroadcastReceiver;
     private final ConnectivityManager mConnectivityManager;
 
     @RequiresApi(24)
-    private NetworkStateTracker$NetworkStateCallback mNetworkCallback;
+    private NetworkStateCallback mNetworkCallback;
     public static final String TAG = Logger.tagWithPrefix("NetworkStateTracker");
+
+    public class NetworkStateBroadcastReceiver extends BroadcastReceiver {
+        public NetworkStateBroadcastReceiver() {
+        }
+
+        @Override // android.content.BroadcastReceiver
+        public void onReceive(Context context, Intent intent) {
+            if (intent == null || intent.getAction() == null || !intent.getAction().equals("android.net.conn.CONNECTIVITY_CHANGE")) {
+                return;
+            }
+            Logger.get().debug(NetworkStateTracker.TAG, "Network broadcast received", new Throwable[0]);
+            NetworkStateTracker networkStateTracker = NetworkStateTracker.this;
+            networkStateTracker.setState(networkStateTracker.getActiveNetworkState());
+        }
+    }
+
+    @RequiresApi(24)
+    public class NetworkStateCallback extends ConnectivityManager.NetworkCallback {
+        public NetworkStateCallback() {
+        }
+
+        @Override // android.net.ConnectivityManager.NetworkCallback
+        public void onCapabilitiesChanged(@NonNull Network network, @NonNull NetworkCapabilities networkCapabilities) {
+            Logger.get().debug(NetworkStateTracker.TAG, String.format("Network capabilities changed: %s", networkCapabilities), new Throwable[0]);
+            NetworkStateTracker networkStateTracker = NetworkStateTracker.this;
+            networkStateTracker.setState(networkStateTracker.getActiveNetworkState());
+        }
+
+        @Override // android.net.ConnectivityManager.NetworkCallback
+        public void onLost(@NonNull Network network) {
+            Logger.get().debug(NetworkStateTracker.TAG, "Network connection lost", new Throwable[0]);
+            NetworkStateTracker networkStateTracker = NetworkStateTracker.this;
+            networkStateTracker.setState(networkStateTracker.getActiveNetworkState());
+        }
+    }
 
     public NetworkStateTracker(@NonNull Context context, @NonNull TaskExecutor taskExecutor) {
         super(context, taskExecutor);
         this.mConnectivityManager = (ConnectivityManager) this.mAppContext.getSystemService("connectivity");
         if (isNetworkCallbackSupported()) {
-            this.mNetworkCallback = new NetworkStateTracker$NetworkStateCallback(this);
+            this.mNetworkCallback = new NetworkStateCallback();
         } else {
-            this.mBroadcastReceiver = new NetworkStateTracker$NetworkStateBroadcastReceiver(this);
+            this.mBroadcastReceiver = new NetworkStateBroadcastReceiver();
         }
     }
 
@@ -46,7 +83,7 @@ public class NetworkStateTracker extends ConstraintTracker<NetworkState> {
     }
 
     private boolean isActiveNetworkValidated() {
-        if (Build$VERSION.SDK_INT < 23) {
+        if (Build.VERSION.SDK_INT < 23) {
             return false;
         }
         NetworkCapabilities networkCapabilities = this.mConnectivityManager.getNetworkCapabilities(this.mConnectivityManager.getActiveNetwork());
@@ -54,7 +91,7 @@ public class NetworkStateTracker extends ConstraintTracker<NetworkState> {
     }
 
     private static boolean isNetworkCallbackSupported() {
-        return Build$VERSION.SDK_INT >= 24;
+        return Build.VERSION.SDK_INT >= 24;
     }
 
     @Override // androidx.work.impl.constraints.trackers.ConstraintTracker

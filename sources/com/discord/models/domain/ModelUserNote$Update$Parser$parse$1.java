@@ -12,11 +12,11 @@ import rx.functions.Action1;
 public final class ModelUserNote$Update$Parser$parse$1<T> implements Action1<String> {
     public final /* synthetic */ Ref$LongRef $id;
     public final /* synthetic */ Ref$ObjectRef $note;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
 
-    public ModelUserNote$Update$Parser$parse$1(Ref$LongRef ref$LongRef, Model$JsonReader model$JsonReader, Ref$ObjectRef ref$ObjectRef) {
+    public ModelUserNote$Update$Parser$parse$1(Ref$LongRef ref$LongRef, Model.JsonReader jsonReader, Ref$ObjectRef ref$ObjectRef) {
         this.$id = ref$LongRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
         this.$note = ref$ObjectRef;
     }
 

@@ -1,13 +1,11 @@
 package b.i.a.c.x2.e0;
 
 import b.i.a.c.f3.x;
-import b.i.a.c.j1$b;
+import b.i.a.c.j1;
 import b.i.a.c.t2.l;
-import b.i.a.c.t2.l$b;
 import b.i.a.c.x2.w;
 import com.google.android.exoplayer2.ParserException;
 import com.google.android.exoplayer2.extractor.flv.TagPayloadReader;
-import com.google.android.exoplayer2.extractor.flv.TagPayloadReader$UnsupportedFormatException;
 import java.util.Collections;
 
 /* JADX INFO: compiled from: AudioTagPayloadReader.java */
@@ -25,7 +23,7 @@ public final class b extends TagPayloadReader {
     }
 
     @Override // com.google.android.exoplayer2.extractor.flv.TagPayloadReader
-    public boolean b(x xVar) throws TagPayloadReader$UnsupportedFormatException {
+    public boolean b(x xVar) throws TagPayloadReader.UnsupportedFormatException {
         if (this.c) {
             xVar.F(1);
         } else {
@@ -34,22 +32,22 @@ public final class b extends TagPayloadReader {
             this.e = i;
             if (i == 2) {
                 int i2 = f1171b[(iT >> 2) & 3];
-                j1$b j1_b = new j1$b();
-                j1_b.k = "audio/mpeg";
-                j1_b.f1023x = 1;
-                j1_b.f1024y = i2;
-                this.a.e(j1_b.a());
+                j1.b bVar = new j1.b();
+                bVar.k = "audio/mpeg";
+                bVar.f1023x = 1;
+                bVar.f1024y = i2;
+                this.a.e(bVar.a());
                 this.d = true;
             } else if (i == 7 || i == 8) {
                 String str = i == 7 ? "audio/g711-alaw" : "audio/g711-mlaw";
-                j1$b j1_b2 = new j1$b();
-                j1_b2.k = str;
-                j1_b2.f1023x = 1;
-                j1_b2.f1024y = 8000;
-                this.a.e(j1_b2.a());
+                j1.b bVar2 = new j1.b();
+                bVar2.k = str;
+                bVar2.f1023x = 1;
+                bVar2.f1024y = 8000;
+                this.a.e(bVar2.a());
                 this.d = true;
             } else if (i != 10) {
-                throw new TagPayloadReader$UnsupportedFormatException(b.d.b.a.a.g(39, "Audio format not supported: ", this.e));
+                throw new TagPayloadReader.UnsupportedFormatException(b.d.b.a.a.g(39, "Audio format not supported: ", this.e));
             }
             this.c = true;
         }
@@ -78,14 +76,14 @@ public final class b extends TagPayloadReader {
         byte[] bArr = new byte[iA3];
         System.arraycopy(xVar.a, xVar.f984b, bArr, 0, iA3);
         xVar.f984b += iA3;
-        l$b l_bB = l.b(new b.i.a.c.f3.w(bArr), false);
-        j1$b j1_b = new j1$b();
-        j1_b.k = "audio/mp4a-latm";
-        j1_b.h = l_bB.c;
-        j1_b.f1023x = l_bB.f1122b;
-        j1_b.f1024y = l_bB.a;
-        j1_b.m = Collections.singletonList(bArr);
-        this.a.e(j1_b.a());
+        l.b bVarB = l.b(new b.i.a.c.f3.w(bArr), false);
+        j1.b bVar = new j1.b();
+        bVar.k = "audio/mp4a-latm";
+        bVar.h = bVarB.c;
+        bVar.f1023x = bVarB.f1122b;
+        bVar.f1024y = bVarB.a;
+        bVar.m = Collections.singletonList(bArr);
+        this.a.e(bVar.a());
         this.d = true;
         return false;
     }

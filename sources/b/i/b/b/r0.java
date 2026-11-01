@@ -1,7 +1,7 @@
 package b.i.b.b;
 
 import java.util.Iterator;
-import java.util.Map$Entry;
+import java.util.Map;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: TransformedIterator.java */
@@ -21,7 +21,7 @@ public abstract class r0<F, T> implements Iterator<T> {
 
     @Override // java.util.Iterator
     public final T next() {
-        return (T) ((Map$Entry) this.j.next()).getValue();
+        return (T) ((Map.Entry) this.j.next()).getValue();
     }
 
     @Override // java.util.Iterator

@@ -34,6 +34,6 @@ public final class h implements b {
 
     @Override // d0.e0.p.d.m0.o.b
     public String invoke(x xVar) {
-        return b$a.invoke(this, xVar);
+        return b.a.invoke(this, xVar);
     }
 }

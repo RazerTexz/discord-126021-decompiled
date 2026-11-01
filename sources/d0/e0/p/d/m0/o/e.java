@@ -1,6 +1,5 @@
 package d0.e0.p.d.m0.o;
 
-import d0.e0.p.d.m0.b.j$b;
 import d0.e0.p.d.m0.c.c1;
 import d0.e0.p.d.m0.c.x;
 import d0.e0.p.d.m0.n.c0;
@@ -15,9 +14,9 @@ public final class e implements b {
     public boolean check(x xVar) {
         m.checkNotNullParameter(xVar, "functionDescriptor");
         c1 c1Var = xVar.getValueParameters().get(1);
-        j$b j_b = d0.e0.p.d.m0.b.j.a;
+        d0.e0.p.d.m0.b.j.b bVar = d0.e0.p.d.m0.b.j.a;
         m.checkNotNullExpressionValue(c1Var, "secondParameter");
-        c0 c0VarCreateKPropertyStarType = j_b.createKPropertyStarType(d0.e0.p.d.m0.k.x.a.getModule(c1Var));
+        c0 c0VarCreateKPropertyStarType = bVar.createKPropertyStarType(d0.e0.p.d.m0.k.x.a.getModule(c1Var));
         if (c0VarCreateKPropertyStarType == null) {
             return false;
         }
@@ -33,6 +32,6 @@ public final class e implements b {
 
     @Override // d0.e0.p.d.m0.o.b
     public String invoke(x xVar) {
-        return b$a.invoke(this, xVar);
+        return b.a.invoke(this, xVar);
     }
 }

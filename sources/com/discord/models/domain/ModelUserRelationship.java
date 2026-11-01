@@ -24,24 +24,24 @@ public class ModelUserRelationship implements Model {
     }
 
     @Override // com.discord.models.domain.Model
-    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
-        String strNextName = model$JsonReader.nextName();
+    public void assignField(Model.JsonReader jsonReader) throws IOException {
+        String strNextName = jsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "user_id":
-                this.userId = model$JsonReader.nextLongOrNull();
+                this.userId = jsonReader.nextLongOrNull();
                 break;
             case "id":
-                this.f2735id = model$JsonReader.nextLong(this.f2735id);
+                this.f2735id = jsonReader.nextLong(this.f2735id);
                 break;
             case "type":
-                this.type = model$JsonReader.nextInt(this.type);
+                this.type = jsonReader.nextInt(this.type);
                 break;
             case "user":
-                this.user = (User) InboundGatewayGsonParser.fromJson(model$JsonReader, User.class);
+                this.user = (User) InboundGatewayGsonParser.fromJson(jsonReader, User.class);
                 break;
             default:
-                model$JsonReader.skipValue();
+                jsonReader.skipValue();
                 break;
         }
     }

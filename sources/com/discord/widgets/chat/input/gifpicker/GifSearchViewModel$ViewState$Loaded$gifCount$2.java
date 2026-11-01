@@ -10,12 +10,12 @@ import kotlin.jvm.functions.Function0;
 /* JADX INFO: compiled from: GifSearchViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class GifSearchViewModel$ViewState$Loaded$gifCount$2 extends o implements Function0<Integer> {
-    public final /* synthetic */ GifSearchViewModel$ViewState$Loaded this$0;
+    public final /* synthetic */ GifSearchViewModel.ViewState.Loaded this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public GifSearchViewModel$ViewState$Loaded$gifCount$2(GifSearchViewModel$ViewState$Loaded gifSearchViewModel$ViewState$Loaded) {
+    public GifSearchViewModel$ViewState$Loaded$gifCount$2(GifSearchViewModel.ViewState.Loaded loaded) {
         super(0);
-        this.this$0 = gifSearchViewModel$ViewState$Loaded;
+        this.this$0 = loaded;
     }
 
     @Override // kotlin.jvm.functions.Function0
@@ -30,7 +30,7 @@ public final class GifSearchViewModel$ViewState$Loaded$gifCount$2 extends o impl
         if (!(adapterItems instanceof Collection) || !adapterItems.isEmpty()) {
             Iterator<T> it = adapterItems.iterator();
             while (it.hasNext()) {
-                if ((((GifAdapterItem) it.next()) instanceof GifAdapterItem$GifItem) && (i = i + 1) < 0) {
+                if ((((GifAdapterItem) it.next()) instanceof GifAdapterItem.GifItem) && (i = i + 1) < 0) {
                     n.throwCountOverflow();
                 }
             }

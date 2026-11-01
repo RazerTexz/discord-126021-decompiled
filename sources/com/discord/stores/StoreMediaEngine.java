@@ -3,7 +3,10 @@ package com.discord.stores;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import b.a.q.k0.g$a;
+import android.os.Build;
+import android.os.Handler;
+import android.os.PowerManager;
+import b.a.q.i0;
 import b.i.a.f.e.o.f;
 import co.discord.media_engine.RtcRegion;
 import co.discord.media_engine.VideoInputDeviceDescription;
@@ -11,32 +14,38 @@ import co.discord.media_engine.VideoInputDeviceFacing;
 import com.discord.app.AppLog;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.domain.ModelRtcLatencyRegion;
-import com.discord.rtcconnection.KrispOveruseDetector$Status;
+import com.discord.models.experiments.domain.Experiment;
+import com.discord.rtcconnection.KrispOveruseDetector;
+import com.discord.rtcconnection.LowMemoryDetector;
 import com.discord.rtcconnection.mediaengine.MediaEngine;
-import com.discord.rtcconnection.mediaengine.MediaEngine$LocalVoiceStatus;
-import com.discord.rtcconnection.mediaengine.MediaEngine$OpenSLESConfig;
 import com.discord.rtcconnection.mediaengine.MediaEngineConnection;
 import com.discord.utilities.collections.ListenerCollection;
 import com.discord.utilities.collections.ListenerCollectionSubject;
+import com.discord.utilities.error.Error;
+import com.discord.utilities.lifecycle.ApplicationProvider;
+import com.discord.utilities.logging.Logger;
 import com.discord.utilities.persister.Persister;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import com.discord.utilities.rx.ObservableExtensionsKt$filterNull$1;
-import com.discord.utilities.rx.ObservableExtensionsKt$filterNull$2;
+import com.discord.utilities.systemlog.SystemLogUtils;
 import com.hammerandchisel.libdiscord.Discord;
 import d0.l;
 import d0.t.j;
-import d0.t.k;
-import d0.t.o;
+import d0.t.u;
 import d0.w.h.b;
 import d0.w.h.c;
+import d0.w.i.a.d;
+import d0.w.i.a.e;
 import d0.w.i.a.g;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
 import j0.l.a.c0;
 import j0.l.a.g1;
 import j0.l.a.h1;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicReference;
@@ -44,7 +53,10 @@ import kotlin.Unit;
 import kotlin.coroutines.Continuation;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function2;
 import kotlinx.coroutines.CoroutineDispatcher;
+import kotlinx.coroutines.CoroutineScope;
+import org.objectweb.asm.Opcodes;
 import rx.Observable;
 import rx.Subscription;
 import rx.subjects.BehaviorSubject;
@@ -58,7 +70,6 @@ import s.a.x0;
 /* JADX INFO: compiled from: StoreMediaEngine.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreMediaEngine extends Store {
-    public static final StoreMediaEngine$Companion Companion = new StoreMediaEngine$Companion(null);
     private static final String DEFAULT_VIDEO_DEVICE_GUID = "";
     private static final long MAX_WAIT_FOR_DEVICES_MS = 750;
     private final Dispatcher dispatcher;
@@ -66,15 +77,15 @@ public final class StoreMediaEngine extends Store {
     private Persister<Boolean> hasNativeEngineEverInitializedCache;
     private boolean hasTimedOutAwaitingDevice;
     private final SerializedSubject<Boolean, Boolean> isNativeEngineInitializedSubject;
-    private final ListenerCollectionSubject<StoreMediaEngine$Listener> listenerSubject;
-    private final ListenerCollection<StoreMediaEngine$Listener> listeners;
-    private final Observable<MediaEngine$LocalVoiceStatus> localVoiceStatus;
-    private final SerializedSubject<MediaEngine$LocalVoiceStatus, MediaEngine$LocalVoiceStatus> localVoiceStatusSubject;
+    private final ListenerCollectionSubject<Listener> listenerSubject;
+    private final ListenerCollection<Listener> listeners;
+    private final Observable<MediaEngine.LocalVoiceStatus> localVoiceStatus;
+    private final SerializedSubject<MediaEngine.LocalVoiceStatus, MediaEngine.LocalVoiceStatus> localVoiceStatusSubject;
     private MediaEngine mediaEngine;
     private Subscription mediaEngineSettingsSubscription;
     private final StoreMediaSettings mediaSettingsStore;
-    private final PublishSubject<KrispOveruseDetector$Status> onKrispStatusSubject;
-    private final SerializedSubject<MediaEngine$OpenSLESConfig, MediaEngine$OpenSLESConfig> openSLESConfigSubject;
+    private final PublishSubject<KrispOveruseDetector.Status> onKrispStatusSubject;
+    private final SerializedSubject<MediaEngine.OpenSLESConfig, MediaEngine.OpenSLESConfig> openSLESConfigSubject;
     private String preferredVideoInputDeviceGUID;
     private final Persister<String> preferredVideoInputDeviceGuidCache;
     private Long previousVoiceChannelId;
@@ -85,8 +96,444 @@ public final class StoreMediaEngine extends Store {
     private long userId;
     private VideoInputDeviceDescription[] videoInputDevices;
     private final BehaviorSubject<List<VideoInputDeviceDescription>> videoInputDevicesSubject;
-    private static final MediaEngine$LocalVoiceStatus LOCAL_VOICE_STATUS_DEFAULT = new MediaEngine$LocalVoiceStatus(-100.0f, false);
-    private static final MediaEngine$OpenSLESConfig DEFAULT_OPENSLES_CONFIG = MediaEngine$OpenSLESConfig.DEFAULT;
+    private static final MediaEngine.LocalVoiceStatus LOCAL_VOICE_STATUS_DEFAULT = new MediaEngine.LocalVoiceStatus(-100.0f, false);
+    private static final MediaEngine.OpenSLESConfig DEFAULT_OPENSLES_CONFIG = MediaEngine.OpenSLESConfig.DEFAULT;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaEngine$awaitVideoInputDevicesNativeAsync$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    @e(c = "com.discord.stores.StoreMediaEngine", f = "StoreMediaEngine.kt", l = {264}, m = "awaitVideoInputDevicesNativeAsync")
+    public final class AnonymousClass1 extends d {
+        public Object L$0;
+        public int label;
+        public /* synthetic */ Object result;
+
+        public AnonymousClass1(Continuation continuation) {
+            super(continuation);
+        }
+
+        @Override // d0.w.i.a.a
+        public final Object invokeSuspend(Object obj) {
+            this.result = obj;
+            this.label |= Integer.MIN_VALUE;
+            return StoreMediaEngine.this.awaitVideoInputDevicesNativeAsync(this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaEngine$enableLocalVoiceStatusListening$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<MediaEngine.LocalVoiceStatus, Unit> {
+        public AnonymousClass1(SerializedSubject serializedSubject) {
+            super(1, serializedSubject, SerializedSubject.class, "onNext", "onNext(Ljava/lang/Object;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(MediaEngine.LocalVoiceStatus localVoiceStatus) {
+            invoke2(localVoiceStatus);
+            return Unit.a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(MediaEngine.LocalVoiceStatus localVoiceStatus) {
+            ((SerializedSubject) this.receiver).k.onNext((T) localVoiceStatus);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaEngine$getDefaultVideoDeviceGUID$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    @e(c = "com.discord.stores.StoreMediaEngine", f = "StoreMediaEngine.kt", l = {209}, m = "getDefaultVideoDeviceGUID")
+    public final class AnonymousClass1 extends d {
+        public Object L$0;
+        public int label;
+        public /* synthetic */ Object result;
+
+        public AnonymousClass1(Continuation continuation) {
+            super(continuation);
+        }
+
+        @Override // d0.w.i.a.a
+        public final Object invokeSuspend(Object obj) {
+            this.result = obj;
+            this.label |= Integer.MIN_VALUE;
+            return StoreMediaEngine.this.getDefaultVideoDeviceGUID(this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaEngine$getRankedRtcRegions$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    public final class AnonymousClass1 extends o implements Function1<String[], Unit> {
+        public final /* synthetic */ Function1 $callback;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Function1 function1) {
+            super(1);
+            this.$callback = function1;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String[] strArr) {
+            invoke2(strArr);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String[] strArr) {
+            m.checkNotNullParameter(strArr, "it");
+            this.$callback.invoke(d0.t.k.toList(strArr));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaEngine$getVideoInputDevicesNative$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<VideoInputDeviceDescription[], Unit> {
+        public AnonymousClass1(Function1 function1) {
+            super(1, function1, Function1.class, "invoke", "invoke(Ljava/lang/Object;)Ljava/lang/Object;", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(VideoInputDeviceDescription[] videoInputDeviceDescriptionArr) {
+            invoke2(videoInputDeviceDescriptionArr);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(VideoInputDeviceDescription[] videoInputDeviceDescriptionArr) {
+            m.checkNotNullParameter(videoInputDeviceDescriptionArr, "p1");
+            ((Function1) this.receiver).invoke(videoInputDeviceDescriptionArr);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaEngine$handleMicrophonePermissionGranted$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    public final class AnonymousClass1 extends o implements Function1<Boolean, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke2(bool);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Boolean bool) {
+            m.checkNotNullExpressionValue(bool, "isInitialized");
+            if (bool.booleanValue()) {
+                StoreMediaEngine.access$restartLocalMicrophone(StoreMediaEngine.this);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaEngine$handleNewConnection$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    public final class AnonymousClass1 extends MediaEngineConnection.a {
+        public AnonymousClass1() {
+        }
+
+        @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.a, com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
+        public void onDestroy(MediaEngineConnection connection) {
+            m.checkNotNullParameter(connection, "connection");
+            if (u.minus(StoreMediaEngine.this.getMediaEngine().getConnections(), connection).isEmpty()) {
+                StoreMediaEngine.access$getMediaSettingsStore$p(StoreMediaEngine.this).revertTemporaryDisableKrisp();
+            }
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        @Override // com.discord.rtcconnection.mediaengine.MediaEngineConnection.a, com.discord.rtcconnection.mediaengine.MediaEngineConnection.d
+        public void onKrispStatus(MediaEngineConnection connection, KrispOveruseDetector.Status status) {
+            m.checkNotNullParameter(connection, "connection");
+            m.checkNotNullParameter(status, "status");
+            AppLog.i("onKrispStatus(" + status + ')');
+            StoreMediaEngine.access$getOnKrispStatusSubject$p(StoreMediaEngine.this).k.onNext((T) status);
+            int iOrdinal = status.ordinal();
+            if (iOrdinal == 0 || iOrdinal == 1) {
+                StoreMediaEngine.access$getMediaSettingsStore$p(StoreMediaEngine.this).setNoiseProcessing(StoreMediaSettings.NoiseProcessing.CancellationTemporarilyDisabled);
+            } else {
+                if (iOrdinal != 2) {
+                    return;
+                }
+                StoreMediaEngine.access$getMediaSettingsStore$p(StoreMediaEngine.this).setVADUseKrisp(StoreMediaSettings.VadUseKrisp.TemporarilyDisabled);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaEngine$handleVoiceChannelSelected$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    public final class AnonymousClass1 extends o implements Function1<VideoInputDeviceDescription[], Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(VideoInputDeviceDescription[] videoInputDeviceDescriptionArr) {
+            invoke2(videoInputDeviceDescriptionArr);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(VideoInputDeviceDescription[] videoInputDeviceDescriptionArr) {
+            m.checkNotNullParameter(videoInputDeviceDescriptionArr, "it");
+            StoreMediaEngine.handleVideoInputDevices$default(StoreMediaEngine.this, videoInputDeviceDescriptionArr, null, null, 4, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaEngine$init$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    public final class AnonymousClass1 extends o implements Function1<Experiment, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Experiment experiment) {
+            invoke2(experiment);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Experiment experiment) {
+            int bucket = experiment.getBucket();
+            StoreMediaEngine.this.getMediaEngine().h((bucket == 1 || bucket == 3) ? MediaEngine.OpenSLUsageMode.EXCLUDE_LIST : MediaEngine.OpenSLUsageMode.ALLOW_LIST);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaEngine$selectDefaultVideoDevice$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    @e(c = "com.discord.stores.StoreMediaEngine$selectDefaultVideoDevice$1", f = "StoreMediaEngine.kt", l = {Opcodes.ANEWARRAY}, m = "invokeSuspend")
+    public final class AnonymousClass1 extends d0.w.i.a.k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+        public final /* synthetic */ Function1 $onSelected;
+        public int label;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Function1 function1, Continuation continuation) {
+            super(2, continuation);
+            this.$onSelected = function1;
+        }
+
+        @Override // d0.w.i.a.a
+        public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
+            m.checkNotNullParameter(continuation, "completion");
+            return StoreMediaEngine.this.new AnonymousClass1(this.$onSelected, continuation);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public final Object invoke(CoroutineScope coroutineScope, Continuation<? super Unit> continuation) {
+            return ((AnonymousClass1) create(coroutineScope, continuation)).invokeSuspend(Unit.a);
+        }
+
+        @Override // d0.w.i.a.a
+        public final Object invokeSuspend(Object obj) throws Throwable {
+            Object coroutine_suspended = c.getCOROUTINE_SUSPENDED();
+            int i = this.label;
+            if (i == 0) {
+                l.throwOnFailure(obj);
+                StoreMediaEngine storeMediaEngine = StoreMediaEngine.this;
+                this.label = 1;
+                obj = storeMediaEngine.awaitVideoInputDevicesNativeAsync(this);
+                if (obj == coroutine_suspended) {
+                    return coroutine_suspended;
+                }
+            } else {
+                if (i != 1) {
+                    throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+                }
+                l.throwOnFailure(obj);
+            }
+            VideoInputDeviceDescription[] videoInputDeviceDescriptionArr = (VideoInputDeviceDescription[]) obj;
+            StoreMediaEngine.access$handleVideoInputDevices(StoreMediaEngine.this, videoInputDeviceDescriptionArr, StoreMediaEngine.access$pickDefaultDeviceGUID(StoreMediaEngine.this, videoInputDeviceDescriptionArr), this.$onSelected);
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaEngine$selectDefaultVideoDeviceAsync$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    @e(c = "com.discord.stores.StoreMediaEngine", f = "StoreMediaEngine.kt", l = {202}, m = "selectDefaultVideoDeviceAsync")
+    public final class AnonymousClass1 extends d {
+        public Object L$0;
+        public int label;
+        public /* synthetic */ Object result;
+
+        public AnonymousClass1(Continuation continuation) {
+            super(continuation);
+        }
+
+        @Override // d0.w.i.a.a
+        public final Object invokeSuspend(Object obj) {
+            this.result = obj;
+            this.label |= Integer.MIN_VALUE;
+            return StoreMediaEngine.this.selectDefaultVideoDeviceAsync(this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaEngine$selectVideoInputDevice$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    public final class AnonymousClass1 extends o implements Function1<VideoInputDeviceDescription[], Unit> {
+        public final /* synthetic */ String $deviceGUID;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(String str) {
+            super(1);
+            this.$deviceGUID = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(VideoInputDeviceDescription[] videoInputDeviceDescriptionArr) {
+            invoke2(videoInputDeviceDescriptionArr);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(VideoInputDeviceDescription[] videoInputDeviceDescriptionArr) {
+            m.checkNotNullParameter(videoInputDeviceDescriptionArr, "devices");
+            StoreMediaEngine.handleVideoInputDevices$default(StoreMediaEngine.this, videoInputDeviceDescriptionArr, this.$deviceGUID, null, 4, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaEngine$setupMediaEngineSettingsSubscription$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    public final class AnonymousClass1 extends o implements Function1<StoreMediaSettings.VoiceConfiguration, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreMediaEngine$setupMediaEngineSettingsSubscription$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreMediaEngine.kt */
+        public final class C02681 extends o implements Function0<Unit> {
+            public final /* synthetic */ StoreMediaSettings.VoiceConfiguration $voiceConfig;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C02681(StoreMediaSettings.VoiceConfiguration voiceConfiguration) {
+                super(0);
+                this.$voiceConfig = voiceConfiguration;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreMediaEngine.access$handleVoiceConfigChanged(StoreMediaEngine.this, this.$voiceConfig);
+            }
+        }
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreMediaSettings.VoiceConfiguration voiceConfiguration) {
+            invoke2(voiceConfiguration);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreMediaSettings.VoiceConfiguration voiceConfiguration) {
+            m.checkNotNullParameter(voiceConfiguration, "voiceConfig");
+            StoreMediaEngine.access$getDispatcher$p(StoreMediaEngine.this).schedule(new C02681(voiceConfiguration));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaEngine$handleNewConnection$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    public final class AnonymousClass2 extends o implements Function1<VideoInputDeviceDescription[], Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(VideoInputDeviceDescription[] videoInputDeviceDescriptionArr) {
+            invoke2(videoInputDeviceDescriptionArr);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(VideoInputDeviceDescription[] videoInputDeviceDescriptionArr) {
+            m.checkNotNullParameter(videoInputDeviceDescriptionArr, "devices");
+            StoreMediaEngine storeMediaEngine = StoreMediaEngine.this;
+            VideoInputDeviceDescription videoInputDeviceDescriptionAccess$getSelectedVideoInputDevice$p = StoreMediaEngine.access$getSelectedVideoInputDevice$p(storeMediaEngine);
+            StoreMediaEngine.handleVideoInputDevices$default(storeMediaEngine, videoInputDeviceDescriptionArr, videoInputDeviceDescriptionAccess$getSelectedVideoInputDevice$p != null ? videoInputDeviceDescriptionAccess$getSelectedVideoInputDevice$p.getGuid() : null, null, 4, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaEngine$setupMediaEngineSettingsSubscription$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            m.checkNotNullParameter(error, "error");
+            Logger.e$default(AppLog.g, "handleVoiceConfigChanged", error.getThrowable(), null, 4, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMediaEngine$setupMediaEngineSettingsSubscription$3, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    public final class AnonymousClass3 extends o implements Function1<Subscription, Unit> {
+        public AnonymousClass3() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            m.checkNotNullParameter(subscription, "it");
+            StoreMediaEngine.access$setMediaEngineSettingsSubscription$p(StoreMediaEngine.this, subscription);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    public abstract class DefaultListener implements Listener {
+        @Override // com.discord.stores.StoreMediaEngine.Listener
+        public void onConnected() {
+        }
+
+        @Override // com.discord.stores.StoreMediaEngine.Listener
+        public void onConnecting() {
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    public interface Listener {
+        void onConnected();
+
+        void onConnecting();
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
+
+        static {
+            KrispOveruseDetector.Status.values();
+            int[] iArr = new int[3];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[KrispOveruseDetector.Status.FAILED.ordinal()] = 1;
+            iArr[KrispOveruseDetector.Status.CPU_OVERUSE.ordinal()] = 2;
+            iArr[KrispOveruseDetector.Status.VAD_CPU_OVERUSE.ordinal()] = 3;
+            MediaEngineConnection.Type.values();
+            int[] iArr2 = new int[2];
+            $EnumSwitchMapping$1 = iArr2;
+            iArr2[MediaEngineConnection.Type.DEFAULT.ordinal()] = 1;
+            iArr2[MediaEngineConnection.Type.STREAM.ordinal()] = 2;
+        }
+    }
 
     public StoreMediaEngine(StoreMediaSettings storeMediaSettings, StoreStream storeStream, Dispatcher dispatcher) {
         m.checkNotNullParameter(storeMediaSettings, "mediaSettingsStore");
@@ -95,10 +542,10 @@ public final class StoreMediaEngine extends Store {
         this.mediaSettingsStore = storeMediaSettings;
         this.storeStream = storeStream;
         this.dispatcher = dispatcher;
-        ListenerCollectionSubject<StoreMediaEngine$Listener> listenerCollectionSubject = new ListenerCollectionSubject<>();
+        ListenerCollectionSubject<Listener> listenerCollectionSubject = new ListenerCollectionSubject<>();
         this.listenerSubject = listenerCollectionSubject;
         this.listeners = listenerCollectionSubject;
-        SerializedSubject<MediaEngine$LocalVoiceStatus, MediaEngine$LocalVoiceStatus> serializedSubject = new SerializedSubject<>(BehaviorSubject.l0(LOCAL_VOICE_STATUS_DEFAULT));
+        SerializedSubject<MediaEngine.LocalVoiceStatus, MediaEngine.LocalVoiceStatus> serializedSubject = new SerializedSubject<>(BehaviorSubject.l0(LOCAL_VOICE_STATUS_DEFAULT));
         this.localVoiceStatusSubject = serializedSubject;
         Boolean bool = Boolean.FALSE;
         this.pttActiveSubject = new SerializedSubject<>(BehaviorSubject.l0(bool));
@@ -115,7 +562,7 @@ public final class StoreMediaEngine extends Store {
         this.onKrispStatusSubject = PublishSubject.k0();
         Observable observableW = ObservableExtensionsKt.computationLatest(serializedSubject).r().v(new StoreMediaEngine$sam$rx_functions_Action0$0(new StoreMediaEngine$localVoiceStatus$1(this))).w(new StoreMediaEngine$sam$rx_functions_Action0$0(new StoreMediaEngine$localVoiceStatus$2(this)));
         AtomicReference atomicReference = new AtomicReference();
-        Observable<MediaEngine$LocalVoiceStatus> observableH0 = Observable.h0(new c0(new h1(new g1(atomicReference), observableW, atomicReference)));
+        Observable<MediaEngine.LocalVoiceStatus> observableH0 = Observable.h0(new c0(new h1(new g1(atomicReference), observableW, atomicReference)));
         m.checkNotNullExpressionValue(observableH0, "localVoiceStatusSubject\n…ening)\n          .share()");
         this.localVoiceStatus = observableH0;
     }
@@ -180,8 +627,8 @@ public final class StoreMediaEngine extends Store {
         storeMediaEngine.handleVideoInputDevices(videoInputDeviceDescriptionArr, str, function1);
     }
 
-    public static final /* synthetic */ void access$handleVoiceConfigChanged(StoreMediaEngine storeMediaEngine, StoreMediaSettings$VoiceConfiguration storeMediaSettings$VoiceConfiguration) {
-        storeMediaEngine.handleVoiceConfigChanged(storeMediaSettings$VoiceConfiguration);
+    public static final /* synthetic */ void access$handleVoiceConfigChanged(StoreMediaEngine storeMediaEngine, StoreMediaSettings.VoiceConfiguration voiceConfiguration) {
+        storeMediaEngine.handleVoiceConfigChanged(voiceConfiguration);
     }
 
     public static final /* synthetic */ String access$pickDefaultDeviceGUID(StoreMediaEngine storeMediaEngine, VideoInputDeviceDescription[] videoInputDeviceDescriptionArr) {
@@ -210,29 +657,29 @@ public final class StoreMediaEngine extends Store {
 
     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
     public final /* synthetic */ Object awaitVideoInputDevicesNativeAsync(Continuation<? super VideoInputDeviceDescription[]> continuation) throws Throwable {
-        StoreMediaEngine$awaitVideoInputDevicesNativeAsync$1 storeMediaEngine$awaitVideoInputDevicesNativeAsync$1;
+        AnonymousClass1 anonymousClass1;
         StoreMediaEngine storeMediaEngine;
-        if (continuation instanceof StoreMediaEngine$awaitVideoInputDevicesNativeAsync$1) {
-            storeMediaEngine$awaitVideoInputDevicesNativeAsync$1 = (StoreMediaEngine$awaitVideoInputDevicesNativeAsync$1) continuation;
-            int i = storeMediaEngine$awaitVideoInputDevicesNativeAsync$1.label;
+        if (continuation instanceof AnonymousClass1) {
+            anonymousClass1 = (AnonymousClass1) continuation;
+            int i = anonymousClass1.label;
             if ((i & Integer.MIN_VALUE) != 0) {
-                storeMediaEngine$awaitVideoInputDevicesNativeAsync$1.label = i - Integer.MIN_VALUE;
+                anonymousClass1.label = i - Integer.MIN_VALUE;
             } else {
-                storeMediaEngine$awaitVideoInputDevicesNativeAsync$1 = new StoreMediaEngine$awaitVideoInputDevicesNativeAsync$1(this, continuation);
+                anonymousClass1 = new AnonymousClass1(continuation);
             }
         } else {
-            storeMediaEngine$awaitVideoInputDevicesNativeAsync$1 = new StoreMediaEngine$awaitVideoInputDevicesNativeAsync$1(this, continuation);
+            anonymousClass1 = new AnonymousClass1(continuation);
         }
-        Object objB = storeMediaEngine$awaitVideoInputDevicesNativeAsync$1.result;
+        Object objB = anonymousClass1.result;
         Object coroutine_suspended = c.getCOROUTINE_SUSPENDED();
-        int i2 = storeMediaEngine$awaitVideoInputDevicesNativeAsync$1.label;
+        int i2 = anonymousClass1.label;
         boolean z2 = true;
         if (i2 == 0) {
             l.throwOnFailure(objB);
             StoreMediaEngine$awaitVideoInputDevicesNativeAsync$devices$1 storeMediaEngine$awaitVideoInputDevicesNativeAsync$devices$1 = new StoreMediaEngine$awaitVideoInputDevicesNativeAsync$devices$1(this, null);
-            storeMediaEngine$awaitVideoInputDevicesNativeAsync$1.L$0 = this;
-            storeMediaEngine$awaitVideoInputDevicesNativeAsync$1.label = 1;
-            objB = h.b(MAX_WAIT_FOR_DEVICES_MS, storeMediaEngine$awaitVideoInputDevicesNativeAsync$devices$1, storeMediaEngine$awaitVideoInputDevicesNativeAsync$1);
+            anonymousClass1.L$0 = this;
+            anonymousClass1.label = 1;
+            objB = h.b(MAX_WAIT_FOR_DEVICES_MS, storeMediaEngine$awaitVideoInputDevicesNativeAsync$devices$1, anonymousClass1);
             if (objB == coroutine_suspended) {
                 return coroutine_suspended;
             }
@@ -241,7 +688,7 @@ public final class StoreMediaEngine extends Store {
             if (i2 != 1) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
             }
-            storeMediaEngine = (StoreMediaEngine) storeMediaEngine$awaitVideoInputDevicesNativeAsync$1.L$0;
+            storeMediaEngine = (StoreMediaEngine) anonymousClass1.L$0;
             l.throwOnFailure(objB);
         }
         VideoInputDeviceDescription[] videoInputDeviceDescriptionArr = (VideoInputDeviceDescription[]) objB;
@@ -253,11 +700,11 @@ public final class StoreMediaEngine extends Store {
     }
 
     public final synchronized void cycleVideoInputDevice() {
-        int iIndexOf = k.indexOf(this.videoInputDevices, this.selectedVideoInputDevice);
+        int iIndexOf = d0.t.k.indexOf(this.videoInputDevices, this.selectedVideoInputDevice);
         if (iIndexOf < 0) {
             return;
         }
-        selectVideoInputDevice(this.videoInputDevices[iIndexOf == k.getLastIndex(this.videoInputDevices) ? 0 : iIndexOf + 1].getGuid());
+        selectVideoInputDevice(this.videoInputDevices[iIndexOf == d0.t.k.getLastIndex(this.videoInputDevices) ? 0 : iIndexOf + 1].getGuid());
     }
 
     private final synchronized void disableLocalVoiceStatusListening() {
@@ -273,32 +720,32 @@ public final class StoreMediaEngine extends Store {
         if (mediaEngine == null) {
             m.throwUninitializedPropertyAccessException("mediaEngine");
         }
-        mediaEngine.l(new StoreMediaEngine$enableLocalVoiceStatusListening$1(this.localVoiceStatusSubject));
+        mediaEngine.l(new AnonymousClass1(this.localVoiceStatusSubject));
     }
 
     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
     public final Object getDefaultVideoDeviceGUID(Continuation<? super String> continuation) throws Throwable {
-        StoreMediaEngine$getDefaultVideoDeviceGUID$1 storeMediaEngine$getDefaultVideoDeviceGUID$1;
+        AnonymousClass1 anonymousClass1;
         StoreMediaEngine storeMediaEngine;
-        if (continuation instanceof StoreMediaEngine$getDefaultVideoDeviceGUID$1) {
-            storeMediaEngine$getDefaultVideoDeviceGUID$1 = (StoreMediaEngine$getDefaultVideoDeviceGUID$1) continuation;
-            int i = storeMediaEngine$getDefaultVideoDeviceGUID$1.label;
+        if (continuation instanceof AnonymousClass1) {
+            anonymousClass1 = (AnonymousClass1) continuation;
+            int i = anonymousClass1.label;
             if ((i & Integer.MIN_VALUE) != 0) {
-                storeMediaEngine$getDefaultVideoDeviceGUID$1.label = i - Integer.MIN_VALUE;
+                anonymousClass1.label = i - Integer.MIN_VALUE;
             } else {
-                storeMediaEngine$getDefaultVideoDeviceGUID$1 = new StoreMediaEngine$getDefaultVideoDeviceGUID$1(this, continuation);
+                anonymousClass1 = new AnonymousClass1(continuation);
             }
         } else {
-            storeMediaEngine$getDefaultVideoDeviceGUID$1 = new StoreMediaEngine$getDefaultVideoDeviceGUID$1(this, continuation);
+            anonymousClass1 = new AnonymousClass1(continuation);
         }
-        Object objAwaitVideoInputDevicesNativeAsync = storeMediaEngine$getDefaultVideoDeviceGUID$1.result;
+        Object objAwaitVideoInputDevicesNativeAsync = anonymousClass1.result;
         Object coroutine_suspended = c.getCOROUTINE_SUSPENDED();
-        int i2 = storeMediaEngine$getDefaultVideoDeviceGUID$1.label;
+        int i2 = anonymousClass1.label;
         if (i2 == 0) {
             l.throwOnFailure(objAwaitVideoInputDevicesNativeAsync);
-            storeMediaEngine$getDefaultVideoDeviceGUID$1.L$0 = this;
-            storeMediaEngine$getDefaultVideoDeviceGUID$1.label = 1;
-            objAwaitVideoInputDevicesNativeAsync = awaitVideoInputDevicesNativeAsync(storeMediaEngine$getDefaultVideoDeviceGUID$1);
+            anonymousClass1.L$0 = this;
+            anonymousClass1.label = 1;
+            objAwaitVideoInputDevicesNativeAsync = awaitVideoInputDevicesNativeAsync(anonymousClass1);
             if (objAwaitVideoInputDevicesNativeAsync == coroutine_suspended) {
                 return coroutine_suspended;
             }
@@ -307,7 +754,7 @@ public final class StoreMediaEngine extends Store {
             if (i2 != 1) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
             }
-            storeMediaEngine = (StoreMediaEngine) storeMediaEngine$getDefaultVideoDeviceGUID$1.L$0;
+            storeMediaEngine = (StoreMediaEngine) anonymousClass1.L$0;
             l.throwOnFailure(objAwaitVideoInputDevicesNativeAsync);
         }
         return storeMediaEngine.pickDefaultDeviceGUID((VideoInputDeviceDescription[]) objAwaitVideoInputDevicesNativeAsync);
@@ -317,11 +764,11 @@ public final class StoreMediaEngine extends Store {
         return this.isNativeEngineInitializedSubject;
     }
 
-    public final ListenerCollection<StoreMediaEngine$Listener> getListeners() {
+    public final ListenerCollection<Listener> getListeners() {
         return this.listeners;
     }
 
-    public final Observable<MediaEngine$LocalVoiceStatus> getLocalVoiceStatus() {
+    public final Observable<MediaEngine.LocalVoiceStatus> getLocalVoiceStatus() {
         return this.localVoiceStatus;
     }
 
@@ -333,14 +780,14 @@ public final class StoreMediaEngine extends Store {
         return mediaEngine;
     }
 
-    public final Observable<MediaEngine$OpenSLESConfig> getOpenSLESConfig() {
+    public final Observable<MediaEngine.OpenSLESConfig> getOpenSLESConfig() {
         return this.openSLESConfigSubject;
     }
 
     public final synchronized void getRankedRtcRegions(List<ModelRtcLatencyRegion> regionsWithIps, Function1<? super List<String>, Unit> callback) {
         m.checkNotNullParameter(regionsWithIps, "regionsWithIps");
         m.checkNotNullParameter(callback, "callback");
-        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(regionsWithIps, 10));
+        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(regionsWithIps, 10));
         for (ModelRtcLatencyRegion modelRtcLatencyRegion : regionsWithIps) {
             String region = modelRtcLatencyRegion.getRegion();
             Object[] array = modelRtcLatencyRegion.getIps().toArray(new String[0]);
@@ -358,7 +805,7 @@ public final class StoreMediaEngine extends Store {
         if (mediaEngine == null) {
             m.throwUninitializedPropertyAccessException("mediaEngine");
         }
-        mediaEngine.b(rtcRegionArr, new StoreMediaEngine$getRankedRtcRegions$1(callback));
+        mediaEngine.b(rtcRegionArr, new AnonymousClass1(callback));
     }
 
     /* JADX INFO: renamed from: getSelectedVideoInputDeviceBlocking, reason: from getter */
@@ -383,7 +830,7 @@ public final class StoreMediaEngine extends Store {
         if (mediaEngine == null) {
             m.throwUninitializedPropertyAccessException("mediaEngine");
         }
-        mediaEngine.j(new StoreMediaEngine$getVideoInputDevicesNative$1(callback));
+        mediaEngine.j(new AnonymousClass1(callback));
     }
 
     public final Object getVideoInputDevicesNativeAsync(Continuation<? super VideoInputDeviceDescription[]> continuation) throws Throwable {
@@ -414,7 +861,7 @@ public final class StoreMediaEngine extends Store {
     public final void handleMicrophonePermissionGranted() {
         Observable<Boolean> observableZ = this.isNativeEngineInitializedSubject.Z(1);
         m.checkNotNullExpressionValue(observableZ, "isNativeEngineInitializedSubject\n        .take(1)");
-        ObservableExtensionsKt.appSubscribe$default(observableZ, StoreMediaEngine.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreMediaEngine$handleMicrophonePermissionGranted$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(observableZ, StoreMediaEngine.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
     private final synchronized void handleNativeEngineInitialized() {
@@ -427,8 +874,8 @@ public final class StoreMediaEngine extends Store {
 
     private final synchronized void handleNewConnection(MediaEngineConnection connection) {
         setupMediaEngineSettingsSubscription();
-        connection.l(new StoreMediaEngine$handleNewConnection$1(this));
-        getVideoInputDevicesNative(new StoreMediaEngine$handleNewConnection$2(this));
+        connection.l(new AnonymousClass1());
+        getVideoInputDevicesNative(new AnonymousClass2());
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -495,14 +942,14 @@ public final class StoreMediaEngine extends Store {
         Long l = this.previousVoiceChannelId;
         if (l != null && (l == null || l.longValue() != 0)) {
             if (channelId == 0) {
-                getVideoInputDevicesNative(new StoreMediaEngine$handleVoiceChannelSelected$1(this));
+                getVideoInputDevicesNative(new AnonymousClass1());
             }
         }
         this.previousVoiceChannelId = Long.valueOf(channelId);
     }
 
     @StoreThread
-    private final synchronized void handleVoiceConfigChanged(StoreMediaSettings$VoiceConfiguration voiceConfig) {
+    private final synchronized void handleVoiceConfigChanged(StoreMediaSettings.VoiceConfiguration voiceConfig) {
         if (voiceConfig != null) {
             MediaEngine mediaEngine = this.mediaEngine;
             if (mediaEngine == null) {
@@ -523,38 +970,38 @@ public final class StoreMediaEngine extends Store {
         this.preferredVideoInputDeviceGUID = this.preferredVideoInputDeviceGuidCache.get();
         this.hasNativeEngineEverInitialized = this.hasNativeEngineEverInitializedCache.get().booleanValue();
         SharedPreferences prefsSessionDurable = getPrefsSessionDurable();
-        MediaEngine$OpenSLESConfig mediaEngine$OpenSLESConfig = DEFAULT_OPENSLES_CONFIG;
-        String string = prefsSessionDurable.getString("OPEN_SLES", mediaEngine$OpenSLESConfig.name());
+        MediaEngine.OpenSLESConfig openSLESConfig = DEFAULT_OPENSLES_CONFIG;
+        String string = prefsSessionDurable.getString("OPEN_SLES", openSLESConfig.name());
         if (string == null) {
-            string = mediaEngine$OpenSLESConfig.name();
+            string = openSLESConfig.name();
         }
         m.checkNotNullExpressionValue(string, "prefsSessionDurable\n    …AULT_OPENSLES_CONFIG.name");
-        MediaEngine$OpenSLESConfig mediaEngine$OpenSLESConfigValueOf = MediaEngine$OpenSLESConfig.valueOf(string);
-        this.openSLESConfigSubject.k.onNext(mediaEngine$OpenSLESConfigValueOf);
+        MediaEngine.OpenSLESConfig openSLESConfigValueOf = MediaEngine.OpenSLESConfig.valueOf(string);
+        this.openSLESConfigSubject.k.onNext(openSLESConfigValueOf);
         StoreMediaEngine$init$echoCancellationCallback$1 storeMediaEngine$init$echoCancellationCallback$1 = new StoreMediaEngine$init$echoCancellationCallback$1(this);
-        StoreMediaEngine$EngineListener storeMediaEngine$EngineListener = new StoreMediaEngine$EngineListener(this);
+        EngineListener engineListener = new EngineListener();
         ExecutorService executorServiceNewSingleThreadExecutor = Executors.newSingleThreadExecutor();
         m.checkNotNullExpressionValue(executorServiceNewSingleThreadExecutor, "Executors.newSingleThreadExecutor()");
         AppLog appLog = AppLog.g;
-        g$a g_a = b.a.q.k0.g.c;
+        b.a.q.k0.g.a aVar = b.a.q.k0.g.c;
         b.a.q.k0.g gVar = b.a.q.k0.g.f264b;
         m.checkNotNullParameter(context, "context");
-        m.checkNotNullParameter(storeMediaEngine$EngineListener, "listener");
+        m.checkNotNullParameter(engineListener, "listener");
         m.checkNotNullParameter(executorServiceNewSingleThreadExecutor, "singleThreadExecutorService");
-        m.checkNotNullParameter(mediaEngine$OpenSLESConfigValueOf, "openSLESConfig");
+        m.checkNotNullParameter(openSLESConfigValueOf, "openSLESConfig");
         m.checkNotNullParameter(appLog, "logger");
         m.checkNotNullParameter(gVar, "echoCancellation");
         m.checkNotNullParameter(storeMediaEngine$init$echoCancellationCallback$1, "echoCancellationCallback");
-        this.mediaEngine = new b.a.q.m0.c.k(context, storeMediaEngine$EngineListener, new b.a.q.c(executorServiceNewSingleThreadExecutor, false), mediaEngine$OpenSLESConfigValueOf, appLog, gVar, storeMediaEngine$init$echoCancellationCallback$1, null, null, 384);
-        Observable<R> observableG = this.storeStream.getExperiments().observeUserExperiment("2021-05_opensl_default_enable_android", true).y(ObservableExtensionsKt$filterNull$1.INSTANCE).G(ObservableExtensionsKt$filterNull$2.INSTANCE);
+        this.mediaEngine = new b.a.q.m0.c.k(context, engineListener, new b.a.q.c(executorServiceNewSingleThreadExecutor, false), openSLESConfigValueOf, appLog, gVar, storeMediaEngine$init$echoCancellationCallback$1, null, null, 384);
+        Observable<R> observableG = this.storeStream.getExperiments().observeUserExperiment("2021-05_opensl_default_enable_android", true).y(ObservableExtensionsKt.AnonymousClass1.INSTANCE).G(ObservableExtensionsKt.AnonymousClass2.INSTANCE);
         m.checkNotNullExpressionValue(observableG, "filter { it != null }.map { it!! }");
         Observable observableZ = observableG.Z(1);
         m.checkNotNullExpressionValue(observableZ, "storeStream.experiments.…erNull()\n        .take(1)");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.computationLatest(observableZ), StoreMediaEngine.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreMediaEngine$init$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.computationLatest(observableZ), StoreMediaEngine.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
-    public final Observable<KrispOveruseDetector$Status> onKrispStatusEvent() {
-        PublishSubject<KrispOveruseDetector$Status> publishSubject = this.onKrispStatusSubject;
+    public final Observable<KrispOveruseDetector.Status> onKrispStatusEvent() {
+        PublishSubject<KrispOveruseDetector.Status> publishSubject = this.onKrispStatusSubject;
         m.checkNotNullExpressionValue(publishSubject, "onKrispStatusSubject");
         return publishSubject;
     }
@@ -592,7 +1039,7 @@ public final class StoreMediaEngine extends Store {
             i2++;
         }
         if (videoInputDeviceDescription == null) {
-            videoInputDeviceDescription = (VideoInputDeviceDescription) k.firstOrNull(videoInputDeviceDescriptionArr);
+            videoInputDeviceDescription = (VideoInputDeviceDescription) d0.t.k.firstOrNull(videoInputDeviceDescriptionArr);
         }
         if (videoInputDeviceDescription != null) {
             return videoInputDeviceDescription.getGuid();
@@ -616,32 +1063,32 @@ public final class StoreMediaEngine extends Store {
     public final void selectDefaultVideoDevice(Function1<? super String, Unit> onSelected) {
         x0 x0Var = x0.j;
         CoroutineDispatcher coroutineDispatcher = k0.a;
-        f.H0(x0Var, n.f3830b.H(), null, new StoreMediaEngine$selectDefaultVideoDevice$1(this, onSelected, null), 2, null);
+        f.H0(x0Var, n.f3830b.H(), null, new AnonymousClass1(onSelected, null), 2, null);
     }
 
     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
     public final Object selectDefaultVideoDeviceAsync(Continuation<? super String> continuation) throws Throwable {
-        StoreMediaEngine$selectDefaultVideoDeviceAsync$1 storeMediaEngine$selectDefaultVideoDeviceAsync$1;
+        AnonymousClass1 anonymousClass1;
         StoreMediaEngine storeMediaEngine;
-        if (continuation instanceof StoreMediaEngine$selectDefaultVideoDeviceAsync$1) {
-            storeMediaEngine$selectDefaultVideoDeviceAsync$1 = (StoreMediaEngine$selectDefaultVideoDeviceAsync$1) continuation;
-            int i = storeMediaEngine$selectDefaultVideoDeviceAsync$1.label;
+        if (continuation instanceof AnonymousClass1) {
+            anonymousClass1 = (AnonymousClass1) continuation;
+            int i = anonymousClass1.label;
             if ((i & Integer.MIN_VALUE) != 0) {
-                storeMediaEngine$selectDefaultVideoDeviceAsync$1.label = i - Integer.MIN_VALUE;
+                anonymousClass1.label = i - Integer.MIN_VALUE;
             } else {
-                storeMediaEngine$selectDefaultVideoDeviceAsync$1 = new StoreMediaEngine$selectDefaultVideoDeviceAsync$1(this, continuation);
+                anonymousClass1 = new AnonymousClass1(continuation);
             }
         } else {
-            storeMediaEngine$selectDefaultVideoDeviceAsync$1 = new StoreMediaEngine$selectDefaultVideoDeviceAsync$1(this, continuation);
+            anonymousClass1 = new AnonymousClass1(continuation);
         }
-        Object objAwaitVideoInputDevicesNativeAsync = storeMediaEngine$selectDefaultVideoDeviceAsync$1.result;
+        Object objAwaitVideoInputDevicesNativeAsync = anonymousClass1.result;
         Object coroutine_suspended = c.getCOROUTINE_SUSPENDED();
-        int i2 = storeMediaEngine$selectDefaultVideoDeviceAsync$1.label;
+        int i2 = anonymousClass1.label;
         if (i2 == 0) {
             l.throwOnFailure(objAwaitVideoInputDevicesNativeAsync);
-            storeMediaEngine$selectDefaultVideoDeviceAsync$1.L$0 = this;
-            storeMediaEngine$selectDefaultVideoDeviceAsync$1.label = 1;
-            objAwaitVideoInputDevicesNativeAsync = awaitVideoInputDevicesNativeAsync(storeMediaEngine$selectDefaultVideoDeviceAsync$1);
+            anonymousClass1.L$0 = this;
+            anonymousClass1.label = 1;
+            objAwaitVideoInputDevicesNativeAsync = awaitVideoInputDevicesNativeAsync(anonymousClass1);
             if (objAwaitVideoInputDevicesNativeAsync == coroutine_suspended) {
                 return coroutine_suspended;
             }
@@ -650,7 +1097,7 @@ public final class StoreMediaEngine extends Store {
             if (i2 != 1) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
             }
-            storeMediaEngine = (StoreMediaEngine) storeMediaEngine$selectDefaultVideoDeviceAsync$1.L$0;
+            storeMediaEngine = (StoreMediaEngine) anonymousClass1.L$0;
             l.throwOnFailure(objAwaitVideoInputDevicesNativeAsync);
         }
         VideoInputDeviceDescription[] videoInputDeviceDescriptionArr = (VideoInputDeviceDescription[]) objAwaitVideoInputDevicesNativeAsync;
@@ -660,7 +1107,7 @@ public final class StoreMediaEngine extends Store {
     }
 
     public final void selectVideoInputDevice(String deviceGUID) {
-        getVideoInputDevicesNative(new StoreMediaEngine$selectVideoInputDevice$1(this, deviceGUID));
+        getVideoInputDevicesNative(new AnonymousClass1(deviceGUID));
     }
 
     public final synchronized void setAudioInputEnabled(boolean audioInputEnabled) {
@@ -672,7 +1119,7 @@ public final class StoreMediaEngine extends Store {
     }
 
     @SuppressLint({"ApplySharedPref"})
-    public final synchronized void setOpenSLESConfig(MediaEngine$OpenSLESConfig openSLESConfig) {
+    public final synchronized void setOpenSLESConfig(MediaEngine.OpenSLESConfig openSLESConfig) {
         m.checkNotNullParameter(openSLESConfig, "openSLESConfig");
         this.openSLESConfigSubject.k.onNext(openSLESConfig);
         getPrefsSessionDurable().edit().putString("OPEN_SLES", openSLESConfig.name()).commit();
@@ -696,15 +1143,86 @@ public final class StoreMediaEngine extends Store {
         if (subscription != null) {
             subscription.unsubscribe();
         }
-        Observable<StoreMediaSettings$VoiceConfiguration> voiceConfig = this.mediaSettingsStore.getVoiceConfig();
+        Observable<StoreMediaSettings.VoiceConfiguration> voiceConfig = this.mediaSettingsStore.getVoiceConfig();
         Class<?> cls = getClass();
-        StoreMediaEngine$setupMediaEngineSettingsSubscription$1 storeMediaEngine$setupMediaEngineSettingsSubscription$1 = new StoreMediaEngine$setupMediaEngineSettingsSubscription$1(this);
-        ObservableExtensionsKt.appSubscribe$default(voiceConfig, cls, (Context) null, new StoreMediaEngine$setupMediaEngineSettingsSubscription$3(this), StoreMediaEngine$setupMediaEngineSettingsSubscription$2.INSTANCE, (Function0) null, (Function0) null, storeMediaEngine$setupMediaEngineSettingsSubscription$1, 50, (Object) null);
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1();
+        ObservableExtensionsKt.appSubscribe$default(voiceConfig, cls, (Context) null, new AnonymousClass3(), AnonymousClass2.INSTANCE, (Function0) null, (Function0) null, anonymousClass1, 50, (Object) null);
     }
 
     private final synchronized void updateSelectedVideoInputDevice(VideoInputDeviceDescription selectedVideoInputDevice) {
         this.selectedVideoInputDevice = selectedVideoInputDevice;
         this.selectedVideoInputDeviceSubject.onNext(selectedVideoInputDevice);
         this.storeStream.handleVideoInputDeviceSelected(selectedVideoInputDevice);
+    }
+
+    /* JADX INFO: compiled from: StoreMediaEngine.kt */
+    public final class EngineListener implements MediaEngine.c {
+        private final LowMemoryDetector lowMemoryDetector = new LowMemoryDetector();
+        private long debugPrintableId = -1;
+
+        public EngineListener() {
+        }
+
+        private final Context getContext() {
+            return ApplicationProvider.INSTANCE.get();
+        }
+
+        @Override // com.discord.rtcconnection.mediaengine.MediaEngine.c
+        public void onConnected() {
+            StoreMediaEngine.access$getListenerSubject$p(StoreMediaEngine.this).notify(StoreMediaEngine$EngineListener$onConnected$1.INSTANCE);
+        }
+
+        @Override // com.discord.rtcconnection.mediaengine.MediaEngine.c
+        public void onConnecting() {
+            StoreMediaEngine.access$getListenerSubject$p(StoreMediaEngine.this).notify(StoreMediaEngine$EngineListener$onConnecting$1.INSTANCE);
+        }
+
+        public void onDestroy() {
+            getContext().unregisterComponentCallbacks(this.lowMemoryDetector);
+            if (Build.VERSION.SDK_INT >= 29) {
+                i0 i0Var = i0.n;
+                synchronized (i0Var) {
+                    if (i0.k) {
+                        b.c.a.a0.d.b1("ThermalDetector", "unregister");
+                        Object systemService = ApplicationProvider.INSTANCE.get().getSystemService("power");
+                        Objects.requireNonNull(systemService, "null cannot be cast to non-null type android.os.PowerManager");
+                        ((PowerManager) systemService).removeThermalStatusListener(i0Var);
+                        i0.k = false;
+                        i0.l = false;
+                        if (i0.m) {
+                            ((Handler) i0.j.getValue()).removeCallbacks(i0Var);
+                            i0.m = false;
+                        }
+                    }
+                }
+                SystemLogUtils.INSTANCE.getDebugPrintables$app_productionGoogleRelease().remove(this.debugPrintableId);
+                this.debugPrintableId = -1L;
+            }
+        }
+
+        @Override // com.discord.rtcconnection.mediaengine.MediaEngine.c
+        public void onNativeEngineInitialized() {
+            getContext().registerComponentCallbacks(this.lowMemoryDetector);
+            if (Build.VERSION.SDK_INT >= 29) {
+                i0 i0Var = i0.n;
+                synchronized (i0Var) {
+                    if (!i0.k) {
+                        b.c.a.a0.d.b1("ThermalDetector", "register");
+                        Object systemService = ApplicationProvider.INSTANCE.get().getSystemService("power");
+                        Objects.requireNonNull(systemService, "null cannot be cast to non-null type android.os.PowerManager");
+                        ((PowerManager) systemService).addThermalStatusListener(i0Var);
+                        i0.k = true;
+                    }
+                }
+                this.debugPrintableId = SystemLogUtils.INSTANCE.getDebugPrintables$app_productionGoogleRelease().add(i0Var, "ThermalDetector");
+            }
+            StoreMediaEngine.access$handleNativeEngineInitialized(StoreMediaEngine.this);
+        }
+
+        @Override // com.discord.rtcconnection.mediaengine.MediaEngine.c
+        public void onNewConnection(MediaEngineConnection connection) {
+            m.checkNotNullParameter(connection, "connection");
+            StoreMediaEngine.access$handleNewConnection(StoreMediaEngine.this, connection);
+        }
     }
 }

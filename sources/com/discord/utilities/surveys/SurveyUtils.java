@@ -2,10 +2,12 @@ package com.discord.utilities.surveys;
 
 import android.app.Application;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager$NameNotFoundException;
+import androidx.core.app.NotificationCompat;
+import com.discord.api.user.UserSurvey;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.time.ClockFactory;
 import d0.z.d.m;
+import j0.k.b;
 import j0.l.e.k;
 import rx.Observable;
 
@@ -16,16 +18,86 @@ public final class SurveyUtils {
     private static Application applicationContext;
     public static final SurveyUtils INSTANCE = new SurveyUtils();
 
+    /* JADX INFO: renamed from: com.discord.utilities.surveys.SurveyUtils$getSurveyToShow$1, reason: invalid class name */
+    /* JADX INFO: compiled from: SurveyUtils.kt */
+    public final class AnonymousClass1<T, R> implements b<UserSurvey, Survey> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Survey call(UserSurvey userSurvey) {
+            return call2(userSurvey);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Survey call2(UserSurvey userSurvey) {
+            if (userSurvey != null) {
+                return new Survey(userSurvey.getKey(), userSurvey.getUrl(), userSurvey.getKey(), userSurvey.getPrompt(), userSurvey.getCta());
+            }
+            return null;
+        }
+    }
+
+    /* JADX INFO: compiled from: SurveyUtils.kt */
+    public class Survey {
+        private final String noticeKey;
+        private final String surveyBody;
+        private final String surveyId;
+        private final String surveyTitle;
+        private final String surveyURL;
+
+        /* JADX INFO: compiled from: SurveyUtils.kt */
+        public final class None extends Survey {
+            public static final None INSTANCE = new None();
+
+            private None() {
+                super("", "", "", "", "");
+            }
+        }
+
+        public Survey(String str, String str2, String str3, String str4, String str5) {
+            m.checkNotNullParameter(str, "surveyId");
+            m.checkNotNullParameter(str2, "surveyURL");
+            m.checkNotNullParameter(str3, "noticeKey");
+            m.checkNotNullParameter(str4, "surveyBody");
+            m.checkNotNullParameter(str5, "surveyTitle");
+            this.surveyId = str;
+            this.surveyURL = str2;
+            this.noticeKey = str3;
+            this.surveyBody = str4;
+            this.surveyTitle = str5;
+        }
+
+        public String getNoticeKey() {
+            return this.noticeKey;
+        }
+
+        public String getSurveyBody() {
+            return this.surveyBody;
+        }
+
+        public String getSurveyId() {
+            return this.surveyId;
+        }
+
+        public String getSurveyTitle() {
+            return this.surveyTitle;
+        }
+
+        public String getSurveyURL() {
+            return this.surveyURL;
+        }
+    }
+
     private SurveyUtils() {
     }
 
-    public final Observable<SurveyUtils$Survey> getSurveyToShow() {
+    public final Observable<Survey> getSurveyToShow() {
         if (isInstallOldEnough()) {
-            Observable observableG = StoreStream.Companion.getUserSurvey().observeUserSurvey().G(SurveyUtils$getSurveyToShow$1.INSTANCE);
+            Observable observableG = StoreStream.INSTANCE.getUserSurvey().observeUserSurvey().G(AnonymousClass1.INSTANCE);
             m.checkNotNullExpressionValue(observableG, "StoreStream\n        .get…  )\n          }\n        }");
             return observableG;
         }
-        k kVar = new k(SurveyUtils$Survey$None.INSTANCE);
+        k kVar = new k(Survey.None.INSTANCE);
         m.checkNotNullExpressionValue(kVar, "Observable.just(Survey.None)");
         return kVar;
     }
@@ -47,7 +119,7 @@ public final class SurveyUtils {
                 m.throwUninitializedPropertyAccessException("applicationContext");
             }
             return ClockFactory.get().currentTimeMillis() - packageManager.getPackageInfo(application2.getPackageName(), 0).firstInstallTime >= MIN_APP_INSTALL_TIME;
-        } catch (PackageManager$NameNotFoundException unused) {
+        } catch (PackageManager.NameNotFoundException unused) {
             return false;
         }
     }

@@ -11,8 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.guild.Guild;
@@ -23,7 +22,7 @@ import com.discord.models.domain.ModelInvite;
 import com.discord.models.user.CoreUser;
 import com.discord.nullserializable.NullSerializable;
 import com.discord.utilities.icon.IconUtils;
-import com.discord.utilities.images.MGImages$ChangeDetector;
+import com.discord.utilities.images.MGImages;
 import com.facebook.drawee.view.SimpleDraweeView;
 import d0.g0.t;
 import d0.z.d.m;
@@ -57,7 +56,7 @@ public final class AuthInviteInfoView extends RelativeLayout {
         imageView.setVisibility(0);
         TextView textView = this.binding.d;
         m.checkNotNullExpressionValue(textView, "binding.authInviteInfoInvitedText");
-        b.n(textView, 2131891589, new Object[0], null, 4);
+        b.n(textView, R.string.guild_template_modal_title, new Object[0], null, 4);
         TextView textView2 = this.binding.c;
         m.checkNotNullExpressionValue(textView2, "binding.authInviteInfoGuildName");
         textView2.setText(guildTemplate.getName());
@@ -83,7 +82,7 @@ public final class AuthInviteInfoView extends RelativeLayout {
                 SimpleDraweeView simpleDraweeView2 = this.binding.f2174b;
                 m.checkNotNullExpressionValue(simpleDraweeView2, "binding.authInviteInfoGuildAvatar");
                 m.checkNotNullExpressionValue(guild, "inviteGuild");
-                IconUtils.setIcon$default(simpleDraweeView2, IconUtils.getForGuild$default(new com.discord.models.guild.Guild(guild), IconUtils.DEFAULT_ICON_BLURPLE, true, null, 8, null), 2131165293, (Function1) null, (MGImages$ChangeDetector) null, 24, (Object) null);
+                IconUtils.setIcon$default(simpleDraweeView2, IconUtils.getForGuild$default(new com.discord.models.guild.Guild(guild), IconUtils.DEFAULT_ICON_BLURPLE, true, null, 8, null), R.dimen.avatar_size_large, (Function1) null, (MGImages.ChangeDetector) null, 24, (Object) null);
                 TextView textView = this.binding.d;
                 m.checkNotNullExpressionValue(textView, "binding.authInviteInfoInvitedText");
                 textView.setText(b.l(getIntroText(invite), new Object[0], null, 2));
@@ -103,7 +102,7 @@ public final class AuthInviteInfoView extends RelativeLayout {
             SimpleDraweeView simpleDraweeView3 = this.binding.f2174b;
             m.checkNotNullExpressionValue(simpleDraweeView3, "binding.authInviteInfoGuildAvatar");
             User inviter2 = invite.getInviter();
-            IconUtils.setIcon$default(simpleDraweeView3, (inviter2 == null || (nullSerializableA = inviter2.a()) == null) ? null : nullSerializableA.a(), 2131165293, (Function1) null, (MGImages$ChangeDetector) null, 24, (Object) null);
+            IconUtils.setIcon$default(simpleDraweeView3, (inviter2 == null || (nullSerializableA = inviter2.a()) == null) ? null : nullSerializableA.a(), R.dimen.avatar_size_large, (Function1) null, (MGImages.ChangeDetector) null, 24, (Object) null);
             TextView textView3 = this.binding.d;
             m.checkNotNullExpressionValue(textView3, "binding.authInviteInfoInvitedText");
             textView3.setText(b.l(getIntroText(invite), new Object[0], null, 2));
@@ -134,7 +133,7 @@ public final class AuthInviteInfoView extends RelativeLayout {
             SimpleDraweeView simpleDraweeView4 = this.binding.f2174b;
             m.checkNotNullExpressionValue(simpleDraweeView4, "binding.authInviteInfoGuildAvatar");
             User inviter5 = invite.getInviter();
-            IconUtils.setIcon$default(simpleDraweeView4, inviter5 != null ? new CoreUser(inviter5) : null, 2131165293, null, null, null, 56, null);
+            IconUtils.setIcon$default(simpleDraweeView4, inviter5 != null ? new CoreUser(inviter5) : null, R.dimen.avatar_size_large, null, null, null, 56, null);
             TextView textView5 = this.binding.d;
             m.checkNotNullExpressionValue(textView5, "binding.authInviteInfoInvitedText");
             textView5.setText(b.l(getIntroText(invite), new Object[0], null, 2));
@@ -157,18 +156,18 @@ public final class AuthInviteInfoView extends RelativeLayout {
         if (modelInvite.getChannel() == null && modelInvite.guild == null && z2) {
             Context context = getContext();
             m.checkNotNullExpressionValue(context, "context");
-            return b.h(context, 2131892081, new Object[0], null, 4);
+            return b.h(context, R.string.instant_invite_you_have_been_invited_to_chat_with, new Object[0], null, 4);
         }
         Channel channel = modelInvite.getChannel();
         if (channel == null || !ChannelUtils.z(channel)) {
             if (modelInvite.getApproximateMemberCount() >= 200 || !z2) {
                 Context context2 = getContext();
                 m.checkNotNullExpressionValue(context2, "context");
-                return b.h(context2, 2131892082, new Object[0], null, 4);
+                return b.h(context2, R.string.instant_invite_you_have_been_invited_to_join, new Object[0], null, 4);
             }
             Context context3 = getContext();
             m.checkNotNullExpressionValue(context3, "context");
-            return b.h(context3, 2131886920, new Object[]{username2}, null, 4);
+            return b.h(context3, R.string.auth_message_invited_by, new Object[]{username2}, null, 4);
         }
         Channel channel2 = modelInvite.getChannel();
         if (channel2 != null) {
@@ -184,7 +183,7 @@ public final class AuthInviteInfoView extends RelativeLayout {
                         username = null;
                     }
                     objArr[0] = username;
-                    return b.h(context4, 2131886920, objArr, null, 4);
+                    return b.h(context4, R.string.auth_message_invited_by, objArr, null, 4);
                 }
             }
         } else if (z2) {
@@ -198,33 +197,33 @@ public final class AuthInviteInfoView extends RelativeLayout {
                 username = null;
             }
             objArr2[0] = username;
-            return b.h(context5, 2131886920, objArr2, null, 4);
+            return b.h(context5, R.string.auth_message_invited_by, objArr2, null, 4);
         }
         Context context6 = getContext();
         m.checkNotNullExpressionValue(context6, "context");
-        return b.h(context6, 2131892084, new Object[0], null, 4);
+        return b.h(context6, R.string.instant_invite_you_have_been_invited_to_join_group_dm, new Object[0], null, 4);
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public AuthInviteInfoView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
         m.checkNotNullParameter(context, "context");
-        View viewInflate = LayoutInflater.from(context).inflate(R$layout.view_auth_invite_info, (ViewGroup) this, false);
+        View viewInflate = LayoutInflater.from(context).inflate(R.layout.view_auth_invite_info, (ViewGroup) this, false);
         addView(viewInflate);
-        int i2 = R$id.auth_invite_info_content;
-        LinearLayout linearLayout = (LinearLayout) viewInflate.findViewById(R$id.auth_invite_info_content);
+        int i2 = R.id.auth_invite_info_content;
+        LinearLayout linearLayout = (LinearLayout) viewInflate.findViewById(R.id.auth_invite_info_content);
         if (linearLayout != null) {
-            i2 = R$id.auth_invite_info_guild_avatar;
-            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate.findViewById(R$id.auth_invite_info_guild_avatar);
+            i2 = R.id.auth_invite_info_guild_avatar;
+            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate.findViewById(R.id.auth_invite_info_guild_avatar);
             if (simpleDraweeView != null) {
-                i2 = R$id.auth_invite_info_guild_name;
-                TextView textView = (TextView) viewInflate.findViewById(R$id.auth_invite_info_guild_name);
+                i2 = R.id.auth_invite_info_guild_name;
+                TextView textView = (TextView) viewInflate.findViewById(R.id.auth_invite_info_guild_name);
                 if (textView != null) {
-                    i2 = R$id.auth_invite_info_invited_text;
-                    TextView textView2 = (TextView) viewInflate.findViewById(R$id.auth_invite_info_invited_text);
+                    i2 = R.id.auth_invite_info_invited_text;
+                    TextView textView2 = (TextView) viewInflate.findViewById(R.id.auth_invite_info_invited_text);
                     if (textView2 != null) {
-                        i2 = R$id.auth_invite_info_template_icon;
-                        ImageView imageView = (ImageView) viewInflate.findViewById(R$id.auth_invite_info_template_icon);
+                        i2 = R.id.auth_invite_info_template_icon;
+                        ImageView imageView = (ImageView) viewInflate.findViewById(R.id.auth_invite_info_template_icon);
                         if (imageView != null) {
                             ViewAuthInviteInfoBinding viewAuthInviteInfoBinding = new ViewAuthInviteInfoBinding((RelativeLayout) viewInflate, linearLayout, simpleDraweeView, textView, textView2, imageView);
                             m.checkNotNullExpressionValue(viewAuthInviteInfoBinding, "ViewAuthInviteInfoBindin…rom(context), this, true)");

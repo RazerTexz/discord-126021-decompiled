@@ -1,7 +1,6 @@
 package b.o.a;
 
 import android.hardware.Camera;
-import android.hardware.Camera$CameraInfo;
 import androidx.annotation.NonNull;
 import java.util.Objects;
 
@@ -13,11 +12,11 @@ public class e {
     public static boolean a(@NonNull b.o.a.m.e eVar) {
         Objects.requireNonNull(b.o.a.n.q.a.a());
         int iIntValue = b.o.a.n.q.a.d.get(eVar).intValue();
-        Camera$CameraInfo camera$CameraInfo = new Camera$CameraInfo();
+        Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
         int numberOfCameras = Camera.getNumberOfCameras();
         for (int i = 0; i < numberOfCameras; i++) {
-            Camera.getCameraInfo(i, camera$CameraInfo);
-            if (camera$CameraInfo.facing == iIntValue) {
+            Camera.getCameraInfo(i, cameraInfo);
+            if (cameraInfo.facing == iIntValue) {
                 return true;
             }
         }

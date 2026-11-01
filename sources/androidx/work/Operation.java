@@ -3,7 +3,6 @@ package androidx.work;
 import android.annotation.SuppressLint;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.view.LiveData;
 import b.i.b.d.a.a;
 
@@ -11,16 +10,69 @@ import b.i.b.d.a.a;
 public interface Operation {
 
     @SuppressLint({"SyntheticAccessor"})
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
-    public static final Operation$State$SUCCESS SUCCESS = new Operation$State$SUCCESS(null);
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public static final State.SUCCESS SUCCESS = new State.SUCCESS(null);
 
     @SuppressLint({"SyntheticAccessor"})
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
-    public static final Operation$State$IN_PROGRESS IN_PROGRESS = new Operation$State$IN_PROGRESS(null);
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public static final State.IN_PROGRESS IN_PROGRESS = new State.IN_PROGRESS(null);
+
+    public abstract class State {
+
+        public final class FAILURE extends State {
+            private final Throwable mThrowable;
+
+            public FAILURE(@NonNull Throwable th) {
+                this.mThrowable = th;
+            }
+
+            @NonNull
+            public Throwable getThrowable() {
+                return this.mThrowable;
+            }
+
+            @NonNull
+            public String toString() {
+                return String.format("FAILURE (%s)", this.mThrowable.getMessage());
+            }
+        }
+
+        public final class IN_PROGRESS extends State {
+            public /* synthetic */ IN_PROGRESS(AnonymousClass1 anonymousClass1) {
+                this();
+            }
+
+            @NonNull
+            public String toString() {
+                return "IN_PROGRESS";
+            }
+
+            private IN_PROGRESS() {
+            }
+        }
+
+        public final class SUCCESS extends State {
+            public /* synthetic */ SUCCESS(AnonymousClass1 anonymousClass1) {
+                this();
+            }
+
+            @NonNull
+            public String toString() {
+                return "SUCCESS";
+            }
+
+            private SUCCESS() {
+            }
+        }
+
+        @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+        public State() {
+        }
+    }
 
     @NonNull
-    a<Operation$State$SUCCESS> getResult();
+    a<State.SUCCESS> getResult();
 
     @NonNull
-    LiveData<Operation$State> getState();
+    LiveData<State> getState();
 }

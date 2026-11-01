@@ -12,7 +12,7 @@ public final class GuildScheduledEventEntityTypeTypeAdapter extends TypeAdapter<
     @Override // com.google.gson.TypeAdapter
     public GuildScheduledEventEntityType read(JsonReader jsonReader) {
         m.checkNotNullParameter(jsonReader, "in");
-        return GuildScheduledEventEntityType.Companion.a(jsonReader.y());
+        return GuildScheduledEventEntityType.INSTANCE.a(jsonReader.y());
     }
 
     @Override // com.google.gson.TypeAdapter

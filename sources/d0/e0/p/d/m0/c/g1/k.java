@@ -2,14 +2,59 @@ package d0.e0.p.d.m0.c.g1;
 
 import d0.f0.q;
 import d0.t.u;
+import d0.z.d.o;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import kotlin.jvm.functions.Function1;
+import kotlin.sequences.Sequence;
 
 /* JADX INFO: compiled from: Annotations.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class k implements g {
     public final List<g> j;
+
+    /* JADX INFO: compiled from: Annotations.kt */
+    public final class a extends o implements Function1<g, c> {
+        public final /* synthetic */ d0.e0.p.d.m0.g.b $fqName;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(d0.e0.p.d.m0.g.b bVar) {
+            super(1);
+            this.$fqName = bVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ c invoke(g gVar) {
+            return invoke2(gVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final c invoke2(g gVar) {
+            d0.z.d.m.checkNotNullParameter(gVar, "it");
+            return gVar.findAnnotation(this.$fqName);
+        }
+    }
+
+    /* JADX INFO: compiled from: Annotations.kt */
+    public final class b extends o implements Function1<g, Sequence<? extends c>> {
+        public static final b j = new b();
+
+        public b() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Sequence<? extends c> invoke(g gVar) {
+            return invoke2(gVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Sequence<c> invoke2(g gVar) {
+            d0.z.d.m.checkNotNullParameter(gVar, "it");
+            return u.asSequence(gVar);
+        }
+    }
 
     /* JADX WARN: Multi-variable type inference failed */
     public k(List<? extends g> list) {
@@ -20,7 +65,7 @@ public final class k implements g {
     @Override // d0.e0.p.d.m0.c.g1.g
     public c findAnnotation(d0.e0.p.d.m0.g.b bVar) {
         d0.z.d.m.checkNotNullParameter(bVar, "fqName");
-        return (c) q.firstOrNull(q.mapNotNull(u.asSequence(this.j), new k$a(bVar)));
+        return (c) q.firstOrNull(q.mapNotNull(u.asSequence(this.j), new a(bVar)));
     }
 
     @Override // d0.e0.p.d.m0.c.g1.g
@@ -52,7 +97,7 @@ public final class k implements g {
 
     @Override // java.lang.Iterable
     public Iterator<c> iterator() {
-        return q.flatMap(u.asSequence(this.j), k$b.j).iterator();
+        return q.flatMap(u.asSequence(this.j), b.j).iterator();
     }
 
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */

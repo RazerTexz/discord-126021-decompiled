@@ -13,7 +13,7 @@ public final class y extends b0<Integer> {
     @Override // d0.e0.p.d.m0.k.v.g
     public c0 getType(d0.e0.p.d.m0.c.c0 c0Var) {
         d0.z.d.m.checkNotNullParameter(c0Var, "module");
-        d0.e0.p.d.m0.c.e eVarFindClassAcrossModuleDependencies = d0.e0.p.d.m0.c.w.findClassAcrossModuleDependencies(c0Var, d0.e0.p.d.m0.b.k$a.f3223g0);
+        d0.e0.p.d.m0.c.e eVarFindClassAcrossModuleDependencies = d0.e0.p.d.m0.c.w.findClassAcrossModuleDependencies(c0Var, d0.e0.p.d.m0.b.k.a.f3223g0);
         j0 defaultType = eVarFindClassAcrossModuleDependencies == null ? null : eVarFindClassAcrossModuleDependencies.getDefaultType();
         if (defaultType != null) {
             return defaultType;

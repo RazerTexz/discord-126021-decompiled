@@ -12,11 +12,29 @@ public final class ModelGuildFolder$Parser$parse$1<T> implements Action1<String>
     public final /* synthetic */ Ref$ObjectRef $guildIds;
     public final /* synthetic */ Ref$ObjectRef $id;
     public final /* synthetic */ Ref$ObjectRef $name;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
 
-    public ModelGuildFolder$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model$JsonReader model$JsonReader, Ref$ObjectRef ref$ObjectRef2, Ref$ObjectRef ref$ObjectRef3, Ref$ObjectRef ref$ObjectRef4) {
+    /* JADX INFO: renamed from: com.discord.models.domain.ModelGuildFolder$Parser$parse$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ModelGuildFolder.kt */
+    public final class AnonymousClass1<T> implements Model.JsonReader.ItemFactory<Long> {
+        public AnonymousClass1() {
+        }
+
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public /* bridge */ /* synthetic */ Long get() {
+            return get();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+        public final Long get() {
+            return ModelGuildFolder$Parser$parse$1.this.$reader.nextLongOrNull();
+        }
+    }
+
+    public ModelGuildFolder$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model.JsonReader jsonReader, Ref$ObjectRef ref$ObjectRef2, Ref$ObjectRef ref$ObjectRef3, Ref$ObjectRef ref$ObjectRef4) {
         this.$id = ref$ObjectRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
         this.$guildIds = ref$ObjectRef2;
         this.$color = ref$ObjectRef3;
         this.$name = ref$ObjectRef4;
@@ -47,7 +65,7 @@ public final class ModelGuildFolder$Parser$parse$1<T> implements Action1<String>
                     return;
                 }
             } else if (str.equals("guild_ids")) {
-                this.$guildIds.element = (T) this.$reader.nextList(new ModelGuildFolder$Parser$parse$1$1(this));
+                this.$guildIds.element = (T) this.$reader.nextList(new AnonymousClass1());
                 return;
             }
         }

@@ -8,7 +8,6 @@ import d0.e0.p.d.m0.c.u0;
 import d0.e0.p.d.m0.c.y0;
 import d0.e0.p.d.m0.c.z0;
 import d0.e0.p.d.m0.f.r;
-import d0.e0.p.d.m0.k.a0.i$b;
 import d0.e0.p.d.m0.m.o;
 import d0.e0.p.d.m0.n.c0;
 import d0.e0.p.d.m0.n.c1;
@@ -23,7 +22,7 @@ import java.util.List;
 /* JADX INFO: loaded from: classes3.dex */
 public final class l extends d0.e0.p.d.m0.c.i1.e implements g {
     public j0 A;
-    public g$a B;
+    public g.a B;
     public final o q;
     public final r r;
 
@@ -63,7 +62,7 @@ public final class l extends d0.e0.p.d.m0.c.i1.e implements g {
         this.t = gVar2;
         this.u = iVar;
         this.v = fVar;
-        this.B = g$a.COMPATIBLE;
+        this.B = g.a.COMPATIBLE;
     }
 
     @Override // d0.e0.p.d.m0.c.y0
@@ -83,7 +82,7 @@ public final class l extends d0.e0.p.d.m0.c.i1.e implements g {
         return this.v;
     }
 
-    public g$a getCoroutinesExperimentalCompatibilityMode() {
+    public g.a getCoroutinesExperimentalCompatibilityMode() {
         return this.B;
     }
 
@@ -139,14 +138,14 @@ public final class l extends d0.e0.p.d.m0.c.i1.e implements g {
 
     @Override // d0.e0.p.d.m0.l.b.e0.g
     public List<d0.e0.p.d.m0.f.z.h> getVersionRequirements() {
-        return g$b.getVersionRequirements(this);
+        return g.b.getVersionRequirements(this);
     }
 
-    public final void initialize(List<? extends z0> list, j0 j0Var, j0 j0Var2, g$a g_a) {
+    public final void initialize(List<? extends z0> list, j0 j0Var, j0 j0Var2, g.a aVar) {
         d0.z.d.m.checkNotNullParameter(list, "declaredTypeParameters");
         d0.z.d.m.checkNotNullParameter(j0Var, "underlyingType");
         d0.z.d.m.checkNotNullParameter(j0Var2, "expandedType");
-        d0.z.d.m.checkNotNullParameter(g_a, "isExperimentalCoroutineInReleaseEnvironment");
+        d0.z.d.m.checkNotNullParameter(aVar, "isExperimentalCoroutineInReleaseEnvironment");
         initialize(list);
         this.f3496x = j0Var;
         this.f3497y = j0Var2;
@@ -154,13 +153,13 @@ public final class l extends d0.e0.p.d.m0.c.i1.e implements g {
         d0.e0.p.d.m0.c.e classDescriptor = getClassDescriptor();
         d0.e0.p.d.m0.k.a0.i unsubstitutedMemberScope = classDescriptor == null ? null : classDescriptor.getUnsubstitutedMemberScope();
         if (unsubstitutedMemberScope == null) {
-            unsubstitutedMemberScope = i$b.f3461b;
+            unsubstitutedMemberScope = d0.e0.p.d.m0.k.a0.i.b.f3461b;
         }
         j0 j0VarMakeUnsubstitutedType = e1.makeUnsubstitutedType(this, unsubstitutedMemberScope, new d0.e0.p.d.m0.c.i1.d(this));
         d0.z.d.m.checkNotNullExpressionValue(j0VarMakeUnsubstitutedType, "@OptIn(TypeRefinement::class)\n    protected fun computeDefaultType(): SimpleType =\n        TypeUtils.makeUnsubstitutedType(this, classDescriptor?.unsubstitutedMemberScope ?: MemberScope.Empty) { kotlinTypeRefiner ->\n            kotlinTypeRefiner.refineDescriptor(this)?.defaultType\n        }");
         this.A = j0VarMakeUnsubstitutedType;
         this.w = getTypeAliasConstructors();
-        this.B = g_a;
+        this.B = aVar;
     }
 
     @Override // d0.e0.p.d.m0.c.w0

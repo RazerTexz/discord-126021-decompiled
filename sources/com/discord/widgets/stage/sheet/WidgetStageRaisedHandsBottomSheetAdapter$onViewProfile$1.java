@@ -1,6 +1,6 @@
 package com.discord.widgets.stage.sheet;
 
-import com.discord.stores.StoreVoiceParticipants$VoiceUser;
+import com.discord.stores.StoreVoiceParticipants;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -8,7 +8,7 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetStageRaisedHandsBottomSheetAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetStageRaisedHandsBottomSheetAdapter$onViewProfile$1 extends o implements Function1<StoreVoiceParticipants$VoiceUser, Unit> {
+public final class WidgetStageRaisedHandsBottomSheetAdapter$onViewProfile$1 extends o implements Function1<StoreVoiceParticipants.VoiceUser, Unit> {
     public static final WidgetStageRaisedHandsBottomSheetAdapter$onViewProfile$1 INSTANCE = new WidgetStageRaisedHandsBottomSheetAdapter$onViewProfile$1();
 
     public WidgetStageRaisedHandsBottomSheetAdapter$onViewProfile$1() {
@@ -16,13 +16,13 @@ public final class WidgetStageRaisedHandsBottomSheetAdapter$onViewProfile$1 exte
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public /* bridge */ /* synthetic */ Unit invoke(StoreVoiceParticipants$VoiceUser storeVoiceParticipants$VoiceUser) {
-        invoke2(storeVoiceParticipants$VoiceUser);
+    public /* bridge */ /* synthetic */ Unit invoke(StoreVoiceParticipants.VoiceUser voiceUser) {
+        invoke2(voiceUser);
         return Unit.a;
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final void invoke2(StoreVoiceParticipants$VoiceUser storeVoiceParticipants$VoiceUser) {
-        m.checkNotNullParameter(storeVoiceParticipants$VoiceUser, "it");
+    public final void invoke2(StoreVoiceParticipants.VoiceUser voiceUser) {
+        m.checkNotNullParameter(voiceUser, "it");
     }
 }

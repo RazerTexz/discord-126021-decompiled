@@ -8,7 +8,6 @@ import java.util.List;
 /* JADX INFO: compiled from: ConnectedAccount.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class ConnectedAccount {
-    public static final ConnectedAccount$Companion Companion = new ConnectedAccount$Companion(null);
     public static final int HIDDEN = 0;
     public static final int VISIBLE = 1;
     private final boolean friendSync;

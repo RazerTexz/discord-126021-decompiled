@@ -3,8 +3,8 @@ package com.discord.widgets.stage.model;
 import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.discord.stores.StoreVoiceParticipants$VoiceUser;
-import com.discord.widgets.voice.fullscreen.stage.StageCallItem$MediaType;
+import com.discord.stores.StoreVoiceParticipants;
+import com.discord.widgets.voice.fullscreen.stage.StageCallItem;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: StageCallModel.kt */
@@ -14,30 +14,30 @@ public final /* data */ class StageMediaParticipant {
     private final String id;
     private final boolean isBlocked;
     private final boolean isModerator;
-    private final StageCallItem$MediaType mediaType;
-    private final StoreVoiceParticipants$VoiceUser voiceUser;
+    private final StageCallItem.MediaType mediaType;
+    private final StoreVoiceParticipants.VoiceUser voiceUser;
 
-    public StageMediaParticipant(String str, StoreVoiceParticipants$VoiceUser storeVoiceParticipants$VoiceUser, Channel channel, boolean z2, boolean z3, StageCallItem$MediaType stageCallItem$MediaType) {
+    public StageMediaParticipant(String str, StoreVoiceParticipants.VoiceUser voiceUser, Channel channel, boolean z2, boolean z3, StageCallItem.MediaType mediaType) {
         m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_ID);
-        m.checkNotNullParameter(storeVoiceParticipants$VoiceUser, "voiceUser");
+        m.checkNotNullParameter(voiceUser, "voiceUser");
         m.checkNotNullParameter(channel, "channel");
-        m.checkNotNullParameter(stageCallItem$MediaType, "mediaType");
+        m.checkNotNullParameter(mediaType, "mediaType");
         this.id = str;
-        this.voiceUser = storeVoiceParticipants$VoiceUser;
+        this.voiceUser = voiceUser;
         this.channel = channel;
         this.isModerator = z2;
         this.isBlocked = z3;
-        this.mediaType = stageCallItem$MediaType;
+        this.mediaType = mediaType;
     }
 
-    public static /* synthetic */ StageMediaParticipant copy$default(StageMediaParticipant stageMediaParticipant, String str, StoreVoiceParticipants$VoiceUser storeVoiceParticipants$VoiceUser, Channel channel, boolean z2, boolean z3, StageCallItem$MediaType stageCallItem$MediaType, int i, Object obj) {
+    public static /* synthetic */ StageMediaParticipant copy$default(StageMediaParticipant stageMediaParticipant, String str, StoreVoiceParticipants.VoiceUser voiceUser, Channel channel, boolean z2, boolean z3, StageCallItem.MediaType mediaType, int i, Object obj) {
         if ((i & 1) != 0) {
             str = stageMediaParticipant.id;
         }
         if ((i & 2) != 0) {
-            storeVoiceParticipants$VoiceUser = stageMediaParticipant.voiceUser;
+            voiceUser = stageMediaParticipant.voiceUser;
         }
-        StoreVoiceParticipants$VoiceUser storeVoiceParticipants$VoiceUser2 = storeVoiceParticipants$VoiceUser;
+        StoreVoiceParticipants.VoiceUser voiceUser2 = voiceUser;
         if ((i & 4) != 0) {
             channel = stageMediaParticipant.channel;
         }
@@ -51,12 +51,12 @@ public final /* data */ class StageMediaParticipant {
         }
         boolean z5 = z3;
         if ((i & 32) != 0) {
-            stageCallItem$MediaType = stageMediaParticipant.mediaType;
+            mediaType = stageMediaParticipant.mediaType;
         }
-        return stageMediaParticipant.copy(str, storeVoiceParticipants$VoiceUser2, channel2, z4, z5, stageCallItem$MediaType);
+        return stageMediaParticipant.copy(str, voiceUser2, channel2, z4, z5, mediaType);
     }
 
-    public final StageMediaParticipant copy(String id2, StoreVoiceParticipants$VoiceUser voiceUser, Channel channel, boolean isModerator, boolean isBlocked, StageCallItem$MediaType mediaType) {
+    public final StageMediaParticipant copy(String id2, StoreVoiceParticipants.VoiceUser voiceUser, Channel channel, boolean isModerator, boolean isBlocked, StageCallItem.MediaType mediaType) {
         m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
         m.checkNotNullParameter(voiceUser, "voiceUser");
         m.checkNotNullParameter(channel, "channel");
@@ -104,20 +104,20 @@ public final /* data */ class StageMediaParticipant {
     }
 
     /* JADX INFO: renamed from: component6, reason: from getter */
-    public final StageCallItem$MediaType getMediaType() {
+    public final StageCallItem.MediaType getMediaType() {
         return this.mediaType;
     }
 
-    public final StageCallItem$MediaType getMediaType() {
+    public final StageCallItem.MediaType getMediaType() {
         return this.mediaType;
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
-    public final StoreVoiceParticipants$VoiceUser getVoiceUser() {
+    public final StoreVoiceParticipants.VoiceUser getVoiceUser() {
         return this.voiceUser;
     }
 
-    public final StoreVoiceParticipants$VoiceUser getVoiceUser() {
+    public final StoreVoiceParticipants.VoiceUser getVoiceUser() {
         return this.voiceUser;
     }
 
@@ -132,8 +132,8 @@ public final /* data */ class StageMediaParticipant {
     public int hashCode() {
         String str = this.id;
         int iHashCode = (str != null ? str.hashCode() : 0) * 31;
-        StoreVoiceParticipants$VoiceUser storeVoiceParticipants$VoiceUser = this.voiceUser;
-        int iHashCode2 = (iHashCode + (storeVoiceParticipants$VoiceUser != null ? storeVoiceParticipants$VoiceUser.hashCode() : 0)) * 31;
+        StoreVoiceParticipants.VoiceUser voiceUser = this.voiceUser;
+        int iHashCode2 = (iHashCode + (voiceUser != null ? voiceUser.hashCode() : 0)) * 31;
         Channel channel = this.channel;
         int iHashCode3 = (iHashCode2 + (channel != null ? channel.hashCode() : 0)) * 31;
         boolean z2 = this.isModerator;
@@ -144,8 +144,8 @@ public final /* data */ class StageMediaParticipant {
         int i = (iHashCode3 + r2) * 31;
         boolean z3 = this.isBlocked;
         int i2 = (i + (z3 ? 1 : z3)) * 31;
-        StageCallItem$MediaType stageCallItem$MediaType = this.mediaType;
-        return i2 + (stageCallItem$MediaType != null ? stageCallItem$MediaType.hashCode() : 0);
+        StageCallItem.MediaType mediaType = this.mediaType;
+        return i2 + (mediaType != null ? mediaType.hashCode() : 0);
     }
 
     public final boolean isBlocked() {

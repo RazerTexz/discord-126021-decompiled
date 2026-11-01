@@ -9,28 +9,123 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import b.i.a.f.n.c0;
-import b.o.a.l$a;
-import b.o.a.w.a$c;
 import com.google.android.gms.tasks.Task;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /* JADX INFO: compiled from: CameraEngine.java */
 /* JADX INFO: loaded from: classes3.dex */
-public abstract class i implements a$c, b.o.a.v.d$a {
+public abstract class i implements b.o.a.w.a.c, b.o.a.v.d.a {
     public b.o.a.r.g k;
-    public final i$g m;
-    public final b.o.a.n.v.f n = new b.o.a.n.v.f(new i$c(this));
+    public final g m;
+    public final b.o.a.n.v.f n = new b.o.a.n.v.f(new c());
     public static final b.o.a.b j = new b.o.a.b(i.class.getSimpleName());
 
     @VisibleForTesting
     public Handler l = new Handler(Looper.getMainLooper());
 
-    public i(@NonNull i$g i_g) {
-        this.m = i_g;
+    /* JADX INFO: renamed from: b.o.a.n.i$i, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: CameraEngine.java */
+    public class C0173i implements Thread.UncaughtExceptionHandler {
+        public C0173i(c cVar) {
+        }
+
+        @Override // java.lang.Thread.UncaughtExceptionHandler
+        public void uncaughtException(@NonNull Thread thread, @NonNull Throwable th) {
+            i.j.a(2, "EXCEPTION:", "In the NoOpExceptionHandler, probably while destroying.", "Thread:", thread, "Error:", th);
+        }
+    }
+
+    /* JADX INFO: compiled from: CameraEngine.java */
+    public class a implements Callable<Task<Void>> {
+        public a() {
+        }
+
+        @Override // java.util.concurrent.Callable
+        public Task<Void> call() throws Exception {
+            return i.this.R();
+        }
+    }
+
+    /* JADX INFO: compiled from: CameraEngine.java */
+    public class b implements Callable<Task<Void>> {
+        public b() {
+        }
+
+        @Override // java.util.concurrent.Callable
+        public Task<Void> call() throws Exception {
+            return i.this.U();
+        }
+    }
+
+    /* JADX INFO: compiled from: CameraEngine.java */
+    public class c implements b.o.a.n.v.a.b {
+        public c() {
+        }
+    }
+
+    /* JADX INFO: compiled from: CameraEngine.java */
+    public class d implements b.i.a.f.n.c<Void> {
+        public final /* synthetic */ CountDownLatch a;
+
+        public d(i iVar, CountDownLatch countDownLatch) {
+            this.a = countDownLatch;
+        }
+
+        @Override // b.i.a.f.n.c
+        public void onComplete(@NonNull Task<Void> task) {
+            this.a.countDown();
+        }
+    }
+
+    /* JADX INFO: compiled from: CameraEngine.java */
+    public class e implements Callable<Task<Void>> {
+        public e() {
+        }
+
+        @Override // java.util.concurrent.Callable
+        public Task<Void> call() throws Exception {
+            if (i.this.z() != null && i.this.z().m()) {
+                return i.this.P();
+            }
+            c0 c0Var = new c0();
+            c0Var.u();
+            return c0Var;
+        }
+    }
+
+    /* JADX INFO: compiled from: CameraEngine.java */
+    public class f implements Callable<Task<Void>> {
+        public f() {
+        }
+
+        @Override // java.util.concurrent.Callable
+        public Task<Void> call() throws Exception {
+            return i.this.S();
+        }
+    }
+
+    /* JADX INFO: compiled from: CameraEngine.java */
+    public interface g {
+    }
+
+    /* JADX INFO: compiled from: CameraEngine.java */
+    public class h implements Thread.UncaughtExceptionHandler {
+        public h(c cVar) {
+        }
+
+        @Override // java.lang.Thread.UncaughtExceptionHandler
+        public void uncaughtException(@NonNull Thread thread, @NonNull Throwable th) {
+            i.b(i.this, th, true);
+        }
+    }
+
+    public i(@NonNull g gVar) {
+        this.m = gVar;
         W(false);
     }
 
@@ -62,7 +157,7 @@ public abstract class i implements a$c, b.o.a.v.d$a {
 
     public abstract int G();
 
-    public abstract void G0(float f, @Nullable PointF[] pointFArr, boolean z2);
+    public abstract void G0(float f2, @Nullable PointF[] pointFArr, boolean z2);
 
     @NonNull
     public abstract b.o.a.m.l H();
@@ -84,7 +179,7 @@ public abstract class i implements a$c, b.o.a.v.d$a {
 
     @NonNull
     public final Task<Void> J0() {
-        return this.n.f(b.o.a.n.v.e.ENGINE, b.o.a.n.v.e.BIND, true, new i$e(this));
+        return this.n.f(b.o.a.n.v.e.ENGINE, b.o.a.n.v.e.BIND, true, new e());
     }
 
     @Nullable
@@ -92,7 +187,7 @@ public abstract class i implements a$c, b.o.a.v.d$a {
 
     @NonNull
     public final Task<Void> K0() {
-        return this.n.f(b.o.a.n.v.e.BIND, b.o.a.n.v.e.PREVIEW, true, new i$a(this));
+        return this.n.f(b.o.a.n.v.e.BIND, b.o.a.n.v.e.PREVIEW, true, new a());
     }
 
     @NonNull
@@ -116,23 +211,23 @@ public abstract class i implements a$c, b.o.a.v.d$a {
 
     @NonNull
     public final Task<Void> M0(boolean z2) {
-        return this.n.f(b.o.a.n.v.e.BIND, b.o.a.n.v.e.ENGINE, !z2, new i$f(this));
+        return this.n.f(b.o.a.n.v.e.BIND, b.o.a.n.v.e.ENGINE, !z2, new f());
     }
 
     public abstract float N();
 
     @NonNull
     public final Task<Void> N0(boolean z2) {
-        return this.n.f(b.o.a.n.v.e.PREVIEW, b.o.a.n.v.e.BIND, !z2, new i$b(this));
+        return this.n.f(b.o.a.n.v.e.PREVIEW, b.o.a.n.v.e.BIND, !z2, new b());
     }
 
     public final boolean O() {
         boolean z2;
         b.o.a.n.v.f fVar = this.n;
         synchronized (fVar.e) {
-            for (b.o.a.n.v.a$c<?> a_c : fVar.c) {
-                if (a_c.a.contains(" >> ") || a_c.a.contains(" << ")) {
-                    if (!a_c.f1942b.a.o()) {
+            for (b.o.a.n.v.a.c<?> cVar : fVar.c) {
+                if (cVar.a.contains(" >> ") || cVar.a.contains(" << ")) {
+                    if (!cVar.f1942b.a.o()) {
                         z2 = true;
                     }
                 }
@@ -142,12 +237,12 @@ public abstract class i implements a$c, b.o.a.v.d$a {
         return z2;
     }
 
-    public abstract void O0(@NonNull l$a l_a);
+    public abstract void O0(@NonNull b.o.a.l.a aVar);
 
     @NonNull
     public abstract Task<Void> P();
 
-    public abstract void P0(@NonNull l$a l_a);
+    public abstract void P0(@NonNull b.o.a.l.a aVar);
 
     @NonNull
     public abstract Task<b.o.a.c> Q();
@@ -182,12 +277,12 @@ public abstract class i implements a$c, b.o.a.v.d$a {
         }
         b.o.a.r.g gVarB = b.o.a.r.g.b("CameraViewEngine");
         this.k = gVarB;
-        gVarB.e.setUncaughtExceptionHandler(new i$h(this, null));
+        gVarB.e.setUncaughtExceptionHandler(new h(null));
         if (z2) {
             b.o.a.n.v.f fVar = this.n;
             synchronized (fVar.e) {
                 HashSet hashSet = new HashSet();
-                Iterator<b.o.a.n.v.a$c<?>> it = fVar.c.iterator();
+                Iterator<b.o.a.n.v.a.c<?>> it = fVar.c.iterator();
                 while (it.hasNext()) {
                     hashSet.add(it.next().a);
                 }
@@ -238,10 +333,10 @@ public abstract class i implements a$c, b.o.a.v.d$a {
         b.o.a.b bVar = j;
         bVar.a(1, "DESTROY:", "state:", this.n.f, "thread:", Thread.currentThread(), "depth:", Integer.valueOf(i), "unrecoverably:", Boolean.valueOf(z2));
         if (z2) {
-            this.k.e.setUncaughtExceptionHandler(new i$i(null));
+            this.k.e.setUncaughtExceptionHandler(new C0173i(null));
         }
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        L0(true).c(this.k.g, new i$d(this, countDownLatch));
+        L0(true).c(this.k.g, new d(this, countDownLatch));
         try {
             if (!countDownLatch.await(6L, TimeUnit.SECONDS)) {
                 bVar.a(3, "DESTROY: Could not destroy synchronously after 6 seconds.", "Current thread:", Thread.currentThread(), "Handler thread:", this.k.e);
@@ -258,7 +353,7 @@ public abstract class i implements a$c, b.o.a.v.d$a {
         }
     }
 
-    public abstract void d0(float f, @NonNull float[] fArr, @Nullable PointF[] pointFArr, boolean z2);
+    public abstract void d0(float f2, @NonNull float[] fArr, @Nullable PointF[] pointFArr, boolean z2);
 
     @NonNull
     public abstract b.o.a.n.t.a e();
@@ -340,7 +435,7 @@ public abstract class i implements a$c, b.o.a.v.d$a {
 
     public abstract boolean v();
 
-    public abstract void v0(float f);
+    public abstract void v0(float f2);
 
     @Nullable
     public abstract b.o.a.x.b w(@NonNull b.o.a.n.t.b bVar);

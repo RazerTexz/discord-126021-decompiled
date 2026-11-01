@@ -1,8 +1,7 @@
 package b.i.a.c.x2.k0;
 
 import androidx.annotation.Nullable;
-import b.i.a.c.j1$b;
-import b.i.a.c.t2.a0$a;
+import b.i.a.c.j1;
 
 /* JADX INFO: compiled from: MpegAudioReader.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -15,7 +14,7 @@ public final class v implements o {
     public String e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final a0$a f1280b;
+    public final b.i.a.c.t2.a0.a f1280b;
     public int g;
     public boolean h;
     public boolean i;
@@ -28,7 +27,7 @@ public final class v implements o {
         b.i.a.c.f3.x xVar = new b.i.a.c.f3.x(4);
         this.a = xVar;
         xVar.a[0] = -1;
-        this.f1280b = new a0$a();
+        this.f1280b = new b.i.a.c.t2.a0.a();
         this.l = -9223372036854775807L;
         this.c = str;
     }
@@ -68,20 +67,20 @@ public final class v implements o {
                 if (i4 >= 4) {
                     this.a.E(0);
                     if (this.f1280b.a(this.a.f())) {
-                        a0$a a0_a = this.f1280b;
-                        this.k = a0_a.c;
+                        b.i.a.c.t2.a0.a aVar = this.f1280b;
+                        this.k = aVar.c;
                         if (!this.h) {
-                            long j = ((long) a0_a.g) * 1000000;
-                            int i5 = a0_a.d;
+                            long j = ((long) aVar.g) * 1000000;
+                            int i5 = aVar.d;
                             this.j = j / ((long) i5);
-                            j1$b j1_b = new j1$b();
-                            j1_b.a = this.e;
-                            j1_b.k = a0_a.f1116b;
-                            j1_b.l = 4096;
-                            j1_b.f1023x = a0_a.e;
-                            j1_b.f1024y = i5;
-                            j1_b.c = this.c;
-                            this.d.e(j1_b.a());
+                            j1.b bVar = new j1.b();
+                            bVar.a = this.e;
+                            bVar.k = aVar.f1116b;
+                            bVar.l = 4096;
+                            bVar.f1023x = aVar.e;
+                            bVar.f1024y = i5;
+                            bVar.c = this.c;
+                            this.d.e(bVar.a());
                             this.h = true;
                         }
                         this.a.E(0);
@@ -127,10 +126,10 @@ public final class v implements o {
     }
 
     @Override // b.i.a.c.x2.k0.o
-    public void e(b.i.a.c.x2.j jVar, i0$d i0_d) {
-        i0_d.a();
-        this.e = i0_d.b();
-        this.d = jVar.p(i0_d.c(), 1);
+    public void e(b.i.a.c.x2.j jVar, i0.d dVar) {
+        dVar.a();
+        this.e = dVar.b();
+        this.d = jVar.p(dVar.c(), 1);
     }
 
     @Override // b.i.a.c.x2.k0.o

@@ -18,6 +18,14 @@ public class ViewGroupUtilsApi14 {
     private static Field sLayoutSuppressedField;
     private static boolean sLayoutSuppressedFieldFetched;
 
+    /* JADX INFO: renamed from: androidx.transition.ViewGroupUtilsApi14$1, reason: invalid class name */
+    public final class AnonymousClass1 extends LayoutTransition {
+        @Override // android.animation.LayoutTransition
+        public boolean isChangingLayout() {
+            return true;
+        }
+    }
+
     private ViewGroupUtilsApi14() {
     }
 
@@ -47,9 +55,9 @@ public class ViewGroupUtilsApi14 {
     public static void suppressLayout(@NonNull ViewGroup viewGroup, boolean z2) {
         boolean z3 = false;
         if (sEmptyLayoutTransition == null) {
-            ViewGroupUtilsApi14$1 viewGroupUtilsApi14$1 = new ViewGroupUtilsApi14$1();
-            sEmptyLayoutTransition = viewGroupUtilsApi14$1;
-            viewGroupUtilsApi14$1.setAnimator(2, null);
+            AnonymousClass1 anonymousClass1 = new AnonymousClass1();
+            sEmptyLayoutTransition = anonymousClass1;
+            anonymousClass1.setAnimator(2, null);
             sEmptyLayoutTransition.setAnimator(0, null);
             sEmptyLayoutTransition.setAnimator(1, null);
             sEmptyLayoutTransition.setAnimator(3, null);
@@ -62,7 +70,7 @@ public class ViewGroupUtilsApi14 {
                     cancelLayoutTransition(layoutTransition);
                 }
                 if (layoutTransition != sEmptyLayoutTransition) {
-                    viewGroup.setTag(R$id.transition_layout_save, layoutTransition);
+                    viewGroup.setTag(R.id.transition_layout_save, layoutTransition);
                 }
             }
             viewGroup.setLayoutTransition(sEmptyLayoutTransition);
@@ -98,7 +106,7 @@ public class ViewGroupUtilsApi14 {
         if (z3) {
             viewGroup.requestLayout();
         }
-        int i = R$id.transition_layout_save;
+        int i = R.id.transition_layout_save;
         LayoutTransition layoutTransition2 = (LayoutTransition) viewGroup.getTag(i);
         if (layoutTransition2 != null) {
             viewGroup.setTag(i, null);

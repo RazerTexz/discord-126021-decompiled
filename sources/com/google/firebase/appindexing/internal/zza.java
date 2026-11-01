@@ -2,7 +2,7 @@ package com.google.firebase.appindexing.internal;
 
 import android.os.Bundle;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.c.k.a;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
@@ -17,7 +17,7 @@ public final class zza extends AbstractSafeParcelable implements a {
     public final zzc n;
     public final String o;
     public final Bundle p;
-    public static final Parcelable$Creator<zza> CREATOR = new b.i.c.k.d.a();
+    public static final Parcelable.Creator<zza> CREATOR = new b.i.c.k.d.a();
 
     public zza(String str, String str2, String str3, String str4, zzc zzcVar, String str5, Bundle bundle) {
         this.j = str;

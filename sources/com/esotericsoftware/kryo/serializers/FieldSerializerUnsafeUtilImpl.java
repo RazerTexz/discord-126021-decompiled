@@ -1,7 +1,6 @@
 package com.esotericsoftware.kryo.serializers;
 
 import b.e.a.a;
-import b.e.a.a$a;
 import b.e.b.c;
 import com.esotericsoftware.kryo.util.IntArray;
 import com.esotericsoftware.kryo.util.UnsafeUtil;
@@ -22,7 +21,7 @@ public final class FieldSerializerUnsafeUtilImpl implements FieldSerializerUnsaf
     /* JADX WARN: Code duplicated, block: B:25:0x00ac  */
     /* JADX WARN: Code duplicated, block: B:26:0x00b1  */
     @Override // com.esotericsoftware.kryo.serializers.FieldSerializerUnsafeUtil
-    public void createUnsafeCacheFieldsAndRegions(List<Field> list, List<FieldSerializer$CachedField> list2, int i, IntArray intArray) {
+    public void createUnsafeCacheFieldsAndRegions(List<Field> list, List<FieldSerializer.CachedField> list2, int i, IntArray intArray) {
         int i2;
         int iH;
         long jObjectFieldOffset;
@@ -42,10 +41,10 @@ public final class FieldSerializerUnsafeUtilImpl implements FieldSerializerUnsaf
                 long jFieldSizeOf = jObjectFieldOffset + ((long) fieldSizeOf(field2.getType()));
                 if (field2.getType().isPrimitive() && z2) {
                     if (i4 > 1) {
-                        a$a a_a = a.a;
-                        UnsafeCacheFields$UnsafeRegionField unsafeCacheFields$UnsafeRegionField = new UnsafeCacheFields$UnsafeRegionField(j, j2 - j);
-                        unsafeCacheFields$UnsafeRegionField.field = field;
-                        list2.add(unsafeCacheFields$UnsafeRegionField);
+                        a.C0064a c0064a = a.a;
+                        UnsafeCacheFields.UnsafeRegionField unsafeRegionField = new UnsafeCacheFields.UnsafeRegionField(j, j2 - j);
+                        unsafeRegionField.field = field;
+                        list2.add(unsafeRegionField);
                     } else if (field != null) {
                         list2.add(this.serializer.newCachedField(field, list2.size(), i5));
                     }
@@ -99,10 +98,10 @@ public final class FieldSerializerUnsafeUtilImpl implements FieldSerializerUnsaf
                     list2.add(this.serializer.newCachedField(field, list2.size(), i5));
                 }
             } else {
-                a$a a_a2 = a.a;
-                UnsafeCacheFields$UnsafeRegionField unsafeCacheFields$UnsafeRegionField2 = new UnsafeCacheFields$UnsafeRegionField(j, j2 - j);
-                unsafeCacheFields$UnsafeRegionField2.field = field;
-                list2.add(unsafeCacheFields$UnsafeRegionField2);
+                a.C0064a c0064a2 = a.a;
+                UnsafeCacheFields.UnsafeRegionField unsafeRegionField2 = new UnsafeCacheFields.UnsafeRegionField(j, j2 - j);
+                unsafeRegionField2.field = field;
+                list2.add(unsafeRegionField2);
             }
         }
     }

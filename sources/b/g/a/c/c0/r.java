@@ -67,13 +67,13 @@ public class r extends t implements Serializable {
         return null;
     }
 
-    public c b(b.g.a.c.z.l<?> lVar, b.g.a.c.j jVar, t$a t_a) {
+    public c b(b.g.a.c.z.l<?> lVar, b.g.a.c.j jVar, t.a aVar) {
         Class<?> cls = d.a;
         Objects.requireNonNull(jVar);
         if ((jVar instanceof b.g.a.c.h0.a) && d.i(lVar, jVar._class)) {
             return new c(jVar._class);
         }
-        d dVar = new d(lVar, jVar, t_a);
+        d dVar = new d(lVar, jVar, aVar);
         ArrayList arrayList = new ArrayList(8);
         Class<?> cls2 = jVar._class;
         if (!(cls2 == Object.class)) {
@@ -83,6 +83,6 @@ public class r extends t implements Serializable {
                 d.e(jVar, arrayList, false);
             }
         }
-        return new c(jVar, dVar.h, arrayList, dVar.i, dVar.g(arrayList), dVar.f, dVar.d, t_a, lVar._base._typeFactory, dVar.j);
+        return new c(jVar, dVar.h, arrayList, dVar.i, dVar.g(arrayList), dVar.f, dVar.d, aVar, lVar._base._typeFactory, dVar.j);
     }
 }

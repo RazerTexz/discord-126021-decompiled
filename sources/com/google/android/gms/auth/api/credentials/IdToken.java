@@ -1,7 +1,7 @@
 package com.google.android.gms.auth.api.credentials;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +19,7 @@ public final class IdToken extends AbstractSafeParcelable implements ReflectedPa
 
     @NonNull
     public final String k;
-    public static final Parcelable$Creator<IdToken> CREATOR = new i();
+    public static final Parcelable.Creator<IdToken> CREATOR = new i();
 
     public IdToken(@NonNull String str, @NonNull String str2) {
         d.o(!TextUtils.isEmpty(str), "account type string cannot be null or empty");

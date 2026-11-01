@@ -2,14 +2,16 @@ package com.discord.widgets.chat.input.autocomplete.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.view.View;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
+import androidx.recyclerview.widget.RecyclerView;
 import b.a.k.b;
 import b.d.b.a.a;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.role.GuildRole;
@@ -25,10 +27,8 @@ import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.guilds.RoleUtils;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
-import com.discord.utilities.images.MGImages$ChangeDetector;
 import com.discord.utilities.textprocessing.AstRenderer;
 import com.discord.utilities.textprocessing.node.EmojiNode;
-import com.discord.utilities.textprocessing.node.EmojiNode$EmojiIdAndType$Unicode;
 import com.discord.utilities.user.UserUtils;
 import com.discord.utilities.view.text.SimpleDraweeSpanTextView;
 import com.discord.views.StatusView;
@@ -55,10 +55,56 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: AutocompleteItemViewHolder.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class AutocompleteItemViewHolder extends RecyclerView$ViewHolder {
+public final class AutocompleteItemViewHolder extends RecyclerView.ViewHolder {
     private final WidgetChatInputAutocompleteItemBinding binding;
     private final int defaultItemTextColor;
     private final Function1<Autocompletable, Unit> onItemSelected;
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.autocomplete.adapter.AutocompleteItemViewHolder$bind$1, reason: invalid class name */
+    /* JADX INFO: compiled from: AutocompleteItemViewHolder.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ Autocompletable $autocompletable;
+
+        public AnonymousClass1(Autocompletable autocompletable) {
+            this.$autocompletable = autocompletable;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            AutocompleteItemViewHolder.access$getOnItemSelected$p(AutocompleteItemViewHolder.this).invoke(this.$autocompletable);
+        }
+    }
+
+    /* JADX INFO: compiled from: AutocompleteItemViewHolder.kt */
+    public final class EmojiAutocompleteRenderContext implements EmojiNode.RenderContext {
+        private final Context context;
+        private final boolean isAnimationEnabled;
+        public final /* synthetic */ AutocompleteItemViewHolder this$0;
+
+        public EmojiAutocompleteRenderContext(AutocompleteItemViewHolder autocompleteItemViewHolder, boolean z2, Context context) {
+            m.checkNotNullParameter(context, "context");
+            this.this$0 = autocompleteItemViewHolder;
+            this.isAnimationEnabled = z2;
+            this.context = context;
+        }
+
+        @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
+        public Context getContext() {
+            return this.context;
+        }
+
+        @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
+        /* JADX INFO: renamed from: isAnimationEnabled, reason: from getter */
+        public boolean getIsAnimationEnabled() {
+            return this.isAnimationEnabled;
+        }
+
+        @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
+        public void onEmojiClicked(EmojiNode.EmojiIdAndType emojiIdAndType) {
+            m.checkNotNullParameter(emojiIdAndType, "emojiIdAndType");
+            EmojiNode.RenderContext.DefaultImpls.onEmojiClicked(this, emojiIdAndType);
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     /* JADX WARN: Multi-variable type inference failed */
@@ -98,7 +144,7 @@ public final class AutocompleteItemViewHolder extends RecyclerView$ViewHolder {
             }
             bindUser((UserAutocompletable) autocompletable);
         }
-        this.binding.a.setOnClickListener(new AutocompleteItemViewHolder$bind$1(this, autocompletable));
+        this.binding.a.setOnClickListener(new AnonymousClass1(autocompletable));
     }
 
     private final void bindChannel(ChannelAutocompletable channelAutocompletable) {
@@ -108,15 +154,15 @@ public final class AutocompleteItemViewHolder extends RecyclerView$ViewHolder {
         m.checkNotNullExpressionValue(textView, "binding.chatInputItemName");
         textView.setText(channel.getName());
         if (ChannelUtils.J(channel)) {
-            i = 2131231639;
+            i = R.drawable.ic_channel_voice;
         } else if (ChannelUtils.H(channel)) {
-            i = 2131232193;
+            i = R.drawable.ic_thread;
         } else {
-            i = ChannelUtils.v(channel) ? 2131231630 : 2131231834;
+            i = ChannelUtils.v(channel) ? R.drawable.ic_channel_text : R.drawable.ic_guild_folder;
         }
         SimpleDraweeView simpleDraweeView = this.binding.f2302b;
         m.checkNotNullExpressionValue(simpleDraweeView, "binding.chatInputItemAvatar");
-        int color = ColorCompat.getColor(simpleDraweeView, 2131100178);
+        int color = ColorCompat.getColor(simpleDraweeView, R.color.primary_500);
         SimpleDraweeView simpleDraweeView2 = this.binding.f2302b;
         m.checkNotNullExpressionValue(simpleDraweeView2, "binding.chatInputItemAvatar");
         simpleDraweeView2.setVisibility(0);
@@ -125,8 +171,8 @@ public final class AutocompleteItemViewHolder extends RecyclerView$ViewHolder {
         MGImages mGImages = MGImages.INSTANCE;
         SimpleDraweeView simpleDraweeView3 = this.binding.f2302b;
         m.checkNotNullExpressionValue(simpleDraweeView3, "binding.chatInputItemAvatar");
-        MGImages.setImage$default(mGImages, simpleDraweeView3, i, (MGImages$ChangeDetector) null, 4, (Object) null);
-        this.binding.f2302b.setColorFilter(color, PorterDuff$Mode.SRC_ATOP);
+        MGImages.setImage$default(mGImages, simpleDraweeView3, i, (MGImages.ChangeDetector) null, 4, (Object) null);
+        this.binding.f2302b.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
     }
 
     public final void bindCommand(ApplicationCommandAutocompletable commandAutocompletable) {
@@ -181,7 +227,7 @@ public final class AutocompleteItemViewHolder extends RecyclerView$ViewHolder {
             m.checkNotNullExpressionValue(constraintLayout4, "binding.root");
             TextView textView6 = this.binding.c;
             m.checkNotNullExpressionValue(textView6, "binding.chatInputItemDescription");
-            CharSequence charSequenceJ = b.j(constraintLayout4, 2131887713, new Object[]{command.getName(), textView6.getText(), application.getName()}, null, 4);
+            CharSequence charSequenceJ = b.j(constraintLayout4, R.string.command_accessibility_desc_command_item, new Object[]{command.getName(), textView6.getText(), application.getName()}, null, 4);
             ConstraintLayout constraintLayout5 = this.binding.a;
             m.checkNotNullExpressionValue(constraintLayout5, "binding.root");
             constraintLayout5.setContentDescription(charSequenceJ);
@@ -198,12 +244,12 @@ public final class AutocompleteItemViewHolder extends RecyclerView$ViewHolder {
             }
             ConstraintLayout constraintLayout6 = this.binding.a;
             m.checkNotNullExpressionValue(constraintLayout6, "binding.root");
-            int themedColor = ColorCompat.getThemedColor(constraintLayout6, 2130969056);
+            int themedColor = ColorCompat.getThemedColor(constraintLayout6, R.attr.colorTextMuted);
             MGImages mGImages = MGImages.INSTANCE;
             SimpleDraweeView simpleDraweeView3 = this.binding.f2302b;
             m.checkNotNullExpressionValue(simpleDraweeView3, "binding.chatInputItemAvatar");
-            MGImages.setImage$default(mGImages, simpleDraweeView3, 2131232129, (MGImages$ChangeDetector) null, 4, (Object) null);
-            this.binding.f2302b.setColorFilter(themedColor, PorterDuff$Mode.SRC_ATOP);
+            MGImages.setImage$default(mGImages, simpleDraweeView3, R.drawable.ic_slash_command_24dp, (MGImages.ChangeDetector) null, 4, (Object) null);
+            this.binding.f2302b.setColorFilter(themedColor, PorterDuff.Mode.SRC_ATOP);
         }
     }
 
@@ -219,19 +265,19 @@ public final class AutocompleteItemViewHolder extends RecyclerView$ViewHolder {
         Emoji emoji = emojiAutocompletable.getEmoji();
         String firstName = emoji.getFirstName();
         m.checkNotNullExpressionValue(firstName, "emoji.firstName");
-        EmojiNode$EmojiIdAndType$Unicode emojiNode$EmojiIdAndType$Unicode = new EmojiNode$EmojiIdAndType$Unicode(firstName);
+        EmojiNode.EmojiIdAndType.Unicode unicode = new EmojiNode.EmojiIdAndType.Unicode(firstName);
         String firstName2 = emoji.getFirstName();
         m.checkNotNullExpressionValue(firstName2, "emoji.firstName");
-        EmojiNode emojiNode = new EmojiNode(firstName2, new AutocompleteItemViewHolder$bindEmoji$emojiNode$1(emoji), emojiNode$EmojiIdAndType$Unicode, 0, 0, 24, null);
+        EmojiNode emojiNode = new EmojiNode(firstName2, new AutocompleteItemViewHolder$bindEmoji$emojiNode$1(emoji), unicode, 0, 0, 24, null);
         boolean animationsEnabled = emojiAutocompletable.getAnimationsEnabled();
         SimpleDraweeSpanTextView simpleDraweeSpanTextView = this.binding.d;
         m.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.chatInputItemEmoji");
         Context context = simpleDraweeSpanTextView.getContext();
         m.checkNotNullExpressionValue(context, "binding.chatInputItemEmoji.context");
-        AutocompleteItemViewHolder$EmojiAutocompleteRenderContext autocompleteItemViewHolder$EmojiAutocompleteRenderContext = new AutocompleteItemViewHolder$EmojiAutocompleteRenderContext(this, animationsEnabled, context);
+        EmojiAutocompleteRenderContext emojiAutocompleteRenderContext = new EmojiAutocompleteRenderContext(this, animationsEnabled, context);
         Set setSingleton = Collections.singleton(emojiNode);
         m.checkNotNullExpressionValue(setSingleton, "Collections.singleton(emojiNode)");
-        DraweeSpanStringBuilder draweeSpanStringBuilderRender = AstRenderer.render(setSingleton, autocompleteItemViewHolder$EmojiAutocompleteRenderContext);
+        DraweeSpanStringBuilder draweeSpanStringBuilderRender = AstRenderer.render(setSingleton, emojiAutocompleteRenderContext);
         StringBuilder sbQ = a.Q(MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR);
         sbQ.append(emoji.getFirstName());
         sbQ.append(MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR);
@@ -262,16 +308,16 @@ public final class AutocompleteItemViewHolder extends RecyclerView$ViewHolder {
         m.checkNotNullExpressionValue(constraintLayout2, "binding.root");
         Context context2 = constraintLayout2.getContext();
         m.checkNotNullExpressionValue(context2, "binding.root.context");
-        Drawable drawable = ResourcesCompat.getDrawable(resources, 2131231914, context2.getTheme());
+        Drawable drawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_mentions_white_24dp, context2.getTheme());
         if (drawable != null) {
             TextView textView2 = this.binding.e;
             m.checkNotNullExpressionValue(textView2, "binding.chatInputItemName");
-            this.binding.f2302b.setColorFilter(ColorCompat.getColor(textView2, 2131100328), PorterDuff$Mode.SRC_ATOP);
+            this.binding.f2302b.setColorFilter(ColorCompat.getColor(textView2, R.color.status_grey_500), PorterDuff.Mode.SRC_ATOP);
             MGImages mGImages = MGImages.INSTANCE;
             SimpleDraweeView simpleDraweeView2 = this.binding.f2302b;
             m.checkNotNullExpressionValue(simpleDraweeView2, "binding.chatInputItemAvatar");
             m.checkNotNullExpressionValue(drawable, "it");
-            MGImages.setImage$default(mGImages, simpleDraweeView2, drawable, (MGImages$ChangeDetector) null, 4, (Object) null);
+            MGImages.setImage$default(mGImages, simpleDraweeView2, drawable, (MGImages.ChangeDetector) null, 4, (Object) null);
         }
     }
 
@@ -280,7 +326,7 @@ public final class AutocompleteItemViewHolder extends RecyclerView$ViewHolder {
         GuildRole role = roleAutocompletable.getRole();
         TextView textView = this.binding.e;
         m.checkNotNullExpressionValue(textView, "binding.chatInputItemName");
-        int opaqueColor = RoleUtils.getOpaqueColor(role, ColorCompat.getColor(textView, 2131100328));
+        int opaqueColor = RoleUtils.getOpaqueColor(role, ColorCompat.getColor(textView, R.color.status_grey_500));
         TextView textView2 = this.binding.e;
         m.checkNotNullExpressionValue(textView2, "binding.chatInputItemName");
         textView2.setText(roleAutocompletable.getRole().getName());
@@ -297,14 +343,14 @@ public final class AutocompleteItemViewHolder extends RecyclerView$ViewHolder {
         m.checkNotNullExpressionValue(constraintLayout2, "binding.root");
         Context context2 = constraintLayout2.getContext();
         m.checkNotNullExpressionValue(context2, "binding.root.context");
-        Drawable drawable = ResourcesCompat.getDrawable(resources, 2131231914, context2.getTheme());
+        Drawable drawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_mentions_white_24dp, context2.getTheme());
         if (drawable != null) {
-            this.binding.f2302b.setColorFilter(opaqueColor, PorterDuff$Mode.SRC_ATOP);
+            this.binding.f2302b.setColorFilter(opaqueColor, PorterDuff.Mode.SRC_ATOP);
             MGImages mGImages = MGImages.INSTANCE;
             SimpleDraweeView simpleDraweeView2 = this.binding.f2302b;
             m.checkNotNullExpressionValue(simpleDraweeView2, "binding.chatInputItemAvatar");
             m.checkNotNullExpressionValue(drawable, "it");
-            MGImages.setImage$default(mGImages, simpleDraweeView2, drawable, (MGImages$ChangeDetector) null, 4, (Object) null);
+            MGImages.setImage$default(mGImages, simpleDraweeView2, drawable, (MGImages.ChangeDetector) null, 4, (Object) null);
         }
     }
 
@@ -331,7 +377,7 @@ public final class AutocompleteItemViewHolder extends RecyclerView$ViewHolder {
         simpleDraweeView.setVisibility(0);
         SimpleDraweeView simpleDraweeView2 = this.binding.f2302b;
         m.checkNotNullExpressionValue(simpleDraweeView2, "binding.chatInputItemAvatar");
-        IconUtils.setIcon$default(simpleDraweeView2, user, 2131165300, null, null, userAutocompletable.getGuildMember(), 24, null);
+        IconUtils.setIcon$default(simpleDraweeView2, user, R.dimen.avatar_size_standard, null, null, userAutocompletable.getGuildMember(), 24, null);
         Presence presence = userAutocompletable.getPresence();
         if (presence != null) {
             StatusView statusView = this.binding.g;

@@ -1,37 +1,208 @@
 package com.discord.stores;
 
+import a0.a.a.b;
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.emoji.GuildEmojisUpdate;
 import com.discord.api.guild.Guild;
+import com.discord.api.guildhash.GuildHash;
 import com.discord.api.guildhash.GuildHashes;
 import com.discord.api.message.Message;
 import com.discord.api.sticker.GuildStickersUpdate;
+import com.discord.gateway.io.OutgoingPayload;
 import com.discord.models.domain.ModelNotificationSettings;
 import com.discord.models.domain.ModelPayload;
-import com.discord.models.domain.ModelPayload$VersionedReadStates;
-import com.discord.models.domain.ModelPayload$VersionedUserGuildSettings;
 import com.discord.models.domain.ModelReadState;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
 import com.discord.utilities.guildhash.GuildHashUtilsKt;
+import d0.t.g0;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
 
 /* JADX INFO: compiled from: StoreClientDataState.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreClientDataState extends StoreV2 {
-    private StoreClientDataState$ClientDataState clientDataStateSnapshot;
+    private ClientDataState clientDataStateSnapshot;
     private Map<Long, GuildHashes> guildHashes;
     private long highestLastMessageId;
     private final ObservationDeck observationDeck;
     private int readStateVersion;
     private int userGuildSettingsVersion;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreClientDataState$observeClientState$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreClientDataState.kt */
+    public final class AnonymousClass1 extends o implements Function0<ClientDataState> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ ClientDataState invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final ClientDataState invoke() {
+            return StoreClientDataState.access$getClientDataStateSnapshot$p(StoreClientDataState.this);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreClientDataState.kt */
+    public final /* data */ class ClientDataState {
+        private final Map<Long, GuildHashes> guildHashes;
+        private final long highestLastMessageId;
+        private final int readStateVersion;
+        private final int userGuildSettingsVersion;
+
+        public ClientDataState() {
+            this(null, 0L, 0, 0, 15, null);
+        }
+
+        public ClientDataState(Map<Long, GuildHashes> map, long j, int i, int i2) {
+            m.checkNotNullParameter(map, "guildHashes");
+            this.guildHashes = map;
+            this.highestLastMessageId = j;
+            this.readStateVersion = i;
+            this.userGuildSettingsVersion = i2;
+        }
+
+        public final Map<Long, GuildHashes> component1() {
+            return this.guildHashes;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ ClientDataState copy$default(ClientDataState clientDataState, Map map, long j, int i, int i2, int i3, Object obj) {
+            if ((i3 & 1) != 0) {
+                map = clientDataState.guildHashes;
+            }
+            if ((i3 & 2) != 0) {
+                j = clientDataState.highestLastMessageId;
+            }
+            long j2 = j;
+            if ((i3 & 4) != 0) {
+                i = clientDataState.readStateVersion;
+            }
+            int i4 = i;
+            if ((i3 & 8) != 0) {
+                i2 = clientDataState.userGuildSettingsVersion;
+            }
+            return clientDataState.copy(map, j2, i4, i2);
+        }
+
+        public final ClientDataState copy(Map<Long, GuildHashes> guildHashes, long highestLastMessageId, int readStateVersion, int userGuildSettingsVersion) {
+            m.checkNotNullParameter(guildHashes, "guildHashes");
+            return new ClientDataState(guildHashes, highestLastMessageId, readStateVersion, userGuildSettingsVersion);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof ClientDataState)) {
+                return false;
+            }
+            ClientDataState clientDataState = (ClientDataState) other;
+            return m.areEqual(this.guildHashes, clientDataState.guildHashes) && this.highestLastMessageId == clientDataState.highestLastMessageId && this.readStateVersion == clientDataState.readStateVersion && this.userGuildSettingsVersion == clientDataState.userGuildSettingsVersion;
+        }
+
+        public final Map<Long, GuildHashes> getGuildHashes() {
+            return this.guildHashes;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getHighestLastMessageId() {
+            return this.highestLastMessageId;
+        }
+
+        public final long getHighestLastMessageId() {
+            return this.highestLastMessageId;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getReadStateVersion() {
+            return this.readStateVersion;
+        }
+
+        public final int getReadStateVersion() {
+            return this.readStateVersion;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final int getUserGuildSettingsVersion() {
+            return this.userGuildSettingsVersion;
+        }
+
+        public final int getUserGuildSettingsVersion() {
+            return this.userGuildSettingsVersion;
+        }
+
+        public int hashCode() {
+            Map<Long, GuildHashes> map = this.guildHashes;
+            return ((((b.a(this.highestLastMessageId) + ((map != null ? map.hashCode() : 0) * 31)) * 31) + this.readStateVersion) * 31) + this.userGuildSettingsVersion;
+        }
+
+        private final String[] toArray(GuildHashes guildHashes) {
+            GuildHash metadata = guildHashes.getMetadata();
+            String hash = metadata != null ? metadata.getHash() : null;
+            GuildHash channels = guildHashes.getChannels();
+            String hash2 = channels != null ? channels.getHash() : null;
+            GuildHash roles = guildHashes.getRoles();
+            String hash3 = roles != null ? roles.getHash() : null;
+            if (hash == null || hash2 == null || hash3 == null) {
+                return null;
+            }
+            return new String[]{hash, hash2, hash3};
+        }
+
+        public final OutgoingPayload.IdentifyClientState toIdentifyData() {
+            Map<Long, GuildHashes> map = this.guildHashes;
+            LinkedHashMap linkedHashMap = new LinkedHashMap(g0.mapCapacity(map.size()));
+            Iterator<T> it = map.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry entry = (Map.Entry) it.next();
+                linkedHashMap.put(entry.getKey(), toArray((GuildHashes) entry.getValue()));
+            }
+            LinkedHashMap linkedHashMap2 = new LinkedHashMap();
+            for (Map.Entry entry2 : linkedHashMap.entrySet()) {
+                if (entry2.getValue() != null) {
+                    linkedHashMap2.put(entry2.getKey(), entry2.getValue());
+                }
+            }
+            LinkedHashMap linkedHashMap3 = new LinkedHashMap(g0.mapCapacity(linkedHashMap2.size()));
+            for (Map.Entry entry3 : linkedHashMap2.entrySet()) {
+                Object key = entry3.getKey();
+                Object value = entry3.getValue();
+                m.checkNotNull(value);
+                linkedHashMap3.put(key, (String[]) value);
+            }
+            return new OutgoingPayload.IdentifyClientState(linkedHashMap3, this.highestLastMessageId, this.readStateVersion, this.userGuildSettingsVersion);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("ClientDataState(guildHashes=");
+            sbU.append(this.guildHashes);
+            sbU.append(", highestLastMessageId=");
+            sbU.append(this.highestLastMessageId);
+            sbU.append(", readStateVersion=");
+            sbU.append(this.readStateVersion);
+            sbU.append(", userGuildSettingsVersion=");
+            return a.B(sbU, this.userGuildSettingsVersion, ")");
+        }
+
+        public /* synthetic */ ClientDataState(Map map, long j, int i, int i2, int i3, DefaultConstructorMarker defaultConstructorMarker) {
+            this((i3 & 1) != 0 ? new HashMap() : map, (i3 & 2) != 0 ? 0L : j, (i3 & 4) != 0 ? -1 : i, (i3 & 8) != 0 ? -1 : i2);
+        }
+    }
 
     public StoreClientDataState() {
         this(null, 1, null);
@@ -41,12 +212,12 @@ public final class StoreClientDataState extends StoreV2 {
         this((i & 1) != 0 ? ObservationDeckProvider.get() : observationDeck);
     }
 
-    public static final /* synthetic */ StoreClientDataState$ClientDataState access$getClientDataStateSnapshot$p(StoreClientDataState storeClientDataState) {
+    public static final /* synthetic */ ClientDataState access$getClientDataStateSnapshot$p(StoreClientDataState storeClientDataState) {
         return storeClientDataState.clientDataStateSnapshot;
     }
 
-    public static final /* synthetic */ void access$setClientDataStateSnapshot$p(StoreClientDataState storeClientDataState, StoreClientDataState$ClientDataState storeClientDataState$ClientDataState) {
-        storeClientDataState.clientDataStateSnapshot = storeClientDataState$ClientDataState;
+    public static final /* synthetic */ void access$setClientDataStateSnapshot$p(StoreClientDataState storeClientDataState, ClientDataState clientDataState) {
+        storeClientDataState.clientDataStateSnapshot = clientDataState;
     }
 
     @StoreThread
@@ -92,10 +263,10 @@ public final class StoreClientDataState extends StoreV2 {
         while (it2.hasNext()) {
             updateHighestLastMessageId(it2.next().getLastMessageId());
         }
-        ModelPayload$VersionedReadStates readState = payload.getReadState();
+        ModelPayload.VersionedReadStates readState = payload.getReadState();
         m.checkNotNullExpressionValue(readState, "payload.readState");
         this.readStateVersion = readState.getVersion();
-        ModelPayload$VersionedUserGuildSettings userGuildSettings = payload.getUserGuildSettings();
+        ModelPayload.VersionedUserGuildSettings userGuildSettings = payload.getUserGuildSettings();
         m.checkNotNullExpressionValue(userGuildSettings, "payload.userGuildSettings");
         this.userGuildSettingsVersion = userGuildSettings.getVersion();
         markChanged();
@@ -167,14 +338,14 @@ public final class StoreClientDataState extends StoreV2 {
         }
     }
 
-    public final Observable<StoreClientDataState$ClientDataState> observeClientState() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreClientDataState$observeClientState$1(this), 14, null);
+    public final Observable<ClientDataState> observeClientState() {
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     @Override // com.discord.stores.StoreV2
     public void snapshotData() {
         super.snapshotData();
-        this.clientDataStateSnapshot = new StoreClientDataState$ClientDataState(this.guildHashes, this.highestLastMessageId, this.readStateVersion, this.userGuildSettingsVersion);
+        this.clientDataStateSnapshot = new ClientDataState(this.guildHashes, this.highestLastMessageId, this.readStateVersion, this.userGuildSettingsVersion);
     }
 
     @StoreThread
@@ -204,6 +375,6 @@ public final class StoreClientDataState extends StoreV2 {
         this.guildHashes = new HashMap();
         this.readStateVersion = -1;
         this.userGuildSettingsVersion = -1;
-        this.clientDataStateSnapshot = new StoreClientDataState$ClientDataState(null, 0L, 0, 0, 15, null);
+        this.clientDataStateSnapshot = new ClientDataState(null, 0L, 0, 0, 15, null);
     }
 }

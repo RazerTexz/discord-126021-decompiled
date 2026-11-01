@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 
 /* JADX INFO: compiled from: AutoValue_CrashlyticsReport_Session.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class f extends v$d {
+public final class f extends v.d {
     public final String a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -13,52 +13,116 @@ public final class f extends v$d {
     public final long c;
     public final Long d;
     public final boolean e;
-    public final v$d$a f;
-    public final v$d$f g;
-    public final v$d$e h;
-    public final v$d$c i;
-    public final w<v$d$d> j;
+    public final v.d.a f;
+    public final v.d.f g;
+    public final v.d.e h;
+    public final v.d.c i;
+    public final w<v.d.AbstractC0143d> j;
     public final int k;
 
-    public f(String str, String str2, long j, Long l, boolean z2, v$d$a v_d_a, v$d$f v_d_f, v$d$e v_d_e, v$d$c v_d_c, w wVar, int i, f$a f_a) {
+    /* JADX INFO: compiled from: AutoValue_CrashlyticsReport_Session.java */
+    public final class b extends v.d.b {
+        public String a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public String f1719b;
+        public Long c;
+        public Long d;
+        public Boolean e;
+        public v.d.a f;
+        public v.d.f g;
+        public v.d.e h;
+        public v.d.c i;
+        public w<v.d.AbstractC0143d> j;
+        public Integer k;
+
+        public b() {
+        }
+
+        @Override // b.i.c.m.d.m.v.d.b
+        public v.d a() {
+            String strW = this.a == null ? " generator" : "";
+            if (this.f1719b == null) {
+                strW = b.d.b.a.a.w(strW, " identifier");
+            }
+            if (this.c == null) {
+                strW = b.d.b.a.a.w(strW, " startedAt");
+            }
+            if (this.e == null) {
+                strW = b.d.b.a.a.w(strW, " crashed");
+            }
+            if (this.f == null) {
+                strW = b.d.b.a.a.w(strW, " app");
+            }
+            if (this.k == null) {
+                strW = b.d.b.a.a.w(strW, " generatorType");
+            }
+            if (strW.isEmpty()) {
+                return new f(this.a, this.f1719b, this.c.longValue(), this.d, this.e.booleanValue(), this.f, this.g, this.h, this.i, this.j, this.k.intValue(), null);
+            }
+            throw new IllegalStateException(b.d.b.a.a.w("Missing required properties:", strW));
+        }
+
+        public v.d.b b(boolean z2) {
+            this.e = Boolean.valueOf(z2);
+            return this;
+        }
+
+        public b(v.d dVar, a aVar) {
+            f fVar = (f) dVar;
+            this.a = fVar.a;
+            this.f1719b = fVar.f1718b;
+            this.c = Long.valueOf(fVar.c);
+            this.d = fVar.d;
+            this.e = Boolean.valueOf(fVar.e);
+            this.f = fVar.f;
+            this.g = fVar.g;
+            this.h = fVar.h;
+            this.i = fVar.i;
+            this.j = fVar.j;
+            this.k = Integer.valueOf(fVar.k);
+        }
+    }
+
+    public f(String str, String str2, long j, Long l, boolean z2, v.d.a aVar, v.d.f fVar, v.d.e eVar, v.d.c cVar, w wVar, int i, a aVar2) {
         this.a = str;
         this.f1718b = str2;
         this.c = j;
         this.d = l;
         this.e = z2;
-        this.f = v_d_a;
-        this.g = v_d_f;
-        this.h = v_d_e;
-        this.i = v_d_c;
+        this.f = aVar;
+        this.g = fVar;
+        this.h = eVar;
+        this.i = cVar;
         this.j = wVar;
         this.k = i;
     }
 
-    @Override // b.i.c.m.d.m.v$d
+    @Override // b.i.c.m.d.m.v.d
     @NonNull
-    public v$d$a a() {
+    public v.d.a a() {
         return this.f;
     }
 
-    @Override // b.i.c.m.d.m.v$d
+    @Override // b.i.c.m.d.m.v.d
     @Nullable
-    public v$d$c b() {
+    public v.d.c b() {
         return this.i;
     }
 
-    @Override // b.i.c.m.d.m.v$d
+    @Override // b.i.c.m.d.m.v.d
     @Nullable
     public Long c() {
         return this.d;
     }
 
-    @Override // b.i.c.m.d.m.v$d
+    @Override // b.i.c.m.d.m.v.d
     @Nullable
-    public w<v$d$d> d() {
+    public w<v.d.AbstractC0143d> d() {
         return this.j;
     }
 
-    @Override // b.i.c.m.d.m.v$d
+    @Override // b.i.c.m.d.m.v.d
     @NonNull
     public String e() {
         return this.a;
@@ -66,34 +130,34 @@ public final class f extends v$d {
 
     public boolean equals(Object obj) {
         Long l;
-        v$d$f v_d_f;
-        v$d$e v_d_e;
-        v$d$c v_d_c;
-        w<v$d$d> wVar;
+        v.d.f fVar;
+        v.d.e eVar;
+        v.d.c cVar;
+        w<v.d.AbstractC0143d> wVar;
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof v$d)) {
+        if (!(obj instanceof v.d)) {
             return false;
         }
-        v$d v_d = (v$d) obj;
-        return this.a.equals(v_d.e()) && this.f1718b.equals(v_d.g()) && this.c == v_d.i() && ((l = this.d) != null ? l.equals(v_d.c()) : v_d.c() == null) && this.e == v_d.k() && this.f.equals(v_d.a()) && ((v_d_f = this.g) != null ? v_d_f.equals(v_d.j()) : v_d.j() == null) && ((v_d_e = this.h) != null ? v_d_e.equals(v_d.h()) : v_d.h() == null) && ((v_d_c = this.i) != null ? v_d_c.equals(v_d.b()) : v_d.b() == null) && ((wVar = this.j) != null ? wVar.equals(v_d.d()) : v_d.d() == null) && this.k == v_d.f();
+        v.d dVar = (v.d) obj;
+        return this.a.equals(dVar.e()) && this.f1718b.equals(dVar.g()) && this.c == dVar.i() && ((l = this.d) != null ? l.equals(dVar.c()) : dVar.c() == null) && this.e == dVar.k() && this.f.equals(dVar.a()) && ((fVar = this.g) != null ? fVar.equals(dVar.j()) : dVar.j() == null) && ((eVar = this.h) != null ? eVar.equals(dVar.h()) : dVar.h() == null) && ((cVar = this.i) != null ? cVar.equals(dVar.b()) : dVar.b() == null) && ((wVar = this.j) != null ? wVar.equals(dVar.d()) : dVar.d() == null) && this.k == dVar.f();
     }
 
-    @Override // b.i.c.m.d.m.v$d
+    @Override // b.i.c.m.d.m.v.d
     public int f() {
         return this.k;
     }
 
-    @Override // b.i.c.m.d.m.v$d
+    @Override // b.i.c.m.d.m.v.d
     @NonNull
     public String g() {
         return this.f1718b;
     }
 
-    @Override // b.i.c.m.d.m.v$d
+    @Override // b.i.c.m.d.m.v.d
     @Nullable
-    public v$d$e h() {
+    public v.d.e h() {
         return this.h;
     }
 
@@ -103,35 +167,35 @@ public final class f extends v$d {
         int i = (iHashCode ^ ((int) (j ^ (j >>> 32)))) * 1000003;
         Long l = this.d;
         int iHashCode2 = (((((i ^ (l == null ? 0 : l.hashCode())) * 1000003) ^ (this.e ? 1231 : 1237)) * 1000003) ^ this.f.hashCode()) * 1000003;
-        v$d$f v_d_f = this.g;
-        int iHashCode3 = (iHashCode2 ^ (v_d_f == null ? 0 : v_d_f.hashCode())) * 1000003;
-        v$d$e v_d_e = this.h;
-        int iHashCode4 = (iHashCode3 ^ (v_d_e == null ? 0 : v_d_e.hashCode())) * 1000003;
-        v$d$c v_d_c = this.i;
-        int iHashCode5 = (iHashCode4 ^ (v_d_c == null ? 0 : v_d_c.hashCode())) * 1000003;
-        w<v$d$d> wVar = this.j;
+        v.d.f fVar = this.g;
+        int iHashCode3 = (iHashCode2 ^ (fVar == null ? 0 : fVar.hashCode())) * 1000003;
+        v.d.e eVar = this.h;
+        int iHashCode4 = (iHashCode3 ^ (eVar == null ? 0 : eVar.hashCode())) * 1000003;
+        v.d.c cVar = this.i;
+        int iHashCode5 = (iHashCode4 ^ (cVar == null ? 0 : cVar.hashCode())) * 1000003;
+        w<v.d.AbstractC0143d> wVar = this.j;
         return ((iHashCode5 ^ (wVar != null ? wVar.hashCode() : 0)) * 1000003) ^ this.k;
     }
 
-    @Override // b.i.c.m.d.m.v$d
+    @Override // b.i.c.m.d.m.v.d
     public long i() {
         return this.c;
     }
 
-    @Override // b.i.c.m.d.m.v$d
+    @Override // b.i.c.m.d.m.v.d
     @Nullable
-    public v$d$f j() {
+    public v.d.f j() {
         return this.g;
     }
 
-    @Override // b.i.c.m.d.m.v$d
+    @Override // b.i.c.m.d.m.v.d
     public boolean k() {
         return this.e;
     }
 
-    @Override // b.i.c.m.d.m.v$d
-    public v$d$b l() {
-        return new f$b(this, null);
+    @Override // b.i.c.m.d.m.v.d
+    public v.d.b l() {
+        return new b(this, null);
     }
 
     public String toString() {

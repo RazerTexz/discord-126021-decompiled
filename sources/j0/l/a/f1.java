@@ -1,13 +1,12 @@
 package j0.l.a;
 
 import rx.Observable;
-import rx.Observable$b;
 import rx.Subscriber;
 import rx.subscriptions.SerialSubscription;
 
 /* JADX INFO: compiled from: OperatorOnErrorResumeNextViaFunction.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class f1<T> implements Observable$b<T, T> {
+public final class f1<T> implements Observable.b<T, T> {
     public final j0.k.b<? super Throwable, ? extends Observable<? extends T>> j;
 
     public f1(j0.k.b<? super Throwable, ? extends Observable<? extends T>> bVar) {

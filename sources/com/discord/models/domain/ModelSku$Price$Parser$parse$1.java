@@ -10,11 +10,11 @@ import rx.functions.Action1;
 public final class ModelSku$Price$Parser$parse$1<T> implements Action1<String> {
     public final /* synthetic */ Ref$ObjectRef $amount;
     public final /* synthetic */ Ref$ObjectRef $currency;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
 
-    public ModelSku$Price$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model$JsonReader model$JsonReader, Ref$ObjectRef ref$ObjectRef2) {
+    public ModelSku$Price$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model.JsonReader jsonReader, Ref$ObjectRef ref$ObjectRef2) {
         this.$amount = ref$ObjectRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
         this.$currency = ref$ObjectRef2;
     }
 

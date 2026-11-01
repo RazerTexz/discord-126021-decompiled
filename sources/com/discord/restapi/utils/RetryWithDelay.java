@@ -1,16 +1,183 @@
 package com.discord.restapi.utils;
 
+import androidx.browser.trusted.sharing.ShareTarget;
+import androidx.core.app.NotificationCompat;
 import androidx.exifinterface.media.ExifInterface;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.Ref$IntRef;
 import kotlin.jvm.internal.Ref$LongRef;
+import okhttp3.Request;
+import okhttp3.Response;
+import retrofit2.HttpException;
 import rx.Observable;
 
 /* JADX INFO: compiled from: RetryWithDelay.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class RetryWithDelay {
     public static final RetryWithDelay INSTANCE = new RetryWithDelay();
+
+    /* JADX INFO: renamed from: com.discord.restapi.utils.RetryWithDelay$restRetry$1, reason: invalid class name */
+    /* JADX INFO: compiled from: RetryWithDelay.kt */
+    public final class AnonymousClass1 extends o implements Function1<Throwable, Boolean> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(Throwable th) {
+            return Boolean.valueOf(invoke2(th));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(Throwable th) {
+            Response response;
+            Request request;
+            String str;
+            m.checkNotNullParameter(th, "throwable");
+            if (th instanceof HttpException) {
+                HttpException httpException = (HttpException) th;
+                int iA = httpException.a();
+                retrofit2.Response<?> response2 = httpException.j;
+                if ((response2 != null && (response = response2.a) != null && (request = response.request) != null && (str = request.method) != null && (!m.areEqual(str, ShareTarget.METHOD_GET))) || iA == 401 || iA == 429 || iA == 503 || iA == 403 || iA == 404) {
+                    return false;
+                }
+            } else if (th instanceof TimeoutException) {
+                return false;
+            }
+            return th instanceof IOException;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.restapi.utils.RetryWithDelay$retryWithDelay$1, reason: invalid class name */
+    /* JADX INFO: compiled from: RetryWithDelay.kt */
+    public final class AnonymousClass1<T, R> implements b<Throwable, Observable<? extends Object>> {
+        public final /* synthetic */ Ref$LongRef $currentDelayMillis;
+        public final /* synthetic */ Ref$IntRef $currentHalfLife;
+        public final /* synthetic */ Ref$IntRef $currentRetry;
+        public final /* synthetic */ int $maxHalfLives;
+        public final /* synthetic */ int $maxRetries;
+        public final /* synthetic */ Function1 $retryPredicate;
+
+        public AnonymousClass1(int i, Ref$IntRef ref$IntRef, Function1 function1, int i2, Ref$IntRef ref$IntRef2, Ref$LongRef ref$LongRef) {
+            this.$maxRetries = i;
+            this.$currentRetry = ref$IntRef;
+            this.$retryPredicate = function1;
+            this.$maxHalfLives = i2;
+            this.$currentHalfLife = ref$IntRef2;
+            this.$currentDelayMillis = ref$LongRef;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends Object> call(Throwable th) {
+            return call2(th);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends Object> call2(Throwable th) {
+            Ref$IntRef ref$IntRef = this.$currentRetry;
+            int i = ref$IntRef.element;
+            ref$IntRef.element = i + 1;
+            if (i < this.$maxRetries) {
+                Function1 function1 = this.$retryPredicate;
+                m.checkNotNullExpressionValue(th, "it");
+                if (((Boolean) function1.invoke(th)).booleanValue()) {
+                    Ref$IntRef ref$IntRef2 = this.$currentHalfLife;
+                    int i2 = ref$IntRef2.element;
+                    int i3 = i2 + 1;
+                    ref$IntRef2.element = i3;
+                    if (i2 < this.$maxHalfLives && i3 > 1) {
+                        this.$currentDelayMillis.element *= (long) 2;
+                    }
+                    return Observable.d0(this.$currentDelayMillis.element, TimeUnit.MILLISECONDS);
+                }
+            }
+            return Observable.x(th);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.restapi.utils.RetryWithDelay$restRetry$2, reason: invalid class name */
+    /* JADX INFO: compiled from: RetryWithDelay.kt */
+    public final class AnonymousClass2<T, R> implements b<Observable<? extends Throwable>, Observable<?>> {
+        public final /* synthetic */ long $delayMillis;
+        public final /* synthetic */ Integer $maxHalfLives;
+        public final /* synthetic */ Integer $maxRetries;
+
+        /* JADX INFO: renamed from: com.discord.restapi.utils.RetryWithDelay$restRetry$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: RetryWithDelay.kt */
+        public final /* synthetic */ class AnonymousClass1 extends k implements Function1<Throwable, Boolean> {
+            public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+            public AnonymousClass1() {
+                super(1, null, "isNetworkError", "invoke(Ljava/lang/Throwable;)Z", 0);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Boolean invoke(Throwable th) {
+                return Boolean.valueOf(invoke2(th));
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final boolean invoke2(Throwable th) {
+                m.checkNotNullParameter(th, "p1");
+                return AnonymousClass1.INSTANCE.invoke2(th);
+            }
+        }
+
+        public AnonymousClass2(long j, Integer num, Integer num2) {
+            this.$delayMillis = j;
+            this.$maxHalfLives = num;
+            this.$maxRetries = num2;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<?> call(Observable<? extends Throwable> observable) {
+            return call2(observable);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<?> call2(Observable<? extends Throwable> observable) {
+            RetryWithDelay retryWithDelay = RetryWithDelay.INSTANCE;
+            m.checkNotNullExpressionValue(observable, "it");
+            return RetryWithDelay.access$retryWithDelay(retryWithDelay, observable, this.$delayMillis, this.$maxHalfLives, this.$maxRetries, AnonymousClass1.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.restapi.utils.RetryWithDelay$restRetry$3, reason: invalid class name */
+    /* JADX INFO: compiled from: RetryWithDelay.kt */
+    public final class AnonymousClass3<T, R> implements b<Observable<? extends Throwable>, Observable<?>> {
+        public final /* synthetic */ long $delayMillis;
+        public final /* synthetic */ Integer $maxHalfLives;
+        public final /* synthetic */ Integer $maxRetries;
+        public final /* synthetic */ Function1 $predicate;
+
+        public AnonymousClass3(long j, Integer num, Integer num2, Function1 function1) {
+            this.$delayMillis = j;
+            this.$maxHalfLives = num;
+            this.$maxRetries = num2;
+            this.$predicate = function1;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<?> call(Observable<? extends Throwable> observable) {
+            return call2(observable);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<?> call2(Observable<? extends Throwable> observable) {
+            RetryWithDelay retryWithDelay = RetryWithDelay.INSTANCE;
+            m.checkNotNullExpressionValue(observable, "it");
+            return RetryWithDelay.access$retryWithDelay(retryWithDelay, observable, this.$delayMillis, this.$maxHalfLives, this.$maxRetries, this.$predicate);
+        }
+    }
 
     private RetryWithDelay() {
     }
@@ -36,8 +203,8 @@ public final class RetryWithDelay {
 
     public final <T> Observable<T> restRetry(Observable<T> observable, long j, Integer num, Integer num2) {
         m.checkNotNullParameter(observable, "$this$restRetry");
-        RetryWithDelay$restRetry$1 retryWithDelay$restRetry$1 = RetryWithDelay$restRetry$1.INSTANCE;
-        Observable<T> observableO = observable.O(new RetryWithDelay$restRetry$2(j, num, num2));
+        AnonymousClass1 anonymousClass1 = AnonymousClass1.INSTANCE;
+        Observable<T> observableO = observable.O(new AnonymousClass2(j, num, num2));
         m.checkNotNullExpressionValue(observableO, "retryWhen { it.retryWith…ries, ::isNetworkError) }");
         return observableO;
     }
@@ -51,7 +218,7 @@ public final class RetryWithDelay {
         ref$IntRef2.element = 0;
         Ref$LongRef ref$LongRef = new Ref$LongRef();
         ref$LongRef.element = j;
-        Observable<R> observableA = observable.A(new RetryWithDelay$retryWithDelay$1(iIntValue, ref$IntRef, function1, iIntValue2, ref$IntRef2, ref$LongRef));
+        Observable<R> observableA = observable.A(new AnonymousClass1(iIntValue, ref$IntRef, function1, iIntValue2, ref$IntRef2, ref$LongRef));
         m.checkNotNullExpressionValue(observableA, "flatMap {\n      if (curr…able.error<Any>(it)\n    }");
         return observableA;
     }
@@ -74,7 +241,7 @@ public final class RetryWithDelay {
     public final <T> Observable<T> restRetry(Observable<T> observable, long j, Integer num, Integer num2, Function1<? super Throwable, Boolean> function1) {
         m.checkNotNullParameter(observable, "$this$restRetry");
         m.checkNotNullParameter(function1, "predicate");
-        Observable<T> observableO = observable.O(new RetryWithDelay$restRetry$3(j, num, num2, function1));
+        Observable<T> observableO = observable.O(new AnonymousClass3(j, num, num2, function1));
         m.checkNotNullExpressionValue(observableO, "retryWhen { it.retryWith… maxRetries, predicate) }");
         return observableO;
     }

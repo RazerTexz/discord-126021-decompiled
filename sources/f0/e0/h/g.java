@@ -6,13 +6,12 @@ import f0.k;
 import java.io.IOException;
 import java.util.List;
 import okhttp3.Interceptor;
-import okhttp3.Interceptor$Chain;
 import okhttp3.Request;
 import okhttp3.Response;
 
 /* JADX INFO: compiled from: RealInterceptorChain.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class g implements Interceptor$Chain {
+public final class g implements Interceptor.Chain {
     public int a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -40,7 +39,7 @@ public final class g implements Interceptor$Chain {
         this.i = i4;
     }
 
-    @Override // okhttp3.Interceptor$Chain
+    @Override // okhttp3.Interceptor.Chain
     public Response a(Request request) throws IOException {
         m.checkParameterIsNotNull(request, "request");
         if (!(this.d < this.c.size())) {
@@ -87,7 +86,7 @@ public final class g implements Interceptor$Chain {
         return null;
     }
 
-    @Override // okhttp3.Interceptor$Chain
+    @Override // okhttp3.Interceptor.Chain
     public Request c() {
         return this.f;
     }

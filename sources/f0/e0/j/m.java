@@ -2,6 +2,8 @@ package f0.e0.j;
 
 import com.discord.api.permission.Permission;
 import d0.t.u;
+import g0.x;
+import g0.y;
 import java.io.Closeable;
 import java.io.EOFException;
 import java.io.IOException;
@@ -17,10 +19,97 @@ import org.objectweb.asm.Opcodes;
 public final class m implements Closeable {
     public static final Logger j;
     public static final m k = null;
-    public final m$a l;
-    public final c$a m;
+    public final a l;
+    public final c.a m;
     public final g0.g n;
     public final boolean o;
+
+    /* JADX INFO: compiled from: Http2Reader.kt */
+    public final class a implements x {
+        public int j;
+        public int k;
+        public int l;
+        public int m;
+        public int n;
+        public final g0.g o;
+
+        public a(g0.g gVar) {
+            d0.z.d.m.checkParameterIsNotNull(gVar, "source");
+            this.o = gVar;
+        }
+
+        @Override // g0.x, java.io.Closeable, java.lang.AutoCloseable
+        public void close() throws IOException {
+        }
+
+        @Override // g0.x
+        public long i0(g0.e eVar, long j) throws IOException {
+            int i;
+            int i2;
+            d0.z.d.m.checkParameterIsNotNull(eVar, "sink");
+            do {
+                int i3 = this.m;
+                if (i3 != 0) {
+                    long jI0 = this.o.i0(eVar, Math.min(j, i3));
+                    if (jI0 == -1) {
+                        return -1L;
+                    }
+                    this.m -= (int) jI0;
+                    return jI0;
+                }
+                this.o.skip(this.n);
+                this.n = 0;
+                if ((this.k & 4) != 0) {
+                    return -1L;
+                }
+                i = this.l;
+                int iT = f0.e0.c.t(this.o);
+                this.m = iT;
+                this.j = iT;
+                int i4 = this.o.readByte() & 255;
+                this.k = this.o.readByte() & 255;
+                m mVar = m.k;
+                Logger logger = m.j;
+                if (logger.isLoggable(Level.FINE)) {
+                    logger.fine(d.e.b(true, this.l, this.j, i4, this.k));
+                }
+                i2 = this.o.readInt() & Integer.MAX_VALUE;
+                this.l = i2;
+                if (i4 != 9) {
+                    throw new IOException(i4 + " != TYPE_CONTINUATION");
+                }
+            } while (i2 == i);
+            throw new IOException("TYPE_CONTINUATION streamId changed");
+        }
+
+        @Override // g0.x
+        public y timeout() {
+            return this.o.timeout();
+        }
+    }
+
+    /* JADX INFO: compiled from: Http2Reader.kt */
+    public interface b {
+        void a();
+
+        void b(boolean z2, s sVar);
+
+        void c(boolean z2, int i, int i2, List<f0.e0.j.b> list);
+
+        void d(int i, long j);
+
+        void e(boolean z2, int i, g0.g gVar, int i2) throws IOException;
+
+        void f(boolean z2, int i, int i2);
+
+        void g(int i, int i2, int i3, boolean z2);
+
+        void h(int i, f0.e0.j.a aVar);
+
+        void i(int i, int i2, List<f0.e0.j.b> list) throws IOException;
+
+        void j(int i, f0.e0.j.a aVar, ByteString byteString);
+    }
 
     static {
         Logger logger = Logger.getLogger(d.class.getName());
@@ -32,15 +121,15 @@ public final class m implements Closeable {
         d0.z.d.m.checkParameterIsNotNull(gVar, "source");
         this.n = gVar;
         this.o = z2;
-        m$a m_a = new m$a(gVar);
-        this.l = m_a;
-        this.m = new c$a(m_a, 4096, 0, 4);
+        a aVar = new a(gVar);
+        this.l = aVar;
+        this.m = new c.a(aVar, 4096, 0, 4);
     }
 
-    public final boolean a(boolean z2, m$b m_b) throws IOException {
-        a aVar;
-        a aVar2;
-        d0.z.d.m.checkParameterIsNotNull(m_b, "handler");
+    public final boolean a(boolean z2, b bVar) throws IOException {
+        f0.e0.j.a aVar;
+        f0.e0.j.a aVar2;
+        d0.z.d.m.checkParameterIsNotNull(bVar, "handler");
         int i = 0;
         int i2 = 0;
         int i3 = 0;
@@ -83,7 +172,7 @@ public final class m implements Closeable {
                     if (i > iT) {
                         throw new IOException(b.d.b.a.a.s("PROTOCOL_ERROR padding ", i, " > remaining length ", iT));
                     }
-                    m_b.e(z3, i6, this.n, iT - i);
+                    bVar.e(z3, i6, this.n, iT - i);
                     this.n.skip(i);
                     return true;
                 case 1:
@@ -98,7 +187,7 @@ public final class m implements Closeable {
                         i3 = b3 & 255;
                     }
                     if ((i5 & 32) != 0) {
-                        d(m_b, i6);
+                        d(bVar, i6);
                         iT -= 5;
                     }
                     if (i8 != 0) {
@@ -107,7 +196,7 @@ public final class m implements Closeable {
                     if (i3 > iT) {
                         throw new IOException(b.d.b.a.a.s("PROTOCOL_ERROR padding ", i3, " > remaining length ", iT));
                     }
-                    m_b.c(z4, i6, -1, c(iT - i3, i3, i5, i6));
+                    bVar.c(z4, i6, -1, c(iT - i3, i3, i5, i6));
                     return true;
                 case 2:
                     if (iT != 5) {
@@ -116,7 +205,7 @@ public final class m implements Closeable {
                     if (i6 == 0) {
                         throw new IOException("TYPE_PRIORITY streamId == 0");
                     }
-                    d(m_b, i6);
+                    d(bVar, i6);
                     return true;
                 case 3:
                     if (iT != 4) {
@@ -126,7 +215,7 @@ public final class m implements Closeable {
                         throw new IOException("TYPE_RST_STREAM streamId == 0");
                     }
                     int i9 = this.n.readInt();
-                    a[] aVarArrValues = a.values();
+                    f0.e0.j.a[] aVarArrValues = f0.e0.j.a.values();
                     int i10 = 0;
                     while (true) {
                         if (i10 < 14) {
@@ -141,7 +230,7 @@ public final class m implements Closeable {
                     if (aVar == null) {
                         throw new IOException(b.d.b.a.a.q("TYPE_RST_STREAM unexpected error code: ", i9));
                     }
-                    m_b.h(i6, aVar);
+                    bVar.h(i6, aVar);
                     return true;
                 case 4:
                     if (i6 != 0) {
@@ -151,7 +240,7 @@ public final class m implements Closeable {
                         if (iT != 0) {
                             throw new IOException("FRAME_SIZE_ERROR ack frame should be empty!");
                         }
-                        m_b.a();
+                        bVar.a();
                     } else {
                         if (iT % 6 != 0) {
                             throw new IOException(b.d.b.a.a.q("TYPE_SETTINGS length % 6 != 0: ", iT));
@@ -187,7 +276,7 @@ public final class m implements Closeable {
                                 }
                             }
                         }
-                        m_b.b(false, sVar);
+                        bVar.b(false, sVar);
                     }
                     return true;
                 case 5:
@@ -208,7 +297,7 @@ public final class m implements Closeable {
                     if (i2 > i15) {
                         throw new IOException(b.d.b.a.a.s("PROTOCOL_ERROR padding ", i2, " > remaining length ", i15));
                     }
-                    m_b.i(i6, i14, c(i15 - i2, i2, i5, i6));
+                    bVar.i(i6, i14, c(i15 - i2, i2, i5, i6));
                     return true;
                 case 6:
                     if (iT != 8) {
@@ -217,7 +306,7 @@ public final class m implements Closeable {
                     if (i6 != 0) {
                         throw new IOException("TYPE_PING streamId != 0");
                     }
-                    m_b.f((i5 & 1) != 0, this.n.readInt(), this.n.readInt());
+                    bVar.f((i5 & 1) != 0, this.n.readInt(), this.n.readInt());
                     return true;
                 case 7:
                     if (iT < 8) {
@@ -229,7 +318,7 @@ public final class m implements Closeable {
                     int i16 = this.n.readInt();
                     int i17 = this.n.readInt();
                     int i18 = iT - 8;
-                    a[] aVarArrValues2 = a.values();
+                    f0.e0.j.a[] aVarArrValues2 = f0.e0.j.a.values();
                     int i19 = 0;
                     while (true) {
                         if (i19 < 14) {
@@ -248,7 +337,7 @@ public final class m implements Closeable {
                     if (i18 > 0) {
                         byteStringO = this.n.o(i18);
                     }
-                    m_b.j(i16, aVar2, byteStringO);
+                    bVar.j(i16, aVar2, byteStringO);
                     return true;
                 case 8:
                     if (iT != 4) {
@@ -260,7 +349,7 @@ public final class m implements Closeable {
                     if (j2 == 0) {
                         throw new IOException("windowSizeIncrement was 0");
                     }
-                    m_b.d(i6, j2);
+                    bVar.d(i6, j2);
                     return true;
                 default:
                     this.n.skip(iT);
@@ -271,10 +360,10 @@ public final class m implements Closeable {
         }
     }
 
-    public final void b(m$b m_b) throws IOException {
-        d0.z.d.m.checkParameterIsNotNull(m_b, "handler");
+    public final void b(b bVar) throws IOException {
+        d0.z.d.m.checkParameterIsNotNull(bVar, "handler");
         if (this.o) {
-            if (!a(true, m_b)) {
+            if (!a(true, bVar)) {
                 throw new IOException("Required SETTINGS preface not received");
             }
             return;
@@ -296,24 +385,24 @@ public final class m implements Closeable {
     }
 
     /* JADX WARN: Code duplicated, block: B:14:0x003d  */
-    public final List<b> c(int i, int i2, int i3, int i4) throws IOException {
+    public final List<f0.e0.j.b> c(int i, int i2, int i3, int i4) throws IOException {
         boolean z2;
-        m$a m_a = this.l;
-        m_a.m = i;
-        m_a.j = i;
-        m_a.n = i2;
-        m_a.k = i3;
-        m_a.l = i4;
-        c$a c_a = this.m;
-        while (!c_a.f3635b.w()) {
-            byte b2 = c_a.f3635b.readByte();
+        a aVar = this.l;
+        aVar.m = i;
+        aVar.j = i;
+        aVar.n = i2;
+        aVar.k = i3;
+        aVar.l = i4;
+        c.a aVar2 = this.m;
+        while (!aVar2.f3635b.w()) {
+            byte b2 = aVar2.f3635b.readByte();
             byte[] bArr = f0.e0.c.a;
             int i5 = b2 & 255;
             if (i5 == 128) {
                 throw new IOException("index == 0");
             }
             if ((i5 & 128) == 128) {
-                int iG = c_a.g(i5, Opcodes.LAND) - 1;
+                int iG = aVar2.g(i5, Opcodes.LAND) - 1;
                 if (iG >= 0) {
                     c cVar = c.c;
                     if (iG <= c.a.length - 1) {
@@ -326,12 +415,12 @@ public final class m implements Closeable {
                 }
                 if (!z2) {
                     c cVar2 = c.c;
-                    int iB = c_a.b(iG - c.a.length);
+                    int iB = aVar2.b(iG - c.a.length);
                     if (iB >= 0) {
-                        b[] bVarArr = c_a.c;
+                        f0.e0.j.b[] bVarArr = aVar2.c;
                         if (iB < bVarArr.length) {
-                            List<b> list = c_a.a;
-                            b bVar = bVarArr[iB];
+                            List<f0.e0.j.b> list = aVar2.a;
+                            f0.e0.j.b bVar = bVarArr[iB];
                             if (bVar == null) {
                                 d0.z.d.m.throwNpe();
                             }
@@ -343,42 +432,42 @@ public final class m implements Closeable {
                     throw new IOException(sbU.toString());
                 }
                 c cVar3 = c.c;
-                c_a.a.add(c.a[iG]);
+                aVar2.a.add(c.a[iG]);
             } else if (i5 == 64) {
                 c cVar4 = c.c;
-                ByteString byteStringF = c_a.f();
+                ByteString byteStringF = aVar2.f();
                 cVar4.a(byteStringF);
-                c_a.e(-1, new b(byteStringF, c_a.f()));
+                aVar2.e(-1, new f0.e0.j.b(byteStringF, aVar2.f()));
             } else if ((i5 & 64) == 64) {
-                c_a.e(-1, new b(c_a.d(c_a.g(i5, 63) - 1), c_a.f()));
+                aVar2.e(-1, new f0.e0.j.b(aVar2.d(aVar2.g(i5, 63) - 1), aVar2.f()));
             } else if ((i5 & 32) == 32) {
-                int iG2 = c_a.g(i5, 31);
-                c_a.h = iG2;
-                if (iG2 < 0 || iG2 > c_a.g) {
+                int iG2 = aVar2.g(i5, 31);
+                aVar2.h = iG2;
+                if (iG2 < 0 || iG2 > aVar2.g) {
                     StringBuilder sbU2 = b.d.b.a.a.U("Invalid dynamic table size update ");
-                    sbU2.append(c_a.h);
+                    sbU2.append(aVar2.h);
                     throw new IOException(sbU2.toString());
                 }
-                int i6 = c_a.f;
+                int i6 = aVar2.f;
                 if (iG2 < i6) {
                     if (iG2 == 0) {
-                        c_a.a();
+                        aVar2.a();
                     } else {
-                        c_a.c(i6 - iG2);
+                        aVar2.c(i6 - iG2);
                     }
                 }
             } else if (i5 == 16 || i5 == 0) {
                 c cVar5 = c.c;
-                ByteString byteStringF2 = c_a.f();
+                ByteString byteStringF2 = aVar2.f();
                 cVar5.a(byteStringF2);
-                c_a.a.add(new b(byteStringF2, c_a.f()));
+                aVar2.a.add(new f0.e0.j.b(byteStringF2, aVar2.f()));
             } else {
-                c_a.a.add(new b(c_a.d(c_a.g(i5, 15) - 1), c_a.f()));
+                aVar2.a.add(new f0.e0.j.b(aVar2.d(aVar2.g(i5, 15) - 1), aVar2.f()));
             }
         }
-        c$a c_a2 = this.m;
-        List<b> list2 = u.toList(c_a2.a);
-        c_a2.a.clear();
+        c.a aVar3 = this.m;
+        List<f0.e0.j.b> list2 = u.toList(aVar3.a);
+        aVar3.a.clear();
         return list2;
     }
 
@@ -387,11 +476,11 @@ public final class m implements Closeable {
         this.n.close();
     }
 
-    public final void d(m$b m_b, int i) throws IOException {
+    public final void d(b bVar, int i) throws IOException {
         int i2 = this.n.readInt();
         boolean z2 = (i2 & ((int) Permission.USE_APPLICATION_COMMANDS)) != 0;
         byte b2 = this.n.readByte();
         byte[] bArr = f0.e0.c.a;
-        m_b.g(i, i2 & Integer.MAX_VALUE, (b2 & 255) + 1, z2);
+        bVar.g(i, i2 & Integer.MAX_VALUE, (b2 & 255) + 1, z2);
     }
 }

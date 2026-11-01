@@ -8,18 +8,18 @@ import java.util.List;
 /* JADX INFO: compiled from: ManageReactionsModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class ManageReactionsModel {
-    private final List<ManageReactionsEmojisAdapter$ReactionEmojiItem> reactionItems;
+    private final List<ManageReactionsEmojisAdapter.ReactionEmojiItem> reactionItems;
     private final List<MGRecyclerDataPayload> userItems;
 
     /* JADX WARN: Multi-variable type inference failed */
-    public ManageReactionsModel(List<ManageReactionsEmojisAdapter$ReactionEmojiItem> list, List<? extends MGRecyclerDataPayload> list2) {
+    public ManageReactionsModel(List<ManageReactionsEmojisAdapter.ReactionEmojiItem> list, List<? extends MGRecyclerDataPayload> list2) {
         m.checkNotNullParameter(list, "reactionItems");
         m.checkNotNullParameter(list2, "userItems");
         this.reactionItems = list;
         this.userItems = list2;
     }
 
-    public final List<ManageReactionsEmojisAdapter$ReactionEmojiItem> component1() {
+    public final List<ManageReactionsEmojisAdapter.ReactionEmojiItem> component1() {
         return this.reactionItems;
     }
 
@@ -38,7 +38,7 @@ public final /* data */ class ManageReactionsModel {
         return manageReactionsModel.copy(list, list2);
     }
 
-    public final ManageReactionsModel copy(List<ManageReactionsEmojisAdapter$ReactionEmojiItem> reactionItems, List<? extends MGRecyclerDataPayload> userItems) {
+    public final ManageReactionsModel copy(List<ManageReactionsEmojisAdapter.ReactionEmojiItem> reactionItems, List<? extends MGRecyclerDataPayload> userItems) {
         m.checkNotNullParameter(reactionItems, "reactionItems");
         m.checkNotNullParameter(userItems, "userItems");
         return new ManageReactionsModel(reactionItems, userItems);
@@ -55,7 +55,7 @@ public final /* data */ class ManageReactionsModel {
         return m.areEqual(this.reactionItems, manageReactionsModel.reactionItems) && m.areEqual(this.userItems, manageReactionsModel.userItems);
     }
 
-    public final List<ManageReactionsEmojisAdapter$ReactionEmojiItem> getReactionItems() {
+    public final List<ManageReactionsEmojisAdapter.ReactionEmojiItem> getReactionItems() {
         return this.reactionItems;
     }
 
@@ -64,7 +64,7 @@ public final /* data */ class ManageReactionsModel {
     }
 
     public int hashCode() {
-        List<ManageReactionsEmojisAdapter$ReactionEmojiItem> list = this.reactionItems;
+        List<ManageReactionsEmojisAdapter.ReactionEmojiItem> list = this.reactionItems;
         int iHashCode = (list != null ? list.hashCode() : 0) * 31;
         List<MGRecyclerDataPayload> list2 = this.userItems;
         return iHashCode + (list2 != null ? list2.hashCode() : 0);

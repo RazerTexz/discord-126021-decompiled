@@ -11,6 +11,41 @@ public final class d<T> implements Sequence<T>, e<T> {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final int f3570b;
 
+    /* JADX INFO: compiled from: Sequences.kt */
+    public final class a implements Iterator<T>, d0.z.d.g0.a {
+        public final Iterator<T> j;
+        public int k;
+
+        public a(d dVar) {
+            this.j = d.access$getSequence$p(dVar).iterator();
+            this.k = d.access$getCount$p(dVar);
+        }
+
+        public final void a() {
+            while (this.k > 0 && this.j.hasNext()) {
+                this.j.next();
+                this.k--;
+            }
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            a();
+            return this.j.hasNext();
+        }
+
+        @Override // java.util.Iterator
+        public T next() {
+            a();
+            return this.j.next();
+        }
+
+        @Override // java.util.Iterator
+        public void remove() {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public d(Sequence<? extends T> sequence, int i) {
         d0.z.d.m.checkNotNullParameter(sequence, "sequence");
@@ -38,7 +73,7 @@ public final class d<T> implements Sequence<T>, e<T> {
 
     @Override // kotlin.sequences.Sequence
     public Iterator<T> iterator() {
-        return new d$a(this);
+        return new a(this);
     }
 
     @Override // d0.f0.e

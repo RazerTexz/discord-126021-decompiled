@@ -2,7 +2,6 @@ package com.discord.widgets.auth;
 
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.auth.RegistrationFlowRepo;
-import com.discord.utilities.auth.RegistrationFlowRepo$Companion;
 import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -25,9 +24,9 @@ public final class WidgetAuthRegisterAccountInformation$birthdayLauncher$1 exten
     }
 
     public final void invoke(long j) {
-        RegistrationFlowRepo$Companion registrationFlowRepo$Companion = RegistrationFlowRepo.Companion;
-        RegistrationFlowRepo.trackTransition$default(registrationFlowRepo$Companion.getINSTANCE(), "Age Gate", "success", null, 4, null);
-        registrationFlowRepo$Companion.getINSTANCE().setBirthday(Long.valueOf(j));
+        RegistrationFlowRepo.Companion companion = RegistrationFlowRepo.INSTANCE;
+        RegistrationFlowRepo.trackTransition$default(companion.getINSTANCE(), "Age Gate", "success", null, 4, null);
+        companion.getINSTANCE().setBirthday(Long.valueOf(j));
         AnalyticsTracker.INSTANCE.ageGateSubmitted(j, "Register");
         WidgetAuthRegisterAccountInformation.register$default(this.this$0, null, 1, null);
     }

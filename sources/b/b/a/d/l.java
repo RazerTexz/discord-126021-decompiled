@@ -1,7 +1,7 @@
 package b.b.a.d;
 
 import android.content.ContentResolver;
-import android.provider.MediaStore$Images$Thumbnails;
+import android.provider.MediaStore;
 import android.util.Log;
 import com.lytefast.flexinput.model.Media;
 
@@ -19,7 +19,7 @@ public final class l implements Runnable {
     @Override // java.lang.Runnable
     public final void run() {
         try {
-            MediaStore$Images$Thumbnails.getThumbnail(this.k, this.j.$id, 1, null);
+            MediaStore.Images.Thumbnails.getThumbnail(this.k, this.j.$id, 1, null);
         } catch (Exception unused) {
             String name = Media.class.getName();
             StringBuilder sbU = b.d.b.a.a.U("Error generating thumbnail for photo ");

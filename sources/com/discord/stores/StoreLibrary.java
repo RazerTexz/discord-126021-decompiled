@@ -3,14 +3,17 @@ package com.discord.stores;
 import android.content.Context;
 import com.discord.models.domain.ModelLibraryApplication;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -23,6 +26,116 @@ public final class StoreLibrary extends StoreV2 {
     private Map<Long, ModelLibraryApplication> libraryApplicationSnapshot;
     private final Map<Long, ModelLibraryApplication> libraryApplications;
     private final ObservationDeck observationDeck;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreLibrary$fetchApplications$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreLibrary.kt */
+    public final class AnonymousClass1 extends o implements Function1<Error, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreLibrary$fetchApplications$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreLibrary.kt */
+        public final class C02651 extends o implements Function0<Unit> {
+            public C02651() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreLibrary.access$getLibraryApplications$p(StoreLibrary.this).clear();
+                StoreLibrary.this.markChanged();
+            }
+        }
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            m.checkNotNullParameter(error, "it");
+            StoreLibrary.this.getDispatcher().schedule(new C02651());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreLibrary$observeApplications$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreLibrary.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends ModelLibraryApplication>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends ModelLibraryApplication> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends ModelLibraryApplication> invoke2() {
+            return StoreLibrary.access$getLibraryApplicationSnapshot$p(StoreLibrary.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreLibrary$fetchApplications$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreLibrary.kt */
+    public final class AnonymousClass2 extends o implements Function1<List<? extends ModelLibraryApplication>, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreLibrary$fetchApplications$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreLibrary.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public final /* synthetic */ List $libraryApps;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(List list) {
+                super(0);
+                this.$libraryApps = list;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                HashMap map = new HashMap();
+                for (ModelLibraryApplication modelLibraryApplication : this.$libraryApps) {
+                    map.put(Long.valueOf(modelLibraryApplication.getSkuId()), modelLibraryApplication);
+                }
+                StoreLibrary.access$getLibraryApplications$p(StoreLibrary.this).clear();
+                StoreLibrary.access$getLibraryApplications$p(StoreLibrary.this).putAll(map);
+                StoreLibrary.this.markChanged();
+            }
+        }
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ModelLibraryApplication> list) {
+            invoke2((List<ModelLibraryApplication>) list);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<ModelLibraryApplication> list) {
+            m.checkNotNullParameter(list, "libraryApps");
+            StoreLibrary.this.getDispatcher().schedule(new AnonymousClass1(list));
+        }
+    }
 
     public /* synthetic */ StoreLibrary(Dispatcher dispatcher, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck);
@@ -44,7 +157,7 @@ public final class StoreLibrary extends StoreV2 {
         if (this.libraryApplicationSnapshot != null) {
             return;
         }
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().getLibrary(), false, 1, null), StoreLibrary.class, (Context) null, (Function1) null, new StoreLibrary$fetchApplications$1(this), (Function0) null, (Function0) null, new StoreLibrary$fetchApplications$2(this), 54, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getLibrary(), false, 1, null), StoreLibrary.class, (Context) null, (Function1) null, new AnonymousClass1(), (Function0) null, (Function0) null, new AnonymousClass2(), 54, (Object) null);
     }
 
     public final Map<Long, ModelLibraryApplication> getApplications() {
@@ -57,7 +170,7 @@ public final class StoreLibrary extends StoreV2 {
 
     public final Observable<Map<Long, ModelLibraryApplication>> observeApplications() {
         fetchApplications();
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreLibrary$observeApplications$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     @Override // com.discord.stores.StoreV2

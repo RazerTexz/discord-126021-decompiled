@@ -1,17 +1,20 @@
 package b.p.a;
 
-import android.R$integer;
+import android.R;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
-import android.view.View$OnTouchListener;
 import android.view.ViewConfiguration;
+import android.view.ViewGroup;
 import androidx.annotation.RequiresApi;
 
 /* JADX INFO: compiled from: SwipeDismissTouchListener.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class l implements View$OnTouchListener {
+public final class l implements View.OnTouchListener {
     public final int j;
     public final int k;
     public final long l;
@@ -25,13 +28,40 @@ public final class l implements View$OnTouchListener {
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public float f1974s;
     public final View t;
-    public final l$a u;
+    public final a u;
 
-    public l(View view, l$a l_a) {
+    /* JADX INFO: compiled from: SwipeDismissTouchListener.kt */
+    public interface a {
+        void a(View view, boolean z2);
+
+        boolean b();
+
+        void onDismiss(View view);
+    }
+
+    /* JADX INFO: compiled from: SwipeDismissTouchListener.kt */
+    public final class b extends AnimatorListenerAdapter {
+        public b(MotionEvent motionEvent, View view) {
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            d0.z.d.m.checkNotNullParameter(animator, "animation");
+            l lVar = l.this;
+            ViewGroup.LayoutParams layoutParams = lVar.t.getLayoutParams();
+            int height = lVar.t.getHeight();
+            ValueAnimator duration = ValueAnimator.ofInt(height, 1).setDuration(lVar.l);
+            duration.addListener(new m(lVar, layoutParams, height));
+            duration.addUpdateListener(new n(lVar, layoutParams));
+            duration.start();
+        }
+    }
+
+    public l(View view, a aVar) {
         d0.z.d.m.checkNotNullParameter(view, "mView");
-        d0.z.d.m.checkNotNullParameter(l_a, "mCallbacks");
+        d0.z.d.m.checkNotNullParameter(aVar, "mCallbacks");
         this.t = view;
-        this.u = l_a;
+        this.u = aVar;
         this.m = 1;
         ViewConfiguration viewConfiguration = ViewConfiguration.get(view.getContext());
         d0.z.d.m.checkNotNullExpressionValue(viewConfiguration, "vc");
@@ -39,10 +69,10 @@ public final class l implements View$OnTouchListener {
         this.k = viewConfiguration.getScaledMinimumFlingVelocity() * 16;
         Context context = view.getContext();
         d0.z.d.m.checkNotNullExpressionValue(context, "mView.context");
-        this.l = context.getResources().getInteger(R$integer.config_shortAnimTime);
+        this.l = context.getResources().getInteger(R.integer.config_shortAnimTime);
     }
 
-    @Override // android.view.View$OnTouchListener
+    @Override // android.view.View.OnTouchListener
     @RequiresApi(api = 12)
     public boolean onTouch(View view, MotionEvent motionEvent) {
         boolean z2;
@@ -87,7 +117,7 @@ public final class l implements View$OnTouchListener {
                     z3 = z4;
                 }
                 if (z3) {
-                    this.t.animate().translationX(z2 ? this.m : -this.m).alpha(0.0f).setDuration(this.l).setListener(new l$b(this, motionEvent, view));
+                    this.t.animate().translationX(z2 ? this.m : -this.m).alpha(0.0f).setDuration(this.l).setListener(new b(motionEvent, view));
                 } else if (this.p) {
                     this.t.animate().translationX(0.0f).alpha(1.0f).setDuration(this.l).setListener(null);
                     this.u.a(view, false);

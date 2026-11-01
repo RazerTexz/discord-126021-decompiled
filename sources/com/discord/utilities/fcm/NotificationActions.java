@@ -10,12 +10,10 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.app.RemoteInput;
 import androidx.work.BackoffPolicy;
-import androidx.work.Constraints$Builder;
+import androidx.work.Constraints;
 import androidx.work.Data;
-import androidx.work.Data$Builder;
 import androidx.work.NetworkType;
 import androidx.work.OneTimeWorkRequest;
-import androidx.work.OneTimeWorkRequest$Builder;
 import androidx.work.WorkManager;
 import b.d.b.a.a;
 import com.discord.app.AppLog;
@@ -33,17 +31,66 @@ import d0.t.h0;
 import d0.z.d.m;
 import java.util.concurrent.TimeUnit;
 import kotlin.Pair;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: NotificationActions.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class NotificationActions extends BroadcastReceiver {
-    public static final NotificationActions$Companion Companion = new NotificationActions$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String NOTIFICATION_CHANNEL_ID = "com.discord.NOTIFICATION_DELETED_CHANNEL_ID";
     private static final String NOTIFICATION_ID = "com.discord.NOTIFICATION_ID";
 
+    /* JADX INFO: compiled from: NotificationActions.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final Intent callAction(Context context, long channelId, long messageId, boolean isAcceptingCall) {
+            m.checkNotNullParameter(context, "context");
+            return new Intent("com.discord.intent.action.ENQUEUE_WORK", Uri.parse("discord://action/channel/call/" + (isAcceptingCall ? "accept" : "decline") + "?channelId=" + channelId + "&messageId=" + messageId), context, NotificationActions.class);
+        }
+
+        public final Intent cancel(Context context, int notificationId) {
+            m.checkNotNullParameter(context, "context");
+            Intent intentPutExtra = new Intent("com.discord.intent.action.NOTIFICATION_CANCEL", Uri.parse("discord://action/notif/cancel?id=" + notificationId), context, NotificationActions.class).putExtra(NotificationActions.NOTIFICATION_ID, notificationId);
+            m.checkNotNullExpressionValue(intentPutExtra, "Intent(\n          Intent…ATION_ID, notificationId)");
+            return intentPutExtra;
+        }
+
+        public final Intent delete(Context context, long channelId) {
+            m.checkNotNullParameter(context, "context");
+            Intent intentPutExtra = new Intent("com.discord.intent.action.NOTIFICATION_DELETED", Uri.parse("discord://action/notif/delete?channelId=" + channelId), context, NotificationActions.class).putExtra(NotificationActions.NOTIFICATION_CHANNEL_ID, channelId);
+            m.checkNotNullExpressionValue(intentPutExtra, "Intent(\n          Intent…ON_CHANNEL_ID, channelId)");
+            return intentPutExtra;
+        }
+
+        public final Intent directReply(Context context, long channelId, CharSequence channelName) {
+            m.checkNotNullParameter(context, "context");
+            Intent intent = new Intent("com.discord.intent.action.ENQUEUE_WORK", Uri.parse("discord://action/message/reply?channelId=" + channelId), context, NotificationActions.class);
+            intent.putExtra("com.discord.intent.extra.EXTRA_CHANNEL_NAME", channelName);
+            return intent;
+        }
+
+        public final Intent markAsRead(Context context, long channelId, long messageId) {
+            m.checkNotNullParameter(context, "context");
+            return new Intent("com.discord.intent.action.ENQUEUE_WORK", Uri.parse("discord://action/message/ack?channelId=" + channelId + "&messageId=" + messageId), context, NotificationActions.class);
+        }
+
+        public final Intent timedMute(Context context, long guildId, long channelId, long untilTimestamp) {
+            m.checkNotNullParameter(context, "context");
+            return new Intent("com.discord.intent.action.ENQUEUE_WORK", Uri.parse("discord://action/channel/mute").buildUpon().appendQueryParameter("guildId", String.valueOf(guildId)).appendQueryParameter("channelId", String.valueOf(channelId)).appendQueryParameter("until", String.valueOf(untilTimestamp)).build(), context, NotificationActions.class);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
     @RequiresApi(24)
-    public final void enqueue(Context context, Intent intent) {
+    public final void enqueue(Context context, Intent intent) throws Throwable {
         m.checkNotNullParameter(context, "context");
         m.checkNotNullParameter(intent, "intent");
         Uri data = intent.getData();
@@ -94,7 +141,7 @@ public final class NotificationActions extends BroadcastReceiver {
         }
     }
 
-    private final void enqueueAckMessage(Context context, Intent intent) {
+    private final void enqueueAckMessage(Context context, Intent intent) throws Throwable {
         Long longOrNull;
         Long longOrNull2;
         Uri data = intent.getData();
@@ -111,16 +158,16 @@ public final class NotificationActions extends BroadcastReceiver {
             }
             long jLongValue2 = longOrNull2.longValue();
             m.checkNotNullParameter(context, "context");
-            Data dataBuild = new Data$Builder().putAll(h0.mapOf(o.to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(jLongValue)), o.to("com.discord.intent.extra.EXTRA_MESSAGE_ID", Long.valueOf(jLongValue2)))).build();
+            Data dataBuild = new Data.Builder().putAll(h0.mapOf(o.to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(jLongValue)), o.to("com.discord.intent.extra.EXTRA_MESSAGE_ID", Long.valueOf(jLongValue2)))).build();
             m.checkNotNullExpressionValue(dataBuild, "Data.Builder()\n         …     )\n          .build()");
-            OneTimeWorkRequest oneTimeWorkRequestBuild = new OneTimeWorkRequest$Builder(MessageAckWorker.class).setInputData(dataBuild).setBackoffCriteria(BackoffPolicy.LINEAR, 1L, TimeUnit.SECONDS).addTag("message").addTag("ack").setConstraints(new Constraints$Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()).build();
+            OneTimeWorkRequest oneTimeWorkRequestBuild = new OneTimeWorkRequest.Builder(MessageAckWorker.class).setInputData(dataBuild).setBackoffCriteria(BackoffPolicy.LINEAR, 1L, TimeUnit.SECONDS).addTag("message").addTag("ack").setConstraints(new Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()).build();
             m.checkNotNullExpressionValue(oneTimeWorkRequestBuild, "OneTimeWorkRequestBuilde…     )\n          .build()");
             WorkManager.getInstance(context).enqueue(oneTimeWorkRequestBuild);
             NotificationClient.clear$default(NotificationClient.INSTANCE, jLongValue, context, false, 4, null);
         }
     }
 
-    private final void enqueueDirectReply(Context context, Intent intent) {
+    private final void enqueueDirectReply(Context context, Intent intent) throws Throwable {
         String queryParameter;
         Long longOrNull;
         CharSequence charSequence;
@@ -141,16 +188,16 @@ public final class NotificationActions extends BroadcastReceiver {
                 NotificationCache.INSTANCE.setIgnoreNextClearForAck(jLongValue, true);
                 m.checkNotNullParameter(context, "context");
                 m.checkNotNullParameter(string, "message");
-                Data$Builder data$Builder = new Data$Builder();
+                Data.Builder builder = new Data.Builder();
                 Pair[] pairArr = new Pair[5];
                 pairArr[0] = o.to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(jLongValue));
                 pairArr[1] = o.to("com.discord.intent.extra.EXTRA_CHANNEL_NAME", charSequenceExtra != null ? charSequenceExtra.toString() : null);
                 pairArr[2] = o.to("com.discord.intent.extra.EXTRA_MESSAGE_ID", null);
                 pairArr[3] = o.to("MESSAGE_CONTENT", string);
                 pairArr[4] = o.to("com.discord.intent.extra.EXTRA_STICKER_ID", null);
-                Data dataBuild = data$Builder.putAll(h0.mapOf(pairArr)).build();
+                Data dataBuild = builder.putAll(h0.mapOf(pairArr)).build();
                 m.checkNotNullExpressionValue(dataBuild, "Data.Builder()\n         …     )\n          .build()");
-                OneTimeWorkRequest oneTimeWorkRequestBuild = new OneTimeWorkRequest$Builder(MessageSendWorker.class).setInputData(dataBuild).addTag("message").addTag("send").setConstraints(new Constraints$Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()).build();
+                OneTimeWorkRequest oneTimeWorkRequestBuild = new OneTimeWorkRequest.Builder(MessageSendWorker.class).setInputData(dataBuild).addTag("message").addTag("send").setConstraints(new Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()).build();
                 m.checkNotNullExpressionValue(oneTimeWorkRequestBuild, "OneTimeWorkRequestBuilde…     )\n          .build()");
                 WorkManager.getInstance(context).enqueue(oneTimeWorkRequestBuild);
                 return;
@@ -159,7 +206,7 @@ public final class NotificationActions extends BroadcastReceiver {
         NotificationClient.clear$default(NotificationClient.INSTANCE, jLongValue, context, false, 4, null);
     }
 
-    private final void enqueueTimedMute(Context context, Intent intent) {
+    private final void enqueueTimedMute(Context context, Intent intent) throws Throwable {
         Long longOrNull;
         Long longOrNull2;
         Long longOrNull3;
@@ -182,9 +229,9 @@ public final class NotificationActions extends BroadcastReceiver {
             }
             long jLongValue3 = longOrNull3.longValue();
             m.checkNotNullParameter(context, "context");
-            Data dataBuild = new Data$Builder().putAll(h0.mapOf(o.to("com.discord.intent.extra.EXTRA_GUILD_ID", Long.valueOf(jLongValue)), o.to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(jLongValue2)), o.to("com.discord.intent.extra.EXTRA_UNTIL_TIMESTAMP_MS", Long.valueOf(jLongValue3)))).build();
+            Data dataBuild = new Data.Builder().putAll(h0.mapOf(o.to("com.discord.intent.extra.EXTRA_GUILD_ID", Long.valueOf(jLongValue)), o.to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(jLongValue2)), o.to("com.discord.intent.extra.EXTRA_UNTIL_TIMESTAMP_MS", Long.valueOf(jLongValue3)))).build();
             m.checkNotNullExpressionValue(dataBuild, "Data.Builder()\n         …     )\n          .build()");
-            OneTimeWorkRequest oneTimeWorkRequestBuild = new OneTimeWorkRequest$Builder(TimedMuteWorker.class).setInputData(dataBuild).setBackoffCriteria(BackoffPolicy.LINEAR, 1L, TimeUnit.SECONDS).addTag("channel").addTag(ModelAuditLogEntry.CHANGE_KEY_MUTE).setConstraints(new Constraints$Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()).build();
+            OneTimeWorkRequest oneTimeWorkRequestBuild = new OneTimeWorkRequest.Builder(TimedMuteWorker.class).setInputData(dataBuild).setBackoffCriteria(BackoffPolicy.LINEAR, 1L, TimeUnit.SECONDS).addTag("channel").addTag(ModelAuditLogEntry.CHANGE_KEY_MUTE).setConstraints(new Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()).build();
             m.checkNotNullExpressionValue(oneTimeWorkRequestBuild, "OneTimeWorkRequestBuilde…     )\n          .build()");
             WorkManager.getInstance(context).enqueue(oneTimeWorkRequestBuild);
             NotificationClient.clear$default(NotificationClient.INSTANCE, jLongValue2, context, false, 4, null);
@@ -192,7 +239,7 @@ public final class NotificationActions extends BroadcastReceiver {
     }
 
     @RequiresApi(24)
-    private final void executeCallAction(Context context, Intent intent, boolean isAcceptingCall) {
+    private final void executeCallAction(Context context, Intent intent, boolean isAcceptingCall) throws Throwable {
         Long longOrNull;
         Long longOrNull2;
         Uri data = intent.getData();
@@ -209,15 +256,15 @@ public final class NotificationActions extends BroadcastReceiver {
             }
             long jLongValue2 = longOrNull2.longValue();
             if (isAcceptingCall) {
-                DiscordConnectService.j.b(context, jLongValue);
+                DiscordConnectService.INSTANCE.b(context, jLongValue);
             } else {
                 m.checkNotNullParameter(context, "context");
-                Data dataBuild = new Data$Builder().putAll(h0.mapOf(o.to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(jLongValue)), o.to("com.discord.intent.extra.EXTRA_MESSAGE_ID", Long.valueOf(jLongValue2)))).build();
+                Data dataBuild = new Data.Builder().putAll(h0.mapOf(o.to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(jLongValue)), o.to("com.discord.intent.extra.EXTRA_MESSAGE_ID", Long.valueOf(jLongValue2)))).build();
                 m.checkNotNullExpressionValue(dataBuild, "Data.Builder()\n         …     )\n          .build()");
-                OneTimeWorkRequest$Builder inputData = new OneTimeWorkRequest$Builder(CallActionWorker.class).setInputData(dataBuild);
+                OneTimeWorkRequest.Builder inputData = new OneTimeWorkRequest.Builder(CallActionWorker.class).setInputData(dataBuild);
                 BackoffPolicy backoffPolicy = BackoffPolicy.LINEAR;
                 TimeUnit timeUnit = TimeUnit.SECONDS;
-                OneTimeWorkRequest oneTimeWorkRequestBuild = inputData.setBackoffCriteria(backoffPolicy, 1L, timeUnit).addTag(NotificationCompat.CATEGORY_CALL).addTag("decline").setConstraints(new Constraints$Builder().setRequiredNetworkType(NetworkType.CONNECTED).setTriggerContentMaxDelay(10L, timeUnit).build()).build();
+                OneTimeWorkRequest oneTimeWorkRequestBuild = inputData.setBackoffCriteria(backoffPolicy, 1L, timeUnit).addTag(NotificationCompat.CATEGORY_CALL).addTag("decline").setConstraints(new Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).setTriggerContentMaxDelay(10L, timeUnit).build()).build();
                 m.checkNotNullExpressionValue(oneTimeWorkRequestBuild, "OneTimeWorkRequestBuilde…     )\n          .build()");
                 WorkManager.getInstance(context).enqueue(oneTimeWorkRequestBuild);
             }
@@ -227,7 +274,7 @@ public final class NotificationActions extends BroadcastReceiver {
 
     @Override // android.content.BroadcastReceiver
     @RequiresApi(24)
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(Context context, Intent intent) throws Throwable {
         m.checkNotNullParameter(context, "context");
         m.checkNotNullParameter(intent, "intent");
         AppLog.i("Got notification action: " + intent);

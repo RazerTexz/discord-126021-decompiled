@@ -9,7 +9,9 @@ import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword;
 import d0.g;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -19,12 +21,51 @@ import rx.subjects.PublishSubject;
 /* JADX INFO: compiled from: GoogleSmartLockRepo.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class GoogleSmartLockRepo {
-    public static final GoogleSmartLockRepo$Companion Companion = new GoogleSmartLockRepo$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private boolean disableAutoLogin;
     private String pendingIdChange;
-    private PublishSubject<GoogleSmartLockManager$SmartLockCredentials> smartLockLogin;
+    private PublishSubject<GoogleSmartLockManager.SmartLockCredentials> smartLockLogin;
     private SmartLockSignInAttempt smartLockLoginAttempt;
     private static final Lazy INSTANCE$delegate = g.lazy(GoogleSmartLockRepo$Companion$INSTANCE$2.INSTANCE);
+
+    /* JADX INFO: renamed from: com.discord.utilities.auth.GoogleSmartLockRepo$1, reason: invalid class name */
+    /* JADX INFO: compiled from: GoogleSmartLockRepo.kt */
+    public final class AnonymousClass1 extends o implements Function1<Boolean, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.a;
+        }
+
+        public final void invoke(boolean z2) {
+            if (z2) {
+                return;
+            }
+            GoogleSmartLockRepo.this.setDisableAutoLogin(true);
+        }
+    }
+
+    /* JADX INFO: compiled from: GoogleSmartLockRepo.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final GoogleSmartLockRepo getINSTANCE() {
+            Lazy lazyAccess$getINSTANCE$cp = GoogleSmartLockRepo.access$getINSTANCE$cp();
+            Companion companion = GoogleSmartLockRepo.INSTANCE;
+            return (GoogleSmartLockRepo) lazyAccess$getINSTANCE$cp.getValue();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public GoogleSmartLockRepo() {
         this(null, 1, null);
@@ -32,11 +73,11 @@ public final class GoogleSmartLockRepo {
 
     public GoogleSmartLockRepo(StoreAuthentication storeAuthentication) {
         m.checkNotNullParameter(storeAuthentication, "storeAuth");
-        PublishSubject<GoogleSmartLockManager$SmartLockCredentials> publishSubjectK0 = PublishSubject.k0();
+        PublishSubject<GoogleSmartLockManager.SmartLockCredentials> publishSubjectK0 = PublishSubject.k0();
         m.checkNotNullExpressionValue(publishSubjectK0, "PublishSubject.create()");
         this.smartLockLogin = publishSubjectK0;
         this.smartLockLoginAttempt = new SmartLockSignInAttempt(false, false, 3, null);
-        ObservableExtensionsKt.appSubscribe$default(storeAuthentication.getPreLogoutSignal$app_productionGoogleRelease(), GoogleSmartLockRepo.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new GoogleSmartLockRepo$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(storeAuthentication.getPreLogoutSignal$app_productionGoogleRelease(), GoogleSmartLockRepo.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
     public static final /* synthetic */ Lazy access$getINSTANCE$cp() {
@@ -55,7 +96,7 @@ public final class GoogleSmartLockRepo {
         return this.smartLockLoginAttempt;
     }
 
-    public final Observable<GoogleSmartLockManager$SmartLockCredentials> getSmartLockLoginObservable() {
+    public final Observable<GoogleSmartLockManager.SmartLockCredentials> getSmartLockLoginObservable() {
         return this.smartLockLogin;
     }
 
@@ -89,8 +130,8 @@ public final class GoogleSmartLockRepo {
     public final void setSmartLockLogin(String id2, String password) {
         m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
         m.checkNotNullParameter(password, WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD);
-        PublishSubject<GoogleSmartLockManager$SmartLockCredentials> publishSubject = this.smartLockLogin;
-        publishSubject.k.onNext(new GoogleSmartLockManager$SmartLockCredentials(id2, password));
+        PublishSubject<GoogleSmartLockManager.SmartLockCredentials> publishSubject = this.smartLockLogin;
+        publishSubject.k.onNext(new GoogleSmartLockManager.SmartLockCredentials(id2, password));
     }
 
     public final void setSmartLockLoginAttempt(SmartLockSignInAttempt smartLockSignInAttempt) {
@@ -99,6 +140,6 @@ public final class GoogleSmartLockRepo {
     }
 
     public /* synthetic */ GoogleSmartLockRepo(StoreAuthentication storeAuthentication, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i & 1) != 0 ? StoreStream.Companion.getAuthentication() : storeAuthentication);
+        this((i & 1) != 0 ? StoreStream.INSTANCE.getAuthentication() : storeAuthentication);
     }
 }

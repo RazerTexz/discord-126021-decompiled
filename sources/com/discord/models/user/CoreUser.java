@@ -7,12 +7,15 @@ import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.nullserializable.NullSerializable;
 import d0.g0.s;
 import d0.z.d.m;
+import kotlin.NoWhenBranchMatchedException;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: CoreUser.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class CoreUser implements User {
-    public static final CoreUser$Companion Companion = new CoreUser$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final String avatar;
     private final String banner;
     private final String bannerColor;
@@ -25,6 +28,101 @@ public final /* data */ class CoreUser implements User {
     private final PremiumTier premiumTier;
     private final int publicFlags;
     private final String username;
+
+    /* JADX INFO: compiled from: CoreUser.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        /* JADX WARN: Code duplicated, block: B:56:0x00dc  */
+        /* JADX WARN: Code duplicated, block: B:59:0x00e6  */
+        /* JADX WARN: Code duplicated, block: B:62:0x00fd  */
+        public final CoreUser merge(CoreUser oldUser, com.discord.api.user.User newUser) {
+            String avatar;
+            String banner;
+            String bio;
+            String str;
+            NullSerializable<String> nullSerializableC;
+            String strA;
+            m.checkNotNullParameter(oldUser, "oldUser");
+            m.checkNotNullParameter(newUser, "newUser");
+            long id2 = newUser.getId();
+            String username = newUser.getUsername();
+            NullSerializable<String> nullSerializableA = newUser.a();
+            if (nullSerializableA instanceof NullSerializable.b) {
+                avatar = (String) ((NullSerializable.b) nullSerializableA).a();
+            } else if (nullSerializableA instanceof NullSerializable.a) {
+                avatar = null;
+            } else {
+                if (nullSerializableA != null) {
+                    throw new NoWhenBranchMatchedException();
+                }
+                avatar = oldUser.getAvatar();
+            }
+            NullSerializable<String> nullSerializableB = newUser.b();
+            if (nullSerializableB instanceof NullSerializable.b) {
+                banner = (String) ((NullSerializable.b) nullSerializableB).a();
+            } else if (nullSerializableB instanceof NullSerializable.a) {
+                banner = null;
+            } else {
+                if (nullSerializableB != null) {
+                    throw new NoWhenBranchMatchedException();
+                }
+                banner = oldUser.getBanner();
+            }
+            Boolean bot = newUser.getBot();
+            boolean zBooleanValue = bot != null ? bot.booleanValue() : oldUser.getIsBot();
+            Boolean system = newUser.getSystem();
+            boolean zBooleanValue2 = system != null ? system.booleanValue() : oldUser.getIsSystemUser();
+            Integer intOrNull = s.toIntOrNull(newUser.getDiscriminator());
+            int iIntValue = intOrNull != null ? intOrNull.intValue() : oldUser.getDiscriminator();
+            PremiumTier premiumType = newUser.getPremiumType();
+            if (premiumType == null) {
+                premiumType = oldUser.getPremiumTier();
+            }
+            Integer flags = newUser.getFlags();
+            int iIntValue2 = flags != null ? flags.intValue() : oldUser.getFlags();
+            Integer publicFlags = newUser.getPublicFlags();
+            int iIntValue3 = publicFlags != null ? publicFlags.intValue() : oldUser.getPublicFlags();
+            NullSerializable<String> nullSerializableD = newUser.d();
+            if (!(nullSerializableD instanceof NullSerializable.b)) {
+                if (nullSerializableD instanceof NullSerializable.a) {
+                    str = null;
+                } else {
+                    if (nullSerializableD != null) {
+                        throw new NoWhenBranchMatchedException();
+                    }
+                    bio = oldUser.getBio();
+                }
+                nullSerializableC = newUser.c();
+                if (!(nullSerializableC instanceof NullSerializable.b) || (nullSerializableC instanceof NullSerializable.a)) {
+                    strA = nullSerializableC.a();
+                } else {
+                    if (nullSerializableC == null) {
+                        throw new NoWhenBranchMatchedException();
+                    }
+                    strA = oldUser.getBannerColor();
+                }
+                return new CoreUser(id2, username, avatar, banner, zBooleanValue, zBooleanValue2, iIntValue, premiumType, iIntValue2, iIntValue3, str, strA);
+            }
+            bio = (String) ((NullSerializable.b) nullSerializableD).a();
+            str = bio;
+            nullSerializableC = newUser.c();
+            if (!(nullSerializableC instanceof NullSerializable.b)) {
+                strA = nullSerializableC.a();
+            } else {
+                if (nullSerializableC == null) {
+                    throw new NoWhenBranchMatchedException();
+                }
+                strA = oldUser.getBannerColor();
+            }
+            return new CoreUser(id2, username, avatar, banner, zBooleanValue, zBooleanValue2, iIntValue, premiumType, iIntValue2, iIntValue3, str, strA);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public CoreUser(long j, String str, String str2, String str3, boolean z2, boolean z3, int i, PremiumTier premiumTier, int i2, int i3, String str4, String str5) {
         m.checkNotNullParameter(str, "username");

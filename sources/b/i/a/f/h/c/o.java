@@ -6,27 +6,23 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Looper;
 import android.util.Base64;
-import b.i.a.f.c.a.a$a;
-import b.i.a.f.c.a.a$a$a;
-import b.i.a.f.e.h.c$a;
-import b.i.a.f.e.h.c$b;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class o extends b.i.a.f.e.k.d<t> {
-    public final a$a A;
+    public final b.i.a.f.c.a.a.C0110a A;
 
-    public o(Context context, Looper looper, b.i.a.f.e.k.c cVar, a$a a_a, c$a c_a, c$b c_b) {
-        super(context, looper, 68, cVar, c_a, c_b);
-        a$a$a a_a_a = new a$a$a(a_a == null ? a$a.j : a_a);
+    public o(Context context, Looper looper, b.i.a.f.e.k.c cVar, b.i.a.f.c.a.a.C0110a c0110a, b.i.a.f.e.h.c.a aVar, b.i.a.f.e.h.c.b bVar) {
+        super(context, looper, 68, cVar, aVar, bVar);
+        b.i.a.f.c.a.a.C0110a.C0111a c0111a = new b.i.a.f.c.a.a.C0110a.C0111a(c0110a == null ? b.i.a.f.c.a.a.C0110a.j : c0110a);
         byte[] bArr = new byte[16];
         a.a.nextBytes(bArr);
-        a_a_a.c = Base64.encodeToString(bArr, 11);
-        this.A = new a$a(a_a_a);
+        c0111a.c = Base64.encodeToString(bArr, 11);
+        this.A = new b.i.a.f.c.a.a.C0110a(c0111a);
     }
 
-    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a$f
+    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a.f
     public final int l() {
         return 12800000;
     }
@@ -42,12 +38,12 @@ public final class o extends b.i.a.f.e.k.d<t> {
 
     @Override // b.i.a.f.e.k.b
     public final Bundle u() {
-        a$a a_a = this.A;
-        Objects.requireNonNull(a_a);
+        b.i.a.f.c.a.a.C0110a c0110a = this.A;
+        Objects.requireNonNull(c0110a);
         Bundle bundle = new Bundle();
-        bundle.putString("consumer_package", a_a.k);
-        bundle.putBoolean("force_save_dialog", a_a.l);
-        bundle.putString("log_session_id", a_a.m);
+        bundle.putString("consumer_package", c0110a.k);
+        bundle.putBoolean("force_save_dialog", c0110a.l);
+        bundle.putString("log_session_id", c0110a.m);
         return bundle;
     }
 

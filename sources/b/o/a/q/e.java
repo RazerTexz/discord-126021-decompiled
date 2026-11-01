@@ -3,7 +3,7 @@ package b.o.a.q;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import androidx.annotation.NonNull;
-import com.otaliastudios.cameraview.CameraView$b;
+import com.otaliastudios.cameraview.CameraView;
 
 /* JADX INFO: compiled from: PinchGestureFinder.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -12,11 +12,25 @@ public class e extends c {
     public boolean e;
     public float f;
 
-    public e(@NonNull c$a c_a) {
-        super(c_a, 2);
+    /* JADX INFO: compiled from: PinchGestureFinder.java */
+    public class a extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+        public a() {
+        }
+
+        @Override // android.view.ScaleGestureDetector.SimpleOnScaleGestureListener, android.view.ScaleGestureDetector.OnScaleGestureListener
+        public boolean onScale(ScaleGestureDetector scaleGestureDetector) {
+            e eVar = e.this;
+            eVar.e = true;
+            eVar.f = (scaleGestureDetector.getScaleFactor() - 1.0f) * 2.0f;
+            return true;
+        }
+    }
+
+    public e(@NonNull c.a aVar) {
+        super(aVar, 2);
         this.f = 0.0f;
-        this.f1947b = a.j;
-        ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(((CameraView$b) c_a).g(), new e$a(this));
+        this.f1947b = b.o.a.q.a.j;
+        ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(((CameraView.b) aVar).g(), new a());
         this.d = scaleGestureDetector;
         scaleGestureDetector.setQuickScaleEnabled(false);
     }

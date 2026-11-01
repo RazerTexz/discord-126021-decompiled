@@ -1,7 +1,6 @@
 package com.discord.widgets.feedback;
 
 import com.discord.widgets.voice.feedback.call.CallFeedbackSheetViewModel;
-import com.discord.widgets.voice.feedback.call.CallFeedbackSheetViewModel$Config;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
@@ -25,8 +24,8 @@ public final class WidgetFeedbackSheet$viewModelCallFeedbackSheet$2 extends o im
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final CallFeedbackSheetViewModel invoke() {
-        CallFeedbackSheetViewModel$Config callFeedbackSheetViewModel$Config = (CallFeedbackSheetViewModel$Config) WidgetFeedbackSheet.access$getArgumentsOrDefault$p(this.this$0).getParcelable(WidgetFeedbackSheet.ARG_CALL_FEEDBACK_CONFIG);
-        m.checkNotNull(callFeedbackSheetViewModel$Config);
-        return new CallFeedbackSheetViewModel(callFeedbackSheetViewModel$Config, null, null, null, 14, null);
+        CallFeedbackSheetViewModel.Config config = (CallFeedbackSheetViewModel.Config) WidgetFeedbackSheet.access$getArgumentsOrDefault$p(this.this$0).getParcelable(WidgetFeedbackSheet.ARG_CALL_FEEDBACK_CONFIG);
+        m.checkNotNull(config);
+        return new CallFeedbackSheetViewModel(config, null, null, null, 14, null);
     }
 }

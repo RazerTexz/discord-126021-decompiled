@@ -3,7 +3,7 @@ package com.discord.widgets.servers;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetServerSettingsSecurityDialogBinding;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -23,17 +23,17 @@ public final /* synthetic */ class WidgetServerSettingsSecurity$ToggleMfaDialog$
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetServerSettingsSecurityDialogBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.notice_header;
-        TextView textView = (TextView) view.findViewById(R$id.notice_header);
+        int i = R.id.notice_header;
+        TextView textView = (TextView) view.findViewById(R.id.notice_header);
         if (textView != null) {
-            i = R$id.server_settings_security_dialog_cancel;
-            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.server_settings_security_dialog_cancel);
+            i = R.id.server_settings_security_dialog_cancel;
+            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.server_settings_security_dialog_cancel);
             if (materialButton != null) {
-                i = R$id.server_settings_security_dialog_confirm;
-                MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.server_settings_security_dialog_confirm);
+                i = R.id.server_settings_security_dialog_confirm;
+                MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.server_settings_security_dialog_confirm);
                 if (materialButton2 != null) {
-                    i = R$id.server_settings_security_server_mfa_code;
-                    TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.server_settings_security_server_mfa_code);
+                    i = R.id.server_settings_security_server_mfa_code;
+                    TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.server_settings_security_server_mfa_code);
                     if (textInputLayout != null) {
                         return new WidgetServerSettingsSecurityDialogBinding((LinearLayout) view, textView, materialButton, materialButton2, textInputLayout);
                     }

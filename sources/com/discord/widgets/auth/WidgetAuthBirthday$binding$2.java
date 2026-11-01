@@ -3,7 +3,7 @@ package com.discord.widgets.auth;
 import android.view.View;
 import android.widget.LinearLayout;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetAuthBirthdayBinding;
 import com.discord.utilities.dimmer.DimmerView;
 import com.discord.utilities.view.text.LinkifiedTextView;
@@ -31,23 +31,23 @@ public final /* synthetic */ class WidgetAuthBirthday$binding$2 extends k implem
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetAuthBirthdayBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.auth_policy_links;
-        LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R$id.auth_policy_links);
+        int i = R.id.auth_policy_links;
+        LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R.id.auth_policy_links);
         if (linkifiedTextView != null) {
-            i = R$id.auth_register_birthday;
-            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.auth_register_birthday);
+            i = R.id.auth_register_birthday;
+            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.auth_register_birthday);
             if (textInputLayout != null) {
-                i = R$id.auth_register_button;
-                MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.auth_register_button);
+                i = R.id.auth_register_button;
+                MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.auth_register_button);
                 if (materialButton != null) {
-                    i = R$id.auth_register_container;
-                    LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.auth_register_container);
+                    i = R.id.auth_register_container;
+                    LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.auth_register_container);
                     if (linearLayout != null) {
-                        i = R$id.auth_tos_opt_in;
-                        MaterialCheckBox materialCheckBox = (MaterialCheckBox) view.findViewById(R$id.auth_tos_opt_in);
+                        i = R.id.auth_tos_opt_in;
+                        MaterialCheckBox materialCheckBox = (MaterialCheckBox) view.findViewById(R.id.auth_tos_opt_in);
                         if (materialCheckBox != null) {
-                            i = 2131363051;
-                            DimmerView dimmerView = (DimmerView) view.findViewById(2131363051);
+                            i = R.id.dimmer_view;
+                            DimmerView dimmerView = (DimmerView) view.findViewById(R.id.dimmer_view);
                             if (dimmerView != null) {
                                 return new WidgetAuthBirthdayBinding((CoordinatorLayout) view, linkifiedTextView, textInputLayout, materialButton, linearLayout, materialCheckBox, dimmerView);
                             }

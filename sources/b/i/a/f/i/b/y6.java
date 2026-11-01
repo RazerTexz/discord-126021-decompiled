@@ -2,7 +2,7 @@ package b.i.a.f.i.b;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.Application$ActivityLifecycleCallbacks;
+import android.app.Application;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,14 +16,14 @@ import java.util.Objects;
 /* JADX INFO: loaded from: classes3.dex */
 @TargetApi(14)
 @MainThread
-public final class y6 implements Application$ActivityLifecycleCallbacks {
+public final class y6 implements Application.ActivityLifecycleCallbacks {
     public final /* synthetic */ c6 j;
 
     public y6(c6 c6Var, d6 d6Var) {
         this.j = c6Var;
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivityCreated(Activity activity, Bundle bundle) {
         try {
             try {
@@ -49,7 +49,7 @@ public final class y6 implements Application$ActivityLifecycleCallbacks {
         this.j.q().y(activity, bundle);
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivityDestroyed(Activity activity) {
         h7 h7VarQ = this.j.q();
         synchronized (h7VarQ.l) {
@@ -62,7 +62,7 @@ public final class y6 implements Application$ActivityLifecycleCallbacks {
         }
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     @MainThread
     public final void onActivityPaused(Activity activity) {
         h7 h7VarQ = this.j.q();
@@ -88,7 +88,7 @@ public final class y6 implements Application$ActivityLifecycleCallbacks {
         w8VarS.f().v(new y8(w8VarS, SystemClock.elapsedRealtime()));
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     @MainThread
     public final void onActivityResumed(Activity activity) {
         w8 w8VarS = this.j.s();
@@ -121,7 +121,7 @@ public final class y6 implements Application$ActivityLifecycleCallbacks {
         aVarM.f().v(new a3(aVarM, SystemClock.elapsedRealtime()));
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
         i7 i7Var;
         h7 h7VarQ = this.j.q();
@@ -135,11 +135,11 @@ public final class y6 implements Application$ActivityLifecycleCallbacks {
         bundle.putBundle("com.google.app_measurement.screen_service", bundle2);
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivityStarted(Activity activity) {
     }
 
-    @Override // android.app.Application$ActivityLifecycleCallbacks
+    @Override // android.app.Application.ActivityLifecycleCallbacks
     public final void onActivityStopped(Activity activity) {
     }
 }

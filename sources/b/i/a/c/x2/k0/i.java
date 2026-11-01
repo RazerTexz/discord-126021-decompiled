@@ -2,8 +2,6 @@ package b.i.a.c.x2.k0;
 
 import androidx.annotation.Nullable;
 import b.i.a.c.j1;
-import b.i.a.c.j1$b;
-import b.i.a.c.t2.n$b;
 
 /* JADX INFO: compiled from: Ac4Reader.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -78,21 +76,21 @@ public final class i implements o {
                 this.g = i2;
                 if (i2 == 16) {
                     this.a.k(0);
-                    n$b n_bB = b.i.a.c.t2.n.b(this.a);
+                    b.i.a.c.t2.n.b bVarB = b.i.a.c.t2.n.b(this.a);
                     j1 j1Var = this.k;
-                    if (j1Var == null || 2 != j1Var.J || n_bB.a != j1Var.K || !"audio/ac4".equals(j1Var.w)) {
-                        j1$b j1_b = new j1$b();
-                        j1_b.a = this.d;
-                        j1_b.k = "audio/ac4";
-                        j1_b.f1023x = 2;
-                        j1_b.f1024y = n_bB.a;
-                        j1_b.c = this.c;
-                        j1 j1VarA = j1_b.a();
+                    if (j1Var == null || 2 != j1Var.J || bVarB.a != j1Var.K || !"audio/ac4".equals(j1Var.w)) {
+                        j1.b bVar = new j1.b();
+                        bVar.a = this.d;
+                        bVar.k = "audio/ac4";
+                        bVar.f1023x = 2;
+                        bVar.f1024y = bVarB.a;
+                        bVar.c = this.c;
+                        j1 j1VarA = bVar.a();
                         this.k = j1VarA;
                         this.e.e(j1VarA);
                     }
-                    this.l = n_bB.f1124b;
-                    this.j = (((long) n_bB.c) * 1000000) / ((long) this.k.K);
+                    this.l = bVarB.f1124b;
+                    this.j = (((long) bVarB.c) * 1000000) / ((long) this.k.K);
                     this.f1256b.E(0);
                     this.e.c(this.f1256b, 16);
                     this.f = 2;
@@ -129,10 +127,10 @@ public final class i implements o {
     }
 
     @Override // b.i.a.c.x2.k0.o
-    public void e(b.i.a.c.x2.j jVar, i0$d i0_d) {
-        i0_d.a();
-        this.d = i0_d.b();
-        this.e = jVar.p(i0_d.c(), 1);
+    public void e(b.i.a.c.x2.j jVar, i0.d dVar) {
+        dVar.a();
+        this.d = dVar.b();
+        this.e = jVar.p(dVar.c(), 1);
     }
 
     @Override // b.i.a.c.x2.k0.o

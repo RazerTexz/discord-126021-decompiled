@@ -1,11 +1,12 @@
 package com.discord.stores;
 
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import kotlin.jvm.functions.Function0;
 import rx.Observable;
 
 /* JADX INFO: compiled from: StoreVoiceSpeaking.kt */
@@ -14,6 +15,25 @@ public final class StoreVoiceSpeaking extends StoreV2 {
     private final ObservationDeck observationDeck;
     private final HashSet<Long> speakingUsers;
     private Set<Long> speakingUsersSnapshot;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreVoiceSpeaking$observeSpeakingUsers$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreVoiceSpeaking.kt */
+    public final class AnonymousClass1 extends o implements Function0<Set<? extends Long>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Set<? extends Long> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Set<? extends Long> invoke2() {
+            return StoreVoiceSpeaking.this.getSpeakingUsers();
+        }
+    }
 
     public StoreVoiceSpeaking(ObservationDeck observationDeck) {
         m.checkNotNullParameter(observationDeck, "observationDeck");
@@ -27,12 +47,12 @@ public final class StoreVoiceSpeaking extends StoreV2 {
     }
 
     @StoreThread
-    public final void handleSpeakingUpdates(List<StoreRtcConnection$SpeakingUserUpdate> speakingList) {
+    public final void handleSpeakingUpdates(List<StoreRtcConnection.SpeakingUserUpdate> speakingList) {
         m.checkNotNullParameter(speakingList, "speakingList");
         boolean z2 = false;
-        for (StoreRtcConnection$SpeakingUserUpdate storeRtcConnection$SpeakingUserUpdate : speakingList) {
-            long userId = storeRtcConnection$SpeakingUserUpdate.getUserId();
-            boolean zAdd = storeRtcConnection$SpeakingUserUpdate.getIsSpeaking() ? this.speakingUsers.add(Long.valueOf(userId)) : this.speakingUsers.remove(Long.valueOf(userId));
+        for (StoreRtcConnection.SpeakingUserUpdate speakingUserUpdate : speakingList) {
+            long userId = speakingUserUpdate.getUserId();
+            boolean zAdd = speakingUserUpdate.getIsSpeaking() ? this.speakingUsers.add(Long.valueOf(userId)) : this.speakingUsers.remove(Long.valueOf(userId));
             if (!z2 && zAdd) {
                 z2 = true;
             }
@@ -52,7 +72,7 @@ public final class StoreVoiceSpeaking extends StoreV2 {
     }
 
     public final Observable<Set<Long>> observeSpeakingUsers() {
-        Observable<Set<Long>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreVoiceSpeaking$observeSpeakingUsers$1(this), 14, null).r();
+        Observable<Set<Long>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
         return observableR;
     }

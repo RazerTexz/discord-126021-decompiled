@@ -5,7 +5,6 @@ import d0.e0.p.d.m0.c.e;
 import d0.e0.p.d.m0.c.e0;
 import d0.e0.p.d.m0.d.b.b;
 import d0.e0.p.d.m0.d.b.c;
-import d0.e0.p.d.m0.d.b.c$a;
 import d0.e0.p.d.m0.d.b.f;
 import d0.z.d.m;
 
@@ -18,7 +17,7 @@ public final class a {
         m.checkNotNullParameter(bVar, "from");
         m.checkNotNullParameter(eVar, "scopeOwner");
         m.checkNotNullParameter(eVar2, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        if (cVar == c$a.a || (location = bVar.getLocation()) == null) {
+        if (cVar == c.a.a || (location = bVar.getLocation()) == null) {
             return;
         }
         d0.e0.p.d.m0.d.b.e position = cVar.getRequiresPosition() ? location.getPosition() : d0.e0.p.d.m0.d.b.e.j.getNO_POSITION();
@@ -37,7 +36,7 @@ public final class a {
         m.checkNotNullParameter(bVar, "from");
         m.checkNotNullParameter(str, "packageFqName");
         m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        if (cVar == c$a.a || (location = bVar.getLocation()) == null) {
+        if (cVar == c.a.a || (location = bVar.getLocation()) == null) {
             return;
         }
         cVar.record(location.getFilePath(), cVar.getRequiresPosition() ? location.getPosition() : d0.e0.p.d.m0.d.b.e.j.getNO_POSITION(), str, f.PACKAGE, str2);

@@ -23,7 +23,7 @@ public final class SpotifyMetadataReceiver extends BroadcastReceiver {
         }
         m.checkNotNullExpressionValue(stringExtra, "intent.getStringExtra(\"id\") ?: return");
         try {
-            StoreStream.Companion.getSpotify().setCurrentTrackId((String) u.last(w.split$default((CharSequence) stringExtra, new String[]{":"}, false, 0, 6, (Object) null)));
+            StoreStream.INSTANCE.getSpotify().setCurrentTrackId((String) u.last(w.split$default((CharSequence) stringExtra, new String[]{":"}, false, 0, 6, (Object) null)));
         } catch (Exception unused) {
             Logger.e$default(AppLog.g, a.w("Error parsing spotify track id: ", stringExtra), null, null, 6, null);
         }

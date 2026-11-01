@@ -4,7 +4,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.text.TextUtils;
 import android.util.Pair;
-import b.i.a.f.h.l.a1$a;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +61,7 @@ public final class ca {
                         try {
                             if (cursorRawQuery.moveToFirst()) {
                                 try {
-                                    pairCreate = Pair.create((b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) ((a1$a) q9.x(b.i.a.f.h.l.a1.M(), cursorRawQuery.getBlob(0))).p()), Long.valueOf(cursorRawQuery.getLong(1)));
+                                    pairCreate = Pair.create((b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) ((b.i.a.f.h.l.a1.a) q9.x(b.i.a.f.h.l.a1.M(), cursorRawQuery.getBlob(0))).p()), Long.valueOf(cursorRawQuery.getLong(1)));
                                     cursorRawQuery.close();
                                 } catch (IOException e) {
                                     gVarQ.g().f.d("Failed to merge main event. appId, eventId", q3.s(str), l, e);
@@ -125,7 +124,7 @@ public final class ca {
                         cursorRawQuery.close();
                         pairCreate = null;
                     } else {
-                        pairCreate = Pair.create((b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) ((a1$a) q9.x(b.i.a.f.h.l.a1.M(), cursorRawQuery.getBlob(0))).p()), Long.valueOf(cursorRawQuery.getLong(1)));
+                        pairCreate = Pair.create((b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) ((b.i.a.f.h.l.a1.a) q9.x(b.i.a.f.h.l.a1.M(), cursorRawQuery.getBlob(0))).p()), Long.valueOf(cursorRawQuery.getLong(1)));
                         cursorRawQuery.close();
                     }
                     if (pairCreate != null) {
@@ -175,18 +174,18 @@ public final class ca {
                 this.d.q().Q(str, l, this.c, a1Var);
             }
         }
-        a1$a a1_aT = a1Var.t();
-        a1_aT.t(strF);
-        if (a1_aT.l) {
-            a1_aT.n();
-            a1_aT.l = false;
+        b.i.a.f.h.l.a1.a aVarT = a1Var.t();
+        aVarT.t(strF);
+        if (aVarT.l) {
+            aVarT.n();
+            aVarT.l = false;
         }
-        b.i.a.f.h.l.a1.w((b.i.a.f.h.l.a1) a1_aT.k);
-        if (a1_aT.l) {
-            a1_aT.n();
-            a1_aT.l = false;
+        b.i.a.f.h.l.a1.w((b.i.a.f.h.l.a1) aVarT.k);
+        if (aVarT.l) {
+            aVarT.n();
+            aVarT.l = false;
         }
-        b.i.a.f.h.l.a1.B((b.i.a.f.h.l.a1) a1_aT.k, listV);
-        return (b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) a1_aT.p());
+        b.i.a.f.h.l.a1.B((b.i.a.f.h.l.a1) aVarT.k, listV);
+        return (b.i.a.f.h.l.a1) ((b.i.a.f.h.l.u4) aVarT.p());
     }
 }

@@ -1,9 +1,8 @@
 package com.google.android.exoplayer2.metadata.id3;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
 import b.i.a.c.f3.e0;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -11,7 +10,19 @@ public final class CommentFrame extends Id3Frame {
     public final String k;
     public final String l;
     public final String m;
-    public static final Parcelable$Creator<CommentFrame> CREATOR = new CommentFrame$a();
+    public static final Parcelable.Creator<CommentFrame> CREATOR = new a();
+
+    public class a implements Parcelable.Creator<CommentFrame> {
+        @Override // android.os.Parcelable.Creator
+        public CommentFrame createFromParcel(Parcel parcel) {
+            return new CommentFrame(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public CommentFrame[] newArray(int i) {
+            return new CommentFrame[i];
+        }
+    }
 
     public CommentFrame(String str, String str2, String str3) {
         super("COMM");
@@ -45,7 +56,7 @@ public final class CommentFrame extends Id3Frame {
         String str = this.j;
         String str2 = this.k;
         String str3 = this.l;
-        StringBuilder sbS = a.S(a.b(str3, a.b(str2, a.b(str, 25))), str, ": language=", str2, ", description=");
+        StringBuilder sbS = b.d.b.a.a.S(b.d.b.a.a.b(str3, b.d.b.a.a.b(str2, b.d.b.a.a.b(str, 25))), str, ": language=", str2, ", description=");
         sbS.append(str3);
         return sbS.toString();
     }

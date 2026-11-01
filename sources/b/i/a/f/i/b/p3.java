@@ -2,7 +2,6 @@ package b.i.a.f.i.b;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase$CursorFactory;
 import android.database.sqlite.SQLiteDatabaseLockedException;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -15,7 +14,7 @@ public final class p3 extends SQLiteOpenHelper {
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public p3(m3 m3Var, Context context, String str) {
-        super(context, str, (SQLiteDatabase$CursorFactory) null, 1);
+        super(context, str, (SQLiteDatabase.CursorFactory) null, 1);
         this.j = m3Var;
     }
 

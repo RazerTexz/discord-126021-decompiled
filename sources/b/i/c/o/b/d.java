@@ -6,18 +6,16 @@ import android.os.IInterface;
 import android.os.Looper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import b.i.a.f.e.h.c$a;
-import b.i.a.f.e.h.c$b;
 import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: compiled from: com.google.firebase:firebase-dynamic-links@@19.1.1 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class d extends b.i.a.f.e.k.d<j> {
-    public d(Context context, Looper looper, b.i.a.f.e.k.c cVar, c$a c_a, c$b c_b) {
-        super(context, looper, Opcodes.LXOR, cVar, c_a, c_b);
+    public d(Context context, Looper looper, b.i.a.f.e.k.c cVar, b.i.a.f.e.h.c.a aVar, b.i.a.f.e.h.c.b bVar) {
+        super(context, looper, Opcodes.LXOR, cVar, aVar, bVar);
     }
 
-    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a$f
+    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a.f
     public final int l() {
         return 12451000;
     }

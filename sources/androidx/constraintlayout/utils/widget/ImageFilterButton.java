@@ -3,21 +3,22 @@ package androidx.constraintlayout.utils.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Outline;
 import android.graphics.Path;
-import android.graphics.Path$Direction;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewOutlineProvider;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.constraintlayout.widget.R$styleable;
+import androidx.constraintlayout.widget.R;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ImageFilterButton extends AppCompatImageButton {
     private float mCrossfade;
-    private ImageFilterView$ImageMatrix mImageMatrix;
+    private ImageFilterView.ImageMatrix mImageMatrix;
     public LayerDrawable mLayer;
     public Drawable[] mLayers;
     private boolean mOverlay;
@@ -27,9 +28,33 @@ public class ImageFilterButton extends AppCompatImageButton {
     private float mRoundPercent;
     public ViewOutlineProvider mViewOutlineProvider;
 
+    /* JADX INFO: renamed from: androidx.constraintlayout.utils.widget.ImageFilterButton$1, reason: invalid class name */
+    public class AnonymousClass1 extends ViewOutlineProvider {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.ViewOutlineProvider
+        public void getOutline(View view, Outline outline) {
+            int width = ImageFilterButton.this.getWidth();
+            int height = ImageFilterButton.this.getHeight();
+            outline.setRoundRect(0, 0, width, height, (ImageFilterButton.access$000(ImageFilterButton.this) * Math.min(width, height)) / 2.0f);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.constraintlayout.utils.widget.ImageFilterButton$2, reason: invalid class name */
+    public class AnonymousClass2 extends ViewOutlineProvider {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.ViewOutlineProvider
+        public void getOutline(View view, Outline outline) {
+            outline.setRoundRect(0, 0, ImageFilterButton.this.getWidth(), ImageFilterButton.this.getHeight(), ImageFilterButton.access$100(ImageFilterButton.this));
+        }
+    }
+
     public ImageFilterButton(Context context) {
         super(context);
-        this.mImageMatrix = new ImageFilterView$ImageMatrix();
+        this.mImageMatrix = new ImageFilterView.ImageMatrix();
         this.mCrossfade = 0.0f;
         this.mRoundPercent = 0.0f;
         this.mRound = Float.NaN;
@@ -80,24 +105,24 @@ public class ImageFilterButton extends AppCompatImageButton {
     private void init(Context context, AttributeSet attributeSet) {
         setPadding(0, 0, 0, 0);
         if (attributeSet != null) {
-            TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R$styleable.ImageFilterView);
+            TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.styleable.ImageFilterView);
             int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
-            Drawable drawable = typedArrayObtainStyledAttributes.getDrawable(R$styleable.ImageFilterView_altSrc);
+            Drawable drawable = typedArrayObtainStyledAttributes.getDrawable(R.styleable.ImageFilterView_altSrc);
             for (int i = 0; i < indexCount; i++) {
                 int index = typedArrayObtainStyledAttributes.getIndex(i);
-                if (index == R$styleable.ImageFilterView_crossfade) {
+                if (index == R.styleable.ImageFilterView_crossfade) {
                     this.mCrossfade = typedArrayObtainStyledAttributes.getFloat(index, 0.0f);
-                } else if (index == R$styleable.ImageFilterView_warmth) {
+                } else if (index == R.styleable.ImageFilterView_warmth) {
                     setWarmth(typedArrayObtainStyledAttributes.getFloat(index, 0.0f));
-                } else if (index == R$styleable.ImageFilterView_saturation) {
+                } else if (index == R.styleable.ImageFilterView_saturation) {
                     setSaturation(typedArrayObtainStyledAttributes.getFloat(index, 0.0f));
-                } else if (index == R$styleable.ImageFilterView_contrast) {
+                } else if (index == R.styleable.ImageFilterView_contrast) {
                     setContrast(typedArrayObtainStyledAttributes.getFloat(index, 0.0f));
-                } else if (index == R$styleable.ImageFilterView_round) {
+                } else if (index == R.styleable.ImageFilterView_round) {
                     setRound(typedArrayObtainStyledAttributes.getDimension(index, 0.0f));
-                } else if (index == R$styleable.ImageFilterView_roundPercent) {
+                } else if (index == R.styleable.ImageFilterView_roundPercent) {
                     setRoundPercent(typedArrayObtainStyledAttributes.getFloat(index, 0.0f));
-                } else if (index == R$styleable.ImageFilterView_overlay) {
+                } else if (index == R.styleable.ImageFilterView_overlay) {
                     setOverlay(typedArrayObtainStyledAttributes.getBoolean(index, this.mOverlay));
                 }
             }
@@ -116,15 +141,15 @@ public class ImageFilterButton extends AppCompatImageButton {
     }
 
     public void setBrightness(float f) {
-        ImageFilterView$ImageMatrix imageFilterView$ImageMatrix = this.mImageMatrix;
-        imageFilterView$ImageMatrix.mBrightness = f;
-        imageFilterView$ImageMatrix.updateMatrix(this);
+        ImageFilterView.ImageMatrix imageMatrix = this.mImageMatrix;
+        imageMatrix.mBrightness = f;
+        imageMatrix.updateMatrix(this);
     }
 
     public void setContrast(float f) {
-        ImageFilterView$ImageMatrix imageFilterView$ImageMatrix = this.mImageMatrix;
-        imageFilterView$ImageMatrix.mContrast = f;
-        imageFilterView$ImageMatrix.updateMatrix(this);
+        ImageFilterView.ImageMatrix imageMatrix = this.mImageMatrix;
+        imageMatrix.mContrast = f;
+        imageMatrix.updateMatrix(this);
     }
 
     public void setCrossfade(float f) {
@@ -161,9 +186,9 @@ public class ImageFilterButton extends AppCompatImageButton {
                 this.mRect = new RectF();
             }
             if (this.mViewOutlineProvider == null) {
-                ImageFilterButton$2 imageFilterButton$2 = new ImageFilterButton$2(this);
-                this.mViewOutlineProvider = imageFilterButton$2;
-                setOutlineProvider(imageFilterButton$2);
+                AnonymousClass2 anonymousClass2 = new AnonymousClass2();
+                this.mViewOutlineProvider = anonymousClass2;
+                setOutlineProvider(anonymousClass2);
             }
             setClipToOutline(true);
             this.mRect.set(0.0f, 0.0f, getWidth(), getHeight());
@@ -171,7 +196,7 @@ public class ImageFilterButton extends AppCompatImageButton {
             Path path = this.mPath;
             RectF rectF = this.mRect;
             float f3 = this.mRound;
-            path.addRoundRect(rectF, f3, f3, Path$Direction.CW);
+            path.addRoundRect(rectF, f3, f3, Path.Direction.CW);
         } else {
             setClipToOutline(false);
         }
@@ -192,9 +217,9 @@ public class ImageFilterButton extends AppCompatImageButton {
                 this.mRect = new RectF();
             }
             if (this.mViewOutlineProvider == null) {
-                ImageFilterButton$1 imageFilterButton$1 = new ImageFilterButton$1(this);
-                this.mViewOutlineProvider = imageFilterButton$1;
-                setOutlineProvider(imageFilterButton$1);
+                AnonymousClass1 anonymousClass1 = new AnonymousClass1();
+                this.mViewOutlineProvider = anonymousClass1;
+                setOutlineProvider(anonymousClass1);
             }
             setClipToOutline(true);
             int width = getWidth();
@@ -202,7 +227,7 @@ public class ImageFilterButton extends AppCompatImageButton {
             float fMin = (Math.min(width, height) * this.mRoundPercent) / 2.0f;
             this.mRect.set(0.0f, 0.0f, width, height);
             this.mPath.reset();
-            this.mPath.addRoundRect(this.mRect, fMin, fMin, Path$Direction.CW);
+            this.mPath.addRoundRect(this.mRect, fMin, fMin, Path.Direction.CW);
         } else {
             setClipToOutline(false);
         }
@@ -212,20 +237,20 @@ public class ImageFilterButton extends AppCompatImageButton {
     }
 
     public void setSaturation(float f) {
-        ImageFilterView$ImageMatrix imageFilterView$ImageMatrix = this.mImageMatrix;
-        imageFilterView$ImageMatrix.mSaturation = f;
-        imageFilterView$ImageMatrix.updateMatrix(this);
+        ImageFilterView.ImageMatrix imageMatrix = this.mImageMatrix;
+        imageMatrix.mSaturation = f;
+        imageMatrix.updateMatrix(this);
     }
 
     public void setWarmth(float f) {
-        ImageFilterView$ImageMatrix imageFilterView$ImageMatrix = this.mImageMatrix;
-        imageFilterView$ImageMatrix.mWarmth = f;
-        imageFilterView$ImageMatrix.updateMatrix(this);
+        ImageFilterView.ImageMatrix imageMatrix = this.mImageMatrix;
+        imageMatrix.mWarmth = f;
+        imageMatrix.updateMatrix(this);
     }
 
     public ImageFilterButton(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        this.mImageMatrix = new ImageFilterView$ImageMatrix();
+        this.mImageMatrix = new ImageFilterView.ImageMatrix();
         this.mCrossfade = 0.0f;
         this.mRoundPercent = 0.0f;
         this.mRound = Float.NaN;
@@ -235,7 +260,7 @@ public class ImageFilterButton extends AppCompatImageButton {
 
     public ImageFilterButton(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
-        this.mImageMatrix = new ImageFilterView$ImageMatrix();
+        this.mImageMatrix = new ImageFilterView.ImageMatrix();
         this.mCrossfade = 0.0f;
         this.mRoundPercent = 0.0f;
         this.mRound = Float.NaN;

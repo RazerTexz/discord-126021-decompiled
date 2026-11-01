@@ -2,7 +2,6 @@ package b.i.a.f.e.h.j;
 
 import android.app.PendingIntent;
 import android.content.DialogInterface;
-import android.content.DialogInterface$OnCancelListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,7 +13,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public abstract class t0 extends LifecycleCallback implements DialogInterface$OnCancelListener {
+public abstract class t0 extends LifecycleCallback implements DialogInterface.OnCancelListener {
     public volatile boolean k;
     public final AtomicReference<s0> l;
     public final Handler m;
@@ -103,7 +102,7 @@ public abstract class t0 extends LifecycleCallback implements DialogInterface$On
         }
     }
 
-    @Override // android.content.DialogInterface$OnCancelListener
+    @Override // android.content.DialogInterface.OnCancelListener
     public void onCancel(DialogInterface dialogInterface) {
         ConnectionResult connectionResult = new ConnectionResult(13, null);
         s0 s0Var = this.l.get();

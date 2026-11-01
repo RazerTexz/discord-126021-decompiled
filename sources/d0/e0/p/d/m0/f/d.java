@@ -1,18 +1,16 @@
 package d0.e0.p.d.m0.f;
 
-import d0.e0.p.d.m0.i.g$c;
-import d0.e0.p.d.m0.i.g$d;
-import d0.e0.p.d.m0.i.g$d$a;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import kotlin.reflect.jvm.internal.impl.protobuf.CodedOutputStream;
 import kotlin.reflect.jvm.internal.impl.protobuf.InvalidProtocolBufferException;
+import kotlin.reflect.jvm.internal.impl.protobuf.UninitializedMessageException;
 
 /* JADX INFO: compiled from: ProtoBuf.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class d extends g$d<d> implements d0.e0.p.d.m0.i.o {
+public final class d extends d0.e0.p.d.m0.i.g.d<d> implements d0.e0.p.d.m0.i.o {
     private int bitField0_;
     private int flags_;
     public static final d j;
@@ -21,7 +19,166 @@ public final class d extends g$d<d> implements d0.e0.p.d.m0.i.o {
     private final d0.e0.p.d.m0.i.c unknownFields;
     private List<u> valueParameter_;
     private List<Integer> versionRequirement_;
-    public static d0.e0.p.d.m0.i.p<d> k = new d$a();
+    public static d0.e0.p.d.m0.i.p<d> k = new a();
+
+    /* JADX INFO: compiled from: ProtoBuf.java */
+    public final class a extends d0.e0.p.d.m0.i.b<d> {
+        @Override // d0.e0.p.d.m0.i.p
+        public /* bridge */ /* synthetic */ Object parsePartialFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws InvalidProtocolBufferException {
+            return parsePartialFrom(dVar, eVar);
+        }
+
+        @Override // d0.e0.p.d.m0.i.p
+        public d parsePartialFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws InvalidProtocolBufferException {
+            return new d(dVar, eVar, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: ProtoBuf.java */
+    public final class b extends d0.e0.p.d.m0.i.g.c<d, b> implements d0.e0.p.d.m0.i.o {
+        public int m;
+        public int n = 6;
+        public List<u> o = Collections.emptyList();
+        public List<Integer> p = Collections.emptyList();
+
+        @Override // d0.e0.p.d.m0.i.n.a
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n build() {
+            return build();
+        }
+
+        public d buildPartial() {
+            d dVar = new d(this, null);
+            int i = (this.m & 1) != 1 ? 0 : 1;
+            d.h(dVar, this.n);
+            if ((this.m & 2) == 2) {
+                this.o = Collections.unmodifiableList(this.o);
+                this.m &= -3;
+            }
+            d.j(dVar, this.o);
+            if ((this.m & 4) == 4) {
+                this.p = Collections.unmodifiableList(this.p);
+                this.m &= -5;
+            }
+            d.l(dVar, this.p);
+            d.m(dVar, i);
+            return dVar;
+        }
+
+        @Override // d0.e0.p.d.m0.i.a.AbstractC0556a, d0.e0.p.d.m0.i.n.a
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.a.AbstractC0556a mergeFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws IOException {
+            return mergeFrom(dVar, eVar);
+        }
+
+        @Override // d0.e0.p.d.m0.i.g.b
+        /* JADX INFO: renamed from: clone */
+        public /* bridge */ /* synthetic */ Object mo88clone() throws CloneNotSupportedException {
+            return clone();
+        }
+
+        public b setFlags(int i) {
+            this.m |= 1;
+            this.n = i;
+            return this;
+        }
+
+        @Override // d0.e0.p.d.m0.i.n.a
+        public d build() {
+            d dVarBuildPartial = buildPartial();
+            if (dVarBuildPartial.isInitialized()) {
+                return dVarBuildPartial;
+            }
+            throw new UninitializedMessageException(dVarBuildPartial);
+        }
+
+        @Override // d0.e0.p.d.m0.i.g.b
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.g.b clone() {
+            return clone();
+        }
+
+        @Override // d0.e0.p.d.m0.i.g.b
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.g.b mergeFrom(d0.e0.p.d.m0.i.g gVar) {
+            return mergeFrom((d) gVar);
+        }
+
+        @Override // d0.e0.p.d.m0.i.g.b
+        public b clone() {
+            return new b().mergeFrom(buildPartial());
+        }
+
+        @Override // d0.e0.p.d.m0.i.a.AbstractC0556a, d0.e0.p.d.m0.i.n.a
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n.a mergeFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws IOException {
+            return mergeFrom(dVar, eVar);
+        }
+
+        public b mergeFrom(d dVar) {
+            if (dVar == d.getDefaultInstance()) {
+                return this;
+            }
+            if (dVar.hasFlags()) {
+                setFlags(dVar.getFlags());
+            }
+            if (!d.i(dVar).isEmpty()) {
+                if (this.o.isEmpty()) {
+                    this.o = d.i(dVar);
+                    this.m &= -3;
+                } else {
+                    if ((this.m & 2) != 2) {
+                        this.o = new ArrayList(this.o);
+                        this.m |= 2;
+                    }
+                    this.o.addAll(d.i(dVar));
+                }
+            }
+            if (!d.k(dVar).isEmpty()) {
+                if (this.p.isEmpty()) {
+                    this.p = d.k(dVar);
+                    this.m &= -5;
+                } else {
+                    if ((this.m & 4) != 4) {
+                        this.p = new ArrayList(this.p);
+                        this.m |= 4;
+                    }
+                    this.p.addAll(d.k(dVar));
+                }
+            }
+            b(dVar);
+            setUnknownFields(getUnknownFields().concat(d.n(dVar)));
+            return this;
+        }
+
+        /* JADX WARN: Code duplicated, block: B:15:0x001d  */
+        @Override // d0.e0.p.d.m0.i.a.AbstractC0556a, d0.e0.p.d.m0.i.n.a
+        public b mergeFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws Throwable {
+            d dVar2 = null;
+            try {
+                try {
+                    d partialFrom = d.k.parsePartialFrom(dVar, eVar);
+                    if (partialFrom != null) {
+                        mergeFrom(partialFrom);
+                    }
+                    return this;
+                } catch (InvalidProtocolBufferException e) {
+                    d dVar3 = (d) e.getUnfinishedMessage();
+                    try {
+                        throw e;
+                    } catch (Throwable th) {
+                        th = th;
+                        dVar2 = dVar3;
+                        if (dVar2 != null) {
+                            mergeFrom(dVar2);
+                        }
+                        throw th;
+                    }
+                }
+            } catch (Throwable th2) {
+                th = th2;
+                if (dVar2 != null) {
+                    mergeFrom(dVar2);
+                }
+                throw th;
+            }
+        }
+    }
 
     static {
         d dVar = new d();
@@ -31,11 +188,11 @@ public final class d extends g$d<d> implements d0.e0.p.d.m0.i.o {
         dVar.versionRequirement_ = Collections.emptyList();
     }
 
-    public d(g$c g_c, a aVar) {
-        super(g_c);
+    public d(d0.e0.p.d.m0.i.g.c cVar, d0.e0.p.d.m0.f.a aVar) {
+        super(cVar);
         this.memoizedIsInitialized = (byte) -1;
         this.memoizedSerializedSize = -1;
-        this.unknownFields = g_c.getUnknownFields();
+        this.unknownFields = cVar.getUnknownFields();
     }
 
     public static d getDefaultInstance() {
@@ -145,24 +302,24 @@ public final class d extends g$d<d> implements d0.e0.p.d.m0.i.o {
         return dVar.unknownFields;
     }
 
-    public static d$b newBuilder(d dVar) {
+    public static b newBuilder(d dVar) {
         return newBuilder().mergeFrom(dVar);
     }
 
     @Override // d0.e0.p.d.m0.i.n
-    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n$a newBuilderForType() {
+    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n.a newBuilderForType() {
         return newBuilderForType();
     }
 
     @Override // d0.e0.p.d.m0.i.n
-    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n$a toBuilder() {
+    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n.a toBuilder() {
         return toBuilder();
     }
 
     @Override // d0.e0.p.d.m0.i.n
     public void writeTo(CodedOutputStream codedOutputStream) throws IOException {
         getSerializedSize();
-        g$d$a g_d_aE = e();
+        d0.e0.p.d.m0.i.g.d<MessageType>.a aVarE = e();
         if ((this.bitField0_ & 1) == 1) {
             codedOutputStream.writeInt32(1, this.flags_);
         }
@@ -172,7 +329,7 @@ public final class d extends g$d<d> implements d0.e0.p.d.m0.i.o {
         for (int i2 = 0; i2 < this.versionRequirement_.size(); i2++) {
             codedOutputStream.writeInt32(31, this.versionRequirement_.get(i2).intValue());
         }
-        g_d_aE.writeUntil(19000, codedOutputStream);
+        aVarE.writeUntil(19000, codedOutputStream);
         codedOutputStream.writeRawBytes(this.unknownFields);
     }
 
@@ -181,17 +338,17 @@ public final class d extends g$d<d> implements d0.e0.p.d.m0.i.o {
         return j;
     }
 
-    public static d$b newBuilder() {
-        return new d$b();
+    public static b newBuilder() {
+        return new b();
     }
 
     @Override // d0.e0.p.d.m0.i.n
-    public d$b newBuilderForType() {
+    public b newBuilderForType() {
         return newBuilder();
     }
 
     @Override // d0.e0.p.d.m0.i.n
-    public d$b toBuilder() {
+    public b toBuilder() {
         return newBuilder(this);
     }
 
@@ -201,14 +358,14 @@ public final class d extends g$d<d> implements d0.e0.p.d.m0.i.o {
         this.unknownFields = d0.e0.p.d.m0.i.c.j;
     }
 
-    public d(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar, a aVar) throws InvalidProtocolBufferException {
+    public d(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar, d0.e0.p.d.m0.f.a aVar) throws InvalidProtocolBufferException {
         this.memoizedIsInitialized = (byte) -1;
         this.memoizedSerializedSize = -1;
         this.flags_ = 6;
         this.valueParameter_ = Collections.emptyList();
         this.versionRequirement_ = Collections.emptyList();
-        d0.e0.p.d.m0.i.c$b c_bNewOutput = d0.e0.p.d.m0.i.c.newOutput();
-        CodedOutputStream codedOutputStreamNewInstance = CodedOutputStream.newInstance(c_bNewOutput, 1);
+        d0.e0.p.d.m0.i.c.b bVarNewOutput = d0.e0.p.d.m0.i.c.newOutput();
+        CodedOutputStream codedOutputStreamNewInstance = CodedOutputStream.newInstance(bVarNewOutput, 1);
         boolean z2 = false;
         int i = 0;
         while (!z2) {
@@ -258,10 +415,10 @@ public final class d extends g$d<d> implements d0.e0.p.d.m0.i.o {
                         codedOutputStreamNewInstance.flush();
                     } catch (IOException unused) {
                     } catch (Throwable th2) {
-                        this.unknownFields = c_bNewOutput.toByteString();
+                        this.unknownFields = bVarNewOutput.toByteString();
                         throw th2;
                     }
-                    this.unknownFields = c_bNewOutput.toByteString();
+                    this.unknownFields = bVarNewOutput.toByteString();
                     d();
                     throw th;
                 }
@@ -281,10 +438,10 @@ public final class d extends g$d<d> implements d0.e0.p.d.m0.i.o {
             codedOutputStreamNewInstance.flush();
         } catch (IOException unused2) {
         } catch (Throwable th3) {
-            this.unknownFields = c_bNewOutput.toByteString();
+            this.unknownFields = bVarNewOutput.toByteString();
             throw th3;
         }
-        this.unknownFields = c_bNewOutput.toByteString();
+        this.unknownFields = bVarNewOutput.toByteString();
         d();
     }
 }

@@ -4,10 +4,11 @@ import android.text.SpannableStringBuilder;
 import android.text.format.DateUtils;
 import android.text.style.BackgroundColorSpan;
 import androidx.exifinterface.media.ExifInterface;
+import com.discord.R;
 import com.discord.simpleast.core.node.Node;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.spans.ClickableSpan;
-import com.discord.utilities.textprocessing.node.TimestampNode$RenderContext;
+import com.discord.utilities.textprocessing.node.TimestampNode.RenderContext;
 import d0.t.n;
 import d0.z.d.m;
 import java.text.DateFormat;
@@ -17,9 +18,22 @@ import java.util.List;
 
 /* JADX INFO: compiled from: TimestampNode.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class TimestampNode<T extends TimestampNode$RenderContext> extends Node<T> {
+public final class TimestampNode<T extends RenderContext> extends Node<T> {
     private final CharSequence formatted;
     private final CharSequence full;
+
+    /* JADX INFO: compiled from: TimestampNode.kt */
+    public interface RenderContext extends BasicRenderContext {
+
+        /* JADX INFO: compiled from: TimestampNode.kt */
+        public final class DefaultImpls {
+            public static void onTimestampClicked(RenderContext renderContext, CharSequence charSequence) {
+                m.checkNotNullParameter(charSequence, "full");
+            }
+        }
+
+        void onTimestampClicked(CharSequence full);
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     /* JADX WARN: Code duplicated, block: B:38:0x00b2  */
@@ -92,13 +106,13 @@ public final class TimestampNode<T extends TimestampNode$RenderContext> extends 
 
     @Override // com.discord.simpleast.core.node.Node
     public /* bridge */ /* synthetic */ void render(SpannableStringBuilder spannableStringBuilder, Object obj) {
-        render(spannableStringBuilder, (TimestampNode$RenderContext) obj);
+        render(spannableStringBuilder, (RenderContext) obj);
     }
 
     public void render(SpannableStringBuilder builder, T renderContext) {
         m.checkNotNullParameter(builder, "builder");
         m.checkNotNullParameter(renderContext, "renderContext");
-        List listListOf = n.listOf(new ClickableSpan(null, false, null, new TimestampNode$render$styles$1(this, renderContext), 4, null), new BackgroundColorSpan(ColorCompat.getThemedColor(renderContext.getContext(), 2130968906)));
+        List listListOf = n.listOf(new ClickableSpan(null, false, null, new TimestampNode$render$styles$1(this, renderContext), 4, null), new BackgroundColorSpan(ColorCompat.getThemedColor(renderContext.getContext(), R.attr.colorBackgroundModifierAccent)));
         int length = builder.length();
         builder.append(this.formatted);
         Iterator it = listListOf.iterator();

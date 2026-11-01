@@ -1,7 +1,5 @@
 package b.g.a.c.c0;
 
-import b.g.a.a.i$d;
-import b.g.a.a.p$b;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -36,17 +34,17 @@ public class q extends b.g.a.c.c {
     }
 
     @Override // b.g.a.c.c
-    public i$d a(i$d i_d) {
-        i$d i_dH;
+    public b.g.a.a.i.d a(b.g.a.a.i.d dVar) {
+        b.g.a.a.i.d dVarH;
         b.g.a.c.b bVar = this.e;
-        if (bVar == null || (i_dH = bVar.h(this.f)) == null) {
-            i_dH = null;
+        if (bVar == null || (dVarH = bVar.h(this.f)) == null) {
+            dVarH = null;
         }
-        i$d i_dI = this.d.i(this.f.l);
-        if (i_dI != null) {
-            return i_dH == null ? i_dI : i_dH.k(i_dI);
+        b.g.a.a.i.d dVarI = this.d.i(this.f.l);
+        if (dVarI != null) {
+            return dVarH == null ? dVarI : dVarH.k(dVarI);
         }
-        return i_dH;
+        return dVarH;
     }
 
     @Override // b.g.a.c.c
@@ -70,13 +68,13 @@ public class q extends b.g.a.c.c {
     }
 
     @Override // b.g.a.c.c
-    public p$b c(p$b p_b) {
-        p$b p_bZ;
-        b.g.a.c.b bVar = this.e;
-        if (bVar == null || (p_bZ = bVar.z(this.f)) == null) {
-            return p_b;
+    public b.g.a.a.p.b c(b.g.a.a.p.b bVar) {
+        b.g.a.a.p.b bVarZ;
+        b.g.a.c.b bVar2 = this.e;
+        if (bVar2 == null || (bVarZ = bVar2.z(this.f)) == null) {
+            return bVar;
         }
-        return p_b == null ? p_bZ : p_b.a(p_bZ);
+        return bVar == null ? bVarZ : bVar.a(bVarZ);
     }
 
     public List<s> d() {

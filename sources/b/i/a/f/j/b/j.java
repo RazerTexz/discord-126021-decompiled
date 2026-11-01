@@ -1,12 +1,12 @@
 package b.i.a.f.j.b;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.nearby.messages.Strategy;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class j implements Parcelable$Creator<Strategy> {
-    @Override // android.os.Parcelable$Creator
+public final class j implements Parcelable.Creator<Strategy> {
+    @Override // android.os.Parcelable.Creator
     public final Strategy createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         int iG1 = 0;
@@ -55,7 +55,7 @@ public final class j implements Parcelable$Creator<Strategy> {
         return new Strategy(iG1, iG2, iG3, iG4, zE1, iG5, iG6, iG7);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ Strategy[] newArray(int i) {
         return new Strategy[i];
     }

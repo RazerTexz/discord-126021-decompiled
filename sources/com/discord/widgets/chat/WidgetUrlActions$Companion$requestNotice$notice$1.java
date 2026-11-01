@@ -25,10 +25,10 @@ public final class WidgetUrlActions$Companion$requestNotice$notice$1 extends o i
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(FragmentActivity fragmentActivity) {
         m.checkNotNullParameter(fragmentActivity, "fragmentActivity");
-        WidgetUrlActions$Companion widgetUrlActions$Companion = WidgetUrlActions.Companion;
+        WidgetUrlActions.Companion companion = WidgetUrlActions.INSTANCE;
         FragmentManager supportFragmentManager = fragmentActivity.getSupportFragmentManager();
         m.checkNotNullExpressionValue(supportFragmentManager, "fragmentActivity.supportFragmentManager");
-        widgetUrlActions$Companion.launch(supportFragmentManager, this.$url);
+        companion.launch(supportFragmentManager, this.$url);
         return true;
     }
 }

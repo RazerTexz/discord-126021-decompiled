@@ -1,11 +1,10 @@
 package defpackage;
 
 import android.view.View;
-import android.view.View$OnClickListener;
 
 /* JADX INFO: compiled from: java-style lambda group */
 /* JADX INFO: loaded from: classes.dex */
-public final class d implements View$OnClickListener {
+public final class d implements View.OnClickListener {
     public static final d j = new d(0);
     public static final d k = new d(1);
     public static final d l = new d(2);
@@ -16,7 +15,7 @@ public final class d implements View$OnClickListener {
         this.n = i;
     }
 
-    @Override // android.view.View$OnClickListener
+    @Override // android.view.View.OnClickListener
     public final void onClick(View view) {
         int i = this.n;
         if (i != 0 && i != 1 && i != 2 && i != 3) {

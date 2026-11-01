@@ -8,6 +8,7 @@ import android.os.IBinder;
 import android.util.Log;
 import androidx.annotation.GuardedBy;
 import androidx.annotation.Nullable;
+import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.concurrent.ScheduledExecutorService;
@@ -19,7 +20,7 @@ public class d0 implements ServiceConnection {
     public final Context j;
     public final Intent k;
     public final ScheduledExecutorService l;
-    public final Queue<d0$a> m;
+    public final Queue<a> m;
 
     @Nullable
     public a0 n;
@@ -123,5 +124,21 @@ public class d0 implements ServiceConnection {
             Log.d("FirebaseInstanceId", sb.toString());
         }
         b();
+    }
+
+    /* JADX INFO: compiled from: com.google.firebase:firebase-iid@@21.0.0 */
+    public class a {
+        public final Intent a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final TaskCompletionSource<Void> f1765b = new TaskCompletionSource<>();
+
+        public a(Intent intent) {
+            this.a = intent;
+        }
+
+        public void a() {
+            this.f1765b.b(null);
+        }
     }
 }

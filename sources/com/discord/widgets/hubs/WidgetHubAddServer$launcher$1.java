@@ -3,7 +3,7 @@ package com.discord.widgets.hubs;
 import android.content.Intent;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
-import com.discord.widgets.guilds.create.WidgetGuildCreate$Result;
+import com.discord.widgets.guilds.create.WidgetGuildCreate;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: WidgetHubAddServer.kt */
@@ -22,17 +22,17 @@ public final class WidgetHubAddServer$launcher$1<O> implements ActivityResultCal
 
     /* JADX INFO: renamed from: onActivityResult, reason: avoid collision after fix types in other method */
     public final void onActivityResult2(ActivityResult activityResult) {
-        WidgetGuildCreate$Result widgetGuildCreate$Result;
+        WidgetGuildCreate.Result result;
         m.checkNotNullExpressionValue(activityResult, "activityResult");
         Intent data = activityResult.getData();
         if (data != null) {
             if (!(activityResult.getResultCode() == -1)) {
                 data = null;
             }
-            if (data == null || (widgetGuildCreate$Result = (WidgetGuildCreate$Result) data.getParcelableExtra("intent_args_key")) == null) {
+            if (data == null || (result = (WidgetGuildCreate.Result) data.getParcelableExtra("intent_args_key")) == null) {
                 return;
             }
-            WidgetHubAddServer.access$onServerClickListener(this.this$0, widgetGuildCreate$Result.getGuildId(), true);
+            WidgetHubAddServer.access$onServerClickListener(this.this$0, result.getGuildId(), true);
         }
     }
 }

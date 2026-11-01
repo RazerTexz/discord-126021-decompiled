@@ -6,9 +6,7 @@ import android.view.LayoutInflater;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import b.a.i.t1;
 import b.a.y.r0.a;
-import com.discord.R$id;
-import com.discord.R$integer;
-import com.discord.R$layout;
+import com.discord.R;
 import d0.t.n;
 import d0.z.d.m;
 
@@ -33,20 +31,20 @@ public final class TypingDots extends ConstraintLayout {
     public TypingDots(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(R$layout.typing_dots_view, this);
-        int i = R$id.view_typing_dots_1;
-        TypingDot typingDot = (TypingDot) findViewById(R$id.view_typing_dots_1);
+        LayoutInflater.from(context).inflate(R.layout.typing_dots_view, this);
+        int i = R.id.view_typing_dots_1;
+        TypingDot typingDot = (TypingDot) findViewById(R.id.view_typing_dots_1);
         if (typingDot != null) {
-            i = R$id.view_typing_dots_2;
-            TypingDot typingDot2 = (TypingDot) findViewById(R$id.view_typing_dots_2);
+            i = R.id.view_typing_dots_2;
+            TypingDot typingDot2 = (TypingDot) findViewById(R.id.view_typing_dots_2);
             if (typingDot2 != null) {
-                i = R$id.view_typing_dots_3;
-                TypingDot typingDot3 = (TypingDot) findViewById(R$id.view_typing_dots_3);
+                i = R.id.view_typing_dots_3;
+                TypingDot typingDot3 = (TypingDot) findViewById(R.id.view_typing_dots_3);
                 if (typingDot3 != null) {
                     t1 t1Var = new t1(this, typingDot, typingDot2, typingDot3);
                     m.checkNotNullExpressionValue(t1Var, "TypingDotsViewBinding.in…ater.from(context), this)");
                     this.binding = t1Var;
-                    int integer = getResources().getInteger(R$integer.animation_time_standard);
+                    int integer = getResources().getInteger(R.integer.animation_time_standard);
                     this.dotsAnimationTimeMs = integer;
                     this.dotsAnimationStaggerTimeMs = (long) (((double) integer) / 1.5d);
                     typingDot3.setOnScaleDownCompleteListener(new a(this));

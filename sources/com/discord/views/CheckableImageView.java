@@ -1,13 +1,12 @@
 package com.discord.views;
 
-import android.R$attr;
+import android.R;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.Checkable;
 import android.widget.ImageView;
 import androidx.appcompat.widget.AppCompatImageView;
-import com.discord.R$a;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: CheckableImageView.kt */
@@ -24,9 +23,9 @@ public final class CheckableImageView extends AppCompatImageView implements Chec
     public CheckableImageView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         m.checkNotNullParameter(context, "context");
-        this.checkedStateSet = new int[]{R$attr.state_checked};
+        this.checkedStateSet = new int[]{R.attr.state_checked};
         if (attributeSet != null) {
-            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$a.CheckableImageView, 0, 0);
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, com.discord.R.a.CheckableImageView, 0, 0);
             m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…CheckableImageView, 0, 0)");
             try {
                 this.checked = typedArrayObtainStyledAttributes.getBoolean(0, this.checked);

@@ -2,7 +2,7 @@ package b.i.a.f.a.a;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.util.Log;
 import b.i.a.f.e.e;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -17,7 +17,7 @@ public final class b {
             AtomicBoolean atomicBoolean = e.a;
             try {
                 contextCreatePackageContext = context.createPackageContext("com.google.android.gms", 3);
-            } catch (PackageManager$NameNotFoundException unused) {
+            } catch (PackageManager.NameNotFoundException unused) {
                 contextCreatePackageContext = null;
             }
             this.a = contextCreatePackageContext == null ? null : contextCreatePackageContext.getSharedPreferences("google_ads_flags", 0);

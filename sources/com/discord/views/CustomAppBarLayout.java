@@ -3,8 +3,8 @@ package com.discord.views;
 import android.content.Context;
 import android.util.AttributeSet;
 import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.appbar.AppBarLayout$OnOffsetChangedListener;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
@@ -16,17 +16,49 @@ public final class CustomAppBarLayout extends AppBarLayout {
     public float percentCollapsed;
 
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
-    public final AppBarLayout$OnOffsetChangedListener percentCollapsedOffsetChangeListener;
+    public final AppBarLayout.OnOffsetChangedListener percentCollapsedOffsetChangeListener;
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public Function1<? super Float, Unit> onPercentCollapsedCallback;
+
+    /* JADX INFO: compiled from: CustomAppBarLayout.kt */
+    public final class a extends o implements Function1<Float, Unit> {
+        public static final a j = new a();
+
+        public a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public Unit invoke(Float f) {
+            f.floatValue();
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: CustomAppBarLayout.kt */
+    public final class b implements AppBarLayout.OnOffsetChangedListener {
+        public b() {
+        }
+
+        @Override // com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener, com.google.android.material.appbar.AppBarLayout.BaseOnOffsetChangedListener
+        public final void onOffsetChanged(AppBarLayout appBarLayout, int i) {
+            m.checkNotNullExpressionValue(appBarLayout, "appBar");
+            float fAbs = appBarLayout.getTotalScrollRange() <= 0 ? 1.0f : Math.abs(i) / appBarLayout.getTotalScrollRange();
+            CustomAppBarLayout customAppBarLayout = CustomAppBarLayout.this;
+            if (fAbs != customAppBarLayout.percentCollapsed) {
+                customAppBarLayout.percentCollapsed = fAbs;
+                customAppBarLayout.onPercentCollapsedCallback.invoke(Float.valueOf(fAbs));
+            }
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public CustomAppBarLayout(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         m.checkNotNullParameter(context, "context");
-        this.percentCollapsedOffsetChangeListener = new CustomAppBarLayout$b(this);
-        this.onPercentCollapsedCallback = CustomAppBarLayout$a.j;
+        this.percentCollapsedOffsetChangeListener = new b();
+        this.onPercentCollapsedCallback = a.j;
     }
 
     public final boolean a() {

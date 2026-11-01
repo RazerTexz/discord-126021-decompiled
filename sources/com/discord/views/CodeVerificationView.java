@@ -20,13 +20,11 @@ import androidx.viewbinding.ViewBinding;
 import b.a.i.e2;
 import b.a.i.f2;
 import b.a.i.g2;
-import b.a.y.a;
 import b.a.y.b;
 import b.a.y.c;
 import b.a.y.d;
 import b.a.y.e;
-import com.discord.R$a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.google.android.flexbox.FlexboxLayout;
 import d0.g0.w;
@@ -38,6 +36,7 @@ import java.util.Objects;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: CodeVerificationView.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -62,18 +61,34 @@ public final class CodeVerificationView extends LinearLayout {
     public String inputFormat;
 
     /* JADX INFO: renamed from: o, reason: from kotlin metadata */
-    public CodeVerificationView$a inputType;
+    public a inputType;
 
     /* JADX INFO: renamed from: r, reason: from kotlin metadata */
     public Function1<? super String, Unit> onCodeEntered;
-    public static final CodeVerificationView$a j = CodeVerificationView$a.NUMERIC;
+    public static final a j = a.NUMERIC;
+
+    /* JADX INFO: compiled from: CodeVerificationView.kt */
+    public enum a {
+        NUMERIC,
+        ALPHANUMERIC;
+
+        public static final C0352a n = new C0352a(null);
+        public static final a[] m = values();
+
+        /* JADX INFO: renamed from: com.discord.views.CodeVerificationView$a$a, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: CodeVerificationView.kt */
+        public final class C0352a {
+            public C0352a(DefaultConstructorMarker defaultConstructorMarker) {
+            }
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public CodeVerificationView(Context context, AttributeSet attributeSet) {
         ViewBinding f2Var;
         super(context, attributeSet, 0);
         m.checkNotNullParameter(context, "context");
-        View viewInflate = LayoutInflater.from(context).inflate(R$layout.view_code_verification, (ViewGroup) this, false);
+        View viewInflate = LayoutInflater.from(context).inflate(R.layout.view_code_verification, (ViewGroup) this, false);
         addView(viewInflate);
         Objects.requireNonNull(viewInflate, "rootView");
         FlexboxLayout flexboxLayout = (FlexboxLayout) viewInflate;
@@ -83,12 +98,12 @@ public final class CodeVerificationView extends LinearLayout {
         this.code = "";
         this.onCodeEntered = e.j;
         if (attributeSet != null) {
-            TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R$a.CodeVerificationView, 0, 0);
+            TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.a.CodeVerificationView, 0, 0);
             m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…deVerificationView, 0, 0)");
             try {
                 int i = typedArrayObtainStyledAttributes.getInt(1, j.ordinal());
-                CodeVerificationView$a$a codeVerificationView$a$a = CodeVerificationView$a.n;
-                this.inputType = CodeVerificationView$a.m[i];
+                a.C0352a c0352a = a.n;
+                this.inputType = a.m[i];
                 String string = typedArrayObtainStyledAttributes.getString(0);
                 if (string == null) {
                     string = "xxx-xxx";
@@ -121,7 +136,7 @@ public final class CodeVerificationView extends LinearLayout {
                 }
                 LayoutInflater layoutInflaterFrom = LayoutInflater.from(context);
                 FlexboxLayout flexboxLayout2 = this.binding.f104b;
-                View viewInflate2 = layoutInflaterFrom.inflate(R$layout.view_code_verification_text, (ViewGroup) flexboxLayout2, false);
+                View viewInflate2 = layoutInflaterFrom.inflate(R.layout.view_code_verification_text, (ViewGroup) flexboxLayout2, false);
                 flexboxLayout2.addView(viewInflate2);
                 Objects.requireNonNull(viewInflate2, "rootView");
                 f2Var = new g2((TextView) viewInflate2);
@@ -133,7 +148,7 @@ public final class CodeVerificationView extends LinearLayout {
                 }
                 LayoutInflater layoutInflaterFrom2 = LayoutInflater.from(context);
                 FlexboxLayout flexboxLayout3 = this.binding.f104b;
-                View viewInflate3 = layoutInflaterFrom2.inflate(R$layout.view_code_verification_space, (ViewGroup) flexboxLayout3, false);
+                View viewInflate3 = layoutInflaterFrom2.inflate(R.layout.view_code_verification_space, (ViewGroup) flexboxLayout3, false);
                 flexboxLayout3.addView(viewInflate3);
                 Objects.requireNonNull(viewInflate3, "rootView");
                 f2Var = new f2((Space) viewInflate3);
@@ -151,12 +166,12 @@ public final class CodeVerificationView extends LinearLayout {
         ((TextView) arrayList2.get(0)).requestFocus();
         View view = (View) arrayList2.get(0);
         if (!ViewCompat.isLaidOut(view) || view.isLayoutRequested()) {
-            view.addOnLayoutChangeListener(new a(this));
+            view.addOnLayoutChangeListener(new b.a.y.a(this));
         } else {
             a(this);
         }
-        this.charBackgroundDrawableUnfocused = ContextCompat.getDrawable(context, 2131231333);
-        this.charBackgroundDrawableFocused = ContextCompat.getDrawable(context, 2131231334);
+        this.charBackgroundDrawableUnfocused = ContextCompat.getDrawable(context, R.drawable.drawable_uikit_background_tertiary_button);
+        this.charBackgroundDrawableFocused = ContextCompat.getDrawable(context, R.drawable.drawable_uikit_background_tertiary_button_outline);
         e();
     }
 
@@ -244,11 +259,11 @@ public final class CodeVerificationView extends LinearLayout {
     @Override // android.view.View
     public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
         m.checkNotNullParameter(outAttrs, "outAttrs");
-        CodeVerificationView$a codeVerificationView$a = this.inputType;
-        if (codeVerificationView$a == null) {
+        a aVar = this.inputType;
+        if (aVar == null) {
             m.throwUninitializedPropertyAccessException("inputType");
         }
-        int iOrdinal = codeVerificationView$a.ordinal();
+        int iOrdinal = aVar.ordinal();
         if (iOrdinal == 0) {
             BaseInputConnection baseInputConnection = new BaseInputConnection(this, false);
             outAttrs.inputType = 18;

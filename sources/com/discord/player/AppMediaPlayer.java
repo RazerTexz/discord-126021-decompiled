@@ -11,46 +11,35 @@ import b.a.p.d;
 import b.a.p.e;
 import b.a.p.f;
 import b.a.p.k;
-import b.a.p.k$a;
-import b.a.p.k$b;
-import b.a.p.k$c;
 import b.i.a.c.a3.a0;
 import b.i.a.c.a3.f0;
 import b.i.a.c.a3.j;
 import b.i.a.c.a3.k0;
 import b.i.a.c.c2;
 import b.i.a.c.e1;
-import b.i.a.c.e3.l$a;
+import b.i.a.c.e3.l;
 import b.i.a.c.e3.s;
 import b.i.a.c.f1;
-import b.i.a.c.f1$a;
-import b.i.a.c.f3.b0$b;
+import b.i.a.c.f3.b0;
 import b.i.a.c.f3.e0;
 import b.i.a.c.f3.o;
 import b.i.a.c.f3.q;
-import b.i.a.c.h1$a;
+import b.i.a.c.h1;
 import b.i.a.c.k2;
 import b.i.a.c.m2;
-import b.i.a.c.m2$c;
 import b.i.a.c.o1;
-import b.i.a.c.o1$d$a;
-import b.i.a.c.o1$f;
-import b.i.a.c.o1$f$a;
-import b.i.a.c.o1$g;
-import b.i.a.c.o1$g$a;
-import b.i.a.c.o1$i;
 import b.i.a.c.p1;
 import b.i.a.c.q2;
 import b.i.a.c.r2;
 import b.i.a.c.s2.g1;
 import b.i.a.c.t0;
 import b.i.a.c.u0;
-import b.i.a.c.u1$c;
-import b.i.a.c.w0$a;
+import b.i.a.c.u1;
+import b.i.a.c.w0;
 import b.i.a.c.w1;
 import b.i.a.c.w2.r;
 import b.i.a.c.w2.u;
-import b.i.a.c.y1$e;
+import b.i.a.c.y1;
 import b.i.b.b.h0;
 import b.i.b.b.p;
 import com.discord.utilities.logging.Logger;
@@ -63,6 +52,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Scheduler;
 import rx.Subscription;
 import rx.subjects.BehaviorSubject;
@@ -74,7 +64,7 @@ import rx.subscriptions.CompositeSubscription;
 public final class AppMediaPlayer {
 
     /* JADX INFO: renamed from: a, reason: from kotlin metadata */
-    public final PublishSubject<AppMediaPlayer$Event> eventSubject;
+    public final PublishSubject<Event> eventSubject;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name and from kotlin metadata */
     public Subscription positionPollingSubscription;
@@ -95,7 +85,7 @@ public final class AppMediaPlayer {
     public final k rxPlayerEventListener;
 
     /* JADX INFO: renamed from: h, reason: from kotlin metadata */
-    public final l$a dataSourceFactory;
+    public final l.a dataSourceFactory;
 
     /* JADX INFO: renamed from: i, reason: from kotlin metadata */
     public final Scheduler timerScheduler;
@@ -103,18 +93,98 @@ public final class AppMediaPlayer {
     /* JADX INFO: renamed from: j, reason: from kotlin metadata */
     public final Logger logger;
 
-    public AppMediaPlayer(e1 e1Var, k kVar, l$a l_a, Scheduler scheduler, Logger logger) {
+    /* JADX INFO: compiled from: AppMediaPlayer.kt */
+    public abstract class Event {
+
+        /* JADX INFO: compiled from: AppMediaPlayer.kt */
+        public final class a extends Event {
+            public static final a a = new a();
+
+            public a() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: AppMediaPlayer.kt */
+        public final class b extends Event {
+            public static final b a = new b();
+
+            public b() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: AppMediaPlayer.kt */
+        public final class c extends Event {
+            public final long a;
+
+            public c(long j) {
+                super(null);
+                this.a = j;
+            }
+
+            public boolean equals(Object obj) {
+                if (this != obj) {
+                    return (obj instanceof c) && this.a == ((c) obj).a;
+                }
+                return true;
+            }
+
+            public int hashCode() {
+                return a0.a.a.b.a(this.a);
+            }
+
+            public String toString() {
+                return b.d.b.a.a.C(b.d.b.a.a.U("CurrentPositionUpdate(positionMs="), this.a, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: AppMediaPlayer.kt */
+        public final class d extends Event {
+            public static final d a = new d();
+
+            public d() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: AppMediaPlayer.kt */
+        public final class e extends Event {
+            public static final e a = new e();
+
+            public e() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: AppMediaPlayer.kt */
+        public final class f extends Event {
+            public static final f a = new f();
+
+            public f() {
+                super(null);
+            }
+        }
+
+        public Event() {
+        }
+
+        public Event(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    public AppMediaPlayer(e1 e1Var, k kVar, l.a aVar, Scheduler scheduler, Logger logger) {
         m.checkNotNullParameter(e1Var, "exoPlayer");
         m.checkNotNullParameter(kVar, "rxPlayerEventListener");
-        m.checkNotNullParameter(l_a, "dataSourceFactory");
+        m.checkNotNullParameter(aVar, "dataSourceFactory");
         m.checkNotNullParameter(scheduler, "timerScheduler");
         m.checkNotNullParameter(logger, "logger");
         this.exoPlayer = e1Var;
         this.rxPlayerEventListener = kVar;
-        this.dataSourceFactory = l_a;
+        this.dataSourceFactory = aVar;
         this.timerScheduler = scheduler;
         this.logger = logger;
-        PublishSubject<AppMediaPlayer$Event> publishSubjectK0 = PublishSubject.k0();
+        PublishSubject<Event> publishSubjectK0 = PublishSubject.k0();
         m.checkNotNullExpressionValue(publishSubjectK0, "PublishSubject.create()");
         this.eventSubject = publishSubjectK0;
         CompositeSubscription compositeSubscription = new CompositeSubscription();
@@ -122,15 +192,15 @@ public final class AppMediaPlayer {
         BehaviorSubject<Float> behaviorSubjectL0 = BehaviorSubject.l0(Float.valueOf(((k2) e1Var).B));
         m.checkNotNullExpressionValue(behaviorSubjectL0, "BehaviorSubject.create(exoPlayer.volume)");
         this.volumeSubject = behaviorSubjectL0;
-        PublishSubject<k$c> publishSubject = kVar.j;
+        PublishSubject<k.c> publishSubject = kVar.j;
         m.checkNotNullExpressionValue(publishSubject, "playerStateChangeSubject");
         compositeSubscription.a(publishSubject.K().W(new e(this), new f(this)));
-        PublishSubject<k$a> publishSubject2 = kVar.k;
+        PublishSubject<k.a> publishSubject2 = kVar.k;
         m.checkNotNullExpressionValue(publishSubject2, "isPlayingChangeSubject");
         compositeSubscription.a(publishSubject2.L().W(new a(this), new b(this)));
         MediaSource mediaSource = this.mediaSource;
         String str = (mediaSource == null || (str = mediaSource.featureTag) == null) ? "" : str;
-        PublishSubject<k$b> publishSubject3 = kVar.l;
+        PublishSubject<k.b> publishSubject3 = kVar.l;
         m.checkNotNullExpressionValue(publishSubject3, "playerErrorSubject");
         compositeSubscription.a(publishSubject3.K().W(new c(this, str), new d(this)));
     }
@@ -161,35 +231,35 @@ public final class AppMediaPlayer {
         if (playerControlView != null) {
             playerControlView.setPlayer(this.exoPlayer);
         }
-        l$a l_a = this.dataSourceFactory;
+        l.a aVar = this.dataSourceFactory;
         j jVar = new j(new b.i.a.c.x2.f());
         r rVar = new r();
         s sVar = new s();
         Uri uri = mediaSource.progressiveMediaUri;
-        w0$a<o1> w0_a = o1.j;
-        o1$d$a o1_d_a = new o1$d$a();
-        o1$f$a o1_f_a = new o1$f$a(null);
+        w0.a<o1> aVar2 = o1.j;
+        o1.d.a aVar3 = new o1.d.a();
+        o1.f.a aVar4 = new o1.f.a(null);
         List listEmptyList = Collections.emptyList();
         p<Object> pVar = h0.l;
-        o1$g$a o1_g_a = new o1$g$a();
-        b.c.a.a0.d.D(o1_f_a.f1037b == null || o1_f_a.a != null);
-        o1$i o1_i = uri != null ? new o1$i(uri, null, o1_f_a.a != null ? new o1$f(o1_f_a, null) : null, null, listEmptyList, null, pVar, null, null) : null;
-        o1 o1Var = new o1("", o1_d_a.a(), o1_i, new o1$g(o1_g_a, null), p1.j, null);
-        Objects.requireNonNull(o1_i);
-        o1$f o1_f = o1_i.c;
-        if (o1_f == null || e0.a < 18) {
+        o1.g.a aVar5 = new o1.g.a();
+        b.c.a.a0.d.D(aVar4.f1037b == null || aVar4.a != null);
+        o1.i iVar = uri != null ? new o1.i(uri, null, aVar4.a != null ? new o1.f(aVar4, null) : null, null, listEmptyList, null, pVar, null, null) : null;
+        o1 o1Var = new o1("", aVar3.a(), iVar, new o1.g(aVar5, null), p1.j, null);
+        Objects.requireNonNull(iVar);
+        o1.f fVar = iVar.c;
+        if (fVar == null || e0.a < 18) {
             uVar = u.a;
         } else {
             synchronized (rVar.a) {
-                if (!e0.a(o1_f, rVar.f1155b)) {
-                    rVar.f1155b = o1_f;
-                    rVar.c = rVar.a(o1_f);
+                if (!e0.a(fVar, rVar.f1155b)) {
+                    rVar.f1155b = fVar;
+                    rVar.c = rVar.a(fVar);
                 }
                 uVar = rVar.c;
                 Objects.requireNonNull(uVar);
             }
         }
-        f0 f0Var = new f0(o1Var, l_a, jVar, uVar, sVar, 1048576, null);
+        f0 f0Var = new f0(o1Var, aVar, jVar, uVar, sVar, 1048576, null);
         m.checkNotNullExpressionValue(f0Var, "ProgressiveMediaSource.F…rce.progressiveMediaUri))");
         k2 k2Var2 = (k2) this.exoPlayer;
         k2Var2.n0();
@@ -204,9 +274,9 @@ public final class AppMediaPlayer {
         }
         ArrayList arrayList = new ArrayList();
         for (int i2 = 0; i2 < listSingletonList.size(); i2++) {
-            u1$c u1_c = new u1$c((a0) listSingletonList.get(i2), f1Var.n);
-            arrayList.add(u1_c);
-            f1Var.m.add(i2 + 0, new f1$a(u1_c.f1139b, u1_c.a.n));
+            u1.c cVar = new u1.c((a0) listSingletonList.get(i2), f1Var.n);
+            arrayList.add(cVar);
+            f1Var.m.add(i2 + 0, new f1.a(cVar.f1139b, cVar.a.n));
         }
         k0 k0VarF = f1Var.B.f(0, arrayList.size());
         f1Var.B = k0VarF;
@@ -223,7 +293,7 @@ public final class AppMediaPlayer {
             i = 2;
         }
         w1 w1VarF = w1VarL0.f(i);
-        ((b0$b) f1Var.i.q.i(17, new h1$a(arrayList, f1Var.B, iA, e0.B(-9223372036854775807L), null))).b();
+        ((b0.b) f1Var.i.q.i(17, new h1.a(arrayList, f1Var.B, iA, e0.B(-9223372036854775807L), null))).b();
         f1Var.s0(w1VarF, 0, 1, false, (f1Var.F.c.a.equals(w1VarF.c.a) || f1Var.F.f1146b.q()) ? false : true, 4, f1Var.g0(w1VarF), -1);
         ((k2) this.exoPlayer).a();
         if (autoPlayWhenReady) {
@@ -260,10 +330,10 @@ public final class AppMediaPlayer {
         }
         k2Var.j.a(false);
         m2 m2Var = k2Var.l;
-        m2$c m2_c = m2Var.e;
-        if (m2_c != null) {
+        m2.c cVar = m2Var.e;
+        if (cVar != null) {
             try {
-                m2Var.a.unregisterReceiver(m2_c);
+                m2Var.a.unregisterReceiver(cVar);
             } catch (RuntimeException e) {
                 q.c("StreamVolumeManager", "Error unregistering stream volume receiver", e);
             }
@@ -305,7 +375,7 @@ public final class AppMediaPlayer {
             k2Var.B = fG;
             k2Var.j0(1, 2, Float.valueOf(k2Var.k.g * fG));
             k2Var.i.w(fG);
-            Iterator<y1$e> it = k2Var.h.iterator();
+            Iterator<y1.e> it = k2Var.h.iterator();
             while (it.hasNext()) {
                 it.next().w(fG);
             }

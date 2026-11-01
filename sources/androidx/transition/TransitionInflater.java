@@ -2,7 +2,7 @@ package androidx.transition;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.Resources$NotFoundException;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
 import android.util.AttributeSet;
@@ -254,7 +254,7 @@ public class TransitionInflater {
     }
 
     @SuppressLint({"RestrictedApi"})
-    private void loadTransition(AttributeSet attributeSet, XmlPullParser xmlPullParser, ViewGroup viewGroup, TransitionManager transitionManager) throws Resources$NotFoundException {
+    private void loadTransition(AttributeSet attributeSet, XmlPullParser xmlPullParser, ViewGroup viewGroup, TransitionManager transitionManager) throws Resources.NotFoundException {
         Transition transitionInflateTransition;
         TypedArray typedArrayObtainStyledAttributes = this.mContext.obtainStyledAttributes(attributeSet, Styleable.TRANSITION_MANAGER);
         int namedResourceId = TypedArrayUtils.getNamedResourceId(typedArrayObtainStyledAttributes, xmlPullParser, "transition", 2, -1);

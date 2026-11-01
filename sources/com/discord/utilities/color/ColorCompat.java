@@ -1,12 +1,12 @@
 package com.discord.utilities.color;
 
-import android.R$attr;
+import android.R;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.content.res.Resources$Theme;
+import android.content.res.Resources;
 import android.graphics.Color;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
@@ -30,7 +30,7 @@ public final class ColorCompat {
     }
 
     public final ColorStateList createDefaultColorStateList(@ColorInt int color) {
-        return new ColorStateList(new int[][]{new int[]{R$attr.state_enabled}, new int[]{-16842910}, new int[]{-16842912}, new int[]{R$attr.state_pressed}}, new int[]{color, color, color, color});
+        return new ColorStateList(new int[][]{new int[]{R.attr.state_enabled}, new int[]{-16842910}, new int[]{-16842912}, new int[]{R.attr.state_pressed}}, new int[]{color, color, color, color});
     }
 
     @ColorInt
@@ -48,7 +48,7 @@ public final class ColorCompat {
     @ColorInt
     public static final int getThemedColor(Context context, @AttrRes int attributeResourceId) {
         TypedValue typedValue = new TypedValue();
-        Resources$Theme theme = context != null ? context.getTheme() : null;
+        Resources.Theme theme = context != null ? context.getTheme() : null;
         if (theme != null) {
             theme.resolveAttribute(attributeResourceId, typedValue, true);
         }
@@ -157,7 +157,7 @@ public final class ColorCompat {
         if (window != null) {
             window.setStatusBarColor(color);
         }
-        if (Build$VERSION.SDK_INT < 23 || !forceDarkUi || window == null || (decorView = window.getDecorView()) == null) {
+        if (Build.VERSION.SDK_INT < 23 || !forceDarkUi || window == null || (decorView = window.getDecorView()) == null) {
             return;
         }
         decorView.setSystemUiVisibility(0);

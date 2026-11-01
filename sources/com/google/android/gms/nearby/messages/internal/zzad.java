@@ -1,7 +1,7 @@
 package com.google.android.gms.nearby.messages.internal;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import b.d.b.a.a;
 import b.i.a.f.j.b.e.d;
@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzad extends AbstractSafeParcelable {
-    public static final Parcelable$Creator<zzad> CREATOR = new d();
+    public static final Parcelable.Creator<zzad> CREATOR = new d();
     public final int j;
 
     @Nullable

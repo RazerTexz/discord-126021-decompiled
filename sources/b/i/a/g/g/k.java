@@ -12,7 +12,7 @@ public class k extends AnimatorListenerAdapter {
         this.a = lVar;
     }
 
-    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator$AnimatorListener
+    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
     public void onAnimationEnd(Animator animator) {
         super.onAnimationEnd(animator);
         l lVar = this.a;
@@ -24,7 +24,7 @@ public class k extends AnimatorListenerAdapter {
         }
     }
 
-    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator$AnimatorListener
+    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
     public void onAnimationRepeat(Animator animator) {
         super.onAnimationRepeat(animator);
         l lVar = this.a;

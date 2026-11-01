@@ -29,13 +29,13 @@ public final class WidgetChannelListModel$VoiceStates$get$1<T1, T2, T3, T4, T5, 
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
     public final Map<Long, List<ChannelListItemVoiceUser>> call2(Map<Long, ? extends ModelApplicationStream> map, Map<Long, VoiceState> map2, Map<Long, ? extends User> map3, Map<Long, GuildMember> map4, Map<Long, Channel> map5, Map<Long, Long> map6) {
-        WidgetChannelListModel$VoiceStates widgetChannelListModel$VoiceStates = WidgetChannelListModel$VoiceStates.INSTANCE;
+        WidgetChannelListModel.VoiceStates voiceStates = WidgetChannelListModel.VoiceStates.INSTANCE;
         m.checkNotNullExpressionValue(map2, "voiceStates");
         m.checkNotNullExpressionValue(map3, "users");
         m.checkNotNullExpressionValue(map4, "guildMembers");
         m.checkNotNullExpressionValue(map5, "guildChannels");
         m.checkNotNullExpressionValue(map, "guildStreams");
         m.checkNotNullExpressionValue(map6, "guildPermissions");
-        return WidgetChannelListModel$VoiceStates.access$createVoiceStates(widgetChannelListModel$VoiceStates, map2, map3, map4, map5, map, map6, this.$voiceUserComparator);
+        return WidgetChannelListModel.VoiceStates.access$createVoiceStates(voiceStates, map2, map3, map4, map5, map, map6, this.$voiceUserComparator);
     }
 }

@@ -1,26 +1,47 @@
 package com.discord.widgets.settings.premium;
 
 import b.a.k.b;
+import com.discord.R;
 import com.discord.app.AppActivity;
-import com.discord.utilities.analytics.Traits$Location;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.billing.GooglePlayInAppSku;
 import com.discord.utilities.gifting.GiftingUtils;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsGifting$onViewBound$chooseGiftCallback$1 extends o implements Function1<GooglePlayInAppSku, Unit> {
-    public final /* synthetic */ Traits$Location $locationTrait;
+    public final /* synthetic */ Traits.Location $locationTrait;
     public final /* synthetic */ WidgetSettingsGifting this$0;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.premium.WidgetSettingsGifting$onViewBound$chooseGiftCallback$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsGifting.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetSettingsGifting.access$enableGiftingButtons(WidgetSettingsGifting$onViewBound$chooseGiftCallback$1.this.this$0);
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetSettingsGifting$onViewBound$chooseGiftCallback$1(WidgetSettingsGifting widgetSettingsGifting, Traits$Location traits$Location) {
+    public WidgetSettingsGifting$onViewBound$chooseGiftCallback$1(WidgetSettingsGifting widgetSettingsGifting, Traits.Location location) {
         super(1);
         this.this$0 = widgetSettingsGifting;
-        this.$locationTrait = traits$Location;
+        this.$locationTrait = location;
     }
 
     @Override // kotlin.jvm.functions.Function1
@@ -35,14 +56,14 @@ public final class WidgetSettingsGifting$onViewBound$chooseGiftCallback$1 extend
         try {
             GiftingUtils giftingUtils = GiftingUtils.INSTANCE;
             AppActivity appActivityRequireAppActivity = this.this$0.requireAppActivity();
-            Traits$Location traits$Location = this.$locationTrait;
-            if (traits$Location == null) {
-                traits$Location = new Traits$Location("Gifting Settings", null, null, null, null, 30, null);
+            Traits.Location location = this.$locationTrait;
+            if (location == null) {
+                location = new Traits.Location("Gifting Settings", null, null, null, null, 30, null);
             }
-            giftingUtils.buyGift(appActivityRequireAppActivity, googlePlayInAppSku, traits$Location, new WidgetSettingsGifting$onViewBound$chooseGiftCallback$1$1(this));
+            giftingUtils.buyGift(appActivityRequireAppActivity, googlePlayInAppSku, location, new AnonymousClass1());
         } catch (Exception unused) {
             WidgetSettingsGifting widgetSettingsGifting = this.this$0;
-            b.a.d.m.j(widgetSettingsGifting, b.k(widgetSettingsGifting, 2131888885, new Object[0], null, 4), 0, 4);
+            b.a.d.m.j(widgetSettingsGifting, b.k(widgetSettingsGifting, R.string.error_occurred_try_again, new Object[0], null, 4), 0, 4);
         }
     }
 }

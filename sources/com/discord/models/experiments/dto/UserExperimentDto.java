@@ -1,6 +1,16 @@
 package com.discord.models.experiments.dto;
 
+import androidx.exifinterface.media.ExifInterface;
 import b.d.b.a.a;
+import b.i.d.o;
+import com.discord.models.domain.Model;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import d0.z.d.m;
+import java.io.IOException;
+import kotlin.jvm.internal.Ref$ObjectRef;
 
 /* JADX INFO: compiled from: UserExperimentDto.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -9,6 +19,79 @@ public final /* data */ class UserExperimentDto {
     private final long nameHash;
     private final int population;
     private final int revision;
+
+    /* JADX INFO: compiled from: UserExperimentDto.kt */
+    public final class Parser {
+        public static final Parser INSTANCE = new Parser();
+
+        private Parser() {
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static final UserExperimentDto parse(Model.JsonReader reader) throws IOException {
+            Ref$ObjectRef ref$ObjectRefC0 = a.c0(reader, "reader");
+            ref$ObjectRefC0.element = null;
+            Ref$ObjectRef ref$ObjectRef = new Ref$ObjectRef();
+            ref$ObjectRef.element = null;
+            Ref$ObjectRef ref$ObjectRef2 = new Ref$ObjectRef();
+            ref$ObjectRef2.element = null;
+            Ref$ObjectRef ref$ObjectRef3 = new Ref$ObjectRef();
+            ref$ObjectRef3.element = null;
+            reader.nextListIndexed(new UserExperimentDto$Parser$parse$1(ref$ObjectRefC0, reader), new UserExperimentDto$Parser$parse$2(ref$ObjectRef, reader), new UserExperimentDto$Parser$parse$3(ref$ObjectRef2, reader), new UserExperimentDto$Parser$parse$4(ref$ObjectRef3, reader));
+            Long l = (Long) ref$ObjectRefC0.element;
+            m.checkNotNull(l);
+            long jLongValue = l.longValue();
+            Integer num = (Integer) ref$ObjectRef.element;
+            m.checkNotNull(num);
+            int iIntValue = num.intValue();
+            Integer num2 = (Integer) ref$ObjectRef2.element;
+            m.checkNotNull(num2);
+            int iIntValue2 = num2.intValue();
+            Integer num3 = (Integer) ref$ObjectRef3.element;
+            m.checkNotNull(num3);
+            return new UserExperimentDto(jLongValue, iIntValue, iIntValue2, num3.intValue());
+        }
+    }
+
+    /* JADX INFO: compiled from: UserExperimentDto.kt */
+    public final class TypeAdapterFactory implements o {
+        public static final TypeAdapterFactory INSTANCE = new TypeAdapterFactory();
+
+        /* JADX INFO: compiled from: UserExperimentDto.kt */
+        public final class TypeAdapter extends com.google.gson.TypeAdapter<UserExperimentDto> {
+            @Override // com.google.gson.TypeAdapter
+            public /* bridge */ /* synthetic */ UserExperimentDto read(JsonReader jsonReader) {
+                return read(jsonReader);
+            }
+
+            @Override // com.google.gson.TypeAdapter
+            public /* bridge */ /* synthetic */ void write(JsonWriter jsonWriter, UserExperimentDto userExperimentDto) {
+                write2(jsonWriter, userExperimentDto);
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // com.google.gson.TypeAdapter
+            public UserExperimentDto read(JsonReader in) {
+                return Parser.parse(new Model.JsonReader(in));
+            }
+
+            /* JADX INFO: renamed from: write, reason: avoid collision after fix types in other method */
+            public void write2(JsonWriter out, UserExperimentDto value) {
+                throw new UnsupportedOperationException();
+            }
+        }
+
+        private TypeAdapterFactory() {
+        }
+
+        @Override // b.i.d.o
+        public <T> com.google.gson.TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (gson == null || type == null || !UserExperimentDto.class.isAssignableFrom(type.getRawType())) {
+                return null;
+            }
+            return new TypeAdapter();
+        }
+    }
 
     public UserExperimentDto(long j, int i, int i2, int i3) {
         this.nameHash = j;

@@ -2,7 +2,6 @@ package com.discord.overlay;
 
 import android.content.Context;
 import android.view.View;
-import android.view.View$OnTouchListener;
 import android.view.WindowManager;
 import b.a.n.b;
 import b.a.n.f;
@@ -42,7 +41,7 @@ public class OverlayManager implements Closeable {
     public f trashEventListener;
 
     /* JADX INFO: renamed from: p, reason: from kotlin metadata */
-    public View$OnTouchListener bubbleOnTouchListener;
+    public View.OnTouchListener bubbleOnTouchListener;
 
     /* JADX INFO: renamed from: q, reason: from kotlin metadata */
     public OverlayBubbleWrap bubbleInTrashZone;

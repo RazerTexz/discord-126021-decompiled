@@ -1,8 +1,10 @@
 package com.discord.widgets.contact_sync;
 
+import com.discord.stores.StoreStream;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.time.Clock;
 import com.discord.utilities.time.ClockFactory;
+import d0.t.h0;
 import d0.z.d.m;
 import java.util.Map;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -11,11 +13,44 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: loaded from: classes2.dex */
 public final class ContactSyncFlowAnalytics {
     private static final String CONTACT_SYNC_FLOW_KEY = "Contact Sync";
-    public static final ContactSyncFlowAnalytics$Companion Companion = new ContactSyncFlowAnalytics$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final Clock clock;
     private final boolean isOnboarding;
     private String lastStep;
     private long lastStepTimestamp;
+
+    /* JADX INFO: compiled from: ContactSyncFlowAnalytics.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ void trackStart$default(Companion companion, boolean z2, Map map, int i, Object obj) {
+            if ((i & 1) != 0) {
+                z2 = false;
+            }
+            if ((i & 2) != 0) {
+                map = null;
+            }
+            companion.trackStart(z2, map);
+        }
+
+        public final void trackStart(boolean isOnboarding, Map<String, ? extends Object> additionalProps) {
+            Map<String, ? extends Object> mutableMap = h0.toMutableMap(additionalProps != null ? additionalProps : h0.emptyMap());
+            mutableMap.put("has_phone_number", Boolean.valueOf(StoreStream.INSTANCE.getUsers().getMeSnapshot().getPhoneNumber() != null));
+            AnalyticsTracker analyticsTracker = AnalyticsTracker.INSTANCE;
+            analyticsTracker.relationshipSyncFlow(ContactSyncFlowAnalytics.CONTACT_SYNC_FLOW_KEY, "Flow Initialized", "Landing", 0, false, false, mutableMap);
+            if (isOnboarding) {
+                AnalyticsTracker.newUserOnboarding$default(analyticsTracker, ContactSyncFlowAnalytics.CONTACT_SYNC_FLOW_KEY, "Flow Initialized", "Landing", null, false, 24, null);
+            }
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public ContactSyncFlowAnalytics() {
         this(false, null, 3, null);

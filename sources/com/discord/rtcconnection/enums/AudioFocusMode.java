@@ -1,6 +1,6 @@
 package com.discord.rtcconnection.enums;
 
-import android.os.Build$VERSION;
+import android.os.Build;
 
 /* JADX INFO: compiled from: AudioFocusMode.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -14,12 +14,11 @@ public enum AudioFocusMode {
     LossTransientCanDuck(-3),
     None(0);
 
-    public static final AudioFocusMode$a Companion;
     private final int value;
 
     static {
-        int i = Build$VERSION.SDK_INT;
-        Companion = new AudioFocusMode$a(null);
+        int i = Build.VERSION.SDK_INT;
+        INSTANCE = new Companion(null);
     }
 
     AudioFocusMode(int i) {

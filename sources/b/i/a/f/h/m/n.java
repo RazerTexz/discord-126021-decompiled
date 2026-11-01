@@ -8,7 +8,7 @@ public final class n extends l<b.i.a.f.j.b.c> {
         this.a = z2;
     }
 
-    @Override // b.i.a.f.e.h.j.k$b
+    @Override // b.i.a.f.e.h.j.k.b
     public final /* synthetic */ void a(Object obj) {
         ((b.i.a.f.j.b.c) obj).onPermissionChanged(this.a);
     }

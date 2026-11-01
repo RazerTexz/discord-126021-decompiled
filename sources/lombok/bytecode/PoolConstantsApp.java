@@ -1,8 +1,13 @@
 package lombok.bytecode;
 
 import com.zwitserloot.cmdreader.CmdReader;
+import com.zwitserloot.cmdreader.Description;
 import com.zwitserloot.cmdreader.InvalidCommandLineException;
+import com.zwitserloot.cmdreader.Mandatory;
+import com.zwitserloot.cmdreader.Sequential;
+import com.zwitserloot.cmdreader.Shorthand;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.core.LombokApp;
 
@@ -23,16 +28,33 @@ public class PoolConstantsApp extends LombokApp {
         return true;
     }
 
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/bytecode/PoolConstantsApp$CmdArgs.SCL.lombok */
+    public class CmdArgs {
+
+        @Mandatory
+        @Description("paths to class files to be printed. If a directory is named, all files (recursively) in that directory will be printed.")
+        @Sequential
+        private List<String> classFiles = new ArrayList();
+
+        @Description("Shows this help text")
+        @Shorthand({"h", "?"})
+        boolean help = false;
+
+        static /* synthetic */ List access$0(CmdArgs cmdArgs) {
+            return cmdArgs.classFiles;
+        }
+    }
+
     @Override // lombok.core.LombokApp
     public int runApp(List<String> raw) throws Exception {
-        CmdReader<PoolConstantsApp$CmdArgs> reader = CmdReader.of(PoolConstantsApp$CmdArgs.class);
+        CmdReader<CmdArgs> reader = CmdReader.of(CmdArgs.class);
         try {
-            PoolConstantsApp$CmdArgs args = reader.make((String[]) raw.toArray(new String[0]));
+            CmdArgs args = reader.make((String[]) raw.toArray(new String[0]));
             if (args.help) {
                 System.out.println(reader.generateCommandLineHelp("java -jar lombok.jar -printpool"));
                 return 0;
             }
-            List<File> filesToProcess = PostCompilerApp.cmdArgsToFiles(PoolConstantsApp$CmdArgs.access$0(args));
+            List<File> filesToProcess = PostCompilerApp.cmdArgsToFiles(CmdArgs.access$0(args));
             int filesVisited = 0;
             boolean moreThanOne = filesToProcess.size() > 1;
             for (File file : filesToProcess) {

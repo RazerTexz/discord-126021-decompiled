@@ -1,6 +1,6 @@
 package com.discord.widgets.forums;
 
-import android.content.SharedPreferences$Editor;
+import android.content.SharedPreferences;
 import com.discord.utilities.cache.SharedPreferenceExtensionsKt;
 import com.discord.utilities.cache.SharedPreferencesProvider;
 import d0.g0.s;
@@ -56,9 +56,9 @@ public final class ForumGuidelinesManager {
             arrayList.add(String.valueOf(((Number) it.next()).longValue()));
         }
         Set<String> set2 = u.toSet(arrayList);
-        SharedPreferences$Editor sharedPreferences$EditorEdit = SharedPreferencesProvider.INSTANCE.get().edit();
-        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
-        sharedPreferences$EditorEdit.putStringSet("CACHE_KEY_USER_VIEWED_FORUM_GUIDELINES", set2);
-        sharedPreferences$EditorEdit.apply();
+        SharedPreferences.Editor editorEdit = SharedPreferencesProvider.INSTANCE.get().edit();
+        m.checkNotNullExpressionValue(editorEdit, "editor");
+        editorEdit.putStringSet("CACHE_KEY_USER_VIEWED_FORUM_GUIDELINES", set2);
+        editorEdit.apply();
     }
 }

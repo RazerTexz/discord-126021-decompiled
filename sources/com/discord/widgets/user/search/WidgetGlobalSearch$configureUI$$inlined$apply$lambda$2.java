@@ -8,7 +8,7 @@ import kotlin.jvm.functions.Function4;
 
 /* JADX INFO: compiled from: WidgetGlobalSearch.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGlobalSearch$configureUI$$inlined$apply$lambda$2 extends o implements Function4<View, Integer, WidgetGlobalSearchModel$ItemDataPayload, Boolean, Unit> {
+public final class WidgetGlobalSearch$configureUI$$inlined$apply$lambda$2 extends o implements Function4<View, Integer, WidgetGlobalSearchModel.ItemDataPayload, Boolean, Unit> {
     public final /* synthetic */ WidgetGlobalSearchModel $model$inlined;
     public final /* synthetic */ WidgetGlobalSearch this$0;
 
@@ -20,14 +20,14 @@ public final class WidgetGlobalSearch$configureUI$$inlined$apply$lambda$2 extend
     }
 
     @Override // kotlin.jvm.functions.Function4
-    public /* bridge */ /* synthetic */ Unit invoke(View view, Integer num, WidgetGlobalSearchModel$ItemDataPayload widgetGlobalSearchModel$ItemDataPayload, Boolean bool) {
-        invoke(view, num.intValue(), widgetGlobalSearchModel$ItemDataPayload, bool.booleanValue());
+    public /* bridge */ /* synthetic */ Unit invoke(View view, Integer num, WidgetGlobalSearchModel.ItemDataPayload itemDataPayload, Boolean bool) {
+        invoke(view, num.intValue(), itemDataPayload, bool.booleanValue());
         return Unit.a;
     }
 
-    public final void invoke(View view, int i, WidgetGlobalSearchModel$ItemDataPayload widgetGlobalSearchModel$ItemDataPayload, boolean z2) {
+    public final void invoke(View view, int i, WidgetGlobalSearchModel.ItemDataPayload itemDataPayload, boolean z2) {
         m.checkNotNullParameter(view, "view");
-        m.checkNotNullParameter(widgetGlobalSearchModel$ItemDataPayload, "data");
-        WidgetGlobalSearch.access$handleOnSelected(this.this$0, this.$model$inlined, view, i, widgetGlobalSearchModel$ItemDataPayload, z2);
+        m.checkNotNullParameter(itemDataPayload, "data");
+        WidgetGlobalSearch.access$handleOnSelected(this.this$0, this.$model$inlined, view, i, itemDataPayload, z2);
     }
 }

@@ -3,7 +3,6 @@ package com.discord.utilities.intent;
 import androidx.fragment.app.FragmentActivity;
 import com.discord.stores.StoreInviteSettings;
 import com.discord.widgets.guilds.create.WidgetGuildCreate;
-import com.discord.widgets.guilds.create.WidgetGuildCreate$Options;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -27,6 +26,6 @@ public final class RouteHandlers$selectFeature$settingMap$4 extends o implements
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(FragmentActivity fragmentActivity) {
         m.checkNotNullParameter(fragmentActivity, "ctx");
-        WidgetGuildCreate.Companion.show(fragmentActivity, new WidgetGuildCreate$Options(StoreInviteSettings.LOCATION_DEEPLINK, null, false, null, false, 30, null));
+        WidgetGuildCreate.INSTANCE.show(fragmentActivity, new WidgetGuildCreate.Options(StoreInviteSettings.LOCATION_DEEPLINK, null, false, null, false, 30, null));
     }
 }

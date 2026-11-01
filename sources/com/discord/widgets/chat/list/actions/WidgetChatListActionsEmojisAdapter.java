@@ -2,7 +2,6 @@ package com.discord.widgets.chat.list.actions;
 
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
 import com.discord.models.domain.emoji.Emoji;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapterSimple;
 import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
@@ -40,10 +39,10 @@ public final class WidgetChatListActionsEmojisAdapter extends MGRecyclerAdapterS
         ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(listTake, 10));
         Iterator it = listTake.iterator();
         while (it.hasNext()) {
-            arrayList.add(new EmojiItem$EmojiData((Emoji) it.next()));
+            arrayList.add(new EmojiItem.EmojiData((Emoji) it.next()));
         }
         List<EmojiItem> mutableList = u.toMutableList((Collection) arrayList);
-        mutableList.add(EmojiItem$MoreEmoji.INSTANCE);
+        mutableList.add(EmojiItem.MoreEmoji.INSTANCE);
         return mutableList;
     }
 
@@ -55,8 +54,8 @@ public final class WidgetChatListActionsEmojisAdapter extends MGRecyclerAdapterS
         return this.onClickMoreEmojis;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public /* bridge */ /* synthetic */ RecyclerView$ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public /* bridge */ /* synthetic */ RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         return onCreateViewHolder(viewGroup, i);
     }
 
@@ -75,7 +74,7 @@ public final class WidgetChatListActionsEmojisAdapter extends MGRecyclerAdapterS
         this.onClickMoreEmojis = function0;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public MGRecyclerViewHolder<?, EmojiItem> onCreateViewHolder(ViewGroup parent, int viewType) {
         m.checkNotNullParameter(parent, "parent");
         if (viewType == 0) {

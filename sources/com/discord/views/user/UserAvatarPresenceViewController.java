@@ -1,19 +1,21 @@
 package com.discord.views.user;
 
+import com.discord.models.user.User;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUser;
 import com.discord.stores.StoreUserPresence;
-import com.discord.utilities.rx.ObservableExtensionsKt$filterNull$1;
-import com.discord.utilities.rx.ObservableExtensionsKt$filterNull$2;
+import com.discord.utilities.rx.ObservableExtensionsKt;
+import com.discord.utilities.streams.StreamContext;
 import com.discord.utilities.streams.StreamContextService;
 import com.discord.utilities.viewcontroller.RxViewController;
 import com.discord.widgets.user.presence.ModelRichPresence;
 import d0.z.d.m;
 import rx.Observable;
+import rx.functions.Func3;
 
 /* JADX INFO: compiled from: UserAvatarPresenceViewController.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class UserAvatarPresenceViewController extends RxViewController<UserAvatarPresenceView, UserAvatarPresenceView$a> {
+public final class UserAvatarPresenceViewController extends RxViewController<UserAvatarPresenceView, UserAvatarPresenceView.a> {
 
     /* JADX INFO: renamed from: a, reason: from kotlin metadata */
     public long userId;
@@ -27,11 +29,25 @@ public final class UserAvatarPresenceViewController extends RxViewController<Use
     /* JADX INFO: renamed from: d, reason: from kotlin metadata */
     public final StreamContextService streamContextService;
 
+    /* JADX INFO: compiled from: UserAvatarPresenceViewController.kt */
+    public final class a<T1, T2, T3, R> implements Func3<User, ModelRichPresence, StreamContext, UserAvatarPresenceView.a> {
+        public static final a a = new a();
+
+        @Override // rx.functions.Func3
+        public UserAvatarPresenceView.a call(User user, ModelRichPresence modelRichPresence, StreamContext streamContext) {
+            User user2 = user;
+            ModelRichPresence modelRichPresence2 = modelRichPresence;
+            StreamContext streamContext2 = streamContext;
+            m.checkNotNullExpressionValue(user2, "user");
+            return new UserAvatarPresenceView.a(user2, modelRichPresence2 != null ? modelRichPresence2.getPresence() : null, streamContext2, true, null, 16);
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public UserAvatarPresenceViewController(UserAvatarPresenceView userAvatarPresenceView, StoreUser storeUser, StoreUserPresence storeUserPresence, StreamContextService streamContextService, int i) {
         super(userAvatarPresenceView);
-        StoreUser users = (i & 2) != 0 ? StoreStream.Companion.getUsers() : null;
-        StoreUserPresence presences = (i & 4) != 0 ? StoreStream.Companion.getPresences() : null;
+        StoreUser users = (i & 2) != 0 ? StoreStream.INSTANCE.getUsers() : null;
+        StoreUserPresence presences = (i & 4) != 0 ? StoreStream.INSTANCE.getPresences() : null;
         StreamContextService streamContextService2 = (i & 8) != 0 ? new StreamContextService(null, null, null, null, null, null, null, null, 255, null) : null;
         m.checkNotNullParameter(userAvatarPresenceView, "view");
         m.checkNotNullParameter(users, "storeUser");
@@ -43,17 +59,17 @@ public final class UserAvatarPresenceViewController extends RxViewController<Use
     }
 
     @Override // com.discord.utilities.viewcontroller.RxViewController
-    public void configureView(UserAvatarPresenceView$a userAvatarPresenceView$a) {
-        UserAvatarPresenceView$a userAvatarPresenceView$a2 = userAvatarPresenceView$a;
-        m.checkNotNullParameter(userAvatarPresenceView$a2, "viewState");
-        getView().a(userAvatarPresenceView$a2);
+    public void configureView(UserAvatarPresenceView.a aVar) {
+        UserAvatarPresenceView.a aVar2 = aVar;
+        m.checkNotNullParameter(aVar2, "viewState");
+        getView().a(aVar2);
     }
 
     @Override // com.discord.utilities.viewcontroller.RxViewController
-    public Observable<UserAvatarPresenceView$a> observeState() {
-        Observable<R> observableG = this.storeUser.observeUser(this.userId).y(ObservableExtensionsKt$filterNull$1.INSTANCE).G(ObservableExtensionsKt$filterNull$2.INSTANCE);
+    public Observable<UserAvatarPresenceView.a> observeState() {
+        Observable<R> observableG = this.storeUser.observeUser(this.userId).y(ObservableExtensionsKt.AnonymousClass1.INSTANCE).G(ObservableExtensionsKt.AnonymousClass2.INSTANCE);
         m.checkNotNullExpressionValue(observableG, "filter { it != null }.map { it!! }");
-        Observable<UserAvatarPresenceView$a> observableI = Observable.i(observableG, ModelRichPresence.Companion.get(this.userId, this.storeUserPresence), this.streamContextService.getForUser(this.userId, false), UserAvatarPresenceViewController$a.a);
+        Observable<UserAvatarPresenceView.a> observableI = Observable.i(observableG, ModelRichPresence.INSTANCE.get(this.userId, this.storeUserPresence), this.streamContextService.getForUser(this.userId, false), a.a);
         m.checkNotNullExpressionValue(observableI, "Observable.combineLatest…nce = true,\n      )\n    }");
         return observableI;
     }

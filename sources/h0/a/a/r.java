@@ -163,13 +163,13 @@ public final class r extends q {
         int i2;
         int i3;
         this.Z = this.l.f3699b;
-        v$a v_aH = this.d.h(9, str, str2, str3);
-        this.l.e(i, v_aH.a);
+        v.a aVarH = this.d.h(9, str, str2, str3);
+        this.l.e(i, aVarH.a);
         p pVar = this.Q;
         if (pVar != null) {
             int i4 = this.N;
             if (i4 == 4 || i4 == 3) {
-                pVar.k.b(i, 0, v_aH, this.d);
+                pVar.k.b(i, 0, aVarH, this.d);
                 return;
             }
             char cCharAt = str3.charAt(0);
@@ -851,22 +851,22 @@ public final class r extends q {
     @Override // h0.a.a.q
     public void p(int i, String str, String str2, String str3, boolean z2) {
         this.Z = this.l.f3699b;
-        v$a v_aH = this.d.h(z2 ? 11 : 10, str, str2, str3);
+        v.a aVarH = this.d.h(z2 ? 11 : 10, str, str2, str3);
         if (i == 185) {
             c cVar = this.l;
-            cVar.e(Opcodes.INVOKEINTERFACE, v_aH.a);
-            cVar.c(v_aH.a() >> 2, 0);
+            cVar.e(Opcodes.INVOKEINTERFACE, aVarH.a);
+            cVar.c(aVarH.a() >> 2, 0);
         } else {
-            this.l.e(i, v_aH.a);
+            this.l.e(i, aVarH.a);
         }
         p pVar = this.Q;
         if (pVar != null) {
             int i2 = this.N;
             if (i2 == 4 || i2 == 3) {
-                pVar.k.b(i, 0, v_aH, this.d);
+                pVar.k.b(i, 0, aVarH, this.d);
                 return;
             }
-            int iA = v_aH.a();
+            int iA = aVarH.a();
             int i3 = (iA & 3) - (iA >> 2);
             int i4 = i == 184 ? this.R + i3 + 1 : this.R + i3;
             if (i4 > this.S) {

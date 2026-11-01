@@ -5,7 +5,7 @@ import h0.c.b0;
 /* JADX INFO: loaded from: classes3.dex */
 public class VideoDecoderWrapper {
     @CalledByNative
-    public static VideoDecoder$Callback createDecoderCallback(long j) {
+    public static VideoDecoder.Callback createDecoderCallback(long j) {
         return new b0(j);
     }
 

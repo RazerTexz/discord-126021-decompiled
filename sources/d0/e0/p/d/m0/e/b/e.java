@@ -2,8 +2,6 @@ package d0.e0.p.d.m0.e.b;
 
 import d0.e0.p.d.m0.c.c0;
 import d0.e0.p.d.m0.c.d0;
-import d0.e0.p.d.m0.c.h1.c$b;
-import d0.e0.p.d.m0.l.b.t$a;
 import java.util.List;
 
 /* JADX INFO: compiled from: DeserializationComponentsForJava.kt */
@@ -25,13 +23,13 @@ public final class e {
         d0.z.d.m.checkNotNullParameter(lVar, "kotlinTypeChecker");
         d0.e0.p.d.m0.b.h builtIns = c0Var.getBuiltIns();
         d0.e0.p.d.m0.b.q.f fVar2 = builtIns instanceof d0.e0.p.d.m0.b.q.f ? (d0.e0.p.d.m0.b.q.f) builtIns : null;
-        t$a t_a = t$a.a;
+        d0.e0.p.d.m0.l.b.t.a aVar = d0.e0.p.d.m0.l.b.t.a.a;
         h hVar = h.a;
         List listEmptyList = d0.t.n.emptyList();
         d0.e0.p.d.m0.c.h1.a customizer = fVar2 == null ? null : fVar2.getCustomizer();
-        d0.e0.p.d.m0.c.h1.a aVar = customizer == null ? d0.e0.p.d.m0.c.h1.a$a.a : customizer;
+        d0.e0.p.d.m0.c.h1.a aVar2 = customizer == null ? d0.e0.p.d.m0.c.h1.a.C0513a.a : customizer;
         d0.e0.p.d.m0.b.q.g customizer2 = fVar2 != null ? fVar2.getCustomizer() : null;
-        this.a = new d0.e0.p.d.m0.l.b.j(oVar, c0Var, kVar, gVar, cVar, fVar, t_a, pVar, cVar2, hVar, listEmptyList, d0Var, iVar, aVar, customizer2 == null ? c$b.a : customizer2, d0.e0.p.d.m0.f.a0.b.h.a.getEXTENSION_REGISTRY(), lVar, new d0.e0.p.d.m0.k.z.b(oVar, d0.t.n.emptyList()), null, 262144, null);
+        this.a = new d0.e0.p.d.m0.l.b.j(oVar, c0Var, kVar, gVar, cVar, fVar, aVar, pVar, cVar2, hVar, listEmptyList, d0Var, iVar, aVar2, customizer2 == null ? d0.e0.p.d.m0.c.h1.c.b.a : customizer2, d0.e0.p.d.m0.f.a0.b.h.a.getEXTENSION_REGISTRY(), lVar, new d0.e0.p.d.m0.k.z.b(oVar, d0.t.n.emptyList()), null, 262144, null);
     }
 
     public final d0.e0.p.d.m0.l.b.j getComponents() {

@@ -1,7 +1,7 @@
 package com.discord.widgets.nux;
 
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.discord.utilities.view.validators.Input$TextInputLayoutInput;
+import com.discord.utilities.view.validators.Input;
 import com.discord.utilities.view.validators.InputValidator;
 import com.discord.utilities.view.validators.ValidationManager;
 import com.google.android.material.textfield.TextInputLayout;
@@ -30,6 +30,6 @@ public final class WidgetNuxChannelPrompt$validationManager$2 extends o implemen
     public final ValidationManager invoke() {
         TextInputLayout textInputLayout = WidgetNuxChannelPrompt.access$getBinding$p(this.this$0).g;
         m.checkNotNullExpressionValue(textInputLayout, "binding.nufChannelPromptTopicWrap");
-        return new ValidationManager(new Input$TextInputLayoutInput(ModelAuditLogEntry.CHANGE_KEY_NAME, textInputLayout, new InputValidator[0]));
+        return new ValidationManager(new Input.TextInputLayoutInput(ModelAuditLogEntry.CHANGE_KEY_NAME, textInputLayout, new InputValidator[0]));
     }
 }

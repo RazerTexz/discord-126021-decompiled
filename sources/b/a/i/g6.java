@@ -10,8 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.Barrier;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
 
@@ -69,45 +68,45 @@ public final class g6 implements ViewBinding {
 
     @NonNull
     public static g6 a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
-        View viewInflate = layoutInflater.inflate(R$layout.widget_user_rich_presence, viewGroup, false);
+        View viewInflate = layoutInflater.inflate(R.layout.widget_user_rich_presence, viewGroup, false);
         if (z2) {
             viewGroup.addView(viewInflate);
         }
-        int i = 2131362146;
-        Barrier barrier = (Barrier) viewInflate.findViewById(2131362146);
+        int i = R.id.barrier;
+        Barrier barrier = (Barrier) viewInflate.findViewById(R.id.barrier);
         if (barrier != null) {
-            i = R$id.image_bottom_guideline;
-            Space space = (Space) viewInflate.findViewById(R$id.image_bottom_guideline);
+            i = R.id.image_bottom_guideline;
+            Space space = (Space) viewInflate.findViewById(R.id.image_bottom_guideline);
             if (space != null) {
-                i = R$id.rich_presence_container_data;
-                LinearLayout linearLayout = (LinearLayout) viewInflate.findViewById(R$id.rich_presence_container_data);
+                i = R.id.rich_presence_container_data;
+                LinearLayout linearLayout = (LinearLayout) viewInflate.findViewById(R.id.rich_presence_container_data);
                 if (linearLayout != null) {
-                    i = R$id.rich_presence_details;
-                    TextView textView = (TextView) viewInflate.findViewById(R$id.rich_presence_details);
+                    i = R.id.rich_presence_details;
+                    TextView textView = (TextView) viewInflate.findViewById(R.id.rich_presence_details);
                     if (textView != null) {
-                        i = R$id.rich_presence_header;
-                        TextView textView2 = (TextView) viewInflate.findViewById(R$id.rich_presence_header);
+                        i = R.id.rich_presence_header;
+                        TextView textView2 = (TextView) viewInflate.findViewById(R.id.rich_presence_header);
                         if (textView2 != null) {
-                            i = R$id.rich_presence_image_large;
-                            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate.findViewById(R$id.rich_presence_image_large);
+                            i = R.id.rich_presence_image_large;
+                            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate.findViewById(R.id.rich_presence_image_large);
                             if (simpleDraweeView != null) {
-                                i = R$id.rich_presence_image_small;
-                                SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) viewInflate.findViewById(R$id.rich_presence_image_small);
+                                i = R.id.rich_presence_image_small;
+                                SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) viewInflate.findViewById(R.id.rich_presence_image_small);
                                 if (simpleDraweeView2 != null) {
-                                    i = R$id.rich_presence_primary_button;
-                                    MaterialButton materialButton = (MaterialButton) viewInflate.findViewById(R$id.rich_presence_primary_button);
+                                    i = R.id.rich_presence_primary_button;
+                                    MaterialButton materialButton = (MaterialButton) viewInflate.findViewById(R.id.rich_presence_primary_button);
                                     if (materialButton != null) {
-                                        i = R$id.rich_presence_secondary_button;
-                                        MaterialButton materialButton2 = (MaterialButton) viewInflate.findViewById(R$id.rich_presence_secondary_button);
+                                        i = R.id.rich_presence_secondary_button;
+                                        MaterialButton materialButton2 = (MaterialButton) viewInflate.findViewById(R.id.rich_presence_secondary_button);
                                         if (materialButton2 != null) {
-                                            i = R$id.rich_presence_state;
-                                            TextView textView3 = (TextView) viewInflate.findViewById(R$id.rich_presence_state);
+                                            i = R.id.rich_presence_state;
+                                            TextView textView3 = (TextView) viewInflate.findViewById(R.id.rich_presence_state);
                                             if (textView3 != null) {
-                                                i = R$id.rich_presence_time;
-                                                TextView textView4 = (TextView) viewInflate.findViewById(R$id.rich_presence_time);
+                                                i = R.id.rich_presence_time;
+                                                TextView textView4 = (TextView) viewInflate.findViewById(R.id.rich_presence_time);
                                                 if (textView4 != null) {
-                                                    i = R$id.rich_presence_title;
-                                                    TextView textView5 = (TextView) viewInflate.findViewById(R$id.rich_presence_title);
+                                                    i = R.id.rich_presence_title;
+                                                    TextView textView5 = (TextView) viewInflate.findViewById(R.id.rich_presence_title);
                                                     if (textView5 != null) {
                                                         return new g6((LinearLayout) viewInflate, barrier, space, linearLayout, textView, textView2, simpleDraweeView, simpleDraweeView2, materialButton, materialButton2, textView3, textView4, textView5);
                                                     }

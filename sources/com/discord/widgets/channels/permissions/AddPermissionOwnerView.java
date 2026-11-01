@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.R$a;
+import com.discord.R;
 import com.discord.databinding.ViewAddPermissionOwnerBinding;
 import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -26,7 +26,7 @@ public final class AddPermissionOwnerView extends ConstraintLayout {
     }
 
     private final void initialize(AttributeSet attrs) {
-        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attrs, R$a.AddPermissionOwnerView, 0, 0);
+        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attrs, R.a.AddPermissionOwnerView, 0, 0);
         m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…ermissionOwnerView, 0, 0)");
         try {
             String string = typedArrayObtainStyledAttributes.getString(0);

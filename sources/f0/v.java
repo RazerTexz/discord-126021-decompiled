@@ -22,6 +22,42 @@ public final class v {
     public final j c;
     public final List<Certificate> d;
 
+    /* JADX INFO: compiled from: Handshake.kt */
+    public final class a extends d0.z.d.o implements Function0<List<? extends Certificate>> {
+        public final /* synthetic */ List $peerCertificatesCopy;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(List list) {
+            super(0);
+            this.$peerCertificatesCopy = list;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public List<? extends Certificate> invoke() {
+            return this.$peerCertificatesCopy;
+        }
+    }
+
+    /* JADX INFO: compiled from: Handshake.kt */
+    public final class b extends d0.z.d.o implements Function0<List<? extends Certificate>> {
+        public final /* synthetic */ Function0 $peerCertificatesFn;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public b(Function0 function0) {
+            super(0);
+            this.$peerCertificatesFn = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public List<? extends Certificate> invoke() {
+            try {
+                return (List) this.$peerCertificatesFn.invoke();
+            } catch (SSLPeerUnverifiedException unused) {
+                return d0.t.n.emptyList();
+            }
+        }
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public v(d0 d0Var, j jVar, List<? extends Certificate> list, Function0<? extends List<? extends Certificate>> function0) {
         d0.z.d.m.checkParameterIsNotNull(d0Var, "tlsVersion");
@@ -31,7 +67,7 @@ public final class v {
         this.f3680b = d0Var;
         this.c = jVar;
         this.d = list;
-        this.a = d0.g.lazy(new v$b(function0));
+        this.a = d0.g.lazy(new b(function0));
     }
 
     public static final v a(SSLSession sSLSession) throws IOException {
@@ -59,7 +95,7 @@ public final class v {
         } catch (SSLPeerUnverifiedException unused) {
             listEmptyList = d0.t.n.emptyList();
         }
-        return new v(d0VarA, jVarB, d(sSLSession.getLocalCertificates()), new v$a(listEmptyList));
+        return new v(d0VarA, jVarB, d(sSLSession.getLocalCertificates()), new a(listEmptyList));
     }
 
     public final String b(Certificate certificate) {

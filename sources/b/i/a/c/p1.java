@@ -109,47 +109,198 @@ public final class p1 implements w0 {
 
     @Nullable
     public final Integer w;
-    public static final p1 j = new p1$b().a();
-    public static final w0$a<p1> k = l0.a;
+    public static final p1 j = new b().a();
+    public static final w0.a<p1> k = l0.a;
 
-    public p1(p1$b p1_b, p1$a p1_a) {
-        this.l = p1_b.a;
-        this.m = p1_b.f1050b;
-        this.n = p1_b.c;
-        this.o = p1_b.d;
-        this.p = p1_b.e;
-        this.q = p1_b.f;
-        this.r = p1_b.g;
-        this.f1046s = p1_b.h;
-        this.t = p1_b.i;
-        this.u = p1_b.j;
-        this.v = p1_b.k;
-        this.w = p1_b.l;
-        this.f1047x = p1_b.m;
-        this.f1048y = p1_b.n;
-        this.f1049z = p1_b.o;
-        this.A = p1_b.p;
-        this.B = p1_b.q;
-        Integer num = p1_b.r;
-        this.C = num;
-        this.D = num;
-        this.E = p1_b.f1051s;
-        this.F = p1_b.t;
-        this.G = p1_b.u;
-        this.H = p1_b.v;
-        this.I = p1_b.w;
-        this.J = p1_b.f1052x;
-        this.K = p1_b.f1053y;
-        this.L = p1_b.f1054z;
-        this.M = p1_b.A;
-        this.N = p1_b.B;
-        this.O = p1_b.C;
-        this.P = p1_b.D;
-        this.Q = p1_b.E;
+    /* JADX INFO: compiled from: MediaMetadata.java */
+    public final class b {
+
+        @Nullable
+        public Integer A;
+
+        @Nullable
+        public Integer B;
+
+        @Nullable
+        public CharSequence C;
+
+        @Nullable
+        public CharSequence D;
+
+        @Nullable
+        public Bundle E;
+
+        @Nullable
+        public CharSequence a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        @Nullable
+        public CharSequence f1050b;
+
+        @Nullable
+        public CharSequence c;
+
+        @Nullable
+        public CharSequence d;
+
+        @Nullable
+        public CharSequence e;
+
+        @Nullable
+        public CharSequence f;
+
+        @Nullable
+        public CharSequence g;
+
+        @Nullable
+        public Uri h;
+
+        @Nullable
+        public d2 i;
+
+        @Nullable
+        public d2 j;
+
+        @Nullable
+        public byte[] k;
+
+        @Nullable
+        public Integer l;
+
+        @Nullable
+        public Uri m;
+
+        @Nullable
+        public Integer n;
+
+        @Nullable
+        public Integer o;
+
+        @Nullable
+        public Integer p;
+
+        @Nullable
+        public Boolean q;
+
+        @Nullable
+        public Integer r;
+
+        /* JADX INFO: renamed from: s, reason: collision with root package name */
+        @Nullable
+        public Integer f1051s;
+
+        @Nullable
+        public Integer t;
+
+        @Nullable
+        public Integer u;
+
+        @Nullable
+        public Integer v;
+
+        @Nullable
+        public Integer w;
+
+        /* JADX INFO: renamed from: x, reason: collision with root package name */
+        @Nullable
+        public CharSequence f1052x;
+
+        /* JADX INFO: renamed from: y, reason: collision with root package name */
+        @Nullable
+        public CharSequence f1053y;
+
+        /* JADX INFO: renamed from: z, reason: collision with root package name */
+        @Nullable
+        public CharSequence f1054z;
+
+        public b() {
+        }
+
+        public p1 a() {
+            return new p1(this, null);
+        }
+
+        public b b(byte[] bArr, int i) {
+            if (this.k == null || b.i.a.c.f3.e0.a(Integer.valueOf(i), 3) || !b.i.a.c.f3.e0.a(this.l, 3)) {
+                this.k = (byte[]) bArr.clone();
+                this.l = Integer.valueOf(i);
+            }
+            return this;
+        }
+
+        public b(p1 p1Var, a aVar) {
+            this.a = p1Var.l;
+            this.f1050b = p1Var.m;
+            this.c = p1Var.n;
+            this.d = p1Var.o;
+            this.e = p1Var.p;
+            this.f = p1Var.q;
+            this.g = p1Var.r;
+            this.h = p1Var.f1046s;
+            this.i = p1Var.t;
+            this.j = p1Var.u;
+            this.k = p1Var.v;
+            this.l = p1Var.w;
+            this.m = p1Var.f1047x;
+            this.n = p1Var.f1048y;
+            this.o = p1Var.f1049z;
+            this.p = p1Var.A;
+            this.q = p1Var.B;
+            this.r = p1Var.D;
+            this.f1051s = p1Var.E;
+            this.t = p1Var.F;
+            this.u = p1Var.G;
+            this.v = p1Var.H;
+            this.w = p1Var.I;
+            this.f1052x = p1Var.J;
+            this.f1053y = p1Var.K;
+            this.f1054z = p1Var.L;
+            this.A = p1Var.M;
+            this.B = p1Var.N;
+            this.C = p1Var.O;
+            this.D = p1Var.P;
+            this.E = p1Var.Q;
+        }
     }
 
-    public p1$b a() {
-        return new p1$b(this, null);
+    public p1(b bVar, a aVar) {
+        this.l = bVar.a;
+        this.m = bVar.f1050b;
+        this.n = bVar.c;
+        this.o = bVar.d;
+        this.p = bVar.e;
+        this.q = bVar.f;
+        this.r = bVar.g;
+        this.f1046s = bVar.h;
+        this.t = bVar.i;
+        this.u = bVar.j;
+        this.v = bVar.k;
+        this.w = bVar.l;
+        this.f1047x = bVar.m;
+        this.f1048y = bVar.n;
+        this.f1049z = bVar.o;
+        this.A = bVar.p;
+        this.B = bVar.q;
+        Integer num = bVar.r;
+        this.C = num;
+        this.D = num;
+        this.E = bVar.f1051s;
+        this.F = bVar.t;
+        this.G = bVar.u;
+        this.H = bVar.v;
+        this.I = bVar.w;
+        this.J = bVar.f1052x;
+        this.K = bVar.f1053y;
+        this.L = bVar.f1054z;
+        this.M = bVar.A;
+        this.N = bVar.B;
+        this.O = bVar.C;
+        this.P = bVar.D;
+        this.Q = bVar.E;
+    }
+
+    public b a() {
+        return new b(this, null);
     }
 
     public static String b(int i) {

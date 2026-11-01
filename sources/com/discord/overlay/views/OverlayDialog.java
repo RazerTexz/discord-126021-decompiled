@@ -3,7 +3,7 @@ package com.discord.overlay.views;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.util.Log;
-import android.view.WindowManager$LayoutParams;
+import android.view.WindowManager;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: OverlayDialog.kt */
@@ -13,7 +13,7 @@ public class OverlayDialog extends OverlayBubbleWrap {
     public OverlayDialog(Context context) {
         super(context);
         m.checkNotNullParameter(context, "context");
-        WindowManager$LayoutParams windowLayoutParams = getWindowLayoutParams();
+        WindowManager.LayoutParams windowLayoutParams = getWindowLayoutParams();
         windowLayoutParams.width = -1;
         windowLayoutParams.height = -1;
         windowLayoutParams.x = 0;

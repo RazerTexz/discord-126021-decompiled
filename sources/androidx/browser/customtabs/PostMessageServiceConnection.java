@@ -11,11 +11,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import x.a.a.a;
-import x.a.a.a$a;
 import x.a.a.c;
-import x.a.a.c$a;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class PostMessageServiceConnection implements PostMessageBackend, ServiceConnection {
@@ -35,7 +32,7 @@ public abstract class PostMessageServiceConnection implements PostMessageBackend
         if (callbackBinder == null) {
             throw new IllegalArgumentException("Provided session must have binder.");
         }
-        this.mSessionBinder = a$a.asInterface(callbackBinder);
+        this.mSessionBinder = a.AbstractBinderC0650a.asInterface(callbackBinder);
     }
 
     public boolean bindSessionToPostMessageService(@NonNull Context context, @NonNull String str) {
@@ -48,7 +45,7 @@ public abstract class PostMessageServiceConnection implements PostMessageBackend
         return zBindService;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public void cleanup(@NonNull Context context) {
         if (isBoundToService()) {
             unbindFromContext(context);
@@ -83,19 +80,19 @@ public abstract class PostMessageServiceConnection implements PostMessageBackend
     }
 
     @Override // androidx.browser.customtabs.PostMessageBackend
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public void onDisconnectChannel(@NonNull Context context) {
         unbindFromContext(context);
     }
 
     @Override // androidx.browser.customtabs.PostMessageBackend
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public final boolean onNotifyMessageChannelReady(@Nullable Bundle bundle) {
         return notifyMessageChannelReady(bundle);
     }
 
     @Override // androidx.browser.customtabs.PostMessageBackend
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public final boolean onPostMessage(@NonNull String str, @Nullable Bundle bundle) {
         return postMessage(str, bundle);
     }
@@ -111,7 +108,7 @@ public abstract class PostMessageServiceConnection implements PostMessageBackend
 
     @Override // android.content.ServiceConnection
     public final void onServiceConnected(@NonNull ComponentName componentName, @NonNull IBinder iBinder) {
-        this.mService = c$a.asInterface(iBinder);
+        this.mService = c.a.asInterface(iBinder);
         onPostMessageServiceConnected();
     }
 
@@ -139,7 +136,7 @@ public abstract class PostMessageServiceConnection implements PostMessageBackend
         return true;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public void setPackageName(@NonNull String str) {
         this.mPackageName = str;
     }
@@ -151,7 +148,7 @@ public abstract class PostMessageServiceConnection implements PostMessageBackend
         }
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public boolean bindSessionToPostMessageService(@NonNull Context context) {
         String str = this.mPackageName;
         if (str != null) {

@@ -7,12 +7,11 @@ import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Drawable$Callback;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: ArrayDrawable.java */
 /* JADX INFO: loaded from: classes.dex */
-public class b extends Drawable implements Drawable$Callback, e0, d0 {
+public class b extends Drawable implements Drawable.Callback, e0, d0 {
     public e0 j;
     public final Drawable[] l;
     public final d[] m;
@@ -192,7 +191,7 @@ public class b extends Drawable implements Drawable$Callback, e0, d0 {
         }
     }
 
-    @Override // android.graphics.drawable.Drawable$Callback
+    @Override // android.graphics.drawable.Drawable.Callback
     public void invalidateDrawable(Drawable drawable) {
         invalidateSelf();
     }
@@ -288,7 +287,7 @@ public class b extends Drawable implements Drawable$Callback, e0, d0 {
         }
     }
 
-    @Override // android.graphics.drawable.Drawable$Callback
+    @Override // android.graphics.drawable.Drawable.Callback
     public void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
         scheduleSelf(runnable, j);
     }
@@ -397,7 +396,7 @@ public class b extends Drawable implements Drawable$Callback, e0, d0 {
         }
     }
 
-    @Override // android.graphics.drawable.Drawable$Callback
+    @Override // android.graphics.drawable.Drawable.Callback
     public void unscheduleDrawable(Drawable drawable, Runnable runnable) {
         unscheduleSelf(runnable);
     }

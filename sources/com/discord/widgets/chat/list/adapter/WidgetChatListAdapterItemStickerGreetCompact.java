@@ -5,8 +5,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import b.a.k.b;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.sticker.Sticker;
 import com.discord.databinding.WidgetChatListAdapterItemStickerGreetCompactBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
@@ -21,19 +20,38 @@ import rx.Subscription;
 public final class WidgetChatListAdapterItemStickerGreetCompact extends WidgetChatListItem {
     private final WidgetChatListAdapterItemStickerGreetCompactBinding binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemStickerGreetCompact$onConfigure$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemStickerGreetCompact.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ int $channelType;
+        public final /* synthetic */ Sticker $sticker;
+
+        public AnonymousClass1(long j, int i, Sticker sticker) {
+            this.$channelId = j;
+            this.$channelType = i;
+            this.$sticker = sticker;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetChatListAdapterItemStickerGreetCompact.access$getAdapter$p(WidgetChatListAdapterItemStickerGreetCompact.this).getEventHandler().onSendGreetMessageClicked(this.$channelId, this.$channelType, this.$sticker);
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemStickerGreetCompact(WidgetChatListAdapter widgetChatListAdapter) {
-        super(R$layout.widget_chat_list_adapter_item_sticker_greet_compact, widgetChatListAdapter);
+        super(R.layout.widget_chat_list_adapter_item_sticker_greet_compact, widgetChatListAdapter);
         m.checkNotNullParameter(widgetChatListAdapter, "adapter");
         View view = this.itemView;
-        int i = R$id.chat_list_adapter_item_sticker_greet;
-        StickerView stickerView = (StickerView) view.findViewById(R$id.chat_list_adapter_item_sticker_greet);
+        int i = R.id.chat_list_adapter_item_sticker_greet;
+        StickerView stickerView = (StickerView) view.findViewById(R.id.chat_list_adapter_item_sticker_greet);
         if (stickerView != null) {
-            i = R$id.chat_list_adapter_item_sticker_greet_text;
-            TextView textView = (TextView) view.findViewById(R$id.chat_list_adapter_item_sticker_greet_text);
+            i = R.id.chat_list_adapter_item_sticker_greet_text;
+            TextView textView = (TextView) view.findViewById(R.id.chat_list_adapter_item_sticker_greet_text);
             if (textView != null) {
-                i = R$id.send_sticker_greet_button;
-                LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.send_sticker_greet_button);
+                i = R.id.send_sticker_greet_button;
+                LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.send_sticker_greet_button);
                 if (linearLayout != null) {
                     WidgetChatListAdapterItemStickerGreetCompactBinding widgetChatListAdapterItemStickerGreetCompactBinding = new WidgetChatListAdapterItemStickerGreetCompactBinding((ConstraintLayout) view, stickerView, textView, linearLayout);
                     m.checkNotNullExpressionValue(widgetChatListAdapterItemStickerGreetCompactBinding, "WidgetChatListAdapterIte…actBinding.bind(itemView)");
@@ -51,7 +69,7 @@ public final class WidgetChatListAdapterItemStickerGreetCompact extends WidgetCh
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
     public Subscription getSubscription() {
-        return this.binding.f2336b.getCom.discord.utilities.analytics.Traits$Payment$Type.SUBSCRIPTION java.lang.String();
+        return this.binding.f2336b.getCom.discord.utilities.analytics.Traits.Payment.Type.SUBSCRIPTION java.lang.String();
     }
 
     @Override // com.discord.widgets.chat.list.adapter.WidgetChatListItem, com.discord.utilities.mg_recycler.MGRecyclerViewHolder
@@ -65,14 +83,14 @@ public final class WidgetChatListAdapterItemStickerGreetCompact extends WidgetCh
         m.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
         StickerGreetCompactEntry stickerGreetCompactEntry = (StickerGreetCompactEntry) data;
-        Sticker sticker = stickerGreetCompactEntry.getSticker();
-        long channelId = stickerGreetCompactEntry.getChannelId();
-        String channelName = stickerGreetCompactEntry.getChannelName();
-        int channelType = stickerGreetCompactEntry.getChannelType();
-        StickerView.e(this.binding.f2336b, sticker, null, 2);
-        this.binding.d.setOnClickListener(new WidgetChatListAdapterItemStickerGreetCompact$onConfigure$1(this, channelId, channelType, sticker));
+        Sticker stickerComponent1 = stickerGreetCompactEntry.getSticker();
+        long jComponent2 = stickerGreetCompactEntry.getChannelId();
+        String strComponent3 = stickerGreetCompactEntry.getChannelName();
+        int iComponent4 = stickerGreetCompactEntry.getChannelType();
+        StickerView.e(this.binding.f2336b, stickerComponent1, null, 2);
+        this.binding.d.setOnClickListener(new AnonymousClass1(jComponent2, iComponent4, stickerComponent1));
         TextView textView = this.binding.c;
         m.checkNotNullExpressionValue(textView, "binding.chatListAdapterItemStickerGreetText");
-        b.n(textView, 2131897203, new Object[]{channelName}, null, 4);
+        b.n(textView, R.string.wave_to, new Object[]{strComponent3}, null, 4);
     }
 }

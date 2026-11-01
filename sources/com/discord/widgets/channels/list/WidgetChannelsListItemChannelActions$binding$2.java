@@ -3,7 +3,7 @@ package com.discord.widgets.channels.list;
 import android.view.View;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetChannelsListItemActionsBinding;
 import com.facebook.drawee.view.SimpleDraweeView;
 import d0.z.d.k;
@@ -27,38 +27,38 @@ public final /* synthetic */ class WidgetChannelsListItemChannelActions$binding$
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetChannelsListItemActionsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.action_channel_notifications;
-        TextView textView = (TextView) view.findViewById(R$id.action_channel_notifications);
+        int i = R.id.action_channel_notifications;
+        TextView textView = (TextView) view.findViewById(R.id.action_channel_notifications);
         if (textView != null) {
-            i = R$id.action_channel_settings;
-            TextView textView2 = (TextView) view.findViewById(R$id.action_channel_settings);
+            i = R.id.action_channel_settings;
+            TextView textView2 = (TextView) view.findViewById(R.id.action_channel_settings);
             if (textView2 != null) {
-                i = R$id.action_copy_id;
-                TextView textView3 = (TextView) view.findViewById(R$id.action_copy_id);
+                i = R.id.action_copy_id;
+                TextView textView3 = (TextView) view.findViewById(R.id.action_copy_id);
                 if (textView3 != null) {
-                    i = R$id.action_invite;
-                    TextView textView4 = (TextView) view.findViewById(R$id.action_invite);
+                    i = R.id.action_invite;
+                    TextView textView4 = (TextView) view.findViewById(R.id.action_invite);
                     if (textView4 != null) {
-                        i = R$id.channels_list_item_text_actions_icon;
-                        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.channels_list_item_text_actions_icon);
+                        i = R.id.channels_list_item_text_actions_icon;
+                        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.channels_list_item_text_actions_icon);
                         if (simpleDraweeView != null) {
-                            i = R$id.channels_list_item_text_actions_title;
-                            TextView textView5 = (TextView) view.findViewById(R$id.channels_list_item_text_actions_title);
+                            i = R.id.channels_list_item_text_actions_title;
+                            TextView textView5 = (TextView) view.findViewById(R.id.channels_list_item_text_actions_title);
                             if (textView5 != null) {
-                                i = R$id.developer_divider;
-                                View viewFindViewById = view.findViewById(R$id.developer_divider);
+                                i = R.id.developer_divider;
+                                View viewFindViewById = view.findViewById(R.id.developer_divider);
                                 if (viewFindViewById != null) {
-                                    i = R$id.dm_action_profile;
-                                    TextView textView6 = (TextView) view.findViewById(R$id.dm_action_profile);
+                                    i = R.id.dm_action_profile;
+                                    TextView textView6 = (TextView) view.findViewById(R.id.dm_action_profile);
                                     if (textView6 != null) {
-                                        i = R$id.text_action_mark_as_read;
-                                        TextView textView7 = (TextView) view.findViewById(R$id.text_action_mark_as_read);
+                                        i = R.id.text_action_mark_as_read;
+                                        TextView textView7 = (TextView) view.findViewById(R.id.text_action_mark_as_read);
                                         if (textView7 != null) {
-                                            i = R$id.text_action_mute;
-                                            TextView textView8 = (TextView) view.findViewById(R$id.text_action_mute);
+                                            i = R.id.text_action_mute;
+                                            TextView textView8 = (TextView) view.findViewById(R.id.text_action_mute);
                                             if (textView8 != null) {
-                                                i = R$id.text_action_thread_browser;
-                                                TextView textView9 = (TextView) view.findViewById(R$id.text_action_thread_browser);
+                                                i = R.id.text_action_thread_browser;
+                                                TextView textView9 = (TextView) view.findViewById(R.id.text_action_thread_browser);
                                                 if (textView9 != null) {
                                                     return new WidgetChannelsListItemActionsBinding((NestedScrollView) view, textView, textView2, textView3, textView4, simpleDraweeView, textView5, viewFindViewById, textView6, textView7, textView8, textView9);
                                                 }

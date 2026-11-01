@@ -9,8 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChannelMembersListItemAddOrLeaveBinding implements ViewBinding {
@@ -33,15 +32,15 @@ public final class WidgetChannelMembersListItemAddOrLeaveBinding implements View
 
     @NonNull
     public static WidgetChannelMembersListItemAddOrLeaveBinding a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
-        View viewInflate = layoutInflater.inflate(R$layout.widget_channel_members_list_item_add_or_leave, viewGroup, false);
+        View viewInflate = layoutInflater.inflate(R.layout.widget_channel_members_list_item_add_or_leave, viewGroup, false);
         if (z2) {
             viewGroup.addView(viewInflate);
         }
-        int i = R$id.channel_members_list_item_add_or_leave;
-        ImageView imageView = (ImageView) viewInflate.findViewById(R$id.channel_members_list_item_add_or_leave);
+        int i = R.id.channel_members_list_item_add_or_leave;
+        ImageView imageView = (ImageView) viewInflate.findViewById(R.id.channel_members_list_item_add_or_leave);
         if (imageView != null) {
-            i = R$id.channel_members_list_item_add_or_leave_title;
-            TextView textView = (TextView) viewInflate.findViewById(R$id.channel_members_list_item_add_or_leave_title);
+            i = R.id.channel_members_list_item_add_or_leave_title;
+            TextView textView = (TextView) viewInflate.findViewById(R.id.channel_members_list_item_add_or_leave_title);
             if (textView != null) {
                 return new WidgetChannelMembersListItemAddOrLeaveBinding((LinearLayout) viewInflate, imageView, textView);
             }

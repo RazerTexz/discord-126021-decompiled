@@ -1,10 +1,10 @@
 package com.discord.widgets.voice.controls;
 
-import com.discord.tooltips.TooltipManager$b;
+import com.discord.tooltips.TooltipManager;
 
 /* JADX INFO: compiled from: VoiceControlsSheetSwipeTooltip.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class VoiceControlsSheetSwipeTooltip extends TooltipManager$b {
+public final class VoiceControlsSheetSwipeTooltip extends TooltipManager.b {
     public static final VoiceControlsSheetSwipeTooltip INSTANCE = new VoiceControlsSheetSwipeTooltip();
 
     private VoiceControlsSheetSwipeTooltip() {

@@ -1,6 +1,7 @@
 package androidx.transition;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.TypeEvaluator;
 import android.content.Context;
@@ -17,6 +18,20 @@ public class ChangeClipBounds extends Transition {
     private static final String PROPNAME_BOUNDS = "android:clipBounds:bounds";
     private static final String PROPNAME_CLIP = "android:clipBounds:clip";
     private static final String[] sTransitionProperties = {PROPNAME_CLIP};
+
+    /* JADX INFO: renamed from: androidx.transition.ChangeClipBounds$1, reason: invalid class name */
+    public class AnonymousClass1 extends AnimatorListenerAdapter {
+        public final /* synthetic */ View val$endView;
+
+        public AnonymousClass1(View view) {
+            this.val$endView = view;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            ViewCompat.setClipBounds(this.val$endView, null);
+        }
+    }
 
     public ChangeClipBounds() {
     }
@@ -64,7 +79,7 @@ public class ChangeClipBounds extends Transition {
             ViewCompat.setClipBounds(transitionValues2.view, rect);
             objectAnimatorOfObject = ObjectAnimator.ofObject(transitionValues2.view, (Property<View, V>) ViewUtils.CLIP_BOUNDS, (TypeEvaluator) new RectEvaluator(new Rect()), (Object[]) new Rect[]{rect, rect2});
             if (z2) {
-                objectAnimatorOfObject.addListener(new ChangeClipBounds$1(this, transitionValues2.view));
+                objectAnimatorOfObject.addListener(new AnonymousClass1(transitionValues2.view));
             }
         }
         return objectAnimatorOfObject;

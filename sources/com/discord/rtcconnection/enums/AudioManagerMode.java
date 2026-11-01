@@ -1,6 +1,6 @@
 package com.discord.rtcconnection.enums;
 
-import android.os.Build$VERSION;
+import android.os.Build;
 
 /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
 /* JADX WARN: Unknown enum class pattern. Please report as an issue! */
@@ -9,7 +9,6 @@ import android.os.Build$VERSION;
 public final class AudioManagerMode {
     private static final /* synthetic */ AudioManagerMode[] $VALUES;
     public static final AudioManagerMode CallScreening;
-    public static final AudioManagerMode$a Companion;
     public static final AudioManagerMode Current;
     public static final AudioManagerMode InCall;
     public static final AudioManagerMode InCommunication;
@@ -38,11 +37,11 @@ public final class AudioManagerMode {
         AudioManagerMode audioManagerMode6 = new AudioManagerMode("InCommunication", 5, 3);
         InCommunication = audioManagerMode6;
         audioManagerModeArr[5] = audioManagerMode6;
-        AudioManagerMode audioManagerMode7 = new AudioManagerMode("CallScreening", 6, Build$VERSION.SDK_INT >= 30 ? 4 : 2);
+        AudioManagerMode audioManagerMode7 = new AudioManagerMode("CallScreening", 6, Build.VERSION.SDK_INT >= 30 ? 4 : 2);
         CallScreening = audioManagerMode7;
         audioManagerModeArr[6] = audioManagerMode7;
         $VALUES = audioManagerModeArr;
-        Companion = new AudioManagerMode$a(null);
+        INSTANCE = new Companion(null);
     }
 
     private AudioManagerMode(String str, int i, int i2) {

@@ -2,11 +2,10 @@ package b.a.d;
 
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import rx.Observable;
-import rx.Observable$c;
 
 /* JADX INFO: compiled from: AppTransformers.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class n<T, R> implements Observable$c<T, T> {
+public final class n<T, R> implements Observable.c<T, T> {
     public static final n j = new n();
 
     @Override // j0.k.b

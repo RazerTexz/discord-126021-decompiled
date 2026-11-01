@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetSettingsAccountBackupCodesBinding;
 import com.discord.utilities.dimmer.DimmerView;
 import com.google.android.material.button.MaterialButton;
@@ -29,17 +29,17 @@ public final /* synthetic */ class WidgetSettingsAccountBackupCodes$binding$2 ex
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSettingsAccountBackupCodesBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = 2131363051;
-        DimmerView dimmerView = (DimmerView) view.findViewById(2131363051);
+        int i = R.id.dimmer_view;
+        DimmerView dimmerView = (DimmerView) view.findViewById(R.id.dimmer_view);
         if (dimmerView != null) {
-            i = R$id.settings_backup_codes_generate;
-            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.settings_backup_codes_generate);
+            i = R.id.settings_backup_codes_generate;
+            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.settings_backup_codes_generate);
             if (materialButton != null) {
-                i = R$id.settings_backup_codes_info;
-                TextView textView = (TextView) view.findViewById(R$id.settings_backup_codes_info);
+                i = R.id.settings_backup_codes_info;
+                TextView textView = (TextView) view.findViewById(R.id.settings_backup_codes_info);
                 if (textView != null) {
-                    i = R$id.settings_backup_codes_rv;
-                    RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.settings_backup_codes_rv);
+                    i = R.id.settings_backup_codes_rv;
+                    RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.settings_backup_codes_rv);
                     if (recyclerView != null) {
                         return new WidgetSettingsAccountBackupCodesBinding((CoordinatorLayout) view, dimmerView, materialButton, textView, recyclerView);
                     }

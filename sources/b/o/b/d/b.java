@@ -16,10 +16,16 @@ public final class b {
     public final int f1965b;
     public final int c;
 
-    public b(int i, b$a b_a, String str, DefaultConstructorMarker defaultConstructorMarker) {
+    /* JADX INFO: compiled from: GlProgramLocation.kt */
+    public enum a {
+        ATTRIB,
+        UNIFORM
+    }
+
+    public b(int i, a aVar, String str, DefaultConstructorMarker defaultConstructorMarker) {
         int iGlGetAttribLocation;
         this.a = str;
-        int iOrdinal = b_a.ordinal();
+        int iOrdinal = aVar.ordinal();
         if (iOrdinal == 0) {
             iGlGetAttribLocation = GLES20.glGetAttribLocation(p.m105constructorimpl(i), str);
         } else {

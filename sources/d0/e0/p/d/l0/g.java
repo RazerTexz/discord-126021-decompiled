@@ -22,16 +22,45 @@ import kotlin.ranges.IntRange;
 /* JADX INFO: compiled from: InlineClassAwareCaller.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class g<M extends Member> implements d<M> {
-    public final g$a a;
+    public final a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final d<M> f3205b;
     public final boolean c;
 
+    /* JADX INFO: compiled from: InlineClassAwareCaller.kt */
+    public final class a {
+        public final IntRange a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final Method[] f3206b;
+        public final Method c;
+
+        public a(IntRange intRange, Method[] methodArr, Method method) {
+            m.checkNotNullParameter(intRange, "argumentRange");
+            m.checkNotNullParameter(methodArr, "unbox");
+            this.a = intRange;
+            this.f3206b = methodArr;
+            this.c = method;
+        }
+
+        public final IntRange component1() {
+            return this.a;
+        }
+
+        public final Method[] component2() {
+            return this.f3206b;
+        }
+
+        public final Method component3() {
+            return this.c;
+        }
+    }
+
     /* JADX WARN: Code duplicated, block: B:25:0x006c  */
     /* JADX WARN: Multi-variable type inference failed */
     public g(d0.e0.p.d.m0.c.b bVar, d<? extends M> dVar, boolean z2) {
-        g$a g_a;
+        a aVar;
         Class<?> inlineClass;
         m.checkNotNullParameter(bVar, "descriptor");
         m.checkNotNullParameter(dVar, "caller");
@@ -43,10 +72,10 @@ public final class g<M extends Member> implements d<M> {
         Class<?> inlineClass2 = h.toInlineClass(returnType);
         Method boxMethod = inlineClass2 != null ? h.getBoxMethod(inlineClass2, bVar) : null;
         if (d0.e0.p.d.m0.k.g.isGetterOfUnderlyingPropertyOfInlineClass(bVar)) {
-            g_a = new g$a(IntRange.o.getEMPTY(), new Method[0], boxMethod);
+            aVar = new a(IntRange.INSTANCE.getEMPTY(), new Method[0], boxMethod);
         } else {
             int i = -1;
-            if (!(dVar instanceof e$h$c)) {
+            if (!(dVar instanceof e.h.c)) {
                 if (bVar instanceof l) {
                     if (!(dVar instanceof c)) {
                         i = 0;
@@ -112,19 +141,19 @@ public final class g<M extends Member> implements d<M> {
             for (int i3 = 0; i3 < size; i3++) {
                 methodArr[i3] = (!intRangeUntil.contains(i3) || (inlineClass = h.toInlineClass((c0) arrayList.get(i3 - i))) == null) ? null : h.getUnboxMethod(inlineClass, bVar);
             }
-            g_a = new g$a(intRangeUntil, methodArr, boxMethod);
+            aVar = new a(intRangeUntil, methodArr, boxMethod);
         }
-        this.a = g_a;
+        this.a = aVar;
     }
 
     @Override // d0.e0.p.d.l0.d
     public Object call(Object[] objArr) throws IllegalAccessException, InvocationTargetException {
         Object objInvoke;
         m.checkNotNullParameter(objArr, "args");
-        g$a g_a = this.a;
-        IntRange intRangeComponent1 = g_a.component1();
-        Method[] methodArrComponent2 = g_a.component2();
-        Method methodComponent3 = g_a.component3();
+        a aVar = this.a;
+        IntRange intRangeComponent1 = aVar.component1();
+        Method[] methodArrComponent2 = aVar.component2();
+        Method methodComponent3 = aVar.component3();
         Object[] objArrCopyOf = Arrays.copyOf(objArr, objArr.length);
         m.checkNotNullExpressionValue(objArrCopyOf, "java.util.Arrays.copyOf(this, size)");
         Objects.requireNonNull(objArrCopyOf, "null cannot be cast to non-null type kotlin.Array<kotlin.Any?>");

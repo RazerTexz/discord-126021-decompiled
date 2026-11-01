@@ -25,7 +25,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetDirectoriesViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetDirectoriesViewModel$Companion$observeStores$1 extends o implements Function0<WidgetDirectoriesViewModel$ViewState> {
+public final class WidgetDirectoriesViewModel$Companion$observeStores$1 extends o implements Function0<WidgetDirectoriesViewModel.ViewState> {
     public final /* synthetic */ StoreChannelsSelected $channelsSelectedStore;
     public final /* synthetic */ StoreDirectories $directoriesStore;
     public final /* synthetic */ StoreGuildSelected $guildSelectedStore;
@@ -43,7 +43,7 @@ public final class WidgetDirectoriesViewModel$Companion$observeStores$1 extends 
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ WidgetDirectoriesViewModel$ViewState invoke() {
+    public /* bridge */ /* synthetic */ WidgetDirectoriesViewModel.ViewState invoke() {
         return invoke();
     }
 
@@ -51,7 +51,7 @@ public final class WidgetDirectoriesViewModel$Companion$observeStores$1 extends 
     /* JADX WARN: Code duplicated, block: B:21:0x00ac  */
     /* JADX WARN: Code duplicated, block: B:27:0x00be  */
     @Override // kotlin.jvm.functions.Function0
-    public final WidgetDirectoriesViewModel$ViewState invoke() {
+    public final WidgetDirectoriesViewModel.ViewState invoke() {
         RestCallState<List<DirectoryEntryGuild>> directoriesForChannel;
         RestCallState<Map<Integer, Integer>> entryCountsForChannel;
         Channel selectedChannel = this.$channelsSelectedStore.getSelectedChannel();
@@ -89,6 +89,6 @@ public final class WidgetDirectoriesViewModel$Companion$observeStores$1 extends 
         } else {
             entryCountsForChannel = Default.INSTANCE;
         }
-        return new WidgetDirectoriesViewModel$ViewState(guild, selectedChannel, setKeySet, set, zCan, restCallState, entryCountsForChannel);
+        return new WidgetDirectoriesViewModel.ViewState(guild, selectedChannel, setKeySet, set, zCan, restCallState, entryCountsForChannel);
     }
 }

@@ -13,7 +13,6 @@ import com.discord.stores.StorePermissions;
 import com.discord.stores.StoreUser;
 import com.discord.stores.StoreVoiceChannelSelected;
 import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilities;
-import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilities$Companion;
 import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilitiesKt;
 import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.widgets.chat.list.entries.GuildScheduledEventInviteEntry;
@@ -23,7 +22,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildScheduledEventInvite.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetChatListAdapterItemGuildScheduledEventInvite$Model$Companion$observe$1 extends o implements Function0<WidgetChatListAdapterItemGuildScheduledEventInvite$Model> {
+public final class WidgetChatListAdapterItemGuildScheduledEventInvite$Model$Companion$observe$1 extends o implements Function0<WidgetChatListAdapterItemGuildScheduledEventInvite.Model> {
     public final /* synthetic */ StoreChannels $channelStore;
     public final /* synthetic */ StoreGuildScheduledEvents $guildScheduledEventStore;
     public final /* synthetic */ StoreGuilds $guildStore;
@@ -45,13 +44,13 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite$Model$Comp
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ WidgetChatListAdapterItemGuildScheduledEventInvite$Model invoke() {
+    public /* bridge */ /* synthetic */ WidgetChatListAdapterItemGuildScheduledEventInvite.Model invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final WidgetChatListAdapterItemGuildScheduledEventInvite$Model invoke() {
+    public final WidgetChatListAdapterItemGuildScheduledEventInvite.Model invoke() {
         Channel channelA;
         Channel channel;
         boolean zCan;
@@ -89,6 +88,6 @@ public final class WidgetChatListAdapterItemGuildScheduledEventInvite$Model$Comp
         } else {
             zCan = false;
         }
-        return new WidgetChatListAdapterItemGuildScheduledEventInvite$Model(invite, z2, zIsMeRsvpedToEvent, guildScheduledEvent, channel, guild, creatorUserGuildMember$default, lValueOf, zCan, GuildScheduledEventUtilities$Companion.canShareEvent$default(GuildScheduledEventUtilities.Companion, this.$item.getGuildScheduledEvent().getChannelId(), this.$item.getGuildScheduledEvent().getGuildId(), this.$channelStore, this.$guildStore, null, null, 48, null));
+        return new WidgetChatListAdapterItemGuildScheduledEventInvite.Model(invite, z2, zIsMeRsvpedToEvent, guildScheduledEvent, channel, guild, creatorUserGuildMember$default, lValueOf, zCan, GuildScheduledEventUtilities.Companion.canShareEvent$default(GuildScheduledEventUtilities.INSTANCE, this.$item.getGuildScheduledEvent().getChannelId(), this.$item.getGuildScheduledEvent().getGuildId(), this.$channelStore, this.$guildStore, null, null, 48, null));
     }
 }

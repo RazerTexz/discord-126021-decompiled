@@ -2,11 +2,12 @@ package androidx.transition;
 
 import android.graphics.Matrix;
 import android.graphics.Rect;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.util.Property;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ViewUtils {
@@ -15,8 +16,62 @@ public class ViewUtils {
     private static final String TAG = "ViewUtils";
     public static final Property<View, Float> TRANSITION_ALPHA;
 
+    /* JADX INFO: renamed from: androidx.transition.ViewUtils$1, reason: invalid class name */
+    public final class AnonymousClass1 extends Property<View, Float> {
+        public AnonymousClass1(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public /* bridge */ /* synthetic */ Float get(View view) {
+            return get2(view);
+        }
+
+        @Override // android.util.Property
+        public /* bridge */ /* synthetic */ void set(View view, Float f) {
+            set2(view, f);
+        }
+
+        /* JADX INFO: renamed from: get, reason: avoid collision after fix types in other method */
+        public Float get2(View view) {
+            return Float.valueOf(ViewUtils.getTransitionAlpha(view));
+        }
+
+        /* JADX INFO: renamed from: set, reason: avoid collision after fix types in other method */
+        public void set2(View view, Float f) {
+            ViewUtils.setTransitionAlpha(view, f.floatValue());
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.transition.ViewUtils$2, reason: invalid class name */
+    public final class AnonymousClass2 extends Property<View, Rect> {
+        public AnonymousClass2(Class cls, String str) {
+            super(cls, str);
+        }
+
+        @Override // android.util.Property
+        public /* bridge */ /* synthetic */ Rect get(View view) {
+            return get2(view);
+        }
+
+        @Override // android.util.Property
+        public /* bridge */ /* synthetic */ void set(View view, Rect rect) {
+            set2(view, rect);
+        }
+
+        /* JADX INFO: renamed from: get, reason: avoid collision after fix types in other method */
+        public Rect get2(View view) {
+            return ViewCompat.getClipBounds(view);
+        }
+
+        /* JADX INFO: renamed from: set, reason: avoid collision after fix types in other method */
+        public void set2(View view, Rect rect) {
+            ViewCompat.setClipBounds(view, rect);
+        }
+    }
+
     static {
-        int i = Build$VERSION.SDK_INT;
+        int i = Build.VERSION.SDK_INT;
         if (i >= 29) {
             IMPL = new ViewUtilsApi29();
         } else if (i >= 23) {
@@ -26,8 +81,8 @@ public class ViewUtils {
         } else {
             IMPL = new ViewUtilsApi21();
         }
-        TRANSITION_ALPHA = new ViewUtils$1(Float.class, "translationAlpha");
-        CLIP_BOUNDS = new ViewUtils$2(Rect.class, "clipBounds");
+        TRANSITION_ALPHA = new AnonymousClass1(Float.class, "translationAlpha");
+        CLIP_BOUNDS = new AnonymousClass2(Rect.class, "clipBounds");
     }
 
     private ViewUtils() {

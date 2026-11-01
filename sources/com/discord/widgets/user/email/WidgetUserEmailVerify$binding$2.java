@@ -3,7 +3,7 @@ package com.discord.widgets.user.email;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetUserEmailVerifyBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -27,14 +27,14 @@ public final /* synthetic */ class WidgetUserEmailVerify$binding$2 extends k imp
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetUserEmailVerifyBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.alert_verify_email_anchor;
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.alert_verify_email_anchor);
+        int i = R.id.alert_verify_email_anchor;
+        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.alert_verify_email_anchor);
         if (linearLayout != null) {
-            i = R$id.alert_verify_email_change;
-            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.alert_verify_email_change);
+            i = R.id.alert_verify_email_change;
+            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.alert_verify_email_change);
             if (materialButton != null) {
-                i = R$id.alert_verify_email_resend;
-                MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.alert_verify_email_resend);
+                i = R.id.alert_verify_email_resend;
+                MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.alert_verify_email_resend);
                 if (materialButton2 != null) {
                     return new WidgetUserEmailVerifyBinding((RelativeLayout) view, linearLayout, materialButton, materialButton2);
                 }

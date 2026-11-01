@@ -1,7 +1,6 @@
 package b.i.a.c.x2.k0;
 
 import b.i.a.c.j1;
-import b.i.a.c.j1$b;
 
 /* JADX INFO: compiled from: PassthroughSectionPayloadReader.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -13,16 +12,16 @@ public final class x implements c0 {
     public b.i.a.c.x2.w c;
 
     public x(String str) {
-        j1$b j1_b = new j1$b();
-        j1_b.k = str;
-        this.a = j1_b.a();
+        j1.b bVar = new j1.b();
+        bVar.k = str;
+        this.a = bVar.a();
     }
 
     @Override // b.i.a.c.x2.k0.c0
-    public void a(b.i.a.c.f3.d0 d0Var, b.i.a.c.x2.j jVar, i0$d i0_d) {
+    public void a(b.i.a.c.f3.d0 d0Var, b.i.a.c.x2.j jVar, i0.d dVar) {
         this.f1282b = d0Var;
-        i0_d.a();
-        b.i.a.c.x2.w wVarP = jVar.p(i0_d.c(), 5);
+        dVar.a();
+        b.i.a.c.x2.w wVarP = jVar.p(dVar.c(), 5);
         this.c = wVarP;
         wVarP.e(this.a);
     }
@@ -43,9 +42,9 @@ public final class x implements c0 {
         }
         j1 j1Var = this.a;
         if (jD != j1Var.A) {
-            j1$b j1_bA = j1Var.a();
-            j1_bA.o = jD;
-            j1 j1VarA = j1_bA.a();
+            j1.b bVarA = j1Var.a();
+            bVarA.o = jD;
+            j1 j1VarA = bVarA.a();
             this.a = j1VarA;
             this.c.e(j1VarA);
         }

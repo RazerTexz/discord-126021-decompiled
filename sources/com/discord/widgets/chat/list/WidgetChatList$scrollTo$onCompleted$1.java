@@ -22,6 +22,6 @@ public final class WidgetChatList$scrollTo$onCompleted$1 extends o implements Fu
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2() {
-        StoreStream.Companion.getMessagesLoader().clearScrollTo();
+        StoreStream.INSTANCE.getMessagesLoader().clearScrollTo();
     }
 }

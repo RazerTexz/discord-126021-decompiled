@@ -6,7 +6,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.NestedScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetForumGuidelinesBottomSheetBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -30,26 +30,26 @@ public final /* synthetic */ class WidgetForumGuidelinesBottomSheet$binding$2 ex
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetForumGuidelinesBottomSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.channel_topic;
-        TextView textView = (TextView) view.findViewById(R$id.channel_topic);
+        int i = R.id.channel_topic;
+        TextView textView = (TextView) view.findViewById(R.id.channel_topic);
         if (textView != null) {
-            i = R$id.channel_topic_card;
-            CardView cardView = (CardView) view.findViewById(R$id.channel_topic_card);
+            i = R.id.channel_topic_card;
+            CardView cardView = (CardView) view.findViewById(R.id.channel_topic_card);
             if (cardView != null) {
-                i = 2131362884;
-                ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(2131362884);
+                i = R.id.content;
+                ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(R.id.content);
                 if (constraintLayout != null) {
-                    i = R$id.got_it;
-                    MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.got_it);
+                    i = R.id.got_it;
+                    MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.got_it);
                     if (materialButton != null) {
-                        i = R$id.sparkle;
-                        AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(R$id.sparkle);
+                        i = R.id.sparkle;
+                        AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(R.id.sparkle);
                         if (appCompatImageView != null) {
-                            i = R$id.subtitle;
-                            TextView textView2 = (TextView) view.findViewById(R$id.subtitle);
+                            i = R.id.subtitle;
+                            TextView textView2 = (TextView) view.findViewById(R.id.subtitle);
                             if (textView2 != null) {
-                                i = 2131365869;
-                                TextView textView3 = (TextView) view.findViewById(2131365869);
+                                i = R.id.title;
+                                TextView textView3 = (TextView) view.findViewById(R.id.title);
                                 if (textView3 != null) {
                                     return new WidgetForumGuidelinesBottomSheetBinding((NestedScrollView) view, textView, cardView, constraintLayout, materialButton, appCompatImageView, textView2, textView3);
                                 }

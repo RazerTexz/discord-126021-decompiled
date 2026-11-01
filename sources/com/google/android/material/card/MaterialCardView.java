@@ -7,7 +7,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.InsetDrawable;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
@@ -27,9 +27,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
 import b.i.a.g.c.a;
-import com.google.android.material.R$attr;
-import com.google.android.material.R$style;
-import com.google.android.material.R$styleable;
+import com.google.android.material.R;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.internal.ThemeEnforcement;
 import com.google.android.material.resources.MaterialResources;
@@ -42,7 +40,7 @@ import com.google.android.material.theme.overlay.MaterialThemeOverlay;
 /* JADX INFO: loaded from: classes3.dex */
 public class MaterialCardView extends CardView implements Checkable, Shapeable {
     private static final String ACCESSIBILITY_CLASS_NAME = "androidx.cardview.widget.CardView";
-    private static final int[] DRAGGED_STATE_SET = {R$attr.state_dragged};
+    private static final int[] DRAGGED_STATE_SET = {R.attr.state_dragged};
     private static final String LOG_TAG = "MaterialCardView";
 
     @NonNull
@@ -50,10 +48,14 @@ public class MaterialCardView extends CardView implements Checkable, Shapeable {
     private boolean checked;
     private boolean dragged;
     private boolean isParentCardViewDoneInitializing;
-    private MaterialCardView$OnCheckedChangeListener onCheckedChangeListener;
-    private static final int[] CHECKABLE_STATE_SET = {android.R$attr.state_checkable};
-    private static final int[] CHECKED_STATE_SET = {android.R$attr.state_checked};
-    private static final int DEF_STYLE_RES = R$style.Widget_MaterialComponents_CardView;
+    private OnCheckedChangeListener onCheckedChangeListener;
+    private static final int[] CHECKABLE_STATE_SET = {android.R.attr.state_checkable};
+    private static final int[] CHECKED_STATE_SET = {android.R.attr.state_checked};
+    private static final int DEF_STYLE_RES = R.style.Widget_MaterialComponents_CardView;
+
+    public interface OnCheckedChangeListener {
+        void onCheckedChanged(MaterialCardView materialCardView, boolean z2);
+    }
 
     public MaterialCardView(Context context) {
         this(context, null);
@@ -66,7 +68,7 @@ public class MaterialCardView extends CardView implements Checkable, Shapeable {
     private void forceRippleRedrawIfNeeded() {
         a aVar;
         Drawable drawable;
-        if (Build$VERSION.SDK_INT <= 26 || (drawable = (aVar = this.cardViewHelper).p) == null) {
+        if (Build.VERSION.SDK_INT <= 26 || (drawable = (aVar = this.cardViewHelper).p) == null) {
             return;
         }
         Rect bounds = drawable.getBounds();
@@ -360,7 +362,7 @@ public class MaterialCardView extends CardView implements Checkable, Shapeable {
             Drawable drawableE = aVar.c.isClickable() ? aVar.e() : aVar.f;
             aVar.j = drawableE;
             if (drawable != drawableE) {
-                if (Build$VERSION.SDK_INT < 23 || !(aVar.c.getForeground() instanceof InsetDrawable)) {
+                if (Build.VERSION.SDK_INT < 23 || !(aVar.c.getForeground() instanceof InsetDrawable)) {
                     aVar.c.setForeground(aVar.f(drawableE));
                 } else {
                     ((InsetDrawable) aVar.c.getForeground()).setDrawable(drawableE);
@@ -391,8 +393,8 @@ public class MaterialCardView extends CardView implements Checkable, Shapeable {
         this.cardViewHelper.l();
     }
 
-    public void setOnCheckedChangeListener(@Nullable MaterialCardView$OnCheckedChangeListener materialCardView$OnCheckedChangeListener) {
-        this.onCheckedChangeListener = materialCardView$OnCheckedChangeListener;
+    public void setOnCheckedChangeListener(@Nullable OnCheckedChangeListener onCheckedChangeListener) {
+        this.onCheckedChangeListener = onCheckedChangeListener;
     }
 
     @Override // androidx.cardview.widget.CardView
@@ -479,15 +481,15 @@ public class MaterialCardView extends CardView implements Checkable, Shapeable {
             this.checked = !this.checked;
             refreshDrawableState();
             forceRippleRedrawIfNeeded();
-            MaterialCardView$OnCheckedChangeListener materialCardView$OnCheckedChangeListener = this.onCheckedChangeListener;
-            if (materialCardView$OnCheckedChangeListener != null) {
-                materialCardView$OnCheckedChangeListener.onCheckedChanged(this, this.checked);
+            OnCheckedChangeListener onCheckedChangeListener = this.onCheckedChangeListener;
+            if (onCheckedChangeListener != null) {
+                onCheckedChangeListener.onCheckedChanged(this, this.checked);
             }
         }
     }
 
     public MaterialCardView(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, R$attr.materialCardViewStyle);
+        this(context, attributeSet, R.attr.materialCardViewStyle);
     }
 
     /* JADX WARN: Illegal instructions before constructor call */
@@ -497,31 +499,31 @@ public class MaterialCardView extends CardView implements Checkable, Shapeable {
         this.checked = false;
         this.dragged = false;
         this.isParentCardViewDoneInitializing = true;
-        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(getContext(), attributeSet, R$styleable.MaterialCardView, i, i2, new int[0]);
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(getContext(), attributeSet, R.styleable.MaterialCardView, i, i2, new int[0]);
         a aVar = new a(this, attributeSet, i, i2);
         this.cardViewHelper = aVar;
         aVar.e.setFillColor(super.getCardBackgroundColor());
         aVar.d.set(super.getContentPaddingLeft(), super.getContentPaddingTop(), super.getContentPaddingRight(), super.getContentPaddingBottom());
         aVar.k();
-        ColorStateList colorStateList = MaterialResources.getColorStateList(aVar.c.getContext(), typedArrayObtainStyledAttributes, R$styleable.MaterialCardView_strokeColor);
+        ColorStateList colorStateList = MaterialResources.getColorStateList(aVar.c.getContext(), typedArrayObtainStyledAttributes, R.styleable.MaterialCardView_strokeColor);
         aVar.o = colorStateList;
         if (colorStateList == null) {
             aVar.o = ColorStateList.valueOf(-1);
         }
-        aVar.i = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$styleable.MaterialCardView_strokeWidth, 0);
-        boolean z2 = typedArrayObtainStyledAttributes.getBoolean(R$styleable.MaterialCardView_android_checkable, false);
+        aVar.i = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.MaterialCardView_strokeWidth, 0);
+        boolean z2 = typedArrayObtainStyledAttributes.getBoolean(R.styleable.MaterialCardView_android_checkable, false);
         aVar.u = z2;
         aVar.c.setLongClickable(z2);
-        aVar.m = MaterialResources.getColorStateList(aVar.c.getContext(), typedArrayObtainStyledAttributes, R$styleable.MaterialCardView_checkedIconTint);
-        aVar.g(MaterialResources.getDrawable(aVar.c.getContext(), typedArrayObtainStyledAttributes, R$styleable.MaterialCardView_checkedIcon));
-        aVar.h = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$styleable.MaterialCardView_checkedIconSize, 0);
-        aVar.g = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$styleable.MaterialCardView_checkedIconMargin, 0);
-        ColorStateList colorStateList2 = MaterialResources.getColorStateList(aVar.c.getContext(), typedArrayObtainStyledAttributes, R$styleable.MaterialCardView_rippleColor);
+        aVar.m = MaterialResources.getColorStateList(aVar.c.getContext(), typedArrayObtainStyledAttributes, R.styleable.MaterialCardView_checkedIconTint);
+        aVar.g(MaterialResources.getDrawable(aVar.c.getContext(), typedArrayObtainStyledAttributes, R.styleable.MaterialCardView_checkedIcon));
+        aVar.h = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.MaterialCardView_checkedIconSize, 0);
+        aVar.g = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.MaterialCardView_checkedIconMargin, 0);
+        ColorStateList colorStateList2 = MaterialResources.getColorStateList(aVar.c.getContext(), typedArrayObtainStyledAttributes, R.styleable.MaterialCardView_rippleColor);
         aVar.l = colorStateList2;
         if (colorStateList2 == null) {
-            aVar.l = ColorStateList.valueOf(MaterialColors.getColor(aVar.c, R$attr.colorControlHighlight));
+            aVar.l = ColorStateList.valueOf(MaterialColors.getColor(aVar.c, R.attr.colorControlHighlight));
         }
-        ColorStateList colorStateList3 = MaterialResources.getColorStateList(aVar.c.getContext(), typedArrayObtainStyledAttributes, R$styleable.MaterialCardView_cardForegroundColor);
+        ColorStateList colorStateList3 = MaterialResources.getColorStateList(aVar.c.getContext(), typedArrayObtainStyledAttributes, R.styleable.MaterialCardView_cardForegroundColor);
         aVar.f.setFillColor(colorStateList3 == null ? ColorStateList.valueOf(0) : colorStateList3);
         aVar.m();
         aVar.e.setElevation(aVar.c.getCardElevation());

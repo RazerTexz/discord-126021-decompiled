@@ -15,10 +15,50 @@ public final class SystemIdInfoDao_Impl implements SystemIdInfoDao {
     private final EntityInsertionAdapter<SystemIdInfo> __insertionAdapterOfSystemIdInfo;
     private final SharedSQLiteStatement __preparedStmtOfRemoveSystemIdInfo;
 
+    /* JADX INFO: renamed from: androidx.work.impl.model.SystemIdInfoDao_Impl$1, reason: invalid class name */
+    public class AnonymousClass1 extends EntityInsertionAdapter<SystemIdInfo> {
+        public AnonymousClass1(RoomDatabase roomDatabase) {
+            super(roomDatabase);
+        }
+
+        @Override // androidx.room.EntityInsertionAdapter
+        public /* bridge */ /* synthetic */ void bind(SupportSQLiteStatement supportSQLiteStatement, SystemIdInfo systemIdInfo) {
+            bind2(supportSQLiteStatement, systemIdInfo);
+        }
+
+        @Override // androidx.room.SharedSQLiteStatement
+        public String createQuery() {
+            return "INSERT OR REPLACE INTO `SystemIdInfo` (`work_spec_id`,`system_id`) VALUES (?,?)";
+        }
+
+        /* JADX INFO: renamed from: bind, reason: avoid collision after fix types in other method */
+        public void bind2(SupportSQLiteStatement supportSQLiteStatement, SystemIdInfo systemIdInfo) {
+            String str = systemIdInfo.workSpecId;
+            if (str == null) {
+                supportSQLiteStatement.bindNull(1);
+            } else {
+                supportSQLiteStatement.bindString(1, str);
+            }
+            supportSQLiteStatement.bindLong(2, systemIdInfo.systemId);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.work.impl.model.SystemIdInfoDao_Impl$2, reason: invalid class name */
+    public class AnonymousClass2 extends SharedSQLiteStatement {
+        public AnonymousClass2(RoomDatabase roomDatabase) {
+            super(roomDatabase);
+        }
+
+        @Override // androidx.room.SharedSQLiteStatement
+        public String createQuery() {
+            return "DELETE FROM SystemIdInfo where work_spec_id=?";
+        }
+    }
+
     public SystemIdInfoDao_Impl(RoomDatabase roomDatabase) {
         this.__db = roomDatabase;
-        this.__insertionAdapterOfSystemIdInfo = new SystemIdInfoDao_Impl$1(this, roomDatabase);
-        this.__preparedStmtOfRemoveSystemIdInfo = new SystemIdInfoDao_Impl$2(this, roomDatabase);
+        this.__insertionAdapterOfSystemIdInfo = new AnonymousClass1(roomDatabase);
+        this.__preparedStmtOfRemoveSystemIdInfo = new AnonymousClass2(roomDatabase);
     }
 
     @Override // androidx.work.impl.model.SystemIdInfoDao

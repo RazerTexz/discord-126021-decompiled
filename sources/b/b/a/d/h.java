@@ -1,39 +1,40 @@
 package b.b.a.d;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
+import android.content.AsyncQueryHandler;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build$VERSION;
-import android.provider.MediaStore$Files;
-import android.provider.MediaStore$Images$Media;
-import android.provider.MediaStore$Video$Media;
+import android.os.Build;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView$Adapter;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
 import com.discord.utilities.time.TimeUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.lytefast.flexinput.R$f;
-import com.lytefast.flexinput.R$g;
-import com.lytefast.flexinput.R$h;
+import com.lytefast.flexinput.R;
 import com.lytefast.flexinput.model.Media;
 import com.lytefast.flexinput.utils.SelectionCoordinator;
-import com.lytefast.flexinput.utils.SelectionCoordinator$a;
+import d0.z.d.o;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: compiled from: MediaCursorAdapter.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class h extends RecyclerView$Adapter<h$a> {
+public final class h extends RecyclerView.Adapter<a> {
     public final SelectionCoordinator<?, Media> a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -45,6 +46,141 @@ public final class h extends RecyclerView$Adapter<h$a> {
     public Integer g;
     public final int h;
     public final int i;
+
+    /* JADX INFO: compiled from: MediaCursorAdapter.kt */
+    public final class a extends i implements View.OnClickListener {
+        public Media p;
+        public final AnimatorSet q;
+        public final AnimatorSet r;
+
+        /* JADX INFO: renamed from: s, reason: collision with root package name */
+        public final b.b.a.e.c f320s;
+        public final /* synthetic */ h t;
+
+        /* JADX INFO: renamed from: b.b.a.d.h$a$a, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: MediaCursorAdapter.kt */
+        public final class C0059a extends o implements Function1<AnimatorSet, Unit> {
+            public final /* synthetic */ boolean $isAnimationRequested;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C0059a(boolean z2) {
+                super(1);
+                this.$isAnimationRequested = z2;
+            }
+
+            public final void a(AnimatorSet animatorSet) {
+                d0.z.d.m.checkNotNullParameter(animatorSet, "animation");
+                animatorSet.start();
+                if (this.$isAnimationRequested) {
+                    return;
+                }
+                animatorSet.end();
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(AnimatorSet animatorSet) {
+                a(animatorSet);
+                return Unit.a;
+            }
+        }
+
+        /* JADX WARN: Illegal instructions before constructor call */
+        public a(h hVar, b.b.a.e.c cVar) {
+            d0.z.d.m.checkNotNullParameter(cVar, "binding");
+            this.t = hVar;
+            FrameLayout frameLayout = cVar.a;
+            d0.z.d.m.checkNotNullExpressionValue(frameLayout, "binding.root");
+            super(frameLayout);
+            this.f320s = cVar;
+            cVar.a.setOnClickListener(this);
+            FrameLayout frameLayout2 = cVar.a;
+            d0.z.d.m.checkNotNullExpressionValue(frameLayout2, "binding.root");
+            Animator animatorLoadAnimator = AnimatorInflater.loadAnimator(frameLayout2.getContext(), R.a.selection_shrink);
+            Objects.requireNonNull(animatorLoadAnimator, "null cannot be cast to non-null type android.animation.AnimatorSet");
+            AnimatorSet animatorSet = (AnimatorSet) animatorLoadAnimator;
+            this.q = animatorSet;
+            animatorSet.setTarget(cVar.f324b);
+            FrameLayout frameLayout3 = cVar.a;
+            d0.z.d.m.checkNotNullExpressionValue(frameLayout3, "binding.root");
+            Animator animatorLoadAnimator2 = AnimatorInflater.loadAnimator(frameLayout3.getContext(), R.a.selection_grow);
+            Objects.requireNonNull(animatorLoadAnimator2, "null cannot be cast to non-null type android.animation.AnimatorSet");
+            AnimatorSet animatorSet2 = (AnimatorSet) animatorLoadAnimator2;
+            this.r = animatorSet2;
+            animatorSet2.setTarget(cVar.f324b);
+        }
+
+        @Override // b.b.a.d.i
+        public SimpleDraweeView a() {
+            SimpleDraweeView simpleDraweeView = this.f320s.c;
+            d0.z.d.m.checkNotNullExpressionValue(simpleDraweeView, "binding.contentIv");
+            return simpleDraweeView;
+        }
+
+        public final void d(boolean z2, boolean z3) {
+            FrameLayout frameLayout = this.f320s.a;
+            d0.z.d.m.checkNotNullExpressionValue(frameLayout, "binding.root");
+            frameLayout.setSelected(z2);
+            C0059a c0059a = new C0059a(z3);
+            if (z2) {
+                SimpleDraweeView simpleDraweeView = this.f320s.d;
+                d0.z.d.m.checkNotNullExpressionValue(simpleDraweeView, "binding.itemCheckIndicator");
+                simpleDraweeView.setVisibility(0);
+                FrameLayout frameLayout2 = this.f320s.f324b;
+                d0.z.d.m.checkNotNullExpressionValue(frameLayout2, "binding.contentContainer");
+                if (frameLayout2.getScaleX() == 1.0f) {
+                    c0059a.a(this.q);
+                    return;
+                }
+                return;
+            }
+            SimpleDraweeView simpleDraweeView2 = this.f320s.d;
+            d0.z.d.m.checkNotNullExpressionValue(simpleDraweeView2, "binding.itemCheckIndicator");
+            simpleDraweeView2.setVisibility(8);
+            FrameLayout frameLayout3 = this.f320s.f324b;
+            d0.z.d.m.checkNotNullExpressionValue(frameLayout3, "binding.contentContainer");
+            if (frameLayout3.getScaleX() != 1.0f) {
+                c0059a.a(this.r);
+            }
+        }
+
+        @Override // android.view.View.OnClickListener
+        public void onClick(View view) {
+            d0.z.d.m.checkNotNullParameter(view, "v");
+            SelectionCoordinator<?, Media> selectionCoordinator = this.t.a;
+            Media media = this.p;
+            int adapterPosition = getAdapterPosition();
+            Objects.requireNonNull(selectionCoordinator);
+            if (media == null || selectionCoordinator.d(media)) {
+                return;
+            }
+            selectionCoordinator.c(media, adapterPosition);
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaCursorAdapter.kt */
+    public final class b extends AsyncQueryHandler {
+        public b(ContentResolver contentResolver) {
+            super(contentResolver);
+        }
+
+        @Override // android.content.AsyncQueryHandler
+        public void onQueryComplete(int i, Object obj, Cursor cursor) {
+            d0.z.d.m.checkNotNullParameter(obj, "cookie");
+            if (cursor == null) {
+                return;
+            }
+            h hVar = h.this;
+            hVar.c = cursor.getColumnIndex("_id");
+            hVar.d = cursor.getColumnIndex("_data");
+            hVar.e = cursor.getColumnIndex("_display_name");
+            hVar.f = cursor.getColumnIndex("media_type");
+            if (Build.VERSION.SDK_INT >= 29) {
+                hVar.g = Integer.valueOf(cursor.getColumnIndex("duration"));
+            }
+            hVar.f319b = cursor;
+            h.this.notifyDataSetChanged();
+        }
+    }
 
     public h(SelectionCoordinator<?, Media> selectionCoordinator, int i, int i2) {
         d0.z.d.m.checkNotNullParameter(selectionCoordinator, "selectionCoordinator");
@@ -67,7 +203,7 @@ public final class h extends RecyclerView$Adapter<h$a> {
             cursor.moveToPosition(i);
             long j = cursor.getLong(this.c);
             boolean z2 = cursor.getInt(this.f) == 3;
-            Uri uriWithAppendedPath = z2 ? Uri.withAppendedPath(MediaStore$Video$Media.EXTERNAL_CONTENT_URI, String.valueOf(j)) : Uri.withAppendedPath(MediaStore$Images$Media.EXTERNAL_CONTENT_URI, String.valueOf(j));
+            Uri uriWithAppendedPath = z2 ? Uri.withAppendedPath(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, String.valueOf(j)) : Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, String.valueOf(j));
             String str2 = z2 ? "vid" : "img";
             Integer num = this.g;
             if (z2 && num != null) {
@@ -88,21 +224,12 @@ public final class h extends RecyclerView$Adapter<h$a> {
 
     public final void b(ContentResolver contentResolver) {
         d0.z.d.m.checkNotNullParameter(contentResolver, "contentResolver");
-        int i = Build$VERSION.SDK_INT;
+        int i = Build.VERSION.SDK_INT;
         String str = i >= 29 ? "media_type = 1 OR media_type = 3" : "media_type = 1";
-        new h$b(this, contentResolver).startQuery(1, this, MediaStore$Files.getContentUri("external"), i >= 29 ? new String[]{"_id", "_data", "_display_name", "media_type", "duration"} : new String[]{"_id", "_data", "_display_name", "media_type"}, str, null, "date_added DESC");
+        new b(contentResolver).startQuery(1, this, MediaStore.Files.getContentUri("external"), i >= 29 ? new String[]{"_id", "_data", "_display_name", "media_type", "duration"} : new String[]{"_id", "_data", "_display_name", "media_type"}, str, null, "date_added DESC");
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public int getItemCount() {
-        Cursor cursor = this.f319b;
-        if (cursor != null) {
-            return cursor.getCount();
-        }
-        return 0;
-    }
-
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public long getItemId(int i) {
         Media mediaA = a(i);
         if (mediaA != null) {
@@ -111,7 +238,17 @@ public final class h extends RecyclerView$Adapter<h$a> {
         return -1L;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    /* JADX INFO: renamed from: getItemCount */
+    public int getPageSize() {
+        Cursor cursor = this.f319b;
+        if (cursor != null) {
+            return cursor.getCount();
+        }
+        return 0;
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         d0.z.d.m.checkNotNullParameter(recyclerView, "recyclerView");
         super.onAttachedToRecyclerView(recyclerView);
@@ -122,59 +259,59 @@ public final class h extends RecyclerView$Adapter<h$a> {
         b(contentResolver);
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public void onBindViewHolder(RecyclerView$ViewHolder recyclerView$ViewHolder, int i) throws IOException {
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws IllegalAccessException, IOException, InvocationTargetException {
         Long l;
-        h$a h_a = (h$a) recyclerView$ViewHolder;
-        d0.z.d.m.checkNotNullParameter(h_a, "holder");
+        a aVar = (a) viewHolder;
+        d0.z.d.m.checkNotNullParameter(aVar, "holder");
         Media mediaA = a(i);
-        h_a.p = mediaA;
-        FrameLayout frameLayout = h_a.f320s.a;
+        aVar.p = mediaA;
+        FrameLayout frameLayout = aVar.f320s.a;
         d0.z.d.m.checkNotNullExpressionValue(frameLayout, "binding.root");
         Context context = frameLayout.getContext();
         if (mediaA != null) {
-            h_a.d(h_a.t.a.a(mediaA, h_a.getAdapterPosition()), false);
+            aVar.d(aVar.t.a.a(mediaA, aVar.getAdapterPosition()), false);
         }
-        h_a.c(mediaA, Integer.valueOf(h_a.t.h), Integer.valueOf(h_a.t.i));
+        aVar.c(mediaA, Integer.valueOf(aVar.t.h), Integer.valueOf(aVar.t.i));
         boolean z2 = mediaA != null && mediaA.j;
-        TextView textView = h_a.f320s.e;
+        TextView textView = aVar.f320s.e;
         d0.z.d.m.checkNotNullExpressionValue(textView, "binding.itemVideoIndicator");
         textView.setVisibility(z2 ? 0 : 8);
         if (z2) {
-            TextView textView2 = h_a.f320s.e;
+            TextView textView2 = aVar.f320s.e;
             d0.z.d.m.checkNotNullExpressionValue(textView2, "binding.itemVideoIndicator");
             Drawable background = textView2.getBackground();
             d0.z.d.m.checkNotNullExpressionValue(background, "binding.itemVideoIndicator.background");
             background.setAlpha(Opcodes.LAND);
             long jLongValue = (mediaA == null || (l = mediaA.k) == null) ? 0L : l.longValue();
-            TextView textView3 = h_a.f320s.e;
+            TextView textView3 = aVar.f320s.e;
             d0.z.d.m.checkNotNullExpressionValue(textView3, "binding.itemVideoIndicator");
-            textView3.setText(jLongValue > 0 ? TimeUtils.toFriendlyStringSimple$default(TimeUtils.INSTANCE, jLongValue, null, null, 6, null) : context.getString(R$h.video));
+            textView3.setText(jLongValue > 0 ? TimeUtils.toFriendlyStringSimple$default(TimeUtils.INSTANCE, jLongValue, null, null, 6, null) : context.getString(R.h.video));
         }
-        SimpleDraweeView simpleDraweeView = h_a.f320s.c;
+        SimpleDraweeView simpleDraweeView = aVar.f320s.c;
         d0.z.d.m.checkNotNullExpressionValue(simpleDraweeView, "binding.contentIv");
-        simpleDraweeView.setContentDescription(context.getString(z2 ? R$h.video : R$h.image));
+        simpleDraweeView.setContentDescription(context.getString(z2 ? R.h.video : R.h.image));
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public RecyclerView$ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         d0.z.d.m.checkNotNullParameter(viewGroup, "parent");
-        View viewInflate = LayoutInflater.from(viewGroup.getContext()).inflate(R$g.view_grid_image, viewGroup, false);
-        int i2 = R$f.content_container;
+        View viewInflate = LayoutInflater.from(viewGroup.getContext()).inflate(R.g.view_grid_image, viewGroup, false);
+        int i2 = R.f.content_container;
         FrameLayout frameLayout = (FrameLayout) viewInflate.findViewById(i2);
         if (frameLayout != null) {
-            i2 = R$f.content_iv;
+            i2 = R.f.content_iv;
             SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate.findViewById(i2);
             if (simpleDraweeView != null) {
-                i2 = R$f.item_check_indicator;
+                i2 = R.f.item_check_indicator;
                 SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) viewInflate.findViewById(i2);
                 if (simpleDraweeView2 != null) {
-                    i2 = R$f.item_video_indicator;
+                    i2 = R.f.item_video_indicator;
                     TextView textView = (TextView) viewInflate.findViewById(i2);
                     if (textView != null) {
                         b.b.a.e.c cVar = new b.b.a.e.c((FrameLayout) viewInflate, frameLayout, simpleDraweeView, simpleDraweeView2, textView);
                         d0.z.d.m.checkNotNullExpressionValue(cVar, "ViewGridImageBinding.inf….context), parent, false)");
-                        return new h$a(this, cVar);
+                        return new a(this, cVar);
                     }
                 }
             }
@@ -182,7 +319,7 @@ public final class h extends RecyclerView$Adapter<h$a> {
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i2)));
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
         d0.z.d.m.checkNotNullParameter(recyclerView, "recyclerView");
         Cursor cursor = this.f319b;
@@ -192,19 +329,19 @@ public final class h extends RecyclerView$Adapter<h$a> {
         super.onDetachedFromRecyclerView(recyclerView);
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public void onViewRecycled(RecyclerView$ViewHolder recyclerView$ViewHolder) {
-        h$a h_a = (h$a) recyclerView$ViewHolder;
-        d0.z.d.m.checkNotNullParameter(h_a, "holder");
-        super.onViewRecycled(h_a);
-        h_a.b();
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public void onViewRecycled(RecyclerView.ViewHolder viewHolder) {
+        a aVar = (a) viewHolder;
+        d0.z.d.m.checkNotNullParameter(aVar, "holder");
+        super.onViewRecycled(aVar);
+        aVar.b();
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public void onBindViewHolder(RecyclerView$ViewHolder recyclerView$ViewHolder, int i, List list) {
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i, List list) {
         Object next;
-        h$a h_a = (h$a) recyclerView$ViewHolder;
-        d0.z.d.m.checkNotNullParameter(h_a, "holder");
+        a aVar = (a) viewHolder;
+        d0.z.d.m.checkNotNullParameter(aVar, "holder");
         d0.z.d.m.checkNotNullParameter(list, "payloads");
         Iterator it = list.iterator();
         do {
@@ -213,14 +350,14 @@ public final class h extends RecyclerView$Adapter<h$a> {
                 break;
             }
             next = it.next();
-        } while (!(next instanceof SelectionCoordinator$a));
+        } while (!(next instanceof SelectionCoordinator.a));
         if (next != null) {
-            SelectionCoordinator$a selectionCoordinator$a = (SelectionCoordinator$a) (next instanceof SelectionCoordinator$a ? next : null);
-            if (selectionCoordinator$a != null) {
-                h_a.d(selectionCoordinator$a.f3171b, true);
+            SelectionCoordinator.a aVar2 = (SelectionCoordinator.a) (next instanceof SelectionCoordinator.a ? next : null);
+            if (aVar2 != null) {
+                aVar.d(aVar2.f3171b, true);
                 return;
             }
         }
-        super.onBindViewHolder(h_a, i, list);
+        super.onBindViewHolder(aVar, i, list);
     }
 }

@@ -3,11 +3,12 @@ package com.discord.utilities.textprocessing.node;
 import android.content.Context;
 import android.text.SpannableStringBuilder;
 import androidx.exifinterface.media.ExifInterface;
+import com.discord.R;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.simpleast.core.node.Node;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.spans.ClickableSpan;
-import com.discord.utilities.textprocessing.node.SpoilerNode$RenderContext;
+import com.discord.utilities.textprocessing.node.SpoilerNode.RenderContext;
 import d0.t.n;
 import d0.z.d.m;
 import defpackage.SpoilerSpan;
@@ -19,10 +20,19 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: SpoilerNode.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class SpoilerNode<T extends SpoilerNode$RenderContext> extends Node<T> implements Spoilerable {
+public final class SpoilerNode<T extends RenderContext> extends Node<T> implements Spoilerable {
     private final String content;
     private int id;
     private boolean isRevealed;
+
+    /* JADX INFO: compiled from: SpoilerNode.kt */
+    public interface RenderContext extends BasicRenderContext {
+        int getSpoilerColorRes();
+
+        Function1<SpoilerNode<?>, Unit> getSpoilerOnClick();
+
+        int getSpoilerRevealedColorRes();
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public SpoilerNode(String str) {
@@ -41,7 +51,7 @@ public final class SpoilerNode<T extends SpoilerNode$RenderContext> extends Node
         Object[] objArr = new Object[2];
         objArr[0] = spoilerSpan;
         Function1<SpoilerNode<?>, Unit> spoilerOnClick = renderContext.getSpoilerOnClick();
-        objArr[1] = spoilerOnClick != null ? new ClickableSpan(Integer.valueOf(ColorCompat.getColor(context, 2131100438)), false, null, new SpoilerNode$createStyles$$inlined$let$lambda$1(spoilerOnClick, this, context), 4, null) : null;
+        objArr[1] = spoilerOnClick != null ? new ClickableSpan(Integer.valueOf(ColorCompat.getColor(context, R.color.transparent)), false, null, new SpoilerNode$createStyles$$inlined$let$lambda$1(spoilerOnClick, this, context), 4, null) : null;
         return n.listOfNotNull(objArr);
     }
 
@@ -61,7 +71,7 @@ public final class SpoilerNode<T extends SpoilerNode$RenderContext> extends Node
 
     @Override // com.discord.simpleast.core.node.Node
     public /* bridge */ /* synthetic */ void render(SpannableStringBuilder spannableStringBuilder, Object obj) {
-        render(spannableStringBuilder, (SpoilerNode$RenderContext) obj);
+        render(spannableStringBuilder, (RenderContext) obj);
     }
 
     @Override // com.discord.utilities.textprocessing.node.Spoilerable

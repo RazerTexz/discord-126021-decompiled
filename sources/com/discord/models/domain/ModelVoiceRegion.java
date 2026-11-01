@@ -16,33 +16,33 @@ public class ModelVoiceRegion implements Model {
     private int samplePort;
 
     @Override // com.discord.models.domain.Model
-    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
-        String strNextName = model$JsonReader.nextName();
+    public void assignField(Model.JsonReader jsonReader) throws IOException {
+        String strNextName = jsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "deprecated":
-                this.deprecated = model$JsonReader.nextBoolean(this.deprecated);
+                this.deprecated = jsonReader.nextBoolean(this.deprecated);
                 break;
             case "optimal":
-                this.optimal = model$JsonReader.nextBoolean(this.optimal);
+                this.optimal = jsonReader.nextBoolean(this.optimal);
                 break;
             case "hidden":
-                this.hidden = model$JsonReader.nextBoolean(this.hidden);
+                this.hidden = jsonReader.nextBoolean(this.hidden);
                 break;
             case "id":
-                this.f2736id = model$JsonReader.nextString(this.f2736id);
+                this.f2736id = jsonReader.nextString(this.f2736id);
                 break;
             case "name":
-                this.name = model$JsonReader.nextString(this.name);
+                this.name = jsonReader.nextString(this.name);
                 break;
             case "sample_hostname":
-                this.sampleHostname = model$JsonReader.nextString(this.sampleHostname);
+                this.sampleHostname = jsonReader.nextString(this.sampleHostname);
                 break;
             case "sample_port":
-                this.samplePort = model$JsonReader.nextInt(this.samplePort);
+                this.samplePort = jsonReader.nextInt(this.samplePort);
                 break;
             default:
-                model$JsonReader.skipValue();
+                jsonReader.skipValue();
                 break;
         }
     }

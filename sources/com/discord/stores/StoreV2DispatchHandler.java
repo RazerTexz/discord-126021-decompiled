@@ -1,7 +1,6 @@
 package com.discord.stores;
 
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
 import d0.z.d.m;
 import java.util.HashSet;
@@ -28,7 +27,7 @@ public final class StoreV2DispatchHandler implements DispatchHandler {
     public void onDispatchEnded() {
         HashSet hashSet = new HashSet();
         for (StoreV2 storeV2 : this.storesV2) {
-            Set<ObservationDeck$UpdateSource> updateSources = storeV2.getUpdateSources();
+            Set<ObservationDeck.UpdateSource> updateSources = storeV2.getUpdateSources();
             if (!updateSources.isEmpty()) {
                 hashSet.addAll(updateSources);
                 storeV2.snapshotData();

@@ -27,7 +27,7 @@ public final class WidgetGuildRoleSubscriptionPlanSetup$onViewBound$$inlined$app
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2() {
-        WidgetServerSettingsEmptyGuildRoleSubscriptions.Companion.launch(this.this$0.requireContext(), WidgetGuildRoleSubscriptionPlanSetup.access$getGuildId$p(this.this$0));
+        WidgetServerSettingsEmptyGuildRoleSubscriptions.INSTANCE.launch(this.this$0.requireContext(), WidgetGuildRoleSubscriptionPlanSetup.access$getGuildId$p(this.this$0));
         this.this$0.requireActivity().finish();
     }
 }

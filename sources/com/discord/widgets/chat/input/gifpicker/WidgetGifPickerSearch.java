@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import b.a.d.g0;
 import b.a.d.i0;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetGifPickerSearchBinding;
@@ -17,8 +17,11 @@ import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.views.SearchInputView;
 import d0.z.d.a0;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
 import defpackage.u;
 import kotlin.Lazy;
 import kotlin.Unit;
@@ -40,8 +43,92 @@ public final class WidgetGifPickerSearch extends AppFragment {
     private final Lazy gifPickerViewModel;
     private Function0<Unit> onGifSelected;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifPickerSearch$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGifPickerSearch.kt */
+    public final class AnonymousClass1 extends o implements Function1<GifSearchViewModel.ViewState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GifSearchViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GifSearchViewModel.ViewState viewState) {
+            WidgetGifPickerSearch widgetGifPickerSearch = WidgetGifPickerSearch.this;
+            m.checkNotNullExpressionValue(viewState, "viewState");
+            WidgetGifPickerSearch.access$handleViewState(widgetGifPickerSearch, viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifPickerSearch$setUpGifRecycler$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGifPickerSearch.kt */
+    public final class AnonymousClass1 extends o implements Function1<GifAdapterItem.GifItem, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GifAdapterItem.GifItem gifItem) {
+            invoke2(gifItem);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GifAdapterItem.GifItem gifItem) {
+            m.checkNotNullParameter(gifItem, "gifItem");
+            WidgetGifPickerSearch.access$getGifPickerViewModel$p(WidgetGifPickerSearch.this).selectGif(gifItem);
+            Function0 function0Access$getOnGifSelected$p = WidgetGifPickerSearch.access$getOnGifSelected$p(WidgetGifPickerSearch.this);
+            if (function0Access$getOnGifSelected$p != null) {
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifPickerSearch$setupSearchBar$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGifPickerSearch.kt */
+    public final class AnonymousClass1 extends o implements Function1<String, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            m.checkNotNullParameter(str, "searchQuery");
+            WidgetGifPickerSearch.access$getGifPickerViewModel$p(WidgetGifPickerSearch.this).setSearchText(str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifPickerSearch$setUpGifRecycler$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGifPickerSearch.kt */
+    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<String, Unit> {
+        public AnonymousClass2(SearchInputView searchInputView) {
+            super(1, searchInputView, SearchInputView.class, "setText", "setText(Ljava/lang/String;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            m.checkNotNullParameter(str, "p1");
+            ((SearchInputView) this.receiver).setText(str);
+        }
+    }
+
     public WidgetGifPickerSearch() {
-        super(R$layout.widget_gif_picker_search);
+        super(R.layout.widget_gif_picker_search);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGifPickerSearch$binding$2.INSTANCE, null, 2, null);
         WidgetGifPickerSearch$gifPickerViewModel$2 widgetGifPickerSearch$gifPickerViewModel$2 = new WidgetGifPickerSearch$gifPickerViewModel$2(this);
         g0 g0Var = new g0(this);
@@ -56,8 +143,8 @@ public final class WidgetGifPickerSearch extends AppFragment {
         return widgetGifPickerSearch.onGifSelected;
     }
 
-    public static final /* synthetic */ void access$handleViewState(WidgetGifPickerSearch widgetGifPickerSearch, GifSearchViewModel$ViewState gifSearchViewModel$ViewState) {
-        widgetGifPickerSearch.handleViewState(gifSearchViewModel$ViewState);
+    public static final /* synthetic */ void access$handleViewState(WidgetGifPickerSearch widgetGifPickerSearch, GifSearchViewModel.ViewState viewState) {
+        widgetGifPickerSearch.handleViewState(viewState);
     }
 
     public static final /* synthetic */ void access$setOnGifSelected$p(WidgetGifPickerSearch widgetGifPickerSearch, Function0 function0) {
@@ -76,19 +163,19 @@ public final class WidgetGifPickerSearch extends AppFragment {
         return (GifSearchViewModel) this.gifPickerViewModel.getValue();
     }
 
-    private final void handleViewState(GifSearchViewModel$ViewState viewState) {
-        if (viewState instanceof GifSearchViewModel$ViewState$Loaded) {
+    private final void handleViewState(GifSearchViewModel.ViewState viewState) {
+        if (viewState instanceof GifSearchViewModel.ViewState.Loaded) {
             GifAdapter gifAdapter = this.gifAdapter;
             if (gifAdapter == null) {
                 m.throwUninitializedPropertyAccessException("gifAdapter");
             }
-            gifAdapter.setItems(((GifSearchViewModel$ViewState$Loaded) viewState).getAdapterItems());
+            gifAdapter.setItems(((GifSearchViewModel.ViewState.Loaded) viewState).getAdapterItems());
             AppViewFlipper appViewFlipper = getBinding().d;
             m.checkNotNullExpressionValue(appViewFlipper, "binding.gifSearchViewFlipper");
             appViewFlipper.setDisplayedChild(0);
             return;
         }
-        if (m.areEqual(viewState, GifSearchViewModel$ViewState$LoadingSearchResults.INSTANCE)) {
+        if (m.areEqual(viewState, GifSearchViewModel.ViewState.LoadingSearchResults.INSTANCE)) {
             GifAdapter gifAdapter2 = this.gifAdapter;
             if (gifAdapter2 == null) {
                 m.throwUninitializedPropertyAccessException("gifAdapter");
@@ -104,10 +191,10 @@ public final class WidgetGifPickerSearch extends AppFragment {
     public void onViewBound(View view) {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
-        GifAdapter$Companion gifAdapter$Companion = GifAdapter.Companion;
+        GifAdapter.Companion companion = GifAdapter.INSTANCE;
         RecyclerView recyclerView = getBinding().f2402b;
         m.checkNotNullExpressionValue(recyclerView, "binding.gifSearchGifRecycler");
-        int iCalculateColumnCount = gifAdapter$Companion.calculateColumnCount(recyclerView);
+        int iCalculateColumnCount = companion.calculateColumnCount(recyclerView);
         setUpGifRecycler(iCalculateColumnCount);
         setupSearchBar();
         GifLoadingView.updateView$default(getBinding().c, iCalculateColumnCount, 0, 2, null);
@@ -117,9 +204,9 @@ public final class WidgetGifPickerSearch extends AppFragment {
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
         getBinding().e.binding.c.requestFocus();
-        Observable<GifSearchViewModel$ViewState> observableR = getGifPickerViewModel().observeViewState().r();
+        Observable<GifSearchViewModel.ViewState> observableR = getGifPickerViewModel().observeViewState().r();
         m.checkNotNullExpressionValue(observableR, "gifPickerViewModel\n     …  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableR, this, null, 2, null), WidgetGifPickerSearch.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGifPickerSearch$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableR, this, null, 2, null), WidgetGifPickerSearch.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
     public final void setOnGifSelected(Function0<Unit> onSelected) {
@@ -135,11 +222,11 @@ public final class WidgetGifPickerSearch extends AppFragment {
         m.checkNotNullExpressionValue(recyclerView2, "binding.gifSearchGifRecycler");
         recyclerView2.setItemAnimator(null);
         int iDpToPixels = DimenUtils.dpToPixels(8);
-        WidgetGifPickerSearch$setUpGifRecycler$1 widgetGifPickerSearch$setUpGifRecycler$1 = new WidgetGifPickerSearch$setUpGifRecycler$1(this);
-        GifAdapter$Companion gifAdapter$Companion = GifAdapter.Companion;
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1();
+        GifAdapter.Companion companion = GifAdapter.INSTANCE;
         RecyclerView recyclerView3 = getBinding().f2402b;
         m.checkNotNullExpressionValue(recyclerView3, "binding.gifSearchGifRecycler");
-        this.gifAdapter = new GifAdapter(this, widgetGifPickerSearch$setUpGifRecycler$1, gifAdapter$Companion.calculateColumnWidth(recyclerView3, categoryColumnsCount, iDpToPixels), new WidgetGifPickerSearch$setUpGifRecycler$2(getBinding().e), null, 16, null);
+        this.gifAdapter = new GifAdapter(this, anonymousClass1, companion.calculateColumnWidth(recyclerView3, categoryColumnsCount, iDpToPixels), new AnonymousClass2(getBinding().e), null, 16, null);
         RecyclerView recyclerView4 = getBinding().f2402b;
         m.checkNotNullExpressionValue(recyclerView4, "binding.gifSearchGifRecycler");
         GifAdapter gifAdapter = this.gifAdapter;
@@ -151,6 +238,6 @@ public final class WidgetGifPickerSearch extends AppFragment {
     }
 
     private final void setupSearchBar() {
-        getBinding().e.a(this, new WidgetGifPickerSearch$setupSearchBar$1(this));
+        getBinding().e.a(this, new AnonymousClass1());
     }
 }

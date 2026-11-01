@@ -3,7 +3,6 @@ package androidx.work;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import b.d.b.a.a;
 import java.util.HashSet;
 import java.util.List;
@@ -24,15 +23,28 @@ public final class WorkInfo {
     private int mRunAttemptCount;
 
     @NonNull
-    private WorkInfo$State mState;
+    private State mState;
 
     @NonNull
     private Set<String> mTags;
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
-    public WorkInfo(@NonNull UUID uuid, @NonNull WorkInfo$State workInfo$State, @NonNull Data data, @NonNull List<String> list, @NonNull Data data2, int i) {
+    public enum State {
+        ENQUEUED,
+        RUNNING,
+        SUCCEEDED,
+        FAILED,
+        BLOCKED,
+        CANCELLED;
+
+        public boolean isFinished() {
+            return this == SUCCEEDED || this == FAILED || this == CANCELLED;
+        }
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public WorkInfo(@NonNull UUID uuid, @NonNull State state, @NonNull Data data, @NonNull List<String> list, @NonNull Data data2, int i) {
         this.mId = uuid;
-        this.mState = workInfo$State;
+        this.mState = state;
         this.mOutputData = data;
         this.mTags = new HashSet(list);
         this.mProgress = data2;
@@ -74,7 +86,7 @@ public final class WorkInfo {
     }
 
     @NonNull
-    public WorkInfo$State getState() {
+    public State getState() {
         return this.mState;
     }
 

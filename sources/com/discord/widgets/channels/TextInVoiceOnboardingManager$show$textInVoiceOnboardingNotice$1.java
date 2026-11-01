@@ -26,10 +26,10 @@ public final class TextInVoiceOnboardingManager$show$textInVoiceOnboardingNotice
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(FragmentActivity fragmentActivity) {
         m.checkNotNullParameter(fragmentActivity, "appActivity");
-        WidgetTextInVoiceOnboarding$Companion widgetTextInVoiceOnboarding$Companion = WidgetTextInVoiceOnboarding.Companion;
+        WidgetTextInVoiceOnboarding.Companion companion = WidgetTextInVoiceOnboarding.INSTANCE;
         FragmentManager supportFragmentManager = fragmentActivity.getSupportFragmentManager();
         m.checkNotNullExpressionValue(supportFragmentManager, "appActivity.supportFragmentManager");
-        widgetTextInVoiceOnboarding$Companion.show(supportFragmentManager, this.$onCtaClicked);
+        companion.show(supportFragmentManager, this.$onCtaClicked);
         return true;
     }
 }

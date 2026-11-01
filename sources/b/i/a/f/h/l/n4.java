@@ -6,7 +6,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map$Entry;
+import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Logger;
 
@@ -72,13 +72,13 @@ public final class n4<T extends p4<T>> {
     public final /* synthetic */ Object clone() throws CloneNotSupportedException {
         n4 n4Var = new n4();
         for (int i = 0; i < this.f1461b.e(); i++) {
-            Map$Entry<K, Object> map$EntryD = this.f1461b.d(i);
-            n4Var.i((p4) map$EntryD.getKey(), map$EntryD.getValue());
+            Map.Entry<K, Object> entryD = this.f1461b.d(i);
+            n4Var.i((p4) entryD.getKey(), entryD.getValue());
         }
         Iterator it = this.f1461b.g().iterator();
         while (it.hasNext()) {
-            Map$Entry map$Entry = (Map$Entry) it.next();
-            n4Var.i((p4) map$Entry.getKey(), map$Entry.getValue());
+            Map.Entry entry = (Map.Entry) it.next();
+            n4Var.i((p4) entry.getKey(), entry.getValue());
         }
         n4Var.d = this.d;
         return n4Var;
@@ -156,18 +156,18 @@ public final class n4<T extends p4<T>> {
         return false;
     }
 
-    public static <T extends p4<T>> boolean f(Map$Entry<T, Object> map$Entry) {
-        T key = map$Entry.getKey();
+    public static <T extends p4<T>> boolean f(Map.Entry<T, Object> entry) {
+        T key = entry.getKey();
         if (key.c() == w7.MESSAGE) {
             if (key.d()) {
-                Iterator it = ((List) map$Entry.getValue()).iterator();
+                Iterator it = ((List) entry.getValue()).iterator();
                 while (it.hasNext()) {
                     if (!((c6) it.next()).j()) {
                         return false;
                     }
                 }
             } else {
-                Object value = map$Entry.getValue();
+                Object value = entry.getValue();
                 if (!(value instanceof c6)) {
                     if (value instanceof d5) {
                         return true;
@@ -294,9 +294,9 @@ public final class n4<T extends p4<T>> {
         this.f1461b.b(t, obj);
     }
 
-    public final void j(Map$Entry<T, Object> map$Entry) {
-        T key = map$Entry.getKey();
-        Object value = map$Entry.getValue();
+    public final void j(Map.Entry<T, Object> entry) {
+        T key = entry.getKey();
+        Object value = entry.getValue();
         if (value instanceof d5) {
             int i = d5.c;
             throw new NoSuchMethodError();
@@ -321,28 +321,28 @@ public final class n4<T extends p4<T>> {
         if (objC2 == null) {
             this.f1461b.b(key, d(value));
         } else {
-            this.f1461b.b(key, objC2 instanceof f6 ? key.c0((f6) objC2, (f6) value) : ((u4$b) key.X(((c6) objC2).f(), (c6) value)).p());
+            this.f1461b.b(key, objC2 instanceof f6 ? key.c0((f6) objC2, (f6) value) : ((u4.b) key.X(((c6) objC2).f(), (c6) value)).p());
         }
     }
 
-    public static int k(Map$Entry<T, Object> map$Entry) {
+    public static int k(Map.Entry<T, Object> entry) {
         int iM;
         int iL;
         int iG;
         int iL2;
-        T key = map$Entry.getKey();
-        Object value = map$Entry.getValue();
+        T key = entry.getKey();
+        Object value = entry.getValue();
         if (key.c() != w7.MESSAGE || key.d() || key.e()) {
             return a(key, value);
         }
         if (value instanceof d5) {
-            int iA = map$Entry.getKey().a();
+            int iA = entry.getKey().a();
             iM = zzhi.M(2, iA) + (zzhi.L(8) << 1);
             iL = zzhi.L(24);
             iG = ((d5) value).a();
             iL2 = zzhi.L(iG);
         } else {
-            int iA2 = map$Entry.getKey().a();
+            int iA2 = entry.getKey().a();
             iM = zzhi.M(2, iA2) + (zzhi.L(8) << 1);
             iL = zzhi.L(24);
             iG = ((c6) value).g();
@@ -351,7 +351,7 @@ public final class n4<T extends p4<T>> {
         return iL2 + iG + iL + iM;
     }
 
-    public final Iterator<Map$Entry<T, Object>> l() {
+    public final Iterator<Map.Entry<T, Object>> l() {
         return this.d ? new i5(this.f1461b.entrySet().iterator()) : this.f1461b.entrySet().iterator();
     }
 
@@ -363,7 +363,7 @@ public final class n4<T extends p4<T>> {
         }
         Iterator it = this.f1461b.g().iterator();
         while (it.hasNext()) {
-            if (!f((Map$Entry) it.next())) {
+            if (!f((Map.Entry) it.next())) {
                 return false;
             }
         }

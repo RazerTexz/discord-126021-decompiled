@@ -7,23 +7,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import b.i.a.c.f3.e0;
 import b.i.a.c.f3.u;
 import b.i.a.c.f3.x;
-import b.i.a.c.j1$b;
+import b.i.a.c.j1;
 import b.i.a.c.x2.s;
 import b.i.a.c.x2.t;
-import b.i.a.c.x2.t$a;
-import b.i.a.c.x2.t$b;
 import b.i.a.c.x2.w;
 import com.discord.api.permission.Permission;
 import com.google.android.exoplayer2.ParserException;
 import com.google.android.exoplayer2.metadata.Metadata;
-import com.google.android.exoplayer2.metadata.Metadata$Entry;
 import com.google.android.exoplayer2.metadata.id3.Id3Frame;
 import com.google.android.exoplayer2.metadata.id3.InternalFrame;
 import com.google.android.exoplayer2.metadata.id3.TextInformationFrame;
 import com.google.android.exoplayer2.metadata.mp4.MdtaMetadataEntry;
 import com.google.android.exoplayer2.metadata.mp4.MotionPhotoMetadata;
 import com.google.android.exoplayer2.metadata.mp4.SlowMotionData;
-import com.google.android.exoplayer2.metadata.mp4.SlowMotionData$Segment;
 import com.google.android.exoplayer2.metadata.mp4.SmtaMetadataEntry;
 import java.io.IOException;
 import java.util.ArrayDeque;
@@ -42,9 +38,9 @@ public final class i implements b.i.a.c.x2.h, t {
     public final x d;
     public final x e;
     public final x f;
-    public final ArrayDeque<d$a> g;
+    public final ArrayDeque<d.a> g;
     public final k h;
-    public final List<Metadata$Entry> i;
+    public final List<Metadata.Entry> i;
     public int j;
     public int k;
     public long l;
@@ -59,7 +55,7 @@ public final class i implements b.i.a.c.x2.h, t {
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public b.i.a.c.x2.j f1223s;
-    public i$a[] t;
+    public a[] t;
     public long[][] u;
     public int v;
     public long w;
@@ -70,6 +66,26 @@ public final class i implements b.i.a.c.x2.h, t {
     /* JADX INFO: renamed from: y, reason: collision with root package name */
     @Nullable
     public MotionPhotoMetadata f1225y;
+
+    /* JADX INFO: compiled from: Mp4Extractor.java */
+    public final class a {
+        public final m a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final p f1226b;
+        public final w c;
+
+        @Nullable
+        public final b.i.a.c.x2.x d;
+        public int e;
+
+        public a(m mVar, p pVar, w wVar) {
+            this.a = mVar;
+            this.f1226b = pVar;
+            this.c = wVar;
+            this.d = "audio/true-hd".equals(mVar.f.w) ? new b.i.a.c.x2.x() : null;
+        }
+    }
 
     static {
         b bVar = b.a;
@@ -131,7 +147,7 @@ public final class i implements b.i.a.c.x2.h, t {
         boolean z3;
         long j;
         long jB;
-        d$a d_aPeek;
+        d.a aVarPeek;
         long j2;
         int i2;
         int i3;
@@ -160,8 +176,8 @@ public final class i implements b.i.a.c.x2.h, t {
                         this.l = this.f.x();
                     } else if (j == 0) {
                         jB = iVar.b();
-                        if (jB == -1 && (d_aPeek = this.g.peek()) != null) {
-                            jB = d_aPeek.f1209b;
+                        if (jB == -1 && (aVarPeek = this.g.peek()) != null) {
+                            jB = aVarPeek.f1209b;
                         }
                         if (jB != -1) {
                             this.l = (jB - iVar.getPosition()) + ((long) this.m);
@@ -197,7 +213,7 @@ public final class i implements b.i.a.c.x2.h, t {
                             iVar.l(this.e.f984b);
                             iVar.k();
                         }
-                        this.g.push(new d$a(this.k, j7));
+                        this.g.push(new d.a(this.k, j7));
                         if (this.l == this.m) {
                             l(j7);
                         } else {
@@ -251,7 +267,7 @@ public final class i implements b.i.a.c.x2.h, t {
                     } else if (j == 0) {
                         jB = iVar.b();
                         if (jB == -1) {
-                            jB = d_aPeek.f1209b;
+                            jB = aVarPeek.f1209b;
                         }
                         if (jB != -1) {
                             this.l = (jB - iVar.getPosition()) + ((long) this.m);
@@ -287,7 +303,7 @@ public final class i implements b.i.a.c.x2.h, t {
                             iVar.l(this.e.f984b);
                             iVar.k();
                         }
-                        this.g.push(new d$a(this.k, j7));
+                        this.g.push(new d.a(this.k, j7));
                         if (this.l == this.m) {
                             l(j7);
                         } else {
@@ -335,11 +351,11 @@ public final class i implements b.i.a.c.x2.h, t {
                         w wVarP = jVar.p(0, 4);
                         MotionPhotoMetadata motionPhotoMetadata = this.f1225y;
                         Metadata metadata = motionPhotoMetadata == null ? null : new Metadata(motionPhotoMetadata);
-                        j1$b j1_b = new j1$b();
-                        j1_b.i = metadata;
-                        wVarP.e(j1_b.a());
+                        j1.b bVar = new j1.b();
+                        bVar.i = metadata;
+                        wVarP.e(bVar.a());
                         jVar.j();
-                        jVar.a(new t$b(-9223372036854775807L, 0L));
+                        jVar.a(new t.b(-9223372036854775807L, 0L));
                     }
                     z8 = false;
                 }
@@ -360,14 +376,14 @@ public final class i implements b.i.a.c.x2.h, t {
                             long j9 = RecyclerView.FOREVER_NS;
                             long j10 = RecyclerView.FOREVER_NS;
                             while (true) {
-                                i$a[] i_aArr = this.t;
+                                a[] aVarArr = this.t;
                                 int i11 = e0.a;
-                                if (i10 >= i_aArr.length) {
+                                if (i10 >= aVarArr.length) {
                                     break;
                                 }
-                                i$a i_a = i_aArr[i10];
-                                int i12 = i_a.e;
-                                p pVar = i_a.f1226b;
+                                a aVar = aVarArr[i10];
+                                int i12 = aVar.e;
+                                p pVar = aVar.f1226b;
                                 if (i12 != pVar.f1233b) {
                                     long j11 = pVar.c[i12];
                                     long j12 = this.u[i10][i12];
@@ -395,26 +411,26 @@ public final class i implements b.i.a.c.x2.h, t {
                                 return -1;
                             }
                         }
-                        i$a[] i_aArr2 = this.t;
+                        a[] aVarArr2 = this.t;
                         int i13 = e0.a;
-                        i$a i_a2 = i_aArr2[this.o];
-                        w wVar = i_a2.c;
-                        int i14 = i_a2.e;
-                        p pVar2 = i_a2.f1226b;
+                        a aVar2 = aVarArr2[this.o];
+                        w wVar = aVar2.c;
+                        int i14 = aVar2.e;
+                        p pVar2 = aVar2.f1226b;
                         long j14 = pVar2.c[i14];
                         int i15 = pVar2.d[i14];
-                        b.i.a.c.x2.x xVar4 = i_a2.d;
+                        b.i.a.c.x2.x xVar4 = aVar2.d;
                         long j15 = (j14 - position5) + ((long) this.p);
                         if (j15 < 0 || j15 >= Permission.USE_EXTERNAL_EMOJIS) {
                             sVar.a = j14;
                             return 1;
                         }
-                        if (i_a2.a.g == 1) {
+                        if (aVar2.a.g == 1) {
                             j15 += 8;
                             i15 -= 8;
                         }
                         iVar.l((int) j15);
-                        m mVar = i_a2.a;
+                        m mVar = aVar2.a;
                         int i16 = mVar.j;
                         if (i16 == 0) {
                             if ("audio/ac4".equals(mVar.f.w)) {
@@ -467,18 +483,18 @@ public final class i implements b.i.a.c.x2.h, t {
                             }
                         }
                         int i20 = i15;
-                        p pVar3 = i_a2.f1226b;
+                        p pVar3 = aVar2.f1226b;
                         long j16 = pVar3.f[i14];
                         int i21 = pVar3.g[i14];
                         if (xVar4 != null) {
                             xVar4.b(wVar, j16, i21, i20, 0, null);
-                            if (i14 + 1 == i_a2.f1226b.f1233b) {
+                            if (i14 + 1 == aVar2.f1226b.f1233b) {
                                 xVar4.a(wVar, null);
                             }
                         } else {
                             wVar.d(j16, i21, i20, 0, null);
                         }
-                        i_a2.e++;
+                        aVar2.e++;
                         this.o = -1;
                         this.p = 0;
                         this.q = 0;
@@ -489,7 +505,7 @@ public final class i implements b.i.a.c.x2.h, t {
                         throw new IllegalStateException();
                     }
                     k kVar = this.h;
-                    List<Metadata$Entry> list = this.i;
+                    List<Metadata.Entry> list = this.i;
                     int i22 = kVar.d;
                     if (i22 == 0) {
                         long jB2 = iVar.b();
@@ -507,7 +523,7 @@ public final class i implements b.i.a.c.x2.h, t {
                                 xVar5.F(i7);
                                 short sI = xVar5.i();
                                 if (sI == 2192 || sI == 2816 || sI == 2817 || sI == s2 || sI == 2820) {
-                                    kVar.c.add(new k$a(sI, (jB3 - ((long) kVar.e)) - ((long) xVar5.h()), xVar5.h()));
+                                    kVar.c.add(new k.a(sI, (jB3 - ((long) kVar.e)) - ((long) xVar5.h()), xVar5.h()));
                                 } else {
                                     xVar5.F(8);
                                 }
@@ -531,9 +547,9 @@ public final class i implements b.i.a.c.x2.h, t {
                             iVar.readFully(xVar6.a, 0, iB3);
                             int i25 = 0;
                             while (i25 < kVar.c.size()) {
-                                k$a k_a = kVar.c.get(i25);
-                                List<Metadata$Entry> list2 = list;
-                                xVar6.E((int) (k_a.a - position6));
+                                k.a aVar3 = kVar.c.get(i25);
+                                List<Metadata.Entry> list2 = list;
+                                xVar6.E((int) (aVar3.a - position6));
                                 xVar6.F(i6);
                                 int iH = xVar6.h();
                                 switch (xVar6.q(iH)) {
@@ -570,7 +586,7 @@ public final class i implements b.i.a.c.x2.h, t {
                                     }
                                     c = 2817;
                                 }
-                                int i26 = k_a.f1229b - (iH + 8);
+                                int i26 = aVar3.f1229b - (iH + 8);
                                 if (c == 2192) {
                                     ArrayList arrayList = new ArrayList();
                                     List<String> listA = k.f1228b.a(xVar6.q(i26));
@@ -580,7 +596,7 @@ public final class i implements b.i.a.c.x2.h, t {
                                             throw ParserException.a(null, null);
                                         }
                                         try {
-                                            arrayList.add(new SlowMotionData$Segment(Long.parseLong(listA2.get(0)), Long.parseLong(listA2.get(1)), 1 << (Integer.parseInt(listA2.get(2)) - 1)));
+                                            arrayList.add(new SlowMotionData.Segment(Long.parseLong(listA2.get(0)), Long.parseLong(listA2.get(1)), 1 << (Integer.parseInt(listA2.get(2)) - 1)));
                                         } catch (NumberFormatException e) {
                                             throw ParserException.a(null, e);
                                         }
@@ -633,7 +649,7 @@ public final class i implements b.i.a.c.x2.h, t {
                         }
                         this.f1224x = i28;
                     } else if (!this.g.isEmpty()) {
-                        this.g.peek().c.add(new d$b(this.k, xVar7));
+                        this.g.peek().c.add(new d.b(this.k, xVar7));
                     }
                 } else {
                     if (j17 < Permission.USE_EXTERNAL_EMOJIS) {
@@ -690,16 +706,16 @@ public final class i implements b.i.a.c.x2.h, t {
             this.i.clear();
             return;
         }
-        i$a[] i_aArr = this.t;
-        if (i_aArr != null) {
-            for (i$a i_a : i_aArr) {
-                p pVar = i_a.f1226b;
+        a[] aVarArr = this.t;
+        if (aVarArr != null) {
+            for (a aVar : aVarArr) {
+                p pVar = aVar.f1226b;
                 int iA = pVar.a(j2);
                 if (iA == -1) {
                     iA = pVar.b(j2);
                 }
-                i_a.e = iA;
-                b.i.a.c.x2.x xVar = i_a.d;
+                aVar.e = iA;
+                b.i.a.c.x2.x xVar = aVar.d;
                 if (xVar != null) {
                     xVar.f1300b = false;
                     xVar.c = 0;
@@ -709,17 +725,17 @@ public final class i implements b.i.a.c.x2.h, t {
     }
 
     @Override // b.i.a.c.x2.t
-    public t$a h(long j) {
+    public t.a h(long j) {
         long j2;
         long jK;
         long j3;
         long j4;
         int iB;
         long j5 = j;
-        i$a[] i_aArr = this.t;
-        Objects.requireNonNull(i_aArr);
-        if (i_aArr.length == 0) {
-            return new t$a(b.i.a.c.x2.u.a);
+        a[] aVarArr = this.t;
+        Objects.requireNonNull(aVarArr);
+        if (aVarArr.length == 0) {
+            return new t.a(b.i.a.c.x2.u.a);
         }
         long j6 = -1;
         int i = this.v;
@@ -730,7 +746,7 @@ public final class i implements b.i.a.c.x2.h, t {
                 iA = pVar.b(j5);
             }
             if (iA == -1) {
-                return new t$a(b.i.a.c.x2.u.a);
+                return new t.a(b.i.a.c.x2.u.a);
             }
             long j7 = pVar.f[iA];
             j2 = pVar.c[iA];
@@ -752,12 +768,12 @@ public final class i implements b.i.a.c.x2.h, t {
         }
         int i2 = 0;
         while (true) {
-            i$a[] i_aArr2 = this.t;
-            if (i2 >= i_aArr2.length) {
+            a[] aVarArr2 = this.t;
+            if (i2 >= aVarArr2.length) {
                 break;
             }
             if (i2 != this.v) {
-                p pVar2 = i_aArr2[i2].f1226b;
+                p pVar2 = aVarArr2[i2].f1226b;
                 long jK2 = k(pVar2, j5, j2);
                 if (j3 != -9223372036854775807L) {
                     jK = k(pVar2, j3, jK);
@@ -767,7 +783,7 @@ public final class i implements b.i.a.c.x2.h, t {
             i2++;
         }
         b.i.a.c.x2.u uVar = new b.i.a.c.x2.u(j5, j2);
-        return j3 == -9223372036854775807L ? new t$a(uVar) : new t$a(uVar, new b.i.a.c.x2.u(j3, jK));
+        return j3 == -9223372036854775807L ? new t.a(uVar) : new t.a(uVar, new b.i.a.c.x2.u(j3, jK));
     }
 
     @Override // b.i.a.c.x2.t
@@ -816,21 +832,21 @@ public final class i implements b.i.a.c.x2.h, t {
         String str;
         String str2;
         while (!this.g.isEmpty() && this.g.peek().f1209b == j) {
-            d$a d_aPop = this.g.pop();
-            if (d_aPop.a == 1836019574) {
+            d.a aVarPop = this.g.pop();
+            if (aVarPop.a == 1836019574) {
                 ArrayList arrayList4 = new ArrayList();
                 boolean z5 = this.f1224x == 1;
                 b.i.a.c.x2.p pVar = new b.i.a.c.x2.p();
-                d$b d_bC = d_aPop.c(1969517665);
+                d.b bVarC = aVarPop.c(1969517665);
                 int i5 = 1768715124;
                 int i6 = 1751411826;
                 int i7 = 1835365473;
                 int i8 = 4;
                 int i9 = 8;
                 Metadata metadata7 = null;
-                if (d_bC != null) {
+                if (bVarC != null) {
                     byte[] bArr = e.a;
-                    x xVar = d_bC.f1210b;
+                    x xVar = bVarC.f1210b;
                     xVar.E(8);
                     Metadata metadata8 = null;
                     String strO = null;
@@ -1090,22 +1106,22 @@ public final class i implements b.i.a.c.x2.h, t {
                     metadata2 = null;
                 }
                 Metadata metadata9 = metadata2;
-                d$a d_aB = d_aPop.b(i);
-                if (d_aB != null) {
+                d.a aVarB = aVarPop.b(i);
+                if (aVarB != null) {
                     byte[] bArr2 = e.a;
-                    d$b d_bC2 = d_aB.c(1751411826);
-                    d$b d_bC3 = d_aB.c(1801812339);
-                    d$b d_bC4 = d_aB.c(1768715124);
-                    if (d_bC2 == null || d_bC3 == null || d_bC4 == null) {
+                    d.b bVarC2 = aVarB.c(1751411826);
+                    d.b bVarC3 = aVarB.c(1801812339);
+                    d.b bVarC4 = aVarB.c(1768715124);
+                    if (bVarC2 == null || bVarC3 == null || bVarC4 == null) {
                         metadata3 = metadata9;
                         metadata4 = null;
                     } else {
-                        x xVar2 = d_bC2.f1210b;
+                        x xVar2 = bVarC2.f1210b;
                         xVar2.E(16);
                         if (xVar2.f() != 1835299937) {
                             metadata3 = metadata9;
                         } else {
-                            x xVar3 = d_bC3.f1210b;
+                            x xVar3 = bVarC3.f1210b;
                             xVar3.E(12);
                             int iF10 = xVar3.f();
                             String[] strArr2 = new String[iF10];
@@ -1115,7 +1131,7 @@ public final class i implements b.i.a.c.x2.h, t {
                                 strArr2[i26] = xVar3.q(iF11 - 8);
                             }
                             int i27 = 8;
-                            x xVar4 = d_bC4.f1210b;
+                            x xVar4 = bVarC4.f1210b;
                             xVar4.E(8);
                             ArrayList arrayList7 = new ArrayList();
                             while (xVar4.a() > i27) {
@@ -1174,7 +1190,7 @@ public final class i implements b.i.a.c.x2.h, t {
                     metadata4 = null;
                 }
                 Metadata metadata10 = metadata4;
-                List<p> listE = e.e(d_aPop, pVar, -9223372036854775807L, null, (this.f1222b & 1) != 0, z2, a.a);
+                List<p> listE = e.e(aVarPop, pVar, -9223372036854775807L, null, (this.f1222b & 1) != 0, z2, b.i.a.c.x2.i0.a.a);
                 b.i.a.c.x2.j jVar = this.f1223s;
                 Objects.requireNonNull(jVar);
                 ArrayList arrayList8 = (ArrayList) listE;
@@ -1197,38 +1213,38 @@ public final class i implements b.i.a.c.x2.h, t {
                             j3 = pVar2.h;
                         }
                         jMax = Math.max(jMax, j3);
-                        i$a i_a = new i$a(mVar, pVar2, jVar.p(i32, mVar.f1230b));
+                        a aVar = new a(mVar, pVar2, jVar.p(i32, mVar.f1230b));
                         int i34 = "audio/true-hd".equals(mVar.f.w) ? pVar2.e * 16 : pVar2.e + 30;
-                        j1$b j1_bA = mVar.f.a();
-                        j1_bA.l = i34;
+                        j1.b bVarA = mVar.f.a();
+                        bVarA.l = i34;
                         int i35 = mVar.f1230b;
                         if (i35 == 2 && j3 > 0 && (i3 = pVar2.f1233b) > 1) {
-                            j1_bA.r = i3 / (j3 / 1000000.0f);
+                            bVarA.r = i3 / (j3 / 1000000.0f);
                         }
                         if (i35 == 1) {
                             int i36 = pVar.f1294b;
                             if ((i36 == -1 || pVar.c == -1) ? false : true) {
-                                j1_bA.A = i36;
-                                j1_bA.B = pVar.c;
+                                bVarA.A = i36;
+                                bVarA.B = pVar.c;
                             }
                         }
                         Metadata[] metadataArr = new Metadata[2];
                         metadataArr[0] = metadata;
                         metadataArr[1] = this.i.isEmpty() ? null : new Metadata(this.i);
-                        Metadata metadata12 = new Metadata(new Metadata$Entry[0]);
+                        Metadata metadata12 = new Metadata(new Metadata.Entry[0]);
                         if (i35 != 1) {
                             if (i35 == 2 && metadata11 != null) {
                                 int i37 = 0;
                                 metadata10 = metadata11;
                                 while (true) {
-                                    Metadata$Entry[] metadata$EntryArr = metadata10.j;
-                                    if (i37 >= metadata$EntryArr.length) {
+                                    Metadata.Entry[] entryArr = metadata10.j;
+                                    if (i37 >= entryArr.length) {
                                         metadata5 = metadata;
                                         break;
                                     }
-                                    Metadata$Entry metadata$Entry = metadata$EntryArr[i37];
-                                    if (metadata$Entry instanceof MdtaMetadataEntry) {
-                                        MdtaMetadataEntry mdtaMetadataEntry2 = (MdtaMetadataEntry) metadata$Entry;
+                                    Metadata.Entry entry = entryArr[i37];
+                                    if (entry instanceof MdtaMetadataEntry) {
+                                        MdtaMetadataEntry mdtaMetadataEntry2 = (MdtaMetadataEntry) entry;
                                         metadata5 = metadata;
                                         if ("com.android.capture.fps".equals(mdtaMetadataEntry2.j)) {
                                             metadata12 = new Metadata(mdtaMetadataEntry2);
@@ -1259,22 +1275,22 @@ public final class i implements b.i.a.c.x2.h, t {
                             }
                         }
                         if (metadata12.j.length > 0) {
-                            j1_bA.i = metadata12;
+                            bVarA.i = metadata12;
                         }
-                        i_a.c.e(j1_bA.a());
+                        aVar.c.e(bVarA.a());
                         if (mVar.f1230b == 2) {
                             i2 = i33;
                             if (i2 == -1) {
                                 size2 = arrayList.size();
                             }
                             arrayList2 = arrayList;
-                            arrayList2.add(i_a);
+                            arrayList2.add(aVar);
                         } else {
                             i2 = i33;
                         }
                         size2 = i2;
                         arrayList2 = arrayList;
-                        arrayList2.add(i_a);
+                        arrayList2.add(aVar);
                     }
                     i32++;
                     j2 = -9223372036854775807L;
@@ -1286,21 +1302,21 @@ public final class i implements b.i.a.c.x2.h, t {
                 long j4 = 0;
                 this.v = size2;
                 this.w = jMax;
-                i$a[] i_aArr = (i$a[]) arrayList.toArray(new i$a[0]);
-                this.t = i_aArr;
-                long[][] jArr = new long[i_aArr.length][];
-                int[] iArr = new int[i_aArr.length];
-                long[] jArr2 = new long[i_aArr.length];
-                boolean[] zArr = new boolean[i_aArr.length];
-                for (int i39 = 0; i39 < i_aArr.length; i39++) {
-                    jArr[i39] = new long[i_aArr[i39].f1226b.f1233b];
-                    jArr2[i39] = i_aArr[i39].f1226b.f[0];
+                a[] aVarArr = (a[]) arrayList.toArray(new a[0]);
+                this.t = aVarArr;
+                long[][] jArr = new long[aVarArr.length][];
+                int[] iArr = new int[aVarArr.length];
+                long[] jArr2 = new long[aVarArr.length];
+                boolean[] zArr = new boolean[aVarArr.length];
+                for (int i39 = 0; i39 < aVarArr.length; i39++) {
+                    jArr[i39] = new long[aVarArr[i39].f1226b.f1233b];
+                    jArr2[i39] = aVarArr[i39].f1226b.f[0];
                 }
                 int i40 = 0;
-                while (i40 < i_aArr.length) {
+                while (i40 < aVarArr.length) {
                     long j5 = RecyclerView.FOREVER_NS;
                     int i41 = -1;
-                    for (int i42 = 0; i42 < i_aArr.length; i42++) {
+                    for (int i42 = 0; i42 < aVarArr.length; i42++) {
                         if (!zArr[i42] && jArr2[i42] <= j5) {
                             j5 = jArr2[i42];
                             i41 = i42;
@@ -1308,11 +1324,11 @@ public final class i implements b.i.a.c.x2.h, t {
                     }
                     int i43 = iArr[i41];
                     jArr[i41][i43] = j4;
-                    j4 += (long) i_aArr[i41].f1226b.d[i43];
+                    j4 += (long) aVarArr[i41].f1226b.d[i43];
                     int i44 = i43 + 1;
                     iArr[i41] = i44;
                     if (i44 < jArr[i41].length) {
-                        jArr2[i41] = i_aArr[i41].f1226b.f[i44];
+                        jArr2[i41] = aVarArr[i41].f1226b.f[i44];
                     } else {
                         zArr[i41] = true;
                         i40++;
@@ -1324,7 +1340,7 @@ public final class i implements b.i.a.c.x2.h, t {
                 this.g.clear();
                 this.j = 2;
             } else if (!this.g.isEmpty()) {
-                this.g.peek().d.add(d_aPop);
+                this.g.peek().d.add(aVarPop);
             }
         }
         if (this.j != 2) {

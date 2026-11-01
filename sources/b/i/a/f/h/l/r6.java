@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -109,7 +108,7 @@ public class r6<K extends Comparable<K>, V> extends AbstractMap<K, V> {
         return a(comparable) >= 0 || this.m.containsKey(comparable);
     }
 
-    public final Map$Entry<K, V> d(int i) {
+    public final Map.Entry<K, V> d(int i) {
         return this.l.get(i);
     }
 
@@ -118,7 +117,7 @@ public class r6<K extends Comparable<K>, V> extends AbstractMap<K, V> {
     }
 
     @Override // java.util.AbstractMap, java.util.Map
-    public Set<Map$Entry<K, V>> entrySet() {
+    public Set<Map.Entry<K, V>> entrySet() {
         if (this.o == null) {
             this.o = new a7(this, null);
         }
@@ -157,15 +156,15 @@ public class r6<K extends Comparable<K>, V> extends AbstractMap<K, V> {
         h();
         V v = this.l.remove(i).k;
         if (!this.m.isEmpty()) {
-            Iterator<Map$Entry<K, V>> it = i().entrySet().iterator();
+            Iterator<Map.Entry<K, V>> it = i().entrySet().iterator();
             this.l.add(new y6(this, it.next()));
             it.remove();
         }
         return v;
     }
 
-    public final Iterable<Map$Entry<K, V>> g() {
-        return this.m.isEmpty() ? (Iterable<Map$Entry<K, V>>) u6.f1497b : this.m.entrySet();
+    public final Iterable<Map.Entry<K, V>> g() {
+        return this.m.isEmpty() ? (Iterable<Map.Entry<K, V>>) u6.f1497b : this.m.entrySet();
     }
 
     @Override // java.util.AbstractMap, java.util.Map

@@ -13,7 +13,7 @@ public final class WidgetMedia$configureAndStartControlsAnimation$$inlined$apply
         this.this$0 = widgetMedia;
     }
 
-    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator$AnimatorListener
+    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
     public void onAnimationEnd(Animator animation) {
         m.checkNotNullParameter(animation, "animation");
         WidgetMedia.access$setControlsAnimationAction$p(this.this$0, null);

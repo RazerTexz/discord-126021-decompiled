@@ -1,17 +1,22 @@
 package lombok.eclipse.agent;
 
+import java.lang.ref.WeakReference;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import lombok.core.AST$Kind;
+import lombok.core.AST;
 import lombok.core.AnnotationValues;
-import lombok.core.AnnotationValues$AnnotationValueDecodeFail;
 import lombok.core.FieldAugment;
 import lombok.eclipse.EclipseAST;
 import lombok.eclipse.EclipseNode;
 import lombok.eclipse.TransformEclipseAST;
 import lombok.eclipse.handlers.EclipseHandlerUtil;
 import lombok.experimental.ExtensionMethod;
+import lombok.permit.Permit;
 import org.eclipse.jdt.internal.compiler.ast.ASTNode;
 import org.eclipse.jdt.internal.compiler.ast.Annotation;
 import org.eclipse.jdt.internal.compiler.ast.ClassLiteralAccess;
@@ -37,7 +42,118 @@ import org.eclipse.jdt.internal.compiler.problem.ProblemReporter;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchExtensionMethod.SCL.lombok */
 public class PatchExtensionMethod {
-    private static final FieldAugment<MessageSend, PatchExtensionMethod$PostponedError> MessageSend_postponedErrors = FieldAugment.augment(MessageSend.class, PatchExtensionMethod$PostponedError.class, "lombok$postponedErrors");
+    private static final FieldAugment<MessageSend, PostponedError> MessageSend_postponedErrors = FieldAugment.augment(MessageSend.class, PostponedError.class, "lombok$postponedErrors");
+
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchExtensionMethod$PostponedError.SCL.lombok */
+    interface PostponedError {
+        void fire();
+    }
+
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchExtensionMethod$Extension.SCL.lombok */
+    class Extension {
+        List<MethodBinding> extensionMethods;
+        boolean suppressBaseMethods;
+
+        Extension() {
+        }
+    }
+
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchExtensionMethod$PostponedNoMethodError.SCL.lombok */
+    class PostponedNoMethodError implements PostponedError {
+        private final ProblemReporter problemReporter;
+        private final WeakReference<MessageSend> messageSendRef;
+        private final TypeBinding recType;
+        private final TypeBinding[] params;
+
+        PostponedNoMethodError(ProblemReporter problemReporter, MessageSend messageSend, TypeBinding recType, TypeBinding[] params) {
+            this.problemReporter = problemReporter;
+            this.messageSendRef = new WeakReference<>(messageSend);
+            this.recType = recType;
+            this.params = params;
+        }
+
+        @Override // lombok.eclipse.agent.PatchExtensionMethod.PostponedError
+        public void fire() {
+            MessageSend messageSend = this.messageSendRef.get();
+            if (messageSend != null) {
+                this.problemReporter.errorNoMethodFor(messageSend, this.recType, this.params);
+            }
+        }
+    }
+
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchExtensionMethod$PostponedInvalidMethodError.SCL.lombok */
+    class PostponedInvalidMethodError implements PostponedError {
+        private final WeakReference<MessageSend> messageSendRef;
+        private final MethodBinding method;
+        private final ProblemReporter problemReporter;
+        private final Scope scope;
+        private static final Method shortMethod = getMethod("invalidMethod", MessageSend.class, MethodBinding.class);
+        private static final Method longMethod = getMethod("invalidMethod", MessageSend.class, MethodBinding.class, Scope.class);
+
+        private static Method getMethod(String name, Class<?>... clsArr) {
+            try {
+                Method m = ProblemReporter.class.getMethod(name, clsArr);
+                m.setAccessible(true);
+                return m;
+            } catch (Exception unused) {
+                return null;
+            }
+        }
+
+        PostponedInvalidMethodError(ProblemReporter problemReporter, MessageSend messageSend, MethodBinding method, Scope scope) {
+            this.problemReporter = problemReporter;
+            this.messageSendRef = new WeakReference<>(messageSend);
+            this.method = method;
+            this.scope = scope;
+        }
+
+        static void invoke(ProblemReporter problemReporter, MessageSend messageSend, MethodBinding method, Scope scope) {
+            if (messageSend != null) {
+                try {
+                    if (shortMethod != null) {
+                        shortMethod.invoke(problemReporter, messageSend, method);
+                    } else if (longMethod != null) {
+                        longMethod.invoke(problemReporter, messageSend, method, scope);
+                    }
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                } catch (InvocationTargetException e2) {
+                    Throwable t = e2.getCause();
+                    if (t instanceof Error) {
+                        throw ((Error) t);
+                    }
+                    if (!(t instanceof RuntimeException)) {
+                        throw new RuntimeException(t);
+                    }
+                    throw ((RuntimeException) t);
+                }
+            }
+        }
+
+        @Override // lombok.eclipse.agent.PatchExtensionMethod.PostponedError
+        public void fire() {
+            MessageSend messageSend = this.messageSendRef.get();
+            invoke(this.problemReporter, messageSend, this.method, this.scope);
+        }
+    }
+
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchExtensionMethod$PostponedNonStaticAccessToStaticMethodError.SCL.lombok */
+    class PostponedNonStaticAccessToStaticMethodError implements PostponedError {
+        private final ProblemReporter problemReporter;
+        private ASTNode location;
+        private MethodBinding method;
+
+        PostponedNonStaticAccessToStaticMethodError(ProblemReporter problemReporter, ASTNode location, MethodBinding method) {
+            this.problemReporter = problemReporter;
+            this.location = location;
+            this.method = method;
+        }
+
+        @Override // lombok.eclipse.agent.PatchExtensionMethod.PostponedError
+        public void fire() {
+            this.problemReporter.nonStaticAccessToStaticMethod(this.location, this.method);
+        }
+    }
 
     public static EclipseNode getTypeNode(TypeDeclaration decl) {
         CompilationUnitDeclaration cud = decl.scope.compilationUnitScope().referenceContext;
@@ -70,13 +186,13 @@ public class PatchExtensionMethod {
             if (node == null) {
                 break;
             }
-        } while (node.getKind() != AST$Kind.TYPE);
+        } while (node.getKind() != AST.Kind.TYPE);
         return node;
     }
 
-    static List<PatchExtensionMethod$Extension> getApplicableExtensionMethods(EclipseNode typeNode, Annotation ann, TypeBinding receiverType) {
+    static List<Extension> getApplicableExtensionMethods(EclipseNode typeNode, Annotation ann, TypeBinding receiverType) {
         ReferenceBinding referenceBindingResolveType;
-        List<PatchExtensionMethod$Extension> extensions = new ArrayList<>();
+        List<Extension> extensions = new ArrayList<>();
         if (typeNode != null && ann != null && receiverType != null) {
             MethodScope methodScope = typeNode.get().initializerScope;
             EclipseNode annotationNode = typeNode.getNodeFor(ann);
@@ -84,12 +200,12 @@ public class PatchExtensionMethod {
             boolean suppressBaseMethods = false;
             try {
                 suppressBaseMethods = annotation.getInstance().suppressBaseMethods();
-            } catch (AnnotationValues$AnnotationValueDecodeFail fail) {
+            } catch (AnnotationValues.AnnotationValueDecodeFail fail) {
                 fail.owner.setError(fail.getMessage(), fail.idx);
             }
             for (Object extensionMethodProvider : annotation.getActualExpressions("value")) {
                 if ((extensionMethodProvider instanceof ClassLiteralAccess) && (referenceBindingResolveType = ((ClassLiteralAccess) extensionMethodProvider).type.resolveType(methodScope)) != null && (referenceBindingResolveType.isClass() || referenceBindingResolveType.isEnum())) {
-                    PatchExtensionMethod$Extension e = new PatchExtensionMethod$Extension();
+                    Extension e = new Extension();
                     e.extensionMethods = getApplicableExtensionMethodsDefinedInProvider(typeNode, referenceBindingResolveType, receiverType);
                     e.suppressBaseMethods = suppressBaseMethods;
                     extensions.add(e);
@@ -113,24 +229,24 @@ public class PatchExtensionMethod {
     }
 
     public static void errorNoMethodFor(ProblemReporter problemReporter, MessageSend messageSend, TypeBinding recType, TypeBinding[] params) {
-        MessageSend_postponedErrors.set(messageSend, new PatchExtensionMethod$PostponedNoMethodError(problemReporter, messageSend, recType, params));
+        MessageSend_postponedErrors.set(messageSend, new PostponedNoMethodError(problemReporter, messageSend, recType, params));
     }
 
     public static void invalidMethod(ProblemReporter problemReporter, MessageSend messageSend, MethodBinding method) {
-        MessageSend_postponedErrors.set(messageSend, new PatchExtensionMethod$PostponedInvalidMethodError(problemReporter, messageSend, method, null));
+        MessageSend_postponedErrors.set(messageSend, new PostponedInvalidMethodError(problemReporter, messageSend, method, null));
     }
 
     public static void invalidMethod(ProblemReporter problemReporter, MessageSend messageSend, MethodBinding method, Scope scope) {
-        MessageSend_postponedErrors.set(messageSend, new PatchExtensionMethod$PostponedInvalidMethodError(problemReporter, messageSend, method, scope));
+        MessageSend_postponedErrors.set(messageSend, new PostponedInvalidMethodError(problemReporter, messageSend, method, scope));
     }
 
     public static void nonStaticAccessToStaticMethod(ProblemReporter problemReporter, ASTNode location, MethodBinding method, MessageSend messageSend) {
-        MessageSend_postponedErrors.set(messageSend, new PatchExtensionMethod$PostponedNonStaticAccessToStaticMethodError(problemReporter, location, method));
+        MessageSend_postponedErrors.set(messageSend, new PostponedNonStaticAccessToStaticMethodError(problemReporter, location, method));
     }
 
     public static TypeBinding resolveType(TypeBinding resolvedType, MessageSend methodCall, BlockScope scope) {
         TypeBinding param;
-        List<PatchExtensionMethod$Extension> extensions = new ArrayList<>();
+        List<Extension> extensions = new ArrayList<>();
         TypeDeclaration decl = scope.classScope().referenceContext;
         EclipseNode owningType = null;
         EclipseNode typeNode = getTypeNode(decl);
@@ -161,16 +277,16 @@ public class PatchExtensionMethod {
                 skip = true;
             }
         }
-        if (PatchExtensionMethod$Reflection.argumentsHaveErrors != null) {
+        if (Reflection.argumentsHaveErrors != null) {
             try {
-                if (((Boolean) PatchExtensionMethod$Reflection.argumentsHaveErrors.get(methodCall)).booleanValue()) {
+                if (((Boolean) Reflection.argumentsHaveErrors.get(methodCall)).booleanValue()) {
                     skip = true;
                 }
             } catch (IllegalAccessException unused) {
             }
         }
         if (!skip) {
-            for (PatchExtensionMethod$Extension extension : extensions) {
+            for (Extension extension : extensions) {
                 if (extension.suppressBaseMethods || (methodCall.binding instanceof ProblemMethodBinding)) {
                     for (MethodBinding extensionMethod : extension.extensionMethods) {
                         if (Arrays.equals(methodCall.selector, extensionMethod.selector)) {
@@ -188,8 +304,8 @@ public class PatchExtensionMethod {
                             List<TypeBinding> argumentTypes = new ArrayList<>();
                             for (Expression argument : arguments) {
                                 TypeBinding argumentType = argument.resolvedType;
-                                if (argumentType == null && PatchExtensionMethod$Reflection.isFunctionalExpression(argument)) {
-                                    argumentType = PatchExtensionMethod$Reflection.getPolyTypeBinding(argument);
+                                if (argumentType == null && Reflection.isFunctionalExpression(argument)) {
+                                    argumentType = Reflection.getPolyTypeBinding(argument);
                                 }
                                 if (argumentType == null) {
                                     argumentType = TypeBinding.NULL;
@@ -207,7 +323,7 @@ public class PatchExtensionMethod {
                             if (fixedBinding instanceof ProblemMethodBinding) {
                                 methodCall.arguments = originalArgs;
                                 if (fixedBinding.declaringClass != null) {
-                                    PatchExtensionMethod$PostponedInvalidMethodError.invoke(scope.problemReporter(), methodCall, fixedBinding, scope);
+                                    PostponedInvalidMethodError.invoke(scope.problemReporter(), methodCall, fixedBinding, scope);
                                 }
                             } else {
                                 boolean isVarargs = fixedBinding.isVarargs();
@@ -220,7 +336,7 @@ public class PatchExtensionMethod {
                                     } else {
                                         param = parameters[i];
                                     }
-                                    if (PatchExtensionMethod$Reflection.isFunctionalExpression(arg)) {
+                                    if (Reflection.isFunctionalExpression(arg)) {
                                         arg.setExpectedType(param);
                                         arg.resolveType(scope);
                                     }
@@ -239,9 +355,9 @@ public class PatchExtensionMethod {
                                 methodCall.binding = fixedBinding;
                                 methodCall.resolvedType = methodCall.binding.returnType;
                                 methodCall.statementEnd = methodCall.sourceEnd;
-                                if (PatchExtensionMethod$Reflection.argumentTypes != null) {
+                                if (Reflection.argumentTypes != null) {
                                     try {
-                                        PatchExtensionMethod$Reflection.argumentTypes.set(methodCall, argumentTypes.toArray(new TypeBinding[0]));
+                                        Reflection.argumentTypes.set(methodCall, argumentTypes.toArray(new TypeBinding[0]));
                                     } catch (IllegalAccessException unused2) {
                                     }
                                 }
@@ -252,7 +368,7 @@ public class PatchExtensionMethod {
                 }
             }
         }
-        PatchExtensionMethod$PostponedError error = MessageSend_postponedErrors.get(methodCall);
+        PostponedError error = MessageSend_postponedErrors.get(methodCall);
         if (error != null) {
             error.fire();
         }
@@ -284,5 +400,49 @@ public class PatchExtensionMethod {
         long[] poss = new long[in.length];
         Arrays.fill(poss, p);
         return new QualifiedNameReference(sources, poss, source.sourceStart, source.sourceEnd);
+    }
+
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchExtensionMethod$Reflection.SCL.lombok */
+    final class Reflection {
+        private static final Class<?> functionalExpression;
+        private static final Constructor<?> polyTypeBindingConstructor;
+        public static final Field argumentTypes = Permit.permissiveGetField(MessageSend.class, "argumentTypes");
+        public static final Field argumentsHaveErrors = Permit.permissiveGetField(MessageSend.class, "argumentsHaveErrors");
+
+        private Reflection() {
+        }
+
+        static {
+            Class<?> a = null;
+            Constructor<?> b2 = null;
+            try {
+                a = Class.forName("org.eclipse.jdt.internal.compiler.ast.FunctionalExpression");
+            } catch (Exception unused) {
+            }
+            try {
+                b2 = Permit.getConstructor(Class.forName("org.eclipse.jdt.internal.compiler.lookup.PolyTypeBinding"), Expression.class);
+            } catch (Exception unused2) {
+            }
+            functionalExpression = a;
+            polyTypeBindingConstructor = b2;
+        }
+
+        public static boolean isFunctionalExpression(Expression expression) {
+            if (functionalExpression == null) {
+                return false;
+            }
+            return functionalExpression.isInstance(expression);
+        }
+
+        public static TypeBinding getPolyTypeBinding(Expression expression) {
+            if (polyTypeBindingConstructor == null) {
+                return null;
+            }
+            try {
+                return (TypeBinding) polyTypeBindingConstructor.newInstance(expression);
+            } catch (Exception unused) {
+                return null;
+            }
+        }
     }
 }

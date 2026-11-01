@@ -30,11 +30,11 @@ public abstract class r extends k {
     }
 
     @Override // d0.e0.p.d.m0.e.a.i0.l.k
-    public k$a l(d0.e0.p.d.m0.e.a.k0.r rVar, List<? extends z0> list, c0 c0Var, List<? extends c1> list2) {
+    public k.a l(d0.e0.p.d.m0.e.a.k0.r rVar, List<? extends z0> list, c0 c0Var, List<? extends c1> list2) {
         d0.z.d.m.checkNotNullParameter(rVar, "method");
         d0.z.d.m.checkNotNullParameter(list, "methodTypeParameters");
         d0.z.d.m.checkNotNullParameter(c0Var, "returnType");
         d0.z.d.m.checkNotNullParameter(list2, "valueParameters");
-        return new k$a(c0Var, null, list2, list, false, d0.t.n.emptyList());
+        return new k.a(c0Var, null, list2, list, false, d0.t.n.emptyList());
     }
 }

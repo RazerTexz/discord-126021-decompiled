@@ -11,8 +11,7 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.Barrier;
 import androidx.core.view.OneShotPreDrawListener;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.user.User;
@@ -29,51 +28,89 @@ import java.util.Arrays;
 
 /* JADX INFO: compiled from: WidgetServerSettingsInstantInvitesListItem.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetServerSettingsInstantInvitesListItem extends MGRecyclerViewHolder<WidgetServerSettingsInstantInvites$Adapter, WidgetServerSettingsInstantInvites$Model$InviteItem> {
+public final class WidgetServerSettingsInstantInvitesListItem extends MGRecyclerViewHolder<WidgetServerSettingsInstantInvites.Adapter, WidgetServerSettingsInstantInvites.Model.InviteItem> {
     private final WidgetServerSettingsInstantInviteListItemBinding binding;
     private CountDownTimer countdownTimer;
     private String currentInviteCode;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.settings.invites.WidgetServerSettingsInstantInvitesListItem$onConfigure$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsInstantInvitesListItem.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ WidgetServerSettingsInstantInvites.Model.InviteItem $data;
+
+        public AnonymousClass1(WidgetServerSettingsInstantInvites.Model.InviteItem inviteItem) {
+            this.$data = inviteItem;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetServerSettingsInstantInvitesListItem.access$getAdapter$p(WidgetServerSettingsInstantInvitesListItem.this).onInviteSelected(this.$data.getInvite());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.settings.invites.WidgetServerSettingsInstantInvitesListItem$setupExpirationTime$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsInstantInvitesListItem.kt */
+    public final class AnonymousClass1 extends CountDownTimer {
+        public final /* synthetic */ ModelInvite $invite;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(ModelInvite modelInvite, long j, long j2) {
+            super(j, j2);
+            this.$invite = modelInvite;
+        }
+
+        @Override // android.os.CountDownTimer
+        public void onFinish() {
+            WidgetServerSettingsInstantInvitesListItem.access$setCountdownText(WidgetServerSettingsInstantInvitesListItem.this, 0L);
+            WidgetServerSettingsInstantInvitesListItem.access$getAdapter$p(WidgetServerSettingsInstantInvitesListItem.this).onInviteExpired(this.$invite);
+        }
+
+        @Override // android.os.CountDownTimer
+        public void onTick(long millisUntilFinished) {
+            WidgetServerSettingsInstantInvitesListItem.access$setCountdownText(WidgetServerSettingsInstantInvitesListItem.this, millisUntilFinished);
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetServerSettingsInstantInvitesListItem(WidgetServerSettingsInstantInvites$Adapter widgetServerSettingsInstantInvites$Adapter) {
-        super(R$layout.widget_server_settings_instant_invite_list_item, widgetServerSettingsInstantInvites$Adapter);
-        m.checkNotNullParameter(widgetServerSettingsInstantInvites$Adapter, "adapter");
+    public WidgetServerSettingsInstantInvitesListItem(WidgetServerSettingsInstantInvites.Adapter adapter) {
+        super(R.layout.widget_server_settings_instant_invite_list_item, adapter);
+        m.checkNotNullParameter(adapter, "adapter");
         View view = this.itemView;
-        int i = R$id.invite_barrier_1;
-        Barrier barrier = (Barrier) view.findViewById(R$id.invite_barrier_1);
+        int i = R.id.invite_barrier_1;
+        Barrier barrier = (Barrier) view.findViewById(R.id.invite_barrier_1);
         if (barrier != null) {
-            i = R$id.invite_barrier_2;
-            Barrier barrier2 = (Barrier) view.findViewById(R$id.invite_barrier_2);
+            i = R.id.invite_barrier_2;
+            Barrier barrier2 = (Barrier) view.findViewById(R.id.invite_barrier_2);
             if (barrier2 != null) {
-                i = R$id.invite_channel;
-                TextView textView = (TextView) view.findViewById(R$id.invite_channel);
+                i = R.id.invite_channel;
+                TextView textView = (TextView) view.findViewById(R.id.invite_channel);
                 if (textView != null) {
-                    i = R$id.invite_code;
-                    TextView textView2 = (TextView) view.findViewById(R$id.invite_code);
+                    i = R.id.invite_code;
+                    TextView textView2 = (TextView) view.findViewById(R.id.invite_code);
                     if (textView2 != null) {
-                        i = R$id.invite_container;
-                        LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.invite_container);
+                        i = R.id.invite_container;
+                        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.invite_container);
                         if (linearLayout != null) {
-                            i = R$id.invite_divider;
-                            FrameLayout frameLayout = (FrameLayout) view.findViewById(R$id.invite_divider);
+                            i = R.id.invite_divider;
+                            FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.invite_divider);
                             if (frameLayout != null) {
-                                i = R$id.invite_expiration_container;
-                                LinearLayout linearLayout2 = (LinearLayout) view.findViewById(R$id.invite_expiration_container);
+                                i = R.id.invite_expiration_container;
+                                LinearLayout linearLayout2 = (LinearLayout) view.findViewById(R.id.invite_expiration_container);
                                 if (linearLayout2 != null) {
-                                    i = R$id.invite_expiration_time;
-                                    TextView textView3 = (TextView) view.findViewById(R$id.invite_expiration_time);
+                                    i = R.id.invite_expiration_time;
+                                    TextView textView3 = (TextView) view.findViewById(R.id.invite_expiration_time);
                                     if (textView3 != null) {
-                                        i = R$id.invite_settings_icon;
-                                        ImageView imageView = (ImageView) view.findViewById(R$id.invite_settings_icon);
+                                        i = R.id.invite_settings_icon;
+                                        ImageView imageView = (ImageView) view.findViewById(R.id.invite_settings_icon);
                                         if (imageView != null) {
-                                            i = R$id.invite_uses;
-                                            TextView textView4 = (TextView) view.findViewById(R$id.invite_uses);
+                                            i = R.id.invite_uses;
+                                            TextView textView4 = (TextView) view.findViewById(R.id.invite_uses);
                                             if (textView4 != null) {
-                                                i = R$id.invite_uses_container;
-                                                LinearLayout linearLayout3 = (LinearLayout) view.findViewById(R$id.invite_uses_container);
+                                                i = R.id.invite_uses_container;
+                                                LinearLayout linearLayout3 = (LinearLayout) view.findViewById(R.id.invite_uses_container);
                                                 if (linearLayout3 != null) {
-                                                    i = R$id.settings_member;
-                                                    SettingsMemberView settingsMemberView = (SettingsMemberView) view.findViewById(R$id.settings_member);
+                                                    i = R.id.settings_member;
+                                                    SettingsMemberView settingsMemberView = (SettingsMemberView) view.findViewById(R.id.settings_member);
                                                     if (settingsMemberView != null) {
                                                         WidgetServerSettingsInstantInviteListItemBinding widgetServerSettingsInstantInviteListItemBinding = new WidgetServerSettingsInstantInviteListItemBinding((CardView) view, barrier, barrier2, textView, textView2, linearLayout, frameLayout, linearLayout2, textView3, imageView, textView4, linearLayout3, settingsMemberView);
                                                         m.checkNotNullExpressionValue(widgetServerSettingsInstantInviteListItemBinding, "WidgetServerSettingsInst…temBinding.bind(itemView)");
@@ -94,8 +131,8 @@ public final class WidgetServerSettingsInstantInvitesListItem extends MGRecycler
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
     }
 
-    public static final /* synthetic */ WidgetServerSettingsInstantInvites$Adapter access$getAdapter$p(WidgetServerSettingsInstantInvitesListItem widgetServerSettingsInstantInvitesListItem) {
-        return (WidgetServerSettingsInstantInvites$Adapter) widgetServerSettingsInstantInvitesListItem.adapter;
+    public static final /* synthetic */ WidgetServerSettingsInstantInvites.Adapter access$getAdapter$p(WidgetServerSettingsInstantInvitesListItem widgetServerSettingsInstantInvitesListItem) {
+        return (WidgetServerSettingsInstantInvites.Adapter) widgetServerSettingsInstantInvitesListItem.adapter;
     }
 
     public static final /* synthetic */ void access$setCountdownText(WidgetServerSettingsInstantInvitesListItem widgetServerSettingsInstantInvitesListItem, long j) {
@@ -122,8 +159,8 @@ public final class WidgetServerSettingsInstantInvitesListItem extends MGRecycler
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
-    public /* bridge */ /* synthetic */ void onConfigure(int i, WidgetServerSettingsInstantInvites$Model$InviteItem widgetServerSettingsInstantInvites$Model$InviteItem) {
-        onConfigure2(i, widgetServerSettingsInstantInvites$Model$InviteItem);
+    public /* bridge */ /* synthetic */ void onConfigure(int i, WidgetServerSettingsInstantInvites.Model.InviteItem inviteItem) {
+        onConfigure2(i, inviteItem);
     }
 
     @SuppressLint({"SetTextI18n"})
@@ -141,15 +178,15 @@ public final class WidgetServerSettingsInstantInvitesListItem extends MGRecycler
         textView.setText(str);
         TextView textView2 = this.binding.d;
         m.checkNotNullExpressionValue(textView2, "binding.inviteExpirationTime");
-        textView2.setTextColor(ColorCompat.getColor(textView2, 2131100301));
+        textView2.setTextColor(ColorCompat.getColor(textView2, R.color.status_green_500_dark));
     }
 
     private final void setupExpirationTime(ModelInvite invite) {
         if (invite.getMaxAge() == 0) {
-            this.binding.d.setText(2131892763);
+            this.binding.d.setText(R.string.max_age_never);
             TextView textView = this.binding.d;
             m.checkNotNullExpressionValue(textView, "binding.inviteExpirationTime");
-            textView.setTextColor(ColorCompat.getColor(textView, 2131099915));
+            textView.setTextColor(ColorCompat.getColor(textView, R.color.grey_1));
             cancelTimer();
             return;
         }
@@ -162,21 +199,21 @@ public final class WidgetServerSettingsInstantInvitesListItem extends MGRecycler
             setCountdownText(invite.getTimeToExpirationMillis());
             cancelTimer();
             this.currentInviteCode = invite.code;
-            WidgetServerSettingsInstantInvitesListItem$setupExpirationTime$1 widgetServerSettingsInstantInvitesListItem$setupExpirationTime$1 = new WidgetServerSettingsInstantInvitesListItem$setupExpirationTime$1(this, invite, invite.getTimeToExpirationMillis(), 1000L);
-            this.countdownTimer = widgetServerSettingsInstantInvitesListItem$setupExpirationTime$1;
-            if (widgetServerSettingsInstantInvitesListItem$setupExpirationTime$1 != null) {
-                widgetServerSettingsInstantInvitesListItem$setupExpirationTime$1.start();
+            AnonymousClass1 anonymousClass1 = new AnonymousClass1(invite, invite.getTimeToExpirationMillis(), 1000L);
+            this.countdownTimer = anonymousClass1;
+            if (anonymousClass1 != null) {
+                anonymousClass1.start();
             }
         }
     }
 
     /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
-    public void onConfigure2(int position, WidgetServerSettingsInstantInvites$Model$InviteItem data) {
+    public void onConfigure2(int position, WidgetServerSettingsInstantInvites.Model.InviteItem data) {
         String strD;
         m.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
         User inviter = data.getInvite().getInviter();
-        this.binding.a.setOnClickListener(new WidgetServerSettingsInstantInvitesListItem$onConfigure$1(this, data));
+        this.binding.a.setOnClickListener(new AnonymousClass1(data));
         TextView textView = this.binding.c;
         m.checkNotNullExpressionValue(textView, "binding.inviteCode");
         textView.setText(data.getInvite().code);

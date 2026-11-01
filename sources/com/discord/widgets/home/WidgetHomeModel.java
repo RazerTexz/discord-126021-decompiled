@@ -2,16 +2,24 @@ package com.discord.widgets.home;
 
 import b.d.b.a.a;
 import com.discord.api.channel.Channel;
+import com.discord.api.channel.ChannelUtils;
 import com.discord.api.user.NsfwAllowance;
 import com.discord.models.presence.Presence;
-import com.discord.stores.StoreChannelsSelected$ResolvedSelectedChannel;
+import com.discord.stores.StoreChannelsSelected;
 import com.discord.stores.StoreStream;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.z.d.m;
+import j0.l.e.k;
+import java.util.concurrent.TimeUnit;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import rx.Observable;
 
 /* JADX INFO: compiled from: WidgetHomeModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class WidgetHomeModel {
-    public static final WidgetHomeModel$Companion Companion = new WidgetHomeModel$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final Channel channel;
     private final long channelId;
     private final Presence dmPresence;
@@ -19,15 +27,51 @@ public final /* data */ class WidgetHomeModel {
     private final boolean isFriend;
     private final NsfwAllowance nsfwAllowed;
     private final Channel parentChannel;
-    private final StoreChannelsSelected$ResolvedSelectedChannel selectedChannel;
+    private final StoreChannelsSelected.ResolvedSelectedChannel selectedChannel;
     private final Channel selectedVoiceChannel;
     private final int threadCount;
     private final boolean threadExperimentEnabled;
     private final int unreadCount;
 
-    public WidgetHomeModel(StoreChannelsSelected$ResolvedSelectedChannel storeChannelsSelected$ResolvedSelectedChannel, Channel channel, Channel channel2, Presence presence, int i, boolean z2, boolean z3, NsfwAllowance nsfwAllowance, int i2, boolean z4) {
-        m.checkNotNullParameter(storeChannelsSelected$ResolvedSelectedChannel, "selectedChannel");
-        this.selectedChannel = storeChannelsSelected$ResolvedSelectedChannel;
+    /* JADX INFO: compiled from: WidgetHomeModel.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final Observable<WidgetHomeModel> get() {
+            StoreStream.Companion companion = StoreStream.INSTANCE;
+            Observable observableY = Observable.j(companion.getGuildSelected().observeSelectedGuildId(), companion.getChannelsSelected().observeResolvedSelectedChannel(), WidgetHomeModel$Companion$get$1.INSTANCE).Y(WidgetHomeModel$Companion$get$2.INSTANCE);
+            m.checkNotNullExpressionValue(observableY, "Observable.combineLatest…            )\n          }");
+            Observable<WidgetHomeModel> observableR = ObservableExtensionsKt.computationLatest(observableY).r();
+            m.checkNotNullExpressionValue(observableR, "Observable.combineLatest…  .distinctUntilChanged()");
+            return observableR;
+        }
+
+        public final Observable<Boolean> getInitialized() {
+            Observable<Boolean> observableQ = StoreStream.INSTANCE.isInitializedObservable().q(150L, TimeUnit.MILLISECONDS);
+            m.checkNotNullExpressionValue(observableQ, "StoreStream\n          .i…0, TimeUnit.MILLISECONDS)");
+            return observableQ;
+        }
+
+        public final Observable<Channel> getParentChannelObservable(Channel channel) {
+            if (channel == null || ChannelUtils.H(channel)) {
+                if ((channel != null ? Long.valueOf(channel.getParentId()) : null) != null) {
+                    return StoreStream.INSTANCE.getChannels().observeChannel(channel.getParentId());
+                }
+            }
+            k kVar = new k(null);
+            m.checkNotNullExpressionValue(kVar, "Observable.just(null)");
+            return kVar;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    public WidgetHomeModel(StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel, Channel channel, Channel channel2, Presence presence, int i, boolean z2, boolean z3, NsfwAllowance nsfwAllowance, int i2, boolean z4) {
+        m.checkNotNullParameter(resolvedSelectedChannel, "selectedChannel");
+        this.selectedChannel = resolvedSelectedChannel;
         this.selectedVoiceChannel = channel;
         this.parentChannel = channel2;
         this.dmPresence = presence;
@@ -37,16 +81,16 @@ public final /* data */ class WidgetHomeModel {
         this.nsfwAllowed = nsfwAllowance;
         this.threadCount = i2;
         this.threadExperimentEnabled = z4;
-        this.channel = storeChannelsSelected$ResolvedSelectedChannel.getMaybeChannel();
-        Channel maybeChannel = storeChannelsSelected$ResolvedSelectedChannel.getMaybeChannel();
+        this.channel = resolvedSelectedChannel.getMaybeChannel();
+        Channel maybeChannel = resolvedSelectedChannel.getMaybeChannel();
         this.channelId = maybeChannel != null ? maybeChannel.getId() : 0L;
     }
 
-    public static /* synthetic */ WidgetHomeModel copy$default(WidgetHomeModel widgetHomeModel, StoreChannelsSelected$ResolvedSelectedChannel storeChannelsSelected$ResolvedSelectedChannel, Channel channel, Channel channel2, Presence presence, int i, boolean z2, boolean z3, NsfwAllowance nsfwAllowance, int i2, boolean z4, int i3, Object obj) {
-        return widgetHomeModel.copy((i3 & 1) != 0 ? widgetHomeModel.selectedChannel : storeChannelsSelected$ResolvedSelectedChannel, (i3 & 2) != 0 ? widgetHomeModel.selectedVoiceChannel : channel, (i3 & 4) != 0 ? widgetHomeModel.parentChannel : channel2, (i3 & 8) != 0 ? widgetHomeModel.dmPresence : presence, (i3 & 16) != 0 ? widgetHomeModel.unreadCount : i, (i3 & 32) != 0 ? widgetHomeModel.isFriend : z2, (i3 & 64) != 0 ? widgetHomeModel.isCallConnected : z3, (i3 & 128) != 0 ? widgetHomeModel.nsfwAllowed : nsfwAllowance, (i3 & 256) != 0 ? widgetHomeModel.threadCount : i2, (i3 & 512) != 0 ? widgetHomeModel.threadExperimentEnabled : z4);
+    public static /* synthetic */ WidgetHomeModel copy$default(WidgetHomeModel widgetHomeModel, StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel, Channel channel, Channel channel2, Presence presence, int i, boolean z2, boolean z3, NsfwAllowance nsfwAllowance, int i2, boolean z4, int i3, Object obj) {
+        return widgetHomeModel.copy((i3 & 1) != 0 ? widgetHomeModel.selectedChannel : resolvedSelectedChannel, (i3 & 2) != 0 ? widgetHomeModel.selectedVoiceChannel : channel, (i3 & 4) != 0 ? widgetHomeModel.parentChannel : channel2, (i3 & 8) != 0 ? widgetHomeModel.dmPresence : presence, (i3 & 16) != 0 ? widgetHomeModel.unreadCount : i, (i3 & 32) != 0 ? widgetHomeModel.isFriend : z2, (i3 & 64) != 0 ? widgetHomeModel.isCallConnected : z3, (i3 & 128) != 0 ? widgetHomeModel.nsfwAllowed : nsfwAllowance, (i3 & 256) != 0 ? widgetHomeModel.threadCount : i2, (i3 & 512) != 0 ? widgetHomeModel.threadExperimentEnabled : z4);
     }
 
-    public final WidgetHomeModel copy(StoreChannelsSelected$ResolvedSelectedChannel selectedChannel, Channel selectedVoiceChannel, Channel parentChannel, Presence dmPresence, int unreadCount, boolean isFriend, boolean isCallConnected, NsfwAllowance nsfwAllowed, int threadCount, boolean threadExperimentEnabled) {
+    public final WidgetHomeModel copy(StoreChannelsSelected.ResolvedSelectedChannel selectedChannel, Channel selectedVoiceChannel, Channel parentChannel, Presence dmPresence, int unreadCount, boolean isFriend, boolean isCallConnected, NsfwAllowance nsfwAllowed, int threadCount, boolean threadExperimentEnabled) {
         m.checkNotNullParameter(selectedChannel, "selectedChannel");
         return new WidgetHomeModel(selectedChannel, selectedVoiceChannel, parentChannel, dmPresence, unreadCount, isFriend, isCallConnected, nsfwAllowed, threadCount, threadExperimentEnabled);
     }
@@ -108,11 +152,11 @@ public final /* data */ class WidgetHomeModel {
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
-    public final StoreChannelsSelected$ResolvedSelectedChannel getSelectedChannel() {
+    public final StoreChannelsSelected.ResolvedSelectedChannel getSelectedChannel() {
         return this.selectedChannel;
     }
 
-    public final StoreChannelsSelected$ResolvedSelectedChannel getSelectedChannel() {
+    public final StoreChannelsSelected.ResolvedSelectedChannel getSelectedChannel() {
         return this.selectedChannel;
     }
 
@@ -165,8 +209,8 @@ public final /* data */ class WidgetHomeModel {
     /* JADX WARN: Type inference failed for: r3v1, types: [int] */
     /* JADX WARN: Type inference failed for: r3v2 */
     public int hashCode() {
-        StoreChannelsSelected$ResolvedSelectedChannel storeChannelsSelected$ResolvedSelectedChannel = this.selectedChannel;
-        int iHashCode = (storeChannelsSelected$ResolvedSelectedChannel != null ? storeChannelsSelected$ResolvedSelectedChannel.hashCode() : 0) * 31;
+        StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel = this.selectedChannel;
+        int iHashCode = (resolvedSelectedChannel != null ? resolvedSelectedChannel.hashCode() : 0) * 31;
         Channel channel = this.selectedVoiceChannel;
         int iHashCode2 = (iHashCode + (channel != null ? channel.hashCode() : 0)) * 31;
         Channel channel2 = this.parentChannel;
@@ -205,7 +249,7 @@ public final /* data */ class WidgetHomeModel {
     }
 
     public final boolean isNsfwUnConsented() {
-        return (this.channel == null || StoreStream.Companion.getGuildsNsfw().isGuildNsfwGateAgreed(this.channel.getGuildId())) ? false : true;
+        return (this.channel == null || StoreStream.INSTANCE.getGuildsNsfw().isGuildNsfwGateAgreed(this.channel.getGuildId())) ? false : true;
     }
 
     public String toString() {

@@ -3,34 +3,58 @@ package com.google.android.exoplayer2.ui;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.view.View$MeasureSpec;
+import android.view.View;
 import android.widget.FrameLayout;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class AspectRatioFrameLayout extends FrameLayout {
-    public final AspectRatioFrameLayout$c j;
+    public final c j;
 
     @Nullable
-    public AspectRatioFrameLayout$b k;
+    public b k;
     public float l;
     public int m;
+
+    public interface b {
+        void a(float f, float f2, boolean z2);
+    }
+
+    public final class c implements Runnable {
+        public float j;
+        public float k;
+        public boolean l;
+        public boolean m;
+
+        public c(a aVar) {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            this.m = false;
+            b bVar = AspectRatioFrameLayout.this.k;
+            if (bVar == null) {
+                return;
+            }
+            bVar.a(this.j, this.k, this.l);
+        }
+    }
 
     public AspectRatioFrameLayout(Context context, @Nullable AttributeSet attributeSet) {
         super(context, attributeSet);
         this.m = 0;
         if (attributeSet != null) {
-            TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet, R$g.AspectRatioFrameLayout, 0, 0);
+            TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet, R.g.AspectRatioFrameLayout, 0, 0);
             try {
-                this.m = typedArrayObtainStyledAttributes.getInt(R$g.AspectRatioFrameLayout_resize_mode, 0);
+                this.m = typedArrayObtainStyledAttributes.getInt(R.g.AspectRatioFrameLayout_resize_mode, 0);
                 typedArrayObtainStyledAttributes.recycle();
             } catch (Throwable th) {
                 typedArrayObtainStyledAttributes.recycle();
                 throw th;
             }
         }
-        this.j = new AspectRatioFrameLayout$c(this, null);
+        this.j = new c(null);
     }
 
     public int getResizeMode() {
@@ -52,15 +76,15 @@ public final class AspectRatioFrameLayout extends FrameLayout {
         float f5 = f3 / f4;
         float f6 = (this.l / f5) - 1.0f;
         if (Math.abs(f6) <= 0.01f) {
-            AspectRatioFrameLayout$c aspectRatioFrameLayout$c = this.j;
-            aspectRatioFrameLayout$c.j = this.l;
-            aspectRatioFrameLayout$c.k = f5;
-            aspectRatioFrameLayout$c.l = false;
-            if (aspectRatioFrameLayout$c.m) {
+            c cVar = this.j;
+            cVar.j = this.l;
+            cVar.k = f5;
+            cVar.l = false;
+            if (cVar.m) {
                 return;
             }
-            aspectRatioFrameLayout$c.m = true;
-            aspectRatioFrameLayout$c.n.post(aspectRatioFrameLayout$c);
+            cVar.m = true;
+            AspectRatioFrameLayout.this.post(cVar);
             return;
         }
         int i3 = this.m;
@@ -87,15 +111,15 @@ public final class AspectRatioFrameLayout extends FrameLayout {
             f = this.l;
             measuredWidth = (int) (f4 * f);
         }
-        AspectRatioFrameLayout$c aspectRatioFrameLayout$c2 = this.j;
-        aspectRatioFrameLayout$c2.j = this.l;
-        aspectRatioFrameLayout$c2.k = f5;
-        aspectRatioFrameLayout$c2.l = true;
-        if (!aspectRatioFrameLayout$c2.m) {
-            aspectRatioFrameLayout$c2.m = true;
-            aspectRatioFrameLayout$c2.n.post(aspectRatioFrameLayout$c2);
+        c cVar2 = this.j;
+        cVar2.j = this.l;
+        cVar2.k = f5;
+        cVar2.l = true;
+        if (!cVar2.m) {
+            cVar2.m = true;
+            AspectRatioFrameLayout.this.post(cVar2);
         }
-        super.onMeasure(View$MeasureSpec.makeMeasureSpec(measuredWidth, BasicMeasure.EXACTLY), View$MeasureSpec.makeMeasureSpec(measuredHeight, BasicMeasure.EXACTLY));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(measuredWidth, BasicMeasure.EXACTLY), View.MeasureSpec.makeMeasureSpec(measuredHeight, BasicMeasure.EXACTLY));
     }
 
     public void setAspectRatio(float f) {
@@ -105,8 +129,8 @@ public final class AspectRatioFrameLayout extends FrameLayout {
         }
     }
 
-    public void setAspectRatioListener(@Nullable AspectRatioFrameLayout$b aspectRatioFrameLayout$b) {
-        this.k = aspectRatioFrameLayout$b;
+    public void setAspectRatioListener(@Nullable b bVar) {
+        this.k = bVar;
     }
 
     public void setResizeMode(int i) {

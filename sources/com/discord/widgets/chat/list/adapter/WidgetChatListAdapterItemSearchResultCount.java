@@ -4,8 +4,7 @@ import android.content.res.Resources;
 import android.view.View;
 import android.widget.TextView;
 import b.d.b.a.a;
-import com.discord.R$layout;
-import com.discord.R$plurals;
+import com.discord.R;
 import com.discord.databinding.WidgetChatListAdapterItemResultCountBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.resources.StringResourceUtilsKt;
@@ -21,7 +20,7 @@ public final class WidgetChatListAdapterItemSearchResultCount extends WidgetChat
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemSearchResultCount(WidgetChatListAdapter widgetChatListAdapter) {
-        super(R$layout.widget_chat_list_adapter_item_result_count, widgetChatListAdapter);
+        super(R.layout.widget_chat_list_adapter_item_result_count, widgetChatListAdapter);
         m.checkNotNullParameter(widgetChatListAdapter, "adapter");
         View view = this.itemView;
         Objects.requireNonNull(view, "rootView");
@@ -48,6 +47,6 @@ public final class WidgetChatListAdapterItemSearchResultCount extends WidgetChat
         m.checkNotNullExpressionValue(textView2, "binding.resultCount");
         Resources resources = textView2.getResources();
         m.checkNotNullExpressionValue(resources, "binding.resultCount.resources");
-        textView.setText(StringResourceUtilsKt.getQuantityString(resources, a.I(this.binding.f2330b, "binding.resultCount", "binding.resultCount.context"), R$plurals.total_results_count, totalResults, Integer.valueOf(totalResults)));
+        textView.setText(StringResourceUtilsKt.getQuantityString(resources, a.I(this.binding.f2330b, "binding.resultCount", "binding.resultCount.context"), R.plurals.total_results_count, totalResults, Integer.valueOf(totalResults)));
     }
 }

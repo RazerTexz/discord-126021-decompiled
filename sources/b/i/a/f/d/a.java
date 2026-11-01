@@ -1,7 +1,6 @@
 package b.i.a.f.d;
 
 import android.app.PendingIntent;
-import android.app.PendingIntent$CanceledException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -37,7 +36,7 @@ public abstract class a extends BroadcastReceiver {
         if (pendingIntent != null) {
             try {
                 pendingIntent.send();
-            } catch (PendingIntent$CanceledException unused) {
+            } catch (PendingIntent.CanceledException unused) {
                 Log.e("CloudMessagingReceiver", "Notification pending intent canceled");
             }
         }

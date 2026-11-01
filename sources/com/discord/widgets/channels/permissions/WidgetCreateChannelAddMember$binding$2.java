@@ -3,6 +3,7 @@ package com.discord.widgets.channels.permissions;
 import android.view.View;
 import android.widget.LinearLayout;
 import androidx.fragment.app.FragmentContainerView;
+import com.discord.R;
 import com.discord.databinding.WidgetCreateChannelAddMemberBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -25,10 +26,10 @@ public final /* synthetic */ class WidgetCreateChannelAddMember$binding$2 extend
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetCreateChannelAddMemberBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        FragmentContainerView fragmentContainerView = (FragmentContainerView) view.findViewById(2131362884);
+        FragmentContainerView fragmentContainerView = (FragmentContainerView) view.findViewById(R.id.content);
         if (fragmentContainerView != null) {
             return new WidgetCreateChannelAddMemberBinding((LinearLayout) view, fragmentContainerView);
         }
-        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(2131362884)));
+        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R.id.content)));
     }
 }

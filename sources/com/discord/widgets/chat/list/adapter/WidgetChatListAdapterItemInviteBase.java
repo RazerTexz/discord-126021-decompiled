@@ -6,6 +6,10 @@ import androidx.fragment.app.ViewKt;
 import com.discord.app.AppFragment;
 import com.discord.models.domain.ModelInvite;
 import com.discord.widgets.guilds.invite.InviteJoinHelper;
+import d0.l;
+import d0.w.h.c;
+import d0.w.i.a.e;
+import d0.w.i.a.k;
 import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
@@ -16,6 +20,71 @@ import org.objectweb.asm.Opcodes;
 /* JADX INFO: compiled from: WidgetChatListAdapterItemInviteBase.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public abstract class WidgetChatListAdapterItemInviteBase extends WidgetChatListItem {
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemInviteBase$joinServerOrDM$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemInviteBase.kt */
+    @e(c = "com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemInviteBase$joinServerOrDM$1", f = "WidgetChatListAdapterItemInviteBase.kt", l = {}, m = "invokeSuspend")
+    public final class AnonymousClass1 extends k implements Function2<ModelInvite, Continuation<? super Unit>, Object> {
+        public int label;
+
+        public AnonymousClass1(Continuation continuation) {
+            super(2, continuation);
+        }
+
+        @Override // d0.w.i.a.a
+        public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
+            m.checkNotNullParameter(continuation, "completion");
+            return new AnonymousClass1(continuation);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public final Object invoke(ModelInvite modelInvite, Continuation<? super Unit> continuation) {
+            return ((AnonymousClass1) create(modelInvite, continuation)).invokeSuspend(Unit.a);
+        }
+
+        @Override // d0.w.i.a.a
+        public final Object invokeSuspend(Object obj) throws Throwable {
+            c.getCOROUTINE_SUSPENDED();
+            if (this.label != 0) {
+                throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+            }
+            l.throwOnFailure(obj);
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemInviteBase$joinServerOrDM$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemInviteBase.kt */
+    @e(c = "com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemInviteBase$joinServerOrDM$2", f = "WidgetChatListAdapterItemInviteBase.kt", l = {}, m = "invokeSuspend")
+    public final class AnonymousClass2 extends k implements Function2<ModelInvite, Continuation<? super Unit>, Object> {
+        public int label;
+
+        public AnonymousClass2(Continuation continuation) {
+            super(2, continuation);
+        }
+
+        @Override // d0.w.i.a.a
+        public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
+            m.checkNotNullParameter(continuation, "completion");
+            return new AnonymousClass2(continuation);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public final Object invoke(ModelInvite modelInvite, Continuation<? super Unit> continuation) {
+            return ((AnonymousClass2) create(modelInvite, continuation)).invokeSuspend(Unit.a);
+        }
+
+        @Override // d0.w.i.a.a
+        public final Object invokeSuspend(Object obj) throws Throwable {
+            c.getCOROUTINE_SUSPENDED();
+            if (this.label != 0) {
+                throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+            }
+            l.throwOnFailure(obj);
+            return Unit.a;
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemInviteBase(@LayoutRes int i, WidgetChatListAdapter widgetChatListAdapter) {
         super(i, widgetChatListAdapter);
@@ -28,10 +97,10 @@ public abstract class WidgetChatListAdapterItemInviteBase extends WidgetChatList
             throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: joinServerOrDM");
         }
         if ((i & 4) != 0) {
-            function2 = new WidgetChatListAdapterItemInviteBase$joinServerOrDM$1(null);
+            function2 = new AnonymousClass1(null);
         }
         if ((i & 8) != 0) {
-            function3 = new WidgetChatListAdapterItemInviteBase$joinServerOrDM$2(null);
+            function3 = new AnonymousClass2(null);
         }
         return widgetChatListAdapterItemInviteBase.joinServerOrDM(cls, modelInvite, function2, function3);
     }

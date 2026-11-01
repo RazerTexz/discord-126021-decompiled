@@ -10,6 +10,6 @@ public final class FriendsListViewModel$getItems$$inlined$sortBy$1<T> implements
     /* JADX WARN: Multi-variable type inference failed */
     @Override // java.util.Comparator
     public final int compare(T t, T t2) {
-        return a.compareValues(Long.valueOf(((FriendsListViewModel$Item$SuggestedFriend) t).getSuggestion().getUser().getId()), Long.valueOf(((FriendsListViewModel$Item$SuggestedFriend) t2).getSuggestion().getUser().getId()));
+        return a.compareValues(Long.valueOf(((FriendsListViewModel.Item.SuggestedFriend) t).getSuggestion().getUser().getId()), Long.valueOf(((FriendsListViewModel.Item.SuggestedFriend) t2).getSuggestion().getUser().getId()));
     }
 }

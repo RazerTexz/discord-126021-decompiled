@@ -2,7 +2,6 @@ package b.i.a.c.x2;
 
 import b.i.a.c.f3.e0;
 import com.google.android.exoplayer2.metadata.Metadata;
-import com.google.android.exoplayer2.metadata.Metadata$Entry;
 import com.google.android.exoplayer2.metadata.id3.CommentFrame;
 import com.google.android.exoplayer2.metadata.id3.InternalFrame;
 import java.util.regex.Matcher;
@@ -41,18 +40,18 @@ public final class p {
     public boolean b(Metadata metadata) {
         int i = 0;
         while (true) {
-            Metadata$Entry[] metadata$EntryArr = metadata.j;
-            if (i >= metadata$EntryArr.length) {
+            Metadata.Entry[] entryArr = metadata.j;
+            if (i >= entryArr.length) {
                 return false;
             }
-            Metadata$Entry metadata$Entry = metadata$EntryArr[i];
-            if (metadata$Entry instanceof CommentFrame) {
-                CommentFrame commentFrame = (CommentFrame) metadata$Entry;
+            Metadata.Entry entry = entryArr[i];
+            if (entry instanceof CommentFrame) {
+                CommentFrame commentFrame = (CommentFrame) entry;
                 if ("iTunSMPB".equals(commentFrame.l) && a(commentFrame.m)) {
                     return true;
                 }
-            } else if (metadata$Entry instanceof InternalFrame) {
-                InternalFrame internalFrame = (InternalFrame) metadata$Entry;
+            } else if (entry instanceof InternalFrame) {
+                InternalFrame internalFrame = (InternalFrame) entry;
                 if ("com.apple.iTunes".equals(internalFrame.k) && "iTunSMPB".equals(internalFrame.l) && a(internalFrame.m)) {
                     return true;
                 }

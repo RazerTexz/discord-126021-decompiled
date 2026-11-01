@@ -15,11 +15,11 @@ public final class InputSelectionModelKt {
         InputCommandContext inputCommandContext;
         m.checkNotNullParameter(inputSelectionModel, "$this$getSelectedCommand");
         MentionInputModel inputModel = inputSelectionModel.getInputModel();
-        if (!(inputModel instanceof MentionInputModel$VerifiedCommandInputModel)) {
+        if (!(inputModel instanceof MentionInputModel.VerifiedCommandInputModel)) {
             inputModel = null;
         }
-        MentionInputModel$VerifiedCommandInputModel mentionInputModel$VerifiedCommandInputModel = (MentionInputModel$VerifiedCommandInputModel) inputModel;
-        if (mentionInputModel$VerifiedCommandInputModel == null || (inputCommandContext = mentionInputModel$VerifiedCommandInputModel.getInputCommandContext()) == null) {
+        MentionInputModel.VerifiedCommandInputModel verifiedCommandInputModel = (MentionInputModel.VerifiedCommandInputModel) inputModel;
+        if (verifiedCommandInputModel == null || (inputCommandContext = verifiedCommandInputModel.getInputCommandContext()) == null) {
             return null;
         }
         return inputCommandContext.getSelectedCommand();
@@ -27,14 +27,14 @@ public final class InputSelectionModelKt {
 
     public static final boolean hasSelectedCommandOptionWithChoices(InputSelectionModel inputSelectionModel) {
         m.checkNotNullParameter(inputSelectionModel, "$this$hasSelectedCommandOptionWithChoices");
-        if (inputSelectionModel instanceof InputSelectionModel$CommandInputSelectionModel) {
-            InputSelectionModel$CommandInputSelectionModel inputSelectionModel$CommandInputSelectionModel = (InputSelectionModel$CommandInputSelectionModel) inputSelectionModel;
-            ApplicationCommandOption selectedCommandOption = inputSelectionModel$CommandInputSelectionModel.getSelectedCommandOption();
+        if (inputSelectionModel instanceof InputSelectionModel.CommandInputSelectionModel) {
+            InputSelectionModel.CommandInputSelectionModel commandInputSelectionModel = (InputSelectionModel.CommandInputSelectionModel) inputSelectionModel;
+            ApplicationCommandOption selectedCommandOption = commandInputSelectionModel.getSelectedCommandOption();
             List<CommandChoice> choices = selectedCommandOption != null ? selectedCommandOption.getChoices() : null;
             if (!(choices == null || choices.isEmpty())) {
                 return true;
             }
-            ApplicationCommandOption selectedCommandOption2 = inputSelectionModel$CommandInputSelectionModel.getSelectedCommandOption();
+            ApplicationCommandOption selectedCommandOption2 = commandInputSelectionModel.getSelectedCommandOption();
             if ((selectedCommandOption2 != null ? selectedCommandOption2.getType() : null) == ApplicationCommandType.BOOLEAN) {
                 return true;
             }
@@ -44,19 +44,19 @@ public final class InputSelectionModelKt {
 
     public static final boolean hasSelectedFreeformInput(InputSelectionModel inputSelectionModel) {
         m.checkNotNullParameter(inputSelectionModel, "$this$hasSelectedFreeformInput");
-        if (!(inputSelectionModel instanceof InputSelectionModel$CommandInputSelectionModel)) {
-            if (inputSelectionModel instanceof InputSelectionModel$MessageInputSelectionModel) {
+        if (!(inputSelectionModel instanceof InputSelectionModel.CommandInputSelectionModel)) {
+            if (inputSelectionModel instanceof InputSelectionModel.MessageInputSelectionModel) {
                 return true;
             }
             throw new NoWhenBranchMatchedException();
         }
-        InputSelectionModel$CommandInputSelectionModel inputSelectionModel$CommandInputSelectionModel = (InputSelectionModel$CommandInputSelectionModel) inputSelectionModel;
-        if (inputSelectionModel$CommandInputSelectionModel.getSelectedCommandOption() == null) {
+        InputSelectionModel.CommandInputSelectionModel commandInputSelectionModel = (InputSelectionModel.CommandInputSelectionModel) inputSelectionModel;
+        if (commandInputSelectionModel.getSelectedCommandOption() == null) {
             return true;
         }
-        List<CommandChoice> choices = inputSelectionModel$CommandInputSelectionModel.getSelectedCommandOption().getChoices();
+        List<CommandChoice> choices = commandInputSelectionModel.getSelectedCommandOption().getChoices();
         boolean z2 = choices != null && (choices.isEmpty() ^ true);
-        ApplicationCommandType type = inputSelectionModel$CommandInputSelectionModel.getSelectedCommandOption().getType();
-        return (inputSelectionModel$CommandInputSelectionModel.getSelectedCommandOption().getAutocomplete() || z2 || (type != ApplicationCommandType.INTEGER && type != ApplicationCommandType.STRING)) ? false : true;
+        ApplicationCommandType type = commandInputSelectionModel.getSelectedCommandOption().getType();
+        return (commandInputSelectionModel.getSelectedCommandOption().getAutocomplete() || z2 || (type != ApplicationCommandType.INTEGER && type != ApplicationCommandType.STRING)) ? false : true;
     }
 }

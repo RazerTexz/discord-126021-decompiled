@@ -10,23 +10,29 @@ public final /* data */ class PermissionOverwrite {
     private final long allow;
     private final long deny;
     private final long id;
-    private final PermissionOverwrite$Type type;
+    private final Type type;
 
-    public PermissionOverwrite(long j, PermissionOverwrite$Type permissionOverwrite$Type, long j2, long j3) {
-        m.checkNotNullParameter(permissionOverwrite$Type, "type");
+    /* JADX INFO: compiled from: PermissionOverwrite.kt */
+    public enum Type {
+        ROLE,
+        MEMBER
+    }
+
+    public PermissionOverwrite(long j, Type type, long j2, long j3) {
+        m.checkNotNullParameter(type, "type");
         this.id = j;
-        this.type = permissionOverwrite$Type;
+        this.type = type;
         this.allow = j2;
         this.deny = j3;
     }
 
-    public static PermissionOverwrite b(PermissionOverwrite permissionOverwrite, long j, PermissionOverwrite$Type permissionOverwrite$Type, long j2, long j3, int i) {
+    public static PermissionOverwrite b(PermissionOverwrite permissionOverwrite, long j, Type type, long j2, long j3, int i) {
         long j4 = (i & 1) != 0 ? permissionOverwrite.id : j;
-        PermissionOverwrite$Type permissionOverwrite$Type2 = (i & 2) != 0 ? permissionOverwrite.type : null;
+        Type type2 = (i & 2) != 0 ? permissionOverwrite.type : null;
         long j5 = (i & 4) != 0 ? permissionOverwrite.allow : j2;
         long j6 = (i & 8) != 0 ? permissionOverwrite.deny : j3;
-        m.checkNotNullParameter(permissionOverwrite$Type2, "type");
-        return new PermissionOverwrite(j4, permissionOverwrite$Type2, j5, j6);
+        m.checkNotNullParameter(type2, "type");
+        return new PermissionOverwrite(j4, type2, j5, j6);
     }
 
     public final long e() {
@@ -60,15 +66,15 @@ public final /* data */ class PermissionOverwrite {
     }
 
     /* JADX INFO: renamed from: f, reason: from getter */
-    public final PermissionOverwrite$Type getType() {
+    public final Type getType() {
         return this.type;
     }
 
     public int hashCode() {
         long j = this.id;
         int i = ((int) (j ^ (j >>> 32))) * 31;
-        PermissionOverwrite$Type permissionOverwrite$Type = this.type;
-        int iHashCode = permissionOverwrite$Type != null ? permissionOverwrite$Type.hashCode() : 0;
+        Type type = this.type;
+        int iHashCode = type != null ? type.hashCode() : 0;
         long j2 = this.allow;
         int i2 = (((i + iHashCode) * 31) + ((int) (j2 ^ (j2 >>> 32)))) * 31;
         long j3 = this.deny;

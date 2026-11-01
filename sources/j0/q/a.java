@@ -1,16 +1,256 @@
 package j0.q;
 
+import androidx.recyclerview.widget.RecyclerView;
+import b.i.a.f.e.o.f;
+import j0.g;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicReference;
+import rx.Observable;
+import rx.Producer;
+import rx.Subscriber;
+import rx.Subscription;
 import rx.subjects.Subject;
 
 /* JADX INFO: compiled from: ReplaySubject.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class a<T> extends Subject<T, T> {
-    public final a$d<T> l;
+    public final d<T> l;
     public static final Object[] k = new Object[0];
 
-    public a(a$d<T> a_d) {
-        super(a_d);
-        this.l = a_d;
+    /* JADX INFO: renamed from: j0.q.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: ReplaySubject.java */
+    public interface InterfaceC0637a<T> {
+    }
+
+    /* JADX INFO: compiled from: ReplaySubject.java */
+    public final class c<T> implements InterfaceC0637a<T> {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public volatile C0638a<T> f3804b;
+        public C0638a<T> c;
+        public int d;
+        public volatile boolean e;
+        public Throwable f;
+
+        /* JADX INFO: renamed from: j0.q.a$c$a, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: ReplaySubject.java */
+        public final class C0638a<T> extends AtomicReference<C0638a<T>> {
+            private static final long serialVersionUID = 3713592843205853725L;
+            public final T value;
+
+            public C0638a(T t) {
+                this.value = t;
+            }
+        }
+
+        public c(int i) {
+            this.a = i;
+            C0638a<T> c0638a = new C0638a<>(null);
+            this.c = c0638a;
+            this.f3804b = c0638a;
+        }
+
+        public void a(b<T> bVar) {
+            if (bVar.getAndIncrement() != 0) {
+                return;
+            }
+            Subscriber<? super T> subscriber = bVar.actual;
+            int iAddAndGet = 1;
+            do {
+                long j = bVar.requested.get();
+                C0638a<T> c0638a = (C0638a) bVar.node;
+                if (c0638a == null) {
+                    c0638a = this.f3804b;
+                }
+                long j2 = 0;
+                while (true) {
+                    if (j2 == j) {
+                        break;
+                    }
+                    if (subscriber.isUnsubscribed()) {
+                        bVar.node = null;
+                        return;
+                    }
+                    boolean z2 = this.e;
+                    C0638a<T> c0638a2 = c0638a.get();
+                    boolean z3 = c0638a2 == null;
+                    if (z2 && z3) {
+                        bVar.node = null;
+                        Throwable th = this.f;
+                        if (th != null) {
+                            subscriber.onError(th);
+                            return;
+                        } else {
+                            subscriber.onCompleted();
+                            return;
+                        }
+                    }
+                    if (z3) {
+                        break;
+                    }
+                    subscriber.onNext(c0638a2.value);
+                    j2++;
+                    c0638a = c0638a2;
+                }
+                if (j2 == j) {
+                    if (subscriber.isUnsubscribed()) {
+                        bVar.node = null;
+                        return;
+                    }
+                    boolean z4 = this.e;
+                    boolean z5 = c0638a.get() == null;
+                    if (z4 && z5) {
+                        bVar.node = null;
+                        Throwable th2 = this.f;
+                        if (th2 != null) {
+                            subscriber.onError(th2);
+                            return;
+                        } else {
+                            subscriber.onCompleted();
+                            return;
+                        }
+                    }
+                }
+                if (j2 != 0 && j != RecyclerView.FOREVER_NS) {
+                    f.U0(bVar.requested, j2);
+                }
+                bVar.node = c0638a;
+                iAddAndGet = bVar.addAndGet(-iAddAndGet);
+            } while (iAddAndGet != 0);
+        }
+    }
+
+    /* JADX INFO: compiled from: ReplaySubject.java */
+    public final class d<T> extends AtomicReference<b<T>[]> implements Observable.a<T>, g<T> {
+        public final InterfaceC0637a<T> buffer;
+        private static final long serialVersionUID = 5952362471246910544L;
+        public static final b[] j = new b[0];
+        public static final b[] k = new b[0];
+
+        public d(InterfaceC0637a<T> interfaceC0637a) {
+            this.buffer = interfaceC0637a;
+            lazySet(j);
+        }
+
+        public void a(b<T> bVar) {
+            b<T>[] bVarArr;
+            b[] bVarArr2;
+            do {
+                bVarArr = get();
+                if (bVarArr == k || bVarArr == j) {
+                    return;
+                }
+                int length = bVarArr.length;
+                int i = 0;
+                while (true) {
+                    if (i >= length) {
+                        i = -1;
+                        break;
+                    } else if (bVarArr[i] == bVar) {
+                        break;
+                    } else {
+                        i++;
+                    }
+                }
+                if (i < 0) {
+                    return;
+                }
+                if (length == 1) {
+                    bVarArr2 = j;
+                } else {
+                    b[] bVarArr3 = new b[length - 1];
+                    System.arraycopy(bVarArr, 0, bVarArr3, 0, i);
+                    System.arraycopy(bVarArr, i + 1, bVarArr3, i, (length - i) - 1);
+                    bVarArr2 = bVarArr3;
+                }
+            } while (!compareAndSet(bVarArr, bVarArr2));
+        }
+
+        @Override // rx.functions.Action1
+        public void call(Object obj) {
+            boolean z2;
+            Subscriber subscriber = (Subscriber) obj;
+            b<T> bVar = new b<>(subscriber, this);
+            subscriber.add(bVar);
+            subscriber.setProducer(bVar);
+            while (true) {
+                b<T>[] bVarArr = get();
+                z2 = false;
+                if (bVarArr == k) {
+                    break;
+                }
+                int length = bVarArr.length;
+                b[] bVarArr2 = new b[length + 1];
+                System.arraycopy(bVarArr, 0, bVarArr2, 0, length);
+                bVarArr2[length] = bVar;
+                if (compareAndSet(bVarArr, bVarArr2)) {
+                    z2 = true;
+                    break;
+                }
+            }
+            if (z2 && bVar.isUnsubscribed()) {
+                a(bVar);
+            } else {
+                ((c) this.buffer).a(bVar);
+            }
+        }
+
+        @Override // j0.g
+        public void onCompleted() {
+            InterfaceC0637a<T> interfaceC0637a = this.buffer;
+            ((c) interfaceC0637a).e = true;
+            for (b<T> bVar : getAndSet(k)) {
+                ((c) interfaceC0637a).a(bVar);
+            }
+        }
+
+        @Override // j0.g
+        public void onError(Throwable th) {
+            InterfaceC0637a<T> interfaceC0637a = this.buffer;
+            c cVar = (c) interfaceC0637a;
+            cVar.f = th;
+            cVar.e = true;
+            ArrayList arrayList = null;
+            for (b<T> bVar : getAndSet(k)) {
+                try {
+                    ((c) interfaceC0637a).a(bVar);
+                } catch (Throwable th2) {
+                    if (arrayList == null) {
+                        arrayList = new ArrayList();
+                    }
+                    arrayList.add(th2);
+                }
+            }
+            f.n1(arrayList);
+        }
+
+        @Override // j0.g
+        public void onNext(T t) {
+            InterfaceC0637a<T> interfaceC0637a = this.buffer;
+            c cVar = (c) interfaceC0637a;
+            Objects.requireNonNull(cVar);
+            c.C0638a<T> c0638a = new c.C0638a<>(t);
+            cVar.c.set(c0638a);
+            cVar.c = c0638a;
+            int i = cVar.d;
+            if (i == cVar.a) {
+                cVar.f3804b = cVar.f3804b.get();
+            } else {
+                cVar.d = i + 1;
+            }
+            for (b<T> bVar : get()) {
+                ((c) interfaceC0637a).a(bVar);
+            }
+        }
+    }
+
+    public a(d<T> dVar) {
+        super(dVar);
+        this.l = dVar;
     }
 
     @Override // j0.g
@@ -26,5 +266,41 @@ public final class a<T> extends Subject<T, T> {
     @Override // j0.g
     public void onNext(T t) {
         this.l.onNext(t);
+    }
+
+    /* JADX INFO: compiled from: ReplaySubject.java */
+    public final class b<T> extends AtomicInteger implements Producer, Subscription {
+        public final Subscriber<? super T> actual;
+        public int index;
+        public Object node;
+        private static final long serialVersionUID = -5006209596735204567L;
+        public final d<T> state;
+        public int tailIndex;
+        public final AtomicLong requested = new AtomicLong();
+
+        public b(Subscriber<? super T> subscriber, d<T> dVar) {
+            this.actual = subscriber;
+            this.state = dVar;
+        }
+
+        @Override // rx.Subscription
+        public boolean isUnsubscribed() {
+            return this.actual.isUnsubscribed();
+        }
+
+        @Override // rx.Producer
+        public void j(long j) {
+            if (j > 0) {
+                f.c0(this.requested, j);
+                ((c) this.state.buffer).a(this);
+            } else if (j < 0) {
+                throw new IllegalArgumentException(b.d.b.a.a.t("n >= required but it was ", j));
+            }
+        }
+
+        @Override // rx.Subscription
+        public void unsubscribe() {
+            this.state.a(this);
+        }
     }
 }

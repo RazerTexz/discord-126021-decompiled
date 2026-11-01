@@ -1,9 +1,10 @@
 package com.discord.widgets.guildscheduledevent.buttonconfiguration;
 
 import android.content.Context;
-import android.view.View$OnClickListener;
+import android.view.View;
 import b.a.k.b;
 import b.d.b.a.a;
+import com.discord.R;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
 import com.discord.api.guildscheduledevent.GuildScheduledEventEntityType;
 import com.discord.api.guildscheduledevent.GuildScheduledEventStatus;
@@ -20,7 +21,7 @@ public final /* data */ class GuildButtonConfiguration implements ButtonConfigur
     private final boolean canConnectToChannel;
     private final boolean canRsvp;
     private final boolean canStartEvent;
-    private final View$OnClickListener extrasButtonOnClickListener;
+    private final View.OnClickListener extrasButtonOnClickListener;
     private final GuildScheduledEvent guildScheduledEvent;
     private final boolean isAnyButtonVisible;
     private final boolean isConnected;
@@ -32,23 +33,23 @@ public final /* data */ class GuildButtonConfiguration implements ButtonConfigur
     private final boolean isInGuild;
     private final boolean isRsvped;
     private final boolean isShareVisible;
-    private final View$OnClickListener onEndEventButtonClicked;
-    private final View$OnClickListener onExtraButtonClicked;
-    private final View$OnClickListener onJoinButtonClicked;
-    private final View$OnClickListener onRsvpButtonClicked;
-    private final View$OnClickListener onShareButtonClicked;
-    private final View$OnClickListener onStartEventButtonClicked;
-    private final View$OnClickListener primaryButtonOnClickListener;
+    private final View.OnClickListener onEndEventButtonClicked;
+    private final View.OnClickListener onExtraButtonClicked;
+    private final View.OnClickListener onJoinButtonClicked;
+    private final View.OnClickListener onRsvpButtonClicked;
+    private final View.OnClickListener onShareButtonClicked;
+    private final View.OnClickListener onStartEventButtonClicked;
+    private final View.OnClickListener primaryButtonOnClickListener;
     private final boolean primaryButtonVisible;
     private final int secondaryButtonBackground;
     private final boolean secondaryButtonEnabled;
-    private final View$OnClickListener secondaryButtonOnClickListener;
+    private final View.OnClickListener secondaryButtonOnClickListener;
     private final int secondaryButtonTextDrawableRes;
     private final boolean secondaryButtonVisible;
-    private final View$OnClickListener shareButtonOnClickListener;
+    private final View.OnClickListener shareButtonOnClickListener;
     private final GuildScheduledEventTiming timing;
 
-    public GuildButtonConfiguration(GuildScheduledEvent guildScheduledEvent, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, View$OnClickListener view$OnClickListener, View$OnClickListener view$OnClickListener2, View$OnClickListener view$OnClickListener3, View$OnClickListener view$OnClickListener4, View$OnClickListener view$OnClickListener5, View$OnClickListener view$OnClickListener6) {
+    public GuildButtonConfiguration(GuildScheduledEvent guildScheduledEvent, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, View.OnClickListener onClickListener, View.OnClickListener onClickListener2, View.OnClickListener onClickListener3, View.OnClickListener onClickListener4, View.OnClickListener onClickListener5, View.OnClickListener onClickListener6) {
         m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
         this.guildScheduledEvent = guildScheduledEvent;
         this.canRsvp = z2;
@@ -58,13 +59,13 @@ public final /* data */ class GuildButtonConfiguration implements ButtonConfigur
         this.isInGuild = z6;
         this.isRsvped = z7;
         this.isDetailView = z8;
-        this.onRsvpButtonClicked = view$OnClickListener;
-        View$OnClickListener view$OnClickListener7 = view$OnClickListener2;
-        this.onJoinButtonClicked = view$OnClickListener7;
-        this.onEndEventButtonClicked = view$OnClickListener3;
-        this.onStartEventButtonClicked = view$OnClickListener4;
-        this.onShareButtonClicked = view$OnClickListener5;
-        this.onExtraButtonClicked = view$OnClickListener6;
+        this.onRsvpButtonClicked = onClickListener;
+        View.OnClickListener onClickListener7 = onClickListener2;
+        this.onJoinButtonClicked = onClickListener7;
+        this.onEndEventButtonClicked = onClickListener3;
+        this.onStartEventButtonClicked = onClickListener4;
+        this.onShareButtonClicked = onClickListener5;
+        this.onExtraButtonClicked = onClickListener6;
         GuildScheduledEventTiming eventTiming = GuildScheduledEventUtilitiesKt.getEventTiming(guildScheduledEvent);
         this.timing = eventTiming;
         boolean z9 = true;
@@ -76,42 +77,43 @@ public final /* data */ class GuildButtonConfiguration implements ButtonConfigur
         boolean z12 = z8 && z11 && z4 && z3;
         this.isEndEventVisible = z12;
         this.primaryButtonVisible = (!z3 || z10) ? false : eventTiming.isStartable();
-        this.primaryButtonOnClickListener = view$OnClickListener4;
+        this.primaryButtonOnClickListener = onClickListener4;
         this.secondaryButtonVisible = z2;
         if (z12) {
-            view$OnClickListener7 = view$OnClickListener3;
+            onClickListener7 = onClickListener3;
         } else if (!z11) {
-            view$OnClickListener7 = view$OnClickListener;
+            onClickListener7 = onClickListener;
         }
-        this.secondaryButtonOnClickListener = view$OnClickListener7;
+        this.secondaryButtonOnClickListener = onClickListener7;
         this.secondaryButtonEnabled = !z10 && (!z11 || (guildScheduledEvent.getEntityType() != GuildScheduledEventEntityType.EXTERNAL && z5));
-        this.secondaryButtonTextDrawableRes = (z11 || !getSecondaryButtonEnabled()) ? 0 : z7 ? 2131231652 : 2131231575;
-        int i = 2131231008;
-        if (!getSecondaryButtonEnabled()) {
-            i = 2131231009;
+        this.secondaryButtonTextDrawableRes = (z11 || !getSecondaryButtonEnabled()) ? 0 : z7 ? R.drawable.ic_check_active_16dp : R.drawable.ic_bell_16dp;
+        boolean secondaryButtonEnabled = getSecondaryButtonEnabled();
+        int i = R.drawable.bg_guild_scheduled_event_list_item_interested_button_default;
+        if (!secondaryButtonEnabled) {
+            i = R.drawable.bg_guild_scheduled_event_list_item_interested_button_disabled;
         } else if (!z12) {
             if (z11) {
-                i = 2131231007;
+                i = R.drawable.bg_guild_scheduled_event_list_item_interested_button_active;
             } else if (z7) {
-                i = 2131231010;
+                i = R.drawable.bg_guild_scheduled_event_list_item_interested_button_interested;
             }
         }
         this.secondaryButtonBackground = i;
         this.isShareVisible = !z10;
-        this.shareButtonOnClickListener = view$OnClickListener5;
+        this.shareButtonOnClickListener = onClickListener5;
         this.isExtrasVisible = true;
-        this.extrasButtonOnClickListener = view$OnClickListener6;
+        this.extrasButtonOnClickListener = onClickListener6;
         if (!getSecondaryButtonVisible() && !getPrimaryButtonVisible() && !z12 && !getIsShareVisible()) {
             z9 = false;
         }
         this.isAnyButtonVisible = z9;
     }
 
-    public static /* synthetic */ GuildButtonConfiguration copy$default(GuildButtonConfiguration guildButtonConfiguration, GuildScheduledEvent guildScheduledEvent, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, View$OnClickListener view$OnClickListener, View$OnClickListener view$OnClickListener2, View$OnClickListener view$OnClickListener3, View$OnClickListener view$OnClickListener4, View$OnClickListener view$OnClickListener5, View$OnClickListener view$OnClickListener6, int i, Object obj) {
-        return guildButtonConfiguration.copy((i & 1) != 0 ? guildButtonConfiguration.guildScheduledEvent : guildScheduledEvent, (i & 2) != 0 ? guildButtonConfiguration.canRsvp : z2, (i & 4) != 0 ? guildButtonConfiguration.canStartEvent : z3, (i & 8) != 0 ? guildButtonConfiguration.isConnected : z4, (i & 16) != 0 ? guildButtonConfiguration.canConnect : z5, (i & 32) != 0 ? guildButtonConfiguration.isInGuild : z6, (i & 64) != 0 ? guildButtonConfiguration.isRsvped : z7, (i & 128) != 0 ? guildButtonConfiguration.isDetailView : z8, (i & 256) != 0 ? guildButtonConfiguration.onRsvpButtonClicked : view$OnClickListener, (i & 512) != 0 ? guildButtonConfiguration.onJoinButtonClicked : view$OnClickListener2, (i & 1024) != 0 ? guildButtonConfiguration.onEndEventButtonClicked : view$OnClickListener3, (i & 2048) != 0 ? guildButtonConfiguration.onStartEventButtonClicked : view$OnClickListener4, (i & 4096) != 0 ? guildButtonConfiguration.onShareButtonClicked : view$OnClickListener5, (i & 8192) != 0 ? guildButtonConfiguration.onExtraButtonClicked : view$OnClickListener6);
+    public static /* synthetic */ GuildButtonConfiguration copy$default(GuildButtonConfiguration guildButtonConfiguration, GuildScheduledEvent guildScheduledEvent, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, View.OnClickListener onClickListener, View.OnClickListener onClickListener2, View.OnClickListener onClickListener3, View.OnClickListener onClickListener4, View.OnClickListener onClickListener5, View.OnClickListener onClickListener6, int i, Object obj) {
+        return guildButtonConfiguration.copy((i & 1) != 0 ? guildButtonConfiguration.guildScheduledEvent : guildScheduledEvent, (i & 2) != 0 ? guildButtonConfiguration.canRsvp : z2, (i & 4) != 0 ? guildButtonConfiguration.canStartEvent : z3, (i & 8) != 0 ? guildButtonConfiguration.isConnected : z4, (i & 16) != 0 ? guildButtonConfiguration.canConnect : z5, (i & 32) != 0 ? guildButtonConfiguration.isInGuild : z6, (i & 64) != 0 ? guildButtonConfiguration.isRsvped : z7, (i & 128) != 0 ? guildButtonConfiguration.isDetailView : z8, (i & 256) != 0 ? guildButtonConfiguration.onRsvpButtonClicked : onClickListener, (i & 512) != 0 ? guildButtonConfiguration.onJoinButtonClicked : onClickListener2, (i & 1024) != 0 ? guildButtonConfiguration.onEndEventButtonClicked : onClickListener3, (i & 2048) != 0 ? guildButtonConfiguration.onStartEventButtonClicked : onClickListener4, (i & 4096) != 0 ? guildButtonConfiguration.onShareButtonClicked : onClickListener5, (i & 8192) != 0 ? guildButtonConfiguration.onExtraButtonClicked : onClickListener6);
     }
 
-    public final GuildButtonConfiguration copy(GuildScheduledEvent guildScheduledEvent, boolean canRsvp, boolean canStartEvent, boolean isConnected, boolean canConnect, boolean isInGuild, boolean isRsvped, boolean isDetailView, View$OnClickListener onRsvpButtonClicked, View$OnClickListener onJoinButtonClicked, View$OnClickListener onEndEventButtonClicked, View$OnClickListener onStartEventButtonClicked, View$OnClickListener onShareButtonClicked, View$OnClickListener onExtraButtonClicked) {
+    public final GuildButtonConfiguration copy(GuildScheduledEvent guildScheduledEvent, boolean canRsvp, boolean canStartEvent, boolean isConnected, boolean canConnect, boolean isInGuild, boolean isRsvped, boolean isDetailView, View.OnClickListener onRsvpButtonClicked, View.OnClickListener onJoinButtonClicked, View.OnClickListener onEndEventButtonClicked, View.OnClickListener onStartEventButtonClicked, View.OnClickListener onShareButtonClicked, View.OnClickListener onExtraButtonClicked) {
         m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
         return new GuildButtonConfiguration(guildScheduledEvent, canRsvp, canStartEvent, isConnected, canConnect, isInGuild, isRsvped, isDetailView, onRsvpButtonClicked, onJoinButtonClicked, onEndEventButtonClicked, onStartEventButtonClicked, onShareButtonClicked, onExtraButtonClicked);
     }
@@ -155,7 +157,7 @@ public final /* data */ class GuildButtonConfiguration implements ButtonConfigur
     }
 
     @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
-    public View$OnClickListener getExtrasButtonOnClickListener() {
+    public View.OnClickListener getExtrasButtonOnClickListener() {
         return this.extrasButtonOnClickListener;
     }
 
@@ -207,61 +209,61 @@ public final /* data */ class GuildButtonConfiguration implements ButtonConfigur
     }
 
     /* JADX INFO: renamed from: component11, reason: from getter */
-    public final View$OnClickListener getOnEndEventButtonClicked() {
+    public final View.OnClickListener getOnEndEventButtonClicked() {
         return this.onEndEventButtonClicked;
     }
 
-    public final View$OnClickListener getOnEndEventButtonClicked() {
+    public final View.OnClickListener getOnEndEventButtonClicked() {
         return this.onEndEventButtonClicked;
     }
 
     /* JADX INFO: renamed from: component14, reason: from getter */
-    public final View$OnClickListener getOnExtraButtonClicked() {
+    public final View.OnClickListener getOnExtraButtonClicked() {
         return this.onExtraButtonClicked;
     }
 
-    public final View$OnClickListener getOnExtraButtonClicked() {
+    public final View.OnClickListener getOnExtraButtonClicked() {
         return this.onExtraButtonClicked;
     }
 
     /* JADX INFO: renamed from: component10, reason: from getter */
-    public final View$OnClickListener getOnJoinButtonClicked() {
+    public final View.OnClickListener getOnJoinButtonClicked() {
         return this.onJoinButtonClicked;
     }
 
-    public final View$OnClickListener getOnJoinButtonClicked() {
+    public final View.OnClickListener getOnJoinButtonClicked() {
         return this.onJoinButtonClicked;
     }
 
     /* JADX INFO: renamed from: component9, reason: from getter */
-    public final View$OnClickListener getOnRsvpButtonClicked() {
+    public final View.OnClickListener getOnRsvpButtonClicked() {
         return this.onRsvpButtonClicked;
     }
 
-    public final View$OnClickListener getOnRsvpButtonClicked() {
+    public final View.OnClickListener getOnRsvpButtonClicked() {
         return this.onRsvpButtonClicked;
     }
 
     /* JADX INFO: renamed from: component13, reason: from getter */
-    public final View$OnClickListener getOnShareButtonClicked() {
+    public final View.OnClickListener getOnShareButtonClicked() {
         return this.onShareButtonClicked;
     }
 
-    public final View$OnClickListener getOnShareButtonClicked() {
+    public final View.OnClickListener getOnShareButtonClicked() {
         return this.onShareButtonClicked;
     }
 
     /* JADX INFO: renamed from: component12, reason: from getter */
-    public final View$OnClickListener getOnStartEventButtonClicked() {
+    public final View.OnClickListener getOnStartEventButtonClicked() {
         return this.onStartEventButtonClicked;
     }
 
-    public final View$OnClickListener getOnStartEventButtonClicked() {
+    public final View.OnClickListener getOnStartEventButtonClicked() {
         return this.onStartEventButtonClicked;
     }
 
     @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
-    public View$OnClickListener getPrimaryButtonOnClickListener() {
+    public View.OnClickListener getPrimaryButtonOnClickListener() {
         return this.primaryButtonOnClickListener;
     }
 
@@ -281,7 +283,7 @@ public final /* data */ class GuildButtonConfiguration implements ButtonConfigur
     }
 
     @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
-    public View$OnClickListener getSecondaryButtonOnClickListener() {
+    public View.OnClickListener getSecondaryButtonOnClickListener() {
         return this.secondaryButtonOnClickListener;
     }
 
@@ -296,7 +298,7 @@ public final /* data */ class GuildButtonConfiguration implements ButtonConfigur
     }
 
     @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
-    public View$OnClickListener getShareButtonOnClickListener() {
+    public View.OnClickListener getShareButtonOnClickListener() {
         return this.shareButtonOnClickListener;
     }
 
@@ -364,18 +366,18 @@ public final /* data */ class GuildButtonConfiguration implements ButtonConfigur
         int i6 = (i5 + r7) * 31;
         boolean z8 = this.isDetailView;
         int i7 = (i6 + (z8 ? 1 : z8)) * 31;
-        View$OnClickListener view$OnClickListener = this.onRsvpButtonClicked;
-        int iHashCode2 = (i7 + (view$OnClickListener != null ? view$OnClickListener.hashCode() : 0)) * 31;
-        View$OnClickListener view$OnClickListener2 = this.onJoinButtonClicked;
-        int iHashCode3 = (iHashCode2 + (view$OnClickListener2 != null ? view$OnClickListener2.hashCode() : 0)) * 31;
-        View$OnClickListener view$OnClickListener3 = this.onEndEventButtonClicked;
-        int iHashCode4 = (iHashCode3 + (view$OnClickListener3 != null ? view$OnClickListener3.hashCode() : 0)) * 31;
-        View$OnClickListener view$OnClickListener4 = this.onStartEventButtonClicked;
-        int iHashCode5 = (iHashCode4 + (view$OnClickListener4 != null ? view$OnClickListener4.hashCode() : 0)) * 31;
-        View$OnClickListener view$OnClickListener5 = this.onShareButtonClicked;
-        int iHashCode6 = (iHashCode5 + (view$OnClickListener5 != null ? view$OnClickListener5.hashCode() : 0)) * 31;
-        View$OnClickListener view$OnClickListener6 = this.onExtraButtonClicked;
-        return iHashCode6 + (view$OnClickListener6 != null ? view$OnClickListener6.hashCode() : 0);
+        View.OnClickListener onClickListener = this.onRsvpButtonClicked;
+        int iHashCode2 = (i7 + (onClickListener != null ? onClickListener.hashCode() : 0)) * 31;
+        View.OnClickListener onClickListener2 = this.onJoinButtonClicked;
+        int iHashCode3 = (iHashCode2 + (onClickListener2 != null ? onClickListener2.hashCode() : 0)) * 31;
+        View.OnClickListener onClickListener3 = this.onEndEventButtonClicked;
+        int iHashCode4 = (iHashCode3 + (onClickListener3 != null ? onClickListener3.hashCode() : 0)) * 31;
+        View.OnClickListener onClickListener4 = this.onStartEventButtonClicked;
+        int iHashCode5 = (iHashCode4 + (onClickListener4 != null ? onClickListener4.hashCode() : 0)) * 31;
+        View.OnClickListener onClickListener5 = this.onShareButtonClicked;
+        int iHashCode6 = (iHashCode5 + (onClickListener5 != null ? onClickListener5.hashCode() : 0)) * 31;
+        View.OnClickListener onClickListener6 = this.onExtraButtonClicked;
+        return iHashCode6 + (onClickListener6 != null ? onClickListener6.hashCode() : 0);
     }
 
     public final boolean isConnected() {
@@ -397,7 +399,7 @@ public final /* data */ class GuildButtonConfiguration implements ButtonConfigur
     @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
     public CharSequence primaryButtonText(Context context) {
         m.checkNotNullParameter(context, "context");
-        return b.h(context, 2131895865, new Object[0], null, 4);
+        return b.h(context, R.string.start_event, new Object[0], null, 4);
     }
 
     @Override // com.discord.widgets.guildscheduledevent.buttonconfiguration.ButtonConfiguration
@@ -405,21 +407,21 @@ public final /* data */ class GuildButtonConfiguration implements ButtonConfigur
         int i;
         m.checkNotNullParameter(context, "context");
         if (this.isEventActive && this.guildScheduledEvent.getEntityType() == GuildScheduledEventEntityType.EXTERNAL) {
-            i = 2131890131;
+            i = R.string.guild_event_started;
         } else {
             boolean z2 = this.isEventActive;
             if (z2 && !this.canConnectToChannel) {
-                i = 2131887550;
+                i = R.string.channel_locked_short;
             } else if (this.isEndEventVisible) {
-                i = 2131888866;
+                i = R.string.end_event;
             } else if (z2 && this.isConnected) {
-                i = 2131889789;
+                i = R.string.go_to_channel;
             } else if (z2 && this.guildScheduledEvent.getEntityType() == GuildScheduledEventEntityType.VOICE) {
-                i = 2131890091;
+                i = R.string.guild_event_join;
             } else if (this.isEventActive) {
-                i = 2131895792;
+                i = R.string.stage_channel_join_button;
             } else {
-                i = this.isEventComplete ? 2131890087 : 2131892037;
+                i = this.isEventComplete ? R.string.guild_event_invite_completed : R.string.indicate_rsvp;
             }
         }
         return b.h(context, i, new Object[0], null, 4);
@@ -429,9 +431,9 @@ public final /* data */ class GuildButtonConfiguration implements ButtonConfigur
     public int secondaryButtonTextColor(Context context) {
         m.checkNotNullParameter(context, "context");
         if (getSecondaryButtonEnabled()) {
-            return (!this.isRsvped || this.isEventActive || this.isEventComplete) ? ColorCompat.getColor(context, 2131100487) : ColorCompat.getThemedColor(context, 2130968896);
+            return (!this.isRsvped || this.isEventActive || this.isEventComplete) ? ColorCompat.getColor(context, R.color.white) : ColorCompat.getThemedColor(context, R.attr.colorBackgroundAccent);
         }
-        return ColorCompat.getColor(context, 2131100525);
+        return ColorCompat.getColor(context, R.color.white_alpha_40);
     }
 
     public String toString() {
@@ -467,7 +469,7 @@ public final /* data */ class GuildButtonConfiguration implements ButtonConfigur
         return sbU.toString();
     }
 
-    public /* synthetic */ GuildButtonConfiguration(GuildScheduledEvent guildScheduledEvent, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, View$OnClickListener view$OnClickListener, View$OnClickListener view$OnClickListener2, View$OnClickListener view$OnClickListener3, View$OnClickListener view$OnClickListener4, View$OnClickListener view$OnClickListener5, View$OnClickListener view$OnClickListener6, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(guildScheduledEvent, z2, z3, z4, z5, z6, z7, (i & 128) != 0 ? false : z8, (i & 256) != 0 ? null : view$OnClickListener, (i & 512) != 0 ? null : view$OnClickListener2, (i & 1024) != 0 ? null : view$OnClickListener3, (i & 2048) != 0 ? null : view$OnClickListener4, (i & 4096) != 0 ? null : view$OnClickListener5, (i & 8192) != 0 ? null : view$OnClickListener6);
+    public /* synthetic */ GuildButtonConfiguration(GuildScheduledEvent guildScheduledEvent, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, View.OnClickListener onClickListener, View.OnClickListener onClickListener2, View.OnClickListener onClickListener3, View.OnClickListener onClickListener4, View.OnClickListener onClickListener5, View.OnClickListener onClickListener6, int i, DefaultConstructorMarker defaultConstructorMarker) {
+        this(guildScheduledEvent, z2, z3, z4, z5, z6, z7, (i & 128) != 0 ? false : z8, (i & 256) != 0 ? null : onClickListener, (i & 512) != 0 ? null : onClickListener2, (i & 1024) != 0 ? null : onClickListener3, (i & 2048) != 0 ? null : onClickListener4, (i & 4096) != 0 ? null : onClickListener5, (i & 8192) != 0 ? null : onClickListener6);
     }
 }

@@ -37,9 +37,9 @@ public final class TypeAdapterRuntimeTypeWrapper<T> extends TypeAdapter<T> {
         }
         if (type != this.c) {
             typeAdapterH = this.a.h(TypeToken.get(type));
-            if (typeAdapterH instanceof ReflectiveTypeAdapterFactory$Adapter) {
+            if (typeAdapterH instanceof ReflectiveTypeAdapterFactory.Adapter) {
                 TypeAdapter<T> typeAdapter = this.f3127b;
-                if (!(typeAdapter instanceof ReflectiveTypeAdapterFactory$Adapter)) {
+                if (!(typeAdapter instanceof ReflectiveTypeAdapterFactory.Adapter)) {
                     typeAdapterH = typeAdapter;
                 }
             }

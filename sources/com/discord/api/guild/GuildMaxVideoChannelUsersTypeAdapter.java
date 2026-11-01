@@ -13,16 +13,16 @@ public final class GuildMaxVideoChannelUsersTypeAdapter extends TypeAdapter<Guil
     public GuildMaxVideoChannelUsers read(JsonReader jsonReader) throws IOException {
         m.checkNotNullParameter(jsonReader, "in");
         int iY = jsonReader.y();
-        return iY != -1 ? new GuildMaxVideoChannelUsers$Limited(iY) : GuildMaxVideoChannelUsers$Unlimited.INSTANCE;
+        return iY != -1 ? new GuildMaxVideoChannelUsers.Limited(iY) : GuildMaxVideoChannelUsers.Unlimited.INSTANCE;
     }
 
     @Override // com.google.gson.TypeAdapter
     public void write(JsonWriter jsonWriter, GuildMaxVideoChannelUsers guildMaxVideoChannelUsers) throws IOException {
         GuildMaxVideoChannelUsers guildMaxVideoChannelUsers2 = guildMaxVideoChannelUsers;
         m.checkNotNullParameter(jsonWriter, "out");
-        if (guildMaxVideoChannelUsers2 instanceof GuildMaxVideoChannelUsers$Limited) {
-            jsonWriter.D(Integer.valueOf(((GuildMaxVideoChannelUsers$Limited) guildMaxVideoChannelUsers2).getLimit()));
-        } else if (m.areEqual(guildMaxVideoChannelUsers2, GuildMaxVideoChannelUsers$Unlimited.INSTANCE)) {
+        if (guildMaxVideoChannelUsers2 instanceof GuildMaxVideoChannelUsers.Limited) {
+            jsonWriter.D(Integer.valueOf(((GuildMaxVideoChannelUsers.Limited) guildMaxVideoChannelUsers2).getLimit()));
+        } else if (m.areEqual(guildMaxVideoChannelUsers2, GuildMaxVideoChannelUsers.Unlimited.INSTANCE)) {
             jsonWriter.A(-1L);
         } else if (guildMaxVideoChannelUsers2 == null) {
             jsonWriter.s();

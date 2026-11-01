@@ -1,7 +1,7 @@
 package com.google.android.exoplayer2.metadata.id3;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import b.i.a.c.f3.e0;
 import java.util.Arrays;
@@ -13,7 +13,19 @@ public final class MlltFrame extends Id3Frame {
     public final int m;
     public final int[] n;
     public final int[] o;
-    public static final Parcelable$Creator<MlltFrame> CREATOR = new MlltFrame$a();
+    public static final Parcelable.Creator<MlltFrame> CREATOR = new a();
+
+    public class a implements Parcelable.Creator<MlltFrame> {
+        @Override // android.os.Parcelable.Creator
+        public MlltFrame createFromParcel(Parcel parcel) {
+            return new MlltFrame(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public MlltFrame[] newArray(int i) {
+            return new MlltFrame[i];
+        }
+    }
 
     public MlltFrame(int i, int i2, int i3, int[] iArr, int[] iArr2) {
         super("MLLT");

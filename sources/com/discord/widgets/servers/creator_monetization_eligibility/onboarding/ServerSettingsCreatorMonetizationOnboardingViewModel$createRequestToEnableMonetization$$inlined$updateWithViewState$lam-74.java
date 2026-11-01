@@ -26,10 +26,10 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel$createRe
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(CreatorMonetizationEnableRequest creatorMonetizationEnableRequest) {
         ServerSettingsCreatorMonetizationOnboardingViewModel serverSettingsCreatorMonetizationOnboardingViewModel = this.this$0;
-        ServerSettingsCreatorMonetizationOnboardingViewModel$ViewState serverSettingsCreatorMonetizationOnboardingViewModel$ViewStateAccess$requireViewState = ServerSettingsCreatorMonetizationOnboardingViewModel.access$requireViewState(serverSettingsCreatorMonetizationOnboardingViewModel);
-        if (serverSettingsCreatorMonetizationOnboardingViewModel$ViewStateAccess$requireViewState instanceof ServerSettingsCreatorMonetizationOnboardingViewModel$ViewState$CreateRequest) {
-            ServerSettingsCreatorMonetizationOnboardingViewModel$ViewState$CreateRequest serverSettingsCreatorMonetizationOnboardingViewModel$ViewState$CreateRequest = (ServerSettingsCreatorMonetizationOnboardingViewModel$ViewState$CreateRequest) serverSettingsCreatorMonetizationOnboardingViewModel$ViewStateAccess$requireViewState;
-            ServerSettingsCreatorMonetizationOnboardingViewModel.access$updateViewState(serverSettingsCreatorMonetizationOnboardingViewModel, ServerSettingsCreatorMonetizationOnboardingViewModel$ViewState$CreateRequest.copy$default(serverSettingsCreatorMonetizationOnboardingViewModel$ViewState$CreateRequest, CreatorMonetizationEligibilityRequirements.a(serverSettingsCreatorMonetizationOnboardingViewModel$ViewState$CreateRequest.getRequirements(), 0L, creatorMonetizationEnableRequest, false, false, false, false, null, false, false, false, null, false, null, 0, 0, 32765), false, false, 2, null));
+        ServerSettingsCreatorMonetizationOnboardingViewModel.ViewState viewStateAccess$requireViewState = ServerSettingsCreatorMonetizationOnboardingViewModel.access$requireViewState(serverSettingsCreatorMonetizationOnboardingViewModel);
+        if (viewStateAccess$requireViewState instanceof ServerSettingsCreatorMonetizationOnboardingViewModel.ViewState.CreateRequest) {
+            ServerSettingsCreatorMonetizationOnboardingViewModel.ViewState.CreateRequest createRequest = (ServerSettingsCreatorMonetizationOnboardingViewModel.ViewState.CreateRequest) viewStateAccess$requireViewState;
+            ServerSettingsCreatorMonetizationOnboardingViewModel.access$updateViewState(serverSettingsCreatorMonetizationOnboardingViewModel, ServerSettingsCreatorMonetizationOnboardingViewModel.ViewState.CreateRequest.copy$default(createRequest, CreatorMonetizationEligibilityRequirements.a(createRequest.getRequirements(), 0L, creatorMonetizationEnableRequest, false, false, false, false, null, false, false, false, null, false, null, 0, 0, 32765), false, false, 2, null));
         }
     }
 }

@@ -1,8 +1,8 @@
 package com.discord.widgets.auth;
 
+import com.discord.R;
 import com.discord.utilities.view.validators.BasicTextInputValidator;
-import com.discord.utilities.view.validators.BasicTextInputValidator$Companion;
-import com.discord.utilities.view.validators.Input$TextInputLayoutInput;
+import com.discord.utilities.view.validators.Input;
 import com.discord.utilities.view.validators.InputValidator;
 import com.discord.utilities.view.validators.ValidationManager;
 import com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword;
@@ -31,10 +31,10 @@ public final class WidgetAuthLogin$validationManager$2 extends o implements Func
     @Override // kotlin.jvm.functions.Function0
     public final ValidationManager invoke() {
         TextInputLayout mainTextInputLayout = WidgetAuthLogin.access$getBinding$p(this.this$0).e.getMainTextInputLayout();
-        BasicTextInputValidator$Companion basicTextInputValidator$Companion = BasicTextInputValidator.Companion;
-        InputValidator[] inputValidatorArr = {basicTextInputValidator$Companion.createRequiredInputValidator(2131892648)};
+        BasicTextInputValidator.Companion companion = BasicTextInputValidator.INSTANCE;
+        InputValidator[] inputValidatorArr = {companion.createRequiredInputValidator(R.string.login_required)};
         TextInputLayout textInputLayout = WidgetAuthLogin.access$getBinding$p(this.this$0).g;
         m.checkNotNullExpressionValue(textInputLayout, "binding.authLoginPasswordWrap");
-        return new ValidationManager(new Input$TextInputLayoutInput("binding.authLogin", mainTextInputLayout, inputValidatorArr), new Input$TextInputLayoutInput(WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD, textInputLayout, basicTextInputValidator$Companion.createRequiredInputValidator(2131893660)));
+        return new ValidationManager(new Input.TextInputLayoutInput("binding.authLogin", mainTextInputLayout, inputValidatorArr), new Input.TextInputLayoutInput(WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD, textInputLayout, companion.createRequiredInputValidator(R.string.password_required)));
     }
 }

@@ -1,7 +1,7 @@
 package com.google.android.gms.measurement.internal;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.d.b.a.a;
 import b.i.a.f.i.b.q;
@@ -15,7 +15,7 @@ public final class zzaq extends AbstractSafeParcelable {
     public final zzap k;
     public final String l;
     public final long m;
-    public static final Parcelable$Creator<zzaq> CREATOR = new q();
+    public static final Parcelable.Creator<zzaq> CREATOR = new q();
 
     public zzaq(String str, zzap zzapVar, String str2, long j) {
         this.j = str;

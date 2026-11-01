@@ -5,11 +5,13 @@ import android.util.AttributeSet;
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
 import androidx.core.view.ViewCompat;
 import b.i.a.g.g.j;
 import b.i.a.g.g.l;
-import com.google.android.material.R$attr;
-import com.google.android.material.R$style;
+import com.google.android.material.R;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class LinearProgressIndicator extends BaseProgressIndicator<LinearProgressIndicatorSpec> {
@@ -19,7 +21,17 @@ public final class LinearProgressIndicator extends BaseProgressIndicator<LinearP
     public static final int INDICATOR_DIRECTION_LEFT_TO_RIGHT = 0;
     public static final int INDICATOR_DIRECTION_RIGHT_TO_LEFT = 1;
     public static final int INDICATOR_DIRECTION_START_TO_END = 2;
-    public static final int DEF_STYLE_RES = R$style.Widget_MaterialComponents_LinearProgressIndicator;
+    public static final int DEF_STYLE_RES = R.style.Widget_MaterialComponents_LinearProgressIndicator;
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface IndeterminateAnimationType {
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface IndicatorDirection {
+    }
 
     public LinearProgressIndicator(@NonNull Context context) {
         this(context, null);
@@ -122,7 +134,7 @@ public final class LinearProgressIndicator extends BaseProgressIndicator<LinearP
     }
 
     public LinearProgressIndicator(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, R$attr.linearProgressIndicatorStyle);
+        this(context, attributeSet, R.attr.linearProgressIndicatorStyle);
     }
 
     @Override // com.google.android.material.progressindicator.BaseProgressIndicator

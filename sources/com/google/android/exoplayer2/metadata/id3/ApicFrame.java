@@ -1,11 +1,10 @@
 package com.google.android.exoplayer2.metadata.id3;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
 import b.i.a.c.f3.e0;
-import b.i.a.c.p1$b;
+import b.i.a.c.p1;
 import java.util.Arrays;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -16,7 +15,19 @@ public final class ApicFrame extends Id3Frame {
     public final String l;
     public final int m;
     public final byte[] n;
-    public static final Parcelable$Creator<ApicFrame> CREATOR = new ApicFrame$a();
+    public static final Parcelable.Creator<ApicFrame> CREATOR = new a();
+
+    public class a implements Parcelable.Creator<ApicFrame> {
+        @Override // android.os.Parcelable.Creator
+        public ApicFrame createFromParcel(Parcel parcel) {
+            return new ApicFrame(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public ApicFrame[] newArray(int i) {
+            return new ApicFrame[i];
+        }
+    }
 
     public ApicFrame(String str, @Nullable String str2, int i, byte[] bArr) {
         super("APIC");
@@ -45,9 +56,9 @@ public final class ApicFrame extends Id3Frame {
         return Arrays.hashCode(this.n) + ((iHashCode + (str2 != null ? str2.hashCode() : 0)) * 31);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.id3.Id3Frame, com.google.android.exoplayer2.metadata.Metadata$Entry
-    public void n(p1$b p1_b) {
-        p1_b.b(this.n, this.m);
+    @Override // com.google.android.exoplayer2.metadata.id3.Id3Frame, com.google.android.exoplayer2.metadata.Metadata.Entry
+    public void n(p1.b bVar) {
+        bVar.b(this.n, this.m);
     }
 
     @Override // com.google.android.exoplayer2.metadata.id3.Id3Frame
@@ -55,7 +66,7 @@ public final class ApicFrame extends Id3Frame {
         String str = this.j;
         String str2 = this.k;
         String str3 = this.l;
-        StringBuilder sbS = a.S(a.b(str3, a.b(str2, a.b(str, 25))), str, ": mimeType=", str2, ", description=");
+        StringBuilder sbS = b.d.b.a.a.S(b.d.b.a.a.b(str3, b.d.b.a.a.b(str2, b.d.b.a.a.b(str, 25))), str, ": mimeType=", str2, ", description=");
         sbS.append(str3);
         return sbS.toString();
     }

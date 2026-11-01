@@ -42,15 +42,15 @@ public class f {
             if (Log.isLoggable("FirebaseInstanceId", 3)) {
                 Log.d("FirebaseInstanceId", "new intent queued in the bind-strategy delivery");
             }
-            d0$a d0_a = new d0$a(intent);
+            d0.a aVar = new d0.a(intent);
             ScheduledExecutorService scheduledExecutorService = d0Var.l;
-            ScheduledFuture<?> scheduledFutureSchedule = scheduledExecutorService.schedule(new b0(d0_a), 9000L, TimeUnit.MILLISECONDS);
-            b.i.a.f.n.c0<Void> c0Var2 = d0_a.f1765b.a;
+            ScheduledFuture<?> scheduledFutureSchedule = scheduledExecutorService.schedule(new b0(aVar), 9000L, TimeUnit.MILLISECONDS);
+            b.i.a.f.n.c0<Void> c0Var2 = aVar.f1765b.a;
             c0Var2.f1592b.a(new b.i.a.f.n.r(scheduledExecutorService, new c0(scheduledFutureSchedule)));
             c0Var2.w();
-            d0Var.m.add(d0_a);
+            d0Var.m.add(aVar);
             d0Var.b();
-            c0Var = d0_a.f1765b.a;
+            c0Var = aVar.f1765b.a;
         }
         Executor executor = h.a;
         return c0Var.i(g.j, d.a);

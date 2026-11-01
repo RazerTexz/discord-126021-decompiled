@@ -3,8 +3,6 @@ package b.i.a.c.w2;
 import android.net.Uri;
 import android.text.TextUtils;
 import androidx.annotation.Nullable;
-import b.i.a.c.e3.n$b;
-import b.i.a.c.e3.r$b;
 import b.i.a.c.x0;
 import b.i.b.b.i0;
 import com.discord.restapi.RestAPIBuilder;
@@ -37,9 +35,9 @@ public final class d0 implements e0 {
         this.d = new HashMap();
     }
 
-    public byte[] a(UUID uuid, a0$a a0_a) throws MediaDrmCallbackException {
+    public byte[] a(UUID uuid, a0.a aVar) throws MediaDrmCallbackException {
         String str;
-        String str2 = a0_a.f1148b;
+        String str2 = aVar.f1148b;
         if (this.c || TextUtils.isEmpty(str2)) {
             str2 = this.f1152b;
         }
@@ -65,13 +63,13 @@ public final class d0 implements e0 {
         synchronized (this.d) {
             map.putAll(this.d);
         }
-        return b(this.a, str2, a0_a.a, map);
+        return b(this.a, str2, aVar.a, map);
     }
 
     public static byte[] b(b.i.a.c.e3.t tVar, String str, @Nullable byte[] bArr, Map<String, String> map) throws MediaDrmCallbackException {
         Map<String, List<String>> map2;
         List<String> list;
-        b.i.a.c.e3.y yVar = new b.i.a.c.e3.y(((r$b) tVar).b());
+        b.i.a.c.e3.y yVar = new b.i.a.c.e3.y(((b.i.a.c.e3.r.b) tVar).b());
         Collections.emptyMap();
         Uri uri = Uri.parse(str);
         if (uri == null) {
@@ -102,9 +100,9 @@ public final class d0 implements e0 {
                             throw e;
                         }
                         i++;
-                        n$b n_bA = nVarA.a();
-                        n_bA.a = Uri.parse(str2);
-                        nVarA = n_bA.a();
+                        b.i.a.c.e3.n.b bVarA = nVarA.a();
+                        bVarA.a = Uri.parse(str2);
+                        nVarA = bVarA.a();
                         int i4 = b.i.a.c.f3.e0.a;
                         try {
                             mVar.close();
@@ -127,9 +125,9 @@ public final class d0 implements e0 {
         }
     }
 
-    public byte[] c(UUID uuid, a0$d a0_d) throws MediaDrmCallbackException {
-        String str = a0_d.f1149b;
-        String strL = b.i.a.c.f3.e0.l(a0_d.a);
+    public byte[] c(UUID uuid, a0.d dVar) throws MediaDrmCallbackException {
+        String str = dVar.f1149b;
+        String strL = b.i.a.c.f3.e0.l(dVar.a);
         return b(this.a, b.d.b.a.a.k(strL.length() + b.d.b.a.a.b(str, 15), str, "&signedRequest=", strL), null, Collections.emptyMap());
     }
 }

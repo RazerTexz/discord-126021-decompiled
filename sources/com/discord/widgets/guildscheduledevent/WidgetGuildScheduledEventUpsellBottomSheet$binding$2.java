@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetGuildScheduledEventUpsellBottomSheetBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -28,23 +28,23 @@ public final /* synthetic */ class WidgetGuildScheduledEventUpsellBottomSheet$bi
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGuildScheduledEventUpsellBottomSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = 2131362294;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(2131362294);
+        int i = R.id.cancel_button;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.cancel_button);
         if (materialButton != null) {
-            i = 2131362803;
-            MaterialButton materialButton2 = (MaterialButton) view.findViewById(2131362803);
+            i = R.id.confirm_button;
+            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.confirm_button);
             if (materialButton2 != null) {
-                i = R$id.upsell_body;
-                TextView textView = (TextView) view.findViewById(R$id.upsell_body);
+                i = R.id.upsell_body;
+                TextView textView = (TextView) view.findViewById(R.id.upsell_body);
                 if (textView != null) {
-                    i = R$id.upsell_header_part_1;
-                    TextView textView2 = (TextView) view.findViewById(R$id.upsell_header_part_1);
+                    i = R.id.upsell_header_part_1;
+                    TextView textView2 = (TextView) view.findViewById(R.id.upsell_header_part_1);
                     if (textView2 != null) {
-                        i = R$id.upsell_header_part_2;
-                        TextView textView3 = (TextView) view.findViewById(R$id.upsell_header_part_2);
+                        i = R.id.upsell_header_part_2;
+                        TextView textView3 = (TextView) view.findViewById(R.id.upsell_header_part_2);
                         if (textView3 != null) {
-                            i = R$id.upsell_image;
-                            ImageView imageView = (ImageView) view.findViewById(R$id.upsell_image);
+                            i = R.id.upsell_image;
+                            ImageView imageView = (ImageView) view.findViewById(R.id.upsell_image);
                             if (imageView != null) {
                                 return new WidgetGuildScheduledEventUpsellBottomSheetBinding((NestedScrollView) view, materialButton, materialButton2, textView, textView2, textView3, imageView);
                             }

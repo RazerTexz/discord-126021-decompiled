@@ -1,6 +1,6 @@
 package com.discord.widgets.guilds.list;
 
-import com.discord.stores.StoreGuildsSorted$Entry$SingletonGuild;
+import com.discord.stores.StoreGuildsSorted;
 import d0.z.d.o;
 import kotlin.jvm.functions.Function1;
 
@@ -20,6 +20,6 @@ public final class WidgetGuildsListViewModel$handleStoreState$$inlined$filterIsI
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(Object obj) {
-        return obj instanceof StoreGuildsSorted$Entry$SingletonGuild;
+        return obj instanceof StoreGuildsSorted.Entry.SingletonGuild;
     }
 }

@@ -2,7 +2,6 @@ package d0.e0.p.d.m0.e.b;
 
 import com.discord.widgets.chat.input.MentionUtilsKt;
 import d0.e0.p.d.m0.c.v0;
-import d0.e0.p.d.m0.i.g$f;
 
 /* JADX INFO: compiled from: JvmPackagePartSource.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -21,9 +20,9 @@ public final class j implements d0.e0.p.d.m0.l.b.e0.f {
         this.f3378b = cVar;
         this.c = cVar2;
         this.d = pVar;
-        g$f<d0.e0.p.d.m0.f.l, Integer> g_f = d0.e0.p.d.m0.f.a0.a.m;
-        d0.z.d.m.checkNotNullExpressionValue(g_f, "packageModuleName");
-        Integer num = (Integer) d0.e0.p.d.m0.f.z.e.getExtensionOrNull(lVar, g_f);
+        d0.e0.p.d.m0.i.g.f<d0.e0.p.d.m0.f.l, Integer> fVar = d0.e0.p.d.m0.f.a0.a.m;
+        d0.z.d.m.checkNotNullExpressionValue(fVar, "packageModuleName");
+        Integer num = (Integer) d0.e0.p.d.m0.f.z.e.getExtensionOrNull(lVar, fVar);
         if (num == null) {
             return;
         }

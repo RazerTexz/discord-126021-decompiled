@@ -2,7 +2,7 @@ package com.google.android.gms.signin.internal;
 
 import android.content.Intent;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import b.c.a.a0.d;
 import b.i.a.f.e.h.h;
@@ -18,7 +18,7 @@ public final class zab extends AbstractSafeParcelable implements h {
 
     @Nullable
     public Intent l;
-    public static final Parcelable$Creator<zab> CREATOR = new b();
+    public static final Parcelable.Creator<zab> CREATOR = new b();
 
     public zab() {
         this.j = 2;

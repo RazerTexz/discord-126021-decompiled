@@ -1,9 +1,11 @@
 package com.discord.widgets.channels.memberlist.adapter;
 
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.StringRes;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
+import androidx.recyclerview.widget.RecyclerView;
+import com.discord.R;
 import com.discord.databinding.WidgetChannelMembersListItemAddOrLeaveBinding;
 import d0.z.d.m;
 import kotlin.Unit;
@@ -11,8 +13,23 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: ChannelMembersListViewHolderAdd.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ChannelMembersListViewHolderAdd extends RecyclerView$ViewHolder {
+public final class ChannelMembersListViewHolderAdd extends RecyclerView.ViewHolder {
     private final WidgetChannelMembersListItemAddOrLeaveBinding binding;
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.adapter.ChannelMembersListViewHolderAdd$bind$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ChannelMembersListViewHolderAdd.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ Function0 $onClicked;
+
+        public AnonymousClass1(Function0 function0) {
+            this.$onClicked = function0;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onClicked.invoke();
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ChannelMembersListViewHolderAdd(WidgetChannelMembersListItemAddOrLeaveBinding widgetChannelMembersListItemAddOrLeaveBinding) {
@@ -28,7 +45,7 @@ public final class ChannelMembersListViewHolderAdd extends RecyclerView$ViewHold
         LinearLayout linearLayout = this.binding.a;
         m.checkNotNullExpressionValue(linearLayout, "binding.root");
         textView.setText(linearLayout.getContext().getText(title));
-        this.binding.f2258b.setImageResource(2131231508);
-        this.binding.a.setOnClickListener(new ChannelMembersListViewHolderAdd$bind$1(onClicked));
+        this.binding.f2258b.setImageResource(R.drawable.ic_add_person_16dp);
+        this.binding.a.setOnClickListener(new AnonymousClass1(onClicked));
     }
 }

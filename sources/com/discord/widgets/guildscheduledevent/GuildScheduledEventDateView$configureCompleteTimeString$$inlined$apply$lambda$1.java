@@ -1,9 +1,12 @@
 package com.discord.widgets.guildscheduledevent;
 
+import android.text.style.ForegroundColorSpan;
+import com.discord.i18n.Hook;
 import com.discord.i18n.RenderContext;
 import com.discord.utilities.guildscheduledevent.GuildScheduledEventTiming;
 import d0.z.d.m;
 import d0.z.d.o;
+import java.util.List;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
@@ -30,9 +33,31 @@ public final class GuildScheduledEventDateView$configureCompleteTimeString$$inli
         return Unit.a;
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventDateView$configureCompleteTimeString$$inlined$apply$lambda$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: GuildScheduledEventDateView.kt */
+    public final class AnonymousClass1 extends o implements Function1<Hook, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Hook hook) {
+            m.checkNotNullParameter(hook, "$receiver");
+            List<Object> list = hook.styles;
+            GuildScheduledEventDateView$configureCompleteTimeString$$inlined$apply$lambda$1 guildScheduledEventDateView$configureCompleteTimeString$$inlined$apply$lambda$1 = GuildScheduledEventDateView$configureCompleteTimeString$$inlined$apply$lambda$1.this;
+            list.add(new ForegroundColorSpan(GuildScheduledEventDateView.access$getTextColorViaTiming(guildScheduledEventDateView$configureCompleteTimeString$$inlined$apply$lambda$1.this$0, guildScheduledEventDateView$configureCompleteTimeString$$inlined$apply$lambda$1.$timing$inlined)));
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Hook hook) {
+            invoke2(hook);
+            return Unit.a;
+        }
+    }
+
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(RenderContext renderContext) {
         m.checkNotNullParameter(renderContext, "$receiver");
-        renderContext.a("startHook", new GuildScheduledEventDateView$configureCompleteTimeString$$inlined$apply$lambda$1$1(this));
+        renderContext.a("startHook", new AnonymousClass1());
     }
 }

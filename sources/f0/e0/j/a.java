@@ -1,5 +1,7 @@
 package f0.e0.j;
 
+import kotlin.jvm.internal.DefaultConstructorMarker;
+
 /* JADX INFO: compiled from: ErrorCode.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public enum a {
@@ -27,7 +29,14 @@ public enum a {
     HTTP_1_1_REQUIRED(13);
 
     private final int httpCode;
-    public static final a$a q = new a$a(null);
+    public static final C0607a q = new C0607a(null);
+
+    /* JADX INFO: renamed from: f0.e0.j.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: ErrorCode.kt */
+    public final class C0607a {
+        public C0607a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
 
     a(int i) {
         this.httpCode = i;

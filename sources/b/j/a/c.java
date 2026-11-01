@@ -21,9 +21,7 @@ import com.hcaptcha.sdk.HCaptchaDialogListener;
 import com.hcaptcha.sdk.HCaptchaError;
 import com.hcaptcha.sdk.HCaptchaException;
 import com.hcaptcha.sdk.HCaptchaTokenResponse;
-import com.hcaptcha.sdk.R$a;
-import com.hcaptcha.sdk.R$b;
-import com.hcaptcha.sdk.R$c;
+import com.hcaptcha.sdk.R;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class c extends DialogFragment implements b.j.a.f.b, b.j.a.f.c<HCaptchaTokenResponse>, b.j.a.f.a {
@@ -36,7 +34,20 @@ public class c extends DialogFragment implements b.j.a.f.b, b.j.a.f.c<HCaptchaTo
     public WebView p;
     public LinearLayout q;
 
-    @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface$OnCancelListener
+    public class a implements Runnable {
+        public final /* synthetic */ HCaptchaException j;
+
+        public a(HCaptchaException hCaptchaException) {
+            this.j = hCaptchaException;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            c.this.n.a(this.j);
+        }
+    }
+
+    @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnCancelListener
     public void onCancel(@NonNull DialogInterface dialogInterface) {
         super.onCancel(dialogInterface);
         onFailure(new HCaptchaException(HCaptchaError.CHALLENGE_CLOSED));
@@ -50,7 +61,7 @@ public class c extends DialogFragment implements b.j.a.f.b, b.j.a.f.c<HCaptchaTo
             HCaptchaConfig hCaptchaConfig = (HCaptchaConfig) getArguments().getSerializable("hCaptchaConfig");
             this.l = new e(hCaptchaConfig, this, this, this);
             this.m = hCaptchaConfig.getLoading().booleanValue();
-            setStyle(2, R$c.HCaptchaDialogTheme);
+            setStyle(2, R.c.HCaptchaDialogTheme);
         } catch (BadParcelableException unused) {
             dismiss();
         }
@@ -58,12 +69,12 @@ public class c extends DialogFragment implements b.j.a.f.b, b.j.a.f.c<HCaptchaTo
 
     @Override // androidx.fragment.app.Fragment
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
-        View viewInflate = layoutInflater.inflate(R$b.hcaptcha_fragment, viewGroup, false);
+        View viewInflate = layoutInflater.inflate(R.b.hcaptcha_fragment, viewGroup, false);
         this.o = viewInflate;
-        LinearLayout linearLayout = (LinearLayout) viewInflate.findViewById(R$a.loadingContainer);
+        LinearLayout linearLayout = (LinearLayout) viewInflate.findViewById(R.a.loadingContainer);
         this.q = linearLayout;
         linearLayout.setVisibility(this.m ? 0 : 8);
-        WebView webView = (WebView) this.o.findViewById(R$a.webView);
+        WebView webView = (WebView) this.o.findViewById(R.a.webView);
         this.p = webView;
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
@@ -92,7 +103,7 @@ public class c extends DialogFragment implements b.j.a.f.b, b.j.a.f.c<HCaptchaTo
         if (isAdded()) {
             dismiss();
         }
-        this.k.post(new c$a(this, hCaptchaException));
+        this.k.post(new a(hCaptchaException));
     }
 
     @Override // androidx.fragment.app.DialogFragment, androidx.fragment.app.Fragment

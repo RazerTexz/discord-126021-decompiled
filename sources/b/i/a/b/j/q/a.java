@@ -11,7 +11,7 @@ public final class a extends f {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final byte[] f771b;
 
-    public a(Iterable iterable, byte[] bArr, a$a a_a) {
+    public a(Iterable iterable, byte[] bArr, C0088a c0088a) {
         this.a = iterable;
         this.f771b = bArr;
     }

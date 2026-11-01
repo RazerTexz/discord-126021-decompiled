@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: IntersectionTypeConstructor.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -14,6 +15,24 @@ public final class a0 implements u0, d0.e0.p.d.m0.n.n1.g {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final LinkedHashSet<c0> f3518b;
     public final int c;
+
+    /* JADX INFO: compiled from: IntersectionTypeConstructor.kt */
+    public final class a extends d0.z.d.o implements Function1<d0.e0.p.d.m0.n.l1.g, j0> {
+        public a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ j0 invoke(d0.e0.p.d.m0.n.l1.g gVar) {
+            return invoke2(gVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final j0 invoke2(d0.e0.p.d.m0.n.l1.g gVar) {
+            d0.z.d.m.checkNotNullParameter(gVar, "kotlinTypeRefiner");
+            return a0.this.refine(gVar).createType();
+        }
+    }
 
     public a0(Collection<? extends c0> collection) {
         d0.z.d.m.checkNotNullParameter(collection, "typesToIntersect");
@@ -29,7 +48,7 @@ public final class a0 implements u0, d0.e0.p.d.m0.n.n1.g {
 
     public final j0 createType() {
         d0 d0Var = d0.a;
-        return d0.simpleTypeWithNonTrivialMemberScope(d0.e0.p.d.m0.c.g1.g.f.getEMPTY(), this, d0.t.n.emptyList(), false, createScopeForKotlinType(), new a0$a(this));
+        return d0.simpleTypeWithNonTrivialMemberScope(d0.e0.p.d.m0.c.g1.g.f.getEMPTY(), this, d0.t.n.emptyList(), false, createScopeForKotlinType(), new a());
     }
 
     public boolean equals(Object obj) {

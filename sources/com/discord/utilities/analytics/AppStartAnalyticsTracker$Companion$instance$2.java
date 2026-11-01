@@ -22,6 +22,6 @@ public final class AppStartAnalyticsTracker$Companion$instance$2 extends o imple
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final AppStartAnalyticsTracker invoke() {
-        return new AppStartAnalyticsTracker(AnalyticsUtils$Tracker.Companion.getInstance(), ClockFactory.get(), StoreStream.Companion.getUserSettingsSystem());
+        return new AppStartAnalyticsTracker(AnalyticsUtils.Tracker.INSTANCE.getInstance(), ClockFactory.get(), StoreStream.INSTANCE.getUserSettingsSystem());
     }
 }

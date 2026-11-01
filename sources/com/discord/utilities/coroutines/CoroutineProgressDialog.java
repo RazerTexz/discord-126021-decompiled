@@ -5,11 +5,18 @@ import androidx.appcompat.app.AlertDialog;
 import b.i.a.f.e.o.f;
 import d0.l;
 import d0.w.h.c;
+import d0.w.i.a.d;
+import d0.w.i.a.e;
+import d0.w.i.a.k;
+import d0.z.d.m;
+import kotlin.Unit;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.Ref$ObjectRef;
 import kotlinx.coroutines.CoroutineDispatcher;
+import kotlinx.coroutines.CoroutineScope;
 import s.a.a.n;
 import s.a.k0;
 import s.a.l1;
@@ -19,6 +26,65 @@ import s.a.n1;
 /* JADX INFO: loaded from: classes2.dex */
 public final class CoroutineProgressDialog {
     public static final CoroutineProgressDialog INSTANCE = new CoroutineProgressDialog();
+
+    /* JADX INFO: renamed from: com.discord.utilities.coroutines.CoroutineProgressDialog$withCancellableProgressDialog$1, reason: invalid class name */
+    /* JADX INFO: compiled from: CoroutineProgressDialog.kt */
+    @e(c = "com.discord.utilities.coroutines.CoroutineProgressDialog", f = "CoroutineProgressDialog.kt", l = {22, 32, 34, 34}, m = "withCancellableProgressDialog")
+    public final class AnonymousClass1 extends d {
+        public Object L$0;
+        public Object L$1;
+        public Object L$2;
+        public int label;
+        public /* synthetic */ Object result;
+
+        public AnonymousClass1(Continuation continuation) {
+            super(continuation);
+        }
+
+        @Override // d0.w.i.a.a
+        public final Object invokeSuspend(Object obj) {
+            this.result = obj;
+            this.label |= Integer.MIN_VALUE;
+            return CoroutineProgressDialog.this.withCancellableProgressDialog(null, null, this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.coroutines.CoroutineProgressDialog$withCancellableProgressDialog$2, reason: invalid class name */
+    /* JADX INFO: compiled from: CoroutineProgressDialog.kt */
+    @e(c = "com.discord.utilities.coroutines.CoroutineProgressDialog$withCancellableProgressDialog$2", f = "CoroutineProgressDialog.kt", l = {}, m = "invokeSuspend")
+    public final class AnonymousClass2 extends k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+        public final /* synthetic */ Ref$ObjectRef $dialog;
+        public int label;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(Ref$ObjectRef ref$ObjectRef, Continuation continuation) {
+            super(2, continuation);
+            this.$dialog = ref$ObjectRef;
+        }
+
+        @Override // d0.w.i.a.a
+        public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
+            m.checkNotNullParameter(continuation, "completion");
+            return new AnonymousClass2(this.$dialog, continuation);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public final Object invoke(CoroutineScope coroutineScope, Continuation<? super Unit> continuation) {
+            return ((AnonymousClass2) create(coroutineScope, continuation)).invokeSuspend(Unit.a);
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // d0.w.i.a.a
+        public final Object invokeSuspend(Object obj) throws Throwable {
+            c.getCOROUTINE_SUSPENDED();
+            if (this.label != 0) {
+                throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+            }
+            l.throwOnFailure(obj);
+            ((AlertDialog) this.$dialog.element).dismiss();
+            return Unit.a;
+        }
+    }
 
     private CoroutineProgressDialog() {
     }
@@ -30,42 +96,42 @@ public final class CoroutineProgressDialog {
     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
     /* JADX WARN: Type inference failed for: r14v5, types: [T, androidx.appcompat.app.AlertDialog] */
     public final <Result> Object withCancellableProgressDialog(Context context, Function1<? super Continuation<? super Result>, ? extends Object> function1, Continuation<? super Result> continuation) throws Throwable {
-        CoroutineProgressDialog$withCancellableProgressDialog$1 coroutineProgressDialog$withCancellableProgressDialog$1;
+        AnonymousClass1 anonymousClass1;
         Ref$ObjectRef ref$ObjectRef;
         Function1<? super Continuation<? super Result>, ? extends Object> function2;
         Ref$ObjectRef ref$ObjectRef2;
         Ref$ObjectRef ref$ObjectRef3;
         CoroutineContext coroutineContextPlus;
-        CoroutineProgressDialog$withCancellableProgressDialog$2 coroutineProgressDialog$withCancellableProgressDialog$2;
+        AnonymousClass2 anonymousClass2;
         CoroutineContext coroutineContextPlus2;
-        CoroutineProgressDialog$withCancellableProgressDialog$2 coroutineProgressDialog$withCancellableProgressDialog$3;
-        if (continuation instanceof CoroutineProgressDialog$withCancellableProgressDialog$1) {
-            coroutineProgressDialog$withCancellableProgressDialog$1 = (CoroutineProgressDialog$withCancellableProgressDialog$1) continuation;
-            int i = coroutineProgressDialog$withCancellableProgressDialog$1.label;
+        AnonymousClass2 anonymousClass3;
+        if (continuation instanceof AnonymousClass1) {
+            anonymousClass1 = (AnonymousClass1) continuation;
+            int i = anonymousClass1.label;
             if ((i & Integer.MIN_VALUE) != 0) {
-                coroutineProgressDialog$withCancellableProgressDialog$1.label = i - Integer.MIN_VALUE;
+                anonymousClass1.label = i - Integer.MIN_VALUE;
             } else {
-                coroutineProgressDialog$withCancellableProgressDialog$1 = new CoroutineProgressDialog$withCancellableProgressDialog$1(this, continuation);
+                anonymousClass1 = new AnonymousClass1(continuation);
             }
         } else {
-            coroutineProgressDialog$withCancellableProgressDialog$1 = new CoroutineProgressDialog$withCancellableProgressDialog$1(this, continuation);
+            anonymousClass1 = new AnonymousClass1(continuation);
         }
-        Object objC1 = coroutineProgressDialog$withCancellableProgressDialog$1.result;
+        Object objC1 = anonymousClass1.result;
         Object coroutine_suspended = c.getCOROUTINE_SUSPENDED();
-        int i2 = coroutineProgressDialog$withCancellableProgressDialog$1.label;
+        int i2 = anonymousClass1.label;
         try {
             if (i2 == 0) {
                 l.throwOnFailure(objC1);
-                CoroutineContext context2 = coroutineProgressDialog$withCancellableProgressDialog$1.getContext();
+                CoroutineContext context2 = anonymousClass1.getContext();
                 Ref$ObjectRef ref$ObjectRef4 = new Ref$ObjectRef();
                 CoroutineDispatcher coroutineDispatcher = k0.a;
                 l1 l1VarH = n.f3830b.H();
                 CoroutineProgressDialog$withCancellableProgressDialog$dialog$1 coroutineProgressDialog$withCancellableProgressDialog$dialog$1 = new CoroutineProgressDialog$withCancellableProgressDialog$dialog$1(context, context2, null);
-                coroutineProgressDialog$withCancellableProgressDialog$1.L$0 = function1;
-                coroutineProgressDialog$withCancellableProgressDialog$1.L$1 = ref$ObjectRef4;
-                coroutineProgressDialog$withCancellableProgressDialog$1.L$2 = ref$ObjectRef4;
-                coroutineProgressDialog$withCancellableProgressDialog$1.label = 1;
-                objC1 = f.C1(l1VarH, coroutineProgressDialog$withCancellableProgressDialog$dialog$1, coroutineProgressDialog$withCancellableProgressDialog$1);
+                anonymousClass1.L$0 = function1;
+                anonymousClass1.L$1 = ref$ObjectRef4;
+                anonymousClass1.L$2 = ref$ObjectRef4;
+                anonymousClass1.label = 1;
+                objC1 = f.C1(l1VarH, coroutineProgressDialog$withCancellableProgressDialog$dialog$1, anonymousClass1);
                 if (objC1 == coroutine_suspended) {
                     return coroutine_suspended;
                 }
@@ -76,26 +142,26 @@ public final class CoroutineProgressDialog {
                 if (i2 != 1) {
                     if (i2 != 2) {
                         if (i2 == 3) {
-                            Object obj = coroutineProgressDialog$withCancellableProgressDialog$1.L$0;
+                            Object obj = anonymousClass1.L$0;
                             l.throwOnFailure(objC1);
                             return obj;
                         }
                         if (i2 != 4) {
                             throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
                         }
-                        Throwable th = (Throwable) coroutineProgressDialog$withCancellableProgressDialog$1.L$0;
+                        Throwable th = (Throwable) anonymousClass1.L$0;
                         l.throwOnFailure(objC1);
                         throw th;
                     }
-                    ref$ObjectRef3 = (Ref$ObjectRef) coroutineProgressDialog$withCancellableProgressDialog$1.L$0;
+                    ref$ObjectRef3 = (Ref$ObjectRef) anonymousClass1.L$0;
                     try {
                         l.throwOnFailure(objC1);
                         CoroutineDispatcher coroutineDispatcher2 = k0.a;
                         coroutineContextPlus2 = n.f3830b.H().plus(n1.j);
-                        coroutineProgressDialog$withCancellableProgressDialog$3 = new CoroutineProgressDialog$withCancellableProgressDialog$2(ref$ObjectRef3, null);
-                        coroutineProgressDialog$withCancellableProgressDialog$1.L$0 = objC1;
-                        coroutineProgressDialog$withCancellableProgressDialog$1.label = 3;
-                        if (f.C1(coroutineContextPlus2, coroutineProgressDialog$withCancellableProgressDialog$3, coroutineProgressDialog$withCancellableProgressDialog$1) == coroutine_suspended) {
+                        anonymousClass3 = new AnonymousClass2(ref$ObjectRef3, null);
+                        anonymousClass1.L$0 = objC1;
+                        anonymousClass1.label = 3;
+                        if (f.C1(coroutineContextPlus2, anonymousClass3, anonymousClass1) == coroutine_suspended) {
                             return coroutine_suspended;
                         }
                         return objC1;
@@ -104,37 +170,37 @@ public final class CoroutineProgressDialog {
                         th = th2;
                         CoroutineDispatcher coroutineDispatcher3 = k0.a;
                         coroutineContextPlus = n.f3830b.H().plus(n1.j);
-                        coroutineProgressDialog$withCancellableProgressDialog$2 = new CoroutineProgressDialog$withCancellableProgressDialog$2(ref$ObjectRef2, null);
-                        coroutineProgressDialog$withCancellableProgressDialog$1.L$0 = th;
-                        coroutineProgressDialog$withCancellableProgressDialog$1.L$1 = null;
-                        coroutineProgressDialog$withCancellableProgressDialog$1.L$2 = null;
-                        coroutineProgressDialog$withCancellableProgressDialog$1.label = 4;
-                        if (f.C1(coroutineContextPlus, coroutineProgressDialog$withCancellableProgressDialog$2, coroutineProgressDialog$withCancellableProgressDialog$1) == coroutine_suspended) {
+                        anonymousClass2 = new AnonymousClass2(ref$ObjectRef2, null);
+                        anonymousClass1.L$0 = th;
+                        anonymousClass1.L$1 = null;
+                        anonymousClass1.L$2 = null;
+                        anonymousClass1.label = 4;
+                        if (f.C1(coroutineContextPlus, anonymousClass2, anonymousClass1) == coroutine_suspended) {
                             return coroutine_suspended;
                         }
                         throw th;
                     }
                 }
-                ref$ObjectRef = (Ref$ObjectRef) coroutineProgressDialog$withCancellableProgressDialog$1.L$2;
-                ref$ObjectRef2 = (Ref$ObjectRef) coroutineProgressDialog$withCancellableProgressDialog$1.L$1;
-                function2 = (Function1) coroutineProgressDialog$withCancellableProgressDialog$1.L$0;
+                ref$ObjectRef = (Ref$ObjectRef) anonymousClass1.L$2;
+                ref$ObjectRef2 = (Ref$ObjectRef) anonymousClass1.L$1;
+                function2 = (Function1) anonymousClass1.L$0;
                 l.throwOnFailure(objC1);
             }
-            coroutineProgressDialog$withCancellableProgressDialog$1.L$0 = ref$ObjectRef2;
-            coroutineProgressDialog$withCancellableProgressDialog$1.L$1 = null;
-            coroutineProgressDialog$withCancellableProgressDialog$1.L$2 = null;
-            coroutineProgressDialog$withCancellableProgressDialog$1.label = 2;
-            objC1 = function2.invoke(coroutineProgressDialog$withCancellableProgressDialog$1);
+            anonymousClass1.L$0 = ref$ObjectRef2;
+            anonymousClass1.L$1 = null;
+            anonymousClass1.L$2 = null;
+            anonymousClass1.label = 2;
+            objC1 = function2.invoke(anonymousClass1);
             if (objC1 == coroutine_suspended) {
                 return coroutine_suspended;
             }
             ref$ObjectRef3 = ref$ObjectRef2;
             CoroutineDispatcher coroutineDispatcher4 = k0.a;
             coroutineContextPlus2 = n.f3830b.H().plus(n1.j);
-            coroutineProgressDialog$withCancellableProgressDialog$3 = new CoroutineProgressDialog$withCancellableProgressDialog$2(ref$ObjectRef3, null);
-            coroutineProgressDialog$withCancellableProgressDialog$1.L$0 = objC1;
-            coroutineProgressDialog$withCancellableProgressDialog$1.label = 3;
-            if (f.C1(coroutineContextPlus2, coroutineProgressDialog$withCancellableProgressDialog$3, coroutineProgressDialog$withCancellableProgressDialog$1) == coroutine_suspended) {
+            anonymousClass3 = new AnonymousClass2(ref$ObjectRef3, null);
+            anonymousClass1.L$0 = objC1;
+            anonymousClass1.label = 3;
+            if (f.C1(coroutineContextPlus2, anonymousClass3, anonymousClass1) == coroutine_suspended) {
                 return coroutine_suspended;
             }
             return objC1;
@@ -142,12 +208,12 @@ public final class CoroutineProgressDialog {
             th = th3;
             CoroutineDispatcher coroutineDispatcher5 = k0.a;
             coroutineContextPlus = n.f3830b.H().plus(n1.j);
-            coroutineProgressDialog$withCancellableProgressDialog$2 = new CoroutineProgressDialog$withCancellableProgressDialog$2(ref$ObjectRef2, null);
-            coroutineProgressDialog$withCancellableProgressDialog$1.L$0 = th;
-            coroutineProgressDialog$withCancellableProgressDialog$1.L$1 = null;
-            coroutineProgressDialog$withCancellableProgressDialog$1.L$2 = null;
-            coroutineProgressDialog$withCancellableProgressDialog$1.label = 4;
-            if (f.C1(coroutineContextPlus, coroutineProgressDialog$withCancellableProgressDialog$2, coroutineProgressDialog$withCancellableProgressDialog$1) == coroutine_suspended) {
+            anonymousClass2 = new AnonymousClass2(ref$ObjectRef2, null);
+            anonymousClass1.L$0 = th;
+            anonymousClass1.L$1 = null;
+            anonymousClass1.L$2 = null;
+            anonymousClass1.label = 4;
+            if (f.C1(coroutineContextPlus, anonymousClass2, anonymousClass1) == coroutine_suspended) {
                 return coroutine_suspended;
             }
             throw th;

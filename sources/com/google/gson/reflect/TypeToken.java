@@ -1,8 +1,6 @@
 package com.google.gson.reflect;
 
 import b.i.d.q.a;
-import b.i.d.q.a$a;
-import b.i.d.q.a$b;
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -47,11 +45,11 @@ public class TypeToken<T> {
     }
 
     public static TypeToken<?> getArray(Type type) {
-        return new TypeToken<>(new a$a(type));
+        return new TypeToken<>(new a.C0156a(type));
     }
 
     public static TypeToken<?> getParameterized(Type type, Type... typeArr) {
-        return new TypeToken<>(new a$b(null, type, typeArr));
+        return new TypeToken<>(new a.b(null, type, typeArr));
     }
 
     public final Class<? super T> getRawType() {

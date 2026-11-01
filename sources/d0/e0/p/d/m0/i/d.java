@@ -254,13 +254,13 @@ public final class d {
         return Float.intBitsToFloat(readRawLittleEndian32());
     }
 
-    public void readGroup(int i, n$a n_a, e eVar) throws IOException {
+    public void readGroup(int i, n.a aVar, e eVar) throws IOException {
         int i2 = this.j;
         if (i2 >= 64) {
             throw InvalidProtocolBufferException.b();
         }
         this.j = i2 + 1;
-        n_a.mergeFrom(this, eVar);
+        aVar.mergeFrom(this, eVar);
         checkLastTagWas((i << 3) | 4);
         this.j--;
     }
@@ -273,14 +273,14 @@ public final class d {
         return readRawVarint64();
     }
 
-    public void readMessage(n$a n_a, e eVar) throws IOException {
+    public void readMessage(n.a aVar, e eVar) throws IOException {
         int rawVarint32 = readRawVarint32();
         if (this.j >= 64) {
             throw InvalidProtocolBufferException.b();
         }
         int iPushLimit = pushLimit(rawVarint32);
         this.j++;
-        n_a.mergeFrom(this, eVar);
+        aVar.mergeFrom(this, eVar);
         checkLastTagWas(0);
         this.j--;
         popLimit(iPushLimit);

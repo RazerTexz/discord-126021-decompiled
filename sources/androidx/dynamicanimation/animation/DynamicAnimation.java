@@ -3,16 +3,17 @@ package androidx.dynamicanimation.animation;
 import android.annotation.SuppressLint;
 import android.os.Looper;
 import android.util.AndroidRuntimeException;
+import android.view.View;
 import androidx.annotation.FloatRange;
 import androidx.annotation.MainThread;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.constraintlayout.motion.widget.Key;
+import androidx.core.view.ViewCompat;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import java.util.ArrayList;
 
 /* JADX INFO: loaded from: classes.dex */
-public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements AnimationHandler$AnimationFrameCallback {
+public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements AnimationHandler.AnimationFrameCallback {
 
     @SuppressLint({"MinMaxConstant"})
     public static final float MIN_VISIBLE_CHANGE_ALPHA = 0.00390625f;
@@ -27,7 +28,7 @@ public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements
     public static final float MIN_VISIBLE_CHANGE_SCALE = 0.002f;
     private static final float THRESHOLD_MULTIPLIER = 0.75f;
     private static final float UNSET = Float.MAX_VALUE;
-    private final ArrayList<DynamicAnimation$OnAnimationEndListener> mEndListeners;
+    private final ArrayList<OnAnimationEndListener> mEndListeners;
     private long mLastFrameTime;
     public float mMaxValue;
     public float mMinValue;
@@ -36,23 +37,445 @@ public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements
     public boolean mRunning;
     public boolean mStartValueIsSet;
     public final Object mTarget;
-    private final ArrayList<DynamicAnimation$OnAnimationUpdateListener> mUpdateListeners;
+    private final ArrayList<OnAnimationUpdateListener> mUpdateListeners;
     public float mValue;
     public float mVelocity;
-    public static final DynamicAnimation$ViewProperty TRANSLATION_X = new DynamicAnimation$1(Key.TRANSLATION_X);
-    public static final DynamicAnimation$ViewProperty TRANSLATION_Y = new DynamicAnimation$2(Key.TRANSLATION_Y);
-    public static final DynamicAnimation$ViewProperty TRANSLATION_Z = new DynamicAnimation$3(Key.TRANSLATION_Z);
-    public static final DynamicAnimation$ViewProperty SCALE_X = new DynamicAnimation$4(Key.SCALE_X);
-    public static final DynamicAnimation$ViewProperty SCALE_Y = new DynamicAnimation$5(Key.SCALE_Y);
-    public static final DynamicAnimation$ViewProperty ROTATION = new DynamicAnimation$6(Key.ROTATION);
-    public static final DynamicAnimation$ViewProperty ROTATION_X = new DynamicAnimation$7(Key.ROTATION_X);
-    public static final DynamicAnimation$ViewProperty ROTATION_Y = new DynamicAnimation$8(Key.ROTATION_Y);
-    public static final DynamicAnimation$ViewProperty X = new DynamicAnimation$9("x");
-    public static final DynamicAnimation$ViewProperty Y = new DynamicAnimation$10("y");
-    public static final DynamicAnimation$ViewProperty Z = new DynamicAnimation$11("z");
-    public static final DynamicAnimation$ViewProperty ALPHA = new DynamicAnimation$12(Key.ALPHA);
-    public static final DynamicAnimation$ViewProperty SCROLL_X = new DynamicAnimation$13("scrollX");
-    public static final DynamicAnimation$ViewProperty SCROLL_Y = new DynamicAnimation$14("scrollY");
+    public static final ViewProperty TRANSLATION_X = new AnonymousClass1(Key.TRANSLATION_X);
+    public static final ViewProperty TRANSLATION_Y = new AnonymousClass2(Key.TRANSLATION_Y);
+    public static final ViewProperty TRANSLATION_Z = new AnonymousClass3(Key.TRANSLATION_Z);
+    public static final ViewProperty SCALE_X = new AnonymousClass4(Key.SCALE_X);
+    public static final ViewProperty SCALE_Y = new AnonymousClass5(Key.SCALE_Y);
+    public static final ViewProperty ROTATION = new AnonymousClass6(Key.ROTATION);
+    public static final ViewProperty ROTATION_X = new AnonymousClass7(Key.ROTATION_X);
+    public static final ViewProperty ROTATION_Y = new AnonymousClass8(Key.ROTATION_Y);
+    public static final ViewProperty X = new AnonymousClass9("x");
+    public static final ViewProperty Y = new AnonymousClass10("y");
+    public static final ViewProperty Z = new AnonymousClass11("z");
+    public static final ViewProperty ALPHA = new AnonymousClass12(Key.ALPHA);
+    public static final ViewProperty SCROLL_X = new AnonymousClass13("scrollX");
+    public static final ViewProperty SCROLL_Y = new AnonymousClass14("scrollY");
+
+    /* JADX INFO: renamed from: androidx.dynamicanimation.animation.DynamicAnimation$1, reason: invalid class name */
+    public final class AnonymousClass1 extends ViewProperty {
+        public AnonymousClass1(String str) {
+            super(str, null);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ float getValue(View view) {
+            return getValue2(view);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ void setValue(View view, float f) {
+            setValue2(view, f);
+        }
+
+        /* JADX INFO: renamed from: getValue, reason: avoid collision after fix types in other method */
+        public float getValue2(View view) {
+            return view.getTranslationX();
+        }
+
+        /* JADX INFO: renamed from: setValue, reason: avoid collision after fix types in other method */
+        public void setValue2(View view, float f) {
+            view.setTranslationX(f);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.dynamicanimation.animation.DynamicAnimation$10, reason: invalid class name */
+    public final class AnonymousClass10 extends ViewProperty {
+        public AnonymousClass10(String str) {
+            super(str, null);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ float getValue(View view) {
+            return getValue2(view);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ void setValue(View view, float f) {
+            setValue2(view, f);
+        }
+
+        /* JADX INFO: renamed from: getValue, reason: avoid collision after fix types in other method */
+        public float getValue2(View view) {
+            return view.getY();
+        }
+
+        /* JADX INFO: renamed from: setValue, reason: avoid collision after fix types in other method */
+        public void setValue2(View view, float f) {
+            view.setY(f);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.dynamicanimation.animation.DynamicAnimation$11, reason: invalid class name */
+    public final class AnonymousClass11 extends ViewProperty {
+        public AnonymousClass11(String str) {
+            super(str, null);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ float getValue(View view) {
+            return getValue2(view);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ void setValue(View view, float f) {
+            setValue2(view, f);
+        }
+
+        /* JADX INFO: renamed from: getValue, reason: avoid collision after fix types in other method */
+        public float getValue2(View view) {
+            return ViewCompat.getZ(view);
+        }
+
+        /* JADX INFO: renamed from: setValue, reason: avoid collision after fix types in other method */
+        public void setValue2(View view, float f) {
+            ViewCompat.setZ(view, f);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.dynamicanimation.animation.DynamicAnimation$12, reason: invalid class name */
+    public final class AnonymousClass12 extends ViewProperty {
+        public AnonymousClass12(String str) {
+            super(str, null);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ float getValue(View view) {
+            return getValue2(view);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ void setValue(View view, float f) {
+            setValue2(view, f);
+        }
+
+        /* JADX INFO: renamed from: getValue, reason: avoid collision after fix types in other method */
+        public float getValue2(View view) {
+            return view.getAlpha();
+        }
+
+        /* JADX INFO: renamed from: setValue, reason: avoid collision after fix types in other method */
+        public void setValue2(View view, float f) {
+            view.setAlpha(f);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.dynamicanimation.animation.DynamicAnimation$13, reason: invalid class name */
+    public final class AnonymousClass13 extends ViewProperty {
+        public AnonymousClass13(String str) {
+            super(str, null);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ float getValue(View view) {
+            return getValue2(view);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ void setValue(View view, float f) {
+            setValue2(view, f);
+        }
+
+        /* JADX INFO: renamed from: getValue, reason: avoid collision after fix types in other method */
+        public float getValue2(View view) {
+            return view.getScrollX();
+        }
+
+        /* JADX INFO: renamed from: setValue, reason: avoid collision after fix types in other method */
+        public void setValue2(View view, float f) {
+            view.setScrollX((int) f);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.dynamicanimation.animation.DynamicAnimation$14, reason: invalid class name */
+    public final class AnonymousClass14 extends ViewProperty {
+        public AnonymousClass14(String str) {
+            super(str, null);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ float getValue(View view) {
+            return getValue2(view);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ void setValue(View view, float f) {
+            setValue2(view, f);
+        }
+
+        /* JADX INFO: renamed from: getValue, reason: avoid collision after fix types in other method */
+        public float getValue2(View view) {
+            return view.getScrollY();
+        }
+
+        /* JADX INFO: renamed from: setValue, reason: avoid collision after fix types in other method */
+        public void setValue2(View view, float f) {
+            view.setScrollY((int) f);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.dynamicanimation.animation.DynamicAnimation$15, reason: invalid class name */
+    public class AnonymousClass15 extends FloatPropertyCompat {
+        public final /* synthetic */ FloatValueHolder val$floatValueHolder;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass15(String str, FloatValueHolder floatValueHolder) {
+            super(str);
+            this.val$floatValueHolder = floatValueHolder;
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public float getValue(Object obj) {
+            return this.val$floatValueHolder.getValue();
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public void setValue(Object obj, float f) {
+            this.val$floatValueHolder.setValue(f);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.dynamicanimation.animation.DynamicAnimation$2, reason: invalid class name */
+    public final class AnonymousClass2 extends ViewProperty {
+        public AnonymousClass2(String str) {
+            super(str, null);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ float getValue(View view) {
+            return getValue2(view);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ void setValue(View view, float f) {
+            setValue2(view, f);
+        }
+
+        /* JADX INFO: renamed from: getValue, reason: avoid collision after fix types in other method */
+        public float getValue2(View view) {
+            return view.getTranslationY();
+        }
+
+        /* JADX INFO: renamed from: setValue, reason: avoid collision after fix types in other method */
+        public void setValue2(View view, float f) {
+            view.setTranslationY(f);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.dynamicanimation.animation.DynamicAnimation$3, reason: invalid class name */
+    public final class AnonymousClass3 extends ViewProperty {
+        public AnonymousClass3(String str) {
+            super(str, null);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ float getValue(View view) {
+            return getValue2(view);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ void setValue(View view, float f) {
+            setValue2(view, f);
+        }
+
+        /* JADX INFO: renamed from: getValue, reason: avoid collision after fix types in other method */
+        public float getValue2(View view) {
+            return ViewCompat.getTranslationZ(view);
+        }
+
+        /* JADX INFO: renamed from: setValue, reason: avoid collision after fix types in other method */
+        public void setValue2(View view, float f) {
+            ViewCompat.setTranslationZ(view, f);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.dynamicanimation.animation.DynamicAnimation$4, reason: invalid class name */
+    public final class AnonymousClass4 extends ViewProperty {
+        public AnonymousClass4(String str) {
+            super(str, null);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ float getValue(View view) {
+            return getValue2(view);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ void setValue(View view, float f) {
+            setValue2(view, f);
+        }
+
+        /* JADX INFO: renamed from: getValue, reason: avoid collision after fix types in other method */
+        public float getValue2(View view) {
+            return view.getScaleX();
+        }
+
+        /* JADX INFO: renamed from: setValue, reason: avoid collision after fix types in other method */
+        public void setValue2(View view, float f) {
+            view.setScaleX(f);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.dynamicanimation.animation.DynamicAnimation$5, reason: invalid class name */
+    public final class AnonymousClass5 extends ViewProperty {
+        public AnonymousClass5(String str) {
+            super(str, null);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ float getValue(View view) {
+            return getValue2(view);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ void setValue(View view, float f) {
+            setValue2(view, f);
+        }
+
+        /* JADX INFO: renamed from: getValue, reason: avoid collision after fix types in other method */
+        public float getValue2(View view) {
+            return view.getScaleY();
+        }
+
+        /* JADX INFO: renamed from: setValue, reason: avoid collision after fix types in other method */
+        public void setValue2(View view, float f) {
+            view.setScaleY(f);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.dynamicanimation.animation.DynamicAnimation$6, reason: invalid class name */
+    public final class AnonymousClass6 extends ViewProperty {
+        public AnonymousClass6(String str) {
+            super(str, null);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ float getValue(View view) {
+            return getValue2(view);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ void setValue(View view, float f) {
+            setValue2(view, f);
+        }
+
+        /* JADX INFO: renamed from: getValue, reason: avoid collision after fix types in other method */
+        public float getValue2(View view) {
+            return view.getRotation();
+        }
+
+        /* JADX INFO: renamed from: setValue, reason: avoid collision after fix types in other method */
+        public void setValue2(View view, float f) {
+            view.setRotation(f);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.dynamicanimation.animation.DynamicAnimation$7, reason: invalid class name */
+    public final class AnonymousClass7 extends ViewProperty {
+        public AnonymousClass7(String str) {
+            super(str, null);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ float getValue(View view) {
+            return getValue2(view);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ void setValue(View view, float f) {
+            setValue2(view, f);
+        }
+
+        /* JADX INFO: renamed from: getValue, reason: avoid collision after fix types in other method */
+        public float getValue2(View view) {
+            return view.getRotationX();
+        }
+
+        /* JADX INFO: renamed from: setValue, reason: avoid collision after fix types in other method */
+        public void setValue2(View view, float f) {
+            view.setRotationX(f);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.dynamicanimation.animation.DynamicAnimation$8, reason: invalid class name */
+    public final class AnonymousClass8 extends ViewProperty {
+        public AnonymousClass8(String str) {
+            super(str, null);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ float getValue(View view) {
+            return getValue2(view);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ void setValue(View view, float f) {
+            setValue2(view, f);
+        }
+
+        /* JADX INFO: renamed from: getValue, reason: avoid collision after fix types in other method */
+        public float getValue2(View view) {
+            return view.getRotationY();
+        }
+
+        /* JADX INFO: renamed from: setValue, reason: avoid collision after fix types in other method */
+        public void setValue2(View view, float f) {
+            view.setRotationY(f);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.dynamicanimation.animation.DynamicAnimation$9, reason: invalid class name */
+    public final class AnonymousClass9 extends ViewProperty {
+        public AnonymousClass9(String str) {
+            super(str, null);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ float getValue(View view) {
+            return getValue2(view);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public /* bridge */ /* synthetic */ void setValue(View view, float f) {
+            setValue2(view, f);
+        }
+
+        /* JADX INFO: renamed from: getValue, reason: avoid collision after fix types in other method */
+        public float getValue2(View view) {
+            return view.getX();
+        }
+
+        /* JADX INFO: renamed from: setValue, reason: avoid collision after fix types in other method */
+        public void setValue2(View view, float f) {
+            view.setX(f);
+        }
+    }
+
+    public class MassState {
+        public float mValue;
+        public float mVelocity;
+    }
+
+    public interface OnAnimationEndListener {
+        void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2);
+    }
+
+    public interface OnAnimationUpdateListener {
+        void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2);
+    }
+
+    public abstract class ViewProperty extends FloatPropertyCompat<View> {
+        public /* synthetic */ ViewProperty(String str, AnonymousClass1 anonymousClass1) {
+            this(str);
+        }
+
+        private ViewProperty(String str) {
+            super(str);
+        }
+    }
 
     public DynamicAnimation(FloatValueHolder floatValueHolder) {
         this.mVelocity = 0.0f;
@@ -65,23 +488,23 @@ public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements
         this.mEndListeners = new ArrayList<>();
         this.mUpdateListeners = new ArrayList<>();
         this.mTarget = null;
-        this.mProperty = new DynamicAnimation$15(this, "FloatValueHolder", floatValueHolder);
+        this.mProperty = new AnonymousClass15("FloatValueHolder", floatValueHolder);
         this.mMinVisibleChange = 1.0f;
     }
 
-    public T addEndListener(DynamicAnimation$OnAnimationEndListener dynamicAnimation$OnAnimationEndListener) {
-        if (!this.mEndListeners.contains(dynamicAnimation$OnAnimationEndListener)) {
-            this.mEndListeners.add(dynamicAnimation$OnAnimationEndListener);
+    public T addEndListener(OnAnimationEndListener onAnimationEndListener) {
+        if (!this.mEndListeners.contains(onAnimationEndListener)) {
+            this.mEndListeners.add(onAnimationEndListener);
         }
         return this;
     }
 
-    public T addUpdateListener(DynamicAnimation$OnAnimationUpdateListener dynamicAnimation$OnAnimationUpdateListener) {
+    public T addUpdateListener(OnAnimationUpdateListener onAnimationUpdateListener) {
         if (isRunning()) {
             throw new UnsupportedOperationException("Error: Update listeners must be added beforethe animation.");
         }
-        if (!this.mUpdateListeners.contains(dynamicAnimation$OnAnimationUpdateListener)) {
-            this.mUpdateListeners.add(dynamicAnimation$OnAnimationUpdateListener);
+        if (!this.mUpdateListeners.contains(onAnimationUpdateListener)) {
+            this.mUpdateListeners.add(onAnimationUpdateListener);
         }
         return this;
     }
@@ -96,8 +519,8 @@ public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements
         }
     }
 
-    @Override // androidx.dynamicanimation.animation.AnimationHandler$AnimationFrameCallback
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @Override // androidx.dynamicanimation.animation.AnimationHandler.AnimationFrameCallback
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public boolean doAnimationFrame(long j) {
         long j2 = this.mLastFrameTime;
         if (j2 == 0) {
@@ -151,8 +574,8 @@ public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements
         return this.mRunning;
     }
 
-    public void removeEndListener(DynamicAnimation$OnAnimationEndListener dynamicAnimation$OnAnimationEndListener) {
-        removeEntry(this.mEndListeners, dynamicAnimation$OnAnimationEndListener);
+    public void removeEndListener(OnAnimationEndListener onAnimationEndListener) {
+        removeEntry(this.mEndListeners, onAnimationEndListener);
     }
 
     private static <T> void removeEntry(ArrayList<T> arrayList, T t) {
@@ -170,8 +593,8 @@ public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements
         }
     }
 
-    public void removeUpdateListener(DynamicAnimation$OnAnimationUpdateListener dynamicAnimation$OnAnimationUpdateListener) {
-        removeEntry(this.mUpdateListeners, dynamicAnimation$OnAnimationUpdateListener);
+    public void removeUpdateListener(OnAnimationUpdateListener onAnimationUpdateListener) {
+        removeEntry(this.mUpdateListeners, onAnimationUpdateListener);
     }
 
     public T setMaxValue(float f) {

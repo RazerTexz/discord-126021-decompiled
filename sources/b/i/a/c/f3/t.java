@@ -3,7 +3,8 @@ package b.i.a.c.f3;
 import android.text.TextUtils;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
+import androidx.core.app.NotificationCompat;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -14,13 +15,51 @@ import org.webrtc.MediaStreamTrack;
 /* JADX INFO: compiled from: MimeTypes.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class t {
-    public static final ArrayList<t$a> a = new ArrayList<>();
+    public static final ArrayList<a> a = new ArrayList<>();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final Pattern f976b = Pattern.compile("^mp4a\\.([a-zA-Z0-9]{2})(?:\\.([0-9]{1,2}))?$");
 
+    /* JADX INFO: compiled from: MimeTypes.java */
+    public final class a {
+    }
+
+    /* JADX INFO: compiled from: MimeTypes.java */
+    @VisibleForTesting
+    public final class b {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f977b;
+
+        public b(int i, int i2) {
+            this.a = i;
+            this.f977b = i2;
+        }
+
+        public int a() {
+            int i = this.f977b;
+            if (i == 2) {
+                return 10;
+            }
+            if (i == 5) {
+                return 11;
+            }
+            if (i == 29) {
+                return 12;
+            }
+            if (i == 42) {
+                return 16;
+            }
+            if (i != 22) {
+                return i != 23 ? 0 : 15;
+            }
+            return BasicMeasure.EXACTLY;
+        }
+    }
+
     public static boolean a(@Nullable String str, @Nullable String str2) {
-        t$b t_bE;
+        b bVarE;
         int iA;
         if (str == null) {
             return false;
@@ -38,24 +77,24 @@ public final class t {
             case "audio/g711-mlaw":
                 return true;
             case "audio/mp4a-latm":
-                return (str2 == null || (t_bE = e(str2)) == null || (iA = t_bE.a()) == 0 || iA == 16) ? false : true;
+                return (str2 == null || (bVarE = e(str2)) == null || (iA = bVarE.a()) == 0 || iA == 16) ? false : true;
             default:
                 return false;
         }
     }
 
     public static int b(String str, @Nullable String str2) {
-        t$b t_bE;
+        b bVarE;
         switch (str) {
             case "audio/eac3-joc":
                 return 18;
             case "audio/vnd.dts":
                 return 7;
             case "audio/mp4a-latm":
-                if (str2 == null || (t_bE = e(str2)) == null) {
+                if (str2 == null || (bVarE = e(str2)) == null) {
                     return 0;
                 }
-                return t_bE.a();
+                return bVarE.a();
             case "audio/ac3":
                 return 5;
             case "audio/ac4":
@@ -75,7 +114,7 @@ public final class t {
 
     @Nullable
     public static String c(@Nullable String str) {
-        t$b t_bE;
+        b bVarE;
         String strD = null;
         if (str == null) {
             return null;
@@ -100,8 +139,8 @@ public final class t {
             return "video/x-vnd.on2.vp8";
         }
         if (strU1.startsWith("mp4a")) {
-            if (strU1.startsWith("mp4a.") && (t_bE = e(strU1)) != null) {
-                strD = d(t_bE.a);
+            if (strU1.startsWith("mp4a.") && (bVarE = e(strU1)) != null) {
+                strD = d(bVarE.a);
             }
             return strD == null ? "audio/mp4a-latm" : strD;
         }
@@ -229,7 +268,7 @@ public final class t {
 
     @Nullable
     @VisibleForTesting
-    public static t$b e(String str) {
+    public static b e(String str) {
         Matcher matcher = f976b.matcher(str);
         if (!matcher.matches()) {
             return null;
@@ -238,7 +277,7 @@ public final class t {
         Objects.requireNonNull(strGroup);
         String strGroup2 = matcher.group(2);
         try {
-            return new t$b(Integer.parseInt(strGroup, 16), strGroup2 != null ? Integer.parseInt(strGroup2) : 0);
+            return new b(Integer.parseInt(strGroup, 16), strGroup2 != null ? Integer.parseInt(strGroup2) : 0);
         } catch (NumberFormatException unused) {
             return null;
         }
@@ -290,7 +329,7 @@ public final class t {
     }
 
     public static boolean i(@Nullable String str) {
-        return NotificationCompat$MessagingStyle$Message.KEY_TEXT.equals(f(str)) || "application/cea-608".equals(str) || "application/cea-708".equals(str) || "application/x-mp4-cea-608".equals(str) || "application/x-subrip".equals(str) || "application/ttml+xml".equals(str) || "application/x-quicktime-tx3g".equals(str) || "application/x-mp4-vtt".equals(str) || "application/x-rawcc".equals(str) || "application/vobsub".equals(str) || "application/pgs".equals(str) || "application/dvbsubs".equals(str);
+        return NotificationCompat.MessagingStyle.Message.KEY_TEXT.equals(f(str)) || "application/cea-608".equals(str) || "application/cea-708".equals(str) || "application/x-mp4-cea-608".equals(str) || "application/x-subrip".equals(str) || "application/ttml+xml".equals(str) || "application/x-quicktime-tx3g".equals(str) || "application/x-mp4-vtt".equals(str) || "application/x-rawcc".equals(str) || "application/vobsub".equals(str) || "application/pgs".equals(str) || "application/dvbsubs".equals(str);
     }
 
     public static boolean j(@Nullable String str) {

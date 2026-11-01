@@ -14,6 +14,20 @@ public class d implements Runnable {
     public final /* synthetic */ Handler l;
     public final /* synthetic */ k m;
 
+    /* JADX INFO: compiled from: CameraUtils.java */
+    public class a implements Runnable {
+        public final /* synthetic */ File j;
+
+        public a(File file) {
+            this.j = file;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            d.this.m.a(this.j);
+        }
+    }
+
     public d(byte[] bArr, File file, Handler handler, k kVar) {
         this.j = bArr;
         this.k = file;
@@ -47,6 +61,6 @@ public class d implements Runnable {
         } else {
             file = null;
         }
-        this.l.post(new d$a(this, file));
+        this.l.post(new a(file));
     }
 }

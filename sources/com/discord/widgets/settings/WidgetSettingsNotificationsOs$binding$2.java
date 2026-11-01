@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetSettingsNotificationOsBinding;
 import com.discord.views.CheckedSetting;
 import d0.z.d.k;
@@ -28,17 +28,17 @@ public final /* synthetic */ class WidgetSettingsNotificationsOs$binding$2 exten
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSettingsNotificationOsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.settings_inapp_notifs_switch;
-        CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R$id.settings_inapp_notifs_switch);
+        int i = R.id.settings_inapp_notifs_switch;
+        CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R.id.settings_inapp_notifs_switch);
         if (checkedSetting != null) {
-            i = R$id.settings_notification_os;
-            RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R$id.settings_notification_os);
+            i = R.id.settings_notification_os;
+            RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.settings_notification_os);
             if (relativeLayout != null) {
-                i = R$id.settings_notification_os_label;
-                TextView textView = (TextView) view.findViewById(R$id.settings_notification_os_label);
+                i = R.id.settings_notification_os_label;
+                TextView textView = (TextView) view.findViewById(R.id.settings_notification_os_label);
                 if (textView != null) {
-                    i = R$id.settings_notification_switch;
-                    CheckedSetting checkedSetting2 = (CheckedSetting) view.findViewById(R$id.settings_notification_switch);
+                    i = R.id.settings_notification_switch;
+                    CheckedSetting checkedSetting2 = (CheckedSetting) view.findViewById(R.id.settings_notification_switch);
                     if (checkedSetting2 != null) {
                         return new WidgetSettingsNotificationOsBinding((LinearLayout) view, checkedSetting, relativeLayout, textView, checkedSetting2);
                     }

@@ -75,11 +75,11 @@ public final class l extends w implements d0.e0.p.d.m0.e.a.k0.j {
     @Override // d0.e0.p.d.m0.e.a.k0.j
     public List<d0.e0.p.d.m0.e.a.k0.x> getTypeArguments() {
         List<Type> parameterizedTypeArguments = b.getParameterizedTypeArguments(getReflectType());
-        w$a w_a = w.a;
+        w.a aVar = w.a;
         ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(parameterizedTypeArguments, 10));
         Iterator<T> it = parameterizedTypeArguments.iterator();
         while (it.hasNext()) {
-            arrayList.add(w_a.create((Type) it.next()));
+            arrayList.add(aVar.create((Type) it.next()));
         }
         return arrayList;
     }

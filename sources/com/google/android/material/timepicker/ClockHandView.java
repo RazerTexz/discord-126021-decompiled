@@ -1,5 +1,7 @@
 package com.google.android.material.timepicker;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -17,10 +19,7 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.core.view.ViewCompat;
-import com.google.android.material.R$attr;
-import com.google.android.material.R$dimen;
-import com.google.android.material.R$style;
-import com.google.android.material.R$styleable;
+import com.google.android.material.R;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -35,7 +34,7 @@ public class ClockHandView extends View {
     public float n;
     public boolean o;
     public int p;
-    public final List<ClockHandView$OnRotateListener> q;
+    public final List<OnRotateListener> q;
     public final int r;
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
@@ -51,26 +50,57 @@ public class ClockHandView extends View {
     public boolean f3075x;
 
     /* JADX INFO: renamed from: y, reason: collision with root package name */
-    public ClockHandView$OnActionUpListener f3076y;
+    public OnActionUpListener f3076y;
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
     public double f3077z;
 
+    public interface OnActionUpListener {
+        void onActionUp(@FloatRange(from = 0.0d, to = 360.0d) float f, boolean z2);
+    }
+
+    public interface OnRotateListener {
+        void onRotate(@FloatRange(from = 0.0d, to = 360.0d) float f, boolean z2);
+    }
+
+    public class a implements ValueAnimator.AnimatorUpdateListener {
+        public a() {
+        }
+
+        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            ClockHandView clockHandView = ClockHandView.this;
+            int i = ClockHandView.j;
+            clockHandView.c(fFloatValue, true);
+        }
+    }
+
+    public class b extends AnimatorListenerAdapter {
+        public b(ClockHandView clockHandView) {
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationCancel(Animator animator) {
+            animator.end();
+        }
+    }
+
     /* JADX WARN: Illegal instructions before constructor call */
     public ClockHandView(Context context, @Nullable AttributeSet attributeSet) {
-        int i = R$attr.materialClockStyle;
+        int i = R.attr.materialClockStyle;
         super(context, attributeSet, i);
         this.q = new ArrayList();
         Paint paint = new Paint();
         this.t = paint;
         this.u = new RectF();
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$styleable.ClockHandView, i, R$style.Widget_MaterialComponents_TimePicker_Clock);
-        this.A = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$styleable.ClockHandView_materialCircleRadius, 0);
-        this.r = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$styleable.ClockHandView_selectorSize, 0);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.ClockHandView, i, R.style.Widget_MaterialComponents_TimePicker_Clock);
+        this.A = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.ClockHandView_materialCircleRadius, 0);
+        this.r = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.ClockHandView_selectorSize, 0);
         Resources resources = getResources();
-        this.v = resources.getDimensionPixelSize(R$dimen.material_clock_hand_stroke_width);
-        this.f3074s = resources.getDimensionPixelSize(R$dimen.material_clock_hand_center_dot_radius);
-        int color = typedArrayObtainStyledAttributes.getColor(R$styleable.ClockHandView_clockHandColor, 0);
+        this.v = resources.getDimensionPixelSize(R.dimen.material_clock_hand_stroke_width);
+        this.f3074s = resources.getDimensionPixelSize(R.dimen.material_clock_hand_center_dot_radius);
+        int color = typedArrayObtainStyledAttributes.getColor(R.styleable.ClockHandView_clockHandColor, 0);
         paint.setAntiAlias(true);
         paint.setColor(color);
         b(0.0f, false);
@@ -106,8 +136,8 @@ public class ClockHandView extends View {
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(((Float) pair.first).floatValue(), ((Float) pair.second).floatValue());
         this.k = valueAnimatorOfFloat;
         valueAnimatorOfFloat.setDuration(200L);
-        this.k.addUpdateListener(new ClockHandView$a(this));
-        this.k.addListener(new ClockHandView$b(this));
+        this.k.addUpdateListener(new a());
+        this.k.addListener(new b(this));
         this.k.start();
     }
 
@@ -121,7 +151,7 @@ public class ClockHandView extends View {
         RectF rectF = this.u;
         int i = this.r;
         rectF.set(fCos - i, fSin - i, fCos + i, fSin + i);
-        Iterator<ClockHandView$OnRotateListener> it = this.q.iterator();
+        Iterator<OnRotateListener> it = this.q.iterator();
         while (it.hasNext()) {
             it.next().onRotate(f2, z2);
         }
@@ -159,7 +189,7 @@ public class ClockHandView extends View {
         boolean z2;
         boolean z3;
         boolean z4;
-        ClockHandView$OnActionUpListener clockHandView$OnActionUpListener;
+        OnActionUpListener onActionUpListener;
         int actionMasked = motionEvent.getActionMasked();
         float x2 = motionEvent.getX();
         float y2 = motionEvent.getY();
@@ -199,8 +229,8 @@ public class ClockHandView extends View {
         }
         boolean z8 = z5 | z6;
         this.f3075x = z8;
-        if (z8 && z2 && (clockHandView$OnActionUpListener = this.f3076y) != null) {
-            clockHandView$OnActionUpListener.onActionUp(a(x2, y2), this.o);
+        if (z8 && z2 && (onActionUpListener = this.f3076y) != null) {
+            onActionUpListener.onActionUp(a(x2, y2), this.o);
         }
         return true;
     }

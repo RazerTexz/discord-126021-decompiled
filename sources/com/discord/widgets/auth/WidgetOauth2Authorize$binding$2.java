@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetOauthAuthorizeBinding;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
@@ -32,65 +32,65 @@ public final /* synthetic */ class WidgetOauth2Authorize$binding$2 extends k imp
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetOauthAuthorizeBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.oauth_authorize_age_notice;
-        TextView textView = (TextView) view.findViewById(R$id.oauth_authorize_age_notice);
+        int i = R.id.oauth_authorize_age_notice;
+        TextView textView = (TextView) view.findViewById(R.id.oauth_authorize_age_notice);
         if (textView != null) {
-            i = R$id.oauth_authorize_age_notice_icon;
-            ImageView imageView = (ImageView) view.findViewById(R$id.oauth_authorize_age_notice_icon);
+            i = R.id.oauth_authorize_age_notice_icon;
+            ImageView imageView = (ImageView) view.findViewById(R.id.oauth_authorize_age_notice_icon);
             if (imageView != null) {
-                i = R$id.oauth_authorize_application_icon;
-                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.oauth_authorize_application_icon);
+                i = R.id.oauth_authorize_application_icon;
+                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.oauth_authorize_application_icon);
                 if (simpleDraweeView != null) {
-                    i = R$id.oauth_authorize_application_name;
-                    TextView textView2 = (TextView) view.findViewById(R$id.oauth_authorize_application_name);
+                    i = R.id.oauth_authorize_application_name;
+                    TextView textView2 = (TextView) view.findViewById(R.id.oauth_authorize_application_name);
                     if (textView2 != null) {
-                        i = R$id.oauth_authorize_card;
-                        MaterialCardView materialCardView = (MaterialCardView) view.findViewById(R$id.oauth_authorize_card);
+                        i = R.id.oauth_authorize_card;
+                        MaterialCardView materialCardView = (MaterialCardView) view.findViewById(R.id.oauth_authorize_card);
                         if (materialCardView != null) {
-                            i = R$id.oauth_authorize_connect_label;
-                            TextView textView3 = (TextView) view.findViewById(R$id.oauth_authorize_connect_label);
+                            i = R.id.oauth_authorize_connect_label;
+                            TextView textView3 = (TextView) view.findViewById(R.id.oauth_authorize_connect_label);
                             if (textView3 != null) {
-                                i = R$id.oauth_authorize_content;
-                                LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.oauth_authorize_content);
+                                i = R.id.oauth_authorize_content;
+                                LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.oauth_authorize_content);
                                 if (linearLayout != null) {
-                                    i = R$id.oauth_authorize_deny;
-                                    MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.oauth_authorize_deny);
+                                    i = R.id.oauth_authorize_deny;
+                                    MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.oauth_authorize_deny);
                                     if (materialButton != null) {
-                                        i = R$id.oauth_authorize_grant;
-                                        MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.oauth_authorize_grant);
+                                        i = R.id.oauth_authorize_grant;
+                                        MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.oauth_authorize_grant);
                                         if (materialButton2 != null) {
-                                            i = R$id.oauth_authorize_loading;
-                                            LinearLayout linearLayout2 = (LinearLayout) view.findViewById(R$id.oauth_authorize_loading);
+                                            i = R.id.oauth_authorize_loading;
+                                            LinearLayout linearLayout2 = (LinearLayout) view.findViewById(R.id.oauth_authorize_loading);
                                             if (linearLayout2 != null) {
-                                                i = R$id.oauth_authorize_loading_cancel;
-                                                MaterialButton materialButton3 = (MaterialButton) view.findViewById(R$id.oauth_authorize_loading_cancel);
+                                                i = R.id.oauth_authorize_loading_cancel;
+                                                MaterialButton materialButton3 = (MaterialButton) view.findViewById(R.id.oauth_authorize_loading_cancel);
                                                 if (materialButton3 != null) {
-                                                    i = R$id.oauth_authorize_logo;
-                                                    ImageView imageView2 = (ImageView) view.findViewById(R$id.oauth_authorize_logo);
+                                                    i = R.id.oauth_authorize_logo;
+                                                    ImageView imageView2 = (ImageView) view.findViewById(R.id.oauth_authorize_logo);
                                                     if (imageView2 != null) {
-                                                        i = R$id.oauth_authorize_not_supported;
-                                                        LinearLayout linearLayout3 = (LinearLayout) view.findViewById(R$id.oauth_authorize_not_supported);
+                                                        i = R.id.oauth_authorize_not_supported;
+                                                        LinearLayout linearLayout3 = (LinearLayout) view.findViewById(R.id.oauth_authorize_not_supported);
                                                         if (linearLayout3 != null) {
-                                                            i = R$id.oauth_authorize_permissions_label_tv;
-                                                            TextView textView4 = (TextView) view.findViewById(R$id.oauth_authorize_permissions_label_tv);
+                                                            i = R.id.oauth_authorize_permissions_label_tv;
+                                                            TextView textView4 = (TextView) view.findViewById(R.id.oauth_authorize_permissions_label_tv);
                                                             if (textView4 != null) {
-                                                                i = R$id.oauth_authorize_permissions_list;
-                                                                RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.oauth_authorize_permissions_list);
+                                                                i = R.id.oauth_authorize_permissions_list;
+                                                                RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.oauth_authorize_permissions_list);
                                                                 if (recyclerView != null) {
-                                                                    i = R$id.oauth_authorize_security_notice;
-                                                                    TextView textView5 = (TextView) view.findViewById(R$id.oauth_authorize_security_notice);
+                                                                    i = R.id.oauth_authorize_security_notice;
+                                                                    TextView textView5 = (TextView) view.findViewById(R.id.oauth_authorize_security_notice);
                                                                     if (textView5 != null) {
-                                                                        i = R$id.oauth_authorize_security_notice_icon;
-                                                                        ImageView imageView3 = (ImageView) view.findViewById(R$id.oauth_authorize_security_notice_icon);
+                                                                        i = R.id.oauth_authorize_security_notice_icon;
+                                                                        ImageView imageView3 = (ImageView) view.findViewById(R.id.oauth_authorize_security_notice_icon);
                                                                         if (imageView3 != null) {
-                                                                            i = R$id.oauth_authorize_unsupported_browser;
-                                                                            MaterialButton materialButton4 = (MaterialButton) view.findViewById(R$id.oauth_authorize_unsupported_browser);
+                                                                            i = R.id.oauth_authorize_unsupported_browser;
+                                                                            MaterialButton materialButton4 = (MaterialButton) view.findViewById(R.id.oauth_authorize_unsupported_browser);
                                                                             if (materialButton4 != null) {
-                                                                                i = R$id.oauth_authorize_unsupported_cancel;
-                                                                                MaterialButton materialButton5 = (MaterialButton) view.findViewById(R$id.oauth_authorize_unsupported_cancel);
+                                                                                i = R.id.oauth_authorize_unsupported_cancel;
+                                                                                MaterialButton materialButton5 = (MaterialButton) view.findViewById(R.id.oauth_authorize_unsupported_cancel);
                                                                                 if (materialButton5 != null) {
-                                                                                    i = R$id.oauth_authorize_user_icon;
-                                                                                    SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) view.findViewById(R$id.oauth_authorize_user_icon);
+                                                                                    i = R.id.oauth_authorize_user_icon;
+                                                                                    SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) view.findViewById(R.id.oauth_authorize_user_icon);
                                                                                     if (simpleDraweeView2 != null) {
                                                                                         return new WidgetOauthAuthorizeBinding((CoordinatorLayout) view, textView, imageView, simpleDraweeView, textView2, materialCardView, textView3, linearLayout, materialButton, materialButton2, linearLayout2, materialButton3, imageView2, linearLayout3, textView4, recyclerView, textView5, imageView3, materialButton4, materialButton5, simpleDraweeView2);
                                                                                     }

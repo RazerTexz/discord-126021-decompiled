@@ -1,8 +1,5 @@
 package d0.e0.p.d.m0.f;
 
-import d0.e0.p.d.m0.i.g$c;
-import d0.e0.p.d.m0.i.g$d;
-import d0.e0.p.d.m0.i.g$d$a;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -10,11 +7,12 @@ import java.util.Collections;
 import java.util.List;
 import kotlin.reflect.jvm.internal.impl.protobuf.CodedOutputStream;
 import kotlin.reflect.jvm.internal.impl.protobuf.InvalidProtocolBufferException;
+import kotlin.reflect.jvm.internal.impl.protobuf.UninitializedMessageException;
 
 /* JADX INFO: compiled from: ProtoBuf.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class r extends g$d<r> implements d0.e0.p.d.m0.i.o {
-    private List<b> annotation_;
+public final class r extends d0.e0.p.d.m0.i.g.d<r> implements d0.e0.p.d.m0.i.o {
+    private List<d0.e0.p.d.m0.f.b> annotation_;
     private int bitField0_;
     private int expandedTypeId_;
     private q expandedType_;
@@ -28,7 +26,265 @@ public final class r extends g$d<r> implements d0.e0.p.d.m0.i.o {
     private q underlyingType_;
     private final d0.e0.p.d.m0.i.c unknownFields;
     private List<Integer> versionRequirement_;
-    public static d0.e0.p.d.m0.i.p<r> k = new r$a();
+    public static d0.e0.p.d.m0.i.p<r> k = new a();
+
+    /* JADX INFO: compiled from: ProtoBuf.java */
+    public final class a extends d0.e0.p.d.m0.i.b<r> {
+        @Override // d0.e0.p.d.m0.i.p
+        public /* bridge */ /* synthetic */ Object parsePartialFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws InvalidProtocolBufferException {
+            return parsePartialFrom(dVar, eVar);
+        }
+
+        @Override // d0.e0.p.d.m0.i.p
+        public r parsePartialFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws InvalidProtocolBufferException {
+            return new r(dVar, eVar, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: ProtoBuf.java */
+    public final class b extends d0.e0.p.d.m0.i.g.c<r, b> implements d0.e0.p.d.m0.i.o {
+        public int m;
+        public int o;
+        public int r;
+        public int t;
+        public int n = 6;
+        public List<s> p = Collections.emptyList();
+        public q q = q.getDefaultInstance();
+
+        /* JADX INFO: renamed from: s, reason: collision with root package name */
+        public q f3407s = q.getDefaultInstance();
+        public List<d0.e0.p.d.m0.f.b> u = Collections.emptyList();
+        public List<Integer> v = Collections.emptyList();
+
+        @Override // d0.e0.p.d.m0.i.n.a
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n build() {
+            return build();
+        }
+
+        public r buildPartial() {
+            r rVar = new r(this, null);
+            int i = this.m;
+            int i2 = (i & 1) != 1 ? 0 : 1;
+            r.h(rVar, this.n);
+            if ((i & 2) == 2) {
+                i2 |= 2;
+            }
+            r.i(rVar, this.o);
+            if ((this.m & 4) == 4) {
+                this.p = Collections.unmodifiableList(this.p);
+                this.m &= -5;
+            }
+            r.k(rVar, this.p);
+            if ((i & 8) == 8) {
+                i2 |= 4;
+            }
+            r.l(rVar, this.q);
+            if ((i & 16) == 16) {
+                i2 |= 8;
+            }
+            r.m(rVar, this.r);
+            if ((i & 32) == 32) {
+                i2 |= 16;
+            }
+            r.n(rVar, this.f3407s);
+            if ((i & 64) == 64) {
+                i2 |= 32;
+            }
+            r.o(rVar, this.t);
+            if ((this.m & 128) == 128) {
+                this.u = Collections.unmodifiableList(this.u);
+                this.m &= -129;
+            }
+            r.q(rVar, this.u);
+            if ((this.m & 256) == 256) {
+                this.v = Collections.unmodifiableList(this.v);
+                this.m &= -257;
+            }
+            r.s(rVar, this.v);
+            r.t(rVar, i2);
+            return rVar;
+        }
+
+        public b mergeExpandedType(q qVar) {
+            if ((this.m & 32) != 32 || this.f3407s == q.getDefaultInstance()) {
+                this.f3407s = qVar;
+            } else {
+                this.f3407s = q.newBuilder(this.f3407s).mergeFrom(qVar).buildPartial();
+            }
+            this.m |= 32;
+            return this;
+        }
+
+        @Override // d0.e0.p.d.m0.i.a.AbstractC0556a, d0.e0.p.d.m0.i.n.a
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.a.AbstractC0556a mergeFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws IOException {
+            return mergeFrom(dVar, eVar);
+        }
+
+        public b mergeUnderlyingType(q qVar) {
+            if ((this.m & 8) != 8 || this.q == q.getDefaultInstance()) {
+                this.q = qVar;
+            } else {
+                this.q = q.newBuilder(this.q).mergeFrom(qVar).buildPartial();
+            }
+            this.m |= 8;
+            return this;
+        }
+
+        @Override // d0.e0.p.d.m0.i.g.b
+        /* JADX INFO: renamed from: clone */
+        public /* bridge */ /* synthetic */ Object mo88clone() throws CloneNotSupportedException {
+            return clone();
+        }
+
+        public b setExpandedTypeId(int i) {
+            this.m |= 64;
+            this.t = i;
+            return this;
+        }
+
+        public b setFlags(int i) {
+            this.m |= 1;
+            this.n = i;
+            return this;
+        }
+
+        public b setName(int i) {
+            this.m |= 2;
+            this.o = i;
+            return this;
+        }
+
+        public b setUnderlyingTypeId(int i) {
+            this.m |= 16;
+            this.r = i;
+            return this;
+        }
+
+        @Override // d0.e0.p.d.m0.i.n.a
+        public r build() {
+            r rVarBuildPartial = buildPartial();
+            if (rVarBuildPartial.isInitialized()) {
+                return rVarBuildPartial;
+            }
+            throw new UninitializedMessageException(rVarBuildPartial);
+        }
+
+        @Override // d0.e0.p.d.m0.i.g.b
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.g.b clone() {
+            return clone();
+        }
+
+        @Override // d0.e0.p.d.m0.i.g.b
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.g.b mergeFrom(d0.e0.p.d.m0.i.g gVar) {
+            return mergeFrom((r) gVar);
+        }
+
+        @Override // d0.e0.p.d.m0.i.g.b
+        public b clone() {
+            return new b().mergeFrom(buildPartial());
+        }
+
+        @Override // d0.e0.p.d.m0.i.a.AbstractC0556a, d0.e0.p.d.m0.i.n.a
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n.a mergeFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws IOException {
+            return mergeFrom(dVar, eVar);
+        }
+
+        public b mergeFrom(r rVar) {
+            if (rVar == r.getDefaultInstance()) {
+                return this;
+            }
+            if (rVar.hasFlags()) {
+                setFlags(rVar.getFlags());
+            }
+            if (rVar.hasName()) {
+                setName(rVar.getName());
+            }
+            if (!r.j(rVar).isEmpty()) {
+                if (this.p.isEmpty()) {
+                    this.p = r.j(rVar);
+                    this.m &= -5;
+                } else {
+                    if ((this.m & 4) != 4) {
+                        this.p = new ArrayList(this.p);
+                        this.m |= 4;
+                    }
+                    this.p.addAll(r.j(rVar));
+                }
+            }
+            if (rVar.hasUnderlyingType()) {
+                mergeUnderlyingType(rVar.getUnderlyingType());
+            }
+            if (rVar.hasUnderlyingTypeId()) {
+                setUnderlyingTypeId(rVar.getUnderlyingTypeId());
+            }
+            if (rVar.hasExpandedType()) {
+                mergeExpandedType(rVar.getExpandedType());
+            }
+            if (rVar.hasExpandedTypeId()) {
+                setExpandedTypeId(rVar.getExpandedTypeId());
+            }
+            if (!r.p(rVar).isEmpty()) {
+                if (this.u.isEmpty()) {
+                    this.u = r.p(rVar);
+                    this.m &= -129;
+                } else {
+                    if ((this.m & 128) != 128) {
+                        this.u = new ArrayList(this.u);
+                        this.m |= 128;
+                    }
+                    this.u.addAll(r.p(rVar));
+                }
+            }
+            if (!r.r(rVar).isEmpty()) {
+                if (this.v.isEmpty()) {
+                    this.v = r.r(rVar);
+                    this.m &= -257;
+                } else {
+                    if ((this.m & 256) != 256) {
+                        this.v = new ArrayList(this.v);
+                        this.m |= 256;
+                    }
+                    this.v.addAll(r.r(rVar));
+                }
+            }
+            b(rVar);
+            setUnknownFields(getUnknownFields().concat(r.u(rVar)));
+            return this;
+        }
+
+        /* JADX WARN: Code duplicated, block: B:15:0x001d  */
+        @Override // d0.e0.p.d.m0.i.a.AbstractC0556a, d0.e0.p.d.m0.i.n.a
+        public b mergeFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws Throwable {
+            r rVar = null;
+            try {
+                try {
+                    r partialFrom = r.k.parsePartialFrom(dVar, eVar);
+                    if (partialFrom != null) {
+                        mergeFrom(partialFrom);
+                    }
+                    return this;
+                } catch (InvalidProtocolBufferException e) {
+                    r rVar2 = (r) e.getUnfinishedMessage();
+                    try {
+                        throw e;
+                    } catch (Throwable th) {
+                        th = th;
+                        rVar = rVar2;
+                        if (rVar != null) {
+                            mergeFrom(rVar);
+                        }
+                        throw th;
+                    }
+                }
+            } catch (Throwable th2) {
+                th = th2;
+                if (rVar != null) {
+                    mergeFrom(rVar);
+                }
+                throw th;
+            }
+        }
+    }
 
     static {
         r rVar = new r();
@@ -36,14 +292,14 @@ public final class r extends g$d<r> implements d0.e0.p.d.m0.i.o {
         rVar.v();
     }
 
-    public r(g$c g_c, a aVar) {
-        super(g_c);
+    public r(d0.e0.p.d.m0.i.g.c cVar, d0.e0.p.d.m0.f.a aVar) {
+        super(cVar);
         this.memoizedIsInitialized = (byte) -1;
         this.memoizedSerializedSize = -1;
-        this.unknownFields = g_c.getUnknownFields();
+        this.unknownFields = cVar.getUnknownFields();
     }
 
-    public b getAnnotation(int i) {
+    public d0.e0.p.d.m0.f.b getAnnotation(int i) {
         return this.annotation_.get(i);
     }
 
@@ -51,7 +307,7 @@ public final class r extends g$d<r> implements d0.e0.p.d.m0.i.o {
         return this.annotation_.size();
     }
 
-    public List<b> getAnnotationList() {
+    public List<d0.e0.p.d.m0.f.b> getAnnotationList() {
         return this.annotation_;
     }
 
@@ -240,12 +496,12 @@ public final class r extends g$d<r> implements d0.e0.p.d.m0.i.o {
         return qVar;
     }
 
-    public static r$b newBuilder(r rVar) {
+    public static b newBuilder(r rVar) {
         return newBuilder().mergeFrom(rVar);
     }
 
     @Override // d0.e0.p.d.m0.i.n
-    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n$a newBuilderForType() {
+    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n.a newBuilderForType() {
         return newBuilderForType();
     }
 
@@ -282,7 +538,7 @@ public final class r extends g$d<r> implements d0.e0.p.d.m0.i.o {
     }
 
     @Override // d0.e0.p.d.m0.i.n
-    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n$a toBuilder() {
+    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n.a toBuilder() {
         return toBuilder();
     }
 
@@ -305,7 +561,7 @@ public final class r extends g$d<r> implements d0.e0.p.d.m0.i.o {
     @Override // d0.e0.p.d.m0.i.n
     public void writeTo(CodedOutputStream codedOutputStream) throws IOException {
         getSerializedSize();
-        g$d$a g_d_aE = e();
+        d0.e0.p.d.m0.i.g.d<MessageType>.a aVarE = e();
         if ((this.bitField0_ & 1) == 1) {
             codedOutputStream.writeInt32(1, this.flags_);
         }
@@ -333,7 +589,7 @@ public final class r extends g$d<r> implements d0.e0.p.d.m0.i.o {
         for (int i3 = 0; i3 < this.versionRequirement_.size(); i3++) {
             codedOutputStream.writeInt32(31, this.versionRequirement_.get(i3).intValue());
         }
-        g_d_aE.writeUntil(200, codedOutputStream);
+        aVarE.writeUntil(200, codedOutputStream);
         codedOutputStream.writeRawBytes(this.unknownFields);
     }
 
@@ -342,17 +598,17 @@ public final class r extends g$d<r> implements d0.e0.p.d.m0.i.o {
         return j;
     }
 
-    public static r$b newBuilder() {
-        return new r$b();
+    public static b newBuilder() {
+        return new b();
     }
 
     @Override // d0.e0.p.d.m0.i.n
-    public r$b newBuilderForType() {
+    public b newBuilderForType() {
         return newBuilder();
     }
 
     @Override // d0.e0.p.d.m0.i.n
-    public r$b toBuilder() {
+    public b toBuilder() {
         return newBuilder(this);
     }
 
@@ -362,13 +618,13 @@ public final class r extends g$d<r> implements d0.e0.p.d.m0.i.o {
         this.unknownFields = d0.e0.p.d.m0.i.c.j;
     }
 
-    public r(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar, a aVar) throws InvalidProtocolBufferException {
-        q$c builder;
+    public r(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar, d0.e0.p.d.m0.f.a aVar) throws InvalidProtocolBufferException {
+        q.c builder;
         this.memoizedIsInitialized = (byte) -1;
         this.memoizedSerializedSize = -1;
         v();
-        d0.e0.p.d.m0.i.c$b c_bNewOutput = d0.e0.p.d.m0.i.c.newOutput();
-        CodedOutputStream codedOutputStreamNewInstance = CodedOutputStream.newInstance(c_bNewOutput, 1);
+        d0.e0.p.d.m0.i.c.b bVarNewOutput = d0.e0.p.d.m0.i.c.newOutput();
+        CodedOutputStream codedOutputStreamNewInstance = CodedOutputStream.newInstance(bVarNewOutput, 1);
         boolean z2 = false;
         int i = 0;
         while (!z2) {
@@ -426,7 +682,7 @@ public final class r extends g$d<r> implements d0.e0.p.d.m0.i.o {
                                 this.annotation_ = new ArrayList();
                                 i |= 128;
                             }
-                            this.annotation_.add((b) dVar.readMessage(b.k, eVar));
+                            this.annotation_.add((d0.e0.p.d.m0.f.b) dVar.readMessage(d0.e0.p.d.m0.f.b.k, eVar));
                             continue;
                         case 248:
                             if ((i & 256) != 256) {
@@ -467,10 +723,10 @@ public final class r extends g$d<r> implements d0.e0.p.d.m0.i.o {
                         codedOutputStreamNewInstance.flush();
                     } catch (IOException unused) {
                     } catch (Throwable th2) {
-                        this.unknownFields = c_bNewOutput.toByteString();
+                        this.unknownFields = bVarNewOutput.toByteString();
                         throw th2;
                     }
-                    this.unknownFields = c_bNewOutput.toByteString();
+                    this.unknownFields = bVarNewOutput.toByteString();
                     d();
                     throw th;
                 }
@@ -493,10 +749,10 @@ public final class r extends g$d<r> implements d0.e0.p.d.m0.i.o {
             codedOutputStreamNewInstance.flush();
         } catch (IOException unused2) {
         } catch (Throwable th3) {
-            this.unknownFields = c_bNewOutput.toByteString();
+            this.unknownFields = bVarNewOutput.toByteString();
             throw th3;
         }
-        this.unknownFields = c_bNewOutput.toByteString();
+        this.unknownFields = bVarNewOutput.toByteString();
         d();
     }
 }

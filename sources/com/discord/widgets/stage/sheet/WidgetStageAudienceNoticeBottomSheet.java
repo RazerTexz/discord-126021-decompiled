@@ -6,8 +6,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.stageinstance.StageInstance;
 import com.discord.api.stageinstance.StageInstancePrivacyLevel;
 import com.discord.app.AppBottomSheet;
@@ -18,22 +19,82 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import d0.g;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: WidgetStageAudienceNoticeBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetStageAudienceNoticeBottomSheet extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetStageAudienceNoticeBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetStageAudienceNoticeBottomSheetBinding;", 0)};
-    public static final WidgetStageAudienceNoticeBottomSheet$Companion Companion = new WidgetStageAudienceNoticeBottomSheet$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
     /* JADX INFO: renamed from: channelId$delegate, reason: from kotlin metadata */
     private final Lazy channelId;
+
+    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageAudienceNoticeBottomSheet$onResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetStageAudienceNoticeBottomSheet.kt */
+    public final class AnonymousClass1 extends o implements Function1<StageInstance, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StageInstance stageInstance) {
+            invoke2(stageInstance);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StageInstance stageInstance) {
+            WidgetStageAudienceNoticeBottomSheet.access$configureUI(WidgetStageAudienceNoticeBottomSheet.this, stageInstance);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageAudienceNoticeBottomSheet$onViewCreated$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetStageAudienceNoticeBottomSheet.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetStageAudienceNoticeBottomSheet.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetStageAudienceNoticeBottomSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, long channelId) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            WidgetStageAudienceNoticeManager widgetStageAudienceNoticeManager = WidgetStageAudienceNoticeManager.INSTANCE;
+            if (widgetStageAudienceNoticeManager.hasUserSeenAudienceNotice()) {
+                return;
+            }
+            widgetStageAudienceNoticeManager.markUserSeenAudienceNotice();
+            WidgetStageAudienceNoticeBottomSheet widgetStageAudienceNoticeBottomSheet = new WidgetStageAudienceNoticeBottomSheet();
+            Bundle bundle = new Bundle();
+            bundle.putLong("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
+            widgetStageAudienceNoticeBottomSheet.setArguments(bundle);
+            widgetStageAudienceNoticeBottomSheet.show(fragmentManager, WidgetStageAudienceNoticeBottomSheet.class.getSimpleName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public WidgetStageAudienceNoticeBottomSheet() {
         super(false, 1, null);
@@ -69,13 +130,13 @@ public final class WidgetStageAudienceNoticeBottomSheet extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
-        return R$layout.widget_stage_audience_notice_bottom_sheet;
+        return R.layout.widget_stage_audience_notice_bottom_sheet;
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(StoreStream.Companion.getStageInstances().observeStageInstanceForChannel(getChannelId()), this, null, 2, null), WidgetStageAudienceNoticeBottomSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetStageAudienceNoticeBottomSheet$onResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(StoreStream.INSTANCE.getStageInstances().observeStageInstanceForChannel(getChannelId()), this, null, 2, null), WidgetStageAudienceNoticeBottomSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
@@ -85,6 +146,6 @@ public final class WidgetStageAudienceNoticeBottomSheet extends AppBottomSheet {
         WidgetStageAudienceNoticeBottomSheetBinding binding = getBinding();
         m.checkNotNullExpressionValue(binding, "binding");
         setPeekHeightBottomView(binding.a);
-        getBinding().d.setOnClickListener(new WidgetStageAudienceNoticeBottomSheet$onViewCreated$1(this));
+        getBinding().d.setOnClickListener(new AnonymousClass1());
     }
 }

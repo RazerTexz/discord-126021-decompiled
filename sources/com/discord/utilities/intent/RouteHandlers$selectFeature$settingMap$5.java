@@ -3,7 +3,6 @@ package com.discord.utilities.intent;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import com.discord.widgets.user.search.WidgetGlobalSearchDialog;
-import com.discord.widgets.user.search.WidgetGlobalSearchDialog$Companion;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -27,9 +26,9 @@ public final class RouteHandlers$selectFeature$settingMap$5 extends o implements
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(FragmentActivity fragmentActivity) {
         m.checkNotNullParameter(fragmentActivity, "ctx");
-        WidgetGlobalSearchDialog$Companion widgetGlobalSearchDialog$Companion = WidgetGlobalSearchDialog.Companion;
+        WidgetGlobalSearchDialog.Companion companion = WidgetGlobalSearchDialog.INSTANCE;
         FragmentManager supportFragmentManager = fragmentActivity.getSupportFragmentManager();
         m.checkNotNullExpressionValue(supportFragmentManager, "ctx.supportFragmentManager");
-        WidgetGlobalSearchDialog$Companion.show$default(widgetGlobalSearchDialog$Companion, supportFragmentManager, null, 2, null);
+        WidgetGlobalSearchDialog.Companion.show$default(companion, supportFragmentManager, null, 2, null);
     }
 }

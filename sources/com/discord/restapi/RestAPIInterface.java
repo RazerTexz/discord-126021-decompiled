@@ -72,7 +72,7 @@ import com.discord.models.domain.ModelAppliedGuildBoost;
 import com.discord.models.domain.ModelAuditLog;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.ModelBan;
-import com.discord.models.domain.ModelCall$Ringable;
+import com.discord.models.domain.ModelCall;
 import com.discord.models.domain.ModelChannelFollowerStatsDto;
 import com.discord.models.domain.ModelConnectionAccessToken;
 import com.discord.models.domain.ModelConnectionState;
@@ -92,6 +92,7 @@ import com.discord.models.domain.ModelNotificationSettings;
 import com.discord.models.domain.ModelOAuth2Token;
 import com.discord.models.domain.ModelPhoneVerificationToken;
 import com.discord.models.domain.ModelRemoteAuthHandshake;
+import com.discord.models.domain.ModelRtcLatencyRegion;
 import com.discord.models.domain.ModelSearchResponse;
 import com.discord.models.domain.ModelSubscription;
 import com.discord.models.domain.ModelTypingResponse;
@@ -114,6 +115,9 @@ import com.discord.models.sticker.dto.ModelStickerPack;
 import com.discord.models.sticker.dto.ModelStickerStoreDirectory;
 import com.discord.utilities.analytics.ChatInputComponentTypes;
 import com.discord.utilities.auth.GoogleSmartLockManager;
+import com.google.gson.JsonObject;
+import d0.o;
+import d0.t.g0;
 import i0.f0.a;
 import i0.f0.b;
 import i0.f0.f;
@@ -121,31 +125,152 @@ import i0.f0.h;
 import i0.f0.i;
 import i0.f0.l;
 import i0.f0.n;
-import i0.f0.o;
 import i0.f0.p;
 import i0.f0.q;
 import i0.f0.s;
 import i0.f0.t;
+import i0.f0.y;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import kotlin.Unit;
-import okhttp3.MultipartBody$Part;
+import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
 import retrofit2.Response;
 import rx.Observable;
 
 /* JADX INFO: compiled from: RestAPIInterface.kt */
 /* JADX INFO: loaded from: classes.dex */
 public interface RestAPIInterface {
-    public static final RestAPIInterface$Companion Companion = RestAPIInterface$Companion.$$INSTANCE;
 
-    @o("guilds/{guildId}/creator-monetization/{requestId}/accept-terms")
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = Companion.$$INSTANCE;
+
+    /* JADX INFO: compiled from: RestAPIInterface.kt */
+    public final class Companion {
+        private static final String X_CONTEXT_PROPERTIES = "X-Context-Properties";
+        public static final /* synthetic */ Companion $$INSTANCE = new Companion();
+
+        private Companion() {
+        }
+    }
+
+    /* JADX INFO: compiled from: RestAPIInterface.kt */
+    public final class DefaultImpls {
+        public static /* synthetic */ Observable getInviteCode$default(RestAPIInterface restAPIInterface, String str, boolean z2, Long l, int i, Object obj) {
+            if (obj != null) {
+                throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: getInviteCode");
+            }
+            if ((i & 4) != 0) {
+                l = null;
+            }
+            return restAPIInterface.getInviteCode(str, z2, l);
+        }
+
+        public static /* synthetic */ Observable getMyEntitlements$default(RestAPIInterface restAPIInterface, long j, boolean z2, int i, Object obj) {
+            if (obj != null) {
+                throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: getMyEntitlements");
+            }
+            if ((i & 2) != 0) {
+                z2 = true;
+            }
+            return restAPIInterface.getMyEntitlements(j, z2);
+        }
+
+        public static /* synthetic */ Observable getOauth2Authorize$default(RestAPIInterface restAPIInterface, String str, String str2, String str3, String str4, String str5, String str6, String str7, int i, Object obj) {
+            if (obj == null) {
+                return restAPIInterface.getOauth2Authorize(str, str2, (i & 4) != 0 ? null : str3, str4, (i & 16) != 0 ? "consent" : str5, str6, (i & 64) != 0 ? null : str7);
+            }
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: getOauth2Authorize");
+        }
+
+        public static /* synthetic */ Observable getOauth2SamsungAuthorize$default(RestAPIInterface restAPIInterface, String str, String str2, String str3, String str4, String str5, String str6, int i, Object obj) {
+            if (obj != null) {
+                throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: getOauth2SamsungAuthorize");
+            }
+            if ((i & 4) != 0) {
+                str3 = null;
+            }
+            String str7 = str3;
+            if ((i & 16) != 0) {
+                str5 = "consent";
+            }
+            return restAPIInterface.getOauth2SamsungAuthorize(str, str2, str7, str4, str5, str6);
+        }
+
+        public static /* synthetic */ Observable joinGuild$default(RestAPIInterface restAPIInterface, long j, boolean z2, String str, Long l, RestAPIParams.InviteCode inviteCode, String str2, int i, Object obj) {
+            if (obj == null) {
+                return restAPIInterface.joinGuild(j, z2, str, (i & 8) != 0 ? null : l, (i & 16) != 0 ? null : inviteCode, (i & 32) != 0 ? null : str2);
+            }
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: joinGuild");
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ Observable postOauth2Authorize$default(RestAPIInterface restAPIInterface, String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, Map map, int i, Object obj) {
+            if (obj == null) {
+                return restAPIInterface.postOauth2Authorize(str, str2, (i & 4) != 0 ? null : str3, str4, (i & 16) != 0 ? "consent" : str5, str6, (i & 64) != 0 ? null : str7, (i & 128) != 0 ? null : str8, (i & 256) != 0 ? null : str9, (i & 512) != 0 ? g0.mapOf(o.to("authorize", "true")) : map);
+            }
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: postOauth2Authorize");
+        }
+
+        public static /* synthetic */ Observable report$default(RestAPIInterface restAPIInterface, Long l, Long l2, Long l3, Long l4, int i, Object obj) {
+            if (obj != null) {
+                throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: report");
+            }
+            if ((i & 1) != 0) {
+                l = null;
+            }
+            if ((i & 2) != 0) {
+                l2 = null;
+            }
+            if ((i & 4) != 0) {
+                l3 = null;
+            }
+            if ((i & 8) != 0) {
+                l4 = null;
+            }
+            return restAPIInterface.report(l, l2, l3, l4);
+        }
+
+        public static /* synthetic */ Observable userProfileGet$default(RestAPIInterface restAPIInterface, long j, boolean z2, Long l, int i, Object obj) {
+            if (obj != null) {
+                throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: userProfileGet");
+            }
+            if ((i & 2) != 0) {
+                z2 = false;
+            }
+            if ((i & 4) != 0) {
+                l = null;
+            }
+            return restAPIInterface.userProfileGet(j, z2, l);
+        }
+    }
+
+    /* JADX INFO: compiled from: RestAPIInterface.kt */
+    public interface Dynamic {
+        @f
+        Observable<JsonObject> get(@y String url);
+    }
+
+    /* JADX INFO: compiled from: RestAPIInterface.kt */
+    public interface Files {
+        @f
+        Observable<ResponseBody> getFile(@y String url);
+    }
+
+    /* JADX INFO: compiled from: RestAPIInterface.kt */
+    public interface RtcLatency {
+        @f
+        Observable<List<ModelRtcLatencyRegion>> get(@y String url);
+    }
+
+    @i0.f0.o("guilds/{guildId}/creator-monetization/{requestId}/accept-terms")
     Observable<CreatorMonetizationEnableRequest> acceptCreatorMonetizationTerms(@s("guildId") long guildId, @s("requestId") long requestId);
 
-    @o("entitlements/gift-codes/{code}/redeem")
+    @i0.f0.o("entitlements/gift-codes/{code}/redeem")
     Observable<Void> acceptGift(@s(ModelAuditLogEntry.CHANGE_KEY_CODE) String code);
 
-    @o("guilds/{guildId}/ack")
+    @i0.f0.o("guilds/{guildId}/ack")
     Observable<Void> ackGuild(@s("guildId") long guildId);
 
     @n("guilds/{guildId}/requests/@me/ack")
@@ -161,104 +286,104 @@ public interface RestAPIInterface {
     Observable<Void> addReaction(@s("channelId") long channelId, @s("messageId") long messageId, @s(encoded = GoogleSmartLockManager.SET_DISCORD_ACCOUNT_DETAILS, value = "reaction") String reaction);
 
     @p("users/@me/relationships/{userId}")
-    Observable<Void> addRelationship(@s("userId") long userId, @a RestAPIParams$UserRelationship relationship, @i("X-Context-Properties") String context);
+    Observable<Void> addRelationship(@s("userId") long userId, @a RestAPIParams.UserRelationship relationship, @i("X-Context-Properties") String context);
 
-    @o("channels/{channelId}/directory-entry/{guildId}")
-    Observable<Response<DirectoryEntryGuild>> addServerToHub(@s("channelId") long channelId, @s("guildId") long guildId, @a RestAPIParams$AddServerBody body);
+    @i0.f0.o("channels/{channelId}/directory-entry/{guildId}")
+    Observable<Response<DirectoryEntryGuild>> addServerToHub(@s("channelId") long channelId, @s("guildId") long guildId, @a RestAPIParams.AddServerBody body);
 
     @f("connections/{connection}/authorize")
     Observable<ModelUrl> authorizeConnection(@s("connection") String connection);
 
-    @o("auth/authorize-ip")
-    Observable<Response<Void>> authorizeIP(@a RestAPIParams$AuthorizeIP body);
+    @i0.f0.o("auth/authorize-ip")
+    Observable<Response<Void>> authorizeIP(@a RestAPIParams.AuthorizeIP body);
 
     @p("guilds/{guildId}/bans/{userId}")
-    Observable<Void> banGuildMember(@s("guildId") long guildId, @s("userId") long userId, @a RestAPIParams$BanGuildMember body, @i("X-Audit-Log-Reason") String reason);
+    Observable<Void> banGuildMember(@s("guildId") long guildId, @s("userId") long userId, @a RestAPIParams.BanGuildMember body, @i("X-Audit-Log-Reason") String reason);
 
     @n("guilds/{guildId}/roles")
-    Observable<Void> batchUpdateRole(@s("guildId") long guildId, @a List<RestAPIParams$Role> body);
+    Observable<Void> batchUpdateRole(@s("guildId") long guildId, @a List<RestAPIParams.Role> body);
 
-    @o("users/@me/relationships/bulk")
-    Observable<Response<BulkAddFriendsResponse>> bulkAddRelationships(@a RestAPIParams$UserBulkRelationship body);
+    @i0.f0.o("users/@me/relationships/bulk")
+    Observable<Response<BulkAddFriendsResponse>> bulkAddRelationships(@a RestAPIParams.UserBulkRelationship body);
 
     @f("channels/{channelId}/call")
-    Observable<ModelCall$Ringable> call(@s("channelId") long channelId);
+    Observable<ModelCall.Ringable> call(@s("channelId") long channelId);
 
-    @o("users/@me/guilds/premium/subscription-slots/{subscriptionSlotId}/cancel")
+    @i0.f0.o("users/@me/guilds/premium/subscription-slots/{subscriptionSlotId}/cancel")
     Observable<ModelGuildBoostSlot> cancelSubscriptionSlot(@s("subscriptionSlotId") long slotId);
 
     @n("guilds/{guildId}/members/{userId}")
-    Observable<Void> changeGuildMember(@s("guildId") long guildId, @s("userId") long userId, @a RestAPIParams$GuildMember body);
+    Observable<Void> changeGuildMember(@s("guildId") long guildId, @s("userId") long userId, @a RestAPIParams.GuildMember body);
 
     @n("guilds/{guildId}/members/@me/nick")
-    Observable<Void> changeGuildNickname(@s("guildId") long guildId, @a RestAPIParams$Nick body);
+    Observable<Void> changeGuildNickname(@s("guildId") long guildId, @a RestAPIParams.Nick body);
 
-    @o("outbound-promotions/{promotionId}/claim")
+    @i0.f0.o("outbound-promotions/{promotionId}/claim")
     Observable<ClaimedOutboundPromotion> claimOutboundPromotion(@s("promotionId") long promotionId);
 
-    @o("store/skus/{skuId}/purchase")
-    Observable<Unit> claimSku(@s("skuId") long skuId, @a RestAPIParams$EmptyBody emptyBody);
+    @i0.f0.o("store/skus/{skuId}/purchase")
+    Observable<Unit> claimSku(@s("skuId") long skuId, @a RestAPIParams.EmptyBody emptyBody);
 
     @p("channels/{channelId}/recipients/{recipientId}")
     Observable<Channel> convertDMToGroup(@s("channelId") long channelId, @s("recipientId") long recipientId);
 
-    @o("channels/{channelId}/followers")
-    Observable<Void> createChannelFollower(@s("channelId") long channelId, @a RestAPIParams$ChannelFollowerPost body);
+    @i0.f0.o("channels/{channelId}/followers")
+    Observable<Void> createChannelFollower(@s("channelId") long channelId, @a RestAPIParams.ChannelFollowerPost body);
 
     @p("users/@me/connections/contacts/@me")
-    Observable<ConnectedAccount> createConnectionContacts(@a RestAPIParams$ConnectedAccountContacts connectedAccountContacts);
+    Observable<ConnectedAccount> createConnectionContacts(@a RestAPIParams.ConnectedAccountContacts connectedAccountContacts);
 
-    @o("guilds/{guildId}/creator-monetization/enable-requests")
+    @i0.f0.o("guilds/{guildId}/creator-monetization/enable-requests")
     Observable<CreatorMonetizationEnableRequest> createCreatorMonetizationEnableRequest(@s("guildId") long guildId);
 
-    @o("guilds")
-    Observable<Response<Guild>> createGuild(@a RestAPIParams$CreateGuild body);
+    @i0.f0.o("guilds")
+    Observable<Response<Guild>> createGuild(@a RestAPIParams.CreateGuild body);
 
-    @o("guilds/{guildId}/channels")
-    Observable<Response<Channel>> createGuildChannel(@s("guildId") long guildId, @a RestAPIParams$CreateGuildChannel body);
+    @i0.f0.o("guilds/{guildId}/channels")
+    Observable<Response<Channel>> createGuildChannel(@s("guildId") long guildId, @a RestAPIParams.CreateGuildChannel body);
 
-    @o("guilds/templates/{guildTemplateCode}")
-    Observable<Guild> createGuildFromTemplate(@s("guildTemplateCode") String guildTemplateCode, @a RestAPIParams$CreateGuildFromTemplate body);
+    @i0.f0.o("guilds/templates/{guildTemplateCode}")
+    Observable<Guild> createGuildFromTemplate(@s("guildTemplateCode") String guildTemplateCode, @a RestAPIParams.CreateGuildFromTemplate body);
 
     @p("guilds/{guildId}/requests/@me")
-    Observable<ModelMemberVerificationFormResponse> createGuildJoinRequest(@s("guildId") long guildId, @a RestAPIParams$MemberVerificationForm body);
+    Observable<ModelMemberVerificationFormResponse> createGuildJoinRequest(@s("guildId") long guildId, @a RestAPIParams.MemberVerificationForm body);
 
-    @o("guilds/{guildId}/role-subscriptions/group-listings")
-    Observable<GuildRoleSubscriptionGroupListing> createGuildRoleSubscriptionGroupListing(@s("guildId") long guildId, @a RestAPIParams$CreateGuildRoleSubscriptionGroupListing body);
+    @i0.f0.o("guilds/{guildId}/role-subscriptions/group-listings")
+    Observable<GuildRoleSubscriptionGroupListing> createGuildRoleSubscriptionGroupListing(@s("guildId") long guildId, @a RestAPIParams.CreateGuildRoleSubscriptionGroupListing body);
 
-    @o("guilds/{guildId}/role-subscriptions/group-listings/{groupListingId}/subscription-listings")
-    Observable<GuildRoleSubscriptionTierListing> createGuildRoleSubscriptionTier(@s("guildId") long guildId, @s("groupListingId") long groupListingId, @a RestAPIParams$CreateGuildRoleSubscriptionTierListing body);
+    @i0.f0.o("guilds/{guildId}/role-subscriptions/group-listings/{groupListingId}/subscription-listings")
+    Observable<GuildRoleSubscriptionTierListing> createGuildRoleSubscriptionTier(@s("guildId") long guildId, @s("groupListingId") long groupListingId, @a RestAPIParams.CreateGuildRoleSubscriptionTierListing body);
 
-    @o("guilds/{guildId}/scheduled-events")
-    Observable<GuildScheduledEvent> createGuildScheduledEvent(@s("guildId") long guildId, @a RestAPIParams$CreateGuildScheduledEventBody event);
+    @i0.f0.o("guilds/{guildId}/scheduled-events")
+    Observable<GuildScheduledEvent> createGuildScheduledEvent(@s("guildId") long guildId, @a RestAPIParams.CreateGuildScheduledEventBody event);
 
     @p("guilds/{guildId}/scheduled-events/{eventId}/users/@me")
     Observable<Unit> createGuildScheduledEventRsvp(@s("guildId") long guildId, @s("eventId") long eventId);
 
-    @o("auth/handoff")
+    @i0.f0.o("auth/handoff")
     Observable<HandoffToken> createHandoffToken(@a CreateHandoffTokenRequest body);
 
-    @o("google-play/purchase-metadata")
-    Observable<Unit> createPurchaseMetadata(@a RestAPIParams$PurchaseMetadataBody purchaseMetadataBody);
+    @i0.f0.o("google-play/purchase-metadata")
+    Observable<Unit> createPurchaseMetadata(@a RestAPIParams.PurchaseMetadataBody purchaseMetadataBody);
 
-    @o("guilds/{guildId}/roles")
+    @i0.f0.o("guilds/{guildId}/roles")
     Observable<GuildRole> createRole(@s("guildId") long guildId);
 
-    @o("channels/{channelId}/threads")
-    Observable<Channel> createThread(@s("channelId") long channelId, @t(ModelAuditLogEntry.CHANGE_KEY_LOCATION) String location, @a RestAPIParams$ThreadCreationSettings body);
+    @i0.f0.o("channels/{channelId}/threads")
+    Observable<Channel> createThread(@s("channelId") long channelId, @t(ModelAuditLogEntry.CHANGE_KEY_LOCATION) String location, @a RestAPIParams.ThreadCreationSettings body);
 
-    @o("channels/{channelId}/messages/{messageId}/threads")
-    Observable<Channel> createThreadFromMessage(@s("channelId") long channelId, @s("messageId") long messageId, @t(ModelAuditLogEntry.CHANGE_KEY_LOCATION) String location, @a RestAPIParams$ThreadCreationSettings body);
+    @i0.f0.o("channels/{channelId}/messages/{messageId}/threads")
+    Observable<Channel> createThreadFromMessage(@s("channelId") long channelId, @s("messageId") long messageId, @t(ModelAuditLogEntry.CHANGE_KEY_LOCATION) String location, @a RestAPIParams.ThreadCreationSettings body);
 
-    @o("channels/{channelId}/threads?has_message=true")
+    @i0.f0.o("channels/{channelId}/threads?has_message=true")
     @l
-    Observable<Channel> createThreadWithMessage(@s("channelId") long channelId, @q(ModelAuditLogEntry.CHANGE_KEY_NAME) String name, @q("content") String content, @q("applied_tags") List<Long> appliedTags, @q("sticker_ids") List<Long> stickerIds, @q("type") int type, @q(ModelAuditLogEntry.CHANGE_KEY_AUTO_ARCHIVE_DURATION) Integer autoArchiveDuration, @q MultipartBody$Part[] files);
+    Observable<Channel> createThreadWithMessage(@s("channelId") long channelId, @q(ModelAuditLogEntry.CHANGE_KEY_NAME) String name, @q("content") String content, @q("applied_tags") List<Long> appliedTags, @q("sticker_ids") List<Long> stickerIds, @q("type") int type, @q(ModelAuditLogEntry.CHANGE_KEY_AUTO_ARCHIVE_DURATION) Integer autoArchiveDuration, @q MultipartBody.Part[] files);
 
-    @o("channels/{channelId}/messages/{messageId}/crosspost")
+    @i0.f0.o("channels/{channelId}/messages/{messageId}/crosspost")
     Observable<Void> crosspostMessage(@s("channelId") long channelId, @s("messageId") Long messageId);
 
-    @o("users/@me/delete")
-    Observable<Void> deleteAccount(@a RestAPIParams$DisableAccount body);
+    @i0.f0.o("users/@me/delete")
+    Observable<Void> deleteAccount(@a RestAPIParams.DisableAccount body);
 
     @b("channels/{channelId}")
     Observable<Channel> deleteChannel(@s("channelId") long channelId);
@@ -269,8 +394,8 @@ public interface RestAPIInterface {
     @b("users/@me/connections/{connection}/{connectionId}")
     Observable<Response<Void>> deleteConnection(@s("connection") String connection, @s("connectionId") String connectionId);
 
-    @o("guilds/{guildId}/delete")
-    Observable<Void> deleteGuild(@s("guildId") long guildId, @a RestAPIParams$DeleteGuild body);
+    @i0.f0.o("guilds/{guildId}/delete")
+    Observable<Void> deleteGuild(@s("guildId") long guildId, @a RestAPIParams.DeleteGuild body);
 
     @b("guilds/{guildId}/emojis/{emojiId}")
     Observable<Void> deleteGuildEmoji(@s("guildId") long guildId, @s("emojiId") long emojiId);
@@ -308,59 +433,59 @@ public interface RestAPIInterface {
     @b("users/@me/billing/subscriptions/{subscriptionId}")
     Observable<Void> deleteSubscription(@s("subscriptionId") String subscriptionId);
 
-    @o("users/@me/disable")
-    Observable<Void> disableAccount(@a RestAPIParams$DisableAccount body);
+    @i0.f0.o("users/@me/disable")
+    Observable<Void> disableAccount(@a RestAPIParams.DisableAccount body);
 
     @n("guilds/{guildId}/members/{userId}")
-    Observable<Response<Void>> disableGuildCommunication(@s("guildId") long guildId, @s("userId") long userId, @a RestAPIParams$DisableGuildCommunication body, @i("X-Audit-Log-Reason") String reason);
+    Observable<Response<Void>> disableGuildCommunication(@s("guildId") long guildId, @s("userId") long userId, @a RestAPIParams.DisableGuildCommunication body, @i("X-Audit-Log-Reason") String reason);
 
-    @o("users/@me/mfa/totp/disable")
+    @i0.f0.o("users/@me/mfa/totp/disable")
     Observable<DisableMfaResponse> disableMFA(@a DisableMfaRequestBody body);
 
-    @o("users/@me/mfa/sms/disable")
-    Observable<Void> disableMfaSMS(@a RestAPIParams$ActivateMfaSMS body);
+    @i0.f0.o("users/@me/mfa/sms/disable")
+    Observable<Void> disableMfaSMS(@a RestAPIParams.ActivateMfaSMS body);
 
     @n("guilds/{guildId}/members/{userId}")
-    Observable<Void> disconnectGuildMember(@s("guildId") long guildId, @s("userId") long userId, @a RestAPIParams$GuildMemberDisconnect body);
+    Observable<Void> disconnectGuildMember(@s("guildId") long guildId, @s("userId") long userId, @a RestAPIParams.GuildMemberDisconnect body);
 
-    @o("google-play/downgrade-subscription")
-    Observable<Object> downgradeSubscription(@a RestAPIParams$DowngradeSubscriptionBody downgradeSubscriptionBody);
+    @i0.f0.o("google-play/downgrade-subscription")
+    Observable<Object> downgradeSubscription(@a RestAPIParams.DowngradeSubscriptionBody downgradeSubscriptionBody);
 
     @n("channels/{channelId}")
-    Observable<Channel> editGroupDM(@s("channelId") long channelId, @a RestAPIParams$GroupDM body);
+    Observable<Channel> editGroupDM(@s("channelId") long channelId, @a RestAPIParams.GroupDM body);
 
     @n("channels/{channel_id}/messages/{message_id}")
-    Observable<Message> editMessage(@s(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID) long channelId, @s("message_id") long messageId, @a RestAPIParams$Message message);
+    Observable<Message> editMessage(@s(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID) long channelId, @s("message_id") long messageId, @a RestAPIParams.Message message);
 
     @n("channels/{channelId}")
-    Observable<Channel> editTextChannel(@s("channelId") long channelId, @a RestAPIParams$TextChannel body);
+    Observable<Channel> editTextChannel(@s("channelId") long channelId, @a RestAPIParams.TextChannel body);
 
     @n("channels/{channelId}")
-    Observable<Channel> editThread(@s("channelId") long channelId, @a RestAPIParams$ThreadSettings body);
+    Observable<Channel> editThread(@s("channelId") long channelId, @a RestAPIParams.ThreadSettings body);
 
     @n("channels/{channelId}")
-    Observable<Channel> editTopicalChannel(@s("channelId") long channelId, @a RestAPIParams$TopicalChannel body);
+    Observable<Channel> editTopicalChannel(@s("channelId") long channelId, @a RestAPIParams.TopicalChannel body);
 
     @n("channels/{channelId}")
-    Observable<Channel> editVoiceChannel(@s("channelId") long channelId, @a RestAPIParams$VoiceChannel body);
+    Observable<Channel> editVoiceChannel(@s("channelId") long channelId, @a RestAPIParams.VoiceChannel body);
 
-    @o("guilds/{guildId}/integrations")
-    Observable<Void> enableIntegration(@s("guildId") long guildId, @a RestAPIParams$EnableIntegration body);
+    @i0.f0.o("guilds/{guildId}/integrations")
+    Observable<Void> enableIntegration(@s("guildId") long guildId, @a RestAPIParams.EnableIntegration body);
 
-    @o("users/@me/mfa/totp/enable")
-    Observable<EnableMfaResponse> enableMFA(@a RestAPIParams$EnableMFA body);
+    @i0.f0.o("users/@me/mfa/totp/enable")
+    Observable<EnableMfaResponse> enableMFA(@a RestAPIParams.EnableMFA body);
 
-    @o("users/@me/mfa/sms/enable")
-    Observable<Void> enableMfaSMS(@a RestAPIParams$ActivateMfaSMS body);
+    @i0.f0.o("users/@me/mfa/sms/enable")
+    Observable<Void> enableMfaSMS(@a RestAPIParams.ActivateMfaSMS body);
 
     @b("stage-instances/{channelId}")
     Observable<Unit> endStageInstance(@s("channelId") long channelId);
 
-    @o("auth/forgot")
-    Observable<Response<Void>> forgotPassword(@a RestAPIParams$ForgotPassword body);
+    @i0.f0.o("auth/forgot")
+    Observable<Response<Void>> forgotPassword(@a RestAPIParams.ForgotPassword body);
 
-    @o("users/@me/entitlements/gift-codes")
-    Observable<ModelGift> generateGiftCode(@a RestAPIParams$GenerateGiftCode body);
+    @i0.f0.o("users/@me/entitlements/gift-codes")
+    Observable<ModelGift> generateGiftCode(@a RestAPIParams.GenerateGiftCode body);
 
     @f("users/{userId}/sessions/{sessionId}/activities/{applicationId}/metadata")
     Observable<ActivityMetadata> getActivityMetadata(@s("userId") long userId, @s("sessionId") String sessionId, @s("applicationId") long applicationId);
@@ -389,13 +514,13 @@ public interface RestAPIInterface {
     @f("guilds/{guildId}/audit-logs")
     Observable<ModelAuditLog> getAuditLogs(@s("guildId") long guildId, @t("limit") int limit, @t("before") Long before, @t("user_id") Long userId, @t("action_type") Integer actionType);
 
-    @o("users/@me/mfa/codes")
+    @i0.f0.o("users/@me/mfa/codes")
     Observable<GetBackupCodesResponse> getBackupCodes(@a GetBackupCodesRequestBody body);
 
-    @o("auth/verify/view-backup-codes-challenge")
+    @i0.f0.o("auth/verify/view-backup-codes-challenge")
     Observable<GetBackupCodesSendVerificationKeyResponse> getBackupCodesSendVerificationKey(@a GetBackupCodesSendVerificationKeyRequestBody body);
 
-    @o("users/@me/mfa/codes-verification")
+    @i0.f0.o("users/@me/mfa/codes-verification")
     Observable<GetBackupCodesResponse> getBackupCodesVerification(@a GetBackupCodesVerificationRequestBody body);
 
     @f("guilds/{guildId}/bans")
@@ -455,8 +580,8 @@ public interface RestAPIInterface {
     @f("experiments")
     Observable<UnauthenticatedUserExperimentsDto> getExperiments();
 
-    @o("channels/{channelId}/post-data")
-    Observable<ForumPostFirstMessages> getForumPostData(@s("channelId") long channelId, @a RestAPIParams$GetForumPostData body);
+    @i0.f0.o("channels/{channelId}/post-data")
+    Observable<ForumPostFirstMessages> getForumPostData(@s("channelId") long channelId, @a RestAPIParams.GetForumPostData body);
 
     @f("friend-suggestions")
     Observable<List<FriendSuggestion>> getFriendSuggestions();
@@ -533,8 +658,8 @@ public interface RestAPIInterface {
     @f("invites/{code}")
     Observable<Response<ModelInvite>> getInviteCode(@s(ModelAuditLogEntry.CHANGE_KEY_CODE) String code, @t("with_counts") boolean withCounts, @t("guild_scheduled_event_id") Long guildScheduledEventId);
 
-    @o("users/@me/billing/invoices/preview")
-    Observable<ModelInvoicePreview> getInvoicePreview(@a RestAPIParams$InvoicePreviewBody invoicePreviewBody);
+    @i0.f0.o("users/@me/billing/invoices/preview")
+    Observable<ModelInvoicePreview> getInvoicePreview(@a RestAPIParams.InvoicePreviewBody invoicePreviewBody);
 
     @f("users/@me/library")
     Observable<List<ModelLibraryApplication>> getLibrary();
@@ -558,7 +683,7 @@ public interface RestAPIInterface {
     Observable<List<ModelOAuth2Token>> getOAuthTokens();
 
     @f("oauth2/authorize")
-    Observable<RestAPIParams$OAuth2Authorize$ResponseGet> getOauth2Authorize(@t("client_id") String clientId, @t("state") String state, @t("response_type") String responseType, @t("redirect_uri") String redirectUrl, @t("prompt") String prompt, @t("scope") String scope, @t(ModelAuditLogEntry.CHANGE_KEY_PERMISSIONS) String permissions);
+    Observable<RestAPIParams.OAuth2Authorize.ResponseGet> getOauth2Authorize(@t("client_id") String clientId, @t("state") String state, @t("response_type") String responseType, @t("redirect_uri") String redirectUrl, @t("prompt") String prompt, @t("scope") String scope, @t(ModelAuditLogEntry.CHANGE_KEY_PERMISSIONS) String permissions);
 
     @f("oauth2/samsung/authorize")
     Observable<Void> getOauth2SamsungAuthorize(@t("client_id") String clientId, @t("state") String state, @t("response_type") String responseType, @t("redirect_uri") String redirectUrl, @t("prompt") String prompt, @t("scope") String scope);
@@ -639,16 +764,16 @@ public interface RestAPIInterface {
     Observable<Void> ignoreFriendSuggestion(@s("userId") long userId);
 
     @p("guilds/{guildId}/members/@me")
-    Observable<Guild> joinGuild(@s("guildId") long guildId, @t("lurker") boolean isLurker, @t("session_id") String sessionId, @t("directory_channel_id") Long directoryChannelId, @a RestAPIParams$InviteCode body, @i("X-Context-Properties") String context);
+    Observable<Guild> joinGuild(@s("guildId") long guildId, @t("lurker") boolean isLurker, @t("session_id") String sessionId, @t("directory_channel_id") Long directoryChannelId, @a RestAPIParams.InviteCode body, @i("X-Context-Properties") String context);
 
-    @o("integrations/{integrationId}/join")
+    @i0.f0.o("integrations/{integrationId}/join")
     Observable<Void> joinGuildFromIntegration(@s("integrationId") String integrationId);
 
-    @o("hub-waitlist/signup")
-    Observable<WaitlistSignup> joinHubWaitlist(@a RestAPIParams$HubWaitlist body);
+    @i0.f0.o("hub-waitlist/signup")
+    Observable<WaitlistSignup> joinHubWaitlist(@a RestAPIParams.HubWaitlist body);
 
-    @o("channels/{channelId}/thread-members/@me")
-    Observable<Void> joinThread(@s("channelId") long channelId, @t(ModelAuditLogEntry.CHANGE_KEY_LOCATION) String location, @a RestAPIParams$EmptyBody body);
+    @i0.f0.o("channels/{channelId}/thread-members/@me")
+    Observable<Void> joinThread(@s("channelId") long channelId, @t(ModelAuditLogEntry.CHANGE_KEY_LOCATION) String location, @a RestAPIParams.EmptyBody body);
 
     @b("guilds/{guildId}/members/{userId}")
     Observable<Void> kickGuildMember(@s("guildId") long guildId, @s("userId") long userId, @i("X-Audit-Log-Reason") String reason);
@@ -657,82 +782,82 @@ public interface RestAPIInterface {
     Observable<Void> leaveGuild(@s("guildId") long guildId);
 
     @h(hasBody = GoogleSmartLockManager.SET_DISCORD_ACCOUNT_DETAILS, method = "DELETE", path = "users/@me/guilds/{guildId}")
-    Observable<Void> leaveGuild(@s("guildId") long guildId, @a RestAPIParams$LeaveGuildBody leaveGuildBody);
+    Observable<Void> leaveGuild(@s("guildId") long guildId, @a RestAPIParams.LeaveGuildBody leaveGuildBody);
 
     @b("channels/{channelId}/thread-members/@me")
     Observable<Void> leaveThread(@s("channelId") long channelId, @t(ModelAuditLogEntry.CHANGE_KEY_LOCATION) String location);
 
-    @o("auth/logout")
-    Observable<Response<Void>> logout(@a RestAPIParams$UserDevices body);
+    @i0.f0.o("auth/logout")
+    Observable<Response<Void>> logout(@a RestAPIParams.UserDevices body);
 
     @n("channels/{channelId}/directory-entry/{guildId}")
-    Observable<DirectoryEntryGuild> modifyServerInHub(@s("channelId") long channelId, @s("guildId") long guildId, @a RestAPIParams$AddServerBody body);
+    Observable<DirectoryEntryGuild> modifyServerInHub(@s("channelId") long channelId, @s("guildId") long guildId, @a RestAPIParams.AddServerBody body);
 
     @n("guilds/{guildId}/emojis/{emojiId}")
-    Observable<ModelEmojiGuild> patchGuildEmoji(@s("guildId") long guildId, @s("emojiId") long emojiId, @a RestAPIParams$PatchGuildEmoji body);
+    Observable<ModelEmojiGuild> patchGuildEmoji(@s("guildId") long guildId, @s("emojiId") long emojiId, @a RestAPIParams.PatchGuildEmoji body);
 
     @n("users/@me")
     Observable<User> patchUser(@a PatchUserBody patchUserBody);
 
     @n("users/@me")
-    Observable<User> patchUser(@a RestAPIParams$UserInfo userInfo);
+    Observable<User> patchUser(@a RestAPIParams.UserInfo userInfo);
 
-    @o("phone-verifications/resend")
-    Observable<Void> phoneVerificationsResend(@a RestAPIParams$VerificationCodeResend body);
+    @i0.f0.o("phone-verifications/resend")
+    Observable<Void> phoneVerificationsResend(@a RestAPIParams.VerificationCodeResend body);
 
-    @o("phone-verifications/verify")
-    Observable<Response<ModelPhoneVerificationToken>> phoneVerificationsVerify(@a RestAPIParams$VerificationCode body);
+    @i0.f0.o("phone-verifications/verify")
+    Observable<Response<ModelPhoneVerificationToken>> phoneVerificationsVerify(@a RestAPIParams.VerificationCode body);
 
-    @o("auth/fingerprint")
-    Observable<FingerprintResponse> postAuthFingerprint(@a RestAPIParams$EmptyBody body);
+    @i0.f0.o("auth/fingerprint")
+    Observable<FingerprintResponse> postAuthFingerprint(@a RestAPIParams.EmptyBody body);
 
-    @o("auth/login")
-    Observable<Response<ModelLoginResult>> postAuthLogin(@a RestAPIParams$AuthLogin body);
+    @i0.f0.o("auth/login")
+    Observable<Response<ModelLoginResult>> postAuthLogin(@a RestAPIParams.AuthLogin body);
 
-    @o("auth/register")
-    Observable<Response<RegisterResponse>> postAuthRegister(@a RestAPIParams$AuthRegister body);
+    @i0.f0.o("auth/register")
+    Observable<Response<RegisterResponse>> postAuthRegister(@a RestAPIParams.AuthRegister body);
 
-    @o("auth/register/phone")
-    Observable<Response<Void>> postAuthRegisterPhone(@a RestAPIParams$AuthRegisterPhone body);
+    @i0.f0.o("auth/register/phone")
+    Observable<Response<Void>> postAuthRegisterPhone(@a RestAPIParams.AuthRegisterPhone body);
 
-    @o("auth/verify/resend")
-    Observable<Response<Void>> postAuthVerifyResend(@a RestAPIParams$EmptyBody body);
+    @i0.f0.o("auth/verify/resend")
+    Observable<Response<Void>> postAuthVerifyResend(@a RestAPIParams.EmptyBody body);
 
-    @o("channels/{channelId}/invites")
-    Observable<ModelInvite> postChannelInvite(@s("channelId") long channelId, @a RestAPIParams$Invite body);
+    @i0.f0.o("channels/{channelId}/invites")
+    Observable<ModelInvite> postChannelInvite(@s("channelId") long channelId, @a RestAPIParams.Invite body);
 
-    @o("channels/{channelId}/messages/{messageId}/ack")
-    Observable<Void> postChannelMessagesAck(@s("channelId") long channelId, @s("messageId") Long messageId, @a RestAPIParams$ChannelMessagesAck body);
+    @i0.f0.o("channels/{channelId}/messages/{messageId}/ack")
+    Observable<Void> postChannelMessagesAck(@s("channelId") long channelId, @s("messageId") Long messageId, @a RestAPIParams.ChannelMessagesAck body);
 
-    @o("guilds/{guildId}/emojis")
-    Observable<ModelEmojiGuild> postGuildEmoji(@s("guildId") long guildId, @a RestAPIParams$PostGuildEmoji body);
+    @i0.f0.o("guilds/{guildId}/emojis")
+    Observable<ModelEmojiGuild> postGuildEmoji(@s("guildId") long guildId, @a RestAPIParams.PostGuildEmoji body);
 
-    @o("guilds/{guildId}/ack/{ackType}/{ackedId}")
-    Observable<Void> postGuildFeatureAck(@s("guildId") long channelId, @s("ackType") int ackType, @s("ackedId") long ackedId, @a RestAPIParams$GuildFeatureAck body);
+    @i0.f0.o("guilds/{guildId}/ack/{ackType}/{ackedId}")
+    Observable<Void> postGuildFeatureAck(@s("guildId") long channelId, @s("ackType") int ackType, @s("ackedId") long ackedId, @a RestAPIParams.GuildFeatureAck body);
 
-    @o("invites/{code}")
-    Observable<ModelInvite> postInviteCode(@s(ModelAuditLogEntry.CHANGE_KEY_CODE) String code, @a RestAPIParams$InviteCode body, @i("X-Context-Properties") String context);
+    @i0.f0.o("invites/{code}")
+    Observable<ModelInvite> postInviteCode(@s(ModelAuditLogEntry.CHANGE_KEY_CODE) String code, @a RestAPIParams.InviteCode body, @i("X-Context-Properties") String context);
 
-    @o("auth/mfa/totp")
-    Observable<Response<ModelLoginResult>> postMFACode(@a RestAPIParams$MFALogin body);
+    @i0.f0.o("auth/mfa/totp")
+    Observable<Response<ModelLoginResult>> postMFACode(@a RestAPIParams.MFALogin body);
 
-    @o("oauth2/authorize")
-    Observable<RestAPIParams$OAuth2Authorize$ResponsePost> postOauth2Authorize(@t("client_id") String clientId, @t("state") String state, @t("response_type") String responseType, @t("redirect_uri") String redirectUrl, @t("prompt") String prompt, @t("scope") String scope, @t(ModelAuditLogEntry.CHANGE_KEY_PERMISSIONS) String permissions, @t("code_challenge") String codeChallenge, @t("code_challenge_method") String codeChallengeMethod, @a Map<String, String> body);
+    @i0.f0.o("oauth2/authorize")
+    Observable<RestAPIParams.OAuth2Authorize.ResponsePost> postOauth2Authorize(@t("client_id") String clientId, @t("state") String state, @t("response_type") String responseType, @t("redirect_uri") String redirectUrl, @t("prompt") String prompt, @t("scope") String scope, @t(ModelAuditLogEntry.CHANGE_KEY_PERMISSIONS) String permissions, @t("code_challenge") String codeChallenge, @t("code_challenge_method") String codeChallengeMethod, @a Map<String, String> body);
 
-    @o("users/@me/remote-auth/cancel")
-    Observable<Void> postRemoteAuthCancel(@a RestAPIParams$RemoteAuthCancel body);
+    @i0.f0.o("users/@me/remote-auth/cancel")
+    Observable<Void> postRemoteAuthCancel(@a RestAPIParams.RemoteAuthCancel body);
 
-    @o("users/@me/remote-auth/finish")
-    Observable<Void> postRemoteAuthFinish(@a RestAPIParams$RemoteAuthFinish body);
+    @i0.f0.o("users/@me/remote-auth/finish")
+    Observable<Void> postRemoteAuthFinish(@a RestAPIParams.RemoteAuthFinish body);
 
-    @o("users/@me/remote-auth")
-    Observable<ModelRemoteAuthHandshake> postRemoteAuthInitialize(@a RestAPIParams$RemoteAuthInitialize body);
+    @i0.f0.o("users/@me/remote-auth")
+    Observable<ModelRemoteAuthHandshake> postRemoteAuthInitialize(@a RestAPIParams.RemoteAuthInitialize body);
 
-    @o("streams/{streamKey}/preview")
-    Observable<Void> postStreamPreview(@s("streamKey") String streamKey, @a RestAPIParams$Thumbnail thumbnail);
+    @i0.f0.o("streams/{streamKey}/preview")
+    Observable<Void> postStreamPreview(@s("streamKey") String streamKey, @a RestAPIParams.Thumbnail thumbnail);
 
-    @o("guilds/{guildId}/prune")
-    Observable<Void> pruneMembers(@s("guildId") long guildId, @a RestAPIParams$PruneGuild body);
+    @i0.f0.o("guilds/{guildId}/prune")
+    Observable<Void> pruneMembers(@s("guildId") long guildId, @a RestAPIParams.PruneGuild body);
 
     @b("channels/{channelId}/messages/{messageId}/reactions")
     Observable<Void> removeAllReactions(@s("channelId") long channelId, @s("messageId") long messageId);
@@ -753,18 +878,18 @@ public interface RestAPIInterface {
     Observable<Response<DirectoryEntryGuild>> removeServerFromHub(@s("channelId") long channelId, @s("guildId") long guildId);
 
     @n("guilds/{guildId}/channels")
-    Observable<Void> reorderChannels(@s("guildId") long guildId, @a List<RestAPIParams$ChannelPosition> body);
+    Observable<Void> reorderChannels(@s("guildId") long guildId, @a List<RestAPIParams.ChannelPosition> body);
 
-    @o("report")
-    Observable<Unit> report(@a RestAPIParams$Report body);
+    @i0.f0.o("report")
+    Observable<Unit> report(@a RestAPIParams.Report body);
 
     @f("report")
     Observable<List<ReportReason>> report(@t(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID) Long channelId, @t(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID) Long guildId, @t("message_id") Long messageId, @t("user_id") Long userId);
 
-    @o("users/@me/harvest")
+    @i0.f0.o("users/@me/harvest")
     Observable<Harvest> requestHarvest();
 
-    @o("guilds/{guildId}/requests/@me")
+    @i0.f0.o("guilds/{guildId}/requests/@me")
     Observable<ModelMemberVerificationFormResponse> resetGuildJoinRequest(@s("guildId") long guildId);
 
     @f("entitlements/gift-codes/{code}")
@@ -779,10 +904,10 @@ public interface RestAPIInterface {
     @b("invites/{inviteCode}")
     Observable<ModelInvite> revokeInvite(@s("inviteCode") String inviteCode);
 
-    @o("channels/{channelId}/call/ring")
-    Observable<Void> ring(@s("channelId") long channelId, @a RestAPIParams$Ring body, @i("X-Context-Properties") String context);
+    @i0.f0.o("channels/{channelId}/call/ring")
+    Observable<Void> ring(@s("channelId") long channelId, @a RestAPIParams.Ring body, @i("X-Context-Properties") String context);
 
-    @o("science")
+    @i0.f0.o("science")
     Observable<Void> science(@a Science body);
 
     @f("channels/{channelId}/messages/search")
@@ -794,199 +919,199 @@ public interface RestAPIInterface {
     @f("channels/{channelId}/directory-entries/search")
     Observable<List<DirectoryEntryGuild>> searchServers(@s("channelId") long channelId, @t("query") String query);
 
-    @o("interactions")
+    @i0.f0.o("interactions")
     @l
-    Observable<Void> sendApplicationCommand(@q("payload_json") PayloadJSON<RestAPIParams$ApplicationCommand> payloadJson, @q MultipartBody$Part[] files);
+    Observable<Void> sendApplicationCommand(@q("payload_json") PayloadJSON<RestAPIParams.ApplicationCommand> payloadJson, @q MultipartBody.Part[] files);
 
-    @o("interactions")
-    Observable<Void> sendApplicationCommand(@a RestAPIParams$ApplicationCommand body);
+    @i0.f0.o("interactions")
+    Observable<Void> sendApplicationCommand(@a RestAPIParams.ApplicationCommand body);
 
-    @o("private/bug-reports")
+    @i0.f0.o("private/bug-reports")
     @l
-    Observable<Unit> sendBugReport(@q(ModelAuditLogEntry.CHANGE_KEY_NAME) String name, @q(ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION) String description, @q("priority") int priority, @q("asana_inbox_id") Long asanaInboxId, @q MultipartBody$Part screenshot);
+    Observable<Unit> sendBugReport(@q(ModelAuditLogEntry.CHANGE_KEY_NAME) String name, @q(ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION) String description, @q("priority") int priority, @q("asana_inbox_id") Long asanaInboxId, @q MultipartBody.Part screenshot);
 
-    @o("interactions")
-    Observable<Void> sendComponentInteraction(@a RestAPIParams$ComponentInteraction body);
+    @i0.f0.o("interactions")
+    Observable<Void> sendComponentInteraction(@a RestAPIParams.ComponentInteraction body);
 
-    @o("channels/{channelId}/greet")
-    Observable<Message> sendGreetMessage(@s("channelId") long channelId, @a RestAPIParams$GreetMessage body);
+    @i0.f0.o("channels/{channelId}/greet")
+    Observable<Message> sendGreetMessage(@s("channelId") long channelId, @a RestAPIParams.GreetMessage body);
 
-    @o("channels/{channelId}/messages")
+    @i0.f0.o("channels/{channelId}/messages")
     @l
-    Observable<Message> sendMessage(@s("channelId") long channelId, @q("payload_json") PayloadJSON<RestAPIParams$Message> payloadJson, @q MultipartBody$Part[] files);
+    Observable<Message> sendMessage(@s("channelId") long channelId, @q("payload_json") PayloadJSON<RestAPIParams.Message> payloadJson, @q MultipartBody.Part[] files);
 
-    @o("channels/{channelId}/messages")
-    Observable<Message> sendMessage(@s("channelId") long channelId, @a RestAPIParams$Message message);
+    @i0.f0.o("channels/{channelId}/messages")
+    Observable<Message> sendMessage(@s("channelId") long channelId, @a RestAPIParams.Message message);
 
-    @o("interactions")
-    Observable<Void> sendModalInteraction(@a RestAPIParams$ModalInteraction body);
+    @i0.f0.o("interactions")
+    Observable<Void> sendModalInteraction(@a RestAPIParams.ModalInteraction body);
 
-    @o("users/@me/relationships")
-    Observable<Void> sendRelationshipRequest(@a RestAPIParams$UserRelationship$Add relationship, @i("X-Context-Properties") String context);
+    @i0.f0.o("users/@me/relationships")
+    Observable<Void> sendRelationshipRequest(@a RestAPIParams.UserRelationship.Add relationship, @i("X-Context-Properties") String context);
 
-    @o("users/@me/consent")
-    Observable<Void> setConsents(@a RestAPIParams$Consents body);
+    @i0.f0.o("users/@me/consent")
+    Observable<Void> setConsents(@a RestAPIParams.Consents body);
 
-    @o("guilds/{guildId}/mfa")
-    Observable<Void> setMfaLevel(@s("guildId") long guildId, @a RestAPIParams$GuildMFA body);
+    @i0.f0.o("guilds/{guildId}/mfa")
+    Observable<Void> setMfaLevel(@s("guildId") long guildId, @a RestAPIParams.GuildMFA body);
 
-    @o("channels/{channelId}/typing")
-    Observable<ModelTypingResponse> setUserTyping(@s("channelId") long channelId, @a RestAPIParams$EmptyBody body);
+    @i0.f0.o("channels/{channelId}/typing")
+    Observable<ModelTypingResponse> setUserTyping(@s("channelId") long channelId, @a RestAPIParams.EmptyBody body);
 
-    @o("stage-instances")
-    Observable<StageInstance> startStageInstance(@a RestAPIParams$StartStageInstanceBody body);
+    @i0.f0.o("stage-instances")
+    Observable<StageInstance> startStageInstance(@a RestAPIParams.StartStageInstanceBody body);
 
-    @o("channels/{channelId}/call/stop-ringing")
-    Observable<Void> stopRinging(@s("channelId") long channelId, @a RestAPIParams$Ring body, @i("X-Context-Properties") String context);
+    @i0.f0.o("channels/{channelId}/call/stop-ringing")
+    Observable<Void> stopRinging(@s("channelId") long channelId, @a RestAPIParams.Ring body, @i("X-Context-Properties") String context);
 
-    @o("connections/{connection}/callback")
-    Observable<Void> submitConnectionState(@s("connection") String connection, @a RestAPIParams$ConnectionState state);
+    @i0.f0.o("connections/{connection}/callback")
+    Observable<Void> submitConnectionState(@s("connection") String connection, @a RestAPIParams.ConnectionState state);
 
-    @o("reporting/{reportType}")
+    @i0.f0.o("reporting/{reportType}")
     Observable<Unit> submitReport(@s("reportType") String reportType, @a ReportSubmissionBody body);
 
     @p("guilds/{guildId}/premium/subscriptions")
-    Observable<List<ModelAppliedGuildBoost>> subscribeToGuild(@s("guildId") long guildId, @a RestAPIParams$GuildBoosting guildBoosting);
+    Observable<List<ModelAppliedGuildBoost>> subscribeToGuild(@s("guildId") long guildId, @a RestAPIParams.GuildBoosting guildBoosting);
 
-    @o("guilds/{guildId}/integrations/{integrationId}/sync")
+    @i0.f0.o("guilds/{guildId}/integrations/{integrationId}/sync")
     Observable<Void> syncIntegration(@s("guildId") long guildId, @s("integrationId") long integrationId);
 
     @n("guilds/{guildId}")
-    Observable<Void> transferGuildOwnership(@s("guildId") long guildId, @a RestAPIParams$TransferGuildOwnership transferGuildOwnership);
+    Observable<Void> transferGuildOwnership(@s("guildId") long guildId, @a RestAPIParams.TransferGuildOwnership transferGuildOwnership);
 
     @b("guilds/{guildId}/bans/{userId}")
     Observable<Void> unbanUser(@s("guildId") long guildId, @s("userId") long userId);
 
-    @o("users/@me/guilds/premium/subscription-slots/{subscriptionSlotId}/uncancel")
+    @i0.f0.o("users/@me/guilds/premium/subscription-slots/{subscriptionSlotId}/uncancel")
     Observable<ModelGuildBoostSlot> uncancelSubscriptionSlot(@s("subscriptionSlotId") long slotId);
 
     @b("guilds/{guildId}/premium/subscriptions/{subscriptionId}")
     Observable<Void> unsubscribeToGuild(@s("guildId") long guildId, @s("subscriptionId") long subscriptionId);
 
     @n("users/@me/connections/{connection}/{connectionId}")
-    Observable<Response<ConnectedAccount>> updateConnection(@s("connection") String connection, @s("connectionId") String connectionId, @a RestAPIParams$ConnectedAccount connectedAccount);
+    Observable<Response<ConnectedAccount>> updateConnection(@s("connection") String connection, @s("connectionId") String connectionId, @a RestAPIParams.ConnectedAccount connectedAccount);
 
     @n("users/@me/connections/{connection}/{connectionId}")
-    Observable<Response<ConnectedAccount>> updateConnectionName(@s("connection") String connection, @s("connectionId") String connectionId, @a RestAPIParams$ConnectedAccountNameOnly connectedAccountName);
+    Observable<Response<ConnectedAccount>> updateConnectionName(@s("connection") String connection, @s("connectionId") String connectionId, @a RestAPIParams.ConnectedAccountNameOnly connectedAccountName);
 
     @n("guilds/{guildId}")
-    Observable<Guild> updateGuild(@s("guildId") long guildId, @a RestAPIParams$UpdateGuild body);
+    Observable<Guild> updateGuild(@s("guildId") long guildId, @a RestAPIParams.UpdateGuild body);
 
     @n("guilds/{guildId}/integrations/{integrationId}")
-    Observable<Void> updateGuildIntegration(@s("guildId") long guildId, @s("integrationId") long integrationId, @a RestAPIParams$GuildIntegration body);
+    Observable<Void> updateGuildIntegration(@s("guildId") long guildId, @s("integrationId") long integrationId, @a RestAPIParams.GuildIntegration body);
 
     @n("guilds/{guildId}/role-subscriptions/group-listings/{groupListingId}")
-    Observable<GuildRoleSubscriptionGroupListing> updateGuildRoleSubscriptionGroupListing(@s("guildId") long guildId, @s("groupListingId") long groupListingId, @a RestAPIParams$UpdateGuildRoleSubscriptionGroupListing body);
+    Observable<GuildRoleSubscriptionGroupListing> updateGuildRoleSubscriptionGroupListing(@s("guildId") long guildId, @s("groupListingId") long groupListingId, @a RestAPIParams.UpdateGuildRoleSubscriptionGroupListing body);
 
     @n("guilds/{guildId}/role-subscriptions/subscription-listings/{listingId}/trial")
-    Observable<GuildRoleSubscriptionTierFreeTrial> updateGuildRoleSubscriptionTierFreeTrial(@s("guildId") long guildId, @s("listingId") long listingId, @a RestAPIParams$UpdateGuildRoleSubscriptionTierFreeTrial body);
+    Observable<GuildRoleSubscriptionTierFreeTrial> updateGuildRoleSubscriptionTierFreeTrial(@s("guildId") long guildId, @s("listingId") long listingId, @a RestAPIParams.UpdateGuildRoleSubscriptionTierFreeTrial body);
 
     @n("guilds/{guildId}/role-subscriptions/group-listings/{groupListingId}/subscription-listings/{listingId}")
-    Observable<GuildRoleSubscriptionTierListing> updateGuildRoleSubscriptionTierListing(@s("guildId") long guildId, @s("groupListingId") long groupListingId, @s("listingId") long tierListingId, @a RestAPIParams$UpdateGuildRoleSubscriptionTierListing body);
+    Observable<GuildRoleSubscriptionTierListing> updateGuildRoleSubscriptionTierListing(@s("guildId") long guildId, @s("groupListingId") long groupListingId, @s("listingId") long tierListingId, @a RestAPIParams.UpdateGuildRoleSubscriptionTierListing body);
 
     @n("guilds/{guildId}/scheduled-events/{eventId}")
-    Observable<Unit> updateGuildScheduledEvent(@s("guildId") long guildId, @s("eventId") long eventId, @a RestAPIParams$UpdateGuildScheduledEventBody body);
+    Observable<Unit> updateGuildScheduledEvent(@s("guildId") long guildId, @s("eventId") long eventId, @a RestAPIParams.UpdateGuildScheduledEventBody body);
 
     @n("guilds/{guildId}/members/@me")
     Observable<GuildMember> updateMeGuildMember(@s("guildId") long guildId, @a PatchGuildMemberBody body);
 
     @n("guilds/{guildId}/voice-states/@me")
-    Observable<Void> updateMyVoiceStates(@s("guildId") long guildId, @a RestAPIParams$ChannelVoiceStateUpdate body);
+    Observable<Void> updateMyVoiceStates(@s("guildId") long guildId, @a RestAPIParams.ChannelVoiceStateUpdate body);
 
     @n("users/@me/billing/payment-sources/{paymentSourceId}")
     Observable<Void> updatePaymentSource(@s("paymentSourceId") String paymentSourceId, @a PatchPaymentSourceRaw PatchPaymentSourceRaw);
 
     @p("channels/{channelId}/permissions/{targetId}")
-    Observable<Void> updatePermissionOverwrites(@s("channelId") long channelId, @s("targetId") long targetId, @a RestAPIParams$ChannelPermissionOverwrites body);
+    Observable<Void> updatePermissionOverwrites(@s("channelId") long channelId, @s("targetId") long targetId, @a RestAPIParams.ChannelPermissionOverwrites body);
 
     @n("users/@me/guilds/@me/settings")
-    Observable<ModelNotificationSettings> updatePrivateChannelSettings(@a RestAPIParams$UserGuildSettings userGuildSettings);
+    Observable<ModelNotificationSettings> updatePrivateChannelSettings(@a RestAPIParams.UserGuildSettings userGuildSettings);
 
     @n("guilds/{guildId}/roles/{roleId}")
-    Observable<Void> updateRole(@s("guildId") long guildId, @s("roleId") long roleId, @a RestAPIParams$Role body);
+    Observable<Void> updateRole(@s("guildId") long guildId, @s("roleId") long roleId, @a RestAPIParams.Role body);
 
     @n("stage-instances/{channelId}")
-    Observable<StageInstance> updateStageInstance(@s("channelId") long channelId, @a RestAPIParams$UpdateStageInstanceBody body);
+    Observable<StageInstance> updateStageInstance(@s("channelId") long channelId, @a RestAPIParams.UpdateStageInstanceBody body);
 
     @n("users/@me/billing/subscriptions/{subscriptionId}")
-    Observable<Void> updateSubscription(@s("subscriptionId") String subscriptionId, @a RestAPIParams$UpdateSubscription updateSubscription);
+    Observable<Void> updateSubscription(@s("subscriptionId") String subscriptionId, @a RestAPIParams.UpdateSubscription updateSubscription);
 
     @n("channels/{channelId}/thread-members/@me/settings")
-    Observable<ThreadMember> updateThreadMemberSettings(@s("channelId") long channelId, @a RestAPIParams$ThreadMemberSettings body);
+    Observable<ThreadMember> updateThreadMemberSettings(@s("channelId") long channelId, @a RestAPIParams.ThreadMemberSettings body);
 
     @n("users/@me/guilds/{guildId}/settings")
-    Observable<ModelNotificationSettings> updateUserGuildSettings(@s("guildId") long guildId, @a RestAPIParams$UserGuildSettings userGuildSettings);
+    Observable<ModelNotificationSettings> updateUserGuildSettings(@s("guildId") long guildId, @a RestAPIParams.UserGuildSettings userGuildSettings);
 
     @p("users/@me/notes/{userId}")
-    Observable<Void> updateUserNotes(@s("userId") long userId, @a RestAPIParams$UserNoteUpdate userNoteUpdate);
+    Observable<Void> updateUserNotes(@s("userId") long userId, @a RestAPIParams.UserNoteUpdate userNoteUpdate);
 
     @n("users/@me/settings")
-    Observable<ModelUserSettings> updateUserSettings(@a RestAPIParams$UserSettings userSettings);
+    Observable<ModelUserSettings> updateUserSettings(@a RestAPIParams.UserSettings userSettings);
 
     @n("users/@me/settings")
-    Observable<ModelUserSettings> updateUserSettingsCustomStatus(@a RestAPIParams$UserSettingsCustomStatus userSettingsCustomStatus);
+    Observable<ModelUserSettings> updateUserSettingsCustomStatus(@a RestAPIParams.UserSettingsCustomStatus userSettingsCustomStatus);
 
     @n("guilds/{guildId}/voice-states/{userId}")
-    Observable<Void> updateUserVoiceStates(@s("guildId") long guildId, @s("userId") long userId, @a RestAPIParams$ChannelVoiceStateUpdate body);
+    Observable<Void> updateUserVoiceStates(@s("guildId") long guildId, @s("userId") long userId, @a RestAPIParams.ChannelVoiceStateUpdate body);
 
     @n("guilds/{guildId}/vanity-url")
-    Observable<VanityUrlResponse> updateVanityUrl(@s("guildId") long guildId, @a RestAPIParams$VanityUrl body);
+    Observable<VanityUrlResponse> updateVanityUrl(@s("guildId") long guildId, @a RestAPIParams.VanityUrl body);
 
     @p("users/@me/connections/contacts/@me/external-friend-list-entries")
-    Observable<Response<BulkFriendSuggestions>> uploadContacts(@a RestAPIParams$UploadContacts uploadContacts);
+    Observable<Response<BulkFriendSuggestions>> uploadContacts(@a RestAPIParams.UploadContacts uploadContacts);
 
-    @o("debug-logs/4/{filename}")
+    @i0.f0.o("debug-logs/4/{filename}")
     Observable<Void> uploadLog(@s("filename") String filename, @a String content);
 
-    @o("debug-logs/multi/4")
+    @i0.f0.o("debug-logs/multi/4")
     @l
-    Observable<Void> uploadLogs(@q MultipartBody$Part[] files);
+    Observable<Void> uploadLogs(@q MultipartBody.Part[] files);
 
     @f("users/{userId}/sessions/{sessionId}/activities/{applicationId}/{actionType}")
     Observable<ActivityActionConfirmation> userActivityAction(@s("userId") long userId, @s("applicationId") long application, @s("sessionId") String sessionId, @s("actionType") Integer actionType, @t(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID) Long channelId, @t("message_id") Long messageId);
 
-    @o("users/@me/phone")
-    Observable<Void> userAddPhone(@a RestAPIParams$Phone body);
+    @i0.f0.o("users/@me/phone")
+    Observable<Void> userAddPhone(@a RestAPIParams.Phone body);
 
-    @o("users/@me/phone/verify")
-    Observable<Void> userAddPhoneNoPassword(@a RestAPIParams$VerificationCodeOnly body);
+    @i0.f0.o("users/@me/phone/verify")
+    Observable<Void> userAddPhoneNoPassword(@a RestAPIParams.VerificationCodeOnly body);
 
     @n("users/@me/agreements")
-    Observable<Void> userAgreements(@a RestAPIParams$UserAgreements body);
+    Observable<Void> userAgreements(@a RestAPIParams.UserAgreements body);
 
-    @o("users/@me/captcha/verify")
-    Observable<Void> userCaptchaVerify(@a RestAPIParams$CaptchaCode body);
+    @i0.f0.o("users/@me/captcha/verify")
+    Observable<Void> userCaptchaVerify(@a RestAPIParams.CaptchaCode body);
 
-    @o("users/@me/channels")
-    Observable<Channel> userCreateChannel(@a RestAPIParams$CreateChannel body);
+    @i0.f0.o("users/@me/channels")
+    Observable<Channel> userCreateChannel(@a RestAPIParams.CreateChannel body);
 
-    @o("users/@me/devices")
-    Observable<Void> userCreateDevice(@a RestAPIParams$UserDevices body);
+    @i0.f0.o("users/@me/devices")
+    Observable<Void> userCreateDevice(@a RestAPIParams.UserDevices body);
 
     @p("users/@me/email")
     Observable<Void> userEmail();
 
-    @o("users/@me/email/verify-code")
-    Observable<ModelEmailChangeConfirm> userEmailVerifyCode(@a RestAPIParams$UserEmailConfirmCode body);
+    @i0.f0.o("users/@me/email/verify-code")
+    Observable<ModelEmailChangeConfirm> userEmailVerifyCode(@a RestAPIParams.UserEmailConfirmCode body);
 
     @f("users/{userId}")
     Observable<User> userGet(@s("userId") long userId);
 
     @h(hasBody = GoogleSmartLockManager.SET_DISCORD_ACCOUNT_DETAILS, method = "DELETE", path = "users/@me/phone")
-    Observable<Void> userPhoneDelete(@a RestAPIParams$DeletePhone body);
+    Observable<Void> userPhoneDelete(@a RestAPIParams.DeletePhone body);
 
-    @o("users/@me/phone")
-    Observable<Void> userPhoneWithToken(@a RestAPIParams$VerificationPhoneCode body);
+    @i0.f0.o("users/@me/phone")
+    Observable<Void> userPhoneWithToken(@a RestAPIParams.VerificationPhoneCode body);
 
     @f("users/{userId}/profile")
     Observable<UserProfile> userProfileGet(@s("userId") long userId, @t("with_mutual_guilds") boolean withMutualGuilds, @t(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID) Long guildId);
 
-    @o("guilds/automations/email-domain-lookup")
-    Observable<Response<EmailVerification>> verifyEmail(@a RestAPIParams$VerifyEmail body);
+    @i0.f0.o("guilds/automations/email-domain-lookup")
+    Observable<Response<EmailVerification>> verifyEmail(@a RestAPIParams.VerifyEmail body);
 
-    @o("guilds/automations/email-domain-lookup/verify-code")
-    Observable<Response<EmailVerificationCode>> verifyEmailCode(@a RestAPIParams$VerifyEmailCode body);
+    @i0.f0.o("guilds/automations/email-domain-lookup/verify-code")
+    Observable<Response<EmailVerificationCode>> verifyEmailCode(@a RestAPIParams.VerifyEmailCode body);
 
-    @o("google-play/verify-purchase-token")
-    Observable<RestAPIParams$VerifyPurchaseResponse> verifyPurchaseToken(@a RestAPIParams$VerifyPurchaseTokenBody verifyPurchaseBody);
+    @i0.f0.o("google-play/verify-purchase-token")
+    Observable<RestAPIParams.VerifyPurchaseResponse> verifyPurchaseToken(@a RestAPIParams.VerifyPurchaseTokenBody verifyPurchaseBody);
 }

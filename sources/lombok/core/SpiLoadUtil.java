@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.net.URL;
@@ -46,7 +47,70 @@ public class SpiLoadUtil {
         }
         Iterator<String> names = entries.iterator();
         ClassLoader fLoader = loader;
-        return new SpiLoadUtil$1(names, target, fLoader);
+        return new AnonymousClass1(names, target, fLoader);
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [C] */
+    /* JADX INFO: renamed from: lombok.core.SpiLoadUtil$1, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/SpiLoadUtil$1.SCL.lombok */
+    class AnonymousClass1<C> implements Iterable<C> {
+        private final /* synthetic */ Iterator val$names;
+        private final /* synthetic */ Class val$target;
+        private final /* synthetic */ ClassLoader val$fLoader;
+
+        AnonymousClass1(Iterator it, Class cls, ClassLoader classLoader) {
+            this.val$names = it;
+            this.val$target = cls;
+            this.val$fLoader = classLoader;
+        }
+
+        /* JADX INFO: renamed from: lombok.core.SpiLoadUtil$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: loaded from: discord-126021.apk:lombok/core/SpiLoadUtil$1$1.SCL.lombok */
+        class C06411 implements Iterator<C> {
+            private final /* synthetic */ Iterator val$names;
+            private final /* synthetic */ Class val$target;
+            private final /* synthetic */ ClassLoader val$fLoader;
+
+            C06411(Iterator it, Class cls, ClassLoader classLoader) {
+                this.val$names = it;
+                this.val$target = cls;
+                this.val$fLoader = classLoader;
+            }
+
+            @Override // java.util.Iterator
+            public boolean hasNext() {
+                return this.val$names.hasNext();
+            }
+
+            @Override // java.util.Iterator
+            public C next() {
+                try {
+                    return (C) this.val$target.cast(Class.forName((String) this.val$names.next(), true, this.val$fLoader).getConstructor(new Class[0]).newInstance(new Object[0]));
+                } catch (Exception e) {
+                    Throwable cause = e;
+                    if (cause instanceof InvocationTargetException) {
+                        cause = cause.getCause();
+                    }
+                    if (cause instanceof RuntimeException) {
+                        throw ((RuntimeException) cause);
+                    }
+                    if (cause instanceof Error) {
+                        throw ((Error) cause);
+                    }
+                    throw new RuntimeException(cause);
+                }
+            }
+
+            @Override // java.util.Iterator
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        }
+
+        @Override // java.lang.Iterable
+        public Iterator<C> iterator() {
+            return new C06411(this.val$names, this.val$target, this.val$fLoader);
+        }
     }
 
     /* JADX WARN: Code duplicated, block: B:30:0x0085 A[Catch: Throwable -> 0x008c, FINALLY_INSNS, TRY_LEAVE, TryCatch #0 {Throwable -> 0x008c, blocks: (B:27:0x007d, B:30:0x0085), top: B:42:0x007d }] */

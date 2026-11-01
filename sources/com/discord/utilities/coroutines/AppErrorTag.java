@@ -3,21 +3,26 @@ package com.discord.utilities.coroutines;
 import b.d.b.a.a;
 import d0.z.d.m;
 import kotlin.coroutines.CoroutineContext;
-import kotlin.coroutines.CoroutineContext$Element;
-import kotlin.coroutines.CoroutineContext$Element$a;
-import kotlin.coroutines.CoroutineContext$Key;
 import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: AppCoroutineScope.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* data */ class AppErrorTag implements CoroutineContext$Element {
+public final /* data */ class AppErrorTag implements CoroutineContext.Element {
     private final String errorTag;
-    private final CoroutineContext$Key<AppErrorTag> key;
+    private final CoroutineContext.Key<AppErrorTag> key;
+
+    /* JADX INFO: compiled from: AppCoroutineScope.kt */
+    public final class Key implements CoroutineContext.Key<AppErrorTag> {
+        public static final Key INSTANCE = new Key();
+
+        private Key() {
+        }
+    }
 
     public AppErrorTag(String str) {
         m.checkNotNullParameter(str, "errorTag");
         this.errorTag = str;
-        this.key = AppErrorTag$Key.INSTANCE;
+        this.key = Key.INSTANCE;
     }
 
     public static /* synthetic */ AppErrorTag copy$default(AppErrorTag appErrorTag, String str, int i, Object obj) {
@@ -40,15 +45,15 @@ public final /* data */ class AppErrorTag implements CoroutineContext$Element {
     }
 
     @Override // kotlin.coroutines.CoroutineContext
-    public <R> R fold(R r, Function2<? super R, ? super CoroutineContext$Element, ? extends R> function2) {
+    public <R> R fold(R r, Function2<? super R, ? super CoroutineContext.Element, ? extends R> function2) {
         m.checkNotNullParameter(function2, "operation");
-        return (R) CoroutineContext$Element$a.fold(this, r, function2);
+        return (R) CoroutineContext.Element.a.fold(this, r, function2);
     }
 
-    @Override // kotlin.coroutines.CoroutineContext$Element, kotlin.coroutines.CoroutineContext
-    public <E extends CoroutineContext$Element> E get(CoroutineContext$Key<E> coroutineContext$Key) {
-        m.checkNotNullParameter(coroutineContext$Key, "key");
-        return (E) CoroutineContext$Element$a.get(this, coroutineContext$Key);
+    @Override // kotlin.coroutines.CoroutineContext.Element, kotlin.coroutines.CoroutineContext
+    public <E extends CoroutineContext.Element> E get(CoroutineContext.Key<E> key) {
+        m.checkNotNullParameter(key, "key");
+        return (E) CoroutineContext.Element.a.get(this, key);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -60,8 +65,8 @@ public final /* data */ class AppErrorTag implements CoroutineContext$Element {
         return this.errorTag;
     }
 
-    @Override // kotlin.coroutines.CoroutineContext$Element
-    public CoroutineContext$Key<AppErrorTag> getKey() {
+    @Override // kotlin.coroutines.CoroutineContext.Element
+    public CoroutineContext.Key<AppErrorTag> getKey() {
         return this.key;
     }
 
@@ -74,15 +79,15 @@ public final /* data */ class AppErrorTag implements CoroutineContext$Element {
     }
 
     @Override // kotlin.coroutines.CoroutineContext
-    public CoroutineContext minusKey(CoroutineContext$Key<?> coroutineContext$Key) {
-        m.checkNotNullParameter(coroutineContext$Key, "key");
-        return CoroutineContext$Element$a.minusKey(this, coroutineContext$Key);
+    public CoroutineContext minusKey(CoroutineContext.Key<?> key) {
+        m.checkNotNullParameter(key, "key");
+        return CoroutineContext.Element.a.minusKey(this, key);
     }
 
     @Override // kotlin.coroutines.CoroutineContext
     public CoroutineContext plus(CoroutineContext coroutineContext) {
         m.checkNotNullParameter(coroutineContext, "context");
-        return CoroutineContext$Element$a.plus(this, coroutineContext);
+        return CoroutineContext.Element.a.plus(this, coroutineContext);
     }
 
     public String toString() {

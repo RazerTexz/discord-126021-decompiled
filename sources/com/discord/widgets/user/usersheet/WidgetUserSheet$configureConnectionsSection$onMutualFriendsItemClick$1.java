@@ -3,7 +3,6 @@ package com.discord.widgets.user.usersheet;
 import android.content.Context;
 import com.discord.models.user.User;
 import com.discord.widgets.user.WidgetUserMutualFriends;
-import com.discord.widgets.user.WidgetUserMutualFriends$Companion;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -30,9 +29,9 @@ public final class WidgetUserSheet$configureConnectionsSection$onMutualFriendsIt
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2() {
-        WidgetUserMutualFriends$Companion widgetUserMutualFriends$Companion = WidgetUserMutualFriends.Companion;
+        WidgetUserMutualFriends.Companion companion = WidgetUserMutualFriends.INSTANCE;
         Context contextRequireContext = this.this$0.requireContext();
         m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
-        widgetUserMutualFriends$Companion.show(contextRequireContext, this.$user);
+        companion.show(contextRequireContext, this.$user);
     }
 }

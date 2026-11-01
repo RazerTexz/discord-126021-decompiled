@@ -10,15 +10,15 @@ import kotlin.jvm.functions.Function0;
 /* JADX INFO: compiled from: AnalyticsTracker.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class AnalyticsTracker$searchResultsEmpty$propertyProvider$1 extends o implements Function0<Map<String, ? extends Object>> {
-    public final /* synthetic */ Traits$Location $locationTrait;
+    public final /* synthetic */ Traits.Location $locationTrait;
     public final /* synthetic */ Map $properties;
     public final /* synthetic */ SearchType $searchType;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public AnalyticsTracker$searchResultsEmpty$propertyProvider$1(SearchType searchType, Traits$Location traits$Location, Map map) {
+    public AnalyticsTracker$searchResultsEmpty$propertyProvider$1(SearchType searchType, Traits.Location location, Map map) {
         super(0);
         this.$searchType = searchType;
-        this.$locationTrait = traits$Location;
+        this.$locationTrait = location;
         this.$properties = map;
     }
 
@@ -32,9 +32,9 @@ public final class AnalyticsTracker$searchResultsEmpty$propertyProvider$1 extend
     public final Map<String, ? extends Object> invoke2() {
         LinkedHashMap linkedHashMap = new LinkedHashMap();
         linkedHashMap.put("search_type", this.$searchType.name());
-        Traits$Location traits$Location = this.$locationTrait;
-        if (traits$Location != null) {
-            traits$Location.serializeTo(linkedHashMap);
+        Traits.Location location = this.$locationTrait;
+        if (location != null) {
+            location.serializeTo(linkedHashMap);
         }
         return h0.plus(linkedHashMap, CollectionExtensionsKt.filterNonNullValues(this.$properties));
     }

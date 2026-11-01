@@ -1,6 +1,7 @@
 package com.discord.gateway.opcodes;
 
 import java.util.HashMap;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: Opcode.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,9 +28,26 @@ public enum Opcode {
     REQUEST_GUILD_APPLICATION_COMMANDS(24),
     REQUEST_FORUM_UNREADS(28);
 
-    public static final Opcode$Companion Companion = new Opcode$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final int apiInt;
     private static final HashMap<Integer, Opcode> intLookup;
+
+    /* JADX INFO: compiled from: Opcode.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final Opcode fromApiInt(int apiInt) {
+            Opcode opcode = (Opcode) Opcode.access$getIntLookup$cp().get(Integer.valueOf(apiInt));
+            return opcode != null ? opcode : Opcode.UNHANDLED;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     static {
         HashMap<Integer, Opcode> map = new HashMap<>();

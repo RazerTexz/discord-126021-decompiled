@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager$NameNotFoundException;
 import android.net.Uri;
-import android.net.Uri$Builder;
 import android.text.TextUtils;
 import android.util.Log;
 import androidx.annotation.Nullable;
@@ -17,7 +15,7 @@ import b.i.a.f.e.k.u0;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.google.android.gms.common.GooglePlayServicesIncorrectManifestValueException;
 import com.google.android.gms.common.GooglePlayServicesMissingManifestValueException;
-import com.google.android.gms.common.R$a;
+import com.google.android.gms.common.R;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -67,17 +65,17 @@ public class c {
         if (context != null) {
             try {
                 sbU.append(b.i.a.f.e.p.b.a(context).b(context.getPackageName(), 0).versionCode);
-            } catch (PackageManager$NameNotFoundException unused) {
+            } catch (PackageManager.NameNotFoundException unused) {
             }
         }
         String string = sbU.toString();
         Uri uri3 = u0.a;
         Intent intent3 = new Intent("android.intent.action.VIEW");
-        Uri$Builder uri$BuilderAppendQueryParameter = Uri.parse("market://details").buildUpon().appendQueryParameter(ModelAuditLogEntry.CHANGE_KEY_ID, "com.google.android.gms");
+        Uri.Builder builderAppendQueryParameter = Uri.parse("market://details").buildUpon().appendQueryParameter(ModelAuditLogEntry.CHANGE_KEY_ID, "com.google.android.gms");
         if (!TextUtils.isEmpty(string)) {
-            uri$BuilderAppendQueryParameter.appendQueryParameter("pcampaignid", string);
+            builderAppendQueryParameter.appendQueryParameter("pcampaignid", string);
         }
-        intent3.setData(uri$BuilderAppendQueryParameter.build());
+        intent3.setData(builderAppendQueryParameter.build());
         intent3.setPackage("com.android.vending");
         intent3.addFlags(524288);
         return intent3;
@@ -98,7 +96,7 @@ public class c {
     /* JADX WARN: Code duplicated, block: B:87:0x017b A[RETURN] */
     /* JADX WARN: Code duplicated, block: B:88:0x017c A[RETURN] */
     /* JADX WARN: Code duplicated, block: B:89:0x0143 A[EXC_TOP_SPLITTER, SYNTHETIC] */
-    public int b(@RecentlyNonNull Context context, int i) throws PackageManager$NameNotFoundException {
+    public int b(@RecentlyNonNull Context context, int i) throws PackageManager.NameNotFoundException {
         boolean z2;
         PackageInfo packageInfo;
         int i2;
@@ -107,7 +105,7 @@ public class c {
         ApplicationInfo applicationInfo;
         AtomicBoolean atomicBoolean = e.a;
         try {
-            context.getResources().getString(R$a.common_google_play_services_unknown_issue);
+            context.getResources().getString(R.a.common_google_play_services_unknown_issue);
         } catch (Throwable unused) {
             Log.e("GooglePlayServicesUtil", "The Google Play services resources were not found. Check your project configuration to ensure that the resources are included.");
         }
@@ -140,7 +138,7 @@ public class c {
         if (z2) {
             try {
                 packageInfo = packageManager.getPackageInfo("com.android.vending", 8256);
-            } catch (PackageManager$NameNotFoundException unused2) {
+            } catch (PackageManager.NameNotFoundException unused2) {
                 Log.w("GooglePlayServicesUtil", String.valueOf(packageName).concat(" requires the Google Play Store, but it is missing."));
             }
         } else {
@@ -176,7 +174,7 @@ public class c {
                             if (applicationInfo == null) {
                                 try {
                                     applicationInfo = packageManager.getApplicationInfo("com.google.android.gms", 0);
-                                } catch (PackageManager$NameNotFoundException e) {
+                                } catch (PackageManager.NameNotFoundException e) {
                                     Log.wtf("GooglePlayServicesUtil", String.valueOf(packageName).concat(" requires Google Play services, but they're missing when getting application info."), e);
                                     i2 = 1;
                                 }
@@ -233,7 +231,7 @@ public class c {
             }
             Log.w("GooglePlayServicesUtil", String.valueOf(packageName).concat(" requires Google Play services, but their signature is invalid."));
             i2 = 9;
-        } catch (PackageManager$NameNotFoundException unused3) {
+        } catch (PackageManager.NameNotFoundException unused3) {
             Log.w("GooglePlayServicesUtil", String.valueOf(packageName).concat(" requires Google Play services, but they are missing."));
         }
         if (i2 == 18) {

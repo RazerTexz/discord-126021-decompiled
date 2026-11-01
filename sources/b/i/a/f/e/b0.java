@@ -7,7 +7,6 @@ import android.os.RemoteException;
 import android.util.Log;
 import com.google.android.gms.common.zzs;
 import com.google.android.gms.dynamite.DynamiteModule;
-import com.google.android.gms.dynamite.DynamiteModule$LoadingException;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
@@ -29,7 +28,7 @@ public final class b0 {
         d = new Object();
     }
 
-    public static void a() throws DynamiteModule$LoadingException {
+    public static void a() throws DynamiteModule.LoadingException {
         b.i.a.f.e.k.e0 c0Var;
         if (c != null) {
             return;
@@ -64,7 +63,7 @@ public final class b0 {
                 Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e2);
                 return g0.c("module call", e2);
             }
-        } catch (DynamiteModule$LoadingException e3) {
+        } catch (DynamiteModule.LoadingException e3) {
             Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e3);
             String strValueOf = String.valueOf(e3.getMessage());
             return g0.c(strValueOf.length() != 0 ? "module init: ".concat(strValueOf) : new String("module init: "), e3);

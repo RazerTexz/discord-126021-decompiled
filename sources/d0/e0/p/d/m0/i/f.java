@@ -1,23 +1,38 @@
 package d0.e0.p.d.m0.i;
 
-import d0.e0.p.d.m0.i.f$a;
+import d0.e0.p.d.m0.i.f.a;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map$Entry;
+import java.util.Map;
 import java.util.Objects;
 import kotlin.reflect.jvm.internal.impl.protobuf.CodedOutputStream;
 
 /* JADX INFO: compiled from: FieldSet.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class f<FieldDescriptorType extends f$a<FieldDescriptorType>> {
+public final class f<FieldDescriptorType extends a<FieldDescriptorType>> {
     public boolean c;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final t<FieldDescriptorType, Object> f3429b;
     public static final f a = new f(true);
     public boolean d = false;
+
+    /* JADX INFO: compiled from: FieldSet.java */
+    public interface a<T extends a<T>> extends Comparable<T> {
+        w.c getLiteJavaType();
+
+        w.b getLiteType();
+
+        int getNumber();
+
+        n.a internalMergeFrom(n.a aVar, n nVar);
+
+        boolean isPacked();
+
+        boolean isRepeated();
+    }
 
     public f() {
         int i = t.j;
@@ -50,8 +65,8 @@ public final class f<FieldDescriptorType extends f$a<FieldDescriptorType>> {
         arrayList.add(obj);
     }
 
-    public static int b(w$b w_b, Object obj) {
-        switch (w_b.ordinal()) {
+    public static int b(w.b bVar, Object obj) {
+        switch (bVar.ordinal()) {
             case 0:
                 return CodedOutputStream.computeDoubleSizeNoTag(((Double) obj).doubleValue());
             case 1:
@@ -79,7 +94,7 @@ public final class f<FieldDescriptorType extends f$a<FieldDescriptorType>> {
             case 12:
                 return CodedOutputStream.computeUInt32SizeNoTag(((Integer) obj).intValue());
             case 13:
-                return obj instanceof h$a ? CodedOutputStream.computeEnumSizeNoTag(((h$a) obj).getNumber()) : CodedOutputStream.computeEnumSizeNoTag(((Integer) obj).intValue());
+                return obj instanceof h.a ? CodedOutputStream.computeEnumSizeNoTag(((h.a) obj).getNumber()) : CodedOutputStream.computeEnumSizeNoTag(((Integer) obj).intValue());
             case 14:
                 return CodedOutputStream.computeSFixed32SizeNoTag(((Integer) obj).intValue());
             case 15:
@@ -93,24 +108,24 @@ public final class f<FieldDescriptorType extends f$a<FieldDescriptorType>> {
         }
     }
 
-    public static int c(w$b w_b, boolean z2) {
+    public static int c(w.b bVar, boolean z2) {
         if (z2) {
             return 2;
         }
-        return w_b.getWireType();
+        return bVar.getWireType();
     }
 
-    public static int computeFieldSize(f$a<?> f_a, Object obj) {
+    public static int computeFieldSize(a<?> aVar, Object obj) {
         int iComputeTagSize;
         int iB;
-        w$b liteType = f_a.getLiteType();
-        int number = f_a.getNumber();
-        if (f_a.isRepeated()) {
+        w.b liteType = aVar.getLiteType();
+        int number = aVar.getNumber();
+        if (aVar.isRepeated()) {
             int iB2 = 0;
-            if (!f_a.isPacked()) {
+            if (!aVar.isPacked()) {
                 for (Object obj2 : (List) obj) {
                     int iComputeTagSize2 = CodedOutputStream.computeTagSize(number);
-                    if (liteType == w$b.f3434s) {
+                    if (liteType == w.b.f3434s) {
                         iComputeTagSize2 *= 2;
                     }
                     iB2 += b(liteType, obj2) + iComputeTagSize2;
@@ -125,7 +140,7 @@ public final class f<FieldDescriptorType extends f$a<FieldDescriptorType>> {
             iB = CodedOutputStream.computeRawVarint32Size(iB2);
         } else {
             iComputeTagSize = CodedOutputStream.computeTagSize(number);
-            if (liteType == w$b.f3434s) {
+            if (liteType == w.b.f3434s) {
                 iComputeTagSize *= 2;
             }
             iB = b(liteType, obj);
@@ -133,18 +148,18 @@ public final class f<FieldDescriptorType extends f$a<FieldDescriptorType>> {
         return iB + iComputeTagSize;
     }
 
-    public final boolean d(Map$Entry<FieldDescriptorType, Object> map$Entry) {
-        FieldDescriptorType key = map$Entry.getKey();
-        if (key.getLiteJavaType() == w$c.MESSAGE) {
+    public final boolean d(Map.Entry<FieldDescriptorType, Object> entry) {
+        FieldDescriptorType key = entry.getKey();
+        if (key.getLiteJavaType() == w.c.MESSAGE) {
             if (key.isRepeated()) {
-                Iterator it = ((List) map$Entry.getValue()).iterator();
+                Iterator it = ((List) entry.getValue()).iterator();
                 while (it.hasNext()) {
                     if (!((n) it.next()).isInitialized()) {
                         return false;
                     }
                 }
             } else {
-                Object value = map$Entry.getValue();
+                Object value = entry.getValue();
                 if (!(value instanceof n)) {
                     if (value instanceof i) {
                         return true;
@@ -159,9 +174,9 @@ public final class f<FieldDescriptorType extends f$a<FieldDescriptorType>> {
         return true;
     }
 
-    public final void e(Map$Entry<FieldDescriptorType, Object> map$Entry) {
-        FieldDescriptorType key = map$Entry.getKey();
-        Object value = map$Entry.getValue();
+    public final void e(Map.Entry<FieldDescriptorType, Object> entry) {
+        FieldDescriptorType key = entry.getKey();
+        Object value = entry.getValue();
         if (value instanceof i) {
             value = ((i) value).getValue();
         }
@@ -177,7 +192,7 @@ public final class f<FieldDescriptorType extends f$a<FieldDescriptorType>> {
             this.f3429b.put(key, field);
             return;
         }
-        if (key.getLiteJavaType() != w$c.MESSAGE) {
+        if (key.getLiteJavaType() != w.c.MESSAGE) {
             this.f3429b.put(key, a(value));
             return;
         }
@@ -189,16 +204,16 @@ public final class f<FieldDescriptorType extends f$a<FieldDescriptorType>> {
         }
     }
 
-    public static <T extends f$a<T>> f<T> emptySet() {
+    public static <T extends a<T>> f<T> emptySet() {
         return a;
     }
 
     /* JADX WARN: Code duplicated, block: B:20:0x002c  */
-    public static void f(w$b w_b, Object obj) {
+    public static void f(w.b bVar, Object obj) {
         Objects.requireNonNull(obj);
         boolean z2 = true;
         boolean z3 = false;
-        switch (w_b.getJavaType()) {
+        switch (bVar.getJavaType()) {
             case INT:
                 z3 = obj instanceof Integer;
                 break;
@@ -224,7 +239,7 @@ public final class f<FieldDescriptorType extends f$a<FieldDescriptorType>> {
                 z3 = z2;
                 break;
             case ENUM:
-                if (!(obj instanceof Integer) && !(obj instanceof h$a)) {
+                if (!(obj instanceof Integer) && !(obj instanceof h.a)) {
                     z2 = false;
                 }
                 z3 = z2;
@@ -241,12 +256,12 @@ public final class f<FieldDescriptorType extends f$a<FieldDescriptorType>> {
         }
     }
 
-    public static void g(CodedOutputStream codedOutputStream, w$b w_b, int i, Object obj) throws IOException {
-        if (w_b == w$b.f3434s) {
+    public static void g(CodedOutputStream codedOutputStream, w.b bVar, int i, Object obj) throws IOException {
+        if (bVar == w.b.f3434s) {
             codedOutputStream.writeGroup(i, (n) obj);
         } else {
-            codedOutputStream.writeTag(i, c(w_b, false));
-            h(codedOutputStream, w_b, obj);
+            codedOutputStream.writeTag(i, c(bVar, false));
+            h(codedOutputStream, bVar, obj);
         }
     }
 
@@ -280,19 +295,19 @@ public final class f<FieldDescriptorType extends f$a<FieldDescriptorType>> {
     public int getSerializedSize() {
         int iComputeFieldSize = 0;
         for (int i = 0; i < this.f3429b.getNumArrayEntries(); i++) {
-            Map$Entry<K, Object> arrayEntryAt = this.f3429b.getArrayEntryAt(i);
-            iComputeFieldSize += computeFieldSize((f$a) arrayEntryAt.getKey(), arrayEntryAt.getValue());
+            Map.Entry<K, Object> arrayEntryAt = this.f3429b.getArrayEntryAt(i);
+            iComputeFieldSize += computeFieldSize((a) arrayEntryAt.getKey(), arrayEntryAt.getValue());
         }
         Iterator it = this.f3429b.getOverflowEntries().iterator();
         while (it.hasNext()) {
-            Map$Entry map$Entry = (Map$Entry) it.next();
-            iComputeFieldSize += computeFieldSize((f$a) map$Entry.getKey(), map$Entry.getValue());
+            Map.Entry entry = (Map.Entry) it.next();
+            iComputeFieldSize += computeFieldSize((a) entry.getKey(), entry.getValue());
         }
         return iComputeFieldSize;
     }
 
-    public static void h(CodedOutputStream codedOutputStream, w$b w_b, Object obj) throws IOException {
-        switch (w_b.ordinal()) {
+    public static void h(CodedOutputStream codedOutputStream, w.b bVar, Object obj) throws IOException {
+        switch (bVar.ordinal()) {
             case 0:
                 codedOutputStream.writeDoubleNoTag(((Double) obj).doubleValue());
                 break;
@@ -337,10 +352,10 @@ public final class f<FieldDescriptorType extends f$a<FieldDescriptorType>> {
                 codedOutputStream.writeUInt32NoTag(((Integer) obj).intValue());
                 break;
             case 13:
-                if (!(obj instanceof h$a)) {
+                if (!(obj instanceof h.a)) {
                     codedOutputStream.writeEnumNoTag(((Integer) obj).intValue());
                 } else {
-                    codedOutputStream.writeEnumNoTag(((h$a) obj).getNumber());
+                    codedOutputStream.writeEnumNoTag(((h.a) obj).getNumber());
                 }
                 break;
             case 14:
@@ -373,15 +388,15 @@ public final class f<FieldDescriptorType extends f$a<FieldDescriptorType>> {
         }
         Iterator it = this.f3429b.getOverflowEntries().iterator();
         while (it.hasNext()) {
-            if (!d((Map$Entry) it.next())) {
+            if (!d((Map.Entry) it.next())) {
                 return false;
             }
         }
         return true;
     }
 
-    public Iterator<Map$Entry<FieldDescriptorType, Object>> iterator() {
-        return this.d ? new i$c(this.f3429b.entrySet().iterator()) : this.f3429b.entrySet().iterator();
+    public Iterator<Map.Entry<FieldDescriptorType, Object>> iterator() {
+        return this.d ? new i.c(this.f3429b.entrySet().iterator()) : this.f3429b.entrySet().iterator();
     }
 
     /* JADX INFO: renamed from: clone, reason: collision with other method in class */
@@ -403,16 +418,16 @@ public final class f<FieldDescriptorType extends f$a<FieldDescriptorType>> {
         }
         Iterator it = fVar.f3429b.getOverflowEntries().iterator();
         while (it.hasNext()) {
-            e((Map$Entry) it.next());
+            e((Map.Entry) it.next());
         }
     }
 
-    public static <T extends f$a<T>> f<T> newFieldSet() {
+    public static <T extends a<T>> f<T> newFieldSet() {
         return new f<>();
     }
 
-    public static Object readPrimitiveField(d dVar, w$b w_b, boolean z2) throws IOException {
-        switch (w_b.ordinal()) {
+    public static Object readPrimitiveField(d dVar, w.b bVar, boolean z2) throws IOException {
+        switch (bVar.ordinal()) {
             case 0:
                 return Double.valueOf(dVar.readDouble());
             case 1:
@@ -475,10 +490,10 @@ public final class f<FieldDescriptorType extends f$a<FieldDescriptorType>> {
         this.f3429b.put(fielddescriptortype, obj);
     }
 
-    public static void writeField(f$a<?> f_a, Object obj, CodedOutputStream codedOutputStream) throws IOException {
-        w$b liteType = f_a.getLiteType();
-        int number = f_a.getNumber();
-        if (!f_a.isRepeated()) {
+    public static void writeField(a<?> aVar, Object obj, CodedOutputStream codedOutputStream) throws IOException {
+        w.b liteType = aVar.getLiteType();
+        int number = aVar.getNumber();
+        if (!aVar.isRepeated()) {
             if (obj instanceof i) {
                 g(codedOutputStream, liteType, number, ((i) obj).getValue());
                 return;
@@ -488,7 +503,7 @@ public final class f<FieldDescriptorType extends f$a<FieldDescriptorType>> {
             }
         }
         List list = (List) obj;
-        if (!f_a.isPacked()) {
+        if (!aVar.isPacked()) {
             Iterator it = list.iterator();
             while (it.hasNext()) {
                 g(codedOutputStream, liteType, number, it.next());
@@ -511,13 +526,13 @@ public final class f<FieldDescriptorType extends f$a<FieldDescriptorType>> {
     public f<FieldDescriptorType> clone() {
         f<FieldDescriptorType> fVarNewFieldSet = newFieldSet();
         for (int i = 0; i < this.f3429b.getNumArrayEntries(); i++) {
-            Map$Entry<K, Object> arrayEntryAt = this.f3429b.getArrayEntryAt(i);
-            fVarNewFieldSet.setField((f$a) arrayEntryAt.getKey(), arrayEntryAt.getValue());
+            Map.Entry<K, Object> arrayEntryAt = this.f3429b.getArrayEntryAt(i);
+            fVarNewFieldSet.setField((a) arrayEntryAt.getKey(), arrayEntryAt.getValue());
         }
         Iterator it = this.f3429b.getOverflowEntries().iterator();
         while (it.hasNext()) {
-            Map$Entry map$Entry = (Map$Entry) it.next();
-            fVarNewFieldSet.setField((f$a) map$Entry.getKey(), map$Entry.getValue());
+            Map.Entry entry = (Map.Entry) it.next();
+            fVarNewFieldSet.setField((a) entry.getKey(), entry.getValue());
         }
         fVarNewFieldSet.d = this.d;
         return fVarNewFieldSet;

@@ -17,10 +17,10 @@ public final class NearbyManager$buildClient$$inlined$also$lambda$1 extends c {
     public void onPermissionChanged(boolean permissionGranted) {
         super.onPermissionChanged(permissionGranted);
         if (!permissionGranted) {
-            NearbyManager.access$getNearbyStateSubject$p(this.this$0).onNext(new NearbyManager$NearbyState$Disconnected(98));
+            NearbyManager.access$getNearbyStateSubject$p(this.this$0).onNext(new NearbyManager.NearbyState.Disconnected(98));
         } else {
             AnalyticsTracker.nearbyConnected();
-            NearbyManager.access$getNearbyStateSubject$p(this.this$0).onNext(new NearbyManager$NearbyState$Connected(new HashSet(NearbyManager.access$getNearbyUserIds$p(this.this$0))));
+            NearbyManager.access$getNearbyStateSubject$p(this.this$0).onNext(new NearbyManager.NearbyState.Connected(new HashSet(NearbyManager.access$getNearbyUserIds$p(this.this$0))));
         }
     }
 }

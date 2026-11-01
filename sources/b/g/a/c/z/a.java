@@ -1,6 +1,5 @@
 package b.g.a.c.z;
 
-import b.g.a.c.c0.a$a;
 import b.g.a.c.c0.t;
 import b.g.a.c.u;
 import java.io.Serializable;
@@ -11,7 +10,7 @@ import java.util.TimeZone;
 /* JADX INFO: compiled from: BaseSettings.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class a implements Serializable {
-    public final a$a _accessorNaming;
+    public final b.g.a.c.c0.a.AbstractC0083a _accessorNaming;
     public final b.g.a.c.b _annotationIntrospector;
     public final t _classIntrospector;
     public final DateFormat _dateFormat;
@@ -26,7 +25,7 @@ public final class a implements Serializable {
     private static final long serialVersionUID = 1;
     public static final TimeZone j = TimeZone.getTimeZone("UTC");
 
-    public a(t tVar, b.g.a.c.b bVar, u uVar, b.g.a.c.h0.n nVar, b.g.a.c.e0.f fVar, DateFormat dateFormat, Locale locale, TimeZone timeZone, b.g.a.b.a aVar, b.g.a.c.e0.c cVar, a$a a_a) {
+    public a(t tVar, b.g.a.c.b bVar, u uVar, b.g.a.c.h0.n nVar, b.g.a.c.e0.f fVar, DateFormat dateFormat, Locale locale, TimeZone timeZone, b.g.a.b.a aVar, b.g.a.c.e0.c cVar, b.g.a.c.c0.a.AbstractC0083a abstractC0083a) {
         this._classIntrospector = tVar;
         this._annotationIntrospector = bVar;
         this._propertyNamingStrategy = uVar;
@@ -37,6 +36,6 @@ public final class a implements Serializable {
         this._timeZone = timeZone;
         this._defaultBase64 = aVar;
         this._typeValidator = cVar;
-        this._accessorNaming = a_a;
+        this._accessorNaming = abstractC0083a;
     }
 }

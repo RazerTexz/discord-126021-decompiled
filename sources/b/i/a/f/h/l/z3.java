@@ -1,6 +1,6 @@
 package b.i.a.f.h.l;
 
-import com.google.android.gms.internal.measurement.zzhi$a;
+import com.google.android.gms.internal.measurement.zzhi;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Objects;
@@ -96,7 +96,7 @@ public class z3 extends b4 {
 
     @Override // b.i.a.f.h.l.t3
     public final void j(u3 u3Var) throws IOException {
-        ((zzhi$a) u3Var).Z(this.zzb, o(), d());
+        ((zzhi.a) u3Var).Z(this.zzb, o(), d());
     }
 
     @Override // b.i.a.f.h.l.t3

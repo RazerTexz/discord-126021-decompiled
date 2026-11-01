@@ -1,7 +1,6 @@
 package b.f.j.p;
 
 import com.facebook.imagepipeline.request.ImageRequest;
-import com.facebook.imagepipeline.request.ImageRequest$c;
 import java.util.Map;
 
 /* JADX INFO: compiled from: ProducerContext.java */
@@ -41,5 +40,5 @@ public interface x0 {
 
     boolean p();
 
-    ImageRequest$c q();
+    ImageRequest.c q();
 }

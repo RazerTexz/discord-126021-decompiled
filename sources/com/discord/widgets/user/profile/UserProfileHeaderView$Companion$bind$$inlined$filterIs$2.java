@@ -13,6 +13,6 @@ public final class UserProfileHeaderView$Companion$bind$$inlined$filterIs$2<T, R
     @Override // j0.k.b
     public final T call(Object obj) {
         Objects.requireNonNull(obj, "null cannot be cast to non-null type com.discord.widgets.user.profile.UserProfileHeaderViewModel.ViewState.Loaded");
-        return (T) ((UserProfileHeaderViewModel$ViewState$Loaded) obj);
+        return (T) ((UserProfileHeaderViewModel.ViewState.Loaded) obj);
     }
 }

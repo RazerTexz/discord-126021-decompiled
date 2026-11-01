@@ -8,7 +8,11 @@ import b.a.m.a.g0;
 import b.a.m.a.l;
 import b.a.m.a.m;
 import b.a.m.a.n;
+import b.a.m.a.o;
+import b.a.m.a.p;
+import b.a.m.a.r;
 import b.a.m.a.s;
+import b.a.m.a.t;
 import b.a.m.a.v;
 import b.a.m.a.w;
 import b.a.m.a.x;
@@ -51,105 +55,347 @@ public class ModelPayload implements Model {
     private User f2726me;
     private List<Presence> presences;
     private List<Channel> privateChannels;
-    private ModelPayload$VersionedReadStates readState;
+    private VersionedReadStates readState;
     private List<ModelUserRelationship> relationships;
     private String requiredAction;
     private String sessionId;
     private List<ModelSession> sessions;
     private Object trace;
-    private ModelPayload$VersionedUserGuildSettings userGuildSettings;
+    private VersionedUserGuildSettings userGuildSettings;
     private ModelUserSettings userSettings;
     private UserSurvey userSurvey;
     private List<User> users;
     private int v;
 
+    public class Hello implements Model {
+        private int heartbeatInterval;
+        private List<String> trace;
+
+        @Override // com.discord.models.domain.Model
+        public void assignField(Model.JsonReader jsonReader) throws IOException {
+            String strNextName = jsonReader.nextName();
+            strNextName.hashCode();
+            if (strNextName.equals("_trace")) {
+                this.trace = jsonReader.nextList(new o(jsonReader));
+            } else if (strNextName.equals("heartbeat_interval")) {
+                this.heartbeatInterval = jsonReader.nextInt(this.heartbeatInterval);
+            } else {
+                jsonReader.skipValue();
+            }
+        }
+
+        public boolean canEqual(Object obj) {
+            return obj instanceof Hello;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof Hello)) {
+                return false;
+            }
+            Hello hello = (Hello) obj;
+            if (!hello.canEqual(this) || getHeartbeatInterval() != hello.getHeartbeatInterval()) {
+                return false;
+            }
+            List<String> trace = getTrace();
+            List<String> trace2 = hello.getTrace();
+            return trace != null ? trace.equals(trace2) : trace2 == null;
+        }
+
+        public int getHeartbeatInterval() {
+            return this.heartbeatInterval;
+        }
+
+        public List<String> getTrace() {
+            return this.trace;
+        }
+
+        public int hashCode() {
+            int heartbeatInterval = getHeartbeatInterval() + 59;
+            List<String> trace = getTrace();
+            return (heartbeatInterval * 59) + (trace == null ? 43 : trace.hashCode());
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("ModelPayload.Hello(heartbeatInterval=");
+            sbU.append(getHeartbeatInterval());
+            sbU.append(", trace=");
+            sbU.append(getTrace());
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    public class MergedPresences implements Model {
+        private List<Presence> friends;
+        private List<List<Presence>> guilds;
+
+        public static /* synthetic */ List access$000(MergedPresences mergedPresences) {
+            return mergedPresences.friends;
+        }
+
+        public static /* synthetic */ List access$100(MergedPresences mergedPresences) {
+            return mergedPresences.guilds;
+        }
+
+        @Override // com.discord.models.domain.Model
+        public void assignField(Model.JsonReader jsonReader) throws IOException {
+            String strNextName = jsonReader.nextName();
+            strNextName.hashCode();
+            if (strNextName.equals("guilds")) {
+                this.guilds = jsonReader.nextList(new r(jsonReader));
+            } else if (strNextName.equals("friends")) {
+                this.friends = jsonReader.nextList(new p(jsonReader));
+            } else {
+                jsonReader.skipValue();
+            }
+        }
+
+        public boolean canEqual(Object obj) {
+            return obj instanceof MergedPresences;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof MergedPresences)) {
+                return false;
+            }
+            MergedPresences mergedPresences = (MergedPresences) obj;
+            if (!mergedPresences.canEqual(this)) {
+                return false;
+            }
+            List<Presence> friends = getFriends();
+            List<Presence> friends2 = mergedPresences.getFriends();
+            if (friends != null ? !friends.equals(friends2) : friends2 != null) {
+                return false;
+            }
+            List<List<Presence>> guilds = getGuilds();
+            List<List<Presence>> guilds2 = mergedPresences.getGuilds();
+            return guilds != null ? guilds.equals(guilds2) : guilds2 == null;
+        }
+
+        public List<Presence> getFriends() {
+            return this.friends;
+        }
+
+        public List<List<Presence>> getGuilds() {
+            return this.guilds;
+        }
+
+        public int hashCode() {
+            List<Presence> friends = getFriends();
+            int iHashCode = friends == null ? 43 : friends.hashCode();
+            List<List<Presence>> guilds = getGuilds();
+            return ((iHashCode + 59) * 59) + (guilds != null ? guilds.hashCode() : 43);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("ModelPayload.MergedPresences(friends=");
+            sbU.append(getFriends());
+            sbU.append(", guilds=");
+            sbU.append(getGuilds());
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    public abstract class VersionedModel<T> implements Model {
+        public static final int DEFAULT_VERSION = -1;
+        private List<T> entries;
+        private boolean partial;
+        private int version;
+
+        /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
+        /* JADX WARN: Code duplicated, block: B:4:0x000f  */
+        @Override // com.discord.models.domain.Model
+        public void assignField(Model.JsonReader jsonReader) throws IOException {
+            String strNextName = jsonReader.nextName();
+            strNextName.hashCode();
+            switch (strNextName) {
+                case "entries":
+                    this.entries = jsonReader.nextList(new t(this, jsonReader));
+                    break;
+                case "partial":
+                    this.partial = jsonReader.nextBoolean(this.partial);
+                    break;
+                case "version":
+                    this.version = jsonReader.nextInt(-1);
+                    break;
+                default:
+                    jsonReader.skipValue();
+                    break;
+            }
+        }
+
+        public boolean canEqual(Object obj) {
+            return obj instanceof VersionedModel;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof VersionedModel)) {
+                return false;
+            }
+            VersionedModel versionedModel = (VersionedModel) obj;
+            if (!versionedModel.canEqual(this) || getVersion() != versionedModel.getVersion() || isPartial() != versionedModel.isPartial()) {
+                return false;
+            }
+            List<T> entries = getEntries();
+            List<T> entries2 = versionedModel.getEntries();
+            return entries != null ? entries.equals(entries2) : entries2 == null;
+        }
+
+        public List<T> getEntries() {
+            return this.entries;
+        }
+
+        public int getVersion() {
+            return this.version;
+        }
+
+        public int hashCode() {
+            int version = ((getVersion() + 59) * 59) + (isPartial() ? 79 : 97);
+            List<T> entries = getEntries();
+            return (version * 59) + (entries == null ? 43 : entries.hashCode());
+        }
+
+        public boolean isPartial() {
+            return this.partial;
+        }
+
+        public abstract T parseEntry(Model.JsonReader jsonReader) throws IOException;
+
+        public String toString() {
+            StringBuilder sbU = a.U("ModelPayload.VersionedModel(version=");
+            sbU.append(getVersion());
+            sbU.append(", entries=");
+            sbU.append(getEntries());
+            sbU.append(", partial=");
+            sbU.append(isPartial());
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    public class VersionedReadStates extends VersionedModel<ModelReadState> {
+        @Override // com.discord.models.domain.ModelPayload.VersionedModel
+        public /* bridge */ /* synthetic */ ModelReadState parseEntry(Model.JsonReader jsonReader) throws IOException {
+            return parseEntry(jsonReader);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // com.discord.models.domain.ModelPayload.VersionedModel
+        public ModelReadState parseEntry(Model.JsonReader jsonReader) {
+            return ModelReadState.Parser.INSTANCE.parse(jsonReader);
+        }
+    }
+
+    public class VersionedUserGuildSettings extends VersionedModel<ModelNotificationSettings> {
+        @Override // com.discord.models.domain.ModelPayload.VersionedModel
+        public /* bridge */ /* synthetic */ ModelNotificationSettings parseEntry(Model.JsonReader jsonReader) throws IOException {
+            return parseEntry(jsonReader);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // com.discord.models.domain.ModelPayload.VersionedModel
+        public ModelNotificationSettings parseEntry(Model.JsonReader jsonReader) throws IOException {
+            return (ModelNotificationSettings) jsonReader.parse(new ModelNotificationSettings());
+        }
+    }
+
     public ModelPayload() {
     }
 
     @Override // com.discord.models.domain.Model
-    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
-        String strNextName = model$JsonReader.nextName();
+    public void assignField(Model.JsonReader jsonReader) throws IOException {
+        String strNextName = jsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "auth_token":
-                this.authToken = model$JsonReader.nextString(this.authToken);
+                this.authToken = jsonReader.nextString(this.authToken);
                 break;
             case "user_guild_settings":
-                this.userGuildSettings = (ModelPayload$VersionedUserGuildSettings) model$JsonReader.parse(new ModelPayload$VersionedUserGuildSettings());
+                this.userGuildSettings = (VersionedUserGuildSettings) jsonReader.parse(new VersionedUserGuildSettings());
                 break;
             case "_trace":
-                this.trace = getTraces(model$JsonReader);
+                this.trace = getTraces(jsonReader);
                 break;
             case "merged_members":
-                this.guildMembers = model$JsonReader.nextList(new s(model$JsonReader));
+                this.guildMembers = jsonReader.nextList(new s(jsonReader));
                 break;
             case "merged_presences":
-                ModelPayload$MergedPresences modelPayload$MergedPresences = (ModelPayload$MergedPresences) model$JsonReader.parse(new ModelPayload$MergedPresences());
-                this.presences = ModelPayload$MergedPresences.access$000(modelPayload$MergedPresences);
-                this.guildPresences = ModelPayload$MergedPresences.access$100(modelPayload$MergedPresences);
+                MergedPresences mergedPresences = (MergedPresences) jsonReader.parse(new MergedPresences());
+                this.presences = MergedPresences.access$000(mergedPresences);
+                this.guildPresences = MergedPresences.access$100(mergedPresences);
                 break;
             case "guilds":
-                this.guilds = model$JsonReader.nextList(new l(model$JsonReader));
+                this.guilds = jsonReader.nextList(new l(jsonReader));
                 break;
             case "presences":
-                this.presences = model$JsonReader.nextList(new v(model$JsonReader));
+                this.presences = jsonReader.nextList(new v(jsonReader));
                 break;
             case "guild_join_requests":
-                this.guildJoinRequests = model$JsonReader.nextList(new y(model$JsonReader));
+                this.guildJoinRequests = jsonReader.nextList(new y(jsonReader));
                 break;
             case "read_state":
-                this.readState = (ModelPayload$VersionedReadStates) model$JsonReader.parse(new ModelPayload$VersionedReadStates());
+                this.readState = (VersionedReadStates) jsonReader.parse(new VersionedReadStates());
                 break;
             case "user_survey":
-                this.userSurvey = (UserSurvey) InboundGatewayGsonParser.fromJson(model$JsonReader, UserSurvey.class);
+                this.userSurvey = (UserSurvey) InboundGatewayGsonParser.fromJson(jsonReader, UserSurvey.class);
                 break;
             case "v":
-                this.v = model$JsonReader.nextInt(this.v);
+                this.v = jsonReader.nextInt(this.v);
                 break;
             case "user":
-                this.f2726me = (User) InboundGatewayGsonParser.fromJson(model$JsonReader, User.class);
+                this.f2726me = (User) InboundGatewayGsonParser.fromJson(jsonReader, User.class);
                 break;
             case "users":
-                this.users = model$JsonReader.nextList(new w(model$JsonReader));
+                this.users = jsonReader.nextList(new w(jsonReader));
                 break;
             case "connected_accounts":
-                this.connectedAccounts = model$JsonReader.nextList(new n(model$JsonReader));
+                this.connectedAccounts = jsonReader.nextList(new n(jsonReader));
                 break;
             case "guild_experiments":
-                this.guildExperiments = model$JsonReader.nextList(new z(model$JsonReader));
+                this.guildExperiments = jsonReader.nextList(new z(jsonReader));
                 break;
             case "relationships":
-                this.relationships = model$JsonReader.nextList(new x(model$JsonReader));
+                this.relationships = jsonReader.nextList(new x(jsonReader));
                 break;
             case "required_action":
-                this.requiredAction = model$JsonReader.nextString(this.requiredAction);
+                this.requiredAction = jsonReader.nextString(this.requiredAction);
                 break;
             case "analytics_token":
-                this.analyticsToken = model$JsonReader.nextString(this.analyticsToken);
+                this.analyticsToken = jsonReader.nextString(this.analyticsToken);
                 break;
             case "friend_suggestion_count":
-                this.friendSuggestionCount = model$JsonReader.nextInt(0);
+                this.friendSuggestionCount = jsonReader.nextInt(0);
                 break;
             case "sessions":
-                this.sessions = model$JsonReader.nextList(new m(model$JsonReader));
+                this.sessions = jsonReader.nextList(new m(jsonReader));
                 break;
             case "country_code":
-                this.countryCode = model$JsonReader.nextString(this.countryCode);
+                this.countryCode = jsonReader.nextString(this.countryCode);
                 break;
             case "user_settings":
-                this.userSettings = (ModelUserSettings) model$JsonReader.parse(new ModelUserSettings());
+                this.userSettings = (ModelUserSettings) jsonReader.parse(new ModelUserSettings());
                 break;
             case "experiments":
-                this.experiments = model$JsonReader.nextListAsMap(new a0(model$JsonReader), f0.a);
+                this.experiments = jsonReader.nextListAsMap(new a0(jsonReader), f0.a);
                 break;
             case "session_id":
-                this.sessionId = model$JsonReader.nextString(this.sessionId);
+                this.sessionId = jsonReader.nextString(this.sessionId);
                 break;
             case "private_channels":
-                this.privateChannels = model$JsonReader.nextList(new b0(model$JsonReader));
+                this.privateChannels = jsonReader.nextList(new b0(jsonReader));
                 break;
             default:
-                model$JsonReader.skipValue();
+                jsonReader.skipValue();
                 break;
         }
     }
@@ -179,8 +425,8 @@ public class ModelPayload implements Model {
         if (userSettings != null ? !userSettings.equals(userSettings2) : userSettings2 != null) {
             return false;
         }
-        ModelPayload$VersionedUserGuildSettings userGuildSettings = getUserGuildSettings();
-        ModelPayload$VersionedUserGuildSettings userGuildSettings2 = modelPayload.getUserGuildSettings();
+        VersionedUserGuildSettings userGuildSettings = getUserGuildSettings();
+        VersionedUserGuildSettings userGuildSettings2 = modelPayload.getUserGuildSettings();
         if (userGuildSettings != null ? !userGuildSettings.equals(userGuildSettings2) : userGuildSettings2 != null) {
             return false;
         }
@@ -194,8 +440,8 @@ public class ModelPayload implements Model {
         if (relationships != null ? !relationships.equals(relationships2) : relationships2 != null) {
             return false;
         }
-        ModelPayload$VersionedReadStates readState = getReadState();
-        ModelPayload$VersionedReadStates readState2 = modelPayload.getReadState();
+        VersionedReadStates readState = getReadState();
+        VersionedReadStates readState2 = modelPayload.getReadState();
         if (readState != null ? !readState.equals(readState2) : readState2 != null) {
             return false;
         }
@@ -341,7 +587,7 @@ public class ModelPayload implements Model {
         return this.privateChannels;
     }
 
-    public ModelPayload$VersionedReadStates getReadState() {
+    public VersionedReadStates getReadState() {
         return this.readState;
     }
 
@@ -365,16 +611,16 @@ public class ModelPayload implements Model {
         return this.trace;
     }
 
-    private Object getTraces(Model$JsonReader model$JsonReader) throws IOException {
-        model$JsonReader.getClass();
-        List listNextList = model$JsonReader.nextList(new g0(model$JsonReader));
+    private Object getTraces(Model.JsonReader jsonReader) throws IOException {
+        jsonReader.getClass();
+        List listNextList = jsonReader.nextList(new g0(jsonReader));
         if (listNextList.size() <= 0 || listNextList.get(0) == null) {
             return null;
         }
         return new Gson().f((String) listNextList.get(0), Object.class);
     }
 
-    public ModelPayload$VersionedUserGuildSettings getUserGuildSettings() {
+    public VersionedUserGuildSettings getUserGuildSettings() {
         return this.userGuildSettings;
     }
 
@@ -400,13 +646,13 @@ public class ModelPayload implements Model {
         int iHashCode = (friendSuggestionCount * 59) + (me2 == null ? 43 : me2.hashCode());
         ModelUserSettings userSettings = getUserSettings();
         int iHashCode2 = (iHashCode * 59) + (userSettings == null ? 43 : userSettings.hashCode());
-        ModelPayload$VersionedUserGuildSettings userGuildSettings = getUserGuildSettings();
+        VersionedUserGuildSettings userGuildSettings = getUserGuildSettings();
         int iHashCode3 = (iHashCode2 * 59) + (userGuildSettings == null ? 43 : userGuildSettings.hashCode());
         String sessionId = getSessionId();
         int iHashCode4 = (iHashCode3 * 59) + (sessionId == null ? 43 : sessionId.hashCode());
         List<ModelUserRelationship> relationships = getRelationships();
         int iHashCode5 = (iHashCode4 * 59) + (relationships == null ? 43 : relationships.hashCode());
-        ModelPayload$VersionedReadStates readState = getReadState();
+        VersionedReadStates readState = getReadState();
         int iHashCode6 = (iHashCode5 * 59) + (readState == null ? 43 : readState.hashCode());
         List<Channel> privateChannels = getPrivateChannels();
         int iHashCode7 = (iHashCode6 * 59) + (privateChannels == null ? 43 : privateChannels.hashCode());

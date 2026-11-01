@@ -5,8 +5,7 @@ import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.Space;
 import android.widget.TextView;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.databinding.ViewCreatorMonetizationAcceptTermsStepCardBinding;
 import d0.z.d.o;
 import java.util.Objects;
@@ -36,21 +35,21 @@ public final class AcceptTermsStepCard$binding$2 extends o implements Function0<
         LayoutInflater layoutInflaterFrom = LayoutInflater.from(this.$context);
         AcceptTermsStepCard acceptTermsStepCard = this.this$0;
         Objects.requireNonNull(acceptTermsStepCard, "parent");
-        layoutInflaterFrom.inflate(R$layout.view_creator_monetization_accept_terms_step_card, acceptTermsStepCard);
-        int i = R$id.description;
-        TextView textView = (TextView) acceptTermsStepCard.findViewById(R$id.description);
+        layoutInflaterFrom.inflate(R.layout.view_creator_monetization_accept_terms_step_card, acceptTermsStepCard);
+        int i = R.id.description;
+        TextView textView = (TextView) acceptTermsStepCard.findViewById(R.id.description);
         if (textView != null) {
-            i = 2131364034;
-            ImageView imageView = (ImageView) acceptTermsStepCard.findViewById(2131364034);
+            i = R.id.image;
+            ImageView imageView = (ImageView) acceptTermsStepCard.findViewById(R.id.image);
             if (imageView != null) {
-                i = R$id.image_padding;
-                Space space = (Space) acceptTermsStepCard.findViewById(R$id.image_padding);
+                i = R.id.image_padding;
+                Space space = (Space) acceptTermsStepCard.findViewById(R.id.image_padding);
                 if (space != null) {
-                    i = R$id.step_number;
-                    TextView textView2 = (TextView) acceptTermsStepCard.findViewById(R$id.step_number);
+                    i = R.id.step_number;
+                    TextView textView2 = (TextView) acceptTermsStepCard.findViewById(R.id.step_number);
                     if (textView2 != null) {
-                        i = 2131365869;
-                        TextView textView3 = (TextView) acceptTermsStepCard.findViewById(2131365869);
+                        i = R.id.title;
+                        TextView textView3 = (TextView) acceptTermsStepCard.findViewById(R.id.title);
                         if (textView3 != null) {
                             return new ViewCreatorMonetizationAcceptTermsStepCardBinding(acceptTermsStepCard, textView, imageView, space, textView2, textView3);
                         }

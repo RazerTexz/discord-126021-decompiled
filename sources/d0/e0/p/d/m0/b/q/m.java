@@ -1,13 +1,11 @@
 package d0.e0.p.d.m0.b.q;
 
-import d0.e0.p.d.m0.p.b$c;
-
 /* JADX INFO: compiled from: JvmBuiltInsCustomizer.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class m implements b$c<d0.e0.p.d.m0.c.b> {
+public final class m implements d0.e0.p.d.m0.p.b.c<d0.e0.p.d.m0.c.b> {
     public static final m a = new m();
 
-    @Override // d0.e0.p.d.m0.p.b$c
+    @Override // d0.e0.p.d.m0.p.b.c
     public /* bridge */ /* synthetic */ Iterable<? extends d0.e0.p.d.m0.c.b> getNeighbors(d0.e0.p.d.m0.c.b bVar) {
         return getNeighbors2(bVar);
     }

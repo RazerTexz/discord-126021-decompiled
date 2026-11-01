@@ -12,13 +12,13 @@ import com.discord.models.domain.ModelAuditLogEntry;
 import d0.z.d.m;
 import java.util.List;
 import java.util.Objects;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: Channel.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class Channel {
     public static final int ANNOUNCEMENT_THREAD = 10;
     public static final int CATEGORY = 4;
-    public static final Channel$Companion Companion = new Channel$Companion(null);
     public static final int DIRECTORY = 14;
     public static final int DM = 1;
     public static final long FLAGS_NONE = 0;
@@ -30,6 +30,9 @@ public final /* data */ class Channel {
     public static final int GUILD_STORE = 6;
     public static final int GUILD_TEXT = 0;
     public static final int GUILD_VOICE = 2;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     public static final int PRIVATE_THREAD = 12;
     public static final int PUBLIC_THREAD = 11;
     private final long applicationId;
@@ -64,6 +67,15 @@ public final /* data */ class Channel {
     private final String topic;
     private final int type;
     private final int userLimit;
+
+    /* JADX INFO: compiled from: Channel.kt */
+    public final class Companion {
+        public Companion() {
+        }
+
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
 
     public Channel(String str, int i, long j, String str2, long j2, long j3, long j4, List<Long> list, List<User> list2, int i2, List<PermissionOverwrite> list3, int i3, int i4, String str3, long j5, long j6, List<ChannelRecipientNick> list4, boolean z2, long j7, String str4, int i5, Integer num, String str5, Long l, GuildHashes guildHashes, List<ForumTag> list5, List<Long> list6, ThreadMetadata threadMetadata, Integer num2, Integer num3, List<Long> list7, ThreadMember threadMember) {
         this.topic = str;

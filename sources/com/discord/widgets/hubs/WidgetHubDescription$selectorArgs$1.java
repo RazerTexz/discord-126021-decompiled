@@ -3,7 +3,6 @@ package com.discord.widgets.hubs;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.models.hubs.DirectoryEntryCategory;
-import com.discord.models.hubs.DirectoryEntryCategory$Companion;
 import d0.z.d.m;
 import d0.z.d.o;
 import java.util.ArrayList;
@@ -29,9 +28,9 @@ public final class WidgetHubDescription$selectorArgs$1 extends o implements Func
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final List<RadioSelectorItem> invoke2(HubDescriptionState hubDescriptionState) {
         m.checkNotNullParameter(hubDescriptionState, "state");
-        DirectoryEntryCategory$Companion directoryEntryCategory$Companion = DirectoryEntryCategory.Companion;
+        DirectoryEntryCategory.Companion companion = DirectoryEntryCategory.INSTANCE;
         Channel channel = hubDescriptionState.getChannel();
-        List<DirectoryEntryCategory> categories = directoryEntryCategory$Companion.getCategories(channel != null && ChannelUtils.x(channel));
+        List<DirectoryEntryCategory> categories = companion.getCategories(channel != null && ChannelUtils.x(channel));
         ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(categories, 10));
         for (DirectoryEntryCategory directoryEntryCategory : categories) {
             int key = directoryEntryCategory.getKey();

@@ -4,7 +4,6 @@ import android.text.TextUtils;
 import b.i.a.f.b.e;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.TreeMap;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -54,8 +53,8 @@ public abstract class e<T extends e> {
         StringBuilder sb2 = new StringBuilder();
         boolean z2 = false;
         int length2 = 0;
-        for (Map$Entry map$Entry : new TreeMap((Map) obj).entrySet()) {
-            String strA = a(map$Entry.getValue(), i + 1);
+        for (Map.Entry entry : new TreeMap((Map) obj).entrySet()) {
+            String strA = a(entry.getValue(), i + 1);
             if (!TextUtils.isEmpty(strA)) {
                 if (i > 0 && !z2) {
                     sb2.append("{");
@@ -65,7 +64,7 @@ public abstract class e<T extends e> {
                 if (sb2.length() > length2) {
                     sb2.append(", ");
                 }
-                sb2.append((String) map$Entry.getKey());
+                sb2.append((String) entry.getKey());
                 sb2.append('=');
                 sb2.append(strA);
             }

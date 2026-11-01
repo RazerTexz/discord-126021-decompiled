@@ -3,7 +3,7 @@ package com.discord.widgets.search;
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.FragmentContainerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetSearchBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -28,17 +28,17 @@ public final /* synthetic */ class WidgetSearch$binding$2 extends k implements F
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSearchBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.search_send_query_fab;
-        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R$id.search_send_query_fab);
+        int i = R.id.search_send_query_fab;
+        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.search_send_query_fab);
         if (floatingActionButton != null) {
-            i = R$id.widget_search_input;
-            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.widget_search_input);
+            i = R.id.widget_search_input;
+            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.widget_search_input);
             if (textInputLayout != null) {
-                i = R$id.widget_search_results;
-                FragmentContainerView fragmentContainerView = (FragmentContainerView) view.findViewById(R$id.widget_search_results);
+                i = R.id.widget_search_results;
+                FragmentContainerView fragmentContainerView = (FragmentContainerView) view.findViewById(R.id.widget_search_results);
                 if (fragmentContainerView != null) {
-                    i = R$id.widget_search_suggestions;
-                    FragmentContainerView fragmentContainerView2 = (FragmentContainerView) view.findViewById(R$id.widget_search_suggestions);
+                    i = R.id.widget_search_suggestions;
+                    FragmentContainerView fragmentContainerView2 = (FragmentContainerView) view.findViewById(R.id.widget_search_suggestions);
                     if (fragmentContainerView2 != null) {
                         return new WidgetSearchBinding((CoordinatorLayout) view, floatingActionButton, textInputLayout, fragmentContainerView, fragmentContainerView2);
                     }

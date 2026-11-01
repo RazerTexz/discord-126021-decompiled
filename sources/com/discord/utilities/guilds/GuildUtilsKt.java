@@ -21,7 +21,6 @@ import d0.z.d.m;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import kotlin.text.Regex;
 
 /* JADX INFO: compiled from: GuildUtils.kt */
@@ -50,9 +49,9 @@ public final class GuildUtilsKt {
         if (l == null) {
             return null;
         }
-        for (Map$Entry<Long, Map<Long, GuildRole>> map$Entry : StoreStream.Companion.getGuilds().getRoles().entrySet()) {
-            if (map$Entry.getValue().containsKey(l)) {
-                return map$Entry.getValue().get(l);
+        for (Map.Entry<Long, Map<Long, GuildRole>> entry : StoreStream.INSTANCE.getGuilds().getRoles().entrySet()) {
+            if (entry.getValue().containsKey(l)) {
+                return entry.getValue().get(l);
             }
         }
         return null;

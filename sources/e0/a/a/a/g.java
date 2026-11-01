@@ -4,14 +4,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
-import android.graphics.Paint$Join;
-import android.graphics.Paint$Style;
 import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.view.View;
-import me.dm7.barcodescanner.core.R$a;
-import me.dm7.barcodescanner.core.R$b;
+import me.dm7.barcodescanner.core.R;
 import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: compiled from: ViewFinderView.java */
@@ -39,28 +36,28 @@ public class g extends View implements f {
 
     public g(Context context) {
         super(context);
-        int color = getResources().getColor(R$a.viewfinder_laser);
+        int color = getResources().getColor(R.a.viewfinder_laser);
         this.m = color;
-        int color2 = getResources().getColor(R$a.viewfinder_mask);
+        int color2 = getResources().getColor(R.a.viewfinder_mask);
         this.n = color2;
-        int color3 = getResources().getColor(R$a.viewfinder_border);
+        int color3 = getResources().getColor(R.a.viewfinder_border);
         this.o = color3;
-        int integer = getResources().getInteger(R$b.viewfinder_border_width);
+        int integer = getResources().getInteger(R.b.viewfinder_border_width);
         this.p = integer;
-        int integer2 = getResources().getInteger(R$b.viewfinder_border_length);
+        int integer2 = getResources().getInteger(R.b.viewfinder_border_length);
         this.q = integer2;
         this.f3600x = 0;
         Paint paint = new Paint();
         this.r = paint;
         paint.setColor(color);
-        this.r.setStyle(Paint$Style.FILL);
+        this.r.setStyle(Paint.Style.FILL);
         Paint paint2 = new Paint();
         this.f3599s = paint2;
         paint2.setColor(color2);
         Paint paint3 = new Paint();
         this.t = paint3;
         paint3.setColor(color3);
-        this.t.setStyle(Paint$Style.STROKE);
+        this.t.setStyle(Paint.Style.STROKE);
         this.t.setStrokeWidth(integer);
         this.t.setAntiAlias(true);
         this.u = integer2;
@@ -160,9 +157,9 @@ public class g extends View implements f {
 
     public void setBorderCornerRounded(boolean z2) {
         if (z2) {
-            this.t.setStrokeJoin(Paint$Join.ROUND);
+            this.t.setStrokeJoin(Paint.Join.ROUND);
         } else {
-            this.t.setStrokeJoin(Paint$Join.BEVEL);
+            this.t.setStrokeJoin(Paint.Join.BEVEL);
         }
     }
 

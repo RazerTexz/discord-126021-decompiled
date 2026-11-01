@@ -4,15 +4,27 @@ import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
 import d0.z.d.m;
 import java.util.List;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: InAppReportsMenu.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class ReportNodeElement {
-    public static final ReportNodeElement$Companion Companion = new ReportNodeElement$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final List<ReportNodeElementData> data;
     private final String name;
     private final boolean should_submit_data;
     private final String type;
+
+    /* JADX INFO: compiled from: InAppReportsMenu.kt */
+    public final class Companion {
+        public Companion() {
+        }
+
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
 
     public final List<ReportNodeElementData> a() {
         return this.data;

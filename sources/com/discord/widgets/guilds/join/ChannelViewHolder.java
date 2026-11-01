@@ -1,5 +1,6 @@
 package com.discord.widgets.guilds.join;
 
+import android.view.View;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import com.discord.api.channel.Channel;
@@ -18,6 +19,22 @@ import d0.z.d.m;
 public final class ChannelViewHolder extends BaseChannelViewHolder {
     private final WidgetGuildWelcomeChannelBinding binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.join.ChannelViewHolder$bind$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildWelcomeSheetChannelAdapter.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ ChannelItem $data;
+
+        public AnonymousClass1(ChannelItem channelItem) {
+            this.$data = channelItem;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            ((ChannelItem.ChannelData) this.$data).getGoToChannel().invoke(Long.valueOf(((ChannelItem.ChannelData) this.$data).getWelcomeChannel().getChannelId()), Integer.valueOf(((ChannelItem.ChannelData) this.$data).getIndex()));
+            ((ChannelItem.ChannelData) this.$data).getDismissSheet().invoke();
+        }
+    }
+
     /* JADX WARN: Illegal instructions before constructor call */
     public ChannelViewHolder(WidgetGuildWelcomeChannelBinding widgetGuildWelcomeChannelBinding) {
         m.checkNotNullParameter(widgetGuildWelcomeChannelBinding, "binding");
@@ -31,22 +48,22 @@ public final class ChannelViewHolder extends BaseChannelViewHolder {
     public void bind(ChannelItem data) {
         m.checkNotNullParameter(data, "data");
         super.bind(data);
-        ChannelItem$ChannelData channelItem$ChannelData = (ChannelItem$ChannelData) data;
+        ChannelItem.ChannelData channelData = (ChannelItem.ChannelData) data;
         SimpleDraweeView simpleDraweeView = this.binding.d;
         m.checkNotNullExpressionValue(simpleDraweeView, "binding.guildWelcomeChannelEmoji");
         int mediaProxySize = IconUtils.getMediaProxySize(simpleDraweeView.getLayoutParams().width);
-        GuildWelcomeChannel welcomeChannel = channelItem$ChannelData.getWelcomeChannel();
+        GuildWelcomeChannel welcomeChannel = channelData.getWelcomeChannel();
         m.checkNotNullParameter(welcomeChannel, "$this$getEmojiUri");
         Long emojiId = welcomeChannel.getEmojiId();
         String imageUri = emojiId != null ? ModelEmojiCustom.getImageUri(emojiId.longValue(), false, mediaProxySize) : null;
         TextView textView = this.binding.c;
         m.checkNotNullExpressionValue(textView, "binding.guildWelcomeChannelDescription");
-        textView.setText(channelItem$ChannelData.getWelcomeChannel().getDescription());
+        textView.setText(channelData.getWelcomeChannel().getDescription());
         TextView textView2 = this.binding.e;
         m.checkNotNullExpressionValue(textView2, "binding.guildWelcomeChannelName");
-        Channel channelFindChannelById = StoreStream.Companion.getChannels().findChannelById(channelItem$ChannelData.getWelcomeChannel().getChannelId());
+        Channel channelFindChannelById = StoreStream.INSTANCE.getChannels().findChannelById(channelData.getWelcomeChannel().getChannelId());
         textView2.setText(String.valueOf(channelFindChannelById != null ? ChannelUtils.c(channelFindChannelById) : null));
-        this.binding.f2456b.setOnClickListener(new ChannelViewHolder$bind$1(data));
+        this.binding.f2456b.setOnClickListener(new AnonymousClass1(data));
         if (imageUri != null) {
             SimpleDraweeView simpleDraweeView2 = this.binding.d;
             m.checkNotNullExpressionValue(simpleDraweeView2, "binding.guildWelcomeChannelEmoji");
@@ -59,7 +76,7 @@ public final class ChannelViewHolder extends BaseChannelViewHolder {
             textView3.setVisibility(8);
             return;
         }
-        if (channelItem$ChannelData.getWelcomeChannel().getEmojiName() != null) {
+        if (channelData.getWelcomeChannel().getEmojiName() != null) {
             SimpleDraweeView simpleDraweeView4 = this.binding.d;
             m.checkNotNullExpressionValue(simpleDraweeView4, "binding.guildWelcomeChannelEmoji");
             simpleDraweeView4.setVisibility(8);
@@ -68,7 +85,7 @@ public final class ChannelViewHolder extends BaseChannelViewHolder {
             textView4.setVisibility(0);
             TextView textView5 = this.binding.f;
             m.checkNotNullExpressionValue(textView5, "binding.guildWelcomeChannelUnicodeEmoji");
-            textView5.setText(channelItem$ChannelData.getWelcomeChannel().getEmojiName());
+            textView5.setText(channelData.getWelcomeChannel().getEmojiName());
         }
     }
 }

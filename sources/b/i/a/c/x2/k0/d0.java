@@ -19,8 +19,8 @@ public final class d0 implements i0 {
     }
 
     @Override // b.i.a.c.x2.k0.i0
-    public void a(b.i.a.c.f3.d0 d0Var, b.i.a.c.x2.j jVar, i0$d i0_d) {
-        this.a.a(d0Var, jVar, i0_d);
+    public void a(b.i.a.c.f3.d0 d0Var, b.i.a.c.x2.j jVar, i0.d dVar) {
+        this.a.a(d0Var, jVar, dVar);
         this.f = true;
     }
 

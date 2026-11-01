@@ -28,7 +28,7 @@ public final class WidgetCallFullscreen$configureEventPrompt$onCreateEventClick$
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2() {
         if (this.$guild != null) {
-            WidgetGuildScheduledEventLocationSelect.Companion.launch(this.this$0.requireContext(), this.$guild.getId(), Long.valueOf(WidgetCallFullscreen.access$getChannelId(this.this$0)));
+            WidgetGuildScheduledEventLocationSelect.INSTANCE.launch(this.this$0.requireContext(), this.$guild.getId(), Long.valueOf(WidgetCallFullscreen.access$getChannelId(this.this$0)));
         }
     }
 }

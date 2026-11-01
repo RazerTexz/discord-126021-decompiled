@@ -7,7 +7,7 @@ import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: StoreNavigation.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$clientInitializedNavHandler$1 extends o implements Function2<AppActivity, StoreNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation, Boolean> {
+public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$clientInitializedNavHandler$1 extends o implements Function2<AppActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation, Boolean> {
     public static final StoreNavigation$ActivityNavigationLifecycleCallbacks$clientInitializedNavHandler$1 INSTANCE = new StoreNavigation$ActivityNavigationLifecycleCallbacks$clientInitializedNavHandler$1();
 
     public StoreNavigation$ActivityNavigationLifecycleCallbacks$clientInitializedNavHandler$1() {
@@ -15,14 +15,14 @@ public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$clientIn
     }
 
     @Override // kotlin.jvm.functions.Function2
-    public /* bridge */ /* synthetic */ Boolean invoke(AppActivity appActivity, StoreNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation) {
-        return Boolean.valueOf(invoke2(appActivity, storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation));
+    public /* bridge */ /* synthetic */ Boolean invoke(AppActivity appActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation modelGlobalNavigation) {
+        return Boolean.valueOf(invoke2(appActivity, modelGlobalNavigation));
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final boolean invoke2(AppActivity appActivity, StoreNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation) {
+    public final boolean invoke2(AppActivity appActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation modelGlobalNavigation) {
         m.checkNotNullParameter(appActivity, "<anonymous parameter 0>");
-        m.checkNotNullParameter(storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation, "model");
-        return !storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation.getInitialized();
+        m.checkNotNullParameter(modelGlobalNavigation, "model");
+        return !modelGlobalNavigation.getInitialized();
     }
 }

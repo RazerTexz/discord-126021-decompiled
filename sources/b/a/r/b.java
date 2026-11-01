@@ -16,16 +16,13 @@ import d0.z.d.m;
 import f0.x;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Map$Entry;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
 import kotlin.jvm.functions.Function2;
 import kotlinx.coroutines.CoroutineScope;
 import okhttp3.MediaType;
-import okhttp3.MediaType$a;
-import okhttp3.Request$a;
+import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.RequestBody$Companion;
 import okhttp3.Response;
 
 /* JADX INFO: compiled from: SamsungConnect.kt */
@@ -81,18 +78,18 @@ public final class b extends k implements Function2<CoroutineScope, Continuation
         sbU.append("\"}");
         Map mapMapOf = h0.mapOf(o.to("state", this.$state), o.to(ModelAuditLogEntry.CHANGE_KEY_CODE, sbU.toString()));
         ArrayList arrayList = new ArrayList(mapMapOf.size());
-        for (Map$Entry map$Entry : mapMapOf.entrySet()) {
-            arrayList.add(((String) map$Entry.getKey()) + '=' + ((String) map$Entry.getValue()));
+        for (Map.Entry entry : mapMapOf.entrySet()) {
+            arrayList.add(((String) entry.getKey()) + '=' + ((String) entry.getValue()));
         }
         String strJoinToString$default = u.joinToString$default(arrayList, "&", null, null, 0, null, null, 62, null);
-        RequestBody$Companion requestBody$Companion = RequestBody.Companion;
-        MediaType$a mediaType$a = MediaType.c;
-        RequestBody requestBodyA = requestBody$Companion.a(strJoinToString$default, MediaType$a.a(ShareTarget.ENCODING_TYPE_URL_ENCODED));
-        Request$a request$a = new Request$a();
+        RequestBody.Companion companion = RequestBody.INSTANCE;
+        MediaType.Companion companion2 = MediaType.INSTANCE;
+        RequestBody requestBodyA = companion.a(strJoinToString$default, MediaType.Companion.a(ShareTarget.ENCODING_TYPE_URL_ENCODED));
+        Request.a aVar = new Request.a();
         m.checkParameterIsNotNull(requestBodyA, "body");
-        request$a.c(ShareTarget.METHOD_POST, requestBodyA);
-        request$a.f(this.$url);
-        Response responseExecute = ((f0.e0.g.e) this.$okHttpClient.b(request$a.a())).execute();
+        aVar.c(ShareTarget.METHOD_POST, requestBodyA);
+        aVar.f(this.$url);
+        Response responseExecute = ((f0.e0.g.e) this.$okHttpClient.b(aVar.a())).execute();
         String strA = Response.a(responseExecute, "Location", null, 2);
         Uri uri = strA != null ? Uri.parse(strA) : null;
         if (!((uri == null || (query = uri.getQuery()) == null) ? false : w.contains$default((CharSequence) query, (CharSequence) "error", false, 2, (Object) null))) {

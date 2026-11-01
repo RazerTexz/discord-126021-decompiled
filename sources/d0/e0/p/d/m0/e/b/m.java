@@ -42,14 +42,14 @@ public final class m implements l<k> {
     /* JADX INFO: renamed from: boxType, reason: avoid collision after fix types in other method */
     public k boxType2(k kVar) {
         d0.z.d.m.checkNotNullParameter(kVar, "possiblyPrimitiveType");
-        if (!(kVar instanceof k$d)) {
+        if (!(kVar instanceof k.d)) {
             return kVar;
         }
-        k$d k_d = (k$d) kVar;
-        if (k_d.getJvmPrimitiveType() == null) {
+        k.d dVar = (k.d) kVar;
+        if (dVar.getJvmPrimitiveType() == null) {
             return kVar;
         }
-        String internalName = d0.e0.p.d.m0.k.y.c.byFqNameWithoutInnerClasses(k_d.getJvmPrimitiveType().getWrapperFqName()).getInternalName();
+        String internalName = d0.e0.p.d.m0.k.y.c.byFqNameWithoutInnerClasses(dVar.getJvmPrimitiveType().getWrapperFqName()).getInternalName();
         d0.z.d.m.checkNotNullExpressionValue(internalName, "byFqNameWithoutInnerClasses(possiblyPrimitiveType.jvmPrimitiveType.wrapperFqName).internalName");
         return createObjectType(internalName);
     }
@@ -58,7 +58,7 @@ public final class m implements l<k> {
     @Override // d0.e0.p.d.m0.e.b.l
     public k createFromString(String str) {
         d0.e0.p.d.m0.k.y.d dVar;
-        k k_c;
+        k cVar;
         d0.z.d.m.checkNotNullParameter(str, "representation");
         str.length();
         char cCharAt = str.charAt(0);
@@ -76,52 +76,52 @@ public final class m implements l<k> {
             i++;
         }
         if (dVar != null) {
-            return new k$d(dVar);
+            return new k.d(dVar);
         }
         if (cCharAt == 'V') {
-            return new k$d(null);
+            return new k.d(null);
         }
         if (cCharAt == '[') {
             String strSubstring = str.substring(1);
             d0.z.d.m.checkNotNullExpressionValue(strSubstring, "(this as java.lang.String).substring(startIndex)");
-            k_c = new k$a(createFromString(strSubstring));
+            cVar = new k.a(createFromString(strSubstring));
         } else {
             if (cCharAt == 'L') {
                 d0.g0.w.endsWith$default((CharSequence) str, ';', false, 2, (Object) null);
             }
             String strSubstring2 = str.substring(1, str.length() - 1);
             d0.z.d.m.checkNotNullExpressionValue(strSubstring2, "(this as java.lang.Strin…ing(startIndex, endIndex)");
-            k_c = new k$c(strSubstring2);
+            cVar = new k.c(strSubstring2);
         }
-        return k_c;
+        return cVar;
     }
 
     @Override // d0.e0.p.d.m0.e.b.l
     public k createObjectType(String str) {
         d0.z.d.m.checkNotNullParameter(str, "internalName");
-        return new k$c(str);
+        return new k.c(str);
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // d0.e0.p.d.m0.e.b.l
     public k createPrimitiveType(d0.e0.p.d.m0.b.i iVar) {
         d0.z.d.m.checkNotNullParameter(iVar, "primitiveType");
-        switch (iVar.ordinal()) {
-            case 0:
+        switch (iVar) {
+            case BOOLEAN:
                 return k.a.getBOOLEAN$descriptors_jvm();
-            case 1:
+            case CHAR:
                 return k.a.getCHAR$descriptors_jvm();
-            case 2:
+            case BYTE:
                 return k.a.getBYTE$descriptors_jvm();
-            case 3:
+            case SHORT:
                 return k.a.getSHORT$descriptors_jvm();
-            case 4:
+            case INT:
                 return k.a.getINT$descriptors_jvm();
-            case 5:
+            case FLOAT:
                 return k.a.getFLOAT$descriptors_jvm();
-            case 6:
+            case LONG:
                 return k.a.getLONG$descriptors_jvm();
-            case 7:
+            case DOUBLE:
                 return k.a.getDOUBLE$descriptors_jvm();
             default:
                 throw new NoWhenBranchMatchedException();
@@ -138,18 +138,18 @@ public final class m implements l<k> {
     public String toString2(k kVar) {
         String desc;
         d0.z.d.m.checkNotNullParameter(kVar, "type");
-        if (kVar instanceof k$a) {
-            return d0.z.d.m.stringPlus("[", toString2(((k$a) kVar).getElementType()));
+        if (kVar instanceof k.a) {
+            return d0.z.d.m.stringPlus("[", toString2(((k.a) kVar).getElementType()));
         }
-        if (kVar instanceof k$d) {
-            d0.e0.p.d.m0.k.y.d jvmPrimitiveType = ((k$d) kVar).getJvmPrimitiveType();
+        if (kVar instanceof k.d) {
+            d0.e0.p.d.m0.k.y.d jvmPrimitiveType = ((k.d) kVar).getJvmPrimitiveType();
             return (jvmPrimitiveType == null || (desc = jvmPrimitiveType.getDesc()) == null) ? ExifInterface.GPS_MEASUREMENT_INTERRUPTED : desc;
         }
-        if (!(kVar instanceof k$c)) {
+        if (!(kVar instanceof k.c)) {
             throw new NoWhenBranchMatchedException();
         }
         StringBuilder sbQ = b.d.b.a.a.Q('L');
-        sbQ.append(((k$c) kVar).getInternalName());
+        sbQ.append(((k.c) kVar).getInternalName());
         sbQ.append(';');
         return sbQ.toString();
     }

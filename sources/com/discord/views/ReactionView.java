@@ -9,14 +9,10 @@ import android.widget.LinearLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import b.a.i.i1;
-import com.discord.R$a;
-import com.discord.R$anim;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.message.reaction.MessageReaction;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.textprocessing.node.EmojiNode;
-import com.discord.utilities.textprocessing.node.EmojiNode$Companion;
 import com.discord.utilities.view.text.SimpleDraweeSpanTextView;
 import d0.z.d.m;
 
@@ -52,23 +48,23 @@ public final class ReactionView extends LinearLayout {
         i = (i2 & 4) != 0 ? 0 : i;
         m.checkNotNullParameter(context, "context");
         super(context, attributeSet, i);
-        LayoutInflater.from(context).inflate(R$layout.reaction_view, this);
-        int i3 = R$id.counter_text_1;
-        TextView textView = (TextView) findViewById(R$id.counter_text_1);
+        LayoutInflater.from(context).inflate(R.layout.reaction_view, this);
+        int i3 = R.id.counter_text_1;
+        TextView textView = (TextView) findViewById(R.id.counter_text_1);
         if (textView != null) {
-            i3 = R$id.counter_text_2;
-            TextView textView2 = (TextView) findViewById(R$id.counter_text_2);
+            i3 = R.id.counter_text_2;
+            TextView textView2 = (TextView) findViewById(R.id.counter_text_2);
             if (textView2 != null) {
-                i3 = R$id.counter_text_switcher;
-                TextSwitcher textSwitcher = (TextSwitcher) findViewById(R$id.counter_text_switcher);
+                i3 = R.id.counter_text_switcher;
+                TextSwitcher textSwitcher = (TextSwitcher) findViewById(R.id.counter_text_switcher);
                 if (textSwitcher != null) {
-                    i3 = R$id.emoji_text_view;
-                    SimpleDraweeSpanTextView simpleDraweeSpanTextView = (SimpleDraweeSpanTextView) findViewById(R$id.emoji_text_view);
+                    i3 = R.id.emoji_text_view;
+                    SimpleDraweeSpanTextView simpleDraweeSpanTextView = (SimpleDraweeSpanTextView) findViewById(R.id.emoji_text_view);
                     if (simpleDraweeSpanTextView != null) {
                         i1 i1Var = new i1(this, textView, textView2, textSwitcher, simpleDraweeSpanTextView);
                         m.checkNotNullExpressionValue(i1Var, "ReactionViewBinding.infl…ater.from(context), this)");
                         this.binding = i1Var;
-                        int[] iArr = R$a.ReactionView;
+                        int[] iArr = R.a.ReactionView;
                         m.checkNotNullExpressionValue(iArr, "R.styleable.ReactionView");
                         Context context2 = getContext();
                         m.checkNotNullExpressionValue(context2, "context");
@@ -99,22 +95,22 @@ public final class ReactionView extends LinearLayout {
             } else {
                 if (count > i) {
                     TextSwitcher textSwitcher = i1Var.d;
-                    textSwitcher.setInAnimation(textSwitcher.getContext(), R$anim.anim_slide_in_up);
-                    textSwitcher.setOutAnimation(textSwitcher.getContext(), R$anim.anim_slide_out_up);
+                    textSwitcher.setInAnimation(textSwitcher.getContext(), R.anim.anim_slide_in_up);
+                    textSwitcher.setOutAnimation(textSwitcher.getContext(), R.anim.anim_slide_out_up);
                 } else {
                     TextSwitcher textSwitcher2 = i1Var.d;
-                    textSwitcher2.setInAnimation(textSwitcher2.getContext(), R$anim.anim_slide_in_down);
-                    textSwitcher2.setOutAnimation(textSwitcher2.getContext(), R$anim.anim_slide_out_down);
+                    textSwitcher2.setInAnimation(textSwitcher2.getContext(), R.anim.anim_slide_in_down);
+                    textSwitcher2.setOutAnimation(textSwitcher2.getContext(), R.anim.anim_slide_out_down);
                 }
                 i1Var.d.setText(String.valueOf(count));
             }
             this.curCount = count;
         }
         if (messageReaction == null || (!m.areEqual(reaction.getEmoji(), messageReaction.getEmoji()))) {
-            EmojiNode$Companion emojiNode$Companion = EmojiNode.Companion;
+            EmojiNode.Companion companion = EmojiNode.INSTANCE;
             SimpleDraweeSpanTextView simpleDraweeSpanTextView = this.binding.e;
             m.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.emojiTextView");
-            EmojiNode$Companion.renderEmoji$default(emojiNode$Companion, simpleDraweeSpanTextView, reaction.getEmoji(), animateEmojis, 0, 4, null);
+            EmojiNode.Companion.renderEmoji$default(companion, simpleDraweeSpanTextView, reaction.getEmoji(), animateEmojis, 0, 4, null);
         }
         setIsMe(reaction.getMe());
         setTextColor(reaction.getMe());

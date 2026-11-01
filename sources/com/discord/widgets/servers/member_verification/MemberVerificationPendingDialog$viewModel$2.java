@@ -30,6 +30,6 @@ public final class MemberVerificationPendingDialog$viewModel$2 extends o impleme
         Objects.requireNonNull(lValueOf, "null cannot be cast to non-null type com.discord.primitives.GuildId /* = kotlin.Long */");
         long jLongValue = lValueOf.longValue();
         Bundle arguments2 = this.this$0.getArguments();
-        return new MemberVerificationPendingViewModel(jLongValue, (MemberVerificationPendingViewModel$DialogState) (arguments2 != null ? arguments2.getSerializable("INTENT_EXTRA_DIALOG_STATE") : null), null, null, 12, null);
+        return new MemberVerificationPendingViewModel(jLongValue, (MemberVerificationPendingViewModel.DialogState) (arguments2 != null ? arguments2.getSerializable("INTENT_EXTRA_DIALOG_STATE") : null), null, null, 12, null);
     }
 }

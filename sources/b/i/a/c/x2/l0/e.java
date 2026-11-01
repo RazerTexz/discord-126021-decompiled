@@ -2,7 +2,6 @@ package b.i.a.c.x2.l0;
 
 import b.i.a.c.f3.e0;
 import b.i.a.c.x2.t;
-import b.i.a.c.x2.t$a;
 import b.i.a.c.x2.u;
 
 /* JADX INFO: compiled from: WavSeekMap.java */
@@ -35,16 +34,16 @@ public final class e implements t {
     }
 
     @Override // b.i.a.c.x2.t
-    public t$a h(long j) {
+    public t.a h(long j) {
         long jI = e0.i((((long) this.a.c) * j) / (((long) this.f1290b) * 1000000), 0L, this.d - 1);
         long j2 = (((long) this.a.d) * jI) + this.c;
         long jB = b(jI);
         u uVar = new u(jB, j2);
         if (jB >= j || jI == this.d - 1) {
-            return new t$a(uVar);
+            return new t.a(uVar);
         }
         long j3 = jI + 1;
-        return new t$a(uVar, new u(b(j3), (((long) this.a.d) * j3) + this.c));
+        return new t.a(uVar, new u(b(j3), (((long) this.a.d) * j3) + this.c));
     }
 
     @Override // b.i.a.c.x2.t

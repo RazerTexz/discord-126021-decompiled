@@ -7,8 +7,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.exoplayer2.ui.PlayerView;
 
@@ -53,27 +52,27 @@ public final class InlineMediaViewBinding implements ViewBinding {
 
     @NonNull
     public static InlineMediaViewBinding a(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
-        layoutInflater.inflate(R$layout.inline_media_view, viewGroup);
-        int i = R$id.inline_media_gif_indicator;
-        ImageView imageView = (ImageView) viewGroup.findViewById(R$id.inline_media_gif_indicator);
+        layoutInflater.inflate(R.layout.inline_media_view, viewGroup);
+        int i = R.id.inline_media_gif_indicator;
+        ImageView imageView = (ImageView) viewGroup.findViewById(R.id.inline_media_gif_indicator);
         if (imageView != null) {
-            i = R$id.inline_media_image_preview;
-            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewGroup.findViewById(R$id.inline_media_image_preview);
+            i = R.id.inline_media_image_preview;
+            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewGroup.findViewById(R.id.inline_media_image_preview);
             if (simpleDraweeView != null) {
-                i = R$id.inline_media_loading_indicator;
-                ProgressBar progressBar = (ProgressBar) viewGroup.findViewById(R$id.inline_media_loading_indicator);
+                i = R.id.inline_media_loading_indicator;
+                ProgressBar progressBar = (ProgressBar) viewGroup.findViewById(R.id.inline_media_loading_indicator);
                 if (progressBar != null) {
-                    i = R$id.inline_media_play_button;
-                    ImageView imageView2 = (ImageView) viewGroup.findViewById(R$id.inline_media_play_button);
+                    i = R.id.inline_media_play_button;
+                    ImageView imageView2 = (ImageView) viewGroup.findViewById(R.id.inline_media_play_button);
                     if (imageView2 != null) {
-                        i = R$id.inline_media_player_view;
-                        PlayerView playerView = (PlayerView) viewGroup.findViewById(R$id.inline_media_player_view);
+                        i = R.id.inline_media_player_view;
+                        PlayerView playerView = (PlayerView) viewGroup.findViewById(R.id.inline_media_player_view);
                         if (playerView != null) {
-                            i = R$id.inline_media_volume_toggle;
-                            ImageView imageView3 = (ImageView) viewGroup.findViewById(R$id.inline_media_volume_toggle);
+                            i = R.id.inline_media_volume_toggle;
+                            ImageView imageView3 = (ImageView) viewGroup.findViewById(R.id.inline_media_volume_toggle);
                             if (imageView3 != null) {
-                                i = R$id.opacity_shim;
-                                View viewFindViewById = viewGroup.findViewById(R$id.opacity_shim);
+                                i = R.id.opacity_shim;
+                                View viewFindViewById = viewGroup.findViewById(R.id.opacity_shim);
                                 if (viewFindViewById != null) {
                                     return new InlineMediaViewBinding(viewGroup, imageView, simpleDraweeView, progressBar, imageView2, playerView, imageView3, viewFindViewById);
                                 }

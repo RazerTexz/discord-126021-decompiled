@@ -1,11 +1,10 @@
 package androidx.room;
 
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class RoomMasterTable {
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_IDENTITY_HASH = "identity_hash";

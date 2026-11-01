@@ -9,12 +9,12 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGlobalSearchModel$Companion$getDefaultUserSearch$recentDmUserIds$1 extends o implements Function1<Long, Long> {
-    public final /* synthetic */ WidgetGlobalSearchModel$ChannelContext $channelContext;
+    public final /* synthetic */ WidgetGlobalSearchModel.ChannelContext $channelContext;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetGlobalSearchModel$Companion$getDefaultUserSearch$recentDmUserIds$1(WidgetGlobalSearchModel$ChannelContext widgetGlobalSearchModel$ChannelContext) {
+    public WidgetGlobalSearchModel$Companion$getDefaultUserSearch$recentDmUserIds$1(WidgetGlobalSearchModel.ChannelContext channelContext) {
         super(1);
-        this.$channelContext = widgetGlobalSearchModel$ChannelContext;
+        this.$channelContext = channelContext;
     }
 
     @Override // kotlin.jvm.functions.Function1

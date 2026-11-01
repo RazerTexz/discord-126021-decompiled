@@ -3,10 +3,33 @@ package d0.e0.p.d.m0.n;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 /* JADX INFO: compiled from: StarProjectionImpl.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class p0 {
+
+    /* JADX INFO: compiled from: StarProjectionImpl.kt */
+    public final class a extends v0 {
+        public final /* synthetic */ List<u0> c;
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public a(List<? extends u0> list) {
+            this.c = list;
+        }
+
+        @Override // d0.e0.p.d.m0.n.v0
+        public w0 get(u0 u0Var) {
+            d0.z.d.m.checkNotNullParameter(u0Var, "key");
+            if (!this.c.contains(u0Var)) {
+                return null;
+            }
+            d0.e0.p.d.m0.c.h declarationDescriptor = u0Var.getDeclarationDescriptor();
+            Objects.requireNonNull(declarationDescriptor, "null cannot be cast to non-null type org.jetbrains.kotlin.descriptors.TypeParameterDescriptor");
+            return e1.makeStarProjection((d0.e0.p.d.m0.c.z0) declarationDescriptor);
+        }
+    }
+
     public static final c0 starProjectionType(d0.e0.p.d.m0.c.z0 z0Var) {
         d0.z.d.m.checkNotNullParameter(z0Var, "<this>");
         List<d0.e0.p.d.m0.c.z0> parameters = ((d0.e0.p.d.m0.c.i) z0Var.getContainingDeclaration()).getTypeConstructor().getParameters();
@@ -16,7 +39,7 @@ public final class p0 {
         while (it.hasNext()) {
             arrayList.add(((d0.e0.p.d.m0.c.z0) it.next()).getTypeConstructor());
         }
-        c1 c1VarCreate = c1.create(new p0$a(arrayList));
+        c1 c1VarCreate = c1.create(new a(arrayList));
         List<c0> upperBounds = z0Var.getUpperBounds();
         d0.z.d.m.checkNotNullExpressionValue(upperBounds, "this.upperBounds");
         c0 c0VarSubstitute = c1VarCreate.substitute((c0) d0.t.u.first((List) upperBounds), j1.OUT_VARIANCE);

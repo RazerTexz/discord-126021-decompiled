@@ -1,6 +1,6 @@
 package androidx.drawerlayout.widget;
 
-import android.R$attr;
+import android.R;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,28 +10,29 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View$MeasureSpec;
 import android.view.ViewGroup;
-import android.view.ViewGroup$LayoutParams;
-import android.view.ViewGroup$MarginLayoutParams;
 import android.view.WindowInsets;
+import android.view.accessibility.AccessibilityEvent;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.core.view.AccessibilityDelegateCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import androidx.customview.view.AbsSavedState;
 import androidx.customview.widget.ViewDragHelper;
 import b.d.b.a.a;
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public class DrawerLayout extends ViewGroup {
     public static final int STATE_SETTLING = 2;
     private static final String TAG = "DrawerLayout";
     private static final float TOUCH_SLOP_SENSITIVITY = 1.0f;
-    private final DrawerLayout$ChildAccessibilityDelegate mChildAccessibilityDelegate;
+    private final ChildAccessibilityDelegate mChildAccessibilityDelegate;
     private Rect mChildHitRect;
     private Matrix mChildInvertedMatrix;
     private boolean mChildrenCanceledTouch;
@@ -68,19 +69,19 @@ public class DrawerLayout extends ViewGroup {
     private float mInitialMotionX;
     private float mInitialMotionY;
     private Object mLastInsets;
-    private final DrawerLayout$ViewDragCallback mLeftCallback;
+    private final ViewDragCallback mLeftCallback;
     private final ViewDragHelper mLeftDragger;
 
     @Nullable
-    private DrawerLayout$DrawerListener mListener;
-    private List<DrawerLayout$DrawerListener> mListeners;
+    private DrawerListener mListener;
+    private List<DrawerListener> mListeners;
     private int mLockModeEnd;
     private int mLockModeLeft;
     private int mLockModeRight;
     private int mLockModeStart;
     private int mMinDrawerMargin;
     private final ArrayList<View> mNonDrawerViews;
-    private final DrawerLayout$ViewDragCallback mRightCallback;
+    private final ViewDragCallback mRightCallback;
     private final ViewDragHelper mRightDragger;
     private int mScrimColor;
     private float mScrimOpacity;
@@ -94,23 +95,142 @@ public class DrawerLayout extends ViewGroup {
     private Drawable mStatusBarBackground;
     private CharSequence mTitleLeft;
     private CharSequence mTitleRight;
-    private static final int[] THEME_ATTRS = {R$attr.colorPrimaryDark};
-    public static final int[] LAYOUT_ATTRS = {R$attr.layout_gravity};
+    private static final int[] THEME_ATTRS = {R.attr.colorPrimaryDark};
+    public static final int[] LAYOUT_ATTRS = {R.attr.layout_gravity};
     public static final boolean CAN_HIDE_DESCENDANTS = true;
     private static final boolean SET_DRAWER_SHADOW_FROM_ELEVATION = true;
+
+    /* JADX INFO: renamed from: androidx.drawerlayout.widget.DrawerLayout$1, reason: invalid class name */
+    public class AnonymousClass1 implements View.OnApplyWindowInsetsListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnApplyWindowInsetsListener
+        public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+            ((DrawerLayout) view).setChildInsets(windowInsets, windowInsets.getSystemWindowInsetTop() > 0);
+            return windowInsets.consumeSystemWindowInsets();
+        }
+    }
+
+    public final class ChildAccessibilityDelegate extends AccessibilityDelegateCompat {
+        @Override // androidx.core.view.AccessibilityDelegateCompat
+        public void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
+            super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompat);
+            if (DrawerLayout.includeChildForAccessibility(view)) {
+                return;
+            }
+            accessibilityNodeInfoCompat.setParent(null);
+        }
+    }
+
+    public interface DrawerListener {
+        void onDrawerClosed(@NonNull View view);
+
+        void onDrawerOpened(@NonNull View view);
+
+        void onDrawerSlide(@NonNull View view, float f);
+
+        void onDrawerStateChanged(int i);
+    }
+
+    public class SavedState extends AbsSavedState {
+        public int lockModeEnd;
+        public int lockModeLeft;
+        public int lockModeRight;
+        public int lockModeStart;
+        public int openDrawerGravity;
+        public static final Parcelable.Creator<SavedState> CREATOR = new AnonymousClass1();
+
+        /* JADX INFO: renamed from: androidx.drawerlayout.widget.DrawerLayout$SavedState$1, reason: invalid class name */
+        public final class AnonymousClass1 implements Parcelable.ClassLoaderCreator<SavedState> {
+            @Override // android.os.Parcelable.Creator
+            public /* bridge */ /* synthetic */ Object createFromParcel(Parcel parcel) {
+                return createFromParcel(parcel);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            public /* bridge */ /* synthetic */ Object[] newArray(int i) {
+                return newArray(i);
+            }
+
+            @Override // android.os.Parcelable.ClassLoaderCreator
+            public /* bridge */ /* synthetic */ SavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
+                return createFromParcel(parcel, classLoader);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            public SavedState[] newArray(int i) {
+                return new SavedState[i];
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.ClassLoaderCreator
+            public SavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
+                return new SavedState(parcel, classLoader);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            public SavedState createFromParcel(Parcel parcel) {
+                return new SavedState(parcel, null);
+            }
+        }
+
+        public SavedState(@NonNull Parcel parcel, @Nullable ClassLoader classLoader) {
+            super(parcel, classLoader);
+            this.openDrawerGravity = 0;
+            this.openDrawerGravity = parcel.readInt();
+            this.lockModeLeft = parcel.readInt();
+            this.lockModeRight = parcel.readInt();
+            this.lockModeStart = parcel.readInt();
+            this.lockModeEnd = parcel.readInt();
+        }
+
+        @Override // androidx.customview.view.AbsSavedState, android.os.Parcelable
+        public void writeToParcel(Parcel parcel, int i) {
+            super.writeToParcel(parcel, i);
+            parcel.writeInt(this.openDrawerGravity);
+            parcel.writeInt(this.lockModeLeft);
+            parcel.writeInt(this.lockModeRight);
+            parcel.writeInt(this.lockModeStart);
+            parcel.writeInt(this.lockModeEnd);
+        }
+
+        public SavedState(@NonNull Parcelable parcelable) {
+            super(parcelable);
+            this.openDrawerGravity = 0;
+        }
+    }
+
+    public abstract class SimpleDrawerListener implements DrawerListener {
+        @Override // androidx.drawerlayout.widget.DrawerLayout.DrawerListener
+        public void onDrawerClosed(View view) {
+        }
+
+        @Override // androidx.drawerlayout.widget.DrawerLayout.DrawerListener
+        public void onDrawerOpened(View view) {
+        }
+
+        @Override // androidx.drawerlayout.widget.DrawerLayout.DrawerListener
+        public void onDrawerSlide(View view, float f) {
+        }
+
+        @Override // androidx.drawerlayout.widget.DrawerLayout.DrawerListener
+        public void onDrawerStateChanged(int i) {
+        }
+    }
 
     public DrawerLayout(@NonNull Context context) {
         this(context, null);
     }
 
-    public void addDrawerListener(@NonNull DrawerLayout$DrawerListener drawerLayout$DrawerListener) {
-        if (drawerLayout$DrawerListener == null) {
+    public void addDrawerListener(@NonNull DrawerListener drawerListener) {
+        if (drawerListener == null) {
             return;
         }
         if (this.mListeners == null) {
             this.mListeners = new ArrayList();
         }
-        this.mListeners.add(drawerLayout$DrawerListener);
+        this.mListeners.add(drawerListener);
     }
 
     @Override // android.view.ViewGroup, android.view.View
@@ -142,8 +262,8 @@ public class DrawerLayout extends ViewGroup {
     }
 
     @Override // android.view.ViewGroup
-    public void addView(View view, int i, ViewGroup$LayoutParams viewGroup$LayoutParams) {
-        super.addView(view, i, viewGroup$LayoutParams);
+    public void addView(View view, int i, ViewGroup.LayoutParams layoutParams) {
+        super.addView(view, i, layoutParams);
         if (findOpenDrawer() != null || isDrawerView(view)) {
             ViewCompat.setImportantForAccessibility(view, 4);
         } else {
@@ -174,8 +294,8 @@ public class DrawerLayout extends ViewGroup {
     }
 
     @Override // android.view.ViewGroup
-    public boolean checkLayoutParams(ViewGroup$LayoutParams viewGroup$LayoutParams) {
-        return (viewGroup$LayoutParams instanceof DrawerLayout$LayoutParams) && super.checkLayoutParams(viewGroup$LayoutParams);
+    public boolean checkLayoutParams(ViewGroup.LayoutParams layoutParams) {
+        return (layoutParams instanceof LayoutParams) && super.checkLayoutParams(layoutParams);
     }
 
     public void closeDrawer(@NonNull View view) {
@@ -191,7 +311,7 @@ public class DrawerLayout extends ViewGroup {
         int childCount = getChildCount();
         float fMax = 0.0f;
         for (int i = 0; i < childCount; i++) {
-            fMax = Math.max(fMax, ((DrawerLayout$LayoutParams) getChildAt(i).getLayoutParams()).onScreen);
+            fMax = Math.max(fMax, ((LayoutParams) getChildAt(i).getLayoutParams()).onScreen);
         }
         this.mScrimOpacity = fMax;
         boolean zContinueSettling = this.mLeftDragger.continueSettling(true);
@@ -223,10 +343,10 @@ public class DrawerLayout extends ViewGroup {
 
     public void dispatchOnDrawerClosed(View view) {
         View rootView;
-        DrawerLayout$LayoutParams drawerLayout$LayoutParams = (DrawerLayout$LayoutParams) view.getLayoutParams();
-        if ((drawerLayout$LayoutParams.openState & 1) == 1) {
-            drawerLayout$LayoutParams.openState = 0;
-            List<DrawerLayout$DrawerListener> list = this.mListeners;
+        LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
+        if ((layoutParams.openState & 1) == 1) {
+            layoutParams.openState = 0;
+            List<DrawerListener> list = this.mListeners;
             if (list != null) {
                 for (int size = list.size() - 1; size >= 0; size--) {
                     this.mListeners.get(size).onDrawerClosed(view);
@@ -241,10 +361,10 @@ public class DrawerLayout extends ViewGroup {
     }
 
     public void dispatchOnDrawerOpened(View view) {
-        DrawerLayout$LayoutParams drawerLayout$LayoutParams = (DrawerLayout$LayoutParams) view.getLayoutParams();
-        if ((drawerLayout$LayoutParams.openState & 1) == 0) {
-            drawerLayout$LayoutParams.openState = 1;
-            List<DrawerLayout$DrawerListener> list = this.mListeners;
+        LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
+        if ((layoutParams.openState & 1) == 0) {
+            layoutParams.openState = 1;
+            List<DrawerListener> list = this.mListeners;
             if (list != null) {
                 for (int size = list.size() - 1; size >= 0; size--) {
                     this.mListeners.get(size).onDrawerOpened(view);
@@ -258,7 +378,7 @@ public class DrawerLayout extends ViewGroup {
     }
 
     public void dispatchOnDrawerSlide(View view, float f) {
-        List<DrawerLayout$DrawerListener> list = this.mListeners;
+        List<DrawerListener> list = this.mListeners;
         if (list != null) {
             for (int size = list.size() - 1; size >= 0; size--) {
                 this.mListeners.get(size).onDrawerSlide(view, f);
@@ -351,7 +471,7 @@ public class DrawerLayout extends ViewGroup {
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = getChildAt(i);
-            if ((((DrawerLayout$LayoutParams) childAt.getLayoutParams()).openState & 1) == 1) {
+            if ((((LayoutParams) childAt.getLayoutParams()).openState & 1) == 1) {
                 return childAt;
             }
         }
@@ -370,16 +490,16 @@ public class DrawerLayout extends ViewGroup {
     }
 
     @Override // android.view.ViewGroup
-    public ViewGroup$LayoutParams generateDefaultLayoutParams() {
-        return new DrawerLayout$LayoutParams(-1, -1);
+    public ViewGroup.LayoutParams generateDefaultLayoutParams() {
+        return new LayoutParams(-1, -1);
     }
 
     @Override // android.view.ViewGroup
-    public ViewGroup$LayoutParams generateLayoutParams(ViewGroup$LayoutParams viewGroup$LayoutParams) {
-        if (viewGroup$LayoutParams instanceof DrawerLayout$LayoutParams) {
-            return new DrawerLayout$LayoutParams((DrawerLayout$LayoutParams) viewGroup$LayoutParams);
+    public ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams layoutParams) {
+        if (layoutParams instanceof LayoutParams) {
+            return new LayoutParams((LayoutParams) layoutParams);
         }
-        return viewGroup$LayoutParams instanceof ViewGroup$MarginLayoutParams ? new DrawerLayout$LayoutParams((ViewGroup$MarginLayoutParams) viewGroup$LayoutParams) : new DrawerLayout$LayoutParams(viewGroup$LayoutParams);
+        return layoutParams instanceof ViewGroup.MarginLayoutParams ? new LayoutParams((ViewGroup.MarginLayoutParams) layoutParams) : new LayoutParams(layoutParams);
     }
 
     public float getDrawerElevation() {
@@ -451,11 +571,11 @@ public class DrawerLayout extends ViewGroup {
     }
 
     public int getDrawerViewAbsoluteGravity(View view) {
-        return GravityCompat.getAbsoluteGravity(((DrawerLayout$LayoutParams) view.getLayoutParams()).gravity, ViewCompat.getLayoutDirection(this));
+        return GravityCompat.getAbsoluteGravity(((LayoutParams) view.getLayoutParams()).gravity, ViewCompat.getLayoutDirection(this));
     }
 
     public float getDrawerViewOffset(View view) {
-        return ((DrawerLayout$LayoutParams) view.getLayoutParams()).onScreen;
+        return ((LayoutParams) view.getLayoutParams()).onScreen;
     }
 
     @Nullable
@@ -494,7 +614,7 @@ public class DrawerLayout extends ViewGroup {
     private boolean hasPeekingDrawer() {
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
-            if (((DrawerLayout$LayoutParams) getChildAt(i).getLayoutParams()).isPeeking) {
+            if (((LayoutParams) getChildAt(i).getLayoutParams()).isPeeking) {
                 return true;
             }
         }
@@ -510,24 +630,24 @@ public class DrawerLayout extends ViewGroup {
     }
 
     public boolean isContentView(View view) {
-        return ((DrawerLayout$LayoutParams) view.getLayoutParams()).gravity == 0;
+        return ((LayoutParams) view.getLayoutParams()).gravity == 0;
     }
 
     public boolean isDrawerOpen(@NonNull View view) {
         if (isDrawerView(view)) {
-            return (((DrawerLayout$LayoutParams) view.getLayoutParams()).openState & 1) == 1;
+            return (((LayoutParams) view.getLayoutParams()).openState & 1) == 1;
         }
         throw new IllegalArgumentException("View " + view + " is not a drawer");
     }
 
     public boolean isDrawerView(View view) {
-        int absoluteGravity = GravityCompat.getAbsoluteGravity(((DrawerLayout$LayoutParams) view.getLayoutParams()).gravity, ViewCompat.getLayoutDirection(view));
+        int absoluteGravity = GravityCompat.getAbsoluteGravity(((LayoutParams) view.getLayoutParams()).gravity, ViewCompat.getLayoutDirection(view));
         return ((absoluteGravity & 3) == 0 && (absoluteGravity & 5) == 0) ? false : true;
     }
 
     public boolean isDrawerVisible(@NonNull View view) {
         if (isDrawerView(view)) {
-            return ((DrawerLayout$LayoutParams) view.getLayoutParams()).onScreen > 0.0f;
+            return ((LayoutParams) view.getLayoutParams()).onScreen > 0.0f;
         }
         throw new IllegalArgumentException("View " + view + " is not a drawer");
     }
@@ -620,7 +740,7 @@ public class DrawerLayout extends ViewGroup {
         return zShouldInterceptTouchEvent || z2 || hasPeekingDrawer() || this.mChildrenCanceledTouch;
     }
 
-    @Override // android.view.View, android.view.KeyEvent$Callback
+    @Override // android.view.View, android.view.KeyEvent.Callback
     public boolean onKeyDown(int i, KeyEvent keyEvent) {
         if (i != 4 || !hasVisibleDrawer()) {
             return super.onKeyDown(i, keyEvent);
@@ -629,7 +749,7 @@ public class DrawerLayout extends ViewGroup {
         return true;
     }
 
-    @Override // android.view.View, android.view.KeyEvent$Callback
+    @Override // android.view.View, android.view.KeyEvent.Callback
     public boolean onKeyUp(int i, KeyEvent keyEvent) {
         if (i != 4) {
             return super.onKeyUp(i, keyEvent);
@@ -651,50 +771,50 @@ public class DrawerLayout extends ViewGroup {
         for (int i7 = 0; i7 < childCount; i7++) {
             View childAt = getChildAt(i7);
             if (childAt.getVisibility() != 8) {
-                DrawerLayout$LayoutParams drawerLayout$LayoutParams = (DrawerLayout$LayoutParams) childAt.getLayoutParams();
+                LayoutParams layoutParams = (LayoutParams) childAt.getLayoutParams();
                 if (isContentView(childAt)) {
-                    int i8 = ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).leftMargin;
-                    childAt.layout(i8, ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).topMargin, childAt.getMeasuredWidth() + i8, childAt.getMeasuredHeight() + ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).topMargin);
+                    int i8 = ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin;
+                    childAt.layout(i8, ((ViewGroup.MarginLayoutParams) layoutParams).topMargin, childAt.getMeasuredWidth() + i8, childAt.getMeasuredHeight() + ((ViewGroup.MarginLayoutParams) layoutParams).topMargin);
                 } else {
                     int measuredWidth = childAt.getMeasuredWidth();
                     int measuredHeight = childAt.getMeasuredHeight();
                     if (checkDrawerViewAbsoluteGravity(childAt, 3)) {
                         float f2 = measuredWidth;
-                        i5 = (-measuredWidth) + ((int) (drawerLayout$LayoutParams.onScreen * f2));
+                        i5 = (-measuredWidth) + ((int) (layoutParams.onScreen * f2));
                         f = (measuredWidth + i5) / f2;
                     } else {
                         float f3 = measuredWidth;
-                        int i9 = i6 - ((int) (drawerLayout$LayoutParams.onScreen * f3));
+                        int i9 = i6 - ((int) (layoutParams.onScreen * f3));
                         f = (i6 - i9) / f3;
                         i5 = i9;
                     }
-                    boolean z3 = f != drawerLayout$LayoutParams.onScreen;
-                    int i10 = drawerLayout$LayoutParams.gravity & 112;
+                    boolean z3 = f != layoutParams.onScreen;
+                    int i10 = layoutParams.gravity & 112;
                     if (i10 == 16) {
                         int i11 = i4 - i2;
                         int i12 = (i11 - measuredHeight) / 2;
-                        int i13 = ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).topMargin;
+                        int i13 = ((ViewGroup.MarginLayoutParams) layoutParams).topMargin;
                         if (i12 < i13) {
                             i12 = i13;
                         } else {
                             int i14 = i12 + measuredHeight;
-                            int i15 = ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).bottomMargin;
+                            int i15 = ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin;
                             if (i14 > i11 - i15) {
                                 i12 = (i11 - i15) - measuredHeight;
                             }
                         }
                         childAt.layout(i5, i12, measuredWidth + i5, measuredHeight + i12);
                     } else if (i10 != 80) {
-                        int i16 = ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).topMargin;
+                        int i16 = ((ViewGroup.MarginLayoutParams) layoutParams).topMargin;
                         childAt.layout(i5, i16, measuredWidth + i5, measuredHeight + i16);
                     } else {
                         int i17 = i4 - i2;
-                        childAt.layout(i5, (i17 - ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).bottomMargin) - childAt.getMeasuredHeight(), measuredWidth + i5, i17 - ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).bottomMargin);
+                        childAt.layout(i5, (i17 - ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin) - childAt.getMeasuredHeight(), measuredWidth + i5, i17 - ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin);
                     }
                     if (z3) {
                         setDrawerViewOffset(childAt, f);
                     }
-                    int i18 = drawerLayout$LayoutParams.onScreen > 0.0f ? 0 : 4;
+                    int i18 = layoutParams.onScreen > 0.0f ? 0 : 4;
                     if (childAt.getVisibility() != i18) {
                         childAt.setVisibility(i18);
                     }
@@ -708,10 +828,10 @@ public class DrawerLayout extends ViewGroup {
     @Override // android.view.View
     @SuppressLint({"WrongConstant"})
     public void onMeasure(int i, int i2) {
-        int mode = View$MeasureSpec.getMode(i);
-        int mode2 = View$MeasureSpec.getMode(i2);
-        int size = View$MeasureSpec.getSize(i);
-        int size2 = View$MeasureSpec.getSize(i2);
+        int mode = View.MeasureSpec.getMode(i);
+        int mode2 = View.MeasureSpec.getMode(i2);
+        int size = View.MeasureSpec.getSize(i);
+        int size2 = View.MeasureSpec.getSize(i2);
         if (mode != 1073741824 || mode2 != 1073741824) {
             if (!isInEditMode()) {
                 throw new IllegalArgumentException("DrawerLayout must be measured with MeasureSpec.EXACTLY.");
@@ -734,9 +854,9 @@ public class DrawerLayout extends ViewGroup {
         while (i4 < childCount) {
             View childAt = getChildAt(i4);
             if (childAt.getVisibility() != 8) {
-                DrawerLayout$LayoutParams drawerLayout$LayoutParams = (DrawerLayout$LayoutParams) childAt.getLayoutParams();
+                LayoutParams layoutParams = (LayoutParams) childAt.getLayoutParams();
                 if (z2) {
-                    int absoluteGravity = GravityCompat.getAbsoluteGravity(drawerLayout$LayoutParams.gravity, layoutDirection);
+                    int absoluteGravity = GravityCompat.getAbsoluteGravity(layoutParams.gravity, layoutDirection);
                     if (ViewCompat.getFitsSystemWindows(childAt)) {
                         WindowInsets windowInsetsReplaceSystemWindowInsets = (WindowInsets) this.mLastInsets;
                         if (absoluteGravity == 3) {
@@ -752,14 +872,14 @@ public class DrawerLayout extends ViewGroup {
                         } else if (absoluteGravity == 5) {
                             windowInsetsReplaceSystemWindowInsets2 = windowInsetsReplaceSystemWindowInsets2.replaceSystemWindowInsets(i3, windowInsetsReplaceSystemWindowInsets2.getSystemWindowInsetTop(), windowInsetsReplaceSystemWindowInsets2.getSystemWindowInsetRight(), windowInsetsReplaceSystemWindowInsets2.getSystemWindowInsetBottom());
                         }
-                        ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).leftMargin = windowInsetsReplaceSystemWindowInsets2.getSystemWindowInsetLeft();
-                        ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).topMargin = windowInsetsReplaceSystemWindowInsets2.getSystemWindowInsetTop();
-                        ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).rightMargin = windowInsetsReplaceSystemWindowInsets2.getSystemWindowInsetRight();
-                        ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).bottomMargin = windowInsetsReplaceSystemWindowInsets2.getSystemWindowInsetBottom();
+                        ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin = windowInsetsReplaceSystemWindowInsets2.getSystemWindowInsetLeft();
+                        ((ViewGroup.MarginLayoutParams) layoutParams).topMargin = windowInsetsReplaceSystemWindowInsets2.getSystemWindowInsetTop();
+                        ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin = windowInsetsReplaceSystemWindowInsets2.getSystemWindowInsetRight();
+                        ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin = windowInsetsReplaceSystemWindowInsets2.getSystemWindowInsetBottom();
                     }
                 }
                 if (isContentView(childAt)) {
-                    childAt.measure(View$MeasureSpec.makeMeasureSpec((size - ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).leftMargin) - ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).rightMargin, BasicMeasure.EXACTLY), View$MeasureSpec.makeMeasureSpec((size2 - ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).topMargin) - ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).bottomMargin, BasicMeasure.EXACTLY));
+                    childAt.measure(View.MeasureSpec.makeMeasureSpec((size - ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin) - ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin, BasicMeasure.EXACTLY), View.MeasureSpec.makeMeasureSpec((size2 - ((ViewGroup.MarginLayoutParams) layoutParams).topMargin) - ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin, BasicMeasure.EXACTLY));
                 } else {
                     if (!isDrawerView(childAt)) {
                         throw new IllegalStateException("Child " + childAt + " at index " + i4 + " does not have a valid layout_gravity - must be Gravity.LEFT, Gravity.RIGHT or Gravity.NO_GRAVITY");
@@ -787,7 +907,7 @@ public class DrawerLayout extends ViewGroup {
                     } else {
                         z4 = true;
                     }
-                    childAt.measure(ViewGroup.getChildMeasureSpec(i, this.mMinDrawerMargin + ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).leftMargin + ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).rightMargin, ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).width), ViewGroup.getChildMeasureSpec(i2, ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).topMargin + ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).bottomMargin, ((ViewGroup$MarginLayoutParams) drawerLayout$LayoutParams).height));
+                    childAt.measure(ViewGroup.getChildMeasureSpec(i, this.mMinDrawerMargin + ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin + ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin, ((ViewGroup.MarginLayoutParams) layoutParams).width), ViewGroup.getChildMeasureSpec(i2, ((ViewGroup.MarginLayoutParams) layoutParams).topMargin + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin, ((ViewGroup.MarginLayoutParams) layoutParams).height));
                 }
             }
             i4++;
@@ -798,29 +918,29 @@ public class DrawerLayout extends ViewGroup {
     @Override // android.view.View
     public void onRestoreInstanceState(Parcelable parcelable) {
         View viewFindDrawerWithGravity;
-        if (!(parcelable instanceof DrawerLayout$SavedState)) {
+        if (!(parcelable instanceof SavedState)) {
             super.onRestoreInstanceState(parcelable);
             return;
         }
-        DrawerLayout$SavedState drawerLayout$SavedState = (DrawerLayout$SavedState) parcelable;
-        super.onRestoreInstanceState(drawerLayout$SavedState.getSuperState());
-        int i = drawerLayout$SavedState.openDrawerGravity;
+        SavedState savedState = (SavedState) parcelable;
+        super.onRestoreInstanceState(savedState.getSuperState());
+        int i = savedState.openDrawerGravity;
         if (i != 0 && (viewFindDrawerWithGravity = findDrawerWithGravity(i)) != null) {
             openDrawer(viewFindDrawerWithGravity);
         }
-        int i2 = drawerLayout$SavedState.lockModeLeft;
+        int i2 = savedState.lockModeLeft;
         if (i2 != 3) {
             setDrawerLockMode(i2, 3);
         }
-        int i3 = drawerLayout$SavedState.lockModeRight;
+        int i3 = savedState.lockModeRight;
         if (i3 != 3) {
             setDrawerLockMode(i3, 5);
         }
-        int i4 = drawerLayout$SavedState.lockModeStart;
+        int i4 = savedState.lockModeStart;
         if (i4 != 3) {
             setDrawerLockMode(i4, GravityCompat.START);
         }
-        int i5 = drawerLayout$SavedState.lockModeEnd;
+        int i5 = savedState.lockModeEnd;
         if (i5 != 3) {
             setDrawerLockMode(i5, GravityCompat.END);
         }
@@ -833,23 +953,23 @@ public class DrawerLayout extends ViewGroup {
 
     @Override // android.view.View
     public Parcelable onSaveInstanceState() {
-        DrawerLayout$SavedState drawerLayout$SavedState = new DrawerLayout$SavedState(super.onSaveInstanceState());
+        SavedState savedState = new SavedState(super.onSaveInstanceState());
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
-            DrawerLayout$LayoutParams drawerLayout$LayoutParams = (DrawerLayout$LayoutParams) getChildAt(i).getLayoutParams();
-            int i2 = drawerLayout$LayoutParams.openState;
+            LayoutParams layoutParams = (LayoutParams) getChildAt(i).getLayoutParams();
+            int i2 = layoutParams.openState;
             boolean z2 = i2 == 1;
             boolean z3 = i2 == 2;
             if (z2 || z3) {
-                drawerLayout$SavedState.openDrawerGravity = drawerLayout$LayoutParams.gravity;
+                savedState.openDrawerGravity = layoutParams.gravity;
                 break;
             }
         }
-        drawerLayout$SavedState.lockModeLeft = this.mLockModeLeft;
-        drawerLayout$SavedState.lockModeRight = this.mLockModeRight;
-        drawerLayout$SavedState.lockModeStart = this.mLockModeStart;
-        drawerLayout$SavedState.lockModeEnd = this.mLockModeEnd;
-        return drawerLayout$SavedState;
+        savedState.lockModeLeft = this.mLockModeLeft;
+        savedState.lockModeRight = this.mLockModeRight;
+        savedState.lockModeStart = this.mLockModeStart;
+        savedState.lockModeEnd = this.mLockModeEnd;
+        return savedState;
     }
 
     /* JADX WARN: Code duplicated, block: B:21:0x0062  */
@@ -897,12 +1017,12 @@ public class DrawerLayout extends ViewGroup {
         openDrawer(view, true);
     }
 
-    public void removeDrawerListener(@NonNull DrawerLayout$DrawerListener drawerLayout$DrawerListener) {
-        List<DrawerLayout$DrawerListener> list;
-        if (drawerLayout$DrawerListener == null || (list = this.mListeners) == null) {
+    public void removeDrawerListener(@NonNull DrawerListener drawerListener) {
+        List<DrawerListener> list;
+        if (drawerListener == null || (list = this.mListeners) == null) {
             return;
         }
-        list.remove(drawerLayout$DrawerListener);
+        list.remove(drawerListener);
     }
 
     @Override // android.view.ViewGroup, android.view.ViewParent
@@ -966,7 +1086,7 @@ public class DrawerLayout extends ViewGroup {
         this.mShadowRightResolved = resolveRightShadow();
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public void setChildInsets(Object obj, boolean z2) {
         this.mLastInsets = obj;
         this.mDrawStatusBarBackground = z2;
@@ -985,15 +1105,15 @@ public class DrawerLayout extends ViewGroup {
     }
 
     @Deprecated
-    public void setDrawerListener(DrawerLayout$DrawerListener drawerLayout$DrawerListener) {
-        DrawerLayout$DrawerListener drawerLayout$DrawerListener2 = this.mListener;
-        if (drawerLayout$DrawerListener2 != null) {
-            removeDrawerListener(drawerLayout$DrawerListener2);
+    public void setDrawerListener(DrawerListener drawerListener) {
+        DrawerListener drawerListener2 = this.mListener;
+        if (drawerListener2 != null) {
+            removeDrawerListener(drawerListener2);
         }
-        if (drawerLayout$DrawerListener != null) {
-            addDrawerListener(drawerLayout$DrawerListener);
+        if (drawerListener != null) {
+            addDrawerListener(drawerListener);
         }
-        this.mListener = drawerLayout$DrawerListener;
+        this.mListener = drawerListener;
     }
 
     public void setDrawerLockMode(int i) {
@@ -1030,11 +1150,11 @@ public class DrawerLayout extends ViewGroup {
     }
 
     public void setDrawerViewOffset(View view, float f) {
-        DrawerLayout$LayoutParams drawerLayout$LayoutParams = (DrawerLayout$LayoutParams) view.getLayoutParams();
-        if (f == drawerLayout$LayoutParams.onScreen) {
+        LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
+        if (f == layoutParams.onScreen) {
             return;
         }
-        drawerLayout$LayoutParams.onScreen = f;
+        layoutParams.onScreen = f;
         dispatchOnDrawerSlide(view, f);
     }
 
@@ -1075,7 +1195,7 @@ public class DrawerLayout extends ViewGroup {
             i3 = 0;
         }
         if (view != null && i2 == 0) {
-            float f = ((DrawerLayout$LayoutParams) view.getLayoutParams()).onScreen;
+            float f = ((LayoutParams) view.getLayoutParams()).onScreen;
             if (f == 0.0f) {
                 dispatchOnDrawerClosed(view);
             } else if (f == 1.0f) {
@@ -1084,12 +1204,249 @@ public class DrawerLayout extends ViewGroup {
         }
         if (i3 != this.mDrawerState) {
             this.mDrawerState = i3;
-            List<DrawerLayout$DrawerListener> list = this.mListeners;
+            List<DrawerListener> list = this.mListeners;
             if (list != null) {
                 for (int size = list.size() - 1; size >= 0; size--) {
                     this.mListeners.get(size).onDrawerStateChanged(i3);
                 }
             }
+        }
+    }
+
+    public class AccessibilityDelegate extends AccessibilityDelegateCompat {
+        private final Rect mTmpRect = new Rect();
+
+        public AccessibilityDelegate() {
+        }
+
+        private void addChildrenForAccessibility(AccessibilityNodeInfoCompat accessibilityNodeInfoCompat, ViewGroup viewGroup) {
+            int childCount = viewGroup.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View childAt = viewGroup.getChildAt(i);
+                if (DrawerLayout.includeChildForAccessibility(childAt)) {
+                    accessibilityNodeInfoCompat.addChild(childAt);
+                }
+            }
+        }
+
+        private void copyNodeInfoNoChildren(AccessibilityNodeInfoCompat accessibilityNodeInfoCompat, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat2) {
+            Rect rect = this.mTmpRect;
+            accessibilityNodeInfoCompat2.getBoundsInParent(rect);
+            accessibilityNodeInfoCompat.setBoundsInParent(rect);
+            accessibilityNodeInfoCompat2.getBoundsInScreen(rect);
+            accessibilityNodeInfoCompat.setBoundsInScreen(rect);
+            accessibilityNodeInfoCompat.setVisibleToUser(accessibilityNodeInfoCompat2.isVisibleToUser());
+            accessibilityNodeInfoCompat.setPackageName(accessibilityNodeInfoCompat2.getPackageName());
+            accessibilityNodeInfoCompat.setClassName(accessibilityNodeInfoCompat2.getClassName());
+            accessibilityNodeInfoCompat.setContentDescription(accessibilityNodeInfoCompat2.getContentDescription());
+            accessibilityNodeInfoCompat.setEnabled(accessibilityNodeInfoCompat2.isEnabled());
+            accessibilityNodeInfoCompat.setClickable(accessibilityNodeInfoCompat2.isClickable());
+            accessibilityNodeInfoCompat.setFocusable(accessibilityNodeInfoCompat2.isFocusable());
+            accessibilityNodeInfoCompat.setFocused(accessibilityNodeInfoCompat2.isFocused());
+            accessibilityNodeInfoCompat.setAccessibilityFocused(accessibilityNodeInfoCompat2.isAccessibilityFocused());
+            accessibilityNodeInfoCompat.setSelected(accessibilityNodeInfoCompat2.isSelected());
+            accessibilityNodeInfoCompat.setLongClickable(accessibilityNodeInfoCompat2.isLongClickable());
+            accessibilityNodeInfoCompat.addAction(accessibilityNodeInfoCompat2.getActions());
+        }
+
+        @Override // androidx.core.view.AccessibilityDelegateCompat
+        public boolean dispatchPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
+            if (accessibilityEvent.getEventType() != 32) {
+                return super.dispatchPopulateAccessibilityEvent(view, accessibilityEvent);
+            }
+            List<CharSequence> text = accessibilityEvent.getText();
+            View viewFindVisibleDrawer = DrawerLayout.this.findVisibleDrawer();
+            if (viewFindVisibleDrawer == null) {
+                return true;
+            }
+            CharSequence drawerTitle = DrawerLayout.this.getDrawerTitle(DrawerLayout.this.getDrawerViewAbsoluteGravity(viewFindVisibleDrawer));
+            if (drawerTitle == null) {
+                return true;
+            }
+            text.add(drawerTitle);
+            return true;
+        }
+
+        @Override // androidx.core.view.AccessibilityDelegateCompat
+        public void onInitializeAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
+            super.onInitializeAccessibilityEvent(view, accessibilityEvent);
+            accessibilityEvent.setClassName(DrawerLayout.class.getName());
+        }
+
+        @Override // androidx.core.view.AccessibilityDelegateCompat
+        public void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
+            if (DrawerLayout.CAN_HIDE_DESCENDANTS) {
+                super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompat);
+            } else {
+                AccessibilityNodeInfoCompat accessibilityNodeInfoCompatObtain = AccessibilityNodeInfoCompat.obtain(accessibilityNodeInfoCompat);
+                super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompatObtain);
+                accessibilityNodeInfoCompat.setSource(view);
+                Object parentForAccessibility = ViewCompat.getParentForAccessibility(view);
+                if (parentForAccessibility instanceof View) {
+                    accessibilityNodeInfoCompat.setParent((View) parentForAccessibility);
+                }
+                copyNodeInfoNoChildren(accessibilityNodeInfoCompat, accessibilityNodeInfoCompatObtain);
+                accessibilityNodeInfoCompatObtain.recycle();
+                addChildrenForAccessibility(accessibilityNodeInfoCompat, (ViewGroup) view);
+            }
+            accessibilityNodeInfoCompat.setClassName(DrawerLayout.class.getName());
+            accessibilityNodeInfoCompat.setFocusable(false);
+            accessibilityNodeInfoCompat.setFocused(false);
+            accessibilityNodeInfoCompat.removeAction(AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_FOCUS);
+            accessibilityNodeInfoCompat.removeAction(AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLEAR_FOCUS);
+        }
+
+        @Override // androidx.core.view.AccessibilityDelegateCompat
+        public boolean onRequestSendAccessibilityEvent(ViewGroup viewGroup, View view, AccessibilityEvent accessibilityEvent) {
+            if (DrawerLayout.CAN_HIDE_DESCENDANTS || DrawerLayout.includeChildForAccessibility(view)) {
+                return super.onRequestSendAccessibilityEvent(viewGroup, view, accessibilityEvent);
+            }
+            return false;
+        }
+    }
+
+    public class ViewDragCallback extends ViewDragHelper.Callback {
+        private final int mAbsGravity;
+        private ViewDragHelper mDragger;
+        private final Runnable mPeekRunnable = new AnonymousClass1();
+
+        /* JADX INFO: renamed from: androidx.drawerlayout.widget.DrawerLayout$ViewDragCallback$1, reason: invalid class name */
+        public class AnonymousClass1 implements Runnable {
+            public AnonymousClass1() {
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                ViewDragCallback.this.peekDrawer();
+            }
+        }
+
+        public ViewDragCallback(int i) {
+            this.mAbsGravity = i;
+        }
+
+        @Override // androidx.customview.widget.ViewDragHelper.Callback
+        public int clampViewPositionHorizontal(View view, int i, int i2) {
+            if (DrawerLayout.this.checkDrawerViewAbsoluteGravity(view, 3)) {
+                return Math.max(-view.getWidth(), Math.min(i, 0));
+            }
+            int width = DrawerLayout.this.getWidth();
+            return Math.max(width - view.getWidth(), Math.min(i, width));
+        }
+
+        @Override // androidx.customview.widget.ViewDragHelper.Callback
+        public int clampViewPositionVertical(View view, int i, int i2) {
+            return view.getTop();
+        }
+
+        private void closeOtherDrawer() {
+            View viewFindDrawerWithGravity = DrawerLayout.this.findDrawerWithGravity(this.mAbsGravity == 3 ? 5 : 3);
+            if (viewFindDrawerWithGravity != null) {
+                DrawerLayout.this.closeDrawer(viewFindDrawerWithGravity);
+            }
+        }
+
+        @Override // androidx.customview.widget.ViewDragHelper.Callback
+        public int getViewHorizontalDragRange(View view) {
+            if (DrawerLayout.this.isDrawerView(view)) {
+                return view.getWidth();
+            }
+            return 0;
+        }
+
+        @Override // androidx.customview.widget.ViewDragHelper.Callback
+        public void onEdgeDragStarted(int i, int i2) {
+            View viewFindDrawerWithGravity = (i & 1) == 1 ? DrawerLayout.this.findDrawerWithGravity(3) : DrawerLayout.this.findDrawerWithGravity(5);
+            if (viewFindDrawerWithGravity == null || DrawerLayout.this.getDrawerLockMode(viewFindDrawerWithGravity) != 0) {
+                return;
+            }
+            this.mDragger.captureChildView(viewFindDrawerWithGravity, i2);
+        }
+
+        @Override // androidx.customview.widget.ViewDragHelper.Callback
+        public boolean onEdgeLock(int i) {
+            return false;
+        }
+
+        @Override // androidx.customview.widget.ViewDragHelper.Callback
+        public void onEdgeTouched(int i, int i2) {
+            DrawerLayout.this.postDelayed(this.mPeekRunnable, 160L);
+        }
+
+        @Override // androidx.customview.widget.ViewDragHelper.Callback
+        public void onViewCaptured(View view, int i) {
+            ((LayoutParams) view.getLayoutParams()).isPeeking = false;
+            closeOtherDrawer();
+        }
+
+        @Override // androidx.customview.widget.ViewDragHelper.Callback
+        public void onViewDragStateChanged(int i) {
+            DrawerLayout.this.updateDrawerState(this.mAbsGravity, i, this.mDragger.getCapturedView());
+        }
+
+        @Override // androidx.customview.widget.ViewDragHelper.Callback
+        public void onViewPositionChanged(View view, int i, int i2, int i3, int i4) {
+            int width = view.getWidth();
+            float width2 = (DrawerLayout.this.checkDrawerViewAbsoluteGravity(view, 3) ? i + width : DrawerLayout.this.getWidth() - i) / width;
+            DrawerLayout.this.setDrawerViewOffset(view, width2);
+            view.setVisibility(width2 == 0.0f ? 4 : 0);
+            DrawerLayout.this.invalidate();
+        }
+
+        @Override // androidx.customview.widget.ViewDragHelper.Callback
+        public void onViewReleased(View view, float f, float f2) {
+            int i;
+            float drawerViewOffset = DrawerLayout.this.getDrawerViewOffset(view);
+            int width = view.getWidth();
+            if (DrawerLayout.this.checkDrawerViewAbsoluteGravity(view, 3)) {
+                i = (f > 0.0f || (f == 0.0f && drawerViewOffset > 0.5f)) ? 0 : -width;
+            } else {
+                int width2 = DrawerLayout.this.getWidth();
+                if (f < 0.0f || (f == 0.0f && drawerViewOffset > 0.5f)) {
+                    width2 -= width;
+                }
+                i = width2;
+            }
+            this.mDragger.settleCapturedViewAt(i, view.getTop());
+            DrawerLayout.this.invalidate();
+        }
+
+        public void peekDrawer() {
+            View viewFindDrawerWithGravity;
+            int width;
+            int edgeSize = this.mDragger.getEdgeSize();
+            boolean z2 = this.mAbsGravity == 3;
+            if (z2) {
+                viewFindDrawerWithGravity = DrawerLayout.this.findDrawerWithGravity(3);
+                width = (viewFindDrawerWithGravity != null ? -viewFindDrawerWithGravity.getWidth() : 0) + edgeSize;
+            } else {
+                viewFindDrawerWithGravity = DrawerLayout.this.findDrawerWithGravity(5);
+                width = DrawerLayout.this.getWidth() - edgeSize;
+            }
+            if (viewFindDrawerWithGravity != null) {
+                if (((!z2 || viewFindDrawerWithGravity.getLeft() >= width) && (z2 || viewFindDrawerWithGravity.getLeft() <= width)) || DrawerLayout.this.getDrawerLockMode(viewFindDrawerWithGravity) != 0) {
+                    return;
+                }
+                LayoutParams layoutParams = (LayoutParams) viewFindDrawerWithGravity.getLayoutParams();
+                this.mDragger.smoothSlideViewTo(viewFindDrawerWithGravity, width, viewFindDrawerWithGravity.getTop());
+                layoutParams.isPeeking = true;
+                DrawerLayout.this.invalidate();
+                closeOtherDrawer();
+                DrawerLayout.this.cancelChildViewTouch();
+            }
+        }
+
+        public void removeCallbacks() {
+            DrawerLayout.this.removeCallbacks(this.mPeekRunnable);
+        }
+
+        public void setDragger(ViewDragHelper viewDragHelper) {
+            this.mDragger = viewDragHelper;
+        }
+
+        @Override // androidx.customview.widget.ViewDragHelper.Callback
+        public boolean tryCaptureView(View view, int i) {
+            return DrawerLayout.this.isDrawerView(view) && DrawerLayout.this.checkDrawerViewAbsoluteGravity(view, this.mAbsGravity) && DrawerLayout.this.getDrawerLockMode(view) == 0;
         }
     }
 
@@ -1101,12 +1458,12 @@ public class DrawerLayout extends ViewGroup {
         if (!isDrawerView(view)) {
             throw new IllegalArgumentException("View " + view + " is not a sliding drawer");
         }
-        DrawerLayout$LayoutParams drawerLayout$LayoutParams = (DrawerLayout$LayoutParams) view.getLayoutParams();
+        LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
         if (this.mFirstLayout) {
-            drawerLayout$LayoutParams.onScreen = 0.0f;
-            drawerLayout$LayoutParams.openState = 0;
+            layoutParams.onScreen = 0.0f;
+            layoutParams.openState = 0;
         } else if (z2) {
-            drawerLayout$LayoutParams.openState |= 4;
+            layoutParams.openState |= 4;
             if (checkDrawerViewAbsoluteGravity(view, 3)) {
                 this.mLeftDragger.smoothSlideViewTo(view, -view.getWidth(), view.getTop());
             } else {
@@ -1114,7 +1471,7 @@ public class DrawerLayout extends ViewGroup {
             }
         } else {
             moveDrawerToOffset(view, 0.0f);
-            updateDrawerState(drawerLayout$LayoutParams.gravity, 0, view);
+            updateDrawerState(layoutParams.gravity, 0, view);
             view.setVisibility(4);
         }
         invalidate();
@@ -1125,10 +1482,10 @@ public class DrawerLayout extends ViewGroup {
         boolean zSmoothSlideViewTo = false;
         for (int i = 0; i < childCount; i++) {
             View childAt = getChildAt(i);
-            DrawerLayout$LayoutParams drawerLayout$LayoutParams = (DrawerLayout$LayoutParams) childAt.getLayoutParams();
-            if (isDrawerView(childAt) && (!z2 || drawerLayout$LayoutParams.isPeeking)) {
+            LayoutParams layoutParams = (LayoutParams) childAt.getLayoutParams();
+            if (isDrawerView(childAt) && (!z2 || layoutParams.isPeeking)) {
                 zSmoothSlideViewTo |= checkDrawerViewAbsoluteGravity(childAt, 3) ? this.mLeftDragger.smoothSlideViewTo(childAt, -childAt.getWidth(), childAt.getTop()) : this.mRightDragger.smoothSlideViewTo(childAt, getWidth(), childAt.getTop());
-                drawerLayout$LayoutParams.isPeeking = false;
+                layoutParams.isPeeking = false;
             }
         }
         this.mLeftCallback.removeCallbacks();
@@ -1139,21 +1496,21 @@ public class DrawerLayout extends ViewGroup {
     }
 
     @Override // android.view.ViewGroup
-    public ViewGroup$LayoutParams generateLayoutParams(AttributeSet attributeSet) {
-        return new DrawerLayout$LayoutParams(getContext(), attributeSet);
+    public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attributeSet) {
+        return new LayoutParams(getContext(), attributeSet);
     }
 
     public void openDrawer(@NonNull View view, boolean z2) {
         if (!isDrawerView(view)) {
             throw new IllegalArgumentException("View " + view + " is not a sliding drawer");
         }
-        DrawerLayout$LayoutParams drawerLayout$LayoutParams = (DrawerLayout$LayoutParams) view.getLayoutParams();
+        LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
         if (this.mFirstLayout) {
-            drawerLayout$LayoutParams.onScreen = 1.0f;
-            drawerLayout$LayoutParams.openState = 1;
+            layoutParams.onScreen = 1.0f;
+            layoutParams.openState = 1;
             updateChildrenImportantForAccessibility(view, true);
         } else if (z2) {
-            drawerLayout$LayoutParams.openState |= 2;
+            layoutParams.openState |= 2;
             if (checkDrawerViewAbsoluteGravity(view, 3)) {
                 this.mLeftDragger.smoothSlideViewTo(view, 0, view.getTop());
             } else {
@@ -1161,7 +1518,7 @@ public class DrawerLayout extends ViewGroup {
             }
         } else {
             moveDrawerToOffset(view, 1.0f);
-            updateDrawerState(drawerLayout$LayoutParams.gravity, 0, view);
+            updateDrawerState(layoutParams.gravity, 0, view);
             view.setVisibility(0);
         }
         invalidate();
@@ -1169,7 +1526,7 @@ public class DrawerLayout extends ViewGroup {
 
     public DrawerLayout(@NonNull Context context, @Nullable AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
-        this.mChildAccessibilityDelegate = new DrawerLayout$ChildAccessibilityDelegate();
+        this.mChildAccessibilityDelegate = new ChildAccessibilityDelegate();
         this.mScrimColor = DEFAULT_SCRIM_COLOR;
         this.mScrimPaint = new Paint();
         this.mFirstLayout = true;
@@ -1185,26 +1542,26 @@ public class DrawerLayout extends ViewGroup {
         float f = getResources().getDisplayMetrics().density;
         this.mMinDrawerMargin = (int) ((64.0f * f) + 0.5f);
         float f2 = 400.0f * f;
-        DrawerLayout$ViewDragCallback drawerLayout$ViewDragCallback = new DrawerLayout$ViewDragCallback(this, 3);
-        this.mLeftCallback = drawerLayout$ViewDragCallback;
-        DrawerLayout$ViewDragCallback drawerLayout$ViewDragCallback2 = new DrawerLayout$ViewDragCallback(this, 5);
-        this.mRightCallback = drawerLayout$ViewDragCallback2;
-        ViewDragHelper viewDragHelperCreate = ViewDragHelper.create(this, 1.0f, drawerLayout$ViewDragCallback);
+        ViewDragCallback viewDragCallback = new ViewDragCallback(3);
+        this.mLeftCallback = viewDragCallback;
+        ViewDragCallback viewDragCallback2 = new ViewDragCallback(5);
+        this.mRightCallback = viewDragCallback2;
+        ViewDragHelper viewDragHelperCreate = ViewDragHelper.create(this, 1.0f, viewDragCallback);
         this.mLeftDragger = viewDragHelperCreate;
         viewDragHelperCreate.setEdgeTrackingEnabled(1);
         viewDragHelperCreate.setMinVelocity(f2);
-        drawerLayout$ViewDragCallback.setDragger(viewDragHelperCreate);
-        ViewDragHelper viewDragHelperCreate2 = ViewDragHelper.create(this, 1.0f, drawerLayout$ViewDragCallback2);
+        viewDragCallback.setDragger(viewDragHelperCreate);
+        ViewDragHelper viewDragHelperCreate2 = ViewDragHelper.create(this, 1.0f, viewDragCallback2);
         this.mRightDragger = viewDragHelperCreate2;
         viewDragHelperCreate2.setEdgeTrackingEnabled(2);
         viewDragHelperCreate2.setMinVelocity(f2);
-        drawerLayout$ViewDragCallback2.setDragger(viewDragHelperCreate2);
+        viewDragCallback2.setDragger(viewDragHelperCreate2);
         setFocusableInTouchMode(true);
         ViewCompat.setImportantForAccessibility(this, 1);
-        ViewCompat.setAccessibilityDelegate(this, new DrawerLayout$AccessibilityDelegate(this));
+        ViewCompat.setAccessibilityDelegate(this, new AccessibilityDelegate());
         setMotionEventSplittingEnabled(false);
         if (ViewCompat.getFitsSystemWindows(this)) {
-            setOnApplyWindowInsetsListener(new DrawerLayout$1(this));
+            setOnApplyWindowInsetsListener(new AnonymousClass1());
             setSystemUiVisibility(1280);
             TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(THEME_ATTRS);
             try {
@@ -1260,6 +1617,50 @@ public class DrawerLayout extends ViewGroup {
         return false;
     }
 
+    public class LayoutParams extends ViewGroup.MarginLayoutParams {
+        private static final int FLAG_IS_CLOSING = 4;
+        private static final int FLAG_IS_OPENED = 1;
+        private static final int FLAG_IS_OPENING = 2;
+        public int gravity;
+        public boolean isPeeking;
+        public float onScreen;
+        public int openState;
+
+        public LayoutParams(@NonNull Context context, @Nullable AttributeSet attributeSet) {
+            super(context, attributeSet);
+            this.gravity = 0;
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, DrawerLayout.LAYOUT_ATTRS);
+            this.gravity = typedArrayObtainStyledAttributes.getInt(0, 0);
+            typedArrayObtainStyledAttributes.recycle();
+        }
+
+        public LayoutParams(int i, int i2) {
+            super(i, i2);
+            this.gravity = 0;
+        }
+
+        public LayoutParams(int i, int i2, int i3) {
+            this(i, i2);
+            this.gravity = i3;
+        }
+
+        public LayoutParams(@NonNull LayoutParams layoutParams) {
+            super((ViewGroup.MarginLayoutParams) layoutParams);
+            this.gravity = 0;
+            this.gravity = layoutParams.gravity;
+        }
+
+        public LayoutParams(@NonNull ViewGroup.LayoutParams layoutParams) {
+            super(layoutParams);
+            this.gravity = 0;
+        }
+
+        public LayoutParams(@NonNull ViewGroup.MarginLayoutParams marginLayoutParams) {
+            super(marginLayoutParams);
+            this.gravity = 0;
+        }
+    }
+
     public boolean isDrawerOpen(int i) {
         View viewFindDrawerWithGravity = findDrawerWithGravity(i);
         if (viewFindDrawerWithGravity != null) {
@@ -1274,14 +1675,14 @@ public class DrawerLayout extends ViewGroup {
 
     public int getDrawerLockMode(@NonNull View view) {
         if (isDrawerView(view)) {
-            return getDrawerLockMode(((DrawerLayout$LayoutParams) view.getLayoutParams()).gravity);
+            return getDrawerLockMode(((LayoutParams) view.getLayoutParams()).gravity);
         }
         throw new IllegalArgumentException("View " + view + " is not a drawer");
     }
 
     public void setDrawerLockMode(int i, @NonNull View view) {
         if (isDrawerView(view)) {
-            setDrawerLockMode(i, ((DrawerLayout$LayoutParams) view.getLayoutParams()).gravity);
+            setDrawerLockMode(i, ((LayoutParams) view.getLayoutParams()).gravity);
             return;
         }
         throw new IllegalArgumentException("View " + view + " is not a drawer with appropriate layout_gravity");

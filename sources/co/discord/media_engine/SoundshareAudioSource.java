@@ -1,10 +1,13 @@
 package co.discord.media_engine;
 
 import android.media.AudioRecord;
+import android.os.Process;
 import android.util.Log;
 import b.d.b.a.a;
+import com.discord.models.domain.ModelAuditLogEntry;
 import d0.z.d.m;
 import java.nio.ByteBuffer;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import org.webrtc.ThreadUtils;
 import org.webrtc.TimestampAligner;
 
@@ -16,14 +19,104 @@ public final class SoundshareAudioSource {
     private static final int BUFFERS_PER_SECOND = 100;
     private static final int BUFFER_SIZE_FACTOR = 2;
     private static final int CALLBACK_BUFFER_SIZE_MS = 10;
-    public static final SoundshareAudioSource$Companion Companion = new SoundshareAudioSource$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String TAG = "SoundshareAudioSource";
     private AudioRecord audioRecord;
-    private SoundshareAudioSource$AudioRecordThread audioThread;
+    private AudioRecordThread audioThread;
     private ByteBuffer byteBuffer;
     private static volatile boolean microphoneMute;
     private boolean released;
     private final long nativeInstance = nativeCreateInstance();
+
+    /* JADX INFO: compiled from: SoundshareAudioSource.kt */
+    public final class AudioRecordThread extends Thread {
+        private final AudioRecord audioRecord;
+        private final ByteBuffer byteBuffer;
+        private final byte[] emptyBytes;
+        private volatile boolean keepAlive;
+        public final /* synthetic */ SoundshareAudioSource this$0;
+        private long timestamp;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AudioRecordThread(SoundshareAudioSource soundshareAudioSource, String str, AudioRecord audioRecord, ByteBuffer byteBuffer, long j) {
+            super(str);
+            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            m.checkNotNullParameter(audioRecord, "audioRecord");
+            m.checkNotNullParameter(byteBuffer, "byteBuffer");
+            this.this$0 = soundshareAudioSource;
+            this.audioRecord = audioRecord;
+            this.byteBuffer = byteBuffer;
+            this.timestamp = j;
+            this.keepAlive = true;
+            this.emptyBytes = new byte[byteBuffer.capacity()];
+        }
+
+        @Override // java.lang.Thread, java.lang.Runnable
+        public void run() {
+            Process.setThreadPriority(-19);
+            Companion.access$assertTrue(SoundshareAudioSource.INSTANCE, this.audioRecord.getRecordingState() == 3);
+            while (this.keepAlive) {
+                AudioRecord audioRecord = this.audioRecord;
+                ByteBuffer byteBuffer = this.byteBuffer;
+                int i = audioRecord.read(byteBuffer, byteBuffer.capacity());
+                this.timestamp = TimestampAligner.getRtcTimeNanos();
+                if (i == this.byteBuffer.capacity()) {
+                    if (SoundshareAudioSource.access$getMicrophoneMute$cp()) {
+                        this.byteBuffer.clear();
+                        this.byteBuffer.put(this.emptyBytes);
+                    }
+                    if (this.keepAlive) {
+                        SoundshareAudioSource.access$dataIsRecorded(this.this$0, i, this.timestamp);
+                    }
+                } else {
+                    String str = "AudioRecord.read failed: " + i;
+                    Log.e(SoundshareAudioSource.TAG, str);
+                    if (i == -3) {
+                        this.keepAlive = false;
+                        SoundshareAudioSource.access$reportSoundshareAudioSourceError(this.this$0, str);
+                    }
+                }
+            }
+            try {
+                this.audioRecord.stop();
+            } catch (IllegalStateException e) {
+                StringBuilder sbU = a.U("AudioRecord.stop failed: ");
+                sbU.append(e.getMessage());
+                Log.e(SoundshareAudioSource.TAG, sbU.toString());
+            }
+        }
+
+        public final void stopThread() {
+            this.keepAlive = false;
+        }
+    }
+
+    /* JADX INFO: compiled from: SoundshareAudioSource.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static final /* synthetic */ void access$assertTrue(Companion companion, boolean z2) {
+            companion.assertTrue(z2);
+        }
+
+        private final void assertTrue(boolean condition) {
+            if (!condition) {
+                throw new AssertionError("Expected condition to be true");
+            }
+        }
+
+        public final void setMicrophoneMute(boolean mute) {
+            Log.w(SoundshareAudioSource.TAG, "setMicrophoneMute(" + mute + ')');
+            SoundshareAudioSource.access$setMicrophoneMute$cp(mute);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public static final /* synthetic */ void access$dataIsRecorded(SoundshareAudioSource soundshareAudioSource, int i, long j) {
         soundshareAudioSource.dataIsRecorded(i, j);
@@ -119,7 +212,7 @@ public final class SoundshareAudioSource {
         }
         try {
             try {
-                SoundshareAudioSource$Companion.access$assertTrue(Companion, this.audioThread == null);
+                Companion.access$assertTrue(INSTANCE, this.audioThread == null);
                 long rtcTimeNanos = TimestampAligner.getRtcTimeNanos();
                 try {
                     audioRecord.startRecording();
@@ -128,10 +221,10 @@ public final class SoundshareAudioSource {
                         return false;
                     }
                     m.checkNotNullExpressionValue(byteBufferAllocateDirect, "byteBuffer");
-                    SoundshareAudioSource$AudioRecordThread soundshareAudioSource$AudioRecordThread = new SoundshareAudioSource$AudioRecordThread(this, "SoundshareThread", audioRecord, byteBufferAllocateDirect, rtcTimeNanos);
-                    this.audioThread = soundshareAudioSource$AudioRecordThread;
-                    m.checkNotNull(soundshareAudioSource$AudioRecordThread);
-                    soundshareAudioSource$AudioRecordThread.start();
+                    AudioRecordThread audioRecordThread = new AudioRecordThread(this, "SoundshareThread", audioRecord, byteBufferAllocateDirect, rtcTimeNanos);
+                    this.audioThread = audioRecordThread;
+                    m.checkNotNull(audioRecordThread);
+                    audioRecordThread.start();
                     return true;
                 } catch (IllegalStateException e) {
                     reportSoundshareAudioSourceStartError("AudioRecord.startRecording failed: " + e.getMessage());
@@ -148,12 +241,12 @@ public final class SoundshareAudioSource {
     }
 
     public final boolean stopRecording() {
-        SoundshareAudioSource$AudioRecordThread soundshareAudioSource$AudioRecordThread = this.audioThread;
-        if (soundshareAudioSource$AudioRecordThread == null) {
+        AudioRecordThread audioRecordThread = this.audioThread;
+        if (audioRecordThread == null) {
             return false;
         }
-        soundshareAudioSource$AudioRecordThread.stopThread();
-        if (!ThreadUtils.joinUninterruptibly(soundshareAudioSource$AudioRecordThread, AUDIO_RECORD_THREAD_JOIN_TIMEOUT_MS)) {
+        audioRecordThread.stopThread();
+        if (!ThreadUtils.joinUninterruptibly(audioRecordThread, AUDIO_RECORD_THREAD_JOIN_TIMEOUT_MS)) {
             Log.e(TAG, "Join of SoundshareThread timed out");
         }
         this.audioThread = null;

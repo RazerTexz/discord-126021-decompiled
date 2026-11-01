@@ -11,11 +11,18 @@ public final class j implements k {
     public k a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final j$a f3655b;
+    public final a f3655b;
 
-    public j(j$a j_a) {
-        m.checkParameterIsNotNull(j_a, "socketAdapterFactory");
-        this.f3655b = j_a;
+    /* JADX INFO: compiled from: DeferredSocketAdapter.kt */
+    public interface a {
+        boolean a(SSLSocket sSLSocket);
+
+        k b(SSLSocket sSLSocket);
+    }
+
+    public j(a aVar) {
+        m.checkParameterIsNotNull(aVar, "socketAdapterFactory");
+        this.f3655b = aVar;
     }
 
     @Override // f0.e0.k.i.k

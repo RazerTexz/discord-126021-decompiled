@@ -1,19 +1,19 @@
 package j0.l.c;
 
 import java.util.Objects;
-import rx.Scheduler$Worker;
+import rx.Scheduler;
 import rx.functions.Action0;
 
 /* JADX INFO: compiled from: SleepingAction.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class l implements Action0 {
     public final Action0 j;
-    public final Scheduler$Worker k;
+    public final Scheduler.Worker k;
     public final long l;
 
-    public l(Action0 action0, Scheduler$Worker scheduler$Worker, long j) {
+    public l(Action0 action0, Scheduler.Worker worker, long j) {
         this.j = action0;
-        this.k = scheduler$Worker;
+        this.k = worker;
         this.l = j;
     }
 

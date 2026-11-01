@@ -25,19 +25,19 @@ public final class n implements t {
     }
 
     @Override // b.i.a.c.x2.t
-    public t$a h(long j) {
+    public t.a h(long j) {
         b.c.a.a0.d.H(this.a.k);
         o oVar = this.a;
-        o$a o_a = oVar.k;
-        long[] jArr = o_a.a;
-        long[] jArr2 = o_a.f1293b;
+        o.a aVar = oVar.k;
+        long[] jArr = aVar.a;
+        long[] jArr2 = aVar.f1293b;
         int iE = e0.e(jArr, oVar.g(j), true, false);
         u uVarB = b(iE == -1 ? 0L : jArr[iE], iE != -1 ? jArr2[iE] : 0L);
         if (uVarB.f1298b == j || iE == jArr.length - 1) {
-            return new t$a(uVarB);
+            return new t.a(uVarB);
         }
         int i = iE + 1;
-        return new t$a(uVarB, b(jArr[i], jArr2[i]));
+        return new t.a(uVarB, b(jArr[i], jArr2[i]));
     }
 
     @Override // b.i.a.c.x2.t

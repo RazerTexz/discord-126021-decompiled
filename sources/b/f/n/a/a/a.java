@@ -2,7 +2,6 @@ package b.f.n.a.a;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Paint$FontMetricsInt;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.style.ReplacementSpan;
@@ -16,7 +15,7 @@ public class a extends ReplacementSpan {
     public Rect l;
     public final int m;
     public final Drawable o;
-    public final Paint$FontMetricsInt n = new Paint$FontMetricsInt();
+    public final Paint.FontMetricsInt n = new Paint.FontMetricsInt();
 
     public a(Drawable drawable, int i) {
         this.o = drawable;
@@ -24,16 +23,16 @@ public class a extends ReplacementSpan {
         b();
     }
 
-    public final int a(Paint$FontMetricsInt paint$FontMetricsInt) {
+    public final int a(Paint.FontMetricsInt fontMetricsInt) {
         int i = this.m;
         if (i == 0) {
-            return paint$FontMetricsInt.descent - this.k;
+            return fontMetricsInt.descent - this.k;
         }
         if (i != 2) {
             return -this.k;
         }
-        int i2 = paint$FontMetricsInt.descent;
-        int i3 = paint$FontMetricsInt.ascent;
+        int i2 = fontMetricsInt.descent;
+        int i3 = fontMetricsInt.ascent;
         return (((i2 - i3) - this.k) / 2) + i3;
     }
 
@@ -54,24 +53,24 @@ public class a extends ReplacementSpan {
     }
 
     @Override // android.text.style.ReplacementSpan
-    public int getSize(Paint paint, CharSequence charSequence, int i, int i2, @Nullable Paint$FontMetricsInt paint$FontMetricsInt) {
+    public int getSize(Paint paint, CharSequence charSequence, int i, int i2, @Nullable Paint.FontMetricsInt fontMetricsInt) {
         b();
-        if (paint$FontMetricsInt == null) {
+        if (fontMetricsInt == null) {
             return this.j;
         }
-        int iA = a(paint$FontMetricsInt);
+        int iA = a(fontMetricsInt);
         int i3 = this.k + iA;
-        if (iA < paint$FontMetricsInt.ascent) {
-            paint$FontMetricsInt.ascent = iA;
+        if (iA < fontMetricsInt.ascent) {
+            fontMetricsInt.ascent = iA;
         }
-        if (iA < paint$FontMetricsInt.top) {
-            paint$FontMetricsInt.top = iA;
+        if (iA < fontMetricsInt.top) {
+            fontMetricsInt.top = iA;
         }
-        if (i3 > paint$FontMetricsInt.descent) {
-            paint$FontMetricsInt.descent = i3;
+        if (i3 > fontMetricsInt.descent) {
+            fontMetricsInt.descent = i3;
         }
-        if (i3 > paint$FontMetricsInt.bottom) {
-            paint$FontMetricsInt.bottom = i3;
+        if (i3 > fontMetricsInt.bottom) {
+            fontMetricsInt.bottom = i3;
         }
         return this.j;
     }

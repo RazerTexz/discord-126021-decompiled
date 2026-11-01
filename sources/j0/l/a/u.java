@@ -30,12 +30,12 @@ public class u extends Subscriber<j0.f<?>> {
     @Override // j0.g
     public void onNext(Object obj) {
         j0.f fVar = (j0.f) obj;
-        j0.f$a f_a = fVar.f3768b;
-        if ((f_a == j0.f$a.OnCompleted) && this.k.j.l) {
+        j0.f.a aVar = fVar.f3768b;
+        if ((aVar == j0.f.a.OnCompleted) && this.k.j.l) {
             this.j.onCompleted();
             return;
         }
-        if ((f_a == j0.f$a.OnError) && this.k.j.m) {
+        if ((aVar == j0.f.a.OnError) && this.k.j.m) {
             this.j.onError(fVar.c);
         } else {
             this.j.onNext(fVar);

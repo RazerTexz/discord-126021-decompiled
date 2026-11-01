@@ -3,9 +3,8 @@ package b.i.a.f.i.b;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences$Editor;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager$NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.pm.Signature;
 import android.database.Cursor;
@@ -158,7 +157,7 @@ public final class q7 extends a5 {
     }
 
     @WorkerThread
-    public final boolean G() throws PackageManager$NameNotFoundException {
+    public final boolean G() throws PackageManager.NameNotFoundException {
         boolean z2;
         b();
         t();
@@ -216,9 +215,9 @@ public final class q7 extends a5 {
                 if (z3) {
                     d4 d4VarL2 = l();
                     d4VarL2.b();
-                    SharedPreferences$Editor sharedPreferences$EditorEdit = d4VarL2.w().edit();
-                    sharedPreferences$EditorEdit.putBoolean("use_service", z4);
-                    sharedPreferences$EditorEdit.apply();
+                    SharedPreferences.Editor editorEdit = d4VarL2.w().edit();
+                    editorEdit.putBoolean("use_service", z4);
+                    editorEdit.apply();
                 }
             }
             this.e = Boolean.valueOf(z4);
@@ -290,7 +289,7 @@ public final class q7 extends a5 {
                                 jW = t9.w(messageDigestX0.digest(signatureArr[0].toByteArray()));
                             }
                         }
-                    } catch (PackageManager$NameNotFoundException e) {
+                    } catch (PackageManager.NameNotFoundException e) {
                         t9VarT.g().f.b("Package name not found", e);
                     }
                     n3VarO.g = j2;

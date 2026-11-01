@@ -9,6 +9,27 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: _Strings.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class y extends x {
+
+    /* JADX INFO: compiled from: _Strings.kt */
+    public final class a extends d0.z.d.o implements Function1<CharSequence, String> {
+        public static final a j = new a();
+
+        public a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ String invoke(CharSequence charSequence) {
+            return invoke2(charSequence);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final String invoke2(CharSequence charSequence) {
+            d0.z.d.m.checkNotNullParameter(charSequence, "it");
+            return charSequence.toString();
+        }
+    }
+
     public static final List<String> chunked(CharSequence charSequence, int i) {
         d0.z.d.m.checkNotNullParameter(charSequence, "$this$chunked");
         return windowed(charSequence, i, i, true);
@@ -93,7 +114,7 @@ public class y extends x {
 
     public static final List<String> windowed(CharSequence charSequence, int i, int i2, boolean z2) {
         d0.z.d.m.checkNotNullParameter(charSequence, "$this$windowed");
-        return windowed(charSequence, i, i2, z2, y$a.j);
+        return windowed(charSequence, i, i2, z2, a.j);
     }
 
     public static final <R> List<R> windowed(CharSequence charSequence, int i, int i2, boolean z2, Function1<? super CharSequence, ? extends R> function1) {

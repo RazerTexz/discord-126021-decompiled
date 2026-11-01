@@ -1,10 +1,10 @@
 package f0.e0.n;
 
 import d0.z.d.m;
-import g0.e$a;
 import g0.s;
 import java.io.Closeable;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 import okio.BufferedSink;
 import okio.ByteString;
@@ -18,7 +18,7 @@ public final class i implements Closeable {
     public boolean l;
     public a m;
     public final byte[] n;
-    public final e$a o;
+    public final g0.e.a o;
     public final boolean p;
     public final BufferedSink q;
     public final Random r;
@@ -40,7 +40,7 @@ public final class i implements Closeable {
         this.j = new g0.e();
         this.k = bufferedSink.g();
         this.n = z2 ? new byte[4] : null;
-        this.o = z2 ? new e$a() : null;
+        this.o = z2 ? new g0.e.a() : null;
     }
 
     public final void a(int i, ByteString byteString) throws IOException {
@@ -97,11 +97,11 @@ public final class i implements Closeable {
                 long j = eVar.k;
                 eVar.O(byteString);
                 g0.e eVar2 = this.k;
-                e$a e_a = this.o;
-                if (e_a == null) {
+                g0.e.a aVar = this.o;
+                if (aVar == null) {
                     m.throwNpe();
                 }
-                eVar2.u(e_a);
+                eVar2.u(aVar);
                 this.o.b(j);
                 g.a(this.o, this.n);
                 this.o.close();
@@ -113,7 +113,7 @@ public final class i implements Closeable {
         this.q.flush();
     }
 
-    public final void c(int i, ByteString byteString) throws IOException {
+    public final void c(int i, ByteString byteString) throws IllegalAccessException, IOException, InvocationTargetException {
         m.checkParameterIsNotNull(byteString, "data");
         if (this.l) {
             throw new IOException("closed");
@@ -156,16 +156,16 @@ public final class i implements Closeable {
             if (z2) {
                 g0.e eVar3 = aVar.j;
                 long j2 = eVar3.k - ((long) 4);
-                e$a e_a = new e$a();
-                eVar3.u(e_a);
+                g0.e.a aVar2 = new g0.e.a();
+                eVar3.u(aVar2);
                 try {
-                    e_a.a(j2);
-                    d0.y.b.closeFinally(e_a, null);
+                    aVar2.a(j2);
+                    d0.y.b.closeFinally(aVar2, null);
                 } catch (Throwable th) {
                     try {
                         throw th;
                     } catch (Throwable th2) {
-                        d0.y.b.closeFinally(e_a, th);
+                        d0.y.b.closeFinally(aVar2, th);
                         throw th2;
                     }
                 }
@@ -218,11 +218,11 @@ public final class i implements Closeable {
             this.k.R(this.n);
             if (j3 > 0) {
                 g0.e eVar6 = this.j;
-                e$a e_a2 = this.o;
-                if (e_a2 == null) {
+                g0.e.a aVar3 = this.o;
+                if (aVar3 == null) {
                     m.throwNpe();
                 }
-                eVar6.u(e_a2);
+                eVar6.u(aVar3);
                 this.o.b(0L);
                 g.a(this.o, this.n);
                 this.o.close();

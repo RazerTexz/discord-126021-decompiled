@@ -3,7 +3,7 @@ package com.discord.widgets.voice.controls;
 import android.view.View;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetScreenShareNfxSheetBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -27,11 +27,11 @@ public final /* synthetic */ class WidgetScreenShareNfxSheet$binding$2 extends k
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetScreenShareNfxSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.screen_share_nfx_cancel_button;
-        TextView textView = (TextView) view.findViewById(R$id.screen_share_nfx_cancel_button);
+        int i = R.id.screen_share_nfx_cancel_button;
+        TextView textView = (TextView) view.findViewById(R.id.screen_share_nfx_cancel_button);
         if (textView != null) {
-            i = R$id.screen_share_nfx_cta;
-            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.screen_share_nfx_cta);
+            i = R.id.screen_share_nfx_cta;
+            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.screen_share_nfx_cta);
             if (materialButton != null) {
                 return new WidgetScreenShareNfxSheetBinding((NestedScrollView) view, textView, materialButton);
             }

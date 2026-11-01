@@ -9,17 +9,13 @@ import android.net.Uri;
 import android.text.Html;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationCompat$Action;
-import androidx.core.app.NotificationCompat$Action$Builder;
 import androidx.core.app.Person;
-import androidx.core.app.Person$Builder;
 import androidx.core.app.RemoteInput;
-import androidx.core.app.RemoteInput$Builder;
 import androidx.core.graphics.drawable.IconCompat;
 import b.a.k.b;
 import b.d.b.a.a;
 import com.adjust.sdk.Constants;
-import com.discord.R$string;
+import com.discord.R;
 import com.discord.api.application.Application;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
@@ -30,33 +26,40 @@ import com.discord.api.message.activity.MessageActivity;
 import com.discord.api.message.activity.MessageActivityType;
 import com.discord.api.sticker.Sticker;
 import com.discord.api.user.User;
-import com.discord.app.AppActivity$IncomingCall;
-import com.discord.app.AppActivity$Main;
+import com.discord.app.AppActivity;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.nullserializable.NullSerializable;
 import com.discord.utilities.SnowflakeUtils;
 import com.discord.utilities.extensions.PendingIntentExtensionsKt;
 import com.discord.utilities.icon.IconUtils;
-import com.discord.utilities.intent.IntentUtils$RouteBuilders;
-import com.discord.utilities.intent.IntentUtils$RouteBuilders$Uris;
+import com.discord.utilities.intent.IntentUtils;
 import com.discord.utilities.media.AppSound;
 import com.discord.utilities.message.MessageUtils;
 import com.discord.utilities.stickers.StickerUtils;
 import com.discord.utilities.time.Clock;
 import com.discord.widgets.chat.input.MentionUtilsKt;
 import com.discord.widgets.forums.ForumUtils;
+import d0.d0.f;
 import d0.g0.s;
+import d0.g0.t;
 import d0.g0.w;
-import d0.o;
+import d0.t.g0;
 import d0.t.n;
+import d0.t.o;
 import d0.t.u;
 import d0.z.d.m;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Random;
 import java.util.Set;
 import kotlin.Pair;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: NotificationData.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -74,8 +77,10 @@ public final class NotificationData {
     private static final String ANALYTICS_NOTIF_TYPE = "notif_type";
     private static final String ANALYTICS_NOTIF_USER_ID = "notif_user_id";
     private static final String ANALYTICS_REL_TYPE = "rel_type";
-    public static final NotificationData$Companion Companion = new NotificationData$Companion(null);
     private static final String GROUP_KEY_PREFIX = "GROUP_";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final int MSG_MUTE_MIN_COUNT = 2;
     public static final String REPLYING_TO_UNTRANSLATED = "replying to";
     public static final String TYPE_ACTIVITY_START = "ACTIVITY_START";
@@ -127,6 +132,150 @@ public final class NotificationData {
     private final Integer userDiscriminator;
     private final long userId;
     private final String userUsername;
+
+    /* JADX INFO: compiled from: NotificationData.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static final /* synthetic */ List access$parseAckChannelIds(Companion companion, String str) {
+            return companion.parseAckChannelIds(str);
+        }
+
+        public final Map<String, Object> buildTrackingData(Intent intent) {
+            String stringExtra;
+            HashMap map = new HashMap();
+            copyStringIntoMap(intent, map, NotificationData.ANALYTICS_NOTIF_TYPE);
+            copyLongIntoMap(intent, map, NotificationData.ANALYTICS_NOTIF_USER_ID);
+            copyLongIntoMap(intent, map, NotificationData.ANALYTICS_MESSAGE_ID);
+            copyLongIntoMap(intent, map, "guild_id");
+            copyLongIntoMap(intent, map, "channel_id");
+            copyIntIntoMap(intent, map, NotificationData.ANALYTICS_MESSAGE_TYPE);
+            copyIntIntoMap(intent, map, NotificationData.ANALYTICS_CHANNEL_TYPE);
+            copyIntIntoMap(intent, map, NotificationData.ANALYTICS_REL_TYPE);
+            copyIntIntoMap(intent, map, NotificationData.ANALYTICS_ACTIVITY_TYPE);
+            copyStringIntoMap(intent, map, NotificationData.ANALYTICS_ACTIVITY_NAME);
+            if (intent != null && (stringExtra = intent.getStringExtra("com.discord.intent.ORIGIN_SOURCE")) != null) {
+                map.put(NotificationData.ANALYTICS_NOTIF_IN_APP, Boolean.valueOf(t.equals(stringExtra, "com.discord.intent.ORIGIN_NOTIF_INAPP", true)));
+            }
+            return map;
+        }
+
+        private final void copyIntIntoMap(Intent intent, Map<String, Object> map, String str) {
+            int intExtra = intent != null ? intent.getIntExtra(str, -1) : -1;
+            if (intExtra < 0) {
+                return;
+            }
+            map.put(str, Integer.valueOf(intExtra));
+        }
+
+        private final void copyLongIntoMap(Intent intent, Map<String, Object> map, String str) {
+            long longExtra = intent != null ? intent.getLongExtra(str, -1L) : -1L;
+            if (longExtra < 0) {
+                return;
+            }
+            map.put(str, Long.valueOf(longExtra));
+        }
+
+        private final void copyStringIntoMap(Intent intent, Map<String, Object> map, String str) {
+            String stringExtra;
+            if (intent == null || (stringExtra = intent.getStringExtra(str)) == null) {
+                return;
+            }
+            m.checkNotNullExpressionValue(stringExtra, "this?.getStringExtra(key) ?: return");
+            if (stringExtra.length() == 0) {
+                return;
+            }
+            map.put(str, stringExtra);
+        }
+
+        private final List<Long> parseAckChannelIds(String longStringsConcatenated) {
+            if (longStringsConcatenated == null) {
+                longStringsConcatenated = "";
+            }
+            List listSplit$default = w.split$default((CharSequence) longStringsConcatenated, new String[]{","}, false, 0, 6, (Object) null);
+            ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(listSplit$default, 10));
+            Iterator it = listSplit$default.iterator();
+            while (true) {
+                long jLongValue = -1;
+                if (!it.hasNext()) {
+                    break;
+                }
+                Long longOrNull = s.toLongOrNull((String) it.next());
+                if (longOrNull != null) {
+                    jLongValue = longOrNull.longValue();
+                }
+                arrayList.add(Long.valueOf(jLongValue));
+            }
+            ArrayList arrayList2 = new ArrayList();
+            for (Object obj : arrayList) {
+                if (((Number) obj).longValue() != -1) {
+                    arrayList2.add(obj);
+                }
+            }
+            return arrayList2;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$2;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$3;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$4;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$5;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$6;
+
+        static {
+            GuildScheduledEventEntityType.values();
+            int[] iArr = new int[5];
+            $EnumSwitchMapping$0 = iArr;
+            GuildScheduledEventEntityType guildScheduledEventEntityType = GuildScheduledEventEntityType.STAGE_INSTANCE;
+            iArr[guildScheduledEventEntityType.ordinal()] = 1;
+            GuildScheduledEventEntityType guildScheduledEventEntityType2 = GuildScheduledEventEntityType.VOICE;
+            iArr[guildScheduledEventEntityType2.ordinal()] = 2;
+            GuildScheduledEventEntityType guildScheduledEventEntityType3 = GuildScheduledEventEntityType.EXTERNAL;
+            iArr[guildScheduledEventEntityType3.ordinal()] = 3;
+            GuildScheduledEventEntityType.values();
+            int[] iArr2 = new int[5];
+            $EnumSwitchMapping$1 = iArr2;
+            iArr2[guildScheduledEventEntityType.ordinal()] = 1;
+            iArr2[guildScheduledEventEntityType2.ordinal()] = 2;
+            iArr2[guildScheduledEventEntityType3.ordinal()] = 3;
+            GuildScheduledEventEntityType.values();
+            int[] iArr3 = new int[5];
+            $EnumSwitchMapping$2 = iArr3;
+            iArr3[guildScheduledEventEntityType.ordinal()] = 1;
+            iArr3[guildScheduledEventEntityType2.ordinal()] = 2;
+            iArr3[guildScheduledEventEntityType3.ordinal()] = 3;
+            GuildScheduledEventEntityType.values();
+            int[] iArr4 = new int[5];
+            $EnumSwitchMapping$3 = iArr4;
+            iArr4[guildScheduledEventEntityType.ordinal()] = 1;
+            iArr4[guildScheduledEventEntityType2.ordinal()] = 2;
+            iArr4[guildScheduledEventEntityType3.ordinal()] = 3;
+            NotificationType.values();
+            int[] iArr5 = new int[1];
+            $EnumSwitchMapping$4 = iArr5;
+            iArr5[NotificationType.Reminder.ordinal()] = 1;
+            GuildScheduledEventEntityType.values();
+            int[] iArr6 = new int[5];
+            $EnumSwitchMapping$5 = iArr6;
+            iArr6[guildScheduledEventEntityType.ordinal()] = 1;
+            iArr6[guildScheduledEventEntityType2.ordinal()] = 2;
+            iArr6[guildScheduledEventEntityType3.ordinal()] = 3;
+            GuildScheduledEventEntityType.values();
+            int[] iArr7 = new int[5];
+            $EnumSwitchMapping$6 = iArr7;
+            iArr7[guildScheduledEventEntityType.ordinal()] = 1;
+            iArr7[guildScheduledEventEntityType2.ordinal()] = 2;
+            iArr7[guildScheduledEventEntityType3.ordinal()] = 3;
+        }
+    }
 
     public NotificationData(String str, long j, MessageActivityType messageActivityType, String str2, int i, String str3, Channel channel, Channel channel2, List<Long> list, long j2, String str4, Integer num, String str5, String str6, int i2, String str7, long j3, String str8, String str9, int i3, String str10, long j4, String str11, String str12, Sticker sticker, String str13, String str14, String str15, String str16, String str17, GuildScheduledEventEntityType guildScheduledEventEntityType, Long l, NotificationType notificationType, String str18, String str19, boolean z2, String str20) {
         m.checkNotNullParameter(str, "type");
@@ -250,19 +399,19 @@ public final class NotificationData {
 
     @RequiresApi(24)
     @SuppressLint({"UnspecifiedImmutableFlag"})
-    public final NotificationCompat$Action getCallAction(Context ctx, boolean isAcceptAction) {
+    public final NotificationCompat.Action getCallAction(Context ctx, boolean isAcceptAction) {
         m.checkNotNullParameter(ctx, "ctx");
         if (!m.areEqual(this.type, TYPE_CALL_RING)) {
             return null;
         }
-        PendingIntent broadcast = PendingIntent.getBroadcast(ctx, 0, addTrackingData(NotificationActions.Companion.callAction(ctx, this.channel.getId(), this.messageId, isAcceptAction)), PendingIntentExtensionsKt.immutablePendingIntentFlag$default(0, 1, null));
-        Pair pair = isAcceptAction ? o.to(2131892380, 2131100304) : o.to(2131888361, 2131100382);
+        PendingIntent broadcast = PendingIntent.getBroadcast(ctx, 0, addTrackingData(NotificationActions.INSTANCE.callAction(ctx, this.channel.getId(), this.messageId, isAcceptAction)), PendingIntentExtensionsKt.immutablePendingIntentFlag$default(0, 1, null));
+        Pair pair = isAcceptAction ? d0.o.to(Integer.valueOf(R.string.join_call), Integer.valueOf(R.color.status_green_600)) : d0.o.to(Integer.valueOf(R.string.decline), Integer.valueOf(R.color.status_red_500));
         int iIntValue = ((Number) pair.component1()).intValue();
         int iIntValue2 = ((Number) pair.component2()).intValue();
         StringBuilder sbU = a.U("**");
         sbU.append(b.h(ctx, iIntValue, new Object[0], null, 4));
         sbU.append("**");
-        return new NotificationCompat$Action$Builder(isAcceptAction ? 2131231589 : 2131231590, b.g(sbU.toString(), new Object[0], new NotificationData$getCallAction$coloredString$1(ctx, iIntValue2)), broadcast).build();
+        return new NotificationCompat.Action.Builder(isAcceptAction ? R.drawable.ic_call_24dp : R.drawable.ic_call_disconnect_24dp, b.g(sbU.toString(), new Object[0], new NotificationData$getCallAction$coloredString$1(ctx, iIntValue2)), broadcast).build();
     }
 
     public final long getChannelId() {
@@ -295,26 +444,26 @@ public final class NotificationData {
                 }
                 int iOrdinal = guildScheduledEventEntityType.ordinal();
                 if (iOrdinal == 1 || iOrdinal == 2) {
-                    return b.h(context, 2131890722, new Object[]{this.stageInstanceTopic, this.userUsername}, null, 4);
+                    return b.h(context, R.string.guild_scheduled_event_stage_start_body, new Object[]{this.stageInstanceTopic, this.userUsername}, null, 4);
                 }
-                return iOrdinal != 3 ? "" : b.h(context, 2131890719, new Object[]{this.stageInstanceTopic}, null, 4);
+                return iOrdinal != 3 ? "" : b.h(context, R.string.guild_scheduled_event_external_start_body, new Object[]{this.stageInstanceTopic}, null, 4);
             case -1327124998:
                 if (!str.equals(TYPE_RELATIONSHIP_ADD)) {
                     return "";
                 }
                 int i = this.relationshipType;
                 if (i != 1) {
-                    return i != 3 ? "" : b.h(context, 2131893378, new Object[0], null, 4);
+                    return i != 3 ? "" : b.h(context, R.string.notification_pending_friend_request, new Object[0], null, 4);
                 }
-                return b.h(context, 2131893364, new Object[0], null, 4);
+                return b.h(context, R.string.notification_accepted_friend_request, new Object[0], null, 4);
             case -1263316859:
-                return str.equals(TYPE_STAGE_INSTANCE_CREATE) ? b.h(context, 2131895850, new Object[]{this.userUsername, this.stageInstanceTopic}, null, 4) : "";
+                return str.equals(TYPE_STAGE_INSTANCE_CREATE) ? b.h(context, R.string.stage_start_push_notification_body, new Object[]{this.userUsername, this.stageInstanceTopic}, null, 4) : "";
             case -1237752112:
-                return str.equals(TYPE_APPLICATION_LIBRARY_INSTALL_COMPLETE) ? b.h(context, 2131889570, new Object[]{this.applicationName}, null, 4) : "";
+                return str.equals(TYPE_APPLICATION_LIBRARY_INSTALL_COMPLETE) ? b.h(context, R.string.game_library_notification_game_installed_body, new Object[]{this.applicationName}, null, 4) : "";
             case -437641071:
-                return str.equals(TYPE_FORUM_THREAD_CREATED) ? b.h(context, 2131889350, new Object[]{this.channel.getName(), this.userUsername}, null, 4) : "";
+                return str.equals(TYPE_FORUM_THREAD_CREATED) ? b.h(context, R.string.forum_channel_thread_created_push_body_mobile, new Object[]{this.channel.getName(), this.userUsername}, null, 4) : "";
             case 974015250:
-                return (str.equals(TYPE_ACTIVITY_START) && this.activityType == 0) ? b.h(context, 2131893367, new Object[]{this.userUsername, this.activityName}, null, 4) : "";
+                return (str.equals(TYPE_ACTIVITY_START) && this.activityType == 0) ? b.h(context, R.string.notification_body_start_game, new Object[]{this.userUsername, this.activityName}, null, 4) : "";
             case 998188116:
                 if (!str.equals(TYPE_MESSAGE_CREATE)) {
                     return "";
@@ -339,11 +488,11 @@ public final class NotificationData {
                         }
                     }
                     if (this.messageActivityType == MessageActivityType.JOIN) {
-                        return b.h(context, 2131893369, new Object[]{this.userUsername, this.messageApplicationName}, null, 4);
+                        return b.h(context, R.string.notification_message_create_dm_activity_join, new Object[]{this.userUsername, this.messageApplicationName}, null, 4);
                     }
                     Sticker sticker = this.sticker;
                     if (sticker != null) {
-                        return b.h(context, 2131895928, new Object[]{sticker.getName()}, null, 4);
+                        return b.h(context, R.string.sticker_notification_body, new Object[]{sticker.getName()}, null, 4);
                     }
                     String str4 = this.messageContent;
                     if (str4 != null) {
@@ -356,11 +505,11 @@ public final class NotificationData {
                     return b.h(context, MessageUtils.INSTANCE.getSystemMessageUserJoin(context, this.messageId), new Object[]{this.userUsername}, null, 4);
                 }
                 if (this.messageActivityType == MessageActivityType.JOIN) {
-                    return b.h(context, 2131893374, new Object[]{this.userUsername, this.messageApplicationName}, null, 4);
+                    return b.h(context, R.string.notification_message_create_guild_activity_join, new Object[]{this.userUsername, this.messageApplicationName}, null, 4);
                 }
                 Sticker sticker2 = this.sticker;
                 if (sticker2 != null) {
-                    return b.h(context, 2131895928, new Object[]{sticker2.getName()}, null, 4);
+                    return b.h(context, R.string.sticker_notification_body, new Object[]{sticker2.getName()}, null, 4);
                 }
                 String str5 = this.messageContent;
                 if (str5 != null) {
@@ -369,7 +518,7 @@ public final class NotificationData {
                 }
                 return null;
             case 1770025841:
-                return str.equals(TYPE_CALL_RING) ? b.l(b.h(context, 2131893564, new Object[]{a.J(a.U("**"), this.userUsername, "**")}, null, 4), new Object[0], null, 2) : "";
+                return str.equals(TYPE_CALL_RING) ? b.l(b.h(context, R.string.overlay_friend_calling, new Object[]{a.J(a.U("**"), this.userUsername, "**")}, null, 4), new Object[0], null, 2) : "";
             default:
                 return "";
         }
@@ -381,7 +530,7 @@ public final class NotificationData {
         m.checkNotNullParameter(context, "context");
         Intent contentIntentInternal = getContentIntentInternal();
         contentIntentInternal.putExtra("com.discord.intent.ORIGIN_SOURCE", "com.discord.intent.ORIGIN_NOTIF");
-        contentIntentInternal.setClass(context, AppActivity$Main.class);
+        contentIntentInternal.setClass(context, AppActivity.Main.class);
         PendingIntent activity = PendingIntent.getActivity(context, 0, addTrackingData(contentIntentInternal), PendingIntentExtensionsKt.immutablePendingIntentFlag(134217728));
         m.checkNotNullExpressionValue(activity, "PendingIntent.getActivit…LAG_UPDATE_CURRENT)\n    )");
         return activity;
@@ -392,7 +541,7 @@ public final class NotificationData {
         m.checkNotNullParameter(context, "context");
         Intent contentIntentInternal = getContentIntentInternal();
         contentIntentInternal.putExtra("com.discord.intent.ORIGIN_SOURCE", "com.discord.intent.ORIGIN_NOTIF_INAPP");
-        contentIntentInternal.setClass(context, AppActivity$Main.class);
+        contentIntentInternal.setClass(context, AppActivity.Main.class);
         PendingIntent activity = PendingIntent.getActivity(context, 0, addTrackingData(contentIntentInternal), PendingIntentExtensionsKt.immutablePendingIntentFlag(134217728));
         m.checkNotNullExpressionValue(activity, "PendingIntent.getActivit…LAG_UPDATE_CURRENT)\n    )");
         return activity;
@@ -426,42 +575,42 @@ public final class NotificationData {
                     }
                     return new Intent("android.intent.action.VIEW", Uri.parse(str2));
                 }
-                return IntentUtils$RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
+                return IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
             case -1489275252:
                 if (str.equals(TYPE_GUILD_SCHEDULED_EVENT_UPDATE)) {
                     GuildScheduledEventEntityType guildScheduledEventEntityType = this.guildScheduledEventEntityType;
                     if (guildScheduledEventEntityType != null) {
                         int iOrdinal = guildScheduledEventEntityType.ordinal();
                         if (iOrdinal == 1 || iOrdinal == 2) {
-                            return IntentUtils$RouteBuilders.INSTANCE.connectVoice(this.channel.getId());
+                            return IntentUtils.RouteBuilders.INSTANCE.connectVoice(this.channel.getId());
                         }
                         if (iOrdinal == 3) {
-                            return IntentUtils$RouteBuilders.selectExternalEvent(this.guildId, this.guildScheduledEventId);
+                            return IntentUtils.RouteBuilders.selectExternalEvent(this.guildId, this.guildScheduledEventId);
                         }
                     }
-                    return new Intent("android.intent.action.VIEW", IntentUtils$RouteBuilders$Uris.INSTANCE.getApp());
+                    return new Intent("android.intent.action.VIEW", IntentUtils.RouteBuilders.Uris.INSTANCE.getApp());
                 }
-                return IntentUtils$RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
+                return IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
             case -1327124998:
                 break;
             case -1263316859:
                 if (str.equals(TYPE_STAGE_INSTANCE_CREATE)) {
-                    return IntentUtils$RouteBuilders.INSTANCE.connectVoice(this.channel.getId());
+                    return IntentUtils.RouteBuilders.INSTANCE.connectVoice(this.channel.getId());
                 }
-                return IntentUtils$RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
+                return IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
             case -437641071:
                 break;
             case 974015250:
                 if (str.equals(TYPE_ACTIVITY_START)) {
-                    return IntentUtils$RouteBuilders.INSTANCE.selectDirectMessage(this.userId);
+                    return IntentUtils.RouteBuilders.INSTANCE.selectDirectMessage(this.userId);
                 }
-                return IntentUtils$RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
+                return IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
             case 998188116:
                 break;
             default:
-                return IntentUtils$RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
+                return IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null);
         }
-        return this.channel.getType() != 1 ? IntentUtils$RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null) : IntentUtils$RouteBuilders.selectChannel$default(this.channel.getId(), 0L, null, 4, null);
+        return this.channel.getType() != 1 ? IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), this.guildId, null, 4, null) : IntentUtils.RouteBuilders.selectChannel$default(this.channel.getId(), 0L, null, 4, null);
     }
 
     public final CharSequence getConversationTitle(Context context) {
@@ -490,22 +639,22 @@ public final class NotificationData {
     @SuppressLint({"UnspecifiedImmutableFlag"})
     public final PendingIntent getDeleteIntent(Context context) {
         m.checkNotNullParameter(context, "context");
-        PendingIntent broadcast = PendingIntent.getBroadcast(context, 0, NotificationActions.Companion.delete(context, this.channel.getId()), PendingIntentExtensionsKt.immutablePendingIntentFlag(134217728));
+        PendingIntent broadcast = PendingIntent.getBroadcast(context, 0, NotificationActions.INSTANCE.delete(context, this.channel.getId()), PendingIntentExtensionsKt.immutablePendingIntentFlag(134217728));
         m.checkNotNullExpressionValue(broadcast, "PendingIntent.getBroadca…LAG_UPDATE_CURRENT)\n    )");
         return broadcast;
     }
 
     @RequiresApi(24)
     @SuppressLint({"UnspecifiedImmutableFlag"})
-    public final NotificationCompat$Action getDirectReplyAction(Context ctx, Set<Long> deniedChannels) {
+    public final NotificationCompat.Action getDirectReplyAction(Context ctx, Set<Long> deniedChannels) {
         m.checkNotNullParameter(ctx, "ctx");
         m.checkNotNullParameter(deniedChannels, "deniedChannels");
         if ((!m.areEqual(this.type, TYPE_MESSAGE_CREATE)) || deniedChannels.contains(Long.valueOf(this.channel.getId()))) {
             return null;
         }
-        RemoteInput remoteInputBuild = new RemoteInput$Builder("discord_notif_text_input").setLabel(b.h(ctx, 2131895425, new Object[0], null, 4)).build();
+        RemoteInput remoteInputBuild = new RemoteInput.Builder("discord_notif_text_input").setLabel(b.h(ctx, R.string.send_message, new Object[0], null, 4)).build();
         m.checkNotNullExpressionValue(remoteInputBuild, "RemoteInput.Builder(Inte…essage))\n        .build()");
-        return new NotificationCompat$Action$Builder(2131232106, b.h(ctx, 2131893379, new Object[0], null, 4), PendingIntent.getBroadcast(ctx, (int) this.channel.getId(), addTrackingData(NotificationActions.Companion.directReply(ctx, this.channel.getId(), getTitle(ctx))), PendingIntentExtensionsKt.mutablePendingIntentFlag(134217728))).addRemoteInput(remoteInputBuild).setAllowGeneratedReplies(true).build();
+        return new NotificationCompat.Action.Builder(R.drawable.ic_send_white_24dp, b.h(ctx, R.string.notification_reply, new Object[0], null, 4), PendingIntent.getBroadcast(ctx, (int) this.channel.getId(), addTrackingData(NotificationActions.INSTANCE.directReply(ctx, this.channel.getId(), getTitle(ctx))), PendingIntentExtensionsKt.mutablePendingIntentFlag(134217728))).addRemoteInput(remoteInputBuild).setAllowGeneratedReplies(true).build();
     }
 
     @SuppressLint({"UnspecifiedImmutableFlag"})
@@ -514,7 +663,7 @@ public final class NotificationData {
         if (!m.areEqual(getNotificationCategory(), NotificationCompat.CATEGORY_CALL)) {
             return null;
         }
-        Intent intent = new Intent(context, (Class<?>) AppActivity$IncomingCall.class);
+        Intent intent = new Intent(context, (Class<?>) AppActivity.IncomingCall.class);
         intent.addFlags(268435456);
         return PendingIntent.getActivity(context, 0, addTrackingData(intent), PendingIntentExtensionsKt.immutablePendingIntentFlag(134217728));
     }
@@ -713,12 +862,12 @@ public final class NotificationData {
 
     @RequiresApi(24)
     @SuppressLint({"UnspecifiedImmutableFlag"})
-    public final NotificationCompat$Action getMarkAsReadAction(Context ctx) {
+    public final NotificationCompat.Action getMarkAsReadAction(Context ctx) {
         m.checkNotNullParameter(ctx, "ctx");
         if (!m.areEqual(this.type, TYPE_MESSAGE_CREATE)) {
             return null;
         }
-        return new NotificationCompat$Action$Builder(2131231659, b.h(ctx, 2131892704, new Object[0], null, 4), PendingIntent.getBroadcast(ctx, 0, addTrackingData(NotificationActions.Companion.markAsRead(ctx, this.channel.getId(), this.messageId)), PendingIntentExtensionsKt.immutablePendingIntentFlag$default(0, 1, null))).build();
+        return new NotificationCompat.Action.Builder(R.drawable.ic_check_grey_24dp, b.h(ctx, R.string.mark_as_read, new Object[0], null, 4), PendingIntent.getBroadcast(ctx, 0, addTrackingData(NotificationActions.INSTANCE.markAsRead(ctx, this.channel.getId(), this.messageId)), PendingIntentExtensionsKt.immutablePendingIntentFlag$default(0, 1, null))).build();
     }
 
     public final long getMessageId() {
@@ -836,7 +985,7 @@ public final class NotificationData {
             return null;
         }
         StringBuilder sbU = a.U("android.resource://");
-        sbU.append(context.getPackageName() + MentionUtilsKt.SLASH_CHAR + AppSound.Companion.getSOUND_CALL_RINGING().getResId());
+        sbU.append(context.getPackageName() + MentionUtilsKt.SLASH_CHAR + AppSound.INSTANCE.getSOUND_CALL_RINGING().getResId());
         String string = sbU.toString();
         m.checkNotNullExpressionValue(string, "StringBuilder()\n        …)\n            .toString()");
         return Uri.parse(string);
@@ -848,7 +997,7 @@ public final class NotificationData {
         MessageActivityType messageActivityType;
         m.checkNotNullParameter(context, "context");
         IconCompat iconCompatCreateWithContentUri = null;
-        CharSequence charSequenceH = (!m.areEqual(this.type, TYPE_MESSAGE_CREATE) || this.messageType == 7 || (messageActivityType = this.messageActivityType) == MessageActivityType.SPECTATE || messageActivityType == MessageActivityType.JOIN) ? b.h(context, R$string.discord, new Object[0], null, 4) : this.userUsername;
+        CharSequence charSequenceH = (!m.areEqual(this.type, TYPE_MESSAGE_CREATE) || this.messageType == 7 || (messageActivityType = this.messageActivityType) == MessageActivityType.SPECTATE || messageActivityType == MessageActivityType.JOIN) ? b.h(context, R.string.discord, new Object[0], null, 4) : this.userUsername;
         String strValueOf = String.valueOf(this.userId);
         String str = this.subtitle;
         if (str != null && charSequenceH != null) {
@@ -896,7 +1045,7 @@ public final class NotificationData {
         if (forUser$default != null && (strReplaceAfterLast$default = w.replaceAfterLast$default(forUser$default, '.', "jpg", null, 4, null)) != null) {
             iconCompatCreateWithContentUri = IconCompat.createWithContentUri(strReplaceAfterLast$default);
         }
-        Person personBuild = new Person$Builder().setName(charSequenceH).setKey(strValueOf).setIcon(iconCompatCreateWithContentUri).setImportant(this.relationshipType == 1).build();
+        Person personBuild = new Person.Builder().setName(charSequenceH).setKey(strValueOf).setIcon(iconCompatCreateWithContentUri).setImportant(this.relationshipType == 1).build();
         m.checkNotNullExpressionValue(personBuild, "Person.Builder()\n       …_FRIEND)\n        .build()");
         return personBuild;
     }
@@ -945,15 +1094,15 @@ public final class NotificationData {
         if (iHashCode != -1327124998) {
             if (iHashCode != 998188116) {
                 if (iHashCode == 1770025841 && str.equals(TYPE_CALL_RING)) {
-                    return 2131231974;
+                    return R.drawable.ic_notification_call_24dp;
                 }
             } else if (str.equals(TYPE_MESSAGE_CREATE)) {
-                return 2131231976;
+                return R.drawable.ic_notification_message_24dp;
             }
         } else if (str.equals(TYPE_RELATIONSHIP_ADD)) {
-            return 2131231975;
+            return R.drawable.ic_notification_friends_24dp;
         }
-        return 2131231973;
+        return R.drawable.ic_notification_24dp;
     }
 
     public final Sticker getSticker() {
@@ -962,13 +1111,13 @@ public final class NotificationData {
 
     @RequiresApi(24)
     @SuppressLint({"UnspecifiedImmutableFlag"})
-    public final NotificationCompat$Action getTimedMute(Context ctx, Clock clock, int numMessages) {
+    public final NotificationCompat.Action getTimedMute(Context ctx, Clock clock, int numMessages) {
         m.checkNotNullParameter(ctx, "ctx");
         m.checkNotNullParameter(clock, "clock");
         if ((!m.areEqual(this.type, TYPE_MESSAGE_CREATE)) || numMessages < 2) {
             return null;
         }
-        return new NotificationCompat$Action$Builder(2131231979, b.h(ctx, 2131893376, new Object[0], null, 4), PendingIntent.getBroadcast(ctx, 0, addTrackingData(NotificationActions.Companion.timedMute(ctx, this.guildId, this.channel.getId(), clock.currentTimeMillis() + 3600000)), PendingIntentExtensionsKt.immutablePendingIntentFlag$default(0, 1, null))).build();
+        return new NotificationCompat.Action.Builder(R.drawable.ic_notifications_off_grey_24dp, b.h(ctx, R.string.notification_mute_1_hour, new Object[0], null, 4), PendingIntent.getBroadcast(ctx, 0, addTrackingData(NotificationActions.INSTANCE.timedMute(ctx, this.guildId, this.channel.getId(), clock.currentTimeMillis() + 3600000)), PendingIntentExtensionsKt.immutablePendingIntentFlag$default(0, 1, null))).build();
     }
 
     public final CharSequence getTitle(Context context) {
@@ -996,7 +1145,7 @@ public final class NotificationData {
                     return "";
                 }
                 int iOrdinal = guildScheduledEventEntityType.ordinal();
-                return (iOrdinal == 1 || iOrdinal == 2 || iOrdinal == 3) ? b.h(context, 2131890723, new Object[]{this.guildName}, null, 4) : "";
+                return (iOrdinal == 1 || iOrdinal == 2 || iOrdinal == 3) ? b.h(context, R.string.guild_scheduled_event_stage_start_title, new Object[]{this.guildName}, null, 4) : "";
             case -1327124998:
                 if (!str2.equals(TYPE_RELATIONSHIP_ADD)) {
                     return "";
@@ -1006,9 +1155,9 @@ public final class NotificationData {
                 }
                 break;
             case -1263316859:
-                return str2.equals(TYPE_STAGE_INSTANCE_CREATE) ? b.h(context, 2131895851, new Object[]{this.guildName}, null, 4) : "";
+                return str2.equals(TYPE_STAGE_INSTANCE_CREATE) ? b.h(context, R.string.stage_start_push_notification_title, new Object[]{this.guildName}, null, 4) : "";
             case -1237752112:
-                return str2.equals(TYPE_APPLICATION_LIBRARY_INSTALL_COMPLETE) ? b.h(context, 2131889571, new Object[0], null, 4) : "";
+                return str2.equals(TYPE_APPLICATION_LIBRARY_INSTALL_COMPLETE) ? b.h(context, R.string.game_library_notification_game_installed_title, new Object[0], null, 4) : "";
             case -437641071:
                 if (!str2.equals(TYPE_FORUM_THREAD_CREATED)) {
                     return "";
@@ -1017,9 +1166,9 @@ public final class NotificationData {
                 objArr[0] = this.guildName;
                 Channel channel = this.parentChannel;
                 objArr[1] = channel != null ? channel.getName() : null;
-                return b.h(context, 2131889352, objArr, null, 4);
+                return b.h(context, R.string.forum_channel_thread_created_push_title_mobile, objArr, null, 4);
             case 974015250:
-                return (str2.equals(TYPE_ACTIVITY_START) && this.activityType == 0) ? b.h(context, 2131893384, new Object[0], null, 4) : "";
+                return (str2.equals(TYPE_ACTIVITY_START) && this.activityType == 0) ? b.h(context, R.string.notification_title_start_game, new Object[0], null, 4) : "";
             case 998188116:
                 if (!str2.equals(TYPE_MESSAGE_CREATE)) {
                     return "";
@@ -1050,7 +1199,7 @@ public final class NotificationData {
                 return b.l(this.guildName + " _" + ChannelUtils.e(this.channel, context, false, 2) + '_', new Object[0], null, 2);
             case 1770025841:
                 if (str2.equals(TYPE_CALL_RING)) {
-                    return this.channel.getType() != 1 ? ChannelUtils.c(this.channel) : b.h(context, 2131892028, new Object[0], null, 4);
+                    return this.channel.getType() != 1 ? ChannelUtils.c(this.channel) : b.h(context, R.string.incoming_call, new Object[0], null, 4);
                 }
                 return "";
             default:
@@ -1144,6 +1293,86 @@ public final class NotificationData {
         return identifier == 0 ? fallback : b.h(context, identifier, new Object[0], null, 4);
     }
 
+    /* JADX INFO: compiled from: NotificationData.kt */
+    public final class DisplayPayload {
+        private NotificationData data;
+        private final LinkedHashMap<Long, NotificationData> extras;
+        private final int id;
+        private boolean ignoreNextClearForAck;
+
+        public DisplayPayload(NotificationData notificationData) {
+            m.checkNotNullParameter(notificationData, "data");
+            this.data = notificationData;
+            this.id = new Random().nextInt(Integer.MAX_VALUE);
+            this.extras = new LinkedHashMap<>();
+        }
+
+        public final NotificationData getData() {
+            return this.data;
+        }
+
+        public final synchronized List<NotificationData> getExtras() {
+            Collection<NotificationData> collectionValues;
+            collectionValues = this.extras.values();
+            m.checkNotNullExpressionValue(collectionValues, "extras.values");
+            return u.toList(collectionValues);
+        }
+
+        public final int getId() {
+            return this.id;
+        }
+
+        public final boolean getIgnoreNextClearForAck() {
+            return this.ignoreNextClearForAck;
+        }
+
+        public final void setData(NotificationData notificationData) {
+            m.checkNotNullParameter(notificationData, "<set-?>");
+            this.data = notificationData;
+        }
+
+        public final void setIgnoreNextClearForAck(boolean z2) {
+            this.ignoreNextClearForAck = z2;
+        }
+
+        private final void trimExtrasWhenOversized(int maxExtras) {
+            if (this.extras.size() < maxExtras) {
+                return;
+            }
+            Set<Map.Entry<Long, NotificationData>> setEntrySet = this.extras.entrySet();
+            m.checkNotNullExpressionValue(setEntrySet, "extras\n          .entries");
+            List<Map.Entry> listDrop = u.drop(setEntrySet, this.extras.size() - (maxExtras / 2));
+            LinkedHashMap linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(o.collectionSizeOrDefault(listDrop, 10)), 16));
+            for (Map.Entry entry : listDrop) {
+                linkedHashMap.put((Long) entry.getKey(), (NotificationData) entry.getValue());
+            }
+            this.extras.clear();
+            this.extras.putAll(linkedHashMap);
+        }
+
+        public static /* synthetic */ void update$default(DisplayPayload displayPayload, NotificationData notificationData, int i, int i2, Object obj) {
+            if ((i2 & 2) != 0) {
+                i = 20;
+            }
+            displayPayload.update(notificationData, i);
+        }
+
+        public final synchronized void update(NotificationData data, int maxExtras) {
+            m.checkNotNullParameter(data, "data");
+            this.data = data;
+            trimExtrasWhenOversized(maxExtras);
+            if (data.getShouldGroup()) {
+                this.extras.put(Long.valueOf(data.getMessageId()), data);
+            } else {
+                this.extras.clear();
+            }
+        }
+
+        public DisplayPayload() {
+            this(new NotificationData());
+        }
+    }
+
     public NotificationData() {
         this(new HashMap());
     }
@@ -1173,7 +1402,7 @@ public final class NotificationData {
         long jLongValue = (str3 == null || (longOrNull8 = s.toLongOrNull(str3)) == null) ? -1L : longOrNull8.longValue();
         String str4 = map.get("message_activity_type");
         String string2 = null;
-        MessageActivityType messageActivityTypeA = (str4 == null || (intOrNull6 = s.toIntOrNull(str4)) == null) ? null : MessageActivityType.Companion.a(intOrNull6);
+        MessageActivityType messageActivityTypeA = (str4 == null || (intOrNull6 = s.toIntOrNull(str4)) == null) ? null : MessageActivityType.INSTANCE.a(intOrNull6);
         String str5 = map.get("message_application_name");
         String str6 = map.get("message_type_");
         int iIntValue = (str6 == null || (intOrNull5 = s.toIntOrNull(str6)) == null) ? -1 : intOrNull5.intValue();
@@ -1200,7 +1429,7 @@ public final class NotificationData {
         }
         String str14 = map.get("channel_id");
         Channel channel2 = new Channel(null, iIntValue2, jLongValue3, string, 0L, (str14 == null || (longOrNull4 = s.toLongOrNull(str14)) == null) ? -1L : longOrNull4.longValue(), 0L, null, null, 0, null, 0, 0, map.get("channel_icon"), 0L, 0L, null, false, 0L, null, 0, null, map.get(ModelAuditLogEntry.CHANGE_KEY_REGION_OVERRIDE), null, null, null, null, null, null, null, null, null);
-        List listAccess$parseAckChannelIds = NotificationData$Companion.access$parseAckChannelIds(Companion, map.get("channel_ids"));
+        List listAccess$parseAckChannelIds = Companion.access$parseAckChannelIds(INSTANCE, map.get("channel_ids"));
         String str15 = map.get("user_id");
         long jLongValue4 = (str15 == null || (longOrNull3 = s.toLongOrNull(str15)) == null) ? -1L : longOrNull3.longValue();
         String str16 = map.get("user_username");
@@ -1229,11 +1458,11 @@ public final class NotificationData {
         String str33 = map.get("subtitle_resource_name");
         String str34 = map.get("stage_instance_topic");
         String str35 = map.get("guild_scheduled_event_entity_type");
-        GuildScheduledEventEntityType guildScheduledEventEntityTypeA = (str35 == null || (intOrNull = s.toIntOrNull(str35)) == null) ? num : GuildScheduledEventEntityType.Companion.a(intOrNull.intValue());
+        GuildScheduledEventEntityType guildScheduledEventEntityTypeA = (str35 == null || (intOrNull = s.toIntOrNull(str35)) == null) ? num : GuildScheduledEventEntityType.INSTANCE.a(intOrNull.intValue());
         String str36 = map.get("guild_scheduled_event_id");
         Long longOrNull9 = str36 != null ? s.toLongOrNull(str36) : num;
         String str37 = map.get("notification_type");
-        NotificationType notificationType = str37 != null ? NotificationType.Companion.parse(str37) : num;
+        NotificationType notificationType = str37 != null ? NotificationType.INSTANCE.parse(str37) : num;
         String str38 = map.get("tracking_type");
         String str39 = map.get("notification_channel");
         String str40 = map.get("expand_subtitle");

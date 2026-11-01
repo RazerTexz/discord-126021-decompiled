@@ -1,6 +1,7 @@
 package com.discord.widgets.guildcommunicationdisabled.start;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
@@ -8,29 +9,36 @@ import androidx.fragment.app.FragmentManager;
 import b.a.d.f;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
+import com.discord.analytics.generated.events.network_action.TrackNetworkActionUserCommunicationDisabledUpdate;
+import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.app.AppDialog;
 import com.discord.databinding.WidgetEnableGuildCommunicationBinding;
 import com.discord.models.member.GuildMember;
 import com.discord.models.user.User;
-import com.discord.restapi.RestAPIParams$DisableGuildCommunication;
+import com.discord.restapi.RestAPIParams;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import com.discord.stores.StoreUser;
 import com.discord.stores.utilities.RestCallStateKt;
+import com.discord.utilities.analytics.AnalyticsTracker;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.duration.DurationUtilsKt;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.Clock;
 import com.discord.utilities.time.ClockFactory;
+import com.discord.utilities.uri.UriHandler;
 import com.discord.utilities.user.UserUtils;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.concurrent.TimeUnit;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 import rx.Observable;
 import rx.Subscription;
@@ -39,15 +47,174 @@ import rx.Subscription;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetEnableGuildCommunication extends AppDialog {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetEnableGuildCommunication.class, "binding", "getBinding()Lcom/discord/databinding/WidgetEnableGuildCommunicationBinding;", 0)};
-    public static final WidgetEnableGuildCommunication$Companion Companion = new WidgetEnableGuildCommunication$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
     private final Clock clock;
     private Subscription communicationDisabledCountdownSubscription;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.WidgetEnableGuildCommunication$configureCommunicationDisabledTimer$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetEnableGuildCommunication.kt */
+    public final class AnonymousClass1 extends o implements Function1<Long, Unit> {
+        public final /* synthetic */ long $communicationDisabledTimestampMs;
+        public final /* synthetic */ CharSequence $username;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, CharSequence charSequence) {
+            super(1);
+            this.$communicationDisabledTimestampMs = j;
+            this.$username = charSequence;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            long jMax = Math.max(this.$communicationDisabledTimestampMs - WidgetEnableGuildCommunication.access$getClock$p(WidgetEnableGuildCommunication.this).currentTimeMillis(), 0L);
+            TextView textView = WidgetEnableGuildCommunication.access$getBinding$p(WidgetEnableGuildCommunication.this).d;
+            m.checkNotNullExpressionValue(textView, "binding.enableGuildCommunicationBody");
+            Context contextRequireContext = WidgetEnableGuildCommunication.this.requireContext();
+            m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+            b.n(textView, R.string.enable_guild_communication_body, new Object[]{this.$username, DurationUtilsKt.humanizeCountdownDuration(contextRequireContext, jMax)}, null, 4);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.WidgetEnableGuildCommunication$handleEnableGuildCommunication$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetEnableGuildCommunication.kt */
+    public final class AnonymousClass1 extends o implements Function1<Void, TrackNetworkMetadataReceiver> {
+        public final /* synthetic */ long $guildId;
+        public final /* synthetic */ long $userId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, long j2) {
+            super(1);
+            this.$guildId = j;
+            this.$userId = j2;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ TrackNetworkMetadataReceiver invoke(Void r1) {
+            return invoke2(r1);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final TrackNetworkMetadataReceiver invoke2(Void r7) {
+            return new TrackNetworkActionUserCommunicationDisabledUpdate(Long.valueOf(this.$guildId), Long.valueOf(this.$userId), null, null, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.WidgetEnableGuildCommunication$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetEnableGuildCommunication.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            UriHandler.handle$default(UriHandler.INSTANCE, a.I(WidgetEnableGuildCommunication.access$getBinding$p(WidgetEnableGuildCommunication.this).e, "binding.enableGuildCommunicationBodyHelpText", "binding.enableGuildCommu…ationBodyHelpText.context"), f.a.a(4413305239191L, null), false, false, null, 28, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.WidgetEnableGuildCommunication$configureCommunicationDisabledTimer$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetEnableGuildCommunication.kt */
+    public final class AnonymousClass2 extends o implements Function1<Subscription, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            WidgetEnableGuildCommunication.access$setCommunicationDisabledCountdownSubscription$p(WidgetEnableGuildCommunication.this, subscription);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.WidgetEnableGuildCommunication$handleEnableGuildCommunication$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetEnableGuildCommunication.kt */
+    public final class AnonymousClass2 extends o implements Function1<Void, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r7) {
+            WidgetEnableGuildCommunication.this.dismiss();
+            Context context = WidgetEnableGuildCommunication.this.getContext();
+            Context context2 = WidgetEnableGuildCommunication.this.getContext();
+            b.a.d.m.h(context, context2 != null ? b.h(context2, R.string.guild_enable_communication_success, new Object[0], null, 4) : null, 0, null, 12);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.WidgetEnableGuildCommunication$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetEnableGuildCommunication.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetEnableGuildCommunication.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.WidgetEnableGuildCommunication$onViewBound$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetEnableGuildCommunication.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public final /* synthetic */ long $guildId;
+        public final /* synthetic */ long $userId;
+
+        public AnonymousClass3(long j, long j2) {
+            this.$guildId = j;
+            this.$userId = j2;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetEnableGuildCommunication.access$handleEnableGuildCommunication(WidgetEnableGuildCommunication.this, this.$guildId, this.$userId);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetEnableGuildCommunication.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(long userId, long guildId, FragmentManager fragmentManager) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            WidgetEnableGuildCommunication widgetEnableGuildCommunication = new WidgetEnableGuildCommunication();
+            Bundle bundleT = a.T("com.discord.intent.extra.EXTRA_USER_ID", userId);
+            bundleT.putLong("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
+            widgetEnableGuildCommunication.setArguments(bundleT);
+            widgetEnableGuildCommunication.show(fragmentManager, WidgetEnableGuildCommunication.class.getSimpleName());
+            AnalyticsTracker.INSTANCE.viewedEnableCommunicationModal(guildId, userId);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetEnableGuildCommunication() {
-        super(R$layout.widget_enable_guild_communication);
+        super(R.layout.widget_enable_guild_communication);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetEnableGuildCommunication$binding$2.INSTANCE, null, 2, null);
         this.clock = ClockFactory.get();
     }
@@ -78,7 +245,7 @@ public final class WidgetEnableGuildCommunication extends AppDialog {
         }
         Observable<Long> observableE = Observable.E(0L, 1L, TimeUnit.SECONDS);
         m.checkNotNullExpressionValue(observableE, "Observable\n        .inte…0L, 1L, TimeUnit.SECONDS)");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableE, this, null, 2, null), WidgetEnableGuildCommunication.class, (Context) null, new WidgetEnableGuildCommunication$configureCommunicationDisabledTimer$2(this), (Function1) null, (Function0) null, (Function0) null, new WidgetEnableGuildCommunication$configureCommunicationDisabledTimer$1(this, communicationDisabledTimestampMs, username), 58, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableE, this, null, 2, null), WidgetEnableGuildCommunication.class, (Context) null, new AnonymousClass2(), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(communicationDisabledTimestampMs, username), 58, (Object) null);
     }
 
     private final WidgetEnableGuildCommunicationBinding getBinding() {
@@ -86,11 +253,11 @@ public final class WidgetEnableGuildCommunication extends AppDialog {
     }
 
     private final void handleEnableGuildCommunication(long guildId, long userId) {
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(RestCallStateKt.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApiSerializeNulls().disableGuildCommunication(guildId, userId, new RestAPIParams$DisableGuildCommunication(null), null), false, 1, null), new WidgetEnableGuildCommunication$handleEnableGuildCommunication$1(guildId, userId)), this, null, 2, null), WidgetEnableGuildCommunication.class, getContext(), (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetEnableGuildCommunication$handleEnableGuildCommunication$2(this), 60, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(RestCallStateKt.logNetworkAction(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApiSerializeNulls().disableGuildCommunication(guildId, userId, new RestAPIParams.DisableGuildCommunication(null), null), false, 1, null), new AnonymousClass1(guildId, userId)), this, null, 2, null), WidgetEnableGuildCommunication.class, getContext(), (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 60, (Object) null);
     }
 
     public static final void launch(long j, long j2, FragmentManager fragmentManager) {
-        Companion.launch(j, j2, fragmentManager);
+        INSTANCE.launch(j, j2, fragmentManager);
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -108,9 +275,9 @@ public final class WidgetEnableGuildCommunication extends AppDialog {
         super.onViewBound(view);
         long j = getArgumentsOrDefault().getLong("com.discord.intent.extra.EXTRA_GUILD_ID", -1L);
         long j2 = getArgumentsOrDefault().getLong("com.discord.intent.extra.EXTRA_USER_ID", -1L);
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        StoreUser users = storeStream$Companion.getUsers();
-        GuildMember member = storeStream$Companion.getGuilds().getMember(j, j2);
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        StoreUser users = companion.getUsers();
+        GuildMember member = companion.getGuilds().getMember(j, j2);
         User user = users.getUsers().get(Long.valueOf(j2));
         if (member == null || user == null || !member.isCommunicationDisabled()) {
             return;
@@ -124,14 +291,14 @@ public final class WidgetEnableGuildCommunication extends AppDialog {
         m.checkNotNullExpressionValue(textView, "binding.enableGuildCommunicationBody");
         Context contextRequireContext = requireContext();
         m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
-        b.n(textView, 2131888849, new Object[]{userNameWithDiscriminator$default, DurationUtilsKt.humanizeCountdownDuration(contextRequireContext, jMax)}, null, 4);
+        b.n(textView, R.string.enable_guild_communication_body, new Object[]{userNameWithDiscriminator$default, DurationUtilsKt.humanizeCountdownDuration(contextRequireContext, jMax)}, null, 4);
         Context context = getContext();
-        CharSequence charSequenceH = context != null ? b.h(context, 2131888850, new Object[]{f.a.a(4413305239191L, null)}, null, 4) : null;
+        CharSequence charSequenceH = context != null ? b.h(context, R.string.enable_guild_communication_body_help_text, new Object[]{f.a.a(4413305239191L, null)}, null, 4) : null;
         TextView textView2 = getBinding().e;
         m.checkNotNullExpressionValue(textView2, "binding.enableGuildCommunicationBodyHelpText");
         textView2.setText(charSequenceH);
-        getBinding().e.setOnClickListener(new WidgetEnableGuildCommunication$onViewBound$1(this));
-        getBinding().f2379b.setOnClickListener(new WidgetEnableGuildCommunication$onViewBound$2(this));
-        getBinding().c.setOnClickListener(new WidgetEnableGuildCommunication$onViewBound$3(this, j, j2));
+        getBinding().e.setOnClickListener(new AnonymousClass1());
+        getBinding().f2379b.setOnClickListener(new AnonymousClass2());
+        getBinding().c.setOnClickListener(new AnonymousClass3(j, j2));
     }
 }

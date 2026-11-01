@@ -1,10 +1,8 @@
 package b.g.a.b.q;
 
-import b.g.a.b.d$a;
 import b.g.a.b.i;
 import b.g.a.b.j;
 import b.g.a.b.k;
-import b.g.a.b.p.a$a;
 import b.g.a.b.p.g;
 import b.g.a.b.t.m;
 import com.discord.widgets.chat.input.MentionUtilsKt;
@@ -51,14 +49,14 @@ public class d extends b {
             if (c == '\"') {
                 iArr = b.g.a.b.p.a.f;
             } else {
-                a$a a_a = a$a.a;
-                int[] iArrCopyOf = a_a.f665b[c];
+                b.g.a.b.p.a.C0080a c0080a = b.g.a.b.p.a.C0080a.a;
+                int[] iArrCopyOf = c0080a.f665b[c];
                 if (iArrCopyOf == null) {
                     iArrCopyOf = Arrays.copyOf(b.g.a.b.p.a.f, 128);
                     if (iArrCopyOf[c] == 0) {
                         iArrCopyOf[c] = -1;
                     }
-                    a_a.f665b[c] = iArrCopyOf;
+                    c0080a.f665b[c] = iArrCopyOf;
                 }
                 iArr = iArrCopyOf;
             }
@@ -136,7 +134,7 @@ public class d extends b {
     public void C(double d) throws IOException {
         if (!this.p) {
             String str = g.a;
-            if (!(Double.isNaN(d) || Double.isInfinite(d)) || !d(d$a.QUOTE_NON_NUMERIC_NUMBERS)) {
+            if (!(Double.isNaN(d) || Double.isInfinite(d)) || !d(b.g.a.b.d.a.QUOTE_NON_NUMERIC_NUMBERS)) {
                 t0("write a number");
                 T(String.valueOf(d));
                 return;
@@ -219,7 +217,7 @@ public class d extends b {
     public void D(float f) throws IOException {
         if (!this.p) {
             String str = g.a;
-            if (!(Float.isNaN(f) || Float.isInfinite(f)) || !d(d$a.QUOTE_NON_NUMERIC_NUMBERS)) {
+            if (!(Float.isNaN(f) || Float.isInfinite(f)) || !d(b.g.a.b.d.a.QUOTE_NON_NUMERIC_NUMBERS)) {
                 t0("write a number");
                 T(String.valueOf(f));
                 return;
@@ -905,7 +903,7 @@ public class d extends b {
 
     @Override // b.g.a.b.d, java.io.Closeable, java.lang.AutoCloseable
     public void close() throws IOException {
-        if (this.A != null && d(d$a.AUTO_CLOSE_JSON_CONTENT)) {
+        if (this.A != null && d(b.g.a.b.d.a.AUTO_CLOSE_JSON_CONTENT)) {
             while (true) {
                 c cVar = this.q;
                 if (!cVar.b()) {
@@ -923,9 +921,9 @@ public class d extends b {
         this.B = 0;
         this.C = 0;
         if (this.f673y != null) {
-            if (this.f671s.f666b || d(d$a.AUTO_CLOSE_TARGET)) {
+            if (this.f671s.f666b || d(b.g.a.b.d.a.AUTO_CLOSE_TARGET)) {
                 this.f673y.close();
-            } else if (d(d$a.FLUSH_PASSED_TO_STREAM)) {
+            } else if (d(b.g.a.b.d.a.FLUSH_PASSED_TO_STREAM)) {
                 this.f673y.flush();
             }
         }
@@ -1013,7 +1011,7 @@ public class d extends b {
     @Override // java.io.Flushable
     public void flush() throws IOException {
         B0();
-        if (this.f673y == null || !d(d$a.FLUSH_PASSED_TO_STREAM)) {
+        if (this.f673y == null || !d(b.g.a.b.d.a.FLUSH_PASSED_TO_STREAM)) {
             return;
         }
         this.f673y.flush();

@@ -1,8 +1,10 @@
 package b.i.a.f.h.l;
 
 import b.i.a.f.h.l.u4;
-import b.i.a.f.h.l.u4$b;
+import b.i.a.f.h.l.u4.b;
 import com.google.android.gms.internal.measurement.zzhi;
+import com.google.android.gms.internal.measurement.zzij;
+import com.google.android.gms.internal.measurement.zzkq;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -11,10 +13,72 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public abstract class u4<MessageType extends u4<MessageType, BuilderType>, BuilderType extends u4$b<MessageType, BuilderType>> extends l3<MessageType, BuilderType> {
+public abstract class u4<MessageType extends u4<MessageType, BuilderType>, BuilderType extends b<MessageType, BuilderType>> extends l3<MessageType, BuilderType> {
     private static Map<Object, u4<?, ?>> zzd = new ConcurrentHashMap();
     public c7 zzb = c7.a;
     private int zzc = -1;
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
+    public final class a<T extends u4<T, ?>> extends p3<T> {
+        public a(T t) {
+        }
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
+    public final class c implements p4<c> {
+        @Override // b.i.a.f.h.l.p4
+        public final b6 X(b6 b6Var, c6 c6Var) {
+            throw new NoSuchMethodError();
+        }
+
+        @Override // b.i.a.f.h.l.p4
+        public final int a() {
+            throw new NoSuchMethodError();
+        }
+
+        @Override // b.i.a.f.h.l.p4
+        public final p7 b() {
+            throw new NoSuchMethodError();
+        }
+
+        @Override // b.i.a.f.h.l.p4
+        public final w7 c() {
+            throw new NoSuchMethodError();
+        }
+
+        @Override // b.i.a.f.h.l.p4
+        public final f6 c0(f6 f6Var, f6 f6Var2) {
+            throw new NoSuchMethodError();
+        }
+
+        @Override // java.lang.Comparable
+        public final /* synthetic */ int compareTo(Object obj) {
+            throw new NoSuchMethodError();
+        }
+
+        @Override // b.i.a.f.h.l.p4
+        public final boolean d() {
+            throw new NoSuchMethodError();
+        }
+
+        @Override // b.i.a.f.h.l.p4
+        public final boolean e() {
+            throw new NoSuchMethodError();
+        }
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
+    public final class e {
+        public static final /* synthetic */ int[] a = {1, 2, 3, 4, 5, 6, 7};
+
+        public static int[] a() {
+            return (int[]) a.clone();
+        }
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
+    public final class f<ContainingType extends c6, Type> extends i4<ContainingType, Type> {
+    }
 
     @Override // b.i.a.f.h.l.l3
     public final int e() {
@@ -33,9 +97,9 @@ public abstract class u4<MessageType extends u4<MessageType, BuilderType>, Build
 
     @Override // b.i.a.f.h.l.c6
     public final /* synthetic */ b6 f() {
-        u4$b u4_b = (u4$b) p(5, null, null);
-        u4_b.l(this);
-        return u4_b;
+        b bVar = (b) p(5, null, null);
+        bVar.l(this);
+        return bVar;
     }
 
     @Override // b.i.a.f.h.l.c6
@@ -48,7 +112,7 @@ public abstract class u4<MessageType extends u4<MessageType, BuilderType>, Build
 
     @Override // b.i.a.f.h.l.c6
     public final /* synthetic */ b6 h() {
-        return (u4$b) p(5, null, null);
+        return (b) p(5, null, null);
     }
 
     public int hashCode() {
@@ -101,8 +165,8 @@ public abstract class u4<MessageType extends u4<MessageType, BuilderType>, Build
             try {
                 Class.forName(cls.getName(), true, cls.getClassLoader());
                 u4Var = zzd.get(cls);
-            } catch (ClassNotFoundException e) {
-                throw new IllegalStateException("Class initialization cannot fail.", e);
+            } catch (ClassNotFoundException e2) {
+                throw new IllegalStateException("Class initialization cannot fail.", e2);
             }
         }
         if (u4Var == null) {
@@ -130,10 +194,10 @@ public abstract class u4<MessageType extends u4<MessageType, BuilderType>, Build
     public static Object q(Method method, Object obj, Object... objArr) {
         try {
             return method.invoke(obj, objArr);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException("Couldn't use Java reflection to implement protocol message reflection.", e);
-        } catch (InvocationTargetException e2) {
-            Throwable cause = e2.getCause();
+        } catch (IllegalAccessException e2) {
+            throw new RuntimeException("Couldn't use Java reflection to implement protocol message reflection.", e2);
+        } catch (InvocationTargetException e3) {
+            Throwable cause = e3.getCause();
             if (cause instanceof RuntimeException) {
                 throw ((RuntimeException) cause);
             }
@@ -148,7 +212,7 @@ public abstract class u4<MessageType extends u4<MessageType, BuilderType>, Build
         zzd.put(cls, t);
     }
 
-    public final <MessageType extends u4<MessageType, BuilderType>, BuilderType extends u4$b<MessageType, BuilderType>> BuilderType s() {
+    public final <MessageType extends u4<MessageType, BuilderType>, BuilderType extends b<MessageType, BuilderType>> BuilderType s() {
         return (BuilderType) p(5, null, null);
     }
 
@@ -165,5 +229,93 @@ public abstract class u4<MessageType extends u4<MessageType, BuilderType>, Build
         sb.append(string);
         b.i.a.f.e.o.f.e2(this, sb, 0);
         return sb.toString();
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
+    public abstract class d<MessageType extends d<MessageType, BuilderType>, BuilderType> extends u4<MessageType, BuilderType> implements d6 {
+        public n4<c> zzc = n4.a;
+
+        public final n4<c> u() {
+            n4<c> n4Var = this.zzc;
+            if (n4Var.c) {
+                this.zzc = (n4) n4Var.clone();
+            }
+            return this.zzc;
+        }
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
+    public class b<MessageType extends u4<MessageType, BuilderType>, BuilderType extends b<MessageType, BuilderType>> extends n3<MessageType, BuilderType> {
+        public final MessageType j;
+        public MessageType k;
+        public boolean l = false;
+
+        public b(MessageType messagetype) {
+            this.j = messagetype;
+            this.k = (MessageType) messagetype.p(4, null, null);
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public /* synthetic */ Object clone() throws CloneNotSupportedException {
+            b bVar = (b) this.j.p(5, null, null);
+            bVar.l((u4) o());
+            return bVar;
+        }
+
+        @Override // b.i.a.f.h.l.d6
+        public final /* synthetic */ c6 k() {
+            return this.j;
+        }
+
+        public final BuilderType l(MessageType messagetype) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            MessageType messagetype2 = this.k;
+            n6.a.b(messagetype2).i(messagetype2, messagetype);
+            return this;
+        }
+
+        public final b m(byte[] bArr, int i, h4 h4Var) throws zzij {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            try {
+                n6.a.b(this.k).h(this.k, bArr, 0, i, new s3(h4Var));
+                return this;
+            } catch (zzij e) {
+                throw e;
+            } catch (IOException e2) {
+                throw new RuntimeException("Reading from byte array should not throw IOException.", e2);
+            } catch (IndexOutOfBoundsException unused) {
+                throw zzij.a();
+            }
+        }
+
+        public void n() {
+            MessageType messagetype = (MessageType) this.k.p(4, null, null);
+            n6.a.b(messagetype).i(messagetype, this.k);
+            this.k = messagetype;
+        }
+
+        public c6 o() {
+            if (this.l) {
+                return this.k;
+            }
+            MessageType messagetype = this.k;
+            n6.a.b(messagetype).d(messagetype);
+            this.l = true;
+            return this.k;
+        }
+
+        public c6 p() {
+            u4 u4Var = (u4) o();
+            if (u4Var.j()) {
+                return u4Var;
+            }
+            throw new zzkq();
+        }
     }
 }

@@ -1,5 +1,6 @@
 package b.o.a;
 
+import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
@@ -13,21 +14,48 @@ public final class b {
     public static int a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static Set<b$b> f1910b;
+    public static Set<InterfaceC0166b> f1910b;
 
     @VisibleForTesting
-    public static b$b c;
+    public static InterfaceC0166b c;
 
     @NonNull
     public String d;
 
+    /* JADX INFO: renamed from: b.o.a.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: CameraLogger.java */
+    public interface InterfaceC0166b {
+        void a(int i, @NonNull String str, @NonNull String str2, @Nullable Throwable th);
+    }
+
+    /* JADX INFO: compiled from: CameraLogger.java */
+    public class a implements InterfaceC0166b {
+        @Override // b.o.a.b.InterfaceC0166b
+        public void a(int i, @NonNull String str, @NonNull String str2, @Nullable Throwable th) {
+            if (i == 0) {
+                Log.v(str, str2, th);
+                return;
+            }
+            if (i == 1) {
+                Log.i(str, str2, th);
+            } else if (i == 2) {
+                Log.w(str, str2, th);
+            } else {
+                if (i != 3) {
+                    return;
+                }
+                Log.e(str, str2, th);
+            }
+        }
+    }
+
     static {
         CopyOnWriteArraySet copyOnWriteArraySet = new CopyOnWriteArraySet();
         f1910b = copyOnWriteArraySet;
-        b$a b_a = new b$a();
-        c = b_a;
+        a aVar = new a();
+        c = aVar;
         a = 3;
-        copyOnWriteArraySet.add(b_a);
+        copyOnWriteArraySet.add(aVar);
     }
 
     public b(@NonNull String str) {
@@ -49,7 +77,7 @@ public final class b {
             sb.append(" ");
         }
         String strTrim = sb.toString().trim();
-        Iterator<b$b> it = f1910b.iterator();
+        Iterator<InterfaceC0166b> it = f1910b.iterator();
         while (it.hasNext()) {
             it.next().a(i, this.d, strTrim, th);
         }

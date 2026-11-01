@@ -2,15 +2,15 @@ package b.i.b.b;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Map$Entry;
+import java.util.Map;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: Maps.java */
 /* JADX INFO: loaded from: classes3.dex */
-public abstract class x<K, V> extends o0<Map$Entry<K, V>> {
+public abstract class x<K, V> extends o0<Map.Entry<K, V>> {
     @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
     public void clear() {
-        ((e$a$a) this).j.clear();
+        e.a.this.clear();
     }
 
     @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
@@ -18,7 +18,7 @@ public abstract class x<K, V> extends o0<Map$Entry<K, V>> {
 
     @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
     public boolean isEmpty() {
-        return ((e$a$a) this).j.isEmpty();
+        return e.a.this.isEmpty();
     }
 
     @Override // b.i.b.b.o0, java.util.AbstractSet, java.util.AbstractCollection, java.util.Collection, java.util.Set
@@ -48,15 +48,15 @@ public abstract class x<K, V> extends o0<Map$Entry<K, V>> {
             HashSet hashSet = new HashSet(i);
             for (Object obj : collection) {
                 if (contains(obj)) {
-                    hashSet.add(((Map$Entry) obj).getKey());
+                    hashSet.add(((Map.Entry) obj).getKey());
                 }
             }
-            return ((e$a$a) this).j.keySet().retainAll(hashSet);
+            return e.a.this.keySet().retainAll(hashSet);
         }
     }
 
     @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
     public int size() {
-        return ((e$a$a) this).j.size();
+        return e.a.this.size();
     }
 }

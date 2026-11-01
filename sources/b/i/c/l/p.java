@@ -1,21 +1,21 @@
 package b.i.c.l;
 
-import java.util.Map$Entry;
+import java.util.Map;
 
 /* JADX INFO: compiled from: EventBus.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class p implements Runnable {
-    public final Map$Entry j;
+    public final Map.Entry j;
     public final b.i.c.q.a k;
 
-    public p(Map$Entry map$Entry, b.i.c.q.a aVar) {
-        this.j = map$Entry;
+    public p(Map.Entry entry, b.i.c.q.a aVar) {
+        this.j = entry;
         this.k = aVar;
     }
 
     @Override // java.lang.Runnable
     public void run() {
-        Map$Entry map$Entry = this.j;
-        ((b.i.c.q.b) map$Entry.getKey()).a(this.k);
+        Map.Entry entry = this.j;
+        ((b.i.c.q.b) entry.getKey()).a(this.k);
     }
 }

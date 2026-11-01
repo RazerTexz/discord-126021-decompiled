@@ -3,16 +3,40 @@ package com.discord.widgets.hubs;
 import a0.a.a.b;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import b.d.b.a.a;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: WidgetHubDescription.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class DescriptionResult implements Parcelable {
-    public static final Parcelable$Creator<DescriptionResult> CREATOR = new DescriptionResult$Creator();
+    public static final Parcelable.Creator<DescriptionResult> CREATOR = new Creator();
     private final long guildId;
     private final String hubName;
+
+    public final class Creator implements Parcelable.Creator<DescriptionResult> {
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final DescriptionResult createFromParcel(Parcel parcel) {
+            m.checkNotNullParameter(parcel, "in");
+            return new DescriptionResult(parcel.readLong(), parcel.readString());
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ DescriptionResult createFromParcel(Parcel parcel) {
+            return createFromParcel(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final DescriptionResult[] newArray(int i) {
+            return new DescriptionResult[i];
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ DescriptionResult[] newArray(int i) {
+            return newArray(i);
+        }
+    }
 
     public DescriptionResult(long j, String str) {
         m.checkNotNullParameter(str, "hubName");

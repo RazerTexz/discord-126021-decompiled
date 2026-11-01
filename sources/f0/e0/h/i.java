@@ -6,18 +6,16 @@ import d0.t.u;
 import d0.z.d.m;
 import f0.c0;
 import f0.e0.g.k;
-import f0.e0.g.m$a;
 import f0.t;
 import f0.v;
 import f0.w;
-import f0.w$a;
 import f0.x;
 import f0.y;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.ProtocolException;
-import java.net.Proxy$Type;
+import java.net.Proxy;
 import java.net.SocketTimeoutException;
 import java.security.cert.CertificateException;
 import java.util.Collection;
@@ -28,11 +26,9 @@ import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.net.ssl.SSLSocketFactory;
 import kotlin.text.Regex;
-import okhttp3.Headers$a;
+import okhttp3.Headers;
 import okhttp3.Interceptor;
-import okhttp3.Interceptor$Chain;
 import okhttp3.Request;
-import okhttp3.Request$a;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
@@ -84,7 +80,7 @@ public final class i implements Interceptor {
                 if (c0Var == null) {
                     m.throwNpe();
                 }
-                if (c0Var.f3603b.type() == Proxy$Type.HTTP) {
+                if (c0Var.f3603b.type() == Proxy.Type.HTTP) {
                     return this.f3629b.f3686z.a(c0Var, response);
                 }
                 throw new ProtocolException("Received HTTP_PROXY_AUTH (407) code while not using proxy");
@@ -119,36 +115,36 @@ public final class i implements Interceptor {
         w wVar = response.request.url;
         Objects.requireNonNull(wVar);
         m.checkParameterIsNotNull(strA, "link");
-        w$a w_aG = wVar.g(strA);
-        w wVarB = w_aG != null ? w_aG.b() : null;
+        w.a aVarG = wVar.g(strA);
+        w wVarB = aVarG != null ? aVarG.b() : null;
         if (wVarB == null) {
             return null;
         }
         if (!m.areEqual(wVarB.d, response.request.url.d) && !this.f3629b.u) {
             return null;
         }
-        Request$a request$a = new Request$a(response.request);
+        Request.a aVar = new Request.a(response.request);
         if (f.a(str)) {
             int i2 = response.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String;
             m.checkParameterIsNotNull(str, "method");
             boolean z2 = m.areEqual(str, "PROPFIND") || i2 == 308 || i2 == 307;
             m.checkParameterIsNotNull(str, "method");
             if (!(!m.areEqual(str, "PROPFIND")) || i2 == 308 || i2 == 307) {
-                request$a.c(str, z2 ? response.request.body : null);
+                aVar.c(str, z2 ? response.request.body : null);
             } else {
-                request$a.c(ShareTarget.METHOD_GET, null);
+                aVar.c(ShareTarget.METHOD_GET, null);
             }
             if (!z2) {
-                request$a.d("Transfer-Encoding");
-                request$a.d("Content-Length");
-                request$a.d("Content-Type");
+                aVar.d("Transfer-Encoding");
+                aVar.d("Content-Length");
+                aVar.d("Content-Type");
             }
         }
         if (!f0.e0.c.a(response.request.url, wVarB)) {
-            request$a.d("Authorization");
+            aVar.d("Authorization");
         }
-        request$a.g(wVarB);
-        return request$a.a();
+        aVar.g(wVarB);
+        return aVar.a();
     }
 
     public final boolean b(IOException iOException, f0.e0.g.e eVar, Request request, boolean z2) {
@@ -188,8 +184,8 @@ public final class i implements Interceptor {
             if (c0Var != null) {
                 dVar.f = c0Var;
             } else {
-                m$a m_a = dVar.a;
-                if ((m_a == null || !m_a.a()) && (mVar = dVar.f3615b) != null) {
+                f0.e0.g.m.a aVar = dVar.a;
+                if ((aVar == null || !aVar.a()) && (mVar = dVar.f3615b) != null) {
                     zA = mVar.a();
                 }
             }
@@ -255,7 +251,7 @@ public final class i implements Interceptor {
     /* JADX WARN: Type inference failed for: r3v11 */
     /* JADX WARN: Type inference failed for: r3v18 */
     @Override // okhttp3.Interceptor
-    public Response intercept(Interceptor$Chain interceptor$Chain) throws Throwable {
+    public Response intercept(Interceptor.Chain chain) throws Throwable {
         ?? r1;
         List listPlus;
         boolean z2;
@@ -266,8 +262,8 @@ public final class i implements Interceptor {
         HostnameVerifier hostnameVerifier;
         f0.g gVar;
         ?? r3 = this;
-        m.checkParameterIsNotNull(interceptor$Chain, "chain");
-        g gVar2 = (g) interceptor$Chain;
+        m.checkParameterIsNotNull(chain, "chain");
+        g gVar2 = (g) chain;
         Request request = gVar2.f;
         f0.e0.g.e eVar = gVar2.f3628b;
         boolean z3 = true;
@@ -344,7 +340,7 @@ public final class i implements Interceptor {
                                 int i3 = responseA.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String;
                                 String str2 = responseA.message;
                                 v vVar = responseA.handshake;
-                                Headers$a headers$aE = responseA.headers.e();
+                                Headers.a aVarE = responseA.headers.e();
                                 ResponseBody responseBody = responseA.body;
                                 Response response2 = responseA.networkResponse;
                                 Response response3 = responseA.cacheResponse;
@@ -360,7 +356,7 @@ public final class i implements Interceptor {
                                     int i4 = response4.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String;
                                     String str3 = response4.message;
                                     v vVar2 = response4.handshake;
-                                    Headers$a headers$aE2 = response4.headers.e();
+                                    Headers.a aVarE2 = response4.headers.e();
                                     Response response5 = response4.networkResponse;
                                     Response response6 = response4.cacheResponse;
                                     Response response7 = response4.priorResponse;
@@ -379,7 +375,7 @@ public final class i implements Interceptor {
                                     if (str3 == null) {
                                         throw new IllegalStateException("message == null".toString());
                                     }
-                                    Response response8 = new Response(request4, yVar2, str3, i4, vVar2, headers$aE2.c(), null, response5, response6, response7, j3, j4, cVar2);
+                                    Response response8 = new Response(request4, yVar2, str3, i4, vVar2, aVarE2.c(), null, response5, response6, response7, j3, j4, cVar2);
                                     if (!(response8.body == null)) {
                                         throw new IllegalArgumentException("priorResponse.body != null".toString());
                                     }
@@ -395,7 +391,7 @@ public final class i implements Interceptor {
                                     if (str2 == null) {
                                         throw new IllegalStateException("message == null".toString());
                                     }
-                                    responseA = new Response(request3, yVar, str2, i3, vVar, headers$aE.c(), responseBody, response2, response3, response8, j, j2, cVar);
+                                    responseA = new Response(request3, yVar, str2, i3, vVar, aVarE.c(), responseBody, response2, response3, response8, j, j2, cVar);
                                     r22 = r21;
                                 } catch (Throwable th3) {
                                     th = th3;

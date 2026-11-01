@@ -2,7 +2,9 @@ package com.discord.widgets.chat.input.gifpicker;
 
 import android.content.Context;
 import android.view.View;
+import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -10,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import b.a.d.g0;
 import b.a.d.i0;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetGifPickerBinding;
 import com.discord.utilities.dimen.DimenUtils;
@@ -20,6 +22,7 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Lazy;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -39,8 +42,70 @@ public final class WidgetGifPicker extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifPicker$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGifPicker.kt */
+    public final class AnonymousClass1 extends o implements Function1<GifPickerViewModel.ViewState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GifPickerViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GifPickerViewModel.ViewState viewState) {
+            m.checkNotNullParameter(viewState, "viewState");
+            WidgetGifPicker.access$handleViewState(WidgetGifPicker.this, viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifPicker$setWindowInsetsListeners$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGifPicker.kt */
+    public final class AnonymousClass1 implements OnApplyWindowInsetsListener {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            m.checkNotNullExpressionValue(view, "view");
+            m.checkNotNullExpressionValue(windowInsetsCompat, "insets");
+            view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), windowInsetsCompat.getSystemWindowInsetBottom());
+            return windowInsetsCompat.consumeSystemWindowInsets();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifPicker$setWindowInsetsListeners$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGifPicker.kt */
+    public final class AnonymousClass2 implements OnApplyWindowInsetsListener {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            m.checkNotNullExpressionValue(view, "view");
+            m.checkNotNullExpressionValue(windowInsetsCompat, "insets");
+            view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), windowInsetsCompat.getSystemWindowInsetBottom());
+            return windowInsetsCompat.consumeSystemWindowInsets();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifPicker$setWindowInsetsListeners$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGifPicker.kt */
+    public final class AnonymousClass3 implements OnApplyWindowInsetsListener {
+        public AnonymousClass3() {
+        }
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            ViewCompat.dispatchApplyWindowInsets(WidgetGifPicker.access$getBinding$p(WidgetGifPicker.this).f2401b, windowInsetsCompat);
+            ViewCompat.dispatchApplyWindowInsets(WidgetGifPicker.access$getBinding$p(WidgetGifPicker.this).d, windowInsetsCompat);
+            return windowInsetsCompat.consumeSystemWindowInsets();
+        }
+    }
+
     public WidgetGifPicker() {
-        super(R$layout.widget_gif_picker);
+        super(R.layout.widget_gif_picker);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGifPicker$binding$2.INSTANCE, null, 2, null);
         WidgetGifPicker$viewModel$2 widgetGifPicker$viewModel$2 = WidgetGifPicker$viewModel$2.INSTANCE;
         g0 g0Var = new g0(this);
@@ -51,8 +116,8 @@ public final class WidgetGifPicker extends AppFragment {
         return widgetGifPicker.getBinding();
     }
 
-    public static final /* synthetic */ void access$handleViewState(WidgetGifPicker widgetGifPicker, GifPickerViewModel$ViewState gifPickerViewModel$ViewState) {
-        widgetGifPicker.handleViewState(gifPickerViewModel$ViewState);
+    public static final /* synthetic */ void access$handleViewState(WidgetGifPicker widgetGifPicker, GifPickerViewModel.ViewState viewState) {
+        widgetGifPicker.handleViewState(viewState);
     }
 
     private final WidgetGifPickerBinding getBinding() {
@@ -63,7 +128,7 @@ public final class WidgetGifPicker extends AppFragment {
         return (GifPickerViewModel) this.viewModel.getValue();
     }
 
-    private final void handleViewState(GifPickerViewModel$ViewState viewState) {
+    private final void handleViewState(GifPickerViewModel.ViewState viewState) {
         RecyclerView recyclerView = getBinding().f2401b;
         m.checkNotNullExpressionValue(recyclerView, "binding.gifPickerCategoryRecycler");
         recyclerView.setVisibility(viewState.getIsLoaded() ? 0 : 8);
@@ -89,7 +154,7 @@ public final class WidgetGifPicker extends AppFragment {
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetGifPicker.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGifPicker$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetGifPicker.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
     public final void scrollToTop() {
@@ -97,7 +162,7 @@ public final class WidgetGifPicker extends AppFragment {
         if (gifCategoryAdapter == null) {
             m.throwUninitializedPropertyAccessException("categoryAdapter");
         }
-        if (gifCategoryAdapter.getItemCount() > 0) {
+        if (gifCategoryAdapter.getPageSize() > 0) {
             getBinding().f2401b.scrollToPosition(0);
         }
     }
@@ -126,8 +191,8 @@ public final class WidgetGifPicker extends AppFragment {
     }
 
     private final void setWindowInsetsListeners() {
-        ViewCompat.setOnApplyWindowInsetsListener(getBinding().f2401b, WidgetGifPicker$setWindowInsetsListeners$1.INSTANCE);
-        ViewCompat.setOnApplyWindowInsetsListener(getBinding().d, WidgetGifPicker$setWindowInsetsListeners$2.INSTANCE);
-        ViewCompat.setOnApplyWindowInsetsListener(getBinding().c, new WidgetGifPicker$setWindowInsetsListeners$3(this));
+        ViewCompat.setOnApplyWindowInsetsListener(getBinding().f2401b, AnonymousClass1.INSTANCE);
+        ViewCompat.setOnApplyWindowInsetsListener(getBinding().d, AnonymousClass2.INSTANCE);
+        ViewCompat.setOnApplyWindowInsetsListener(getBinding().c, new AnonymousClass3());
     }
 }

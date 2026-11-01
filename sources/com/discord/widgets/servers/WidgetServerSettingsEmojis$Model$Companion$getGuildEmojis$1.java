@@ -13,7 +13,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetServerSettingsEmojis$Model$Companion$getGuildEmojis$1 extends o implements Function0<WidgetServerSettingsEmojis$Model> {
+public final class WidgetServerSettingsEmojis$Model$Companion$getGuildEmojis$1 extends o implements Function0<WidgetServerSettingsEmojis.Model> {
     public final /* synthetic */ Guild $guild;
     public final /* synthetic */ StoreGuilds $storeGuild;
     public final /* synthetic */ StoreEmojiGuild $storeGuildEmoji;
@@ -27,19 +27,19 @@ public final class WidgetServerSettingsEmojis$Model$Companion$getGuildEmojis$1 e
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ WidgetServerSettingsEmojis$Model invoke() {
+    public /* bridge */ /* synthetic */ WidgetServerSettingsEmojis.Model invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final WidgetServerSettingsEmojis$Model invoke() {
+    public final WidgetServerSettingsEmojis.Model invoke() {
         long id2 = this.$guild.getId();
         List<ModelEmojiGuild> guildEmoji = this.$storeGuildEmoji.getGuildEmoji(id2);
         Map<Long, GuildMember> mapEmptyMap = this.$storeGuild.getMembers().get(Long.valueOf(id2));
         if (mapEmptyMap == null) {
             mapEmptyMap = h0.emptyMap();
         }
-        return WidgetServerSettingsEmojis$Model$Companion.access$create(WidgetServerSettingsEmojis$Model.Companion, this.$guild, guildEmoji, mapEmptyMap);
+        return WidgetServerSettingsEmojis.Model.Companion.access$create(WidgetServerSettingsEmojis.Model.INSTANCE, this.$guild, guildEmoji, mapEmptyMap);
     }
 }

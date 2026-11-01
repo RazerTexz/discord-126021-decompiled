@@ -1,7 +1,6 @@
 package b.f.j.a.c;
 
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -79,7 +78,7 @@ public class a implements b.f.j.a.a.a {
             }
         }
         if (this.j == null) {
-            this.j = Bitmap.createBitmap(i, i2, Bitmap$Config.ARGB_8888);
+            this.j = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
         }
         this.j.eraseColor(0);
         return this.j;

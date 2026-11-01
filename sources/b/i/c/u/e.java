@@ -1,8 +1,6 @@
 package b.i.c.u;
 
-import b.i.c.u.o.c$a;
 import com.google.firebase.installations.FirebaseInstallationsException;
-import com.google.firebase.installations.FirebaseInstallationsException$a;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -46,7 +44,7 @@ public final /* synthetic */ class e implements Runnable {
             if (dVarB.h()) {
                 dVarJ = fVar.j(dVarB);
             } else {
-                if (dVarB.f() == c$a.UNREGISTERED) {
+                if (dVarB.f() == b.i.c.u.o.c.a.UNREGISTERED) {
                     dVarJ = fVar.j(dVarB);
                 } else if (!z2 && !fVar.f.d(dVarB)) {
                     return;
@@ -77,7 +75,7 @@ public final /* synthetic */ class e implements Runnable {
                 }
             }
             if (dVarJ.h()) {
-                fVar.k(new FirebaseInstallationsException(FirebaseInstallationsException$a.BAD_CONFIG));
+                fVar.k(new FirebaseInstallationsException(FirebaseInstallationsException.a.BAD_CONFIG));
             } else if (dVarJ.i()) {
                 fVar.k(new IOException("Installation ID could not be validated with the Firebase servers (maybe it was deleted). Firebase Installations will need to create a new Installation ID and auth token. Please retry your last request."));
             } else {

@@ -12,7 +12,7 @@ import lombok.core.LombokNode;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/LombokNode.SCL.lombok */
 public abstract class LombokNode<A extends AST<A, L, N>, L extends LombokNode<A, L, N>, N> implements DiagnosticsReceiver {
-    protected final AST$Kind kind;
+    protected final AST.Kind kind;
     protected final N node;
     protected LombokImmutableList<L> children;
     protected L parent;
@@ -48,7 +48,7 @@ public abstract class LombokNode<A extends AST<A, L, N>, L extends LombokNode<A,
 
     public abstract boolean isTransient();
 
-    protected LombokNode(N node, List<L> children, AST$Kind kind) {
+    protected LombokNode(N node, List<L> children, AST.Kind kind) {
         this.kind = kind;
         this.node = node;
         this.children = children != null ? LombokImmutableList.copyOf((Collection) children) : LombokImmutableList.of();
@@ -89,7 +89,7 @@ public abstract class LombokNode<A extends AST<A, L, N>, L extends LombokNode<A,
         return this.node;
     }
 
-    public AST$Kind getKind() {
+    public AST.Kind getKind() {
         return this.kind;
     }
 
@@ -108,20 +108,20 @@ public abstract class LombokNode<A extends AST<A, L, N>, L extends LombokNode<A,
 
     /* JADX WARN: Multi-variable type inference failed */
     public Collection<L> upFromAnnotationToFields() {
-        if (getKind() != AST$Kind.ANNOTATION) {
+        if (getKind() != AST.Kind.ANNOTATION) {
             return Collections.emptyList();
         }
         LombokNode lombokNodeUp = up();
-        if (lombokNodeUp == null || lombokNodeUp.getKind() != AST$Kind.FIELD) {
+        if (lombokNodeUp == null || lombokNodeUp.getKind() != AST.Kind.FIELD) {
             return Collections.emptyList();
         }
         LombokNode lombokNodeUp2 = lombokNodeUp.up();
-        if (lombokNodeUp2 == null || lombokNodeUp2.getKind() != AST$Kind.TYPE) {
+        if (lombokNodeUp2 == null || lombokNodeUp2.getKind() != AST.Kind.TYPE) {
             return Collections.emptyList();
         }
         List<L> fields = new ArrayList<>();
         for (L potentialField : lombokNodeUp2.down()) {
-            if (potentialField.getKind() == AST$Kind.FIELD && fieldContainsAnnotation(potentialField.get(), get())) {
+            if (potentialField.getKind() == AST.Kind.FIELD && fieldContainsAnnotation(potentialField.get(), get())) {
                 fields.add(potentialField);
             }
         }
@@ -162,9 +162,9 @@ public abstract class LombokNode<A extends AST<A, L, N>, L extends LombokNode<A,
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
      */
-    public L add(N n, AST$Kind aST$Kind) {
+    public L add(N n, AST.Kind kind) {
         getAst().setChanged();
-        L l = (L) getAst().buildTree(n, aST$Kind);
+        L l = (L) getAst().buildTree(n, kind);
         if (l == null) {
             return null;
         }

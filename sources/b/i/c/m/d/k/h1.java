@@ -17,10 +17,18 @@ import java.util.concurrent.TimeoutException;
 /* JADX INFO: compiled from: Utils.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class h1 {
-    public static final FilenameFilter a = new h1$a();
+    public static final FilenameFilter a = new a();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final ExecutorService f1687b = b.i.a.f.e.o.f.n("awaitEvenIfOnMainThread task continuation executor");
+
+    /* JADX INFO: compiled from: Utils.java */
+    public class a implements FilenameFilter {
+        @Override // java.io.FilenameFilter
+        public boolean accept(File file, String str) {
+            return true;
+        }
+    }
 
     public static <T> T a(Task<T> task) throws InterruptedException, TimeoutException {
         CountDownLatch countDownLatch = new CountDownLatch(1);

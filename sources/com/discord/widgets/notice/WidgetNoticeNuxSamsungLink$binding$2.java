@@ -2,7 +2,7 @@ package com.discord.widgets.notice;
 
 import android.view.View;
 import android.widget.LinearLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetNoticeNuxSamsungLinkBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -26,11 +26,11 @@ public final /* synthetic */ class WidgetNoticeNuxSamsungLink$binding$2 extends 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetNoticeNuxSamsungLinkBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = 2131362294;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(2131362294);
+        int i = R.id.cancel_button;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.cancel_button);
         if (materialButton != null) {
-            i = R$id.enable_button;
-            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.enable_button);
+            i = R.id.enable_button;
+            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.enable_button);
             if (materialButton2 != null) {
                 return new WidgetNoticeNuxSamsungLinkBinding((LinearLayout) view, materialButton, materialButton2);
             }

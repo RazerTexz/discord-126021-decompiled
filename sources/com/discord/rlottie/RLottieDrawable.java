@@ -15,17 +15,21 @@ import android.view.View;
 import androidx.annotation.RawRes;
 import com.discord.models.domain.ModelAuditLogEntry;
 import d0.g0.c;
+import d0.t.k;
 import d0.z.d.m;
 import java.io.File;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Ref$IntRef;
 
 /* JADX INFO: compiled from: RLottieDrawable.kt */
@@ -68,18 +72,195 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
     /* JADX INFO: renamed from: z, reason: collision with root package name */
     public volatile boolean f2769z;
     public static ThreadPoolExecutor n;
-    public static final RLottieDrawable$Companion o = new RLottieDrawable$Companion(null);
+    public static final Companion o = new Companion(null);
     public int p;
     public int q;
     public final int[] r;
     public Integer[] t;
     public final HashMap<String, Integer> u;
     public volatile HashMap<String, Integer> v;
-    public RLottieDrawable$PlaybackMode w;
+    public PlaybackMode w;
     public static final Handler j = new Handler(Looper.getMainLooper());
     public static byte[] k = new byte[65536];
     public static final byte[] l = new byte[4096];
     public static final ExecutorService m = Executors.newCachedThreadPool();
+
+    /* JADX INFO: compiled from: RLottieDrawable.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final native long create(String str, int i, int i2, int[] iArr, boolean z2, int[] iArr2, boolean z3);
+
+        public final native void createCache(long j, int i, int i2);
+
+        public final native long createWithJson(String str, String str2, int[] iArr, int[] iArr2);
+
+        public final native int getFrame(long j, int i, Bitmap bitmap, int i2, int i3, int i4, boolean z2);
+
+        public final native void replaceColors(long j, int[] iArr);
+
+        public final native void setLayerColor(long j, String str, int i);
+    }
+
+    /* JADX INFO: compiled from: RLottieDrawable.kt */
+    public enum PlaybackMode {
+        LOOP,
+        ONCE,
+        FREEZE
+    }
+
+    /* JADX INFO: compiled from: java-style lambda group */
+    /* JADX INFO: loaded from: classes2.dex */
+    public final class a implements Runnable {
+        public final /* synthetic */ int j;
+        public final /* synthetic */ Object k;
+
+        public a(int i, Object obj) {
+            this.j = i;
+            this.k = obj;
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            ThreadPoolExecutor threadPoolExecutor;
+            switch (this.j) {
+                case 0:
+                    Objects.requireNonNull((RLottieDrawable) this.k);
+                    if (((RLottieDrawable) this.k).Q == 0) {
+                        RLottieDrawable.j.post(((RLottieDrawable) this.k).S);
+                        return;
+                    }
+                    if (((RLottieDrawable) this.k).E == null) {
+                        try {
+                            RLottieDrawable rLottieDrawable = (RLottieDrawable) this.k;
+                            rLottieDrawable.E = Bitmap.createBitmap(rLottieDrawable.p, rLottieDrawable.q, Bitmap.Config.ARGB_8888);
+                        } catch (Throwable th) {
+                            Log.e("RLottieDrawable", "Error Loading Frame in Runnable", th);
+                        }
+                        break;
+                    }
+                    if (((RLottieDrawable) this.k).E != null) {
+                        try {
+                            if (!((RLottieDrawable) this.k).v.isEmpty()) {
+                                for (Map.Entry<String, Integer> entry : ((RLottieDrawable) this.k).v.entrySet()) {
+                                    RLottieDrawable.o.setLayerColor(((RLottieDrawable) this.k).Q, entry.getKey(), entry.getValue().intValue());
+                                }
+                                ((RLottieDrawable) this.k).v.clear();
+                            }
+                            break;
+                        } catch (Exception unused) {
+                        }
+                        RLottieDrawable rLottieDrawable2 = (RLottieDrawable) this.k;
+                        Integer[] numArr = rLottieDrawable2.t;
+                        if (numArr != null) {
+                            RLottieDrawable.o.replaceColors(rLottieDrawable2.Q, k.toIntArray(numArr));
+                        }
+                        RLottieDrawable rLottieDrawable3 = (RLottieDrawable) this.k;
+                        rLottieDrawable3.t = null;
+                        try {
+                            Companion companion = RLottieDrawable.o;
+                            long j = rLottieDrawable3.Q;
+                            RLottieDrawable rLottieDrawable4 = (RLottieDrawable) this.k;
+                            int i = rLottieDrawable4.I;
+                            Bitmap bitmap = rLottieDrawable4.E;
+                            if (bitmap == null) {
+                                m.throwNpe();
+                            }
+                            RLottieDrawable rLottieDrawable5 = (RLottieDrawable) this.k;
+                            int i2 = rLottieDrawable5.p;
+                            int i3 = rLottieDrawable5.q;
+                            Bitmap bitmap2 = rLottieDrawable5.E;
+                            if (bitmap2 == null) {
+                                m.throwNpe();
+                            }
+                            if (companion.getFrame(j, i, bitmap, i2, i3, bitmap2.getRowBytes(), true) == -1) {
+                                RLottieDrawable.j.post(((RLottieDrawable) this.k).S);
+                                return;
+                            }
+                            RLottieDrawable rLottieDrawable6 = (RLottieDrawable) this.k;
+                            int i4 = 2;
+                            if (rLottieDrawable6.r[2] != 0) {
+                                RLottieDrawable.j.post(rLottieDrawable6.W);
+                                ((RLottieDrawable) this.k).r[2] = 0;
+                            }
+                            RLottieDrawable rLottieDrawable7 = (RLottieDrawable) this.k;
+                            rLottieDrawable7.D = rLottieDrawable7.E;
+                            RLottieDrawable rLottieDrawable8 = (RLottieDrawable) this.k;
+                            if (!rLottieDrawable8.J) {
+                                i4 = 1;
+                            }
+                            int i5 = rLottieDrawable8.I + i4;
+                            if (i5 >= rLottieDrawable8.r[0]) {
+                                PlaybackMode playbackMode = rLottieDrawable8.w;
+                                if (playbackMode == PlaybackMode.LOOP) {
+                                    rLottieDrawable8.I = 0;
+                                    rLottieDrawable8.f2769z = false;
+                                } else if (playbackMode == PlaybackMode.ONCE) {
+                                    rLottieDrawable8.I = 0;
+                                    rLottieDrawable8.f2769z = true;
+                                    ((RLottieDrawable) this.k).f2767x++;
+                                } else {
+                                    rLottieDrawable8.f2769z = true;
+                                }
+                            } else if (rLottieDrawable8.w == PlaybackMode.FREEZE) {
+                                rLottieDrawable8.f2769z = true;
+                                ((RLottieDrawable) this.k).f2767x++;
+                            } else {
+                                rLottieDrawable8.I = i5;
+                                rLottieDrawable8.f2769z = false;
+                            }
+                        } catch (Exception e) {
+                            Log.e("RLottieDrawable", "Error loading frame", e);
+                        }
+                    }
+                    RLottieDrawable.j.post(((RLottieDrawable) this.k).U);
+                    return;
+                case 1:
+                    RLottieDrawable rLottieDrawable9 = (RLottieDrawable) this.k;
+                    rLottieDrawable9.G = true;
+                    rLottieDrawable9.c();
+                    RLottieDrawable.a((RLottieDrawable) this.k);
+                    return;
+                case 2:
+                    RLottieDrawable rLottieDrawable10 = (RLottieDrawable) this.k;
+                    rLottieDrawable10.A = null;
+                    RLottieDrawable.a(rLottieDrawable10);
+                    return;
+                case 3:
+                    Objects.requireNonNull((RLottieDrawable) this.k);
+                    Objects.requireNonNull((RLottieDrawable) this.k);
+                    if (((RLottieDrawable) this.k).Q != 0 && (threadPoolExecutor = RLottieDrawable.n) != null) {
+                        RLottieDrawable rLottieDrawable11 = (RLottieDrawable) this.k;
+                        Runnable runnable = rLottieDrawable11.V;
+                        rLottieDrawable11.A = runnable;
+                        threadPoolExecutor.execute(runnable);
+                    }
+                    RLottieDrawable.a((RLottieDrawable) this.k);
+                    return;
+                case 4:
+                    RLottieDrawable rLottieDrawable12 = (RLottieDrawable) this.k;
+                    if (rLottieDrawable12.A != null) {
+                        Companion companion2 = RLottieDrawable.o;
+                        long j2 = rLottieDrawable12.Q;
+                        RLottieDrawable rLottieDrawable13 = (RLottieDrawable) this.k;
+                        companion2.createCache(j2, rLottieDrawable13.p, rLottieDrawable13.q);
+                        RLottieDrawable.j.post(((RLottieDrawable) this.k).T);
+                        return;
+                    }
+                    return;
+                case 5:
+                    throw null;
+                case 6:
+                    RLottieDrawable rLottieDrawable14 = (RLottieDrawable) this.k;
+                    rLottieDrawable14.B = null;
+                    RLottieDrawable.a(rLottieDrawable14);
+                    return;
+                default:
+                    throw null;
+            }
+        }
+    }
 
     public RLottieDrawable(File file, int i, int i2, boolean z2, boolean z3, float f, int[] iArr, int i3) {
         m.checkParameterIsNotNull(file, "file");
@@ -87,18 +268,18 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         this.r = iArr2;
         this.u = new HashMap<>();
         this.v = new HashMap<>();
-        this.w = RLottieDrawable$PlaybackMode.LOOP;
+        this.w = PlaybackMode.LOOP;
         this.K = 60.0f;
         this.L = 1.0f;
         this.M = 1.0f;
         this.O = new Rect();
         this.R = new ArrayList<>();
-        this.S = new RLottieDrawable$a(6, this);
-        this.T = new RLottieDrawable$a(2, this);
-        this.U = new RLottieDrawable$a(1, this);
-        this.V = new RLottieDrawable$a(4, this);
-        this.W = new RLottieDrawable$a(3, this);
-        this.X = new RLottieDrawable$a(0, this);
+        this.S = new a(6, this);
+        this.T = new a(2, this);
+        this.U = new a(1, this);
+        this.V = new a(4, this);
+        this.W = new a(3, this);
+        this.X = new a(0, this);
         this.p = i;
         this.q = i2;
         this.J = z3;
@@ -106,10 +287,10 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         Paint paint = getPaint();
         m.checkExpressionValueIsNotNull(paint, "paint");
         paint.setFlags(2);
-        RLottieDrawable$Companion rLottieDrawable$Companion = o;
+        Companion companion = o;
         String absolutePath = file.getAbsolutePath();
         m.checkExpressionValueIsNotNull(absolutePath, "file.absolutePath");
-        this.Q = rLottieDrawable$Companion.create(absolutePath, i, i2, iArr2, z2, null, this.J);
+        this.Q = companion.create(absolutePath, i, i2, iArr2, z2, null, this.J);
         if (z2 && n == null) {
             n = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue());
         }
@@ -301,12 +482,12 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         }
     }
 
-    public final void f(RLottieDrawable$PlaybackMode rLottieDrawable$PlaybackMode) {
-        m.checkParameterIsNotNull(rLottieDrawable$PlaybackMode, "value");
-        if (this.w == RLottieDrawable$PlaybackMode.ONCE && rLottieDrawable$PlaybackMode == RLottieDrawable$PlaybackMode.FREEZE && this.I != 0) {
+    public final void f(PlaybackMode playbackMode) {
+        m.checkParameterIsNotNull(playbackMode, "value");
+        if (this.w == PlaybackMode.ONCE && playbackMode == PlaybackMode.FREEZE && this.I != 0) {
             return;
         }
-        this.w = rLottieDrawable$PlaybackMode;
+        this.w = playbackMode;
     }
 
     @Override // android.graphics.drawable.BitmapDrawable, android.graphics.drawable.Drawable
@@ -351,7 +532,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         if (this.P) {
             return;
         }
-        if (this.w.compareTo(RLottieDrawable$PlaybackMode.ONCE) < 0 || this.f2767x == 0) {
+        if (this.w.compareTo(PlaybackMode.ONCE) < 0 || this.f2767x == 0) {
             this.P = true;
             d();
             c();
@@ -369,18 +550,18 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
         this.r = new int[3];
         this.u = new HashMap<>();
         this.v = new HashMap<>();
-        this.w = RLottieDrawable$PlaybackMode.LOOP;
+        this.w = PlaybackMode.LOOP;
         this.K = 60.0f;
         this.L = 1.0f;
         this.M = 1.0f;
         this.O = new Rect();
         this.R = new ArrayList<>();
-        this.S = new RLottieDrawable$a(6, this);
-        this.T = new RLottieDrawable$a(2, this);
-        this.U = new RLottieDrawable$a(1, this);
-        this.V = new RLottieDrawable$a(4, this);
-        this.W = new RLottieDrawable$a(3, this);
-        this.X = new RLottieDrawable$a(0, this);
+        this.S = new a(6, this);
+        this.T = new a(2, this);
+        this.U = new a(1, this);
+        this.V = new a(4, this);
+        this.W = new a(3, this);
+        this.X = new a(0, this);
         try {
             InputStream inputStreamOpenRawResource = context.getResources().openRawResource(i);
             m.checkExpressionValueIsNotNull(inputStreamOpenRawResource, "context.resources.openRawResource(rawRes)");
@@ -412,7 +593,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable {
             paint.setFlags(2);
             this.Q = o.createWithJson(str2, str, this.r, iArr);
             this.f2766s = Math.max(16, (int) (1000.0f / this.r[1]));
-            this.w = RLottieDrawable$PlaybackMode.LOOP;
+            this.w = PlaybackMode.LOOP;
             if (z2) {
                 e(true);
             }

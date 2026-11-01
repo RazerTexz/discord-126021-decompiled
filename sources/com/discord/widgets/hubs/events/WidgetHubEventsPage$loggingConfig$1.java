@@ -30,7 +30,7 @@ public final class WidgetHubEventsPage$loggingConfig$1 extends o implements Func
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final AnalyticsSchema invoke() {
-        RestCallState<List<DirectoryEntryEvent>> guildScheduledEventsForChannel = StoreStream.Companion.getDirectories().getGuildScheduledEventsForChannel(this.this$0.getArgs().getDirectoryChannelId());
+        RestCallState<List<DirectoryEntryEvent>> guildScheduledEventsForChannel = StoreStream.INSTANCE.getDirectories().getGuildScheduledEventsForChannel(this.this$0.getArgs().getDirectoryChannelId());
         List<DirectoryEntryEvent> listInvoke = guildScheduledEventsForChannel != null ? guildScheduledEventsForChannel.invoke() : null;
         if (listInvoke == null) {
             listInvoke = n.emptyList();

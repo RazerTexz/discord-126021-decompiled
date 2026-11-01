@@ -3,7 +3,7 @@ package b.a.i;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.views.CutoutView;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -25,11 +25,11 @@ public final class f4 implements ViewBinding {
 
     @NonNull
     public static f4 a(@NonNull View view) {
-        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.avatar);
+        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.avatar);
         if (simpleDraweeView != null) {
             return new f4((CutoutView) view, simpleDraweeView);
         }
-        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R$id.avatar)));
+        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R.id.avatar)));
     }
 
     @Override // androidx.viewbinding.ViewBinding

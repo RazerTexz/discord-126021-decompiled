@@ -3,6 +3,7 @@ package b.i.b.b;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import com.google.errorprone.annotations.concurrent.LazyInit;
 import com.google.j2objc.annotations.RetainedWith;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
@@ -19,6 +20,20 @@ public abstract class r<E> extends n<E> implements Set<E> {
     @NullableDecl
     @LazyInit
     public transient p<E> l;
+
+    /* JADX INFO: compiled from: ImmutableSet.java */
+    public class a implements Serializable {
+        private static final long serialVersionUID = 0;
+        public final Object[] elements;
+
+        public a(Object[] objArr) {
+            this.elements = objArr;
+        }
+
+        public Object readResolve() {
+            return r.n(this.elements);
+        }
+    }
 
     @Override // b.i.b.b.n
     public p<E> c() {
@@ -159,6 +174,6 @@ public abstract class r<E> extends n<E> implements Set<E> {
 
     @Override // b.i.b.b.n
     public Object writeReplace() {
-        return new r$a(toArray());
+        return new a(toArray());
     }
 }

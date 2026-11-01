@@ -2,7 +2,7 @@ package com.discord.widgets.channels.list;
 
 import b.d.b.a.a;
 import com.discord.api.channel.Channel;
-import com.discord.stores.StoreThreadsJoined$JoinedThread;
+import com.discord.stores.StoreThreadsJoined;
 import com.discord.utilities.channel.GuildChannelsInfo;
 import com.discord.widgets.channels.list.items.ChannelListItemThread;
 import d0.t.n;
@@ -92,7 +92,7 @@ public final class WidgetChannelListModel$Companion$guildListBuilder$$inlined$fo
         if (collection != null) {
             listEmptyList = new ArrayList();
             for (Channel channel2 : collection) {
-                ChannelListItemThread channelListItemThreadInvoke2 = this.$toChannelListItemThread$4.invoke2(channel2, (StoreThreadsJoined$JoinedThread) a.d(channel2, this.$joinedThreads$inlined));
+                ChannelListItemThread channelListItemThreadInvoke2 = this.$toChannelListItemThread$4.invoke2(channel2, (StoreThreadsJoined.JoinedThread) a.d(channel2, this.$joinedThreads$inlined));
                 if (channelListItemThreadInvoke2 != null) {
                     listEmptyList.add(channelListItemThreadInvoke2);
                 }

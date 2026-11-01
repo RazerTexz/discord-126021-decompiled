@@ -1,7 +1,6 @@
 package b.a.k.h;
 
 import com.discord.simpleast.core.node.Node;
-import com.discord.simpleast.core.node.Node$a;
 import com.discord.simpleast.core.parser.ParseSpec;
 import com.discord.simpleast.core.parser.Parser;
 import com.discord.simpleast.core.parser.Rule;
@@ -24,10 +23,10 @@ public final class a<T> extends Rule<T, Node<T>, b.a.k.g.c> {
         m.checkNotNullParameter(parser, "parser");
         m.checkNotNullParameter(cVar2, "state");
         b.a.k.g.c cVar3 = new b.a.k.g.c(true, cVar2.f246b);
-        Node$a node$a = new Node$a(new Node[0]);
+        Node.a aVar = new Node.a(new Node[0]);
         int iStart = matcher.start(1);
         int iEnd = matcher.end(1);
-        m.checkNotNullParameter(node$a, "node");
-        return new ParseSpec(node$a, cVar3, iStart, iEnd);
+        m.checkNotNullParameter(aVar, "node");
+        return new ParseSpec(aVar, cVar3, iStart, iEnd);
     }
 }

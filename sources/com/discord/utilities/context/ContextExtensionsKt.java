@@ -5,7 +5,7 @@ import android.content.ContextWrapper;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.LocaleList;
 import android.util.AttributeSet;
 import androidx.annotation.StyleableRes;
@@ -38,7 +38,7 @@ public final class ContextExtensionsKt {
         Configuration configuration2;
         LocaleList locales;
         m.checkNotNullParameter(context, "$this$getLocaleOrNull");
-        if (Build$VERSION.SDK_INT < 24) {
+        if (Build.VERSION.SDK_INT < 24) {
             Resources resources = context.getResources();
             if (resources == null || (configuration = resources.getConfiguration()) == null) {
                 return null;

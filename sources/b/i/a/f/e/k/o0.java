@@ -1,14 +1,14 @@
 package b.i.a.f.e.k;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.common.internal.ConnectionTelemetryConfiguration;
 import com.google.android.gms.common.internal.RootTelemetryConfiguration;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class o0 implements Parcelable$Creator<ConnectionTelemetryConfiguration> {
-    @Override // android.os.Parcelable$Creator
+public final class o0 implements Parcelable.Creator<ConnectionTelemetryConfiguration> {
+    @Override // android.os.Parcelable.Creator
     public final ConnectionTelemetryConfiguration createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         RootTelemetryConfiguration rootTelemetryConfiguration = null;
@@ -47,7 +47,7 @@ public final class o0 implements Parcelable$Creator<ConnectionTelemetryConfigura
         return new ConnectionTelemetryConfiguration(rootTelemetryConfiguration, zE1, zE2, iArrO, iG1, iArrO2);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* bridge */ /* synthetic */ ConnectionTelemetryConfiguration[] newArray(int i) {
         return new ConnectionTelemetryConfiguration[i];
     }

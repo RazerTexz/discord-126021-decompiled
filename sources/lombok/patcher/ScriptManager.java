@@ -1,11 +1,14 @@
 package lombok.patcher;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.instrument.ClassFileTransformer;
+import java.lang.instrument.IllegalClassFormatException;
 import java.lang.instrument.Instrumentation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.security.ProtectionDomain;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,11 +21,25 @@ import java.util.jar.JarFile;
 public class ScriptManager {
     private static final boolean LOG_TO_STANDARD_ERR = false;
     private final List<PatchScript> scripts = new ArrayList();
-    private final Map<String, List<ScriptManager$WitnessAction>> witnessActions = new HashMap();
+    private final Map<String, List<WitnessAction>> witnessActions = new HashMap();
     private TransplantMapper transplantMapper = TransplantMapper.IDENTITY_MAPPER;
     private Filter filter = Filter.ALWAYS;
     private static final String DEBUG_PATCHING = System.getProperty("lombok.patcher.patchDebugDir", null);
-    private final ScriptManager$OurClassFileTransformer transformer = new ScriptManager$OurClassFileTransformer(this, null);
+    private final OurClassFileTransformer transformer = new OurClassFileTransformer(this, null);
+
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/ScriptManager$WitnessAction.SCL.lombok */
+    final class WitnessAction {
+        boolean triggered;
+        boolean ifWitnessRemove;
+        PatchScript script;
+
+        private WitnessAction() {
+        }
+
+        /* synthetic */ WitnessAction(WitnessAction witnessAction) {
+            this();
+        }
+    }
 
     static /* synthetic */ List access$1(ScriptManager scriptManager) {
         return scriptManager.scripts;
@@ -45,11 +62,11 @@ public class ScriptManager {
     }
 
     public void addScriptIfWitness(String[] witness, PatchScript script) {
-        ScriptManager$WitnessAction wa = new ScriptManager$WitnessAction(null);
+        WitnessAction wa = new WitnessAction(null);
         wa.ifWitnessRemove = false;
         wa.script = script;
         for (String w : witness) {
-            List<ScriptManager$WitnessAction> list = this.witnessActions.get(w);
+            List<WitnessAction> list = this.witnessActions.get(w);
             if (list == null) {
                 list = new ArrayList();
                 this.witnessActions.put(w, list);
@@ -59,12 +76,12 @@ public class ScriptManager {
     }
 
     public void addScriptIfNotWitness(String[] witness, PatchScript script) {
-        ScriptManager$WitnessAction wa = new ScriptManager$WitnessAction(null);
+        WitnessAction wa = new WitnessAction(null);
         wa.ifWitnessRemove = true;
         wa.script = script;
         this.scripts.add(script);
         for (String w : witness) {
-            List<ScriptManager$WitnessAction> list = this.witnessActions.get(w);
+            List<WitnessAction> list = this.witnessActions.get(w);
             if (list == null) {
                 list = new ArrayList();
                 this.witnessActions.put(w, list);
@@ -106,6 +123,75 @@ public class ScriptManager {
 
     static /* synthetic */ String access$4() {
         return DEBUG_PATCHING;
+    }
+
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/ScriptManager$OurClassFileTransformer.SCL.lombok */
+    class OurClassFileTransformer implements ClassFileTransformer {
+        private OurClassFileTransformer() {
+        }
+
+        /* synthetic */ OurClassFileTransformer(ScriptManager scriptManager, OurClassFileTransformer ourClassFileTransformer) {
+            this();
+        }
+
+        public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
+            byte[] transformed;
+            if (className == null) {
+                return null;
+            }
+            List<WitnessAction> actions = (List) ScriptManager.access$0(ScriptManager.this).get(className);
+            if (actions != null) {
+                for (WitnessAction wa : actions) {
+                    if (!wa.triggered) {
+                        wa.triggered = true;
+                        if (wa.ifWitnessRemove) {
+                            ScriptManager.access$1(ScriptManager.this).remove(wa.script);
+                        } else {
+                            ScriptManager.access$1(ScriptManager.this).add(wa.script);
+                        }
+                    }
+                }
+            }
+            if (!ScriptManager.access$2(ScriptManager.this).shouldTransform(loader, className, classBeingRedefined, protectionDomain, classfileBuffer)) {
+                return null;
+            }
+            byte[] byteCode = classfileBuffer;
+            boolean patched = false;
+            for (PatchScript script : ScriptManager.access$1(ScriptManager.this)) {
+                try {
+                    transformed = script.patch(className, byteCode, ScriptManager.access$3(ScriptManager.this));
+                } catch (Throwable t) {
+                    System.err.printf("Transformer %s failed on %s. Trace:\n", script.getPatchScriptName(), className);
+                    t.printStackTrace();
+                    transformed = null;
+                }
+                if (transformed != null) {
+                    patched = true;
+                    byteCode = transformed;
+                }
+            }
+            if (patched && ScriptManager.access$4() != null) {
+                try {
+                    writeArray(ScriptManager.access$4(), String.valueOf(className) + ".class", byteCode);
+                    writeArray(ScriptManager.access$4(), String.valueOf(className) + "_OLD.class", classfileBuffer);
+                } catch (IOException e) {
+                    System.err.println("Can't log patch result.");
+                    e.printStackTrace();
+                }
+            }
+            if (patched) {
+                return byteCode;
+            }
+            return null;
+        }
+
+        private void writeArray(String dir, String fileName, byte[] bytes) throws IOException {
+            File f = new File(dir, fileName);
+            f.getParentFile().mkdirs();
+            FileOutputStream fos = new FileOutputStream(f);
+            fos.write(bytes);
+            fos.close();
+        }
     }
 
     private static boolean classpathContains(String property, String path) {

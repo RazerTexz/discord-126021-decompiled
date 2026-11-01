@@ -4,38 +4,85 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.R$id;
-import com.discord.R$layout;
+import b.d.b.a.a;
+import com.discord.R;
 import com.discord.databinding.WidgetChatListAdapterItemGuildInviteReminderBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.guild.Guild;
+import com.discord.models.message.Message;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
 import com.discord.widgets.chat.list.entries.MessageEntry;
+import com.discord.widgets.guilds.invite.WidgetGuildInviteShare;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.m;
+import d0.z.d.o;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildInviteReminder.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChatListAdapterItemGuildInviteReminder extends WidgetChatListItem {
     private final WidgetChatListAdapterItemGuildInviteReminderBinding binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildInviteReminder$onConfigure$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildInviteReminder.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetGuildInviteShare.Companion.launch$default(WidgetGuildInviteShare.INSTANCE, a.x(view, "view", "view.context"), WidgetChatListAdapterItemGuildInviteReminder.access$getAdapter$p(WidgetChatListAdapterItemGuildInviteReminder.this).getFragmentManager(), WidgetChatListAdapterItemGuildInviteReminder.access$getAdapter$p(WidgetChatListAdapterItemGuildInviteReminder.this).getData().getGuildId(), null, false, null, null, "Welcome Message", 120, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildInviteReminder$onConfigure$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemGuildInviteReminder.kt */
+    public final class AnonymousClass2 extends o implements Function1<View, Unit> {
+        public final /* synthetic */ ChatListEntry $data;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(ChatListEntry chatListEntry) {
+            super(1);
+            this.$data = chatListEntry;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+            WidgetChatListAdapter.EventHandler eventHandler = WidgetChatListAdapterItemGuildInviteReminder.access$getAdapter$p(WidgetChatListAdapterItemGuildInviteReminder.this).getEventHandler();
+            Message message = ((MessageEntry) this.$data).getMessage();
+            View view2 = WidgetChatListAdapterItemGuildInviteReminder.this.itemView;
+            m.checkNotNullExpressionValue(view2, "itemView");
+            String string = view2.getContext().getString(R.string.system_message_invite_users_owner);
+            m.checkNotNullExpressionValue(string, "itemView.context.getStri…ssage_invite_users_owner)");
+            eventHandler.onMessageLongClicked(message, string, false);
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemGuildInviteReminder(WidgetChatListAdapter widgetChatListAdapter) {
-        super(R$layout.widget_chat_list_adapter_item_guild_invite_reminder, widgetChatListAdapter);
+        super(R.layout.widget_chat_list_adapter_item_guild_invite_reminder, widgetChatListAdapter);
         m.checkNotNullParameter(widgetChatListAdapter, "adapter");
         View view = this.itemView;
-        int i = R$id.chat_action_item_button;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.chat_action_item_button);
+        int i = R.id.chat_action_item_button;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.chat_action_item_button);
         if (materialButton != null) {
-            i = R$id.chat_action_item_image;
-            ImageView imageView = (ImageView) view.findViewById(R$id.chat_action_item_image);
+            i = R.id.chat_action_item_image;
+            ImageView imageView = (ImageView) view.findViewById(R.id.chat_action_item_image);
             if (imageView != null) {
-                i = R$id.chat_action_item_subtext;
-                TextView textView = (TextView) view.findViewById(R$id.chat_action_item_subtext);
+                i = R.id.chat_action_item_subtext;
+                TextView textView = (TextView) view.findViewById(R.id.chat_action_item_subtext);
                 if (textView != null) {
-                    i = R$id.chat_action_item_text;
-                    TextView textView2 = (TextView) view.findViewById(R$id.chat_action_item_text);
+                    i = R.id.chat_action_item_text;
+                    TextView textView2 = (TextView) view.findViewById(R.id.chat_action_item_text);
                     if (textView2 != null) {
                         WidgetChatListAdapterItemGuildInviteReminderBinding widgetChatListAdapterItemGuildInviteReminderBinding = new WidgetChatListAdapterItemGuildInviteReminderBinding((ConstraintLayout) view, materialButton, imageView, textView, textView2);
                         m.checkNotNullExpressionValue(widgetChatListAdapterItemGuildInviteReminderBinding, "WidgetChatListAdapterIte…derBinding.bind(itemView)");
@@ -65,14 +112,14 @@ public final class WidgetChatListAdapterItemGuildInviteReminder extends WidgetCh
         if (data instanceof MessageEntry) {
             Guild guild = ((WidgetChatListAdapter) this.adapter).getData().getGuild();
             boolean zIsOwner = guild != null ? guild.isOwner(((WidgetChatListAdapter) this.adapter).getData().getUserId()) : false;
-            int i = zIsOwner ? 2131896236 : 2131896231;
-            int i2 = zIsOwner ? 2131896235 : 2131896234;
+            int i = zIsOwner ? R.string.system_message_invite_users_owner : R.string.system_message_invite_users;
+            int i2 = zIsOwner ? R.string.system_message_invite_users_description_owner : R.string.system_message_invite_users_description;
             this.binding.d.setText(i);
             this.binding.c.setText(i2);
-            this.binding.f2321b.setOnClickListener(new WidgetChatListAdapterItemGuildInviteReminder$onConfigure$1(this));
+            this.binding.f2321b.setOnClickListener(new AnonymousClass1());
             View view = this.itemView;
             m.checkNotNullExpressionValue(view, "itemView");
-            ViewExtensions.setOnLongClickListenerConsumeClick(view, new WidgetChatListAdapterItemGuildInviteReminder$onConfigure$2(this, data));
+            ViewExtensions.setOnLongClickListenerConsumeClick(view, new AnonymousClass2(data));
         }
     }
 }

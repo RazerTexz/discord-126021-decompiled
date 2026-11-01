@@ -2,7 +2,6 @@ package org.webrtc.voiceengine;
 
 import android.media.audiofx.AcousticEchoCanceler;
 import android.media.audiofx.AudioEffect;
-import android.media.audiofx.AudioEffect$Descriptor;
 import android.media.audiofx.NoiseSuppressor;
 import android.os.Build;
 import androidx.annotation.Nullable;
@@ -20,7 +19,7 @@ public class WebRtcAudioEffects {
     private AcousticEchoCanceler aec;
 
     @Nullable
-    private static AudioEffect$Descriptor[] cachedEffects;
+    private static AudioEffect.Descriptor[] cachedEffects;
 
     @Nullable
     private NoiseSuppressor ns;
@@ -108,14 +107,14 @@ public class WebRtcAudioEffects {
     }
 
     @Nullable
-    private static AudioEffect$Descriptor[] getAvailableEffects() {
-        AudioEffect$Descriptor[] audioEffect$DescriptorArr = cachedEffects;
-        if (audioEffect$DescriptorArr != null) {
-            return audioEffect$DescriptorArr;
+    private static AudioEffect.Descriptor[] getAvailableEffects() {
+        AudioEffect.Descriptor[] descriptorArr = cachedEffects;
+        if (descriptorArr != null) {
+            return descriptorArr;
         }
-        AudioEffect$Descriptor[] audioEffect$DescriptorArrQueryEffects = AudioEffect.queryEffects();
-        cachedEffects = audioEffect$DescriptorArrQueryEffects;
-        return audioEffect$DescriptorArrQueryEffects;
+        AudioEffect.Descriptor[] descriptorArrQueryEffects = AudioEffect.queryEffects();
+        cachedEffects = descriptorArrQueryEffects;
+        return descriptorArrQueryEffects;
     }
 
     public static boolean isAcousticEchoCancelerBlacklisted() {
@@ -133,8 +132,8 @@ public class WebRtcAudioEffects {
     }
 
     private static boolean isAcousticEchoCancelerExcludedByUUID() {
-        for (AudioEffect$Descriptor audioEffect$Descriptor : getAvailableEffects()) {
-            if (audioEffect$Descriptor.type.equals(AudioEffect.EFFECT_TYPE_AEC) && audioEffect$Descriptor.uuid.equals(AOSP_ACOUSTIC_ECHO_CANCELER)) {
+        for (AudioEffect.Descriptor descriptor : getAvailableEffects()) {
+            if (descriptor.type.equals(AudioEffect.EFFECT_TYPE_AEC) && descriptor.uuid.equals(AOSP_ACOUSTIC_ECHO_CANCELER)) {
                 return true;
             }
         }
@@ -146,12 +145,12 @@ public class WebRtcAudioEffects {
     }
 
     private static boolean isEffectTypeAvailable(UUID uuid) {
-        AudioEffect$Descriptor[] availableEffects = getAvailableEffects();
+        AudioEffect.Descriptor[] availableEffects = getAvailableEffects();
         if (availableEffects == null) {
             return false;
         }
-        for (AudioEffect$Descriptor audioEffect$Descriptor : availableEffects) {
-            if (audioEffect$Descriptor.type.equals(uuid)) {
+        for (AudioEffect.Descriptor descriptor : availableEffects) {
+            if (descriptor.type.equals(uuid)) {
                 return true;
             }
         }
@@ -173,8 +172,8 @@ public class WebRtcAudioEffects {
     }
 
     private static boolean isNoiseSuppressorExcludedByUUID() {
-        for (AudioEffect$Descriptor audioEffect$Descriptor : getAvailableEffects()) {
-            if (audioEffect$Descriptor.type.equals(AudioEffect.EFFECT_TYPE_NS) && audioEffect$Descriptor.uuid.equals(AOSP_NOISE_SUPPRESSOR)) {
+        for (AudioEffect.Descriptor descriptor : getAvailableEffects()) {
+            if (descriptor.type.equals(AudioEffect.EFFECT_TYPE_NS) && descriptor.uuid.equals(AOSP_NOISE_SUPPRESSOR)) {
                 return true;
             }
         }

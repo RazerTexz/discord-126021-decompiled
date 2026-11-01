@@ -28,6 +28,33 @@ public abstract class a<V extends View> extends c<V> {
     @Nullable
     private VelocityTracker velocityTracker;
 
+    /* JADX INFO: renamed from: b.i.a.g.a.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: HeaderBehavior.java */
+    public class RunnableC0120a implements Runnable {
+        public final CoordinatorLayout j;
+        public final V k;
+
+        public RunnableC0120a(CoordinatorLayout coordinatorLayout, V v) {
+            this.j = coordinatorLayout;
+            this.k = v;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            OverScroller overScroller;
+            if (this.k == null || (overScroller = a.this.scroller) == null) {
+                return;
+            }
+            if (!overScroller.computeScrollOffset()) {
+                a.this.onFlingFinished(this.j, this.k);
+                return;
+            }
+            a aVar = a.this;
+            aVar.setHeaderTopBottomOffset(this.j, this.k, aVar.scroller.getCurrY());
+            ViewCompat.postOnAnimation(this.k, this);
+        }
+    }
+
     public a() {
         this.activePointerId = -1;
         this.touchSlop = -1;
@@ -55,9 +82,9 @@ public abstract class a<V extends View> extends c<V> {
             onFlingFinished(coordinatorLayout, v);
             return false;
         }
-        a$a a_a = new a$a(this, coordinatorLayout, v);
-        this.flingRunnable = a_a;
-        ViewCompat.postOnAnimation(v, a_a);
+        RunnableC0120a runnableC0120a = new RunnableC0120a(coordinatorLayout, v);
+        this.flingRunnable = runnableC0120a;
+        ViewCompat.postOnAnimation(v, runnableC0120a);
         return true;
     }
 
@@ -69,7 +96,7 @@ public abstract class a<V extends View> extends c<V> {
 
     public abstract void onFlingFinished(CoordinatorLayout coordinatorLayout, V v);
 
-    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout$Behavior
+    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
     public boolean onInterceptTouchEvent(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V v, @NonNull MotionEvent motionEvent) {
         int iFindPointerIndex;
         if (this.touchSlop < 0) {
@@ -114,7 +141,7 @@ public abstract class a<V extends View> extends c<V> {
     /* JADX WARN: Code duplicated, block: B:30:0x0085  */
     /* JADX WARN: Code duplicated, block: B:33:0x008c A[ADDED_TO_REGION] */
     /* JADX WARN: Code duplicated, block: B:37:? A[ADDED_TO_REGION, RETURN, SYNTHETIC] */
-    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout$Behavior
+    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
     public boolean onTouchEvent(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V v, @NonNull MotionEvent motionEvent) {
         boolean z2;
         VelocityTracker velocityTracker;

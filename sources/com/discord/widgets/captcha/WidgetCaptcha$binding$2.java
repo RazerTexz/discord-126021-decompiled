@@ -3,7 +3,7 @@ package com.discord.widgets.captcha;
 import android.view.View;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetCaptchaBinding;
 import com.discord.views.ScreenTitleView;
 import com.google.android.material.button.MaterialButton;
@@ -28,14 +28,14 @@ public final /* synthetic */ class WidgetCaptcha$binding$2 extends k implements 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetCaptchaBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.captcha_help;
-        TextView textView = (TextView) view.findViewById(R$id.captcha_help);
+        int i = R.id.captcha_help;
+        TextView textView = (TextView) view.findViewById(R.id.captcha_help);
         if (textView != null) {
-            i = R$id.captcha_verify;
-            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.captcha_verify);
+            i = R.id.captcha_verify;
+            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.captcha_verify);
             if (materialButton != null) {
-                i = R$id.screen_title;
-                ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(R$id.screen_title);
+                i = R.id.screen_title;
+                ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(R.id.screen_title);
                 if (screenTitleView != null) {
                     return new WidgetCaptchaBinding((CoordinatorLayout) view, textView, materialButton, screenTitleView);
                 }

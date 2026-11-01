@@ -1,21 +1,20 @@
 package d0.e0.p.d.m0.f;
 
-import d0.e0.p.d.m0.i.g$c;
-import d0.e0.p.d.m0.i.g$d;
-import d0.e0.p.d.m0.i.g$d$a;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import kotlin.reflect.jvm.internal.impl.protobuf.CodedOutputStream;
 import kotlin.reflect.jvm.internal.impl.protobuf.InvalidProtocolBufferException;
+import kotlin.reflect.jvm.internal.impl.protobuf.UninitializedMessageException;
 
 /* JADX INFO: compiled from: ProtoBuf.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class q extends g$d<q> implements d0.e0.p.d.m0.i.o {
+public final class q extends d0.e0.p.d.m0.i.g.d<q> implements d0.e0.p.d.m0.i.o {
     private int abbreviatedTypeId_;
     private q abbreviatedType_;
-    private List<q$b> argument_;
+    private List<b> argument_;
     private int bitField0_;
     private int className_;
     private int flags_;
@@ -32,7 +31,760 @@ public final class q extends g$d<q> implements d0.e0.p.d.m0.i.o {
     private int typeParameterName_;
     private int typeParameter_;
     private final d0.e0.p.d.m0.i.c unknownFields;
-    public static d0.e0.p.d.m0.i.p<q> k = new q$a();
+    public static d0.e0.p.d.m0.i.p<q> k = new a();
+
+    /* JADX INFO: compiled from: ProtoBuf.java */
+    public final class a extends d0.e0.p.d.m0.i.b<q> {
+        @Override // d0.e0.p.d.m0.i.p
+        public /* bridge */ /* synthetic */ Object parsePartialFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws InvalidProtocolBufferException {
+            return parsePartialFrom(dVar, eVar);
+        }
+
+        @Override // d0.e0.p.d.m0.i.p
+        public q parsePartialFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws InvalidProtocolBufferException {
+            return new q(dVar, eVar, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: ProtoBuf.java */
+    public final class b extends d0.e0.p.d.m0.i.g implements d0.e0.p.d.m0.i.o {
+        private int bitField0_;
+        public static final b j;
+        private byte memoizedIsInitialized;
+        private int memoizedSerializedSize;
+        private c projection_;
+        private int typeId_;
+        private q type_;
+        private final d0.e0.p.d.m0.i.c unknownFields;
+        public static d0.e0.p.d.m0.i.p<b> k = new a();
+
+        /* JADX INFO: renamed from: d0.e0.p.d.m0.f.q$b$b, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: ProtoBuf.java */
+        public final class C0552b extends d0.e0.p.d.m0.i.g.b<b, C0552b> implements d0.e0.p.d.m0.i.o {
+            public int k;
+            public int n;
+            public c l = c.INV;
+            public q m = q.getDefaultInstance();
+
+            @Override // d0.e0.p.d.m0.i.n.a
+            public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n build() {
+                return build();
+            }
+
+            public b buildPartial() {
+                b bVar = new b(this, null);
+                int i = this.k;
+                int i2 = (i & 1) != 1 ? 0 : 1;
+                b.a(bVar, this.l);
+                if ((i & 2) == 2) {
+                    i2 |= 2;
+                }
+                b.b(bVar, this.m);
+                if ((i & 4) == 4) {
+                    i2 |= 4;
+                }
+                b.c(bVar, this.n);
+                b.d(bVar, i2);
+                return bVar;
+            }
+
+            @Override // d0.e0.p.d.m0.i.a.AbstractC0556a, d0.e0.p.d.m0.i.n.a
+            public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.a.AbstractC0556a mergeFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws IOException {
+                return mergeFrom(dVar, eVar);
+            }
+
+            public C0552b mergeType(q qVar) {
+                if ((this.k & 2) != 2 || this.m == q.getDefaultInstance()) {
+                    this.m = qVar;
+                } else {
+                    this.m = q.newBuilder(this.m).mergeFrom(qVar).buildPartial();
+                }
+                this.k |= 2;
+                return this;
+            }
+
+            @Override // d0.e0.p.d.m0.i.g.b
+            /* JADX INFO: renamed from: clone */
+            public /* bridge */ /* synthetic */ Object mo88clone() throws CloneNotSupportedException {
+                return clone();
+            }
+
+            public C0552b setProjection(c cVar) {
+                Objects.requireNonNull(cVar);
+                this.k |= 1;
+                this.l = cVar;
+                return this;
+            }
+
+            public C0552b setTypeId(int i) {
+                this.k |= 4;
+                this.n = i;
+                return this;
+            }
+
+            @Override // d0.e0.p.d.m0.i.n.a
+            public b build() {
+                b bVarBuildPartial = buildPartial();
+                if (bVarBuildPartial.isInitialized()) {
+                    return bVarBuildPartial;
+                }
+                throw new UninitializedMessageException(bVarBuildPartial);
+            }
+
+            @Override // d0.e0.p.d.m0.i.g.b
+            public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.g.b clone() {
+                return clone();
+            }
+
+            @Override // d0.e0.p.d.m0.i.g.b
+            public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.g.b mergeFrom(d0.e0.p.d.m0.i.g gVar) {
+                return mergeFrom((b) gVar);
+            }
+
+            @Override // d0.e0.p.d.m0.i.g.b
+            public C0552b clone() {
+                return new C0552b().mergeFrom(buildPartial());
+            }
+
+            @Override // d0.e0.p.d.m0.i.a.AbstractC0556a, d0.e0.p.d.m0.i.n.a
+            public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n.a mergeFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws IOException {
+                return mergeFrom(dVar, eVar);
+            }
+
+            public C0552b mergeFrom(b bVar) {
+                if (bVar == b.getDefaultInstance()) {
+                    return this;
+                }
+                if (bVar.hasProjection()) {
+                    setProjection(bVar.getProjection());
+                }
+                if (bVar.hasType()) {
+                    mergeType(bVar.getType());
+                }
+                if (bVar.hasTypeId()) {
+                    setTypeId(bVar.getTypeId());
+                }
+                setUnknownFields(getUnknownFields().concat(b.e(bVar)));
+                return this;
+            }
+
+            /* JADX WARN: Code duplicated, block: B:15:0x001d  */
+            @Override // d0.e0.p.d.m0.i.a.AbstractC0556a, d0.e0.p.d.m0.i.n.a
+            public C0552b mergeFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws Throwable {
+                b bVar = null;
+                try {
+                    try {
+                        b partialFrom = b.k.parsePartialFrom(dVar, eVar);
+                        if (partialFrom != null) {
+                            mergeFrom(partialFrom);
+                        }
+                        return this;
+                    } catch (InvalidProtocolBufferException e) {
+                        b bVar2 = (b) e.getUnfinishedMessage();
+                        try {
+                            throw e;
+                        } catch (Throwable th) {
+                            th = th;
+                            bVar = bVar2;
+                            if (bVar != null) {
+                                mergeFrom(bVar);
+                            }
+                            throw th;
+                        }
+                    }
+                } catch (Throwable th2) {
+                    th = th2;
+                    if (bVar != null) {
+                        mergeFrom(bVar);
+                    }
+                    throw th;
+                }
+            }
+        }
+
+        /* JADX INFO: compiled from: ProtoBuf.java */
+        public final class a extends d0.e0.p.d.m0.i.b<b> {
+            @Override // d0.e0.p.d.m0.i.p
+            public /* bridge */ /* synthetic */ Object parsePartialFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws InvalidProtocolBufferException {
+                return parsePartialFrom(dVar, eVar);
+            }
+
+            @Override // d0.e0.p.d.m0.i.p
+            public b parsePartialFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws InvalidProtocolBufferException {
+                return new b(dVar, eVar, null);
+            }
+        }
+
+        /* JADX INFO: compiled from: ProtoBuf.java */
+        public enum c implements d0.e0.p.d.m0.i.h.a {
+            IN(0),
+            OUT(1),
+            INV(2),
+            STAR(3);
+
+            private final int value;
+
+            c(int i) {
+                this.value = i;
+            }
+
+            @Override // d0.e0.p.d.m0.i.h.a
+            public final int getNumber() {
+                return this.value;
+            }
+
+            public static c valueOf(int i) {
+                if (i == 0) {
+                    return IN;
+                }
+                if (i == 1) {
+                    return OUT;
+                }
+                if (i == 2) {
+                    return INV;
+                }
+                if (i != 3) {
+                    return null;
+                }
+                return STAR;
+            }
+        }
+
+        static {
+            b bVar = new b();
+            j = bVar;
+            bVar.projection_ = c.INV;
+            bVar.type_ = q.getDefaultInstance();
+            bVar.typeId_ = 0;
+        }
+
+        public b(d0.e0.p.d.m0.i.g.b bVar, d0.e0.p.d.m0.f.a aVar) {
+            super(bVar);
+            this.memoizedIsInitialized = (byte) -1;
+            this.memoizedSerializedSize = -1;
+            this.unknownFields = bVar.getUnknownFields();
+        }
+
+        public static /* synthetic */ c a(b bVar, c cVar) {
+            bVar.projection_ = cVar;
+            return cVar;
+        }
+
+        public static /* synthetic */ q b(b bVar, q qVar) {
+            bVar.type_ = qVar;
+            return qVar;
+        }
+
+        public static /* synthetic */ int c(b bVar, int i) {
+            bVar.typeId_ = i;
+            return i;
+        }
+
+        public static /* synthetic */ int d(b bVar, int i) {
+            bVar.bitField0_ = i;
+            return i;
+        }
+
+        public static /* synthetic */ d0.e0.p.d.m0.i.c e(b bVar) {
+            return bVar.unknownFields;
+        }
+
+        public static b getDefaultInstance() {
+            return j;
+        }
+
+        public c getProjection() {
+            return this.projection_;
+        }
+
+        @Override // d0.e0.p.d.m0.i.n
+        public int getSerializedSize() {
+            int i = this.memoizedSerializedSize;
+            if (i != -1) {
+                return i;
+            }
+            int iComputeEnumSize = (this.bitField0_ & 1) == 1 ? 0 + CodedOutputStream.computeEnumSize(1, this.projection_.getNumber()) : 0;
+            if ((this.bitField0_ & 2) == 2) {
+                iComputeEnumSize += CodedOutputStream.computeMessageSize(2, this.type_);
+            }
+            if ((this.bitField0_ & 4) == 4) {
+                iComputeEnumSize += CodedOutputStream.computeInt32Size(3, this.typeId_);
+            }
+            int size = this.unknownFields.size() + iComputeEnumSize;
+            this.memoizedSerializedSize = size;
+            return size;
+        }
+
+        public q getType() {
+            return this.type_;
+        }
+
+        public int getTypeId() {
+            return this.typeId_;
+        }
+
+        public boolean hasProjection() {
+            return (this.bitField0_ & 1) == 1;
+        }
+
+        public boolean hasType() {
+            return (this.bitField0_ & 2) == 2;
+        }
+
+        public boolean hasTypeId() {
+            return (this.bitField0_ & 4) == 4;
+        }
+
+        @Override // d0.e0.p.d.m0.i.o
+        public final boolean isInitialized() {
+            byte b2 = this.memoizedIsInitialized;
+            if (b2 == 1) {
+                return true;
+            }
+            if (b2 == 0) {
+                return false;
+            }
+            if (!hasType() || getType().isInitialized()) {
+                this.memoizedIsInitialized = (byte) 1;
+                return true;
+            }
+            this.memoizedIsInitialized = (byte) 0;
+            return false;
+        }
+
+        public static C0552b newBuilder(b bVar) {
+            return newBuilder().mergeFrom(bVar);
+        }
+
+        @Override // d0.e0.p.d.m0.i.n
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n.a newBuilderForType() {
+            return newBuilderForType();
+        }
+
+        @Override // d0.e0.p.d.m0.i.n
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n.a toBuilder() {
+            return toBuilder();
+        }
+
+        @Override // d0.e0.p.d.m0.i.n
+        public void writeTo(CodedOutputStream codedOutputStream) throws IOException {
+            getSerializedSize();
+            if ((this.bitField0_ & 1) == 1) {
+                codedOutputStream.writeEnum(1, this.projection_.getNumber());
+            }
+            if ((this.bitField0_ & 2) == 2) {
+                codedOutputStream.writeMessage(2, this.type_);
+            }
+            if ((this.bitField0_ & 4) == 4) {
+                codedOutputStream.writeInt32(3, this.typeId_);
+            }
+            codedOutputStream.writeRawBytes(this.unknownFields);
+        }
+
+        public static C0552b newBuilder() {
+            return new C0552b();
+        }
+
+        @Override // d0.e0.p.d.m0.i.n
+        public C0552b newBuilderForType() {
+            return newBuilder();
+        }
+
+        @Override // d0.e0.p.d.m0.i.n
+        public C0552b toBuilder() {
+            return newBuilder(this);
+        }
+
+        public b() {
+            this.memoizedIsInitialized = (byte) -1;
+            this.memoizedSerializedSize = -1;
+            this.unknownFields = d0.e0.p.d.m0.i.c.j;
+        }
+
+        public b(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar, d0.e0.p.d.m0.f.a aVar) throws InvalidProtocolBufferException {
+            this.memoizedIsInitialized = (byte) -1;
+            this.memoizedSerializedSize = -1;
+            this.projection_ = c.INV;
+            this.type_ = q.getDefaultInstance();
+            boolean z2 = false;
+            this.typeId_ = 0;
+            d0.e0.p.d.m0.i.c.b bVarNewOutput = d0.e0.p.d.m0.i.c.newOutput();
+            CodedOutputStream codedOutputStreamNewInstance = CodedOutputStream.newInstance(bVarNewOutput, 1);
+            while (!z2) {
+                try {
+                    try {
+                        try {
+                            int tag = dVar.readTag();
+                            if (tag != 0) {
+                                if (tag == 8) {
+                                    int i = dVar.readEnum();
+                                    c cVarValueOf = c.valueOf(i);
+                                    if (cVarValueOf == null) {
+                                        codedOutputStreamNewInstance.writeRawVarint32(tag);
+                                        codedOutputStreamNewInstance.writeRawVarint32(i);
+                                    } else {
+                                        this.bitField0_ |= 1;
+                                        this.projection_ = cVarValueOf;
+                                    }
+                                } else if (tag == 18) {
+                                    c builder = (this.bitField0_ & 2) == 2 ? this.type_.toBuilder() : null;
+                                    q qVar = (q) dVar.readMessage(q.k, eVar);
+                                    this.type_ = qVar;
+                                    if (builder != null) {
+                                        builder.mergeFrom(qVar);
+                                        this.type_ = builder.buildPartial();
+                                    }
+                                    this.bitField0_ |= 2;
+                                } else if (tag != 24) {
+                                    if (!dVar.skipField(tag, codedOutputStreamNewInstance)) {
+                                    }
+                                } else {
+                                    this.bitField0_ |= 4;
+                                    this.typeId_ = dVar.readInt32();
+                                }
+                            }
+                            z2 = true;
+                        } catch (IOException e) {
+                            throw new InvalidProtocolBufferException(e.getMessage()).setUnfinishedMessage(this);
+                        }
+                    } catch (InvalidProtocolBufferException e2) {
+                        throw e2.setUnfinishedMessage(this);
+                    }
+                } catch (Throwable th) {
+                    try {
+                        codedOutputStreamNewInstance.flush();
+                    } catch (IOException unused) {
+                    } finally {
+                        this.unknownFields = bVarNewOutput.toByteString();
+                    }
+                    throw th;
+                }
+            }
+            try {
+                codedOutputStreamNewInstance.flush();
+            } catch (IOException unused2) {
+            } finally {
+                this.unknownFields = bVarNewOutput.toByteString();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: ProtoBuf.java */
+    public final class c extends d0.e0.p.d.m0.i.g.c<q, c> implements d0.e0.p.d.m0.i.o {
+        public int A;
+
+        /* JADX INFO: renamed from: s, reason: collision with root package name */
+        public int f3403s;
+
+        /* JADX INFO: renamed from: x, reason: collision with root package name */
+        public int f3404x;
+
+        /* JADX INFO: renamed from: z, reason: collision with root package name */
+        public int f3406z;
+        public int m;
+        public boolean o;
+        public int p;
+        public int r;
+        public int t;
+        public int u;
+        public int v;
+        public List<b> n = Collections.emptyList();
+        public q q = q.getDefaultInstance();
+        public q w = q.getDefaultInstance();
+
+        /* JADX INFO: renamed from: y, reason: collision with root package name */
+        public q f3405y = q.getDefaultInstance();
+
+        @Override // d0.e0.p.d.m0.i.n.a
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n build() {
+            return build();
+        }
+
+        public q buildPartial() {
+            q qVar = new q(this, null);
+            int i = this.m;
+            if ((i & 1) == 1) {
+                this.n = Collections.unmodifiableList(this.n);
+                this.m &= -2;
+            }
+            q.i(qVar, this.n);
+            int i2 = (i & 2) != 2 ? 0 : 1;
+            q.j(qVar, this.o);
+            if ((i & 4) == 4) {
+                i2 |= 2;
+            }
+            q.k(qVar, this.p);
+            if ((i & 8) == 8) {
+                i2 |= 4;
+            }
+            q.l(qVar, this.q);
+            if ((i & 16) == 16) {
+                i2 |= 8;
+            }
+            q.m(qVar, this.r);
+            if ((i & 32) == 32) {
+                i2 |= 16;
+            }
+            q.n(qVar, this.f3403s);
+            if ((i & 64) == 64) {
+                i2 |= 32;
+            }
+            q.o(qVar, this.t);
+            if ((i & 128) == 128) {
+                i2 |= 64;
+            }
+            q.p(qVar, this.u);
+            if ((i & 256) == 256) {
+                i2 |= 128;
+            }
+            q.q(qVar, this.v);
+            if ((i & 512) == 512) {
+                i2 |= 256;
+            }
+            q.r(qVar, this.w);
+            if ((i & 1024) == 1024) {
+                i2 |= 512;
+            }
+            q.s(qVar, this.f3404x);
+            if ((i & 2048) == 2048) {
+                i2 |= 1024;
+            }
+            q.t(qVar, this.f3405y);
+            if ((i & 4096) == 4096) {
+                i2 |= 2048;
+            }
+            q.u(qVar, this.f3406z);
+            if ((i & 8192) == 8192) {
+                i2 |= 4096;
+            }
+            q.v(qVar, this.A);
+            q.w(qVar, i2);
+            return qVar;
+        }
+
+        public c mergeAbbreviatedType(q qVar) {
+            if ((this.m & 2048) != 2048 || this.f3405y == q.getDefaultInstance()) {
+                this.f3405y = qVar;
+            } else {
+                this.f3405y = q.newBuilder(this.f3405y).mergeFrom(qVar).buildPartial();
+            }
+            this.m |= 2048;
+            return this;
+        }
+
+        public c mergeFlexibleUpperBound(q qVar) {
+            if ((this.m & 8) != 8 || this.q == q.getDefaultInstance()) {
+                this.q = qVar;
+            } else {
+                this.q = q.newBuilder(this.q).mergeFrom(qVar).buildPartial();
+            }
+            this.m |= 8;
+            return this;
+        }
+
+        @Override // d0.e0.p.d.m0.i.a.AbstractC0556a, d0.e0.p.d.m0.i.n.a
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.a.AbstractC0556a mergeFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws IOException {
+            return mergeFrom(dVar, eVar);
+        }
+
+        public c mergeOuterType(q qVar) {
+            if ((this.m & 512) != 512 || this.w == q.getDefaultInstance()) {
+                this.w = qVar;
+            } else {
+                this.w = q.newBuilder(this.w).mergeFrom(qVar).buildPartial();
+            }
+            this.m |= 512;
+            return this;
+        }
+
+        @Override // d0.e0.p.d.m0.i.g.b
+        /* JADX INFO: renamed from: clone */
+        public /* bridge */ /* synthetic */ Object mo88clone() throws CloneNotSupportedException {
+            return clone();
+        }
+
+        public c setAbbreviatedTypeId(int i) {
+            this.m |= 4096;
+            this.f3406z = i;
+            return this;
+        }
+
+        public c setClassName(int i) {
+            this.m |= 32;
+            this.f3403s = i;
+            return this;
+        }
+
+        public c setFlags(int i) {
+            this.m |= 8192;
+            this.A = i;
+            return this;
+        }
+
+        public c setFlexibleTypeCapabilitiesId(int i) {
+            this.m |= 4;
+            this.p = i;
+            return this;
+        }
+
+        public c setFlexibleUpperBoundId(int i) {
+            this.m |= 16;
+            this.r = i;
+            return this;
+        }
+
+        public c setNullable(boolean z2) {
+            this.m |= 2;
+            this.o = z2;
+            return this;
+        }
+
+        public c setOuterTypeId(int i) {
+            this.m |= 1024;
+            this.f3404x = i;
+            return this;
+        }
+
+        public c setTypeAliasName(int i) {
+            this.m |= 256;
+            this.v = i;
+            return this;
+        }
+
+        public c setTypeParameter(int i) {
+            this.m |= 64;
+            this.t = i;
+            return this;
+        }
+
+        public c setTypeParameterName(int i) {
+            this.m |= 128;
+            this.u = i;
+            return this;
+        }
+
+        @Override // d0.e0.p.d.m0.i.n.a
+        public q build() {
+            q qVarBuildPartial = buildPartial();
+            if (qVarBuildPartial.isInitialized()) {
+                return qVarBuildPartial;
+            }
+            throw new UninitializedMessageException(qVarBuildPartial);
+        }
+
+        @Override // d0.e0.p.d.m0.i.g.b
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.g.b clone() {
+            return clone();
+        }
+
+        @Override // d0.e0.p.d.m0.i.g.b
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.g.b mergeFrom(d0.e0.p.d.m0.i.g gVar) {
+            return mergeFrom((q) gVar);
+        }
+
+        @Override // d0.e0.p.d.m0.i.g.b
+        public c clone() {
+            return new c().mergeFrom(buildPartial());
+        }
+
+        @Override // d0.e0.p.d.m0.i.a.AbstractC0556a, d0.e0.p.d.m0.i.n.a
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n.a mergeFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws IOException {
+            return mergeFrom(dVar, eVar);
+        }
+
+        public c mergeFrom(q qVar) {
+            if (qVar == q.getDefaultInstance()) {
+                return this;
+            }
+            if (!q.h(qVar).isEmpty()) {
+                if (this.n.isEmpty()) {
+                    this.n = q.h(qVar);
+                    this.m &= -2;
+                } else {
+                    if ((this.m & 1) != 1) {
+                        this.n = new ArrayList(this.n);
+                        this.m |= 1;
+                    }
+                    this.n.addAll(q.h(qVar));
+                }
+            }
+            if (qVar.hasNullable()) {
+                setNullable(qVar.getNullable());
+            }
+            if (qVar.hasFlexibleTypeCapabilitiesId()) {
+                setFlexibleTypeCapabilitiesId(qVar.getFlexibleTypeCapabilitiesId());
+            }
+            if (qVar.hasFlexibleUpperBound()) {
+                mergeFlexibleUpperBound(qVar.getFlexibleUpperBound());
+            }
+            if (qVar.hasFlexibleUpperBoundId()) {
+                setFlexibleUpperBoundId(qVar.getFlexibleUpperBoundId());
+            }
+            if (qVar.hasClassName()) {
+                setClassName(qVar.getClassName());
+            }
+            if (qVar.hasTypeParameter()) {
+                setTypeParameter(qVar.getTypeParameter());
+            }
+            if (qVar.hasTypeParameterName()) {
+                setTypeParameterName(qVar.getTypeParameterName());
+            }
+            if (qVar.hasTypeAliasName()) {
+                setTypeAliasName(qVar.getTypeAliasName());
+            }
+            if (qVar.hasOuterType()) {
+                mergeOuterType(qVar.getOuterType());
+            }
+            if (qVar.hasOuterTypeId()) {
+                setOuterTypeId(qVar.getOuterTypeId());
+            }
+            if (qVar.hasAbbreviatedType()) {
+                mergeAbbreviatedType(qVar.getAbbreviatedType());
+            }
+            if (qVar.hasAbbreviatedTypeId()) {
+                setAbbreviatedTypeId(qVar.getAbbreviatedTypeId());
+            }
+            if (qVar.hasFlags()) {
+                setFlags(qVar.getFlags());
+            }
+            b(qVar);
+            setUnknownFields(getUnknownFields().concat(q.x(qVar)));
+            return this;
+        }
+
+        /* JADX WARN: Code duplicated, block: B:15:0x001d  */
+        @Override // d0.e0.p.d.m0.i.a.AbstractC0556a, d0.e0.p.d.m0.i.n.a
+        public c mergeFrom(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar) throws Throwable {
+            q qVar = null;
+            try {
+                try {
+                    q partialFrom = q.k.parsePartialFrom(dVar, eVar);
+                    if (partialFrom != null) {
+                        mergeFrom(partialFrom);
+                    }
+                    return this;
+                } catch (InvalidProtocolBufferException e) {
+                    q qVar2 = (q) e.getUnfinishedMessage();
+                    try {
+                        throw e;
+                    } catch (Throwable th) {
+                        th = th;
+                        qVar = qVar2;
+                        if (qVar != null) {
+                            mergeFrom(qVar);
+                        }
+                        throw th;
+                    }
+                }
+            } catch (Throwable th2) {
+                th = th2;
+                if (qVar != null) {
+                    mergeFrom(qVar);
+                }
+                throw th;
+            }
+        }
+    }
 
     static {
         q qVar = new q();
@@ -40,11 +792,11 @@ public final class q extends g$d<q> implements d0.e0.p.d.m0.i.o {
         qVar.y();
     }
 
-    public q(g$c g_c, a aVar) {
-        super(g_c);
+    public q(d0.e0.p.d.m0.i.g.c cVar, d0.e0.p.d.m0.f.a aVar) {
+        super(cVar);
         this.memoizedIsInitialized = (byte) -1;
         this.memoizedSerializedSize = -1;
-        this.unknownFields = g_c.getUnknownFields();
+        this.unknownFields = cVar.getUnknownFields();
     }
 
     public q getAbbreviatedType() {
@@ -55,7 +807,7 @@ public final class q extends g$d<q> implements d0.e0.p.d.m0.i.o {
         return this.abbreviatedTypeId_;
     }
 
-    public q$b getArgument(int i) {
+    public b getArgument(int i) {
         return this.argument_.get(i);
     }
 
@@ -63,7 +815,7 @@ public final class q extends g$d<q> implements d0.e0.p.d.m0.i.o {
         return this.argument_.size();
     }
 
-    public List<q$b> getArgumentList() {
+    public List<b> getArgumentList() {
         return this.argument_;
     }
 
@@ -292,12 +1044,12 @@ public final class q extends g$d<q> implements d0.e0.p.d.m0.i.o {
         return i;
     }
 
-    public static q$c newBuilder(q qVar) {
+    public static c newBuilder(q qVar) {
         return newBuilder().mergeFrom(qVar);
     }
 
     @Override // d0.e0.p.d.m0.i.n
-    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n$a newBuilderForType() {
+    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n.a newBuilderForType() {
         return newBuilderForType();
     }
 
@@ -332,7 +1084,7 @@ public final class q extends g$d<q> implements d0.e0.p.d.m0.i.o {
     }
 
     @Override // d0.e0.p.d.m0.i.n
-    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n$a toBuilder() {
+    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.i.n.a toBuilder() {
         return toBuilder();
     }
 
@@ -354,7 +1106,7 @@ public final class q extends g$d<q> implements d0.e0.p.d.m0.i.o {
     @Override // d0.e0.p.d.m0.i.n
     public void writeTo(CodedOutputStream codedOutputStream) throws IOException {
         getSerializedSize();
-        g$d$a g_d_aE = e();
+        d0.e0.p.d.m0.i.g.d<MessageType>.a aVarE = e();
         if ((this.bitField0_ & 4096) == 4096) {
             codedOutputStream.writeInt32(1, this.flags_);
         }
@@ -397,7 +1149,7 @@ public final class q extends g$d<q> implements d0.e0.p.d.m0.i.o {
         if ((this.bitField0_ & 2048) == 2048) {
             codedOutputStream.writeInt32(14, this.abbreviatedTypeId_);
         }
-        g_d_aE.writeUntil(200, codedOutputStream);
+        aVarE.writeUntil(200, codedOutputStream);
         codedOutputStream.writeRawBytes(this.unknownFields);
     }
 
@@ -427,17 +1179,17 @@ public final class q extends g$d<q> implements d0.e0.p.d.m0.i.o {
         return j;
     }
 
-    public static q$c newBuilder() {
-        return new q$c();
+    public static c newBuilder() {
+        return new c();
     }
 
     @Override // d0.e0.p.d.m0.i.n
-    public q$c newBuilderForType() {
+    public c newBuilderForType() {
         return newBuilder();
     }
 
     @Override // d0.e0.p.d.m0.i.n
-    public q$c toBuilder() {
+    public c toBuilder() {
         return newBuilder(this);
     }
 
@@ -447,13 +1199,13 @@ public final class q extends g$d<q> implements d0.e0.p.d.m0.i.o {
         this.unknownFields = d0.e0.p.d.m0.i.c.j;
     }
 
-    public q(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar, a aVar) throws InvalidProtocolBufferException {
-        q$c builder;
+    public q(d0.e0.p.d.m0.i.d dVar, d0.e0.p.d.m0.i.e eVar, d0.e0.p.d.m0.f.a aVar) throws InvalidProtocolBufferException {
+        c builder;
         this.memoizedIsInitialized = (byte) -1;
         this.memoizedSerializedSize = -1;
         y();
-        d0.e0.p.d.m0.i.c$b c_bNewOutput = d0.e0.p.d.m0.i.c.newOutput();
-        CodedOutputStream codedOutputStreamNewInstance = CodedOutputStream.newInstance(c_bNewOutput, 1);
+        d0.e0.p.d.m0.i.c.b bVarNewOutput = d0.e0.p.d.m0.i.c.newOutput();
+        CodedOutputStream codedOutputStreamNewInstance = CodedOutputStream.newInstance(bVarNewOutput, 1);
         boolean z2 = false;
         boolean z3 = false;
         while (!z2) {
@@ -472,7 +1224,7 @@ public final class q extends g$d<q> implements d0.e0.p.d.m0.i.o {
                                 this.argument_ = new ArrayList();
                                 z3 |= true;
                             }
-                            this.argument_.add((q$b) dVar.readMessage(q$b.k, eVar));
+                            this.argument_.add((b) dVar.readMessage(b.k, eVar));
                             continue;
                         case 24:
                             this.bitField0_ |= 1;
@@ -560,10 +1312,10 @@ public final class q extends g$d<q> implements d0.e0.p.d.m0.i.o {
                     codedOutputStreamNewInstance.flush();
                 } catch (IOException unused) {
                 } catch (Throwable th2) {
-                    this.unknownFields = c_bNewOutput.toByteString();
+                    this.unknownFields = bVarNewOutput.toByteString();
                     throw th2;
                 }
-                this.unknownFields = c_bNewOutput.toByteString();
+                this.unknownFields = bVarNewOutput.toByteString();
                 d();
                 throw th;
             }
@@ -575,10 +1327,10 @@ public final class q extends g$d<q> implements d0.e0.p.d.m0.i.o {
             codedOutputStreamNewInstance.flush();
         } catch (IOException unused2) {
         } catch (Throwable th3) {
-            this.unknownFields = c_bNewOutput.toByteString();
+            this.unknownFields = bVarNewOutput.toByteString();
             throw th3;
         }
-        this.unknownFields = c_bNewOutput.toByteString();
+        this.unknownFields = bVarNewOutput.toByteString();
         d();
     }
 }

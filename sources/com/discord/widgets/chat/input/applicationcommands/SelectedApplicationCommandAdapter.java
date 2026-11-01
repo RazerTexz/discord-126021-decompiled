@@ -2,8 +2,7 @@ package com.discord.widgets.chat.input.applicationcommands;
 
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView$SmoothScroller;
-import androidx.recyclerview.widget.RecyclerView$ViewHolder;
+import com.discord.R;
 import com.discord.models.commands.Application;
 import com.discord.models.commands.ApplicationCommand;
 import com.discord.models.commands.ApplicationCommandOption;
@@ -29,7 +28,7 @@ public final class SelectedApplicationCommandAdapter extends MGRecyclerAdapterSi
     private ApplicationCommandOption highlightedCommandOption;
     private final Function1<ApplicationCommandOption, Unit> onClickApplicationCommandOption;
     private final Map<String, Integer> paramPositions;
-    private RecyclerView$SmoothScroller scroller;
+    private RecyclerView.SmoothScroller scroller;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     /* JADX WARN: Multi-variable type inference failed */
@@ -42,12 +41,12 @@ public final class SelectedApplicationCommandAdapter extends MGRecyclerAdapterSi
         this.scroller = new SelectedApplicationCommandAdapter$scroller$1(this, getContext());
     }
 
-    public static final /* synthetic */ RecyclerView$SmoothScroller access$getScroller$p(SelectedApplicationCommandAdapter selectedApplicationCommandAdapter) {
+    public static final /* synthetic */ RecyclerView.SmoothScroller access$getScroller$p(SelectedApplicationCommandAdapter selectedApplicationCommandAdapter) {
         return selectedApplicationCommandAdapter.scroller;
     }
 
-    public static final /* synthetic */ void access$setScroller$p(SelectedApplicationCommandAdapter selectedApplicationCommandAdapter, RecyclerView$SmoothScroller recyclerView$SmoothScroller) {
-        selectedApplicationCommandAdapter.scroller = recyclerView$SmoothScroller;
+    public static final /* synthetic */ void access$setScroller$p(SelectedApplicationCommandAdapter selectedApplicationCommandAdapter, RecyclerView.SmoothScroller smoothScroller) {
+        selectedApplicationCommandAdapter.scroller = smoothScroller;
     }
 
     public final void clear() {
@@ -96,8 +95,8 @@ public final class SelectedApplicationCommandAdapter extends MGRecyclerAdapterSi
         getRecycler().post(new SelectedApplicationCommandAdapter$highlightOption$$inlined$let$lambda$1(iIntValue, this, commandOption));
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
-    public /* bridge */ /* synthetic */ RecyclerView$ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    public /* bridge */ /* synthetic */ RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         return onCreateViewHolder(viewGroup, i);
     }
 
@@ -145,7 +144,7 @@ public final class SelectedApplicationCommandAdapter extends MGRecyclerAdapterSi
             }
         }
         if (i != 0) {
-            arrayList.add(new SelectedApplicationCommandItem(null, null, false, false, false, null, getRecycler().getResources().getString(2131887790), 63, null));
+            arrayList.add(new SelectedApplicationCommandItem(null, null, false, false, false, null, getRecycler().getResources().getString(R.string.commands_optional_header), 63, null));
         }
         List<ApplicationCommandOption> options3 = command.getOptions();
         ArrayList<ApplicationCommandOption> arrayList3 = new ArrayList();
@@ -178,7 +177,7 @@ public final class SelectedApplicationCommandAdapter extends MGRecyclerAdapterSi
         configureVerified();
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public MGRecyclerViewHolder<SelectedApplicationCommandAdapter, SelectedApplicationCommandItem> onCreateViewHolder(ViewGroup parent, int viewType) {
         m.checkNotNullParameter(parent, "parent");
         if (viewType == 0) {

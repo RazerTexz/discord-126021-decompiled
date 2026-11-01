@@ -1,17 +1,15 @@
 package b.i.a.c.e3;
 
-import b.i.a.c.f3.v$b;
-
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class b implements v$b {
+public final /* synthetic */ class b implements b.i.a.c.f3.v.b {
     public final /* synthetic */ p a;
 
     public /* synthetic */ b(p pVar) {
         this.a = pVar;
     }
 
-    @Override // b.i.a.c.f3.v$b
+    @Override // b.i.a.c.f3.v.b
     public final void a(int i) {
         p pVar = this.a;
         synchronized (pVar) {

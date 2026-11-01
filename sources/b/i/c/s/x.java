@@ -1,12 +1,13 @@
 package b.i.c.s;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.PowerManager;
-import android.os.PowerManager$WakeLock;
 import android.util.Log;
 import com.google.firebase.iid.FirebaseInstanceId;
 import java.io.IOException;
@@ -16,16 +17,46 @@ import java.util.concurrent.ExecutorService;
 /* JADX INFO: loaded from: classes3.dex */
 public class x implements Runnable {
     public final long j;
-    public final PowerManager$WakeLock k;
+    public final PowerManager.WakeLock k;
     public final FirebaseInstanceId l;
     public ExecutorService m = h.a();
+
+    /* JADX INFO: compiled from: com.google.firebase:firebase-iid@@21.0.0 */
+    public class a extends BroadcastReceiver {
+        public x a;
+
+        public a(x xVar) {
+            this.a = xVar;
+        }
+
+        public void a() {
+            if (FirebaseInstanceId.l()) {
+                Log.d("FirebaseInstanceId", "Connectivity change received registered");
+            }
+            this.a.a().registerReceiver(this, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
+        }
+
+        @Override // android.content.BroadcastReceiver
+        public void onReceive(Context context, Intent intent) {
+            x xVar = this.a;
+            if (xVar != null && xVar.c()) {
+                if (FirebaseInstanceId.l()) {
+                    Log.d("FirebaseInstanceId", "Connectivity changed. Starting background sync.");
+                }
+                x xVar2 = this.a;
+                xVar2.l.d(xVar2, 0L);
+                this.a.a().unregisterReceiver(this);
+                this.a = null;
+            }
+        }
+    }
 
     public x(FirebaseInstanceId firebaseInstanceId, long j) {
         this.l = firebaseInstanceId;
         this.j = j;
-        PowerManager$WakeLock powerManager$WakeLockNewWakeLock = ((PowerManager) a().getSystemService("power")).newWakeLock(1, "fiid-sync");
-        this.k = powerManager$WakeLockNewWakeLock;
-        powerManager$WakeLockNewWakeLock.setReferenceCounted(false);
+        PowerManager.WakeLock wakeLockNewWakeLock = ((PowerManager) a().getSystemService("power")).newWakeLock(1, "fiid-sync");
+        this.k = wakeLockNewWakeLock;
+        wakeLockNewWakeLock.setReferenceCounted(false);
     }
 
     public Context a() {
@@ -57,9 +88,9 @@ public class x implements Runnable {
     }
 
     public boolean d() throws IOException {
-        w$a w_aJ = this.l.j();
+        w.a aVarJ = this.l.j();
         boolean z2 = true;
-        if (!this.l.p(w_aJ)) {
+        if (!this.l.p(aVarJ)) {
             return true;
         }
         try {
@@ -71,7 +102,7 @@ public class x implements Runnable {
             if (Log.isLoggable("FirebaseInstanceId", 3)) {
                 Log.d("FirebaseInstanceId", "Token successfully retrieved");
             }
-            if (w_aJ == null || !strB.equals(w_aJ.c)) {
+            if (aVarJ == null || !strB.equals(aVarJ.c)) {
                 b(strB);
             }
             return true;
@@ -107,7 +138,7 @@ public class x implements Runnable {
             if (!this.l.g.d()) {
                 this.l.n(false);
             } else if (v.a().b(a()) && !c()) {
-                new x$a(this).a();
+                new a(this).a();
             } else {
                 if (d()) {
                     this.l.n(false);

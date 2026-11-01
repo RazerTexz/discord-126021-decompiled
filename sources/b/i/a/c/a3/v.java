@@ -1,10 +1,9 @@
 package b.i.a.c.a3;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import b.i.a.c.o1;
 import b.i.a.c.o2;
-import b.i.a.c.o2$b;
-import b.i.a.c.o2$c;
 import java.util.Objects;
 import org.checkerframework.checker.nullness.qual.RequiresNonNull;
 
@@ -13,9 +12,9 @@ import org.checkerframework.checker.nullness.qual.RequiresNonNull;
 public final class v extends o<Void> {
     public final a0 j;
     public final boolean k;
-    public final o2$c l;
-    public final o2$b m;
-    public v$a n;
+    public final o2.c l;
+    public final o2.b m;
+    public a n;
 
     @Nullable
     public u o;
@@ -23,16 +22,110 @@ public final class v extends o<Void> {
     public boolean q;
     public boolean r;
 
+    /* JADX INFO: compiled from: MaskingMediaSource.java */
+    public final class a extends r {
+
+        @Nullable
+        public final Object m;
+
+        @Nullable
+        public final Object n;
+        public static final Object l = new Object();
+
+        public a(o2 o2Var, @Nullable Object obj, @Nullable Object obj2) {
+            super(o2Var);
+            this.m = obj;
+            this.n = obj2;
+        }
+
+        @Override // b.i.a.c.a3.r, b.i.a.c.o2
+        public int b(Object obj) {
+            Object obj2;
+            o2 o2Var = this.k;
+            if (l.equals(obj) && (obj2 = this.n) != null) {
+                obj = obj2;
+            }
+            return o2Var.b(obj);
+        }
+
+        @Override // b.i.a.c.o2
+        public o2.b g(int i, o2.b bVar, boolean z2) {
+            this.k.g(i, bVar, z2);
+            if (b.i.a.c.f3.e0.a(bVar.k, this.n) && z2) {
+                bVar.k = l;
+            }
+            return bVar;
+        }
+
+        @Override // b.i.a.c.a3.r, b.i.a.c.o2
+        public Object m(int i) {
+            Object objM = this.k.m(i);
+            return b.i.a.c.f3.e0.a(objM, this.n) ? l : objM;
+        }
+
+        @Override // b.i.a.c.o2
+        public o2.c o(int i, o2.c cVar, long j) {
+            this.k.o(i, cVar, j);
+            if (b.i.a.c.f3.e0.a(cVar.n, this.m)) {
+                cVar.n = o2.c.j;
+            }
+            return cVar;
+        }
+    }
+
+    /* JADX INFO: compiled from: MaskingMediaSource.java */
+    @VisibleForTesting
+    public final class b extends o2 {
+        public final o1 k;
+
+        public b(o1 o1Var) {
+            this.k = o1Var;
+        }
+
+        @Override // b.i.a.c.o2
+        public int b(Object obj) {
+            return obj == a.l ? 0 : -1;
+        }
+
+        @Override // b.i.a.c.o2
+        public o2.b g(int i, o2.b bVar, boolean z2) {
+            bVar.f(z2 ? 0 : null, z2 ? a.l : null, 0, -9223372036854775807L, 0L, b.i.a.c.a3.p0.c.j, true);
+            return bVar;
+        }
+
+        @Override // b.i.a.c.o2
+        public int i() {
+            return 1;
+        }
+
+        @Override // b.i.a.c.o2
+        public Object m(int i) {
+            return a.l;
+        }
+
+        @Override // b.i.a.c.o2
+        public o2.c o(int i, o2.c cVar, long j) {
+            cVar.e(o2.c.j, this.k, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, false, true, null, 0L, -9223372036854775807L, 0, 0, 0L);
+            cVar.f1044y = true;
+            return cVar;
+        }
+
+        @Override // b.i.a.c.o2
+        public int p() {
+            return 1;
+        }
+    }
+
     public v(a0 a0Var, boolean z2) {
         this.j = a0Var;
         this.k = z2 && a0Var.i();
-        this.l = new o2$c();
-        this.m = new o2$b();
+        this.l = new o2.c();
+        this.m = new o2.b();
         o2 o2VarK = a0Var.k();
         if (o2VarK == null) {
-            this.n = new v$a(new v$b(a0Var.e()), o2$c.j, v$a.l);
+            this.n = new a(new b(a0Var.e()), o2.c.j, a.l);
         } else {
-            this.n = new v$a(o2VarK, null, null);
+            this.n = new a(o2VarK, null, null);
             this.r = true;
         }
     }
@@ -60,8 +153,8 @@ public final class v extends o<Void> {
     }
 
     @Override // b.i.a.c.a3.a0
-    public /* bridge */ /* synthetic */ x n(a0$a a0_a, b.i.a.c.e3.o oVar, long j) {
-        return u(a0_a, oVar, j);
+    public /* bridge */ /* synthetic */ x n(a0.a aVar, b.i.a.c.e3.o oVar, long j) {
+        return u(aVar, oVar, j);
     }
 
     @Override // b.i.a.c.a3.l
@@ -79,25 +172,25 @@ public final class v extends o<Void> {
     public void s() {
         this.q = false;
         this.p = false;
-        for (o$b o_b : this.g.values()) {
-            o_b.a.a(o_b.f831b);
-            o_b.a.c(o_b.c);
-            o_b.a.g(o_b.c);
+        for (o.b bVar : this.g.values()) {
+            bVar.a.a(bVar.f831b);
+            bVar.a.c(bVar.c);
+            bVar.a.g(bVar.c);
         }
         this.g.clear();
     }
 
-    public u u(a0$a a0_a, b.i.a.c.e3.o oVar, long j) {
-        u uVar = new u(a0_a, oVar, j);
+    public u u(a0.a aVar, b.i.a.c.e3.o oVar, long j) {
+        u uVar = new u(aVar, oVar, j);
         a0 a0Var = this.j;
         b.c.a.a0.d.D(uVar.m == null);
         uVar.m = a0Var;
         if (this.q) {
-            Object obj = a0_a.a;
-            if (this.n.n != null && obj.equals(v$a.l)) {
+            Object obj = aVar.a;
+            if (this.n.n != null && obj.equals(a.l)) {
                 obj = this.n.n;
             }
-            uVar.d(a0_a.b(obj));
+            uVar.d(aVar.b(obj));
         } else {
             this.o = uVar;
             if (!this.p) {

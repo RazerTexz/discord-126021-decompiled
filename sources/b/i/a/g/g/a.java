@@ -2,8 +2,6 @@ package b.i.a.g.g;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Paint$Cap;
-import android.graphics.Paint$Style;
 import android.graphics.RectF;
 import androidx.annotation.ColorInt;
 import androidx.annotation.FloatRange;
@@ -49,8 +47,8 @@ public final class a extends f<CircularProgressIndicatorSpec> {
         if (f == f2) {
             return;
         }
-        paint.setStyle(Paint$Style.STROKE);
-        paint.setStrokeCap(Paint$Cap.BUTT);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.BUTT);
         paint.setAntiAlias(true);
         paint.setColor(i);
         paint.setStrokeWidth(this.d);
@@ -66,7 +64,7 @@ public final class a extends f<CircularProgressIndicatorSpec> {
         if (this.e <= 0.0f || Math.abs(f5) >= 360.0f) {
             return;
         }
-        paint.setStyle(Paint$Style.FILL);
+        paint.setStyle(Paint.Style.FILL);
         float f8 = this.e;
         float f9 = -f8;
         RectF rectF = new RectF(f9, f9, f8, f8);
@@ -77,8 +75,8 @@ public final class a extends f<CircularProgressIndicatorSpec> {
     @Override // b.i.a.g.g.f
     public void c(@NonNull Canvas canvas, @NonNull Paint paint) {
         int iCompositeARGBWithAlpha = MaterialColors.compositeARGBWithAlpha(((CircularProgressIndicatorSpec) this.a).trackColor, this.f1622b.getAlpha());
-        paint.setStyle(Paint$Style.STROKE);
-        paint.setStrokeCap(Paint$Cap.BUTT);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.BUTT);
         paint.setAntiAlias(true);
         paint.setColor(iCompositeARGBWithAlpha);
         paint.setStrokeWidth(this.d);

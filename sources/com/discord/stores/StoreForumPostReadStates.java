@@ -7,14 +7,13 @@ import com.discord.api.forum.ForumUnreads;
 import com.discord.api.message.Message;
 import com.discord.api.user.User;
 import com.discord.models.domain.ModelPayload;
-import com.discord.models.domain.ModelPayload$VersionedReadStates;
 import com.discord.models.domain.ModelReadState;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
+import com.discord.widgets.forums.ForumUtils;
 import d0.t.h0;
 import d0.t.n0;
-import d0.t.o;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -24,6 +23,9 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import kotlin.Pair;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 import rx.Observable;
 
 /* JADX INFO: compiled from: StoreForumPostReadStates.kt */
@@ -41,6 +43,95 @@ public final class StoreForumPostReadStates extends StoreV2 {
     private Set<Long> threadIdsWithPersistedAcksSnapshot;
     private final Map<Long, Integer> threadUnreadCounts;
     private Map<Long, Integer> threadUnreadCountsSnapshot;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreForumPostReadStates$observeThreadIdsWithPersistedReadStates$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreForumPostReadStates.kt */
+    public final class AnonymousClass1 extends o implements Function0<Set<? extends Long>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Set<? extends Long> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Set<? extends Long> invoke2() {
+            return StoreForumPostReadStates.access$getThreadIdsWithPersistedAcksSnapshot$p(StoreForumPostReadStates.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreForumPostReadStates$observeThreadUnreadCounts$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreForumPostReadStates.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Integer>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Integer> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Integer> invoke2() {
+            return StoreForumPostReadStates.access$getThreadUnreadCountsSnapshot$p(StoreForumPostReadStates.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreForumPostReadStates$requestForumUnreads$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreForumPostReadStates.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, long j2) {
+            super(0);
+            this.$guildId = j;
+            this.$channelId = j2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            if (!ForumUtils.canAccessRedesignedForumChannels$default(ForumUtils.INSTANCE, this.$guildId, null, 2, null) || StoreForumPostReadStates.access$getProcessedForumUnreadRequests$p(StoreForumPostReadStates.this).contains(Long.valueOf(this.$channelId))) {
+                return;
+            }
+            StoreForumPostReadStates.access$getProcessedForumUnreadRequests$p(StoreForumPostReadStates.this).add(Long.valueOf(this.$channelId));
+            Map<Long, Channel> mapEmptyMap = StoreForumPostReadStates.access$getStoreThreadsActive$p(StoreForumPostReadStates.this).getAllActiveThreadsInternal$app_productionGoogleRelease().get(Long.valueOf(this.$guildId));
+            if (mapEmptyMap == null) {
+                mapEmptyMap = h0.emptyMap();
+            }
+            LinkedHashMap linkedHashMap = new LinkedHashMap();
+            for (Map.Entry<Long, Channel> entry : mapEmptyMap.entrySet()) {
+                if (entry.getValue().getParentId() == this.$channelId) {
+                    linkedHashMap.put(entry.getKey(), entry.getValue());
+                }
+            }
+            Map<Long, StoreMessageAck.Ack> all = StoreForumPostReadStates.access$getStoreMessageAck$p(StoreForumPostReadStates.this).getAll();
+            Set setKeySet = linkedHashMap.keySet();
+            ArrayList arrayList = new ArrayList();
+            Iterator it = setKeySet.iterator();
+            while (it.hasNext()) {
+                long jLongValue = ((Number) it.next()).longValue();
+                StoreMessageAck.Ack ack = all.get(Long.valueOf(jLongValue));
+                Pair pair = ack != null ? d0.o.to(Long.valueOf(jLongValue), Long.valueOf(ack.getMessageId())) : null;
+                if (pair != null) {
+                    arrayList.add(pair);
+                }
+            }
+            StoreForumPostReadStates.access$getStoreGatewayConnection$p(StoreForumPostReadStates.this).requestForumUnreads(this.$guildId, this.$channelId, arrayList);
+        }
+    }
 
     public StoreForumPostReadStates(Dispatcher dispatcher, StoreGatewayConnection storeGatewayConnection, StoreThreadsActive storeThreadsActive, StoreMessageAck storeMessageAck, StoreChannels storeChannels, StoreUser storeUser, ObservationDeck observationDeck) {
         m.checkNotNullParameter(dispatcher, "dispatcher");
@@ -99,18 +190,18 @@ public final class StoreForumPostReadStates extends StoreV2 {
     @StoreThread
     public final void handleConnectionOpen(ModelPayload payload) {
         m.checkNotNullParameter(payload, "payload");
-        ModelPayload$VersionedReadStates readState = payload.getReadState();
+        ModelPayload.VersionedReadStates readState = payload.getReadState();
         m.checkNotNullExpressionValue(readState, "payload.readState");
         if (!readState.isPartial()) {
             this.threadIdsWithPersistedAcks.clear();
         }
         this.processedForumUnreadRequests.clear();
         this.threadUnreadCounts.clear();
-        ModelPayload$VersionedReadStates readState2 = payload.getReadState();
+        ModelPayload.VersionedReadStates readState2 = payload.getReadState();
         m.checkNotNullExpressionValue(readState2, "payload.readState");
         List<ModelReadState> entries = readState2.getEntries();
         m.checkNotNullExpressionValue(entries, "payload.readState.entries");
-        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(entries, 10));
+        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(entries, 10));
         Iterator<T> it = entries.iterator();
         while (it.hasNext()) {
             arrayList.add(Long.valueOf(((ModelReadState) it.next()).getChannelId()));
@@ -181,15 +272,15 @@ public final class StoreForumPostReadStates extends StoreV2 {
     }
 
     public final Observable<Set<Long>> observeThreadIdsWithPersistedReadStates() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreForumPostReadStates$observeThreadIdsWithPersistedReadStates$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     public final Observable<Map<Long, Integer>> observeThreadUnreadCounts() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreForumPostReadStates$observeThreadUnreadCounts$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     public final void requestForumUnreads(long guildId, long channelId) {
-        this.dispatcher.schedule(new StoreForumPostReadStates$requestForumUnreads$1(this, guildId, channelId));
+        this.dispatcher.schedule(new AnonymousClass1(guildId, channelId));
     }
 
     @Override // com.discord.stores.StoreV2

@@ -12,11 +12,11 @@ import rx.Scheduler;
 
 /* JADX INFO: compiled from: RxJavaCallAdapterFactory.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class g extends i0.e$a {
+public final class g extends i0.e.a {
     public g(Scheduler scheduler, boolean z2) {
     }
 
-    @Override // i0.e$a
+    @Override // i0.e.a
     public i0.e<?, ?> a(Type type, Annotation[] annotationArr, y yVar) {
         Type type2;
         boolean z2;

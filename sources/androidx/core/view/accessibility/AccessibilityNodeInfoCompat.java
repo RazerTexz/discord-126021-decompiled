@@ -1,32 +1,30 @@
 package androidx.core.view.accessibility;
 
+import android.R;
 import android.annotation.SuppressLint;
 import android.graphics.Rect;
-import android.os.Build$VERSION;
+import android.graphics.Region;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
-import android.view.accessibility.AccessibilityNodeInfo$AccessibilityAction;
-import android.view.accessibility.AccessibilityNodeInfo$CollectionInfo;
-import android.view.accessibility.AccessibilityNodeInfo$CollectionItemInfo;
-import android.view.accessibility.AccessibilityNodeInfo$RangeInfo;
-import android.view.accessibility.AccessibilityNodeInfo$TouchDelegateInfo;
+import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
-import androidx.core.R$id;
 import androidx.core.os.BuildCompat;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AccessibilityNodeInfoCompat {
@@ -91,9 +89,285 @@ public class AccessibilityNodeInfoCompat {
     private final AccessibilityNodeInfo mInfo;
     private static int sClickableSpanId;
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public int mParentVirtualDescendantId = -1;
     private int mVirtualDescendantId = -1;
+
+    public class AccessibilityActionCompat {
+        public static final AccessibilityActionCompat ACTION_CONTEXT_CLICK;
+        public static final AccessibilityActionCompat ACTION_FOCUS = new AccessibilityActionCompat(1, null);
+        public static final AccessibilityActionCompat ACTION_HIDE_TOOLTIP;
+
+        @NonNull
+        public static final AccessibilityActionCompat ACTION_IME_ENTER;
+        public static final AccessibilityActionCompat ACTION_MOVE_WINDOW;
+
+        @NonNull
+        public static final AccessibilityActionCompat ACTION_PAGE_DOWN;
+
+        @NonNull
+        public static final AccessibilityActionCompat ACTION_PAGE_LEFT;
+
+        @NonNull
+        public static final AccessibilityActionCompat ACTION_PAGE_RIGHT;
+
+        @NonNull
+        public static final AccessibilityActionCompat ACTION_PAGE_UP;
+
+        @NonNull
+        public static final AccessibilityActionCompat ACTION_PRESS_AND_HOLD;
+        public static final AccessibilityActionCompat ACTION_SCROLL_DOWN;
+        public static final AccessibilityActionCompat ACTION_SCROLL_LEFT;
+        public static final AccessibilityActionCompat ACTION_SCROLL_RIGHT;
+        public static final AccessibilityActionCompat ACTION_SCROLL_TO_POSITION;
+        public static final AccessibilityActionCompat ACTION_SCROLL_UP;
+        public static final AccessibilityActionCompat ACTION_SET_PROGRESS;
+        public static final AccessibilityActionCompat ACTION_SHOW_ON_SCREEN;
+        public static final AccessibilityActionCompat ACTION_SHOW_TOOLTIP;
+        private static final String TAG = "A11yActionCompat";
+        public final Object mAction;
+
+        @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+        public final AccessibilityViewCommand mCommand;
+        private final int mId;
+        private final Class<? extends AccessibilityViewCommand.CommandArguments> mViewCommandArgumentClass;
+        public static final AccessibilityActionCompat ACTION_CLEAR_FOCUS = new AccessibilityActionCompat(2, null);
+        public static final AccessibilityActionCompat ACTION_SELECT = new AccessibilityActionCompat(4, null);
+        public static final AccessibilityActionCompat ACTION_CLEAR_SELECTION = new AccessibilityActionCompat(8, null);
+        public static final AccessibilityActionCompat ACTION_CLICK = new AccessibilityActionCompat(16, null);
+        public static final AccessibilityActionCompat ACTION_LONG_CLICK = new AccessibilityActionCompat(32, null);
+        public static final AccessibilityActionCompat ACTION_ACCESSIBILITY_FOCUS = new AccessibilityActionCompat(64, null);
+        public static final AccessibilityActionCompat ACTION_CLEAR_ACCESSIBILITY_FOCUS = new AccessibilityActionCompat(128, null);
+        public static final AccessibilityActionCompat ACTION_NEXT_AT_MOVEMENT_GRANULARITY = new AccessibilityActionCompat(256, (CharSequence) null, (Class<? extends AccessibilityViewCommand.CommandArguments>) AccessibilityViewCommand.MoveAtGranularityArguments.class);
+        public static final AccessibilityActionCompat ACTION_PREVIOUS_AT_MOVEMENT_GRANULARITY = new AccessibilityActionCompat(512, (CharSequence) null, (Class<? extends AccessibilityViewCommand.CommandArguments>) AccessibilityViewCommand.MoveAtGranularityArguments.class);
+        public static final AccessibilityActionCompat ACTION_NEXT_HTML_ELEMENT = new AccessibilityActionCompat(1024, (CharSequence) null, (Class<? extends AccessibilityViewCommand.CommandArguments>) AccessibilityViewCommand.MoveHtmlArguments.class);
+        public static final AccessibilityActionCompat ACTION_PREVIOUS_HTML_ELEMENT = new AccessibilityActionCompat(2048, (CharSequence) null, (Class<? extends AccessibilityViewCommand.CommandArguments>) AccessibilityViewCommand.MoveHtmlArguments.class);
+        public static final AccessibilityActionCompat ACTION_SCROLL_FORWARD = new AccessibilityActionCompat(4096, null);
+        public static final AccessibilityActionCompat ACTION_SCROLL_BACKWARD = new AccessibilityActionCompat(8192, null);
+        public static final AccessibilityActionCompat ACTION_COPY = new AccessibilityActionCompat(16384, null);
+        public static final AccessibilityActionCompat ACTION_PASTE = new AccessibilityActionCompat(32768, null);
+        public static final AccessibilityActionCompat ACTION_CUT = new AccessibilityActionCompat(65536, null);
+        public static final AccessibilityActionCompat ACTION_SET_SELECTION = new AccessibilityActionCompat(131072, (CharSequence) null, (Class<? extends AccessibilityViewCommand.CommandArguments>) AccessibilityViewCommand.SetSelectionArguments.class);
+        public static final AccessibilityActionCompat ACTION_EXPAND = new AccessibilityActionCompat(262144, null);
+        public static final AccessibilityActionCompat ACTION_COLLAPSE = new AccessibilityActionCompat(524288, null);
+        public static final AccessibilityActionCompat ACTION_DISMISS = new AccessibilityActionCompat(1048576, null);
+        public static final AccessibilityActionCompat ACTION_SET_TEXT = new AccessibilityActionCompat(2097152, (CharSequence) null, (Class<? extends AccessibilityViewCommand.CommandArguments>) AccessibilityViewCommand.SetTextArguments.class);
+
+        static {
+            int i = Build.VERSION.SDK_INT;
+            ACTION_SHOW_ON_SCREEN = new AccessibilityActionCompat(i >= 23 ? AccessibilityNodeInfo.AccessibilityAction.ACTION_SHOW_ON_SCREEN : null, R.id.accessibilityActionShowOnScreen, null, null, null);
+            ACTION_SCROLL_TO_POSITION = new AccessibilityActionCompat(i >= 23 ? AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_TO_POSITION : null, R.id.accessibilityActionScrollToPosition, null, null, AccessibilityViewCommand.ScrollToPositionArguments.class);
+            ACTION_SCROLL_UP = new AccessibilityActionCompat(i >= 23 ? AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_UP : null, R.id.accessibilityActionScrollUp, null, null, null);
+            ACTION_SCROLL_LEFT = new AccessibilityActionCompat(i >= 23 ? AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_LEFT : null, R.id.accessibilityActionScrollLeft, null, null, null);
+            ACTION_SCROLL_DOWN = new AccessibilityActionCompat(i >= 23 ? AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_DOWN : null, R.id.accessibilityActionScrollDown, null, null, null);
+            ACTION_SCROLL_RIGHT = new AccessibilityActionCompat(i >= 23 ? AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_RIGHT : null, R.id.accessibilityActionScrollRight, null, null, null);
+            ACTION_PAGE_UP = new AccessibilityActionCompat(i >= 29 ? AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_UP : null, R.id.accessibilityActionPageUp, null, null, null);
+            ACTION_PAGE_DOWN = new AccessibilityActionCompat(i >= 29 ? AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_DOWN : null, R.id.accessibilityActionPageDown, null, null, null);
+            ACTION_PAGE_LEFT = new AccessibilityActionCompat(i >= 29 ? AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_LEFT : null, R.id.accessibilityActionPageLeft, null, null, null);
+            ACTION_PAGE_RIGHT = new AccessibilityActionCompat(i >= 29 ? AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_RIGHT : null, R.id.accessibilityActionPageRight, null, null, null);
+            ACTION_CONTEXT_CLICK = new AccessibilityActionCompat(i >= 23 ? AccessibilityNodeInfo.AccessibilityAction.ACTION_CONTEXT_CLICK : null, R.id.accessibilityActionContextClick, null, null, null);
+            ACTION_SET_PROGRESS = new AccessibilityActionCompat(i >= 24 ? AccessibilityNodeInfo.AccessibilityAction.ACTION_SET_PROGRESS : null, R.id.accessibilityActionSetProgress, null, null, AccessibilityViewCommand.SetProgressArguments.class);
+            ACTION_MOVE_WINDOW = new AccessibilityActionCompat(i >= 26 ? AccessibilityNodeInfo.AccessibilityAction.ACTION_MOVE_WINDOW : null, R.id.accessibilityActionMoveWindow, null, null, AccessibilityViewCommand.MoveWindowArguments.class);
+            ACTION_SHOW_TOOLTIP = new AccessibilityActionCompat(i >= 28 ? AccessibilityNodeInfo.AccessibilityAction.ACTION_SHOW_TOOLTIP : null, R.id.accessibilityActionShowTooltip, null, null, null);
+            ACTION_HIDE_TOOLTIP = new AccessibilityActionCompat(i >= 28 ? AccessibilityNodeInfo.AccessibilityAction.ACTION_HIDE_TOOLTIP : null, R.id.accessibilityActionHideTooltip, null, null, null);
+            ACTION_PRESS_AND_HOLD = new AccessibilityActionCompat(i >= 30 ? AccessibilityNodeInfo.AccessibilityAction.ACTION_PRESS_AND_HOLD : null, R.id.accessibilityActionPressAndHold, null, null, null);
+            ACTION_IME_ENTER = new AccessibilityActionCompat(i >= 30 ? AccessibilityNodeInfo.AccessibilityAction.ACTION_IME_ENTER : null, R.id.accessibilityActionImeEnter, null, null, null);
+        }
+
+        public AccessibilityActionCompat(int i, CharSequence charSequence) {
+            this(null, i, charSequence, null, null);
+        }
+
+        @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+        public AccessibilityActionCompat createReplacementAction(CharSequence charSequence, AccessibilityViewCommand accessibilityViewCommand) {
+            return new AccessibilityActionCompat(null, this.mId, charSequence, accessibilityViewCommand, this.mViewCommandArgumentClass);
+        }
+
+        public boolean equals(@Nullable Object obj) {
+            if (obj == null || !(obj instanceof AccessibilityActionCompat)) {
+                return false;
+            }
+            AccessibilityActionCompat accessibilityActionCompat = (AccessibilityActionCompat) obj;
+            Object obj2 = this.mAction;
+            if (obj2 == null) {
+                return accessibilityActionCompat.mAction == null;
+            }
+            return obj2.equals(accessibilityActionCompat.mAction);
+        }
+
+        public int getId() {
+            return ((AccessibilityNodeInfo.AccessibilityAction) this.mAction).getId();
+        }
+
+        public CharSequence getLabel() {
+            return ((AccessibilityNodeInfo.AccessibilityAction) this.mAction).getLabel();
+        }
+
+        public int hashCode() {
+            Object obj = this.mAction;
+            if (obj != null) {
+                return obj.hashCode();
+            }
+            return 0;
+        }
+
+        @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+        public boolean perform(View view, Bundle bundle) {
+            if (this.mCommand == null) {
+                return false;
+            }
+            AccessibilityViewCommand.CommandArguments commandArguments = null;
+            Class<? extends AccessibilityViewCommand.CommandArguments> cls = this.mViewCommandArgumentClass;
+            if (cls != null) {
+                try {
+                    AccessibilityViewCommand.CommandArguments commandArgumentsNewInstance = cls.getDeclaredConstructor(new Class[0]).newInstance(new Object[0]);
+                    try {
+                        commandArgumentsNewInstance.setBundle(bundle);
+                        commandArguments = commandArgumentsNewInstance;
+                    } catch (Exception e) {
+                        e = e;
+                        commandArguments = commandArgumentsNewInstance;
+                        Class<? extends AccessibilityViewCommand.CommandArguments> cls2 = this.mViewCommandArgumentClass;
+                        Log.e(TAG, "Failed to execute command with argument class ViewCommandArgument: " + (cls2 == null ? "null" : cls2.getName()), e);
+                    }
+                } catch (Exception e2) {
+                    e = e2;
+                }
+            }
+            return this.mCommand.perform(view, commandArguments);
+        }
+
+        @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+        public AccessibilityActionCompat(int i, CharSequence charSequence, AccessibilityViewCommand accessibilityViewCommand) {
+            this(null, i, charSequence, accessibilityViewCommand, null);
+        }
+
+        public AccessibilityActionCompat(Object obj) {
+            this(obj, 0, null, null, null);
+        }
+
+        private AccessibilityActionCompat(int i, CharSequence charSequence, Class<? extends AccessibilityViewCommand.CommandArguments> cls) {
+            this(null, i, charSequence, null, cls);
+        }
+
+        public AccessibilityActionCompat(Object obj, int i, CharSequence charSequence, AccessibilityViewCommand accessibilityViewCommand, Class<? extends AccessibilityViewCommand.CommandArguments> cls) {
+            this.mId = i;
+            this.mCommand = accessibilityViewCommand;
+            if (obj == null) {
+                this.mAction = new AccessibilityNodeInfo.AccessibilityAction(i, charSequence);
+            } else {
+                this.mAction = obj;
+            }
+            this.mViewCommandArgumentClass = cls;
+        }
+    }
+
+    public class CollectionInfoCompat {
+        public static final int SELECTION_MODE_MULTIPLE = 2;
+        public static final int SELECTION_MODE_NONE = 0;
+        public static final int SELECTION_MODE_SINGLE = 1;
+        public final Object mInfo;
+
+        public CollectionInfoCompat(Object obj) {
+            this.mInfo = obj;
+        }
+
+        public int getColumnCount() {
+            return ((AccessibilityNodeInfo.CollectionInfo) this.mInfo).getColumnCount();
+        }
+
+        public int getRowCount() {
+            return ((AccessibilityNodeInfo.CollectionInfo) this.mInfo).getRowCount();
+        }
+
+        public int getSelectionMode() {
+            return ((AccessibilityNodeInfo.CollectionInfo) this.mInfo).getSelectionMode();
+        }
+
+        public boolean isHierarchical() {
+            return ((AccessibilityNodeInfo.CollectionInfo) this.mInfo).isHierarchical();
+        }
+
+        public static CollectionInfoCompat obtain(int i, int i2, boolean z2, int i3) {
+            return new CollectionInfoCompat(AccessibilityNodeInfo.CollectionInfo.obtain(i, i2, z2, i3));
+        }
+
+        public static CollectionInfoCompat obtain(int i, int i2, boolean z2) {
+            return new CollectionInfoCompat(AccessibilityNodeInfo.CollectionInfo.obtain(i, i2, z2));
+        }
+    }
+
+    public class CollectionItemInfoCompat {
+        public final Object mInfo;
+
+        public CollectionItemInfoCompat(Object obj) {
+            this.mInfo = obj;
+        }
+
+        public int getColumnIndex() {
+            return ((AccessibilityNodeInfo.CollectionItemInfo) this.mInfo).getColumnIndex();
+        }
+
+        public int getColumnSpan() {
+            return ((AccessibilityNodeInfo.CollectionItemInfo) this.mInfo).getColumnSpan();
+        }
+
+        public int getRowIndex() {
+            return ((AccessibilityNodeInfo.CollectionItemInfo) this.mInfo).getRowIndex();
+        }
+
+        public int getRowSpan() {
+            return ((AccessibilityNodeInfo.CollectionItemInfo) this.mInfo).getRowSpan();
+        }
+
+        @Deprecated
+        public boolean isHeading() {
+            return ((AccessibilityNodeInfo.CollectionItemInfo) this.mInfo).isHeading();
+        }
+
+        public boolean isSelected() {
+            return ((AccessibilityNodeInfo.CollectionItemInfo) this.mInfo).isSelected();
+        }
+
+        public static CollectionItemInfoCompat obtain(int i, int i2, int i3, int i4, boolean z2, boolean z3) {
+            return new CollectionItemInfoCompat(AccessibilityNodeInfo.CollectionItemInfo.obtain(i, i2, i3, i4, z2, z3));
+        }
+
+        public static CollectionItemInfoCompat obtain(int i, int i2, int i3, int i4, boolean z2) {
+            return new CollectionItemInfoCompat(AccessibilityNodeInfo.CollectionItemInfo.obtain(i, i2, i3, i4, z2));
+        }
+    }
+
+    public class RangeInfoCompat {
+        public static final int RANGE_TYPE_FLOAT = 1;
+        public static final int RANGE_TYPE_INT = 0;
+        public static final int RANGE_TYPE_PERCENT = 2;
+        public final Object mInfo;
+
+        public RangeInfoCompat(Object obj) {
+            this.mInfo = obj;
+        }
+
+        public float getCurrent() {
+            return ((AccessibilityNodeInfo.RangeInfo) this.mInfo).getCurrent();
+        }
+
+        public float getMax() {
+            return ((AccessibilityNodeInfo.RangeInfo) this.mInfo).getMax();
+        }
+
+        public float getMin() {
+            return ((AccessibilityNodeInfo.RangeInfo) this.mInfo).getMin();
+        }
+
+        public int getType() {
+            return ((AccessibilityNodeInfo.RangeInfo) this.mInfo).getType();
+        }
+
+        public static RangeInfoCompat obtain(int i, float f, float f2, float f3) {
+            return new RangeInfoCompat(AccessibilityNodeInfo.RangeInfo.obtain(i, f, f2, f3));
+        }
+    }
 
     @Deprecated
     public AccessibilityNodeInfoCompat(Object obj) {
@@ -115,16 +389,16 @@ public class AccessibilityNodeInfoCompat {
         extrasIntList(SPANS_ID_KEY).add(Integer.valueOf(i));
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void addSpansToExtras(CharSequence charSequence, View view) {
-        if (Build$VERSION.SDK_INT < 26) {
+        if (Build.VERSION.SDK_INT < 26) {
             clearExtrasSpans();
             removeCollectedSpans(view);
             ClickableSpan[] clickableSpans = getClickableSpans(charSequence);
             if (clickableSpans == null || clickableSpans.length <= 0) {
                 return;
             }
-            getExtras().putInt(SPANS_ACTION_ID_KEY, R$id.accessibility_action_clickable_span);
+            getExtras().putInt(SPANS_ACTION_ID_KEY, androidx.core.R.id.accessibility_action_clickable_span);
             SparseArray<WeakReference<ClickableSpan>> orCreateSpansFromViewTags = getOrCreateSpansFromViewTags(view);
             for (int i = 0; i < clickableSpans.length; i++) {
                 int iIdForClickableSpan = idForClickableSpan(clickableSpans[i], orCreateSpansFromViewTags);
@@ -202,15 +476,15 @@ public class AccessibilityNodeInfoCompat {
         return wrapNonNullInstance(this.mInfo.focusSearch(i));
     }
 
-    public List<AccessibilityNodeInfoCompat$AccessibilityActionCompat> getActionList() {
-        List<AccessibilityNodeInfo$AccessibilityAction> actionList = this.mInfo.getActionList();
+    public List<AccessibilityActionCompat> getActionList() {
+        List<AccessibilityNodeInfo.AccessibilityAction> actionList = this.mInfo.getActionList();
         if (actionList == null) {
             return Collections.emptyList();
         }
         ArrayList arrayList = new ArrayList();
         int size = actionList.size();
         for (int i = 0; i < size; i++) {
-            arrayList.add(new AccessibilityNodeInfoCompat$AccessibilityActionCompat(actionList.get(i)));
+            arrayList.add(new AccessibilityActionCompat(actionList.get(i)));
         }
         return arrayList;
     }
@@ -261,43 +535,43 @@ public class AccessibilityNodeInfoCompat {
                 return "ACTION_COLLAPSE";
             case 2097152:
                 return "ACTION_SET_TEXT";
-            case android.R$id.accessibilityActionMoveWindow:
+            case R.id.accessibilityActionMoveWindow:
                 return "ACTION_MOVE_WINDOW";
-            case android.R$id.accessibilityActionImeEnter:
+            case R.id.accessibilityActionImeEnter:
                 return "ACTION_IME_ENTER";
             default:
                 switch (i) {
-                    case android.R$id.accessibilityActionShowOnScreen:
+                    case R.id.accessibilityActionShowOnScreen:
                         return "ACTION_SHOW_ON_SCREEN";
-                    case android.R$id.accessibilityActionScrollToPosition:
+                    case R.id.accessibilityActionScrollToPosition:
                         return "ACTION_SCROLL_TO_POSITION";
-                    case android.R$id.accessibilityActionScrollUp:
+                    case R.id.accessibilityActionScrollUp:
                         return "ACTION_SCROLL_UP";
-                    case android.R$id.accessibilityActionScrollLeft:
+                    case R.id.accessibilityActionScrollLeft:
                         return "ACTION_SCROLL_LEFT";
-                    case android.R$id.accessibilityActionScrollDown:
+                    case R.id.accessibilityActionScrollDown:
                         return "ACTION_SCROLL_DOWN";
-                    case android.R$id.accessibilityActionScrollRight:
+                    case R.id.accessibilityActionScrollRight:
                         return "ACTION_SCROLL_RIGHT";
-                    case android.R$id.accessibilityActionContextClick:
+                    case R.id.accessibilityActionContextClick:
                         return "ACTION_CONTEXT_CLICK";
-                    case android.R$id.accessibilityActionSetProgress:
+                    case R.id.accessibilityActionSetProgress:
                         return "ACTION_SET_PROGRESS";
                     default:
                         switch (i) {
-                            case android.R$id.accessibilityActionShowTooltip:
+                            case R.id.accessibilityActionShowTooltip:
                                 return "ACTION_SHOW_TOOLTIP";
-                            case android.R$id.accessibilityActionHideTooltip:
+                            case R.id.accessibilityActionHideTooltip:
                                 return "ACTION_HIDE_TOOLTIP";
-                            case android.R$id.accessibilityActionPageUp:
+                            case R.id.accessibilityActionPageUp:
                                 return "ACTION_PAGE_UP";
-                            case android.R$id.accessibilityActionPageDown:
+                            case R.id.accessibilityActionPageDown:
                                 return "ACTION_PAGE_DOWN";
-                            case android.R$id.accessibilityActionPageLeft:
+                            case R.id.accessibilityActionPageLeft:
                                 return "ACTION_PAGE_LEFT";
-                            case android.R$id.accessibilityActionPageRight:
+                            case R.id.accessibilityActionPageRight:
                                 return "ACTION_PAGE_RIGHT";
-                            case android.R$id.accessibilityActionPressAndHold:
+                            case R.id.accessibilityActionPressAndHold:
                                 return "ACTION_PRESS_AND_HOLD";
                             default:
                                 return "ACTION_UNKNOWN";
@@ -336,7 +610,7 @@ public class AccessibilityNodeInfoCompat {
         return this.mInfo.getClassName();
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public static ClickableSpan[] getClickableSpans(CharSequence charSequence) {
         if (charSequence instanceof Spanned) {
             return (ClickableSpan[]) ((Spanned) charSequence).getSpans(0, charSequence.length(), ClickableSpan.class);
@@ -344,18 +618,18 @@ public class AccessibilityNodeInfoCompat {
         return null;
     }
 
-    public AccessibilityNodeInfoCompat$CollectionInfoCompat getCollectionInfo() {
-        AccessibilityNodeInfo$CollectionInfo collectionInfo = this.mInfo.getCollectionInfo();
+    public CollectionInfoCompat getCollectionInfo() {
+        AccessibilityNodeInfo.CollectionInfo collectionInfo = this.mInfo.getCollectionInfo();
         if (collectionInfo != null) {
-            return new AccessibilityNodeInfoCompat$CollectionInfoCompat(collectionInfo);
+            return new CollectionInfoCompat(collectionInfo);
         }
         return null;
     }
 
-    public AccessibilityNodeInfoCompat$CollectionItemInfoCompat getCollectionItemInfo() {
-        AccessibilityNodeInfo$CollectionItemInfo collectionItemInfo = this.mInfo.getCollectionItemInfo();
+    public CollectionItemInfoCompat getCollectionItemInfo() {
+        AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = this.mInfo.getCollectionItemInfo();
         if (collectionItemInfo != null) {
-            return new AccessibilityNodeInfoCompat$CollectionItemInfoCompat(collectionItemInfo);
+            return new CollectionItemInfoCompat(collectionItemInfo);
         }
         return null;
     }
@@ -365,7 +639,7 @@ public class AccessibilityNodeInfoCompat {
     }
 
     public int getDrawingOrder() {
-        if (Build$VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= 24) {
             return this.mInfo.getDrawingOrder();
         }
         return 0;
@@ -381,7 +655,7 @@ public class AccessibilityNodeInfoCompat {
 
     @Nullable
     public CharSequence getHintText() {
-        return Build$VERSION.SDK_INT >= 26 ? this.mInfo.getHintText() : this.mInfo.getExtras().getCharSequence(HINT_TEXT_KEY);
+        return Build.VERSION.SDK_INT >= 26 ? this.mInfo.getHintText() : this.mInfo.getExtras().getCharSequence(HINT_TEXT_KEY);
     }
 
     @Deprecated
@@ -419,7 +693,7 @@ public class AccessibilityNodeInfoCompat {
             return spansFromViewTags;
         }
         SparseArray<WeakReference<ClickableSpan>> sparseArray = new SparseArray<>();
-        view.setTag(R$id.tag_accessibility_clickable_spans, sparseArray);
+        view.setTag(androidx.core.R.id.tag_accessibility_clickable_spans, sparseArray);
         return sparseArray;
     }
 
@@ -429,17 +703,17 @@ public class AccessibilityNodeInfoCompat {
 
     @Nullable
     public CharSequence getPaneTitle() {
-        return Build$VERSION.SDK_INT >= 28 ? this.mInfo.getPaneTitle() : this.mInfo.getExtras().getCharSequence(PANE_TITLE_KEY);
+        return Build.VERSION.SDK_INT >= 28 ? this.mInfo.getPaneTitle() : this.mInfo.getExtras().getCharSequence(PANE_TITLE_KEY);
     }
 
     public AccessibilityNodeInfoCompat getParent() {
         return wrapNonNullInstance(this.mInfo.getParent());
     }
 
-    public AccessibilityNodeInfoCompat$RangeInfoCompat getRangeInfo() {
-        AccessibilityNodeInfo$RangeInfo rangeInfo = this.mInfo.getRangeInfo();
+    public RangeInfoCompat getRangeInfo() {
+        AccessibilityNodeInfo.RangeInfo rangeInfo = this.mInfo.getRangeInfo();
         if (rangeInfo != null) {
-            return new AccessibilityNodeInfoCompat$RangeInfoCompat(rangeInfo);
+            return new RangeInfoCompat(rangeInfo);
         }
         return null;
     }
@@ -450,7 +724,7 @@ public class AccessibilityNodeInfoCompat {
     }
 
     private SparseArray<WeakReference<ClickableSpan>> getSpansFromViewTags(View view) {
-        return (SparseArray) view.getTag(R$id.tag_accessibility_clickable_spans);
+        return (SparseArray) view.getTag(androidx.core.R.id.tag_accessibility_clickable_spans);
     }
 
     @Nullable
@@ -483,27 +757,27 @@ public class AccessibilityNodeInfoCompat {
 
     @Nullable
     public CharSequence getTooltipText() {
-        return Build$VERSION.SDK_INT >= 28 ? this.mInfo.getTooltipText() : this.mInfo.getExtras().getCharSequence(TOOLTIP_TEXT_KEY);
+        return Build.VERSION.SDK_INT >= 28 ? this.mInfo.getTooltipText() : this.mInfo.getExtras().getCharSequence(TOOLTIP_TEXT_KEY);
     }
 
     @Nullable
-    public AccessibilityNodeInfoCompat$TouchDelegateInfoCompat getTouchDelegateInfo() {
-        AccessibilityNodeInfo$TouchDelegateInfo touchDelegateInfo;
-        if (Build$VERSION.SDK_INT < 29 || (touchDelegateInfo = this.mInfo.getTouchDelegateInfo()) == null) {
+    public TouchDelegateInfoCompat getTouchDelegateInfo() {
+        AccessibilityNodeInfo.TouchDelegateInfo touchDelegateInfo;
+        if (Build.VERSION.SDK_INT < 29 || (touchDelegateInfo = this.mInfo.getTouchDelegateInfo()) == null) {
             return null;
         }
-        return new AccessibilityNodeInfoCompat$TouchDelegateInfoCompat(touchDelegateInfo);
+        return new TouchDelegateInfoCompat(touchDelegateInfo);
     }
 
     public AccessibilityNodeInfoCompat getTraversalAfter() {
-        if (Build$VERSION.SDK_INT >= 22) {
+        if (Build.VERSION.SDK_INT >= 22) {
             return wrapNonNullInstance(this.mInfo.getTraversalAfter());
         }
         return null;
     }
 
     public AccessibilityNodeInfoCompat getTraversalBefore() {
-        if (Build$VERSION.SDK_INT >= 22) {
+        if (Build.VERSION.SDK_INT >= 22) {
             return wrapNonNullInstance(this.mInfo.getTraversalBefore());
         }
         return null;
@@ -567,7 +841,7 @@ public class AccessibilityNodeInfoCompat {
     }
 
     public boolean isContextClickable() {
-        if (Build$VERSION.SDK_INT >= 23) {
+        if (Build.VERSION.SDK_INT >= 23) {
             return this.mInfo.isContextClickable();
         }
         return false;
@@ -594,18 +868,18 @@ public class AccessibilityNodeInfoCompat {
     }
 
     public boolean isHeading() {
-        if (Build$VERSION.SDK_INT >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             return this.mInfo.isHeading();
         }
         if (getBooleanProperty(2)) {
             return true;
         }
-        AccessibilityNodeInfoCompat$CollectionItemInfoCompat collectionItemInfo = getCollectionItemInfo();
+        CollectionItemInfoCompat collectionItemInfo = getCollectionItemInfo();
         return collectionItemInfo != null && collectionItemInfo.isHeading();
     }
 
     public boolean isImportantForAccessibility() {
-        if (Build$VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= 24) {
             return this.mInfo.isImportantForAccessibility();
         }
         return true;
@@ -624,7 +898,7 @@ public class AccessibilityNodeInfoCompat {
     }
 
     public boolean isScreenReaderFocusable() {
-        return Build$VERSION.SDK_INT >= 28 ? this.mInfo.isScreenReaderFocusable() : getBooleanProperty(1);
+        return Build.VERSION.SDK_INT >= 28 ? this.mInfo.isScreenReaderFocusable() : getBooleanProperty(1);
     }
 
     public boolean isScrollable() {
@@ -636,11 +910,11 @@ public class AccessibilityNodeInfoCompat {
     }
 
     public boolean isShowingHintText() {
-        return Build$VERSION.SDK_INT >= 26 ? this.mInfo.isShowingHintText() : getBooleanProperty(4);
+        return Build.VERSION.SDK_INT >= 26 ? this.mInfo.isShowingHintText() : getBooleanProperty(4);
     }
 
     public boolean isTextEntryKey() {
-        return Build$VERSION.SDK_INT >= 29 ? this.mInfo.isTextEntryKey() : getBooleanProperty(8);
+        return Build.VERSION.SDK_INT >= 29 ? this.mInfo.isTextEntryKey() : getBooleanProperty(8);
     }
 
     public boolean isVisibleToUser() {
@@ -663,8 +937,8 @@ public class AccessibilityNodeInfoCompat {
         return this.mInfo.refresh();
     }
 
-    public boolean removeAction(AccessibilityNodeInfoCompat$AccessibilityActionCompat accessibilityNodeInfoCompat$AccessibilityActionCompat) {
-        return this.mInfo.removeAction((AccessibilityNodeInfo$AccessibilityAction) accessibilityNodeInfoCompat$AccessibilityActionCompat.mAction);
+    public boolean removeAction(AccessibilityActionCompat accessibilityActionCompat) {
+        return this.mInfo.removeAction((AccessibilityNodeInfo.AccessibilityAction) accessibilityActionCompat.mAction);
     }
 
     public boolean removeChild(View view) {
@@ -731,11 +1005,11 @@ public class AccessibilityNodeInfoCompat {
     }
 
     public void setCollectionInfo(Object obj) {
-        this.mInfo.setCollectionInfo(obj == null ? null : (AccessibilityNodeInfo$CollectionInfo) ((AccessibilityNodeInfoCompat$CollectionInfoCompat) obj).mInfo);
+        this.mInfo.setCollectionInfo(obj == null ? null : (AccessibilityNodeInfo.CollectionInfo) ((CollectionInfoCompat) obj).mInfo);
     }
 
     public void setCollectionItemInfo(Object obj) {
-        this.mInfo.setCollectionItemInfo(obj == null ? null : (AccessibilityNodeInfo$CollectionItemInfo) ((AccessibilityNodeInfoCompat$CollectionItemInfoCompat) obj).mInfo);
+        this.mInfo.setCollectionItemInfo(obj == null ? null : (AccessibilityNodeInfo.CollectionItemInfo) ((CollectionItemInfoCompat) obj).mInfo);
     }
 
     public void setContentDescription(CharSequence charSequence) {
@@ -747,7 +1021,7 @@ public class AccessibilityNodeInfoCompat {
     }
 
     public void setContextClickable(boolean z2) {
-        if (Build$VERSION.SDK_INT >= 23) {
+        if (Build.VERSION.SDK_INT >= 23) {
             this.mInfo.setContextClickable(z2);
         }
     }
@@ -757,7 +1031,7 @@ public class AccessibilityNodeInfoCompat {
     }
 
     public void setDrawingOrder(int i) {
-        if (Build$VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= 24) {
             this.mInfo.setDrawingOrder(i);
         }
     }
@@ -783,7 +1057,7 @@ public class AccessibilityNodeInfoCompat {
     }
 
     public void setHeading(boolean z2) {
-        if (Build$VERSION.SDK_INT >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             this.mInfo.setHeading(z2);
         } else {
             setBooleanProperty(2, z2);
@@ -791,7 +1065,7 @@ public class AccessibilityNodeInfoCompat {
     }
 
     public void setHintText(@Nullable CharSequence charSequence) {
-        if (Build$VERSION.SDK_INT >= 26) {
+        if (Build.VERSION.SDK_INT >= 26) {
             this.mInfo.setHintText(charSequence);
         } else {
             this.mInfo.getExtras().putCharSequence(HINT_TEXT_KEY, charSequence);
@@ -799,7 +1073,7 @@ public class AccessibilityNodeInfoCompat {
     }
 
     public void setImportantForAccessibility(boolean z2) {
-        if (Build$VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= 24) {
             this.mInfo.setImportantForAccessibility(z2);
         }
     }
@@ -841,7 +1115,7 @@ public class AccessibilityNodeInfoCompat {
     }
 
     public void setPaneTitle(@Nullable CharSequence charSequence) {
-        if (Build$VERSION.SDK_INT >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             this.mInfo.setPaneTitle(charSequence);
         } else {
             this.mInfo.getExtras().putCharSequence(PANE_TITLE_KEY, charSequence);
@@ -857,8 +1131,8 @@ public class AccessibilityNodeInfoCompat {
         this.mInfo.setPassword(z2);
     }
 
-    public void setRangeInfo(AccessibilityNodeInfoCompat$RangeInfoCompat accessibilityNodeInfoCompat$RangeInfoCompat) {
-        this.mInfo.setRangeInfo((AccessibilityNodeInfo$RangeInfo) accessibilityNodeInfoCompat$RangeInfoCompat.mInfo);
+    public void setRangeInfo(RangeInfoCompat rangeInfoCompat) {
+        this.mInfo.setRangeInfo((AccessibilityNodeInfo.RangeInfo) rangeInfoCompat.mInfo);
     }
 
     public void setRoleDescription(@Nullable CharSequence charSequence) {
@@ -866,7 +1140,7 @@ public class AccessibilityNodeInfoCompat {
     }
 
     public void setScreenReaderFocusable(boolean z2) {
-        if (Build$VERSION.SDK_INT >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             this.mInfo.setScreenReaderFocusable(z2);
         } else {
             setBooleanProperty(1, z2);
@@ -882,7 +1156,7 @@ public class AccessibilityNodeInfoCompat {
     }
 
     public void setShowingHintText(boolean z2) {
-        if (Build$VERSION.SDK_INT >= 26) {
+        if (Build.VERSION.SDK_INT >= 26) {
             this.mInfo.setShowingHintText(z2);
         } else {
             setBooleanProperty(4, z2);
@@ -907,7 +1181,7 @@ public class AccessibilityNodeInfoCompat {
     }
 
     public void setTextEntryKey(boolean z2) {
-        if (Build$VERSION.SDK_INT >= 29) {
+        if (Build.VERSION.SDK_INT >= 29) {
             this.mInfo.setTextEntryKey(z2);
         } else {
             setBooleanProperty(8, z2);
@@ -919,27 +1193,27 @@ public class AccessibilityNodeInfoCompat {
     }
 
     public void setTooltipText(@Nullable CharSequence charSequence) {
-        if (Build$VERSION.SDK_INT >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             this.mInfo.setTooltipText(charSequence);
         } else {
             this.mInfo.getExtras().putCharSequence(TOOLTIP_TEXT_KEY, charSequence);
         }
     }
 
-    public void setTouchDelegateInfo(@NonNull AccessibilityNodeInfoCompat$TouchDelegateInfoCompat accessibilityNodeInfoCompat$TouchDelegateInfoCompat) {
-        if (Build$VERSION.SDK_INT >= 29) {
-            this.mInfo.setTouchDelegateInfo(accessibilityNodeInfoCompat$TouchDelegateInfoCompat.mInfo);
+    public void setTouchDelegateInfo(@NonNull TouchDelegateInfoCompat touchDelegateInfoCompat) {
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.mInfo.setTouchDelegateInfo(touchDelegateInfoCompat.mInfo);
         }
     }
 
     public void setTraversalAfter(View view) {
-        if (Build$VERSION.SDK_INT >= 22) {
+        if (Build.VERSION.SDK_INT >= 22) {
             this.mInfo.setTraversalAfter(view);
         }
     }
 
     public void setTraversalBefore(View view) {
-        if (Build$VERSION.SDK_INT >= 22) {
+        if (Build.VERSION.SDK_INT >= 22) {
             this.mInfo.setTraversalBefore(view);
         }
     }
@@ -991,12 +1265,12 @@ public class AccessibilityNodeInfoCompat {
         sb.append(isPassword());
         sb.append("; scrollable: " + isScrollable());
         sb.append("; [");
-        List<AccessibilityNodeInfoCompat$AccessibilityActionCompat> actionList = getActionList();
+        List<AccessibilityActionCompat> actionList = getActionList();
         for (int i = 0; i < actionList.size(); i++) {
-            AccessibilityNodeInfoCompat$AccessibilityActionCompat accessibilityNodeInfoCompat$AccessibilityActionCompat = actionList.get(i);
-            String actionSymbolicName = getActionSymbolicName(accessibilityNodeInfoCompat$AccessibilityActionCompat.getId());
-            if (actionSymbolicName.equals("ACTION_UNKNOWN") && accessibilityNodeInfoCompat$AccessibilityActionCompat.getLabel() != null) {
-                actionSymbolicName = accessibilityNodeInfoCompat$AccessibilityActionCompat.getLabel().toString();
+            AccessibilityActionCompat accessibilityActionCompat = actionList.get(i);
+            String actionSymbolicName = getActionSymbolicName(accessibilityActionCompat.getId());
+            if (actionSymbolicName.equals("ACTION_UNKNOWN") && accessibilityActionCompat.getLabel() != null) {
+                actionSymbolicName = accessibilityActionCompat.getLabel().toString();
             }
             sb.append(actionSymbolicName);
             if (i != actionList.size() - 1) {
@@ -1022,8 +1296,8 @@ public class AccessibilityNodeInfoCompat {
         return null;
     }
 
-    public void addAction(AccessibilityNodeInfoCompat$AccessibilityActionCompat accessibilityNodeInfoCompat$AccessibilityActionCompat) {
-        this.mInfo.addAction((AccessibilityNodeInfo$AccessibilityAction) accessibilityNodeInfoCompat$AccessibilityActionCompat.mAction);
+    public void addAction(AccessibilityActionCompat accessibilityActionCompat) {
+        this.mInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) accessibilityActionCompat.mAction);
     }
 
     public void addChild(View view, int i) {
@@ -1061,14 +1335,55 @@ public class AccessibilityNodeInfoCompat {
     }
 
     public void setTraversalAfter(View view, int i) {
-        if (Build$VERSION.SDK_INT >= 22) {
+        if (Build.VERSION.SDK_INT >= 22) {
             this.mInfo.setTraversalAfter(view, i);
         }
     }
 
     public void setTraversalBefore(View view, int i) {
-        if (Build$VERSION.SDK_INT >= 22) {
+        if (Build.VERSION.SDK_INT >= 22) {
             this.mInfo.setTraversalBefore(view, i);
+        }
+    }
+
+    public final class TouchDelegateInfoCompat {
+        public final AccessibilityNodeInfo.TouchDelegateInfo mInfo;
+
+        public TouchDelegateInfoCompat(@NonNull Map<Region, View> map) {
+            if (Build.VERSION.SDK_INT >= 29) {
+                this.mInfo = new AccessibilityNodeInfo.TouchDelegateInfo(map);
+            } else {
+                this.mInfo = null;
+            }
+        }
+
+        @Nullable
+        public Region getRegionAt(@IntRange(from = 0) int i) {
+            if (Build.VERSION.SDK_INT >= 29) {
+                return this.mInfo.getRegionAt(i);
+            }
+            return null;
+        }
+
+        @IntRange(from = 0)
+        public int getRegionCount() {
+            if (Build.VERSION.SDK_INT >= 29) {
+                return this.mInfo.getRegionCount();
+            }
+            return 0;
+        }
+
+        @Nullable
+        public AccessibilityNodeInfoCompat getTargetForRegion(@NonNull Region region) {
+            AccessibilityNodeInfo targetForRegion;
+            if (Build.VERSION.SDK_INT < 29 || (targetForRegion = this.mInfo.getTargetForRegion(region)) == null) {
+                return null;
+            }
+            return AccessibilityNodeInfoCompat.wrap(targetForRegion);
+        }
+
+        public TouchDelegateInfoCompat(@NonNull AccessibilityNodeInfo.TouchDelegateInfo touchDelegateInfo) {
+            this.mInfo = touchDelegateInfo;
         }
     }
 

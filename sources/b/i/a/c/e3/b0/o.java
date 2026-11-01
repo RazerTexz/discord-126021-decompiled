@@ -21,20 +21,20 @@ public final class o implements d {
         }
     }
 
-    @Override // com.google.android.exoplayer2.upstream.cache.Cache$a
+    @Override // com.google.android.exoplayer2.upstream.cache.Cache.a
     public void b(Cache cache, h hVar) {
         this.a.remove(hVar);
         this.f937b -= hVar.l;
     }
 
-    @Override // com.google.android.exoplayer2.upstream.cache.Cache$a
+    @Override // com.google.android.exoplayer2.upstream.cache.Cache.a
     public void c(Cache cache, h hVar, h hVar2) {
         this.a.remove(hVar);
         this.f937b -= hVar.l;
         d(cache, hVar2);
     }
 
-    @Override // com.google.android.exoplayer2.upstream.cache.Cache$a
+    @Override // com.google.android.exoplayer2.upstream.cache.Cache.a
     public void d(Cache cache, h hVar) {
         this.a.add(hVar);
         this.f937b += hVar.l;

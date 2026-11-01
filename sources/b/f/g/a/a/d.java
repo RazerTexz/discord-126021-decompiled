@@ -12,12 +12,10 @@ import com.facebook.common.references.CloseableReference;
 import com.facebook.datasource.DataSource;
 import com.facebook.drawee.controller.AbstractDraweeController;
 import com.facebook.drawee.controller.AbstractDraweeControllerBuilder;
-import com.facebook.drawee.controller.AbstractDraweeControllerBuilder$b;
 import com.facebook.drawee.controller.ControllerListener;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.imagepipeline.image.ImageInfo;
 import com.facebook.imagepipeline.request.ImageRequest;
-import com.facebook.imagepipeline.request.ImageRequest$c;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import java.util.Set;
 
@@ -35,44 +33,44 @@ public class d extends AbstractDraweeControllerBuilder<d, ImageRequest, Closeabl
     }
 
     @Override // com.facebook.drawee.controller.AbstractDraweeControllerBuilder
-    public DataSource<CloseableReference<b.f.j.j.c>> b(DraweeController draweeController, String str, ImageRequest imageRequest, Object obj, AbstractDraweeControllerBuilder$b abstractDraweeControllerBuilder$b) {
-        ImageRequest$c imageRequest$c;
+    public DataSource<CloseableReference<b.f.j.j.c>> b(DraweeController draweeController, String str, ImageRequest imageRequest, Object obj, AbstractDraweeControllerBuilder.b bVar) {
+        ImageRequest.c cVar;
         b.f.j.k.e eVar;
         ImageRequest imageRequest2 = imageRequest;
         h hVar = this.o;
-        int iOrdinal = abstractDraweeControllerBuilder$b.ordinal();
+        int iOrdinal = bVar.ordinal();
         if (iOrdinal == 0) {
-            imageRequest$c = ImageRequest$c.FULL_FETCH;
+            cVar = ImageRequest.c.FULL_FETCH;
         } else if (iOrdinal == 1) {
-            imageRequest$c = ImageRequest$c.DISK_CACHE;
+            cVar = ImageRequest.c.DISK_CACHE;
         } else {
             if (iOrdinal != 2) {
-                throw new RuntimeException("Cache level" + abstractDraweeControllerBuilder$b + "is not supported. ");
+                throw new RuntimeException("Cache level" + bVar + "is not supported. ");
             }
-            imageRequest$c = ImageRequest$c.BITMAP_MEMORY_CACHE;
+            cVar = ImageRequest.c.BITMAP_MEMORY_CACHE;
         }
-        ImageRequest$c imageRequest$c2 = imageRequest$c;
-        b.f.g.a.a.h.c cVar = null;
+        ImageRequest.c cVar2 = cVar;
+        b.f.g.a.a.h.c cVar3 = null;
         if (draweeController instanceof c) {
-            c cVar2 = (c) draweeController;
-            synchronized (cVar2) {
-                b.f.g.a.a.h.b bVar = cVar2.G;
-                cVar = bVar != null ? new b.f.g.a.a.h.c(cVar2.m, bVar) : null;
-                Set<b.f.j.k.e> set = cVar2.F;
+            c cVar4 = (c) draweeController;
+            synchronized (cVar4) {
+                b.f.g.a.a.h.b bVar2 = cVar4.G;
+                cVar3 = bVar2 != null ? new b.f.g.a.a.h.c(cVar4.m, bVar2) : null;
+                Set<b.f.j.k.e> set = cVar4.F;
                 if (set != null) {
-                    b.f.j.k.c cVar3 = new b.f.j.k.c(set);
-                    if (cVar != null) {
-                        cVar3.a.add(cVar);
+                    b.f.j.k.c cVar5 = new b.f.j.k.c(set);
+                    if (cVar3 != null) {
+                        cVar5.a.add(cVar3);
                     }
-                    eVar = cVar3;
+                    eVar = cVar5;
                 } else {
-                    eVar = cVar;
+                    eVar = cVar3;
                 }
             }
         } else {
-            eVar = cVar;
+            eVar = cVar3;
         }
-        return hVar.a(imageRequest2, obj, imageRequest$c2, eVar, str);
+        return hVar.a(imageRequest2, obj, cVar2, eVar, str);
     }
 
     /* JADX WARN: Multi-variable type inference failed */

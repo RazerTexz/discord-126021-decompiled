@@ -1,6 +1,5 @@
 package com.jaredrummler.android.colorpicker;
 
-import android.R$attr;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -10,7 +9,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Shader$TileMode;
+import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -18,7 +17,6 @@ import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.View$MeasureSpec;
 import android.widget.Toast;
 import androidx.annotation.ColorInt;
 import androidx.core.view.ViewCompat;
@@ -50,17 +48,17 @@ public class ColorPanelView extends View {
         this.q = new RectF();
         this.f3142s = -9539986;
         this.t = ViewCompat.MEASURED_STATE_MASK;
-        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R$f.ColorPanelView);
-        this.u = typedArrayObtainStyledAttributes.getInt(R$f.ColorPanelView_cpv_colorShape, 1);
-        boolean z2 = typedArrayObtainStyledAttributes.getBoolean(R$f.ColorPanelView_cpv_showOldColor, false);
+        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.f.ColorPanelView);
+        this.u = typedArrayObtainStyledAttributes.getInt(R.f.ColorPanelView_cpv_colorShape, 1);
+        boolean z2 = typedArrayObtainStyledAttributes.getBoolean(R.f.ColorPanelView_cpv_showOldColor, false);
         this.r = z2;
         if (z2 && this.u != 1) {
             throw new IllegalStateException("Color preview is only available in circle mode");
         }
-        this.f3142s = typedArrayObtainStyledAttributes.getColor(R$f.ColorPanelView_cpv_borderColor, -9539986);
+        this.f3142s = typedArrayObtainStyledAttributes.getColor(R.f.ColorPanelView_cpv_borderColor, -9539986);
         typedArrayObtainStyledAttributes.recycle();
         if (this.f3142s == -9539986) {
-            TypedArray typedArrayObtainStyledAttributes2 = context.obtainStyledAttributes(new TypedValue().data, new int[]{R$attr.textColorSecondary});
+            TypedArray typedArrayObtainStyledAttributes2 = context.obtainStyledAttributes(new TypedValue().data, new int[]{android.R.attr.textColorSecondary});
             this.f3142s = typedArrayObtainStyledAttributes2.getColor(0, this.f3142s);
             typedArrayObtainStyledAttributes2.recycle();
         }
@@ -74,12 +72,12 @@ public class ColorPanelView extends View {
             this.n = new Paint();
         }
         if (this.u == 1) {
-            Bitmap bitmap = ((BitmapDrawable) context.getResources().getDrawable(R$b.cpv_alpha)).getBitmap();
+            Bitmap bitmap = ((BitmapDrawable) context.getResources().getDrawable(R.b.cpv_alpha)).getBitmap();
             Paint paint3 = new Paint();
             this.m = paint3;
             paint3.setAntiAlias(true);
-            Shader$TileMode shader$TileMode = Shader$TileMode.REPEAT;
-            this.m.setShader(new BitmapShader(bitmap, shader$TileMode, shader$TileMode));
+            Shader.TileMode tileMode = Shader.TileMode.REPEAT;
+            this.m.setShader(new BitmapShader(bitmap, tileMode, tileMode));
         }
     }
 
@@ -154,7 +152,7 @@ public class ColorPanelView extends View {
     public void onMeasure(int i, int i2) {
         int i3 = this.u;
         if (i3 == 0) {
-            setMeasuredDimension(View$MeasureSpec.getSize(i), View$MeasureSpec.getSize(i2));
+            setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
         } else if (i3 != 1) {
             super.onMeasure(i, i2);
         } else {

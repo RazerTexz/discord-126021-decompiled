@@ -4,7 +4,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import android.os.RemoteException;
 import com.google.android.gms.common.api.Status;
 
@@ -36,9 +36,9 @@ public class a extends Binder implements IInterface {
         if (i != 1) {
             return false;
         }
-        Parcelable$Creator<Status> parcelable$Creator = Status.CREATOR;
+        Parcelable.Creator<Status> creator = Status.CREATOR;
         int i3 = c.a;
-        b.c.a.a0.d.a2(parcel.readInt() == 0 ? null : parcelable$Creator.createFromParcel(parcel), null, ((k) fVar).a);
+        b.c.a.a0.d.a2(parcel.readInt() == 0 ? null : creator.createFromParcel(parcel), null, ((k) fVar).a);
         return true;
     }
 }

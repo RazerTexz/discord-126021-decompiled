@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetGuildJoinCaptchaBottomSheetBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -28,17 +28,17 @@ public final /* synthetic */ class WidgetGuildJoinCaptchaBottomSheet$binding$2 e
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGuildJoinCaptchaBottomSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.guild_join_captcha_body;
-        TextView textView = (TextView) view.findViewById(R$id.guild_join_captcha_body);
+        int i = R.id.guild_join_captcha_body;
+        TextView textView = (TextView) view.findViewById(R.id.guild_join_captcha_body);
         if (textView != null) {
-            i = R$id.guild_join_captcha_button;
-            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.guild_join_captcha_button);
+            i = R.id.guild_join_captcha_button;
+            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.guild_join_captcha_button);
             if (materialButton != null) {
-                i = R$id.guild_join_captcha_image;
-                ImageView imageView = (ImageView) view.findViewById(R$id.guild_join_captcha_image);
+                i = R.id.guild_join_captcha_image;
+                ImageView imageView = (ImageView) view.findViewById(R.id.guild_join_captcha_image);
                 if (imageView != null) {
-                    i = R$id.guild_join_captcha_title;
-                    TextView textView2 = (TextView) view.findViewById(R$id.guild_join_captcha_title);
+                    i = R.id.guild_join_captcha_title;
+                    TextView textView2 = (TextView) view.findViewById(R.id.guild_join_captcha_title);
                     if (textView2 != null) {
                         return new WidgetGuildJoinCaptchaBottomSheetBinding((NestedScrollView) view, textView, materialButton, imageView, textView2);
                     }

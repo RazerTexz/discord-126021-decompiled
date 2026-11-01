@@ -1,9 +1,9 @@
 package com.discord.widgets.bugreports;
 
+import com.discord.R;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.view.validators.BasicTextInputValidator;
-import com.discord.utilities.view.validators.BasicTextInputValidator$Companion;
-import com.discord.utilities.view.validators.Input$TextInputLayoutInput;
+import com.discord.utilities.view.validators.Input;
 import com.discord.utilities.view.validators.InputValidator;
 import com.discord.utilities.view.validators.ValidationManager;
 import com.google.android.material.textfield.TextInputLayout;
@@ -32,10 +32,10 @@ public final class WidgetBugReport$validationManager$2 extends o implements Func
     public final ValidationManager invoke() {
         TextInputLayout textInputLayout = WidgetBugReport.access$getBinding$p(this.this$0).h;
         m.checkNotNullExpressionValue(textInputLayout, "binding.bugReportName");
-        BasicTextInputValidator$Companion basicTextInputValidator$Companion = BasicTextInputValidator.Companion;
-        InputValidator[] inputValidatorArr = {basicTextInputValidator$Companion.createRequiredInputValidator(2131887309)};
+        BasicTextInputValidator.Companion companion = BasicTextInputValidator.INSTANCE;
+        InputValidator[] inputValidatorArr = {companion.createRequiredInputValidator(R.string.bug_report_error_name_required)};
         TextInputLayout textInputLayout2 = WidgetBugReport.access$getBinding$p(this.this$0).j;
         m.checkNotNullExpressionValue(textInputLayout2, "binding.bugReportPriority");
-        return new ValidationManager(new Input$TextInputLayoutInput(ModelAuditLogEntry.CHANGE_KEY_NAME, textInputLayout, inputValidatorArr), new Input$TextInputLayoutInput("priority", textInputLayout2, basicTextInputValidator$Companion.createRequiredInputValidator(2131887310)));
+        return new ValidationManager(new Input.TextInputLayoutInput(ModelAuditLogEntry.CHANGE_KEY_NAME, textInputLayout, inputValidatorArr), new Input.TextInputLayoutInput("priority", textInputLayout2, companion.createRequiredInputValidator(R.string.bug_report_error_priority_required)));
     }
 }

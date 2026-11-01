@@ -4,20 +4,90 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import b.i.a.c.j1;
 import b.i.a.c.j2;
+import b.i.a.c.k1;
+import com.google.android.exoplayer2.decoder.DecoderInputBuffer;
 import java.io.IOException;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: ClippingMediaPeriod.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class n implements x, x$a {
+public final class n implements x, x.a {
     public final x j;
 
     @Nullable
-    public x$a k;
+    public x.a k;
     public long m;
     public long n;
     public long o;
-    public n$a[] l = new n$a[0];
+    public a[] l = new a[0];
+
+    /* JADX INFO: compiled from: ClippingMediaPeriod.java */
+    public final class a implements i0 {
+        public final i0 a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public boolean f830b;
+
+        public a(i0 i0Var) {
+            this.a = i0Var;
+        }
+
+        @Override // b.i.a.c.a3.i0
+        public int a(k1 k1Var, DecoderInputBuffer decoderInputBuffer, int i) {
+            if (n.this.d()) {
+                return -3;
+            }
+            if (this.f830b) {
+                decoderInputBuffer.j = 4;
+                return -4;
+            }
+            int iA = this.a.a(k1Var, decoderInputBuffer, i);
+            if (iA != -5) {
+                n nVar = n.this;
+                long j = nVar.o;
+                if (j == Long.MIN_VALUE || ((iA != -4 || decoderInputBuffer.n < j) && !(iA == -3 && nVar.q() == Long.MIN_VALUE && !decoderInputBuffer.m))) {
+                    return iA;
+                }
+                decoderInputBuffer.p();
+                decoderInputBuffer.j = 4;
+                this.f830b = true;
+                return -4;
+            }
+            j1 j1Var = k1Var.f1027b;
+            Objects.requireNonNull(j1Var);
+            int i2 = j1Var.M;
+            if (i2 != 0 || j1Var.N != 0) {
+                n nVar2 = n.this;
+                if (nVar2.n != 0) {
+                    i2 = 0;
+                }
+                int i3 = nVar2.o == Long.MIN_VALUE ? j1Var.N : 0;
+                j1.b bVarA = j1Var.a();
+                bVarA.A = i2;
+                bVarA.B = i3;
+                k1Var.f1027b = bVarA.a();
+            }
+            return -5;
+        }
+
+        @Override // b.i.a.c.a3.i0
+        public void b() throws IOException {
+            this.a.b();
+        }
+
+        @Override // b.i.a.c.a3.i0
+        public int c(long j) {
+            if (n.this.d()) {
+                return -3;
+            }
+            return this.a.c(j);
+        }
+
+        @Override // b.i.a.c.a3.i0
+        public boolean d() {
+            return !n.this.d() && this.a.d();
+        }
+    }
 
     public n(x xVar, boolean z2, long j, long j2) {
         this.j = xVar;
@@ -26,18 +96,18 @@ public final class n implements x, x$a {
         this.o = j2;
     }
 
-    @Override // b.i.a.c.a3.j0$a
+    @Override // b.i.a.c.a3.j0.a
     public void a(j0 j0Var) {
-        x$a x_a = this.k;
-        Objects.requireNonNull(x_a);
-        x_a.a(this);
+        x.a aVar = this.k;
+        Objects.requireNonNull(aVar);
+        aVar.a(this);
     }
 
-    @Override // b.i.a.c.a3.x$a
+    @Override // b.i.a.c.a3.x.a
     public void b(x xVar) {
-        x$a x_a = this.k;
-        Objects.requireNonNull(x_a);
-        x_a.b(this);
+        x.a aVar = this.k;
+        Objects.requireNonNull(aVar);
+        aVar.b(this);
     }
 
     @Override // b.i.a.c.a3.x
@@ -66,9 +136,9 @@ public final class n implements x, x$a {
     public long f(long j) {
         this.m = -9223372036854775807L;
         boolean z2 = false;
-        for (n$a n_a : this.l) {
-            if (n_a != null) {
-                n_a.f830b = false;
+        for (a aVar : this.l) {
+            if (aVar != null) {
+                aVar.f830b = false;
             }
         }
         long jF = this.j.f(j);
@@ -133,8 +203,8 @@ public final class n implements x, x$a {
     }
 
     @Override // b.i.a.c.a3.x
-    public void l(x$a x_a, long j) {
-        this.k = x_a;
+    public void l(x.a aVar, long j) {
+        this.k = aVar;
         this.j.l(this, j);
     }
 
@@ -144,7 +214,7 @@ public final class n implements x, x$a {
     public long m(b.i.a.c.c3.j[] jVarArr, boolean[] zArr, i0[] i0VarArr, boolean[] zArr2, long j) {
         long j2;
         boolean z2;
-        this.l = new n$a[i0VarArr.length];
+        this.l = new a[i0VarArr.length];
         i0[] i0VarArr2 = new i0[i0VarArr.length];
         int i = 0;
         while (true) {
@@ -152,10 +222,10 @@ public final class n implements x, x$a {
             if (i >= i0VarArr.length) {
                 break;
             }
-            n$a[] n_aArr = this.l;
-            n_aArr[i] = (n$a) i0VarArr[i];
-            if (n_aArr[i] != null) {
-                i0Var = n_aArr[i].a;
+            a[] aVarArr = this.l;
+            aVarArr[i] = (a) i0VarArr[i];
+            if (aVarArr[i] != null) {
+                i0Var = aVarArr[i].a;
             }
             i0VarArr2[i] = i0Var;
             i++;
@@ -213,9 +283,9 @@ public final class n implements x, x$a {
             if (i0VarArr2[i3] == null) {
                 this.l[i3] = null;
             } else {
-                n$a[] n_aArr2 = this.l;
-                if (n_aArr2[i3] == null || n_aArr2[i3].a != i0VarArr2[i3]) {
-                    n_aArr2[i3] = new n$a(this, i0VarArr2[i3]);
+                a[] aVarArr2 = this.l;
+                if (aVarArr2[i3] == null || aVarArr2[i3].a != i0VarArr2[i3]) {
+                    aVarArr2[i3] = new a(i0VarArr2[i3]);
                 }
             }
             i0VarArr[i3] = this.l[i3];

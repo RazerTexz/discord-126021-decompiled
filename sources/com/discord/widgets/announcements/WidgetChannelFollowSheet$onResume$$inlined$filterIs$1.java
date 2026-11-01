@@ -12,7 +12,7 @@ public final class WidgetChannelFollowSheet$onResume$$inlined$filterIs$1<T, R> i
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // j0.k.b
     public final Boolean call(Object obj) {
-        return Boolean.valueOf(obj instanceof WidgetChannelFollowSheetViewModel$ViewState$Loaded);
+        return Boolean.valueOf(obj instanceof WidgetChannelFollowSheetViewModel.ViewState.Loaded);
     }
 
     @Override // j0.k.b

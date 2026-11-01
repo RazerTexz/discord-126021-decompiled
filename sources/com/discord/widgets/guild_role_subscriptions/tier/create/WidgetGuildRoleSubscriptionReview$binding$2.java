@@ -3,7 +3,7 @@ package com.discord.widgets.guild_role_subscriptions.tier.create;
 import android.view.View;
 import android.widget.LinearLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetGuildRoleSubscriptionTierReviewBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -26,10 +26,10 @@ public final /* synthetic */ class WidgetGuildRoleSubscriptionReview$binding$2 e
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGuildRoleSubscriptionTierReviewBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.subscription_tier_review_recycler);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.subscription_tier_review_recycler);
         if (recyclerView != null) {
             return new WidgetGuildRoleSubscriptionTierReviewBinding((LinearLayout) view, recyclerView);
         }
-        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R$id.subscription_tier_review_recycler)));
+        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R.id.subscription_tier_review_recycler)));
     }
 }

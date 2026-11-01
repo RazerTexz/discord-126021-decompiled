@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetReportIssueWithAutomodBinding;
 import com.discord.views.CheckedSetting;
 import com.google.android.material.button.MaterialButton;
@@ -30,26 +30,26 @@ public final /* synthetic */ class WidgetReportIssueWithAutoMod$binding$2 extend
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetReportIssueWithAutomodBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.back_button;
-        ImageView imageView = (ImageView) view.findViewById(R$id.back_button);
+        int i = R.id.back_button;
+        ImageView imageView = (ImageView) view.findViewById(R.id.back_button);
         if (imageView != null) {
-            i = R$id.header;
-            TextView textView = (TextView) view.findViewById(R$id.header);
+            i = R.id.header;
+            TextView textView = (TextView) view.findViewById(R.id.header);
             if (textView != null) {
-                i = R$id.option1;
-                CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R$id.option1);
+                i = R.id.option1;
+                CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R.id.option1);
                 if (checkedSetting != null) {
-                    i = R$id.option2;
-                    CheckedSetting checkedSetting2 = (CheckedSetting) view.findViewById(R$id.option2);
+                    i = R.id.option2;
+                    CheckedSetting checkedSetting2 = (CheckedSetting) view.findViewById(R.id.option2);
                     if (checkedSetting2 != null) {
-                        i = R$id.options_container;
-                        LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.options_container);
+                        i = R.id.options_container;
+                        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.options_container);
                         if (linearLayout != null) {
-                            i = R$id.submit_button;
-                            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.submit_button);
+                            i = R.id.submit_button;
+                            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.submit_button);
                             if (materialButton != null) {
-                                i = R$id.subtitle;
-                                TextView textView2 = (TextView) view.findViewById(R$id.subtitle);
+                                i = R.id.subtitle;
+                                TextView textView2 = (TextView) view.findViewById(R.id.subtitle);
                                 if (textView2 != null) {
                                     return new WidgetReportIssueWithAutomodBinding((ConstraintLayout) view, imageView, textView, checkedSetting, checkedSetting2, linearLayout, materialButton, textView2);
                                 }

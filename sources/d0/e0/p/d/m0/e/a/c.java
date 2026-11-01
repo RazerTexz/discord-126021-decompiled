@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.Set;
+import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
+import kotlin.reflect.KDeclarationContainer;
 
 /* JADX INFO: compiled from: AnnotationTypeQualifierResolver.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -17,15 +18,84 @@ public final class c {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final d0.e0.p.d.m0.m.i<d0.e0.p.d.m0.c.e, d0.e0.p.d.m0.c.g1.c> f3309b;
 
+    /* JADX INFO: compiled from: AnnotationTypeQualifierResolver.kt */
+    public final class a {
+        public final d0.e0.p.d.m0.c.g1.c a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f3310b;
+
+        public a(d0.e0.p.d.m0.c.g1.c cVar, int i) {
+            d0.z.d.m.checkNotNullParameter(cVar, "typeQualifier");
+            this.a = cVar;
+            this.f3310b = i;
+        }
+
+        public final d0.e0.p.d.m0.c.g1.c component1() {
+            return this.a;
+        }
+
+        public final List<d0.e0.p.d.m0.e.a.a> component2() {
+            d0.e0.p.d.m0.e.a.a[] aVarArrValuesCustom = d0.e0.p.d.m0.e.a.a.valuesCustom();
+            ArrayList arrayList = new ArrayList();
+            for (int i = 0; i < 6; i++) {
+                d0.e0.p.d.m0.e.a.a aVar = aVarArrValuesCustom[i];
+                boolean z2 = true;
+                if (!((this.f3310b & (1 << aVar.ordinal())) != 0)) {
+                    if (!((this.f3310b & 8) != 0) || aVar == d0.e0.p.d.m0.e.a.a.TYPE_PARAMETER_BOUNDS) {
+                        z2 = false;
+                    }
+                }
+                if (z2) {
+                    arrayList.add(aVar);
+                }
+            }
+            return arrayList;
+        }
+    }
+
+    /* JADX INFO: compiled from: AnnotationTypeQualifierResolver.kt */
+    public final /* synthetic */ class b extends d0.z.d.j implements Function1<d0.e0.p.d.m0.c.e, d0.e0.p.d.m0.c.g1.c> {
+        public b(c cVar) {
+            super(1, cVar);
+        }
+
+        @Override // d0.z.d.d, kotlin.reflect.KCallable
+        public final String getName() {
+            return "computeTypeQualifierNickname";
+        }
+
+        @Override // d0.z.d.d
+        public final KDeclarationContainer getOwner() {
+            return d0.z.d.a0.getOrCreateKotlinClass(c.class);
+        }
+
+        @Override // d0.z.d.d
+        public final String getSignature() {
+            return "computeTypeQualifierNickname(Lorg/jetbrains/kotlin/descriptors/ClassDescriptor;)Lorg/jetbrains/kotlin/descriptors/annotations/AnnotationDescriptor;";
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.g1.c invoke(d0.e0.p.d.m0.c.e eVar) {
+            return invoke2(eVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final d0.e0.p.d.m0.c.g1.c invoke2(d0.e0.p.d.m0.c.e eVar) {
+            d0.z.d.m.checkNotNullParameter(eVar, "p0");
+            return c.access$computeTypeQualifierNickname((c) this.receiver, eVar);
+        }
+    }
+
     public c(d0.e0.p.d.m0.m.o oVar, d0.e0.p.d.m0.p.e eVar) {
         d0.z.d.m.checkNotNullParameter(oVar, "storageManager");
         d0.z.d.m.checkNotNullParameter(eVar, "javaTypeEnhancementState");
         this.a = eVar;
-        this.f3309b = oVar.createMemoizedFunctionWithNullableValues(new c$b(this));
+        this.f3309b = oVar.createMemoizedFunctionWithNullableValues(new b(this));
     }
 
-    public final List<a> a(d0.e0.p.d.m0.k.v.g<?> gVar, Function2<? super d0.e0.p.d.m0.k.v.j, ? super a, Boolean> function2) {
-        a aVar;
+    public final List<d0.e0.p.d.m0.e.a.a> a(d0.e0.p.d.m0.k.v.g<?> gVar, Function2<? super d0.e0.p.d.m0.k.v.j, ? super d0.e0.p.d.m0.e.a.a, Boolean> function2) {
+        d0.e0.p.d.m0.e.a.a aVar;
         if (gVar instanceof d0.e0.p.d.m0.k.v.b) {
             List<? extends d0.e0.p.d.m0.k.v.g<?>> value = ((d0.e0.p.d.m0.k.v.b) gVar).getValue();
             ArrayList arrayList = new ArrayList();
@@ -38,7 +108,7 @@ public final class c {
         if (!(gVar instanceof d0.e0.p.d.m0.k.v.j)) {
             return d0.t.n.emptyList();
         }
-        a[] aVarArrValuesCustom = a.valuesCustom();
+        d0.e0.p.d.m0.e.a.a[] aVarArrValuesCustom = d0.e0.p.d.m0.e.a.a.valuesCustom();
         for (int i = 0; i < 6; i++) {
             aVar = aVarArrValuesCustom[i];
             if (function2.invoke(gVar, aVar).booleanValue()) {
@@ -51,7 +121,7 @@ public final class c {
 
     public static final d0.e0.p.d.m0.c.g1.c access$computeTypeQualifierNickname(c cVar, d0.e0.p.d.m0.c.e eVar) {
         Objects.requireNonNull(cVar);
-        if (!eVar.getAnnotations().hasAnnotation(b.getTYPE_QUALIFIER_NICKNAME_FQNAME())) {
+        if (!eVar.getAnnotations().hasAnnotation(d0.e0.p.d.m0.e.a.b.getTYPE_QUALIFIER_NICKNAME_FQNAME())) {
             return null;
         }
         Iterator<d0.e0.p.d.m0.c.g1.c> it = eVar.getAnnotations().iterator();
@@ -75,7 +145,7 @@ public final class c {
         return arrayList;
     }
 
-    public final c$a resolveAnnotation(d0.e0.p.d.m0.c.g1.c cVar) {
+    public final a resolveAnnotation(d0.e0.p.d.m0.c.g1.c cVar) {
         d0.z.d.m.checkNotNullParameter(cVar, "annotationDescriptor");
         d0.e0.p.d.m0.c.e annotationClass = d0.e0.p.d.m0.k.x.a.getAnnotationClass(cVar);
         if (annotationClass == null) {
@@ -90,16 +160,16 @@ public final class c {
         }
         Map<d0.e0.p.d.m0.g.e, d0.e0.p.d.m0.k.v.g<?>> allValueArguments = cVarFindAnnotation.getAllValueArguments();
         ArrayList arrayList = new ArrayList();
-        Iterator<Map$Entry<d0.e0.p.d.m0.g.e, d0.e0.p.d.m0.k.v.g<?>>> it = allValueArguments.entrySet().iterator();
+        Iterator<Map.Entry<d0.e0.p.d.m0.g.e, d0.e0.p.d.m0.k.v.g<?>>> it = allValueArguments.entrySet().iterator();
         while (it.hasNext()) {
             d0.t.r.addAll(arrayList, a(it.next().getValue(), new e(this)));
         }
         int iOrdinal = 0;
         Iterator it2 = arrayList.iterator();
         while (it2.hasNext()) {
-            iOrdinal |= 1 << ((a) it2.next()).ordinal();
+            iOrdinal |= 1 << ((d0.e0.p.d.m0.e.a.a) it2.next()).ordinal();
         }
-        return new c$a(cVar, iOrdinal);
+        return new a(cVar, iOrdinal);
     }
 
     public final d0.e0.p.d.m0.p.h resolveJsr305AnnotationState(d0.e0.p.d.m0.c.g1.c cVar) {
@@ -120,7 +190,7 @@ public final class c {
         if (annotationClass == null) {
             return null;
         }
-        d0.e0.p.d.m0.c.g1.c cVarFindAnnotation = annotationClass.getAnnotations().findAnnotation(b.getMIGRATION_ANNOTATION_FQNAME());
+        d0.e0.p.d.m0.c.g1.c cVarFindAnnotation = annotationClass.getAnnotations().findAnnotation(d0.e0.p.d.m0.e.a.b.getMIGRATION_ANNOTATION_FQNAME());
         d0.e0.p.d.m0.k.v.g<?> gVarFirstArgument = cVarFindAnnotation == null ? null : d0.e0.p.d.m0.k.x.a.firstArgument(cVarFindAnnotation);
         d0.e0.p.d.m0.k.v.j jVar = gVarFirstArgument instanceof d0.e0.p.d.m0.k.v.j ? (d0.e0.p.d.m0.k.v.j) gVarFirstArgument : null;
         if (jVar == null) {
@@ -153,10 +223,10 @@ public final class c {
     public final u resolveQualifierBuiltInDefaultAnnotation(d0.e0.p.d.m0.c.g1.c cVar) {
         u uVar;
         d0.z.d.m.checkNotNullParameter(cVar, "annotationDescriptor");
-        if (this.a.getDisabledDefaultAnnotations() || (uVar = b.getBUILT_IN_TYPE_QUALIFIER_DEFAULT_ANNOTATIONS().get(cVar.getFqName())) == null) {
+        if (this.a.getDisabledDefaultAnnotations() || (uVar = d0.e0.p.d.m0.e.a.b.getBUILT_IN_TYPE_QUALIFIER_DEFAULT_ANNOTATIONS().get(cVar.getFqName())) == null) {
             return null;
         }
-        d0.e0.p.d.m0.p.h jspecifyReportLevel = b.getJSPECIFY_DEFAULT_ANNOTATIONS().containsKey(cVar.getFqName()) ? this.a.getJspecifyReportLevel() : resolveJsr305AnnotationState(cVar);
+        d0.e0.p.d.m0.p.h jspecifyReportLevel = d0.e0.p.d.m0.e.a.b.getJSPECIFY_DEFAULT_ANNOTATIONS().containsKey(cVar.getFqName()) ? this.a.getJspecifyReportLevel() : resolveJsr305AnnotationState(cVar);
         if (!(jspecifyReportLevel != d0.e0.p.d.m0.p.h.IGNORE)) {
             jspecifyReportLevel = null;
         }
@@ -181,14 +251,14 @@ public final class c {
         return this.f3309b.invoke(annotationClass);
     }
 
-    public final c$a resolveTypeQualifierDefaultAnnotation(d0.e0.p.d.m0.c.g1.c cVar) {
+    public final a resolveTypeQualifierDefaultAnnotation(d0.e0.p.d.m0.c.g1.c cVar) {
         d0.e0.p.d.m0.c.g1.c next;
         d0.z.d.m.checkNotNullParameter(cVar, "annotationDescriptor");
         if (this.a.getDisabledJsr305()) {
             return null;
         }
         d0.e0.p.d.m0.c.e annotationClass = d0.e0.p.d.m0.k.x.a.getAnnotationClass(cVar);
-        if (annotationClass == null || !annotationClass.getAnnotations().hasAnnotation(b.getTYPE_QUALIFIER_DEFAULT_FQNAME())) {
+        if (annotationClass == null || !annotationClass.getAnnotations().hasAnnotation(d0.e0.p.d.m0.e.a.b.getTYPE_QUALIFIER_DEFAULT_FQNAME())) {
             annotationClass = null;
         }
         if (annotationClass == null) {
@@ -196,17 +266,17 @@ public final class c {
         }
         d0.e0.p.d.m0.c.e annotationClass2 = d0.e0.p.d.m0.k.x.a.getAnnotationClass(cVar);
         d0.z.d.m.checkNotNull(annotationClass2);
-        d0.e0.p.d.m0.c.g1.c cVarFindAnnotation = annotationClass2.getAnnotations().findAnnotation(b.getTYPE_QUALIFIER_DEFAULT_FQNAME());
+        d0.e0.p.d.m0.c.g1.c cVarFindAnnotation = annotationClass2.getAnnotations().findAnnotation(d0.e0.p.d.m0.e.a.b.getTYPE_QUALIFIER_DEFAULT_FQNAME());
         d0.z.d.m.checkNotNull(cVarFindAnnotation);
         Map<d0.e0.p.d.m0.g.e, d0.e0.p.d.m0.k.v.g<?>> allValueArguments = cVarFindAnnotation.getAllValueArguments();
         ArrayList arrayList = new ArrayList();
-        for (Map$Entry<d0.e0.p.d.m0.g.e, d0.e0.p.d.m0.k.v.g<?>> map$Entry : allValueArguments.entrySet()) {
-            d0.t.r.addAll(arrayList, d0.z.d.m.areEqual(map$Entry.getKey(), a0.f3305b) ? a(map$Entry.getValue(), d.j) : d0.t.n.emptyList());
+        for (Map.Entry<d0.e0.p.d.m0.g.e, d0.e0.p.d.m0.k.v.g<?>> entry : allValueArguments.entrySet()) {
+            d0.t.r.addAll(arrayList, d0.z.d.m.areEqual(entry.getKey(), a0.f3305b) ? a(entry.getValue(), d.j) : d0.t.n.emptyList());
         }
         Iterator it = arrayList.iterator();
         int iOrdinal = 0;
         while (it.hasNext()) {
-            iOrdinal |= 1 << ((a) it.next()).ordinal();
+            iOrdinal |= 1 << ((d0.e0.p.d.m0.e.a.a) it.next()).ordinal();
         }
         Iterator<d0.e0.p.d.m0.c.g1.c> it2 = annotationClass.getAnnotations().iterator();
         do {
@@ -220,6 +290,6 @@ public final class c {
         if (cVar2 == null) {
             return null;
         }
-        return new c$a(cVar2, iOrdinal);
+        return new a(cVar2, iOrdinal);
     }
 }

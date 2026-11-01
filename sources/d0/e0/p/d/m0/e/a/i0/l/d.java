@@ -6,9 +6,13 @@ import d0.e0.p.d.m0.e.a.k0.u;
 import d0.t.n0;
 import d0.z.d.a0;
 import d0.z.d.y;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.reflect.KProperty;
 
@@ -23,6 +27,36 @@ public final class d implements d0.e0.p.d.m0.k.a0.i {
     public static final /* synthetic */ KProperty<Object>[] f3326b = {a0.property1(new y(a0.getOrCreateKotlinClass(d.class), "kotlinScopes", "getKotlinScopes()[Lorg/jetbrains/kotlin/resolve/scopes/MemberScope;"))};
     public final d0.e0.p.d.m0.m.j f;
 
+    /* JADX INFO: compiled from: JvmPackageScope.kt */
+    public final class a extends d0.z.d.o implements Function0<d0.e0.p.d.m0.k.a0.i[]> {
+        public a() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.k.a0.i[] invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final d0.e0.p.d.m0.k.a0.i[] invoke2() {
+            Collection<d0.e0.p.d.m0.e.b.p> collectionValues = d.access$getPackageFragment$p(d.this).getBinaryClasses$descriptors_jvm().values();
+            d dVar = d.this;
+            ArrayList arrayList = new ArrayList();
+            Iterator<T> it = collectionValues.iterator();
+            while (it.hasNext()) {
+                d0.e0.p.d.m0.k.a0.i iVarCreateKotlinPackagePartScope = d.access$getC$p(dVar).getComponents().getDeserializedDescriptorResolver().createKotlinPackagePartScope(d.access$getPackageFragment$p(dVar), (d0.e0.p.d.m0.e.b.p) it.next());
+                if (iVarCreateKotlinPackagePartScope != null) {
+                    arrayList.add(iVarCreateKotlinPackagePartScope);
+                }
+            }
+            Object[] array = d0.e0.p.d.m0.o.n.a.listOfNonEmptyScopes(arrayList).toArray(new d0.e0.p.d.m0.k.a0.i[0]);
+            Objects.requireNonNull(array, "null cannot be cast to non-null type kotlin.Array<T>");
+            return (d0.e0.p.d.m0.k.a0.i[]) array;
+        }
+    }
+
     public d(d0.e0.p.d.m0.e.a.i0.g gVar, u uVar, i iVar) {
         d0.z.d.m.checkNotNullParameter(gVar, "c");
         d0.z.d.m.checkNotNullParameter(uVar, "jPackage");
@@ -30,7 +64,7 @@ public final class d implements d0.e0.p.d.m0.k.a0.i {
         this.c = gVar;
         this.d = iVar;
         this.e = new j(gVar, uVar, iVar);
-        this.f = gVar.getStorageManager().createLazyValue(new d$a(this));
+        this.f = gVar.getStorageManager().createLazyValue(new a());
     }
 
     public final d0.e0.p.d.m0.k.a0.i[] a() {

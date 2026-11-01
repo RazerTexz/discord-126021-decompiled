@@ -36,6 +36,12 @@ public final class CacheDataSink implements j {
     public long i;
     public p j;
 
+    public final class CacheDataSinkException extends Cache.CacheException {
+        public CacheDataSinkException(IOException iOException) {
+            super(iOException);
+        }
+    }
+
     public CacheDataSink(Cache cache, long j) {
         d.E(j > 0 || j == -1, "fragmentSize must be positive or C.LENGTH_UNSET.");
         if (j != -1 && j < Permission.SPEAK) {
@@ -48,7 +54,7 @@ public final class CacheDataSink implements j {
     }
 
     @Override // b.i.a.c.e3.j
-    public void a(n nVar) throws CacheDataSink$CacheDataSinkException {
+    public void a(n nVar) throws CacheDataSinkException {
         Objects.requireNonNull(nVar.h);
         if (nVar.g == -1 && nVar.c(2)) {
             this.d = null;
@@ -60,7 +66,7 @@ public final class CacheDataSink implements j {
         try {
             c(nVar);
         } catch (IOException e) {
-            throw new CacheDataSink$CacheDataSinkException(e);
+            throw new CacheDataSinkException(e);
         }
     }
 
@@ -123,19 +129,19 @@ public final class CacheDataSink implements j {
     }
 
     @Override // b.i.a.c.e3.j
-    public void close() throws CacheDataSink$CacheDataSinkException {
+    public void close() throws CacheDataSinkException {
         if (this.d == null) {
             return;
         }
         try {
             b();
         } catch (IOException e) {
-            throw new CacheDataSink$CacheDataSinkException(e);
+            throw new CacheDataSinkException(e);
         }
     }
 
     @Override // b.i.a.c.e3.j
-    public void write(byte[] bArr, int i, int i2) throws CacheDataSink$CacheDataSinkException {
+    public void write(byte[] bArr, int i, int i2) throws CacheDataSinkException {
         n nVar = this.d;
         if (nVar == null) {
             return;
@@ -156,7 +162,7 @@ public final class CacheDataSink implements j {
                 this.h += j;
                 this.i += j;
             } catch (IOException e) {
-                throw new CacheDataSink$CacheDataSinkException(e);
+                throw new CacheDataSinkException(e);
             }
         }
     }

@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 /* JADX INFO: compiled from: SQLiteEventStore.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class l implements t$b {
+public final /* synthetic */ class l implements t.b {
     public static final l a = new l();
 
-    @Override // b.i.a.b.j.t.i.t$b
+    @Override // b.i.a.b.j.t.i.t.b
     public Object apply(Object obj) {
         Cursor cursor = (Cursor) obj;
         b.i.a.b.b bVar = t.j;

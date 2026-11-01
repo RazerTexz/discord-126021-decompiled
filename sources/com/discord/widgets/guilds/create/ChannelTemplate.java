@@ -1,6 +1,7 @@
 package com.discord.widgets.guilds.create;
 
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: StockGuildTemplate.kt */
@@ -8,6 +9,24 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 public abstract class ChannelTemplate {
     private final Long id;
     private final String name;
+
+    /* JADX INFO: compiled from: StockGuildTemplate.kt */
+    public final class NormalChannel extends ChannelTemplate {
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public NormalChannel(String str) {
+            super(null, str, null);
+            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        }
+    }
+
+    /* JADX INFO: compiled from: StockGuildTemplate.kt */
+    public final class SystemChannel extends ChannelTemplate {
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public SystemChannel(String str) {
+            super(11L, str, null);
+            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        }
+    }
 
     private ChannelTemplate(Long l, String str) {
         this.id = l;

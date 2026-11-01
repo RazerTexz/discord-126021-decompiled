@@ -5,15 +5,14 @@ import b.i.d.j;
 import b.i.d.k;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.internal.LinkedTreeMap$b;
-import com.google.gson.internal.LinkedTreeMap$b$a;
+import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.Map$Entry;
+import java.util.Map;
 
 /* JADX INFO: compiled from: JsonTreeReader.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -24,8 +23,22 @@ public final class a extends JsonReader {
     public int[] E;
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
-    public static final Reader f1813z = new a$a();
+    public static final Reader f1813z = new C0157a();
     public static final Object A = new Object();
+
+    /* JADX INFO: renamed from: b.i.d.q.x.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: JsonTreeReader.java */
+    public class C0157a extends Reader {
+        @Override // java.io.Reader, java.io.Closeable, java.lang.AutoCloseable
+        public void close() throws IOException {
+            throw new AssertionError();
+        }
+
+        @Override // java.io.Reader
+        public int read(char[] cArr, int i, int i2) throws IOException {
+            throw new AssertionError();
+        }
+    }
 
     public a(JsonElement jsonElement) {
         super(f1813z);
@@ -58,10 +71,10 @@ public final class a extends JsonReader {
     @Override // com.google.gson.stream.JsonReader
     public String C() throws IOException {
         W(JsonToken.NAME);
-        Map$Entry map$Entry = (Map$Entry) ((Iterator) X()).next();
-        String str = (String) map$Entry.getKey();
+        Map.Entry entry = (Map.Entry) ((Iterator) X()).next();
+        String str = (String) entry.getKey();
         this.D[this.C - 1] = str;
-        c0(map$Entry.getValue());
+        c0(entry.getValue());
         return str;
     }
 
@@ -181,7 +194,7 @@ public final class a extends JsonReader {
     @Override // com.google.gson.stream.JsonReader
     public void b() throws IOException {
         W(JsonToken.BEGIN_OBJECT);
-        c0(new LinkedTreeMap$b$a((LinkedTreeMap$b) ((JsonObject) X()).j()));
+        c0(new LinkedTreeMap.b.a((LinkedTreeMap.b) ((JsonObject) X()).j()));
     }
 
     public final Object b0() {

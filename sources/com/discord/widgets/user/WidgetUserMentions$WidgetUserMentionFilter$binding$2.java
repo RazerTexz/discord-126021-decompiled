@@ -2,7 +2,7 @@ package com.discord.widgets.user;
 
 import android.view.View;
 import androidx.core.widget.NestedScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetUserMentionsFilterBinding;
 import com.discord.views.CheckedSetting;
 import d0.z.d.k;
@@ -21,14 +21,14 @@ public final /* synthetic */ class WidgetUserMentions$WidgetUserMentionFilter$bi
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetUserMentionsFilterBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.user_mentions_filter_include_everyone;
-        CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R$id.user_mentions_filter_include_everyone);
+        int i = R.id.user_mentions_filter_include_everyone;
+        CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R.id.user_mentions_filter_include_everyone);
         if (checkedSetting != null) {
-            i = R$id.user_mentions_filter_include_roles;
-            CheckedSetting checkedSetting2 = (CheckedSetting) view.findViewById(R$id.user_mentions_filter_include_roles);
+            i = R.id.user_mentions_filter_include_roles;
+            CheckedSetting checkedSetting2 = (CheckedSetting) view.findViewById(R.id.user_mentions_filter_include_roles);
             if (checkedSetting2 != null) {
-                i = R$id.user_mentions_filter_this_server;
-                CheckedSetting checkedSetting3 = (CheckedSetting) view.findViewById(R$id.user_mentions_filter_this_server);
+                i = R.id.user_mentions_filter_this_server;
+                CheckedSetting checkedSetting3 = (CheckedSetting) view.findViewById(R.id.user_mentions_filter_this_server);
                 if (checkedSetting3 != null) {
                     return new WidgetUserMentionsFilterBinding((NestedScrollView) view, checkedSetting, checkedSetting2, checkedSetting3);
                 }

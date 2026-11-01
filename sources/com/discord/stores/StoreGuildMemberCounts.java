@@ -6,13 +6,14 @@ import com.discord.api.guildmember.GuildMember;
 import com.discord.app.AppLog;
 import com.discord.models.domain.ModelPayload;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
 import d0.t.h0;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import kotlin.jvm.functions.Function0;
 import rx.Observable;
 
 /* JADX INFO: compiled from: StoreGuildMemberCounts.kt */
@@ -20,6 +21,32 @@ import rx.Observable;
 public final class StoreGuildMemberCounts extends StoreV2 {
     private final HashMap<Long, Integer> guildMemberCounts = new HashMap<>();
     private Map<Long, Integer> guildMemberCountsSnapshot = h0.emptyMap();
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildMemberCounts$observeApproximateMemberCount$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuildMemberCounts.kt */
+    public final class AnonymousClass1 extends o implements Function0<Integer> {
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$guildId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Integer invoke() {
+            return Integer.valueOf(invoke2());
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final int invoke2() {
+            Integer num = (Integer) StoreGuildMemberCounts.access$getGuildMemberCountsSnapshot$p(StoreGuildMemberCounts.this).get(Long.valueOf(this.$guildId));
+            if (num != null) {
+                return num.intValue();
+            }
+            return 0;
+        }
+    }
 
     public static final /* synthetic */ Map access$getGuildMemberCountsSnapshot$p(StoreGuildMemberCounts storeGuildMemberCounts) {
         return storeGuildMemberCounts.guildMemberCountsSnapshot;
@@ -82,7 +109,7 @@ public final class StoreGuildMemberCounts extends StoreV2 {
     }
 
     public final Observable<Integer> observeApproximateMemberCount(long guildId) {
-        Observable<Integer> observableR = ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreGuildMemberCounts$observeApproximateMemberCount$1(this, guildId), 14, null).r();
+        Observable<Integer> observableR = ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(guildId), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "ObservationDeckProvider.… }.distinctUntilChanged()");
         return observableR;
     }

@@ -85,11 +85,37 @@ public final class OsUtils {
         return drives;
     }
 
-    public static OsUtils$OS getOS() {
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/OsUtils$OS.SCL.lombok */
+    public enum OS {
+        MAC_OS_X("\n"),
+        WINDOWS("\r\n"),
+        UNIX("\n");
+
+        private final String lineEnding;
+
+        /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
+        public static OS[] valuesCustom() {
+            OS[] osArrValuesCustom = values();
+            int length = osArrValuesCustom.length;
+            OS[] osArr = new OS[length];
+            System.arraycopy(osArrValuesCustom, 0, osArr, 0, length);
+            return osArr;
+        }
+
+        OS(String lineEnding) {
+            this.lineEnding = lineEnding;
+        }
+
+        public String getLineEnding() {
+            return this.lineEnding;
+        }
+    }
+
+    public static OS getOS() {
         String prop = System.getProperty("os.name", "").toLowerCase();
         if (!prop.matches("^.*\\bmac\\b.*$") && !prop.matches("^.*\\bdarwin\\b.*$")) {
-            return prop.matches("^.*\\bwin(dows|32|64)?\\b.*$") ? OsUtils$OS.WINDOWS : OsUtils$OS.UNIX;
+            return prop.matches("^.*\\bwin(dows|32|64)?\\b.*$") ? OS.WINDOWS : OS.UNIX;
         }
-        return OsUtils$OS.MAC_OS_X;
+        return OS.MAC_OS_X;
     }
 }

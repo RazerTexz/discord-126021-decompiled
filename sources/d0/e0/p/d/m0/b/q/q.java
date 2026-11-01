@@ -3,7 +3,6 @@ package d0.e0.p.d.m0.b.q;
 import d0.e0.p.d.m0.c.z0;
 import d0.e0.p.d.m0.n.j0;
 import d0.e0.p.d.m0.n.v0;
-import d0.e0.p.d.m0.n.v0$a;
 import d0.t.h0;
 import d0.t.u;
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ public final class q {
         d0.z.d.m.checkNotNullParameter(eVar2, "to");
         eVar.getDeclaredTypeParameters().size();
         eVar2.getDeclaredTypeParameters().size();
-        v0$a v0_a = v0.f3542b;
+        v0.a aVar = v0.f3542b;
         List<z0> declaredTypeParameters = eVar.getDeclaredTypeParameters();
         d0.z.d.m.checkNotNullExpressionValue(declaredTypeParameters, "from.declaredTypeParameters");
         ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(declaredTypeParameters, 10));
@@ -35,6 +34,6 @@ public final class q {
             d0.z.d.m.checkNotNullExpressionValue(defaultType, "it.defaultType");
             arrayList2.add(d0.e0.p.d.m0.n.o1.a.asTypeProjection(defaultType));
         }
-        return v0$a.createByConstructorsMap$default(v0_a, h0.toMap(u.zip(arrayList, arrayList2)), false, 2, null);
+        return v0.a.createByConstructorsMap$default(aVar, h0.toMap(u.zip(arrayList, arrayList2)), false, 2, null);
     }
 }

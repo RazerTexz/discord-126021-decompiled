@@ -1,6 +1,6 @@
 package b.a.t.a;
 
-import com.discord.simpleast.code.CodeNode$b;
+import com.discord.simpleast.code.CodeNode;
 import com.discord.simpleast.core.node.Node;
 import com.discord.simpleast.core.parser.ParseSpec;
 import com.discord.simpleast.core.parser.Parser;
@@ -28,8 +28,8 @@ public final class b<R, S> extends Rule<R, Node<R>, S> {
         d0.z.d.m.checkNotNull(strGroup);
         String strGroup2 = matcher.group(2);
         d0.z.d.m.checkNotNull(strGroup2);
-        CodeNode$b codeNode$b = new CodeNode$b(strGroup, strGroup2, this.a);
-        d0.z.d.m.checkNotNullParameter(codeNode$b, "node");
-        return new ParseSpec<>(codeNode$b, s2);
+        CodeNode.b bVar = new CodeNode.b(strGroup, strGroup2, this.a);
+        d0.z.d.m.checkNotNullParameter(bVar, "node");
+        return new ParseSpec<>(bVar, s2);
     }
 }

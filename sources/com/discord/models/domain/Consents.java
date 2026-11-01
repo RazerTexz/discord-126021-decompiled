@@ -1,20 +1,37 @@
 package com.discord.models.domain;
 
 import b.d.b.a.a;
-import com.discord.restapi.RestAPIParams$Consents$Type;
+import com.discord.restapi.RestAPIParams;
 import d0.z.d.m;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ModelUserConsents.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class Consents {
-    public static final Consents$Companion Companion = new Consents$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final Consent personalization;
     private final Consent usageStatistics;
     private static final Consents DEFAULT = new Consents(new Consent(false, null, 3, null), new Consent(false, null, 3, null));
 
+    /* JADX INFO: compiled from: ModelUserConsents.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final Consents getDEFAULT() {
+            return Consents.access$getDEFAULT$cp();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public Consents(Consent consent, Consent consent2) {
         m.checkNotNullParameter(consent, "usageStatistics");
-        m.checkNotNullParameter(consent2, RestAPIParams$Consents$Type.PERSONALIZATION);
+        m.checkNotNullParameter(consent2, RestAPIParams.Consents.Type.PERSONALIZATION);
         this.usageStatistics = consent;
         this.personalization = consent2;
     }
@@ -35,7 +52,7 @@ public final /* data */ class Consents {
 
     public final Consents copy(Consent usageStatistics, Consent personalization) {
         m.checkNotNullParameter(usageStatistics, "usageStatistics");
-        m.checkNotNullParameter(personalization, RestAPIParams$Consents$Type.PERSONALIZATION);
+        m.checkNotNullParameter(personalization, RestAPIParams.Consents.Type.PERSONALIZATION);
         return new Consents(usageStatistics, personalization);
     }
 

@@ -2,44 +2,58 @@ package b.a.q;
 
 import android.app.Application;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.PowerManager;
-import android.os.PowerManager$OnThermalStatusChangedListener;
 import androidx.annotation.AnyThread;
 import androidx.annotation.RequiresApi;
 import com.discord.rtcconnection.enums.ThermalStatus;
-import com.discord.rtcconnection.enums.ThermalStatus$a;
 import com.discord.utilities.debug.DebugPrintBuilder;
 import com.discord.utilities.debug.DebugPrintable;
 import com.discord.utilities.lifecycle.ApplicationProvider;
 import com.discord.utilities.logging.LoggingProvider;
 import java.util.Objects;
 import kotlin.Lazy;
+import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: ThermalDetector.kt */
 /* JADX INFO: loaded from: classes.dex */
 @AnyThread
 @RequiresApi(29)
-public final class i0 implements PowerManager$OnThermalStatusChangedListener, Runnable, DebugPrintable {
+public final class i0 implements PowerManager.OnThermalStatusChangedListener, Runnable, DebugPrintable {
     public static boolean k;
     public static boolean l;
     public static boolean m;
     public static final i0 n = new i0();
-    public static final Lazy j = d0.g.lazy(d0.i.NONE, i0$a.j);
+    public static final Lazy j = d0.g.lazy(d0.i.NONE, a.j);
+
+    /* JADX INFO: compiled from: ThermalDetector.kt */
+    public final class a extends d0.z.d.o implements Function0<Handler> {
+        public static final a j = new a();
+
+        public a() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public Handler invoke() {
+            return new Handler(Looper.getMainLooper());
+        }
+    }
 
     public final ThermalStatus a() {
-        ThermalStatus$a thermalStatus$a = ThermalStatus.Companion;
+        ThermalStatus.Companion companion = ThermalStatus.INSTANCE;
         Application application = ApplicationProvider.INSTANCE.get();
-        Objects.requireNonNull(thermalStatus$a);
+        Objects.requireNonNull(companion);
         d0.z.d.m.checkNotNullParameter(application, "context");
         Object systemService = application.getSystemService("power");
         Objects.requireNonNull(systemService, "null cannot be cast to non-null type android.os.PowerManager");
-        return thermalStatus$a.a(((PowerManager) systemService).getCurrentThermalStatus());
+        return companion.a(((PowerManager) systemService).getCurrentThermalStatus());
     }
 
     public final void b(ThermalStatus thermalStatus) {
         LoggingProvider.INSTANCE.get().recordBreadcrumb("thermalStatus = " + thermalStatus, "thermal");
-        switch (thermalStatus) {
-            case None:
+        switch (thermalStatus.ordinal()) {
+            case 0:
                 if (!l) {
                     b.c.a.a0.d.e1("ThermalDetector", "totally cool: thermal status is nominal");
                 } else {
@@ -51,8 +65,8 @@ public final class i0 implements PowerManager$OnThermalStatusChangedListener, Ru
                     }
                 }
                 break;
-            case Light:
-            case Moderate:
+            case 1:
+            case 2:
                 if (!l) {
                     b.c.a.a0.d.e1("ThermalDetector", "pretty warm: ignoring low priority thermal status = " + thermalStatus);
                 } else {
@@ -60,10 +74,10 @@ public final class i0 implements PowerManager$OnThermalStatusChangedListener, Ru
                     c();
                 }
                 break;
-            case Severe:
-            case Critical:
-            case Emergency:
-            case Shutdown:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
                 if (!l) {
                     b.c.a.a0.d.f1("ThermalDetector", "we're starting to be in thermal trouble");
                     l = true;
@@ -97,9 +111,9 @@ public final class i0 implements PowerManager$OnThermalStatusChangedListener, Ru
         debugPrintBuilder.appendKeyValue("currentThermalStatus", a());
     }
 
-    @Override // android.os.PowerManager$OnThermalStatusChangedListener
+    @Override // android.os.PowerManager.OnThermalStatusChangedListener
     public synchronized void onThermalStatusChanged(int i) {
-        ThermalStatus thermalStatusA = ThermalStatus.Companion.a(i);
+        ThermalStatus thermalStatusA = ThermalStatus.INSTANCE.a(i);
         b.c.a.a0.d.b1("ThermalDetector", "system update: onThermalStatusChanged( " + thermalStatusA + " )");
         b(thermalStatusA);
     }

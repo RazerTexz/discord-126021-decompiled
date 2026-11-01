@@ -14,12 +14,12 @@ public final class ModelReadState$Parser$parse$1<T> implements Action1<String> {
     public final /* synthetic */ Ref$LongRef $lastMessageId;
     public final /* synthetic */ Ref$IntRef $mentionCount;
     public final /* synthetic */ Ref$LongRef $messageId;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
     public final /* synthetic */ Ref$IntRef $version;
 
-    public ModelReadState$Parser$parse$1(Ref$LongRef ref$LongRef, Model$JsonReader model$JsonReader, Ref$IntRef ref$IntRef, Ref$LongRef ref$LongRef2, Ref$LongRef ref$LongRef3, Ref$LongRef ref$LongRef4, Ref$IntRef ref$IntRef2) {
+    public ModelReadState$Parser$parse$1(Ref$LongRef ref$LongRef, Model.JsonReader jsonReader, Ref$IntRef ref$IntRef, Ref$LongRef ref$LongRef2, Ref$LongRef ref$LongRef3, Ref$LongRef ref$LongRef4, Ref$IntRef ref$IntRef2) {
         this.$id = ref$LongRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
         this.$mentionCount = ref$IntRef;
         this.$lastMessageId = ref$LongRef2;
         this.$messageId = ref$LongRef3;

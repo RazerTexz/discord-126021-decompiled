@@ -7,7 +7,7 @@ import android.util.Log;
 import android.util.Pair;
 import b.i.a.f.h.l.a0;
 import b.i.a.f.h.l.g;
-import b.i.a.f.h.l.g$c;
+import b.i.a.f.i.b.z5;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-sdk-api@@18.0.0 */
@@ -15,31 +15,36 @@ import java.util.Objects;
 public class a {
     public final g a;
 
+    /* JADX INFO: renamed from: b.i.a.f.i.a.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-sdk-api@@18.0.0 */
+    public interface InterfaceC0118a extends z5 {
+    }
+
     public a(g gVar) {
         this.a = gVar;
     }
 
-    public void a(a$a a_a) {
+    public void a(InterfaceC0118a interfaceC0118a) {
         g gVar = this.a;
         Objects.requireNonNull(gVar);
         synchronized (gVar.g) {
             for (int i = 0; i < gVar.g.size(); i++) {
-                if (a_a.equals(gVar.g.get(i).first)) {
+                if (interfaceC0118a.equals(gVar.g.get(i).first)) {
                     Log.w(gVar.c, "OnEventListener already registered.");
                     return;
                 }
             }
-            g$c g_c = new g$c(a_a);
-            gVar.g.add(new Pair<>(a_a, g_c));
+            g.c cVar = new g.c(interfaceC0118a);
+            gVar.g.add(new Pair<>(interfaceC0118a, cVar));
             if (gVar.j != null) {
                 try {
-                    gVar.j.registerOnMeasurementEventListener(g_c);
+                    gVar.j.registerOnMeasurementEventListener(cVar);
                     return;
                 } catch (BadParcelableException | NetworkOnMainThreadException | RemoteException | IllegalArgumentException | IllegalStateException | NullPointerException | SecurityException | UnsupportedOperationException unused) {
                     Log.w(gVar.c, "Failed to register event listener on calling thread. Trying again on the dynamite thread.");
                 }
             }
-            gVar.e.execute(new a0(gVar, g_c));
+            gVar.e.execute(new a0(gVar, cVar));
         }
     }
 }

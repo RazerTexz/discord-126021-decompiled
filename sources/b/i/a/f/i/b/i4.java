@@ -1,6 +1,6 @@
 package b.i.a.f.i.b;
 
-import android.content.SharedPreferences$Editor;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.WorkerThread;
 import org.json.JSONArray;
@@ -82,9 +82,9 @@ public final class i4 {
         if (bundle == null) {
             bundle = new Bundle();
         }
-        SharedPreferences$Editor sharedPreferences$EditorEdit = this.e.w().edit();
+        SharedPreferences.Editor editorEdit = this.e.w().edit();
         if (bundle.size() == 0) {
-            sharedPreferences$EditorEdit.remove(this.a);
+            editorEdit.remove(this.a);
         } else {
             String str = this.a;
             JSONArray jSONArray = new JSONArray();
@@ -110,9 +110,9 @@ public final class i4 {
                     }
                 }
             }
-            sharedPreferences$EditorEdit.putString(str, jSONArray.toString());
+            editorEdit.putString(str, jSONArray.toString());
         }
-        sharedPreferences$EditorEdit.apply();
+        editorEdit.apply();
         this.d = bundle;
     }
 }

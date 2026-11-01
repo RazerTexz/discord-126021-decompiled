@@ -3,8 +3,6 @@ package b.c.a.a0;
 import android.graphics.Color;
 import android.graphics.PointF;
 import androidx.annotation.ColorInt;
-import b.c.a.a0.i0.c$a;
-import b.c.a.a0.i0.c$b;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +10,7 @@ import java.util.List;
 /* JADX INFO: compiled from: JsonUtils.java */
 /* JADX INFO: loaded from: classes.dex */
 public class p {
-    public static final c$a a = c$a.a("x", "y");
+    public static final b.c.a.a0.i0.c.a a = b.c.a.a0.i0.c.a.a("x", "y");
 
     @ColorInt
     public static int a(b.c.a.a0.i0.c cVar) throws IOException {
@@ -33,7 +31,7 @@ public class p {
             cVar.a();
             float fN = (float) cVar.n();
             float fN2 = (float) cVar.n();
-            while (cVar.u() != c$b.END_ARRAY) {
+            while (cVar.u() != b.c.a.a0.i0.c.b.END_ARRAY) {
                 cVar.C();
             }
             cVar.c();
@@ -73,7 +71,7 @@ public class p {
     public static List<PointF> c(b.c.a.a0.i0.c cVar, float f) throws IOException {
         ArrayList arrayList = new ArrayList();
         cVar.a();
-        while (cVar.u() == c$b.BEGIN_ARRAY) {
+        while (cVar.u() == b.c.a.a0.i0.c.b.BEGIN_ARRAY) {
             cVar.a();
             arrayList.add(b(cVar, f));
             cVar.c();
@@ -83,13 +81,13 @@ public class p {
     }
 
     public static float d(b.c.a.a0.i0.c cVar) throws IOException {
-        c$b c_bU = cVar.u();
-        int iOrdinal = c_bU.ordinal();
+        b.c.a.a0.i0.c.b bVarU = cVar.u();
+        int iOrdinal = bVarU.ordinal();
         if (iOrdinal != 0) {
             if (iOrdinal == 6) {
                 return (float) cVar.n();
             }
-            throw new IllegalArgumentException("Unknown value for token of type " + c_bU);
+            throw new IllegalArgumentException("Unknown value for token of type " + bVarU);
         }
         cVar.a();
         float fN = (float) cVar.n();

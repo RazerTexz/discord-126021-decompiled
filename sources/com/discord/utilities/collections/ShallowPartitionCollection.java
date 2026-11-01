@@ -1,6 +1,9 @@
 package com.discord.utilities.collections;
 
 import androidx.exifinterface.media.ExifInterface;
+import d0.d0.f;
+import d0.t.c0;
+import d0.t.o;
 import d0.t.u;
 import d0.z.d.g;
 import d0.z.d.g0.b;
@@ -10,14 +13,47 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import kotlin.ranges.IntRange;
 
 /* JADX INFO: compiled from: ShallowPartitionCollection.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public class ShallowPartitionCollection<E, T extends Collection<E>> implements Collection<E>, b {
-    public static final ShallowPartitionCollection$Companion Companion = new ShallowPartitionCollection$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final Function1<E, Integer> partitionStrategy;
     private final List<T> partitions;
     private int size;
+
+    /* JADX INFO: compiled from: ShallowPartitionCollection.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static /* synthetic */ ShallowPartitionCollection withArrayListPartions$default(Companion companion, int i, Function1 function1, int i2, Object obj) {
+            if ((i2 & 1) != 0) {
+                i = 40;
+            }
+            return companion.withArrayListPartions(i, function1);
+        }
+
+        public final <E> ShallowPartitionCollection<E, ArrayList<E>> withArrayListPartions(int numPartitions, Function1<? super E, Integer> partitionStrategy) {
+            m.checkNotNullParameter(partitionStrategy, "partitionStrategy");
+            IntRange intRangeUntil = f.until(0, numPartitions);
+            ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(intRangeUntil, 10));
+            Iterator<Integer> it = intRangeUntil.iterator();
+            while (it.hasNext()) {
+                ((c0) it).nextInt();
+                arrayList.add(new ArrayList());
+            }
+            return new ShallowPartitionCollection<>(arrayList, partitionStrategy);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     /* JADX WARN: Multi-variable type inference failed */
     public ShallowPartitionCollection(List<? extends T> list, Function1<? super E, Integer> function1) {
@@ -169,7 +205,7 @@ public class ShallowPartitionCollection<E, T extends Collection<E>> implements C
     }
 
     public static final <E> ShallowPartitionCollection<E, ArrayList<E>> withArrayListPartions(int i, Function1<? super E, Integer> function1) {
-        return Companion.withArrayListPartions(i, function1);
+        return INSTANCE.withArrayListPartions(i, function1);
     }
 
     @Override // java.util.Collection, java.lang.Iterable

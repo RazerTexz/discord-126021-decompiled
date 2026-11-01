@@ -9,10 +9,7 @@ import com.discord.api.stageinstance.StageInstancePrivacyLevel;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.nullserializable.NullSerializable;
-import com.discord.nullserializable.NullSerializable$a;
-import com.discord.nullserializable.NullSerializable$b;
-import com.discord.restapi.RestAPIParams$CreateGuildScheduledEventBody;
-import com.discord.restapi.RestAPIParams$UpdateGuildScheduledEventBody;
+import com.discord.restapi.RestAPIParams;
 import com.discord.utilities.time.TimeUtils;
 import d0.z.d.m;
 import java.io.Serializable;
@@ -221,7 +218,7 @@ public final /* data */ class GuildScheduledEventModel implements Serializable {
         return iHashCode11 + (bool != null ? bool.hashCode() : 0);
     }
 
-    public final RestAPIParams$CreateGuildScheduledEventBody toCreateRequestBody() {
+    public final RestAPIParams.CreateGuildScheduledEventBody toCreateRequestBody() {
         GuildScheduledEventPickerTime guildScheduledEventPickerTime;
         String str = this.name;
         String utcDateString = null;
@@ -234,7 +231,7 @@ public final /* data */ class GuildScheduledEventModel implements Serializable {
         if (guildScheduledEventPickerDate != null && (guildScheduledEventPickerTime = this.endTime) != null) {
             utcDateString = guildScheduledEventPickerDateTime.toUtcDateString(guildScheduledEventPickerDate, guildScheduledEventPickerTime);
         }
-        return new RestAPIParams$CreateGuildScheduledEventBody(str, this.description, StageInstancePrivacyLevel.GUILD_ONLY, utcDateString2, utcDateString, this.channelId, this.entityType, this.entityMetadata, this.broadcastToDirectoryChannels);
+        return new RestAPIParams.CreateGuildScheduledEventBody(str, this.description, StageInstancePrivacyLevel.GUILD_ONLY, utcDateString2, utcDateString, this.channelId, this.entityType, this.entityMetadata, this.broadcastToDirectoryChannels);
     }
 
     public String toString() {
@@ -266,7 +263,7 @@ public final /* data */ class GuildScheduledEventModel implements Serializable {
         return a.D(sbU, this.broadcastToDirectoryChannels, ")");
     }
 
-    public final RestAPIParams$UpdateGuildScheduledEventBody toUpdateRequestBody(GuildScheduledEvent currentEvent) {
+    public final RestAPIParams.UpdateGuildScheduledEventBody toUpdateRequestBody(GuildScheduledEvent currentEvent) {
         GuildScheduledEventPickerTime guildScheduledEventPickerTime;
         m.checkNotNullParameter(currentEvent, "currentEvent");
         String str = this.name;
@@ -278,14 +275,14 @@ public final /* data */ class GuildScheduledEventModel implements Serializable {
         GuildScheduledEventPickerDate guildScheduledEventPickerDate = this.endDate;
         Long lValueOf = (guildScheduledEventPickerDate == null || (guildScheduledEventPickerTime = this.endTime) == null) ? null : Long.valueOf(guildScheduledEventPickerDateTime.toMillis(guildScheduledEventPickerDate, guildScheduledEventPickerTime));
         Long l = this.channelId;
-        NullSerializable nullSerializable$b = l != null ? new NullSerializable$b(l) : new NullSerializable$a(null, 1);
+        NullSerializable bVar = l != null ? new NullSerializable.b(l) : new NullSerializable.a(null, 1);
         GuildScheduledEventEntityMetadata guildScheduledEventEntityMetadata = this.entityMetadata;
-        NullSerializable nullSerializable$a = (guildScheduledEventEntityMetadata == null || guildScheduledEventEntityMetadata.b()) ? new NullSerializable$a(null, 1) : new NullSerializable$b(this.entityMetadata);
+        NullSerializable aVar = (guildScheduledEventEntityMetadata == null || guildScheduledEventEntityMetadata.b()) ? new NullSerializable.a(null, 1) : new NullSerializable.b(this.entityMetadata);
         String str2 = this.description;
         StageInstancePrivacyLevel stageInstancePrivacyLevel = StageInstancePrivacyLevel.GUILD_ONLY;
         String uTCDateTime$default = currentEvent.getScheduledStartTime().getDateTimeMillis() == millis ? null : TimeUtils.toUTCDateTime$default(Long.valueOf(millis), null, 2, null);
         UtcDateTime scheduledEndTime = currentEvent.getScheduledEndTime();
-        return new RestAPIParams$UpdateGuildScheduledEventBody(str, str2, stageInstancePrivacyLevel, uTCDateTime$default, m.areEqual(scheduledEndTime != null ? Long.valueOf(scheduledEndTime.getDateTimeMillis()) : null, lValueOf) ? null : TimeUtils.toUTCDateTime$default(lValueOf, null, 2, null), nullSerializable$b, this.entityType, nullSerializable$a, null, this.broadcastToDirectoryChannels, 256, null);
+        return new RestAPIParams.UpdateGuildScheduledEventBody(str, str2, stageInstancePrivacyLevel, uTCDateTime$default, m.areEqual(scheduledEndTime != null ? Long.valueOf(scheduledEndTime.getDateTimeMillis()) : null, lValueOf) ? null : TimeUtils.toUTCDateTime$default(lValueOf, null, 2, null), bVar, this.entityType, aVar, null, this.broadcastToDirectoryChannels, 256, null);
     }
 
     public /* synthetic */ GuildScheduledEventModel(long j, String str, Long l, Long l2, GuildScheduledEventPickerDate guildScheduledEventPickerDate, GuildScheduledEventPickerTime guildScheduledEventPickerTime, GuildScheduledEventPickerDate guildScheduledEventPickerDate2, GuildScheduledEventPickerTime guildScheduledEventPickerTime2, String str2, GuildScheduledEventEntityType guildScheduledEventEntityType, GuildScheduledEventEntityMetadata guildScheduledEventEntityMetadata, Integer num, Boolean bool, int i, DefaultConstructorMarker defaultConstructorMarker) {

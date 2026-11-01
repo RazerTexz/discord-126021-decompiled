@@ -3,7 +3,7 @@ package com.discord.widgets.stickers;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetUnknownStickerSheetBinding;
 import com.discord.views.sticker.StickerView;
 import d0.z.d.k;
@@ -27,11 +27,11 @@ public final /* synthetic */ class WidgetUnknownStickerSheet$binding$2 extends k
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetUnknownStickerSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.unknown_sticker_sheet_sticker;
-        StickerView stickerView = (StickerView) view.findViewById(R$id.unknown_sticker_sheet_sticker);
+        int i = R.id.unknown_sticker_sheet_sticker;
+        StickerView stickerView = (StickerView) view.findViewById(R.id.unknown_sticker_sheet_sticker);
         if (stickerView != null) {
-            i = R$id.unknown_sticker_sheet_sticker_name;
-            TextView textView = (TextView) view.findViewById(R$id.unknown_sticker_sheet_sticker_name);
+            i = R.id.unknown_sticker_sheet_sticker_name;
+            TextView textView = (TextView) view.findViewById(R.id.unknown_sticker_sheet_sticker_name);
             if (textView != null) {
                 return new WidgetUnknownStickerSheetBinding((LinearLayout) view, stickerView, textView);
             }

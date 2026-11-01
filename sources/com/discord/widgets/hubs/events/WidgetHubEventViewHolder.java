@@ -1,5 +1,6 @@
 package com.discord.widgets.hubs.events;
 
+import android.view.View;
 import com.discord.databinding.WidgetHubEventBinding;
 import com.discord.widgets.guildscheduledevent.GuildScheduledEventItemView;
 import d0.z.d.m;
@@ -9,6 +10,66 @@ import d0.z.d.m;
 public final class WidgetHubEventViewHolder extends WidgetHubEventsPageViewHolder {
     private final WidgetHubEventBinding binding;
     private final HubEventsEventListener listener;
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.events.WidgetHubEventViewHolder$bind$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubEventsPageViewHolder.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ HubGuildScheduledEventData $eventData;
+
+        public AnonymousClass1(HubGuildScheduledEventData hubGuildScheduledEventData) {
+            this.$eventData = hubGuildScheduledEventData;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetHubEventViewHolder.this.getListener().onCardClicked(this.$eventData);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.events.WidgetHubEventViewHolder$bind$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubEventsPageViewHolder.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ HubGuildScheduledEventData $eventData;
+
+        public AnonymousClass2(HubGuildScheduledEventData hubGuildScheduledEventData) {
+            this.$eventData = hubGuildScheduledEventData;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetHubEventViewHolder.this.getListener().onSecondaryButtonClicked(this.$eventData);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.events.WidgetHubEventViewHolder$bind$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubEventsPageViewHolder.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public final /* synthetic */ HubGuildScheduledEventData $eventData;
+
+        public AnonymousClass3(HubGuildScheduledEventData hubGuildScheduledEventData) {
+            this.$eventData = hubGuildScheduledEventData;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetHubEventViewHolder.this.getListener().onPrimaryButtonClicked(this.$eventData);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.events.WidgetHubEventViewHolder$bind$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubEventsPageViewHolder.kt */
+    public final class AnonymousClass4 implements View.OnClickListener {
+        public final /* synthetic */ HubGuildScheduledEventData $eventData;
+
+        public AnonymousClass4(HubGuildScheduledEventData hubGuildScheduledEventData) {
+            this.$eventData = hubGuildScheduledEventData;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetHubEventViewHolder.this.getListener().onShareClicked(this.$eventData);
+        }
+    }
 
     /* JADX WARN: Illegal instructions before constructor call */
     public WidgetHubEventViewHolder(WidgetHubEventBinding widgetHubEventBinding, HubEventsEventListener hubEventsEventListener) {
@@ -23,7 +84,7 @@ public final class WidgetHubEventViewHolder extends WidgetHubEventsPageViewHolde
 
     public final void bind(HubGuildScheduledEventData eventData) {
         m.checkNotNullParameter(eventData, "eventData");
-        this.binding.f2474b.configureInDirectoryEventList(eventData, new WidgetHubEventViewHolder$bind$1(this, eventData), new WidgetHubEventViewHolder$bind$2(this, eventData), new WidgetHubEventViewHolder$bind$3(this, eventData), new WidgetHubEventViewHolder$bind$4(this, eventData));
+        this.binding.f2474b.configureInDirectoryEventList(eventData, new AnonymousClass1(eventData), new AnonymousClass2(eventData), new AnonymousClass3(eventData), new AnonymousClass4(eventData));
     }
 
     public final WidgetHubEventBinding getBinding() {

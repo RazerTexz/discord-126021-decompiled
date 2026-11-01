@@ -37,14 +37,14 @@ public class k<E> extends a<E> {
                 throw new IllegalStateException(b.d.b.a.a.v("Invalid offerInternal result ", objK).toString());
             }
             s.a.a.i iVar = this.k;
-            c$a c_a = new c$a(e);
+            c.a aVar = new c.a(e);
             while (true) {
                 s.a.a.k kVarK = iVar.k();
                 if (kVarK instanceof p) {
                     pVar = (p) kVarK;
                     break;
                 }
-                if (kVarK.e(c_a, iVar)) {
+                if (kVarK.e(aVar, iVar)) {
                     pVar = null;
                     break;
                 }

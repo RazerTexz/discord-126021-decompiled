@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager$NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.util.Log;
 import androidx.annotation.Nullable;
@@ -62,7 +61,7 @@ public final class r {
     public final PackageInfo b(String str) {
         try {
             return b.i.a.f.e.p.b.a(this.a).a.getPackageManager().getPackageInfo(str, 0);
-        } catch (PackageManager$NameNotFoundException e) {
+        } catch (PackageManager.NameNotFoundException e) {
             String strValueOf = String.valueOf(e);
             b.d.b.a.a.h0(strValueOf.length() + 23, "Failed to find package ", strValueOf, "Metadata");
             return null;

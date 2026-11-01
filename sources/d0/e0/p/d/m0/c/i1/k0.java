@@ -3,7 +3,6 @@ package d0.e0.p.d.m0.c.i1;
 import com.discord.models.domain.ModelAuditLogEntry;
 import d0.e0.p.d.m0.c.u0;
 import d0.e0.p.d.m0.c.x0;
-import d0.e0.p.d.m0.c.x0$a;
 import d0.e0.p.d.m0.c.z0;
 import d0.e0.p.d.m0.n.j1;
 import java.util.ArrayList;
@@ -208,7 +207,7 @@ public class k0 extends f {
             throw null;
         }
         if (oVar != null) {
-            return createForFurtherModification(mVar, gVar, z2, j1Var, eVar, i, u0Var, null, x0$a.a, oVar);
+            return createForFurtherModification(mVar, gVar, z2, j1Var, eVar, i, u0Var, null, x0.a.a, oVar);
         }
         a(11);
         throw null;

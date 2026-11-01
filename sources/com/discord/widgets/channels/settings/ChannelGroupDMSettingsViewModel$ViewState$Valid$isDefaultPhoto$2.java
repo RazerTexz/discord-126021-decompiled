@@ -8,12 +8,12 @@ import kotlin.jvm.functions.Function0;
 /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ChannelGroupDMSettingsViewModel$ViewState$Valid$isDefaultPhoto$2 extends o implements Function0<Boolean> {
-    public final /* synthetic */ ChannelGroupDMSettingsViewModel$ViewState$Valid this$0;
+    public final /* synthetic */ ChannelGroupDMSettingsViewModel.ViewState.Valid this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public ChannelGroupDMSettingsViewModel$ViewState$Valid$isDefaultPhoto$2(ChannelGroupDMSettingsViewModel$ViewState$Valid channelGroupDMSettingsViewModel$ViewState$Valid) {
+    public ChannelGroupDMSettingsViewModel$ViewState$Valid$isDefaultPhoto$2(ChannelGroupDMSettingsViewModel.ViewState.Valid valid) {
         super(0);
-        this.this$0 = channelGroupDMSettingsViewModel$ViewState$Valid;
+        this.this$0 = valid;
     }
 
     @Override // kotlin.jvm.functions.Function0

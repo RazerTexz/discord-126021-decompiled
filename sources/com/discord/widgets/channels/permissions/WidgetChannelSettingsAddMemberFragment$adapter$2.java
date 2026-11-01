@@ -2,7 +2,6 @@ package com.discord.widgets.channels.permissions;
 
 import androidx.recyclerview.widget.RecyclerView;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapter;
-import com.discord.utilities.mg_recycler.MGRecyclerAdapter$Companion;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
@@ -26,9 +25,9 @@ public final class WidgetChannelSettingsAddMemberFragment$adapter$2 extends o im
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final AddMemberAdapter invoke() {
-        MGRecyclerAdapter$Companion mGRecyclerAdapter$Companion = MGRecyclerAdapter.Companion;
+        MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
         RecyclerView recyclerView = WidgetChannelSettingsAddMemberFragment.access$getBinding$p(this.this$0).f2269b;
         m.checkNotNullExpressionValue(recyclerView, "binding.recycler");
-        return (AddMemberAdapter) mGRecyclerAdapter$Companion.configure(new AddMemberAdapter(recyclerView));
+        return (AddMemberAdapter) companion.configure(new AddMemberAdapter(recyclerView));
     }
 }

@@ -1,6 +1,5 @@
 package b.g.a.c.g0.u;
 
-import b.g.a.c.g0.t.l$b;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.RuntimeJsonMappingException;
 import java.io.IOException;
@@ -18,6 +17,45 @@ public class s extends q0<Object> implements b.g.a.c.g0.i {
     public final b.g.a.c.e0.g _valueTypeSerializer;
     public transient b.g.a.c.g0.t.l k;
 
+    /* JADX INFO: compiled from: JsonValueSerializer.java */
+    public class a extends b.g.a.c.e0.g {
+        public final b.g.a.c.e0.g a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final Object f714b;
+
+        public a(b.g.a.c.e0.g gVar, Object obj) {
+            this.a = gVar;
+            this.f714b = obj;
+        }
+
+        @Override // b.g.a.c.e0.g
+        public b.g.a.c.e0.g a(b.g.a.c.d dVar) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override // b.g.a.c.e0.g
+        public String b() {
+            return this.a.b();
+        }
+
+        @Override // b.g.a.c.e0.g
+        public b.g.a.a.c0.a c() {
+            return this.a.c();
+        }
+
+        @Override // b.g.a.c.e0.g
+        public b.g.a.b.s.b e(b.g.a.b.d dVar, b.g.a.b.s.b bVar) throws IOException {
+            bVar.a = this.f714b;
+            return this.a.e(dVar, bVar);
+        }
+
+        @Override // b.g.a.c.e0.g
+        public b.g.a.b.s.b f(b.g.a.b.d dVar, b.g.a.b.s.b bVar) throws IOException {
+            return this.a.f(dVar, bVar);
+        }
+    }
+
     /* JADX WARN: Illegal instructions before constructor call */
     public s(s sVar, b.g.a.c.d dVar, b.g.a.c.e0.g gVar, b.g.a.c.n<?> nVar, boolean z2) {
         Class cls = sVar._handledType;
@@ -28,7 +66,7 @@ public class s extends q0<Object> implements b.g.a.c.g0.i {
         this._valueSerializer = nVar;
         this._property = dVar;
         this._forceTypeInformation = z2;
-        this.k = l$b.f706b;
+        this.k = b.g.a.c.g0.t.l.b.f706b;
     }
 
     @Override // b.g.a.c.g0.i
@@ -111,7 +149,7 @@ public class s extends q0<Object> implements b.g.a.c.g0.i {
                 gVar.f(dVar, bVarE);
                 return;
             }
-            nVarP.g(objJ, dVar, xVar, new s$a(gVar, obj));
+            nVarP.g(objJ, dVar, xVar, new a(gVar, obj));
         } catch (Exception e) {
             o(xVar, e, obj, this._accessor.c() + "()");
             throw null;
@@ -157,6 +195,6 @@ public class s extends q0<Object> implements b.g.a.c.g0.i {
         this._valueSerializer = nVar;
         this._property = null;
         this._forceTypeInformation = true;
-        this.k = l$b.f706b;
+        this.k = b.g.a.c.g0.t.l.b.f706b;
     }
 }

@@ -5,25 +5,25 @@ import androidx.annotation.Nullable;
 /* JADX INFO: compiled from: AutoValue_NetworkConnectionInfo.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class i extends o {
-    public final o$b a;
+    public final o.b a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final o$a f752b;
+    public final o.a f752b;
 
-    public i(o$b o_b, o$a o_a, i$a i_a) {
-        this.a = o_b;
-        this.f752b = o_a;
+    public i(o.b bVar, o.a aVar, a aVar2) {
+        this.a = bVar;
+        this.f752b = aVar;
     }
 
     @Override // b.i.a.b.i.e.o
     @Nullable
-    public o$a a() {
+    public o.a a() {
         return this.f752b;
     }
 
     @Override // b.i.a.b.i.e.o
     @Nullable
-    public o$b b() {
+    public o.b b() {
         return this.a;
     }
 
@@ -35,14 +35,14 @@ public final class i extends o {
             return false;
         }
         o oVar = (o) obj;
-        o$b o_b = this.a;
-        if (o_b != null ? o_b.equals(oVar.b()) : oVar.b() == null) {
-            o$a o_a = this.f752b;
-            if (o_a == null) {
+        o.b bVar = this.a;
+        if (bVar != null ? bVar.equals(oVar.b()) : oVar.b() == null) {
+            o.a aVar = this.f752b;
+            if (aVar == null) {
                 if (oVar.a() == null) {
                     return true;
                 }
-            } else if (o_a.equals(oVar.a())) {
+            } else if (aVar.equals(oVar.a())) {
                 return true;
             }
         }
@@ -50,10 +50,10 @@ public final class i extends o {
     }
 
     public int hashCode() {
-        o$b o_b = this.a;
-        int iHashCode = ((o_b == null ? 0 : o_b.hashCode()) ^ 1000003) * 1000003;
-        o$a o_a = this.f752b;
-        return iHashCode ^ (o_a != null ? o_a.hashCode() : 0);
+        o.b bVar = this.a;
+        int iHashCode = ((bVar == null ? 0 : bVar.hashCode()) ^ 1000003) * 1000003;
+        o.a aVar = this.f752b;
+        return iHashCode ^ (aVar != null ? aVar.hashCode() : 0);
     }
 
     public String toString() {

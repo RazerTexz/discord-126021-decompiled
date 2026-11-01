@@ -6,12 +6,12 @@ import kotlin.jvm.functions.Function0;
 /* JADX INFO: compiled from: WidgetServerSettingsSecurity.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsSecurity$ToggleMfaDialog$guildId$2 extends o implements Function0<Long> {
-    public final /* synthetic */ WidgetServerSettingsSecurity$ToggleMfaDialog this$0;
+    public final /* synthetic */ WidgetServerSettingsSecurity.ToggleMfaDialog this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetServerSettingsSecurity$ToggleMfaDialog$guildId$2(WidgetServerSettingsSecurity$ToggleMfaDialog widgetServerSettingsSecurity$ToggleMfaDialog) {
+    public WidgetServerSettingsSecurity$ToggleMfaDialog$guildId$2(WidgetServerSettingsSecurity.ToggleMfaDialog toggleMfaDialog) {
         super(0);
-        this.this$0 = widgetServerSettingsSecurity$ToggleMfaDialog;
+        this.this$0 = toggleMfaDialog;
     }
 
     @Override // kotlin.jvm.functions.Function0
@@ -21,6 +21,6 @@ public final class WidgetServerSettingsSecurity$ToggleMfaDialog$guildId$2 extend
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final long invoke2() {
-        return WidgetServerSettingsSecurity$ToggleMfaDialog.access$getArgumentsOrDefault$p(this.this$0).getLong("ARG_GUILD_ID", -1L);
+        return WidgetServerSettingsSecurity.ToggleMfaDialog.access$getArgumentsOrDefault$p(this.this$0).getLong("ARG_GUILD_ID", -1L);
     }
 }

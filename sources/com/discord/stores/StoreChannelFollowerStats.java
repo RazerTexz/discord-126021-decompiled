@@ -1,23 +1,260 @@
 package com.discord.stores;
 
+import android.content.Context;
+import b.d.b.a.a;
 import com.discord.models.domain.ModelChannelFollowerStats;
+import com.discord.models.domain.ModelChannelFollowerStatsDto;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
+import com.discord.utilities.error.Error;
+import com.discord.utilities.rest.RestAPI;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.ClockFactory;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.HashMap;
 import java.util.Map;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import org.objectweb.asm.Opcodes;
 import rx.Observable;
 
 /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreChannelFollowerStats extends StoreV2 {
-    public static final StoreChannelFollowerStats$Companion Companion = new StoreChannelFollowerStats$Companion(null);
     private static final int STALE_TIME_DIFF_MS = 3600000;
-    private final Map<Long, StoreChannelFollowerStats$ChannelFollowerStatData> channelFollowerStatsState;
-    private Map<Long, StoreChannelFollowerStats$ChannelFollowerStatData> channelFollowerStatsStateSnapshot;
+    private final Map<Long, ChannelFollowerStatData> channelFollowerStatsState;
+    private Map<Long, ChannelFollowerStatData> channelFollowerStatsStateSnapshot;
     private final Dispatcher dispatcher;
     private final ObservationDeck observationDeck;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannelFollowerStats$fetchIfNonexistingOrStale$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreChannelFollowerStats$fetchIfNonexistingOrStale$1$2, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
+        public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+
+            /* JADX INFO: renamed from: com.discord.stores.StoreChannelFollowerStats$fetchIfNonexistingOrStale$1$2$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
+            public final class C02221 extends o implements Function0<Unit> {
+                public C02221() {
+                    super(0);
+                }
+
+                @Override // kotlin.jvm.functions.Function0
+                public /* bridge */ /* synthetic */ Unit invoke() {
+                    invoke2();
+                    return Unit.a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2() {
+                    AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                    StoreChannelFollowerStats.access$handleChannelFollowerStatsFetchFailed(StoreChannelFollowerStats.this, anonymousClass1.$channelId);
+                }
+            }
+
+            public AnonymousClass2() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+                invoke2(error);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Error error) {
+                m.checkNotNullParameter(error, "it");
+                StoreChannelFollowerStats.access$getDispatcher$p(StoreChannelFollowerStats.this).schedule(new C02221());
+            }
+        }
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreChannelFollowerStats$fetchIfNonexistingOrStale$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
+        public final class C02201 extends o implements Function1<ModelChannelFollowerStatsDto, Unit> {
+
+            /* JADX INFO: renamed from: com.discord.stores.StoreChannelFollowerStats$fetchIfNonexistingOrStale$1$1$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
+            public final class C02211 extends o implements Function0<Unit> {
+                public final /* synthetic */ ModelChannelFollowerStatsDto $channelFollowerStats;
+
+                /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+                public C02211(ModelChannelFollowerStatsDto modelChannelFollowerStatsDto) {
+                    super(0);
+                    this.$channelFollowerStats = modelChannelFollowerStatsDto;
+                }
+
+                @Override // kotlin.jvm.functions.Function0
+                public /* bridge */ /* synthetic */ Unit invoke() {
+                    invoke2();
+                    return Unit.a;
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final void invoke2() {
+                    AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                    StoreChannelFollowerStats.access$handleChannelFollowerStatsFetchSuccess(StoreChannelFollowerStats.this, anonymousClass1.$channelId, ModelChannelFollowerStats.INSTANCE.fromResponse(this.$channelFollowerStats));
+                }
+            }
+
+            public C02201() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(ModelChannelFollowerStatsDto modelChannelFollowerStatsDto) {
+                invoke2(modelChannelFollowerStatsDto);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(ModelChannelFollowerStatsDto modelChannelFollowerStatsDto) {
+                StoreChannelFollowerStats.access$getDispatcher$p(StoreChannelFollowerStats.this).schedule(new C02211(modelChannelFollowerStatsDto));
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            boolean z2 = StoreChannelFollowerStats.access$isExisting(StoreChannelFollowerStats.this, this.$channelId) && !StoreChannelFollowerStats.access$isStale(StoreChannelFollowerStats.this, this.$channelId);
+            ChannelFollowerStatData channelFollowerStatData = (ChannelFollowerStatData) StoreChannelFollowerStats.access$getChannelFollowerStatsState$p(StoreChannelFollowerStats.this).get(Long.valueOf(this.$channelId));
+            boolean z3 = (channelFollowerStatData != null ? channelFollowerStatData.getFetchState() : null) == FetchState.FETCHING;
+            if (z2 || z3) {
+                return;
+            }
+            StoreChannelFollowerStats.access$handleChannelFollowerStatsFetchStart(StoreChannelFollowerStats.this, this.$channelId);
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getChannelFollowerStats(this.$channelId), false, 1, null), StoreChannelFollowerStats.this.getClass(), (Context) null, (Function1) null, new AnonymousClass2(), (Function0) null, (Function0) null, new C02201(), 54, (Object) null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreChannelFollowerStats$observeChannelFollowerStats$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
+    public final class AnonymousClass1 extends o implements Function0<ModelChannelFollowerStats> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ ModelChannelFollowerStats invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final ModelChannelFollowerStats invoke() {
+            ChannelFollowerStatData channelFollowerStatData = (ChannelFollowerStatData) StoreChannelFollowerStats.access$getChannelFollowerStatsStateSnapshot$p(StoreChannelFollowerStats.this).get(Long.valueOf(this.$channelId));
+            if (channelFollowerStatData != null) {
+                return channelFollowerStatData.getData();
+            }
+            return null;
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
+    public final /* data */ class ChannelFollowerStatData {
+        private final ModelChannelFollowerStats data;
+        private final FetchState fetchState;
+
+        public ChannelFollowerStatData(FetchState fetchState, ModelChannelFollowerStats modelChannelFollowerStats) {
+            m.checkNotNullParameter(fetchState, "fetchState");
+            m.checkNotNullParameter(modelChannelFollowerStats, "data");
+            this.fetchState = fetchState;
+            this.data = modelChannelFollowerStats;
+        }
+
+        public static /* synthetic */ ChannelFollowerStatData copy$default(ChannelFollowerStatData channelFollowerStatData, FetchState fetchState, ModelChannelFollowerStats modelChannelFollowerStats, int i, Object obj) {
+            if ((i & 1) != 0) {
+                fetchState = channelFollowerStatData.fetchState;
+            }
+            if ((i & 2) != 0) {
+                modelChannelFollowerStats = channelFollowerStatData.data;
+            }
+            return channelFollowerStatData.copy(fetchState, modelChannelFollowerStats);
+        }
+
+        public final ChannelFollowerStatData copy(FetchState fetchState, ModelChannelFollowerStats data) {
+            m.checkNotNullParameter(fetchState, "fetchState");
+            m.checkNotNullParameter(data, "data");
+            return new ChannelFollowerStatData(fetchState, data);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof ChannelFollowerStatData)) {
+                return false;
+            }
+            ChannelFollowerStatData channelFollowerStatData = (ChannelFollowerStatData) other;
+            return m.areEqual(this.fetchState, channelFollowerStatData.fetchState) && m.areEqual(this.data, channelFollowerStatData.data);
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final ModelChannelFollowerStats getData() {
+            return this.data;
+        }
+
+        public final ModelChannelFollowerStats getData() {
+            return this.data;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final FetchState getFetchState() {
+            return this.fetchState;
+        }
+
+        public final FetchState getFetchState() {
+            return this.fetchState;
+        }
+
+        public int hashCode() {
+            FetchState fetchState = this.fetchState;
+            int iHashCode = (fetchState != null ? fetchState.hashCode() : 0) * 31;
+            ModelChannelFollowerStats modelChannelFollowerStats = this.data;
+            return iHashCode + (modelChannelFollowerStats != null ? modelChannelFollowerStats.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("ChannelFollowerStatData(fetchState=");
+            sbU.append(this.fetchState);
+            sbU.append(", data=");
+            sbU.append(this.data);
+            sbU.append(")");
+            return sbU.toString();
+        }
+
+        public /* synthetic */ ChannelFollowerStatData(FetchState fetchState, ModelChannelFollowerStats modelChannelFollowerStats, int i, DefaultConstructorMarker defaultConstructorMarker) {
+            this(fetchState, (i & 2) != 0 ? new ModelChannelFollowerStats(0L, null, null, null, null, null, null, Opcodes.LAND, null) : modelChannelFollowerStats);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreChannelFollowerStats.kt */
+    public enum FetchState {
+        FETCHING,
+        FAILED,
+        SUCCEEDED
+    }
 
     public StoreChannelFollowerStats(Dispatcher dispatcher, ObservationDeck observationDeck) {
         m.checkNotNullParameter(dispatcher, "dispatcher");
@@ -70,42 +307,42 @@ public final class StoreChannelFollowerStats extends StoreV2 {
 
     @StoreThread
     private final void fetchIfNonexistingOrStale(long channelId) {
-        this.dispatcher.schedule(new StoreChannelFollowerStats$fetchIfNonexistingOrStale$1(this, channelId));
+        this.dispatcher.schedule(new AnonymousClass1(channelId));
     }
 
     @StoreThread
     private final void handleChannelFollowerStatsFetchFailed(long channelId) {
-        this.channelFollowerStatsState.put(Long.valueOf(channelId), new StoreChannelFollowerStats$ChannelFollowerStatData(StoreChannelFollowerStats$FetchState.FAILED, null, 2, null));
+        this.channelFollowerStatsState.put(Long.valueOf(channelId), new ChannelFollowerStatData(FetchState.FAILED, null, 2, null));
         markChanged();
     }
 
     @StoreThread
     private final void handleChannelFollowerStatsFetchStart(long channelId) {
-        this.channelFollowerStatsState.put(Long.valueOf(channelId), new StoreChannelFollowerStats$ChannelFollowerStatData(StoreChannelFollowerStats$FetchState.FETCHING, null, 2, null));
+        this.channelFollowerStatsState.put(Long.valueOf(channelId), new ChannelFollowerStatData(FetchState.FETCHING, null, 2, null));
         markChanged();
     }
 
     @StoreThread
     private final void handleChannelFollowerStatsFetchSuccess(long channelId, ModelChannelFollowerStats channelFollowerStats) {
-        this.channelFollowerStatsState.put(Long.valueOf(channelId), new StoreChannelFollowerStats$ChannelFollowerStatData(StoreChannelFollowerStats$FetchState.SUCCEEDED, channelFollowerStats));
+        this.channelFollowerStatsState.put(Long.valueOf(channelId), new ChannelFollowerStatData(FetchState.SUCCEEDED, channelFollowerStats));
         markChanged();
     }
 
     @StoreThread
     private final boolean isExisting(long channelId) {
-        StoreChannelFollowerStats$ChannelFollowerStatData storeChannelFollowerStats$ChannelFollowerStatData = this.channelFollowerStatsState.get(Long.valueOf(channelId));
-        return (storeChannelFollowerStats$ChannelFollowerStatData == null || storeChannelFollowerStats$ChannelFollowerStatData.getFetchState() == StoreChannelFollowerStats$FetchState.FAILED) ? false : true;
+        ChannelFollowerStatData channelFollowerStatData = this.channelFollowerStatsState.get(Long.valueOf(channelId));
+        return (channelFollowerStatData == null || channelFollowerStatData.getFetchState() == FetchState.FAILED) ? false : true;
     }
 
     @StoreThread
     private final boolean isStale(long channelId) {
         ModelChannelFollowerStats data;
-        StoreChannelFollowerStats$ChannelFollowerStatData storeChannelFollowerStats$ChannelFollowerStatData = this.channelFollowerStatsState.get(Long.valueOf(channelId));
-        return ((storeChannelFollowerStats$ChannelFollowerStatData == null || (data = storeChannelFollowerStats$ChannelFollowerStatData.getData()) == null) ? 0L : data.getLastFetched() + ((long) 3600000)) <= ClockFactory.get().currentTimeMillis();
+        ChannelFollowerStatData channelFollowerStatData = this.channelFollowerStatsState.get(Long.valueOf(channelId));
+        return ((channelFollowerStatData == null || (data = channelFollowerStatData.getData()) == null) ? 0L : data.getLastFetched() + ((long) 3600000)) <= ClockFactory.get().currentTimeMillis();
     }
 
     public final Observable<ModelChannelFollowerStats> observeChannelFollowerStats(long channelId) {
-        Observable<ModelChannelFollowerStats> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreChannelFollowerStats$observeChannelFollowerStats$1(this, channelId), 14, null).r();
+        Observable<ModelChannelFollowerStats> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(channelId), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck\n        …  .distinctUntilChanged()");
         return observableR;
     }

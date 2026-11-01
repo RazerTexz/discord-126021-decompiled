@@ -1,10 +1,8 @@
 package androidx.core.graphics;
 
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$Config;
 import android.graphics.Canvas;
 import android.graphics.ColorSpace;
-import android.graphics.ColorSpace$Named;
 import android.graphics.Point;
 import android.graphics.PointF;
 import androidx.annotation.ColorInt;
@@ -32,19 +30,19 @@ public final class BitmapKt {
         return i2 >= 0 && i2 < bitmap.getWidth() && (i = point.y) >= 0 && i < bitmap.getHeight();
     }
 
-    public static /* synthetic */ Bitmap createBitmap$default(int i, int i2, Bitmap$Config bitmap$Config, int i3, Object obj) {
+    public static /* synthetic */ Bitmap createBitmap$default(int i, int i2, Bitmap.Config config, int i3, Object obj) {
         if ((i3 & 4) != 0) {
-            bitmap$Config = Bitmap$Config.ARGB_8888;
+            config = Bitmap.Config.ARGB_8888;
         }
-        m.checkNotNullParameter(bitmap$Config, "config");
-        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i, i2, bitmap$Config);
+        m.checkNotNullParameter(config, "config");
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i, i2, config);
         m.checkNotNullExpressionValue(bitmapCreateBitmap, "createBitmap(width, height, config)");
         return bitmapCreateBitmap;
     }
 
-    public static final Bitmap createBitmap(int i, int i2, Bitmap$Config bitmap$Config) {
-        m.checkNotNullParameter(bitmap$Config, "config");
-        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i, i2, bitmap$Config);
+    public static final Bitmap createBitmap(int i, int i2, Bitmap.Config config) {
+        m.checkNotNullParameter(config, "config");
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i, i2, config);
         m.checkNotNullExpressionValue(bitmapCreateBitmap, "createBitmap(width, height, config)");
         return bitmapCreateBitmap;
     }
@@ -90,28 +88,28 @@ public final class BitmapKt {
     }
 
     @RequiresApi(26)
-    public static final Bitmap createBitmap(int i, int i2, Bitmap$Config bitmap$Config, boolean z2, ColorSpace colorSpace) {
-        m.checkNotNullParameter(bitmap$Config, "config");
+    public static final Bitmap createBitmap(int i, int i2, Bitmap.Config config, boolean z2, ColorSpace colorSpace) {
+        m.checkNotNullParameter(config, "config");
         m.checkNotNullParameter(colorSpace, "colorSpace");
-        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i, i2, bitmap$Config, z2, colorSpace);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i, i2, config, z2, colorSpace);
         m.checkNotNullExpressionValue(bitmapCreateBitmap, "createBitmap(width, height, config, hasAlpha, colorSpace)");
         return bitmapCreateBitmap;
     }
 
-    public static /* synthetic */ Bitmap createBitmap$default(int i, int i2, Bitmap$Config bitmap$Config, boolean z2, ColorSpace colorSpace, int i3, Object obj) {
+    public static /* synthetic */ Bitmap createBitmap$default(int i, int i2, Bitmap.Config config, boolean z2, ColorSpace colorSpace, int i3, Object obj) {
         if ((i3 & 4) != 0) {
-            bitmap$Config = Bitmap$Config.ARGB_8888;
+            config = Bitmap.Config.ARGB_8888;
         }
         if ((i3 & 8) != 0) {
             z2 = true;
         }
         if ((i3 & 16) != 0) {
-            colorSpace = ColorSpace.get(ColorSpace$Named.SRGB);
+            colorSpace = ColorSpace.get(ColorSpace.Named.SRGB);
             m.checkNotNullExpressionValue(colorSpace, "get(ColorSpace.Named.SRGB)");
         }
-        m.checkNotNullParameter(bitmap$Config, "config");
+        m.checkNotNullParameter(config, "config");
         m.checkNotNullParameter(colorSpace, "colorSpace");
-        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i, i2, bitmap$Config, z2, colorSpace);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i, i2, config, z2, colorSpace);
         m.checkNotNullExpressionValue(bitmapCreateBitmap, "createBitmap(width, height, config, hasAlpha, colorSpace)");
         return bitmapCreateBitmap;
     }

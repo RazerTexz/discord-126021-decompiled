@@ -3,6 +3,7 @@ package b.a.y;
 import android.animation.Animator;
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 import androidx.core.view.ViewCompat;
 import com.discord.app.AppComponent;
 import com.discord.overlay.views.OverlayDialog;
@@ -20,6 +21,51 @@ public abstract class l extends OverlayDialog implements AppComponent {
 
     /* JADX INFO: renamed from: y, reason: collision with root package name */
     public Function1<? super OverlayDialog, Unit> f314y;
+
+    /* JADX INFO: compiled from: Animator.kt */
+    public final class a implements Animator.AnimatorListener {
+        public a() {
+        }
+
+        @Override // android.animation.Animator.AnimatorListener
+        public void onAnimationCancel(Animator animator) {
+            d0.z.d.m.checkNotNullParameter(animator, "animator");
+        }
+
+        @Override // android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            d0.z.d.m.checkNotNullParameter(animator, "animator");
+            l.this.getOnDialogClosed().invoke(l.this);
+        }
+
+        @Override // android.animation.Animator.AnimatorListener
+        public void onAnimationRepeat(Animator animator) {
+            d0.z.d.m.checkNotNullParameter(animator, "animator");
+        }
+
+        @Override // android.animation.Animator.AnimatorListener
+        public void onAnimationStart(Animator animator) {
+            d0.z.d.m.checkNotNullParameter(animator, "animator");
+        }
+    }
+
+    /* JADX INFO: compiled from: OverlayAppDialog.kt */
+    public final class b implements View.OnAttachStateChangeListener {
+        public final /* synthetic */ Animator j;
+
+        public b(Animator animator) {
+            this.j = animator;
+        }
+
+        @Override // android.view.View.OnAttachStateChangeListener
+        public void onViewAttachedToWindow(View view) {
+        }
+
+        @Override // android.view.View.OnAttachStateChangeListener
+        public void onViewDetachedFromWindow(View view) {
+            this.j.end();
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public l(Context context) {
@@ -40,9 +86,9 @@ public abstract class l extends OverlayDialog implements AppComponent {
             return;
         }
         Animator closingAnimator = getClosingAnimator();
-        closingAnimator.addListener(new l$a(this));
+        closingAnimator.addListener(new a());
         closingAnimator.start();
-        addOnAttachStateChangeListener(new l$b(closingAnimator));
+        addOnAttachStateChangeListener(new b(closingAnimator));
     }
 
     public abstract Animator getClosingAnimator();

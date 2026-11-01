@@ -7,12 +7,10 @@ import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Drawable$Callback;
-import android.graphics.drawable.Drawable$ConstantState;
 
 /* JADX INFO: compiled from: ForwardingDrawable.java */
 /* JADX INFO: loaded from: classes.dex */
-public class g extends Drawable implements Drawable$Callback, e0, d0, d {
+public class g extends Drawable implements Drawable.Callback, e0, d0, d {
     public Drawable k;
     public e0 m;
     public static final Matrix j = new Matrix();
@@ -47,7 +45,7 @@ public class g extends Drawable implements Drawable$Callback, e0, d0, d {
     }
 
     @Override // android.graphics.drawable.Drawable
-    public Drawable$ConstantState getConstantState() {
+    public Drawable.ConstantState getConstantState() {
         Drawable drawable = this.k;
         return drawable == null ? super.getConstantState() : drawable.getConstantState();
     }
@@ -94,7 +92,7 @@ public class g extends Drawable implements Drawable$Callback, e0, d0, d {
         }
     }
 
-    @Override // android.graphics.drawable.Drawable$Callback
+    @Override // android.graphics.drawable.Drawable.Callback
     public void invalidateDrawable(Drawable drawable) {
         invalidateSelf();
     }
@@ -163,7 +161,7 @@ public class g extends Drawable implements Drawable$Callback, e0, d0, d {
         return drawable == null ? super.onStateChange(iArr) : drawable.setState(iArr);
     }
 
-    @Override // android.graphics.drawable.Drawable$Callback
+    @Override // android.graphics.drawable.Drawable.Callback
     public void scheduleDrawable(Drawable drawable, Runnable runnable, long j2) {
         scheduleSelf(runnable, j2);
     }
@@ -222,7 +220,7 @@ public class g extends Drawable implements Drawable$Callback, e0, d0, d {
         return drawable == null ? visible : drawable.setVisible(z2, z3);
     }
 
-    @Override // android.graphics.drawable.Drawable$Callback
+    @Override // android.graphics.drawable.Drawable.Callback
     public void unscheduleDrawable(Drawable drawable, Runnable runnable) {
         unscheduleSelf(runnable);
     }

@@ -9,12 +9,9 @@ import androidx.annotation.StyleRes;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import b.a.k.b;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.databinding.PaymentSourceViewBinding;
 import com.discord.models.domain.ModelPaymentSource;
-import com.discord.models.domain.ModelPaymentSource$ModelPaymentSourceCard;
-import com.discord.models.domain.ModelPaymentSource$ModelPaymentSourcePaypal;
 import com.discord.utilities.billing.PremiumUtilsKt;
 import com.discord.utilities.time.TimeUtils;
 import d0.z.d.m;
@@ -46,17 +43,17 @@ public final class PaymentSourceView extends ConstraintLayout {
         ImageView imageView = this.binding.d;
         m.checkNotNullExpressionValue(imageView, "binding.paymentSourceViewPremium");
         imageView.setVisibility(isPremium ? 0 : 8);
-        if (paymentSource instanceof ModelPaymentSource$ModelPaymentSourcePaypal) {
-            bindPaypal((ModelPaymentSource$ModelPaymentSourcePaypal) paymentSource);
-        } else if (paymentSource instanceof ModelPaymentSource$ModelPaymentSourceCard) {
-            bindCard((ModelPaymentSource$ModelPaymentSourceCard) paymentSource);
+        if (paymentSource instanceof ModelPaymentSource.ModelPaymentSourcePaypal) {
+            bindPaypal((ModelPaymentSource.ModelPaymentSourcePaypal) paymentSource);
+        } else if (paymentSource instanceof ModelPaymentSource.ModelPaymentSourceCard) {
+            bindCard((ModelPaymentSource.ModelPaymentSourceCard) paymentSource);
         }
     }
 
-    private final void bindCard(ModelPaymentSource$ModelPaymentSourceCard paymentSource) {
+    private final void bindCard(ModelPaymentSource.ModelPaymentSourceCard paymentSource) {
         TextView textView = this.binding.f;
         m.checkNotNullExpressionValue(textView, "binding.paymentSourceViewTitle");
-        b.n(textView, 2131893700, new Object[]{paymentSource.getBrand(), paymentSource.getLast4()}, null, 4);
+        b.n(textView, R.string.payment_source_card_ending, new Object[]{paymentSource.getBrand(), paymentSource.getLast4()}, null, 4);
         TimeUtils timeUtils = TimeUtils.INSTANCE;
         int expiresMonth = paymentSource.getExpiresMonth();
         TextView textView2 = this.binding.e;
@@ -66,11 +63,11 @@ public final class PaymentSourceView extends ConstraintLayout {
         String localizedMonthName = timeUtils.getLocalizedMonthName(expiresMonth, context);
         TextView textView3 = this.binding.e;
         m.checkNotNullExpressionValue(textView3, "binding.paymentSourceViewSubtext");
-        b.n(textView3, 2131893702, new Object[]{localizedMonthName, Integer.valueOf(paymentSource.getExpiresYear())}, null, 4);
+        b.n(textView3, R.string.payment_source_card_expires, new Object[]{localizedMonthName, Integer.valueOf(paymentSource.getExpiresYear())}, null, 4);
     }
 
-    private final void bindPaypal(ModelPaymentSource$ModelPaymentSourcePaypal paymentSource) {
-        this.binding.f.setText(2131893730);
+    private final void bindPaypal(ModelPaymentSource.ModelPaymentSourcePaypal paymentSource) {
+        this.binding.f.setText(R.string.payment_source_paypal);
         TextView textView = this.binding.e;
         m.checkNotNullExpressionValue(textView, "binding.paymentSourceViewSubtext");
         textView.setText(paymentSource.getEmail());
@@ -80,24 +77,24 @@ public final class PaymentSourceView extends ConstraintLayout {
     public PaymentSourceView(Context context, AttributeSet attributeSet, @StyleRes int i) {
         super(context, attributeSet, i);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(R$layout.payment_source_view, this);
-        int i2 = R$id.payment_source_view_icon;
-        ImageView imageView = (ImageView) findViewById(R$id.payment_source_view_icon);
+        LayoutInflater.from(context).inflate(R.layout.payment_source_view, this);
+        int i2 = R.id.payment_source_view_icon;
+        ImageView imageView = (ImageView) findViewById(R.id.payment_source_view_icon);
         if (imageView != null) {
-            i2 = R$id.payment_source_view_icon_wrapper;
-            CardView cardView = (CardView) findViewById(R$id.payment_source_view_icon_wrapper);
+            i2 = R.id.payment_source_view_icon_wrapper;
+            CardView cardView = (CardView) findViewById(R.id.payment_source_view_icon_wrapper);
             if (cardView != null) {
-                i2 = R$id.payment_source_view_invalid;
-                TextView textView = (TextView) findViewById(R$id.payment_source_view_invalid);
+                i2 = R.id.payment_source_view_invalid;
+                TextView textView = (TextView) findViewById(R.id.payment_source_view_invalid);
                 if (textView != null) {
-                    i2 = R$id.payment_source_view_premium;
-                    ImageView imageView2 = (ImageView) findViewById(R$id.payment_source_view_premium);
+                    i2 = R.id.payment_source_view_premium;
+                    ImageView imageView2 = (ImageView) findViewById(R.id.payment_source_view_premium);
                     if (imageView2 != null) {
-                        i2 = R$id.payment_source_view_subtext;
-                        TextView textView2 = (TextView) findViewById(R$id.payment_source_view_subtext);
+                        i2 = R.id.payment_source_view_subtext;
+                        TextView textView2 = (TextView) findViewById(R.id.payment_source_view_subtext);
                         if (textView2 != null) {
-                            i2 = R$id.payment_source_view_title;
-                            TextView textView3 = (TextView) findViewById(R$id.payment_source_view_title);
+                            i2 = R.id.payment_source_view_title;
+                            TextView textView3 = (TextView) findViewById(R.id.payment_source_view_title);
                             if (textView3 != null) {
                                 PaymentSourceViewBinding paymentSourceViewBinding = new PaymentSourceViewBinding(this, imageView, cardView, textView, imageView2, textView2, textView3);
                                 m.checkNotNullExpressionValue(paymentSourceViewBinding, "PaymentSourceViewBinding…ater.from(context), this)");

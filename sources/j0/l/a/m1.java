@@ -5,10 +5,10 @@ import rx.functions.Action0;
 /* JADX INFO: compiled from: OperatorReplay.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class m1 implements Action0 {
-    public final /* synthetic */ j1$f j;
+    public final /* synthetic */ j1.f j;
 
-    public m1(j1$f j1_f) {
-        this.j = j1_f;
+    public m1(j1.f fVar) {
+        this.j = fVar;
     }
 
     /* JADX WARN: Type inference failed for: r3v1, types: [T[], java.lang.Object[]] */
@@ -19,11 +19,11 @@ public class m1 implements Action0 {
         }
         synchronized (this.j.n) {
             if (!this.j.m) {
-                j1$f j1_f = this.j;
-                j0.l.e.g<j1$c<T>> gVar = j1_f.n;
+                j1.f fVar = this.j;
+                j0.l.e.g<j1.c<T>> gVar = fVar.n;
                 gVar.f3794b = 0;
                 gVar.d = new Object[0];
-                j1_f.p++;
+                fVar.p++;
                 this.j.m = true;
             }
         }

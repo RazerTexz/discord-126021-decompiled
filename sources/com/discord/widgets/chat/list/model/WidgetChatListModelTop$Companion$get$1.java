@@ -2,35 +2,54 @@ package com.discord.widgets.chat.list.model;
 
 import androidx.core.app.NotificationCompat;
 import com.discord.api.channel.Channel;
-import com.discord.stores.StoreMessagesLoader$ChannelLoadedState;
+import com.discord.stores.StoreMessagesLoader;
+import com.discord.widgets.chat.list.entries.ChatListEntry;
 import com.discord.widgets.chat.list.entries.LoadingEntry;
 import com.discord.widgets.chat.list.entries.SpacerEntry;
+import d0.z.d.m;
 import j0.k.b;
 import j0.l.e.k;
 import rx.Observable;
 
 /* JADX INFO: compiled from: WidgetChatListModelTop.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetChatListModelTop$Companion$get$1<T, R> implements b<StoreMessagesLoader$ChannelLoadedState, Observable<? extends WidgetChatListModelTop>> {
+public final class WidgetChatListModelTop$Companion$get$1<T, R> implements b<StoreMessagesLoader.ChannelLoadedState, Observable<? extends WidgetChatListModelTop>> {
     public final /* synthetic */ Channel $channel;
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.model.WidgetChatListModelTop$Companion$get$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListModelTop.kt */
+    public final class AnonymousClass1<T, R> implements b<ChatListEntry, WidgetChatListModelTop> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ WidgetChatListModelTop call(ChatListEntry chatListEntry) {
+            return call2(chatListEntry);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final WidgetChatListModelTop call2(ChatListEntry chatListEntry) {
+            m.checkNotNullExpressionValue(chatListEntry, "it");
+            return new WidgetChatListModelTop(chatListEntry);
+        }
+    }
 
     public WidgetChatListModelTop$Companion$get$1(Channel channel) {
         this.$channel = channel;
     }
 
     @Override // j0.k.b
-    public /* bridge */ /* synthetic */ Observable<? extends WidgetChatListModelTop> call(StoreMessagesLoader$ChannelLoadedState storeMessagesLoader$ChannelLoadedState) {
-        return call2(storeMessagesLoader$ChannelLoadedState);
+    public /* bridge */ /* synthetic */ Observable<? extends WidgetChatListModelTop> call(StoreMessagesLoader.ChannelLoadedState channelLoadedState) {
+        return call2(channelLoadedState);
     }
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-    public final Observable<? extends WidgetChatListModelTop> call2(StoreMessagesLoader$ChannelLoadedState storeMessagesLoader$ChannelLoadedState) {
+    public final Observable<? extends WidgetChatListModelTop> call2(StoreMessagesLoader.ChannelLoadedState channelLoadedState) {
         Observable kVar;
-        if (storeMessagesLoader$ChannelLoadedState.isOldestMessagesLoaded()) {
-            kVar = WidgetChatListModelTop$Companion.access$getWelcomeEntry(WidgetChatListModelTop.Companion, this.$channel);
+        if (channelLoadedState.isOldestMessagesLoaded()) {
+            kVar = WidgetChatListModelTop.Companion.access$getWelcomeEntry(WidgetChatListModelTop.INSTANCE, this.$channel);
         } else {
-            kVar = (storeMessagesLoader$ChannelLoadedState.isTouchedSinceLastJump() || !storeMessagesLoader$ChannelLoadedState.isInitialMessagesLoaded()) ? new k(new LoadingEntry()) : new k(new SpacerEntry(this.$channel.getId()));
+            kVar = (channelLoadedState.isTouchedSinceLastJump() || !channelLoadedState.isInitialMessagesLoaded()) ? new k(new LoadingEntry()) : new k(new SpacerEntry(this.$channel.getId()));
         }
-        return kVar.G(WidgetChatListModelTop$Companion$get$1$1.INSTANCE);
+        return kVar.G(AnonymousClass1.INSTANCE);
     }
 }

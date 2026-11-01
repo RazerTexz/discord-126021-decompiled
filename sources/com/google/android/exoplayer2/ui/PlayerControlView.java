@@ -11,33 +11,43 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View$OnClickListener;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.annotation.DoNotInline;
 import androidx.annotation.Nullable;
-import b.c.a.a0.d;
-import b.i.a.c.a3.p0.c;
-import b.i.a.c.d3.a;
+import androidx.annotation.RequiresApi;
+import b.i.a.c.a2;
+import b.i.a.c.a3.o0;
+import b.i.a.c.c1;
+import b.i.a.c.c3.n;
 import b.i.a.c.d3.o;
 import b.i.a.c.f3.e0;
+import b.i.a.c.g3.y;
 import b.i.a.c.i1;
+import b.i.a.c.o1;
 import b.i.a.c.o2;
-import b.i.a.c.o2$b;
-import b.i.a.c.o2$c;
+import b.i.a.c.p1;
+import b.i.a.c.p2;
+import b.i.a.c.x1;
 import b.i.a.c.y1;
+import b.i.a.c.z1;
+import com.google.android.exoplayer2.PlaybackException;
+import com.google.android.exoplayer2.metadata.Metadata;
 import java.util.Arrays;
 import java.util.Formatter;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class PlayerControlView extends FrameLayout {
     public static final /* synthetic */ int j = 0;
-    public final o2$b A;
-    public final o2$c B;
+    public final o2.b A;
+    public final o2.c B;
     public final Runnable C;
     public final Runnable D;
     public final Drawable E;
@@ -57,7 +67,7 @@ public class PlayerControlView extends FrameLayout {
     public y1 Q;
 
     @Nullable
-    public PlayerControlView$d R;
+    public d R;
     public boolean S;
     public boolean T;
     public boolean U;
@@ -93,9 +103,9 @@ public class PlayerControlView extends FrameLayout {
 
     /* JADX INFO: renamed from: j0, reason: collision with root package name */
     public boolean[] f2967j0;
-    public final PlayerControlView$c k;
+    public final c k;
     public long[] k0;
-    public final CopyOnWriteArrayList<PlayerControlView$e> l;
+    public final CopyOnWriteArrayList<e> l;
     public boolean[] l0;
 
     @Nullable
@@ -144,6 +154,320 @@ public class PlayerControlView extends FrameLayout {
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
     public final Formatter f2971z;
+
+    @RequiresApi(21)
+    public final class b {
+        @DoNotInline
+        public static boolean a(View view) {
+            return view.isAccessibilityFocused();
+        }
+    }
+
+    public final class c implements y1.e, o.a, View.OnClickListener {
+        public c(a aVar) {
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void A(p1 p1Var) {
+            a2.i(this, p1Var);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void D(boolean z2) {
+            a2.t(this, z2);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public void E(y1 y1Var, y1.d dVar) {
+            if (dVar.a(4, 5)) {
+                PlayerControlView playerControlView = PlayerControlView.this;
+                int i = PlayerControlView.j;
+                playerControlView.m();
+            }
+            if (dVar.a(4, 5, 7)) {
+                PlayerControlView playerControlView2 = PlayerControlView.this;
+                int i2 = PlayerControlView.j;
+                playerControlView2.n();
+            }
+            if (dVar.a.a.get(8)) {
+                PlayerControlView playerControlView3 = PlayerControlView.this;
+                int i3 = PlayerControlView.j;
+                playerControlView3.o();
+            }
+            if (dVar.a.a.get(9)) {
+                PlayerControlView playerControlView4 = PlayerControlView.this;
+                int i4 = PlayerControlView.j;
+                playerControlView4.p();
+            }
+            if (dVar.a(8, 9, 11, 0, 13)) {
+                PlayerControlView playerControlView5 = PlayerControlView.this;
+                int i5 = PlayerControlView.j;
+                playerControlView5.l();
+            }
+            if (dVar.a(11, 0)) {
+                PlayerControlView playerControlView6 = PlayerControlView.this;
+                int i6 = PlayerControlView.j;
+                playerControlView6.q();
+            }
+        }
+
+        @Override // b.i.a.c.y1.e
+        public /* synthetic */ void G(int i, boolean z2) {
+            a2.d(this, i, z2);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void H(boolean z2, int i) {
+            z1.k(this, z2, i);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void L(int i) {
+            a2.s(this, i);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void M(o1 o1Var, int i) {
+            a2.h(this, o1Var, i);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void W(boolean z2, int i) {
+            a2.k(this, z2, i);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void Y(o0 o0Var, n nVar) {
+            z1.r(this, o0Var, nVar);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void a() {
+            z1.o(this);
+        }
+
+        @Override // b.i.a.c.y1.e
+        public /* synthetic */ void a0(int i, int i2) {
+            a2.v(this, i, i2);
+        }
+
+        @Override // b.i.a.c.y1.e
+        public /* synthetic */ void b(Metadata metadata) {
+            a2.j(this, metadata);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void b0(x1 x1Var) {
+            a2.l(this, x1Var);
+        }
+
+        @Override // b.i.a.c.y1.e
+        public /* synthetic */ void c() {
+            a2.r(this);
+        }
+
+        @Override // b.i.a.c.y1.e
+        public /* synthetic */ void d(boolean z2) {
+            a2.u(this, z2);
+        }
+
+        @Override // b.i.a.c.y1.e
+        public /* synthetic */ void e(List list) {
+            a2.b(this, list);
+        }
+
+        @Override // b.i.a.c.y1.e
+        public /* synthetic */ void f(y yVar) {
+            a2.y(this, yVar);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void f0(PlaybackException playbackException) {
+            a2.p(this, playbackException);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void g(y1.f fVar, y1.f fVar2, int i) {
+            a2.q(this, fVar, fVar2, i);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void h(int i) {
+            a2.n(this, i);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void i(boolean z2) {
+            z1.d(this, z2);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void j(int i) {
+            z1.l(this, i);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void j0(boolean z2) {
+            a2.g(this, z2);
+        }
+
+        @Override // b.i.a.c.d3.o.a
+        public void k(o oVar, long j) {
+            PlayerControlView playerControlView = PlayerControlView.this;
+            TextView textView = playerControlView.w;
+            if (textView != null) {
+                textView.setText(e0.u(playerControlView.f2970y, playerControlView.f2971z, j));
+            }
+        }
+
+        @Override // b.i.a.c.d3.o.a
+        public void l(o oVar, long j, boolean z2) {
+            y1 y1Var;
+            PlayerControlView playerControlView = PlayerControlView.this;
+            int iC = 0;
+            playerControlView.V = false;
+            if (z2 || (y1Var = playerControlView.Q) == null) {
+                return;
+            }
+            o2 o2VarK = y1Var.K();
+            if (playerControlView.U && !o2VarK.q()) {
+                int iP = o2VarK.p();
+                while (true) {
+                    long jB = o2VarK.n(iC, playerControlView.B).b();
+                    if (j < jB) {
+                        break;
+                    }
+                    if (iC == iP - 1) {
+                        j = jB;
+                        break;
+                    } else {
+                        j -= jB;
+                        iC++;
+                    }
+                }
+            } else {
+                iC = y1Var.C();
+            }
+            y1Var.h(iC, j);
+            playerControlView.n();
+        }
+
+        @Override // b.i.a.c.d3.o.a
+        public void m(o oVar, long j) {
+            PlayerControlView playerControlView = PlayerControlView.this;
+            playerControlView.V = true;
+            TextView textView = playerControlView.w;
+            if (textView != null) {
+                textView.setText(e0.u(playerControlView.f2970y, playerControlView.f2971z, j));
+            }
+        }
+
+        @Override // android.view.View.OnClickListener
+        public void onClick(View view) {
+            PlayerControlView playerControlView = PlayerControlView.this;
+            y1 y1Var = playerControlView.Q;
+            if (y1Var == null) {
+                return;
+            }
+            if (playerControlView.n == view) {
+                y1Var.O();
+                return;
+            }
+            if (playerControlView.m == view) {
+                y1Var.s();
+                return;
+            }
+            if (playerControlView.q == view) {
+                if (y1Var.y() != 4) {
+                    y1Var.P();
+                    return;
+                }
+                return;
+            }
+            if (playerControlView.r == view) {
+                y1Var.R();
+                return;
+            }
+            if (playerControlView.o == view) {
+                playerControlView.b(y1Var);
+                return;
+            }
+            if (playerControlView.p == view) {
+                Objects.requireNonNull(playerControlView);
+                y1Var.d();
+                return;
+            }
+            if (playerControlView.f2968s != view) {
+                if (playerControlView.t == view) {
+                    y1Var.k(!y1Var.M());
+                    return;
+                }
+                return;
+            }
+            int I = y1Var.I();
+            int i = PlayerControlView.this.f2959b0;
+            for (int i2 = 1; i2 <= 2; i2++) {
+                int i3 = (I + i2) % 3;
+                boolean z2 = false;
+                if (i3 == 0 || (i3 == 1 ? (i & 1) != 0 : !(i3 != 2 || (i & 2) == 0))) {
+                    z2 = true;
+                }
+                if (z2) {
+                    I = i3;
+                    break;
+                }
+            }
+            y1Var.E(I);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void p(p2 p2Var) {
+            a2.x(this, p2Var);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void r(boolean z2) {
+            a2.f(this, z2);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void s(PlaybackException playbackException) {
+            a2.o(this, playbackException);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void t(y1.b bVar) {
+            a2.a(this, bVar);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void v(o2 o2Var, int i) {
+            a2.w(this, o2Var, i);
+        }
+
+        @Override // b.i.a.c.y1.e
+        public /* synthetic */ void w(float f) {
+            a2.z(this, f);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void y(int i) {
+            a2.m(this, i);
+        }
+
+        @Override // b.i.a.c.y1.e
+        public /* synthetic */ void z(c1 c1Var) {
+            a2.c(this, c1Var);
+        }
+    }
+
+    public interface d {
+        void a(long j, long j2);
+    }
+
+    public interface e {
+        void k(int i);
+    }
 
     static {
         i1.a("goog.exo.ui");
@@ -203,7 +527,7 @@ public class PlayerControlView extends FrameLayout {
     public void c() {
         if (e()) {
             setVisibility(8);
-            Iterator<PlayerControlView$e> it = this.l.iterator();
+            Iterator<e> it = this.l.iterator();
             while (it.hasNext()) {
                 it.next().k(getVisibility());
             }
@@ -304,7 +628,7 @@ public class PlayerControlView extends FrameLayout {
     public void i() {
         if (!e()) {
             setVisibility(0);
-            Iterator<PlayerControlView$e> it = this.l.iterator();
+            Iterator<e> it = this.l.iterator();
             while (it.hasNext()) {
                 it.next().k(getVisibility());
             }
@@ -378,7 +702,7 @@ public class PlayerControlView extends FrameLayout {
                 if (e0.a < 21) {
                     z4 = z2;
                 } else {
-                    z4 = zH && PlayerControlView$b.a(this.o);
+                    z4 = zH && b.a(this.o);
                 }
                 z3 = z4 | false;
                 this.o.setVisibility(zH ? 8 : 0);
@@ -391,7 +715,7 @@ public class PlayerControlView extends FrameLayout {
                 z2 |= !zH && view2.isFocused();
                 if (e0.a < 21) {
                     z5 = z2;
-                } else if (zH || !PlayerControlView$b.a(this.p)) {
+                } else if (zH || !b.a(this.p)) {
                     z5 = false;
                 }
                 z3 |= z5;
@@ -430,9 +754,9 @@ public class PlayerControlView extends FrameLayout {
                 oVar.setPosition(jW);
                 this.f2969x.setBufferedPosition(jN);
             }
-            PlayerControlView$d playerControlView$d = this.R;
-            if (playerControlView$d != null && (z2 || z3)) {
-                playerControlView$d.a(jW, jN);
+            d dVar = this.R;
+            if (dVar != null && (z2 || z3)) {
+                dVar.a(jW, jN);
             }
             removeCallbacks(this.C);
             int iY = y1Var == null ? 1 : y1Var.y();
@@ -534,7 +858,7 @@ public class PlayerControlView extends FrameLayout {
     public final void q() {
         boolean z2;
         int i;
-        o2$c o2_c;
+        o2.c cVar;
         long j2;
         long[] jArr;
         int length;
@@ -547,7 +871,7 @@ public class PlayerControlView extends FrameLayout {
         boolean z4 = true;
         if (this.T) {
             o2 o2VarK = y1Var.K();
-            o2$c o2_c2 = this.B;
+            o2.c cVar2 = this.B;
             if (o2VarK.p() <= 100) {
                 int iP = o2VarK.p();
                 int i2 = 0;
@@ -556,7 +880,7 @@ public class PlayerControlView extends FrameLayout {
                         z3 = true;
                         break;
                     } else {
-                        if (o2VarK.n(i2, o2_c2).A == -9223372036854775807L) {
+                        if (o2VarK.n(i2, cVar2).A == -9223372036854775807L) {
                             z3 = false;
                             break;
                         }
@@ -593,19 +917,19 @@ public class PlayerControlView extends FrameLayout {
                     this.m0 = e0.M(j5);
                 }
                 o2VarK2.n(i3, this.B);
-                o2$c o2_c3 = this.B;
-                if (o2_c3.A == j3) {
-                    d.D(this.U ^ z4);
+                o2.c cVar3 = this.B;
+                if (cVar3.A == j3) {
+                    b.c.a.a0.d.D(this.U ^ z4);
                     break;
                 }
-                int i4 = o2_c3.B;
+                int i4 = cVar3.B;
                 while (true) {
-                    o2_c = this.B;
-                    if (i4 <= o2_c.C) {
+                    cVar = this.B;
+                    if (i4 <= cVar.C) {
                         o2VarK2.f(i4, this.A);
-                        c cVar = this.A.p;
-                        int i5 = cVar.q;
-                        int i6 = cVar.n;
+                        b.i.a.c.a3.p0.c cVar4 = this.A.p;
+                        int i5 = cVar4.q;
+                        int i6 = cVar4.n;
                         while (i5 < i6) {
                             long jC = this.A.c(i5);
                             if (jC == Long.MIN_VALUE) {
@@ -654,7 +978,7 @@ public class PlayerControlView extends FrameLayout {
                         j3 = -9223372036854775807L;
                     }
                 }
-                j5 += o2_c.A;
+                j5 += cVar.A;
                 i3++;
                 j3 = -9223372036854775807L;
                 z4 = true;
@@ -685,11 +1009,11 @@ public class PlayerControlView extends FrameLayout {
 
     public void setPlayer(@Nullable y1 y1Var) {
         boolean z2 = true;
-        d.D(Looper.myLooper() == Looper.getMainLooper());
+        b.c.a.a0.d.D(Looper.myLooper() == Looper.getMainLooper());
         if (y1Var != null && y1Var.L() != Looper.getMainLooper()) {
             z2 = false;
         }
-        d.j(z2);
+        b.c.a.a0.d.j(z2);
         y1 y1Var2 = this.Q;
         if (y1Var2 == y1Var) {
             return;
@@ -704,8 +1028,8 @@ public class PlayerControlView extends FrameLayout {
         j();
     }
 
-    public void setProgressUpdateListener(@Nullable PlayerControlView$d playerControlView$d) {
-        this.R = playerControlView$d;
+    public void setProgressUpdateListener(@Nullable d dVar) {
+        this.R = dVar;
     }
 
     public void setRepeatToggleModes(int i) {
@@ -772,17 +1096,17 @@ public class PlayerControlView extends FrameLayout {
         this.f2958a0 = e0.h(i, 16, 1000);
     }
 
-    public void setVrButtonListener(@Nullable View$OnClickListener view$OnClickListener) {
+    public void setVrButtonListener(@Nullable View.OnClickListener onClickListener) {
         View view = this.u;
         if (view != null) {
-            view.setOnClickListener(view$OnClickListener);
-            k(getShowVrButton(), view$OnClickListener != null, this.u);
+            view.setOnClickListener(onClickListener);
+            k(getShowVrButton(), onClickListener != null, this.u);
         }
     }
 
     public PlayerControlView(Context context, @Nullable AttributeSet attributeSet, int i, @Nullable AttributeSet attributeSet2) {
         super(context, attributeSet, i);
-        int resourceId = R$e.exo_player_control_view;
+        int resourceId = R.e.exo_player_control_view;
         this.W = 5000;
         this.f2959b0 = 0;
         this.f2958a0 = 200;
@@ -793,17 +1117,17 @@ public class PlayerControlView extends FrameLayout {
         this.f2963f0 = true;
         this.f2964g0 = false;
         if (attributeSet2 != null) {
-            TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet2, R$g.PlayerControlView, i, 0);
+            TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet2, R.g.PlayerControlView, i, 0);
             try {
-                this.W = typedArrayObtainStyledAttributes.getInt(R$g.PlayerControlView_show_timeout, this.W);
-                resourceId = typedArrayObtainStyledAttributes.getResourceId(R$g.PlayerControlView_controller_layout_id, resourceId);
-                this.f2959b0 = typedArrayObtainStyledAttributes.getInt(R$g.PlayerControlView_repeat_toggle_modes, this.f2959b0);
-                this.f2960c0 = typedArrayObtainStyledAttributes.getBoolean(R$g.PlayerControlView_show_rewind_button, this.f2960c0);
-                this.f2961d0 = typedArrayObtainStyledAttributes.getBoolean(R$g.PlayerControlView_show_fastforward_button, this.f2961d0);
-                this.f2962e0 = typedArrayObtainStyledAttributes.getBoolean(R$g.PlayerControlView_show_previous_button, this.f2962e0);
-                this.f2963f0 = typedArrayObtainStyledAttributes.getBoolean(R$g.PlayerControlView_show_next_button, this.f2963f0);
-                this.f2964g0 = typedArrayObtainStyledAttributes.getBoolean(R$g.PlayerControlView_show_shuffle_button, this.f2964g0);
-                setTimeBarMinUpdateInterval(typedArrayObtainStyledAttributes.getInt(R$g.PlayerControlView_time_bar_min_update_interval, this.f2958a0));
+                this.W = typedArrayObtainStyledAttributes.getInt(R.g.PlayerControlView_show_timeout, this.W);
+                resourceId = typedArrayObtainStyledAttributes.getResourceId(R.g.PlayerControlView_controller_layout_id, resourceId);
+                this.f2959b0 = typedArrayObtainStyledAttributes.getInt(R.g.PlayerControlView_repeat_toggle_modes, this.f2959b0);
+                this.f2960c0 = typedArrayObtainStyledAttributes.getBoolean(R.g.PlayerControlView_show_rewind_button, this.f2960c0);
+                this.f2961d0 = typedArrayObtainStyledAttributes.getBoolean(R.g.PlayerControlView_show_fastforward_button, this.f2961d0);
+                this.f2962e0 = typedArrayObtainStyledAttributes.getBoolean(R.g.PlayerControlView_show_previous_button, this.f2962e0);
+                this.f2963f0 = typedArrayObtainStyledAttributes.getBoolean(R.g.PlayerControlView_show_next_button, this.f2963f0);
+                this.f2964g0 = typedArrayObtainStyledAttributes.getBoolean(R.g.PlayerControlView_show_shuffle_button, this.f2964g0);
+                setTimeBarMinUpdateInterval(typedArrayObtainStyledAttributes.getInt(R.g.PlayerControlView_time_bar_min_update_interval, this.f2958a0));
                 typedArrayObtainStyledAttributes.recycle();
             } catch (Throwable th) {
                 typedArrayObtainStyledAttributes.recycle();
@@ -811,8 +1135,8 @@ public class PlayerControlView extends FrameLayout {
             }
         }
         this.l = new CopyOnWriteArrayList<>();
-        this.A = new o2$b();
-        this.B = new o2$c();
+        this.A = new o2.b();
+        this.B = new o2.c();
         StringBuilder sb = new StringBuilder();
         this.f2970y = sb;
         this.f2971z = new Formatter(sb, Locale.getDefault());
@@ -820,15 +1144,15 @@ public class PlayerControlView extends FrameLayout {
         this.f2967j0 = new boolean[0];
         this.k0 = new long[0];
         this.l0 = new boolean[0];
-        PlayerControlView$c playerControlView$c = new PlayerControlView$c(this, null);
-        this.k = playerControlView$c;
+        c cVar = new c(null);
+        this.k = cVar;
         this.C = new b.i.a.c.d3.d(this);
-        this.D = new a(this);
+        this.D = new b.i.a.c.d3.a(this);
         LayoutInflater.from(context).inflate(resourceId, this);
         setDescendantFocusability(262144);
-        int i2 = R$c.exo_progress;
+        int i2 = R.c.exo_progress;
         o oVar = (o) findViewById(i2);
-        View viewFindViewById = findViewById(R$c.exo_progress_placeholder);
+        View viewFindViewById = findViewById(R.c.exo_progress_placeholder);
         if (oVar != null) {
             this.f2969x = oVar;
         } else if (viewFindViewById != null) {
@@ -843,69 +1167,69 @@ public class PlayerControlView extends FrameLayout {
         } else {
             this.f2969x = null;
         }
-        this.v = (TextView) findViewById(R$c.exo_duration);
-        this.w = (TextView) findViewById(R$c.exo_position);
+        this.v = (TextView) findViewById(R.c.exo_duration);
+        this.w = (TextView) findViewById(R.c.exo_position);
         o oVar2 = this.f2969x;
         if (oVar2 != null) {
-            oVar2.b(playerControlView$c);
+            oVar2.b(cVar);
         }
-        View viewFindViewById2 = findViewById(R$c.exo_play);
+        View viewFindViewById2 = findViewById(R.c.exo_play);
         this.o = viewFindViewById2;
         if (viewFindViewById2 != null) {
-            viewFindViewById2.setOnClickListener(playerControlView$c);
+            viewFindViewById2.setOnClickListener(cVar);
         }
-        View viewFindViewById3 = findViewById(R$c.exo_pause);
+        View viewFindViewById3 = findViewById(R.c.exo_pause);
         this.p = viewFindViewById3;
         if (viewFindViewById3 != null) {
-            viewFindViewById3.setOnClickListener(playerControlView$c);
+            viewFindViewById3.setOnClickListener(cVar);
         }
-        View viewFindViewById4 = findViewById(R$c.exo_prev);
+        View viewFindViewById4 = findViewById(R.c.exo_prev);
         this.m = viewFindViewById4;
         if (viewFindViewById4 != null) {
-            viewFindViewById4.setOnClickListener(playerControlView$c);
+            viewFindViewById4.setOnClickListener(cVar);
         }
-        View viewFindViewById5 = findViewById(R$c.exo_next);
+        View viewFindViewById5 = findViewById(R.c.exo_next);
         this.n = viewFindViewById5;
         if (viewFindViewById5 != null) {
-            viewFindViewById5.setOnClickListener(playerControlView$c);
+            viewFindViewById5.setOnClickListener(cVar);
         }
-        View viewFindViewById6 = findViewById(R$c.exo_rew);
+        View viewFindViewById6 = findViewById(R.c.exo_rew);
         this.r = viewFindViewById6;
         if (viewFindViewById6 != null) {
-            viewFindViewById6.setOnClickListener(playerControlView$c);
+            viewFindViewById6.setOnClickListener(cVar);
         }
-        View viewFindViewById7 = findViewById(R$c.exo_ffwd);
+        View viewFindViewById7 = findViewById(R.c.exo_ffwd);
         this.q = viewFindViewById7;
         if (viewFindViewById7 != null) {
-            viewFindViewById7.setOnClickListener(playerControlView$c);
+            viewFindViewById7.setOnClickListener(cVar);
         }
-        ImageView imageView = (ImageView) findViewById(R$c.exo_repeat_toggle);
+        ImageView imageView = (ImageView) findViewById(R.c.exo_repeat_toggle);
         this.f2968s = imageView;
         if (imageView != null) {
-            imageView.setOnClickListener(playerControlView$c);
+            imageView.setOnClickListener(cVar);
         }
-        ImageView imageView2 = (ImageView) findViewById(R$c.exo_shuffle);
+        ImageView imageView2 = (ImageView) findViewById(R.c.exo_shuffle);
         this.t = imageView2;
         if (imageView2 != null) {
-            imageView2.setOnClickListener(playerControlView$c);
+            imageView2.setOnClickListener(cVar);
         }
-        View viewFindViewById8 = findViewById(R$c.exo_vr);
+        View viewFindViewById8 = findViewById(R.c.exo_vr);
         this.u = viewFindViewById8;
         setShowVrButton(false);
         k(false, false, viewFindViewById8);
         Resources resources = context.getResources();
-        this.M = resources.getInteger(R$d.exo_media_button_opacity_percentage_enabled) / 100.0f;
-        this.N = resources.getInteger(R$d.exo_media_button_opacity_percentage_disabled) / 100.0f;
-        this.E = resources.getDrawable(R$b.exo_controls_repeat_off);
-        this.F = resources.getDrawable(R$b.exo_controls_repeat_one);
-        this.G = resources.getDrawable(R$b.exo_controls_repeat_all);
-        this.K = resources.getDrawable(R$b.exo_controls_shuffle_on);
-        this.L = resources.getDrawable(R$b.exo_controls_shuffle_off);
-        this.H = resources.getString(R$f.exo_controls_repeat_off_description);
-        this.I = resources.getString(R$f.exo_controls_repeat_one_description);
-        this.J = resources.getString(R$f.exo_controls_repeat_all_description);
-        this.O = resources.getString(R$f.exo_controls_shuffle_on_description);
-        this.P = resources.getString(R$f.exo_controls_shuffle_off_description);
+        this.M = resources.getInteger(R.d.exo_media_button_opacity_percentage_enabled) / 100.0f;
+        this.N = resources.getInteger(R.d.exo_media_button_opacity_percentage_disabled) / 100.0f;
+        this.E = resources.getDrawable(R.b.exo_controls_repeat_off);
+        this.F = resources.getDrawable(R.b.exo_controls_repeat_one);
+        this.G = resources.getDrawable(R.b.exo_controls_repeat_all);
+        this.K = resources.getDrawable(R.b.exo_controls_shuffle_on);
+        this.L = resources.getDrawable(R.b.exo_controls_shuffle_off);
+        this.H = resources.getString(R.f.exo_controls_repeat_off_description);
+        this.I = resources.getString(R.f.exo_controls_repeat_one_description);
+        this.J = resources.getString(R.f.exo_controls_repeat_all_description);
+        this.O = resources.getString(R.f.exo_controls_shuffle_on_description);
+        this.P = resources.getString(R.f.exo_controls_shuffle_off_description);
         this.n0 = -9223372036854775807L;
         this.o0 = -9223372036854775807L;
     }

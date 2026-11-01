@@ -3,7 +3,7 @@ package com.discord.widgets.settings;
 import android.view.View;
 import android.widget.LinearLayout;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetSettingsNotificationsBinding;
 import com.discord.views.CheckedSetting;
 import d0.z.d.k;
@@ -27,23 +27,23 @@ public final /* synthetic */ class WidgetSettingsNotifications$binding$2 extends
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSettingsNotificationsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.settings_inapp_notifs_switch;
-        CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R$id.settings_inapp_notifs_switch);
+        int i = R.id.settings_inapp_notifs_switch;
+        CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R.id.settings_inapp_notifs_switch);
         if (checkedSetting != null) {
-            i = R$id.settings_notifications_blink;
-            CheckedSetting checkedSetting2 = (CheckedSetting) view.findViewById(R$id.settings_notifications_blink);
+            i = R.id.settings_notifications_blink;
+            CheckedSetting checkedSetting2 = (CheckedSetting) view.findViewById(R.id.settings_notifications_blink);
             if (checkedSetting2 != null) {
-                i = R$id.settings_notifications_enabled;
-                CheckedSetting checkedSetting3 = (CheckedSetting) view.findViewById(R$id.settings_notifications_enabled);
+                i = R.id.settings_notifications_enabled;
+                CheckedSetting checkedSetting3 = (CheckedSetting) view.findViewById(R.id.settings_notifications_enabled);
                 if (checkedSetting3 != null) {
-                    i = R$id.settings_notifications_mute_all;
-                    CheckedSetting checkedSetting4 = (CheckedSetting) view.findViewById(R$id.settings_notifications_mute_all);
+                    i = R.id.settings_notifications_mute_all;
+                    CheckedSetting checkedSetting4 = (CheckedSetting) view.findViewById(R.id.settings_notifications_mute_all);
                     if (checkedSetting4 != null) {
-                        i = R$id.settings_notifications_vibrations;
-                        CheckedSetting checkedSetting5 = (CheckedSetting) view.findViewById(R$id.settings_notifications_vibrations);
+                        i = R.id.settings_notifications_vibrations;
+                        CheckedSetting checkedSetting5 = (CheckedSetting) view.findViewById(R.id.settings_notifications_vibrations);
                         if (checkedSetting5 != null) {
-                            i = R$id.settings_notifications_wrap;
-                            LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.settings_notifications_wrap);
+                            i = R.id.settings_notifications_wrap;
+                            LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.settings_notifications_wrap);
                             if (linearLayout != null) {
                                 return new WidgetSettingsNotificationsBinding((CoordinatorLayout) view, checkedSetting, checkedSetting2, checkedSetting3, checkedSetting4, checkedSetting5, linearLayout);
                             }

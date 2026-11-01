@@ -4,7 +4,6 @@ import androidx.core.app.NotificationCompat;
 import com.discord.api.channel.Channel;
 import com.discord.api.permission.Permission;
 import com.discord.api.permission.PermissionOverwrite;
-import com.discord.api.permission.PermissionOverwrite$Type;
 import com.discord.api.role.GuildRole;
 import com.discord.models.guild.Guild;
 import com.discord.models.member.GuildMember;
@@ -13,6 +12,7 @@ import com.discord.utilities.permissions.PermissionUtils;
 import d0.t.n;
 import d0.t.r;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +23,42 @@ import rx.functions.Func7;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChannelSettingsEditPermissionsModel$Companion$getForRole$1<T1, T2, T3, T4, T5, T6, T7, R> implements Func7<Channel, MeUser, Guild, Long, Map<Long, ? extends GuildRole>, Map<Long, ? extends GuildMember>, Boolean, WidgetChannelSettingsEditPermissionsModel> {
     public final /* synthetic */ long $targetRoleId;
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsEditPermissionsModel$Companion$getForRole$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelSettingsEditPermissionsModel.kt */
+    public final class AnonymousClass1 extends o implements Function1<PermissionOverwrite, Boolean> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(PermissionOverwrite permissionOverwrite) {
+            return Boolean.valueOf(invoke2(permissionOverwrite));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(PermissionOverwrite permissionOverwrite) {
+            return permissionOverwrite.getId() == WidgetChannelSettingsEditPermissionsModel$Companion$getForRole$1.this.$targetRoleId;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsEditPermissionsModel$Companion$getForRole$1$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelSettingsEditPermissionsModel.kt */
+    public final class AnonymousClass2 extends o implements Function1<PermissionOverwrite, Boolean> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(PermissionOverwrite permissionOverwrite) {
+            return Boolean.valueOf(invoke2(permissionOverwrite));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(PermissionOverwrite permissionOverwrite) {
+            return permissionOverwrite.getId() == WidgetChannelSettingsEditPermissionsModel$Companion$getForRole$1.this.$targetRoleId;
+        }
+    }
 
     public WidgetChannelSettingsEditPermissionsModel$Companion$getForRole$1(long j) {
         this.$targetRoleId = j;
@@ -39,17 +75,17 @@ public final class WidgetChannelSettingsEditPermissionsModel$Companion$getForRol
         List<Long> roles;
         GuildRole guildRole = map.get(Long.valueOf(this.$targetRoleId));
         if (channel != null && guild != null && guildRole != null && l != null) {
-            WidgetChannelSettingsEditPermissionsModel$Companion widgetChannelSettingsEditPermissionsModel$Companion = WidgetChannelSettingsEditPermissionsModel.Companion;
+            WidgetChannelSettingsEditPermissionsModel.Companion companion = WidgetChannelSettingsEditPermissionsModel.INSTANCE;
             m.checkNotNullExpressionValue(meUser, "meUser");
-            if (WidgetChannelSettingsEditPermissionsModel$Companion.access$isAbleToManagePerms(widgetChannelSettingsEditPermissionsModel$Companion, guild, meUser, l.longValue())) {
+            if (WidgetChannelSettingsEditPermissionsModel.Companion.access$isAbleToManagePerms(companion, guild, meUser, l.longValue())) {
                 ArrayList arrayList = new ArrayList(channel.v() != null ? channel.v() : n.emptyList());
                 long j = this.$targetRoleId;
-                PermissionOverwrite$Type permissionOverwrite$Type = PermissionOverwrite$Type.ROLE;
-                PermissionOverwrite permissionOverwrite = new PermissionOverwrite(j, permissionOverwrite$Type, 0L, Permission.ALL);
-                r.removeAll((List) arrayList, (Function1) new WidgetChannelSettingsEditPermissionsModel$Companion$getForRole$1$1(this));
+                PermissionOverwrite.Type type = PermissionOverwrite.Type.ROLE;
+                PermissionOverwrite permissionOverwrite = new PermissionOverwrite(j, type, 0L, Permission.ALL);
+                r.removeAll((List) arrayList, (Function1) new AnonymousClass1());
                 arrayList.add(permissionOverwrite);
-                PermissionOverwrite permissionOverwrite2 = new PermissionOverwrite(this.$targetRoleId, permissionOverwrite$Type, 0L, 0L);
-                r.removeAll((List) arrayList, (Function1) new WidgetChannelSettingsEditPermissionsModel$Companion$getForRole$1$2(this));
+                PermissionOverwrite permissionOverwrite2 = new PermissionOverwrite(this.$targetRoleId, type, 0L, 0L);
+                r.removeAll((List) arrayList, (Function1) new AnonymousClass2());
                 arrayList.add(permissionOverwrite2);
                 boolean z2 = false;
                 boolean z3 = this.$targetRoleId == guild.getId();
@@ -61,7 +97,7 @@ public final class WidgetChannelSettingsEditPermissionsModel$Companion$getForRol
                     z2 = true;
                 }
                 m.checkNotNullExpressionValue(bool, "useNewThreadsPermissions");
-                return new WidgetChannelSettingsEditPermissionsModel$ModelForRole(channel, jLongValue, guildRole, j2, jComputeNonThreadPermissions, jComputeNonThreadPermissions2, z2, z3, bool.booleanValue());
+                return new WidgetChannelSettingsEditPermissionsModel.ModelForRole(channel, jLongValue, guildRole, j2, jComputeNonThreadPermissions, jComputeNonThreadPermissions2, z2, z3, bool.booleanValue());
             }
         }
         return null;

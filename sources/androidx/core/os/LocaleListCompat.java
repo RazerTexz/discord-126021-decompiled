@@ -1,6 +1,6 @@
 package androidx.core.os;
 
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.LocaleList;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
@@ -21,7 +21,7 @@ public final class LocaleListCompat {
 
     @NonNull
     public static LocaleListCompat create(@NonNull Locale... localeArr) {
-        return Build$VERSION.SDK_INT >= 24 ? wrap(new LocaleList(localeArr)) : new LocaleListCompat(new LocaleListCompatWrapper(localeArr));
+        return Build.VERSION.SDK_INT >= 24 ? wrap(new LocaleList(localeArr)) : new LocaleListCompat(new LocaleListCompatWrapper(localeArr));
     }
 
     public boolean equals(Object obj) {
@@ -79,13 +79,13 @@ public final class LocaleListCompat {
     @NonNull
     @Size(min = 1)
     public static LocaleListCompat getAdjustedDefault() {
-        return Build$VERSION.SDK_INT >= 24 ? wrap(LocaleList.getAdjustedDefault()) : create(Locale.getDefault());
+        return Build.VERSION.SDK_INT >= 24 ? wrap(LocaleList.getAdjustedDefault()) : create(Locale.getDefault());
     }
 
     @NonNull
     @Size(min = 1)
     public static LocaleListCompat getDefault() {
-        return Build$VERSION.SDK_INT >= 24 ? wrap(LocaleList.getDefault()) : create(Locale.getDefault());
+        return Build.VERSION.SDK_INT >= 24 ? wrap(LocaleList.getDefault()) : create(Locale.getDefault());
     }
 
     @NonNull

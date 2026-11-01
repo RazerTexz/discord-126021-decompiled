@@ -17,7 +17,95 @@ public class AttributionHandler implements IAttributionHandler {
     private boolean paused;
     private ILogger logger = AdjustFactory.getLogger();
     private ThreadScheduler scheduler = new SingleThreadCachedScheduler("AttributionHandler");
-    private TimerOnce timer = new TimerOnce(new AttributionHandler$1(this), ATTRIBUTION_TIMER_NAME);
+    private TimerOnce timer = new TimerOnce(new AnonymousClass1(), ATTRIBUTION_TIMER_NAME);
+
+    /* JADX INFO: renamed from: com.adjust.sdk.AttributionHandler$1, reason: invalid class name */
+    public class AnonymousClass1 implements Runnable {
+        public AnonymousClass1() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            AttributionHandler.access$000(AttributionHandler.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.AttributionHandler$2, reason: invalid class name */
+    public class AnonymousClass2 implements Runnable {
+        public AnonymousClass2() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            AttributionHandler.access$102(AttributionHandler.this, "sdk");
+            AttributionHandler.access$200(AttributionHandler.this, 0L);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.AttributionHandler$3, reason: invalid class name */
+    public class AnonymousClass3 implements Runnable {
+        public final /* synthetic */ SessionResponseData val$sessionResponseData;
+
+        public AnonymousClass3(SessionResponseData sessionResponseData) {
+            this.val$sessionResponseData = sessionResponseData;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            IActivityHandler iActivityHandler = (IActivityHandler) AttributionHandler.access$300(AttributionHandler.this).get();
+            if (iActivityHandler == null) {
+                return;
+            }
+            AttributionHandler.access$400(AttributionHandler.this, iActivityHandler, this.val$sessionResponseData);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.AttributionHandler$4, reason: invalid class name */
+    public class AnonymousClass4 implements Runnable {
+        public final /* synthetic */ SdkClickResponseData val$sdkClickResponseData;
+
+        public AnonymousClass4(SdkClickResponseData sdkClickResponseData) {
+            this.val$sdkClickResponseData = sdkClickResponseData;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            IActivityHandler iActivityHandler = (IActivityHandler) AttributionHandler.access$300(AttributionHandler.this).get();
+            if (iActivityHandler == null) {
+                return;
+            }
+            AttributionHandler.access$500(AttributionHandler.this, iActivityHandler, this.val$sdkClickResponseData);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.AttributionHandler$5, reason: invalid class name */
+    public class AnonymousClass5 implements Runnable {
+        public final /* synthetic */ AttributionResponseData val$attributionResponseData;
+
+        public AnonymousClass5(AttributionResponseData attributionResponseData) {
+            this.val$attributionResponseData = attributionResponseData;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            IActivityHandler iActivityHandler = (IActivityHandler) AttributionHandler.access$300(AttributionHandler.this).get();
+            if (iActivityHandler == null) {
+                return;
+            }
+            AttributionHandler.access$600(AttributionHandler.this, iActivityHandler, this.val$attributionResponseData);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.AttributionHandler$6, reason: invalid class name */
+    public class AnonymousClass6 implements Runnable {
+        public AnonymousClass6() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            AttributionHandler.access$700(AttributionHandler.this);
+        }
+    }
 
     public AttributionHandler(IActivityHandler iActivityHandler, boolean z2) {
         this.basePath = iActivityHandler.getBasePath();
@@ -83,7 +171,7 @@ public class AttributionHandler implements IAttributionHandler {
     }
 
     public void checkAttributionResponse(AttributionResponseData attributionResponseData) {
-        this.scheduler.submit(new AttributionHandler$5(this, attributionResponseData));
+        this.scheduler.submit(new AnonymousClass5(attributionResponseData));
     }
 
     private void checkAttributionResponseI(IActivityHandler iActivityHandler, AttributionResponseData attributionResponseData) {
@@ -104,7 +192,7 @@ public class AttributionHandler implements IAttributionHandler {
 
     @Override // com.adjust.sdk.IAttributionHandler
     public void checkSdkClickResponse(SdkClickResponseData sdkClickResponseData) {
-        this.scheduler.submit(new AttributionHandler$4(this, sdkClickResponseData));
+        this.scheduler.submit(new AnonymousClass4(sdkClickResponseData));
     }
 
     private void checkSdkClickResponseI(IActivityHandler iActivityHandler, SdkClickResponseData sdkClickResponseData) {
@@ -114,7 +202,7 @@ public class AttributionHandler implements IAttributionHandler {
 
     @Override // com.adjust.sdk.IAttributionHandler
     public void checkSessionResponse(SessionResponseData sessionResponseData) {
-        this.scheduler.submit(new AttributionHandler$3(this, sessionResponseData));
+        this.scheduler.submit(new AnonymousClass3(sessionResponseData));
     }
 
     private void checkSessionResponseI(IActivityHandler iActivityHandler, SessionResponseData sessionResponseData) {
@@ -124,7 +212,7 @@ public class AttributionHandler implements IAttributionHandler {
 
     @Override // com.adjust.sdk.IAttributionHandler
     public void getAttribution() {
-        this.scheduler.submit(new AttributionHandler$2(this));
+        this.scheduler.submit(new AnonymousClass2());
     }
 
     private void getAttributionI(long j) {
@@ -154,7 +242,7 @@ public class AttributionHandler implements IAttributionHandler {
     }
 
     private void sendAttributionRequest() {
-        this.scheduler.submit(new AttributionHandler$6(this));
+        this.scheduler.submit(new AnonymousClass6());
     }
 
     private void sendAttributionRequestI() {

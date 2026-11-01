@@ -10,7 +10,6 @@ import com.discord.models.commands.ApplicationCommand;
 import com.discord.models.commands.ApplicationCommandOption;
 import com.discord.models.commands.ApplicationSubCommand;
 import com.discord.stores.CommandAutocompleteState;
-import com.discord.stores.CommandAutocompleteState$Choices;
 import com.discord.utilities.stickers.StickerUtils;
 import com.discord.utilities.string.StringUtilsKt;
 import com.discord.widgets.chat.input.MentionUtilsKt;
@@ -21,10 +20,8 @@ import com.discord.widgets.chat.input.models.AutocompleteInputSelectionModel;
 import com.discord.widgets.chat.input.models.ChatInputMentionsMap;
 import com.discord.widgets.chat.input.models.CommandOptionValue;
 import com.discord.widgets.chat.input.models.InputSelectionModel;
-import com.discord.widgets.chat.input.models.InputSelectionModel$CommandInputSelectionModel;
-import com.discord.widgets.chat.input.models.InputSelectionModel$MessageInputSelectionModel;
 import com.discord.widgets.chat.input.models.InputSelectionModelKt;
-import com.discord.widgets.chat.input.models.MentionInputModel$VerifiedCommandInputModel;
+import com.discord.widgets.chat.input.models.MentionInputModel;
 import com.discord.widgets.chat.input.models.MentionToken;
 import com.discord.widgets.chat.input.models.OptionRange;
 import com.discord.widgets.chat.input.models.StringOptionValue;
@@ -44,7 +41,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -57,6 +53,21 @@ import kotlin.ranges.IntRange;
 /* JADX INFO: loaded from: classes2.dex */
 public final class AutocompleteModelUtils {
     public static final AutocompleteModelUtils INSTANCE = new AutocompleteModelUtils();
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            ApplicationCommandType.values();
+            int[] iArr = new int[12];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[ApplicationCommandType.CHANNEL.ordinal()] = 1;
+            iArr[ApplicationCommandType.USER.ordinal()] = 2;
+            iArr[ApplicationCommandType.ROLE.ordinal()] = 3;
+            iArr[ApplicationCommandType.MENTIONABLE.ordinal()] = 4;
+            iArr[ApplicationCommandType.BOOLEAN.ordinal()] = 5;
+        }
+    }
 
     private AutocompleteModelUtils() {
     }
@@ -72,7 +83,7 @@ public final class AutocompleteModelUtils {
         if (str != null) {
             Character chValueOf = ((t.isBlank(str) ^ true) && MentionUtilsKt.getDEFAULT_LEADING_IDENTIFIERS().contains(Character.valueOf(str.charAt(0)))) ? Character.valueOf(str.charAt(0)) : null;
             if (chValueOf != null || z2) {
-                return new MentionToken(LeadingIdentifier.Companion.fromChar(chValueOf), str, i == 0, i);
+                return new MentionToken(LeadingIdentifier.INSTANCE.fromChar(chValueOf), str, i == 0, i);
             }
         }
         return null;
@@ -84,7 +95,7 @@ public final class AutocompleteModelUtils {
         boolean canUserReadChannel;
         m.checkNotNullParameter(model, "model");
         List<? extends Autocompletable> listFlatten = o.flatten(model.getInputModel().getAutocompletables().values());
-        if (model instanceof InputSelectionModel$MessageInputSelectionModel) {
+        if (model instanceof InputSelectionModel.MessageInputSelectionModel) {
             List<Autocompletable> listFilterAutocompletablesForMessageContext = filterAutocompletablesForMessageContext(listFlatten);
             LinkedHashMap linkedHashMap = new LinkedHashMap();
             for (Object obj : listFilterAutocompletablesForMessageContext) {
@@ -98,11 +109,11 @@ public final class AutocompleteModelUtils {
             }
             return linkedHashMap;
         }
-        if (!(model instanceof InputSelectionModel$CommandInputSelectionModel)) {
+        if (!(model instanceof InputSelectionModel.CommandInputSelectionModel)) {
             throw new NoWhenBranchMatchedException();
         }
-        InputSelectionModel$CommandInputSelectionModel inputSelectionModel$CommandInputSelectionModel = (InputSelectionModel$CommandInputSelectionModel) model;
-        ApplicationCommandOption selectedCommandOption = inputSelectionModel$CommandInputSelectionModel.getSelectedCommandOption();
+        InputSelectionModel.CommandInputSelectionModel commandInputSelectionModel = (InputSelectionModel.CommandInputSelectionModel) model;
+        ApplicationCommandOption selectedCommandOption = commandInputSelectionModel.getSelectedCommandOption();
         if (selectedCommandOption == null) {
             ArrayList arrayList4 = new ArrayList();
             for (Object obj2 : listFlatten) {
@@ -125,7 +136,7 @@ public final class AutocompleteModelUtils {
         List<CommandChoice> choices = selectedCommandOption.getChoices();
         boolean z2 = true;
         if (choices != null && (!choices.isEmpty())) {
-            List<Autocompletable> listCreateFromCommandOption = ApplicationCommandsAutocompletableSource.Companion.createFromCommandOption(selectedCommandOption);
+            List<Autocompletable> listCreateFromCommandOption = ApplicationCommandsAutocompletableSource.INSTANCE.createFromCommandOption(selectedCommandOption);
             LinkedHashMap linkedHashMap3 = new LinkedHashMap();
             for (Object obj4 : listCreateFromCommandOption) {
                 LeadingIdentifier leadingIdentifier3 = ((Autocompletable) obj4).leadingIdentifier();
@@ -140,7 +151,7 @@ public final class AutocompleteModelUtils {
         }
         switch (selectedCommandOption.getType().ordinal()) {
             case 4:
-                arrayList = ApplicationCommandsAutocompletableSource.Companion.createFromCommandOption(selectedCommandOption);
+                arrayList = ApplicationCommandsAutocompletableSource.INSTANCE.createFromCommandOption(selectedCommandOption);
                 break;
             case 5:
                 arrayList = new ArrayList();
@@ -190,16 +201,16 @@ public final class AutocompleteModelUtils {
                 break;
             default:
                 if (selectedCommandOption.getAutocomplete()) {
-                    Map<String, CommandAutocompleteState> map = inputSelectionModel$CommandInputSelectionModel.getInputModel().getCommandOptionAutocompleteItems().get(selectedCommandOption.getName());
+                    Map<String, CommandAutocompleteState> map = commandInputSelectionModel.getInputModel().getCommandOptionAutocompleteItems().get(selectedCommandOption.getName());
                     CommandAutocompleteState commandAutocompleteState = null;
                     if (map != null) {
-                        CommandOptionValue commandOptionValue = inputSelectionModel$CommandInputSelectionModel.getInputModel().getInputCommandOptionValues().get(selectedCommandOption);
+                        CommandOptionValue commandOptionValue = commandInputSelectionModel.getInputModel().getInputCommandOptionValues().get(selectedCommandOption);
                         commandAutocompleteState = map.get(String.valueOf(commandOptionValue != null ? commandOptionValue.getValue() : null));
                     }
-                    if (!(commandAutocompleteState instanceof CommandAutocompleteState$Choices)) {
+                    if (!(commandAutocompleteState instanceof CommandAutocompleteState.Choices)) {
                         arrayList = n.emptyList();
                     } else {
-                        List<ApplicationCommandAutocompleteChoice> choices2 = ((CommandAutocompleteState$Choices) commandAutocompleteState).getChoices();
+                        List<ApplicationCommandAutocompleteChoice> choices2 = ((CommandAutocompleteState.Choices) commandAutocompleteState).getChoices();
                         arrayList2 = new ArrayList(o.collectionSizeOrDefault(choices2, 10));
                         for (ApplicationCommandAutocompleteChoice applicationCommandAutocompleteChoice : choices2) {
                             arrayList2.add(new ApplicationCommandChoiceAutocompletable(new CommandChoice(applicationCommandAutocompleteChoice.getName(), applicationCommandAutocompleteChoice.getValue()), selectedCommandOption.getName()));
@@ -207,7 +218,7 @@ public final class AutocompleteModelUtils {
                     }
                     break;
                 } else {
-                    List listPlus = u.plus((Collection) ApplicationCommandsAutocompletableSource.Companion.createFromCommandOption(selectedCommandOption), (Iterable) listFlatten);
+                    List listPlus = u.plus((Collection) ApplicationCommandsAutocompletableSource.INSTANCE.createFromCommandOption(selectedCommandOption), (Iterable) listFlatten);
                     arrayList2 = new ArrayList();
                     for (Object obj10 : listPlus) {
                         Autocompletable autocompletable2 = (Autocompletable) obj10;
@@ -265,7 +276,7 @@ public final class AutocompleteModelUtils {
         m.checkNotNullParameter(token, "token");
         m.checkNotNullParameter(inputSelectionModel, "inputSelectionModel");
         m.checkNotNullParameter(mentions, "mentions");
-        if ((inputSelectionModel instanceof InputSelectionModel$CommandInputSelectionModel) && (selectedCommandOption = ((InputSelectionModel$CommandInputSelectionModel) inputSelectionModel).getSelectedCommandOption()) != null && selectedCommandOption.getAutocomplete()) {
+        if ((inputSelectionModel instanceof InputSelectionModel.CommandInputSelectionModel) && (selectedCommandOption = ((InputSelectionModel.CommandInputSelectionModel) inputSelectionModel).getSelectedCommandOption()) != null && selectedCommandOption.getAutocomplete()) {
             return InputAutocompletablesKt.flatten(mentions);
         }
         boolean z2 = t.isBlank(token.getFormattedToken()) && token.getLeadingIdentifier() == LeadingIdentifier.NONE;
@@ -334,14 +345,14 @@ public final class AutocompleteModelUtils {
         m.checkNotNullParameter(queryCommands, "queryCommands");
         m.checkNotNullParameter(attachments, "attachments");
         InputSelectionModel inputSelectionModel2 = inputSelectionModel != null ? inputSelectionModel.getInputSelectionModel() : null;
-        if (!(inputSelectionModel2 instanceof InputSelectionModel$CommandInputSelectionModel)) {
+        if (!(inputSelectionModel2 instanceof InputSelectionModel.CommandInputSelectionModel)) {
             return null;
         }
-        InputSelectionModel$CommandInputSelectionModel inputSelectionModel$CommandInputSelectionModel = (InputSelectionModel$CommandInputSelectionModel) inputSelectionModel2;
-        ApplicationCommand selectedCommand = inputSelectionModel$CommandInputSelectionModel.getInputModel().getInputCommandContext().getSelectedCommand();
-        Application selectedApplication = inputSelectionModel$CommandInputSelectionModel.getInputModel().getInputCommandContext().getSelectedApplication();
-        MentionInputModel$VerifiedCommandInputModel inputModel = inputSelectionModel$CommandInputSelectionModel.getInputModel();
-        if (!(inputModel instanceof MentionInputModel$VerifiedCommandInputModel)) {
+        InputSelectionModel.CommandInputSelectionModel commandInputSelectionModel = (InputSelectionModel.CommandInputSelectionModel) inputSelectionModel2;
+        ApplicationCommand selectedCommand = commandInputSelectionModel.getInputModel().getInputCommandContext().getSelectedCommand();
+        Application selectedApplication = commandInputSelectionModel.getInputModel().getInputCommandContext().getSelectedApplication();
+        MentionInputModel.VerifiedCommandInputModel inputModel = commandInputSelectionModel.getInputModel();
+        if (!(inputModel instanceof MentionInputModel.VerifiedCommandInputModel)) {
             inputModel = null;
         }
         if (inputModel == null && selectedCommand != null && selectedApplication != null) {
@@ -367,25 +378,25 @@ public final class AutocompleteModelUtils {
         LinkedHashMap linkedHashMap = new LinkedHashMap(g0.mapCapacity(inputCommandOptionValues.size()));
         Iterator<T> it2 = inputCommandOptionValues.entrySet().iterator();
         while (it2.hasNext()) {
-            Map$Entry map$Entry = (Map$Entry) it2.next();
-            Object key = map$Entry.getKey();
-            Object value2 = ((CommandOptionValue) map$Entry.getValue()).getValue();
-            if (map$Entry.getValue() instanceof StringOptionValue) {
-                List<CommandChoice> choices = ((ApplicationCommandOption) map$Entry.getKey()).getChoices();
-                if ((choices == null || choices.isEmpty()) && !((ApplicationCommandOption) map$Entry.getKey()).getAutocomplete() && (optionRange = inputModel.getInputCommandOptionsRanges().get(map$Entry.getKey())) != null && (value = optionRange.getValue()) != null) {
+            Map.Entry entry = (Map.Entry) it2.next();
+            Object key = entry.getKey();
+            Object value2 = ((CommandOptionValue) entry.getValue()).getValue();
+            if (entry.getValue() instanceof StringOptionValue) {
+                List<CommandChoice> choices = ((ApplicationCommandOption) entry.getKey()).getChoices();
+                if ((choices == null || choices.isEmpty()) && !((ApplicationCommandOption) entry.getKey()).getAutocomplete() && (optionRange = inputModel.getInputCommandOptionsRanges().get(entry.getKey())) != null && (value = optionRange.getValue()) != null) {
                     int first = value.getFirst();
-                    String string = ((CommandOptionValue) map$Entry.getValue()).getValue().toString();
+                    String string = ((CommandOptionValue) entry.getValue()).getValue().toString();
                     Map<IntRange, Autocompletable> inputMentionsMap = inputModel.getInputMentionsMap();
                     LinkedHashMap linkedHashMap2 = new LinkedHashMap(g0.mapCapacity(inputMentionsMap.size()));
                     Iterator<T> it3 = inputMentionsMap.entrySet().iterator();
                     while (it3.hasNext()) {
-                        Map$Entry map$Entry2 = (Map$Entry) it3.next();
-                        linkedHashMap2.put(new IntRange(((IntRange) map$Entry2.getKey()).getFirst() - first, ((IntRange) map$Entry2.getKey()).getLast() - first), map$Entry2.getValue());
+                        Map.Entry entry2 = (Map.Entry) it3.next();
+                        linkedHashMap2.put(new IntRange(((IntRange) entry2.getKey()).getFirst() - first, ((IntRange) entry2.getKey()).getLast() - first), entry2.getValue());
                     }
                     LinkedHashMap linkedHashMap3 = new LinkedHashMap();
-                    for (Map$Entry map$Entry3 : linkedHashMap2.entrySet()) {
-                        if (((IntRange) map$Entry3.getKey()).getFirst() >= 0 && ((IntRange) map$Entry3.getKey()).getLast() <= string.length()) {
-                            linkedHashMap3.put(map$Entry3.getKey(), map$Entry3.getValue());
+                    for (Map.Entry entry3 : linkedHashMap2.entrySet()) {
+                        if (((IntRange) entry3.getKey()).getFirst() >= 0 && ((IntRange) entry3.getKey()).getLast() <= string.length()) {
+                            linkedHashMap3.put(entry3.getKey(), entry3.getValue());
                         }
                     }
                     value2 = AutocompleteExtensionsKt.replaceAutocompleteDataWithServerValues(string, linkedHashMap3);
@@ -579,12 +590,12 @@ public final class AutocompleteModelUtils {
         m.checkNotNullParameter(currentInputMentionMap, "currentInputMentionMap");
         LinkedHashMap linkedHashMap = new LinkedHashMap();
         LinkedHashMap linkedHashMap2 = new LinkedHashMap();
-        Iterator<Map$Entry<LeadingIdentifier, ? extends Set<? extends Autocompletable>>> it = autocompletables.entrySet().iterator();
+        Iterator<Map.Entry<LeadingIdentifier, ? extends Set<? extends Autocompletable>>> it = autocompletables.entrySet().iterator();
         while (true) {
             if (!it.hasNext()) {
                 break;
             }
-            Map$Entry<LeadingIdentifier, ? extends Set<? extends Autocompletable>> next = it.next();
+            Map.Entry<LeadingIdentifier, ? extends Set<? extends Autocompletable>> next = it.next();
             Character identifier = next.getKey().getIdentifier();
             if (identifier == null || w.contains$default((CharSequence) input, identifier.charValue(), false, 2, (Object) null)) {
                 linkedHashMap2.put(next.getKey(), next.getValue());
@@ -605,9 +616,9 @@ public final class AutocompleteModelUtils {
                         Iterator it2 = linkedHashMap.entrySet().iterator();
                         while (true) {
                             if (it2.hasNext()) {
-                                Map$Entry map$Entry = (Map$Entry) it2.next();
-                                IntRange intRange2 = (IntRange) map$Entry.getKey();
-                                Autocompletable autocompletable2 = (Autocompletable) map$Entry.getValue();
+                                Map.Entry entry = (Map.Entry) it2.next();
+                                IntRange intRange2 = (IntRange) entry.getKey();
+                                Autocompletable autocompletable2 = (Autocompletable) entry.getValue();
                                 if (!m.areEqual(intRange, intRange2) || !(autocompletable instanceof RoleAutocompletable) || (autocompletable2 instanceof RoleAutocompletable)) {
                                     AutocompleteModelUtils autocompleteModelUtils = INSTANCE;
                                     if (!autocompleteModelUtils.isSubRangeOf(intRange2, intRange)) {

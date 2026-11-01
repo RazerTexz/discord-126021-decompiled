@@ -2,10 +2,10 @@ package com.discord.utilities.analytics;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences$Editor;
 import android.os.RemoteException;
 import b.d.b.a.a;
 import com.android.installreferrer.api.InstallReferrerClient;
+import com.android.installreferrer.api.InstallReferrerStateListener;
 import com.android.installreferrer.api.ReferrerDetails;
 import com.discord.utilities.cache.SharedPreferencesProvider;
 import com.discord.utilities.lifecycle.ApplicationProvider;
@@ -23,7 +23,9 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 public final class InstallReferrer {
     private static final String CACHE_KEY_HAS_EXECUTED = "CACHE_KEY_HAS_EXECUTED";
     private static final String CACHE_KEY_HAS_EXECUTED_ATTEMPTS = "CACHE_KEY_HAS_EXECUTED_ATTEMPTS";
-    public static final InstallReferrer$Companion Companion = new InstallReferrer$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final int MAX_ATTEMPTS = 10;
     private final Context context;
     private final Logger logger;
@@ -32,6 +34,66 @@ public final class InstallReferrer {
     /* JADX INFO: renamed from: sharedPreferences$delegate, reason: from kotlin metadata */
     private final Lazy sharedPreferences;
     private static final Lazy INSTANCE$delegate = g.lazy(InstallReferrer$Companion$INSTANCE$2.INSTANCE);
+
+    /* JADX INFO: renamed from: com.discord.utilities.analytics.InstallReferrer$createReferrerStateListener$1, reason: invalid class name */
+    /* JADX INFO: compiled from: InstallReferrer.kt */
+    public final class AnonymousClass1 implements InstallReferrerStateListener {
+        public final /* synthetic */ Function1 $onReceivedInstallReferrer;
+
+        public AnonymousClass1(Function1 function1) {
+            this.$onReceivedInstallReferrer = function1;
+        }
+
+        @Override // com.android.installreferrer.api.InstallReferrerStateListener
+        public void onInstallReferrerServiceDisconnected() {
+            Logger.d$default(InstallReferrer.access$getLogger$p(InstallReferrer.this), "Install referrer service disconnected.", null, 2, null);
+        }
+
+        @Override // com.android.installreferrer.api.InstallReferrerStateListener
+        public void onInstallReferrerSetupFinished(int responseCode) {
+            if (responseCode != 0) {
+                InstallReferrer.access$setFetchInstallReferrerFailed(InstallReferrer.this, null);
+            } else {
+                try {
+                    Function1 function1 = this.$onReceivedInstallReferrer;
+                    ReferrerDetails installReferrer = InstallReferrer.access$getReferrerClient$p(InstallReferrer.this).getInstallReferrer();
+                    m.checkNotNullExpressionValue(installReferrer, "referrerClient.installReferrer");
+                    String installReferrer2 = installReferrer.getInstallReferrer();
+                    m.checkNotNullExpressionValue(installReferrer2, "referrerClient.installReferrer.installReferrer");
+                    function1.invoke(installReferrer2);
+                    InstallReferrer.access$setFetchInstallReferrerSuccessful(InstallReferrer.this);
+                } catch (Exception e) {
+                    InstallReferrer.access$setFetchInstallReferrerFailed(InstallReferrer.this, e);
+                }
+            }
+            try {
+                InstallReferrer.access$getReferrerClient$p(InstallReferrer.this).endConnection();
+            } catch (Exception e2) {
+                InstallReferrer.access$getLogger$p(InstallReferrer.this).i("Unable to end connection, likely already dead.", e2);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: InstallReferrer.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        private final InstallReferrer getINSTANCE() {
+            Lazy lazyAccess$getINSTANCE$cp = InstallReferrer.access$getINSTANCE$cp();
+            Companion companion = InstallReferrer.INSTANCE;
+            return (InstallReferrer) lazyAccess$getINSTANCE$cp.getValue();
+        }
+
+        public final void init(Function1<? super String, Unit> onReceivedInstallReferrer) {
+            m.checkNotNullParameter(onReceivedInstallReferrer, "onReceivedInstallReferrer");
+            getINSTANCE().init(onReceivedInstallReferrer);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     private InstallReferrer(Logger logger, Context context) {
         this.logger = logger;
@@ -67,8 +129,8 @@ public final class InstallReferrer {
         installReferrer.referrerClient = installReferrerClient;
     }
 
-    private final InstallReferrer$createReferrerStateListener$1 createReferrerStateListener(Function1<? super String, Unit> onReceivedInstallReferrer) {
-        return new InstallReferrer$createReferrerStateListener$1(this, onReceivedInstallReferrer);
+    private final AnonymousClass1 createReferrerStateListener(Function1<? super String, Unit> onReceivedInstallReferrer) {
+        return new AnonymousClass1(onReceivedInstallReferrer);
     }
 
     private final SharedPreferences getSharedPreferences() {
@@ -100,10 +162,10 @@ public final class InstallReferrer {
     private final void setFetchInstallReferrerFailed(Exception e) {
         int i = SharedPreferencesProvider.INSTANCE.get().getInt(CACHE_KEY_HAS_EXECUTED_ATTEMPTS, 0);
         this.logger.i("Unable to resolve referrer details, " + i + " attempt.", e);
-        SharedPreferences$Editor sharedPreferences$EditorEdit = getSharedPreferences().edit();
-        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
-        sharedPreferences$EditorEdit.putInt(CACHE_KEY_HAS_EXECUTED_ATTEMPTS, i + 1);
-        sharedPreferences$EditorEdit.apply();
+        SharedPreferences.Editor editorEdit = getSharedPreferences().edit();
+        m.checkNotNullExpressionValue(editorEdit, "editor");
+        editorEdit.putInt(CACHE_KEY_HAS_EXECUTED_ATTEMPTS, i + 1);
+        editorEdit.apply();
     }
 
     private final void setFetchInstallReferrerSuccessful() throws RemoteException {
@@ -114,10 +176,10 @@ public final class InstallReferrer {
         ReferrerDetails installReferrer = installReferrerClient.getInstallReferrer();
         m.checkNotNullExpressionValue(installReferrer, "referrerClient.installReferrer");
         Logger.i$default(this.logger, a.w("Retrieved install referrer, ", installReferrer.getInstallReferrer()), null, 2, null);
-        SharedPreferences$Editor sharedPreferences$EditorEdit = getSharedPreferences().edit();
-        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
-        sharedPreferences$EditorEdit.putBoolean(CACHE_KEY_HAS_EXECUTED, true);
-        sharedPreferences$EditorEdit.apply();
+        SharedPreferences.Editor editorEdit = getSharedPreferences().edit();
+        m.checkNotNullExpressionValue(editorEdit, "editor");
+        editorEdit.putBoolean(CACHE_KEY_HAS_EXECUTED, true);
+        editorEdit.apply();
     }
 
     private final boolean shouldFetchInstallReferrer() {

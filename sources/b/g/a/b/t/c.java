@@ -4,7 +4,7 @@ import java.io.IOException;
 
 /* JADX INFO: compiled from: DefaultIndenter.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class c extends d$c {
+public class c extends d.c {
     public static final String j;
     public static final c k;
     private static final long serialVersionUID = 1;
@@ -27,7 +27,7 @@ public class c extends d$c {
         this("  ", j);
     }
 
-    @Override // b.g.a.b.t.d$b
+    @Override // b.g.a.b.t.d.b
     public void a(b.g.a.b.d dVar, int i) throws IOException {
         dVar.T(this.eol);
         if (i <= 0) {

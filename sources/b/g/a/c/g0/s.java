@@ -1,7 +1,5 @@
 package b.g.a.c.g0;
 
-import b.g.a.a.p$a;
-import b.g.a.a.p$b;
 import b.g.a.c.x;
 import java.io.Serializable;
 
@@ -35,7 +33,7 @@ public abstract class s extends c implements Serializable {
         }
         Object obj2 = this._suppressableValue;
         if (obj2 != null) {
-            if (p$a.NON_EMPTY == obj2) {
+            if (b.g.a.a.p.a.NON_EMPTY == obj2) {
                 if (nVarC.d(xVar, objJ)) {
                     b.g.a.c.n<Object> nVar2 = this._nullSerializer;
                     if (nVar2 != null) {
@@ -88,7 +86,7 @@ public abstract class s extends c implements Serializable {
         }
         Object obj2 = this._suppressableValue;
         if (obj2 != null) {
-            if (p$a.NON_EMPTY == obj2) {
+            if (b.g.a.a.p.a.NON_EMPTY == obj2) {
                 if (nVarC.d(xVar, objJ)) {
                     return;
                 }
@@ -113,27 +111,27 @@ public abstract class s extends c implements Serializable {
     public abstract s k(b.g.a.c.z.l<?> lVar, b.g.a.c.c0.c cVar, b.g.a.c.c0.s sVar, b.g.a.c.j jVar);
 
     /* JADX WARN: Illegal instructions before constructor call */
-    public s(b.g.a.c.c0.s sVar, b.g.a.c.i0.a aVar, b.g.a.c.j jVar, b.g.a.c.n<?> nVar, b.g.a.c.e0.g gVar, b.g.a.c.j jVar2, p$b p_b, Class<?>[] clsArr) {
+    public s(b.g.a.c.c0.s sVar, b.g.a.c.i0.a aVar, b.g.a.c.j jVar, b.g.a.c.n<?> nVar, b.g.a.c.e0.g gVar, b.g.a.c.j jVar2, b.g.a.a.p.b bVar, Class<?>[] clsArr) {
         boolean z2;
         Object obj;
-        p$a p_a = p$a.USE_DEFAULTS;
-        p$a p_a2 = p$a.ALWAYS;
+        b.g.a.a.p.a aVar2 = b.g.a.a.p.a.USE_DEFAULTS;
+        b.g.a.a.p.a aVar3 = b.g.a.a.p.a.ALWAYS;
         b.g.a.c.c0.i iVarQ = sVar.q();
         boolean z3 = false;
-        if (p_b == null) {
+        if (bVar == null) {
             z2 = false;
         } else {
-            p$a p_a3 = p_b._valueInclusion;
-            if (p_a3 != p_a2 && p_a3 != p_a) {
+            b.g.a.a.p.a aVar4 = bVar._valueInclusion;
+            if (aVar4 != aVar3 && aVar4 != aVar2) {
                 z3 = true;
             }
             z2 = z3;
         }
-        if (p_b == null) {
+        if (bVar == null) {
             obj = Boolean.FALSE;
         } else {
-            p$a p_a4 = p_b._valueInclusion;
-            obj = (p_a4 == p_a2 || p_a4 == p$a.NON_NULL || p_a4 == p_a) ? null : p$a.NON_EMPTY;
+            b.g.a.a.p.a aVar5 = bVar._valueInclusion;
+            obj = (aVar5 == aVar3 || aVar5 == b.g.a.a.p.a.NON_NULL || aVar5 == aVar2) ? null : b.g.a.a.p.a.NON_EMPTY;
         }
         super(sVar, iVarQ, aVar, jVar, null, null, null, z2, obj, null);
     }

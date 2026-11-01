@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
+import com.discord.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -54,29 +54,29 @@ public final class WidgetGuildsListItemGuildBinding implements ViewBinding {
 
     @NonNull
     public static WidgetGuildsListItemGuildBinding a(@NonNull View view) {
-        int i = R$id.guilds_item_application_status;
-        ImageView imageView = (ImageView) view.findViewById(R$id.guilds_item_application_status);
+        int i = R.id.guilds_item_application_status;
+        ImageView imageView = (ImageView) view.findViewById(R.id.guilds_item_application_status);
         if (imageView != null) {
-            i = R$id.guilds_item_application_stream;
-            ImageView imageView2 = (ImageView) view.findViewById(R$id.guilds_item_application_stream);
+            i = R.id.guilds_item_application_stream;
+            ImageView imageView2 = (ImageView) view.findViewById(R.id.guilds_item_application_stream);
             if (imageView2 != null) {
-                i = R$id.guilds_item_avatar;
-                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.guilds_item_avatar);
+                i = R.id.guilds_item_avatar;
+                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.guilds_item_avatar);
                 if (simpleDraweeView != null) {
-                    i = R$id.guilds_item_avatar_text;
-                    TextView textView = (TextView) view.findViewById(R$id.guilds_item_avatar_text);
+                    i = R.id.guilds_item_avatar_text;
+                    TextView textView = (TextView) view.findViewById(R.id.guilds_item_avatar_text);
                     if (textView != null) {
-                        i = R$id.guilds_item_avatar_wrap;
-                        FrameLayout frameLayout = (FrameLayout) view.findViewById(R$id.guilds_item_avatar_wrap);
+                        i = R.id.guilds_item_avatar_wrap;
+                        FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.guilds_item_avatar_wrap);
                         if (frameLayout != null) {
-                            i = R$id.guilds_item_event_status;
-                            ImageView imageView3 = (ImageView) view.findViewById(R$id.guilds_item_event_status);
+                            i = R.id.guilds_item_event_status;
+                            ImageView imageView3 = (ImageView) view.findViewById(R.id.guilds_item_event_status);
                             if (imageView3 != null) {
-                                i = R$id.guilds_item_mentions;
-                                TextView textView2 = (TextView) view.findViewById(R$id.guilds_item_mentions);
+                                i = R.id.guilds_item_mentions;
+                                TextView textView2 = (TextView) view.findViewById(R.id.guilds_item_mentions);
                                 if (textView2 != null) {
-                                    i = R$id.guilds_item_voice;
-                                    ImageView imageView4 = (ImageView) view.findViewById(R$id.guilds_item_voice);
+                                    i = R.id.guilds_item_voice;
+                                    ImageView imageView4 = (ImageView) view.findViewById(R.id.guilds_item_voice);
                                     if (imageView4 != null) {
                                         return new WidgetGuildsListItemGuildBinding(view, imageView, imageView2, simpleDraweeView, textView, frameLayout, imageView3, textView2, imageView4);
                                     }

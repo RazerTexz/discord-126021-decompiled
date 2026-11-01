@@ -7,14 +7,12 @@ import android.os.CancellationSignal;
 import android.os.ParcelFileDescriptor;
 import android.os.Process;
 import android.os.StrictMode;
-import android.os.StrictMode$ThreadPolicy;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
-import androidx.core.provider.FontsContractCompat$FontInfo;
+import androidx.core.provider.FontsContractCompat;
 import b.d.b.a.a;
 import java.io.Closeable;
 import java.io.File;
@@ -25,13 +23,12 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
-import java.nio.channels.FileChannel$MapMode;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class TypefaceCompatUtil {
     private static final String CACHE_FILE_PREFIX = ".font";
     private static final String TAG = "TypefaceCompatUtil";
@@ -66,7 +63,7 @@ public class TypefaceCompatUtil {
     }
 
     public static boolean copyToFile(File file, InputStream inputStream) throws Throwable {
-        StrictMode$ThreadPolicy strictMode$ThreadPolicyAllowThreadDiskWrites = StrictMode.allowThreadDiskWrites();
+        StrictMode.ThreadPolicy threadPolicyAllowThreadDiskWrites = StrictMode.allowThreadDiskWrites();
         FileOutputStream fileOutputStream = null;
         try {
             try {
@@ -77,7 +74,7 @@ public class TypefaceCompatUtil {
                         int i = inputStream.read(bArr);
                         if (i == -1) {
                             closeQuietly(fileOutputStream2);
-                            StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskWrites);
+                            StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskWrites);
                             return true;
                         }
                         fileOutputStream2.write(bArr, 0, i);
@@ -87,13 +84,13 @@ public class TypefaceCompatUtil {
                     fileOutputStream = fileOutputStream2;
                     Log.e(TAG, "Error copying resource contents to temp file: " + e.getMessage());
                     closeQuietly(fileOutputStream);
-                    StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskWrites);
+                    StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskWrites);
                     return false;
                 } catch (Throwable th) {
                     th = th;
                     fileOutputStream = fileOutputStream2;
                     closeQuietly(fileOutputStream);
-                    StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskWrites);
+                    StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskWrites);
                     throw th;
                 }
             } catch (IOException e2) {
@@ -135,7 +132,7 @@ public class TypefaceCompatUtil {
             FileInputStream fileInputStream = new FileInputStream(file);
             try {
                 FileChannel channel = fileInputStream.getChannel();
-                MappedByteBuffer map = channel.map(FileChannel$MapMode.READ_ONLY, 0L, channel.size());
+                MappedByteBuffer map = channel.map(FileChannel.MapMode.READ_ONLY, 0L, channel.size());
                 fileInputStream.close();
                 return map;
             } catch (Throwable th) {
@@ -153,12 +150,12 @@ public class TypefaceCompatUtil {
 
     @NonNull
     @RequiresApi(19)
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
-    public static Map<Uri, ByteBuffer> readFontInfoIntoByteBuffer(@NonNull Context context, @NonNull FontsContractCompat$FontInfo[] fontsContractCompat$FontInfoArr, @Nullable CancellationSignal cancellationSignal) {
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    public static Map<Uri, ByteBuffer> readFontInfoIntoByteBuffer(@NonNull Context context, @NonNull FontsContractCompat.FontInfo[] fontInfoArr, @Nullable CancellationSignal cancellationSignal) {
         HashMap map = new HashMap();
-        for (FontsContractCompat$FontInfo fontsContractCompat$FontInfo : fontsContractCompat$FontInfoArr) {
-            if (fontsContractCompat$FontInfo.getResultCode() == 0) {
-                Uri uri = fontsContractCompat$FontInfo.getUri();
+        for (FontsContractCompat.FontInfo fontInfo : fontInfoArr) {
+            if (fontInfo.getResultCode() == 0) {
+                Uri uri = fontInfo.getUri();
                 if (!map.containsKey(uri)) {
                     map.put(uri, mmap(context, cancellationSignal, uri));
                 }
@@ -182,7 +179,7 @@ public class TypefaceCompatUtil {
                 FileInputStream fileInputStream = new FileInputStream(parcelFileDescriptorOpenFileDescriptor.getFileDescriptor());
                 try {
                     FileChannel channel = fileInputStream.getChannel();
-                    MappedByteBuffer map = channel.map(FileChannel$MapMode.READ_ONLY, 0L, channel.size());
+                    MappedByteBuffer map = channel.map(FileChannel.MapMode.READ_ONLY, 0L, channel.size());
                     fileInputStream.close();
                     parcelFileDescriptorOpenFileDescriptor.close();
                     return map;

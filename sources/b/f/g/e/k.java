@@ -6,8 +6,7 @@ import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.Paint$Style;
-import android.graphics.Shader$TileMode;
+import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import androidx.annotation.VisibleForTesting;
 import java.lang.ref.WeakReference;
@@ -31,7 +30,7 @@ public class k extends n {
             paint2.set(paint);
         }
         paint2.setFlags(1);
-        paint3.setStyle(Paint$Style.STROKE);
+        paint3.setStyle(Paint.Style.STROKE);
     }
 
     @Override // b.f.g.e.n
@@ -55,8 +54,8 @@ public class k extends n {
             this.P = new WeakReference<>(this.O);
             Paint paint = this.M;
             Bitmap bitmap = this.O;
-            Shader$TileMode shader$TileMode = Shader$TileMode.CLAMP;
-            paint.setShader(new BitmapShader(bitmap, shader$TileMode, shader$TileMode));
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            paint.setShader(new BitmapShader(bitmap, tileMode, tileMode));
             this.o = true;
         }
         if (this.o) {

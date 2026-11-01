@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup;
 import android.view.Window;
 import androidx.annotation.CallSuper;
 import androidx.annotation.IdRes;
@@ -17,12 +17,14 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.RestrictTo;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.view.ActionMode;
-import androidx.appcompat.view.ActionMode$Callback;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.VectorEnabledTintResources;
 import androidx.collection.ArraySet;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
 import java.util.Iterator;
 
@@ -48,6 +50,11 @@ public abstract class AppCompatDelegate {
     private static final ArraySet<WeakReference<AppCompatDelegate>> sActivityDelegates = new ArraySet<>();
     private static final Object sActivityDelegatesLock = new Object();
 
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public @interface NightMode {
+    }
+
     public static void addActiveDelegate(@NonNull AppCompatDelegate appCompatDelegate) {
         synchronized (sActivityDelegatesLock) {
             removeDelegateFromActives(appCompatDelegate);
@@ -55,7 +62,7 @@ public abstract class AppCompatDelegate {
         }
     }
 
-    public abstract void addContentView(View view, ViewGroup$LayoutParams viewGroup$LayoutParams);
+    public abstract void addContentView(View view, ViewGroup.LayoutParams layoutParams);
 
     public abstract boolean applyDayNight();
 
@@ -97,7 +104,7 @@ public abstract class AppCompatDelegate {
     }
 
     @Nullable
-    public abstract ActionBarDrawerToggle$Delegate getDrawerToggleDelegate();
+    public abstract ActionBarDrawerToggle.Delegate getDrawerToggleDelegate();
 
     public int getLocalNightMode() {
         return -100;
@@ -164,7 +171,7 @@ public abstract class AppCompatDelegate {
 
     public abstract void setContentView(View view);
 
-    public abstract void setContentView(View view, ViewGroup$LayoutParams viewGroup$LayoutParams);
+    public abstract void setContentView(View view, ViewGroup.LayoutParams layoutParams);
 
     public static void setDefaultNightMode(int i) {
         if (i != -1 && i != 0 && i != 1 && i != 2 && i != 3) {
@@ -188,7 +195,7 @@ public abstract class AppCompatDelegate {
     public abstract void setTitle(@Nullable CharSequence charSequence);
 
     @Nullable
-    public abstract ActionMode startSupportActionMode(@NonNull ActionMode$Callback actionMode$Callback);
+    public abstract ActionMode startSupportActionMode(@NonNull ActionMode.Callback callback);
 
     @NonNull
     public static AppCompatDelegate create(@NonNull Dialog dialog, @Nullable AppCompatCallback appCompatCallback) {

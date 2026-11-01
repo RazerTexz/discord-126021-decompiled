@@ -1,39 +1,345 @@
 package com.discord.widgets.settings.developer;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
+import android.widget.TextView;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import b.a.d.j;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
+import com.discord.app.AppLog;
+import com.discord.databinding.IconListItemTextViewBinding;
 import com.discord.databinding.WidgetSettingsDeveloperBinding;
 import com.discord.stores.StoreExperiments;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.bugreports.BugReportManager;
+import com.discord.utilities.color.ColorCompat;
+import com.discord.utilities.dimen.DimenUtils;
+import com.discord.utilities.experiments.ExperimentRegistry;
+import com.discord.utilities.experiments.RegisteredExperiment;
+import com.discord.utilities.logging.Logger;
 import com.discord.utilities.rx.ObservableExtensionsKt;
+import com.discord.utilities.time.TimeUtils;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.discord.utilities.views.SimpleRecyclerAdapter;
+import com.discord.utilities.views.SwipeableItemTouchHelper;
 import com.discord.views.CheckedSetting;
+import com.hammerandchisel.libdiscord.Discord;
+import d0.t.g0;
+import d0.t.i0;
+import d0.t.o;
 import d0.z.d.m;
+import j0.k.b;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import kotlin.Pair;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 import rx.Observable;
+import rx.functions.Action1;
 
 /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsDeveloper extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetSettingsDeveloper.class, "binding", "getBinding()Lcom/discord/databinding/WidgetSettingsDeveloperBinding;", 0)};
-    public static final WidgetSettingsDeveloper$Companion Companion = new WidgetSettingsDeveloper$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
     private ExperimentOverridesAdapter experimentOverridesAdapter;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.developer.WidgetSettingsDeveloper$setupCrashes$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            throw new RuntimeException("This is a developer triggered crash.");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.developer.WidgetSettingsDeveloper$setupExperimentSection$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<String, ? extends Integer>, List<? extends 1.1>> {
+        public final /* synthetic */ StoreExperiments $experimentStore;
+
+        public AnonymousClass1(StoreExperiments storeExperiments) {
+            this.$experimentStore = storeExperiments;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ List<? extends 1.1> call(Map<String, ? extends Integer> map) {
+            return call2((Map<String, Integer>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final List<1.1> call2(Map<String, Integer> map) {
+            Collection<RegisteredExperiment> collectionValues = ExperimentRegistry.INSTANCE.getRegisteredExperiments().values();
+            m.checkNotNullExpressionValue(collectionValues, "ExperimentRegistry\n     …nts\n              .values");
+            ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(collectionValues, 10));
+            Iterator<T> it = collectionValues.iterator();
+            while (it.hasNext()) {
+                arrayList.add(new WidgetSettingsDeveloper$setupExperimentSection$1$$special$$inlined$map$lambda$1((RegisteredExperiment) it.next(), this, map));
+            }
+            return arrayList;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.developer.WidgetSettingsDeveloper$setupNoticesSection$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
+    public final class AnonymousClass1 extends d0.z.d.o implements Function0<ItemTouchHelper> {
+
+        /* JADX INFO: renamed from: com.discord.widgets.settings.developer.WidgetSettingsDeveloper$setupNoticesSection$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
+        public final class C04571 extends SwipeableItemTouchHelper {
+            public final /* synthetic */ SwipeableItemTouchHelper.SwipeRevealConfiguration $deleteConfig;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C04571(SwipeableItemTouchHelper.SwipeRevealConfiguration swipeRevealConfiguration, SwipeableItemTouchHelper.SwipeRevealConfiguration swipeRevealConfiguration2, SwipeableItemTouchHelper.SwipeRevealConfiguration swipeRevealConfiguration3) {
+                super(0, 0, swipeRevealConfiguration2, swipeRevealConfiguration3, 3, null);
+                this.$deleteConfig = swipeRevealConfiguration;
+            }
+
+            @Override // androidx.recyclerview.widget.ItemTouchHelper.Callback
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                m.checkNotNullParameter(viewHolder, "viewHolder");
+                if (viewHolder instanceof NoticeViewHolder) {
+                    StoreStream.INSTANCE.getNotices().clearSeen(((NoticeViewHolder) viewHolder).getNoticeName());
+                }
+            }
+        }
+
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ ItemTouchHelper invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final ItemTouchHelper invoke() {
+            SwipeableItemTouchHelper.SwipeRevealConfiguration swipeRevealConfiguration = new SwipeableItemTouchHelper.SwipeRevealConfiguration(ColorCompat.getColor(WidgetSettingsDeveloper.this, R.color.status_red_500), ContextCompat.getDrawable(WidgetSettingsDeveloper.this.requireContext(), R.drawable.ic_delete_white_24dp), DimenUtils.dpToPixels(8));
+            return new ItemTouchHelper(new C04571(swipeRevealConfiguration, swipeRevealConfiguration, swipeRevealConfiguration));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.developer.WidgetSettingsDeveloper$setupScreenshotDetector$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
+    public final class AnonymousClass1<T> implements Action1<Boolean> {
+        public final /* synthetic */ BugReportManager $bugReportProvider;
+
+        public AnonymousClass1(BugReportManager bugReportManager) {
+            this.$bugReportProvider = bugReportManager;
+        }
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(Boolean bool) {
+            call2(bool);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(Boolean bool) {
+            BugReportManager bugReportManager = this.$bugReportProvider;
+            m.checkNotNullExpressionValue(bool, "isChecked");
+            bugReportManager.setBugReportingSettingEnabled(bool.booleanValue());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.developer.WidgetSettingsDeveloper$setupCrashes$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            try {
+                throw new RuntimeException("This is a developer triggered crash (caught).");
+            } catch (Exception e) {
+                Logger.e$default(AppLog.g, "setupCrashes", e, null, 4, null);
+                b.a.d.m.j(WidgetSettingsDeveloper.this, "Done.", 0, 4);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.developer.WidgetSettingsDeveloper$setupExperimentSection$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
+    public final class AnonymousClass2 extends d0.z.d.o implements Function1<List<? extends AnonymousClass1.1.1>, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends AnonymousClass1.1.1> list) {
+            invoke2((List<AnonymousClass1.1.1>) list);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<AnonymousClass1.1.1> list) {
+            ExperimentOverridesAdapter experimentOverridesAdapterAccess$getExperimentOverridesAdapter$p = WidgetSettingsDeveloper.access$getExperimentOverridesAdapter$p(WidgetSettingsDeveloper.this);
+            m.checkNotNullExpressionValue(list, "data");
+            experimentOverridesAdapterAccess$getExperimentOverridesAdapter$p.setData(list);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.developer.WidgetSettingsDeveloper$setupNoticesSection$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
+    public final class AnonymousClass2<T, R> implements b<HashMap<String, Long>, List<? extends Pair<? extends String, ? extends Long>>> {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ List<? extends Pair<? extends String, ? extends Long>> call(HashMap<String, Long> map) {
+            return call2(map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final List<Pair<String, Long>> call2(HashMap<String, Long> map) {
+            m.checkNotNullExpressionValue(map, "noticesSeenMap");
+            return i0.toList(g0.toSortedMap(map));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.developer.WidgetSettingsDeveloper$setupCrashes$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public AnonymousClass3() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            Context context = WidgetSettingsDeveloper.this.getContext();
+            Objects.requireNonNull(context, "null cannot be cast to non-null type android.content.Context");
+            new Discord(context).crash();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.developer.WidgetSettingsDeveloper$setupNoticesSection$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
+    public final class AnonymousClass3 extends d0.z.d.o implements Function1<List<? extends Pair<? extends String, ? extends Long>>, Unit> {
+        public final /* synthetic */ SimpleRecyclerAdapter $noticesAdapter;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass3(SimpleRecyclerAdapter simpleRecyclerAdapter) {
+            super(1);
+            this.$noticesAdapter = simpleRecyclerAdapter;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends Pair<? extends String, ? extends Long>> list) {
+            invoke2((List<Pair<String, Long>>) list);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<Pair<String, Long>> list) {
+            SimpleRecyclerAdapter simpleRecyclerAdapter = this.$noticesAdapter;
+            m.checkNotNullExpressionValue(list, "noticesSeenMap");
+            simpleRecyclerAdapter.setData(list);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.developer.WidgetSettingsDeveloper$setupCrashes$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
+    public final class AnonymousClass4 implements View.OnClickListener {
+        public AnonymousClass4() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            StoreStream.INSTANCE.getGatewaySocket().simulateReconnectForTesting();
+            b.a.d.m.j(WidgetSettingsDeveloper.this, "Done.", 0, 4);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            m.checkNotNullParameter(context, "context");
+            j.e(context, WidgetSettingsDeveloper.class, null, 4);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsDeveloper.kt */
+    public final class NoticeViewHolder extends SimpleRecyclerAdapter.ViewHolder<Pair<? extends String, ? extends Long>> {
+        private final IconListItemTextViewBinding binding;
+        public String noticeName;
+
+        /* JADX WARN: Illegal instructions before constructor call */
+        public NoticeViewHolder(IconListItemTextViewBinding iconListItemTextViewBinding) {
+            m.checkNotNullParameter(iconListItemTextViewBinding, "binding");
+            TextView textView = iconListItemTextViewBinding.a;
+            m.checkNotNullExpressionValue(textView, "binding.root");
+            super(textView);
+            this.binding = iconListItemTextViewBinding;
+        }
+
+        @Override // com.discord.utilities.views.SimpleRecyclerAdapter.ViewHolder
+        public /* bridge */ /* synthetic */ void bind(Pair<? extends String, ? extends Long> pair) {
+            bind2((Pair<String, Long>) pair);
+        }
+
+        public final String getNoticeName() {
+            String str = this.noticeName;
+            if (str == null) {
+                m.throwUninitializedPropertyAccessException("noticeName");
+            }
+            return str;
+        }
+
+        public final void setNoticeName(String str) {
+            m.checkNotNullParameter(str, "<set-?>");
+            this.noticeName = str;
+        }
+
+        @SuppressLint({"SetTextI18n"})
+        /* JADX INFO: renamed from: bind, reason: avoid collision after fix types in other method */
+        public void bind2(Pair<String, Long> data) {
+            m.checkNotNullParameter(data, "data");
+            String strComponent1 = data.component1();
+            long jLongValue = data.component2().longValue();
+            this.noticeName = strComponent1;
+            TextView textView = this.binding.a;
+            m.checkNotNullExpressionValue(textView, "binding.root");
+            Context context = textView.getContext();
+            m.checkNotNullExpressionValue(context, "binding.root.context");
+            CharSequence readableTimeString$default = TimeUtils.toReadableTimeString$default(context, jLongValue, null, 4, null);
+            TextView textView2 = this.binding.a;
+            m.checkNotNullExpressionValue(textView2, "binding.root");
+            textView2.setText(strComponent1 + " @ " + readableTimeString$default);
+        }
+    }
+
     public WidgetSettingsDeveloper() {
-        super(R$layout.widget_settings_developer);
+        super(R.layout.widget_settings_developer);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetSettingsDeveloper$binding$2.INSTANCE, null, 2, null);
     }
 
@@ -54,7 +360,7 @@ public final class WidgetSettingsDeveloper extends AppFragment {
     }
 
     public static final void launch(Context context) {
-        Companion.launch(context);
+        INSTANCE.launch(context);
     }
 
     @Override // com.discord.app.AppFragment
@@ -62,7 +368,7 @@ public final class WidgetSettingsDeveloper extends AppFragment {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         setActionBarDisplayHomeAsUpEnabled(true);
-        setActionBarTitle(2131888436);
+        setActionBarTitle(R.string.developer_options);
         setupCrashes();
     }
 
@@ -75,10 +381,10 @@ public final class WidgetSettingsDeveloper extends AppFragment {
     }
 
     private final void setupCrashes() {
-        getBinding().d.setOnClickListener(WidgetSettingsDeveloper$setupCrashes$1.INSTANCE);
-        getBinding().c.setOnClickListener(new WidgetSettingsDeveloper$setupCrashes$2(this));
-        getBinding().f2615b.setOnClickListener(new WidgetSettingsDeveloper$setupCrashes$3(this));
-        getBinding().g.setOnClickListener(new WidgetSettingsDeveloper$setupCrashes$4(this));
+        getBinding().d.setOnClickListener(AnonymousClass1.INSTANCE);
+        getBinding().c.setOnClickListener(new AnonymousClass2());
+        getBinding().f2615b.setOnClickListener(new AnonymousClass3());
+        getBinding().g.setOnClickListener(new AnonymousClass4());
     }
 
     private final void setupExperimentSection() {
@@ -90,10 +396,10 @@ public final class WidgetSettingsDeveloper extends AppFragment {
             m.throwUninitializedPropertyAccessException("experimentOverridesAdapter");
         }
         recyclerView.setAdapter(experimentOverridesAdapter);
-        StoreExperiments experiments = StoreStream.Companion.getExperiments();
-        Observable<R> observableG = experiments.observeOverrides().G(new WidgetSettingsDeveloper$setupExperimentSection$1(experiments));
+        StoreExperiments experiments = StoreStream.INSTANCE.getExperiments();
+        Observable<R> observableG = experiments.observeOverrides().G(new AnonymousClass1(experiments));
         m.checkNotNullExpressionValue(observableG, "experimentStore\n        …              }\n        }");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableG, this, null, 2, null), WidgetSettingsDeveloper.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetSettingsDeveloper$setupExperimentSection$2(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableG, this, null, 2, null), WidgetSettingsDeveloper.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
     }
 
     private final void setupNoticesSection() {
@@ -101,17 +407,17 @@ public final class WidgetSettingsDeveloper extends AppFragment {
         RecyclerView recyclerView = getBinding().f;
         m.checkNotNullExpressionValue(recyclerView, "binding.developerSettingsNotices");
         recyclerView.setAdapter(simpleRecyclerAdapter);
-        new WidgetSettingsDeveloper$setupNoticesSection$1(this).invoke().attachToRecyclerView(getBinding().f);
-        Observable<R> observableG = StoreStream.Companion.getNotices().observeNoticesSeen().G(WidgetSettingsDeveloper$setupNoticesSection$2.INSTANCE);
+        new AnonymousClass1().invoke().attachToRecyclerView(getBinding().f);
+        Observable<R> observableG = StoreStream.INSTANCE.getNotices().observeNoticesSeen().G(AnonymousClass2.INSTANCE);
         m.checkNotNullExpressionValue(observableG, "StoreStream\n        .get…      .toList()\n        }");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableG), this, null, 2, null), WidgetSettingsDeveloper.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetSettingsDeveloper$setupNoticesSection$3(simpleRecyclerAdapter), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableG), this, null, 2, null), WidgetSettingsDeveloper.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass3(simpleRecyclerAdapter), 62, (Object) null);
     }
 
     private final void setupScreenshotDetector() {
-        BugReportManager bugReportManager = BugReportManager.Companion.get();
+        BugReportManager bugReportManager = BugReportManager.INSTANCE.get();
         CheckedSetting checkedSetting = getBinding().h;
         m.checkNotNullExpressionValue(checkedSetting, "binding.settingsDeveloperScreenshotBugReporting");
         checkedSetting.setChecked(bugReportManager.getSettingsEnabled());
-        getBinding().h.setOnCheckedListener(new WidgetSettingsDeveloper$setupScreenshotDetector$1(bugReportManager));
+        getBinding().h.setOnCheckedListener(new AnonymousClass1(bugReportManager));
     }
 }

@@ -8,14 +8,14 @@ import rx.functions.Action1;
 /* JADX INFO: compiled from: ReportsMenuNode.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ReportsMenuNode$setupCheckbox$$inlined$forEach$lambda$1<T> implements Action1<Boolean> {
-    public final /* synthetic */ MobileReportsViewModel$CheckboxElement $checkboxData$inlined;
+    public final /* synthetic */ MobileReportsViewModel.CheckboxElement $checkboxData$inlined;
     public final /* synthetic */ ReportNodeElementData $entry$inlined;
     public final /* synthetic */ ReportsMenuNode this$0;
 
-    public ReportsMenuNode$setupCheckbox$$inlined$forEach$lambda$1(ReportNodeElementData reportNodeElementData, ReportsMenuNode reportsMenuNode, MobileReportsViewModel$CheckboxElement mobileReportsViewModel$CheckboxElement) {
+    public ReportsMenuNode$setupCheckbox$$inlined$forEach$lambda$1(ReportNodeElementData reportNodeElementData, ReportsMenuNode reportsMenuNode, MobileReportsViewModel.CheckboxElement checkboxElement) {
         this.$entry$inlined = reportNodeElementData;
         this.this$0 = reportsMenuNode;
-        this.$checkboxData$inlined = mobileReportsViewModel$CheckboxElement;
+        this.$checkboxData$inlined = checkboxElement;
     }
 
     @Override // rx.functions.Action1

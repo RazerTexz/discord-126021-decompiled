@@ -20,7 +20,7 @@ public final class h extends d0.z.d.o implements Function1<Subscription, Unit> {
     public Unit invoke(Subscription subscription) {
         Subscription subscription2 = subscription;
         d0.z.d.m.checkNotNullParameter(subscription2, "it");
-        this.this$0.com.discord.utilities.analytics.Traits$Payment$Type.SUBSCRIPTION java.lang.String = subscription2;
+        this.this$0.com.discord.utilities.analytics.Traits.Payment.Type.SUBSCRIPTION java.lang.String = subscription2;
         return Unit.a;
     }
 }

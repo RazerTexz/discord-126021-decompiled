@@ -1,7 +1,6 @@
 package f0.e0.k.i;
 
 import d0.z.d.m;
-import f0.e0.k.b$a;
 import f0.y;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -10,24 +9,31 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Objects;
 import javax.net.ssl.SSLSocket;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: AndroidSocketAdapter.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class f implements k {
-    public static final j$a a;
+    public static final j.a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final f$a f3653b;
+    public static final a f3653b;
     public final Method c;
     public final Method d;
     public final Method e;
     public final Method f;
     public final Class<? super SSLSocket> g;
 
+    /* JADX INFO: compiled from: AndroidSocketAdapter.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     static {
-        f$a f_a = new f$a(null);
-        f3653b = f_a;
-        Objects.requireNonNull(f_a);
+        a aVar = new a(null);
+        f3653b = aVar;
+        Objects.requireNonNull(aVar);
         m.checkParameterIsNotNull("com.google.android.gms.org.conscrypt", "packageName");
         a = new e("com.google.android.gms.org.conscrypt");
     }
@@ -51,7 +57,7 @@ public class f implements k {
 
     @Override // f0.e0.k.i.k
     public boolean b() {
-        b$a b_a = f0.e0.k.b.e;
+        f0.e0.k.b.a aVar = f0.e0.k.b.e;
         return f0.e0.k.b.d;
     }
 

@@ -16,6 +16,58 @@ public abstract class r0 extends s0 implements h0 {
     public volatile Object _delayed = null;
     public volatile int _isCompleted = 0;
 
+    /* JADX INFO: compiled from: EventLoop.common.kt */
+    public final class a extends c {
+        public final CancellableContinuation<Unit> m;
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public a(long j, CancellableContinuation<? super Unit> cancellableContinuation) {
+            super(j);
+            this.m = cancellableContinuation;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            this.m.i(r0.this, Unit.a);
+        }
+
+        @Override // s.a.r0.c
+        public String toString() {
+            return super.toString() + this.m.toString();
+        }
+    }
+
+    /* JADX INFO: compiled from: EventLoop.common.kt */
+    public final class b extends c {
+        public final Runnable m;
+
+        public b(long j, Runnable runnable) {
+            super(j);
+            this.m = runnable;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            this.m.run();
+        }
+
+        @Override // s.a.r0.c
+        public String toString() {
+            return super.toString() + this.m.toString();
+        }
+    }
+
+    /* JADX INFO: compiled from: EventLoop.common.kt */
+    public final class d extends s.a.a.v<c> {
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public long f3843b;
+
+        public d(long j) {
+            this.f3843b = j;
+        }
+    }
+
     /* JADX WARN: Code duplicated, block: B:64:0x009d  */
     /* JADX WARN: Code duplicated, block: B:78:0x00bb  */
     /* JADX WARN: Code duplicated, block: B:83:0x00c5  */
@@ -23,28 +75,28 @@ public abstract class r0 extends s0 implements h0 {
     @Override // s.a.q0
     public long O() {
         long j;
-        r0$d r0_d;
-        r0$c r0_cB;
-        r0$c r0_cC;
+        d dVar;
+        c cVarB;
+        c cVarC;
         if (R()) {
             return 0L;
         }
-        r0$d r0_d2 = (r0$d) this._delayed;
+        d dVar2 = (d) this._delayed;
         Runnable runnable = null;
-        if (r0_d2 != null) {
-            if (!(r0_d2._size == 0)) {
+        if (dVar2 != null) {
+            if (!(dVar2._size == 0)) {
                 long jNanoTime = System.nanoTime();
                 do {
-                    synchronized (r0_d2) {
-                        r0$c r0_cB2 = r0_d2.b();
-                        if (r0_cB2 != null) {
-                            r0$c r0_c = r0_cB2;
-                            r0_cC = ((jNanoTime - r0_c.l) > 0L ? 1 : ((jNanoTime - r0_c.l) == 0L ? 0 : -1)) >= 0 ? U(r0_c) : false ? r0_d2.c(0) : null;
+                    synchronized (dVar2) {
+                        c cVarB2 = dVar2.b();
+                        if (cVarB2 != null) {
+                            c cVar = cVarB2;
+                            cVarC = ((jNanoTime - cVar.l) > 0L ? 1 : ((jNanoTime - cVar.l) == 0L ? 0 : -1)) >= 0 ? U(cVar) : false ? dVar2.c(0) : null;
                         } else {
-                            r0_cC = null;
+                            cVarC = null;
                         }
                     }
-                } while (r0_cC != null);
+                } while (cVarC != null);
             }
         }
         while (true) {
@@ -89,12 +141,12 @@ public abstract class r0 extends s0 implements h0 {
         }
         Object obj2 = this._queue;
         if (obj2 == null) {
-            r0_d = (r0$d) this._delayed;
-            if (r0_d != null) {
-                synchronized (r0_d) {
-                    r0_cB = r0_d.b();
-                    if (r0_cB != null) {
-                        return d0.d0.f.coerceAtLeast(r0_cB.l - System.nanoTime(), 0L);
+            dVar = (d) this._delayed;
+            if (dVar != null) {
+                synchronized (dVar) {
+                    cVarB = dVar.b();
+                    if (cVarB != null) {
+                        return d0.d0.f.coerceAtLeast(cVarB.l - System.nanoTime(), 0L);
                     }
                 }
             }
@@ -102,13 +154,13 @@ public abstract class r0 extends s0 implements h0 {
             if (!((s.a.a.m) obj2).c()) {
                 return 0L;
             }
-            r0_d = (r0$d) this._delayed;
-            if (r0_d != null) {
-                synchronized (r0_d) {
+            dVar = (d) this._delayed;
+            if (dVar != null) {
+                synchronized (dVar) {
                 }
-                r0_cB = r0_d.b();
-                if (r0_cB != null) {
-                    return d0.d0.f.coerceAtLeast(r0_cB.l - System.nanoTime(), 0L);
+                cVarB = dVar.b();
+                if (cVarB != null) {
+                    return d0.d0.f.coerceAtLeast(cVarB.l - System.nanoTime(), 0L);
                 }
             }
         } else if (obj2 != t0.f3844b) {
@@ -168,9 +220,9 @@ public abstract class r0 extends s0 implements h0 {
         if (!(bVar == null || bVar.f3826b == bVar.c)) {
             return false;
         }
-        r0$d r0_d = (r0$d) this._delayed;
-        if (r0_d != null) {
-            if (!(r0_d._size == 0)) {
+        d dVar = (d) this._delayed;
+        if (dVar != null) {
+            if (!(dVar._size == 0)) {
                 return false;
             }
         }
@@ -184,72 +236,72 @@ public abstract class r0 extends s0 implements h0 {
         return obj == t0.f3844b;
     }
 
-    public final void W(long j, r0$c r0_c) {
-        char c;
+    public final void W(long j, c cVar) {
+        char c2;
         Thread threadS;
-        r0$c r0_cB;
-        r0$c r0_c2 = null;
+        c cVarB;
+        c cVar2 = null;
         if (this._isCompleted == 0) {
-            r0$d r0_d = (r0$d) this._delayed;
-            if (r0_d == null) {
-                o.compareAndSet(this, null, new r0$d(j));
+            d dVar = (d) this._delayed;
+            if (dVar == null) {
+                o.compareAndSet(this, null, new d(j));
                 Object obj = this._delayed;
                 d0.z.d.m.checkNotNull(obj);
-                r0_d = (r0$d) obj;
+                dVar = (d) obj;
             }
-            synchronized (r0_c) {
-                if (r0_c.j == t0.a) {
-                    c = 2;
+            synchronized (cVar) {
+                if (cVar.j == t0.a) {
+                    c2 = 2;
                 } else {
-                    synchronized (r0_d) {
-                        r0$c r0_cB2 = r0_d.b();
+                    synchronized (dVar) {
+                        c cVarB2 = dVar.b();
                         if (this._isCompleted != 0) {
-                            c = 1;
+                            c2 = 1;
                         } else {
-                            if (r0_cB2 == null) {
-                                r0_d.f3843b = j;
+                            if (cVarB2 == null) {
+                                dVar.f3843b = j;
                             } else {
-                                long j2 = r0_cB2.l;
+                                long j2 = cVarB2.l;
                                 if (j2 - j >= 0) {
                                     j2 = j;
                                 }
-                                if (j2 - r0_d.f3843b > 0) {
-                                    r0_d.f3843b = j2;
+                                if (j2 - dVar.f3843b > 0) {
+                                    dVar.f3843b = j2;
                                 }
                             }
-                            long j3 = r0_c.l;
-                            long j4 = r0_d.f3843b;
+                            long j3 = cVar.l;
+                            long j4 = dVar.f3843b;
                             if (j3 - j4 < 0) {
-                                r0_c.l = j4;
+                                cVar.l = j4;
                             }
-                            r0_d.a(r0_c);
-                            c = 0;
+                            dVar.a(cVar);
+                            c2 = 0;
                         }
                     }
                 }
             }
         } else {
-            c = 1;
+            c2 = 1;
         }
-        if (c != 0) {
-            if (c == 1) {
-                d0.q.W(j, r0_c);
+        if (c2 != 0) {
+            if (c2 == 1) {
+                d0.q.W(j, cVar);
                 return;
             } else {
-                if (c != 2) {
+                if (c2 != 2) {
                     throw new IllegalStateException("unexpected result".toString());
                 }
                 return;
             }
         }
-        r0$d r0_d2 = (r0$d) this._delayed;
-        if (r0_d2 != null) {
-            synchronized (r0_d2) {
-                r0_cB = r0_d2.b();
+        d dVar2 = (d) this._delayed;
+        if (dVar2 != null) {
+            synchronized (dVar2) {
+                cVarB = dVar2.b();
             }
-            r0_c2 = r0_cB;
+            cVar2 = cVarB;
         }
-        if (!(r0_c2 == r0_c) || Thread.currentThread() == (threadS = S())) {
+        if (!(cVar2 == cVar) || Thread.currentThread() == (threadS = S())) {
             return;
         }
         LockSupport.unpark(threadS);
@@ -260,9 +312,9 @@ public abstract class r0 extends s0 implements h0 {
         long jA = t0.a(j);
         if (jA < 4611686018427387903L) {
             long jNanoTime = System.nanoTime();
-            r0$a r0_a = new r0$a(this, jA + jNanoTime, cancellableContinuation);
-            cancellableContinuation.f(new n0(r0_a));
-            W(jNanoTime, r0_a);
+            a aVar = new a(jA + jNanoTime, cancellableContinuation);
+            cancellableContinuation.f(new n0(aVar));
+            W(jNanoTime, aVar);
         }
     }
 
@@ -273,7 +325,7 @@ public abstract class r0 extends s0 implements h0 {
 
     @Override // s.a.q0
     public void shutdown() {
-        r0$c r0_cC;
+        c cVarC;
         w1 w1Var = w1.f3847b;
         w1.a.set(null);
         this._isCompleted = 1;
@@ -301,23 +353,98 @@ public abstract class r0 extends s0 implements h0 {
         }
         long jNanoTime = System.nanoTime();
         while (true) {
-            r0$d r0_d = (r0$d) this._delayed;
-            if (r0_d == null) {
+            d dVar = (d) this._delayed;
+            if (dVar == null) {
                 return;
             }
-            synchronized (r0_d) {
-                r0_cC = r0_d._size > 0 ? r0_d.c(0) : null;
+            synchronized (dVar) {
+                cVarC = dVar._size > 0 ? dVar.c(0) : null;
             }
-            r0$c r0_c = r0_cC;
-            if (r0_c == null) {
+            c cVar = cVarC;
+            if (cVar == null) {
                 return;
             } else {
-                d0.q.W(jNanoTime, r0_c);
+                d0.q.W(jNanoTime, cVar);
             }
         }
     }
 
     public m0 x(long j, Runnable runnable, CoroutineContext coroutineContext) {
         return e0.a.x(j, runnable, coroutineContext);
+    }
+
+    /* JADX INFO: compiled from: EventLoop.common.kt */
+    public abstract class c implements Runnable, Comparable<c>, m0, s.a.a.w {
+        public Object j;
+        public long l;
+        public int k = -1;
+
+        public c(long j) {
+            this.l = j;
+        }
+
+        @Override // java.lang.Comparable
+        public int compareTo(c cVar) {
+            long j = this.l - cVar.l;
+            if (j > 0) {
+                return 1;
+            }
+            return j < 0 ? -1 : 0;
+        }
+
+        @Override // s.a.m0
+        public final synchronized void dispose() {
+            Object obj = this.j;
+            s.a.a.t tVar = t0.a;
+            if (obj == tVar) {
+                return;
+            }
+            if (!(obj instanceof d)) {
+                obj = null;
+            }
+            d dVar = (d) obj;
+            if (dVar != null) {
+                synchronized (dVar) {
+                    if (i() != null) {
+                        dVar.c(getIndex());
+                    }
+                }
+            }
+            this.j = tVar;
+        }
+
+        @Override // s.a.a.w
+        public void f(int i) {
+            this.k = i;
+        }
+
+        @Override // s.a.a.w
+        public void g(s.a.a.v<?> vVar) {
+            if (!(this.j != t0.a)) {
+                throw new IllegalArgumentException("Failed requirement.".toString());
+            }
+            this.j = vVar;
+        }
+
+        @Override // s.a.a.w
+        public int getIndex() {
+            return this.k;
+        }
+
+        @Override // s.a.a.w
+        public s.a.a.v<?> i() {
+            Object obj = this.j;
+            if (!(obj instanceof s.a.a.v)) {
+                obj = null;
+            }
+            return (s.a.a.v) obj;
+        }
+
+        public String toString() {
+            StringBuilder sbU = b.d.b.a.a.U("Delayed[nanos=");
+            sbU.append(this.l);
+            sbU.append(']');
+            return sbU.toString();
+        }
     }
 }

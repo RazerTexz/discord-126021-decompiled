@@ -1,14 +1,14 @@
 package b.i.a.f.h.c;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.auth.api.credentials.Credential;
 import com.google.android.gms.internal.p001authapi.zzz;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class u implements Parcelable$Creator<zzz> {
-    @Override // android.os.Parcelable$Creator
+public final class u implements Parcelable.Creator<zzz> {
+    @Override // android.os.Parcelable.Creator
     public final zzz createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         Credential credential = null;
@@ -24,7 +24,7 @@ public final class u implements Parcelable$Creator<zzz> {
         return new zzz(credential);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zzz[] newArray(int i) {
         return new zzz[i];
     }

@@ -1,7 +1,7 @@
 package b.i.a.f.j.b;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.internal.nearby.zzgp;
 import com.google.android.gms.internal.nearby.zzgu;
 import com.google.android.gms.nearby.messages.MessageFilter;
@@ -9,8 +9,8 @@ import com.google.android.gms.nearby.messages.internal.zzad;
 import java.util.ArrayList;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class g implements Parcelable$Creator<MessageFilter> {
-    @Override // android.os.Parcelable$Creator
+public final class g implements Parcelable.Creator<MessageFilter> {
+    @Override // android.os.Parcelable.Creator
     public final MessageFilter createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         ArrayList arrayListV = null;
@@ -42,7 +42,7 @@ public final class g implements Parcelable$Creator<MessageFilter> {
         return new MessageFilter(iG1, arrayListV, arrayListV2, zE1, arrayListV3, iG2);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ MessageFilter[] newArray(int i) {
         return new MessageFilter[i];
     }

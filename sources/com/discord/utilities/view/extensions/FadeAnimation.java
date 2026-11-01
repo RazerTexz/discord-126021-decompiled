@@ -6,17 +6,23 @@ import d0.z.d.m;
 /* JADX INFO: compiled from: ViewExtensions.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class FadeAnimation {
-    private final FadeAnimation$Type type;
+    private final Type type;
     private final ViewPropertyAnimator viewPropertyAnimator;
 
-    public FadeAnimation(ViewPropertyAnimator viewPropertyAnimator, FadeAnimation$Type fadeAnimation$Type) {
-        m.checkNotNullParameter(viewPropertyAnimator, "viewPropertyAnimator");
-        m.checkNotNullParameter(fadeAnimation$Type, "type");
-        this.viewPropertyAnimator = viewPropertyAnimator;
-        this.type = fadeAnimation$Type;
+    /* JADX INFO: compiled from: ViewExtensions.kt */
+    public enum Type {
+        FADE_IN,
+        FADE_OUT
     }
 
-    public final FadeAnimation$Type getType() {
+    public FadeAnimation(ViewPropertyAnimator viewPropertyAnimator, Type type) {
+        m.checkNotNullParameter(viewPropertyAnimator, "viewPropertyAnimator");
+        m.checkNotNullParameter(type, "type");
+        this.viewPropertyAnimator = viewPropertyAnimator;
+        this.type = type;
+    }
+
+    public final Type getType() {
         return this.type;
     }
 

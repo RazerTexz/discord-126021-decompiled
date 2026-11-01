@@ -1,6 +1,6 @@
 package com.google.android.material.switchmaterial;
 
-import android.R$attr;
+import android.R;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -8,9 +8,6 @@ import android.util.AttributeSet;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
-import com.google.android.material.R$dimen;
-import com.google.android.material.R$style;
-import com.google.android.material.R$styleable;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.elevation.ElevationOverlayProvider;
 import com.google.android.material.internal.ThemeEnforcement;
@@ -19,7 +16,7 @@ import com.google.android.material.theme.overlay.MaterialThemeOverlay;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class SwitchMaterial extends SwitchCompat {
-    private static final int[][] ENABLED_CHECKED_STATES = {new int[]{R$attr.state_enabled, R$attr.state_checked}, new int[]{R$attr.state_enabled, -16842912}, new int[]{-16842910, R$attr.state_checked}, new int[]{-16842910, -16842912}};
+    private static final int[][] ENABLED_CHECKED_STATES = {new int[]{R.attr.state_enabled, R.attr.state_checked}, new int[]{R.attr.state_enabled, -16842912}, new int[]{-16842910, R.attr.state_checked}, new int[]{-16842910, -16842912}};
 
     @NonNull
     private final ElevationOverlayProvider elevationOverlayProvider;
@@ -30,7 +27,7 @@ public class SwitchMaterial extends SwitchCompat {
     @Nullable
     private ColorStateList materialThemeColorsTrackTintList;
     private boolean useMaterialThemeColors;
-    private static final int DEF_STYLE_RES = R$style.Widget_MaterialComponents_CompoundButton_Switch;
+    private static final int DEF_STYLE_RES = com.google.android.material.R.style.Widget_MaterialComponents_CompoundButton_Switch;
 
     public SwitchMaterial(@NonNull Context context) {
         this(context, null);
@@ -38,9 +35,9 @@ public class SwitchMaterial extends SwitchCompat {
 
     private ColorStateList getMaterialThemeColorsThumbTintList() {
         if (this.materialThemeColorsThumbTintList == null) {
-            int color = MaterialColors.getColor(this, com.google.android.material.R$attr.colorSurface);
-            int color2 = MaterialColors.getColor(this, com.google.android.material.R$attr.colorControlActivated);
-            float dimension = getResources().getDimension(R$dimen.mtrl_switch_thumb_elevation);
+            int color = MaterialColors.getColor(this, com.google.android.material.R.attr.colorSurface);
+            int color2 = MaterialColors.getColor(this, com.google.android.material.R.attr.colorControlActivated);
+            float dimension = getResources().getDimension(com.google.android.material.R.dimen.mtrl_switch_thumb_elevation);
             if (this.elevationOverlayProvider.isThemeElevationOverlayEnabled()) {
                 dimension += ViewUtils.getParentAbsoluteElevation(this);
             }
@@ -60,9 +57,9 @@ public class SwitchMaterial extends SwitchCompat {
         if (this.materialThemeColorsTrackTintList == null) {
             int[][] iArr = ENABLED_CHECKED_STATES;
             int[] iArr2 = new int[iArr.length];
-            int color = MaterialColors.getColor(this, com.google.android.material.R$attr.colorSurface);
-            int color2 = MaterialColors.getColor(this, com.google.android.material.R$attr.colorControlActivated);
-            int color3 = MaterialColors.getColor(this, com.google.android.material.R$attr.colorOnSurface);
+            int color = MaterialColors.getColor(this, com.google.android.material.R.attr.colorSurface);
+            int color2 = MaterialColors.getColor(this, com.google.android.material.R.attr.colorControlActivated);
+            int color3 = MaterialColors.getColor(this, com.google.android.material.R.attr.colorOnSurface);
             iArr2[0] = MaterialColors.layer(color, color2, 0.54f);
             iArr2[1] = MaterialColors.layer(color, color3, 0.32f);
             iArr2[2] = MaterialColors.layer(color, color2, 0.12f);
@@ -99,7 +96,7 @@ public class SwitchMaterial extends SwitchCompat {
     }
 
     public SwitchMaterial(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, com.google.android.material.R$attr.switchStyle);
+        this(context, attributeSet, com.google.android.material.R.attr.switchStyle);
     }
 
     /* JADX WARN: Illegal instructions before constructor call */
@@ -108,8 +105,8 @@ public class SwitchMaterial extends SwitchCompat {
         super(MaterialThemeOverlay.wrap(context, attributeSet, i, i2), attributeSet, i);
         Context context2 = getContext();
         this.elevationOverlayProvider = new ElevationOverlayProvider(context2);
-        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context2, attributeSet, R$styleable.SwitchMaterial, i, i2, new int[0]);
-        this.useMaterialThemeColors = typedArrayObtainStyledAttributes.getBoolean(R$styleable.SwitchMaterial_useMaterialThemeColors, false);
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context2, attributeSet, com.google.android.material.R.styleable.SwitchMaterial, i, i2, new int[0]);
+        this.useMaterialThemeColors = typedArrayObtainStyledAttributes.getBoolean(com.google.android.material.R.styleable.SwitchMaterial_useMaterialThemeColors, false);
         typedArrayObtainStyledAttributes.recycle();
     }
 }

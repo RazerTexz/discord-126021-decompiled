@@ -3,7 +3,7 @@ package com.discord.widgets.user;
 import android.content.Context;
 import androidx.fragment.app.FragmentManager;
 import b.a.a.b.c;
-import b.a.a.b.c$b;
+import com.discord.R;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -32,7 +32,7 @@ public final class Badge$Companion$onBadgeClick$1 extends o implements Function1
     public final void invoke2(Badge badge) {
         m.checkNotNullParameter(badge, "badge");
         if (badge.getShowPremiumUpSell()) {
-            c$b.a(c.k, this.$fragmentManager, 5, this.$context.getString(2131894493), null, null, "Profile Modal", "Badge", badge.getObjectType(), false, false, 792);
+            c.Companion.a(c.INSTANCE, this.$fragmentManager, 5, this.$context.getString(R.string.premium_upsell_badge_active_mobile), null, null, "Profile Modal", "Badge", badge.getObjectType(), false, false, 792);
             return;
         }
         Context context = this.$context;

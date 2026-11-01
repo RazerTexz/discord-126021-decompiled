@@ -4,7 +4,6 @@ import com.discord.utilities.logging.Logger;
 import d0.z.d.m;
 import f0.w;
 import okhttp3.Interceptor;
-import okhttp3.Interceptor$Chain;
 import okhttp3.Request;
 import okhttp3.Response;
 
@@ -19,7 +18,7 @@ public final class BreadcrumbInterceptor implements Interceptor {
     }
 
     @Override // okhttp3.Interceptor
-    public Response intercept(Interceptor$Chain chain) {
+    public Response intercept(Interceptor.Chain chain) {
         m.checkNotNullParameter(chain, "chain");
         Request requestC = chain.c();
         String str = requestC.method;

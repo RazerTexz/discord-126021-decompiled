@@ -13,6 +13,20 @@ public final /* data */ class StickerPartial implements Serializable, BaseSticke
     private final long id;
     private final String name;
 
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            StickerFormatType.values();
+            int[] iArr = new int[4];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[StickerFormatType.UNKNOWN.ordinal()] = 1;
+            iArr[StickerFormatType.PNG.ordinal()] = 2;
+            iArr[StickerFormatType.APNG.ordinal()] = 3;
+            iArr[StickerFormatType.LOTTIE.ordinal()] = 4;
+        }
+    }
+
     public StickerPartial(long j, StickerFormatType stickerFormatType, String str) {
         m.checkNotNullParameter(stickerFormatType, "formatType");
         m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);

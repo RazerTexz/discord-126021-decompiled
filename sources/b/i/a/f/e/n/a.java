@@ -5,7 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.util.Log;
 import androidx.annotation.RecentlyNonNull;
 import b.i.a.f.e.k.r0;
@@ -73,7 +73,7 @@ public class a {
                     Log.w("ConnectionTracker", "Attempted to bind to a service in a STOPPED package.");
                     return false;
                 }
-            } catch (PackageManager$NameNotFoundException unused) {
+            } catch (PackageManager.NameNotFoundException unused) {
             }
         }
         if (!(!(serviceConnection instanceof r0))) {

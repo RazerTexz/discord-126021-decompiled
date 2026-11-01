@@ -16,12 +16,12 @@ import kotlinx.coroutines.CoroutineScope;
 @e(c = "com.discord.widgets.user.WidgetUserMentions$WidgetUserMentionFilter$delayedDismiss$1", f = "WidgetUserMentions.kt", l = {386}, m = "invokeSuspend")
 public final class WidgetUserMentions$WidgetUserMentionFilter$delayedDismiss$1 extends k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
     public int label;
-    public final /* synthetic */ WidgetUserMentions$WidgetUserMentionFilter this$0;
+    public final /* synthetic */ WidgetUserMentions.WidgetUserMentionFilter this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetUserMentions$WidgetUserMentionFilter$delayedDismiss$1(WidgetUserMentions$WidgetUserMentionFilter widgetUserMentions$WidgetUserMentionFilter, Continuation continuation) {
+    public WidgetUserMentions$WidgetUserMentionFilter$delayedDismiss$1(WidgetUserMentions.WidgetUserMentionFilter widgetUserMentionFilter, Continuation continuation) {
         super(2, continuation);
-        this.this$0 = widgetUserMentions$WidgetUserMentionFilter;
+        this.this$0 = widgetUserMentionFilter;
     }
 
     @Override // d0.w.i.a.a

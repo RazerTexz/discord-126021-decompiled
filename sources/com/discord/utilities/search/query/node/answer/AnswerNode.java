@@ -2,7 +2,7 @@ package com.discord.utilities.search.query.node.answer;
 
 import android.content.Context;
 import android.text.SpannableStringBuilder;
-import com.discord.utilities.search.network.SearchQuery$Builder;
+import com.discord.utilities.search.network.SearchQuery;
 import com.discord.utilities.search.query.FilterType;
 import com.discord.utilities.search.query.node.QueryNode;
 import com.discord.utilities.search.validation.SearchData;
@@ -21,7 +21,7 @@ public abstract class AnswerNode extends QueryNode {
         render2(spannableStringBuilder, context);
     }
 
-    public abstract void updateQuery(SearchQuery$Builder queryBuilder, SearchData searchData, FilterType filterType);
+    public abstract void updateQuery(SearchQuery.Builder queryBuilder, SearchData searchData, FilterType filterType);
 
     /* JADX INFO: renamed from: render, reason: avoid collision after fix types in other method */
     public void render2(SpannableStringBuilder builder, Context renderContext) {

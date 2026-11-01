@@ -1,11 +1,7 @@
 package j0.o;
 
-import j0.d$a;
-import j0.h$a;
 import java.io.PrintStream;
 import rx.Observable;
-import rx.Observable$a;
-import rx.Observable$b;
 import rx.Subscription;
 import rx.functions.Action0;
 import rx.functions.Action1;
@@ -15,20 +11,20 @@ import rx.functions.Func2;
 /* JADX INFO: loaded from: classes3.dex */
 public final class l {
     public static volatile Action1<Throwable> a = new f();
-    public static volatile Func2<Observable, Observable$a, Observable$a> e = new g();
+    public static volatile Func2<Observable, Observable.a, Observable.a> e = new g();
     public static volatile j0.k.b<Subscription, Subscription> g = new h();
     public static volatile j0.k.b<Action0, Action0> f = new i();
     public static volatile j0.k.b<Throwable, Throwable> h = new j();
-    public static volatile j0.k.b<Observable$b, Observable$b> i = new k();
+    public static volatile j0.k.b<Observable.b, Observable.b> i = new k();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static volatile j0.k.b<Observable$a, Observable$a> f3801b = new c();
-    public static volatile j0.k.b<h$a, h$a> c = new d();
-    public static volatile j0.k.b<d$a, d$a> d = new e();
+    public static volatile j0.k.b<Observable.a, Observable.a> f3801b = new c();
+    public static volatile j0.k.b<j0.h.a, j0.h.a> c = new d();
+    public static volatile j0.k.b<j0.d.a, j0.d.a> d = new e();
 
-    public static <T> Observable$a<T> a(Observable$a<T> observable$a) {
-        j0.k.b<Observable$a, Observable$a> bVar = f3801b;
-        return bVar != null ? bVar.call(observable$a) : observable$a;
+    public static <T> Observable.a<T> a(Observable.a<T> aVar) {
+        j0.k.b<Observable.a, Observable.a> bVar = f3801b;
+        return bVar != null ? bVar.call(aVar) : aVar;
     }
 
     public static void b(Throwable th) {

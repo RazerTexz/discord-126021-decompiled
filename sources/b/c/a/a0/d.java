@@ -8,19 +8,17 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Drawable$Callback;
 import android.graphics.drawable.StateListDrawable;
 import android.media.MediaFormat;
 import android.net.Uri;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
-import android.os.PowerManager$WakeLock;
+import android.os.PowerManager;
 import android.os.Process;
 import android.os.Trace;
 import android.text.Spannable;
@@ -39,13 +37,6 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.text.TextUtilsCompat;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
-import b.g.a.a.p$a;
-import b.i.a.b.i.d$b;
-import b.i.a.c.b3.b$b;
-import b.i.a.c.f3.t$a;
-import b.i.a.c.g3.z.h$a;
-import b.i.a.c.g3.z.h$b;
-import b.i.a.c.x2.o$a;
 import com.adjust.sdk.Constants;
 import com.discord.api.stageinstance.StageInstance;
 import com.discord.api.stageinstance.StageInstancePrivacyLevel;
@@ -65,7 +56,7 @@ import com.facebook.common.file.FileUtils$ParentDirNotFoundException;
 import com.facebook.common.file.FileUtils$RenameException;
 import com.facebook.common.references.CloseableReference;
 import com.facebook.datasource.DataSource;
-import com.facebook.drawee.R$a;
+import com.facebook.drawee.R;
 import com.facebook.drawee.drawable.ScalingUtils$ScaleType;
 import com.facebook.soloader.SysUtil$LollipopSysdeps;
 import com.facebook.soloader.SysUtil$MarshmallowSysdeps;
@@ -138,6 +129,39 @@ public class d {
 
     @Nullable
     public static Boolean f;
+
+    /* JADX INFO: compiled from: ArrayBuilders.java */
+    /* JADX INFO: loaded from: classes3.dex */
+    public final class a {
+        public final /* synthetic */ Class a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final /* synthetic */ int f330b;
+        public final /* synthetic */ Object c;
+
+        public a(Class cls, int i, Object obj) {
+            this.a = cls;
+            this.f330b = i;
+            this.c = obj;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!b.g.a.c.i0.d.o(obj, this.a) || Array.getLength(obj) != this.f330b) {
+                return false;
+            }
+            for (int i = 0; i < this.f330b; i++) {
+                Object obj2 = Array.get(this.c, i);
+                Object obj3 = Array.get(obj, i);
+                if (obj2 != obj3 && obj2 != null && !obj2.equals(obj3)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
 
     @NonNull
     @EnsuresNonNull({"#1"})
@@ -301,7 +325,7 @@ public class d {
     }
 
     public static String[] C0() {
-        return Build$VERSION.SDK_INT >= 23 ? SysUtil$MarshmallowSysdeps.getSupportedAbis() : SysUtil$LollipopSysdeps.getSupportedAbis();
+        return Build.VERSION.SDK_INT >= 23 ? SysUtil$MarshmallowSysdeps.getSupportedAbis() : SysUtil$LollipopSysdeps.getSupportedAbis();
     }
 
     public static void C1(FileChannel fileChannel, ByteBuffer byteBuffer, int i, long j) throws IOException {
@@ -565,7 +589,7 @@ public class d {
         Log.i(D0(str), str2);
     }
 
-    public static o$a L1(b.i.a.c.f3.x xVar) {
+    public static b.i.a.c.x2.o.a L1(b.i.a.c.f3.x xVar) {
         xVar.F(1);
         int iV = xVar.v();
         long j = ((long) xVar.f984b) + ((long) iV);
@@ -584,7 +608,7 @@ public class d {
             xVar.F(2);
         }
         xVar.F((int) (j - ((long) xVar.f984b)));
-        return new o$a(jArrCopyOf, jArrCopyOf2);
+        return new b.i.a.c.x2.o.a(jArrCopyOf, jArrCopyOf2);
     }
 
     @RecentlyNonNull
@@ -670,7 +694,7 @@ public class d {
         List<String> list = map.get("Content-Type");
         String str = (list == null || list.isEmpty()) ? null : list.get(0);
         if (str != null) {
-            ArrayList<t$a> arrayList = b.i.a.c.f3.t.a;
+            ArrayList<b.i.a.c.f3.t.a> arrayList = b.i.a.c.f3.t.a;
             int iHashCode = str.hashCode();
             if (iHashCode != -1007807498) {
                 if (iHashCode != -586683234) {
@@ -740,15 +764,15 @@ public class d {
         return -1;
     }
 
-    public static void O1(b$b b_b) {
-        b_b.k = -3.4028235E38f;
-        b_b.j = Integer.MIN_VALUE;
-        CharSequence charSequence = b_b.a;
+    public static void O1(b.i.a.c.b3.b.C0093b c0093b) {
+        c0093b.k = -3.4028235E38f;
+        c0093b.j = Integer.MIN_VALUE;
+        CharSequence charSequence = c0093b.a;
         if (charSequence instanceof Spanned) {
             if (!(charSequence instanceof Spannable)) {
-                b_b.a = SpannableString.valueOf(charSequence);
+                c0093b.a = SpannableString.valueOf(charSequence);
             }
-            CharSequence charSequence2 = b_b.a;
+            CharSequence charSequence2 = c0093b.a;
             Objects.requireNonNull(charSequence2);
             P1((Spannable) charSequence2, b.i.a.c.d3.h.a);
         }
@@ -822,13 +846,13 @@ public class d {
     }
 
     @RecentlyNonNull
-    public static <T extends Parcelable> T Q(@RecentlyNonNull Parcel parcel, int i, @RecentlyNonNull Parcelable$Creator<T> parcelable$Creator) {
+    public static <T extends Parcelable> T Q(@RecentlyNonNull Parcel parcel, int i, @RecentlyNonNull Parcelable.Creator<T> creator) {
         int iM1 = M1(parcel, i);
         int iDataPosition = parcel.dataPosition();
         if (iM1 == 0) {
             return null;
         }
-        T tCreateFromParcel = parcelable$Creator.createFromParcel(parcel);
+        T tCreateFromParcel = creator.createFromParcel(parcel);
         parcel.setDataPosition(iDataPosition + iM1);
         return tCreateFromParcel;
     }
@@ -978,13 +1002,13 @@ public class d {
     }
 
     @RecentlyNonNull
-    public static <T> T[] U(@RecentlyNonNull Parcel parcel, int i, @RecentlyNonNull Parcelable$Creator<T> parcelable$Creator) {
+    public static <T> T[] U(@RecentlyNonNull Parcel parcel, int i, @RecentlyNonNull Parcelable.Creator<T> creator) {
         int iM1 = M1(parcel, i);
         int iDataPosition = parcel.dataPosition();
         if (iM1 == 0) {
             return null;
         }
-        T[] tArr = (T[]) parcel.createTypedArray(parcelable$Creator);
+        T[] tArr = (T[]) parcel.createTypedArray(creator);
         parcel.setDataPosition(iDataPosition + iM1);
         return tArr;
     }
@@ -1014,13 +1038,13 @@ public class d {
     }
 
     @RecentlyNonNull
-    public static <T> ArrayList<T> V(@RecentlyNonNull Parcel parcel, int i, @RecentlyNonNull Parcelable$Creator<T> parcelable$Creator) {
+    public static <T> ArrayList<T> V(@RecentlyNonNull Parcel parcel, int i, @RecentlyNonNull Parcelable.Creator<T> creator) {
         int iM1 = M1(parcel, i);
         int iDataPosition = parcel.dataPosition();
         if (iM1 == 0) {
             return null;
         }
-        ArrayList<T> arrayListCreateTypedArrayList = parcel.createTypedArrayList(parcelable$Creator);
+        ArrayList<T> arrayListCreateTypedArrayList = parcel.createTypedArrayList(creator);
         parcel.setDataPosition(iDataPosition + iM1);
         return arrayListCreateTypedArrayList;
     }
@@ -1045,12 +1069,12 @@ public class d {
         }
         do {
             r0 = (TResult) bVar.a(tinput);
-            b.i.a.b.i.d$a d_a = (b.i.a.b.i.d$a) tinput;
-            d$b d_b = (d$b) r0;
-            URL url = d_b.f746b;
+            b.i.a.b.i.d.a aVar2 = (b.i.a.b.i.d.a) tinput;
+            b.i.a.b.i.d.b bVar2 = (b.i.a.b.i.d.b) r0;
+            URL url = bVar2.f746b;
             if (url != null) {
                 X("CctTransportBackend", "Following redirect to: %s", url);
-                tinput = (TInput) new b.i.a.b.i.d$a(d_b.f746b, d_a.f745b, d_a.c);
+                tinput = (TInput) new b.i.a.b.i.d.a(bVar2.f746b, aVar2.f745b, aVar2.c);
             } else {
                 tinput = 0;
             }
@@ -1094,9 +1118,9 @@ public class d {
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    public static void X1(Drawable drawable, Drawable$Callback drawable$Callback, b.f.g.e.e0 e0Var) {
+    public static void X1(Drawable drawable, Drawable.Callback callback, b.f.g.e.e0 e0Var) {
         if (drawable != 0) {
-            drawable.setCallback(drawable$Callback);
+            drawable.setCallback(callback);
             if (drawable instanceof b.f.g.e.d0) {
                 ((b.f.g.e.d0) drawable).b(e0Var);
             }
@@ -1251,7 +1275,7 @@ public class d {
         if (!Z0(context)) {
             return false;
         }
-        if (!(Build$VERSION.SDK_INT >= 24)) {
+        if (!(Build.VERSION.SDK_INT >= 24)) {
             return true;
         }
         if (d == null) {
@@ -1855,7 +1879,7 @@ public class d {
         Context context2 = context;
         int i3 = 1;
         if (attributeSet != null) {
-            TypedArray typedArrayObtainStyledAttributes = context2.obtainStyledAttributes(attributeSet, R$a.GenericDraweeHierarchy);
+            TypedArray typedArrayObtainStyledAttributes = context2.obtainStyledAttributes(attributeSet, R.a.GenericDraweeHierarchy);
             try {
                 int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
                 int i4 = 0;
@@ -1871,12 +1895,12 @@ public class d {
                 boolean z17 = true;
                 while (i4 < indexCount) {
                     int index = typedArrayObtainStyledAttributes.getIndex(i4);
-                    if (index == R$a.GenericDraweeHierarchy_actualImageScaleType) {
+                    if (index == R.a.GenericDraweeHierarchy_actualImageScaleType) {
                         aVar.n = A0(typedArrayObtainStyledAttributes, index);
-                    } else if (index == R$a.GenericDraweeHierarchy_placeholderImage) {
+                    } else if (index == R.a.GenericDraweeHierarchy_placeholderImage) {
                         aVar.f = u0(context2, typedArrayObtainStyledAttributes, index);
                     } else {
-                        if (index == R$a.GenericDraweeHierarchy_pressedStateOverlayImage) {
+                        if (index == R.a.GenericDraweeHierarchy_pressedStateOverlayImage) {
                             Drawable drawableU0 = u0(context2, typedArrayObtainStyledAttributes, index);
                             if (drawableU0 == null) {
                                 aVar.q = null;
@@ -1890,67 +1914,67 @@ public class d {
                             }
                         } else {
                             i2 = indexCount;
-                            if (index == R$a.GenericDraweeHierarchy_progressBarImage) {
+                            if (index == R.a.GenericDraweeHierarchy_progressBarImage) {
                                 aVar.l = u0(context2, typedArrayObtainStyledAttributes, index);
-                            } else if (index == R$a.GenericDraweeHierarchy_fadeDuration) {
+                            } else if (index == R.a.GenericDraweeHierarchy_fadeDuration) {
                                 aVar.d = typedArrayObtainStyledAttributes.getInt(index, 0);
-                            } else if (index == R$a.GenericDraweeHierarchy_viewAspectRatio) {
+                            } else if (index == R.a.GenericDraweeHierarchy_viewAspectRatio) {
                                 aVar.e = typedArrayObtainStyledAttributes.getFloat(index, 0.0f);
-                            } else if (index == R$a.GenericDraweeHierarchy_placeholderImageScaleType) {
+                            } else if (index == R.a.GenericDraweeHierarchy_placeholderImageScaleType) {
                                 aVar.g = A0(typedArrayObtainStyledAttributes, index);
-                            } else if (index == R$a.GenericDraweeHierarchy_retryImage) {
+                            } else if (index == R.a.GenericDraweeHierarchy_retryImage) {
                                 aVar.h = u0(context2, typedArrayObtainStyledAttributes, index);
-                            } else if (index == R$a.GenericDraweeHierarchy_retryImageScaleType) {
+                            } else if (index == R.a.GenericDraweeHierarchy_retryImageScaleType) {
                                 aVar.i = A0(typedArrayObtainStyledAttributes, index);
-                            } else if (index == R$a.GenericDraweeHierarchy_failureImage) {
+                            } else if (index == R.a.GenericDraweeHierarchy_failureImage) {
                                 aVar.j = u0(context2, typedArrayObtainStyledAttributes, index);
-                            } else if (index == R$a.GenericDraweeHierarchy_failureImageScaleType) {
+                            } else if (index == R.a.GenericDraweeHierarchy_failureImageScaleType) {
                                 aVar.k = A0(typedArrayObtainStyledAttributes, index);
-                            } else if (index == R$a.GenericDraweeHierarchy_progressBarImageScaleType) {
+                            } else if (index == R.a.GenericDraweeHierarchy_progressBarImageScaleType) {
                                 aVar.m = A0(typedArrayObtainStyledAttributes, index);
                             } else {
-                                if (index == R$a.GenericDraweeHierarchy_progressBarAutoRotateInterval) {
+                                if (index == R.a.GenericDraweeHierarchy_progressBarAutoRotateInterval) {
                                     integer = typedArrayObtainStyledAttributes.getInteger(index, integer);
-                                } else if (index == R$a.GenericDraweeHierarchy_backgroundImage) {
+                                } else if (index == R.a.GenericDraweeHierarchy_backgroundImage) {
                                     aVar.o = u0(context2, typedArrayObtainStyledAttributes, index);
-                                } else if (index == R$a.GenericDraweeHierarchy_overlayImage) {
+                                } else if (index == R.a.GenericDraweeHierarchy_overlayImage) {
                                     aVar.b(u0(context2, typedArrayObtainStyledAttributes, index));
-                                } else if (index == R$a.GenericDraweeHierarchy_roundAsCircle) {
+                                } else if (index == R.a.GenericDraweeHierarchy_roundAsCircle) {
                                     if (aVar.r == null) {
                                         aVar.r = new b.f.g.f.c();
                                     }
                                     aVar.r.f523b = typedArrayObtainStyledAttributes.getBoolean(index, false);
-                                } else if (index == R$a.GenericDraweeHierarchy_roundedCornerRadius) {
+                                } else if (index == R.a.GenericDraweeHierarchy_roundedCornerRadius) {
                                     dimensionPixelSize = typedArrayObtainStyledAttributes.getDimensionPixelSize(index, dimensionPixelSize);
-                                } else if (index == R$a.GenericDraweeHierarchy_roundTopLeft) {
+                                } else if (index == R.a.GenericDraweeHierarchy_roundTopLeft) {
                                     z10 = typedArrayObtainStyledAttributes.getBoolean(index, z10);
                                 } else {
-                                    if (index == R$a.GenericDraweeHierarchy_roundTopRight) {
+                                    if (index == R.a.GenericDraweeHierarchy_roundTopRight) {
                                         z13 = typedArrayObtainStyledAttributes.getBoolean(index, z13);
                                     } else {
-                                        if (index == R$a.GenericDraweeHierarchy_roundBottomLeft) {
+                                        if (index == R.a.GenericDraweeHierarchy_roundBottomLeft) {
                                             z8 = typedArrayObtainStyledAttributes.getBoolean(index, z17);
                                         } else {
                                             z8 = z17;
-                                            if (index == R$a.GenericDraweeHierarchy_roundBottomRight) {
+                                            if (index == R.a.GenericDraweeHierarchy_roundBottomRight) {
                                                 z14 = typedArrayObtainStyledAttributes.getBoolean(index, z14);
-                                            } else if (index == R$a.GenericDraweeHierarchy_roundTopStart) {
+                                            } else if (index == R.a.GenericDraweeHierarchy_roundTopStart) {
                                                 z11 = typedArrayObtainStyledAttributes.getBoolean(index, z11);
-                                            } else if (index == R$a.GenericDraweeHierarchy_roundTopEnd) {
+                                            } else if (index == R.a.GenericDraweeHierarchy_roundTopEnd) {
                                                 z12 = typedArrayObtainStyledAttributes.getBoolean(index, z12);
                                             } else {
-                                                if (index == R$a.GenericDraweeHierarchy_roundBottomStart) {
+                                                if (index == R.a.GenericDraweeHierarchy_roundBottomStart) {
                                                     z9 = typedArrayObtainStyledAttributes.getBoolean(index, z16);
                                                 } else {
                                                     z9 = z16;
-                                                    if (index == R$a.GenericDraweeHierarchy_roundBottomEnd) {
+                                                    if (index == R.a.GenericDraweeHierarchy_roundBottomEnd) {
                                                         z15 = typedArrayObtainStyledAttributes.getBoolean(index, z15);
-                                                    } else if (index == R$a.GenericDraweeHierarchy_roundWithOverlayColor) {
+                                                    } else if (index == R.a.GenericDraweeHierarchy_roundWithOverlayColor) {
                                                         if (aVar.r == null) {
                                                             aVar.r = new b.f.g.f.c();
                                                         }
                                                         aVar.r.b(typedArrayObtainStyledAttributes.getColor(index, 0));
-                                                    } else if (index == R$a.GenericDraweeHierarchy_roundingBorderWidth) {
+                                                    } else if (index == R.a.GenericDraweeHierarchy_roundingBorderWidth) {
                                                         if (aVar.r == null) {
                                                             aVar.r = new b.f.g.f.c();
                                                         }
@@ -1961,12 +1985,12 @@ public class d {
                                                         cVar.e = dimensionPixelSize2;
                                                     } else {
                                                         dimensionPixelSize = dimensionPixelSize;
-                                                        if (index == R$a.GenericDraweeHierarchy_roundingBorderColor) {
+                                                        if (index == R.a.GenericDraweeHierarchy_roundingBorderColor) {
                                                             if (aVar.r == null) {
                                                                 aVar.r = new b.f.g.f.c();
                                                             }
                                                             aVar.r.f = typedArrayObtainStyledAttributes.getColor(index, 0);
-                                                        } else if (index == R$a.GenericDraweeHierarchy_roundingBorderPadding) {
+                                                        } else if (index == R.a.GenericDraweeHierarchy_roundingBorderPadding) {
                                                             if (aVar.r == null) {
                                                                 aVar.r = new b.f.g.f.c();
                                                             }
@@ -2283,7 +2307,7 @@ public class d {
     }
 
     public static Object q0(Object obj) {
-        return new d$a(obj.getClass(), Array.getLength(obj), obj);
+        return new a(obj.getClass(), Array.getLength(obj), obj);
     }
 
     public static b.c.a.y.k.b q1(b.c.a.a0.i0.c cVar, b.c.a.d dVar) throws IOException {
@@ -2398,7 +2422,7 @@ public class d {
         Class<?> clsV = b.g.a.c.i0.d.v(cls);
         if (clsV == null) {
             if (jVar.v() || jVar.b()) {
-                return p$a.NON_EMPTY;
+                return b.g.a.a.p.a.NON_EMPTY;
             }
             if (cls == String.class) {
                 return "";
@@ -2442,11 +2466,11 @@ public class d {
 
     /* JADX WARN: Code duplicated, block: B:35:0x007f  */
     @Nullable
-    public static ArrayList<h$a> t1(b.i.a.c.f3.x xVar) {
-        ArrayList<h$a> arrayList;
+    public static ArrayList<b.i.a.c.g3.z.h.a> t1(b.i.a.c.f3.x xVar) {
+        ArrayList<b.i.a.c.g3.z.h.a> arrayList;
         int i;
-        ArrayList<h$a> arrayList2;
-        h$a h_a;
+        ArrayList<b.i.a.c.g3.z.h.a> arrayList2;
+        b.i.a.c.g3.z.h.a aVar;
         b.i.a.c.f3.x xVar2 = xVar;
         if (xVar.t() != 0) {
             return null;
@@ -2470,7 +2494,7 @@ public class d {
         } else if (iF != 1918990112) {
             return null;
         }
-        ArrayList<h$a> arrayList3 = new ArrayList<>();
+        ArrayList<b.i.a.c.g3.z.h.a> arrayList3 = new ArrayList<>();
         int i2 = xVar2.f984b;
         int i3 = xVar2.c;
         while (i2 < i3) {
@@ -2481,7 +2505,7 @@ public class d {
                     if (iF3 > 10000) {
                         arrayList2 = arrayList3;
                         i = i3;
-                        h_a = null;
+                        aVar = null;
                     } else {
                         float[] fArr = new float[iF3];
                         for (int i4 = 0; i4 < iF3; i4++) {
@@ -2525,7 +2549,7 @@ public class d {
                                     wVar.k((wVar.e() + 7) & (-8));
                                     int i11 = 32;
                                     int iG2 = wVar.g(32);
-                                    h$b[] h_bArr = new h$b[iG2];
+                                    b.i.a.c.g3.z.h.b[] bVarArr = new b.i.a.c.g3.z.h.b[iG2];
                                     int i12 = 0;
                                     while (true) {
                                         if (i12 < iG2) {
@@ -2564,7 +2588,7 @@ public class d {
                                                             wVar = wVar2;
                                                         }
                                                     } else {
-                                                        h_bArr[i12] = new h$b(iG3, fArr3, fArr4, iG4);
+                                                        bVarArr[i12] = new b.i.a.c.g3.z.h.b(iG3, fArr3, fArr4, iG4);
                                                         i12++;
                                                         i3 = i;
                                                         iG2 = iG2;
@@ -2572,21 +2596,21 @@ public class d {
                                                     }
                                                 }
                                             }
-                                            h_a = null;
+                                            aVar = null;
                                         } else {
                                             i = i3;
-                                            h_a = new h$a(h_bArr);
+                                            aVar = new b.i.a.c.g3.z.h.a(bVarArr);
                                         }
                                     }
                                 }
                             }
                         }
                         i = i3;
-                        h_a = null;
+                        aVar = null;
                     }
-                    if (h_a != null) {
+                    if (aVar != null) {
                         arrayList = arrayList2;
-                        arrayList.add(h_a);
+                        arrayList.add(aVar);
                     }
                 } else {
                     arrayList = arrayList3;
@@ -2654,8 +2678,8 @@ public class d {
     }
 
     @RecentlyNonNull
-    public static String v0(@RecentlyNonNull PowerManager$WakeLock powerManager$WakeLock, @RecentlyNonNull String str) {
-        String strValueOf = String.valueOf(String.valueOf(((long) System.identityHashCode(powerManager$WakeLock)) | (((long) Process.myPid()) << 32)));
+    public static String v0(@RecentlyNonNull PowerManager.WakeLock wakeLock, @RecentlyNonNull String str) {
+        String strValueOf = String.valueOf(String.valueOf(((long) System.identityHashCode(wakeLock)) | (((long) Process.myPid()) << 32)));
         String strValueOf2 = String.valueOf(true == TextUtils.isEmpty(null) ? "" : null);
         return strValueOf2.length() != 0 ? strValueOf.concat(strValueOf2) : new String(strValueOf);
     }

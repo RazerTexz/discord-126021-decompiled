@@ -4,6 +4,7 @@ import b.d.b.a.a;
 import com.discord.api.application.ProfileApplication;
 import com.discord.api.connectedaccounts.ConnectedAccount;
 import com.discord.api.guildmember.GuildMember;
+import com.discord.models.domain.ModelAuditLogEntry;
 import d0.t.n;
 import d0.z.d.m;
 import java.util.List;
@@ -15,16 +16,57 @@ public final /* data */ class UserProfile {
     private final ProfileApplication application;
     private final List<ConnectedAccount> connectedAccounts;
     private final GuildMember guildMember;
-    private final List<UserProfile$GuildReference> mutualGuilds;
+    private final List<GuildReference> mutualGuilds;
     private final String premiumGuildSince;
     private final String premiumSince;
     private final User user;
+
+    /* JADX INFO: compiled from: UserProfile.kt */
+    public final /* data */ class GuildReference {
+        private final long id;
+        private final String nick;
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof GuildReference)) {
+                return false;
+            }
+            GuildReference guildReference = (GuildReference) other;
+            return this.id == guildReference.id && m.areEqual(this.nick, guildReference.nick);
+        }
+
+        /* JADX INFO: renamed from: a, reason: from getter */
+        public final long getId() {
+            return this.id;
+        }
+
+        /* JADX INFO: renamed from: b, reason: from getter */
+        public final String getNick() {
+            return this.nick;
+        }
+
+        public int hashCode() {
+            long j = this.id;
+            int i = ((int) (j ^ (j >>> 32))) * 31;
+            String str = this.nick;
+            return i + (str != null ? str.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("GuildReference(id=");
+            sbU.append(this.id);
+            sbU.append(", nick=");
+            return a.J(sbU, this.nick, ")");
+        }
+    }
 
     public UserProfile() {
         this(null, null, null, null, null, null, null, Opcodes.LAND);
     }
 
-    public UserProfile(List<ConnectedAccount> list, List<UserProfile$GuildReference> list2, User user, String str, String str2, GuildMember guildMember, ProfileApplication profileApplication) {
+    public UserProfile(List<ConnectedAccount> list, List<GuildReference> list2, User user, String str, String str2, GuildMember guildMember, ProfileApplication profileApplication) {
         m.checkNotNullParameter(list, "connectedAccounts");
         m.checkNotNullParameter(list2, "mutualGuilds");
         m.checkNotNullParameter(user, "user");
@@ -41,7 +83,7 @@ public final /* data */ class UserProfile {
         return this.connectedAccounts;
     }
 
-    public final List<UserProfile$GuildReference> d() {
+    public final List<GuildReference> d() {
         return this.mutualGuilds;
     }
 
@@ -84,7 +126,7 @@ public final /* data */ class UserProfile {
     public int hashCode() {
         List<ConnectedAccount> list = this.connectedAccounts;
         int iHashCode = (list != null ? list.hashCode() : 0) * 31;
-        List<UserProfile$GuildReference> list2 = this.mutualGuilds;
+        List<GuildReference> list2 = this.mutualGuilds;
         int iHashCode2 = (iHashCode + (list2 != null ? list2.hashCode() : 0)) * 31;
         User user = this.user;
         int iHashCode3 = (iHashCode2 + (user != null ? user.hashCode() : 0)) * 31;

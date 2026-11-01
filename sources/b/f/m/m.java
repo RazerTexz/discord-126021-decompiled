@@ -2,10 +2,12 @@ package b.f.m;
 
 import android.content.Context;
 import android.os.Parcel;
-import android.os.StrictMode$ThreadPolicy;
+import android.os.StrictMode;
 import android.util.Log;
 import com.discord.widgets.chat.input.autocomplete.AutocompleteViewModel;
 import com.facebook.soloader.SysUtil$LollipopSysdeps;
+import java.io.Closeable;
+import java.io.DataInput;
 import java.io.EOFException;
 import java.io.File;
 import java.io.IOException;
@@ -14,13 +16,170 @@ import java.io.RandomAccessFile;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /* JADX INFO: compiled from: UnpackingSoSource.java */
 /* JADX INFO: loaded from: classes3.dex */
-public abstract class m extends c {
+public abstract class m extends b.f.m.c {
     public final Context c;
     public String d;
     public final Map<String, Object> e;
+
+    /* JADX INFO: compiled from: UnpackingSoSource.java */
+    public class a implements Runnable {
+        public final /* synthetic */ File j;
+        public final /* synthetic */ byte[] k;
+        public final /* synthetic */ c l;
+        public final /* synthetic */ File m;
+        public final /* synthetic */ g n;
+
+        public a(File file, byte[] bArr, c cVar, File file2, g gVar) {
+            this.j = file;
+            this.k = bArr;
+            this.l = cVar;
+            this.m = file2;
+            this.n = gVar;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            try {
+                try {
+                    Log.v("fb-UnpackingSoSource", "starting syncer worker");
+                    RandomAccessFile randomAccessFile = new RandomAccessFile(this.j, "rw");
+                    try {
+                        randomAccessFile.write(this.k);
+                        randomAccessFile.setLength(randomAccessFile.getFilePointer());
+                        randomAccessFile.close();
+                        RandomAccessFile randomAccessFile2 = new RandomAccessFile(new File(m.this.a, "dso_manifest"), "rw");
+                        try {
+                            c cVar = this.l;
+                            Objects.requireNonNull(cVar);
+                            randomAccessFile2.writeByte(1);
+                            randomAccessFile2.writeInt(cVar.a.length);
+                            int i = 0;
+                            while (true) {
+                                b[] bVarArr = cVar.a;
+                                if (i >= bVarArr.length) {
+                                    randomAccessFile2.close();
+                                    b.c.a.a0.d.m0(m.this.a);
+                                    m.l(this.m, (byte) 1);
+                                    Log.v("fb-UnpackingSoSource", "releasing dso store lock for " + m.this.a + " (from syncer thread)");
+                                    this.n.close();
+                                    return;
+                                }
+                                randomAccessFile2.writeUTF(bVarArr[i].j);
+                                randomAccessFile2.writeUTF(cVar.a[i].k);
+                                i++;
+                                throw new RuntimeException(e);
+                            }
+                        } catch (Throwable th) {
+                            try {
+                                throw th;
+                            } catch (Throwable th2) {
+                                try {
+                                    randomAccessFile2.close();
+                                } catch (Throwable th3) {
+                                    th.addSuppressed(th3);
+                                }
+                                throw th2;
+                            }
+                        }
+                    } catch (Throwable th4) {
+                        try {
+                            throw th4;
+                        } catch (Throwable th5) {
+                            try {
+                                randomAccessFile.close();
+                            } catch (Throwable th6) {
+                                th4.addSuppressed(th6);
+                            }
+                            throw th5;
+                        }
+                    }
+                } catch (Throwable th7) {
+                    Log.v("fb-UnpackingSoSource", "releasing dso store lock for " + m.this.a + " (from syncer thread)");
+                    this.n.close();
+                    throw th7;
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: UnpackingSoSource.java */
+    public class b {
+        public final String j;
+        public final String k;
+
+        public b(String str, String str2) {
+            this.j = str;
+            this.k = str2;
+        }
+    }
+
+    /* JADX INFO: compiled from: UnpackingSoSource.java */
+    public final class c {
+        public final b[] a;
+
+        public c(b[] bVarArr) {
+            this.a = bVarArr;
+        }
+
+        public static final c a(DataInput dataInput) throws IOException {
+            if (dataInput.readByte() != 1) {
+                throw new RuntimeException("wrong dso manifest version");
+            }
+            int i = dataInput.readInt();
+            if (i < 0) {
+                throw new RuntimeException("illegal number of shared libraries");
+            }
+            b[] bVarArr = new b[i];
+            for (int i2 = 0; i2 < i; i2++) {
+                bVarArr[i2] = new b(dataInput.readUTF(), dataInput.readUTF());
+            }
+            return new c(bVarArr);
+        }
+    }
+
+    /* JADX INFO: compiled from: UnpackingSoSource.java */
+    public final class d implements Closeable {
+        public final b j;
+        public final InputStream k;
+
+        public d(b bVar, InputStream inputStream) {
+            this.j = bVar;
+            this.k = inputStream;
+        }
+
+        @Override // java.io.Closeable, java.lang.AutoCloseable
+        public void close() throws IOException {
+            this.k.close();
+        }
+    }
+
+    /* JADX INFO: compiled from: UnpackingSoSource.java */
+    public abstract class e implements Closeable {
+        public abstract boolean a();
+
+        public abstract d b() throws IOException;
+
+        @Override // java.io.Closeable, java.lang.AutoCloseable
+        public void close() throws IOException {
+        }
+    }
+
+    /* JADX INFO: compiled from: UnpackingSoSource.java */
+    public abstract class f implements Closeable {
+        public abstract c a() throws IOException;
+
+        public abstract e b() throws IOException;
+
+        @Override // java.io.Closeable, java.lang.AutoCloseable
+        public void close() throws IOException {
+        }
+    }
 
     public m(Context context, String str) {
         super(new File(b.d.b.a.a.K(new StringBuilder(), context.getApplicationInfo().dataDir, AutocompleteViewModel.COMMAND_DISCOVER_TOKEN, str)), 1);
@@ -29,10 +188,10 @@ public abstract class m extends c {
     }
 
     @Override // b.f.m.c, b.f.m.l
-    public int a(String str, int i, StrictMode$ThreadPolicy strictMode$ThreadPolicy) throws IOException {
+    public int a(String str, int i, StrictMode.ThreadPolicy threadPolicy) throws IOException {
         int iC;
         synchronized (h(str)) {
-            iC = c(str, i, this.a, strictMode$ThreadPolicy);
+            iC = c(str, i, this.a, threadPolicy);
         }
         return iC;
     }
@@ -71,7 +230,7 @@ public abstract class m extends c {
         }
     }
 
-    public final void d(m$b[] m_bArr) throws IOException {
+    public final void d(b[] bVarArr) throws IOException {
         String[] list = this.a.list();
         if (list == null) {
             StringBuilder sbU = b.d.b.a.a.U("unable to list directory ");
@@ -81,8 +240,8 @@ public abstract class m extends c {
         for (String str : list) {
             if (!str.equals("dso_state") && !str.equals("dso_lock") && !str.equals("dso_deps") && !str.equals("dso_manifest")) {
                 boolean z2 = false;
-                for (int i = 0; !z2 && i < m_bArr.length; i++) {
-                    if (m_bArr[i].j.equals(str)) {
+                for (int i = 0; !z2 && i < bVarArr.length; i++) {
+                    if (bVarArr[i].j.equals(str)) {
                         z2 = true;
                     }
                 }
@@ -95,15 +254,15 @@ public abstract class m extends c {
         }
     }
 
-    public final void e(m$d m_d, byte[] bArr) throws IOException {
+    public final void e(d dVar, byte[] bArr) throws IOException {
         StringBuilder sbU = b.d.b.a.a.U("extracting DSO ");
-        sbU.append(m_d.j.j);
+        sbU.append(dVar.j.j);
         Log.i("fb-UnpackingSoSource", sbU.toString());
         try {
             if (!this.a.setWritable(true)) {
                 throw new IOException("cannot make directory writable for us: " + this.a);
             }
-            f(m_d, bArr);
+            f(dVar, bArr);
             if (this.a.setWritable(false)) {
                 return;
             }
@@ -125,9 +284,9 @@ public abstract class m extends c {
     /* JADX WARN: Code duplicated, block: B:36:0x00db  */
     /* JADX WARN: Code duplicated, block: B:38:0x00f2  */
     /* JADX WARN: Instruction removed from duplicated block: B:36:0x00db, please report this as an issue */
-    public final void f(m$d m_d, byte[] bArr) throws IOException {
+    public final void f(d dVar, byte[] bArr) throws IOException {
         RandomAccessFile randomAccessFile;
-        File file = new File(this.a, m_d.j.j);
+        File file = new File(this.a, dVar.j.j);
         RandomAccessFile randomAccessFile2 = null;
         try {
             try {
@@ -136,17 +295,17 @@ public abstract class m extends c {
                 }
                 try {
                     randomAccessFile = new RandomAccessFile(file, "rw");
-                } catch (IOException e) {
-                    Log.w("fb-UnpackingSoSource", "error overwriting " + file + " trying to delete and start over", e);
+                } catch (IOException e2) {
+                    Log.w("fb-UnpackingSoSource", "error overwriting " + file + " trying to delete and start over", e2);
                     b.c.a.a0.d.b0(file);
                     randomAccessFile = new RandomAccessFile(file, "rw");
                 }
                 randomAccessFile2 = randomAccessFile;
-                int iAvailable = m_d.k.available();
+                int iAvailable = dVar.k.available();
                 if (iAvailable > 1) {
                     SysUtil$LollipopSysdeps.fallocateIfSupported(randomAccessFile2.getFD(), iAvailable);
                 }
-                InputStream inputStream = m_d.k;
+                InputStream inputStream = dVar.k;
                 int i = 0;
                 while (i < Integer.MAX_VALUE) {
                     int i2 = inputStream.read(bArr, 0, Math.min(bArr.length, Integer.MAX_VALUE - i));
@@ -165,9 +324,9 @@ public abstract class m extends c {
                 }
                 randomAccessFile2.close();
                 return;
-            } catch (IOException e2) {
+            } catch (IOException e3) {
                 b.c.a.a0.d.b0(file);
-                throw e2;
+                throw e3;
             }
         } catch (Throwable th) {
             if (!file.setWritable(false)) {
@@ -189,16 +348,16 @@ public abstract class m extends c {
 
     public byte[] g() throws IOException {
         Parcel parcelObtain = Parcel.obtain();
-        m$f m_fI = i();
+        f fVarI = i();
         try {
-            m$b[] m_bArr = m_fI.a().a;
+            b[] bVarArr = fVarI.a().a;
             parcelObtain.writeByte((byte) 1);
-            parcelObtain.writeInt(m_bArr.length);
-            for (int i = 0; i < m_bArr.length; i++) {
-                parcelObtain.writeString(m_bArr[i].j);
-                parcelObtain.writeString(m_bArr[i].k);
+            parcelObtain.writeInt(bVarArr.length);
+            for (int i = 0; i < bVarArr.length; i++) {
+                parcelObtain.writeString(bVarArr[i].j);
+                parcelObtain.writeString(bVarArr[i].k);
             }
-            m_fI.close();
+            fVarI.close();
             byte[] bArrMarshall = parcelObtain.marshall();
             parcelObtain.recycle();
             return bArrMarshall;
@@ -206,9 +365,9 @@ public abstract class m extends c {
             try {
                 throw th;
             } catch (Throwable th2) {
-                if (m_fI != null) {
+                if (fVarI != null) {
                     try {
-                        m_fI.close();
+                        fVarI.close();
                     } catch (Throwable th3) {
                         th.addSuppressed(th3);
                     }
@@ -230,7 +389,7 @@ public abstract class m extends c {
         return obj;
     }
 
-    public abstract m$f i() throws IOException;
+    public abstract f i() throws IOException;
 
     public final boolean j(g gVar, int i, byte[] bArr) throws IOException {
         byte b2;
@@ -257,7 +416,7 @@ public abstract class m extends c {
         }
         randomAccessFile.close();
         File file2 = new File(this.a, "dso_deps");
-        m$c m_cA = null;
+        c cVarA = null;
         RandomAccessFile randomAccessFile2 = new RandomAccessFile(file2, "rw");
         try {
             int length = (int) randomAccessFile2.length();
@@ -273,12 +432,12 @@ public abstract class m extends c {
             if (b2 == 0 || (i & 2) != 0) {
                 Log.v("fb-UnpackingSoSource", "so store dirty: regenerating");
                 l(file, (byte) 0);
-                m$f m_fI = i();
+                f fVarI = i();
                 try {
-                    m_cA = m_fI.a();
+                    cVarA = fVarI.a();
                     try {
-                        k(b2, m_cA, m_fI.b());
-                        m_fI.close();
+                        k(b2, cVarA, fVarI.b());
+                        fVarI.close();
                     } catch (Throwable th4) {
                         throw th4;
                     }
@@ -286,9 +445,9 @@ public abstract class m extends c {
                     try {
                         throw th5;
                     } catch (Throwable th6) {
-                        if (m_fI != null) {
+                        if (fVarI != null) {
                             try {
-                                m_fI.close();
+                                fVarI.close();
                             } catch (Throwable th7) {
                                 th5.addSuppressed(th7);
                             }
@@ -297,18 +456,18 @@ public abstract class m extends c {
                     }
                 }
             }
-            m$c m_c = m_cA;
+            c cVar = cVarA;
             randomAccessFile2.close();
-            if (m_c == null) {
+            if (cVar == null) {
                 return false;
             }
-            m$a m_a = new m$a(this, file2, bArr, m_c, file, gVar);
+            a aVar = new a(file2, bArr, cVar, file, gVar);
             if ((i & 1) != 0) {
                 StringBuilder sbU = b.d.b.a.a.U("SoSync:");
                 sbU.append(this.a.getName());
-                new Thread(m_a, sbU.toString()).start();
+                new Thread(aVar, sbU.toString()).start();
             } else {
-                m_a.run();
+                aVar.run();
             }
             return true;
         } catch (Throwable th8) {
@@ -325,8 +484,8 @@ public abstract class m extends c {
         }
     }
 
-    public final void k(byte b2, m$c m_c, m$e m_e) throws IOException {
-        m$c m_cA;
+    public final void k(byte b2, c cVar, e eVar) throws IOException {
+        c cVarA;
         StringBuilder sbU = b.d.b.a.a.U("regenerating DSO store ");
         sbU.append(getClass().getName());
         Log.v("fb-UnpackingSoSource", sbU.toString());
@@ -334,30 +493,30 @@ public abstract class m extends c {
         try {
             if (b2 == 1) {
                 try {
-                    m_cA = m$c.a(randomAccessFile);
-                } catch (Exception e) {
-                    Log.i("fb-UnpackingSoSource", "error reading existing DSO manifest", e);
-                    m_cA = null;
+                    cVarA = c.a(randomAccessFile);
+                } catch (Exception e2) {
+                    Log.i("fb-UnpackingSoSource", "error reading existing DSO manifest", e2);
+                    cVarA = null;
                 }
             } else {
-                m_cA = null;
+                cVarA = null;
             }
-            if (m_cA == null) {
-                m_cA = new m$c(new m$b[0]);
+            if (cVarA == null) {
+                cVarA = new c(new b[0]);
             }
-            d(m_c.a);
+            d(cVar.a);
             byte[] bArr = new byte[32768];
-            while (m_e.a()) {
-                m$d m_dB = m_e.b();
+            while (eVar.a()) {
+                d dVarB = eVar.b();
                 boolean z2 = true;
                 int i = 0;
                 while (z2) {
                     try {
-                        m$b[] m_bArr = m_cA.a;
-                        if (i >= m_bArr.length) {
+                        b[] bVarArr = cVarA.a;
+                        if (i >= bVarArr.length) {
                             break;
                         }
-                        if (m_bArr[i].j.equals(m_dB.j.j) && m_cA.a[i].k.equals(m_dB.j.k)) {
+                        if (bVarArr[i].j.equals(dVarB.j.j) && cVarA.a[i].k.equals(dVarB.j.k)) {
                             z2 = false;
                         }
                         i++;
@@ -365,9 +524,9 @@ public abstract class m extends c {
                         try {
                             throw th;
                         } catch (Throwable th2) {
-                            if (m_dB != null) {
+                            if (dVarB != null) {
                                 try {
-                                    m_dB.k.close();
+                                    dVarB.k.close();
                                 } catch (Throwable th3) {
                                     th.addSuppressed(th3);
                                 }
@@ -377,10 +536,10 @@ public abstract class m extends c {
                     }
                 }
                 if (z2) {
-                    e(m_dB, bArr);
+                    e(dVarB, bArr);
                 }
-                if (m_dB != null) {
-                    m_dB.k.close();
+                if (dVarB != null) {
+                    dVarB.k.close();
                 }
             }
             randomAccessFile.close();

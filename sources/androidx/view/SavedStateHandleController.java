@@ -2,6 +2,7 @@ package androidx.view;
 
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import java.util.Iterator;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class SavedStateHandleController implements LifecycleEventObserver {
@@ -9,6 +10,44 @@ public final class SavedStateHandleController implements LifecycleEventObserver 
     private final SavedStateHandle mHandle;
     private final String mKey;
     private boolean mIsAttached = false;
+
+    /* JADX INFO: renamed from: androidx.lifecycle.SavedStateHandleController$1, reason: invalid class name */
+    public class AnonymousClass1 implements LifecycleEventObserver {
+        public final /* synthetic */ Lifecycle val$lifecycle;
+        public final /* synthetic */ SavedStateRegistry val$registry;
+
+        public AnonymousClass1(Lifecycle lifecycle, SavedStateRegistry savedStateRegistry) {
+            this.val$lifecycle = lifecycle;
+            this.val$registry = savedStateRegistry;
+        }
+
+        @Override // androidx.view.LifecycleEventObserver
+        public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event) {
+            if (event == Lifecycle.Event.ON_START) {
+                this.val$lifecycle.removeObserver(this);
+                this.val$registry.runOnNextRecreation(OnRecreation.class);
+            }
+        }
+    }
+
+    public final class OnRecreation implements SavedStateRegistry.AutoRecreated {
+        @Override // androidx.savedstate.SavedStateRegistry.AutoRecreated
+        public void onRecreated(@NonNull SavedStateRegistryOwner savedStateRegistryOwner) {
+            if (!(savedStateRegistryOwner instanceof ViewModelStoreOwner)) {
+                throw new IllegalStateException("Internal error: OnRecreation should be registered only on componentsthat implement ViewModelStoreOwner");
+            }
+            ViewModelStore viewModelStore = ((ViewModelStoreOwner) savedStateRegistryOwner).getViewModelStore();
+            SavedStateRegistry savedStateRegistry = savedStateRegistryOwner.getSavedStateRegistry();
+            Iterator<String> it = viewModelStore.keys().iterator();
+            while (it.hasNext()) {
+                SavedStateHandleController.attachHandleIfNeeded(viewModelStore.get(it.next()), savedStateRegistry, savedStateRegistryOwner.getLifecycle());
+            }
+            if (viewModelStore.keys().isEmpty()) {
+                return;
+            }
+            savedStateRegistry.runOnNextRecreation(OnRecreation.class);
+        }
+    }
 
     public SavedStateHandleController(String str, SavedStateHandle savedStateHandle) {
         this.mKey = str;
@@ -49,19 +88,19 @@ public final class SavedStateHandleController implements LifecycleEventObserver 
     }
 
     @Override // androidx.view.LifecycleEventObserver
-    public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle$Event lifecycle$Event) {
-        if (lifecycle$Event == Lifecycle$Event.ON_DESTROY) {
+    public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event) {
+        if (event == Lifecycle.Event.ON_DESTROY) {
             this.mIsAttached = false;
             lifecycleOwner.getLifecycle().removeObserver(this);
         }
     }
 
     private static void tryToAddRecreator(SavedStateRegistry savedStateRegistry, Lifecycle lifecycle) {
-        Lifecycle$State currentState = lifecycle.getCurrentState();
-        if (currentState == Lifecycle$State.INITIALIZED || currentState.isAtLeast(Lifecycle$State.STARTED)) {
-            savedStateRegistry.runOnNextRecreation(SavedStateHandleController$OnRecreation.class);
+        Lifecycle.State currentState = lifecycle.getCurrentState();
+        if (currentState == Lifecycle.State.INITIALIZED || currentState.isAtLeast(Lifecycle.State.STARTED)) {
+            savedStateRegistry.runOnNextRecreation(OnRecreation.class);
         } else {
-            lifecycle.addObserver(new SavedStateHandleController$1(lifecycle, savedStateRegistry));
+            lifecycle.addObserver(new AnonymousClass1(lifecycle, savedStateRegistry));
         }
     }
 }

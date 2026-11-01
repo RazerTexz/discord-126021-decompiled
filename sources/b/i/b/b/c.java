@@ -17,17 +17,17 @@ public abstract class c<K, V> extends e<K, V> implements b0 {
 
     @Override // b.i.b.b.g, b.i.b.b.b0
     public Map<K, Collection<V>> a() {
-        Map<K, Collection<V>> e_g;
+        Map<K, Collection<V>> gVar;
         Map<K, Collection<V>> map = this.l;
         if (map == null) {
             d0 d0Var = (d0) this;
             Map<K, Collection<V>> map2 = d0Var.m;
             if (map2 instanceof NavigableMap) {
-                e_g = new e$d<>(d0Var, (NavigableMap) d0Var.m);
+                gVar = new e.d((NavigableMap) d0Var.m);
             } else {
-                e_g = map2 instanceof SortedMap ? new e$g<>(d0Var, (SortedMap) d0Var.m) : new e$a<>(d0Var, d0Var.m);
+                gVar = map2 instanceof SortedMap ? new e.g((SortedMap) d0Var.m) : new e.a(d0Var.m);
             }
-            map = e_g;
+            map = gVar;
             this.l = map;
         }
         return map;

@@ -20,12 +20,12 @@ public final class j extends d0.w.i.a.k implements Function2<CoroutineScope, Con
     public final /* synthetic */ Uri $uri;
     public Object L$0;
     public int label;
-    public final /* synthetic */ i$b this$0;
+    public final /* synthetic */ i.b this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public j(i$b i_b, Uri uri, Function1 function1, Continuation continuation) {
+    public j(i.b bVar, Uri uri, Function1 function1, Continuation continuation) {
         super(2, continuation);
-        this.this$0 = i_b;
+        this.this$0 = bVar;
         this.$uri = uri;
         this.$onGenerate = function1;
     }
@@ -45,32 +45,32 @@ public final class j extends d0.w.i.a.k implements Function2<CoroutineScope, Con
 
     @Override // d0.w.i.a.a
     public final Object invokeSuspend(Object obj) throws Throwable {
-        i$b i_b;
+        i.b bVar;
         Object coroutine_suspended = d0.w.h.c.getCOROUTINE_SUSPENDED();
         int i = this.label;
         if (i == 0) {
             d0.l.throwOnFailure(obj);
             this.this$0.f321b = new CancellationSignal();
-            i$b i_b2 = this.this$0;
-            ContentResolver contentResolver = i_b2.d;
+            i.b bVar2 = this.this$0;
+            ContentResolver contentResolver = bVar2.d;
             Uri uri = this.$uri;
-            this.L$0 = i_b2;
+            this.L$0 = bVar2;
             this.label = 1;
-            Objects.requireNonNull(i_b2);
-            Object objC1 = b.i.a.f.e.o.f.C1(k0.f3842b, new k(i_b2, contentResolver, uri, null), this);
+            Objects.requireNonNull(bVar2);
+            Object objC1 = b.i.a.f.e.o.f.C1(k0.f3842b, new k(bVar2, contentResolver, uri, null), this);
             if (objC1 == coroutine_suspended) {
                 return coroutine_suspended;
             }
-            i_b = i_b2;
+            bVar = bVar2;
             obj = objC1;
         } else {
             if (i != 1) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
             }
-            i_b = (i$b) this.L$0;
+            bVar = (i.b) this.L$0;
             d0.l.throwOnFailure(obj);
         }
-        i_b.c = (Bitmap) obj;
+        bVar.c = (Bitmap) obj;
         this.$onGenerate.invoke(this.this$0.c);
         return Unit.a;
     }

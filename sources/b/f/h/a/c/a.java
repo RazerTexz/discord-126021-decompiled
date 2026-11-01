@@ -38,6 +38,20 @@ public class a extends Drawable implements Animatable, b.f.f.a.a {
     public static final Class<?> j = a.class;
     public static final b k = new b();
 
+    /* JADX INFO: renamed from: b.f.h.a.c.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: AnimatedDrawable2.java */
+    public class RunnableC0070a implements Runnable {
+        public RunnableC0070a() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            a aVar = a.this;
+            aVar.unscheduleSelf(aVar.f535z);
+            a.this.invalidateSelf();
+        }
+    }
+
     public a() {
         this(null);
     }
@@ -216,7 +230,7 @@ public class a extends Drawable implements Animatable, b.f.f.a.a {
     public a(b.f.h.a.a.a aVar) {
         this.v = 8L;
         this.f533x = k;
-        this.f535z = new a$a(this);
+        this.f535z = new RunnableC0070a();
         this.l = aVar;
         this.m = aVar == null ? null : new b.f.h.a.e.a(aVar);
     }

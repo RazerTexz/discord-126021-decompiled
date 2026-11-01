@@ -1,5 +1,6 @@
 package com.discord.api.guildrolesubscription;
 
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: PayoutGroupStatus.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -9,8 +10,19 @@ public enum PayoutGroupStatus {
     PAYOUT_CREATED(2),
     CANCELED(3);
 
-    public static final PayoutGroupStatus$Companion Companion = new PayoutGroupStatus$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final int apiValue;
+
+    /* JADX INFO: compiled from: PayoutGroupStatus.kt */
+    public final class Companion {
+        public Companion() {
+        }
+
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
 
     PayoutGroupStatus(int i) {
         this.apiValue = i;

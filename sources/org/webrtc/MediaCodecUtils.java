@@ -2,8 +2,7 @@ package org.webrtc;
 
 import android.annotation.TargetApi;
 import android.media.MediaCodecInfo;
-import android.media.MediaCodecInfo$CodecCapabilities;
-import android.os.Build$VERSION;
+import android.os.Build;
 import androidx.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +22,29 @@ public class MediaCodecUtils {
     public static final int[] DECODER_COLOR_FORMATS = {19, 21, 2141391872, COLOR_QCOM_FORMATYVU420PackedSemiPlanar32m4ka, COLOR_QCOM_FORMATYVU420PackedSemiPlanar16m4ka, COLOR_QCOM_FORMATYVU420PackedSemiPlanar64x32Tile2m8ka, COLOR_QCOM_FORMATYUV420PackedSemiPlanar32m};
     public static final int[] ENCODER_COLOR_FORMATS = {19, 21, 2141391872, COLOR_QCOM_FORMATYUV420PackedSemiPlanar32m};
     public static final int[] TEXTURE_COLOR_FORMATS = getTextureColorFormats();
+
+    /* JADX INFO: renamed from: org.webrtc.MediaCodecUtils$1, reason: invalid class name */
+    public /* synthetic */ class AnonymousClass1 {
+        public static final /* synthetic */ int[] $SwitchMap$org$webrtc$VideoCodecMimeType;
+
+        static {
+            VideoCodecMimeType.values();
+            int[] iArr = new int[3];
+            $SwitchMap$org$webrtc$VideoCodecMimeType = iArr;
+            try {
+                iArr[VideoCodecMimeType.VP8.ordinal()] = 1;
+            } catch (NoSuchFieldError unused) {
+            }
+            try {
+                $SwitchMap$org$webrtc$VideoCodecMimeType[VideoCodecMimeType.VP9.ordinal()] = 2;
+            } catch (NoSuchFieldError unused2) {
+            }
+            try {
+                $SwitchMap$org$webrtc$VideoCodecMimeType[VideoCodecMimeType.H264.ordinal()] = 3;
+            } catch (NoSuchFieldError unused3) {
+            }
+        }
+    }
 
     private MediaCodecUtils() {
     }
@@ -52,7 +74,7 @@ public class MediaCodecUtils {
     }
 
     public static boolean isHardwareAccelerated(MediaCodecInfo mediaCodecInfo) {
-        return Build$VERSION.SDK_INT >= 29 ? isHardwareAcceleratedQOrHigher(mediaCodecInfo) : !isSoftwareOnly(mediaCodecInfo);
+        return Build.VERSION.SDK_INT >= 29 ? isHardwareAcceleratedQOrHigher(mediaCodecInfo) : !isSoftwareOnly(mediaCodecInfo);
     }
 
     @TargetApi(29)
@@ -61,7 +83,7 @@ public class MediaCodecUtils {
     }
 
     public static boolean isSoftwareOnly(MediaCodecInfo mediaCodecInfo) {
-        if (Build$VERSION.SDK_INT >= 29) {
+        if (Build.VERSION.SDK_INT >= 29) {
             return isSoftwareOnlyQOrHigher(mediaCodecInfo);
         }
         String name = mediaCodecInfo.getName();
@@ -79,9 +101,9 @@ public class MediaCodecUtils {
     }
 
     @Nullable
-    public static Integer selectColorFormat(int[] iArr, MediaCodecInfo$CodecCapabilities mediaCodecInfo$CodecCapabilities) {
+    public static Integer selectColorFormat(int[] iArr, MediaCodecInfo.CodecCapabilities codecCapabilities) {
         for (int i : iArr) {
-            for (int i2 : mediaCodecInfo$CodecCapabilities.colorFormats) {
+            for (int i2 : codecCapabilities.colorFormats) {
                 if (i2 == i) {
                     return Integer.valueOf(i2);
                 }

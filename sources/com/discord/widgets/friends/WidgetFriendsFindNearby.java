@@ -5,49 +5,63 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.core.app.NotificationCompat;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.RecyclerView;
+import b.a.d.f;
 import b.a.d.g0;
 import b.a.d.i0;
-import b.a.d.o;
+import b.a.d.m;
+import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
-import com.discord.R$raw;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetFriendsNearbyBinding;
 import com.discord.rlottie.RLottieDrawable;
 import com.discord.rlottie.RLottieImageView;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import com.discord.utilities.accessibility.AccessibilityUtils;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.captcha.CaptchaErrorBody;
-import com.discord.utilities.captcha.CaptchaHelper$CaptchaPayload;
+import com.discord.utilities.captcha.CaptchaHelper;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.error.Error;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapter;
-import com.discord.utilities.mg_recycler.MGRecyclerAdapter$Companion;
 import com.discord.utilities.rest.RestAPI;
+import com.discord.utilities.rest.RestAPIAbortMessages;
 import com.discord.utilities.rx.ObservableExtensionsKt;
+import com.discord.utilities.uri.UriHandler;
+import com.discord.utilities.user.UserUtils;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.discord.widgets.captcha.WidgetCaptcha;
+import com.discord.widgets.captcha.WidgetCaptchaKt;
+import com.discord.widgets.chat.input.MentionUtilsKt;
+import com.discord.widgets.user.usersheet.WidgetUserSheet;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.a0;
-import d0.z.d.m;
+import d0.z.d.o;
+import defpackage.WidgetFriendsAddUserRequestsModel;
 import defpackage.j;
 import defpackage.v;
 import defpackage.w;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function2;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 import rx.Observable;
+import rx.functions.Action1;
 import rx.functions.Func2;
 
 /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
@@ -65,26 +79,446 @@ public final class WidgetFriendsFindNearby extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$acceptFriendRequest$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class AnonymousClass1 extends o implements Function1<Void, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r5) {
+            m.g(WidgetFriendsFindNearby.this.getContext(), R.string.accept_request_button_after, 0, null, 12);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$declineFriendRequest$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class AnonymousClass1 extends o implements Function1<Void, Unit> {
+        public final /* synthetic */ int $successMessageStringRes;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(int i) {
+            super(1);
+            this.$successMessageStringRes = i;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r5) {
+            m.g(WidgetFriendsFindNearby.this.getContext(), this.$successMessageStringRes, 0, null, 12);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class AnonymousClass1 extends o implements Function2<String, Integer, Unit> {
+        public AnonymousClass1() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(String str, Integer num) {
+            invoke(str, num.intValue());
+            return Unit.a;
+        }
+
+        public final void invoke(String str, int i) {
+            d0.z.d.m.checkNotNullParameter(str, "username");
+            WidgetFriendsFindNearby.sendFriendRequest$default(WidgetFriendsFindNearby.this, str, i, null, 4, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class AnonymousClass1 extends o implements Function1<WidgetFriendsAddUserRequestsModel, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetFriendsAddUserRequestsModel widgetFriendsAddUserRequestsModel) {
+            invoke2(widgetFriendsAddUserRequestsModel);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetFriendsAddUserRequestsModel widgetFriendsAddUserRequestsModel) {
+            WidgetFriendsFindNearby.access$getResultsAdapter$p(WidgetFriendsFindNearby.this).addFriendRequestUserIds(widgetFriendsAddUserRequestsModel.outgoingIds, widgetFriendsAddUserRequestsModel.incomingIds);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$sendFriendRequest$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class AnonymousClass1<T> implements Action1<Void> {
+        public final /* synthetic */ String $username;
+
+        public AnonymousClass1(String str) {
+            this.$username = str;
+        }
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(Void r1) {
+            call2(r1);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(Void r7) {
+            Context context = WidgetFriendsFindNearby.this.getContext();
+            Context context2 = WidgetFriendsFindNearby.this.getContext();
+            m.h(context, context2 != null ? b.h(context2, R.string.add_friend_confirmation, new Object[]{this.$username}, null, 4) : null, 0, null, 12);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class AnonymousClass2 extends o implements Function1<Long, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke(l.longValue());
+            return Unit.a;
+        }
+
+        public final void invoke(long j) {
+            WidgetFriendsFindNearby.access$acceptFriendRequest(WidgetFriendsFindNearby.this, j);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBoundOrOnResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class AnonymousClass2 extends o implements Function1<Model, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            d0.z.d.m.checkNotNullParameter(model, "it");
+            WidgetFriendsFindNearby.access$configureUI(WidgetFriendsFindNearby.this, model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$sendFriendRequest$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class AnonymousClass2<T> implements Action1<Error> {
+        public final /* synthetic */ int $discriminator;
+        public final /* synthetic */ String $username;
+
+        /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$sendFriendRequest$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public final /* synthetic */ Error $error;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(Error error) {
+                super(0);
+                this.$error = error;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                Error error = this.$error;
+                d0.z.d.m.checkNotNullExpressionValue(error, "error");
+                if (WidgetCaptchaKt.isCaptchaError(error)) {
+                    WidgetFriendsFindNearby widgetFriendsFindNearby = WidgetFriendsFindNearby.this;
+                    Error error2 = this.$error;
+                    d0.z.d.m.checkNotNullExpressionValue(error2, "error");
+                    WidgetFriendsFindNearby.access$launchCaptchaFlow(widgetFriendsFindNearby, error2);
+                    return;
+                }
+                RestAPIAbortMessages.ResponseResolver responseResolver = RestAPIAbortMessages.ResponseResolver.INSTANCE;
+                Context context = WidgetFriendsFindNearby.this.getContext();
+                Error error3 = this.$error;
+                d0.z.d.m.checkNotNullExpressionValue(error3, "error");
+                Error.Response response = error3.getResponse();
+                d0.z.d.m.checkNotNullExpressionValue(response, "error.response");
+                m.h(WidgetFriendsFindNearby.this.getContext(), responseResolver.getRelationshipResponse(context, response.getCode(), AnonymousClass2.this.$username + MentionUtilsKt.CHANNELS_CHAR + UserUtils.INSTANCE.padDiscriminator(AnonymousClass2.this.$discriminator)), 0, null, 12);
+            }
+        }
+
+        public AnonymousClass2(String str, int i) {
+            this.$username = str;
+            this.$discriminator = i;
+        }
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(Error error) {
+            call2(error);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(Error error) {
+            RestAPIAbortMessages restAPIAbortMessages = RestAPIAbortMessages.INSTANCE;
+            d0.z.d.m.checkNotNullExpressionValue(error, "error");
+            RestAPIAbortMessages.handleAbortCodeOrDefault$default(restAPIAbortMessages, error, new AnonymousClass1(error), null, 4, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBound$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class AnonymousClass3 extends o implements Function2<Long, Boolean, Unit> {
+        public AnonymousClass3() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Long l, Boolean bool) {
+            invoke(l.longValue(), bool.booleanValue());
+            return Unit.a;
+        }
+
+        public final void invoke(long j, boolean z2) {
+            WidgetFriendsFindNearby.access$declineFriendRequest(WidgetFriendsFindNearby.this, j, z2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBound$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class AnonymousClass4 extends o implements Function1<Long, Unit> {
+        public AnonymousClass4() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke(l.longValue());
+            return Unit.a;
+        }
+
+        public final void invoke(long j) {
+            WidgetUserSheet.Companion companion = WidgetUserSheet.INSTANCE;
+            FragmentManager parentFragmentManager = WidgetFriendsFindNearby.this.getParentFragmentManager();
+            d0.z.d.m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            WidgetUserSheet.Companion.show$default(companion, j, null, parentFragmentManager, null, null, null, null, 122, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBound$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class AnonymousClass5 implements View.OnClickListener {
+        public AnonymousClass5() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetFriendsFindNearby.access$enableScanning(WidgetFriendsFindNearby.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.friends.WidgetFriendsFindNearby$onViewBound$6, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class AnonymousClass6 implements View.OnClickListener {
+        public static final AnonymousClass6 INSTANCE = new AnonymousClass6();
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            UriHandler.handle$default(UriHandler.INSTANCE, a.x(view, "it", "it.context"), f.a.a(360014894392L, null), false, false, null, 28, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public abstract class Model {
+
+        /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+        public final class Empty extends Model {
+            public static final Empty INSTANCE = new Empty();
+
+            private Empty() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+        public final /* data */ class Error extends Model {
+            private final Integer errorCode;
+
+            public Error(Integer num) {
+                super(null);
+                this.errorCode = num;
+            }
+
+            public static /* synthetic */ Error copy$default(Error error, Integer num, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    num = error.errorCode;
+                }
+                return error.copy(num);
+            }
+
+            public final Error copy(Integer errorCode) {
+                return new Error(errorCode);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Error) && d0.z.d.m.areEqual(this.errorCode, ((Error) other).errorCode);
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Integer getErrorCode() {
+                return this.errorCode;
+            }
+
+            public final Integer getErrorCode() {
+                return this.errorCode;
+            }
+
+            public int hashCode() {
+                Integer num = this.errorCode;
+                if (num != null) {
+                    return num.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                return a.F(a.U("Error(errorCode="), this.errorCode, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+        public final /* data */ class NearbyUsers extends Model {
+            private final List<WidgetFriendsAddUserAdapter.ItemUser> items;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public NearbyUsers(List<WidgetFriendsAddUserAdapter.ItemUser> list) {
+                super(null);
+                d0.z.d.m.checkNotNullParameter(list, "items");
+                this.items = list;
+            }
+
+            public final List<WidgetFriendsAddUserAdapter.ItemUser> component1() {
+                return this.items;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ NearbyUsers copy$default(NearbyUsers nearbyUsers, List list, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    list = nearbyUsers.items;
+                }
+                return nearbyUsers.copy(list);
+            }
+
+            public final NearbyUsers copy(List<WidgetFriendsAddUserAdapter.ItemUser> items) {
+                d0.z.d.m.checkNotNullParameter(items, "items");
+                return new NearbyUsers(items);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof NearbyUsers) && d0.z.d.m.areEqual(this.items, ((NearbyUsers) other).items);
+                }
+                return true;
+            }
+
+            public final List<WidgetFriendsAddUserAdapter.ItemUser> getItems() {
+                return this.items;
+            }
+
+            public int hashCode() {
+                List<WidgetFriendsAddUserAdapter.ItemUser> list = this.items;
+                if (list != null) {
+                    return list.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                return a.L(a.U("NearbyUsers(items="), this.items, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+        public final class Uninitialized extends Model {
+            public static final Uninitialized INSTANCE = new Uninitialized();
+
+            private Uninitialized() {
+                super(null);
+            }
+        }
+
+        private Model() {
+        }
+
+        public /* synthetic */ Model(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetFriendsFindNearby.kt */
+    public final class ModelProvider {
+        public static final ModelProvider INSTANCE = new ModelProvider();
+
+        private ModelProvider() {
+        }
+
+        public static final /* synthetic */ Observable access$getUserModels(ModelProvider modelProvider, Collection collection) {
+            return modelProvider.getUserModels(collection);
+        }
+
+        public final Observable<Model> get(Observable<NearbyManager.NearbyState> nearbyStateObservable) {
+            d0.z.d.m.checkNotNullParameter(nearbyStateObservable, "nearbyStateObservable");
+            Observable observableY = nearbyStateObservable.Y(WidgetFriendsFindNearby$ModelProvider$get$1.INSTANCE);
+            d0.z.d.m.checkNotNullExpressionValue(observableY, "nearbyStateObservable\n  …          }\n            }");
+            return observableY;
+        }
+
+        private final Observable<Model.NearbyUsers> getUserModels(Collection<Long> userIds) {
+            StoreStream.Companion companion = StoreStream.INSTANCE;
+            Observable<Model.NearbyUsers> observableI = Observable.i(companion.getUsers().observeUsers(userIds, true), companion.getPresences().observePresencesForUsers(userIds), companion.getUserRelationships().observe(userIds), WidgetFriendsFindNearby$ModelProvider$getUserModels$1.INSTANCE);
+            d0.z.d.m.checkNotNullExpressionValue(observableI, "Observable\n          .co…yUsers(items)\n          }");
+            return observableI;
+        }
+    }
+
     public WidgetFriendsFindNearby() {
-        super(R$layout.widget_friends_nearby);
+        super(R.layout.widget_friends_nearby);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetFriendsFindNearby$binding$2.INSTANCE, null, 2, null);
         WidgetFriendsFindNearby$viewModel$2 widgetFriendsFindNearby$viewModel$2 = WidgetFriendsFindNearby$viewModel$2.INSTANCE;
         g0 g0Var = new g0(this);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetFriendsFindNearbyViewModel.class), new WidgetFriendsFindNearby$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetFriendsFindNearby$viewModel$2));
         this.nearbyManager = new NearbyManager();
-        this.captchaLauncher = WidgetCaptcha.Companion.registerForResult(this, new WidgetFriendsFindNearby$captchaLauncher$1(this));
+        this.captchaLauncher = WidgetCaptcha.INSTANCE.registerForResult(this, new WidgetFriendsFindNearby$captchaLauncher$1(this));
     }
 
     private final void acceptFriendRequest(long userId) {
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.addRelationship$default(RestAPI.Companion.getApi(), "Nearby - Accept Friend Request", userId, null, null, null, 28, null), false, 1, null), this, null, 2, null), WidgetFriendsFindNearby.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetFriendsFindNearby$acceptFriendRequest$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.addRelationship$default(RestAPI.INSTANCE.getApi(), "Nearby - Accept Friend Request", userId, null, null, null, 28, null), false, 1, null), this, null, 2, null), WidgetFriendsFindNearby.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
     public static final /* synthetic */ void access$acceptFriendRequest(WidgetFriendsFindNearby widgetFriendsFindNearby, long j) {
         widgetFriendsFindNearby.acceptFriendRequest(j);
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetFriendsFindNearby widgetFriendsFindNearby, WidgetFriendsFindNearby$Model widgetFriendsFindNearby$Model) {
-        widgetFriendsFindNearby.configureUI(widgetFriendsFindNearby$Model);
+    public static final /* synthetic */ void access$configureUI(WidgetFriendsFindNearby widgetFriendsFindNearby, Model model) {
+        widgetFriendsFindNearby.configureUI(model);
     }
 
     public static final /* synthetic */ void access$declineFriendRequest(WidgetFriendsFindNearby widgetFriendsFindNearby, long j, boolean z2) {
@@ -98,7 +532,7 @@ public final class WidgetFriendsFindNearby extends AppFragment {
     public static final /* synthetic */ WidgetFriendsAddUserAdapter access$getResultsAdapter$p(WidgetFriendsFindNearby widgetFriendsFindNearby) {
         WidgetFriendsAddUserAdapter widgetFriendsAddUserAdapter = widgetFriendsFindNearby.resultsAdapter;
         if (widgetFriendsAddUserAdapter == null) {
-            m.throwUninitializedPropertyAccessException("resultsAdapter");
+            d0.z.d.m.throwUninitializedPropertyAccessException("resultsAdapter");
         }
         return widgetFriendsAddUserAdapter;
     }
@@ -111,31 +545,31 @@ public final class WidgetFriendsFindNearby extends AppFragment {
         widgetFriendsFindNearby.launchCaptchaFlow(error);
     }
 
-    public static final /* synthetic */ void access$sendFriendRequest(WidgetFriendsFindNearby widgetFriendsFindNearby, String str, int i, CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload) {
-        widgetFriendsFindNearby.sendFriendRequest(str, i, captchaHelper$CaptchaPayload);
+    public static final /* synthetic */ void access$sendFriendRequest(WidgetFriendsFindNearby widgetFriendsFindNearby, String str, int i, CaptchaHelper.CaptchaPayload captchaPayload) {
+        widgetFriendsFindNearby.sendFriendRequest(str, i, captchaPayload);
     }
 
     public static final /* synthetic */ void access$setResultsAdapter$p(WidgetFriendsFindNearby widgetFriendsFindNearby, WidgetFriendsAddUserAdapter widgetFriendsAddUserAdapter) {
         widgetFriendsFindNearby.resultsAdapter = widgetFriendsAddUserAdapter;
     }
 
-    private final void configureUI(WidgetFriendsFindNearby$Model model) {
-        if (model instanceof WidgetFriendsFindNearby$Model$Uninitialized) {
+    private final void configureUI(Model model) {
+        if (model instanceof Model.Uninitialized) {
             TextView textView = getBinding().g;
-            m.checkNotNullExpressionValue(textView, "binding.nearbyFriendsSearchingTitle");
-            textView.setText(getString(2131886348));
+            d0.z.d.m.checkNotNullExpressionValue(textView, "binding.nearbyFriendsSearchingTitle");
+            textView.setText(getString(R.string.add_friend_nearby_title));
             TextView textView2 = getBinding().e;
-            m.checkNotNullExpressionValue(textView2, "binding.nearbyFriendsSearchingBody");
-            textView2.setText(getString(2131886339));
+            d0.z.d.m.checkNotNullExpressionValue(textView2, "binding.nearbyFriendsSearchingBody");
+            textView2.setText(getString(R.string.add_friend_nearby_body));
             TextView textView3 = getBinding().e;
             TextView textView4 = getBinding().e;
-            m.checkNotNullExpressionValue(textView4, "binding.nearbyFriendsSearchingBody");
-            textView3.setTextColor(ColorCompat.getThemedColor(textView4, 2130968990));
+            d0.z.d.m.checkNotNullExpressionValue(textView4, "binding.nearbyFriendsSearchingBody");
+            textView3.setTextColor(ColorCompat.getThemedColor(textView4, R.attr.colorHeaderSecondary));
             MaterialButton materialButton = getBinding().f2399b;
-            m.checkNotNullExpressionValue(materialButton, "binding.nearbyFriendsEnable");
+            d0.z.d.m.checkNotNullExpressionValue(materialButton, "binding.nearbyFriendsEnable");
             materialButton.setVisibility(0);
             RecyclerView recyclerView = getBinding().d;
-            m.checkNotNullExpressionValue(recyclerView, "binding.nearbyFriendsRecycler");
+            d0.z.d.m.checkNotNullExpressionValue(recyclerView, "binding.nearbyFriendsRecycler");
             recyclerView.setVisibility(8);
             RLottieImageView rLottieImageView = getBinding().f;
             RLottieDrawable rLottieDrawable = rLottieImageView.drawable;
@@ -149,22 +583,22 @@ public final class WidgetFriendsFindNearby extends AppFragment {
             }
             return;
         }
-        if (model instanceof WidgetFriendsFindNearby$Model$Error) {
+        if (model instanceof Model.Error) {
             TextView textView5 = getBinding().g;
-            m.checkNotNullExpressionValue(textView5, "binding.nearbyFriendsSearchingTitle");
-            textView5.setText(getString(2131886348));
+            d0.z.d.m.checkNotNullExpressionValue(textView5, "binding.nearbyFriendsSearchingTitle");
+            textView5.setText(getString(R.string.add_friend_nearby_title));
             TextView textView6 = getBinding().e;
-            m.checkNotNullExpressionValue(textView6, "binding.nearbyFriendsSearchingBody");
-            textView6.setText(getErrorMessage(((WidgetFriendsFindNearby$Model$Error) model).getErrorCode()));
+            d0.z.d.m.checkNotNullExpressionValue(textView6, "binding.nearbyFriendsSearchingBody");
+            textView6.setText(getErrorMessage(((Model.Error) model).getErrorCode()));
             TextView textView7 = getBinding().e;
             TextView textView8 = getBinding().e;
-            m.checkNotNullExpressionValue(textView8, "binding.nearbyFriendsSearchingBody");
-            textView7.setTextColor(ColorCompat.getColor(textView8, 2131100382));
+            d0.z.d.m.checkNotNullExpressionValue(textView8, "binding.nearbyFriendsSearchingBody");
+            textView7.setTextColor(ColorCompat.getColor(textView8, R.color.status_red_500));
             MaterialButton materialButton2 = getBinding().f2399b;
-            m.checkNotNullExpressionValue(materialButton2, "binding.nearbyFriendsEnable");
+            d0.z.d.m.checkNotNullExpressionValue(materialButton2, "binding.nearbyFriendsEnable");
             materialButton2.setVisibility(0);
             RecyclerView recyclerView2 = getBinding().d;
-            m.checkNotNullExpressionValue(recyclerView2, "binding.nearbyFriendsRecycler");
+            d0.z.d.m.checkNotNullExpressionValue(recyclerView2, "binding.nearbyFriendsRecycler");
             recyclerView2.setVisibility(8);
             RLottieImageView rLottieImageView2 = getBinding().f;
             RLottieDrawable rLottieDrawable2 = rLottieImageView2.drawable;
@@ -178,22 +612,22 @@ public final class WidgetFriendsFindNearby extends AppFragment {
             }
             return;
         }
-        if (model instanceof WidgetFriendsFindNearby$Model$Empty) {
+        if (model instanceof Model.Empty) {
             TextView textView9 = getBinding().g;
-            m.checkNotNullExpressionValue(textView9, "binding.nearbyFriendsSearchingTitle");
-            textView9.setText(getString(2131886348));
+            d0.z.d.m.checkNotNullExpressionValue(textView9, "binding.nearbyFriendsSearchingTitle");
+            textView9.setText(getString(R.string.add_friend_nearby_title));
             TextView textView10 = getBinding().e;
-            m.checkNotNullExpressionValue(textView10, "binding.nearbyFriendsSearchingBody");
-            textView10.setText(getString(2131886339));
+            d0.z.d.m.checkNotNullExpressionValue(textView10, "binding.nearbyFriendsSearchingBody");
+            textView10.setText(getString(R.string.add_friend_nearby_body));
             TextView textView11 = getBinding().e;
             TextView textView12 = getBinding().e;
-            m.checkNotNullExpressionValue(textView12, "binding.nearbyFriendsSearchingBody");
-            textView11.setTextColor(ColorCompat.getThemedColor(textView12, 2130968990));
+            d0.z.d.m.checkNotNullExpressionValue(textView12, "binding.nearbyFriendsSearchingBody");
+            textView11.setTextColor(ColorCompat.getThemedColor(textView12, R.attr.colorHeaderSecondary));
             MaterialButton materialButton3 = getBinding().f2399b;
-            m.checkNotNullExpressionValue(materialButton3, "binding.nearbyFriendsEnable");
+            d0.z.d.m.checkNotNullExpressionValue(materialButton3, "binding.nearbyFriendsEnable");
             materialButton3.setVisibility(8);
             RecyclerView recyclerView3 = getBinding().d;
-            m.checkNotNullExpressionValue(recyclerView3, "binding.nearbyFriendsRecycler");
+            d0.z.d.m.checkNotNullExpressionValue(recyclerView3, "binding.nearbyFriendsRecycler");
             recyclerView3.setVisibility(8);
             if (AccessibilityUtils.INSTANCE.isReducedMotionEnabled()) {
                 return;
@@ -201,33 +635,33 @@ public final class WidgetFriendsFindNearby extends AppFragment {
             getBinding().f.b();
             return;
         }
-        if (model instanceof WidgetFriendsFindNearby$Model$NearbyUsers) {
+        if (model instanceof Model.NearbyUsers) {
             TextView textView13 = getBinding().g;
-            m.checkNotNullExpressionValue(textView13, "binding.nearbyFriendsSearchingTitle");
-            textView13.setText(getString(2131886344));
+            d0.z.d.m.checkNotNullExpressionValue(textView13, "binding.nearbyFriendsSearchingTitle");
+            textView13.setText(getString(R.string.add_friend_nearby_found_title));
             TextView textView14 = getBinding().e;
-            m.checkNotNullExpressionValue(textView14, "binding.nearbyFriendsSearchingBody");
-            textView14.setText(getString(2131886343));
+            d0.z.d.m.checkNotNullExpressionValue(textView14, "binding.nearbyFriendsSearchingBody");
+            textView14.setText(getString(R.string.add_friend_nearby_found_body));
             TextView textView15 = getBinding().e;
             TextView textView16 = getBinding().e;
-            m.checkNotNullExpressionValue(textView16, "binding.nearbyFriendsSearchingBody");
-            textView15.setTextColor(ColorCompat.getThemedColor(textView16, 2130968990));
+            d0.z.d.m.checkNotNullExpressionValue(textView16, "binding.nearbyFriendsSearchingBody");
+            textView15.setTextColor(ColorCompat.getThemedColor(textView16, R.attr.colorHeaderSecondary));
             MaterialButton materialButton4 = getBinding().f2399b;
-            m.checkNotNullExpressionValue(materialButton4, "binding.nearbyFriendsEnable");
+            d0.z.d.m.checkNotNullExpressionValue(materialButton4, "binding.nearbyFriendsEnable");
             materialButton4.setVisibility(8);
             WidgetFriendsAddUserAdapter widgetFriendsAddUserAdapter = this.resultsAdapter;
             if (widgetFriendsAddUserAdapter == null) {
-                m.throwUninitializedPropertyAccessException("resultsAdapter");
+                d0.z.d.m.throwUninitializedPropertyAccessException("resultsAdapter");
             }
-            widgetFriendsAddUserAdapter.setData(((WidgetFriendsFindNearby$Model$NearbyUsers) model).getItems());
+            widgetFriendsAddUserAdapter.setData(((Model.NearbyUsers) model).getItems());
             RecyclerView recyclerView4 = getBinding().d;
-            m.checkNotNullExpressionValue(recyclerView4, "binding.nearbyFriendsRecycler");
+            d0.z.d.m.checkNotNullExpressionValue(recyclerView4, "binding.nearbyFriendsRecycler");
             recyclerView4.setVisibility(0);
         }
     }
 
     private final void declineFriendRequest(long userId, boolean incomingFriendRequest) {
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().removeRelationship("Nearby - Remove Friend Request", userId), false, 1, null), this, null, 2, null), WidgetFriendsFindNearby.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetFriendsFindNearby$declineFriendRequest$1(this, incomingFriendRequest ? 2131889460 : 2131889455), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().removeRelationship("Nearby - Remove Friend Request", userId), false, 1, null), this, null, 2, null), WidgetFriendsFindNearby.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(incomingFriendRequest ? R.string.friend_request_ignored : R.string.friend_request_cancelled), 62, (Object) null);
     }
 
     private final void enableScanning() {
@@ -250,20 +684,20 @@ public final class WidgetFriendsFindNearby extends AppFragment {
         if (resultCode != null && resultCode.intValue() == 99) {
             Context context = getContext();
             if (context != null) {
-                return context.getString(2131886340);
+                return context.getString(R.string.add_friend_nearby_connection_error);
             }
             return null;
         }
         if (resultCode != null && resultCode.intValue() == 98) {
             Context context2 = getContext();
             if (context2 != null) {
-                return context2.getString(2131886347);
+                return context2.getString(R.string.add_friend_nearby_stopped);
             }
             return null;
         }
         Context context3 = getContext();
         if (context3 != null) {
-            return context3.getString(2131886345);
+            return context3.getString(R.string.add_friend_nearby_generic_error);
         }
         return null;
     }
@@ -273,7 +707,7 @@ public final class WidgetFriendsFindNearby extends AppFragment {
     }
 
     private final void launchCaptchaFlow(Error error) {
-        WidgetCaptcha.Companion.launch(requireContext(), this.captchaLauncher, CaptchaErrorBody.Companion.createFromError(error));
+        WidgetCaptcha.INSTANCE.launch(requireContext(), this.captchaLauncher, CaptchaErrorBody.INSTANCE.createFromError(error));
     }
 
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
@@ -291,77 +725,77 @@ public final class WidgetFriendsFindNearby extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        m.checkNotNullParameter(view, "view");
+        d0.z.d.m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         updateMeUserIdAndInitNearbyManager();
-        MGRecyclerAdapter$Companion mGRecyclerAdapter$Companion = MGRecyclerAdapter.Companion;
+        MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
         RecyclerView recyclerView = getBinding().d;
-        m.checkNotNullExpressionValue(recyclerView, "binding.nearbyFriendsRecycler");
-        WidgetFriendsAddUserAdapter widgetFriendsAddUserAdapter = (WidgetFriendsAddUserAdapter) mGRecyclerAdapter$Companion.configure(new WidgetFriendsAddUserAdapter(recyclerView));
+        d0.z.d.m.checkNotNullExpressionValue(recyclerView, "binding.nearbyFriendsRecycler");
+        WidgetFriendsAddUserAdapter widgetFriendsAddUserAdapter = (WidgetFriendsAddUserAdapter) companion.configure(new WidgetFriendsAddUserAdapter(recyclerView));
         this.resultsAdapter = widgetFriendsAddUserAdapter;
         if (widgetFriendsAddUserAdapter == null) {
-            m.throwUninitializedPropertyAccessException("resultsAdapter");
+            d0.z.d.m.throwUninitializedPropertyAccessException("resultsAdapter");
         }
-        widgetFriendsAddUserAdapter.setSendHandler(new WidgetFriendsFindNearby$onViewBound$1(this));
+        widgetFriendsAddUserAdapter.setSendHandler(new AnonymousClass1());
         WidgetFriendsAddUserAdapter widgetFriendsAddUserAdapter2 = this.resultsAdapter;
         if (widgetFriendsAddUserAdapter2 == null) {
-            m.throwUninitializedPropertyAccessException("resultsAdapter");
+            d0.z.d.m.throwUninitializedPropertyAccessException("resultsAdapter");
         }
-        widgetFriendsAddUserAdapter2.setAcceptHandler(new WidgetFriendsFindNearby$onViewBound$2(this));
+        widgetFriendsAddUserAdapter2.setAcceptHandler(new AnonymousClass2());
         WidgetFriendsAddUserAdapter widgetFriendsAddUserAdapter3 = this.resultsAdapter;
         if (widgetFriendsAddUserAdapter3 == null) {
-            m.throwUninitializedPropertyAccessException("resultsAdapter");
+            d0.z.d.m.throwUninitializedPropertyAccessException("resultsAdapter");
         }
-        widgetFriendsAddUserAdapter3.setDeclineHandler(new WidgetFriendsFindNearby$onViewBound$3(this));
+        widgetFriendsAddUserAdapter3.setDeclineHandler(new AnonymousClass3());
         WidgetFriendsAddUserAdapter widgetFriendsAddUserAdapter4 = this.resultsAdapter;
         if (widgetFriendsAddUserAdapter4 == null) {
-            m.throwUninitializedPropertyAccessException("resultsAdapter");
+            d0.z.d.m.throwUninitializedPropertyAccessException("resultsAdapter");
         }
-        widgetFriendsAddUserAdapter4.setOnItemClick(new WidgetFriendsFindNearby$onViewBound$4(this));
-        getBinding().f2399b.setOnClickListener(new WidgetFriendsFindNearby$onViewBound$5(this));
-        getBinding().c.setOnClickListener(WidgetFriendsFindNearby$onViewBound$6.INSTANCE);
-        getBinding().f.c(R$raw.anim_friends_add_nearby_looking, DimenUtils.dpToPixels(200), DimenUtils.dpToPixels(200));
+        widgetFriendsAddUserAdapter4.setOnItemClick(new AnonymousClass4());
+        getBinding().f2399b.setOnClickListener(new AnonymousClass5());
+        getBinding().c.setOnClickListener(AnonymousClass6.INSTANCE);
+        getBinding().f.c(R.raw.anim_friends_add_nearby_looking, DimenUtils.dpToPixels(200), DimenUtils.dpToPixels(200));
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        Observable<R> observableG = storeStream$Companion.getUserRelationships().observeForType(4).G(j.j);
-        Observable<R> observableG2 = storeStream$Companion.getUserRelationships().observeForType(3).G(j.k);
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        Observable<R> observableG = companion.getUserRelationships().observeForType(4).G(j.j);
+        Observable<R> observableG2 = companion.getUserRelationships().observeForType(3).G(j.k);
         v vVar = v.j;
         Object wVar = vVar;
         if (vVar != null) {
             wVar = new w(vVar);
         }
         Observable observableJ = Observable.j(observableG, observableG2, (Func2) wVar);
-        m.checkNotNullExpressionValue(observableJ, "Observable\n        .comb…erRequestsModel\n        )");
+        d0.z.d.m.checkNotNullExpressionValue(observableJ, "Observable\n        .comb…erRequestsModel\n        )");
         Observable observableR = ObservableExtensionsKt.computationLatest(observableJ).r();
-        m.checkNotNullExpressionValue(observableR, "Observable\n        .comb…  .distinctUntilChanged()");
-        ObservableExtensionsKt.ui$default(observableR, this, null, 2, null).k(o.a.g(getContext(), new WidgetFriendsFindNearby$onViewBoundOrOnResume$1(this), null));
-        Observable<WidgetFriendsFindNearby$Model> observable = WidgetFriendsFindNearby$ModelProvider.INSTANCE.get(this.nearbyManager.getState());
+        d0.z.d.m.checkNotNullExpressionValue(observableR, "Observable\n        .comb…  .distinctUntilChanged()");
+        ObservableExtensionsKt.ui$default(observableR, this, null, 2, null).k(b.a.d.o.a.g(getContext(), new AnonymousClass1(), null));
+        Observable<Model> observable = ModelProvider.INSTANCE.get(this.nearbyManager.getState());
         WidgetFriendsAddUserAdapter widgetFriendsAddUserAdapter = this.resultsAdapter;
         if (widgetFriendsAddUserAdapter == null) {
-            m.throwUninitializedPropertyAccessException("resultsAdapter");
+            d0.z.d.m.throwUninitializedPropertyAccessException("resultsAdapter");
         }
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(observable, this, widgetFriendsAddUserAdapter), WidgetFriendsFindNearby.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetFriendsFindNearby$onViewBoundOrOnResume$2(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(observable, this, widgetFriendsAddUserAdapter), WidgetFriendsFindNearby.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
     }
 
-    public static /* synthetic */ void sendFriendRequest$default(WidgetFriendsFindNearby widgetFriendsFindNearby, String str, int i, CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload, int i2, Object obj) {
+    public static /* synthetic */ void sendFriendRequest$default(WidgetFriendsFindNearby widgetFriendsFindNearby, String str, int i, CaptchaHelper.CaptchaPayload captchaPayload, int i2, Object obj) {
         if ((i2 & 4) != 0) {
-            captchaHelper$CaptchaPayload = null;
+            captchaPayload = null;
         }
-        widgetFriendsFindNearby.sendFriendRequest(str, i, captchaHelper$CaptchaPayload);
+        widgetFriendsFindNearby.sendFriendRequest(str, i, captchaPayload);
     }
 
-    private final void sendFriendRequest(String username, int discriminator, CaptchaHelper$CaptchaPayload captchaPayload) {
+    private final void sendFriendRequest(String username, int discriminator, CaptchaHelper.CaptchaPayload captchaPayload) {
         getViewModel().setUsername(username);
         getViewModel().setDiscriminator(Integer.valueOf(discriminator));
-        ObservableExtensionsKt.ui$default(RestAPI.Companion.getApi().sendRelationshipRequest("Nearby - Add Friend Suggestion", username, discriminator, captchaPayload), this, null, 2, null).k(o.h(new WidgetFriendsFindNearby$sendFriendRequest$1(this, username), getAppActivity(), new WidgetFriendsFindNearby$sendFriendRequest$2(this, username, discriminator)));
+        ObservableExtensionsKt.ui$default(RestAPI.INSTANCE.getApi().sendRelationshipRequest("Nearby - Add Friend Suggestion", username, discriminator, captchaPayload), this, null, 2, null).k(b.a.d.o.h(new AnonymousClass1(username), getAppActivity(), new AnonymousClass2(username, discriminator)));
     }
 
     private final void updateMeUserIdAndInitNearbyManager() {
-        long id2 = StoreStream.Companion.getUsers().getMeSnapshot().getId();
+        long id2 = StoreStream.INSTANCE.getUsers().getMeSnapshot().getId();
         this.meUserId = Long.valueOf(id2);
         this.nearbyManager.initialize(id2);
     }

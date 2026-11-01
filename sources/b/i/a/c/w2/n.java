@@ -7,10 +7,10 @@ import java.util.UUID;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class n implements a0$c {
+public final /* synthetic */ class n implements a0.c {
     public static final /* synthetic */ n a = new n();
 
-    @Override // b.i.a.c.w2.a0$c
+    @Override // b.i.a.c.w2.a0.c
     public final a0 a(UUID uuid) {
         int i = c0.a;
         try {

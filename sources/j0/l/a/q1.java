@@ -11,14 +11,14 @@ import rx.Subscriber;
 public class q1<T> extends Subscriber<T> {
     public R j;
     public final /* synthetic */ Object k;
-    public final /* synthetic */ o1$b l;
+    public final /* synthetic */ o1.b l;
     public final /* synthetic */ o1 m;
 
     /* JADX WARN: Multi-variable type inference failed */
-    public q1(o1 o1Var, Object obj, o1$b o1_b) {
+    public q1(o1 o1Var, Object obj, o1.b bVar) {
         this.m = o1Var;
         this.k = obj;
-        this.l = o1_b;
+        this.l = bVar;
         this.j = obj;
     }
 
@@ -29,10 +29,10 @@ public class q1<T> extends Subscriber<T> {
 
     @Override // j0.g
     public void onError(Throwable th) {
-        o1$b o1_b = this.l;
-        o1_b.r = th;
-        o1_b.q = true;
-        o1_b.b();
+        o1.b bVar = this.l;
+        bVar.r = th;
+        bVar.q = true;
+        bVar.b();
     }
 
     /* JADX WARN: Type inference failed for: r3v2, types: [R, java.lang.Object] */
@@ -60,23 +60,23 @@ public class q1<T> extends Subscriber<T> {
     @Override // rx.Subscriber
     public void setProducer(Producer producer) {
         long j;
-        o1$b o1_b = this.l;
-        Objects.requireNonNull(o1_b);
+        o1.b bVar = this.l;
+        Objects.requireNonNull(bVar);
         Objects.requireNonNull(producer);
-        synchronized (o1_b.o) {
-            if (o1_b.p != null) {
+        synchronized (bVar.o) {
+            if (bVar.p != null) {
                 throw new IllegalStateException("Can't set more than one Producer!");
             }
-            j = o1_b.n;
+            j = bVar.n;
             if (j != RecyclerView.FOREVER_NS) {
                 j--;
             }
-            o1_b.n = 0L;
-            o1_b.p = producer;
+            bVar.n = 0L;
+            bVar.p = producer;
         }
         if (j > 0) {
             producer.j(j);
         }
-        o1_b.b();
+        bVar.b();
     }
 }

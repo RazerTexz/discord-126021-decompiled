@@ -10,13 +10,26 @@ import java.util.Locale;
 
 /* JADX INFO: compiled from: QueueFileLogStore.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class e implements a {
+public class e implements b.i.c.m.d.l.a {
     public final int c;
     public c d;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final File f1711b;
     public static final Charset a = Charset.forName(Constants.ENCODING);
+
+    /* JADX INFO: compiled from: QueueFileLogStore.java */
+    public class a {
+        public final byte[] a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f1712b;
+
+        public a(e eVar, byte[] bArr, int i) {
+            this.a = bArr;
+            this.f1712b = i;
+        }
+    }
 
     public e(File file, int i) {
         this.f1711b = file;
@@ -41,12 +54,12 @@ public class e implements a {
     /* JADX WARN: Code duplicated, block: B:4:0x000a  */
     @Override // b.i.c.m.d.l.a
     public byte[] c() {
-        e$a e_a;
+        a aVar;
         if (this.f1711b.exists()) {
             f();
             c cVar = this.d;
             if (cVar == null) {
-                e_a = null;
+                aVar = null;
             } else {
                 int[] iArr = {0};
                 byte[] bArr = new byte[cVar.x()];
@@ -57,17 +70,17 @@ public class e implements a {
                         Log.e("FirebaseCrashlytics", "A problem occurred while reading the Crashlytics log file.", e);
                     }
                 }
-                e_a = new e$a(this, bArr, iArr[0]);
+                aVar = new a(this, bArr, iArr[0]);
             }
         } else {
-            e_a = null;
+            aVar = null;
         }
-        if (e_a == null) {
+        if (aVar == null) {
             return null;
         }
-        int i = e_a.f1712b;
+        int i = aVar.f1712b;
         byte[] bArr2 = new byte[i];
-        System.arraycopy(e_a.a, 0, bArr2, 0, i);
+        System.arraycopy(aVar.a, 0, bArr2, 0, i);
         return bArr2;
     }
 

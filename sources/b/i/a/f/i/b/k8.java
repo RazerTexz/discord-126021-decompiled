@@ -10,13 +10,11 @@ import android.os.RemoteException;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import b.i.a.f.e.k.b$a;
-import b.i.a.f.e.k.b$b;
 import com.google.android.gms.common.ConnectionResult;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-impl@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class k8 implements ServiceConnection, b$a, b$b {
+public final class k8 implements ServiceConnection, b.i.a.f.e.k.b.a, b.i.a.f.e.k.b.InterfaceC0114b {
     public volatile boolean j;
     public volatile r3 k;
     public final /* synthetic */ q7 l;
@@ -25,7 +23,7 @@ public final class k8 implements ServiceConnection, b$a, b$b {
         this.l = q7Var;
     }
 
-    @Override // b.i.a.f.e.k.b$a
+    @Override // b.i.a.f.e.k.b.a
     @MainThread
     public final void c(int i) {
         b.c.a.a0.d.u("MeasurementServiceConnection.onConnectionSuspended");
@@ -33,7 +31,7 @@ public final class k8 implements ServiceConnection, b$a, b$b {
         this.l.f().v(new o8(this));
     }
 
-    @Override // b.i.a.f.e.k.b$b
+    @Override // b.i.a.f.e.k.b.InterfaceC0114b
     @MainThread
     public final void g(@NonNull ConnectionResult connectionResult) {
         b.c.a.a0.d.u("MeasurementServiceConnection.onConnectionFailed");
@@ -50,7 +48,7 @@ public final class k8 implements ServiceConnection, b$a, b$b {
         this.l.f().v(new n8(this));
     }
 
-    @Override // b.i.a.f.e.k.b$a
+    @Override // b.i.a.f.e.k.b.a
     @MainThread
     public final void i(@Nullable Bundle bundle) {
         b.c.a.a0.d.u("MeasurementServiceConnection.onConnected");

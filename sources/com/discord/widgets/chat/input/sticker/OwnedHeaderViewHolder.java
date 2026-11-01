@@ -5,23 +5,23 @@ import android.view.View;
 import android.widget.TextView;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.databinding.ExpressionPickerHeaderItemBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
 import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
-import com.discord.widgets.chat.input.expression.WidgetExpressionPickerAdapter$StickyHeaderViewHolder;
+import com.discord.widgets.chat.input.expression.WidgetExpressionPickerAdapter;
 import d0.z.d.m;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: StickerAdapterViewHolders.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class OwnedHeaderViewHolder extends MGRecyclerViewHolder<WidgetStickerAdapter, MGRecyclerDataPayload> implements WidgetExpressionPickerAdapter$StickyHeaderViewHolder {
+public final class OwnedHeaderViewHolder extends MGRecyclerViewHolder<WidgetStickerAdapter, MGRecyclerDataPayload> implements WidgetExpressionPickerAdapter.StickyHeaderViewHolder {
     private final ExpressionPickerHeaderItemBinding binding;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public OwnedHeaderViewHolder(WidgetStickerAdapter widgetStickerAdapter) {
-        super(R$layout.expression_picker_header_item, widgetStickerAdapter);
+        super(R.layout.expression_picker_header_item, widgetStickerAdapter);
         m.checkNotNullParameter(widgetStickerAdapter, "adapter");
         View view = this.itemView;
         Objects.requireNonNull(view, "rootView");
@@ -31,13 +31,13 @@ public final class OwnedHeaderViewHolder extends MGRecyclerViewHolder<WidgetStic
         this.binding = expressionPickerHeaderItemBinding;
     }
 
-    @Override // com.discord.widgets.chat.input.expression.WidgetExpressionPickerAdapter$StickyHeaderViewHolder
+    @Override // com.discord.widgets.chat.input.expression.WidgetExpressionPickerAdapter.StickyHeaderViewHolder
     public void bind(int position, MGRecyclerDataPayload data) {
         m.checkNotNullParameter(data, "data");
         onConfigure2(position, data);
     }
 
-    @Override // com.discord.widgets.chat.input.expression.WidgetExpressionPickerAdapter$StickyHeaderViewHolder
+    @Override // com.discord.widgets.chat.input.expression.WidgetExpressionPickerAdapter.StickyHeaderViewHolder
     public View getItemView() {
         View view = this.itemView;
         m.checkNotNullExpressionValue(view, "itemView");
@@ -61,34 +61,34 @@ public final class OwnedHeaderViewHolder extends MGRecyclerViewHolder<WidgetStic
         if (headerItem == null || (headerType = headerItem.getHeaderType()) == null) {
             return;
         }
-        if (headerType instanceof HeaderType$PackItem) {
+        if (headerType instanceof HeaderType.PackItem) {
             TextView textView = this.binding.f2105b;
             m.checkNotNullExpressionValue(textView, "binding.headerItemText");
-            HeaderType$PackItem headerType$PackItem = (HeaderType$PackItem) headerType;
-            textView.setText(headerType$PackItem.getPack().getName());
+            HeaderType.PackItem packItem = (HeaderType.PackItem) headerType;
+            textView.setText(packItem.getPack().getName());
             TextView textView2 = this.binding.f2105b;
             m.checkNotNullExpressionValue(textView2, "binding.headerItemText");
-            textView2.setContentDescription(b.h(a.x(this.itemView, "itemView", "itemView.context"), 2131895925, new Object[]{headerType$PackItem.getPack().getName()}, null, 4));
+            textView2.setContentDescription(b.h(a.x(this.itemView, "itemView", "itemView.context"), R.string.sticker_category_a11y_label, new Object[]{packItem.getPack().getName()}, null, 4));
             return;
         }
-        if (headerType instanceof HeaderType$Recent) {
-            this.binding.f2105b.setText(2131895936);
+        if (headerType instanceof HeaderType.Recent) {
+            this.binding.f2105b.setText(R.string.sticker_picker_categories_recent);
             TextView textView3 = this.binding.f2105b;
             m.checkNotNullExpressionValue(textView3, "binding.headerItemText");
             Context contextI = a.I(this.binding.f2105b, "binding.headerItemText", "binding.headerItemText.context");
             TextView textView4 = this.binding.f2105b;
             m.checkNotNullExpressionValue(textView4, "binding.headerItemText");
-            textView3.setContentDescription(b.h(contextI, 2131895925, new Object[]{textView4.getText()}, null, 4));
+            textView3.setContentDescription(b.h(contextI, R.string.sticker_category_a11y_label, new Object[]{textView4.getText()}, null, 4));
             return;
         }
-        if (headerType instanceof HeaderType$GuildItem) {
+        if (headerType instanceof HeaderType.GuildItem) {
             TextView textView5 = this.binding.f2105b;
             m.checkNotNullExpressionValue(textView5, "binding.headerItemText");
-            HeaderType$GuildItem headerType$GuildItem = (HeaderType$GuildItem) headerType;
-            textView5.setText(headerType$GuildItem.getGuild().getName());
+            HeaderType.GuildItem guildItem = (HeaderType.GuildItem) headerType;
+            textView5.setText(guildItem.getGuild().getName());
             TextView textView6 = this.binding.f2105b;
             m.checkNotNullExpressionValue(textView6, "binding.headerItemText");
-            textView6.setContentDescription(b.h(a.I(this.binding.f2105b, "binding.headerItemText", "binding.headerItemText.context"), 2131895925, new Object[]{headerType$GuildItem.getGuild().getName()}, null, 4));
+            textView6.setContentDescription(b.h(a.I(this.binding.f2105b, "binding.headerItemText", "binding.headerItemText.context"), R.string.sticker_category_a11y_label, new Object[]{guildItem.getGuild().getName()}, null, 4));
         }
     }
 }

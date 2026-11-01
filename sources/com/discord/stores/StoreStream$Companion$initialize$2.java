@@ -20,6 +20,6 @@ public final class StoreStream$Companion$initialize$2 extends o implements Funct
     @Override // kotlin.jvm.functions.Function0
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final String invoke2() {
-        return StoreStream$Companion.access$getCollector$p(StoreStream.Companion).getAuthentication().getFingerprint();
+        return StoreStream.Companion.access$getCollector$p(StoreStream.INSTANCE).getAuthentication().getFingerprint();
     }
 }

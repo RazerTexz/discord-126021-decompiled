@@ -2,7 +2,7 @@ package com.discord.widgets.channels.permissions;
 
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetStageChannelModeratorPermissionsBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -25,14 +25,14 @@ public final /* synthetic */ class WidgetStageChannelModeratorPermissions$viewBi
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetStageChannelModeratorPermissionsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.add_permission_owner_button;
-        AddPermissionOwnerView addPermissionOwnerView = (AddPermissionOwnerView) view.findViewById(R$id.add_permission_owner_button);
+        int i = R.id.add_permission_owner_button;
+        AddPermissionOwnerView addPermissionOwnerView = (AddPermissionOwnerView) view.findViewById(R.id.add_permission_owner_button);
         if (addPermissionOwnerView != null) {
-            i = R$id.members_permission_owners_list;
-            PermissionOwnerListView permissionOwnerListView = (PermissionOwnerListView) view.findViewById(R$id.members_permission_owners_list);
+            i = R.id.members_permission_owners_list;
+            PermissionOwnerListView permissionOwnerListView = (PermissionOwnerListView) view.findViewById(R.id.members_permission_owners_list);
             if (permissionOwnerListView != null) {
-                i = R$id.roles_permission_owners_list;
-                PermissionOwnerListView permissionOwnerListView2 = (PermissionOwnerListView) view.findViewById(R$id.roles_permission_owners_list);
+                i = R.id.roles_permission_owners_list;
+                PermissionOwnerListView permissionOwnerListView2 = (PermissionOwnerListView) view.findViewById(R.id.roles_permission_owners_list);
                 if (permissionOwnerListView2 != null) {
                     return new WidgetStageChannelModeratorPermissionsBinding((CoordinatorLayout) view, addPermissionOwnerView, permissionOwnerListView, permissionOwnerListView2);
                 }

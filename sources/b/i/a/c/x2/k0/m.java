@@ -2,7 +2,6 @@ package b.i.a.c.x2.k0;
 
 import androidx.annotation.Nullable;
 import b.i.a.c.j1;
-import b.i.a.c.j1$b;
 import java.util.Arrays;
 
 /* JADX INFO: compiled from: DtsReader.java */
@@ -159,15 +158,15 @@ public final class m implements o {
                         }
                         wVar.m(10);
                         int i25 = i22 + (wVar.g(i7) > 0 ? 1 : 0);
-                        j1$b j1_b = new j1$b();
-                        j1_b.a = str;
-                        j1_b.k = "audio/vnd.dts";
-                        j1_b.f = i8;
-                        j1_b.f1023x = i25;
-                        j1_b.f1024y = i23;
-                        j1_b.n = null;
-                        j1_b.c = str2;
-                        j1 j1VarA = j1_b.a();
+                        j1.b bVar = new j1.b();
+                        bVar.a = str;
+                        bVar.k = "audio/vnd.dts";
+                        bVar.f = i8;
+                        bVar.f1023x = i25;
+                        bVar.f1024y = i23;
+                        bVar.n = null;
+                        bVar.c = str2;
+                        j1 j1VarA = bVar.a();
                         this.i = j1VarA;
                         this.d.e(j1VarA);
                     }
@@ -290,10 +289,10 @@ public final class m implements o {
     }
 
     @Override // b.i.a.c.x2.k0.o
-    public void e(b.i.a.c.x2.j jVar, i0$d i0_d) {
-        i0_d.a();
-        this.c = i0_d.b();
-        this.d = jVar.p(i0_d.c(), 1);
+    public void e(b.i.a.c.x2.j jVar, i0.d dVar) {
+        dVar.a();
+        this.c = dVar.b();
+        this.d = jVar.p(dVar.c(), 1);
     }
 
     @Override // b.i.a.c.x2.k0.o

@@ -1,16 +1,14 @@
 package com.discord.widgets.stickers;
 
 import android.view.View;
-import android.view.View$OnClickListener;
 import androidx.fragment.app.FragmentManager;
 import com.discord.models.guild.Guild;
-import com.discord.utilities.analytics.Traits$Location;
-import com.discord.utilities.analytics.Traits$Location$Section;
+import com.discord.utilities.analytics.Traits;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: WidgetGuildStickerSheet.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGuildStickerSheet$configureButtons$$inlined$with$lambda$1 implements View$OnClickListener {
+public final class WidgetGuildStickerSheet$configureButtons$$inlined$with$lambda$1 implements View.OnClickListener {
     public final /* synthetic */ Guild $guild$inlined;
     public final /* synthetic */ boolean $isUserInGuild$inlined;
     public final /* synthetic */ boolean $isUserPremium$inlined;
@@ -23,12 +21,12 @@ public final class WidgetGuildStickerSheet$configureButtons$$inlined$with$lambda
         this.$isUserInGuild$inlined = z3;
     }
 
-    @Override // android.view.View$OnClickListener
+    @Override // android.view.View.OnClickListener
     public final void onClick(View view) {
         this.this$0.dismiss();
-        StickerPremiumUpsellDialog$Companion stickerPremiumUpsellDialog$Companion = StickerPremiumUpsellDialog.Companion;
+        StickerPremiumUpsellDialog.Companion companion = StickerPremiumUpsellDialog.INSTANCE;
         FragmentManager parentFragmentManager = this.this$0.getParentFragmentManager();
         m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        stickerPremiumUpsellDialog$Companion.show(parentFragmentManager, new Traits$Location(null, Traits$Location$Section.STICKER_POPOUT, null, null, null, 29, null));
+        companion.show(parentFragmentManager, new Traits.Location(null, Traits.Location.Section.STICKER_POPOUT, null, null, null, 29, null));
     }
 }

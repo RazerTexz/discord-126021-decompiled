@@ -4,14 +4,13 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.net.Uri;
-import android.net.Uri$Builder;
 import android.util.AttributeSet;
 import androidx.annotation.DrawableRes;
 import b.c.a.a0.d;
 import b.f.g.j.a;
 import b.f.j.r.b;
 import com.facebook.common.internal.Supplier;
-import com.facebook.drawee.R$a;
+import com.facebook.drawee.R;
 import com.facebook.drawee.controller.AbstractDraweeControllerBuilder;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.imagepipeline.request.ImageRequest;
@@ -42,13 +41,13 @@ public class SimpleDraweeView extends a {
                 this.mControllerBuilder = sDraweecontrollerbuildersupplier.get();
             }
             if (attributeSet != null) {
-                TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$a.SimpleDraweeView);
+                TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.a.SimpleDraweeView);
                 try {
-                    int i = R$a.SimpleDraweeView_actualImageUri;
+                    int i = R.a.SimpleDraweeView_actualImageUri;
                     if (typedArrayObtainStyledAttributes.hasValue(i)) {
                         setImageURI(Uri.parse(typedArrayObtainStyledAttributes.getString(i)), (Object) null);
                     } else {
-                        int i2 = R$a.SimpleDraweeView_actualImageResource;
+                        int i2 = R.a.SimpleDraweeView_actualImageResource;
                         if (typedArrayObtainStyledAttributes.hasValue(i2) && (resourceId = typedArrayObtainStyledAttributes.getResourceId(i2, -1)) != -1) {
                             if (isInEditMode()) {
                                 setImageResource(resourceId);
@@ -76,7 +75,7 @@ public class SimpleDraweeView extends a {
 
     public void setActualImageResource(@DrawableRes int i, Object obj) {
         Uri uri = b.f.d.l.b.a;
-        setImageURI(new Uri$Builder().scheme("res").path(String.valueOf(i)).build(), obj);
+        setImageURI(new Uri.Builder().scheme("res").path(String.valueOf(i)).build(), obj);
     }
 
     /* JADX WARN: Multi-variable type inference failed */

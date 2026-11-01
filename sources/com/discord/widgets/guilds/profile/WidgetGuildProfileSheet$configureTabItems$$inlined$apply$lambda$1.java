@@ -3,11 +3,8 @@ package com.discord.widgets.guilds.profile;
 import android.content.Context;
 import android.view.View;
 import com.discord.utilities.analytics.AnalyticsTracker;
-import com.discord.utilities.analytics.Traits$Location;
-import com.discord.utilities.analytics.Traits$Location$Obj;
-import com.discord.utilities.analytics.Traits$Location$Section;
+import com.discord.utilities.analytics.Traits;
 import com.discord.widgets.servers.guildboost.WidgetGuildBoost;
-import com.discord.widgets.servers.guildboost.WidgetGuildBoost$Companion;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -39,10 +36,10 @@ public final class WidgetGuildProfileSheet$configureTabItems$$inlined$apply$lamb
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(View view) {
         m.checkNotNullParameter(view, "view");
-        AnalyticsTracker.guildBoostPromotionOpened$default(AnalyticsTracker.INSTANCE, this.$guildId$inlined, new Traits$Location(null, Traits$Location$Section.GUILD_POPOUT, Traits$Location$Obj.BOOST_GEM_ICON, null, null, 25, null), null, 4, null);
-        WidgetGuildBoost$Companion widgetGuildBoost$Companion = WidgetGuildBoost.Companion;
+        AnalyticsTracker.guildBoostPromotionOpened$default(AnalyticsTracker.INSTANCE, this.$guildId$inlined, new Traits.Location(null, Traits.Location.Section.GUILD_POPOUT, Traits.Location.Obj.BOOST_GEM_ICON, null, null, 25, null), null, 4, null);
+        WidgetGuildBoost.Companion companion = WidgetGuildBoost.INSTANCE;
         Context context = view.getContext();
         m.checkNotNullExpressionValue(context, "view.context");
-        widgetGuildBoost$Companion.create(context, this.$guildId$inlined);
+        companion.create(context, this.$guildId$inlined);
     }
 }

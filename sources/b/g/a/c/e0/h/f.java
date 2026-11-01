@@ -1,7 +1,6 @@
 package b.g.a.c.e0.h;
 
 import b.g.a.c.h0.n;
-import b.g.a.c.i0.d$b;
 import java.lang.reflect.Field;
 import java.lang.reflect.TypeVariable;
 import java.util.Collection;
@@ -43,7 +42,7 @@ public class f extends k {
         if (obj instanceof EnumSet) {
             EnumSet enumSet = (EnumSet) obj;
             if (enumSet.isEmpty()) {
-                Field field = d$b.a.f728b;
+                Field field = b.g.a.c.i0.d.b.a.f728b;
                 if (field == null) {
                     throw new IllegalStateException("Cannot figure out type for EnumSet (odd JDK platform?)");
                 }
@@ -85,7 +84,7 @@ public class f extends k {
         }
         EnumMap enumMap = (EnumMap) obj;
         if (enumMap.isEmpty()) {
-            Field field2 = d$b.a.c;
+            Field field2 = b.g.a.c.i0.d.b.a.c;
             if (field2 == null) {
                 throw new IllegalStateException("Cannot figure out type for EnumMap (odd JDK platform?)");
             }

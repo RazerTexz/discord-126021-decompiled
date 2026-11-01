@@ -4,8 +4,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.view.Lifecycle;
-import androidx.view.Lifecycle$Event;
-import androidx.view.Lifecycle$State;
 import androidx.view.LifecycleRegistry;
 import androidx.view.SavedStateRegistry;
 import androidx.view.SavedStateRegistryController;
@@ -29,8 +27,8 @@ public class FragmentViewLifecycleOwner implements SavedStateRegistryOwner {
         return this.mSavedStateRegistryController.getSavedStateRegistry();
     }
 
-    public void handleLifecycleEvent(@NonNull Lifecycle$Event lifecycle$Event) {
-        this.mLifecycleRegistry.handleLifecycleEvent(lifecycle$Event);
+    public void handleLifecycleEvent(@NonNull Lifecycle.Event event) {
+        this.mLifecycleRegistry.handleLifecycleEvent(event);
     }
 
     public void initialize() {
@@ -52,7 +50,7 @@ public class FragmentViewLifecycleOwner implements SavedStateRegistryOwner {
         this.mSavedStateRegistryController.performSave(bundle);
     }
 
-    public void setCurrentState(@NonNull Lifecycle$State lifecycle$State) {
-        this.mLifecycleRegistry.setCurrentState(lifecycle$State);
+    public void setCurrentState(@NonNull Lifecycle.State state) {
+        this.mLifecycleRegistry.setCurrentState(state);
     }
 }

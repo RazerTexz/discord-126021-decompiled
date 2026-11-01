@@ -1,15 +1,25 @@
 package com.discord.widgets.chat.input.gifpicker;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-import com.discord.R$a;
+import com.discord.R;
+import com.discord.databinding.LoadingGifItemViewBinding;
+import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.recycler.GridColumnSpaceItemDecoration;
+import d0.t.n;
 import d0.z.d.m;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import org.objectweb.asm.Opcodes;
 
@@ -17,17 +27,84 @@ import org.objectweb.asm.Opcodes;
 /* JADX INFO: loaded from: classes2.dex */
 public final class GifLoadingView extends RecyclerView {
     private boolean isStaggered;
-    private final GifLoadingView$LoadingGifAdapter loadingGifAdapter;
+    private final LoadingGifAdapter loadingGifAdapter;
+
+    /* JADX INFO: compiled from: GifLoadingView.kt */
+    public final class LoadingGifAdapter extends RecyclerView.Adapter<LoadingGifViewHolder> {
+        private List<Integer> heightsDp = n.emptyList();
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        public int getItemCount() {
+            return this.heightsDp.size();
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        public /* bridge */ /* synthetic */ void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            onBindViewHolder((LoadingGifViewHolder) viewHolder, i);
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        public /* bridge */ /* synthetic */ RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            return onCreateViewHolder(viewGroup, i);
+        }
+
+        public final void setData(List<Integer> heightsDp) {
+            m.checkNotNullParameter(heightsDp, "heightsDp");
+            this.heightsDp = heightsDp;
+            notifyDataSetChanged();
+        }
+
+        public void onBindViewHolder(LoadingGifViewHolder holder, int position) {
+            m.checkNotNullParameter(holder, "holder");
+            holder.configure(this.heightsDp.get(position).intValue());
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+        public LoadingGifViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            m.checkNotNullParameter(parent, "parent");
+            View viewInflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.loading_gif_item_view, parent, false);
+            Objects.requireNonNull(viewInflate, "rootView");
+            LoadingGifItemViewBinding loadingGifItemViewBinding = new LoadingGifItemViewBinding((CardView) viewInflate);
+            m.checkNotNullExpressionValue(loadingGifItemViewBinding, "LoadingGifItemViewBindin….context), parent, false)");
+            return new LoadingGifViewHolder(loadingGifItemViewBinding);
+        }
+    }
+
+    /* JADX INFO: compiled from: GifLoadingView.kt */
+    public final class LoadingGifViewHolder extends RecyclerView.ViewHolder {
+        private final LoadingGifItemViewBinding binding;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public LoadingGifViewHolder(LoadingGifItemViewBinding loadingGifItemViewBinding) {
+            super(loadingGifItemViewBinding.a);
+            m.checkNotNullParameter(loadingGifItemViewBinding, "binding");
+            this.binding = loadingGifItemViewBinding;
+        }
+
+        public final void configure(int heightDp) {
+            CardView cardView = this.binding.a;
+            m.checkNotNullExpressionValue(cardView, "binding.root");
+            ViewGroup.LayoutParams layoutParams = cardView.getLayoutParams();
+            CardView cardView2 = this.binding.a;
+            m.checkNotNullExpressionValue(cardView2, "binding.root");
+            Resources resources = cardView2.getResources();
+            m.checkNotNullExpressionValue(resources, "binding.root.resources");
+            layoutParams.height = (int) (heightDp * resources.getDisplayMetrics().density);
+            CardView cardView3 = this.binding.a;
+            m.checkNotNullExpressionValue(cardView3, "binding.root");
+            cardView3.setLayoutParams(layoutParams);
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public GifLoadingView(Context context) {
         super(context);
         m.checkNotNullParameter(context, "context");
-        this.loadingGifAdapter = new GifLoadingView$LoadingGifAdapter();
+        this.loadingGifAdapter = new LoadingGifAdapter();
     }
 
     private final void initialize(AttributeSet attrs) {
-        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attrs, R$a.GifLoadingView, 0, 0);
+        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attrs, R.a.GifLoadingView, 0, 0);
         m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…ble.GifLoadingView, 0, 0)");
         try {
             this.isStaggered = typedArrayObtainStyledAttributes.getBoolean(0, false);
@@ -72,7 +149,7 @@ public final class GifLoadingView extends RecyclerView {
     public GifLoadingView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         m.checkNotNullParameter(context, "context");
-        this.loadingGifAdapter = new GifLoadingView$LoadingGifAdapter();
+        this.loadingGifAdapter = new LoadingGifAdapter();
         initialize(attributeSet);
     }
 
@@ -84,7 +161,7 @@ public final class GifLoadingView extends RecyclerView {
     public GifLoadingView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
         m.checkNotNullParameter(context, "context");
-        this.loadingGifAdapter = new GifLoadingView$LoadingGifAdapter();
+        this.loadingGifAdapter = new LoadingGifAdapter();
         initialize(attributeSet);
     }
 

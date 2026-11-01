@@ -12,7 +12,7 @@ public final class StickerFormatTypeTypeAdapter extends TypeAdapter<StickerForma
     @Override // com.google.gson.TypeAdapter
     public StickerFormatType read(JsonReader jsonReader) throws IOException {
         m.checkNotNullParameter(jsonReader, "in");
-        return StickerFormatType.Companion.a(jsonReader.y());
+        return StickerFormatType.INSTANCE.a(jsonReader.y());
     }
 
     @Override // com.google.gson.TypeAdapter

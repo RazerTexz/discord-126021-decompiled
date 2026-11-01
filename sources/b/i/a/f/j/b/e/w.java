@@ -1,12 +1,12 @@
 package b.i.a.f.j.b.e;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.nearby.messages.internal.zza;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class w implements Parcelable$Creator<zza> {
-    @Override // android.os.Parcelable$Creator
+public final class w implements Parcelable.Creator<zza> {
+    @Override // android.os.Parcelable.Creator
     public final zza createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         int iG1 = 0;
@@ -29,7 +29,7 @@ public final class w implements Parcelable$Creator<zza> {
         return new zza(iG1, iG2, iG3);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zza[] newArray(int i) {
         return new zza[i];
     }

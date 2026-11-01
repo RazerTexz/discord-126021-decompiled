@@ -1,15 +1,14 @@
 package s.a.d2.g;
 
 import d0.z.d.o;
-import kotlin.coroutines.CoroutineContext$Element;
-import kotlin.coroutines.CoroutineContext$Key;
+import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.functions.Function2;
 import kotlinx.coroutines.Job;
 import s.a.a.r;
 
 /* JADX INFO: compiled from: SafeCollector.common.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class g extends o implements Function2<Integer, CoroutineContext$Element, Integer> {
+public final class g extends o implements Function2<Integer, CoroutineContext.Element, Integer> {
     public final /* synthetic */ e $this_checkContext;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -20,20 +19,20 @@ public final class g extends o implements Function2<Integer, CoroutineContext$El
 
     /* JADX WARN: Code duplicated, block: B:16:0x0031  */
     @Override // kotlin.jvm.functions.Function2
-    public Integer invoke(Integer num, CoroutineContext$Element coroutineContext$Element) {
+    public Integer invoke(Integer num, CoroutineContext.Element element) {
         int iIntValue = num.intValue();
-        CoroutineContext$Element coroutineContext$Element2 = coroutineContext$Element;
-        CoroutineContext$Key<?> key = coroutineContext$Element2.getKey();
-        CoroutineContext$Element coroutineContext$Element3 = this.$this_checkContext.collectContext.get(key);
-        if (key == Job.h) {
-            Job job = (Job) coroutineContext$Element3;
-            Job job2 = (Job) coroutineContext$Element2;
+        CoroutineContext.Element element2 = element;
+        CoroutineContext.Key<?> key = element2.getKey();
+        CoroutineContext.Element element3 = this.$this_checkContext.collectContext.get(key);
+        if (key == Job.INSTANCE) {
+            Job job = (Job) element3;
+            Job job2 = (Job) element2;
             while (true) {
                 if (job2 != null) {
                     if (job2 == job || !(job2 instanceof r)) {
                         break;
                     }
-                    job2 = (Job) ((r) job2).l.get(Job.h);
+                    job2 = (Job) ((r) job2).l.get(Job.INSTANCE);
                 } else {
                     job2 = null;
                     break;
@@ -51,7 +50,7 @@ public final class g extends o implements Function2<Integer, CoroutineContext$El
             if (job != null) {
                 iIntValue++;
             }
-        } else if (coroutineContext$Element2 != coroutineContext$Element3) {
+        } else if (element2 != element3) {
             iIntValue = Integer.MIN_VALUE;
         } else {
             iIntValue++;

@@ -3,7 +3,6 @@ package org.webrtc;
 import android.media.MediaCodecInfo;
 import android.media.MediaCodecList;
 import android.os.Build;
-import android.os.Build$VERSION;
 import androidx.annotation.Nullable;
 import b.a.c;
 import h0.c.s0;
@@ -25,11 +24,34 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
     private final boolean enableIntelVp8Encoder;
 
     @Nullable
-    private final EglBase14$Context sharedContext;
+    private final EglBase14.Context sharedContext;
     private static final List<String> H264_HW_EXCEPTION_MODELS = Arrays.asList("SAMSUNG-SGH-I337", "Nexus 7", "Nexus 4");
 
-    public HardwareVideoEncoderFactory(EglBase$Context eglBase$Context, boolean z2, boolean z3) {
-        this(eglBase$Context, z2, z3, null);
+    /* JADX INFO: renamed from: org.webrtc.HardwareVideoEncoderFactory$1, reason: invalid class name */
+    public /* synthetic */ class AnonymousClass1 {
+        public static final /* synthetic */ int[] $SwitchMap$org$webrtc$VideoCodecMimeType;
+
+        static {
+            VideoCodecMimeType.values();
+            int[] iArr = new int[3];
+            $SwitchMap$org$webrtc$VideoCodecMimeType = iArr;
+            try {
+                iArr[VideoCodecMimeType.VP8.ordinal()] = 1;
+            } catch (NoSuchFieldError unused) {
+            }
+            try {
+                $SwitchMap$org$webrtc$VideoCodecMimeType[VideoCodecMimeType.VP9.ordinal()] = 2;
+            } catch (NoSuchFieldError unused2) {
+            }
+            try {
+                $SwitchMap$org$webrtc$VideoCodecMimeType[VideoCodecMimeType.H264.ordinal()] = 3;
+            } catch (NoSuchFieldError unused3) {
+            }
+        }
+    }
+
+    public HardwareVideoEncoderFactory(EglBase.Context context, boolean z2, boolean z3) {
+        this(context, z2, z3, null);
     }
 
     private BitrateAdjuster createBitrateAdjuster(VideoCodecMimeType videoCodecMimeType, String str) {
@@ -85,7 +107,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
     }
 
     @Override // org.webrtc.VideoEncoderFactory
-    public /* synthetic */ VideoEncoderFactory$VideoEncoderSelector getEncoderSelector() {
+    public /* synthetic */ VideoEncoderFactory.VideoEncoderSelector getEncoderSelector() {
         return s0.a(this);
     }
 
@@ -93,7 +115,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         if (videoCodecMimeType != VideoCodecMimeType.VP8 || !str.startsWith(MediaCodecUtils.QCOM_PREFIX)) {
             return 0;
         }
-        int i = Build$VERSION.SDK_INT;
+        int i = Build.VERSION.SDK_INT;
         if (i != 21 && i != 22) {
             if (i == 23) {
                 return QCOM_VP8_KEY_FRAME_INTERVAL_ANDROID_M_MS;
@@ -140,7 +162,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
     }
 
     private boolean isH264HighProfileSupported(MediaCodecInfo mediaCodecInfo) {
-        return this.enableH264HighProfile && Build$VERSION.SDK_INT > 23 && mediaCodecInfo.getName().startsWith(MediaCodecUtils.EXYNOS_PREFIX);
+        return this.enableH264HighProfile && Build.VERSION.SDK_INT > 23 && mediaCodecInfo.getName().startsWith(MediaCodecUtils.EXYNOS_PREFIX);
     }
 
     private boolean isHardwareSupportedInCurrentSdk(MediaCodecInfo mediaCodecInfo, VideoCodecMimeType videoCodecMimeType) {
@@ -163,7 +185,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
                 return false;
             }
         }
-        if (Build$VERSION.SDK_INT >= 29) {
+        if (Build.VERSION.SDK_INT >= 29) {
             return mediaCodecInfo.isHardwareAccelerated();
         }
         String lowerCase = mediaCodecInfo.getName().toLowerCase(Locale.ROOT);
@@ -177,12 +199,12 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
 
     private boolean isHardwareSupportedInCurrentSdkVp8(MediaCodecInfo mediaCodecInfo) {
         String name = mediaCodecInfo.getName();
-        return name.startsWith(MediaCodecUtils.QCOM_PREFIX) || (name.startsWith(MediaCodecUtils.EXYNOS_PREFIX) && Build$VERSION.SDK_INT >= 23) || (name.startsWith(MediaCodecUtils.INTEL_PREFIX) && this.enableIntelVp8Encoder);
+        return name.startsWith(MediaCodecUtils.QCOM_PREFIX) || (name.startsWith(MediaCodecUtils.EXYNOS_PREFIX) && Build.VERSION.SDK_INT >= 23) || (name.startsWith(MediaCodecUtils.INTEL_PREFIX) && this.enableIntelVp8Encoder);
     }
 
     private boolean isHardwareSupportedInCurrentSdkVp9(MediaCodecInfo mediaCodecInfo) {
         String name = mediaCodecInfo.getName();
-        return (name.startsWith(MediaCodecUtils.QCOM_PREFIX) || name.startsWith(MediaCodecUtils.EXYNOS_PREFIX)) && Build$VERSION.SDK_INT >= 24;
+        return (name.startsWith(MediaCodecUtils.QCOM_PREFIX) || name.startsWith(MediaCodecUtils.EXYNOS_PREFIX)) && Build.VERSION.SDK_INT >= 24;
     }
 
     private boolean isMediaCodecAllowed(MediaCodecInfo mediaCodecInfo) {
@@ -197,9 +219,9 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         return MediaCodecUtils.codecSupportsType(mediaCodecInfo, videoCodecMimeType) && MediaCodecUtils.selectColorFormat(MediaCodecUtils.ENCODER_COLOR_FORMATS, mediaCodecInfo.getCapabilitiesForType(videoCodecMimeType.mimeType())) != null && isHardwareSupportedInCurrentSdk(mediaCodecInfo, videoCodecMimeType) && isMediaCodecAllowed(mediaCodecInfo);
     }
 
-    public HardwareVideoEncoderFactory(EglBase$Context eglBase$Context, boolean z2, boolean z3, @Nullable Predicate<MediaCodecInfo> predicate) {
-        if (eglBase$Context instanceof EglBase14$Context) {
-            this.sharedContext = (EglBase14$Context) eglBase$Context;
+    public HardwareVideoEncoderFactory(EglBase.Context context, boolean z2, boolean z3, @Nullable Predicate<MediaCodecInfo> predicate) {
+        if (context instanceof EglBase14.Context) {
+            this.sharedContext = (EglBase14.Context) context;
         } else {
             Logging.w(TAG, "No shared EglBase.Context.  Encoders will not use texture mode.");
             this.sharedContext = null;

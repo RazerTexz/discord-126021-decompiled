@@ -1,24 +1,24 @@
 package com.discord.widgets.chat.input;
 
 import com.lytefast.flexinput.model.Attachment;
-import com.lytefast.flexinput.utils.SelectionCoordinator$ItemSelectionListener;
+import com.lytefast.flexinput.utils.SelectionCoordinator;
 import d0.z.d.m;
 
 /* JADX INFO: Add missing generic type declarations: [T] */
 /* JADX INFO: compiled from: WidgetChatInputAttachments.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetChatInputAttachments$createPreviewAdapter$1$1$registerSelectionCoordinatorInternal$1<T> implements SelectionCoordinator$ItemSelectionListener<T> {
-    private final /* synthetic */ SelectionCoordinator$ItemSelectionListener<? super T> $$delegate_0;
-    public final /* synthetic */ SelectionCoordinator$ItemSelectionListener $oldItemSelectionListener;
-    public final /* synthetic */ WidgetChatInputAttachments$createPreviewAdapter$1$1 this$0;
+public final class WidgetChatInputAttachments$createPreviewAdapter$1$1$registerSelectionCoordinatorInternal$1<T> implements SelectionCoordinator.ItemSelectionListener<T> {
+    private final /* synthetic */ SelectionCoordinator.ItemSelectionListener<? super T> $$delegate_0;
+    public final /* synthetic */ SelectionCoordinator.ItemSelectionListener $oldItemSelectionListener;
+    public final /* synthetic */ WidgetChatInputAttachments.AnonymousClass1.C03731 this$0;
 
-    public WidgetChatInputAttachments$createPreviewAdapter$1$1$registerSelectionCoordinatorInternal$1(WidgetChatInputAttachments$createPreviewAdapter$1$1 widgetChatInputAttachments$createPreviewAdapter$1$1, SelectionCoordinator$ItemSelectionListener selectionCoordinator$ItemSelectionListener) {
-        this.this$0 = widgetChatInputAttachments$createPreviewAdapter$1$1;
-        this.$oldItemSelectionListener = selectionCoordinator$ItemSelectionListener;
-        this.$$delegate_0 = selectionCoordinator$ItemSelectionListener;
+    public WidgetChatInputAttachments$createPreviewAdapter$1$1$registerSelectionCoordinatorInternal$1(WidgetChatInputAttachments.AnonymousClass1.C03731 c03731, SelectionCoordinator.ItemSelectionListener itemSelectionListener) {
+        this.this$0 = c03731;
+        this.$oldItemSelectionListener = itemSelectionListener;
+        this.$$delegate_0 = itemSelectionListener;
     }
 
-    @Override // com.lytefast.flexinput.utils.SelectionCoordinator$ItemSelectionListener
+    @Override // com.lytefast.flexinput.utils.SelectionCoordinator.ItemSelectionListener
     public /* bridge */ /* synthetic */ void onItemSelected(Object obj) {
         onItemSelected((Attachment) obj);
     }
@@ -29,12 +29,12 @@ public final class WidgetChatInputAttachments$createPreviewAdapter$1$1$registerS
         this.$$delegate_0.onItemUnselected(item);
     }
 
-    @Override // com.lytefast.flexinput.utils.SelectionCoordinator$ItemSelectionListener
+    @Override // com.lytefast.flexinput.utils.SelectionCoordinator.ItemSelectionListener
     public /* bridge */ /* synthetic */ void onItemUnselected(Object obj) {
         onItemUnselected((Attachment) obj);
     }
 
-    @Override // com.lytefast.flexinput.utils.SelectionCoordinator$ItemSelectionListener
+    @Override // com.lytefast.flexinput.utils.SelectionCoordinator.ItemSelectionListener
     public void unregister() {
         this.$$delegate_0.unregister();
     }
@@ -42,7 +42,7 @@ public final class WidgetChatInputAttachments$createPreviewAdapter$1$1$registerS
     /* JADX WARN: Incorrect types in method signature: (TT;)V */
     public void onItemSelected(Attachment item) {
         m.checkNotNullParameter(item, "item");
-        WidgetChatInputAttachments$createPreviewAdapter$1$1.access$track(this.this$0, item);
+        WidgetChatInputAttachments.AnonymousClass1.C03731.access$track(this.this$0, item);
         this.$oldItemSelectionListener.onItemSelected(item);
     }
 }

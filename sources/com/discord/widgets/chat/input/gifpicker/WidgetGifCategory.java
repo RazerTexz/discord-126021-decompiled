@@ -3,7 +3,10 @@ package com.discord.widgets.chat.input.gifpicker;
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
+import androidx.core.app.NotificationCompat;
+import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +15,7 @@ import b.a.d.f0;
 import b.a.d.g0;
 import b.a.d.i0;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetGifCategoryBinding;
 import com.discord.utilities.dimen.DimenUtils;
@@ -21,7 +24,9 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.discord.widgets.chat.input.expression.ExpressionTrayViewModel;
 import d0.z.d.a0;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
 import defpackage.u;
 import java.io.Serializable;
 import java.util.Objects;
@@ -31,13 +36,13 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.reflect.KProperty;
+import rx.functions.Func0;
 
 /* JADX INFO: compiled from: WidgetGifCategory.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGifCategory extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGifCategory.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGifCategoryBinding;", 0)};
     public static final String ARG_GIF_CATEGORY_ITEM = "GIF_CATEGORY_ITEM";
-    public static final WidgetGifCategory$Companion Companion = new WidgetGifCategory$Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -50,8 +55,105 @@ public final class WidgetGifCategory extends AppFragment {
     private final Lazy gifCategoryViewModel;
     private Function0<Unit> onGifSelected;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifCategory$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGifCategory.kt */
+    public final class AnonymousClass1 extends o implements Function1<GifCategoryViewModel.ViewState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GifCategoryViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GifCategoryViewModel.ViewState viewState) {
+            m.checkNotNullParameter(viewState, "viewState");
+            WidgetGifCategory.access$handleViewState(WidgetGifCategory.this, viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifCategory$setUpBackBehavior$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGifCategory.kt */
+    public final class AnonymousClass1<R> implements Func0<Boolean> {
+        public AnonymousClass1() {
+        }
+
+        @Override // rx.functions.Func0, java.util.concurrent.Callable
+        public /* bridge */ /* synthetic */ Object call() {
+            return call();
+        }
+
+        @Override // rx.functions.Func0, java.util.concurrent.Callable
+        public final Boolean call() {
+            WidgetGifCategory.access$handleBack(WidgetGifCategory.this);
+            return Boolean.TRUE;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifCategory$setUpGifRecycler$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGifCategory.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<GifAdapterItem.GifItem, Unit> {
+        public AnonymousClass1(WidgetGifCategory widgetGifCategory) {
+            super(1, widgetGifCategory, WidgetGifCategory.class, "selectGif", "selectGif(Lcom/discord/widgets/chat/input/gifpicker/GifAdapterItem$GifItem;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GifAdapterItem.GifItem gifItem) {
+            invoke2(gifItem);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GifAdapterItem.GifItem gifItem) {
+            m.checkNotNullParameter(gifItem, "p1");
+            WidgetGifCategory.access$selectGif((WidgetGifCategory) this.receiver, gifItem);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifCategory$setWindowInsetsListeners$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGifCategory.kt */
+    public final class AnonymousClass1 implements OnApplyWindowInsetsListener {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            m.checkNotNullExpressionValue(view, "view");
+            m.checkNotNullExpressionValue(windowInsetsCompat, "insets");
+            view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), windowInsetsCompat.getSystemWindowInsetBottom());
+            return windowInsetsCompat.consumeSystemWindowInsets();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifCategory$setUpBackBehavior$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGifCategory.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetGifCategory.access$handleBack(WidgetGifCategory.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifCategory$setWindowInsetsListeners$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGifCategory.kt */
+    public final class AnonymousClass2 implements OnApplyWindowInsetsListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            ViewCompat.dispatchApplyWindowInsets(WidgetGifCategory.access$getBinding$p(WidgetGifCategory.this).c, windowInsetsCompat);
+            return windowInsetsCompat.consumeSystemWindowInsets();
+        }
+    }
+
     public WidgetGifCategory() {
-        super(R$layout.widget_gif_category);
+        super(R.layout.widget_gif_category);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGifCategory$binding$2.INSTANCE, null, 2, null);
         this.expressionTrayViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(ExpressionTrayViewModel.class), new WidgetGifCategory$appActivityViewModels$$inlined$activityViewModels$1(this), new f0(WidgetGifCategory$expressionTrayViewModel$2.INSTANCE));
         WidgetGifCategory$gifCategoryViewModel$2 widgetGifCategory$gifCategoryViewModel$2 = new WidgetGifCategory$gifCategoryViewModel$2(this);
@@ -71,12 +173,12 @@ public final class WidgetGifCategory extends AppFragment {
         widgetGifCategory.handleBack();
     }
 
-    public static final /* synthetic */ void access$handleViewState(WidgetGifCategory widgetGifCategory, GifCategoryViewModel$ViewState gifCategoryViewModel$ViewState) {
-        widgetGifCategory.handleViewState(gifCategoryViewModel$ViewState);
+    public static final /* synthetic */ void access$handleViewState(WidgetGifCategory widgetGifCategory, GifCategoryViewModel.ViewState viewState) {
+        widgetGifCategory.handleViewState(viewState);
     }
 
-    public static final /* synthetic */ void access$selectGif(WidgetGifCategory widgetGifCategory, GifAdapterItem$GifItem gifAdapterItem$GifItem) {
-        widgetGifCategory.selectGif(gifAdapterItem$GifItem);
+    public static final /* synthetic */ void access$selectGif(WidgetGifCategory widgetGifCategory, GifAdapterItem.GifItem gifItem) {
+        widgetGifCategory.selectGif(gifItem);
     }
 
     private final WidgetGifCategoryBinding getBinding() {
@@ -101,7 +203,7 @@ public final class WidgetGifCategory extends AppFragment {
         getExpressionTrayViewModel().clickBack();
     }
 
-    private final void handleViewState(GifCategoryViewModel$ViewState viewState) {
+    private final void handleViewState(GifCategoryViewModel.ViewState viewState) {
         RecyclerView recyclerView = getBinding().c;
         m.checkNotNullExpressionValue(recyclerView, "binding.gifCategoryGifRecycler");
         recyclerView.setVisibility(0);
@@ -119,10 +221,10 @@ public final class WidgetGifCategory extends AppFragment {
     public void onViewBound(View view) {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
-        GifAdapter$Companion gifAdapter$Companion = GifAdapter.Companion;
+        GifAdapter.Companion companion = GifAdapter.INSTANCE;
         RecyclerView recyclerView = getBinding().c;
         m.checkNotNullExpressionValue(recyclerView, "binding.gifCategoryGifRecycler");
-        int iCalculateColumnCount = gifAdapter$Companion.calculateColumnCount(recyclerView);
+        int iCalculateColumnCount = companion.calculateColumnCount(recyclerView);
         setUpTitle();
         setUpBackBehavior();
         setUpGifRecycler(iCalculateColumnCount);
@@ -133,10 +235,10 @@ public final class WidgetGifCategory extends AppFragment {
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getGifCategoryViewModel().observeViewState(), this, null, 2, null), WidgetGifCategory.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGifCategory$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getGifCategoryViewModel().observeViewState(), this, null, 2, null), WidgetGifCategory.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
-    private final void selectGif(GifAdapterItem$GifItem gifItem) {
+    private final void selectGif(GifAdapterItem.GifItem gifItem) {
         getGifCategoryViewModel().selectGif(gifItem);
         Function0<Unit> function0 = this.onGifSelected;
         if (function0 != null) {
@@ -150,8 +252,8 @@ public final class WidgetGifCategory extends AppFragment {
     }
 
     private final void setUpBackBehavior() {
-        setOnBackPressed(new WidgetGifCategory$setUpBackBehavior$1(this), 0);
-        getBinding().e.setOnClickListener(new WidgetGifCategory$setUpBackBehavior$2(this));
+        setOnBackPressed(new AnonymousClass1(), 0);
+        getBinding().e.setOnClickListener(new AnonymousClass2());
     }
 
     private final void setUpGifRecycler(int categoryColumnsCount) {
@@ -163,10 +265,10 @@ public final class WidgetGifCategory extends AppFragment {
         m.checkNotNullExpressionValue(recyclerView2, "binding.gifCategoryGifRecycler");
         recyclerView2.setItemAnimator(null);
         int iDpToPixels = DimenUtils.dpToPixels(8);
-        GifAdapter$Companion gifAdapter$Companion = GifAdapter.Companion;
+        GifAdapter.Companion companion = GifAdapter.INSTANCE;
         RecyclerView recyclerView3 = getBinding().c;
         m.checkNotNullExpressionValue(recyclerView3, "binding.gifCategoryGifRecycler");
-        this.gifAdapter = new GifAdapter(this, new WidgetGifCategory$setUpGifRecycler$1(this), gifAdapter$Companion.calculateColumnWidth(recyclerView3, categoryColumnsCount, iDpToPixels), null, null, 24, null);
+        this.gifAdapter = new GifAdapter(this, new AnonymousClass1(this), companion.calculateColumnWidth(recyclerView3, categoryColumnsCount, iDpToPixels), null, null, 24, null);
         RecyclerView recyclerView4 = getBinding().c;
         m.checkNotNullExpressionValue(recyclerView4, "binding.gifCategoryGifRecycler");
         GifAdapter gifAdapter = this.gifAdapter;
@@ -182,19 +284,19 @@ public final class WidgetGifCategory extends AppFragment {
         GifCategoryItem gifCategory = getGifCategory();
         TextView textView = getBinding().e;
         m.checkNotNullExpressionValue(textView, "binding.gifCategoryTitle");
-        if (gifCategory instanceof GifCategoryItem$Standard) {
-            string = ((GifCategoryItem$Standard) gifCategory).getGifCategory().getCategoryName();
+        if (gifCategory instanceof GifCategoryItem.Standard) {
+            string = ((GifCategoryItem.Standard) gifCategory).getGifCategory().getCategoryName();
         } else {
-            if (!(gifCategory instanceof GifCategoryItem$Trending)) {
+            if (!(gifCategory instanceof GifCategoryItem.Trending)) {
                 throw new NoWhenBranchMatchedException();
             }
-            string = getResources().getString(2131889628);
+            string = getResources().getString(R.string.gif_picker_result_type_trending_gifs);
         }
         textView.setText(string);
     }
 
     private final void setWindowInsetsListeners() {
-        ViewCompat.setOnApplyWindowInsetsListener(getBinding().c, WidgetGifCategory$setWindowInsetsListeners$1.INSTANCE);
-        ViewCompat.setOnApplyWindowInsetsListener(getBinding().f2400b, new WidgetGifCategory$setWindowInsetsListeners$2(this));
+        ViewCompat.setOnApplyWindowInsetsListener(getBinding().c, AnonymousClass1.INSTANCE);
+        ViewCompat.setOnApplyWindowInsetsListener(getBinding().f2400b, new AnonymousClass2());
     }
 }

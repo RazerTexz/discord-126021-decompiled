@@ -5,26 +5,26 @@ import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import b.a.k.b;
+import com.discord.R;
 import com.discord.databinding.TabsHostBottomNavigationViewBinding;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.color.ColorCompatKt;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.views.user.UserAvatarPresenceView;
 import com.discord.views.user.UserAvatarPresenceViewController;
-import d0.o;
 import d0.t.h0;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -35,11 +35,187 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: loaded from: classes.dex */
 public final class TabsHostBottomNavigationView extends LinearLayout {
     private final TabsHostBottomNavigationViewBinding binding;
-    private final Set<TabsHostBottomNavigationView$HeightChangedListener> heightChangedListeners;
+    private final Set<HeightChangedListener> heightChangedListeners;
     private Map<View, ? extends NavigationTab> iconToNavigationTabMap;
     private Map<NavigationTab, ? extends View> navigationTabToViewMap;
     private Map<ImageView, ? extends NavigationTab> tintableIconToNavigationTabMap;
     private UserAvatarPresenceViewController userAvatarPresenceViewController;
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.TabsHostBottomNavigationView$updateView$10, reason: invalid class name */
+    /* JADX INFO: compiled from: TabsHostBottomNavigationView.kt */
+    public final class AnonymousClass10 implements View.OnClickListener {
+        public static final AnonymousClass10 INSTANCE = new AnonymousClass10();
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.TabsHostBottomNavigationView$updateView$11, reason: invalid class name */
+    /* JADX INFO: compiled from: TabsHostBottomNavigationView.kt */
+    public final class AnonymousClass11 implements View.OnClickListener {
+        public static final AnonymousClass11 INSTANCE = new AnonymousClass11();
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.TabsHostBottomNavigationView$updateView$12, reason: invalid class name */
+    /* JADX INFO: compiled from: TabsHostBottomNavigationView.kt */
+    public final class AnonymousClass12 implements View.OnClickListener {
+        public static final AnonymousClass12 INSTANCE = new AnonymousClass12();
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.TabsHostBottomNavigationView$updateView$13, reason: invalid class name */
+    /* JADX INFO: compiled from: TabsHostBottomNavigationView.kt */
+    public final class AnonymousClass13 implements View.OnClickListener {
+        public static final AnonymousClass13 INSTANCE = new AnonymousClass13();
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.TabsHostBottomNavigationView$updateView$14, reason: invalid class name */
+    /* JADX INFO: compiled from: TabsHostBottomNavigationView.kt */
+    public final class AnonymousClass14 implements View.OnClickListener {
+        public static final AnonymousClass14 INSTANCE = new AnonymousClass14();
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.TabsHostBottomNavigationView$updateView$15, reason: invalid class name */
+    /* JADX INFO: compiled from: TabsHostBottomNavigationView.kt */
+    public final class AnonymousClass15 implements View.OnLongClickListener {
+        public static final AnonymousClass15 INSTANCE = new AnonymousClass15();
+
+        @Override // android.view.View.OnLongClickListener
+        public final boolean onLongClick(View view) {
+            return false;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.TabsHostBottomNavigationView$updateView$16, reason: invalid class name */
+    /* JADX INFO: compiled from: TabsHostBottomNavigationView.kt */
+    public final class AnonymousClass16 implements View.OnLongClickListener {
+        public static final AnonymousClass16 INSTANCE = new AnonymousClass16();
+
+        @Override // android.view.View.OnLongClickListener
+        public final boolean onLongClick(View view) {
+            return false;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.TabsHostBottomNavigationView$updateView$4, reason: invalid class name */
+    /* JADX INFO: compiled from: TabsHostBottomNavigationView.kt */
+    public final class AnonymousClass4 implements View.OnClickListener {
+        public final /* synthetic */ Function1 $onTabSelected;
+
+        public AnonymousClass4(Function1 function1) {
+            this.$onTabSelected = function1;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onTabSelected.invoke(NavigationTab.HOME);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.TabsHostBottomNavigationView$updateView$5, reason: invalid class name */
+    /* JADX INFO: compiled from: TabsHostBottomNavigationView.kt */
+    public final class AnonymousClass5 implements View.OnClickListener {
+        public final /* synthetic */ Function1 $onTabSelected;
+
+        public AnonymousClass5(Function1 function1) {
+            this.$onTabSelected = function1;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onTabSelected.invoke(NavigationTab.FRIENDS);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.TabsHostBottomNavigationView$updateView$6, reason: invalid class name */
+    /* JADX INFO: compiled from: TabsHostBottomNavigationView.kt */
+    public final class AnonymousClass6 implements View.OnClickListener {
+        public final /* synthetic */ Function0 $onSearchClick;
+
+        public AnonymousClass6(Function0 function0) {
+            this.$onSearchClick = function0;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onSearchClick.invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.TabsHostBottomNavigationView$updateView$7, reason: invalid class name */
+    /* JADX INFO: compiled from: TabsHostBottomNavigationView.kt */
+    public final class AnonymousClass7 implements View.OnClickListener {
+        public final /* synthetic */ Function1 $onTabSelected;
+
+        public AnonymousClass7(Function1 function1) {
+            this.$onTabSelected = function1;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onTabSelected.invoke(NavigationTab.MENTIONS);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.TabsHostBottomNavigationView$updateView$8, reason: invalid class name */
+    /* JADX INFO: compiled from: TabsHostBottomNavigationView.kt */
+    public final class AnonymousClass8 implements View.OnClickListener {
+        public final /* synthetic */ Function1 $onTabSelected;
+
+        public AnonymousClass8(Function1 function1) {
+            this.$onTabSelected = function1;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onTabSelected.invoke(NavigationTab.SETTINGS);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.tabs.TabsHostBottomNavigationView$updateView$9, reason: invalid class name */
+    /* JADX INFO: compiled from: TabsHostBottomNavigationView.kt */
+    public final class AnonymousClass9 extends o implements Function1<View, Unit> {
+        public final /* synthetic */ Function0 $onSettingsLongPress;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass9(Function0 function0) {
+            super(1);
+            this.$onSettingsLongPress = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+            this.$onSettingsLongPress.invoke();
+        }
+    }
+
+    /* JADX INFO: compiled from: TabsHostBottomNavigationView.kt */
+    public interface HeightChangedListener {
+        void onHeightChanged(int height);
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public TabsHostBottomNavigationView(Context context) {
@@ -51,7 +227,7 @@ public final class TabsHostBottomNavigationView extends LinearLayout {
         this.heightChangedListeners = new LinkedHashSet();
     }
 
-    public final void addHeightChangedListener(TabsHostBottomNavigationView$HeightChangedListener heightChangedListener) {
+    public final void addHeightChangedListener(HeightChangedListener heightChangedListener) {
         m.checkNotNullParameter(heightChangedListener, "heightChangedListener");
         this.heightChangedListeners.add(heightChangedListener);
     }
@@ -71,7 +247,7 @@ public final class TabsHostBottomNavigationView extends LinearLayout {
         }
         LinearLayout linearLayout = this.binding.l;
         m.checkNotNullExpressionValue(linearLayout, "binding.tabsHostBottomNavTabsContainer");
-        ViewGroup$LayoutParams layoutParams = linearLayout.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
         layoutParams.width = i;
         LinearLayout linearLayout2 = this.binding.l;
         m.checkNotNullExpressionValue(linearLayout2, "binding.tabsHostBottomNavTabsContainer");
@@ -84,11 +260,11 @@ public final class TabsHostBottomNavigationView extends LinearLayout {
         NavigationTab navigationTab3 = NavigationTab.SEARCH;
         ImageView imageView4 = this.binding.h;
         NavigationTab navigationTab4 = NavigationTab.MENTIONS;
-        this.tintableIconToNavigationTabMap = h0.mapOf(o.to(imageView, navigationTab), o.to(imageView2, navigationTab2), o.to(imageView3, navigationTab3), o.to(imageView4, navigationTab4));
+        this.tintableIconToNavigationTabMap = h0.mapOf(d0.o.to(imageView, navigationTab), d0.o.to(imageView2, navigationTab2), d0.o.to(imageView3, navigationTab3), d0.o.to(imageView4, navigationTab4));
         UserAvatarPresenceView userAvatarPresenceView = this.binding.m;
         NavigationTab navigationTab5 = NavigationTab.SETTINGS;
-        this.iconToNavigationTabMap = h0.mapOf(o.to(this.binding.e, navigationTab), o.to(this.binding.f2157b, navigationTab2), o.to(this.binding.j, navigationTab3), o.to(this.binding.h, navigationTab4), o.to(userAvatarPresenceView, navigationTab5));
-        this.navigationTabToViewMap = h0.mapOf(o.to(navigationTab, this.binding.f), o.to(navigationTab2, this.binding.c), o.to(navigationTab3, this.binding.k), o.to(navigationTab4, this.binding.i), o.to(navigationTab5, this.binding.n));
+        this.iconToNavigationTabMap = h0.mapOf(d0.o.to(this.binding.e, navigationTab), d0.o.to(this.binding.f2157b, navigationTab2), d0.o.to(this.binding.j, navigationTab3), d0.o.to(this.binding.h, navigationTab4), d0.o.to(userAvatarPresenceView, navigationTab5));
+        this.navigationTabToViewMap = h0.mapOf(d0.o.to(navigationTab, this.binding.f), d0.o.to(navigationTab2, this.binding.c), d0.o.to(navigationTab3, this.binding.k), d0.o.to(navigationTab4, this.binding.i), d0.o.to(navigationTab5, this.binding.n));
         UserAvatarPresenceView userAvatarPresenceView2 = this.binding.m;
         m.checkNotNullExpressionValue(userAvatarPresenceView2, "binding.tabsHostBottomNavUserAvatarPresenceView");
         this.userAvatarPresenceViewController = new UserAvatarPresenceViewController(userAvatarPresenceView2, null, null, null, 14);
@@ -99,7 +275,7 @@ public final class TabsHostBottomNavigationView extends LinearLayout {
         super.onSizeChanged(w, h, oldw, oldh);
         Iterator<T> it = this.heightChangedListeners.iterator();
         while (it.hasNext()) {
-            ((TabsHostBottomNavigationView$HeightChangedListener) it.next()).onHeightChanged(h);
+            ((HeightChangedListener) it.next()).onHeightChanged(h);
         }
     }
 
@@ -114,7 +290,7 @@ public final class TabsHostBottomNavigationView extends LinearLayout {
         m.checkNotNullExpressionValue(textView3, "binding.tabsHostBottomNavHomeNotificationsBadge");
         Resources resources = getResources();
         m.checkNotNullExpressionValue(resources, "resources");
-        textView3.setContentDescription(b.i(resources, 2131892954, new Object[]{String.valueOf(homeNotificationsCount)}, null, 4));
+        textView3.setContentDescription(b.i(resources, R.string.mentions_count, new Object[]{String.valueOf(homeNotificationsCount)}, null, 4));
         TextView textView4 = this.binding.d;
         m.checkNotNullExpressionValue(textView4, "binding.tabsHostBottomNavFriendsNotificationsBadge");
         textView4.setText(String.valueOf(friendsNotificationsCount));
@@ -125,7 +301,7 @@ public final class TabsHostBottomNavigationView extends LinearLayout {
         m.checkNotNullExpressionValue(textView6, "binding.tabsHostBottomNavFriendsNotificationsBadge");
         Resources resources2 = getResources();
         m.checkNotNullExpressionValue(resources2, "resources");
-        textView6.setContentDescription(b.i(resources2, 2131892033, new Object[]{String.valueOf(friendsNotificationsCount)}, null, 4));
+        textView6.setContentDescription(b.i(resources2, R.string.incoming_friend_requests_count, new Object[]{String.valueOf(friendsNotificationsCount)}, null, 4));
     }
 
     public final void updateView(NavigationTab selectedTab, Function1<? super NavigationTab, Unit> onTabSelected, boolean buttonsEnabled, long myUserId, Set<? extends NavigationTab> visibleTabs, int homeNotificationsCount, int friendsNotificationsCount, Function0<Unit> onSearchClick, Function0<Unit> onSettingsLongPress, Function0<Unit> onMentionsLongPress) {
@@ -159,8 +335,8 @@ public final class TabsHostBottomNavigationView extends LinearLayout {
         }
         Iterator<T> it = map.entrySet().iterator();
         while (it.hasNext()) {
-            Map$Entry map$Entry = (Map$Entry) it.next();
-            ColorCompatKt.tintWithColor((ImageView) map$Entry.getKey(), ColorCompat.getThemedColor(getContext(), ((NavigationTab) map$Entry.getValue()) == selectedTab ? 2130969051 : 2130969008));
+            Map.Entry entry = (Map.Entry) it.next();
+            ColorCompatKt.tintWithColor((ImageView) entry.getKey(), ColorCompat.getThemedColor(getContext(), ((NavigationTab) entry.getValue()) == selectedTab ? R.attr.colorTabsIconActive : R.attr.colorInteractiveNormal));
         }
         Map<View, ? extends NavigationTab> map2 = this.iconToNavigationTabMap;
         if (map2 == null) {
@@ -168,8 +344,8 @@ public final class TabsHostBottomNavigationView extends LinearLayout {
         }
         Iterator<T> it2 = map2.entrySet().iterator();
         while (it2.hasNext()) {
-            Map$Entry map$Entry2 = (Map$Entry) it2.next();
-            ((View) map$Entry2.getKey()).setAlpha(selectedTab == ((NavigationTab) map$Entry2.getValue()) ? 1.0f : 0.5f);
+            Map.Entry entry2 = (Map.Entry) it2.next();
+            ((View) entry2.getKey()).setAlpha(selectedTab == ((NavigationTab) entry2.getValue()) ? 1.0f : 0.5f);
         }
         Map<NavigationTab, ? extends View> map3 = this.navigationTabToViewMap;
         if (map3 == null) {
@@ -177,8 +353,8 @@ public final class TabsHostBottomNavigationView extends LinearLayout {
         }
         Iterator<T> it3 = map3.entrySet().iterator();
         while (it3.hasNext()) {
-            Map$Entry map$Entry3 = (Map$Entry) it3.next();
-            ((View) map$Entry3.getValue()).setSelected(selectedTab == ((NavigationTab) map$Entry3.getKey()));
+            Map.Entry entry3 = (Map.Entry) it3.next();
+            ((View) entry3.getValue()).setSelected(selectedTab == ((NavigationTab) entry3.getKey()));
         }
         UserAvatarPresenceViewController userAvatarPresenceViewController = this.userAvatarPresenceViewController;
         if (userAvatarPresenceViewController == null) {
@@ -191,23 +367,23 @@ public final class TabsHostBottomNavigationView extends LinearLayout {
         }
         updateNotificationBadges(homeNotificationsCount, friendsNotificationsCount);
         if (!buttonsEnabled) {
-            this.binding.f.setOnClickListener(TabsHostBottomNavigationView$updateView$10.INSTANCE);
-            this.binding.c.setOnClickListener(TabsHostBottomNavigationView$updateView$11.INSTANCE);
-            this.binding.k.setOnClickListener(TabsHostBottomNavigationView$updateView$12.INSTANCE);
-            this.binding.i.setOnClickListener(TabsHostBottomNavigationView$updateView$13.INSTANCE);
-            this.binding.n.setOnClickListener(TabsHostBottomNavigationView$updateView$14.INSTANCE);
-            this.binding.n.setOnLongClickListener(TabsHostBottomNavigationView$updateView$15.INSTANCE);
-            this.binding.i.setOnLongClickListener(TabsHostBottomNavigationView$updateView$16.INSTANCE);
+            this.binding.f.setOnClickListener(AnonymousClass10.INSTANCE);
+            this.binding.c.setOnClickListener(AnonymousClass11.INSTANCE);
+            this.binding.k.setOnClickListener(AnonymousClass12.INSTANCE);
+            this.binding.i.setOnClickListener(AnonymousClass13.INSTANCE);
+            this.binding.n.setOnClickListener(AnonymousClass14.INSTANCE);
+            this.binding.n.setOnLongClickListener(AnonymousClass15.INSTANCE);
+            this.binding.i.setOnLongClickListener(AnonymousClass16.INSTANCE);
             return;
         }
-        this.binding.f.setOnClickListener(new TabsHostBottomNavigationView$updateView$4(onTabSelected));
-        this.binding.c.setOnClickListener(new TabsHostBottomNavigationView$updateView$5(onTabSelected));
-        this.binding.k.setOnClickListener(new TabsHostBottomNavigationView$updateView$6(onSearchClick));
-        this.binding.i.setOnClickListener(new TabsHostBottomNavigationView$updateView$7(onTabSelected));
-        this.binding.n.setOnClickListener(new TabsHostBottomNavigationView$updateView$8(onTabSelected));
+        this.binding.f.setOnClickListener(new AnonymousClass4(onTabSelected));
+        this.binding.c.setOnClickListener(new AnonymousClass5(onTabSelected));
+        this.binding.k.setOnClickListener(new AnonymousClass6(onSearchClick));
+        this.binding.i.setOnClickListener(new AnonymousClass7(onTabSelected));
+        this.binding.n.setOnClickListener(new AnonymousClass8(onTabSelected));
         FrameLayout frameLayout4 = this.binding.n;
         m.checkNotNullExpressionValue(frameLayout4, "binding.tabsHostBottomNavUserSettingsItem");
-        ViewExtensions.setOnLongClickListenerConsumeClick(frameLayout4, new TabsHostBottomNavigationView$updateView$9(onSettingsLongPress));
+        ViewExtensions.setOnLongClickListenerConsumeClick(frameLayout4, new AnonymousClass9(onSettingsLongPress));
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

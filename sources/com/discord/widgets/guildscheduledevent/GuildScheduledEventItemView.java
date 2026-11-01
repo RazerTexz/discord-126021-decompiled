@@ -2,22 +2,18 @@ package com.discord.widgets.guildscheduledevent;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.text.TextUtils$TruncateAt;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View$OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup$LayoutParams;
-import android.view.ViewGroup$MarginLayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.Barrier;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import b.a.k.b;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
 import com.discord.api.guildscheduledevent.GuildScheduledEventStatus;
@@ -56,6 +52,36 @@ public final class GuildScheduledEventItemView extends ConstraintLayout {
     /* JADX INFO: renamed from: locationParser$delegate, reason: from kotlin metadata */
     private final Lazy locationParser;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventItemView$configureInChatList$1, reason: invalid class name */
+    /* JADX INFO: compiled from: GuildScheduledEventItemView.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventItemView$configureInChatList$2, reason: invalid class name */
+    /* JADX INFO: compiled from: GuildScheduledEventItemView.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.GuildScheduledEventItemView$configureInDirectoryEventList$2, reason: invalid class name */
+    /* JADX INFO: compiled from: GuildScheduledEventItemView.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+        }
+    }
+
     public GuildScheduledEventItemView(Context context) {
         this(context, null, 0, 6, null);
     }
@@ -86,10 +112,10 @@ public final class GuildScheduledEventItemView extends ConstraintLayout {
         }
         ConstraintLayout constraintLayout = this.binding.a;
         m.checkNotNullExpressionValue(constraintLayout, "binding.root");
-        constraintLayout.setBackground(ContextCompat.getDrawable(getContext(), 2131231006));
+        constraintLayout.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.bg_guild_scheduled_event_list_item_floating));
         TextView textView = this.binding.k;
         m.checkNotNullExpressionValue(textView, "binding.guildScheduledEventListItemRsvpText");
-        textView.setBackgroundTintList(ColorCompat.INSTANCE.createDefaultColorStateList(ColorCompat.getThemedColor(getContext(), 2130968914)));
+        textView.setBackgroundTintList(ColorCompat.INSTANCE.createDefaultColorStateList(ColorCompat.getThemedColor(getContext(), R.attr.colorBackgroundTertiary)));
         SimpleDraweeView simpleDraweeView = this.binding.d;
         m.checkNotNullExpressionValue(simpleDraweeView, "binding.guildScheduledEventListItemCreatorAvatar");
         SimpleDraweeViewExtensionsKt.configureCreator(simpleDraweeView, creator);
@@ -105,41 +131,41 @@ public final class GuildScheduledEventItemView extends ConstraintLayout {
         textView3.setText(eventModel.getName());
         configureDescription(eventModel.getDescription(), eventModel.getGuildId());
         GuildScheduledEventDateView.configure$default(this.binding.e, millis, lValueOf, eventModel.getEntityType(), GuildScheduledEventStatus.SCHEDULED, false, 16, null);
-        configureLocation$default(this, GuildScheduledEventLocationInfo.Companion.buildLocationInfo(eventModel, channel), null, 2, null);
+        configureLocation$default(this, GuildScheduledEventLocationInfo.INSTANCE.buildLocationInfo(eventModel, channel), null, 2, null);
     }
 
     private final void configureDescription(String description, long guildId) {
         getDescriptionParser().configureDescription(description, guildId);
     }
 
-    public static /* synthetic */ void configureInChatList$default(GuildScheduledEventItemView guildScheduledEventItemView, GuildScheduledEvent guildScheduledEvent, Channel channel, Guild guild, UserGuildMember userGuildMember, boolean z2, boolean z3, boolean z4, boolean z5, View$OnClickListener view$OnClickListener, View$OnClickListener view$OnClickListener2, View$OnClickListener view$OnClickListener3, View$OnClickListener view$OnClickListener4, int i, Object obj) {
-        guildScheduledEventItemView.configureInChatList(guildScheduledEvent, channel, guild, userGuildMember, z2, z3, z4, z5, view$OnClickListener, (i & 512) != 0 ? GuildScheduledEventItemView$configureInChatList$1.INSTANCE : view$OnClickListener2, (i & 1024) != 0 ? GuildScheduledEventItemView$configureInChatList$2.INSTANCE : view$OnClickListener3, view$OnClickListener4);
+    public static /* synthetic */ void configureInChatList$default(GuildScheduledEventItemView guildScheduledEventItemView, GuildScheduledEvent guildScheduledEvent, Channel channel, Guild guild, UserGuildMember userGuildMember, boolean z2, boolean z3, boolean z4, boolean z5, View.OnClickListener onClickListener, View.OnClickListener onClickListener2, View.OnClickListener onClickListener3, View.OnClickListener onClickListener4, int i, Object obj) {
+        guildScheduledEventItemView.configureInChatList(guildScheduledEvent, channel, guild, userGuildMember, z2, z3, z4, z5, onClickListener, (i & 512) != 0 ? AnonymousClass1.INSTANCE : onClickListener2, (i & 1024) != 0 ? AnonymousClass2.INSTANCE : onClickListener3, onClickListener4);
     }
 
-    public final void configureInChatList(GuildScheduledEvent guildScheduledEvent, Channel channel, Guild guild, UserGuildMember creator, boolean isInGuild, boolean isRsvped, boolean isConnected, boolean canConnect, View$OnClickListener cardClickListener, View$OnClickListener rsvpButtonClickListener, View$OnClickListener joinServerButtonClickListener, View$OnClickListener shareButtonClickListener) {
+    public final void configureInChatList(GuildScheduledEvent guildScheduledEvent, Channel channel, Guild guild, UserGuildMember creator, boolean isInGuild, boolean isRsvped, boolean isConnected, boolean canConnect, View.OnClickListener cardClickListener, View.OnClickListener rsvpButtonClickListener, View.OnClickListener joinServerButtonClickListener, View.OnClickListener shareButtonClickListener) {
         m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
         m.checkNotNullParameter(rsvpButtonClickListener, "rsvpButtonClickListener");
         m.checkNotNullParameter(joinServerButtonClickListener, "joinServerButtonClickListener");
         m.checkNotNullParameter(shareButtonClickListener, "shareButtonClickListener");
-        configureInternal(guildScheduledEvent, GuildScheduledEventLocationInfo.Companion.buildLocationInfo(guildScheduledEvent, channel), new GuildButtonConfiguration(guildScheduledEvent, true, false, isConnected, canConnect, true, isRsvped, false, rsvpButtonClickListener, joinServerButtonClickListener, null, joinServerButtonClickListener, shareButtonClickListener, null, 9344, null), guild, creator, cardClickListener);
+        configureInternal(guildScheduledEvent, GuildScheduledEventLocationInfo.INSTANCE.buildLocationInfo(guildScheduledEvent, channel), new GuildButtonConfiguration(guildScheduledEvent, true, false, isConnected, canConnect, true, isRsvped, false, rsvpButtonClickListener, joinServerButtonClickListener, null, joinServerButtonClickListener, shareButtonClickListener, null, 9344, null), guild, creator, cardClickListener);
         ConstraintLayout constraintLayout = this.binding.a;
         m.checkNotNullExpressionValue(constraintLayout, "binding.root");
-        constraintLayout.setBackground((isConnected && guildScheduledEvent.getStatus() == GuildScheduledEventStatus.ACTIVE) ? ContextCompat.getDrawable(getContext(), 2131231004) : ContextCompat.getDrawable(getContext(), 2131231012));
+        constraintLayout.setBackground((isConnected && guildScheduledEvent.getStatus() == GuildScheduledEventStatus.ACTIVE) ? ContextCompat.getDrawable(getContext(), R.drawable.bg_guild_scheduled_event_list_item_connected_secondary) : ContextCompat.getDrawable(getContext(), R.drawable.bg_guild_scheduled_event_list_item_secondary));
         TextView textView = this.binding.k;
         m.checkNotNullExpressionValue(textView, "binding.guildScheduledEventListItemRsvpText");
-        textView.setBackgroundTintList(ColorCompat.INSTANCE.createDefaultColorStateList(ColorCompat.getThemedColor(getContext(), 2130968914)));
+        textView.setBackgroundTintList(ColorCompat.INSTANCE.createDefaultColorStateList(ColorCompat.getThemedColor(getContext(), R.attr.colorBackgroundTertiary)));
         TextView textView2 = this.binding.l;
-        ViewGroup$LayoutParams layoutParams = textView2.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = textView2.getLayoutParams();
         Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.MarginLayoutParams");
-        ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams = (ViewGroup$MarginLayoutParams) layoutParams;
-        viewGroup$MarginLayoutParams.topMargin = DimenUtils.dpToPixels(8);
-        textView2.setLayoutParams(viewGroup$MarginLayoutParams);
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
+        marginLayoutParams.topMargin = DimenUtils.dpToPixels(8);
+        textView2.setLayoutParams(marginLayoutParams);
         GuildScheduledEventBottomButtonViewBinding binding = this.binding.f2120b.getBinding();
         TextView textView3 = binding.d;
         m.checkNotNullExpressionValue(textView3, "buttonBinding.primaryButtonText");
         Context context = getContext();
         m.checkNotNullExpressionValue(context, "context");
-        textView3.setText(b.h(context, 2131890088, new Object[0], null, 4));
+        textView3.setText(b.h(context, R.string.guild_event_invite_embed_join_server_button_label, new Object[0], null, 4));
         TextView textView4 = binding.d;
         m.checkNotNullExpressionValue(textView4, "buttonBinding.primaryButtonText");
         textView4.setVisibility(isInGuild ^ true ? 0 : 8);
@@ -154,17 +180,7 @@ public final class GuildScheduledEventItemView extends ConstraintLayout {
         textView5.setVisibility(isInGuild ? 0 : 8);
     }
 
-    /* JADX WARN: Failed to analyze thrown exceptions
-    java.util.ConcurrentModificationException
-    	at java.base/java.util.ArrayList$Itr.checkForComodification(ArrayList.java:1013)
-    	at java.base/java.util.ArrayList$Itr.next(ArrayList.java:967)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:132)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.checkInsn(MethodThrowsVisitor.java:180)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.processInstructions(MethodThrowsVisitor.java:133)
-    	at jadx.core.dex.visitors.MethodThrowsVisitor.visit(MethodThrowsVisitor.java:70)
-     */
-    public final void configureInDirectoryEventList(HubGuildScheduledEventData eventData, View$OnClickListener cardClickListener, View$OnClickListener secondaryButtonOnClickListener, View$OnClickListener primaryButtonOnClickListener, View$OnClickListener shareButtonOnClickListener) {
+    public final void configureInDirectoryEventList(HubGuildScheduledEventData eventData, View.OnClickListener cardClickListener, View.OnClickListener secondaryButtonOnClickListener, View.OnClickListener primaryButtonOnClickListener, View.OnClickListener shareButtonOnClickListener) {
         m.checkNotNullParameter(eventData, "eventData");
         m.checkNotNullParameter(cardClickListener, "cardClickListener");
         m.checkNotNullParameter(secondaryButtonOnClickListener, "secondaryButtonOnClickListener");
@@ -172,23 +188,23 @@ public final class GuildScheduledEventItemView extends ConstraintLayout {
         m.checkNotNullParameter(shareButtonOnClickListener, "shareButtonOnClickListener");
         GuildScheduledEvent event = eventData.getEvent();
         com.discord.api.guild.Guild guild = eventData.getEvent().getGuild();
-        configureInternal(event, null, new DirectoryButtonConfiguration(eventData.getEvent(), eventData.isInGuild(), eventData.isRsvped(), false, primaryButtonOnClickListener, secondaryButtonOnClickListener, shareButtonOnClickListener, GuildScheduledEventItemView$configureInDirectoryEventList$2.INSTANCE), guild != null ? new Guild(guild) : null, null, cardClickListener);
+        configureInternal(event, null, new DirectoryButtonConfiguration(eventData.getEvent(), eventData.isInGuild(), eventData.isRsvped(), false, primaryButtonOnClickListener, secondaryButtonOnClickListener, shareButtonOnClickListener, AnonymousClass2.INSTANCE), guild != null ? new Guild(guild) : null, null, cardClickListener);
     }
 
-    public final void configureInEventList(GuildScheduledEventListItem$Event item, View$OnClickListener cardClickListener, View$OnClickListener rsvpButtonClickListener, View$OnClickListener eventStartButtonClickListener, View$OnClickListener shareButtonClickListener, View$OnClickListener joinButtonClickListener) {
+    public final void configureInEventList(GuildScheduledEventListItem.Event item, View.OnClickListener cardClickListener, View.OnClickListener rsvpButtonClickListener, View.OnClickListener eventStartButtonClickListener, View.OnClickListener shareButtonClickListener, View.OnClickListener joinButtonClickListener) {
         m.checkNotNullParameter(item, "item");
         m.checkNotNullParameter(cardClickListener, "cardClickListener");
         m.checkNotNullParameter(rsvpButtonClickListener, "rsvpButtonClickListener");
         m.checkNotNullParameter(eventStartButtonClickListener, "eventStartButtonClickListener");
         m.checkNotNullParameter(shareButtonClickListener, "shareButtonClickListener");
         m.checkNotNullParameter(joinButtonClickListener, "joinButtonClickListener");
-        configureInternal(item.getEvent(), GuildScheduledEventLocationInfo.Companion.buildLocationInfo(item.getEvent(), item.getChannel()), new GuildButtonConfiguration(item.getEvent(), true, item.getCanStartEvent(), item.isConnected(), item.getCanConnect(), true, item.isRsvped(), false, rsvpButtonClickListener, joinButtonClickListener, null, eventStartButtonClickListener, shareButtonClickListener, null, 9344, null), null, item.getCreator(), cardClickListener);
+        configureInternal(item.getEvent(), GuildScheduledEventLocationInfo.INSTANCE.buildLocationInfo(item.getEvent(), item.getChannel()), new GuildButtonConfiguration(item.getEvent(), true, item.getCanStartEvent(), item.isConnected(), item.getCanConnect(), true, item.isRsvped(), false, rsvpButtonClickListener, joinButtonClickListener, null, eventStartButtonClickListener, shareButtonClickListener, null, 9344, null), null, item.getCreator(), cardClickListener);
         ConstraintLayout constraintLayout = this.binding.a;
         m.checkNotNullExpressionValue(constraintLayout, "binding.root");
-        constraintLayout.setBackground((item.isConnected() && item.getEvent().getStatus() == GuildScheduledEventStatus.ACTIVE) ? ContextCompat.getDrawable(getContext(), 2131231003) : ContextCompat.getDrawable(getContext(), 2131231011));
+        constraintLayout.setBackground((item.isConnected() && item.getEvent().getStatus() == GuildScheduledEventStatus.ACTIVE) ? ContextCompat.getDrawable(getContext(), R.drawable.bg_guild_scheduled_event_list_item_connected_primary) : ContextCompat.getDrawable(getContext(), R.drawable.bg_guild_scheduled_event_list_item_primary));
     }
 
-    public final void configureInVoiceChannel(GuildScheduledEvent guildScheduledEvent, UserGuildMember creator, boolean canStartEvent, boolean isCollapsed, boolean isConnected, boolean isCallPreview, View$OnClickListener onCardClicked, View$OnClickListener onStartEventButtonClicked) {
+    public final void configureInVoiceChannel(GuildScheduledEvent guildScheduledEvent, UserGuildMember creator, boolean canStartEvent, boolean isCollapsed, boolean isConnected, boolean isCallPreview, View.OnClickListener onCardClicked, View.OnClickListener onStartEventButtonClicked) {
         Drawable drawable;
         m.checkNotNullParameter(guildScheduledEvent, "guildScheduledEvent");
         m.checkNotNullParameter(onCardClicked, "onCardClicked");
@@ -197,9 +213,9 @@ public final class GuildScheduledEventItemView extends ConstraintLayout {
         ConstraintLayout constraintLayout = this.binding.a;
         m.checkNotNullExpressionValue(constraintLayout, "binding.root");
         if (isConnected && guildScheduledEvent.getStatus() == GuildScheduledEventStatus.ACTIVE) {
-            drawable = isCallPreview ? ContextCompat.getDrawable(getContext(), 2131231002) : ContextCompat.getDrawable(getContext(), 2131231004);
+            drawable = isCallPreview ? ContextCompat.getDrawable(getContext(), R.drawable.bg_guild_scheduled_event_list_item_connected_dark) : ContextCompat.getDrawable(getContext(), R.drawable.bg_guild_scheduled_event_list_item_connected_secondary);
         } else {
-            drawable = isCallPreview ? ContextCompat.getDrawable(getContext(), 2131231005) : ContextCompat.getDrawable(getContext(), 2131231012);
+            drawable = isCallPreview ? ContextCompat.getDrawable(getContext(), R.drawable.bg_guild_scheduled_event_list_item_dark) : ContextCompat.getDrawable(getContext(), R.drawable.bg_guild_scheduled_event_list_item_secondary);
         }
         constraintLayout.setBackground(drawable);
         TextView textView = this.binding.k;
@@ -219,11 +235,11 @@ public final class GuildScheduledEventItemView extends ConstraintLayout {
             textView2.setEllipsize(null);
         } else {
             textView2.setMaxLines(1);
-            textView2.setEllipsize(TextUtils$TruncateAt.END);
+            textView2.setEllipsize(TextUtils.TruncateAt.END);
         }
     }
 
-    private final void configureInternal(GuildScheduledEvent guildScheduledEvent, GuildScheduledEventLocationInfo locationInfo, ButtonConfiguration buttonConfiguration, Guild guild, UserGuildMember creator, View$OnClickListener onCardClicked) {
+    private final void configureInternal(GuildScheduledEvent guildScheduledEvent, GuildScheduledEventLocationInfo locationInfo, ButtonConfiguration buttonConfiguration, Guild guild, UserGuildMember creator, View.OnClickListener onCardClicked) {
         String str;
         GuildScheduledEventBottomButtonView guildScheduledEventBottomButtonView = this.binding.f2120b;
         m.checkNotNullExpressionValue(guildScheduledEventBottomButtonView, "binding.guildScheduledEventListItemButtomView");
@@ -319,7 +335,7 @@ public final class GuildScheduledEventItemView extends ConstraintLayout {
             textView5.setVisibility(guild.hasIcon() ^ true ? 0 : 8);
             SimpleDraweeView simpleDraweeView3 = this.binding.h;
             m.checkNotNullExpressionValue(simpleDraweeView3, "binding.guildScheduledEventListItemGuildIcon");
-            SimpleDraweeViewExtensionsKt.setGuildIcon$default(simpleDraweeView3, true, guild, getResources().getDimensionPixelSize(2131165458), Integer.valueOf(IconUtils.getMediaProxySize(getResources().getDimensionPixelSize(2131165300))), null, null, null, false, null, 496, null);
+            SimpleDraweeViewExtensionsKt.setGuildIcon$default(simpleDraweeView3, true, guild, getResources().getDimensionPixelSize(R.dimen.guild_scheduled_event_icon_corner_radius), Integer.valueOf(IconUtils.getMediaProxySize(getResources().getDimensionPixelSize(R.dimen.avatar_size_standard))), null, null, null, false, null, 496, null);
             TextView textView6 = this.binding.j;
             m.checkNotNullExpressionValue(textView6, "binding.guildScheduledEventListItemGuildName");
             textView6.setText(guild.getName());
@@ -361,49 +377,49 @@ public final class GuildScheduledEventItemView extends ConstraintLayout {
     public GuildScheduledEventItemView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
         m.checkNotNullParameter(context, "context");
-        View viewInflate = LayoutInflater.from(context).inflate(R$layout.guild_scheduled_event_item_view, (ViewGroup) this, false);
+        View viewInflate = LayoutInflater.from(context).inflate(R.layout.guild_scheduled_event_item_view, (ViewGroup) this, false);
         addView(viewInflate);
-        int i2 = R$id.guild_scheduled_event_list_item_buttom_view;
-        GuildScheduledEventBottomButtonView guildScheduledEventBottomButtonView = (GuildScheduledEventBottomButtonView) viewInflate.findViewById(R$id.guild_scheduled_event_list_item_buttom_view);
+        int i2 = R.id.guild_scheduled_event_list_item_buttom_view;
+        GuildScheduledEventBottomButtonView guildScheduledEventBottomButtonView = (GuildScheduledEventBottomButtonView) viewInflate.findViewById(R.id.guild_scheduled_event_list_item_buttom_view);
         if (guildScheduledEventBottomButtonView != null) {
-            i2 = R$id.guild_scheduled_event_list_item_channel_guild_container;
-            ConstraintLayout constraintLayout = (ConstraintLayout) viewInflate.findViewById(R$id.guild_scheduled_event_list_item_channel_guild_container);
+            i2 = R.id.guild_scheduled_event_list_item_channel_guild_container;
+            ConstraintLayout constraintLayout = (ConstraintLayout) viewInflate.findViewById(R.id.guild_scheduled_event_list_item_channel_guild_container);
             if (constraintLayout != null) {
-                i2 = R$id.guild_scheduled_event_list_item_creator_avatar;
-                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate.findViewById(R$id.guild_scheduled_event_list_item_creator_avatar);
+                i2 = R.id.guild_scheduled_event_list_item_creator_avatar;
+                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewInflate.findViewById(R.id.guild_scheduled_event_list_item_creator_avatar);
                 if (simpleDraweeView != null) {
-                    i2 = R$id.guild_scheduled_event_list_item_date_view;
-                    GuildScheduledEventDateView guildScheduledEventDateView = (GuildScheduledEventDateView) viewInflate.findViewById(R$id.guild_scheduled_event_list_item_date_view);
+                    i2 = R.id.guild_scheduled_event_list_item_date_view;
+                    GuildScheduledEventDateView guildScheduledEventDateView = (GuildScheduledEventDateView) viewInflate.findViewById(R.id.guild_scheduled_event_list_item_date_view);
                     if (guildScheduledEventDateView != null) {
-                        i2 = R$id.guild_scheduled_event_list_item_desc_text;
-                        LinkifiedTextView linkifiedTextView = (LinkifiedTextView) viewInflate.findViewById(R$id.guild_scheduled_event_list_item_desc_text);
+                        i2 = R.id.guild_scheduled_event_list_item_desc_text;
+                        LinkifiedTextView linkifiedTextView = (LinkifiedTextView) viewInflate.findViewById(R.id.guild_scheduled_event_list_item_desc_text);
                         if (linkifiedTextView != null) {
-                            i2 = R$id.guild_scheduled_event_list_item_guild_channel_name;
-                            TextView textView = (TextView) viewInflate.findViewById(R$id.guild_scheduled_event_list_item_guild_channel_name);
+                            i2 = R.id.guild_scheduled_event_list_item_guild_channel_name;
+                            TextView textView = (TextView) viewInflate.findViewById(R.id.guild_scheduled_event_list_item_guild_channel_name);
                             if (textView != null) {
-                                i2 = R$id.guild_scheduled_event_list_item_guild_icon;
-                                SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) viewInflate.findViewById(R$id.guild_scheduled_event_list_item_guild_icon);
+                                i2 = R.id.guild_scheduled_event_list_item_guild_icon;
+                                SimpleDraweeView simpleDraweeView2 = (SimpleDraweeView) viewInflate.findViewById(R.id.guild_scheduled_event_list_item_guild_icon);
                                 if (simpleDraweeView2 != null) {
-                                    i2 = R$id.guild_scheduled_event_list_item_guild_icon_placeholder_text;
-                                    TextView textView2 = (TextView) viewInflate.findViewById(R$id.guild_scheduled_event_list_item_guild_icon_placeholder_text);
+                                    i2 = R.id.guild_scheduled_event_list_item_guild_icon_placeholder_text;
+                                    TextView textView2 = (TextView) viewInflate.findViewById(R.id.guild_scheduled_event_list_item_guild_icon_placeholder_text);
                                     if (textView2 != null) {
-                                        i2 = R$id.guild_scheduled_event_list_item_guild_name;
-                                        TextView textView3 = (TextView) viewInflate.findViewById(R$id.guild_scheduled_event_list_item_guild_name);
+                                        i2 = R.id.guild_scheduled_event_list_item_guild_name;
+                                        TextView textView3 = (TextView) viewInflate.findViewById(R.id.guild_scheduled_event_list_item_guild_name);
                                         if (textView3 != null) {
-                                            i2 = R$id.guild_scheduled_event_list_item_rsvp_text;
-                                            TextView textView4 = (TextView) viewInflate.findViewById(R$id.guild_scheduled_event_list_item_rsvp_text);
+                                            i2 = R.id.guild_scheduled_event_list_item_rsvp_text;
+                                            TextView textView4 = (TextView) viewInflate.findViewById(R.id.guild_scheduled_event_list_item_rsvp_text);
                                             if (textView4 != null) {
-                                                i2 = R$id.guild_scheduled_event_list_item_title_text;
-                                                TextView textView5 = (TextView) viewInflate.findViewById(R$id.guild_scheduled_event_list_item_title_text);
+                                                i2 = R.id.guild_scheduled_event_list_item_title_text;
+                                                TextView textView5 = (TextView) viewInflate.findViewById(R.id.guild_scheduled_event_list_item_title_text);
                                                 if (textView5 != null) {
-                                                    i2 = R$id.header_barrier;
-                                                    Barrier barrier = (Barrier) viewInflate.findViewById(R$id.header_barrier);
+                                                    i2 = R.id.header_barrier;
+                                                    Barrier barrier = (Barrier) viewInflate.findViewById(R.id.header_barrier);
                                                     if (barrier != null) {
-                                                        i2 = R$id.standalone_channel_icon;
-                                                        ImageView imageView = (ImageView) viewInflate.findViewById(R$id.standalone_channel_icon);
+                                                        i2 = R.id.standalone_channel_icon;
+                                                        ImageView imageView = (ImageView) viewInflate.findViewById(R.id.standalone_channel_icon);
                                                         if (imageView != null) {
-                                                            i2 = R$id.standalone_channel_name;
-                                                            LinkifiedTextView linkifiedTextView2 = (LinkifiedTextView) viewInflate.findViewById(R$id.standalone_channel_name);
+                                                            i2 = R.id.standalone_channel_name;
+                                                            LinkifiedTextView linkifiedTextView2 = (LinkifiedTextView) viewInflate.findViewById(R.id.standalone_channel_name);
                                                             if (linkifiedTextView2 != null) {
                                                                 GuildScheduledEventItemViewBinding guildScheduledEventItemViewBinding = new GuildScheduledEventItemViewBinding((ConstraintLayout) viewInflate, guildScheduledEventBottomButtonView, constraintLayout, simpleDraweeView, guildScheduledEventDateView, linkifiedTextView, textView, simpleDraweeView2, textView2, textView3, textView4, textView5, barrier, imageView, linkifiedTextView2);
                                                                 m.checkNotNullExpressionValue(guildScheduledEventItemViewBinding, "GuildScheduledEventItemV…rom(context), this, true)");

@@ -2,7 +2,6 @@ package com.discord.widgets.hubs;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import androidx.core.app.NotificationCompat;
 import b.d.b.a.a;
 import d0.z.d.m;
@@ -10,8 +9,33 @@ import d0.z.d.m;
 /* JADX INFO: compiled from: WidgetHubWaitlistViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class HubWaitlistArgs implements Parcelable {
-    public static final Parcelable$Creator<HubWaitlistArgs> CREATOR = new HubWaitlistArgs$Creator();
+    public static final Parcelable.Creator<HubWaitlistArgs> CREATOR = new Creator();
     private final String email;
+
+    public final class Creator implements Parcelable.Creator<HubWaitlistArgs> {
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final HubWaitlistArgs createFromParcel(Parcel parcel) {
+            m.checkNotNullParameter(parcel, "in");
+            return new HubWaitlistArgs(parcel.readString());
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ HubWaitlistArgs createFromParcel(Parcel parcel) {
+            return createFromParcel(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final HubWaitlistArgs[] newArray(int i) {
+            return new HubWaitlistArgs[i];
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ HubWaitlistArgs[] newArray(int i) {
+            return newArray(i);
+        }
+    }
 
     public HubWaitlistArgs(String str) {
         m.checkNotNullParameter(str, NotificationCompat.CATEGORY_EMAIL);

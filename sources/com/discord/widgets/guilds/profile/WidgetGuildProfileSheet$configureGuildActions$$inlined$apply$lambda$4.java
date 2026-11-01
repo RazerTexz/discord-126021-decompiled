@@ -5,7 +5,6 @@ import android.view.View;
 import com.discord.models.experiments.domain.Experiment;
 import com.discord.stores.StoreStream;
 import com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile;
-import com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile$Companion;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -33,19 +32,19 @@ public final class WidgetGuildProfileSheet$configureGuildActions$$inlined$apply$
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(View view) {
         m.checkNotNullParameter(view, "it");
-        Experiment userExperiment = StoreStream.Companion.getExperiments().getUserExperiment("2021-10_premium_guild_member_profiles", true);
+        Experiment userExperiment = StoreStream.INSTANCE.getExperiments().getUserExperiment("2021-10_premium_guild_member_profiles", true);
         if (userExperiment == null || userExperiment.getBucket() != 1) {
-            WidgetChangeGuildIdentity$Companion widgetChangeGuildIdentity$Companion = WidgetChangeGuildIdentity.Companion;
+            WidgetChangeGuildIdentity.Companion companion = WidgetChangeGuildIdentity.INSTANCE;
             long j = this.$guildId$inlined;
             Context context = view.getContext();
             m.checkNotNullExpressionValue(context, "it.context");
-            widgetChangeGuildIdentity$Companion.launch(j, "Guild Bottom Sheet", context);
+            companion.launch(j, "Guild Bottom Sheet", context);
             return;
         }
-        WidgetEditUserOrGuildMemberProfile$Companion widgetEditUserOrGuildMemberProfile$Companion = WidgetEditUserOrGuildMemberProfile.Companion;
+        WidgetEditUserOrGuildMemberProfile.Companion companion2 = WidgetEditUserOrGuildMemberProfile.INSTANCE;
         Long lValueOf = Long.valueOf(this.$guildId$inlined);
         Context context2 = view.getContext();
         m.checkNotNullExpressionValue(context2, "it.context");
-        WidgetEditUserOrGuildMemberProfile$Companion.launch$default(widgetEditUserOrGuildMemberProfile$Companion, context2, null, lValueOf, 2, null);
+        WidgetEditUserOrGuildMemberProfile.Companion.launch$default(companion2, context2, null, lValueOf, 2, null);
     }
 }

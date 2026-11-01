@@ -1,20 +1,27 @@
 package com.discord.app;
 
 import android.content.SharedPreferences;
-import android.content.SharedPreferences$Editor;
+import android.util.Log;
 import androidx.core.app.NotificationCompat;
 import com.discord.BuildConfig;
+import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.logging.Logger;
+import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
 import com.discord.utilities.systemlog.SystemLogReport;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import d0.g0.w;
+import d0.g0.y;
+import d0.t.k;
+import d0.t.u;
 import d0.z.d.m;
-import j0.q.a;
-import j0.q.a$c;
-import j0.q.a$d;
+import d0.z.d.o;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
+import java.util.UUID;
 import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
 import org.webrtc.Logging;
 import rx.subjects.SerializedSubject;
@@ -37,10 +44,214 @@ public final class AppLog extends Logger {
     public static int minLoggingPriority = 99;
 
     /* JADX INFO: renamed from: d, reason: from kotlin metadata */
-    public static final SerializedSubject<AppLog$LoggedItem, AppLog$LoggedItem> logsSubject = new SerializedSubject<>(new a(new a$d(new a$c(5000))));
+    public static final SerializedSubject<LoggedItem, LoggedItem> logsSubject = new SerializedSubject<>(new j0.q.a(new j0.q.a.d(new j0.q.a.c(5000))));
 
     /* JADX INFO: renamed from: f, reason: from kotlin metadata */
     public static final String[] PACKAGE_MARKERS = {BuildConfig.APPLICATION_ID, "co.discord"};
+
+    /* JADX INFO: compiled from: AppLog.kt */
+    public final /* data */ class LoggedItem implements MGRecyclerDataPayload {
+
+        /* JADX INFO: renamed from: j, reason: from kotlin metadata */
+        public final String key;
+
+        /* JADX INFO: renamed from: k, reason: from kotlin metadata */
+        public final int priority;
+
+        /* JADX INFO: renamed from: l, reason: from kotlin metadata */
+        public final String message;
+
+        /* JADX INFO: renamed from: m, reason: from kotlin metadata */
+        public final Throwable throwable;
+
+        public LoggedItem(int i, String str, Throwable th) {
+            m.checkNotNullParameter(str, "message");
+            this.priority = i;
+            this.message = str;
+            this.throwable = th;
+            String string = UUID.randomUUID().toString();
+            m.checkNotNullExpressionValue(string, "UUID.randomUUID().toString()");
+            this.key = string;
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof LoggedItem)) {
+                return false;
+            }
+            LoggedItem loggedItem = (LoggedItem) other;
+            return this.priority == loggedItem.priority && m.areEqual(this.message, loggedItem.message) && m.areEqual(this.throwable, loggedItem.throwable);
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
+        public String getKey() {
+            return this.key;
+        }
+
+        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
+        public int getType() {
+            return 0;
+        }
+
+        public int hashCode() {
+            int i = this.priority * 31;
+            String str = this.message;
+            int iHashCode = (i + (str != null ? str.hashCode() : 0)) * 31;
+            Throwable th = this.throwable;
+            return iHashCode + (th != null ? th.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = b.d.b.a.a.U("LoggedItem(priority=");
+            sbU.append(this.priority);
+            sbU.append(", message=");
+            sbU.append(this.message);
+            sbU.append(", throwable=");
+            sbU.append(this.throwable);
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    /* JADX INFO: compiled from: AppLog.kt */
+    public final class a extends o implements Function1<String, Unit> {
+        public final /* synthetic */ Map $metadata;
+        public final /* synthetic */ int $priority;
+        public final /* synthetic */ Throwable $throwable;
+
+        /* JADX INFO: renamed from: com.discord.app.AppLog$a$a, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: AppLog.kt */
+        public final class C0184a extends o implements Function2<String, Integer, Unit> {
+            public C0184a() {
+                super(2);
+            }
+
+            @Override // kotlin.jvm.functions.Function2
+            public /* bridge */ /* synthetic */ Unit invoke(String str, Integer num) {
+                invoke(str, num.intValue());
+                return Unit.a;
+            }
+
+            public final void invoke(String str, int i) {
+                m.checkNotNullParameter(str, "message");
+                Iterator<T> it = y.chunked(str, i).iterator();
+                while (it.hasNext()) {
+                    Log.println(a.this.$priority, AppLog.g.getDefaultTag(), (String) it.next());
+                }
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(int i, Map map, Throwable th) {
+            super(1);
+            this.$priority = i;
+            this.$metadata = map;
+            this.$throwable = th;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            Set setEntrySet;
+            String strJoinToString$default;
+            m.checkNotNullParameter(str, "message");
+            C0184a c0184a = new C0184a();
+            c0184a.invoke(str, 1000);
+            Map map = this.$metadata;
+            if (map != null && (setEntrySet = map.entrySet()) != null && (strJoinToString$default = u.joinToString$default(setEntrySet, "\n\t", null, null, 0, null, null, 62, null)) != null) {
+                c0184a.invoke("Metadata: " + strJoinToString$default, Integer.MAX_VALUE);
+            }
+            String stackTraceString = Log.getStackTraceString(this.$throwable);
+            m.checkNotNullExpressionValue(stackTraceString, "Log.getStackTraceString(throwable)");
+            c0184a.invoke(stackTraceString, 1000);
+        }
+    }
+
+    /* JADX INFO: compiled from: AppLog.kt */
+    public final class b extends o implements Function1<String, Unit> {
+        public final /* synthetic */ Map $metadata;
+        public final /* synthetic */ Throwable $throwable;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public b(Throwable th, Map map) {
+            super(1);
+            this.$throwable = th;
+            this.$metadata = map;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            Set<Map.Entry> setEntrySet;
+            m.checkNotNullParameter(str, "message");
+            try {
+                if (this.$throwable != null) {
+                    AppLog.g.recordBreadcrumb("Message " + str, "Error");
+                }
+                Map map = this.$metadata;
+                if (map != null && (setEntrySet = map.entrySet()) != null) {
+                    for (Map.Entry entry : setEntrySet) {
+                        AppLog.g.recordBreadcrumb("Metadata: " + ((String) entry.getKey()) + ", " + ((String) entry.getValue()), "Error");
+                    }
+                }
+                Exception exc = new Exception(str, this.$throwable);
+                AppLog appLog = AppLog.g;
+                StackTraceElement[] stackTrace = exc.getStackTrace();
+                m.checkNotNullExpressionValue(stackTrace, "e.stackTrace");
+                exc.setStackTrace(AppLog.a(appLog, stackTrace, str));
+                Throwable cause = exc.getCause();
+                if (cause != null) {
+                    StackTraceElement[] stackTrace2 = cause.getStackTrace();
+                    m.checkNotNullExpressionValue(stackTrace2, "cause.stackTrace");
+                    cause.setStackTrace(AppLog.a(appLog, stackTrace2, str));
+                }
+                FirebaseCrashlytics.getInstance().recordException(exc);
+            } catch (Exception e) {
+                AppLog.g.w("Unable to notify error logging.", e);
+            }
+            if (this.$throwable != null) {
+                try {
+                    AnalyticsTracker analyticsTracker = AnalyticsTracker.INSTANCE;
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(this.$throwable.getClass().toString());
+                    sb.append(":\n");
+                    StackTraceElement[] stackTrace3 = this.$throwable.getStackTrace();
+                    m.checkNotNullExpressionValue(stackTrace3, "throwable.stackTrace");
+                    sb.append(k.joinToString$default(stackTrace3, "\n", (CharSequence) null, (CharSequence) null, 0, (CharSequence) null, (Function1) null, 62, (Object) null));
+                    analyticsTracker.appExceptionThrown(sb.toString());
+                } catch (Exception e2) {
+                    AppLog.g.w("Unable to report to analytics.", e2);
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: AppLog.kt */
+    public final /* synthetic */ class c extends d0.z.d.k implements Function2<String, Throwable, Unit> {
+        public c(AppLog appLog) {
+            super(2, appLog, AppLog.class, "v", "v(Ljava/lang/String;Ljava/lang/Throwable;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public Unit invoke(String str, Throwable th) {
+            String str2 = str;
+            m.checkNotNullParameter(str2, "p1");
+            ((AppLog) this.receiver).v(str2, th);
+            return Unit.a;
+        }
+    }
 
     public AppLog() {
         super("Discord");
@@ -129,13 +340,13 @@ public final class AppLog extends Logger {
         if (i < minLoggingPriority) {
             return;
         }
-        AppLog$a appLog$a = new AppLog$a(i, map, th);
-        logsSubject.k.onNext(new AppLog$LoggedItem(i, str, th));
-        AppLog$b appLog$b = new AppLog$b(th, map);
+        a aVar = new a(i, map, th);
+        logsSubject.k.onNext(new LoggedItem(i, str, th));
+        b bVar = new b(th, map);
         if (i == 6) {
-            appLog$b.invoke2(str);
+            bVar.invoke2(str);
         }
-        appLog$a.invoke2(str);
+        aVar.invoke2(str);
     }
 
     public final void c(String message, String category, Throwable throwable, Function2<? super String, ? super Throwable, Unit> loggingFn) {
@@ -173,19 +384,19 @@ public final class AppLog extends Logger {
         if (initCalled) {
             SharedPreferences sharedPreferences = cache;
             if (sharedPreferences != null) {
-                SharedPreferences$Editor sharedPreferences$EditorEdit = sharedPreferences.edit();
-                m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
+                SharedPreferences.Editor editorEdit = sharedPreferences.edit();
+                m.checkNotNullExpressionValue(editorEdit, "editor");
                 if (userId != null) {
                     userId.longValue();
-                    sharedPreferences$EditorEdit.putString("LOG_CACHE_KEY_USER_ID", String.valueOf(userId));
+                    editorEdit.putString("LOG_CACHE_KEY_USER_ID", String.valueOf(userId));
                 }
                 if (userLogin != null) {
-                    sharedPreferences$EditorEdit.putString("LOG_CACHE_KEY_USER_LOGIN", userLogin);
+                    editorEdit.putString("LOG_CACHE_KEY_USER_LOGIN", userLogin);
                 }
                 if (username != null) {
-                    sharedPreferences$EditorEdit.putString("LOG_CACHE_KEY_USER_NAME", username);
+                    editorEdit.putString("LOG_CACHE_KEY_USER_NAME", username);
                 }
-                sharedPreferences$EditorEdit.apply();
+                editorEdit.apply();
             }
             FirebaseCrashlytics firebaseCrashlytics = FirebaseCrashlytics.getInstance();
             if (userId == null || (strValueOf = String.valueOf(userId.longValue())) == null) {
@@ -217,7 +428,7 @@ public final class AppLog extends Logger {
     public void recordBreadcrumb(String message, String category) {
         m.checkNotNullParameter(message, "message");
         m.checkNotNullParameter(category, "category");
-        c(message, category, null, new AppLog$c(this));
+        c(message, category, null, new c(this));
     }
 
     @Override // com.discord.utilities.logging.Logger

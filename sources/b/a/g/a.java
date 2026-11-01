@@ -5,6 +5,7 @@ import android.util.SparseIntArray;
 import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.PriorityQueue;
@@ -13,7 +14,7 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: ColorCutQuantizer.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class a {
-    public static final a$b a = new a$b(null);
+    public static final b a = new b(null);
     public final int[] c;
     public final SparseIntArray d;
     public final List<d> e;
@@ -21,17 +22,101 @@ public final class a {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final float[] f68b = new float[3];
 
+    /* JADX INFO: renamed from: b.a.g.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: ColorCutQuantizer.kt */
+    public final class C0032a<T> implements Comparator<c> {
+        public static final C0032a j = new C0032a();
+
+        @Override // java.util.Comparator
+        public int compare(c cVar, c cVar2) {
+            return cVar2.b() - cVar.b();
+        }
+    }
+
+    /* JADX INFO: compiled from: ColorCutQuantizer.kt */
+    public final class b {
+        public b(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    /* JADX INFO: compiled from: ColorCutQuantizer.kt */
+    public final class c {
+        public int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public int f69b;
+        public int c;
+        public int d;
+        public int e;
+        public int f;
+        public final int g;
+        public int h;
+
+        public c(int i, int i2) {
+            this.g = i;
+            this.h = i2;
+            a();
+        }
+
+        public final void a() {
+            this.e = 255;
+            this.c = 255;
+            this.a = 255;
+            this.f = 0;
+            this.d = 0;
+            this.f69b = 0;
+            int i = this.g;
+            int i2 = this.h;
+            if (i > i2) {
+                return;
+            }
+            while (true) {
+                int i3 = a.this.c[i];
+                int iRed = Color.red(i3);
+                int iGreen = Color.green(i3);
+                int iBlue = Color.blue(i3);
+                if (iRed > this.f69b) {
+                    this.f69b = iRed;
+                }
+                if (iRed < this.a) {
+                    this.a = iRed;
+                }
+                if (iGreen > this.d) {
+                    this.d = iGreen;
+                }
+                if (iGreen < this.c) {
+                    this.c = iGreen;
+                }
+                if (iBlue > this.f) {
+                    this.f = iBlue;
+                }
+                if (iBlue < this.e) {
+                    this.e = iBlue;
+                }
+                if (i == i2) {
+                    return;
+                } else {
+                    i++;
+                }
+            }
+        }
+
+        public final int b() {
+            return ((this.f - this.e) + 1) * ((this.d - this.c) + 1) * ((this.f69b - this.a) + 1);
+        }
+    }
+
     /* JADX WARN: Code duplicated, block: B:133:0x025d  */
     /* JADX WARN: Code duplicated, block: B:36:0x0097  */
     /* JADX WARN: Code duplicated, block: B:40:0x009d  */
-    public a(b bVar, int i, DefaultConstructorMarker defaultConstructorMarker) {
+    public a(b.a.g.b bVar, int i, DefaultConstructorMarker defaultConstructorMarker) {
         int i2;
         int iRed;
         int iGreen;
         int iBlue;
         boolean z2;
         boolean z3;
-        a$c a_c;
+        c cVar;
         boolean z4;
         boolean z5;
         if (!(i >= 1)) {
@@ -49,7 +134,7 @@ public final class a {
         int i5 = 0;
         for (int i6 : iArr) {
             int iAlpha = Color.alpha(i6);
-            c.a(Color.red(i6), Color.green(i6), Color.blue(i6), this.f68b);
+            b.a.g.c.a(Color.red(i6), Color.green(i6), Color.blue(i6), this.f68b);
             if (iAlpha >= 250) {
                 float[] fArr = this.f68b;
                 if (fArr[2] >= 0.95f) {
@@ -84,11 +169,11 @@ public final class a {
             }
             return;
         }
-        PriorityQueue<a$c> priorityQueue = new PriorityQueue(i, a$a.j);
-        priorityQueue.offer(new a$c(this, 0, i5 - 1));
-        while (priorityQueue.size() < i && (a_c = (a$c) priorityQueue.poll()) != null) {
-            int i8 = a_c.h;
-            int i9 = a_c.g;
+        PriorityQueue<c> priorityQueue = new PriorityQueue(i, C0032a.j);
+        priorityQueue.offer(new c(0, i5 - 1));
+        while (priorityQueue.size() < i && (cVar = (c) priorityQueue.poll()) != null) {
+            int i8 = cVar.h;
+            int i9 = cVar.g;
             int i10 = i8 - i9;
             if (!(i10 > 1)) {
                 break;
@@ -96,22 +181,22 @@ public final class a {
             if (!(i10 > 1)) {
                 throw new IllegalStateException("Can not split a box with only 1 color".toString());
             }
-            int i11 = a_c.f69b - a_c.a;
-            int i12 = a_c.d - a_c.c;
-            int i13 = a_c.f - a_c.e;
+            int i11 = cVar.f69b - cVar.a;
+            int i12 = cVar.d - cVar.c;
+            int i13 = cVar.f - cVar.e;
             int i14 = (i11 < i12 || i11 < i13) ? (i12 < i11 || i12 < i13) ? -1 : -2 : -3;
-            a(a_c.i, i14, i9, i8);
-            Arrays.sort(a_c.i.c, a_c.g, a_c.h + 1);
-            a(a_c.i, i14, a_c.g, a_c.h);
-            int i15 = i14 != -3 ? i14 != -2 ? i14 != -1 ? (a_c.a + a_c.f69b) / 2 : (a_c.e + a_c.f) / 2 : (a_c.c + a_c.d) / 2 : (a_c.a + a_c.f69b) / 2;
-            int i16 = a_c.g;
-            int i17 = a_c.h;
+            a(a.this, i14, i9, i8);
+            Arrays.sort(a.this.c, cVar.g, cVar.h + 1);
+            a(a.this, i14, cVar.g, cVar.h);
+            int i15 = i14 != -3 ? i14 != -2 ? i14 != -1 ? (cVar.a + cVar.f69b) / 2 : (cVar.e + cVar.f) / 2 : (cVar.c + cVar.d) / 2 : (cVar.a + cVar.f69b) / 2;
+            int i16 = cVar.g;
+            int i17 = cVar.h;
             while (true) {
                 if (i16 >= i17) {
-                    i16 = a_c.g;
+                    i16 = cVar.g;
                     break;
                 }
-                int i18 = a_c.i.c[i16];
+                int i18 = a.this.c[i16];
                 if (i14 != -3) {
                     if (i14 != -2) {
                         if (i14 == -1 && Color.blue(i18) > i15) {
@@ -130,23 +215,23 @@ public final class a {
                     i16++;
                 }
             }
-            a$c a_c2 = new a$c(a_c.i, i16 + 1, a_c.h);
-            a_c.h = i16;
-            a_c.a();
-            priorityQueue.offer(a_c2);
-            priorityQueue.offer(a_c);
+            c cVar2 = a.this.new c(i16 + 1, cVar.h);
+            cVar.h = i16;
+            cVar.a();
+            priorityQueue.offer(cVar2);
+            priorityQueue.offer(cVar);
         }
         ArrayList arrayList = new ArrayList(priorityQueue.size());
-        for (a$c a_c3 : priorityQueue) {
-            int i19 = a_c3.g;
-            int i20 = a_c3.h;
+        for (c cVar3 : priorityQueue) {
+            int i19 = cVar3.g;
+            int i20 = cVar3.h;
             if (i19 <= i20) {
                 i2 = 0;
                 iRed = 0;
                 iGreen = 0;
                 iBlue = 0;
                 while (true) {
-                    a aVar = a_c3.i;
+                    a aVar = a.this;
                     int i21 = aVar.c[i19];
                     int i22 = aVar.d.get(i21);
                     i2 += i22;

@@ -1,11 +1,14 @@
 package com.discord.widgets.servers.community;
 
 import android.content.Context;
+import android.content.Intent;
+import android.view.View;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.d.f0;
+import b.a.d.j;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.guild.GuildExplicitContentFilter;
 import com.discord.api.guild.GuildVerificationLevel;
 import com.discord.app.AppFragment;
@@ -17,10 +20,14 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.discord.views.CheckedSetting;
 import d0.z.d.a0;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 import rx.Observable;
 
@@ -28,7 +35,9 @@ import rx.Observable;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsCommunityFirstStep extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetServerSettingsCommunityFirstStep.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsCommunitySetupFirstStepBinding;", 0)};
-    public static final WidgetServerSettingsCommunityFirstStep$Companion Companion = new WidgetServerSettingsCommunityFirstStep$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -37,15 +46,134 @@ public final class WidgetServerSettingsCommunityFirstStep extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsCommunityFirstStep$configureUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsCommunityFirstStep.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ boolean $guildVerificationLevel;
+        public final /* synthetic */ WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded $viewState;
+
+        /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsCommunityFirstStep$configureUI$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: WidgetServerSettingsCommunityFirstStep.kt */
+        public final class C04381 extends o implements Function1<WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig, WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig> {
+            public C04381() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig invoke(WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig communityGuildConfig) {
+                return invoke2(communityGuildConfig);
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig invoke2(WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig communityGuildConfig) {
+                m.checkNotNullParameter(communityGuildConfig, "it");
+                CheckedSetting checkedSetting = WidgetServerSettingsCommunityFirstStep.access$getBinding$p(WidgetServerSettingsCommunityFirstStep.this).c;
+                m.checkNotNullExpressionValue(checkedSetting, "binding.communitySettingsVerifiedEmailedSwitch");
+                return WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig.copy$default(communityGuildConfig, null, null, null, null, false, false, !checkedSetting.isChecked(), false, null, false, null, null, 4031, null);
+            }
+        }
+
+        public AnonymousClass1(WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded loaded, boolean z2) {
+            this.$viewState = loaded;
+            this.$guildVerificationLevel = z2;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            if (this.$viewState.getCommunityGuildConfig().getVerificationLevel() && this.$guildVerificationLevel) {
+                b.a.d.m.d(WidgetServerSettingsCommunityFirstStep.this.getContext(), R.string.enable_community_modal_requirement_satisfied_tooltip, 0, WidgetServerSettingsCommunityFirstStep.access$getToastManager$p(WidgetServerSettingsCommunityFirstStep.this));
+            } else {
+                WidgetServerSettingsCommunityFirstStep.access$getViewModel$p(WidgetServerSettingsCommunityFirstStep.this).modifyGuildConfig(new C04381());
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsCommunityFirstStep$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsCommunityFirstStep.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded, Unit> {
+        public AnonymousClass1(WidgetServerSettingsCommunityFirstStep widgetServerSettingsCommunityFirstStep) {
+            super(1, widgetServerSettingsCommunityFirstStep, WidgetServerSettingsCommunityFirstStep.class, "configureUI", "configureUI(Lcom/discord/widgets/servers/community/WidgetServerSettingsEnableCommunityViewModel$ViewState$Loaded;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded loaded) {
+            invoke2(loaded);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded loaded) {
+            m.checkNotNullParameter(loaded, "p1");
+            WidgetServerSettingsCommunityFirstStep.access$configureUI((WidgetServerSettingsCommunityFirstStep) this.receiver, loaded);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsCommunityFirstStep$configureUI$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsCommunityFirstStep.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ boolean $guildExplicitContentFilter;
+        public final /* synthetic */ WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded $viewState;
+
+        /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsCommunityFirstStep$configureUI$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetServerSettingsCommunityFirstStep.kt */
+        public final class AnonymousClass1 extends o implements Function1<WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig, WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig invoke(WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig communityGuildConfig) {
+                return invoke2(communityGuildConfig);
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig invoke2(WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig communityGuildConfig) {
+                m.checkNotNullParameter(communityGuildConfig, "it");
+                CheckedSetting checkedSetting = WidgetServerSettingsCommunityFirstStep.access$getBinding$p(WidgetServerSettingsCommunityFirstStep.this).f2554b;
+                m.checkNotNullExpressionValue(checkedSetting, "binding.communitySettingsScanMessagesSwitch");
+                return WidgetServerSettingsEnableCommunityViewModel.CommunityGuildConfig.copy$default(communityGuildConfig, null, null, null, null, false, false, false, !checkedSetting.isChecked(), null, false, null, null, 3967, null);
+            }
+        }
+
+        public AnonymousClass2(WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded loaded, boolean z2) {
+            this.$viewState = loaded;
+            this.$guildExplicitContentFilter = z2;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            if (this.$viewState.getCommunityGuildConfig().getExplicitContentFilter() && this.$guildExplicitContentFilter) {
+                b.a.d.m.d(WidgetServerSettingsCommunityFirstStep.this.getContext(), R.string.enable_community_modal_requirement_satisfied_tooltip, 0, WidgetServerSettingsCommunityFirstStep.access$getToastManager$p(WidgetServerSettingsCommunityFirstStep.this));
+            } else {
+                WidgetServerSettingsCommunityFirstStep.access$getViewModel$p(WidgetServerSettingsCommunityFirstStep.this).modifyGuildConfig(new AnonymousClass1());
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsCommunityFirstStep.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void create(Context context) {
+            m.checkNotNullParameter(context, "context");
+            j.d(context, WidgetServerSettingsCommunityFirstStep.class, new Intent());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetServerSettingsCommunityFirstStep() {
-        super(R$layout.widget_server_settings_community_setup_first_step);
+        super(R.layout.widget_server_settings_community_setup_first_step);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetServerSettingsCommunityFirstStep$binding$2.INSTANCE, null, 2, null);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetServerSettingsEnableCommunityViewModel.class), new WidgetServerSettingsCommunityFirstStep$appActivityViewModels$$inlined$activityViewModels$1(this), new f0(WidgetServerSettingsCommunityFirstStep$viewModel$2.INSTANCE));
         this.toastManager = new ToastManager();
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetServerSettingsCommunityFirstStep widgetServerSettingsCommunityFirstStep, WidgetServerSettingsEnableCommunityViewModel$ViewState$Loaded widgetServerSettingsEnableCommunityViewModel$ViewState$Loaded) {
-        widgetServerSettingsCommunityFirstStep.configureUI(widgetServerSettingsEnableCommunityViewModel$ViewState$Loaded);
+    public static final /* synthetic */ void access$configureUI(WidgetServerSettingsCommunityFirstStep widgetServerSettingsCommunityFirstStep, WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded loaded) {
+        widgetServerSettingsCommunityFirstStep.configureUI(loaded);
     }
 
     public static final /* synthetic */ WidgetServerSettingsCommunitySetupFirstStepBinding access$getBinding$p(WidgetServerSettingsCommunityFirstStep widgetServerSettingsCommunityFirstStep) {
@@ -64,7 +192,7 @@ public final class WidgetServerSettingsCommunityFirstStep extends AppFragment {
         widgetServerSettingsCommunityFirstStep.toastManager = toastManager;
     }
 
-    private final void configureUI(WidgetServerSettingsEnableCommunityViewModel$ViewState$Loaded viewState) {
+    private final void configureUI(WidgetServerSettingsEnableCommunityViewModel.ViewState.Loaded viewState) {
         CheckedSetting checkedSetting = getBinding().c;
         m.checkNotNullExpressionValue(checkedSetting, "binding.communitySettingsVerifiedEmailedSwitch");
         checkedSetting.setChecked(viewState.getCommunityGuildConfig().getVerificationLevel());
@@ -74,12 +202,12 @@ public final class WidgetServerSettingsCommunityFirstStep extends AppFragment {
         Guild guild = viewState.getCommunityGuildConfig().getGuild();
         boolean z2 = guild != null && guild.getVerificationLevel().compareTo(GuildVerificationLevel.NONE) > 0;
         boolean z3 = guild != null && guild.getExplicitContentFilter().compareTo(GuildExplicitContentFilter.NONE) > 0;
-        getBinding().c.e(new WidgetServerSettingsCommunityFirstStep$configureUI$1(this, viewState, z2));
-        getBinding().f2554b.e(new WidgetServerSettingsCommunityFirstStep$configureUI$2(this, viewState, z3));
+        getBinding().c.e(new AnonymousClass1(viewState, z2));
+        getBinding().f2554b.e(new AnonymousClass2(viewState, z3));
     }
 
     public static final void create(Context context) {
-        Companion.create(context);
+        INSTANCE.create(context);
     }
 
     private final WidgetServerSettingsCommunitySetupFirstStepBinding getBinding() {
@@ -101,6 +229,6 @@ public final class WidgetServerSettingsCommunityFirstStep extends AppFragment {
         super.onViewBoundOrOnResume();
         Observable observableG = ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null).y(WidgetServerSettingsCommunityFirstStep$onViewBoundOrOnResume$$inlined$filterIs$1.INSTANCE).G(WidgetServerSettingsCommunityFirstStep$onViewBoundOrOnResume$$inlined$filterIs$2.INSTANCE);
         m.checkNotNullExpressionValue(observableG, "filter { it is T }.map { it as T }");
-        ObservableExtensionsKt.appSubscribe$default(observableG, WidgetServerSettingsCommunityFirstStep.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetServerSettingsCommunityFirstStep$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(observableG, WidgetServerSettingsCommunityFirstStep.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
     }
 }

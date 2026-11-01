@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.databinding.WidgetChoosePlanAdapterPlanItemBinding;
 import com.discord.utilities.billing.GooglePlayInAppSku;
 import d0.z.d.m;
@@ -30,7 +30,7 @@ public final class GiftSelectView extends FrameLayout {
     public GiftSelectView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
         m.checkNotNullParameter(context, "context");
-        View viewInflate = LayoutInflater.from(context).inflate(R$layout.widget_choose_plan_adapter_plan_item, (ViewGroup) this, false);
+        View viewInflate = LayoutInflater.from(context).inflate(R.layout.widget_choose_plan_adapter_plan_item, (ViewGroup) this, false);
         addView(viewInflate);
         WidgetChoosePlanAdapterPlanItemBinding widgetChoosePlanAdapterPlanItemBindingA = WidgetChoosePlanAdapterPlanItemBinding.a(viewInflate);
         m.checkNotNullExpressionValue(widgetChoosePlanAdapterPlanItemBindingA, "WidgetChoosePlanAdapterP…rom(context), this, true)");

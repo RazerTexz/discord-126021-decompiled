@@ -1,5 +1,8 @@
 package androidx.core.view;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.view.View;
 import android.view.animation.Interpolator;
@@ -12,6 +15,107 @@ public final class ViewPropertyAnimatorCompat {
     public Runnable mStartAction = null;
     public Runnable mEndAction = null;
     public int mOldLayerType = -1;
+
+    /* JADX INFO: renamed from: androidx.core.view.ViewPropertyAnimatorCompat$1, reason: invalid class name */
+    public class AnonymousClass1 extends AnimatorListenerAdapter {
+        public final /* synthetic */ ViewPropertyAnimatorListener val$listener;
+        public final /* synthetic */ View val$view;
+
+        public AnonymousClass1(ViewPropertyAnimatorListener viewPropertyAnimatorListener, View view) {
+            this.val$listener = viewPropertyAnimatorListener;
+            this.val$view = view;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationCancel(Animator animator) {
+            this.val$listener.onAnimationCancel(this.val$view);
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            this.val$listener.onAnimationEnd(this.val$view);
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationStart(Animator animator) {
+            this.val$listener.onAnimationStart(this.val$view);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.core.view.ViewPropertyAnimatorCompat$2, reason: invalid class name */
+    public class AnonymousClass2 implements ValueAnimator.AnimatorUpdateListener {
+        public final /* synthetic */ ViewPropertyAnimatorUpdateListener val$listener;
+        public final /* synthetic */ View val$view;
+
+        public AnonymousClass2(ViewPropertyAnimatorUpdateListener viewPropertyAnimatorUpdateListener, View view) {
+            this.val$listener = viewPropertyAnimatorUpdateListener;
+            this.val$view = view;
+        }
+
+        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            this.val$listener.onAnimationUpdate(this.val$view);
+        }
+    }
+
+    public class ViewPropertyAnimatorListenerApi14 implements ViewPropertyAnimatorListener {
+        public boolean mAnimEndCalled;
+        public ViewPropertyAnimatorCompat mVpa;
+
+        public ViewPropertyAnimatorListenerApi14(ViewPropertyAnimatorCompat viewPropertyAnimatorCompat) {
+            this.mVpa = viewPropertyAnimatorCompat;
+        }
+
+        @Override // androidx.core.view.ViewPropertyAnimatorListener
+        public void onAnimationCancel(View view) {
+            Object tag = view.getTag(ViewPropertyAnimatorCompat.LISTENER_TAG_ID);
+            ViewPropertyAnimatorListener viewPropertyAnimatorListener = tag instanceof ViewPropertyAnimatorListener ? (ViewPropertyAnimatorListener) tag : null;
+            if (viewPropertyAnimatorListener != null) {
+                viewPropertyAnimatorListener.onAnimationCancel(view);
+            }
+        }
+
+        @Override // androidx.core.view.ViewPropertyAnimatorListener
+        @SuppressLint({"WrongConstant"})
+        public void onAnimationEnd(View view) {
+            int i = this.mVpa.mOldLayerType;
+            if (i > -1) {
+                view.setLayerType(i, null);
+                this.mVpa.mOldLayerType = -1;
+            }
+            ViewPropertyAnimatorCompat viewPropertyAnimatorCompat = this.mVpa;
+            Runnable runnable = viewPropertyAnimatorCompat.mEndAction;
+            if (runnable != null) {
+                viewPropertyAnimatorCompat.mEndAction = null;
+                runnable.run();
+            }
+            Object tag = view.getTag(ViewPropertyAnimatorCompat.LISTENER_TAG_ID);
+            ViewPropertyAnimatorListener viewPropertyAnimatorListener = tag instanceof ViewPropertyAnimatorListener ? (ViewPropertyAnimatorListener) tag : null;
+            if (viewPropertyAnimatorListener != null) {
+                viewPropertyAnimatorListener.onAnimationEnd(view);
+            }
+            this.mAnimEndCalled = true;
+        }
+
+        @Override // androidx.core.view.ViewPropertyAnimatorListener
+        public void onAnimationStart(View view) {
+            this.mAnimEndCalled = false;
+            if (this.mVpa.mOldLayerType > -1) {
+                view.setLayerType(2, null);
+            }
+            ViewPropertyAnimatorCompat viewPropertyAnimatorCompat = this.mVpa;
+            Runnable runnable = viewPropertyAnimatorCompat.mStartAction;
+            if (runnable != null) {
+                viewPropertyAnimatorCompat.mStartAction = null;
+                runnable.run();
+            }
+            Object tag = view.getTag(ViewPropertyAnimatorCompat.LISTENER_TAG_ID);
+            ViewPropertyAnimatorListener viewPropertyAnimatorListener = tag instanceof ViewPropertyAnimatorListener ? (ViewPropertyAnimatorListener) tag : null;
+            if (viewPropertyAnimatorListener != null) {
+                viewPropertyAnimatorListener.onAnimationStart(view);
+            }
+        }
+    }
 
     public ViewPropertyAnimatorCompat(View view) {
         this.mView = new WeakReference<>(view);
@@ -170,7 +274,7 @@ public final class ViewPropertyAnimatorCompat {
 
     private void setListenerInternal(View view, ViewPropertyAnimatorListener viewPropertyAnimatorListener) {
         if (viewPropertyAnimatorListener != null) {
-            view.animate().setListener(new ViewPropertyAnimatorCompat$1(this, viewPropertyAnimatorListener, view));
+            view.animate().setListener(new AnonymousClass1(viewPropertyAnimatorListener, view));
         } else {
             view.animate().setListener(null);
         }
@@ -187,7 +291,7 @@ public final class ViewPropertyAnimatorCompat {
     public ViewPropertyAnimatorCompat setUpdateListener(ViewPropertyAnimatorUpdateListener viewPropertyAnimatorUpdateListener) {
         View view = this.mView.get();
         if (view != null) {
-            view.animate().setUpdateListener(viewPropertyAnimatorUpdateListener != null ? new ViewPropertyAnimatorCompat$2(this, viewPropertyAnimatorUpdateListener, view) : null);
+            view.animate().setUpdateListener(viewPropertyAnimatorUpdateListener != null ? new AnonymousClass2(viewPropertyAnimatorUpdateListener, view) : null);
         }
         return this;
     }

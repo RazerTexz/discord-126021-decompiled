@@ -2,18 +2,50 @@ package com.discord.widgets.hubs;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import b.d.b.a.a;
 import d0.z.d.m;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 /* JADX INFO: compiled from: WidgetRadioSelectorBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class RadioSelectorItems implements Parcelable {
-    public static final Parcelable$Creator<RadioSelectorItems> CREATOR = new RadioSelectorItems$Creator();
+    public static final Parcelable.Creator<RadioSelectorItems> CREATOR = new Creator();
     private final List<RadioSelectorItem> items;
     private final String title;
+
+    public final class Creator implements Parcelable.Creator<RadioSelectorItems> {
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final RadioSelectorItems createFromParcel(Parcel parcel) {
+            m.checkNotNullParameter(parcel, "in");
+            String string = parcel.readString();
+            int i = parcel.readInt();
+            ArrayList arrayList = new ArrayList(i);
+            while (i != 0) {
+                arrayList.add(RadioSelectorItem.CREATOR.createFromParcel(parcel));
+                i--;
+            }
+            return new RadioSelectorItems(string, arrayList);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ RadioSelectorItems createFromParcel(Parcel parcel) {
+            return createFromParcel(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final RadioSelectorItems[] newArray(int i) {
+            return new RadioSelectorItems[i];
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ RadioSelectorItems[] newArray(int i) {
+            return newArray(i);
+        }
+    }
 
     public RadioSelectorItems(String str, List<RadioSelectorItem> list) {
         m.checkNotNullParameter(str, "title");

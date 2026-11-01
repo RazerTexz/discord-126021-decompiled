@@ -1,12 +1,10 @@
 package com.discord.widgets.voice.fullscreen.stage;
 
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
-import android.view.ViewGroup$MarginLayoutParams;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.databinding.WidgetStageChannelPrestartDetailsBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.dimen.DimenUtils;
@@ -20,14 +18,14 @@ public final class PrestartDetailsViewHolder extends StageCallViewHolder {
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public PrestartDetailsViewHolder(StageCallAdapter stageCallAdapter) {
-        super(R$layout.widget_stage_channel_prestart_details, stageCallAdapter, null);
+        super(R.layout.widget_stage_channel_prestart_details, stageCallAdapter, null);
         m.checkNotNullParameter(stageCallAdapter, "adapter");
         View view = this.itemView;
-        int i = R$id.subtitle;
-        TextView textView = (TextView) view.findViewById(R$id.subtitle);
+        int i = R.id.subtitle;
+        TextView textView = (TextView) view.findViewById(R.id.subtitle);
         if (textView != null) {
-            i = 2131365869;
-            TextView textView2 = (TextView) view.findViewById(2131365869);
+            i = R.id.title;
+            TextView textView2 = (TextView) view.findViewById(R.id.title);
             if (textView2 != null) {
                 WidgetStageChannelPrestartDetailsBinding widgetStageChannelPrestartDetailsBinding = new WidgetStageChannelPrestartDetailsBinding((ConstraintLayout) view, textView, textView2);
                 m.checkNotNullExpressionValue(widgetStageChannelPrestartDetailsBinding, "WidgetStageChannelPresta…ilsBinding.bind(itemView)");
@@ -47,21 +45,21 @@ public final class PrestartDetailsViewHolder extends StageCallViewHolder {
     public void onConfigure2(int position, StageCallItem data) {
         m.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
-        StageCallItem$PreStartDetailsItem stageCallItem$PreStartDetailsItem = (StageCallItem$PreStartDetailsItem) data;
+        StageCallItem.PreStartDetailsItem preStartDetailsItem = (StageCallItem.PreStartDetailsItem) data;
         TextView textView = this.binding.c;
         m.checkNotNullExpressionValue(textView, "binding.title");
-        textView.setText(stageCallItem$PreStartDetailsItem.getTitle());
+        textView.setText(preStartDetailsItem.getTitle());
         TextView textView2 = this.binding.f2653b;
         m.checkNotNullExpressionValue(textView2, "binding.subtitle");
-        textView2.setText(stageCallItem$PreStartDetailsItem.getSubtitle());
-        boolean z2 = stageCallItem$PreStartDetailsItem.getNumSpeakers() > 0;
-        boolean z3 = stageCallItem$PreStartDetailsItem.getNumAudience() > 0;
+        textView2.setText(preStartDetailsItem.getSubtitle());
+        boolean z2 = preStartDetailsItem.getNumSpeakers() > 0;
+        boolean z3 = preStartDetailsItem.getNumAudience() > 0;
         ConstraintLayout constraintLayout = this.binding.a;
         m.checkNotNullExpressionValue(constraintLayout, "binding.root");
-        ViewGroup$LayoutParams layoutParams = constraintLayout.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = constraintLayout.getLayoutParams();
         Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.MarginLayoutParams");
-        ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams = (ViewGroup$MarginLayoutParams) layoutParams;
-        viewGroup$MarginLayoutParams.bottomMargin = (z2 || !z3) ? DimenUtils.dpToPixels(0) : DimenUtils.dpToPixels(24);
-        constraintLayout.setLayoutParams(viewGroup$MarginLayoutParams);
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
+        marginLayoutParams.bottomMargin = (z2 || !z3) ? DimenUtils.dpToPixels(0) : DimenUtils.dpToPixels(24);
+        constraintLayout.setLayoutParams(marginLayoutParams);
     }
 }

@@ -1,8 +1,6 @@
 package d0.e0.p.d.m0.l.b;
 
 import d0.e0.p.d.m0.c.z0;
-import d0.e0.p.d.m0.f.q$b;
-import d0.e0.p.d.m0.f.q$b$c;
 import d0.e0.p.d.m0.n.d0;
 import d0.e0.p.d.m0.n.e0;
 import d0.e0.p.d.m0.n.j0;
@@ -20,8 +18,10 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
+import kotlin.reflect.KDeclarationContainer;
 
 /* JADX INFO: compiled from: TypeDeserializer.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -37,6 +37,133 @@ public final class c0 {
     public final Function1<Integer, d0.e0.p.d.m0.c.h> g;
     public final Map<Integer, z0> h;
 
+    /* JADX INFO: compiled from: TypeDeserializer.kt */
+    public final class a extends d0.z.d.o implements Function1<Integer, d0.e0.p.d.m0.c.h> {
+        public a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.h invoke(Integer num) {
+            return invoke(num.intValue());
+        }
+
+        public final d0.e0.p.d.m0.c.h invoke(int i) {
+            return c0.access$computeClassifierDescriptor(c0.this, i);
+        }
+    }
+
+    /* JADX INFO: compiled from: TypeDeserializer.kt */
+    public final class b extends d0.z.d.o implements Function0<List<? extends d0.e0.p.d.m0.c.g1.c>> {
+        public final /* synthetic */ d0.e0.p.d.m0.f.q $proto;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public b(d0.e0.p.d.m0.f.q qVar) {
+            super(0);
+            this.$proto = qVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<? extends d0.e0.p.d.m0.c.g1.c> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<? extends d0.e0.p.d.m0.c.g1.c> invoke2() {
+            return c0.access$getC$p(c0.this).getComponents().getAnnotationAndConstantLoader().loadTypeAnnotations(this.$proto, c0.access$getC$p(c0.this).getNameResolver());
+        }
+    }
+
+    /* JADX INFO: compiled from: TypeDeserializer.kt */
+    public final class c extends d0.z.d.o implements Function1<Integer, d0.e0.p.d.m0.c.h> {
+        public c() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.h invoke(Integer num) {
+            return invoke(num.intValue());
+        }
+
+        public final d0.e0.p.d.m0.c.h invoke(int i) {
+            return c0.access$computeTypeAliasDescriptor(c0.this, i);
+        }
+    }
+
+    /* JADX INFO: compiled from: TypeDeserializer.kt */
+    public final /* synthetic */ class d extends d0.z.d.j implements Function1<d0.e0.p.d.m0.g.a, d0.e0.p.d.m0.g.a> {
+        public static final d j = new d();
+
+        public d() {
+            super(1);
+        }
+
+        @Override // d0.z.d.d, kotlin.reflect.KCallable
+        public final String getName() {
+            return "getOuterClassId";
+        }
+
+        @Override // d0.z.d.d
+        public final KDeclarationContainer getOwner() {
+            return d0.z.d.a0.getOrCreateKotlinClass(d0.e0.p.d.m0.g.a.class);
+        }
+
+        @Override // d0.z.d.d
+        public final String getSignature() {
+            return "getOuterClassId()Lorg/jetbrains/kotlin/name/ClassId;";
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.g.a invoke(d0.e0.p.d.m0.g.a aVar) {
+            return invoke2(aVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final d0.e0.p.d.m0.g.a invoke2(d0.e0.p.d.m0.g.a aVar) {
+            d0.z.d.m.checkNotNullParameter(aVar, "p0");
+            return aVar.getOuterClassId();
+        }
+    }
+
+    /* JADX INFO: compiled from: TypeDeserializer.kt */
+    public final class e extends d0.z.d.o implements Function1<d0.e0.p.d.m0.f.q, d0.e0.p.d.m0.f.q> {
+        public e() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.f.q invoke(d0.e0.p.d.m0.f.q qVar) {
+            return invoke2(qVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final d0.e0.p.d.m0.f.q invoke2(d0.e0.p.d.m0.f.q qVar) {
+            d0.z.d.m.checkNotNullParameter(qVar, "it");
+            return d0.e0.p.d.m0.f.z.f.outerType(qVar, c0.access$getC$p(c0.this).getTypeTable());
+        }
+    }
+
+    /* JADX INFO: compiled from: TypeDeserializer.kt */
+    public final class f extends d0.z.d.o implements Function1<d0.e0.p.d.m0.f.q, Integer> {
+        public static final f j = new f();
+
+        public f() {
+            super(1);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final int invoke2(d0.e0.p.d.m0.f.q qVar) {
+            d0.z.d.m.checkNotNullParameter(qVar, "it");
+            return qVar.getArgumentCount();
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Integer invoke(d0.e0.p.d.m0.f.q qVar) {
+            return Integer.valueOf(invoke2(qVar));
+        }
+    }
+
     public c0(l lVar, c0 c0Var, List<d0.e0.p.d.m0.f.s> list, String str, String str2, boolean z2) {
         Map<Integer, z0> linkedHashMap;
         d0.z.d.m.checkNotNullParameter(lVar, "c");
@@ -48,8 +175,8 @@ public final class c0 {
         this.c = str;
         this.d = str2;
         this.e = z2;
-        this.f = lVar.getStorageManager().createMemoizedFunctionWithNullableValues(new c0$a(this));
-        this.g = lVar.getStorageManager().createMemoizedFunctionWithNullableValues(new c0$c(this));
+        this.f = lVar.getStorageManager().createMemoizedFunctionWithNullableValues(new a());
+        this.g = lVar.getStorageManager().createMemoizedFunctionWithNullableValues(new c());
         if (list.isEmpty()) {
             linkedHashMap = h0.emptyMap();
         } else {
@@ -100,11 +227,11 @@ public final class c0 {
         return d0.e0.p.d.m0.b.g.createFunctionType(builtIns, annotations, receiverTypeFromFunctionType, arrayList, null, c0Var2, true).makeNullableAsSpecified(c0Var.isMarkedNullable());
     }
 
-    public static final List<q$b> c(d0.e0.p.d.m0.f.q qVar, c0 c0Var) {
-        List<q$b> argumentList = qVar.getArgumentList();
+    public static final List<d0.e0.p.d.m0.f.q.b> c(d0.e0.p.d.m0.f.q qVar, c0 c0Var) {
+        List<d0.e0.p.d.m0.f.q.b> argumentList = qVar.getArgumentList();
         d0.z.d.m.checkNotNullExpressionValue(argumentList, "argumentList");
         d0.e0.p.d.m0.f.q qVarOuterType = d0.e0.p.d.m0.f.z.f.outerType(qVar, c0Var.a.getTypeTable());
-        List<q$b> listC = qVarOuterType == null ? null : c(qVarOuterType, c0Var);
+        List<d0.e0.p.d.m0.f.q.b> listC = qVarOuterType == null ? null : c(qVarOuterType, c0Var);
         if (listC == null) {
             listC = d0.t.n.emptyList();
         }
@@ -113,8 +240,8 @@ public final class c0 {
 
     public static final d0.e0.p.d.m0.c.e d(c0 c0Var, d0.e0.p.d.m0.f.q qVar, int i) {
         d0.e0.p.d.m0.g.a classId = w.getClassId(c0Var.a.getNameResolver(), i);
-        List<Integer> mutableList = d0.f0.q.toMutableList(d0.f0.q.map(d0.f0.n.generateSequence(qVar, new c0$e(c0Var)), c0$f.j));
-        int iCount = d0.f0.q.count(d0.f0.n.generateSequence(classId, c0$d.j));
+        List<Integer> mutableList = d0.f0.q.toMutableList(d0.f0.q.map(d0.f0.n.generateSequence(qVar, c0Var.new e()), f.j));
+        int iCount = d0.f0.q.count(d0.f0.n.generateSequence(classId, d.j));
         while (mutableList.size() < iCount) {
             mutableList.add(0);
         }
@@ -221,8 +348,8 @@ public final class c0 {
             d0.z.d.m.checkNotNullExpressionValue(j0VarCreateErrorTypeWithCustomConstructor, "createErrorTypeWithCustomConstructor(constructor.toString(), constructor)");
             return j0VarCreateErrorTypeWithCustomConstructor;
         }
-        d0.e0.p.d.m0.l.b.e0.a aVar = new d0.e0.p.d.m0.l.b.e0.a(this.a.getStorageManager(), new c0$b(this, qVar));
-        List<q$b> listC = c(qVar, this);
+        d0.e0.p.d.m0.l.b.e0.a aVar = new d0.e0.p.d.m0.l.b.e0.a(this.a.getStorageManager(), new b(qVar));
+        List<d0.e0.p.d.m0.f.q.b> listC = c(qVar, this);
         ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(listC, 10));
         int i = 0;
         for (Object obj : listC) {
@@ -230,18 +357,18 @@ public final class c0 {
             if (i < 0) {
                 d0.t.n.throwIndexOverflow();
             }
-            q$b q_b = (q$b) obj;
+            d0.e0.p.d.m0.f.q.b bVar = (d0.e0.p.d.m0.f.q.b) obj;
             List<z0> parameters = u0VarCreateErrorTypeConstructor.getParameters();
             d0.z.d.m.checkNotNullExpressionValue(parameters, "constructor.parameters");
             z0 z0Var2 = (z0) d0.t.u.getOrNull(parameters, i);
-            if (q_b.getProjection() == q$b$c.STAR) {
+            if (bVar.getProjection() == d0.e0.p.d.m0.f.q.b.c.STAR) {
                 y0Var = z0Var2 == null ? new n0(this.a.getComponents().getModuleDescriptor().getBuiltIns()) : new o0(z0Var2);
             } else {
                 z zVar = z.a;
-                q$b$c projection = q_b.getProjection();
+                d0.e0.p.d.m0.f.q.b.c projection = bVar.getProjection();
                 d0.z.d.m.checkNotNullExpressionValue(projection, "typeArgumentProto.projection");
                 j1 j1VarVariance = zVar.variance(projection);
-                d0.e0.p.d.m0.f.q qVarType = d0.e0.p.d.m0.f.z.f.type(q_b, this.a.getTypeTable());
+                d0.e0.p.d.m0.f.q qVarType = d0.e0.p.d.m0.f.z.f.type(bVar, this.a.getTypeTable());
                 y0Var = qVarType == null ? new y0(d0.e0.p.d.m0.n.t.createErrorType("No type recorded")) : new y0(j1VarVariance, type(qVarType));
             }
             arrayList.add(y0Var);

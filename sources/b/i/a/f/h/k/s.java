@@ -1,15 +1,15 @@
 package b.i.a.f.h.k;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.internal.icing.zzm;
 import com.google.android.gms.internal.icing.zzt;
 import com.google.android.gms.internal.icing.zzu;
 
 /* JADX INFO: compiled from: com.google.firebase:firebase-appindexing@@19.1.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class s implements Parcelable$Creator<zzt> {
-    @Override // android.os.Parcelable$Creator
+public final class s implements Parcelable.Creator<zzt> {
+    @Override // android.os.Parcelable.Creator
     public final zzt createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         String strR = null;
@@ -61,7 +61,7 @@ public final class s implements Parcelable$Creator<zzt> {
         return new zzt(strR, strR2, zE1, iG1, zE2, strR3, zzmVarArr, strR4, zzuVar);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zzt[] newArray(int i) {
         return new zzt[i];
     }

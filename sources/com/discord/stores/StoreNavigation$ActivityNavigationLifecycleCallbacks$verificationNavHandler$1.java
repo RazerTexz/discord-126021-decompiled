@@ -11,7 +11,7 @@ import kotlin.jvm.functions.Function2;
 
 /* JADX INFO: compiled from: StoreNavigation.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$verificationNavHandler$1 extends o implements Function2<AppActivity, StoreNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation, Boolean> {
+public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$verificationNavHandler$1 extends o implements Function2<AppActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation, Boolean> {
     public static final StoreNavigation$ActivityNavigationLifecycleCallbacks$verificationNavHandler$1 INSTANCE = new StoreNavigation$ActivityNavigationLifecycleCallbacks$verificationNavHandler$1();
 
     public StoreNavigation$ActivityNavigationLifecycleCallbacks$verificationNavHandler$1() {
@@ -19,21 +19,21 @@ public final class StoreNavigation$ActivityNavigationLifecycleCallbacks$verifica
     }
 
     @Override // kotlin.jvm.functions.Function2
-    public /* bridge */ /* synthetic */ Boolean invoke(AppActivity appActivity, StoreNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation) {
-        return Boolean.valueOf(invoke2(appActivity, storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation));
+    public /* bridge */ /* synthetic */ Boolean invoke(AppActivity appActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation modelGlobalNavigation) {
+        return Boolean.valueOf(invoke2(appActivity, modelGlobalNavigation));
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final boolean invoke2(AppActivity appActivity, StoreNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation) {
+    public final boolean invoke2(AppActivity appActivity, StoreNavigation.ActivityNavigationLifecycleCallbacks.ModelGlobalNavigation modelGlobalNavigation) {
         m.checkNotNullParameter(appActivity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
-        m.checkNotNullParameter(storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation, "model");
+        m.checkNotNullParameter(modelGlobalNavigation, "model");
         j jVar = j.g;
         boolean zG = appActivity.g(j.e);
-        boolean z2 = storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation.getUserRequiredAction() == RequiredAction.REQUIRE_VERIFIED_EMAIL || storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation.getUserRequiredAction() == RequiredAction.REQUIRE_VERIFIED_PHONE;
+        boolean z2 = modelGlobalNavigation.getUserRequiredAction() == RequiredAction.REQUIRE_VERIFIED_EMAIL || modelGlobalNavigation.getUserRequiredAction() == RequiredAction.REQUIRE_VERIFIED_PHONE;
         if (zG || !z2) {
             return z2;
         }
-        WidgetUserAccountVerify.Companion.launch(appActivity, storeNavigation$ActivityNavigationLifecycleCallbacks$ModelGlobalNavigation.getUserRequiredAction());
+        WidgetUserAccountVerify.INSTANCE.launch(appActivity, modelGlobalNavigation.getUserRequiredAction());
         return true;
     }
 }

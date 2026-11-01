@@ -13,7 +13,7 @@ public final class TargetChannelSelector {
     public final Channel getTargetChannel(Map<Long, Channel> invitableChannels, Long channelId) {
         m.checkNotNullParameter(invitableChannels, "invitableChannels");
         ArrayList arrayList = new ArrayList(invitableChannels.values());
-        Collections.sort(arrayList, ChannelUtils.h(Channel.Companion));
+        Collections.sort(arrayList, ChannelUtils.h(Channel.INSTANCE));
         if (invitableChannels.containsKey(channelId)) {
             return invitableChannels.get(channelId);
         }

@@ -1,10 +1,8 @@
 package b.f.j.e;
 
 import android.content.Context;
-import b.f.j.c.m$b;
 import b.f.j.c.r;
 import b.f.j.c.w;
-import b.f.j.c.w$a;
 import b.f.j.l.x;
 import b.f.j.p.o0;
 import com.facebook.cache.common.CacheKey;
@@ -55,7 +53,7 @@ public interface k {
 
     boolean m();
 
-    w$a n();
+    w.a n();
 
     b.f.j.h.d o();
 
@@ -63,7 +61,7 @@ public interface k {
 
     r q();
 
-    m$b<CacheKey> r();
+    b.f.j.c.m.b<CacheKey> r();
 
     boolean s();
 

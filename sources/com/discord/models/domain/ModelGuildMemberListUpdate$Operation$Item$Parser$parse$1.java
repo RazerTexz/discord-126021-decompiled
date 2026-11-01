@@ -12,11 +12,11 @@ import rx.functions.Action1;
 public final class ModelGuildMemberListUpdate$Operation$Item$Parser$parse$1<T> implements Action1<String> {
     public final /* synthetic */ Ref$ObjectRef $group;
     public final /* synthetic */ Ref$ObjectRef $member;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
 
-    public ModelGuildMemberListUpdate$Operation$Item$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model$JsonReader model$JsonReader, Ref$ObjectRef ref$ObjectRef2) {
+    public ModelGuildMemberListUpdate$Operation$Item$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model.JsonReader jsonReader, Ref$ObjectRef ref$ObjectRef2) {
         this.$group = ref$ObjectRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
         this.$member = ref$ObjectRef2;
     }
 
@@ -31,7 +31,7 @@ public final class ModelGuildMemberListUpdate$Operation$Item$Parser$parse$1<T> i
             int iHashCode = str.hashCode();
             if (iHashCode != -1077769574) {
                 if (iHashCode == 98629247 && str.equals("group")) {
-                    this.$group.element = (T) ModelGuildMemberListUpdate$Group$Parser.INSTANCE.parse(this.$reader);
+                    this.$group.element = (T) ModelGuildMemberListUpdate.Group.Parser.INSTANCE.parse(this.$reader);
                     return;
                 }
             } else if (str.equals("member")) {

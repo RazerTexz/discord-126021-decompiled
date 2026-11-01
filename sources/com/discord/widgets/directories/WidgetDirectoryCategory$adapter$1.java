@@ -36,7 +36,7 @@ public final class WidgetDirectoryCategory$adapter$1 implements DirectoryChannel
 
     @Override // com.discord.widgets.directories.DirectoryChannelItemClickInterface
     public void onGoToGuildClicked(long guildId) {
-        StoreStream.Companion.getGuildSelected().set(guildId);
+        StoreStream.INSTANCE.getGuildSelected().set(guildId);
     }
 
     /* JADX WARN: Type inference fix 'apply assigned field type' failed

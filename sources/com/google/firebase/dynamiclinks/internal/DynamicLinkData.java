@@ -3,7 +3,7 @@ package com.google.firebase.dynamiclinks.internal;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.c.o.b.a;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
@@ -17,7 +17,7 @@ public class DynamicLinkData extends AbstractSafeParcelable {
     public long m;
     public Bundle n;
     public Uri o;
-    public static final Parcelable$Creator<DynamicLinkData> CREATOR = new a();
+    public static final Parcelable.Creator<DynamicLinkData> CREATOR = new a();
 
     public DynamicLinkData(String str, String str2, int i, long j, Bundle bundle, Uri uri) {
         this.m = 0L;

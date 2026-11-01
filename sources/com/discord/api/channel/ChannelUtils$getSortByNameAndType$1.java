@@ -5,10 +5,10 @@ import java.util.Comparator;
 /* JADX INFO: compiled from: ChannelUtils.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class ChannelUtils$getSortByNameAndType$1<T> implements Comparator<Channel> {
-    public final /* synthetic */ Channel$Companion $this_getSortByNameAndType;
+    public final /* synthetic */ Channel.Companion $this_getSortByNameAndType;
 
-    public ChannelUtils$getSortByNameAndType$1(Channel$Companion channel$Companion) {
-        this.$this_getSortByNameAndType = channel$Companion;
+    public ChannelUtils$getSortByNameAndType$1(Channel.Companion companion) {
+        this.$this_getSortByNameAndType = companion;
     }
 
     @Override // java.util.Comparator

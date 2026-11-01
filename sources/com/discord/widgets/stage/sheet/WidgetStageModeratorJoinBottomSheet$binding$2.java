@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetStageModeratorJoinBottomSheetBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -28,20 +28,20 @@ public final /* synthetic */ class WidgetStageModeratorJoinBottomSheet$binding$2
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetStageModeratorJoinBottomSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.join_audience;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.join_audience);
+        int i = R.id.join_audience;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.join_audience);
         if (materialButton != null) {
-            i = R$id.join_speaker;
-            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.join_speaker);
+            i = R.id.join_speaker;
+            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.join_speaker);
             if (materialButton2 != null) {
-                i = R$id.sparkle;
-                AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(R$id.sparkle);
+                i = R.id.sparkle;
+                AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(R.id.sparkle);
                 if (appCompatImageView != null) {
-                    i = R$id.subtitle;
-                    TextView textView = (TextView) view.findViewById(R$id.subtitle);
+                    i = R.id.subtitle;
+                    TextView textView = (TextView) view.findViewById(R.id.subtitle);
                     if (textView != null) {
-                        i = 2131365869;
-                        TextView textView2 = (TextView) view.findViewById(2131365869);
+                        i = R.id.title;
+                        TextView textView2 = (TextView) view.findViewById(R.id.title);
                         if (textView2 != null) {
                             return new WidgetStageModeratorJoinBottomSheetBinding((CoordinatorLayout) view, materialButton, materialButton2, appCompatImageView, textView, textView2);
                         }

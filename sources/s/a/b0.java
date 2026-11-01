@@ -1,6 +1,7 @@
 package s.a;
 
 import defpackage.a;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.coroutines.CoroutineContext;
@@ -11,7 +12,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler;
 public final class b0 {
     public static final List<CoroutineExceptionHandler> a = d0.f0.q.toList(d0.f0.n.asSequence(a.a()));
 
-    public static final void a(CoroutineContext coroutineContext, Throwable th) {
+    public static final void a(CoroutineContext coroutineContext, Throwable th) throws IllegalAccessException, InvocationTargetException {
         Throwable runtimeException;
         Iterator<CoroutineExceptionHandler> it = a.iterator();
         while (it.hasNext()) {
@@ -19,7 +20,7 @@ public final class b0 {
                 it.next().handleException(coroutineContext, th);
             } catch (Throwable th2) {
                 Thread threadCurrentThread = Thread.currentThread();
-                Thread$UncaughtExceptionHandler uncaughtExceptionHandler = threadCurrentThread.getUncaughtExceptionHandler();
+                Thread.UncaughtExceptionHandler uncaughtExceptionHandler = threadCurrentThread.getUncaughtExceptionHandler();
                 if (th == th2) {
                     runtimeException = th;
                 } else {

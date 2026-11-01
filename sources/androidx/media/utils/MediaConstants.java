@@ -2,7 +2,6 @@ package androidx.media.utils;
 
 import android.annotation.SuppressLint;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class MediaConstants {
@@ -70,7 +69,7 @@ public final class MediaConstants {
     public static final String SESSION_EXTRAS_KEY_ACCOUNT_TYPE = "androidx.media.MediaSessionCompat.Extras.KEY_ACCOUNT_TYPE";
 
     @SuppressLint({"IntentName"})
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public static final String SESSION_EXTRAS_KEY_AUTHTOKEN = "androidx.media.MediaSessionCompat.Extras.KEY_AUTHTOKEN";
 
     @SuppressLint({"IntentName"})

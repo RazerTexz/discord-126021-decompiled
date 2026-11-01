@@ -1,8 +1,9 @@
 package com.discord.widgets.user;
 
+import com.discord.R;
 import com.discord.utilities.auth.AuthUtils;
 import com.discord.utilities.view.validators.BasicTextInputValidator;
-import com.discord.utilities.view.validators.Input$TextInputLayoutInput;
+import com.discord.utilities.view.validators.Input;
 import com.discord.utilities.view.validators.ValidationManager;
 import com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword;
 import com.google.android.material.textfield.TextInputLayout;
@@ -31,6 +32,6 @@ public final class WidgetUserPasswordVerify$validationManager$2 extends o implem
     public final ValidationManager invoke() {
         TextInputLayout textInputLayout = WidgetUserPasswordVerify.access$getBinding$p(this.this$0).c;
         m.checkNotNullExpressionValue(textInputLayout, "binding.editAccountPasswordWrap");
-        return new ValidationManager(new Input$TextInputLayoutInput(WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD, textInputLayout, BasicTextInputValidator.Companion.createRequiredInputValidator(2131893660), AuthUtils.INSTANCE.createPasswordInputValidator(2131893649)));
+        return new ValidationManager(new Input.TextInputLayoutInput(WidgetSettingsAccountChangePassword.CURRENT_PASSWORD_FIELD, textInputLayout, BasicTextInputValidator.INSTANCE.createRequiredInputValidator(R.string.password_required), AuthUtils.INSTANCE.createPasswordInputValidator(R.string.password_length_error)));
     }
 }

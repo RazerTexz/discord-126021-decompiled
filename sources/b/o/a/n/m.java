@@ -1,6 +1,6 @@
 package b.o.a.n;
 
-import com.otaliastudios.cameraview.CameraView$b;
+import com.otaliastudios.cameraview.CameraView;
 
 /* JADX INFO: compiled from: CameraEngine.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -13,8 +13,8 @@ public class m implements b.i.a.f.n.e<Void> {
 
     @Override // b.i.a.f.n.e
     public void onSuccess(Void r6) {
-        CameraView$b cameraView$b = (CameraView$b) this.a.m;
-        cameraView$b.f3177b.a(1, "dispatchOnCameraClosed");
-        cameraView$b.c.u.post(new b.o.a.g(cameraView$b));
+        CameraView.b bVar = (CameraView.b) this.a.m;
+        bVar.f3177b.a(1, "dispatchOnCameraClosed");
+        CameraView.this.u.post(new b.o.a.g(bVar));
     }
 }

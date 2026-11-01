@@ -26,11 +26,60 @@ public class ConstraintAttribute {
     private int mIntegerValue;
     public String mName;
     private String mStringValue;
-    private ConstraintAttribute$AttributeType mType;
+    private AttributeType mType;
 
-    public ConstraintAttribute(String str, ConstraintAttribute$AttributeType constraintAttribute$AttributeType) {
+    /* JADX INFO: renamed from: androidx.constraintlayout.widget.ConstraintAttribute$1, reason: invalid class name */
+    public /* synthetic */ class AnonymousClass1 {
+        public static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType;
+
+        static {
+            AttributeType.values();
+            int[] iArr = new int[7];
+            $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType = iArr;
+            try {
+                iArr[AttributeType.COLOR_TYPE.ordinal()] = 1;
+            } catch (NoSuchFieldError unused) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[AttributeType.COLOR_DRAWABLE_TYPE.ordinal()] = 2;
+            } catch (NoSuchFieldError unused2) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[AttributeType.INT_TYPE.ordinal()] = 3;
+            } catch (NoSuchFieldError unused3) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[AttributeType.FLOAT_TYPE.ordinal()] = 4;
+            } catch (NoSuchFieldError unused4) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[AttributeType.STRING_TYPE.ordinal()] = 5;
+            } catch (NoSuchFieldError unused5) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[AttributeType.BOOLEAN_TYPE.ordinal()] = 6;
+            } catch (NoSuchFieldError unused6) {
+            }
+            try {
+                $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType[AttributeType.DIMENSION_TYPE.ordinal()] = 7;
+            } catch (NoSuchFieldError unused7) {
+            }
+        }
+    }
+
+    public enum AttributeType {
+        INT_TYPE,
+        FLOAT_TYPE,
+        COLOR_TYPE,
+        COLOR_DRAWABLE_TYPE,
+        STRING_TYPE,
+        BOOLEAN_TYPE,
+        DIMENSION_TYPE
+    }
+
+    public ConstraintAttribute(String str, AttributeType attributeType) {
         this.mName = str;
-        this.mType = constraintAttribute$AttributeType;
+        this.mType = attributeType;
     }
 
     private static int clamp(int i) {
@@ -39,11 +88,11 @@ public class ConstraintAttribute {
     }
 
     public boolean diff(ConstraintAttribute constraintAttribute) {
-        ConstraintAttribute$AttributeType constraintAttribute$AttributeType;
-        if (constraintAttribute == null || (constraintAttribute$AttributeType = this.mType) != constraintAttribute.mType) {
+        AttributeType attributeType;
+        if (constraintAttribute == null || (attributeType = this.mType) != constraintAttribute.mType) {
             return false;
         }
-        switch (constraintAttribute$AttributeType) {
+        switch (attributeType) {
             case INT_TYPE:
                 return this.mIntegerValue == constraintAttribute.mIntegerValue;
             case FLOAT_TYPE:
@@ -84,7 +133,7 @@ public class ConstraintAttribute {
         return map2;
     }
 
-    public ConstraintAttribute$AttributeType getType() {
+    public AttributeType getType() {
         return this.mType;
     }
 
@@ -147,53 +196,53 @@ public class ConstraintAttribute {
     }
 
     public static void parse(Context context, XmlPullParser xmlPullParser, HashMap<String, ConstraintAttribute> map) {
-        ConstraintAttribute$AttributeType constraintAttribute$AttributeType;
+        AttributeType attributeType;
         Object string;
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), R$styleable.CustomAttribute);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), R.styleable.CustomAttribute);
         int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
         String string2 = null;
         Object objValueOf = null;
-        ConstraintAttribute$AttributeType constraintAttribute$AttributeType2 = null;
+        AttributeType attributeType2 = null;
         for (int i = 0; i < indexCount; i++) {
             int index = typedArrayObtainStyledAttributes.getIndex(i);
-            if (index == R$styleable.CustomAttribute_attributeName) {
+            if (index == R.styleable.CustomAttribute_attributeName) {
                 string2 = typedArrayObtainStyledAttributes.getString(index);
                 if (string2 != null && string2.length() > 0) {
                     string2 = Character.toUpperCase(string2.charAt(0)) + string2.substring(1);
                 }
-            } else if (index == R$styleable.CustomAttribute_customBoolean) {
+            } else if (index == R.styleable.CustomAttribute_customBoolean) {
                 objValueOf = Boolean.valueOf(typedArrayObtainStyledAttributes.getBoolean(index, false));
-                constraintAttribute$AttributeType2 = ConstraintAttribute$AttributeType.BOOLEAN_TYPE;
+                attributeType2 = AttributeType.BOOLEAN_TYPE;
             } else {
-                if (index == R$styleable.CustomAttribute_customColorValue) {
-                    constraintAttribute$AttributeType = ConstraintAttribute$AttributeType.COLOR_TYPE;
+                if (index == R.styleable.CustomAttribute_customColorValue) {
+                    attributeType = AttributeType.COLOR_TYPE;
                     string = Integer.valueOf(typedArrayObtainStyledAttributes.getColor(index, 0));
-                } else if (index == R$styleable.CustomAttribute_customColorDrawableValue) {
-                    constraintAttribute$AttributeType = ConstraintAttribute$AttributeType.COLOR_DRAWABLE_TYPE;
+                } else if (index == R.styleable.CustomAttribute_customColorDrawableValue) {
+                    attributeType = AttributeType.COLOR_DRAWABLE_TYPE;
                     string = Integer.valueOf(typedArrayObtainStyledAttributes.getColor(index, 0));
-                } else if (index == R$styleable.CustomAttribute_customPixelDimension) {
-                    constraintAttribute$AttributeType = ConstraintAttribute$AttributeType.DIMENSION_TYPE;
+                } else if (index == R.styleable.CustomAttribute_customPixelDimension) {
+                    attributeType = AttributeType.DIMENSION_TYPE;
                     string = Float.valueOf(TypedValue.applyDimension(1, typedArrayObtainStyledAttributes.getDimension(index, 0.0f), context.getResources().getDisplayMetrics()));
-                } else if (index == R$styleable.CustomAttribute_customDimension) {
-                    constraintAttribute$AttributeType = ConstraintAttribute$AttributeType.DIMENSION_TYPE;
+                } else if (index == R.styleable.CustomAttribute_customDimension) {
+                    attributeType = AttributeType.DIMENSION_TYPE;
                     string = Float.valueOf(typedArrayObtainStyledAttributes.getDimension(index, 0.0f));
-                } else if (index == R$styleable.CustomAttribute_customFloatValue) {
-                    constraintAttribute$AttributeType = ConstraintAttribute$AttributeType.FLOAT_TYPE;
+                } else if (index == R.styleable.CustomAttribute_customFloatValue) {
+                    attributeType = AttributeType.FLOAT_TYPE;
                     string = Float.valueOf(typedArrayObtainStyledAttributes.getFloat(index, Float.NaN));
-                } else if (index == R$styleable.CustomAttribute_customIntegerValue) {
-                    constraintAttribute$AttributeType = ConstraintAttribute$AttributeType.INT_TYPE;
+                } else if (index == R.styleable.CustomAttribute_customIntegerValue) {
+                    attributeType = AttributeType.INT_TYPE;
                     string = Integer.valueOf(typedArrayObtainStyledAttributes.getInteger(index, -1));
-                } else if (index == R$styleable.CustomAttribute_customStringValue) {
-                    constraintAttribute$AttributeType = ConstraintAttribute$AttributeType.STRING_TYPE;
+                } else if (index == R.styleable.CustomAttribute_customStringValue) {
+                    attributeType = AttributeType.STRING_TYPE;
                     string = typedArrayObtainStyledAttributes.getString(index);
                 }
                 Object obj = string;
-                constraintAttribute$AttributeType2 = constraintAttribute$AttributeType;
+                attributeType2 = attributeType;
                 objValueOf = obj;
             }
         }
         if (string2 != null && objValueOf != null) {
-            map.put(string2, new ConstraintAttribute(string2, constraintAttribute$AttributeType2, objValueOf));
+            map.put(string2, new ConstraintAttribute(string2, attributeType2, objValueOf));
         }
         typedArrayObtainStyledAttributes.recycle();
     }
@@ -353,9 +402,9 @@ public class ConstraintAttribute {
         }
     }
 
-    public ConstraintAttribute(String str, ConstraintAttribute$AttributeType constraintAttribute$AttributeType, Object obj) {
+    public ConstraintAttribute(String str, AttributeType attributeType, Object obj) {
         this.mName = str;
-        this.mType = constraintAttribute$AttributeType;
+        this.mType = attributeType;
         setValue(obj);
     }
 

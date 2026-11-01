@@ -1,5 +1,7 @@
 package d0.e0.p.d.m0.n;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -7,13 +9,32 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: TypeAliasExpansion.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class r0 {
-    public static final r0$a a = new r0$a(null);
+    public static final a a = new a(null);
     public final d0.e0.p.d.m0.c.y0 c;
     public final List<w0> d;
     public final Map<d0.e0.p.d.m0.c.z0, w0> e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final r0 f3537b;
+
+    /* JADX INFO: compiled from: TypeAliasExpansion.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final r0 create(r0 r0Var, d0.e0.p.d.m0.c.y0 y0Var, List<? extends w0> list) {
+            d0.z.d.m.checkNotNullParameter(y0Var, "typeAliasDescriptor");
+            d0.z.d.m.checkNotNullParameter(list, "arguments");
+            List<d0.e0.p.d.m0.c.z0> parameters = y0Var.getTypeConstructor().getParameters();
+            d0.z.d.m.checkNotNullExpressionValue(parameters, "typeAliasDescriptor.typeConstructor.parameters");
+            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(parameters, 10));
+            Iterator<T> it = parameters.iterator();
+            while (it.hasNext()) {
+                arrayList.add(((d0.e0.p.d.m0.c.z0) it.next()).getOriginal());
+            }
+            return new r0(r0Var, y0Var, list, d0.t.h0.toMap(d0.t.u.zip(arrayList, list)), null);
+        }
+    }
 
     public r0(r0 r0Var, d0.e0.p.d.m0.c.y0 y0Var, List list, Map map, DefaultConstructorMarker defaultConstructorMarker) {
         this.f3537b = r0Var;

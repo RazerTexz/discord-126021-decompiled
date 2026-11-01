@@ -1,20 +1,18 @@
 package com.discord.utilities.cache;
 
 import android.content.SharedPreferences;
-import android.content.SharedPreferences$Editor;
 import androidx.exifinterface.media.ExifInterface;
 import d0.g0.w;
 import d0.t.h0;
 import d0.t.n0;
-import d0.t.o;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 import kotlin.Pair;
 import kotlin.jvm.functions.Function1;
@@ -23,6 +21,30 @@ import kotlin.jvm.functions.Function2;
 /* JADX INFO: compiled from: SharedPreferenceExtensions.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class SharedPreferenceExtensionsKt {
+
+    /* JADX INFO: Add missing generic type declarations: [V] */
+    /* JADX INFO: renamed from: com.discord.utilities.cache.SharedPreferenceExtensionsKt$putStringEntrySetAsMap$1, reason: invalid class name */
+    /* JADX INFO: compiled from: SharedPreferenceExtensions.kt */
+    public final class AnonymousClass1<V> extends o implements Function1<V, String> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ String invoke(Object obj) {
+            return invoke2(obj);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final String invoke2(V v) {
+            return String.valueOf(v);
+        }
+    }
+
     public static final String getString(SharedPreferences sharedPreferences, String str) {
         m.checkNotNullParameter(sharedPreferences, "$this$getString");
         m.checkNotNullParameter(str, "key");
@@ -43,7 +65,7 @@ public final class SharedPreferenceExtensionsKt {
         m.checkNotNullParameter(function2, "transformer");
         Set stringSetNonNull$default = getStringSetNonNull$default(sharedPreferences, str, null, 2, null);
         HashMap map = new HashMap(stringSetNonNull$default.size());
-        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(stringSetNonNull$default, 10));
+        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(stringSetNonNull$default, 10));
         Iterator it = stringSetNonNull$default.iterator();
         while (it.hasNext()) {
             List listSplit$default = w.split$default((CharSequence) it.next(), new String[]{str2}, false, 2, 2, (Object) null);
@@ -75,26 +97,26 @@ public final class SharedPreferenceExtensionsKt {
         return stringSet != null ? stringSet : n0.emptySet();
     }
 
-    public static /* synthetic */ void putStringEntrySetAsMap$default(SharedPreferences$Editor sharedPreferences$Editor, String str, Map map, String str2, Function1 function1, int i, Object obj) {
+    public static /* synthetic */ void putStringEntrySetAsMap$default(SharedPreferences.Editor editor, String str, Map map, String str2, Function1 function1, int i, Object obj) {
         if ((i & 4) != 0) {
             str2 = ",";
         }
         if ((i & 8) != 0) {
-            function1 = SharedPreferenceExtensionsKt$putStringEntrySetAsMap$1.INSTANCE;
+            function1 = AnonymousClass1.INSTANCE;
         }
-        putStringEntrySetAsMap(sharedPreferences$Editor, str, map, str2, function1);
+        putStringEntrySetAsMap(editor, str, map, str2, function1);
     }
 
-    public static final <K, V> void putStringEntrySetAsMap(SharedPreferences$Editor sharedPreferences$Editor, String str, Map<K, ? extends V> map, String str2, Function1<? super V, String> function1) {
-        m.checkNotNullParameter(sharedPreferences$Editor, "$this$putStringEntrySetAsMap");
+    public static final <K, V> void putStringEntrySetAsMap(SharedPreferences.Editor editor, String str, Map<K, ? extends V> map, String str2, Function1<? super V, String> function1) {
+        m.checkNotNullParameter(editor, "$this$putStringEntrySetAsMap");
         m.checkNotNullParameter(str, "cacheKey");
         m.checkNotNullParameter(map, "value");
         m.checkNotNullParameter(str2, "delimiter");
         m.checkNotNullParameter(function1, "transformer");
         ArrayList arrayList = new ArrayList(map.size());
-        for (Map$Entry<K, ? extends V> map$Entry : map.entrySet()) {
-            arrayList.add(map$Entry.getKey() + str2 + function1.invoke(map$Entry.getValue()));
+        for (Map.Entry<K, ? extends V> entry : map.entrySet()) {
+            arrayList.add(entry.getKey() + str2 + function1.invoke(entry.getValue()));
         }
-        sharedPreferences$Editor.putStringSet(str, u.toSet(arrayList));
+        editor.putStringSet(str, u.toSet(arrayList));
     }
 }

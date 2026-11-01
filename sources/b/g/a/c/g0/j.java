@@ -1,9 +1,7 @@
 package b.g.a.c.g0;
 
 import b.g.a.a.i0;
-import b.g.a.c.g0.t.m$a;
 import b.g.a.c.g0.t.u;
-import b.g.a.c.n$a;
 import b.g.a.c.t;
 import b.g.a.c.v;
 import b.g.a.c.w;
@@ -25,6 +23,23 @@ public abstract class j extends x implements Serializable {
     public transient Map<Object, u> m;
     public transient ArrayList<i0<?>> n;
     public transient b.g.a.b.d o;
+
+    /* JADX INFO: compiled from: DefaultSerializerProvider.java */
+    public final class a extends j {
+        private static final long serialVersionUID = 1;
+
+        public a() {
+        }
+
+        @Override // b.g.a.c.g0.j
+        public j K(v vVar, q qVar) {
+            return new a(this, vVar, qVar);
+        }
+
+        public a(x xVar, v vVar, q qVar) {
+            super(xVar, vVar, qVar);
+        }
+    }
 
     public j() {
     }
@@ -64,7 +79,7 @@ public abstract class j extends x implements Serializable {
                 throw null;
             }
             Class cls = (Class) obj;
-            if (cls == n$a.class || b.g.a.c.i0.d.p(cls)) {
+            if (cls == b.g.a.c.n.a.class || b.g.a.c.i0.d.p(cls)) {
                 return null;
             }
             if (!b.g.a.c.n.class.isAssignableFrom(cls)) {
@@ -131,26 +146,26 @@ public abstract class j extends x implements Serializable {
         }
         Class<?> cls = obj.getClass();
         b.g.a.c.g0.t.m mVar = this._knownSerializers;
-        m$a m_a = mVar.a[mVar.f711b & (cls.getName().hashCode() + 1)];
-        if (m_a == null) {
+        b.g.a.c.g0.t.m.a aVar = mVar.a[mVar.f711b & (cls.getName().hashCode() + 1)];
+        if (aVar == null) {
             nVarU = null;
             break;
         }
-        if (!(m_a.c == cls && m_a.e)) {
+        if (!(aVar.c == cls && aVar.e)) {
             while (true) {
-                m_a = m_a.f712b;
-                if (m_a == null) {
+                aVar = aVar.f712b;
+                if (aVar == null) {
                     nVarU = null;
                     break;
                 } else {
-                    if (m_a.c == cls && m_a.e) {
-                        nVarU = m_a.a;
+                    if (aVar.c == cls && aVar.e) {
+                        nVarU = aVar.a;
                         break;
                     }
                 }
             }
         } else {
-            nVarU = m_a.a;
+            nVarU = aVar.a;
         }
         if (nVarU == null) {
             p pVar = this._serializerCache;

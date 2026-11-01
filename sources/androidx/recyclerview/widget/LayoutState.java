@@ -20,13 +20,13 @@ public class LayoutState {
     public int mStartLine = 0;
     public int mEndLine = 0;
 
-    public boolean hasMore(RecyclerView$State recyclerView$State) {
+    public boolean hasMore(RecyclerView.State state) {
         int i = this.mCurrentPosition;
-        return i >= 0 && i < recyclerView$State.getItemCount();
+        return i >= 0 && i < state.getItemCount();
     }
 
-    public View next(RecyclerView$Recycler recyclerView$Recycler) {
-        View viewForPosition = recyclerView$Recycler.getViewForPosition(this.mCurrentPosition);
+    public View next(RecyclerView.Recycler recycler) {
+        View viewForPosition = recycler.getViewForPosition(this.mCurrentPosition);
         this.mCurrentPosition += this.mItemDirection;
         return viewForPosition;
     }

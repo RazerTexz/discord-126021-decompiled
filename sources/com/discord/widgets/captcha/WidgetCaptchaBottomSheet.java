@@ -10,18 +10,20 @@ import androidx.appcompat.widget.ActivityChooserModel;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentKt;
+import androidx.fragment.app.FragmentManager;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
+import com.discord.app.AppActivity;
 import com.discord.app.AppBottomSheet;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetCaptchaBottomSheetBinding;
+import com.discord.stores.StoreNotices;
+import com.discord.stores.StoreStream;
 import com.discord.utilities.captcha.CaptchaErrorBody;
 import com.discord.utilities.captcha.CaptchaHelper;
-import com.discord.utilities.captcha.CaptchaHelper$CaptchaRequest;
-import com.discord.utilities.captcha.CaptchaHelper$CaptchaRequest$HCaptcha;
-import com.discord.utilities.captcha.CaptchaHelper$CaptchaRequest$ReCaptcha;
 import com.discord.utilities.captcha.CaptchaService;
+import com.discord.utilities.error.Error;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
@@ -33,11 +35,14 @@ import d0.g;
 import d0.t.n;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.List;
 import kotlin.Lazy;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function2;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: WidgetCaptchaBottomSheet.kt */
@@ -45,7 +50,9 @@ import kotlin.reflect.KProperty;
 public final class WidgetCaptchaBottomSheet extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetCaptchaBottomSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetCaptchaBottomSheetBinding;", 0)};
     private static final String ARG_REQUEST_KEY = "INTENT_EXTRA_REQUEST_CODE";
-    public static final WidgetCaptchaBottomSheet$Companion Companion = new WidgetCaptchaBottomSheet$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String NOTICE_NAME = "captcha notice";
     private static final String RESULT_EXTRA_CAPTCHA_RQTOKEN = "INTENT_EXTRA_CAPTCHA_RQTOKEN";
     private static final String RESULT_EXTRA_CAPTCHA_TOKEN = "INTENT_EXTRA_CAPTCHA_TOKEN";
@@ -61,6 +68,120 @@ public final class WidgetCaptchaBottomSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: requestCode$delegate, reason: from kotlin metadata */
     private final Lazy requestCode;
     private static final List<c<? extends AppFragment>> resolvableFragments = n.listOf((Object[]) new c[]{a0.getOrCreateKotlinClass(WidgetTabsHost.class), a0.getOrCreateKotlinClass(WidgetIncomingShare.class)});
+
+    /* JADX INFO: renamed from: com.discord.widgets.captcha.WidgetCaptchaBottomSheet$configureUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCaptchaBottomSheet.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetCaptchaBottomSheet.access$openCaptcha(WidgetCaptchaBottomSheet.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.captcha.WidgetCaptchaBottomSheet$openCaptcha$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCaptchaBottomSheet.kt */
+    public final class AnonymousClass1 extends o implements Function1<String, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            CaptchaHelper.INSTANCE.setCaptchaToken(str);
+            WidgetCaptchaBottomSheet.access$setCaptchaPassed$p(WidgetCaptchaBottomSheet.this, true);
+            AppActivity appActivity = WidgetCaptchaBottomSheet.this.getAppActivity();
+            if (appActivity != null) {
+                WidgetCaptchaBottomSheet.access$finishIfCaptchaTokenReceived(WidgetCaptchaBottomSheet.this, appActivity);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.captcha.WidgetCaptchaBottomSheet$openCaptcha$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCaptchaBottomSheet.kt */
+    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            m.checkNotNullParameter(error, "it");
+            Throwable throwable = error.getThrowable();
+            if (!(throwable instanceof CaptchaHelper.Failure)) {
+                throwable = null;
+            }
+            CaptchaHelper.Failure failure = (CaptchaHelper.Failure) throwable;
+            if (failure != null) {
+                b.a.d.m.g(WidgetCaptchaBottomSheet.this.getAppActivity(), failure.getErrorStringId(), 0, null, 12);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetCaptchaBottomSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ void enqueue$default(Companion companion, String str, Function2 function2, Function0 function0, CaptchaErrorBody captchaErrorBody, int i, Object obj) {
+            if ((i & 4) != 0) {
+                function0 = null;
+            }
+            companion.enqueue(str, function2, function0, captchaErrorBody);
+        }
+
+        public final void enqueue(String requestKey, Function2<? super AppFragment, ? super CaptchaHelper.CaptchaPayload, Unit> onCaptchaPayloadReceived, Function0<Unit> onCaptchaAttemptFailed, CaptchaErrorBody error) {
+            m.checkNotNullParameter(requestKey, "requestKey");
+            m.checkNotNullParameter(onCaptchaPayloadReceived, "onCaptchaPayloadReceived");
+            StoreStream.INSTANCE.getNotices().requestToShow(new StoreNotices.Notice(WidgetCaptchaBottomSheet.NOTICE_NAME, null, 0L, 0, false, WidgetCaptchaBottomSheet.access$getResolvableFragments$cp(), 0L, false, 0L, new WidgetCaptchaBottomSheet$Companion$enqueue$captchaNotice$1(requestKey, error, onCaptchaAttemptFailed, onCaptchaPayloadReceived), 150, null));
+        }
+
+        public final void registerForResult(AppFragment fragment, String requestKey, Function2<? super AppFragment, ? super CaptchaHelper.CaptchaPayload, Unit> onCaptchaPayloadReceived) {
+            m.checkNotNullParameter(fragment, "fragment");
+            m.checkNotNullParameter(requestKey, "requestKey");
+            m.checkNotNullParameter(onCaptchaPayloadReceived, "onCaptchaPayloadReceived");
+            FragmentKt.setFragmentResultListener(fragment, requestKey, new WidgetCaptchaBottomSheet$Companion$registerForResult$1(requestKey, onCaptchaPayloadReceived, fragment));
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ void show$default(Companion companion, FragmentManager fragmentManager, String str, CaptchaErrorBody captchaErrorBody, Function0 function0, int i, Object obj) {
+            if ((i & 8) != 0) {
+                function0 = null;
+            }
+            companion.show(fragmentManager, str, captchaErrorBody, function0);
+        }
+
+        public final void show(FragmentManager fragmentManager, String requestKey, CaptchaErrorBody error, Function0<Unit> onCaptchaAttemptFailed) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            m.checkNotNullParameter(requestKey, "requestKey");
+            WidgetCaptchaBottomSheet widgetCaptchaBottomSheet = new WidgetCaptchaBottomSheet();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("INTENT_EXTRA_CAPTCHA_ERROR_BODY", error);
+            bundle.putString(WidgetCaptchaBottomSheet.ARG_REQUEST_KEY, requestKey);
+            widgetCaptchaBottomSheet.setArguments(bundle);
+            WidgetCaptchaBottomSheet.access$setOnCaptchaAttemptFailed$p(widgetCaptchaBottomSheet, onCaptchaAttemptFailed);
+            widgetCaptchaBottomSheet.show(fragmentManager, WidgetCaptchaBottomSheet.class.getName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public WidgetCaptchaBottomSheet() {
         super(false, 1, null);
@@ -104,14 +225,14 @@ public final class WidgetCaptchaBottomSheet extends AppBottomSheet {
     private final void configureUI() {
         TextView textView = getBinding().d;
         m.checkNotNullExpressionValue(textView, "binding.captchaTitle");
-        b.n(textView, 2131889614, new Object[0], null, 4);
+        b.n(textView, R.string.generic_captcha_header, new Object[0], null, 4);
         TextView textView2 = getBinding().f2251b;
         m.checkNotNullExpressionValue(textView2, "binding.captchaBody");
-        b.n(textView2, 2131889613, new Object[0], null, 4);
+        b.n(textView2, R.string.generic_captcha_description, new Object[0], null, 4);
         MaterialButton materialButton = getBinding().c;
         m.checkNotNullExpressionValue(materialButton, "binding.captchaButton");
-        b.n(materialButton, 2131887818, new Object[0], null, 4);
-        getBinding().c.setOnClickListener(new WidgetCaptchaBottomSheet$configureUI$1(this));
+        b.n(materialButton, R.string.confirm, new Object[0], null, 4);
+        getBinding().c.setOnClickListener(new AnonymousClass1());
     }
 
     private final void finishIfCaptchaTokenReceived(Activity activity) {
@@ -140,14 +261,14 @@ public final class WidgetCaptchaBottomSheet extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
-        return R$layout.widget_captcha_bottom_sheet;
+        return R.layout.widget_captcha_bottom_sheet;
     }
 
     private final String getRequestCode() {
         return (String) this.requestCode.getValue();
     }
 
-    @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface$OnDismissListener
+    @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnDismissListener
     public void onDismiss(DialogInterface dialog) {
         Function0<Unit> function0;
         m.checkNotNullParameter(dialog, "dialog");
@@ -166,7 +287,7 @@ public final class WidgetCaptchaBottomSheet extends AppBottomSheet {
     }
 
     private final void openCaptcha() {
-        CaptchaHelper$CaptchaRequest captchaHelper$CaptchaRequest$ReCaptcha;
+        CaptchaHelper.CaptchaRequest reCaptcha;
         String captchaSitekey = getCaptchaErrorBody().getCaptchaSitekey();
         CaptchaService captchaService = getCaptchaErrorBody().getCaptchaService();
         String captchaRqdata = getCaptchaErrorBody().getCaptchaRqdata();
@@ -176,12 +297,12 @@ public final class WidgetCaptchaBottomSheet extends AppBottomSheet {
         if (captchaSitekey == null || captchaService != CaptchaService.HCAPTCHA) {
             FragmentActivity fragmentActivityRequireActivity = requireActivity();
             m.checkNotNullExpressionValue(fragmentActivityRequireActivity, "requireActivity()");
-            captchaHelper$CaptchaRequest$ReCaptcha = new CaptchaHelper$CaptchaRequest$ReCaptcha(fragmentActivityRequireActivity);
+            reCaptcha = new CaptchaHelper.CaptchaRequest.ReCaptcha(fragmentActivityRequireActivity);
         } else {
             FragmentActivity fragmentActivityRequireActivity2 = requireActivity();
             m.checkNotNullExpressionValue(fragmentActivityRequireActivity2, "requireActivity()");
-            captchaHelper$CaptchaRequest$ReCaptcha = new CaptchaHelper$CaptchaRequest$HCaptcha(captchaSitekey, fragmentActivityRequireActivity2, captchaRqdata);
+            reCaptcha = new CaptchaHelper.CaptchaRequest.HCaptcha(captchaSitekey, fragmentActivityRequireActivity2, captchaRqdata);
         }
-        ObservableExtensionsKt.appSubscribe$default(captchaHelper.tryShowCaptcha(captchaHelper$CaptchaRequest$ReCaptcha), WidgetCaptchaBottomSheet.class, (Context) null, (Function1) null, new WidgetCaptchaBottomSheet$openCaptcha$2(this), (Function0) null, (Function0) null, new WidgetCaptchaBottomSheet$openCaptcha$1(this), 54, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(captchaHelper.tryShowCaptcha(reCaptcha), WidgetCaptchaBottomSheet.class, (Context) null, (Function1) null, new AnonymousClass2(), (Function0) null, (Function0) null, new AnonymousClass1(), 54, (Object) null);
     }
 }

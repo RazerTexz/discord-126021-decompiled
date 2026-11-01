@@ -4,20 +4,19 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View$OnTouchListener;
 import androidx.constraintlayout.motion.widget.Key;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: ViewScalingOnTouchListener.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ViewScalingOnTouchListener implements View$OnTouchListener {
+public final class ViewScalingOnTouchListener implements View.OnTouchListener {
     private final float scaledownFactor;
 
     public ViewScalingOnTouchListener(float f) {
         this.scaledownFactor = f;
     }
 
-    @Override // android.view.View$OnTouchListener
+    @Override // android.view.View.OnTouchListener
     public boolean onTouch(View view, MotionEvent event) {
         m.checkNotNullParameter(view, "view");
         m.checkNotNullParameter(event, "event");

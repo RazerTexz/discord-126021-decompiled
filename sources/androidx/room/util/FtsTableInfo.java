@@ -2,7 +2,6 @@ package androidx.room.util;
 
 import android.database.Cursor;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import b.d.b.a.a;
@@ -13,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class FtsTableInfo {
     public final Set<String> columns;
     public final String name;

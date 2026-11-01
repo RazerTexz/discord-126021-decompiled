@@ -24,7 +24,7 @@ public final /* synthetic */ class b implements Runnable {
         Surface surface2 = new Surface(surfaceTexture);
         kVar.q = surfaceTexture;
         kVar.r = surface2;
-        Iterator<k$b> it = kVar.j.iterator();
+        Iterator<k.b> it = kVar.j.iterator();
         while (it.hasNext()) {
             it.next().u(surface2);
         }

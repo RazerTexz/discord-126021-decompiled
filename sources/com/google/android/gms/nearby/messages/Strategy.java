@@ -1,7 +1,7 @@
 package com.google.android.gms.nearby.messages;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.d.b.a.a;
 import b.i.a.f.j.b.j;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class Strategy extends AbstractSafeParcelable {
-    public static final Parcelable$Creator<Strategy> CREATOR = new j();
+    public static final Parcelable.Creator<Strategy> CREATOR = new j();
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public final int f3018s;

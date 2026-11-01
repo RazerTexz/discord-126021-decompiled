@@ -1,10 +1,8 @@
 package d0.w.i.a;
 
-import d0.w.d$b;
 import d0.z.d.m;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
-import kotlin.coroutines.CoroutineContext$Element;
 
 /* JADX INFO: compiled from: ContinuationImpl.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -29,7 +27,7 @@ public abstract class d extends a {
         if (continuationInterceptContinuation == null) {
             CoroutineContext context = getContext();
             int i = d0.w.d.e;
-            d0.w.d dVar = (d0.w.d) context.get(d$b.a);
+            d0.w.d dVar = (d0.w.d) context.get(d0.w.d.b.a);
             if (dVar == null || (continuationInterceptContinuation = dVar.interceptContinuation(this)) == null) {
                 continuationInterceptContinuation = this;
             }
@@ -44,9 +42,9 @@ public abstract class d extends a {
         if (continuation != null && continuation != this) {
             CoroutineContext context = getContext();
             int i = d0.w.d.e;
-            CoroutineContext$Element coroutineContext$Element = context.get(d$b.a);
-            m.checkNotNull(coroutineContext$Element);
-            ((d0.w.d) coroutineContext$Element).releaseInterceptedContinuation(continuation);
+            CoroutineContext.Element element = context.get(d0.w.d.b.a);
+            m.checkNotNull(element);
+            ((d0.w.d) element).releaseInterceptedContinuation(continuation);
         }
         this.intercepted = c.j;
     }

@@ -8,10 +8,10 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
-import b.a.t.b.b.h;
 import com.discord.i18n.RenderContext;
 import com.discord.simpleast.core.parser.Parser;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -19,12 +19,138 @@ import java.util.Map;
 import java.util.Objects;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
+import kotlin.text.MatchResult;
 import kotlin.text.Regex;
 
 /* JADX INFO: compiled from: FormatUtils.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class b {
     public static final Regex a = new Regex("\\{(\\S+?)\\}");
+
+    /* JADX INFO: renamed from: b.a.k.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: FormatUtils.kt */
+    public final class C0035b extends o implements Function1<RenderContext, Unit> {
+        public static final C0035b j = new C0035b();
+
+        public C0035b() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public Unit invoke(RenderContext renderContext) {
+            m.checkNotNullParameter(renderContext, "$receiver");
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: FormatUtils.kt */
+    public final class a extends o implements Function1<RenderContext, Unit> {
+        public static final a j = new a();
+
+        public a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public Unit invoke(RenderContext renderContext) {
+            m.checkNotNullParameter(renderContext, "$receiver");
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: FormatUtils.kt */
+    public final class c extends o implements Function1<RenderContext, Unit> {
+        public static final c j = new c();
+
+        public c() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public Unit invoke(RenderContext renderContext) {
+            m.checkNotNullParameter(renderContext, "$receiver");
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: FormatUtils.kt */
+    public final class d extends o implements Function1<RenderContext, Unit> {
+        public static final d j = new d();
+
+        public d() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public Unit invoke(RenderContext renderContext) {
+            m.checkNotNullParameter(renderContext, "$receiver");
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: FormatUtils.kt */
+    public final class e extends o implements Function1<RenderContext, Unit> {
+        public static final e j = new e();
+
+        public e() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public Unit invoke(RenderContext renderContext) {
+            m.checkNotNullParameter(renderContext, "$receiver");
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: FormatUtils.kt */
+    public final class f extends o implements Function1<MatchResult, CharSequence> {
+        public final /* synthetic */ Map $namedArgs;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public f(Map map) {
+            super(1);
+            this.$namedArgs = map;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public CharSequence invoke(MatchResult matchResult) {
+            MatchResult matchResult2 = matchResult;
+            m.checkNotNullParameter(matchResult2, "matchResult");
+            String str = (String) this.$namedArgs.get(matchResult2.getGroupValues().get(1));
+            return str != null ? str : matchResult2.getValue();
+        }
+    }
+
+    /* JADX INFO: compiled from: FormatUtils.kt */
+    public final class g extends o implements Function1<RenderContext, Unit> {
+        public static final g j = new g();
+
+        public g() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public Unit invoke(RenderContext renderContext) {
+            m.checkNotNullParameter(renderContext, "$receiver");
+            return Unit.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: FormatUtils.kt */
+    public final class h extends o implements Function1<RenderContext, Unit> {
+        public static final h j = new h();
+
+        public h() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public Unit invoke(RenderContext renderContext) {
+            m.checkNotNullParameter(renderContext, "$receiver");
+            return Unit.a;
+        }
+    }
 
     public static final void a(TextView textView, CharSequence charSequence) {
         m.checkNotNullParameter(textView, "$this$bindText");
@@ -76,7 +202,7 @@ public final class b {
         List<? extends Object> list = renderContext.orderedArguments;
         boolean z2 = true;
         if (!map.isEmpty()) {
-            charSequence = a.replace(charSequence, new b$f(map));
+            charSequence = a.replace(charSequence, new f(map));
         } else {
             if (list != null && !list.isEmpty()) {
                 z2 = false;
@@ -87,8 +213,8 @@ public final class b {
                 charSequence = b.d.b.a.a.P(objArrCopyOf, objArrCopyOf.length, strReplace, "java.lang.String.format(this, *args)");
             }
         }
-        a aVar = a.d;
-        b.a.k.g.b bVar = a.a;
+        b.a.k.a aVar = b.a.k.a.d;
+        b.a.k.g.b bVar = b.a.k.a.a;
         if (bVar == null) {
             m.throwUninitializedPropertyAccessException("formattingParserProvider");
         }
@@ -107,7 +233,7 @@ public final class b {
         m.checkNotNullParameter(renderContext, "renderContext");
         List list2 = Parser.parse$default(aVarA, charSequence2, new b.a.k.g.c(false, 0, 3), null, 4, null);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        h.a(spannableStringBuilder, list2, renderContext);
+        b.a.t.b.b.h.a(spannableStringBuilder, list2, renderContext);
         return spannableStringBuilder;
     }
 
@@ -119,23 +245,23 @@ public final class b {
     }
 
     public static /* synthetic */ CharSequence h(Context context, int i, Object[] objArr, Function1 function1, int i2) {
-        return b(context, i, objArr, (i2 & 4) != 0 ? b$b.j : null);
+        return b(context, i, objArr, (i2 & 4) != 0 ? C0035b.j : null);
     }
 
     public static /* synthetic */ CharSequence i(Resources resources, int i, Object[] objArr, Function1 function1, int i2) {
-        return c(resources, i, objArr, (i2 & 4) != 0 ? b$d.j : null);
+        return c(resources, i, objArr, (i2 & 4) != 0 ? d.j : null);
     }
 
     public static /* synthetic */ CharSequence j(View view, int i, Object[] objArr, Function1 function1, int i2) {
-        return d(view, i, objArr, (i2 & 4) != 0 ? b$c.j : null);
+        return d(view, i, objArr, (i2 & 4) != 0 ? c.j : null);
     }
 
     public static /* synthetic */ CharSequence k(Fragment fragment, int i, Object[] objArr, Function1 function1, int i2) {
-        return e(fragment, i, objArr, (i2 & 4) != 0 ? b$a.j : null);
+        return e(fragment, i, objArr, (i2 & 4) != 0 ? a.j : null);
     }
 
     public static /* synthetic */ CharSequence l(CharSequence charSequence, Object[] objArr, Function1 function1, int i) {
-        return g(charSequence, objArr, (i & 2) != 0 ? b$e.j : null);
+        return g(charSequence, objArr, (i & 2) != 0 ? e.j : null);
     }
 
     public static final void m(TextView textView, @StringRes int i, Object[] objArr, Function1<? super RenderContext, Unit> function1) {
@@ -150,19 +276,19 @@ public final class b {
     }
 
     public static /* synthetic */ void n(TextView textView, int i, Object[] objArr, Function1 function1, int i2) {
-        m(textView, i, objArr, (i2 & 4) != 0 ? b$g.j : null);
+        m(textView, i, objArr, (i2 & 4) != 0 ? g.j : null);
     }
 
     public static void o(TextView textView, CharSequence charSequence, Object[] objArr, Function1 function1, int i) {
-        b$h b_h = (i & 4) != 0 ? b$h.j : null;
+        h hVar = (i & 4) != 0 ? h.j : null;
         m.checkNotNullParameter(textView, "$this$i18nSetText");
         m.checkNotNullParameter(objArr, "formatArgs");
-        m.checkNotNullParameter(b_h, "initializer");
+        m.checkNotNullParameter(hVar, "initializer");
         if (charSequence == null) {
             textView.setText((CharSequence) null);
             textView.setMovementMethod(null);
         } else {
-            RenderContext renderContextR1 = b.c.a.a0.d.R1(b_h, Arrays.copyOf(objArr, objArr.length));
+            RenderContext renderContextR1 = b.c.a.a0.d.R1(hVar, Arrays.copyOf(objArr, objArr.length));
             textView.setMovementMethod(renderContextR1.hasClickables ? LinkMovementMethod.getInstance() : null);
             textView.setText(f(charSequence, objArr, renderContextR1));
         }

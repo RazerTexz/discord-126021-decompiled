@@ -100,8 +100,8 @@ public final class u {
         c0 type = ((c1) d0.t.u.single((List) valueParameters)).getType();
         d0.z.d.m.checkNotNullExpressionValue(type, "f.original.valueParameters.single().type");
         k kVarMapToJvmType = mapToJvmType(type);
-        k$d k_d = kVarMapToJvmType instanceof k$d ? (k$d) kVarMapToJvmType : null;
-        if ((k_d != null ? k_d.getJvmPrimitiveType() : null) != d0.e0.p.d.m0.k.y.d.INT) {
+        k.d dVar = kVarMapToJvmType instanceof k.d ? (k.d) kVarMapToJvmType : null;
+        if ((dVar != null ? dVar.getJvmPrimitiveType() : null) != d0.e0.p.d.m0.k.y.d.INT) {
             return false;
         }
         d0.e0.p.d.m0.e.a.h hVar = d0.e0.p.d.m0.e.a.h.m;
@@ -116,7 +116,7 @@ public final class u {
         k kVarMapToJvmType2 = mapToJvmType(type2);
         d0.e0.p.d.m0.c.m containingDeclaration = overriddenBuiltinFunctionWithErasedValueParametersInJava.getContainingDeclaration();
         d0.z.d.m.checkNotNullExpressionValue(containingDeclaration, "overridden.containingDeclaration");
-        return d0.z.d.m.areEqual(d0.e0.p.d.m0.k.x.a.getFqNameUnsafe(containingDeclaration), d0.e0.p.d.m0.b.k$a.R.toUnsafe()) && (kVarMapToJvmType2 instanceof k$c) && d0.z.d.m.areEqual(((k$c) kVarMapToJvmType2).getInternalName(), "java/lang/Object");
+        return d0.z.d.m.areEqual(d0.e0.p.d.m0.k.x.a.getFqNameUnsafe(containingDeclaration), d0.e0.p.d.m0.b.k.a.R.toUnsafe()) && (kVarMapToJvmType2 instanceof k.c) && d0.z.d.m.areEqual(((k.c) kVarMapToJvmType2).getInternalName(), "java/lang/Object");
     }
 
     public static final String getInternalName(d0.e0.p.d.m0.c.e eVar) {

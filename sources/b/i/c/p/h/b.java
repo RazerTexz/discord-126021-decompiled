@@ -9,7 +9,7 @@ public final /* synthetic */ class b implements b.i.c.p.e {
 
     @Override // b.i.c.p.b
     public void a(Object obj, b.i.c.p.f fVar) throws IOException {
-        e$a e_a = e.a;
+        e.a aVar = e.a;
         fVar.d((String) obj);
     }
 }

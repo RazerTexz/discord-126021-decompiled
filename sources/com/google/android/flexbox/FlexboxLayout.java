@@ -4,20 +4,17 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.SparseIntArray;
 import android.view.View;
-import android.view.View$MeasureSpec;
 import android.view.ViewGroup;
-import android.view.ViewGroup$LayoutParams;
-import android.view.ViewGroup$MarginLayoutParams;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import b.i.a.e.a;
 import b.i.a.e.b;
 import b.i.a.e.c;
-import b.i.a.e.c$b;
-import b.i.a.e.c$c;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -52,44 +49,290 @@ public class FlexboxLayout extends ViewGroup implements a {
     public List<b> f2984y;
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
-    public c$b f2985z;
+    public c.b f2985z;
+
+    public class LayoutParams extends ViewGroup.MarginLayoutParams implements FlexItem {
+
+        /* JADX INFO: renamed from: s, reason: collision with root package name */
+        public boolean f2986s;
+        public int j;
+        public float k;
+        public float l;
+        public int m;
+        public float n;
+        public int o;
+        public int p;
+        public int q;
+        public int r;
+        public static final Parcelable.Creator<LayoutParams> CREATOR = new a();
+
+        public final class a implements Parcelable.Creator<LayoutParams> {
+            @Override // android.os.Parcelable.Creator
+            public LayoutParams createFromParcel(Parcel parcel) {
+                return new LayoutParams(parcel);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            public LayoutParams[] newArray(int i) {
+                return new LayoutParams[i];
+            }
+        }
+
+        public LayoutParams(Context context, AttributeSet attributeSet) {
+            super(context, attributeSet);
+            this.j = 1;
+            this.k = 0.0f;
+            this.l = 1.0f;
+            this.m = -1;
+            this.n = -1.0f;
+            this.o = -1;
+            this.p = -1;
+            this.q = ViewCompat.MEASURED_SIZE_MASK;
+            this.r = ViewCompat.MEASURED_SIZE_MASK;
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.a.FlexboxLayout_Layout);
+            this.j = typedArrayObtainStyledAttributes.getInt(R.a.FlexboxLayout_Layout_layout_order, 1);
+            this.k = typedArrayObtainStyledAttributes.getFloat(R.a.FlexboxLayout_Layout_layout_flexGrow, 0.0f);
+            this.l = typedArrayObtainStyledAttributes.getFloat(R.a.FlexboxLayout_Layout_layout_flexShrink, 1.0f);
+            this.m = typedArrayObtainStyledAttributes.getInt(R.a.FlexboxLayout_Layout_layout_alignSelf, -1);
+            this.n = typedArrayObtainStyledAttributes.getFraction(R.a.FlexboxLayout_Layout_layout_flexBasisPercent, 1, 1, -1.0f);
+            this.o = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.a.FlexboxLayout_Layout_layout_minWidth, -1);
+            this.p = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.a.FlexboxLayout_Layout_layout_minHeight, -1);
+            this.q = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.a.FlexboxLayout_Layout_layout_maxWidth, ViewCompat.MEASURED_SIZE_MASK);
+            this.r = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.a.FlexboxLayout_Layout_layout_maxHeight, ViewCompat.MEASURED_SIZE_MASK);
+            this.f2986s = typedArrayObtainStyledAttributes.getBoolean(R.a.FlexboxLayout_Layout_layout_wrapBefore, false);
+            typedArrayObtainStyledAttributes.recycle();
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public int D() {
+            return this.o;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public void H(int i) {
+            this.o = i;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public int I() {
+            return ((ViewGroup.MarginLayoutParams) this).bottomMargin;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public int J() {
+            return ((ViewGroup.MarginLayoutParams) this).leftMargin;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public int N() {
+            return ((ViewGroup.MarginLayoutParams) this).topMargin;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public void O(int i) {
+            this.p = i;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public float S() {
+            return this.k;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public float W() {
+            return this.n;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public int d0() {
+            return ((ViewGroup.MarginLayoutParams) this).rightMargin;
+        }
+
+        @Override // android.os.Parcelable
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public int f0() {
+            return this.p;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public int getHeight() {
+            return ((ViewGroup.MarginLayoutParams) this).height;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public int getOrder() {
+            return this.j;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public int getWidth() {
+            return ((ViewGroup.MarginLayoutParams) this).width;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public boolean j0() {
+            return this.f2986s;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public int m0() {
+            return this.r;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public int t0() {
+            return this.q;
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public int u() {
+            return this.m;
+        }
+
+        @Override // android.os.Parcelable
+        public void writeToParcel(Parcel parcel, int i) {
+            parcel.writeInt(this.j);
+            parcel.writeFloat(this.k);
+            parcel.writeFloat(this.l);
+            parcel.writeInt(this.m);
+            parcel.writeFloat(this.n);
+            parcel.writeInt(this.o);
+            parcel.writeInt(this.p);
+            parcel.writeInt(this.q);
+            parcel.writeInt(this.r);
+            parcel.writeByte(this.f2986s ? (byte) 1 : (byte) 0);
+            parcel.writeInt(((ViewGroup.MarginLayoutParams) this).bottomMargin);
+            parcel.writeInt(((ViewGroup.MarginLayoutParams) this).leftMargin);
+            parcel.writeInt(((ViewGroup.MarginLayoutParams) this).rightMargin);
+            parcel.writeInt(((ViewGroup.MarginLayoutParams) this).topMargin);
+            parcel.writeInt(((ViewGroup.MarginLayoutParams) this).height);
+            parcel.writeInt(((ViewGroup.MarginLayoutParams) this).width);
+        }
+
+        @Override // com.google.android.flexbox.FlexItem
+        public float x() {
+            return this.l;
+        }
+
+        public LayoutParams(LayoutParams layoutParams) {
+            super((ViewGroup.MarginLayoutParams) layoutParams);
+            this.j = 1;
+            this.k = 0.0f;
+            this.l = 1.0f;
+            this.m = -1;
+            this.n = -1.0f;
+            this.o = -1;
+            this.p = -1;
+            this.q = ViewCompat.MEASURED_SIZE_MASK;
+            this.r = ViewCompat.MEASURED_SIZE_MASK;
+            this.j = layoutParams.j;
+            this.k = layoutParams.k;
+            this.l = layoutParams.l;
+            this.m = layoutParams.m;
+            this.n = layoutParams.n;
+            this.o = layoutParams.o;
+            this.p = layoutParams.p;
+            this.q = layoutParams.q;
+            this.r = layoutParams.r;
+            this.f2986s = layoutParams.f2986s;
+        }
+
+        public LayoutParams(ViewGroup.LayoutParams layoutParams) {
+            super(layoutParams);
+            this.j = 1;
+            this.k = 0.0f;
+            this.l = 1.0f;
+            this.m = -1;
+            this.n = -1.0f;
+            this.o = -1;
+            this.p = -1;
+            this.q = ViewCompat.MEASURED_SIZE_MASK;
+            this.r = ViewCompat.MEASURED_SIZE_MASK;
+        }
+
+        public LayoutParams(ViewGroup.MarginLayoutParams marginLayoutParams) {
+            super(marginLayoutParams);
+            this.j = 1;
+            this.k = 0.0f;
+            this.l = 1.0f;
+            this.m = -1;
+            this.n = -1.0f;
+            this.o = -1;
+            this.p = -1;
+            this.q = ViewCompat.MEASURED_SIZE_MASK;
+            this.r = ViewCompat.MEASURED_SIZE_MASK;
+        }
+
+        public LayoutParams(Parcel parcel) {
+            super(0, 0);
+            this.j = 1;
+            this.k = 0.0f;
+            this.l = 1.0f;
+            this.m = -1;
+            this.n = -1.0f;
+            this.o = -1;
+            this.p = -1;
+            this.q = ViewCompat.MEASURED_SIZE_MASK;
+            this.r = ViewCompat.MEASURED_SIZE_MASK;
+            this.j = parcel.readInt();
+            this.k = parcel.readFloat();
+            this.l = parcel.readFloat();
+            this.m = parcel.readInt();
+            this.n = parcel.readFloat();
+            this.o = parcel.readInt();
+            this.p = parcel.readInt();
+            this.q = parcel.readInt();
+            this.r = parcel.readInt();
+            this.f2986s = parcel.readByte() != 0;
+            ((ViewGroup.MarginLayoutParams) this).bottomMargin = parcel.readInt();
+            ((ViewGroup.MarginLayoutParams) this).leftMargin = parcel.readInt();
+            ((ViewGroup.MarginLayoutParams) this).rightMargin = parcel.readInt();
+            ((ViewGroup.MarginLayoutParams) this).topMargin = parcel.readInt();
+            ((ViewGroup.MarginLayoutParams) this).height = parcel.readInt();
+            ((ViewGroup.MarginLayoutParams) this).width = parcel.readInt();
+        }
+    }
 
     public FlexboxLayout(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
         this.o = -1;
         this.f2983x = new c(this);
         this.f2984y = new ArrayList();
-        this.f2985z = new c$b();
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$a.FlexboxLayout, 0, 0);
-        this.j = typedArrayObtainStyledAttributes.getInt(R$a.FlexboxLayout_flexDirection, 0);
-        this.k = typedArrayObtainStyledAttributes.getInt(R$a.FlexboxLayout_flexWrap, 0);
-        this.l = typedArrayObtainStyledAttributes.getInt(R$a.FlexboxLayout_justifyContent, 0);
-        this.m = typedArrayObtainStyledAttributes.getInt(R$a.FlexboxLayout_alignItems, 0);
-        this.n = typedArrayObtainStyledAttributes.getInt(R$a.FlexboxLayout_alignContent, 0);
-        this.o = typedArrayObtainStyledAttributes.getInt(R$a.FlexboxLayout_maxLine, -1);
-        Drawable drawable = typedArrayObtainStyledAttributes.getDrawable(R$a.FlexboxLayout_dividerDrawable);
+        this.f2985z = new c.b();
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.a.FlexboxLayout, 0, 0);
+        this.j = typedArrayObtainStyledAttributes.getInt(R.a.FlexboxLayout_flexDirection, 0);
+        this.k = typedArrayObtainStyledAttributes.getInt(R.a.FlexboxLayout_flexWrap, 0);
+        this.l = typedArrayObtainStyledAttributes.getInt(R.a.FlexboxLayout_justifyContent, 0);
+        this.m = typedArrayObtainStyledAttributes.getInt(R.a.FlexboxLayout_alignItems, 0);
+        this.n = typedArrayObtainStyledAttributes.getInt(R.a.FlexboxLayout_alignContent, 0);
+        this.o = typedArrayObtainStyledAttributes.getInt(R.a.FlexboxLayout_maxLine, -1);
+        Drawable drawable = typedArrayObtainStyledAttributes.getDrawable(R.a.FlexboxLayout_dividerDrawable);
         if (drawable != null) {
             setDividerDrawableHorizontal(drawable);
             setDividerDrawableVertical(drawable);
         }
-        Drawable drawable2 = typedArrayObtainStyledAttributes.getDrawable(R$a.FlexboxLayout_dividerDrawableHorizontal);
+        Drawable drawable2 = typedArrayObtainStyledAttributes.getDrawable(R.a.FlexboxLayout_dividerDrawableHorizontal);
         if (drawable2 != null) {
             setDividerDrawableHorizontal(drawable2);
         }
-        Drawable drawable3 = typedArrayObtainStyledAttributes.getDrawable(R$a.FlexboxLayout_dividerDrawableVertical);
+        Drawable drawable3 = typedArrayObtainStyledAttributes.getDrawable(R.a.FlexboxLayout_dividerDrawableVertical);
         if (drawable3 != null) {
             setDividerDrawableVertical(drawable3);
         }
-        int i = typedArrayObtainStyledAttributes.getInt(R$a.FlexboxLayout_showDivider, 0);
+        int i = typedArrayObtainStyledAttributes.getInt(R.a.FlexboxLayout_showDivider, 0);
         if (i != 0) {
             this.f2982s = i;
             this.r = i;
         }
-        int i2 = typedArrayObtainStyledAttributes.getInt(R$a.FlexboxLayout_showDividerVertical, 0);
+        int i2 = typedArrayObtainStyledAttributes.getInt(R.a.FlexboxLayout_showDividerVertical, 0);
         if (i2 != 0) {
             this.f2982s = i2;
         }
-        int i3 = typedArrayObtainStyledAttributes.getInt(R$a.FlexboxLayout_showDividerHorizontal, 0);
+        int i3 = typedArrayObtainStyledAttributes.getInt(R.a.FlexboxLayout_showDividerHorizontal, 0);
         if (i3 != 0) {
             this.r = i3;
         }
@@ -115,31 +358,31 @@ public class FlexboxLayout extends ViewGroup implements a {
 
     /* JADX WARN: Multi-variable type inference failed */
     @Override // android.view.ViewGroup
-    public void addView(View view, int i, ViewGroup$LayoutParams viewGroup$LayoutParams) {
+    public void addView(View view, int i, ViewGroup.LayoutParams layoutParams) {
         if (this.w == null) {
             this.w = new SparseIntArray(getChildCount());
         }
         c cVar = this.f2983x;
         SparseIntArray sparseIntArray = this.w;
         int flexItemCount = cVar.a.getFlexItemCount();
-        List<c$c> listF = cVar.f(flexItemCount);
-        c$c c_c = new c$c(null);
-        if (view == null || !(viewGroup$LayoutParams instanceof FlexItem)) {
-            c_c.k = 1;
+        List<c.C0109c> listF = cVar.f(flexItemCount);
+        c.C0109c c0109c = new c.C0109c(null);
+        if (view == null || !(layoutParams instanceof FlexItem)) {
+            c0109c.k = 1;
         } else {
-            c_c.k = ((FlexItem) viewGroup$LayoutParams).getOrder();
+            c0109c.k = ((FlexItem) layoutParams).getOrder();
         }
         if (i == -1 || i == flexItemCount || i >= cVar.a.getFlexItemCount()) {
-            c_c.j = flexItemCount;
+            c0109c.j = flexItemCount;
         } else {
-            c_c.j = i;
+            c0109c.j = i;
             for (int i2 = i; i2 < flexItemCount; i2++) {
-                ((c$c) ((ArrayList) listF).get(i2)).j++;
+                ((c.C0109c) ((ArrayList) listF).get(i2)).j++;
             }
         }
-        ((ArrayList) listF).add(c_c);
+        ((ArrayList) listF).add(c0109c);
         this.v = cVar.x(flexItemCount + 1, listF, sparseIntArray);
-        super.addView(view, i, viewGroup$LayoutParams);
+        super.addView(view, i, layoutParams);
     }
 
     @Override // b.i.a.e.a
@@ -168,8 +411,8 @@ public class FlexboxLayout extends ViewGroup implements a {
     }
 
     @Override // android.view.ViewGroup
-    public boolean checkLayoutParams(ViewGroup$LayoutParams viewGroup$LayoutParams) {
-        return viewGroup$LayoutParams instanceof FlexboxLayout$LayoutParams;
+    public boolean checkLayoutParams(ViewGroup.LayoutParams layoutParams) {
+        return layoutParams instanceof LayoutParams;
     }
 
     @Override // b.i.a.e.a
@@ -207,8 +450,8 @@ public class FlexboxLayout extends ViewGroup implements a {
     }
 
     @Override // android.view.ViewGroup
-    public ViewGroup$LayoutParams generateLayoutParams(AttributeSet attributeSet) {
-        return new FlexboxLayout$LayoutParams(getContext(), attributeSet);
+    public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attributeSet) {
+        return new LayoutParams(getContext(), attributeSet);
     }
 
     @Override // b.i.a.e.a
@@ -331,12 +574,12 @@ public class FlexboxLayout extends ViewGroup implements a {
                 int i3 = bVar.o + i2;
                 View viewO = o(i3);
                 if (viewO != null && viewO.getVisibility() != 8) {
-                    FlexboxLayout$LayoutParams flexboxLayout$LayoutParams = (FlexboxLayout$LayoutParams) viewO.getLayoutParams();
+                    LayoutParams layoutParams = (LayoutParams) viewO.getLayoutParams();
                     if (p(i3, i2)) {
-                        n(canvas, z2 ? viewO.getRight() + ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams).rightMargin : (viewO.getLeft() - ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams).leftMargin) - this.u, bVar.f1327b, bVar.g);
+                        n(canvas, z2 ? viewO.getRight() + ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin : (viewO.getLeft() - ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin) - this.u, bVar.f1327b, bVar.g);
                     }
                     if (i2 == bVar.h - 1 && (this.f2982s & 4) > 0) {
-                        n(canvas, z2 ? (viewO.getLeft() - ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams).leftMargin) - this.u : viewO.getRight() + ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams).rightMargin, bVar.f1327b, bVar.g);
+                        n(canvas, z2 ? (viewO.getLeft() - ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin) - this.u : viewO.getRight() + ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin, bVar.f1327b, bVar.g);
                     }
                 }
             }
@@ -359,12 +602,12 @@ public class FlexboxLayout extends ViewGroup implements a {
                 int i3 = bVar.o + i2;
                 View viewO = o(i3);
                 if (viewO != null && viewO.getVisibility() != 8) {
-                    FlexboxLayout$LayoutParams flexboxLayout$LayoutParams = (FlexboxLayout$LayoutParams) viewO.getLayoutParams();
+                    LayoutParams layoutParams = (LayoutParams) viewO.getLayoutParams();
                     if (p(i3, i2)) {
-                        m(canvas, bVar.a, z3 ? viewO.getBottom() + ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams).bottomMargin : (viewO.getTop() - ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams).topMargin) - this.t, bVar.g);
+                        m(canvas, bVar.a, z3 ? viewO.getBottom() + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin : (viewO.getTop() - ((ViewGroup.MarginLayoutParams) layoutParams).topMargin) - this.t, bVar.g);
                     }
                     if (i2 == bVar.h - 1 && (this.r & 4) > 0) {
-                        m(canvas, bVar.a, z3 ? (viewO.getTop() - ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams).topMargin) - this.t : viewO.getBottom() + ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams).bottomMargin, bVar.g);
+                        m(canvas, bVar.a, z3 ? (viewO.getTop() - ((ViewGroup.MarginLayoutParams) layoutParams).topMargin) - this.t : viewO.getBottom() + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin, bVar.g);
                     }
                 }
             }
@@ -535,8 +778,8 @@ public class FlexboxLayout extends ViewGroup implements a {
                 for (int i5 = 0; i5 < bVar.h; i5++) {
                     View viewO = o(bVar.o + i5);
                     if (viewO != null && viewO.getVisibility() != 8) {
-                        FlexboxLayout$LayoutParams flexboxLayout$LayoutParams = (FlexboxLayout$LayoutParams) viewO.getLayoutParams();
-                        iMax = this.k != 2 ? Math.max(iMax, viewO.getMeasuredHeight() + Math.max(bVar.l - viewO.getBaseline(), ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams).topMargin) + ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams).bottomMargin) : Math.max(iMax, viewO.getMeasuredHeight() + ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams).topMargin + Math.max(viewO.getBaseline() + (bVar.l - viewO.getMeasuredHeight()), ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams).bottomMargin));
+                        LayoutParams layoutParams = (LayoutParams) viewO.getLayoutParams();
+                        iMax = this.k != 2 ? Math.max(iMax, viewO.getMeasuredHeight() + Math.max(bVar.l - viewO.getBaseline(), ((ViewGroup.MarginLayoutParams) layoutParams).topMargin) + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin) : Math.max(iMax, viewO.getMeasuredHeight() + ((ViewGroup.MarginLayoutParams) layoutParams).topMargin + Math.max(viewO.getBaseline() + (bVar.l - viewO.getMeasuredHeight()), ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin));
                     }
                 }
                 bVar.g = iMax;
@@ -631,7 +874,7 @@ public class FlexboxLayout extends ViewGroup implements a {
         float f4;
         float f5;
         int i8;
-        FlexboxLayout$LayoutParams flexboxLayout$LayoutParams;
+        LayoutParams layoutParams;
         int paddingLeft = getPaddingLeft();
         int paddingRight = getPaddingRight();
         int i9 = i3 - i;
@@ -687,9 +930,9 @@ public class FlexboxLayout extends ViewGroup implements a {
                         i6 = paddingLeft;
                         i7 = i5;
                     } else {
-                        FlexboxLayout$LayoutParams flexboxLayout$LayoutParams2 = (FlexboxLayout$LayoutParams) viewO.getLayoutParams();
-                        float f7 = f + ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams2).leftMargin;
-                        float f8 = f2 - ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams2).rightMargin;
+                        LayoutParams layoutParams2 = (LayoutParams) viewO.getLayoutParams();
+                        float f7 = f + ((ViewGroup.MarginLayoutParams) layoutParams2).leftMargin;
+                        float f8 = f2 - ((ViewGroup.MarginLayoutParams) layoutParams2).rightMargin;
                         if (p(i15, i5)) {
                             int i16 = this.u;
                             float f9 = i16;
@@ -704,7 +947,7 @@ public class FlexboxLayout extends ViewGroup implements a {
                         int i17 = (i5 != bVar.h - i13 || (this.f2982s & 4) <= 0) ? 0 : this.u;
                         if (this.k != 2) {
                             i6 = paddingLeft;
-                            flexboxLayout$LayoutParams = flexboxLayout$LayoutParams2;
+                            layoutParams = layoutParams2;
                             i7 = i5;
                             if (z2) {
                                 this.f2983x.u(viewO, bVar, Math.round(f5) - viewO.getMeasuredWidth(), paddingTop, Math.round(f5), viewO.getMeasuredHeight() + paddingTop);
@@ -713,17 +956,17 @@ public class FlexboxLayout extends ViewGroup implements a {
                             }
                         } else if (z2) {
                             i6 = paddingLeft;
-                            flexboxLayout$LayoutParams = flexboxLayout$LayoutParams2;
+                            layoutParams = layoutParams2;
                             i7 = i5;
                             this.f2983x.u(viewO, bVar, Math.round(f5) - viewO.getMeasuredWidth(), paddingBottom - viewO.getMeasuredHeight(), Math.round(f5), paddingBottom);
                         } else {
                             i6 = paddingLeft;
-                            flexboxLayout$LayoutParams = flexboxLayout$LayoutParams2;
+                            layoutParams = layoutParams2;
                             i7 = i5;
                             this.f2983x.u(viewO, bVar, Math.round(f4), paddingBottom - viewO.getMeasuredHeight(), viewO.getMeasuredWidth() + Math.round(f4), paddingBottom);
                         }
-                        float measuredWidth = viewO.getMeasuredWidth() + fMax + ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams).rightMargin + f4;
-                        float measuredWidth2 = f5 - ((viewO.getMeasuredWidth() + fMax) + ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams).leftMargin);
+                        float measuredWidth = viewO.getMeasuredWidth() + fMax + ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin + f4;
+                        float measuredWidth2 = f5 - ((viewO.getMeasuredWidth() + fMax) + ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin);
                         if (z2) {
                             bVar.b(viewO, i17, 0, i8, 0);
                         } else {
@@ -894,7 +1137,7 @@ public class FlexboxLayout extends ViewGroup implements a {
         float f5;
         float f6;
         int i8;
-        FlexboxLayout$LayoutParams flexboxLayout$LayoutParams;
+        LayoutParams layoutParams;
         int paddingTop = getPaddingTop();
         int paddingBottom = getPaddingBottom();
         int paddingRight = getPaddingRight();
@@ -950,9 +1193,9 @@ public class FlexboxLayout extends ViewGroup implements a {
                     if (viewO != null || viewO.getVisibility() == 8) {
                         i7 = i6;
                     } else {
-                        FlexboxLayout$LayoutParams flexboxLayout$LayoutParams2 = (FlexboxLayout$LayoutParams) viewO.getLayoutParams();
-                        float f8 = f3 + ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams2).topMargin;
-                        float f9 = f2 - ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams2).bottomMargin;
+                        LayoutParams layoutParams2 = (LayoutParams) viewO.getLayoutParams();
+                        float f8 = f3 + ((ViewGroup.MarginLayoutParams) layoutParams2).topMargin;
+                        float f9 = f2 - ((ViewGroup.MarginLayoutParams) layoutParams2).bottomMargin;
                         if (p(i16, i6)) {
                             int i17 = this.t;
                             float f10 = i17;
@@ -966,7 +1209,7 @@ public class FlexboxLayout extends ViewGroup implements a {
                         }
                         int i18 = (i6 != bVar.h + (-1) || (this.r & 4) <= 0) ? 0 : this.t;
                         if (!z2) {
-                            flexboxLayout$LayoutParams = flexboxLayout$LayoutParams2;
+                            layoutParams = layoutParams2;
                             i7 = i6;
                             if (z3) {
                                 this.f2983x.v(viewO, bVar, false, paddingLeft, Math.round(f6) - viewO.getMeasuredHeight(), viewO.getMeasuredWidth() + paddingLeft, Math.round(f6));
@@ -974,17 +1217,17 @@ public class FlexboxLayout extends ViewGroup implements a {
                                 this.f2983x.v(viewO, bVar, false, paddingLeft, Math.round(f5), viewO.getMeasuredWidth() + paddingLeft, viewO.getMeasuredHeight() + Math.round(f5));
                             }
                         } else if (z3) {
-                            flexboxLayout$LayoutParams = flexboxLayout$LayoutParams2;
+                            layoutParams = layoutParams2;
                             i7 = i6;
                             this.f2983x.v(viewO, bVar, true, i10 - viewO.getMeasuredWidth(), Math.round(f6) - viewO.getMeasuredHeight(), i10, Math.round(f6));
                         } else {
-                            flexboxLayout$LayoutParams = flexboxLayout$LayoutParams2;
+                            layoutParams = layoutParams2;
                             i7 = i6;
                             this.f2983x.v(viewO, bVar, true, i10 - viewO.getMeasuredWidth(), Math.round(f5), i10, viewO.getMeasuredHeight() + Math.round(f5));
                         }
-                        FlexboxLayout$LayoutParams flexboxLayout$LayoutParams3 = flexboxLayout$LayoutParams;
-                        float measuredHeight = viewO.getMeasuredHeight() + fMax + ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams3).bottomMargin + f5;
-                        float measuredHeight2 = f6 - ((viewO.getMeasuredHeight() + fMax) + ((ViewGroup$MarginLayoutParams) flexboxLayout$LayoutParams3).topMargin);
+                        LayoutParams layoutParams3 = layoutParams;
+                        float measuredHeight = viewO.getMeasuredHeight() + fMax + ((ViewGroup.MarginLayoutParams) layoutParams3).bottomMargin + f5;
+                        float measuredHeight2 = f6 - ((viewO.getMeasuredHeight() + fMax) + ((ViewGroup.MarginLayoutParams) layoutParams3).topMargin);
                         if (z3) {
                             bVar.b(viewO, 0, i18, 0, i8);
                         } else {
@@ -1028,10 +1271,10 @@ public class FlexboxLayout extends ViewGroup implements a {
         int largestMainSize;
         int iResolveSizeAndState;
         int iResolveSizeAndState2;
-        int mode = View$MeasureSpec.getMode(i2);
-        int size = View$MeasureSpec.getSize(i2);
-        int mode2 = View$MeasureSpec.getMode(i3);
-        int size2 = View$MeasureSpec.getSize(i3);
+        int mode = View.MeasureSpec.getMode(i2);
+        int size = View.MeasureSpec.getSize(i2);
+        int mode2 = View.MeasureSpec.getMode(i3);
+        int size2 = View.MeasureSpec.getSize(i3);
         if (i == 0 || i == 1) {
             paddingBottom = getPaddingBottom() + getPaddingTop() + getSumOfCrossSize();
             largestMainSize = getLargestMainSize();
@@ -1082,10 +1325,10 @@ public class FlexboxLayout extends ViewGroup implements a {
     }
 
     @Override // android.view.ViewGroup
-    public ViewGroup$LayoutParams generateLayoutParams(ViewGroup$LayoutParams viewGroup$LayoutParams) {
-        if (viewGroup$LayoutParams instanceof FlexboxLayout$LayoutParams) {
-            return new FlexboxLayout$LayoutParams((FlexboxLayout$LayoutParams) viewGroup$LayoutParams);
+    public ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams layoutParams) {
+        if (layoutParams instanceof LayoutParams) {
+            return new LayoutParams((LayoutParams) layoutParams);
         }
-        return viewGroup$LayoutParams instanceof ViewGroup$MarginLayoutParams ? new FlexboxLayout$LayoutParams((ViewGroup$MarginLayoutParams) viewGroup$LayoutParams) : new FlexboxLayout$LayoutParams(viewGroup$LayoutParams);
+        return layoutParams instanceof ViewGroup.MarginLayoutParams ? new LayoutParams((ViewGroup.MarginLayoutParams) layoutParams) : new LayoutParams(layoutParams);
     }
 }

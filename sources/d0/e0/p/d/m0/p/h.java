@@ -1,5 +1,7 @@
 package d0.e0.p.d.m0.p;
 
+import kotlin.jvm.internal.DefaultConstructorMarker;
+
 /* JADX INFO: compiled from: JavaTypeEnhancementState.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public enum h {
@@ -9,8 +11,14 @@ public enum h {
 
     private final String description;
 
+    /* JADX INFO: compiled from: JavaTypeEnhancementState.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     static {
-        new h$a(null);
+        new a(null);
     }
 
     h(String str) {

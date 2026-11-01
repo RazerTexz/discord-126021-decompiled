@@ -12,16 +12,20 @@ public @interface ForeignKey {
     public static final int SET_DEFAULT = 4;
     public static final int SET_NULL = 3;
 
+    @Retention(RetentionPolicy.CLASS)
+    public @interface Action {
+    }
+
     String[] childColumns();
 
     boolean deferred() default false;
 
     Class<?> entity();
 
-    @ForeignKey$Action
+    @Action
     int onDelete() default 1;
 
-    @ForeignKey$Action
+    @Action
     int onUpdate() default 1;
 
     String[] parentColumns();

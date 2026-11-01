@@ -3,7 +3,6 @@ package com.discord.utilities.intent;
 import androidx.fragment.app.FragmentActivity;
 import com.discord.stores.StoreStream;
 import com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile;
-import com.discord.widgets.settings.profile.WidgetEditUserOrGuildMemberProfile$Companion;
 import com.discord.widgets.tabs.NavigationTab;
 import d0.z.d.m;
 import d0.z.d.o;
@@ -28,7 +27,7 @@ public final class RouteHandlers$selectFeature$settingMap$11 extends o implement
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(FragmentActivity fragmentActivity) {
         m.checkNotNullParameter(fragmentActivity, "ctx");
-        StoreStream.Companion.getTabsNavigation().selectTab(NavigationTab.SETTINGS, true);
-        WidgetEditUserOrGuildMemberProfile$Companion.launch$default(WidgetEditUserOrGuildMemberProfile.Companion, fragmentActivity, null, null, 6, null);
+        StoreStream.INSTANCE.getTabsNavigation().selectTab(NavigationTab.SETTINGS, true);
+        WidgetEditUserOrGuildMemberProfile.Companion.launch$default(WidgetEditUserOrGuildMemberProfile.INSTANCE, fragmentActivity, null, null, 6, null);
     }
 }

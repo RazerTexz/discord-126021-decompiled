@@ -3,15 +3,15 @@ package b.i.a.f.j.b.e;
 import android.app.PendingIntent;
 import android.os.IBinder;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.nearby.messages.MessageFilter;
 import com.google.android.gms.nearby.messages.Strategy;
 import com.google.android.gms.nearby.messages.internal.ClientAppContext;
 import com.google.android.gms.nearby.messages.internal.SubscribeRequest;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class h0 implements Parcelable$Creator<SubscribeRequest> {
-    @Override // android.os.Parcelable$Creator
+public final class h0 implements Parcelable.Creator<SubscribeRequest> {
+    @Override // android.os.Parcelable.Creator
     public final SubscribeRequest createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         IBinder iBinderF1 = null;
@@ -94,7 +94,7 @@ public final class h0 implements Parcelable$Creator<SubscribeRequest> {
         return new SubscribeRequest(iG1, iBinderF1, strategy, iBinderF2, messageFilter, pendingIntent, iG2, strR, strR2, bArrN, zE1, iBinderF3, zE2, clientAppContext, zE3, iG3, iG4);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ SubscribeRequest[] newArray(int i) {
         return new SubscribeRequest[i];
     }

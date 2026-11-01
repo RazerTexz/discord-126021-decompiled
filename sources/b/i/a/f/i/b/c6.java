@@ -3,8 +3,8 @@ package b.i.a.f.i.b;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences$Editor;
-import android.os.Build$VERSION;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -15,7 +15,7 @@ import androidx.annotation.GuardedBy;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.google.android.gms.measurement.internal.AppMeasurementDynamiteService$a;
+import com.google.android.gms.measurement.internal.AppMeasurementDynamiteService;
 import com.google.android.gms.measurement.internal.zzap;
 import com.google.android.gms.measurement.internal.zzaq;
 import com.google.android.gms.measurement.internal.zzku;
@@ -149,10 +149,10 @@ public final class c6 extends a5 {
         if (b.i.a.f.h.l.t8.b() && d4VarL.a.h.o(p.H0)) {
             d4VarL.b();
             if (d4VarL.t(i)) {
-                SharedPreferences$Editor sharedPreferences$EditorEdit = d4VarL.w().edit();
-                sharedPreferences$EditorEdit.putString("consent_settings", dVar.d());
-                sharedPreferences$EditorEdit.putInt("consent_source", i);
-                sharedPreferences$EditorEdit.apply();
+                SharedPreferences.Editor editorEdit = d4VarL.w().edit();
+                editorEdit.putString("consent_settings", dVar.d());
+                editorEdit.putInt("consent_source", i);
+                editorEdit.apply();
                 z4 = true;
             } else {
                 z4 = false;
@@ -194,13 +194,13 @@ public final class c6 extends a5 {
             Objects.requireNonNull(d4VarL);
             if (b.i.a.f.h.l.t8.b() && d4VarL.a.h.o(p.H0)) {
                 d4VarL.b();
-                SharedPreferences$Editor sharedPreferences$EditorEdit = d4VarL.w().edit();
+                SharedPreferences.Editor editorEdit = d4VarL.w().edit();
                 if (bool != null) {
-                    sharedPreferences$EditorEdit.putBoolean("measurement_enabled_from_api", bool.booleanValue());
+                    editorEdit.putBoolean("measurement_enabled_from_api", bool.booleanValue());
                 } else {
-                    sharedPreferences$EditorEdit.remove("measurement_enabled_from_api");
+                    editorEdit.remove("measurement_enabled_from_api");
                 }
-                sharedPreferences$EditorEdit.apply();
+                editorEdit.apply();
             }
         }
         if (b.i.a.f.h.l.t8.b() && this.a.h.o(p.H0) && !this.a.h() && bool.booleanValue()) {
@@ -310,13 +310,13 @@ public final class c6 extends a5 {
         boolean zR0 = t9.r0(str2);
         if (z2 && this.d != null && !zR0 && !zEquals) {
             g().m.c("Passing event to registered event handler (FE)", d().u(str2), d().s(bundle));
-            AppMeasurementDynamiteService$a appMeasurementDynamiteService$a = (AppMeasurementDynamiteService$a) this.d;
-            Objects.requireNonNull(appMeasurementDynamiteService$a);
+            AppMeasurementDynamiteService.a aVar = (AppMeasurementDynamiteService.a) this.d;
+            Objects.requireNonNull(aVar);
             try {
-                appMeasurementDynamiteService$a.a.Z(str, str2, bundle, j);
+                aVar.a.Z(str, str2, bundle, j);
                 return;
             } catch (RemoteException e2) {
-                appMeasurementDynamiteService$a.f3010b.a.g().i.b("Event interceptor threw exception", e2);
+                AppMeasurementDynamiteService.this.a.g().i.b("Event interceptor threw exception", e2);
                 return;
             }
         }
@@ -650,11 +650,11 @@ public final class c6 extends a5 {
             d4VarL.b();
             String string = d4VarL.w().getString("previous_os_version", null);
             d4VarL.c().o();
-            String str = Build$VERSION.RELEASE;
+            String str = Build.VERSION.RELEASE;
             if (!TextUtils.isEmpty(str) && !str.equals(string)) {
-                SharedPreferences$Editor sharedPreferences$EditorEdit = d4VarL.w().edit();
-                sharedPreferences$EditorEdit.putString("previous_os_version", str);
-                sharedPreferences$EditorEdit.apply();
+                SharedPreferences.Editor editorEdit = d4VarL.w().edit();
+                editorEdit.putString("previous_os_version", str);
+                editorEdit.apply();
             }
             if (TextUtils.isEmpty(string)) {
                 return;

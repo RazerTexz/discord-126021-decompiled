@@ -3,7 +3,7 @@ package com.discord.widgets.servers.auditlog;
 import android.view.View;
 import android.widget.LinearLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetAuditLogFilterBinding;
 import com.google.android.material.textfield.TextInputLayout;
 import d0.z.d.k;
@@ -27,11 +27,11 @@ public final /* synthetic */ class WidgetServerSettingsAuditLogFilter$binding$2 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetAuditLogFilterBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.audit_log_filter_input;
-        TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.audit_log_filter_input);
+        int i = R.id.audit_log_filter_input;
+        TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.audit_log_filter_input);
         if (textInputLayout != null) {
-            i = R$id.audit_log_filter_recycler;
-            RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.audit_log_filter_recycler);
+            i = R.id.audit_log_filter_recycler;
+            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.audit_log_filter_recycler);
             if (recyclerView != null) {
                 return new WidgetAuditLogFilterBinding((LinearLayout) view, textInputLayout, recyclerView);
             }

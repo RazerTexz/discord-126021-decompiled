@@ -2,6 +2,7 @@ package com.discord.widgets.servers.guild_role_subscription.edit_tier;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+import com.discord.R;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.widgets.guild_role_subscriptions.tier.create.WidgetGuildRoleSubscriptionTierDesign;
 import com.discord.widgets.guild_role_subscriptions.tier.create.WidgetGuildRoleSubscriptionTierDetails;
@@ -12,7 +13,6 @@ import d0.z.d.m;
 /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptionEditTier.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ServerSettingsGuildRoleSubscriptionEditTierAdapter extends FragmentStateAdapter {
-    public static final ServerSettingsGuildRoleSubscriptionEditTierAdapter$Companion Companion = new ServerSettingsGuildRoleSubscriptionEditTierAdapter$Companion(null);
     private static final int TIER_BENEFITS_POSITION = 2;
     private static final int TIER_DESIGN_POSITION = 1;
     private static final int TIER_DETAILS_POSITION = 0;
@@ -29,18 +29,18 @@ public final class ServerSettingsGuildRoleSubscriptionEditTierAdapter extends Fr
     @Override // androidx.viewpager2.adapter.FragmentStateAdapter
     public Fragment createFragment(int position) {
         if (position == 0) {
-            return WidgetGuildRoleSubscriptionTierDetails.Companion.newInstance(true);
+            return WidgetGuildRoleSubscriptionTierDetails.INSTANCE.newInstance(true);
         }
         if (position == 1) {
-            return WidgetGuildRoleSubscriptionTierDesign.Companion.newInstance(true);
+            return WidgetGuildRoleSubscriptionTierDesign.INSTANCE.newInstance(true);
         }
         if (position == 2) {
-            return WidgetGuildRoleSubscriptionTierBenefits.Companion.newInstance(this.guildId, GuildRoleSubscriptionTierBenefitListType.ALL, true);
+            return WidgetGuildRoleSubscriptionTierBenefits.INSTANCE.newInstance(this.guildId, GuildRoleSubscriptionTierBenefitListType.ALL, true);
         }
         throw new IllegalArgumentException();
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     /* JADX INFO: renamed from: getItemCount, reason: from getter */
     public int getPageSize() {
         return this.pageSize;
@@ -48,13 +48,13 @@ public final class ServerSettingsGuildRoleSubscriptionEditTierAdapter extends Fr
 
     public final int getTabStringResId(int position) {
         if (position == 0) {
-            return 2131891417;
+            return R.string.guild_settings_role_subscription_tier_edit_details_title;
         }
         if (position == 1) {
-            return 2131891416;
+            return R.string.guild_settings_role_subscription_tier_edit_design_title;
         }
         if (position == 2) {
-            return 2131891415;
+            return R.string.guild_settings_role_subscription_tier_edit_benefits_title;
         }
         throw new IllegalArgumentException();
     }

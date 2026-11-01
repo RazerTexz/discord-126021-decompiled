@@ -1,12 +1,10 @@
 package d0.e0.p.d.m0.c.i1;
 
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.e0.p.d.m0.c.b$a;
 import d0.e0.p.d.m0.c.c1;
 import d0.e0.p.d.m0.c.q0;
 import d0.e0.p.d.m0.c.t0;
 import d0.e0.p.d.m0.c.u0;
-import d0.e0.p.d.m0.c.x$a;
 import d0.e0.p.d.m0.c.z0;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -16,8 +14,8 @@ import java.util.Map;
 /* JADX INFO: loaded from: classes3.dex */
 public class g0 extends q implements t0 {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public g0(d0.e0.p.d.m0.c.m mVar, t0 t0Var, d0.e0.p.d.m0.c.g1.g gVar, d0.e0.p.d.m0.g.e eVar, b$a b_a, u0 u0Var) {
-        super(mVar, t0Var, gVar, eVar, b_a, u0Var);
+    public g0(d0.e0.p.d.m0.c.m mVar, t0 t0Var, d0.e0.p.d.m0.c.g1.g gVar, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.b.a aVar, u0 u0Var) {
+        super(mVar, t0Var, gVar, eVar, aVar, u0Var);
         if (mVar == null) {
             a(0);
             throw null;
@@ -30,7 +28,7 @@ public class g0 extends q implements t0 {
             a(2);
             throw null;
         }
-        if (b_a == null) {
+        if (aVar == null) {
             a(3);
             throw null;
         }
@@ -142,12 +140,12 @@ public class g0 extends q implements t0 {
     }
 
     @Override // d0.e0.p.d.m0.c.i1.q
-    public q b(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.x xVar, b$a b_a, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.g1.g gVar, u0 u0Var) {
+    public q b(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.x xVar, d0.e0.p.d.m0.c.b.a aVar, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.g1.g gVar, u0 u0Var) {
         if (mVar == null) {
             a(19);
             throw null;
         }
-        if (b_a == null) {
+        if (aVar == null) {
             a(20);
             throw null;
         }
@@ -159,15 +157,15 @@ public class g0 extends q implements t0 {
         if (eVar == null) {
             eVar = getName();
         }
-        return new g0(mVar, t0Var, gVar, eVar, b_a, u0Var);
+        return new g0(mVar, t0Var, gVar, eVar, aVar, u0Var);
     }
 
     @Override // d0.e0.p.d.m0.c.i1.q, d0.e0.p.d.m0.c.b
-    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.b copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, b$a b_a, boolean z2) {
-        return copy(mVar, zVar, uVar, b_a, z2);
+    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.b copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, d0.e0.p.d.m0.c.b.a aVar, boolean z2) {
+        return copy(mVar, zVar, uVar, aVar, z2);
     }
 
-    public static g0 create(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.g1.g gVar, d0.e0.p.d.m0.g.e eVar, b$a b_a, u0 u0Var) {
+    public static g0 create(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.g1.g gVar, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.b.a aVar, u0 u0Var) {
         if (mVar == null) {
             a(5);
             throw null;
@@ -180,12 +178,12 @@ public class g0 extends q implements t0 {
             a(7);
             throw null;
         }
-        if (b_a == null) {
+        if (aVar == null) {
             a(8);
             throw null;
         }
         if (u0Var != null) {
-            return new g0(mVar, null, gVar, eVar, b_a, u0Var);
+            return new g0(mVar, null, gVar, eVar, aVar, u0Var);
         }
         a(9);
         throw null;
@@ -202,18 +200,18 @@ public class g0 extends q implements t0 {
     }
 
     @Override // d0.e0.p.d.m0.c.i1.q, d0.e0.p.d.m0.c.x, d0.e0.p.d.m0.c.t0
-    public x$a<? extends t0> newCopyBuilder() {
-        x$a x_aNewCopyBuilder = super.newCopyBuilder();
-        if (x_aNewCopyBuilder != null) {
-            return x_aNewCopyBuilder;
+    public d0.e0.p.d.m0.c.x.a<? extends t0> newCopyBuilder() {
+        d0.e0.p.d.m0.c.x.a aVarNewCopyBuilder = super.newCopyBuilder();
+        if (aVarNewCopyBuilder != null) {
+            return aVarNewCopyBuilder;
         }
         a(24);
         throw null;
     }
 
     @Override // d0.e0.p.d.m0.c.i1.q, d0.e0.p.d.m0.c.b
-    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.x copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, b$a b_a, boolean z2) {
-        return copy(mVar, zVar, uVar, b_a, z2);
+    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.x copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, d0.e0.p.d.m0.c.b.a aVar, boolean z2) {
+        return copy(mVar, zVar, uVar, aVar, z2);
     }
 
     @Override // d0.e0.p.d.m0.c.i1.q, d0.e0.p.d.m0.c.i1.l, d0.e0.p.d.m0.c.i1.k, d0.e0.p.d.m0.c.m
@@ -244,8 +242,8 @@ public class g0 extends q implements t0 {
     }
 
     @Override // d0.e0.p.d.m0.c.i1.q, d0.e0.p.d.m0.c.b
-    public t0 copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, b$a b_a, boolean z2) {
-        t0 t0Var = (t0) super.copy(mVar, zVar, uVar, b_a, z2);
+    public t0 copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, d0.e0.p.d.m0.c.b.a aVar, boolean z2) {
+        t0 t0Var = (t0) super.copy(mVar, zVar, uVar, aVar, z2);
         if (t0Var != null) {
             return t0Var;
         }
@@ -263,7 +261,7 @@ public class g0 extends q implements t0 {
         return getOriginal();
     }
 
-    public g0 initialize(q0 q0Var, q0 q0Var2, List<? extends z0> list, List<c1> list2, d0.e0.p.d.m0.n.c0 c0Var, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, Map<? extends d0.e0.p.d.m0.c.a$a<?>, ?> map) {
+    public g0 initialize(q0 q0Var, q0 q0Var2, List<? extends z0> list, List<c1> list2, d0.e0.p.d.m0.n.c0 c0Var, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, Map<? extends d0.e0.p.d.m0.c.a.InterfaceC0511a<?>, ?> map) {
         if (list == null) {
             a(14);
             throw null;

@@ -3,7 +3,7 @@ package com.google.gson;
 import b.i.d.j;
 import b.i.d.k;
 import com.google.gson.internal.LinkedTreeMap;
-import java.util.Map$Entry;
+import java.util.Map;
 import java.util.Set;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -30,7 +30,7 @@ public final class JsonObject extends JsonElement {
         this.a.put(str, number == null ? j.a : new k(number));
     }
 
-    public Set<Map$Entry<String, JsonElement>> j() {
+    public Set<Map.Entry<String, JsonElement>> j() {
         return this.a.entrySet();
     }
 }

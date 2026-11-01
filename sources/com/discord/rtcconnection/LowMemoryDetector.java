@@ -12,7 +12,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /* JADX INFO: compiled from: LowMemoryDetector.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class LowMemoryDetector implements ComponentCallbacks2 {
-    public static final LowMemoryDetector$a j = new LowMemoryDetector$a(null);
 
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public final AtomicBoolean isOom = new AtomicBoolean(false);
@@ -35,7 +34,7 @@ public final class LowMemoryDetector implements ComponentCallbacks2 {
     @Override // android.content.ComponentCallbacks2
     public void onTrimMemory(int level) {
         TrimMemoryLevel trimMemoryLevel;
-        Objects.requireNonNull(TrimMemoryLevel.Companion);
+        Objects.requireNonNull(TrimMemoryLevel.INSTANCE);
         TrimMemoryLevel[] trimMemoryLevelArrValues = TrimMemoryLevel.values();
         int i = 0;
         while (true) {

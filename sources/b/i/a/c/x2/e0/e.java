@@ -3,11 +3,10 @@ package b.i.a.c.x2.e0;
 import b.i.a.c.f3.u;
 import b.i.a.c.f3.x;
 import b.i.a.c.g3.m;
-import b.i.a.c.j1$b;
+import b.i.a.c.j1;
 import b.i.a.c.x2.w;
 import com.google.android.exoplayer2.ParserException;
 import com.google.android.exoplayer2.extractor.flv.TagPayloadReader;
-import com.google.android.exoplayer2.extractor.flv.TagPayloadReader$UnsupportedFormatException;
 
 /* JADX INFO: compiled from: VideoTagPayloadReader.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -28,12 +27,12 @@ public final class e extends TagPayloadReader {
     }
 
     @Override // com.google.android.exoplayer2.extractor.flv.TagPayloadReader
-    public boolean b(x xVar) throws TagPayloadReader$UnsupportedFormatException {
+    public boolean b(x xVar) throws TagPayloadReader.UnsupportedFormatException {
         int iT = xVar.t();
         int i = (iT >> 4) & 15;
         int i2 = iT & 15;
         if (i2 != 7) {
-            throw new TagPayloadReader$UnsupportedFormatException(b.d.b.a.a.g(39, "Video format not supported: ", i2));
+            throw new TagPayloadReader.UnsupportedFormatException(b.d.b.a.a.g(39, "Video format not supported: ", i2));
         }
         this.g = i;
         return i != 5;
@@ -57,14 +56,14 @@ public final class e extends TagPayloadReader {
             xVar.e(xVar2.a, 0, xVar.a());
             m mVarB = m.b(xVar2);
             this.d = mVarB.f986b;
-            j1$b j1_b = new j1$b();
-            j1_b.k = "video/avc";
-            j1_b.h = mVarB.f;
-            j1_b.p = mVarB.c;
-            j1_b.q = mVarB.d;
-            j1_b.t = mVarB.e;
-            j1_b.m = mVarB.a;
-            this.a.e(j1_b.a());
+            j1.b bVar = new j1.b();
+            bVar.k = "video/avc";
+            bVar.h = mVarB.f;
+            bVar.p = mVarB.c;
+            bVar.q = mVarB.d;
+            bVar.t = mVarB.e;
+            bVar.m = mVarB.a;
+            this.a.e(bVar.a());
             this.e = true;
             return false;
         }

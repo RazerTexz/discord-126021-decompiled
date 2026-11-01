@@ -3,7 +3,7 @@ package com.discord.widgets.chat.managereactions;
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetManageReactionsBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -26,11 +26,11 @@ public final /* synthetic */ class WidgetManageReactions$binding$2 extends k imp
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetManageReactionsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.manage_reactions_emojis_recycler;
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.manage_reactions_emojis_recycler);
+        int i = R.id.manage_reactions_emojis_recycler;
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.manage_reactions_emojis_recycler);
         if (recyclerView != null) {
-            i = R$id.manage_reactions_results_recycler;
-            RecyclerView recyclerView2 = (RecyclerView) view.findViewById(R$id.manage_reactions_results_recycler);
+            i = R.id.manage_reactions_results_recycler;
+            RecyclerView recyclerView2 = (RecyclerView) view.findViewById(R.id.manage_reactions_results_recycler);
             if (recyclerView2 != null) {
                 return new WidgetManageReactionsBinding((CoordinatorLayout) view, recyclerView, recyclerView2);
             }

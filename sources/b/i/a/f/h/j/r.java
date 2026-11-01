@@ -1,14 +1,13 @@
 package b.i.a.f.h.j;
 
 import android.app.job.JobInfo;
-import android.app.job.JobInfo$Builder;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.sqlite.SQLiteException;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.PersistableBundle;
 import android.os.SystemClock;
 import java.lang.reflect.Method;
@@ -160,29 +159,25 @@ public final class r extends e {
                 b.i.a.f.e.n.a aVarB = b.i.a.f.e.n.a.b();
                 synchronized (lVar) {
                     k0Var = null;
-                    try {
-                        lVar.j = null;
-                        lVar.k = true;
-                        boolean zA = aVarB.a(context, intent, lVar.l.l, Opcodes.LOR);
-                        lVar.l.b("Bind to service requested", Boolean.valueOf(zA));
-                        if (zA) {
-                            try {
-                                lVar.wait(e0.f1414y.a.longValue());
-                            } catch (InterruptedException unused) {
-                                lVar.l.D("Wait for service connect was interrupted");
-                            }
-                            lVar.k = false;
-                            k0 k0Var2 = lVar.j;
-                            lVar.j = null;
-                            if (k0Var2 == null) {
-                                lVar.l.H("Successfully bound to service but never got onServiceConnected callback");
-                            }
-                            k0Var = k0Var2;
-                        } else {
-                            lVar.k = false;
+                    lVar.j = null;
+                    lVar.k = true;
+                    boolean zA = aVarB.a(context, intent, lVar.l.l, Opcodes.LOR);
+                    lVar.l.b("Bind to service requested", Boolean.valueOf(zA));
+                    if (zA) {
+                        try {
+                            lVar.wait(e0.f1414y.a.longValue());
+                        } catch (InterruptedException unused) {
+                            lVar.l.D("Wait for service connect was interrupted");
                         }
-                    } catch (Throwable th) {
-                        throw th;
+                        lVar.k = false;
+                        k0 k0Var2 = lVar.j;
+                        lVar.j = null;
+                        if (k0Var2 == null) {
+                            lVar.l.H("Successfully bound to service but never got onServiceConnected callback");
+                        }
+                        k0Var = k0Var2;
+                    } else {
+                        lVar.k = false;
                     }
                 }
                 if (k0Var != null) {
@@ -462,7 +457,7 @@ public final class r extends e {
                         long jElapsedRealtime = SystemClock.elapsedRealtime() + jB;
                         c0Var.m = true;
                         e0.C.a.booleanValue();
-                        if (Build$VERSION.SDK_INT < 24) {
+                        if (Build.VERSION.SDK_INT < 24) {
                             c0Var.C("Scheduling upload with AlarmManager");
                             c0Var.n.setInexactRepeating(2, jElapsedRealtime, jB, c0Var.S());
                             return;
@@ -473,7 +468,7 @@ public final class r extends e {
                         int iR = c0Var.R();
                         PersistableBundle persistableBundle = new PersistableBundle();
                         persistableBundle.putString("action", "com.google.android.gms.analytics.ANALYTICS_DISPATCH");
-                        JobInfo jobInfoBuild = new JobInfo$Builder(iR, componentName).setMinimumLatency(jB).setOverrideDeadline(jB << 1).setExtras(persistableBundle).build();
+                        JobInfo jobInfoBuild = new JobInfo.Builder(iR, componentName).setMinimumLatency(jB).setOverrideDeadline(jB << 1).setExtras(persistableBundle).build();
                         c0Var.b("Scheduling job. JobID", Integer.valueOf(iR));
                         Method method = b1.a;
                         JobScheduler jobScheduler = (JobScheduler) context.getSystemService("jobscheduler");

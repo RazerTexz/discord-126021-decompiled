@@ -7,13 +7,19 @@ import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
+import b.i.a.f.c.a.f.b.d;
 import b.i.a.f.c.a.f.b.m;
+import b.i.a.f.c.a.f.b.t;
+import b.i.a.f.e.h.c;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.SignInAccount;
 import com.google.android.gms.common.annotation.KeepName;
 import com.google.android.gms.common.api.Status;
 import java.util.Objects;
+import java.util.Set;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
@@ -26,6 +32,32 @@ public class SignInHubActivity extends FragmentActivity {
     public Intent o;
     public boolean k = false;
 
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
+    public final class a implements LoaderManager.LoaderCallbacks<Void> {
+        public a(t tVar) {
+        }
+
+        @Override // androidx.loader.app.LoaderManager.LoaderCallbacks
+        public final Loader<Void> onCreateLoader(int i, Bundle bundle) {
+            SignInHubActivity signInHubActivity = SignInHubActivity.this;
+            Set<c> set = c.a;
+            synchronized (set) {
+            }
+            return new d(signInHubActivity, set);
+        }
+
+        @Override // androidx.loader.app.LoaderManager.LoaderCallbacks
+        public final /* synthetic */ void onLoadFinished(Loader<Void> loader, Void r3) {
+            SignInHubActivity signInHubActivity = SignInHubActivity.this;
+            signInHubActivity.setResult(signInHubActivity.n, signInHubActivity.o);
+            SignInHubActivity.this.finish();
+        }
+
+        @Override // androidx.loader.app.LoaderManager.LoaderCallbacks
+        public final void onLoaderReset(Loader<Void> loader) {
+        }
+    }
+
     public final void a(int i) {
         Status status = new Status(i, null);
         Intent intent = new Intent();
@@ -35,7 +67,7 @@ public class SignInHubActivity extends FragmentActivity {
         j = false;
     }
 
-    @Override // android.app.Activity, android.view.Window$Callback
+    @Override // android.app.Activity, android.view.Window.Callback
     public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
         return true;
     }
@@ -63,7 +95,7 @@ public class SignInHubActivity extends FragmentActivity {
                 this.m = true;
                 this.n = i2;
                 this.o = intent;
-                getSupportLoaderManager().initLoader(0, null, new SignInHubActivity$a(this, null));
+                getSupportLoaderManager().initLoader(0, null, new a(null));
                 j = false;
                 return;
             }
@@ -113,7 +145,7 @@ public class SignInHubActivity extends FragmentActivity {
                 Intent intent2 = (Intent) bundle.getParcelable("signInResultData");
                 Objects.requireNonNull(intent2);
                 this.o = intent2;
-                getSupportLoaderManager().initLoader(0, null, new SignInHubActivity$a(this, null));
+                getSupportLoaderManager().initLoader(0, null, new a(null));
                 j = false;
                 return;
             }

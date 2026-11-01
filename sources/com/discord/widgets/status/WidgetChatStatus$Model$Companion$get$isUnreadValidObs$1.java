@@ -2,9 +2,7 @@ package com.discord.widgets.status;
 
 import androidx.core.app.NotificationCompat;
 import com.discord.stores.StoreMessageAck;
-import com.discord.stores.StoreMessageAck$Ack;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import d0.z.d.m;
 import j0.k.b;
 import j0.l.e.k;
@@ -23,11 +21,11 @@ public final class WidgetChatStatus$Model$Companion$get$isUnreadValidObs$1<T, R>
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
     public final Observable<? extends Boolean> call2(Long l) {
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        StoreMessageAck messageAck = storeStream$Companion.getMessageAck();
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        StoreMessageAck messageAck = companion.getMessageAck();
         m.checkNotNullExpressionValue(l, "selectedChannelId");
-        Observable<StoreMessageAck$Ack> observableObserveForChannel = messageAck.observeForChannel(l.longValue());
+        Observable<StoreMessageAck.Ack> observableObserveForChannel = messageAck.observeForChannel(l.longValue());
         TimeUnit timeUnit = TimeUnit.MILLISECONDS;
-        return Observable.m(new k(Boolean.FALSE), Observable.j(observableObserveForChannel.p(200L, timeUnit), storeStream$Companion.getMessagesMostRecent().observeRecentMessageIds(l.longValue()).p(200L, timeUnit).Z(1), WidgetChatStatus$Model$Companion$get$isUnreadValidObs$1$isLastAckOlderThanMostRecent$1.INSTANCE).b0(WidgetChatStatus$Model$Companion$get$isUnreadValidObs$1$isLastAckOlderThanMostRecent$2.INSTANCE));
+        return Observable.m(new k(Boolean.FALSE), Observable.j(observableObserveForChannel.p(200L, timeUnit), companion.getMessagesMostRecent().observeRecentMessageIds(l.longValue()).p(200L, timeUnit).Z(1), WidgetChatStatus$Model$Companion$get$isUnreadValidObs$1$isLastAckOlderThanMostRecent$1.INSTANCE).b0(WidgetChatStatus$Model$Companion$get$isUnreadValidObs$1$isLastAckOlderThanMostRecent$2.INSTANCE));
     }
 }

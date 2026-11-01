@@ -2,7 +2,7 @@ package com.discord.widgets.voice.call;
 
 import android.view.View;
 import android.widget.LinearLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetVoiceCallInlineBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -27,10 +27,10 @@ public final /* synthetic */ class WidgetVoiceCallInline$binding$2 extends k imp
     public final WidgetVoiceCallInlineBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
         LinearLayout linearLayout = (LinearLayout) view;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.voice_connected_ptt);
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.voice_connected_ptt);
         if (materialButton != null) {
             return new WidgetVoiceCallInlineBinding((LinearLayout) view, linearLayout, materialButton);
         }
-        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R$id.voice_connected_ptt)));
+        throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R.id.voice_connected_ptt)));
     }
 }

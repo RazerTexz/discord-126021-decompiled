@@ -3,7 +3,7 @@ package com.discord.widgets.botuikit.views.select;
 import android.view.View;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetSelectComponentBottomSheetBinding;
 import com.discord.utilities.view.recycler.MaxHeightRecyclerView;
 import d0.z.d.k;
@@ -27,20 +27,20 @@ public final /* synthetic */ class SelectComponentBottomSheet$binding$2 extends 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSelectComponentBottomSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.widget_sheet_component_bottom_sheet_header;
-        ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(R$id.widget_sheet_component_bottom_sheet_header);
+        int i = R.id.widget_sheet_component_bottom_sheet_header;
+        ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(R.id.widget_sheet_component_bottom_sheet_header);
         if (constraintLayout != null) {
-            i = R$id.widget_sheet_component_bottom_sheet_placeholder;
-            TextView textView = (TextView) view.findViewById(R$id.widget_sheet_component_bottom_sheet_placeholder);
+            i = R.id.widget_sheet_component_bottom_sheet_placeholder;
+            TextView textView = (TextView) view.findViewById(R.id.widget_sheet_component_bottom_sheet_placeholder);
             if (textView != null) {
-                i = R$id.widget_sheet_component_bottom_sheet_recycler;
-                MaxHeightRecyclerView maxHeightRecyclerView = (MaxHeightRecyclerView) view.findViewById(R$id.widget_sheet_component_bottom_sheet_recycler);
+                i = R.id.widget_sheet_component_bottom_sheet_recycler;
+                MaxHeightRecyclerView maxHeightRecyclerView = (MaxHeightRecyclerView) view.findViewById(R.id.widget_sheet_component_bottom_sheet_recycler);
                 if (maxHeightRecyclerView != null) {
-                    i = R$id.widget_sheet_component_bottom_sheet_select;
-                    TextView textView2 = (TextView) view.findViewById(R$id.widget_sheet_component_bottom_sheet_select);
+                    i = R.id.widget_sheet_component_bottom_sheet_select;
+                    TextView textView2 = (TextView) view.findViewById(R.id.widget_sheet_component_bottom_sheet_select);
                     if (textView2 != null) {
-                        i = R$id.widget_sheet_component_bottom_sheet_subtitle;
-                        TextView textView3 = (TextView) view.findViewById(R$id.widget_sheet_component_bottom_sheet_subtitle);
+                        i = R.id.widget_sheet_component_bottom_sheet_subtitle;
+                        TextView textView3 = (TextView) view.findViewById(R.id.widget_sheet_component_bottom_sheet_subtitle);
                         if (textView3 != null) {
                             return new WidgetSelectComponentBottomSheetBinding((ConstraintLayout) view, constraintLayout, textView, maxHeightRecyclerView, textView2, textView3);
                         }

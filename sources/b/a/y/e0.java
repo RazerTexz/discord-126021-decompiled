@@ -5,16 +5,17 @@ import android.graphics.drawable.Drawable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
+import com.discord.R;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.images.MGImages;
 import com.discord.utilities.view.extensions.ViewExtensions;
-import com.discord.utilities.views.SimpleRecyclerAdapter$ViewHolder;
+import com.discord.utilities.views.SimpleRecyclerAdapter;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.textview.MaterialTextView;
 
 /* JADX INFO: compiled from: SelectorBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class e0 extends SimpleRecyclerAdapter$ViewHolder<c0> {
+public final class e0 extends SimpleRecyclerAdapter.ViewHolder<c0> {
     public final i a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -35,7 +36,7 @@ public final class e0 extends SimpleRecyclerAdapter$ViewHolder<c0> {
     }
 
     /* JADX WARN: Code duplicated, block: B:30:0x00da  */
-    @Override // com.discord.utilities.views.SimpleRecyclerAdapter$ViewHolder
+    @Override // com.discord.utilities.views.SimpleRecyclerAdapter.ViewHolder
     public void bind(c0 c0Var) {
         int themedColor;
         Drawable drawable;
@@ -54,7 +55,7 @@ public final class e0 extends SimpleRecyclerAdapter$ViewHolder<c0> {
         if (strD != null) {
             SimpleDraweeView simpleDraweeView2 = this.c.c;
             d0.z.d.m.checkNotNullExpressionValue(simpleDraweeView2, "itemBinding.selectComponentSheetItemIcon");
-            MGImages.setImage$default(simpleDraweeView2, strD, 2131165401, 2131165401, true, null, null, 96, null);
+            MGImages.setImage$default(simpleDraweeView2, strD, R.dimen.emoji_size, R.dimen.emoji_size, true, null, null, 96, null);
         } else {
             Integer numB = c0Var2.b();
             if (numB != null) {
@@ -72,7 +73,7 @@ public final class e0 extends SimpleRecyclerAdapter$ViewHolder<c0> {
             themedColor = numG.intValue();
         } else {
             d0.z.d.m.checkNotNullExpressionValue(materialTextView3, "this");
-            themedColor = ColorCompat.getThemedColor(materialTextView3, 2130968989);
+            themedColor = ColorCompat.getThemedColor(materialTextView3, R.attr.colorHeaderPrimary);
         }
         materialTextView3.setTextColor(themedColor);
         Integer numF = c0Var2.f();
@@ -82,7 +83,7 @@ public final class e0 extends SimpleRecyclerAdapter$ViewHolder<c0> {
             if (drawable2 != null) {
                 MaterialTextView materialTextView4 = this.c.d;
                 d0.z.d.m.checkNotNullExpressionValue(materialTextView4, "itemBinding.selectComponentSheetItemTitle");
-                DrawableCompat.setTint(drawable2, ColorCompat.getThemedColor(materialTextView4, 2130968989));
+                DrawableCompat.setTint(drawable2, ColorCompat.getThemedColor(materialTextView4, R.attr.colorHeaderPrimary));
                 drawable = drawable2;
             } else {
                 drawable = null;

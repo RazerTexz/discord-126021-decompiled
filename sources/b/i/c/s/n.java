@@ -1,13 +1,12 @@
 package b.i.c.s;
 
 import android.content.pm.PackageInfo;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
-import b.i.c.r.d$a;
+import androidx.core.app.NotificationCompat;
 import com.adjust.sdk.Constants;
 import com.google.android.gms.tasks.Task;
 import java.io.IOException;
@@ -51,10 +50,10 @@ public class n {
         int i2;
         int i3;
         PackageInfo packageInfoB;
-        d$a d_aA;
+        b.i.c.r.d.a aVarA;
         PackageInfo packageInfoC;
         bundle.putString("scope", str3);
-        bundle.putString(NotificationCompat$MessagingStyle$Message.KEY_SENDER, str2);
+        bundle.putString(NotificationCompat.MessagingStyle.Message.KEY_SENDER, str2);
         bundle.putString("subtype", str2);
         bundle.putString("appid", str);
         b.i.c.c cVar = this.a;
@@ -68,7 +67,7 @@ public class n {
             i = qVar.d;
         }
         bundle.putString("gmsv", Integer.toString(i));
-        bundle.putString("osv", Integer.toString(Build$VERSION.SDK_INT));
+        bundle.putString("osv", Integer.toString(Build.VERSION.SDK_INT));
         bundle.putString("app_ver", this.f1769b.a());
         q qVar2 = this.f1769b;
         synchronized (qVar2) {
@@ -99,8 +98,8 @@ public class n {
         bundle.putString("cliv", "fiid-".concat("21.0.0"));
         b.i.c.r.d dVar = this.e.get();
         b.i.c.x.h hVar = this.d.get();
-        if (dVar != null && hVar != null && (d_aA = dVar.a("fire-iid")) != d$a.NONE) {
-            bundle.putString("Firebase-Client-Log-Type", Integer.toString(d_aA.f()));
+        if (dVar != null && hVar != null && (aVarA = dVar.a("fire-iid")) != b.i.c.r.d.a.NONE) {
+            bundle.putString("Firebase-Client-Log-Type", Integer.toString(aVarA.f()));
             bundle.putString("Firebase-Client", hVar.getUserAgent());
         }
         b.i.a.f.d.b bVar = this.c;

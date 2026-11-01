@@ -2,14 +2,31 @@ package com.discord.widgets.forums;
 
 import a0.a.a.b;
 import b.d.b.a.a;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ForumPostReadState.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class ForumPostReadState {
-    public static final ForumPostReadState$Companion Companion = new ForumPostReadState$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final long channelId;
     private final boolean hasSeenBefore;
     private final boolean hasUnread;
+
+    /* JADX INFO: compiled from: ForumPostReadState.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final ForumPostReadState createDefault(long channelId) {
+            return new ForumPostReadState(channelId, true, false);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public ForumPostReadState(long j, boolean z2, boolean z3) {
         this.channelId = j;

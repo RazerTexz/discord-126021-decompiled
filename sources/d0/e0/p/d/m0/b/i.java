@@ -3,6 +3,8 @@ package d0.e0.p.d.m0.b;
 import d0.t.n0;
 import java.util.Set;
 import kotlin.Lazy;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: PrimitiveType.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -22,6 +24,52 @@ public enum i {
     private final Lazy typeFqName$delegate;
     private final d0.e0.p.d.m0.g.e typeName;
 
+    /* JADX INFO: compiled from: PrimitiveType.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    /* JADX INFO: compiled from: PrimitiveType.kt */
+    public final class b extends d0.z.d.o implements Function0<d0.e0.p.d.m0.g.b> {
+        public b() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.g.b invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final d0.e0.p.d.m0.g.b invoke() {
+            d0.e0.p.d.m0.g.b bVarChild = k.l.child(i.this.getArrayTypeName());
+            d0.z.d.m.checkNotNullExpressionValue(bVarChild, "BUILT_INS_PACKAGE_FQ_NAME.child(arrayTypeName)");
+            return bVarChild;
+        }
+    }
+
+    /* JADX INFO: compiled from: PrimitiveType.kt */
+    public final class c extends d0.z.d.o implements Function0<d0.e0.p.d.m0.g.b> {
+        public c() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.g.b invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final d0.e0.p.d.m0.g.b invoke() {
+            d0.e0.p.d.m0.g.b bVarChild = k.l.child(i.this.getTypeName());
+            d0.z.d.m.checkNotNullExpressionValue(bVarChild, "BUILT_INS_PACKAGE_FQ_NAME.child(this.typeName)");
+            return bVarChild;
+        }
+    }
+
     static {
         i iVar = CHAR;
         i iVar2 = BYTE;
@@ -30,7 +78,7 @@ public enum i {
         i iVar5 = FLOAT;
         i iVar6 = LONG;
         i iVar7 = DOUBLE;
-        new i$a(null);
+        new a(null);
         j = n0.setOf((Object[]) new i[]{iVar, iVar2, iVar3, iVar4, iVar5, iVar6, iVar7});
     }
 
@@ -42,8 +90,8 @@ public enum i {
         d0.z.d.m.checkNotNullExpressionValue(eVarIdentifier2, "identifier(\"${typeName}Array\")");
         this.arrayTypeName = eVarIdentifier2;
         d0.i iVar = d0.i.PUBLICATION;
-        this.typeFqName$delegate = d0.g.lazy(iVar, new i$c(this));
-        this.arrayTypeFqName$delegate = d0.g.lazy(iVar, new i$b(this));
+        this.typeFqName$delegate = d0.g.lazy(iVar, new c());
+        this.arrayTypeFqName$delegate = d0.g.lazy(iVar, new b());
     }
 
     public final d0.e0.p.d.m0.g.b getArrayTypeFqName() {

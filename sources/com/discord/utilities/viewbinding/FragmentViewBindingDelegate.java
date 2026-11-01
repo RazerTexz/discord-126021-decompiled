@@ -3,14 +3,15 @@ package com.discord.utilities.viewbinding;
 import android.view.View;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
+import androidx.view.DefaultLifecycleObserver;
 import androidx.view.Lifecycle;
-import androidx.view.Lifecycle$State;
 import androidx.view.LifecycleOwner;
 import androidx.viewbinding.ViewBinding;
 import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import kotlin.reflect.KProperty;
+import y.c.a;
 
 /* JADX INFO: compiled from: FragmentViewBindingDelegate.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -19,6 +20,44 @@ public final class FragmentViewBindingDelegate<T extends ViewBinding> {
     private final Fragment fragment;
     private final Function1<T, Unit> onViewBindingDestroy;
     private final Function1<View, T> viewBindingFactory;
+
+    /* JADX INFO: renamed from: com.discord.utilities.viewbinding.FragmentViewBindingDelegate$addOnDestroyObserver$1, reason: invalid class name */
+    /* JADX INFO: compiled from: FragmentViewBindingDelegate.kt */
+    public final class AnonymousClass1 implements DefaultLifecycleObserver {
+        public AnonymousClass1() {
+        }
+
+        @Override // androidx.view.DefaultLifecycleObserver, androidx.view.FullLifecycleObserver
+        public void onCreate(LifecycleOwner owner) {
+            m.checkNotNullParameter(owner, "owner");
+            FragmentViewBindingDelegate.this.getFragment().getViewLifecycleOwnerLiveData().observe(FragmentViewBindingDelegate.this.getFragment(), new FragmentViewBindingDelegate$addOnDestroyObserver$1$onCreate$1(this));
+        }
+
+        @Override // androidx.view.DefaultLifecycleObserver, androidx.view.FullLifecycleObserver
+        public /* synthetic */ void onDestroy(LifecycleOwner lifecycleOwner) {
+            a.b(this, lifecycleOwner);
+        }
+
+        @Override // androidx.view.DefaultLifecycleObserver, androidx.view.FullLifecycleObserver
+        public /* synthetic */ void onPause(LifecycleOwner lifecycleOwner) {
+            a.c(this, lifecycleOwner);
+        }
+
+        @Override // androidx.view.DefaultLifecycleObserver, androidx.view.FullLifecycleObserver
+        public /* synthetic */ void onResume(LifecycleOwner lifecycleOwner) {
+            a.d(this, lifecycleOwner);
+        }
+
+        @Override // androidx.view.DefaultLifecycleObserver, androidx.view.FullLifecycleObserver
+        public /* synthetic */ void onStart(LifecycleOwner lifecycleOwner) {
+            a.e(this, lifecycleOwner);
+        }
+
+        @Override // androidx.view.DefaultLifecycleObserver, androidx.view.FullLifecycleObserver
+        public /* synthetic */ void onStop(LifecycleOwner lifecycleOwner) {
+            a.f(this, lifecycleOwner);
+        }
+    }
 
     /* JADX WARN: Multi-variable type inference failed */
     public FragmentViewBindingDelegate(Fragment fragment, Function1<? super View, ? extends T> function1, Function1<? super T, Unit> function2) {
@@ -41,7 +80,7 @@ public final class FragmentViewBindingDelegate<T extends ViewBinding> {
     }
 
     private final void addOnDestroyObserver() {
-        this.fragment.getLifecycle().addObserver(new FragmentViewBindingDelegate$addOnDestroyObserver$1(this));
+        this.fragment.getLifecycle().addObserver(new AnonymousClass1());
     }
 
     public final Fragment getFragment() {
@@ -71,7 +110,7 @@ public final class FragmentViewBindingDelegate<T extends ViewBinding> {
         m.checkNotNullExpressionValue(viewLifecycleOwner, "fragment.viewLifecycleOwner");
         Lifecycle lifecycle = viewLifecycleOwner.getLifecycle();
         m.checkNotNullExpressionValue(lifecycle, "fragment.viewLifecycleOwner.lifecycle");
-        if (!lifecycle.getCurrentState().isAtLeast(Lifecycle$State.INITIALIZED)) {
+        if (!lifecycle.getCurrentState().isAtLeast(Lifecycle.State.INITIALIZED)) {
             throw new IllegalStateException("Should not attempt to get bindings when Fragment views are destroyed.");
         }
         Function1<View, T> function1 = this.viewBindingFactory;

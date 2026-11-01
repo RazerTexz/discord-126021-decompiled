@@ -5,6 +5,11 @@ import java.io.IOException;
 /* JADX INFO: compiled from: JsonSerializer.java */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class n<T> {
+
+    /* JADX INFO: compiled from: JsonSerializer.java */
+    public abstract class a extends n<Object> {
+    }
+
     public Class<T> c() {
         return null;
     }

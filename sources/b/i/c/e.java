@@ -2,7 +2,7 @@ package b.i.c;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
-import android.os.Build$VERSION;
+import android.os.Build;
 
 /* JADX INFO: compiled from: FirebaseCommonRegistrar.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -12,6 +12,6 @@ public final /* synthetic */ class e implements b.i.c.x.g {
     @Override // b.i.c.x.g
     public String a(Object obj) {
         ApplicationInfo applicationInfo = ((Context) obj).getApplicationInfo();
-        return (applicationInfo == null || Build$VERSION.SDK_INT < 24) ? "" : String.valueOf(applicationInfo.minSdkVersion);
+        return (applicationInfo == null || Build.VERSION.SDK_INT < 24) ? "" : String.valueOf(applicationInfo.minSdkVersion);
     }
 }

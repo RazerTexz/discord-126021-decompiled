@@ -2,7 +2,7 @@ package b.i.a.c.x2.h0;
 
 import b.i.a.c.f3.e0;
 import b.i.a.c.f3.r;
-import b.i.a.c.x2.t$a;
+import b.i.a.c.x2.t;
 import b.i.a.c.x2.u;
 
 /* JADX INFO: compiled from: IndexSeeker.java */
@@ -47,7 +47,7 @@ public final class d implements g {
     }
 
     @Override // b.i.a.c.x2.t
-    public t$a h(long j) {
+    public t.a h(long j) {
         int iC = e0.c(this.f1203b, j, true, true);
         long jB = this.f1203b.b(iC);
         u uVar = new u(jB, this.c.b(iC));
@@ -55,10 +55,10 @@ public final class d implements g {
             r rVar = this.f1203b;
             if (iC != rVar.a - 1) {
                 int i = iC + 1;
-                return new t$a(uVar, new u(rVar.b(i), this.c.b(i)));
+                return new t.a(uVar, new u(rVar.b(i), this.c.b(i)));
             }
         }
-        return new t$a(uVar);
+        return new t.a(uVar);
     }
 
     @Override // b.i.a.c.x2.t

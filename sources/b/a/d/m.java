@@ -8,8 +8,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.StringRes;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
+import com.discord.R;
 import com.discord.utilities.view.ToastManager;
 import com.discord.utilities.view.text.SimpleDraweeSpanTextView;
 import com.facebook.drawee.span.DraweeSpanStringBuilder;
@@ -19,7 +20,7 @@ import com.facebook.drawee.span.DraweeSpanStringBuilder;
 public final class m {
     public static final void a(Context context, CharSequence charSequence, int i) {
         d0.z.d.m.checkNotNullParameter(context, "context");
-        d0.z.d.m.checkNotNullParameter(charSequence, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        d0.z.d.m.checkNotNullParameter(charSequence, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         String string = context.getString(i);
         d0.z.d.m.checkNotNullExpressionValue(string, "context.getString(toastResId)");
         b(context, charSequence, string);
@@ -27,7 +28,7 @@ public final class m {
 
     public static final void b(Context context, CharSequence charSequence, CharSequence charSequence2) {
         d0.z.d.m.checkNotNullParameter(context, "context");
-        d0.z.d.m.checkNotNullParameter(charSequence, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        d0.z.d.m.checkNotNullParameter(charSequence, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         d0.z.d.m.checkNotNullParameter(charSequence2, "toastText");
         Object systemService = context.getSystemService("clipboard");
         if (!(systemService instanceof ClipboardManager)) {
@@ -43,7 +44,7 @@ public final class m {
 
     public static /* synthetic */ void c(Context context, CharSequence charSequence, int i, int i2) {
         if ((i2 & 4) != 0) {
-            i = 2131887925;
+            i = R.string.copied_text;
         }
         a(context, charSequence, i);
     }

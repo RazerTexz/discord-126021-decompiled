@@ -2,7 +2,6 @@ package b.i.a.f.h.l;
 
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map$Entry;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
@@ -65,9 +64,9 @@ public final class y5 implements v5 {
         if (!it.hasNext()) {
             return 0;
         }
-        Map$Entry map$Entry = (Map$Entry) it.next();
-        map$Entry.getKey();
-        map$Entry.getValue();
+        Map.Entry entry = (Map.Entry) it.next();
+        entry.getKey();
+        entry.getValue();
         throw new NoSuchMethodError();
     }
 }

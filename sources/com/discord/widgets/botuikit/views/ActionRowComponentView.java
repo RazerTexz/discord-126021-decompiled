@@ -2,13 +2,16 @@ package com.discord.widgets.botuikit.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import b.a.i.a5;
 import b.a.i.m2;
+import com.discord.R;
 import com.discord.api.botuikit.ComponentType;
-import com.discord.models.botuikit.ActionInteractionComponentState$Failed;
+import com.discord.models.botuikit.ActionInteractionComponentState;
 import com.discord.models.botuikit.ActionRowMessageComponent;
 import com.discord.models.botuikit.MessageComponent;
 import com.discord.models.botuikit.MessageComponentUtils;
@@ -21,11 +24,34 @@ import d0.t.u;
 import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.List;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ActionRowComponentView.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ActionRowComponentView extends LinearLayout implements ComponentView<ActionRowMessageComponent> {
-    public static final ActionRowComponentView$Companion Companion = new ActionRowComponentView$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
+
+    /* JADX INFO: compiled from: ActionRowComponentView.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final ActionRowComponentView inflateComponent(Context context, ViewGroup root) {
+            m.checkNotNullParameter(context, "context");
+            m.checkNotNullParameter(root, "root");
+            a5 a5VarA = a5.a(LayoutInflater.from(context).inflate(R.layout.widget_chat_list_bot_ui_action_row_component, root, false));
+            m.checkNotNullExpressionValue(a5VarA, "WidgetChatListBotUiActio…om(context), root, false)");
+            ActionRowComponentView actionRowComponentView = a5VarA.a;
+            m.checkNotNullExpressionValue(actionRowComponentView, "WidgetChatListBotUiActio…ntext), root, false).root");
+            return actionRowComponentView;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ActionRowComponentView(Context context, AttributeSet attributeSet, int i) {
@@ -71,7 +97,7 @@ public final class ActionRowComponentView extends LinearLayout implements Compon
         FlexboxLayout flexboxLayout = a5VarA.f78b;
         m.checkNotNullExpressionValue(flexboxLayout, "binding.actionRowComponentViewGroup");
         WidgetChatListAdapterItemBotComponentRowKt.replaceViews(flexboxLayout, u.filterNotNull(arrayList));
-        ActionInteractionComponentState$Failed childError = MessageComponentUtils.INSTANCE.getChildError(component);
+        ActionInteractionComponentState.Failed childError = MessageComponentUtils.INSTANCE.getChildError(component);
         m2 m2Var = a5VarA.c;
         m.checkNotNullExpressionValue(m2Var, "binding.actionRowComponentViewGroupErrorRow");
         ConstraintLayout constraintLayout = m2Var.a;
@@ -80,7 +106,7 @@ public final class ActionRowComponentView extends LinearLayout implements Compon
         if (childError != null) {
             String errorMessage = childError.getErrorMessage();
             if (errorMessage == null) {
-                errorMessage = getResources().getString(2131886511);
+                errorMessage = getResources().getString(R.string.application_command_failed);
                 m.checkNotNullExpressionValue(errorMessage, "resources.getString(R.st…plication_command_failed)");
             }
             TextView textView = a5VarA.c.f159b;

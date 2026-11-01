@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetSettingsVoiceInputModeBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -22,14 +22,14 @@ public final /* synthetic */ class WidgetSettingsVoice$InputModeSelector$binding
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetSettingsVoiceInputModeBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.guild_actions_overview_header_tv;
-        TextView textView = (TextView) view.findViewById(R$id.guild_actions_overview_header_tv);
+        int i = R.id.guild_actions_overview_header_tv;
+        TextView textView = (TextView) view.findViewById(R.id.guild_actions_overview_header_tv);
         if (textView != null) {
-            i = R$id.settings_voice_input_mode_ptt;
-            LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.settings_voice_input_mode_ptt);
+            i = R.id.settings_voice_input_mode_ptt;
+            LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.settings_voice_input_mode_ptt);
             if (linearLayout != null) {
-                i = R$id.settings_voice_input_mode_vad;
-                LinearLayout linearLayout2 = (LinearLayout) view.findViewById(R$id.settings_voice_input_mode_vad);
+                i = R.id.settings_voice_input_mode_vad;
+                LinearLayout linearLayout2 = (LinearLayout) view.findViewById(R.id.settings_voice_input_mode_vad);
                 if (linearLayout2 != null) {
                     return new WidgetSettingsVoiceInputModeBinding((NestedScrollView) view, textView, linearLayout, linearLayout2);
                 }

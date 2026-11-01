@@ -3,15 +3,23 @@ package com.discord.widgets.hubs;
 import android.content.Context;
 import android.view.View;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.d.g0;
 import b.a.d.i0;
 import b.a.k.b;
+import b.c.a.a0.d;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
+import com.discord.api.hubs.EmailVerification;
+import com.discord.api.hubs.EmailVerificationCode;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetHubAuthenticationBinding;
+import com.discord.i18n.RenderContext;
+import com.discord.models.domain.ModelAuditLogEntry;
+import com.discord.stores.StoreStream;
 import com.discord.stores.utilities.RestCallStateKt;
+import com.discord.stores.utilities.Success;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
@@ -19,8 +27,11 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.discord.views.CodeVerificationView;
 import d0.g;
 import d0.z.d.a0;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.reflect.KProperty;
@@ -39,8 +50,141 @@ public final class WidgetHubAuthentication extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAuthentication$configureUi$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubAuthentication.kt */
+    public final class AnonymousClass1 extends o implements Function1<Success<? extends EmailVerificationCode>, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Success<? extends EmailVerificationCode> success) {
+            invoke2((Success<EmailVerificationCode>) success);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Success<EmailVerificationCode> success) {
+            m.checkNotNullParameter(success, "response");
+            WidgetHubAuthentication widgetHubAuthentication = WidgetHubAuthentication.this;
+            widgetHubAuthentication.hideKeyboard(widgetHubAuthentication.getView());
+            EmailVerificationCode emailVerificationCodeInvoke = success.invoke();
+            if (!emailVerificationCodeInvoke.getJoined()) {
+                b.a.d.m.i(WidgetHubAuthentication.this, R.string.error_generic_title, 0, 4);
+                return;
+            }
+            FragmentActivity activity = WidgetHubAuthentication.this.getActivity();
+            if (activity != null) {
+                activity.setResult(-1, d.g2(new AuthenticationResult(emailVerificationCodeInvoke.getGuild().getId())));
+                activity.finish();
+            }
+            StoreStream.INSTANCE.getNux().updateNux(WidgetHubAuthentication$configureUi$1$1$2.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAuthentication$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubAuthentication.kt */
+    public final class AnonymousClass1 extends o implements Function1<String, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_CODE);
+            WidgetHubAuthentication.access$getViewModel$p(WidgetHubAuthentication.this).verifyCode(str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAuthentication$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubAuthentication.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<HubAuthenticationState, Unit> {
+        public AnonymousClass1(WidgetHubAuthentication widgetHubAuthentication) {
+            super(1, widgetHubAuthentication, WidgetHubAuthentication.class, "configureUi", "configureUi(Lcom/discord/widgets/hubs/HubAuthenticationState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(HubAuthenticationState hubAuthenticationState) {
+            invoke2(hubAuthenticationState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(HubAuthenticationState hubAuthenticationState) {
+            m.checkNotNullParameter(hubAuthenticationState, "p1");
+            WidgetHubAuthentication.access$configureUi((WidgetHubAuthentication) this.receiver, hubAuthenticationState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAuthentication$configureUi$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubAuthentication.kt */
+    public final class AnonymousClass2 extends o implements Function1<Success<? extends EmailVerification>, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Success<? extends EmailVerification> success) {
+            invoke2((Success<EmailVerification>) success);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Success<EmailVerification> success) {
+            m.checkNotNullParameter(success, "it");
+            b.a.d.m.i(WidgetHubAuthentication.this, R.string.member_verification_email_verification_email_sent, 0, 4);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAuthentication$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubAuthentication.kt */
+    public final class AnonymousClass2 extends o implements Function1<RenderContext, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAuthentication$onViewBound$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetHubAuthentication.kt */
+        public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(View view) {
+                invoke2(view);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(View view) {
+                m.checkNotNullParameter(view, "it");
+                WidgetHubAuthentication.access$getViewModel$p(WidgetHubAuthentication.this).resendEmail();
+            }
+        }
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.b("onClick", new AnonymousClass1());
+        }
+    }
+
     public WidgetHubAuthentication() {
-        super(R$layout.widget_hub_authentication);
+        super(R.layout.widget_hub_authentication);
         this.args = g.lazy(new WidgetHubAuthentication$$special$$inlined$args$1(this, "intent_args_key"));
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetHubAuthentication$binding$2.INSTANCE, null, 2, null);
         WidgetHubAuthentication$viewModel$2 widgetHubAuthentication$viewModel$2 = new WidgetHubAuthentication$viewModel$2(this);
@@ -60,8 +204,8 @@ public final class WidgetHubAuthentication extends AppFragment {
         Context context = getContext();
         if (context != null) {
             m.checkNotNullExpressionValue(context, "context ?: return");
-            RestCallStateKt.handleResponse$default(state.getAuthenticationAsync(), context, null, null, new WidgetHubAuthentication$configureUi$1(this), 6, null);
-            RestCallStateKt.handleResponse$default(state.getResendEmailAsync(), context, null, null, new WidgetHubAuthentication$configureUi$2(this), 6, null);
+            RestCallStateKt.handleResponse$default(state.getAuthenticationAsync(), context, null, null, new AnonymousClass1(), 6, null);
+            RestCallStateKt.handleResponse$default(state.getResendEmailAsync(), context, null, null, new AnonymousClass2(), 6, null);
         }
     }
 
@@ -81,10 +225,10 @@ public final class WidgetHubAuthentication extends AppFragment {
     public void onViewBound(View view) {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
-        getBinding().c.setOnCodeEntered(new WidgetHubAuthentication$onViewBound$1(this));
+        getBinding().c.setOnCodeEntered(new AnonymousClass1());
         LinkifiedTextView linkifiedTextView = getBinding().f2469b;
         m.checkNotNullExpressionValue(linkifiedTextView, "binding.description");
-        linkifiedTextView.setText(b.e(this, 2131891836, new Object[]{getArgs().getEmail()}, new WidgetHubAuthentication$onViewBound$2(this)));
+        linkifiedTextView.setText(b.e(this, R.string.hub_pin_description, new Object[]{getArgs().getEmail()}, new AnonymousClass2()));
         CodeVerificationView codeVerificationView = getBinding().c;
         m.checkNotNullExpressionValue(codeVerificationView, "binding.verification");
         showKeyboard(codeVerificationView);
@@ -93,6 +237,6 @@ public final class WidgetHubAuthentication extends AppFragment {
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetHubAuthentication.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetHubAuthentication$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetHubAuthentication.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
     }
 }

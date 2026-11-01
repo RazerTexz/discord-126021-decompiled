@@ -2,7 +2,6 @@ package org.webrtc.audio;
 
 import android.media.audiofx.AcousticEchoCanceler;
 import android.media.audiofx.AudioEffect;
-import android.media.audiofx.AudioEffect$Descriptor;
 import android.media.audiofx.NoiseSuppressor;
 import androidx.annotation.Nullable;
 import b.d.b.a.a;
@@ -18,7 +17,7 @@ public class WebRtcAudioEffects {
     private AcousticEchoCanceler aec;
 
     @Nullable
-    private static AudioEffect$Descriptor[] cachedEffects;
+    private static AudioEffect.Descriptor[] cachedEffects;
 
     @Nullable
     private NoiseSuppressor ns;
@@ -90,14 +89,14 @@ public class WebRtcAudioEffects {
     }
 
     @Nullable
-    private static AudioEffect$Descriptor[] getAvailableEffects() {
-        AudioEffect$Descriptor[] audioEffect$DescriptorArr = cachedEffects;
-        if (audioEffect$DescriptorArr != null) {
-            return audioEffect$DescriptorArr;
+    private static AudioEffect.Descriptor[] getAvailableEffects() {
+        AudioEffect.Descriptor[] descriptorArr = cachedEffects;
+        if (descriptorArr != null) {
+            return descriptorArr;
         }
-        AudioEffect$Descriptor[] audioEffect$DescriptorArrQueryEffects = AudioEffect.queryEffects();
-        cachedEffects = audioEffect$DescriptorArrQueryEffects;
-        return audioEffect$DescriptorArrQueryEffects;
+        AudioEffect.Descriptor[] descriptorArrQueryEffects = AudioEffect.queryEffects();
+        cachedEffects = descriptorArrQueryEffects;
+        return descriptorArrQueryEffects;
     }
 
     public static boolean isAcousticEchoCancelerSupported() {
@@ -105,13 +104,13 @@ public class WebRtcAudioEffects {
     }
 
     private static boolean isEffectTypeAvailable(UUID uuid, UUID uuid2) {
-        AudioEffect$Descriptor[] availableEffects = getAvailableEffects();
+        AudioEffect.Descriptor[] availableEffects = getAvailableEffects();
         if (availableEffects == null) {
             return false;
         }
-        for (AudioEffect$Descriptor audioEffect$Descriptor : availableEffects) {
-            if (audioEffect$Descriptor.type.equals(uuid)) {
-                return !audioEffect$Descriptor.uuid.equals(uuid2);
+        for (AudioEffect.Descriptor descriptor : availableEffects) {
+            if (descriptor.type.equals(uuid)) {
+                return !descriptor.uuid.equals(uuid2);
             }
         }
         return false;

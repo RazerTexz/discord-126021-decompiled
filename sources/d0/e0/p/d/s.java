@@ -1,16 +1,25 @@
 package d0.e0.p.d;
 
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.e0.p.d.m0.c.m0;
 import d0.e0.p.d.m0.c.n0;
+import d0.e0.p.d.m0.c.o0;
+import d0.e0.p.d.m0.c.p0;
 import java.lang.reflect.Field;
+import kotlin.NoWhenBranchMatchedException;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import kotlin.reflect.KFunction;
+import kotlin.reflect.KMutableProperty$Setter;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: KPropertyImpl.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public abstract class s<V> extends f<V> implements KProperty<V> {
+public abstract class s<V> extends d0.e0.p.d.f<V> implements KProperty<V> {
     public static final Object n;
-    public final c0$b<Field> o;
-    public final c0$a<n0> p;
+    public final c0.b<Field> o;
+    public final c0.a<n0> p;
     public final i q;
     public final String r;
 
@@ -18,8 +27,277 @@ public abstract class s<V> extends f<V> implements KProperty<V> {
     public final String f3568s;
     public final Object t;
 
+    /* JADX INFO: compiled from: KPropertyImpl.kt */
+    public abstract class a<PropertyType, ReturnType> extends d0.e0.p.d.f<ReturnType> implements KFunction<ReturnType> {
+        @Override // d0.e0.p.d.f
+        public i getContainer() {
+            return getProperty().getContainer();
+        }
+
+        @Override // d0.e0.p.d.f
+        public d0.e0.p.d.l0.d<?> getDefaultCaller() {
+            return null;
+        }
+
+        @Override // d0.e0.p.d.f
+        public abstract m0 getDescriptor();
+
+        public abstract s<PropertyType> getProperty();
+
+        @Override // d0.e0.p.d.f
+        public boolean isBound() {
+            return getProperty().isBound();
+        }
+
+        @Override // kotlin.reflect.KFunction
+        public boolean isExternal() {
+            return getDescriptor().isExternal();
+        }
+
+        @Override // kotlin.reflect.KFunction
+        public boolean isInfix() {
+            return getDescriptor().isInfix();
+        }
+
+        @Override // kotlin.reflect.KFunction
+        public boolean isInline() {
+            return getDescriptor().isInline();
+        }
+
+        @Override // kotlin.reflect.KFunction
+        public boolean isOperator() {
+            return getDescriptor().isOperator();
+        }
+
+        @Override // kotlin.reflect.KCallable, kotlin.reflect.KFunction
+        public boolean isSuspend() {
+            return getDescriptor().isSuspend();
+        }
+    }
+
+    /* JADX INFO: compiled from: KPropertyImpl.kt */
+    public final class b {
+        public b(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    /* JADX INFO: compiled from: KPropertyImpl.kt */
+    public abstract class c<V> extends a<V, V> implements KProperty.Getter<V> {
+        public static final /* synthetic */ KProperty[] n = {d0.z.d.a0.property1(new d0.z.d.y(d0.z.d.a0.getOrCreateKotlinClass(c.class), "descriptor", "getDescriptor()Lorg/jetbrains/kotlin/descriptors/PropertyGetterDescriptor;")), d0.z.d.a0.property1(new d0.z.d.y(d0.z.d.a0.getOrCreateKotlinClass(c.class), "caller", "getCaller()Lkotlin/reflect/jvm/internal/calls/Caller;"))};
+        public final c0.a o = c0.lazySoft(new b());
+        public final c0.b p = c0.lazy(new a());
+
+        /* JADX INFO: compiled from: KPropertyImpl.kt */
+        public final class a extends d0.z.d.o implements Function0<d0.e0.p.d.l0.d<?>> {
+            public a() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ d0.e0.p.d.l0.d<?> invoke() {
+                return invoke();
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // kotlin.jvm.functions.Function0
+            public final d0.e0.p.d.l0.d<?> invoke() {
+                return w.access$computeCallerForAccessor(c.this, true);
+            }
+        }
+
+        /* JADX INFO: compiled from: KPropertyImpl.kt */
+        public final class b extends d0.z.d.o implements Function0<o0> {
+            public b() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ o0 invoke() {
+                return invoke();
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // kotlin.jvm.functions.Function0
+            public final o0 invoke() {
+                o0 getter = c.this.getProperty().getDescriptor().getGetter();
+                return getter != null ? getter : d0.e0.p.d.m0.k.d.createDefaultGetter(c.this.getProperty().getDescriptor(), d0.e0.p.d.m0.c.g1.g.f.getEMPTY());
+            }
+        }
+
+        @Override // d0.e0.p.d.f
+        public d0.e0.p.d.l0.d<?> getCaller() {
+            return (d0.e0.p.d.l0.d) this.p.getValue(this, n[1]);
+        }
+
+        @Override // d0.e0.p.d.f
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.b getDescriptor() {
+            return getDescriptor();
+        }
+
+        @Override // d0.e0.p.d.s.a, d0.e0.p.d.f
+        public o0 getDescriptor() {
+            return (o0) this.o.getValue(this, n[0]);
+        }
+
+        @Override // kotlin.reflect.KCallable
+        public String getName() {
+            StringBuilder sbU = b.d.b.a.a.U("<get-");
+            sbU.append(getProperty().getName());
+            sbU.append('>');
+            return sbU.toString();
+        }
+
+        @Override // d0.e0.p.d.s.a, d0.e0.p.d.f
+        public /* bridge */ /* synthetic */ m0 getDescriptor() {
+            return getDescriptor();
+        }
+    }
+
+    /* JADX INFO: compiled from: KPropertyImpl.kt */
+    public abstract class d<V> extends a<V, Unit> implements KMutableProperty$Setter<V> {
+        public static final /* synthetic */ KProperty[] n = {d0.z.d.a0.property1(new d0.z.d.y(d0.z.d.a0.getOrCreateKotlinClass(d.class), "descriptor", "getDescriptor()Lorg/jetbrains/kotlin/descriptors/PropertySetterDescriptor;")), d0.z.d.a0.property1(new d0.z.d.y(d0.z.d.a0.getOrCreateKotlinClass(d.class), "caller", "getCaller()Lkotlin/reflect/jvm/internal/calls/Caller;"))};
+        public final c0.a o = c0.lazySoft(new b());
+        public final c0.b p = c0.lazy(new a());
+
+        /* JADX INFO: compiled from: KPropertyImpl.kt */
+        public final class a extends d0.z.d.o implements Function0<d0.e0.p.d.l0.d<?>> {
+            public a() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ d0.e0.p.d.l0.d<?> invoke() {
+                return invoke();
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // kotlin.jvm.functions.Function0
+            public final d0.e0.p.d.l0.d<?> invoke() {
+                return w.access$computeCallerForAccessor(d.this, false);
+            }
+        }
+
+        /* JADX INFO: compiled from: KPropertyImpl.kt */
+        public final class b extends d0.z.d.o implements Function0<p0> {
+            public b() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ p0 invoke() {
+                return invoke();
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // kotlin.jvm.functions.Function0
+            public final p0 invoke() {
+                p0 setter = d.this.getProperty().getDescriptor().getSetter();
+                if (setter != null) {
+                    return setter;
+                }
+                n0 descriptor = d.this.getProperty().getDescriptor();
+                d0.e0.p.d.m0.c.g1.g.a aVar = d0.e0.p.d.m0.c.g1.g.f;
+                return d0.e0.p.d.m0.k.d.createDefaultSetter(descriptor, aVar.getEMPTY(), aVar.getEMPTY());
+            }
+        }
+
+        @Override // d0.e0.p.d.f
+        public d0.e0.p.d.l0.d<?> getCaller() {
+            return (d0.e0.p.d.l0.d) this.p.getValue(this, n[1]);
+        }
+
+        @Override // d0.e0.p.d.f
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.b getDescriptor() {
+            return getDescriptor();
+        }
+
+        @Override // d0.e0.p.d.s.a, d0.e0.p.d.f
+        public p0 getDescriptor() {
+            return (p0) this.o.getValue(this, n[0]);
+        }
+
+        @Override // kotlin.reflect.KCallable
+        public String getName() {
+            StringBuilder sbU = b.d.b.a.a.U("<set-");
+            sbU.append(getProperty().getName());
+            sbU.append('>');
+            return sbU.toString();
+        }
+
+        @Override // d0.e0.p.d.s.a, d0.e0.p.d.f
+        public /* bridge */ /* synthetic */ m0 getDescriptor() {
+            return getDescriptor();
+        }
+    }
+
+    /* JADX INFO: compiled from: KPropertyImpl.kt */
+    public final class e extends d0.z.d.o implements Function0<n0> {
+        public e() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ n0 invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final n0 invoke() {
+            return s.this.getContainer().findPropertyDescriptor(s.this.getName(), s.this.getSignature());
+        }
+    }
+
+    /* JADX INFO: compiled from: KPropertyImpl.kt */
+    public final class f extends d0.z.d.o implements Function0<Field> {
+        public f() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Field invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Field invoke2() {
+            Class<?> enclosingClass;
+            d0.e0.p.d.e eVarMapPropertySignature = f0.f3198b.mapPropertySignature(s.this.getDescriptor());
+            if (!(eVarMapPropertySignature instanceof d0.e0.p.d.e.c)) {
+                if (eVarMapPropertySignature instanceof d0.e0.p.d.e.a) {
+                    return ((d0.e0.p.d.e.a) eVarMapPropertySignature).getField();
+                }
+                if ((eVarMapPropertySignature instanceof d0.e0.p.d.e.b) || (eVarMapPropertySignature instanceof d0.e0.p.d.e.d)) {
+                    return null;
+                }
+                throw new NoWhenBranchMatchedException();
+            }
+            d0.e0.p.d.e.c cVar = (d0.e0.p.d.e.c) eVarMapPropertySignature;
+            n0 descriptor = cVar.getDescriptor();
+            d0.e0.p.d.m0.f.a0.b.e.a jvmFieldSignature$default = d0.e0.p.d.m0.f.a0.b.h.getJvmFieldSignature$default(d0.e0.p.d.m0.f.a0.b.h.a, cVar.getProto(), cVar.getNameResolver(), cVar.getTypeTable(), false, 8, null);
+            if (jvmFieldSignature$default == null) {
+                return null;
+            }
+            if (d0.e0.p.d.m0.e.a.n.isPropertyWithBackingFieldInOuterClass(descriptor) || d0.e0.p.d.m0.f.a0.b.h.isMovedFromInterfaceCompanion(cVar.getProto())) {
+                enclosingClass = s.this.getContainer().getJClass().getEnclosingClass();
+            } else {
+                d0.e0.p.d.m0.c.m containingDeclaration = descriptor.getContainingDeclaration();
+                enclosingClass = containingDeclaration instanceof d0.e0.p.d.m0.c.e ? j0.toJavaClass((d0.e0.p.d.m0.c.e) containingDeclaration) : s.this.getContainer().getJClass();
+            }
+            if (enclosingClass == null) {
+                return null;
+            }
+            try {
+                return enclosingClass.getDeclaredField(jvmFieldSignature$default.getName());
+            } catch (NoSuchFieldException unused) {
+                return null;
+            }
+        }
+    }
+
     static {
-        new s$b(null);
+        new b(null);
         n = new Object();
     }
 
@@ -28,12 +306,12 @@ public abstract class s<V> extends f<V> implements KProperty<V> {
         this.r = str;
         this.f3568s = str2;
         this.t = obj;
-        c0$b<Field> c0_bLazy = c0.lazy(new s$f(this));
-        d0.z.d.m.checkNotNullExpressionValue(c0_bLazy, "ReflectProperties.lazy {…y -> null\n        }\n    }");
-        this.o = c0_bLazy;
-        c0$a<n0> c0_aLazySoft = c0.lazySoft(n0Var, new s$e(this));
-        d0.z.d.m.checkNotNullExpressionValue(c0_aLazySoft, "ReflectProperties.lazySo…or(name, signature)\n    }");
-        this.p = c0_aLazySoft;
+        c0.b<Field> bVarLazy = c0.lazy(new f());
+        d0.z.d.m.checkNotNullExpressionValue(bVarLazy, "ReflectProperties.lazy {…y -> null\n        }\n    }");
+        this.o = bVarLazy;
+        c0.a<n0> aVarLazySoft = c0.lazySoft(n0Var, new e());
+        d0.z.d.m.checkNotNullExpressionValue(aVarLazySoft, "ReflectProperties.lazySo…or(name, signature)\n    }");
+        this.p = aVarLazySoft;
     }
 
     public final Field c() {
@@ -110,7 +388,7 @@ public abstract class s<V> extends f<V> implements KProperty<V> {
     }
 
     /* JADX INFO: renamed from: getGetter */
-    public abstract s$c<V> mo112getGetter();
+    public abstract c<V> mo112getGetter();
 
     public String toString() {
         return e0.f3197b.renderProperty(getDescriptor());

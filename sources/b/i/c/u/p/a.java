@@ -11,14 +11,14 @@ public final class a extends d {
     public final String f1788b;
     public final String c;
     public final f d;
-    public final d$a e;
+    public final d.a e;
 
-    public a(String str, String str2, String str3, f fVar, d$a d_a, a$a a_a) {
+    public a(String str, String str2, String str3, f fVar, d.a aVar, C0153a c0153a) {
         this.a = str;
         this.f1788b = str2;
         this.c = str3;
         this.d = fVar;
-        this.e = d_a;
+        this.e = aVar;
     }
 
     @Override // b.i.c.u.p.d
@@ -41,7 +41,7 @@ public final class a extends d {
 
     @Override // b.i.c.u.p.d
     @Nullable
-    public d$a d() {
+    public d.a d() {
         return this.e;
     }
 
@@ -67,12 +67,12 @@ public final class a extends d {
                 if (str3 != null ? str3.equals(dVar.c()) : dVar.c() == null) {
                     f fVar = this.d;
                     if (fVar != null ? fVar.equals(dVar.a()) : dVar.a() == null) {
-                        d$a d_a = this.e;
-                        if (d_a == null) {
+                        d.a aVar = this.e;
+                        if (aVar == null) {
                             if (dVar.d() == null) {
                                 return true;
                             }
-                        } else if (d_a.equals(dVar.d())) {
+                        } else if (aVar.equals(dVar.d())) {
                             return true;
                         }
                     }
@@ -91,8 +91,8 @@ public final class a extends d {
         int iHashCode3 = (iHashCode2 ^ (str3 == null ? 0 : str3.hashCode())) * 1000003;
         f fVar = this.d;
         int iHashCode4 = (iHashCode3 ^ (fVar == null ? 0 : fVar.hashCode())) * 1000003;
-        d$a d_a = this.e;
-        return iHashCode4 ^ (d_a != null ? d_a.hashCode() : 0);
+        d.a aVar = this.e;
+        return iHashCode4 ^ (aVar != null ? aVar.hashCode() : 0);
     }
 
     public String toString() {

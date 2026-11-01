@@ -1,25 +1,52 @@
 package b.k.a.a;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.view.ViewCompat;
-import com.jaredrummler.android.colorpicker.R$b;
+import com.jaredrummler.android.colorpicker.ColorPanelView;
+import com.jaredrummler.android.colorpicker.R;
 
 /* JADX INFO: compiled from: ColorPaletteAdapter.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class b extends BaseAdapter {
-    public final b$a j;
+    public final a j;
     public final int[] k;
     public int l;
     public int m;
 
-    public b(b$a b_a, int[] iArr, int i, int i2) {
-        this.j = b_a;
+    /* JADX INFO: renamed from: b.k.a.a.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: ColorPaletteAdapter.java */
+    public final class C0161b {
+        public View a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public ColorPanelView f1899b;
+        public ImageView c;
+        public int d;
+
+        public C0161b(Context context) {
+            View viewInflate = View.inflate(context, b.this.m == 0 ? R.d.cpv_color_item_square : R.d.cpv_color_item_circle, null);
+            this.a = viewInflate;
+            this.f1899b = (ColorPanelView) viewInflate.findViewById(R.c.cpv_color_panel_view);
+            this.c = (ImageView) this.a.findViewById(R.c.cpv_color_image_view);
+            this.d = this.f1899b.getBorderColor();
+            this.a.setTag(this);
+        }
+    }
+
+    /* JADX INFO: compiled from: ColorPaletteAdapter.java */
+    public interface a {
+    }
+
+    public b(a aVar, int[] iArr, int i, int i2) {
+        this.j = aVar;
         this.k = iArr;
         this.l = i;
         this.m = i2;
@@ -43,34 +70,34 @@ public class b extends BaseAdapter {
     @Override // android.widget.Adapter
     public View getView(int i, View view, ViewGroup viewGroup) {
         View view2;
-        b$b b_b;
+        C0161b c0161b;
         if (view == null) {
-            b_b = new b$b(this, viewGroup.getContext());
-            view2 = b_b.a;
+            c0161b = new C0161b(viewGroup.getContext());
+            view2 = c0161b.a;
         } else {
             view2 = view;
-            b_b = (b$b) view.getTag();
+            c0161b = (C0161b) view.getTag();
         }
-        int i2 = b_b.e.k[i];
+        int i2 = b.this.k[i];
         int iAlpha = Color.alpha(i2);
-        b_b.f1899b.setColor(i2);
-        b_b.c.setImageResource(b_b.e.l == i ? R$b.cpv_preset_checked : 0);
+        c0161b.f1899b.setColor(i2);
+        c0161b.c.setImageResource(b.this.l == i ? R.b.cpv_preset_checked : 0);
         if (iAlpha == 255) {
-            b bVar = b_b.e;
+            b bVar = b.this;
             if (i != bVar.l || ColorUtils.calculateLuminance(bVar.k[i]) < 0.65d) {
-                b_b.c.setColorFilter((ColorFilter) null);
+                c0161b.c.setColorFilter((ColorFilter) null);
             } else {
-                b_b.c.setColorFilter(ViewCompat.MEASURED_STATE_MASK, PorterDuff$Mode.SRC_IN);
+                c0161b.c.setColorFilter(ViewCompat.MEASURED_STATE_MASK, PorterDuff.Mode.SRC_IN);
             }
         } else if (iAlpha <= 165) {
-            b_b.f1899b.setBorderColor(i2 | ViewCompat.MEASURED_STATE_MASK);
-            b_b.c.setColorFilter(ViewCompat.MEASURED_STATE_MASK, PorterDuff$Mode.SRC_IN);
+            c0161b.f1899b.setBorderColor(i2 | ViewCompat.MEASURED_STATE_MASK);
+            c0161b.c.setColorFilter(ViewCompat.MEASURED_STATE_MASK, PorterDuff.Mode.SRC_IN);
         } else {
-            b_b.f1899b.setBorderColor(b_b.d);
-            b_b.c.setColorFilter(-1, PorterDuff$Mode.SRC_IN);
+            c0161b.f1899b.setBorderColor(c0161b.d);
+            c0161b.c.setColorFilter(-1, PorterDuff.Mode.SRC_IN);
         }
-        b_b.f1899b.setOnClickListener(new c(b_b, i));
-        b_b.f1899b.setOnLongClickListener(new d(b_b));
+        c0161b.f1899b.setOnClickListener(new c(c0161b, i));
+        c0161b.f1899b.setOnLongClickListener(new d(c0161b));
         return view2;
     }
 }

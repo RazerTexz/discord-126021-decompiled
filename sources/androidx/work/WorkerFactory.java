@@ -4,18 +4,26 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class WorkerFactory {
     private static final String TAG = Logger.tagWithPrefix("WorkerFactory");
 
+    /* JADX INFO: renamed from: androidx.work.WorkerFactory$1, reason: invalid class name */
+    public class AnonymousClass1 extends WorkerFactory {
+        @Override // androidx.work.WorkerFactory
+        @Nullable
+        public ListenableWorker createWorker(@NonNull Context context, @NonNull String str, @NonNull WorkerParameters workerParameters) {
+            return null;
+        }
+    }
+
     @Nullable
     public abstract ListenableWorker createWorker(@NonNull Context context, @NonNull String str, @NonNull WorkerParameters workerParameters);
 
     @Nullable
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public final ListenableWorker createWorkerWithDefaultFallback(@NonNull Context context, @NonNull String str, @NonNull WorkerParameters workerParameters) {
         ListenableWorker listenableWorkerCreateWorker = createWorker(context, str, workerParameters);
         if (listenableWorkerCreateWorker == null) {
@@ -40,8 +48,8 @@ public abstract class WorkerFactory {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public static WorkerFactory getDefaultWorkerFactory() {
-        return new WorkerFactory$1();
+        return new AnonymousClass1();
     }
 }

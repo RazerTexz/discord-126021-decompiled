@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences$Editor;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import androidx.core.content.FileProvider;
@@ -20,9 +19,25 @@ import kotlin.NoWhenBranchMatchedException;
 public final class MediaPicker {
     public static final MediaPicker a = new MediaPicker();
 
-    public final Uri a(MediaPicker$Provider mediaPicker$Provider) throws IOException {
-        File imageFile = mediaPicker$Provider.getImageFile();
-        Context contextRequireContext = mediaPicker$Provider.requireContext();
+    /* JADX INFO: compiled from: MediaPicker.kt */
+    public interface Provider {
+        File getImageFile();
+
+        Context requireContext();
+
+        void startActivityForResult(Intent intent, int requestCode);
+    }
+
+    /* JADX INFO: compiled from: MediaPicker.kt */
+    public interface a {
+        void a(Exception exc);
+
+        void b(Uri uri, RequestType requestType);
+    }
+
+    public final Uri a(Provider provider) throws IOException {
+        File imageFile = provider.getImageFile();
+        Context contextRequireContext = provider.requireContext();
         Uri uriForFile = FileProvider.getUriForFile(contextRequireContext, contextRequireContext.getPackageName().toString() + ".file-provider", imageFile);
         m.checkNotNullExpressionValue(uriForFile, "FileProvider.getUriForFi…context, authority, file)");
         e(contextRequireContext, imageFile.toURI().toString());
@@ -97,8 +112,8 @@ public final class MediaPicker {
     public final void e(Context context, String str) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("picker", 0);
         m.checkNotNullExpressionValue(sharedPreferences, "context.getSharedPrefere…r\", Context.MODE_PRIVATE)");
-        SharedPreferences$Editor sharedPreferences$EditorEdit = sharedPreferences.edit();
-        sharedPreferences$EditorEdit.putString("picker_uri", str);
-        sharedPreferences$EditorEdit.apply();
+        SharedPreferences.Editor editorEdit = sharedPreferences.edit();
+        editorEdit.putString("picker_uri", str);
+        editorEdit.apply();
     }
 }

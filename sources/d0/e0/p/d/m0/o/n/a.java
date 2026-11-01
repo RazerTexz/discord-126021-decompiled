@@ -1,6 +1,5 @@
 package d0.e0.p.d.m0.o.n;
 
-import d0.e0.p.d.m0.k.a0.i$b;
 import d0.e0.p.d.m0.p.i;
 import d0.z.d.m;
 import java.util.Collection;
@@ -32,7 +31,7 @@ public final class a {
         i<d0.e0.p.d.m0.k.a0.i> iVar = new i<>();
         for (d0.e0.p.d.m0.k.a0.i iVar2 : iterable) {
             d0.e0.p.d.m0.k.a0.i iVar3 = iVar2;
-            if ((iVar3 == null || iVar3 == i$b.f3461b) ? false : true) {
+            if ((iVar3 == null || iVar3 == d0.e0.p.d.m0.k.a0.i.b.f3461b) ? false : true) {
                 iVar.add(iVar2);
             }
         }

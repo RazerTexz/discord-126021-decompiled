@@ -10,5 +10,12 @@ import java.lang.annotation.Target;
 @Target({ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.CLASS)
 public @interface Experimental {
-    Experimental$Level level() default Experimental$Level.ERROR;
+
+    /* JADX INFO: compiled from: Experimental.kt */
+    public enum Level {
+        WARNING,
+        ERROR
+    }
+
+    Level level() default Level.ERROR;
 }

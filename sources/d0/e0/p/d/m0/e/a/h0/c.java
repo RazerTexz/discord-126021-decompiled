@@ -1,7 +1,5 @@
 package d0.e0.p.d.m0.e.a.h0;
 
-import d0.e0.p.d.m0.c.a$a;
-import d0.e0.p.d.m0.c.b$a;
 import d0.e0.p.d.m0.c.i1.q;
 import d0.e0.p.d.m0.c.m;
 import d0.e0.p.d.m0.c.u0;
@@ -17,8 +15,8 @@ public class c extends d0.e0.p.d.m0.c.i1.g implements b {
     public Boolean P;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public c(d0.e0.p.d.m0.c.e eVar, c cVar, d0.e0.p.d.m0.c.g1.g gVar, boolean z2, b$a b_a, u0 u0Var) {
-        super(eVar, cVar, gVar, z2, b_a, u0Var);
+    public c(d0.e0.p.d.m0.c.e eVar, c cVar, d0.e0.p.d.m0.c.g1.g gVar, boolean z2, d0.e0.p.d.m0.c.b.a aVar, u0 u0Var) {
+        super(eVar, cVar, gVar, z2, aVar, u0Var);
         if (eVar == null) {
             a(0);
             throw null;
@@ -27,7 +25,7 @@ public class c extends d0.e0.p.d.m0.c.i1.g implements b {
             a(1);
             throw null;
         }
-        if (b_a == null) {
+        if (aVar == null) {
             a(2);
             throw null;
         }
@@ -125,8 +123,8 @@ public class c extends d0.e0.p.d.m0.c.i1.g implements b {
     }
 
     @Override // d0.e0.p.d.m0.c.i1.g, d0.e0.p.d.m0.c.i1.q
-    public /* bridge */ /* synthetic */ q b(m mVar, x xVar, b$a b_a, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.g1.g gVar, u0 u0Var) {
-        return f(mVar, xVar, b_a, eVar, gVar, u0Var);
+    public /* bridge */ /* synthetic */ q b(m mVar, x xVar, d0.e0.p.d.m0.c.b.a aVar, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.g1.g gVar, u0 u0Var) {
+        return f(mVar, xVar, aVar, eVar, gVar, u0Var);
     }
 
     public static c createJavaConstructor(d0.e0.p.d.m0.c.e eVar, d0.e0.p.d.m0.c.g1.g gVar, boolean z2, u0 u0Var) {
@@ -139,28 +137,28 @@ public class c extends d0.e0.p.d.m0.c.i1.g implements b {
             throw null;
         }
         if (u0Var != null) {
-            return new c(eVar, null, gVar, z2, b$a.DECLARATION, u0Var);
+            return new c(eVar, null, gVar, z2, d0.e0.p.d.m0.c.b.a.DECLARATION, u0Var);
         }
         a(6);
         throw null;
     }
 
     @Override // d0.e0.p.d.m0.c.i1.g
-    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.i1.g e(m mVar, x xVar, b$a b_a, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.g1.g gVar, u0 u0Var) {
-        return f(mVar, xVar, b_a, eVar, gVar, u0Var);
+    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.i1.g e(m mVar, x xVar, d0.e0.p.d.m0.c.b.a aVar, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.g1.g gVar, u0 u0Var) {
+        return f(mVar, xVar, aVar, eVar, gVar, u0Var);
     }
 
     @Override // d0.e0.p.d.m0.e.a.h0.b
     public /* bridge */ /* synthetic */ b enhance(c0 c0Var, List list, c0 c0Var2, Pair pair) {
-        return enhance(c0Var, (List<l>) list, c0Var2, (Pair<a$a<?>, ?>) pair);
+        return enhance(c0Var, (List<l>) list, c0Var2, (Pair<d0.e0.p.d.m0.c.a.InterfaceC0511a<?>, ?>) pair);
     }
 
-    public c f(m mVar, x xVar, b$a b_a, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.g1.g gVar, u0 u0Var) {
+    public c f(m mVar, x xVar, d0.e0.p.d.m0.c.b.a aVar, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.g1.g gVar, u0 u0Var) {
         if (mVar == null) {
             a(7);
             throw null;
         }
-        if (b_a == null) {
+        if (aVar == null) {
             a(8);
             throw null;
         }
@@ -172,8 +170,8 @@ public class c extends d0.e0.p.d.m0.c.i1.g implements b {
             a(10);
             throw null;
         }
-        if (b_a != b$a.DECLARATION && b_a != b$a.SYNTHESIZED) {
-            throw new IllegalStateException("Attempt at creating a constructor that is not a declaration: \ncopy from: " + this + "\nnewOwner: " + mVar + "\nkind: " + b_a);
+        if (aVar != d0.e0.p.d.m0.c.b.a.DECLARATION && aVar != d0.e0.p.d.m0.c.b.a.SYNTHESIZED) {
+            throw new IllegalStateException("Attempt at creating a constructor that is not a declaration: \ncopy from: " + this + "\nnewOwner: " + mVar + "\nkind: " + aVar);
         }
         d0.e0.p.d.m0.c.e eVar2 = (d0.e0.p.d.m0.c.e) mVar;
         c cVar = (c) xVar;
@@ -181,7 +179,7 @@ public class c extends d0.e0.p.d.m0.c.i1.g implements b {
             a(12);
             throw null;
         }
-        if (b_a == null) {
+        if (aVar == null) {
             a(13);
             throw null;
         }
@@ -193,7 +191,7 @@ public class c extends d0.e0.p.d.m0.c.i1.g implements b {
             a(15);
             throw null;
         }
-        c cVar2 = new c(eVar2, cVar, gVar, this.N, b_a, u0Var);
+        c cVar2 = new c(eVar2, cVar, gVar, this.N, aVar, u0Var);
         cVar2.setHasStableParameterNames(hasStableParameterNames());
         cVar2.setHasSynthesizedParameterNames(hasSynthesizedParameterNames());
         return cVar2;
@@ -220,7 +218,7 @@ public class c extends d0.e0.p.d.m0.c.i1.g implements b {
     }
 
     @Override // d0.e0.p.d.m0.e.a.h0.b
-    public c enhance(c0 c0Var, List<l> list, c0 c0Var2, Pair<a$a<?>, ?> pair) {
+    public c enhance(c0 c0Var, List<l> list, c0 c0Var2, Pair<d0.e0.p.d.m0.c.a.InterfaceC0511a<?>, ?> pair) {
         if (list == null) {
             a(16);
             throw null;

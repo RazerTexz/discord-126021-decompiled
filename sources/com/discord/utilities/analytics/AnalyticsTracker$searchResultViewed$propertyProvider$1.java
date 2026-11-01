@@ -10,19 +10,19 @@ import kotlin.jvm.functions.Function0;
 /* JADX INFO: compiled from: AnalyticsTracker.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class AnalyticsTracker$searchResultViewed$propertyProvider$1 extends o implements Function0<Map<String, ? extends Object>> {
-    public final /* synthetic */ Traits$Location $locationTrait;
+    public final /* synthetic */ Traits.Location $locationTrait;
     public final /* synthetic */ Integer $lockedResultsCount;
     public final /* synthetic */ Map $properties;
     public final /* synthetic */ SearchType $searchType;
     public final /* synthetic */ int $totalResultsCount;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public AnalyticsTracker$searchResultViewed$propertyProvider$1(SearchType searchType, int i, Integer num, Traits$Location traits$Location, Map map) {
+    public AnalyticsTracker$searchResultViewed$propertyProvider$1(SearchType searchType, int i, Integer num, Traits.Location location, Map map) {
         super(0);
         this.$searchType = searchType;
         this.$totalResultsCount = i;
         this.$lockedResultsCount = num;
-        this.$locationTrait = traits$Location;
+        this.$locationTrait = location;
         this.$properties = map;
     }
 
@@ -41,9 +41,9 @@ public final class AnalyticsTracker$searchResultViewed$propertyProvider$1 extend
         if (num != null) {
             linkedHashMap.put("num_results_locked", num);
         }
-        Traits$Location traits$Location = this.$locationTrait;
-        if (traits$Location != null) {
-            traits$Location.serializeTo(linkedHashMap);
+        Traits.Location location = this.$locationTrait;
+        if (location != null) {
+            location.serializeTo(linkedHashMap);
         }
         return h0.plus(linkedHashMap, CollectionExtensionsKt.filterNonNullValues(this.$properties));
     }

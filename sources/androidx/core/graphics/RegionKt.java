@@ -3,8 +3,8 @@ package androidx.core.graphics;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Region;
-import android.graphics.Region$Op;
 import android.graphics.RegionIterator;
+import d0.z.d.g0.a;
 import d0.z.d.m;
 import java.util.Iterator;
 import kotlin.Unit;
@@ -13,11 +13,56 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: Region.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class RegionKt {
+
+    /* JADX INFO: renamed from: androidx.core.graphics.RegionKt$iterator$1, reason: invalid class name */
+    /* JADX INFO: compiled from: Region.kt */
+    public final class AnonymousClass1 implements Iterator<Rect>, a {
+        public final /* synthetic */ Region $this_iterator;
+        private boolean hasMore;
+        private final RegionIterator iterator;
+        private final Rect rect;
+
+        public AnonymousClass1(Region region) {
+            this.$this_iterator = region;
+            RegionIterator regionIterator = new RegionIterator(region);
+            this.iterator = regionIterator;
+            Rect rect = new Rect();
+            this.rect = rect;
+            this.hasMore = regionIterator.next(rect);
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.hasMore;
+        }
+
+        @Override // java.util.Iterator
+        public /* bridge */ /* synthetic */ Rect next() {
+            return next();
+        }
+
+        @Override // java.util.Iterator
+        public void remove() {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // java.util.Iterator
+        public Rect next() {
+            if (!this.hasMore) {
+                throw new IndexOutOfBoundsException();
+            }
+            Rect rect = new Rect(this.rect);
+            this.hasMore = this.iterator.next(this.rect);
+            return rect;
+        }
+    }
+
     public static final Region and(Region region, Rect rect) {
         m.checkNotNullParameter(region, "<this>");
         m.checkNotNullParameter(rect, "r");
         Region region2 = new Region(region);
-        region2.op(rect, Region$Op.INTERSECT);
+        region2.op(rect, Region.Op.INTERSECT);
         return region2;
     }
 
@@ -43,21 +88,21 @@ public final class RegionKt {
 
     public static final Iterator<Rect> iterator(Region region) {
         m.checkNotNullParameter(region, "<this>");
-        return new RegionKt$iterator$1(region);
+        return new AnonymousClass1(region);
     }
 
     public static final Region minus(Region region, Rect rect) {
         m.checkNotNullParameter(region, "<this>");
         m.checkNotNullParameter(rect, "r");
         Region region2 = new Region(region);
-        region2.op(rect, Region$Op.DIFFERENCE);
+        region2.op(rect, Region.Op.DIFFERENCE);
         return region2;
     }
 
     public static final Region not(Region region) {
         m.checkNotNullParameter(region, "<this>");
         Region region2 = new Region(region.getBounds());
-        region2.op(region, Region$Op.DIFFERENCE);
+        region2.op(region, Region.Op.DIFFERENCE);
         return region2;
     }
 
@@ -80,7 +125,7 @@ public final class RegionKt {
     public static final Region unaryMinus(Region region) {
         m.checkNotNullParameter(region, "<this>");
         Region region2 = new Region(region.getBounds());
-        region2.op(region, Region$Op.DIFFERENCE);
+        region2.op(region, Region.Op.DIFFERENCE);
         return region2;
     }
 
@@ -88,7 +133,7 @@ public final class RegionKt {
         m.checkNotNullParameter(region, "<this>");
         m.checkNotNullParameter(rect, "r");
         Region region2 = new Region(region);
-        region2.op(rect, Region$Op.XOR);
+        region2.op(rect, Region.Op.XOR);
         return region2;
     }
 
@@ -96,7 +141,7 @@ public final class RegionKt {
         m.checkNotNullParameter(region, "<this>");
         m.checkNotNullParameter(region2, "r");
         Region region3 = new Region(region);
-        region3.op(region2, Region$Op.INTERSECT);
+        region3.op(region2, Region.Op.INTERSECT);
         return region3;
     }
 
@@ -104,7 +149,7 @@ public final class RegionKt {
         m.checkNotNullParameter(region, "<this>");
         m.checkNotNullParameter(region2, "r");
         Region region3 = new Region(region);
-        region3.op(region2, Region$Op.DIFFERENCE);
+        region3.op(region2, Region.Op.DIFFERENCE);
         return region3;
     }
 
@@ -112,7 +157,7 @@ public final class RegionKt {
         m.checkNotNullParameter(region, "<this>");
         m.checkNotNullParameter(region2, "r");
         Region region3 = new Region(region);
-        region3.op(region2, Region$Op.UNION);
+        region3.op(region2, Region.Op.UNION);
         return region3;
     }
 
@@ -120,7 +165,7 @@ public final class RegionKt {
         m.checkNotNullParameter(region, "<this>");
         m.checkNotNullParameter(region2, "r");
         Region region3 = new Region(region);
-        region3.op(region2, Region$Op.UNION);
+        region3.op(region2, Region.Op.UNION);
         return region3;
     }
 
@@ -128,7 +173,7 @@ public final class RegionKt {
         m.checkNotNullParameter(region, "<this>");
         m.checkNotNullParameter(region2, "r");
         Region region3 = new Region(region);
-        region3.op(region2, Region$Op.XOR);
+        region3.op(region2, Region.Op.XOR);
         return region3;
     }
 }

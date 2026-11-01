@@ -2,7 +2,7 @@ package com.google.android.gms.common;
 
 import android.app.PendingIntent;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RecentlyNonNull;
@@ -17,7 +17,7 @@ import java.util.Arrays;
 public final class ConnectionResult extends AbstractSafeParcelable {
 
     @RecentlyNonNull
-    public static final Parcelable$Creator<ConnectionResult> CREATOR = new q();
+    public static final Parcelable.Creator<ConnectionResult> CREATOR = new q();
     public static final int SUCCESS = 0;
     public final int k;
     public final int l;

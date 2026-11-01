@@ -1,7 +1,7 @@
 package b.i.a.f.h.l;
 
 import android.content.Context;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.content.pm.ProviderInfo;
 import android.net.Uri;
 import android.util.Log;
@@ -37,7 +37,7 @@ public final class j2 {
             if ("com.google.android.gms".equals(context.getPackageName()) || ((providerInfoResolveContentProvider = context.getPackageManager().resolveContentProvider("com.google.android.gms.phenotype", 0)) != null && "com.google.android.gms".equals(providerInfoResolveContentProvider.packageName))) {
                 try {
                     z2 = (context.getPackageManager().getApplicationInfo("com.google.android.gms", 0).flags & Opcodes.LOR) != 0;
-                } catch (PackageManager$NameNotFoundException unused) {
+                } catch (PackageManager.NameNotFoundException unused) {
                 }
                 if (z2) {
                     z3 = true;

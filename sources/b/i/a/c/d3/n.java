@@ -1,16 +1,14 @@
 package b.i.a.c.d3;
 
-import android.R$attr;
+import android.R;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Paint$Join;
-import android.graphics.Paint$Style;
 import android.graphics.Rect;
-import android.text.Layout$Alignment;
+import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import androidx.annotation.Nullable;
@@ -44,7 +42,7 @@ public final class n {
     public CharSequence i;
 
     @Nullable
-    public Layout$Alignment j;
+    public Layout.Alignment j;
 
     @Nullable
     public Bitmap k;
@@ -73,7 +71,7 @@ public final class n {
     public float f922z;
 
     public n(Context context) {
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(null, new int[]{R$attr.lineSpacingExtra, R$attr.lineSpacingMultiplier}, 0, 0);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(null, new int[]{R.attr.lineSpacingExtra, R.attr.lineSpacingMultiplier}, 0, 0);
         this.e = typedArrayObtainStyledAttributes.getDimensionPixelSize(0, 0);
         this.d = typedArrayObtainStyledAttributes.getFloat(1, 1.0f);
         typedArrayObtainStyledAttributes.recycle();
@@ -88,7 +86,7 @@ public final class n {
         Paint paint = new Paint();
         this.g = paint;
         paint.setAntiAlias(true);
-        paint.setStyle(Paint$Style.FILL);
+        paint.setStyle(Paint.Style.FILL);
         Paint paint2 = new Paint();
         this.h = paint2;
         paint2.setAntiAlias(true);
@@ -115,10 +113,10 @@ public final class n {
         }
         int i = this.w;
         if (i == 1) {
-            this.f.setStrokeJoin(Paint$Join.ROUND);
+            this.f.setStrokeJoin(Paint.Join.ROUND);
             this.f.setStrokeWidth(this.a);
             this.f.setColor(this.v);
-            this.f.setStyle(Paint$Style.FILL_AND_STROKE);
+            this.f.setStyle(Paint.Style.FILL_AND_STROKE);
             staticLayout2.draw(canvas);
         } else if (i == 2) {
             TextPaint textPaint = this.f;
@@ -131,14 +129,14 @@ public final class n {
             int i3 = z3 ? this.v : -1;
             float f3 = this.f918b / 2.0f;
             this.f.setColor(this.f919s);
-            this.f.setStyle(Paint$Style.FILL);
+            this.f.setStyle(Paint.Style.FILL);
             float f4 = -f3;
             this.f.setShadowLayer(this.f918b, f4, f4, i2);
             staticLayout2.draw(canvas);
             this.f.setShadowLayer(this.f918b, f3, f3, i3);
         }
         this.f.setColor(this.f919s);
-        this.f.setStyle(Paint$Style.FILL);
+        this.f.setStyle(Paint.Style.FILL);
         staticLayout.draw(canvas);
         this.f.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
         canvas.restoreToCount(iSave);

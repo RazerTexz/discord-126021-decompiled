@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.ViewServerSettingsGuildRoleSubscriptionUnavailableNoticeBinding;
 import com.google.android.material.appbar.AppBarLayout;
 import d0.z.d.k;
@@ -29,20 +29,20 @@ public final /* synthetic */ class WidgetServerSettingsGuildRoleSubscriptionEarn
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final ViewServerSettingsGuildRoleSubscriptionUnavailableNoticeBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = 2131361878;
-        Toolbar toolbar = (Toolbar) view.findViewById(2131361878);
+        int i = R.id.action_bar_toolbar;
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.action_bar_toolbar);
         if (toolbar != null) {
-            i = R$id.app_bar_layout;
-            AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R$id.app_bar_layout);
+            i = R.id.app_bar_layout;
+            AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R.id.app_bar_layout);
             if (appBarLayout != null) {
-                i = R$id.art;
-                ImageView imageView = (ImageView) view.findViewById(R$id.art);
+                i = R.id.art;
+                ImageView imageView = (ImageView) view.findViewById(R.id.art);
                 if (imageView != null) {
-                    i = R$id.description;
-                    TextView textView = (TextView) view.findViewById(R$id.description);
+                    i = R.id.description;
+                    TextView textView = (TextView) view.findViewById(R.id.description);
                     if (textView != null) {
-                        i = 2131365869;
-                        TextView textView2 = (TextView) view.findViewById(2131365869);
+                        i = R.id.title;
+                        TextView textView2 = (TextView) view.findViewById(R.id.title);
                         if (textView2 != null) {
                             return new ViewServerSettingsGuildRoleSubscriptionUnavailableNoticeBinding((ConstraintLayout) view, toolbar, appBarLayout, imageView, textView, textView2);
                         }

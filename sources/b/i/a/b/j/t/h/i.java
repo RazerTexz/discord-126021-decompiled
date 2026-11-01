@@ -1,11 +1,8 @@
 package b.i.a.b.j.t.h;
 
-import b.i.a.b.j.q.g$a;
-import b.i.a.b.j.u.a$a;
-
 /* JADX INFO: compiled from: Uploader.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class i implements a$a {
+public final /* synthetic */ class i implements b.i.a.b.j.u.a.InterfaceC0091a {
     public final l a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -22,20 +19,20 @@ public final /* synthetic */ class i implements a$a {
         this.e = i;
     }
 
-    @Override // b.i.a.b.j.u.a$a
+    @Override // b.i.a.b.j.u.a.InterfaceC0091a
     public Object execute() {
         l lVar = this.a;
         b.i.a.b.j.q.g gVar = this.f789b;
         Iterable<b.i.a.b.j.t.i.h> iterable = this.c;
         b.i.a.b.j.i iVar = this.d;
         int i = this.e;
-        if (gVar.c() == g$a.TRANSIENT_ERROR) {
+        if (gVar.c() == b.i.a.b.j.q.g.a.TRANSIENT_ERROR) {
             lVar.c.n0(iterable);
             lVar.d.a(iVar, i + 1);
             return null;
         }
         lVar.c.m(iterable);
-        if (gVar.c() == g$a.OK) {
+        if (gVar.c() == b.i.a.b.j.q.g.a.OK) {
             lVar.c.v(iVar, gVar.b() + lVar.g.a());
         }
         if (!lVar.c.l0(iVar)) {

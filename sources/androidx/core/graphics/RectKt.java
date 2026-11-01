@@ -7,7 +7,6 @@ import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Region;
-import android.graphics.Region$Op;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: Rect.kt */
@@ -52,7 +51,7 @@ public final class RectKt {
         m.checkNotNullParameter(rect, "<this>");
         m.checkNotNullParameter(rect2, "r");
         Region region = new Region(rect);
-        region.op(rect2, Region$Op.DIFFERENCE);
+        region.op(rect2, Region.Op.DIFFERENCE);
         return region;
     }
 
@@ -110,7 +109,7 @@ public final class RectKt {
         m.checkNotNullParameter(rect, "<this>");
         m.checkNotNullParameter(rect2, "r");
         Region region = new Region(rect);
-        region.op(rect2, Region$Op.XOR);
+        region.op(rect2, Region.Op.XOR);
         return region;
     }
 
@@ -164,7 +163,7 @@ public final class RectKt {
         Region region = new Region(rect);
         Rect rect2 = new Rect();
         rectF2.roundOut(rect2);
-        region.op(rect2, Region$Op.DIFFERENCE);
+        region.op(rect2, Region.Op.DIFFERENCE);
         return region;
     }
 
@@ -192,7 +191,7 @@ public final class RectKt {
         Region region = new Region(rect);
         Rect rect2 = new Rect();
         rectF2.roundOut(rect2);
-        region.op(rect2, Region$Op.XOR);
+        region.op(rect2, Region.Op.XOR);
         return region;
     }
 

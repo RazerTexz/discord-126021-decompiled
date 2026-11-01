@@ -2,14 +2,13 @@ package com.discord.utilities.font;
 
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.res.Resources$Theme;
+import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.provider.Settings$System;
+import android.provider.Settings;
 import android.util.TypedValue;
 import androidx.annotation.AttrRes;
 import androidx.core.content.res.ResourcesCompat;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import d0.a0.a;
 import d0.z.d.m;
 
@@ -26,13 +25,13 @@ public final class FontUtils {
 
     public final int getSystemFontScaleInt(ContentResolver contentResolver) {
         m.checkNotNullParameter(contentResolver, "contentResolver");
-        return a.roundToInt(Settings$System.getFloat(contentResolver, "font_scale", 1.0f) * 100);
+        return a.roundToInt(Settings.System.getFloat(contentResolver, "font_scale", 1.0f) * 100);
     }
 
     public final float getTargetFontScaleFloat(Context context) {
         m.checkNotNullParameter(context, "context");
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        return storeStream$Companion.getUserSettingsSystem().getFontScale() == -1 ? Settings$System.getFloat(context.getContentResolver(), "font_scale", 1.0f) : storeStream$Companion.getUserSettingsSystem().getFontScale() / 100.0f;
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        return companion.getUserSettingsSystem().getFontScale() == -1 ? Settings.System.getFloat(context.getContentResolver(), "font_scale", 1.0f) : companion.getUserSettingsSystem().getFontScale() / 100.0f;
     }
 
     public final Typeface getThemedFont(Context context, @AttrRes int attrResourceId) {
@@ -41,7 +40,7 @@ public final class FontUtils {
     }
 
     public final int getThemedFontResId(Context context, @AttrRes int attrResourceId) {
-        Resources$Theme theme;
+        Resources.Theme theme;
         TypedValue typedValue = new TypedValue();
         if (context != null && (theme = context.getTheme()) != null) {
             theme.resolveAttribute(attrResourceId, typedValue, true);

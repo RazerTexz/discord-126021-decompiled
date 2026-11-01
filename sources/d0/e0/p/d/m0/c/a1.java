@@ -4,10 +4,75 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import kotlin.jvm.functions.Function1;
+import kotlin.sequences.Sequence;
 
 /* JADX INFO: compiled from: typeParameterUtils.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class a1 {
+
+    /* JADX INFO: compiled from: typeParameterUtils.kt */
+    public final class a extends d0.z.d.o implements Function1<m, Boolean> {
+        public static final a j = new a();
+
+        public a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(m mVar) {
+            return Boolean.valueOf(invoke2(mVar));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(m mVar) {
+            d0.z.d.m.checkNotNullParameter(mVar, "it");
+            return mVar instanceof d0.e0.p.d.m0.c.a;
+        }
+    }
+
+    /* JADX INFO: compiled from: typeParameterUtils.kt */
+    public final class b extends d0.z.d.o implements Function1<m, Boolean> {
+        public static final b j = new b();
+
+        public b() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(m mVar) {
+            return Boolean.valueOf(invoke2(mVar));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2(m mVar) {
+            d0.z.d.m.checkNotNullParameter(mVar, "it");
+            return !(mVar instanceof l);
+        }
+    }
+
+    /* JADX INFO: compiled from: typeParameterUtils.kt */
+    public final class c extends d0.z.d.o implements Function1<m, Sequence<? extends z0>> {
+        public static final c j = new c();
+
+        public c() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Sequence<? extends z0> invoke(m mVar) {
+            return invoke2(mVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Sequence<z0> invoke2(m mVar) {
+            d0.z.d.m.checkNotNullParameter(mVar, "it");
+            List<z0> typeParameters = ((d0.e0.p.d.m0.c.a) mVar).getTypeParameters();
+            d0.z.d.m.checkNotNullExpressionValue(typeParameters, "it as CallableDescriptor).typeParameters");
+            return d0.t.u.asSequence(typeParameters);
+        }
+    }
+
     public static final l0 a(d0.e0.p.d.m0.n.c0 c0Var, i iVar, int i) {
         if (iVar == null || d0.e0.p.d.m0.n.t.isError(iVar)) {
             return null;
@@ -37,10 +102,10 @@ public final class a1 {
         d0.z.d.m.checkNotNullParameter(iVar, "<this>");
         List<z0> declaredTypeParameters = iVar.getDeclaredTypeParameters();
         d0.z.d.m.checkNotNullExpressionValue(declaredTypeParameters, "declaredTypeParameters");
-        if (!iVar.isInner() && !(iVar.getContainingDeclaration() instanceof a)) {
+        if (!iVar.isInner() && !(iVar.getContainingDeclaration() instanceof d0.e0.p.d.m0.c.a)) {
             return declaredTypeParameters;
         }
-        List list = d0.f0.q.toList(d0.f0.q.flatMap(d0.f0.q.filter(d0.f0.q.takeWhile(d0.e0.p.d.m0.k.x.a.getParents(iVar), a1$a.j), a1$b.j), a1$c.j));
+        List list = d0.f0.q.toList(d0.f0.q.flatMap(d0.f0.q.filter(d0.f0.q.takeWhile(d0.e0.p.d.m0.k.x.a.getParents(iVar), a.j), b.j), c.j));
         Iterator<m> it = d0.e0.p.d.m0.k.x.a.getParents(iVar).iterator();
         do {
             listEmptyList = null;
@@ -66,7 +131,7 @@ public final class a1 {
         ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(listPlus, 10));
         for (z0 z0Var : listPlus) {
             d0.z.d.m.checkNotNullExpressionValue(z0Var, "it");
-            arrayList.add(new c(z0Var, iVar, declaredTypeParameters.size()));
+            arrayList.add(new d0.e0.p.d.m0.c.c(z0Var, iVar, declaredTypeParameters.size()));
         }
         return d0.t.u.plus((Collection) declaredTypeParameters, (Iterable) arrayList);
     }

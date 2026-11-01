@@ -2,6 +2,7 @@ package com.discord.media_picker;
 
 import com.discord.models.domain.ModelAuditLogEntry;
 import kotlin.NoWhenBranchMatchedException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: RequestType.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -12,7 +13,16 @@ public enum RequestType {
     CROP,
     CHOOSER;
 
-    public static final RequestType$a Companion = new RequestType$a(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
+
+    /* JADX INFO: renamed from: com.discord.media_picker.RequestType$a, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: RequestType.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
 
     public final int getCode$media_picker_release() {
         int iOrdinal = ordinal();

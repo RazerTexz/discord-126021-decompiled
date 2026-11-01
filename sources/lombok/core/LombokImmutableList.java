@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/LombokImmutableList.SCL.lombok */
 public final class LombokImmutableList<T> implements Iterable<T> {
@@ -160,9 +161,39 @@ public final class LombokImmutableList<T> implements Iterable<T> {
         return false;
     }
 
+    /* JADX INFO: renamed from: lombok.core.LombokImmutableList$1, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/LombokImmutableList$1.SCL.lombok */
+    class AnonymousClass1 implements Iterator<T> {
+        private int idx = 0;
+
+        AnonymousClass1() {
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.idx < LombokImmutableList.access$0(LombokImmutableList.this).length;
+        }
+
+        @Override // java.util.Iterator
+        public T next() {
+            if (this.idx >= LombokImmutableList.access$0(LombokImmutableList.this).length) {
+                throw new NoSuchElementException();
+            }
+            Object[] objArrAccess$0 = LombokImmutableList.access$0(LombokImmutableList.this);
+            int i = this.idx;
+            this.idx = i + 1;
+            return (T) objArrAccess$0[i];
+        }
+
+        @Override // java.util.Iterator
+        public void remove() {
+            throw new UnsupportedOperationException("List is immutable");
+        }
+    }
+
     @Override // java.lang.Iterable
     public Iterator<T> iterator() {
-        return new LombokImmutableList$1(this);
+        return new AnonymousClass1();
     }
 
     public String toString() {

@@ -1,6 +1,5 @@
 package d0.e0.p.d.m0.c.i1;
 
-import d0.e0.p.d.m0.c.b$a;
 import d0.e0.p.d.m0.c.c1;
 import d0.e0.p.d.m0.c.q0;
 import d0.e0.p.d.m0.c.u0;
@@ -17,8 +16,8 @@ public class g extends q implements d0.e0.p.d.m0.c.d {
     public static final d0.e0.p.d.m0.g.e M = d0.e0.p.d.m0.g.e.special("<init>");
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public g(d0.e0.p.d.m0.c.e eVar, d0.e0.p.d.m0.c.l lVar, d0.e0.p.d.m0.c.g1.g gVar, boolean z2, b$a b_a, u0 u0Var) {
-        super(eVar, lVar, gVar, M, b_a, u0Var);
+    public g(d0.e0.p.d.m0.c.e eVar, d0.e0.p.d.m0.c.l lVar, d0.e0.p.d.m0.c.g1.g gVar, boolean z2, d0.e0.p.d.m0.c.b.a aVar, u0 u0Var) {
+        super(eVar, lVar, gVar, M, aVar, u0Var);
         if (eVar == null) {
             a(0);
             throw null;
@@ -27,7 +26,7 @@ public class g extends q implements d0.e0.p.d.m0.c.d {
             a(1);
             throw null;
         }
-        if (b_a == null) {
+        if (aVar == null) {
             a(2);
             throw null;
         }
@@ -202,8 +201,8 @@ public class g extends q implements d0.e0.p.d.m0.c.d {
     }
 
     @Override // d0.e0.p.d.m0.c.i1.q
-    public /* bridge */ /* synthetic */ q b(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.x xVar, b$a b_a, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.g1.g gVar, u0 u0Var) {
-        return e(mVar, xVar, b_a, eVar, gVar, u0Var);
+    public /* bridge */ /* synthetic */ q b(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.x xVar, d0.e0.p.d.m0.c.b.a aVar, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.g1.g gVar, u0 u0Var) {
+        return e(mVar, xVar, aVar, eVar, gVar, u0Var);
     }
 
     public q0 calculateDispatchReceiverParameter() {
@@ -219,8 +218,8 @@ public class g extends q implements d0.e0.p.d.m0.c.d {
     }
 
     @Override // d0.e0.p.d.m0.c.i1.q, d0.e0.p.d.m0.c.b
-    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.b copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, b$a b_a, boolean z2) {
-        return copy(mVar, zVar, uVar, b_a, z2);
+    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.b copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, d0.e0.p.d.m0.c.b.a aVar, boolean z2) {
+        return copy(mVar, zVar, uVar, aVar, z2);
     }
 
     public static g create(d0.e0.p.d.m0.c.e eVar, d0.e0.p.d.m0.c.g1.g gVar, boolean z2, u0 u0Var) {
@@ -233,18 +232,18 @@ public class g extends q implements d0.e0.p.d.m0.c.d {
             throw null;
         }
         if (u0Var != null) {
-            return new g(eVar, null, gVar, z2, b$a.DECLARATION, u0Var);
+            return new g(eVar, null, gVar, z2, d0.e0.p.d.m0.c.b.a.DECLARATION, u0Var);
         }
         a(6);
         throw null;
     }
 
-    public g e(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.x xVar, b$a b_a, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.g1.g gVar, u0 u0Var) {
+    public g e(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.x xVar, d0.e0.p.d.m0.c.b.a aVar, d0.e0.p.d.m0.g.e eVar, d0.e0.p.d.m0.c.g1.g gVar, u0 u0Var) {
         if (mVar == null) {
             a(21);
             throw null;
         }
-        if (b_a == null) {
+        if (aVar == null) {
             a(22);
             throw null;
         }
@@ -256,11 +255,11 @@ public class g extends q implements d0.e0.p.d.m0.c.d {
             a(24);
             throw null;
         }
-        b$a b_a2 = b$a.DECLARATION;
-        if (b_a == b_a2 || b_a == b$a.SYNTHESIZED) {
-            return new g((d0.e0.p.d.m0.c.e) mVar, this, gVar, this.N, b_a2, u0Var);
+        d0.e0.p.d.m0.c.b.a aVar2 = d0.e0.p.d.m0.c.b.a.DECLARATION;
+        if (aVar == aVar2 || aVar == d0.e0.p.d.m0.c.b.a.SYNTHESIZED) {
+            return new g((d0.e0.p.d.m0.c.e) mVar, this, gVar, this.N, aVar2, u0Var);
         }
-        throw new IllegalStateException("Attempt at creating a constructor that is not a declaration: \ncopy from: " + this + "\nnewOwner: " + mVar + "\nkind: " + b_a);
+        throw new IllegalStateException("Attempt at creating a constructor that is not a declaration: \ncopy from: " + this + "\nnewOwner: " + mVar + "\nkind: " + aVar);
     }
 
     @Override // d0.e0.p.d.m0.c.l
@@ -330,8 +329,8 @@ public class g extends q implements d0.e0.p.d.m0.c.d {
     }
 
     @Override // d0.e0.p.d.m0.c.i1.q, d0.e0.p.d.m0.c.b
-    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.x copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, b$a b_a, boolean z2) {
-        return copy(mVar, zVar, uVar, b_a, z2);
+    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.x copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, d0.e0.p.d.m0.c.b.a aVar, boolean z2) {
+        return copy(mVar, zVar, uVar, aVar, z2);
     }
 
     @Override // d0.e0.p.d.m0.c.i1.l, d0.e0.p.d.m0.c.m
@@ -350,8 +349,8 @@ public class g extends q implements d0.e0.p.d.m0.c.d {
     }
 
     @Override // d0.e0.p.d.m0.c.i1.q, d0.e0.p.d.m0.c.b
-    public d0.e0.p.d.m0.c.d copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, b$a b_a, boolean z2) {
-        d0.e0.p.d.m0.c.d dVar = (d0.e0.p.d.m0.c.d) super.copy(mVar, zVar, uVar, b_a, z2);
+    public d0.e0.p.d.m0.c.d copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, d0.e0.p.d.m0.c.b.a aVar, boolean z2) {
+        d0.e0.p.d.m0.c.d dVar = (d0.e0.p.d.m0.c.d) super.copy(mVar, zVar, uVar, aVar, z2);
         if (dVar != null) {
             return dVar;
         }

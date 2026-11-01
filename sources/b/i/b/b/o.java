@@ -19,19 +19,19 @@ public class o<K, V> extends f<K, V> implements Serializable {
         this.value = v;
     }
 
-    @Override // b.i.b.b.f, java.util.Map$Entry
+    @Override // b.i.b.b.f, java.util.Map.Entry
     @NullableDecl
     public final K getKey() {
         return this.key;
     }
 
-    @Override // b.i.b.b.f, java.util.Map$Entry
+    @Override // b.i.b.b.f, java.util.Map.Entry
     @NullableDecl
     public final V getValue() {
         return this.value;
     }
 
-    @Override // java.util.Map$Entry
+    @Override // java.util.Map.Entry
     public final V setValue(V v) {
         throw new UnsupportedOperationException();
     }

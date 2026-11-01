@@ -1,17 +1,15 @@
 package b.c.a.a0;
 
 import android.graphics.PointF;
-import b.c.a.a0.i0.c$a;
-import b.c.a.a0.i0.c$b;
 import java.io.IOException;
 
 /* JADX INFO: compiled from: AnimatableTransformParser.java */
 /* JADX INFO: loaded from: classes.dex */
 public class c {
-    public static c$a a = c$a.a("a", "p", "s", "rz", "r", "o", "so", "eo", "sk", "sa");
+    public static b.c.a.a0.i0.c.a a = b.c.a.a0.i0.c.a.a("a", "p", "s", "rz", "r", "o", "so", "eo", "sk", "sa");
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static c$a f328b = c$a.a("k");
+    public static b.c.a.a0.i0.c.a f328b = b.c.a.a0.i0.c.a.a("k");
 
     /* JADX WARN: Code duplicated, block: B:113:0x0219  */
     /* JADX WARN: Code duplicated, block: B:114:0x021c  */
@@ -31,7 +29,7 @@ public class c {
         b.c.a.y.k.b bVarR1;
         b.c.a.y.k.b bVar4;
         boolean z4 = false;
-        boolean z5 = cVar.u() == c$b.BEGIN_OBJECT;
+        boolean z5 = cVar.u() == b.c.a.a0.i0.c.b.BEGIN_OBJECT;
         if (z5) {
             cVar.b();
         }

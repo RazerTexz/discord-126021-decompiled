@@ -1,12 +1,54 @@
 package j0.l.a;
 
-import rx.Observable$b;
+import rx.Observable;
 import rx.Subscriber;
 
 /* JADX INFO: compiled from: OperatorTakeUntilPredicate.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class h2<T> implements Observable$b<T, T> {
+public final class h2<T> implements Observable.b<T, T> {
     public final j0.k.b<? super T, Boolean> j;
+
+    /* JADX INFO: compiled from: OperatorTakeUntilPredicate.java */
+    public final class a extends Subscriber<T> {
+        public final Subscriber<? super T> j;
+        public boolean k;
+
+        public a(Subscriber<? super T> subscriber) {
+            this.j = subscriber;
+        }
+
+        @Override // j0.g
+        public void onCompleted() {
+            if (this.k) {
+                return;
+            }
+            this.j.onCompleted();
+        }
+
+        @Override // j0.g
+        public void onError(Throwable th) {
+            if (this.k) {
+                return;
+            }
+            this.j.onError(th);
+        }
+
+        @Override // j0.g
+        public void onNext(T t) {
+            this.j.onNext(t);
+            try {
+                if (h2.this.j.call(t).booleanValue()) {
+                    this.k = true;
+                    this.j.onCompleted();
+                    unsubscribe();
+                }
+            } catch (Throwable th) {
+                this.k = true;
+                b.i.a.f.e.o.f.p1(th, this.j, t);
+                unsubscribe();
+            }
+        }
+    }
 
     public h2(j0.k.b<? super T, Boolean> bVar) {
         this.j = bVar;
@@ -15,9 +57,9 @@ public final class h2<T> implements Observable$b<T, T> {
     @Override // j0.k.b
     public Object call(Object obj) {
         Subscriber subscriber = (Subscriber) obj;
-        h2$a h2_a = new h2$a(this, subscriber);
-        subscriber.add(h2_a);
-        subscriber.setProducer(new g2(this, h2_a));
-        return h2_a;
+        a aVar = new a(subscriber);
+        subscriber.add(aVar);
+        subscriber.setProducer(new g2(this, aVar));
+        return aVar;
     }
 }

@@ -3,7 +3,7 @@ package com.discord.widgets.media;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetMediaBinding;
 import com.facebook.samples.zoomable.ZoomableDraweeView;
 import com.google.android.exoplayer2.ui.PlayerControlView;
@@ -30,21 +30,21 @@ public final /* synthetic */ class WidgetMedia$binding$2 extends k implements Fu
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetMediaBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = 2131361879;
-        AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(2131361879);
+        int i = R.id.action_bar_toolbar_layout;
+        AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(R.id.action_bar_toolbar_layout);
         if (appBarLayout != null) {
             FrameLayout frameLayout = (FrameLayout) view;
-            i = R$id.media_image;
-            ZoomableDraweeView zoomableDraweeView = (ZoomableDraweeView) view.findViewById(R$id.media_image);
+            i = R.id.media_image;
+            ZoomableDraweeView zoomableDraweeView = (ZoomableDraweeView) view.findViewById(R.id.media_image);
             if (zoomableDraweeView != null) {
-                i = R$id.media_loading_indicator;
-                ProgressBar progressBar = (ProgressBar) view.findViewById(R$id.media_loading_indicator);
+                i = R.id.media_loading_indicator;
+                ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.media_loading_indicator);
                 if (progressBar != null) {
-                    i = R$id.media_player_control_view;
-                    PlayerControlView playerControlView = (PlayerControlView) view.findViewById(R$id.media_player_control_view);
+                    i = R.id.media_player_control_view;
+                    PlayerControlView playerControlView = (PlayerControlView) view.findViewById(R.id.media_player_control_view);
                     if (playerControlView != null) {
-                        i = R$id.media_player_view;
-                        PlayerView playerView = (PlayerView) view.findViewById(R$id.media_player_view);
+                        i = R.id.media_player_view;
+                        PlayerView playerView = (PlayerView) view.findViewById(R.id.media_player_view);
                         if (playerView != null) {
                             return new WidgetMediaBinding(frameLayout, appBarLayout, frameLayout, zoomableDraweeView, progressBar, playerControlView, playerView);
                         }

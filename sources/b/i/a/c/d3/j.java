@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
-import android.text.Layout$Alignment;
+import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
 import android.text.TextUtils;
@@ -18,9 +18,8 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
-import b.i.a.c.b3.b$b;
 import b.i.a.c.f3.e0;
-import com.google.android.exoplayer2.ui.SubtitleView$a;
+import com.google.android.exoplayer2.ui.SubtitleView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,7 +27,7 @@ import java.util.Objects;
 
 /* JADX INFO: compiled from: CanvasSubtitleOutput.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class j extends View implements SubtitleView$a {
+public final class j extends View implements SubtitleView.a {
     public final List<n> j;
     public List<b.i.a.c.b3.b> k;
     public int l;
@@ -46,7 +45,7 @@ public final class j extends View implements SubtitleView$a {
         this.o = 0.08f;
     }
 
-    @Override // com.google.android.exoplayer2.ui.SubtitleView$a
+    @Override // com.google.android.exoplayer2.ui.SubtitleView.a
     public void a(List<b.i.a.c.b3.b> list, k kVar, float f, int i, float f2) {
         this.k = list;
         this.n = kVar;
@@ -101,24 +100,24 @@ public final class j extends View implements SubtitleView$a {
         while (i8 < size) {
             b.i.a.c.b3.b bVarA = list.get(i8);
             if (bVarA.A != Integer.MIN_VALUE) {
-                b$b b_bA = bVarA.a();
-                b_bA.h = -3.4028235E38f;
-                b_bA.i = Integer.MIN_VALUE;
-                b_bA.c = null;
+                b.i.a.c.b3.b.C0093b c0093bA = bVarA.a();
+                c0093bA.h = -3.4028235E38f;
+                c0093bA.i = Integer.MIN_VALUE;
+                c0093bA.c = null;
                 if (bVarA.q == 0) {
-                    b_bA.e = 1.0f - bVarA.p;
-                    b_bA.f = 0;
+                    c0093bA.e = 1.0f - bVarA.p;
+                    c0093bA.f = 0;
                 } else {
-                    b_bA.e = (-bVarA.p) - 1.0f;
-                    b_bA.f = 1;
+                    c0093bA.e = (-bVarA.p) - 1.0f;
+                    c0093bA.f = 1;
                 }
                 int i9 = bVarA.r;
                 if (i9 == 0) {
-                    b_bA.g = 2;
+                    c0093bA.g = 2;
                 } else if (i9 == 2) {
-                    b_bA.g = 0;
+                    c0093bA.g = 0;
                 }
-                bVarA = b_bA.a();
+                bVarA = c0093bA.a();
             }
             float fU2 = b.c.a.a0.d.U1(bVarA.f840y, bVarA.f841z, height, i7);
             n nVar = jVar.j.get(i8);
@@ -232,12 +231,12 @@ public final class j extends View implements SubtitleView$a {
                                 spannableStringBuilder2.setSpan(new BackgroundColorSpan(nVar.t), 0, spannableStringBuilder2.length(), ItemTouchHelper.ACTION_MODE_DRAG_MASK);
                             }
                         }
-                        Layout$Alignment layout$Alignment = nVar.j;
-                        if (layout$Alignment == null) {
-                            layout$Alignment = Layout$Alignment.ALIGN_CENTER;
+                        Layout.Alignment alignment = nVar.j;
+                        if (alignment == null) {
+                            alignment = Layout.Alignment.ALIGN_CENTER;
                         }
                         i3 = i8;
-                        StaticLayout staticLayout = new StaticLayout(spannableStringBuilder, nVar.f, i15, layout$Alignment, nVar.d, nVar.e, true);
+                        StaticLayout staticLayout = new StaticLayout(spannableStringBuilder, nVar.f, i15, alignment, nVar.d, nVar.e, true);
                         nVar.E = staticLayout;
                         int height2 = staticLayout.getHeight();
                         int lineCount = nVar.E.getLineCount();
@@ -305,9 +304,9 @@ public final class j extends View implements SubtitleView$a {
                                     i6 = nVar.B;
                                     if (iRound >= i6) {
                                     }
-                                    Layout$Alignment layout$Alignment2 = layout$Alignment;
-                                    nVar.E = new StaticLayout(spannableStringBuilder, nVar.f, i23, layout$Alignment2, nVar.d, nVar.e, true);
-                                    nVar.F = new StaticLayout(spannableStringBuilder2, nVar.f, i23, layout$Alignment2, nVar.d, nVar.e, true);
+                                    Layout.Alignment alignment2 = alignment;
+                                    nVar.E = new StaticLayout(spannableStringBuilder, nVar.f, i23, alignment2, nVar.d, nVar.e, true);
+                                    nVar.F = new StaticLayout(spannableStringBuilder2, nVar.f, i23, alignment2, nVar.d, nVar.e, true);
                                     nVar.G = iMax;
                                     nVar.H = i6;
                                     nVar.I = i13;
@@ -316,9 +315,9 @@ public final class j extends View implements SubtitleView$a {
                                 iRound = (nVar.D - height2) - ((int) (i12 * nVar.f922z));
                             }
                             i6 = iRound;
-                            Layout$Alignment layout$Alignment3 = layout$Alignment;
-                            nVar.E = new StaticLayout(spannableStringBuilder, nVar.f, i23, layout$Alignment3, nVar.d, nVar.e, true);
-                            nVar.F = new StaticLayout(spannableStringBuilder2, nVar.f, i23, layout$Alignment3, nVar.d, nVar.e, true);
+                            Layout.Alignment alignment3 = alignment;
+                            nVar.E = new StaticLayout(spannableStringBuilder, nVar.f, i23, alignment3, nVar.d, nVar.e, true);
+                            nVar.F = new StaticLayout(spannableStringBuilder2, nVar.f, i23, alignment3, nVar.d, nVar.e, true);
                             nVar.G = iMax;
                             nVar.H = i6;
                             nVar.I = i13;

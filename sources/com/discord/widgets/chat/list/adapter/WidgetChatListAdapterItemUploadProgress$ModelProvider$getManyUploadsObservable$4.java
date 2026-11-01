@@ -21,8 +21,8 @@ public final class WidgetChatListAdapterItemUploadProgress$ModelProvider$getMany
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
     public final Integer call2(Long l) {
-        WidgetChatListAdapterItemUploadProgress$ModelProvider widgetChatListAdapterItemUploadProgress$ModelProvider = WidgetChatListAdapterItemUploadProgress$ModelProvider.INSTANCE;
+        WidgetChatListAdapterItemUploadProgress.ModelProvider modelProvider = WidgetChatListAdapterItemUploadProgress.ModelProvider.INSTANCE;
         m.checkNotNullExpressionValue(l, "totalBytesWritten");
-        return Integer.valueOf(WidgetChatListAdapterItemUploadProgress$ModelProvider.access$getPercentage(widgetChatListAdapterItemUploadProgress$ModelProvider, l.longValue(), this.$totalContentLength.element));
+        return Integer.valueOf(WidgetChatListAdapterItemUploadProgress.ModelProvider.access$getPercentage(modelProvider, l.longValue(), this.$totalContentLength.element));
     }
 }

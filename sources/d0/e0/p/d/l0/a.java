@@ -22,18 +22,31 @@ public final class a implements d {
     public final List<Object> c;
     public final Class<?> d;
     public final List<String> e;
-    public final a$a f;
+    public final EnumC0500a f;
     public final List<Method> g;
 
-    public a(Class<?> cls, List<String> list, a$a a_a, a$b a_b, List<Method> list2) {
+    /* JADX INFO: renamed from: d0.e0.p.d.l0.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: AnnotationConstructorCaller.kt */
+    public enum EnumC0500a {
+        CALL_BY_NAME,
+        POSITIONAL_CALL
+    }
+
+    /* JADX INFO: compiled from: AnnotationConstructorCaller.kt */
+    public enum b {
+        JAVA,
+        KOTLIN
+    }
+
+    public a(Class<?> cls, List<String> list, EnumC0500a enumC0500a, b bVar, List<Method> list2) {
         m.checkNotNullParameter(cls, "jClass");
         m.checkNotNullParameter(list, "parameterNames");
-        m.checkNotNullParameter(a_a, "callMode");
-        m.checkNotNullParameter(a_b, "origin");
+        m.checkNotNullParameter(enumC0500a, "callMode");
+        m.checkNotNullParameter(bVar, "origin");
         m.checkNotNullParameter(list2, "methods");
         this.d = cls;
         this.e = list;
-        this.f = a_a;
+        this.f = enumC0500a;
         this.g = list2;
         ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(list2, 10));
         Iterator<T> it = list2.iterator();
@@ -61,7 +74,7 @@ public final class a implements d {
             arrayList3.add(((Method) it3.next()).getDefaultValue());
         }
         this.c = arrayList3;
-        if (this.f == a$a.POSITIONAL_CALL && a_b == a$b.JAVA && (!u.minus(this.e, "value").isEmpty())) {
+        if (this.f == EnumC0500a.POSITIONAL_CALL && bVar == b.JAVA && (!u.minus(this.e, "value").isEmpty())) {
             throw new UnsupportedOperationException("Positional call of a Java annotation constructor is allowed only if there are no parameters or one parameter named \"value\". This restriction exists because Java annotations (in contrast to Kotlin)do not impose any order on their arguments. Use KCallable#callBy instead.");
         }
     }
@@ -77,21 +90,21 @@ public final class a implements d {
         while (i < length) {
             Object obj = objArr[i];
             int i3 = i2 + 1;
-            Object objAccess$transformKotlinToJvm = (obj == null && this.f == a$a.CALL_BY_NAME) ? this.c.get(i2) : b.access$transformKotlinToJvm(obj, this.f3202b.get(i2));
+            Object objAccess$transformKotlinToJvm = (obj == null && this.f == EnumC0500a.CALL_BY_NAME) ? this.c.get(i2) : d0.e0.p.d.l0.b.access$transformKotlinToJvm(obj, this.f3202b.get(i2));
             if (objAccess$transformKotlinToJvm == null) {
-                b.access$throwIllegalArgumentType(i2, this.e.get(i2), this.f3202b.get(i2));
+                d0.e0.p.d.l0.b.access$throwIllegalArgumentType(i2, this.e.get(i2), this.f3202b.get(i2));
                 throw null;
             }
             arrayList.add(objAccess$transformKotlinToJvm);
             i++;
             i2 = i3;
         }
-        return b.createAnnotationInstance(this.d, h0.toMap(u.zip(this.e, arrayList)), this.g);
+        return d0.e0.p.d.l0.b.createAnnotationInstance(this.d, h0.toMap(u.zip(this.e, arrayList)), this.g);
     }
 
     public void checkArguments(Object[] objArr) {
         m.checkNotNullParameter(objArr, "args");
-        d$a.checkArguments(this, objArr);
+        d.a.checkArguments(this, objArr);
     }
 
     public Void getMember() {
@@ -114,7 +127,7 @@ public final class a implements d {
         return (Member) getMember();
     }
 
-    public /* synthetic */ a(Class cls, List list, a$a a_a, a$b a_b, List list2, int i, DefaultConstructorMarker defaultConstructorMarker) {
+    public /* synthetic */ a(Class cls, List list, EnumC0500a enumC0500a, b bVar, List list2, int i, DefaultConstructorMarker defaultConstructorMarker) {
         if ((i & 16) != 0) {
             list2 = new ArrayList(o.collectionSizeOrDefault(list, 10));
             Iterator it = list.iterator();
@@ -122,6 +135,6 @@ public final class a implements d {
                 list2.add(cls.getDeclaredMethod((String) it.next(), new Class[0]));
             }
         }
-        this(cls, list, a_a, a_b, list2);
+        this(cls, list, enumC0500a, bVar, list2);
     }
 }

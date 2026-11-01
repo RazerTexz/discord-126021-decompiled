@@ -2,7 +2,6 @@ package f0;
 
 import java.net.InetSocketAddress;
 import java.net.Proxy;
-import java.net.Proxy$Type;
 
 /* JADX INFO: compiled from: Route.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -23,7 +22,7 @@ public final class c0 {
     }
 
     public final boolean a() {
-        return this.a.f != null && this.f3603b.type() == Proxy$Type.HTTP;
+        return this.a.f != null && this.f3603b.type() == Proxy.Type.HTTP;
     }
 
     public boolean equals(Object obj) {

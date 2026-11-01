@@ -11,7 +11,7 @@ public final class w implements Runnable {
 
     @Override // java.lang.Runnable
     public final void run() {
-        g$a g_a = this.j.a;
-        g_a.f1361b.c(g_a.c.getClass().getName().concat(" disconnecting because it was signed out."));
+        g.a aVar = this.j.a;
+        aVar.f1361b.c(aVar.c.getClass().getName().concat(" disconnecting because it was signed out."));
     }
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.View;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventLocationSelect;
-import com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventLocationSelect$Companion;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -36,9 +35,9 @@ public final class WidgetGuildProfileSheet$configureGuildActions$$inlined$apply$
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(View view) {
         m.checkNotNullParameter(view, "it");
-        WidgetGuildScheduledEventLocationSelect$Companion widgetGuildScheduledEventLocationSelect$Companion = WidgetGuildScheduledEventLocationSelect.Companion;
+        WidgetGuildScheduledEventLocationSelect.Companion companion = WidgetGuildScheduledEventLocationSelect.INSTANCE;
         Context context = this.$this_apply.getContext();
         m.checkNotNullExpressionValue(context, "context");
-        WidgetGuildScheduledEventLocationSelect$Companion.launch$default(widgetGuildScheduledEventLocationSelect$Companion, context, this.$guildId$inlined, null, 4, null);
+        WidgetGuildScheduledEventLocationSelect.Companion.launch$default(companion, context, this.$guildId$inlined, null, 4, null);
     }
 }

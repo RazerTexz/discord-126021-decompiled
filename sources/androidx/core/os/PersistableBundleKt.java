@@ -1,6 +1,6 @@
 package androidx.core.os;
 
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.PersistableBundle;
 import androidx.annotation.RequiresApi;
 import d0.z.d.m;
@@ -23,7 +23,7 @@ public final class PersistableBundleKt {
             if (objComponent2 == null) {
                 persistableBundle.putString(strComponent1, null);
             } else if (objComponent2 instanceof Boolean) {
-                if (Build$VERSION.SDK_INT < 22) {
+                if (Build.VERSION.SDK_INT < 22) {
                     throw new IllegalArgumentException("Illegal value type boolean for key \"" + strComponent1 + '\"');
                 }
                 persistableBundle.putBoolean(strComponent1, ((Boolean) objComponent2).booleanValue());
@@ -36,7 +36,7 @@ public final class PersistableBundleKt {
             } else if (objComponent2 instanceof String) {
                 persistableBundle.putString(strComponent1, (String) objComponent2);
             } else if (objComponent2 instanceof boolean[]) {
-                if (Build$VERSION.SDK_INT < 22) {
+                if (Build.VERSION.SDK_INT < 22) {
                     throw new IllegalArgumentException("Illegal value type boolean[] for key \"" + strComponent1 + '\"');
                 }
                 persistableBundle.putBooleanArray(strComponent1, (boolean[]) objComponent2);

@@ -31,10 +31,10 @@ public final /* synthetic */ class b {
 
     public Object a(Object obj) throws IOException {
         d dVar = this.a;
-        d$a d_a = (d$a) obj;
+        d.a aVar = (d.a) obj;
         Objects.requireNonNull(dVar);
-        b.c.a.a0.d.X("CctTransportBackend", "Making request to: %s", d_a.a);
-        HttpURLConnection httpURLConnection = (HttpURLConnection) d_a.a.openConnection();
+        b.c.a.a0.d.X("CctTransportBackend", "Making request to: %s", aVar.a);
+        HttpURLConnection httpURLConnection = (HttpURLConnection) aVar.a.openConnection();
         httpURLConnection.setConnectTimeout(30000);
         httpURLConnection.setReadTimeout(dVar.g);
         httpURLConnection.setDoOutput(true);
@@ -44,7 +44,7 @@ public final /* synthetic */ class b {
         httpURLConnection.setRequestProperty("Content-Encoding", "gzip");
         httpURLConnection.setRequestProperty("Content-Type", RestAPIBuilder.CONTENT_TYPE_JSON);
         httpURLConnection.setRequestProperty("Accept-Encoding", "gzip");
-        String str = d_a.c;
+        String str = aVar.c;
         if (str != null) {
             httpURLConnection.setRequestProperty("X-Goog-Api-Key", str);
         }
@@ -53,7 +53,7 @@ public final /* synthetic */ class b {
             try {
                 GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(outputStream);
                 try {
-                    ((b.i.c.p.h.d) dVar.a).b(d_a.f745b, new BufferedWriter(new OutputStreamWriter(gZIPOutputStream)));
+                    ((b.i.c.p.h.d) dVar.a).b(aVar.f745b, new BufferedWriter(new OutputStreamWriter(gZIPOutputStream)));
                     gZIPOutputStream.close();
                     if (outputStream != null) {
                         outputStream.close();
@@ -63,23 +63,23 @@ public final /* synthetic */ class b {
                     b.c.a.a0.d.L0("CctTransportBackend", "Content-Type: " + httpURLConnection.getHeaderField("Content-Type"));
                     b.c.a.a0.d.L0("CctTransportBackend", "Content-Encoding: " + httpURLConnection.getHeaderField("Content-Encoding"));
                     if (responseCode == 302 || responseCode == 301 || responseCode == 307) {
-                        return new d$b(responseCode, new URL(httpURLConnection.getHeaderField("Location")), 0L);
+                        return new d.b(responseCode, new URL(httpURLConnection.getHeaderField("Location")), 0L);
                     }
                     if (responseCode != 200) {
-                        return new d$b(responseCode, null, 0L);
+                        return new d.b(responseCode, null, 0L);
                     }
                     InputStream inputStream = httpURLConnection.getInputStream();
                     try {
                         InputStream gZIPInputStream = "gzip".equals(httpURLConnection.getHeaderField("Content-Encoding")) ? new GZIPInputStream(inputStream) : inputStream;
                         try {
-                            d$b d_b = new d$b(responseCode, null, ((h) n.a(new BufferedReader(new InputStreamReader(gZIPInputStream)))).a);
+                            d.b bVar = new d.b(responseCode, null, ((h) n.a(new BufferedReader(new InputStreamReader(gZIPInputStream)))).a);
                             if (gZIPInputStream != null) {
                                 gZIPInputStream.close();
                             }
                             if (inputStream != null) {
                                 inputStream.close();
                             }
-                            return d_b;
+                            return bVar;
                         } catch (Throwable th) {
                             if (gZIPInputStream != null) {
                                 try {
@@ -117,19 +117,19 @@ public final /* synthetic */ class b {
         } catch (EncodingException e) {
             e = e;
             b.c.a.a0.d.c0("CctTransportBackend", "Couldn't encode request, returning with 400", e);
-            return new d$b(400, null, 0L);
+            return new d.b(400, null, 0L);
         } catch (ConnectException e2) {
             e = e2;
             b.c.a.a0.d.c0("CctTransportBackend", "Couldn't open connection, returning with 500", e);
-            return new d$b(500, null, 0L);
+            return new d.b(500, null, 0L);
         } catch (UnknownHostException e3) {
             e = e3;
             b.c.a.a0.d.c0("CctTransportBackend", "Couldn't open connection, returning with 500", e);
-            return new d$b(500, null, 0L);
+            return new d.b(500, null, 0L);
         } catch (IOException e4) {
             e = e4;
             b.c.a.a0.d.c0("CctTransportBackend", "Couldn't encode request, returning with 400", e);
-            return new d$b(400, null, 0L);
+            return new d.b(400, null, 0L);
         }
     }
 }

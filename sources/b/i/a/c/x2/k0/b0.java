@@ -4,7 +4,6 @@ import android.util.Log;
 import android.util.SparseArray;
 import androidx.annotation.Nullable;
 import androidx.core.view.InputDeviceCompat;
-import b.i.a.c.x2.t$b;
 import com.discord.api.permission.Permission;
 import java.io.IOException;
 
@@ -24,7 +23,7 @@ public final class b0 implements b.i.a.c.x2.h {
     public final b.i.a.c.f3.x c = new b.i.a.c.f3.x(4096);
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final SparseArray<b0$a> f1243b = new SparseArray<>();
+    public final SparseArray<a> f1243b = new SparseArray<>();
     public final a0 d = new a0();
 
     static {
@@ -142,7 +141,7 @@ public final class b0 implements b.i.a.c.x2.h {
                 i = 442;
             } else {
                 i = 442;
-                this.j.a(new t$b(j5, 0L));
+                this.j.a(new b.i.a.c.x2.t.b(j5, 0L));
             }
         }
         z zVar2 = this.i;
@@ -176,9 +175,9 @@ public final class b0 implements b.i.a.c.x2.h {
             return 0;
         }
         int i7 = iF & 255;
-        b0$a b0_a = this.f1243b.get(i7);
+        a aVar = this.f1243b.get(i7);
         if (!this.e) {
-            if (b0_a == null) {
+            if (aVar == null) {
                 o oVar = null;
                 if (i7 == 189) {
                     pVar = new g(null);
@@ -193,15 +192,15 @@ public final class b0 implements b.i.a.c.x2.h {
                     this.g = true;
                     this.h = iVar.getPosition();
                 } else if (oVar != null) {
-                    oVar.e(this.j, new i0$d(Integer.MIN_VALUE, i7, 256));
-                    b0_a = new b0$a(oVar, this.a);
-                    this.f1243b.put(i7, b0_a);
+                    oVar.e(this.j, new i0.d(Integer.MIN_VALUE, i7, 256));
+                    aVar = new a(oVar, this.a);
+                    this.f1243b.put(i7, aVar);
                 }
                 oVar = pVar;
                 if (oVar != null) {
-                    oVar.e(this.j, new i0$d(Integer.MIN_VALUE, i7, 256));
-                    b0_a = new b0$a(oVar, this.a);
-                    this.f1243b.put(i7, b0_a);
+                    oVar.e(this.j, new i0.d(Integer.MIN_VALUE, i7, 256));
+                    aVar = new a(oVar, this.a);
+                    this.f1243b.put(i7, aVar);
                 }
             }
             if (iVar.getPosition() > ((this.f && this.g) ? this.h + Permission.MANAGE_MESSAGES : Permission.CONNECT)) {
@@ -212,7 +211,7 @@ public final class b0 implements b.i.a.c.x2.h {
         iVar.o(this.c.a, 0, 2);
         this.c.E(0);
         int iY = this.c.y() + 6;
-        if (b0_a == null) {
+        if (aVar == null) {
             iVar.l(iY);
             return 0;
         }
@@ -220,41 +219,41 @@ public final class b0 implements b.i.a.c.x2.h {
         iVar.readFully(this.c.a, 0, iY);
         this.c.E(6);
         b.i.a.c.f3.x xVar3 = this.c;
-        xVar3.e(b0_a.c.a, 0, 3);
-        b0_a.c.k(0);
-        b0_a.c.m(8);
-        b0_a.d = b0_a.c.f();
-        b0_a.e = b0_a.c.f();
-        b0_a.c.m(6);
-        int iG = b0_a.c.g(8);
-        b0_a.g = iG;
-        xVar3.e(b0_a.c.a, 0, iG);
-        b0_a.c.k(0);
-        b0_a.h = 0L;
-        if (b0_a.d) {
-            b0_a.c.m(4);
-            long jG = ((long) b0_a.c.g(3)) << 30;
-            b0_a.c.m(1);
-            long jG2 = jG | ((long) (b0_a.c.g(15) << 15));
-            b0_a.c.m(1);
-            long jG3 = jG2 | ((long) b0_a.c.g(15));
-            b0_a.c.m(1);
-            if (!b0_a.f && b0_a.e) {
-                b0_a.c.m(4);
-                long jG4 = ((long) b0_a.c.g(3)) << 30;
-                b0_a.c.m(1);
-                long jG5 = jG4 | ((long) (b0_a.c.g(15) << 15));
-                b0_a.c.m(1);
-                long jG6 = ((long) b0_a.c.g(15)) | jG5;
-                b0_a.c.m(1);
-                b0_a.f1244b.b(jG6);
-                b0_a.f = true;
+        xVar3.e(aVar.c.a, 0, 3);
+        aVar.c.k(0);
+        aVar.c.m(8);
+        aVar.d = aVar.c.f();
+        aVar.e = aVar.c.f();
+        aVar.c.m(6);
+        int iG = aVar.c.g(8);
+        aVar.g = iG;
+        xVar3.e(aVar.c.a, 0, iG);
+        aVar.c.k(0);
+        aVar.h = 0L;
+        if (aVar.d) {
+            aVar.c.m(4);
+            long jG = ((long) aVar.c.g(3)) << 30;
+            aVar.c.m(1);
+            long jG2 = jG | ((long) (aVar.c.g(15) << 15));
+            aVar.c.m(1);
+            long jG3 = jG2 | ((long) aVar.c.g(15));
+            aVar.c.m(1);
+            if (!aVar.f && aVar.e) {
+                aVar.c.m(4);
+                long jG4 = ((long) aVar.c.g(3)) << 30;
+                aVar.c.m(1);
+                long jG5 = jG4 | ((long) (aVar.c.g(15) << 15));
+                aVar.c.m(1);
+                long jG6 = ((long) aVar.c.g(15)) | jG5;
+                aVar.c.m(1);
+                aVar.f1244b.b(jG6);
+                aVar.f = true;
             }
-            b0_a.h = b0_a.f1244b.b(jG3);
+            aVar.h = aVar.f1244b.b(jG3);
         }
-        b0_a.a.f(b0_a.h, 4);
-        b0_a.a.b(xVar3);
-        b0_a.a.d();
+        aVar.a.f(aVar.h, 4);
+        aVar.a.b(xVar3);
+        aVar.a.d();
         b.i.a.c.f3.x xVar4 = this.c;
         xVar4.D(xVar4.a.length);
         return 0;
@@ -280,13 +279,32 @@ public final class b0 implements b.i.a.c.x2.h {
             zVar.e(j2);
         }
         for (int i = 0; i < this.f1243b.size(); i++) {
-            b0$a b0_aValueAt = this.f1243b.valueAt(i);
-            b0_aValueAt.f = false;
-            b0_aValueAt.a.c();
+            a aVarValueAt = this.f1243b.valueAt(i);
+            aVarValueAt.f = false;
+            aVarValueAt.a.c();
         }
     }
 
     @Override // b.i.a.c.x2.h
     public void release() {
+    }
+
+    /* JADX INFO: compiled from: PsExtractor.java */
+    public final class a {
+        public final o a;
+        public boolean d;
+        public boolean e;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final b.i.a.c.f3.d0 f1244b;
+        public boolean f;
+        public int g;
+        public long h;
+        public final b.i.a.c.f3.w c = new b.i.a.c.f3.w(new byte[64]);
+
+        public a(o oVar, b.i.a.c.f3.d0 d0Var) {
+            this.a = oVar;
+            this.f1244b = d0Var;
+        }
     }
 }

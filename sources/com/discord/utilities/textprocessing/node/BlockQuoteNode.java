@@ -3,6 +3,7 @@ package com.discord.utilities.textprocessing.node;
 import android.text.SpannableStringBuilder;
 import android.text.style.AbsoluteSizeSpan;
 import androidx.exifinterface.media.ExifInterface;
+import com.discord.R;
 import com.discord.simpleast.core.node.Node;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.dimen.DimenUtils;
@@ -11,14 +12,31 @@ import com.discord.utilities.textprocessing.node.BasicRenderContext;
 import d0.z.d.m;
 import java.util.Collection;
 import java.util.Iterator;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: BlockQuoteNode.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class BlockQuoteNode<T extends BasicRenderContext> extends Node<T> {
-    public static final BlockQuoteNode$Companion Companion = new BlockQuoteNode$Companion(null);
     private static final int GAP_WIDTH;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final int STRIPE_WIDTH;
     private static final int TOTAL_LEFT_MARGIN;
+
+    /* JADX INFO: compiled from: BlockQuoteNode.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final int getTOTAL_LEFT_MARGIN() {
+            return BlockQuoteNode.access$getTOTAL_LEFT_MARGIN$cp();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     static {
         int iDpToPixels = DimenUtils.dpToPixels(3);
@@ -58,7 +76,7 @@ public final class BlockQuoteNode<T extends BasicRenderContext> extends Node<T> 
         if (builder.length() == length) {
             builder.append(' ');
         }
-        builder.setSpan(new QuoteSpan(ColorCompat.getThemedColor(renderContext.getContext(), 2130970272), STRIPE_WIDTH, GAP_WIDTH), length, builder.length(), 13107233);
+        builder.setSpan(new QuoteSpan(ColorCompat.getThemedColor(renderContext.getContext(), R.attr.theme_chat_block_quote_divider), STRIPE_WIDTH, GAP_WIDTH), length, builder.length(), 13107233);
         builder.append('\n');
         builder.setSpan(new AbsoluteSizeSpan(iDpToPixels), builder.length() - 1, builder.length(), 13107233);
     }

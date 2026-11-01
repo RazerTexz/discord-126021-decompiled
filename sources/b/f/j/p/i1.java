@@ -15,6 +15,91 @@ public class i1<T> implements w0<T> {
     public final ConcurrentLinkedQueue<Pair<l<T>, x0>> c;
     public final Executor d;
 
+    /* JADX INFO: compiled from: ThrottlingProducer.java */
+    public class b extends p<T, T> {
+
+        /* JADX INFO: compiled from: ThrottlingProducer.java */
+        public class a implements Runnable {
+            public final /* synthetic */ Pair j;
+
+            public a(Pair pair) {
+                this.j = pair;
+            }
+
+            @Override // java.lang.Runnable
+            public void run() {
+                i1 i1Var = i1.this;
+                Pair pair = this.j;
+                l lVar = (l) pair.first;
+                x0 x0Var = (x0) pair.second;
+                Objects.requireNonNull(i1Var);
+                x0Var.o().j(x0Var, "ThrottlingProducer", null);
+                i1Var.a.b(new b(lVar, null), x0Var);
+            }
+        }
+
+        public b(l lVar, a aVar) {
+            super(lVar);
+        }
+
+        @Override // b.f.j.p.p, b.f.j.p.b
+        public void g() {
+            this.f632b.d();
+            n();
+        }
+
+        @Override // b.f.j.p.p, b.f.j.p.b
+        public void h(Throwable th) {
+            this.f632b.c(th);
+            n();
+        }
+
+        /* JADX WARN: Type inference fix 'apply assigned field type' failed
+        java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$PrimitiveArg
+        	at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
+        	at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+        	at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+        	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+         */
+        /*  JADX ERROR: JadxRuntimeException in pass: FinishTypeInference
+            jadx.core.utils.exceptions.JadxRuntimeException: Code variable not set in r2v2 boolean
+            	at jadx.core.dex.instructions.args.SSAVar.getCodeVar(SSAVar.java:236)
+            	at jadx.core.dex.visitors.typeinference.FinishTypeInference.lambda$visit$0(FinishTypeInference.java:27)
+            	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+            	at jadx.core.dex.visitors.typeinference.FinishTypeInference.visit(FinishTypeInference.java:22)
+            */
+        @Override // b.f.j.p.b
+        public void i(T r2, int r3) {
+            /*
+                r1 = this;
+                b.f.j.p.l<O> r0 = r1.f632b
+                r0.b(r2, r3)
+                boolean r2 = b.f.j.p.b.e(r3)
+                if (r2 == 0) goto Le
+                r1.n()
+            Le:
+                return
+            */
+            throw new UnsupportedOperationException("Method not decompiled: b.f.j.p.i1.b.i(java.lang.Object, int):void");
+        }
+
+        public final void n() {
+            Pair<l<T>, x0> pairPoll;
+            synchronized (i1.this) {
+                pairPoll = i1.this.c.poll();
+                if (pairPoll == null) {
+                    i1.this.f616b--;
+                }
+            }
+            if (pairPoll != null) {
+                i1.this.d.execute(new a(pairPoll));
+            }
+        }
+    }
+
     public i1(int i, Executor executor, w0<T> w0Var) {
         Objects.requireNonNull(executor);
         this.d = executor;
@@ -42,6 +127,6 @@ public class i1<T> implements w0<T> {
             return;
         }
         x0Var.o().j(x0Var, "ThrottlingProducer", null);
-        this.a.b(new i1$b(this, lVar, null), x0Var);
+        this.a.b(new b(lVar, null), x0Var);
     }
 }

@@ -1,6 +1,5 @@
 package d0.e0.p.d.m0.b.q;
 
-import d0.e0.p.d.m0.b.k$a;
 import d0.e0.p.d.m0.e.b.w;
 import d0.t.o0;
 import d0.t.r;
@@ -95,7 +94,7 @@ public final class p {
 
     public final boolean isArrayOrPrimitiveArray(d0.e0.p.d.m0.g.c cVar) {
         d0.z.d.m.checkNotNullParameter(cVar, "fqName");
-        if (!d0.z.d.m.areEqual(cVar, k$a.h)) {
+        if (!d0.z.d.m.areEqual(cVar, d0.e0.p.d.m0.b.k.a.h)) {
             d0.e0.p.d.m0.b.k kVar = d0.e0.p.d.m0.b.k.a;
             if (!d0.e0.p.d.m0.b.k.isPrimitiveArray(cVar)) {
                 return false;

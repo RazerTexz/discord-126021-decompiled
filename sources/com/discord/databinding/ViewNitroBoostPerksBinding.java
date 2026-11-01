@@ -12,8 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewNitroBoostPerksBinding implements ViewBinding {
@@ -52,33 +51,33 @@ public final class ViewNitroBoostPerksBinding implements ViewBinding {
 
     @NonNull
     public static ViewNitroBoostPerksBinding a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
-        View viewInflate = layoutInflater.inflate(R$layout.view_nitro_boost_perks, viewGroup, false);
+        View viewInflate = layoutInflater.inflate(R.layout.view_nitro_boost_perks, viewGroup, false);
         if (z2) {
             viewGroup.addView(viewInflate);
         }
-        int i = 2131362883;
-        LinearLayout linearLayout = (LinearLayout) viewInflate.findViewById(2131362883);
+        int i = R.id.container;
+        LinearLayout linearLayout = (LinearLayout) viewInflate.findViewById(R.id.container);
         if (linearLayout != null) {
-            i = R$id.perks_level_contents_header;
-            TextView textView = (TextView) viewInflate.findViewById(R$id.perks_level_contents_header);
+            i = R.id.perks_level_contents_header;
+            TextView textView = (TextView) viewInflate.findViewById(R.id.perks_level_contents_header);
             if (textView != null) {
-                i = R$id.perks_level_contents_recycler;
-                RecyclerView recyclerView = (RecyclerView) viewInflate.findViewById(R$id.perks_level_contents_recycler);
+                i = R.id.perks_level_contents_recycler;
+                RecyclerView recyclerView = (RecyclerView) viewInflate.findViewById(R.id.perks_level_contents_recycler);
                 if (recyclerView != null) {
-                    i = R$id.perks_level_header;
-                    RelativeLayout relativeLayout = (RelativeLayout) viewInflate.findViewById(R$id.perks_level_header);
+                    i = R.id.perks_level_header;
+                    RelativeLayout relativeLayout = (RelativeLayout) viewInflate.findViewById(R.id.perks_level_header);
                     if (relativeLayout != null) {
-                        i = R$id.perks_level_header_boosts;
-                        TextView textView2 = (TextView) viewInflate.findViewById(R$id.perks_level_header_boosts);
+                        i = R.id.perks_level_header_boosts;
+                        TextView textView2 = (TextView) viewInflate.findViewById(R.id.perks_level_header_boosts);
                         if (textView2 != null) {
-                            i = R$id.perks_level_header_boosts_container;
-                            FrameLayout frameLayout = (FrameLayout) viewInflate.findViewById(R$id.perks_level_header_boosts_container);
+                            i = R.id.perks_level_header_boosts_container;
+                            FrameLayout frameLayout = (FrameLayout) viewInflate.findViewById(R.id.perks_level_header_boosts_container);
                             if (frameLayout != null) {
-                                i = R$id.perks_level_header_text;
-                                TextView textView3 = (TextView) viewInflate.findViewById(R$id.perks_level_header_text);
+                                i = R.id.perks_level_header_text;
+                                TextView textView3 = (TextView) viewInflate.findViewById(R.id.perks_level_header_text);
                                 if (textView3 != null) {
-                                    i = R$id.perks_level_header_unlocked;
-                                    CardView cardView = (CardView) viewInflate.findViewById(R$id.perks_level_header_unlocked);
+                                    i = R.id.perks_level_header_unlocked;
+                                    CardView cardView = (CardView) viewInflate.findViewById(R.id.perks_level_header_unlocked);
                                     if (cardView != null) {
                                         return new ViewNitroBoostPerksBinding((CardView) viewInflate, linearLayout, textView, recyclerView, relativeLayout, textView2, frameLayout, textView3, cardView);
                                     }

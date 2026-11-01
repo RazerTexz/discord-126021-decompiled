@@ -5,10 +5,30 @@ import java.util.Objects;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class d1 extends u4<d1, d1$a> implements d6 {
+public final class d1 extends u4<d1, a> implements d6 {
     private static final d1 zzd;
     private static volatile j6<d1> zze;
     private b5<e1> zzc = m6.k;
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
+    public final class a extends u4.b<d1, a> implements d6 {
+        public a() {
+            super(d1.y());
+        }
+
+        public final a q(e1.a aVar) {
+            if (this.l) {
+                n();
+                this.l = false;
+            }
+            d1.w((d1) this.k, (e1) ((u4) aVar.p()));
+            return this;
+        }
+
+        public a(k1 k1Var) {
+            super(d1.y());
+        }
+    }
 
     static {
         d1 d1Var = new d1();
@@ -22,24 +42,24 @@ public final class d1 extends u4<d1, d1$a> implements d6 {
             case 1:
                 return new d1();
             case 2:
-                return new d1$a(null);
+                return new a(null);
             case 3:
                 return new o6(zzd, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0000\u0001\u0000\u0001\u001b", new Object[]{"zzc", e1.class});
             case 4:
                 return zzd;
             case 5:
-                j6<d1> u4_a = zze;
-                if (u4_a == null) {
+                j6<d1> aVar = zze;
+                if (aVar == null) {
                     synchronized (d1.class) {
-                        u4_a = zze;
-                        if (u4_a == null) {
-                            u4_a = new u4$a<>(zzd);
-                            zze = u4_a;
+                        aVar = zze;
+                        if (aVar == null) {
+                            aVar = new u4.a<>(zzd);
+                            zze = aVar;
                         }
                         break;
                     }
                 }
-                return u4_a;
+                return aVar;
             case 6:
                 return (byte) 1;
             case 7:
@@ -66,7 +86,7 @@ public final class d1 extends u4<d1, d1$a> implements d6 {
         d1Var.zzc.add(e1Var);
     }
 
-    public static d1$a x() {
+    public static a x() {
         return zzd.s();
     }
 

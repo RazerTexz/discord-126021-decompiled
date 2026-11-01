@@ -1,9 +1,10 @@
 package com.discord.utilities.stickers;
 
 import android.content.Context;
+import androidx.core.app.NotificationCompat;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$plurals;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.permission.Permission;
@@ -13,10 +14,9 @@ import com.discord.api.sticker.Sticker;
 import com.discord.api.sticker.StickerFormatType;
 import com.discord.api.sticker.StickerType;
 import com.discord.app.AppLog;
+import com.discord.i18n.RenderContext;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.ModelSku;
-import com.discord.models.domain.ModelSku$ModelPremiumSkuPrice;
-import com.discord.models.domain.ModelSku$Price;
 import com.discord.models.sticker.dto.ModelStickerPack;
 import com.discord.models.sticker.dto.ModelStickerPackStoreListing;
 import com.discord.models.user.User;
@@ -25,11 +25,9 @@ import com.discord.stores.StoreGuildStickers;
 import com.discord.stores.StoreGuilds;
 import com.discord.stores.StoreStickers;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import com.discord.stores.StoreUser;
+import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.file.DownloadUtils;
-import com.discord.utilities.file.DownloadUtils$DownloadState;
-import com.discord.utilities.file.DownloadUtils$DownloadState$Completed;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.permissions.PermissionUtils;
@@ -49,9 +47,9 @@ import d0.g0.w;
 import d0.t.m0;
 import d0.t.n;
 import d0.t.n0;
-import d0.t.o;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import j0.l.e.k;
 import java.io.File;
 import java.util.ArrayList;
@@ -63,10 +61,13 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import kotlin.Lazy;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.objectweb.asm.Opcodes;
 import rx.Observable;
+import rx.functions.Action1;
 
 /* JADX INFO: compiled from: StickerUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -81,6 +82,98 @@ public final class StickerUtils {
     /* JADX INFO: renamed from: DEFAULT_STICKER_SIZE_PX$delegate, reason: from kotlin metadata */
     private static final Lazy DEFAULT_STICKER_SIZE_PX = g.lazy(StickerUtils$DEFAULT_STICKER_SIZE_PX$2.INSTANCE);
 
+    /* JADX INFO: renamed from: com.discord.utilities.stickers.StickerUtils$getGuildOrStandardSticker$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StickerUtils.kt */
+    public final class AnonymousClass1<T> implements Action1<Sticker> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(Sticker sticker) {
+            call2(sticker);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(Sticker sticker) {
+            StoreStream.Companion companion = StoreStream.INSTANCE;
+            companion.getStickers().handleFetchedSticker(sticker);
+            companion.getGuildStickers().handleFetchedSticker(sticker);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.stickers.StickerUtils$getStickerPackPremiumPriceLabel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StickerUtils.kt */
+    public final class AnonymousClass1 extends o implements Function1<RenderContext, Unit> {
+        public final /* synthetic */ Context $context;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Context context) {
+            super(1);
+            this.$context = context;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.strikethroughColor = Integer.valueOf(ColorCompat.getColor(this.$context, R.color.white));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.stickers.StickerUtils$getStickerPackPremiumPriceLabel$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StickerUtils.kt */
+    public final class AnonymousClass2 extends o implements Function1<RenderContext, Unit> {
+        public final /* synthetic */ Context $context;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(Context context) {
+            super(1);
+            this.$context = context;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.strikethroughColor = Integer.valueOf(ColorCompat.getColor(this.$context, R.color.white));
+        }
+    }
+
+    /* JADX INFO: compiled from: StickerUtils.kt */
+    public enum StickerSendability {
+        SENDABLE,
+        SENDABLE_WITH_PREMIUM,
+        SENDABLE_WITH_PREMIUM_GUILD,
+        NONSENDABLE
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
+
+        static {
+            StickerFormatType.values();
+            int[] iArr = new int[4];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[StickerFormatType.LOTTIE.ordinal()] = 1;
+            iArr[StickerFormatType.APNG.ordinal()] = 2;
+            iArr[StickerFormatType.PNG.ordinal()] = 3;
+            PremiumTier.values();
+            int[] iArr2 = new int[5];
+            $EnumSwitchMapping$1 = iArr2;
+            iArr2[PremiumTier.TIER_2.ordinal()] = 1;
+        }
+    }
+
     private StickerUtils() {
     }
 
@@ -89,7 +182,7 @@ public final class StickerUtils {
         return (int) (((stickerPackPrice - getStickerPackPrice(PremiumTier.TIER_2)) * 100.0f) / stickerPackPrice);
     }
 
-    public final Observable<DownloadUtils$DownloadState> fetchSticker(Context context, BaseSticker sticker) {
+    public final Observable<DownloadUtils.DownloadState> fetchSticker(Context context, BaseSticker sticker) {
         m.checkNotNullParameter(context, "context");
         m.checkNotNullParameter(sticker, "sticker");
         File file = new File(context.getCacheDir(), "stickers");
@@ -101,7 +194,7 @@ public final class StickerUtils {
         if (!file2.exists()) {
             return DownloadUtils.downloadFile(context, getCDNAssetUrl$default(this, sticker, null, false, 6, null), str, file);
         }
-        k kVar = new k(new DownloadUtils$DownloadState$Completed(file2));
+        k kVar = new k(new DownloadUtils.DownloadState.Completed(file2));
         m.checkNotNullExpressionValue(kVar, "Observable.just(Download…oadState.Completed(file))");
         return kVar;
     }
@@ -159,7 +252,7 @@ public final class StickerUtils {
                     }
                 }
                 List<String> listSplit$default2 = w.split$default((CharSequence) sticker.getTags(), new String[]{","}, false, 0, 6, (Object) null);
-                ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(listSplit$default2, 10));
+                ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(listSplit$default2, 10));
                 for (String str2 : listSplit$default2) {
                     Objects.requireNonNull(str2, "null cannot be cast to non-null type kotlin.CharSequence");
                     arrayList.add(w.trim(str2).toString());
@@ -283,21 +376,21 @@ public final class StickerUtils {
     }
 
     public final Observable<Sticker> getGuildOrStandardSticker(long stickerId, boolean fetchIfMissing) {
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        Sticker sticker = storeStream$Companion.getStickers().getStickers().get(Long.valueOf(stickerId));
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        Sticker sticker = companion.getStickers().getStickers().get(Long.valueOf(stickerId));
         if (sticker != null) {
             k kVar = new k(sticker);
             m.checkNotNullExpressionValue(kVar, "Observable.just(fullStandardSticker)");
             return kVar;
         }
-        Sticker guildSticker = storeStream$Companion.getGuildStickers().getGuildSticker(stickerId);
+        Sticker guildSticker = companion.getGuildStickers().getGuildSticker(stickerId);
         if (guildSticker != null) {
             k kVar2 = new k(guildSticker);
             m.checkNotNullExpressionValue(kVar2, "Observable.just(fullGuildSticker)");
             return kVar2;
         }
         if (fetchIfMissing) {
-            Observable<Sticker> observableU = ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().getSticker(stickerId), false, 1, null).u(StickerUtils$getGuildOrStandardSticker$1.INSTANCE);
+            Observable<Sticker> observableU = ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getSticker(stickerId), false, 1, null).u(AnonymousClass1.INSTANCE);
             m.checkNotNullExpressionValue(observableU, "RestAPI\n        .api\n   …fetchedSticker)\n        }");
             return observableU;
         }
@@ -315,13 +408,13 @@ public final class StickerUtils {
         TimeUtils timeUtils = TimeUtils.INSTANCE;
         int daysFromMillis = timeUtils.getDaysFromMillis(unpublishedAtDate);
         if (daysFromMillis > 0) {
-            return StringResourceUtilsKt.getI18nPluralString(context, R$plurals.duration_days_days, daysFromMillis, Integer.valueOf(daysFromMillis));
+            return StringResourceUtilsKt.getI18nPluralString(context, R.plurals.duration_days_days, daysFromMillis, Integer.valueOf(daysFromMillis));
         }
         int hoursFromMillis = timeUtils.getHoursFromMillis(unpublishedAtDate);
         long j = unpublishedAtDate - (((long) hoursFromMillis) * 3600000);
         int minutesFromMillis = timeUtils.getMinutesFromMillis(j);
         int secondsFromMillis = timeUtils.getSecondsFromMillis(j - (((long) minutesFromMillis) * 60000));
-        return (hoursFromMillis < 0 || minutesFromMillis < 0 || secondsFromMillis < 0) ? b.h(context, 2131895949, new Object[0], null, 4) : b.h(context, 2131888608, new Object[]{a.P(new Object[]{Integer.valueOf(hoursFromMillis)}, 1, "%02d", "java.lang.String.format(format, *args)"), a.P(new Object[]{Integer.valueOf(minutesFromMillis)}, 1, "%02d", "java.lang.String.format(format, *args)"), a.P(new Object[]{Integer.valueOf(secondsFromMillis)}, 1, "%02d", "java.lang.String.format(format, *args)")}, null, 4);
+        return (hoursFromMillis < 0 || minutesFromMillis < 0 || secondsFromMillis < 0) ? b.h(context, R.string.sticker_picker_pack_expiring_soon, new Object[0], null, 4) : b.h(context, R.string.duration_hours_minutes_seconds, new Object[]{a.P(new Object[]{Integer.valueOf(hoursFromMillis)}, 1, "%02d", "java.lang.String.format(format, *args)"), a.P(new Object[]{Integer.valueOf(minutesFromMillis)}, 1, "%02d", "java.lang.String.format(format, *args)"), a.P(new Object[]{Integer.valueOf(secondsFromMillis)}, 1, "%02d", "java.lang.String.format(format, *args)")}, null, 4);
     }
 
     public final CharSequence getStickerPackPremiumPriceLabel(Context context, ModelStickerPack stickerPack, PremiumTier currentPremiumTier, boolean isPackEnabled) {
@@ -329,7 +422,7 @@ public final class StickerUtils {
         m.checkNotNullParameter(stickerPack, "stickerPack");
         m.checkNotNullParameter(currentPremiumTier, "currentPremiumTier");
         if (isPackEnabled && !PremiumUtilsKt.grantsAccessToPremiumStickers(currentPremiumTier)) {
-            return b.h(context, 2131895930, new Object[0], null, 4);
+            return b.h(context, R.string.sticker_pack_premium_cta, new Object[0], null, 4);
         }
         PremiumTier premiumTier = PremiumTier.PREMIUM_GUILD_SUBSCRIPTION_ONLY;
         if (currentPremiumTier != premiumTier) {
@@ -337,26 +430,26 @@ public final class StickerUtils {
             Integer stickerPackPriceForPremiumTier2 = getStickerPackPriceForPremiumTier(stickerPack, currentPremiumTier);
             if (stickerPackPriceForPremiumTier != null && stickerPackPriceForPremiumTier2 != null && (!m.areEqual(stickerPackPriceForPremiumTier, stickerPackPriceForPremiumTier2))) {
                 CharSequence formattedPriceUsd = com.discord.utilities.billing.PremiumUtilsKt.getFormattedPriceUsd(stickerPackPriceForPremiumTier.intValue(), context);
-                return stickerPackPriceForPremiumTier2.intValue() == 0 ? b.b(context, 2131895939, new Object[]{formattedPriceUsd}, new StickerUtils$getStickerPackPremiumPriceLabel$1(context)) : b.b(context, 2131895940, new Object[]{com.discord.utilities.billing.PremiumUtilsKt.getFormattedPriceUsd(stickerPackPriceForPremiumTier2.intValue(), context), formattedPriceUsd}, new StickerUtils$getStickerPackPremiumPriceLabel$2(context));
+                return stickerPackPriceForPremiumTier2.intValue() == 0 ? b.b(context, R.string.sticker_picker_discounted_free_android, new Object[]{formattedPriceUsd}, new AnonymousClass1(context)) : b.b(context, R.string.sticker_picker_discounted_price_android, new Object[]{com.discord.utilities.billing.PremiumUtilsKt.getFormattedPriceUsd(stickerPackPriceForPremiumTier2.intValue(), context), formattedPriceUsd}, new AnonymousClass2(context));
             }
         }
         if (isStickerPackFreeForPremiumTier(stickerPack, currentPremiumTier)) {
-            return b.h(context, 2131895931, new Object[0], null, 4);
+            return b.h(context, R.string.sticker_pack_price_free, new Object[0], null, 4);
         }
         PremiumTier premiumTier2 = PremiumTier.TIER_1;
         if (isStickerPackFreeForPremiumTier(stickerPack, premiumTier2) && !PremiumUtils.INSTANCE.isPremiumTierAtLeast(currentPremiumTier, premiumTier2)) {
-            return b.h(context, 2131895932, new Object[0], null, 4);
+            return b.h(context, R.string.sticker_pack_price_free_with_premium_tier_1, new Object[0], null, 4);
         }
         PremiumTier premiumTier3 = PremiumTier.TIER_2;
         if (isStickerPackFreeForPremiumTier(stickerPack, premiumTier3) && !PremiumUtils.INSTANCE.isPremiumTierAtLeast(currentPremiumTier, premiumTier3)) {
-            return b.h(context, 2131895933, new Object[0], null, 4);
+            return b.h(context, R.string.sticker_pack_price_free_with_premium_tier_2, new Object[0], null, 4);
         }
         PremiumTier premiumTier4 = PremiumTier.TIER_0;
         if (isStickerPackFreeForPremiumTier(stickerPack, premiumTier4) && !PremiumUtils.INSTANCE.isPremiumTierAtLeast(currentPremiumTier, premiumTier4) && currentPremiumTier != premiumTier2) {
-            return b.h(context, 2131895933, new Object[0], null, 4);
+            return b.h(context, R.string.sticker_pack_price_free_with_premium_tier_2, new Object[0], null, 4);
         }
         CharSequence formattedPriceUsd2 = com.discord.utilities.billing.PremiumUtilsKt.getFormattedPriceUsd(getStickerPackPrice(premiumTier3), context);
-        return PremiumUtilsKt.grantsAccessToPremiumStickers(currentPremiumTier) ? formattedPriceUsd2 : b.h(context, 2131895957, new Object[]{formattedPriceUsd2}, null, 4);
+        return PremiumUtilsKt.grantsAccessToPremiumStickers(currentPremiumTier) ? formattedPriceUsd2 : b.h(context, R.string.sticker_picker_price_with_premium_tier_2, new Object[]{formattedPriceUsd2}, null, 4);
     }
 
     private final int getStickerPackPrice(PremiumTier premiumTier) {
@@ -368,17 +461,17 @@ public final class StickerUtils {
 
     private final Integer getStickerPackPriceForPremiumTier(ModelStickerPack stickerPack, PremiumTier premiumTier) {
         ModelSku sku;
-        ModelSku$Price price;
-        ModelSku$ModelPremiumSkuPrice modelSku$ModelPremiumSkuPrice;
+        ModelSku.Price price;
+        ModelSku.ModelPremiumSkuPrice modelPremiumSkuPrice;
         ModelStickerPackStoreListing storeListing = stickerPack.getStoreListing();
         if (storeListing == null || (sku = storeListing.getSku()) == null || (price = sku.getPrice()) == null) {
             return null;
         }
-        Map<PremiumTier, ModelSku$ModelPremiumSkuPrice> premium = price.getPremium();
-        return Integer.valueOf((premium == null || (modelSku$ModelPremiumSkuPrice = premium.get(premiumTier)) == null) ? price.getAmount() : modelSku$ModelPremiumSkuPrice.getAmount());
+        Map<PremiumTier, ModelSku.ModelPremiumSkuPrice> premium = price.getPremium();
+        return Integer.valueOf((premium == null || (modelPremiumSkuPrice = premium.get(premiumTier)) == null) ? price.getAmount() : modelPremiumSkuPrice.getAmount());
     }
 
-    public static /* synthetic */ StickerUtils$StickerSendability getStickerSendability$default(StickerUtils stickerUtils, Sticker sticker, User user, Channel channel, Long l, int i, Object obj) {
+    public static /* synthetic */ StickerSendability getStickerSendability$default(StickerUtils stickerUtils, Sticker sticker, User user, Channel channel, Long l, int i, Object obj) {
         if ((i & 4) != 0) {
             channel = null;
         }
@@ -388,46 +481,46 @@ public final class StickerUtils {
         return stickerUtils.getStickerSendability(sticker, user, channel, l);
     }
 
-    public final StickerUtils$StickerSendability getStickerSendability(Sticker sticker, User meUser, Channel currentChannel, Long currentChannelPermissions) {
+    public final StickerSendability getStickerSendability(Sticker sticker, User meUser, Channel currentChannel, Long currentChannelPermissions) {
         m.checkNotNullParameter(sticker, "sticker");
         m.checkNotNullParameter(meUser, "meUser");
         boolean canUsePremiumStickers = UserUtils.INSTANCE.getCanUsePremiumStickers(meUser);
         if (sticker.getType() == StickerType.STANDARD) {
-            return canUsePremiumStickers ? StickerUtils$StickerSendability.SENDABLE : StickerUtils$StickerSendability.SENDABLE_WITH_PREMIUM;
+            return canUsePremiumStickers ? StickerSendability.SENDABLE : StickerSendability.SENDABLE_WITH_PREMIUM;
         }
         if (sticker.getType() != StickerType.GUILD) {
-            return StickerUtils$StickerSendability.NONSENDABLE;
+            return StickerSendability.NONSENDABLE;
         }
         if (m.areEqual(sticker.getAvailable(), Boolean.FALSE)) {
-            return StickerUtils$StickerSendability.SENDABLE_WITH_PREMIUM_GUILD;
+            return StickerSendability.SENDABLE_WITH_PREMIUM_GUILD;
         }
         if (m.areEqual(sticker.getGuildId(), currentChannel != null ? Long.valueOf(currentChannel.getGuildId()) : null)) {
-            return StickerUtils$StickerSendability.SENDABLE;
+            return StickerSendability.SENDABLE;
         }
         if (currentChannel == null || ChannelUtils.B(currentChannel) || PermissionUtils.can(Permission.USE_EXTERNAL_STICKERS, currentChannelPermissions)) {
-            return canUsePremiumStickers ? StickerUtils$StickerSendability.SENDABLE : StickerUtils$StickerSendability.SENDABLE_WITH_PREMIUM;
+            return canUsePremiumStickers ? StickerSendability.SENDABLE : StickerSendability.SENDABLE_WITH_PREMIUM;
         }
-        return StickerUtils$StickerSendability.NONSENDABLE;
+        return StickerSendability.NONSENDABLE;
     }
 
     public static /* synthetic */ List getStickersForAutocomplete$default(StickerUtils stickerUtils, StoreUser storeUser, StoreGuilds storeGuilds, StoreStickers storeStickers, StoreGuildSelected storeGuildSelected, StoreGuildStickers storeGuildStickers, int i, Object obj) {
         if ((i & 1) != 0) {
-            storeUser = StoreStream.Companion.getUsers();
+            storeUser = StoreStream.INSTANCE.getUsers();
         }
         if ((i & 2) != 0) {
-            storeGuilds = StoreStream.Companion.getGuilds();
+            storeGuilds = StoreStream.INSTANCE.getGuilds();
         }
         StoreGuilds storeGuilds2 = storeGuilds;
         if ((i & 4) != 0) {
-            storeStickers = StoreStream.Companion.getStickers();
+            storeStickers = StoreStream.INSTANCE.getStickers();
         }
         StoreStickers storeStickers2 = storeStickers;
         if ((i & 8) != 0) {
-            storeGuildSelected = StoreStream.Companion.getGuildSelected();
+            storeGuildSelected = StoreStream.INSTANCE.getGuildSelected();
         }
         StoreGuildSelected storeGuildSelected2 = storeGuildSelected;
         if ((i & 16) != 0) {
-            storeGuildStickers = StoreStream.Companion.getGuildStickers();
+            storeGuildStickers = StoreStream.INSTANCE.getGuildStickers();
         }
         return stickerUtils.getStickersForAutocomplete(storeUser, storeGuilds2, storeStickers2, storeGuildSelected2, storeGuildStickers);
     }
@@ -473,7 +566,7 @@ public final class StickerUtils {
                 m.checkNotNullExpressionValue(string, "jsonSticker.getString(\"name\")");
                 String string2 = jSONObject.getString(ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
                 m.checkNotNullExpressionValue(string2, "jsonSticker.getString(\"description\")");
-                return new Sticker(j, lValueOf, Long.valueOf(Long.parseLong(jSONObject.get(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID).toString())), string, string2, StickerFormatType.Companion.a(Integer.parseInt(jSONObject.get(ModelAuditLogEntry.CHANGE_KEY_FORMAT_TYPE).toString())), jSONObject.has(ModelAuditLogEntry.CHANGE_KEY_TAGS) ? jSONObject.get(ModelAuditLogEntry.CHANGE_KEY_TAGS).toString() : "", StickerType.Companion.a(Integer.parseInt(jSONObject.get("type").toString())), null, 256);
+                return new Sticker(j, lValueOf, Long.valueOf(Long.parseLong(jSONObject.get(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID).toString())), string, string2, StickerFormatType.INSTANCE.a(Integer.parseInt(jSONObject.get(ModelAuditLogEntry.CHANGE_KEY_FORMAT_TYPE).toString())), jSONObject.has(ModelAuditLogEntry.CHANGE_KEY_TAGS) ? jSONObject.get(ModelAuditLogEntry.CHANGE_KEY_TAGS).toString() : "", StickerType.INSTANCE.a(Integer.parseInt(jSONObject.get("type").toString())), null, 256);
             } catch (JSONException e) {
                 Logger.e$default(AppLog.g, "Error parsing sticker from notification", e, null, 4, null);
                 return null;

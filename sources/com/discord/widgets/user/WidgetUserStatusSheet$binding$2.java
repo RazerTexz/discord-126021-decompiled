@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
 import b.a.i.e4;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetUserStatusUpdateBinding;
 import com.discord.widgets.user.profile.UserStatusPresenceCustomView;
 import d0.z.d.k;
@@ -28,26 +28,26 @@ public final /* synthetic */ class WidgetUserStatusSheet$binding$2 extends k imp
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetUserStatusUpdateBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.guild_actions_overview_header_tv;
-        TextView textView = (TextView) view.findViewById(R$id.guild_actions_overview_header_tv);
+        int i = R.id.guild_actions_overview_header_tv;
+        TextView textView = (TextView) view.findViewById(R.id.guild_actions_overview_header_tv);
         if (textView != null) {
-            i = R$id.user_status_update_custom;
-            UserStatusPresenceCustomView userStatusPresenceCustomView = (UserStatusPresenceCustomView) view.findViewById(R$id.user_status_update_custom);
+            i = R.id.user_status_update_custom;
+            UserStatusPresenceCustomView userStatusPresenceCustomView = (UserStatusPresenceCustomView) view.findViewById(R.id.user_status_update_custom);
             if (userStatusPresenceCustomView != null) {
-                i = R$id.user_status_update_dnd;
-                View viewFindViewById = view.findViewById(R$id.user_status_update_dnd);
+                i = R.id.user_status_update_dnd;
+                View viewFindViewById = view.findViewById(R.id.user_status_update_dnd);
                 if (viewFindViewById != null) {
                     e4 e4VarA = e4.a(viewFindViewById);
-                    i = R$id.user_status_update_idle;
-                    View viewFindViewById2 = view.findViewById(R$id.user_status_update_idle);
+                    i = R.id.user_status_update_idle;
+                    View viewFindViewById2 = view.findViewById(R.id.user_status_update_idle);
                     if (viewFindViewById2 != null) {
                         e4 e4VarA2 = e4.a(viewFindViewById2);
-                        i = R$id.user_status_update_invisible;
-                        View viewFindViewById3 = view.findViewById(R$id.user_status_update_invisible);
+                        i = R.id.user_status_update_invisible;
+                        View viewFindViewById3 = view.findViewById(R.id.user_status_update_invisible);
                         if (viewFindViewById3 != null) {
                             e4 e4VarA3 = e4.a(viewFindViewById3);
-                            i = R$id.user_status_update_online;
-                            View viewFindViewById4 = view.findViewById(R$id.user_status_update_online);
+                            i = R.id.user_status_update_online;
+                            View viewFindViewById4 = view.findViewById(R.id.user_status_update_online);
                             if (viewFindViewById4 != null) {
                                 return new WidgetUserStatusUpdateBinding((NestedScrollView) view, textView, userStatusPresenceCustomView, e4VarA, e4VarA2, e4VarA3, e4.a(viewFindViewById4));
                             }

@@ -1,12 +1,12 @@
 package j0.l.a;
 
 import java.util.concurrent.Callable;
-import rx.Observable$a;
+import rx.Observable;
 import rx.Subscriber;
 
 /* JADX INFO: compiled from: OnSubscribeFromCallable.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class p<T> implements Observable$a<T> {
+public final class p<T> implements Observable.a<T> {
     public final Callable<? extends T> j;
 
     public p(Callable<? extends T> callable) {

@@ -1,14 +1,14 @@
 package b.i.a.f.i.b;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.measurement.internal.zzn;
 import java.util.ArrayList;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-impl@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class z9 implements Parcelable$Creator<zzn> {
-    @Override // android.os.Parcelable$Creator
+public final class z9 implements Parcelable.Creator<zzn> {
+    @Override // android.os.Parcelable.Creator
     public final zzn createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         long jH1 = 0;
@@ -122,7 +122,7 @@ public final class z9 implements Parcelable$Creator<zzn> {
         return new zzn(strR, strR2, strR3, strR4, jH1, jH2, strR5, zE1, zE2, jH6, strR6, jH3, jH4, iG1, zE3, zE4, zE5, strR7, boolValueOf, jH5, arrayListT, strR8, strR9);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zzn[] newArray(int i) {
         return new zzn[i];
     }

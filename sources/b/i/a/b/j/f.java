@@ -9,6 +9,20 @@ import java.util.Map;
 /* JADX INFO: loaded from: classes3.dex */
 @AutoValue
 public abstract class f {
+
+    /* JADX INFO: compiled from: EventInternal.java */
+    @AutoValue.Builder
+    public abstract class a {
+        public final a a(String str, String str2) {
+            c().put(str, str2);
+            return this;
+        }
+
+        public abstract f b();
+
+        public abstract Map<String, String> c();
+    }
+
     public final String a(String str) {
         String str2 = b().get(str);
         return str2 == null ? "" : str2;
@@ -35,14 +49,14 @@ public abstract class f {
 
     public abstract long h();
 
-    public f$a i() {
-        a$b a_b = new a$b();
-        a_b.f(g());
-        a_b.f762b = c();
-        a_b.d(d());
-        a_b.e(e());
-        a_b.g(h());
-        a_b.f = new HashMap(b());
-        return a_b;
+    public a i() {
+        b.i.a.b.j.a.b bVar = new b.i.a.b.j.a.b();
+        bVar.f(g());
+        bVar.f762b = c();
+        bVar.d(d());
+        bVar.e(e());
+        bVar.g(h());
+        bVar.f = new HashMap(b());
+        return bVar;
     }
 }

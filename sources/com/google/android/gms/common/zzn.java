@@ -3,17 +3,17 @@ package com.google.android.gms.common;
 import android.content.Context;
 import android.os.IBinder;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.a.f.e.c0;
-import b.i.a.f.f.a$a;
+import b.i.a.f.f.a;
 import b.i.a.f.f.b;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzn extends AbstractSafeParcelable {
-    public static final Parcelable$Creator<zzn> CREATOR = new c0();
+    public static final Parcelable.Creator<zzn> CREATOR = new c0();
     public final String j;
     public final boolean k;
     public final boolean l;
@@ -24,7 +24,7 @@ public final class zzn extends AbstractSafeParcelable {
         this.j = str;
         this.k = z2;
         this.l = z3;
-        this.m = (Context) b.i(a$a.g(iBinder));
+        this.m = (Context) b.i(a.AbstractBinderC0117a.g(iBinder));
         this.n = z4;
     }
 

@@ -1,6 +1,6 @@
 package com.discord.widgets.chat.list.entries;
 
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import b.d.b.a.a;
 import d0.z.d.m;
 
@@ -12,7 +12,7 @@ public final /* data */ class EmptyPinsEntry extends ChatListEntry {
     private final int type;
 
     public EmptyPinsEntry(String str) {
-        m.checkNotNullParameter(str, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkNotNullParameter(str, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         this.text = str;
         this.type = 16;
         this.key = String.valueOf(getType());
@@ -26,7 +26,7 @@ public final /* data */ class EmptyPinsEntry extends ChatListEntry {
     }
 
     public final EmptyPinsEntry copy(String text) {
-        m.checkNotNullParameter(text, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         return new EmptyPinsEntry(text);
     }
 

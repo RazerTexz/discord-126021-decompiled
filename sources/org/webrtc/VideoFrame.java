@@ -1,26 +1,95 @@
 package org.webrtc;
 
+import android.graphics.Matrix;
+import java.nio.ByteBuffer;
+
 /* JADX INFO: loaded from: classes3.dex */
 public class VideoFrame implements RefCounted {
-    private final VideoFrame$Buffer buffer;
+    private final Buffer buffer;
     private final int rotation;
     private final long timestampNs;
 
+    public interface Buffer extends RefCounted {
+        @CalledByNative("Buffer")
+        Buffer cropAndScale(int i, int i2, int i3, int i4, int i5, int i6);
+
+        @CalledByNative("Buffer")
+        int getHeight();
+
+        @CalledByNative("Buffer")
+        int getWidth();
+
+        @Override // org.webrtc.RefCounted
+        @CalledByNative("Buffer")
+        void release();
+
+        @Override // org.webrtc.RefCounted
+        @CalledByNative("Buffer")
+        void retain();
+
+        @CalledByNative("Buffer")
+        I420Buffer toI420();
+    }
+
+    public interface I420Buffer extends Buffer {
+        @CalledByNative("I420Buffer")
+        ByteBuffer getDataU();
+
+        @CalledByNative("I420Buffer")
+        ByteBuffer getDataV();
+
+        @CalledByNative("I420Buffer")
+        ByteBuffer getDataY();
+
+        @CalledByNative("I420Buffer")
+        int getStrideU();
+
+        @CalledByNative("I420Buffer")
+        int getStrideV();
+
+        @CalledByNative("I420Buffer")
+        int getStrideY();
+    }
+
+    public interface TextureBuffer extends Buffer {
+
+        public enum Type {
+            OES(36197),
+            RGB(3553);
+
+            private final int glTarget;
+
+            Type(int i) {
+                this.glTarget = i;
+            }
+
+            public int getGlTarget() {
+                return this.glTarget;
+            }
+        }
+
+        int getTextureId();
+
+        Matrix getTransformMatrix();
+
+        Type getType();
+    }
+
     @CalledByNative
-    public VideoFrame(VideoFrame$Buffer videoFrame$Buffer, int i, long j) {
-        if (videoFrame$Buffer == null) {
+    public VideoFrame(Buffer buffer, int i, long j) {
+        if (buffer == null) {
             throw new IllegalArgumentException("buffer not allowed to be null");
         }
         if (i % 90 != 0) {
             throw new IllegalArgumentException("rotation must be a multiple of 90");
         }
-        this.buffer = videoFrame$Buffer;
+        this.buffer = buffer;
         this.rotation = i;
         this.timestampNs = j;
     }
 
     @CalledByNative
-    public VideoFrame$Buffer getBuffer() {
+    public Buffer getBuffer() {
         return this.buffer;
     }
 

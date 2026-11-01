@@ -30,6 +30,7 @@ import kotlin.jvm.functions.Function6;
 import kotlin.jvm.functions.Function7;
 import kotlin.jvm.functions.Function8;
 import kotlin.jvm.functions.Function9;
+import kotlin.sequences.Sequence;
 
 /* JADX INFO: compiled from: reflectClassUtil.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -40,6 +41,53 @@ public final class b {
     public static final Map<Class<? extends Object>, Class<? extends Object>> f3291b;
     public static final Map<Class<? extends Object>, Class<? extends Object>> c;
     public static final Map<Class<? extends d0.c<?>>, Integer> d;
+
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.c.k1.b.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: reflectClassUtil.kt */
+    public final class C0518b extends d0.z.d.o implements Function1<ParameterizedType, Sequence<? extends Type>> {
+        public static final C0518b j = new C0518b();
+
+        public C0518b() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Sequence<? extends Type> invoke(ParameterizedType parameterizedType) {
+            return invoke2(parameterizedType);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Sequence<Type> invoke2(ParameterizedType parameterizedType) {
+            d0.z.d.m.checkNotNullParameter(parameterizedType, "it");
+            Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
+            d0.z.d.m.checkNotNullExpressionValue(actualTypeArguments, "it.actualTypeArguments");
+            return d0.t.k.asSequence(actualTypeArguments);
+        }
+    }
+
+    /* JADX INFO: compiled from: reflectClassUtil.kt */
+    public final class a extends d0.z.d.o implements Function1<ParameterizedType, ParameterizedType> {
+        public static final a j = new a();
+
+        public a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ ParameterizedType invoke(ParameterizedType parameterizedType) {
+            return invoke2(parameterizedType);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final ParameterizedType invoke2(ParameterizedType parameterizedType) {
+            d0.z.d.m.checkNotNullParameter(parameterizedType, "it");
+            Type ownerType = parameterizedType.getOwnerType();
+            if (ownerType instanceof ParameterizedType) {
+                return (ParameterizedType) ownerType;
+            }
+            return null;
+        }
+    }
 
     static {
         int i = 0;
@@ -122,7 +170,7 @@ public final class b {
         }
         ParameterizedType parameterizedType = (ParameterizedType) type;
         if (parameterizedType.getOwnerType() != null) {
-            return d0.f0.q.toList(d0.f0.q.flatMap(d0.f0.n.generateSequence(type, b$a.j), b$b.j));
+            return d0.f0.q.toList(d0.f0.q.flatMap(d0.f0.n.generateSequence(type, a.j), C0518b.j));
         }
         Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
         d0.z.d.m.checkNotNullExpressionValue(actualTypeArguments, "actualTypeArguments");

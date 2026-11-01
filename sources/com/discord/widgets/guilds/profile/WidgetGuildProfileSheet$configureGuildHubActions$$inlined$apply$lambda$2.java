@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 import com.discord.widgets.servers.WidgetServerNotifications;
-import com.discord.widgets.servers.WidgetServerNotifications$Companion;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -34,10 +33,10 @@ public final class WidgetGuildProfileSheet$configureGuildHubActions$$inlined$app
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(View view) {
         m.checkNotNullParameter(view, "it");
-        WidgetServerNotifications$Companion widgetServerNotifications$Companion = WidgetServerNotifications.Companion;
+        WidgetServerNotifications.Companion companion = WidgetServerNotifications.INSTANCE;
         long j = this.$guildId$inlined;
         Context context = this.$this_apply.getContext();
         m.checkNotNullExpressionValue(context, "context");
-        widgetServerNotifications$Companion.launch(j, context);
+        companion.launch(j, context);
     }
 }

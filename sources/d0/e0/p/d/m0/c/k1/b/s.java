@@ -1,7 +1,6 @@
 package d0.e0.p.d.m0.c.k1.b;
 
 import d0.e0.p.d.m0.e.a.k0.a0;
-import d0.e0.p.d.m0.e.a.k0.r$a;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Member;
 import java.lang.reflect.Method;
@@ -31,7 +30,7 @@ public final class s extends r implements d0.e0.p.d.m0.e.a.k0.r {
 
     @Override // d0.e0.p.d.m0.e.a.k0.r
     public boolean getHasAnnotationParameterDefaultValue() {
-        return r$a.getHasAnnotationParameterDefaultValue(this);
+        return d0.e0.p.d.m0.e.a.k0.r.a.getHasAnnotationParameterDefaultValue(this);
     }
 
     @Override // d0.e0.p.d.m0.c.k1.b.r
@@ -71,9 +70,9 @@ public final class s extends r implements d0.e0.p.d.m0.e.a.k0.r {
 
     @Override // d0.e0.p.d.m0.e.a.k0.r
     public w getReturnType() {
-        w$a w_a = w.a;
+        w.a aVar = w.a;
         Type genericReturnType = getMember().getGenericReturnType();
         d0.z.d.m.checkNotNullExpressionValue(genericReturnType, "member.genericReturnType");
-        return w_a.create(genericReturnType);
+        return aVar.create(genericReturnType);
     }
 }

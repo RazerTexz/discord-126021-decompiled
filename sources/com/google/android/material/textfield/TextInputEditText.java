@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -17,11 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 import b.d.b.a.a;
-import com.google.android.material.R$attr;
-import com.google.android.material.R$dimen;
-import com.google.android.material.R$id;
-import com.google.android.material.R$style;
-import com.google.android.material.R$styleable;
+import com.google.android.material.R;
 import com.google.android.material.internal.ManufacturerUtils;
 import com.google.android.material.internal.ThemeEnforcement;
 import com.google.android.material.theme.overlay.MaterialThemeOverlay;
@@ -41,7 +37,7 @@ public class TextInputEditText extends AppCompatEditText {
         CharSequence hint = textInputLayout.getHint();
         boolean z2 = !TextUtils.isEmpty(text);
         boolean z3 = !TextUtils.isEmpty(hint);
-        setLabelFor(R$id.textinput_helper_text);
+        setLabelFor(R.id.textinput_helper_text);
         String string = z3 ? hint.toString() : "";
         if (!z2) {
             return !TextUtils.isEmpty(string) ? string : "";
@@ -127,7 +123,7 @@ public class TextInputEditText extends AppCompatEditText {
     public void onInitializeAccessibilityNodeInfo(@NonNull AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         TextInputLayout textInputLayout = getTextInputLayout();
-        if (Build$VERSION.SDK_INT >= 23 || textInputLayout == null) {
+        if (Build.VERSION.SDK_INT >= 23 || textInputLayout == null) {
             return;
         }
         accessibilityNodeInfo.setText(getAccessibilityNodeInfoText(textInputLayout));
@@ -138,7 +134,7 @@ public class TextInputEditText extends AppCompatEditText {
         boolean zRequestRectangleOnScreen = super.requestRectangleOnScreen(rect);
         TextInputLayout textInputLayout = getTextInputLayout();
         if (textInputLayout != null && this.textInputLayoutFocusedRectEnabled) {
-            this.parentRect.set(0, textInputLayout.getHeight() - getResources().getDimensionPixelOffset(R$dimen.mtrl_edittext_rectangle_top_offset), textInputLayout.getWidth(), textInputLayout.getHeight());
+            this.parentRect.set(0, textInputLayout.getHeight() - getResources().getDimensionPixelOffset(R.dimen.mtrl_edittext_rectangle_top_offset), textInputLayout.getWidth(), textInputLayout.getHeight());
             textInputLayout.requestRectangleOnScreen(this.parentRect, true);
         }
         return zRequestRectangleOnScreen;
@@ -149,14 +145,14 @@ public class TextInputEditText extends AppCompatEditText {
     }
 
     public TextInputEditText(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, R$attr.editTextStyle);
+        this(context, attributeSet, R.attr.editTextStyle);
     }
 
     public TextInputEditText(@NonNull Context context, @Nullable AttributeSet attributeSet, int i) {
         super(MaterialThemeOverlay.wrap(context, attributeSet, i, 0), attributeSet, i);
         this.parentRect = new Rect();
-        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R$styleable.TextInputEditText, i, R$style.Widget_Design_TextInputEditText, new int[0]);
-        setTextInputLayoutFocusedRectEnabled(typedArrayObtainStyledAttributes.getBoolean(R$styleable.TextInputEditText_textInputLayoutFocusedRectEnabled, false));
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R.styleable.TextInputEditText, i, R.style.Widget_Design_TextInputEditText, new int[0]);
+        setTextInputLayoutFocusedRectEnabled(typedArrayObtainStyledAttributes.getBoolean(R.styleable.TextInputEditText_textInputLayoutFocusedRectEnabled, false));
         typedArrayObtainStyledAttributes.recycle();
     }
 }

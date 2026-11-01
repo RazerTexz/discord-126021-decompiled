@@ -5,13 +5,17 @@ import java.util.Objects;
 /* JADX INFO: compiled from: FrescoSystrace.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class b {
-    public static volatile b$a a;
+    public static volatile a a;
 
-    public static b$a a() {
+    /* JADX INFO: compiled from: FrescoSystrace.java */
+    public interface a {
+    }
+
+    public static a a() {
         if (a == null) {
             synchronized (b.class) {
                 if (a == null) {
-                    a = new a();
+                    a = new b.f.j.r.a();
                 }
             }
         }

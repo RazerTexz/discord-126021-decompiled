@@ -2,7 +2,6 @@ package com.discord.utilities.intent;
 
 import androidx.fragment.app.FragmentActivity;
 import com.discord.widgets.friends.WidgetFriendsAdd;
-import com.discord.widgets.friends.WidgetFriendsAdd$Companion;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -26,6 +25,6 @@ public final class RouteHandlers$selectFeature$settingMap$10 extends o implement
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(FragmentActivity fragmentActivity) {
         m.checkNotNullParameter(fragmentActivity, "ctx");
-        WidgetFriendsAdd$Companion.show$default(WidgetFriendsAdd.Companion, fragmentActivity, null, "Deep Link", 2, null);
+        WidgetFriendsAdd.Companion.show$default(WidgetFriendsAdd.INSTANCE, fragmentActivity, null, "Deep Link", 2, null);
     }
 }

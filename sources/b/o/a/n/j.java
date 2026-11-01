@@ -1,7 +1,7 @@
 package b.o.a.n;
 
 import com.otaliastudios.cameraview.CameraException;
-import com.otaliastudios.cameraview.CameraView$b;
+import com.otaliastudios.cameraview.CameraView;
 
 /* JADX INFO: compiled from: CameraEngine.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -24,7 +24,7 @@ public class j implements Runnable {
                 this.k.d(false, 0);
             }
             i.j.a(3, "EXCEPTION:", "Got CameraException. Dispatching to callback.");
-            ((CameraView$b) this.k.m).a(cameraException);
+            ((CameraView.b) this.k.m).a(cameraException);
             return;
         }
         b.o.a.b bVar = i.j;

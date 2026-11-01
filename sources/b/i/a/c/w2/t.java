@@ -7,8 +7,8 @@ import b.i.a.c.j1;
 /* JADX INFO: compiled from: DrmSessionManager.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class t {
-    public static u$b a(u _this, @Nullable Looper looper, s$a s_a, j1 j1Var) {
-        int i = u$b.a;
+    public static u.b a(u _this, @Nullable Looper looper, s.a aVar, j1 j1Var) {
+        int i = u.b.a;
         return m.f1153b;
     }
 

@@ -3,7 +3,6 @@ package com.google.android.material.datepicker;
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import android.text.format.DateUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,7 +25,21 @@ public final class Month implements Comparable<Month>, Parcelable {
 
     @Nullable
     public String p;
-    public static final Parcelable$Creator<Month> CREATOR = new Month$a();
+    public static final Parcelable.Creator<Month> CREATOR = new a();
+
+    public final class a implements Parcelable.Creator<Month> {
+        @Override // android.os.Parcelable.Creator
+        @NonNull
+        public Month createFromParcel(@NonNull Parcel parcel) {
+            return Month.g(parcel.readInt(), parcel.readInt());
+        }
+
+        @Override // android.os.Parcelable.Creator
+        @NonNull
+        public Month[] newArray(int i) {
+            return new Month[i];
+        }
+    }
 
     public Month(@NonNull Calendar calendar) {
         calendar.set(5, 1);

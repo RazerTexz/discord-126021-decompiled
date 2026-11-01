@@ -1,12 +1,11 @@
 package androidx.fragment.app;
 
-import android.R$style;
+import android.R;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.DialogInterface$OnCancelListener;
-import android.content.DialogInterface$OnDismissListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -20,13 +19,12 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.StyleRes;
 import androidx.view.LifecycleOwner;
 import androidx.view.Observer;
 
 /* JADX INFO: loaded from: classes.dex */
-public class DialogFragment extends Fragment implements DialogInterface$OnCancelListener, DialogInterface$OnDismissListener {
+public class DialogFragment extends Fragment implements DialogInterface.OnCancelListener, DialogInterface.OnDismissListener {
     private static final String SAVED_BACK_STACK_ID = "android:backStackId";
     private static final String SAVED_CANCELABLE = "android:cancelable";
     private static final String SAVED_DIALOG_STATE_TAG = "android:savedDialogState";
@@ -49,24 +47,123 @@ public class DialogFragment extends Fragment implements DialogInterface$OnCancel
     private boolean mDismissed;
     private Handler mHandler;
     private Observer<LifecycleOwner> mObserver;
-    private DialogInterface$OnCancelListener mOnCancelListener;
-    private DialogInterface$OnDismissListener mOnDismissListener;
+    private DialogInterface.OnCancelListener mOnCancelListener;
+    private DialogInterface.OnDismissListener mOnDismissListener;
     private boolean mShownByMe;
     private boolean mShowsDialog;
     private int mStyle;
     private int mTheme;
     private boolean mViewDestroyed;
 
+    /* JADX INFO: renamed from: androidx.fragment.app.DialogFragment$1, reason: invalid class name */
+    public class AnonymousClass1 implements Runnable {
+        public AnonymousClass1() {
+        }
+
+        @Override // java.lang.Runnable
+        @SuppressLint({"SyntheticAccessor"})
+        public void run() {
+            DialogFragment.access$100(DialogFragment.this).onDismiss(DialogFragment.access$000(DialogFragment.this));
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.fragment.app.DialogFragment$2, reason: invalid class name */
+    public class AnonymousClass2 implements DialogInterface.OnCancelListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.content.DialogInterface.OnCancelListener
+        @SuppressLint({"SyntheticAccessor"})
+        public void onCancel(@Nullable DialogInterface dialogInterface) {
+            if (DialogFragment.access$000(DialogFragment.this) != null) {
+                DialogFragment dialogFragment = DialogFragment.this;
+                dialogFragment.onCancel(DialogFragment.access$000(dialogFragment));
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.fragment.app.DialogFragment$3, reason: invalid class name */
+    public class AnonymousClass3 implements DialogInterface.OnDismissListener {
+        public AnonymousClass3() {
+        }
+
+        @Override // android.content.DialogInterface.OnDismissListener
+        @SuppressLint({"SyntheticAccessor"})
+        public void onDismiss(@Nullable DialogInterface dialogInterface) {
+            if (DialogFragment.access$000(DialogFragment.this) != null) {
+                DialogFragment dialogFragment = DialogFragment.this;
+                dialogFragment.onDismiss(DialogFragment.access$000(dialogFragment));
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.fragment.app.DialogFragment$4, reason: invalid class name */
+    public class AnonymousClass4 implements Observer<LifecycleOwner> {
+        public AnonymousClass4() {
+        }
+
+        @Override // androidx.view.Observer
+        @SuppressLint({"SyntheticAccessor"})
+        public /* bridge */ /* synthetic */ void onChanged(LifecycleOwner lifecycleOwner) {
+            onChanged2(lifecycleOwner);
+        }
+
+        @SuppressLint({"SyntheticAccessor"})
+        /* JADX INFO: renamed from: onChanged, reason: avoid collision after fix types in other method */
+        public void onChanged2(LifecycleOwner lifecycleOwner) {
+            if (lifecycleOwner == null || !DialogFragment.access$200(DialogFragment.this)) {
+                return;
+            }
+            View viewRequireView = DialogFragment.this.requireView();
+            if (viewRequireView.getParent() != null) {
+                throw new IllegalStateException("DialogFragment can not be attached to a container view");
+            }
+            if (DialogFragment.access$000(DialogFragment.this) != null) {
+                if (FragmentManager.isLoggingEnabled(3)) {
+                    Log.d(FragmentManager.TAG, "DialogFragment " + this + " setting the content view on " + DialogFragment.access$000(DialogFragment.this));
+                }
+                DialogFragment.access$000(DialogFragment.this).setContentView(viewRequireView);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.fragment.app.DialogFragment$5, reason: invalid class name */
+    public class AnonymousClass5 extends FragmentContainer {
+        public final /* synthetic */ FragmentContainer val$fragmentContainer;
+
+        public AnonymousClass5(FragmentContainer fragmentContainer) {
+            this.val$fragmentContainer = fragmentContainer;
+        }
+
+        @Override // androidx.fragment.app.FragmentContainer
+        @Nullable
+        public View onFindViewById(int i) {
+            View viewOnFindViewById = DialogFragment.this.onFindViewById(i);
+            if (viewOnFindViewById != null) {
+                return viewOnFindViewById;
+            }
+            if (this.val$fragmentContainer.onHasView()) {
+                return this.val$fragmentContainer.onFindViewById(i);
+            }
+            return null;
+        }
+
+        @Override // androidx.fragment.app.FragmentContainer
+        public boolean onHasView() {
+            return DialogFragment.this.onHasView() || this.val$fragmentContainer.onHasView();
+        }
+    }
+
     public DialogFragment() {
-        this.mDismissRunnable = new DialogFragment$1(this);
-        this.mOnCancelListener = new DialogFragment$2(this);
-        this.mOnDismissListener = new DialogFragment$3(this);
+        this.mDismissRunnable = new AnonymousClass1();
+        this.mOnCancelListener = new AnonymousClass2();
+        this.mOnDismissListener = new AnonymousClass3();
         this.mStyle = 0;
         this.mTheme = 0;
         this.mCancelable = true;
         this.mShowsDialog = true;
         this.mBackStackId = -1;
-        this.mObserver = new DialogFragment$4(this);
+        this.mObserver = new AnonymousClass4();
         this.mDialogCreated = false;
     }
 
@@ -74,7 +171,7 @@ public class DialogFragment extends Fragment implements DialogInterface$OnCancel
         return dialogFragment.mDialog;
     }
 
-    public static /* synthetic */ DialogInterface$OnDismissListener access$100(DialogFragment dialogFragment) {
+    public static /* synthetic */ DialogInterface.OnDismissListener access$100(DialogFragment dialogFragment) {
         return dialogFragment.mOnDismissListener;
     }
 
@@ -85,7 +182,7 @@ public class DialogFragment extends Fragment implements DialogInterface$OnCancel
     @Override // androidx.fragment.app.Fragment
     @NonNull
     public FragmentContainer createFragmentContainer() {
-        return new DialogFragment$5(this, super.createFragmentContainer());
+        return new AnonymousClass5(super.createFragmentContainer());
     }
 
     public void dismiss() {
@@ -158,7 +255,7 @@ public class DialogFragment extends Fragment implements DialogInterface$OnCancel
         this.mDismissed = false;
     }
 
-    @Override // android.content.DialogInterface$OnCancelListener
+    @Override // android.content.DialogInterface.OnCancelListener
     public void onCancel(@NonNull DialogInterface dialogInterface) {
     }
 
@@ -213,7 +310,7 @@ public class DialogFragment extends Fragment implements DialogInterface$OnCancel
         getViewLifecycleOwnerLiveData().removeObserver(this.mObserver);
     }
 
-    @Override // android.content.DialogInterface$OnDismissListener
+    @Override // android.content.DialogInterface.OnDismissListener
     public void onDismiss(@NonNull DialogInterface dialogInterface) {
         if (this.mViewDestroyed) {
             return;
@@ -386,14 +483,14 @@ public class DialogFragment extends Fragment implements DialogInterface$OnCancel
         }
         this.mStyle = i;
         if (i == 2 || i == 3) {
-            this.mTheme = R$style.Theme.Panel;
+            this.mTheme = R.style.Theme.Panel;
         }
         if (i2 != 0) {
             this.mTheme = i2;
         }
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void setupDialog(@NonNull Dialog dialog, int i) {
         if (i != 1 && i != 2) {
             if (i != 3) {
@@ -435,15 +532,15 @@ public class DialogFragment extends Fragment implements DialogInterface$OnCancel
 
     public DialogFragment(@LayoutRes int i) {
         super(i);
-        this.mDismissRunnable = new DialogFragment$1(this);
-        this.mOnCancelListener = new DialogFragment$2(this);
-        this.mOnDismissListener = new DialogFragment$3(this);
+        this.mDismissRunnable = new AnonymousClass1();
+        this.mOnCancelListener = new AnonymousClass2();
+        this.mOnDismissListener = new AnonymousClass3();
         this.mStyle = 0;
         this.mTheme = 0;
         this.mCancelable = true;
         this.mShowsDialog = true;
         this.mBackStackId = -1;
-        this.mObserver = new DialogFragment$4(this);
+        this.mObserver = new AnonymousClass4();
         this.mDialogCreated = false;
     }
 }

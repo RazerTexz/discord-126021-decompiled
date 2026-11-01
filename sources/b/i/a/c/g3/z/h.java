@@ -3,24 +3,51 @@ package b.i.a.c.g3.z;
 /* JADX INFO: compiled from: Projection.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class h {
-    public final h$a a;
+    public final a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final h$a f1000b;
+    public final a f1000b;
     public final int c;
     public final boolean d;
 
-    public h(h$a h_a, int i) {
-        this.a = h_a;
-        this.f1000b = h_a;
-        this.c = i;
-        this.d = h_a == h_a;
+    /* JADX INFO: compiled from: Projection.java */
+    public final class a {
+        public final b[] a;
+
+        public a(b... bVarArr) {
+            this.a = bVarArr;
+        }
     }
 
-    public h(h$a h_a, h$a h_a2, int i) {
-        this.a = h_a;
-        this.f1000b = h_a2;
+    /* JADX INFO: compiled from: Projection.java */
+    public final class b {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f1001b;
+        public final float[] c;
+        public final float[] d;
+
+        public b(int i, float[] fArr, float[] fArr2, int i2) {
+            this.a = i;
+            b.c.a.a0.d.j(((long) fArr.length) * 2 == ((long) fArr2.length) * 3);
+            this.c = fArr;
+            this.d = fArr2;
+            this.f1001b = i2;
+        }
+    }
+
+    public h(a aVar, int i) {
+        this.a = aVar;
+        this.f1000b = aVar;
         this.c = i;
-        this.d = h_a == h_a2;
+        this.d = aVar == aVar;
+    }
+
+    public h(a aVar, a aVar2, int i) {
+        this.a = aVar;
+        this.f1000b = aVar2;
+        this.c = i;
+        this.d = aVar == aVar2;
     }
 }

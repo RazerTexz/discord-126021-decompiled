@@ -1,6 +1,5 @@
 package d0.e0.p.d.m0.c;
 
-import d0.e0.p.d.m0.o.g$a;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -31,49 +30,456 @@ public class t {
     public static final d0.e0.p.d.m0.o.g o;
     public static final Map<f1, u> p;
 
+    /* JADX INFO: compiled from: DescriptorVisibilities.java */
+    public final class a implements d0.e0.p.d.m0.k.a0.p.d {
+        @Override // d0.e0.p.d.m0.k.a0.p.d
+        public d0.e0.p.d.m0.n.c0 getType() {
+            throw new IllegalStateException("This method should not be called");
+        }
+    }
+
+    /* JADX INFO: compiled from: DescriptorVisibilities.java */
+    public final class b implements d0.e0.p.d.m0.k.a0.p.d {
+        @Override // d0.e0.p.d.m0.k.a0.p.d
+        public d0.e0.p.d.m0.n.c0 getType() {
+            throw new IllegalStateException("This method should not be called");
+        }
+    }
+
+    /* JADX INFO: compiled from: DescriptorVisibilities.java */
+    public final class c implements d0.e0.p.d.m0.k.a0.p.d {
+        @Override // d0.e0.p.d.m0.k.a0.p.d
+        public d0.e0.p.d.m0.n.c0 getType() {
+            throw new IllegalStateException("This method should not be called");
+        }
+    }
+
+    /* JADX INFO: compiled from: DescriptorVisibilities.java */
+    public final class d extends r {
+        public d(f1 f1Var) {
+            super(f1Var);
+        }
+
+        public static /* synthetic */ void a(int i) {
+            Object[] objArr = new Object[3];
+            if (i == 1) {
+                objArr[0] = "what";
+            } else if (i != 2) {
+                objArr[0] = "descriptor";
+            } else {
+                objArr[0] = "from";
+            }
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$1";
+            if (i == 1 || i == 2) {
+                objArr[2] = "isVisible";
+            } else {
+                objArr[2] = "hasContainingSourceFile";
+            }
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // d0.e0.p.d.m0.c.u
+        public boolean isVisible(d0.e0.p.d.m0.k.a0.p.d dVar, q qVar, m mVar) {
+            if (qVar == 0) {
+                a(1);
+                throw null;
+            }
+            if (mVar == null) {
+                a(2);
+                throw null;
+            }
+            if (d0.e0.p.d.m0.k.e.isTopLevelDeclaration(qVar)) {
+                if (mVar == null) {
+                    a(0);
+                    throw null;
+                }
+                if (d0.e0.p.d.m0.k.e.getContainingSourceFile(mVar) != v0.a) {
+                    return t.inSameFile(qVar, mVar);
+                }
+            }
+            if (qVar instanceof d0.e0.p.d.m0.c.l) {
+                d0.e0.p.d.m0.c.i containingDeclaration = ((d0.e0.p.d.m0.c.l) qVar).getContainingDeclaration();
+                if (d0.e0.p.d.m0.k.e.isSealedClass(containingDeclaration) && d0.e0.p.d.m0.k.e.isTopLevelDeclaration(containingDeclaration) && (mVar instanceof d0.e0.p.d.m0.c.l) && d0.e0.p.d.m0.k.e.isTopLevelDeclaration(mVar.getContainingDeclaration()) && t.inSameFile(qVar, mVar)) {
+                    return true;
+                }
+            }
+            while (qVar != 0) {
+                qVar = qVar.getContainingDeclaration();
+                if (((qVar instanceof d0.e0.p.d.m0.c.e) && !d0.e0.p.d.m0.k.e.isCompanionObject(qVar)) || (qVar instanceof e0)) {
+                    break;
+                }
+            }
+            if (qVar == 0) {
+                return false;
+            }
+            while (mVar != null) {
+                if (qVar == mVar) {
+                    return true;
+                }
+                if (mVar instanceof e0) {
+                    return (qVar instanceof e0) && ((e0) qVar).getFqName().equals(((e0) mVar).getFqName()) && d0.e0.p.d.m0.k.e.areInSameModule(mVar, qVar);
+                }
+                mVar = mVar.getContainingDeclaration();
+            }
+            return false;
+        }
+    }
+
+    /* JADX INFO: compiled from: DescriptorVisibilities.java */
+    public final class e extends r {
+        public e(f1 f1Var) {
+            super(f1Var);
+        }
+
+        public static /* synthetic */ void a(int i) {
+            Object[] objArr = new Object[3];
+            if (i != 1) {
+                objArr[0] = "what";
+            } else {
+                objArr[0] = "from";
+            }
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$2";
+            objArr[2] = "isVisible";
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+
+        @Override // d0.e0.p.d.m0.c.u
+        public boolean isVisible(d0.e0.p.d.m0.k.a0.p.d dVar, q qVar, m mVar) {
+            m parentOfType;
+            if (qVar == null) {
+                a(0);
+                throw null;
+            }
+            if (mVar == null) {
+                a(1);
+                throw null;
+            }
+            if (t.a.isVisible(dVar, qVar, mVar)) {
+                if (dVar == t.m) {
+                    return true;
+                }
+                if (dVar != t.l && (parentOfType = d0.e0.p.d.m0.k.e.getParentOfType(qVar, d0.e0.p.d.m0.c.e.class)) != null && (dVar instanceof d0.e0.p.d.m0.k.a0.p.f)) {
+                    return ((d0.e0.p.d.m0.k.a0.p.f) dVar).getClassDescriptor().getOriginal().equals(parentOfType.getOriginal());
+                }
+            }
+            return false;
+        }
+    }
+
+    /* JADX INFO: compiled from: DescriptorVisibilities.java */
+    public final class f extends r {
+        public f(f1 f1Var) {
+            super(f1Var);
+        }
+
+        public static /* synthetic */ void a(int i) {
+            Object[] objArr = new Object[3];
+            if (i == 1) {
+                objArr[0] = "from";
+            } else if (i == 2) {
+                objArr[0] = "whatDeclaration";
+            } else if (i != 3) {
+                objArr[0] = "what";
+            } else {
+                objArr[0] = "fromClass";
+            }
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$3";
+            if (i == 2 || i == 3) {
+                objArr[2] = "doesReceiverFitForProtectedVisibility";
+            } else {
+                objArr[2] = "isVisible";
+            }
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+
+        /* JADX WARN: Code duplicated, block: B:47:0x007b  */
+        @Override // d0.e0.p.d.m0.c.u
+        public boolean isVisible(d0.e0.p.d.m0.k.a0.p.d dVar, q qVar, m mVar) {
+            d0.e0.p.d.m0.c.e eVar;
+            boolean z2 = false;
+            if (qVar == null) {
+                a(0);
+                throw null;
+            }
+            if (mVar == null) {
+                a(1);
+                throw null;
+            }
+            d0.e0.p.d.m0.c.e eVar2 = (d0.e0.p.d.m0.c.e) d0.e0.p.d.m0.k.e.getParentOfType(qVar, d0.e0.p.d.m0.c.e.class);
+            d0.e0.p.d.m0.c.e eVar3 = (d0.e0.p.d.m0.c.e) d0.e0.p.d.m0.k.e.getParentOfType(mVar, d0.e0.p.d.m0.c.e.class, false);
+            if (eVar3 == null) {
+                return false;
+            }
+            if (eVar2 != null && d0.e0.p.d.m0.k.e.isCompanionObject(eVar2) && (eVar = (d0.e0.p.d.m0.c.e) d0.e0.p.d.m0.k.e.getParentOfType(eVar2, d0.e0.p.d.m0.c.e.class)) != null && d0.e0.p.d.m0.k.e.isSubclass(eVar3, eVar)) {
+                return true;
+            }
+            q qVarUnwrapFakeOverrideToAnyDeclaration = d0.e0.p.d.m0.k.e.unwrapFakeOverrideToAnyDeclaration(qVar);
+            d0.e0.p.d.m0.c.e eVar4 = (d0.e0.p.d.m0.c.e) d0.e0.p.d.m0.k.e.getParentOfType(qVarUnwrapFakeOverrideToAnyDeclaration, d0.e0.p.d.m0.c.e.class);
+            if (eVar4 == null) {
+                return false;
+            }
+            if (d0.e0.p.d.m0.k.e.isSubclass(eVar3, eVar4)) {
+                if (qVarUnwrapFakeOverrideToAnyDeclaration == null) {
+                    a(2);
+                    throw null;
+                }
+                if (dVar != t.n) {
+                    if (!(qVarUnwrapFakeOverrideToAnyDeclaration instanceof d0.e0.p.d.m0.c.b) || (qVarUnwrapFakeOverrideToAnyDeclaration instanceof d0.e0.p.d.m0.c.l) || dVar == t.m) {
+                        z2 = true;
+                    } else if (dVar != t.l && dVar != null) {
+                        d0.e0.p.d.m0.n.c0 thisType = dVar instanceof d0.e0.p.d.m0.k.a0.p.e ? ((d0.e0.p.d.m0.k.a0.p.e) dVar).getThisType() : dVar.getType();
+                        if (d0.e0.p.d.m0.k.e.isSubtypeOfClass(thisType, eVar3) || d0.e0.p.d.m0.n.r.isDynamic(thisType)) {
+                            z2 = true;
+                        }
+                    }
+                }
+                if (z2) {
+                    return true;
+                }
+            }
+            return isVisible(dVar, qVar, eVar3.getContainingDeclaration());
+        }
+    }
+
+    /* JADX INFO: compiled from: DescriptorVisibilities.java */
+    public final class g extends r {
+        public g(f1 f1Var) {
+            super(f1Var);
+        }
+
+        public static /* synthetic */ void a(int i) {
+            Object[] objArr = new Object[3];
+            if (i != 1) {
+                objArr[0] = "what";
+            } else {
+                objArr[0] = "from";
+            }
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$4";
+            objArr[2] = "isVisible";
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+
+        @Override // d0.e0.p.d.m0.c.u
+        public boolean isVisible(d0.e0.p.d.m0.k.a0.p.d dVar, q qVar, m mVar) {
+            if (qVar == null) {
+                a(0);
+                throw null;
+            }
+            if (mVar == null) {
+                a(1);
+                throw null;
+            }
+            if (d0.e0.p.d.m0.k.e.getContainingModule(mVar).shouldSeeInternalsOf(d0.e0.p.d.m0.k.e.getContainingModule(qVar))) {
+                return t.o.isInFriendModule(qVar, mVar);
+            }
+            return false;
+        }
+    }
+
+    /* JADX INFO: compiled from: DescriptorVisibilities.java */
+    public final class h extends r {
+        public h(f1 f1Var) {
+            super(f1Var);
+        }
+
+        public static /* synthetic */ void a(int i) {
+            Object[] objArr = new Object[3];
+            if (i != 1) {
+                objArr[0] = "what";
+            } else {
+                objArr[0] = "from";
+            }
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$5";
+            objArr[2] = "isVisible";
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+
+        @Override // d0.e0.p.d.m0.c.u
+        public boolean isVisible(d0.e0.p.d.m0.k.a0.p.d dVar, q qVar, m mVar) {
+            if (qVar == null) {
+                a(0);
+                throw null;
+            }
+            if (mVar != null) {
+                return true;
+            }
+            a(1);
+            throw null;
+        }
+    }
+
+    /* JADX INFO: compiled from: DescriptorVisibilities.java */
+    public final class i extends r {
+        public i(f1 f1Var) {
+            super(f1Var);
+        }
+
+        public static /* synthetic */ void a(int i) {
+            Object[] objArr = new Object[3];
+            if (i != 1) {
+                objArr[0] = "what";
+            } else {
+                objArr[0] = "from";
+            }
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$6";
+            objArr[2] = "isVisible";
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+
+        @Override // d0.e0.p.d.m0.c.u
+        public boolean isVisible(d0.e0.p.d.m0.k.a0.p.d dVar, q qVar, m mVar) {
+            if (qVar == null) {
+                a(0);
+                throw null;
+            }
+            if (mVar != null) {
+                throw new IllegalStateException("This method shouldn't be invoked for LOCAL visibility");
+            }
+            a(1);
+            throw null;
+        }
+    }
+
+    /* JADX INFO: compiled from: DescriptorVisibilities.java */
+    public final class j extends r {
+        public j(f1 f1Var) {
+            super(f1Var);
+        }
+
+        public static /* synthetic */ void a(int i) {
+            Object[] objArr = new Object[3];
+            if (i != 1) {
+                objArr[0] = "what";
+            } else {
+                objArr[0] = "from";
+            }
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$7";
+            objArr[2] = "isVisible";
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+
+        @Override // d0.e0.p.d.m0.c.u
+        public boolean isVisible(d0.e0.p.d.m0.k.a0.p.d dVar, q qVar, m mVar) {
+            if (qVar == null) {
+                a(0);
+                throw null;
+            }
+            if (mVar != null) {
+                throw new IllegalStateException("Visibility is unknown yet");
+            }
+            a(1);
+            throw null;
+        }
+    }
+
+    /* JADX INFO: compiled from: DescriptorVisibilities.java */
+    public final class k extends r {
+        public k(f1 f1Var) {
+            super(f1Var);
+        }
+
+        public static /* synthetic */ void a(int i) {
+            Object[] objArr = new Object[3];
+            if (i != 1) {
+                objArr[0] = "what";
+            } else {
+                objArr[0] = "from";
+            }
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$8";
+            objArr[2] = "isVisible";
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+
+        @Override // d0.e0.p.d.m0.c.u
+        public boolean isVisible(d0.e0.p.d.m0.k.a0.p.d dVar, q qVar, m mVar) {
+            if (qVar == null) {
+                a(0);
+                throw null;
+            }
+            if (mVar != null) {
+                return false;
+            }
+            a(1);
+            throw null;
+        }
+    }
+
+    /* JADX INFO: compiled from: DescriptorVisibilities.java */
+    public final class l extends r {
+        public l(f1 f1Var) {
+            super(f1Var);
+        }
+
+        public static /* synthetic */ void a(int i) {
+            Object[] objArr = new Object[3];
+            if (i != 1) {
+                objArr[0] = "what";
+            } else {
+                objArr[0] = "from";
+            }
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/DescriptorVisibilities$9";
+            objArr[2] = "isVisible";
+            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
+        }
+
+        @Override // d0.e0.p.d.m0.c.u
+        public boolean isVisible(d0.e0.p.d.m0.k.a0.p.d dVar, q qVar, m mVar) {
+            if (qVar == null) {
+                a(0);
+                throw null;
+            }
+            if (mVar != null) {
+                return false;
+            }
+            a(1);
+            throw null;
+        }
+    }
+
     static {
-        t$d t_d = new t$d(e1$e.c);
-        a = t_d;
-        t$e t_e = new t$e(e1$f.c);
-        f3300b = t_e;
-        t$f t_f = new t$f(e1$g.c);
-        c = t_f;
-        t$g t_g = new t$g(e1$b.c);
-        d = t_g;
-        t$h t_h = new t$h(e1$h.c);
-        e = t_h;
-        t$i t_i = new t$i(e1$d.c);
-        f = t_i;
-        t$j t_j = new t$j(e1$a.c);
-        g = t_j;
-        t$k t_k = new t$k(e1$c.c);
-        h = t_k;
-        t$l t_l = new t$l(e1$i.c);
-        i = t_l;
-        Collections.unmodifiableSet(d0.t.n0.setOf((Object[]) new u[]{t_d, t_e, t_g, t_i}));
+        d dVar = new d(e1.e.c);
+        a = dVar;
+        e eVar = new e(e1.f.c);
+        f3300b = eVar;
+        f fVar = new f(e1.g.c);
+        c = fVar;
+        g gVar = new g(e1.b.c);
+        d = gVar;
+        h hVar = new h(e1.h.c);
+        e = hVar;
+        i iVar = new i(e1.d.c);
+        f = iVar;
+        j jVar = new j(e1.a.c);
+        g = jVar;
+        k kVar = new k(e1.c.c);
+        h = kVar;
+        l lVar = new l(e1.i.c);
+        i = lVar;
+        Collections.unmodifiableSet(d0.t.n0.setOf((Object[]) new u[]{dVar, eVar, gVar, iVar}));
         HashMap mapNewHashMapWithExpectedSize = d0.e0.p.d.m0.p.a.newHashMapWithExpectedSize(4);
-        mapNewHashMapWithExpectedSize.put(t_e, 0);
-        mapNewHashMapWithExpectedSize.put(t_d, 0);
-        mapNewHashMapWithExpectedSize.put(t_g, 1);
-        mapNewHashMapWithExpectedSize.put(t_f, 1);
-        mapNewHashMapWithExpectedSize.put(t_h, 2);
+        mapNewHashMapWithExpectedSize.put(eVar, 0);
+        mapNewHashMapWithExpectedSize.put(dVar, 0);
+        mapNewHashMapWithExpectedSize.put(gVar, 1);
+        mapNewHashMapWithExpectedSize.put(fVar, 1);
+        mapNewHashMapWithExpectedSize.put(hVar, 2);
         j = Collections.unmodifiableMap(mapNewHashMapWithExpectedSize);
-        k = t_h;
-        l = new t$a();
-        m = new t$b();
-        n = new t$c();
+        k = hVar;
+        l = new a();
+        m = new b();
+        n = new c();
         Iterator it = ServiceLoader.load(d0.e0.p.d.m0.o.g.class, d0.e0.p.d.m0.o.g.class.getClassLoader()).iterator();
-        o = it.hasNext() ? (d0.e0.p.d.m0.o.g) it.next() : g$a.a;
+        o = it.hasNext() ? (d0.e0.p.d.m0.o.g) it.next() : d0.e0.p.d.m0.o.g.a.a;
         p = new HashMap();
-        b(t_d);
-        b(t_e);
-        b(t_f);
-        b(t_g);
-        b(t_h);
-        b(t_i);
-        b(t_j);
-        b(t_k);
-        b(t_l);
+        b(dVar);
+        b(eVar);
+        b(fVar);
+        b(gVar);
+        b(hVar);
+        b(iVar);
+        b(jVar);
+        b(kVar);
+        b(lVar);
     }
 
     /* JADX WARN: Code duplicated, block: B:23:0x003a  */

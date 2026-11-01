@@ -99,42 +99,42 @@ public class o {
         bVar.e(this.l);
     }
 
-    public void b(a$b a_b) {
+    public void b(a.b bVar) {
         a<Integer, Integer> aVar = this.j;
         if (aVar != null) {
-            aVar.a.add(a_b);
+            aVar.a.add(bVar);
         }
         a<?, Float> aVar2 = this.m;
         if (aVar2 != null) {
-            aVar2.a.add(a_b);
+            aVar2.a.add(bVar);
         }
         a<?, Float> aVar3 = this.n;
         if (aVar3 != null) {
-            aVar3.a.add(a_b);
+            aVar3.a.add(bVar);
         }
         a<PointF, PointF> aVar4 = this.f;
         if (aVar4 != null) {
-            aVar4.a.add(a_b);
+            aVar4.a.add(bVar);
         }
         a<?, PointF> aVar5 = this.g;
         if (aVar5 != null) {
-            aVar5.a.add(a_b);
+            aVar5.a.add(bVar);
         }
         a<b.c.a.c0.d, b.c.a.c0.d> aVar6 = this.h;
         if (aVar6 != null) {
-            aVar6.a.add(a_b);
+            aVar6.a.add(bVar);
         }
         a<Float, Float> aVar7 = this.i;
         if (aVar7 != null) {
-            aVar7.a.add(a_b);
+            aVar7.a.add(bVar);
         }
         c cVar = this.k;
         if (cVar != null) {
-            cVar.a.add(a_b);
+            cVar.a.add(bVar);
         }
         c cVar2 = this.l;
         if (cVar2 != null) {
-            cVar2.a.add(a_b);
+            cVar2.a.add(bVar);
         }
     }
 

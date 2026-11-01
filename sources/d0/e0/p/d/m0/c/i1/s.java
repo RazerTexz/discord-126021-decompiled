@@ -1,6 +1,10 @@
 package d0.e0.p.d.m0.c.i1;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import kotlin.jvm.functions.Function0;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: LazyPackageViewDescriptorImpl.kt */
@@ -12,6 +16,57 @@ public final class s extends k implements d0.e0.p.d.m0.c.j0 {
     public final d0.e0.p.d.m0.m.j o;
     public final d0.e0.p.d.m0.k.a0.i p;
 
+    /* JADX INFO: compiled from: LazyPackageViewDescriptorImpl.kt */
+    public final class a extends d0.z.d.o implements Function0<List<? extends d0.e0.p.d.m0.c.e0>> {
+        public a() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<? extends d0.e0.p.d.m0.c.e0> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<? extends d0.e0.p.d.m0.c.e0> invoke2() {
+            return d0.e0.p.d.m0.c.h0.packageFragments(s.this.getModule().getPackageFragmentProvider(), s.this.getFqName());
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyPackageViewDescriptorImpl.kt */
+    public final class b extends d0.z.d.o implements Function0<d0.e0.p.d.m0.k.a0.i> {
+        public b() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.k.a0.i invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final d0.e0.p.d.m0.k.a0.i invoke() {
+            if (s.this.getFragments().isEmpty()) {
+                return d0.e0.p.d.m0.k.a0.i.b.f3461b;
+            }
+            List<d0.e0.p.d.m0.c.e0> fragments = s.this.getFragments();
+            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(fragments, 10));
+            Iterator<T> it = fragments.iterator();
+            while (it.hasNext()) {
+                arrayList.add(((d0.e0.p.d.m0.c.e0) it.next()).getMemberScope());
+            }
+            List listPlus = d0.t.u.plus((Collection<? extends h0>) arrayList, new h0(s.this.getModule(), s.this.getFqName()));
+            d0.e0.p.d.m0.k.a0.b.a aVar = d0.e0.p.d.m0.k.a0.b.f3451b;
+            StringBuilder sbU = b.d.b.a.a.U("package view scope for ");
+            sbU.append(s.this.getFqName());
+            sbU.append(" in ");
+            sbU.append(s.this.getModule().getName());
+            return aVar.create(sbU.toString(), listPlus);
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public s(y yVar, d0.e0.p.d.m0.g.b bVar, d0.e0.p.d.m0.m.o oVar) {
         super(d0.e0.p.d.m0.c.g1.g.f.getEMPTY(), bVar.shortNameOrSpecial());
@@ -20,8 +75,8 @@ public final class s extends k implements d0.e0.p.d.m0.c.j0 {
         d0.z.d.m.checkNotNullParameter(oVar, "storageManager");
         this.m = yVar;
         this.n = bVar;
-        this.o = oVar.createLazyValue(new s$a(this));
-        this.p = new d0.e0.p.d.m0.k.a0.h(oVar, new s$b(this));
+        this.o = oVar.createLazyValue(new a());
+        this.p = new d0.e0.p.d.m0.k.a0.h(oVar, new b());
     }
 
     @Override // d0.e0.p.d.m0.c.m
@@ -66,7 +121,7 @@ public final class s extends k implements d0.e0.p.d.m0.c.j0 {
 
     @Override // d0.e0.p.d.m0.c.j0
     public boolean isEmpty() {
-        return d0.e0.p.d.m0.c.j0$a.isEmpty(this);
+        return d0.e0.p.d.m0.c.j0.a.isEmpty(this);
     }
 
     @Override // d0.e0.p.d.m0.c.m

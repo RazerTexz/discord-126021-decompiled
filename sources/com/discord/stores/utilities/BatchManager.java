@@ -7,7 +7,6 @@ import com.discord.utilities.time.ClockFactory;
 import d0.z.d.m;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map$Entry;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlinx.coroutines.CoroutineDispatcher;
 import kotlinx.coroutines.CoroutineScope;
@@ -50,9 +49,9 @@ public final class BatchManager {
     }
 
     public final void flushBatches(String incomingType) {
-        for (Map$Entry<String, Batched<?>> map$Entry : this.batches.entrySet()) {
-            String key = map$Entry.getKey();
-            Batched<?> value = map$Entry.getValue();
+        for (Map.Entry<String, Batched<?>> entry : this.batches.entrySet()) {
+            String key = entry.getKey();
+            Batched<?> value = entry.getValue();
             if (!m.areEqual(key, incomingType)) {
                 value.flush();
             }

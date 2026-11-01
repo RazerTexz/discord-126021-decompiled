@@ -1,8 +1,8 @@
 package androidx.appcompat.view;
 
+import android.view.View;
 import android.view.animation.Interpolator;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.core.view.ViewPropertyAnimatorCompat;
 import androidx.core.view.ViewPropertyAnimatorListener;
 import androidx.core.view.ViewPropertyAnimatorListenerAdapter;
@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class ViewPropertyAnimatorCompatSet {
     private Interpolator mInterpolator;
     private boolean mIsStarted;
     public ViewPropertyAnimatorListener mListener;
     private long mDuration = -1;
-    private final ViewPropertyAnimatorListenerAdapter mProxyListener = new ViewPropertyAnimatorCompatSet$1(this);
+    private final ViewPropertyAnimatorListenerAdapter mProxyListener = new AnonymousClass1();
     public final ArrayList<ViewPropertyAnimatorCompat> mAnimators = new ArrayList<>();
 
     public void cancel() {
@@ -87,5 +87,45 @@ public class ViewPropertyAnimatorCompatSet {
             viewPropertyAnimatorCompat.start();
         }
         this.mIsStarted = true;
+    }
+
+    /* JADX INFO: renamed from: androidx.appcompat.view.ViewPropertyAnimatorCompatSet$1, reason: invalid class name */
+    public class AnonymousClass1 extends ViewPropertyAnimatorListenerAdapter {
+        private boolean mProxyStarted = false;
+        private int mProxyEndCount = 0;
+
+        public AnonymousClass1() {
+        }
+
+        @Override // androidx.core.view.ViewPropertyAnimatorListenerAdapter, androidx.core.view.ViewPropertyAnimatorListener
+        public void onAnimationEnd(View view) {
+            int i = this.mProxyEndCount + 1;
+            this.mProxyEndCount = i;
+            if (i == ViewPropertyAnimatorCompatSet.this.mAnimators.size()) {
+                ViewPropertyAnimatorListener viewPropertyAnimatorListener = ViewPropertyAnimatorCompatSet.this.mListener;
+                if (viewPropertyAnimatorListener != null) {
+                    viewPropertyAnimatorListener.onAnimationEnd(null);
+                }
+                onEnd();
+            }
+        }
+
+        @Override // androidx.core.view.ViewPropertyAnimatorListenerAdapter, androidx.core.view.ViewPropertyAnimatorListener
+        public void onAnimationStart(View view) {
+            if (this.mProxyStarted) {
+                return;
+            }
+            this.mProxyStarted = true;
+            ViewPropertyAnimatorListener viewPropertyAnimatorListener = ViewPropertyAnimatorCompatSet.this.mListener;
+            if (viewPropertyAnimatorListener != null) {
+                viewPropertyAnimatorListener.onAnimationStart(null);
+            }
+        }
+
+        public void onEnd() {
+            this.mProxyEndCount = 0;
+            this.mProxyStarted = false;
+            ViewPropertyAnimatorCompatSet.this.onAnimationsEnded();
+        }
     }
 }

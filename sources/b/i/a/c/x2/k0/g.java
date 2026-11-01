@@ -2,7 +2,6 @@ package b.i.a.c.x2.k0;
 
 import androidx.annotation.Nullable;
 import b.i.a.c.j1;
-import b.i.a.c.j1$b;
 
 /* JADX INFO: compiled from: Ac3Reader.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -327,13 +326,13 @@ public final class g implements o {
                     int i16 = i2;
                     j1 j1Var = this.j;
                     if (j1Var == null || i16 != j1Var.J || i15 != j1Var.K || !b.i.a.c.f3.e0.a(str, j1Var.w)) {
-                        j1$b j1_b = new j1$b();
-                        j1_b.a = this.d;
-                        j1_b.k = str;
-                        j1_b.f1023x = i16;
-                        j1_b.f1024y = i15;
-                        j1_b.c = this.c;
-                        j1 j1VarA = j1_b.a();
+                        j1.b bVar = new j1.b();
+                        bVar.a = this.d;
+                        bVar.k = str;
+                        bVar.f1023x = i16;
+                        bVar.f1024y = i15;
+                        bVar.c = this.c;
+                        j1 j1VarA = bVar.a();
                         this.j = j1VarA;
                         this.e.e(j1VarA);
                     }
@@ -374,10 +373,10 @@ public final class g implements o {
     }
 
     @Override // b.i.a.c.x2.k0.o
-    public void e(b.i.a.c.x2.j jVar, i0$d i0_d) {
-        i0_d.a();
-        this.d = i0_d.b();
-        this.e = jVar.p(i0_d.c(), 1);
+    public void e(b.i.a.c.x2.j jVar, i0.d dVar) {
+        dVar.a();
+        this.d = dVar.b();
+        this.e = jVar.p(dVar.c(), 1);
     }
 
     @Override // b.i.a.c.x2.k0.o

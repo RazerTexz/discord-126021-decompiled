@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: LazySubstitutingClassDescriptor.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -20,6 +21,22 @@ public class t extends u {
     public List<z0> n;
     public List<z0> o;
     public u0 p;
+
+    /* JADX INFO: compiled from: LazySubstitutingClassDescriptor.java */
+    public class a implements Function1<z0, Boolean> {
+        public a(t tVar) {
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(z0 z0Var) {
+            return invoke2(z0Var);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public Boolean invoke2(z0 z0Var) {
+            return Boolean.valueOf(!z0Var.isCapturedFromOuterDeclaration());
+        }
+    }
 
     public t(u uVar, c1 c1Var) {
         this.k = uVar;
@@ -148,7 +165,7 @@ public class t extends u {
                 List<z0> parameters = this.k.getTypeConstructor().getParameters();
                 this.n = new ArrayList(parameters.size());
                 this.m = d0.e0.p.d.m0.n.o.substituteTypeParameters(parameters, this.l.getSubstitution(), this, this.n);
-                this.o = d0.t.u.filter(this.n, new t$a(this));
+                this.o = d0.t.u.filter(this.n, new a(this));
             }
         }
         return this.m;

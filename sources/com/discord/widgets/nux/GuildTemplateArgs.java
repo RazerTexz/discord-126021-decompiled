@@ -2,9 +2,9 @@ package com.discord.widgets.nux;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import b.d.b.a.a;
 import d0.z.d.m;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -12,12 +12,45 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: WidgetGuildTemplates.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class GuildTemplateArgs implements Parcelable {
-    public static final Parcelable$Creator<GuildTemplateArgs> CREATOR = new GuildTemplateArgs$Creator();
+    public static final Parcelable.Creator<GuildTemplateArgs> CREATOR = new Creator();
     private final boolean showInvitePrompt;
     private final boolean skipCreationIntent;
     private final String subtitle;
     private final List<GuildTemplate> templates;
     private final String title;
+
+    public final class Creator implements Parcelable.Creator<GuildTemplateArgs> {
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final GuildTemplateArgs createFromParcel(Parcel parcel) {
+            m.checkNotNullParameter(parcel, "in");
+            String string = parcel.readString();
+            String string2 = parcel.readString();
+            int i = parcel.readInt();
+            ArrayList arrayList = new ArrayList(i);
+            while (i != 0) {
+                arrayList.add((GuildTemplate) Enum.valueOf(GuildTemplate.class, parcel.readString()));
+                i--;
+            }
+            return new GuildTemplateArgs(string, string2, arrayList, parcel.readInt() != 0, parcel.readInt() != 0);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ GuildTemplateArgs createFromParcel(Parcel parcel) {
+            return createFromParcel(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final GuildTemplateArgs[] newArray(int i) {
+            return new GuildTemplateArgs[i];
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ GuildTemplateArgs[] newArray(int i) {
+            return newArray(i);
+        }
+    }
 
     /* JADX WARN: Multi-variable type inference failed */
     public GuildTemplateArgs(String str, String str2, List<? extends GuildTemplate> list, boolean z2, boolean z3) {

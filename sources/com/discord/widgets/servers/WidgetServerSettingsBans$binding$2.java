@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetServerSettingsBansBinding;
 import com.google.android.material.textfield.TextInputLayout;
@@ -29,20 +29,20 @@ public final /* synthetic */ class WidgetServerSettingsBans$binding$2 extends k 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetServerSettingsBansBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.no_bans_body;
-        TextView textView = (TextView) view.findViewById(R$id.no_bans_body);
+        int i = R.id.no_bans_body;
+        TextView textView = (TextView) view.findViewById(R.id.no_bans_body);
         if (textView != null) {
-            i = R$id.no_results_text;
-            TextView textView2 = (TextView) view.findViewById(R$id.no_results_text);
+            i = R.id.no_results_text;
+            TextView textView2 = (TextView) view.findViewById(R.id.no_results_text);
             if (textView2 != null) {
-                i = R$id.server_settings_bans_recycler;
-                RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.server_settings_bans_recycler);
+                i = R.id.server_settings_bans_recycler;
+                RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.server_settings_bans_recycler);
                 if (recyclerView != null) {
-                    i = R$id.server_settings_bans_search;
-                    TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.server_settings_bans_search);
+                    i = R.id.server_settings_bans_search;
+                    TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.server_settings_bans_search);
                     if (textInputLayout != null) {
-                        i = R$id.server_settings_bans_view_flipper;
-                        AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R$id.server_settings_bans_view_flipper);
+                        i = R.id.server_settings_bans_view_flipper;
+                        AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R.id.server_settings_bans_view_flipper);
                         if (appViewFlipper != null) {
                             return new WidgetServerSettingsBansBinding((CoordinatorLayout) view, textView, textView2, recyclerView, textInputLayout, appViewFlipper);
                         }

@@ -1,29 +1,32 @@
 package com.discord.stores;
 
 import android.content.Context;
-import android.content.SharedPreferences$Editor;
+import android.content.SharedPreferences;
+import com.discord.api.channel.Channel;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
+import com.discord.utilities.channel.ChannelSelector;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.g0.s;
 import d0.t.n0;
-import d0.t.o;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
 
 /* JADX INFO: compiled from: StoreGuildsNsfw.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreGuildsNsfw extends StoreV2 {
-    private static final StoreGuildsNsfw$Companion Companion = new StoreGuildsNsfw$Companion(null);
+    private static final Companion Companion = new Companion(null);
 
     @Deprecated
     private static final String GUILDS_ALLOWED_KEY = "GUILDS_ALLOWED_KEY";
@@ -32,6 +35,87 @@ public final class StoreGuildsNsfw extends StoreV2 {
     private Set<Long> guildIdsAllowedSnapshot;
     private final ObservationDeck observationDeck;
     private final StoreChannels storeChannels;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildsNsfw$allow$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuildsNsfw.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$guildId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreGuildsNsfw.access$getGuildIdsAllowed$p(StoreGuildsNsfw.this).add(Long.valueOf(this.$guildId));
+            StoreGuildsNsfw.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildsNsfw$deny$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuildsNsfw.kt */
+    public final class AnonymousClass1 extends o implements Function1<Channel, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
+            invoke2(channel);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Channel channel) {
+            if (channel == null || channel.getNsfw()) {
+                ChannelSelector.selectChannel$default(ChannelSelector.INSTANCE.getInstance(), 0L, 0L, null, null, 12, null);
+            } else {
+                ChannelSelector.selectChannel$default(ChannelSelector.INSTANCE.getInstance(), channel, null, null, 6, null);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGuildsNsfw$observeIsGuildNsfwGateAgreed$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGuildsNsfw.kt */
+    public final class AnonymousClass1 extends o implements Function0<Boolean> {
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$guildId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Boolean invoke() {
+            return Boolean.valueOf(invoke2());
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2() {
+            return StoreGuildsNsfw.this.isGuildNsfwGateAgreed(this.$guildId);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreGuildsNsfw.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public StoreGuildsNsfw(Dispatcher dispatcher, StoreChannels storeChannels, ObservationDeck observationDeck) {
         m.checkNotNullParameter(dispatcher, "dispatcher");
@@ -49,11 +133,11 @@ public final class StoreGuildsNsfw extends StoreV2 {
     }
 
     public final void allow(long guildId) {
-        this.dispatcher.schedule(new StoreGuildsNsfw$allow$1(this, guildId));
+        this.dispatcher.schedule(new AnonymousClass1(guildId));
     }
 
     public final void deny(long guildId) {
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.takeSingleUntilTimeout$default(this.storeChannels.observeDefaultChannel(guildId), 0L, false, 3, null), StoreGuildsNsfw.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, StoreGuildsNsfw$deny$1.INSTANCE, 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.takeSingleUntilTimeout$default(this.storeChannels.observeDefaultChannel(guildId), 0L, false, 3, null), StoreGuildsNsfw.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, AnonymousClass1.INSTANCE, 62, (Object) null);
     }
 
     @Override // com.discord.stores.Store
@@ -75,7 +159,7 @@ public final class StoreGuildsNsfw extends StoreV2 {
     }
 
     public final Observable<Boolean> observeIsGuildNsfwGateAgreed(long guildId) {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreGuildsNsfw$observeIsGuildNsfwGateAgreed$1(this, guildId), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(guildId), 14, null);
     }
 
     @Override // com.discord.stores.StoreV2
@@ -83,10 +167,10 @@ public final class StoreGuildsNsfw extends StoreV2 {
     public void snapshotData() {
         super.snapshotData();
         this.guildIdsAllowedSnapshot = new HashSet(this.guildIdsAllowed);
-        SharedPreferences$Editor sharedPreferences$EditorEdit = getPrefs().edit();
-        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
-        sharedPreferences$EditorEdit.putStringSet(GUILDS_ALLOWED_KEY, toStringSet(this.guildIdsAllowed));
-        sharedPreferences$EditorEdit.apply();
+        SharedPreferences.Editor editorEdit = getPrefs().edit();
+        m.checkNotNullExpressionValue(editorEdit, "editor");
+        editorEdit.putStringSet(GUILDS_ALLOWED_KEY, toStringSet(this.guildIdsAllowed));
+        editorEdit.apply();
     }
 
     private final Set<Long> toGuildIdSet(Set<String> set) {
@@ -102,7 +186,7 @@ public final class StoreGuildsNsfw extends StoreV2 {
     }
 
     private final Set<String> toStringSet(Set<Long> set) {
-        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(set, 10));
+        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(set, 10));
         Iterator<T> it = set.iterator();
         while (it.hasNext()) {
             arrayList.add(String.valueOf(((Number) it.next()).longValue()));

@@ -6,5 +6,12 @@ import androidx.annotation.WorkerThread;
 /* JADX INFO: loaded from: classes3.dex */
 @WorkerThread
 public interface a {
-    <T> T a(a$a<T> a_a);
+
+    /* JADX INFO: renamed from: b.i.a.b.j.u.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: SynchronizationGuard.java */
+    public interface InterfaceC0091a<T> {
+        T execute();
+    }
+
+    <T> T a(InterfaceC0091a<T> interfaceC0091a);
 }

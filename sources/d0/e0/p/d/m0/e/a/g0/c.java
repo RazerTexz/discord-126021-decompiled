@@ -1,6 +1,5 @@
 package d0.e0.p.d.m0.e.a.g0;
 
-import d0.e0.p.d.m0.b.k$a;
 import d0.e0.p.d.m0.e.a.a0;
 import d0.o;
 import d0.t.h0;
@@ -29,16 +28,16 @@ public final class c {
         d0.e0.p.d.m0.g.e eVarIdentifier3 = d0.e0.p.d.m0.g.e.identifier("value");
         m.checkNotNullExpressionValue(eVarIdentifier3, "identifier(\"value\")");
         d = eVarIdentifier3;
-        d0.e0.p.d.m0.g.b bVar = k$a.A;
+        d0.e0.p.d.m0.g.b bVar = d0.e0.p.d.m0.b.k.a.A;
         d0.e0.p.d.m0.g.b bVar2 = a0.c;
-        d0.e0.p.d.m0.g.b bVar3 = k$a.D;
+        d0.e0.p.d.m0.g.b bVar3 = d0.e0.p.d.m0.b.k.a.D;
         d0.e0.p.d.m0.g.b bVar4 = a0.d;
-        d0.e0.p.d.m0.g.b bVar5 = k$a.E;
+        d0.e0.p.d.m0.g.b bVar5 = d0.e0.p.d.m0.b.k.a.E;
         d0.e0.p.d.m0.g.b bVar6 = a0.g;
-        d0.e0.p.d.m0.g.b bVar7 = k$a.F;
+        d0.e0.p.d.m0.g.b bVar7 = d0.e0.p.d.m0.b.k.a.F;
         d0.e0.p.d.m0.g.b bVar8 = a0.f;
         e = h0.mapOf(o.to(bVar, bVar2), o.to(bVar3, bVar4), o.to(bVar5, bVar6), o.to(bVar7, bVar8));
-        f = h0.mapOf(o.to(bVar2, bVar), o.to(bVar4, bVar3), o.to(a0.e, k$a.u), o.to(bVar6, bVar5), o.to(bVar8, bVar7));
+        f = h0.mapOf(o.to(bVar2, bVar), o.to(bVar4, bVar3), o.to(a0.e, d0.e0.p.d.m0.b.k.a.u), o.to(bVar6, bVar5), o.to(bVar8, bVar7));
     }
 
     public final d0.e0.p.d.m0.c.g1.c findMappedJavaAnnotation(d0.e0.p.d.m0.g.b bVar, d0.e0.p.d.m0.e.a.k0.d dVar, d0.e0.p.d.m0.e.a.i0.g gVar) {
@@ -46,7 +45,7 @@ public final class c {
         m.checkNotNullParameter(bVar, "kotlinName");
         m.checkNotNullParameter(dVar, "annotationOwner");
         m.checkNotNullParameter(gVar, "c");
-        if (m.areEqual(bVar, k$a.u)) {
+        if (m.areEqual(bVar, d0.e0.p.d.m0.b.k.a.u)) {
             d0.e0.p.d.m0.g.b bVar2 = a0.e;
             m.checkNotNullExpressionValue(bVar2, "DEPRECATED_ANNOTATION");
             d0.e0.p.d.m0.e.a.k0.a aVarFindAnnotation2 = dVar.findAnnotation(bVar2);
@@ -91,10 +90,10 @@ public final class c {
             return new h(aVar, gVar);
         }
         if (m.areEqual(classId, d0.e0.p.d.m0.g.a.topLevel(a0.g))) {
-            return new b(gVar, aVar, k$a.E);
+            return new b(gVar, aVar, d0.e0.p.d.m0.b.k.a.E);
         }
         if (m.areEqual(classId, d0.e0.p.d.m0.g.a.topLevel(a0.f))) {
-            return new b(gVar, aVar, k$a.F);
+            return new b(gVar, aVar, d0.e0.p.d.m0.b.k.a.F);
         }
         if (m.areEqual(classId, d0.e0.p.d.m0.g.a.topLevel(a0.e))) {
             return null;

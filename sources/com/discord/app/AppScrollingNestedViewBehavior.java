@@ -7,12 +7,12 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import com.discord.utilities.display.DisplayUtils;
-import com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior;
+import com.google.android.material.appbar.AppBarLayout;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: AppScrollingNestedViewBehavior.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class AppScrollingNestedViewBehavior extends AppBarLayout$ScrollingViewBehavior {
+public final class AppScrollingNestedViewBehavior extends AppBarLayout.ScrollingViewBehavior {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public AppScrollingNestedViewBehavior(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
@@ -20,7 +20,7 @@ public final class AppScrollingNestedViewBehavior extends AppBarLayout$Scrolling
         m.checkNotNullParameter(attributeSet, "attrs");
     }
 
-    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout$Behavior
+    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
     public WindowInsetsCompat onApplyWindowInsets(CoordinatorLayout coordinatorLayout, View child, WindowInsetsCompat insets) {
         m.checkNotNullParameter(coordinatorLayout, "coordinatorLayout");
         m.checkNotNullParameter(child, "child");

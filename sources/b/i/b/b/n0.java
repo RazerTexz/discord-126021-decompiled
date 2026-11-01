@@ -7,10 +7,10 @@ import java.util.Iterator;
 /* JADX INFO: loaded from: classes3.dex */
 public class n0<E> extends b<E> {
     public final Iterator<E> l;
-    public final /* synthetic */ h$a m;
+    public final /* synthetic */ h.a m;
 
-    public n0(h$a h_a) {
-        this.m = h_a;
-        this.l = h_a.j.iterator();
+    public n0(h.a aVar) {
+        this.m = aVar;
+        this.l = aVar.j.iterator();
     }
 }

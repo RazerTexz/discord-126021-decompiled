@@ -1,6 +1,6 @@
 package b.g.a.c.e0;
 
-import b.g.a.a.c0$a;
+import b.g.a.a.c0;
 import b.g.a.b.h;
 import b.g.a.b.t.m;
 import java.io.IOException;
@@ -12,7 +12,7 @@ public abstract class g {
 
     public abstract String b();
 
-    public abstract c0$a c();
+    public abstract c0.a c();
 
     public b.g.a.b.s.b d(Object obj, h hVar) {
         b.g.a.b.s.b bVar = new b.g.a.b.s.b(obj, hVar);

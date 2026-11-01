@@ -2,12 +2,11 @@ package b.i.c.m;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;
-import b.i.c.j.a.a$b;
 import com.discord.models.domain.ModelAuditLogEntry;
 
 /* JADX INFO: compiled from: CrashlyticsAnalyticsListener.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class a implements a$b {
+public class a implements b.i.c.j.a.a.b {
     public b.i.c.m.d.i.b a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */

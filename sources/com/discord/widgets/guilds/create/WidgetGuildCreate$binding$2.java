@@ -3,7 +3,7 @@ package com.discord.widgets.guilds.create;
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import b.a.i.r0;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetGuildCreateBinding;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.views.LoadingButton;
@@ -30,21 +30,21 @@ public final /* synthetic */ class WidgetGuildCreate$binding$2 extends k impleme
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGuildCreateBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.guild_create_button;
-        LoadingButton loadingButton = (LoadingButton) view.findViewById(R$id.guild_create_button);
+        int i = R.id.guild_create_button;
+        LoadingButton loadingButton = (LoadingButton) view.findViewById(R.id.guild_create_button);
         if (loadingButton != null) {
-            i = R$id.guild_create_guidelines;
-            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R$id.guild_create_guidelines);
+            i = R.id.guild_create_guidelines;
+            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R.id.guild_create_guidelines);
             if (linkifiedTextView != null) {
-                i = R$id.guild_create_icon_uploader;
-                View viewFindViewById = view.findViewById(R$id.guild_create_icon_uploader);
+                i = R.id.guild_create_icon_uploader;
+                View viewFindViewById = view.findViewById(R.id.guild_create_icon_uploader);
                 if (viewFindViewById != null) {
                     r0 r0VarA = r0.a(viewFindViewById);
-                    i = R$id.guild_create_name;
-                    TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.guild_create_name);
+                    i = R.id.guild_create_name;
+                    TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.guild_create_name);
                     if (textInputLayout != null) {
-                        i = R$id.guild_create_screen_title;
-                        ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(R$id.guild_create_screen_title);
+                        i = R.id.guild_create_screen_title;
+                        ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(R.id.guild_create_screen_title);
                         if (screenTitleView != null) {
                             return new WidgetGuildCreateBinding((CoordinatorLayout) view, loadingButton, linkifiedTextView, r0VarA, textInputLayout, screenTitleView);
                         }

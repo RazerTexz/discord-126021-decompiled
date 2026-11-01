@@ -8,9 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.cardview.widget.CardView;
-import com.discord.R$a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.databinding.ViewCommunityGetStartedHeaderBinding;
 import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -33,7 +31,7 @@ public final class CommunityGetStartedHeaderIconView extends CardView {
     }
 
     private final void initAttrs(AttributeSet attrs) {
-        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attrs, R$a.CommunityGetStartedHeaderIconView, 0, 0);
+        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attrs, R.a.CommunityGetStartedHeaderIconView, 0, 0);
         m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…rtedHeaderIconView, 0, 0)");
         int resourceId = typedArrayObtainStyledAttributes.getResourceId(0, 0);
         CharSequence text = typedArrayObtainStyledAttributes.getText(1);
@@ -48,12 +46,12 @@ public final class CommunityGetStartedHeaderIconView extends CardView {
     public CommunityGetStartedHeaderIconView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(R$layout.view_community_get_started_header, this);
-        int i2 = R$id.community_get_started_header_icon;
-        ImageView imageView = (ImageView) findViewById(R$id.community_get_started_header_icon);
+        LayoutInflater.from(context).inflate(R.layout.view_community_get_started_header, this);
+        int i2 = R.id.community_get_started_header_icon;
+        ImageView imageView = (ImageView) findViewById(R.id.community_get_started_header_icon);
         if (imageView != null) {
-            i2 = R$id.community_get_started_header_icon_text;
-            TextView textView = (TextView) findViewById(R$id.community_get_started_header_icon_text);
+            i2 = R.id.community_get_started_header_icon_text;
+            TextView textView = (TextView) findViewById(R.id.community_get_started_header_icon_text);
             if (textView != null) {
                 ViewCommunityGetStartedHeaderBinding viewCommunityGetStartedHeaderBinding = new ViewCommunityGetStartedHeaderBinding(this, imageView, textView);
                 m.checkNotNullExpressionValue(viewCommunityGetStartedHeaderBinding, "ViewCommunityGetStartedH…ater.from(context), this)");

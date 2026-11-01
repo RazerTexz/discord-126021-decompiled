@@ -2,7 +2,7 @@ package b.i.a.g.g;
 
 import android.animation.Animator;
 import androidx.annotation.NonNull;
-import androidx.vectordrawable.graphics.drawable.Animatable2Compat$AnimationCallback;
+import androidx.vectordrawable.graphics.drawable.Animatable2Compat;
 import com.google.android.material.progressindicator.IndeterminateDrawable;
 
 /* JADX INFO: compiled from: IndeterminateAnimatorDelegate.java */
@@ -27,7 +27,7 @@ public abstract class g<T extends Animator> {
 
     public abstract void c();
 
-    public abstract void d(@NonNull Animatable2Compat$AnimationCallback animatable2Compat$AnimationCallback);
+    public abstract void d(@NonNull Animatable2Compat.AnimationCallback animationCallback);
 
     public abstract void e();
 

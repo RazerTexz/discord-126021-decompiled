@@ -8,7 +8,6 @@ import android.os.Messenger;
 import android.os.Parcelable;
 import android.util.Log;
 import com.google.android.gms.cloudmessaging.zza;
-import com.google.android.gms.cloudmessaging.zza$a;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,7 +31,7 @@ public final class y extends b.i.a.f.h.f.a {
             Object obj = message.obj;
             if (obj instanceof Intent) {
                 Intent intent = (Intent) obj;
-                intent.setExtrasClassLoader(new zza$a());
+                intent.setExtrasClassLoader(new zza.a());
                 if (intent.hasExtra("google.messenger")) {
                     Parcelable parcelableExtra = intent.getParcelableExtra("google.messenger");
                     if (parcelableExtra instanceof zza) {

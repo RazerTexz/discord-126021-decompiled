@@ -6,13 +6,11 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.databinding.ForumPostTagViewBinding;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.utilities.textprocessing.node.EmojiNode;
-import com.discord.utilities.textprocessing.node.EmojiNode$Companion;
 import com.discord.utilities.view.text.SimpleDraweeSpanTextView;
 import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -20,7 +18,6 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: ForumPostTagView.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ForumPostTagView extends LinearLayout {
-    public static final ForumPostTagView$Companion Companion = new ForumPostTagView$Companion(null);
     private final ForumPostTagViewBinding binding;
     private static final int EMOJI_SIZE_PX = DimenUtils.dpToPixels(12);
     private static final int HORIZONTAL_PADDING = DimenUtils.dpToPixels(8);
@@ -40,10 +37,10 @@ public final class ForumPostTagView extends LinearLayout {
 
     public final void configureTag(PostTagData tag) {
         m.checkNotNullParameter(tag, "tag");
-        EmojiNode$Companion emojiNode$Companion = EmojiNode.Companion;
+        EmojiNode.Companion companion = EmojiNode.INSTANCE;
         SimpleDraweeSpanTextView simpleDraweeSpanTextView = this.binding.f2110b;
         m.checkNotNullExpressionValue(simpleDraweeSpanTextView, "binding.tagEmoji");
-        emojiNode$Companion.renderEmoji(simpleDraweeSpanTextView, tag.getMessageReactionEmoji(), true, EMOJI_SIZE_PX);
+        companion.renderEmoji(simpleDraweeSpanTextView, tag.getMessageReactionEmoji(), true, EMOJI_SIZE_PX);
         TextView textView = this.binding.c;
         m.checkNotNullExpressionValue(textView, "binding.tagName");
         textView.setText(tag.getTagName());
@@ -53,12 +50,12 @@ public final class ForumPostTagView extends LinearLayout {
     public ForumPostTagView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(R$layout.forum_post_tag_view, this);
-        int i2 = R$id.tag_emoji;
-        SimpleDraweeSpanTextView simpleDraweeSpanTextView = (SimpleDraweeSpanTextView) findViewById(R$id.tag_emoji);
+        LayoutInflater.from(context).inflate(R.layout.forum_post_tag_view, this);
+        int i2 = R.id.tag_emoji;
+        SimpleDraweeSpanTextView simpleDraweeSpanTextView = (SimpleDraweeSpanTextView) findViewById(R.id.tag_emoji);
         if (simpleDraweeSpanTextView != null) {
-            i2 = R$id.tag_name;
-            TextView textView = (TextView) findViewById(R$id.tag_name);
+            i2 = R.id.tag_name;
+            TextView textView = (TextView) findViewById(R.id.tag_name);
             if (textView != null) {
                 ForumPostTagViewBinding forumPostTagViewBinding = new ForumPostTagViewBinding(this, simpleDraweeSpanTextView, textView);
                 m.checkNotNullExpressionValue(forumPostTagViewBinding, "ForumPostTagViewBinding.…ater.from(context), this)");
@@ -66,7 +63,7 @@ public final class ForumPostTagView extends LinearLayout {
                 int i3 = HORIZONTAL_PADDING;
                 int i4 = VERTICAL_PADDING;
                 setPadding(i3, i4, i3, i4);
-                setBackground(ContextCompat.getDrawable(context, DrawableCompat.getThemedDrawableRes$default(context, 2130970297, 0, 2, (Object) null)));
+                setBackground(ContextCompat.getDrawable(context, DrawableCompat.getThemedDrawableRes$default(context, R.attr.theme_forum_post_tag_background, 0, 2, (Object) null)));
                 return;
             }
         }

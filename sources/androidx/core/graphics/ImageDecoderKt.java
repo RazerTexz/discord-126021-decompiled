@@ -2,8 +2,6 @@ package androidx.core.graphics;
 
 import android.graphics.Bitmap;
 import android.graphics.ImageDecoder;
-import android.graphics.ImageDecoder$ImageInfo;
-import android.graphics.ImageDecoder$Source;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.RequiresApi;
 import d0.z.d.m;
@@ -14,20 +12,59 @@ import kotlin.jvm.functions.Function3;
 /* JADX INFO: compiled from: ImageDecoder.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class ImageDecoderKt {
+
+    /* JADX INFO: renamed from: androidx.core.graphics.ImageDecoderKt$decodeBitmap$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ImageDecoder.kt */
+    public final class AnonymousClass1 implements ImageDecoder.OnHeaderDecodedListener {
+        public final /* synthetic */ Function3<ImageDecoder, ImageDecoder.ImageInfo, ImageDecoder.Source, Unit> $action;
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public AnonymousClass1(Function3<? super ImageDecoder, ? super ImageDecoder.ImageInfo, ? super ImageDecoder.Source, Unit> function3) {
+            this.$action = function3;
+        }
+
+        @Override // android.graphics.ImageDecoder.OnHeaderDecodedListener
+        public final void onHeaderDecoded(ImageDecoder imageDecoder, ImageDecoder.ImageInfo imageInfo, ImageDecoder.Source source) {
+            m.checkNotNullParameter(imageDecoder, "decoder");
+            m.checkNotNullParameter(imageInfo, "info");
+            m.checkNotNullParameter(source, "source");
+            this.$action.invoke(imageDecoder, imageInfo, source);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.core.graphics.ImageDecoderKt$decodeDrawable$1, reason: invalid class name */
+    /* JADX INFO: compiled from: ImageDecoder.kt */
+    public final class AnonymousClass1 implements ImageDecoder.OnHeaderDecodedListener {
+        public final /* synthetic */ Function3<ImageDecoder, ImageDecoder.ImageInfo, ImageDecoder.Source, Unit> $action;
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public AnonymousClass1(Function3<? super ImageDecoder, ? super ImageDecoder.ImageInfo, ? super ImageDecoder.Source, Unit> function3) {
+            this.$action = function3;
+        }
+
+        @Override // android.graphics.ImageDecoder.OnHeaderDecodedListener
+        public final void onHeaderDecoded(ImageDecoder imageDecoder, ImageDecoder.ImageInfo imageInfo, ImageDecoder.Source source) {
+            m.checkNotNullParameter(imageDecoder, "decoder");
+            m.checkNotNullParameter(imageInfo, "info");
+            m.checkNotNullParameter(source, "source");
+            this.$action.invoke(imageDecoder, imageInfo, source);
+        }
+    }
+
     @RequiresApi(28)
-    public static final Bitmap decodeBitmap(ImageDecoder$Source imageDecoder$Source, Function3<? super ImageDecoder, ? super ImageDecoder$ImageInfo, ? super ImageDecoder$Source, Unit> function3) throws IOException {
-        m.checkNotNullParameter(imageDecoder$Source, "<this>");
+    public static final Bitmap decodeBitmap(ImageDecoder.Source source, Function3<? super ImageDecoder, ? super ImageDecoder.ImageInfo, ? super ImageDecoder.Source, Unit> function3) throws IOException {
+        m.checkNotNullParameter(source, "<this>");
         m.checkNotNullParameter(function3, "action");
-        Bitmap bitmapDecodeBitmap = ImageDecoder.decodeBitmap(imageDecoder$Source, new ImageDecoderKt$decodeBitmap$1(function3));
+        Bitmap bitmapDecodeBitmap = ImageDecoder.decodeBitmap(source, new AnonymousClass1(function3));
         m.checkNotNullExpressionValue(bitmapDecodeBitmap, "crossinline action: ImageDecoder.(info: ImageInfo, source: Source) -> Unit\n): Bitmap {\n    return ImageDecoder.decodeBitmap(this) { decoder, info, source ->\n        decoder.action(info, source)\n    }");
         return bitmapDecodeBitmap;
     }
 
     @RequiresApi(28)
-    public static final Drawable decodeDrawable(ImageDecoder$Source imageDecoder$Source, Function3<? super ImageDecoder, ? super ImageDecoder$ImageInfo, ? super ImageDecoder$Source, Unit> function3) throws IOException {
-        m.checkNotNullParameter(imageDecoder$Source, "<this>");
+    public static final Drawable decodeDrawable(ImageDecoder.Source source, Function3<? super ImageDecoder, ? super ImageDecoder.ImageInfo, ? super ImageDecoder.Source, Unit> function3) throws IOException {
+        m.checkNotNullParameter(source, "<this>");
         m.checkNotNullParameter(function3, "action");
-        Drawable drawableDecodeDrawable = ImageDecoder.decodeDrawable(imageDecoder$Source, new ImageDecoderKt$decodeDrawable$1(function3));
+        Drawable drawableDecodeDrawable = ImageDecoder.decodeDrawable(source, new AnonymousClass1(function3));
         m.checkNotNullExpressionValue(drawableDecodeDrawable, "crossinline action: ImageDecoder.(info: ImageInfo, source: Source) -> Unit\n): Drawable {\n    return ImageDecoder.decodeDrawable(this) { decoder, info, source ->\n        decoder.action(info, source)\n    }");
         return drawableDecodeDrawable;
     }

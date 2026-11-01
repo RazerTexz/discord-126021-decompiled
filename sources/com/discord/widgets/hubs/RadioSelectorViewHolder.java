@@ -1,7 +1,9 @@
 package com.discord.widgets.hubs;
 
+import android.view.View;
+import com.discord.R;
 import com.discord.databinding.WidgetRadioSelectorViewHolderBinding;
-import com.discord.utilities.views.SimpleRecyclerAdapter$ViewHolder;
+import com.discord.utilities.views.SimpleRecyclerAdapter;
 import com.discord.views.IconRow;
 import d0.z.d.m;
 import kotlin.Unit;
@@ -9,9 +11,24 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetRadioSelectorBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class RadioSelectorViewHolder extends SimpleRecyclerAdapter$ViewHolder<RadioSelectorItem> {
+public final class RadioSelectorViewHolder extends SimpleRecyclerAdapter.ViewHolder<RadioSelectorItem> {
     private final WidgetRadioSelectorViewHolderBinding binding;
     private final Function1<Integer, Unit> onSelected;
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.RadioSelectorViewHolder$bind$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetRadioSelectorBottomSheet.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ RadioSelectorItem $data;
+
+        public AnonymousClass1(RadioSelectorItem radioSelectorItem) {
+            this.$data = radioSelectorItem;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            RadioSelectorViewHolder.this.getOnSelected().invoke(Integer.valueOf(this.$data.getId()));
+        }
+    }
 
     /* JADX WARN: Illegal instructions before constructor call */
     /* JADX WARN: Multi-variable type inference failed */
@@ -25,7 +42,7 @@ public final class RadioSelectorViewHolder extends SimpleRecyclerAdapter$ViewHol
         this.onSelected = function1;
     }
 
-    @Override // com.discord.utilities.views.SimpleRecyclerAdapter$ViewHolder
+    @Override // com.discord.utilities.views.SimpleRecyclerAdapter.ViewHolder
     public /* bridge */ /* synthetic */ void bind(RadioSelectorItem radioSelectorItem) {
         bind2(radioSelectorItem);
     }
@@ -42,7 +59,7 @@ public final class RadioSelectorViewHolder extends SimpleRecyclerAdapter$ViewHol
     public void bind2(RadioSelectorItem data) {
         m.checkNotNullParameter(data, "data");
         this.binding.f2518b.setText(data.getText());
-        this.binding.f2518b.setImageRes(Integer.valueOf(data.getSelected() ? 2131231654 : 0));
-        this.binding.f2518b.setOnClickListener(new RadioSelectorViewHolder$bind$1(this, data));
+        this.binding.f2518b.setImageRes(Integer.valueOf(data.getSelected() ? R.drawable.ic_check_brand_16dp : 0));
+        this.binding.f2518b.setOnClickListener(new AnonymousClass1(data));
     }
 }

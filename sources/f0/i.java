@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Map$Entry;
 
 /* JADX INFO: compiled from: Challenge.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -20,9 +19,9 @@ public final class i {
         d0.z.d.m.checkParameterIsNotNull(map, "authParams");
         this.f3671b = str;
         LinkedHashMap linkedHashMap = new LinkedHashMap();
-        for (Map$Entry<String, String> map$Entry : map.entrySet()) {
-            String key = map$Entry.getKey();
-            String value = map$Entry.getValue();
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
             if (key != null) {
                 Locale locale = Locale.US;
                 d0.z.d.m.checkExpressionValueIsNotNull(locale, "US");

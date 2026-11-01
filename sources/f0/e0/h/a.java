@@ -8,15 +8,12 @@ import g0.l;
 import g0.r;
 import java.io.IOException;
 import java.util.List;
-import okhttp3.Headers$a;
+import okhttp3.Headers;
 import okhttp3.Interceptor;
-import okhttp3.Interceptor$Chain;
 import okhttp3.MediaType;
 import okhttp3.Request;
-import okhttp3.Request$a;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.Response$a;
 import okhttp3.ResponseBody;
 
 /* JADX INFO: compiled from: BridgeInterceptor.kt */
@@ -32,37 +29,37 @@ public final class a implements Interceptor {
     }
 
     @Override // okhttp3.Interceptor
-    public Response intercept(Interceptor$Chain interceptor$Chain) throws IOException {
+    public Response intercept(Interceptor.Chain chain) throws IOException {
         boolean z2;
         ResponseBody responseBody;
-        m.checkParameterIsNotNull(interceptor$Chain, "chain");
-        g gVar = (g) interceptor$Chain;
+        m.checkParameterIsNotNull(chain, "chain");
+        g gVar = (g) chain;
         Request request = gVar.f;
-        Request$a request$a = new Request$a(request);
+        Request.a aVar = new Request.a(request);
         RequestBody requestBody = request.body;
         if (requestBody != null) {
             MediaType mediaTypeContentType = requestBody.contentType();
             if (mediaTypeContentType != null) {
-                request$a.b("Content-Type", mediaTypeContentType.mediaType);
+                aVar.b("Content-Type", mediaTypeContentType.mediaType);
             }
-            long jContentLength = requestBody.getSize();
-            if (jContentLength != -1) {
-                request$a.b("Content-Length", String.valueOf(jContentLength));
-                request$a.d("Transfer-Encoding");
+            long size = requestBody.getSize();
+            if (size != -1) {
+                aVar.b("Content-Length", String.valueOf(size));
+                aVar.d("Transfer-Encoding");
             } else {
-                request$a.b("Transfer-Encoding", "chunked");
-                request$a.d("Content-Length");
+                aVar.b("Transfer-Encoding", "chunked");
+                aVar.d("Content-Length");
             }
         }
         int i = 0;
         if (request.b("Host") == null) {
-            request$a.b("Host", f0.e0.c.y(request.url, false));
+            aVar.b("Host", f0.e0.c.y(request.url, false));
         }
         if (request.b("Connection") == null) {
-            request$a.b("Connection", "Keep-Alive");
+            aVar.b("Connection", "Keep-Alive");
         }
         if (request.b("Accept-Encoding") == null && request.b("Range") == null) {
-            request$a.b("Accept-Encoding", "gzip");
+            aVar.b("Accept-Encoding", "gzip");
             z2 = true;
         } else {
             z2 = false;
@@ -86,25 +83,25 @@ public final class a implements Interceptor {
             }
             String string = sb.toString();
             m.checkExpressionValueIsNotNull(string, "StringBuilder().apply(builderAction).toString()");
-            request$a.b("Cookie", string);
+            aVar.b("Cookie", string);
         }
         if (request.b("User-Agent") == null) {
-            request$a.b("User-Agent", "okhttp/4.8.0");
+            aVar.b("User-Agent", "okhttp/4.8.0");
         }
-        Response responseA = gVar.a(request$a.a());
+        Response responseA = gVar.a(aVar.a());
         e.d(this.f3624b, request.url, responseA.headers);
-        Response$a response$a = new Response$a(responseA);
-        response$a.g(request);
+        Response.a aVar2 = new Response.a(responseA);
+        aVar2.g(request);
         if (z2 && t.equals("gzip", Response.a(responseA, "Content-Encoding", null, 2), true) && e.a(responseA) && (responseBody = responseA.body) != null) {
             l lVar = new l(responseBody.c());
-            Headers$a headers$aE = responseA.headers.e();
-            headers$aE.d("Content-Encoding");
-            headers$aE.d("Content-Length");
-            response$a.d(headers$aE.c());
+            Headers.a aVarE = responseA.headers.e();
+            aVarE.d("Content-Encoding");
+            aVarE.d("Content-Length");
+            aVar2.d(aVarE.c());
             String strA = Response.a(responseA, "Content-Type", null, 2);
             m.checkParameterIsNotNull(lVar, "$this$buffer");
-            response$a.g = new h(strA, -1L, new r(lVar));
+            aVar2.g = new h(strA, -1L, new r(lVar));
         }
-        return response$a.a();
+        return aVar2.a();
     }
 }

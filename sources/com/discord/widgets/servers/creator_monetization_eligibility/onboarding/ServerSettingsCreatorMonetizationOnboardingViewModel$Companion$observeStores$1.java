@@ -8,7 +8,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: ServerSettingsCreatorMonetizationOnboardingViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ServerSettingsCreatorMonetizationOnboardingViewModel$Companion$observeStores$1 extends o implements Function0<ServerSettingsCreatorMonetizationOnboardingViewModel$StoreState> {
+public final class ServerSettingsCreatorMonetizationOnboardingViewModel$Companion$observeStores$1 extends o implements Function0<ServerSettingsCreatorMonetizationOnboardingViewModel.StoreState> {
     public final /* synthetic */ long $guildId;
     public final /* synthetic */ StoreGuilds $guilds;
     public final /* synthetic */ StoreUser $users;
@@ -22,14 +22,14 @@ public final class ServerSettingsCreatorMonetizationOnboardingViewModel$Companio
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ ServerSettingsCreatorMonetizationOnboardingViewModel$StoreState invoke() {
+    public /* bridge */ /* synthetic */ ServerSettingsCreatorMonetizationOnboardingViewModel.StoreState invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final ServerSettingsCreatorMonetizationOnboardingViewModel$StoreState invoke() {
+    public final ServerSettingsCreatorMonetizationOnboardingViewModel.StoreState invoke() {
         Guild guild = this.$guilds.getGuild(this.$guildId);
-        return new ServerSettingsCreatorMonetizationOnboardingViewModel$StoreState(guild, guild != null && guild.isOwner(this.$users.getMeSnapshot().getId()));
+        return new ServerSettingsCreatorMonetizationOnboardingViewModel.StoreState(guild, guild != null && guild.isOwner(this.$users.getMeSnapshot().getId()));
     }
 }

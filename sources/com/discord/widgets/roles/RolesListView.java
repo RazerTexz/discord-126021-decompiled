@@ -9,8 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import b.a.i.y;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.role.GuildRole;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.color.ColorCompatKt;
@@ -51,19 +50,19 @@ public final class RolesListView extends ChipGroup {
         if (m.areEqual(roles, this.roles)) {
             return;
         }
-        boolean isDeveloperMode = StoreStream.Companion.getUserSettings().getIsDeveloperMode();
+        boolean isDeveloperMode = StoreStream.INSTANCE.getUserSettings().getIsDeveloperMode();
         this.roles = roles;
         removeAllViews();
         for (GuildRole guildRole : roles) {
-            View viewInflate = LayoutInflater.from(getContext()).inflate(R$layout.guild_role_chip, (ViewGroup) null, false);
-            int i = R$id.role_chip_dot;
-            ImageView imageView = (ImageView) viewInflate.findViewById(R$id.role_chip_dot);
+            View viewInflate = LayoutInflater.from(getContext()).inflate(R.layout.guild_role_chip, (ViewGroup) null, false);
+            int i = R.id.role_chip_dot;
+            ImageView imageView = (ImageView) viewInflate.findViewById(R.id.role_chip_dot);
             if (imageView != null) {
-                i = R$id.role_chip_icon;
-                RoleIconView roleIconView = (RoleIconView) viewInflate.findViewById(R$id.role_chip_icon);
+                i = R.id.role_chip_icon;
+                RoleIconView roleIconView = (RoleIconView) viewInflate.findViewById(R.id.role_chip_icon);
                 if (roleIconView != null) {
-                    i = R$id.role_chip_text;
-                    TextView textView = (TextView) viewInflate.findViewById(R$id.role_chip_text);
+                    i = R.id.role_chip_text;
+                    TextView textView = (TextView) viewInflate.findViewById(R.id.role_chip_text);
                     if (textView != null) {
                         CardView cardView = (CardView) viewInflate;
                         m.checkNotNullExpressionValue(new y(cardView, imageView, roleIconView, textView), "GuildRoleChipBinding.inf…om(context), null, false)");

@@ -10,8 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import androidx.annotation.AnimRes;
 import b.a.i.h3;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.utilities.accessibility.AccessibilityUtils;
 import d0.z.d.m;
 
@@ -29,28 +28,49 @@ public final class ServerFolderView extends LinearLayout {
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public boolean isOpen;
 
+    /* JADX INFO: compiled from: ServerFolderView.kt */
+    public final class a implements Animation.AnimationListener {
+        public a() {
+        }
+
+        @Override // android.view.animation.Animation.AnimationListener
+        public void onAnimationEnd(Animation animation) {
+            ServerFolderView serverFolderView = ServerFolderView.this;
+            int i = ServerFolderView.j;
+            serverFolderView.a();
+        }
+
+        @Override // android.view.animation.Animation.AnimationListener
+        public void onAnimationRepeat(Animation animation) {
+        }
+
+        @Override // android.view.animation.Animation.AnimationListener
+        public void onAnimationStart(Animation animation) {
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ServerFolderView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
         m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(R$layout.view_server_folder, this);
-        int i = R$id.folder_view_folder_image;
-        ImageView imageView = (ImageView) findViewById(R$id.folder_view_folder_image);
+        LayoutInflater.from(context).inflate(R.layout.view_server_folder, this);
+        int i = R.id.folder_view_folder_image;
+        ImageView imageView = (ImageView) findViewById(R.id.folder_view_folder_image);
         if (imageView != null) {
-            i = R$id.guild_view_1;
-            GuildView guildView = (GuildView) findViewById(R$id.guild_view_1);
+            i = R.id.guild_view_1;
+            GuildView guildView = (GuildView) findViewById(R.id.guild_view_1);
             if (guildView != null) {
-                i = R$id.guild_view_2;
-                GuildView guildView2 = (GuildView) findViewById(R$id.guild_view_2);
+                i = R.id.guild_view_2;
+                GuildView guildView2 = (GuildView) findViewById(R.id.guild_view_2);
                 if (guildView2 != null) {
-                    i = R$id.guild_view_3;
-                    GuildView guildView3 = (GuildView) findViewById(R$id.guild_view_3);
+                    i = R.id.guild_view_3;
+                    GuildView guildView3 = (GuildView) findViewById(R.id.guild_view_3);
                     if (guildView3 != null) {
-                        i = R$id.guild_view_4;
-                        GuildView guildView4 = (GuildView) findViewById(R$id.guild_view_4);
+                        i = R.id.guild_view_4;
+                        GuildView guildView4 = (GuildView) findViewById(R.id.guild_view_4);
                         if (guildView4 != null) {
-                            i = R$id.guild_views;
-                            GridLayout gridLayout = (GridLayout) findViewById(R$id.guild_views);
+                            i = R.id.guild_views;
+                            GridLayout gridLayout = (GridLayout) findViewById(R.id.guild_views);
                             if (gridLayout != null) {
                                 h3 h3Var = new h3(this, imageView, guildView, guildView2, guildView3, guildView4, gridLayout);
                                 m.checkNotNullExpressionValue(h3Var, "ViewServerFolderBinding.…ater.from(context), this)");
@@ -86,7 +106,7 @@ public final class ServerFolderView extends LinearLayout {
 
     public final void b(@AnimRes int animationId) {
         Animation animationLoadAnimation = AnimationUtils.loadAnimation(getContext(), animationId);
-        animationLoadAnimation.setAnimationListener(new ServerFolderView$a(this));
+        animationLoadAnimation.setAnimationListener(new a());
         if (AccessibilityUtils.INSTANCE.isReducedMotionEnabled()) {
             m.checkNotNullExpressionValue(animationLoadAnimation, "animation");
             animationLoadAnimation.setDuration(0L);

@@ -1,8 +1,5 @@
 package b.i.a.f.i.b;
 
-import b.i.a.f.h.l.n0$a;
-import b.i.a.f.h.l.p0$b;
-
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class aa {
@@ -12,7 +9,7 @@ public final /* synthetic */ class aa {
     public static final /* synthetic */ int[] f1519b;
 
     static {
-        n0$a.values();
+        b.i.a.f.h.l.n0.a.values();
         int[] iArr = new int[5];
         f1519b = iArr;
         try {
@@ -31,7 +28,7 @@ public final /* synthetic */ class aa {
             f1519b[4] = 4;
         } catch (NoSuchFieldError unused4) {
         }
-        p0$b.values();
+        b.i.a.f.h.l.p0.b.values();
         int[] iArr2 = new int[7];
         a = iArr2;
         try {

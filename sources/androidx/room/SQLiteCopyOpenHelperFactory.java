@@ -3,12 +3,10 @@ package androidx.room;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
-import androidx.sqlite.db.SupportSQLiteOpenHelper$Configuration;
-import androidx.sqlite.db.SupportSQLiteOpenHelper$Factory;
 import java.io.File;
 
 /* JADX INFO: loaded from: classes.dex */
-public class SQLiteCopyOpenHelperFactory implements SupportSQLiteOpenHelper$Factory {
+public class SQLiteCopyOpenHelperFactory implements SupportSQLiteOpenHelper.Factory {
 
     @Nullable
     private final String mCopyFromAssetPath;
@@ -17,16 +15,16 @@ public class SQLiteCopyOpenHelperFactory implements SupportSQLiteOpenHelper$Fact
     private final File mCopyFromFile;
 
     @NonNull
-    private final SupportSQLiteOpenHelper$Factory mDelegate;
+    private final SupportSQLiteOpenHelper.Factory mDelegate;
 
-    public SQLiteCopyOpenHelperFactory(@Nullable String str, @Nullable File file, @NonNull SupportSQLiteOpenHelper$Factory supportSQLiteOpenHelper$Factory) {
+    public SQLiteCopyOpenHelperFactory(@Nullable String str, @Nullable File file, @NonNull SupportSQLiteOpenHelper.Factory factory) {
         this.mCopyFromAssetPath = str;
         this.mCopyFromFile = file;
-        this.mDelegate = supportSQLiteOpenHelper$Factory;
+        this.mDelegate = factory;
     }
 
-    @Override // androidx.sqlite.db.SupportSQLiteOpenHelper$Factory
-    public SupportSQLiteOpenHelper create(SupportSQLiteOpenHelper$Configuration supportSQLiteOpenHelper$Configuration) {
-        return new SQLiteCopyOpenHelper(supportSQLiteOpenHelper$Configuration.context, this.mCopyFromAssetPath, this.mCopyFromFile, supportSQLiteOpenHelper$Configuration.callback.version, this.mDelegate.create(supportSQLiteOpenHelper$Configuration));
+    @Override // androidx.sqlite.db.SupportSQLiteOpenHelper.Factory
+    public SupportSQLiteOpenHelper create(SupportSQLiteOpenHelper.Configuration configuration) {
+        return new SQLiteCopyOpenHelper(configuration.context, this.mCopyFromAssetPath, this.mCopyFromFile, configuration.callback.version, this.mDelegate.create(configuration));
     }
 }

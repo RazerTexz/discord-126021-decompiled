@@ -8,12 +8,12 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: WidgetChatListAdapterItemAttachment.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChatListAdapterItemAttachment$Model$createRenderContext$1 extends o implements Function1<String, Unit> {
-    public final /* synthetic */ WidgetChatListAdapter$EventHandler $eventHandler;
+    public final /* synthetic */ WidgetChatListAdapter.EventHandler $eventHandler;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetChatListAdapterItemAttachment$Model$createRenderContext$1(WidgetChatListAdapter$EventHandler widgetChatListAdapter$EventHandler) {
+    public WidgetChatListAdapterItemAttachment$Model$createRenderContext$1(WidgetChatListAdapter.EventHandler eventHandler) {
         super(1);
-        this.$eventHandler = widgetChatListAdapter$EventHandler;
+        this.$eventHandler = eventHandler;
     }
 
     @Override // kotlin.jvm.functions.Function1

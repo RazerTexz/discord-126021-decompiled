@@ -11,7 +11,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map$Entry;
 
 /* JADX INFO: compiled from: JsonValueObjectEncoderContext.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -115,10 +114,10 @@ public final class f implements b.i.c.p.d, b.i.c.p.f {
             }
             if (obj instanceof Map) {
                 this.f1762b.beginObject();
-                for (Map$Entry map$Entry : ((Map) obj).entrySet()) {
-                    Object key = map$Entry.getKey();
+                for (Map.Entry entry : ((Map) obj).entrySet()) {
+                    Object key = entry.getKey();
                     try {
-                        h((String) key, map$Entry.getValue());
+                        h((String) key, entry.getValue());
                     } catch (ClassCastException e) {
                         throw new EncodingException(String.format("Only String keys are currently supported in maps, got %s of type %s instead.", key, key.getClass()), e);
                     }

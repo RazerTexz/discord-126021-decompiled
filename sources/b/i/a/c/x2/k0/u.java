@@ -2,8 +2,6 @@ package b.i.a.c.x2.k0;
 
 import androidx.annotation.Nullable;
 import b.i.a.c.j1;
-import b.i.a.c.j1$b;
-import b.i.a.c.t2.l$b;
 import com.google.android.exoplayer2.ParserException;
 import java.util.Collections;
 import java.util.Objects;
@@ -131,15 +129,15 @@ public final class u implements o {
                                 wVar2.k(iE);
                                 byte[] bArr3 = new byte[(iG5 + 7) / 8];
                                 wVar2.h(bArr3, 0, iG5);
-                                j1$b j1_b = new j1$b();
-                                j1_b.a = this.e;
-                                j1_b.k = "audio/mp4a-latm";
-                                j1_b.h = this.u;
-                                j1_b.f1023x = this.t;
-                                j1_b.f1024y = this.r;
-                                j1_b.m = Collections.singletonList(bArr3);
-                                j1_b.c = this.a;
-                                j1 j1VarA = j1_b.a();
+                                j1.b bVar = new j1.b();
+                                bVar.a = this.e;
+                                bVar.k = "audio/mp4a-latm";
+                                bVar.h = this.u;
+                                bVar.f1023x = this.t;
+                                bVar.f1024y = this.r;
+                                bVar.m = Collections.singletonList(bArr3);
+                                bVar.c = this.a;
+                                j1 j1VarA = bVar.a();
                                 if (!j1VarA.equals(this.f)) {
                                     this.f = j1VarA;
                                     this.f1279s = 1024000000 / ((long) j1VarA.K);
@@ -237,10 +235,10 @@ public final class u implements o {
     }
 
     @Override // b.i.a.c.x2.k0.o
-    public void e(b.i.a.c.x2.j jVar, i0$d i0_d) {
-        i0_d.a();
-        this.d = jVar.p(i0_d.c(), 1);
-        this.e = i0_d.b();
+    public void e(b.i.a.c.x2.j jVar, i0.d dVar) {
+        dVar.a();
+        this.d = jVar.p(dVar.c(), 1);
+        this.e = dVar.b();
     }
 
     @Override // b.i.a.c.x2.k0.o
@@ -252,10 +250,10 @@ public final class u implements o {
 
     public final int g(b.i.a.c.f3.w wVar) throws ParserException {
         int iB = wVar.b();
-        l$b l_bB = b.i.a.c.t2.l.b(wVar, true);
-        this.u = l_bB.c;
-        this.r = l_bB.a;
-        this.t = l_bB.f1122b;
+        b.i.a.c.t2.l.b bVarB = b.i.a.c.t2.l.b(wVar, true);
+        this.u = bVarB.c;
+        this.r = bVarB.a;
+        this.t = bVarB.f1122b;
         return iB - wVar.b();
     }
 }

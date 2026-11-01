@@ -1,30 +1,35 @@
 package d0.e0.p.d.m0.b;
 
 import d0.e0.p.d.m0.c.e0;
-import d0.e0.p.d.m0.c.h1.c$b;
 import d0.e0.p.d.m0.c.i1.y;
+import d0.e0.p.d.m0.c.j0;
 import d0.e0.p.d.m0.c.n0;
 import d0.e0.p.d.m0.c.o0;
 import d0.e0.p.d.m0.c.p0;
 import d0.e0.p.d.m0.c.s;
 import d0.e0.p.d.m0.c.w;
-import d0.e0.p.d.m0.m.f$m;
 import d0.e0.p.d.m0.n.c0;
 import d0.e0.p.d.m0.n.d0;
 import d0.e0.p.d.m0.n.e1;
-import d0.e0.p.d.m0.n.j0;
 import d0.e0.p.d.m0.n.j1;
 import d0.e0.p.d.m0.n.u0;
 import d0.e0.p.d.m0.n.y0;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
 import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: compiled from: KotlinBuiltIns.java */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class h {
-    public final d0.e0.p.d.m0.m.j<h$e> c;
+    public final d0.e0.p.d.m0.m.j<e> c;
     public final d0.e0.p.d.m0.m.h<d0.e0.p.d.m0.g.e, d0.e0.p.d.m0.c.e> d;
     public final d0.e0.p.d.m0.m.o e;
 
@@ -32,15 +37,132 @@ public abstract class h {
     public y f3211b;
     public static final d0.e0.p.d.m0.g.e a = d0.e0.p.d.m0.g.e.special("<built-ins module>");
 
+    /* JADX INFO: compiled from: KotlinBuiltIns.java */
+    public class a implements Function0<Collection<j0>> {
+        public a() {
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Collection<j0> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public Collection<j0> invoke2() {
+            return Arrays.asList(h.this.f3211b.getPackage(k.l), h.this.f3211b.getPackage(k.n), h.this.f3211b.getPackage(k.o), h.this.f3211b.getPackage(k.m));
+        }
+    }
+
+    /* JADX INFO: compiled from: KotlinBuiltIns.java */
+    public class b implements Function0<e> {
+        public b() {
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ e invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public e invoke() {
+            EnumMap enumMap = new EnumMap(i.class);
+            HashMap map = new HashMap();
+            HashMap map2 = new HashMap();
+            i[] iVarArrValues = i.valuesCustom();
+            for (int i = 0; i < 8; i++) {
+                i iVar = iVarArrValues[i];
+                d0.e0.p.d.m0.n.j0 j0VarB = h.b(h.this, iVar.getTypeName().asString());
+                d0.e0.p.d.m0.n.j0 j0VarB2 = h.b(h.this, iVar.getArrayTypeName().asString());
+                enumMap.put(iVar, j0VarB2);
+                map.put(j0VarB, j0VarB2);
+                map2.put(j0VarB2, j0VarB);
+            }
+            return new e(enumMap, map, map2, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: KotlinBuiltIns.java */
+    public class c implements Function1<d0.e0.p.d.m0.g.e, d0.e0.p.d.m0.c.e> {
+        public c() {
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.e invoke(d0.e0.p.d.m0.g.e eVar) {
+            return invoke2(eVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public d0.e0.p.d.m0.c.e invoke2(d0.e0.p.d.m0.g.e eVar) {
+            d0.e0.p.d.m0.c.h contributedClassifier = h.this.getBuiltInsPackageScope().getContributedClassifier(eVar, d0.e0.p.d.m0.d.b.d.FROM_BUILTINS);
+            if (contributedClassifier == null) {
+                StringBuilder sbU = b.d.b.a.a.U("Built-in class ");
+                sbU.append(k.l.child(eVar));
+                sbU.append(" is not found");
+                throw new AssertionError(sbU.toString());
+            }
+            if (contributedClassifier instanceof d0.e0.p.d.m0.c.e) {
+                return (d0.e0.p.d.m0.c.e) contributedClassifier;
+            }
+            throw new AssertionError("Must be a class descriptor " + eVar + ", but was " + contributedClassifier);
+        }
+    }
+
+    /* JADX INFO: compiled from: KotlinBuiltIns.java */
+    public class d implements Function0<Void> {
+        public final /* synthetic */ y j;
+
+        public d(y yVar) {
+            this.j = yVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Void invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public Void invoke2() {
+            h hVar = h.this;
+            if (hVar.f3211b == null) {
+                hVar.f3211b = this.j;
+                return null;
+            }
+            StringBuilder sbU = b.d.b.a.a.U("Built-ins module is already set: ");
+            sbU.append(h.this.f3211b);
+            sbU.append(" (attempting to reset to ");
+            sbU.append(this.j);
+            sbU.append(")");
+            throw new AssertionError(sbU.toString());
+        }
+    }
+
+    /* JADX INFO: compiled from: KotlinBuiltIns.java */
+    public class e {
+        public final Map<i, d0.e0.p.d.m0.n.j0> a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final Map<c0, d0.e0.p.d.m0.n.j0> f3212b;
+        public final Map<d0.e0.p.d.m0.n.j0, d0.e0.p.d.m0.n.j0> c;
+
+        public e(Map map, Map map2, Map map3, a aVar) {
+            this.a = map;
+            this.f3212b = map2;
+            this.c = map3;
+        }
+    }
+
     public h(d0.e0.p.d.m0.m.o oVar) {
         if (oVar == null) {
             a(0);
             throw null;
         }
         this.e = oVar;
-        oVar.createLazyValue(new h$a(this));
-        this.c = oVar.createLazyValue(new h$b(this));
-        this.d = oVar.createMemoizedFunction(new h$c(this));
+        oVar.createLazyValue(new a());
+        this.c = oVar.createLazyValue(new b());
+        this.d = oVar.createMemoizedFunction(new c());
     }
 
     public static /* synthetic */ void a(int i) {
@@ -1053,13 +1175,13 @@ public abstract class h {
         }
     }
 
-    public static j0 b(h hVar, String str) {
+    public static d0.e0.p.d.m0.n.j0 b(h hVar, String str) {
         Objects.requireNonNull(hVar);
         if (str == null) {
             a(45);
             throw null;
         }
-        j0 defaultType = hVar.f(str).getDefaultType();
+        d0.e0.p.d.m0.n.j0 defaultType = hVar.f(str).getDefaultType();
         if (defaultType != null) {
             return defaultType;
         }
@@ -1082,13 +1204,13 @@ public abstract class h {
     public void d(boolean z2) {
         y yVar = new y(a, this.e, this, null);
         this.f3211b = yVar;
-        yVar.initialize(a.a.getInstance().createPackageFragmentProvider(this.e, this.f3211b, g(), h(), e(), z2));
+        yVar.initialize(d0.e0.p.d.m0.b.a.a.getInstance().createPackageFragmentProvider(this.e, this.f3211b, g(), h(), e(), z2));
         y yVar2 = this.f3211b;
         yVar2.setDependencies(yVar2);
     }
 
     public d0.e0.p.d.m0.c.h1.a e() {
-        return d0.e0.p.d.m0.c.h1.a$a.a;
+        return d0.e0.p.d.m0.c.h1.a.C0513a.a;
     }
 
     public final d0.e0.p.d.m0.c.e f(String str) {
@@ -1096,7 +1218,7 @@ public abstract class h {
             a(13);
             throw null;
         }
-        d0.e0.p.d.m0.c.e eVar = (d0.e0.p.d.m0.c.e) ((f$m) this.d).invoke(d0.e0.p.d.m0.g.e.identifier(str));
+        d0.e0.p.d.m0.c.e eVar = (d0.e0.p.d.m0.c.e) ((d0.e0.p.d.m0.m.f.m) this.d).invoke(d0.e0.p.d.m0.g.e.identifier(str));
         if (eVar != null) {
             return eVar;
         }
@@ -1117,8 +1239,8 @@ public abstract class h {
         return f("Any");
     }
 
-    public j0 getAnyType() {
-        j0 defaultType = getAny().getDefaultType();
+    public d0.e0.p.d.m0.n.j0 getAnyType() {
+        d0.e0.p.d.m0.n.j0 defaultType = getAny().getDefaultType();
         if (defaultType != null) {
             return defaultType;
         }
@@ -1134,7 +1256,7 @@ public abstract class h {
         d0.e0.p.d.m0.g.a classId;
         d0.e0.p.d.m0.g.a unsignedClassIdByArrayClassId;
         d0.e0.p.d.m0.c.e eVarFindClassAcrossModuleDependencies;
-        j0 defaultType = null;
+        d0.e0.p.d.m0.n.j0 defaultType = null;
         if (c0Var == null) {
             a(66);
             throw null;
@@ -1151,7 +1273,7 @@ public abstract class h {
             throw null;
         }
         c0 c0VarMakeNotNullable = e1.makeNotNullable(c0Var);
-        j0 j0Var = this.c.invoke().c.get(c0VarMakeNotNullable);
+        d0.e0.p.d.m0.n.j0 j0Var = this.c.invoke().c.get(c0VarMakeNotNullable);
         if (j0Var != null) {
             return j0Var;
         }
@@ -1175,7 +1297,7 @@ public abstract class h {
         throw new IllegalStateException("not array: " + c0Var);
     }
 
-    public j0 getArrayType(j1 j1Var, c0 c0Var, d0.e0.p.d.m0.c.g1.g gVar) {
+    public d0.e0.p.d.m0.n.j0 getArrayType(j1 j1Var, c0 c0Var, d0.e0.p.d.m0.c.g1.g gVar) {
         if (j1Var == null) {
             a(77);
             throw null;
@@ -1188,7 +1310,7 @@ public abstract class h {
             a(79);
             throw null;
         }
-        j0 j0VarSimpleNotNullType = d0.simpleNotNullType(gVar, getArray(), Collections.singletonList(new y0(j1Var, c0Var)));
+        d0.e0.p.d.m0.n.j0 j0VarSimpleNotNullType = d0.simpleNotNullType(gVar, getArray(), Collections.singletonList(new y0(j1Var, c0Var)));
         if (j0VarSimpleNotNullType != null) {
             return j0VarSimpleNotNullType;
         }
@@ -1196,8 +1318,8 @@ public abstract class h {
         throw null;
     }
 
-    public j0 getBooleanType() {
-        j0 primitiveKotlinType = getPrimitiveKotlinType(i.BOOLEAN);
+    public d0.e0.p.d.m0.n.j0 getBooleanType() {
+        d0.e0.p.d.m0.n.j0 primitiveKotlinType = getPrimitiveKotlinType(i.BOOLEAN);
         if (primitiveKotlinType != null) {
             return primitiveKotlinType;
         }
@@ -1236,8 +1358,8 @@ public abstract class h {
         throw null;
     }
 
-    public j0 getByteType() {
-        j0 primitiveKotlinType = getPrimitiveKotlinType(i.BYTE);
+    public d0.e0.p.d.m0.n.j0 getByteType() {
+        d0.e0.p.d.m0.n.j0 primitiveKotlinType = getPrimitiveKotlinType(i.BYTE);
         if (primitiveKotlinType != null) {
             return primitiveKotlinType;
         }
@@ -1245,8 +1367,8 @@ public abstract class h {
         throw null;
     }
 
-    public j0 getCharType() {
-        j0 primitiveKotlinType = getPrimitiveKotlinType(i.CHAR);
+    public d0.e0.p.d.m0.n.j0 getCharType() {
+        d0.e0.p.d.m0.n.j0 primitiveKotlinType = getPrimitiveKotlinType(i.CHAR);
         if (primitiveKotlinType != null) {
             return primitiveKotlinType;
         }
@@ -1255,7 +1377,7 @@ public abstract class h {
     }
 
     public d0.e0.p.d.m0.c.e getCollection() {
-        d0.e0.p.d.m0.c.e builtInClassByFqName = getBuiltInClassByFqName(k$a.J);
+        d0.e0.p.d.m0.c.e builtInClassByFqName = getBuiltInClassByFqName(k.a.J);
         if (builtInClassByFqName != null) {
             return builtInClassByFqName;
         }
@@ -1267,8 +1389,8 @@ public abstract class h {
         return f("Comparable");
     }
 
-    public j0 getDefaultBound() {
-        j0 nullableAnyType = getNullableAnyType();
+    public d0.e0.p.d.m0.n.j0 getDefaultBound() {
+        d0.e0.p.d.m0.n.j0 nullableAnyType = getNullableAnyType();
         if (nullableAnyType != null) {
             return nullableAnyType;
         }
@@ -1276,8 +1398,8 @@ public abstract class h {
         throw null;
     }
 
-    public j0 getDoubleType() {
-        j0 primitiveKotlinType = getPrimitiveKotlinType(i.DOUBLE);
+    public d0.e0.p.d.m0.n.j0 getDoubleType() {
+        d0.e0.p.d.m0.n.j0 primitiveKotlinType = getPrimitiveKotlinType(i.DOUBLE);
         if (primitiveKotlinType != null) {
             return primitiveKotlinType;
         }
@@ -1285,8 +1407,8 @@ public abstract class h {
         throw null;
     }
 
-    public j0 getFloatType() {
-        j0 primitiveKotlinType = getPrimitiveKotlinType(i.FLOAT);
+    public d0.e0.p.d.m0.n.j0 getFloatType() {
+        d0.e0.p.d.m0.n.j0 primitiveKotlinType = getPrimitiveKotlinType(i.FLOAT);
         if (primitiveKotlinType != null) {
             return primitiveKotlinType;
         }
@@ -1298,8 +1420,8 @@ public abstract class h {
         return f(k.getFunctionName(i));
     }
 
-    public j0 getIntType() {
-        j0 primitiveKotlinType = getPrimitiveKotlinType(i.INT);
+    public d0.e0.p.d.m0.n.j0 getIntType() {
+        d0.e0.p.d.m0.n.j0 primitiveKotlinType = getPrimitiveKotlinType(i.INT);
         if (primitiveKotlinType != null) {
             return primitiveKotlinType;
         }
@@ -1308,7 +1430,7 @@ public abstract class h {
     }
 
     public d0.e0.p.d.m0.c.e getKClass() {
-        d0.e0.p.d.m0.c.e builtInClassByFqName = getBuiltInClassByFqName(k$a.X.toSafe());
+        d0.e0.p.d.m0.c.e builtInClassByFqName = getBuiltInClassByFqName(k.a.X.toSafe());
         if (builtInClassByFqName != null) {
             return builtInClassByFqName;
         }
@@ -1316,8 +1438,8 @@ public abstract class h {
         throw null;
     }
 
-    public j0 getLongType() {
-        j0 primitiveKotlinType = getPrimitiveKotlinType(i.LONG);
+    public d0.e0.p.d.m0.n.j0 getLongType() {
+        d0.e0.p.d.m0.n.j0 primitiveKotlinType = getPrimitiveKotlinType(i.LONG);
         if (primitiveKotlinType != null) {
             return primitiveKotlinType;
         }
@@ -1329,8 +1451,8 @@ public abstract class h {
         return f("Nothing");
     }
 
-    public j0 getNothingType() {
-        j0 defaultType = getNothing().getDefaultType();
+    public d0.e0.p.d.m0.n.j0 getNothingType() {
+        d0.e0.p.d.m0.n.j0 defaultType = getNothing().getDefaultType();
         if (defaultType != null) {
             return defaultType;
         }
@@ -1338,8 +1460,8 @@ public abstract class h {
         throw null;
     }
 
-    public j0 getNullableAnyType() {
-        j0 j0VarMakeNullableAsSpecified = getAnyType().makeNullableAsSpecified(true);
+    public d0.e0.p.d.m0.n.j0 getNullableAnyType() {
+        d0.e0.p.d.m0.n.j0 j0VarMakeNullableAsSpecified = getAnyType().makeNullableAsSpecified(true);
         if (j0VarMakeNullableAsSpecified != null) {
             return j0VarMakeNullableAsSpecified;
         }
@@ -1347,8 +1469,8 @@ public abstract class h {
         throw null;
     }
 
-    public j0 getNullableNothingType() {
-        j0 j0VarMakeNullableAsSpecified = getNothingType().makeNullableAsSpecified(true);
+    public d0.e0.p.d.m0.n.j0 getNullableNothingType() {
+        d0.e0.p.d.m0.n.j0 j0VarMakeNullableAsSpecified = getNothingType().makeNullableAsSpecified(true);
         if (j0VarMakeNullableAsSpecified != null) {
             return j0VarMakeNullableAsSpecified;
         }
@@ -1360,8 +1482,8 @@ public abstract class h {
         return f("Number");
     }
 
-    public j0 getNumberType() {
-        j0 defaultType = getNumber().getDefaultType();
+    public d0.e0.p.d.m0.n.j0 getNumberType() {
+        d0.e0.p.d.m0.n.j0 defaultType = getNumber().getDefaultType();
         if (defaultType != null) {
             return defaultType;
         }
@@ -1369,12 +1491,12 @@ public abstract class h {
         throw null;
     }
 
-    public j0 getPrimitiveArrayKotlinType(i iVar) {
+    public d0.e0.p.d.m0.n.j0 getPrimitiveArrayKotlinType(i iVar) {
         if (iVar == null) {
             a(72);
             throw null;
         }
-        j0 j0Var = this.c.invoke().a.get(iVar);
+        d0.e0.p.d.m0.n.j0 j0Var = this.c.invoke().a.get(iVar);
         if (j0Var != null) {
             return j0Var;
         }
@@ -1387,13 +1509,13 @@ public abstract class h {
             a(76);
             throw null;
         }
-        if (k$a.n0.contains(mVar.getName())) {
-            return k$a.p0.get(d0.e0.p.d.m0.k.e.getFqName(mVar));
+        if (k.a.n0.contains(mVar.getName())) {
+            return k.a.p0.get(d0.e0.p.d.m0.k.e.getFqName(mVar));
         }
         return null;
     }
 
-    public j0 getPrimitiveKotlinType(i iVar) {
+    public d0.e0.p.d.m0.n.j0 getPrimitiveKotlinType(i iVar) {
         if (iVar == null) {
             a(52);
             throw null;
@@ -1402,7 +1524,7 @@ public abstract class h {
             a(15);
             throw null;
         }
-        j0 defaultType = f(iVar.getTypeName().asString()).getDefaultType();
+        d0.e0.p.d.m0.n.j0 defaultType = f(iVar.getTypeName().asString()).getDefaultType();
         if (defaultType != null) {
             return defaultType;
         }
@@ -1415,14 +1537,14 @@ public abstract class h {
             a(75);
             throw null;
         }
-        if (k$a.m0.contains(mVar.getName())) {
-            return k$a.o0.get(d0.e0.p.d.m0.k.e.getFqName(mVar));
+        if (k.a.m0.contains(mVar.getName())) {
+            return k.a.o0.get(d0.e0.p.d.m0.k.e.getFqName(mVar));
         }
         return null;
     }
 
-    public j0 getShortType() {
-        j0 primitiveKotlinType = getPrimitiveKotlinType(i.SHORT);
+    public d0.e0.p.d.m0.n.j0 getShortType() {
+        d0.e0.p.d.m0.n.j0 primitiveKotlinType = getPrimitiveKotlinType(i.SHORT);
         if (primitiveKotlinType != null) {
             return primitiveKotlinType;
         }
@@ -1434,8 +1556,8 @@ public abstract class h {
         return f("String");
     }
 
-    public j0 getStringType() {
-        j0 defaultType = getString().getDefaultType();
+    public d0.e0.p.d.m0.n.j0 getStringType() {
+        d0.e0.p.d.m0.n.j0 defaultType = getString().getDefaultType();
         if (defaultType != null) {
             return defaultType;
         }
@@ -1456,8 +1578,8 @@ public abstract class h {
         return f("Unit");
     }
 
-    public j0 getUnitType() {
-        j0 defaultType = getUnit().getDefaultType();
+    public d0.e0.p.d.m0.n.j0 getUnitType() {
+        d0.e0.p.d.m0.n.j0 defaultType = getUnit().getDefaultType();
         if (defaultType != null) {
             return defaultType;
         }
@@ -1466,7 +1588,7 @@ public abstract class h {
     }
 
     public d0.e0.p.d.m0.c.h1.c h() {
-        return c$b.a;
+        return d0.e0.p.d.m0.c.h1.c.b.a;
     }
 
     public static boolean i(c0 c0Var, d0.e0.p.d.m0.g.c cVar) {
@@ -1483,7 +1605,7 @@ public abstract class h {
 
     public static boolean isAny(d0.e0.p.d.m0.c.e eVar) {
         if (eVar != null) {
-            return c(eVar, k$a.f3217b);
+            return c(eVar, k.a.f3217b);
         }
         a(107);
         throw null;
@@ -1491,7 +1613,7 @@ public abstract class h {
 
     public static boolean isAnyOrNullableAny(c0 c0Var) {
         if (c0Var != null) {
-            return i(c0Var, k$a.f3217b);
+            return i(c0Var, k.a.f3217b);
         }
         a(Opcodes.L2D);
         throw null;
@@ -1499,7 +1621,7 @@ public abstract class h {
 
     public static boolean isArray(c0 c0Var) {
         if (c0Var != null) {
-            return i(c0Var, k$a.h);
+            return i(c0Var, k.a.h);
         }
         a(87);
         throw null;
@@ -1507,7 +1629,7 @@ public abstract class h {
 
     public static boolean isArrayOrPrimitiveArray(d0.e0.p.d.m0.c.e eVar) {
         if (eVar != null) {
-            return c(eVar, k$a.h) || getPrimitiveArrayType(eVar) != null;
+            return c(eVar, k.a.h) || getPrimitiveArrayType(eVar) != null;
         }
         a(88);
         throw null;
@@ -1515,7 +1637,7 @@ public abstract class h {
 
     public static boolean isBoolean(c0 c0Var) {
         if (c0Var != null) {
-            return j(c0Var, k$a.i);
+            return j(c0Var, k.a.i);
         }
         a(109);
         throw null;
@@ -1523,7 +1645,7 @@ public abstract class h {
 
     public static boolean isBuiltIn(d0.e0.p.d.m0.c.m mVar) {
         if (mVar != null) {
-            return d0.e0.p.d.m0.k.e.getParentOfType(mVar, b.class, false) != null;
+            return d0.e0.p.d.m0.k.e.getParentOfType(mVar, d0.e0.p.d.m0.b.b.class, false) != null;
         }
         a(8);
         throw null;
@@ -1531,7 +1653,7 @@ public abstract class h {
 
     public static boolean isByte(c0 c0Var) {
         if (c0Var != null) {
-            return j(c0Var, k$a.k);
+            return j(c0Var, k.a.k);
         }
         a(116);
         throw null;
@@ -1539,7 +1661,7 @@ public abstract class h {
 
     public static boolean isChar(c0 c0Var) {
         if (c0Var != null) {
-            return j(c0Var, k$a.j);
+            return j(c0Var, k.a.j);
         }
         a(113);
         throw null;
@@ -1558,7 +1680,7 @@ public abstract class h {
             a(158);
             throw null;
         }
-        if (mVar.getOriginal().getAnnotations().hasAnnotation(k$a.u)) {
+        if (mVar.getOriginal().getAnnotations().hasAnnotation(k.a.u)) {
             return true;
         }
         if (!(mVar instanceof n0)) {
@@ -1589,7 +1711,7 @@ public abstract class h {
 
     public static boolean isDoubleOrNullableDouble(c0 c0Var) {
         if (c0Var != null) {
-            return i(c0Var, k$a.p);
+            return i(c0Var, k.a.p);
         }
         a(Opcodes.IINC);
         throw null;
@@ -1605,7 +1727,7 @@ public abstract class h {
 
     public static boolean isFloatOrNullableFloat(c0 c0Var) {
         if (c0Var != null) {
-            return i(c0Var, k$a.o);
+            return i(c0Var, k.a.o);
         }
         a(121);
         throw null;
@@ -1613,7 +1735,7 @@ public abstract class h {
 
     public static boolean isInt(c0 c0Var) {
         if (c0Var != null) {
-            return j(c0Var, k$a.m);
+            return j(c0Var, k.a.m);
         }
         a(115);
         throw null;
@@ -1621,7 +1743,7 @@ public abstract class h {
 
     public static boolean isKClass(d0.e0.p.d.m0.c.e eVar) {
         if (eVar != null) {
-            return c(eVar, k$a.X);
+            return c(eVar, k.a.X);
         }
         a(155);
         throw null;
@@ -1629,7 +1751,7 @@ public abstract class h {
 
     public static boolean isLong(c0 c0Var) {
         if (c0Var != null) {
-            return j(c0Var, k$a.n);
+            return j(c0Var, k.a.n);
         }
         a(117);
         throw null;
@@ -1645,7 +1767,7 @@ public abstract class h {
 
     public static boolean isNothingOrNullableNothing(c0 c0Var) {
         if (c0Var != null) {
-            return i(c0Var, k$a.c);
+            return i(c0Var, k.a.c);
         }
         a(Opcodes.L2F);
         throw null;
@@ -1695,7 +1817,7 @@ public abstract class h {
 
     public static boolean isShort(c0 c0Var) {
         if (c0Var != null) {
-            return j(c0Var, k$a.l);
+            return j(c0Var, k.a.l);
         }
         a(119);
         throw null;
@@ -1703,14 +1825,14 @@ public abstract class h {
 
     public static boolean isSpecialClassWithNoSupertypes(d0.e0.p.d.m0.c.e eVar) {
         if (eVar != null) {
-            return c(eVar, k$a.f3217b) || c(eVar, k$a.c);
+            return c(eVar, k.a.f3217b) || c(eVar, k.a.c);
         }
         a(106);
         throw null;
     }
 
     public static boolean isString(c0 c0Var) {
-        return c0Var != null && k(c0Var, k$a.g);
+        return c0Var != null && k(c0Var, k.a.g);
     }
 
     public static boolean isTypeConstructorForGivenClass(u0 u0Var, d0.e0.p.d.m0.g.c cVar) {
@@ -1728,7 +1850,7 @@ public abstract class h {
 
     public static boolean isUByteArray(c0 c0Var) {
         if (c0Var != null) {
-            return j(c0Var, k$a.f3225i0.toUnsafe());
+            return j(c0Var, k.a.f3225i0.toUnsafe());
         }
         a(Opcodes.LAND);
         throw null;
@@ -1736,7 +1858,7 @@ public abstract class h {
 
     public static boolean isUIntArray(c0 c0Var) {
         if (c0Var != null) {
-            return j(c0Var, k$a.k0.toUnsafe());
+            return j(c0Var, k.a.k0.toUnsafe());
         }
         a(Opcodes.LOR);
         throw null;
@@ -1744,7 +1866,7 @@ public abstract class h {
 
     public static boolean isULongArray(c0 c0Var) {
         if (c0Var != null) {
-            return j(c0Var, k$a.l0.toUnsafe());
+            return j(c0Var, k.a.l0.toUnsafe());
         }
         a(130);
         throw null;
@@ -1752,7 +1874,7 @@ public abstract class h {
 
     public static boolean isUShortArray(c0 c0Var) {
         if (c0Var != null) {
-            return j(c0Var, k$a.f3226j0.toUnsafe());
+            return j(c0Var, k.a.f3226j0.toUnsafe());
         }
         a(128);
         throw null;
@@ -1774,7 +1896,7 @@ public abstract class h {
 
     public static boolean isUnit(c0 c0Var) {
         if (c0Var != null) {
-            return k(c0Var, k$a.e);
+            return k(c0Var, k.a.e);
         }
         a(Opcodes.F2D);
         throw null;
@@ -1814,20 +1936,20 @@ public abstract class h {
 
     public void setBuiltInsModule(y yVar) {
         if (yVar != null) {
-            this.e.compute(new h$d(this, yVar));
+            this.e.compute(new d(yVar));
         } else {
             a(1);
             throw null;
         }
     }
 
-    public j0 getArrayType(j1 j1Var, c0 c0Var) {
+    public d0.e0.p.d.m0.n.j0 getArrayType(j1 j1Var, c0 c0Var) {
         if (j1Var == null) {
             a(81);
             throw null;
         }
         if (c0Var != null) {
-            j0 arrayType = getArrayType(j1Var, c0Var, d0.e0.p.d.m0.c.g1.g.f.getEMPTY());
+            d0.e0.p.d.m0.n.j0 arrayType = getArrayType(j1Var, c0Var, d0.e0.p.d.m0.c.g1.g.f.getEMPTY());
             if (arrayType != null) {
                 return arrayType;
             }

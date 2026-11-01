@@ -14,13 +14,13 @@ public final class DataKt {
         return data.hasKeyWithValueOfType(str, Object.class);
     }
 
-    public static final Data workDataOf(Pair<String, ? extends Object>... pairArr) {
+    public static final Data workDataOf(Pair<String, ? extends Object>... pairArr) throws Throwable {
         m.checkParameterIsNotNull(pairArr, "pairs");
-        Data$Builder data$Builder = new Data$Builder();
+        Data.Builder builder = new Data.Builder();
         for (Pair<String, ? extends Object> pair : pairArr) {
-            data$Builder.put(pair.getFirst(), pair.getSecond());
+            builder.put(pair.getFirst(), pair.getSecond());
         }
-        Data dataBuild = data$Builder.build();
+        Data dataBuild = builder.build();
         m.checkExpressionValueIsNotNull(dataBuild, "dataBuilder.build()");
         return dataBuild;
     }

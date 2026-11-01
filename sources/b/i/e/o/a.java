@@ -7,8 +7,6 @@ import b.i.e.k;
 import b.i.e.n.b;
 import b.i.e.n.e;
 import b.i.e.o.b.d;
-import b.i.e.o.c.a$b;
-import b.i.e.o.c.a$c;
 import com.google.zxing.ChecksumException;
 import com.google.zxing.FormatException;
 import com.google.zxing.NotFoundException;
@@ -18,7 +16,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 
 /* JADX INFO: compiled from: DataMatrixReader.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -45,20 +42,20 @@ public final class a implements i {
             arrayList.add(aVar.e(kVar, kVar3));
             arrayList.add(aVar.e(kVar2, kVar4));
             arrayList.add(aVar.e(kVar3, kVar4));
-            Collections.sort(arrayList, new a$c(null));
-            a$b a_b = (a$b) arrayList.get(0);
-            a$b a_b2 = (a$b) arrayList.get(1);
+            Collections.sort(arrayList, new b.i.e.o.c.a.c(null));
+            b.i.e.o.c.a.b bVar = (b.i.e.o.c.a.b) arrayList.get(0);
+            b.i.e.o.c.a.b bVar2 = (b.i.e.o.c.a.b) arrayList.get(1);
             HashMap map2 = new HashMap();
-            b.i.e.o.c.a.b(map2, a_b.a);
-            b.i.e.o.c.a.b(map2, a_b.f1851b);
-            b.i.e.o.c.a.b(map2, a_b2.a);
-            b.i.e.o.c.a.b(map2, a_b2.f1851b);
+            b.i.e.o.c.a.b(map2, bVar.a);
+            b.i.e.o.c.a.b(map2, bVar.f1851b);
+            b.i.e.o.c.a.b(map2, bVar2.a);
+            b.i.e.o.c.a.b(map2, bVar2.f1851b);
             k kVar5 = null;
             k kVar6 = null;
             k kVar7 = null;
-            for (Map$Entry map$Entry : map2.entrySet()) {
-                k kVar8 = (k) map$Entry.getKey();
-                if (((Integer) map$Entry.getValue()).intValue() == 2) {
+            for (Map.Entry entry : map2.entrySet()) {
+                k kVar8 = (k) entry.getKey();
+                if (((Integer) entry.getValue()).intValue() == 2) {
                     kVar6 = kVar8;
                 } else if (kVar5 == null) {
                     kVar5 = kVar8;
@@ -188,16 +185,16 @@ public final class a implements i {
             int i18 = i12 / 2;
             int i19 = i13 + i18;
             int i20 = i15 + i18;
-            b bVar = new b(i16, i17);
+            b bVar3 = new b(i16, i17);
             for (int i21 = 0; i21 < i17; i21++) {
                 int i22 = (i21 * i12) + i19;
                 for (int i23 = 0; i23 < i16; i23++) {
                     if (bVarA.f((i23 * i12) + i20, i22)) {
-                        bVar.j(i23, i21);
+                        bVar3.j(i23, i21);
                     }
                 }
             }
-            eVarA = this.f1843b.a(bVar);
+            eVarA = this.f1843b.a(bVar3);
             kVarArr = a;
         }
         Result result = new Result(eVarA.c, eVarA.a, kVarArr, b.i.e.a.DATA_MATRIX);

@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.view.View$MeasureSpec;
+import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.utils.R$b;
+import com.discord.utils.R;
 import d0.a0.a;
 import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -32,10 +32,10 @@ public final class MaxHeightRecyclerView extends RecyclerView {
         if (attributeSet == null) {
             return 0;
         }
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$b.MaxHeightRecyclerView, i, 0);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.b.MaxHeightRecyclerView, i, 0);
         m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(a…lerView, defStyleAttr, 0)");
-        int dimensionPixelSize = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$b.MaxHeightRecyclerView_max_height, 0);
-        float f = typedArrayObtainStyledAttributes.getFloat(R$b.MaxHeightRecyclerView_max_height_screen_ratio, 0.0f);
+        int dimensionPixelSize = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.b.MaxHeightRecyclerView_max_height, 0);
+        float f = typedArrayObtainStyledAttributes.getFloat(R.b.MaxHeightRecyclerView_max_height_screen_ratio, 0.0f);
         typedArrayObtainStyledAttributes.recycle();
         if (f <= 0.0f || f >= 1.0f) {
             return dimensionPixelSize;
@@ -53,7 +53,7 @@ public final class MaxHeightRecyclerView extends RecyclerView {
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int i = this.maxHeight;
         if (i > 0) {
-            heightMeasureSpec = View$MeasureSpec.makeMeasureSpec(i, Integer.MIN_VALUE);
+            heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(i, Integer.MIN_VALUE);
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }

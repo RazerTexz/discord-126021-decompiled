@@ -238,30 +238,30 @@ public final class d {
         if (i8 != aVar.c.h) {
             throw FormatException.a();
         }
-        e$c e_c = eVar.g;
-        e$b[] e_bArr = e_c.f1849b;
+        e.c cVar = eVar.g;
+        e.b[] bVarArr = cVar.f1849b;
         int i52 = 0;
-        for (e$b e_b : e_bArr) {
-            i52 += e_b.a;
+        for (e.b bVar3 : bVarArr) {
+            i52 += bVar3.a;
         }
-        b[] bVarArr = new b[i52];
+        b[] bVarArr2 = new b[i52];
         int i53 = 0;
-        for (e$b e_b2 : e_bArr) {
+        for (e.b bVar4 : bVarArr) {
             int i54 = 0;
-            while (i54 < e_b2.a) {
-                int i55 = e_b2.f1848b;
-                bVarArr[i53] = new b(i55, new byte[e_c.a + i55]);
+            while (i54 < bVar4.a) {
+                int i55 = bVar4.f1848b;
+                bVarArr2[i53] = new b(i55, new byte[cVar.a + i55]);
                 i54++;
                 i53++;
             }
         }
-        int length = bVarArr[0].f1845b.length - e_c.a;
+        int length = bVarArr2[0].f1845b.length - cVar.a;
         int i56 = length - 1;
         int i57 = 0;
         for (int i58 = 0; i58 < i56; i58++) {
             int i59 = 0;
             while (i59 < i53) {
-                bVarArr[i59].f1845b[i58] = bArr[i57];
+                bVarArr2[i59].f1845b[i58] = bArr[i57];
                 i59++;
                 i57++;
             }
@@ -271,16 +271,16 @@ public final class d {
         int i61 = z11 ? 8 : i53;
         int i62 = 0;
         while (i62 < i61) {
-            bVarArr[i62].f1845b[i56] = bArr[i57];
+            bVarArr2[i62].f1845b[i56] = bArr[i57];
             i62++;
             i57++;
         }
-        int length2 = bVarArr[0].f1845b.length;
+        int length2 = bVarArr2[0].f1845b.length;
         while (length < length2) {
             int i63 = 0;
             while (i63 < i53) {
                 int i64 = z11 ? (i63 + 8) % i53 : i63;
-                bVarArr[i64].f1845b[(!z11 || i64 <= 7) ? length : length - 1] = bArr[i57];
+                bVarArr2[i64].f1845b[(!z11 || i64 <= 7) ? length : length - 1] = bArr[i57];
                 i63++;
                 i57++;
             }
@@ -291,13 +291,13 @@ public final class d {
         }
         int i65 = 0;
         for (int i66 = 0; i66 < i52; i66++) {
-            i65 += bVarArr[i66].a;
+            i65 += bVarArr2[i66].a;
         }
         byte[] bArr2 = new byte[i65];
         for (int i67 = 0; i67 < i52; i67++) {
-            b bVar3 = bVarArr[i67];
-            byte[] bArr3 = bVar3.f1845b;
-            int i68 = bVar3.a;
+            b bVar5 = bVarArr2[i67];
+            byte[] bArr3 = bVar5.f1845b;
+            int i68 = bVar5.a;
             int length3 = bArr3.length;
             int[] iArr = new int[length3];
             for (int i69 = 0; i69 < length3; i69++) {
@@ -315,7 +315,7 @@ public final class d {
                 throw ChecksumException.a();
             }
         }
-        b.i.e.n.c cVar = new b.i.e.n.c(bArr2);
+        b.i.e.n.c cVar2 = new b.i.e.n.c(bArr2);
         StringBuilder sb = new StringBuilder(100);
         StringBuilder sb2 = new StringBuilder(0);
         ArrayList arrayList = new ArrayList(1);
@@ -330,8 +330,8 @@ public final class d {
                     boolean z12 = false;
                     int i74 = 0;
                     while (true) {
-                        if (cVar.a() != 8 && (iB = cVar.b(8)) != 254) {
-                            c.a(iB, cVar.b(8), iArr2);
+                        if (cVar2.a() != 8 && (iB = cVar2.b(8)) != 254) {
+                            c.a(iB, cVar2.b(8), iArr2);
                             int i75 = 0;
                             int i76 = 3;
                             while (i75 < i76) {
@@ -398,7 +398,7 @@ public final class d {
                                 i75++;
                                 c = 29;
                             }
-                            if (cVar.a() > 0) {
+                            if (cVar2.a() > 0) {
                                 c = 29;
                             }
                         }
@@ -408,8 +408,8 @@ public final class d {
                     int[] iArr3 = new int[3];
                     int i79 = 0;
                     boolean z13 = false;
-                    for (int i80 = 254; cVar.a() != i60 && (iB2 = cVar.b(i60)) != i80; i80 = 254) {
-                        c.a(iB2, cVar.b(i60), iArr3);
+                    for (int i80 = 254; cVar2.a() != i60 && (iB2 = cVar2.b(i60)) != i80; i80 = 254) {
+                        c.a(iB2, cVar2.b(i60), iArr3);
                         boolean z14 = z13;
                         int i81 = 0;
                         while (i81 < i78) {
@@ -475,7 +475,7 @@ public final class d {
                             i81++;
                             i78 = 3;
                         }
-                        if (cVar.a() > 0) {
+                        if (cVar2.a() > 0) {
                             z13 = z14;
                             i78 = 3;
                             i60 = 8;
@@ -484,8 +484,8 @@ public final class d {
                 } else if (iH == 4) {
                     int i83 = 3;
                     int[] iArr4 = new int[3];
-                    while (cVar.a() != i60 && (iB3 = cVar.b(i60)) != 254) {
-                        c.a(iB3, cVar.b(i60), iArr4);
+                    while (cVar2.a() != i60 && (iB3 = cVar2.b(i60)) != 254) {
+                        c.a(iB3, cVar2.b(i60), iArr4);
                         int i84 = 0;
                         while (i84 < i83) {
                             int i85 = iArr4[i84];
@@ -508,20 +508,20 @@ public final class d {
                             i84++;
                             i83 = 3;
                         }
-                        if (cVar.a() > 0) {
+                        if (cVar2.a() > 0) {
                             i83 = 3;
                         }
                     }
                 } else if (iH == 5) {
-                    while (cVar.a() > 16) {
+                    while (cVar2.a() > 16) {
                         int i86 = 0;
                         while (true) {
                             if (i86 < 4) {
-                                int iB4 = cVar.b(6);
+                                int iB4 = cVar2.b(6);
                                 if (iB4 == 31) {
-                                    int i87 = 8 - cVar.c;
+                                    int i87 = 8 - cVar2.c;
                                     if (i87 != i60) {
-                                        cVar.b(i87);
+                                        cVar2.b(i87);
                                     }
                                 } else {
                                     if ((iB4 & 32) == 0) {
@@ -530,7 +530,7 @@ public final class d {
                                     sb.append((char) iB4);
                                     i86++;
                                 }
-                            } else if (cVar.a() <= 0) {
+                            } else if (cVar2.a() <= 0) {
                             }
                         }
                     }
@@ -538,13 +538,13 @@ public final class d {
                     if (iH != 6) {
                         throw FormatException.a();
                     }
-                    int i88 = cVar.f1830b + 1;
+                    int i88 = cVar2.f1830b + 1;
                     int i89 = i88 + 1;
-                    int iB5 = c.b(cVar.b(i60), i88);
+                    int iB5 = c.b(cVar2.b(i60), i88);
                     if (iB5 == 0) {
-                        iB5 = cVar.a() / i60;
+                        iB5 = cVar2.a() / i60;
                     } else if (iB5 >= 250) {
-                        iB5 = ((iB5 - 249) * 250) + c.b(cVar.b(i60), i89);
+                        iB5 = ((iB5 - 249) * 250) + c.b(cVar2.b(i60), i89);
                         i89++;
                     }
                     if (iB5 < 0) {
@@ -553,10 +553,10 @@ public final class d {
                     byte[] bArr4 = new byte[iB5];
                     int i90 = 0;
                     while (i90 < iB5) {
-                        if (cVar.a() < i60) {
+                        if (cVar2.a() < i60) {
                             throw FormatException.a();
                         }
-                        bArr4[i90] = (byte) c.b(cVar.b(i60), i89);
+                        bArr4[i90] = (byte) c.b(cVar2.b(i60), i89);
                         i90++;
                         i89++;
                     }
@@ -582,7 +582,7 @@ public final class d {
             }
             boolean z15 = false;
             while (true) {
-                int iB6 = cVar.b(i60);
+                int iB6 = cVar2.b(i60);
                 if (iB6 == 0) {
                     throw FormatException.a();
                 }
@@ -596,7 +596,7 @@ public final class d {
                                     i73 = 3;
                                     i72 = i73;
                                     i = 1;
-                                    if (i72 != i || cVar.a() <= 0) {
+                                    if (i72 != i || cVar2.a() <= 0) {
                                         if (sb2.length() > 0) {
                                             sb.append((CharSequence) sb2);
                                         }
@@ -625,7 +625,7 @@ public final class d {
                                     return new b.i.e.n.e(bArr2, string3, arrayList, null);
                                 case 232:
                                     sb.append((char) 29);
-                                    if (cVar.a() <= 0) {
+                                    if (cVar2.a() <= 0) {
                                     }
                                     break;
                                 case 233:
@@ -634,19 +634,19 @@ public final class d {
                                     break;
                                 case 235:
                                     z15 = true;
-                                    if (cVar.a() <= 0) {
+                                    if (cVar2.a() <= 0) {
                                     }
                                     break;
                                 case 236:
                                     sb.append("[)>\u001e05\u001d");
                                     sb2.insert(0, "\u001e\u0004");
-                                    if (cVar.a() <= 0) {
+                                    if (cVar2.a() <= 0) {
                                     }
                                     break;
                                 case 237:
                                     sb.append("[)>\u001e06\u001d");
                                     sb2.insert(0, "\u001e\u0004");
-                                    if (cVar.a() <= 0) {
+                                    if (cVar2.a() <= 0) {
                                     }
                                     break;
                                 case 238:
@@ -658,10 +658,10 @@ public final class d {
                                 case 240:
                                     break;
                                 default:
-                                    if (iB6 != 254 || cVar.a() != 0) {
+                                    if (iB6 != 254 || cVar2.a() != 0) {
                                         throw FormatException.a();
                                     }
-                                    if (cVar.a() <= 0) {
+                                    if (cVar2.a() <= 0) {
                                     }
                                     break;
                             }
@@ -672,7 +672,7 @@ public final class d {
                             }
                             sb.append(i91);
                         }
-                        if (cVar.a() <= 0) {
+                        if (cVar2.a() <= 0) {
                         }
                     }
                     i72 = i73;

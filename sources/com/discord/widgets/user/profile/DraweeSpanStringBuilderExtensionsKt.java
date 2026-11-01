@@ -8,6 +8,7 @@ import b.f.g.a.a.d;
 import b.f.g.e.v;
 import b.f.g.f.a;
 import b.f.g.f.c;
+import com.discord.R;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
@@ -44,7 +45,7 @@ public final class DraweeSpanStringBuilderExtensionsKt {
                 cVar.b(iIntValue2);
             }
             a aVar = new a(context.getResources());
-            aVar.f = ContextCompat.getDrawable(context, 2131230953);
+            aVar.f = ContextCompat.getDrawable(context, R.drawable.asset_default_avatar_32dp);
             aVar.r = cVar;
             ScalingUtils$ScaleType scalingUtils$ScaleType = ScalingUtils$ScaleType.a;
             aVar.n = v.l;

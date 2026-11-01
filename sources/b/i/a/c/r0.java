@@ -102,23 +102,23 @@ public abstract class r0 extends o2 {
     }
 
     @Override // b.i.a.c.o2
-    public final o2$b g(int i, o2$b o2_b, boolean z2) {
+    public final o2.b g(int i, o2.b bVar, boolean z2) {
         c2 c2Var = (c2) this;
         int iD = b.i.a.c.f3.e0.d(c2Var.p, i + 1, false, false);
         int i2 = c2Var.q[iD];
-        c2Var.r[iD].g(i - c2Var.p[iD], o2_b, z2);
-        o2_b.l += i2;
+        c2Var.r[iD].g(i - c2Var.p[iD], bVar, z2);
+        bVar.l += i2;
         if (z2) {
             Object obj = c2Var.f895s[iD];
-            Object obj2 = o2_b.k;
+            Object obj2 = bVar.k;
             Objects.requireNonNull(obj2);
-            o2_b.k = Pair.create(obj, obj2);
+            bVar.k = Pair.create(obj, obj2);
         }
-        return o2_b;
+        return bVar;
     }
 
     @Override // b.i.a.c.o2
-    public final o2$b h(Object obj, o2$b o2_b) {
+    public final o2.b h(Object obj, o2.b bVar) {
         Pair pair = (Pair) obj;
         Object obj2 = pair.first;
         Object obj3 = pair.second;
@@ -126,10 +126,10 @@ public abstract class r0 extends o2 {
         Integer num = c2Var.t.get(obj2);
         int iIntValue = num == null ? -1 : num.intValue();
         int i = c2Var.q[iIntValue];
-        c2Var.r[iIntValue].h(obj3, o2_b);
-        o2_b.l += i;
-        o2_b.k = obj;
-        return o2_b;
+        c2Var.r[iIntValue].h(obj3, bVar);
+        bVar.l += i;
+        bVar.k = obj;
+        return bVar;
     }
 
     @Override // b.i.a.c.o2
@@ -168,20 +168,20 @@ public abstract class r0 extends o2 {
     }
 
     @Override // b.i.a.c.o2
-    public final o2$c o(int i, o2$c o2_c, long j) {
+    public final o2.c o(int i, o2.c cVar, long j) {
         c2 c2Var = (c2) this;
         int iD = b.i.a.c.f3.e0.d(c2Var.q, i + 1, false, false);
         int i2 = c2Var.q[iD];
         int i3 = c2Var.p[iD];
-        c2Var.r[iD].o(i - i2, o2_c, j);
+        c2Var.r[iD].o(i - i2, cVar, j);
         Object objCreate = c2Var.f895s[iD];
-        if (!o2$c.j.equals(o2_c.n)) {
-            objCreate = Pair.create(objCreate, o2_c.n);
+        if (!o2.c.j.equals(cVar.n)) {
+            objCreate = Pair.create(objCreate, cVar.n);
         }
-        o2_c.n = objCreate;
-        o2_c.B += i3;
-        o2_c.C += i3;
-        return o2_c;
+        cVar.n = objCreate;
+        cVar.B += i3;
+        cVar.C += i3;
+        return cVar;
     }
 
     public final int r(int i, boolean z2) {

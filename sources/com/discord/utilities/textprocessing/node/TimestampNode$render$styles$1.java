@@ -10,14 +10,14 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: TimestampNode.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class TimestampNode$render$styles$1 extends o implements Function1<View, Unit> {
-    public final /* synthetic */ TimestampNode$RenderContext $renderContext;
+    public final /* synthetic */ TimestampNode.RenderContext $renderContext;
     public final /* synthetic */ TimestampNode this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public TimestampNode$render$styles$1(TimestampNode timestampNode, TimestampNode$RenderContext timestampNode$RenderContext) {
+    public TimestampNode$render$styles$1(TimestampNode timestampNode, TimestampNode.RenderContext renderContext) {
         super(1);
         this.this$0 = timestampNode;
-        this.$renderContext = timestampNode$RenderContext;
+        this.$renderContext = renderContext;
     }
 
     @Override // kotlin.jvm.functions.Function1

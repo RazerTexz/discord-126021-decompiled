@@ -17,6 +17,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 import kotlin.TypeCastException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import org.openjsse.javax.net.ssl.SSLParameters;
 import org.openjsse.net.ssl.OpenJSSE;
 
@@ -24,15 +25,21 @@ import org.openjsse.net.ssl.OpenJSSE;
 /* JADX INFO: loaded from: classes3.dex */
 public final class g extends h {
     public static final boolean d;
-    public static final g$a e;
+    public static final a e;
     public final Provider f = new OpenJSSE();
 
+    /* JADX INFO: compiled from: OpenJSSEPlatform.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     static {
-        g$a g_a = new g$a(null);
-        e = g_a;
+        a aVar = new a(null);
+        e = aVar;
         boolean z2 = false;
         try {
-            Class.forName("org.openjsse.net.ssl.OpenJSSE", false, g_a.getClass().getClassLoader());
+            Class.forName("org.openjsse.net.ssl.OpenJSSE", false, aVar.getClass().getClassLoader());
             z2 = true;
         } catch (ClassNotFoundException unused) {
         }

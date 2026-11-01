@@ -1,9 +1,8 @@
 package b.c.a.b0;
 
-import android.animation.Animator$AnimatorListener;
+import android.animation.Animator;
 import android.graphics.PointF;
 import android.view.Choreographer;
-import android.view.Choreographer$FrameCallback;
 import androidx.annotation.FloatRange;
 import androidx.annotation.MainThread;
 import androidx.annotation.Nullable;
@@ -12,7 +11,7 @@ import java.util.Iterator;
 
 /* JADX INFO: compiled from: LottieValueAnimator.java */
 /* JADX INFO: loaded from: classes.dex */
-public class d extends a implements Choreographer$FrameCallback {
+public class d extends a implements Choreographer.FrameCallback {
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     @Nullable
@@ -31,14 +30,14 @@ public class d extends a implements Choreographer$FrameCallback {
     @Override // android.animation.ValueAnimator, android.animation.Animator
     @MainThread
     public void cancel() {
-        Iterator<Animator$AnimatorListener> it = this.k.iterator();
+        Iterator<Animator.AnimatorListener> it = this.k.iterator();
         while (it.hasNext()) {
             it.next().onAnimationCancel(this);
         }
         m();
     }
 
-    @Override // android.view.Choreographer$FrameCallback
+    @Override // android.view.Choreographer.FrameCallback
     public void doFrame(long j) {
         l();
         b.c.a.d dVar = this.f344s;
@@ -62,7 +61,7 @@ public class d extends a implements Choreographer$FrameCallback {
         f();
         if (z2) {
             if (getRepeatCount() == -1 || this.p < getRepeatCount()) {
-                Iterator<Animator$AnimatorListener> it = this.k.iterator();
+                Iterator<Animator.AnimatorListener> it = this.k.iterator();
                 while (it.hasNext()) {
                     it.next().onAnimationRepeat(this);
                 }

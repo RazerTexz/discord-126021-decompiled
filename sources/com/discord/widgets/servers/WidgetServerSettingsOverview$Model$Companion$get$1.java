@@ -2,41 +2,67 @@ package com.discord.widgets.servers;
 
 import androidx.core.app.NotificationCompat;
 import com.discord.api.channel.Channel;
+import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.guild.Guild;
+import com.discord.models.user.MeUser;
 import com.discord.stores.StoreChannels;
+import com.discord.stores.StoreGuildProfiles;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import com.discord.stores.StoreUser;
+import d0.z.d.m;
 import j0.k.b;
 import j0.l.e.k;
 import rx.Observable;
+import rx.functions.Func5;
 
 /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetServerSettingsOverview$Model$Companion$get$1<T, R> implements b<Guild, Observable<? extends WidgetServerSettingsOverview$Model>> {
+public final class WidgetServerSettingsOverview$Model$Companion$get$1<T, R> implements b<Guild, Observable<? extends WidgetServerSettingsOverview.Model>> {
     public final /* synthetic */ long $guildId;
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerSettingsOverview$Model$Companion$get$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsOverview.kt */
+    public final class AnonymousClass1<T1, T2, T3, T4, T5, R> implements Func5<MeUser, Channel, Channel, Long, StoreGuildProfiles.GuildProfileData, WidgetServerSettingsOverview.Model> {
+        public final /* synthetic */ Guild $guild;
+
+        public AnonymousClass1(Guild guild) {
+            this.$guild = guild;
+        }
+
+        @Override // rx.functions.Func5
+        public /* bridge */ /* synthetic */ WidgetServerSettingsOverview.Model call(MeUser meUser, Channel channel, Channel channel2, Long l, StoreGuildProfiles.GuildProfileData guildProfileData) {
+            return call2(meUser, channel, channel2, l, guildProfileData);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final WidgetServerSettingsOverview.Model call2(MeUser meUser, Channel channel, Channel channel2, Long l, StoreGuildProfiles.GuildProfileData guildProfileData) {
+            Guild guild = this.$guild;
+            m.checkNotNullExpressionValue(meUser, "me");
+            return new WidgetServerSettingsOverview.Model(guild, meUser, channel, channel2, l, guildProfileData);
+        }
+    }
 
     public WidgetServerSettingsOverview$Model$Companion$get$1(long j) {
         this.$guildId = j;
     }
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-    public final Observable<? extends WidgetServerSettingsOverview$Model> call2(Guild guild) {
+    public final Observable<? extends WidgetServerSettingsOverview.Model> call2(Guild guild) {
         if (guild == null) {
             return new k(null);
         }
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        Observable observableObserveMe$default = StoreUser.observeMe$default(storeStream$Companion.getUsers(), false, 1, null);
-        StoreChannels channels = storeStream$Companion.getChannels();
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        Observable observableObserveMe$default = StoreUser.observeMe$default(companion.getUsers(), false, 1, null);
+        StoreChannels channels = companion.getChannels();
         Long afkChannelId = guild.getAfkChannelId();
         Observable<Channel> observableObserveChannel = channels.observeChannel(afkChannelId != null ? afkChannelId.longValue() : 0L);
-        StoreChannels channels2 = storeStream$Companion.getChannels();
+        StoreChannels channels2 = companion.getChannels();
         Long systemChannelId = guild.getSystemChannelId();
-        return Observable.g(observableObserveMe$default, observableObserveChannel, channels2.observeChannel(systemChannelId != null ? systemChannelId.longValue() : 0L), storeStream$Companion.getPermissions().observePermissionsForGuild(this.$guildId), storeStream$Companion.getGuildProfiles().observeGuildProfile(this.$guildId), new WidgetServerSettingsOverview$Model$Companion$get$1$1(guild));
+        return Observable.g(observableObserveMe$default, observableObserveChannel, channels2.observeChannel(systemChannelId != null ? systemChannelId.longValue() : 0L), companion.getPermissions().observePermissionsForGuild(this.$guildId), companion.getGuildProfiles().observeGuildProfile(this.$guildId), new AnonymousClass1(guild));
     }
 
     @Override // j0.k.b
-    public /* bridge */ /* synthetic */ Observable<? extends WidgetServerSettingsOverview$Model> call(Guild guild) {
+    public /* bridge */ /* synthetic */ Observable<? extends WidgetServerSettingsOverview.Model> call(Guild guild) {
         return call2(guild);
     }
 }

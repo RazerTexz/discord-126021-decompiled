@@ -2,15 +2,15 @@ package b.i.c.o.b;
 
 import android.net.Uri;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.firebase.dynamiclinks.internal.zzo;
 import com.google.firebase.dynamiclinks.internal.zzr;
 import java.util.ArrayList;
 
 /* JADX INFO: compiled from: com.google.firebase:firebase-dynamic-links@@19.1.1 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class m implements Parcelable$Creator<zzo> {
-    @Override // android.os.Parcelable$Creator
+public final class m implements Parcelable.Creator<zzo> {
+    @Override // android.os.Parcelable.Creator
     public final zzo createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         Uri uri = null;
@@ -33,7 +33,7 @@ public final class m implements Parcelable$Creator<zzo> {
         return new zzo(uri, uri2, arrayListV);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zzo[] newArray(int i) {
         return new zzo[i];
     }

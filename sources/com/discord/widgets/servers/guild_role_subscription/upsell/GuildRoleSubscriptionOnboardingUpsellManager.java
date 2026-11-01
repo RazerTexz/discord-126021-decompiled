@@ -1,7 +1,6 @@
 package com.discord.widgets.servers.guild_role_subscription.upsell;
 
 import android.content.SharedPreferences;
-import android.content.SharedPreferences$Editor;
 import com.discord.api.guild.GuildFeature;
 import com.discord.models.guild.Guild;
 import com.discord.stores.StoreExperiments;
@@ -15,7 +14,6 @@ import d0.z.d.m;
 /* JADX INFO: compiled from: GuildRoleSubscriptionOnboardingUpsellManager.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class GuildRoleSubscriptionOnboardingUpsellManager {
-    public static final GuildRoleSubscriptionOnboardingUpsellManager$Companion Companion = new GuildRoleSubscriptionOnboardingUpsellManager$Companion(null);
     public static final String SHOWN_CACHE_KEY = "HAS_GUILD_ROLE_SUBSCRIPTION_UPSELL_BEEN_SHOWN";
     private final CreatorMonetizationCountryAllowlist countryAllowlist;
     private final GuildRoleSubscriptionsFeatureFlag featureFlag;
@@ -46,9 +44,9 @@ public final class GuildRoleSubscriptionOnboardingUpsellManager {
     }
 
     public final void setHasBeenShown() {
-        SharedPreferences$Editor sharedPreferences$EditorEdit = this.sharedPreferences.edit();
-        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
-        sharedPreferences$EditorEdit.putBoolean(SHOWN_CACHE_KEY, true);
-        sharedPreferences$EditorEdit.apply();
+        SharedPreferences.Editor editorEdit = this.sharedPreferences.edit();
+        m.checkNotNullExpressionValue(editorEdit, "editor");
+        editorEdit.putBoolean(SHOWN_CACHE_KEY, true);
+        editorEdit.apply();
     }
 }

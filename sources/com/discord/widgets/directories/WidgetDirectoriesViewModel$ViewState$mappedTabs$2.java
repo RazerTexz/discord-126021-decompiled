@@ -3,7 +3,6 @@ package com.discord.widgets.directories;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.models.hubs.DirectoryEntryCategory;
-import com.discord.models.hubs.DirectoryEntryCategory$Companion;
 import d0.t.g0;
 import d0.t.h0;
 import d0.t.i0;
@@ -15,19 +14,18 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import kotlin.Pair;
 import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: WidgetDirectoriesViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetDirectoriesViewModel$ViewState$mappedTabs$2 extends o implements Function0<List<? extends Pair<? extends DirectoryEntryCategory, ? extends Integer>>> {
-    public final /* synthetic */ WidgetDirectoriesViewModel$ViewState this$0;
+    public final /* synthetic */ WidgetDirectoriesViewModel.ViewState this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetDirectoriesViewModel$ViewState$mappedTabs$2(WidgetDirectoriesViewModel$ViewState widgetDirectoriesViewModel$ViewState) {
+    public WidgetDirectoriesViewModel$ViewState$mappedTabs$2(WidgetDirectoriesViewModel.ViewState viewState) {
         super(0);
-        this.this$0 = widgetDirectoriesViewModel$ViewState;
+        this.this$0 = viewState;
     }
 
     @Override // kotlin.jvm.functions.Function0
@@ -45,15 +43,15 @@ public final class WidgetDirectoriesViewModel$ViewState$mappedTabs$2 extends o i
             mapEmptyMap = new LinkedHashMap(g0.mapCapacity(mapInvoke.size()));
             Iterator<T> it = mapInvoke.entrySet().iterator();
             while (it.hasNext()) {
-                Map$Entry map$Entry = (Map$Entry) it.next();
-                DirectoryEntryCategory$Companion directoryEntryCategory$Companion = DirectoryEntryCategory.Companion;
-                int iIntValue = ((Number) map$Entry.getKey()).intValue();
+                Map.Entry entry = (Map.Entry) it.next();
+                DirectoryEntryCategory.Companion companion = DirectoryEntryCategory.INSTANCE;
+                int iIntValue = ((Number) entry.getKey()).intValue();
                 Channel channel = this.this$0.getChannel();
                 boolean z2 = true;
                 if (channel == null || !ChannelUtils.x(channel)) {
                     z2 = false;
                 }
-                mapEmptyMap.put(directoryEntryCategory$Companion.findByKey(iIntValue, z2), map$Entry.getValue());
+                mapEmptyMap.put(companion.findByKey(iIntValue, z2), entry.getValue());
             }
         } else {
             mapEmptyMap = null;

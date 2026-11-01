@@ -1,7 +1,7 @@
 package b.a.y.q0;
 
 import android.view.View;
-import com.discord.rlottie.RLottieDrawable$PlaybackMode;
+import com.discord.rlottie.RLottieDrawable;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -21,7 +21,7 @@ public final class g extends o implements Function1<View, Unit> {
     @Override // kotlin.jvm.functions.Function1
     public Unit invoke(View view) {
         m.checkNotNullParameter(view, "it");
-        this.this$0.this$0.binding.c.setPlaybackMode(RLottieDrawable$PlaybackMode.LOOP);
+        this.this$0.this$0.binding.c.setPlaybackMode(RLottieDrawable.PlaybackMode.LOOP);
         this.this$0.this$0.binding.c.b();
         return Unit.a;
     }

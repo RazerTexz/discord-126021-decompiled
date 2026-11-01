@@ -10,7 +10,22 @@ import b.i.b.d.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class Worker extends ListenableWorker {
-    public SettableFuture<ListenableWorker$Result> mFuture;
+    public SettableFuture<ListenableWorker.Result> mFuture;
+
+    /* JADX INFO: renamed from: androidx.work.Worker$1, reason: invalid class name */
+    public class AnonymousClass1 implements Runnable {
+        public AnonymousClass1() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            try {
+                Worker.this.mFuture.set(Worker.this.doWork());
+            } catch (Throwable th) {
+                Worker.this.mFuture.setException(th);
+            }
+        }
+    }
 
     @Keep
     @SuppressLint({"BanKeepAnnotation"})
@@ -20,13 +35,13 @@ public abstract class Worker extends ListenableWorker {
 
     @NonNull
     @WorkerThread
-    public abstract ListenableWorker$Result doWork();
+    public abstract ListenableWorker.Result doWork();
 
     @Override // androidx.work.ListenableWorker
     @NonNull
-    public final a<ListenableWorker$Result> startWork() {
+    public final a<ListenableWorker.Result> startWork() {
         this.mFuture = SettableFuture.create();
-        getBackgroundExecutor().execute(new Worker$1(this));
+        getBackgroundExecutor().execute(new AnonymousClass1());
         return this.mFuture;
     }
 }

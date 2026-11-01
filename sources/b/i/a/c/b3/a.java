@@ -2,17 +2,16 @@ package b.i.a.c.b3;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.text.Layout$Alignment;
+import android.text.Layout;
 import androidx.core.view.ViewCompat;
 import b.i.a.c.w0;
-import b.i.a.c.w0$a;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class a implements w0$a {
+public final /* synthetic */ class a implements w0.a {
     public static final /* synthetic */ a a = new a();
 
-    @Override // b.i.a.c.w0$a
+    @Override // b.i.a.c.w0.a
     public final w0 a(Bundle bundle) {
         float f;
         int i;
@@ -22,10 +21,10 @@ public final /* synthetic */ class a implements w0$a {
         int i3;
         CharSequence charSequence = bundle.getCharSequence(b.b(0));
         CharSequence charSequence2 = charSequence != null ? charSequence : null;
-        Layout$Alignment layout$Alignment = (Layout$Alignment) bundle.getSerializable(b.b(1));
-        Layout$Alignment layout$Alignment2 = layout$Alignment != null ? layout$Alignment : null;
-        Layout$Alignment layout$Alignment3 = (Layout$Alignment) bundle.getSerializable(b.b(2));
-        Layout$Alignment layout$Alignment4 = layout$Alignment3 != null ? layout$Alignment3 : null;
+        Layout.Alignment alignment = (Layout.Alignment) bundle.getSerializable(b.b(1));
+        Layout.Alignment alignment2 = alignment != null ? alignment : null;
+        Layout.Alignment alignment3 = (Layout.Alignment) bundle.getSerializable(b.b(2));
+        Layout.Alignment alignment4 = alignment3 != null ? alignment3 : null;
         Bitmap bitmap = (Bitmap) bundle.getParcelable(b.b(3));
         Bitmap bitmap2 = bitmap != null ? bitmap : null;
         if (bundle.containsKey(b.b(4)) && bundle.containsKey(b.b(5))) {
@@ -54,6 +53,6 @@ public final /* synthetic */ class a implements w0$a {
             z2 = false;
             i3 = ViewCompat.MEASURED_STATE_MASK;
         }
-        return new b(charSequence2, layout$Alignment2, layout$Alignment4, bitmap2, f, i, i4, f3, i5, i2, f2, f4, f5, bundle.getBoolean(b.b(14), false) ? z2 : false, i3, bundle.containsKey(b.b(15)) ? bundle.getInt(b.b(15)) : Integer.MIN_VALUE, bundle.containsKey(b.b(16)) ? bundle.getFloat(b.b(16)) : 0.0f, null);
+        return new b(charSequence2, alignment2, alignment4, bitmap2, f, i, i4, f3, i5, i2, f2, f4, f5, bundle.getBoolean(b.b(14), false) ? z2 : false, i3, bundle.containsKey(b.b(15)) ? bundle.getInt(b.b(15)) : Integer.MIN_VALUE, bundle.containsKey(b.b(16)) ? bundle.getFloat(b.b(16)) : 0.0f, null);
     }
 }

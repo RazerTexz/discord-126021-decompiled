@@ -1,7 +1,9 @@
 package com.discord.stores;
 
 import androidx.appcompat.widget.ActivityChooserModel;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import b.d.b.a.a;
 import com.discord.api.activity.Activity;
 import com.discord.api.activity.ActivityEmoji;
 import com.discord.api.activity.ActivityType;
@@ -22,14 +24,15 @@ import com.discord.models.domain.emoji.ModelEmojiUnicode;
 import com.discord.models.presence.Presence;
 import com.discord.models.user.MeUser;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
-import com.discord.utilities.collections.SnowflakePartitionMap$CopiablePartitionMap;
+import com.discord.utilities.collections.SnowflakePartitionMap;
 import com.discord.utilities.presence.ActivityUtilsKt;
 import com.discord.utilities.presence.PresenceUtils;
 import com.discord.utilities.time.Clock;
 import com.discord.utilities.time.TimeUtils;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -37,23 +40,207 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
+import kotlin.jvm.functions.Function0;
 import rx.Observable;
 
 /* JADX INFO: compiled from: StoreUserPresence.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreUserPresence extends StoreV2 {
-    public static final StoreUserPresence$Companion Companion = new StoreUserPresence$Companion(null);
     private final Clock clock;
     private Presence localPresence;
     private Presence localPresenceSnapshot;
     private MeUser meUser;
     private final ObservationDeck observationDeck;
-    private final SnowflakePartitionMap$CopiablePartitionMap<Presence> presences;
+    private final SnowflakePartitionMap.CopiablePartitionMap<Presence> presences;
     private Map<Long, Presence> presencesSnapshot;
     private final StoreStream stream;
-    private final HashMap<Long, Map<Long, StoreUserPresence$TimestampedPresence>> userGuildPresences;
+    private final HashMap<Long, Map<Long, TimestampedPresence>> userGuildPresences;
     private static final StoreUserPresence$Companion$LocalPresenceUpdateSource$1 LocalPresenceUpdateSource = new StoreUserPresence$Companion$LocalPresenceUpdateSource$1();
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserPresence$observeAllPresences$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserPresence.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Presence>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Presence> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Presence> invoke2() {
+            return StoreUserPresence.this.m19getPresences();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserPresence$observeApplicationActivity$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserPresence.kt */
+    public final class AnonymousClass1<T, R> implements b<Presence, Activity> {
+        public final /* synthetic */ long $applicationId;
+
+        public AnonymousClass1(long j) {
+            this.$applicationId = j;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Activity call(Presence presence) {
+            return call2(presence);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Activity call2(Presence presence) {
+            List<Activity> activities;
+            Activity activity = null;
+            if (presence == null || (activities = presence.getActivities()) == null) {
+                return null;
+            }
+            for (T t : activities) {
+                Long applicationId = ((Activity) t).getApplicationId();
+                if (applicationId != null && applicationId.longValue() == this.$applicationId) {
+                    activity = t;
+                    break;
+                }
+            }
+            return activity;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserPresence$observeLocalPresence$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserPresence.kt */
+    public final class AnonymousClass1 extends o implements Function0<Presence> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Presence invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final Presence invoke() {
+            return StoreUserPresence.access$getLocalPresenceSnapshot$p(StoreUserPresence.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserPresence$observePresenceForUser$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserPresence.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Presence>, Presence> {
+        public final /* synthetic */ long $userId;
+
+        public AnonymousClass1(long j) {
+            this.$userId = j;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Presence call(Map<Long, ? extends Presence> map) {
+            return call2((Map<Long, Presence>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Presence call2(Map<Long, Presence> map) {
+            return map.get(Long.valueOf(this.$userId));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserPresence$observePresencesForUsers$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserPresence.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Presence>, Map<Long, ? extends Presence>> {
+        public final /* synthetic */ Collection $userIds;
+
+        public AnonymousClass1(Collection collection) {
+            this.$userIds = collection;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Presence> call(Map<Long, ? extends Presence> map) {
+            return call2((Map<Long, Presence>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Map<Long, Presence> call2(Map<Long, Presence> map) {
+            m.checkNotNullExpressionValue(map, "it");
+            LinkedHashMap linkedHashMap = new LinkedHashMap();
+            for (Map.Entry<Long, Presence> entry : map.entrySet()) {
+                if (this.$userIds.contains(Long.valueOf(entry.getKey().longValue()))) {
+                    linkedHashMap.put(entry.getKey(), entry.getValue());
+                }
+            }
+            return linkedHashMap;
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreUserPresence.kt */
+    public final /* data */ class TimestampedPresence {
+        private final Presence presence;
+        private final long timestamp;
+
+        public TimestampedPresence(Presence presence, long j) {
+            m.checkNotNullParameter(presence, "presence");
+            this.presence = presence;
+            this.timestamp = j;
+        }
+
+        public static /* synthetic */ TimestampedPresence copy$default(TimestampedPresence timestampedPresence, Presence presence, long j, int i, Object obj) {
+            if ((i & 1) != 0) {
+                presence = timestampedPresence.presence;
+            }
+            if ((i & 2) != 0) {
+                j = timestampedPresence.timestamp;
+            }
+            return timestampedPresence.copy(presence, j);
+        }
+
+        public final TimestampedPresence copy(Presence presence, long timestamp) {
+            m.checkNotNullParameter(presence, "presence");
+            return new TimestampedPresence(presence, timestamp);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof TimestampedPresence)) {
+                return false;
+            }
+            TimestampedPresence timestampedPresence = (TimestampedPresence) other;
+            return m.areEqual(this.presence, timestampedPresence.presence) && this.timestamp == timestampedPresence.timestamp;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Presence getPresence() {
+            return this.presence;
+        }
+
+        public final Presence getPresence() {
+            return this.presence;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getTimestamp() {
+            return this.timestamp;
+        }
+
+        public final long getTimestamp() {
+            return this.timestamp;
+        }
+
+        public int hashCode() {
+            Presence presence = this.presence;
+            return a0.a.a.b.a(this.timestamp) + ((presence != null ? presence.hashCode() : 0) * 31);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("TimestampedPresence(presence=");
+            sbU.append(this.presence);
+            sbU.append(", timestamp=");
+            return a.C(sbU, this.timestamp, ")");
+        }
+    }
 
     public StoreUserPresence(Clock clock, StoreStream storeStream, ObservationDeck observationDeck) {
         m.checkNotNullParameter(clock, "clock");
@@ -62,7 +249,7 @@ public final class StoreUserPresence extends StoreV2 {
         this.clock = clock;
         this.stream = storeStream;
         this.observationDeck = observationDeck;
-        this.presences = new SnowflakePartitionMap$CopiablePartitionMap<>(0, 1, null);
+        this.presences = new SnowflakePartitionMap.CopiablePartitionMap<>(0, 1, null);
         this.userGuildPresences = new HashMap<>();
         this.presencesSnapshot = new HashMap();
         ClientStatus clientStatus = ClientStatus.ONLINE;
@@ -82,16 +269,16 @@ public final class StoreUserPresence extends StoreV2 {
 
     @StoreThread
     private final void clearPresences(long guildId) {
-        HashMap<Long, Map<Long, StoreUserPresence$TimestampedPresence>> map = this.userGuildPresences;
+        HashMap<Long, Map<Long, TimestampedPresence>> map = this.userGuildPresences;
         LinkedHashMap linkedHashMap = new LinkedHashMap();
-        for (Map$Entry<Long, Map<Long, StoreUserPresence$TimestampedPresence>> map$Entry : map.entrySet()) {
-            if (map$Entry.getValue().remove(Long.valueOf(guildId)) != null) {
-                linkedHashMap.put(map$Entry.getKey(), map$Entry.getValue());
+        for (Map.Entry<Long, Map<Long, TimestampedPresence>> entry : map.entrySet()) {
+            if (entry.getValue().remove(Long.valueOf(guildId)) != null) {
+                linkedHashMap.put(entry.getKey(), entry.getValue());
             }
         }
         Iterator it = linkedHashMap.entrySet().iterator();
         while (it.hasNext()) {
-            flattenPresence(((Number) ((Map$Entry) it.next()).getKey()).longValue());
+            flattenPresence(((Number) ((Map.Entry) it.next()).getKey()).longValue());
         }
     }
 
@@ -102,9 +289,9 @@ public final class StoreUserPresence extends StoreV2 {
         ClientStatus status;
         List<Activity> activities;
         List listSortedWith;
-        Collection<StoreUserPresence$TimestampedPresence> collectionValues;
+        Collection<TimestampedPresence> collectionValues;
         Object next;
-        Map<Long, StoreUserPresence$TimestampedPresence> map = this.userGuildPresences.get(Long.valueOf(userId));
+        Map<Long, TimestampedPresence> map = this.userGuildPresences.get(Long.valueOf(userId));
         if (map == null || (collectionValues = map.values()) == null) {
             presence = null;
         } else {
@@ -112,10 +299,10 @@ public final class StoreUserPresence extends StoreV2 {
             if (it.hasNext()) {
                 next = it.next();
                 if (it.hasNext()) {
-                    long timestamp = ((StoreUserPresence$TimestampedPresence) next).getTimestamp();
+                    long timestamp = ((TimestampedPresence) next).getTimestamp();
                     do {
                         Object next2 = it.next();
-                        long timestamp2 = ((StoreUserPresence$TimestampedPresence) next2).getTimestamp();
+                        long timestamp2 = ((TimestampedPresence) next2).getTimestamp();
                         if (timestamp < timestamp2) {
                             next = next2;
                             timestamp = timestamp2;
@@ -125,9 +312,9 @@ public final class StoreUserPresence extends StoreV2 {
             } else {
                 next = null;
             }
-            StoreUserPresence$TimestampedPresence storeUserPresence$TimestampedPresence = (StoreUserPresence$TimestampedPresence) next;
-            if (storeUserPresence$TimestampedPresence != null) {
-                presence = storeUserPresence$TimestampedPresence.getPresence();
+            TimestampedPresence timestampedPresence = (TimestampedPresence) next;
+            if (timestampedPresence != null) {
+                presence = timestampedPresence.getPresence();
             } else {
                 presence = null;
             }
@@ -148,12 +335,12 @@ public final class StoreUserPresence extends StoreV2 {
         }
         Presence presence2 = this.presences.get(Long.valueOf(userId));
         if ((presence2 != null ? presence2.getStatus() : null) != status || (!m.areEqual(presence2.getActivities(), listReversed)) || (!m.areEqual(presence2.getClientStatuses(), clientStatuses))) {
-            SnowflakePartitionMap$CopiablePartitionMap<Presence> snowflakePartitionMap$CopiablePartitionMap = this.presences;
+            SnowflakePartitionMap.CopiablePartitionMap<Presence> copiablePartitionMap = this.presences;
             Long lValueOf = Long.valueOf(userId);
             if (clientStatuses == null) {
                 clientStatuses = new ClientStatuses(clientStatus, clientStatus, clientStatus);
             }
-            snowflakePartitionMap$CopiablePartitionMap.put(lValueOf, new Presence(status, clientStatuses, listReversed));
+            copiablePartitionMap.put(lValueOf, new Presence(status, clientStatuses, listReversed));
             markChanged();
         }
     }
@@ -178,7 +365,7 @@ public final class StoreUserPresence extends StoreV2 {
     @StoreThread
     private final Activity getCustomStatusActivityFromSetting(ModelCustomStatusSetting customStatusSetting) {
         ActivityEmoji activityEmoji = null;
-        if (customStatusSetting == ModelCustomStatusSetting.Companion.getCLEAR()) {
+        if (customStatusSetting == ModelCustomStatusSetting.INSTANCE.getCLEAR()) {
             return null;
         }
         if (customStatusSetting.getExpiresAt() != null && TimeUtils.parseUTCDate(customStatusSetting.getExpiresAt()) - this.clock.currentTimeMillis() <= 0) {
@@ -218,7 +405,7 @@ public final class StoreUserPresence extends StoreV2 {
         return this.observationDeck;
     }
 
-    public final SnowflakePartitionMap$CopiablePartitionMap<Presence> getPresences() {
+    public final SnowflakePartitionMap.CopiablePartitionMap<Presence> getPresences() {
         return this.presences;
     }
 
@@ -268,7 +455,7 @@ public final class StoreUserPresence extends StoreV2 {
 
     @StoreThread
     public final void handleGuildMemberRemove(long guildId, long userId) {
-        Map<Long, StoreUserPresence$TimestampedPresence> map = this.userGuildPresences.get(Long.valueOf(userId));
+        Map<Long, TimestampedPresence> map = this.userGuildPresences.get(Long.valueOf(userId));
         if ((map != null ? map.remove(Long.valueOf(guildId)) : null) != null) {
             flattenPresence(userId);
         }
@@ -349,30 +536,30 @@ public final class StoreUserPresence extends StoreV2 {
     }
 
     public final Observable<Map<Long, Presence>> observeAllPresences() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreUserPresence$observeAllPresences$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     public final Observable<Activity> observeApplicationActivity(long userId, long applicationId) {
-        Observable<Activity> observableR = observePresenceForUser(userId).G(new StoreUserPresence$observeApplicationActivity$1(applicationId)).r();
+        Observable<Activity> observableR = observePresenceForUser(userId).G(new AnonymousClass1(applicationId)).r();
         m.checkNotNullExpressionValue(observableR, "observePresenceForUser(u…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Presence> observeLocalPresence() {
-        Observable<Presence> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{LocalPresenceUpdateSource}, false, null, null, new StoreUserPresence$observeLocalPresence$1(this), 14, null).r();
+        Observable<Presence> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{LocalPresenceUpdateSource}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck\n      .c…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Presence> observePresenceForUser(long userId) {
-        Observable<Presence> observableR = observeAllPresences().G(new StoreUserPresence$observePresenceForUser$1(userId)).r();
+        Observable<Presence> observableR = observeAllPresences().G(new AnonymousClass1(userId)).r();
         m.checkNotNullExpressionValue(observableR, "observeAllPresences()\n  …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Map<Long, Presence>> observePresencesForUsers(Collection<Long> userIds) {
         m.checkNotNullParameter(userIds, "userIds");
-        Observable<Map<Long, Presence>> observableR = observeAllPresences().G(new StoreUserPresence$observePresencesForUsers$1(userIds)).r();
+        Observable<Map<Long, Presence>> observableR = observeAllPresences().G(new AnonymousClass1(userIds)).r();
         m.checkNotNullExpressionValue(observableR, "observeAllPresences()\n  …  .distinctUntilChanged()");
         return observableR;
     }
@@ -419,7 +606,7 @@ public final class StoreUserPresence extends StoreV2 {
         List<Activity> activities = presence.getActivities();
         this.localPresenceSnapshot = Presence.copy$default(presence, null, null, activities != null ? u.toList(activities) : null, 3, null);
         if (getUpdateSources().contains(LocalPresenceUpdateSource)) {
-            StoreGatewayConnection.presenceUpdate$default(StoreStream.Companion.getGatewaySocket(), this.localPresence.getStatus(), null, this.localPresence.getActivities(), null, 10, null);
+            StoreGatewayConnection.presenceUpdate$default(StoreStream.INSTANCE.getGatewaySocket(), this.localPresence.getStatus(), null, this.localPresence.getActivities(), null, 10, null);
         }
     }
 
@@ -553,14 +740,14 @@ public final class StoreUserPresence extends StoreV2 {
         }
         MeUser meUser = this.meUser;
         if (meUser == null || meUser.getId() != userId || guildId == RecyclerView.FOREVER_NS) {
-            HashMap<Long, Map<Long, StoreUserPresence$TimestampedPresence>> map = this.userGuildPresences;
+            HashMap<Long, Map<Long, TimestampedPresence>> map = this.userGuildPresences;
             Long lValueOf = Long.valueOf(userId);
-            Map<Long, StoreUserPresence$TimestampedPresence> map2 = map.get(lValueOf);
+            Map<Long, TimestampedPresence> map2 = map.get(lValueOf);
             if (map2 == null) {
                 map2 = new HashMap<>();
                 map.put(lValueOf, map2);
             }
-            map2.put(Long.valueOf(guildId), new StoreUserPresence$TimestampedPresence(new Presence(status, clientStatuses, activities), this.clock.currentTimeMillis()));
+            map2.put(Long.valueOf(guildId), new TimestampedPresence(new Presence(status, clientStatuses, activities), this.clock.currentTimeMillis()));
             flattenPresence(userId);
         }
     }

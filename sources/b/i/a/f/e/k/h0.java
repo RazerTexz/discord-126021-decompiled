@@ -92,9 +92,9 @@ public final class h0 extends b.i.a.f.h.g.d {
         }
         if (i2 == 6) {
             this.a.F(5, null);
-            b$a b_a = this.a.p;
-            if (b_a != null) {
-                b_a.c(message.arg2);
+            b.a aVar = this.a.p;
+            if (aVar != null) {
+                aVar.c(message.arg2);
             }
             this.a.A(message.arg2);
             b.E(this.a, 5, 1, null);

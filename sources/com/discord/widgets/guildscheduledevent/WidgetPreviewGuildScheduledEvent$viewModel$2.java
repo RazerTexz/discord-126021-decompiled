@@ -22,6 +22,6 @@ public final class WidgetPreviewGuildScheduledEvent$viewModel$2 extends o implem
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final PreviewGuildScheduledEventViewModel invoke() {
-        return new PreviewGuildScheduledEventViewModel(WidgetPreviewGuildScheduledEvent.access$getEventModel$p(this.this$0), (WidgetPreviewGuildScheduledEvent$Companion$ExistingEventData) this.this$0.getMostRecentIntent().getSerializableExtra("INTENT_EXTRA_EXISTING_EVENT_DATA"), null, null, null, 28, null);
+        return new PreviewGuildScheduledEventViewModel(WidgetPreviewGuildScheduledEvent.access$getEventModel$p(this.this$0), (WidgetPreviewGuildScheduledEvent.Companion.ExistingEventData) this.this$0.getMostRecentIntent().getSerializableExtra("INTENT_EXTRA_EXISTING_EVENT_DATA"), null, null, null, 28, null);
     }
 }

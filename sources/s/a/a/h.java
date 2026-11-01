@@ -41,7 +41,7 @@ public final class h {
         }
         q0VarA.L(true);
         try {
-            Job job = (Job) gVar.getContext().get(Job.h);
+            Job job = (Job) gVar.getContext().get(Job.INSTANCE);
             if (job == null || job.a()) {
                 z2 = false;
             } else {
@@ -49,7 +49,7 @@ public final class h {
                 if (objV1 instanceof s.a.x) {
                     ((s.a.x) objV1).f3848b.invoke(cancellationExceptionQ);
                 }
-                d0.k$a k_a = d0.k.j;
+                d0.k.a aVar = d0.k.j;
                 gVar.resumeWith(d0.k.m97constructorimpl(d0.l.createFailure(cancellationExceptionQ)));
                 z2 = true;
             }

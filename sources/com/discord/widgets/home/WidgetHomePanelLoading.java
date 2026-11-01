@@ -2,10 +2,8 @@ package com.discord.widgets.home;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.view.ViewGroup$LayoutParams;
-import android.view.ViewGroup$MarginLayoutParams;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.FrameLayout$LayoutParams;
 import android.widget.ImageView;
 import b.a.i.i5;
 import b.a.i.m5;
@@ -18,16 +16,35 @@ import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.view.rounded.RoundedRelativeLayout;
 import d0.a0.a;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Objects;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetHomePanelLoading.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetHomePanelLoading {
-    public static final WidgetHomePanelLoading$Companion Companion = new WidgetHomePanelLoading$Companion(null);
     private final WidgetHomeBinding binding;
     private static boolean panelInitialized;
+
+    /* JADX INFO: renamed from: com.discord.widgets.home.WidgetHomePanelLoading$configure$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHomePanelLoading.kt */
+    public final class AnonymousClass1 extends o implements Function1<Boolean, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.a;
+        }
+
+        public final void invoke(boolean z2) {
+            WidgetHomePanelLoading.access$setLoadingPanelVisibility(WidgetHomePanelLoading.this, z2, true);
+        }
+    }
 
     public WidgetHomePanelLoading(WidgetHomeBinding widgetHomeBinding) {
         m.checkNotNullParameter(widgetHomeBinding, "binding");
@@ -42,22 +59,22 @@ public final class WidgetHomePanelLoading {
     private final void centerLogoRelativeToLoadingScreen() {
         ImageView imageView = this.binding.f2465b.f162b;
         m.checkNotNullExpressionValue(imageView, "binding.loading.logo");
-        ViewGroup$LayoutParams layoutParams = imageView.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
         Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.widget.FrameLayout.LayoutParams");
-        FrameLayout$LayoutParams frameLayout$LayoutParams = (FrameLayout$LayoutParams) layoutParams;
+        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) layoutParams;
         ImageView imageView2 = this.binding.f2465b.f162b;
         m.checkNotNullExpressionValue(imageView2, "binding.loading.logo");
         Resources resources = imageView2.getResources();
         m.checkNotNullExpressionValue(resources, "binding.loading.logo.resources");
-        frameLayout$LayoutParams.setMargins(((ViewGroup$MarginLayoutParams) frameLayout$LayoutParams).leftMargin, a.roundToInt(DisplayUtils.getStatusBarHeight(resources) / (-2.0f)), ((ViewGroup$MarginLayoutParams) frameLayout$LayoutParams).rightMargin, ((ViewGroup$MarginLayoutParams) frameLayout$LayoutParams).bottomMargin);
+        layoutParams2.setMargins(((ViewGroup.MarginLayoutParams) layoutParams2).leftMargin, a.roundToInt(DisplayUtils.getStatusBarHeight(resources) / (-2.0f)), ((ViewGroup.MarginLayoutParams) layoutParams2).rightMargin, ((ViewGroup.MarginLayoutParams) layoutParams2).bottomMargin);
         ImageView imageView3 = this.binding.f2465b.f162b;
         m.checkNotNullExpressionValue(imageView3, "binding.loading.logo");
-        imageView3.setLayoutParams(frameLayout$LayoutParams);
+        imageView3.setLayoutParams(layoutParams2);
     }
 
     public final void configure(AppFragment fragment) {
         m.checkNotNullParameter(fragment, "fragment");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(WidgetHomeModel.Companion.getInitialized(), fragment, null, 2, null), WidgetHomePanelLoading.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetHomePanelLoading$configure$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(WidgetHomeModel.INSTANCE.getInitialized(), fragment, null, 2, null), WidgetHomePanelLoading.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
         setLoadingPanelVisibility(panelInitialized, false);
     }
 
@@ -100,7 +117,7 @@ public final class WidgetHomePanelLoading {
                 m.checkNotNullExpressionValue(roundedRelativeLayout2, "binding.panelCenter.root");
                 roundedRelativeLayout2.setVisibility(0);
             }
-            StoreStream.Companion.getAnalytics().appUiViewed(WidgetHome.class);
+            StoreStream.INSTANCE.getAnalytics().appUiViewed(WidgetHome.class);
         }
     }
 }

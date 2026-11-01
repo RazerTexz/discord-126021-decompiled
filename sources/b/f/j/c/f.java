@@ -24,6 +24,40 @@ public class f {
     public final r g;
     public final a0 f = new a0();
 
+    /* JADX INFO: compiled from: BufferedDiskCache.java */
+    public class a implements Runnable {
+        public final /* synthetic */ CacheKey j;
+        public final /* synthetic */ b.f.j.j.e k;
+
+        public a(Object obj, CacheKey cacheKey, b.f.j.j.e eVar) {
+            this.j = cacheKey;
+            this.k = eVar;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            try {
+                f.b(f.this, this.j, this.k);
+                f.this.f.d(this.j, this.k);
+                b.f.j.j.e eVar = this.k;
+                if (eVar != null) {
+                    eVar.close();
+                }
+            } catch (Throwable th) {
+                try {
+                    throw th;
+                } catch (Throwable th2) {
+                    f.this.f.d(this.j, this.k);
+                    b.f.j.j.e eVar2 = this.k;
+                    if (eVar2 != null) {
+                        eVar2.close();
+                    }
+                    throw th2;
+                }
+            }
+        }
+    }
+
     public f(b.f.b.b.h hVar, b.f.d.g.g gVar, b.f.d.g.j jVar, Executor executor, Executor executor2, r rVar) {
         this.a = hVar;
         this.f555b = gVar;
@@ -126,9 +160,7 @@ public class f {
             b.f.j.r.b.b();
             b.f.j.j.e eVarA = this.f.a(cacheKey);
             if (eVarA != null) {
-                z.g<b.f.j.j.e> gVarD = d(cacheKey, eVarA);
-                b.f.j.r.b.b();
-                return gVarD;
+                return d(cacheKey, eVarA);
             }
             try {
                 gVarC = z.g.a(new e(this, null, atomicBoolean, cacheKey), this.d);
@@ -136,11 +168,9 @@ public class f {
                 b.f.d.e.a.n(f.class, e, "Failed to schedule disk-cache read for %s", ((b.f.b.a.f) cacheKey).a);
                 gVarC = z.g.c(e);
             }
-            b.f.j.r.b.b();
             return gVarC;
-        } catch (Throwable th) {
+        } finally {
             b.f.j.r.b.b();
-            throw th;
         }
     }
 
@@ -152,7 +182,7 @@ public class f {
             this.f.b(cacheKey, eVar);
             b.f.j.j.e eVarA = b.f.j.j.e.a(eVar);
             try {
-                this.e.execute(new f$a(this, null, cacheKey, eVarA));
+                this.e.execute(new a(null, cacheKey, eVarA));
             } catch (Exception e) {
                 b.f.d.e.a.n(f.class, e, "Failed to schedule disk-cache write for %s", cacheKey.b());
                 this.f.d(cacheKey, eVar);
@@ -160,8 +190,10 @@ public class f {
                     eVarA.close();
                 }
             }
-        } finally {
             b.f.j.r.b.b();
+        } catch (Throwable th) {
+            b.f.j.r.b.b();
+            throw th;
         }
     }
 }

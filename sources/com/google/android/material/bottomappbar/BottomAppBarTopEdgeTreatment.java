@@ -3,7 +3,6 @@ package com.google.android.material.bottomappbar;
 import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import b.d.b.a.a;
 import com.google.android.material.shape.EdgeTreatment;
 import com.google.android.material.shape.ShapePath;
@@ -69,12 +68,12 @@ public class BottomAppBarTopEdgeTreatment extends EdgeTreatment implements Clone
         return this.roundedCornerRadius;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public float getFabDiameter() {
         return this.fabDiameter;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public float getHorizontalOffset() {
         return this.horizontalOffset;
     }
@@ -94,7 +93,7 @@ public class BottomAppBarTopEdgeTreatment extends EdgeTreatment implements Clone
         this.roundedCornerRadius = f;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     public void setFabDiameter(float f) {
         this.fabDiameter = f;
     }

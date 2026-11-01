@@ -1,6 +1,5 @@
 package b.g.a.c.c0;
 
-import b.g.a.c.i0.d$a;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
@@ -12,7 +11,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: AnnotatedClass.java */
@@ -30,15 +28,30 @@ public final class c extends b implements e0 {
     public final List<b.g.a.c.j> n;
     public final b.g.a.c.b o;
     public final b.g.a.c.h0.n p;
-    public final t$a q;
+    public final t.a q;
     public final Class<?> r;
     public final b.g.a.c.i0.a t;
-    public c$a u;
+    public a u;
     public l v;
     public List<g> w;
-    public static final c$a j = new c$a(null, Collections.emptyList(), Collections.emptyList());
+    public static final a j = new a(null, Collections.emptyList(), Collections.emptyList());
 
-    public c(b.g.a.c.j jVar, Class<?> cls, List<b.g.a.c.j> list, Class<?> cls2, b.g.a.c.i0.a aVar, b.g.a.c.h0.m mVar, b.g.a.c.b bVar, t$a t_a, b.g.a.c.h0.n nVar, boolean z2) {
+    /* JADX INFO: compiled from: AnnotatedClass.java */
+    public final class a {
+        public final e a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final List<e> f686b;
+        public final List<j> c;
+
+        public a(e eVar, List<e> list, List<j> list2) {
+            this.a = eVar;
+            this.f686b = list;
+            this.c = list2;
+        }
+    }
+
+    public c(b.g.a.c.j jVar, Class<?> cls, List<b.g.a.c.j> list, Class<?> cls2, b.g.a.c.i0.a aVar, b.g.a.c.h0.m mVar, b.g.a.c.b bVar, t.a aVar2, b.g.a.c.h0.n nVar, boolean z2) {
         this.k = jVar;
         this.l = cls;
         this.n = list;
@@ -46,7 +59,7 @@ public final class c extends b implements e0 {
         this.t = aVar;
         this.m = mVar;
         this.o = bVar;
-        this.q = t_a;
+        this.q = aVar2;
         this.p = nVar;
         this.f684s = z2;
     }
@@ -122,15 +135,15 @@ public final class c extends b implements e0 {
     /* JADX WARN: Type inference failed for: r9v0, types: [java.util.ArrayList] */
     /* JADX WARN: Type inference failed for: r9v3, types: [java.util.List] */
     /* JADX WARN: Type inference failed for: r9v4 */
-    public final c$a f() {
-        d$a d_a;
+    public final a f() {
+        b.g.a.c.i0.d.a aVar;
         ArrayList arrayList;
         int size;
         ?? arrayList2;
         ?? r2;
         int i;
         ArrayList arrayList3;
-        e0$b e0_b;
+        e0.b bVar;
         int size2;
         ArrayList arrayList4;
         int i2;
@@ -141,7 +154,7 @@ public final class c extends b implements e0 {
         ArrayList arrayList5;
         TypeVariable<Method>[] typeParameters;
         b.g.a.c.h0.m mVar;
-        e0 e0_a;
+        e0 aVar2;
         TypeVariable<Method>[] typeVariableArr;
         Type[] typeArr;
         TypeVariable<Method> typeVariable;
@@ -158,32 +171,32 @@ public final class c extends b implements e0 {
         e eVar;
         int size3;
         int size4;
-        d$a[] d_aArr;
-        c$a c_a = this.u;
-        if (c_a == null) {
+        b.g.a.c.i0.d.a[] aVarArr;
+        a aVar3 = this.u;
+        if (aVar3 == null) {
             b.g.a.c.j jVar2 = this.k;
             if (jVar2 == null) {
-                c_a = j;
+                aVar3 = j;
             } else {
-                b.g.a.c.b bVar = this.o;
+                b.g.a.c.b bVar2 = this.o;
                 b.g.a.c.h0.n nVar = this.p;
                 Class<?> cls = this.r;
-                f fVar = new f(bVar, this, this.f684s | (cls != null));
+                f fVar = new f(bVar2, this, this.f684s | (cls != null));
                 if (jVar2.w()) {
-                    d_a = null;
+                    aVar = null;
                     arrayList = null;
                 } else {
-                    d_a = null;
+                    aVar = null;
                     arrayList = null;
-                    for (d$a d_a2 : b.g.a.c.i0.d.l(jVar2._class)) {
-                        if (!d_a2.a.isSynthetic()) {
-                            if (d_a2.a() == 0) {
-                                d_a = d_a2;
+                    for (b.g.a.c.i0.d.a aVar4 : b.g.a.c.i0.d.l(jVar2._class)) {
+                        if (!aVar4.a.isSynthetic()) {
+                            if (aVar4.a() == 0) {
+                                aVar = aVar4;
                             } else {
                                 if (arrayList == null) {
                                     arrayList = new ArrayList();
                                 }
-                                arrayList.add(d_a2);
+                                arrayList.add(aVar4);
                             }
                         }
                     }
@@ -191,7 +204,7 @@ public final class c extends b implements e0 {
                 if (arrayList == null) {
                     List listEmptyList2 = Collections.emptyList();
                     r2 = listEmptyList2;
-                    if (d_a != null) {
+                    if (aVar != null) {
                         arrayList2 = listEmptyList2;
                         size = 0;
                     }
@@ -207,7 +220,7 @@ public final class c extends b implements e0 {
                     if (arrayList3 == null) {
                         listEmptyList = Collections.emptyList();
                     } else {
-                        e0_b = new e0$b(nVar);
+                        bVar = new e0.b(nVar);
                         size2 = arrayList3.size();
                         arrayList4 = new ArrayList(size2);
                         for (i2 = 0; i2 < size2; i2++) {
@@ -234,7 +247,7 @@ public final class c extends b implements e0 {
                                     yVar = new y(method);
                                     for (i6 = 0; i6 < size2; i6++) {
                                         if (yVar.equals(yVarArr[i6])) {
-                                            arrayList4.set(i6, fVar.j((Method) arrayList3.get(i6), e0_b, method));
+                                            arrayList4.set(i6, fVar.j((Method) arrayList3.get(i6), bVar, method));
                                             break;
                                         }
                                     }
@@ -306,7 +319,7 @@ public final class c extends b implements e0 {
                                                                             break;
                                                                         }
                                                                         int i12 = length3;
-                                                                        if (!b.c.a.a0.d.A1(e0_b, jVarF, bounds[i11])) {
+                                                                        if (!b.c.a.a0.d.A1(bVar, jVarF, bounds[i11])) {
                                                                             z2 = false;
                                                                             break;
                                                                         }
@@ -372,11 +385,11 @@ public final class c extends b implements e0 {
                                     }
                                 }
                                 if (mVar == null) {
-                                    e0_a = e0_b;
+                                    aVar2 = bVar;
                                 } else {
-                                    e0_a = new e0$a(nVar, mVar);
+                                    aVar2 = new e0.a(nVar, mVar);
                                 }
-                                arrayList4.set(i3, fVar.j(method3, e0_a, null));
+                                arrayList4.set(i3, fVar.j(method3, aVar2, null));
                             } else {
                                 jVar = jVar2;
                                 i4 = size2;
@@ -415,7 +428,7 @@ public final class c extends b implements e0 {
                             }
                         }
                     }
-                    c_a = new c$a(fVar.f, r2, listEmptyList);
+                    aVar3 = new a(fVar.f, r2, listEmptyList);
                 } else {
                     size = arrayList.size();
                     arrayList2 = new ArrayList(size);
@@ -424,47 +437,47 @@ public final class c extends b implements e0 {
                     }
                 }
                 if (cls != null) {
-                    d$a[] d_aArrL = b.g.a.c.i0.d.l(cls);
-                    int length4 = d_aArrL.length;
+                    b.g.a.c.i0.d.a[] aVarArrL = b.g.a.c.i0.d.l(cls);
+                    int length4 = aVarArrL.length;
                     y[] yVarArr2 = null;
                     int i14 = 0;
                     while (i14 < length4) {
-                        d$a d_a3 = d_aArrL[i14];
-                        if (d_a3.a() != 0) {
-                            d_aArr = d_aArrL;
+                        b.g.a.c.i0.d.a aVar5 = aVarArrL[i14];
+                        if (aVar5.a() != 0) {
+                            aVarArr = aVarArrL;
                             if (arrayList != null) {
                                 if (yVarArr2 == null) {
                                     y[] yVarArr3 = new y[size];
                                     for (int i15 = 0; i15 < size; i15++) {
-                                        yVarArr3[i15] = new y(((d$a) arrayList.get(i15)).a);
+                                        yVarArr3[i15] = new y(((b.g.a.c.i0.d.a) arrayList.get(i15)).a);
                                     }
                                     yVarArr2 = yVarArr3;
                                 }
-                                y yVar2 = new y(d_a3.a);
+                                y yVar2 = new y(aVar5.a);
                                 for (int i16 = 0; i16 < size; i16++) {
                                     if (yVar2.equals(yVarArr2[i16])) {
-                                        arrayList2.set(i16, fVar.k((d$a) arrayList.get(i16), d_a3));
+                                        arrayList2.set(i16, fVar.k((b.g.a.c.i0.d.a) arrayList.get(i16), aVar5));
                                         break;
                                     }
                                 }
                             }
-                        } else if (d_a != null) {
-                            d_aArr = d_aArrL;
-                            fVar.f = new e(fVar.d, d_a.a, fVar.g(d_a, d_a3), u.a);
-                            d_a = null;
+                        } else if (aVar != null) {
+                            aVarArr = aVarArrL;
+                            fVar.f = new e(fVar.d, aVar.a, fVar.g(aVar, aVar5), u.a);
+                            aVar = null;
                         } else {
-                            d_aArr = d_aArrL;
+                            aVarArr = aVarArrL;
                         }
                         i14++;
-                        d_aArrL = d_aArr;
+                        aVarArrL = aVarArr;
                     }
                 }
-                if (d_a != null) {
-                    fVar.f = new e(fVar.d, d_a.a, fVar.g(d_a, null), u.a);
+                if (aVar != null) {
+                    fVar.f = new e(fVar.d, aVar.a, fVar.g(aVar, null), u.a);
                 }
                 for (int i17 = 0; i17 < size; i17++) {
                     if (((e) arrayList2.get(i17)) == null) {
-                        arrayList2.set(i17, fVar.k((d$a) arrayList.get(i17), null));
+                        arrayList2.set(i17, fVar.k((b.g.a.c.i0.d.a) arrayList.get(i17), null));
                     }
                 }
                 r2 = arrayList2;
@@ -480,7 +493,7 @@ public final class c extends b implements e0 {
                 if (arrayList3 == null) {
                     listEmptyList = Collections.emptyList();
                 } else {
-                    e0_b = new e0$b(nVar);
+                    bVar = new e0.b(nVar);
                     size2 = arrayList3.size();
                     arrayList4 = new ArrayList(size2);
                     while (i2 < size2) {
@@ -509,7 +522,7 @@ public final class c extends b implements e0 {
                                 yVar = new y(method);
                                 while (i6 < size2) {
                                     if (yVar.equals(yVarArr[i6])) {
-                                        arrayList4.set(i6, fVar.j((Method) arrayList3.get(i6), e0_b, method));
+                                        arrayList4.set(i6, fVar.j((Method) arrayList3.get(i6), bVar, method));
                                         break;
                                         break;
                                     }
@@ -536,11 +549,11 @@ public final class c extends b implements e0 {
                                 mVar = null;
                             }
                             if (mVar == null) {
-                                e0_a = e0_b;
+                                aVar2 = bVar;
                             } else {
-                                e0_a = new e0$a(nVar, mVar);
+                                aVar2 = new e0.a(nVar, mVar);
                             }
-                            arrayList4.set(i3, fVar.j(method4, e0_a, null));
+                            arrayList4.set(i3, fVar.j(method4, aVar2, null));
                         } else {
                             jVar = jVar2;
                             i4 = size2;
@@ -581,11 +594,11 @@ public final class c extends b implements e0 {
                         }
                     }
                 }
-                c_a = new c$a(fVar.f, r2, listEmptyList);
+                aVar3 = new a(fVar.f, r2, listEmptyList);
             }
-            this.u = c_a;
+            this.u = aVar3;
         }
-        return c_a;
+        return aVar3;
     }
 
     public Iterable<g> g() {
@@ -595,13 +608,13 @@ public final class c extends b implements e0 {
             if (jVar == null) {
                 listEmptyList = Collections.emptyList();
             } else {
-                Map<String, h$a> mapF = new h(this.o, this.p, this.q, this.f684s).f(this, jVar, null);
+                Map<String, h.a> mapF = new h(this.o, this.p, this.q, this.f684s).f(this, jVar, null);
                 if (mapF == null) {
                     listEmptyList = Collections.emptyList();
                 } else {
                     ArrayList arrayList = new ArrayList(mapF.size());
-                    for (h$a h_a : mapF.values()) {
-                        arrayList.add(new g(h_a.a, h_a.f690b, h_a.c.b()));
+                    for (h.a aVar : mapF.values()) {
+                        arrayList.add(new g(aVar.a, aVar.f690b, aVar.c.b()));
                     }
                     listEmptyList = arrayList;
                 }
@@ -621,11 +634,11 @@ public final class c extends b implements e0 {
                 lVar = new l();
             } else {
                 b.g.a.c.b bVar = this.o;
-                t$a t_a = this.q;
+                t.a aVar = this.q;
                 b.g.a.c.h0.n nVar = this.p;
                 List<b.g.a.c.j> list = this.n;
                 Class<?> cls = this.r;
-                k kVar = new k(bVar, t_a, this.f684s);
+                k kVar = new k(bVar, aVar, this.f684s);
                 LinkedHashMap linkedHashMap = new LinkedHashMap();
                 kVar.f(this, jVar._class, linkedHashMap, cls);
                 Iterator<b.g.a.c.j> it = list.iterator();
@@ -635,29 +648,29 @@ public final class c extends b implements e0 {
                         break;
                     }
                     b.g.a.c.j next = it.next();
-                    t$a t_a2 = kVar.d;
-                    if (t_a2 != null) {
-                        clsA2 = t_a2.a(next._class);
+                    t.a aVar2 = kVar.d;
+                    if (aVar2 != null) {
+                        clsA2 = aVar2.a(next._class);
                     }
-                    kVar.f(new e0$a(nVar, next.j()), next._class, linkedHashMap, clsA2);
+                    kVar.f(new e0.a(nVar, next.j()), next._class, linkedHashMap, clsA2);
                 }
-                t$a t_a3 = kVar.d;
-                if (t_a3 == null || (clsA = t_a3.a(Object.class)) == null) {
+                t.a aVar3 = kVar.d;
+                if (aVar3 == null || (clsA = aVar3.a(Object.class)) == null) {
                     z2 = false;
                 } else {
                     kVar.g(this, jVar._class, linkedHashMap, clsA);
                     z2 = true;
                 }
                 if (z2 && kVar.c != null && !linkedHashMap.isEmpty()) {
-                    for (Map$Entry map$Entry : linkedHashMap.entrySet()) {
-                        y yVar = (y) map$Entry.getKey();
+                    for (Map.Entry entry : linkedHashMap.entrySet()) {
+                        y yVar = (y) entry.getKey();
                         if ("hashCode".equals(yVar.f696b) && yVar.c.length == 0) {
                             try {
                                 Method declaredMethod = Object.class.getDeclaredMethod(yVar.f696b, new Class[0]);
                                 if (declaredMethod != null) {
-                                    k$a k_a = (k$a) map$Entry.getValue();
-                                    k_a.c = kVar.d(k_a.c, declaredMethod.getDeclaredAnnotations());
-                                    k_a.f691b = declaredMethod;
+                                    k.a aVar4 = (k.a) entry.getValue();
+                                    aVar4.c = kVar.d(aVar4.c, declaredMethod.getDeclaredAnnotations());
+                                    aVar4.f691b = declaredMethod;
                                 }
                             } catch (Exception unused) {
                             }
@@ -668,12 +681,12 @@ public final class c extends b implements e0 {
                     lVar = new l();
                 } else {
                     LinkedHashMap linkedHashMap2 = new LinkedHashMap(linkedHashMap.size());
-                    for (Map$Entry map$Entry2 : linkedHashMap.entrySet()) {
-                        k$a k_a2 = (k$a) map$Entry2.getValue();
-                        Method method = k_a2.f691b;
-                        j jVar2 = method == null ? null : new j(k_a2.a, method, k_a2.c.b(), null);
+                    for (Map.Entry entry2 : linkedHashMap.entrySet()) {
+                        k.a aVar5 = (k.a) entry2.getValue();
+                        Method method = aVar5.f691b;
+                        j jVar2 = method == null ? null : new j(aVar5.a, method, aVar5.c.b(), null);
                         if (jVar2 != null) {
-                            linkedHashMap2.put(map$Entry2.getKey(), jVar2);
+                            linkedHashMap2.put(entry2.getKey(), jVar2);
                         }
                     }
                     lVar = new l(linkedHashMap2);

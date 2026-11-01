@@ -3,28 +3,33 @@ package com.discord.utilities.billing;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
 import androidx.appcompat.widget.ActivityChooserModel;
-import b.d.a.a.a;
+import b.a.d.j;
 import b.d.a.a.b;
 import b.d.a.a.d;
 import b.d.a.a.e;
+import b.d.a.a.f;
 import b.d.a.a.g;
 import b.d.a.a.h;
 import b.d.a.a.i;
+import b.d.b.a.a;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingFlowParams;
 import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.SkuDetails;
+import com.discord.app.AppActivity;
 import com.discord.app.AppLog;
 import com.discord.stores.StoreGooglePlaySkuDetails;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.KotlinExtensionsKt;
 import com.discord.utilities.logging.Logger;
+import com.discord.utilities.rx.ActivityLifecycleCallbacks;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.t.n;
-import d0.t.o;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -48,7 +53,230 @@ public final class GooglePlayBillingManager implements g, b, i, e {
     private static boolean isAuthenticated;
     public static final GooglePlayBillingManager INSTANCE = new GooglePlayBillingManager();
     private static AtomicLong backoffTimeMs = new AtomicLong(1000);
-    private static Map<String, GooglePlayBillingManager$InAppSkuToConsume> inAppSkusToConsume = new HashMap();
+    private static Map<String, InAppSkuToConsume> inAppSkusToConsume = new HashMap();
+
+    /* JADX INFO: renamed from: com.discord.utilities.billing.GooglePlayBillingManager$init$1, reason: invalid class name */
+    /* JADX INFO: compiled from: GooglePlayBillingManager.kt */
+    public final class AnonymousClass1 extends o implements Function1<Boolean, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.a;
+        }
+
+        public final void invoke(boolean z2) {
+            GooglePlayBillingManager.access$setAuthenticated$p(GooglePlayBillingManager.INSTANCE, z2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.billing.GooglePlayBillingManager$onBillingServiceDisconnected$1, reason: invalid class name */
+    /* JADX INFO: compiled from: GooglePlayBillingManager.kt */
+    public final class AnonymousClass1 extends o implements Function1<Long, Unit> {
+        public final /* synthetic */ long $currentBackoffTimeMs;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(1);
+            this.$currentBackoffTimeMs = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            GooglePlayBillingManager googlePlayBillingManager = GooglePlayBillingManager.INSTANCE;
+            if (GooglePlayBillingManager.access$getBillingClient$p(googlePlayBillingManager).d()) {
+                return;
+            }
+            GooglePlayBillingManager.access$getBillingClient$p(googlePlayBillingManager).h(googlePlayBillingManager);
+            GooglePlayBillingManager.access$getBackoffTimeMs$p(googlePlayBillingManager).set(this.$currentBackoffTimeMs * ((long) 2));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.billing.GooglePlayBillingManager$queryPurchases$1, reason: invalid class name */
+    /* JADX INFO: compiled from: GooglePlayBillingManager.kt */
+    public final class AnonymousClass1 implements f {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // b.d.a.a.f
+        public final void onQueryPurchasesResponse(BillingResult billingResult, List<Purchase> list) {
+            m.checkNotNullParameter(billingResult, "<anonymous parameter 0>");
+            m.checkNotNullParameter(list, "purchasesList");
+            StoreStream.INSTANCE.getGooglePlayPurchases().processPurchases(list, "subs");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.billing.GooglePlayBillingManager$queryPurchases$2, reason: invalid class name */
+    /* JADX INFO: compiled from: GooglePlayBillingManager.kt */
+    public final class AnonymousClass2 implements f {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        @Override // b.d.a.a.f
+        public final void onQueryPurchasesResponse(BillingResult billingResult, List<Purchase> list) {
+            m.checkNotNullParameter(billingResult, "<anonymous parameter 0>");
+            m.checkNotNullParameter(list, "purchasesList");
+            StoreStream.INSTANCE.getGooglePlayPurchases().processPurchases(list, "inapp");
+        }
+    }
+
+    /* JADX INFO: compiled from: GooglePlayBillingManager.kt */
+    public final class GooglePlayBillingManagerLifecycleListener extends ActivityLifecycleCallbacks {
+        @Override // com.discord.utilities.rx.ActivityLifecycleCallbacks
+        public void onActivityCreated(AppActivity activity, Bundle savedInstanceState) {
+            m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
+            super.onActivityCreated(activity, savedInstanceState);
+            j jVar = j.g;
+            if (activity.g(j.f)) {
+                GooglePlayBillingManager googlePlayBillingManager = GooglePlayBillingManager.INSTANCE;
+                if (GooglePlayBillingManager.access$isAuthenticated$p(googlePlayBillingManager)) {
+                    googlePlayBillingManager.onActivityCreated();
+                }
+            }
+        }
+
+        @Override // com.discord.utilities.rx.ActivityLifecycleCallbacks
+        public void onActivityDestroyed(AppActivity activity) {
+            m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
+            super.onActivityDestroyed(activity);
+            j jVar = j.g;
+            if (activity.g(j.f)) {
+                GooglePlayBillingManager.INSTANCE.onActivityDestroyed();
+            }
+        }
+
+        @Override // com.discord.utilities.rx.ActivityLifecycleCallbacks
+        public void onActivityResumed(AppActivity activity) {
+            m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
+            super.onActivityResumed(activity);
+            j jVar = j.g;
+            if (activity.g(j.f)) {
+                GooglePlayBillingManager googlePlayBillingManager = GooglePlayBillingManager.INSTANCE;
+                if (GooglePlayBillingManager.access$isAuthenticated$p(googlePlayBillingManager)) {
+                    googlePlayBillingManager.queryPurchases();
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: GooglePlayBillingManager.kt */
+    public final /* data */ class InAppSkuToConsume {
+        private final String paymentGatewaySkuId;
+        private final Long skuId;
+        private final InAppSkuType type;
+
+        public InAppSkuToConsume(InAppSkuType inAppSkuType, Long l, String str) {
+            m.checkNotNullParameter(inAppSkuType, "type");
+            m.checkNotNullParameter(str, "paymentGatewaySkuId");
+            this.type = inAppSkuType;
+            this.skuId = l;
+            this.paymentGatewaySkuId = str;
+        }
+
+        public static /* synthetic */ InAppSkuToConsume copy$default(InAppSkuToConsume inAppSkuToConsume, InAppSkuType inAppSkuType, Long l, String str, int i, Object obj) {
+            if ((i & 1) != 0) {
+                inAppSkuType = inAppSkuToConsume.type;
+            }
+            if ((i & 2) != 0) {
+                l = inAppSkuToConsume.skuId;
+            }
+            if ((i & 4) != 0) {
+                str = inAppSkuToConsume.paymentGatewaySkuId;
+            }
+            return inAppSkuToConsume.copy(inAppSkuType, l, str);
+        }
+
+        public final InAppSkuToConsume copy(InAppSkuType type, Long skuId, String paymentGatewaySkuId) {
+            m.checkNotNullParameter(type, "type");
+            m.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
+            return new InAppSkuToConsume(type, skuId, paymentGatewaySkuId);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof InAppSkuToConsume)) {
+                return false;
+            }
+            InAppSkuToConsume inAppSkuToConsume = (InAppSkuToConsume) other;
+            return m.areEqual(this.type, inAppSkuToConsume.type) && m.areEqual(this.skuId, inAppSkuToConsume.skuId) && m.areEqual(this.paymentGatewaySkuId, inAppSkuToConsume.paymentGatewaySkuId);
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final String getPaymentGatewaySkuId() {
+            return this.paymentGatewaySkuId;
+        }
+
+        public final String getPaymentGatewaySkuId() {
+            return this.paymentGatewaySkuId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Long getSkuId() {
+            return this.skuId;
+        }
+
+        public final Long getSkuId() {
+            return this.skuId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final InAppSkuType getType() {
+            return this.type;
+        }
+
+        public final InAppSkuType getType() {
+            return this.type;
+        }
+
+        public int hashCode() {
+            InAppSkuType inAppSkuType = this.type;
+            int iHashCode = (inAppSkuType != null ? inAppSkuType.hashCode() : 0) * 31;
+            Long l = this.skuId;
+            int iHashCode2 = (iHashCode + (l != null ? l.hashCode() : 0)) * 31;
+            String str = this.paymentGatewaySkuId;
+            return iHashCode2 + (str != null ? str.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("InAppSkuToConsume(type=");
+            sbU.append(this.type);
+            sbU.append(", skuId=");
+            sbU.append(this.skuId);
+            sbU.append(", paymentGatewaySkuId=");
+            return a.J(sbU, this.paymentGatewaySkuId, ")");
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$2;
+
+        static {
+            InAppSkuType.values();
+            int[] iArr = new int[1];
+            $EnumSwitchMapping$0 = iArr;
+            InAppSkuType inAppSkuType = InAppSkuType.PREMIUM_GIFT;
+            iArr[inAppSkuType.ordinal()] = 1;
+            InAppSkuType.values();
+            int[] iArr2 = new int[1];
+            $EnumSwitchMapping$1 = iArr2;
+            iArr2[inAppSkuType.ordinal()] = 1;
+            InAppSkuType.values();
+            $EnumSwitchMapping$2 = new int[1];
+        }
+    }
 
     private GooglePlayBillingManager() {
     }
@@ -106,27 +334,27 @@ public final class GooglePlayBillingManager implements g, b, i, e {
             for (String str : arrayListB) {
                 GooglePlayBillingManager googlePlayBillingManager = INSTANCE;
                 m.checkNotNullExpressionValue(str, "sku");
-                googlePlayBillingManager.handleConsumeStart(purchase, new GooglePlayBillingManager$InAppSkuToConsume(inAppSkuType, skuId, str));
+                googlePlayBillingManager.handleConsumeStart(purchase, new InAppSkuToConsume(inAppSkuType, skuId, str));
             }
         }
     }
 
     private final void handleConsumeEnd(String purchaseToken) {
-        GooglePlayBillingManager$InAppSkuToConsume googlePlayBillingManager$InAppSkuToConsume = inAppSkusToConsume.get(purchaseToken);
-        if (googlePlayBillingManager$InAppSkuToConsume != null) {
-            googlePlayBillingManager$InAppSkuToConsume.getType();
+        InAppSkuToConsume inAppSkuToConsume = inAppSkusToConsume.get(purchaseToken);
+        if (inAppSkuToConsume != null) {
+            inAppSkuToConsume.getType();
         }
     }
 
     private final void handleConsumeFailure(String purchaseToken) {
-        GooglePlayBillingManager$InAppSkuToConsume googlePlayBillingManager$InAppSkuToConsume = inAppSkusToConsume.get(purchaseToken);
-        if (googlePlayBillingManager$InAppSkuToConsume != null) {
-            StoreStream.Companion.getGooglePlayPurchases().trackPaymentFlowFailed(googlePlayBillingManager$InAppSkuToConsume.getPaymentGatewaySkuId());
+        InAppSkuToConsume inAppSkuToConsume = inAppSkusToConsume.get(purchaseToken);
+        if (inAppSkuToConsume != null) {
+            StoreStream.INSTANCE.getGooglePlayPurchases().trackPaymentFlowFailed(inAppSkuToConsume.getPaymentGatewaySkuId());
         }
     }
 
-    private final void handleConsumeStart(Purchase purchase, GooglePlayBillingManager$InAppSkuToConsume inAppSkuToConsume) {
-        Map<String, GooglePlayBillingManager$InAppSkuToConsume> map = inAppSkusToConsume;
+    private final void handleConsumeStart(Purchase purchase, InAppSkuToConsume inAppSkuToConsume) {
+        Map<String, InAppSkuToConsume> map = inAppSkusToConsume;
         String strA = purchase.a();
         m.checkNotNullExpressionValue(strA, "purchase.purchaseToken");
         map.put(strA, inAppSkuToConsume);
@@ -137,10 +365,10 @@ public final class GooglePlayBillingManager implements g, b, i, e {
     }
 
     private final void handleConsumeSuccess(String purchaseToken) {
-        GooglePlayBillingManager$InAppSkuToConsume googlePlayBillingManager$InAppSkuToConsume = inAppSkusToConsume.get(purchaseToken);
-        if (googlePlayBillingManager$InAppSkuToConsume != null) {
-            StoreStream.Companion.getGooglePlayPurchases().trackPaymentFlowCompleted(googlePlayBillingManager$InAppSkuToConsume.getPaymentGatewaySkuId());
-            if (googlePlayBillingManager$InAppSkuToConsume.getType().ordinal() != 0) {
+        InAppSkuToConsume inAppSkuToConsume = inAppSkusToConsume.get(purchaseToken);
+        if (inAppSkuToConsume != null) {
+            StoreStream.INSTANCE.getGooglePlayPurchases().trackPaymentFlowCompleted(inAppSkuToConsume.getPaymentGatewaySkuId());
+            if (inAppSkuToConsume.getType().ordinal() != 0) {
                 throw new NoWhenBranchMatchedException();
             }
             KotlinExtensionsKt.getExhaustive(Unit.a);
@@ -153,11 +381,11 @@ public final class GooglePlayBillingManager implements g, b, i, e {
         if (applicationContext == null) {
             throw new IllegalArgumentException("Please provide a valid Context.");
         }
-        a aVar = new a(null, true, applicationContext, this);
+        b.d.a.a.a aVar = new b.d.a.a.a(null, true, applicationContext, this);
         m.checkNotNullExpressionValue(aVar, "BillingClient.newBuilder…chases()\n        .build()");
         billingClient = aVar;
-        application.registerActivityLifecycleCallbacks(new GooglePlayBillingManager$GooglePlayBillingManagerLifecycleListener());
-        ObservableExtensionsKt.appSubscribe$default(StoreStream.Companion.getAuthentication().observeIsAuthed$app_productionGoogleRelease(), GooglePlayBillingManager.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, GooglePlayBillingManager$init$1.INSTANCE, 62, (Object) null);
+        application.registerActivityLifecycleCallbacks(new GooglePlayBillingManagerLifecycleListener());
+        ObservableExtensionsKt.appSubscribe$default(StoreStream.INSTANCE.getAuthentication().observeIsAuthed$app_productionGoogleRelease(), GooglePlayBillingManager.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, AnonymousClass1.INSTANCE, 62, (Object) null);
     }
 
     public final int launchBillingFlow(Activity activity, BillingFlowParams params) {
@@ -226,7 +454,7 @@ public final class GooglePlayBillingManager implements g, b, i, e {
         long j = backoffTimeMs.get();
         Observable<Long> observableD0 = Observable.d0(j, TimeUnit.MILLISECONDS);
         m.checkNotNullExpressionValue(observableD0, "Observable\n          .ti…s, TimeUnit.MILLISECONDS)");
-        ObservableExtensionsKt.appSubscribe$default(observableD0, GooglePlayBillingManager.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new GooglePlayBillingManager$onBillingServiceDisconnected$1(j), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(observableD0, GooglePlayBillingManager.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(j), 62, (Object) null);
     }
 
     @Override // b.d.a.a.b
@@ -249,7 +477,7 @@ public final class GooglePlayBillingManager implements g, b, i, e {
         } else {
             handleConsumeFailure(purchaseToken);
             AppLog appLog = AppLog.g;
-            StringBuilder sbX = b.d.b.a.a.X("Failed to consume purchase. ", "Billing Response Code: ");
+            StringBuilder sbX = a.X("Failed to consume purchase. ", "Billing Response Code: ");
             sbX.append(billingResult.a);
             sbX.append(", ");
             sbX.append("Purchase Token: ");
@@ -264,7 +492,7 @@ public final class GooglePlayBillingManager implements g, b, i, e {
         boolean z2;
         m.checkNotNullParameter(billingResult, "billingResult");
         if (billingResult.a != 0) {
-            StoreStream.Companion.getGooglePlayPurchases().updatePendingDowngrade(null);
+            StoreStream.INSTANCE.getGooglePlayPurchases().updatePendingDowngrade(null);
         }
         int i = billingResult.a;
         if (i != 0) {
@@ -283,7 +511,7 @@ public final class GooglePlayBillingManager implements g, b, i, e {
             }
         }
         if (purchases == null || purchases.isEmpty()) {
-            StoreStream.Companion.getGooglePlayPurchases().downgradePurchase();
+            StoreStream.INSTANCE.getGooglePlayPurchases().downgradePurchase();
         }
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
@@ -317,10 +545,10 @@ public final class GooglePlayBillingManager implements g, b, i, e {
             }
         }
         if (!arrayList2.isEmpty()) {
-            StoreStream.Companion.getGooglePlayPurchases().processPurchases(arrayList2, "inapp");
+            StoreStream.INSTANCE.getGooglePlayPurchases().processPurchases(arrayList2, "inapp");
         }
         if (!arrayList.isEmpty()) {
-            StoreStream.Companion.getGooglePlayPurchases().processPurchases(arrayList, "subs");
+            StoreStream.INSTANCE.getGooglePlayPurchases().processPurchases(arrayList, "subs");
         }
     }
 
@@ -335,7 +563,7 @@ public final class GooglePlayBillingManager implements g, b, i, e {
             case 1:
             case 7:
             case 8:
-                StoreStream.Companion.getGooglePlaySkuDetails().handleError();
+                StoreStream.INSTANCE.getGooglePlaySkuDetails().handleError();
                 Logger.e$default(AppLog.g, "onSkuDetailsResponse: " + i + ' ' + str, null, null, 6, null);
                 break;
             case -1:
@@ -344,10 +572,10 @@ public final class GooglePlayBillingManager implements g, b, i, e {
             case 4:
             case 5:
             case 6:
-                StoreStream.Companion.getGooglePlaySkuDetails().handleError();
+                StoreStream.INSTANCE.getGooglePlaySkuDetails().handleError();
                 break;
             case 0:
-                StoreGooglePlaySkuDetails googlePlaySkuDetails = StoreStream.Companion.getGooglePlaySkuDetails();
+                StoreGooglePlaySkuDetails googlePlaySkuDetails = StoreStream.INSTANCE.getGooglePlaySkuDetails();
                 if (skuDetails == null) {
                     skuDetails = n.emptyList();
                 }
@@ -363,7 +591,7 @@ public final class GooglePlayBillingManager implements g, b, i, e {
         }
         if (billingClient2.d()) {
             List<GooglePlayInAppSku> skus = GooglePlayInAppSkus.INSTANCE.getSkus();
-            ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(skus, 10));
+            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(skus, 10));
             Iterator<T> it = skus.iterator();
             while (it.hasNext()) {
                 arrayList.add(((GooglePlayInAppSku) it.next()).getPaymentGatewaySkuId());
@@ -391,12 +619,12 @@ public final class GooglePlayBillingManager implements g, b, i, e {
             if (billingClient3 == null) {
                 m.throwUninitializedPropertyAccessException("billingClient");
             }
-            billingClient3.f("subs", GooglePlayBillingManager$queryPurchases$1.INSTANCE);
+            billingClient3.f("subs", AnonymousClass1.INSTANCE);
             BillingClient billingClient4 = billingClient;
             if (billingClient4 == null) {
                 m.throwUninitializedPropertyAccessException("billingClient");
             }
-            billingClient4.f("inapp", GooglePlayBillingManager$queryPurchases$2.INSTANCE);
+            billingClient4.f("inapp", AnonymousClass2.INSTANCE);
         }
     }
 
@@ -406,7 +634,7 @@ public final class GooglePlayBillingManager implements g, b, i, e {
             m.throwUninitializedPropertyAccessException("billingClient");
         }
         if (billingClient2.d()) {
-            ArrayList arrayList = new ArrayList(GooglePlaySku.Companion.getALL_SKU_NAMES());
+            ArrayList arrayList = new ArrayList(GooglePlaySku.INSTANCE.getALL_SKU_NAMES());
             h hVar = new h();
             hVar.a = "subs";
             hVar.f450b = arrayList;

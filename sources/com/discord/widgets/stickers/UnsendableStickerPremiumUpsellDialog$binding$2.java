@@ -3,7 +3,7 @@ package com.discord.widgets.stickers;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.StickerPremiumUpsellDialogBinding;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.k;
@@ -27,14 +27,14 @@ public final /* synthetic */ class UnsendableStickerPremiumUpsellDialog$binding$
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final StickerPremiumUpsellDialogBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.sticker_premium_upsell_close_button;
-        TextView textView = (TextView) view.findViewById(R$id.sticker_premium_upsell_close_button);
+        int i = R.id.sticker_premium_upsell_close_button;
+        TextView textView = (TextView) view.findViewById(R.id.sticker_premium_upsell_close_button);
         if (textView != null) {
-            i = R$id.sticker_premium_upsell_description;
-            TextView textView2 = (TextView) view.findViewById(R$id.sticker_premium_upsell_description);
+            i = R.id.sticker_premium_upsell_description;
+            TextView textView2 = (TextView) view.findViewById(R.id.sticker_premium_upsell_description);
             if (textView2 != null) {
-                i = R$id.sticker_premium_upsell_subscribe_button;
-                MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.sticker_premium_upsell_subscribe_button);
+                i = R.id.sticker_premium_upsell_subscribe_button;
+                MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.sticker_premium_upsell_subscribe_button);
                 if (materialButton != null) {
                     return new StickerPremiumUpsellDialogBinding((RelativeLayout) view, textView, textView2, materialButton);
                 }

@@ -10,13 +10,13 @@ public class c<I> extends a<I> {
     public final List<b<I>> j = new ArrayList(2);
 
     @Override // b.f.h.b.a.b
-    public void a(String str, Object obj, b$a b_a) {
+    public void a(String str, Object obj, b.a aVar) {
         int size = this.j.size();
         for (int i = 0; i < size; i++) {
             try {
                 b<I> bVar = this.j.get(i);
                 if (bVar != null) {
-                    bVar.a(str, obj, b_a);
+                    bVar.a(str, obj, aVar);
                 }
             } catch (Exception e) {
                 e("ForwardingControllerListener2 exception in onSubmit", e);
@@ -25,13 +25,13 @@ public class c<I> extends a<I> {
     }
 
     @Override // b.f.h.b.a.b
-    public void b(String str, Throwable th, b$a b_a) {
+    public void b(String str, Throwable th, b.a aVar) {
         int size = this.j.size();
         for (int i = 0; i < size; i++) {
             try {
                 b<I> bVar = this.j.get(i);
                 if (bVar != null) {
-                    bVar.b(str, th, b_a);
+                    bVar.b(str, th, aVar);
                 }
             } catch (Exception e) {
                 e("ForwardingControllerListener2 exception in onFailure", e);
@@ -40,13 +40,13 @@ public class c<I> extends a<I> {
     }
 
     @Override // b.f.h.b.a.b
-    public void c(String str, b$a b_a) {
+    public void c(String str, b.a aVar) {
         int size = this.j.size();
         for (int i = 0; i < size; i++) {
             try {
                 b<I> bVar = this.j.get(i);
                 if (bVar != null) {
-                    bVar.c(str, b_a);
+                    bVar.c(str, aVar);
                 }
             } catch (Exception e) {
                 e("ForwardingControllerListener2 exception in onRelease", e);
@@ -55,13 +55,13 @@ public class c<I> extends a<I> {
     }
 
     @Override // b.f.h.b.a.b
-    public void d(String str, I i, b$a b_a) {
+    public void d(String str, I i, b.a aVar) {
         int size = this.j.size();
         for (int i2 = 0; i2 < size; i2++) {
             try {
                 b<I> bVar = this.j.get(i2);
                 if (bVar != null) {
-                    bVar.d(str, i, b_a);
+                    bVar.d(str, i, aVar);
                 }
             } catch (Exception e) {
                 e("ForwardingControllerListener2 exception in onFinalImageSet", e);

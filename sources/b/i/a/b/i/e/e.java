@@ -5,25 +5,25 @@ import androidx.annotation.Nullable;
 /* JADX INFO: compiled from: AutoValue_ClientInfo.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class e extends k {
-    public final k$a a;
+    public final k.a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final a f748b;
+    public final b.i.a.b.i.e.a f748b;
 
-    public e(k$a k_a, a aVar, e$a e_a) {
-        this.a = k_a;
-        this.f748b = aVar;
+    public e(k.a aVar, b.i.a.b.i.e.a aVar2, a aVar3) {
+        this.a = aVar;
+        this.f748b = aVar2;
     }
 
     @Override // b.i.a.b.i.e.k
     @Nullable
-    public a a() {
+    public b.i.a.b.i.e.a a() {
         return this.f748b;
     }
 
     @Override // b.i.a.b.i.e.k
     @Nullable
-    public k$a b() {
+    public k.a b() {
         return this.a;
     }
 
@@ -35,14 +35,14 @@ public final class e extends k {
             return false;
         }
         k kVar = (k) obj;
-        k$a k_a = this.a;
-        if (k_a != null ? k_a.equals(kVar.b()) : kVar.b() == null) {
-            a aVar = this.f748b;
-            if (aVar == null) {
+        k.a aVar = this.a;
+        if (aVar != null ? aVar.equals(kVar.b()) : kVar.b() == null) {
+            b.i.a.b.i.e.a aVar2 = this.f748b;
+            if (aVar2 == null) {
                 if (kVar.a() == null) {
                     return true;
                 }
-            } else if (aVar.equals(kVar.a())) {
+            } else if (aVar2.equals(kVar.a())) {
                 return true;
             }
         }
@@ -50,10 +50,10 @@ public final class e extends k {
     }
 
     public int hashCode() {
-        k$a k_a = this.a;
-        int iHashCode = ((k_a == null ? 0 : k_a.hashCode()) ^ 1000003) * 1000003;
-        a aVar = this.f748b;
-        return iHashCode ^ (aVar != null ? aVar.hashCode() : 0);
+        k.a aVar = this.a;
+        int iHashCode = ((aVar == null ? 0 : aVar.hashCode()) ^ 1000003) * 1000003;
+        b.i.a.b.i.e.a aVar2 = this.f748b;
+        return iHashCode ^ (aVar2 != null ? aVar2.hashCode() : 0);
     }
 
     public String toString() {

@@ -1,7 +1,5 @@
 package b.g.a.c.g0.u;
 
-import b.g.a.a.i$c;
-import b.g.a.a.i$d;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import java.io.IOException;
 import java.util.Objects;
@@ -22,14 +20,14 @@ public class w0 extends p0<UUID> implements b.g.a.c.g0.i {
     @Override // b.g.a.c.g0.i
     public b.g.a.c.n<?> a(b.g.a.c.x xVar, b.g.a.c.d dVar) throws JsonMappingException {
         Boolean bool;
-        i$d i_dL = l(xVar, dVar, this._handledType);
-        if (i_dL == null) {
+        b.g.a.a.i.d dVarL = l(xVar, dVar, this._handledType);
+        if (dVarL == null) {
             bool = null;
         } else {
-            i$c i_cE = i_dL.e();
-            if (i_cE == i$c.BINARY) {
+            b.g.a.a.i.c cVarE = dVarL.e();
+            if (cVarE == b.g.a.a.i.c.BINARY) {
                 bool = Boolean.TRUE;
-            } else if (i_cE == i$c.STRING) {
+            } else if (cVarE == b.g.a.a.i.c.STRING) {
                 bool = Boolean.FALSE;
             } else {
                 bool = null;

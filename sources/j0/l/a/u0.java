@@ -1,15 +1,19 @@
 package j0.l.a;
 
-import j0.l.e.m$a;
-import rx.Observable$b;
+import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Func2;
 
 /* JADX INFO: compiled from: OperatorDistinctUntilChanged.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class u0<T, U> implements Observable$b<T, T>, Func2<U, U, Boolean> {
+public final class u0<T, U> implements Observable.b<T, T>, Func2<U, U, Boolean> {
     public final j0.k.b<? super T, ? extends U> j;
     public final Func2<? super U, ? super U, Boolean> k;
+
+    /* JADX INFO: compiled from: OperatorDistinctUntilChanged.java */
+    public final class a {
+        public static final u0<?, ?> a = new u0<>(j0.l.e.m.a.INSTANCE);
+    }
 
     public u0(j0.k.b<? super T, ? extends U> bVar) {
         this.j = bVar;
@@ -28,7 +32,7 @@ public final class u0<T, U> implements Observable$b<T, T>, Func2<U, U, Boolean> 
     }
 
     public u0(Func2<? super U, ? super U, Boolean> func2) {
-        this.j = m$a.INSTANCE;
+        this.j = j0.l.e.m.a.INSTANCE;
         this.k = func2;
     }
 }

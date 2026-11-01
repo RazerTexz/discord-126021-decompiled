@@ -7,31 +7,54 @@ import kotlin.coroutines.Continuation;
 /* JADX INFO: compiled from: Flow.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class a<T> implements d<T> {
+
+    /* JADX INFO: renamed from: s.a.d2.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: Flow.kt */
+    @d0.w.i.a.e(c = "kotlinx.coroutines.flow.AbstractFlow", f = "Flow.kt", l = {212}, m = "collect")
+    public final class C0647a extends d0.w.i.a.d {
+        public Object L$0;
+        public Object L$1;
+        public Object L$2;
+        public int label;
+        public /* synthetic */ Object result;
+
+        public C0647a(Continuation continuation) {
+            super(continuation);
+        }
+
+        @Override // d0.w.i.a.a
+        public final Object invokeSuspend(Object obj) {
+            this.result = obj;
+            this.label |= Integer.MIN_VALUE;
+            return a.this.a(null, this);
+        }
+    }
+
     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
     @Override // s.a.d2.d
     public final Object a(e<? super T> eVar, Continuation<? super Unit> continuation) throws Throwable {
-        a$a a_a;
+        C0647a c0647a;
         Throwable th;
         s.a.d2.g.e eVar2;
-        if (continuation instanceof a$a) {
-            a_a = (a$a) continuation;
-            int i = a_a.label;
+        if (continuation instanceof C0647a) {
+            c0647a = (C0647a) continuation;
+            int i = c0647a.label;
             if ((i & Integer.MIN_VALUE) != 0) {
-                a_a.label = i - Integer.MIN_VALUE;
+                c0647a.label = i - Integer.MIN_VALUE;
             } else {
-                a_a = new a$a(this, continuation);
+                c0647a = new C0647a(continuation);
             }
         } else {
-            a_a = new a$a(this, continuation);
+            c0647a = new C0647a(continuation);
         }
-        Object obj = a_a.result;
+        Object obj = c0647a.result;
         Object coroutine_suspended = d0.w.h.c.getCOROUTINE_SUSPENDED();
-        int i2 = a_a.label;
+        int i2 = c0647a.label;
         if (i2 != 0) {
             if (i2 != 1) {
                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
             }
-            eVar2 = (s.a.d2.g.e) a_a.L$2;
+            eVar2 = (s.a.d2.g.e) c0647a.L$2;
             try {
                 l.throwOnFailure(obj);
                 eVar2.releaseIntercepted();
@@ -43,13 +66,13 @@ public abstract class a<T> implements d<T> {
             }
         }
         l.throwOnFailure(obj);
-        s.a.d2.g.e eVar3 = new s.a.d2.g.e(eVar, a_a.getContext());
+        s.a.d2.g.e eVar3 = new s.a.d2.g.e(eVar, c0647a.getContext());
         try {
-            a_a.L$0 = this;
-            a_a.L$1 = eVar;
-            a_a.L$2 = eVar3;
-            a_a.label = 1;
-            if (b(eVar3, a_a) == coroutine_suspended) {
+            c0647a.L$0 = this;
+            c0647a.L$1 = eVar;
+            c0647a.L$2 = eVar3;
+            c0647a.label = 1;
+            if (b(eVar3, c0647a) == coroutine_suspended) {
                 return coroutine_suspended;
             }
             eVar2 = eVar3;

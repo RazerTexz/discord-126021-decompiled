@@ -3,11 +3,11 @@ package b.a.o;
 import android.graphics.Rect;
 import android.util.Log;
 import android.view.View;
-import android.view.View$OnLayoutChangeListener;
-import android.view.ViewTreeObserver$OnScrollChangedListener;
+import android.view.ViewTreeObserver;
 import androidx.annotation.UiThread;
 import d0.t.u;
 import d0.z.d.m;
+import java.lang.ref.WeakReference;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -17,16 +17,56 @@ import java.util.Set;
 
 /* JADX INFO: compiled from: PanelsChildGestureRegionObserver.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class b implements View$OnLayoutChangeListener {
+public final class b implements View.OnLayoutChangeListener {
     public final Map<Integer, Rect> j = new LinkedHashMap();
-    public final Map<Integer, ViewTreeObserver$OnScrollChangedListener> k = new LinkedHashMap();
-    public final Set<b$a> l = new LinkedHashSet();
+    public final Map<Integer, ViewTreeObserver.OnScrollChangedListener> k = new LinkedHashMap();
+    public final Set<a> l = new LinkedHashSet();
+
+    /* JADX INFO: renamed from: b.a.o.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: PanelsChildGestureRegionObserver.kt */
+    public final class C0039b {
+        public static WeakReference<b> a = new WeakReference<>(null);
+
+        @UiThread
+        public static final b a() {
+            b bVar = a.get();
+            if (bVar != null) {
+                return bVar;
+            }
+            b bVar2 = new b();
+            a = new WeakReference<>(bVar2);
+            return bVar2;
+        }
+    }
+
+    /* JADX INFO: compiled from: PanelsChildGestureRegionObserver.kt */
+    public interface a {
+        void onGestureRegionsUpdate(List<Rect> list);
+    }
+
+    /* JADX INFO: compiled from: PanelsChildGestureRegionObserver.kt */
+    public final class c implements ViewTreeObserver.OnScrollChangedListener {
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final /* synthetic */ View f252b;
+
+        public c(View view) {
+            this.f252b = view;
+        }
+
+        @Override // android.view.ViewTreeObserver.OnScrollChangedListener
+        public final void onScrollChanged() {
+            b bVar = b.this;
+            View view = this.f252b;
+            bVar.onLayoutChange(view, view.getLeft(), this.f252b.getTop(), this.f252b.getRight(), this.f252b.getBottom(), 0, 0, 0, 0);
+        }
+    }
 
     public final void a() {
         List<Rect> list = u.toList(this.j.values());
         Iterator<T> it = this.l.iterator();
         while (it.hasNext()) {
-            ((b$a) it.next()).onGestureRegionsUpdate(list);
+            ((a) it.next()).onGestureRegionsUpdate(list);
         }
     }
 
@@ -35,9 +75,9 @@ public final class b implements View$OnLayoutChangeListener {
         m.checkParameterIsNotNull(view, "view");
         if (!this.k.containsKey(Integer.valueOf(view.getId()))) {
             view.addOnLayoutChangeListener(this);
-            b$c b_c = new b$c(this, view);
-            view.getViewTreeObserver().addOnScrollChangedListener(b_c);
-            this.k.put(Integer.valueOf(view.getId()), b_c);
+            c cVar = new c(view);
+            view.getViewTreeObserver().addOnScrollChangedListener(cVar);
+            this.k.put(Integer.valueOf(view.getId()), cVar);
             return;
         }
         String simpleName = b.class.getSimpleName();
@@ -50,16 +90,16 @@ public final class b implements View$OnLayoutChangeListener {
     @UiThread
     public final void c(View view) {
         m.checkParameterIsNotNull(view, "view");
-        ViewTreeObserver$OnScrollChangedListener viewTreeObserver$OnScrollChangedListenerRemove = this.k.remove(Integer.valueOf(view.getId()));
-        if (viewTreeObserver$OnScrollChangedListenerRemove != null) {
-            view.getViewTreeObserver().removeOnScrollChangedListener(viewTreeObserver$OnScrollChangedListenerRemove);
+        ViewTreeObserver.OnScrollChangedListener onScrollChangedListenerRemove = this.k.remove(Integer.valueOf(view.getId()));
+        if (onScrollChangedListenerRemove != null) {
+            view.getViewTreeObserver().removeOnScrollChangedListener(onScrollChangedListenerRemove);
         }
         view.removeOnLayoutChangeListener(this);
         this.j.remove(Integer.valueOf(view.getId()));
         a();
     }
 
-    @Override // android.view.View$OnLayoutChangeListener
+    @Override // android.view.View.OnLayoutChangeListener
     public void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
         m.checkParameterIsNotNull(view, "view");
         if (this.k.keySet().contains(Integer.valueOf(view.getId()))) {

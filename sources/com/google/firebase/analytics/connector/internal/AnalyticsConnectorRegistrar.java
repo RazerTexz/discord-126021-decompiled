@@ -7,7 +7,6 @@ import b.i.a.f.e.o.f;
 import b.i.c.c;
 import b.i.c.j.a.a;
 import b.i.c.l.d;
-import b.i.c.l.d$b;
 import b.i.c.l.g;
 import b.i.c.l.o;
 import java.util.Arrays;
@@ -21,12 +20,12 @@ public class AnalyticsConnectorRegistrar implements g {
     @Keep
     @SuppressLint({"MissingPermission"})
     public List<d<?>> getComponents() {
-        d$b d_bA = d.a(a.class);
-        d_bA.a(new o(c.class, 1, 0));
-        d_bA.a(new o(Context.class, 1, 0));
-        d_bA.a(new o(b.i.c.q.d.class, 1, 0));
-        d_bA.c(b.i.c.j.a.c.a.a);
-        d_bA.d(2);
-        return Arrays.asList(d_bA.b(), f.N("fire-analytics", "18.0.0"));
+        d.b bVarA = d.a(a.class);
+        bVarA.a(new o(c.class, 1, 0));
+        bVarA.a(new o(Context.class, 1, 0));
+        bVarA.a(new o(b.i.c.q.d.class, 1, 0));
+        bVarA.c(b.i.c.j.a.c.a.a);
+        bVarA.d(2);
+        return Arrays.asList(bVarA.b(), f.N("fire-analytics", "18.0.0"));
     }
 }

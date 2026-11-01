@@ -15,7 +15,6 @@ import java.lang.ref.WeakReference;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.WeakHashMap;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
@@ -73,8 +72,8 @@ public final class d1 extends Fragment implements j {
         super.onCreate(bundle);
         this.l = 1;
         this.m = bundle;
-        for (Map$Entry<String, LifecycleCallback> map$Entry : this.k.entrySet()) {
-            map$Entry.getValue().e(bundle != null ? bundle.getBundle(map$Entry.getKey()) : null);
+        for (Map.Entry<String, LifecycleCallback> entry : this.k.entrySet()) {
+            entry.getValue().e(bundle != null ? bundle.getBundle(entry.getKey()) : null);
         }
     }
 
@@ -104,10 +103,10 @@ public final class d1 extends Fragment implements j {
         if (bundle == null) {
             return;
         }
-        for (Map$Entry<String, LifecycleCallback> map$Entry : this.k.entrySet()) {
+        for (Map.Entry<String, LifecycleCallback> entry : this.k.entrySet()) {
             Bundle bundle2 = new Bundle();
-            map$Entry.getValue().h(bundle2);
-            bundle.putBundle(map$Entry.getKey(), bundle2);
+            entry.getValue().h(bundle2);
+            bundle.putBundle(entry.getKey(), bundle2);
         }
     }
 

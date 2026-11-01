@@ -34,26 +34,26 @@ public class ColorPreferenceCompat extends Preference implements f {
         super(context, attributeSet);
         this.j = ViewCompat.MEASURED_STATE_MASK;
         setPersistent(true);
-        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R$f.ColorPreference);
-        this.k = typedArrayObtainStyledAttributes.getBoolean(R$f.ColorPreference_cpv_showDialog, true);
-        this.l = typedArrayObtainStyledAttributes.getInt(R$f.ColorPreference_cpv_dialogType, 1);
-        this.m = typedArrayObtainStyledAttributes.getInt(R$f.ColorPreference_cpv_colorShape, 1);
-        this.n = typedArrayObtainStyledAttributes.getBoolean(R$f.ColorPreference_cpv_allowPresets, true);
-        this.o = typedArrayObtainStyledAttributes.getBoolean(R$f.ColorPreference_cpv_allowCustom, true);
-        this.p = typedArrayObtainStyledAttributes.getBoolean(R$f.ColorPreference_cpv_showAlphaSlider, false);
-        this.q = typedArrayObtainStyledAttributes.getBoolean(R$f.ColorPreference_cpv_showColorShades, true);
-        this.r = typedArrayObtainStyledAttributes.getInt(R$f.ColorPreference_cpv_previewSize, 0);
-        int resourceId = typedArrayObtainStyledAttributes.getResourceId(R$f.ColorPreference_cpv_colorPresets, 0);
-        this.t = typedArrayObtainStyledAttributes.getResourceId(R$f.ColorPreference_cpv_dialogTitle, R$e.cpv_default_title);
+        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.f.ColorPreference);
+        this.k = typedArrayObtainStyledAttributes.getBoolean(R.f.ColorPreference_cpv_showDialog, true);
+        this.l = typedArrayObtainStyledAttributes.getInt(R.f.ColorPreference_cpv_dialogType, 1);
+        this.m = typedArrayObtainStyledAttributes.getInt(R.f.ColorPreference_cpv_colorShape, 1);
+        this.n = typedArrayObtainStyledAttributes.getBoolean(R.f.ColorPreference_cpv_allowPresets, true);
+        this.o = typedArrayObtainStyledAttributes.getBoolean(R.f.ColorPreference_cpv_allowCustom, true);
+        this.p = typedArrayObtainStyledAttributes.getBoolean(R.f.ColorPreference_cpv_showAlphaSlider, false);
+        this.q = typedArrayObtainStyledAttributes.getBoolean(R.f.ColorPreference_cpv_showColorShades, true);
+        this.r = typedArrayObtainStyledAttributes.getInt(R.f.ColorPreference_cpv_previewSize, 0);
+        int resourceId = typedArrayObtainStyledAttributes.getResourceId(R.f.ColorPreference_cpv_colorPresets, 0);
+        this.t = typedArrayObtainStyledAttributes.getResourceId(R.f.ColorPreference_cpv_dialogTitle, R.e.cpv_default_title);
         if (resourceId != 0) {
             this.f3157s = getContext().getResources().getIntArray(resourceId);
         } else {
             this.f3157s = ColorPickerDialog.j;
         }
         if (this.m == 1) {
-            setWidgetLayoutResource(this.r == 1 ? R$d.cpv_preference_circle_large : R$d.cpv_preference_circle);
+            setWidgetLayoutResource(this.r == 1 ? R.d.cpv_preference_circle_large : R.d.cpv_preference_circle);
         } else {
-            setWidgetLayoutResource(this.r == 1 ? R$d.cpv_preference_square_large : R$d.cpv_preference_square);
+            setWidgetLayoutResource(this.r == 1 ? R.d.cpv_preference_square_large : R.d.cpv_preference_square);
         }
         typedArrayObtainStyledAttributes.recycle();
     }
@@ -89,7 +89,7 @@ public class ColorPreferenceCompat extends Preference implements f {
     @Override // androidx.preference.Preference
     public void onBindViewHolder(PreferenceViewHolder preferenceViewHolder) {
         super.onBindViewHolder(preferenceViewHolder);
-        ColorPanelView colorPanelView = (ColorPanelView) preferenceViewHolder.itemView.findViewById(R$c.cpv_preference_preview_color_panel);
+        ColorPanelView colorPanelView = (ColorPanelView) preferenceViewHolder.itemView.findViewById(R.c.cpv_preference_preview_color_panel);
         if (colorPanelView != null) {
             colorPanelView.setColor(this.j);
         }
@@ -100,17 +100,17 @@ public class ColorPreferenceCompat extends Preference implements f {
         super.onClick();
         if (this.k) {
             int[] iArr = ColorPickerDialog.j;
-            ColorPickerDialog$k colorPickerDialog$k = new ColorPickerDialog$k();
-            colorPickerDialog$k.f = this.l;
-            colorPickerDialog$k.a = this.t;
-            colorPickerDialog$k.n = this.m;
-            colorPickerDialog$k.g = this.f3157s;
-            colorPickerDialog$k.j = this.n;
-            colorPickerDialog$k.k = this.o;
-            colorPickerDialog$k.i = this.p;
-            colorPickerDialog$k.m = this.q;
-            colorPickerDialog$k.h = this.j;
-            ColorPickerDialog colorPickerDialogA = colorPickerDialog$k.a();
+            ColorPickerDialog.k kVar = new ColorPickerDialog.k();
+            kVar.f = this.l;
+            kVar.a = this.t;
+            kVar.n = this.m;
+            kVar.g = this.f3157s;
+            kVar.j = this.n;
+            kVar.k = this.o;
+            kVar.i = this.p;
+            kVar.m = this.q;
+            kVar.h = this.j;
+            ColorPickerDialog colorPickerDialogA = kVar.a();
             colorPickerDialogA.k = this;
             FragmentTransaction fragmentTransactionBeginTransaction = f().getSupportFragmentManager().beginTransaction();
             StringBuilder sbU = a.U("color_");

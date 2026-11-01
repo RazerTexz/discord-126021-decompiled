@@ -3,11 +3,8 @@ package b.f.g.e;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Matrix;
-import android.graphics.Matrix$ScaleToFit;
 import android.graphics.Path;
-import android.graphics.Path$Direction;
-import android.graphics.Path$FillType;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
@@ -159,7 +156,7 @@ public abstract class n extends Drawable implements j, d0 {
             float f = this.m;
             rectF.inset(f / 2.0f, f / 2.0f);
             if (this.k) {
-                this.q.addCircle(this.u.centerX(), this.u.centerY(), Math.min(this.u.width(), this.u.height()) / 2.0f, Path$Direction.CW);
+                this.q.addCircle(this.u.centerX(), this.u.centerY(), Math.min(this.u.width(), this.u.height()) / 2.0f, Path.Direction.CW);
             } else {
                 int i = 0;
                 while (true) {
@@ -170,7 +167,7 @@ public abstract class n extends Drawable implements j, d0 {
                     fArr[i] = (this.r[i] + this.H) - (this.m / 2.0f);
                     i++;
                 }
-                this.q.addRoundRect(this.u, fArr, Path$Direction.CW);
+                this.q.addRoundRect(this.u, fArr, Path.Direction.CW);
             }
             RectF rectF2 = this.u;
             float f2 = this.m;
@@ -179,7 +176,7 @@ public abstract class n extends Drawable implements j, d0 {
             float f3 = this.H + (this.I ? this.m : 0.0f);
             this.u.inset(f3, f3);
             if (this.k) {
-                this.n.addCircle(this.u.centerX(), this.u.centerY(), Math.min(this.u.width(), this.u.height()) / 2.0f, Path$Direction.CW);
+                this.n.addCircle(this.u.centerX(), this.u.centerY(), Math.min(this.u.width(), this.u.height()) / 2.0f, Path.Direction.CW);
             } else if (this.I) {
                 if (this.t == null) {
                     this.t = new float[8];
@@ -187,13 +184,13 @@ public abstract class n extends Drawable implements j, d0 {
                 for (int i2 = 0; i2 < this.f517s.length; i2++) {
                     this.t[i2] = this.r[i2] - this.m;
                 }
-                this.n.addRoundRect(this.u, this.t, Path$Direction.CW);
+                this.n.addRoundRect(this.u, this.t, Path.Direction.CW);
             } else {
-                this.n.addRoundRect(this.u, this.r, Path$Direction.CW);
+                this.n.addRoundRect(this.u, this.r, Path.Direction.CW);
             }
             float f4 = -f3;
             this.u.inset(f4, f4);
-            this.n.setFillType(Path$FillType.WINDING);
+            this.n.setFillType(Path.FillType.WINDING);
             this.K = false;
         }
     }
@@ -238,7 +235,7 @@ public abstract class n extends Drawable implements j, d0 {
         }
         this.w.set(0.0f, 0.0f, getIntrinsicWidth(), getIntrinsicHeight());
         this.f518x.set(this.j.getBounds());
-        this.f520z.setRectToRect(this.w, this.f518x, Matrix$ScaleToFit.FILL);
+        this.f520z.setRectToRect(this.w, this.f518x, Matrix.ScaleToFit.FILL);
         if (this.I) {
             RectF rectF = this.f519y;
             if (rectF == null) {
@@ -252,7 +249,7 @@ public abstract class n extends Drawable implements j, d0 {
             if (this.E == null) {
                 this.E = new Matrix();
             }
-            this.E.setRectToRect(this.u, this.f519y, Matrix$ScaleToFit.FILL);
+            this.E.setRectToRect(this.u, this.f519y, Matrix.ScaleToFit.FILL);
         } else {
             Matrix matrix2 = this.E;
             if (matrix2 != null) {
@@ -336,8 +333,8 @@ public abstract class n extends Drawable implements j, d0 {
     }
 
     @Override // android.graphics.drawable.Drawable
-    public void setColorFilter(int i, @NonNull PorterDuff$Mode porterDuff$Mode) {
-        this.j.setColorFilter(i, porterDuff$Mode);
+    public void setColorFilter(int i, @NonNull PorterDuff.Mode mode) {
+        this.j.setColorFilter(i, mode);
     }
 
     @Override // android.graphics.drawable.Drawable

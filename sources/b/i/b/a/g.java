@@ -2,6 +2,7 @@ package b.i.b.a;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Arrays;
+import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 /* JADX INFO: compiled from: MoreObjects.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -9,24 +10,41 @@ public final class g {
     public final String a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final g$a f1643b;
-    public g$a c;
+    public final a f1643b;
+    public a c;
+
+    /* JADX INFO: compiled from: MoreObjects.java */
+    public final class a {
+
+        @NullableDecl
+        public String a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        @NullableDecl
+        public Object f1644b;
+
+        @NullableDecl
+        public a c;
+
+        public a(f fVar) {
+        }
+    }
 
     public g(String str, f fVar) {
-        g$a g_a = new g$a(null);
-        this.f1643b = g_a;
-        this.c = g_a;
+        a aVar = new a(null);
+        this.f1643b = aVar;
+        this.c = aVar;
         this.a = str;
     }
 
     @CanIgnoreReturnValue
     public g a(String str, int i) {
         String strValueOf = String.valueOf(i);
-        g$a g_a = new g$a(null);
-        this.c.c = g_a;
-        this.c = g_a;
-        g_a.f1644b = strValueOf;
-        g_a.a = str;
+        a aVar = new a(null);
+        this.c.c = aVar;
+        this.c = aVar;
+        aVar.f1644b = strValueOf;
+        aVar.a = str;
         return this;
     }
 
@@ -34,12 +52,12 @@ public final class g {
         StringBuilder sb = new StringBuilder(32);
         sb.append(this.a);
         sb.append('{');
-        g$a g_a = this.f1643b.c;
+        a aVar = this.f1643b.c;
         String str = "";
-        while (g_a != null) {
-            Object obj = g_a.f1644b;
+        while (aVar != null) {
+            Object obj = aVar.f1644b;
             sb.append(str);
-            String str2 = g_a.a;
+            String str2 = aVar.a;
             if (str2 != null) {
                 sb.append(str2);
                 sb.append('=');
@@ -50,7 +68,7 @@ public final class g {
                 String strDeepToString = Arrays.deepToString(new Object[]{obj});
                 sb.append((CharSequence) strDeepToString, 1, strDeepToString.length() - 1);
             }
-            g_a = g_a.c;
+            aVar = aVar.c;
             str = ", ";
         }
         sb.append('}');

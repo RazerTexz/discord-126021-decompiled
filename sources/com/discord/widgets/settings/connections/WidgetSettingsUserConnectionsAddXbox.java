@@ -4,23 +4,33 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import androidx.appcompat.widget.ActivityChooserModel;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
-import b.a.d.o;
+import b.a.d.j;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppComponent;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetConnectionsAddXboxBinding;
+import com.discord.models.domain.ModelConnectionState;
+import com.discord.restapi.RestAPIParams;
+import com.discord.stores.StoreStream;
+import com.discord.stores.StoreUserConnections;
 import com.discord.utilities.analytics.AnalyticsTracker;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.dimmer.DimmerView;
 import com.discord.utilities.error.Error;
-import com.discord.utilities.error.Error$Response;
 import com.discord.utilities.platform.Platform;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 import rx.Observable;
 import rx.functions.Action1;
@@ -29,13 +39,150 @@ import rx.functions.Action1;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetSettingsUserConnectionsAddXbox extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetSettingsUserConnectionsAddXbox.class, "binding", "getBinding()Lcom/discord/databinding/WidgetConnectionsAddXboxBinding;", 0)};
-    public static final WidgetSettingsUserConnectionsAddXbox$Companion Companion = new WidgetSettingsUserConnectionsAddXbox$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnectionsAddXbox$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsUserConnectionsAddXbox.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            StoreUserConnections userConnections = StoreStream.INSTANCE.getUserConnections();
+            String platformId = Platform.XBOX.getPlatformId();
+            m.checkNotNullExpressionValue(view, "v");
+            Context context = view.getContext();
+            m.checkNotNullExpressionValue(context, "v.context");
+            userConnections.authorizeConnection(platformId, context, Traits.Location.Page.USER_SETTINGS);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnectionsAddXbox$submitPinCode$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsUserConnectionsAddXbox.kt */
+    public final class AnonymousClass1<T, R> implements b<ModelConnectionState, Observable<? extends Void>> {
+        public final /* synthetic */ Platform $platform;
+
+        public AnonymousClass1(Platform platform) {
+            this.$platform = platform;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends Void> call(ModelConnectionState modelConnectionState) {
+            return call2(modelConnectionState);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends Void> call2(ModelConnectionState modelConnectionState) {
+            AnalyticsTracker analyticsTracker = AnalyticsTracker.INSTANCE;
+            m.checkNotNullExpressionValue(modelConnectionState, "state");
+            analyticsTracker.accountLinkStep("PIN code entry", "PIN success", modelConnectionState.getState(), this.$platform.getPlatformId());
+            RestAPI api = RestAPI.INSTANCE.getApi();
+            String platformId = this.$platform.getPlatformId();
+            String code = modelConnectionState.getCode();
+            String state = modelConnectionState.getState();
+            Boolean bool = Boolean.TRUE;
+            return api.submitConnectionState(platformId, new RestAPIParams.ConnectionState(code, state, bool, bool));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnectionsAddXbox$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsUserConnectionsAddXbox.kt */
+    public final class AnonymousClass2 extends o implements Function1<String, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnectionsAddXbox$onViewBound$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetSettingsUserConnectionsAddXbox.kt */
+        public final class AnonymousClass1<T> implements Action1<Error> {
+            public AnonymousClass1() {
+            }
+
+            @Override // rx.functions.Action1
+            public /* bridge */ /* synthetic */ void call(Error error) {
+                call2(error);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final void call2(Error error) {
+                WidgetSettingsUserConnectionsAddXbox widgetSettingsUserConnectionsAddXbox = WidgetSettingsUserConnectionsAddXbox.this;
+                m.checkNotNullExpressionValue(error, "error");
+                WidgetSettingsUserConnectionsAddXbox.access$trackXboxLinkFailed(widgetSettingsUserConnectionsAddXbox, error);
+                if (error.getType() == Error.Type.DISCORD_REQUEST_ERROR) {
+                    error.setShowErrorToasts(false);
+                    WidgetSettingsUserConnectionsAddXbox.access$showPinError(WidgetSettingsUserConnectionsAddXbox.this);
+                }
+            }
+        }
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            m.checkNotNullParameter(str, "verificationCode");
+            if (str.length() == 6) {
+                WidgetSettingsUserConnectionsAddXbox widgetSettingsUserConnectionsAddXbox = WidgetSettingsUserConnectionsAddXbox.this;
+                Platform platform = Platform.XBOX;
+                DimmerView dimmerView = WidgetSettingsUserConnectionsAddXbox.access$getBinding$p(widgetSettingsUserConnectionsAddXbox).d;
+                WidgetSettingsUserConnectionsAddXbox widgetSettingsUserConnectionsAddXbox2 = WidgetSettingsUserConnectionsAddXbox.this;
+                widgetSettingsUserConnectionsAddXbox.submitPinCode(str, platform, dimmerView, widgetSettingsUserConnectionsAddXbox2, widgetSettingsUserConnectionsAddXbox2.getActivity(), new AnonymousClass1());
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.settings.connections.WidgetSettingsUserConnectionsAddXbox$submitPinCode$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetSettingsUserConnectionsAddXbox.kt */
+    public final class AnonymousClass2 extends o implements Function1<Void, Unit> {
+        public final /* synthetic */ Activity $activity;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(Activity activity) {
+            super(1);
+            this.$activity = activity;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+            Activity activity = this.$activity;
+            if (activity != null) {
+                activity.finish();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetSettingsUserConnectionsAddXbox.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(Context context) {
+            m.checkNotNullParameter(context, "context");
+            j.e(context, WidgetSettingsUserConnectionsAddXbox.class, null, 4);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetSettingsUserConnectionsAddXbox() {
-        super(R$layout.widget_connections_add_xbox);
+        super(R.layout.widget_connections_add_xbox);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetSettingsUserConnectionsAddXbox$binding$2.INSTANCE, null, 2, null);
     }
 
@@ -56,7 +203,7 @@ public final class WidgetSettingsUserConnectionsAddXbox extends AppFragment {
     }
 
     public static final void launch(Context context) {
-        Companion.launch(context);
+        INSTANCE.launch(context);
     }
 
     @Override // com.discord.app.AppFragment
@@ -64,15 +211,15 @@ public final class WidgetSettingsUserConnectionsAddXbox extends AppFragment {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
-        setActionBarSubtitle(2131896797);
-        setActionBarTitle(2131887872);
+        setActionBarSubtitle(R.string.user_settings);
+        setActionBarTitle(R.string.connections);
         trackXboxLinkStep();
-        getBinding().c.setOnClickListener(WidgetSettingsUserConnectionsAddXbox$onViewBound$1.INSTANCE);
-        getBinding().f2354b.setOnCodeEntered(new WidgetSettingsUserConnectionsAddXbox$onViewBound$2(this));
+        getBinding().c.setOnClickListener(AnonymousClass1.INSTANCE);
+        getBinding().f2354b.setOnCodeEntered(new AnonymousClass2());
     }
 
     private final void showPinError() {
-        b.a.d.m.g(getContext(), 2131887856, 0, null, 12);
+        b.a.d.m.g(getContext(), R.string.connection_invalid_pin, 0, null, 12);
         getBinding().f2354b.b();
     }
 
@@ -81,15 +228,15 @@ public final class WidgetSettingsUserConnectionsAddXbox extends AppFragment {
         m.checkNotNullParameter(platform, "platform");
         m.checkNotNullParameter(appComponent, "appComponent");
         m.checkNotNullParameter(errorHandler, "errorHandler");
-        Observable observableA = ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().getConnectionState(platform.getPlatformId(), verificationCode), false, 1, null).A(new WidgetSettingsUserConnectionsAddXbox$submitPinCode$1(platform));
+        Observable observableA = ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getConnectionState(platform.getPlatformId(), verificationCode), false, 1, null).A(new AnonymousClass1(platform));
         m.checkNotNullExpressionValue(observableA, "RestAPI\n        .api\n   …              )\n        }");
-        ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.ui$default(observableA, appComponent, null, 2, null), dimmer, 0L, 2, null).k(o.a.g(activity, new WidgetSettingsUserConnectionsAddXbox$submitPinCode$2(activity), errorHandler));
+        ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.ui$default(observableA, appComponent, null, 2, null), dimmer, 0L, 2, null).k(b.a.d.o.a.g(activity, new AnonymousClass2(activity), errorHandler));
     }
 
     private final void trackXboxLinkFailed(Error error) {
         AnalyticsTracker analyticsTracker = AnalyticsTracker.INSTANCE;
         String bodyText = error.getBodyText();
-        Error$Response response = error.getResponse();
+        Error.Response response = error.getResponse();
         m.checkNotNullExpressionValue(response, "error.response");
         analyticsTracker.accountLinkFailed(bodyText, Integer.valueOf(response.getCode()), "pin", "PIN code entry", Platform.XBOX.getPlatformId());
     }

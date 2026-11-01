@@ -6,6 +6,12 @@ import java.io.IOException;
 /* JADX INFO: compiled from: MediaPeriod.java */
 /* JADX INFO: loaded from: classes3.dex */
 public interface x extends j0 {
+
+    /* JADX INFO: compiled from: MediaPeriod.java */
+    public interface a extends j0.a<x> {
+        void b(x xVar);
+    }
+
     long c();
 
     void e() throws IOException;
@@ -20,7 +26,7 @@ public interface x extends j0 {
 
     long k();
 
-    void l(x$a x_a, long j);
+    void l(a aVar, long j);
 
     long m(b.i.a.c.c3.j[] jVarArr, boolean[] zArr, i0[] i0VarArr, boolean[] zArr2, long j);
 

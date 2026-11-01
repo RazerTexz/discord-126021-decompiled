@@ -2,14 +2,12 @@ package com.google.android.material.shape;
 
 import android.graphics.Matrix;
 import android.graphics.Path;
-import android.graphics.Path$Direction;
-import android.graphics.Path$Op;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.UiThread;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -27,6 +25,42 @@ public class ShapeAppearancePathProvider {
     private final Path cornerPath = new Path();
     private boolean edgeIntersectionCheckEnabled = true;
 
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public interface PathListener {
+        void onCornerPathCreated(ShapePath shapePath, Matrix matrix, int i);
+
+        void onEdgePathCreated(ShapePath shapePath, Matrix matrix, int i);
+    }
+
+    public class a {
+        public static final ShapeAppearancePathProvider a = new ShapeAppearancePathProvider();
+    }
+
+    public final class b {
+
+        @NonNull
+        public final ShapeAppearanceModel a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        @NonNull
+        public final Path f3055b;
+
+        @NonNull
+        public final RectF c;
+
+        @Nullable
+        public final PathListener d;
+        public final float e;
+
+        public b(@NonNull ShapeAppearanceModel shapeAppearanceModel, float f, RectF rectF, @Nullable PathListener pathListener, Path path) {
+            this.d = pathListener;
+            this.a = shapeAppearanceModel;
+            this.e = f;
+            this.c = rectF;
+            this.f3055b = path;
+        }
+    }
+
     public ShapeAppearancePathProvider() {
         for (int i = 0; i < 4; i++) {
             this.cornerPaths[i] = new ShapePath();
@@ -39,27 +73,27 @@ public class ShapeAppearancePathProvider {
         return (i + 1) * 90;
     }
 
-    private void appendCornerPath(@NonNull ShapeAppearancePathProvider$b shapeAppearancePathProvider$b, int i) {
+    private void appendCornerPath(@NonNull b bVar, int i) {
         this.scratch[0] = this.cornerPaths[i].getStartX();
         this.scratch[1] = this.cornerPaths[i].getStartY();
         this.cornerTransforms[i].mapPoints(this.scratch);
         if (i == 0) {
-            Path path = shapeAppearancePathProvider$b.f3055b;
+            Path path = bVar.f3055b;
             float[] fArr = this.scratch;
             path.moveTo(fArr[0], fArr[1]);
         } else {
-            Path path2 = shapeAppearancePathProvider$b.f3055b;
+            Path path2 = bVar.f3055b;
             float[] fArr2 = this.scratch;
             path2.lineTo(fArr2[0], fArr2[1]);
         }
-        this.cornerPaths[i].applyToPath(this.cornerTransforms[i], shapeAppearancePathProvider$b.f3055b);
-        ShapeAppearancePathProvider$PathListener shapeAppearancePathProvider$PathListener = shapeAppearancePathProvider$b.d;
-        if (shapeAppearancePathProvider$PathListener != null) {
-            shapeAppearancePathProvider$PathListener.onCornerPathCreated(this.cornerPaths[i], this.cornerTransforms[i], i);
+        this.cornerPaths[i].applyToPath(this.cornerTransforms[i], bVar.f3055b);
+        PathListener pathListener = bVar.d;
+        if (pathListener != null) {
+            pathListener.onCornerPathCreated(this.cornerPaths[i], this.cornerTransforms[i], i);
         }
     }
 
-    private void appendEdgePath(@NonNull ShapeAppearancePathProvider$b shapeAppearancePathProvider$b, int i) {
+    private void appendEdgePath(@NonNull b bVar, int i) {
         int i2 = (i + 1) % 4;
         this.scratch[0] = this.cornerPaths[i].getEndX();
         this.scratch[1] = this.cornerPaths[i].getEndY();
@@ -71,15 +105,15 @@ public class ShapeAppearancePathProvider {
         float f = fArr[0];
         float[] fArr2 = this.scratch2;
         float fMax = Math.max(((float) Math.hypot(f - fArr2[0], fArr[1] - fArr2[1])) - 0.001f, 0.0f);
-        float edgeCenterForIndex = getEdgeCenterForIndex(shapeAppearancePathProvider$b.c, i);
+        float edgeCenterForIndex = getEdgeCenterForIndex(bVar.c, i);
         this.shapePath.reset(0.0f, 0.0f);
-        EdgeTreatment edgeTreatmentForIndex = getEdgeTreatmentForIndex(i, shapeAppearancePathProvider$b.a);
-        edgeTreatmentForIndex.getEdgePath(fMax, edgeCenterForIndex, shapeAppearancePathProvider$b.e, this.shapePath);
+        EdgeTreatment edgeTreatmentForIndex = getEdgeTreatmentForIndex(i, bVar.a);
+        edgeTreatmentForIndex.getEdgePath(fMax, edgeCenterForIndex, bVar.e, this.shapePath);
         this.edgePath.reset();
         this.shapePath.applyToPath(this.edgeTransforms[i], this.edgePath);
         if (this.edgeIntersectionCheckEnabled && (edgeTreatmentForIndex.forceIntersection() || pathOverlapsCorner(this.edgePath, i) || pathOverlapsCorner(this.edgePath, i2))) {
             Path path = this.edgePath;
-            path.op(path, this.boundsPath, Path$Op.DIFFERENCE);
+            path.op(path, this.boundsPath, Path.Op.DIFFERENCE);
             this.scratch[0] = this.shapePath.getStartX();
             this.scratch[1] = this.shapePath.getStartY();
             this.edgeTransforms[i].mapPoints(this.scratch);
@@ -88,11 +122,11 @@ public class ShapeAppearancePathProvider {
             path2.moveTo(fArr3[0], fArr3[1]);
             this.shapePath.applyToPath(this.edgeTransforms[i], this.overlappedEdgePath);
         } else {
-            this.shapePath.applyToPath(this.edgeTransforms[i], shapeAppearancePathProvider$b.f3055b);
+            this.shapePath.applyToPath(this.edgeTransforms[i], bVar.f3055b);
         }
-        ShapeAppearancePathProvider$PathListener shapeAppearancePathProvider$PathListener = shapeAppearancePathProvider$b.d;
-        if (shapeAppearancePathProvider$PathListener != null) {
-            shapeAppearancePathProvider$PathListener.onEdgePathCreated(this.shapePath, this.edgeTransforms[i], i);
+        PathListener pathListener = bVar.d;
+        if (pathListener != null) {
+            pathListener.onEdgePathCreated(this.shapePath, this.edgeTransforms[i], i);
         }
     }
 
@@ -154,10 +188,10 @@ public class ShapeAppearancePathProvider {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     @UiThread
     public static ShapeAppearancePathProvider getInstance() {
-        return ShapeAppearancePathProvider$a.a;
+        return a.a;
     }
 
     @RequiresApi(19)
@@ -167,7 +201,7 @@ public class ShapeAppearancePathProvider {
         RectF rectF = new RectF();
         path.computeBounds(rectF, true);
         this.cornerPath.computeBounds(rectF, true);
-        path.op(this.cornerPath, Path$Op.INTERSECT);
+        path.op(this.cornerPath, Path.Op.INTERSECT);
         path.computeBounds(rectF, true);
         if (rectF.isEmpty()) {
             return rectF.width() > 1.0f && rectF.height() > 1.0f;
@@ -175,11 +209,11 @@ public class ShapeAppearancePathProvider {
         return true;
     }
 
-    private void setCornerPathAndTransform(@NonNull ShapeAppearancePathProvider$b shapeAppearancePathProvider$b, int i) {
-        getCornerTreatmentForIndex(i, shapeAppearancePathProvider$b.a).getCornerPath(this.cornerPaths[i], 90.0f, shapeAppearancePathProvider$b.e, shapeAppearancePathProvider$b.c, getCornerSizeForIndex(i, shapeAppearancePathProvider$b.a));
+    private void setCornerPathAndTransform(@NonNull b bVar, int i) {
+        getCornerTreatmentForIndex(i, bVar.a).getCornerPath(this.cornerPaths[i], 90.0f, bVar.e, bVar.c, getCornerSizeForIndex(i, bVar.a));
         float fAngleOfEdge = angleOfEdge(i);
         this.cornerTransforms[i].reset();
-        getCoordinatesOfCorner(i, shapeAppearancePathProvider$b.c, this.pointF);
+        getCoordinatesOfCorner(i, bVar.c, this.pointF);
         Matrix matrix = this.cornerTransforms[i];
         PointF pointF = this.pointF;
         matrix.setTranslate(pointF.x, pointF.y);
@@ -202,26 +236,26 @@ public class ShapeAppearancePathProvider {
         this.edgeTransforms[i].preRotate(fAngleOfEdge);
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
-    public void calculatePath(ShapeAppearanceModel shapeAppearanceModel, float f, RectF rectF, ShapeAppearancePathProvider$PathListener shapeAppearancePathProvider$PathListener, @NonNull Path path) {
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public void calculatePath(ShapeAppearanceModel shapeAppearanceModel, float f, RectF rectF, PathListener pathListener, @NonNull Path path) {
         path.rewind();
         this.overlappedEdgePath.rewind();
         this.boundsPath.rewind();
-        this.boundsPath.addRect(rectF, Path$Direction.CW);
-        ShapeAppearancePathProvider$b shapeAppearancePathProvider$b = new ShapeAppearancePathProvider$b(shapeAppearanceModel, f, rectF, shapeAppearancePathProvider$PathListener, path);
+        this.boundsPath.addRect(rectF, Path.Direction.CW);
+        b bVar = new b(shapeAppearanceModel, f, rectF, pathListener, path);
         for (int i = 0; i < 4; i++) {
-            setCornerPathAndTransform(shapeAppearancePathProvider$b, i);
+            setCornerPathAndTransform(bVar, i);
             setEdgePathAndTransform(i);
         }
         for (int i2 = 0; i2 < 4; i2++) {
-            appendCornerPath(shapeAppearancePathProvider$b, i2);
-            appendEdgePath(shapeAppearancePathProvider$b, i2);
+            appendCornerPath(bVar, i2);
+            appendEdgePath(bVar, i2);
         }
         path.close();
         this.overlappedEdgePath.close();
         if (this.overlappedEdgePath.isEmpty()) {
             return;
         }
-        path.op(this.overlappedEdgePath, Path$Op.UNION);
+        path.op(this.overlappedEdgePath, Path.Op.UNION);
     }
 }

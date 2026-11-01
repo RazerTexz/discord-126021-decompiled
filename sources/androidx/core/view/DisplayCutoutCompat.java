@@ -1,7 +1,7 @@
 package androidx.core.view;
 
 import android.graphics.Rect;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.view.DisplayCutout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,14 +19,14 @@ public final class DisplayCutoutCompat {
     private final Object mDisplayCutout;
 
     public DisplayCutoutCompat(Rect rect, List<Rect> list) {
-        this(Build$VERSION.SDK_INT >= 28 ? new DisplayCutout(rect, list) : null);
+        this(Build.VERSION.SDK_INT >= 28 ? new DisplayCutout(rect, list) : null);
     }
 
     private static DisplayCutout constructDisplayCutout(@NonNull Insets insets, @Nullable Rect rect, @Nullable Rect rect2, @Nullable Rect rect3, @Nullable Rect rect4, @NonNull Insets insets2) {
         if (BuildCompat.isAtLeastR()) {
             return new DisplayCutout(insets.toPlatformInsets(), rect, rect2, rect3, rect4, insets2.toPlatformInsets());
         }
-        int i = Build$VERSION.SDK_INT;
+        int i = Build.VERSION.SDK_INT;
         if (i >= 29) {
             return new DisplayCutout(insets.toPlatformInsets(), rect, rect2, rect3, rect4);
         }
@@ -62,32 +62,32 @@ public final class DisplayCutoutCompat {
 
     @NonNull
     public List<Rect> getBoundingRects() {
-        return Build$VERSION.SDK_INT >= 28 ? ((DisplayCutout) this.mDisplayCutout).getBoundingRects() : Collections.emptyList();
+        return Build.VERSION.SDK_INT >= 28 ? ((DisplayCutout) this.mDisplayCutout).getBoundingRects() : Collections.emptyList();
     }
 
     public int getSafeInsetBottom() {
-        if (Build$VERSION.SDK_INT >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             return ((DisplayCutout) this.mDisplayCutout).getSafeInsetBottom();
         }
         return 0;
     }
 
     public int getSafeInsetLeft() {
-        if (Build$VERSION.SDK_INT >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             return ((DisplayCutout) this.mDisplayCutout).getSafeInsetLeft();
         }
         return 0;
     }
 
     public int getSafeInsetRight() {
-        if (Build$VERSION.SDK_INT >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             return ((DisplayCutout) this.mDisplayCutout).getSafeInsetRight();
         }
         return 0;
     }
 
     public int getSafeInsetTop() {
-        if (Build$VERSION.SDK_INT >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             return ((DisplayCutout) this.mDisplayCutout).getSafeInsetTop();
         }
         return 0;

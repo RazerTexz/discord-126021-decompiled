@@ -17,6 +17,164 @@ public class AdjustInstance {
     private Boolean startEnabled = null;
     private boolean startOffline = false;
 
+    /* JADX INFO: renamed from: com.adjust.sdk.AdjustInstance$1, reason: invalid class name */
+    public class AnonymousClass1 implements IRunActivityHandler {
+        public final /* synthetic */ String val$key;
+        public final /* synthetic */ String val$value;
+
+        public AnonymousClass1(String str, String str2) {
+            this.val$key = str;
+            this.val$value = str2;
+        }
+
+        @Override // com.adjust.sdk.IRunActivityHandler
+        public void run(ActivityHandler activityHandler) {
+            activityHandler.addSessionCallbackParameterI(this.val$key, this.val$value);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.AdjustInstance$10, reason: invalid class name */
+    public class AnonymousClass10 implements Runnable {
+        public final /* synthetic */ Context val$context;
+
+        public AnonymousClass10(Context context) {
+            this.val$context = context;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            new SharedPreferencesManager(this.val$context).setDisableThirdPartySharing();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.AdjustInstance$11, reason: invalid class name */
+    public class AnonymousClass11 implements Runnable {
+        public final /* synthetic */ Context val$context;
+
+        public AnonymousClass11(Context context) {
+            this.val$context = context;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            new SharedPreferencesManager(this.val$context).setSendingReferrersAsNotSent();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.AdjustInstance$2, reason: invalid class name */
+    public class AnonymousClass2 implements IRunActivityHandler {
+        public final /* synthetic */ String val$key;
+        public final /* synthetic */ String val$value;
+
+        public AnonymousClass2(String str, String str2) {
+            this.val$key = str;
+            this.val$value = str2;
+        }
+
+        @Override // com.adjust.sdk.IRunActivityHandler
+        public void run(ActivityHandler activityHandler) {
+            activityHandler.addSessionPartnerParameterI(this.val$key, this.val$value);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.AdjustInstance$3, reason: invalid class name */
+    public class AnonymousClass3 implements IRunActivityHandler {
+        public final /* synthetic */ String val$key;
+
+        public AnonymousClass3(String str) {
+            this.val$key = str;
+        }
+
+        @Override // com.adjust.sdk.IRunActivityHandler
+        public void run(ActivityHandler activityHandler) {
+            activityHandler.removeSessionCallbackParameterI(this.val$key);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.AdjustInstance$4, reason: invalid class name */
+    public class AnonymousClass4 implements IRunActivityHandler {
+        public final /* synthetic */ String val$key;
+
+        public AnonymousClass4(String str) {
+            this.val$key = str;
+        }
+
+        @Override // com.adjust.sdk.IRunActivityHandler
+        public void run(ActivityHandler activityHandler) {
+            activityHandler.removeSessionPartnerParameterI(this.val$key);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.AdjustInstance$5, reason: invalid class name */
+    public class AnonymousClass5 implements IRunActivityHandler {
+        public AnonymousClass5() {
+        }
+
+        @Override // com.adjust.sdk.IRunActivityHandler
+        public void run(ActivityHandler activityHandler) {
+            activityHandler.resetSessionCallbackParametersI();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.AdjustInstance$6, reason: invalid class name */
+    public class AnonymousClass6 implements IRunActivityHandler {
+        public AnonymousClass6() {
+        }
+
+        @Override // com.adjust.sdk.IRunActivityHandler
+        public void run(ActivityHandler activityHandler) {
+            activityHandler.resetSessionPartnerParametersI();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.AdjustInstance$7, reason: invalid class name */
+    public class AnonymousClass7 implements Runnable {
+        public final /* synthetic */ long val$clickTime;
+        public final /* synthetic */ Context val$context;
+        public final /* synthetic */ String val$rawReferrer;
+
+        public AnonymousClass7(Context context, String str, long j) {
+            this.val$context = context;
+            this.val$rawReferrer = str;
+            this.val$clickTime = j;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            new SharedPreferencesManager(this.val$context).saveRawReferrer(this.val$rawReferrer, this.val$clickTime);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.AdjustInstance$8, reason: invalid class name */
+    public class AnonymousClass8 implements Runnable {
+        public final /* synthetic */ Context val$context;
+        public final /* synthetic */ String val$pushToken;
+
+        public AnonymousClass8(Context context, String str) {
+            this.val$context = context;
+            this.val$pushToken = str;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            new SharedPreferencesManager(this.val$context).savePushToken(this.val$pushToken);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.adjust.sdk.AdjustInstance$9, reason: invalid class name */
+    public class AnonymousClass9 implements Runnable {
+        public final /* synthetic */ Context val$context;
+
+        public AnonymousClass9(Context context) {
+            this.val$context = context;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            new SharedPreferencesManager(this.val$context).setGdprForgetMe();
+        }
+    }
+
     public void addSessionCallbackParameter(String str, String str2) {
         if (checkActivityHandler("adding session callback parameter")) {
             this.activityHandler.addSessionCallbackParameter(str, str2);
@@ -25,7 +183,7 @@ public class AdjustInstance {
         if (this.preLaunchActionsArray == null) {
             this.preLaunchActionsArray = new ArrayList();
         }
-        this.preLaunchActionsArray.add(new AdjustInstance$1(this, str, str2));
+        this.preLaunchActionsArray.add(new AnonymousClass1(str, str2));
     }
 
     public void addSessionPartnerParameter(String str, String str2) {
@@ -36,7 +194,7 @@ public class AdjustInstance {
         if (this.preLaunchActionsArray == null) {
             this.preLaunchActionsArray = new ArrayList();
         }
-        this.preLaunchActionsArray.add(new AdjustInstance$2(this, str, str2));
+        this.preLaunchActionsArray.add(new AnonymousClass2(str, str2));
     }
 
     public void appWillOpenUrl(Uri uri) {
@@ -135,7 +293,7 @@ public class AdjustInstance {
         if (this.preLaunchActionsArray == null) {
             this.preLaunchActionsArray = new ArrayList();
         }
-        this.preLaunchActionsArray.add(new AdjustInstance$3(this, str));
+        this.preLaunchActionsArray.add(new AnonymousClass3(str));
     }
 
     public void removeSessionPartnerParameter(String str) {
@@ -146,7 +304,7 @@ public class AdjustInstance {
         if (this.preLaunchActionsArray == null) {
             this.preLaunchActionsArray = new ArrayList();
         }
-        this.preLaunchActionsArray.add(new AdjustInstance$4(this, str));
+        this.preLaunchActionsArray.add(new AnonymousClass4(str));
     }
 
     public void resetSessionCallbackParameters() {
@@ -157,7 +315,7 @@ public class AdjustInstance {
         if (this.preLaunchActionsArray == null) {
             this.preLaunchActionsArray = new ArrayList();
         }
-        this.preLaunchActionsArray.add(new AdjustInstance$5(this));
+        this.preLaunchActionsArray.add(new AnonymousClass5());
     }
 
     public void resetSessionPartnerParameters() {
@@ -168,23 +326,23 @@ public class AdjustInstance {
         if (this.preLaunchActionsArray == null) {
             this.preLaunchActionsArray = new ArrayList();
         }
-        this.preLaunchActionsArray.add(new AdjustInstance$6(this));
+        this.preLaunchActionsArray.add(new AnonymousClass6());
     }
 
     private void saveDisableThirdPartySharing(Context context) {
-        Util.runInBackground(new AdjustInstance$10(this, context));
+        Util.runInBackground(new AnonymousClass10(context));
     }
 
     private void saveGdprForgetMe(Context context) {
-        Util.runInBackground(new AdjustInstance$9(this, context));
+        Util.runInBackground(new AnonymousClass9(context));
     }
 
     private void savePushToken(String str, Context context) {
-        Util.runInBackground(new AdjustInstance$8(this, context, str));
+        Util.runInBackground(new AnonymousClass8(context, str));
     }
 
     private void saveRawReferrer(String str, long j, Context context) {
-        Util.runInBackground(new AdjustInstance$7(this, context, str, j));
+        Util.runInBackground(new AnonymousClass7(context, str, j));
     }
 
     public void sendFirstPackages() {
@@ -228,7 +386,7 @@ public class AdjustInstance {
     }
 
     private void setSendingReferrersAsNotSent(Context context) {
-        Util.runInBackground(new AdjustInstance$11(this, context));
+        Util.runInBackground(new AnonymousClass11(context));
     }
 
     public void setTestOptions(AdjustTestOptions adjustTestOptions) {

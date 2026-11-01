@@ -19,8 +19,6 @@ import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory;
 import com.google.gson.internal.bind.SqlDateTypeAdapter;
 import com.google.gson.internal.bind.TimeTypeAdapter;
 import com.google.gson.internal.bind.TypeAdapters;
-import com.google.gson.internal.bind.TypeAdapters$32;
-import com.google.gson.internal.bind.TypeAdapters$33;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
@@ -52,7 +50,7 @@ public final class Gson {
     public final JsonAdapterAnnotationTypeAdapterFactory e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final ThreadLocal<Map<TypeToken<?>, Gson$FutureTypeAdapter<?>>> f3115b;
+    public final ThreadLocal<Map<TypeToken<?>, FutureTypeAdapter<?>>> f3115b;
     public final List<o> f;
     public final Map<Type, f<?>> g;
     public final boolean h;
@@ -63,6 +61,157 @@ public final class Gson {
     public final List<o> m;
     public final List<o> n;
     public static final TypeToken<?> a = TypeToken.get(Object.class);
+
+    /* JADX INFO: renamed from: com.google.gson.Gson$1, reason: invalid class name */
+    public class AnonymousClass1 extends TypeAdapter<Number> {
+        public AnonymousClass1(Gson gson) {
+        }
+
+        @Override // com.google.gson.TypeAdapter
+        public Number read(JsonReader jsonReader) throws IOException {
+            if (jsonReader.N() != JsonToken.NULL) {
+                return Double.valueOf(jsonReader.x());
+            }
+            jsonReader.H();
+            return null;
+        }
+
+        @Override // com.google.gson.TypeAdapter
+        public void write(JsonWriter jsonWriter, Number number) throws IOException {
+            Number number2 = number;
+            if (number2 == null) {
+                jsonWriter.s();
+            } else {
+                Gson.b(number2.doubleValue());
+                jsonWriter.D(number2);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.gson.Gson$2, reason: invalid class name */
+    public class AnonymousClass2 extends TypeAdapter<Number> {
+        public AnonymousClass2(Gson gson) {
+        }
+
+        @Override // com.google.gson.TypeAdapter
+        public Number read(JsonReader jsonReader) throws IOException {
+            if (jsonReader.N() != JsonToken.NULL) {
+                return Float.valueOf((float) jsonReader.x());
+            }
+            jsonReader.H();
+            return null;
+        }
+
+        @Override // com.google.gson.TypeAdapter
+        public void write(JsonWriter jsonWriter, Number number) throws IOException {
+            Number number2 = number;
+            if (number2 == null) {
+                jsonWriter.s();
+            } else {
+                Gson.b(number2.floatValue());
+                jsonWriter.D(number2);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.gson.Gson$3, reason: invalid class name */
+    public class AnonymousClass3 extends TypeAdapter<Number> {
+        @Override // com.google.gson.TypeAdapter
+        public Number read(JsonReader jsonReader) throws IOException {
+            if (jsonReader.N() != JsonToken.NULL) {
+                return Long.valueOf(jsonReader.A());
+            }
+            jsonReader.H();
+            return null;
+        }
+
+        @Override // com.google.gson.TypeAdapter
+        public void write(JsonWriter jsonWriter, Number number) throws IOException {
+            Number number2 = number;
+            if (number2 == null) {
+                jsonWriter.s();
+            } else {
+                jsonWriter.H(number2.toString());
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.gson.Gson$4, reason: invalid class name */
+    public class AnonymousClass4 extends TypeAdapter<AtomicLong> {
+        public final /* synthetic */ TypeAdapter a;
+
+        public AnonymousClass4(TypeAdapter typeAdapter) {
+            this.a = typeAdapter;
+        }
+
+        @Override // com.google.gson.TypeAdapter
+        public AtomicLong read(JsonReader jsonReader) throws IOException {
+            return new AtomicLong(((Number) this.a.read(jsonReader)).longValue());
+        }
+
+        @Override // com.google.gson.TypeAdapter
+        public void write(JsonWriter jsonWriter, AtomicLong atomicLong) throws IOException {
+            this.a.write(jsonWriter, Long.valueOf(atomicLong.get()));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.gson.Gson$5, reason: invalid class name */
+    public class AnonymousClass5 extends TypeAdapter<AtomicLongArray> {
+        public final /* synthetic */ TypeAdapter a;
+
+        public AnonymousClass5(TypeAdapter typeAdapter) {
+            this.a = typeAdapter;
+        }
+
+        @Override // com.google.gson.TypeAdapter
+        public AtomicLongArray read(JsonReader jsonReader) throws IOException {
+            ArrayList arrayList = new ArrayList();
+            jsonReader.a();
+            while (jsonReader.q()) {
+                arrayList.add(Long.valueOf(((Number) this.a.read(jsonReader)).longValue()));
+            }
+            jsonReader.e();
+            int size = arrayList.size();
+            AtomicLongArray atomicLongArray = new AtomicLongArray(size);
+            for (int i = 0; i < size; i++) {
+                atomicLongArray.set(i, ((Long) arrayList.get(i)).longValue());
+            }
+            return atomicLongArray;
+        }
+
+        @Override // com.google.gson.TypeAdapter
+        public void write(JsonWriter jsonWriter, AtomicLongArray atomicLongArray) throws IOException {
+            AtomicLongArray atomicLongArray2 = atomicLongArray;
+            jsonWriter.b();
+            int length = atomicLongArray2.length();
+            for (int i = 0; i < length; i++) {
+                this.a.write(jsonWriter, Long.valueOf(atomicLongArray2.get(i)));
+            }
+            jsonWriter.e();
+        }
+    }
+
+    public class FutureTypeAdapter<T> extends TypeAdapter<T> {
+        public TypeAdapter<T> a;
+
+        @Override // com.google.gson.TypeAdapter
+        public T read(JsonReader jsonReader) throws IOException {
+            TypeAdapter<T> typeAdapter = this.a;
+            if (typeAdapter != null) {
+                return typeAdapter.read(jsonReader);
+            }
+            throw new IllegalStateException();
+        }
+
+        @Override // com.google.gson.TypeAdapter
+        public void write(JsonWriter jsonWriter, T t) throws IOException {
+            TypeAdapter<T> typeAdapter = this.a;
+            if (typeAdapter == null) {
+                throw new IllegalStateException();
+            }
+            typeAdapter.write(jsonWriter, t);
+        }
+    }
 
     public Gson() {
         this(Excluder.j, c.j, Collections.emptyMap(), false, false, false, true, false, false, false, n.j, null, 2, 2, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
@@ -153,28 +302,28 @@ public final class Gson {
         if (typeAdapter != null) {
             return typeAdapter;
         }
-        Map<TypeToken<?>, Gson$FutureTypeAdapter<?>> map = this.f3115b.get();
+        Map<TypeToken<?>, FutureTypeAdapter<?>> map = this.f3115b.get();
         boolean z2 = false;
         if (map == null) {
             map = new HashMap<>();
             this.f3115b.set(map);
             z2 = true;
         }
-        Gson$FutureTypeAdapter<?> gson$FutureTypeAdapter = map.get(typeToken);
-        if (gson$FutureTypeAdapter != null) {
-            return gson$FutureTypeAdapter;
+        FutureTypeAdapter<?> futureTypeAdapter = map.get(typeToken);
+        if (futureTypeAdapter != null) {
+            return futureTypeAdapter;
         }
         try {
-            Gson$FutureTypeAdapter<?> gson$FutureTypeAdapter2 = new Gson$FutureTypeAdapter<>();
-            map.put(typeToken, gson$FutureTypeAdapter2);
+            FutureTypeAdapter<?> futureTypeAdapter2 = new FutureTypeAdapter<>();
+            map.put(typeToken, futureTypeAdapter2);
             Iterator<o> it = this.f.iterator();
             while (it.hasNext()) {
                 TypeAdapter<T> typeAdapterCreate = it.next().create(this, typeToken);
                 if (typeAdapterCreate != null) {
-                    if (gson$FutureTypeAdapter2.a != null) {
+                    if (futureTypeAdapter2.a != null) {
                         throw new AssertionError();
                     }
-                    gson$FutureTypeAdapter2.a = typeAdapterCreate;
+                    futureTypeAdapter2.a = typeAdapterCreate;
                     this.c.put(typeToken, typeAdapterCreate);
                     map.remove(typeToken);
                     if (z2) {
@@ -319,9 +468,9 @@ public final class Gson {
     }
 
     public Gson(Excluder excluder, d dVar, Map<Type, f<?>> map, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, n nVar, String str, int i, int i2, List<o> list, List<o> list2, List<o> list3) {
-        TypeAdapter gson$3;
-        TypeAdapter gson$1;
-        TypeAdapter gson$2;
+        TypeAdapter anonymousClass3;
+        TypeAdapter anonymousClass1;
+        TypeAdapter anonymousClass2;
         this.f3115b = new ThreadLocal<>();
         this.c = new ConcurrentHashMap();
         this.g = map;
@@ -344,36 +493,36 @@ public final class Gson {
         arrayList.add(TypeAdapters.i);
         arrayList.add(TypeAdapters.k);
         if (nVar == n.j) {
-            gson$3 = TypeAdapters.t;
+            anonymousClass3 = TypeAdapters.t;
         } else {
-            gson$3 = new Gson$3();
+            anonymousClass3 = new AnonymousClass3();
         }
-        arrayList.add(new TypeAdapters$33(Long.TYPE, Long.class, gson$3));
+        arrayList.add(new TypeAdapters.AnonymousClass33(Long.TYPE, Long.class, anonymousClass3));
         Class cls = Double.TYPE;
         if (z8) {
-            gson$1 = TypeAdapters.v;
+            anonymousClass1 = TypeAdapters.v;
         } else {
-            gson$1 = new Gson$1(this);
+            anonymousClass1 = new AnonymousClass1(this);
         }
-        arrayList.add(new TypeAdapters$33(cls, Double.class, gson$1));
+        arrayList.add(new TypeAdapters.AnonymousClass33(cls, Double.class, anonymousClass1));
         Class cls2 = Float.TYPE;
         if (z8) {
-            gson$2 = TypeAdapters.u;
+            anonymousClass2 = TypeAdapters.u;
         } else {
-            gson$2 = new Gson$2(this);
+            anonymousClass2 = new AnonymousClass2(this);
         }
-        arrayList.add(new TypeAdapters$33(cls2, Float.class, gson$2));
+        arrayList.add(new TypeAdapters.AnonymousClass33(cls2, Float.class, anonymousClass2));
         arrayList.add(TypeAdapters.f3130x);
         arrayList.add(TypeAdapters.o);
         arrayList.add(TypeAdapters.q);
-        arrayList.add(new TypeAdapters$32(AtomicLong.class, new Gson$4(gson$3).nullSafe()));
-        arrayList.add(new TypeAdapters$32(AtomicLongArray.class, new Gson$5(gson$3).nullSafe()));
+        arrayList.add(new TypeAdapters.AnonymousClass32(AtomicLong.class, new AnonymousClass4(anonymousClass3).nullSafe()));
+        arrayList.add(new TypeAdapters.AnonymousClass32(AtomicLongArray.class, new AnonymousClass5(anonymousClass3).nullSafe()));
         arrayList.add(TypeAdapters.f3129s);
         arrayList.add(TypeAdapters.f3132z);
         arrayList.add(TypeAdapters.F);
         arrayList.add(TypeAdapters.H);
-        arrayList.add(new TypeAdapters$32(BigDecimal.class, TypeAdapters.B));
-        arrayList.add(new TypeAdapters$32(BigInteger.class, TypeAdapters.C));
+        arrayList.add(new TypeAdapters.AnonymousClass32(BigDecimal.class, TypeAdapters.B));
+        arrayList.add(new TypeAdapters.AnonymousClass32(BigInteger.class, TypeAdapters.C));
         arrayList.add(TypeAdapters.J);
         arrayList.add(TypeAdapters.L);
         arrayList.add(TypeAdapters.P);

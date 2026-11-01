@@ -2,7 +2,6 @@ package f0.e0.h;
 
 import d0.z.d.m;
 import okhttp3.MediaType;
-import okhttp3.MediaType$a;
 import okhttp3.ResponseBody;
 
 /* JADX INFO: compiled from: RealResponseBody.kt */
@@ -30,8 +29,8 @@ public final class h extends ResponseBody {
         if (str == null) {
             return null;
         }
-        MediaType$a mediaType$a = MediaType.c;
-        return MediaType$a.b(str);
+        MediaType.Companion companion = MediaType.INSTANCE;
+        return MediaType.Companion.b(str);
     }
 
     @Override // okhttp3.ResponseBody

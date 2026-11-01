@@ -2,7 +2,7 @@ package com.google.android.gms.common.internal;
 
 import android.accounts.Account;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import b.c.a.a0.d;
 import b.i.a.f.e.k.w;
@@ -18,7 +18,7 @@ public final class zas extends AbstractSafeParcelable {
 
     @Nullable
     public final GoogleSignInAccount m;
-    public static final Parcelable$Creator<zas> CREATOR = new w();
+    public static final Parcelable.Creator<zas> CREATOR = new w();
 
     public zas(int i, Account account, int i2, @Nullable GoogleSignInAccount googleSignInAccount) {
         this.j = i;

@@ -2,9 +2,7 @@ package b.i.a.f.h.l;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences$OnSharedPreferenceChangeListener;
 import android.os.StrictMode;
-import android.os.StrictMode$ThreadPolicy;
 import androidx.annotation.GuardedBy;
 import androidx.collection.ArrayMap;
 import java.util.Map;
@@ -12,7 +10,7 @@ import java.util.Map;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-impl@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class s2 implements b2 {
-    public final SharedPreferences$OnSharedPreferenceChangeListener c;
+    public final SharedPreferences.OnSharedPreferenceChangeListener c;
     public final Object d;
     public volatile Map<String, ?> e;
 
@@ -30,11 +28,11 @@ public final class s2 implements b2 {
         synchronized (s2.class) {
             s2Var = a.get(null);
             if (s2Var == null) {
-                StrictMode$ThreadPolicy strictMode$ThreadPolicyAllowThreadDiskReads = StrictMode.allowThreadDiskReads();
+                StrictMode.ThreadPolicy threadPolicyAllowThreadDiskReads = StrictMode.allowThreadDiskReads();
                 try {
                     throw null;
                 } catch (Throwable th) {
-                    StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskReads);
+                    StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskReads);
                     throw th;
                 }
             }
@@ -56,14 +54,14 @@ public final class s2 implements b2 {
             synchronized (this.d) {
                 map = this.e;
                 if (map == null) {
-                    StrictMode$ThreadPolicy strictMode$ThreadPolicyAllowThreadDiskReads = StrictMode.allowThreadDiskReads();
+                    StrictMode.ThreadPolicy threadPolicyAllowThreadDiskReads = StrictMode.allowThreadDiskReads();
                     try {
                         Map<String, ?> all = this.f1492b.getAll();
                         this.e = all;
-                        StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskReads);
+                        StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskReads);
                         map = all;
                     } catch (Throwable th) {
-                        StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskReads);
+                        StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskReads);
                         throw th;
                     }
                 }

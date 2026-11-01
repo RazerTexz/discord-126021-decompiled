@@ -1,7 +1,7 @@
 package com.google.android.gms.auth.api.signin.internal;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import b.c.a.a0.d;
 import b.i.a.f.c.a.f.b.s;
@@ -14,7 +14,7 @@ import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 public final class SignInConfiguration extends AbstractSafeParcelable implements ReflectedParcelable {
     public final String j;
     public GoogleSignInOptions k;
-    public static final Parcelable$Creator<SignInConfiguration> CREATOR = new s();
+    public static final Parcelable.Creator<SignInConfiguration> CREATOR = new s();
 
     public SignInConfiguration(String str, GoogleSignInOptions googleSignInOptions) {
         d.w(str);

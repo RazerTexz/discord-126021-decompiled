@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetServerSettingsIntegrationsBinding;
 import d0.z.d.k;
@@ -28,17 +28,17 @@ public final /* synthetic */ class WidgetServerSettingsIntegrations$binding$2 ex
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetServerSettingsIntegrationsBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.integrations_empty_body;
-        TextView textView = (TextView) view.findViewById(R$id.integrations_empty_body);
+        int i = R.id.integrations_empty_body;
+        TextView textView = (TextView) view.findViewById(R.id.integrations_empty_body);
         if (textView != null) {
-            i = R$id.integrations_empty_header;
-            TextView textView2 = (TextView) view.findViewById(R$id.integrations_empty_header);
+            i = R.id.integrations_empty_header;
+            TextView textView2 = (TextView) view.findViewById(R.id.integrations_empty_header);
             if (textView2 != null) {
-                i = R$id.integrations_recycler;
-                RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.integrations_recycler);
+                i = R.id.integrations_recycler;
+                RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.integrations_recycler);
                 if (recyclerView != null) {
-                    i = R$id.integrations_view_flipper;
-                    AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R$id.integrations_view_flipper);
+                    i = R.id.integrations_view_flipper;
+                    AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R.id.integrations_view_flipper);
                     if (appViewFlipper != null) {
                         return new WidgetServerSettingsIntegrationsBinding((CoordinatorLayout) view, textView, textView2, recyclerView, appViewFlipper);
                     }

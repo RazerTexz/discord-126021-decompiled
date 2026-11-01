@@ -1,8 +1,5 @@
 package d0.e0.p.d.m0.f.a0.b;
 
-import d0.e0.p.d.m0.f.a0.a$e;
-import d0.e0.p.d.m0.f.a0.a$e$c;
-import d0.e0.p.d.m0.f.a0.a$e$c$c;
 import d0.g0.t;
 import d0.t.g0;
 import d0.t.n;
@@ -15,40 +12,51 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: JvmNameResolver.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class g implements d0.e0.p.d.m0.f.z.c {
-    public static final g$a a;
+    public static final a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final String f3389b;
     public static final List<String> c;
-    public final a$e d;
+    public final d0.e0.p.d.m0.f.a0.a.e d;
     public final String[] e;
     public final Set<Integer> f;
-    public final List<a$e$c> g;
+    public final List<d0.e0.p.d.m0.f.a0.a.e.c> g;
+
+    /* JADX INFO: compiled from: JvmNameResolver.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final List<String> getPREDEFINED_STRINGS() {
+            return g.access$getPREDEFINED_STRINGS$cp();
+        }
+    }
 
     static {
-        g$a g_a = new g$a(null);
-        a = g_a;
+        a aVar = new a(null);
+        a = aVar;
         String strJoinToString$default = u.joinToString$default(n.listOf((Object[]) new Character[]{'k', 'o', 't', 'l', 'i', 'n'}), "", null, null, 0, null, null, 62, null);
         f3389b = strJoinToString$default;
         c = n.listOf((Object[]) new String[]{m.stringPlus(strJoinToString$default, "/Any"), m.stringPlus(strJoinToString$default, "/Nothing"), m.stringPlus(strJoinToString$default, "/Unit"), m.stringPlus(strJoinToString$default, "/Throwable"), m.stringPlus(strJoinToString$default, "/Number"), m.stringPlus(strJoinToString$default, "/Byte"), m.stringPlus(strJoinToString$default, "/Double"), m.stringPlus(strJoinToString$default, "/Float"), m.stringPlus(strJoinToString$default, "/Int"), m.stringPlus(strJoinToString$default, "/Long"), m.stringPlus(strJoinToString$default, "/Short"), m.stringPlus(strJoinToString$default, "/Boolean"), m.stringPlus(strJoinToString$default, "/Char"), m.stringPlus(strJoinToString$default, "/CharSequence"), m.stringPlus(strJoinToString$default, "/String"), m.stringPlus(strJoinToString$default, "/Comparable"), m.stringPlus(strJoinToString$default, "/Enum"), m.stringPlus(strJoinToString$default, "/Array"), m.stringPlus(strJoinToString$default, "/ByteArray"), m.stringPlus(strJoinToString$default, "/DoubleArray"), m.stringPlus(strJoinToString$default, "/FloatArray"), m.stringPlus(strJoinToString$default, "/IntArray"), m.stringPlus(strJoinToString$default, "/LongArray"), m.stringPlus(strJoinToString$default, "/ShortArray"), m.stringPlus(strJoinToString$default, "/BooleanArray"), m.stringPlus(strJoinToString$default, "/CharArray"), m.stringPlus(strJoinToString$default, "/Cloneable"), m.stringPlus(strJoinToString$default, "/Annotation"), m.stringPlus(strJoinToString$default, "/collections/Iterable"), m.stringPlus(strJoinToString$default, "/collections/MutableIterable"), m.stringPlus(strJoinToString$default, "/collections/Collection"), m.stringPlus(strJoinToString$default, "/collections/MutableCollection"), m.stringPlus(strJoinToString$default, "/collections/List"), m.stringPlus(strJoinToString$default, "/collections/MutableList"), m.stringPlus(strJoinToString$default, "/collections/Set"), m.stringPlus(strJoinToString$default, "/collections/MutableSet"), m.stringPlus(strJoinToString$default, "/collections/Map"), m.stringPlus(strJoinToString$default, "/collections/MutableMap"), m.stringPlus(strJoinToString$default, "/collections/Map.Entry"), m.stringPlus(strJoinToString$default, "/collections/MutableMap.MutableEntry"), m.stringPlus(strJoinToString$default, "/collections/Iterator"), m.stringPlus(strJoinToString$default, "/collections/MutableIterator"), m.stringPlus(strJoinToString$default, "/collections/ListIterator"), m.stringPlus(strJoinToString$default, "/collections/MutableListIterator")});
-        Iterable<z> iterableWithIndex = u.withIndex(g_a.getPREDEFINED_STRINGS());
+        Iterable<z> iterableWithIndex = u.withIndex(aVar.getPREDEFINED_STRINGS());
         LinkedHashMap linkedHashMap = new LinkedHashMap(d0.d0.f.coerceAtLeast(g0.mapCapacity(o.collectionSizeOrDefault(iterableWithIndex, 10)), 16));
         for (z zVar : iterableWithIndex) {
             linkedHashMap.put((String) zVar.getValue(), Integer.valueOf(zVar.getIndex()));
         }
     }
 
-    public g(a$e a_e, String[] strArr) {
+    public g(d0.e0.p.d.m0.f.a0.a.e eVar, String[] strArr) {
         Set<Integer> set;
-        m.checkNotNullParameter(a_e, "types");
+        m.checkNotNullParameter(eVar, "types");
         m.checkNotNullParameter(strArr, "strings");
-        this.d = a_e;
+        this.d = eVar;
         this.e = strArr;
-        List<Integer> localNameList = a_e.getLocalNameList();
+        List<Integer> localNameList = eVar.getLocalNameList();
         if (localNameList.isEmpty()) {
             set = n0.emptySet();
         } else {
@@ -57,12 +65,12 @@ public final class g implements d0.e0.p.d.m0.f.z.c {
         }
         this.f = set;
         ArrayList arrayList = new ArrayList();
-        List<a$e$c> recordList = getTypes().getRecordList();
+        List<d0.e0.p.d.m0.f.a0.a.e.c> recordList = getTypes().getRecordList();
         arrayList.ensureCapacity(recordList.size());
-        for (a$e$c a_e_c : recordList) {
-            int range = a_e_c.getRange();
+        for (d0.e0.p.d.m0.f.a0.a.e.c cVar : recordList) {
+            int range = cVar.getRange();
             for (int i = 0; i < range; i++) {
-                arrayList.add(a_e_c);
+                arrayList.add(cVar);
             }
         }
         arrayList.trimToSize();
@@ -82,23 +90,23 @@ public final class g implements d0.e0.p.d.m0.f.z.c {
     @Override // d0.e0.p.d.m0.f.z.c
     public String getString(int i) {
         String strSubstring;
-        a$e$c a_e_c = this.g.get(i);
-        if (a_e_c.hasString()) {
-            strSubstring = a_e_c.getString();
-        } else if (a_e_c.hasPredefinedIndex()) {
-            g$a g_a = a;
-            int size = g_a.getPREDEFINED_STRINGS().size() - 1;
-            int predefinedIndex = a_e_c.getPredefinedIndex();
+        d0.e0.p.d.m0.f.a0.a.e.c cVar = this.g.get(i);
+        if (cVar.hasString()) {
+            strSubstring = cVar.getString();
+        } else if (cVar.hasPredefinedIndex()) {
+            a aVar = a;
+            int size = aVar.getPREDEFINED_STRINGS().size() - 1;
+            int predefinedIndex = cVar.getPredefinedIndex();
             if (predefinedIndex >= 0 && predefinedIndex <= size) {
-                strSubstring = g_a.getPREDEFINED_STRINGS().get(a_e_c.getPredefinedIndex());
+                strSubstring = aVar.getPREDEFINED_STRINGS().get(cVar.getPredefinedIndex());
             } else {
                 strSubstring = this.e[i];
             }
         } else {
             strSubstring = this.e[i];
         }
-        if (a_e_c.getSubstringIndexCount() >= 2) {
-            List<Integer> substringIndexList = a_e_c.getSubstringIndexList();
+        if (cVar.getSubstringIndexCount() >= 2) {
+            List<Integer> substringIndexList = cVar.getSubstringIndexList();
             m.checkNotNullExpressionValue(substringIndexList, "substringIndexList");
             Integer num = substringIndexList.get(0);
             Integer num2 = substringIndexList.get(1);
@@ -114,8 +122,8 @@ public final class g implements d0.e0.p.d.m0.f.z.c {
             }
         }
         String strReplace$default = strSubstring;
-        if (a_e_c.getReplaceCharCount() >= 2) {
-            List<Integer> replaceCharList = a_e_c.getReplaceCharList();
+        if (cVar.getReplaceCharCount() >= 2) {
+            List<Integer> replaceCharList = cVar.getReplaceCharList();
             m.checkNotNullExpressionValue(replaceCharList, "replaceCharList");
             Integer num3 = replaceCharList.get(0);
             Integer num4 = replaceCharList.get(1);
@@ -123,9 +131,9 @@ public final class g implements d0.e0.p.d.m0.f.z.c {
             strReplace$default = t.replace$default(strReplace$default, (char) num3.intValue(), (char) num4.intValue(), false, 4, (Object) null);
         }
         String strReplace$default2 = strReplace$default;
-        a$e$c$c operation = a_e_c.getOperation();
+        d0.e0.p.d.m0.f.a0.a.e.c.EnumC0545c operation = cVar.getOperation();
         if (operation == null) {
-            operation = a$e$c$c.NONE;
+            operation = d0.e0.p.d.m0.f.a0.a.e.c.EnumC0545c.NONE;
         }
         int iOrdinal = operation.ordinal();
         if (iOrdinal == 1) {
@@ -145,7 +153,7 @@ public final class g implements d0.e0.p.d.m0.f.z.c {
         return strReplace$default2;
     }
 
-    public final a$e getTypes() {
+    public final d0.e0.p.d.m0.f.a0.a.e getTypes() {
         return this.d;
     }
 

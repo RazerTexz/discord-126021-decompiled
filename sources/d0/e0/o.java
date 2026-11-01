@@ -3,14 +3,25 @@ package d0.e0;
 import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
 import java.util.Arrays;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: TypesJVM.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class o implements WildcardType, Type {
-    public static final o$a k = new o$a(null);
+    public static final a k = new a(null);
     public final Type l;
     public final Type m;
     public static final o j = new o(null, null);
+
+    /* JADX INFO: compiled from: TypesJVM.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final o getSTAR() {
+            return o.access$getSTAR$cp();
+        }
+    }
 
     public o(Type type, Type type2) {
         this.l = type;

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.widget.Toast;
 import androidx.annotation.MainThread;
 import androidx.annotation.StringRes;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import d0.z.d.m;
 import java.io.Closeable;
 

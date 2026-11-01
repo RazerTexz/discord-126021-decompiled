@@ -14,47 +14,56 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.RecyclerView;
 import b.a.a.j;
-import b.a.a.j$a;
-import b.a.a.m$a;
 import b.a.d.g0;
 import b.a.d.i0;
 import b.a.i.t0;
 import b.c.a.a0.d;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.channel.Channel;
+import com.discord.api.guildscheduledevent.GuildScheduledEvent;
 import com.discord.app.AppBottomSheet;
 import com.discord.databinding.WidgetVoiceBottomSheetBinding;
-import com.discord.rtcconnection.mediaengine.MediaEngineConnection$InputMode;
+import com.discord.rtcconnection.mediaengine.MediaEngineConnection;
+import com.discord.stores.StoreAudioManagerV2;
+import com.discord.stores.StoreVoiceParticipants;
 import com.discord.utilities.accessibility.AccessibilityUtils;
+import com.discord.utilities.analytics.Traits;
+import com.discord.utilities.channel.ChannelInviteLaunchUtils;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapter;
-import com.discord.utilities.mg_recycler.MGRecyclerAdapter$Companion;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.streams.StreamContext;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.widgets.guildscheduledevent.GuildScheduledEventModelKt;
 import com.discord.widgets.guildscheduledevent.WidgetEndGuildScheduledEventBottomSheet;
-import com.discord.widgets.guildscheduledevent.WidgetEndGuildScheduledEventBottomSheet$Companion;
+import com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventDetailsBottomSheet;
+import com.discord.widgets.guildscheduledevent.WidgetPreviewGuildScheduledEvent;
 import com.discord.widgets.notice.WidgetNoticeDialog;
-import com.discord.widgets.notice.WidgetNoticeDialog$Companion;
 import com.discord.widgets.notice.WidgetNoticeNuxOverlay;
+import com.discord.widgets.settings.WidgetSettingsVoice;
+import com.discord.widgets.user.usersheet.WidgetUserSheet;
 import com.discord.widgets.voice.controls.AnchoredVoiceControlsView;
 import com.discord.widgets.voice.feedback.call.CallFeedbackSheetNavigator;
 import com.discord.widgets.voice.fullscreen.WidgetCallFullscreen;
-import com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$Companion;
 import com.discord.widgets.voice.model.CameraState;
 import com.discord.widgets.voice.stream.StreamNavigator;
 import com.google.android.material.button.MaterialButton;
 import d0.g;
 import d0.z.d.a0;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
+import java.util.List;
+import java.util.Objects;
 import kotlin.Lazy;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 import rx.Subscription;
 
@@ -65,8 +74,10 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
     private static final String ANALYTICS_SOURCE = "Voice Channel Bottom Sheet";
     private static final String ARG_FEATURE_CONTEXT = "ARG_FEATURE_CONTEXT";
     private static final String ARG_FORWARD_TO_FULLSCREEN_IF_VIDEO_ACTIVATED = "ARG_FORWARD_TO_FULLSCREEN_IF_VIDEO_ACTIVATED";
-    public static final WidgetVoiceBottomSheet$Companion Companion = new WidgetVoiceBottomSheet$Companion(null);
     private static final String END_EVENT_REQUEST_KEY = "END_EVENT_REQUEST_KEY";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -86,6 +97,986 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
     private final Lazy viewModel;
     private Subscription viewModelEventSubscription;
 
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function0<Unit> {
+        public AnonymousClass1(WidgetVoiceBottomSheetViewModel widgetVoiceBottomSheetViewModel) {
+            super(0, widgetVoiceBottomSheetViewModel, WidgetVoiceBottomSheetViewModel.class, "onMutePressed", "onMutePressed()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            ((WidgetVoiceBottomSheetViewModel) this.receiver).onMutePressed();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureCenterContent$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<StreamContext, Unit> {
+        public AnonymousClass1(WidgetVoiceBottomSheet widgetVoiceBottomSheet) {
+            super(1, widgetVoiceBottomSheet, WidgetVoiceBottomSheet.class, "onStreamPreviewClicked", "onStreamPreviewClicked(Lcom/discord/utilities/streams/StreamContext;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StreamContext streamContext) {
+            invoke2(streamContext);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StreamContext streamContext) {
+            m.checkNotNullParameter(streamContext, "p1");
+            WidgetVoiceBottomSheet.access$onStreamPreviewClicked((WidgetVoiceBottomSheet) this.receiver, streamContext);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetVoiceBottomSheet.access$getViewModel$p(WidgetVoiceBottomSheet.this).onDeafenPressed();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$handleEvent$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetVoiceBottomSheet.access$getViewModel$p(WidgetVoiceBottomSheet.this).onCameraPermissionsGranted();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onActivityResult$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass1 extends o implements Function1<Intent, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Intent intent) {
+            invoke2(intent);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Intent intent) {
+            m.checkNotNullParameter(intent, "it");
+            WidgetVoiceBottomSheet.access$getViewModel$p(WidgetVoiceBottomSheet.this).startStream(intent);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass1 extends o implements Function1<GuildScheduledEvent, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEvent guildScheduledEvent) {
+            invoke2(guildScheduledEvent);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildScheduledEvent guildScheduledEvent) {
+            m.checkNotNullParameter(guildScheduledEvent, "event");
+            WidgetGuildScheduledEventDetailsBottomSheet.Companion companion = WidgetGuildScheduledEventDetailsBottomSheet.INSTANCE;
+            FragmentManager parentFragmentManager = WidgetVoiceBottomSheet.this.getParentFragmentManager();
+            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            companion.showForGuild(parentFragmentManager, guildScheduledEvent.getId());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onStreamPreviewClicked$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ StreamContext $streamContext;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(StreamContext streamContext) {
+            super(0);
+            this.$streamContext = streamContext;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetVoiceBottomSheet.access$getViewModel$p(WidgetVoiceBottomSheet.this).onStreamPreviewClicked(this.$streamContext.getStream().getEncodedStreamKey());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onViewCreated$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<Boolean, Unit> {
+        public AnonymousClass1(WidgetVoiceBottomSheetViewModel widgetVoiceBottomSheetViewModel) {
+            super(1, widgetVoiceBottomSheetViewModel, WidgetVoiceBottomSheetViewModel.class, "onPttPressed", "onPttPressed(Z)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke(bool.booleanValue());
+            return Unit.a;
+        }
+
+        public final void invoke(boolean z2) {
+            ((WidgetVoiceBottomSheetViewModel) this.receiver).onPttPressed(z2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final /* synthetic */ class AnonymousClass2 extends k implements Function0<Unit> {
+        public AnonymousClass2(WidgetVoiceBottomSheetViewModel widgetVoiceBottomSheetViewModel) {
+            super(0, widgetVoiceBottomSheetViewModel, WidgetVoiceBottomSheetViewModel.class, "onScreenSharePressed", "onScreenSharePressed()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            ((WidgetVoiceBottomSheetViewModel) this.receiver).onScreenSharePressed();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureCenterContent$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass2 extends o implements Function1<StoreVoiceParticipants.VoiceUser, Unit> {
+        public final /* synthetic */ Channel $channel;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(Channel channel) {
+            super(1);
+            this.$channel = channel;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreVoiceParticipants.VoiceUser voiceUser) {
+            invoke2(voiceUser);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreVoiceParticipants.VoiceUser voiceUser) {
+            m.checkNotNullParameter(voiceUser, "clickedUser");
+            WidgetUserSheet.Companion companion = WidgetUserSheet.INSTANCE;
+            long id2 = voiceUser.getUser().getId();
+            Long lValueOf = Long.valueOf(this.$channel.getId());
+            FragmentManager childFragmentManager = WidgetVoiceBottomSheet.this.getChildFragmentManager();
+            m.checkNotNullExpressionValue(childFragmentManager, "childFragmentManager");
+            WidgetUserSheet.Companion.show$default(companion, id2, lValueOf, childFragmentManager, Long.valueOf(this.$channel.getGuildId()), Boolean.TRUE, null, null, 96, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureUI$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ WidgetVoiceBottomSheetViewModel.ViewState $viewState;
+
+        public AnonymousClass2(WidgetVoiceBottomSheetViewModel.ViewState viewState) {
+            this.$viewState = viewState;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            ChannelInviteLaunchUtils.inviteToChannel$default(ChannelInviteLaunchUtils.INSTANCE, WidgetVoiceBottomSheet.this, this.$viewState.getChannel(), WidgetVoiceBottomSheet.ANALYTICS_SOURCE, null, null, 24, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass2 extends o implements Function1<GuildScheduledEvent, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GuildScheduledEvent guildScheduledEvent) {
+            invoke2(guildScheduledEvent);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GuildScheduledEvent guildScheduledEvent) {
+            m.checkNotNullParameter(guildScheduledEvent, "event");
+            WidgetPreviewGuildScheduledEvent.Companion companion = WidgetPreviewGuildScheduledEvent.INSTANCE;
+            WidgetVoiceBottomSheetBinding widgetVoiceBottomSheetBindingAccess$getBinding$p = WidgetVoiceBottomSheet.access$getBinding$p(WidgetVoiceBottomSheet.this);
+            m.checkNotNullExpressionValue(widgetVoiceBottomSheetBindingAccess$getBinding$p, "binding");
+            CoordinatorLayout coordinatorLayout = widgetVoiceBottomSheetBindingAccess$getBinding$p.a;
+            m.checkNotNullExpressionValue(coordinatorLayout, "binding.root");
+            Context context = coordinatorLayout.getContext();
+            m.checkNotNullExpressionValue(context, "binding.root.context");
+            WidgetPreviewGuildScheduledEvent.Companion.launch$default(companion, context, GuildScheduledEventModelKt.toModel(guildScheduledEvent), new WidgetPreviewGuildScheduledEvent.Companion.ExistingEventData(guildScheduledEvent.getId(), WidgetPreviewGuildScheduledEvent.Companion.Action.START_EVENT), null, false, 24, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onViewCreated$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final /* synthetic */ class AnonymousClass2 extends k implements Function0<Unit> {
+        public AnonymousClass2(WidgetVoiceBottomSheetViewModel widgetVoiceBottomSheetViewModel) {
+            super(0, widgetVoiceBottomSheetViewModel, WidgetVoiceBottomSheetViewModel.class, "onDisconnect", "onDisconnect()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            ((WidgetVoiceBottomSheetViewModel) this.receiver).onDisconnect();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass3 extends o implements Function0<Unit> {
+        public AnonymousClass3() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            b.a.a.f.a.a.Companion companion = b.a.a.f.a.a.INSTANCE;
+            FragmentManager parentFragmentManager = WidgetVoiceBottomSheet.this.getParentFragmentManager();
+            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            Objects.requireNonNull(companion);
+            m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
+            new b.a.a.f.a.a().show(parentFragmentManager, b.a.a.f.a.a.class.getName());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureCenterContent$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass3 extends o implements Function1<StoreVoiceParticipants.VoiceUser, Unit> {
+        public AnonymousClass3() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreVoiceParticipants.VoiceUser voiceUser) {
+            invoke2(voiceUser);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreVoiceParticipants.VoiceUser voiceUser) {
+            m.checkNotNullParameter(voiceUser, "voiceUser");
+            WidgetVoiceBottomSheet.access$getViewModel$p(WidgetVoiceBottomSheet.this).onToggleRingingPressed(voiceUser);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureUI$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public AnonymousClass3() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetSettingsVoice.Companion companion = WidgetSettingsVoice.INSTANCE;
+            Context contextRequireContext = WidgetVoiceBottomSheet.this.requireContext();
+            m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+            WidgetSettingsVoice.Companion.launch$default(companion, contextRequireContext, null, false, 6, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onResume$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass3 extends o implements Function1<WidgetVoiceBottomSheetViewModel.ViewState, Unit> {
+        public AnonymousClass3() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetVoiceBottomSheetViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetVoiceBottomSheetViewModel.ViewState viewState) {
+            m.checkNotNullParameter(viewState, "viewState");
+            WidgetVoiceBottomSheet.access$configureUI(WidgetVoiceBottomSheet.this, viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final /* synthetic */ class AnonymousClass4 extends k implements Function0<Unit> {
+        public AnonymousClass4(WidgetVoiceBottomSheetViewModel widgetVoiceBottomSheetViewModel) {
+            super(0, widgetVoiceBottomSheetViewModel, WidgetVoiceBottomSheetViewModel.class, "onCameraButtonPressed", "onCameraButtonPressed()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            ((WidgetVoiceBottomSheetViewModel) this.receiver).onCameraButtonPressed();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureCenterContent$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass4 extends o implements Function1<View, Unit> {
+        public final /* synthetic */ Channel $channel;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass4(Channel channel) {
+            super(1);
+            this.$channel = channel;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+            ChannelInviteLaunchUtils.inviteToChannel$default(ChannelInviteLaunchUtils.INSTANCE, WidgetVoiceBottomSheet.this, this.$channel, WidgetVoiceBottomSheet.ANALYTICS_SOURCE, null, null, 24, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureUI$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass4 implements View.OnClickListener {
+        public AnonymousClass4() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetVoiceBottomSheet.access$getViewModel$p(WidgetVoiceBottomSheet.this).onNoiseCancellationPressed();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onResume$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final /* synthetic */ class AnonymousClass4 extends k implements Function1<WidgetVoiceBottomSheetViewModel.Event, Unit> {
+        public AnonymousClass4(WidgetVoiceBottomSheet widgetVoiceBottomSheet) {
+            super(1, widgetVoiceBottomSheet, WidgetVoiceBottomSheet.class, "handleEvent", "handleEvent(Lcom/discord/widgets/voice/sheet/WidgetVoiceBottomSheetViewModel$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetVoiceBottomSheetViewModel.Event event) {
+            invoke2(event);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetVoiceBottomSheetViewModel.Event event) {
+            m.checkNotNullParameter(event, "p1");
+            WidgetVoiceBottomSheet.access$handleEvent((WidgetVoiceBottomSheet) this.receiver, event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final /* synthetic */ class AnonymousClass5 extends k implements Function0<Unit> {
+        public AnonymousClass5(WidgetVoiceBottomSheetViewModel widgetVoiceBottomSheetViewModel) {
+            super(0, widgetVoiceBottomSheetViewModel, WidgetVoiceBottomSheetViewModel.class, "onDisconnectPressed", "onDisconnectPressed()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            ((WidgetVoiceBottomSheetViewModel) this.receiver).onDisconnectPressed();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureCenterContent$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass5 extends o implements Function0<Unit> {
+        public AnonymousClass5() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            FragmentManager parentFragmentManager = WidgetVoiceBottomSheet.this.getParentFragmentManager();
+            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            Context contextRequireContext = WidgetVoiceBottomSheet.this.requireContext();
+            m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
+            m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
+            m.checkNotNullParameter(contextRequireContext, "context");
+            WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
+            String string = contextRequireContext.getString(R.string.embedded_activities_desktop_only_modal_title);
+            String string2 = contextRequireContext.getString(R.string.embedded_activities_desktop_only_modal_description);
+            m.checkNotNullExpressionValue(string2, "context.getString(R.stri…p_only_modal_description)");
+            WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, string, string2, contextRequireContext.getString(R.string.okay), null, null, null, null, null, null, null, null, 0, null, 16368, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$onResume$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass5 extends o implements Function1<Subscription, Unit> {
+        public AnonymousClass5() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            WidgetVoiceBottomSheet.access$setViewModelEventSubscription$p(WidgetVoiceBottomSheet.this, subscription);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$6, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass6 extends o implements Function0<Unit> {
+        public AnonymousClass6() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetVoiceBottomSheet.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$7, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass7 implements View.OnClickListener {
+
+        /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$7$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public AnonymousClass1() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                WidgetVoiceBottomSheet.access$getViewModel$p(WidgetVoiceBottomSheet.this).tryConnectToVoice(false);
+            }
+        }
+
+        public AnonymousClass7() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            d.S1(WidgetVoiceBottomSheet.this, null, new AnonymousClass1(), 1, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$8, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class AnonymousClass8 implements View.OnClickListener {
+
+        /* JADX INFO: renamed from: com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet$configureBottomContent$8$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public AnonymousClass1() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                WidgetVoiceBottomSheet.access$getViewModel$p(WidgetVoiceBottomSheet.this).tryConnectToVoice(true);
+            }
+        }
+
+        public AnonymousClass8() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetVoiceBottomSheet.this.requestVideoCallPermissions(new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public abstract class BottomContent {
+
+        /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+        public final /* data */ class Connect extends BottomContent {
+            private final boolean isConnectEnabled;
+
+            public Connect(boolean z2) {
+                super(null);
+                this.isConnectEnabled = z2;
+            }
+
+            public static /* synthetic */ Connect copy$default(Connect connect, boolean z2, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    z2 = connect.isConnectEnabled;
+                }
+                return connect.copy(z2);
+            }
+
+            public final Connect copy(boolean isConnectEnabled) {
+                return new Connect(isConnectEnabled);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Connect) && this.isConnectEnabled == ((Connect) other).isConnectEnabled;
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final boolean getIsConnectEnabled() {
+                return this.isConnectEnabled;
+            }
+
+            public int hashCode() {
+                boolean z2 = this.isConnectEnabled;
+                if (z2) {
+                    return 1;
+                }
+                return z2 ? 1 : 0;
+            }
+
+            public final boolean isConnectEnabled() {
+                return this.isConnectEnabled;
+            }
+
+            public String toString() {
+                return a.O(a.U("Connect(isConnectEnabled="), this.isConnectEnabled, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+        public final /* data */ class Controls extends BottomContent {
+            private final StoreAudioManagerV2.State audioManagerState;
+            private final CameraState cameraState;
+            private final MediaEngineConnection.InputMode inputMode;
+            private final boolean isMuted;
+            private final boolean isScreensharing;
+            private final boolean showScreenShareSparkle;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public Controls(MediaEngineConnection.InputMode inputMode, StoreAudioManagerV2.State state, boolean z2, CameraState cameraState, boolean z3, boolean z4) {
+                super(null);
+                m.checkNotNullParameter(inputMode, "inputMode");
+                m.checkNotNullParameter(state, "audioManagerState");
+                m.checkNotNullParameter(cameraState, "cameraState");
+                this.inputMode = inputMode;
+                this.audioManagerState = state;
+                this.isMuted = z2;
+                this.cameraState = cameraState;
+                this.showScreenShareSparkle = z3;
+                this.isScreensharing = z4;
+            }
+
+            public static /* synthetic */ Controls copy$default(Controls controls, MediaEngineConnection.InputMode inputMode, StoreAudioManagerV2.State state, boolean z2, CameraState cameraState, boolean z3, boolean z4, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    inputMode = controls.inputMode;
+                }
+                if ((i & 2) != 0) {
+                    state = controls.audioManagerState;
+                }
+                StoreAudioManagerV2.State state2 = state;
+                if ((i & 4) != 0) {
+                    z2 = controls.isMuted;
+                }
+                boolean z5 = z2;
+                if ((i & 8) != 0) {
+                    cameraState = controls.cameraState;
+                }
+                CameraState cameraState2 = cameraState;
+                if ((i & 16) != 0) {
+                    z3 = controls.showScreenShareSparkle;
+                }
+                boolean z6 = z3;
+                if ((i & 32) != 0) {
+                    z4 = controls.isScreensharing;
+                }
+                return controls.copy(inputMode, state2, z5, cameraState2, z6, z4);
+            }
+
+            public final Controls copy(MediaEngineConnection.InputMode inputMode, StoreAudioManagerV2.State audioManagerState, boolean isMuted, CameraState cameraState, boolean showScreenShareSparkle, boolean isScreensharing) {
+                m.checkNotNullParameter(inputMode, "inputMode");
+                m.checkNotNullParameter(audioManagerState, "audioManagerState");
+                m.checkNotNullParameter(cameraState, "cameraState");
+                return new Controls(inputMode, audioManagerState, isMuted, cameraState, showScreenShareSparkle, isScreensharing);
+            }
+
+            public boolean equals(Object other) {
+                if (this == other) {
+                    return true;
+                }
+                if (!(other instanceof Controls)) {
+                    return false;
+                }
+                Controls controls = (Controls) other;
+                return m.areEqual(this.inputMode, controls.inputMode) && m.areEqual(this.audioManagerState, controls.audioManagerState) && this.isMuted == controls.isMuted && m.areEqual(this.cameraState, controls.cameraState) && this.showScreenShareSparkle == controls.showScreenShareSparkle && this.isScreensharing == controls.isScreensharing;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final StoreAudioManagerV2.State getAudioManagerState() {
+                return this.audioManagerState;
+            }
+
+            public final StoreAudioManagerV2.State getAudioManagerState() {
+                return this.audioManagerState;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final CameraState getCameraState() {
+                return this.cameraState;
+            }
+
+            public final CameraState getCameraState() {
+                return this.cameraState;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final MediaEngineConnection.InputMode getInputMode() {
+                return this.inputMode;
+            }
+
+            public final MediaEngineConnection.InputMode getInputMode() {
+                return this.inputMode;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final boolean getIsMuted() {
+                return this.isMuted;
+            }
+
+            /* JADX INFO: renamed from: component6, reason: from getter */
+            public final boolean getIsScreensharing() {
+                return this.isScreensharing;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
+            public final boolean getShowScreenShareSparkle() {
+                return this.showScreenShareSparkle;
+            }
+
+            public final boolean getShowScreenShareSparkle() {
+                return this.showScreenShareSparkle;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            /* JADX WARN: Type inference failed for: r0v10, types: [int] */
+            /* JADX WARN: Type inference failed for: r0v12, types: [int] */
+            /* JADX WARN: Type inference failed for: r0v6, types: [int] */
+            /* JADX WARN: Type inference failed for: r1v3, types: [int] */
+            /* JADX WARN: Type inference failed for: r1v5 */
+            /* JADX WARN: Type inference failed for: r1v7 */
+            /* JADX WARN: Type inference failed for: r2v4, types: [int] */
+            /* JADX WARN: Type inference failed for: r2v6 */
+            /* JADX WARN: Type inference failed for: r2v8 */
+            /* JADX WARN: Type inference failed for: r3v0 */
+            /* JADX WARN: Type inference failed for: r3v1, types: [int] */
+            /* JADX WARN: Type inference failed for: r3v2 */
+            public int hashCode() {
+                MediaEngineConnection.InputMode inputMode = this.inputMode;
+                int iHashCode = (inputMode != null ? inputMode.hashCode() : 0) * 31;
+                StoreAudioManagerV2.State state = this.audioManagerState;
+                int iHashCode2 = (iHashCode + (state != null ? state.hashCode() : 0)) * 31;
+                boolean z2 = this.isMuted;
+                ?? r2 = z2;
+                if (z2) {
+                    r2 = 1;
+                }
+                int i = (iHashCode2 + r2) * 31;
+                CameraState cameraState = this.cameraState;
+                int iHashCode3 = (i + (cameraState != null ? cameraState.hashCode() : 0)) * 31;
+                boolean z3 = this.showScreenShareSparkle;
+                ?? r1 = z3;
+                if (z3) {
+                    r1 = 1;
+                }
+                int i2 = (iHashCode3 + r1) * 31;
+                boolean z4 = this.isScreensharing;
+                return i2 + (z4 ? 1 : z4);
+            }
+
+            public final boolean isMuted() {
+                return this.isMuted;
+            }
+
+            public final boolean isScreensharing() {
+                return this.isScreensharing;
+            }
+
+            public String toString() {
+                StringBuilder sbU = a.U("Controls(inputMode=");
+                sbU.append(this.inputMode);
+                sbU.append(", audioManagerState=");
+                sbU.append(this.audioManagerState);
+                sbU.append(", isMuted=");
+                sbU.append(this.isMuted);
+                sbU.append(", cameraState=");
+                sbU.append(this.cameraState);
+                sbU.append(", showScreenShareSparkle=");
+                sbU.append(this.showScreenShareSparkle);
+                sbU.append(", isScreensharing=");
+                return a.O(sbU, this.isScreensharing, ")");
+            }
+        }
+
+        private BottomContent() {
+        }
+
+        public /* synthetic */ BottomContent(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public abstract class CenterContent {
+
+        /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+        public final /* data */ class Empty extends CenterContent {
+            private final List<CallParticipantsAdapter.ListItem> items;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            /* JADX WARN: Multi-variable type inference failed */
+            public Empty(List<? extends CallParticipantsAdapter.ListItem> list) {
+                super(null);
+                m.checkNotNullParameter(list, "items");
+                this.items = list;
+            }
+
+            public final List<CallParticipantsAdapter.ListItem> component1() {
+                return this.items;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ Empty copy$default(Empty empty, List list, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    list = empty.items;
+                }
+                return empty.copy(list);
+            }
+
+            public final Empty copy(List<? extends CallParticipantsAdapter.ListItem> items) {
+                m.checkNotNullParameter(items, "items");
+                return new Empty(items);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Empty) && m.areEqual(this.items, ((Empty) other).items);
+                }
+                return true;
+            }
+
+            public final List<CallParticipantsAdapter.ListItem> getItems() {
+                return this.items;
+            }
+
+            public int hashCode() {
+                List<CallParticipantsAdapter.ListItem> list = this.items;
+                if (list != null) {
+                    return list.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                return a.L(a.U("Empty(items="), this.items, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+        public final /* data */ class ListItems extends CenterContent {
+            private final List<CallParticipantsAdapter.ListItem> items;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            /* JADX WARN: Multi-variable type inference failed */
+            public ListItems(List<? extends CallParticipantsAdapter.ListItem> list) {
+                super(null);
+                m.checkNotNullParameter(list, "items");
+                this.items = list;
+            }
+
+            public final List<CallParticipantsAdapter.ListItem> component1() {
+                return this.items;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            public static /* synthetic */ ListItems copy$default(ListItems listItems, List list, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    list = listItems.items;
+                }
+                return listItems.copy(list);
+            }
+
+            public final ListItems copy(List<? extends CallParticipantsAdapter.ListItem> items) {
+                m.checkNotNullParameter(items, "items");
+                return new ListItems(items);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof ListItems) && m.areEqual(this.items, ((ListItems) other).items);
+                }
+                return true;
+            }
+
+            public final List<CallParticipantsAdapter.ListItem> getItems() {
+                return this.items;
+            }
+
+            public int hashCode() {
+                List<CallParticipantsAdapter.ListItem> list = this.items;
+                if (list != null) {
+                    return list.hashCode();
+                }
+                return 0;
+            }
+
+            public String toString() {
+                return a.L(a.U("ListItems(items="), this.items, ")");
+            }
+        }
+
+        private CenterContent() {
+        }
+
+        public /* synthetic */ CenterContent(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final WidgetVoiceBottomSheet show(FragmentManager fragmentManager, long channelId, boolean forwardToFullscreenIfVideoActivated, FeatureContext featureContext) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            m.checkNotNullParameter(featureContext, "featureContext");
+            WidgetVoiceBottomSheet widgetVoiceBottomSheet = new WidgetVoiceBottomSheet();
+            Bundle bundle = new Bundle();
+            bundle.putLong("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
+            bundle.putSerializable(WidgetVoiceBottomSheet.ARG_FEATURE_CONTEXT, featureContext);
+            bundle.putBoolean(WidgetVoiceBottomSheet.ARG_FORWARD_TO_FULLSCREEN_IF_VIDEO_ACTIVATED, forwardToFullscreenIfVideoActivated);
+            widgetVoiceBottomSheet.setArguments(bundle);
+            widgetVoiceBottomSheet.show(fragmentManager, WidgetVoiceBottomSheet.class.getSimpleName());
+            return widgetVoiceBottomSheet;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public enum FeatureContext {
+        HOME,
+        FULLSCREEN_CALL
+    }
+
+    /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
+    public interface ViewState {
+        BottomContent getBottomContent();
+
+        CenterContent getCenterContent();
+
+        Channel getChannel();
+
+        /* JADX INFO: renamed from: isDeafened */
+        boolean getIsDeafened();
+
+        /* JADX INFO: renamed from: isNoiseCancellationActive */
+        Boolean getIsNoiseCancellationActive();
+
+        boolean getShowInviteOption();
+
+        String getSubtitle();
+
+        String getTitle();
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            FeatureContext.values();
+            int[] iArr = new int[2];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[FeatureContext.HOME.ordinal()] = 1;
+            iArr[FeatureContext.FULLSCREEN_CALL.ordinal()] = 2;
+        }
+    }
+
     public WidgetVoiceBottomSheet() {
         super(false, 1, null);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetVoiceBottomSheet$binding$2.INSTANCE, null, 2, null);
@@ -98,8 +1089,8 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
         this.onStreamPreviewClickedListener = WidgetVoiceBottomSheet$onStreamPreviewClickedListener$1.INSTANCE;
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetVoiceBottomSheet widgetVoiceBottomSheet, WidgetVoiceBottomSheetViewModel$ViewState widgetVoiceBottomSheetViewModel$ViewState) {
-        widgetVoiceBottomSheet.configureUI(widgetVoiceBottomSheetViewModel$ViewState);
+    public static final /* synthetic */ void access$configureUI(WidgetVoiceBottomSheet widgetVoiceBottomSheet, WidgetVoiceBottomSheetViewModel.ViewState viewState) {
+        widgetVoiceBottomSheet.configureUI(viewState);
     }
 
     public static final /* synthetic */ Bundle access$getArgumentsOrDefault$p(WidgetVoiceBottomSheet widgetVoiceBottomSheet) {
@@ -126,8 +1117,8 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
         return widgetVoiceBottomSheet.viewModelEventSubscription;
     }
 
-    public static final /* synthetic */ void access$handleEvent(WidgetVoiceBottomSheet widgetVoiceBottomSheet, WidgetVoiceBottomSheetViewModel$Event widgetVoiceBottomSheetViewModel$Event) {
-        widgetVoiceBottomSheet.handleEvent(widgetVoiceBottomSheetViewModel$Event);
+    public static final /* synthetic */ void access$handleEvent(WidgetVoiceBottomSheet widgetVoiceBottomSheet, WidgetVoiceBottomSheetViewModel.Event event) {
+        widgetVoiceBottomSheet.handleEvent(event);
     }
 
     public static final /* synthetic */ void access$onStreamPreviewClicked(WidgetVoiceBottomSheet widgetVoiceBottomSheet, StreamContext streamContext) {
@@ -138,7 +1129,7 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
         widgetVoiceBottomSheet.viewModelEventSubscription = subscription;
     }
 
-    private final void configureBottomContent(WidgetVoiceBottomSheet$BottomContent bottomContent, Channel channel) {
+    private final void configureBottomContent(BottomContent bottomContent, Channel channel) {
         if (bottomContent == null) {
             AnchoredVoiceControlsView anchoredVoiceControlsView = getBinding().f;
             m.checkNotNullExpressionValue(anchoredVoiceControlsView, "binding.voiceBottomSheetControls");
@@ -149,10 +1140,10 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
             CoordinatorLayout coordinatorLayout = getBinding().i;
             CoordinatorLayout coordinatorLayout2 = getBinding().i;
             m.checkNotNullExpressionValue(coordinatorLayout2, "binding.voiceBottomSheetRoot");
-            coordinatorLayout.setBackgroundColor(ColorCompat.getThemedColor(coordinatorLayout2, 2130968911));
+            coordinatorLayout.setBackgroundColor(ColorCompat.getThemedColor(coordinatorLayout2, R.attr.colorBackgroundPrimary));
             return;
         }
-        if (bottomContent instanceof WidgetVoiceBottomSheet$BottomContent$Controls) {
+        if (bottomContent instanceof BottomContent.Controls) {
             AnchoredVoiceControlsView anchoredVoiceControlsView2 = getBinding().f;
             m.checkNotNullExpressionValue(anchoredVoiceControlsView2, "binding.voiceBottomSheetControls");
             anchoredVoiceControlsView2.setVisibility(0);
@@ -160,25 +1151,25 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
             m.checkNotNullExpressionValue(relativeLayout2, "binding.voiceBottomSheetConnectContainer");
             relativeLayout2.setVisibility(8);
             AnchoredVoiceControlsView anchoredVoiceControlsView3 = getBinding().f;
-            WidgetVoiceBottomSheet$BottomContent$Controls widgetVoiceBottomSheet$BottomContent$Controls = (WidgetVoiceBottomSheet$BottomContent$Controls) bottomContent;
-            MediaEngineConnection$InputMode inputMode = widgetVoiceBottomSheet$BottomContent$Controls.getInputMode();
-            boolean zIsMuted = widgetVoiceBottomSheet$BottomContent$Controls.isMuted();
-            boolean zIsScreensharing = widgetVoiceBottomSheet$BottomContent$Controls.isScreensharing();
-            CameraState cameraState = widgetVoiceBottomSheet$BottomContent$Controls.getCameraState();
-            WidgetVoiceBottomSheet$configureBottomContent$1 widgetVoiceBottomSheet$configureBottomContent$1 = new WidgetVoiceBottomSheet$configureBottomContent$1(getViewModel());
-            WidgetVoiceBottomSheet$configureBottomContent$2 widgetVoiceBottomSheet$configureBottomContent$2 = new WidgetVoiceBottomSheet$configureBottomContent$2(getViewModel());
-            WidgetVoiceBottomSheet$configureBottomContent$3 widgetVoiceBottomSheet$configureBottomContent$3 = new WidgetVoiceBottomSheet$configureBottomContent$3(this);
-            WidgetVoiceBottomSheet$configureBottomContent$4 widgetVoiceBottomSheet$configureBottomContent$4 = new WidgetVoiceBottomSheet$configureBottomContent$4(getViewModel());
-            WidgetVoiceBottomSheet$configureBottomContent$5 widgetVoiceBottomSheet$configureBottomContent$5 = new WidgetVoiceBottomSheet$configureBottomContent$5(getViewModel());
-            boolean showScreenShareSparkle = widgetVoiceBottomSheet$BottomContent$Controls.getShowScreenShareSparkle();
+            BottomContent.Controls controls = (BottomContent.Controls) bottomContent;
+            MediaEngineConnection.InputMode inputMode = controls.getInputMode();
+            boolean zIsMuted = controls.isMuted();
+            boolean zIsScreensharing = controls.isScreensharing();
+            CameraState cameraState = controls.getCameraState();
+            AnonymousClass1 anonymousClass1 = new AnonymousClass1(getViewModel());
+            AnonymousClass2 anonymousClass2 = new AnonymousClass2(getViewModel());
+            AnonymousClass3 anonymousClass3 = new AnonymousClass3();
+            AnonymousClass4 anonymousClass4 = new AnonymousClass4(getViewModel());
+            AnonymousClass5 anonymousClass5 = new AnonymousClass5(getViewModel());
+            boolean showScreenShareSparkle = controls.getShowScreenShareSparkle();
             FragmentManager parentFragmentManager = getParentFragmentManager();
             m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            anchoredVoiceControlsView3.configureUI(inputMode, widgetVoiceBottomSheet$BottomContent$Controls.getAudioManagerState(), zIsMuted, zIsScreensharing, showScreenShareSparkle, cameraState, widgetVoiceBottomSheet$configureBottomContent$1, widgetVoiceBottomSheet$configureBottomContent$2, widgetVoiceBottomSheet$configureBottomContent$3, widgetVoiceBottomSheet$configureBottomContent$4, widgetVoiceBottomSheet$configureBottomContent$5, this, parentFragmentManager, new WidgetVoiceBottomSheet$configureBottomContent$6(this), getChannelId(), channel.getGuildId(), getForwardToFullscreenIfVideoActivated(), getFeatureContext());
+            anchoredVoiceControlsView3.configureUI(inputMode, controls.getAudioManagerState(), zIsMuted, zIsScreensharing, showScreenShareSparkle, cameraState, anonymousClass1, anonymousClass2, anonymousClass3, anonymousClass4, anonymousClass5, this, parentFragmentManager, new AnonymousClass6(), getChannelId(), channel.getGuildId(), getForwardToFullscreenIfVideoActivated(), getFeatureContext());
             CoordinatorLayout coordinatorLayout3 = getBinding().i;
             CoordinatorLayout coordinatorLayout4 = getBinding().i;
             m.checkNotNullExpressionValue(coordinatorLayout4, "binding.voiceBottomSheetRoot");
-            coordinatorLayout3.setBackgroundColor(ColorCompat.getThemedColor(coordinatorLayout4, 2130968912));
-        } else if (bottomContent instanceof WidgetVoiceBottomSheet$BottomContent$Connect) {
+            coordinatorLayout3.setBackgroundColor(ColorCompat.getThemedColor(coordinatorLayout4, R.attr.colorBackgroundSecondary));
+        } else if (bottomContent instanceof BottomContent.Connect) {
             AnchoredVoiceControlsView anchoredVoiceControlsView4 = getBinding().f;
             m.checkNotNullExpressionValue(anchoredVoiceControlsView4, "binding.voiceBottomSheetControls");
             anchoredVoiceControlsView4.setVisibility(4);
@@ -186,33 +1177,33 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
             RelativeLayout relativeLayout3 = getBinding().e;
             m.checkNotNullExpressionValue(relativeLayout3, "binding.voiceBottomSheetConnectContainer");
             relativeLayout3.setVisibility(0);
-            WidgetVoiceBottomSheet$BottomContent$Connect widgetVoiceBottomSheet$BottomContent$Connect = (WidgetVoiceBottomSheet$BottomContent$Connect) bottomContent;
-            if (widgetVoiceBottomSheet$BottomContent$Connect.isConnectEnabled()) {
-                getBinding().d.setText(2131892401);
+            BottomContent.Connect connect = (BottomContent.Connect) bottomContent;
+            if (connect.isConnectEnabled()) {
+                getBinding().d.setText(R.string.join_voice_channel_cta);
                 MaterialButton materialButton = getBinding().d;
                 m.checkNotNullExpressionValue(materialButton, "binding.voiceBottomSheetConnect");
                 materialButton.setEnabled(true);
             } else {
-                getBinding().d.setText(2131887550);
+                getBinding().d.setText(R.string.channel_locked_short);
                 MaterialButton materialButton2 = getBinding().d;
                 m.checkNotNullExpressionValue(materialButton2, "binding.voiceBottomSheetConnect");
                 materialButton2.setEnabled(false);
             }
-            getBinding().d.setOnClickListener(new WidgetVoiceBottomSheet$configureBottomContent$7(this));
+            getBinding().d.setOnClickListener(new AnonymousClass7());
             MaterialButton materialButton3 = getBinding().g;
             m.checkNotNullExpressionValue(materialButton3, "binding.voiceBottomSheetJoinVideo");
-            materialButton3.setEnabled(widgetVoiceBottomSheet$BottomContent$Connect.isConnectEnabled());
-            getBinding().g.setOnClickListener(new WidgetVoiceBottomSheet$configureBottomContent$8(this));
+            materialButton3.setEnabled(connect.isConnectEnabled());
+            getBinding().g.setOnClickListener(new AnonymousClass8());
             CoordinatorLayout coordinatorLayout5 = getBinding().i;
             CoordinatorLayout coordinatorLayout6 = getBinding().i;
             m.checkNotNullExpressionValue(coordinatorLayout6, "binding.voiceBottomSheetRoot");
-            coordinatorLayout5.setBackgroundColor(ColorCompat.getThemedColor(coordinatorLayout6, 2130968911));
+            coordinatorLayout5.setBackgroundColor(ColorCompat.getThemedColor(coordinatorLayout6, R.attr.colorBackgroundPrimary));
         }
     }
 
-    private final void configureCenterContent(WidgetVoiceBottomSheet$CenterContent centerContent, Channel channel) {
-        if (!(centerContent instanceof WidgetVoiceBottomSheet$CenterContent$ListItems)) {
-            if (!(centerContent instanceof WidgetVoiceBottomSheet$CenterContent$Empty)) {
+    private final void configureCenterContent(CenterContent centerContent, Channel channel) {
+        if (!(centerContent instanceof CenterContent.ListItems)) {
+            if (!(centerContent instanceof CenterContent.Empty)) {
                 throw new NoWhenBranchMatchedException();
             }
             t0 t0Var = getBinding().f2699b;
@@ -222,13 +1213,13 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
             linearLayout.setVisibility(0);
             RecyclerView recyclerView = getBinding().h;
             m.checkNotNullExpressionValue(recyclerView, "binding.voiceBottomSheetRecycler");
-            WidgetVoiceBottomSheet$CenterContent$Empty widgetVoiceBottomSheet$CenterContent$Empty = (WidgetVoiceBottomSheet$CenterContent$Empty) centerContent;
-            recyclerView.setVisibility(widgetVoiceBottomSheet$CenterContent$Empty.getItems().isEmpty() ^ true ? 0 : 8);
+            CenterContent.Empty empty = (CenterContent.Empty) centerContent;
+            recyclerView.setVisibility(empty.getItems().isEmpty() ^ true ? 0 : 8);
             CallParticipantsAdapter callParticipantsAdapter = this.participantsAdapter;
             if (callParticipantsAdapter == null) {
                 m.throwUninitializedPropertyAccessException("participantsAdapter");
             }
-            callParticipantsAdapter.setData(widgetVoiceBottomSheet$CenterContent$Empty.getItems());
+            callParticipantsAdapter.setData(empty.getItems());
             return;
         }
         t0 t0Var2 = getBinding().f2699b;
@@ -243,35 +1234,35 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
         if (callParticipantsAdapter2 == null) {
             m.throwUninitializedPropertyAccessException("participantsAdapter");
         }
-        callParticipantsAdapter2.setData(((WidgetVoiceBottomSheet$CenterContent$ListItems) centerContent).getItems());
+        callParticipantsAdapter2.setData(((CenterContent.ListItems) centerContent).getItems());
         CallParticipantsAdapter callParticipantsAdapter3 = this.participantsAdapter;
         if (callParticipantsAdapter3 == null) {
             m.throwUninitializedPropertyAccessException("participantsAdapter");
         }
-        callParticipantsAdapter3.setOnStreamPreviewClicked(new WidgetVoiceBottomSheet$configureCenterContent$1(this));
+        callParticipantsAdapter3.setOnStreamPreviewClicked(new AnonymousClass1(this));
         CallParticipantsAdapter callParticipantsAdapter4 = this.participantsAdapter;
         if (callParticipantsAdapter4 == null) {
             m.throwUninitializedPropertyAccessException("participantsAdapter");
         }
-        callParticipantsAdapter4.setOnVoiceUserClicked(new WidgetVoiceBottomSheet$configureCenterContent$2(this, channel));
+        callParticipantsAdapter4.setOnVoiceUserClicked(new AnonymousClass2(channel));
         CallParticipantsAdapter callParticipantsAdapter5 = this.participantsAdapter;
         if (callParticipantsAdapter5 == null) {
             m.throwUninitializedPropertyAccessException("participantsAdapter");
         }
-        callParticipantsAdapter5.setOnToggleRingingClicked(new WidgetVoiceBottomSheet$configureCenterContent$3(this));
+        callParticipantsAdapter5.setOnToggleRingingClicked(new AnonymousClass3());
         CallParticipantsAdapter callParticipantsAdapter6 = this.participantsAdapter;
         if (callParticipantsAdapter6 == null) {
             m.throwUninitializedPropertyAccessException("participantsAdapter");
         }
-        callParticipantsAdapter6.setOnInviteFriendsClicked(new WidgetVoiceBottomSheet$configureCenterContent$4(this, channel));
+        callParticipantsAdapter6.setOnInviteFriendsClicked(new AnonymousClass4(channel));
         CallParticipantsAdapter callParticipantsAdapter7 = this.participantsAdapter;
         if (callParticipantsAdapter7 == null) {
             m.throwUninitializedPropertyAccessException("participantsAdapter");
         }
-        callParticipantsAdapter7.setOnEmbeddedActivityClicked(new WidgetVoiceBottomSheet$configureCenterContent$5(this));
+        callParticipantsAdapter7.setOnEmbeddedActivityClicked(new AnonymousClass5());
     }
 
-    private final void configureUI(WidgetVoiceBottomSheetViewModel$ViewState viewState) {
+    private final void configureUI(WidgetVoiceBottomSheetViewModel.ViewState viewState) {
         TextView textView = getBinding().c.g;
         m.checkNotNullExpressionValue(textView, "binding.header.voiceBottomSheetHeaderTitle");
         textView.setText(viewState.getTitle());
@@ -283,19 +1274,19 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
         imageView.setActivated(viewState.getIsDeafened());
         ImageView imageView2 = getBinding().c.f208b;
         m.checkNotNullExpressionValue(imageView2, "binding.header.voiceBottomSheetHeaderDeafen");
-        imageView2.setContentDescription(viewState.getIsDeafened() ? getString(2131896574) : getString(2131888355));
-        getBinding().c.f208b.setOnClickListener(new WidgetVoiceBottomSheet$configureUI$1(this));
+        imageView2.setContentDescription(viewState.getIsDeafened() ? getString(R.string.undeafen) : getString(R.string.deafen));
+        getBinding().c.f208b.setOnClickListener(new AnonymousClass1());
         ImageView imageView3 = getBinding().c.c;
         m.checkNotNullExpressionValue(imageView3, "binding.header.voiceBottomSheetHeaderInvite");
         imageView3.setVisibility(viewState.getShowInviteOption() ? 0 : 8);
-        getBinding().c.c.setOnClickListener(new WidgetVoiceBottomSheet$configureUI$2(this, viewState));
-        getBinding().c.e.setOnClickListener(new WidgetVoiceBottomSheet$configureUI$3(this));
-        getBinding().c.d.setOnClickListener(new WidgetVoiceBottomSheet$configureUI$4(this));
+        getBinding().c.c.setOnClickListener(new AnonymousClass2(viewState));
+        getBinding().c.e.setOnClickListener(new AnonymousClass3());
+        getBinding().c.d.setOnClickListener(new AnonymousClass4());
         if (viewState.getIsNoiseCancellationActive() != null) {
             if (m.areEqual(viewState.getIsNoiseCancellationActive(), Boolean.TRUE)) {
-                getBinding().c.d.setImageResource(2131231971);
+                getBinding().c.d.setImageResource(R.drawable.ic_noise_cancellation_active_24dp);
             } else {
-                getBinding().c.d.setImageResource(2131231972);
+                getBinding().c.d.setImageResource(R.drawable.ic_noise_cancellation_disabled_24dp);
             }
             ImageView imageView4 = getBinding().c.d;
             m.checkNotNullExpressionValue(imageView4, "binding.header.voiceBott…etHeaderNoiseCancellation");
@@ -319,11 +1310,11 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
-        return R$layout.widget_voice_bottom_sheet;
+        return R.layout.widget_voice_bottom_sheet;
     }
 
-    private final WidgetVoiceBottomSheet$FeatureContext getFeatureContext() {
-        return (WidgetVoiceBottomSheet$FeatureContext) this.featureContext.getValue();
+    private final FeatureContext getFeatureContext() {
+        return (FeatureContext) this.featureContext.getValue();
     }
 
     private final boolean getForwardToFullscreenIfVideoActivated() {
@@ -338,114 +1329,114 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
         return (WidgetVoiceBottomSheetViewModel) this.viewModel.getValue();
     }
 
-    private final void handleEvent(WidgetVoiceBottomSheetViewModel$Event event) {
-        if (m.areEqual(event, WidgetVoiceBottomSheetViewModel$Event$ShowSuppressedDialog.INSTANCE)) {
+    private final void handleEvent(WidgetVoiceBottomSheetViewModel.Event event) {
+        if (m.areEqual(event, WidgetVoiceBottomSheetViewModel.Event.ShowSuppressedDialog.INSTANCE)) {
             showSuppressedDialog();
             return;
         }
-        if (m.areEqual(event, WidgetVoiceBottomSheetViewModel$Event$ShowServerMutedDialog.INSTANCE)) {
+        if (m.areEqual(event, WidgetVoiceBottomSheetViewModel.Event.ShowServerMutedDialog.INSTANCE)) {
             showServerMutedDialog();
             return;
         }
-        if (m.areEqual(event, WidgetVoiceBottomSheetViewModel$Event$ShowServerDeafenedDialog.INSTANCE)) {
+        if (m.areEqual(event, WidgetVoiceBottomSheetViewModel.Event.ShowServerDeafenedDialog.INSTANCE)) {
             showServerDeafenedDialog();
             return;
         }
-        if (m.areEqual(event, WidgetVoiceBottomSheetViewModel$Event$ShowNoVideoPermissionDialog.INSTANCE)) {
+        if (m.areEqual(event, WidgetVoiceBottomSheetViewModel.Event.ShowNoVideoPermissionDialog.INSTANCE)) {
             showNoVideoPermissionDialog();
             return;
         }
-        if (m.areEqual(event, WidgetVoiceBottomSheetViewModel$Event$ShowNoVideoDevicesAvailableToast.INSTANCE)) {
+        if (m.areEqual(event, WidgetVoiceBottomSheetViewModel.Event.ShowNoVideoDevicesAvailableToast.INSTANCE)) {
             showNoVideoDevicesToast();
             return;
         }
-        if (m.areEqual(event, WidgetVoiceBottomSheetViewModel$Event$ShowRequestCameraPermissionsDialog.INSTANCE)) {
-            requestVideoCallPermissions(new WidgetVoiceBottomSheet$handleEvent$1(this));
+        if (m.areEqual(event, WidgetVoiceBottomSheetViewModel.Event.ShowRequestCameraPermissionsDialog.INSTANCE)) {
+            requestVideoCallPermissions(new AnonymousClass1());
             return;
         }
-        if (event instanceof WidgetVoiceBottomSheetViewModel$Event$ShowCameraCapacityDialog) {
-            j$a j_a = j.k;
+        if (event instanceof WidgetVoiceBottomSheetViewModel.Event.ShowCameraCapacityDialog) {
+            j.Companion aVar = j.INSTANCE;
             FragmentManager parentFragmentManager = getParentFragmentManager();
             m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            j_a.a(parentFragmentManager, ((WidgetVoiceBottomSheetViewModel$Event$ShowCameraCapacityDialog) event).getGuildMaxVideoChannelUsers());
+            aVar.a(parentFragmentManager, ((WidgetVoiceBottomSheetViewModel.Event.ShowCameraCapacityDialog) event).getGuildMaxVideoChannelUsers());
             return;
         }
-        if (event instanceof WidgetVoiceBottomSheetViewModel$Event$ShowNoiseCancellationBottomSheet) {
-            WidgetNoiseCancellationBottomSheet.Companion.show(this);
+        if (event instanceof WidgetVoiceBottomSheetViewModel.Event.ShowNoiseCancellationBottomSheet) {
+            WidgetNoiseCancellationBottomSheet.INSTANCE.show(this);
             return;
         }
-        if (event instanceof WidgetVoiceBottomSheetViewModel$Event$LaunchVideoCall) {
+        if (event instanceof WidgetVoiceBottomSheetViewModel.Event.LaunchVideoCall) {
             Subscription subscription = this.viewModelEventSubscription;
             if (subscription != null) {
                 subscription.unsubscribe();
             }
             dismiss();
-            WidgetCallFullscreen$Companion widgetCallFullscreen$Companion = WidgetCallFullscreen.Companion;
+            WidgetCallFullscreen.Companion companion = WidgetCallFullscreen.INSTANCE;
             Context contextRequireContext = requireContext();
             m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
-            WidgetVoiceBottomSheetViewModel$Event$LaunchVideoCall widgetVoiceBottomSheetViewModel$Event$LaunchVideoCall = (WidgetVoiceBottomSheetViewModel$Event$LaunchVideoCall) event;
-            WidgetCallFullscreen$Companion.launch$default(widgetCallFullscreen$Companion, contextRequireContext, widgetVoiceBottomSheetViewModel$Event$LaunchVideoCall.getChannelId(), false, widgetVoiceBottomSheetViewModel$Event$LaunchVideoCall.getAutoTargetStreamKey(), null, 20, null);
+            WidgetVoiceBottomSheetViewModel.Event.LaunchVideoCall launchVideoCall = (WidgetVoiceBottomSheetViewModel.Event.LaunchVideoCall) event;
+            WidgetCallFullscreen.Companion.launch$default(companion, contextRequireContext, launchVideoCall.getChannelId(), false, launchVideoCall.getAutoTargetStreamKey(), null, 20, null);
             return;
         }
-        if (event instanceof WidgetVoiceBottomSheetViewModel$Event$LaunchStageChannel) {
+        if (event instanceof WidgetVoiceBottomSheetViewModel.Event.LaunchStageChannel) {
             Subscription subscription2 = this.viewModelEventSubscription;
             if (subscription2 != null) {
                 subscription2.unsubscribe();
             }
             dismiss();
-            WidgetCallFullscreen$Companion widgetCallFullscreen$Companion2 = WidgetCallFullscreen.Companion;
+            WidgetCallFullscreen.Companion companion2 = WidgetCallFullscreen.INSTANCE;
             Context contextRequireContext2 = requireContext();
             m.checkNotNullExpressionValue(contextRequireContext2, "requireContext()");
-            WidgetCallFullscreen$Companion.launch$default(widgetCallFullscreen$Companion2, contextRequireContext2, ((WidgetVoiceBottomSheetViewModel$Event$LaunchStageChannel) event).getChannelId(), false, null, null, 28, null);
+            WidgetCallFullscreen.Companion.launch$default(companion2, contextRequireContext2, ((WidgetVoiceBottomSheetViewModel.Event.LaunchStageChannel) event).getChannelId(), false, null, null, 28, null);
             return;
         }
-        if (m.areEqual(event, WidgetVoiceBottomSheetViewModel$Event$ShowGuildVideoAtCapacityDialog.INSTANCE)) {
-            m$a m_a = b.a.a.m.k;
+        if (m.areEqual(event, WidgetVoiceBottomSheetViewModel.Event.ShowGuildVideoAtCapacityDialog.INSTANCE)) {
+            b.a.a.m.Companion aVar2 = b.a.a.m.INSTANCE;
             FragmentManager parentFragmentManager2 = getParentFragmentManager();
             m.checkNotNullExpressionValue(parentFragmentManager2, "parentFragmentManager");
-            m_a.a(parentFragmentManager2);
+            aVar2.a(parentFragmentManager2);
             return;
         }
-        if (m.areEqual(event, WidgetVoiceBottomSheetViewModel$Event$ShowOverlayNux.INSTANCE)) {
-            WidgetNoticeNuxOverlay.Companion.enqueue();
+        if (m.areEqual(event, WidgetVoiceBottomSheetViewModel.Event.ShowOverlayNux.INSTANCE)) {
+            WidgetNoticeNuxOverlay.INSTANCE.enqueue();
             return;
         }
-        if (event instanceof WidgetVoiceBottomSheetViewModel$Event$ShowToast) {
-            b.a.d.m.g(requireContext(), ((WidgetVoiceBottomSheetViewModel$Event$ShowToast) event).getToastResId(), 0, null, 12);
+        if (event instanceof WidgetVoiceBottomSheetViewModel.Event.ShowToast) {
+            b.a.d.m.g(requireContext(), ((WidgetVoiceBottomSheetViewModel.Event.ShowToast) event).getToastResId(), 0, null, 12);
             return;
         }
-        if (event instanceof WidgetVoiceBottomSheetViewModel$Event$ShowEventEnd) {
-            WidgetEndGuildScheduledEventBottomSheet$Companion widgetEndGuildScheduledEventBottomSheet$Companion = WidgetEndGuildScheduledEventBottomSheet.Companion;
+        if (event instanceof WidgetVoiceBottomSheetViewModel.Event.ShowEventEnd) {
+            WidgetEndGuildScheduledEventBottomSheet.Companion companion3 = WidgetEndGuildScheduledEventBottomSheet.INSTANCE;
             FragmentManager parentFragmentManager3 = getParentFragmentManager();
             m.checkNotNullExpressionValue(parentFragmentManager3, "parentFragmentManager");
-            WidgetVoiceBottomSheetViewModel$Event$ShowEventEnd widgetVoiceBottomSheetViewModel$Event$ShowEventEnd = (WidgetVoiceBottomSheetViewModel$Event$ShowEventEnd) event;
-            widgetEndGuildScheduledEventBottomSheet$Companion.show(parentFragmentManager3, END_EVENT_REQUEST_KEY, widgetVoiceBottomSheetViewModel$Event$ShowEventEnd.getGuildScheduledEvent().getGuildId(), widgetVoiceBottomSheetViewModel$Event$ShowEventEnd.getGuildScheduledEvent().getId());
+            WidgetVoiceBottomSheetViewModel.Event.ShowEventEnd showEventEnd = (WidgetVoiceBottomSheetViewModel.Event.ShowEventEnd) event;
+            companion3.show(parentFragmentManager3, END_EVENT_REQUEST_KEY, showEventEnd.getGuildScheduledEvent().getGuildId(), showEventEnd.getGuildScheduledEvent().getId());
             return;
         }
-        if (event instanceof WidgetVoiceBottomSheetViewModel$Event$EnqueueCallFeedbackSheet) {
-            WidgetVoiceBottomSheetViewModel$Event$EnqueueCallFeedbackSheet widgetVoiceBottomSheetViewModel$Event$EnqueueCallFeedbackSheet = (WidgetVoiceBottomSheetViewModel$Event$EnqueueCallFeedbackSheet) event;
-            CallFeedbackSheetNavigator.INSTANCE.enqueueNotice(widgetVoiceBottomSheetViewModel$Event$EnqueueCallFeedbackSheet.getChannelId(), widgetVoiceBottomSheetViewModel$Event$EnqueueCallFeedbackSheet.getRtcConnectionId(), widgetVoiceBottomSheetViewModel$Event$EnqueueCallFeedbackSheet.getMediaSessionId(), Long.valueOf(widgetVoiceBottomSheetViewModel$Event$EnqueueCallFeedbackSheet.getCallDuration()), widgetVoiceBottomSheetViewModel$Event$EnqueueCallFeedbackSheet.getTriggerRateDenominator());
+        if (event instanceof WidgetVoiceBottomSheetViewModel.Event.EnqueueCallFeedbackSheet) {
+            WidgetVoiceBottomSheetViewModel.Event.EnqueueCallFeedbackSheet enqueueCallFeedbackSheet = (WidgetVoiceBottomSheetViewModel.Event.EnqueueCallFeedbackSheet) event;
+            CallFeedbackSheetNavigator.INSTANCE.enqueueNotice(enqueueCallFeedbackSheet.getChannelId(), enqueueCallFeedbackSheet.getRtcConnectionId(), enqueueCallFeedbackSheet.getMediaSessionId(), Long.valueOf(enqueueCallFeedbackSheet.getCallDuration()), enqueueCallFeedbackSheet.getTriggerRateDenominator());
             return;
         }
-        if (m.areEqual(event, WidgetVoiceBottomSheetViewModel$Event$Dismiss.INSTANCE)) {
+        if (m.areEqual(event, WidgetVoiceBottomSheetViewModel.Event.Dismiss.INSTANCE)) {
             dismiss();
             return;
         }
-        if (event instanceof WidgetVoiceBottomSheetViewModel$Event$AccessibilityAnnouncement) {
+        if (event instanceof WidgetVoiceBottomSheetViewModel.Event.AccessibilityAnnouncement) {
             AccessibilityUtils accessibilityUtils = AccessibilityUtils.INSTANCE;
             Context contextRequireContext3 = requireContext();
             m.checkNotNullExpressionValue(contextRequireContext3, "requireContext()");
-            String string = getString(((WidgetVoiceBottomSheetViewModel$Event$AccessibilityAnnouncement) event).getMessageResId());
+            String string = getString(((WidgetVoiceBottomSheetViewModel.Event.AccessibilityAnnouncement) event).getMessageResId());
             m.checkNotNullExpressionValue(string, "getString(event.messageResId)");
             accessibilityUtils.sendAnnouncement(contextRequireContext3, string);
             return;
         }
-        if (event instanceof WidgetVoiceBottomSheetViewModel$Event$ShowNoScreenSharePermissionDialog) {
+        if (event instanceof WidgetVoiceBottomSheetViewModel.Event.ShowNoScreenSharePermissionDialog) {
             showNoScreenSharePermissionDialog();
-        } else if (m.areEqual(event, WidgetVoiceBottomSheetViewModel$Event$RequestStartStream.INSTANCE)) {
+        } else if (m.areEqual(event, WidgetVoiceBottomSheetViewModel.Event.RequestStartStream.INSTANCE)) {
             StreamNavigator.requestStartStream(this);
         } else {
-            if (!m.areEqual(event, WidgetVoiceBottomSheetViewModel$Event$ExpandSheet.INSTANCE)) {
+            if (!m.areEqual(event, WidgetVoiceBottomSheetViewModel.Event.ExpandSheet.INSTANCE)) {
                 throw new NoWhenBranchMatchedException();
             }
             setBottomSheetState(3);
@@ -455,35 +1446,35 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
     @Override // androidx.fragment.app.Fragment
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        StreamNavigator.handleActivityResult(requestCode, resultCode, intent, new WidgetVoiceBottomSheet$onActivityResult$1(this));
+        StreamNavigator.handleActivityResult(requestCode, resultCode, intent, new AnonymousClass1());
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
-        MGRecyclerAdapter$Companion mGRecyclerAdapter$Companion = MGRecyclerAdapter.Companion;
+        MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
         RecyclerView recyclerView = getBinding().h;
         m.checkNotNullExpressionValue(recyclerView, "binding.voiceBottomSheetRecycler");
-        CallParticipantsAdapter callParticipantsAdapter = (CallParticipantsAdapter) mGRecyclerAdapter$Companion.configure(new CallParticipantsAdapter(recyclerView, false, true, 2, null));
+        CallParticipantsAdapter callParticipantsAdapter = (CallParticipantsAdapter) companion.configure(new CallParticipantsAdapter(recyclerView, false, true, 2, null));
         this.participantsAdapter = callParticipantsAdapter;
         if (callParticipantsAdapter == null) {
             m.throwUninitializedPropertyAccessException("participantsAdapter");
         }
-        callParticipantsAdapter.setOnEventClicked(new WidgetVoiceBottomSheet$onResume$1(this));
+        callParticipantsAdapter.setOnEventClicked(new AnonymousClass1());
         CallParticipantsAdapter callParticipantsAdapter2 = this.participantsAdapter;
         if (callParticipantsAdapter2 == null) {
             m.throwUninitializedPropertyAccessException("participantsAdapter");
         }
-        callParticipantsAdapter2.setOnStartEventClicked(new WidgetVoiceBottomSheet$onResume$2(this));
+        callParticipantsAdapter2.setOnStartEventClicked(new AnonymousClass2());
         getBinding().h.setHasFixedSize(false);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetVoiceBottomSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetVoiceBottomSheet$onResume$3(this), 62, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetVoiceBottomSheet.class, (Context) null, new WidgetVoiceBottomSheet$onResume$5(this), (Function1) null, (Function0) null, (Function0) null, new WidgetVoiceBottomSheet$onResume$4(this), 58, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetVoiceBottomSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass3(), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetVoiceBottomSheet.class, (Context) null, new AnonymousClass5(), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass4(this), 58, (Object) null);
     }
 
     private final void onStreamPreviewClicked(StreamContext streamContext) {
         int iOrdinal = getFeatureContext().ordinal();
         if (iOrdinal == 0) {
-            d.S1(this, null, new WidgetVoiceBottomSheet$onStreamPreviewClicked$1(this, streamContext), 1, null);
+            d.S1(this, null, new AnonymousClass1(streamContext), 1, null);
         } else {
             if (iOrdinal != 1) {
                 throw new NoWhenBranchMatchedException();
@@ -498,8 +1489,8 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
         m.checkNotNullParameter(view, "view");
         super.onViewCreated(view, savedInstanceState);
         setBottomSheetState(3);
-        getBinding().f.setOnPttPressedListener(new WidgetVoiceBottomSheet$onViewCreated$1(getViewModel()));
-        WidgetEndGuildScheduledEventBottomSheet.Companion.registerForResult(this, END_EVENT_REQUEST_KEY, new WidgetVoiceBottomSheet$onViewCreated$2(getViewModel()));
+        getBinding().f.setOnPttPressedListener(new AnonymousClass1(getViewModel()));
+        WidgetEndGuildScheduledEventBottomSheet.INSTANCE.registerForResult(this, END_EVENT_REQUEST_KEY, new AnonymousClass2(getViewModel()));
     }
 
     public final void setOnStreamPreviewClickedListener(Function1<? super StreamContext, Unit> function1) {
@@ -514,15 +1505,15 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
         m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
         m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
         m.checkNotNullParameter(contextRequireContext, "context");
-        WidgetNoticeDialog$Companion widgetNoticeDialog$Companion = WidgetNoticeDialog.Companion;
-        String string = contextRequireContext.getString(2131893293);
-        String string2 = contextRequireContext.getString(2131893279);
+        WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
+        String string = contextRequireContext.getString(R.string.no_video_permission_dialog_title);
+        String string2 = contextRequireContext.getString(R.string.no_screenshare_permission_dialog_body);
         m.checkNotNullExpressionValue(string2, "context.getString(R.stri…e_permission_dialog_body)");
-        WidgetNoticeDialog$Companion.show$default(widgetNoticeDialog$Companion, parentFragmentManager, string, string2, contextRequireContext.getString(2131893499), null, null, null, null, null, null, null, null, 0, null, 16368, null);
+        WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, string, string2, contextRequireContext.getString(R.string.okay), null, null, null, null, null, null, null, null, 0, null, 16368, null);
     }
 
     private final void showNoVideoDevicesToast() {
-        b.a.d.m.i(this, 2131893291, 0, 4);
+        b.a.d.m.i(this, R.string.no_video_devices, 0, 4);
     }
 
     private final void showNoVideoPermissionDialog() {
@@ -532,11 +1523,11 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
         m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
         m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
         m.checkNotNullParameter(contextRequireContext, "context");
-        WidgetNoticeDialog$Companion widgetNoticeDialog$Companion = WidgetNoticeDialog.Companion;
-        String string = contextRequireContext.getString(2131893293);
-        String string2 = contextRequireContext.getString(2131893292);
+        WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
+        String string = contextRequireContext.getString(R.string.no_video_permission_dialog_title);
+        String string2 = contextRequireContext.getString(R.string.no_video_permission_dialog_body);
         m.checkNotNullExpressionValue(string2, "context.getString(R.stri…o_permission_dialog_body)");
-        WidgetNoticeDialog$Companion.show$default(widgetNoticeDialog$Companion, parentFragmentManager, string, string2, contextRequireContext.getString(2131893499), null, null, null, null, null, null, null, null, 0, null, 16368, null);
+        WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, string, string2, contextRequireContext.getString(R.string.okay), null, null, null, null, null, null, null, null, 0, null, 16368, null);
     }
 
     private final void showServerDeafenedDialog() {
@@ -546,11 +1537,11 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
         m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
         m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
         m.checkNotNullParameter(contextRequireContext, "context");
-        WidgetNoticeDialog$Companion widgetNoticeDialog$Companion = WidgetNoticeDialog.Companion;
-        String string = contextRequireContext.getString(2131895439);
-        String string2 = contextRequireContext.getString(2131895438);
+        WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
+        String string = contextRequireContext.getString(R.string.server_deafened_dialog_title);
+        String string2 = contextRequireContext.getString(R.string.server_deafened_dialog_body);
         m.checkNotNullExpressionValue(string2, "context.getString(R.stri…ver_deafened_dialog_body)");
-        WidgetNoticeDialog$Companion.show$default(widgetNoticeDialog$Companion, parentFragmentManager, string, string2, contextRequireContext.getString(2131893499), null, null, null, null, null, null, null, null, 0, null, 16368, null);
+        WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, string, string2, contextRequireContext.getString(R.string.okay), null, null, null, null, null, null, null, null, 0, null, 16368, null);
     }
 
     private final void showServerMutedDialog() {
@@ -560,11 +1551,11 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
         m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
         m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
         m.checkNotNullParameter(contextRequireContext, "context");
-        WidgetNoticeDialog$Companion widgetNoticeDialog$Companion = WidgetNoticeDialog.Companion;
-        String string = contextRequireContext.getString(2131895587);
-        String string2 = contextRequireContext.getString(2131895586);
+        WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
+        String string = contextRequireContext.getString(R.string.server_muted_dialog_title);
+        String string2 = contextRequireContext.getString(R.string.server_muted_dialog_body);
         m.checkNotNullExpressionValue(string2, "context.getString(R.stri…server_muted_dialog_body)");
-        WidgetNoticeDialog$Companion.show$default(widgetNoticeDialog$Companion, parentFragmentManager, string, string2, contextRequireContext.getString(2131893499), null, null, null, null, null, null, null, null, 0, null, 16368, null);
+        WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, string, string2, contextRequireContext.getString(R.string.okay), null, null, null, null, null, null, null, null, 0, null, 16368, null);
     }
 
     private final void showSuppressedDialog() {
@@ -574,10 +1565,10 @@ public final class WidgetVoiceBottomSheet extends AppBottomSheet {
         m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
         m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
         m.checkNotNullParameter(contextRequireContext, "context");
-        WidgetNoticeDialog$Companion widgetNoticeDialog$Companion = WidgetNoticeDialog.Companion;
-        String string = contextRequireContext.getString(2131896115);
-        String string2 = contextRequireContext.getString(2131896118);
+        WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
+        String string = contextRequireContext.getString(R.string.suppressed);
+        String string2 = contextRequireContext.getString(R.string.suppressed_permission_body);
         m.checkNotNullExpressionValue(string2, "context.getString(R.stri…ppressed_permission_body)");
-        WidgetNoticeDialog$Companion.show$default(widgetNoticeDialog$Companion, parentFragmentManager, string, string2, contextRequireContext.getString(2131893499), null, null, null, null, null, null, null, null, 0, null, 16368, null);
+        WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, string, string2, contextRequireContext.getString(R.string.okay), null, null, null, null, null, null, null, null, 0, null, 16368, null);
     }
 }

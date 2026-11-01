@@ -2,7 +2,7 @@ package b.i.c.m.d.k;
 
 /* JADX INFO: compiled from: CrashlyticsController.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class v implements x$g {
+public class v implements x.g {
     public final /* synthetic */ String a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -21,7 +21,7 @@ public class v implements x$g {
         this.e = i;
     }
 
-    @Override // b.i.c.m.d.k.x$g
+    @Override // b.i.c.m.d.k.x.g
     public void a(b.i.c.m.d.p.c cVar) throws Exception {
         String str = this.a;
         String str2 = this.f1697b;

@@ -4,31 +4,146 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import okhttp3.Headers;
-import okhttp3.Headers$a;
 import okhttp3.MediaType;
-import okhttp3.MultipartBody$a;
+import okhttp3.MultipartBody;
 import okhttp3.Request;
-import okhttp3.Request$a;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 import okhttp3.ResponseBody;
-import retrofit2.Response;
 
 /* JADX INFO: compiled from: OkHttpCall.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class p<T> implements d<T> {
     public final w j;
     public final Object[] k;
-    public final f0.e$a l;
+    public final f0.e.a l;
     public final h<ResponseBody, T> m;
     public volatile boolean n;
     public f0.e o;
     public Throwable p;
     public boolean q;
 
-    public p(w wVar, Object[] objArr, f0.e$a e_a, h<ResponseBody, T> hVar) {
+    /* JADX INFO: compiled from: OkHttpCall.java */
+    public class a implements f0.f {
+        public final /* synthetic */ f a;
+
+        public a(f fVar) {
+            this.a = fVar;
+        }
+
+        @Override // f0.f
+        public void a(f0.e eVar, Response response) {
+            try {
+                try {
+                    this.a.b(p.this, p.this.g(response));
+                } catch (Throwable th) {
+                    c0.o(th);
+                    th.printStackTrace();
+                }
+            } catch (Throwable th2) {
+                c0.o(th2);
+                try {
+                    this.a.a(p.this, th2);
+                } catch (Throwable th3) {
+                    c0.o(th3);
+                    th3.printStackTrace();
+                }
+            }
+        }
+
+        @Override // f0.f
+        public void b(f0.e eVar, IOException iOException) {
+            try {
+                this.a.a(p.this, iOException);
+            } catch (Throwable th) {
+                c0.o(th);
+                th.printStackTrace();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: OkHttpCall.java */
+    public final class b extends ResponseBody {
+        public final ResponseBody l;
+        public final g0.g m;
+        public IOException n;
+
+        /* JADX INFO: compiled from: OkHttpCall.java */
+        public class a extends g0.j {
+            public a(g0.x xVar) {
+                super(xVar);
+            }
+
+            @Override // g0.x
+            public long i0(g0.e eVar, long j) throws IOException {
+                try {
+                    d0.z.d.m.checkParameterIsNotNull(eVar, "sink");
+                    return this.j.i0(eVar, j);
+                } catch (IOException e) {
+                    b.this.n = e;
+                    throw e;
+                }
+            }
+        }
+
+        public b(ResponseBody responseBody) {
+            this.l = responseBody;
+            a aVar = new a(responseBody.c());
+            d0.z.d.m.checkParameterIsNotNull(aVar, "$this$buffer");
+            this.m = new g0.r(aVar);
+        }
+
+        @Override // okhttp3.ResponseBody
+        public long a() {
+            return this.l.a();
+        }
+
+        @Override // okhttp3.ResponseBody
+        public MediaType b() {
+            return this.l.b();
+        }
+
+        @Override // okhttp3.ResponseBody
+        public g0.g c() {
+            return this.m;
+        }
+
+        @Override // okhttp3.ResponseBody, java.io.Closeable, java.lang.AutoCloseable
+        public void close() {
+            this.l.close();
+        }
+    }
+
+    /* JADX INFO: compiled from: OkHttpCall.java */
+    public final class c extends ResponseBody {
+        public final MediaType l;
+        public final long m;
+
+        public c(MediaType mediaType, long j) {
+            this.l = mediaType;
+            this.m = j;
+        }
+
+        @Override // okhttp3.ResponseBody
+        public long a() {
+            return this.m;
+        }
+
+        @Override // okhttp3.ResponseBody
+        public MediaType b() {
+            return this.l;
+        }
+
+        @Override // okhttp3.ResponseBody
+        public g0.g c() {
+            throw new IllegalStateException("Cannot read raw response body of a converted body.");
+        }
+    }
+
+    public p(w wVar, Object[] objArr, f0.e.a aVar, h<ResponseBody, T> hVar) {
         this.j = wVar;
         this.k = objArr;
-        this.l = e_a;
+        this.l = aVar;
         this.m = hVar;
     }
 
@@ -62,7 +177,7 @@ public final class p<T> implements d<T> {
         if (this.n) {
             eVar.cancel();
         }
-        eVar.e(new p$a(this, fVar));
+        eVar.e(new a(fVar));
     }
 
     @Override // i0.d
@@ -72,7 +187,7 @@ public final class p<T> implements d<T> {
 
     public final f0.e b() throws IOException {
         f0.w wVarB;
-        f0.e$a e_a = this.l;
+        f0.e.a aVar = this.l;
         w wVar = this.j;
         Object[] objArr = this.k;
         t<?>[] tVarArr = wVar.j;
@@ -89,16 +204,16 @@ public final class p<T> implements d<T> {
             arrayList.add(objArr[i]);
             tVarArr[i].a(vVar, objArr[i]);
         }
-        f0.w$a w_a = vVar.f;
-        if (w_a != null) {
-            wVarB = w_a.b();
+        f0.w.a aVar2 = vVar.f;
+        if (aVar2 != null) {
+            wVarB = aVar2.b();
         } else {
             f0.w wVar2 = vVar.d;
             String str = vVar.e;
             Objects.requireNonNull(wVar2);
             d0.z.d.m.checkParameterIsNotNull(str, "link");
-            f0.w$a w_aG = wVar2.g(str);
-            wVarB = w_aG != null ? w_aG.b() : null;
+            f0.w.a aVarG = wVar2.g(str);
+            wVarB = aVarG != null ? aVarG.b() : null;
             if (wVarB == null) {
                 StringBuilder sbU = b.d.b.a.a.U("Malformed URL. Base: ");
                 sbU.append(vVar.d);
@@ -107,36 +222,36 @@ public final class p<T> implements d<T> {
                 throw new IllegalArgumentException(sbU.toString());
             }
         }
-        RequestBody v_a = vVar.m;
-        if (v_a == null) {
-            f0.u$a u_a = vVar.l;
-            if (u_a != null) {
-                v_a = new f0.u(u_a.a, u_a.f3679b);
+        RequestBody aVar3 = vVar.m;
+        if (aVar3 == null) {
+            f0.u.a aVar4 = vVar.l;
+            if (aVar4 != null) {
+                aVar3 = new f0.u(aVar4.a, aVar4.f3679b);
             } else {
-                MultipartBody$a multipartBody$a = vVar.k;
-                if (multipartBody$a != null) {
-                    v_a = multipartBody$a.b();
+                MultipartBody.a aVar5 = vVar.k;
+                if (aVar5 != null) {
+                    aVar3 = aVar5.b();
                 } else if (vVar.j) {
-                    v_a = RequestBody.create((MediaType) null, new byte[0]);
+                    aVar3 = RequestBody.create((MediaType) null, new byte[0]);
                 }
             }
         }
         MediaType mediaType = vVar.i;
         if (mediaType != null) {
-            if (v_a != null) {
-                v_a = new v$a(v_a, mediaType);
+            if (aVar3 != null) {
+                aVar3 = new v.a(aVar3, mediaType);
             } else {
                 vVar.h.a("Content-Type", mediaType.mediaType);
             }
         }
-        Request$a request$a = vVar.g;
-        request$a.g(wVarB);
+        Request.a aVar6 = vVar.g;
+        aVar6.g(wVarB);
         Headers headersC = vVar.h.c();
         d0.z.d.m.checkParameterIsNotNull(headersC, "headers");
-        request$a.c = headersC.e();
-        request$a.c(vVar.c, v_a);
-        request$a.e(k.class, new k(wVar.a, arrayList));
-        f0.e eVarB = e_a.b(request$a.a());
+        aVar6.c = headersC.e();
+        aVar6.c(vVar.c, aVar3);
+        aVar6.e(k.class, new k(wVar.a, arrayList));
+        f0.e eVarB = aVar.b(aVar6.a());
         Objects.requireNonNull(eVarB, "Call.Factory returned null.");
         return eVarB;
     }
@@ -182,7 +297,7 @@ public final class p<T> implements d<T> {
     }
 
     @Override // i0.d
-    public Response<T> execute() throws IOException {
+    public retrofit2.Response<T> execute() throws IOException {
         f0.e eVarF;
         synchronized (this) {
             if (this.q) {
@@ -223,7 +338,7 @@ public final class p<T> implements d<T> {
         }
     }
 
-    public Response<T> g(okhttp3.Response response) throws IOException {
+    public retrofit2.Response<T> g(Response response) throws IOException {
         ResponseBody responseBody = response.body;
         d0.z.d.m.checkParameterIsNotNull(response, "response");
         Request request = response.request;
@@ -231,14 +346,14 @@ public final class p<T> implements d<T> {
         int i = response.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String;
         String str = response.message;
         f0.v vVar = response.handshake;
-        Headers$a headers$aE = response.headers.e();
-        okhttp3.Response response2 = response.networkResponse;
-        okhttp3.Response response3 = response.cacheResponse;
-        okhttp3.Response response4 = response.priorResponse;
+        Headers.a aVarE = response.headers.e();
+        Response response2 = response.networkResponse;
+        Response response3 = response.cacheResponse;
+        Response response4 = response.priorResponse;
         long j = response.sentRequestAtMillis;
         long j2 = response.receivedResponseAtMillis;
         f0.e0.g.c cVar = response.exchange;
-        p$c p_c = new p$c(responseBody.b(), responseBody.a());
+        c cVar2 = new c(responseBody.b(), responseBody.a());
         if (!(i >= 0)) {
             throw new IllegalStateException(b.d.b.a.a.q("code < 0: ", i).toString());
         }
@@ -251,7 +366,7 @@ public final class p<T> implements d<T> {
         if (str == null) {
             throw new IllegalStateException("message == null".toString());
         }
-        okhttp3.Response response5 = new okhttp3.Response(request, yVar, str, i, vVar, headers$aE.c(), p_c, response2, response3, response4, j, j2, cVar);
+        Response response5 = new Response(request, yVar, str, i, vVar, aVarE.c(), cVar2, response2, response3, response4, j, j2, cVar);
         int i2 = response5.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String;
         if (i2 < 200 || i2 >= 300) {
             try {
@@ -259,7 +374,7 @@ public final class p<T> implements d<T> {
                 if (response5.b()) {
                     throw new IllegalArgumentException("rawResponse should not be successful response");
                 }
-                Response<T> response6 = new Response<>(response5, null, responseBodyA);
+                retrofit2.Response<T> response6 = new retrofit2.Response<>(response5, null, responseBodyA);
                 responseBody.close();
                 return response6;
             } catch (Throwable th) {
@@ -269,13 +384,13 @@ public final class p<T> implements d<T> {
         }
         if (i2 == 204 || i2 == 205) {
             responseBody.close();
-            return Response.b(null, response5);
+            return retrofit2.Response.b(null, response5);
         }
-        p$b p_b = new p$b(responseBody);
+        b bVar = new b(responseBody);
         try {
-            return Response.b(this.m.convert(p_b), response5);
+            return retrofit2.Response.b(this.m.convert(bVar), response5);
         } catch (RuntimeException e) {
-            IOException iOException = p_b.n;
+            IOException iOException = bVar.n;
             if (iOException == null) {
                 throw e;
             }

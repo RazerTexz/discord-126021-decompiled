@@ -8,6 +8,7 @@ import com.google.android.exoplayer2.decoder.DecoderException;
 import com.google.android.exoplayer2.decoder.DecoderInputBuffer;
 import com.google.android.exoplayer2.text.SubtitleDecoderException;
 import java.util.ArrayDeque;
+import java.util.Objects;
 
 /* JADX INFO: compiled from: SimpleDecoder.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -32,6 +33,25 @@ public abstract class h<I extends DecoderInputBuffer, O extends f, E extends Dec
     public final ArrayDeque<I> c = new ArrayDeque<>();
     public final ArrayDeque<O> d = new ArrayDeque<>();
 
+    /* JADX INFO: compiled from: SimpleDecoder.java */
+    public class a extends Thread {
+        public a(String str) {
+            super(str);
+        }
+
+        @Override // java.lang.Thread, java.lang.Runnable
+        public void run() {
+            h hVar = h.this;
+            Objects.requireNonNull(hVar);
+            do {
+                try {
+                } catch (InterruptedException e) {
+                    throw new IllegalStateException(e);
+                }
+            } while (hVar.f());
+        }
+    }
+
     public h(I[] iArr, O[] oArr) {
         this.e = iArr;
         this.g = iArr.length;
@@ -43,9 +63,9 @@ public abstract class h<I extends DecoderInputBuffer, O extends f, E extends Dec
         for (int i2 = 0; i2 < this.h; i2++) {
             this.f[i2] = new b.i.a.c.b3.e((b.i.a.c.b3.f) this);
         }
-        h$a h_a = new h$a(this, "ExoPlayer:SimpleDecoder");
-        this.a = h_a;
-        h_a.start();
+        a aVar = new a("ExoPlayer:SimpleDecoder");
+        this.a = aVar;
+        aVar.start();
     }
 
     @Override // b.i.a.c.v2.d

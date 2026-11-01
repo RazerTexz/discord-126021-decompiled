@@ -1,7 +1,7 @@
 package b.i.a.c.b3.r;
 
 import android.graphics.PointF;
-import android.text.Layout$Alignment;
+import android.text.Layout;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
@@ -62,7 +62,7 @@ public final class a extends f {
         int i2;
         int i3;
         float f;
-        Layout$Alignment layout$Alignment;
+        Layout.Alignment alignment;
         int i4;
         int i5;
         float fL;
@@ -110,7 +110,7 @@ public final class a extends f {
                                     Map<String, c> map = aVar.q;
                                     c cVar = (map == null || (i9 = bVarA.c) == -1) ? null : map.get(strArrSplit[i9].trim());
                                     String str = strArrSplit[bVarA.d];
-                                    Matcher matcher = c$b.a.matcher(str);
+                                    Matcher matcher = c.b.a.matcher(str);
                                     PointF pointF = null;
                                     int i10 = -1;
                                     while (true) {
@@ -119,14 +119,14 @@ public final class a extends f {
                                             String strGroup = matcher.group(1);
                                             Objects.requireNonNull(strGroup);
                                             try {
-                                                PointF pointFA = c$b.a(strGroup);
+                                                PointF pointFA = c.b.a(strGroup);
                                                 if (pointFA != null) {
                                                     pointF = pointFA;
                                                 }
                                             } catch (RuntimeException unused) {
                                             }
                                             try {
-                                                Matcher matcher2 = c$b.d.matcher(strGroup);
+                                                Matcher matcher2 = c.b.d.matcher(strGroup);
                                                 if (matcher2.find()) {
                                                     String strGroup2 = matcher2.group(1);
                                                     Objects.requireNonNull(strGroup2);
@@ -141,7 +141,7 @@ public final class a extends f {
                                             }
                                             xVar2 = xVar;
                                         } else {
-                                            String strReplace = c$b.a.matcher(str).replaceAll("").replace("\\N", "\n").replace("\\n", "\n").replace("\\h", " ");
+                                            String strReplace = c.b.a.matcher(str).replaceAll("").replace("\\N", "\n").replace("\\n", "\n").replace("\\h", " ");
                                             float f4 = aVar.r;
                                             float f5 = aVar.f874s;
                                             SpannableString spannableString = new SpannableString(strReplace);
@@ -197,25 +197,25 @@ public final class a extends f {
                                                 default:
                                                     Log.w("SsaDecoder", b.d.b.a.a.g(30, "Unknown alignment: ", i10));
                                                 case -1:
-                                                    layout$Alignment = null;
+                                                    alignment = null;
                                                     break;
                                                 case 1:
                                                 case 4:
                                                 case 7:
-                                                    layout$Alignment = Layout$Alignment.ALIGN_NORMAL;
+                                                    alignment = Layout.Alignment.ALIGN_NORMAL;
                                                     break;
                                                 case 2:
                                                 case 5:
                                                 case 8:
-                                                    layout$Alignment = Layout$Alignment.ALIGN_CENTER;
+                                                    alignment = Layout.Alignment.ALIGN_CENTER;
                                                     break;
                                                 case 3:
                                                 case 6:
                                                 case 9:
-                                                    layout$Alignment = Layout$Alignment.ALIGN_OPPOSITE;
+                                                    alignment = Layout.Alignment.ALIGN_OPPOSITE;
                                                     break;
                                             }
-                                            Layout$Alignment layout$Alignment2 = layout$Alignment;
+                                            Layout.Alignment alignment2 = alignment;
                                             switch (i10) {
                                                 case 0:
                                                 default:
@@ -269,7 +269,7 @@ public final class a extends f {
                                                 fL = pointF.x / f4;
                                                 fL2 = pointF.y / f5;
                                             }
-                                            b.i.a.c.b3.b bVar = new b.i.a.c.b3.b(spannableString, layout$Alignment2, null, null, fL2, 0, i5, fL, i4, i3, f, -3.4028235E38f, -3.4028235E38f, false, ViewCompat.MEASURED_STATE_MASK, Integer.MIN_VALUE, 0.0f, null);
+                                            b.i.a.c.b3.b bVar = new b.i.a.c.b3.b(spannableString, alignment2, null, null, fL2, 0, i5, fL, i4, i3, f, -3.4028235E38f, -3.4028235E38f, false, ViewCompat.MEASURED_STATE_MASK, Integer.MIN_VALUE, 0.0f, null);
                                             int iK = k(jN2, arrayList2, arrayList);
                                             for (int iK2 = k(jN, arrayList2, arrayList); iK2 < iK; iK2++) {
                                                 ((List) arrayList.get(iK2)).add(bVar);
@@ -362,7 +362,7 @@ public final class a extends f {
             } else if ("[V4+ Styles]".equalsIgnoreCase(strG)) {
                 LinkedHashMap linkedHashMap = new LinkedHashMap();
                 while (true) {
-                    c$a c_a = null;
+                    c.a aVar = null;
                     while (true) {
                         String strG3 = xVar.g();
                         if (strG3 != null && (xVar.a() == 0 || xVar.c() != i)) {
@@ -407,17 +407,17 @@ public final class a extends f {
                                     }
                                 }
                                 if (i2 != -1) {
-                                    c_a = new c$a(i2, i3, i4, i5, i6, i7, i8, i9, strArrSplit2.length);
+                                    aVar = new c.a(i2, i3, i4, i5, i6, i7, i8, i9, strArrSplit2.length);
                                 }
                             } else {
                                 if (strG3.startsWith("Style:")) {
-                                    if (c_a == null) {
+                                    if (aVar == null) {
                                         Log.w("SsaDecoder", strG3.length() != 0 ? "Skipping 'Style:' line before 'Format:' line: ".concat(strG3) : new String("Skipping 'Style:' line before 'Format:' line: "));
                                     } else {
                                         b.c.a.a0.d.j(strG3.startsWith("Style:"));
                                         String[] strArrSplit3 = TextUtils.split(strG3.substring(6), ",");
                                         int length = strArrSplit3.length;
-                                        int i11 = c_a.i;
+                                        int i11 = aVar.i;
                                         if (length != i11) {
                                             Object[] objArr = new Object[3];
                                             objArr[c2] = Integer.valueOf(i11);
@@ -426,12 +426,12 @@ public final class a extends f {
                                             Log.w("SsaStyle", e0.k("Skipping malformed 'Style:' line (expected %s values, found %s): '%s'", objArr));
                                         } else {
                                             try {
-                                                String strTrim = strArrSplit3[c_a.a].trim();
-                                                int i12 = c_a.f877b;
+                                                String strTrim = strArrSplit3[aVar.a].trim();
+                                                int i12 = aVar.f877b;
                                                 int iA = i12 != -1 ? c.a(strArrSplit3[i12].trim()) : -1;
-                                                int i13 = c_a.c;
+                                                int i13 = aVar.c;
                                                 Integer numC = i13 != -1 ? c.c(strArrSplit3[i13].trim()) : null;
-                                                int i14 = c_a.d;
+                                                int i14 = aVar.d;
                                                 if (i14 != -1) {
                                                     String strTrim2 = strArrSplit3[i14].trim();
                                                     try {
@@ -447,13 +447,13 @@ public final class a extends f {
                                                 } else {
                                                     f = -3.4028235E38f;
                                                 }
-                                                int i15 = c_a.e;
+                                                int i15 = aVar.e;
                                                 boolean z2 = i15 != -1 && c.b(strArrSplit3[i15].trim());
-                                                int i16 = c_a.f;
+                                                int i16 = aVar.f;
                                                 boolean z3 = i16 != -1 && c.b(strArrSplit3[i16].trim());
-                                                int i17 = c_a.g;
+                                                int i17 = aVar.g;
                                                 boolean z4 = i17 != -1 && c.b(strArrSplit3[i17].trim());
-                                                int i18 = c_a.h;
+                                                int i18 = aVar.h;
                                                 cVar = new c(strTrim, iA, numC, f, z2, z3, z4, i18 != -1 && c.b(strArrSplit3[i18].trim()));
                                             } catch (RuntimeException e2) {
                                                 q.c("SsaStyle", b.d.b.a.a.k(strG3.length() + 36, "Skipping malformed 'Style:' line: '", strG3, "'"), e2);

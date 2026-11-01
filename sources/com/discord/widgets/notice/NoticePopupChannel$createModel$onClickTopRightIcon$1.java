@@ -35,6 +35,6 @@ public final class NoticePopupChannel$createModel$onClickTopRightIcon$1 extends 
         if (ChannelUtils.B(this.$channel)) {
             return;
         }
-        WidgetChannelNotificationSettings.Companion.launch(this.$context, this.$channel.getId(), true);
+        WidgetChannelNotificationSettings.INSTANCE.launch(this.$context, this.$channel.getId(), true);
     }
 }

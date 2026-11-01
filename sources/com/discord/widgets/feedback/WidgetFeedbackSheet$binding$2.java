@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetFeedbackSheetBinding;
 import com.discord.widgets.voice.feedback.FeedbackView;
 import d0.z.d.k;
@@ -28,15 +28,15 @@ public final /* synthetic */ class WidgetFeedbackSheet$binding$2 extends k imple
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetFeedbackSheetBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.feedback_sheet_close_button;
-        ImageView imageView = (ImageView) view.findViewById(R$id.feedback_sheet_close_button);
+        int i = R.id.feedback_sheet_close_button;
+        ImageView imageView = (ImageView) view.findViewById(R.id.feedback_sheet_close_button);
         if (imageView != null) {
             NestedScrollView nestedScrollView = (NestedScrollView) view;
-            i = R$id.feedback_sheet_feedback_view;
-            FeedbackView feedbackView = (FeedbackView) view.findViewById(R$id.feedback_sheet_feedback_view);
+            i = R.id.feedback_sheet_feedback_view;
+            FeedbackView feedbackView = (FeedbackView) view.findViewById(R.id.feedback_sheet_feedback_view);
             if (feedbackView != null) {
-                i = R$id.feedback_sheet_title;
-                TextView textView = (TextView) view.findViewById(R$id.feedback_sheet_title);
+                i = R.id.feedback_sheet_title;
+                TextView textView = (TextView) view.findViewById(R.id.feedback_sheet_title);
                 if (textView != null) {
                     return new WidgetFeedbackSheetBinding(nestedScrollView, imageView, nestedScrollView, feedbackView, textView);
                 }

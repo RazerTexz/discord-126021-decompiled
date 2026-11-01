@@ -5,7 +5,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
+import com.discord.R;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetFriendsListExpandableHeaderBinding implements ViewBinding {
@@ -28,11 +28,11 @@ public final class WidgetFriendsListExpandableHeaderBinding implements ViewBindi
 
     @NonNull
     public static WidgetFriendsListExpandableHeaderBinding a(@NonNull View view) {
-        int i = R$id.friends_list_expandable_header_button;
-        TextView textView = (TextView) view.findViewById(R$id.friends_list_expandable_header_button);
+        int i = R.id.friends_list_expandable_header_button;
+        TextView textView = (TextView) view.findViewById(R.id.friends_list_expandable_header_button);
         if (textView != null) {
-            i = R$id.friends_list_pending_item_header_text;
-            TextView textView2 = (TextView) view.findViewById(R$id.friends_list_pending_item_header_text);
+            i = R.id.friends_list_pending_item_header_text;
+            TextView textView2 = (TextView) view.findViewById(R.id.friends_list_pending_item_header_text);
             if (textView2 != null) {
                 return new WidgetFriendsListExpandableHeaderBinding((FrameLayout) view, textView, textView2);
             }

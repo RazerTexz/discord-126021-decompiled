@@ -11,6 +11,11 @@ public class s {
     public boolean a = false;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final Set<s$a> f375b = new ArraySet();
+    public final Set<a> f375b = new ArraySet();
     public final Map<String, b.c.a.b0.e> c = new HashMap();
+
+    /* JADX INFO: compiled from: PerformanceTracker.java */
+    public interface a {
+        void a(float f);
+    }
 }

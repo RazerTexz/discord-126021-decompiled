@@ -110,7 +110,7 @@ public final class c {
         int iIndexOf = this.c.indexOf(aVar);
         if (iIndexOf != -1) {
             if (aVar.f3609b <= j2) {
-                d$b d_b = d.c;
+                d.b bVar = d.c;
                 if (d.f3611b.isLoggable(Level.FINE)) {
                     f.e(aVar, this, "already scheduled");
                 }
@@ -119,7 +119,7 @@ public final class c {
             this.c.remove(iIndexOf);
         }
         aVar.f3609b = j2;
-        d$b d_b2 = d.c;
+        d.b bVar2 = d.c;
         if (d.f3611b.isLoggable(Level.FINE)) {
             if (z2) {
                 StringBuilder sbU = b.d.b.a.a.U("run again after ");

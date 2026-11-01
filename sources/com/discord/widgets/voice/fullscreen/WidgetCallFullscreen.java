@@ -3,21 +3,34 @@ package com.discord.widgets.voice.fullscreen;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.os.Build$VERSION;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.AlphaAnimation;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.AccessibilityDelegateCompat;
+import androidx.core.view.DisplayCutoutCompat;
+import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.ViewKt;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -26,86 +39,83 @@ import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
-import b.a.a.j$a;
-import b.a.a.m$a;
 import b.a.d.g0;
 import b.a.d.i0;
 import b.a.i.i;
 import b.a.i.j;
-import b.a.j.a$b;
-import b.a.k.b;
 import b.c.a.a0.d;
 import b.d.b.a.a;
-import com.discord.R$anim;
-import com.discord.R$id;
-import com.discord.R$layout;
-import com.discord.R$menu;
-import com.discord.R$plurals;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
 import com.discord.api.permission.Permission;
+import com.discord.app.AppActivity;
 import com.discord.app.AppFragment;
 import com.discord.app.AppLog;
-import com.discord.app.AppTransitionActivity$Transition;
-import com.discord.app.AppTransitionActivity$a;
+import com.discord.app.AppTransitionActivity;
 import com.discord.databinding.WidgetCallFullscreenBinding;
 import com.discord.floating_view_manager.FloatingViewGravity;
+import com.discord.i18n.Hook;
+import com.discord.i18n.RenderContext;
 import com.discord.models.guild.Guild;
 import com.discord.models.guild.UserGuildMember;
 import com.discord.models.user.User;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreVoiceParticipants$VoiceUser;
+import com.discord.stores.StoreVoiceParticipants;
 import com.discord.tooltips.DefaultTooltipCreator;
 import com.discord.tooltips.TooltipManager;
-import com.discord.tooltips.TooltipManager$a;
-import com.discord.tooltips.TooltipManager$b;
 import com.discord.utilities.KotlinExtensionsKt;
 import com.discord.utilities.accessibility.AccessibilityUtils;
+import com.discord.utilities.analytics.Traits;
+import com.discord.utilities.channel.ChannelInviteLaunchUtils;
 import com.discord.utilities.color.ColorCompat;
+import com.discord.utilities.device.DeviceUtils;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.utilities.extensions.SimpleDraweeViewExtensionsKt;
+import com.discord.utilities.font.FontUtils;
 import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilities;
 import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilitiesKt;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapter;
-import com.discord.utilities.mg_recycler.MGRecyclerAdapter$Companion;
 import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.utilities.press.OnPressListener;
 import com.discord.utilities.recycler.DiffKeyProvider;
 import com.discord.utilities.resources.StringResourceUtilsKt;
 import com.discord.utilities.rx.ObservableExtensionsKt;
+import com.discord.utilities.spans.TypefaceSpanCompat;
+import com.discord.utilities.stage.StageChannelUtils;
+import com.discord.utilities.streams.StreamContext;
+import com.discord.utilities.time.TimeUtils;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.discord.utilities.views.viewstub.LazyViewStubDelegate;
+import com.discord.utilities.voice.DiscordOverlayService;
 import com.discord.utilities.voice.VoiceViewUtils;
 import com.discord.views.calls.CallEventsButtonView;
 import com.discord.views.calls.StageCallVisitCommunityView;
 import com.discord.views.calls.VideoCallParticipantView;
-import com.discord.views.calls.VideoCallParticipantView$ParticipantData;
 import com.discord.views.calls.VoiceCallActiveEventView;
 import com.discord.views.user.UserSummaryView;
 import com.discord.widgets.channels.TextInVoiceOnboardingManager;
+import com.discord.widgets.chat.list.TextInVoiceFeatureFlag;
 import com.discord.widgets.guildscheduledevent.GuildEventPromptListView;
-import com.discord.widgets.guildscheduledevent.GuildEventPromptListView$ScheduledEventData;
 import com.discord.widgets.guildscheduledevent.WidgetEndGuildScheduledEventBottomSheet;
 import com.discord.widgets.notice.WidgetNoticeDialog;
-import com.discord.widgets.notice.WidgetNoticeDialog$Companion;
 import com.discord.widgets.settings.premium.WidgetSettingsPremium;
-import com.discord.widgets.settings.premium.WidgetSettingsPremium$Companion;
 import com.discord.widgets.stage.StageRoles;
 import com.discord.widgets.stage.model.StageCallModel;
 import com.discord.widgets.stage.model.StageMediaParticipant;
 import com.discord.widgets.stage.sheet.WidgetEndStageBottomSheet;
+import com.discord.widgets.stage.sheet.WidgetStageRaisedHandsBottomSheet;
 import com.discord.widgets.status.WidgetGlobalStatusIndicatorState;
 import com.discord.widgets.user.usersheet.WidgetUserSheet;
-import com.discord.widgets.user.usersheet.WidgetUserSheet$Companion;
-import com.discord.widgets.user.usersheet.WidgetUserSheet$StreamPreviewClickBehavior;
 import com.discord.widgets.voice.controls.VoiceControlsOutputSelectorState;
 import com.discord.widgets.voice.controls.VoiceControlsSheetSwipeTooltip;
 import com.discord.widgets.voice.controls.VoiceControlsSheetView;
+import com.discord.widgets.voice.controls.WidgetScreenShareNfxSheet;
 import com.discord.widgets.voice.feedback.call.CallFeedbackSheetNavigator;
 import com.discord.widgets.voice.feedback.stream.StreamFeedbackSheetNavigator;
 import com.discord.widgets.voice.fullscreen.grid.VideoCallGridAdapter;
@@ -113,25 +123,24 @@ import com.discord.widgets.voice.fullscreen.grid.VideoCallGridLayoutManager;
 import com.discord.widgets.voice.fullscreen.stage.StageCallAdapter;
 import com.discord.widgets.voice.fullscreen.stage.StageCallBottomSheetManager;
 import com.discord.widgets.voice.fullscreen.stage.StageCallItem;
-import com.discord.widgets.voice.fullscreen.stage.StageCallItem$AudienceHeaderItem;
-import com.discord.widgets.voice.fullscreen.stage.StageCallItem$DetailsItem;
-import com.discord.widgets.voice.fullscreen.stage.StageCallItem$DividerItem;
-import com.discord.widgets.voice.fullscreen.stage.StageCallItem$MediaItem;
-import com.discord.widgets.voice.fullscreen.stage.StageCallItem$PreStartDetailsItem;
 import com.discord.widgets.voice.fullscreen.stage.StageCallParticipantItem;
 import com.discord.widgets.voice.model.CallModel;
 import com.discord.widgets.voice.model.CameraState;
+import com.discord.widgets.voice.sheet.WidgetVoiceBottomSheet;
+import com.discord.widgets.voice.sheet.WidgetVoiceSettingsBottomSheet;
 import com.discord.widgets.voice.stream.StreamNavigator;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetBehavior$BottomSheetCallback;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 import d0.t.c0;
-import d0.t.o;
 import d0.t.u;
 import d0.z.d.a0;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -145,25 +154,32 @@ import kotlin.NoWhenBranchMatchedException;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function2;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.ranges.IntRange;
 import kotlin.reflect.KProperty;
 import rx.Observable;
 import rx.Subscription;
+import rx.functions.Action1;
+import rx.functions.Action2;
+import rx.functions.Func0;
 
 /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetCallFullscreen extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetCallFullscreen.class, "binding", "getBinding()Lcom/discord/databinding/WidgetCallFullscreenBinding;", 0)};
-    public static final WidgetCallFullscreen$Companion Companion = new WidgetCallFullscreen$Companion(null);
     private static final String END_EVENT_REQUEST_KEY = "END_EVENT_REQUEST_KEY";
     private static final String END_STAGE_REQUEST_KEY = "END_STAGE_REQUEST_KEY";
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String INTENT_EXTRA_CONNECT_ON_LAUNCH = "INTENT_EXTRA_CONNECT_ON_LAUNCH";
     public static final int MAX_SPEAKERS_PER_ROW = 3;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
     private BottomSheetBehavior<VoiceControlsSheetView> bottomSheetBehavior;
-    private final BottomSheetBehavior$BottomSheetCallback bottomSheetCallback;
+    private final BottomSheetBehavior.BottomSheetCallback bottomSheetCallback;
     private Subscription connectedTimerSubscription;
     private final DefaultTooltipCreator defaultTooltipCreator;
 
@@ -172,7 +188,7 @@ public final class WidgetCallFullscreen extends AppFragment {
     private VideoCallGridAdapter gridAdapter;
     private boolean hasVideoCallGridChildrenChanged;
     private Integer lastMentionsCount;
-    private Set<? extends WidgetCallFullscreenViewModel$MenuItem> lastMenuItems;
+    private Set<? extends WidgetCallFullscreenViewModel.MenuItem> lastMenuItems;
     private Integer lastUnreadsCount;
     private StageCallAdapter stageAdapter;
     private final StageCallBottomSheetManager stageCallBottomSheetManager;
@@ -184,8 +200,1274 @@ public final class WidgetCallFullscreen extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureActionBar$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ WidgetCallFullscreenViewModel.ViewState.Valid $viewState;
+
+        public AnonymousClass1(WidgetCallFullscreenViewModel.ViewState.Valid valid) {
+            this.$viewState = valid;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetCallFullscreen.access$finishActivity(WidgetCallFullscreen.this, false, this.$viewState.isTextInVoiceEnabled());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureBottomControls$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ WidgetCallFullscreenViewModel.ViewState.Valid $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(WidgetCallFullscreenViewModel.ViewState.Valid valid) {
+            super(0);
+            this.$viewState = valid;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            GuildScheduledEvent guildScheduledEventToEndForCall$default;
+            long jAccess$getChannelId = WidgetCallFullscreen.access$getChannelId(WidgetCallFullscreen.this);
+            if (StageChannelUtils.shouldShowEndStageBottomSheet$default(StageChannelUtils.INSTANCE, jAccess$getChannelId, null, null, null, null, 30, null)) {
+                WidgetEndStageBottomSheet.Companion companion = WidgetEndStageBottomSheet.INSTANCE;
+                FragmentManager parentFragmentManager = WidgetCallFullscreen.this.getParentFragmentManager();
+                m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+                companion.show(parentFragmentManager, WidgetCallFullscreen.END_STAGE_REQUEST_KEY, jAccess$getChannelId);
+                return;
+            }
+            if (!ChannelUtils.J(this.$viewState.getCallModel().getChannel()) || (guildScheduledEventToEndForCall$default = GuildScheduledEventUtilities.Companion.getGuildScheduledEventToEndForCall$default(GuildScheduledEventUtilities.INSTANCE, this.$viewState.getCallModel(), this.$viewState.getChannelPermissions(), null, 4, null)) == null) {
+                WidgetCallFullscreen.finishActivity$default(WidgetCallFullscreen.this, false, this.$viewState.isTextInVoiceEnabled(), 1, null);
+                return;
+            }
+            WidgetEndGuildScheduledEventBottomSheet.Companion companion2 = WidgetEndGuildScheduledEventBottomSheet.INSTANCE;
+            FragmentManager parentFragmentManager2 = WidgetCallFullscreen.this.getParentFragmentManager();
+            m.checkNotNullExpressionValue(parentFragmentManager2, "parentFragmentManager");
+            companion2.show(parentFragmentManager2, WidgetCallFullscreen.END_EVENT_REQUEST_KEY, guildScheduledEventToEndForCall$default.getGuildId(), guildScheduledEventToEndForCall$default.getId());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureConnectionStatusText$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass1 extends o implements Function1<Long, Unit> {
+        public final /* synthetic */ CallModel $callModel;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(CallModel callModel) {
+            super(1);
+            this.$callModel = callModel;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            TextView textView = WidgetCallFullscreen.access$getBinding$p(WidgetCallFullscreen.this).f2246s.g;
+            m.checkNotNullExpressionValue(textView, "binding.privateCall.privateCallStatusDuration");
+            textView.setText(TimeUtils.toFriendlyString$default(TimeUtils.INSTANCE, this.$callModel.getTimeConnectedMs(), 0L, null, null, 14, null));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureGridUi$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).onEmptyStateTapped();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureMenu$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass1<T1, T2> implements Action2<MenuItem, Context> {
+        public final /* synthetic */ WidgetCallFullscreenViewModel.ViewState.Valid $viewState;
+
+        /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureMenu$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+        public final class C04811 extends o implements Function1<StreamContext, Unit> {
+            public C04811() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(StreamContext streamContext) {
+                invoke2(streamContext);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(StreamContext streamContext) {
+                m.checkNotNullParameter(streamContext, "streamContext");
+                WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).targetAndFocusStream(streamContext.getStream().getEncodedStreamKey());
+            }
+        }
+
+        public AnonymousClass1(WidgetCallFullscreenViewModel.ViewState.Valid valid) {
+            this.$viewState = valid;
+        }
+
+        @Override // rx.functions.Action2
+        public /* bridge */ /* synthetic */ void call(MenuItem menuItem, Context context) {
+            call2(menuItem, context);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(MenuItem menuItem, Context context) {
+            m.checkNotNullExpressionValue(menuItem, "menuItem");
+            switch (menuItem.getItemId()) {
+                case R.id.menu_call_overlay_launcher /* 2131364365 */:
+                    DiscordOverlayService.Companion companion = DiscordOverlayService.INSTANCE;
+                    m.checkNotNullExpressionValue(context, "context");
+                    companion.launchForConnect(context);
+                    break;
+                case R.id.menu_call_switch_camera /* 2131364366 */:
+                    WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).switchCameraInputPressed();
+                    break;
+                case R.id.menu_call_video_list /* 2131364367 */:
+                    WidgetVoiceBottomSheet.Companion companion2 = WidgetVoiceBottomSheet.INSTANCE;
+                    FragmentManager parentFragmentManager = WidgetCallFullscreen.this.getParentFragmentManager();
+                    m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+                    companion2.show(parentFragmentManager, this.$viewState.getCallModel().getChannel().getId(), false, WidgetVoiceBottomSheet.FeatureContext.FULLSCREEN_CALL).setOnStreamPreviewClickedListener(new C04811());
+                    break;
+                case R.id.menu_call_voice_settings /* 2131364368 */:
+                    WidgetVoiceSettingsBottomSheet.Companion companion3 = WidgetVoiceSettingsBottomSheet.INSTANCE;
+                    Long lValueOf = Long.valueOf(this.$viewState.getCallModel().getChannel().getId());
+                    FragmentManager parentFragmentManager2 = WidgetCallFullscreen.this.getParentFragmentManager();
+                    m.checkNotNullExpressionValue(parentFragmentManager2, "parentFragmentManager");
+                    companion3.show(lValueOf, parentFragmentManager2);
+                    break;
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureSwipeTooltip$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass1<T, R> implements b<Void, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Unit call(Void r1) {
+            call2(r1);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(Void r1) {
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$handleEvent$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).onCameraPermissionsGranted();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$initializeSystemUiListeners$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass1 implements OnApplyWindowInsetsListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            WidgetCallFullscreen.access$setSystemWindowInsets$p(WidgetCallFullscreen.this, windowInsetsCompat);
+            WidgetCallFullscreen.access$setVoiceControlsSheetPeekHeight(WidgetCallFullscreen.this);
+            m.checkNotNullExpressionValue(view, "view");
+            m.checkNotNullExpressionValue(windowInsetsCompat, "insets");
+            view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), WidgetCallFullscreen.this.getResources().getDimensionPixelSize(R.dimen.voice_controls_sheet_bottom_padding) + windowInsetsCompat.getSystemWindowInsetBottom());
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.MarginLayoutParams");
+            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
+            marginLayoutParams.leftMargin = windowInsetsCompat.getSystemWindowInsetLeft();
+            marginLayoutParams.rightMargin = windowInsetsCompat.getSystemWindowInsetRight();
+            view.setLayoutParams(marginLayoutParams);
+            return windowInsetsCompat;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$onActivityResult$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass1 extends o implements Function1<Intent, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Intent intent) {
+            invoke2(intent);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Intent intent) {
+            m.checkNotNullParameter(intent, "it");
+            WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).startScreenShare(intent);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass1 extends AccessibilityDelegateCompat {
+        public AnonymousClass1() {
+        }
+
+        @Override // androidx.core.view.AccessibilityDelegateCompat
+        public boolean onRequestSendAccessibilityEvent(ViewGroup host, View child, AccessibilityEvent event) {
+            Integer numValueOf = event != null ? Integer.valueOf(event.getEventType()) : null;
+            if ((numValueOf != null && numValueOf.intValue() == 8) || (numValueOf != null && numValueOf.intValue() == 32768)) {
+                WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).disableControlFading();
+            }
+            return super.onRequestSendAccessibilityEvent(host, child, event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<WidgetCallFullscreenViewModel.ViewState, Unit> {
+        public AnonymousClass1(WidgetCallFullscreen widgetCallFullscreen) {
+            super(1, widgetCallFullscreen, WidgetCallFullscreen.class, "configureUI", "configureUI(Lcom/discord/widgets/voice/fullscreen/WidgetCallFullscreenViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetCallFullscreenViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetCallFullscreenViewModel.ViewState viewState) {
+            m.checkNotNullParameter(viewState, "p1");
+            WidgetCallFullscreen.access$configureUI((WidgetCallFullscreen) this.receiver, viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$setUpGridRecycler$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass1 extends o implements Function1<CallParticipant, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(CallParticipant callParticipant) {
+            invoke2(callParticipant);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(CallParticipant callParticipant) {
+            m.checkNotNullParameter(callParticipant, "it");
+            WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).onGridParticipantTapped(callParticipant);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$setUpStageRecycler$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass1 extends o implements Function1<CallParticipant.UserOrStreamParticipant, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(CallParticipant.UserOrStreamParticipant userOrStreamParticipant) {
+            invoke2(userOrStreamParticipant);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(CallParticipant.UserOrStreamParticipant userOrStreamParticipant) {
+            m.checkNotNullParameter(userOrStreamParticipant, "it");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureBottomControls$10, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass10 extends o implements Function0<Unit> {
+        public final /* synthetic */ WidgetCallFullscreenViewModel.ViewState.Valid $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass10(WidgetCallFullscreenViewModel.ViewState.Valid valid) {
+            super(0);
+            this.$viewState = valid;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StageRoles stageRolesM72getStageRolestwRsX0 = this.$viewState.m72getStageRolestwRsX0();
+            if (stageRolesM72getStageRolestwRsX0 == null || !StageRoles.m32isModeratorimpl(stageRolesM72getStageRolestwRsX0.m35unboximpl())) {
+                WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).toggleRequestToSpeak();
+                return;
+            }
+            WidgetStageRaisedHandsBottomSheet.Companion companion = WidgetStageRaisedHandsBottomSheet.INSTANCE;
+            FragmentManager parentFragmentManager = WidgetCallFullscreen.this.getParentFragmentManager();
+            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            companion.show(parentFragmentManager, WidgetCallFullscreen.access$getChannelId(WidgetCallFullscreen.this));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureBottomControls$11, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass11 extends o implements Function0<Unit> {
+        public AnonymousClass11() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).moveMeToAudience();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureBottomControls$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass2 extends o implements Function0<Unit> {
+        public AnonymousClass2() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).requestStopWatchingStreamFromUserInput();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureConnectionStatusText$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass2 extends o implements Function1<Subscription, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            WidgetCallFullscreen.access$setConnectedTimerSubscription$p(WidgetCallFullscreen.this, subscription);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureGridUi$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).onEmptyStateTapped();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureMenu$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass2<T> implements Action1<Menu> {
+        public final /* synthetic */ WidgetCallFullscreenViewModel.ViewState.Valid $viewState;
+
+        /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureMenu$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+        public final class AnonymousClass1 implements View.OnClickListener {
+            public AnonymousClass1() {
+            }
+
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view) {
+                WidgetCallFullscreen.access$openTextInVoice(WidgetCallFullscreen.this);
+            }
+        }
+
+        public AnonymousClass2(WidgetCallFullscreenViewModel.ViewState.Valid valid) {
+            this.$viewState = valid;
+        }
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(Menu menu) {
+            call2(menu);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(Menu menu) {
+            MenuItem menuItemFindItem = menu.findItem(R.id.menu_text_in_voice);
+            boolean zContains = this.$viewState.getMenuItems().contains(WidgetCallFullscreenViewModel.MenuItem.TEXT_IN_VOICE);
+            m.checkNotNullExpressionValue(menuItemFindItem, "textInVoiceMenuItem");
+            menuItemFindItem.setVisible(zContains);
+            if (zContains) {
+                View actionView = menuItemFindItem.getActionView();
+                TextView textView = actionView != null ? (TextView) actionView.findViewById(R.id.text_in_voice_count) : null;
+                View actionView2 = menuItemFindItem.getActionView();
+                ImageView imageView = actionView2 != null ? (ImageView) actionView2.findViewById(R.id.text_in_voice_icon) : null;
+                int textInVoiceMentionsCount = this.$viewState.getTextInVoiceMentionsCount();
+                int textInVoiceUnreadsCount = this.$viewState.getTextInVoiceUnreadsCount();
+                if (textInVoiceMentionsCount > 0) {
+                    if (textView != null) {
+                        ViewKt.setVisible(textView, true);
+                    }
+                    if (imageView != null) {
+                        imageView.setImageResource(R.drawable.ic_text_in_voice_cutout_dark);
+                    }
+                    if (textView != null) {
+                        textView.setBackground(ContextCompat.getDrawable(WidgetCallFullscreen.this.requireContext(), R.drawable.drawable_circle_red));
+                    }
+                    if (textView != null) {
+                        textView.setText(String.valueOf(Math.min(99, textInVoiceMentionsCount)));
+                    }
+                    if (textView != null) {
+                        textView.setTextColor(ContextCompat.getColor(WidgetCallFullscreen.this.requireContext(), R.color.white));
+                    }
+                } else if (textInVoiceUnreadsCount > 0) {
+                    if (textView != null) {
+                        ViewKt.setVisible(textView, true);
+                    }
+                    if (imageView != null) {
+                        imageView.setImageResource(R.drawable.ic_text_in_voice_cutout_dark);
+                    }
+                    if (textView != null) {
+                        textView.setBackground(ContextCompat.getDrawable(WidgetCallFullscreen.this.requireContext(), R.drawable.drawable_circle_white));
+                    }
+                    if (textView != null) {
+                        textView.setText(String.valueOf(Math.min(99, textInVoiceUnreadsCount)));
+                    }
+                    if (textView != null) {
+                        textView.setTextColor(ContextCompat.getColor(WidgetCallFullscreen.this.requireContext(), R.color.black));
+                    }
+                } else {
+                    if (imageView != null) {
+                        imageView.setImageResource(R.drawable.ic_text_in_voice_dark);
+                    }
+                    if (textView != null) {
+                        ViewKt.setVisible(textView, false);
+                    }
+                }
+                menuItemFindItem.getActionView().setOnClickListener(new AnonymousClass1());
+            }
+            MenuItem menuItemFindItem2 = menu.findItem(R.id.menu_call_switch_camera);
+            m.checkNotNullExpressionValue(menuItemFindItem2, "switchCameraMenuItem");
+            menuItemFindItem2.setVisible(this.$viewState.getMenuItems().contains(WidgetCallFullscreenViewModel.MenuItem.SWITCH_CAMERA));
+            MenuItem menuItemFindItem3 = menu.findItem(R.id.menu_call_voice_settings);
+            m.checkNotNullExpressionValue(menuItemFindItem3, "voiceSettingsMenuItem");
+            menuItemFindItem3.setVisible(this.$viewState.getMenuItems().contains(WidgetCallFullscreenViewModel.MenuItem.VOICE_SETTINGS));
+            MenuItem menuItemFindItem4 = menu.findItem(R.id.menu_call_overlay_launcher);
+            m.checkNotNullExpressionValue(menuItemFindItem4, "overlayLauncherMenuItem");
+            menuItemFindItem4.setVisible(this.$viewState.getMenuItems().contains(WidgetCallFullscreenViewModel.MenuItem.LAUNCH_OVERLAY));
+            MenuItem menuItemFindItem5 = menu.findItem(R.id.menu_call_video_list);
+            m.checkNotNullExpressionValue(menuItemFindItem5, "listMenuItem");
+            menuItemFindItem5.setVisible(this.$viewState.getMenuItems().contains(WidgetCallFullscreenViewModel.MenuItem.SHOW_PARTICIPANT_LIST));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$handleEvent$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass2 extends o implements Function0<Unit> {
+        public AnonymousClass2() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetCallFullscreen.access$openTextInVoice(WidgetCallFullscreen.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$initializeSystemUiListeners$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass2 implements OnApplyWindowInsetsListener {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            m.checkNotNullExpressionValue(view, "view");
+            m.checkNotNullExpressionValue(windowInsetsCompat, "insets");
+            view.setPadding(windowInsetsCompat.getSystemWindowInsetLeft(), windowInsetsCompat.getSystemWindowInsetTop(), windowInsetsCompat.getSystemWindowInsetRight(), view.getPaddingBottom());
+            return windowInsetsCompat;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass2 extends o implements Function2<Integer, Integer, Unit> {
+        public AnonymousClass2() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Integer num, Integer num2) {
+            invoke(num.intValue(), num2.intValue());
+            return Unit.a;
+        }
+
+        public final void invoke(int i, int i2) {
+            WidgetCallFullscreen.access$setVoiceControlsSheetPeekHeight(WidgetCallFullscreen.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$onViewBoundOrOnResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final /* synthetic */ class AnonymousClass2 extends k implements Function1<WidgetCallFullscreenViewModel.Event, Unit> {
+        public AnonymousClass2(WidgetCallFullscreen widgetCallFullscreen) {
+            super(1, widgetCallFullscreen, WidgetCallFullscreen.class, "handleEvent", "handleEvent(Lcom/discord/widgets/voice/fullscreen/WidgetCallFullscreenViewModel$Event;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetCallFullscreenViewModel.Event event) {
+            invoke2(event);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetCallFullscreenViewModel.Event event) {
+            m.checkNotNullParameter(event, "p1");
+            ((WidgetCallFullscreen) this.receiver).handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$setUpGridRecycler$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass2 extends o implements Function1<CallParticipant, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(CallParticipant callParticipant) {
+            invoke2(callParticipant);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(CallParticipant callParticipant) {
+            m.checkNotNullParameter(callParticipant, "it");
+            WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).onGridParticipantLongPressed(callParticipant);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$setUpStageRecycler$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass2 extends o implements Function1<CallParticipant.UserOrStreamParticipant, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(CallParticipant.UserOrStreamParticipant userOrStreamParticipant) {
+            invoke2(userOrStreamParticipant);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(CallParticipant.UserOrStreamParticipant userOrStreamParticipant) {
+            m.checkNotNullParameter(userOrStreamParticipant, "it");
+            WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).onGridParticipantLongPressed(userOrStreamParticipant);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureBottomControls$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass3 extends o implements Function0<Unit> {
+        public AnonymousClass3() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            b.a.a.f.a.a.Companion bVar = b.a.a.f.a.a.INSTANCE;
+            FragmentManager parentFragmentManager = WidgetCallFullscreen.this.getParentFragmentManager();
+            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            Objects.requireNonNull(bVar);
+            m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
+            new b.a.a.f.a.a().show(parentFragmentManager, b.a.a.f.a.a.class.getName());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureGridUi$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public AnonymousClass3() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).stopScreenShare();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureStageUi$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass3 extends o implements Function1<RenderContext, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureStageUi$3$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+        public final class AnonymousClass1 extends o implements Function1<Hook, Unit> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(Hook hook) {
+                invoke2(hook);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(Hook hook) {
+                m.checkNotNullParameter(hook, "$receiver");
+                Typeface themedFont = FontUtils.INSTANCE.getThemedFont(WidgetCallFullscreen.this.requireContext(), R.attr.font_primary_semibold);
+                if (themedFont != null) {
+                    hook.styles.add(new TypefaceSpanCompat(themedFont));
+                }
+                hook.styles.add(new ForegroundColorSpan(ColorCompat.getThemedColor(WidgetCallFullscreen.this.getContext(), R.attr.primary_000)));
+            }
+        }
+
+        public AnonymousClass3() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.a("usernameHook", new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$initializeSystemUiListeners$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass3 implements OnApplyWindowInsetsListener {
+        public AnonymousClass3() {
+        }
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            m.checkNotNullExpressionValue(view, "view");
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type androidx.constraintlayout.widget.ConstraintLayout.LayoutParams");
+            ConstraintLayout.LayoutParams layoutParams2 = (ConstraintLayout.LayoutParams) layoutParams;
+            m.checkNotNullExpressionValue(windowInsetsCompat, "insets");
+            int systemWindowInsetLeft = windowInsetsCompat.getSystemWindowInsetLeft();
+            Companion companion = WidgetCallFullscreen.INSTANCE;
+            Resources resources = WidgetCallFullscreen.this.getResources();
+            m.checkNotNullExpressionValue(resources, "resources");
+            ((ViewGroup.MarginLayoutParams) layoutParams2).leftMargin = DimenUtils.dpToPixels(companion.getUnreadIndicatorMarginLeftDp(resources)) + systemWindowInsetLeft;
+            int systemWindowInsetTop = windowInsetsCompat.getSystemWindowInsetTop();
+            Resources resources2 = WidgetCallFullscreen.this.getResources();
+            m.checkNotNullExpressionValue(resources2, "resources");
+            ((ViewGroup.MarginLayoutParams) layoutParams2).topMargin = DimenUtils.dpToPixels(companion.getUnreadIndicatorMarginDp(resources2)) + systemWindowInsetTop;
+            view.setLayoutParams(layoutParams2);
+            return windowInsetsCompat;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$onViewBound$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass3 extends o implements Function0<Unit> {
+        public final /* synthetic */ Channel $channel;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass3(Channel channel) {
+            super(0);
+            this.$channel = channel;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            b.a.d.m.g(WidgetCallFullscreen.this.getContext(), R.string.permission_microphone_denied, 0, null, 12);
+            WidgetCallFullscreen widgetCallFullscreen = WidgetCallFullscreen.this;
+            TextInVoiceFeatureFlag instance = TextInVoiceFeatureFlag.INSTANCE.getINSTANCE();
+            Channel channel = this.$channel;
+            WidgetCallFullscreen.finishActivity$default(widgetCallFullscreen, false, instance.isEnabled(channel != null ? Long.valueOf(channel.getGuildId()) : null), 1, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$setUpGridRecycler$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass3 extends o implements Function1<String, Unit> {
+        public AnonymousClass3() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            m.checkNotNullParameter(str, "it");
+            WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).targetAndFocusStream(str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$setUpStageRecycler$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass3 extends o implements Function1<String, Unit> {
+        public AnonymousClass3() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(String str) {
+            invoke2(str);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(String str) {
+            m.checkNotNullParameter(str, "it");
+            WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).targetAndFocusStream(str);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureBottomControls$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass4 extends o implements Function0<Unit> {
+
+        /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureBottomControls$4$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public AnonymousClass1() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).toggleCameraPressed();
+            }
+        }
+
+        public AnonymousClass4() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetCallFullscreen.this.requestVideoCallPermissions(new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureGridUi$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass4 implements View.OnClickListener {
+        public AnonymousClass4() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).onShowParticipantsPressed();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureStageUi$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass4 extends o implements Function0<Unit> {
+        public final /* synthetic */ WidgetCallFullscreenViewModel.ViewState.Valid $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass4(WidgetCallFullscreenViewModel.ViewState.Valid valid) {
+            super(0);
+            this.$viewState = valid;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetCallFullscreen.finishActivity$default(WidgetCallFullscreen.this, false, this.$viewState.isTextInVoiceEnabled(), 1, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$initializeSystemUiListeners$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass4 implements OnApplyWindowInsetsListener {
+        public static final AnonymousClass4 INSTANCE = new AnonymousClass4();
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            m.checkNotNullExpressionValue(view, "view");
+            m.checkNotNullExpressionValue(windowInsetsCompat, "insets");
+            view.setPadding(view.getPaddingLeft(), windowInsetsCompat.getSystemWindowInsetTop(), view.getPaddingRight(), view.getPaddingBottom());
+            return windowInsetsCompat;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$onViewBound$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass4 extends o implements Function0<Unit> {
+        public AnonymousClass4() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).tryConnectToVoice();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$setUpGridRecycler$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final /* synthetic */ class AnonymousClass4 extends k implements Function2<VideoCallParticipantView.StreamResolution, VideoCallParticipantView.StreamFps, Unit> {
+        public AnonymousClass4(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+            super(2, widgetCallFullscreenViewModel, WidgetCallFullscreenViewModel.class, "onStreamQualityIndicatorShown", "onStreamQualityIndicatorShown(Lcom/discord/views/calls/VideoCallParticipantView$StreamResolution;Lcom/discord/views/calls/VideoCallParticipantView$StreamFps;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(VideoCallParticipantView.StreamResolution streamResolution, VideoCallParticipantView.StreamFps streamFps) {
+            invoke2(streamResolution, streamFps);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(VideoCallParticipantView.StreamResolution streamResolution, VideoCallParticipantView.StreamFps streamFps) {
+            m.checkNotNullParameter(streamResolution, "p1");
+            ((WidgetCallFullscreenViewModel) this.receiver).onStreamQualityIndicatorShown(streamResolution, streamFps);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$setUpStageRecycler$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final /* synthetic */ class AnonymousClass4 extends k implements Function2<VideoCallParticipantView.StreamResolution, VideoCallParticipantView.StreamFps, Unit> {
+        public AnonymousClass4(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+            super(2, widgetCallFullscreenViewModel, WidgetCallFullscreenViewModel.class, "onStreamQualityIndicatorShown", "onStreamQualityIndicatorShown(Lcom/discord/views/calls/VideoCallParticipantView$StreamResolution;Lcom/discord/views/calls/VideoCallParticipantView$StreamFps;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(VideoCallParticipantView.StreamResolution streamResolution, VideoCallParticipantView.StreamFps streamFps) {
+            invoke2(streamResolution, streamFps);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(VideoCallParticipantView.StreamResolution streamResolution, VideoCallParticipantView.StreamFps streamFps) {
+            m.checkNotNullParameter(streamResolution, "p1");
+            ((WidgetCallFullscreenViewModel) this.receiver).onStreamQualityIndicatorShown(streamResolution, streamFps);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureBottomControls$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass5 extends o implements Function0<Unit> {
+        public AnonymousClass5() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).onMuteClicked();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureGridUi$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass5 extends o implements Function0<Unit> {
+        public final /* synthetic */ WidgetCallFullscreenViewModel.ViewState.Valid $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass5(WidgetCallFullscreenViewModel.ViewState.Valid valid) {
+            super(0);
+            this.$viewState = valid;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetCallFullscreen.finishActivity$default(WidgetCallFullscreen.this, false, this.$viewState.isTextInVoiceEnabled(), 1, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$initializeSystemUiListeners$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass5 implements OnApplyWindowInsetsListener {
+        public AnonymousClass5() {
+        }
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+            m.checkNotNullExpressionValue(windowInsetsCompat, "insets");
+            DisplayCutoutCompat displayCutout = windowInsetsCompat.getDisplayCutout();
+            VideoCallGridAdapter videoCallGridAdapterAccess$getGridAdapter$p = WidgetCallFullscreen.access$getGridAdapter$p(WidgetCallFullscreen.this);
+            Resources resources = WidgetCallFullscreen.this.getResources();
+            m.checkNotNullExpressionValue(resources, "resources");
+            videoCallGridAdapterAccess$getGridAdapter$p.setDisplayCutout(displayCutout, resources.getConfiguration().orientation == 2);
+            WindowInsetsCompat windowInsetsCompatBuild = new WindowInsetsCompat.Builder().setSystemWindowInsets(Insets.of(Math.max(windowInsetsCompat.getSystemWindowInsetLeft(), displayCutout != null ? displayCutout.getSafeInsetLeft() : 0), Math.max(windowInsetsCompat.getSystemWindowInsetTop(), displayCutout != null ? displayCutout.getSafeInsetTop() : 0), Math.max(windowInsetsCompat.getSystemWindowInsetRight(), displayCutout != null ? displayCutout.getSafeInsetRight() : 0), Math.max(windowInsetsCompat.getSystemWindowInsetBottom(), displayCutout != null ? displayCutout.getSafeInsetBottom() : 0))).build();
+            m.checkNotNullExpressionValue(windowInsetsCompatBuild, "WindowInsetsCompat.Build…        )\n      ).build()");
+            VideoCallGridAdapter videoCallGridAdapterAccess$getGridAdapter$p2 = WidgetCallFullscreen.access$getGridAdapter$p(WidgetCallFullscreen.this);
+            AppBarLayout appBarLayout = WidgetCallFullscreen.access$getBinding$p(WidgetCallFullscreen.this).c;
+            m.checkNotNullExpressionValue(appBarLayout, "binding.actionBarToolbarLayout");
+            videoCallGridAdapterAccess$getGridAdapter$p2.setInsetsForAvoidingCallUiOverlap(appBarLayout.getMeasuredHeight(), windowInsetsCompat.getSystemWindowInsetBottom(), windowInsetsCompat.getSystemWindowInsetLeft(), windowInsetsCompat.getSystemWindowInsetRight());
+            ViewCompat.dispatchApplyWindowInsets(WidgetCallFullscreen.access$getBinding$p(WidgetCallFullscreen.this).f, windowInsetsCompatBuild);
+            ViewCompat.dispatchApplyWindowInsets(WidgetCallFullscreen.access$getBinding$p(WidgetCallFullscreen.this).i, windowInsetsCompatBuild);
+            RecyclerView recyclerView = WidgetCallFullscreen.access$getBinding$p(WidgetCallFullscreen.this).m;
+            m.checkNotNullExpressionValue(recyclerView, "binding.callStageRecycler");
+            recyclerView.setPadding(recyclerView.getPaddingLeft(), WidgetCallFullscreen.this.getResources().getDimensionPixelOffset(R.dimen.stage_details_top_padding) + windowInsetsCompatBuild.getSystemWindowInsetTop(), recyclerView.getPaddingRight(), recyclerView.getPaddingBottom());
+            return windowInsetsCompatBuild;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$onViewBound$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass5<R> implements Func0<Boolean> {
+        public final /* synthetic */ Channel $channel;
+
+        public AnonymousClass5(Channel channel) {
+            this.$channel = channel;
+        }
+
+        @Override // rx.functions.Func0, java.util.concurrent.Callable
+        public /* bridge */ /* synthetic */ Object call() {
+            return call();
+        }
+
+        @Override // rx.functions.Func0, java.util.concurrent.Callable
+        public final Boolean call() {
+            WidgetCallFullscreen widgetCallFullscreen = WidgetCallFullscreen.this;
+            TextInVoiceFeatureFlag instance = TextInVoiceFeatureFlag.INSTANCE.getINSTANCE();
+            Channel channel = this.$channel;
+            WidgetCallFullscreen.access$finishActivity(widgetCallFullscreen, false, instance.isEnabled(channel != null ? Long.valueOf(channel.getGuildId()) : null));
+            return Boolean.TRUE;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$setUpGridRecycler$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final /* synthetic */ class AnonymousClass5 extends k implements Function2<VideoCallParticipantView.StreamResolution, VideoCallParticipantView.StreamFps, Unit> {
+        public AnonymousClass5(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+            super(2, widgetCallFullscreenViewModel, WidgetCallFullscreenViewModel.class, "onStreamQualityIndicatorClicked", "onStreamQualityIndicatorClicked(Lcom/discord/views/calls/VideoCallParticipantView$StreamResolution;Lcom/discord/views/calls/VideoCallParticipantView$StreamFps;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(VideoCallParticipantView.StreamResolution streamResolution, VideoCallParticipantView.StreamFps streamFps) {
+            invoke2(streamResolution, streamFps);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(VideoCallParticipantView.StreamResolution streamResolution, VideoCallParticipantView.StreamFps streamFps) {
+            m.checkNotNullParameter(streamResolution, "p1");
+            ((WidgetCallFullscreenViewModel) this.receiver).onStreamQualityIndicatorClicked(streamResolution, streamFps);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$setUpStageRecycler$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final /* synthetic */ class AnonymousClass5 extends k implements Function2<VideoCallParticipantView.StreamResolution, VideoCallParticipantView.StreamFps, Unit> {
+        public AnonymousClass5(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+            super(2, widgetCallFullscreenViewModel, WidgetCallFullscreenViewModel.class, "onStreamQualityIndicatorClicked", "onStreamQualityIndicatorClicked(Lcom/discord/views/calls/VideoCallParticipantView$StreamResolution;Lcom/discord/views/calls/VideoCallParticipantView$StreamFps;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(VideoCallParticipantView.StreamResolution streamResolution, VideoCallParticipantView.StreamFps streamFps) {
+            invoke2(streamResolution, streamFps);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(VideoCallParticipantView.StreamResolution streamResolution, VideoCallParticipantView.StreamFps streamFps) {
+            m.checkNotNullParameter(streamResolution, "p1");
+            ((WidgetCallFullscreenViewModel) this.receiver).onStreamQualityIndicatorClicked(streamResolution, streamFps);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureBottomControls$6, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass6 extends o implements Function0<Unit> {
+        public final /* synthetic */ WidgetCallFullscreenViewModel.ViewState.Valid $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass6(WidgetCallFullscreenViewModel.ViewState.Valid valid) {
+            super(0);
+            this.$viewState = valid;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetScreenShareNfxSheet.Companion companion = WidgetScreenShareNfxSheet.INSTANCE;
+            if (!companion.canShow()) {
+                WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).onScreenShareClick();
+                return;
+            }
+            FragmentManager parentFragmentManager = WidgetCallFullscreen.this.getParentFragmentManager();
+            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            WidgetScreenShareNfxSheet.Companion.show$default(companion, parentFragmentManager, WidgetCallFullscreen.access$getChannelId(WidgetCallFullscreen.this), this.$viewState.getCallModel().getChannel().getGuildId(), null, 8, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$setUpGridRecycler$6, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass6 extends RecyclerView.OnScrollListener {
+        public final /* synthetic */ VideoCallGridLayoutManager $layoutManager;
+
+        public AnonymousClass6(VideoCallGridLayoutManager videoCallGridLayoutManager) {
+            this.$layoutManager = videoCallGridLayoutManager;
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.OnScrollListener
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            m.checkNotNullParameter(recyclerView, "recyclerView");
+            if (newState == 0) {
+                WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).updateOffScreenParticipantsFromScroll(WidgetCallFullscreen.access$getVisibleParticipants(WidgetCallFullscreen.this, this.$layoutManager));
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureBottomControls$7, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass7 extends o implements Function0<Unit> {
+        public final /* synthetic */ WidgetCallFullscreenViewModel.ViewState.Valid $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass7(WidgetCallFullscreenViewModel.ViewState.Valid valid) {
+            super(0);
+            this.$viewState = valid;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            ChannelInviteLaunchUtils.inviteToChannel$default(ChannelInviteLaunchUtils.INSTANCE, WidgetCallFullscreen.this, this.$viewState.getCallModel().getChannel(), "Voice Call", null, null, 24, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$setUpGridRecycler$7, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass7 implements RecyclerView.OnChildAttachStateChangeListener {
+        public AnonymousClass7() {
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.OnChildAttachStateChangeListener
+        public void onChildViewAttachedToWindow(View view) {
+            m.checkNotNullParameter(view, "view");
+            WidgetCallFullscreen.access$setHasVideoCallGridChildrenChanged$p(WidgetCallFullscreen.this, true);
+        }
+
+        @Override // androidx.recyclerview.widget.RecyclerView.OnChildAttachStateChangeListener
+        public void onChildViewDetachedFromWindow(View view) {
+            m.checkNotNullParameter(view, "view");
+            WidgetCallFullscreen.access$setHasVideoCallGridChildrenChanged$p(WidgetCallFullscreen.this, true);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureBottomControls$8, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass8 extends o implements Function2<Float, Boolean, Unit> {
+        public AnonymousClass8() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Float f, Boolean bool) {
+            invoke(f.floatValue(), bool.booleanValue());
+            return Unit.a;
+        }
+
+        public final void invoke(float f, boolean z2) {
+            WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).onStreamPerceptualVolumeChanged(f, z2);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreen$configureBottomControls$9, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class AnonymousClass9 extends o implements Function0<Unit> {
+        public AnonymousClass9() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetCallFullscreen.access$getViewModel$p(WidgetCallFullscreen.this).onDeafenPressed();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final int getUnreadIndicatorMarginDp(Resources resources) {
+            m.checkNotNullParameter(resources, "resources");
+            if (resources.getConfiguration().orientation != 2) {
+                return DeviceUtils.INSTANCE.isTablet(resources) ? 36 : 32;
+            }
+            return DeviceUtils.INSTANCE.isTablet(resources) ? 36 : 28;
+        }
+
+        public final int getUnreadIndicatorMarginLeftDp(Resources resources) {
+            m.checkNotNullParameter(resources, "resources");
+            if (resources.getConfiguration().orientation != 2) {
+                if (DeviceUtils.INSTANCE.isTablet(resources)) {
+                    return 40;
+                }
+            } else if (DeviceUtils.INSTANCE.isTablet(resources)) {
+                return 40;
+            }
+            return 32;
+        }
+
+        public static /* synthetic */ void launch$default(Companion companion, Context context, long j, boolean z2, String str, AppTransitionActivity.Transition transition, int i, Object obj) {
+            companion.launch(context, j, (i & 4) != 0 ? false : z2, (i & 8) != 0 ? null : str, (i & 16) != 0 ? null : transition);
+        }
+
+        public final void launch(Context context, long channelId, boolean connectOnLaunch, String streamKey, AppTransitionActivity.Transition transition) {
+            ActivityOptionsCompat activityOptions;
+            m.checkNotNullParameter(context, "context");
+            Intent intent = new Intent(context, (Class<?>) AppActivity.Call.class);
+            intent.putExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
+            intent.putExtra("com.discord.intent.extra.EXTRA_STREAM_KEY", streamKey);
+            intent.putExtra(WidgetCallFullscreen.INTENT_EXTRA_CONNECT_ON_LAUNCH, connectOnLaunch);
+            context.startActivity(intent, (transition == null || (activityOptions = transition.toActivityOptions(context)) == null) ? null : activityOptions.toBundle());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
+
+        static {
+            WidgetCallFullscreenViewModel.DisplayMode.values();
+            int[] iArr = new int[3];
+            $EnumSwitchMapping$0 = iArr;
+            WidgetCallFullscreenViewModel.DisplayMode displayMode = WidgetCallFullscreenViewModel.DisplayMode.STAGE;
+            iArr[displayMode.ordinal()] = 1;
+            WidgetCallFullscreenViewModel.DisplayMode displayMode2 = WidgetCallFullscreenViewModel.DisplayMode.GRID;
+            iArr[displayMode2.ordinal()] = 2;
+            WidgetCallFullscreenViewModel.DisplayMode.values();
+            int[] iArr2 = new int[3];
+            $EnumSwitchMapping$1 = iArr2;
+            iArr2[displayMode.ordinal()] = 1;
+            iArr2[displayMode2.ordinal()] = 2;
+            iArr2[WidgetCallFullscreenViewModel.DisplayMode.PRIVATE_CALL_PARTICIPANTS.ordinal()] = 3;
+        }
+    }
+
     public WidgetCallFullscreen() {
-        super(R$layout.widget_call_fullscreen);
+        super(R.layout.widget_call_fullscreen);
         this.binding = FragmentViewBindingDelegateKt.viewBinding(this, WidgetCallFullscreen$binding$2.INSTANCE, new WidgetCallFullscreen$binding$3(this));
         this.bottomSheetCallback = new WidgetCallFullscreen$bottomSheetCallback$1(this);
         WidgetCallFullscreen$viewModel$2 widgetCallFullscreen$viewModel$2 = new WidgetCallFullscreen$viewModel$2(this);
@@ -193,29 +1475,29 @@ public final class WidgetCallFullscreen extends AppFragment {
         this.stageSpeakerPillManagingScrollListener = new WidgetCallFullscreen$stageSpeakerPillManagingScrollListener$1(this);
         AppLog appLog = AppLog.g;
         m.checkNotNullParameter(appLog, "logger");
-        WeakReference<b.a.j.a> weakReference = a$b.a;
+        WeakReference<b.a.j.a> weakReference = b.a.j.a.b.a;
         b.a.j.a aVar = weakReference != null ? weakReference.get() : null;
         if (aVar == null) {
             aVar = new b.a.j.a(appLog);
-            a$b.a = new WeakReference<>(aVar);
+            b.a.j.a.b.a = new WeakReference<>(aVar);
         }
         b.a.j.a aVar2 = aVar;
-        TooltipManager$a tooltipManager$a = TooltipManager$a.d;
+        TooltipManager.a aVar3 = TooltipManager.a.d;
         m.checkNotNullParameter(aVar2, "floatingViewManager");
-        WeakReference<TooltipManager> weakReference2 = TooltipManager$a.a;
+        WeakReference<TooltipManager> weakReference2 = TooltipManager.a.a;
         TooltipManager tooltipManager = weakReference2 != null ? weakReference2.get() : null;
         if (tooltipManager == null) {
-            tooltipManager = new TooltipManager((b.a.v.a) TooltipManager$a.f2815b.getValue(), (Set) TooltipManager$a.c.getValue(), 0, aVar2, 4);
-            TooltipManager$a.a = new WeakReference<>(tooltipManager);
+            tooltipManager = new TooltipManager((b.a.v.a) TooltipManager.a.f2815b.getValue(), (Set) TooltipManager.a.c.getValue(), 0, aVar2, 4);
+            TooltipManager.a.a = new WeakReference<>(tooltipManager);
         }
         this.tooltipManager = tooltipManager;
         this.defaultTooltipCreator = new DefaultTooltipCreator(tooltipManager);
         this.stageCallBottomSheetManager = new StageCallBottomSheetManager();
-        this.eventPromptOverlay = LazyViewStubDelegate.Companion.lazyViewStub(new WidgetCallFullscreen$eventPromptOverlay$2(this));
+        this.eventPromptOverlay = LazyViewStubDelegate.INSTANCE.lazyViewStub(new WidgetCallFullscreen$eventPromptOverlay$2(this));
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetCallFullscreen widgetCallFullscreen, WidgetCallFullscreenViewModel$ViewState widgetCallFullscreenViewModel$ViewState) {
-        widgetCallFullscreen.configureUI(widgetCallFullscreenViewModel$ViewState);
+    public static final /* synthetic */ void access$configureUI(WidgetCallFullscreen widgetCallFullscreen, WidgetCallFullscreenViewModel.ViewState viewState) {
+        widgetCallFullscreen.configureUI(viewState);
     }
 
     public static final /* synthetic */ void access$finishActivity(WidgetCallFullscreen widgetCallFullscreen, boolean z2, boolean z3) {
@@ -305,7 +1587,7 @@ public final class WidgetCallFullscreen extends AppFragment {
     /* JADX WARN: Code duplicated, block: B:54:0x0164  */
     /* JADX WARN: Code duplicated, block: B:72:0x01b0  */
     /* JADX WARN: Code duplicated, block: B:81:0x0213  */
-    private final void configureActionBar(WidgetCallFullscreenViewModel$ViewState$Valid viewState) {
+    private final void configureActionBar(WidgetCallFullscreenViewModel.ViewState.Valid viewState) {
         int i;
         boolean zHasLiveEvent;
         boolean z2;
@@ -322,15 +1604,15 @@ public final class WidgetCallFullscreen extends AppFragment {
         Toolbar toolbar = getBinding().f2245b;
         m.checkNotNullExpressionValue(toolbar, "binding.actionBarToolbar");
         Context contextRequireContext = requireContext();
-        if (!viewState.isTextInVoiceEnabled() && viewState.getDisplayMode() != WidgetCallFullscreenViewModel$DisplayMode.STAGE && z7) {
-            i = 2131231599;
-        } else if (viewState.isTextInVoiceEnabled() || viewState.getDisplayMode() == WidgetCallFullscreenViewModel$DisplayMode.STAGE) {
-            i = z7 ? 2131231602 : 2131231603;
+        if (!viewState.isTextInVoiceEnabled() && viewState.getDisplayMode() != WidgetCallFullscreenViewModel.DisplayMode.STAGE && z7) {
+            i = R.drawable.ic_call_toolbar_icon_minimize_cutout;
+        } else if (viewState.isTextInVoiceEnabled() || viewState.getDisplayMode() == WidgetCallFullscreenViewModel.DisplayMode.STAGE) {
+            i = z7 ? R.drawable.ic_call_toolbar_stage_minimize_cutout_dark : R.drawable.ic_call_toolbar_stage_minimize_dark;
         } else {
-            i = 2131231598;
+            i = R.drawable.ic_call_toolbar_icon_minimize;
         }
         toolbar.setNavigationIcon(ContextCompat.getDrawable(contextRequireContext, i));
-        getBinding().f2245b.setNavigationOnClickListener(new WidgetCallFullscreen$configureActionBar$1(this, viewState));
+        getBinding().f2245b.setNavigationOnClickListener(new AnonymousClass1(viewState));
         CallEventsButtonView callEventsButtonView = getBinding().w;
         Guild guild = viewState.getCallModel().getGuild();
         if (guild == null || viewState.getStageCallModel() == null || viewState.getStageCallModel().isLurking()) {
@@ -397,7 +1679,7 @@ public final class WidgetCallFullscreen extends AppFragment {
                 }
                 SimpleDraweeView simpleDraweeView = stageCallVisitCommunityView2.binding.f229b;
                 m.checkNotNullExpressionValue(simpleDraweeView, "binding.visitCommunityIcon");
-                SimpleDraweeViewExtensionsKt.setGuildIcon$default(simpleDraweeView, true, guild2, stageCallVisitCommunityView2.getResources().getDimensionPixelSize(2131165449), Integer.valueOf(IconUtils.getMediaProxySize(stageCallVisitCommunityView2.getResources().getDimensionPixelSize(2131165294))), null, null, null, false, null, 496, null);
+                SimpleDraweeViewExtensionsKt.setGuildIcon$default(simpleDraweeView, true, guild2, stageCallVisitCommunityView2.getResources().getDimensionPixelSize(R.dimen.guild_icon_radius), Integer.valueOf(IconUtils.getMediaProxySize(stageCallVisitCommunityView2.getResources().getDimensionPixelSize(R.dimen.avatar_size_medium))), null, null, null, false, null, 496, null);
                 TextView textView4 = stageCallVisitCommunityView2.binding.c;
                 m.checkNotNullExpressionValue(textView4, "binding.visitCommunityIconText");
                 textView4.setText(z5 ? null : guild2.getShortName());
@@ -413,7 +1695,7 @@ public final class WidgetCallFullscreen extends AppFragment {
             }
         }
         stageCallVisitCommunityView.setVisibility(z3 ? 0 : 8);
-        int color = ColorCompat.getColor(this, 2131100438);
+        int color = ColorCompat.getColor(this, R.color.transparent);
         String titleText = viewState.getTitleText();
         if (titleText == null) {
             titleText = "";
@@ -426,7 +1708,7 @@ public final class WidgetCallFullscreen extends AppFragment {
     }
 
     /* JADX WARN: Code duplicated, block: B:27:0x010c  */
-    private final void configureBottomControls(WidgetCallFullscreenViewModel$ViewState$Valid viewState) {
+    private final void configureBottomControls(WidgetCallFullscreenViewModel.ViewState.Valid viewState) {
         boolean z2;
         VoiceControlsSheetView voiceControlsSheetView = getBinding().f2248y;
         m.checkNotNullExpressionValue(voiceControlsSheetView, "binding.voiceControlsSheetView");
@@ -438,11 +1720,11 @@ public final class WidgetCallFullscreen extends AppFragment {
         boolean zIsPushToTalk = viewState.getIsPushToTalk();
         boolean zIsDeafened = viewState.getIsDeafened();
         boolean startedAsVideo = viewState.getStartedAsVideo();
-        WidgetCallFullscreen$configureBottomControls$1 widgetCallFullscreen$configureBottomControls$1 = new WidgetCallFullscreen$configureBottomControls$1(this, viewState);
-        WidgetCallFullscreen$configureBottomControls$2 widgetCallFullscreen$configureBottomControls$2 = new WidgetCallFullscreen$configureBottomControls$2(this);
-        WidgetCallFullscreen$configureBottomControls$3 widgetCallFullscreen$configureBottomControls$3 = new WidgetCallFullscreen$configureBottomControls$3(this);
-        WidgetCallFullscreen$configureBottomControls$4 widgetCallFullscreen$configureBottomControls$4 = new WidgetCallFullscreen$configureBottomControls$4(this);
-        voiceControlsSheetView2.m64configureUI3jxq49Y(callModel, outputSelectorState, z3, zIsPushToTalk, zIsDeafened, startedAsVideo, viewState.getIsStreamFocused(), !viewState.getIsStreamFocused(), widgetCallFullscreen$configureBottomControls$2, widgetCallFullscreen$configureBottomControls$1, widgetCallFullscreen$configureBottomControls$3, widgetCallFullscreen$configureBottomControls$4, new WidgetCallFullscreen$configureBottomControls$5(this), new WidgetCallFullscreen$configureBottomControls$7(this, viewState), new WidgetCallFullscreen$configureBottomControls$6(this, viewState), viewState.getShowStreamVolume(), viewState.getPerceptualStreamVolume(), new WidgetCallFullscreen$configureBottomControls$8(this), new WidgetCallFullscreen$configureBottomControls$9(this), viewState.getRequestingToSpeakCount(), new WidgetCallFullscreen$configureBottomControls$10(this, viewState), new WidgetCallFullscreen$configureBottomControls$11(this), viewState.isUpdatingRequestToSpeak(), viewState.m72getStageRolestwRsX0());
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1(viewState);
+        AnonymousClass2 anonymousClass2 = new AnonymousClass2();
+        AnonymousClass3 anonymousClass3 = new AnonymousClass3();
+        AnonymousClass4 anonymousClass4 = new AnonymousClass4();
+        voiceControlsSheetView2.m64configureUI3jxq49Y(callModel, outputSelectorState, z3, zIsPushToTalk, zIsDeafened, startedAsVideo, viewState.getIsStreamFocused(), !viewState.getIsStreamFocused(), anonymousClass2, anonymousClass1, anonymousClass3, anonymousClass4, new AnonymousClass5(), new AnonymousClass7(viewState), new AnonymousClass6(viewState), viewState.getShowStreamVolume(), viewState.getPerceptualStreamVolume(), new AnonymousClass8(), new AnonymousClass9(), viewState.getRequestingToSpeakCount(), new AnonymousClass10(viewState), new AnonymousClass11(), viewState.isUpdatingRequestToSpeak(), viewState.m72getStageRolestwRsX0());
         configureSwipeTooltip(viewState.getStageCallModel() == null && viewState.getShowFooter());
         if (!viewState.getIsVideoCallGridVisible()) {
             VoiceControlsSheetView voiceControlsSheetView3 = getBinding().f2248y;
@@ -471,11 +1753,11 @@ public final class WidgetCallFullscreen extends AppFragment {
         if (subscription == null || subscription.isUnsubscribed()) {
             Observable<Long> observableE = Observable.E(0L, 1L, TimeUnit.SECONDS);
             m.checkNotNullExpressionValue(observableE, "Observable\n          .in…0L, 1L, TimeUnit.SECONDS)");
-            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableE, this, null, 2, null), WidgetCallFullscreen.class, (Context) null, new WidgetCallFullscreen$configureConnectionStatusText$2(this), (Function1) null, (Function0) null, (Function0) null, new WidgetCallFullscreen$configureConnectionStatusText$1(this, callModel), 58, (Object) null);
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableE, this, null, 2, null), WidgetCallFullscreen.class, (Context) null, new AnonymousClass2(), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(callModel), 58, (Object) null);
         }
     }
 
-    private final void configureEventPrompt(WidgetCallFullscreenViewModel$ViewState$Valid viewState) {
+    private final void configureEventPrompt(WidgetCallFullscreenViewModel.ViewState.Valid viewState) {
         Guild guild = viewState.getCallModel().getGuild();
         WidgetCallFullscreen$configureEventPrompt$onCreateEventClick$1 widgetCallFullscreen$configureEventPrompt$onCreateEventClick$1 = new WidgetCallFullscreen$configureEventPrompt$onCreateEventClick$1(this, guild);
         GuildScheduledEvent startableEvent = viewState.getStartableEvent();
@@ -483,19 +1765,19 @@ public final class WidgetCallFullscreen extends AppFragment {
         WidgetCallFullscreen$configureEventPrompt$onStartStage$1 widgetCallFullscreen$configureEventPrompt$onStartStage$1 = new WidgetCallFullscreen$configureEventPrompt$onStartStage$1(this);
         GuildEventPromptListView guildEventPromptListView = (GuildEventPromptListView) getEventPromptOverlay().getMaybeView();
         if (guildEventPromptListView != null) {
-            GuildEventPromptListView$ScheduledEventData guildEventPromptListView$ScheduledEventData = (startableEvent != null && GuildScheduledEventUtilities.Companion.canStartEventInChannel(viewState.getCallModel().getChannel(), viewState.getChannelPermissions())) ? new GuildEventPromptListView$ScheduledEventData(startableEvent, widgetCallFullscreen$configureEventPrompt$onStartEvent$1) : null;
+            GuildEventPromptListView.ScheduledEventData scheduledEventData = (startableEvent != null && GuildScheduledEventUtilities.INSTANCE.canStartEventInChannel(viewState.getCallModel().getChannel(), viewState.getChannelPermissions())) ? new GuildEventPromptListView.ScheduledEventData(startableEvent, widgetCallFullscreen$configureEventPrompt$onStartEvent$1) : null;
             if (guild == null || viewState.getStageCallModel() == null || !PermissionUtils.can(Permission.START_STAGE_EVENT, viewState.getChannelPermissions())) {
                 widgetCallFullscreen$configureEventPrompt$onCreateEventClick$1 = null;
             }
             if (viewState.getStageCallModel() == null || !StageRoles.m32isModeratorimpl(viewState.getStageCallModel().m42getMyStageRoles1LxfuJo())) {
                 widgetCallFullscreen$configureEventPrompt$onStartStage$1 = null;
             }
-            guildEventPromptListView.configure(guildEventPromptListView$ScheduledEventData, widgetCallFullscreen$configureEventPrompt$onCreateEventClick$1, widgetCallFullscreen$configureEventPrompt$onStartStage$1);
+            guildEventPromptListView.configure(scheduledEventData, widgetCallFullscreen$configureEventPrompt$onCreateEventClick$1, widgetCallFullscreen$configureEventPrompt$onStartStage$1);
         }
     }
 
     /* JADX WARN: Code duplicated, block: B:54:0x019c  */
-    private final void configureGridUi(WidgetCallFullscreenViewModel$ViewState$Valid viewState) {
+    private final void configureGridUi(WidgetCallFullscreenViewModel.ViewState.Valid viewState) {
         boolean z2;
         FragmentActivity fragmentActivityRequireActivity = requireActivity();
         m.checkNotNullExpressionValue(fragmentActivityRequireActivity, "requireActivity()");
@@ -509,11 +1791,11 @@ public final class WidgetCallFullscreen extends AppFragment {
         ConstraintLayout constraintLayout = getBinding().t;
         m.checkNotNullExpressionValue(constraintLayout, "binding.stageCallSpeakingChip");
         constraintLayout.setVisibility(8);
-        getBinding().j.setOnClickListener(new WidgetCallFullscreen$configureGridUi$1(this));
+        getBinding().j.setOnClickListener(new AnonymousClass1());
         LinearLayout linearLayout = getBinding().j;
         m.checkNotNullExpressionValue(linearLayout, "binding.callParticipantsHidden");
         linearLayout.setVisibility(viewState.getShowParticipantsHiddenView() ? 0 : 8);
-        getBinding().o.setOnClickListener(new WidgetCallFullscreen$configureGridUi$2(this));
+        getBinding().o.setOnClickListener(new AnonymousClass2());
         ConstraintLayout constraintLayout2 = getBinding().o;
         m.checkNotNullExpressionValue(constraintLayout2, "binding.callStreamingActive");
         constraintLayout2.setVisibility(viewState.getCallModel().isStreaming() ? 0 : 8);
@@ -522,8 +1804,8 @@ public final class WidgetCallFullscreen extends AppFragment {
         Resources resources = getResources();
         m.checkNotNullExpressionValue(resources, "resources");
         materialButton.setVisibility(resources.getConfiguration().orientation != 2 ? 0 : 8);
-        getBinding().n.setOnClickListener(new WidgetCallFullscreen$configureGridUi$3(this));
-        getBinding().k.setOnClickListener(new WidgetCallFullscreen$configureGridUi$4(this));
+        getBinding().n.setOnClickListener(new AnonymousClass3());
+        getBinding().k.setOnClickListener(new AnonymousClass4());
         RecyclerView recyclerView2 = getBinding().p;
         m.checkNotNullExpressionValue(recyclerView2, "binding.callVideoRecycler");
         boolean z3 = recyclerView2.getVisibility() == 0;
@@ -544,7 +1826,7 @@ public final class WidgetCallFullscreen extends AppFragment {
         m.checkNotNullExpressionValue(videoCallParticipantView, "binding.callPip");
         videoCallParticipantView.setVisibility(viewState.getPipParticipant() != null ? 0 : 8);
         VideoCallParticipantView videoCallParticipantView2 = getBinding().l;
-        CallParticipant$UserOrStreamParticipant pipParticipant = viewState.getPipParticipant();
+        CallParticipant.UserOrStreamParticipant pipParticipant = viewState.getPipParticipant();
         VideoCallParticipantView.d(videoCallParticipantView2, pipParticipant != null ? pipParticipant.getParticipantData() : null, null, false, null, false, 30);
         View view = getBinding().e.f181b;
         m.checkNotNullExpressionValue(view, "binding.audioShare.callStreamingAudioShareWarning");
@@ -584,11 +1866,11 @@ public final class WidgetCallFullscreen extends AppFragment {
         } else {
             getEventPromptOverlay().setVisible(false);
         }
-        WidgetEndGuildScheduledEventBottomSheet.Companion.registerForResult(this, END_EVENT_REQUEST_KEY, new WidgetCallFullscreen$configureGridUi$5(this, viewState));
+        WidgetEndGuildScheduledEventBottomSheet.INSTANCE.registerForResult(this, END_EVENT_REQUEST_KEY, new AnonymousClass5(viewState));
         enableWakeLock();
     }
 
-    private final void configureMenu(WidgetCallFullscreenViewModel$ViewState$Valid viewState) {
+    private final void configureMenu(WidgetCallFullscreenViewModel.ViewState.Valid viewState) {
         if (m.areEqual(viewState.getMenuItems(), this.lastMenuItems)) {
             int textInVoiceMentionsCount = viewState.getTextInVoiceMentionsCount();
             Integer num = this.lastMentionsCount;
@@ -603,10 +1885,10 @@ public final class WidgetCallFullscreen extends AppFragment {
         this.lastMenuItems = viewState.getMenuItems();
         this.lastMentionsCount = Integer.valueOf(viewState.getTextInVoiceMentionsCount());
         this.lastUnreadsCount = Integer.valueOf(viewState.getTextInVoiceUnreadsCount());
-        setActionBarOptionsMenu(R$menu.menu_call_fullscreen, new WidgetCallFullscreen$configureMenu$1(this, viewState), new WidgetCallFullscreen$configureMenu$2(this, viewState));
+        setActionBarOptionsMenu(R.menu.menu_call_fullscreen, new AnonymousClass1(viewState), new AnonymousClass2(viewState));
     }
 
-    private final void configurePrivateCallParticipantsUi(WidgetCallFullscreenViewModel$ViewState$Valid viewState) {
+    private final void configurePrivateCallParticipantsUi(WidgetCallFullscreenViewModel.ViewState.Valid viewState) {
         String displayName;
         LinearLayout linearLayout = getBinding().j;
         m.checkNotNullExpressionValue(linearLayout, "binding.callParticipantsHidden");
@@ -634,13 +1916,13 @@ public final class WidgetCallFullscreen extends AppFragment {
         configureMenu(viewState);
         configureActionBar(viewState);
         enableWakeLock();
-        getBinding().f2246s.i.setText(viewState.getCallModel().isConnected() ? 2131893512 : 2131897190);
+        getBinding().f2246s.i.setText(viewState.getCallModel().isConnected() ? R.string.ongoing_call : R.string.voice_status_not_connected);
         TextView textView2 = getBinding().f2246s.h;
         m.checkNotNullExpressionValue(textView2, "binding.privateCall.privateCallStatusPrimary");
         if (ChannelUtils.z(viewState.getCallModel().getChannel())) {
             displayName = ChannelUtils.c(viewState.getCallModel().getChannel());
         } else {
-            StoreVoiceParticipants$VoiceUser dmRecipient = viewState.getCallModel().getDmRecipient();
+            StoreVoiceParticipants.VoiceUser dmRecipient = viewState.getCallModel().getDmRecipient();
             displayName = dmRecipient != null ? dmRecipient.getDisplayName() : null;
         }
         textView2.setText(displayName);
@@ -648,7 +1930,7 @@ public final class WidgetCallFullscreen extends AppFragment {
     }
 
     /* JADX WARN: Code duplicated, block: B:32:0x00e5  */
-    private final void configureStageUi(WidgetCallFullscreenViewModel$ViewState$Valid viewState) {
+    private final void configureStageUi(WidgetCallFullscreenViewModel.ViewState.Valid viewState) {
         boolean z2;
         boolean z3;
         StageCallModel stageCallModel = viewState.getStageCallModel();
@@ -682,7 +1964,7 @@ public final class WidgetCallFullscreen extends AppFragment {
                 getEventPromptOverlay().setVisible(false);
             }
             Channel channel = viewState.getCallModel().getChannel();
-            List<StoreVoiceParticipants$VoiceUser> speakingVoiceUsers = stageCallModel.getSpeakingVoiceUsers();
+            List<StoreVoiceParticipants.VoiceUser> speakingVoiceUsers = stageCallModel.getSpeakingVoiceUsers();
             ConstraintLayout constraintLayout = getBinding().t;
             m.checkNotNullExpressionValue(constraintLayout, "binding.stageCallSpeakingChip");
             if (!speakingVoiceUsers.isEmpty()) {
@@ -690,7 +1972,7 @@ public final class WidgetCallFullscreen extends AppFragment {
                     Iterator<T> it = speakingVoiceUsers.iterator();
                     while (true) {
                         if (it.hasNext()) {
-                            if (!isStageUserVisible(((StoreVoiceParticipants$VoiceUser) it.next()).getUser().getId())) {
+                            if (!isStageUserVisible(((StoreVoiceParticipants.VoiceUser) it.next()).getUser().getId())) {
                                 z3 = true;
                                 break;
                             }
@@ -714,46 +1996,46 @@ public final class WidgetCallFullscreen extends AppFragment {
             constraintLayout.setVisibility(z2 ? 0 : 8);
             if (!speakingVoiceUsers.isEmpty()) {
                 UserSummaryView userSummaryView = getBinding().u;
-                ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(speakingVoiceUsers, 10));
-                for (StoreVoiceParticipants$VoiceUser storeVoiceParticipants$VoiceUser : speakingVoiceUsers) {
-                    arrayList.add(new UserGuildMember(storeVoiceParticipants$VoiceUser.getUser(), storeVoiceParticipants$VoiceUser.getGuildMember()));
+                ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(speakingVoiceUsers, 10));
+                for (StoreVoiceParticipants.VoiceUser voiceUser : speakingVoiceUsers) {
+                    arrayList.add(new UserGuildMember(voiceUser.getUser(), voiceUser.getGuildMember()));
                 }
                 UserSummaryView.b(userSummaryView, arrayList, false, 2);
                 MaterialTextView materialTextView = getBinding().v;
                 m.checkNotNullExpressionValue(materialTextView, "binding.stageCallSpeakingUserSummaryLabel");
                 Resources resources = getResources();
                 m.checkNotNullExpressionValue(resources, "resources");
-                materialTextView.setText(b.e(this, 2131895826, new Object[]{speakingVoiceUsers.get(0).getDisplayName(), StringResourceUtilsKt.getQuantityString(resources, R$plurals.stage_is_speaking_hook_count, 2131895827, speakingVoiceUsers.size() - 1, Integer.valueOf(speakingVoiceUsers.size() - 1))}, new WidgetCallFullscreen$configureStageUi$3(this)));
+                materialTextView.setText(b.a.k.b.e(this, R.string.stage_is_speaking_hook, new Object[]{speakingVoiceUsers.get(0).getDisplayName(), StringResourceUtilsKt.getQuantityString(resources, R.plurals.stage_is_speaking_hook_count, R.string.stage_is_speaking_zero_quantity_hook, speakingVoiceUsers.size() - 1, Integer.valueOf(speakingVoiceUsers.size() - 1))}, new AnonymousClass3()));
             }
             List<StageMediaParticipant> mediaParticipants = stageCallModel.getMediaParticipants();
-            ArrayList arrayList2 = new ArrayList(o.collectionSizeOrDefault(mediaParticipants, 10));
+            ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(mediaParticipants, 10));
             for (StageMediaParticipant stageMediaParticipant : mediaParticipants) {
-                CallParticipant$UserOrStreamParticipant callParticipant$UserOrStreamParticipant = viewState.getAllVideoParticipants().get(stageMediaParticipant.getId());
-                if (callParticipant$UserOrStreamParticipant == null) {
+                CallParticipant.UserOrStreamParticipant userOrStreamParticipant = viewState.getAllVideoParticipants().get(stageMediaParticipant.getId());
+                if (userOrStreamParticipant == null) {
                     return;
                 } else {
-                    arrayList2.add(new StageCallItem$MediaItem(stageMediaParticipant.getVoiceUser(), stageMediaParticipant.getChannel(), stageMediaParticipant.isModerator(), stageMediaParticipant.isBlocked(), stageMediaParticipant.getMediaType(), callParticipant$UserOrStreamParticipant));
+                    arrayList2.add(new StageCallItem.MediaItem(stageMediaParticipant.getVoiceUser(), stageMediaParticipant.getChannel(), stageMediaParticipant.isModerator(), stageMediaParticipant.isBlocked(), stageMediaParticipant.getMediaType(), userOrStreamParticipant));
                 }
             }
             ArrayList arrayList3 = new ArrayList();
             boolean z5 = stageCallModel.getNumSpeakers() > 0;
             boolean zIsEmpty = true ^ stageCallModel.getAudience().isEmpty();
             if (stageCallModel.getStageInstance() != null) {
-                arrayList3.add(new StageCallItem$DetailsItem(stageCallModel.getStageInstance().getTopic(), ChannelUtils.c(channel), viewState.getCallModel().getNumUsersConnected(), stageCallModel.getNumSpeakers(), stageCallModel.getAudience().size(), stageCallModel.getNumBlockedUsers(), d.W0(stageCallModel.getStageInstance())));
+                arrayList3.add(new StageCallItem.DetailsItem(stageCallModel.getStageInstance().getTopic(), ChannelUtils.c(channel), viewState.getCallModel().getNumUsersConnected(), stageCallModel.getNumSpeakers(), stageCallModel.getAudience().size(), stageCallModel.getNumBlockedUsers(), d.W0(stageCallModel.getStageInstance())));
             } else {
-                String string = StageRoles.m32isModeratorimpl(stageCallModel.m42getMyStageRoles1LxfuJo()) ? getString(2131895848) : getString(2131895847);
+                String string = StageRoles.m32isModeratorimpl(stageCallModel.m42getMyStageRoles1LxfuJo()) ? getString(R.string.stage_start_prompt_title_moderator) : getString(R.string.stage_start_prompt_title);
                 m.checkNotNullExpressionValue(string, "when {\n                s…pt_title)\n              }");
-                String string2 = StageRoles.m32isModeratorimpl(stageCallModel.m42getMyStageRoles1LxfuJo()) ? getString(2131895846) : getString(2131895845);
+                String string2 = StageRoles.m32isModeratorimpl(stageCallModel.m42getMyStageRoles1LxfuJo()) ? getString(R.string.stage_start_prompt_subtitle_mobile_moderator) : getString(R.string.stage_start_prompt_subtitle_mobile);
                 m.checkNotNullExpressionValue(string2, "when {\n                s…e_mobile)\n              }");
-                arrayList3.add(new StageCallItem$PreStartDetailsItem(string, string2, stageCallModel.getNumSpeakers(), stageCallModel.getAudience().size()));
+                arrayList3.add(new StageCallItem.PreStartDetailsItem(string, string2, stageCallModel.getNumSpeakers(), stageCallModel.getAudience().size()));
             }
             arrayList3.addAll(arrayList2);
             arrayList3.addAll(stageCallModel.getSpeakerItems());
             if (z5 && zIsEmpty) {
-                arrayList3.add(StageCallItem$DividerItem.INSTANCE);
+                arrayList3.add(StageCallItem.DividerItem.INSTANCE);
             }
             if (zIsEmpty) {
-                arrayList3.add(new StageCallItem$AudienceHeaderItem(stageCallModel.getAudience().size()));
+                arrayList3.add(new StageCallItem.AudienceHeaderItem(stageCallModel.getAudience().size()));
                 arrayList3.addAll(stageCallModel.getAudience());
             }
             StageCallAdapter stageCallAdapter = this.stageAdapter;
@@ -764,7 +2046,7 @@ public final class WidgetCallFullscreen extends AppFragment {
             configureMenu(viewState);
             configureActionBar(viewState);
             enableWakeLock();
-            WidgetEndStageBottomSheet.Companion.registerForResult(this, END_STAGE_REQUEST_KEY, new WidgetCallFullscreen$configureStageUi$4(this, viewState));
+            WidgetEndStageBottomSheet.INSTANCE.registerForResult(this, END_STAGE_REQUEST_KEY, new AnonymousClass4(viewState));
         }
     }
 
@@ -787,28 +2069,28 @@ public final class WidgetCallFullscreen extends AppFragment {
         DefaultTooltipCreator defaultTooltipCreator = this.defaultTooltipCreator;
         View view = getBinding().f2248y;
         m.checkNotNullExpressionValue(view, "binding.voiceControlsSheetView");
-        TooltipManager$b tooltipManager$b = VoiceControlsSheetSwipeTooltip.INSTANCE;
-        String string = getResources().getString(2131897178);
+        TooltipManager.b bVar = VoiceControlsSheetSwipeTooltip.INSTANCE;
+        String string = getResources().getString(R.string.voice_controls_sheet_tooltip_swipe_up);
         m.checkNotNullExpressionValue(string, "resources.getString(R.st…s_sheet_tooltip_swipe_up)");
         int iDpToPixels = DimenUtils.dpToPixels(-12);
-        Observable<R> observableG = getUnsubscribeSignal().G(WidgetCallFullscreen$configureSwipeTooltip$1.INSTANCE);
+        Observable<R> observableG = getUnsubscribeSignal().G(AnonymousClass1.INSTANCE);
         m.checkNotNullExpressionValue(observableG, "this.unsubscribeSignal.map { }");
         FloatingViewGravity floatingViewGravity = FloatingViewGravity.TOP;
         Objects.requireNonNull(defaultTooltipCreator);
         m.checkNotNullParameter(view, "anchorView");
         m.checkNotNullParameter(string, "tooltipText");
-        m.checkNotNullParameter(tooltipManager$b, "tooltip");
+        m.checkNotNullParameter(bVar, "tooltip");
         m.checkNotNullParameter(floatingViewGravity, "tooltipGravity");
         m.checkNotNullParameter(observableG, "componentPausedObservable");
-        if (defaultTooltipCreator.tooltipManager.b(tooltipManager$b, true)) {
+        if (defaultTooltipCreator.tooltipManager.b(bVar, true)) {
             LayoutInflater layoutInflaterFrom = LayoutInflater.from(view.getContext());
             if (floatingViewGravity == floatingViewGravity) {
                 View rootView = view.getRootView();
                 Objects.requireNonNull(rootView, "null cannot be cast to non-null type android.view.ViewGroup");
-                View viewInflate = layoutInflaterFrom.inflate(R$layout.default_tooltip_view_top, (ViewGroup) rootView, false);
-                TextView textView = (TextView) viewInflate.findViewById(R$id.default_tooltip_text);
+                View viewInflate = layoutInflaterFrom.inflate(R.layout.default_tooltip_view_top, (ViewGroup) rootView, false);
+                TextView textView = (TextView) viewInflate.findViewById(R.id.default_tooltip_text);
                 if (textView == null) {
-                    throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(R$id.default_tooltip_text)));
+                    throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(R.id.default_tooltip_text)));
                 }
                 iVar = new j((ConstraintLayout) viewInflate, textView);
                 m.checkNotNullExpressionValue(textView, "defaultTooltipText");
@@ -817,45 +2099,45 @@ public final class WidgetCallFullscreen extends AppFragment {
             } else {
                 View rootView2 = view.getRootView();
                 Objects.requireNonNull(rootView2, "null cannot be cast to non-null type android.view.ViewGroup");
-                View viewInflate2 = layoutInflaterFrom.inflate(R$layout.default_tooltip_view_bottom, (ViewGroup) rootView2, false);
-                TextView textView2 = (TextView) viewInflate2.findViewById(R$id.default_tooltip_text);
+                View viewInflate2 = layoutInflaterFrom.inflate(R.layout.default_tooltip_view_bottom, (ViewGroup) rootView2, false);
+                TextView textView2 = (TextView) viewInflate2.findViewById(R.id.default_tooltip_text);
                 if (textView2 == null) {
-                    throw new NullPointerException("Missing required view with ID: ".concat(viewInflate2.getResources().getResourceName(R$id.default_tooltip_text)));
+                    throw new NullPointerException("Missing required view with ID: ".concat(viewInflate2.getResources().getResourceName(R.id.default_tooltip_text)));
                 }
                 iVar = new i((ConstraintLayout) viewInflate2, textView2);
                 m.checkNotNullExpressionValue(textView2, "defaultTooltipText");
                 textView2.setText(string);
                 m.checkNotNullExpressionValue(iVar, "DefaultTooltipViewBottom…ext = tooltipText\n      }");
             }
-            iVar.getRoot().setOnClickListener(new b.a.v.b(defaultTooltipCreator, tooltipManager$b));
+            iVar.getRoot().setOnClickListener(new b.a.v.b(defaultTooltipCreator, bVar));
             TooltipManager tooltipManager = defaultTooltipCreator.tooltipManager;
             View root = iVar.getRoot();
             m.checkNotNullExpressionValue(root, "tooltipView.root");
-            tooltipManager.d(view, root, tooltipManager$b, floatingViewGravity, 0, iDpToPixels, true, observableG);
+            tooltipManager.d(view, root, bVar, floatingViewGravity, 0, iDpToPixels, true, observableG);
         }
     }
 
-    private final void configureUI(WidgetCallFullscreenViewModel$ViewState viewState) {
-        if (m.areEqual(viewState, WidgetCallFullscreenViewModel$ViewState$Invalid.INSTANCE)) {
+    private final void configureUI(WidgetCallFullscreenViewModel.ViewState viewState) {
+        if (m.areEqual(viewState, WidgetCallFullscreenViewModel.ViewState.Invalid.INSTANCE)) {
             requireActivity().finish();
-        } else if (viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid) {
-            configureValidUI((WidgetCallFullscreenViewModel$ViewState$Valid) viewState);
+        } else if (viewState instanceof WidgetCallFullscreenViewModel.ViewState.Valid) {
+            configureValidUI((WidgetCallFullscreenViewModel.ViewState.Valid) viewState);
         }
     }
 
-    private final void configureValidUI(WidgetCallFullscreenViewModel$ViewState$Valid viewState) {
+    private final void configureValidUI(WidgetCallFullscreenViewModel.ViewState.Valid viewState) {
         configureBottomControls(viewState);
         ConstraintLayout constraintLayout = getBinding().a;
         int iOrdinal = viewState.getDisplayMode().ordinal();
-        int themedDrawableRes = 2131100225;
+        int themedDrawableRes = R.color.primary_dark_800;
         if (iOrdinal != 0) {
             if (iOrdinal != 1) {
-                themedDrawableRes = 2131099689;
+                themedDrawableRes = R.color.black;
             }
         } else if (!viewState.isTextInVoiceEnabled()) {
             ConstraintLayout constraintLayout2 = getBinding().a;
             m.checkNotNullExpressionValue(constraintLayout2, "binding.root");
-            themedDrawableRes = DrawableCompat.getThemedDrawableRes(constraintLayout2, 2130968911, 0);
+            themedDrawableRes = DrawableCompat.getThemedDrawableRes(constraintLayout2, R.attr.colorBackgroundPrimary, 0);
         }
         constraintLayout.setBackgroundResource(themedDrawableRes);
         int iOrdinal2 = viewState.getDisplayMode().ordinal();
@@ -904,7 +2186,7 @@ public final class WidgetCallFullscreen extends AppFragment {
         }
         requireActivity().finish();
         if (transition) {
-            requireAppActivity().overridePendingTransition(0, R$anim.anim_slide_out_down);
+            requireAppActivity().overridePendingTransition(0, R.anim.anim_slide_out_down);
         }
     }
 
@@ -924,9 +2206,9 @@ public final class WidgetCallFullscreen extends AppFragment {
         return (WidgetCallFullscreenViewModel) this.viewModel.getValue();
     }
 
-    private final List<VideoCallParticipantView$ParticipantData> getVisibleParticipants(VideoCallGridLayoutManager layoutManager) {
+    private final List<VideoCallParticipantView.ParticipantData> getVisibleParticipants(VideoCallGridLayoutManager layoutManager) {
         IntRange intRange = new IntRange(layoutManager.findFirstVisibleItemPosition(), layoutManager.findLastVisibleItemPosition());
-        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(intRange, 10));
+        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(intRange, 10));
         Iterator<Integer> it = intRange.iterator();
         while (it.hasNext()) {
             View childAt = getBinding().p.getChildAt(((c0) it).nextInt());
@@ -935,67 +2217,67 @@ public final class WidgetCallFullscreen extends AppFragment {
         return u.filterNotNull(arrayList);
     }
 
-    public final void handleEvent(WidgetCallFullscreenViewModel$Event event) {
+    public final void handleEvent(WidgetCallFullscreenViewModel.Event event) {
         Unit unit;
         m.checkNotNullParameter(event, "event");
-        if (m.areEqual(event, WidgetCallFullscreenViewModel$Event$ShowSuppressedDialog.INSTANCE)) {
+        if (m.areEqual(event, WidgetCallFullscreenViewModel.Event.ShowSuppressedDialog.INSTANCE)) {
             showSuppressedDialog();
             unit = Unit.a;
-        } else if (m.areEqual(event, WidgetCallFullscreenViewModel$Event$ShowServerMutedDialog.INSTANCE)) {
+        } else if (m.areEqual(event, WidgetCallFullscreenViewModel.Event.ShowServerMutedDialog.INSTANCE)) {
             showServerMutedDialog();
             unit = Unit.a;
-        } else if (m.areEqual(event, WidgetCallFullscreenViewModel$Event$ShowServerDeafenedDialog.INSTANCE)) {
+        } else if (m.areEqual(event, WidgetCallFullscreenViewModel.Event.ShowServerDeafenedDialog.INSTANCE)) {
             showServerDeafenedDialog();
             unit = Unit.a;
-        } else if (m.areEqual(event, WidgetCallFullscreenViewModel$Event$ShowNoVideoPermissionDialog.INSTANCE)) {
+        } else if (m.areEqual(event, WidgetCallFullscreenViewModel.Event.ShowNoVideoPermissionDialog.INSTANCE)) {
             showNoVideoPermissionDialog();
             unit = Unit.a;
-        } else if (m.areEqual(event, WidgetCallFullscreenViewModel$Event$ShowNoVadPermissionDialog.INSTANCE)) {
+        } else if (m.areEqual(event, WidgetCallFullscreenViewModel.Event.ShowNoVadPermissionDialog.INSTANCE)) {
             showNoVadPermissionDialog();
             unit = Unit.a;
-        } else if (m.areEqual(event, WidgetCallFullscreenViewModel$Event$ShowGuildVideoAtCapacityDialog.INSTANCE)) {
-            m$a m_a = b.a.a.m.k;
+        } else if (m.areEqual(event, WidgetCallFullscreenViewModel.Event.ShowGuildVideoAtCapacityDialog.INSTANCE)) {
+            b.a.a.m.Companion aVar = b.a.a.m.INSTANCE;
             FragmentManager parentFragmentManager = getParentFragmentManager();
             m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            m_a.a(parentFragmentManager);
+            aVar.a(parentFragmentManager);
             unit = Unit.a;
-        } else if (event instanceof WidgetCallFullscreenViewModel$Event$ShowCameraCapacityDialog) {
-            j$a j_a = b.a.a.j.k;
+        } else if (event instanceof WidgetCallFullscreenViewModel.Event.ShowCameraCapacityDialog) {
+            b.a.a.j.Companion aVar2 = b.a.a.j.INSTANCE;
             FragmentManager parentFragmentManager2 = getParentFragmentManager();
             m.checkNotNullExpressionValue(parentFragmentManager2, "parentFragmentManager");
-            j_a.a(parentFragmentManager2, ((WidgetCallFullscreenViewModel$Event$ShowCameraCapacityDialog) event).getGuildMaxVideoChannelUsers());
+            aVar2.a(parentFragmentManager2, ((WidgetCallFullscreenViewModel.Event.ShowCameraCapacityDialog) event).getGuildMaxVideoChannelUsers());
             unit = Unit.a;
-        } else if (event instanceof WidgetCallFullscreenViewModel$Event$ShowUserSheet) {
-            WidgetUserSheet$Companion widgetUserSheet$Companion = WidgetUserSheet.Companion;
-            WidgetCallFullscreenViewModel$Event$ShowUserSheet widgetCallFullscreenViewModel$Event$ShowUserSheet = (WidgetCallFullscreenViewModel$Event$ShowUserSheet) event;
-            long userId = widgetCallFullscreenViewModel$Event$ShowUserSheet.getUserId();
-            Long lValueOf = Long.valueOf(widgetCallFullscreenViewModel$Event$ShowUserSheet.getChannelId());
+        } else if (event instanceof WidgetCallFullscreenViewModel.Event.ShowUserSheet) {
+            WidgetUserSheet.Companion companion = WidgetUserSheet.INSTANCE;
+            WidgetCallFullscreenViewModel.Event.ShowUserSheet showUserSheet = (WidgetCallFullscreenViewModel.Event.ShowUserSheet) event;
+            long userId = showUserSheet.getUserId();
+            Long lValueOf = Long.valueOf(showUserSheet.getChannelId());
             FragmentManager parentFragmentManager3 = getParentFragmentManager();
             m.checkNotNullExpressionValue(parentFragmentManager3, "parentFragmentManager");
-            WidgetUserSheet$Companion.show$default(widgetUserSheet$Companion, userId, lValueOf, parentFragmentManager3, null, Boolean.TRUE, WidgetUserSheet$StreamPreviewClickBehavior.TARGET_AND_DISMISS, null, 72, null);
+            WidgetUserSheet.Companion.show$default(companion, userId, lValueOf, parentFragmentManager3, null, Boolean.TRUE, WidgetUserSheet.StreamPreviewClickBehavior.TARGET_AND_DISMISS, null, 72, null);
             unit = Unit.a;
-        } else if (event instanceof WidgetCallFullscreenViewModel$Event$ShowRequestCameraPermissionsDialog) {
-            requestVideoCallPermissions(new WidgetCallFullscreen$handleEvent$1(this));
+        } else if (event instanceof WidgetCallFullscreenViewModel.Event.ShowRequestCameraPermissionsDialog) {
+            requestVideoCallPermissions(new AnonymousClass1());
             unit = Unit.a;
-        } else if (event instanceof WidgetCallFullscreenViewModel$Event$AccessibilityAnnouncement) {
+        } else if (event instanceof WidgetCallFullscreenViewModel.Event.AccessibilityAnnouncement) {
             AccessibilityUtils accessibilityUtils = AccessibilityUtils.INSTANCE;
             Context contextRequireContext = requireContext();
-            String string = getString(((WidgetCallFullscreenViewModel$Event$AccessibilityAnnouncement) event).getMessageResId());
+            String string = getString(((WidgetCallFullscreenViewModel.Event.AccessibilityAnnouncement) event).getMessageResId());
             m.checkNotNullExpressionValue(string, "getString(event.messageResId)");
             accessibilityUtils.sendAnnouncement(contextRequireContext, string);
             unit = Unit.a;
-        } else if (event instanceof WidgetCallFullscreenViewModel$Event$EnqueueStreamFeedbackSheet) {
-            WidgetCallFullscreenViewModel$Event$EnqueueStreamFeedbackSheet widgetCallFullscreenViewModel$Event$EnqueueStreamFeedbackSheet = (WidgetCallFullscreenViewModel$Event$EnqueueStreamFeedbackSheet) event;
-            StreamFeedbackSheetNavigator.INSTANCE.enqueueNotice(widgetCallFullscreenViewModel$Event$EnqueueStreamFeedbackSheet.getStreamKey(), widgetCallFullscreenViewModel$Event$EnqueueStreamFeedbackSheet.getMediaSessionId(), widgetCallFullscreenViewModel$Event$EnqueueStreamFeedbackSheet.getTriggerRateDenominator());
+        } else if (event instanceof WidgetCallFullscreenViewModel.Event.EnqueueStreamFeedbackSheet) {
+            WidgetCallFullscreenViewModel.Event.EnqueueStreamFeedbackSheet enqueueStreamFeedbackSheet = (WidgetCallFullscreenViewModel.Event.EnqueueStreamFeedbackSheet) event;
+            StreamFeedbackSheetNavigator.INSTANCE.enqueueNotice(enqueueStreamFeedbackSheet.getStreamKey(), enqueueStreamFeedbackSheet.getMediaSessionId(), enqueueStreamFeedbackSheet.getTriggerRateDenominator());
             unit = Unit.a;
-        } else if (event instanceof WidgetCallFullscreenViewModel$Event$EnqueueCallFeedbackSheet) {
-            WidgetCallFullscreenViewModel$Event$EnqueueCallFeedbackSheet widgetCallFullscreenViewModel$Event$EnqueueCallFeedbackSheet = (WidgetCallFullscreenViewModel$Event$EnqueueCallFeedbackSheet) event;
-            CallFeedbackSheetNavigator.INSTANCE.enqueueNotice(widgetCallFullscreenViewModel$Event$EnqueueCallFeedbackSheet.getChannelId(), widgetCallFullscreenViewModel$Event$EnqueueCallFeedbackSheet.getRtcConnectionId(), widgetCallFullscreenViewModel$Event$EnqueueCallFeedbackSheet.getMediaSessionId(), Long.valueOf(widgetCallFullscreenViewModel$Event$EnqueueCallFeedbackSheet.getCallDuration()), widgetCallFullscreenViewModel$Event$EnqueueCallFeedbackSheet.getTriggerRateDenominator());
+        } else if (event instanceof WidgetCallFullscreenViewModel.Event.EnqueueCallFeedbackSheet) {
+            WidgetCallFullscreenViewModel.Event.EnqueueCallFeedbackSheet enqueueCallFeedbackSheet = (WidgetCallFullscreenViewModel.Event.EnqueueCallFeedbackSheet) event;
+            CallFeedbackSheetNavigator.INSTANCE.enqueueNotice(enqueueCallFeedbackSheet.getChannelId(), enqueueCallFeedbackSheet.getRtcConnectionId(), enqueueCallFeedbackSheet.getMediaSessionId(), Long.valueOf(enqueueCallFeedbackSheet.getCallDuration()), enqueueCallFeedbackSheet.getTriggerRateDenominator());
             unit = Unit.a;
-        } else if (event instanceof WidgetCallFullscreenViewModel$Event$ShowNoScreenSharePermissionDialog) {
+        } else if (event instanceof WidgetCallFullscreenViewModel.Event.ShowNoScreenSharePermissionDialog) {
             showNoScreenSharePermissionDialog();
             unit = Unit.a;
-        } else if (m.areEqual(event, WidgetCallFullscreenViewModel$Event$RequestStartStream.INSTANCE)) {
+        } else if (m.areEqual(event, WidgetCallFullscreenViewModel.Event.RequestStartStream.INSTANCE)) {
             BottomSheetBehavior<VoiceControlsSheetView> bottomSheetBehavior = this.bottomSheetBehavior;
             if (bottomSheetBehavior == null) {
                 m.throwUninitializedPropertyAccessException("bottomSheetBehavior");
@@ -1003,35 +2285,35 @@ public final class WidgetCallFullscreen extends AppFragment {
             bottomSheetBehavior.setState(4);
             StreamNavigator.requestStartStream(this);
             unit = Unit.a;
-        } else if (event instanceof WidgetCallFullscreenViewModel$Event$OnIdleStateChanged) {
-            handleIdleStateChanged((WidgetCallFullscreenViewModel$Event$OnIdleStateChanged) event);
+        } else if (event instanceof WidgetCallFullscreenViewModel.Event.OnIdleStateChanged) {
+            handleIdleStateChanged((WidgetCallFullscreenViewModel.Event.OnIdleStateChanged) event);
             unit = Unit.a;
-        } else if (event instanceof WidgetCallFullscreenViewModel$Event$NavigateToPremiumSettings) {
-            WidgetSettingsPremium$Companion.launch$default(WidgetSettingsPremium.Companion, requireContext(), null, null, 6, null);
+        } else if (event instanceof WidgetCallFullscreenViewModel.Event.NavigateToPremiumSettings) {
+            WidgetSettingsPremium.Companion.launch$default(WidgetSettingsPremium.INSTANCE, requireContext(), null, null, 6, null);
             unit = Unit.a;
-        } else if (m.areEqual(event, WidgetCallFullscreenViewModel$Event$ShowActivitiesDesktopOnlyDialog.INSTANCE)) {
+        } else if (m.areEqual(event, WidgetCallFullscreenViewModel.Event.ShowActivitiesDesktopOnlyDialog.INSTANCE)) {
             FragmentManager parentFragmentManager4 = getParentFragmentManager();
             m.checkNotNullExpressionValue(parentFragmentManager4, "parentFragmentManager");
             Context contextRequireContext2 = requireContext();
             m.checkNotNullParameter(parentFragmentManager4, "fragmentManager");
             m.checkNotNullParameter(contextRequireContext2, "context");
-            WidgetNoticeDialog$Companion widgetNoticeDialog$Companion = WidgetNoticeDialog.Companion;
-            String string2 = contextRequireContext2.getString(2131888676);
-            String string3 = contextRequireContext2.getString(2131888675);
+            WidgetNoticeDialog.Companion companion2 = WidgetNoticeDialog.INSTANCE;
+            String string2 = contextRequireContext2.getString(R.string.embedded_activities_desktop_only_modal_title);
+            String string3 = contextRequireContext2.getString(R.string.embedded_activities_desktop_only_modal_description);
             m.checkNotNullExpressionValue(string3, "context.getString(R.stri…p_only_modal_description)");
-            WidgetNoticeDialog$Companion.show$default(widgetNoticeDialog$Companion, parentFragmentManager4, string2, string3, contextRequireContext2.getString(2131893499), null, null, null, null, null, null, null, null, 0, null, 16368, null);
+            WidgetNoticeDialog.Companion.show$default(companion2, parentFragmentManager4, string2, string3, contextRequireContext2.getString(R.string.okay), null, null, null, null, null, null, null, null, 0, null, 16368, null);
             unit = Unit.a;
         } else {
-            if (!(event instanceof WidgetCallFullscreenViewModel$Event$ShowTextInVoiceNux)) {
+            if (!(event instanceof WidgetCallFullscreenViewModel.Event.ShowTextInVoiceNux)) {
                 throw new NoWhenBranchMatchedException();
             }
-            new TextInVoiceOnboardingManager().show(new WidgetCallFullscreen$handleEvent$2(this));
+            new TextInVoiceOnboardingManager().show(new AnonymousClass2());
             unit = Unit.a;
         }
         KotlinExtensionsKt.getExhaustive(unit);
     }
 
-    private final void handleIdleStateChanged(WidgetCallFullscreenViewModel$Event$OnIdleStateChanged event) {
+    private final void handleIdleStateChanged(WidgetCallFullscreenViewModel.Event.OnIdleStateChanged event) {
         if (event.isIdle()) {
             BottomSheetBehavior<VoiceControlsSheetView> bottomSheetBehavior = this.bottomSheetBehavior;
             if (bottomSheetBehavior == null) {
@@ -1058,24 +2340,24 @@ public final class WidgetCallFullscreen extends AppFragment {
         m.checkNotNullExpressionValue(recyclerView, "binding.callVideoRecycler");
         m.checkNotNullParameter(window, "window");
         m.checkNotNullParameter(recyclerView, "view");
-        if (Build$VERSION.SDK_INT >= 30) {
+        if (Build.VERSION.SDK_INT >= 30) {
             window.setDecorFitsSystemWindows(true);
         }
         recyclerView.setSystemUiVisibility(5894);
     }
 
     private final void initializeSystemUiListeners(ViewGroup viewGroup) {
-        ViewCompat.setOnApplyWindowInsetsListener(getBinding().f2248y, new WidgetCallFullscreen$initializeSystemUiListeners$1(this));
-        ViewCompat.setOnApplyWindowInsetsListener(getBinding().c, WidgetCallFullscreen$initializeSystemUiListeners$2.INSTANCE);
-        ViewCompat.setOnApplyWindowInsetsListener(getBinding().h, new WidgetCallFullscreen$initializeSystemUiListeners$3(this));
-        ViewCompat.setOnApplyWindowInsetsListener(getBinding().d, WidgetCallFullscreen$initializeSystemUiListeners$4.INSTANCE);
+        ViewCompat.setOnApplyWindowInsetsListener(getBinding().f2248y, new AnonymousClass1());
+        ViewCompat.setOnApplyWindowInsetsListener(getBinding().c, AnonymousClass2.INSTANCE);
+        ViewCompat.setOnApplyWindowInsetsListener(getBinding().h, new AnonymousClass3());
+        ViewCompat.setOnApplyWindowInsetsListener(getBinding().d, AnonymousClass4.INSTANCE);
         CoordinatorLayout coordinatorLayout = getBinding().f;
         m.checkNotNullExpressionValue(coordinatorLayout, "binding.callControlsSheetContainer");
         ViewExtensions.setForwardingWindowInsetsListener(coordinatorLayout);
         ConstraintLayout constraintLayout = getBinding().i;
         m.checkNotNullExpressionValue(constraintLayout, "binding.callNonVideoContainer");
         ViewExtensions.setForwardingWindowInsetsListener(constraintLayout);
-        ViewCompat.setOnApplyWindowInsetsListener(viewGroup, new WidgetCallFullscreen$initializeSystemUiListeners$5(this));
+        ViewCompat.setOnApplyWindowInsetsListener(viewGroup, new AnonymousClass5());
     }
 
     private final boolean isPortraitMode() {
@@ -1085,7 +2367,7 @@ public final class WidgetCallFullscreen extends AppFragment {
     }
 
     private final boolean isStageUserVisible(long userId) {
-        StoreVoiceParticipants$VoiceUser voiceUser;
+        StoreVoiceParticipants.VoiceUser voiceUser;
         User user;
         RecyclerView recyclerView = getBinding().m;
         m.checkNotNullExpressionValue(recyclerView, "binding.callStageRecycler");
@@ -1122,14 +2404,14 @@ public final class WidgetCallFullscreen extends AppFragment {
         return false;
     }
 
-    public static final void launch(Context context, long j, boolean z2, String str, AppTransitionActivity$Transition appTransitionActivity$Transition) {
-        Companion.launch(context, j, z2, str, appTransitionActivity$Transition);
+    public static final void launch(Context context, long j, boolean z2, String str, AppTransitionActivity.Transition transition) {
+        INSTANCE.launch(context, j, z2, str, transition);
     }
 
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        StreamNavigator.handleActivityResult(requestCode, resultCode, data, new WidgetCallFullscreen$onActivityResult$1(this));
+        StreamNavigator.handleActivityResult(requestCode, resultCode, data, new AnonymousClass1());
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -1140,7 +2422,7 @@ public final class WidgetCallFullscreen extends AppFragment {
         Window window = fragmentActivityRequireActivity.getWindow();
         m.checkNotNullExpressionValue(window, "requireActivity().window");
         m.checkNotNullParameter(window, "window");
-        if (Build$VERSION.SDK_INT >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             window.getAttributes().layoutInDisplayCutoutMode = 1;
         }
         getViewModel().setTargetChannelId(getChannelId());
@@ -1159,7 +2441,7 @@ public final class WidgetCallFullscreen extends AppFragment {
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onPause() {
         super.onPause();
-        WidgetGlobalStatusIndicatorState.updateState$default(WidgetGlobalStatusIndicatorState.Provider.get(), false, false, false, 3, null);
+        WidgetGlobalStatusIndicatorState.updateState$default(WidgetGlobalStatusIndicatorState.INSTANCE.get(), false, false, false, 3, null);
     }
 
     private final void onViewBindingDestroy(WidgetCallFullscreenBinding binding) {
@@ -1179,11 +2461,11 @@ public final class WidgetCallFullscreen extends AppFragment {
         initializeSystemUiListeners(viewGroup);
         Context context = viewGroup.getContext();
         m.checkNotNullExpressionValue(context, "view.context");
-        setActionBarDisplayHomeAsUpEnabled(true, Integer.valueOf(DrawableCompat.getThemedDrawableRes$default(context, 2130969456, 0, 2, (Object) null)), 2131888557);
-        AppTransitionActivity$a appTransitionActivity$a = requireAppActivity().k;
+        setActionBarDisplayHomeAsUpEnabled(true, Integer.valueOf(DrawableCompat.getThemedDrawableRes$default(context, R.attr.ic_action_bar_down, 0, 2, (Object) null)), Integer.valueOf(R.string.dismiss));
+        AppTransitionActivity.a aVar = requireAppActivity().k;
         setUpGridRecycler();
         setUpStageRecycler();
-        ViewCompat.setAccessibilityDelegate(view, new WidgetCallFullscreen$onViewBound$1(this));
+        ViewCompat.setAccessibilityDelegate(view, new AnonymousClass1());
         BottomSheetBehavior<VoiceControlsSheetView> bottomSheetBehaviorFrom = BottomSheetBehavior.from(getBinding().f2248y);
         m.checkNotNullExpressionValue(bottomSheetBehaviorFrom, "BottomSheetBehavior.from…g.voiceControlsSheetView)");
         this.bottomSheetBehavior = bottomSheetBehaviorFrom;
@@ -1198,30 +2480,30 @@ public final class WidgetCallFullscreen extends AppFragment {
         bottomSheetBehavior.addBottomSheetCallback(this.bottomSheetCallback);
         VoiceControlsSheetView voiceControlsSheetView = getBinding().f2248y;
         m.checkNotNullExpressionValue(voiceControlsSheetView, "binding.voiceControlsSheetView");
-        ViewExtensions.addOnHeightChangedListener(voiceControlsSheetView, new WidgetCallFullscreen$onViewBound$2(this));
+        ViewExtensions.addOnHeightChangedListener(voiceControlsSheetView, new AnonymousClass2());
         OnPressListener onPressListener = new OnPressListener(new WidgetCallFullscreen$onViewBound$listener$1(getViewModel()));
         getBinding().g.setOnTouchListener(onPressListener);
         getBinding().f2248y.setOnPTTListener(onPressListener);
-        Channel channel = StoreStream.Companion.getChannels().getChannel(getChannelId());
+        Channel channel = StoreStream.INSTANCE.getChannels().getChannel(getChannelId());
         if (channel != null && ChannelUtils.D(channel)) {
-            requireAppActivity().k = AppTransitionActivity$Transition.TYPE_SLIDE_VERTICAL_WITH_FADE.getAnimations();
+            requireAppActivity().k = AppTransitionActivity.Transition.TYPE_SLIDE_VERTICAL_WITH_FADE.getAnimations();
         }
         if (getMostRecentIntent().getBooleanExtra(INTENT_EXTRA_CONNECT_ON_LAUNCH, false)) {
             if (channel == null || !ChannelUtils.D(channel)) {
-                requestMicrophone(new WidgetCallFullscreen$onViewBound$3(this, channel), new WidgetCallFullscreen$onViewBound$4(this));
+                requestMicrophone(new AnonymousClass3(channel), new AnonymousClass4());
             } else {
                 getViewModel().tryConnectToVoice();
             }
         }
-        AppFragment.setOnBackPressed$default(this, new WidgetCallFullscreen$onViewBound$5(this, channel), 0, 2, null);
+        AppFragment.setOnBackPressed$default(this, new AnonymousClass5(channel), 0, 2, null);
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        WidgetGlobalStatusIndicatorState.updateState$default(WidgetGlobalStatusIndicatorState.Provider.get(), false, false, true, 3, null);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetCallFullscreen.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetCallFullscreen$onViewBoundOrOnResume$1(this), 62, (Object) null);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetCallFullscreen.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetCallFullscreen$onViewBoundOrOnResume$2(this), 62, (Object) null);
+        WidgetGlobalStatusIndicatorState.updateState$default(WidgetGlobalStatusIndicatorState.INSTANCE.get(), false, false, true, 3, null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetCallFullscreen.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetCallFullscreen.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(this), 62, (Object) null);
     }
 
     private final void openTextInVoice() {
@@ -1230,7 +2512,7 @@ public final class WidgetCallFullscreen extends AppFragment {
     }
 
     private final void setUpGridRecycler() {
-        VideoCallGridAdapter videoCallGridAdapter = new VideoCallGridAdapter(new WidgetCallFullscreen$setUpGridRecycler$1(this), new WidgetCallFullscreen$setUpGridRecycler$2(this), new WidgetCallFullscreen$setUpGridRecycler$3(this), new WidgetCallFullscreen$setUpGridRecycler$4(getViewModel()), new WidgetCallFullscreen$setUpGridRecycler$5(getViewModel()), 2);
+        VideoCallGridAdapter videoCallGridAdapter = new VideoCallGridAdapter(new AnonymousClass1(), new AnonymousClass2(), new AnonymousClass3(), new AnonymousClass4(getViewModel()), new AnonymousClass5(getViewModel()), 2);
         this.gridAdapter = videoCallGridAdapter;
         if (videoCallGridAdapter == null) {
             m.throwUninitializedPropertyAccessException("gridAdapter");
@@ -1246,8 +2528,8 @@ public final class WidgetCallFullscreen extends AppFragment {
         Context context = recyclerView.getContext();
         m.checkNotNullExpressionValue(context, "binding.callVideoRecycler.context");
         VideoCallGridLayoutManager videoCallGridLayoutManager = new VideoCallGridLayoutManager(widgetCallFullscreen$setUpGridRecycler$layoutManager$1, 2, widgetCallFullscreen$setUpGridRecycler$layoutManager$2, i, context);
-        getBinding().p.addOnScrollListener(new WidgetCallFullscreen$setUpGridRecycler$6(this, videoCallGridLayoutManager));
-        getBinding().p.addOnChildAttachStateChangeListener(new WidgetCallFullscreen$setUpGridRecycler$7(this));
+        getBinding().p.addOnScrollListener(new AnonymousClass6(videoCallGridLayoutManager));
+        getBinding().p.addOnChildAttachStateChangeListener(new AnonymousClass7());
         VideoCallGridAdapter videoCallGridAdapter2 = this.gridAdapter;
         if (videoCallGridAdapter2 == null) {
             m.throwUninitializedPropertyAccessException("gridAdapter");
@@ -1269,12 +2551,12 @@ public final class WidgetCallFullscreen extends AppFragment {
     }
 
     private final void setUpStageRecycler() {
-        MGRecyclerAdapter$Companion mGRecyclerAdapter$Companion = MGRecyclerAdapter.Companion;
+        MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
         RecyclerView recyclerView = getBinding().m;
         m.checkNotNullExpressionValue(recyclerView, "binding.callStageRecycler");
         FragmentManager parentFragmentManager = getParentFragmentManager();
         m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        this.stageAdapter = (StageCallAdapter) mGRecyclerAdapter$Companion.configure(new StageCallAdapter(recyclerView, parentFragmentManager, WidgetCallFullscreen$setUpStageRecycler$1.INSTANCE, new WidgetCallFullscreen$setUpStageRecycler$2(this), new WidgetCallFullscreen$setUpStageRecycler$3(this), new WidgetCallFullscreen$setUpStageRecycler$4(getViewModel()), new WidgetCallFullscreen$setUpStageRecycler$5(getViewModel())));
+        this.stageAdapter = (StageCallAdapter) companion.configure(new StageCallAdapter(recyclerView, parentFragmentManager, AnonymousClass1.INSTANCE, new AnonymousClass2(), new AnonymousClass3(), new AnonymousClass4(getViewModel()), new AnonymousClass5(getViewModel())));
         RecyclerView recyclerView2 = getBinding().m;
         m.checkNotNullExpressionValue(recyclerView2, "binding.callStageRecycler");
         GridLayoutManager gridLayoutManager = new GridLayoutManager(recyclerView2.getContext(), 12);
@@ -1334,7 +2616,7 @@ public final class WidgetCallFullscreen extends AppFragment {
         m.checkNotNullExpressionValue(recyclerView, "binding.callVideoRecycler");
         m.checkNotNullParameter(window, "window");
         m.checkNotNullParameter(recyclerView, "view");
-        if (Build$VERSION.SDK_INT >= 30) {
+        if (Build.VERSION.SDK_INT >= 30) {
             window.setDecorFitsSystemWindows(true);
         }
         recyclerView.setSystemUiVisibility(1792);
@@ -1346,11 +2628,11 @@ public final class WidgetCallFullscreen extends AppFragment {
         Context contextRequireContext = requireContext();
         m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
         m.checkNotNullParameter(contextRequireContext, "context");
-        WidgetNoticeDialog$Companion widgetNoticeDialog$Companion = WidgetNoticeDialog.Companion;
-        String string = contextRequireContext.getString(2131893293);
-        String string2 = contextRequireContext.getString(2131893279);
+        WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
+        String string = contextRequireContext.getString(R.string.no_video_permission_dialog_title);
+        String string2 = contextRequireContext.getString(R.string.no_screenshare_permission_dialog_body);
         m.checkNotNullExpressionValue(string2, "context.getString(R.stri…e_permission_dialog_body)");
-        WidgetNoticeDialog$Companion.show$default(widgetNoticeDialog$Companion, parentFragmentManager, string, string2, contextRequireContext.getString(2131893499), null, null, null, null, null, null, null, null, 0, null, 16368, null);
+        WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, string, string2, contextRequireContext.getString(R.string.okay), null, null, null, null, null, null, null, null, 0, null, 16368, null);
     }
 
     private final void showNoVadPermissionDialog() {
@@ -1359,11 +2641,11 @@ public final class WidgetCallFullscreen extends AppFragment {
         Context contextRequireContext = requireContext();
         m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
         m.checkNotNullParameter(contextRequireContext, "context");
-        WidgetNoticeDialog$Companion widgetNoticeDialog$Companion = WidgetNoticeDialog.Companion;
-        String string = contextRequireContext.getString(2131897020);
-        String string2 = contextRequireContext.getString(2131897016);
+        WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
+        String string = contextRequireContext.getString(R.string.vad_permission_title);
+        String string2 = contextRequireContext.getString(R.string.vad_permission_body);
         m.checkNotNullExpressionValue(string2, "context.getString(R.string.vad_permission_body)");
-        WidgetNoticeDialog$Companion.show$default(widgetNoticeDialog$Companion, parentFragmentManager, string, string2, contextRequireContext.getString(2131893499), null, null, null, null, null, null, null, null, 0, null, 16368, null);
+        WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, string, string2, contextRequireContext.getString(R.string.okay), null, null, null, null, null, null, null, null, 0, null, 16368, null);
     }
 
     private final void showNoVideoPermissionDialog() {
@@ -1372,11 +2654,11 @@ public final class WidgetCallFullscreen extends AppFragment {
         Context contextRequireContext = requireContext();
         m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
         m.checkNotNullParameter(contextRequireContext, "context");
-        WidgetNoticeDialog$Companion widgetNoticeDialog$Companion = WidgetNoticeDialog.Companion;
-        String string = contextRequireContext.getString(2131893293);
-        String string2 = contextRequireContext.getString(2131893292);
+        WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
+        String string = contextRequireContext.getString(R.string.no_video_permission_dialog_title);
+        String string2 = contextRequireContext.getString(R.string.no_video_permission_dialog_body);
         m.checkNotNullExpressionValue(string2, "context.getString(R.stri…o_permission_dialog_body)");
-        WidgetNoticeDialog$Companion.show$default(widgetNoticeDialog$Companion, parentFragmentManager, string, string2, contextRequireContext.getString(2131893499), null, null, null, null, null, null, null, null, 0, null, 16368, null);
+        WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, string, string2, contextRequireContext.getString(R.string.okay), null, null, null, null, null, null, null, null, 0, null, 16368, null);
     }
 
     private final void showServerDeafenedDialog() {
@@ -1385,11 +2667,11 @@ public final class WidgetCallFullscreen extends AppFragment {
         Context contextRequireContext = requireContext();
         m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
         m.checkNotNullParameter(contextRequireContext, "context");
-        WidgetNoticeDialog$Companion widgetNoticeDialog$Companion = WidgetNoticeDialog.Companion;
-        String string = contextRequireContext.getString(2131895439);
-        String string2 = contextRequireContext.getString(2131895438);
+        WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
+        String string = contextRequireContext.getString(R.string.server_deafened_dialog_title);
+        String string2 = contextRequireContext.getString(R.string.server_deafened_dialog_body);
         m.checkNotNullExpressionValue(string2, "context.getString(R.stri…ver_deafened_dialog_body)");
-        WidgetNoticeDialog$Companion.show$default(widgetNoticeDialog$Companion, parentFragmentManager, string, string2, contextRequireContext.getString(2131893499), null, null, null, null, null, null, null, null, 0, null, 16368, null);
+        WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, string, string2, contextRequireContext.getString(R.string.okay), null, null, null, null, null, null, null, null, 0, null, 16368, null);
     }
 
     private final void showServerMutedDialog() {
@@ -1398,11 +2680,11 @@ public final class WidgetCallFullscreen extends AppFragment {
         Context contextRequireContext = requireContext();
         m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
         m.checkNotNullParameter(contextRequireContext, "context");
-        WidgetNoticeDialog$Companion widgetNoticeDialog$Companion = WidgetNoticeDialog.Companion;
-        String string = contextRequireContext.getString(2131895587);
-        String string2 = contextRequireContext.getString(2131895586);
+        WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
+        String string = contextRequireContext.getString(R.string.server_muted_dialog_title);
+        String string2 = contextRequireContext.getString(R.string.server_muted_dialog_body);
         m.checkNotNullExpressionValue(string2, "context.getString(R.stri…server_muted_dialog_body)");
-        WidgetNoticeDialog$Companion.show$default(widgetNoticeDialog$Companion, parentFragmentManager, string, string2, contextRequireContext.getString(2131893499), null, null, null, null, null, null, null, null, 0, null, 16368, null);
+        WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, string, string2, contextRequireContext.getString(R.string.okay), null, null, null, null, null, null, null, null, 0, null, 16368, null);
     }
 
     private final void showSuppressedDialog() {
@@ -1411,15 +2693,15 @@ public final class WidgetCallFullscreen extends AppFragment {
         Context contextRequireContext = requireContext();
         m.checkNotNullParameter(parentFragmentManager, "fragmentManager");
         m.checkNotNullParameter(contextRequireContext, "context");
-        WidgetNoticeDialog$Companion widgetNoticeDialog$Companion = WidgetNoticeDialog.Companion;
-        String string = contextRequireContext.getString(2131896115);
-        String string2 = contextRequireContext.getString(2131896118);
+        WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
+        String string = contextRequireContext.getString(R.string.suppressed);
+        String string2 = contextRequireContext.getString(R.string.suppressed_permission_body);
         m.checkNotNullExpressionValue(string2, "context.getString(R.stri…ppressed_permission_body)");
-        WidgetNoticeDialog$Companion.show$default(widgetNoticeDialog$Companion, parentFragmentManager, string, string2, contextRequireContext.getString(2131893499), null, null, null, null, null, null, null, null, 0, null, 16368, null);
+        WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, string, string2, contextRequireContext.getString(R.string.okay), null, null, null, null, null, null, null, null, 0, null, 16368, null);
     }
 
     private final void transitionActivity() {
         requireAppActivity().finish();
-        requireAppActivity().overridePendingTransition(R$anim.activity_slide_horizontal_open_in, R$anim.activity_slide_horizontal_open_out);
+        requireAppActivity().overridePendingTransition(R.anim.activity_slide_horizontal_open_in, R.anim.activity_slide_horizontal_open_out);
     }
 }

@@ -4,16 +4,14 @@ import android.content.Context;
 import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Looper;
-import b.i.a.f.e.h.c$a;
-import b.i.a.f.e.h.c$b;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class l extends b.i.a.f.e.k.d<g> {
-    public l(Context context, Looper looper, b.i.a.f.e.k.c cVar, c$a c_a, c$b c_b) {
-        super(context, looper, 45, cVar, c_a, c_b);
+    public l(Context context, Looper looper, b.i.a.f.e.k.c cVar, b.i.a.f.e.h.c.a aVar, b.i.a.f.e.h.c.b bVar) {
+        super(context, looper, 45, cVar, aVar, bVar);
     }
 
-    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a$f
+    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a.f
     public final int l() {
         return 12200000;
     }

@@ -1,6 +1,6 @@
 package lombok.javac.handlers;
 
-import com.sun.tools.javac.tree.JCTree$JCAnnotation;
+import com.sun.tools.javac.tree.JCTree;
 import com.sun.tools.javac.util.List;
 import java.lang.annotation.Annotation;
 import lombok.AccessLevel;
@@ -20,7 +20,7 @@ public class HandleData extends JavacAnnotationHandler<Data> {
     private HandleToString handleToString = new HandleToString();
 
     @Override // lombok.javac.JavacAnnotationHandler
-    public void handle(AnnotationValues<Data> annotation, JCTree$JCAnnotation ast, JavacNode annotationNode) {
+    public void handle(AnnotationValues<Data> annotation, JCTree.JCAnnotation ast, JavacNode annotationNode) {
         HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.DATA_FLAG_USAGE, "@Data");
         JavacHandlerUtil.deleteAnnotationIfNeccessary(annotationNode, (Class<? extends Annotation>) Data.class);
         JavacNode typeNode = annotationNode.up();
@@ -30,7 +30,7 @@ public class HandleData extends JavacAnnotationHandler<Data> {
             return;
         }
         String staticConstructorName = annotation.getInstance().staticConstructor();
-        this.handleConstructor.generateRequiredArgsConstructor(typeNode, AccessLevel.PUBLIC, staticConstructorName, HandleConstructor$SkipIfConstructorExists.YES, annotationNode);
+        this.handleConstructor.generateRequiredArgsConstructor(typeNode, AccessLevel.PUBLIC, staticConstructorName, HandleConstructor.SkipIfConstructorExists.YES, annotationNode);
         this.handleConstructor.generateExtraNoArgsConstructor(typeNode, annotationNode);
         this.handleGetter.generateGetterForType(typeNode, annotationNode, AccessLevel.PUBLIC, true, List.nil());
         this.handleSetter.generateSetterForType(typeNode, annotationNode, AccessLevel.PUBLIC, true, List.nil(), List.nil());

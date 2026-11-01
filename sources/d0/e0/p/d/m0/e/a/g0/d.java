@@ -1,8 +1,11 @@
 package d0.e0.p.d.m0.e.a.g0;
 
-import d0.e0.p.d.m0.b.k$a;
+import d0.e0.p.d.m0.c.c0;
+import d0.e0.p.d.m0.c.c1;
 import d0.e0.p.d.m0.c.g1.m;
 import d0.e0.p.d.m0.c.g1.n;
+import d0.e0.p.d.m0.n.j0;
+import d0.e0.p.d.m0.n.t;
 import d0.o;
 import d0.t.h0;
 import d0.t.n0;
@@ -13,6 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: JavaAnnotationMapper.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -22,6 +26,33 @@ public final class d {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final Map<String, EnumSet<n>> f3316b = h0.mapOf(o.to("PACKAGE", EnumSet.noneOf(n.class)), o.to("TYPE", EnumSet.of(n.CLASS, n.FILE)), o.to("ANNOTATION_TYPE", EnumSet.of(n.ANNOTATION_CLASS)), o.to("TYPE_PARAMETER", EnumSet.of(n.TYPE_PARAMETER)), o.to("FIELD", EnumSet.of(n.FIELD)), o.to("LOCAL_VARIABLE", EnumSet.of(n.LOCAL_VARIABLE)), o.to("PARAMETER", EnumSet.of(n.VALUE_PARAMETER)), o.to("CONSTRUCTOR", EnumSet.of(n.CONSTRUCTOR)), o.to("METHOD", EnumSet.of(n.FUNCTION, n.PROPERTY_GETTER, n.PROPERTY_SETTER)), o.to("TYPE_USE", EnumSet.of(n.TYPE)));
     public static final Map<String, m> c = h0.mapOf(o.to("RUNTIME", m.RUNTIME), o.to("CLASS", m.BINARY), o.to("SOURCE", m.SOURCE));
+
+    /* JADX INFO: compiled from: JavaAnnotationMapper.kt */
+    public final class a extends d0.z.d.o implements Function1<c0, d0.e0.p.d.m0.n.c0> {
+        public static final a j = new a();
+
+        public a() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.n.c0 invoke(c0 c0Var) {
+            return invoke2(c0Var);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final d0.e0.p.d.m0.n.c0 invoke2(c0 c0Var) {
+            d0.z.d.m.checkNotNullParameter(c0Var, "module");
+            c1 annotationParameterByName = d0.e0.p.d.m0.e.a.g0.a.getAnnotationParameterByName(c.a.getTARGET_ANNOTATION_ALLOWED_TARGETS$descriptors_jvm(), c0Var.getBuiltIns().getBuiltInClassByFqName(d0.e0.p.d.m0.b.k.a.A));
+            d0.e0.p.d.m0.n.c0 type = annotationParameterByName == null ? null : annotationParameterByName.getType();
+            if (type != null) {
+                return type;
+            }
+            j0 j0VarCreateErrorType = t.createErrorType("Error: AnnotationTarget[]");
+            d0.z.d.m.checkNotNullExpressionValue(j0VarCreateErrorType, "createErrorType(\"Error: AnnotationTarget[]\")");
+            return j0VarCreateErrorType;
+        }
+    }
 
     public final d0.e0.p.d.m0.k.v.g<?> mapJavaRetentionArgument$descriptors_jvm(d0.e0.p.d.m0.e.a.k0.b bVar) {
         d0.e0.p.d.m0.e.a.k0.m mVar = bVar instanceof d0.e0.p.d.m0.e.a.k0.m ? (d0.e0.p.d.m0.e.a.k0.m) bVar : null;
@@ -34,7 +65,7 @@ public final class d {
         if (mVar2 == null) {
             return null;
         }
-        d0.e0.p.d.m0.g.a aVar = d0.e0.p.d.m0.g.a.topLevel(k$a.C);
+        d0.e0.p.d.m0.g.a aVar = d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k.a.C);
         d0.z.d.m.checkNotNullExpressionValue(aVar, "topLevel(StandardNames.FqNames.annotationRetention)");
         d0.e0.p.d.m0.g.e eVarIdentifier = d0.e0.p.d.m0.g.e.identifier(mVar2.name());
         d0.z.d.m.checkNotNullExpressionValue(eVarIdentifier, "identifier(retention.name)");
@@ -62,12 +93,12 @@ public final class d {
         }
         ArrayList arrayList3 = new ArrayList(d0.t.o.collectionSizeOrDefault(arrayList2, 10));
         for (n nVar : arrayList2) {
-            d0.e0.p.d.m0.g.a aVar = d0.e0.p.d.m0.g.a.topLevel(k$a.B);
+            d0.e0.p.d.m0.g.a aVar = d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k.a.B);
             d0.z.d.m.checkNotNullExpressionValue(aVar, "topLevel(StandardNames.FqNames.annotationTarget)");
             d0.e0.p.d.m0.g.e eVarIdentifier = d0.e0.p.d.m0.g.e.identifier(nVar.name());
             d0.z.d.m.checkNotNullExpressionValue(eVarIdentifier, "identifier(kotlinTarget.name)");
             arrayList3.add(new d0.e0.p.d.m0.k.v.j(aVar, eVarIdentifier));
         }
-        return new d0.e0.p.d.m0.k.v.b(arrayList3, d$a.j);
+        return new d0.e0.p.d.m0.k.v.b(arrayList3, a.j);
     }
 }

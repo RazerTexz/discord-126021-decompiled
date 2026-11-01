@@ -2,7 +2,6 @@ package com.discord.utilities.intent;
 
 import androidx.fragment.app.FragmentActivity;
 import com.discord.widgets.settings.WidgetSettingsVoice;
-import com.discord.widgets.settings.WidgetSettingsVoice$Companion;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -26,6 +25,6 @@ public final class RouteHandlers$selectFeature$settingMap$3 extends o implements
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(FragmentActivity fragmentActivity) {
         m.checkNotNullParameter(fragmentActivity, "ctx");
-        WidgetSettingsVoice$Companion.launch$default(WidgetSettingsVoice.Companion, fragmentActivity, null, false, 6, null);
+        WidgetSettingsVoice.Companion.launch$default(WidgetSettingsVoice.INSTANCE, fragmentActivity, null, false, 6, null);
     }
 }

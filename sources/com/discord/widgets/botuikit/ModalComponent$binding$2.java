@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.ViewInteractionModalBinding;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
@@ -31,32 +31,32 @@ public final /* synthetic */ class ModalComponent$binding$2 extends k implements
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final ViewInteractionModalBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.close;
-        ImageView imageView = (ImageView) view.findViewById(R$id.close);
+        int i = R.id.close;
+        ImageView imageView = (ImageView) view.findViewById(R.id.close);
         if (imageView != null) {
-            i = R$id.components;
-            LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.components);
+            i = R.id.components;
+            LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.components);
             if (linearLayout != null) {
-                i = R$id.components_scroll;
-                ScrollView scrollView = (ScrollView) view.findViewById(R$id.components_scroll);
+                i = R.id.components_scroll;
+                ScrollView scrollView = (ScrollView) view.findViewById(R.id.components_scroll);
                 if (scrollView != null) {
-                    i = R$id.error;
-                    LinearLayout linearLayout2 = (LinearLayout) view.findViewById(R$id.error);
+                    i = R.id.error;
+                    LinearLayout linearLayout2 = (LinearLayout) view.findViewById(R.id.error);
                     if (linearLayout2 != null) {
-                        i = 2131364017;
-                        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(2131364017);
+                        i = R.id.icon;
+                        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.icon);
                         if (simpleDraweeView != null) {
-                            i = R$id.submit;
-                            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.submit);
+                            i = R.id.submit;
+                            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.submit);
                             if (materialButton != null) {
-                                i = 2131365869;
-                                TextView textView = (TextView) view.findViewById(2131365869);
+                                i = R.id.title;
+                                TextView textView = (TextView) view.findViewById(R.id.title);
                                 if (textView != null) {
-                                    i = R$id.toolbar;
-                                    ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(R$id.toolbar);
+                                    i = R.id.toolbar;
+                                    ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(R.id.toolbar);
                                     if (constraintLayout != null) {
-                                        i = R$id.warning;
-                                        TextView textView2 = (TextView) view.findViewById(R$id.warning);
+                                        i = R.id.warning;
+                                        TextView textView2 = (TextView) view.findViewById(R.id.warning);
                                         if (textView2 != null) {
                                             return new ViewInteractionModalBinding((LinearLayout) view, imageView, linearLayout, scrollView, linearLayout2, simpleDraweeView, materialButton, textView, constraintLayout, textView2);
                                         }

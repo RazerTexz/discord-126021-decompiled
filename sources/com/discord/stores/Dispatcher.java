@@ -1,5 +1,6 @@
 package com.discord.stores;
 
+import androidx.core.app.NotificationCompat;
 import com.discord.app.AppLog;
 import com.discord.utilities.logging.Logger;
 import d0.z.d.m;
@@ -9,6 +10,7 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Scheduler;
+import rx.functions.Action0;
 
 /* JADX INFO: compiled from: Dispatcher.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -17,6 +19,25 @@ public final class Dispatcher {
     private final ArrayList<DispatchHandler> dispatchHandlers;
     private Thread dispatcherThread;
     private final Scheduler scheduler;
+
+    /* JADX INFO: renamed from: com.discord.stores.Dispatcher$schedule$1, reason: invalid class name */
+    /* JADX INFO: compiled from: Dispatcher.kt */
+    public final class AnonymousClass1 implements Action0 {
+        public final /* synthetic */ Function0 $action;
+
+        public AnonymousClass1(Function0 function0) {
+            this.$action = function0;
+        }
+
+        @Override // rx.functions.Action0
+        public final void call() {
+            if (Dispatcher.access$getDispatcherThread$p(Dispatcher.this) == null) {
+                Dispatcher.access$setDispatcherThread$p(Dispatcher.this, Thread.currentThread());
+            }
+            this.$action.invoke();
+            Dispatcher.this.onDispatchEnded();
+        }
+    }
 
     public Dispatcher(Scheduler scheduler, boolean z2) {
         m.checkNotNullParameter(scheduler, "scheduler");
@@ -70,7 +91,7 @@ public final class Dispatcher {
         if (this.assertCleanDispatches) {
             assertCleanDispatch();
         }
-        this.scheduler.a().a(new Dispatcher$schedule$1(this, action));
+        this.scheduler.a().a(new AnonymousClass1(action));
     }
 
     @StoreThread

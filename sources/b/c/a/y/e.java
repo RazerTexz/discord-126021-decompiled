@@ -1,13 +1,12 @@
 package b.c.a.y;
 
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import b.c.a.y.l.m;
 import java.util.List;
 
 /* JADX INFO: compiled from: FontCharacter.java */
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY})
+@RestrictTo({RestrictTo.Scope.LIBRARY})
 public class e {
     public final List<m> a;
 

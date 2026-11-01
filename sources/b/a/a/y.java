@@ -19,8 +19,8 @@ public final class y extends d0.z.d.o implements Function1<User, Unit> {
     @Override // kotlin.jvm.functions.Function1
     public Unit invoke(User user) {
         d0.z.d.m.checkNotNullParameter(user, "it");
-        PublishSubject<x$b> publishSubject = this.this$0.k;
-        publishSubject.k.onNext(x$b$a.a);
+        PublishSubject<x.b> publishSubject = this.this$0.k;
+        publishSubject.k.onNext(x.b.a.a);
         return Unit.a;
     }
 }

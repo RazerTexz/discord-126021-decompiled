@@ -3,7 +3,7 @@ package b.i.a.c.x2.f0;
 import androidx.annotation.Nullable;
 import b.i.a.f.e.o.f;
 import b.i.b.b.h0;
-import b.i.b.b.n$b;
+import b.i.b.b.n;
 import b.i.b.b.p;
 import com.google.android.exoplayer2.ParserException;
 import java.io.IOException;
@@ -87,10 +87,10 @@ public final class e {
                     String strR2 = b.c.a.a0.d.r0(xmlPullParserNewPullParser, strArr3[i3]);
                     if (strR2 != null) {
                         long j3 = Long.parseLong(strR2);
-                        b$a b_a = new b$a("image/jpeg", "Primary", 0L, 0L);
-                        b$a b_a2 = new b$a("video/mp4", "MotionPhoto", j3, 0L);
-                        b.i.b.b.a<Object> aVar3 = p.k;
-                        pVarB = p.m(b_a, b_a2);
+                        b.a aVar3 = new b.a("image/jpeg", "Primary", 0L, 0L);
+                        b.a aVar4 = new b.a("video/mp4", "MotionPhoto", j3, 0L);
+                        b.i.b.b.a<Object> aVar5 = p.k;
+                        pVarB = p.m(aVar3, aVar4);
                         break;
                     }
                     i3++;
@@ -108,7 +108,7 @@ public final class e {
         return new b(j2, pVarB);
     }
 
-    public static p<b$a> b(XmlPullParser xmlPullParser, String str, String str2) throws XmlPullParserException, IOException {
+    public static p<b.a> b(XmlPullParser xmlPullParser, String str, String str2) throws XmlPullParserException, IOException {
         b.i.b.b.a<Object> aVar = p.k;
         f.A(4, "initialCapacity");
         Object[] objArrCopyOf = new Object[4];
@@ -129,12 +129,12 @@ public final class e {
                 if (strR0 == null || strR1 == null) {
                     return h0.l;
                 }
-                b$a b_a = new b$a(strR0, strR1, strR2 != null ? Long.parseLong(strR2) : 0L, strR3 != null ? Long.parseLong(strR3) : 0L);
+                b.a aVar2 = new b.a(strR0, strR1, strR2 != null ? Long.parseLong(strR2) : 0L, strR3 != null ? Long.parseLong(strR3) : 0L);
                 int i2 = i + 1;
                 if (objArrCopyOf.length < i2) {
-                    objArrCopyOf = Arrays.copyOf(objArrCopyOf, n$b.a(objArrCopyOf.length, i2));
+                    objArrCopyOf = Arrays.copyOf(objArrCopyOf, n.b.a(objArrCopyOf.length, i2));
                 }
-                objArrCopyOf[i] = b_a;
+                objArrCopyOf[i] = aVar2;
                 i = i2;
             }
         } while (!b.c.a.a0.d.R0(xmlPullParser, strConcat2));

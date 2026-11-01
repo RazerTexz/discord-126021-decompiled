@@ -25,7 +25,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -64,7 +63,7 @@ public class r extends g implements l {
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public long f950s;
 
-    public r(String str, int i, int i2, boolean z2, u uVar, b.i.b.a.h hVar, boolean z3, r$a r_a) {
+    public r(String str, int i, int i2, boolean z2, u uVar, b.i.b.a.h hVar, boolean z3, a aVar) {
         super(true);
         this.h = str;
         this.f = i;
@@ -424,8 +423,8 @@ public class r extends g implements l {
         }
         map2.putAll(this.j.a());
         map2.putAll(map);
-        for (Map$Entry map$Entry : map2.entrySet()) {
-            httpURLConnection.setRequestProperty((String) map$Entry.getKey(), (String) map$Entry.getValue());
+        for (Map.Entry entry : map2.entrySet()) {
+            httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         Pattern pattern = v.a;
         if (j == 0 && j2 == -1) {
@@ -507,6 +506,26 @@ public class r extends g implements l {
             }
             j -= (long) i2;
             p(i2);
+        }
+    }
+
+    /* JADX INFO: compiled from: DefaultHttpDataSource.java */
+    public final class b implements t {
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        @Nullable
+        public String f951b;
+        public final u a = new u();
+        public int c = 8000;
+        public int d = 8000;
+
+        @Override // b.i.a.c.e3.l.a
+        public /* bridge */ /* synthetic */ l a() {
+            return b();
+        }
+
+        public r b() {
+            return new r(this.f951b, this.c, this.d, false, this.a, null, false, null);
         }
     }
 }

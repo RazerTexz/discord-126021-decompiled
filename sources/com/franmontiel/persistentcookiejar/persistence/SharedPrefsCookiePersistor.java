@@ -3,7 +3,6 @@ package com.franmontiel.persistentcookiejar.persistence;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences$Editor;
 import android.util.Log;
 import com.adjust.sdk.Constants;
 import f0.n;
@@ -16,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map$Entry;
+import java.util.Map;
 
 /* JADX INFO: loaded from: classes3.dex */
 @SuppressLint({"CommitPrefEdits"})
@@ -30,7 +29,7 @@ public class SharedPrefsCookiePersistor implements CookiePersistor {
     @Override // com.franmontiel.persistentcookiejar.persistence.CookiePersistor
     public void a(Collection<n> collection) throws Throwable {
         ObjectOutputStream objectOutputStream;
-        SharedPreferences$Editor sharedPreferences$EditorEdit = this.a.edit();
+        SharedPreferences.Editor editorEdit = this.a.edit();
         for (n nVar : collection) {
             String strB = b(nVar);
             SerializableCookie serializableCookie = new SerializableCookie();
@@ -89,9 +88,9 @@ public class SharedPrefsCookiePersistor implements CookiePersistor {
             } catch (Throwable th2) {
                 th = th2;
             }
-            sharedPreferences$EditorEdit.putString(strB, string);
+            editorEdit.putString(strB, string);
         }
-        sharedPreferences$EditorEdit.commit();
+        editorEdit.commit();
     }
 
     public static String b(n nVar) {
@@ -110,7 +109,7 @@ public class SharedPrefsCookiePersistor implements CookiePersistor {
     public List<n> c() throws Throwable {
         ObjectInputStream objectInputStream;
         ArrayList arrayList = new ArrayList(this.a.getAll().size());
-        Iterator<Map$Entry<String, ?>> it = this.a.getAll().entrySet().iterator();
+        Iterator<Map.Entry<String, ?>> it = this.a.getAll().entrySet().iterator();
         while (it.hasNext()) {
             String str = (String) it.next().getValue();
             new SerializableCookie();
@@ -181,11 +180,11 @@ public class SharedPrefsCookiePersistor implements CookiePersistor {
 
     @Override // com.franmontiel.persistentcookiejar.persistence.CookiePersistor
     public void removeAll(Collection<n> collection) {
-        SharedPreferences$Editor sharedPreferences$EditorEdit = this.a.edit();
+        SharedPreferences.Editor editorEdit = this.a.edit();
         Iterator<n> it = collection.iterator();
         while (it.hasNext()) {
-            sharedPreferences$EditorEdit.remove(b(it.next()));
+            editorEdit.remove(b(it.next()));
         }
-        sharedPreferences$EditorEdit.commit();
+        editorEdit.commit();
     }
 }

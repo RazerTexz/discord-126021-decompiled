@@ -6,7 +6,6 @@ import android.util.SparseIntArray;
 import androidx.annotation.VisibleForTesting;
 import b.c.a.a0.d;
 import b.f.d.d.m;
-import b.f.d.e.a;
 import b.f.d.g.c;
 import b.f.d.g.e;
 import b.f.j.l.f;
@@ -32,13 +31,63 @@ public abstract class BasePool<V> implements e<V> {
     public boolean f;
 
     @VisibleForTesting
-    public final BasePool$a g;
+    public final a g;
 
     @VisibleForTesting
-    public final BasePool$a h;
+    public final a h;
     public final z i;
     public boolean j;
     public final Class<?> a = getClass();
+
+    public class InvalidSizeException extends RuntimeException {
+        /* JADX WARN: Illegal instructions before constructor call */
+        public InvalidSizeException(Object obj) {
+            StringBuilder sbU = b.d.b.a.a.U("Invalid size: ");
+            sbU.append(obj.toString());
+            super(sbU.toString());
+        }
+    }
+
+    public class InvalidValueException extends RuntimeException {
+    }
+
+    public class PoolSizeViolationException extends RuntimeException {
+        /* JADX WARN: Illegal instructions before constructor call */
+        public PoolSizeViolationException(int i, int i2, int i3, int i4) {
+            StringBuilder sbW = b.d.b.a.a.W("Pool hard cap violation? Hard cap = ", i, " Used size = ", i2, " Free size = ");
+            sbW.append(i3);
+            sbW.append(" Request size = ");
+            sbW.append(i4);
+            super(sbW.toString());
+        }
+    }
+
+    public class SizeTooLargeException extends InvalidSizeException {
+    }
+
+    @VisibleForTesting
+    public class a {
+        public int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public int f2897b;
+
+        public void a(int i) {
+            int i2;
+            int i3 = this.f2897b;
+            if (i3 < i || (i2 = this.a) <= 0) {
+                b.f.d.e.a.p("com.facebook.imagepipeline.memory.BasePool.Counter", "Unexpected decrement of %d. Current numBytes = %d, count = %d", Integer.valueOf(i), Integer.valueOf(this.f2897b), Integer.valueOf(this.a));
+            } else {
+                this.a = i2 - 1;
+                this.f2897b = i3 - i;
+            }
+        }
+
+        public void b(int i) {
+            this.a++;
+            this.f2897b += i;
+        }
+    }
 
     public BasePool(c cVar, y yVar, z zVar) {
         Objects.requireNonNull(cVar);
@@ -69,8 +118,8 @@ public abstract class BasePool<V> implements e<V> {
             }
         }
         this.e = Collections.newSetFromMap(new IdentityHashMap());
-        this.h = new BasePool$a();
-        this.g = new BasePool$a();
+        this.h = new a();
+        this.g = new a();
     }
 
     public abstract V e(int i);
@@ -117,14 +166,14 @@ public abstract class BasePool<V> implements e<V> {
                 this.h.a(iK);
                 this.i.b(iK);
                 p();
-                if (a.h(2)) {
+                if (b.f.d.e.a.h(2)) {
                     System.identityHashCode(vL);
                 }
                 return vL;
             }
             int iK2 = k(i2);
             if (!f(iK2)) {
-                throw new BasePool$PoolSizeViolationException(this.c.a, this.g.f2897b, this.h.f2897b, iK2);
+                throw new PoolSizeViolationException(this.c.a, this.g.f2897b, this.h.f2897b, iK2);
             }
             this.g.b(iK2);
             if (fVarH != null) {
@@ -154,7 +203,7 @@ public abstract class BasePool<V> implements e<V> {
             }
             this.i.a(iK2);
             p();
-            if (a.h(2)) {
+            if (b.f.d.e.a.h(2)) {
                 System.identityHashCode(vE);
             }
             return vE;
@@ -165,7 +214,7 @@ public abstract class BasePool<V> implements e<V> {
     public synchronized f<V> h(int i) {
         f<V> fVar = this.d.get(i);
         if (fVar == null && this.f) {
-            a.h(2);
+            b.f.d.e.a.h(2);
             f<V> fVarQ = q(i);
             this.d.put(i, fVarQ);
             return fVarQ;
@@ -209,13 +258,13 @@ public abstract class BasePool<V> implements e<V> {
 
     @SuppressLint({"InvalidAccessToGuardedField"})
     public final void p() {
-        if (a.h(2)) {
-            BasePool$a basePool$a = this.g;
-            int i = basePool$a.a;
-            int i2 = basePool$a.f2897b;
-            BasePool$a basePool$a2 = this.h;
-            int i3 = basePool$a2.a;
-            int i4 = basePool$a2.f2897b;
+        if (b.f.d.e.a.h(2)) {
+            a aVar = this.g;
+            int i = aVar.a;
+            int i2 = aVar.f2897b;
+            a aVar2 = this.h;
+            int i3 = aVar2.a;
+            int i4 = aVar2.f2897b;
         }
     }
 
@@ -233,8 +282,8 @@ public abstract class BasePool<V> implements e<V> {
         if (iMin <= 0) {
             return;
         }
-        if (a.h(2)) {
-            a.j(this.a, "trimToSize: TargetSize = %d; Initial Size = %d; Bytes to free = %d", Integer.valueOf(i), Integer.valueOf(this.g.f2897b + this.h.f2897b), Integer.valueOf(iMin));
+        if (b.f.d.e.a.h(2)) {
+            b.f.d.e.a.j(this.a, "trimToSize: TargetSize = %d; Initial Size = %d; Bytes to free = %d", Integer.valueOf(i), Integer.valueOf(this.g.f2897b + this.h.f2897b), Integer.valueOf(iMin));
         }
         p();
         for (int i4 = 0; i4 < this.d.size() && iMin > 0; i4++) {
@@ -253,7 +302,7 @@ public abstract class BasePool<V> implements e<V> {
             }
         }
         p();
-        if (a.h(2)) {
+        if (b.f.d.e.a.h(2)) {
             int i6 = this.g.f2897b;
             int i7 = this.h.f2897b;
         }
@@ -279,14 +328,14 @@ public abstract class BasePool<V> implements e<V> {
         }
         boolean z2 = true;
         if (!this.e.remove(v)) {
-            a.c(this.a, "release (free, value unrecognized) (object, size) = (%x, %s)", Integer.valueOf(System.identityHashCode(v)), Integer.valueOf(iJ));
+            b.f.d.e.a.c(this.a, "release (free, value unrecognized) (object, size) = (%x, %s)", Integer.valueOf(System.identityHashCode(v)), Integer.valueOf(iJ));
             g(v);
             this.i.e(iK);
         } else if (fVar == null) {
             if (fVar != null) {
                 fVar.b();
             }
-            if (a.h(2)) {
+            if (b.f.d.e.a.h(2)) {
                 System.identityHashCode(v);
             }
             g(v);
@@ -300,7 +349,7 @@ public abstract class BasePool<V> implements e<V> {
                 if (fVar != null) {
                     fVar.b();
                 }
-                if (a.h(2)) {
+                if (b.f.d.e.a.h(2)) {
                     System.identityHashCode(v);
                 }
                 g(v);
@@ -311,7 +360,7 @@ public abstract class BasePool<V> implements e<V> {
                 this.h.b(iK);
                 this.g.a(iK);
                 this.i.g(iK);
-                if (a.h(2)) {
+                if (b.f.d.e.a.h(2)) {
                     System.identityHashCode(v);
                 }
             }

@@ -1,12 +1,93 @@
 package d0.e0.p.d.m0.p;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: DFS.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class b {
+
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.p.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: DFS.java */
+    public abstract class AbstractC0589b<N, R> implements d<N, R> {
+        @Override // d0.e0.p.d.m0.p.b.d
+        public void afterChildren(N n) {
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [N] */
+    /* JADX INFO: compiled from: DFS.java */
+    public final class a<N> extends AbstractC0589b<N, Boolean> {
+        public final /* synthetic */ Function1 a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final /* synthetic */ boolean[] f3561b;
+
+        public a(Function1 function1, boolean[] zArr) {
+            this.a = function1;
+            this.f3561b = zArr;
+        }
+
+        @Override // d0.e0.p.d.m0.p.b.d
+        public boolean beforeChildren(N n) {
+            if (((Boolean) this.a.invoke(n)).booleanValue()) {
+                this.f3561b[0] = true;
+            }
+            return !this.f3561b[0];
+        }
+
+        @Override // d0.e0.p.d.m0.p.b.d
+        public /* bridge */ /* synthetic */ Object result() {
+            return result();
+        }
+
+        @Override // d0.e0.p.d.m0.p.b.d
+        public Boolean result() {
+            return Boolean.valueOf(this.f3561b[0]);
+        }
+    }
+
+    /* JADX INFO: compiled from: DFS.java */
+    public interface c<N> {
+        Iterable<? extends N> getNeighbors(N n);
+    }
+
+    /* JADX INFO: compiled from: DFS.java */
+    public interface d<N, R> {
+        void afterChildren(N n);
+
+        boolean beforeChildren(N n);
+
+        R result();
+    }
+
+    /* JADX INFO: compiled from: DFS.java */
+    public interface e<N> {
+    }
+
+    /* JADX INFO: compiled from: DFS.java */
+    public class f<N> implements e<N> {
+        public final Set<N> a;
+
+        public f() {
+            this(new HashSet());
+        }
+
+        public boolean checkAndMarkVisited(N n) {
+            return this.a.add(n);
+        }
+
+        public f(Set<N> set) {
+            if (set == null) {
+                throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "visited", "kotlin/reflect/jvm/internal/impl/utils/DFS$VisitedWithSet", "<init>"));
+            }
+            this.a = set;
+        }
+    }
+
     public static /* synthetic */ void a(int i) {
         Object[] objArr = new Object[3];
         switch (i) {
@@ -87,84 +168,84 @@ public class b {
         throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objArr));
     }
 
-    public static <N, R> R dfs(Collection<N> collection, b$c<N> b_c, b$e<N> b_e, b$d<N, R> b_d) {
+    public static <N, R> R dfs(Collection<N> collection, c<N> cVar, e<N> eVar, d<N, R> dVar) {
         if (collection == null) {
             a(0);
             throw null;
         }
-        if (b_c == null) {
+        if (cVar == null) {
             a(1);
             throw null;
         }
-        if (b_e == null) {
+        if (eVar == null) {
             a(2);
             throw null;
         }
-        if (b_d == null) {
+        if (dVar == null) {
             a(3);
             throw null;
         }
         Iterator<N> it = collection.iterator();
         while (it.hasNext()) {
-            doDfs(it.next(), b_c, b_e, b_d);
+            doDfs(it.next(), cVar, eVar, dVar);
         }
-        return b_d.result();
+        return dVar.result();
     }
 
-    public static <N> void doDfs(N n, b$c<N> b_c, b$e<N> b_e, b$d<N, ?> b_d) {
+    public static <N> void doDfs(N n, c<N> cVar, e<N> eVar, d<N, ?> dVar) {
         if (n == null) {
             a(22);
             throw null;
         }
-        if (b_c == null) {
+        if (cVar == null) {
             a(23);
             throw null;
         }
-        if (b_e == null) {
+        if (eVar == null) {
             a(24);
             throw null;
         }
-        if (b_d == null) {
+        if (dVar == null) {
             a(25);
             throw null;
         }
-        b$f b_f = (b$f) b_e;
-        if (b_f.checkAndMarkVisited(n) && b_d.beforeChildren(n)) {
-            Iterator<? extends N> it = b_c.getNeighbors(n).iterator();
+        f fVar = (f) eVar;
+        if (fVar.checkAndMarkVisited(n) && dVar.beforeChildren(n)) {
+            Iterator<? extends N> it = cVar.getNeighbors(n).iterator();
             while (it.hasNext()) {
-                doDfs(it.next(), b_c, b_f, b_d);
+                doDfs(it.next(), cVar, fVar, dVar);
             }
-            b_d.afterChildren(n);
+            dVar.afterChildren(n);
         }
     }
 
-    public static <N> Boolean ifAny(Collection<N> collection, b$c<N> b_c, Function1<N, Boolean> function1) {
+    public static <N> Boolean ifAny(Collection<N> collection, c<N> cVar, Function1<N, Boolean> function1) {
         if (collection == null) {
             a(7);
             throw null;
         }
-        if (b_c == null) {
+        if (cVar == null) {
             a(8);
             throw null;
         }
         if (function1 != null) {
-            return (Boolean) dfs(collection, b_c, new b$a(function1, new boolean[1]));
+            return (Boolean) dfs(collection, cVar, new a(function1, new boolean[1]));
         }
         a(9);
         throw null;
     }
 
-    public static <N, R> R dfs(Collection<N> collection, b$c<N> b_c, b$d<N, R> b_d) {
+    public static <N, R> R dfs(Collection<N> collection, c<N> cVar, d<N, R> dVar) {
         if (collection == null) {
             a(4);
             throw null;
         }
-        if (b_c == null) {
+        if (cVar == null) {
             a(5);
             throw null;
         }
-        if (b_d != null) {
-            return (R) dfs(collection, b_c, new b$f(), b_d);
+        if (dVar != null) {
+            return (R) dfs(collection, cVar, new f(), dVar);
         }
         a(6);
         throw null;

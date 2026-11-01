@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -15,9 +15,8 @@ import android.widget.Space;
 import android.widget.TextView;
 import androidx.annotation.MainThread;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintLayout$LayoutParams;
 import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.DisplayCutoutCompat;
 import androidx.core.view.ViewGroupKt;
@@ -28,25 +27,20 @@ import b.a.y.j0.k;
 import b.a.y.j0.l;
 import b.a.y.j0.n;
 import b.a.y.j0.o;
-import com.discord.R$a;
-import com.discord.R$id;
-import com.discord.R$layout;
-import com.discord.stores.StoreApplicationStreamPreviews$StreamPreview;
-import com.discord.stores.StoreApplicationStreamPreviews$StreamPreview$Resolved;
-import com.discord.stores.StoreVoiceParticipants$VoiceUser;
+import com.discord.R;
+import com.discord.api.voice.state.VoiceState;
+import com.discord.models.domain.ModelAuditLogEntry;
+import com.discord.stores.StoreApplicationStreamPreviews;
+import com.discord.stores.StoreVoiceParticipants;
 import com.discord.utilities.colors.RepresentativeColorsKt;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
-import com.discord.utilities.rx.ObservableExtensionsKt$filterNull$1;
-import com.discord.utilities.rx.ObservableExtensionsKt$filterNull$2;
 import com.discord.utilities.streams.StreamContext;
 import com.discord.utilities.view.extensions.ViewExtensions;
-import com.discord.utilities.view.grid.FrameGridLayout$Data;
-import com.discord.utilities.view.grid.FrameGridLayout$DataView;
-import com.discord.utilities.view.grid.FrameGridLayout$DataView$DefaultImpls;
+import com.discord.utilities.view.grid.FrameGridLayout;
 import com.discord.views.VoiceUserView;
-import com.discord.widgets.voice.fullscreen.grid.VideoCallGridAdapter$CallUiInsets;
+import com.discord.widgets.voice.fullscreen.grid.VideoCallGridAdapter;
 import com.facebook.drawee.view.SimpleDraweeView;
 import d0.g0.w;
 import d0.z.d.m;
@@ -54,17 +48,20 @@ import defpackage.r;
 import defpackage.t;
 import java.util.Iterator;
 import java.util.Objects;
+import kotlin.NoWhenBranchMatchedException;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import org.webrtc.RendererCommon;
 import rx.Observable;
 import rx.Subscription;
 import rx.subjects.BehaviorSubject;
 
 /* JADX INFO: compiled from: VideoCallParticipantView.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class VideoCallParticipantView extends ConstraintLayout implements FrameGridLayout$DataView {
+public final class VideoCallParticipantView extends ConstraintLayout implements FrameGridLayout.DataView {
 
     /* JADX INFO: renamed from: j, reason: from kotlin metadata */
     public final h4 binding;
@@ -73,7 +70,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
     public final boolean matchVideoOrientation;
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
-    public VideoCallParticipantView$ParticipantData data;
+    public ParticipantData data;
 
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public String userAvatarUrl;
@@ -97,7 +94,7 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
     public boolean canOverlapTopCutout;
 
     /* JADX INFO: renamed from: t, reason: from kotlin metadata */
-    public VideoCallGridAdapter$CallUiInsets callUiInsets;
+    public VideoCallGridAdapter.CallUiInsets callUiInsets;
 
     /* JADX INFO: renamed from: u, reason: from kotlin metadata */
     public boolean controlsVisible;
@@ -109,10 +106,119 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
     public Drawable liveSplitPillBg;
 
     /* JADX INFO: renamed from: x, reason: collision with root package name and from kotlin metadata */
-    public Function2<? super VideoCallParticipantView$StreamResolution, ? super VideoCallParticipantView$StreamFps, Unit> onStreamQualityIndicatorClicked;
+    public Function2<? super StreamResolution, ? super StreamFps, Unit> onStreamQualityIndicatorClicked;
 
     /* JADX INFO: renamed from: y, reason: collision with root package name and from kotlin metadata */
-    public Function2<? super VideoCallParticipantView$StreamResolution, ? super VideoCallParticipantView$StreamFps, Unit> onStreamQualityIndicatorShown;
+    public Function2<? super StreamResolution, ? super StreamFps, Unit> onStreamQualityIndicatorShown;
+
+    /* JADX INFO: compiled from: VideoCallParticipantView.kt */
+    public final /* data */ class StreamFps {
+
+        /* JADX INFO: renamed from: a, reason: from kotlin metadata */
+        public final int fps;
+
+        public StreamFps(int i) {
+            this.fps = i;
+        }
+
+        public final boolean a() {
+            return this.fps == 60;
+        }
+
+        public boolean equals(Object other) {
+            if (this != other) {
+                return (other instanceof StreamFps) && this.fps == ((StreamFps) other).fps;
+            }
+            return true;
+        }
+
+        /* JADX INFO: renamed from: hashCode, reason: from getter */
+        public int getFps() {
+            return this.fps;
+        }
+
+        public String toString() {
+            return b.d.b.a.a.B(b.d.b.a.a.U("StreamFps(fps="), this.fps, ")");
+        }
+    }
+
+    /* JADX INFO: compiled from: VideoCallParticipantView.kt */
+    public abstract class StreamResolution {
+
+        /* JADX INFO: compiled from: VideoCallParticipantView.kt */
+        public final class a extends StreamResolution {
+            public final int a;
+
+            public a(int i) {
+                super(null);
+                this.a = i;
+            }
+
+            @Override // com.discord.views.calls.VideoCallParticipantView.StreamResolution
+            public CharSequence a(Context context) {
+                m.checkNotNullParameter(context, "context");
+                return b.a.k.b.h(context, R.string.screenshare_resolution_abbreviated, new Object[]{Integer.valueOf(this.a)}, null, 4);
+            }
+
+            public boolean equals(Object obj) {
+                if (this != obj) {
+                    return (obj instanceof a) && this.a == ((a) obj).a;
+                }
+                return true;
+            }
+
+            public int hashCode() {
+                return this.a;
+            }
+
+            public String toString() {
+                return b.d.b.a.a.B(b.d.b.a.a.U("Fixed(heightPx="), this.a, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: VideoCallParticipantView.kt */
+        public final class b extends StreamResolution {
+            public static final b a = new b();
+
+            public b() {
+                super(null);
+            }
+
+            @Override // com.discord.views.calls.VideoCallParticipantView.StreamResolution
+            public CharSequence a(Context context) {
+                m.checkNotNullParameter(context, "context");
+                return b.a.k.b.h(context, R.string.screenshare_source, new Object[0], null, 4);
+            }
+        }
+
+        public StreamResolution() {
+        }
+
+        public abstract CharSequence a(Context context);
+
+        public final boolean b() {
+            return (this instanceof b) || ((this instanceof a) && ((a) this).a == 1080);
+        }
+
+        public StreamResolution(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    /* JADX INFO: compiled from: VideoCallParticipantView.kt */
+    public final class a implements View.OnClickListener {
+        public final /* synthetic */ ParticipantData.a k;
+
+        public a(ParticipantData.a aVar) {
+            this.k = aVar;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            Function2<? super StreamResolution, ? super StreamFps, Unit> function2 = VideoCallParticipantView.this.onStreamQualityIndicatorClicked;
+            ParticipantData.a aVar = this.k;
+            function2.invoke(aVar.f2841b, aVar.c);
+        }
+    }
 
     public VideoCallParticipantView(Context context, AttributeSet attributeSet) {
         this(context, attributeSet, 0, 4);
@@ -125,85 +231,85 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         int i3 = (i2 & 4) != 0 ? 0 : i;
         m.checkNotNullParameter(context, "context");
         super(context, attributeSet2, i3);
-        LayoutInflater.from(context).inflate(R$layout.view_video_call_participant, this);
-        int i4 = R$id.participant_bg_avatar;
-        View viewFindViewById = findViewById(R$id.participant_bg_avatar);
+        LayoutInflater.from(context).inflate(R.layout.view_video_call_participant, this);
+        int i4 = R.id.participant_bg_avatar;
+        View viewFindViewById = findViewById(R.id.participant_bg_avatar);
         if (viewFindViewById != null) {
-            i4 = R$id.participant_bg_letterbox;
-            View viewFindViewById2 = findViewById(R$id.participant_bg_letterbox);
+            i4 = R.id.participant_bg_letterbox;
+            View viewFindViewById2 = findViewById(R.id.participant_bg_letterbox);
             if (viewFindViewById2 != null) {
-                i4 = R$id.participant_deafen_status_indicator;
-                ImageView imageView = (ImageView) findViewById(R$id.participant_deafen_status_indicator);
+                i4 = R.id.participant_deafen_status_indicator;
+                ImageView imageView = (ImageView) findViewById(R.id.participant_deafen_status_indicator);
                 if (imageView != null) {
-                    i4 = R$id.participant_fullscreen_streamqual_container;
-                    ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R$id.participant_fullscreen_streamqual_container);
+                    i4 = R.id.participant_fullscreen_streamqual_container;
+                    ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R.id.participant_fullscreen_streamqual_container);
                     if (constraintLayout != null) {
-                        i4 = R$id.participant_fullscreen_streamqual_divider;
-                        Space space = (Space) findViewById(R$id.participant_fullscreen_streamqual_divider);
+                        i4 = R.id.participant_fullscreen_streamqual_divider;
+                        Space space = (Space) findViewById(R.id.participant_fullscreen_streamqual_divider);
                         if (space != null) {
-                            i4 = R$id.participant_fullscreen_streamqual_icon;
-                            ImageView imageView2 = (ImageView) findViewById(R$id.participant_fullscreen_streamqual_icon);
+                            i4 = R.id.participant_fullscreen_streamqual_icon;
+                            ImageView imageView2 = (ImageView) findViewById(R.id.participant_fullscreen_streamqual_icon);
                             if (imageView2 != null) {
-                                i4 = R$id.participant_fullscreen_streamqual_info;
-                                TextView textView = (TextView) findViewById(R$id.participant_fullscreen_streamqual_info);
+                                i4 = R.id.participant_fullscreen_streamqual_info;
+                                TextView textView = (TextView) findViewById(R.id.participant_fullscreen_streamqual_info);
                                 if (textView != null) {
-                                    i4 = R$id.participant_fullscreen_streamqual_info_container;
-                                    LinearLayout linearLayout = (LinearLayout) findViewById(R$id.participant_fullscreen_streamqual_info_container);
+                                    i4 = R.id.participant_fullscreen_streamqual_info_container;
+                                    LinearLayout linearLayout = (LinearLayout) findViewById(R.id.participant_fullscreen_streamqual_info_container);
                                     if (linearLayout != null) {
-                                        i4 = R$id.participant_fullscreen_streamqual_live_indicator;
-                                        TextView textView2 = (TextView) findViewById(R$id.participant_fullscreen_streamqual_live_indicator);
+                                        i4 = R.id.participant_fullscreen_streamqual_live_indicator;
+                                        TextView textView2 = (TextView) findViewById(R.id.participant_fullscreen_streamqual_live_indicator);
                                         if (textView2 != null) {
-                                            i4 = R$id.participant_live_indicator;
-                                            TextView textView3 = (TextView) findViewById(R$id.participant_live_indicator);
+                                            i4 = R.id.participant_live_indicator;
+                                            TextView textView3 = (TextView) findViewById(R.id.participant_live_indicator);
                                             if (textView3 != null) {
-                                                i4 = R$id.participant_mute_status_indicator;
-                                                ImageView imageView3 = (ImageView) findViewById(R$id.participant_mute_status_indicator);
+                                                i4 = R.id.participant_mute_status_indicator;
+                                                ImageView imageView3 = (ImageView) findViewById(R.id.participant_mute_status_indicator);
                                                 if (imageView3 != null) {
-                                                    i4 = R$id.participant_stream_ended;
-                                                    ConstraintLayout constraintLayout2 = (ConstraintLayout) findViewById(R$id.participant_stream_ended);
+                                                    i4 = R.id.participant_stream_ended;
+                                                    ConstraintLayout constraintLayout2 = (ConstraintLayout) findViewById(R.id.participant_stream_ended);
                                                     if (constraintLayout2 != null) {
-                                                        i4 = R$id.participant_stream_ended_img;
-                                                        ImageView imageView4 = (ImageView) findViewById(R$id.participant_stream_ended_img);
+                                                        i4 = R.id.participant_stream_ended_img;
+                                                        ImageView imageView4 = (ImageView) findViewById(R.id.participant_stream_ended_img);
                                                         if (imageView4 != null) {
-                                                            i4 = R$id.participant_stream_ended_label;
-                                                            TextView textView4 = (TextView) findViewById(R$id.participant_stream_ended_label);
+                                                            i4 = R.id.participant_stream_ended_label;
+                                                            TextView textView4 = (TextView) findViewById(R.id.participant_stream_ended_label);
                                                             if (textView4 != null) {
-                                                                i4 = R$id.participant_stream_paused;
-                                                                TextView textView5 = (TextView) findViewById(R$id.participant_stream_paused);
+                                                                i4 = R.id.participant_stream_paused;
+                                                                TextView textView5 = (TextView) findViewById(R.id.participant_stream_paused);
                                                                 if (textView5 != null) {
-                                                                    i4 = R$id.participant_stream_preview_image;
-                                                                    SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R$id.participant_stream_preview_image);
+                                                                    i4 = R.id.participant_stream_preview_image;
+                                                                    SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R.id.participant_stream_preview_image);
                                                                     if (simpleDraweeView != null) {
-                                                                        i4 = R$id.participant_stream_preview_text;
-                                                                        TextView textView6 = (TextView) findViewById(R$id.participant_stream_preview_text);
+                                                                        i4 = R.id.participant_stream_preview_text;
+                                                                        TextView textView6 = (TextView) findViewById(R.id.participant_stream_preview_text);
                                                                         if (textView6 != null) {
-                                                                            i4 = R$id.participant_video_label;
-                                                                            TextView textView7 = (TextView) findViewById(R$id.participant_video_label);
+                                                                            i4 = R.id.participant_video_label;
+                                                                            TextView textView7 = (TextView) findViewById(R.id.participant_video_label);
                                                                             if (textView7 != null) {
-                                                                                i4 = R$id.participant_video_loading_indicator;
-                                                                                ProgressBar progressBar = (ProgressBar) findViewById(R$id.participant_video_loading_indicator);
+                                                                                i4 = R.id.participant_video_loading_indicator;
+                                                                                ProgressBar progressBar = (ProgressBar) findViewById(R.id.participant_video_loading_indicator);
                                                                                 if (progressBar != null) {
-                                                                                    i4 = R$id.participant_video_stream_renderer;
-                                                                                    AppVideoStreamRenderer appVideoStreamRenderer = (AppVideoStreamRenderer) findViewById(R$id.participant_video_stream_renderer);
+                                                                                    i4 = R.id.participant_video_stream_renderer;
+                                                                                    AppVideoStreamRenderer appVideoStreamRenderer = (AppVideoStreamRenderer) findViewById(R.id.participant_video_stream_renderer);
                                                                                     if (appVideoStreamRenderer != null) {
-                                                                                        i4 = R$id.participant_voice_indicators;
-                                                                                        LinearLayout linearLayout2 = (LinearLayout) findViewById(R$id.participant_voice_indicators);
+                                                                                        i4 = R.id.participant_voice_indicators;
+                                                                                        LinearLayout linearLayout2 = (LinearLayout) findViewById(R.id.participant_voice_indicators);
                                                                                         if (linearLayout2 != null) {
-                                                                                            i4 = R$id.participant_voice_user_view;
-                                                                                            VoiceUserView voiceUserView = (VoiceUserView) findViewById(R$id.participant_voice_user_view);
+                                                                                            i4 = R.id.participant_voice_user_view;
+                                                                                            VoiceUserView voiceUserView = (VoiceUserView) findViewById(R.id.participant_voice_user_view);
                                                                                             if (voiceUserView != null) {
                                                                                                 AttributeSet attributeSet3 = attributeSet2;
                                                                                                 h4 h4Var = new h4(this, viewFindViewById, viewFindViewById2, imageView, constraintLayout, space, imageView2, textView, linearLayout, textView2, textView3, imageView3, constraintLayout2, imageView4, textView4, textView5, simpleDraweeView, textView6, textView7, progressBar, appVideoStreamRenderer, linearLayout2, voiceUserView);
                                                                                                 m.checkNotNullExpressionValue(h4Var, "ViewVideoCallParticipant…ater.from(context), this)");
                                                                                                 this.binding = h4Var;
                                                                                                 this.onWatchStreamClicked = j.j;
-                                                                                                this.callUiInsets = new VideoCallGridAdapter$CallUiInsets(0, 0, 0, 0);
-                                                                                                this.livePillBg = ContextCompat.getDrawable(context, 2131231038);
-                                                                                                this.liveSplitPillBg = ContextCompat.getDrawable(context, 2131231039);
+                                                                                                this.callUiInsets = new VideoCallGridAdapter.CallUiInsets(0, 0, 0, 0);
+                                                                                                this.livePillBg = ContextCompat.getDrawable(context, R.drawable.bg_stream_live_indicator);
+                                                                                                this.liveSplitPillBg = ContextCompat.getDrawable(context, R.drawable.bg_stream_live_indicator_split_pill);
                                                                                                 this.onStreamQualityIndicatorClicked = t.j;
                                                                                                 this.onStreamQualityIndicatorShown = t.k;
                                                                                                 if (attributeSet3 != null) {
-                                                                                                    TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet3, R$a.VideoCallParticipantView, 0, 0);
+                                                                                                    TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet3, R.a.VideoCallParticipantView, 0, 0);
                                                                                                     m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…            0\n          )");
                                                                                                     z2 = typedArrayObtainStyledAttributes.getBoolean(0, false);
                                                                                                     this.matchVideoOrientation = typedArrayObtainStyledAttributes.getBoolean(1, false);
@@ -240,49 +346,49 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         throw new NullPointerException("Missing required view with ID: ".concat(getResources().getResourceName(i4)));
     }
 
-    public final void a(VideoCallParticipantView$ParticipantData participantData) {
+    public final void a(ParticipantData participantData) {
         CharSequence charSequenceH;
-        VideoCallParticipantView$ParticipantData$a videoCallParticipantView$ParticipantData$a = participantData.streamQualityIndicatorData;
-        if (!participantData.isFocused || !this.controlsVisible || videoCallParticipantView$ParticipantData$a == null) {
+        ParticipantData.a aVar = participantData.streamQualityIndicatorData;
+        if (!participantData.isFocused || !this.controlsVisible || aVar == null) {
             b(false);
             return;
         }
         ConstraintLayout constraintLayout = this.binding.e;
         constraintLayout.setTranslationX(-this.callUiInsets.getRight());
         constraintLayout.setTranslationY(this.callUiInsets.getTop());
-        constraintLayout.setOnClickListener(new VideoCallParticipantView$a(this, videoCallParticipantView$ParticipantData$a));
+        constraintLayout.setOnClickListener(new a(aVar));
         ImageView imageView = this.binding.f;
         m.checkNotNullExpressionValue(imageView, "binding.participantFullscreenStreamqualIcon");
-        imageView.setVisibility(videoCallParticipantView$ParticipantData$a.a ? 0 : 8);
-        VideoCallParticipantView$StreamResolution videoCallParticipantView$StreamResolution = videoCallParticipantView$ParticipantData$a.f2841b;
+        imageView.setVisibility(aVar.a ? 0 : 8);
+        StreamResolution streamResolution = aVar.f2841b;
         Context context = getContext();
         m.checkNotNullExpressionValue(context, "context");
-        CharSequence charSequenceA = videoCallParticipantView$StreamResolution.a(context);
-        VideoCallParticipantView$StreamFps videoCallParticipantView$StreamFps = videoCallParticipantView$ParticipantData$a.c;
-        if (videoCallParticipantView$StreamFps != null) {
+        CharSequence charSequenceA = streamResolution.a(context);
+        StreamFps streamFps = aVar.c;
+        if (streamFps != null) {
             Context context2 = getContext();
             m.checkNotNullExpressionValue(context2, "context");
             m.checkNotNullParameter(context2, "context");
-            charSequenceH = b.h(context2, 2131895275, new Object[]{Integer.valueOf(videoCallParticipantView$StreamFps.fps)}, null, 4);
+            charSequenceH = b.h(context2, R.string.screenshare_fps_abbreviated, new Object[]{Integer.valueOf(streamFps.fps)}, null, 4);
         } else {
             charSequenceH = "";
         }
         String str = "" + charSequenceA + ' ' + charSequenceH;
         Objects.requireNonNull(str, "null cannot be cast to non-null type kotlin.CharSequence");
         String string = w.trim(str).toString();
-        Drawable drawable = (!(string.length() == 0) || videoCallParticipantView$ParticipantData$a.a) ? this.liveSplitPillBg : this.livePillBg;
+        Drawable drawable = (!(string.length() == 0) || aVar.a) ? this.liveSplitPillBg : this.livePillBg;
         TextView textView = this.binding.h;
         m.checkNotNullExpressionValue(textView, "binding.participantFulls…enStreamqualLiveIndicator");
         textView.setBackground(drawable);
-        int i = videoCallParticipantView$ParticipantData$a.d ? 2131100171 : 2131100487;
+        int i = aVar.d ? R.color.primary_300 : R.color.white;
         TextView textView2 = this.binding.g;
         textView2.setText(string);
         CharSequence text = textView2.getText();
-        m.checkNotNullExpressionValue(text, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkNotNullExpressionValue(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         textView2.setVisibility(text.length() > 0 ? 0 : 8);
         textView2.setTextColor(ContextCompat.getColor(textView2.getContext(), i));
         textView2.requestLayout();
-        this.onStreamQualityIndicatorShown.invoke(videoCallParticipantView$ParticipantData$a.f2841b, videoCallParticipantView$ParticipantData$a.c);
+        this.onStreamQualityIndicatorShown.invoke(aVar.f2841b, aVar.c);
         b(true);
     }
 
@@ -292,8 +398,8 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
 
     /* JADX WARN: Code duplicated, block: B:141:0x047e  */
     @MainThread
-    public final void c(VideoCallParticipantView$ParticipantData data, DisplayCutoutCompat displayCutout, boolean canOverlapTopCutout, VideoCallGridAdapter$CallUiInsets callUiInsets, boolean controlsVisible) {
-        VideoCallParticipantView$ParticipantData$Type videoCallParticipantView$ParticipantData$Type;
+    public final void c(ParticipantData data, DisplayCutoutCompat displayCutout, boolean canOverlapTopCutout, VideoCallGridAdapter.CallUiInsets callUiInsets, boolean controlsVisible) {
+        ParticipantData.Type type;
         boolean z2;
         int i;
         m.checkNotNullParameter(callUiInsets, "callUiInsets");
@@ -301,11 +407,11 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         this.canOverlapTopCutout = canOverlapTopCutout;
         this.callUiInsets = callUiInsets;
         this.controlsVisible = controlsVisible;
-        StoreVoiceParticipants$VoiceUser storeVoiceParticipants$VoiceUser = data != null ? data.voiceParticipant : null;
-        if (storeVoiceParticipants$VoiceUser != null) {
-            String colorId = RepresentativeColorsKt.getColorId(storeVoiceParticipants$VoiceUser.getUser());
+        StoreVoiceParticipants.VoiceUser voiceUser = data != null ? data.voiceParticipant : null;
+        if (voiceUser != null) {
+            String colorId = RepresentativeColorsKt.getColorId(voiceUser.getUser());
             this.binding.f128s.setOnBitmapLoadedListener(new k(colorId));
-            this.binding.f128s.a(storeVoiceParticipants$VoiceUser, 2131165291);
+            this.binding.f128s.a(voiceUser, R.dimen.avatar_size_hero);
             Subscription subscription = this.representativeColorSubscription;
             if (subscription != null) {
                 subscription.unsubscribe();
@@ -314,16 +420,16 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
             m.checkNotNullExpressionValue(observableB0, "UserRepresentativeColors….takeUntil { it != null }");
             ObservableExtensionsKt.appSubscribe$default(observableB0, VideoCallParticipantView.class, (Context) null, new r(1, this), (Function1) null, (Function0) null, (Function0) null, new b.a.y.j0.m(this), 58, (Object) null);
         }
-        String forUser$default = IconUtils.getForUser$default(storeVoiceParticipants$VoiceUser != null ? storeVoiceParticipants$VoiceUser.getUser() : null, false, null, 6, null);
+        String forUser$default = IconUtils.getForUser$default(voiceUser != null ? voiceUser.getUser() : null, false, null, 6, null);
         if (!m.areEqual(forUser$default, this.userAvatarUrl)) {
             this.userAvatarUrl = forUser$default;
         }
-        VideoCallParticipantView$ParticipantData videoCallParticipantView$ParticipantData = this.data;
-        if (videoCallParticipantView$ParticipantData == null || (videoCallParticipantView$ParticipantData$Type = videoCallParticipantView$ParticipantData.type) == null) {
-            videoCallParticipantView$ParticipantData$Type = VideoCallParticipantView$ParticipantData$Type.DEFAULT;
+        ParticipantData participantData = this.data;
+        if (participantData == null || (type = participantData.type) == null) {
+            type = ParticipantData.Type.DEFAULT;
         }
-        boolean z3 = videoCallParticipantView$ParticipantData != null && videoCallParticipantView$ParticipantData.isFocused;
-        Integer numB = videoCallParticipantView$ParticipantData != null ? videoCallParticipantView$ParticipantData.b() : null;
+        boolean z3 = participantData != null && participantData.isFocused;
+        Integer numB = participantData != null ? participantData.b() : null;
         this.data = data;
         Integer numB2 = data != null ? data.b() : null;
         Integer numB3 = data != null ? data.b() : null;
@@ -353,9 +459,9 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
             }
         }
         boolean z4 = z3;
-        VideoCallParticipantView$ParticipantData$Type videoCallParticipantView$ParticipantData$Type2 = videoCallParticipantView$ParticipantData$Type;
+        ParticipantData.Type type2 = type;
         Integer num = numB2;
-        if ((data != null ? data.type : null) == VideoCallParticipantView$ParticipantData$Type.APPLICATION_STREAMING) {
+        if ((data != null ? data.type : null) == ParticipantData.Type.APPLICATION_STREAMING) {
             View view3 = this.binding.f127b;
             m.checkNotNullExpressionValue(view3, "binding.participantBgAvatar");
             view3.setVisibility(8);
@@ -368,9 +474,9 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
             ImageView imageView2 = this.binding.d;
             m.checkNotNullExpressionValue(imageView2, "binding.participantDeafenStatusIndicator");
             imageView2.setVisibility(8);
-            VideoCallParticipantView$ParticipantData$ApplicationStreamState videoCallParticipantView$ParticipantData$ApplicationStreamState = data.applicationStreamState;
-            if (videoCallParticipantView$ParticipantData$ApplicationStreamState != null) {
-                int iOrdinal = videoCallParticipantView$ParticipantData$ApplicationStreamState.ordinal();
+            ParticipantData.ApplicationStreamState applicationStreamState = data.applicationStreamState;
+            if (applicationStreamState != null) {
+                int iOrdinal = applicationStreamState.ordinal();
                 if (iOrdinal == 0) {
                     ProgressBar progressBar3 = this.binding.p;
                     m.checkNotNullExpressionValue(progressBar3, "binding.participantVideoLoadingIndicator");
@@ -426,25 +532,25 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
                     textView9.setVisibility(8);
                     this.binding.n.setOnClickListener(new n(this, data));
                     StreamContext streamContext = data.voiceParticipant.getStreamContext();
-                    StoreApplicationStreamPreviews$StreamPreview preview = streamContext != null ? streamContext.getPreview() : null;
-                    if (preview instanceof StoreApplicationStreamPreviews$StreamPreview$Resolved) {
-                        this.binding.m.setImageURI(((StoreApplicationStreamPreviews$StreamPreview$Resolved) preview).getUrl());
+                    StoreApplicationStreamPreviews.StreamPreview preview = streamContext != null ? streamContext.getPreview() : null;
+                    if (preview instanceof StoreApplicationStreamPreviews.StreamPreview.Resolved) {
+                        this.binding.m.setImageURI(((StoreApplicationStreamPreviews.StreamPreview.Resolved) preview).getUrl());
                         SimpleDraweeView simpleDraweeView4 = this.binding.m;
                         m.checkNotNullExpressionValue(simpleDraweeView4, "binding.participantStreamPreviewImage");
-                        ViewGroup$LayoutParams layoutParams = simpleDraweeView4.getLayoutParams();
+                        ViewGroup.LayoutParams layoutParams = simpleDraweeView4.getLayoutParams();
                         Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type androidx.constraintlayout.widget.ConstraintLayout.LayoutParams");
-                        ConstraintLayout$LayoutParams constraintLayout$LayoutParams = (ConstraintLayout$LayoutParams) layoutParams;
-                        constraintLayout$LayoutParams.dimensionRatio = "16:9";
-                        simpleDraweeView4.setLayoutParams(constraintLayout$LayoutParams);
+                        ConstraintLayout.LayoutParams layoutParams2 = (ConstraintLayout.LayoutParams) layoutParams;
+                        layoutParams2.dimensionRatio = "16:9";
+                        simpleDraweeView4.setLayoutParams(layoutParams2);
                     } else {
                         this.binding.m.setImageURI((String) null);
                         SimpleDraweeView simpleDraweeView5 = this.binding.m;
                         m.checkNotNullExpressionValue(simpleDraweeView5, "binding.participantStreamPreviewImage");
-                        ViewGroup$LayoutParams layoutParams2 = simpleDraweeView5.getLayoutParams();
-                        Objects.requireNonNull(layoutParams2, "null cannot be cast to non-null type androidx.constraintlayout.widget.ConstraintLayout.LayoutParams");
-                        ConstraintLayout$LayoutParams constraintLayout$LayoutParams2 = (ConstraintLayout$LayoutParams) layoutParams2;
-                        constraintLayout$LayoutParams2.dimensionRatio = null;
-                        simpleDraweeView5.setLayoutParams(constraintLayout$LayoutParams2);
+                        ViewGroup.LayoutParams layoutParams3 = simpleDraweeView5.getLayoutParams();
+                        Objects.requireNonNull(layoutParams3, "null cannot be cast to non-null type androidx.constraintlayout.widget.ConstraintLayout.LayoutParams");
+                        ConstraintLayout.LayoutParams layoutParams4 = (ConstraintLayout.LayoutParams) layoutParams3;
+                        layoutParams4.dimensionRatio = null;
+                        simpleDraweeView5.setLayoutParams(layoutParams4);
                     }
                     b(false);
                 } else if (iOrdinal == 3) {
@@ -502,10 +608,10 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
             b(false);
             ImageView imageView3 = this.binding.j;
             m.checkNotNullExpressionValue(imageView3, "binding.participantMuteStatusIndicator");
-            imageView3.setVisibility(storeVoiceParticipants$VoiceUser != null ? storeVoiceParticipants$VoiceUser.getIsMuted() : false ? 0 : 8);
+            imageView3.setVisibility(voiceUser != null ? voiceUser.getIsMuted() : false ? 0 : 8);
             ImageView imageView4 = this.binding.d;
             m.checkNotNullExpressionValue(imageView4, "binding.participantDeafenStatusIndicator");
-            imageView4.setVisibility(storeVoiceParticipants$VoiceUser != null ? storeVoiceParticipants$VoiceUser.getIsDeafened() : false ? 0 : 8);
+            imageView4.setVisibility(voiceUser != null ? voiceUser.getIsDeafened() : false ? 0 : 8);
             if (num != null) {
                 View view4 = this.binding.f127b;
                 m.checkNotNullExpressionValue(view4, "binding.participantBgAvatar");
@@ -588,19 +694,19 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         if (num != null) {
             BehaviorSubject<Point> behaviorSubject = this.binding.q.currentFrameResolutionSubject;
             m.checkNotNullExpressionValue(behaviorSubject, "currentFrameResolutionSubject");
-            Observable<R> observableG = behaviorSubject.y(ObservableExtensionsKt$filterNull$1.INSTANCE).G(ObservableExtensionsKt$filterNull$2.INSTANCE);
+            Observable<R> observableG = behaviorSubject.y(ObservableExtensionsKt.AnonymousClass1.INSTANCE).G(ObservableExtensionsKt.AnonymousClass2.INSTANCE);
             m.checkNotNullExpressionValue(observableG, "filter { it != null }.map { it!! }");
             ObservableExtensionsKt.appSubscribe$default(observableG, VideoCallParticipantView.class, (Context) null, new r(0, this), (Function1) null, (Function0) null, (Function0) null, new o(this), 58, (Object) null);
         }
-        VideoCallParticipantView$ParticipantData videoCallParticipantView$ParticipantData2 = this.data;
-        VideoCallParticipantView$ParticipantData$Type videoCallParticipantView$ParticipantData$Type3 = videoCallParticipantView$ParticipantData2 != null ? videoCallParticipantView$ParticipantData2.type : null;
+        ParticipantData participantData2 = this.data;
+        ParticipantData.Type type3 = participantData2 != null ? participantData2.type : null;
         boolean z5 = data != null && data.isFocused;
-        if (videoCallParticipantView$ParticipantData$Type3 != null && (videoCallParticipantView$ParticipantData$Type3 != videoCallParticipantView$ParticipantData$Type2 || z5 != z4)) {
-            if (videoCallParticipantView$ParticipantData$Type3 != VideoCallParticipantView$ParticipantData$Type.DEFAULT || z5) {
-                ConstraintLayout$LayoutParams constraintLayout$LayoutParams3 = new ConstraintLayout$LayoutParams(-2, -2);
+        if (type3 != null && (type3 != type2 || z5 != z4)) {
+            if (type3 != ParticipantData.Type.DEFAULT || z5) {
+                ConstraintLayout.LayoutParams layoutParams5 = new ConstraintLayout.LayoutParams(-2, -2);
                 AppVideoStreamRenderer appVideoStreamRenderer3 = this.binding.q;
                 m.checkNotNullExpressionValue(appVideoStreamRenderer3, "binding.participantVideoStreamRenderer");
-                appVideoStreamRenderer3.setLayoutParams(constraintLayout$LayoutParams3);
+                appVideoStreamRenderer3.setLayoutParams(layoutParams5);
                 AppVideoStreamRenderer appVideoStreamRenderer4 = this.binding.q;
                 m.checkNotNullExpressionValue(appVideoStreamRenderer4, "binding.participantVideoStreamRenderer");
                 constraintSet.constrainDefaultHeight(appVideoStreamRenderer4.getId(), 1);
@@ -608,10 +714,10 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
                 m.checkNotNullExpressionValue(appVideoStreamRenderer5, "binding.participantVideoStreamRenderer");
                 constraintSet.constrainDefaultWidth(appVideoStreamRenderer5.getId(), 1);
             } else {
-                ConstraintLayout$LayoutParams constraintLayout$LayoutParams4 = new ConstraintLayout$LayoutParams(0, 0);
+                ConstraintLayout.LayoutParams layoutParams6 = new ConstraintLayout.LayoutParams(0, 0);
                 AppVideoStreamRenderer appVideoStreamRenderer6 = this.binding.q;
                 m.checkNotNullExpressionValue(appVideoStreamRenderer6, "binding.participantVideoStreamRenderer");
-                appVideoStreamRenderer6.setLayoutParams(constraintLayout$LayoutParams4);
+                appVideoStreamRenderer6.setLayoutParams(layoutParams6);
                 AppVideoStreamRenderer appVideoStreamRenderer7 = this.binding.q;
                 m.checkNotNullExpressionValue(appVideoStreamRenderer7, "binding.participantVideoStreamRenderer");
                 constraintSet.constrainHeight(appVideoStreamRenderer7.getId(), 0);
@@ -627,19 +733,19 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
             }
         }
         constraintSet.applyTo(this);
-        if (storeVoiceParticipants$VoiceUser != null) {
+        if (voiceUser != null) {
             TextView textView27 = this.binding.o;
             m.checkNotNullExpressionValue(textView27, "binding.participantVideoLabel");
-            textView27.setText(storeVoiceParticipants$VoiceUser.getDisplayName());
-            if (data.type == VideoCallParticipantView$ParticipantData$Type.APPLICATION_STREAMING) {
+            textView27.setText(voiceUser.getDisplayName());
+            if (data.type == ParticipantData.Type.APPLICATION_STREAMING) {
                 Context context = getContext();
                 m.checkNotNullExpressionValue(context, "context");
                 i = 0;
-                setContentDescription(b.h(context, 2131889785, new Object[]{storeVoiceParticipants$VoiceUser.getDisplayName()}, null, 4));
-                this.binding.o.setCompoundDrawablesWithIntrinsicBounds(2131232095, 0, 0, 0);
+                setContentDescription(b.h(context, R.string.go_live_tile_screen, new Object[]{voiceUser.getDisplayName()}, null, 4));
+                this.binding.o.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_screen_14dp, 0, 0, 0);
             } else {
                 i = 0;
-                setContentDescription(storeVoiceParticipants$VoiceUser.getDisplayName());
+                setContentDescription(voiceUser.getDisplayName());
                 this.binding.o.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
             }
             if (this.animateLabelFades) {
@@ -656,36 +762,36 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         }
     }
 
-    public static /* synthetic */ void d(VideoCallParticipantView videoCallParticipantView, VideoCallParticipantView$ParticipantData videoCallParticipantView$ParticipantData, DisplayCutoutCompat displayCutoutCompat, boolean z2, VideoCallGridAdapter$CallUiInsets videoCallGridAdapter$CallUiInsets, boolean z3, int i) {
+    public static /* synthetic */ void d(VideoCallParticipantView videoCallParticipantView, ParticipantData participantData, DisplayCutoutCompat displayCutoutCompat, boolean z2, VideoCallGridAdapter.CallUiInsets callUiInsets, boolean z3, int i) {
         DisplayCutoutCompat displayCutoutCompat2 = (i & 2) != 0 ? videoCallParticipantView.displayCutout : null;
         if ((i & 4) != 0) {
             z2 = videoCallParticipantView.canOverlapTopCutout;
         }
         boolean z4 = z2;
-        VideoCallGridAdapter$CallUiInsets videoCallGridAdapter$CallUiInsets2 = (i & 8) != 0 ? videoCallParticipantView.callUiInsets : null;
+        VideoCallGridAdapter.CallUiInsets callUiInsets2 = (i & 8) != 0 ? videoCallParticipantView.callUiInsets : null;
         if ((i & 16) != 0) {
             z3 = videoCallParticipantView.controlsVisible;
         }
-        videoCallParticipantView.c(videoCallParticipantView$ParticipantData, displayCutoutCompat2, z4, videoCallGridAdapter$CallUiInsets2, z3);
+        videoCallParticipantView.c(participantData, displayCutoutCompat2, z4, callUiInsets2, z3);
     }
 
-    public final VideoCallParticipantView$ParticipantData getData() {
+    public final ParticipantData getData() {
         return this.data;
     }
 
-    @Override // com.discord.utilities.view.grid.FrameGridLayout$DataView
+    @Override // com.discord.utilities.view.grid.FrameGridLayout.DataView
     public String getDataId() {
-        VideoCallParticipantView$ParticipantData videoCallParticipantView$ParticipantData = this.data;
-        if (videoCallParticipantView$ParticipantData != null) {
-            return videoCallParticipantView$ParticipantData.id;
+        ParticipantData participantData = this.data;
+        if (participantData != null) {
+            return participantData.id;
         }
         return null;
     }
 
-    @Override // com.discord.utilities.view.grid.FrameGridLayout$DataView
-    public void onBind(FrameGridLayout$Data data) {
+    @Override // com.discord.utilities.view.grid.FrameGridLayout.DataView
+    public void onBind(FrameGridLayout.Data data) {
         m.checkNotNullParameter(data, "data");
-        d(this, (VideoCallParticipantView$ParticipantData) data, null, false, null, false, 30);
+        d(this, (ParticipantData) data, null, false, null, false, 30);
     }
 
     @Override // android.view.ViewGroup, android.view.View
@@ -699,17 +805,271 @@ public final class VideoCallParticipantView extends ConstraintLayout implements 
         this.binding.q.c(null, null, null, false);
     }
 
-    @Override // com.discord.utilities.view.grid.FrameGridLayout$DataView
+    @Override // com.discord.utilities.view.grid.FrameGridLayout.DataView
     public void onRemove() {
-        FrameGridLayout$DataView$DefaultImpls.onRemove(this);
+        FrameGridLayout.DataView.DefaultImpls.onRemove(this);
     }
 
-    public final void setData(VideoCallParticipantView$ParticipantData videoCallParticipantView$ParticipantData) {
-        this.data = videoCallParticipantView$ParticipantData;
+    public final void setData(ParticipantData participantData) {
+        this.data = participantData;
     }
 
     public final void setOnWatchStreamClicked(Function1<? super String, Unit> onWatchStreamClicked) {
         m.checkNotNullParameter(onWatchStreamClicked, "onWatchStreamClicked");
         this.onWatchStreamClicked = onWatchStreamClicked;
+    }
+
+    /* JADX INFO: compiled from: VideoCallParticipantView.kt */
+    public final /* data */ class ParticipantData implements FrameGridLayout.Data {
+
+        /* JADX INFO: renamed from: a, reason: from kotlin metadata */
+        public final String id;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name and from kotlin metadata */
+        public final StoreVoiceParticipants.VoiceUser voiceParticipant;
+
+        /* JADX INFO: renamed from: c, reason: from kotlin metadata */
+        public final boolean mirrorVideo;
+
+        /* JADX INFO: renamed from: d, reason: from kotlin metadata */
+        public final RendererCommon.ScalingType scalingType;
+
+        /* JADX INFO: renamed from: e, reason: from kotlin metadata */
+        public final RendererCommon.ScalingType scalingTypeMismatchOrientation;
+
+        /* JADX INFO: renamed from: f, reason: from kotlin metadata */
+        public final ApplicationStreamState applicationStreamState;
+
+        /* JADX INFO: renamed from: g, reason: from kotlin metadata */
+        public final Type type;
+
+        /* JADX INFO: renamed from: h, reason: from kotlin metadata */
+        public final boolean showLabel;
+
+        /* JADX INFO: renamed from: i, reason: from kotlin metadata */
+        public final boolean isFocused;
+
+        /* JADX INFO: renamed from: j, reason: from kotlin metadata */
+        public final a streamQualityIndicatorData;
+
+        /* JADX INFO: compiled from: VideoCallParticipantView.kt */
+        public enum ApplicationStreamState {
+            CONNECTING,
+            ACTIVE,
+            INACTIVE,
+            PAUSED,
+            ENDED
+        }
+
+        /* JADX INFO: compiled from: VideoCallParticipantView.kt */
+        public enum Type {
+            DEFAULT,
+            APPLICATION_STREAMING
+        }
+
+        /* JADX INFO: compiled from: VideoCallParticipantView.kt */
+        public final class a {
+            public final boolean a;
+
+            /* JADX INFO: renamed from: b, reason: collision with root package name */
+            public final StreamResolution f2841b;
+            public final StreamFps c;
+            public final boolean d;
+
+            public a(boolean z2, StreamResolution streamResolution, StreamFps streamFps, boolean z3) {
+                m.checkNotNullParameter(streamResolution, "resolution");
+                this.a = z2;
+                this.f2841b = streamResolution;
+                this.c = streamFps;
+                this.d = z3;
+            }
+
+            public boolean equals(Object obj) {
+                if (this == obj) {
+                    return true;
+                }
+                if (!(obj instanceof a)) {
+                    return false;
+                }
+                a aVar = (a) obj;
+                return this.a == aVar.a && m.areEqual(this.f2841b, aVar.f2841b) && m.areEqual(this.c, aVar.c) && this.d == aVar.d;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            /* JADX WARN: Type inference failed for: r0v1, types: [int] */
+            /* JADX WARN: Type inference failed for: r0v7, types: [int] */
+            /* JADX WARN: Type inference failed for: r0v8 */
+            /* JADX WARN: Type inference failed for: r0v9 */
+            /* JADX WARN: Type inference failed for: r1v0 */
+            /* JADX WARN: Type inference failed for: r1v1, types: [int] */
+            /* JADX WARN: Type inference failed for: r1v2 */
+            public int hashCode() {
+                boolean z2 = this.a;
+                ?? r0 = z2;
+                if (z2) {
+                    r0 = 1;
+                }
+                int i = r0 * 31;
+                StreamResolution streamResolution = this.f2841b;
+                int iHashCode = (i + (streamResolution != null ? streamResolution.hashCode() : 0)) * 31;
+                StreamFps streamFps = this.c;
+                int fps = (iHashCode + (streamFps != null ? streamFps.getFps() : 0)) * 31;
+                boolean z3 = this.d;
+                return fps + (z3 ? 1 : z3);
+            }
+
+            public String toString() {
+                StringBuilder sbU = b.d.b.a.a.U("StreamQualityIndicatorData(showPremiumIcon=");
+                sbU.append(this.a);
+                sbU.append(", resolution=");
+                sbU.append(this.f2841b);
+                sbU.append(", fps=");
+                sbU.append(this.c);
+                sbU.append(", isBadQuality=");
+                return b.d.b.a.a.O(sbU, this.d, ")");
+            }
+        }
+
+        public ParticipantData(StoreVoiceParticipants.VoiceUser voiceUser, boolean z2, RendererCommon.ScalingType scalingType, RendererCommon.ScalingType scalingType2, ApplicationStreamState applicationStreamState, Type type, boolean z3, boolean z4, a aVar) {
+            m.checkNotNullParameter(voiceUser, "voiceParticipant");
+            m.checkNotNullParameter(type, "type");
+            this.voiceParticipant = voiceUser;
+            this.mirrorVideo = z2;
+            this.scalingType = scalingType;
+            this.scalingTypeMismatchOrientation = scalingType2;
+            this.applicationStreamState = applicationStreamState;
+            this.type = type;
+            this.showLabel = z3;
+            this.isFocused = z4;
+            this.streamQualityIndicatorData = aVar;
+            this.id = "" + voiceUser.getUser().getId() + type;
+        }
+
+        public static ParticipantData a(ParticipantData participantData, StoreVoiceParticipants.VoiceUser voiceUser, boolean z2, RendererCommon.ScalingType scalingType, RendererCommon.ScalingType scalingType2, ApplicationStreamState applicationStreamState, Type type, boolean z3, boolean z4, a aVar, int i) {
+            StoreVoiceParticipants.VoiceUser voiceUser2 = (i & 1) != 0 ? participantData.voiceParticipant : null;
+            boolean z5 = (i & 2) != 0 ? participantData.mirrorVideo : z2;
+            RendererCommon.ScalingType scalingType3 = (i & 4) != 0 ? participantData.scalingType : scalingType;
+            RendererCommon.ScalingType scalingType4 = (i & 8) != 0 ? participantData.scalingTypeMismatchOrientation : scalingType2;
+            ApplicationStreamState applicationStreamState2 = (i & 16) != 0 ? participantData.applicationStreamState : null;
+            Type type2 = (i & 32) != 0 ? participantData.type : null;
+            boolean z6 = (i & 64) != 0 ? participantData.showLabel : z3;
+            boolean z7 = (i & 128) != 0 ? participantData.isFocused : z4;
+            a aVar2 = (i & 256) != 0 ? participantData.streamQualityIndicatorData : aVar;
+            Objects.requireNonNull(participantData);
+            m.checkNotNullParameter(voiceUser2, "voiceParticipant");
+            m.checkNotNullParameter(type2, "type");
+            return new ParticipantData(voiceUser2, z5, scalingType3, scalingType4, applicationStreamState2, type2, z6, z7, aVar2);
+        }
+
+        public final Integer b() {
+            VoiceState voiceState;
+            int iOrdinal = this.type.ordinal();
+            if (iOrdinal == 0) {
+                VoiceState voiceState2 = this.voiceParticipant.getVoiceState();
+                if (voiceState2 == null || !voiceState2.getSelfVideo()) {
+                    return null;
+                }
+                return this.voiceParticipant.getCallStreamId();
+            }
+            if (iOrdinal != 1) {
+                throw new NoWhenBranchMatchedException();
+            }
+            ApplicationStreamState applicationStreamState = this.applicationStreamState;
+            if ((applicationStreamState == ApplicationStreamState.CONNECTING || applicationStreamState == ApplicationStreamState.ACTIVE || applicationStreamState == ApplicationStreamState.PAUSED) && (voiceState = this.voiceParticipant.getVoiceState()) != null && voiceState.getSelfStream()) {
+                return this.voiceParticipant.getApplicationStreamId();
+            }
+            return null;
+        }
+
+        @Override // com.discord.utilities.view.grid.FrameGridLayout.Data
+        public View createView(Context context) {
+            m.checkNotNullParameter(context, "context");
+            return new VideoCallParticipantView(context, null, 0, 6);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof ParticipantData)) {
+                return false;
+            }
+            ParticipantData participantData = (ParticipantData) other;
+            return m.areEqual(this.voiceParticipant, participantData.voiceParticipant) && this.mirrorVideo == participantData.mirrorVideo && m.areEqual(this.scalingType, participantData.scalingType) && m.areEqual(this.scalingTypeMismatchOrientation, participantData.scalingTypeMismatchOrientation) && m.areEqual(this.applicationStreamState, participantData.applicationStreamState) && m.areEqual(this.type, participantData.type) && this.showLabel == participantData.showLabel && this.isFocused == participantData.isFocused && m.areEqual(this.streamQualityIndicatorData, participantData.streamQualityIndicatorData);
+        }
+
+        @Override // com.discord.utilities.view.grid.FrameGridLayout.Data
+        public String getId() {
+            return this.id;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v4, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v15, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v18 */
+        /* JADX WARN: Type inference failed for: r2v23 */
+        /* JADX WARN: Type inference failed for: r2v24 */
+        /* JADX WARN: Type inference failed for: r2v25 */
+        /* JADX WARN: Type inference failed for: r3v0 */
+        /* JADX WARN: Type inference failed for: r3v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r3v2 */
+        public int hashCode() {
+            StoreVoiceParticipants.VoiceUser voiceUser = this.voiceParticipant;
+            int iHashCode = (voiceUser != null ? voiceUser.hashCode() : 0) * 31;
+            boolean z2 = this.mirrorVideo;
+            ?? r2 = z2;
+            if (z2) {
+                r2 = 1;
+            }
+            int i = (iHashCode + r2) * 31;
+            RendererCommon.ScalingType scalingType = this.scalingType;
+            int iHashCode2 = (i + (scalingType != null ? scalingType.hashCode() : 0)) * 31;
+            RendererCommon.ScalingType scalingType2 = this.scalingTypeMismatchOrientation;
+            int iHashCode3 = (iHashCode2 + (scalingType2 != null ? scalingType2.hashCode() : 0)) * 31;
+            ApplicationStreamState applicationStreamState = this.applicationStreamState;
+            int iHashCode4 = (iHashCode3 + (applicationStreamState != null ? applicationStreamState.hashCode() : 0)) * 31;
+            Type type = this.type;
+            int iHashCode5 = (iHashCode4 + (type != null ? type.hashCode() : 0)) * 31;
+            boolean z3 = this.showLabel;
+            ?? r3 = z3;
+            if (z3) {
+                r3 = 1;
+            }
+            int i2 = (iHashCode5 + r3) * 31;
+            boolean z4 = this.isFocused;
+            int i3 = (i2 + (z4 ? 1 : z4)) * 31;
+            a aVar = this.streamQualityIndicatorData;
+            return i3 + (aVar != null ? aVar.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = b.d.b.a.a.U("ParticipantData(voiceParticipant=");
+            sbU.append(this.voiceParticipant);
+            sbU.append(", mirrorVideo=");
+            sbU.append(this.mirrorVideo);
+            sbU.append(", scalingType=");
+            sbU.append(this.scalingType);
+            sbU.append(", scalingTypeMismatchOrientation=");
+            sbU.append(this.scalingTypeMismatchOrientation);
+            sbU.append(", applicationStreamState=");
+            sbU.append(this.applicationStreamState);
+            sbU.append(", type=");
+            sbU.append(this.type);
+            sbU.append(", showLabel=");
+            sbU.append(this.showLabel);
+            sbU.append(", isFocused=");
+            sbU.append(this.isFocused);
+            sbU.append(", streamQualityIndicatorData=");
+            sbU.append(this.streamQualityIndicatorData);
+            sbU.append(")");
+            return sbU.toString();
+        }
+
+        /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
+        public /* synthetic */ ParticipantData(StoreVoiceParticipants.VoiceUser voiceUser, boolean z2, RendererCommon.ScalingType scalingType, RendererCommon.ScalingType scalingType2, ApplicationStreamState applicationStreamState, Type type, boolean z3, boolean z4, a aVar, int i) {
+            this(voiceUser, (i & 2) != 0 ? false : z2, (i & 4) != 0 ? RendererCommon.ScalingType.SCALE_ASPECT_BALANCED : scalingType, (i & 8) != 0 ? RendererCommon.ScalingType.SCALE_ASPECT_FIT : scalingType2, (i & 16) != 0 ? null : applicationStreamState, (i & 32) != 0 ? Type.DEFAULT : type, (i & 64) != 0 ? false : z3, (i & 128) != 0 ? false : z4, null);
+            int i2 = i & 256;
+        }
     }
 }

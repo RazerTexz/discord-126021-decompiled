@@ -3,24 +3,20 @@ package b.i.a.f.l;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Looper;
-import b.i.a.f.e.h.a$a;
-import b.i.a.f.e.h.a$f;
-import b.i.a.f.e.h.c$a;
-import b.i.a.f.e.h.c$b;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class e extends a$a<b.i.a.f.l.b.a, a> {
-    @Override // b.i.a.f.e.h.a$a
-    public final a$f a(Context context, Looper looper, b.i.a.f.e.k.c cVar, a aVar, c$a c_a, c$b c_b) {
-        a aVar2 = cVar.g;
+public final class e extends b.i.a.f.e.h.a.C0112a<b.i.a.f.l.b.a, a> {
+    @Override // b.i.a.f.e.h.a.C0112a
+    public final b.i.a.f.e.h.a.f a(Context context, Looper looper, b.i.a.f.e.k.c cVar, a aVar, b.i.a.f.e.h.c.a aVar2, b.i.a.f.e.h.c.b bVar) {
+        a aVar3 = cVar.g;
         Integer num = cVar.h;
         Bundle bundle = new Bundle();
         bundle.putParcelable("com.google.android.gms.signin.internal.clientRequestedAccount", cVar.a);
         if (num != null) {
             bundle.putInt("com.google.android.gms.common.internal.ClientSettings.sessionId", num.intValue());
         }
-        if (aVar2 != null) {
+        if (aVar3 != null) {
             bundle.putBoolean("com.google.android.gms.signin.internal.offlineAccessRequested", false);
             bundle.putBoolean("com.google.android.gms.signin.internal.idTokenRequested", false);
             bundle.putString("com.google.android.gms.signin.internal.serverClientId", null);
@@ -30,6 +26,6 @@ public final class e extends a$a<b.i.a.f.l.b.a, a> {
             bundle.putString("com.google.android.gms.signin.internal.logSessionId", null);
             bundle.putBoolean("com.google.android.gms.signin.internal.waitForAccessTokenRefresh", false);
         }
-        return new b.i.a.f.l.b.a(context, looper, true, cVar, bundle, c_a, c_b);
+        return new b.i.a.f.l.b.a(context, looper, true, cVar, bundle, aVar2, bVar);
     }
 }

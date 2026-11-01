@@ -1,6 +1,5 @@
 package com.google.android.exoplayer2.ui;
 
-import android.R$color;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -18,23 +17,32 @@ import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup$LayoutParams;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import b.c.a.a0.d;
+import b.i.a.c.a2;
+import b.i.a.c.a3.o0;
+import b.i.a.c.b3.b;
+import b.i.a.c.c1;
+import b.i.a.c.c3.n;
 import b.i.a.c.d3.i;
 import b.i.a.c.f3.e0;
 import b.i.a.c.f3.m;
 import b.i.a.c.g3.y;
+import b.i.a.c.o1;
+import b.i.a.c.o2;
+import b.i.a.c.p1;
 import b.i.a.c.p2;
-import b.i.a.c.p2$a;
+import b.i.a.c.x1;
 import b.i.a.c.y1;
+import b.i.a.c.z1;
 import b.i.b.b.p;
 import com.discord.utilities.auth.GoogleSmartLockManager;
 import com.google.android.exoplayer2.PlaybackException;
+import com.google.android.exoplayer2.metadata.Metadata;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -61,7 +69,7 @@ public class PlayerView extends FrameLayout {
     public boolean I;
     public int J;
     public boolean K;
-    public final PlayerView$a k;
+    public final a k;
 
     @Nullable
     public final AspectRatioFrameLayout l;
@@ -103,7 +111,7 @@ public class PlayerView extends FrameLayout {
 
     /* JADX INFO: renamed from: y, reason: collision with root package name */
     @Nullable
-    public PlayerControlView$e f2974y;
+    public PlayerControlView.e f2974y;
 
     /* JADX INFO: renamed from: z, reason: collision with root package name */
     public boolean f2975z;
@@ -124,8 +132,8 @@ public class PlayerView extends FrameLayout {
         boolean z7;
         boolean z8;
         super(context, attributeSet, 0);
-        PlayerView$a playerView$a = new PlayerView$a(this);
-        this.k = playerView$a;
+        a aVar = new a();
+        this.k = aVar;
         if (isInEditMode()) {
             this.l = null;
             this.m = null;
@@ -141,35 +149,35 @@ public class PlayerView extends FrameLayout {
             ImageView imageView = new ImageView(context);
             if (e0.a >= 23) {
                 Resources resources = getResources();
-                imageView.setImageDrawable(resources.getDrawable(R$b.exo_edit_mode_logo, null));
-                imageView.setBackgroundColor(resources.getColor(R$a.exo_edit_mode_background_color, null));
+                imageView.setImageDrawable(resources.getDrawable(R.b.exo_edit_mode_logo, null));
+                imageView.setBackgroundColor(resources.getColor(R.a.exo_edit_mode_background_color, null));
             } else {
                 Resources resources2 = getResources();
-                imageView.setImageDrawable(resources2.getDrawable(R$b.exo_edit_mode_logo));
-                imageView.setBackgroundColor(resources2.getColor(R$a.exo_edit_mode_background_color));
+                imageView.setImageDrawable(resources2.getDrawable(R.b.exo_edit_mode_logo));
+                imageView.setBackgroundColor(resources2.getColor(R.a.exo_edit_mode_background_color));
             }
             addView(imageView);
             return;
         }
-        int i8 = R$e.exo_player_view;
+        int i8 = R.e.exo_player_view;
         if (attributeSet != null) {
-            TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet, R$g.PlayerView, 0, 0);
+            TypedArray typedArrayObtainStyledAttributes = context.getTheme().obtainStyledAttributes(attributeSet, R.g.PlayerView, 0, 0);
             try {
-                int i9 = R$g.PlayerView_shutter_background_color;
+                int i9 = R.g.PlayerView_shutter_background_color;
                 boolean zHasValue = typedArrayObtainStyledAttributes.hasValue(i9);
                 int color = typedArrayObtainStyledAttributes.getColor(i9, 0);
-                int resourceId = typedArrayObtainStyledAttributes.getResourceId(R$g.PlayerView_player_layout_id, i8);
-                boolean z9 = typedArrayObtainStyledAttributes.getBoolean(R$g.PlayerView_use_artwork, true);
-                int resourceId2 = typedArrayObtainStyledAttributes.getResourceId(R$g.PlayerView_default_artwork, 0);
-                boolean z10 = typedArrayObtainStyledAttributes.getBoolean(R$g.PlayerView_use_controller, true);
-                int i10 = typedArrayObtainStyledAttributes.getInt(R$g.PlayerView_surface_type, 1);
-                int i11 = typedArrayObtainStyledAttributes.getInt(R$g.PlayerView_resize_mode, 0);
-                int i12 = typedArrayObtainStyledAttributes.getInt(R$g.PlayerView_show_timeout, 5000);
-                boolean z11 = typedArrayObtainStyledAttributes.getBoolean(R$g.PlayerView_hide_on_touch, true);
-                boolean z12 = typedArrayObtainStyledAttributes.getBoolean(R$g.PlayerView_auto_show, true);
-                int integer = typedArrayObtainStyledAttributes.getInteger(R$g.PlayerView_show_buffering, 0);
-                this.C = typedArrayObtainStyledAttributes.getBoolean(R$g.PlayerView_keep_content_on_player_reset, this.C);
-                boolean z13 = typedArrayObtainStyledAttributes.getBoolean(R$g.PlayerView_hide_during_ads, true);
+                int resourceId = typedArrayObtainStyledAttributes.getResourceId(R.g.PlayerView_player_layout_id, i8);
+                boolean z9 = typedArrayObtainStyledAttributes.getBoolean(R.g.PlayerView_use_artwork, true);
+                int resourceId2 = typedArrayObtainStyledAttributes.getResourceId(R.g.PlayerView_default_artwork, 0);
+                boolean z10 = typedArrayObtainStyledAttributes.getBoolean(R.g.PlayerView_use_controller, true);
+                int i10 = typedArrayObtainStyledAttributes.getInt(R.g.PlayerView_surface_type, 1);
+                int i11 = typedArrayObtainStyledAttributes.getInt(R.g.PlayerView_resize_mode, 0);
+                int i12 = typedArrayObtainStyledAttributes.getInt(R.g.PlayerView_show_timeout, 5000);
+                boolean z11 = typedArrayObtainStyledAttributes.getBoolean(R.g.PlayerView_hide_on_touch, true);
+                boolean z12 = typedArrayObtainStyledAttributes.getBoolean(R.g.PlayerView_auto_show, true);
+                int integer = typedArrayObtainStyledAttributes.getInteger(R.g.PlayerView_show_buffering, 0);
+                this.C = typedArrayObtainStyledAttributes.getBoolean(R.g.PlayerView_keep_content_on_player_reset, this.C);
+                boolean z13 = typedArrayObtainStyledAttributes.getBoolean(R.g.PlayerView_hide_during_ads, true);
                 typedArrayObtainStyledAttributes.recycle();
                 i3 = i11;
                 z2 = z11;
@@ -205,12 +213,12 @@ public class PlayerView extends FrameLayout {
         }
         LayoutInflater.from(context).inflate(i, this);
         setDescendantFocusability(262144);
-        AspectRatioFrameLayout aspectRatioFrameLayout = (AspectRatioFrameLayout) findViewById(R$c.exo_content_frame);
+        AspectRatioFrameLayout aspectRatioFrameLayout = (AspectRatioFrameLayout) findViewById(R.c.exo_content_frame);
         this.l = aspectRatioFrameLayout;
         if (aspectRatioFrameLayout != null) {
             aspectRatioFrameLayout.setResizeMode(i3);
         }
-        View viewFindViewById = findViewById(R$c.exo_shutter);
+        View viewFindViewById = findViewById(R.c.exo_shutter);
         this.m = viewFindViewById;
         if (viewFindViewById != null && z5) {
             viewFindViewById.setBackgroundColor(i5);
@@ -219,7 +227,7 @@ public class PlayerView extends FrameLayout {
             this.n = null;
             z8 = false;
         } else {
-            ViewGroup$LayoutParams viewGroup$LayoutParams = new ViewGroup$LayoutParams(-1, -1);
+            ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
             if (i4 != 2) {
                 if (i4 == 3) {
                     try {
@@ -237,48 +245,48 @@ public class PlayerView extends FrameLayout {
                         throw new IllegalStateException("video_decoder_gl_surface_view requires an ExoPlayer dependency", e2);
                     }
                 }
-                this.n.setLayoutParams(viewGroup$LayoutParams);
-                this.n.setOnClickListener(playerView$a);
+                this.n.setLayoutParams(layoutParams);
+                this.n.setOnClickListener(aVar);
                 this.n.setClickable(false);
                 aspectRatioFrameLayout.addView(this.n, 0);
             } else {
                 this.n = new TextureView(context);
             }
             z8 = false;
-            this.n.setLayoutParams(viewGroup$LayoutParams);
-            this.n.setOnClickListener(playerView$a);
+            this.n.setLayoutParams(layoutParams);
+            this.n.setOnClickListener(aVar);
             this.n.setClickable(false);
             aspectRatioFrameLayout.addView(this.n, 0);
         }
         this.o = z8;
-        this.u = (FrameLayout) findViewById(R$c.exo_ad_overlay);
-        this.v = (FrameLayout) findViewById(R$c.exo_overlay);
-        ImageView imageView2 = (ImageView) findViewById(R$c.exo_artwork);
+        this.u = (FrameLayout) findViewById(R.c.exo_ad_overlay);
+        this.v = (FrameLayout) findViewById(R.c.exo_overlay);
+        ImageView imageView2 = (ImageView) findViewById(R.c.exo_artwork);
         this.p = imageView2;
         this.f2975z = z6 && imageView2 != null;
         if (i6 != 0) {
             this.A = ContextCompat.getDrawable(getContext(), i6);
         }
-        SubtitleView subtitleView = (SubtitleView) findViewById(R$c.exo_subtitles);
+        SubtitleView subtitleView = (SubtitleView) findViewById(R.c.exo_subtitles);
         this.q = subtitleView;
         if (subtitleView != null) {
             subtitleView.k();
             subtitleView.l();
         }
-        View viewFindViewById2 = findViewById(R$c.exo_buffering);
+        View viewFindViewById2 = findViewById(R.c.exo_buffering);
         this.r = viewFindViewById2;
         if (viewFindViewById2 != null) {
             viewFindViewById2.setVisibility(8);
         }
         this.B = i2;
-        TextView textView = (TextView) findViewById(R$c.exo_error_message);
+        TextView textView = (TextView) findViewById(R.c.exo_error_message);
         this.f2972s = textView;
         if (textView != null) {
             textView.setVisibility(8);
         }
-        int i13 = R$c.exo_controller;
+        int i13 = R.c.exo_controller;
         PlayerControlView playerControlView = (PlayerControlView) findViewById(i13);
-        View viewFindViewById3 = findViewById(R$c.exo_controller_placeholder);
+        View viewFindViewById3 = findViewById(R.c.exo_controller_placeholder);
         if (playerControlView != null) {
             this.t = playerControlView;
         } else if (viewFindViewById3 != null) {
@@ -303,7 +311,7 @@ public class PlayerView extends FrameLayout {
         m();
         PlayerControlView playerControlView4 = this.t;
         if (playerControlView4 != null) {
-            playerControlView4.l.add(playerView$a);
+            playerControlView4.l.add(aVar);
         }
     }
 
@@ -333,7 +341,7 @@ public class PlayerView extends FrameLayout {
     public final void c() {
         ImageView imageView = this.p;
         if (imageView != null) {
-            imageView.setImageResource(R$color.transparent);
+            imageView.setImageResource(android.R.color.transparent);
             this.p.setVisibility(4);
         }
     }
@@ -546,9 +554,9 @@ public class PlayerView extends FrameLayout {
         if (playerControlView == null || !this.f2973x) {
             setContentDescription(null);
         } else if (playerControlView.getVisibility() == 0) {
-            setContentDescription(this.I ? getResources().getString(R$f.exo_controls_hide) : null);
+            setContentDescription(this.I ? getResources().getString(R.f.exo_controls_hide) : null);
         } else {
-            setContentDescription(getResources().getString(R$f.exo_controls_show));
+            setContentDescription(getResources().getString(R.f.exo_controls_show));
         }
     }
 
@@ -598,8 +606,8 @@ public class PlayerView extends FrameLayout {
                 z4 = false;
                 break;
             }
-            p2$a p2_a = p2VarH.k.get(i);
-            boolean[] zArr = p2_a.m;
+            p2.a aVar = p2VarH.k.get(i);
+            boolean[] zArr = aVar.m;
             int length = zArr.length;
             int i2 = 0;
             while (true) {
@@ -614,7 +622,7 @@ public class PlayerView extends FrameLayout {
                     i2++;
                 }
             }
-            if (z5 && p2_a.l == 2) {
+            if (z5 && aVar.l == 2) {
                 z4 = true;
                 break;
             }
@@ -684,9 +692,9 @@ public class PlayerView extends FrameLayout {
         return j();
     }
 
-    public void setAspectRatioListener(@Nullable AspectRatioFrameLayout$b aspectRatioFrameLayout$b) {
+    public void setAspectRatioListener(@Nullable AspectRatioFrameLayout.b bVar) {
         d.H(this.l);
-        this.l.setAspectRatioListener(aspectRatioFrameLayout$b);
+        this.l.setAspectRatioListener(bVar);
     }
 
     public void setControllerAutoShow(boolean z2) {
@@ -711,20 +719,20 @@ public class PlayerView extends FrameLayout {
         }
     }
 
-    public void setControllerVisibilityListener(@Nullable PlayerControlView$e playerControlView$e) {
+    public void setControllerVisibilityListener(@Nullable PlayerControlView.e eVar) {
         d.H(this.t);
-        PlayerControlView$e playerControlView$e2 = this.f2974y;
-        if (playerControlView$e2 == playerControlView$e) {
+        PlayerControlView.e eVar2 = this.f2974y;
+        if (eVar2 == eVar) {
             return;
         }
-        if (playerControlView$e2 != null) {
-            this.t.l.remove(playerControlView$e2);
+        if (eVar2 != null) {
+            this.t.l.remove(eVar2);
         }
-        this.f2974y = playerControlView$e;
-        if (playerControlView$e != null) {
+        this.f2974y = eVar;
+        if (eVar != null) {
             PlayerControlView playerControlView = this.t;
             Objects.requireNonNull(playerControlView);
-            playerControlView.l.add(playerControlView$e);
+            playerControlView.l.add(eVar);
         }
     }
 
@@ -890,6 +898,241 @@ public class PlayerView extends FrameLayout {
         View view = this.n;
         if (view instanceof SurfaceView) {
             view.setVisibility(i);
+        }
+    }
+
+    public final class a implements y1.e, View.OnLayoutChangeListener, View.OnClickListener, PlayerControlView.e {
+
+        @Nullable
+        public Object k;
+        public final o2.b j = new o2.b();
+
+        public a() {
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void A(p1 p1Var) {
+            a2.i(this, p1Var);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void D(boolean z2) {
+            a2.t(this, z2);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void E(y1 y1Var, y1.d dVar) {
+            a2.e(this, y1Var, dVar);
+        }
+
+        @Override // b.i.a.c.y1.e
+        public /* synthetic */ void G(int i, boolean z2) {
+            a2.d(this, i, z2);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void H(boolean z2, int i) {
+            z1.k(this, z2, i);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void L(int i) {
+            a2.s(this, i);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void M(o1 o1Var, int i) {
+            a2.h(this, o1Var, i);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public void W(boolean z2, int i) {
+            PlayerView playerView = PlayerView.this;
+            int i2 = PlayerView.j;
+            playerView.l();
+            PlayerView playerView2 = PlayerView.this;
+            if (playerView2.e() && playerView2.H) {
+                playerView2.d();
+            } else {
+                playerView2.f(false);
+            }
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void Y(o0 o0Var, n nVar) {
+            z1.r(this, o0Var, nVar);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void a() {
+            z1.o(this);
+        }
+
+        @Override // b.i.a.c.y1.e
+        public /* synthetic */ void a0(int i, int i2) {
+            a2.v(this, i, i2);
+        }
+
+        @Override // b.i.a.c.y1.e
+        public /* synthetic */ void b(Metadata metadata) {
+            a2.j(this, metadata);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void b0(x1 x1Var) {
+            a2.l(this, x1Var);
+        }
+
+        @Override // b.i.a.c.y1.e
+        public void c() {
+            View view = PlayerView.this.m;
+            if (view != null) {
+                view.setVisibility(4);
+            }
+        }
+
+        @Override // b.i.a.c.y1.e
+        public /* synthetic */ void d(boolean z2) {
+            a2.u(this, z2);
+        }
+
+        @Override // b.i.a.c.y1.e
+        public void e(List<b> list) {
+            SubtitleView subtitleView = PlayerView.this.q;
+            if (subtitleView != null) {
+                subtitleView.setCues(list);
+            }
+        }
+
+        @Override // b.i.a.c.y1.e
+        public void f(y yVar) {
+            PlayerView playerView = PlayerView.this;
+            int i = PlayerView.j;
+            playerView.k();
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void f0(PlaybackException playbackException) {
+            a2.p(this, playbackException);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public void g(y1.f fVar, y1.f fVar2, int i) {
+            PlayerView playerView = PlayerView.this;
+            int i2 = PlayerView.j;
+            if (playerView.e()) {
+                PlayerView playerView2 = PlayerView.this;
+                if (playerView2.H) {
+                    playerView2.d();
+                }
+            }
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void h(int i) {
+            a2.n(this, i);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void i(boolean z2) {
+            z1.d(this, z2);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void j(int i) {
+            z1.l(this, i);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void j0(boolean z2) {
+            a2.g(this, z2);
+        }
+
+        @Override // com.google.android.exoplayer2.ui.PlayerControlView.e
+        public void k(int i) {
+            PlayerView playerView = PlayerView.this;
+            int i2 = PlayerView.j;
+            playerView.m();
+        }
+
+        @Override // android.view.View.OnClickListener
+        public void onClick(View view) {
+            PlayerView playerView = PlayerView.this;
+            int i = PlayerView.j;
+            playerView.j();
+        }
+
+        @Override // android.view.View.OnLayoutChangeListener
+        public void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+            PlayerView.a((TextureView) view, PlayerView.this.J);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public void p(p2 p2Var) {
+            y1 y1Var = PlayerView.this.w;
+            Objects.requireNonNull(y1Var);
+            o2 o2VarK = y1Var.K();
+            if (o2VarK.q()) {
+                this.k = null;
+            } else if (y1Var.H().k.isEmpty()) {
+                Object obj = this.k;
+                if (obj != null) {
+                    int iB = o2VarK.b(obj);
+                    if (iB != -1) {
+                        if (y1Var.C() == o2VarK.f(iB, this.j).l) {
+                            return;
+                        }
+                    }
+                    this.k = null;
+                }
+            } else {
+                this.k = o2VarK.g(y1Var.m(), this.j, true).k;
+            }
+            PlayerView.this.o(false);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void r(boolean z2) {
+            a2.f(this, z2);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void s(PlaybackException playbackException) {
+            a2.o(this, playbackException);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void t(y1.b bVar) {
+            a2.a(this, bVar);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public /* synthetic */ void v(o2 o2Var, int i) {
+            a2.w(this, o2Var, i);
+        }
+
+        @Override // b.i.a.c.y1.e
+        public /* synthetic */ void w(float f) {
+            a2.z(this, f);
+        }
+
+        @Override // b.i.a.c.y1.c
+        public void y(int i) {
+            PlayerView playerView = PlayerView.this;
+            int i2 = PlayerView.j;
+            playerView.l();
+            PlayerView.this.n();
+            PlayerView playerView2 = PlayerView.this;
+            if (playerView2.e() && playerView2.H) {
+                playerView2.d();
+            } else {
+                playerView2.f(false);
+            }
+        }
+
+        @Override // b.i.a.c.y1.e
+        public /* synthetic */ void z(c1 c1Var) {
+            a2.c(this, c1Var);
         }
     }
 }

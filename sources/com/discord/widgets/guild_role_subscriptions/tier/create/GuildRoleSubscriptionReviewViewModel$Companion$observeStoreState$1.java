@@ -10,7 +10,7 @@ import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: GuildRoleSubscriptionReviewViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class GuildRoleSubscriptionReviewViewModel$Companion$observeStoreState$1 extends o implements Function0<GuildRoleSubscriptionReviewViewModel$StoreState> {
+public final class GuildRoleSubscriptionReviewViewModel$Companion$observeStoreState$1 extends o implements Function0<GuildRoleSubscriptionReviewViewModel.StoreState> {
     public final /* synthetic */ long $guildId;
     public final /* synthetic */ StoreChannels $storeChannels;
 
@@ -22,13 +22,13 @@ public final class GuildRoleSubscriptionReviewViewModel$Companion$observeStoreSt
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public /* bridge */ /* synthetic */ GuildRoleSubscriptionReviewViewModel$StoreState invoke() {
+    public /* bridge */ /* synthetic */ GuildRoleSubscriptionReviewViewModel.StoreState invoke() {
         return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final GuildRoleSubscriptionReviewViewModel$StoreState invoke() {
+    public final GuildRoleSubscriptionReviewViewModel.StoreState invoke() {
         Collection<Channel> collectionValues = this.$storeChannels.getChannelsForGuild(this.$guildId).values();
         ArrayList arrayList = new ArrayList();
         for (Object obj : collectionValues) {
@@ -36,6 +36,6 @@ public final class GuildRoleSubscriptionReviewViewModel$Companion$observeStoreSt
                 arrayList.add(obj);
             }
         }
-        return new GuildRoleSubscriptionReviewViewModel$StoreState(arrayList.size());
+        return new GuildRoleSubscriptionReviewViewModel.StoreState(arrayList.size());
     }
 }

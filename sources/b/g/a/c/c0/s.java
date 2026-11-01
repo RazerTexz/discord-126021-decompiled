@@ -1,16 +1,13 @@
 package b.g.a.c.c0;
 
-import b.g.a.a.p$b;
-import b.g.a.c.b$a;
-
 /* JADX INFO: compiled from: BeanPropertyDefinition.java */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class s {
-    public static final p$b j;
+    public static final b.g.a.a.p.b j;
 
     static {
-        p$b p_b = p$b.j;
-        j = p$b.j;
+        b.g.a.a.p.b bVar = b.g.a.a.p.b.j;
+        j = b.g.a.a.p.b.j;
     }
 
     public boolean f() {
@@ -21,9 +18,9 @@ public abstract class s {
         return bVarK != null;
     }
 
-    public abstract p$b g();
+    public abstract b.g.a.a.p.b g();
 
-    public b$a h() {
+    public b.g.a.c.b.a h() {
         return null;
     }
 

@@ -1,7 +1,6 @@
 package com.discord.stores;
 
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
 import com.discord.utilities.applicationcommands.ApplicationCommandFrecencyTracker;
 import com.discord.utilities.frecency.FrecencyTracker;
@@ -12,9 +11,9 @@ import d0.g0.w;
 import d0.t.g0;
 import d0.t.h0;
 import d0.t.n;
-import d0.t.o;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -22,7 +21,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
 
@@ -35,6 +35,60 @@ public final class StoreApplicationCommandFrecency extends StoreV2 {
     private final ObservationDeck observationDeck;
     private Map<Long, List<String>> topCommandIds;
     private Map<Long, ? extends List<String>> topCommandIdsSnapshot;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommandFrecency$observeTopCommandIds$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationCommandFrecency.kt */
+    public final class AnonymousClass1 extends o implements Function0<List<? extends String>> {
+        public final /* synthetic */ Long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Long l) {
+            super(0);
+            this.$guildId = l;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<? extends String> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<? extends String> invoke2() {
+            return StoreApplicationCommandFrecency.this.getTopCommandIds(this.$guildId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommandFrecency$onCommandUsed$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreApplicationCommandFrecency.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ String $commandId;
+        public final /* synthetic */ Long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Long l, String str) {
+            super(0);
+            this.$guildId = l;
+            this.$commandId = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            FrecencyTracker.track$default(StoreApplicationCommandFrecency.access$getFrecency$p(StoreApplicationCommandFrecency.this), StoreApplicationCommandFrecency.access$getKey(StoreApplicationCommandFrecency.this, this.$guildId, this.$commandId), 0L, 2, null);
+            StoreApplicationCommandFrecency.access$getFrecencyCache$p(StoreApplicationCommandFrecency.this).set(StoreApplicationCommandFrecency.access$getFrecency$p(StoreApplicationCommandFrecency.this), true);
+            Map mapAccess$getTopCommandIds$p = StoreApplicationCommandFrecency.access$getTopCommandIds$p(StoreApplicationCommandFrecency.this);
+            Long l = this.$guildId;
+            mapAccess$getTopCommandIds$p.put(Long.valueOf(l != null ? l.longValue() : 0L), StoreApplicationCommandFrecency.access$getAllTopCommandIds(StoreApplicationCommandFrecency.this, this.$guildId));
+            StoreApplicationCommandFrecency storeApplicationCommandFrecency = StoreApplicationCommandFrecency.this;
+            storeApplicationCommandFrecency.markChanged(storeApplicationCommandFrecency);
+        }
+    }
 
     public /* synthetic */ StoreApplicationCommandFrecency(Dispatcher dispatcher, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck);
@@ -84,7 +138,7 @@ public final class StoreApplicationCommandFrecency extends StoreV2 {
                 arrayList.add(next);
             }
         }
-        ArrayList arrayList2 = new ArrayList(o.collectionSizeOrDefault(arrayList, 10));
+        ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(arrayList, 10));
         for (String str2 : arrayList) {
             if (w.contains$default((CharSequence) str2, (CharSequence) ":", false, 2, (Object) null)) {
                 str2 = (String) w.split$default((CharSequence) str2, new String[]{":"}, false, 0, 6, (Object) null).get(0);
@@ -112,14 +166,14 @@ public final class StoreApplicationCommandFrecency extends StoreV2 {
     }
 
     public final Observable<List<String>> observeTopCommandIds(Long guildId) {
-        Observable<List<String>> observableT = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreApplicationCommandFrecency$observeTopCommandIds$1(this, guildId), 14, null).T(getTopCommandIds(guildId));
+        Observable<List<String>> observableT = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(guildId), 14, null).T(getTopCommandIds(guildId));
         m.checkNotNullExpressionValue(observableT, "observationDeck.connectR…etTopCommandIds(guildId))");
         return observableT;
     }
 
     public final void onCommandUsed(Long guildId, String commandId) {
         m.checkNotNullParameter(commandId, "commandId");
-        this.dispatcher.schedule(new StoreApplicationCommandFrecency$onCommandUsed$1(this, guildId, commandId));
+        this.dispatcher.schedule(new AnonymousClass1(guildId, commandId));
     }
 
     public final void populateStore() {
@@ -146,8 +200,8 @@ public final class StoreApplicationCommandFrecency extends StoreV2 {
             }
         }
         LinkedHashMap linkedHashMap2 = new LinkedHashMap(g0.mapCapacity(linkedHashMap.size()));
-        for (Map$Entry map$Entry : linkedHashMap.entrySet()) {
-            linkedHashMap2.put(map$Entry.getKey(), u.toList((Iterable) map$Entry.getValue()));
+        for (Map.Entry entry : linkedHashMap.entrySet()) {
+            linkedHashMap2.put(entry.getKey(), u.toList((Iterable) entry.getValue()));
         }
         this.topCommandIds = h0.toMutableMap(linkedHashMap2);
         this.topCommandIdsSnapshot = linkedHashMap;

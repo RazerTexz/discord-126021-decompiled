@@ -2,7 +2,7 @@ package com.discord.utilities.message;
 
 import android.content.Context;
 import b.a.k.b;
-import com.discord.R$plurals;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelRecipientNick;
 import com.discord.api.interaction.Interaction;
@@ -18,6 +18,7 @@ import com.discord.utilities.context.ContextExtensionsKt;
 import com.discord.utilities.resources.StringResourceUtilsKt;
 import com.discord.utilities.time.TimeUtils;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -31,9 +32,30 @@ import kotlin.jvm.functions.Function1;
 public final class MessageUtils {
     private static final StickerPartial[] ROLE_SUBSCRIPTION_PURCHASE_STICKERS;
     private static final Comparator<Long> SORT_BY_IDS_COMPARATOR;
-    private static final int[] WELCOME_MESSAGES = {2131896192, 2131896194, 2131896196, 2131896198, 2131896200, 2131896202, 2131896204, 2131896206, 2131896208, 2131896210, 2131896212, 2131896214, 2131896216};
+    private static final int[] WELCOME_MESSAGES = {R.string.system_message_guild_member_join_001, R.string.system_message_guild_member_join_002, R.string.system_message_guild_member_join_003, R.string.system_message_guild_member_join_004, R.string.system_message_guild_member_join_005, R.string.system_message_guild_member_join_006, R.string.system_message_guild_member_join_007, R.string.system_message_guild_member_join_008, R.string.system_message_guild_member_join_009, R.string.system_message_guild_member_join_010, R.string.system_message_guild_member_join_011, R.string.system_message_guild_member_join_012, R.string.system_message_guild_member_join_013};
     private static final StickerPartial[] WELCOME_STICKERS;
     public static final MessageUtils INSTANCE = new MessageUtils();
+
+    /* JADX INFO: renamed from: com.discord.utilities.message.MessageUtils$getSystemMessageRoleSubscriptionPurchase$1, reason: invalid class name */
+    /* JADX INFO: compiled from: MessageUtils.kt */
+    public final class AnonymousClass1 extends o implements Function1<RenderContext, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            m.checkNotNullParameter(renderContext, "$receiver");
+        }
+    }
 
     static {
         StickerFormatType stickerFormatType = StickerFormatType.LOTTIE;
@@ -70,17 +92,17 @@ public final class MessageUtils {
         List<User> mentions2 = message.getMentions();
         if (mentions2 != null) {
             for (User user : mentions2) {
-                map.put(Long.valueOf(user.getId()), GuildMember.Companion.getNickOrUsername(new CoreUser(user), guildMembers.get(Long.valueOf(user.getId())), channel, nicks));
+                map.put(Long.valueOf(user.getId()), GuildMember.INSTANCE.getNickOrUsername(new CoreUser(user), guildMembers.get(Long.valueOf(user.getId())), channel, nicks));
             }
         }
         User author = message.getAuthor();
         if (author != null) {
-            map.put(Long.valueOf(author.getId()), GuildMember.Companion.getNickOrUsername(new CoreUser(author), guildMembers.get(Long.valueOf(author.getId())), channel, nicks));
+            map.put(Long.valueOf(author.getId()), GuildMember.INSTANCE.getNickOrUsername(new CoreUser(author), guildMembers.get(Long.valueOf(author.getId())), channel, nicks));
         }
         Interaction interaction = message.getInteraction();
-        User userC = interaction != null ? interaction.getUser() : null;
-        if (userC != null) {
-            map.put(Long.valueOf(userC.getId()), GuildMember.Companion.getNickOrUsername(new CoreUser(userC), guildMembers.get(Long.valueOf(userC.getId())), channel, nicks));
+        User user2 = interaction != null ? interaction.getUser() : null;
+        if (user2 != null) {
+            map.put(Long.valueOf(user2.getId()), GuildMember.INSTANCE.getNickOrUsername(new CoreUser(user2), guildMembers.get(Long.valueOf(user2.getId())), channel, nicks));
         }
         return map;
     }
@@ -101,7 +123,7 @@ public final class MessageUtils {
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ CharSequence getSystemMessageRoleSubscriptionPurchase$default(MessageUtils messageUtils, Context context, String str, String str2, RoleSubscriptionData roleSubscriptionData, Function1 function1, int i, Object obj) {
         if ((i & 8) != 0) {
-            function1 = MessageUtils$getSystemMessageRoleSubscriptionPurchase$1.INSTANCE;
+            function1 = AnonymousClass1.INSTANCE;
         }
         return messageUtils.getSystemMessageRoleSubscriptionPurchase(context, str, str2, roleSubscriptionData, function1);
     }
@@ -111,13 +133,13 @@ public final class MessageUtils {
         m.checkNotNullParameter(function1, "initializer");
         Locale localeOrNull = ContextExtensionsKt.getLocaleOrNull(context);
         if ((!m.areEqual(localeOrNull != null ? localeOrNull.getLanguage() : null, new Locale("en").getLanguage())) || roleSubscriptionData == null) {
-            return b.h(context, 2131894772, new Object[0], null, 4);
+            return b.h(context, R.string.reply_quote_message_not_loaded, new Object[0], null, 4);
         }
-        String strB = roleSubscriptionData.getTierName();
+        String tierName = roleSubscriptionData.getTierName();
         if (roleSubscriptionData.getTotalMonthsSubscribed() > 0) {
-            return b.b(context, roleSubscriptionData.getIsRenewal() ? 2131896258 : 2131896254, new Object[]{str2, strB, str, StringResourceUtilsKt.getI18nPluralString(context, R$plurals.system_message_role_subscription_join_with_duration_mobile_months, roleSubscriptionData.getTotalMonthsSubscribed(), Integer.valueOf(roleSubscriptionData.getTotalMonthsSubscribed()))}, function1);
+            return b.b(context, roleSubscriptionData.getIsRenewal() ? R.string.system_message_role_subscription_renew_with_duration_mobile : R.string.system_message_role_subscription_join_with_duration_mobile, new Object[]{str2, tierName, str, StringResourceUtilsKt.getI18nPluralString(context, R.plurals.system_message_role_subscription_join_with_duration_mobile_months, roleSubscriptionData.getTotalMonthsSubscribed(), Integer.valueOf(roleSubscriptionData.getTotalMonthsSubscribed()))}, function1);
         }
-        return b.b(context, roleSubscriptionData.getIsRenewal() ? 2131896256 : 2131896252, new Object[]{str2, strB, str}, function1);
+        return b.b(context, roleSubscriptionData.getIsRenewal() ? R.string.system_message_role_subscription_renew_mobile : R.string.system_message_role_subscription_join_mobile, new Object[]{str2, tierName, str}, function1);
     }
 
     public final int getSystemMessageUserJoin(Context context, long messageId) {

@@ -1,7 +1,5 @@
 package b.i.a.f.i.b;
 
-import b.i.a.f.h.l.n0$a;
-import b.i.a.f.h.l.p0$b;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -59,22 +57,22 @@ public abstract class ea {
 
     public static Boolean e(String str, b.i.a.f.h.l.p0 p0Var, q3 q3Var) {
         List<String> listA;
-        p0$b p0_b = p0$b.REGEXP;
-        p0$b p0_b2 = p0$b.IN_LIST;
+        b.i.a.f.h.l.p0.b bVar = b.i.a.f.h.l.p0.b.REGEXP;
+        b.i.a.f.h.l.p0.b bVar2 = b.i.a.f.h.l.p0.b.IN_LIST;
         Objects.requireNonNull(p0Var, "null reference");
-        if (str == null || !p0Var.u() || p0Var.v() == p0$b.UNKNOWN_MATCH_TYPE) {
+        if (str == null || !p0Var.u() || p0Var.v() == b.i.a.f.h.l.p0.b.UNKNOWN_MATCH_TYPE) {
             return null;
         }
-        if (p0Var.v() == p0_b2) {
+        if (p0Var.v() == bVar2) {
             if (p0Var.B() == 0) {
                 return null;
             }
         } else if (!p0Var.w()) {
             return null;
         }
-        p0$b p0_bV = p0Var.v();
+        b.i.a.f.h.l.p0.b bVarV = p0Var.v();
         boolean z2 = p0Var.z();
-        String strX = (z2 || p0_bV == p0_b || p0_bV == p0_b2) ? p0Var.x() : p0Var.x().toUpperCase(Locale.ENGLISH);
+        String strX = (z2 || bVarV == bVar || bVarV == bVar2) ? p0Var.x() : p0Var.x().toUpperCase(Locale.ENGLISH);
         if (p0Var.B() == 0) {
             listA = null;
         } else {
@@ -88,18 +86,18 @@ public abstract class ea {
                 listA = Collections.unmodifiableList(arrayList);
             }
         }
-        String str2 = p0_bV == p0_b ? strX : null;
-        if (p0_bV == p0_b2) {
+        String str2 = bVarV == bVar ? strX : null;
+        if (bVarV == bVar2) {
             if (listA == null || listA.size() == 0) {
                 return null;
             }
         } else if (strX == null) {
             return null;
         }
-        if (!z2 && p0_bV != p0_b) {
+        if (!z2 && bVarV != bVar) {
             str = str.toUpperCase(Locale.ENGLISH);
         }
-        switch (aa.a[p0_bV.ordinal()]) {
+        switch (aa.a[bVarV.ordinal()]) {
             case 1:
                 try {
                     return Boolean.valueOf(Pattern.compile(str2, z2 ? 0 : 66).matcher(str).matches());
@@ -130,18 +128,18 @@ public abstract class ea {
         BigDecimal bigDecimal3;
         BigDecimal bigDecimal4;
         Objects.requireNonNull(n0Var, "null reference");
-        if (n0Var.u() && n0Var.v() != n0$a.UNKNOWN_COMPARISON_TYPE) {
-            n0$a n0_aV = n0Var.v();
-            n0$a n0_a = n0$a.BETWEEN;
-            if (n0_aV == n0_a) {
+        if (n0Var.u() && n0Var.v() != b.i.a.f.h.l.n0.a.UNKNOWN_COMPARISON_TYPE) {
+            b.i.a.f.h.l.n0.a aVarV = n0Var.v();
+            b.i.a.f.h.l.n0.a aVar = b.i.a.f.h.l.n0.a.BETWEEN;
+            if (aVarV == aVar) {
                 if (!n0Var.A() || !n0Var.C()) {
                     return null;
                 }
             } else if (!n0Var.y()) {
                 return null;
             }
-            n0$a n0_aV2 = n0Var.v();
-            if (n0Var.v() == n0_a) {
+            b.i.a.f.h.l.n0.a aVarV2 = n0Var.v();
+            if (n0Var.v() == aVar) {
                 if (q9.P(n0Var.B()) && q9.P(n0Var.D())) {
                     try {
                         BigDecimal bigDecimal5 = new BigDecimal(n0Var.B());
@@ -162,13 +160,13 @@ public abstract class ea {
                 bigDecimal4 = null;
             } catch (NumberFormatException unused2) {
             }
-            if (n0_aV2 == n0_a) {
+            if (aVarV2 == aVar) {
                 if (bigDecimal3 == null) {
                     return null;
                 }
             } else if (bigDecimal2 != null) {
             }
-            int i = aa.f1519b[n0_aV2.ordinal()];
+            int i = aa.f1519b[aVarV2.ordinal()];
             boolean z2 = false;
             if (i == 1) {
                 return Boolean.valueOf(bigDecimal.compareTo(bigDecimal2) == -1);

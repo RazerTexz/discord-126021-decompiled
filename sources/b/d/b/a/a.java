@@ -9,19 +9,18 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.view.ViewModelProvider$Factory;
+import androidx.view.ViewModelProvider;
 import androidx.view.ViewModelStore;
 import b.a.i.m4;
-import b.a.q.o0.e$b;
+import b.a.q.o0.e;
 import b.i.c.m.d.b;
 import com.discord.api.channel.Channel;
-import com.discord.models.domain.Model$JsonReader;
+import com.discord.models.domain.Model;
 import com.discord.models.guild.Guild;
 import com.discord.models.user.User;
 import com.esotericsoftware.kryo.KryoException;
 import com.google.android.exoplayer2.ParserException;
 import d0.e0.g;
-import d0.e0.p.d.m0.f.z.b$b;
 import d0.e0.p.d.m0.n.n1.i;
 import d0.o;
 import d0.z.d.a0;
@@ -230,16 +229,16 @@ public class a {
         return String.valueOf(str).length() + i;
     }
 
-    public static Pair b0(e$b e_b, Float f, String str) {
-        return o.to(str, Long.valueOf(e$b.a(e_b, f)));
+    public static Pair b0(e.b bVar, Float f, String str) {
+        return o.to(str, Long.valueOf(e.b.a(bVar, f)));
     }
 
     public static Object c(Channel channel, Map map) {
         return map.get(Long.valueOf(channel.getGuildId()));
     }
 
-    public static Ref$ObjectRef c0(Model$JsonReader model$JsonReader, String str) {
-        m.checkNotNullParameter(model$JsonReader, str);
+    public static Ref$ObjectRef c0(Model.JsonReader jsonReader, String str) {
+        m.checkNotNullParameter(jsonReader, str);
         return new Ref$ObjectRef();
     }
 
@@ -255,7 +254,7 @@ public class a {
         return map.get(Long.valueOf(guild.getId()));
     }
 
-    public static ViewModelProvider$Factory e0(Fragment fragment, String str) {
+    public static ViewModelProvider.Factory e0(Fragment fragment, String str) {
         FragmentActivity fragmentActivityRequireActivity = fragment.requireActivity();
         m.checkNotNullExpressionValue(fragmentActivityRequireActivity, str);
         return fragmentActivityRequireActivity.getDefaultViewModelProviderFactory();
@@ -446,8 +445,8 @@ public class a {
         return str + fragment + str2;
     }
 
-    public static boolean u0(b$b b_b, int i, String str) {
-        Boolean bool = b_b.get(i);
+    public static boolean u0(d0.e0.p.d.m0.f.z.b.C0555b c0555b, int i, String str) {
+        Boolean bool = c0555b.get(i);
         m.checkNotNullExpressionValue(bool, str);
         return bool.booleanValue();
     }

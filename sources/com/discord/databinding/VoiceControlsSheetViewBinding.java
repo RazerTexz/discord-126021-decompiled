@@ -11,8 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.views.NumericBadgingView;
 import com.discord.views.calls.VolumeSliderView;
 import com.google.android.material.textview.MaterialTextView;
@@ -119,75 +118,75 @@ public final class VoiceControlsSheetViewBinding implements ViewBinding {
 
     @NonNull
     public static VoiceControlsSheetViewBinding a(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
-        layoutInflater.inflate(R$layout.voice_controls_sheet_view, viewGroup);
-        int i = R$id.audio_output_button;
-        ImageView imageView = (ImageView) viewGroup.findViewById(R$id.audio_output_button);
+        layoutInflater.inflate(R.layout.voice_controls_sheet_view, viewGroup);
+        int i = R.id.audio_output_button;
+        ImageView imageView = (ImageView) viewGroup.findViewById(R.id.audio_output_button);
         if (imageView != null) {
-            i = R$id.audio_output_container;
-            FrameLayout frameLayout = (FrameLayout) viewGroup.findViewById(R$id.audio_output_container);
+            i = R.id.audio_output_container;
+            FrameLayout frameLayout = (FrameLayout) viewGroup.findViewById(R.id.audio_output_container);
             if (frameLayout != null) {
-                i = R$id.audio_output_more;
-                ImageView imageView2 = (ImageView) viewGroup.findViewById(R$id.audio_output_more);
+                i = R.id.audio_output_more;
+                ImageView imageView2 = (ImageView) viewGroup.findViewById(R.id.audio_output_more);
                 if (imageView2 != null) {
-                    i = R$id.audio_output_secondary_button;
-                    TextView textView = (TextView) viewGroup.findViewById(R$id.audio_output_secondary_button);
+                    i = R.id.audio_output_secondary_button;
+                    TextView textView = (TextView) viewGroup.findViewById(R.id.audio_output_secondary_button);
                     if (textView != null) {
-                        i = R$id.deafen_secondary_button;
-                        TextView textView2 = (TextView) viewGroup.findViewById(R$id.deafen_secondary_button);
+                        i = R.id.deafen_secondary_button;
+                        TextView textView2 = (TextView) viewGroup.findViewById(R.id.deafen_secondary_button);
                         if (textView2 != null) {
-                            i = R$id.disconnect_button;
-                            ImageView imageView3 = (ImageView) viewGroup.findViewById(R$id.disconnect_button);
+                            i = R.id.disconnect_button;
+                            ImageView imageView3 = (ImageView) viewGroup.findViewById(R.id.disconnect_button);
                             if (imageView3 != null) {
-                                i = R$id.handle;
-                                View viewFindViewById = viewGroup.findViewById(R$id.handle);
+                                i = R.id.handle;
+                                View viewFindViewById = viewGroup.findViewById(R.id.handle);
                                 if (viewFindViewById != null) {
-                                    i = R$id.invite_button;
-                                    ImageView imageView4 = (ImageView) viewGroup.findViewById(R$id.invite_button);
+                                    i = R.id.invite_button;
+                                    ImageView imageView4 = (ImageView) viewGroup.findViewById(R.id.invite_button);
                                     if (imageView4 != null) {
-                                        i = R$id.invite_secondary_button;
-                                        TextView textView3 = (TextView) viewGroup.findViewById(R$id.invite_secondary_button);
+                                        i = R.id.invite_secondary_button;
+                                        TextView textView3 = (TextView) viewGroup.findViewById(R.id.invite_secondary_button);
                                         if (textView3 != null) {
-                                            i = R$id.move_to_audience_button;
-                                            ImageView imageView5 = (ImageView) viewGroup.findViewById(R$id.move_to_audience_button);
+                                            i = R.id.move_to_audience_button;
+                                            ImageView imageView5 = (ImageView) viewGroup.findViewById(R.id.move_to_audience_button);
                                             if (imageView5 != null) {
-                                                i = R$id.mute_button;
-                                                ImageView imageView6 = (ImageView) viewGroup.findViewById(R$id.mute_button);
+                                                i = R.id.mute_button;
+                                                ImageView imageView6 = (ImageView) viewGroup.findViewById(R.id.mute_button);
                                                 if (imageView6 != null) {
-                                                    i = R$id.peek_container;
-                                                    LinearLayout linearLayout = (LinearLayout) viewGroup.findViewById(R$id.peek_container);
+                                                    i = R.id.peek_container;
+                                                    LinearLayout linearLayout = (LinearLayout) viewGroup.findViewById(R.id.peek_container);
                                                     if (linearLayout != null) {
-                                                        i = R$id.push_to_talk_button;
-                                                        Button button = (Button) viewGroup.findViewById(R$id.push_to_talk_button);
+                                                        i = R.id.push_to_talk_button;
+                                                        Button button = (Button) viewGroup.findViewById(R.id.push_to_talk_button);
                                                         if (button != null) {
-                                                            i = R$id.raise_hand_badge;
-                                                            NumericBadgingView numericBadgingView = (NumericBadgingView) viewGroup.findViewById(R$id.raise_hand_badge);
+                                                            i = R.id.raise_hand_badge;
+                                                            NumericBadgingView numericBadgingView = (NumericBadgingView) viewGroup.findViewById(R.id.raise_hand_badge);
                                                             if (numericBadgingView != null) {
-                                                                i = R$id.raise_hand_button;
-                                                                ImageView imageView7 = (ImageView) viewGroup.findViewById(R$id.raise_hand_button);
+                                                                i = R.id.raise_hand_button;
+                                                                ImageView imageView7 = (ImageView) viewGroup.findViewById(R.id.raise_hand_button);
                                                                 if (imageView7 != null) {
-                                                                    i = R$id.screen_share_button;
-                                                                    ImageView imageView8 = (ImageView) viewGroup.findViewById(R$id.screen_share_button);
+                                                                    i = R.id.screen_share_button;
+                                                                    ImageView imageView8 = (ImageView) viewGroup.findViewById(R.id.screen_share_button);
                                                                     if (imageView8 != null) {
-                                                                        i = R$id.screen_share_secondary_button;
-                                                                        TextView textView4 = (TextView) viewGroup.findViewById(R$id.screen_share_secondary_button);
+                                                                        i = R.id.screen_share_secondary_button;
+                                                                        TextView textView4 = (TextView) viewGroup.findViewById(R.id.screen_share_secondary_button);
                                                                         if (textView4 != null) {
-                                                                            i = R$id.secondary_actions_card;
-                                                                            CardView cardView = (CardView) viewGroup.findViewById(R$id.secondary_actions_card);
+                                                                            i = R.id.secondary_actions_card;
+                                                                            CardView cardView = (CardView) viewGroup.findViewById(R.id.secondary_actions_card);
                                                                             if (cardView != null) {
-                                                                                i = R$id.stage_disconnect_button_large;
-                                                                                MaterialTextView materialTextView = (MaterialTextView) viewGroup.findViewById(R$id.stage_disconnect_button_large);
+                                                                                i = R.id.stage_disconnect_button_large;
+                                                                                MaterialTextView materialTextView = (MaterialTextView) viewGroup.findViewById(R.id.stage_disconnect_button_large);
                                                                                 if (materialTextView != null) {
-                                                                                    i = R$id.stop_watching_button;
-                                                                                    ImageView imageView9 = (ImageView) viewGroup.findViewById(R$id.stop_watching_button);
+                                                                                    i = R.id.stop_watching_button;
+                                                                                    ImageView imageView9 = (ImageView) viewGroup.findViewById(R.id.stop_watching_button);
                                                                                     if (imageView9 != null) {
-                                                                                        i = R$id.stream_volume_label;
-                                                                                        TextView textView5 = (TextView) viewGroup.findViewById(R$id.stream_volume_label);
+                                                                                        i = R.id.stream_volume_label;
+                                                                                        TextView textView5 = (TextView) viewGroup.findViewById(R.id.stream_volume_label);
                                                                                         if (textView5 != null) {
-                                                                                            i = R$id.stream_volume_slider;
-                                                                                            VolumeSliderView volumeSliderView = (VolumeSliderView) viewGroup.findViewById(R$id.stream_volume_slider);
+                                                                                            i = R.id.stream_volume_slider;
+                                                                                            VolumeSliderView volumeSliderView = (VolumeSliderView) viewGroup.findViewById(R.id.stream_volume_slider);
                                                                                             if (volumeSliderView != null) {
-                                                                                                i = R$id.video_button;
-                                                                                                ImageView imageView10 = (ImageView) viewGroup.findViewById(R$id.video_button);
+                                                                                                i = R.id.video_button;
+                                                                                                ImageView imageView10 = (ImageView) viewGroup.findViewById(R.id.video_button);
                                                                                                 if (imageView10 != null) {
                                                                                                     return new VoiceControlsSheetViewBinding(viewGroup, imageView, frameLayout, imageView2, textView, textView2, imageView3, viewFindViewById, imageView4, textView3, imageView5, imageView6, linearLayout, button, numericBadgingView, imageView7, imageView8, textView4, cardView, materialTextView, imageView9, textView5, volumeSliderView, imageView10);
                                                                                                 }

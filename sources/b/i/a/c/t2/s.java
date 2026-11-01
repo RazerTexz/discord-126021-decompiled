@@ -1,14 +1,16 @@
 package b.i.a.c.t2;
 
+import android.media.AudioTimestamp;
 import android.media.AudioTrack;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 /* JADX INFO: compiled from: AudioTimestampPoller.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class s {
 
     @Nullable
-    public final s$a a;
+    public final a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public int f1127b;
@@ -19,7 +21,7 @@ public final class s {
 
     public s(AudioTrack audioTrack) {
         if (b.i.a.c.f3.e0.a >= 19) {
-            this.a = new s$a(audioTrack);
+            this.a = new a(audioTrack);
             a();
         } else {
             this.a = null;
@@ -53,6 +55,22 @@ public final class s {
                 throw new IllegalStateException();
             }
             this.d = 500000L;
+        }
+    }
+
+    /* JADX INFO: compiled from: AudioTimestampPoller.java */
+    @RequiresApi(19)
+    public final class a {
+        public final AudioTrack a;
+        public long c;
+        public long d;
+        public long e;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final AudioTimestamp f1128b = new AudioTimestamp();
+
+        public a(AudioTrack audioTrack) {
+            this.a = audioTrack;
         }
     }
 }

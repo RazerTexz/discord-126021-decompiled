@@ -12,7 +12,7 @@ public class c extends AnimatorListenerAdapter {
         this.a = aVar;
     }
 
-    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator$AnimatorListener
+    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
     public void onAnimationEnd(Animator animator) {
         this.a.a.setEndIconVisible(false);
     }

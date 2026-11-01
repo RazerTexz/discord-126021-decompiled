@@ -1,7 +1,7 @@
 package b.q.a.k;
 
-import android.R$attr;
-import android.graphics.PorterDuff$Mode;
+import android.R;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 
@@ -12,7 +12,7 @@ public class d extends StateListDrawable {
 
     public d(Drawable drawable, int i) {
         this.j = i;
-        addState(new int[]{R$attr.state_selected}, drawable);
+        addState(new int[]{R.attr.state_selected}, drawable);
         addState(new int[0], drawable);
     }
 
@@ -30,7 +30,7 @@ public class d extends StateListDrawable {
             }
         }
         if (z2) {
-            setColorFilter(this.j, PorterDuff$Mode.SRC_ATOP);
+            setColorFilter(this.j, PorterDuff.Mode.SRC_ATOP);
         } else {
             clearColorFilter();
         }

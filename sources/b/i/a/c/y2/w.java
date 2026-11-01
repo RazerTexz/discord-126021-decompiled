@@ -1,7 +1,6 @@
 package b.i.a.c.y2;
 
 import android.media.MediaCodec;
-import android.media.MediaCodec$BufferInfo;
 import android.media.MediaFormat;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,7 +22,7 @@ public class w implements t {
     @Nullable
     public ByteBuffer[] c;
 
-    public w(MediaCodec mediaCodec, Surface surface, w$a w_a) {
+    public w(MediaCodec mediaCodec, Surface surface, a aVar) {
         this.a = mediaCodec;
         if (e0.a < 21) {
             this.f1316b = mediaCodec.getInputBuffers();
@@ -53,10 +52,10 @@ public class w implements t {
     }
 
     @Override // b.i.a.c.y2.t
-    public int e(MediaCodec$BufferInfo mediaCodec$BufferInfo) {
+    public int e(MediaCodec.BufferInfo bufferInfo) {
         int iDequeueOutputBuffer;
         do {
-            iDequeueOutputBuffer = this.a.dequeueOutputBuffer(mediaCodec$BufferInfo, 0L);
+            iDequeueOutputBuffer = this.a.dequeueOutputBuffer(bufferInfo, 0L);
             if (iDequeueOutputBuffer == -3 && e0.a < 21) {
                 this.c = this.a.getOutputBuffers();
             }
@@ -66,8 +65,8 @@ public class w implements t {
 
     @Override // b.i.a.c.y2.t
     @RequiresApi(23)
-    public void f(t$c t_c, Handler handler) {
-        this.a.setOnFrameRenderedListener(new i(this, t_c), handler);
+    public void f(t.c cVar, Handler handler) {
+        this.a.setOnFrameRenderedListener(new i(this, cVar), handler);
     }
 
     @Override // b.i.a.c.y2.t

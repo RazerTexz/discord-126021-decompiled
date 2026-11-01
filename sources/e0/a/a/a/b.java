@@ -10,6 +10,23 @@ public class b implements Runnable {
     public final /* synthetic */ int j;
     public final /* synthetic */ c k;
 
+    /* JADX INFO: compiled from: CameraHandlerThread.java */
+    public class a implements Runnable {
+        public final /* synthetic */ Camera j;
+
+        public a(Camera camera) {
+            this.j = camera;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            b bVar = b.this;
+            e0.a.a.a.a aVar = bVar.k.j;
+            Camera camera = this.j;
+            aVar.setupCameraPreview(camera == null ? null : new e(camera, bVar.j));
+        }
+    }
+
     public b(c cVar, int i) {
         this.k = cVar;
         this.j = i;
@@ -24,6 +41,6 @@ public class b implements Runnable {
         } catch (Exception unused) {
             cameraOpen = null;
         }
-        new Handler(Looper.getMainLooper()).post(new b$a(this, cameraOpen));
+        new Handler(Looper.getMainLooper()).post(new a(cameraOpen));
     }
 }

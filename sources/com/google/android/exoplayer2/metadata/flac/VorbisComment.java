@@ -1,19 +1,30 @@
 package com.google.android.exoplayer2.metadata.flac;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
 import b.i.a.c.f3.e0;
 import b.i.a.c.j1;
-import b.i.a.c.p1$b;
-import com.google.android.exoplayer2.metadata.Metadata$Entry;
+import b.i.a.c.p1;
+import com.google.android.exoplayer2.metadata.Metadata;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class VorbisComment implements Metadata$Entry {
+public final class VorbisComment implements Metadata.Entry {
     public final String j;
     public final String k;
-    public static final Parcelable$Creator<VorbisComment> CREATOR = new VorbisComment$a();
+    public static final Parcelable.Creator<VorbisComment> CREATOR = new a();
+
+    public class a implements Parcelable.Creator<VorbisComment> {
+        @Override // android.os.Parcelable.Creator
+        public VorbisComment createFromParcel(Parcel parcel) {
+            return new VorbisComment(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public VorbisComment[] newArray(int i) {
+            return new VorbisComment[i];
+        }
+    }
 
     public VorbisComment(String str, String str2) {
         this.j = str;
@@ -37,33 +48,33 @@ public final class VorbisComment implements Metadata$Entry {
     }
 
     public int hashCode() {
-        return this.k.hashCode() + a.m(this.j, 527, 31);
+        return this.k.hashCode() + b.d.b.a.a.m(this.j, 527, 31);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
-    public void n(p1$b p1_b) {
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
+    public void n(p1.b bVar) {
         String str = this.j;
         str.hashCode();
         switch (str) {
             case "ALBUM":
-                p1_b.c = this.k;
+                bVar.c = this.k;
                 break;
             case "TITLE":
-                p1_b.a = this.k;
+                bVar.a = this.k;
                 break;
             case "DESCRIPTION":
-                p1_b.g = this.k;
+                bVar.g = this.k;
                 break;
             case "ALBUMARTIST":
-                p1_b.d = this.k;
+                bVar.d = this.k;
                 break;
             case "ARTIST":
-                p1_b.f1050b = this.k;
+                bVar.f1050b = this.k;
                 break;
         }
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     public /* synthetic */ byte[] o0() {
         return b.i.a.c.z2.a.a(this);
     }
@@ -71,7 +82,7 @@ public final class VorbisComment implements Metadata$Entry {
     public String toString() {
         String str = this.j;
         String str2 = this.k;
-        return a.l(a.b(str2, a.b(str, 5)), "VC: ", str, "=", str2);
+        return b.d.b.a.a.l(b.d.b.a.a.b(str2, b.d.b.a.a.b(str, 5)), "VC: ", str, "=", str2);
     }
 
     @Override // android.os.Parcelable
@@ -80,7 +91,7 @@ public final class VorbisComment implements Metadata$Entry {
         parcel.writeString(this.k);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     public /* synthetic */ j1 y() {
         return b.i.a.c.z2.a.b(this);
     }

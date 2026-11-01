@@ -1,7 +1,6 @@
 package b.i.c.k.d;
 
 import android.os.RemoteException;
-import b.i.a.f.e.h.a$b;
 import b.i.a.f.e.h.j.p;
 import b.i.a.f.h.k.g;
 import b.i.a.f.h.k.h;
@@ -34,9 +33,9 @@ public abstract class e extends p<g, Void> implements b.i.a.f.e.h.j.e<Status> {
     }
 
     @Override // b.i.a.f.e.h.j.p
-    public void c(a$b a_b, TaskCompletionSource<Void> taskCompletionSource) throws RemoteException {
+    public void c(b.i.a.f.e.h.a.b bVar, TaskCompletionSource<Void> taskCompletionSource) throws RemoteException {
         this.c = taskCompletionSource;
         d dVar = (d) this;
-        ((b.i.a.f.h.k.b) ((g) a_b).w()).S(new h(dVar), dVar.d);
+        ((b.i.a.f.h.k.b) ((g) bVar).w()).S(new h(dVar), dVar.d);
     }
 }

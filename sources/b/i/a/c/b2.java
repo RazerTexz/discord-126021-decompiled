@@ -3,16 +3,16 @@ package b.i.a.c;
 import android.os.Looper;
 import android.util.Log;
 import androidx.annotation.Nullable;
-import b.i.a.c.f3.b0$b;
+import com.google.android.exoplayer2.ExoPlaybackException;
 import java.util.concurrent.TimeoutException;
 
 /* JADX INFO: compiled from: PlayerMessage.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class b2 {
-    public final b2$b a;
+    public final b a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final b2$a f837b;
+    public final a f837b;
     public final b.i.a.c.f3.g c;
     public final o2 d;
     public int e;
@@ -25,9 +25,18 @@ public final class b2 {
     public boolean j;
     public boolean k;
 
-    public b2(b2$a b2_a, b2$b b2_b, o2 o2Var, int i, b.i.a.c.f3.g gVar, Looper looper) {
-        this.f837b = b2_a;
-        this.a = b2_b;
+    /* JADX INFO: compiled from: PlayerMessage.java */
+    public interface a {
+    }
+
+    /* JADX INFO: compiled from: PlayerMessage.java */
+    public interface b {
+        void r(int i, @Nullable Object obj) throws ExoPlaybackException;
+    }
+
+    public b2(a aVar, b bVar, o2 o2Var, int i, b.i.a.c.f3.g gVar, Looper looper) {
+        this.f837b = aVar;
+        this.a = bVar;
         this.d = o2Var;
         this.g = looper;
         this.c = gVar;
@@ -74,7 +83,7 @@ public final class b2 {
                 Log.w("ExoPlayerImplInternal", "Ignoring messages sent after release.");
                 c(false);
             } else {
-                ((b0$b) h1Var.q.i(14, this)).b();
+                ((b.i.a.c.f3.b0.b) h1Var.q.i(14, this)).b();
             }
         }
         return this;

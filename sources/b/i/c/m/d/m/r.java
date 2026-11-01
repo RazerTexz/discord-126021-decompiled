@@ -4,7 +4,7 @@ import androidx.annotation.Nullable;
 
 /* JADX INFO: compiled from: AutoValue_CrashlyticsReport_Session_Event_Device.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class r extends v$d$d$b {
+public final class r extends v.d.AbstractC0143d.b {
     public final Double a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -14,7 +14,39 @@ public final class r extends v$d$d$b {
     public final long e;
     public final long f;
 
-    public r(Double d, int i, boolean z2, int i2, long j, long j2, r$a r_a) {
+    /* JADX INFO: compiled from: AutoValue_CrashlyticsReport_Session_Event_Device.java */
+    public final class b extends v.d.AbstractC0143d.b.a {
+        public Double a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public Integer f1734b;
+        public Boolean c;
+        public Integer d;
+        public Long e;
+        public Long f;
+
+        public v.d.AbstractC0143d.b a() {
+            String strW = this.f1734b == null ? " batteryVelocity" : "";
+            if (this.c == null) {
+                strW = b.d.b.a.a.w(strW, " proximityOn");
+            }
+            if (this.d == null) {
+                strW = b.d.b.a.a.w(strW, " orientation");
+            }
+            if (this.e == null) {
+                strW = b.d.b.a.a.w(strW, " ramUsed");
+            }
+            if (this.f == null) {
+                strW = b.d.b.a.a.w(strW, " diskUsed");
+            }
+            if (strW.isEmpty()) {
+                return new r(this.a, this.f1734b.intValue(), this.c.booleanValue(), this.d.intValue(), this.e.longValue(), this.f.longValue(), null);
+            }
+            throw new IllegalStateException(b.d.b.a.a.w("Missing required properties:", strW));
+        }
+    }
+
+    public r(Double d, int i, boolean z2, int i2, long j, long j2, a aVar) {
         this.a = d;
         this.f1733b = i;
         this.c = z2;
@@ -23,28 +55,28 @@ public final class r extends v$d$d$b {
         this.f = j2;
     }
 
-    @Override // b.i.c.m.d.m.v$d$d$b
+    @Override // b.i.c.m.d.m.v.d.AbstractC0143d.b
     @Nullable
     public Double a() {
         return this.a;
     }
 
-    @Override // b.i.c.m.d.m.v$d$d$b
+    @Override // b.i.c.m.d.m.v.d.AbstractC0143d.b
     public int b() {
         return this.f1733b;
     }
 
-    @Override // b.i.c.m.d.m.v$d$d$b
+    @Override // b.i.c.m.d.m.v.d.AbstractC0143d.b
     public long c() {
         return this.f;
     }
 
-    @Override // b.i.c.m.d.m.v$d$d$b
+    @Override // b.i.c.m.d.m.v.d.AbstractC0143d.b
     public int d() {
         return this.d;
     }
 
-    @Override // b.i.c.m.d.m.v$d$d$b
+    @Override // b.i.c.m.d.m.v.d.AbstractC0143d.b
     public long e() {
         return this.e;
     }
@@ -53,20 +85,20 @@ public final class r extends v$d$d$b {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof v$d$d$b)) {
+        if (!(obj instanceof v.d.AbstractC0143d.b)) {
             return false;
         }
-        v$d$d$b v_d_d_b = (v$d$d$b) obj;
+        v.d.AbstractC0143d.b bVar = (v.d.AbstractC0143d.b) obj;
         Double d = this.a;
-        if (d != null ? d.equals(v_d_d_b.a()) : v_d_d_b.a() == null) {
-            if (this.f1733b == v_d_d_b.b() && this.c == v_d_d_b.f() && this.d == v_d_d_b.d() && this.e == v_d_d_b.e() && this.f == v_d_d_b.c()) {
+        if (d != null ? d.equals(bVar.a()) : bVar.a() == null) {
+            if (this.f1733b == bVar.b() && this.c == bVar.f() && this.d == bVar.d() && this.e == bVar.e() && this.f == bVar.c()) {
                 return true;
             }
         }
         return false;
     }
 
-    @Override // b.i.c.m.d.m.v$d$d$b
+    @Override // b.i.c.m.d.m.v.d.AbstractC0143d.b
     public boolean f() {
         return this.c;
     }

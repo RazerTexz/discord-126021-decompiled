@@ -2,7 +2,6 @@ package d0.e0.p.d.m0.c.i1;
 
 import com.discord.models.domain.ModelAuditLogEntry;
 import d0.e0.p.d.m0.c.z0;
-import d0.e0.p.d.m0.k.a0.i$b;
 import d0.e0.p.d.m0.n.u0;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -314,9 +313,9 @@ public class z extends h {
 
     @Override // d0.e0.p.d.m0.c.e
     public d0.e0.p.d.m0.k.a0.i getStaticScope() {
-        i$b i_b = i$b.f3461b;
-        if (i_b != null) {
-            return i_b;
+        d0.e0.p.d.m0.k.a0.i.b bVar = d0.e0.p.d.m0.k.a0.i.b.f3461b;
+        if (bVar != null) {
+            return bVar;
         }
         a(18);
         throw null;
@@ -338,9 +337,9 @@ public class z extends h {
             a(16);
             throw null;
         }
-        i$b i_b = i$b.f3461b;
-        if (i_b != null) {
-            return i_b;
+        d0.e0.p.d.m0.k.a0.i.b bVar = d0.e0.p.d.m0.k.a0.i.b.f3461b;
+        if (bVar != null) {
+            return bVar;
         }
         a(17);
         throw null;

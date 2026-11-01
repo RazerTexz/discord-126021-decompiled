@@ -1,6 +1,7 @@
 package androidx.transition;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,7 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
 import androidx.core.content.res.TypedArrayUtils;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class Visibility extends Transition {
@@ -21,6 +25,55 @@ public abstract class Visibility extends Transition {
     public static final String PROPNAME_VISIBILITY = "android:visibility:visibility";
     private static final String PROPNAME_PARENT = "android:visibility:parent";
     private static final String[] sTransitionProperties = {PROPNAME_VISIBILITY, PROPNAME_PARENT};
+
+    /* JADX INFO: renamed from: androidx.transition.Visibility$1, reason: invalid class name */
+    public class AnonymousClass1 extends TransitionListenerAdapter {
+        public final /* synthetic */ View val$finalOverlayView;
+        public final /* synthetic */ ViewGroup val$overlayHost;
+        public final /* synthetic */ View val$startView;
+
+        public AnonymousClass1(ViewGroup viewGroup, View view, View view2) {
+            this.val$overlayHost = viewGroup;
+            this.val$finalOverlayView = view;
+            this.val$startView = view2;
+        }
+
+        @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
+        public void onTransitionEnd(@NonNull Transition transition) {
+            this.val$startView.setTag(R.id.save_overlay_view, null);
+            ViewGroupUtils.getOverlay(this.val$overlayHost).remove(this.val$finalOverlayView);
+            transition.removeListener(this);
+        }
+
+        @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
+        public void onTransitionPause(@NonNull Transition transition) {
+            ViewGroupUtils.getOverlay(this.val$overlayHost).remove(this.val$finalOverlayView);
+        }
+
+        @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
+        public void onTransitionResume(@NonNull Transition transition) {
+            if (this.val$finalOverlayView.getParent() == null) {
+                ViewGroupUtils.getOverlay(this.val$overlayHost).add(this.val$finalOverlayView);
+            } else {
+                Visibility.this.cancel();
+            }
+        }
+    }
+
+    @SuppressLint({"UniqueConstants"})
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public @interface Mode {
+    }
+
+    public class VisibilityInfo {
+        public ViewGroup mEndParent;
+        public int mEndVisibility;
+        public boolean mFadeIn;
+        public ViewGroup mStartParent;
+        public int mStartVisibility;
+        public boolean mVisibilityChange;
+    }
 
     public Visibility() {
         this.mMode = 3;
@@ -47,7 +100,7 @@ public abstract class Visibility extends Transition {
     @Override // androidx.transition.Transition
     @Nullable
     public Animator createAnimator(@NonNull ViewGroup viewGroup, @Nullable TransitionValues transitionValues, @Nullable TransitionValues transitionValues2) {
-        Visibility$VisibilityInfo visibilityChangeInfo = getVisibilityChangeInfo(transitionValues, transitionValues2);
+        VisibilityInfo visibilityChangeInfo = getVisibilityChangeInfo(transitionValues, transitionValues2);
         if (!visibilityChangeInfo.mVisibilityChange) {
             return null;
         }
@@ -67,53 +120,53 @@ public abstract class Visibility extends Transition {
         return sTransitionProperties;
     }
 
-    private Visibility$VisibilityInfo getVisibilityChangeInfo(TransitionValues transitionValues, TransitionValues transitionValues2) {
-        Visibility$VisibilityInfo visibility$VisibilityInfo = new Visibility$VisibilityInfo();
-        visibility$VisibilityInfo.mVisibilityChange = false;
-        visibility$VisibilityInfo.mFadeIn = false;
+    private VisibilityInfo getVisibilityChangeInfo(TransitionValues transitionValues, TransitionValues transitionValues2) {
+        VisibilityInfo visibilityInfo = new VisibilityInfo();
+        visibilityInfo.mVisibilityChange = false;
+        visibilityInfo.mFadeIn = false;
         if (transitionValues == null || !transitionValues.values.containsKey(PROPNAME_VISIBILITY)) {
-            visibility$VisibilityInfo.mStartVisibility = -1;
-            visibility$VisibilityInfo.mStartParent = null;
+            visibilityInfo.mStartVisibility = -1;
+            visibilityInfo.mStartParent = null;
         } else {
-            visibility$VisibilityInfo.mStartVisibility = ((Integer) transitionValues.values.get(PROPNAME_VISIBILITY)).intValue();
-            visibility$VisibilityInfo.mStartParent = (ViewGroup) transitionValues.values.get(PROPNAME_PARENT);
+            visibilityInfo.mStartVisibility = ((Integer) transitionValues.values.get(PROPNAME_VISIBILITY)).intValue();
+            visibilityInfo.mStartParent = (ViewGroup) transitionValues.values.get(PROPNAME_PARENT);
         }
         if (transitionValues2 == null || !transitionValues2.values.containsKey(PROPNAME_VISIBILITY)) {
-            visibility$VisibilityInfo.mEndVisibility = -1;
-            visibility$VisibilityInfo.mEndParent = null;
+            visibilityInfo.mEndVisibility = -1;
+            visibilityInfo.mEndParent = null;
         } else {
-            visibility$VisibilityInfo.mEndVisibility = ((Integer) transitionValues2.values.get(PROPNAME_VISIBILITY)).intValue();
-            visibility$VisibilityInfo.mEndParent = (ViewGroup) transitionValues2.values.get(PROPNAME_PARENT);
+            visibilityInfo.mEndVisibility = ((Integer) transitionValues2.values.get(PROPNAME_VISIBILITY)).intValue();
+            visibilityInfo.mEndParent = (ViewGroup) transitionValues2.values.get(PROPNAME_PARENT);
         }
         if (transitionValues != null && transitionValues2 != null) {
-            int i = visibility$VisibilityInfo.mStartVisibility;
-            int i2 = visibility$VisibilityInfo.mEndVisibility;
-            if (i == i2 && visibility$VisibilityInfo.mStartParent == visibility$VisibilityInfo.mEndParent) {
-                return visibility$VisibilityInfo;
+            int i = visibilityInfo.mStartVisibility;
+            int i2 = visibilityInfo.mEndVisibility;
+            if (i == i2 && visibilityInfo.mStartParent == visibilityInfo.mEndParent) {
+                return visibilityInfo;
             }
             if (i != i2) {
                 if (i == 0) {
-                    visibility$VisibilityInfo.mFadeIn = false;
-                    visibility$VisibilityInfo.mVisibilityChange = true;
+                    visibilityInfo.mFadeIn = false;
+                    visibilityInfo.mVisibilityChange = true;
                 } else if (i2 == 0) {
-                    visibility$VisibilityInfo.mFadeIn = true;
-                    visibility$VisibilityInfo.mVisibilityChange = true;
+                    visibilityInfo.mFadeIn = true;
+                    visibilityInfo.mVisibilityChange = true;
                 }
-            } else if (visibility$VisibilityInfo.mEndParent == null) {
-                visibility$VisibilityInfo.mFadeIn = false;
-                visibility$VisibilityInfo.mVisibilityChange = true;
-            } else if (visibility$VisibilityInfo.mStartParent == null) {
-                visibility$VisibilityInfo.mFadeIn = true;
-                visibility$VisibilityInfo.mVisibilityChange = true;
+            } else if (visibilityInfo.mEndParent == null) {
+                visibilityInfo.mFadeIn = false;
+                visibilityInfo.mVisibilityChange = true;
+            } else if (visibilityInfo.mStartParent == null) {
+                visibilityInfo.mFadeIn = true;
+                visibilityInfo.mVisibilityChange = true;
             }
-        } else if (transitionValues == null && visibility$VisibilityInfo.mEndVisibility == 0) {
-            visibility$VisibilityInfo.mFadeIn = true;
-            visibility$VisibilityInfo.mVisibilityChange = true;
-        } else if (transitionValues2 == null && visibility$VisibilityInfo.mStartVisibility == 0) {
-            visibility$VisibilityInfo.mFadeIn = false;
-            visibility$VisibilityInfo.mVisibilityChange = true;
+        } else if (transitionValues == null && visibilityInfo.mEndVisibility == 0) {
+            visibilityInfo.mFadeIn = true;
+            visibilityInfo.mVisibilityChange = true;
+        } else if (transitionValues2 == null && visibilityInfo.mStartVisibility == 0) {
+            visibilityInfo.mFadeIn = false;
+            visibilityInfo.mVisibilityChange = true;
         }
-        return visibility$VisibilityInfo;
+        return visibilityInfo;
     }
 
     @Override // androidx.transition.Transition
@@ -124,7 +177,7 @@ public abstract class Visibility extends Transition {
         if (transitionValues != null && transitionValues2 != null && transitionValues2.values.containsKey(PROPNAME_VISIBILITY) != transitionValues.values.containsKey(PROPNAME_VISIBILITY)) {
             return false;
         }
-        Visibility$VisibilityInfo visibilityChangeInfo = getVisibilityChangeInfo(transitionValues, transitionValues2);
+        VisibilityInfo visibilityChangeInfo = getVisibilityChangeInfo(transitionValues, transitionValues2);
         if (visibilityChangeInfo.mVisibilityChange) {
             return visibilityChangeInfo.mStartVisibility == 0 || visibilityChangeInfo.mEndVisibility == 0;
         }
@@ -170,7 +223,7 @@ public abstract class Visibility extends Transition {
         }
         View view3 = transitionValues.view;
         View viewCopyViewImage = transitionValues2 != null ? transitionValues2.view : null;
-        int i3 = R$id.save_overlay_view;
+        int i3 = R.id.save_overlay_view;
         View view4 = (View) view3.getTag(i3);
         if (view4 != null) {
             view2 = null;
@@ -229,10 +282,10 @@ public abstract class Visibility extends Transition {
             ViewUtils.setTransitionVisibility(view2, 0);
             Animator animatorOnDisappear = onDisappear(viewGroup, view2, transitionValues, transitionValues2);
             if (animatorOnDisappear != null) {
-                Visibility$DisappearListener visibility$DisappearListener = new Visibility$DisappearListener(view2, i2, true);
-                animatorOnDisappear.addListener(visibility$DisappearListener);
-                AnimatorUtils.addPauseListener(animatorOnDisappear, visibility$DisappearListener);
-                addListener(visibility$DisappearListener);
+                DisappearListener disappearListener = new DisappearListener(view2, i2, true);
+                animatorOnDisappear.addListener(disappearListener);
+                AnimatorUtils.addPauseListener(animatorOnDisappear, disappearListener);
+                addListener(disappearListener);
             } else {
                 ViewUtils.setTransitionVisibility(view2, visibility);
             }
@@ -254,7 +307,7 @@ public abstract class Visibility extends Transition {
                 ViewGroupUtils.getOverlay(viewGroup).remove(view4);
             } else {
                 view3.setTag(i3, view4);
-                addListener(new Visibility$1(this, viewGroup, view4, view3));
+                addListener(new AnonymousClass1(viewGroup, view4, view3));
             }
         }
         return animatorOnDisappear2;
@@ -265,6 +318,101 @@ public abstract class Visibility extends Transition {
             throw new IllegalArgumentException("Only MODE_IN and MODE_OUT flags are allowed");
         }
         this.mMode = i;
+    }
+
+    public class DisappearListener extends AnimatorListenerAdapter implements Transition.TransitionListener, AnimatorUtils.AnimatorPauseListenerCompat {
+        private final int mFinalVisibility;
+        private boolean mLayoutSuppressed;
+        private final ViewGroup mParent;
+        private final boolean mSuppressLayout;
+        private final View mView;
+        public boolean mCanceled = false;
+
+        public DisappearListener(View view, int i, boolean z2) {
+            this.mView = view;
+            this.mFinalVisibility = i;
+            this.mParent = (ViewGroup) view.getParent();
+            this.mSuppressLayout = z2;
+            suppressLayout(true);
+        }
+
+        private void hideViewWhenNotCanceled() {
+            if (!this.mCanceled) {
+                ViewUtils.setTransitionVisibility(this.mView, this.mFinalVisibility);
+                ViewGroup viewGroup = this.mParent;
+                if (viewGroup != null) {
+                    viewGroup.invalidate();
+                }
+            }
+            suppressLayout(false);
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationCancel(Animator animator) {
+            this.mCanceled = true;
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationEnd(Animator animator) {
+            hideViewWhenNotCanceled();
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorPauseListener, androidx.transition.AnimatorUtils.AnimatorPauseListenerCompat
+        public void onAnimationPause(Animator animator) {
+            if (this.mCanceled) {
+                return;
+            }
+            ViewUtils.setTransitionVisibility(this.mView, this.mFinalVisibility);
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationRepeat(Animator animator) {
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorPauseListener, androidx.transition.AnimatorUtils.AnimatorPauseListenerCompat
+        public void onAnimationResume(Animator animator) {
+            if (this.mCanceled) {
+                return;
+            }
+            ViewUtils.setTransitionVisibility(this.mView, 0);
+        }
+
+        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
+        public void onAnimationStart(Animator animator) {
+        }
+
+        @Override // androidx.transition.Transition.TransitionListener
+        public void onTransitionCancel(@NonNull Transition transition) {
+        }
+
+        @Override // androidx.transition.Transition.TransitionListener
+        public void onTransitionEnd(@NonNull Transition transition) {
+            hideViewWhenNotCanceled();
+            transition.removeListener(this);
+        }
+
+        @Override // androidx.transition.Transition.TransitionListener
+        public void onTransitionPause(@NonNull Transition transition) {
+            suppressLayout(false);
+        }
+
+        @Override // androidx.transition.Transition.TransitionListener
+        public void onTransitionResume(@NonNull Transition transition) {
+            suppressLayout(true);
+        }
+
+        @Override // androidx.transition.Transition.TransitionListener
+        public void onTransitionStart(@NonNull Transition transition) {
+        }
+
+        private void suppressLayout(boolean z2) {
+            ViewGroup viewGroup;
+            if (!this.mSuppressLayout || this.mLayoutSuppressed == z2 || (viewGroup = this.mParent) == null) {
+                return;
+            }
+            this.mLayoutSuppressed = z2;
+            ViewGroupUtils.suppressLayout(viewGroup, z2);
+        }
     }
 
     @SuppressLint({"RestrictedApi"})

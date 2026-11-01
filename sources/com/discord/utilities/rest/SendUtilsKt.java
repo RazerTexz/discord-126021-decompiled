@@ -4,7 +4,7 @@ import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import com.discord.app.AppLog;
 import com.discord.utilities.logging.Logger;
 import d0.y.b;
@@ -16,7 +16,7 @@ public final class SendUtilsKt {
     public static final long computeFileSizeBytes(Uri uri, ContentResolver contentResolver) {
         long jLongValue;
         Long lValueOf;
-        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         m.checkNotNullParameter(contentResolver, "contentResolver");
         try {
             Cursor cursorQuery = contentResolver.query(uri, null, null, null, null);
@@ -58,7 +58,7 @@ public final class SendUtilsKt {
     }
 
     public static final float computeFileSizeMegabytes(Uri uri, ContentResolver contentResolver) {
-        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
         m.checkNotNullParameter(contentResolver, "contentResolver");
         return computeFileSizeBytes(uri, contentResolver) / 1048576;
     }

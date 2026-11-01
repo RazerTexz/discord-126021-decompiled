@@ -1,6 +1,6 @@
 package b.i.a.f.i.b;
 
-import android.net.Uri$Builder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import androidx.annotation.WorkerThread;
@@ -28,12 +28,12 @@ public final class y9 {
             if (str == null || str.isEmpty()) {
                 str = "auto";
             }
-            Uri$Builder uri$Builder = new Uri$Builder();
-            uri$Builder.path(str);
+            Uri.Builder builder = new Uri.Builder();
+            builder.path(str);
             for (String str2 : bundle.keySet()) {
-                uri$Builder.appendQueryParameter(str2, bundle.getString(str2));
+                builder.appendQueryParameter(str2, bundle.getString(str2));
             }
-            string = uri$Builder.build().toString();
+            string = builder.build().toString();
         }
         if (TextUtils.isEmpty(string)) {
             return;

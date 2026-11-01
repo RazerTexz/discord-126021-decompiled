@@ -2,11 +2,10 @@ package com.discord.views.segmentedcontrol;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.KeyEvent$Callback;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import androidx.core.view.ViewGroupKt;
-import b.a.y.n0.a;
 import d0.t.n;
 import d0.z.d.m;
 import kotlin.Unit;
@@ -18,6 +17,25 @@ public final class SegmentedControlContainer extends LinearLayout {
 
     /* JADX INFO: renamed from: j, reason: from kotlin metadata */
     public Function1<? super Integer, Unit> segmentSelectedChangeListener;
+
+    /* JADX INFO: compiled from: SegmentedControlContainer.kt */
+    public final class a implements View.OnClickListener {
+        public final /* synthetic */ int j;
+        public final /* synthetic */ SegmentedControlContainer k;
+
+        public a(int i, SegmentedControlContainer segmentedControlContainer) {
+            this.j = i;
+            this.k = segmentedControlContainer;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            Function1<? super Integer, Unit> function1 = this.k.segmentSelectedChangeListener;
+            if (function1 != null) {
+                function1.invoke(Integer.valueOf(this.j));
+            }
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public SegmentedControlContainer(Context context, AttributeSet attributeSet) {
@@ -33,10 +51,10 @@ public final class SegmentedControlContainer extends LinearLayout {
                 n.throwIndexOverflow();
             }
             View view2 = view;
-            if (!(view2 instanceof a)) {
+            if (!(view2 instanceof b.a.y.n0.a)) {
                 throw new IllegalStateException("All children must be SegmentedControlSegments.".toString());
             }
-            view2.setOnClickListener(new SegmentedControlContainer$a(i, this));
+            view2.setOnClickListener(new a(i, this));
             i = i2;
         }
         setSelectedIndex(selectedIndex);
@@ -56,16 +74,16 @@ public final class SegmentedControlContainer extends LinearLayout {
 
     public final void setSelectedIndex(int selectedIndex) {
         int i = 0;
-        for (KeyEvent$Callback keyEvent$Callback : ViewGroupKt.getChildren(this)) {
+        for (KeyEvent.Callback callback : ViewGroupKt.getChildren(this)) {
             int i2 = i + 1;
             if (i < 0) {
                 n.throwIndexOverflow();
             }
-            KeyEvent$Callback keyEvent$Callback2 = (View) keyEvent$Callback;
-            if (!(keyEvent$Callback2 instanceof a)) {
+            KeyEvent.Callback callback2 = (View) callback;
+            if (!(callback2 instanceof b.a.y.n0.a)) {
                 throw new IllegalStateException("All children must be SegmentedControlSegments.".toString());
             }
-            ((a) keyEvent$Callback2).a(i == selectedIndex);
+            ((b.a.y.n0.a) callback2).a(i == selectedIndex);
             i = i2;
         }
     }

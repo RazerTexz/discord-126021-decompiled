@@ -1,21 +1,18 @@
 package d0.e0.p.d.m0.b.q;
 
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.e0.p.d.m0.c.d0;
 import d0.e0.p.d.m0.c.s;
 import d0.e0.p.d.m0.c.t0;
 import d0.e0.p.d.m0.c.u0;
+import d0.e0.p.d.m0.c.w;
 import d0.e0.p.d.m0.c.x;
-import d0.e0.p.d.m0.c.x$a;
 import d0.e0.p.d.m0.c.z;
 import d0.e0.p.d.m0.e.b.t;
-import d0.e0.p.d.m0.e.b.w;
-import d0.e0.p.d.m0.k.a0.i$b;
-import d0.e0.p.d.m0.k.k$d$a;
 import d0.e0.p.d.m0.n.c0;
 import d0.e0.p.d.m0.n.c1;
 import d0.e0.p.d.m0.n.f0;
 import d0.e0.p.d.m0.n.j0;
-import d0.e0.p.d.m0.p.j$b;
 import d0.t.n0;
 import d0.t.u;
 import d0.z.d.a0;
@@ -27,6 +24,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.Ref$ObjectRef;
 import kotlin.reflect.KProperty;
 
@@ -34,7 +32,7 @@ import kotlin.reflect.KProperty;
 /* JADX INFO: loaded from: classes3.dex */
 public final class g implements d0.e0.p.d.m0.c.h1.a, d0.e0.p.d.m0.c.h1.c {
     public static final /* synthetic */ KProperty<Object>[] a = {a0.property1(new y(a0.getOrCreateKotlinClass(g.class), "settings", "getSettings()Lorg/jetbrains/kotlin/builtins/jvm/JvmBuiltIns$Settings;")), a0.property1(new y(a0.getOrCreateKotlinClass(g.class), "cloneableType", "getCloneableType()Lorg/jetbrains/kotlin/types/SimpleType;")), a0.property1(new y(a0.getOrCreateKotlinClass(g.class), "notConsideredDeprecation", "getNotConsideredDeprecation()Lorg/jetbrains/kotlin/descriptors/annotations/Annotations;"))};
-    public final d c;
+    public final d0.e0.p.d.m0.b.q.d c;
     public final d0.e0.p.d.m0.m.j d;
     public final c0 e;
 
@@ -44,21 +42,99 @@ public final class g implements d0.e0.p.d.m0.c.h1.a, d0.e0.p.d.m0.c.h1.c {
     public final d0.e0.p.d.m0.m.a<d0.e0.p.d.m0.g.b, d0.e0.p.d.m0.c.e> g;
     public final d0.e0.p.d.m0.m.j h;
 
-    public g(d0.e0.p.d.m0.c.c0 c0Var, d0.e0.p.d.m0.m.o oVar, Function0<f$b> function0) {
+    /* JADX INFO: compiled from: JvmBuiltInsCustomizer.kt */
+    public enum a {
+        HIDDEN,
+        VISIBLE,
+        NOT_CONSIDERED,
+        DROP;
+
+        /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
+        public static a[] valuesCustom() {
+            a[] aVarArrValuesCustom = values();
+            a[] aVarArr = new a[aVarArrValuesCustom.length];
+            System.arraycopy(aVarArrValuesCustom, 0, aVarArr, 0, aVarArrValuesCustom.length);
+            return aVarArr;
+        }
+    }
+
+    /* JADX INFO: compiled from: JvmBuiltInsCustomizer.kt */
+    public final class b extends d0.z.d.o implements Function0<j0> {
+        public final /* synthetic */ d0.e0.p.d.m0.m.o $storageManager;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public b(d0.e0.p.d.m0.m.o oVar) {
+            super(0);
+            this.$storageManager = oVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ j0 invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final j0 invoke() {
+            return w.findNonGenericClassAcrossDependencies(g.access$getSettings(g.this).getOwnerModuleDescriptor(), e.a.getCLONEABLE_CLASS_ID(), new d0(this.$storageManager, g.access$getSettings(g.this).getOwnerModuleDescriptor())).getDefaultType();
+        }
+    }
+
+    /* JADX INFO: compiled from: JvmBuiltInsCustomizer.kt */
+    public final class c extends d0.z.d.o implements Function1<d0.e0.p.d.m0.k.a0.i, Collection<? extends t0>> {
+        public final /* synthetic */ d0.e0.p.d.m0.g.e $name;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public c(d0.e0.p.d.m0.g.e eVar) {
+            super(1);
+            this.$name = eVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Collection<? extends t0> invoke(d0.e0.p.d.m0.k.a0.i iVar) {
+            return invoke2(iVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Collection<t0> invoke2(d0.e0.p.d.m0.k.a0.i iVar) {
+            d0.z.d.m.checkNotNullParameter(iVar, "it");
+            return iVar.getContributedFunctions(this.$name, d0.e0.p.d.m0.d.b.d.FROM_BUILTINS);
+        }
+    }
+
+    /* JADX INFO: compiled from: JvmBuiltInsCustomizer.kt */
+    public final class d extends d0.z.d.o implements Function0<d0.e0.p.d.m0.c.g1.g> {
+        public d() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.g1.g invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final d0.e0.p.d.m0.c.g1.g invoke() {
+            return d0.e0.p.d.m0.c.g1.g.f.create(d0.t.m.listOf(d0.e0.p.d.m0.c.g1.f.createDeprecatedAnnotation$default(g.access$getModuleDescriptor$p(g.this).getBuiltIns(), "This member is not fully supported by Kotlin compiler, so it may be absent or have different signature in next major version", null, null, 6, null)));
+        }
+    }
+
+    public g(d0.e0.p.d.m0.c.c0 c0Var, d0.e0.p.d.m0.m.o oVar, Function0<f.b> function0) {
         d0.z.d.m.checkNotNullParameter(c0Var, "moduleDescriptor");
         d0.z.d.m.checkNotNullParameter(oVar, "storageManager");
         d0.z.d.m.checkNotNullParameter(function0, "settingsComputation");
         this.f3240b = c0Var;
-        this.c = d.a;
+        this.c = d0.e0.p.d.m0.b.q.d.a;
         this.d = oVar.createLazyValue(function0);
         d0.e0.p.d.m0.c.i1.i iVar = new d0.e0.p.d.m0.c.i1.i(new h(c0Var, new d0.e0.p.d.m0.g.b("java.io")), d0.e0.p.d.m0.g.e.identifier("Serializable"), z.ABSTRACT, d0.e0.p.d.m0.c.f.INTERFACE, d0.t.m.listOf(new f0(oVar, new i(this))), u0.a, false, oVar);
-        iVar.initialize(i$b.f3461b, n0.emptySet(), null);
+        iVar.initialize(d0.e0.p.d.m0.k.a0.i.b.f3461b, n0.emptySet(), null);
         j0 defaultType = iVar.getDefaultType();
         d0.z.d.m.checkNotNullExpressionValue(defaultType, "mockSerializableClass.defaultType");
         this.e = defaultType;
-        this.f = oVar.createLazyValue(new g$b(this, oVar));
+        this.f = oVar.createLazyValue(new b(oVar));
         this.g = oVar.createCacheWithNotNullValues();
-        this.h = oVar.createLazyValue(new g$d(this));
+        this.h = oVar.createLazyValue(new d());
     }
 
     public final d0.e0.p.d.m0.e.a.i0.l.f a(d0.e0.p.d.m0.c.e eVar) {
@@ -69,7 +145,7 @@ public final class g implements d0.e0.p.d.m0.c.h1.a, d0.e0.p.d.m0.c.h1.c {
         if (!fqNameUnsafe.isSafe()) {
             return null;
         }
-        d0.e0.p.d.m0.g.a aVarMapKotlinToJava = c.a.mapKotlinToJava(fqNameUnsafe);
+        d0.e0.p.d.m0.g.a aVarMapKotlinToJava = d0.e0.p.d.m0.b.q.c.a.mapKotlinToJava(fqNameUnsafe);
         d0.e0.p.d.m0.g.b bVarAsSingleFqName = aVarMapKotlinToJava == null ? null : aVarMapKotlinToJava.asSingleFqName();
         if (bVarAsSingleFqName == null) {
             return null;
@@ -81,7 +157,7 @@ public final class g implements d0.e0.p.d.m0.c.h1.a, d0.e0.p.d.m0.c.h1.c {
         return null;
     }
 
-    public static final /* synthetic */ d access$getJ2kClassMapper$p(g gVar) {
+    public static final /* synthetic */ d0.e0.p.d.m0.b.q.d access$getJ2kClassMapper$p(g gVar) {
         return gVar.c;
     }
 
@@ -93,12 +169,12 @@ public final class g implements d0.e0.p.d.m0.c.h1.a, d0.e0.p.d.m0.c.h1.c {
         return gVar.f3240b;
     }
 
-    public static final /* synthetic */ f$b access$getSettings(g gVar) {
+    public static final /* synthetic */ f.b access$getSettings(g gVar) {
         return gVar.b();
     }
 
-    public final f$b b() {
-        return (f$b) d0.e0.p.d.m0.m.n.getValue(this.d, this, (KProperty<?>) a[0]);
+    public final f.b b() {
+        return (f.b) d0.e0.p.d.m0.m.n.getValue(this.d, this, (KProperty<?>) a[0]);
     }
 
     /* JADX WARN: Code duplicated, block: B:43:0x00e2  */
@@ -112,7 +188,7 @@ public final class g implements d0.e0.p.d.m0.c.h1.a, d0.e0.p.d.m0.c.h1.c {
             return d0.t.n.emptyList();
         }
         d0.e0.p.d.m0.e.a.i0.l.f fVarA = a(eVar);
-        if (fVarA != null && (eVarMapJavaToKotlin$default = d.mapJavaToKotlin$default(this.c, d0.e0.p.d.m0.k.x.a.getFqNameSafe(fVarA), b.f.getInstance(), null, 4, null)) != null) {
+        if (fVarA != null && (eVarMapJavaToKotlin$default = d0.e0.p.d.m0.b.q.d.mapJavaToKotlin$default(this.c, d0.e0.p.d.m0.k.x.a.getFqNameSafe(fVarA), d0.e0.p.d.m0.b.q.b.f.getInstance(), null, 4, null)) != null) {
             c1 c1VarBuildSubstitutor = q.createMappedTypeParametersSubstitution(eVarMapJavaToKotlin$default, fVarA).buildSubstitutor();
             List<d0.e0.p.d.m0.c.d> constructors = fVarA.getConstructors();
             ArrayList<d0.e0.p.d.m0.c.d> arrayList = new ArrayList();
@@ -139,7 +215,7 @@ public final class g implements d0.e0.p.d.m0.c.h1.a, d0.e0.p.d.m0.c.h1.c {
                         }
                         d0.e0.p.d.m0.c.d dVar2 = (d0.e0.p.d.m0.c.d) it2.next();
                         d0.z.d.m.checkNotNullExpressionValue(dVar2, "it");
-                        if (d0.e0.p.d.m0.k.k.getBothWaysOverridability(dVar2, dVar.substitute(c1VarBuildSubstitutor)) == k$d$a.OVERRIDABLE) {
+                        if (d0.e0.p.d.m0.k.k.getBothWaysOverridability(dVar2, dVar.substitute(c1VarBuildSubstitutor)) == d0.e0.p.d.m0.k.k.d.a.OVERRIDABLE) {
                             z2 = false;
                             break;
                         }
@@ -157,7 +233,7 @@ public final class g implements d0.e0.p.d.m0.c.h1.a, d0.e0.p.d.m0.c.h1.c {
                         } else {
                             z3 = false;
                         }
-                        if (!z3 && !d0.e0.p.d.m0.b.h.isDeprecated(dVar) && !p.a.getHIDDEN_CONSTRUCTOR_SIGNATURES().contains(t.signature(w.a, fVarA, d0.e0.p.d.m0.e.b.u.computeJvmDescriptor$default(dVar, false, false, 3, null)))) {
+                        if (!z3 && !d0.e0.p.d.m0.b.h.isDeprecated(dVar) && !p.a.getHIDDEN_CONSTRUCTOR_SIGNATURES().contains(t.signature(d0.e0.p.d.m0.e.b.w.a, fVarA, d0.e0.p.d.m0.e.b.u.computeJvmDescriptor$default(dVar, false, false, 3, null)))) {
                             z4 = true;
                         }
                     }
@@ -168,15 +244,15 @@ public final class g implements d0.e0.p.d.m0.c.h1.a, d0.e0.p.d.m0.c.h1.c {
             }
             ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(arrayList, 10));
             for (d0.e0.p.d.m0.c.d dVar3 : arrayList) {
-                x$a<? extends x> x_aNewCopyBuilder = dVar3.newCopyBuilder();
-                x_aNewCopyBuilder.setOwner(eVar);
-                x_aNewCopyBuilder.setReturnType(eVar.getDefaultType());
-                x_aNewCopyBuilder.setPreserveSourceElement();
-                x_aNewCopyBuilder.setSubstitution(c1VarBuildSubstitutor.getSubstitution());
-                if (!p.a.getVISIBLE_CONSTRUCTOR_SIGNATURES().contains(t.signature(w.a, fVarA, d0.e0.p.d.m0.e.b.u.computeJvmDescriptor$default(dVar3, false, false, 3, null)))) {
-                    x_aNewCopyBuilder.setAdditionalAnnotations((d0.e0.p.d.m0.c.g1.g) d0.e0.p.d.m0.m.n.getValue(this.h, this, (KProperty<?>) a[2]));
+                x.a<? extends x> aVarNewCopyBuilder = dVar3.newCopyBuilder();
+                aVarNewCopyBuilder.setOwner(eVar);
+                aVarNewCopyBuilder.setReturnType(eVar.getDefaultType());
+                aVarNewCopyBuilder.setPreserveSourceElement();
+                aVarNewCopyBuilder.setSubstitution(c1VarBuildSubstitutor.getSubstitution());
+                if (!p.a.getVISIBLE_CONSTRUCTOR_SIGNATURES().contains(t.signature(d0.e0.p.d.m0.e.b.w.a, fVarA, d0.e0.p.d.m0.e.b.u.computeJvmDescriptor$default(dVar3, false, false, 3, null)))) {
+                    aVarNewCopyBuilder.setAdditionalAnnotations((d0.e0.p.d.m0.c.g1.g) d0.e0.p.d.m0.m.n.getValue(this.h, this, (KProperty<?>) a[2]));
                 }
-                x xVarBuild = x_aNewCopyBuilder.build();
+                x xVarBuild = aVarNewCopyBuilder.build();
                 Objects.requireNonNull(xVarBuild, "null cannot be cast to non-null type org.jetbrains.kotlin.descriptors.ClassConstructorDescriptor");
                 arrayList2.add((d0.e0.p.d.m0.c.d) xVarBuild);
             }
@@ -197,14 +273,14 @@ public final class g implements d0.e0.p.d.m0.c.h1.a, d0.e0.p.d.m0.c.h1.c {
         d0.z.d.m.checkNotNullParameter(eVar, ModelAuditLogEntry.CHANGE_KEY_NAME);
         d0.z.d.m.checkNotNullParameter(eVar2, "classDescriptor");
         boolean z4 = false;
-        if (d0.z.d.m.areEqual(eVar, a.e.getCLONE_NAME()) && (eVar2 instanceof d0.e0.p.d.m0.l.b.e0.d) && d0.e0.p.d.m0.b.h.isArrayOrPrimitiveArray(eVar2)) {
+        if (d0.z.d.m.areEqual(eVar, d0.e0.p.d.m0.b.q.a.e.getCLONE_NAME()) && (eVar2 instanceof d0.e0.p.d.m0.l.b.e0.d) && d0.e0.p.d.m0.b.h.isArrayOrPrimitiveArray(eVar2)) {
             d0.e0.p.d.m0.l.b.e0.d dVar = (d0.e0.p.d.m0.l.b.e0.d) eVar2;
             List<d0.e0.p.d.m0.f.i> functionList = dVar.getClassProto().getFunctionList();
             d0.z.d.m.checkNotNullExpressionValue(functionList, "classDescriptor.classProto.functionList");
             if (!(functionList instanceof Collection) || !functionList.isEmpty()) {
                 Iterator<T> it = functionList.iterator();
                 while (it.hasNext()) {
-                    if (d0.z.d.m.areEqual(d0.e0.p.d.m0.l.b.w.getName(dVar.getC().getNameResolver(), ((d0.e0.p.d.m0.f.i) it.next()).getName()), a.e.getCLONE_NAME())) {
+                    if (d0.z.d.m.areEqual(d0.e0.p.d.m0.l.b.w.getName(dVar.getC().getNameResolver(), ((d0.e0.p.d.m0.f.i) it.next()).getName()), d0.e0.p.d.m0.b.q.a.e.getCLONE_NAME())) {
                         z4 = true;
                         break;
                     }
@@ -213,43 +289,43 @@ public final class g implements d0.e0.p.d.m0.c.h1.a, d0.e0.p.d.m0.c.h1.c {
             if (z4) {
                 return d0.t.n.emptyList();
             }
-            x$a<? extends t0> x_aNewCopyBuilder = ((t0) u.single(((j0) d0.e0.p.d.m0.m.n.getValue(this.f, this, (KProperty<?>) a[1])).getMemberScope().getContributedFunctions(eVar, d0.e0.p.d.m0.d.b.d.FROM_BUILTINS))).newCopyBuilder();
-            x_aNewCopyBuilder.setOwner(dVar);
-            x_aNewCopyBuilder.setVisibility(d0.e0.p.d.m0.c.t.e);
-            x_aNewCopyBuilder.setReturnType(dVar.getDefaultType());
-            x_aNewCopyBuilder.setDispatchReceiverParameter(dVar.getThisAsReceiverParameter());
-            t0 t0Var2 = (t0) x_aNewCopyBuilder.build();
+            x.a<? extends t0> aVarNewCopyBuilder = ((t0) u.single(((j0) d0.e0.p.d.m0.m.n.getValue(this.f, this, (KProperty<?>) a[1])).getMemberScope().getContributedFunctions(eVar, d0.e0.p.d.m0.d.b.d.FROM_BUILTINS))).newCopyBuilder();
+            aVarNewCopyBuilder.setOwner(dVar);
+            aVarNewCopyBuilder.setVisibility(d0.e0.p.d.m0.c.t.e);
+            aVarNewCopyBuilder.setReturnType(dVar.getDefaultType());
+            aVarNewCopyBuilder.setDispatchReceiverParameter(dVar.getThisAsReceiverParameter());
+            t0 t0Var2 = (t0) aVarNewCopyBuilder.build();
             d0.z.d.m.checkNotNull(t0Var2);
             return d0.t.m.listOf(t0Var2);
         }
         if (!b().isAdditionalBuiltInsFeatureSupported()) {
             return d0.t.n.emptyList();
         }
-        g$c g_c = new g$c(eVar);
+        c cVar = new c(eVar);
         d0.e0.p.d.m0.e.a.i0.l.f fVarA = a(eVar2);
         if (fVarA == null) {
             listEmptyList = d0.t.n.emptyList();
         } else {
-            Collection<d0.e0.p.d.m0.c.e> collectionMapPlatformClass = this.c.mapPlatformClass(d0.e0.p.d.m0.k.x.a.getFqNameSafe(fVarA), b.f.getInstance());
+            Collection<d0.e0.p.d.m0.c.e> collectionMapPlatformClass = this.c.mapPlatformClass(d0.e0.p.d.m0.k.x.a.getFqNameSafe(fVarA), d0.e0.p.d.m0.b.q.b.f.getInstance());
             d0.e0.p.d.m0.c.e eVar3 = (d0.e0.p.d.m0.c.e) u.lastOrNull(collectionMapPlatformClass);
             if (eVar3 == null) {
                 listEmptyList = d0.t.n.emptyList();
             } else {
-                j$b j_b = d0.e0.p.d.m0.p.j.j;
+                d0.e0.p.d.m0.p.j.b bVar = d0.e0.p.d.m0.p.j.j;
                 ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(collectionMapPlatformClass, 10));
                 Iterator<T> it2 = collectionMapPlatformClass.iterator();
                 while (it2.hasNext()) {
                     arrayList.add(d0.e0.p.d.m0.k.x.a.getFqNameSafe((d0.e0.p.d.m0.c.e) it2.next()));
                 }
-                d0.e0.p.d.m0.p.j jVarCreate = j_b.create(arrayList);
+                d0.e0.p.d.m0.p.j jVarCreate = bVar.create(arrayList);
                 boolean zIsMutable = this.c.isMutable(eVar2);
-                d0.e0.p.d.m0.k.a0.i unsubstitutedMemberScope = ((d0.e0.p.d.m0.c.e) ((d0.e0.p.d.m0.m.f$d) this.g).computeIfAbsent(d0.e0.p.d.m0.k.x.a.getFqNameSafe(fVarA), new j(fVarA, eVar3))).getUnsubstitutedMemberScope();
+                d0.e0.p.d.m0.k.a0.i unsubstitutedMemberScope = ((d0.e0.p.d.m0.c.e) ((d0.e0.p.d.m0.m.f.d) this.g).computeIfAbsent(d0.e0.p.d.m0.k.x.a.getFqNameSafe(fVarA), new j(fVarA, eVar3))).getUnsubstitutedMemberScope();
                 d0.z.d.m.checkNotNullExpressionValue(unsubstitutedMemberScope, "fakeJavaClassDescriptor.unsubstitutedMemberScope");
-                Collection<? extends t0> collectionInvoke = g_c.invoke(unsubstitutedMemberScope);
+                Collection<? extends t0> collectionInvoke = cVar.invoke(unsubstitutedMemberScope);
                 ArrayList arrayList2 = new ArrayList();
                 for (Object obj : collectionInvoke) {
                     t0 t0Var3 = (t0) obj;
-                    if (t0Var3.getKind() == d0.e0.p.d.m0.c.b$a.DECLARATION && t0Var3.getVisibility().isPublicAPI() && !d0.e0.p.d.m0.b.h.isDeprecated(t0Var3)) {
+                    if (t0Var3.getKind() == d0.e0.p.d.m0.c.b.a.DECLARATION && t0Var3.getVisibility().isPublicAPI() && !d0.e0.p.d.m0.b.h.isDeprecated(t0Var3)) {
                         Collection<? extends x> overriddenDescriptors = t0Var3.getOverriddenDescriptors();
                         d0.z.d.m.checkNotNullExpressionValue(overriddenDescriptors, "analogueMember.overriddenDescriptors");
                         if (overriddenDescriptors.isEmpty()) {
@@ -272,7 +348,7 @@ public final class g implements d0.e0.p.d.m0.c.h1.a, d0.e0.p.d.m0.c.h1.c {
                         if (z3) {
                             z2 = false;
                         } else {
-                            if (p.a.getMUTABLE_METHOD_SIGNATURES().contains(t.signature(w.a, (d0.e0.p.d.m0.c.e) t0Var3.getContainingDeclaration(), d0.e0.p.d.m0.e.b.u.computeJvmDescriptor$default(t0Var3, false, false, 3, null))) ^ zIsMutable) {
+                            if (p.a.getMUTABLE_METHOD_SIGNATURES().contains(t.signature(d0.e0.p.d.m0.e.b.w.a, (d0.e0.p.d.m0.c.e) t0Var3.getContainingDeclaration(), d0.e0.p.d.m0.e.b.u.computeJvmDescriptor$default(t0Var3, false, false, 3, null))) ^ zIsMutable) {
                                 zBooleanValue = true;
                             } else {
                                 Boolean boolIfAny = d0.e0.p.d.m0.p.b.ifAny(d0.t.m.listOf(t0Var3), m.a, new n(this));
@@ -299,26 +375,26 @@ public final class g implements d0.e0.p.d.m0.c.h1.a, d0.e0.p.d.m0.c.h1.c {
         for (t0 t0Var4 : listEmptyList) {
             x xVarSubstitute = t0Var4.substitute(q.createMappedTypeParametersSubstitution((d0.e0.p.d.m0.c.e) t0Var4.getContainingDeclaration(), eVar2).buildSubstitutor());
             Objects.requireNonNull(xVarSubstitute, "null cannot be cast to non-null type org.jetbrains.kotlin.descriptors.SimpleFunctionDescriptor");
-            x$a<? extends t0> x_aNewCopyBuilder2 = ((t0) xVarSubstitute).newCopyBuilder();
-            x_aNewCopyBuilder2.setOwner(eVar2);
-            x_aNewCopyBuilder2.setDispatchReceiverParameter(eVar2.getThisAsReceiverParameter());
-            x_aNewCopyBuilder2.setPreserveSourceElement();
+            x.a<? extends t0> aVarNewCopyBuilder2 = ((t0) xVarSubstitute).newCopyBuilder();
+            aVarNewCopyBuilder2.setOwner(eVar2);
+            aVarNewCopyBuilder2.setDispatchReceiverParameter(eVar2.getThisAsReceiverParameter());
+            aVarNewCopyBuilder2.setPreserveSourceElement();
             Object objDfs = d0.e0.p.d.m0.p.b.dfs(d0.t.m.listOf((d0.e0.p.d.m0.c.e) t0Var4.getContainingDeclaration()), new k(this), new l(d0.e0.p.d.m0.e.b.u.computeJvmDescriptor$default(t0Var4, false, false, 3, null), new Ref$ObjectRef()));
             d0.z.d.m.checkNotNullExpressionValue(objDfs, "private fun FunctionDescriptor.getJdkMethodStatus(): JDKMemberStatus {\n        val owner = containingDeclaration as ClassDescriptor\n        val jvmDescriptor = computeJvmDescriptor()\n        var result: JDKMemberStatus? = null\n        return DFS.dfs<ClassDescriptor, JDKMemberStatus>(\n            listOf(owner),\n            {\n                // Search through mapped supertypes to determine that Set.toArray should be invisible, while we have only\n                // Collection.toArray there explicitly\n                // Note, that we can't find j.u.Collection.toArray within overriddenDescriptors of j.u.Set.toArray\n                it.typeConstructor.supertypes.mapNotNull {\n                    (it.constructor.declarationDescriptor?.original as? ClassDescriptor)?.getJavaAnalogue()\n                }\n            },\n            object : DFS.AbstractNodeHandler<ClassDescriptor, JDKMemberStatus>() {\n                override fun beforeChildren(javaClassDescriptor: ClassDescriptor): Boolean {\n                    val signature = SignatureBuildingComponents.signature(javaClassDescriptor, jvmDescriptor)\n                    when (signature) {\n                        in HIDDEN_METHOD_SIGNATURES -> result = JDKMemberStatus.HIDDEN\n                        in VISIBLE_METHOD_SIGNATURES -> result = JDKMemberStatus.VISIBLE\n                        in DROP_LIST_METHOD_SIGNATURES -> result = JDKMemberStatus.DROP\n                    }\n\n                    return result == null\n                }\n\n                override fun result() = result ?: JDKMemberStatus.NOT_CONSIDERED\n            })\n    }");
-            int iOrdinal = ((g$a) objDfs).ordinal();
+            int iOrdinal = ((a) objDfs).ordinal();
             if (iOrdinal != 0) {
                 if (iOrdinal == 2) {
-                    x_aNewCopyBuilder2.setAdditionalAnnotations((d0.e0.p.d.m0.c.g1.g) d0.e0.p.d.m0.m.n.getValue(this.h, this, (KProperty<?>) a[2]));
+                    aVarNewCopyBuilder2.setAdditionalAnnotations((d0.e0.p.d.m0.c.g1.g) d0.e0.p.d.m0.m.n.getValue(this.h, this, (KProperty<?>) a[2]));
                 } else if (iOrdinal == 3) {
                     t0Var = null;
                 }
-                t0Var = (t0) x_aNewCopyBuilder2.build();
+                t0Var = (t0) aVarNewCopyBuilder2.build();
                 d0.z.d.m.checkNotNull(t0Var);
             } else if (d0.e0.p.d.m0.c.a0.isFinalClass(eVar2)) {
                 t0Var = null;
             } else {
-                x_aNewCopyBuilder2.setHiddenForResolutionEverywhereBesideSupercalls();
-                t0Var = (t0) x_aNewCopyBuilder2.build();
+                aVarNewCopyBuilder2.setHiddenForResolutionEverywhereBesideSupercalls();
+                t0Var = (t0) aVarNewCopyBuilder2.build();
                 d0.z.d.m.checkNotNull(t0Var);
             }
             if (t0Var != null) {

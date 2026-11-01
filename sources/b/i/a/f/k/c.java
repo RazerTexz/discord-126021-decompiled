@@ -1,12 +1,12 @@
 package b.i.a.f.k;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.safetynet.HarmfulAppsData;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class c implements Parcelable$Creator<HarmfulAppsData> {
-    @Override // android.os.Parcelable$Creator
+public final class c implements Parcelable.Creator<HarmfulAppsData> {
+    @Override // android.os.Parcelable.Creator
     public final HarmfulAppsData createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         String strR = null;
@@ -29,7 +29,7 @@ public final class c implements Parcelable$Creator<HarmfulAppsData> {
         return new HarmfulAppsData(strR, bArrN, iG1);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ HarmfulAppsData[] newArray(int i) {
         return new HarmfulAppsData[i];
     }

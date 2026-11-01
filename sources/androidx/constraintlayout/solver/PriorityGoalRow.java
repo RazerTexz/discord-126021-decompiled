@@ -2,6 +2,7 @@ package androidx.constraintlayout.solver;
 
 import b.d.b.a.a;
 import java.util.Arrays;
+import java.util.Comparator;
 
 /* JADX INFO: loaded from: classes.dex */
 public class PriorityGoalRow extends ArrayRow {
@@ -9,11 +10,141 @@ public class PriorityGoalRow extends ArrayRow {
     public static final int NOT_FOUND = -1;
     private static final float epsilon = 1.0E-4f;
     private int TABLE_SIZE;
-    public PriorityGoalRow$GoalVariableAccessor accessor;
+    public GoalVariableAccessor accessor;
     private SolverVariable[] arrayGoals;
     public Cache mCache;
     private int numGoals;
     private SolverVariable[] sortArray;
+
+    /* JADX INFO: renamed from: androidx.constraintlayout.solver.PriorityGoalRow$1, reason: invalid class name */
+    public class AnonymousClass1 implements Comparator<SolverVariable> {
+        public AnonymousClass1() {
+        }
+
+        @Override // java.util.Comparator
+        public /* bridge */ /* synthetic */ int compare(SolverVariable solverVariable, SolverVariable solverVariable2) {
+            return compare2(solverVariable, solverVariable2);
+        }
+
+        /* JADX INFO: renamed from: compare, reason: avoid collision after fix types in other method */
+        public int compare2(SolverVariable solverVariable, SolverVariable solverVariable2) {
+            return solverVariable.f30id - solverVariable2.f30id;
+        }
+    }
+
+    public class GoalVariableAccessor implements Comparable {
+        public PriorityGoalRow row;
+        public SolverVariable variable;
+
+        public GoalVariableAccessor(PriorityGoalRow priorityGoalRow) {
+            this.row = priorityGoalRow;
+        }
+
+        public void add(SolverVariable solverVariable) {
+            for (int i = 0; i < 9; i++) {
+                float[] fArr = this.variable.goalStrengthVector;
+                fArr[i] = fArr[i] + solverVariable.goalStrengthVector[i];
+                if (Math.abs(fArr[i]) < 1.0E-4f) {
+                    this.variable.goalStrengthVector[i] = 0.0f;
+                }
+            }
+        }
+
+        public boolean addToGoal(SolverVariable solverVariable, float f) {
+            boolean z2 = true;
+            if (!this.variable.inGoal) {
+                for (int i = 0; i < 9; i++) {
+                    float f2 = solverVariable.goalStrengthVector[i];
+                    if (f2 != 0.0f) {
+                        float f3 = f2 * f;
+                        if (Math.abs(f3) < 1.0E-4f) {
+                            f3 = 0.0f;
+                        }
+                        this.variable.goalStrengthVector[i] = f3;
+                    } else {
+                        this.variable.goalStrengthVector[i] = 0.0f;
+                    }
+                }
+                return true;
+            }
+            for (int i2 = 0; i2 < 9; i2++) {
+                float[] fArr = this.variable.goalStrengthVector;
+                fArr[i2] = (solverVariable.goalStrengthVector[i2] * f) + fArr[i2];
+                if (Math.abs(fArr[i2]) < 1.0E-4f) {
+                    this.variable.goalStrengthVector[i2] = 0.0f;
+                } else {
+                    z2 = false;
+                }
+            }
+            if (z2) {
+                PriorityGoalRow.access$000(PriorityGoalRow.this, this.variable);
+            }
+            return false;
+        }
+
+        @Override // java.lang.Comparable
+        public int compareTo(Object obj) {
+            return this.variable.f30id - ((SolverVariable) obj).f30id;
+        }
+
+        public void init(SolverVariable solverVariable) {
+            this.variable = solverVariable;
+        }
+
+        public final boolean isNegative() {
+            for (int i = 8; i >= 0; i--) {
+                float f = this.variable.goalStrengthVector[i];
+                if (f > 0.0f) {
+                    return false;
+                }
+                if (f < 0.0f) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public final boolean isNull() {
+            for (int i = 0; i < 9; i++) {
+                if (this.variable.goalStrengthVector[i] != 0.0f) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public final boolean isSmallerThan(SolverVariable solverVariable) {
+            for (int i = 8; i >= 0; i--) {
+                float f = solverVariable.goalStrengthVector[i];
+                float f2 = this.variable.goalStrengthVector[i];
+                if (f2 != f) {
+                    if (f2 < f) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public void reset() {
+            Arrays.fill(this.variable.goalStrengthVector, 0.0f);
+        }
+
+        public String toString() {
+            String string = "[ ";
+            if (this.variable != null) {
+                for (int i = 0; i < 9; i++) {
+                    StringBuilder sbU = a.U(string);
+                    sbU.append(this.variable.goalStrengthVector[i]);
+                    sbU.append(" ");
+                    string = sbU.toString();
+                }
+            }
+            StringBuilder sbX = a.X(string, "] ");
+            sbX.append(this.variable);
+            return sbX.toString();
+        }
+    }
 
     public PriorityGoalRow(Cache cache) {
         super(cache);
@@ -21,7 +152,7 @@ public class PriorityGoalRow extends ArrayRow {
         this.arrayGoals = new SolverVariable[128];
         this.sortArray = new SolverVariable[128];
         this.numGoals = 0;
-        this.accessor = new PriorityGoalRow$GoalVariableAccessor(this, this);
+        this.accessor = new GoalVariableAccessor(this);
         this.mCache = cache;
     }
 
@@ -29,7 +160,7 @@ public class PriorityGoalRow extends ArrayRow {
         priorityGoalRow.removeGoal(solverVariable);
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow, androidx.constraintlayout.solver.LinearSystem$Row
+    @Override // androidx.constraintlayout.solver.ArrayRow, androidx.constraintlayout.solver.LinearSystem.Row
     public void addError(SolverVariable solverVariable) {
         this.accessor.init(solverVariable);
         this.accessor.reset();
@@ -61,7 +192,7 @@ public class PriorityGoalRow extends ArrayRow {
                 this.sortArray[i5] = this.arrayGoals[i5];
                 i5++;
             }
-            Arrays.sort(this.sortArray, 0, i, new PriorityGoalRow$1(this));
+            Arrays.sort(this.sortArray, 0, i, new AnonymousClass1());
             for (int i6 = 0; i6 < this.numGoals; i6++) {
                 this.arrayGoals[i6] = this.sortArray[i6];
             }
@@ -70,14 +201,14 @@ public class PriorityGoalRow extends ArrayRow {
         solverVariable.addToRow(this);
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow, androidx.constraintlayout.solver.LinearSystem$Row
+    @Override // androidx.constraintlayout.solver.ArrayRow, androidx.constraintlayout.solver.LinearSystem.Row
     public void clear() {
         this.numGoals = 0;
         this.constantValue = 0.0f;
     }
 
     /* JADX WARN: Code duplicated, block: B:15:0x002e  */
-    @Override // androidx.constraintlayout.solver.ArrayRow, androidx.constraintlayout.solver.LinearSystem$Row
+    @Override // androidx.constraintlayout.solver.ArrayRow, androidx.constraintlayout.solver.LinearSystem.Row
     public SolverVariable getPivotCandidate(LinearSystem linearSystem, boolean[] zArr) {
         int i = -1;
         for (int i2 = 0; i2 < this.numGoals; i2++) {
@@ -99,7 +230,7 @@ public class PriorityGoalRow extends ArrayRow {
         return this.arrayGoals[i];
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow, androidx.constraintlayout.solver.LinearSystem$Row
+    @Override // androidx.constraintlayout.solver.ArrayRow, androidx.constraintlayout.solver.LinearSystem.Row
     public boolean isEmpty() {
         return this.numGoals == 0;
     }
@@ -140,17 +271,17 @@ public class PriorityGoalRow extends ArrayRow {
         return string;
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow, androidx.constraintlayout.solver.LinearSystem$Row
+    @Override // androidx.constraintlayout.solver.ArrayRow, androidx.constraintlayout.solver.LinearSystem.Row
     public void updateFromRow(LinearSystem linearSystem, ArrayRow arrayRow, boolean z2) {
         SolverVariable solverVariable = arrayRow.variable;
         if (solverVariable == null) {
             return;
         }
-        ArrayRow$ArrayRowVariables arrayRow$ArrayRowVariables = arrayRow.variables;
-        int currentSize = arrayRow$ArrayRowVariables.getCurrentSize();
+        ArrayRow.ArrayRowVariables arrayRowVariables = arrayRow.variables;
+        int currentSize = arrayRowVariables.getCurrentSize();
         for (int i = 0; i < currentSize; i++) {
-            SolverVariable variable = arrayRow$ArrayRowVariables.getVariable(i);
-            float variableValue = arrayRow$ArrayRowVariables.getVariableValue(i);
+            SolverVariable variable = arrayRowVariables.getVariable(i);
+            float variableValue = arrayRowVariables.getVariableValue(i);
             this.accessor.init(variable);
             if (this.accessor.addToGoal(solverVariable, variableValue)) {
                 addToGoal(variable);

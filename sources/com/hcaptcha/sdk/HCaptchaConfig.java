@@ -1,6 +1,5 @@
 package com.hcaptcha.sdk;
 
-import b.d.b.a.a;
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
@@ -19,6 +18,58 @@ public class HCaptchaConfig implements Serializable {
     private String siteKey;
     private HCaptchaSize size;
     private HCaptchaTheme theme;
+
+    public class a {
+        public String a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public boolean f3141b;
+        public Boolean c;
+        public boolean d;
+        public Boolean e;
+        public String f;
+        public boolean g;
+        public String h;
+        public String i;
+        public String j;
+        public String k;
+        public String l;
+        public boolean m;
+        public String n;
+        public boolean o;
+        public HCaptchaSize p;
+        public boolean q;
+        public HCaptchaTheme r;
+
+        public String toString() {
+            StringBuilder sbU = b.d.b.a.a.U("HCaptchaConfig.HCaptchaConfigBuilder(siteKey=");
+            sbU.append(this.a);
+            sbU.append(", sentry$value=");
+            sbU.append(this.c);
+            sbU.append(", loading$value=");
+            sbU.append(this.e);
+            sbU.append(", rqdata=");
+            sbU.append(this.f);
+            sbU.append(", apiEndpoint$value=");
+            sbU.append(this.h);
+            sbU.append(", endpoint=");
+            sbU.append(this.i);
+            sbU.append(", reportapi=");
+            sbU.append(this.j);
+            sbU.append(", assethost=");
+            sbU.append(this.k);
+            sbU.append(", imghost=");
+            sbU.append(this.l);
+            sbU.append(", locale$value=");
+            sbU.append(this.n);
+            sbU.append(", size$value=");
+            sbU.append(this.p);
+            sbU.append(", theme$value=");
+            sbU.append(this.r);
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
 
     private static String $default$apiEndpoint() {
         return "https://hcaptcha.com/1/api.js";
@@ -84,8 +135,8 @@ public class HCaptchaConfig implements Serializable {
         return $default$theme();
     }
 
-    public static HCaptchaConfig$a builder() {
-        return new HCaptchaConfig$a();
+    public static a builder() {
+        return new a();
     }
 
     public boolean canEqual(Object obj) {
@@ -287,33 +338,33 @@ public class HCaptchaConfig implements Serializable {
         this.theme = hCaptchaTheme;
     }
 
-    public HCaptchaConfig$a toBuilder() {
-        HCaptchaConfig$a hCaptchaConfig$a = new HCaptchaConfig$a();
+    public a toBuilder() {
+        a aVar = new a();
         String str = this.siteKey;
         Objects.requireNonNull(str, "siteKey is marked non-null but is null");
-        hCaptchaConfig$a.a = str;
-        hCaptchaConfig$a.c = this.sentry;
-        hCaptchaConfig$a.f3141b = true;
-        hCaptchaConfig$a.e = this.loading;
-        hCaptchaConfig$a.d = true;
-        hCaptchaConfig$a.f = this.rqdata;
-        hCaptchaConfig$a.h = this.apiEndpoint;
-        hCaptchaConfig$a.g = true;
-        hCaptchaConfig$a.i = this.endpoint;
-        hCaptchaConfig$a.j = this.reportapi;
-        hCaptchaConfig$a.k = this.assethost;
-        hCaptchaConfig$a.l = this.imghost;
-        hCaptchaConfig$a.n = this.locale;
-        hCaptchaConfig$a.m = true;
-        hCaptchaConfig$a.p = this.size;
-        hCaptchaConfig$a.o = true;
-        hCaptchaConfig$a.r = this.theme;
-        hCaptchaConfig$a.q = true;
-        return hCaptchaConfig$a;
+        aVar.a = str;
+        aVar.c = this.sentry;
+        aVar.f3141b = true;
+        aVar.e = this.loading;
+        aVar.d = true;
+        aVar.f = this.rqdata;
+        aVar.h = this.apiEndpoint;
+        aVar.g = true;
+        aVar.i = this.endpoint;
+        aVar.j = this.reportapi;
+        aVar.k = this.assethost;
+        aVar.l = this.imghost;
+        aVar.n = this.locale;
+        aVar.m = true;
+        aVar.p = this.size;
+        aVar.o = true;
+        aVar.r = this.theme;
+        aVar.q = true;
+        return aVar;
     }
 
     public String toString() {
-        StringBuilder sbU = a.U("HCaptchaConfig(siteKey=");
+        StringBuilder sbU = b.d.b.a.a.U("HCaptchaConfig(siteKey=");
         sbU.append(getSiteKey());
         sbU.append(", sentry=");
         sbU.append(getSentry());

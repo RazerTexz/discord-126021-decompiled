@@ -1,7 +1,6 @@
 package com.adjust.sdk;
 
 import android.net.Uri;
-import android.net.Uri$Builder;
 import androidx.browser.trusted.sharing.ShareTarget;
 import b.d.b.a.a;
 import java.io.BufferedReader;
@@ -14,7 +13,6 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map$Entry;
 import javax.net.ssl.HttpsURLConnection;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,6 +20,22 @@ import org.json.JSONObject;
 /* JADX INFO: loaded from: classes.dex */
 public class UtilNetworking {
     private static String userAgent;
+
+    public class ConnectionOptions implements IConnectionOptions {
+        @Override // com.adjust.sdk.UtilNetworking.IConnectionOptions
+        public void applyConnectionOptions(HttpsURLConnection httpsURLConnection, String str) {
+            httpsURLConnection.setRequestProperty("Client-SDK", str);
+            httpsURLConnection.setConnectTimeout(60000);
+            httpsURLConnection.setReadTimeout(60000);
+            if (UtilNetworking.access$000() != null) {
+                httpsURLConnection.setRequestProperty("User-Agent", UtilNetworking.access$000());
+            }
+        }
+    }
+
+    public interface IConnectionOptions {
+        void applyConnectionOptions(HttpsURLConnection httpsURLConnection, String str);
+    }
 
     public static /* synthetic */ String access$000() {
         return userAgent;
@@ -68,7 +82,7 @@ public class UtilNetworking {
 
     private static Uri buildUri(String str, Map<String, String> map, String str2) {
         String path;
-        Uri$Builder uri$Builder = new Uri$Builder();
+        Uri.Builder builder = new Uri.Builder();
         String protocol = Constants.SCHEME;
         String authority = Constants.AUTHORITY;
         try {
@@ -84,15 +98,15 @@ public class UtilNetworking {
             getLogger().error("Unable to parse endpoint (%s)", e.getMessage());
             path = "";
         }
-        uri$Builder.scheme(protocol);
-        uri$Builder.encodedAuthority(authority);
-        uri$Builder.path(path);
-        uri$Builder.appendPath(str);
-        for (Map$Entry<String, String> map$Entry : map.entrySet()) {
-            uri$Builder.appendQueryParameter(map$Entry.getKey(), map$Entry.getValue());
+        builder.scheme(protocol);
+        builder.encodedAuthority(authority);
+        builder.path(path);
+        builder.appendPath(str);
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            builder.appendQueryParameter(entry.getKey(), entry.getValue());
         }
-        uri$Builder.appendQueryParameter("sent_at", Util.dateFormatter.format(Long.valueOf(System.currentTimeMillis())));
-        return uri$Builder.build();
+        builder.appendQueryParameter("sent_at", Util.dateFormatter.format(Long.valueOf(System.currentTimeMillis())));
+        return builder.build();
     }
 
     public static ResponseData createGETHttpsURLConnection(ActivityPackage activityPackage, String str) throws Exception {
@@ -194,12 +208,12 @@ public class UtilNetworking {
 
     private static String getPostDataString(Map<String, String> map, int i) throws UnsupportedEncodingException {
         StringBuilder sb = new StringBuilder();
-        Iterator<Map$Entry<String, String>> it = map.entrySet().iterator();
+        Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
         while (true) {
             if (!it.hasNext()) {
                 break;
             }
-            Map$Entry<String, String> next = it.next();
+            Map.Entry<String, String> next = it.next();
             String strEncode = URLEncoder.encode(next.getKey(), Constants.ENCODING);
             String value = next.getValue();
             String strEncode2 = value != null ? URLEncoder.encode(value, Constants.ENCODING) : "";
@@ -243,11 +257,11 @@ public class UtilNetworking {
         }
         String strJ = "";
         String string = "";
-        for (Map$Entry map$Entry : map2.entrySet()) {
-            if (map$Entry.getValue() != null) {
-                strJ = a.J(a.U(strJ), (String) map$Entry.getKey(), " ");
+        for (Map.Entry entry : map2.entrySet()) {
+            if (entry.getValue() != null) {
+                strJ = a.J(a.U(strJ), (String) entry.getKey(), " ");
                 StringBuilder sbU = a.U(string);
-                sbU.append((String) map$Entry.getValue());
+                sbU.append((String) entry.getValue());
                 string = sbU.toString();
             }
         }

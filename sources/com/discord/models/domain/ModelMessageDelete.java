@@ -14,21 +14,21 @@ public class ModelMessageDelete implements Model {
     }
 
     @Override // com.discord.models.domain.Model
-    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
-        String strNextName = model$JsonReader.nextName();
+    public void assignField(Model.JsonReader jsonReader) throws IOException {
+        String strNextName = jsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "channel_id":
-                this.channelId = model$JsonReader.nextLong(this.channelId);
+                this.channelId = jsonReader.nextLong(this.channelId);
                 break;
             case "id":
-                this.messageIds = Collections.singletonList(Long.valueOf(model$JsonReader.nextLong(0L)));
+                this.messageIds = Collections.singletonList(Long.valueOf(jsonReader.nextLong(0L)));
                 break;
             case "ids":
-                this.messageIds = model$JsonReader.nextList(new a(model$JsonReader));
+                this.messageIds = jsonReader.nextList(new a(jsonReader));
                 break;
             default:
-                model$JsonReader.skipValue();
+                jsonReader.skipValue();
                 break;
         }
     }

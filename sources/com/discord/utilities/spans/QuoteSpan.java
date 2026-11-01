@@ -2,7 +2,6 @@ package com.discord.utilities.spans;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Paint$Style;
 import android.graphics.RectF;
 import android.text.Layout;
 import android.text.Spanned;
@@ -10,7 +9,7 @@ import android.text.style.LeadingMarginSpan;
 import androidx.annotation.ColorInt;
 import androidx.annotation.IntRange;
 import androidx.annotation.Px;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: QuoteSpan.kt */
@@ -30,9 +29,9 @@ public final class QuoteSpan implements LeadingMarginSpan {
     }
 
     private final void draw(Canvas c, Paint p) {
-        Paint$Style style = p.getStyle();
+        Paint.Style style = p.getStyle();
         int color = p.getColor();
-        p.setStyle(Paint$Style.FILL);
+        p.setStyle(Paint.Style.FILL);
         p.setColor(this.stripeColor);
         RectF rectF = this.rect;
         float f = this.radius;
@@ -45,7 +44,7 @@ public final class QuoteSpan implements LeadingMarginSpan {
     public void drawLeadingMargin(Canvas c, Paint p, int x2, int dir, int top, int baseline, int bottom, CharSequence text, int start, int end, boolean first, Layout layout) {
         m.checkNotNullParameter(c, "c");
         m.checkNotNullParameter(p, "p");
-        m.checkNotNullParameter(text, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         m.checkNotNullParameter(layout, "layout");
         if (text instanceof Spanned) {
             Spanned spanned = (Spanned) text;

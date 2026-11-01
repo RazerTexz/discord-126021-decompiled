@@ -3,11 +3,11 @@ package d0.t.q0;
 import d0.z.d.m;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Map$Entry;
+import java.util.Map;
 
 /* JADX INFO: compiled from: MapBuilder.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class d<K, V> extends a<Map$Entry<K, V>, K, V> {
+public final class d<K, V> extends a<Map.Entry<K, V>, K, V> {
     public final c<K, V> j;
 
     public d(c<K, V> cVar) {
@@ -17,11 +17,11 @@ public final class d<K, V> extends a<Map$Entry<K, V>, K, V> {
 
     @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
     public /* bridge */ /* synthetic */ boolean add(Object obj) {
-        return add((Map$Entry) obj);
+        return add((Map.Entry) obj);
     }
 
     @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
-    public boolean addAll(Collection<? extends Map$Entry<K, V>> collection) {
+    public boolean addAll(Collection<? extends Map.Entry<K, V>> collection) {
         m.checkNotNullParameter(collection, "elements");
         throw new UnsupportedOperationException();
     }
@@ -38,9 +38,9 @@ public final class d<K, V> extends a<Map$Entry<K, V>, K, V> {
     }
 
     @Override // d0.t.q0.a
-    public boolean containsEntry(Map$Entry<? extends K, ? extends V> map$Entry) {
-        m.checkNotNullParameter(map$Entry, "element");
-        return this.j.containsEntry$kotlin_stdlib(map$Entry);
+    public boolean containsEntry(Map.Entry<? extends K, ? extends V> entry) {
+        m.checkNotNullParameter(entry, "element");
+        return this.j.containsEntry$kotlin_stdlib(entry);
     }
 
     @Override // d0.t.f
@@ -54,14 +54,14 @@ public final class d<K, V> extends a<Map$Entry<K, V>, K, V> {
     }
 
     @Override // java.util.AbstractCollection, java.util.Collection, java.lang.Iterable, java.util.Set
-    public Iterator<Map$Entry<K, V>> iterator() {
+    public Iterator<Map.Entry<K, V>> iterator() {
         return this.j.entriesIterator$kotlin_stdlib();
     }
 
     @Override // d0.t.q0.a
-    public boolean remove(Map$Entry map$Entry) {
-        m.checkNotNullParameter(map$Entry, "element");
-        return this.j.removeEntry$kotlin_stdlib(map$Entry);
+    public boolean remove(Map.Entry entry) {
+        m.checkNotNullParameter(entry, "element");
+        return this.j.removeEntry$kotlin_stdlib(entry);
     }
 
     @Override // java.util.AbstractSet, java.util.AbstractCollection, java.util.Collection, java.util.Set
@@ -78,8 +78,8 @@ public final class d<K, V> extends a<Map$Entry<K, V>, K, V> {
         return super.retainAll(collection);
     }
 
-    public boolean add(Map$Entry<K, V> map$Entry) {
-        m.checkNotNullParameter(map$Entry, "element");
+    public boolean add(Map.Entry<K, V> entry) {
+        m.checkNotNullParameter(entry, "element");
         throw new UnsupportedOperationException();
     }
 }

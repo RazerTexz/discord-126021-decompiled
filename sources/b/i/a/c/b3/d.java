@@ -3,11 +3,14 @@ package b.i.a.c.b3;
 import android.os.Bundle;
 import android.os.Parcel;
 import androidx.annotation.Nullable;
+import b.i.b.b.h0;
+import b.i.b.b.p;
 import com.google.android.exoplayer2.decoder.DecoderException;
 import java.nio.ByteBuffer;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: ExoplayerCuesDecoder.java */
@@ -21,9 +24,60 @@ public final class d implements h {
     public final j f843b = new j();
     public final Deque<k> c = new ArrayDeque();
 
+    /* JADX INFO: compiled from: ExoplayerCuesDecoder.java */
+    public class a extends k {
+        public a() {
+        }
+
+        @Override // b.i.a.c.v2.f
+        public void p() {
+            d dVar = d.this;
+            b.c.a.a0.d.D(dVar.c.size() < 2);
+            b.c.a.a0.d.j(!dVar.c.contains(this));
+            q();
+            dVar.c.addFirst(this);
+        }
+    }
+
+    /* JADX INFO: compiled from: ExoplayerCuesDecoder.java */
+    public final class b implements g {
+        public final long j;
+        public final p<b.i.a.c.b3.b> k;
+
+        public b(long j, p<b.i.a.c.b3.b> pVar) {
+            this.j = j;
+            this.k = pVar;
+        }
+
+        @Override // b.i.a.c.b3.g
+        public int f(long j) {
+            return this.j > j ? 0 : -1;
+        }
+
+        @Override // b.i.a.c.b3.g
+        public long g(int i) {
+            b.c.a.a0.d.j(i == 0);
+            return this.j;
+        }
+
+        @Override // b.i.a.c.b3.g
+        public List<b.i.a.c.b3.b> h(long j) {
+            if (j >= this.j) {
+                return this.k;
+            }
+            b.i.b.b.a<Object> aVar = p.k;
+            return h0.l;
+        }
+
+        @Override // b.i.a.c.b3.g
+        public int i() {
+            return 1;
+        }
+    }
+
     public d() {
         for (int i = 0; i < 2; i++) {
-            this.c.addFirst(new d$a(this));
+            this.c.addFirst(new a());
         }
         this.d = 0;
     }
@@ -57,7 +111,7 @@ public final class d implements h {
             parcelObtain.recycle();
             ArrayList parcelableArrayList = bundle.getParcelableArrayList("c");
             Objects.requireNonNull(parcelableArrayList);
-            kVarRemoveFirst.r(this.f843b.n, new d$b(j, b.i.a.c.f3.f.a(b.k, parcelableArrayList)), 0L);
+            kVarRemoveFirst.r(this.f843b.n, new b(j, b.i.a.c.f3.f.a(b.i.a.c.b3.b.k, parcelableArrayList)), 0L);
         }
         this.f843b.p();
         this.d = 0;

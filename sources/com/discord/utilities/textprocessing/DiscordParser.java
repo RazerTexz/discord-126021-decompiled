@@ -22,6 +22,28 @@ public final class DiscordParser {
     private static final Parser<MessageRenderContext, Node<MessageRenderContext>, MessageParseState> REPLY_PARSER = createParser$default(false, true, false, false, false, 24, null);
     private static final Parser<MessageRenderContext, Node<MessageRenderContext>, MessageParseState> FORUM_POST_FIRST_MESSAGE = createParser$default(false, true, false, true, true, 4, null);
 
+    /* JADX INFO: compiled from: DiscordParser.kt */
+    public enum ParserOptions {
+        DEFAULT,
+        ALLOW_MASKED_LINKS,
+        REPLY,
+        FORUM_POST_FIRST_MESSAGE
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            ParserOptions.values();
+            int[] iArr = new int[4];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[ParserOptions.DEFAULT.ordinal()] = 1;
+            iArr[ParserOptions.ALLOW_MASKED_LINKS.ordinal()] = 2;
+            iArr[ParserOptions.REPLY.ordinal()] = 3;
+            iArr[ParserOptions.FORUM_POST_FIRST_MESSAGE.ordinal()] = 4;
+        }
+    }
+
     private DiscordParser() {
     }
 
@@ -78,7 +100,7 @@ public final class DiscordParser {
         return parser;
     }
 
-    public static final DraweeSpanStringBuilder parseChannelMessage(Context context, String messageText, MessageRenderContext messageRenderContext, MessagePreprocessor preprocessor, DiscordParser$ParserOptions parserOptions, boolean isEdited) {
+    public static final DraweeSpanStringBuilder parseChannelMessage(Context context, String messageText, MessageRenderContext messageRenderContext, MessagePreprocessor preprocessor, ParserOptions parserOptions, boolean isEdited) {
         Parser<MessageRenderContext, Node<MessageRenderContext>, MessageParseState> parser;
         m.checkNotNullParameter(context, "context");
         m.checkNotNullParameter(messageRenderContext, "messageRenderContext");
@@ -101,7 +123,7 @@ public final class DiscordParser {
         if (messageText == null) {
             messageText = "";
         }
-        List list = Parser.parse$default(parser2, messageText, MessageParseState.Companion.getInitialState(), null, 4, null);
+        List list = Parser.parse$default(parser2, messageText, MessageParseState.INSTANCE.getInitialState(), null, 4, null);
         preprocessor.process(list);
         if (isEdited) {
             list.add(new EditedMessageNode(context));

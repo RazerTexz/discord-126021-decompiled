@@ -1,6 +1,7 @@
 package d0.d0;
 
 import java.util.Iterator;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: Progressions.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -9,8 +10,14 @@ public class c implements Iterable<Long>, d0.z.d.g0.a {
     public final long k;
     public final long l;
 
+    /* JADX INFO: compiled from: Progressions.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     static {
-        new c$a(null);
+        new a(null);
     }
 
     public c(long j, long j2, long j3) {

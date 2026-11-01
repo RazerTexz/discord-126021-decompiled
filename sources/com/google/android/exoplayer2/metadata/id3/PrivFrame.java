@@ -1,9 +1,8 @@
 package com.google.android.exoplayer2.metadata.id3;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
-import b.d.b.a.a;
 import b.i.a.c.f3.e0;
 import java.util.Arrays;
 
@@ -11,7 +10,19 @@ import java.util.Arrays;
 public final class PrivFrame extends Id3Frame {
     public final String k;
     public final byte[] l;
-    public static final Parcelable$Creator<PrivFrame> CREATOR = new PrivFrame$a();
+    public static final Parcelable.Creator<PrivFrame> CREATOR = new a();
+
+    public class a implements Parcelable.Creator<PrivFrame> {
+        @Override // android.os.Parcelable.Creator
+        public PrivFrame createFromParcel(Parcel parcel) {
+            return new PrivFrame(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public PrivFrame[] newArray(int i) {
+            return new PrivFrame[i];
+        }
+    }
 
     public PrivFrame(String str, byte[] bArr) {
         super("PRIV");
@@ -39,7 +50,7 @@ public final class PrivFrame extends Id3Frame {
     public String toString() {
         String str = this.j;
         String str2 = this.k;
-        return a.k(a.b(str2, a.b(str, 8)), str, ": owner=", str2);
+        return b.d.b.a.a.k(b.d.b.a.a.b(str2, b.d.b.a.a.b(str, 8)), str, ": owner=", str2);
     }
 
     @Override // android.os.Parcelable

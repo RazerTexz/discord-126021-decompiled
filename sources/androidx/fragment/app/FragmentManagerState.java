@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import java.util.ArrayList;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -14,11 +13,36 @@ public final class FragmentManagerState implements Parcelable {
     public ArrayList<String> mAdded;
     public BackStackState[] mBackStack;
     public int mBackStackIndex;
-    public ArrayList<FragmentManager$LaunchedFragmentInfo> mLaunchedFragments;
+    public ArrayList<FragmentManager.LaunchedFragmentInfo> mLaunchedFragments;
     public String mPrimaryNavActiveWho;
     public ArrayList<String> mResultKeys;
     public ArrayList<Bundle> mResults;
-    public static final Parcelable$Creator<FragmentManagerState> CREATOR = new FragmentManagerState$1();
+    public static final Parcelable.Creator<FragmentManagerState> CREATOR = new AnonymousClass1();
+
+    /* JADX INFO: renamed from: androidx.fragment.app.FragmentManagerState$1, reason: invalid class name */
+    public class AnonymousClass1 implements Parcelable.Creator<FragmentManagerState> {
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ FragmentManagerState createFromParcel(Parcel parcel) {
+            return createFromParcel(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ FragmentManagerState[] newArray(int i) {
+            return newArray(i);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public FragmentManagerState createFromParcel(Parcel parcel) {
+            return new FragmentManagerState(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public FragmentManagerState[] newArray(int i) {
+            return new FragmentManagerState[i];
+        }
+    }
 
     public FragmentManagerState() {
         this.mPrimaryNavActiveWho = null;
@@ -54,6 +78,6 @@ public final class FragmentManagerState implements Parcelable {
         this.mPrimaryNavActiveWho = parcel.readString();
         this.mResultKeys = parcel.createStringArrayList();
         this.mResults = parcel.createTypedArrayList(Bundle.CREATOR);
-        this.mLaunchedFragments = parcel.createTypedArrayList(FragmentManager$LaunchedFragmentInfo.CREATOR);
+        this.mLaunchedFragments = parcel.createTypedArrayList(FragmentManager.LaunchedFragmentInfo.CREATOR);
     }
 }

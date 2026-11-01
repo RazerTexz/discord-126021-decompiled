@@ -1,7 +1,7 @@
 package androidx.preference;
 
 import androidx.exifinterface.media.ExifInterface;
-import b.d.b.a.a;
+import d0.z.d.g0.a;
 import d0.z.d.m;
 import java.util.Iterator;
 import kotlin.Unit;
@@ -12,6 +12,49 @@ import kotlin.sequences.Sequence;
 /* JADX INFO: compiled from: PreferenceGroup.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class PreferenceGroupKt {
+
+    /* JADX INFO: renamed from: androidx.preference.PreferenceGroupKt$iterator$1, reason: invalid class name */
+    /* JADX INFO: compiled from: PreferenceGroup.kt */
+    public final class AnonymousClass1 implements Iterator<Preference>, a {
+        public final /* synthetic */ PreferenceGroup $this_iterator;
+        private int index;
+
+        public AnonymousClass1(PreferenceGroup preferenceGroup) {
+            this.$this_iterator = preferenceGroup;
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.index < this.$this_iterator.getPreferenceCount();
+        }
+
+        @Override // java.util.Iterator
+        public /* bridge */ /* synthetic */ Preference next() {
+            return next();
+        }
+
+        @Override // java.util.Iterator
+        public void remove() {
+            PreferenceGroup preferenceGroup = this.$this_iterator;
+            int i = this.index - 1;
+            this.index = i;
+            preferenceGroup.removePreference(preferenceGroup.getPreference(i));
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // java.util.Iterator
+        public Preference next() {
+            PreferenceGroup preferenceGroup = this.$this_iterator;
+            int i = this.index;
+            this.index = i + 1;
+            Preference preference = preferenceGroup.getPreference(i);
+            if (preference != null) {
+                return preference;
+            }
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
     public static final boolean contains(PreferenceGroup preferenceGroup, Preference preference) {
         m.checkParameterIsNotNull(preferenceGroup, "$this$contains");
         m.checkParameterIsNotNull(preference, "preference");
@@ -70,7 +113,7 @@ public final class PreferenceGroupKt {
 
     public static final Iterator<Preference> iterator(PreferenceGroup preferenceGroup) {
         m.checkParameterIsNotNull(preferenceGroup, "$this$iterator");
-        return new PreferenceGroupKt$iterator$1(preferenceGroup);
+        return new AnonymousClass1(preferenceGroup);
     }
 
     public static final void minusAssign(PreferenceGroup preferenceGroup, Preference preference) {
@@ -91,7 +134,7 @@ public final class PreferenceGroupKt {
         if (preference != null) {
             return preference;
         }
-        StringBuilder sbV = a.V("Index: ", i, ", Size: ");
+        StringBuilder sbV = b.d.b.a.a.V("Index: ", i, ", Size: ");
         sbV.append(preferenceGroup.getPreferenceCount());
         throw new IndexOutOfBoundsException(sbV.toString());
     }

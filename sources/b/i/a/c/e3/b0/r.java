@@ -6,8 +6,6 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import com.google.android.exoplayer2.database.DatabaseIOException;
 import com.google.android.exoplayer2.upstream.cache.Cache;
-import com.google.android.exoplayer2.upstream.cache.Cache$CacheException;
-import com.google.android.exoplayer2.upstream.cache.Cache$a;
 import java.io.File;
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -31,12 +29,12 @@ public final class r implements Cache {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final File f938b;
-    public final HashMap<String, ArrayList<Cache$a>> f;
+    public final HashMap<String, ArrayList<Cache.a>> f;
     public final Random g;
     public final boolean h;
     public long i;
     public long j;
-    public Cache$CacheException k;
+    public Cache.CacheException k;
     public static final HashSet<File> a = new HashSet<>();
 
     public r(File file, d dVar, b.i.a.c.u2.a aVar) {
@@ -64,7 +62,7 @@ public final class r implements Cache {
     }
 
     @Override // com.google.android.exoplayer2.upstream.cache.Cache
-    public synchronized File a(String str, long j, long j2) throws Cache$CacheException {
+    public synchronized File a(String str, long j, long j2) throws Cache.CacheException {
         i iVar;
         File file;
         b.c.a.a0.d.D(true);
@@ -93,7 +91,7 @@ public final class r implements Cache {
     }
 
     @Override // com.google.android.exoplayer2.upstream.cache.Cache
-    public synchronized void c(String str, m mVar) throws Cache$CacheException {
+    public synchronized void c(String str, m mVar) throws Cache.CacheException {
         b.c.a.a0.d.D(true);
         l();
         j jVar = this.d;
@@ -107,7 +105,7 @@ public final class r implements Cache {
         try {
             this.d.g();
         } catch (IOException e) {
-            throw new Cache$CacheException(e);
+            throw new Cache.CacheException(e);
         }
     }
 
@@ -123,7 +121,7 @@ public final class r implements Cache {
       0x005b: PHI (r20v4 b.i.a.c.e3.b0.s) = (r20v3 b.i.a.c.e3.b0.s), (r20v3 b.i.a.c.e3.b0.s), (r20v7 b.i.a.c.e3.b0.s), (r20v7 b.i.a.c.e3.b0.s) binds: [B:21:0x0050, B:24:0x0058, B:16:0x0044, B:19:0x004b] A[DONT_GENERATE, DONT_INLINE]] */
     @Override // com.google.android.exoplayer2.upstream.cache.Cache
     @Nullable
-    public synchronized h e(String str, long j, long j2) throws Cache$CacheException {
+    public synchronized h e(String str, long j, long j2) throws Cache.CacheException {
         s sVar;
         boolean z2;
         boolean z3;
@@ -139,15 +137,15 @@ public final class r implements Cache {
         while (true) {
             if (i >= iVarD.d.size()) {
                 sVar = sVarO;
-                iVarD.d.add(new i$a(j, j3));
+                iVarD.d.add(new i.a(j, j3));
                 z2 = true;
                 break;
             }
-            i$a i_a = iVarD.d.get(i);
-            long j4 = i_a.a;
+            i.a aVar = iVarD.d.get(i);
+            long j4 = aVar.a;
             if (j4 <= j) {
                 sVar = sVarO;
-                long j5 = i_a.f931b;
+                long j5 = aVar.f931b;
                 if (j5 == -1 || j4 + j5 > j) {
                     z3 = true;
                 } else {
@@ -175,7 +173,7 @@ public final class r implements Cache {
     }
 
     @Override // com.google.android.exoplayer2.upstream.cache.Cache
-    public synchronized h f(String str, long j, long j2) throws InterruptedException, Cache$CacheException {
+    public synchronized h f(String str, long j, long j2) throws InterruptedException, Cache.CacheException {
         h hVarE;
         b.c.a.a0.d.D(true);
         l();
@@ -189,7 +187,7 @@ public final class r implements Cache {
     }
 
     @Override // com.google.android.exoplayer2.upstream.cache.Cache
-    public synchronized void g(File file, long j) throws Cache$CacheException {
+    public synchronized void g(File file, long j) throws Cache.CacheException {
         boolean z2 = true;
         b.c.a.a0.d.D(true);
         if (file.exists()) {
@@ -221,10 +219,10 @@ public final class r implements Cache {
                     this.d.g();
                     notifyAll();
                 } catch (IOException e) {
-                    throw new Cache$CacheException(e);
+                    throw new Cache.CacheException(e);
                 }
             } catch (IOException e2) {
-                throw new Cache$CacheException(e2);
+                throw new Cache.CacheException(e2);
             }
         }
     }
@@ -256,7 +254,7 @@ public final class r implements Cache {
         if (!rVar.f938b.exists()) {
             try {
                 m(rVar.f938b);
-            } catch (Cache$CacheException e) {
+            } catch (Cache.CacheException e) {
                 rVar.k = e;
                 return;
             }
@@ -269,7 +267,7 @@ public final class r implements Cache {
             sb.append(strValueOf);
             String string = sb.toString();
             Log.e("SimpleCache", string);
-            rVar.k = new Cache$CacheException(string);
+            rVar.k = new Cache.CacheException(string);
             return;
         }
         int length = fileArrListFiles.length;
@@ -307,7 +305,7 @@ public final class r implements Cache {
                 sb3.append(strValueOf3);
                 String string2 = sb3.toString();
                 b.i.a.c.f3.q.b("SimpleCache", string2, e2);
-                rVar.k = new Cache$CacheException(string2, e2);
+                rVar.k = new Cache.CacheException(string2, e2);
                 return;
             }
         }
@@ -339,14 +337,14 @@ public final class r implements Cache {
             sb4.append(strValueOf4);
             String string3 = sb4.toString();
             b.i.a.c.f3.q.b("SimpleCache", string3, e4);
-            rVar.k = new Cache$CacheException(string3, e4);
+            rVar.k = new Cache.CacheException(string3, e4);
         }
     }
 
     public final void k(s sVar) {
         this.d.d(sVar.j).c.add(sVar);
         this.j += sVar.l;
-        ArrayList<Cache$a> arrayList = this.f.get(sVar.j);
+        ArrayList<Cache.a> arrayList = this.f.get(sVar.j);
         if (arrayList != null) {
             int size = arrayList.size();
             while (true) {
@@ -361,14 +359,14 @@ public final class r implements Cache {
         this.c.d(this, sVar);
     }
 
-    public synchronized void l() throws Cache$CacheException {
-        Cache$CacheException cache$CacheException = this.k;
-        if (cache$CacheException != null) {
-            throw cache$CacheException;
+    public synchronized void l() throws Cache.CacheException {
+        Cache.CacheException cacheException = this.k;
+        if (cacheException != null) {
+            throw cacheException;
         }
     }
 
-    public static void m(File file) throws Cache$CacheException {
+    public static void m(File file) throws Cache.CacheException {
         if (file.mkdirs() || file.isDirectory()) {
             return;
         }
@@ -378,7 +376,7 @@ public final class r implements Cache {
         sb.append(strValueOf);
         String string = sb.toString();
         Log.e("SimpleCache", string);
-        throw new Cache$CacheException(string);
+        throw new Cache.CacheException(string);
     }
 
     public static long n(File file) throws IOException {
@@ -485,7 +483,7 @@ public final class r implements Cache {
                     }
                 }
                 this.d.f(iVarC.f930b);
-                ArrayList<Cache$a> arrayList = this.f.get(hVar.j);
+                ArrayList<Cache.a> arrayList = this.f.get(hVar.j);
                 if (arrayList != null) {
                     int size = arrayList.size();
                     while (true) {
@@ -560,7 +558,7 @@ public final class r implements Cache {
         b.c.a.a0.d.D(sVar.m);
         s sVar2 = new s(sVar.j, sVar.k, sVar.l, jCurrentTimeMillis, file);
         iVar.c.add(sVar2);
-        ArrayList<Cache$a> arrayList = this.f.get(sVar.j);
+        ArrayList<Cache.a> arrayList = this.f.get(sVar.j);
         if (arrayList != null) {
             int size = arrayList.size();
             while (true) {

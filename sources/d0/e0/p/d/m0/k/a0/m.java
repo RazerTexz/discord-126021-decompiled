@@ -6,6 +6,7 @@ import d0.z.d.a0;
 import d0.z.d.y;
 import java.util.Collection;
 import java.util.List;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.reflect.KProperty;
 
@@ -18,13 +19,31 @@ public final class m extends j {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final /* synthetic */ KProperty<Object>[] f3462b = {a0.property1(new y(a0.getOrCreateKotlinClass(m.class), "functions", "getFunctions()Ljava/util/List;"))};
 
+    /* JADX INFO: compiled from: StaticScopeForKotlinEnum.kt */
+    public final class a extends d0.z.d.o implements Function0<List<? extends t0>> {
+        public a() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<? extends t0> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<? extends t0> invoke2() {
+            return d0.t.n.listOf((Object[]) new t0[]{d0.e0.p.d.m0.k.d.createEnumValueOfMethod(m.access$getContainingClass$p(m.this)), d0.e0.p.d.m0.k.d.createEnumValuesMethod(m.access$getContainingClass$p(m.this))});
+        }
+    }
+
     public m(d0.e0.p.d.m0.m.o oVar, d0.e0.p.d.m0.c.e eVar) {
         d0.z.d.m.checkNotNullParameter(oVar, "storageManager");
         d0.z.d.m.checkNotNullParameter(eVar, "containingClass");
         this.c = eVar;
         eVar.getKind();
         d0.e0.p.d.m0.c.f fVar = d0.e0.p.d.m0.c.f.ENUM_CLASS;
-        this.d = oVar.createLazyValue(new m$a(this));
+        this.d = oVar.createLazyValue(new a());
     }
 
     public static final /* synthetic */ d0.e0.p.d.m0.c.e access$getContainingClass$p(m mVar) {

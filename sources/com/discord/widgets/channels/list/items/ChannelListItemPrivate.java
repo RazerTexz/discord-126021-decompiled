@@ -3,12 +3,12 @@ package com.discord.widgets.channels.list.items;
 import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.models.presence.Presence;
-import com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem;
+import com.discord.widgets.channels.list.WidgetChannelListUnreads;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: ChannelListItemPrivate.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* data */ class ChannelListItemPrivate implements ChannelListItem, WidgetChannelListUnreads$UnreadItem {
+public final /* data */ class ChannelListItemPrivate implements ChannelListItem, WidgetChannelListUnreads.UnreadItem {
     private final Channel channel;
     private final boolean isApplicationStreaming;
     private final String key;
@@ -90,7 +90,7 @@ public final /* data */ class ChannelListItemPrivate implements ChannelListItem,
         return this.isApplicationStreaming;
     }
 
-    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem
+    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
     /* JADX INFO: renamed from: isUnread */
     public boolean getIsUnread() {
         return false;
@@ -101,7 +101,7 @@ public final /* data */ class ChannelListItemPrivate implements ChannelListItem,
         return this.key;
     }
 
-    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem
+    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
     public int getMentionCount() {
         return this.mentionCount;
     }

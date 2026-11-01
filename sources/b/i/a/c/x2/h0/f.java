@@ -4,18 +4,15 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import b.i.a.c.f3.e0;
 import b.i.a.c.f3.x;
-import b.i.a.c.j1$b;
+import b.i.a.c.j1;
 import b.i.a.c.t2.a0;
-import b.i.a.c.t2.a0$a;
 import b.i.a.c.x2.j;
 import b.i.a.c.x2.p;
 import b.i.a.c.x2.q;
 import b.i.a.c.x2.s;
 import b.i.a.c.x2.w;
-import b.i.a.c.z2.k.b$a;
 import com.google.android.exoplayer2.ParserException;
 import com.google.android.exoplayer2.metadata.Metadata;
-import com.google.android.exoplayer2.metadata.Metadata$Entry;
 import com.google.android.exoplayer2.metadata.id3.MlltFrame;
 import com.google.android.exoplayer2.metadata.id3.TextInformationFrame;
 import java.io.EOFException;
@@ -26,13 +23,13 @@ import org.objectweb.asm.Opcodes;
 /* JADX INFO: compiled from: Mp3Extractor.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class f implements b.i.a.c.x2.h {
-    public static final b$a a;
+    public static final b.i.a.c.z2.k.b.a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final int f1205b;
     public final long c;
     public final x d;
-    public final a0$a e;
+    public final a0.a e;
     public final p f;
     public final q g;
     public final w h;
@@ -85,9 +82,9 @@ public final class f implements b.i.a.c.x2.h {
         }
         int length = metadata.j.length;
         for (int i = 0; i < length; i++) {
-            Metadata$Entry metadata$Entry = metadata.j[i];
-            if (metadata$Entry instanceof TextInformationFrame) {
-                TextInformationFrame textInformationFrame = (TextInformationFrame) metadata$Entry;
+            Metadata.Entry entry = metadata.j[i];
+            if (entry instanceof TextInformationFrame) {
+                TextInformationFrame textInformationFrame = (TextInformationFrame) entry;
                 if (textInformationFrame.j.equals("TLEN")) {
                     return e0.B(Long.parseLong(textInformationFrame.l));
                 }
@@ -161,7 +158,7 @@ public final class f implements b.i.a.c.x2.h {
         int i2;
         int iF;
         x xVar;
-        a0$a a0_a;
+        a0.a aVar;
         int i3;
         int iF2;
         int iF3;
@@ -183,7 +180,7 @@ public final class f implements b.i.a.c.x2.h {
         Metadata metadata2;
         int length;
         int i6;
-        Metadata$Entry metadata$Entry;
+        Metadata.Entry entry;
         MlltFrame mlltFrame;
         int length2;
         long[] jArr;
@@ -199,13 +196,13 @@ public final class f implements b.i.a.c.x2.h {
                 if (this.r == null) {
                     xVar = new x(this.e.c);
                     iVar.o(xVar.a, 0, this.e.c);
-                    a0_a = this.e;
+                    aVar = this.e;
                     i3 = 21;
-                    if ((a0_a.a & 1) != 0) {
-                        if (a0_a.e != 1) {
+                    if ((aVar.a & 1) != 0) {
+                        if (aVar.e != 1) {
                             i3 = 36;
                         }
-                    } else if (a0_a.e == 1) {
+                    } else if (aVar.e == 1) {
                         i3 = 13;
                     }
                     if (xVar.c >= i3 + 4) {
@@ -238,16 +235,16 @@ public final class f implements b.i.a.c.x2.h {
                         fVar = this;
                         long jB = iVar.b();
                         long position3 = iVar.getPosition();
-                        a0$a a0_a2 = fVar.e;
-                        int i9 = a0_a2.g;
-                        int i10 = a0_a2.d;
+                        a0.a aVar2 = fVar.e;
+                        int i9 = aVar2.g;
+                        int i10 = aVar2.d;
                         iF3 = xVar.f();
                         if ((iF3 & 1) == 1 || (iW = xVar.w()) == 0) {
                             gVarC = null;
                         } else {
                             long jF = e0.F(iW, ((long) i9) * 1000000, i10);
                             if ((iF3 & 6) != 6) {
-                                iVar3 = new i(position3, a0_a2.c, jF, -1L, null);
+                                iVar3 = new i(position3, aVar2.c, jF, -1L, null);
                             } else {
                                 long jU = xVar.u();
                                 long[] jArr3 = new long[100];
@@ -262,7 +259,7 @@ public final class f implements b.i.a.c.x2.h {
                                         Log.w("XingSeeker", sbR.toString());
                                     }
                                 }
-                                iVar3 = new i(position3, a0_a2.c, jF, jU, jArr3);
+                                iVar3 = new i(position3, aVar2.c, jF, jU, jArr3);
                             }
                             gVarC = iVar3;
                         }
@@ -301,20 +298,20 @@ public final class f implements b.i.a.c.x2.h {
                     } else if (iF2 == 1447187017) {
                         long jB2 = iVar.b();
                         long position4 = iVar.getPosition();
-                        a0$a a0_a3 = this.e;
+                        a0.a aVar3 = this.e;
                         xVar.F(10);
                         int iF4 = xVar.f();
                         if (iF4 <= 0) {
                             gVarC = null;
                             break;
                         }
-                        int i12 = a0_a3.d;
+                        int i12 = aVar3.d;
                         long jF2 = e0.F(iF4, ((long) (i12 >= 32000 ? 1152 : 576)) * 1000000, i12);
                         int iY = xVar.y();
                         int iY2 = xVar.y();
                         int iY3 = xVar.y();
                         xVar.F(2);
-                        long j4 = ((long) a0_a3.c) + position4;
+                        long j4 = ((long) aVar3.c) + position4;
                         long[] jArr4 = new long[iY];
                         long[] jArr5 = new long[iY];
                         int i13 = 0;
@@ -375,9 +372,9 @@ public final class f implements b.i.a.c.x2.h {
                             eVar = null;
                             break;
                         }
-                        metadata$Entry = metadata.j[i6];
-                        if (metadata$Entry instanceof MlltFrame) {
-                            mlltFrame = (MlltFrame) metadata$Entry;
+                        entry = metadata.j[i6];
+                        if (entry instanceof MlltFrame) {
+                            mlltFrame = (MlltFrame) entry;
                             long jD2 = d(metadata);
                             length2 = mlltFrame.n.length;
                             int i14 = length2 + 1;
@@ -399,7 +396,7 @@ public final class f implements b.i.a.c.x2.h {
                         i6++;
                     }
                     if (fVar.f1206s) {
-                        gVarC = new g$a();
+                        gVarC = new g.a();
                     } else {
                         if ((fVar.f1205b & 4) != 0) {
                             if (eVar != null) {
@@ -433,22 +430,22 @@ public final class f implements b.i.a.c.x2.h {
                     fVar.r = gVarC;
                     fVar.i.a(gVarC);
                     w wVar = fVar.k;
-                    j1$b j1_b = new j1$b();
-                    a0$a a0_a4 = fVar.e;
-                    j1_b.k = a0_a4.f1116b;
-                    j1_b.l = 4096;
-                    j1_b.f1023x = a0_a4.e;
-                    j1_b.f1024y = a0_a4.d;
+                    j1.b bVar = new j1.b();
+                    a0.a aVar4 = fVar.e;
+                    bVar.k = aVar4.f1116b;
+                    bVar.l = 4096;
+                    bVar.f1023x = aVar4.e;
+                    bVar.f1024y = aVar4.d;
                     p pVar3 = fVar.f;
-                    j1_b.A = pVar3.f1294b;
-                    j1_b.B = pVar3.c;
+                    bVar.A = pVar3.f1294b;
+                    bVar.B = pVar3.c;
                     if ((fVar.f1205b & 8) != 0) {
                         metadata2 = null;
                     } else {
                         metadata2 = fVar.m;
                     }
-                    j1_b.i = metadata2;
-                    wVar.e(j1_b.a());
+                    bVar.i = metadata2;
+                    wVar.e(bVar.a());
                     fVar.p = iVar.getPosition();
                 } else {
                     iVar2 = iVar;
@@ -479,12 +476,12 @@ public final class f implements b.i.a.c.x2.h {
                                     fVar.n = (fVar.c - fVar.r.d(0L)) + fVar.n;
                                 }
                             }
-                            a0$a a0_a5 = fVar.e;
-                            fVar.q = a0_a5.c;
+                            a0.a aVar5 = fVar.e;
+                            fVar.q = aVar5.c;
                             g gVar = fVar.r;
                             if (gVar instanceof d) {
                                 d dVar = (d) gVar;
-                                long jA2 = fVar.a(fVar.o + ((long) a0_a5.g));
+                                long jA2 = fVar.a(fVar.o + ((long) aVar5.g));
                                 long position5 = iVar.getPosition() + ((long) fVar.e.c);
                                 if (!dVar.b(jA2)) {
                                     dVar.f1203b.a(jA2);
@@ -532,13 +529,13 @@ public final class f implements b.i.a.c.x2.h {
             if (this.r == null) {
                 xVar = new x(this.e.c);
                 iVar.o(xVar.a, 0, this.e.c);
-                a0_a = this.e;
+                aVar = this.e;
                 i3 = 21;
-                if ((a0_a.a & 1) != 0) {
-                    if (a0_a.e != 1) {
+                if ((aVar.a & 1) != 0) {
+                    if (aVar.e != 1) {
                         i3 = 36;
                     }
-                } else if (a0_a.e == 1) {
+                } else if (aVar.e == 1) {
                     i3 = 13;
                 }
                 if (xVar.c >= i3 + 4) {
@@ -571,9 +568,9 @@ public final class f implements b.i.a.c.x2.h {
                     fVar = this;
                     long jB3 = iVar.b();
                     long position6 = iVar.getPosition();
-                    a0$a a0_a6 = fVar.e;
-                    int i16 = a0_a6.g;
-                    int i17 = a0_a6.d;
+                    a0.a aVar6 = fVar.e;
+                    int i16 = aVar6.g;
+                    int i17 = aVar6.d;
                     iF3 = xVar.f();
                     if ((iF3 & 1) == 1) {
                         gVarC = null;
@@ -619,9 +616,9 @@ public final class f implements b.i.a.c.x2.h {
                     fVar = this;
                     long jB4 = iVar.b();
                     long position7 = iVar.getPosition();
-                    a0$a a0_a7 = fVar.e;
-                    int i18 = a0_a7.g;
-                    int i19 = a0_a7.d;
+                    a0.a aVar7 = fVar.e;
+                    int i18 = aVar7.g;
+                    int i19 = aVar7.d;
                     iF3 = xVar.f();
                     if ((iF3 & 1) == 1) {
                         gVarC = null;
@@ -677,9 +674,9 @@ public final class f implements b.i.a.c.x2.h {
                         eVar = null;
                         break;
                     }
-                    metadata$Entry = metadata.j[i6];
-                    if (metadata$Entry instanceof MlltFrame) {
-                        mlltFrame = (MlltFrame) metadata$Entry;
+                    entry = metadata.j[i6];
+                    if (entry instanceof MlltFrame) {
+                        mlltFrame = (MlltFrame) entry;
                         long jD3 = d(metadata);
                         length2 = mlltFrame.n.length;
                         int i110 = length2 + 1;
@@ -701,7 +698,7 @@ public final class f implements b.i.a.c.x2.h {
                     i6++;
                 }
                 if (fVar.f1206s) {
-                    gVarC = new g$a();
+                    gVarC = new g.a();
                 } else {
                     if ((fVar.f1205b & 4) != 0) {
                         if (eVar != null) {
@@ -742,22 +739,22 @@ public final class f implements b.i.a.c.x2.h {
                 fVar.r = gVarC;
                 fVar.i.a(gVarC);
                 w wVar2 = fVar.k;
-                j1$b j1_b2 = new j1$b();
-                a0$a a0_a8 = fVar.e;
-                j1_b2.k = a0_a8.f1116b;
-                j1_b2.l = 4096;
-                j1_b2.f1023x = a0_a8.e;
-                j1_b2.f1024y = a0_a8.d;
+                j1.b bVar2 = new j1.b();
+                a0.a aVar8 = fVar.e;
+                bVar2.k = aVar8.f1116b;
+                bVar2.l = 4096;
+                bVar2.f1023x = aVar8.e;
+                bVar2.f1024y = aVar8.d;
                 p pVar4 = fVar.f;
-                j1_b2.A = pVar4.f1294b;
-                j1_b2.B = pVar4.c;
+                bVar2.A = pVar4.f1294b;
+                bVar2.B = pVar4.c;
                 if ((fVar.f1205b & 8) != 0) {
                     metadata2 = null;
                 } else {
                     metadata2 = fVar.m;
                 }
-                j1_b2.i = metadata2;
-                wVar2.e(j1_b2.a());
+                bVar2.i = metadata2;
+                wVar2.e(bVar2.a());
                 fVar.p = iVar.getPosition();
             } else {
                 iVar2 = iVar;
@@ -932,7 +929,7 @@ public final class f implements b.i.a.c.x2.h {
         this.f1205b = (i & 2) != 0 ? i | 1 : i;
         this.c = -9223372036854775807L;
         this.d = new x(10);
-        this.e = new a0$a();
+        this.e = new a0.a();
         this.f = new p();
         this.n = -9223372036854775807L;
         this.g = new q();

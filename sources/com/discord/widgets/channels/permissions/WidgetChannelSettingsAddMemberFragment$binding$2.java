@@ -3,7 +3,7 @@ package com.discord.widgets.channels.permissions;
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetChannelSettingsAddMemberBinding;
 import com.discord.views.SearchInputView;
 import d0.z.d.k;
@@ -27,11 +27,11 @@ public final /* synthetic */ class WidgetChannelSettingsAddMemberFragment$bindin
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetChannelSettingsAddMemberBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.recycler;
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.recycler);
+        int i = R.id.recycler;
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler);
         if (recyclerView != null) {
-            i = R$id.search_input;
-            SearchInputView searchInputView = (SearchInputView) view.findViewById(R$id.search_input);
+            i = R.id.search_input;
+            SearchInputView searchInputView = (SearchInputView) view.findViewById(R.id.search_input);
             if (searchInputView != null) {
                 return new WidgetChannelSettingsAddMemberBinding((CoordinatorLayout) view, recyclerView, searchInputView);
             }

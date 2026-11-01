@@ -2,11 +2,9 @@ package b.i.c.m;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.os.Build;
-import android.os.Build$VERSION;
 import android.util.Log;
-import b.i.c.j.a.a$a;
 import b.i.c.l.e;
 import b.i.c.l.f;
 import b.i.c.m.d.h;
@@ -72,15 +70,15 @@ public final /* synthetic */ class b implements f {
             bVar3.b("Firebase Analytics is available.");
             b.i.c.m.d.i.e eVar2 = new b.i.c.m.d.i.e(aVar3);
             a aVar4 = new a();
-            a$a a_aC = aVar3.c("clx", aVar4);
-            if (a_aC == null) {
+            b.i.c.j.a.a.InterfaceC0136a interfaceC0136aC = aVar3.c("clx", aVar4);
+            if (interfaceC0136aC == null) {
                 bVar3.b("Could not register AnalyticsConnectorListener with Crashlytics origin.");
-                a_aC = aVar3.c("crash", aVar4);
-                if (a_aC != null) {
+                interfaceC0136aC = aVar3.c("crash", aVar4);
+                if (interfaceC0136aC != null) {
                     bVar3.g("A new version of the Google Analytics for Firebase SDK is now available. For improved performance and compatibility with Crashlytics, please update to the latest version.");
                 }
             }
-            if (a_aC != null) {
+            if (interfaceC0136aC != null) {
                 bVar3.b("Firebase Analytics listener registered successfully.");
                 d dVar = new d();
                 b.i.c.m.d.i.c cVar3 = new b.i.c.m.d.i.c(eVar2, 500, TimeUnit.MILLISECONDS);
@@ -117,7 +115,7 @@ public final /* synthetic */ class b implements f {
             hVar.j = hVar.d.getApplicationLabel(context.getApplicationInfo()).toString();
             hVar.k = Integer.toString(context.getApplicationInfo().targetSdkVersion);
             z2 = true;
-        } catch (PackageManager$NameNotFoundException e) {
+        } catch (PackageManager.NameNotFoundException e) {
             if (b.i.c.m.d.b.a.a(6)) {
                 Log.e("FirebaseCrashlytics", "Failed init", e);
             }
@@ -141,7 +139,7 @@ public final /* synthetic */ class b implements f {
         b.i.c.m.d.s.e eVar3 = new b.i.c.m.d.s.e(e1Var);
         b.i.c.m.d.s.a aVar5 = new b.i.c.m.d.s.a(context);
         Locale locale = Locale.US;
-        b.i.c.m.d.s.c cVar4 = new b.i.c.m.d.s.c(context, new b.i.c.m.d.s.h.g(str4, String.format(locale, "%s/%s", v0Var2.e(Build.MANUFACTURER), v0Var2.e(Build.MODEL)), v0Var2.e(Build$VERSION.INCREMENTAL), v0Var2.e(Build$VERSION.RELEASE), v0Var2, b.i.c.m.d.k.h.f(b.i.c.m.d.k.h.l(context), str4, str6, str5), str6, str5, r0.f(strC2).g()), e1Var, eVar3, aVar5, new b.i.c.m.d.s.i.c(strC, String.format(locale, "https://firebase-settings.crashlytics.com/spi/v2/platforms/android/gmp/%s/settings", str4), bVar4), q0Var2);
+        b.i.c.m.d.s.c cVar4 = new b.i.c.m.d.s.c(context, new b.i.c.m.d.s.h.g(str4, String.format(locale, "%s/%s", v0Var2.e(Build.MANUFACTURER), v0Var2.e(Build.MODEL)), v0Var2.e(Build.VERSION.INCREMENTAL), v0Var2.e(Build.VERSION.RELEASE), v0Var2, b.i.c.m.d.k.h.f(b.i.c.m.d.k.h.l(context), str4, str6, str5), str6, str5, r0.f(strC2).g()), e1Var, eVar3, aVar5, new b.i.c.m.d.s.i.c(strC, String.format(locale, "https://firebase-settings.crashlytics.com/spi/v2/platforms/android/gmp/%s/settings", str4), bVar4), q0Var2);
         cVar4.d(1, executorServiceN).i(executorServiceN, new b.i.c.m.d.g(hVar));
         String strL = b.i.c.m.d.k.h.l(k0Var.a);
         b.i.c.m.d.b bVar5 = b.i.c.m.d.b.a;
@@ -205,7 +203,7 @@ public final /* synthetic */ class b implements f {
                         k0Var.g = false;
                     }
                     x xVar = k0Var.h;
-                    Thread$UncaughtExceptionHandler defaultUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
+                    Thread.UncaughtExceptionHandler defaultUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
                     xVar.m.b(new r(xVar));
                     p0 p0Var = new p0(new b0(xVar), cVar4, defaultUncaughtExceptionHandler);
                     xVar.B = p0Var;
@@ -264,7 +262,7 @@ public final /* synthetic */ class b implements f {
         zExists = k0Var.e.b().exists();
         k0Var.g = Boolean.TRUE.equals((Boolean) h1.a(k0Var.m.b(new l0(k0Var))));
         x xVar2 = k0Var.h;
-        Thread$UncaughtExceptionHandler defaultUncaughtExceptionHandler2 = Thread.getDefaultUncaughtExceptionHandler();
+        Thread.UncaughtExceptionHandler defaultUncaughtExceptionHandler2 = Thread.getDefaultUncaughtExceptionHandler();
         xVar2.m.b(new r(xVar2));
         p0 p0Var2 = new p0(new b0(xVar2), cVar4, defaultUncaughtExceptionHandler2);
         xVar2.B = p0Var2;

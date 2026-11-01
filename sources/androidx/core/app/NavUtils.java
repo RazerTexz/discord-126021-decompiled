@@ -6,8 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager$NameNotFoundException;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.annotation.NonNull;
@@ -35,7 +34,7 @@ public final class NavUtils {
         ComponentName componentName = new ComponentName(activity, parentActivityName);
         try {
             return getParentActivityName(activity, componentName) == null ? Intent.makeMainActivity(componentName) : new Intent().setComponent(componentName);
-        } catch (PackageManager$NameNotFoundException unused) {
+        } catch (PackageManager.NameNotFoundException unused) {
             Log.e(TAG, "getParentActivityIntent: bad parentActivityName '" + parentActivityName + "' in manifest");
             return null;
         }
@@ -45,7 +44,7 @@ public final class NavUtils {
     public static String getParentActivityName(@NonNull Activity activity) {
         try {
             return getParentActivityName(activity, activity.getComponentName());
-        } catch (PackageManager$NameNotFoundException e) {
+        } catch (PackageManager.NameNotFoundException e) {
             throw new IllegalArgumentException(e);
         }
     }
@@ -71,10 +70,10 @@ public final class NavUtils {
     }
 
     @Nullable
-    public static String getParentActivityName(@NonNull Context context, @NonNull ComponentName componentName) throws PackageManager$NameNotFoundException {
+    public static String getParentActivityName(@NonNull Context context, @NonNull ComponentName componentName) throws PackageManager.NameNotFoundException {
         String string;
         PackageManager packageManager = context.getPackageManager();
-        int i = Build$VERSION.SDK_INT;
+        int i = Build.VERSION.SDK_INT;
         int i2 = 640;
         if (i >= 29) {
             i2 = 269222528;
@@ -97,7 +96,7 @@ public final class NavUtils {
     }
 
     @Nullable
-    public static Intent getParentActivityIntent(@NonNull Context context, @NonNull Class<?> cls) throws PackageManager$NameNotFoundException {
+    public static Intent getParentActivityIntent(@NonNull Context context, @NonNull Class<?> cls) throws PackageManager.NameNotFoundException {
         String parentActivityName = getParentActivityName(context, new ComponentName(context, cls));
         if (parentActivityName == null) {
             return null;
@@ -110,7 +109,7 @@ public final class NavUtils {
     }
 
     @Nullable
-    public static Intent getParentActivityIntent(@NonNull Context context, @NonNull ComponentName componentName) throws PackageManager$NameNotFoundException {
+    public static Intent getParentActivityIntent(@NonNull Context context, @NonNull ComponentName componentName) throws PackageManager.NameNotFoundException {
         String parentActivityName = getParentActivityName(context, componentName);
         if (parentActivityName == null) {
             return null;

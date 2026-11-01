@@ -3,7 +3,6 @@ package b.i.a.c;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.PowerManager;
-import android.os.PowerManager$WakeLock;
 import androidx.annotation.Nullable;
 
 /* JADX INFO: compiled from: WakeLockManager.java */
@@ -15,7 +14,7 @@ public final class q2 {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     @Nullable
-    public PowerManager$WakeLock f1057b;
+    public PowerManager.WakeLock f1057b;
     public boolean c;
     public boolean d;
 
@@ -25,14 +24,14 @@ public final class q2 {
 
     @SuppressLint({"WakelockTimeout"})
     public final void a() {
-        PowerManager$WakeLock powerManager$WakeLock = this.f1057b;
-        if (powerManager$WakeLock == null) {
+        PowerManager.WakeLock wakeLock = this.f1057b;
+        if (wakeLock == null) {
             return;
         }
         if (this.c && this.d) {
-            powerManager$WakeLock.acquire();
+            wakeLock.acquire();
         } else {
-            powerManager$WakeLock.release();
+            wakeLock.release();
         }
     }
 }

@@ -11,12 +11,24 @@ import java.util.Objects;
 /* JADX INFO: compiled from: ApplicationType.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class ApplicationTypeAdapter extends TypeAdapter<ApplicationType> {
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            ApplicationType.values();
+            int[] iArr = new int[5];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[ApplicationType.UNKNOWN.ordinal()] = 1;
+        }
+    }
+
     @Override // com.google.gson.TypeAdapter
     public ApplicationType read(JsonReader jsonReader) throws IOException {
         m.checkNotNullParameter(jsonReader, "in");
-        ApplicationType$Companion applicationType$Companion = ApplicationType.Companion;
+        ApplicationType.Companion companion = ApplicationType.INSTANCE;
         Integer numN1 = d.n1(jsonReader);
-        Objects.requireNonNull(applicationType$Companion);
+        Objects.requireNonNull(companion);
         if (numN1 != null && numN1.intValue() == 1) {
             return ApplicationType.GAME;
         }

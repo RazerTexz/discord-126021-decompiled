@@ -1,28 +1,61 @@
 package com.discord.models.hubs;
 
 import android.content.Context;
+import com.discord.R;
 import d0.z.d.m;
+import java.util.Iterator;
+import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: DirectoryEntryCategory.kt */
 /* JADX INFO: loaded from: classes.dex */
 public enum DirectoryEntryCategory {
-    Home(-1, 2131888444, 70),
-    Uncategorized(0, 2131896571, 0, 4, null),
-    SchoolClub(1, 2131888452, 100),
-    Class(2, 2131888445, 0, 4, null),
-    StudySocial(3, 2131888453, 50),
-    SubjectMajor(4, 2131888454, 0, 4, null),
-    Misc(5, 2131888450, 0, 4, null),
-    HQSocial(1, 2131888446, 0, 4, null),
-    HQErgs(2, 2131888447, 0, 4, null),
-    HQMisc(3, 2131888448, 0, 4, null),
-    HQArchives(5, 2131888449, 0, 4, null);
+    Home(-1, R.string.directory_category_all, 70),
+    Uncategorized(0, R.string.uncategorized, 0, 4, null),
+    SchoolClub(1, R.string.directory_category_school_club, 100),
+    Class(2, R.string.directory_category_class, 0, 4, null),
+    StudySocial(3, R.string.directory_category_study_social, 50),
+    SubjectMajor(4, R.string.directory_category_subject_major, 0, 4, null),
+    Misc(5, R.string.directory_category_miscellaneous, 0, 4, null),
+    HQSocial(1, R.string.directory_category_internal_1, 0, 4, null),
+    HQErgs(2, R.string.directory_category_internal_2, 0, 4, null),
+    HQMisc(3, R.string.directory_category_internal_3, 0, 4, null),
+    HQArchives(5, R.string.directory_category_internal_5, 0, 4, null);
 
-    public static final DirectoryEntryCategory$Companion Companion = new DirectoryEntryCategory$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final int idealSize;
     private final int key;
     private final int titleRes;
+
+    /* JADX INFO: compiled from: DirectoryEntryCategory.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final DirectoryEntryCategory findByKey(int key, boolean isHQDirectoryChannel) {
+            Object next;
+            Iterator<T> it = getCategories(isHQDirectoryChannel).iterator();
+            do {
+                if (!it.hasNext()) {
+                    next = null;
+                    break;
+                }
+                next = it.next();
+            } while (!(((DirectoryEntryCategory) next).getKey() == key));
+            DirectoryEntryCategory directoryEntryCategory = (DirectoryEntryCategory) next;
+            return directoryEntryCategory != null ? directoryEntryCategory : DirectoryEntryCategory.Uncategorized;
+        }
+
+        public final List<DirectoryEntryCategory> getCategories(boolean isHQDirectoryChannel) {
+            return isHQDirectoryChannel ? DirectoryEntryCategoryKt.access$getHQ_DIRECTORY_CATEGORIES$p() : DirectoryEntryCategoryKt.access$getHUB_CATEGORIES$p();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     DirectoryEntryCategory(int i, int i2, int i3) {
         this.key = i;

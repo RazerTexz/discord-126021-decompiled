@@ -1,10 +1,7 @@
 package b.i.a.c.y2;
 
 import android.graphics.Point;
-import android.media.MediaCodecInfo$AudioCapabilities;
-import android.media.MediaCodecInfo$CodecCapabilities;
-import android.media.MediaCodecInfo$CodecProfileLevel;
-import android.media.MediaCodecInfo$VideoCapabilities;
+import android.media.MediaCodecInfo;
 import android.util.Log;
 import android.util.Pair;
 import androidx.annotation.Nullable;
@@ -13,7 +10,6 @@ import androidx.annotation.VisibleForTesting;
 import b.i.a.c.f3.e0;
 import b.i.a.c.j1;
 import com.google.android.exoplayer2.mediacodec.MediaCodecUtil;
-import com.google.android.exoplayer2.mediacodec.MediaCodecUtil$DecoderQueryException;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: MediaCodecInfo.java */
@@ -26,36 +22,36 @@ public final class u {
     public final String c;
 
     @Nullable
-    public final MediaCodecInfo$CodecCapabilities d;
+    public final MediaCodecInfo.CodecCapabilities d;
     public final boolean e;
     public final boolean f;
     public final boolean g;
 
     @VisibleForTesting
-    public u(String str, String str2, String str3, @Nullable MediaCodecInfo$CodecCapabilities mediaCodecInfo$CodecCapabilities, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7) {
+    public u(String str, String str2, String str3, @Nullable MediaCodecInfo.CodecCapabilities codecCapabilities, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7) {
         Objects.requireNonNull(str);
         this.a = str;
         this.f1315b = str2;
         this.c = str3;
-        this.d = mediaCodecInfo$CodecCapabilities;
+        this.d = codecCapabilities;
         this.e = z5;
         this.f = z7;
         this.g = b.i.a.c.f3.t.j(str2);
     }
 
     @RequiresApi(21)
-    public static Point a(MediaCodecInfo$VideoCapabilities mediaCodecInfo$VideoCapabilities, int i, int i2) {
-        int widthAlignment = mediaCodecInfo$VideoCapabilities.getWidthAlignment();
-        int heightAlignment = mediaCodecInfo$VideoCapabilities.getHeightAlignment();
+    public static Point a(MediaCodecInfo.VideoCapabilities videoCapabilities, int i, int i2) {
+        int widthAlignment = videoCapabilities.getWidthAlignment();
+        int heightAlignment = videoCapabilities.getHeightAlignment();
         return new Point(e0.f(i, widthAlignment) * widthAlignment, e0.f(i2, heightAlignment) * heightAlignment);
     }
 
     @RequiresApi(21)
-    public static boolean b(MediaCodecInfo$VideoCapabilities mediaCodecInfo$VideoCapabilities, int i, int i2, double d) {
-        Point pointA = a(mediaCodecInfo$VideoCapabilities, i, i2);
+    public static boolean b(MediaCodecInfo.VideoCapabilities videoCapabilities, int i, int i2, double d) {
+        Point pointA = a(videoCapabilities, i, i2);
         int i3 = pointA.x;
         int i4 = pointA.y;
-        return (d == -1.0d || d < 1.0d) ? mediaCodecInfo$VideoCapabilities.isSizeSupported(i3, i4) : mediaCodecInfo$VideoCapabilities.areSizeAndRateSupported(i3, i4, Math.floor(d));
+        return (d == -1.0d || d < 1.0d) ? videoCapabilities.isSizeSupported(i3, i4) : videoCapabilities.areSizeAndRateSupported(i3, i4, Math.floor(d));
     }
 
     public b.i.a.c.v2.g c(j1 j1Var, j1 j1Var2) {
@@ -115,22 +111,22 @@ public final class u {
         return new b.i.a.c.v2.g(this.a, j1Var, j1Var2, 0, i);
     }
 
-    public MediaCodecInfo$CodecProfileLevel[] d() {
-        MediaCodecInfo$CodecProfileLevel[] mediaCodecInfo$CodecProfileLevelArr;
-        MediaCodecInfo$CodecCapabilities mediaCodecInfo$CodecCapabilities = this.d;
-        return (mediaCodecInfo$CodecCapabilities == null || (mediaCodecInfo$CodecProfileLevelArr = mediaCodecInfo$CodecCapabilities.profileLevels) == null) ? new MediaCodecInfo$CodecProfileLevel[0] : mediaCodecInfo$CodecProfileLevelArr;
+    public MediaCodecInfo.CodecProfileLevel[] d() {
+        MediaCodecInfo.CodecProfileLevel[] codecProfileLevelArr;
+        MediaCodecInfo.CodecCapabilities codecCapabilities = this.d;
+        return (codecCapabilities == null || (codecProfileLevelArr = codecCapabilities.profileLevels) == null) ? new MediaCodecInfo.CodecProfileLevel[0] : codecProfileLevelArr;
     }
 
     /* JADX WARN: Code duplicated, block: B:168:? A[RETURN, SYNTHETIC] */
     /* JADX WARN: Code duplicated, block: B:169:? A[RETURN, SYNTHETIC] */
-    public boolean e(j1 j1Var) throws MediaCodecUtil$DecoderQueryException {
+    public boolean e(j1 j1Var) throws MediaCodecUtil.DecoderQueryException {
         boolean z2;
         boolean z3;
         boolean z4;
         int i;
         String strC;
         int i2;
-        MediaCodecInfo$VideoCapabilities videoCapabilities;
+        MediaCodecInfo.VideoCapabilities videoCapabilities;
         String str = j1Var.t;
         int i3 = 16;
         if (str == null || this.f1315b == null || (strC = b.i.a.c.f3.t.c(str)) == null) {
@@ -142,10 +138,10 @@ public final class u {
                     int iIntValue = ((Integer) pairC.first).intValue();
                     int iIntValue2 = ((Integer) pairC.second).intValue();
                     if (this.g || iIntValue == 42) {
-                        MediaCodecInfo$CodecProfileLevel[] mediaCodecInfo$CodecProfileLevelArrD = d();
-                        if (e0.a <= 23 && "video/x-vnd.on2.vp9".equals(this.f1315b) && mediaCodecInfo$CodecProfileLevelArrD.length == 0) {
-                            MediaCodecInfo$CodecCapabilities mediaCodecInfo$CodecCapabilities = this.d;
-                            int iIntValue3 = (mediaCodecInfo$CodecCapabilities == null || (videoCapabilities = mediaCodecInfo$CodecCapabilities.getVideoCapabilities()) == null) ? 0 : ((Integer) videoCapabilities.getBitrateRange().getUpper()).intValue();
+                        MediaCodecInfo.CodecProfileLevel[] codecProfileLevelArrD = d();
+                        if (e0.a <= 23 && "video/x-vnd.on2.vp9".equals(this.f1315b) && codecProfileLevelArrD.length == 0) {
+                            MediaCodecInfo.CodecCapabilities codecCapabilities = this.d;
+                            int iIntValue3 = (codecCapabilities == null || (videoCapabilities = codecCapabilities.getVideoCapabilities()) == null) ? 0 : ((Integer) videoCapabilities.getBitrateRange().getUpper()).intValue();
                             if (iIntValue3 >= 180000000) {
                                 i2 = 1024;
                             } else if (iIntValue3 >= 120000000) {
@@ -167,17 +163,17 @@ public final class u {
                             } else {
                                 i2 = iIntValue3 >= 800000 ? 2 : 1;
                             }
-                            MediaCodecInfo$CodecProfileLevel mediaCodecInfo$CodecProfileLevel = new MediaCodecInfo$CodecProfileLevel();
-                            mediaCodecInfo$CodecProfileLevel.profile = 1;
-                            mediaCodecInfo$CodecProfileLevel.level = i2;
-                            mediaCodecInfo$CodecProfileLevelArrD = new MediaCodecInfo$CodecProfileLevel[]{mediaCodecInfo$CodecProfileLevel};
+                            MediaCodecInfo.CodecProfileLevel codecProfileLevel = new MediaCodecInfo.CodecProfileLevel();
+                            codecProfileLevel.profile = 1;
+                            codecProfileLevel.level = i2;
+                            codecProfileLevelArrD = new MediaCodecInfo.CodecProfileLevel[]{codecProfileLevel};
                         }
-                        int length = mediaCodecInfo$CodecProfileLevelArrD.length;
+                        int length = codecProfileLevelArrD.length;
                         int i4 = 0;
                         while (true) {
                             if (i4 < length) {
-                                MediaCodecInfo$CodecProfileLevel mediaCodecInfo$CodecProfileLevel2 = mediaCodecInfo$CodecProfileLevelArrD[i4];
-                                if (mediaCodecInfo$CodecProfileLevel2.profile != iIntValue || mediaCodecInfo$CodecProfileLevel2.level < iIntValue2) {
+                                MediaCodecInfo.CodecProfileLevel codecProfileLevel2 = codecProfileLevelArrD[i4];
+                                if (codecProfileLevel2.profile != iIntValue || codecProfileLevel2.level < iIntValue2) {
                                     i4++;
                                 }
                             } else {
@@ -215,11 +211,11 @@ public final class u {
         if (i6 >= 21) {
             int i7 = j1Var.K;
             if (i7 != -1) {
-                MediaCodecInfo$CodecCapabilities mediaCodecInfo$CodecCapabilities2 = this.d;
-                if (mediaCodecInfo$CodecCapabilities2 == null) {
+                MediaCodecInfo.CodecCapabilities codecCapabilities2 = this.d;
+                if (codecCapabilities2 == null) {
                     h("sampleRate.caps");
                 } else {
-                    MediaCodecInfo$AudioCapabilities audioCapabilities = mediaCodecInfo$CodecCapabilities2.getAudioCapabilities();
+                    MediaCodecInfo.AudioCapabilities audioCapabilities = codecCapabilities2.getAudioCapabilities();
                     if (audioCapabilities == null) {
                         h("sampleRate.aCaps");
                     } else {
@@ -243,11 +239,11 @@ public final class u {
             }
             int i8 = j1Var.J;
             if (i8 != -1) {
-                MediaCodecInfo$CodecCapabilities mediaCodecInfo$CodecCapabilities3 = this.d;
-                if (mediaCodecInfo$CodecCapabilities3 == null) {
+                MediaCodecInfo.CodecCapabilities codecCapabilities3 = this.d;
+                if (codecCapabilities3 == null) {
                     h("channelCount.caps");
                 } else {
-                    MediaCodecInfo$AudioCapabilities audioCapabilities2 = mediaCodecInfo$CodecCapabilities3.getAudioCapabilities();
+                    MediaCodecInfo.AudioCapabilities audioCapabilities2 = codecCapabilities3.getAudioCapabilities();
                     if (audioCapabilities2 == null) {
                         h("channelCount.aCaps");
                     } else {
@@ -303,12 +299,12 @@ public final class u {
 
     @RequiresApi(21)
     public boolean g(int i, int i2, double d) {
-        MediaCodecInfo$CodecCapabilities mediaCodecInfo$CodecCapabilities = this.d;
-        if (mediaCodecInfo$CodecCapabilities == null) {
+        MediaCodecInfo.CodecCapabilities codecCapabilities = this.d;
+        if (codecCapabilities == null) {
             h("sizeAndRate.caps");
             return false;
         }
-        MediaCodecInfo$VideoCapabilities videoCapabilities = mediaCodecInfo$CodecCapabilities.getVideoCapabilities();
+        MediaCodecInfo.VideoCapabilities videoCapabilities = codecCapabilities.getVideoCapabilities();
         if (videoCapabilities == null) {
             h("sizeAndRate.vCaps");
             return false;
@@ -360,16 +356,16 @@ public final class u {
     /* JADX WARN: Code duplicated, block: B:26:0x004a  */
     /* JADX WARN: Code duplicated, block: B:37:0x0062  */
     /* JADX WARN: Code duplicated, block: B:49:0x007b  */
-    public static u i(String str, String str2, String str3, @Nullable MediaCodecInfo$CodecCapabilities mediaCodecInfo$CodecCapabilities, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6) {
+    public static u i(String str, String str2, String str3, @Nullable MediaCodecInfo.CodecCapabilities codecCapabilities, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6) {
         boolean z7;
         boolean z8;
         boolean z9;
         boolean z10;
-        if (z5 || mediaCodecInfo$CodecCapabilities == null) {
+        if (z5 || codecCapabilities == null) {
             z7 = false;
         } else {
             int i = e0.a;
-            if (i >= 19 && mediaCodecInfo$CodecCapabilities.isFeatureSupported("adaptive-playback")) {
+            if (i >= 19 && codecCapabilities.isFeatureSupported("adaptive-playback")) {
                 if (i <= 22) {
                     String str4 = e0.d;
                     if (("ODROID-XU3".equals(str4) || "Nexus 10".equals(str4)) && ("OMX.Exynos.AVC.Decoder".equals(str) || "OMX.Exynos.AVC.Decoder.secure".equals(str))) {
@@ -389,21 +385,21 @@ public final class u {
                 z7 = false;
             }
         }
-        if (mediaCodecInfo$CodecCapabilities == null) {
+        if (codecCapabilities == null) {
             z8 = false;
         } else {
-            if (e0.a >= 21 && mediaCodecInfo$CodecCapabilities.isFeatureSupported("tunneled-playback")) {
+            if (e0.a >= 21 && codecCapabilities.isFeatureSupported("tunneled-playback")) {
                 z8 = true;
             } else {
                 z8 = false;
             }
         }
         if (!z6) {
-            if (mediaCodecInfo$CodecCapabilities != null) {
-                z9 = e0.a >= 21 && mediaCodecInfo$CodecCapabilities.isFeatureSupported("secure-playback");
+            if (codecCapabilities != null) {
+                z9 = e0.a >= 21 && codecCapabilities.isFeatureSupported("secure-playback");
             }
         }
-        return new u(str, str2, str3, mediaCodecInfo$CodecCapabilities, z2, z3, z4, z7, z8, z9);
+        return new u(str, str2, str3, codecCapabilities, z2, z3, z4, z7, z8, z9);
     }
 
     public String toString() {

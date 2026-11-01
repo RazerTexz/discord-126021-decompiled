@@ -1,11 +1,11 @@
 package com.esotericsoftware.kryo.util;
 
 import b.e.a.a;
-import b.e.a.a$a;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import sun.misc.Cleaner;
 import sun.misc.Unsafe;
@@ -23,6 +23,24 @@ public class UnsafeUtil {
     public static final long longArrayBaseOffset;
     public static final long shortArrayBaseOffset;
 
+    /* JADX INFO: renamed from: com.esotericsoftware.kryo.util.UnsafeUtil$1, reason: invalid class name */
+    public final class AnonymousClass1 implements Comparator<Field> {
+        @Override // java.util.Comparator
+        public /* bridge */ /* synthetic */ int compare(Field field, Field field2) {
+            return compare2(field, field2);
+        }
+
+        /* JADX INFO: renamed from: compare, reason: avoid collision after fix types in other method */
+        public int compare2(Field field, Field field2) {
+            long jObjectFieldOffset = UnsafeUtil.unsafe().objectFieldOffset(field);
+            long jObjectFieldOffset2 = UnsafeUtil.unsafe().objectFieldOffset(field2);
+            if (jObjectFieldOffset < jObjectFieldOffset2) {
+                return -1;
+            }
+            return jObjectFieldOffset == jObjectFieldOffset2 ? 0 : 1;
+        }
+    }
+
     static {
         long jArrayBaseOffset;
         Unsafe unsafe;
@@ -39,7 +57,7 @@ public class UnsafeUtil {
         long j4;
         try {
             if (Util.IS_ANDROID) {
-                a$a a_a = a.a;
+                a.C0064a c0064a = a.a;
                 jArrayBaseOffset7 = 0;
                 j3 = 0;
                 j2 = 0;
@@ -71,7 +89,7 @@ public class UnsafeUtil {
                                             j2 = jArrayBaseOffset;
                                             j3 = jArrayBaseOffset2;
                                         } catch (Exception unused) {
-                                            a$a a_a2 = a.a;
+                                            a.C0064a c0064a2 = a.a;
                                             j = 0;
                                             unsafe2 = unsafe;
                                             j2 = jArrayBaseOffset;
@@ -83,7 +101,7 @@ public class UnsafeUtil {
                                 } catch (Exception unused3) {
                                     jArrayBaseOffset = 0;
                                     jArrayBaseOffset6 = 0;
-                                    a$a a_a3 = a.a;
+                                    a.C0064a c0064a3 = a.a;
                                     j = 0;
                                     unsafe2 = unsafe;
                                     j2 = jArrayBaseOffset;
@@ -104,7 +122,7 @@ public class UnsafeUtil {
                                 jArrayBaseOffset = 0;
                                 jArrayBaseOffset5 = 0;
                                 jArrayBaseOffset6 = 0;
-                                a$a a_a4 = a.a;
+                                a.C0064a c0064a4 = a.a;
                                 j = 0;
                                 unsafe2 = unsafe;
                                 j2 = jArrayBaseOffset;
@@ -126,7 +144,7 @@ public class UnsafeUtil {
                             jArrayBaseOffset4 = 0;
                             jArrayBaseOffset5 = 0;
                             jArrayBaseOffset6 = 0;
-                            a$a a_a5 = a.a;
+                            a.C0064a c0064a5 = a.a;
                             j = 0;
                             unsafe2 = unsafe;
                             j2 = jArrayBaseOffset;
@@ -149,7 +167,7 @@ public class UnsafeUtil {
                         jArrayBaseOffset4 = 0;
                         jArrayBaseOffset5 = 0;
                         jArrayBaseOffset6 = 0;
-                        a$a a_a6 = a.a;
+                        a.C0064a c0064a6 = a.a;
                         j = 0;
                         unsafe2 = unsafe;
                         j2 = jArrayBaseOffset;
@@ -173,7 +191,7 @@ public class UnsafeUtil {
                     jArrayBaseOffset4 = 0;
                     jArrayBaseOffset5 = 0;
                     jArrayBaseOffset6 = 0;
-                    a$a a_a7 = a.a;
+                    a.C0064a c0064a7 = a.a;
                     j = 0;
                     unsafe2 = unsafe;
                     j2 = jArrayBaseOffset;
@@ -236,9 +254,9 @@ public class UnsafeUtil {
 
     public static Field[] sortFieldsByOffset(List<Field> list) {
         Field[] fieldArr = (Field[]) list.toArray(new Field[0]);
-        Arrays.sort(fieldArr, new UnsafeUtil$1());
+        Arrays.sort(fieldArr, new AnonymousClass1());
         for (Field field : list) {
-            a$a a_a = a.a;
+            a.C0064a c0064a = a.a;
         }
         return fieldArr;
     }

@@ -12,8 +12,8 @@ import g0.y;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import okhttp3.MediaType;
-import okhttp3.MediaType$a;
 import okhttp3.RequestBody;
 import okio.BufferedSink;
 
@@ -36,8 +36,8 @@ public final class AttachmentRequestBody extends RequestBody {
 
     @Override // okhttp3.RequestBody
     public MediaType contentType() {
-        MediaType$a mediaType$a = MediaType.c;
-        return MediaType$a.b(AttachmentUtilsKt.getMimeType(this.attachment, this.contentResolver));
+        MediaType.Companion companion = MediaType.INSTANCE;
+        return MediaType.Companion.b(AttachmentUtilsKt.getMimeType(this.attachment, this.contentResolver));
     }
 
     @Override // okhttp3.RequestBody
@@ -56,7 +56,7 @@ public final class AttachmentRequestBody extends RequestBody {
     }
 
     @Override // okhttp3.RequestBody
-    public void writeTo(BufferedSink sink) throws IOException {
+    public void writeTo(BufferedSink sink) throws IllegalAccessException, IOException, InvocationTargetException {
         m.checkNotNullParameter(sink, "sink");
         try {
             InputStream inputStreamOpenInputStream = this.contentResolver.openInputStream(this.attachment.getUri());

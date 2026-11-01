@@ -3,7 +3,7 @@ package com.google.android.gms.ads.identifier;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.os.IBinder;
 import android.os.IInterface;
 import android.os.RemoteException;
@@ -11,26 +11,27 @@ import android.os.SystemClock;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import b.c.a.a0.d;
-import b.i.a.f.e.a;
 import b.i.a.f.e.c;
 import b.i.a.f.h.a.b;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class AdvertisingIdClient {
 
     @Nullable
-    public a a;
+    public b.i.a.f.e.a a;
     public boolean c;
     public final Object d = new Object();
 
     @Nullable
-    public AdvertisingIdClient$a e;
+    public a e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     @Nullable
@@ -38,6 +39,68 @@ public class AdvertisingIdClient {
     public final Context f;
     public final boolean g;
     public final long h;
+
+    public final class Info {
+        public final String a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final boolean f2994b;
+
+        public Info(String str, boolean z2) {
+            this.a = str;
+            this.f2994b = z2;
+        }
+
+        public final String getId() {
+            return this.a;
+        }
+
+        public final boolean isLimitAdTrackingEnabled() {
+            return this.f2994b;
+        }
+
+        public final String toString() {
+            String str = this.a;
+            boolean z2 = this.f2994b;
+            StringBuilder sb = new StringBuilder(String.valueOf(str).length() + 7);
+            sb.append("{");
+            sb.append(str);
+            sb.append("}");
+            sb.append(z2);
+            return sb.toString();
+        }
+    }
+
+    public final class a extends Thread {
+        public WeakReference<AdvertisingIdClient> j;
+        public long k;
+        public CountDownLatch l = new CountDownLatch(1);
+        public boolean m = false;
+
+        public a(AdvertisingIdClient advertisingIdClient, long j) {
+            this.j = new WeakReference<>(advertisingIdClient);
+            this.k = j;
+            start();
+        }
+
+        @Override // java.lang.Thread, java.lang.Runnable
+        public final void run() {
+            AdvertisingIdClient advertisingIdClient;
+            try {
+                if (this.l.await(this.k, TimeUnit.MILLISECONDS) || (advertisingIdClient = this.j.get()) == null) {
+                    return;
+                }
+                advertisingIdClient.a();
+                this.m = true;
+            } catch (InterruptedException unused) {
+                AdvertisingIdClient advertisingIdClient2 = this.j.get();
+                if (advertisingIdClient2 != null) {
+                    advertisingIdClient2.a();
+                    this.m = true;
+                }
+            }
+        }
+    }
 
     public AdvertisingIdClient(Context context, long j, boolean z2, boolean z3) {
         Context applicationContext;
@@ -70,18 +133,18 @@ public class AdvertisingIdClient {
         }
     }
 
-    public AdvertisingIdClient$Info b() throws IOException {
-        AdvertisingIdClient$Info advertisingIdClient$Info;
+    public Info b() throws IOException {
+        Info info;
         d.x("Calling this from your main thread can lead to deadlock");
         synchronized (this) {
             if (this.c) {
                 Objects.requireNonNull(this.a, "null reference");
                 Objects.requireNonNull(this.f2993b, "null reference");
-                advertisingIdClient$Info = new AdvertisingIdClient$Info(this.f2993b.getId(), this.f2993b.D(true));
+                info = new Info(this.f2993b.getId(), this.f2993b.D(true));
             } else {
                 synchronized (this.d) {
-                    AdvertisingIdClient$a advertisingIdClient$a = this.e;
-                    if (advertisingIdClient$a == null || !advertisingIdClient$a.m) {
+                    a aVar = this.e;
+                    if (aVar == null || !aVar.m) {
                         throw new IOException("AdvertisingIdClient is not connected.");
                     }
                 }
@@ -93,7 +156,7 @@ public class AdvertisingIdClient {
                     Objects.requireNonNull(this.a, "null reference");
                     Objects.requireNonNull(this.f2993b, "null reference");
                     try {
-                        advertisingIdClient$Info = new AdvertisingIdClient$Info(this.f2993b.getId(), this.f2993b.D(true));
+                        info = new Info(this.f2993b.getId(), this.f2993b.D(true));
                     } catch (RemoteException e) {
                         Log.i("AdvertisingIdClient", "GMS remote exception ", e);
                         throw new IOException("Remote exception");
@@ -104,10 +167,10 @@ public class AdvertisingIdClient {
             }
         }
         e();
-        return advertisingIdClient$Info;
+        return info;
     }
 
-    public static a c(Context context, boolean z2) throws GooglePlayServicesRepairableException, GooglePlayServicesNotAvailableException, PackageManager$NameNotFoundException, IOException {
+    public static b.i.a.f.e.a c(Context context, boolean z2) throws GooglePlayServicesRepairableException, GooglePlayServicesNotAvailableException, PackageManager.NameNotFoundException, IOException {
         try {
             context.getPackageManager().getPackageInfo("com.android.vending", 0);
             int iB = c.f1346b.b(context, 12451000);
@@ -115,7 +178,7 @@ public class AdvertisingIdClient {
                 throw new IOException("Google Play services not available");
             }
             String str = z2 ? "com.google.android.gms.ads.identifier.service.PERSISTENT_START" : "com.google.android.gms.ads.identifier.service.START";
-            a aVar = new a();
+            b.i.a.f.e.a aVar = new b.i.a.f.e.a();
             Intent intent = new Intent(str);
             intent.setPackage("com.google.android.gms");
             try {
@@ -126,12 +189,12 @@ public class AdvertisingIdClient {
             } catch (Throwable th) {
                 throw new IOException(th);
             }
-        } catch (PackageManager$NameNotFoundException unused) {
+        } catch (PackageManager.NameNotFoundException unused) {
             throw new GooglePlayServicesNotAvailableException(9);
         }
     }
 
-    public static b d(a aVar) throws IOException {
+    public static b d(b.i.a.f.e.a aVar) throws IOException {
         try {
             IBinder iBinderA = aVar.a(10000L, TimeUnit.MILLISECONDS);
             int i = b.i.a.f.h.a.c.a;
@@ -146,16 +209,16 @@ public class AdvertisingIdClient {
 
     public final void e() {
         synchronized (this.d) {
-            AdvertisingIdClient$a advertisingIdClient$a = this.e;
-            if (advertisingIdClient$a != null) {
-                advertisingIdClient$a.l.countDown();
+            a aVar = this.e;
+            if (aVar != null) {
+                aVar.l.countDown();
                 try {
                     this.e.join();
                 } catch (InterruptedException unused) {
                 }
             }
             if (this.h > 0) {
-                this.e = new AdvertisingIdClient$a(this, this.h);
+                this.e = new a(this, this.h);
             }
         }
     }
@@ -166,7 +229,7 @@ public class AdvertisingIdClient {
             if (this.c) {
                 a();
             }
-            a aVarC = c(this.f, this.g);
+            b.i.a.f.e.a aVarC = c(this.f, this.g);
             this.a = aVarC;
             this.f2993b = d(aVarC);
             this.c = true;
@@ -181,17 +244,17 @@ public class AdvertisingIdClient {
         super.finalize();
     }
 
-    public final boolean g(AdvertisingIdClient$Info advertisingIdClient$Info, boolean z2, float f, long j, String str, Throwable th) {
+    public final boolean g(Info info, boolean z2, float f, long j, String str, Throwable th) {
         if (Math.random() > f) {
             return false;
         }
         HashMap map = new HashMap();
         map.put("app_context", z2 ? "1" : "0");
-        if (advertisingIdClient$Info != null) {
-            map.put("limit_ad_tracking", advertisingIdClient$Info.isLimitAdTrackingEnabled() ? "1" : "0");
+        if (info != null) {
+            map.put("limit_ad_tracking", info.isLimitAdTrackingEnabled() ? "1" : "0");
         }
-        if (advertisingIdClient$Info != null && advertisingIdClient$Info.getId() != null) {
-            map.put("ad_id_size", Integer.toString(advertisingIdClient$Info.getId().length()));
+        if (info != null && info.getId() != null) {
+            map.put("ad_id_size", Integer.toString(info.getId().length()));
         }
         if (th != null) {
             map.put("error", th.getClass().getName());
@@ -205,7 +268,7 @@ public class AdvertisingIdClient {
         return true;
     }
 
-    public static AdvertisingIdClient$Info getAdvertisingIdInfo(Context context) throws GooglePlayServicesRepairableException, IllegalStateException, GooglePlayServicesNotAvailableException, IOException {
+    public static Info getAdvertisingIdInfo(Context context) throws GooglePlayServicesRepairableException, IllegalStateException, GooglePlayServicesNotAvailableException, IOException {
         float f;
         String string;
         b.i.a.f.a.a.b bVar = new b.i.a.f.a.a.b(context);
@@ -226,10 +289,10 @@ public class AdvertisingIdClient {
         try {
             long jElapsedRealtime = SystemClock.elapsedRealtime();
             advertisingIdClient.f(false);
-            AdvertisingIdClient$Info advertisingIdClient$InfoB = advertisingIdClient.b();
-            advertisingIdClient.g(advertisingIdClient$InfoB, zA, f, SystemClock.elapsedRealtime() - jElapsedRealtime, string, null);
+            Info infoB = advertisingIdClient.b();
+            advertisingIdClient.g(infoB, zA, f, SystemClock.elapsedRealtime() - jElapsedRealtime, string, null);
             advertisingIdClient.a();
-            return advertisingIdClient$InfoB;
+            return infoB;
         } catch (Throwable th3) {
             try {
                 advertisingIdClient.g(null, zA, f, -1L, string, th3);

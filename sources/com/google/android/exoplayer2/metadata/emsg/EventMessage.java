@@ -1,19 +1,17 @@
 package com.google.android.exoplayer2.metadata.emsg;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import b.i.a.c.f3.e0;
 import b.i.a.c.j1;
-import b.i.a.c.j1$b;
-import b.i.a.c.p1$b;
-import b.i.a.c.z2.a;
-import com.google.android.exoplayer2.metadata.Metadata$Entry;
+import b.i.a.c.p1;
+import com.google.android.exoplayer2.metadata.Metadata;
 import java.util.Arrays;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class EventMessage implements Metadata$Entry {
-    public static final Parcelable$Creator<EventMessage> CREATOR;
+public final class EventMessage implements Metadata.Entry {
+    public static final Parcelable.Creator<EventMessage> CREATOR;
     public static final j1 j;
     public static final j1 k;
     public final String l;
@@ -23,14 +21,26 @@ public final class EventMessage implements Metadata$Entry {
     public final byte[] p;
     public int q;
 
+    public class a implements Parcelable.Creator<EventMessage> {
+        @Override // android.os.Parcelable.Creator
+        public EventMessage createFromParcel(Parcel parcel) {
+            return new EventMessage(parcel);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public EventMessage[] newArray(int i) {
+            return new EventMessage[i];
+        }
+    }
+
     static {
-        j1$b j1_b = new j1$b();
-        j1_b.k = "application/id3";
-        j = j1_b.a();
-        j1$b j1_b2 = new j1$b();
-        j1_b2.k = "application/x-scte35";
-        k = j1_b2.a();
-        CREATOR = new EventMessage$a();
+        j1.b bVar = new j1.b();
+        bVar.k = "application/id3";
+        j = bVar.a();
+        j1.b bVar2 = new j1.b();
+        bVar2.k = "application/x-scte35";
+        k = bVar2.a();
+        CREATOR = new a();
     }
 
     public EventMessage(String str, String str2, long j2, long j3, byte[] bArr) {
@@ -71,12 +81,12 @@ public final class EventMessage implements Metadata$Entry {
         return this.q;
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
-    public /* synthetic */ void n(p1$b p1_b) {
-        a.c(this, p1_b);
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
+    public /* synthetic */ void n(p1.b bVar) {
+        b.i.a.c.z2.a.c(this, bVar);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     @Nullable
     public byte[] o0() {
         if (y() != null) {
@@ -111,7 +121,7 @@ public final class EventMessage implements Metadata$Entry {
         parcel.writeByteArray(this.p);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     @Nullable
     public j1 y() {
         String str = this.l;

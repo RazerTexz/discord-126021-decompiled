@@ -9,12 +9,134 @@ import kotlin.jvm.functions.Function1;
 public final class d0 {
     public static final d0 a = new d0();
 
-    static {
-        d0$a d0_a = d0$a.j;
+    /* JADX INFO: compiled from: KotlinTypeFactory.kt */
+    public final class a extends d0.z.d.o implements Function1 {
+        public static final a j = new a();
+
+        public a() {
+            super(1);
+        }
+
+        public final Void invoke(d0.e0.p.d.m0.n.l1.g gVar) {
+            d0.z.d.m.checkNotNullParameter(gVar, "$noName_0");
+            return null;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Object invoke(Object obj) {
+            return invoke((d0.e0.p.d.m0.n.l1.g) obj);
+        }
     }
 
-    public static final d0$b access$refineConstructor(d0 d0Var, u0 u0Var, d0.e0.p.d.m0.n.l1.g gVar, List list) {
-        d0$b d0_b;
+    /* JADX INFO: compiled from: KotlinTypeFactory.kt */
+    public final class b {
+        public final j0 a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final u0 f3521b;
+
+        public b(j0 j0Var, u0 u0Var) {
+            this.a = j0Var;
+            this.f3521b = u0Var;
+        }
+
+        public final j0 getExpandedType() {
+            return this.a;
+        }
+
+        public final u0 getRefinedConstructor() {
+            return this.f3521b;
+        }
+    }
+
+    /* JADX INFO: compiled from: KotlinTypeFactory.kt */
+    public final class c extends d0.z.d.o implements Function1<d0.e0.p.d.m0.n.l1.g, j0> {
+        public final /* synthetic */ d0.e0.p.d.m0.c.g1.g $annotations;
+        public final /* synthetic */ List<w0> $arguments;
+        public final /* synthetic */ u0 $constructor;
+        public final /* synthetic */ boolean $nullable;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        /* JADX WARN: Multi-variable type inference failed */
+        public c(u0 u0Var, List<? extends w0> list, d0.e0.p.d.m0.c.g1.g gVar, boolean z2) {
+            super(1);
+            this.$constructor = u0Var;
+            this.$arguments = list;
+            this.$annotations = gVar;
+            this.$nullable = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ j0 invoke(d0.e0.p.d.m0.n.l1.g gVar) {
+            return invoke2(gVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final j0 invoke2(d0.e0.p.d.m0.n.l1.g gVar) {
+            d0.z.d.m.checkNotNullParameter(gVar, "refiner");
+            b bVarAccess$refineConstructor = d0.access$refineConstructor(d0.this, this.$constructor, gVar, this.$arguments);
+            if (bVarAccess$refineConstructor == null) {
+                return null;
+            }
+            j0 expandedType = bVarAccess$refineConstructor.getExpandedType();
+            if (expandedType != null) {
+                return expandedType;
+            }
+            d0.e0.p.d.m0.c.g1.g gVar2 = this.$annotations;
+            u0 refinedConstructor = bVarAccess$refineConstructor.getRefinedConstructor();
+            d0.z.d.m.checkNotNull(refinedConstructor);
+            return d0.simpleType(gVar2, refinedConstructor, this.$arguments, this.$nullable, gVar);
+        }
+    }
+
+    /* JADX INFO: compiled from: KotlinTypeFactory.kt */
+    public final class d extends d0.z.d.o implements Function1<d0.e0.p.d.m0.n.l1.g, j0> {
+        public final /* synthetic */ d0.e0.p.d.m0.c.g1.g $annotations;
+        public final /* synthetic */ List<w0> $arguments;
+        public final /* synthetic */ u0 $constructor;
+        public final /* synthetic */ d0.e0.p.d.m0.k.a0.i $memberScope;
+        public final /* synthetic */ boolean $nullable;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        /* JADX WARN: Multi-variable type inference failed */
+        public d(u0 u0Var, List<? extends w0> list, d0.e0.p.d.m0.c.g1.g gVar, boolean z2, d0.e0.p.d.m0.k.a0.i iVar) {
+            super(1);
+            this.$constructor = u0Var;
+            this.$arguments = list;
+            this.$annotations = gVar;
+            this.$nullable = z2;
+            this.$memberScope = iVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ j0 invoke(d0.e0.p.d.m0.n.l1.g gVar) {
+            return invoke2(gVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final j0 invoke2(d0.e0.p.d.m0.n.l1.g gVar) {
+            d0.z.d.m.checkNotNullParameter(gVar, "kotlinTypeRefiner");
+            b bVarAccess$refineConstructor = d0.access$refineConstructor(d0.this, this.$constructor, gVar, this.$arguments);
+            if (bVarAccess$refineConstructor == null) {
+                return null;
+            }
+            j0 expandedType = bVarAccess$refineConstructor.getExpandedType();
+            if (expandedType != null) {
+                return expandedType;
+            }
+            d0.e0.p.d.m0.c.g1.g gVar2 = this.$annotations;
+            u0 refinedConstructor = bVarAccess$refineConstructor.getRefinedConstructor();
+            d0.z.d.m.checkNotNull(refinedConstructor);
+            return d0.simpleTypeWithNonTrivialMemberScope(gVar2, refinedConstructor, this.$arguments, this.$nullable, this.$memberScope);
+        }
+    }
+
+    static {
+        a aVar = a.j;
+    }
+
+    public static final b access$refineConstructor(d0 d0Var, u0 u0Var, d0.e0.p.d.m0.n.l1.g gVar, List list) {
+        b bVar;
         Objects.requireNonNull(d0Var);
         d0.e0.p.d.m0.c.h declarationDescriptor = u0Var.getDeclarationDescriptor();
         d0.e0.p.d.m0.c.h hVarRefineDescriptor = declarationDescriptor == null ? null : gVar.refineDescriptor(declarationDescriptor);
@@ -22,19 +144,19 @@ public final class d0 {
             return null;
         }
         if (hVarRefineDescriptor instanceof d0.e0.p.d.m0.c.y0) {
-            d0_b = new d0$b(computeExpandedType((d0.e0.p.d.m0.c.y0) hVarRefineDescriptor, list), null);
+            bVar = new b(computeExpandedType((d0.e0.p.d.m0.c.y0) hVarRefineDescriptor, list), null);
         } else {
             u0 u0VarRefine = hVarRefineDescriptor.getTypeConstructor().refine(gVar);
             d0.z.d.m.checkNotNullExpressionValue(u0VarRefine, "descriptor.typeConstructor.refine(kotlinTypeRefiner)");
-            d0_b = new d0$b(null, u0VarRefine);
+            bVar = new b(null, u0VarRefine);
         }
-        return d0_b;
+        return bVar;
     }
 
     public static final j0 computeExpandedType(d0.e0.p.d.m0.c.y0 y0Var, List<? extends w0> list) {
         d0.z.d.m.checkNotNullParameter(y0Var, "<this>");
         d0.z.d.m.checkNotNullParameter(list, "arguments");
-        return new q0(s0$a.a, false).expand(r0.a.create(null, y0Var, list), d0.e0.p.d.m0.c.g1.g.f.getEMPTY());
+        return new q0(s0.a.a, false).expand(r0.a.create(null, y0Var, list), d0.e0.p.d.m0.c.g1.g.f.getEMPTY());
     }
 
     public static final i1 flexibleType(j0 j0Var, j0 j0Var2) {
@@ -98,7 +220,7 @@ public final class d0 {
             }
             iVarCreateScopeForKotlinType = ((a0) u0Var).createScopeForKotlinType();
         }
-        return simpleTypeWithNonTrivialMemberScope(gVar, u0Var, list, z2, iVarCreateScopeForKotlinType, new d0$c(d0Var, u0Var, list, gVar, z2));
+        return simpleTypeWithNonTrivialMemberScope(gVar, u0Var, list, z2, iVarCreateScopeForKotlinType, d0Var.new c(u0Var, list, gVar, z2));
     }
 
     public static final j0 simpleTypeWithNonTrivialMemberScope(d0.e0.p.d.m0.c.g1.g gVar, u0 u0Var, List<? extends w0> list, boolean z2, d0.e0.p.d.m0.k.a0.i iVar) {
@@ -106,7 +228,7 @@ public final class d0 {
         d0.z.d.m.checkNotNullParameter(u0Var, "constructor");
         d0.z.d.m.checkNotNullParameter(list, "arguments");
         d0.z.d.m.checkNotNullParameter(iVar, "memberScope");
-        k0 k0Var = new k0(u0Var, list, z2, iVar, new d0$d(a, u0Var, list, gVar, z2, iVar));
+        k0 k0Var = new k0(u0Var, list, z2, iVar, a.new d(u0Var, list, gVar, z2, iVar));
         return gVar.isEmpty() ? k0Var : new h(k0Var, gVar);
     }
 

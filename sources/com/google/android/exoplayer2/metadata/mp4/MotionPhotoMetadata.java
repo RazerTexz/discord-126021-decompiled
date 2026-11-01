@@ -1,22 +1,33 @@
 package com.google.android.exoplayer2.metadata.mp4;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import b.i.a.c.j1;
-import b.i.a.c.p1$b;
-import b.i.a.c.z2.a;
+import b.i.a.c.p1;
 import b.i.a.f.e.o.f;
-import com.google.android.exoplayer2.metadata.Metadata$Entry;
+import com.google.android.exoplayer2.metadata.Metadata;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class MotionPhotoMetadata implements Metadata$Entry {
+public final class MotionPhotoMetadata implements Metadata.Entry {
     public final long j;
     public final long k;
     public final long l;
     public final long m;
     public final long n;
-    public static final Parcelable$Creator<MotionPhotoMetadata> CREATOR = new MotionPhotoMetadata$a();
+    public static final Parcelable.Creator<MotionPhotoMetadata> CREATOR = new a();
+
+    public class a implements Parcelable.Creator<MotionPhotoMetadata> {
+        @Override // android.os.Parcelable.Creator
+        public MotionPhotoMetadata createFromParcel(Parcel parcel) {
+            return new MotionPhotoMetadata(parcel, null);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public MotionPhotoMetadata[] newArray(int i) {
+            return new MotionPhotoMetadata[i];
+        }
+    }
 
     public MotionPhotoMetadata(long j, long j2, long j3, long j4, long j5) {
         this.j = j;
@@ -46,14 +57,14 @@ public final class MotionPhotoMetadata implements Metadata$Entry {
         return f.v0(this.n) + ((f.v0(this.m) + ((f.v0(this.l) + ((f.v0(this.k) + ((f.v0(this.j) + 527) * 31)) * 31)) * 31)) * 31);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
-    public /* synthetic */ void n(p1$b p1_b) {
-        a.c(this, p1_b);
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
+    public /* synthetic */ void n(p1.b bVar) {
+        b.i.a.c.z2.a.c(this, bVar);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     public /* synthetic */ byte[] o0() {
-        return a.a(this);
+        return b.i.a.c.z2.a.a(this);
     }
 
     public String toString() {
@@ -82,12 +93,12 @@ public final class MotionPhotoMetadata implements Metadata$Entry {
         parcel.writeLong(this.n);
     }
 
-    @Override // com.google.android.exoplayer2.metadata.Metadata$Entry
+    @Override // com.google.android.exoplayer2.metadata.Metadata.Entry
     public /* synthetic */ j1 y() {
-        return a.b(this);
+        return b.i.a.c.z2.a.b(this);
     }
 
-    public MotionPhotoMetadata(Parcel parcel, MotionPhotoMetadata$a motionPhotoMetadata$a) {
+    public MotionPhotoMetadata(Parcel parcel, a aVar) {
         this.j = parcel.readLong();
         this.k = parcel.readLong();
         this.l = parcel.readLong();

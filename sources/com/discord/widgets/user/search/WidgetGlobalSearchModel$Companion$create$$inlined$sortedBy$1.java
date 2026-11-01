@@ -8,17 +8,17 @@ import java.util.Comparator;
 /* JADX INFO: compiled from: Comparisons.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGlobalSearchModel$Companion$create$$inlined$sortedBy$1<T> implements Comparator {
-    public final /* synthetic */ WidgetGlobalSearchModel$SearchContext $searchContext$inlined;
+    public final /* synthetic */ WidgetGlobalSearchModel.SearchContext $searchContext$inlined;
 
-    public WidgetGlobalSearchModel$Companion$create$$inlined$sortedBy$1(WidgetGlobalSearchModel$SearchContext widgetGlobalSearchModel$SearchContext) {
-        this.$searchContext$inlined = widgetGlobalSearchModel$SearchContext;
+    public WidgetGlobalSearchModel$Companion$create$$inlined$sortedBy$1(WidgetGlobalSearchModel.SearchContext searchContext) {
+        this.$searchContext$inlined = searchContext;
     }
 
     /* JADX WARN: Code duplicated, block: B:13:0x0039  */
     @Override // java.util.Comparator
     public final int compare(T t, T t2) {
         int iIntValue;
-        Channel channel = ((WidgetGlobalSearchModel$ItemDataPayload) t).getChannel();
+        Channel channel = ((WidgetGlobalSearchModel.ItemDataPayload) t).getChannel();
         int iIntValue2 = Integer.MAX_VALUE;
         if (channel != null) {
             Integer numValueOf = Integer.valueOf(this.$searchContext$inlined.getRecentGuildIds().indexOf(Long.valueOf(channel.getGuildId())));
@@ -34,7 +34,7 @@ public final class WidgetGlobalSearchModel$Companion$create$$inlined$sortedBy$1<
             iIntValue = Integer.MAX_VALUE;
         }
         Integer numValueOf2 = Integer.valueOf(iIntValue);
-        Channel channel2 = ((WidgetGlobalSearchModel$ItemDataPayload) t2).getChannel();
+        Channel channel2 = ((WidgetGlobalSearchModel.ItemDataPayload) t2).getChannel();
         if (channel2 != null) {
             Integer numValueOf3 = Integer.valueOf(this.$searchContext$inlined.getRecentGuildIds().indexOf(Long.valueOf(channel2.getGuildId())));
             Integer num = numValueOf3.intValue() != -1 ? numValueOf3 : null;

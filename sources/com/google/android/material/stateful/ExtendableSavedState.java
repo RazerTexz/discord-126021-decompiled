@@ -3,26 +3,45 @@ package com.google.android.material.stateful;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.collection.SimpleArrayMap;
 import androidx.customview.view.AbsSavedState;
-import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class ExtendableSavedState extends AbsSavedState {
 
     @NonNull
     public final SimpleArrayMap<String, Bundle> extendableStates;
-    public static final Parcelable$Creator<ExtendableSavedState> CREATOR = new ExtendableSavedState$a();
+    public static final Parcelable.Creator<ExtendableSavedState> CREATOR = new a();
 
-    public /* synthetic */ ExtendableSavedState(Parcel parcel, ClassLoader classLoader, ExtendableSavedState$a extendableSavedState$a) {
+    public final class a implements Parcelable.ClassLoaderCreator<ExtendableSavedState> {
+        @Override // android.os.Parcelable.ClassLoaderCreator
+        @NonNull
+        public ExtendableSavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
+            return new ExtendableSavedState(parcel, classLoader, null);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        @NonNull
+        public Object[] newArray(int i) {
+            return new ExtendableSavedState[i];
+        }
+
+        @Override // android.os.Parcelable.Creator
+        @Nullable
+        public Object createFromParcel(@NonNull Parcel parcel) {
+            return new ExtendableSavedState(parcel, null, null);
+        }
+    }
+
+    public /* synthetic */ ExtendableSavedState(Parcel parcel, ClassLoader classLoader, a aVar) {
         this(parcel, classLoader);
     }
 
     @NonNull
     public String toString() {
-        StringBuilder sbU = a.U("ExtendableSavedState{");
+        StringBuilder sbU = b.d.b.a.a.U("ExtendableSavedState{");
         sbU.append(Integer.toHexString(System.identityHashCode(this)));
         sbU.append(" states=");
         sbU.append(this.extendableStates);

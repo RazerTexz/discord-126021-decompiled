@@ -3,7 +3,8 @@ package b.i.a.c.c3;
 import android.text.TextUtils;
 import android.util.Pair;
 import androidx.annotation.Nullable;
-import b.i.a.c.a3.a0$a;
+import androidx.annotation.VisibleForTesting;
+import b.i.a.c.a3.a0;
 import b.i.a.c.a3.n0;
 import b.i.a.c.a3.o0;
 import b.i.a.c.f3.e0;
@@ -13,14 +14,11 @@ import b.i.a.c.h2;
 import b.i.a.c.j1;
 import b.i.a.c.o2;
 import b.i.a.c.p2;
-import b.i.a.c.p2$a;
 import b.i.a.c.v0;
 import b.i.b.b.c0;
 import b.i.b.b.d0;
 import b.i.b.b.f0;
-import b.i.b.b.g$a;
 import b.i.b.b.h0;
-import b.i.b.b.n$b;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,6 +32,33 @@ import java.util.TreeMap;
 /* JADX INFO: compiled from: MappingTrackSelector.java */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class l extends q {
+
+    /* JADX INFO: compiled from: MappingTrackSelector.java */
+    public final class a {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int[] f903b;
+        public final o0[] c;
+        public final int[] d;
+        public final int[][][] e;
+        public final o0 f;
+
+        @VisibleForTesting
+        public a(String[] strArr, int[] iArr, o0[] o0VarArr, int[] iArr2, int[][][] iArr3, o0 o0Var) {
+            this.f903b = iArr;
+            this.c = o0VarArr;
+            this.e = iArr3;
+            this.d = iArr2;
+            this.f = o0Var;
+            this.a = iArr.length;
+        }
+
+        public int a(int i, int i2, int i3) {
+            return this.e[i][i2][i3] & 7;
+        }
+    }
+
     @Override // b.i.a.c.c3.q
     public final void a(@Nullable Object obj) {
     }
@@ -47,25 +72,25 @@ public abstract class l extends q {
     /* JADX WARN: Multi-variable type inference failed */
     /* JADX WARN: Type inference incomplete: some casts might be missing */
     @Override // b.i.a.c.c3.q
-    public final r b(g2[] g2VarArr, o0 o0Var, a0$a a0_a, o2 o2Var) throws ExoPlaybackException {
+    public final r b(g2[] g2VarArr, o0 o0Var, a0.a aVar, o2 o2Var) throws ExoPlaybackException {
         int i;
         boolean z2;
         boolean z3;
         j fVar;
         int[] iArr;
         String str;
-        h$d h_d;
+        h.d dVar;
         Pair pairCreate;
         int[][] iArr2;
         n0 n0Var;
         String str2;
         int[][] iArr3;
-        l$a l_a;
+        a aVar2;
         int i2;
         int i3;
-        h$d h_d2;
+        h.d dVar2;
         String str3;
-        j$a j_a;
+        j.a aVar3;
         Pair pairCreate2;
         int i4;
         int[] iArr4;
@@ -76,17 +101,17 @@ public abstract class l extends q {
         n0 n0Var2;
         h hVar;
         int i8;
-        j$a[] j_aArr;
+        j.a[] aVarArr;
         int i9;
         int[][][] iArr5;
         int[] iArr6;
-        h$d h_d3;
+        h.d dVar3;
         boolean z4;
-        l$a l_a2;
-        h$d h_d4;
+        a aVar4;
+        h.d dVar4;
         o0 o0Var2;
         int[][] iArr7;
-        j$a j_a2;
+        j.a aVar5;
         List<Integer> list;
         ArrayList arrayList;
         String str5;
@@ -163,89 +188,89 @@ public abstract class l extends q {
             strArr[i20] = g2VarArr[i20].getName();
             iArr13[i20] = ((v0) g2VarArr[i20]).j;
         }
-        l$a l_a3 = new l$a(strArr, iArr13, o0VarArr, iArr11, iArr10, new o0((n0[]) e0.D(n0VarArr[g2VarArr.length], iArr9[g2VarArr.length])));
+        a aVar6 = new a(strArr, iArr13, o0VarArr, iArr11, iArr10, new o0((n0[]) e0.D(n0VarArr[g2VarArr.length], iArr9[g2VarArr.length])));
         h hVar2 = (h) this;
-        h$d h_d5 = hVar2.f.get();
-        int i22 = l_a3.a;
-        j$a[] j_aArr2 = new j$a[i22];
-        l$a l_a4 = l_a3;
-        h$d h_d6 = h_d5;
+        h.d dVar5 = hVar2.f.get();
+        int i22 = aVar6.a;
+        j.a[] aVarArr2 = new j.a[i22];
+        a aVar7 = aVar6;
+        h.d dVar6 = dVar5;
         int i23 = 0;
         boolean z8 = false;
         boolean z9 = false;
         while (i23 < i22) {
-            if (2 == l_a4.f903b[i23]) {
+            if (2 == aVar7.f903b[i23]) {
                 if (z9) {
                     hVar = hVar2;
                     i8 = i22;
-                    j_aArr = j_aArr2;
+                    aVarArr = aVarArr2;
                     i9 = i23;
                     iArr5 = iArr10;
                     z4 = z8;
                     iArr6 = iArr11;
-                    h_d3 = h_d5;
+                    dVar3 = dVar5;
                 } else {
-                    o0 o0Var4 = l_a4.c[i23];
+                    o0 o0Var4 = aVar7.c[i23];
                     int[][] iArr14 = iArr10[i23];
                     int i24 = iArr11[i23];
-                    if (h_d6.F || h_d6.E) {
-                        l_a2 = l_a3;
+                    if (dVar6.F || dVar6.E) {
+                        aVar4 = aVar6;
                         hVar = hVar2;
-                        h_d4 = h_d5;
+                        dVar4 = dVar5;
                         i8 = i22;
-                        j_aArr = j_aArr2;
+                        aVarArr = aVarArr2;
                         i9 = i23;
                         iArr5 = iArr10;
                         z4 = z8;
                         o0Var2 = o0Var4;
                         iArr7 = iArr14;
                         iArr6 = iArr11;
-                        j_a2 = null;
+                        aVar5 = null;
                         break;
                     }
-                    int i25 = h_d6.M ? 24 : 16;
-                    boolean z10 = h_d6.L && (i24 & i25) != 0;
-                    h$d h_d7 = h_d6;
+                    int i25 = dVar6.M ? 24 : 16;
+                    boolean z10 = dVar6.L && (i24 & i25) != 0;
+                    h.d dVar7 = dVar6;
                     int i26 = 0;
                     while (true) {
                         if (i26 >= o0Var4.k) {
-                            l_a2 = l_a3;
+                            aVar4 = aVar6;
                             hVar = hVar2;
-                            h_d4 = h_d5;
+                            dVar4 = dVar5;
                             i8 = i22;
-                            j_aArr = j_aArr2;
+                            aVarArr = aVarArr2;
                             i9 = i23;
                             iArr5 = iArr10;
                             z4 = z8;
                             o0Var2 = o0Var4;
                             iArr7 = iArr14;
                             iArr6 = iArr11;
-                            j_a2 = null;
+                            aVar5 = null;
                             break;
                         }
                         n0 n0Var4 = o0Var4.l[i26];
                         int[] iArr15 = iArr14[i26];
                         hVar = hVar2;
-                        int i27 = h_d7.k;
+                        int i27 = dVar7.k;
                         iArr6 = iArr11;
-                        int i28 = h_d7.l;
+                        int i28 = dVar7.l;
                         iArr5 = iArr10;
-                        int i29 = h_d7.m;
+                        int i29 = dVar7.m;
                         i8 = i22;
-                        int i30 = h_d7.n;
+                        int i30 = dVar7.n;
                         z4 = z8;
-                        int i31 = h_d7.o;
-                        l_a2 = l_a3;
-                        int i32 = h_d7.p;
-                        j_aArr = j_aArr2;
-                        int i33 = h_d7.q;
+                        int i31 = dVar7.o;
+                        aVar4 = aVar6;
+                        int i32 = dVar7.p;
+                        aVarArr = aVarArr2;
+                        int i33 = dVar7.q;
                         i9 = i23;
-                        int i34 = h_d7.r;
+                        int i34 = dVar7.r;
                         iArr7 = iArr14;
-                        int i35 = h_d7.f905s;
-                        h_d4 = h_d5;
-                        int i36 = h_d7.t;
-                        boolean z11 = h_d7.u;
+                        int i35 = dVar7.f905s;
+                        dVar4 = dVar5;
+                        int i36 = dVar7.t;
+                        boolean z11 = dVar7.u;
                         o0Var2 = o0Var4;
                         int i37 = i26;
                         if (n0Var4.k < 2) {
@@ -316,7 +341,7 @@ public abstract class l extends q {
                                 iArrQ1 = arrayList.size() < 2 ? h.f898b : b.i.a.f.e.o.f.q1(list);
                             }
                             if (iArrQ1.length > 0) {
-                                j_a2 = new j$a(n0Var4, iArrQ1);
+                                aVar5 = new j.a(n0Var4, iArrQ1);
                                 break;
                             }
                             i26 = i37 + 1;
@@ -325,18 +350,18 @@ public abstract class l extends q {
                             iArr10 = iArr5;
                             i22 = i8;
                             z8 = z4;
-                            l_a3 = l_a2;
-                            j_aArr2 = j_aArr;
+                            aVar6 = aVar4;
+                            aVarArr2 = aVarArr;
                             i23 = i9;
                             iArr14 = iArr7;
-                            h_d5 = h_d4;
-                            h_d7 = h_d5;
+                            dVar5 = dVar4;
+                            dVar7 = dVar5;
                             o0Var4 = o0Var2;
                             z10 = z10;
                         }
                         z10 = z10;
                         if (iArrQ1.length > 0) {
-                            j_a2 = new j$a(n0Var4, iArrQ1);
+                            aVar5 = new j.a(n0Var4, iArrQ1);
                             break;
                         }
                         i26 = i37 + 1;
@@ -345,91 +370,91 @@ public abstract class l extends q {
                         iArr10 = iArr5;
                         i22 = i8;
                         z8 = z4;
-                        l_a3 = l_a2;
-                        j_aArr2 = j_aArr;
+                        aVar6 = aVar4;
+                        aVarArr2 = aVarArr;
                         i23 = i9;
                         iArr14 = iArr7;
-                        h_d5 = h_d4;
-                        h_d7 = h_d5;
+                        dVar5 = dVar4;
+                        dVar7 = dVar5;
                         o0Var4 = o0Var2;
                         z10 = z10;
                     }
-                    if (j_a2 == null) {
+                    if (aVar5 == null) {
                         o0 o0Var5 = o0Var2;
                         n0 n0Var5 = null;
-                        h$h h_h = null;
+                        h.C0098h c0098h = null;
                         int i42 = 0;
                         int i43 = -1;
                         while (i42 < o0Var5.k) {
                             n0 n0Var6 = o0Var5.l[i42];
-                            h$d h_d8 = h_d4;
-                            List<Integer> listD2 = h.d(n0Var6, h_d8.f905s, h_d8.t, h_d8.u);
+                            h.d dVar8 = dVar4;
+                            List<Integer> listD2 = h.d(n0Var6, dVar8.f905s, dVar8.t, dVar8.u);
                             int[] iArr16 = iArr7[i42];
-                            h$h h_h2 = h_h;
+                            h.C0098h c0098h2 = c0098h;
                             n0 n0Var7 = n0Var5;
                             for (int i44 = 0; i44 < n0Var6.k; i44++) {
                                 j1 j1Var = n0Var6.l[i44];
-                                if ((j1Var.p & 16384) == 0 && h.e(iArr16[i44], h_d8.R)) {
-                                    h$h h_h3 = new h$h(j1Var, h_d8, iArr16[i44], ((ArrayList) listD2).contains(Integer.valueOf(i44)));
-                                    if ((h_h3.j || h_d8.K) && (h_h2 == null || h_h3.f(h_h2) > 0)) {
+                                if ((j1Var.p & 16384) == 0 && h.e(iArr16[i44], dVar8.R)) {
+                                    h.C0098h c0098h3 = new h.C0098h(j1Var, dVar8, iArr16[i44], ((ArrayList) listD2).contains(Integer.valueOf(i44)));
+                                    if ((c0098h3.j || dVar8.K) && (c0098h2 == null || c0098h3.f(c0098h2) > 0)) {
                                         i43 = i44;
                                         n0Var7 = n0Var6;
-                                        h_h2 = h_h3;
+                                        c0098h2 = c0098h3;
                                     }
                                 }
                             }
                             i42++;
                             n0Var5 = n0Var7;
-                            h_d4 = h_d8;
-                            h_h = h_h2;
+                            dVar4 = dVar8;
+                            c0098h = c0098h2;
                         }
-                        h_d3 = h_d4;
-                        j_a2 = n0Var5 == null ? null : new j$a(n0Var5, i43);
+                        dVar3 = dVar4;
+                        aVar5 = n0Var5 == null ? null : new j.a(n0Var5, i43);
                     } else {
-                        h_d3 = h_d4;
+                        dVar3 = dVar4;
                     }
-                    j_aArr[i9] = j_a2;
-                    z9 = j_aArr[i9] != null;
-                    h_d6 = h_d3;
-                    l_a3 = l_a2;
+                    aVarArr[i9] = aVar5;
+                    z9 = aVarArr[i9] != null;
+                    dVar6 = dVar3;
+                    aVar6 = aVar4;
                 }
-                l_a4 = l_a3;
-                z8 = z4 | (l_a3.c[i9].k > 0);
+                aVar7 = aVar6;
+                z8 = z4 | (aVar6.c[i9].k > 0);
             } else {
                 hVar = hVar2;
                 i8 = i22;
-                j_aArr = j_aArr2;
+                aVarArr = aVarArr2;
                 i9 = i23;
                 iArr5 = iArr10;
                 iArr6 = iArr11;
-                h_d3 = h_d5;
+                dVar3 = dVar5;
             }
-            h_d5 = h_d3;
+            dVar5 = dVar3;
             iArr11 = iArr6;
             iArr10 = iArr5;
             i22 = i8;
-            j_aArr2 = j_aArr;
+            aVarArr2 = aVarArr;
             i23 = i9 + 1;
             hVar2 = hVar;
         }
         h hVar3 = hVar2;
-        h$d h_d9 = h_d5;
-        j$a[] j_aArr3 = j_aArr2;
+        h.d dVar9 = dVar5;
+        j.a[] aVarArr3 = aVarArr2;
         int[][][] iArr17 = iArr10;
         boolean z12 = z8;
         int[] iArr18 = iArr11;
         int i45 = i22;
-        h$b h_b = null;
+        h.b bVar = null;
         int i46 = -1;
         int i47 = 0;
         String str7 = null;
         while (i47 < i45) {
-            if (1 == l_a4.f903b[i47]) {
-                boolean z13 = h_d6.T || !z12;
-                o0 o0Var6 = l_a4.c[i47];
+            if (1 == aVar7.f903b[i47]) {
+                boolean z13 = dVar6.T || !z12;
+                o0 o0Var6 = aVar7.c[i47];
                 int[][] iArr19 = iArr17[i47];
                 int i48 = iArr18[i47];
-                h$b h_b2 = null;
+                h.b bVar2 = null;
                 int i49 = -1;
                 int i50 = -1;
                 int i51 = 0;
@@ -438,16 +463,16 @@ public abstract class l extends q {
                     int[] iArr20 = iArr19[i51];
                     int i52 = i49;
                     int i53 = i50;
-                    h$b h_b3 = h_b2;
+                    h.b bVar3 = bVar2;
                     int i54 = 0;
                     while (i54 < n0Var8.k) {
                         String str8 = str7;
-                        if (h.e(iArr20[i54], h_d6.R)) {
+                        if (h.e(iArr20[i54], dVar6.R)) {
                             n0Var2 = n0Var8;
-                            h$b h_b4 = new h$b(n0Var8.l[i54], h_d6, iArr20[i54]);
-                            if ((h_b4.j || h_d6.N) && (h_b3 == null || h_b4.f(h_b3) > 0)) {
+                            h.b bVar4 = new h.b(n0Var8.l[i54], dVar6, iArr20[i54]);
+                            if ((bVar4.j || dVar6.N) && (bVar3 == null || bVar4.f(bVar3) > 0)) {
                                 i53 = i54;
-                                h_b3 = h_b4;
+                                bVar3 = bVar4;
                                 i52 = i51;
                             }
                         } else {
@@ -458,35 +483,35 @@ public abstract class l extends q {
                         n0Var8 = n0Var2;
                     }
                     i51++;
-                    h_b2 = h_b3;
+                    bVar2 = bVar3;
                     i50 = i53;
                     i49 = i52;
                 }
                 str3 = str7;
                 if (i49 == -1) {
-                    l_a = l_a3;
+                    aVar2 = aVar6;
                     i2 = i47;
                     i3 = i45;
-                    h_d2 = h_d9;
+                    dVar2 = dVar9;
                     pairCreate2 = null;
                 } else {
                     n0 n0Var9 = o0Var6.l[i49];
-                    if (h_d6.F || h_d6.E || !z13) {
-                        l_a = l_a3;
+                    if (dVar6.F || dVar6.E || !z13) {
+                        aVar2 = aVar6;
                         i2 = i47;
                         i3 = i45;
-                        h_d2 = h_d9;
+                        dVar2 = dVar9;
                     } else {
                         int[] iArr21 = iArr19[i49];
-                        int i55 = h_d6.f908z;
-                        boolean z14 = h_d6.O;
-                        boolean z15 = h_d6.P;
-                        boolean z16 = h_d6.Q;
+                        int i55 = dVar6.f908z;
+                        boolean z14 = dVar6.O;
+                        boolean z15 = dVar6.P;
+                        boolean z16 = dVar6.Q;
                         j1 j1Var2 = n0Var9.l[i50];
                         int[] iArr22 = new int[n0Var9.k];
-                        l_a = l_a3;
+                        aVar2 = aVar6;
                         i3 = i45;
-                        h_d2 = h_d9;
+                        dVar2 = dVar9;
                         int i56 = 0;
                         int i57 = 0;
                         while (i57 < n0Var9.k) {
@@ -511,129 +536,129 @@ public abstract class l extends q {
                         }
                         i2 = i47;
                         int[] iArrCopyOf = Arrays.copyOf(iArr22, i56);
-                        j_a = iArrCopyOf.length > 1 ? new j$a(n0Var9, iArrCopyOf) : null;
-                        if (j_a == null) {
-                            j_a = new j$a(n0Var9, i50);
+                        aVar3 = iArrCopyOf.length > 1 ? new j.a(n0Var9, iArrCopyOf) : null;
+                        if (aVar3 == null) {
+                            aVar3 = new j.a(n0Var9, i50);
                         }
-                        Objects.requireNonNull(h_b2);
-                        pairCreate2 = Pair.create(j_a, h_b2);
+                        Objects.requireNonNull(bVar2);
+                        pairCreate2 = Pair.create(aVar3, bVar2);
                     }
-                    if (j_a == null) {
-                        j_a = new j$a(n0Var9, i50);
+                    if (aVar3 == null) {
+                        aVar3 = new j.a(n0Var9, i50);
                     }
-                    Objects.requireNonNull(h_b2);
-                    pairCreate2 = Pair.create(j_a, h_b2);
+                    Objects.requireNonNull(bVar2);
+                    pairCreate2 = Pair.create(aVar3, bVar2);
                 }
-                if (pairCreate2 != null && (h_b == null || ((h$b) pairCreate2.second).f(h_b) > 0)) {
+                if (pairCreate2 != null && (bVar == null || ((h.b) pairCreate2.second).f(bVar) > 0)) {
                     if (i46 != -1) {
-                        j_aArr3[i46] = null;
+                        aVarArr3[i46] = null;
                     }
-                    j$a j_a3 = (j$a) pairCreate2.first;
-                    j_aArr3[i2] = j_a3;
-                    str7 = j_a3.a.l[j_a3.f902b[0]].n;
+                    j.a aVar8 = (j.a) pairCreate2.first;
+                    aVarArr3[i2] = aVar8;
+                    str7 = aVar8.a.l[aVar8.f902b[0]].n;
                     i46 = i2;
-                    h_b = (h$b) pairCreate2.second;
+                    bVar = (h.b) pairCreate2.second;
                 }
                 i47 = i2 + 1;
                 i45 = i3;
-                l_a3 = l_a;
-                l_a4 = l_a3;
-                h_d9 = h_d2;
-                h_d6 = h_d9;
+                aVar6 = aVar2;
+                aVar7 = aVar6;
+                dVar9 = dVar2;
+                dVar6 = dVar9;
             } else {
-                l_a = l_a3;
+                aVar2 = aVar6;
                 i2 = i47;
                 i3 = i45;
-                h_d2 = h_d9;
+                dVar2 = dVar9;
                 str3 = str7;
             }
             str7 = str3;
             i47 = i2 + 1;
             i45 = i3;
-            l_a3 = l_a;
-            l_a4 = l_a3;
-            h_d9 = h_d2;
-            h_d6 = h_d9;
+            aVar6 = aVar2;
+            aVar7 = aVar6;
+            dVar9 = dVar2;
+            dVar6 = dVar9;
         }
-        l$a l_a5 = l_a3;
-        h$d h_d10 = h_d9;
+        a aVar9 = aVar6;
+        h.d dVar10 = dVar9;
         String str9 = str7;
         int i58 = i45;
         int i59 = -1;
         int i60 = 0;
-        h$g h_g = null;
+        h.g gVar = null;
         while (i60 < i58) {
-            l$a l_a6 = l_a5;
-            int i61 = l_a6.f903b[i60];
+            a aVar10 = aVar9;
+            int i61 = aVar10.f903b[i60];
             if (i61 == 1 || i61 == 2) {
                 str = str9;
-                h_d = h_d10;
+                dVar = dVar10;
             } else if (i61 != 3) {
-                o0 o0Var7 = l_a6.c[i60];
+                o0 o0Var7 = aVar10.c[i60];
                 int[][] iArr23 = iArr17[i60];
                 n0 n0Var10 = null;
-                h$c h_c = null;
+                h.c cVar = null;
                 int i62 = 0;
                 int i63 = 0;
                 while (i62 < o0Var7.k) {
                     n0 n0Var11 = o0Var7.l[i62];
                     int[] iArr24 = iArr23[i62];
                     int i64 = i63;
-                    h$c h_c2 = h_c;
+                    h.c cVar2 = cVar;
                     n0 n0Var12 = n0Var10;
                     int i65 = 0;
                     while (i65 < n0Var11.k) {
                         o0 o0Var8 = o0Var7;
-                        h$d h_d11 = h_d10;
-                        if (h.e(iArr24[i65], h_d11.R)) {
+                        h.d dVar11 = dVar10;
+                        if (h.e(iArr24[i65], dVar11.R)) {
                             iArr3 = iArr23;
-                            h$c h_c3 = new h$c(n0Var11.l[i65], iArr24[i65]);
-                            if (h_c2 == null || h_c3.f(h_c2) > 0) {
+                            h.c cVar3 = new h.c(n0Var11.l[i65], iArr24[i65]);
+                            if (cVar2 == null || cVar3.f(cVar2) > 0) {
                                 i64 = i65;
                                 n0Var12 = n0Var11;
-                                h_c2 = h_c3;
+                                cVar2 = cVar3;
                             }
                         } else {
                             iArr3 = iArr23;
                         }
                         i65++;
-                        h_d10 = h_d11;
+                        dVar10 = dVar11;
                         o0Var7 = o0Var8;
                         iArr23 = iArr3;
                     }
                     i62++;
                     n0Var10 = n0Var12;
-                    h_c = h_c2;
+                    cVar = cVar2;
                     i63 = i64;
                 }
-                h_d = h_d10;
-                j_aArr3[i60] = n0Var10 == null ? null : new j$a(n0Var10, i63);
+                dVar = dVar10;
+                aVarArr3[i60] = n0Var10 == null ? null : new j.a(n0Var10, i63);
                 str = str9;
             } else {
-                h_d = h_d10;
-                o0 o0Var9 = l_a6.c[i60];
+                dVar = dVar10;
+                o0 o0Var9 = aVar10.c[i60];
                 int[][] iArr25 = iArr17[i60];
                 n0 n0Var13 = null;
-                h$g h_g2 = null;
+                h.g gVar2 = null;
                 int i66 = -1;
                 int i67 = 0;
                 while (i67 < o0Var9.k) {
                     n0 n0Var14 = o0Var9.l[i67];
                     int[] iArr26 = iArr25[i67];
                     int i68 = i66;
-                    h$g h_g3 = h_g2;
+                    h.g gVar3 = gVar2;
                     n0 n0Var15 = n0Var13;
                     int i69 = 0;
                     while (i69 < n0Var14.k) {
                         o0 o0Var10 = o0Var9;
-                        if (h.e(iArr26[i69], h_d.R)) {
+                        if (h.e(iArr26[i69], dVar.R)) {
                             iArr2 = iArr25;
                             n0Var = n0Var14;
                             str2 = str9;
-                            h$g h_g4 = new h$g(n0Var14.l[i69], h_d, iArr26[i69], str2);
-                            if (h_g4.j && (h_g3 == null || h_g4.f(h_g3) > 0)) {
+                            h.g gVar4 = new h.g(n0Var14.l[i69], dVar, iArr26[i69], str2);
+                            if (gVar4.j && (gVar3 == null || gVar4.f(gVar3) > 0)) {
                                 i68 = i69;
-                                h_g3 = h_g4;
+                                gVar3 = gVar4;
                                 n0Var15 = n0Var;
                             }
                         } else {
@@ -649,91 +674,91 @@ public abstract class l extends q {
                     }
                     i67++;
                     n0Var13 = n0Var15;
-                    h_g2 = h_g3;
+                    gVar2 = gVar3;
                     i66 = i68;
                 }
                 str = str9;
                 if (n0Var13 == null) {
                     pairCreate = null;
                 } else {
-                    j$a j_a4 = new j$a(n0Var13, i66);
-                    Objects.requireNonNull(h_g2);
-                    pairCreate = Pair.create(j_a4, h_g2);
+                    j.a aVar11 = new j.a(n0Var13, i66);
+                    Objects.requireNonNull(gVar2);
+                    pairCreate = Pair.create(aVar11, gVar2);
                 }
-                if (pairCreate != null && (h_g == null || ((h$g) pairCreate.second).f(h_g) > 0)) {
+                if (pairCreate != null && (gVar == null || ((h.g) pairCreate.second).f(gVar) > 0)) {
                     if (i59 != -1) {
-                        j_aArr3[i59] = null;
+                        aVarArr3[i59] = null;
                     }
-                    j_aArr3[i60] = (j$a) pairCreate.first;
-                    h_g = (h$g) pairCreate.second;
+                    aVarArr3[i60] = (j.a) pairCreate.first;
+                    gVar = (h.g) pairCreate.second;
                     i59 = i60;
                 }
             }
             i60++;
-            l_a5 = l_a6;
+            aVar9 = aVar10;
             str9 = str;
-            h_d10 = h_d;
+            dVar10 = dVar;
         }
-        l$a l_a7 = l_a5;
-        h$d h_d12 = h_d10;
+        a aVar12 = aVar9;
+        h.d dVar12 = dVar10;
         for (int i70 = 0; i70 < i58; i70++) {
-            j$a j_a5 = j_aArr3[i70];
-            int i71 = l_a7.f903b[i70];
-            if (h_d12.V.get(i70) || h_d12.H.contains(Integer.valueOf(i71))) {
-                j_a5 = null;
+            j.a aVar13 = aVarArr3[i70];
+            int i71 = aVar12.f903b[i70];
+            if (dVar12.V.get(i70) || dVar12.H.contains(Integer.valueOf(i71))) {
+                aVar13 = null;
             } else {
-                o0 o0Var11 = l_a7.c[i70];
-                Map<o0, h$f> map = h_d12.U.get(i70);
+                o0 o0Var11 = aVar12.c[i70];
+                Map<o0, h.f> map = dVar12.U.get(i70);
                 if (map != null && map.containsKey(o0Var11)) {
-                    Map<o0, h$f> map2 = h_d12.U.get(i70);
-                    h$f h_f = map2 != null ? map2.get(o0Var11) : null;
-                    if (h_f == null) {
-                        j_a5 = null;
+                    Map<o0, h.f> map2 = dVar12.U.get(i70);
+                    h.f fVar2 = map2 != null ? map2.get(o0Var11) : null;
+                    if (fVar2 == null) {
+                        aVar13 = null;
                     } else {
-                        j_a5 = new j$a(o0Var11.l[h_f.j], h_f.k, h_f.l);
+                        aVar13 = new j.a(o0Var11.l[fVar2.j], fVar2.k, fVar2.l);
                     }
                 } else {
                     for (int i72 = 0; i72 < o0Var11.k; i72++) {
                         n0 n0Var16 = o0Var11.l[i72];
-                        o$a o_a = h_d12.G.l.get(n0Var16);
-                        if (o_a != null) {
-                            j_a5 = new j$a(n0Var16, b.i.a.f.e.o.f.q1(o_a.l));
+                        o.a aVar14 = dVar12.G.l.get(n0Var16);
+                        if (aVar14 != null) {
+                            aVar13 = new j.a(n0Var16, b.i.a.f.e.o.f.q1(aVar14.l));
                             break;
                         }
                     }
                 }
             }
-            j_aArr3[i70] = j_a5;
+            aVarArr3[i70] = aVar13;
         }
-        j$b j_b = hVar3.e;
-        b.i.a.c.e3.f fVar2 = hVar3.a;
-        Objects.requireNonNull(fVar2);
-        Objects.requireNonNull((f$b) j_b);
+        j.b bVar5 = hVar3.e;
+        b.i.a.c.e3.f fVar3 = hVar3.a;
+        Objects.requireNonNull(fVar3);
+        Objects.requireNonNull((f.b) bVar5);
         ArrayList arrayList6 = new ArrayList();
         for (int i73 = 0; i73 < i58; i73++) {
-            if (j_aArr3[i73] == null || j_aArr3[i73].f902b.length <= 1) {
+            if (aVarArr3[i73] == null || aVarArr3[i73].f902b.length <= 1) {
                 arrayList6.add(null);
             } else {
-                b.i.b.b.a<Object> aVar = b.i.b.b.p.k;
-                b.i.b.b.p$a p_a = new b.i.b.b.p$a();
-                p_a.b(new f$a(0L, 0L));
-                arrayList6.add(p_a);
+                b.i.b.b.a<Object> aVar15 = b.i.b.b.p.k;
+                b.i.b.b.p.a aVar16 = new b.i.b.b.p.a();
+                aVar16.b(new f.a(0L, 0L));
+                arrayList6.add(aVar16);
             }
         }
         long[][] jArr = new long[i58][];
         for (int i74 = 0; i74 < i58; i74++) {
-            j$a j_a6 = j_aArr3[i74];
-            if (j_a6 == null) {
+            j.a aVar17 = aVarArr3[i74];
+            if (aVar17 == null) {
                 jArr[i74] = new long[0];
             } else {
-                jArr[i74] = new long[j_a6.f902b.length];
+                jArr[i74] = new long[aVar17.f902b.length];
                 int i75 = 0;
                 while (true) {
-                    int[] iArr27 = j_a6.f902b;
+                    int[] iArr27 = aVar17.f902b;
                     if (i75 >= iArr27.length) {
                         break;
                     }
-                    jArr[i74][i75] = j_a6.a.l[iArr27[i75]].f1017s;
+                    jArr[i74][i75] = aVar17.a.l[iArr27[i75]].f1017s;
                     i75++;
                 }
                 Arrays.sort(jArr[i74]);
@@ -798,12 +823,12 @@ public abstract class l extends q {
             iArr28 = iArr;
         }
         int[] iArr29 = iArr28;
-        Collection g_a = d0Var.k;
-        if (g_a == null) {
-            g_a = new g$a(d0Var);
-            d0Var.k = g_a;
+        Collection aVar18 = d0Var.k;
+        if (aVar18 == null) {
+            aVar18 = new b.i.b.b.g.a();
+            d0Var.k = aVar18;
         }
-        b.i.b.b.p pVarN = b.i.b.b.p.n(g_a);
+        b.i.b.b.p pVarN = b.i.b.b.p.n(aVar18);
         for (int i82 = 0; i82 < pVarN.size(); i82++) {
             int iIntValue3 = ((Integer) pVarN.get(i82)).intValue();
             int i83 = iArr29[iIntValue3] + 1;
@@ -822,12 +847,12 @@ public abstract class l extends q {
         int i85 = 0;
         int i86 = 0;
         while (i85 < arrayList6.size()) {
-            b.i.b.b.p$a p_a2 = (b.i.b.b.p$a) arrayList6.get(i85);
-            b.i.b.b.p<Object> pVarC = p_a2 == null ? h0.l : p_a2.c();
+            b.i.b.b.p.a aVar19 = (b.i.b.b.p.a) arrayList6.get(i85);
+            b.i.b.b.p<Object> pVarC = aVar19 == null ? h0.l : aVar19.c();
             Objects.requireNonNull(pVarC);
             int i87 = i86 + 1;
             if (objArrCopyOf.length < i87) {
-                objArrCopyOf = Arrays.copyOf(objArrCopyOf, n$b.a(objArrCopyOf.length, i87));
+                objArrCopyOf = Arrays.copyOf(objArrCopyOf, b.i.b.b.n.b.a(objArrCopyOf.length, i87));
             }
             objArrCopyOf[i86] = pVarC;
             i85++;
@@ -836,15 +861,15 @@ public abstract class l extends q {
         b.i.b.b.p pVarL = b.i.b.b.p.l(objArrCopyOf, i86);
         j[] jVarArr = new j[i58];
         for (int i88 = 0; i88 < i58; i88++) {
-            j$a j_a7 = j_aArr3[i88];
-            if (j_a7 != null) {
-                int[] iArr30 = j_a7.f902b;
+            j.a aVar20 = aVarArr3[i88];
+            if (aVar20 != null) {
+                int[] iArr30 = aVar20.f902b;
                 if (iArr30.length != 0) {
                     if (iArr30.length == 1) {
-                        fVar = new k(j_a7.a, iArr30[0], j_a7.c);
+                        fVar = new k(aVar20.a, iArr30[0], aVar20.c);
                     } else {
                         long j = 25000;
-                        fVar = new f(j_a7.a, iArr30, j_a7.c, fVar2, 10000, j, j, 1279, 719, 0.7f, 0.75f, (b.i.b.b.p) pVarL.get(i88), b.i.a.c.f3.g.a);
+                        fVar = new f(aVar20.a, iArr30, aVar20.c, fVar3, 10000, j, j, 1279, 719, 0.7f, 0.75f, (b.i.b.b.p) pVarL.get(i88), b.i.a.c.f3.g.a);
                     }
                     jVarArr[i88] = fVar;
                 }
@@ -852,24 +877,24 @@ public abstract class l extends q {
         }
         h2[] h2VarArr = new h2[i58];
         for (int i89 = 0; i89 < i58; i89++) {
-            h2VarArr[i89] = !(h_d12.V.get(i89) || h_d12.H.contains(Integer.valueOf(l_a7.f903b[i89]))) && (l_a7.f903b[i89] == -2 || jVarArr[i89] != null) ? h2.a : null;
+            h2VarArr[i89] = !(dVar12.V.get(i89) || dVar12.H.contains(Integer.valueOf(aVar12.f903b[i89]))) && (aVar12.f903b[i89] == -2 || jVarArr[i89] != null) ? h2.a : null;
         }
-        if (h_d12.S) {
+        if (dVar12.S) {
             int i90 = 0;
             int i91 = -1;
             int i92 = -1;
             while (true) {
-                if (i90 >= l_a7.a) {
+                if (i90 >= aVar12.a) {
                     i = -1;
                     z2 = true;
                     break;
                 }
-                int i93 = l_a7.f903b[i90];
+                int i93 = aVar12.f903b[i90];
                 j jVar = jVarArr[i90];
                 if (i93 == 1 || i93 == 2) {
                     if (jVar != null) {
                         int[][] iArr31 = iArr17[i90];
-                        int iA = l_a7.c[i90].a(jVar.a());
+                        int iA = aVar12.c[i90].a(jVar.a());
                         int i94 = 0;
                         while (true) {
                             if (i94 >= jVar.length()) {
@@ -915,8 +940,8 @@ public abstract class l extends q {
         Object[] objArrCopyOf2 = new Object[4];
         int i95 = 0;
         int i96 = 0;
-        while (i95 < l_a7.a) {
-            o0 o0Var12 = l_a7.c[i95];
+        while (i95 < aVar12.a) {
+            o0 o0Var12 = aVar12.c[i95];
             m mVar = mVarArr[i95];
             Object[] objArrCopyOf3 = objArrCopyOf2;
             int i97 = i96;
@@ -927,19 +952,19 @@ public abstract class l extends q {
                 int[] iArr32 = new int[i99];
                 boolean[] zArr = new boolean[i99];
                 for (int i100 = 0; i100 < n0Var17.k; i100++) {
-                    iArr32[i100] = l_a7.a(i95, i98, i100);
+                    iArr32[i100] = aVar12.a(i95, i98, i100);
                     if (mVar != null && mVar.a() == n0Var17) {
                         boolean z17 = mVar.l(i100) != -1;
                         zArr[i100] = z17;
                     }
                     zArr[i100] = z17;
                 }
-                p2$a p2_a = new p2$a(n0Var17, iArr32, l_a7.f903b[i95], zArr);
+                p2.a aVar21 = new p2.a(n0Var17, iArr32, aVar12.f903b[i95], zArr);
                 int i101 = i97 + 1;
                 if (objArrCopyOf3.length < i101) {
-                    objArrCopyOf3 = Arrays.copyOf(objArrCopyOf3, n$b.a(objArrCopyOf3.length, i101));
+                    objArrCopyOf3 = Arrays.copyOf(objArrCopyOf3, b.i.b.b.n.b.a(objArrCopyOf3.length, i101));
                 }
-                objArrCopyOf3[i97] = p2_a;
+                objArrCopyOf3[i97] = aVar21;
                 i98++;
                 i97 = i101;
             }
@@ -947,21 +972,21 @@ public abstract class l extends q {
             i96 = i97;
             objArrCopyOf2 = objArrCopyOf3;
         }
-        o0 o0Var13 = l_a7.f;
+        o0 o0Var13 = aVar12.f;
         int i102 = 0;
         while (i102 < o0Var13.k) {
             n0 n0Var18 = o0Var13.l[i102];
             int[] iArr33 = new int[n0Var18.k];
             Arrays.fill(iArr33, 0);
-            p2$a p2_a2 = new p2$a(n0Var18, iArr33, t.g(n0Var18.l[0].w), new boolean[n0Var18.k]);
+            p2.a aVar22 = new p2.a(n0Var18, iArr33, t.g(n0Var18.l[0].w), new boolean[n0Var18.k]);
             int i103 = i96 + 1;
             if (objArrCopyOf2.length < i103) {
-                objArrCopyOf2 = Arrays.copyOf(objArrCopyOf2, n$b.a(objArrCopyOf2.length, i103));
+                objArrCopyOf2 = Arrays.copyOf(objArrCopyOf2, b.i.b.b.n.b.a(objArrCopyOf2.length, i103));
             }
-            objArrCopyOf2[i96] = p2_a2;
+            objArrCopyOf2[i96] = aVar22;
             i102++;
             i96 = i103;
         }
-        return new r((h2[]) pairCreate3.first, (j[]) pairCreate3.second, new p2(b.i.b.b.p.l(objArrCopyOf2, i96)), l_a7);
+        return new r((h2[]) pairCreate3.first, (j[]) pairCreate3.second, new p2(b.i.b.b.p.l(objArrCopyOf2, i96)), aVar12);
     }
 }

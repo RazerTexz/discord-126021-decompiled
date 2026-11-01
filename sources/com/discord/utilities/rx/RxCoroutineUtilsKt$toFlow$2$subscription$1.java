@@ -3,7 +3,6 @@ package com.discord.utilities.rx;
 import androidx.recyclerview.widget.RecyclerView;
 import b.i.a.f.e.o.f;
 import d0.w.d;
-import d0.w.d$b;
 import j0.g;
 import java.util.concurrent.locks.LockSupport;
 import kotlin.coroutines.CoroutineContext;
@@ -59,14 +58,14 @@ public final class RxCoroutineUtilsKt$toFlow$2$subscription$1<T> implements g<T>
         h hVar = new h(producerScope, value, null);
         CoroutineContext coroutineContext = d0.w.f.j;
         Thread threadCurrentThread = Thread.currentThread();
-        d$b d_b = d$b.a;
-        d dVar = (d) coroutineContext.get(d_b);
+        d.b bVar = d.b.a;
+        d dVar = (d) coroutineContext.get(bVar);
         if (dVar == null) {
             w1 w1Var = w1.f3847b;
             q0VarA = w1.a();
             coroutineContextPlus = coroutineContext.plus(coroutineContext.plus(q0VarA));
             CoroutineDispatcher coroutineDispatcher = k0.a;
-            if (coroutineContextPlus != coroutineDispatcher && coroutineContextPlus.get(d_b) == null) {
+            if (coroutineContextPlus != coroutineDispatcher && coroutineContextPlus.get(bVar) == null) {
                 coroutineContextPlus = coroutineContextPlus.plus(coroutineDispatcher);
             }
         } else {
@@ -77,7 +76,7 @@ public final class RxCoroutineUtilsKt$toFlow$2$subscription$1<T> implements g<T>
             q0VarA = w1.a.get();
             coroutineContextPlus = coroutineContext.plus(coroutineContext);
             CoroutineDispatcher coroutineDispatcher2 = k0.a;
-            if (coroutineContextPlus != coroutineDispatcher2 && coroutineContextPlus.get(d_b) == null) {
+            if (coroutineContextPlus != coroutineDispatcher2 && coroutineContextPlus.get(bVar) == null) {
                 coroutineContextPlus = coroutineContextPlus.plus(coroutineDispatcher2);
             }
         }

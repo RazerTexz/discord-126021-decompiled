@@ -9,8 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.dynamicanimation.animation.FloatPropertyCompat;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
-import androidx.vectordrawable.graphics.drawable.Animatable2Compat$AnimationCallback;
-import b.i.a.g.g.a;
+import androidx.vectordrawable.graphics.drawable.Animatable2Compat;
 import b.i.a.g.g.e;
 import b.i.a.g.g.f;
 import b.i.a.g.g.h;
@@ -26,7 +25,23 @@ public final class DeterminateDrawable<S extends BaseProgressIndicatorSpec> exte
     private boolean skipAnimationOnLevelChange;
     private final SpringAnimation springAnimator;
     private final SpringForce springForce;
-    private static final FloatPropertyCompat<DeterminateDrawable> INDICATOR_LENGTH_IN_LEVEL = new DeterminateDrawable$a("indicatorLevel");
+    private static final FloatPropertyCompat<DeterminateDrawable> INDICATOR_LENGTH_IN_LEVEL = new a("indicatorLevel");
+
+    public final class a extends FloatPropertyCompat<DeterminateDrawable> {
+        public a(String str) {
+            super(str);
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public float getValue(DeterminateDrawable determinateDrawable) {
+            return DeterminateDrawable.access$000(determinateDrawable) * 10000.0f;
+        }
+
+        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
+        public void setValue(DeterminateDrawable determinateDrawable, float f) {
+            DeterminateDrawable.access$100(determinateDrawable, f / 10000.0f);
+        }
+    }
 
     public DeterminateDrawable(@NonNull Context context, @NonNull BaseProgressIndicatorSpec baseProgressIndicatorSpec, @NonNull f<S> fVar) {
         super(context, baseProgressIndicatorSpec);
@@ -57,7 +72,7 @@ public final class DeterminateDrawable<S extends BaseProgressIndicatorSpec> exte
 
     @NonNull
     public static DeterminateDrawable<CircularProgressIndicatorSpec> createCircularDrawable(@NonNull Context context, @NonNull CircularProgressIndicatorSpec circularProgressIndicatorSpec) {
-        return new DeterminateDrawable<>(context, circularProgressIndicatorSpec, new a(circularProgressIndicatorSpec));
+        return new DeterminateDrawable<>(context, circularProgressIndicatorSpec, new b.i.a.g.g.a(circularProgressIndicatorSpec));
     }
 
     @NonNull
@@ -148,8 +163,8 @@ public final class DeterminateDrawable<S extends BaseProgressIndicatorSpec> exte
     }
 
     @Override // b.i.a.g.g.e, androidx.vectordrawable.graphics.drawable.Animatable2Compat
-    public /* bridge */ /* synthetic */ void registerAnimationCallback(@NonNull Animatable2Compat$AnimationCallback animatable2Compat$AnimationCallback) {
-        super.registerAnimationCallback(animatable2Compat$AnimationCallback);
+    public /* bridge */ /* synthetic */ void registerAnimationCallback(@NonNull Animatable2Compat.AnimationCallback animationCallback) {
+        super.registerAnimationCallback(animationCallback);
     }
 
     @Override // b.i.a.g.g.e, android.graphics.drawable.Drawable
@@ -205,8 +220,8 @@ public final class DeterminateDrawable<S extends BaseProgressIndicatorSpec> exte
     }
 
     @Override // b.i.a.g.g.e, androidx.vectordrawable.graphics.drawable.Animatable2Compat
-    public /* bridge */ /* synthetic */ boolean unregisterAnimationCallback(@NonNull Animatable2Compat$AnimationCallback animatable2Compat$AnimationCallback) {
-        return super.unregisterAnimationCallback(animatable2Compat$AnimationCallback);
+    public /* bridge */ /* synthetic */ boolean unregisterAnimationCallback(@NonNull Animatable2Compat.AnimationCallback animationCallback) {
+        return super.unregisterAnimationCallback(animationCallback);
     }
 
     @Override // b.i.a.g.g.e

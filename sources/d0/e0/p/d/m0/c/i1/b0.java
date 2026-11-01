@@ -1,7 +1,6 @@
 package d0.e0.p.d.m0.c.i1;
 
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.e0.p.d.m0.c.b$a;
 import d0.e0.p.d.m0.c.q0;
 import d0.e0.p.d.m0.c.u0;
 import d0.e0.p.d.m0.c.z0;
@@ -21,12 +20,12 @@ public abstract class b0 extends l implements d0.e0.p.d.m0.c.m0 {
     public final boolean r;
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
-    public final b$a f3258s;
+    public final d0.e0.p.d.m0.c.b.a f3258s;
     public d0.e0.p.d.m0.c.u t;
     public d0.e0.p.d.m0.c.x u;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public b0(d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, d0.e0.p.d.m0.c.n0 n0Var, d0.e0.p.d.m0.c.g1.g gVar, d0.e0.p.d.m0.g.e eVar, boolean z2, boolean z3, boolean z4, b$a b_a, u0 u0Var) {
+    public b0(d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, d0.e0.p.d.m0.c.n0 n0Var, d0.e0.p.d.m0.c.g1.g gVar, d0.e0.p.d.m0.g.e eVar, boolean z2, boolean z3, boolean z4, d0.e0.p.d.m0.c.b.a aVar, u0 u0Var) {
         super(n0Var.getContainingDeclaration(), gVar, eVar, u0Var);
         if (zVar == null) {
             a(0);
@@ -59,7 +58,7 @@ public abstract class b0 extends l implements d0.e0.p.d.m0.c.m0 {
         this.n = z2;
         this.o = z3;
         this.r = z4;
-        this.f3258s = b_a;
+        this.f3258s = aVar;
     }
 
     public static /* synthetic */ void a(int i) {
@@ -205,8 +204,8 @@ public abstract class b0 extends l implements d0.e0.p.d.m0.c.m0 {
     }
 
     @Override // d0.e0.p.d.m0.c.b
-    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.b copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, b$a b_a, boolean z2) {
-        return copy(mVar, zVar, uVar, b_a, z2);
+    public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.b copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, d0.e0.p.d.m0.c.b.a aVar, boolean z2) {
+        return copy(mVar, zVar, uVar, aVar, z2);
     }
 
     @Override // d0.e0.p.d.m0.c.m0
@@ -235,10 +234,10 @@ public abstract class b0 extends l implements d0.e0.p.d.m0.c.m0 {
     }
 
     @Override // d0.e0.p.d.m0.c.b
-    public b$a getKind() {
-        b$a b_a = this.f3258s;
-        if (b_a != null) {
-            return b_a;
+    public d0.e0.p.d.m0.c.b.a getKind() {
+        d0.e0.p.d.m0.c.b.a aVar = this.f3258s;
+        if (aVar != null) {
+            return aVar;
         }
         a(6);
         throw null;
@@ -273,7 +272,7 @@ public abstract class b0 extends l implements d0.e0.p.d.m0.c.m0 {
     }
 
     @Override // d0.e0.p.d.m0.c.a
-    public <V> V getUserData(d0.e0.p.d.m0.c.a$a<V> a_a) {
+    public <V> V getUserData(d0.e0.p.d.m0.c.a.InterfaceC0511a<V> interfaceC0511a) {
         return null;
     }
 
@@ -374,7 +373,7 @@ public abstract class b0 extends l implements d0.e0.p.d.m0.c.m0 {
     }
 
     @Override // d0.e0.p.d.m0.c.b
-    public d0.e0.p.d.m0.c.m0 copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, b$a b_a, boolean z2) {
+    public d0.e0.p.d.m0.c.m0 copy(d0.e0.p.d.m0.c.m mVar, d0.e0.p.d.m0.c.z zVar, d0.e0.p.d.m0.c.u uVar, d0.e0.p.d.m0.c.b.a aVar, boolean z2) {
         throw new UnsupportedOperationException("Accessors must be copied by the corresponding property");
     }
 

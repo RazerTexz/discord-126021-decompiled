@@ -1,6 +1,6 @@
 package b.i.a.c.f3;
 
-import android.os.Handler$Callback;
+import android.os.Handler;
 import android.os.Looper;
 import androidx.annotation.Nullable;
 
@@ -11,7 +11,7 @@ public interface g {
 
     long a();
 
-    o b(Looper looper, @Nullable Handler$Callback handler$Callback);
+    o b(Looper looper, @Nullable Handler.Callback callback);
 
     void c();
 

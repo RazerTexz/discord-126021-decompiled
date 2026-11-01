@@ -3,13 +3,13 @@ package com.discord.utilities.extensions;
 import android.content.Context;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DimenRes;
+import com.discord.R;
 import com.discord.models.guild.Guild;
 import com.discord.models.guild.UserGuildMember;
 import com.discord.models.member.GuildMember;
 import com.discord.models.user.User;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
-import com.discord.utilities.images.MGImages$ChangeDetector;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import d0.z.d.m;
@@ -23,7 +23,7 @@ public final class SimpleDraweeViewExtensionsKt {
         m.checkNotNullParameter(simpleDraweeView, "$this$configureCreator");
         simpleDraweeView.setVisibility(userGuildMember != null ? 0 : 8);
         if (simpleDraweeView.getVisibility() == 0) {
-            setAvatar(simpleDraweeView, userGuildMember != null ? userGuildMember.getUser() : null, false, 2131165288, userGuildMember != null ? userGuildMember.getGuildMember() : null);
+            setAvatar(simpleDraweeView, userGuildMember != null ? userGuildMember.getUser() : null, false, R.dimen.avatar_size_event_creator, userGuildMember != null ? userGuildMember.getGuildMember() : null);
         }
     }
 
@@ -32,7 +32,7 @@ public final class SimpleDraweeViewExtensionsKt {
             z2 = false;
         }
         if ((i2 & 4) != 0) {
-            i = 2131165301;
+            i = R.dimen.avatar_size_unrestricted;
         }
         if ((i2 & 8) != 0) {
             guildMember = null;
@@ -44,9 +44,9 @@ public final class SimpleDraweeViewExtensionsKt {
         m.checkNotNullParameter(simpleDraweeView, "$this$setAvatar");
         int dimensionPixelSize = simpleDraweeView.getResources().getDimensionPixelSize(i);
         String forGuildMemberOrUser = IconUtils.INSTANCE.getForGuildMemberOrUser(user, guildMember, dimensionPixelSize > 0 ? Integer.valueOf(IconUtils.getMediaProxySize(dimensionPixelSize)) : null, z2);
-        if (!m.areEqual(forGuildMemberOrUser, simpleDraweeView.getTag(2131365923))) {
-            simpleDraweeView.setTag(2131365923, forGuildMemberOrUser);
-            IconUtils.setIcon$default(simpleDraweeView, forGuildMemberOrUser, i, (Function1) null, (MGImages$ChangeDetector) null, 24, (Object) null);
+        if (!m.areEqual(forGuildMemberOrUser, simpleDraweeView.getTag(R.id.uikit_icon_url))) {
+            simpleDraweeView.setTag(R.id.uikit_icon_url, forGuildMemberOrUser);
+            IconUtils.setIcon$default(simpleDraweeView, forGuildMemberOrUser, i, (Function1) null, (MGImages.ChangeDetector) null, 24, (Object) null);
         }
     }
 
@@ -58,14 +58,14 @@ public final class SimpleDraweeViewExtensionsKt {
         String string;
         m.checkNotNullParameter(simpleDraweeView, "$this$setGuildIcon");
         String forGuild = IconUtils.getForGuild(guild, IconUtils.DEFAULT_ICON_BLURPLE, z3, num);
-        if (!m.areEqual(forGuild, simpleDraweeView.getTag(2131365923))) {
-            simpleDraweeView.setTag(2131365923, forGuild);
-            IconUtils.setIcon$default(simpleDraweeView, forGuild, 0, function1, (MGImages$ChangeDetector) null, 20, (Object) null);
+        if (!m.areEqual(forGuild, simpleDraweeView.getTag(R.id.uikit_icon_url))) {
+            simpleDraweeView.setTag(R.id.uikit_icon_url, forGuild);
+            IconUtils.setIcon$default(simpleDraweeView, forGuild, 0, function1, (MGImages.ChangeDetector) null, 20, (Object) null);
         }
         MGImages.setRoundingParams(simpleDraweeView, f, !z2, num2, num3, f2);
         if (guild == null || (string = guild.getName()) == null) {
             Context context = simpleDraweeView.getContext();
-            string = context != null ? context.getString(2131891730) : null;
+            string = context != null ? context.getString(R.string.home) : null;
         }
         simpleDraweeView.setContentDescription(string);
     }

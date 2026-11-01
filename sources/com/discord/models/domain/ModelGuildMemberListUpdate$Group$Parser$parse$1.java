@@ -12,11 +12,11 @@ import rx.functions.Action1;
 public final class ModelGuildMemberListUpdate$Group$Parser$parse$1<T> implements Action1<String> {
     public final /* synthetic */ Ref$IntRef $count;
     public final /* synthetic */ Ref$ObjectRef $id;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
 
-    public ModelGuildMemberListUpdate$Group$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model$JsonReader model$JsonReader, Ref$IntRef ref$IntRef) {
+    public ModelGuildMemberListUpdate$Group$Parser$parse$1(Ref$ObjectRef ref$ObjectRef, Model.JsonReader jsonReader, Ref$IntRef ref$IntRef) {
         this.$id = ref$ObjectRef;
-        this.$reader = model$JsonReader;
+        this.$reader = jsonReader;
         this.$count = ref$IntRef;
     }
 

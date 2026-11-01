@@ -2,8 +2,12 @@ package d0.e0.p.d.m0.c.i1;
 
 import com.discord.models.domain.ModelAuditLogEntry;
 import d0.e0.p.d.m0.c.q0;
+import d0.e0.p.d.m0.c.y0;
 import d0.e0.p.d.m0.n.c1;
+import d0.e0.p.d.m0.n.e1;
 import d0.e0.p.d.m0.n.z0;
+import kotlin.jvm.functions.Function0;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: AbstractClassDescriptor.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -12,6 +16,84 @@ public abstract class a extends u {
     public final d0.e0.p.d.m0.m.j<d0.e0.p.d.m0.n.j0> l;
     public final d0.e0.p.d.m0.m.j<d0.e0.p.d.m0.k.a0.i> m;
     public final d0.e0.p.d.m0.m.j<q0> n;
+
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.c.i1.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: AbstractClassDescriptor.java */
+    public class C0514a implements Function0<d0.e0.p.d.m0.n.j0> {
+
+        /* JADX INFO: renamed from: d0.e0.p.d.m0.c.i1.a$a$a, reason: collision with other inner class name */
+        /* JADX INFO: compiled from: AbstractClassDescriptor.java */
+        public class C0515a implements Function1<d0.e0.p.d.m0.n.l1.g, d0.e0.p.d.m0.n.j0> {
+            public C0515a() {
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ d0.e0.p.d.m0.n.j0 invoke(d0.e0.p.d.m0.n.l1.g gVar) {
+                return invoke2(gVar);
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public d0.e0.p.d.m0.n.j0 invoke2(d0.e0.p.d.m0.n.l1.g gVar) {
+                d0.e0.p.d.m0.c.h hVarRefineDescriptor = gVar.refineDescriptor(a.this);
+                if (hVarRefineDescriptor == null) {
+                    return a.this.l.invoke();
+                }
+                if (hVarRefineDescriptor instanceof y0) {
+                    return d0.e0.p.d.m0.n.d0.computeExpandedType((y0) hVarRefineDescriptor, e1.getDefaultTypeProjections(hVarRefineDescriptor.getTypeConstructor().getParameters()));
+                }
+                return hVarRefineDescriptor instanceof u ? e1.makeUnsubstitutedType(hVarRefineDescriptor.getTypeConstructor().refine(gVar), ((u) hVarRefineDescriptor).getUnsubstitutedMemberScope(gVar), this) : hVarRefineDescriptor.getDefaultType();
+            }
+        }
+
+        public C0514a() {
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.n.j0 invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public d0.e0.p.d.m0.n.j0 invoke() {
+            a aVar = a.this;
+            return e1.makeUnsubstitutedType(aVar, aVar.getUnsubstitutedMemberScope(), new C0515a());
+        }
+    }
+
+    /* JADX INFO: compiled from: AbstractClassDescriptor.java */
+    public class b implements Function0<d0.e0.p.d.m0.k.a0.i> {
+        public b() {
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.k.a0.i invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public d0.e0.p.d.m0.k.a0.i invoke() {
+            return new d0.e0.p.d.m0.k.a0.g(a.this.getUnsubstitutedMemberScope());
+        }
+    }
+
+    /* JADX INFO: compiled from: AbstractClassDescriptor.java */
+    public class c implements Function0<q0> {
+        public c() {
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ q0 invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public q0 invoke() {
+            return new r(a.this);
+        }
+    }
 
     public a(d0.e0.p.d.m0.m.o oVar, d0.e0.p.d.m0.g.e eVar) {
         if (oVar == null) {
@@ -23,9 +105,9 @@ public abstract class a extends u {
             throw null;
         }
         this.k = eVar;
-        this.l = oVar.createLazyValue(new a$a(this));
-        this.m = oVar.createLazyValue(new a$b(this));
-        this.n = oVar.createLazyValue(new a$c(this));
+        this.l = oVar.createLazyValue(new C0514a());
+        this.m = oVar.createLazyValue(new b());
+        this.n = oVar.createLazyValue(new c());
     }
 
     public static /* synthetic */ void a(int i) {

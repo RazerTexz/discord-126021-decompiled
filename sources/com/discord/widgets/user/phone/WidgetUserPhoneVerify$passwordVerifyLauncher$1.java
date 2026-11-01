@@ -3,8 +3,7 @@ package com.discord.widgets.user.phone;
 import androidx.fragment.app.FragmentActivity;
 import b.a.d.j;
 import com.discord.widgets.settings.account.WidgetSettingsAccount;
-import com.discord.widgets.settings.account.WidgetSettingsAccount$Redirect;
-import com.discord.widgets.user.account.WidgetUserAccountVerifyBase$Mode;
+import com.discord.widgets.user.account.WidgetUserAccountVerifyBase;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -34,8 +33,8 @@ public final class WidgetUserPhoneVerify$passwordVerifyLauncher$1 extends o impl
         if (fragmentActivityRequireActivity.getCallingActivity() != null) {
             this.this$0.requireActivity().setResult(-1);
             this.this$0.requireActivity().finish();
-        } else if (WidgetUserPhoneVerify.access$getMode$p(this.this$0) == WidgetUserAccountVerifyBase$Mode.NO_HISTORY_FROM_USER_SETTINGS) {
-            WidgetSettingsAccount.Companion.launch(this.this$0.requireContext(), false, WidgetSettingsAccount$Redirect.SMS_BACKUP);
+        } else if (WidgetUserPhoneVerify.access$getMode$p(this.this$0) == WidgetUserAccountVerifyBase.Mode.NO_HISTORY_FROM_USER_SETTINGS) {
+            WidgetSettingsAccount.INSTANCE.launch(this.this$0.requireContext(), false, WidgetSettingsAccount.Redirect.SMS_BACKUP);
         } else {
             if (this.this$0.isForced()) {
                 return;

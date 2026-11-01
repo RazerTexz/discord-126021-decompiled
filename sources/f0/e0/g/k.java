@@ -2,7 +2,6 @@ package f0.e0.g;
 
 import androidx.core.app.NotificationCompat;
 import f0.c0;
-import f0.e0.k.h$a;
 import java.lang.ref.Reference;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -15,9 +14,70 @@ public final class k {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final f0.e0.f.c f3621b;
-    public final k$a c;
+    public final a c;
     public final ConcurrentLinkedQueue<j> d;
     public final int e;
+
+    /* JADX INFO: compiled from: RealConnectionPool.kt */
+    public final class a extends f0.e0.f.a {
+        public a(String str) {
+            super(str, true);
+        }
+
+        @Override // f0.e0.f.a
+        public long a() {
+            k kVar = k.this;
+            long jNanoTime = System.nanoTime();
+            j jVar = null;
+            long j = Long.MIN_VALUE;
+            int i = 0;
+            int i2 = 0;
+            for (j jVar2 : kVar.d) {
+                d0.z.d.m.checkExpressionValueIsNotNull(jVar2, "connection");
+                synchronized (jVar2) {
+                    if (kVar.b(jVar2, jNanoTime) > 0) {
+                        i2++;
+                    } else {
+                        i++;
+                        long j2 = jNanoTime - jVar2.p;
+                        if (j2 > j) {
+                            jVar = jVar2;
+                            j = j2;
+                        }
+                    }
+                }
+            }
+            long j3 = kVar.a;
+            if (j < j3 && i <= kVar.e) {
+                if (i > 0) {
+                    return j3 - j;
+                }
+                if (i2 > 0) {
+                    return j3;
+                }
+                return -1L;
+            }
+            if (jVar == null) {
+                d0.z.d.m.throwNpe();
+            }
+            synchronized (jVar) {
+                if (!jVar.o.isEmpty()) {
+                    return 0L;
+                }
+                if (jVar.p + j != jNanoTime) {
+                    return 0L;
+                }
+                jVar.i = true;
+                kVar.d.remove(jVar);
+                f0.e0.c.e(jVar.n());
+                if (!kVar.d.isEmpty()) {
+                    return 0L;
+                }
+                kVar.f3621b.a();
+                return 0L;
+            }
+        }
+    }
 
     public k(f0.e0.f.d dVar, int i, long j, TimeUnit timeUnit) {
         d0.z.d.m.checkParameterIsNotNull(dVar, "taskRunner");
@@ -25,7 +85,7 @@ public final class k {
         this.e = i;
         this.a = timeUnit.toNanos(j);
         this.f3621b = dVar.f();
-        this.c = new k$a(this, b.d.b.a.a.J(new StringBuilder(), f0.e0.c.g, " ConnectionPool"));
+        this.c = new a(b.d.b.a.a.J(new StringBuilder(), f0.e0.c.g, " ConnectionPool"));
         this.d = new ConcurrentLinkedQueue<>();
         if (!(j > 0)) {
             throw new IllegalArgumentException(b.d.b.a.a.t("keepAliveDuration <= 0: ", j).toString());
@@ -65,8 +125,8 @@ public final class k {
                 sbU.append(" was leaked. ");
                 sbU.append("Did you forget to close a response body?");
                 String string = sbU.toString();
-                h$a h_a = f0.e0.k.h.c;
-                f0.e0.k.h.a.k(string, ((e$b) reference).a);
+                f0.e0.k.h.a aVar = f0.e0.k.h.c;
+                f0.e0.k.h.a.k(string, ((e.b) reference).a);
                 list.remove(i);
                 jVar.i = true;
                 if (list.isEmpty()) {

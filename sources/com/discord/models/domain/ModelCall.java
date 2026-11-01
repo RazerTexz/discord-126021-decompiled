@@ -23,31 +23,76 @@ public class ModelCall implements Model {
     private List<VoiceState> voiceStates;
     private static final List<Long> EMPTY_RINGING = new ArrayList();
 
+    public class Ringable implements Model {
+        private boolean ringable;
+
+        @Override // com.discord.models.domain.Model
+        public void assignField(Model.JsonReader jsonReader) throws IOException {
+            String strNextName = jsonReader.nextName();
+            strNextName.hashCode();
+            if (strNextName.equals("ringable")) {
+                this.ringable = jsonReader.nextBoolean(this.ringable);
+            } else {
+                jsonReader.skipValue();
+            }
+        }
+
+        public boolean canEqual(Object obj) {
+            return obj instanceof Ringable;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof Ringable)) {
+                return false;
+            }
+            Ringable ringable = (Ringable) obj;
+            return ringable.canEqual(this) && isRingable() == ringable.isRingable();
+        }
+
+        public int hashCode() {
+            return 59 + (isRingable() ? 79 : 97);
+        }
+
+        public boolean isRingable() {
+            return this.ringable;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("ModelCall.Ringable(ringable=");
+            sbU.append(isRingable());
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
     @Override // com.discord.models.domain.Model
-    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
-        String strNextName = model$JsonReader.nextName();
+    public void assignField(Model.JsonReader jsonReader) throws IOException {
+        String strNextName = jsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "channel_id":
-                this.channelId = model$JsonReader.nextLong(this.channelId);
+                this.channelId = jsonReader.nextLong(this.channelId);
                 break;
             case "message_id":
-                this.messageId = model$JsonReader.nextLong(this.messageId);
+                this.messageId = jsonReader.nextLong(this.messageId);
                 break;
             case "region":
-                this.region = model$JsonReader.nextString(this.region);
+                this.region = jsonReader.nextString(this.region);
                 break;
             case "unavailable":
-                this.unavailable = model$JsonReader.nextBoolean(this.unavailable);
+                this.unavailable = jsonReader.nextBoolean(this.unavailable);
                 break;
             case "voice_states":
-                this.voiceStates = model$JsonReader.nextList(new j(model$JsonReader));
+                this.voiceStates = jsonReader.nextList(new j(jsonReader));
                 break;
             case "ringing":
-                this.ringing = model$JsonReader.nextList(new i(model$JsonReader));
+                this.ringing = jsonReader.nextList(new i(jsonReader));
                 break;
             default:
-                model$JsonReader.skipValue();
+                jsonReader.skipValue();
                 break;
         }
     }

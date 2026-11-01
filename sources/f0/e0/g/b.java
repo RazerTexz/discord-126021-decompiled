@@ -1,7 +1,5 @@
 package f0.e0.g;
 
-import f0.j$a;
-import f0.j$b;
 import java.io.IOException;
 import java.net.UnknownServiceException;
 import java.util.Arrays;
@@ -81,7 +79,7 @@ public final class b {
             String[] enabledCipherSuites2 = sSLSocket.getEnabledCipherSuites();
             d0.z.d.m.checkExpressionValueIsNotNull(enabledCipherSuites2, "sslSocket.enabledCipherSuites");
             String[] strArr = mVar.g;
-            j$b j_b = f0.j.f3673s;
+            f0.j.b bVar = f0.j.f3673s;
             Comparator<String> comparator = f0.j.a;
             enabledCipherSuites = f0.e0.c.q(enabledCipherSuites2, strArr, f0.j.a);
         } else {
@@ -96,7 +94,7 @@ public final class b {
         }
         String[] supportedCipherSuites = sSLSocket.getSupportedCipherSuites();
         d0.z.d.m.checkExpressionValueIsNotNull(supportedCipherSuites, "supportedCipherSuites");
-        j$b j_b2 = f0.j.f3673s;
+        f0.j.b bVar2 = f0.j.f3673s;
         Comparator<String> comparator2 = f0.j.a;
         Comparator<String> comparator3 = f0.j.a;
         byte[] bArr = f0.e0.c.a;
@@ -110,7 +108,7 @@ public final class b {
                 i3 = -1;
                 break;
             }
-            if (((j$a) comparator3).compare(supportedCipherSuites[i3], "TLS_FALLBACK_SCSV") == 0) {
+            if (((f0.j.a) comparator3).compare(supportedCipherSuites[i3], "TLS_FALLBACK_SCSV") == 0) {
                 break;
             }
             i3++;
@@ -126,12 +124,12 @@ public final class b {
             enabledCipherSuites = (String[]) objArrCopyOf;
             enabledCipherSuites[d0.t.k.getLastIndex(enabledCipherSuites)] = str;
         }
-        f0.m$a m_a = new f0.m$a(mVar);
+        f0.m.a aVar = new f0.m.a(mVar);
         d0.z.d.m.checkExpressionValueIsNotNull(enabledCipherSuites, "cipherSuitesIntersection");
-        m_a.b((String[]) Arrays.copyOf(enabledCipherSuites, enabledCipherSuites.length));
+        aVar.b((String[]) Arrays.copyOf(enabledCipherSuites, enabledCipherSuites.length));
         d0.z.d.m.checkExpressionValueIsNotNull(enabledProtocols, "tlsVersionsIntersection");
-        m_a.e((String[]) Arrays.copyOf(enabledProtocols, enabledProtocols.length));
-        f0.m mVarA = m_a.a();
+        aVar.e((String[]) Arrays.copyOf(enabledProtocols, enabledProtocols.length));
+        f0.m mVarA = aVar.a();
         if (mVarA.c() != null) {
             sSLSocket.setEnabledProtocols(mVarA.h);
         }

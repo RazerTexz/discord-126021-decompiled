@@ -3,7 +3,7 @@ package com.discord.widgets.settings.account;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetDisableDeleteAccountDialogBinding;
 import com.discord.views.LoadingButton;
 import com.google.android.material.button.MaterialButton;
@@ -29,26 +29,26 @@ public final /* synthetic */ class WidgetDisableDeleteAccountDialog$binding$2 ex
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetDisableDeleteAccountDialogBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.disable_delete_body;
-        TextView textView = (TextView) view.findViewById(R$id.disable_delete_body);
+        int i = R.id.disable_delete_body;
+        TextView textView = (TextView) view.findViewById(R.id.disable_delete_body);
         if (textView != null) {
-            i = R$id.disable_delete_cancel;
-            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.disable_delete_cancel);
+            i = R.id.disable_delete_cancel;
+            MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.disable_delete_cancel);
             if (materialButton != null) {
-                i = R$id.disable_delete_code_wrap;
-                TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.disable_delete_code_wrap);
+                i = R.id.disable_delete_code_wrap;
+                TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.disable_delete_code_wrap);
                 if (textInputLayout != null) {
-                    i = R$id.disable_delete_confirm;
-                    LoadingButton loadingButton = (LoadingButton) view.findViewById(R$id.disable_delete_confirm);
+                    i = R.id.disable_delete_confirm;
+                    LoadingButton loadingButton = (LoadingButton) view.findViewById(R.id.disable_delete_confirm);
                     if (loadingButton != null) {
-                        i = R$id.disable_delete_header;
-                        TextView textView2 = (TextView) view.findViewById(R$id.disable_delete_header);
+                        i = R.id.disable_delete_header;
+                        TextView textView2 = (TextView) view.findViewById(R.id.disable_delete_header);
                         if (textView2 != null) {
-                            i = R$id.disable_delete_password_wrap;
-                            TextInputLayout textInputLayout2 = (TextInputLayout) view.findViewById(R$id.disable_delete_password_wrap);
+                            i = R.id.disable_delete_password_wrap;
+                            TextInputLayout textInputLayout2 = (TextInputLayout) view.findViewById(R.id.disable_delete_password_wrap);
                             if (textInputLayout2 != null) {
-                                i = R$id.notice_header_container;
-                                LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.notice_header_container);
+                                i = R.id.notice_header_container;
+                                LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.notice_header_container);
                                 if (linearLayout != null) {
                                     return new WidgetDisableDeleteAccountDialogBinding((LinearLayout) view, textView, materialButton, textInputLayout, loadingButton, textView2, textInputLayout2, linearLayout);
                                 }

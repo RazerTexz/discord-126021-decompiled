@@ -6,6 +6,7 @@ import h0.c.d0;
 import h0.c.e0;
 import h0.c.f0;
 import h0.c.g0;
+import h0.c.n0;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -29,7 +30,24 @@ public class VideoFileRenderer implements VideoSink {
     private final FileOutputStream videoOutFile;
     private YuvConverter yuvConverter;
 
-    public VideoFileRenderer(String str, int i, int i2, EglBase$Context eglBase$Context) throws IOException {
+    /* JADX INFO: renamed from: org.webrtc.VideoFileRenderer$1, reason: invalid class name */
+    public class AnonymousClass1 implements Runnable {
+        public final /* synthetic */ EglBase.Context val$sharedContext;
+
+        public AnonymousClass1(EglBase.Context context) {
+            this.val$sharedContext = context;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            VideoFileRenderer.access$002(VideoFileRenderer.this, n0.b(this.val$sharedContext, EglBase.CONFIG_PIXEL_BUFFER));
+            VideoFileRenderer.access$000(VideoFileRenderer.this).createDummyPbufferSurface();
+            VideoFileRenderer.access$000(VideoFileRenderer.this).makeCurrent();
+            VideoFileRenderer.access$102(VideoFileRenderer.this, new YuvConverter());
+        }
+    }
+
+    public VideoFileRenderer(String str, int i, int i2, EglBase.Context context) throws IOException {
         if (i % 2 == 1 || i2 % 2 == 1) {
             throw new IllegalArgumentException("Does not support uneven width or height");
         }
@@ -51,7 +69,7 @@ public class VideoFileRenderer implements VideoSink {
         this.fileThread = handlerThread2;
         handlerThread2.start();
         this.fileThreadHandler = new Handler(handlerThread2.getLooper());
-        ThreadUtils.invokeAtFrontUninterruptibly(handler, new VideoFileRenderer$1(this, eglBase$Context));
+        ThreadUtils.invokeAtFrontUninterruptibly(handler, new AnonymousClass1(context));
     }
 
     public /* synthetic */ void a(VideoFrame videoFrame) {
@@ -89,9 +107,9 @@ public class VideoFileRenderer implements VideoSink {
         }
     }
 
-    public /* synthetic */ void d(VideoFrame$I420Buffer videoFrame$I420Buffer, VideoFrame videoFrame) {
-        YuvHelper.I420Rotate(videoFrame$I420Buffer.getDataY(), videoFrame$I420Buffer.getStrideY(), videoFrame$I420Buffer.getDataU(), videoFrame$I420Buffer.getStrideU(), videoFrame$I420Buffer.getDataV(), videoFrame$I420Buffer.getStrideV(), this.outputFrameBuffer, videoFrame$I420Buffer.getWidth(), videoFrame$I420Buffer.getHeight(), videoFrame.getRotation());
-        videoFrame$I420Buffer.release();
+    public /* synthetic */ void d(VideoFrame.I420Buffer i420Buffer, VideoFrame videoFrame) {
+        YuvHelper.I420Rotate(i420Buffer.getDataY(), i420Buffer.getStrideY(), i420Buffer.getDataU(), i420Buffer.getStrideU(), i420Buffer.getDataV(), i420Buffer.getStrideV(), this.outputFrameBuffer, i420Buffer.getWidth(), i420Buffer.getHeight(), videoFrame.getRotation());
+        i420Buffer.release();
         try {
             this.videoOutFile.write("FRAME\n".getBytes(Charset.forName("US-ASCII")));
             this.videoOutFile.write(this.outputFrameBuffer.array(), this.outputFrameBuffer.arrayOffset(), this.outputFrameSize);
@@ -121,7 +139,7 @@ public class VideoFileRenderer implements VideoSink {
     }
 
     private void renderFrameOnRenderThread(VideoFrame videoFrame) {
-        VideoFrame$Buffer buffer = videoFrame.getBuffer();
+        VideoFrame.Buffer buffer = videoFrame.getBuffer();
         int i = videoFrame.getRotation() % 180 == 0 ? this.outputFileWidth : this.outputFileHeight;
         int i2 = videoFrame.getRotation() % 180 == 0 ? this.outputFileHeight : this.outputFileWidth;
         float width = buffer.getWidth() / buffer.getHeight();
@@ -133,10 +151,10 @@ public class VideoFileRenderer implements VideoSink {
         } else {
             width2 = (int) ((f / width) * width2);
         }
-        VideoFrame$Buffer videoFrame$BufferCropAndScale = buffer.cropAndScale((buffer.getWidth() - width2) / 2, (buffer.getHeight() - height) / 2, width2, height, i, i2);
+        VideoFrame.Buffer bufferCropAndScale = buffer.cropAndScale((buffer.getWidth() - width2) / 2, (buffer.getHeight() - height) / 2, width2, height, i, i2);
         videoFrame.release();
-        VideoFrame$I420Buffer i420 = videoFrame$BufferCropAndScale.toI420();
-        videoFrame$BufferCropAndScale.release();
+        VideoFrame.I420Buffer i420 = bufferCropAndScale.toI420();
+        bufferCropAndScale.release();
         this.fileThreadHandler.post(new g0(this, i420, videoFrame));
     }
 }

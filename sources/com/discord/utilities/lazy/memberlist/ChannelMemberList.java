@@ -2,7 +2,7 @@ package com.discord.utilities.lazy.memberlist;
 
 import androidx.annotation.VisibleForTesting;
 import b.d.b.a.a;
-import com.discord.models.domain.ModelGuildMemberListUpdate$Group;
+import com.discord.models.domain.ModelGuildMemberListUpdate;
 import com.discord.utilities.collections.SparseMutableList;
 import com.discord.utilities.logging.Logger;
 import d0.d0.f;
@@ -135,8 +135,8 @@ public final class ChannelMemberList implements MemberList {
                 n.throwIndexOverflow();
             }
             MemberListRow memberListRow2 = memberListRow;
-            if (memberListRow2 instanceof MemberListRow$Member) {
-                this.rows.set(i, makeMember.invoke(Long.valueOf(((MemberListRow$Member) memberListRow2).getUserId())));
+            if (memberListRow2 instanceof MemberListRow.Member) {
+                this.rows.set(i, makeMember.invoke(Long.valueOf(((MemberListRow.Member) memberListRow2).getUserId())));
             }
             i = i2;
         }
@@ -148,7 +148,7 @@ public final class ChannelMemberList implements MemberList {
         this.groupIndices = groupIndices;
     }
 
-    public final void setGroups(List<ModelGuildMemberListUpdate$Group> groups, Function1<? super ModelGuildMemberListUpdate$Group, ? extends MemberListRow> makeGroup) {
+    public final void setGroups(List<ModelGuildMemberListUpdate.Group> groups, Function1<? super ModelGuildMemberListUpdate.Group, ? extends MemberListRow> makeGroup) {
         m.checkNotNullParameter(groups, "groups");
         m.checkNotNullParameter(makeGroup, "makeGroup");
         Logger logger = this.logger;
@@ -161,11 +161,11 @@ public final class ChannelMemberList implements MemberList {
         this.groupIndices.clear();
         int count = 0;
         LinkedHashMap linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(o.collectionSizeOrDefault(groups, 10)), 16));
-        for (ModelGuildMemberListUpdate$Group modelGuildMemberListUpdate$Group : groups) {
-            String id2 = modelGuildMemberListUpdate$Group.getId();
-            this.groupIndices.put(Integer.valueOf(count), modelGuildMemberListUpdate$Group.getId());
-            count += modelGuildMemberListUpdate$Group.getCount() + 1;
-            linkedHashMap.put(id2, makeGroup.invoke(modelGuildMemberListUpdate$Group));
+        for (ModelGuildMemberListUpdate.Group group : groups) {
+            String id2 = group.getId();
+            this.groupIndices.put(Integer.valueOf(count), group.getId());
+            count += group.getCount() + 1;
+            linkedHashMap.put(id2, makeGroup.invoke(group));
         }
         this.groups = linkedHashMap;
         this.rows.setSize(count);

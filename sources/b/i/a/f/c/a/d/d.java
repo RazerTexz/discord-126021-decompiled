@@ -1,15 +1,21 @@
 package b.i.a.f.c.a.d;
 
-import b.i.a.f.c.a.a$a;
-
 /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class d extends a$a {
-    static {
-        new d$a().a();
+public final class d extends b.i.a.f.c.a.a.C0110a {
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
+    public final class a extends b.i.a.f.c.a.a.C0110a.C0111a {
+        public final d a() {
+            return new d(this, null);
+        }
     }
 
-    public d(d$a d_a, h hVar) {
-        super(d_a);
+    static {
+        new a().a();
+    }
+
+    public d(a aVar, h hVar) {
+        super(aVar);
     }
 }

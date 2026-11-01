@@ -8,15 +8,106 @@ import kotlin.sequences.Sequence;
 /* JADX INFO: compiled from: Sequences.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class n extends m {
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: Sequences.kt */
+    public final class a<T> implements Sequence<T> {
+        public final /* synthetic */ Iterator a;
+
+        public a(Iterator it) {
+            this.a = it;
+        }
+
+        @Override // kotlin.sequences.Sequence
+        public Iterator<T> iterator() {
+            return this.a;
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: Sequences.kt */
+    public final class b<T> extends d0.z.d.o implements Function1<Sequence<? extends T>, Iterator<? extends T>> {
+        public static final b j = new b();
+
+        public b() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Object invoke(Object obj) {
+            return invoke((Sequence) obj);
+        }
+
+        public final Iterator<T> invoke(Sequence<? extends T> sequence) {
+            d0.z.d.m.checkNotNullParameter(sequence, "it");
+            return sequence.iterator();
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: Sequences.kt */
+    public final class c<T> extends d0.z.d.o implements Function1<Iterable<? extends T>, Iterator<? extends T>> {
+        public static final c j = new c();
+
+        public c() {
+            super(1);
+        }
+
+        public final Iterator<T> invoke(Iterable<? extends T> iterable) {
+            d0.z.d.m.checkNotNullParameter(iterable, "it");
+            return iterable.iterator();
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Object invoke(Object obj) {
+            return invoke((Iterable) obj);
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: Sequences.kt */
+    public final class d<T> extends d0.z.d.o implements Function1<T, T> {
+        public final /* synthetic */ Function0 $nextFunction;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public d(Function0 function0) {
+            super(1);
+            this.$nextFunction = function0;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public final T invoke(T t) {
+            d0.z.d.m.checkNotNullParameter(t, "it");
+            return (T) this.$nextFunction.invoke();
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: Sequences.kt */
+    public final class e<T> extends d0.z.d.o implements Function0<T> {
+        public final /* synthetic */ Object $seed;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public e(Object obj) {
+            super(0);
+            this.$seed = obj;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final T invoke() {
+            return (T) this.$seed;
+        }
+    }
+
     public static final <T> Sequence<T> asSequence(Iterator<? extends T> it) {
         d0.z.d.m.checkNotNullParameter(it, "$this$asSequence");
-        return constrainOnce(new n$a(it));
+        return constrainOnce(new a(it));
     }
 
     /* JADX WARN: Multi-variable type inference failed */
     public static final <T> Sequence<T> constrainOnce(Sequence<? extends T> sequence) {
         d0.z.d.m.checkNotNullParameter(sequence, "$this$constrainOnce");
-        return sequence instanceof a ? sequence : new a(sequence);
+        return sequence instanceof d0.f0.a ? sequence : new d0.f0.a(sequence);
     }
 
     public static final <T> Sequence<T> emptySequence() {
@@ -25,19 +116,19 @@ public class n extends m {
 
     public static final <T> Sequence<T> flatten(Sequence<? extends Sequence<? extends T>> sequence) {
         d0.z.d.m.checkNotNullParameter(sequence, "$this$flatten");
-        n$b n_b = n$b.j;
-        return sequence instanceof u ? ((u) sequence).flatten$kotlin_stdlib(n_b) : new h(sequence, o.j, n_b);
+        b bVar = b.j;
+        return sequence instanceof u ? ((u) sequence).flatten$kotlin_stdlib(bVar) : new h(sequence, o.j, bVar);
     }
 
     public static final <T> Sequence<T> flattenSequenceOfIterable(Sequence<? extends Iterable<? extends T>> sequence) {
         d0.z.d.m.checkNotNullParameter(sequence, "$this$flatten");
-        n$c n_c = n$c.j;
-        return sequence instanceof u ? ((u) sequence).flatten$kotlin_stdlib(n_c) : new h(sequence, o.j, n_c);
+        c cVar = c.j;
+        return sequence instanceof u ? ((u) sequence).flatten$kotlin_stdlib(cVar) : new h(sequence, o.j, cVar);
     }
 
     public static final <T> Sequence<T> generateSequence(Function0<? extends T> function0) {
         d0.z.d.m.checkNotNullParameter(function0, "nextFunction");
-        return constrainOnce(new i(function0, new n$d(function0)));
+        return constrainOnce(new i(function0, new d(function0)));
     }
 
     public static final <T> Sequence<T> sequenceOf(T... tArr) {
@@ -47,7 +138,7 @@ public class n extends m {
 
     public static final <T> Sequence<T> generateSequence(T t, Function1<? super T, ? extends T> function1) {
         d0.z.d.m.checkNotNullParameter(function1, "nextFunction");
-        return t == null ? f.a : new i(new n$e(t), function1);
+        return t == null ? f.a : new i(new e(t), function1);
     }
 
     public static final <T> Sequence<T> generateSequence(Function0<? extends T> function0, Function1<? super T, ? extends T> function1) {

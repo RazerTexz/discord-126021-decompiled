@@ -2,14 +2,12 @@ package androidx.core.graphics.drawable;
 
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
-import android.content.res.Resources$Theme;
 import android.graphics.ColorFilter;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.DrawableContainer;
-import android.graphics.drawable.DrawableContainer$DrawableContainerState;
 import android.graphics.drawable.InsetDrawable;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import androidx.annotation.ColorInt;
@@ -31,8 +29,8 @@ public final class DrawableCompat {
     private DrawableCompat() {
     }
 
-    public static void applyTheme(@NonNull Drawable drawable, @NonNull Resources$Theme resources$Theme) {
-        drawable.applyTheme(resources$Theme);
+    public static void applyTheme(@NonNull Drawable drawable, @NonNull Resources.Theme theme) {
+        drawable.applyTheme(theme);
     }
 
     public static boolean canApplyTheme(@NonNull Drawable drawable) {
@@ -41,8 +39,8 @@ public final class DrawableCompat {
 
     /* JADX WARN: Multi-variable type inference failed */
     public static void clearColorFilter(@NonNull Drawable drawable) {
-        DrawableContainer$DrawableContainerState drawableContainer$DrawableContainerState;
-        if (Build$VERSION.SDK_INT >= 23) {
+        DrawableContainer.DrawableContainerState drawableContainerState;
+        if (Build.VERSION.SDK_INT >= 23) {
             drawable.clearColorFilter();
             return;
         }
@@ -55,12 +53,12 @@ public final class DrawableCompat {
             clearColorFilter(((WrappedDrawable) drawable).getWrappedDrawable());
             return;
         }
-        if (!(drawable instanceof DrawableContainer) || (drawableContainer$DrawableContainerState = (DrawableContainer$DrawableContainerState) ((DrawableContainer) drawable).getConstantState()) == null) {
+        if (!(drawable instanceof DrawableContainer) || (drawableContainerState = (DrawableContainer.DrawableContainerState) ((DrawableContainer) drawable).getConstantState()) == null) {
             return;
         }
-        int childCount = drawableContainer$DrawableContainerState.getChildCount();
+        int childCount = drawableContainerState.getChildCount();
         for (int i = 0; i < childCount; i++) {
-            Drawable child = drawableContainer$DrawableContainerState.getChild(i);
+            Drawable child = drawableContainerState.getChild(i);
             if (child != null) {
                 clearColorFilter(child);
             }
@@ -76,7 +74,7 @@ public final class DrawableCompat {
     }
 
     public static int getLayoutDirection(@NonNull Drawable drawable) {
-        if (Build$VERSION.SDK_INT >= 23) {
+        if (Build.VERSION.SDK_INT >= 23) {
             return drawable.getLayoutDirection();
         }
         if (!sGetLayoutDirectionMethodFetched) {
@@ -101,8 +99,8 @@ public final class DrawableCompat {
         return 0;
     }
 
-    public static void inflate(@NonNull Drawable drawable, @NonNull Resources resources, @NonNull XmlPullParser xmlPullParser, @NonNull AttributeSet attributeSet, @Nullable Resources$Theme resources$Theme) throws XmlPullParserException, IOException {
-        drawable.inflate(resources, xmlPullParser, attributeSet, resources$Theme);
+    public static void inflate(@NonNull Drawable drawable, @NonNull Resources resources, @NonNull XmlPullParser xmlPullParser, @NonNull AttributeSet attributeSet, @Nullable Resources.Theme theme) throws XmlPullParserException, IOException {
+        drawable.inflate(resources, xmlPullParser, attributeSet, theme);
     }
 
     public static boolean isAutoMirrored(@NonNull Drawable drawable) {
@@ -127,7 +125,7 @@ public final class DrawableCompat {
     }
 
     public static boolean setLayoutDirection(@NonNull Drawable drawable, int i) {
-        if (Build$VERSION.SDK_INT >= 23) {
+        if (Build.VERSION.SDK_INT >= 23) {
             return drawable.setLayoutDirection(i);
         }
         if (!sSetLayoutDirectionMethodFetched) {
@@ -161,8 +159,8 @@ public final class DrawableCompat {
         drawable.setTintList(colorStateList);
     }
 
-    public static void setTintMode(@NonNull Drawable drawable, @NonNull PorterDuff$Mode porterDuff$Mode) {
-        drawable.setTintMode(porterDuff$Mode);
+    public static void setTintMode(@NonNull Drawable drawable, @NonNull PorterDuff.Mode mode) {
+        drawable.setTintMode(mode);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -171,6 +169,6 @@ public final class DrawableCompat {
     }
 
     public static Drawable wrap(@NonNull Drawable drawable) {
-        return (Build$VERSION.SDK_INT < 23 && !(drawable instanceof TintAwareDrawable)) ? new WrappedDrawableApi21(drawable) : drawable;
+        return (Build.VERSION.SDK_INT < 23 && !(drawable instanceof TintAwareDrawable)) ? new WrappedDrawableApi21(drawable) : drawable;
     }
 }

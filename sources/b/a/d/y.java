@@ -5,11 +5,10 @@ import com.discord.utilities.rx.ObservableExtensionsKt;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import rx.Observable;
-import rx.Observable$c;
 
 /* JADX INFO: compiled from: AppTransformers.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class y<T, R> implements Observable$c<T, T> {
+public final class y<T, R> implements Observable.c<T, T> {
     public final /* synthetic */ Context j;
     public final /* synthetic */ String k;
     public final /* synthetic */ Function1 l;

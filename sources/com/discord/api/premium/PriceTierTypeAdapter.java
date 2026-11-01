@@ -11,6 +11,19 @@ import kotlin.NoWhenBranchMatchedException;
 /* JADX INFO: compiled from: PriceTierType.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class PriceTierTypeAdapter extends TypeAdapter<PriceTierType> {
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            PriceTierType.values();
+            int[] iArr = new int[2];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[PriceTierType.GUILD_ROLE_SUBSCRIPTIONS.ordinal()] = 1;
+            iArr[PriceTierType.UNKNOWN.ordinal()] = 2;
+        }
+    }
+
     @Override // com.google.gson.TypeAdapter
     public PriceTierType read(JsonReader jsonReader) throws IOException {
         m.checkNotNullParameter(jsonReader, "in");

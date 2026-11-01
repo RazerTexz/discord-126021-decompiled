@@ -8,7 +8,15 @@ import rx.functions.Action0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class a implements Subscription {
     public final AtomicReference<Action0> k;
-    public static final Action0 j = new a$a();
+    public static final Action0 j = new C0639a();
+
+    /* JADX INFO: renamed from: j0.r.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: BooleanSubscription.java */
+    public final class C0639a implements Action0 {
+        @Override // rx.functions.Action0
+        public void call() {
+        }
+    }
 
     public a() {
         this.k = new AtomicReference<>();

@@ -1,7 +1,6 @@
 package b.i.a.f.h.j;
 
 import android.content.SharedPreferences;
-import android.content.SharedPreferences$Editor;
 import java.util.Objects;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -36,9 +35,9 @@ public final class p0 extends e {
         N();
         Objects.requireNonNull((b.i.a.f.e.o.c) this.j.d);
         long jCurrentTimeMillis = System.currentTimeMillis();
-        SharedPreferences$Editor sharedPreferences$EditorEdit = this.l.edit();
-        sharedPreferences$EditorEdit.putLong("last_dispatch", jCurrentTimeMillis);
-        sharedPreferences$EditorEdit.apply();
+        SharedPreferences.Editor editorEdit = this.l.edit();
+        editorEdit.putLong("last_dispatch", jCurrentTimeMillis);
+        editorEdit.apply();
         this.n = jCurrentTimeMillis;
     }
 }

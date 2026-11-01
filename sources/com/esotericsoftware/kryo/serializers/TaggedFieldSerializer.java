@@ -1,13 +1,16 @@
 package com.esotericsoftware.kryo.serializers;
 
 import b.e.a.a;
-import b.e.a.a$a;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoException;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.InputChunked;
 import com.esotericsoftware.kryo.io.Output;
 import com.esotericsoftware.kryo.io.OutputChunked;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -18,7 +21,28 @@ public class TaggedFieldSerializer<T> extends FieldSerializer<T> {
     private boolean[] deprecated;
     private int[] tags;
     private int writeFieldCount;
-    private static final Comparator<FieldSerializer$CachedField> TAGGED_VALUE_COMPARATOR = new TaggedFieldSerializer$1();
+    private static final Comparator<FieldSerializer.CachedField> TAGGED_VALUE_COMPARATOR = new AnonymousClass1();
+
+    /* JADX INFO: renamed from: com.esotericsoftware.kryo.serializers.TaggedFieldSerializer$1, reason: invalid class name */
+    public final class AnonymousClass1 implements Comparator<FieldSerializer.CachedField> {
+        @Override // java.util.Comparator
+        public /* bridge */ /* synthetic */ int compare(FieldSerializer.CachedField cachedField, FieldSerializer.CachedField cachedField2) {
+            return compare2(cachedField, cachedField2);
+        }
+
+        /* JADX INFO: renamed from: compare, reason: avoid collision after fix types in other method */
+        public int compare2(FieldSerializer.CachedField cachedField, FieldSerializer.CachedField cachedField2) {
+            return ((Tag) cachedField.getField().getAnnotation(Tag.class)).value() - ((Tag) cachedField2.getField().getAnnotation(Tag.class)).value();
+        }
+    }
+
+    @Target({ElementType.FIELD})
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface Tag {
+        boolean annexed() default false;
+
+        int value();
+    }
 
     public TaggedFieldSerializer(Kryo kryo, Class cls) {
         super(kryo, cls, null, kryo.getTaggedFieldSerializerConfig().clone());
@@ -26,15 +50,15 @@ public class TaggedFieldSerializer<T> extends FieldSerializer<T> {
 
     @Override // com.esotericsoftware.kryo.serializers.FieldSerializer
     public void initializeCachedFields() {
-        FieldSerializer$CachedField[] fields = getFields();
+        FieldSerializer.CachedField[] fields = getFields();
         int length = fields.length;
         for (int i = 0; i < length; i++) {
-            if (fields[i].getField().getAnnotation(TaggedFieldSerializer$Tag.class) == null) {
-                a$a a_a = a.a;
+            if (fields[i].getField().getAnnotation(Tag.class) == null) {
+                a.C0064a c0064a = a.a;
                 super.removeField(fields[i]);
             }
         }
-        FieldSerializer$CachedField[] fields2 = getFields();
+        FieldSerializer.CachedField[] fields2 = getFields();
         this.tags = new int[fields2.length];
         this.deprecated = new boolean[fields2.length];
         this.annexed = new boolean[fields2.length];
@@ -43,7 +67,7 @@ public class TaggedFieldSerializer<T> extends FieldSerializer<T> {
         int length2 = fields2.length;
         for (int i2 = 0; i2 < length2; i2++) {
             Field field = fields2[i2].getField();
-            this.tags[i2] = ((TaggedFieldSerializer$Tag) field.getAnnotation(TaggedFieldSerializer$Tag.class)).value();
+            this.tags[i2] = ((Tag) field.getAnnotation(Tag.class)).value();
             if (i2 > 0) {
                 int[] iArr = this.tags;
                 int i3 = i2 - 1;
@@ -55,7 +79,7 @@ public class TaggedFieldSerializer<T> extends FieldSerializer<T> {
                 this.deprecated[i2] = true;
                 this.writeFieldCount--;
             }
-            if (((TaggedFieldSerializer$Tag) field.getAnnotation(TaggedFieldSerializer$Tag.class)).annexed()) {
+            if (((Tag) field.getAnnotation(Tag.class)).annexed()) {
                 this.annexed[i2] = true;
             }
         }
@@ -74,12 +98,12 @@ public class TaggedFieldSerializer<T> extends FieldSerializer<T> {
     @Override // com.esotericsoftware.kryo.serializers.FieldSerializer, com.esotericsoftware.kryo.Serializer
     public T read(Kryo kryo, Input input, Class<T> cls) {
         boolean z2;
-        FieldSerializer$CachedField fieldSerializer$CachedField;
+        FieldSerializer.CachedField cachedField;
         T tCreate = create(kryo, input, cls);
         kryo.reference(tCreate);
         int varInt = input.readVarInt(true);
         int[] iArr = this.tags;
-        FieldSerializer$CachedField[] fields = getFields();
+        FieldSerializer.CachedField[] fields = getFields();
         InputChunked inputChunked = null;
         for (int i = 0; i < varInt; i++) {
             int varInt2 = input.readVarInt(true);
@@ -88,17 +112,17 @@ public class TaggedFieldSerializer<T> extends FieldSerializer<T> {
             while (true) {
                 if (i2 >= length) {
                     z2 = false;
-                    fieldSerializer$CachedField = null;
+                    cachedField = null;
                     break;
                 }
                 if (iArr[i2] == varInt2) {
-                    fieldSerializer$CachedField = fields[i2];
+                    cachedField = fields[i2];
                     z2 = this.annexed[i2];
                     break;
                 }
                 i2++;
             }
-            if (fieldSerializer$CachedField == null) {
+            if (cachedField == null) {
                 if (!isSkipUnknownTags()) {
                     StringBuilder sbV = b.d.b.a.a.V("Unknown field tag: ", varInt2, " (");
                     sbV.append(getType().getName());
@@ -109,15 +133,15 @@ public class TaggedFieldSerializer<T> extends FieldSerializer<T> {
                     inputChunked = new InputChunked(input, 1024);
                 }
                 inputChunked.nextChunks();
-                a$a a_a = a.a;
+                a.C0064a c0064a = a.a;
             } else if (z2) {
                 if (inputChunked == null) {
                     inputChunked = new InputChunked(input, 1024);
                 }
-                fieldSerializer$CachedField.read(inputChunked, tCreate);
+                cachedField.read(inputChunked, tCreate);
                 inputChunked.nextChunks();
             } else {
-                fieldSerializer$CachedField.read(input, tCreate);
+                cachedField.read(input, tCreate);
             }
         }
         return tCreate;
@@ -140,7 +164,7 @@ public class TaggedFieldSerializer<T> extends FieldSerializer<T> {
 
     @Override // com.esotericsoftware.kryo.serializers.FieldSerializer, com.esotericsoftware.kryo.Serializer
     public void write(Kryo kryo, Output output, T t) {
-        FieldSerializer$CachedField[] fields = getFields();
+        FieldSerializer.CachedField[] fields = getFields();
         output.writeVarInt(this.writeFieldCount, true);
         int length = fields.length;
         OutputChunked outputChunked = null;
@@ -161,8 +185,8 @@ public class TaggedFieldSerializer<T> extends FieldSerializer<T> {
     }
 
     @Override // com.esotericsoftware.kryo.serializers.FieldSerializer
-    public void removeField(FieldSerializer$CachedField fieldSerializer$CachedField) {
-        super.removeField(fieldSerializer$CachedField);
+    public void removeField(FieldSerializer.CachedField cachedField) {
+        super.removeField(cachedField);
         initializeCachedFields();
     }
 }

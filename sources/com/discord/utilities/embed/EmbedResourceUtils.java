@@ -3,7 +3,9 @@ package com.discord.utilities.embed;
 import android.content.Context;
 import android.content.res.Resources;
 import androidx.annotation.DrawableRes;
+import com.discord.R;
 import com.discord.api.message.attachment.MessageAttachment;
+import com.discord.api.message.attachment.MessageAttachmentType;
 import com.discord.api.message.embed.EmbedImage;
 import com.discord.api.message.embed.EmbedProvider;
 import com.discord.api.message.embed.EmbedThumbnail;
@@ -34,6 +36,58 @@ public final class EmbedResourceUtils {
     private static final List<EmbedType> PLAYABLE_EMBED_TYPES = n.listOf((Object[]) new EmbedType[]{EmbedType.VIDEO, EmbedType.GIFV});
     public static final EmbedResourceUtils INSTANCE = new EmbedResourceUtils();
     private static final int MAX_IMAGE_VIEW_HEIGHT_PX = DimenUtils.dpToPixels(320);
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$2;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$3;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$4;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$5;
+
+        static {
+            MessageAttachmentType.values();
+            int[] iArr = new int[3];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[MessageAttachmentType.VIDEO.ordinal()] = 1;
+            iArr[MessageAttachmentType.IMAGE.ordinal()] = 2;
+            iArr[MessageAttachmentType.FILE.ordinal()] = 3;
+            EmbedType.values();
+            int[] iArr2 = new int[11];
+            $EnumSwitchMapping$1 = iArr2;
+            iArr2[EmbedType.LINK.ordinal()] = 1;
+            iArr2[EmbedType.HTML.ordinal()] = 2;
+            EmbedType embedType = EmbedType.VIDEO;
+            iArr2[embedType.ordinal()] = 3;
+            EmbedType embedType2 = EmbedType.GIFV;
+            iArr2[embedType2.ordinal()] = 4;
+            iArr2[EmbedType.TWEET.ordinal()] = 5;
+            EmbedType embedType3 = EmbedType.IMAGE;
+            iArr2[embedType3.ordinal()] = 6;
+            iArr2[EmbedType.ARTICLE.ordinal()] = 7;
+            EmbedType.values();
+            int[] iArr3 = new int[11];
+            $EnumSwitchMapping$2 = iArr3;
+            iArr3[embedType2.ordinal()] = 1;
+            iArr3[embedType3.ordinal()] = 2;
+            iArr3[embedType.ordinal()] = 3;
+            EmbedType.values();
+            int[] iArr4 = new int[11];
+            $EnumSwitchMapping$3 = iArr4;
+            iArr4[embedType3.ordinal()] = 1;
+            iArr4[embedType2.ordinal()] = 2;
+            EmbedType.values();
+            int[] iArr5 = new int[11];
+            $EnumSwitchMapping$4 = iArr5;
+            iArr5[embedType2.ordinal()] = 1;
+            iArr5[embedType3.ordinal()] = 2;
+            EmbedType.values();
+            int[] iArr6 = new int[11];
+            $EnumSwitchMapping$5 = iArr6;
+            iArr6[EmbedType.FILE.ordinal()] = 1;
+            iArr6[embedType.ordinal()] = 2;
+        }
+    }
 
     private EmbedResourceUtils() {
     }
@@ -98,7 +152,7 @@ public final class EmbedResourceUtils {
     public final int computeMaximumImageWidthPx(Context context) {
         m.checkNotNullParameter(context, "context");
         Resources resources = context.getResources();
-        return Math.min(1440, DisplayUtils.getScreenSize(context).width() - (resources.getDimensionPixelSize(2131165788) + resources.getDimensionPixelSize(2131165314)));
+        return Math.min(1440, DisplayUtils.getScreenSize(context).width() - (resources.getDimensionPixelSize(R.dimen.uikit_guideline_chat) + resources.getDimensionPixelSize(R.dimen.chat_cell_horizontal_spacing_total)));
     }
 
     private final RenderableEmbedMedia createFileRenderableMedia(String filename) {
@@ -147,11 +201,8 @@ public final class EmbedResourceUtils {
         if (filename != null && (strSubstringAfterLast = w.substringAfterLast(filename, '.', "")) != null) {
             str = strSubstringAfterLast;
         }
-        FileType fromExtension = FileType.Companion.getFromExtension(str);
-        if (fromExtension != null) {
-            return fromExtension.getFileDrawable();
-        }
-        return 2131231790;
+        FileType fromExtension = FileType.INSTANCE.getFromExtension(str);
+        return fromExtension != null ? fromExtension.getFileDrawable() : R.drawable.ic_file_unknown;
     }
 
     public final int getMAX_IMAGE_VIEW_HEIGHT_PX() {

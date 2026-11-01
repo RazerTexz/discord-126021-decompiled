@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetGuildInviteShareCompactBinding;
 import com.google.android.material.button.MaterialButton;
@@ -31,32 +31,32 @@ public final /* synthetic */ class WidgetGuildInviteShareCompact$binding$2 exten
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGuildInviteShareCompactBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.bottom_sheet_tint;
-        View viewFindViewById = view.findViewById(R$id.bottom_sheet_tint);
+        int i = R.id.bottom_sheet_tint;
+        View viewFindViewById = view.findViewById(R.id.bottom_sheet_tint);
         if (viewFindViewById != null) {
-            i = R$id.guild_invite_empty_results;
-            TextView textView = (TextView) view.findViewById(R$id.guild_invite_empty_results);
+            i = R.id.guild_invite_empty_results;
+            TextView textView = (TextView) view.findViewById(R.id.guild_invite_empty_results);
             if (textView != null) {
-                i = R$id.guild_invite_never_expire;
-                TextView textView2 = (TextView) view.findViewById(R$id.guild_invite_never_expire);
+                i = R.id.guild_invite_never_expire;
+                TextView textView2 = (TextView) view.findViewById(R.id.guild_invite_never_expire);
                 if (textView2 != null) {
-                    i = R$id.guild_invite_settings_edit;
-                    ImageView imageView = (ImageView) view.findViewById(R$id.guild_invite_settings_edit);
+                    i = R.id.guild_invite_settings_edit;
+                    ImageView imageView = (ImageView) view.findViewById(R.id.guild_invite_settings_edit);
                     if (imageView != null) {
-                        i = R$id.guild_invite_share_btn;
-                        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.guild_invite_share_btn);
+                        i = R.id.guild_invite_share_btn;
+                        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.guild_invite_share_btn);
                         if (materialButton != null) {
-                            i = R$id.guild_invite_share_compact_search;
-                            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.guild_invite_share_compact_search);
+                            i = R.id.guild_invite_share_compact_search;
+                            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.guild_invite_share_compact_search);
                             if (textInputLayout != null) {
-                                i = R$id.guild_invite_suggestion_list;
-                                RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.guild_invite_suggestion_list);
+                                i = R.id.guild_invite_suggestion_list;
+                                RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.guild_invite_suggestion_list);
                                 if (recyclerView != null) {
-                                    i = R$id.guild_invite_suggestions_flipper;
-                                    AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R$id.guild_invite_suggestions_flipper);
+                                    i = R.id.guild_invite_suggestions_flipper;
+                                    AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R.id.guild_invite_suggestions_flipper);
                                     if (appViewFlipper != null) {
-                                        i = R$id.invite_settings_bottom_sheet;
-                                        ViewInviteSettingsSheet viewInviteSettingsSheet = (ViewInviteSettingsSheet) view.findViewById(R$id.invite_settings_bottom_sheet);
+                                        i = R.id.invite_settings_bottom_sheet;
+                                        ViewInviteSettingsSheet viewInviteSettingsSheet = (ViewInviteSettingsSheet) view.findViewById(R.id.invite_settings_bottom_sheet);
                                         if (viewInviteSettingsSheet != null) {
                                             return new WidgetGuildInviteShareCompactBinding((CoordinatorLayout) view, viewFindViewById, textView, textView2, imageView, materialButton, textInputLayout, recyclerView, appViewFlipper, viewInviteSettingsSheet);
                                         }

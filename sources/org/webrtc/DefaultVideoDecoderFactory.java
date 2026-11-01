@@ -13,10 +13,10 @@ public class DefaultVideoDecoderFactory implements VideoDecoderFactory {
     private final VideoDecoderFactory platformSoftwareVideoDecoderFactory;
     private final VideoDecoderFactory softwareVideoDecoderFactory;
 
-    public DefaultVideoDecoderFactory(@Nullable EglBase$Context eglBase$Context) {
+    public DefaultVideoDecoderFactory(@Nullable EglBase.Context context) {
         this.softwareVideoDecoderFactory = new SoftwareVideoDecoderFactory();
-        this.hardwareVideoDecoderFactory = new HardwareVideoDecoderFactory(eglBase$Context);
-        this.platformSoftwareVideoDecoderFactory = new PlatformSoftwareVideoDecoderFactory(eglBase$Context);
+        this.hardwareVideoDecoderFactory = new HardwareVideoDecoderFactory(context);
+        this.platformSoftwareVideoDecoderFactory = new PlatformSoftwareVideoDecoderFactory(context);
     }
 
     @Override // org.webrtc.VideoDecoderFactory

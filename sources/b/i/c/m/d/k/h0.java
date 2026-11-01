@@ -2,11 +2,10 @@ package b.i.c.m.d.k;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
-import b.i.c.m.d.q.b$b;
 
 /* JADX INFO: compiled from: CrashlyticsController.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class h0 implements b$b {
+public class h0 implements b.i.c.m.d.q.b.InterfaceC0150b {
     public final /* synthetic */ x a;
 
     public h0(x xVar) {

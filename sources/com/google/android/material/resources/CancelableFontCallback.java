@@ -2,18 +2,21 @@ package com.google.android.material.resources;
 
 import android.graphics.Typeface;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public final class CancelableFontCallback extends TextAppearanceFontCallback {
-    private final CancelableFontCallback$ApplyFont applyFont;
+    private final ApplyFont applyFont;
     private boolean cancelled;
     private final Typeface fallbackFont;
 
-    public CancelableFontCallback(CancelableFontCallback$ApplyFont cancelableFontCallback$ApplyFont, Typeface typeface) {
+    public interface ApplyFont {
+        void apply(Typeface typeface);
+    }
+
+    public CancelableFontCallback(ApplyFont applyFont, Typeface typeface) {
         this.fallbackFont = typeface;
-        this.applyFont = cancelableFontCallback$ApplyFont;
+        this.applyFont = applyFont;
     }
 
     public void cancel() {

@@ -1,22 +1,79 @@
 package androidx.media;
 
 import android.media.VolumeProvider;
-import android.os.Build$VERSION;
+import android.os.Build;
+import androidx.annotation.DoNotInline;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class VolumeProviderCompat {
     public static final int VOLUME_CONTROL_ABSOLUTE = 2;
     public static final int VOLUME_CONTROL_FIXED = 0;
     public static final int VOLUME_CONTROL_RELATIVE = 1;
-    private VolumeProviderCompat$Callback mCallback;
+    private Callback mCallback;
     private final String mControlId;
     private final int mControlType;
     private int mCurrentVolume;
     private final int mMaxVolume;
     private VolumeProvider mVolumeProviderFwk;
+
+    /* JADX INFO: renamed from: androidx.media.VolumeProviderCompat$1, reason: invalid class name */
+    public class AnonymousClass1 extends VolumeProvider {
+        public AnonymousClass1(int i, int i2, int i3, String str) {
+            super(i, i2, i3, str);
+        }
+
+        @Override // android.media.VolumeProvider
+        public void onAdjustVolume(int i) {
+            VolumeProviderCompat.this.onAdjustVolume(i);
+        }
+
+        @Override // android.media.VolumeProvider
+        public void onSetVolumeTo(int i) {
+            VolumeProviderCompat.this.onSetVolumeTo(i);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.media.VolumeProviderCompat$2, reason: invalid class name */
+    public class AnonymousClass2 extends VolumeProvider {
+        public AnonymousClass2(int i, int i2, int i3) {
+            super(i, i2, i3);
+        }
+
+        @Override // android.media.VolumeProvider
+        public void onAdjustVolume(int i) {
+            VolumeProviderCompat.this.onAdjustVolume(i);
+        }
+
+        @Override // android.media.VolumeProvider
+        public void onSetVolumeTo(int i) {
+            VolumeProviderCompat.this.onSetVolumeTo(i);
+        }
+    }
+
+    @RequiresApi(21)
+    public class Api21Impl {
+        private Api21Impl() {
+        }
+
+        @DoNotInline
+        public static void setCurrentVolume(VolumeProvider volumeProvider, int i) {
+            volumeProvider.setCurrentVolume(i);
+        }
+    }
+
+    public abstract class Callback {
+        public abstract void onVolumeChanged(VolumeProviderCompat volumeProviderCompat);
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public @interface ControlType {
+    }
 
     public VolumeProviderCompat(int i, int i2, int i3) {
         this(i, i2, i3, null);
@@ -35,17 +92,17 @@ public abstract class VolumeProviderCompat {
     }
 
     @Nullable
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public final String getVolumeControlId() {
         return this.mControlId;
     }
 
     public Object getVolumeProvider() {
         if (this.mVolumeProviderFwk == null) {
-            if (Build$VERSION.SDK_INT >= 30) {
-                this.mVolumeProviderFwk = new VolumeProviderCompat$1(this, this.mControlType, this.mMaxVolume, this.mCurrentVolume, this.mControlId);
+            if (Build.VERSION.SDK_INT >= 30) {
+                this.mVolumeProviderFwk = new AnonymousClass1(this.mControlType, this.mMaxVolume, this.mCurrentVolume, this.mControlId);
             } else {
-                this.mVolumeProviderFwk = new VolumeProviderCompat$2(this, this.mControlType, this.mMaxVolume, this.mCurrentVolume);
+                this.mVolumeProviderFwk = new AnonymousClass2(this.mControlType, this.mMaxVolume, this.mCurrentVolume);
             }
         }
         return this.mVolumeProviderFwk;
@@ -57,20 +114,20 @@ public abstract class VolumeProviderCompat {
     public void onSetVolumeTo(int i) {
     }
 
-    public void setCallback(VolumeProviderCompat$Callback volumeProviderCompat$Callback) {
-        this.mCallback = volumeProviderCompat$Callback;
+    public void setCallback(Callback callback) {
+        this.mCallback = callback;
     }
 
     public final void setCurrentVolume(int i) {
         this.mCurrentVolume = i;
-        VolumeProviderCompat$Api21Impl.setCurrentVolume((VolumeProvider) getVolumeProvider(), i);
-        VolumeProviderCompat$Callback volumeProviderCompat$Callback = this.mCallback;
-        if (volumeProviderCompat$Callback != null) {
-            volumeProviderCompat$Callback.onVolumeChanged(this);
+        Api21Impl.setCurrentVolume((VolumeProvider) getVolumeProvider(), i);
+        Callback callback = this.mCallback;
+        if (callback != null) {
+            callback.onVolumeChanged(this);
         }
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public VolumeProviderCompat(int i, int i2, int i3, @Nullable String str) {
         this.mControlType = i;
         this.mMaxVolume = i2;

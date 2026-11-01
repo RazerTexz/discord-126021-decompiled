@@ -9,8 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChatInputCommandApplicationHeaderItemBinding implements ViewBinding {
@@ -33,15 +32,15 @@ public final class WidgetChatInputCommandApplicationHeaderItemBinding implements
 
     @NonNull
     public static WidgetChatInputCommandApplicationHeaderItemBinding a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
-        View viewInflate = layoutInflater.inflate(R$layout.widget_chat_input_command_application_header_item, viewGroup, false);
+        View viewInflate = layoutInflater.inflate(R.layout.widget_chat_input_command_application_header_item, viewGroup, false);
         if (z2) {
             viewGroup.addView(viewInflate);
         }
-        int i = R$id.chat_input_application_avatar;
-        ImageView imageView = (ImageView) viewInflate.findViewById(R$id.chat_input_application_avatar);
+        int i = R.id.chat_input_application_avatar;
+        ImageView imageView = (ImageView) viewInflate.findViewById(R.id.chat_input_application_avatar);
         if (imageView != null) {
-            i = R$id.chat_input_application_name;
-            TextView textView = (TextView) viewInflate.findViewById(R$id.chat_input_application_name);
+            i = R.id.chat_input_application_name;
+            TextView textView = (TextView) viewInflate.findViewById(R.id.chat_input_application_name);
             if (textView != null) {
                 return new WidgetChatInputCommandApplicationHeaderItemBinding((ConstraintLayout) viewInflate, imageView, textView);
             }

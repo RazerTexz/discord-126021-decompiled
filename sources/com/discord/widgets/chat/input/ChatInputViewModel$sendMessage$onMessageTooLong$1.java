@@ -23,6 +23,6 @@ public final class ChatInputViewModel$sendMessage$onMessageTooLong$1 extends o i
 
     /* JADX WARN: Type inference incomplete: some casts might be missing */
     public final void invoke(int i, int i2) {
-        ChatInputViewModel.access$getEventSubject$p(this.this$0).k.onNext((T) new ChatInputViewModel$Event$MessageTooLong(i, i2));
+        ChatInputViewModel.access$getEventSubject$p(this.this$0).k.onNext((T) new ChatInputViewModel.Event.MessageTooLong(i, i2));
     }
 }

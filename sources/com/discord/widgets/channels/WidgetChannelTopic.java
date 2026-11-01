@@ -1,47 +1,52 @@
 package com.discord.widgets.channels;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
-import android.view.ViewGroup$MarginLayoutParams;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import androidx.annotation.DrawableRes;
 import androidx.core.view.ViewKt;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.view.Lifecycle;
-import androidx.view.Lifecycle$State;
-import b.a.d.g0;
 import b.a.d.i0;
+import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$id;
-import com.discord.R$layout;
-import com.discord.R$menu;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetChannelTopicBinding;
+import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.member.GuildMember;
-import com.discord.utilities.channel.GuildChannelIconType$Text;
+import com.discord.utilities.channel.GuildChannelIconType;
 import com.discord.utilities.channel.GuildChannelIconUtilsKt;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.icon.IconUtils;
-import com.discord.utilities.images.MGImages$ChangeDetector;
+import com.discord.utilities.images.MGImages;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.textprocessing.AstRenderer;
 import com.discord.utilities.textprocessing.MessageRenderContext;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import com.discord.widgets.channels.settings.WidgetChannelGroupDMSettings;
+import com.discord.widgets.chat.pins.WidgetChannelPinnedMessages;
+import com.discord.widgets.notice.WidgetNoticeDialog;
+import com.discord.widgets.user.WidgetUserMutualGuilds;
 import com.facebook.drawee.span.DraweeSpanStringBuilder;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.badge.BadgeDrawable;
 import d0.g0.t;
+import d0.t.g0;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -49,8 +54,10 @@ import java.util.Objects;
 import java.util.Set;
 import kotlin.Lazy;
 import kotlin.NoWhenBranchMatchedException;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 import rx.Observable;
 
@@ -66,11 +73,328 @@ public final class WidgetChannelTopic extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelTopic$configureEllipsis$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelTopic.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetChannelTopic.access$onToggleTopicExpansionState(WidgetChannelTopic.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelTopic$configureUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelTopic.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ WidgetChannelTopicViewModel.ViewState $viewState;
+
+        public AnonymousClass1(WidgetChannelTopicViewModel.ViewState viewState) {
+            this.$viewState = viewState;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            Long recipientUserId = ((WidgetChannelTopicViewModel.ViewState.DM) this.$viewState).getRecipientUserId();
+            if (recipientUserId != null) {
+                WidgetUserMutualGuilds.INSTANCE.show(WidgetChannelTopic.this.requireContext(), recipientUserId.longValue());
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelTopic$onToggleTopicExpansionState$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelTopic.kt */
+    public final class AnonymousClass1 extends o implements Function1<Integer, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Integer num) {
+            invoke(num.intValue());
+            return Unit.a;
+        }
+
+        public final void invoke(int i) {
+            ObjectAnimator objectAnimatorOfInt = ObjectAnimator.ofInt(WidgetChannelTopic.access$getBinding$p(WidgetChannelTopic.this).g, "maxLines", i);
+            m.checkNotNullExpressionValue(objectAnimatorOfInt, "animation");
+            objectAnimatorOfInt.setDuration(150L);
+            objectAnimatorOfInt.addListener(new WidgetChannelTopic$onToggleTopicExpansionState$1$animateMaxLines$$inlined$doOnEnd$1(this));
+            objectAnimatorOfInt.start();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelTopic$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelTopic.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetChannelTopic.access$onToggleTopicExpansionState(WidgetChannelTopic.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelTopic$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelTopic.kt */
+    public final class AnonymousClass1 extends o implements Function1<WidgetChannelTopicViewModel.Event, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetChannelTopicViewModel.Event event) {
+            invoke2(event);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetChannelTopicViewModel.Event event) {
+            m.checkNotNullParameter(event, "event");
+            WidgetChannelTopic.access$handleEvent(WidgetChannelTopic.this, event);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelTopic$showContextMenu$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelTopic.kt */
+    public final class AnonymousClass1 implements MenuItem.OnMenuItemClickListener {
+        public final /* synthetic */ long $channelId;
+
+        public AnonymousClass1(long j) {
+            this.$channelId = j;
+        }
+
+        @Override // android.view.MenuItem.OnMenuItemClickListener
+        public final boolean onMenuItemClick(MenuItem menuItem) {
+            WidgetChannelPinnedMessages.INSTANCE.show(WidgetChannelTopic.this.requireContext(), this.$channelId);
+            return true;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelTopic$configureUI$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelTopic.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ WidgetChannelTopicViewModel.ViewState $viewState;
+
+        public AnonymousClass2(WidgetChannelTopicViewModel.ViewState viewState) {
+            this.$viewState = viewState;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetChannelTopic.access$onClickMore(WidgetChannelTopic.this, this.$viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelTopic$onViewBoundOrOnResume$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelTopic.kt */
+    public final class AnonymousClass2 extends o implements Function1<WidgetChannelTopicViewModel.ViewState, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetChannelTopicViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetChannelTopicViewModel.ViewState viewState) {
+            WidgetChannelTopic widgetChannelTopic = WidgetChannelTopic.this;
+            m.checkNotNullExpressionValue(viewState, "viewState");
+            WidgetChannelTopic.access$configureUI(widgetChannelTopic, viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelTopic$showContextMenu$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelTopic.kt */
+    public final class AnonymousClass2 implements MenuItem.OnMenuItemClickListener {
+        public final /* synthetic */ long $channelId;
+
+        public AnonymousClass2(long j) {
+            this.$channelId = j;
+        }
+
+        @Override // android.view.MenuItem.OnMenuItemClickListener
+        public final boolean onMenuItemClick(MenuItem menuItem) {
+            b.a.d.m.c(WidgetChannelTopic.this.requireContext(), String.valueOf(this.$channelId), 0, 4);
+            return true;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelTopic$showContextMenu$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelTopic.kt */
+    public final class AnonymousClass3 implements MenuItem.OnMenuItemClickListener {
+        public final /* synthetic */ long $channelId;
+
+        public AnonymousClass3(long j) {
+            this.$channelId = j;
+        }
+
+        @Override // android.view.MenuItem.OnMenuItemClickListener
+        public final boolean onMenuItemClick(MenuItem menuItem) {
+            WidgetChannelGroupDMSettings.INSTANCE.create(this.$channelId, WidgetChannelTopic.this.requireContext());
+            return true;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelTopic$showContextMenu$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelTopic.kt */
+    public final class AnonymousClass4 implements MenuItem.OnMenuItemClickListener {
+        public final /* synthetic */ CharSequence $channelTitle;
+
+        /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelTopic$showContextMenu$4$1, reason: invalid class name */
+        /* JADX INFO: compiled from: WidgetChannelTopic.kt */
+        public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public /* bridge */ /* synthetic */ Unit invoke(View view) {
+                invoke2(view);
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2(View view) {
+                m.checkNotNullParameter(view, "v");
+                WidgetChannelTopicViewModel widgetChannelTopicViewModelAccess$getViewModel$p = WidgetChannelTopic.access$getViewModel$p(WidgetChannelTopic.this);
+                Context context = view.getContext();
+                m.checkNotNullExpressionValue(context, "v.context");
+                widgetChannelTopicViewModelAccess$getViewModel$p.handleClosePrivateChannel(context);
+            }
+        }
+
+        public AnonymousClass4(CharSequence charSequence) {
+            this.$channelTitle = charSequence;
+        }
+
+        @Override // android.view.MenuItem.OnMenuItemClickListener
+        public final boolean onMenuItemClick(MenuItem menuItem) {
+            WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
+            FragmentManager parentFragmentManager = WidgetChannelTopic.this.getParentFragmentManager();
+            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, b.k(WidgetChannelTopic.this, R.string.leave_group_dm_title, new Object[]{this.$channelTitle}, null, 4), b.k(WidgetChannelTopic.this, R.string.leave_group_dm_body, new Object[]{this.$channelTitle}, null, 4), b.k(WidgetChannelTopic.this, R.string.leave_group_dm, new Object[0], null, 4), b.k(WidgetChannelTopic.this, R.string.cancel, new Object[0], null, 4), g0.mapOf(d0.o.to(Integer.valueOf(R.id.notice_ok), new AnonymousClass1())), null, null, null, Integer.valueOf(R.attr.notice_theme_positive_red), null, null, 0, null, 15808, null);
+            return true;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelTopic$showContextMenu$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChannelTopic.kt */
+    public final class AnonymousClass5 implements MenuItem.OnMenuItemClickListener {
+        public AnonymousClass5() {
+        }
+
+        @Override // android.view.MenuItem.OnMenuItemClickListener
+        public final boolean onMenuItemClick(MenuItem menuItem) {
+            WidgetChannelTopic.access$getViewModel$p(WidgetChannelTopic.this).handleClosePrivateChannel(WidgetChannelTopic.this.requireContext());
+            return true;
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChannelTopic.kt */
+    public final /* data */ class RenderedTopic {
+        public static final int MAX_LINES = 40;
+        public static final int MIN_LINES = 2;
+        private final int autoLinkMask;
+        private final CharSequence channelName;
+        private final CharSequence topic;
+
+        public RenderedTopic() {
+            this(null, null, 0, 7, null);
+        }
+
+        public RenderedTopic(CharSequence charSequence, CharSequence charSequence2, int i) {
+            this.channelName = charSequence;
+            this.topic = charSequence2;
+            this.autoLinkMask = i;
+        }
+
+        public static /* synthetic */ RenderedTopic copy$default(RenderedTopic renderedTopic, CharSequence charSequence, CharSequence charSequence2, int i, int i2, Object obj) {
+            if ((i2 & 1) != 0) {
+                charSequence = renderedTopic.channelName;
+            }
+            if ((i2 & 2) != 0) {
+                charSequence2 = renderedTopic.topic;
+            }
+            if ((i2 & 4) != 0) {
+                i = renderedTopic.autoLinkMask;
+            }
+            return renderedTopic.copy(charSequence, charSequence2, i);
+        }
+
+        public final RenderedTopic copy(CharSequence channelName, CharSequence topic, int autoLinkMask) {
+            return new RenderedTopic(channelName, topic, autoLinkMask);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof RenderedTopic)) {
+                return false;
+            }
+            RenderedTopic renderedTopic = (RenderedTopic) other;
+            return m.areEqual(this.channelName, renderedTopic.channelName) && m.areEqual(this.topic, renderedTopic.topic) && this.autoLinkMask == renderedTopic.autoLinkMask;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getAutoLinkMask() {
+            return this.autoLinkMask;
+        }
+
+        public final int getAutoLinkMask() {
+            return this.autoLinkMask;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final CharSequence getChannelName() {
+            return this.channelName;
+        }
+
+        public final CharSequence getChannelName() {
+            return this.channelName;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final CharSequence getTopic() {
+            return this.topic;
+        }
+
+        public final CharSequence getTopic() {
+            return this.topic;
+        }
+
+        public int hashCode() {
+            CharSequence charSequence = this.channelName;
+            int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
+            CharSequence charSequence2 = this.topic;
+            return ((iHashCode + (charSequence2 != null ? charSequence2.hashCode() : 0)) * 31) + this.autoLinkMask;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("RenderedTopic(channelName=");
+            sbU.append(this.channelName);
+            sbU.append(", topic=");
+            sbU.append(this.topic);
+            sbU.append(", autoLinkMask=");
+            return a.B(sbU, this.autoLinkMask, ")");
+        }
+
+        public /* synthetic */ RenderedTopic(String str, CharSequence charSequence, int i, int i2, DefaultConstructorMarker defaultConstructorMarker) {
+            this((i2 & 1) != 0 ? "" : str, (i2 & 2) != 0 ? null : charSequence, (i2 & 4) != 0 ? 0 : i);
+        }
+    }
+
     public WidgetChannelTopic() {
-        super(R$layout.widget_channel_topic);
+        super(R.layout.widget_channel_topic);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetChannelTopic$binding$2.INSTANCE, null, 2, null);
         WidgetChannelTopic$viewModel$2 widgetChannelTopic$viewModel$2 = WidgetChannelTopic$viewModel$2.INSTANCE;
-        g0 g0Var = new g0(this);
+        b.a.d.g0 g0Var = new b.a.d.g0(this);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetChannelTopicViewModel.class), new WidgetChannelTopic$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetChannelTopic$viewModel$2));
     }
 
@@ -78,8 +402,8 @@ public final class WidgetChannelTopic extends AppFragment {
         widgetChannelTopic.configureEllipsis();
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetChannelTopic widgetChannelTopic, WidgetChannelTopicViewModel$ViewState widgetChannelTopicViewModel$ViewState) {
-        widgetChannelTopic.configureUI(widgetChannelTopicViewModel$ViewState);
+    public static final /* synthetic */ void access$configureUI(WidgetChannelTopic widgetChannelTopic, WidgetChannelTopicViewModel.ViewState viewState) {
+        widgetChannelTopic.configureUI(viewState);
     }
 
     public static final /* synthetic */ WidgetChannelTopicBinding access$getBinding$p(WidgetChannelTopic widgetChannelTopic) {
@@ -90,12 +414,12 @@ public final class WidgetChannelTopic extends AppFragment {
         return widgetChannelTopic.getViewModel();
     }
 
-    public static final /* synthetic */ void access$handleEvent(WidgetChannelTopic widgetChannelTopic, WidgetChannelTopicViewModel$Event widgetChannelTopicViewModel$Event) {
-        widgetChannelTopic.handleEvent(widgetChannelTopicViewModel$Event);
+    public static final /* synthetic */ void access$handleEvent(WidgetChannelTopic widgetChannelTopic, WidgetChannelTopicViewModel.Event event) {
+        widgetChannelTopic.handleEvent(event);
     }
 
-    public static final /* synthetic */ void access$onClickMore(WidgetChannelTopic widgetChannelTopic, WidgetChannelTopicViewModel$ViewState widgetChannelTopicViewModel$ViewState) {
-        widgetChannelTopic.onClickMore(widgetChannelTopicViewModel$ViewState);
+    public static final /* synthetic */ void access$onClickMore(WidgetChannelTopic widgetChannelTopic, WidgetChannelTopicViewModel.ViewState viewState) {
+        widgetChannelTopic.onClickMore(viewState);
     }
 
     public static final /* synthetic */ void access$onToggleTopicExpansionState(WidgetChannelTopic widgetChannelTopic) {
@@ -103,7 +427,7 @@ public final class WidgetChannelTopic extends AppFragment {
     }
 
     /* JADX WARN: Code duplicated, block: B:10:0x001f  */
-    private final void configureChannelTopicTitle(WidgetChannelTopic$RenderedTopic renderedTopic) {
+    private final void configureChannelTopicTitle(RenderedTopic renderedTopic) {
         boolean z2;
         LinkifiedTextView linkifiedTextView = getBinding().g;
         m.checkNotNullExpressionValue(linkifiedTextView, "binding.channelTopicTitle");
@@ -130,8 +454,8 @@ public final class WidgetChannelTopic extends AppFragment {
         boolean z2;
         Lifecycle lifecycle = getLifecycle();
         m.checkNotNullExpressionValue(lifecycle, "lifecycle");
-        if (lifecycle.getCurrentState().isAtLeast(Lifecycle$State.INITIALIZED)) {
-            getBinding().d.setOnClickListener(new WidgetChannelTopic$configureEllipsis$1(this));
+        if (lifecycle.getCurrentState().isAtLeast(Lifecycle.State.INITIALIZED)) {
+            getBinding().d.setOnClickListener(new AnonymousClass1());
             ImageView imageView = getBinding().d;
             m.checkNotNullExpressionValue(imageView, "binding.channelTopicEllipsis");
             if (this.isDm) {
@@ -155,10 +479,10 @@ public final class WidgetChannelTopic extends AppFragment {
         }
     }
 
-    private final void configureUI(WidgetChannelTopicViewModel$ViewState viewState) {
-        WidgetChannelTopic$RenderedTopic renderedTopicForGDM;
+    private final void configureUI(WidgetChannelTopicViewModel.ViewState viewState) {
+        RenderedTopic renderedTopicForGDM;
         boolean z2;
-        if (viewState instanceof WidgetChannelTopicViewModel$ViewState$NoChannel) {
+        if (viewState instanceof WidgetChannelTopicViewModel.ViewState.NoChannel) {
             View view = getView();
             if (view != null) {
                 ViewKt.setVisible(view, false);
@@ -166,9 +490,9 @@ public final class WidgetChannelTopic extends AppFragment {
             ImageView imageView = getBinding().e;
             m.checkNotNullExpressionValue(imageView, "binding.channelTopicMoreIcon");
             imageView.setVisibility(8);
-            setChannelIcon(GuildChannelIconUtilsKt.mapGuildChannelTypeToIcon(GuildChannelIconType$Text.INSTANCE));
-            renderedTopicForGDM = new WidgetChannelTopic$RenderedTopic(null, null, 0, 7, null);
-        } else if (viewState instanceof WidgetChannelTopicViewModel$ViewState$Guild) {
+            setChannelIcon(GuildChannelIconUtilsKt.mapGuildChannelTypeToIcon(GuildChannelIconType.Text.INSTANCE));
+            renderedTopicForGDM = new RenderedTopic(null, null, 0, 7, null);
+        } else if (viewState instanceof WidgetChannelTopicViewModel.ViewState.Guild) {
             View view2 = getView();
             if (view2 != null) {
                 ViewKt.setVisible(view2, true);
@@ -176,14 +500,14 @@ public final class WidgetChannelTopic extends AppFragment {
             ImageView imageView2 = getBinding().e;
             m.checkNotNullExpressionValue(imageView2, "binding.channelTopicMoreIcon");
             imageView2.setVisibility(8);
-            setChannelIcon(GuildChannelIconUtilsKt.mapGuildChannelTypeToIcon(((WidgetChannelTopicViewModel$ViewState$Guild) viewState).getChannelIconType()));
-            if (viewState instanceof WidgetChannelTopicViewModel$ViewState$Guild$DefaultTopic) {
-                renderedTopicForGDM = getRenderedTopicForDefaultTopic((WidgetChannelTopicViewModel$ViewState$Guild$DefaultTopic) viewState);
+            setChannelIcon(GuildChannelIconUtilsKt.mapGuildChannelTypeToIcon(((WidgetChannelTopicViewModel.ViewState.Guild) viewState).getChannelIconType()));
+            if (viewState instanceof WidgetChannelTopicViewModel.ViewState.Guild.DefaultTopic) {
+                renderedTopicForGDM = getRenderedTopicForDefaultTopic((WidgetChannelTopicViewModel.ViewState.Guild.DefaultTopic) viewState);
             } else {
                 Objects.requireNonNull(viewState, "null cannot be cast to non-null type com.discord.widgets.channels.WidgetChannelTopicViewModel.ViewState.Guild.Topic");
-                renderedTopicForGDM = getRenderedTopicForTopic((WidgetChannelTopicViewModel$ViewState$Guild$Topic) viewState);
+                renderedTopicForGDM = getRenderedTopicForTopic((WidgetChannelTopicViewModel.ViewState.Guild.Topic) viewState);
             }
-        } else if (viewState instanceof WidgetChannelTopicViewModel$ViewState$DM) {
+        } else if (viewState instanceof WidgetChannelTopicViewModel.ViewState.DM) {
             View view3 = getView();
             if (view3 != null) {
                 ViewKt.setVisible(view3, true);
@@ -191,12 +515,12 @@ public final class WidgetChannelTopic extends AppFragment {
             ImageView imageView3 = getBinding().e;
             m.checkNotNullExpressionValue(imageView3, "binding.channelTopicMoreIcon");
             imageView3.setVisibility(0);
-            setChannelIcon(2131231716);
-            WidgetChannelTopicViewModel$ViewState$DM widgetChannelTopicViewModel$ViewState$DM = (WidgetChannelTopicViewModel$ViewState$DM) viewState;
-            getBinding().f2281b.configure(widgetChannelTopicViewModel$ViewState$DM.getGuildMembers());
-            renderedTopicForGDM = new WidgetChannelTopic$RenderedTopic(widgetChannelTopicViewModel$ViewState$DM.getRecipientName(), null, 0, 6, null);
+            setChannelIcon(R.drawable.ic_direct_message_header);
+            WidgetChannelTopicViewModel.ViewState.DM dm = (WidgetChannelTopicViewModel.ViewState.DM) viewState;
+            getBinding().f2281b.configure(dm.getGuildMembers());
+            renderedTopicForGDM = new RenderedTopic(dm.getRecipientName(), null, 0, 6, null);
         } else {
-            if (!(viewState instanceof WidgetChannelTopicViewModel$ViewState$GDM)) {
+            if (!(viewState instanceof WidgetChannelTopicViewModel.ViewState.GDM)) {
                 throw new NoWhenBranchMatchedException();
             }
             View view4 = getView();
@@ -206,17 +530,17 @@ public final class WidgetChannelTopic extends AppFragment {
             ImageView imageView4 = getBinding().e;
             m.checkNotNullExpressionValue(imageView4, "binding.channelTopicMoreIcon");
             imageView4.setVisibility(0);
-            WidgetChannelTopicViewModel$ViewState$GDM widgetChannelTopicViewModel$ViewState$GDM = (WidgetChannelTopicViewModel$ViewState$GDM) viewState;
-            setChannelIconForGDM(widgetChannelTopicViewModel$ViewState$GDM.getChannel());
-            renderedTopicForGDM = getRenderedTopicForGDM(widgetChannelTopicViewModel$ViewState$GDM);
+            WidgetChannelTopicViewModel.ViewState.GDM gdm = (WidgetChannelTopicViewModel.ViewState.GDM) viewState;
+            setChannelIconForGDM(gdm.getChannel());
+            renderedTopicForGDM = getRenderedTopicForGDM(gdm);
         }
         configureChannelTopicTitle(renderedTopicForGDM);
-        boolean z3 = viewState instanceof WidgetChannelTopicViewModel$ViewState$DM;
+        boolean z3 = viewState instanceof WidgetChannelTopicViewModel.ViewState.DM;
         if (z3) {
             Objects.requireNonNull(viewState, "null cannot be cast to non-null type com.discord.widgets.channels.WidgetChannelTopicViewModel.ViewState.DM");
-            WidgetChannelTopicViewModel$ViewState$DM widgetChannelTopicViewModel$ViewState$DM2 = (WidgetChannelTopicViewModel$ViewState$DM) viewState;
-            Set<String> recipientNicknames = widgetChannelTopicViewModel$ViewState$DM2.getRecipientNicknames();
-            List<GuildMember> guildMembers = widgetChannelTopicViewModel$ViewState$DM2.getGuildMembers();
+            WidgetChannelTopicViewModel.ViewState.DM dm2 = (WidgetChannelTopicViewModel.ViewState.DM) viewState;
+            Set<String> recipientNicknames = dm2.getRecipientNicknames();
+            List<GuildMember> guildMembers = dm2.getGuildMembers();
             if (!(guildMembers instanceof Collection) || !guildMembers.isEmpty()) {
                 Iterator<T> it = guildMembers.iterator();
                 while (true) {
@@ -232,7 +556,7 @@ public final class WidgetChannelTopic extends AppFragment {
                 z2 = false;
                 break;
             }
-            getBinding().f2281b.setOnClickListener(new WidgetChannelTopic$configureUI$1(this, viewState));
+            getBinding().f2281b.setOnClickListener(new AnonymousClass1(viewState));
             UserAkaView userAkaView = getBinding().f2281b;
             m.checkNotNullExpressionValue(userAkaView, "binding.channelAka");
             userAkaView.setVisibility(!(recipientNicknames == null || recipientNicknames.isEmpty()) || z2 ? 0 : 8);
@@ -250,58 +574,58 @@ public final class WidgetChannelTopic extends AppFragment {
         TextView textView = getBinding().f;
         m.checkNotNullExpressionValue(textView, "binding.channelTopicName");
         textView.setText(renderedTopicForGDM.getChannelName());
-        getBinding().e.setOnClickListener(new WidgetChannelTopic$configureUI$2(this, viewState));
+        getBinding().e.setOnClickListener(new AnonymousClass2(viewState));
     }
 
     private final WidgetChannelTopicBinding getBinding() {
         return (WidgetChannelTopicBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    private final WidgetChannelTopic$RenderedTopic getRenderedTopicForDefaultTopic(WidgetChannelTopicViewModel$ViewState$Guild$DefaultTopic viewState) {
-        return new WidgetChannelTopic$RenderedTopic(ChannelUtils.d(viewState.getChannel(), requireContext(), false), "", 0);
+    private final RenderedTopic getRenderedTopicForDefaultTopic(WidgetChannelTopicViewModel.ViewState.Guild.DefaultTopic viewState) {
+        return new RenderedTopic(ChannelUtils.d(viewState.getChannel(), requireContext(), false), "", 0);
     }
 
-    private final WidgetChannelTopic$RenderedTopic getRenderedTopicForGDM(WidgetChannelTopicViewModel$ViewState$GDM viewState) {
-        return new WidgetChannelTopic$RenderedTopic(ChannelUtils.d(viewState.getChannel(), requireContext(), false), null, 0, 4, null);
+    private final RenderedTopic getRenderedTopicForGDM(WidgetChannelTopicViewModel.ViewState.GDM viewState) {
+        return new RenderedTopic(ChannelUtils.d(viewState.getChannel(), requireContext(), false), null, 0, 4, null);
     }
 
-    private final WidgetChannelTopic$RenderedTopic getRenderedTopicForTopic(WidgetChannelTopicViewModel$ViewState$Guild$Topic viewState) {
+    private final RenderedTopic getRenderedTopicForTopic(WidgetChannelTopicViewModel.ViewState.Guild.Topic viewState) {
         LinkifiedTextView linkifiedTextView = getBinding().g;
         m.checkNotNullExpressionValue(linkifiedTextView, "binding.channelTopicTitle");
         Context context = linkifiedTextView.getContext();
         m.checkNotNullExpressionValue(context, "binding.channelTopicTitle.context");
         DraweeSpanStringBuilder draweeSpanStringBuilderRender = AstRenderer.render(viewState.getAst(), new MessageRenderContext(context, 0L, viewState.getAllowAnimatedEmojis(), viewState.getUserNames(), viewState.getChannelNames(), viewState.getRoles(), 0, null, WidgetChannelTopic$getRenderedTopicForTopic$renderContext$1.INSTANCE, 0, 0, new WidgetChannelTopic$getRenderedTopicForTopic$renderContext$2(getViewModel()), null, null, 14016, null));
-        return new WidgetChannelTopic$RenderedTopic(ChannelUtils.d(viewState.getChannel(), requireContext(), false), draweeSpanStringBuilderRender, (draweeSpanStringBuilderRender.length() > 200 || viewState.isLinkifyConflicting()) ? 0 : 15);
+        return new RenderedTopic(ChannelUtils.d(viewState.getChannel(), requireContext(), false), draweeSpanStringBuilderRender, (draweeSpanStringBuilderRender.length() > 200 || viewState.isLinkifyConflicting()) ? 0 : 15);
     }
 
     private final WidgetChannelTopicViewModel getViewModel() {
         return (WidgetChannelTopicViewModel) this.viewModel.getValue();
     }
 
-    private final void handleEvent(WidgetChannelTopicViewModel$Event event) {
-        if (event instanceof WidgetChannelTopicViewModel$Event$FocusFirstElement) {
+    private final void handleEvent(WidgetChannelTopicViewModel.Event event) {
+        if (event instanceof WidgetChannelTopicViewModel.Event.FocusFirstElement) {
             getBinding().f.sendAccessibilityEvent(8);
         }
     }
 
-    private final void onClickMore(WidgetChannelTopicViewModel$ViewState viewState) {
-        if (viewState instanceof WidgetChannelTopicViewModel$ViewState$GDM) {
-            WidgetChannelTopicViewModel$ViewState$GDM widgetChannelTopicViewModel$ViewState$GDM = (WidgetChannelTopicViewModel$ViewState$GDM) viewState;
-            showContextMenu(true, widgetChannelTopicViewModel$ViewState$GDM.getChannelId(), ChannelUtils.d(widgetChannelTopicViewModel$ViewState$GDM.getChannel(), requireContext(), false), widgetChannelTopicViewModel$ViewState$GDM.getDeveloperModeEnabled());
-        } else if (viewState instanceof WidgetChannelTopicViewModel$ViewState$DM) {
-            WidgetChannelTopicViewModel$ViewState$DM widgetChannelTopicViewModel$ViewState$DM = (WidgetChannelTopicViewModel$ViewState$DM) viewState;
-            showContextMenu$default(this, false, widgetChannelTopicViewModel$ViewState$DM.getChannelId(), null, widgetChannelTopicViewModel$ViewState$DM.getDeveloperModeEnabled(), 4, null);
+    private final void onClickMore(WidgetChannelTopicViewModel.ViewState viewState) {
+        if (viewState instanceof WidgetChannelTopicViewModel.ViewState.GDM) {
+            WidgetChannelTopicViewModel.ViewState.GDM gdm = (WidgetChannelTopicViewModel.ViewState.GDM) viewState;
+            showContextMenu(true, gdm.getChannelId(), ChannelUtils.d(gdm.getChannel(), requireContext(), false), gdm.getDeveloperModeEnabled());
+        } else if (viewState instanceof WidgetChannelTopicViewModel.ViewState.DM) {
+            WidgetChannelTopicViewModel.ViewState.DM dm = (WidgetChannelTopicViewModel.ViewState.DM) viewState;
+            showContextMenu$default(this, false, dm.getChannelId(), null, dm.getDeveloperModeEnabled(), 4, null);
         }
     }
 
     private final void onToggleTopicExpansionState() {
-        WidgetChannelTopic$onToggleTopicExpansionState$1 widgetChannelTopic$onToggleTopicExpansionState$1 = new WidgetChannelTopic$onToggleTopicExpansionState$1(this);
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1();
         LinkifiedTextView linkifiedTextView = getBinding().g;
         m.checkNotNullExpressionValue(linkifiedTextView, "binding.channelTopicTitle");
         if (linkifiedTextView.getMaxLines() != 40) {
-            widgetChannelTopic$onToggleTopicExpansionState$1.invoke(40);
+            anonymousClass1.invoke(40);
         } else {
-            widgetChannelTopic$onToggleTopicExpansionState$1.invoke(2);
+            anonymousClass1.invoke(2);
         }
     }
 
@@ -309,16 +633,16 @@ public final class WidgetChannelTopic extends AppFragment {
     public void onViewBound(View view) {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
-        getBinding().g.setOnClickListener(new WidgetChannelTopic$onViewBound$1(this));
+        getBinding().g.setOnClickListener(new AnonymousClass1());
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().listenForEvents(), this, null, 2, null), WidgetChannelTopic.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetChannelTopic$onViewBoundOrOnResume$1(this), 62, (Object) null);
-        Observable<WidgetChannelTopicViewModel$ViewState> observableR = getViewModel().observeViewState().r();
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().listenForEvents(), this, null, 2, null), WidgetChannelTopic.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
+        Observable<WidgetChannelTopicViewModel.ViewState> observableR = getViewModel().observeViewState().r();
         m.checkNotNullExpressionValue(observableR, "viewModel\n        .obser…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableR, this, null, 2, null), WidgetChannelTopic.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetChannelTopic$onViewBoundOrOnResume$2(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableR, this, null, 2, null), WidgetChannelTopic.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
         LinkifiedTextView linkifiedTextView = getBinding().g;
         m.checkNotNullExpressionValue(linkifiedTextView, "binding.channelTopicTitle");
         linkifiedTextView.setMaxLines(2);
@@ -328,22 +652,22 @@ public final class WidgetChannelTopic extends AppFragment {
         getBinding().c.setImageResource(channelIconResource);
         SimpleDraweeView simpleDraweeView = getBinding().c;
         m.checkNotNullExpressionValue(simpleDraweeView, "binding.channelTopicChannelIcon");
-        ViewGroup$LayoutParams layoutParams = simpleDraweeView.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = simpleDraweeView.getLayoutParams();
         Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.MarginLayoutParams");
-        ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams = (ViewGroup$MarginLayoutParams) layoutParams;
-        viewGroup$MarginLayoutParams.setMargins(viewGroup$MarginLayoutParams.leftMargin, viewGroup$MarginLayoutParams.topMargin, DimenUtils.dpToPixels(4), viewGroup$MarginLayoutParams.bottomMargin);
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
+        marginLayoutParams.setMargins(marginLayoutParams.leftMargin, marginLayoutParams.topMargin, DimenUtils.dpToPixels(4), marginLayoutParams.bottomMargin);
     }
 
     private final void setChannelIconForGDM(Channel channel) {
         SimpleDraweeView simpleDraweeView = getBinding().c;
         m.checkNotNullExpressionValue(simpleDraweeView, "binding.channelTopicChannelIcon");
-        IconUtils.setIcon$default(simpleDraweeView, IconUtils.getForChannel$default(channel, null, 2, null), 2131165293, (Function1) null, (MGImages$ChangeDetector) null, 24, (Object) null);
+        IconUtils.setIcon$default(simpleDraweeView, IconUtils.getForChannel$default(channel, null, 2, null), R.dimen.avatar_size_large, (Function1) null, (MGImages.ChangeDetector) null, 24, (Object) null);
         SimpleDraweeView simpleDraweeView2 = getBinding().c;
         m.checkNotNullExpressionValue(simpleDraweeView2, "binding.channelTopicChannelIcon");
-        ViewGroup$LayoutParams layoutParams = simpleDraweeView2.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = simpleDraweeView2.getLayoutParams();
         Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.MarginLayoutParams");
-        ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams = (ViewGroup$MarginLayoutParams) layoutParams;
-        viewGroup$MarginLayoutParams.setMargins(viewGroup$MarginLayoutParams.leftMargin, viewGroup$MarginLayoutParams.topMargin, DimenUtils.dpToPixels(8), viewGroup$MarginLayoutParams.bottomMargin);
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
+        marginLayoutParams.setMargins(marginLayoutParams.leftMargin, marginLayoutParams.topMargin, DimenUtils.dpToPixels(8), marginLayoutParams.bottomMargin);
     }
 
     public static /* synthetic */ void showContextMenu$default(WidgetChannelTopic widgetChannelTopic, boolean z2, long j, CharSequence charSequence, boolean z3, int i, Object obj) {
@@ -357,23 +681,23 @@ public final class WidgetChannelTopic extends AppFragment {
         ImageView imageView = getBinding().e;
         m.checkNotNullExpressionValue(imageView, "binding.channelTopicMoreIcon");
         PopupMenu popupMenu = new PopupMenu(imageView.getContext(), getBinding().e, BadgeDrawable.BOTTOM_START);
-        popupMenu.inflate(R$menu.menu_private_channel_sidebar);
-        popupMenu.getMenu().findItem(R$id.menu_private_channel_sidebar_pinned_messages).setOnMenuItemClickListener(new WidgetChannelTopic$showContextMenu$1(this, channelId));
-        MenuItem menuItemFindItem = popupMenu.getMenu().findItem(R$id.menu_private_channel_sidebar_copy_id);
+        popupMenu.inflate(R.menu.menu_private_channel_sidebar);
+        popupMenu.getMenu().findItem(R.id.menu_private_channel_sidebar_pinned_messages).setOnMenuItemClickListener(new AnonymousClass1(channelId));
+        MenuItem menuItemFindItem = popupMenu.getMenu().findItem(R.id.menu_private_channel_sidebar_copy_id);
         m.checkNotNullExpressionValue(menuItemFindItem, "copyChannelIdAction");
         menuItemFindItem.setVisible(developerModeEnabled);
-        menuItemFindItem.setOnMenuItemClickListener(new WidgetChannelTopic$showContextMenu$2(this, channelId));
-        MenuItem menuItemFindItem2 = popupMenu.getMenu().findItem(R$id.menu_private_channel_sidebar_customize_gorup);
+        menuItemFindItem.setOnMenuItemClickListener(new AnonymousClass2(channelId));
+        MenuItem menuItemFindItem2 = popupMenu.getMenu().findItem(R.id.menu_private_channel_sidebar_customize_gorup);
         m.checkNotNullExpressionValue(menuItemFindItem2, "customizeGroupAction");
         menuItemFindItem2.setVisible(isGroup);
-        menuItemFindItem2.setOnMenuItemClickListener(new WidgetChannelTopic$showContextMenu$3(this, channelId));
-        MenuItem menuItemFindItem3 = popupMenu.getMenu().findItem(R$id.menu_private_channel_sidebar_close);
+        menuItemFindItem2.setOnMenuItemClickListener(new AnonymousClass3(channelId));
+        MenuItem menuItemFindItem3 = popupMenu.getMenu().findItem(R.id.menu_private_channel_sidebar_close);
         if (isGroup) {
-            menuItemFindItem3.setTitle(2131892526);
-            menuItemFindItem3.setOnMenuItemClickListener(new WidgetChannelTopic$showContextMenu$4(this, channelTitle));
+            menuItemFindItem3.setTitle(R.string.leave_group_dm);
+            menuItemFindItem3.setOnMenuItemClickListener(new AnonymousClass4(channelTitle));
         } else {
-            menuItemFindItem3.setTitle(2131887681);
-            menuItemFindItem3.setOnMenuItemClickListener(new WidgetChannelTopic$showContextMenu$5(this));
+            menuItemFindItem3.setTitle(R.string.close_dm);
+            menuItemFindItem3.setOnMenuItemClickListener(new AnonymousClass5());
         }
         popupMenu.show();
     }

@@ -8,7 +8,6 @@ import b.d.b.a.a;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Map$Entry;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class MailTo {
@@ -99,10 +98,10 @@ public final class MailTo {
     public String toString() {
         StringBuilder sb = new StringBuilder(MAILTO_SCHEME);
         sb.append('?');
-        for (Map$Entry<String, String> map$Entry : this.mHeaders.entrySet()) {
-            sb.append(Uri.encode(map$Entry.getKey()));
+        for (Map.Entry<String, String> entry : this.mHeaders.entrySet()) {
+            sb.append(Uri.encode(entry.getKey()));
             sb.append('=');
-            sb.append(Uri.encode(map$Entry.getValue()));
+            sb.append(Uri.encode(entry.getValue()));
             sb.append('&');
         }
         return sb.toString();

@@ -2,12 +2,11 @@ package b.i.a.c.a3;
 
 import android.util.Pair;
 import b.i.a.c.o2;
-import b.i.a.c.o2$c;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class a implements a0$b {
+public final /* synthetic */ class a implements a0.b {
     public final /* synthetic */ o a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -21,19 +20,19 @@ public final /* synthetic */ class a implements a0$b {
     /* JADX WARN: Code duplicated, block: B:19:0x007e  */
     /* JADX WARN: Code duplicated, block: B:35:0x00da  */
     /* JADX WARN: Code duplicated, block: B:37:? A[RETURN, SYNTHETIC] */
-    @Override // b.i.a.c.a3.a0$b
+    @Override // b.i.a.c.a3.a0.b
     public final void a(a0 a0Var, o2 o2Var) {
         long j;
-        v$a v_a;
-        a0$a a0_aB;
-        v$a v_a2;
+        v.a aVar;
+        a0.a aVarB;
+        v.a aVar2;
         o oVar = this.a;
         Object obj = this.f806b;
         Objects.requireNonNull(oVar);
         v vVar = (v) oVar;
         if (vVar.q) {
-            v$a v_a3 = vVar.n;
-            vVar.n = new v$a(o2Var, v_a3.m, v_a3.n);
+            v.a aVar3 = vVar.n;
+            vVar.n = new v.a(o2Var, aVar3.m, aVar3.n);
             u uVar = vVar.o;
             if (uVar != null) {
                 vVar.v(uVar.p);
@@ -41,9 +40,9 @@ public final /* synthetic */ class a implements a0$b {
         } else {
             if (!o2Var.q()) {
                 o2Var.n(0, vVar.l);
-                o2$c o2_c = vVar.l;
-                long j2 = o2_c.f1045z;
-                Object obj2 = o2_c.n;
+                o2.c cVar = vVar.l;
+                long j2 = cVar.f1045z;
+                Object obj2 = cVar.n;
                 u uVar2 = vVar.o;
                 if (uVar2 != null) {
                     long j3 = uVar2.k;
@@ -61,47 +60,47 @@ public final /* synthetic */ class a implements a0$b {
                 Object obj3 = pairJ.first;
                 long jLongValue = ((Long) pairJ.second).longValue();
                 if (vVar.r) {
-                    v$a v_a4 = vVar.n;
-                    v_a = new v$a(o2Var, v_a4.m, v_a4.n);
+                    v.a aVar4 = vVar.n;
+                    aVar = new v.a(o2Var, aVar4.m, aVar4.n);
                 } else {
-                    v_a = new v$a(o2Var, obj2, obj3);
+                    aVar = new v.a(o2Var, obj2, obj3);
                 }
-                vVar.n = v_a;
+                vVar.n = aVar;
                 u uVar3 = vVar.o;
                 if (uVar3 != null) {
                     vVar.v(jLongValue);
-                    a0$a a0_a = uVar3.j;
-                    Object obj4 = a0_a.a;
-                    if (vVar.n.n != null && obj4.equals(v$a.l)) {
+                    a0.a aVar5 = uVar3.j;
+                    Object obj4 = aVar5.a;
+                    if (vVar.n.n != null && obj4.equals(v.a.l)) {
                         obj4 = vVar.n.n;
                     }
-                    a0_aB = a0_a.b(obj4);
+                    aVarB = aVar5.b(obj4);
                 }
                 vVar.r = true;
                 vVar.q = true;
                 vVar.r(vVar.n);
-                if (a0_aB != null) {
+                if (aVarB != null) {
                     u uVar4 = vVar.o;
                     Objects.requireNonNull(uVar4);
-                    uVar4.d(a0_aB);
+                    uVar4.d(aVarB);
                 }
             }
             if (vVar.r) {
-                v$a v_a5 = vVar.n;
-                v_a2 = new v$a(o2Var, v_a5.m, v_a5.n);
+                v.a aVar6 = vVar.n;
+                aVar2 = new v.a(o2Var, aVar6.m, aVar6.n);
             } else {
-                v_a2 = new v$a(o2Var, o2$c.j, v$a.l);
+                aVar2 = new v.a(o2Var, o2.c.j, v.a.l);
             }
-            vVar.n = v_a2;
+            vVar.n = aVar2;
         }
-        a0_aB = null;
+        aVarB = null;
         vVar.r = true;
         vVar.q = true;
         vVar.r(vVar.n);
-        if (a0_aB != null) {
+        if (aVarB != null) {
             u uVar5 = vVar.o;
             Objects.requireNonNull(uVar5);
-            uVar5.d(a0_aB);
+            uVar5.d(aVarB);
         }
     }
 }

@@ -1,12 +1,16 @@
 package androidx.work.impl;
 
+import android.content.Context;
+import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.room.migration.Migration;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.work.impl.utils.IdGenerator;
+import androidx.work.impl.utils.PreferenceUtils;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class WorkDatabaseMigrations {
     private static final String CREATE_INDEX_PERIOD_START_TIME = "CREATE INDEX IF NOT EXISTS `index_WorkSpec_period_start_time` ON `workspec` (`period_start_time`)";
     private static final String CREATE_PREFERENCE = "CREATE TABLE IF NOT EXISTS `Preference` (`key` TEXT NOT NULL, `long_value` INTEGER, PRIMARY KEY(`key`))";
@@ -32,22 +36,134 @@ public class WorkDatabaseMigrations {
     private static final String WORKSPEC_ADD_TRIGGER_UPDATE_DELAY = "ALTER TABLE workspec ADD COLUMN `trigger_content_update_delay` INTEGER NOT NULL DEFAULT -1";
 
     @NonNull
-    public static Migration MIGRATION_1_2 = new WorkDatabaseMigrations$1(1, 2);
+    public static Migration MIGRATION_1_2 = new AnonymousClass1(1, 2);
 
     @NonNull
-    public static Migration MIGRATION_3_4 = new WorkDatabaseMigrations$2(3, 4);
+    public static Migration MIGRATION_3_4 = new AnonymousClass2(3, 4);
 
     @NonNull
-    public static Migration MIGRATION_4_5 = new WorkDatabaseMigrations$3(4, 5);
+    public static Migration MIGRATION_4_5 = new AnonymousClass3(4, 5);
 
     @NonNull
-    public static Migration MIGRATION_6_7 = new WorkDatabaseMigrations$4(6, 7);
+    public static Migration MIGRATION_6_7 = new AnonymousClass4(6, 7);
 
     @NonNull
-    public static Migration MIGRATION_7_8 = new WorkDatabaseMigrations$5(7, 8);
+    public static Migration MIGRATION_7_8 = new AnonymousClass5(7, 8);
 
     @NonNull
-    public static Migration MIGRATION_8_9 = new WorkDatabaseMigrations$6(8, 9);
+    public static Migration MIGRATION_8_9 = new AnonymousClass6(8, 9);
+
+    /* JADX INFO: renamed from: androidx.work.impl.WorkDatabaseMigrations$1, reason: invalid class name */
+    public class AnonymousClass1 extends Migration {
+        public AnonymousClass1(int i, int i2) {
+            super(i, i2);
+        }
+
+        @Override // androidx.room.migration.Migration
+        public void migrate(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
+            supportSQLiteDatabase.execSQL(WorkDatabaseMigrations.CREATE_SYSTEM_ID_INFO);
+            supportSQLiteDatabase.execSQL(WorkDatabaseMigrations.MIGRATE_ALARM_INFO_TO_SYSTEM_ID_INFO);
+            supportSQLiteDatabase.execSQL(WorkDatabaseMigrations.REMOVE_ALARM_INFO);
+            supportSQLiteDatabase.execSQL("INSERT OR IGNORE INTO worktag(tag, work_spec_id) SELECT worker_class_name AS tag, id AS work_spec_id FROM workspec");
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.work.impl.WorkDatabaseMigrations$2, reason: invalid class name */
+    public class AnonymousClass2 extends Migration {
+        public AnonymousClass2(int i, int i2) {
+            super(i, i2);
+        }
+
+        @Override // androidx.room.migration.Migration
+        public void migrate(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
+            if (Build.VERSION.SDK_INT >= 23) {
+                supportSQLiteDatabase.execSQL(WorkDatabaseMigrations.PERIODIC_WORK_SET_SCHEDULE_REQUESTED_AT);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.work.impl.WorkDatabaseMigrations$3, reason: invalid class name */
+    public class AnonymousClass3 extends Migration {
+        public AnonymousClass3(int i, int i2) {
+            super(i, i2);
+        }
+
+        @Override // androidx.room.migration.Migration
+        public void migrate(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
+            supportSQLiteDatabase.execSQL(WorkDatabaseMigrations.WORKSPEC_ADD_TRIGGER_UPDATE_DELAY);
+            supportSQLiteDatabase.execSQL(WorkDatabaseMigrations.WORKSPEC_ADD_TRIGGER_MAX_CONTENT_DELAY);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.work.impl.WorkDatabaseMigrations$4, reason: invalid class name */
+    public class AnonymousClass4 extends Migration {
+        public AnonymousClass4(int i, int i2) {
+            super(i, i2);
+        }
+
+        @Override // androidx.room.migration.Migration
+        public void migrate(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
+            supportSQLiteDatabase.execSQL(WorkDatabaseMigrations.CREATE_WORK_PROGRESS);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.work.impl.WorkDatabaseMigrations$5, reason: invalid class name */
+    public class AnonymousClass5 extends Migration {
+        public AnonymousClass5(int i, int i2) {
+            super(i, i2);
+        }
+
+        @Override // androidx.room.migration.Migration
+        public void migrate(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
+            supportSQLiteDatabase.execSQL(WorkDatabaseMigrations.CREATE_INDEX_PERIOD_START_TIME);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.work.impl.WorkDatabaseMigrations$6, reason: invalid class name */
+    public class AnonymousClass6 extends Migration {
+        public AnonymousClass6(int i, int i2) {
+            super(i, i2);
+        }
+
+        @Override // androidx.room.migration.Migration
+        public void migrate(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
+            supportSQLiteDatabase.execSQL(WorkDatabaseMigrations.CREATE_RUN_IN_FOREGROUND);
+        }
+    }
+
+    public class RescheduleMigration extends Migration {
+        public final Context mContext;
+
+        public RescheduleMigration(@NonNull Context context, int i, int i2) {
+            super(i, i2);
+            this.mContext = context;
+        }
+
+        @Override // androidx.room.migration.Migration
+        public void migrate(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
+            if (this.endVersion >= 10) {
+                supportSQLiteDatabase.execSQL(WorkDatabaseMigrations.INSERT_PREFERENCE, new Object[]{PreferenceUtils.KEY_RESCHEDULE_NEEDED, 1});
+            } else {
+                this.mContext.getSharedPreferences(PreferenceUtils.PREFERENCES_FILE_NAME, 0).edit().putBoolean(PreferenceUtils.KEY_RESCHEDULE_NEEDED, true).apply();
+            }
+        }
+    }
+
+    public class WorkMigration9To10 extends Migration {
+        public final Context mContext;
+
+        public WorkMigration9To10(@NonNull Context context) {
+            super(9, 10);
+            this.mContext = context;
+        }
+
+        @Override // androidx.room.migration.Migration
+        public void migrate(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
+            supportSQLiteDatabase.execSQL(WorkDatabaseMigrations.CREATE_PREFERENCE);
+            PreferenceUtils.migrateLegacyPreferences(this.mContext, supportSQLiteDatabase);
+            IdGenerator.migrateLegacyIdGenerator(this.mContext, supportSQLiteDatabase);
+        }
+    }
 
     private WorkDatabaseMigrations() {
     }

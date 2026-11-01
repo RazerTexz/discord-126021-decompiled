@@ -1,8 +1,6 @@
 package b.o.b.e;
 
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$CompressFormat;
-import android.graphics.Bitmap$Config;
 import android.opengl.EGL14;
 import android.opengl.GLES20;
 import b.o.b.c.d;
@@ -34,9 +32,9 @@ public abstract class a {
         this.d = -1;
     }
 
-    public final void a(OutputStream outputStream, Bitmap$CompressFormat bitmap$CompressFormat) {
+    public final void a(OutputStream outputStream, Bitmap.CompressFormat compressFormat) {
         m.checkNotNullParameter(outputStream, "stream");
-        m.checkNotNullParameter(bitmap$CompressFormat, "format");
+        m.checkNotNullParameter(compressFormat, "format");
         b.o.b.a.a aVar = this.a;
         e eVar = this.f1967b;
         Objects.requireNonNull(aVar);
@@ -58,9 +56,9 @@ public abstract class a {
         GLES20.glReadPixels(0, 0, iA, i, 6408, 5121, byteBufferAllocateDirect);
         b.o.b.a.d.b("glReadPixels");
         byteBufferAllocateDirect.rewind();
-        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(iA, i, Bitmap$Config.ARGB_8888);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(iA, i, Bitmap.Config.ARGB_8888);
         bitmapCreateBitmap.copyPixelsFromBuffer(byteBufferAllocateDirect);
-        bitmapCreateBitmap.compress(bitmap$CompressFormat, 90, outputStream);
+        bitmapCreateBitmap.compress(compressFormat, 90, outputStream);
         bitmapCreateBitmap.recycle();
     }
 }

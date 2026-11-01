@@ -7,30 +7,84 @@ import h0.c.a0;
 import h0.c.z;
 
 /* JADX INFO: loaded from: classes3.dex */
-public class TextureBufferImpl implements VideoFrame$TextureBuffer {
+public class TextureBufferImpl implements VideoFrame.TextureBuffer {
     private final int height;
 
     /* JADX INFO: renamed from: id, reason: collision with root package name */
     private final int f3823id;
     private final RefCountDelegate refCountDelegate;
-    private final TextureBufferImpl$RefCountMonitor refCountMonitor;
+    private final RefCountMonitor refCountMonitor;
     private final Handler toI420Handler;
     private final Matrix transformMatrix;
-    private final VideoFrame$TextureBuffer$Type type;
+    private final VideoFrame.TextureBuffer.Type type;
     private final int unscaledHeight;
     private final int unscaledWidth;
     private final int width;
     private final YuvConverter yuvConverter;
 
-    public TextureBufferImpl(int i, int i2, VideoFrame$TextureBuffer$Type videoFrame$TextureBuffer$Type, int i3, Matrix matrix, Handler handler, YuvConverter yuvConverter, @Nullable Runnable runnable) {
-        this(i, i2, i, i2, videoFrame$TextureBuffer$Type, i3, matrix, handler, yuvConverter, new TextureBufferImpl$1(runnable));
+    /* JADX INFO: renamed from: org.webrtc.TextureBufferImpl$1, reason: invalid class name */
+    public class AnonymousClass1 implements RefCountMonitor {
+        public final /* synthetic */ Runnable val$releaseCallback;
+
+        public AnonymousClass1(Runnable runnable) {
+            this.val$releaseCallback = runnable;
+        }
+
+        @Override // org.webrtc.TextureBufferImpl.RefCountMonitor
+        public void onDestroy(TextureBufferImpl textureBufferImpl) {
+            Runnable runnable = this.val$releaseCallback;
+            if (runnable != null) {
+                runnable.run();
+            }
+        }
+
+        @Override // org.webrtc.TextureBufferImpl.RefCountMonitor
+        public void onRelease(TextureBufferImpl textureBufferImpl) {
+        }
+
+        @Override // org.webrtc.TextureBufferImpl.RefCountMonitor
+        public void onRetain(TextureBufferImpl textureBufferImpl) {
+        }
     }
 
-    public /* synthetic */ VideoFrame$I420Buffer a() {
+    /* JADX INFO: renamed from: org.webrtc.TextureBufferImpl$2, reason: invalid class name */
+    public class AnonymousClass2 implements RefCountMonitor {
+        public AnonymousClass2() {
+        }
+
+        @Override // org.webrtc.TextureBufferImpl.RefCountMonitor
+        public void onDestroy(TextureBufferImpl textureBufferImpl) {
+            TextureBufferImpl.this.release();
+        }
+
+        @Override // org.webrtc.TextureBufferImpl.RefCountMonitor
+        public void onRelease(TextureBufferImpl textureBufferImpl) {
+            TextureBufferImpl.access$000(TextureBufferImpl.this).onRelease(TextureBufferImpl.this);
+        }
+
+        @Override // org.webrtc.TextureBufferImpl.RefCountMonitor
+        public void onRetain(TextureBufferImpl textureBufferImpl) {
+            TextureBufferImpl.access$000(TextureBufferImpl.this).onRetain(TextureBufferImpl.this);
+        }
+    }
+
+    public interface RefCountMonitor {
+        void onDestroy(TextureBufferImpl textureBufferImpl);
+
+        void onRelease(TextureBufferImpl textureBufferImpl);
+
+        void onRetain(TextureBufferImpl textureBufferImpl);
+    }
+
+    public TextureBufferImpl(int i, int i2, VideoFrame.TextureBuffer.Type type, int i3, Matrix matrix, Handler handler, YuvConverter yuvConverter, @Nullable Runnable runnable) {
+        this(i, i2, i, i2, type, i3, matrix, handler, yuvConverter, new AnonymousClass1(runnable));
+    }
+
+    public /* synthetic */ VideoFrame.I420Buffer a() {
         return this.yuvConverter.convert(this);
     }
 
-    public static /* synthetic */ TextureBufferImpl$RefCountMonitor access$000(TextureBufferImpl textureBufferImpl) {
+    public static /* synthetic */ RefCountMonitor access$000(TextureBufferImpl textureBufferImpl) {
         return textureBufferImpl.refCountMonitor;
     }
 
@@ -38,8 +92,8 @@ public class TextureBufferImpl implements VideoFrame$TextureBuffer {
         return applyTransformMatrix(matrix, i, i2, i, i2);
     }
 
-    @Override // org.webrtc.VideoFrame$Buffer
-    public VideoFrame$Buffer cropAndScale(int i, int i2, int i3, int i4, int i5, int i6) {
+    @Override // org.webrtc.VideoFrame.Buffer
+    public VideoFrame.Buffer cropAndScale(int i, int i2, int i3, int i4, int i5, int i6) {
         Matrix matrix = new Matrix();
         int i7 = this.height;
         matrix.preTranslate(i / this.width, (i7 - (i2 + i4)) / i7);
@@ -47,12 +101,12 @@ public class TextureBufferImpl implements VideoFrame$TextureBuffer {
         return applyTransformMatrix(matrix, Math.round((this.unscaledWidth * i3) / this.width), Math.round((this.unscaledHeight * i4) / this.height), i5, i6);
     }
 
-    @Override // org.webrtc.VideoFrame$Buffer
+    @Override // org.webrtc.VideoFrame.Buffer
     public int getHeight() {
         return this.height;
     }
 
-    @Override // org.webrtc.VideoFrame$TextureBuffer
+    @Override // org.webrtc.VideoFrame.TextureBuffer
     public int getTextureId() {
         return this.f3823id;
     }
@@ -61,13 +115,13 @@ public class TextureBufferImpl implements VideoFrame$TextureBuffer {
         return this.toI420Handler;
     }
 
-    @Override // org.webrtc.VideoFrame$TextureBuffer
+    @Override // org.webrtc.VideoFrame.TextureBuffer
     public Matrix getTransformMatrix() {
         return this.transformMatrix;
     }
 
-    @Override // org.webrtc.VideoFrame$TextureBuffer
-    public VideoFrame$TextureBuffer$Type getType() {
+    @Override // org.webrtc.VideoFrame.TextureBuffer
+    public VideoFrame.TextureBuffer.Type getType() {
         return this.type;
     }
 
@@ -79,7 +133,7 @@ public class TextureBufferImpl implements VideoFrame$TextureBuffer {
         return this.unscaledWidth;
     }
 
-    @Override // org.webrtc.VideoFrame$Buffer
+    @Override // org.webrtc.VideoFrame.Buffer
     public int getWidth() {
         return this.width;
     }
@@ -88,45 +142,45 @@ public class TextureBufferImpl implements VideoFrame$TextureBuffer {
         return this.yuvConverter;
     }
 
-    @Override // org.webrtc.VideoFrame$Buffer, org.webrtc.RefCounted
+    @Override // org.webrtc.VideoFrame.Buffer, org.webrtc.RefCounted
     public void release() {
         this.refCountMonitor.onRelease(this);
         this.refCountDelegate.release();
     }
 
-    @Override // org.webrtc.VideoFrame$Buffer, org.webrtc.RefCounted
+    @Override // org.webrtc.VideoFrame.Buffer, org.webrtc.RefCounted
     public void retain() {
         this.refCountMonitor.onRetain(this);
         this.refCountDelegate.retain();
     }
 
-    @Override // org.webrtc.VideoFrame$Buffer
-    public VideoFrame$I420Buffer toI420() {
-        return (VideoFrame$I420Buffer) ThreadUtils.invokeAtFrontUninterruptibly(this.toI420Handler, new a0(this));
+    @Override // org.webrtc.VideoFrame.Buffer
+    public VideoFrame.I420Buffer toI420() {
+        return (VideoFrame.I420Buffer) ThreadUtils.invokeAtFrontUninterruptibly(this.toI420Handler, new a0(this));
     }
 
-    public TextureBufferImpl(int i, int i2, VideoFrame$TextureBuffer$Type videoFrame$TextureBuffer$Type, int i3, Matrix matrix, Handler handler, YuvConverter yuvConverter, TextureBufferImpl$RefCountMonitor textureBufferImpl$RefCountMonitor) {
-        this(i, i2, i, i2, videoFrame$TextureBuffer$Type, i3, matrix, handler, yuvConverter, textureBufferImpl$RefCountMonitor);
+    public TextureBufferImpl(int i, int i2, VideoFrame.TextureBuffer.Type type, int i3, Matrix matrix, Handler handler, YuvConverter yuvConverter, RefCountMonitor refCountMonitor) {
+        this(i, i2, i, i2, type, i3, matrix, handler, yuvConverter, refCountMonitor);
     }
 
     private TextureBufferImpl applyTransformMatrix(Matrix matrix, int i, int i2, int i3, int i4) {
         Matrix matrix2 = new Matrix(this.transformMatrix);
         matrix2.preConcat(matrix);
         retain();
-        return new TextureBufferImpl(i, i2, i3, i4, this.type, this.f3823id, matrix2, this.toI420Handler, this.yuvConverter, new TextureBufferImpl$2(this));
+        return new TextureBufferImpl(i, i2, i3, i4, this.type, this.f3823id, matrix2, this.toI420Handler, this.yuvConverter, new AnonymousClass2());
     }
 
-    private TextureBufferImpl(int i, int i2, int i3, int i4, VideoFrame$TextureBuffer$Type videoFrame$TextureBuffer$Type, int i5, Matrix matrix, Handler handler, YuvConverter yuvConverter, TextureBufferImpl$RefCountMonitor textureBufferImpl$RefCountMonitor) {
+    private TextureBufferImpl(int i, int i2, int i3, int i4, VideoFrame.TextureBuffer.Type type, int i5, Matrix matrix, Handler handler, YuvConverter yuvConverter, RefCountMonitor refCountMonitor) {
         this.unscaledWidth = i;
         this.unscaledHeight = i2;
         this.width = i3;
         this.height = i4;
-        this.type = videoFrame$TextureBuffer$Type;
+        this.type = type;
         this.f3823id = i5;
         this.transformMatrix = matrix;
         this.toI420Handler = handler;
         this.yuvConverter = yuvConverter;
-        this.refCountDelegate = new RefCountDelegate(new z(this, textureBufferImpl$RefCountMonitor));
-        this.refCountMonitor = textureBufferImpl$RefCountMonitor;
+        this.refCountDelegate = new RefCountDelegate(new z(this, refCountMonitor));
+        this.refCountMonitor = refCountMonitor;
     }
 }

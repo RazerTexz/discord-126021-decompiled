@@ -2,21 +2,20 @@ package com.discord.widgets.channels.list.items;
 
 import b.d.b.a.a;
 import com.discord.api.channel.Channel;
-import com.discord.widgets.channels.list.WidgetChannelListModel$ThreadSpineType;
-import com.discord.widgets.channels.list.WidgetChannelListModel$ThreadSpineType$Single;
-import com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem;
+import com.discord.widgets.channels.list.WidgetChannelListModel;
+import com.discord.widgets.channels.list.WidgetChannelListUnreads;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: ChannelListItemThread.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* data */ class ChannelListItemThread implements ChannelListItem, WidgetChannelListUnreads$UnreadItem {
+public final /* data */ class ChannelListItemThread implements ChannelListItem, WidgetChannelListUnreads.UnreadItem {
     private final Channel channel;
     private final boolean isLocked;
     private final boolean isUnread;
     private final int mentionCount;
     private final boolean muted;
     private final boolean selected;
-    private WidgetChannelListModel$ThreadSpineType spineType;
+    private WidgetChannelListModel.ThreadSpineType spineType;
     private final int type;
 
     public ChannelListItemThread(Channel channel, boolean z2, int i, boolean z3, boolean z4, boolean z5) {
@@ -27,7 +26,7 @@ public final /* data */ class ChannelListItemThread implements ChannelListItem, 
         this.isUnread = z3;
         this.isLocked = z4;
         this.muted = z5;
-        this.spineType = WidgetChannelListModel$ThreadSpineType$Single.INSTANCE;
+        this.spineType = WidgetChannelListModel.ThreadSpineType.Single.INSTANCE;
         this.type = 12;
     }
 
@@ -95,7 +94,7 @@ public final /* data */ class ChannelListItemThread implements ChannelListItem, 
         return this.isLocked;
     }
 
-    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem
+    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
     /* JADX INFO: renamed from: isUnread, reason: from getter */
     public boolean getIsUnread() {
         return this.isUnread;
@@ -106,7 +105,7 @@ public final /* data */ class ChannelListItemThread implements ChannelListItem, 
         return "" + getType() + this.channel.getId() + this.spineType + this.muted;
     }
 
-    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem
+    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
     public int getMentionCount() {
         return this.mentionCount;
     }
@@ -129,7 +128,7 @@ public final /* data */ class ChannelListItemThread implements ChannelListItem, 
         return this.selected;
     }
 
-    public final WidgetChannelListModel$ThreadSpineType getSpineType() {
+    public final WidgetChannelListModel.ThreadSpineType getSpineType() {
         return this.spineType;
     }
 
@@ -183,9 +182,9 @@ public final /* data */ class ChannelListItemThread implements ChannelListItem, 
         return this.isLocked;
     }
 
-    public final void setSpineType(WidgetChannelListModel$ThreadSpineType widgetChannelListModel$ThreadSpineType) {
-        m.checkNotNullParameter(widgetChannelListModel$ThreadSpineType, "<set-?>");
-        this.spineType = widgetChannelListModel$ThreadSpineType;
+    public final void setSpineType(WidgetChannelListModel.ThreadSpineType threadSpineType) {
+        m.checkNotNullParameter(threadSpineType, "<set-?>");
+        this.spineType = threadSpineType;
     }
 
     public String toString() {

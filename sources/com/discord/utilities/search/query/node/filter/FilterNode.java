@@ -3,8 +3,9 @@ package com.discord.utilities.search.query.node.filter;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.text.SpannableStringBuilder;
-import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import androidx.core.app.NotificationCompat;
 import b.d.b.a.a;
+import com.discord.R;
 import com.discord.utilities.font.FontUtils;
 import com.discord.utilities.search.query.FilterType;
 import com.discord.utilities.search.query.node.QueryNode;
@@ -20,7 +21,7 @@ public final /* data */ class FilterNode extends QueryNode {
 
     public FilterNode(FilterType filterType, CharSequence charSequence) {
         m.checkNotNullParameter(filterType, "filterType");
-        m.checkNotNullParameter(charSequence, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkNotNullParameter(charSequence, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         this.filterType = filterType;
         this.text = charSequence;
     }
@@ -41,7 +42,7 @@ public final /* data */ class FilterNode extends QueryNode {
 
     public final FilterNode copy(FilterType filterType, CharSequence text) {
         m.checkNotNullParameter(filterType, "filterType");
-        m.checkNotNullParameter(text, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
+        m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
         return new FilterNode(filterType, text);
     }
 
@@ -95,7 +96,7 @@ public final /* data */ class FilterNode extends QueryNode {
     public void render2(SpannableStringBuilder builder, Context renderContext) {
         m.checkNotNullParameter(builder, "builder");
         m.checkNotNullParameter(renderContext, "renderContext");
-        Typeface themedFont = FontUtils.INSTANCE.getThemedFont(renderContext, 2130969394);
+        Typeface themedFont = FontUtils.INSTANCE.getThemedFont(renderContext, R.attr.font_primary_bold);
         TypefaceSpanCompat typefaceSpanCompat = themedFont != null ? new TypefaceSpanCompat(themedFont) : null;
         int length = builder.length();
         builder.append((CharSequence) ("" + getText() + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR));

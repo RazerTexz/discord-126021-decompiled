@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.StrictMode;
-import android.os.StrictMode$ThreadPolicy;
 import android.util.Log;
 import java.io.BufferedReader;
 import java.io.File;
@@ -35,17 +34,15 @@ public final /* synthetic */ class k2 implements z2 {
         if (w1.a() && !contextCreateDeviceProtectedStorageContext.isDeviceProtectedStorage()) {
             contextCreateDeviceProtectedStorageContext = contextCreateDeviceProtectedStorageContext.createDeviceProtectedStorageContext();
         }
-        StrictMode$ThreadPolicy strictMode$ThreadPolicyAllowThreadDiskReads = StrictMode.allowThreadDiskReads();
+        StrictMode.ThreadPolicy threadPolicyAllowThreadDiskReads = StrictMode.allowThreadDiskReads();
         try {
             StrictMode.allowThreadDiskWrites();
             try {
                 File file = new File(contextCreateDeviceProtectedStorageContext.getDir("phenotype_hermetic", 0), "overrides.txt");
                 y2Var = file.exists() ? new y2(file) : w2.j;
-                StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskReads);
             } catch (RuntimeException e) {
                 Log.e("HermeticFileOverrides", "no data dir", e);
                 y2Var = w2.j;
-                StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskReads);
             }
             if (!y2Var.b()) {
                 return w2.j;
@@ -92,9 +89,8 @@ public final /* synthetic */ class k2 implements z2 {
             } catch (IOException e2) {
                 throw new RuntimeException(e2);
             }
-        } catch (Throwable th3) {
-            StrictMode.setThreadPolicy(strictMode$ThreadPolicyAllowThreadDiskReads);
-            throw th3;
+        } finally {
+            StrictMode.setThreadPolicy(threadPolicyAllowThreadDiskReads);
         }
     }
 }

@@ -1,6 +1,5 @@
 package d0.e0.p.d.m0.e.a.l0;
 
-import d0.e0.p.d.m0.c.g1.g$b;
 import java.util.Iterator;
 
 /* JADX INFO: compiled from: typeEnhancement.kt */
@@ -20,7 +19,7 @@ public final class b implements d0.e0.p.d.m0.c.g1.g {
 
     @Override // d0.e0.p.d.m0.c.g1.g
     public boolean hasAnnotation(d0.e0.p.d.m0.g.b bVar) {
-        return g$b.hasAnnotation(this, bVar);
+        return d0.e0.p.d.m0.c.g1.g.b.hasAnnotation(this, bVar);
     }
 
     @Override // d0.e0.p.d.m0.c.g1.g

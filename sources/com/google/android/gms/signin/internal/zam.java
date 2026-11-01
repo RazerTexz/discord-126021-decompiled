@@ -1,7 +1,7 @@
 package com.google.android.gms.signin.internal;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import b.c.a.a0.d;
 import b.i.a.f.l.b.j;
@@ -17,7 +17,7 @@ public final class zam extends AbstractSafeParcelable {
 
     @Nullable
     public final zau l;
-    public static final Parcelable$Creator<zam> CREATOR = new j();
+    public static final Parcelable.Creator<zam> CREATOR = new j();
 
     public zam(int i, ConnectionResult connectionResult, @Nullable zau zauVar) {
         this.j = i;

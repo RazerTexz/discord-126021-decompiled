@@ -1,7 +1,7 @@
 package b.c.a;
 
 import android.content.Context;
-import android.content.res.Resources$NotFoundException;
+import android.content.res.Resources;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.Callable;
 
@@ -27,7 +27,7 @@ public class h implements Callable<p<d>> {
         int i = this.l;
         try {
             return e.b(context.getResources().openRawResource(i), e.f(context, i));
-        } catch (Resources$NotFoundException e) {
+        } catch (Resources.NotFoundException e) {
             return new p<>((Throwable) e);
         }
     }

@@ -4,33 +4,37 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.view.View;
 import android.widget.TextView;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.d.g0;
 import b.a.d.i0;
+import b.a.d.j;
 import b.a.k.b;
 import b.d.b.a.a;
 import com.discord.BuildConfig;
-import com.discord.R$layout;
-import com.discord.R$plurals;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetGuildInviteShareEmptySuggestionsBinding;
 import com.discord.models.domain.ModelInvite;
-import com.discord.models.domain.ModelInvite$Settings;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.utilities.resources.StringResourceUtilsKt;
 import com.discord.utilities.rx.ObservableExtensionsKt;
+import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import d0.g;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.reflect.KProperty;
 import rx.Observable;
+import rx.functions.Func0;
 
 /* JADX INFO: compiled from: WidgetGuildInviteShareEmptySuggestions.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -47,8 +51,153 @@ public final class WidgetGuildInviteShareEmptySuggestions extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareEmptySuggestions$initBottomSheet$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildInviteShareEmptySuggestions.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetGuildInviteShareEmptySuggestions.access$getBottomSheetBehavior$p(WidgetGuildInviteShareEmptySuggestions.this).setState(5);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareEmptySuggestions$initBottomSheetBehavior$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildInviteShareEmptySuggestions.kt */
+    public final class AnonymousClass1 extends BottomSheetBehavior.BottomSheetCallback {
+        public AnonymousClass1() {
+        }
+
+        @Override // com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
+        public void onSlide(View bottomSheet, float slideOffset) {
+            m.checkNotNullParameter(bottomSheet, "bottomSheet");
+        }
+
+        @Override // com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
+        public void onStateChanged(View bottomSheet, int newState) {
+            m.checkNotNullParameter(bottomSheet, "bottomSheet");
+            if (newState == 5) {
+                WidgetGuildInviteShareEmptySuggestions.access$getViewModel$p(WidgetGuildInviteShareEmptySuggestions.this).refreshUi();
+            }
+            ViewExtensions.fadeBy$default(WidgetGuildInviteShareEmptySuggestions.access$getBinding$p(WidgetGuildInviteShareEmptySuggestions.this).f2420b, newState != 5, 0L, 2, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareEmptySuggestions$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildInviteShareEmptySuggestions.kt */
+    public final class AnonymousClass1<R> implements Func0<Boolean> {
+        public final /* synthetic */ boolean $isNuxFlow;
+
+        public AnonymousClass1(boolean z2) {
+            this.$isNuxFlow = z2;
+        }
+
+        @Override // rx.functions.Func0, java.util.concurrent.Callable
+        public /* bridge */ /* synthetic */ Object call() {
+            return call();
+        }
+
+        @Override // rx.functions.Func0, java.util.concurrent.Callable
+        public final Boolean call() {
+            if (WidgetGuildInviteShareEmptySuggestions.access$getBottomSheetBehavior$p(WidgetGuildInviteShareEmptySuggestions.this).getState() != 5) {
+                WidgetGuildInviteShareEmptySuggestions.access$getBottomSheetBehavior$p(WidgetGuildInviteShareEmptySuggestions.this).setState(5);
+                return Boolean.TRUE;
+            }
+            if (!this.$isNuxFlow) {
+                return Boolean.FALSE;
+            }
+            j.c(WidgetGuildInviteShareEmptySuggestions.this.requireContext(), false, null, 6);
+            return Boolean.TRUE;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareEmptySuggestions$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildInviteShareEmptySuggestions.kt */
+    public final class AnonymousClass1 extends o implements Function1<WidgetGuildInviteShareViewModel.ViewState.Loaded, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetGuildInviteShareViewModel.ViewState.Loaded loaded) {
+            invoke2(loaded);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetGuildInviteShareViewModel.ViewState.Loaded loaded) {
+            m.checkNotNullParameter(loaded, "viewState");
+            WidgetGuildInviteShareEmptySuggestions.access$updateUi(WidgetGuildInviteShareEmptySuggestions.this, loaded);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareEmptySuggestions$updateUi$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildInviteShareEmptySuggestions.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ ModelInvite $invite;
+
+        public AnonymousClass1(ModelInvite modelInvite) {
+            this.$invite = modelInvite;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            GuildInviteUiHelperKt.copyLinkClick(a.x(view, "it", "it.context"), this.$invite, WidgetGuildInviteShareEmptySuggestions.this.getMostRecentIntent());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareEmptySuggestions$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildInviteShareEmptySuggestions.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetGuildInviteShareEmptySuggestions.access$getBottomSheetBehavior$p(WidgetGuildInviteShareEmptySuggestions.this).setState(5);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareEmptySuggestions$updateUi$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildInviteShareEmptySuggestions.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ ModelInvite $invite;
+
+        public AnonymousClass2(ModelInvite modelInvite) {
+            this.$invite = modelInvite;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            ModelInvite modelInvite = this.$invite;
+            if (modelInvite != null) {
+                GuildInviteUiHelperKt.shareLinkClick(WidgetGuildInviteShareEmptySuggestions.this.getContext(), modelInvite);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetGuildInviteShareEmptySuggestions$updateUi$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetGuildInviteShareEmptySuggestions.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public AnonymousClass3() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetGuildInviteShareEmptySuggestions.access$getBottomSheetBehavior$p(WidgetGuildInviteShareEmptySuggestions.this).setState(3);
+        }
+    }
+
     public WidgetGuildInviteShareEmptySuggestions() {
-        super(R$layout.widget_guild_invite_share_empty_suggestions);
+        super(R.layout.widget_guild_invite_share_empty_suggestions);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildInviteShareEmptySuggestions$binding$2.INSTANCE, null, 2, null);
         WidgetGuildInviteShareEmptySuggestions$viewModel$2 widgetGuildInviteShareEmptySuggestions$viewModel$2 = new WidgetGuildInviteShareEmptySuggestions$viewModel$2(this);
         g0 g0Var = new g0(this);
@@ -76,8 +225,8 @@ public final class WidgetGuildInviteShareEmptySuggestions extends AppFragment {
         widgetGuildInviteShareEmptySuggestions.bottomSheetBehavior = bottomSheetBehavior;
     }
 
-    public static final /* synthetic */ void access$updateUi(WidgetGuildInviteShareEmptySuggestions widgetGuildInviteShareEmptySuggestions, WidgetGuildInviteShareViewModel$ViewState$Loaded widgetGuildInviteShareViewModel$ViewState$Loaded) {
-        widgetGuildInviteShareEmptySuggestions.updateUi(widgetGuildInviteShareViewModel$ViewState$Loaded);
+    public static final /* synthetic */ void access$updateUi(WidgetGuildInviteShareEmptySuggestions widgetGuildInviteShareEmptySuggestions, WidgetGuildInviteShareViewModel.ViewState.Loaded loaded) {
+        widgetGuildInviteShareEmptySuggestions.updateUi(loaded);
     }
 
     private final WidgetGuildInviteShareEmptySuggestionsBinding getBinding() {
@@ -91,10 +240,10 @@ public final class WidgetGuildInviteShareEmptySuggestions extends AppFragment {
     private final CharSequence getHoursExpirationString(int hours, CharSequence maxUses) {
         Resources resources = getResources();
         m.checkNotNullExpressionValue(resources, "resources");
-        CharSequence quantityString = StringResourceUtilsKt.getQuantityString(resources, requireContext(), R$plurals.duration_hours_hours, hours, Integer.valueOf(hours));
+        CharSequence quantityString = StringResourceUtilsKt.getQuantityString(resources, requireContext(), R.plurals.duration_hours_hours, hours, Integer.valueOf(hours));
         Resources resources2 = getResources();
         m.checkNotNullExpressionValue(resources2, "resources");
-        return b.i(resources2, 2131892324, new Object[]{quantityString, maxUses}, null, 4);
+        return b.i(resources2, R.string.invite_settings_expired_description, new Object[]{quantityString, maxUses}, null, 4);
     }
 
     private final String getInviteLink(ModelInvite modelInvite) {
@@ -106,13 +255,13 @@ public final class WidgetGuildInviteShareEmptySuggestions extends AppFragment {
     }
 
     private final void initBottomSheet() {
-        getBinding().g.setOnGenerateLinkListener(new WidgetGuildInviteShareEmptySuggestions$initBottomSheet$1(this));
+        getBinding().g.setOnGenerateLinkListener(new AnonymousClass1());
         getBinding().g.setViewModel(getViewModel());
     }
 
     private final void initBottomSheetBehavior(BottomSheetBehavior<ViewInviteSettingsSheet> bottomSheetBehavior) {
         bottomSheetBehavior.setState(5);
-        bottomSheetBehavior.addBottomSheetCallback(new WidgetGuildInviteShareEmptySuggestions$initBottomSheetBehavior$1(this));
+        bottomSheetBehavior.addBottomSheetCallback(new AnonymousClass1());
     }
 
     @Override // com.discord.app.AppFragment
@@ -128,8 +277,8 @@ public final class WidgetGuildInviteShareEmptySuggestions extends AppFragment {
             getViewModel().selectChannel(longExtra);
         }
         boolean booleanExtra = getMostRecentIntent().getBooleanExtra(WidgetGuildInviteShare.INTENT_IS_NUX_FLOW, false);
-        setActionBarDisplayHomeAsUpEnabled(true, booleanExtra ? Integer.valueOf(DrawableCompat.getThemedDrawableRes$default(requireContext(), 2130969481, 0, 2, (Object) null)) : null, booleanExtra ? 2131887680 : null);
-        AppFragment.setOnBackPressed$default(this, new WidgetGuildInviteShareEmptySuggestions$onViewBound$1(this, booleanExtra), 0, 2, null);
+        setActionBarDisplayHomeAsUpEnabled(true, booleanExtra ? Integer.valueOf(DrawableCompat.getThemedDrawableRes$default(requireContext(), R.attr.ic_close_24dp, 0, 2, (Object) null)) : null, booleanExtra ? Integer.valueOf(R.string.close) : null);
+        AppFragment.setOnBackPressed$default(this, new AnonymousClass1(booleanExtra), 0, 2, null);
         BottomSheetBehavior<ViewInviteSettingsSheet> bottomSheetBehaviorFrom = BottomSheetBehavior.from(getBinding().g);
         m.checkNotNullExpressionValue(bottomSheetBehaviorFrom, "BottomSheetBehavior.from…nviteSettingsBottomSheet)");
         this.bottomSheetBehavior = bottomSheetBehaviorFrom;
@@ -138,20 +287,20 @@ public final class WidgetGuildInviteShareEmptySuggestions extends AppFragment {
         }
         initBottomSheetBehavior(bottomSheetBehaviorFrom);
         initBottomSheet();
-        getBinding().f2420b.setOnClickListener(new WidgetGuildInviteShareEmptySuggestions$onViewBound$2(this));
+        getBinding().f2420b.setOnClickListener(new AnonymousClass2());
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        Observable<WidgetGuildInviteShareViewModel$ViewState> observableK = getViewModel().observeViewState().K();
+        Observable<WidgetGuildInviteShareViewModel.ViewState> observableK = getViewModel().observeViewState().K();
         m.checkNotNullExpressionValue(observableK, "viewModel.observeViewSta…  .onBackpressureBuffer()");
         Observable<R> observableG = observableK.y(WidgetGuildInviteShareEmptySuggestions$onViewBoundOrOnResume$$inlined$filterIs$1.INSTANCE).G(WidgetGuildInviteShareEmptySuggestions$onViewBoundOrOnResume$$inlined$filterIs$2.INSTANCE);
         m.checkNotNullExpressionValue(observableG, "filter { it is T }.map { it as T }");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableG, this, null, 2, null), WidgetGuildInviteShareEmptySuggestions.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildInviteShareEmptySuggestions$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableG, this, null, 2, null), WidgetGuildInviteShareEmptySuggestions.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
-    private final void updateUi(WidgetGuildInviteShareViewModel$ViewState$Loaded viewState) {
+    private final void updateUi(WidgetGuildInviteShareViewModel.ViewState.Loaded viewState) {
         CharSequence quantityString;
         WidgetInviteModel widgetInviteModel = viewState.getWidgetInviteModel();
         getBinding().g.configureUi(widgetInviteModel);
@@ -159,22 +308,22 @@ public final class WidgetGuildInviteShareEmptySuggestions extends AppFragment {
         TextView textView = getBinding().c;
         m.checkNotNullExpressionValue(textView, "binding.guildInviteEmptySuggestionsInviteLink");
         textView.setText(getInviteLink(invite));
-        getBinding().c.setOnClickListener(new WidgetGuildInviteShareEmptySuggestions$updateUi$1(this, invite));
-        getBinding().d.setOnClickListener(new WidgetGuildInviteShareEmptySuggestions$updateUi$2(this, invite));
-        getBinding().e.setOnClickListener(new WidgetGuildInviteShareEmptySuggestions$updateUi$3(this));
-        ModelInvite$Settings settings = widgetInviteModel.getSettings();
+        getBinding().c.setOnClickListener(new AnonymousClass1(invite));
+        getBinding().d.setOnClickListener(new AnonymousClass2(invite));
+        getBinding().e.setOnClickListener(new AnonymousClass3());
+        ModelInvite.Settings settings = widgetInviteModel.getSettings();
         if (settings != null) {
             if (settings.getMaxUses() == 0) {
-                quantityString = getResources().getString(2131892769);
+                quantityString = getResources().getString(R.string.max_uses_description_unlimited_uses);
                 m.checkNotNullExpressionValue(quantityString, "resources.getString(R.st…scription_unlimited_uses)");
             } else {
                 Resources resources = getResources();
                 m.checkNotNullExpressionValue(resources, "resources");
-                quantityString = StringResourceUtilsKt.getQuantityString(resources, requireContext(), R$plurals.max_uses_description_mobile_maxUses, settings.getMaxUses(), Integer.valueOf(settings.getMaxUses()));
+                quantityString = StringResourceUtilsKt.getQuantityString(resources, requireContext(), R.plurals.max_uses_description_mobile_maxUses, settings.getMaxUses(), Integer.valueOf(settings.getMaxUses()));
             }
             int maxAge = widgetInviteModel.getSettings().getMaxAge();
             if (maxAge == 0) {
-                String str = getResources().getString(2131892764) + ", " + quantityString;
+                String str = getResources().getString(R.string.max_age_never_description_mobile) + ", " + quantityString;
                 m.checkNotNullExpressionValue(str, "StringBuilder()\n        …              .toString()");
                 TextView textView2 = getBinding().f;
                 m.checkNotNullExpressionValue(textView2, "binding.guildInviteEmpty…SettingsInviteLinkSubtext");
@@ -184,12 +333,12 @@ public final class WidgetGuildInviteShareEmptySuggestions extends AppFragment {
             if (maxAge == 1800) {
                 Resources resources2 = getResources();
                 m.checkNotNullExpressionValue(resources2, "resources");
-                CharSequence quantityString2 = StringResourceUtilsKt.getQuantityString(resources2, requireContext(), R$plurals.duration_minutes_minutes, 30, 30);
+                CharSequence quantityString2 = StringResourceUtilsKt.getQuantityString(resources2, requireContext(), R.plurals.duration_minutes_minutes, 30, 30);
                 TextView textView3 = getBinding().f;
                 m.checkNotNullExpressionValue(textView3, "binding.guildInviteEmpty…SettingsInviteLinkSubtext");
                 Resources resources3 = getResources();
                 m.checkNotNullExpressionValue(resources3, "resources");
-                textView3.setText(b.i(resources3, 2131892324, new Object[]{quantityString2, quantityString}, null, 4));
+                textView3.setText(b.i(resources3, R.string.invite_settings_expired_description, new Object[]{quantityString2, quantityString}, null, 4));
                 return;
             }
             if (maxAge == 3600) {
@@ -213,12 +362,12 @@ public final class WidgetGuildInviteShareEmptySuggestions extends AppFragment {
             if (maxAge == 86400) {
                 Resources resources4 = getResources();
                 m.checkNotNullExpressionValue(resources4, "resources");
-                CharSequence quantityString3 = StringResourceUtilsKt.getQuantityString(resources4, requireContext(), R$plurals.duration_days_days, 1, 1);
+                CharSequence quantityString3 = StringResourceUtilsKt.getQuantityString(resources4, requireContext(), R.plurals.duration_days_days, 1, 1);
                 TextView textView7 = getBinding().f;
                 m.checkNotNullExpressionValue(textView7, "binding.guildInviteEmpty…SettingsInviteLinkSubtext");
                 Resources resources5 = getResources();
                 m.checkNotNullExpressionValue(resources5, "resources");
-                textView7.setText(b.i(resources5, 2131892324, new Object[]{quantityString3, quantityString}, null, 4));
+                textView7.setText(b.i(resources5, R.string.invite_settings_expired_description, new Object[]{quantityString3, quantityString}, null, 4));
                 return;
             }
             if (maxAge != 604800) {
@@ -226,12 +375,12 @@ public final class WidgetGuildInviteShareEmptySuggestions extends AppFragment {
             }
             Resources resources6 = getResources();
             m.checkNotNullExpressionValue(resources6, "resources");
-            CharSequence quantityString4 = StringResourceUtilsKt.getQuantityString(resources6, requireContext(), R$plurals.duration_days_days, 7, 7);
+            CharSequence quantityString4 = StringResourceUtilsKt.getQuantityString(resources6, requireContext(), R.plurals.duration_days_days, 7, 7);
             TextView textView8 = getBinding().f;
             m.checkNotNullExpressionValue(textView8, "binding.guildInviteEmpty…SettingsInviteLinkSubtext");
             Resources resources7 = getResources();
             m.checkNotNullExpressionValue(resources7, "resources");
-            textView8.setText(b.i(resources7, 2131892324, new Object[]{quantityString4, quantityString}, null, 4));
+            textView8.setText(b.i(resources7, R.string.invite_settings_expired_description, new Object[]{quantityString4, quantityString}, null, 4));
         }
     }
 }

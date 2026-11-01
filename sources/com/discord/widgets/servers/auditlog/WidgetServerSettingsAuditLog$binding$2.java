@@ -5,7 +5,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetServerSettingsAuditLogBinding;
 import d0.z.d.k;
@@ -29,32 +29,32 @@ public final /* synthetic */ class WidgetServerSettingsAuditLog$binding$2 extend
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetServerSettingsAuditLogBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.no_logs_body;
-        TextView textView = (TextView) view.findViewById(R$id.no_logs_body);
+        int i = R.id.no_logs_body;
+        TextView textView = (TextView) view.findViewById(R.id.no_logs_body);
         if (textView != null) {
-            i = R$id.no_logs_title;
-            TextView textView2 = (TextView) view.findViewById(R$id.no_logs_title);
+            i = R.id.no_logs_title;
+            TextView textView2 = (TextView) view.findViewById(R.id.no_logs_title);
             if (textView2 != null) {
-                i = R$id.server_settings_audit_logs_action_filter;
-                TextView textView3 = (TextView) view.findViewById(R$id.server_settings_audit_logs_action_filter);
+                i = R.id.server_settings_audit_logs_action_filter;
+                TextView textView3 = (TextView) view.findViewById(R.id.server_settings_audit_logs_action_filter);
                 if (textView3 != null) {
-                    i = R$id.server_settings_audit_logs_action_filter_container;
-                    LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.server_settings_audit_logs_action_filter_container);
+                    i = R.id.server_settings_audit_logs_action_filter_container;
+                    LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.server_settings_audit_logs_action_filter_container);
                     if (linearLayout != null) {
-                        i = R$id.server_settings_audit_logs_recycler;
-                        RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.server_settings_audit_logs_recycler);
+                        i = R.id.server_settings_audit_logs_recycler;
+                        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.server_settings_audit_logs_recycler);
                         if (recyclerView != null) {
-                            i = R$id.server_settings_audit_logs_user_filter;
-                            TextView textView4 = (TextView) view.findViewById(R$id.server_settings_audit_logs_user_filter);
+                            i = R.id.server_settings_audit_logs_user_filter;
+                            TextView textView4 = (TextView) view.findViewById(R.id.server_settings_audit_logs_user_filter);
                             if (textView4 != null) {
-                                i = R$id.server_settings_audit_logs_user_filter_container;
-                                LinearLayout linearLayout2 = (LinearLayout) view.findViewById(R$id.server_settings_audit_logs_user_filter_container);
+                                i = R.id.server_settings_audit_logs_user_filter_container;
+                                LinearLayout linearLayout2 = (LinearLayout) view.findViewById(R.id.server_settings_audit_logs_user_filter_container);
                                 if (linearLayout2 != null) {
-                                    i = R$id.server_settings_audit_logs_view_flipper;
-                                    AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R$id.server_settings_audit_logs_view_flipper);
+                                    i = R.id.server_settings_audit_logs_view_flipper;
+                                    AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R.id.server_settings_audit_logs_view_flipper);
                                     if (appViewFlipper != null) {
-                                        i = R$id.server_settings_audit_logs_view_results_flipper;
-                                        AppViewFlipper appViewFlipper2 = (AppViewFlipper) view.findViewById(R$id.server_settings_audit_logs_view_results_flipper);
+                                        i = R.id.server_settings_audit_logs_view_results_flipper;
+                                        AppViewFlipper appViewFlipper2 = (AppViewFlipper) view.findViewById(R.id.server_settings_audit_logs_view_results_flipper);
                                         if (appViewFlipper2 != null) {
                                             return new WidgetServerSettingsAuditLogBinding((CoordinatorLayout) view, textView, textView2, textView3, linearLayout, recyclerView, textView4, linearLayout2, appViewFlipper, appViewFlipper2);
                                         }

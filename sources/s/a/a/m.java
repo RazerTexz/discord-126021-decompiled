@@ -3,12 +3,13 @@ package s.a.a;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: LockFreeTaskQueue.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class m<E> {
     public static final AtomicReferenceFieldUpdater a = AtomicReferenceFieldUpdater.newUpdater(m.class, Object.class, "_next");
-    public static final m$a d = new m$a(null);
+    public static final a d = new a(null);
     public final int e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -19,6 +20,21 @@ public final class m<E> {
     public static final t c = new t("REMOVE_FROZEN");
     public volatile Object _next = null;
     public volatile long _state = 0;
+
+    /* JADX INFO: compiled from: LockFreeTaskQueue.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    /* JADX INFO: compiled from: LockFreeTaskQueue.kt */
+    public final class b {
+        public final int a;
+
+        public b(int i) {
+            this.a = i;
+        }
+    }
 
     public m(int i, boolean z2) {
         this.g = i;
@@ -57,7 +73,7 @@ public final class m<E> {
                 while ((mVarD._state & 1152921504606846976L) != 0) {
                     mVarD = mVarD.d();
                     Object obj = mVarD.f.get(mVarD.e & i2);
-                    if ((obj instanceof m$b) && ((m$b) obj).a == i2) {
+                    if ((obj instanceof b) && ((b) obj).a == i2) {
                         mVarD.f.set(mVarD.e & i2, e);
                     } else {
                         mVarD = null;
@@ -117,11 +133,11 @@ public final class m<E> {
                 int i3 = this.e;
                 int i4 = i & i3;
                 if (i4 != (i3 & i2)) {
-                    Object m_b = this.f.get(i4);
-                    if (m_b == null) {
-                        m_b = new m$b(i);
+                    Object bVar = this.f.get(i4);
+                    if (bVar == null) {
+                        bVar = new b(i);
                     }
-                    mVar2.f.set(mVar2.e & i, m_b);
+                    mVar2.f.set(mVar2.e & i, bVar);
                     i++;
                 }
             }
@@ -149,7 +165,7 @@ public final class m<E> {
                     return null;
                 }
             } else {
-                if (obj instanceof m$b) {
+                if (obj instanceof b) {
                     return null;
                 }
                 long j2 = ((long) ((i + 1) & 1073741823)) << 0;

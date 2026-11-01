@@ -8,7 +8,7 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.StringRes;
 import androidx.exifinterface.media.ExifInterface;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetUserProfileAdapterItemEmptyBinding;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapter;
@@ -25,11 +25,11 @@ public final class WidgetUserProfileEmptyListItem<T extends MGRecyclerAdapter<D>
         super(i, t);
         m.checkNotNullParameter(t, "adapter");
         View view = this.itemView;
-        int i4 = R$id.user_profile_adapter_item_empty;
-        ImageView imageView = (ImageView) view.findViewById(R$id.user_profile_adapter_item_empty);
+        int i4 = R.id.user_profile_adapter_item_empty;
+        ImageView imageView = (ImageView) view.findViewById(R.id.user_profile_adapter_item_empty);
         if (imageView != null) {
-            i4 = R$id.user_profile_adapter_item_empty_text;
-            TextView textView = (TextView) view.findViewById(R$id.user_profile_adapter_item_empty_text);
+            i4 = R.id.user_profile_adapter_item_empty_text;
+            TextView textView = (TextView) view.findViewById(R.id.user_profile_adapter_item_empty_text);
             if (textView != null) {
                 WidgetUserProfileAdapterItemEmptyBinding widgetUserProfileAdapterItemEmptyBinding = new WidgetUserProfileAdapterItemEmptyBinding((LinearLayout) view, imageView, textView);
                 m.checkNotNullExpressionValue(widgetUserProfileAdapterItemEmptyBinding, "WidgetUserProfileAdapter…ptyBinding.bind(itemView)");

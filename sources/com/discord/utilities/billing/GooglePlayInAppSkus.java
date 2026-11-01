@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 
 /* JADX INFO: compiled from: GooglePlayInAppSku.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -46,10 +45,10 @@ public final class GooglePlayInAppSkus {
 
     public final void populateSkuDetails(Map<String, ? extends SkuDetails> skuDetails) {
         m.checkNotNullParameter(skuDetails, "skuDetails");
-        for (Map$Entry<String, ? extends SkuDetails> map$Entry : skuDetails.entrySet()) {
-            GooglePlayInAppSku googlePlayInAppSku = INSTANCE.getSkusById().get(map$Entry.getKey());
+        for (Map.Entry<String, ? extends SkuDetails> entry : skuDetails.entrySet()) {
+            GooglePlayInAppSku googlePlayInAppSku = INSTANCE.getSkusById().get(entry.getKey());
             if (googlePlayInAppSku != null) {
-                googlePlayInAppSku.setSkuDetails(map$Entry.getValue());
+                googlePlayInAppSku.setSkuDetails(entry.getValue());
             }
         }
     }

@@ -451,7 +451,7 @@ public class ClassWriter extends ClassVisitor {
     }
 
     private Attribute[] getAttributePrototypes() {
-        Attribute$Set attributePrototypes = new Attribute$Set();
+        Attribute.Set attributePrototypes = new Attribute.Set();
         attributePrototypes.addAttributes(this.firstAttribute);
         FieldWriter fieldWriter = this.firstField;
         while (true) {

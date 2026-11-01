@@ -20,16 +20,16 @@ public final class q {
     public ExecutorService a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final ArrayDeque<f0.e0.g.e$a> f3677b = new ArrayDeque<>();
-    public final ArrayDeque<f0.e0.g.e$a> c = new ArrayDeque<>();
+    public final ArrayDeque<f0.e0.g.e.a> f3677b = new ArrayDeque<>();
+    public final ArrayDeque<f0.e0.g.e.a> c = new ArrayDeque<>();
     public final ArrayDeque<f0.e0.g.e> d = new ArrayDeque<>();
 
     public final synchronized void a() {
-        Iterator<f0.e0.g.e$a> it = this.f3677b.iterator();
+        Iterator<f0.e0.g.e.a> it = this.f3677b.iterator();
         while (it.hasNext()) {
             it.next().l.cancel();
         }
-        Iterator<f0.e0.g.e$a> it2 = this.c.iterator();
+        Iterator<f0.e0.g.e.a> it2 = this.c.iterator();
         while (it2.hasNext()) {
             it2.next().l.cancel();
         }
@@ -48,10 +48,10 @@ public final class q {
         d();
     }
 
-    public final void c(f0.e0.g.e$a e_a) {
-        d0.z.d.m.checkParameterIsNotNull(e_a, NotificationCompat.CATEGORY_CALL);
-        e_a.j.decrementAndGet();
-        b(this.c, e_a);
+    public final void c(f0.e0.g.e.a aVar) {
+        d0.z.d.m.checkParameterIsNotNull(aVar, NotificationCompat.CATEGORY_CALL);
+        aVar.j.decrementAndGet();
+        b(this.c, aVar);
     }
 
     /* JADX WARN: Code duplicated, block: B:25:0x0067  */
@@ -63,15 +63,15 @@ public final class q {
         int size;
         int size2;
         int i;
-        f0.e0.g.e$a e_a;
+        f0.e0.g.e.a aVar;
         ExecutorService executorService;
         byte[] bArr = f0.e0.c.a;
         ArrayList arrayList = new ArrayList();
         synchronized (this) {
-            Iterator<f0.e0.g.e$a> it = this.f3677b.iterator();
+            Iterator<f0.e0.g.e.a> it = this.f3677b.iterator();
             d0.z.d.m.checkExpressionValueIsNotNull(it, "readyAsyncCalls.iterator()");
             while (it.hasNext()) {
-                f0.e0.g.e$a next = it.next();
+                f0.e0.g.e.a next = it.next();
                 if (this.c.size() >= 64) {
                     break;
                 }
@@ -88,7 +88,7 @@ public final class q {
             }
             size2 = arrayList.size();
             for (i = 0; i < size2; i++) {
-                e_a = (f0.e0.g.e$a) arrayList.get(i);
+                aVar = (f0.e0.g.e.a) arrayList.get(i);
                 synchronized (this) {
                     if (this.a == null) {
                         TimeUnit timeUnit = TimeUnit.SECONDS;
@@ -102,22 +102,22 @@ public final class q {
                         d0.z.d.m.throwNpe();
                     }
                 }
-                Objects.requireNonNull(e_a);
+                Objects.requireNonNull(aVar);
                 d0.z.d.m.checkParameterIsNotNull(executorService, "executorService");
-                q qVar = e_a.l.f3618y.m;
+                q qVar = aVar.l.f3618y.m;
                 byte[] bArr2 = f0.e0.c.a;
                 try {
                     try {
-                        executorService.execute(e_a);
+                        executorService.execute(aVar);
                     } catch (RejectedExecutionException e) {
                         InterruptedIOException interruptedIOException = new InterruptedIOException("executor rejected");
                         interruptedIOException.initCause(e);
-                        e_a.l.l(interruptedIOException);
-                        e_a.k.b(e_a.l, interruptedIOException);
-                        e_a.l.f3618y.m.c(e_a);
+                        aVar.l.l(interruptedIOException);
+                        aVar.k.b(aVar.l, interruptedIOException);
+                        aVar.l.f3618y.m.c(aVar);
                     }
                 } catch (Throwable th) {
-                    e_a.l.f3618y.m.c(e_a);
+                    aVar.l.f3618y.m.c(aVar);
                     throw th;
                 }
             }
@@ -126,7 +126,7 @@ public final class q {
         boolean z2 = size > 0;
         size2 = arrayList.size();
         while (i < size2) {
-            e_a = (f0.e0.g.e$a) arrayList.get(i);
+            aVar = (f0.e0.g.e.a) arrayList.get(i);
             synchronized (this) {
                 if (this.a == null) {
                     TimeUnit timeUnit2 = TimeUnit.SECONDS;
@@ -139,11 +139,11 @@ public final class q {
                 if (executorService == null) {
                     d0.z.d.m.throwNpe();
                 }
-                Objects.requireNonNull(e_a);
+                Objects.requireNonNull(aVar);
                 d0.z.d.m.checkParameterIsNotNull(executorService, "executorService");
-                q qVar2 = e_a.l.f3618y.m;
+                q qVar2 = aVar.l.f3618y.m;
                 byte[] bArr3 = f0.e0.c.a;
-                executorService.execute(e_a);
+                executorService.execute(aVar);
             }
         }
         return z2;

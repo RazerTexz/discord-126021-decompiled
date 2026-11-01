@@ -1,7 +1,7 @@
 package com.discord.utilities.color;
 
 import android.content.res.ColorStateList;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
@@ -30,7 +30,7 @@ public final class ColorCompatKt {
         m.checkNotNullExpressionValue(compoundDrawables, "compoundDrawables");
         Iterator it = k.filterNotNull(compoundDrawables).iterator();
         while (it.hasNext()) {
-            ((Drawable) it.next()).setColorFilter(new PorterDuffColorFilter(i, PorterDuff$Mode.SRC_IN));
+            ((Drawable) it.next()).setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
         }
     }
 

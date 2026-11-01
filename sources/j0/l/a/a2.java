@@ -5,10 +5,10 @@ import rx.Producer;
 /* JADX INFO: compiled from: OperatorSwitch.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class a2 implements Producer {
-    public final /* synthetic */ y1$c j;
+    public final /* synthetic */ y1.c j;
 
-    public a2(y1$c y1_c) {
-        this.j = y1_c;
+    public a2(y1.c cVar) {
+        this.j = cVar;
     }
 
     @Override // rx.Producer
@@ -20,14 +20,14 @@ public class a2 implements Producer {
             }
             return;
         }
-        y1$c y1_c = this.j;
-        synchronized (y1_c) {
-            producer = y1_c.f3783s;
-            y1_c.r = b.i.a.f.e.o.f.f(y1_c.r, j);
+        y1.c cVar = this.j;
+        synchronized (cVar) {
+            producer = cVar.f3783s;
+            cVar.r = b.i.a.f.e.o.f.f(cVar.r, j);
         }
         if (producer != null) {
             producer.j(j);
         }
-        y1_c.b();
+        cVar.b();
     }
 }

@@ -2,7 +2,7 @@ package b.i.c.m.d.k;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import b.i.c.m.d.q.b$d;
+import b.i.c.m.d.q.b.d;
 import com.google.android.gms.tasks.Task;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -37,8 +37,8 @@ public class f0 implements b.i.a.f.n.f<b.i.c.m.d.s.h.b, Void> {
                 x.c(bVar2.e, cVar.c());
             }
         }
-        x.b(this.d.k.c);
-        b.i.c.m.d.q.b bVarA = ((h0) this.d.k.c.r).a(bVar2);
+        x.b(x.this);
+        b.i.c.m.d.q.b bVarA = ((h0) x.this.r).a(bVar2);
         List list = this.a;
         boolean z2 = this.f1682b;
         float f = this.d.k.f1704b;
@@ -46,13 +46,13 @@ public class f0 implements b.i.a.f.n.f<b.i.c.m.d.s.h.b, Void> {
             if (bVarA.h != null) {
                 b.i.c.m.d.b.a.b("Report upload has already been started.");
             } else {
-                Thread thread = new Thread(new b$d(bVarA, list, z2, f), "Crashlytics Report Uploader");
+                Thread thread = new Thread(bVarA.new d(list, z2, f), "Crashlytics Report Uploader");
                 bVarA.h = thread;
                 thread.start();
             }
         }
-        this.d.k.c.A.b(this.c, b.c.a.y.b.m(bVar2));
-        this.d.k.c.E.b(null);
+        x.this.A.b(this.c, b.c.a.y.b.m(bVar2));
+        x.this.E.b(null);
         return b.i.a.f.e.o.f.Z(null);
     }
 }

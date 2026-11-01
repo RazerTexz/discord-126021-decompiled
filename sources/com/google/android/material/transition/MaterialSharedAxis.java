@@ -5,10 +5,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
 import androidx.core.view.GravityCompat;
 import androidx.transition.TransitionValues;
 import b.d.b.a.a;
 import b.i.a.g.l.h;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class MaterialSharedAxis extends h<VisibilityAnimatorProvider> {
@@ -17,6 +20,11 @@ public final class MaterialSharedAxis extends h<VisibilityAnimatorProvider> {
     public static final int Z = 2;
     private final int axis;
     private final boolean forward;
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface Axis {
+    }
 
     public MaterialSharedAxis(int i, boolean z2) {
         super(createPrimaryAnimatorProvider(i, z2), createSecondaryAnimatorProvider());

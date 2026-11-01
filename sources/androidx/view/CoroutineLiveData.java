@@ -5,9 +5,11 @@ import d0.l;
 import d0.w.f;
 import d0.w.h.c;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlinx.coroutines.CoroutineDispatcher;
@@ -22,6 +24,25 @@ import s.a.u1;
 public final class CoroutineLiveData<T> extends MediatorLiveData<T> {
     private BlockRunner<T> blockRunner;
     private EmittedSource emittedSource;
+
+    /* JADX INFO: renamed from: androidx.lifecycle.CoroutineLiveData$1, reason: invalid class name */
+    /* JADX INFO: compiled from: CoroutineLiveData.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            CoroutineLiveData.access$setBlockRunner$p(CoroutineLiveData.this, null);
+        }
+    }
 
     public /* synthetic */ CoroutineLiveData(CoroutineContext coroutineContext, long j, Function2 function2, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this((i & 1) != 0 ? f.j : coroutineContext, (i & 2) != 0 ? 5000L : j, function2);
@@ -157,8 +178,8 @@ public final class CoroutineLiveData<T> extends MediatorLiveData<T> {
     public CoroutineLiveData(CoroutineContext coroutineContext, long j, Function2<? super LiveDataScope<T>, ? super Continuation<? super Unit>, ? extends Object> function2) {
         m.checkNotNullParameter(coroutineContext, "context");
         m.checkNotNullParameter(function2, "block");
-        u1 u1Var = new u1((Job) coroutineContext.get(Job.h));
+        u1 u1Var = new u1((Job) coroutineContext.get(Job.INSTANCE));
         CoroutineDispatcher coroutineDispatcher = k0.a;
-        this.blockRunner = new BlockRunner<>(this, function2, j, b.i.a.f.e.o.f.c(n.f3830b.H().plus(coroutineContext).plus(u1Var)), new CoroutineLiveData$1(this));
+        this.blockRunner = new BlockRunner<>(this, function2, j, b.i.a.f.e.o.f.c(n.f3830b.H().plus(coroutineContext).plus(u1Var)), new AnonymousClass1());
     }
 }

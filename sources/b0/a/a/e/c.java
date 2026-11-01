@@ -1,9 +1,7 @@
 package b0.a.a.e;
 
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$CompressFormat;
 import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory$Options;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import b0.a.a.d;
@@ -24,14 +22,14 @@ public final class c implements b {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final int f1992b;
     public final int c;
-    public final Bitmap$CompressFormat d;
+    public final Bitmap.CompressFormat d;
     public final int e;
 
-    public c(int i, int i2, Bitmap$CompressFormat bitmap$CompressFormat, int i3) {
-        m.checkParameterIsNotNull(bitmap$CompressFormat, "format");
+    public c(int i, int i2, Bitmap.CompressFormat compressFormat, int i3) {
+        m.checkParameterIsNotNull(compressFormat, "format");
         this.f1992b = i;
         this.c = i2;
-        this.d = bitmap$CompressFormat;
+        this.d = compressFormat;
         this.e = i3;
     }
 
@@ -39,18 +37,18 @@ public final class c implements b {
     @Override // b0.a.a.e.b
     public File a(File file) throws Throwable {
         int i;
-        Bitmap$CompressFormat bitmap$CompressFormat;
+        Bitmap.CompressFormat compressFormat;
         File file2;
         m.checkParameterIsNotNull(file, "imageFile");
         int i2 = this.f1992b;
         int i3 = this.c;
         String str = d.a;
         m.checkParameterIsNotNull(file, "imageFile");
-        BitmapFactory$Options bitmapFactory$Options = new BitmapFactory$Options();
-        bitmapFactory$Options.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(file.getAbsolutePath(), bitmapFactory$Options);
-        m.checkParameterIsNotNull(bitmapFactory$Options, "options");
-        Pair pair = o.to(Integer.valueOf(bitmapFactory$Options.outHeight), Integer.valueOf(bitmapFactory$Options.outWidth));
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(file.getAbsolutePath(), options);
+        m.checkParameterIsNotNull(options, "options");
+        Pair pair = o.to(Integer.valueOf(options.outHeight), Integer.valueOf(options.outWidth));
         int iIntValue = ((Number) pair.component1()).intValue();
         int iIntValue2 = ((Number) pair.component2()).intValue();
         if (iIntValue > i3 || iIntValue2 > i2) {
@@ -63,9 +61,9 @@ public final class c implements b {
         } else {
             i = 1;
         }
-        bitmapFactory$Options.inSampleSize = i;
-        bitmapFactory$Options.inJustDecodeBounds = false;
-        Bitmap bitmapDecodeFile = BitmapFactory.decodeFile(file.getAbsolutePath(), bitmapFactory$Options);
+        options.inSampleSize = i;
+        options.inJustDecodeBounds = false;
+        Bitmap bitmapDecodeFile = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
         m.checkExpressionValueIsNotNull(bitmapDecodeFile, "BitmapFactory.decodeFile…eFile.absolutePath, this)");
         m.checkExpressionValueIsNotNull(bitmapDecodeFile, "BitmapFactory.Options().…absolutePath, this)\n    }");
         m.checkParameterIsNotNull(file, "imageFile");
@@ -81,11 +79,11 @@ public final class c implements b {
         }
         Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmapDecodeFile, 0, 0, bitmapDecodeFile.getWidth(), bitmapDecodeFile.getHeight(), matrix, true);
         m.checkExpressionValueIsNotNull(bitmapCreateBitmap, "Bitmap.createBitmap(bitm…map.height, matrix, true)");
-        Bitmap$CompressFormat bitmap$CompressFormat2 = this.d;
+        Bitmap.CompressFormat compressFormat2 = this.d;
         int i6 = this.e;
         m.checkParameterIsNotNull(file, "imageFile");
         m.checkParameterIsNotNull(bitmapCreateBitmap, "bitmap");
-        m.checkParameterIsNotNull(bitmap$CompressFormat2, "format");
+        m.checkParameterIsNotNull(compressFormat2, "format");
         m.checkParameterIsNotNull(file, "$this$compressFormat");
         String extension = h.getExtension(file);
         if (extension == null) {
@@ -97,17 +95,17 @@ public final class c implements b {
         String str2 = "webp";
         if (iHashCode != 111145) {
             if (iHashCode == 3645340 && lowerCase.equals("webp")) {
-                bitmap$CompressFormat = Bitmap$CompressFormat.WEBP;
+                compressFormat = Bitmap.CompressFormat.WEBP;
             } else {
-                bitmap$CompressFormat = Bitmap$CompressFormat.JPEG;
+                compressFormat = Bitmap.CompressFormat.JPEG;
             }
         } else if (lowerCase.equals("png")) {
-            bitmap$CompressFormat = Bitmap$CompressFormat.PNG;
+            compressFormat = Bitmap.CompressFormat.PNG;
         } else {
-            bitmap$CompressFormat = Bitmap$CompressFormat.JPEG;
+            compressFormat = Bitmap.CompressFormat.JPEG;
         }
         FileOutputStream fileOutputStream = null;
-        if (bitmap$CompressFormat2 == bitmap$CompressFormat) {
+        if (compressFormat2 == compressFormat) {
             file2 = file;
         } else {
             StringBuilder sb = new StringBuilder();
@@ -115,8 +113,8 @@ public final class c implements b {
             m.checkExpressionValueIsNotNull(absolutePath, "imageFile.absolutePath");
             sb.append(w.substringBeforeLast$default(absolutePath, ".", (String) null, 2, (Object) null));
             sb.append('.');
-            m.checkParameterIsNotNull(bitmap$CompressFormat2, "$this$extension");
-            int i7 = b0.a.a.c.a[bitmap$CompressFormat2.ordinal()];
+            m.checkParameterIsNotNull(compressFormat2, "$this$extension");
+            int i7 = b0.a.a.c.a[compressFormat2.ordinal()];
             if (i7 == 1) {
                 str2 = "png";
             } else if (i7 != 2) {
@@ -128,7 +126,7 @@ public final class c implements b {
         file.delete();
         m.checkParameterIsNotNull(bitmapCreateBitmap, "bitmap");
         m.checkParameterIsNotNull(file2, "destination");
-        m.checkParameterIsNotNull(bitmap$CompressFormat2, "format");
+        m.checkParameterIsNotNull(compressFormat2, "format");
         File parentFile = file2.getParentFile();
         if (parentFile != null) {
             parentFile.mkdirs();
@@ -136,7 +134,7 @@ public final class c implements b {
         try {
             FileOutputStream fileOutputStream2 = new FileOutputStream(file2.getAbsolutePath());
             try {
-                bitmapCreateBitmap.compress(bitmap$CompressFormat2, i6, fileOutputStream2);
+                bitmapCreateBitmap.compress(compressFormat2, i6, fileOutputStream2);
                 fileOutputStream2.flush();
                 fileOutputStream2.close();
                 this.a = true;

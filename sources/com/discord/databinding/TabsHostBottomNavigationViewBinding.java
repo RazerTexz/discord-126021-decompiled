@@ -11,8 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.views.user.UserAvatarPresenceView;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -80,54 +79,54 @@ public final class TabsHostBottomNavigationViewBinding implements ViewBinding {
 
     @NonNull
     public static TabsHostBottomNavigationViewBinding a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
-        View viewInflate = layoutInflater.inflate(R$layout.tabs_host_bottom_navigation_view, viewGroup, false);
+        View viewInflate = layoutInflater.inflate(R.layout.tabs_host_bottom_navigation_view, viewGroup, false);
         if (z2) {
             viewGroup.addView(viewInflate);
         }
-        int i = R$id.tabs_host_bottom_nav_friends_icon;
-        ImageView imageView = (ImageView) viewInflate.findViewById(R$id.tabs_host_bottom_nav_friends_icon);
+        int i = R.id.tabs_host_bottom_nav_friends_icon;
+        ImageView imageView = (ImageView) viewInflate.findViewById(R.id.tabs_host_bottom_nav_friends_icon);
         if (imageView != null) {
-            i = R$id.tabs_host_bottom_nav_friends_item;
-            ConstraintLayout constraintLayout = (ConstraintLayout) viewInflate.findViewById(R$id.tabs_host_bottom_nav_friends_item);
+            i = R.id.tabs_host_bottom_nav_friends_item;
+            ConstraintLayout constraintLayout = (ConstraintLayout) viewInflate.findViewById(R.id.tabs_host_bottom_nav_friends_item);
             if (constraintLayout != null) {
-                i = R$id.tabs_host_bottom_nav_friends_notifications_badge;
-                TextView textView = (TextView) viewInflate.findViewById(R$id.tabs_host_bottom_nav_friends_notifications_badge);
+                i = R.id.tabs_host_bottom_nav_friends_notifications_badge;
+                TextView textView = (TextView) viewInflate.findViewById(R.id.tabs_host_bottom_nav_friends_notifications_badge);
                 if (textView != null) {
-                    i = R$id.tabs_host_bottom_nav_home_icon;
-                    ImageView imageView2 = (ImageView) viewInflate.findViewById(R$id.tabs_host_bottom_nav_home_icon);
+                    i = R.id.tabs_host_bottom_nav_home_icon;
+                    ImageView imageView2 = (ImageView) viewInflate.findViewById(R.id.tabs_host_bottom_nav_home_icon);
                     if (imageView2 != null) {
-                        i = R$id.tabs_host_bottom_nav_home_item;
-                        ConstraintLayout constraintLayout2 = (ConstraintLayout) viewInflate.findViewById(R$id.tabs_host_bottom_nav_home_item);
+                        i = R.id.tabs_host_bottom_nav_home_item;
+                        ConstraintLayout constraintLayout2 = (ConstraintLayout) viewInflate.findViewById(R.id.tabs_host_bottom_nav_home_item);
                         if (constraintLayout2 != null) {
-                            i = R$id.tabs_host_bottom_nav_home_notifications_badge;
-                            TextView textView2 = (TextView) viewInflate.findViewById(R$id.tabs_host_bottom_nav_home_notifications_badge);
+                            i = R.id.tabs_host_bottom_nav_home_notifications_badge;
+                            TextView textView2 = (TextView) viewInflate.findViewById(R.id.tabs_host_bottom_nav_home_notifications_badge);
                             if (textView2 != null) {
-                                i = R$id.tabs_host_bottom_nav_mentions_icon;
-                                ImageView imageView3 = (ImageView) viewInflate.findViewById(R$id.tabs_host_bottom_nav_mentions_icon);
+                                i = R.id.tabs_host_bottom_nav_mentions_icon;
+                                ImageView imageView3 = (ImageView) viewInflate.findViewById(R.id.tabs_host_bottom_nav_mentions_icon);
                                 if (imageView3 != null) {
-                                    i = R$id.tabs_host_bottom_nav_mentions_item;
-                                    FrameLayout frameLayout = (FrameLayout) viewInflate.findViewById(R$id.tabs_host_bottom_nav_mentions_item);
+                                    i = R.id.tabs_host_bottom_nav_mentions_item;
+                                    FrameLayout frameLayout = (FrameLayout) viewInflate.findViewById(R.id.tabs_host_bottom_nav_mentions_item);
                                     if (frameLayout != null) {
-                                        i = R$id.tabs_host_bottom_nav_search_icon;
-                                        ImageView imageView4 = (ImageView) viewInflate.findViewById(R$id.tabs_host_bottom_nav_search_icon);
+                                        i = R.id.tabs_host_bottom_nav_search_icon;
+                                        ImageView imageView4 = (ImageView) viewInflate.findViewById(R.id.tabs_host_bottom_nav_search_icon);
                                         if (imageView4 != null) {
-                                            i = R$id.tabs_host_bottom_nav_search_item;
-                                            FrameLayout frameLayout2 = (FrameLayout) viewInflate.findViewById(R$id.tabs_host_bottom_nav_search_item);
+                                            i = R.id.tabs_host_bottom_nav_search_item;
+                                            FrameLayout frameLayout2 = (FrameLayout) viewInflate.findViewById(R.id.tabs_host_bottom_nav_search_item);
                                             if (frameLayout2 != null) {
-                                                i = R$id.tabs_host_bottom_nav_stage_discovery_icon;
-                                                ImageView imageView5 = (ImageView) viewInflate.findViewById(R$id.tabs_host_bottom_nav_stage_discovery_icon);
+                                                i = R.id.tabs_host_bottom_nav_stage_discovery_icon;
+                                                ImageView imageView5 = (ImageView) viewInflate.findViewById(R.id.tabs_host_bottom_nav_stage_discovery_icon);
                                                 if (imageView5 != null) {
-                                                    i = R$id.tabs_host_bottom_nav_stage_discovery_item;
-                                                    FrameLayout frameLayout3 = (FrameLayout) viewInflate.findViewById(R$id.tabs_host_bottom_nav_stage_discovery_item);
+                                                    i = R.id.tabs_host_bottom_nav_stage_discovery_item;
+                                                    FrameLayout frameLayout3 = (FrameLayout) viewInflate.findViewById(R.id.tabs_host_bottom_nav_stage_discovery_item);
                                                     if (frameLayout3 != null) {
-                                                        i = R$id.tabs_host_bottom_nav_tabs_container;
-                                                        LinearLayout linearLayout = (LinearLayout) viewInflate.findViewById(R$id.tabs_host_bottom_nav_tabs_container);
+                                                        i = R.id.tabs_host_bottom_nav_tabs_container;
+                                                        LinearLayout linearLayout = (LinearLayout) viewInflate.findViewById(R.id.tabs_host_bottom_nav_tabs_container);
                                                         if (linearLayout != null) {
-                                                            i = R$id.tabs_host_bottom_nav_user_avatar_presence_view;
-                                                            UserAvatarPresenceView userAvatarPresenceView = (UserAvatarPresenceView) viewInflate.findViewById(R$id.tabs_host_bottom_nav_user_avatar_presence_view);
+                                                            i = R.id.tabs_host_bottom_nav_user_avatar_presence_view;
+                                                            UserAvatarPresenceView userAvatarPresenceView = (UserAvatarPresenceView) viewInflate.findViewById(R.id.tabs_host_bottom_nav_user_avatar_presence_view);
                                                             if (userAvatarPresenceView != null) {
-                                                                i = R$id.tabs_host_bottom_nav_user_settings_item;
-                                                                FrameLayout frameLayout4 = (FrameLayout) viewInflate.findViewById(R$id.tabs_host_bottom_nav_user_settings_item);
+                                                                i = R.id.tabs_host_bottom_nav_user_settings_item;
+                                                                FrameLayout frameLayout4 = (FrameLayout) viewInflate.findViewById(R.id.tabs_host_bottom_nav_user_settings_item);
                                                                 if (frameLayout4 != null) {
                                                                     return new TabsHostBottomNavigationViewBinding((LinearLayout) viewInflate, imageView, constraintLayout, textView, imageView2, constraintLayout2, textView2, imageView3, frameLayout, imageView4, frameLayout2, imageView5, frameLayout3, linearLayout, userAvatarPresenceView, frameLayout4);
                                                                 }

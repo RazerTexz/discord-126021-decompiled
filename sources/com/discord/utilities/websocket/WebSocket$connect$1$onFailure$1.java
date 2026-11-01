@@ -10,12 +10,12 @@ import okhttp3.Response;
 public final class WebSocket$connect$1$onFailure$1 extends o implements Function0<Unit> {
     public final /* synthetic */ Response $response;
     public final /* synthetic */ Throwable $t;
-    public final /* synthetic */ WebSocket$connect$1 this$0;
+    public final /* synthetic */ WebSocket.AnonymousClass1 this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WebSocket$connect$1$onFailure$1(WebSocket$connect$1 webSocket$connect$1, Throwable th, Response response) {
+    public WebSocket$connect$1$onFailure$1(WebSocket.AnonymousClass1 anonymousClass1, Throwable th, Response response) {
         super(0);
-        this.this$0 = webSocket$connect$1;
+        this.this$0 = anonymousClass1;
         this.$t = th;
         this.$response = response;
     }
@@ -28,6 +28,6 @@ public final class WebSocket$connect$1$onFailure$1 extends o implements Function
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2() {
-        WebSocket.access$handleOnFailure(this.this$0.this$0, this.$t, this.$response, true);
+        WebSocket.access$handleOnFailure(WebSocket.this, this.$t, this.$response, true);
     }
 }

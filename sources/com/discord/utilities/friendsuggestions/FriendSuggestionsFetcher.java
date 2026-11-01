@@ -4,8 +4,11 @@ import android.content.Context;
 import com.discord.api.friendsuggestions.FriendSuggestion;
 import com.discord.restapi.RestAPIInterface;
 import com.discord.stores.Dispatcher;
+import com.discord.utilities.analytics.Traits;
+import com.discord.utilities.error.Error;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.List;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -20,6 +23,110 @@ public final class FriendSuggestionsFetcher {
     private final Function0<Unit> onFetchFailure;
     private final Function1<List<FriendSuggestion>, Unit> onFetchSuccess;
     private final RestAPIInterface restApi;
+
+    /* JADX INFO: renamed from: com.discord.utilities.friendsuggestions.FriendSuggestionsFetcher$maybeFetch$1, reason: invalid class name */
+    /* JADX INFO: compiled from: FriendSuggestionsFetcher.kt */
+    public final class AnonymousClass1 extends o implements Function1<Subscription, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            FriendSuggestionsFetcher.access$setFetchSubscription$p(FriendSuggestionsFetcher.this, subscription);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.friendsuggestions.FriendSuggestionsFetcher$maybeFetch$2, reason: invalid class name */
+    /* JADX INFO: compiled from: FriendSuggestionsFetcher.kt */
+    public final class AnonymousClass2 extends o implements Function1<List<? extends FriendSuggestion>, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.utilities.friendsuggestions.FriendSuggestionsFetcher$maybeFetch$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: FriendSuggestionsFetcher.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public final /* synthetic */ List $response;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public AnonymousClass1(List list) {
+                super(0);
+                this.$response = list;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                FriendSuggestionsFetcher.access$getOnFetchSuccess$p(FriendSuggestionsFetcher.this).invoke(this.$response);
+            }
+        }
+
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends FriendSuggestion> list) {
+            invoke2((List<FriendSuggestion>) list);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<FriendSuggestion> list) {
+            m.checkNotNullParameter(list, "response");
+            FriendSuggestionsFetcher.access$getDispatcher$p(FriendSuggestionsFetcher.this).schedule(new AnonymousClass1(list));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.friendsuggestions.FriendSuggestionsFetcher$maybeFetch$3, reason: invalid class name */
+    /* JADX INFO: compiled from: FriendSuggestionsFetcher.kt */
+    public final class AnonymousClass3 extends o implements Function1<Error, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.utilities.friendsuggestions.FriendSuggestionsFetcher$maybeFetch$3$1, reason: invalid class name */
+        /* JADX INFO: compiled from: FriendSuggestionsFetcher.kt */
+        public final class AnonymousClass1 extends o implements Function0<Unit> {
+            public AnonymousClass1() {
+                super(0);
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                FriendSuggestionsFetcher.access$getOnFetchFailure$p(FriendSuggestionsFetcher.this).invoke();
+            }
+        }
+
+        public AnonymousClass3() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            m.checkNotNullParameter(error, "it");
+            FriendSuggestionsFetcher.access$getDispatcher$p(FriendSuggestionsFetcher.this).schedule(new AnonymousClass1());
+        }
+    }
 
     /* JADX WARN: Multi-variable type inference failed */
     public FriendSuggestionsFetcher(Dispatcher dispatcher, RestAPIInterface restAPIInterface, Function1<? super List<FriendSuggestion>, Unit> function1, Function0<Unit> function0) {
@@ -56,7 +163,7 @@ public final class FriendSuggestionsFetcher {
     public final void maybeFetch() {
         Subscription subscription = this.fetchSubscription;
         if (subscription == null || subscription.isUnsubscribed()) {
-            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.getFriendSuggestions(), false, 1, null), FriendSuggestionsFetcher.class, (Context) null, new FriendSuggestionsFetcher$maybeFetch$1(this), new FriendSuggestionsFetcher$maybeFetch$3(this), (Function0) null, (Function0) null, new FriendSuggestionsFetcher$maybeFetch$2(this), 50, (Object) null);
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.getFriendSuggestions(), false, 1, null), FriendSuggestionsFetcher.class, (Context) null, new AnonymousClass1(), new AnonymousClass3(), (Function0) null, (Function0) null, new AnonymousClass2(), 50, (Object) null);
         }
     }
 }

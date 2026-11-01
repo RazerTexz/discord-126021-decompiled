@@ -11,14 +11,19 @@ import d0.z.d.m;
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"ViewConstructor"})
 public final class d extends AppCompatEditText {
-    public final d$a j;
+    public final a j;
+
+    /* JADX INFO: compiled from: ChipsEditText.kt */
+    public interface a {
+        InputConnection a(InputConnection inputConnection);
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public d(Context context, d$a d_a) {
+    public d(Context context, a aVar) {
         super(context);
         m.checkNotNullParameter(context, "context");
-        m.checkNotNullParameter(d_a, "mInputConnectionWrapperInterface");
-        this.j = d_a;
+        m.checkNotNullParameter(aVar, "mInputConnectionWrapperInterface");
+        this.j = aVar;
     }
 
     @Override // androidx.appcompat.widget.AppCompatEditText, android.widget.TextView, android.view.View

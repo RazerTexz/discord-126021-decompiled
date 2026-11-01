@@ -1,12 +1,12 @@
 package b.i.a.f.k;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.safetynet.zzf;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class e implements Parcelable$Creator<zzf> {
-    @Override // android.os.Parcelable$Creator
+public final class e implements Parcelable.Creator<zzf> {
+    @Override // android.os.Parcelable.Creator
     public final zzf createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         String strR = null;
@@ -22,7 +22,7 @@ public final class e implements Parcelable$Creator<zzf> {
         return new zzf(strR);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zzf[] newArray(int i) {
         return new zzf[i];
     }

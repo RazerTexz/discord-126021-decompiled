@@ -2,7 +2,6 @@ package com.discord.widgets.servers.auditlog;
 
 import androidx.fragment.app.FragmentManager;
 import com.discord.widgets.user.usersheet.WidgetUserSheet;
-import com.discord.widgets.user.usersheet.WidgetUserSheet$Companion;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -26,9 +25,9 @@ public final class WidgetServerSettingsAuditLog$onViewBound$$inlined$apply$lambd
     }
 
     public final void invoke(long j, Long l) {
-        WidgetUserSheet$Companion widgetUserSheet$Companion = WidgetUserSheet.Companion;
+        WidgetUserSheet.Companion companion = WidgetUserSheet.INSTANCE;
         FragmentManager parentFragmentManager = this.this$0.getParentFragmentManager();
         m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        WidgetUserSheet$Companion.show$default(widgetUserSheet$Companion, j, null, parentFragmentManager, l, null, null, null, 114, null);
+        WidgetUserSheet.Companion.show$default(companion, j, null, parentFragmentManager, l, null, null, null, 114, null);
     }
 }

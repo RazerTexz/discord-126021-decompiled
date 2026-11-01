@@ -10,7 +10,16 @@ import java.lang.annotation.Target;
 @Target({ElementType.ANNOTATION_TYPE, ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface u {
-    u$a access() default u$a.AUTO;
+
+    /* JADX INFO: compiled from: JsonProperty.java */
+    public enum a {
+        AUTO,
+        READ_ONLY,
+        WRITE_ONLY,
+        READ_WRITE
+    }
+
+    a access() default a.AUTO;
 
     String defaultValue() default "";
 

@@ -6,14 +6,10 @@ import b.i.a.c.f3.x;
 import b.i.a.c.z2.d;
 import b.i.a.c.z2.g;
 import com.google.android.exoplayer2.metadata.Metadata;
-import com.google.android.exoplayer2.metadata.Metadata$Entry;
 import com.google.android.exoplayer2.metadata.scte35.PrivateCommand;
 import com.google.android.exoplayer2.metadata.scte35.SpliceInsertCommand;
-import com.google.android.exoplayer2.metadata.scte35.SpliceInsertCommand$b;
 import com.google.android.exoplayer2.metadata.scte35.SpliceNullCommand;
 import com.google.android.exoplayer2.metadata.scte35.SpliceScheduleCommand;
-import com.google.android.exoplayer2.metadata.scte35.SpliceScheduleCommand$b;
-import com.google.android.exoplayer2.metadata.scte35.SpliceScheduleCommand$c;
 import com.google.android.exoplayer2.metadata.scte35.TimeSignalCommand;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -72,7 +68,7 @@ public final class a extends g {
         int iG = this.f1326b.g(12);
         int iG2 = this.f1326b.g(8);
         this.a.F(14);
-        Metadata$Entry spliceNullCommand = null;
+        Metadata.Entry spliceNullCommand = null;
         if (iG2 == 0) {
             spliceNullCommand = new SpliceNullCommand();
         } else if (iG2 != 255) {
@@ -111,7 +107,7 @@ public final class a extends g {
                             ArrayList arrayList4 = new ArrayList(iT6);
                             int i5 = 0;
                             while (i5 < iT6) {
-                                arrayList4.add(new SpliceScheduleCommand$b(xVar.t(), xVar.u(), null));
+                                arrayList4.add(new SpliceScheduleCommand.b(xVar.t(), xVar.u(), null));
                                 i5++;
                                 iT6 = iT6;
                                 iT4 = iT4;
@@ -139,7 +135,7 @@ public final class a extends g {
                         iT = xVar.t();
                         iT2 = xVar.t();
                     }
-                    arrayList2.add(new SpliceScheduleCommand$c(jU3, z11, z2, z3, arrayList, j2, z4, j3, iY, iT, iT2));
+                    arrayList2.add(new SpliceScheduleCommand.c(jU3, z11, z2, z3, arrayList, j2, z4, j3, iY, iT, iT2));
                     i4++;
                     j6 = j;
                     iT4 = i;
@@ -175,7 +171,7 @@ public final class a extends g {
                         for (int i6 = 0; i6 < iT8; i6++) {
                             int iT9 = xVar2.t();
                             long jA2 = !z19 ? TimeSignalCommand.a(xVar2, jG) : -9223372036854775807L;
-                            arrayList5.add(new SpliceInsertCommand$b(iT9, jA2, d0Var3.b(jA2), null));
+                            arrayList5.add(new SpliceInsertCommand.b(iT9, jA2, d0Var3.b(jA2), null));
                         }
                         listEmptyList = arrayList5;
                     }
@@ -216,6 +212,6 @@ public final class a extends g {
             xVar4.f984b += i7;
             spliceNullCommand = new PrivateCommand(jU6, bArr, jG);
         }
-        return spliceNullCommand == null ? new Metadata(new Metadata$Entry[0]) : new Metadata(spliceNullCommand);
+        return spliceNullCommand == null ? new Metadata(new Metadata.Entry[0]) : new Metadata(spliceNullCommand);
     }
 }

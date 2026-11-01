@@ -11,8 +11,22 @@ import java.lang.reflect.Type;
 public final class j extends n implements Serializable {
     private static final long serialVersionUID = 1;
     public Class<?>[] _paramClasses;
-    public j$a _serialization;
+    public a _serialization;
     public final transient Method l;
+
+    /* JADX INFO: compiled from: AnnotatedMethod.java */
+    public final class a implements Serializable {
+        private static final long serialVersionUID = 1;
+        public Class<?>[] args;
+        public Class<?> clazz;
+        public String name;
+
+        public a(Method method) {
+            this.clazz = method.getDeclaringClass();
+            this.name = method.getName();
+            this.args = method.getParameterTypes();
+        }
+    }
 
     public j(e0 e0Var, Method method, p pVar, p[] pVarArr) {
         super(e0Var, pVar, pVarArr);
@@ -122,10 +136,10 @@ public final class j extends n implements Serializable {
     }
 
     public Object readResolve() {
-        j$a j_a = this._serialization;
-        Class<?> cls = j_a.clazz;
+        a aVar = this._serialization;
+        Class<?> cls = aVar.clazz;
         try {
-            Method declaredMethod = cls.getDeclaredMethod(j_a.name, j_a.args);
+            Method declaredMethod = cls.getDeclaredMethod(aVar.name, aVar.args);
             if (!declaredMethod.isAccessible()) {
                 b.g.a.c.i0.d.d(declaredMethod, false);
             }
@@ -147,12 +161,12 @@ public final class j extends n implements Serializable {
     }
 
     public Object writeReplace() {
-        return new j(new j$a(this.l));
+        return new j(new a(this.l));
     }
 
-    public j(j$a j_a) {
+    public j(a aVar) {
         super(null, null, null);
         this.l = null;
-        this._serialization = j_a;
+        this._serialization = aVar;
     }
 }

@@ -1,14 +1,25 @@
 package d0.e0.p.d.m0.d.b;
 
 import java.io.Serializable;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: LookupLocation.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class e implements Serializable {
     private final int column;
-    public static final e$a j = new e$a(null);
+    public static final a j = new a(null);
     private final int line;
     public static final e k = new e(-1, -1);
+
+    /* JADX INFO: compiled from: LookupLocation.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final e getNO_POSITION() {
+            return e.access$getNO_POSITION$cp();
+        }
+    }
 
     public e(int i, int i2) {
         this.line = i;

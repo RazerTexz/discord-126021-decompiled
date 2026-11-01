@@ -18,7 +18,20 @@ public final class c {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final Pattern f3424b = Pattern.compile("\\.");
-    public static final Function1<String, e> c = new c$a();
+    public static final Function1<String, e> c = new a();
+
+    /* JADX INFO: compiled from: FqNameUnsafe.java */
+    public final class a implements Function1<String, e> {
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ e invoke(String str) {
+            return invoke2(str);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public e invoke2(String str) {
+            return e.guessByFirstCharacter(str);
+        }
+    }
 
     public c(String str, b bVar) {
         if (str == null) {

@@ -1,12 +1,12 @@
 package b.i.a.c.f3;
 
-import android.os.Handler$Callback;
+import android.os.Handler;
 import android.os.Message;
 import java.util.Iterator;
 
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class b implements Handler$Callback {
+public final /* synthetic */ class b implements Handler.Callback {
     public final /* synthetic */ p j;
 
     public /* synthetic */ b(p pVar) {
@@ -23,18 +23,18 @@ public final /* synthetic */ class b implements Handler$Callback {
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
      */
-    @Override // android.os.Handler$Callback
+    @Override // android.os.Handler.Callback
     public final boolean handleMessage(Message message) {
         p pVar = this.j;
         Iterator it = pVar.d.iterator();
         while (it.hasNext()) {
-            p$c p_c = (p$c) it.next();
-            p$b<T> p_b = pVar.c;
-            if (!p_c.d && p_c.c) {
-                n nVarB = p_c.f974b.b();
-                p_c.f974b = new n$b();
-                p_c.c = false;
-                p_b.a(p_c.a, nVarB);
+            p.c cVar = (p.c) it.next();
+            p.b<T> bVar = pVar.c;
+            if (!cVar.d && cVar.c) {
+                n nVarB = cVar.f974b.b();
+                cVar.f974b = new n.b();
+                cVar.c = false;
+                bVar.a(cVar.a, nVarB);
             }
             if (pVar.f973b.e(0)) {
                 return true;

@@ -1,8 +1,6 @@
 package b.o.a.n;
 
 import android.hardware.camera2.CaptureRequest;
-import android.hardware.camera2.CaptureRequest$Builder;
-import android.hardware.camera2.CaptureRequest$Key;
 import androidx.annotation.NonNull;
 
 /* JADX INFO: compiled from: Camera2Engine.java */
@@ -19,10 +17,10 @@ public class f extends b.o.a.n.o.e {
         this.c = cVar;
         this.e.f1(((d) cVar).f1921i0);
         d dVar = (d) cVar;
-        CaptureRequest$Builder captureRequest$Builder = dVar.f1921i0;
-        CaptureRequest$Key captureRequest$Key = CaptureRequest.CONTROL_AE_LOCK;
+        CaptureRequest.Builder builder = dVar.f1921i0;
+        CaptureRequest.Key key = CaptureRequest.CONTROL_AE_LOCK;
         Boolean bool = Boolean.FALSE;
-        captureRequest$Builder.set(captureRequest$Key, bool);
+        builder.set(key, bool);
         dVar.f1921i0.set(CaptureRequest.CONTROL_AWB_LOCK, bool);
         dVar.k1();
         l(Integer.MAX_VALUE);

@@ -3,7 +3,7 @@ package b.o.a.q;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import androidx.annotation.NonNull;
-import com.otaliastudios.cameraview.CameraView$b;
+import com.otaliastudios.cameraview.CameraView;
 
 /* JADX INFO: compiled from: TapGestureFinder.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -11,9 +11,30 @@ public class g extends c {
     public GestureDetector d;
     public boolean e;
 
-    public g(@NonNull c$a c_a) {
-        super(c_a, 1);
-        GestureDetector gestureDetector = new GestureDetector(((CameraView$b) c_a).g(), new g$a(this));
+    /* JADX INFO: compiled from: TapGestureFinder.java */
+    public class a extends GestureDetector.SimpleOnGestureListener {
+        public a() {
+        }
+
+        @Override // android.view.GestureDetector.SimpleOnGestureListener, android.view.GestureDetector.OnGestureListener
+        public void onLongPress(MotionEvent motionEvent) {
+            g gVar = g.this;
+            gVar.e = true;
+            gVar.f1947b = b.o.a.q.a.l;
+        }
+
+        @Override // android.view.GestureDetector.SimpleOnGestureListener, android.view.GestureDetector.OnGestureListener
+        public boolean onSingleTapUp(MotionEvent motionEvent) {
+            g gVar = g.this;
+            gVar.e = true;
+            gVar.f1947b = b.o.a.q.a.k;
+            return true;
+        }
+    }
+
+    public g(@NonNull c.a aVar) {
+        super(aVar, 1);
+        GestureDetector gestureDetector = new GestureDetector(((CameraView.b) aVar).g(), new a());
         this.d = gestureDetector;
         gestureDetector.setIsLongpressEnabled(true);
     }

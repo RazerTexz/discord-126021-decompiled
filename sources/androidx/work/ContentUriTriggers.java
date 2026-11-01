@@ -3,17 +3,52 @@ package androidx.work;
 import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import java.util.HashSet;
 import java.util.Set;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public final class ContentUriTriggers {
-    private final Set<ContentUriTriggers$Trigger> mTriggers = new HashSet();
+    private final Set<Trigger> mTriggers = new HashSet();
+
+    public final class Trigger {
+        private final boolean mTriggerForDescendants;
+
+        @NonNull
+        private final Uri mUri;
+
+        public Trigger(@NonNull Uri uri, boolean z2) {
+            this.mUri = uri;
+            this.mTriggerForDescendants = z2;
+        }
+
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || Trigger.class != obj.getClass()) {
+                return false;
+            }
+            Trigger trigger = (Trigger) obj;
+            return this.mTriggerForDescendants == trigger.mTriggerForDescendants && this.mUri.equals(trigger.mUri);
+        }
+
+        @NonNull
+        public Uri getUri() {
+            return this.mUri;
+        }
+
+        public int hashCode() {
+            return (this.mUri.hashCode() * 31) + (this.mTriggerForDescendants ? 1 : 0);
+        }
+
+        public boolean shouldTriggerForDescendants() {
+            return this.mTriggerForDescendants;
+        }
+    }
 
     public void add(@NonNull Uri uri, boolean z2) {
-        this.mTriggers.add(new ContentUriTriggers$Trigger(uri, z2));
+        this.mTriggers.add(new Trigger(uri, z2));
     }
 
     public boolean equals(Object obj) {
@@ -27,7 +62,7 @@ public final class ContentUriTriggers {
     }
 
     @NonNull
-    public Set<ContentUriTriggers$Trigger> getTriggers() {
+    public Set<Trigger> getTriggers() {
         return this.mTriggers;
     }
 

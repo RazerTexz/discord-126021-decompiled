@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import androidx.viewpager2.widget.ViewPager2;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetNavigationHelpBinding;
 import com.google.android.material.tabs.TabLayout;
 import d0.z.d.k;
@@ -28,14 +28,14 @@ public final /* synthetic */ class WidgetNavigationHelp$binding$2 extends k impl
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetNavigationHelpBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.navigation_help_close;
-        ImageView imageView = (ImageView) view.findViewById(R$id.navigation_help_close);
+        int i = R.id.navigation_help_close;
+        ImageView imageView = (ImageView) view.findViewById(R.id.navigation_help_close);
         if (imageView != null) {
-            i = R$id.navigation_help_indicators;
-            TabLayout tabLayout = (TabLayout) view.findViewById(R$id.navigation_help_indicators);
+            i = R.id.navigation_help_indicators;
+            TabLayout tabLayout = (TabLayout) view.findViewById(R.id.navigation_help_indicators);
             if (tabLayout != null) {
-                i = R$id.navigation_help_nux_pager;
-                ViewPager2 viewPager2 = (ViewPager2) view.findViewById(R$id.navigation_help_nux_pager);
+                i = R.id.navigation_help_nux_pager;
+                ViewPager2 viewPager2 = (ViewPager2) view.findViewById(R.id.navigation_help_nux_pager);
                 if (viewPager2 != null) {
                     return new WidgetNavigationHelpBinding((LinearLayout) view, imageView, tabLayout, viewPager2);
                 }

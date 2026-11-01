@@ -22,7 +22,7 @@ public final class f extends o implements Function1<Subscription, Unit> {
     public Unit invoke(Subscription subscription) {
         Subscription subscription2 = subscription;
         m.checkNotNullParameter(subscription2, "it");
-        this.this$0.com.discord.utilities.analytics.Traits$Payment$Type.SUBSCRIPTION java.lang.String = subscription2;
+        this.this$0.com.discord.utilities.analytics.Traits.Payment.Type.SUBSCRIPTION java.lang.String = subscription2;
         return Unit.a;
     }
 }

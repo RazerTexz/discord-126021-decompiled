@@ -1,7 +1,6 @@
 package b.c.a.y;
 
-import android.graphics.Paint$Cap;
-import android.graphics.Paint$Join;
+import android.graphics.Paint;
 import androidx.browser.trusted.sharing.ShareTarget;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -152,26 +151,26 @@ public /* synthetic */ class b {
         }
     }
 
-    public static Paint$Cap k(int i2) {
+    public static Paint.Cap k(int i2) {
         int iH = h(i2);
         if (iH != 0) {
-            return iH != 1 ? Paint$Cap.SQUARE : Paint$Cap.ROUND;
+            return iH != 1 ? Paint.Cap.SQUARE : Paint.Cap.ROUND;
         }
-        return Paint$Cap.BUTT;
+        return Paint.Cap.BUTT;
     }
 
-    public static Paint$Join l(int i2) {
+    public static Paint.Join l(int i2) {
         int iH = h(i2);
         if (iH == 0) {
-            return Paint$Join.MITER;
+            return Paint.Join.MITER;
         }
         if (iH == 1) {
-            return Paint$Join.ROUND;
+            return Paint.Join.ROUND;
         }
         if (iH != 2) {
             return null;
         }
-        return Paint$Join.BEVEL;
+        return Paint.Join.BEVEL;
     }
 
     public static int m(b.i.c.m.d.s.h.b bVar) {

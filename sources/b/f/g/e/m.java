@@ -2,12 +2,8 @@ package b.f.g.e;
 
 import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.graphics.Matrix$ScaleToFit;
 import android.graphics.Paint;
-import android.graphics.Paint$Style;
 import android.graphics.Path;
-import android.graphics.Path$Direction;
-import android.graphics.Path$FillType;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
@@ -98,7 +94,7 @@ public class m extends g implements j {
                 RectF rectF2 = this.p;
                 float f = this.v;
                 rectF2.inset(f, f);
-                this.q.setRectToRect(this.o, this.p, Matrix$ScaleToFit.FILL);
+                this.q.setRectToRect(this.o, this.p, Matrix.ScaleToFit.FILL);
                 int iSave = canvas.save();
                 canvas.clipRect(this.o);
                 canvas.concat(this.q);
@@ -113,11 +109,11 @@ public class m extends g implements j {
                     drawable2.draw(canvas);
                 }
             }
-            this.t.setStyle(Paint$Style.FILL);
+            this.t.setStyle(Paint.Style.FILL);
             this.t.setColor(this.f514x);
             this.t.setStrokeWidth(0.0f);
             this.t.setFilterBitmap(this.A);
-            this.B.setFillType(Path$FillType.EVEN_ODD);
+            this.B.setFillType(Path.FillType.EVEN_ODD);
             canvas.drawPath(this.B, this.t);
             if (this.u) {
                 float fWidth = ((this.o.width() - this.o.height()) + this.v) / 2.0f;
@@ -151,10 +147,10 @@ public class m extends g implements j {
             canvas.restoreToCount(iSave2);
         }
         if (this.w != 0) {
-            this.t.setStyle(Paint$Style.STROKE);
+            this.t.setStyle(Paint.Style.STROKE);
             this.t.setColor(this.w);
             this.t.setStrokeWidth(this.v);
-            this.B.setFillType(Path$FillType.EVEN_ODD);
+            this.B.setFillType(Path.FillType.EVEN_ODD);
             canvas.drawPath(this.C, this.t);
         }
     }
@@ -218,12 +214,12 @@ public class m extends g implements j {
         float f = this.f515y;
         rectF.inset(f, f);
         if (this.n == 1) {
-            this.B.addRect(this.D, Path$Direction.CW);
+            this.B.addRect(this.D, Path.Direction.CW);
         }
         if (this.u) {
-            this.B.addCircle(this.D.centerX(), this.D.centerY(), Math.min(this.D.width(), this.D.height()) / 2.0f, Path$Direction.CW);
+            this.B.addCircle(this.D.centerX(), this.D.centerY(), Math.min(this.D.width(), this.D.height()) / 2.0f, Path.Direction.CW);
         } else {
-            this.B.addRoundRect(this.D, this.r, Path$Direction.CW);
+            this.B.addRoundRect(this.D, this.r, Path.Direction.CW);
         }
         RectF rectF2 = this.D;
         float f2 = -this.f515y;
@@ -232,7 +228,7 @@ public class m extends g implements j {
         float f3 = this.v / 2.0f;
         rectF3.inset(f3, f3);
         if (this.u) {
-            this.C.addCircle(this.D.centerX(), this.D.centerY(), Math.min(this.D.width(), this.D.height()) / 2.0f, Path$Direction.CW);
+            this.C.addCircle(this.D.centerX(), this.D.centerY(), Math.min(this.D.width(), this.D.height()) / 2.0f, Path.Direction.CW);
         } else {
             int i = 0;
             while (true) {
@@ -243,7 +239,7 @@ public class m extends g implements j {
                 fArr[i] = (this.r[i] + this.f515y) - (this.v / 2.0f);
                 i++;
             }
-            this.C.addRoundRect(this.D, fArr, Path$Direction.CW);
+            this.C.addRoundRect(this.D, fArr, Path.Direction.CW);
         }
         RectF rectF4 = this.D;
         float f4 = (-this.v) / 2.0f;

@@ -1,7 +1,7 @@
 package androidx.fragment.app;
 
 import android.app.Activity;
-import android.content.res.Resources$NotFoundException;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
@@ -14,8 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.os.EnvironmentCompat;
 import androidx.core.view.ViewCompat;
-import androidx.fragment.R$id;
-import androidx.view.Lifecycle$State;
+import androidx.fragment.R;
+import androidx.view.Lifecycle;
 import androidx.view.ViewModelStoreOwner;
 import b.d.b.a.a;
 
@@ -34,6 +34,52 @@ public class FragmentStateManager {
     private final FragmentStore mFragmentStore;
     private boolean mMovingToState = false;
     private int mFragmentManagerState = -1;
+
+    /* JADX INFO: renamed from: androidx.fragment.app.FragmentStateManager$1, reason: invalid class name */
+    public class AnonymousClass1 implements View.OnAttachStateChangeListener {
+        public final /* synthetic */ View val$fragmentView;
+
+        public AnonymousClass1(View view) {
+            this.val$fragmentView = view;
+        }
+
+        @Override // android.view.View.OnAttachStateChangeListener
+        public void onViewAttachedToWindow(View view) {
+            this.val$fragmentView.removeOnAttachStateChangeListener(this);
+            ViewCompat.requestApplyInsets(this.val$fragmentView);
+        }
+
+        @Override // android.view.View.OnAttachStateChangeListener
+        public void onViewDetachedFromWindow(View view) {
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.fragment.app.FragmentStateManager$2, reason: invalid class name */
+    public /* synthetic */ class AnonymousClass2 {
+        public static final /* synthetic */ int[] $SwitchMap$androidx$lifecycle$Lifecycle$State;
+
+        static {
+            Lifecycle.State.values();
+            int[] iArr = new int[5];
+            $SwitchMap$androidx$lifecycle$Lifecycle$State = iArr;
+            try {
+                iArr[Lifecycle.State.RESUMED.ordinal()] = 1;
+            } catch (NoSuchFieldError unused) {
+            }
+            try {
+                $SwitchMap$androidx$lifecycle$Lifecycle$State[Lifecycle.State.STARTED.ordinal()] = 2;
+            } catch (NoSuchFieldError unused2) {
+            }
+            try {
+                $SwitchMap$androidx$lifecycle$Lifecycle$State[Lifecycle.State.CREATED.ordinal()] = 3;
+            } catch (NoSuchFieldError unused3) {
+            }
+            try {
+                $SwitchMap$androidx$lifecycle$Lifecycle$State[Lifecycle.State.INITIALIZED.ordinal()] = 4;
+            } catch (NoSuchFieldError unused4) {
+            }
+        }
+    }
 
     public FragmentStateManager(@NonNull FragmentLifecycleCallbacksDispatcher fragmentLifecycleCallbacksDispatcher, @NonNull FragmentStore fragmentStore, @NonNull Fragment fragment) {
         this.mDispatcher = fragmentLifecycleCallbacksDispatcher;
@@ -137,13 +183,13 @@ public class FragmentStateManager {
         if (!this.mFragment.mAdded) {
             iMin = Math.min(iMin, 1);
         }
-        SpecialEffectsController$Operation$LifecycleImpact awaitingCompletionLifecycleImpact = null;
+        SpecialEffectsController.Operation.LifecycleImpact awaitingCompletionLifecycleImpact = null;
         if (FragmentManager.USE_STATE_MANAGER && (viewGroup = (fragment = this.mFragment).mContainer) != null) {
             awaitingCompletionLifecycleImpact = SpecialEffectsController.getOrCreateController(viewGroup, fragment.getParentFragmentManager()).getAwaitingCompletionLifecycleImpact(this);
         }
-        if (awaitingCompletionLifecycleImpact == SpecialEffectsController$Operation$LifecycleImpact.ADDING) {
+        if (awaitingCompletionLifecycleImpact == SpecialEffectsController.Operation.LifecycleImpact.ADDING) {
             iMin = Math.min(iMin, 6);
-        } else if (awaitingCompletionLifecycleImpact == SpecialEffectsController$Operation$LifecycleImpact.REMOVING) {
+        } else if (awaitingCompletionLifecycleImpact == SpecialEffectsController.Operation.LifecycleImpact.REMOVING) {
             iMin = Math.max(iMin, 3);
         } else {
             Fragment fragment4 = this.mFragment;
@@ -215,7 +261,7 @@ public class FragmentStateManager {
                     if (!fragment3.mRestored) {
                         try {
                             resourceName = fragment3.getResources().getResourceName(this.mFragment.mContainerId);
-                        } catch (Resources$NotFoundException unused) {
+                        } catch (Resources.NotFoundException unused) {
                             resourceName = EnvironmentCompat.MEDIA_UNKNOWN;
                         }
                         StringBuilder sbU3 = a.U("No view found for id 0x");
@@ -237,7 +283,7 @@ public class FragmentStateManager {
             boolean z2 = false;
             view.setSaveFromParentEnabled(false);
             Fragment fragment5 = this.mFragment;
-            fragment5.mView.setTag(R$id.fragment_container_view_tag, fragment5);
+            fragment5.mView.setTag(R.id.fragment_container_view_tag, fragment5);
             if (viewGroup != null) {
                 addViewToContainer();
             }
@@ -249,7 +295,7 @@ public class FragmentStateManager {
                 ViewCompat.requestApplyInsets(this.mFragment.mView);
             } else {
                 View view2 = this.mFragment.mView;
-                view2.addOnAttachStateChangeListener(new FragmentStateManager$1(this, view2));
+                view2.addOnAttachStateChangeListener(new AnonymousClass1(view2));
             }
             this.mFragment.performViewCreated();
             FragmentLifecycleCallbacksDispatcher fragmentLifecycleCallbacksDispatcher = this.mDispatcher;
@@ -390,7 +436,7 @@ public class FragmentStateManager {
             if (view != null) {
                 view.setSaveFromParentEnabled(false);
                 Fragment fragment3 = this.mFragment;
-                fragment3.mView.setTag(R$id.fragment_container_view_tag, fragment3);
+                fragment3.mView.setTag(R.id.fragment_container_view_tag, fragment3);
                 Fragment fragment4 = this.mFragment;
                 if (fragment4.mHidden) {
                     fragment4.mView.setVisibility(8);
@@ -513,7 +559,7 @@ public class FragmentStateManager {
                             break;
                         case 4:
                             if (fragment.mView != null && (viewGroup2 = fragment.mContainer) != null) {
-                                SpecialEffectsController.getOrCreateController(viewGroup2, fragment.getParentFragmentManager()).enqueueAdd(SpecialEffectsController$Operation$State.from(this.mFragment.mView.getVisibility()), this);
+                                SpecialEffectsController.getOrCreateController(viewGroup2, fragment.getParentFragmentManager()).enqueueAdd(SpecialEffectsController.Operation.State.from(this.mFragment.mView.getVisibility()), this);
                             }
                             this.mFragment.mState = 4;
                             break;
@@ -638,12 +684,12 @@ public class FragmentStateManager {
     }
 
     @Nullable
-    public Fragment$SavedState saveInstanceState() {
+    public Fragment.SavedState saveInstanceState() {
         Bundle bundleSaveBasicState;
         if (this.mFragment.mState <= -1 || (bundleSaveBasicState = saveBasicState()) == null) {
             return null;
         }
-        return new Fragment$SavedState(bundleSaveBasicState);
+        return new Fragment.SavedState(bundleSaveBasicState);
     }
 
     @NonNull
@@ -730,7 +776,7 @@ public class FragmentStateManager {
         fragmentInstantiate.mRemoving = fragmentState.mRemoving;
         fragmentInstantiate.mDetached = fragmentState.mDetached;
         fragmentInstantiate.mHidden = fragmentState.mHidden;
-        fragmentInstantiate.mMaxState = Lifecycle$State.values()[fragmentState.mMaxLifecycleState];
+        fragmentInstantiate.mMaxState = Lifecycle.State.values()[fragmentState.mMaxLifecycleState];
         Bundle bundle2 = fragmentState.mSavedFragmentState;
         if (bundle2 != null) {
             fragmentInstantiate.mSavedFragmentState = bundle2;

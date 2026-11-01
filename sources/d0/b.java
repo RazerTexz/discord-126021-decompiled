@@ -1,9 +1,11 @@
 package d0;
 
+import java.lang.reflect.InvocationTargetException;
+
 /* JADX INFO: compiled from: Exceptions.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class b {
-    public static final void addSuppressed(Throwable th, Throwable th2) {
+    public static final void addSuppressed(Throwable th, Throwable th2) throws IllegalAccessException, InvocationTargetException {
         d0.z.d.m.checkNotNullParameter(th, "$this$addSuppressed");
         d0.z.d.m.checkNotNullParameter(th2, "exception");
         if (th != th2) {

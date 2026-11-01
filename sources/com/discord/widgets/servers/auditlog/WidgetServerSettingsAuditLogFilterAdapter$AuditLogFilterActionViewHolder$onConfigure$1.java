@@ -8,12 +8,12 @@ import rx.functions.Action1;
 /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilterAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsAuditLogFilterAdapter$AuditLogFilterActionViewHolder$onConfigure$1<T> implements Action1<Boolean> {
-    public final /* synthetic */ WidgetServerSettingsAuditLogFilterAdapter$AuditLogActionFilterItem $item;
-    public final /* synthetic */ WidgetServerSettingsAuditLogFilterAdapter$AuditLogFilterActionViewHolder this$0;
+    public final /* synthetic */ WidgetServerSettingsAuditLogFilterAdapter.AuditLogActionFilterItem $item;
+    public final /* synthetic */ WidgetServerSettingsAuditLogFilterAdapter.AuditLogFilterActionViewHolder this$0;
 
-    public WidgetServerSettingsAuditLogFilterAdapter$AuditLogFilterActionViewHolder$onConfigure$1(WidgetServerSettingsAuditLogFilterAdapter$AuditLogFilterActionViewHolder widgetServerSettingsAuditLogFilterAdapter$AuditLogFilterActionViewHolder, WidgetServerSettingsAuditLogFilterAdapter$AuditLogActionFilterItem widgetServerSettingsAuditLogFilterAdapter$AuditLogActionFilterItem) {
-        this.this$0 = widgetServerSettingsAuditLogFilterAdapter$AuditLogFilterActionViewHolder;
-        this.$item = widgetServerSettingsAuditLogFilterAdapter$AuditLogActionFilterItem;
+    public WidgetServerSettingsAuditLogFilterAdapter$AuditLogFilterActionViewHolder$onConfigure$1(WidgetServerSettingsAuditLogFilterAdapter.AuditLogFilterActionViewHolder auditLogFilterActionViewHolder, WidgetServerSettingsAuditLogFilterAdapter.AuditLogActionFilterItem auditLogActionFilterItem) {
+        this.this$0 = auditLogFilterActionViewHolder;
+        this.$item = auditLogActionFilterItem;
     }
 
     @Override // rx.functions.Action1
@@ -23,8 +23,8 @@ public final class WidgetServerSettingsAuditLogFilterAdapter$AuditLogFilterActio
 
     /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
     public final void call2(Boolean bool) {
-        StoreStream.Companion.getAuditLog().setAuditLogFilterActionId(this.$item.getActionId());
-        Function0 function0Access$getOnFilterSelectedCallback$p = WidgetServerSettingsAuditLogFilterAdapter.access$getOnFilterSelectedCallback$p(WidgetServerSettingsAuditLogFilterAdapter$AuditLogFilterActionViewHolder.access$getAdapter$p(this.this$0));
+        StoreStream.INSTANCE.getAuditLog().setAuditLogFilterActionId(this.$item.getActionId());
+        Function0 function0Access$getOnFilterSelectedCallback$p = WidgetServerSettingsAuditLogFilterAdapter.access$getOnFilterSelectedCallback$p(WidgetServerSettingsAuditLogFilterAdapter.AuditLogFilterActionViewHolder.access$getAdapter$p(this.this$0));
         if (function0Access$getOnFilterSelectedCallback$p != null) {
         }
     }

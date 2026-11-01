@@ -1,16 +1,22 @@
 package com.discord.stores;
 
 import android.content.Context;
+import androidx.core.app.NotificationCompat;
 import com.discord.models.domain.ModelUserAffinities;
+import com.discord.models.domain.ModelUserAffinity;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.t.n;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -23,6 +29,91 @@ public final class StoreUserAffinities extends StoreV2 {
     private ModelUserAffinities affinitiesSnapshot;
     private final Dispatcher dispatcher;
     private final ObservationDeck observationDeck;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserAffinities$fetchUserAffinities$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserAffinities.kt */
+    public final class AnonymousClass1 extends o implements Function1<ModelUserAffinities, Unit> {
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreUserAffinities$fetchUserAffinities$1$1, reason: invalid class name and collision with other inner class name */
+        /* JADX INFO: compiled from: StoreUserAffinities.kt */
+        public final class C03031 extends o implements Function0<Unit> {
+            public final /* synthetic */ ModelUserAffinities $affinities;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public C03031(ModelUserAffinities modelUserAffinities) {
+                super(0);
+                this.$affinities = modelUserAffinities;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ Unit invoke() {
+                invoke2();
+                return Unit.a;
+            }
+
+            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+            public final void invoke2() {
+                StoreUserAffinities.access$handleUserAffinitiesFetchSuccess(StoreUserAffinities.this, this.$affinities);
+            }
+        }
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelUserAffinities modelUserAffinities) {
+            invoke2(modelUserAffinities);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelUserAffinities modelUserAffinities) {
+            m.checkNotNullParameter(modelUserAffinities, "affinities");
+            StoreUserAffinities.access$getDispatcher$p(StoreUserAffinities.this).schedule(new C03031(modelUserAffinities));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserAffinities$observeAffinityUserIds$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserAffinities.kt */
+    public final class AnonymousClass1<T, R> implements b<ModelUserAffinities, List<? extends Long>> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ List<? extends Long> call(ModelUserAffinities modelUserAffinities) {
+            return call2(modelUserAffinities);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final List<Long> call2(ModelUserAffinities modelUserAffinities) {
+            List<ModelUserAffinity> userAffinities = modelUserAffinities.getUserAffinities();
+            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(userAffinities, 10));
+            Iterator<T> it = userAffinities.iterator();
+            while (it.hasNext()) {
+                arrayList.add(Long.valueOf(((ModelUserAffinity) it.next()).getUserId()));
+            }
+            return arrayList;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserAffinities$observeUserAffinities$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserAffinities.kt */
+    public final class AnonymousClass1 extends o implements Function0<ModelUserAffinities> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ ModelUserAffinities invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final ModelUserAffinities invoke() {
+            return StoreUserAffinities.access$getAffinitiesSnapshot$p(StoreUserAffinities.this);
+        }
+    }
 
     public /* synthetic */ StoreUserAffinities(Dispatcher dispatcher, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck);
@@ -46,7 +137,7 @@ public final class StoreUserAffinities extends StoreV2 {
 
     @StoreThread
     private final void fetchUserAffinities() {
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().getUserAffinities(), false, 1, null), StoreUserAffinities.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreUserAffinities$fetchUserAffinities$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().getUserAffinities(), false, 1, null), StoreUserAffinities.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
     @StoreThread
@@ -61,13 +152,13 @@ public final class StoreUserAffinities extends StoreV2 {
     }
 
     public final Observable<List<Long>> observeAffinityUserIds() {
-        Observable<List<Long>> observableR = observeUserAffinities().G(StoreUserAffinities$observeAffinityUserIds$1.INSTANCE).r();
+        Observable<List<Long>> observableR = observeUserAffinities().G(AnonymousClass1.INSTANCE).r();
         m.checkNotNullExpressionValue(observableR, "observeUserAffinities()\n…  .distinctUntilChanged()");
         return observableR;
     }
 
     private final Observable<ModelUserAffinities> observeUserAffinities() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreUserAffinities$observeUserAffinities$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     @Override // com.discord.stores.StoreV2

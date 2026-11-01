@@ -2,7 +2,6 @@ package b.a.k.h;
 
 import android.text.style.StyleSpan;
 import com.discord.simpleast.core.node.Node;
-import com.discord.simpleast.core.node.Node$a;
 import com.discord.simpleast.core.node.StyleNode;
 import com.discord.simpleast.core.parser.ParseSpec;
 import com.discord.simpleast.core.parser.Parser;
@@ -28,7 +27,7 @@ public final class h<T> extends Rule<T, Node<T>, b.a.k.g.c> {
         m.checkNotNullParameter(matcher, "matcher");
         m.checkNotNullParameter(parser, "parser");
         m.checkNotNullParameter(cVar2, "state");
-        Node node$a = cVar2.a ? new Node$a(new Node[0]) : new StyleNode(d0.t.m.listOf(new StyleSpan(2)));
+        Node aVar = cVar2.a ? new Node.a(new Node[0]) : new StyleNode(d0.t.m.listOf(new StyleSpan(2)));
         String strGroup = matcher.group(2);
         if (strGroup == null) {
             iStart = matcher.start(1);
@@ -42,7 +41,7 @@ public final class h<T> extends Rule<T, Node<T>, b.a.k.g.c> {
                 iEnd = matcher.end(1);
             }
         }
-        m.checkNotNullParameter(node$a, "node");
-        return new ParseSpec(node$a, cVar2, iStart, iEnd);
+        m.checkNotNullParameter(aVar, "node");
+        return new ParseSpec(aVar, cVar2, iStart, iEnd);
     }
 }

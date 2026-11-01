@@ -1,6 +1,6 @@
 package j0.o;
 
-import java.util.Map$Entry;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -8,34 +8,44 @@ import java.util.concurrent.atomic.AtomicReference;
 /* JADX INFO: loaded from: classes3.dex */
 public class o {
     public static final o a = new o();
-    public final AtomicReference<b> c = new AtomicReference<>();
+    public final AtomicReference<j0.o.b> c = new AtomicReference<>();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final b f3802b = new o$a();
+    public static final j0.o.b f3802b = new a();
     public final AtomicReference<m> d = new AtomicReference<>();
     public final AtomicReference<q> e = new AtomicReference<>();
-    public final AtomicReference<a> f = new AtomicReference<>();
+    public final AtomicReference<j0.o.a> f = new AtomicReference<>();
     public final AtomicReference<p> g = new AtomicReference<>();
 
-    public a a() {
+    /* JADX INFO: compiled from: RxJavaPlugins.java */
+    public final class a extends j0.o.b {
+    }
+
+    /* JADX INFO: compiled from: RxJavaPlugins.java */
+    public class b extends j0.o.a {
+        public b(o oVar) {
+        }
+    }
+
+    public j0.o.a a() {
         if (this.f.get() == null) {
-            Object objD = d(a.class, g());
+            Object objD = d(j0.o.a.class, g());
             if (objD == null) {
-                this.f.compareAndSet(null, new o$b(this));
+                this.f.compareAndSet(null, new b(this));
             } else {
-                this.f.compareAndSet(null, (a) objD);
+                this.f.compareAndSet(null, (j0.o.a) objD);
             }
         }
         return this.f.get();
     }
 
-    public b b() {
+    public j0.o.b b() {
         if (this.c.get() == null) {
-            Object objD = d(b.class, g());
+            Object objD = d(j0.o.b.class, g());
             if (objD == null) {
                 this.c.compareAndSet(null, f3802b);
             } else {
-                this.c.compareAndSet(null, (b) objD);
+                this.c.compareAndSet(null, (j0.o.b) objD);
             }
         }
         return this.c.get();
@@ -59,9 +69,9 @@ public class o {
         String property = properties2.getProperty("rxjava.plugin." + simpleName + ".implementation");
         if (property == null) {
             try {
-                for (Map$Entry map$Entry : properties2.entrySet()) {
-                    String string = map$Entry.getKey().toString();
-                    if (string.startsWith("rxjava.plugin.") && string.endsWith(".class") && simpleName.equals(map$Entry.getValue().toString())) {
+                for (Map.Entry entry : properties2.entrySet()) {
+                    String string = entry.getKey().toString();
+                    if (string.startsWith("rxjava.plugin.") && string.endsWith(".class") && simpleName.equals(entry.getValue().toString())) {
                         String str = "rxjava.plugin." + string.substring(0, string.length() - 6).substring(14) + ".impl";
                         property = properties2.getProperty(str);
                         if (property != null) {

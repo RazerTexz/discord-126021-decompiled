@@ -9,7 +9,7 @@ import d0.d0.f;
 import d0.t.c0;
 import d0.z.d.m;
 import java.util.Iterator;
-import java.util.Map$Entry;
+import java.util.Map;
 
 /* JADX INFO: compiled from: SnowflakePartitionMapSerializer.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -48,9 +48,9 @@ public final class SnowflakePartitionMapSerializer extends Serializer<SnowflakeP
         m.checkNotNullParameter(target, "target");
         output.writeInt(target.getNumPartitions(), true);
         output.writeInt(target.size(), true);
-        for (Map$Entry<Long, ?> map$Entry : target.entrySet()) {
-            output.writeLong(map$Entry.getKey().longValue());
-            kryo.writeClassAndObject(output, map$Entry.getValue());
+        for (Map.Entry<Long, ?> entry : target.entrySet()) {
+            output.writeLong(entry.getKey().longValue());
+            kryo.writeClassAndObject(output, entry.getValue());
         }
     }
 }

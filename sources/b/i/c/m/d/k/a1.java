@@ -2,7 +2,6 @@ package b.i.c.m.d.k;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import b.i.c.m.d.m.v$c$a;
 import java.io.InputStream;
 
 /* JADX INFO: compiled from: NativeSessionFile.java */
@@ -12,7 +11,7 @@ public interface a1 {
     String a();
 
     @Nullable
-    v$c$a b();
+    b.i.c.m.d.m.v.c.a b();
 
     @Nullable
     InputStream h();

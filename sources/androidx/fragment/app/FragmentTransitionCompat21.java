@@ -15,6 +15,160 @@ import java.util.List;
 /* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
 public class FragmentTransitionCompat21 extends FragmentTransitionImpl {
+
+    /* JADX INFO: renamed from: androidx.fragment.app.FragmentTransitionCompat21$1, reason: invalid class name */
+    public class AnonymousClass1 extends Transition.EpicenterCallback {
+        public final /* synthetic */ Rect val$epicenter;
+
+        public AnonymousClass1(Rect rect) {
+            this.val$epicenter = rect;
+        }
+
+        @Override // android.transition.Transition.EpicenterCallback
+        public Rect onGetEpicenter(Transition transition) {
+            return this.val$epicenter;
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.fragment.app.FragmentTransitionCompat21$2, reason: invalid class name */
+    public class AnonymousClass2 implements Transition.TransitionListener {
+        public final /* synthetic */ ArrayList val$exitingViews;
+        public final /* synthetic */ View val$fragmentView;
+
+        public AnonymousClass2(View view, ArrayList arrayList) {
+            this.val$fragmentView = view;
+            this.val$exitingViews = arrayList;
+        }
+
+        @Override // android.transition.Transition.TransitionListener
+        public void onTransitionCancel(Transition transition) {
+        }
+
+        @Override // android.transition.Transition.TransitionListener
+        public void onTransitionEnd(Transition transition) {
+            transition.removeListener(this);
+            this.val$fragmentView.setVisibility(8);
+            int size = this.val$exitingViews.size();
+            for (int i = 0; i < size; i++) {
+                ((View) this.val$exitingViews.get(i)).setVisibility(0);
+            }
+        }
+
+        @Override // android.transition.Transition.TransitionListener
+        public void onTransitionPause(Transition transition) {
+        }
+
+        @Override // android.transition.Transition.TransitionListener
+        public void onTransitionResume(Transition transition) {
+        }
+
+        @Override // android.transition.Transition.TransitionListener
+        public void onTransitionStart(Transition transition) {
+            transition.removeListener(this);
+            transition.addListener(this);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.fragment.app.FragmentTransitionCompat21$3, reason: invalid class name */
+    public class AnonymousClass3 implements Transition.TransitionListener {
+        public final /* synthetic */ Object val$enterTransition;
+        public final /* synthetic */ ArrayList val$enteringViews;
+        public final /* synthetic */ Object val$exitTransition;
+        public final /* synthetic */ ArrayList val$exitingViews;
+        public final /* synthetic */ Object val$sharedElementTransition;
+        public final /* synthetic */ ArrayList val$sharedElementsIn;
+
+        public AnonymousClass3(Object obj, ArrayList arrayList, Object obj2, ArrayList arrayList2, Object obj3, ArrayList arrayList3) {
+            this.val$enterTransition = obj;
+            this.val$enteringViews = arrayList;
+            this.val$exitTransition = obj2;
+            this.val$exitingViews = arrayList2;
+            this.val$sharedElementTransition = obj3;
+            this.val$sharedElementsIn = arrayList3;
+        }
+
+        @Override // android.transition.Transition.TransitionListener
+        public void onTransitionCancel(Transition transition) {
+        }
+
+        @Override // android.transition.Transition.TransitionListener
+        public void onTransitionEnd(Transition transition) {
+            transition.removeListener(this);
+        }
+
+        @Override // android.transition.Transition.TransitionListener
+        public void onTransitionPause(Transition transition) {
+        }
+
+        @Override // android.transition.Transition.TransitionListener
+        public void onTransitionResume(Transition transition) {
+        }
+
+        @Override // android.transition.Transition.TransitionListener
+        public void onTransitionStart(Transition transition) {
+            Object obj = this.val$enterTransition;
+            if (obj != null) {
+                FragmentTransitionCompat21.this.replaceTargets(obj, this.val$enteringViews, null);
+            }
+            Object obj2 = this.val$exitTransition;
+            if (obj2 != null) {
+                FragmentTransitionCompat21.this.replaceTargets(obj2, this.val$exitingViews, null);
+            }
+            Object obj3 = this.val$sharedElementTransition;
+            if (obj3 != null) {
+                FragmentTransitionCompat21.this.replaceTargets(obj3, this.val$sharedElementsIn, null);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.fragment.app.FragmentTransitionCompat21$4, reason: invalid class name */
+    public class AnonymousClass4 implements Transition.TransitionListener {
+        public final /* synthetic */ Runnable val$transitionCompleteRunnable;
+
+        public AnonymousClass4(Runnable runnable) {
+            this.val$transitionCompleteRunnable = runnable;
+        }
+
+        @Override // android.transition.Transition.TransitionListener
+        public void onTransitionCancel(Transition transition) {
+        }
+
+        @Override // android.transition.Transition.TransitionListener
+        public void onTransitionEnd(Transition transition) {
+            this.val$transitionCompleteRunnable.run();
+        }
+
+        @Override // android.transition.Transition.TransitionListener
+        public void onTransitionPause(Transition transition) {
+        }
+
+        @Override // android.transition.Transition.TransitionListener
+        public void onTransitionResume(Transition transition) {
+        }
+
+        @Override // android.transition.Transition.TransitionListener
+        public void onTransitionStart(Transition transition) {
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.fragment.app.FragmentTransitionCompat21$5, reason: invalid class name */
+    public class AnonymousClass5 extends Transition.EpicenterCallback {
+        public final /* synthetic */ Rect val$epicenter;
+
+        public AnonymousClass5(Rect rect) {
+            this.val$epicenter = rect;
+        }
+
+        @Override // android.transition.Transition.EpicenterCallback
+        public Rect onGetEpicenter(Transition transition) {
+            Rect rect = this.val$epicenter;
+            if (rect == null || rect.isEmpty()) {
+                return null;
+            }
+            return this.val$epicenter;
+        }
+    }
+
     @Override // androidx.fragment.app.FragmentTransitionImpl
     public void addTarget(Object obj, View view) {
         if (obj != null) {
@@ -142,12 +296,12 @@ public class FragmentTransitionCompat21 extends FragmentTransitionImpl {
 
     @Override // androidx.fragment.app.FragmentTransitionImpl
     public void scheduleHideFragmentView(Object obj, View view, ArrayList<View> arrayList) {
-        ((Transition) obj).addListener(new FragmentTransitionCompat21$2(this, view, arrayList));
+        ((Transition) obj).addListener(new AnonymousClass2(view, arrayList));
     }
 
     @Override // androidx.fragment.app.FragmentTransitionImpl
     public void scheduleRemoveTargets(Object obj, Object obj2, ArrayList<View> arrayList, Object obj3, ArrayList<View> arrayList2, Object obj4, ArrayList<View> arrayList3) {
-        ((Transition) obj).addListener(new FragmentTransitionCompat21$3(this, obj2, arrayList, obj3, arrayList2, obj4, arrayList3));
+        ((Transition) obj).addListener(new AnonymousClass3(obj2, arrayList, obj3, arrayList2, obj4, arrayList3));
     }
 
     @Override // androidx.fragment.app.FragmentTransitionImpl
@@ -155,13 +309,13 @@ public class FragmentTransitionCompat21 extends FragmentTransitionImpl {
         if (view != null) {
             Rect rect = new Rect();
             getBoundsOnScreen(view, rect);
-            ((Transition) obj).setEpicenterCallback(new FragmentTransitionCompat21$1(this, rect));
+            ((Transition) obj).setEpicenterCallback(new AnonymousClass1(rect));
         }
     }
 
     @Override // androidx.fragment.app.FragmentTransitionImpl
     public void setListenerForTransitionEnd(@NonNull Fragment fragment, @NonNull Object obj, @NonNull CancellationSignal cancellationSignal, @NonNull Runnable runnable) {
-        ((Transition) obj).addListener(new FragmentTransitionCompat21$4(this, runnable));
+        ((Transition) obj).addListener(new AnonymousClass4(runnable));
     }
 
     @Override // androidx.fragment.app.FragmentTransitionImpl
@@ -201,7 +355,7 @@ public class FragmentTransitionCompat21 extends FragmentTransitionImpl {
     @Override // androidx.fragment.app.FragmentTransitionImpl
     public void setEpicenter(Object obj, Rect rect) {
         if (obj != null) {
-            ((Transition) obj).setEpicenterCallback(new FragmentTransitionCompat21$5(this, rect));
+            ((Transition) obj).setEpicenterCallback(new AnonymousClass5(rect));
         }
     }
 }

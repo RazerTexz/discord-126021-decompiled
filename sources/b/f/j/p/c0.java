@@ -2,6 +2,7 @@ package b.f.j.p;
 
 import android.os.SystemClock;
 import androidx.annotation.VisibleForTesting;
+import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -13,9 +14,9 @@ public class c0 {
     public final int e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final c0$c f606b;
-    public final Runnable c = new c0$a(this);
-    public final Runnable d = new c0$b(this);
+    public final c f606b;
+    public final Runnable c = new a();
+    public final Runnable d = new b();
 
     @VisibleForTesting
     public b.f.j.j.e f = null;
@@ -32,9 +33,59 @@ public class c0 {
     @VisibleForTesting
     public long j = 0;
 
-    public c0(Executor executor, c0$c c0_c, int i) {
+    /* JADX INFO: compiled from: JobScheduler.java */
+    public class a implements Runnable {
+        public a() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            b.f.j.j.e eVar;
+            int i;
+            c0 c0Var = c0.this;
+            Objects.requireNonNull(c0Var);
+            long jUptimeMillis = SystemClock.uptimeMillis();
+            synchronized (c0Var) {
+                eVar = c0Var.f;
+                i = c0Var.g;
+                c0Var.f = null;
+                c0Var.g = 0;
+                c0Var.h = 3;
+                c0Var.j = jUptimeMillis;
+            }
+            try {
+                if (c0.e(eVar, i)) {
+                    c0Var.f606b.a(eVar, i);
+                }
+            } finally {
+                if (eVar != null) {
+                    eVar.close();
+                }
+                c0Var.c();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: JobScheduler.java */
+    public class b implements Runnable {
+        public b() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            c0 c0Var = c0.this;
+            c0Var.a.execute(c0Var.c);
+        }
+    }
+
+    /* JADX INFO: compiled from: JobScheduler.java */
+    public interface c {
+        void a(b.f.j.j.e eVar, int i);
+    }
+
+    public c0(Executor executor, c cVar, int i) {
         this.a = executor;
-        this.f606b = c0_c;
+        this.f606b = cVar;
         this.e = i;
     }
 
@@ -111,7 +162,7 @@ public class c0 {
     }
 
     public static boolean e(b.f.j.j.e eVar, int i) {
-        return b.e(i) || b.m(i, 4) || b.f.j.j.e.u(eVar);
+        return b.f.j.p.b.e(i) || b.f.j.p.b.m(i, 4) || b.f.j.j.e.u(eVar);
     }
 
     public boolean f(b.f.j.j.e eVar, int i) {

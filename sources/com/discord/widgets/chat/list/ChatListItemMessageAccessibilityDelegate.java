@@ -5,9 +5,9 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.core.view.AccessibilityDelegateCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
-import androidx.core.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityActionCompat;
 import b.a.k.b;
 import b.d.b.a.a;
+import com.discord.R;
 import d0.t.u;
 import d0.z.d.m;
 import defpackage.SpoilerSpan;
@@ -38,7 +38,7 @@ public final class ChatListItemMessageAccessibilityDelegate extends Accessibilit
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.textView.getText());
         for (SpoilerSpan spoilerSpan : (SpoilerSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), SpoilerSpan.class)) {
             if (!spoilerSpan.l) {
-                spannableStringBuilder.replace(spannableStringBuilder.getSpanStart(spoilerSpan), spannableStringBuilder.getSpanEnd(spoilerSpan), b.j(host, 2131895746, new Object[0], null, 4));
+                spannableStringBuilder.replace(spannableStringBuilder.getSpanStart(spoilerSpan), spannableStringBuilder.getSpanEnd(spoilerSpan), b.j(host, R.string.spoiler_hidden_a11y_label, new Object[0], null, 4));
             }
         }
         ArrayList arrayList = new ArrayList();
@@ -79,7 +79,7 @@ public final class ChatListItemMessageAccessibilityDelegate extends Accessibilit
         }
         this.textView.setImportantForAccessibility(4);
         info.setText(spannableStringBuilder);
-        info.removeAction(AccessibilityNodeInfoCompat$AccessibilityActionCompat.ACTION_CLICK);
+        info.removeAction(AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK);
         info.setMovementGranularities(15);
     }
 }

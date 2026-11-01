@@ -9,19 +9,44 @@ import java.util.Map;
 public class e {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final Map<e$a, g$f<?, ?>> f3427b;
+    public final Map<a, g.f<?, ?>> f3427b;
     public static final e a = new e(true);
+
+    /* JADX INFO: compiled from: ExtensionRegistryLite.java */
+    public final class a {
+        public final Object a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f3428b;
+
+        public a(Object obj, int i) {
+            this.a = obj;
+            this.f3428b = i;
+        }
+
+        public boolean equals(Object obj) {
+            if (!(obj instanceof a)) {
+                return false;
+            }
+            a aVar = (a) obj;
+            return this.a == aVar.a && this.f3428b == aVar.f3428b;
+        }
+
+        public int hashCode() {
+            return (System.identityHashCode(this.a) * 65535) + this.f3428b;
+        }
+    }
 
     public e() {
         this.f3427b = new HashMap();
     }
 
-    public final void add(g$f<?, ?> g_f) {
-        this.f3427b.put(new e$a(g_f.getContainingTypeDefaultInstance(), g_f.getNumber()), g_f);
+    public final void add(g.f<?, ?> fVar) {
+        this.f3427b.put(new a(fVar.getContainingTypeDefaultInstance(), fVar.getNumber()), fVar);
     }
 
-    public <ContainingType extends n> g$f<ContainingType, ?> findLiteExtensionByNumber(ContainingType containingtype, int i) {
-        return (g$f) this.f3427b.get(new e$a(containingtype, i));
+    public <ContainingType extends n> g.f<ContainingType, ?> findLiteExtensionByNumber(ContainingType containingtype, int i) {
+        return (g.f) this.f3427b.get(new a(containingtype, i));
     }
 
     public static e getEmptyRegistry() {

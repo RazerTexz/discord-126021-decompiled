@@ -14,20 +14,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.StyleRes;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.view.ViewCompat;
-import androidx.vectordrawable.graphics.drawable.Animatable2Compat$AnimationCallback;
+import androidx.vectordrawable.graphics.drawable.Animatable2Compat;
 import b.i.a.g.g.e;
 import b.i.a.g.g.f;
-import com.google.android.material.R$attr;
-import com.google.android.material.R$style;
-import com.google.android.material.R$styleable;
+import com.google.android.material.R;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.internal.ThemeEnforcement;
 import com.google.android.material.progressindicator.BaseProgressIndicatorSpec;
 import com.google.android.material.theme.overlay.MaterialThemeOverlay;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.Arrays;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -44,7 +43,7 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
     public AnimatorDurationScaleProvider animatorDurationScaleProvider;
     private final Runnable delayedHide;
     private final Runnable delayedShow;
-    private final Animatable2Compat$AnimationCallback hideAnimationCallback;
+    private final Animatable2Compat.AnimationCallback hideAnimationCallback;
     private boolean isIndeterminateModeChangeRequested;
     private boolean isParentDoneInitializing;
     private long lastShowStartTime;
@@ -53,24 +52,83 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
     public S spec;
     private int storedProgress;
     private boolean storedProgressAnimated;
-    private final Animatable2Compat$AnimationCallback switchIndeterminateModeCallback;
+    private final Animatable2Compat.AnimationCallback switchIndeterminateModeCallback;
     private int visibilityAfterHide;
-    public static final int DEF_STYLE_RES = R$style.Widget_MaterialComponents_ProgressIndicator;
+    public static final int DEF_STYLE_RES = R.style.Widget_MaterialComponents_ProgressIndicator;
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface HideAnimationBehavior {
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface ShowAnimationBehavior {
+    }
+
+    public class a implements Runnable {
+        public a() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            BaseProgressIndicator.access$000(BaseProgressIndicator.this);
+        }
+    }
+
+    public class b implements Runnable {
+        public b() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            BaseProgressIndicator.access$100(BaseProgressIndicator.this);
+            BaseProgressIndicator.access$202(BaseProgressIndicator.this, -1L);
+        }
+    }
+
+    public class c extends Animatable2Compat.AnimationCallback {
+        public c() {
+        }
+
+        @Override // androidx.vectordrawable.graphics.drawable.Animatable2Compat.AnimationCallback
+        public void onAnimationEnd(Drawable drawable) {
+            BaseProgressIndicator.this.setIndeterminate(false);
+            BaseProgressIndicator.this.setProgressCompat(0, false);
+            BaseProgressIndicator baseProgressIndicator = BaseProgressIndicator.this;
+            baseProgressIndicator.setProgressCompat(BaseProgressIndicator.access$300(baseProgressIndicator), BaseProgressIndicator.access$400(BaseProgressIndicator.this));
+        }
+    }
+
+    public class d extends Animatable2Compat.AnimationCallback {
+        public d() {
+        }
+
+        @Override // androidx.vectordrawable.graphics.drawable.Animatable2Compat.AnimationCallback
+        public void onAnimationEnd(Drawable drawable) {
+            super.onAnimationEnd(drawable);
+            if (BaseProgressIndicator.access$500(BaseProgressIndicator.this)) {
+                return;
+            }
+            BaseProgressIndicator baseProgressIndicator = BaseProgressIndicator.this;
+            baseProgressIndicator.setVisibility(BaseProgressIndicator.access$600(baseProgressIndicator));
+        }
+    }
 
     public BaseProgressIndicator(@NonNull Context context, @Nullable AttributeSet attributeSet, @AttrRes int i, @StyleRes int i2) {
         super(MaterialThemeOverlay.wrap(context, attributeSet, i, DEF_STYLE_RES), attributeSet, i);
         this.lastShowStartTime = -1L;
         this.isIndeterminateModeChangeRequested = false;
         this.visibilityAfterHide = 4;
-        this.delayedShow = new BaseProgressIndicator$a(this);
-        this.delayedHide = new BaseProgressIndicator$b(this);
-        this.switchIndeterminateModeCallback = new BaseProgressIndicator$c(this);
-        this.hideAnimationCallback = new BaseProgressIndicator$d(this);
+        this.delayedShow = new a();
+        this.delayedHide = new b();
+        this.switchIndeterminateModeCallback = new c();
+        this.hideAnimationCallback = new d();
         Context context2 = getContext();
         this.spec = (S) createSpec(context2, attributeSet);
-        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context2, attributeSet, R$styleable.BaseProgressIndicator, i, i2, new int[0]);
-        this.showDelay = typedArrayObtainStyledAttributes.getInt(R$styleable.BaseProgressIndicator_showDelay, -1);
-        this.minHideDelay = Math.min(typedArrayObtainStyledAttributes.getInt(R$styleable.BaseProgressIndicator_minHideDelay, -1), 1000);
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context2, attributeSet, R.styleable.BaseProgressIndicator, i, i2, new int[0]);
+        this.showDelay = typedArrayObtainStyledAttributes.getInt(R.styleable.BaseProgressIndicator_showDelay, -1);
+        this.minHideDelay = Math.min(typedArrayObtainStyledAttributes.getInt(R.styleable.BaseProgressIndicator_minHideDelay, -1), 1000);
         typedArrayObtainStyledAttributes.recycle();
         this.animatorDurationScaleProvider = new AnimatorDurationScaleProvider();
         this.isParentDoneInitializing = true;
@@ -296,7 +354,7 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
         }
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
     @VisibleForTesting
     public void setAnimatorDurationScaleProvider(@NonNull AnimatorDurationScaleProvider animatorDurationScaleProvider) {
         this.animatorDurationScaleProvider = animatorDurationScaleProvider;
@@ -348,7 +406,7 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
 
     public void setIndicatorColor(@ColorInt int... iArr) {
         if (iArr.length == 0) {
-            iArr = new int[]{MaterialColors.getColor(getContext(), R$attr.colorPrimary, -1)};
+            iArr = new int[]{MaterialColors.getColor(getContext(), R.attr.colorPrimary, -1)};
         }
         if (Arrays.equals(getIndicatorColor(), iArr)) {
             return;

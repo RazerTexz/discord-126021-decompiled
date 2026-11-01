@@ -1,10 +1,11 @@
 package com.discord.widgets.servers.community;
 
+import android.view.View;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import b.a.d.f0;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.app.AppFragment;
 import com.discord.app.LoggingConfig;
 import com.discord.databinding.WidgetServerSettingsEnableCommunityBinding;
@@ -26,8 +27,20 @@ public final class WidgetServerSettingsEnableCommunity extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.community.WidgetServerSettingsEnableCommunity$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetServerSettingsEnableCommunity.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetServerSettingsEnableCommunity.access$getViewModel$p(WidgetServerSettingsEnableCommunity.this).updateCurrentPage(1);
+        }
+    }
+
     public WidgetServerSettingsEnableCommunity() {
-        super(R$layout.widget_server_settings_enable_community);
+        super(R.layout.widget_server_settings_enable_community);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetServerSettingsEnableCommunity$binding$2.INSTANCE, null, 2, null);
         this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetServerSettingsEnableCommunityViewModel.class), new WidgetServerSettingsEnableCommunity$appActivityViewModels$$inlined$activityViewModels$1(this), new f0(WidgetServerSettingsEnableCommunity$viewModel$2.INSTANCE));
         this.loggingConfig = new LoggingConfig(false, null, WidgetServerSettingsEnableCommunity$loggingConfig$1.INSTANCE, 3);
@@ -41,7 +54,7 @@ public final class WidgetServerSettingsEnableCommunity extends AppFragment {
         return (WidgetServerSettingsEnableCommunityBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger$a
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.a
     public LoggingConfig getLoggingConfig() {
         return this.loggingConfig;
     }
@@ -53,6 +66,6 @@ public final class WidgetServerSettingsEnableCommunity extends AppFragment {
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        getBinding().f2568b.setOnClickListener(new WidgetServerSettingsEnableCommunity$onViewBoundOrOnResume$1(this));
+        getBinding().f2568b.setOnClickListener(new AnonymousClass1());
     }
 }

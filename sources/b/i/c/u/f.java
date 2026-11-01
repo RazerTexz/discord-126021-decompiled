@@ -7,15 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.browser.trusted.sharing.ShareTarget;
-import b.i.c.u.o.a$b;
-import b.i.c.u.o.c$a;
-import b.i.c.u.o.d$a;
-import b.i.c.u.p.b$b;
-import b.i.c.u.p.f$b;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.firebase.installations.FirebaseInstallationsException;
-import com.google.firebase.installations.FirebaseInstallationsException$a;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -27,6 +21,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,7 +47,7 @@ public class f implements g {
     public static final Object a = new Object();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final ThreadFactory f1780b = new f$a();
+    public static final ThreadFactory f1780b = new a();
 
     public f(b.i.c.c cVar, @NonNull b.i.c.t.a<b.i.c.x.h> aVar, @NonNull b.i.c.t.a<b.i.c.r.d> aVar2) {
         TimeUnit timeUnit = TimeUnit.SECONDS;
@@ -102,10 +97,10 @@ public class f implements g {
                 if (dVarB.i()) {
                     String strI = i(dVarB);
                     b.i.c.u.o.c cVar2 = this.e;
-                    a$b a_b = (a$b) dVarB.k();
-                    a_b.a = strI;
-                    a_b.b(c$a.UNREGISTERED);
-                    dVarB = a_b.a();
+                    b.i.c.u.o.a.b bVar = (b.i.c.u.o.a.b) dVarB.k();
+                    bVar.a = strI;
+                    bVar.b(b.i.c.u.o.c.a.UNREGISTERED);
+                    dVarB = bVar.a();
                     cVar2.a(dVarB);
                 }
                 if (bVarA != null) {
@@ -119,9 +114,9 @@ public class f implements g {
             }
         }
         if (z2) {
-            a$b a_b2 = (a$b) dVarB.k();
-            a_b2.c = null;
-            dVarB = a_b2.a();
+            b.i.c.u.o.a.b bVar2 = (b.i.c.u.o.a.b) dVarB.k();
+            bVar2.c = null;
+            dVarB = bVar2.a();
         }
         l(dVarB);
         this.k.execute(new e(this, z2));
@@ -130,21 +125,21 @@ public class f implements g {
     public final b.i.c.u.o.d c(@NonNull b.i.c.u.o.d dVar) throws FirebaseInstallationsException {
         HttpURLConnection httpURLConnectionC;
         b.i.c.u.p.f fVarF;
-        FirebaseInstallationsException$a firebaseInstallationsException$a = FirebaseInstallationsException$a.UNAVAILABLE;
+        FirebaseInstallationsException.a aVar = FirebaseInstallationsException.a.UNAVAILABLE;
         b.i.c.u.p.c cVar = this.d;
         String strD = d();
-        b.i.c.u.o.a aVar = (b.i.c.u.o.a) dVar;
-        String str = aVar.f1784b;
+        b.i.c.u.o.a aVar2 = (b.i.c.u.o.a) dVar;
+        String str = aVar2.f1784b;
         String strG = g();
-        String str2 = aVar.e;
+        String str2 = aVar2.e;
         if (!cVar.f.a()) {
-            throw new FirebaseInstallationsException("Firebase Installations Service is unavailable. Please try again later.", firebaseInstallationsException$a);
+            throw new FirebaseInstallationsException("Firebase Installations Service is unavailable. Please try again later.", aVar);
         }
         URL urlA = cVar.a(String.format("projects/%s/installations/%s/authTokens:generate", strG, str));
         int i = 0;
         while (true) {
             if (i > 1) {
-                throw new FirebaseInstallationsException("Firebase Installations Service is unavailable. Please try again later.", firebaseInstallationsException$a);
+                throw new FirebaseInstallationsException("Firebase Installations Service is unavailable. Please try again later.", aVar);
             }
             httpURLConnectionC = cVar.c(urlA, strD);
             try {
@@ -160,19 +155,19 @@ public class f implements g {
                 }
                 b.i.c.u.p.c.b(httpURLConnectionC, null, strD, strG);
                 if (responseCode == 401 || responseCode == 404) {
-                    b$b b_b = (b$b) b.i.c.u.p.f.a();
-                    b_b.c = f$b.AUTH_ERROR;
-                    fVarF = b_b.a();
+                    b.i.c.u.p.b.C0154b c0154b = (b.i.c.u.p.b.C0154b) b.i.c.u.p.f.a();
+                    c0154b.c = b.i.c.u.p.f.b.AUTH_ERROR;
+                    fVarF = c0154b.a();
                     break;
                 }
                 if (responseCode == 429) {
-                    throw new FirebaseInstallationsException("Firebase servers have received too many requests from this client in a short period of time. Please try again later.", FirebaseInstallationsException$a.TOO_MANY_REQUESTS);
+                    throw new FirebaseInstallationsException("Firebase servers have received too many requests from this client in a short period of time. Please try again later.", FirebaseInstallationsException.a.TOO_MANY_REQUESTS);
                 }
                 if (responseCode < 500 || responseCode >= 600) {
                     Log.e("Firebase-Installations", "Firebase Installations can not communicate with Firebase server APIs due to invalid configuration. Please update your Firebase initialization process and set valid Firebase options (API key, Project ID, Application ID) when initializing Firebase.");
-                    b$b b_b2 = (b$b) b.i.c.u.p.f.a();
-                    b_b2.c = f$b.BAD_CONFIG;
-                    fVarF = b_b2.a();
+                    b.i.c.u.p.b.C0154b c0154b2 = (b.i.c.u.p.b.C0154b) b.i.c.u.p.f.a();
+                    c0154b2.c = b.i.c.u.p.f.b.BAD_CONFIG;
+                    fVarF = c0154b2.a();
                     break;
                 }
                 httpURLConnectionC.disconnect();
@@ -190,27 +185,27 @@ public class f implements g {
             String str3 = bVar.a;
             long j = bVar.f1789b;
             long jB = this.f.b();
-            a$b a_b = (a$b) dVar.k();
-            a_b.c = str3;
-            a_b.e = Long.valueOf(j);
-            a_b.f = Long.valueOf(jB);
-            return a_b.a();
+            b.i.c.u.o.a.b bVar2 = (b.i.c.u.o.a.b) dVar.k();
+            bVar2.c = str3;
+            bVar2.e = Long.valueOf(j);
+            bVar2.f = Long.valueOf(jB);
+            return bVar2.a();
         }
         if (iOrdinal == 1) {
-            a$b a_b2 = (a$b) dVar.k();
-            a_b2.g = "BAD CONFIG";
-            a_b2.b(c$a.REGISTER_ERROR);
-            return a_b2.a();
+            b.i.c.u.o.a.b bVar3 = (b.i.c.u.o.a.b) dVar.k();
+            bVar3.g = "BAD CONFIG";
+            bVar3.b(b.i.c.u.o.c.a.REGISTER_ERROR);
+            return bVar3.a();
         }
         if (iOrdinal != 2) {
-            throw new FirebaseInstallationsException("Firebase Installations Service is unavailable. Please try again later.", firebaseInstallationsException$a);
+            throw new FirebaseInstallationsException("Firebase Installations Service is unavailable. Please try again later.", aVar);
         }
         synchronized (this) {
             this.l = null;
         }
-        d$a d_aK = dVar.k();
-        d_aK.b(c$a.NOT_GENERATED);
-        return d_aK.a();
+        b.i.c.u.o.d.a aVarK = dVar.k();
+        aVarK.b(b.i.c.u.o.c.a.NOT_GENERATED);
+        return aVarK.a();
     }
 
     @Nullable
@@ -278,7 +273,7 @@ public class f implements g {
         b.i.c.c cVar = this.c;
         cVar.a();
         if (cVar.e.equals("CHIME_ANDROID_SDK") || this.c.h()) {
-            if (((b.i.c.u.o.a) dVar).c == c$a.ATTEMPT_MIGRATION) {
+            if (((b.i.c.u.o.a) dVar).c == b.i.c.u.o.c.a.ATTEMPT_MIGRATION) {
                 b.i.c.u.o.b bVar = this.g;
                 synchronized (bVar.f1786b) {
                     synchronized (bVar.f1786b) {
@@ -296,9 +291,9 @@ public class f implements g {
 
     public final b.i.c.u.o.d j(b.i.c.u.o.d dVar) throws FirebaseInstallationsException {
         b.i.c.u.p.d dVarE;
-        FirebaseInstallationsException$a firebaseInstallationsException$a = FirebaseInstallationsException$a.UNAVAILABLE;
-        b.i.c.u.o.a aVar = (b.i.c.u.o.a) dVar;
-        String str = aVar.f1784b;
+        FirebaseInstallationsException.a aVar = FirebaseInstallationsException.a.UNAVAILABLE;
+        b.i.c.u.o.a aVar2 = (b.i.c.u.o.a) dVar;
+        String str = aVar2.f1784b;
         String string = null;
         if (str != null && str.length() == 11) {
             b.i.c.u.o.b bVar = this.g;
@@ -329,17 +324,17 @@ public class f implements g {
         }
         b.i.c.u.p.c cVar = this.d;
         String strD = d();
-        String str3 = aVar.f1784b;
+        String str3 = aVar2.f1784b;
         String strG = g();
         String strE = e();
         if (!cVar.f.a()) {
-            throw new FirebaseInstallationsException("Firebase Installations Service is unavailable. Please try again later.", firebaseInstallationsException$a);
+            throw new FirebaseInstallationsException("Firebase Installations Service is unavailable. Please try again later.", aVar);
         }
         URL urlA = cVar.a(String.format("projects/%s/installations", strG));
         int i2 = 0;
         while (true) {
             if (i2 > 1) {
-                throw new FirebaseInstallationsException("Firebase Installations Service is unavailable. Please try again later.", firebaseInstallationsException$a);
+                throw new FirebaseInstallationsException("Firebase Installations Service is unavailable. Please try again later.", aVar);
             }
             HttpURLConnection httpURLConnectionC = cVar.c(urlA, strD);
             try {
@@ -359,13 +354,13 @@ public class f implements g {
                     }
                     b.i.c.u.p.c.b(httpURLConnectionC, strE, strD, strG);
                     if (responseCode == 429) {
-                        throw new FirebaseInstallationsException("Firebase servers have received too many requests from this client in a short period of time. Please try again later.", FirebaseInstallationsException$a.TOO_MANY_REQUESTS);
+                        throw new FirebaseInstallationsException("Firebase servers have received too many requests from this client in a short period of time. Please try again later.", FirebaseInstallationsException.a.TOO_MANY_REQUESTS);
                     }
                     if (responseCode < 500 || responseCode >= 600) {
                         Log.e("Firebase-Installations", "Firebase Installations can not communicate with Firebase server APIs due to invalid configuration. Please update your Firebase initialization process and set valid Firebase options (API key, Project ID, Application ID) when initializing Firebase.");
-                        b.i.c.u.p.a aVar2 = new b.i.c.u.p.a(null, null, null, null, b.i.c.u.p.d$a.BAD_CONFIG, null);
+                        b.i.c.u.p.a aVar3 = new b.i.c.u.p.a(null, null, null, null, b.i.c.u.p.d.a.BAD_CONFIG, null);
                         httpURLConnectionC.disconnect();
-                        dVarE = aVar2;
+                        dVarE = aVar3;
                         break;
                     }
                     httpURLConnectionC.disconnect();
@@ -377,30 +372,30 @@ public class f implements g {
                 throw th;
             }
         }
-        b.i.c.u.p.a aVar3 = (b.i.c.u.p.a) dVarE;
-        int iOrdinal = aVar3.e.ordinal();
+        b.i.c.u.p.a aVar4 = (b.i.c.u.p.a) dVarE;
+        int iOrdinal = aVar4.e.ordinal();
         if (iOrdinal != 0) {
             if (iOrdinal != 1) {
-                throw new FirebaseInstallationsException("Firebase Installations Service is unavailable. Please try again later.", firebaseInstallationsException$a);
+                throw new FirebaseInstallationsException("Firebase Installations Service is unavailable. Please try again later.", aVar);
             }
-            a$b a_b = (a$b) dVar.k();
-            a_b.g = "BAD CONFIG";
-            a_b.b(c$a.REGISTER_ERROR);
-            return a_b.a();
+            b.i.c.u.o.a.b bVar2 = (b.i.c.u.o.a.b) dVar.k();
+            bVar2.g = "BAD CONFIG";
+            bVar2.b(b.i.c.u.o.c.a.REGISTER_ERROR);
+            return bVar2.a();
         }
-        String str4 = aVar3.f1788b;
-        String str5 = aVar3.c;
+        String str4 = aVar4.f1788b;
+        String str5 = aVar4.c;
         long jB = this.f.b();
-        String strC = aVar3.d.c();
-        long jD = aVar3.d.d();
-        a$b a_b2 = (a$b) dVar.k();
-        a_b2.a = str4;
-        a_b2.b(c$a.REGISTERED);
-        a_b2.c = strC;
-        a_b2.d = str5;
-        a_b2.e = Long.valueOf(jD);
-        a_b2.f = Long.valueOf(jB);
-        return a_b2.a();
+        String strC = aVar4.d.c();
+        long jD = aVar4.d.d();
+        b.i.c.u.o.a.b bVar3 = (b.i.c.u.o.a.b) dVar.k();
+        bVar3.a = str4;
+        bVar3.b(b.i.c.u.o.c.a.REGISTERED);
+        bVar3.c = strC;
+        bVar3.d = str5;
+        bVar3.e = Long.valueOf(jD);
+        bVar3.f = Long.valueOf(jB);
+        return bVar3.a();
     }
 
     public final void k(Exception exc) {
@@ -422,6 +417,16 @@ public class f implements g {
                     it.remove();
                 }
             }
+        }
+    }
+
+    /* JADX INFO: compiled from: FirebaseInstallations.java */
+    public class a implements ThreadFactory {
+        public final AtomicInteger j = new AtomicInteger(1);
+
+        @Override // java.util.concurrent.ThreadFactory
+        public Thread newThread(Runnable runnable) {
+            return new Thread(runnable, String.format("firebase-installations-executor-%d", Integer.valueOf(this.j.getAndIncrement())));
         }
     }
 }

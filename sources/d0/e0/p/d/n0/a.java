@@ -11,6 +11,34 @@ public final class a<E> implements Iterable<E> {
     public final int m;
     public static final a<Object> j = new a<>();
 
+    /* JADX INFO: renamed from: d0.e0.p.d.n0.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: ConsPStack.java */
+    public class C0592a<E> implements Iterator<E> {
+        public a<E> j;
+
+        public C0592a(a<E> aVar) {
+            this.j = aVar;
+        }
+
+        @Override // java.util.Iterator
+        public boolean hasNext() {
+            return this.j.m > 0;
+        }
+
+        @Override // java.util.Iterator
+        public E next() {
+            a<E> aVar = this.j;
+            E e = aVar.k;
+            this.j = aVar.l;
+            return e;
+        }
+
+        @Override // java.util.Iterator
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+    }
+
     public a() {
         this.m = 0;
         this.k = null;
@@ -44,7 +72,7 @@ public final class a<E> implements Iterable<E> {
             throw new IndexOutOfBoundsException();
         }
         try {
-            return new a$a(d(i)).next();
+            return new C0592a(d(i)).next();
         } catch (NoSuchElementException unused) {
             throw new IndexOutOfBoundsException(b.d.b.a.a.q("Index: ", i));
         }
@@ -52,7 +80,7 @@ public final class a<E> implements Iterable<E> {
 
     @Override // java.lang.Iterable
     public Iterator<E> iterator() {
-        return new a$a(d(0));
+        return new C0592a(d(0));
     }
 
     public a<E> minus(int i) {

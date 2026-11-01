@@ -2,7 +2,7 @@ package androidx.view;
 
 import b.i.a.f.e.o.f;
 import d0.z.d.m;
-import kotlin.coroutines.CoroutineContext$Element$a;
+import kotlin.coroutines.CoroutineContext;
 import kotlinx.coroutines.CoroutineDispatcher;
 import kotlinx.coroutines.CoroutineScope;
 import kotlinx.coroutines.Job;
@@ -23,7 +23,7 @@ public final class ViewModelKt {
         }
         Job jobD = f.d(null, 1);
         CoroutineDispatcher coroutineDispatcher = k0.a;
-        Object tagIfAbsent = viewModel.setTagIfAbsent(JOB_KEY, new CloseableCoroutineScope(CoroutineContext$Element$a.plus((h1) jobD, n.f3830b.H())));
+        Object tagIfAbsent = viewModel.setTagIfAbsent(JOB_KEY, new CloseableCoroutineScope(CoroutineContext.Element.a.plus((h1) jobD, n.f3830b.H())));
         m.checkNotNullExpressionValue(tagIfAbsent, "setTagIfAbsent(\n        …Main.immediate)\n        )");
         return (CoroutineScope) tagIfAbsent;
     }

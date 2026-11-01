@@ -20,7 +20,16 @@ public class TwilightManager {
     private final Context mContext;
     private final LocationManager mLocationManager;
     private static TwilightManager sInstance;
-    private final TwilightManager$TwilightState mTwilightState = new TwilightManager$TwilightState();
+    private final TwilightState mTwilightState = new TwilightState();
+
+    public class TwilightState {
+        public boolean isNight;
+        public long nextUpdate;
+        public long todaySunrise;
+        public long todaySunset;
+        public long tomorrowSunrise;
+        public long yesterdaySunset;
+    }
 
     @VisibleForTesting
     public TwilightManager(@NonNull Context context, @NonNull LocationManager locationManager) {
@@ -60,14 +69,14 @@ public class TwilightManager {
     }
 
     public boolean isNight() {
-        TwilightManager$TwilightState twilightManager$TwilightState = this.mTwilightState;
+        TwilightState twilightState = this.mTwilightState;
         if (isStateValid()) {
-            return twilightManager$TwilightState.isNight;
+            return twilightState.isNight;
         }
         Location lastKnownLocation = getLastKnownLocation();
         if (lastKnownLocation != null) {
             updateState(lastKnownLocation);
-            return twilightManager$TwilightState.isNight;
+            return twilightState.isNight;
         }
         Log.i(TAG, "Could not get last known location. This is probably because the app does not have any location permissions. Falling back to hardcoded sunrise/sunset values.");
         int i = Calendar.getInstance().get(11);
@@ -86,7 +95,7 @@ public class TwilightManager {
     private void updateState(@NonNull Location location) {
         long j;
         long j2;
-        TwilightManager$TwilightState twilightManager$TwilightState = this.mTwilightState;
+        TwilightState twilightState = this.mTwilightState;
         long jCurrentTimeMillis = System.currentTimeMillis();
         TwilightCalculator twilightCalculator = TwilightCalculator.getInstance();
         twilightCalculator.calculateTwilight(jCurrentTimeMillis - 86400000, location.getLatitude(), location.getLongitude());
@@ -108,11 +117,11 @@ public class TwilightManager {
             }
             j = j2 + 60000;
         }
-        twilightManager$TwilightState.isNight = z3;
-        twilightManager$TwilightState.yesterdaySunset = j3;
-        twilightManager$TwilightState.todaySunrise = j4;
-        twilightManager$TwilightState.todaySunset = j5;
-        twilightManager$TwilightState.tomorrowSunrise = j6;
-        twilightManager$TwilightState.nextUpdate = j;
+        twilightState.isNight = z3;
+        twilightState.yesterdaySunset = j3;
+        twilightState.todaySunrise = j4;
+        twilightState.todaySunset = j5;
+        twilightState.tomorrowSunrise = j6;
+        twilightState.nextUpdate = j;
     }
 }

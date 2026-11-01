@@ -17,8 +17,8 @@ public final class r4 extends r5 {
     public v4 e;
     public final PriorityBlockingQueue<s4<?>> f;
     public final BlockingQueue<s4<?>> g;
-    public final Thread$UncaughtExceptionHandler h;
-    public final Thread$UncaughtExceptionHandler i;
+    public final Thread.UncaughtExceptionHandler h;
+    public final Thread.UncaughtExceptionHandler i;
     public final Object j;
     public final Semaphore k;
     public static final AtomicLong c = new AtomicLong(Long.MIN_VALUE);

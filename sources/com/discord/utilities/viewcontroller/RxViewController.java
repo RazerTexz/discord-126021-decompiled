@@ -3,10 +3,13 @@ package com.discord.utilities.viewcontroller;
 import android.content.Context;
 import android.view.View;
 import androidx.annotation.MainThread;
+import androidx.core.app.NotificationCompat;
 import androidx.exifinterface.media.ExifInterface;
-import com.discord.utilities.analytics.Traits$Payment$Type;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -20,6 +23,95 @@ public abstract class RxViewController<V extends View, T> {
     private Subscription subscription;
     private final V view;
 
+    /* JADX INFO: renamed from: com.discord.utilities.viewcontroller.RxViewController$bind$1, reason: invalid class name */
+    /* JADX INFO: compiled from: RxViewController.kt */
+    public final class AnonymousClass1 extends o implements Function1<T, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Object obj) {
+            invoke2(obj);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(T t) {
+            RxViewController.this.configureView(t);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.viewcontroller.RxViewController$connectViewRx$1, reason: invalid class name */
+    /* JADX INFO: compiled from: RxViewController.kt */
+    public final class AnonymousClass1<T, R> implements b<T, Boolean> {
+        public final /* synthetic */ View $view;
+
+        public AnonymousClass1(View view) {
+            this.$view = view;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Boolean call(Object obj) {
+            return call(obj);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // j0.k.b
+        public final Boolean call(T t) {
+            return Boolean.valueOf(this.$view.isAttachedToWindow());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.viewcontroller.RxViewController$connectViewRx$2, reason: invalid class name */
+    /* JADX INFO: compiled from: RxViewController.kt */
+    public final class AnonymousClass2 extends o implements Function1<Subscription, Unit> {
+        public final /* synthetic */ Ref$ObjectRef $subscriptionResult;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(Ref$ObjectRef ref$ObjectRef) {
+            super(1);
+            this.$subscriptionResult = ref$ObjectRef;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            this.$subscriptionResult.element = subscription;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.viewcontroller.RxViewController$connectViewRx$3, reason: invalid class name */
+    /* JADX INFO: compiled from: RxViewController.kt */
+    public final class AnonymousClass3 extends o implements Function1<T, Unit> {
+        public final /* synthetic */ Function1 $onNext;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass3(Function1 function1) {
+            super(1);
+            this.$onNext = function1;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Object obj) {
+            invoke2(obj);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(T t) {
+            this.$onNext.invoke(t);
+        }
+    }
+
     public RxViewController(V v) {
         m.checkNotNullParameter(v, "view");
         this.view = v;
@@ -31,7 +123,7 @@ public abstract class RxViewController<V extends View, T> {
         if (subscription != null) {
             subscription.unsubscribe();
         }
-        this.subscription = connectViewRx(this.view, observeState(), new RxViewController$bind$1(this));
+        this.subscription = connectViewRx(this.view, observeState(), new AnonymousClass1());
     }
 
     public abstract void configureView(T viewState);
@@ -41,9 +133,9 @@ public abstract class RxViewController<V extends View, T> {
         ref$ObjectRef.element = null;
         Observable<T> observableA0 = observable.a0(new ViewDetachedFromWindowObservable(view).observe());
         m.checkNotNullExpressionValue(observableA0, "observable\n        .take…servable(view).observe())");
-        Observable<T> observableY = ObservableExtensionsKt.ui(ObservableExtensionsKt.computationLatest(observableA0)).y(new RxViewController$connectViewRx$1(view));
+        Observable<T> observableY = ObservableExtensionsKt.ui(ObservableExtensionsKt.computationLatest(observableA0)).y(new AnonymousClass1(view));
         m.checkNotNullExpressionValue(observableY, "observable\n        .take…view.isAttachedToWindow }");
-        ObservableExtensionsKt.appSubscribe$default(observableY, getClass(), (Context) null, new RxViewController$connectViewRx$2(ref$ObjectRef), (Function1) null, (Function0) null, (Function0) null, new RxViewController$connectViewRx$3(onNext), 58, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(observableY, getClass(), (Context) null, new AnonymousClass2(ref$ObjectRef), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass3(onNext), 58, (Object) null);
         T t = ref$ObjectRef.element;
         if (t == null) {
             m.throwUninitializedPropertyAccessException("subscriptionResult");

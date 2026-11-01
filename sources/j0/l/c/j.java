@@ -1,6 +1,8 @@
 package j0.l.c;
 
+import java.util.List;
 import java.util.concurrent.Future;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import rx.Subscription;
 import rx.exceptions.OnErrorNotImplementedException;
@@ -15,13 +17,101 @@ public final class j extends AtomicReference<Thread> implements Runnable, Subscr
     public final Action0 action;
     public final SubscriptionList cancel;
 
+    /* JADX INFO: compiled from: ScheduledAction.java */
+    public final class a implements Subscription {
+        public final Future<?> j;
+
+        public a(Future<?> future) {
+            this.j = future;
+        }
+
+        @Override // rx.Subscription
+        public boolean isUnsubscribed() {
+            return this.j.isCancelled();
+        }
+
+        @Override // rx.Subscription
+        public void unsubscribe() {
+            if (j.this.get() != Thread.currentThread()) {
+                this.j.cancel(true);
+            } else {
+                this.j.cancel(false);
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: ScheduledAction.java */
+    public final class b extends AtomicBoolean implements Subscription {
+        private static final long serialVersionUID = 247232374289553518L;
+        public final SubscriptionList parent;
+
+        /* JADX INFO: renamed from: s, reason: collision with root package name */
+        public final j f3792s;
+
+        public b(j jVar, SubscriptionList subscriptionList) {
+            this.f3792s = jVar;
+            this.parent = subscriptionList;
+        }
+
+        @Override // rx.Subscription
+        public boolean isUnsubscribed() {
+            return this.f3792s.cancel.k;
+        }
+
+        @Override // rx.Subscription
+        public void unsubscribe() {
+            if (compareAndSet(false, true)) {
+                SubscriptionList subscriptionList = this.parent;
+                j jVar = this.f3792s;
+                if (subscriptionList.k) {
+                    return;
+                }
+                synchronized (subscriptionList) {
+                    List<Subscription> list = subscriptionList.j;
+                    if (!subscriptionList.k && list != null) {
+                        boolean zRemove = list.remove(jVar);
+                        if (zRemove) {
+                            jVar.unsubscribe();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: ScheduledAction.java */
+    public final class c extends AtomicBoolean implements Subscription {
+        private static final long serialVersionUID = 247232374289553518L;
+        public final CompositeSubscription parent;
+
+        /* JADX INFO: renamed from: s, reason: collision with root package name */
+        public final j f3793s;
+
+        public c(j jVar, CompositeSubscription compositeSubscription) {
+            this.f3793s = jVar;
+            this.parent = compositeSubscription;
+        }
+
+        @Override // rx.Subscription
+        public boolean isUnsubscribed() {
+            return this.f3793s.cancel.k;
+        }
+
+        @Override // rx.Subscription
+        public void unsubscribe() {
+            if (compareAndSet(false, true)) {
+                this.parent.c(this.f3793s);
+            }
+        }
+    }
+
     public j(Action0 action0) {
         this.action = action0;
         this.cancel = new SubscriptionList();
     }
 
     public void a(Future<?> future) {
-        this.cancel.a(new j$a(this, future));
+        this.cancel.a(new a(future));
     }
 
     @Override // rx.Subscription
@@ -63,11 +153,11 @@ public final class j extends AtomicReference<Thread> implements Runnable, Subscr
 
     public j(Action0 action0, CompositeSubscription compositeSubscription) {
         this.action = action0;
-        this.cancel = new SubscriptionList(new j$c(this, compositeSubscription));
+        this.cancel = new SubscriptionList(new c(this, compositeSubscription));
     }
 
     public j(Action0 action0, SubscriptionList subscriptionList) {
         this.action = action0;
-        this.cancel = new SubscriptionList(new j$b(this, subscriptionList));
+        this.cancel = new SubscriptionList(new b(this, subscriptionList));
     }
 }

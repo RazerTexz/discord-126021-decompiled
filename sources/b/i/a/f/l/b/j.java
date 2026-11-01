@@ -1,15 +1,15 @@
 package b.i.a.f.l.b;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.internal.zau;
 import com.google.android.gms.signin.internal.zam;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class j implements Parcelable$Creator<zam> {
-    @Override // android.os.Parcelable$Creator
+public final class j implements Parcelable.Creator<zam> {
+    @Override // android.os.Parcelable.Creator
     public final zam createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         ConnectionResult connectionResult = null;
@@ -32,7 +32,7 @@ public final class j implements Parcelable$Creator<zam> {
         return new zam(iG1, connectionResult, zauVar);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zam[] newArray(int i) {
         return new zam[i];
     }

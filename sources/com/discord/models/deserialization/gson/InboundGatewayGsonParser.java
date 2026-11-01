@@ -4,7 +4,7 @@ import androidx.exifinterface.media.ExifInterface;
 import b.a.b.a;
 import b.i.d.c;
 import b.i.d.e;
-import com.discord.models.domain.Model$JsonReader;
+import com.discord.models.domain.Model;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import d0.z.d.m;
@@ -27,7 +27,7 @@ public final class InboundGatewayGsonParser {
     private InboundGatewayGsonParser() {
     }
 
-    public static final <T> T fromJson(Model$JsonReader reader, Class<T> clazz) {
+    public static final <T> T fromJson(Model.JsonReader reader, Class<T> clazz) {
         m.checkNotNullParameter(reader, "reader");
         m.checkNotNullParameter(clazz, "clazz");
         JsonReader jsonReader = reader.in;

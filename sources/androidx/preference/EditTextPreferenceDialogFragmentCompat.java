@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
 public class EditTextPreferenceDialogFragmentCompat extends PreferenceDialogFragmentCompat {
@@ -18,7 +17,7 @@ public class EditTextPreferenceDialogFragmentCompat extends PreferenceDialogFrag
     }
 
     @Override // androidx.preference.PreferenceDialogFragmentCompat
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public boolean needInputMethod() {
         return true;
     }
@@ -34,7 +33,7 @@ public class EditTextPreferenceDialogFragmentCompat extends PreferenceDialogFrag
     @Override // androidx.preference.PreferenceDialogFragmentCompat
     public void onBindDialogView(View view) {
         super.onBindDialogView(view);
-        EditText editText = (EditText) view.findViewById(android.R$id.edit);
+        EditText editText = (EditText) view.findViewById(android.R.id.edit);
         this.mEditText = editText;
         if (editText == null) {
             throw new IllegalStateException("Dialog view must contain an EditText with id @android:id/edit");

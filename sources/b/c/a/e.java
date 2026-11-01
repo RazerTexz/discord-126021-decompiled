@@ -13,7 +13,6 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.zip.ZipEntry;
@@ -23,6 +22,48 @@ import java.util.zip.ZipInputStream;
 /* JADX INFO: loaded from: classes.dex */
 public class e {
     public static final Map<String, r<d>> a = new HashMap();
+
+    /* JADX INFO: compiled from: LottieCompositionFactory.java */
+    public class a implements l<d> {
+        public final /* synthetic */ String a;
+
+        public a(String str) {
+            this.a = str;
+        }
+
+        @Override // b.c.a.l
+        public void a(d dVar) {
+            e.a.remove(this.a);
+        }
+    }
+
+    /* JADX INFO: compiled from: LottieCompositionFactory.java */
+    public class b implements l<Throwable> {
+        public final /* synthetic */ String a;
+
+        public b(String str) {
+            this.a = str;
+        }
+
+        @Override // b.c.a.l
+        public void a(Throwable th) {
+            e.a.remove(this.a);
+        }
+    }
+
+    /* JADX INFO: compiled from: LottieCompositionFactory.java */
+    public class c implements Callable<p<d>> {
+        public final /* synthetic */ d j;
+
+        public c(d dVar) {
+            this.j = dVar;
+        }
+
+        @Override // java.util.concurrent.Callable
+        public p<d> call() throws Exception {
+            return new p<>(this.j);
+        }
+    }
 
     public static r<d> a(@Nullable String str, Callable<p<d>> callable) {
         d dVar;
@@ -34,7 +75,7 @@ public class e {
             dVar = hVar.f409b.get(str);
         }
         if (dVar != null) {
-            return new r<>(new e$c(dVar));
+            return new r<>(new c(dVar));
         }
         if (str != null) {
             Map<String, r<d>> map = a;
@@ -44,8 +85,8 @@ public class e {
         }
         r<d> rVar = new r<>(callable);
         if (str != null) {
-            rVar.b(new e$a(str));
-            rVar.a(new e$b(str));
+            rVar.b(new a(str));
+            rVar.a(new b(str));
             a.put(str, rVar);
         }
         return rVar;
@@ -121,8 +162,8 @@ public class e {
             if (dVar == null) {
                 return new p<>((Throwable) new IllegalArgumentException("Unable to parse composition"));
             }
-            for (Map$Entry map$Entry : map.entrySet()) {
-                String str2 = (String) map$Entry.getKey();
+            for (Map.Entry entry : map.entrySet()) {
+                String str2 = (String) entry.getKey();
                 Iterator<k> it = dVar.d.values().iterator();
                 do {
                     if (!it.hasNext()) {
@@ -132,13 +173,13 @@ public class e {
                     next = it.next();
                 } while (!next.d.equals(str2));
                 if (next != null) {
-                    next.e = b.c.a.b0.g.e((Bitmap) map$Entry.getValue(), next.a, next.f367b);
+                    next.e = b.c.a.b0.g.e((Bitmap) entry.getValue(), next.a, next.f367b);
                 }
             }
-            for (Map$Entry<String, k> map$Entry2 : dVar.d.entrySet()) {
-                if (map$Entry2.getValue().e == null) {
+            for (Map.Entry<String, k> entry2 : dVar.d.entrySet()) {
+                if (entry2.getValue().e == null) {
                     StringBuilder sbU = b.d.b.a.a.U("There is no image for ");
-                    sbU.append(map$Entry2.getValue().d);
+                    sbU.append(entry2.getValue().d);
                     return new p<>((Throwable) new IllegalStateException(sbU.toString()));
                 }
             }

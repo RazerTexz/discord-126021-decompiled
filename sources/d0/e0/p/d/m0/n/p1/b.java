@@ -8,30 +8,53 @@ import d0.e0.p.d.m0.n.c1;
 import d0.e0.p.d.m0.n.d0;
 import d0.e0.p.d.m0.n.e1;
 import d0.e0.p.d.m0.n.g1;
+import d0.e0.p.d.m0.n.i1;
 import d0.e0.p.d.m0.n.j0;
 import d0.e0.p.d.m0.n.j1;
 import d0.e0.p.d.m0.n.u0;
 import d0.e0.p.d.m0.n.w0;
 import d0.e0.p.d.m0.n.y;
 import d0.e0.p.d.m0.n.y0;
-import d0.t.o;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.Pair;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: CapturedTypeApproximation.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class b {
+
+    /* JADX INFO: compiled from: CapturedTypeApproximation.kt */
+    public final class a extends o implements Function1<i1, Boolean> {
+        public static final a j = new a();
+
+        public a() {
+            super(1);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Boolean invoke2(i1 i1Var) {
+            m.checkNotNullExpressionValue(i1Var, "it");
+            return Boolean.valueOf(d0.e0.p.d.m0.k.u.a.d.isCaptured(i1Var));
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(i1 i1Var) {
+            return invoke2(i1Var);
+        }
+    }
+
     /* JADX WARN: Code duplicated, block: B:29:0x00a5  */
     public static final c0 a(c0 c0Var, List<d> list) {
         y0 y0Var;
         c0Var.getArguments().size();
         list.size();
-        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(list, 10));
+        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(list, 10));
         for (d dVar : list) {
             j1 j1Var = j1.OUT_VARIANCE;
             j1 j1Var2 = j1.INVARIANT;
@@ -65,15 +88,15 @@ public final class b {
         return a1.replace$default(c0Var, arrayList, null, null, 6, null);
     }
 
-    public static final a<c0> approximateCapturedTypes(c0 c0Var) {
+    public static final d0.e0.p.d.m0.n.p1.a<c0> approximateCapturedTypes(c0 c0Var) {
         Object objA;
         d dVar;
         m.checkNotNullParameter(c0Var, "type");
         if (y.isFlexible(c0Var)) {
-            a<c0> aVarApproximateCapturedTypes = approximateCapturedTypes(y.lowerIfFlexible(c0Var));
-            a<c0> aVarApproximateCapturedTypes2 = approximateCapturedTypes(y.upperIfFlexible(c0Var));
+            d0.e0.p.d.m0.n.p1.a<c0> aVarApproximateCapturedTypes = approximateCapturedTypes(y.lowerIfFlexible(c0Var));
+            d0.e0.p.d.m0.n.p1.a<c0> aVarApproximateCapturedTypes2 = approximateCapturedTypes(y.upperIfFlexible(c0Var));
             d0 d0Var = d0.a;
-            return new a<>(g1.inheritEnhancement(d0.flexibleType(y.lowerIfFlexible(aVarApproximateCapturedTypes.getLower()), y.upperIfFlexible(aVarApproximateCapturedTypes2.getLower())), c0Var), g1.inheritEnhancement(d0.flexibleType(y.lowerIfFlexible(aVarApproximateCapturedTypes.getUpper()), y.upperIfFlexible(aVarApproximateCapturedTypes2.getUpper())), c0Var));
+            return new d0.e0.p.d.m0.n.p1.a<>(g1.inheritEnhancement(d0.flexibleType(y.lowerIfFlexible(aVarApproximateCapturedTypes.getLower()), y.upperIfFlexible(aVarApproximateCapturedTypes2.getLower())), c0Var), g1.inheritEnhancement(d0.flexibleType(y.lowerIfFlexible(aVarApproximateCapturedTypes.getUpper()), y.upperIfFlexible(aVarApproximateCapturedTypes2.getUpper())), c0Var));
         }
         u0 constructor = c0Var.getConstructor();
         boolean z2 = true;
@@ -87,7 +110,7 @@ public final class b {
             if (iOrdinal == 1) {
                 j0 nullableAnyType = d0.e0.p.d.m0.n.o1.a.getBuiltIns(c0Var).getNullableAnyType();
                 m.checkNotNullExpressionValue(nullableAnyType, "type.builtIns.nullableAnyType");
-                return new a<>(c0VarMakeNullableIfNeeded, nullableAnyType);
+                return new d0.e0.p.d.m0.n.p1.a<>(c0VarMakeNullableIfNeeded, nullableAnyType);
             }
             if (iOrdinal != 2) {
                 throw new AssertionError(m.stringPlus("Only nontrivial projections should have been captured, not: ", projection));
@@ -96,10 +119,10 @@ public final class b {
             m.checkNotNullExpressionValue(nothingType, "type.builtIns.nothingType");
             c0 c0VarMakeNullableIfNeeded2 = e1.makeNullableIfNeeded((c0) nothingType, c0Var.isMarkedNullable());
             m.checkNotNullExpressionValue(c0VarMakeNullableIfNeeded2, "makeNullableIfNeeded(this, type.isMarkedNullable)");
-            return new a<>(c0VarMakeNullableIfNeeded2, c0VarMakeNullableIfNeeded);
+            return new d0.e0.p.d.m0.n.p1.a<>(c0VarMakeNullableIfNeeded2, c0VarMakeNullableIfNeeded);
         }
         if (c0Var.getArguments().isEmpty() || c0Var.getArguments().size() != constructor.getParameters().size()) {
-            return new a<>(c0Var, c0Var);
+            return new d0.e0.p.d.m0.n.p1.a<>(c0Var, c0Var);
         }
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
@@ -137,11 +160,11 @@ public final class b {
                 arrayList.add(dVar);
                 arrayList2.add(dVar);
             } else {
-                a<c0> aVarApproximateCapturedTypes3 = approximateCapturedTypes(dVar.getInProjection());
+                d0.e0.p.d.m0.n.p1.a<c0> aVarApproximateCapturedTypes3 = approximateCapturedTypes(dVar.getInProjection());
                 c0 c0VarComponent1 = aVarApproximateCapturedTypes3.component1();
                 c0 c0VarComponent2 = aVarApproximateCapturedTypes3.component2();
-                a<c0> aVarApproximateCapturedTypes4 = approximateCapturedTypes(dVar.getOutProjection());
-                a aVar = new a(new d(dVar.getTypeParameter(), c0VarComponent2, aVarApproximateCapturedTypes4.component1()), new d(dVar.getTypeParameter(), c0VarComponent1, aVarApproximateCapturedTypes4.component2()));
+                d0.e0.p.d.m0.n.p1.a<c0> aVarApproximateCapturedTypes4 = approximateCapturedTypes(dVar.getOutProjection());
+                d0.e0.p.d.m0.n.p1.a aVar = new d0.e0.p.d.m0.n.p1.a(new d(dVar.getTypeParameter(), c0VarComponent2, aVarApproximateCapturedTypes4.component1()), new d(dVar.getTypeParameter(), c0VarComponent1, aVarApproximateCapturedTypes4.component2()));
                 d dVar2 = (d) aVar.component1();
                 d dVar3 = (d) aVar.component2();
                 arrayList.add(dVar2);
@@ -165,7 +188,7 @@ public final class b {
         } else {
             objA = a(c0Var, arrayList);
         }
-        return new a<>(objA, a(c0Var, arrayList2));
+        return new d0.e0.p.d.m0.n.p1.a<>(objA, a(c0Var, arrayList2));
     }
 
     public static final w0 approximateCapturedTypesIfNecessary(w0 w0Var, boolean z2) {
@@ -177,7 +200,7 @@ public final class b {
         }
         c0 type = w0Var.getType();
         m.checkNotNullExpressionValue(type, "typeProjection.type");
-        if (!e1.contains(type, b$a.j)) {
+        if (!e1.contains(type, a.j)) {
             return w0Var;
         }
         j1 projectionKind = w0Var.getProjectionKind();

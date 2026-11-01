@@ -5,19 +5,19 @@ import com.discord.models.domain.ModelAuditLogEntry;
 import d0.g0.t;
 import d0.g0.w;
 import d0.z.d.m;
-import f0.e0.c;
+import f0.e0.g.c;
 import f0.e0.g.e;
 import f0.e0.h.g;
+import f0.v;
 import f0.y;
 import java.io.IOException;
 import java.util.ArrayList;
 import kotlin.TypeCastException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
-import okhttp3.Interceptor$Chain;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.Response$a;
 import okhttp3.ResponseBody;
 
 /* JADX INFO: compiled from: CacheInterceptor.kt */
@@ -25,14 +25,61 @@ import okhttp3.ResponseBody;
 public final class a implements Interceptor {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final a$a f3607b = new a$a(null);
+    public static final C0604a f3607b = new C0604a(null);
+
+    /* JADX INFO: renamed from: f0.e0.e.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: CacheInterceptor.kt */
+    public final class C0604a {
+        public C0604a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public static final Response a(C0604a c0604a, Response response) {
+            if ((response != null ? response.body : null) == null) {
+                return response;
+            }
+            m.checkParameterIsNotNull(response, "response");
+            Request request = response.request;
+            y yVar = response.protocol;
+            int i = response.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String;
+            String str = response.message;
+            v vVar = response.handshake;
+            Headers.a aVarE = response.headers.e();
+            Response response2 = response.networkResponse;
+            Response response3 = response.cacheResponse;
+            Response response4 = response.priorResponse;
+            long j = response.sentRequestAtMillis;
+            long j2 = response.receivedResponseAtMillis;
+            c cVar = response.exchange;
+            if (!(i >= 0)) {
+                throw new IllegalStateException(b.d.b.a.a.q("code < 0: ", i).toString());
+            }
+            if (request == null) {
+                throw new IllegalStateException("request == null".toString());
+            }
+            if (yVar == null) {
+                throw new IllegalStateException("protocol == null".toString());
+            }
+            if (str != null) {
+                return new Response(request, yVar, str, i, vVar, aVarE.c(), null, response2, response3, response4, j, j2, cVar);
+            }
+            throw new IllegalStateException("message == null".toString());
+        }
+
+        public final boolean b(String str) {
+            return t.equals("Content-Length", str, true) || t.equals("Content-Encoding", str, true) || t.equals("Content-Type", str, true);
+        }
+
+        public final boolean c(String str) {
+            return (t.equals("Connection", str, true) || t.equals("Keep-Alive", str, true) || t.equals("Proxy-Authenticate", str, true) || t.equals("Proxy-Authorization", str, true) || t.equals("TE", str, true) || t.equals("Trailers", str, true) || t.equals("Transfer-Encoding", str, true) || t.equals("Upgrade", str, true)) ? false : true;
+        }
+    }
 
     @Override // okhttp3.Interceptor
-    public Response intercept(Interceptor$Chain interceptor$Chain) throws IOException {
+    public Response intercept(Interceptor.Chain chain) throws IOException {
         Headers headers;
         int i;
-        m.checkParameterIsNotNull(interceptor$Chain, "chain");
-        g gVar = (g) interceptor$Chain;
+        m.checkParameterIsNotNull(chain, "chain");
+        g gVar = (g) chain;
         e eVar = gVar.f3628b;
         System.currentTimeMillis();
         Request request = gVar.f;
@@ -46,15 +93,15 @@ public final class a implements Interceptor {
         if (!(eVar instanceof e)) {
         }
         if (request2 == null && response == null) {
-            Response$a response$a = new Response$a();
-            response$a.g(gVar.f);
-            response$a.f(y.HTTP_1_1);
-            response$a.c = 504;
-            response$a.e("Unsatisfiable Request (only-if-cached)");
-            response$a.g = c.c;
-            response$a.k = -1L;
-            response$a.l = System.currentTimeMillis();
-            Response responseA = response$a.a();
+            Response.a aVar = new Response.a();
+            aVar.g(gVar.f);
+            aVar.f(y.HTTP_1_1);
+            aVar.c = 504;
+            aVar.e("Unsatisfiable Request (only-if-cached)");
+            aVar.g = f0.e0.c.c;
+            aVar.k = -1L;
+            aVar.l = System.currentTimeMillis();
+            Response responseA = aVar.a();
             m.checkParameterIsNotNull(eVar, NotificationCompat.CATEGORY_CALL);
             m.checkParameterIsNotNull(responseA, "response");
             return responseA;
@@ -63,9 +110,9 @@ public final class a implements Interceptor {
             if (response == null) {
                 m.throwNpe();
             }
-            Response$a response$a2 = new Response$a(response);
-            response$a2.b(a$a.a(f3607b, response));
-            Response responseA2 = response$a2.a();
+            Response.a aVar2 = new Response.a(response);
+            aVar2.b(C0604a.a(f3607b, response));
+            Response responseA2 = aVar2.a();
             m.checkParameterIsNotNull(eVar, NotificationCompat.CATEGORY_CALL);
             m.checkParameterIsNotNull(responseA2, "response");
             return responseA2;
@@ -74,11 +121,11 @@ public final class a implements Interceptor {
             m.checkParameterIsNotNull(eVar, NotificationCompat.CATEGORY_CALL);
             m.checkParameterIsNotNull(response, "cachedResponse");
         }
-        Response responseA3 = ((g) interceptor$Chain).a(request2);
+        Response responseA3 = ((g) chain).a(request2);
         if (response != null) {
             if (responseA3.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String == 304) {
-                Response$a response$a3 = new Response$a(response);
-                a$a a_a = f3607b;
+                Response.a aVar3 = new Response.a(response);
+                C0604a c0604a = f3607b;
                 Headers headers2 = response.headers;
                 Headers headers3 = responseA3.headers;
                 ArrayList arrayList = new ArrayList(20);
@@ -97,7 +144,7 @@ public final class a implements Interceptor {
                         headers = headers2;
                         i = size;
                     }
-                    if (a_a.b(strD) || !a_a.c(strD) || headers3.c(strD) == null) {
+                    if (c0604a.b(strD) || !c0604a.c(strD) || headers3.c(strD) == null) {
                         m.checkParameterIsNotNull(strD, ModelAuditLogEntry.CHANGE_KEY_NAME);
                         m.checkParameterIsNotNull(strG, "value");
                         arrayList.add(strD);
@@ -109,7 +156,7 @@ public final class a implements Interceptor {
                 int size2 = headers3.size();
                 for (int i3 = 0; i3 < size2; i3++) {
                     String strD2 = headers3.d(i3);
-                    if (!a_a.b(strD2) && a_a.c(strD2)) {
+                    if (!c0604a.b(strD2) && c0604a.c(strD2)) {
                         String strG2 = headers3.g(i3);
                         m.checkParameterIsNotNull(strD2, ModelAuditLogEntry.CHANGE_KEY_NAME);
                         m.checkParameterIsNotNull(strG2, "value");
@@ -121,15 +168,15 @@ public final class a implements Interceptor {
                 if (array == null) {
                     throw new TypeCastException("null cannot be cast to non-null type kotlin.Array<T>");
                 }
-                response$a3.d(new Headers((String[]) array, null));
-                response$a3.k = responseA3.sentRequestAtMillis;
-                response$a3.l = responseA3.receivedResponseAtMillis;
-                a$a a_a2 = f3607b;
-                response$a3.b(a$a.a(a_a2, response));
-                Response responseA4 = a$a.a(a_a2, responseA3);
-                response$a3.c("networkResponse", responseA4);
-                response$a3.h = responseA4;
-                response$a3.a();
+                aVar3.d(new Headers((String[]) array, null));
+                aVar3.k = responseA3.sentRequestAtMillis;
+                aVar3.l = responseA3.receivedResponseAtMillis;
+                C0604a c0604a2 = f3607b;
+                aVar3.b(C0604a.a(c0604a2, response));
+                Response responseA4 = C0604a.a(c0604a2, responseA3);
+                aVar3.c("networkResponse", responseA4);
+                aVar3.h = responseA4;
+                aVar3.a();
                 ResponseBody responseBody = responseA3.body;
                 if (responseBody == null) {
                     m.throwNpe();
@@ -140,7 +187,7 @@ public final class a implements Interceptor {
             }
             ResponseBody responseBody2 = response.body;
             if (responseBody2 != null) {
-                byte[] bArr = c.a;
+                byte[] bArr = f0.e0.c.a;
                 m.checkParameterIsNotNull(responseBody2, "$this$closeQuietly");
                 try {
                     responseBody2.close();
@@ -150,12 +197,12 @@ public final class a implements Interceptor {
                 }
             }
         }
-        Response$a response$a4 = new Response$a(responseA3);
-        a$a a_a3 = f3607b;
-        response$a4.b(a$a.a(a_a3, response));
-        Response responseA5 = a$a.a(a_a3, responseA3);
-        response$a4.c("networkResponse", responseA5);
-        response$a4.h = responseA5;
-        return response$a4.a();
+        Response.a aVar4 = new Response.a(responseA3);
+        C0604a c0604a3 = f3607b;
+        aVar4.b(C0604a.a(c0604a3, response));
+        Response responseA5 = C0604a.a(c0604a3, responseA3);
+        aVar4.c("networkResponse", responseA5);
+        aVar4.h = responseA5;
+        return aVar4.a();
     }
 }

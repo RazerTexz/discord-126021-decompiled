@@ -3,7 +3,7 @@ package b.i.a.c.w2;
 import android.media.MediaDrmException;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import com.google.android.exoplayer2.drm.DrmInitData$SchemeData;
+import com.google.android.exoplayer2.drm.DrmInitData;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +18,7 @@ public final class y implements a0 {
     }
 
     @Override // b.i.a.c.w2.a0
-    public a0$d b() {
+    public a0.d b() {
         throw new IllegalStateException();
     }
 
@@ -47,7 +47,7 @@ public final class y implements a0 {
     }
 
     @Override // b.i.a.c.w2.a0
-    public void h(@Nullable a0$b a0_b) {
+    public void h(@Nullable a0.b bVar) {
     }
 
     @Override // b.i.a.c.w2.a0
@@ -62,7 +62,7 @@ public final class y implements a0 {
     }
 
     @Override // b.i.a.c.w2.a0
-    public a0$a k(byte[] bArr, @Nullable List<DrmInitData$SchemeData> list, int i, @Nullable HashMap<String, String> map) {
+    public a0.a k(byte[] bArr, @Nullable List<DrmInitData.SchemeData> list, int i, @Nullable HashMap<String, String> map) {
         throw new IllegalStateException();
     }
 

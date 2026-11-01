@@ -1,6 +1,7 @@
 package com.discord.widgets.channels.memberlist;
 
 import b.d.b.a.a;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelRecipientNick;
 import com.discord.api.channel.ChannelUtils;
@@ -10,10 +11,7 @@ import com.discord.models.presence.Presence;
 import com.discord.models.user.User;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.user.UserUtils;
-import com.discord.widgets.channels.memberlist.adapter.ChannelMembersListAdapter$Item$AddMember;
-import com.discord.widgets.channels.memberlist.adapter.ChannelMembersListAdapter$Item$Header;
-import com.discord.widgets.channels.memberlist.adapter.ChannelMembersListAdapter$Item$Header$Type;
-import com.discord.widgets.channels.memberlist.adapter.ChannelMembersListAdapter$Item$Member;
+import com.discord.widgets.channels.memberlist.adapter.ChannelMembersListAdapter;
 import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -27,15 +25,15 @@ import java.util.TreeMap;
 /* JADX INFO: compiled from: PrivateChannelMemberListItemGenerator.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class PrivateChannelMemberListItemGeneratorKt {
-    private static final ChannelMembersListAdapter$Item$Header createGroupDmHeader(int i) {
-        return new ChannelMembersListAdapter$Item$Header("%group_header_key", ChannelMembersListAdapter$Item$Header$Type.GROUP_DM, i);
+    private static final ChannelMembersListAdapter.Item.Header createGroupDmHeader(int i) {
+        return new ChannelMembersListAdapter.Item.Header("%group_header_key", ChannelMembersListAdapter.Item.Header.Type.GROUP_DM, i);
     }
 
-    private static final ChannelMembersListAdapter$Item$Member createMemberListItem(User user, Presence presence, boolean z2, String str, boolean z3) {
-        return new ChannelMembersListAdapter$Item$Member(user.getId(), null, str != null ? str : user.getUsername(), user.getIsBot(), Integer.valueOf(user.getIsSystemUser() ? 2131896165 : 2131887282), UserUtils.INSTANCE.isVerifiedBot(user), presence, null, IconUtils.getForUser$default(user, false, null, 6, null), z2, null, z3, true, user.getFlags() | user.getPublicFlags());
+    private static final ChannelMembersListAdapter.Item.Member createMemberListItem(User user, Presence presence, boolean z2, String str, boolean z3) {
+        return new ChannelMembersListAdapter.Item.Member(user.getId(), null, str != null ? str : user.getUsername(), user.getIsBot(), Integer.valueOf(user.getIsSystemUser() ? R.string.system_dm_tag_system : R.string.bot_tag_bot), UserUtils.INSTANCE.isVerifiedBot(user), presence, null, IconUtils.getForUser$default(user, false, null, 6, null), z2, null, z3, true, user.getFlags() | user.getPublicFlags());
     }
 
-    public static final WidgetChannelMembersListViewModel$MemberList generateGroupDmMemberListItems(Channel channel, Map<Long, ? extends User> map, Map<Long, Presence> map2, Map<Long, ? extends ModelApplicationStream> map3, boolean z2) {
+    public static final WidgetChannelMembersListViewModel.MemberList generateGroupDmMemberListItems(Channel channel, Map<Long, ? extends User> map, Map<Long, Presence> map2, Map<Long, ? extends ModelApplicationStream> map3, boolean z2) {
         Object next;
         m.checkNotNullParameter(channel, "channel");
         m.checkNotNullParameter(map, "users");
@@ -88,7 +86,7 @@ public final class PrivateChannelMemberListItemGeneratorKt {
         int size = map.size();
         ArrayList arrayList = new ArrayList(size + 1);
         if (z2) {
-            arrayList.add(0, new ChannelMembersListAdapter$Item$AddMember(String.valueOf(channel.getId()), ChannelUtils.p(channel) ? 2131889802 : 2131888235));
+            arrayList.add(0, new ChannelMembersListAdapter.Item.AddMember(String.valueOf(channel.getId()), ChannelUtils.p(channel) ? R.string.group_dm_add_friends : R.string.create_group_dm));
         }
         arrayList.add(createGroupDmHeader(size));
         arrayList.addAll(treeMap.values());

@@ -2,7 +2,6 @@ package androidx.work;
 
 import b.i.b.d.a.a;
 import d0.k;
-import d0.k$a;
 import d0.l;
 import java.util.concurrent.CancellationException;
 import kotlinx.coroutines.CancellableContinuation;
@@ -23,7 +22,7 @@ public final class CoroutineWorker$await$$inlined$suspendCancellableCoroutine$la
         try {
             CancellableContinuation cancellableContinuation = this.$cancellableContinuation;
             V v = this.$this_await$inlined.get();
-            k$a k_a = k.j;
+            k.a aVar = k.j;
             cancellableContinuation.resumeWith(k.m97constructorimpl(v));
         } catch (Throwable th) {
             Throwable cause = th.getCause();
@@ -35,7 +34,7 @@ public final class CoroutineWorker$await$$inlined$suspendCancellableCoroutine$la
                 return;
             }
             CancellableContinuation cancellableContinuation2 = this.$cancellableContinuation;
-            k$a k_a2 = k.j;
+            k.a aVar2 = k.j;
             cancellableContinuation2.resumeWith(k.m97constructorimpl(l.createFailure(cause)));
         }
     }

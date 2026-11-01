@@ -1,13 +1,12 @@
 package j0.l.a;
 
 import rx.Observable;
-import rx.Observable$b;
 import rx.Subscriber;
 import rx.observers.SerializedSubscriber;
 
 /* JADX INFO: compiled from: OperatorTakeUntil.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class f2<T, E> implements Observable$b<T, T> {
+public final class f2<T, E> implements Observable.b<T, T> {
     public final Observable<? extends E> j;
 
     public f2(Observable<? extends E> observable) {

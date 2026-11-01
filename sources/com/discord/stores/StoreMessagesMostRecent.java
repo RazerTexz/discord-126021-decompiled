@@ -1,5 +1,6 @@
 package com.discord.stores;
 
+import androidx.core.app.NotificationCompat;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.guild.Guild;
@@ -9,7 +10,6 @@ import com.discord.models.domain.ModelPayload;
 import com.discord.models.domain.ModelReadState;
 import com.discord.models.thread.dto.ModelThreadListSync;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
 import com.discord.utilities.collections.CollectionExtensionsKt;
 import com.discord.utilities.message.MessageUtils;
@@ -17,11 +17,14 @@ import com.discord.utilities.persister.Persister;
 import com.discord.widgets.forums.ForumUtils;
 import d0.t.h0;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
 
@@ -33,6 +36,46 @@ public final class StoreMessagesMostRecent extends StoreV2 {
     private Map<Long, Long> mostRecentIdsSnapshot;
     private final ObservationDeck observationDeck;
     private final StoreChannels storeChannels;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMessagesMostRecent$observeRecentMessageIds$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMessagesMostRecent.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Long>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Long> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Long> invoke2() {
+            return StoreMessagesMostRecent.this.getMostRecentIds();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMessagesMostRecent$observeRecentMessageIds$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreMessagesMostRecent.kt */
+    public final class AnonymousClass2<T, R> implements b<Map<Long, ? extends Long>, Long> {
+        public final /* synthetic */ long $channelId;
+
+        public AnonymousClass2(long j) {
+            this.$channelId = j;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Long call(Map<Long, ? extends Long> map) {
+            return call2((Map<Long, Long>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Long call2(Map<Long, Long> map) {
+            Long l = map.get(Long.valueOf(this.$channelId));
+            return Long.valueOf(l != null ? l.longValue() : 0L);
+        }
+    }
 
     public /* synthetic */ StoreMessagesMostRecent(StoreChannels storeChannels, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(storeChannels, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck);
@@ -144,7 +187,7 @@ public final class StoreMessagesMostRecent extends StoreV2 {
     }
 
     public final Observable<Map<Long, Long>> observeRecentMessageIds() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreMessagesMostRecent$observeRecentMessageIds$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     @Override // com.discord.stores.StoreV2
@@ -186,7 +229,7 @@ public final class StoreMessagesMostRecent extends StoreV2 {
     }
 
     public final Observable<Long> observeRecentMessageIds(long channelId) {
-        Observable<Long> observableR = observeRecentMessageIds().G(new StoreMessagesMostRecent$observeRecentMessageIds$2(channelId)).r();
+        Observable<Long> observableR = observeRecentMessageIds().G(new AnonymousClass2(channelId)).r();
         m.checkNotNullExpressionValue(observableR, "observeRecentMessageIds(…  .distinctUntilChanged()");
         return observableR;
     }

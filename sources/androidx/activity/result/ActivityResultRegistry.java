@@ -10,11 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.view.Lifecycle;
-import androidx.view.Lifecycle$State;
+import androidx.view.LifecycleEventObserver;
 import androidx.view.LifecycleOwner;
 import b.d.b.a.a;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
@@ -29,10 +30,120 @@ public abstract class ActivityResultRegistry {
     private Random mRandom = new Random();
     private final Map<Integer, String> mRcToKey = new HashMap();
     private final Map<String, Integer> mKeyToRc = new HashMap();
-    private final Map<String, ActivityResultRegistry$LifecycleContainer> mKeyToLifecycleContainers = new HashMap();
-    public final transient Map<String, ActivityResultRegistry$CallbackAndContract<?>> mKeyToCallback = new HashMap();
+    private final Map<String, LifecycleContainer> mKeyToLifecycleContainers = new HashMap();
+    public final transient Map<String, CallbackAndContract<?>> mKeyToCallback = new HashMap();
     public final Map<String, Object> mParsedPendingResults = new HashMap();
     public final Bundle mPendingResults = new Bundle();
+
+    /* JADX INFO: renamed from: androidx.activity.result.ActivityResultRegistry$1, reason: invalid class name */
+    public class AnonymousClass1 implements LifecycleEventObserver {
+        public final /* synthetic */ ActivityResultCallback val$callback;
+        public final /* synthetic */ ActivityResultContract val$contract;
+        public final /* synthetic */ String val$key;
+
+        public AnonymousClass1(String str, ActivityResultCallback activityResultCallback, ActivityResultContract activityResultContract) {
+            this.val$key = str;
+            this.val$callback = activityResultCallback;
+            this.val$contract = activityResultContract;
+        }
+
+        @Override // androidx.view.LifecycleEventObserver
+        public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event) {
+            if (!Lifecycle.Event.ON_START.equals(event)) {
+                if (Lifecycle.Event.ON_STOP.equals(event)) {
+                    ActivityResultRegistry.this.mKeyToCallback.remove(this.val$key);
+                    return;
+                } else {
+                    if (Lifecycle.Event.ON_DESTROY.equals(event)) {
+                        ActivityResultRegistry.this.unregister(this.val$key);
+                        return;
+                    }
+                    return;
+                }
+            }
+            ActivityResultRegistry.this.mKeyToCallback.put(this.val$key, new CallbackAndContract<>(this.val$callback, this.val$contract));
+            if (ActivityResultRegistry.this.mParsedPendingResults.containsKey(this.val$key)) {
+                Object obj = ActivityResultRegistry.this.mParsedPendingResults.get(this.val$key);
+                ActivityResultRegistry.this.mParsedPendingResults.remove(this.val$key);
+                this.val$callback.onActivityResult(obj);
+            }
+            ActivityResult activityResult = (ActivityResult) ActivityResultRegistry.this.mPendingResults.getParcelable(this.val$key);
+            if (activityResult != null) {
+                ActivityResultRegistry.this.mPendingResults.remove(this.val$key);
+                this.val$callback.onActivityResult(this.val$contract.parseResult(activityResult.getResultCode(), activityResult.getData()));
+            }
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [I] */
+    /* JADX INFO: renamed from: androidx.activity.result.ActivityResultRegistry$2, reason: invalid class name */
+    public class AnonymousClass2<I> extends ActivityResultLauncher<I> {
+        public final /* synthetic */ ActivityResultContract val$contract;
+        public final /* synthetic */ String val$key;
+        public final /* synthetic */ int val$requestCode;
+
+        public AnonymousClass2(int i, ActivityResultContract activityResultContract, String str) {
+            this.val$requestCode = i;
+            this.val$contract = activityResultContract;
+            this.val$key = str;
+        }
+
+        @Override // androidx.activity.result.ActivityResultLauncher
+        @NonNull
+        public ActivityResultContract<I, ?> getContract() {
+            return this.val$contract;
+        }
+
+        @Override // androidx.activity.result.ActivityResultLauncher
+        public void launch(I i, @Nullable ActivityOptionsCompat activityOptionsCompat) {
+            ActivityResultRegistry.this.onLaunch(this.val$requestCode, this.val$contract, i, activityOptionsCompat);
+        }
+
+        @Override // androidx.activity.result.ActivityResultLauncher
+        public void unregister() {
+            ActivityResultRegistry.this.unregister(this.val$key);
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [I] */
+    /* JADX INFO: renamed from: androidx.activity.result.ActivityResultRegistry$3, reason: invalid class name */
+    public class AnonymousClass3<I> extends ActivityResultLauncher<I> {
+        public final /* synthetic */ ActivityResultContract val$contract;
+        public final /* synthetic */ String val$key;
+        public final /* synthetic */ int val$requestCode;
+
+        public AnonymousClass3(int i, ActivityResultContract activityResultContract, String str) {
+            this.val$requestCode = i;
+            this.val$contract = activityResultContract;
+            this.val$key = str;
+        }
+
+        @Override // androidx.activity.result.ActivityResultLauncher
+        @NonNull
+        public ActivityResultContract<I, ?> getContract() {
+            return this.val$contract;
+        }
+
+        @Override // androidx.activity.result.ActivityResultLauncher
+        public void launch(I i, @Nullable ActivityOptionsCompat activityOptionsCompat) {
+            ActivityResultRegistry.this.onLaunch(this.val$requestCode, this.val$contract, i, activityOptionsCompat);
+        }
+
+        @Override // androidx.activity.result.ActivityResultLauncher
+        public void unregister() {
+            ActivityResultRegistry.this.unregister(this.val$key);
+        }
+    }
+
+    public class CallbackAndContract<O> {
+        public final ActivityResultCallback<O> mCallback;
+        public final ActivityResultContract<?, O> mContract;
+
+        public CallbackAndContract(ActivityResultCallback<O> activityResultCallback, ActivityResultContract<?, O> activityResultContract) {
+            this.mCallback = activityResultCallback;
+            this.mContract = activityResultContract;
+        }
+    }
 
     private void bindRcKey(int i, String str) {
         this.mRcToKey.put(Integer.valueOf(i), str);
@@ -49,10 +160,10 @@ public abstract class ActivityResultRegistry {
         return true;
     }
 
-    private <O> void doDispatch(String str, int i, @Nullable Intent intent, @Nullable ActivityResultRegistry$CallbackAndContract<O> activityResultRegistry$CallbackAndContract) {
+    private <O> void doDispatch(String str, int i, @Nullable Intent intent, @Nullable CallbackAndContract<O> callbackAndContract) {
         ActivityResultCallback<O> activityResultCallback;
-        if (activityResultRegistry$CallbackAndContract != null && (activityResultCallback = activityResultRegistry$CallbackAndContract.mCallback) != null) {
-            activityResultCallback.onActivityResult(activityResultRegistry$CallbackAndContract.mContract.parseResult(i, intent));
+        if (callbackAndContract != null && (activityResultCallback = callbackAndContract.mCallback) != null) {
+            activityResultCallback.onActivityResult(callbackAndContract.mContract.parseResult(i, intent));
         } else {
             this.mParsedPendingResults.remove(str);
             this.mPendingResults.putParcelable(str, new ActivityResult(i, intent));
@@ -100,17 +211,17 @@ public abstract class ActivityResultRegistry {
     @NonNull
     public final <I, O> ActivityResultLauncher<I> register(@NonNull String str, @NonNull LifecycleOwner lifecycleOwner, @NonNull ActivityResultContract<I, O> activityResultContract, @NonNull ActivityResultCallback<O> activityResultCallback) {
         Lifecycle lifecycle = lifecycleOwner.getLifecycle();
-        if (lifecycle.getCurrentState().isAtLeast(Lifecycle$State.STARTED)) {
+        if (lifecycle.getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
             throw new IllegalStateException("LifecycleOwner " + lifecycleOwner + " is attempting to register while current state is " + lifecycle.getCurrentState() + ". LifecycleOwners must call register before they are STARTED.");
         }
         int iRegisterKey = registerKey(str);
-        ActivityResultRegistry$LifecycleContainer activityResultRegistry$LifecycleContainer = this.mKeyToLifecycleContainers.get(str);
-        if (activityResultRegistry$LifecycleContainer == null) {
-            activityResultRegistry$LifecycleContainer = new ActivityResultRegistry$LifecycleContainer(lifecycle);
+        LifecycleContainer lifecycleContainer = this.mKeyToLifecycleContainers.get(str);
+        if (lifecycleContainer == null) {
+            lifecycleContainer = new LifecycleContainer(lifecycle);
         }
-        activityResultRegistry$LifecycleContainer.addObserver(new ActivityResultRegistry$1(this, str, activityResultCallback, activityResultContract));
-        this.mKeyToLifecycleContainers.put(str, activityResultRegistry$LifecycleContainer);
-        return new ActivityResultRegistry$2(this, iRegisterKey, activityResultContract, str);
+        lifecycleContainer.addObserver(new AnonymousClass1(str, activityResultCallback, activityResultContract));
+        this.mKeyToLifecycleContainers.put(str, lifecycleContainer);
+        return new AnonymousClass2(iRegisterKey, activityResultContract, str);
     }
 
     private int registerKey(String str) {
@@ -142,10 +253,32 @@ public abstract class ActivityResultRegistry {
             Log.w(LOG_TAG, sbY2.toString());
             this.mPendingResults.remove(str);
         }
-        ActivityResultRegistry$LifecycleContainer activityResultRegistry$LifecycleContainer = this.mKeyToLifecycleContainers.get(str);
-        if (activityResultRegistry$LifecycleContainer != null) {
-            activityResultRegistry$LifecycleContainer.clearObservers();
+        LifecycleContainer lifecycleContainer = this.mKeyToLifecycleContainers.get(str);
+        if (lifecycleContainer != null) {
+            lifecycleContainer.clearObservers();
             this.mKeyToLifecycleContainers.remove(str);
+        }
+    }
+
+    public class LifecycleContainer {
+        public final Lifecycle mLifecycle;
+        private final ArrayList<LifecycleEventObserver> mObservers = new ArrayList<>();
+
+        public LifecycleContainer(@NonNull Lifecycle lifecycle) {
+            this.mLifecycle = lifecycle;
+        }
+
+        public void addObserver(@NonNull LifecycleEventObserver lifecycleEventObserver) {
+            this.mLifecycle.addObserver(lifecycleEventObserver);
+            this.mObservers.add(lifecycleEventObserver);
+        }
+
+        public void clearObservers() {
+            Iterator<LifecycleEventObserver> it = this.mObservers.iterator();
+            while (it.hasNext()) {
+                this.mLifecycle.removeObserver(it.next());
+            }
+            this.mObservers.clear();
         }
     }
 
@@ -156,8 +289,8 @@ public abstract class ActivityResultRegistry {
         if (str == null) {
             return false;
         }
-        ActivityResultRegistry$CallbackAndContract<?> activityResultRegistry$CallbackAndContract = this.mKeyToCallback.get(str);
-        if (activityResultRegistry$CallbackAndContract != null && (activityResultCallback = activityResultRegistry$CallbackAndContract.mCallback) != null) {
+        CallbackAndContract<?> callbackAndContract = this.mKeyToCallback.get(str);
+        if (callbackAndContract != null && (activityResultCallback = callbackAndContract.mCallback) != null) {
             activityResultCallback.onActivityResult(o);
             return true;
         }
@@ -170,7 +303,7 @@ public abstract class ActivityResultRegistry {
     @NonNull
     public final <I, O> ActivityResultLauncher<I> register(@NonNull String str, @NonNull ActivityResultContract<I, O> activityResultContract, @NonNull ActivityResultCallback<O> activityResultCallback) {
         int iRegisterKey = registerKey(str);
-        this.mKeyToCallback.put(str, new ActivityResultRegistry$CallbackAndContract<>(activityResultCallback, activityResultContract));
+        this.mKeyToCallback.put(str, new CallbackAndContract<>(activityResultCallback, activityResultContract));
         if (this.mParsedPendingResults.containsKey(str)) {
             Object obj = this.mParsedPendingResults.get(str);
             this.mParsedPendingResults.remove(str);
@@ -181,6 +314,6 @@ public abstract class ActivityResultRegistry {
             this.mPendingResults.remove(str);
             activityResultCallback.onActivityResult(activityResultContract.parseResult(activityResult.getResultCode(), activityResult.getData()));
         }
-        return new ActivityResultRegistry$3(this, iRegisterKey, activityResultContract, str);
+        return new AnonymousClass3(iRegisterKey, activityResultContract, str);
     }
 }

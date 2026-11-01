@@ -3,17 +3,145 @@ package b.i.b.b;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.io.InvalidObjectException;
 import java.io.ObjectInputStream;
+import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Objects;
 import java.util.RandomAccess;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 /* JADX INFO: compiled from: ImmutableList.java */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class p<E> extends n<E> implements List<E>, RandomAccess {
-    public static final a<Object> k = new p$b(h0.l, 0);
+    public static final b.i.b.b.a<Object> k = new b(h0.l, 0);
+
+    /* JADX INFO: compiled from: ImmutableList.java */
+    public final class a<E> extends n.a<E> {
+        public a() {
+            super(4);
+        }
+
+        @CanIgnoreReturnValue
+        public a<E> b(E e) {
+            Objects.requireNonNull(e);
+            int i = this.f1647b + 1;
+            Object[] objArr = this.a;
+            if (objArr.length < i) {
+                this.a = Arrays.copyOf(objArr, n.b.a(objArr.length, i));
+                this.c = false;
+            } else if (this.c) {
+                this.a = (Object[]) objArr.clone();
+                this.c = false;
+            }
+            Object[] objArr2 = this.a;
+            int i2 = this.f1647b;
+            this.f1647b = i2 + 1;
+            objArr2[i2] = e;
+            return this;
+        }
+
+        public p<E> c() {
+            this.c = true;
+            return p.l(this.a, this.f1647b);
+        }
+    }
+
+    /* JADX INFO: compiled from: ImmutableList.java */
+    public class b<E> extends b.i.b.b.a<E> {
+        public final p<E> l;
+
+        public b(p<E> pVar, int i) {
+            super(pVar.size(), i);
+            this.l = pVar;
+        }
+    }
+
+    /* JADX INFO: compiled from: ImmutableList.java */
+    public class c implements Serializable {
+        private static final long serialVersionUID = 0;
+        public final Object[] elements;
+
+        public c(Object[] objArr) {
+            this.elements = objArr;
+        }
+
+        public Object readResolve() {
+            return p.o(this.elements);
+        }
+    }
+
+    /* JADX INFO: compiled from: ImmutableList.java */
+    public class d extends p<E> {
+        public final transient int l;
+        public final transient int m;
+
+        public d(int i, int i2) {
+            this.l = i;
+            this.m = i2;
+        }
+
+        @Override // b.i.b.b.n
+        public Object[] e() {
+            return p.this.e();
+        }
+
+        @Override // b.i.b.b.n
+        public int g() {
+            return p.this.h() + this.l + this.m;
+        }
+
+        @Override // java.util.List
+        public E get(int i) {
+            b.i.a.f.e.o.f.x(i, this.m);
+            return p.this.get(i + this.l);
+        }
+
+        @Override // b.i.b.b.n
+        public int h() {
+            return p.this.h() + this.l;
+        }
+
+        @Override // b.i.b.b.n
+        public boolean i() {
+            return true;
+        }
+
+        @Override // b.i.b.b.p, b.i.b.b.n, java.util.AbstractCollection, java.util.Collection, java.lang.Iterable, java.util.Set
+        public Iterator iterator() {
+            return p();
+        }
+
+        @Override // b.i.b.b.p, java.util.List
+        public /* bridge */ /* synthetic */ ListIterator listIterator() {
+            return p();
+        }
+
+        @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
+        public int size() {
+            return this.m;
+        }
+
+        @Override // b.i.b.b.p, java.util.List
+        public /* bridge */ /* synthetic */ List subList(int i, int i2) {
+            return w(i, i2);
+        }
+
+        @Override // b.i.b.b.p
+        public p<E> w(int i, int i2) {
+            b.i.a.f.e.o.f.D(i, i2, this.m);
+            p pVar = p.this;
+            int i3 = this.l;
+            return pVar.w(i + i3, i2 + i3);
+        }
+
+        @Override // b.i.b.b.p, java.util.List
+        public /* bridge */ /* synthetic */ ListIterator listIterator(int i) {
+            return r(i);
+        }
+    }
 
     @Override // java.util.List
     @Deprecated
@@ -157,13 +285,13 @@ public abstract class p<E> extends n<E> implements List<E>, RandomAccess {
         return eArr.length == 0 ? (p<E>) h0.l : m((Object[]) eArr.clone());
     }
 
-    public a<E> p() {
+    public b.i.b.b.a<E> p() {
         return r(0);
     }
 
-    public a<E> r(int i) {
+    public b.i.b.b.a<E> r(int i) {
         b.i.a.f.e.o.f.C(i, size());
-        return isEmpty() ? (a<E>) k : new p$b(this, i);
+        return isEmpty() ? (b.i.b.b.a<E>) k : new b(this, i);
     }
 
     private void readObject(ObjectInputStream objectInputStream) throws InvalidObjectException {
@@ -203,12 +331,12 @@ public abstract class p<E> extends n<E> implements List<E>, RandomAccess {
         if (i3 == size()) {
             return this;
         }
-        return i3 == 0 ? (p<E>) h0.l : new p$d(this, i, i3);
+        return i3 == 0 ? (p<E>) h0.l : new d(i, i3);
     }
 
     @Override // b.i.b.b.n
     public Object writeReplace() {
-        return new p$c(toArray());
+        return new c(toArray());
     }
 
     @Override // java.util.List

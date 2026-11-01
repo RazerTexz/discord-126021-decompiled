@@ -5,7 +5,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
+import com.discord.R;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChatListAdapterItemTextDividerBinding implements ViewBinding {
@@ -32,14 +32,14 @@ public final class WidgetChatListAdapterItemTextDividerBinding implements ViewBi
 
     @NonNull
     public static WidgetChatListAdapterItemTextDividerBinding a(@NonNull View view) {
-        int i = R$id.divider_stroke_left;
-        View viewFindViewById = view.findViewById(R$id.divider_stroke_left);
+        int i = R.id.divider_stroke_left;
+        View viewFindViewById = view.findViewById(R.id.divider_stroke_left);
         if (viewFindViewById != null) {
-            i = R$id.divider_stroke_right;
-            View viewFindViewById2 = view.findViewById(R$id.divider_stroke_right);
+            i = R.id.divider_stroke_right;
+            View viewFindViewById2 = view.findViewById(R.id.divider_stroke_right);
             if (viewFindViewById2 != null) {
-                i = R$id.divider_text;
-                TextView textView = (TextView) view.findViewById(R$id.divider_text);
+                i = R.id.divider_text;
+                TextView textView = (TextView) view.findViewById(R.id.divider_text);
                 if (textView != null) {
                     return new WidgetChatListAdapterItemTextDividerBinding((RelativeLayout) view, viewFindViewById, viewFindViewById2, textView);
                 }

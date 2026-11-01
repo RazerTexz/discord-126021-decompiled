@@ -14,6 +14,20 @@ public class h extends e {
     public final List<e> e;
     public int f = -1;
 
+    /* JADX INFO: compiled from: SequenceAction.java */
+    public class a implements b {
+        public a() {
+        }
+
+        @Override // b.o.a.n.o.b
+        public void a(@NonNull b.o.a.n.o.a aVar, int i) {
+            if (i == Integer.MAX_VALUE) {
+                ((e) aVar).a.remove(this);
+                h.this.m();
+            }
+        }
+    }
+
     public h(@NonNull List<e> list) {
         this.e = list;
         m();
@@ -73,7 +87,7 @@ public class h extends e {
         }
         int i2 = this.f + 1;
         this.f = i2;
-        this.e.get(i2).f(new h$a(this));
+        this.e.get(i2).f(new a());
         if (z2) {
             return;
         }

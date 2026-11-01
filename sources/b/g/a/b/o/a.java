@@ -1,7 +1,6 @@
 package b.g.a.b.o;
 
 import b.g.a.b.d;
-import b.g.a.b.d$a;
 import b.g.a.b.g;
 import b.g.a.b.i;
 import b.g.a.b.q.c;
@@ -16,13 +15,13 @@ public abstract class a extends d {
     public int o;
     public boolean p;
     public c q;
-    public static final int m = (d$a.WRITE_NUMBERS_AS_STRINGS.h() | d$a.ESCAPE_NON_ASCII.h()) | d$a.STRICT_DUPLICATE_DETECTION.h();
+    public static final int m = (d.a.WRITE_NUMBERS_AS_STRINGS.h() | d.a.ESCAPE_NON_ASCII.h()) | d.a.STRICT_DUPLICATE_DETECTION.h();
 
     public a(int i, i iVar) {
         this.o = i;
         this.n = iVar;
-        this.q = new c(0, null, d$a.STRICT_DUPLICATE_DETECTION.g(i) ? new b.g.a.b.q.a(this) : null);
-        this.p = d$a.WRITE_NUMBERS_AS_STRINGS.g(i);
+        this.q = new c(0, null, d.a.STRICT_DUPLICATE_DETECTION.g(i) ? new b.g.a.b.q.a(this) : null);
+        this.p = d.a.WRITE_NUMBERS_AS_STRINGS.g(i);
     }
 
     @Override // b.g.a.b.d
@@ -37,8 +36,8 @@ public abstract class a extends d {
     }
 
     @Override // b.g.a.b.d
-    public final boolean d(d$a d_a) {
-        return (d_a.h() & this.o) != 0;
+    public final boolean d(d.a aVar) {
+        return (aVar.h() & this.o) != 0;
     }
 
     @Override // b.g.a.b.d
@@ -50,7 +49,7 @@ public abstract class a extends d {
     }
 
     public String o0(BigDecimal bigDecimal) throws IOException {
-        if (!d$a.WRITE_BIGDECIMAL_AS_PLAIN.g(this.o)) {
+        if (!d.a.WRITE_BIGDECIMAL_AS_PLAIN.g(this.o)) {
             return bigDecimal.toString();
         }
         int iScale = bigDecimal.scale();

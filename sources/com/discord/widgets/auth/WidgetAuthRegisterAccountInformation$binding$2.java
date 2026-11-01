@@ -2,7 +2,7 @@ package com.discord.widgets.auth;
 
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetAuthRegisterAccountInformationBinding;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.views.LoadingButton;
@@ -29,20 +29,20 @@ public final /* synthetic */ class WidgetAuthRegisterAccountInformation$binding$
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetAuthRegisterAccountInformationBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.auth_policy_links;
-        LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R$id.auth_policy_links);
+        int i = R.id.auth_policy_links;
+        LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R.id.auth_policy_links);
         if (linkifiedTextView != null) {
-            i = R$id.auth_register_account_information_button;
-            LoadingButton loadingButton = (LoadingButton) view.findViewById(R$id.auth_register_account_information_button);
+            i = R.id.auth_register_account_information_button;
+            LoadingButton loadingButton = (LoadingButton) view.findViewById(R.id.auth_register_account_information_button);
             if (loadingButton != null) {
-                i = R$id.auth_register_account_information_password_wrap;
-                TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.auth_register_account_information_password_wrap);
+                i = R.id.auth_register_account_information_password_wrap;
+                TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R.id.auth_register_account_information_password_wrap);
                 if (textInputLayout != null) {
-                    i = R$id.auth_register_account_information_username_wrap;
-                    TextInputLayout textInputLayout2 = (TextInputLayout) view.findViewById(R$id.auth_register_account_information_username_wrap);
+                    i = R.id.auth_register_account_information_username_wrap;
+                    TextInputLayout textInputLayout2 = (TextInputLayout) view.findViewById(R.id.auth_register_account_information_username_wrap);
                     if (textInputLayout2 != null) {
-                        i = R$id.auth_tos_opt_in;
-                        MaterialCheckBox materialCheckBox = (MaterialCheckBox) view.findViewById(R$id.auth_tos_opt_in);
+                        i = R.id.auth_tos_opt_in;
+                        MaterialCheckBox materialCheckBox = (MaterialCheckBox) view.findViewById(R.id.auth_tos_opt_in);
                         if (materialCheckBox != null) {
                             return new WidgetAuthRegisterAccountInformationBinding((CoordinatorLayout) view, linkifiedTextView, loadingButton, textInputLayout, textInputLayout2, materialCheckBox);
                         }

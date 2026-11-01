@@ -5,6 +5,7 @@ import android.text.SpannableStringBuilder;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.ActivityChooserModel;
 import b.a.k.b;
+import com.discord.R;
 import com.discord.api.activity.Activity;
 import com.discord.api.activity.ActivityEmoji;
 import com.discord.api.activity.ActivityParty;
@@ -15,7 +16,6 @@ import com.discord.api.presence.ClientStatuses;
 import com.discord.models.presence.Presence;
 import com.discord.utilities.platform.Platform;
 import com.discord.utilities.textprocessing.node.EmojiNode;
-import com.discord.utilities.textprocessing.node.EmojiNode$Companion;
 import com.discord.utilities.view.text.SimpleDraweeSpanTextView;
 import com.facebook.drawee.span.DraweeSpanStringBuilder;
 import d0.t.u;
@@ -30,6 +30,75 @@ import java.util.List;
 public final class PresenceUtils {
     public static final PresenceUtils INSTANCE = new PresenceUtils();
     private static final Comparator<Activity> ACTIVITY_COMPARATOR = a.compareBy(PresenceUtils$ACTIVITY_COMPARATOR$1.INSTANCE, PresenceUtils$ACTIVITY_COMPARATOR$2.INSTANCE, PresenceUtils$ACTIVITY_COMPARATOR$3.INSTANCE);
+
+    /* JADX INFO: renamed from: com.discord.utilities.presence.PresenceUtils$getStatusDraweeSpanStringBuilder$1, reason: invalid class name */
+    /* JADX INFO: compiled from: PresenceUtils.kt */
+    public final class AnonymousClass1 implements EmojiNode.RenderContext {
+        public final /* synthetic */ boolean $animateCustomStatusEmoji;
+        public final /* synthetic */ Context $context;
+        private final Context context;
+        private final boolean isAnimationEnabled;
+
+        public AnonymousClass1(Context context, boolean z2) {
+            this.$context = context;
+            this.$animateCustomStatusEmoji = z2;
+            this.context = context;
+            this.isAnimationEnabled = z2;
+        }
+
+        @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
+        public Context getContext() {
+            return this.context;
+        }
+
+        @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
+        /* JADX INFO: renamed from: isAnimationEnabled, reason: from getter */
+        public boolean getIsAnimationEnabled() {
+            return this.isAnimationEnabled;
+        }
+
+        @Override // com.discord.utilities.textprocessing.node.EmojiNode.RenderContext
+        public void onEmojiClicked(EmojiNode.EmojiIdAndType emojiIdAndType) {
+            m.checkNotNullParameter(emojiIdAndType, "emojiIdAndType");
+            EmojiNode.RenderContext.DefaultImpls.onEmojiClicked(this, emojiIdAndType);
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$2;
+
+        static {
+            ActivityType.values();
+            int[] iArr = new int[7];
+            $EnumSwitchMapping$0 = iArr;
+            ActivityType activityType = ActivityType.STREAMING;
+            iArr[activityType.ordinal()] = 1;
+            ActivityType activityType2 = ActivityType.LISTENING;
+            iArr[activityType2.ordinal()] = 2;
+            ActivityType activityType3 = ActivityType.WATCHING;
+            iArr[activityType3.ordinal()] = 3;
+            ActivityType activityType4 = ActivityType.PLAYING;
+            iArr[activityType4.ordinal()] = 4;
+            ActivityType activityType5 = ActivityType.COMPETING;
+            iArr[activityType5.ordinal()] = 5;
+            ActivityType.values();
+            int[] iArr2 = new int[7];
+            $EnumSwitchMapping$1 = iArr2;
+            iArr2[activityType4.ordinal()] = 1;
+            iArr2[activityType2.ordinal()] = 2;
+            iArr2[activityType.ordinal()] = 3;
+            iArr2[activityType3.ordinal()] = 4;
+            iArr2[activityType5.ordinal()] = 5;
+            ClientStatus.values();
+            int[] iArr3 = new int[5];
+            $EnumSwitchMapping$2 = iArr3;
+            iArr3[ClientStatus.ONLINE.ordinal()] = 1;
+            iArr3[ClientStatus.IDLE.ordinal()] = 2;
+            iArr3[ClientStatus.DND.ordinal()] = 3;
+        }
+    }
 
     private PresenceUtils() {
     }
@@ -70,19 +139,19 @@ public final class PresenceUtils {
         int iOrdinal = activity.getType().ordinal();
         if (iOrdinal != 0) {
             if (iOrdinal == 1) {
-                return b.h(context, 2131896726, new Object[]{activity.getName()}, null, 4);
+                return b.h(context, R.string.user_activity_header_live_on_platform, new Object[]{activity.getName()}, null, 4);
             }
             if (iOrdinal == 2) {
-                return b.h(context, 2131896725, new Object[]{activity.getName()}, null, 4);
+                return b.h(context, R.string.user_activity_header_listening, new Object[]{activity.getName()}, null, 4);
             }
             if (iOrdinal != 3) {
-                return iOrdinal != 5 ? b.h(context, 2131896727, new Object[0], null, 4) : b.h(context, 2131896724, new Object[]{activity.getName()}, null, 4);
+                return iOrdinal != 5 ? b.h(context, R.string.user_activity_header_playing, new Object[0], null, 4) : b.h(context, R.string.user_activity_header_competing, new Object[]{activity.getName()}, null, 4);
             }
-            return b.h(context, 2131896731, new Object[]{activity.getName()}, null, 4);
+            return b.h(context, R.string.user_activity_header_watching, new Object[]{activity.getName()}, null, 4);
         }
         ActivityPlatform platform = activity.getPlatform();
         if (platform != null) {
-            Platform platformFrom = Platform.Companion.from(platform);
+            Platform platformFrom = Platform.INSTANCE.from(platform);
             if (platform == ActivityPlatform.PS4) {
                 properName = "PS4";
             } else if (platform == ActivityPlatform.PS5) {
@@ -94,10 +163,10 @@ public final class PresenceUtils {
                 }
             }
             if (properName != null) {
-                return b.h(context, 2131896728, new Object[]{properName}, null, 4);
+                return b.h(context, R.string.user_activity_header_playing_on_platform, new Object[]{properName}, null, 4);
             }
         }
-        return b.h(context, 2131896727, new Object[0], null, 4);
+        return b.h(context, R.string.user_activity_header_playing, new Object[0], null, 4);
     }
 
     private final CharSequence getActivityString(Context context, Activity activityModel) {
@@ -107,7 +176,7 @@ public final class PresenceUtils {
         }
         int iOrdinal = type.ordinal();
         if (iOrdinal == 0) {
-            return b.h(context, 2131893830, new Object[]{activityModel.getName()}, null, 4);
+            return b.h(context, R.string.playing_game, new Object[]{activityModel.getName()}, null, 4);
         }
         if (iOrdinal == 1) {
             Object[] objArr = new Object[1];
@@ -116,16 +185,16 @@ public final class PresenceUtils {
                 details = activityModel.getName();
             }
             objArr[0] = details;
-            return b.h(context, 2131896090, objArr, null, 4);
+            return b.h(context, R.string.streaming, objArr, null, 4);
         }
         if (iOrdinal == 2) {
-            return b.h(context, 2131892559, new Object[]{activityModel.getName()}, null, 4);
+            return b.h(context, R.string.listening_to, new Object[]{activityModel.getName()}, null, 4);
         }
         if (iOrdinal != 3) {
             if (iOrdinal != 5) {
                 return null;
             }
-            return b.h(context, 2131887815, new Object[]{activityModel.getName()}, null, 4);
+            return b.h(context, R.string.competing, new Object[]{activityModel.getName()}, null, 4);
         }
         Object[] objArr2 = new Object[1];
         String details2 = activityModel.getDetails();
@@ -133,12 +202,12 @@ public final class PresenceUtils {
             details2 = activityModel.getName();
         }
         objArr2[0] = details2;
-        return b.h(context, 2131897201, objArr2, null, 4);
+        return b.h(context, R.string.watching, objArr2, null, 4);
     }
 
     private final CharSequence getApplicationStreamingString(Context context, Presence presence) {
         Activity playingActivity;
-        return (presence == null || (playingActivity = getPlayingActivity(presence)) == null) ? b.h(context, 2131896091, new Object[0], null, 4) : b.h(context, 2131896090, new Object[]{playingActivity.getName()}, null, 4);
+        return (presence == null || (playingActivity = getPlayingActivity(presence)) == null) ? b.h(context, R.string.streaming_a_game, new Object[0], null, 4) : b.h(context, R.string.streaming, new Object[]{playingActivity.getName()}, null, 4);
     }
 
     public final long getCurrentSize(ActivityParty activityParty) {
@@ -221,11 +290,11 @@ public final class PresenceUtils {
         DraweeSpanStringBuilder draweeSpanStringBuilder = new DraweeSpanStringBuilder();
         EmojiNode emojiNodeFrom$default = null;
         if (!hideEmoji && presence != null && (customStatusActivity = getCustomStatusActivity(presence)) != null && (emoji = customStatusActivity.getEmoji()) != null) {
-            EmojiNode$Companion emojiNode$Companion = EmojiNode.Companion;
-            emojiNodeFrom$default = EmojiNode$Companion.from$default(emojiNode$Companion, 0, emojiNode$Companion.generateEmojiIdAndType(emoji), 1, (Object) null);
+            EmojiNode.Companion companion = EmojiNode.INSTANCE;
+            emojiNodeFrom$default = EmojiNode.Companion.from$default(companion, 0, companion.generateEmojiIdAndType(emoji), 1, (Object) null);
         }
         if (emojiNodeFrom$default != null) {
-            emojiNodeFrom$default.render((SpannableStringBuilder) draweeSpanStringBuilder, new PresenceUtils$getStatusDraweeSpanStringBuilder$1(context, animateCustomStatusEmoji));
+            emojiNodeFrom$default.render((SpannableStringBuilder) draweeSpanStringBuilder, new AnonymousClass1(context, animateCustomStatusEmoji));
         }
         CharSequence statusText = getStatusText(context, presence, isStreamingApplication, showFallbackStatusText);
         if (statusText != null) {
@@ -372,15 +441,15 @@ public final class PresenceUtils {
         if (status != null) {
             int iOrdinal = status.ordinal();
             if (iOrdinal == 0) {
-                return 2131895916;
+                return R.string.status_online;
             }
             if (iOrdinal == 1) {
-                return 2131895912;
+                return R.string.status_idle;
             }
             if (iOrdinal == 2) {
-                return 2131895910;
+                return R.string.status_dnd;
             }
         }
-        return 2131895915;
+        return R.string.status_offline;
     }
 }

@@ -4,7 +4,6 @@ import android.os.DeadObjectException;
 import android.os.RemoteException;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import b.i.a.f.e.h.a$b;
 import com.google.android.gms.common.Feature;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
@@ -14,11 +13,11 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 public final class q0<ResultT> extends m0 {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final p<a$b, ResultT> f1371b;
+    public final p<b.i.a.f.e.h.a.b, ResultT> f1371b;
     public final TaskCompletionSource<ResultT> c;
     public final n d;
 
-    public q0(int i, p<a$b, ResultT> pVar, TaskCompletionSource<ResultT> taskCompletionSource, n nVar) {
+    public q0(int i, p<b.i.a.f.e.h.a.b, ResultT> pVar, TaskCompletionSource<ResultT> taskCompletionSource, n nVar) {
         super(i);
         this.c = taskCompletionSource;
         this.f1371b = pVar;
@@ -34,9 +33,9 @@ public final class q0<ResultT> extends m0 {
     }
 
     @Override // b.i.a.f.e.h.j.s
-    public final void c(g$a<?> g_a) throws DeadObjectException {
+    public final void c(g.a<?> aVar) throws DeadObjectException {
         try {
-            this.f1371b.c(g_a.f1361b, this.c);
+            this.f1371b.c(aVar.f1361b, this.c);
         } catch (DeadObjectException e) {
             throw e;
         } catch (RemoteException e2) {
@@ -60,12 +59,12 @@ public final class q0<ResultT> extends m0 {
 
     @Override // b.i.a.f.e.h.j.m0
     @Nullable
-    public final Feature[] f(g$a<?> g_a) {
+    public final Feature[] f(g.a<?> aVar) {
         return this.f1371b.a;
     }
 
     @Override // b.i.a.f.e.h.j.m0
-    public final boolean g(g$a<?> g_a) {
+    public final boolean g(g.a<?> aVar) {
         return this.f1371b.f1369b;
     }
 }

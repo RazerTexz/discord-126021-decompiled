@@ -2,14 +2,14 @@ package b.i.a.f.j.b.e;
 
 import android.os.IBinder;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.nearby.messages.internal.ClientAppContext;
 import com.google.android.gms.nearby.messages.internal.zzaf;
 import com.google.android.gms.nearby.messages.internal.zzce;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class i0 implements Parcelable$Creator<zzce> {
-    @Override // android.os.Parcelable$Creator
+public final class i0 implements Parcelable.Creator<zzce> {
+    @Override // android.os.Parcelable.Creator
     public final zzce createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         zzaf zzafVar = null;
@@ -52,7 +52,7 @@ public final class i0 implements Parcelable$Creator<zzce> {
         return new zzce(iG1, zzafVar, iBinderF1, strR, strR2, zE1, clientAppContext);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zzce[] newArray(int i) {
         return new zzce[i];
     }

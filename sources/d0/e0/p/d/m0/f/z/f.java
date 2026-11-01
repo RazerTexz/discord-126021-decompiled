@@ -2,7 +2,6 @@ package d0.e0.p.d.m0.f.z;
 
 import d0.e0.p.d.m0.f.n;
 import d0.e0.p.d.m0.f.q;
-import d0.e0.p.d.m0.f.q$b;
 import d0.e0.p.d.m0.f.r;
 import d0.e0.p.d.m0.f.s;
 import d0.e0.p.d.m0.f.u;
@@ -114,14 +113,14 @@ public final class f {
         return supertypeList;
     }
 
-    public static final q type(q$b q_b, g gVar) {
-        m.checkNotNullParameter(q_b, "<this>");
+    public static final q type(q.b bVar, g gVar) {
+        m.checkNotNullParameter(bVar, "<this>");
         m.checkNotNullParameter(gVar, "typeTable");
-        if (q_b.hasType()) {
-            return q_b.getType();
+        if (bVar.hasType()) {
+            return bVar.getType();
         }
-        if (q_b.hasTypeId()) {
-            return gVar.get(q_b.getTypeId());
+        if (bVar.hasTypeId()) {
+            return gVar.get(bVar.getTypeId());
         }
         return null;
     }

@@ -1,8 +1,8 @@
 package com.discord.widgets.chat.input.attachments;
 
 import android.graphics.drawable.Animatable;
-import android.view.ViewGroup$LayoutParams;
-import androidx.constraintlayout.widget.ConstraintLayout$LayoutParams;
+import android.view.ViewGroup;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.widgets.chat.input.MentionUtilsKt;
 import com.facebook.drawee.controller.ControllerListener;
@@ -56,9 +56,9 @@ public final class AttachmentBottomSheet$draweeControllerListener$1 implements C
         this.this$0.setAttachmentImageInfo(imageInfo);
         SimpleDraweeView simpleDraweeView = AttachmentBottomSheet.access$getBinding$p(this.this$0).f;
         m.checkNotNullExpressionValue(simpleDraweeView, "binding.attachmentPreview");
-        ViewGroup$LayoutParams layoutParams = simpleDraweeView.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = simpleDraweeView.getLayoutParams();
         Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type androidx.constraintlayout.widget.ConstraintLayout.LayoutParams");
-        ConstraintLayout$LayoutParams constraintLayout$LayoutParams = (ConstraintLayout$LayoutParams) layoutParams;
+        ConstraintLayout.LayoutParams layoutParams2 = (ConstraintLayout.LayoutParams) layoutParams;
         if ((imageInfo != null ? imageInfo.getWidth() : 0) > (imageInfo != null ? imageInfo.getHeight() : 0)) {
             StringBuilder sb = new StringBuilder();
             sb.append(imageInfo != null ? Integer.valueOf(imageInfo.getWidth()) : null);
@@ -68,8 +68,8 @@ public final class AttachmentBottomSheet$draweeControllerListener$1 implements C
         } else {
             string = "1";
         }
-        constraintLayout$LayoutParams.dimensionRatio = string;
-        simpleDraweeView.setLayoutParams(constraintLayout$LayoutParams);
+        layoutParams2.dimensionRatio = string;
+        simpleDraweeView.setLayoutParams(layoutParams2);
         this.this$0.updateSpoilerViewSize();
     }
 }

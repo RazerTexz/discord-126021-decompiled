@@ -11,7 +11,7 @@ public interface o {
 
     void d();
 
-    void e(b.i.a.c.x2.j jVar, i0$d i0_d);
+    void e(b.i.a.c.x2.j jVar, i0.d dVar);
 
     void f(long j, int i);
 }

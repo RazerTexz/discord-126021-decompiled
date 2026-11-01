@@ -9,11 +9,11 @@ import com.discord.api.thread.ThreadMembersUpdate;
 import com.discord.api.thread.ThreadMetadata;
 import com.discord.api.user.User;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import d0.t.g0;
-import d0.t.o;
+import d0.t.n0;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -21,8 +21,8 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
+import kotlin.jvm.functions.Function0;
 import rx.Observable;
 
 /* JADX INFO: compiled from: StoreThreadMembers.kt */
@@ -32,6 +32,30 @@ public final class StoreThreadMembers extends StoreV2 {
     private HashMap<Long, Set<Long>> memberListsSnapshot;
     private final ObservationDeck observationDeck;
     private final StoreChannels storeChannels;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreThreadMembers$observeThreadMembers$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreThreadMembers.kt */
+    public final class AnonymousClass1 extends o implements Function0<Set<? extends Long>> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Set<? extends Long> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Set<? extends Long> invoke2() {
+            Set<? extends Long> set = (Set) StoreThreadMembers.access$getMemberListsSnapshot$p(StoreThreadMembers.this).get(Long.valueOf(this.$channelId));
+            return set != null ? set : n0.emptySet();
+        }
+    }
 
     public StoreThreadMembers(ObservationDeck observationDeck, StoreChannels storeChannels) {
         m.checkNotNullParameter(observationDeck, "observationDeck");
@@ -86,7 +110,7 @@ public final class StoreThreadMembers extends StoreV2 {
             Long lValueOf = Long.valueOf(channelInternal$app_productionGoogleRelease.getId());
             List<ThreadListMember> listB = threadMemberListUpdate.b();
             if (listB != null) {
-                ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(listB, 10));
+                ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(listB, 10));
                 Iterator<T> it = listB.iterator();
                 while (it.hasNext()) {
                     arrayList.add(Long.valueOf(((ThreadListMember) it.next()).getUserId()));
@@ -139,7 +163,7 @@ public final class StoreThreadMembers extends StoreV2 {
     }
 
     public final Observable<Set<Long>> observeThreadMembers(long channelId) {
-        Observable<Set<Long>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreThreadMembers$observeThreadMembers$1(this, channelId), 14, null).r();
+        Observable<Set<Long>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(channelId), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
         return observableR;
     }
@@ -152,8 +176,8 @@ public final class StoreThreadMembers extends StoreV2 {
         LinkedHashMap linkedHashMap = new LinkedHashMap(g0.mapCapacity(map.size()));
         Iterator<T> it = map.entrySet().iterator();
         while (it.hasNext()) {
-            Map$Entry map$Entry = (Map$Entry) it.next();
-            linkedHashMap.put(map$Entry.getKey(), u.toSet((Iterable) map$Entry.getValue()));
+            Map.Entry entry = (Map.Entry) it.next();
+            linkedHashMap.put(entry.getKey(), u.toSet((Iterable) entry.getValue()));
         }
         this.memberListsSnapshot = new HashMap<>(linkedHashMap);
     }

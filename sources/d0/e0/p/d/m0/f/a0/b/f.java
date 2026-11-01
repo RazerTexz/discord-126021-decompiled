@@ -1,6 +1,7 @@
 package d0.e0.p.d.m0.f.a0.b;
 
 import d0.z.d.m;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: JvmMetadataVersion.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -8,8 +9,14 @@ public final class f extends d0.e0.p.d.m0.f.z.a {
     public static final f f;
     public final boolean g;
 
+    /* JADX INFO: compiled from: JvmMetadataVersion.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
     static {
-        new f$a(null);
+        new a(null);
         f = new f(1, 4, 2);
         new f(new int[0]);
     }

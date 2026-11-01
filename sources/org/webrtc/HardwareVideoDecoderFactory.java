@@ -5,7 +5,35 @@ import androidx.annotation.Nullable;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class HardwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
-    private static final Predicate<MediaCodecInfo> defaultAllowedPredicate = new HardwareVideoDecoderFactory$1();
+    private static final Predicate<MediaCodecInfo> defaultAllowedPredicate = new AnonymousClass1();
+
+    /* JADX INFO: renamed from: org.webrtc.HardwareVideoDecoderFactory$1, reason: invalid class name */
+    public class AnonymousClass1 implements Predicate<MediaCodecInfo> {
+        @Override // org.webrtc.Predicate
+        public /* synthetic */ Predicate<MediaCodecInfo> and(Predicate<? super MediaCodecInfo> predicate) {
+            return Predicate.CC.a(this, predicate);
+        }
+
+        @Override // org.webrtc.Predicate
+        public /* synthetic */ Predicate<MediaCodecInfo> negate() {
+            return Predicate.CC.b(this);
+        }
+
+        @Override // org.webrtc.Predicate
+        public /* synthetic */ Predicate<MediaCodecInfo> or(Predicate<? super MediaCodecInfo> predicate) {
+            return Predicate.CC.c(this, predicate);
+        }
+
+        @Override // org.webrtc.Predicate
+        public /* bridge */ /* synthetic */ boolean test(MediaCodecInfo mediaCodecInfo) {
+            return test2(mediaCodecInfo);
+        }
+
+        /* JADX INFO: renamed from: test, reason: avoid collision after fix types in other method */
+        public boolean test2(MediaCodecInfo mediaCodecInfo) {
+            return MediaCodecUtils.isHardwareAccelerated(mediaCodecInfo);
+        }
+    }
 
     @Deprecated
     public HardwareVideoDecoderFactory() {
@@ -23,18 +51,18 @@ public class HardwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
         return super.getSupportedCodecs();
     }
 
-    public HardwareVideoDecoderFactory(@Nullable EglBase$Context eglBase$Context) {
-        this(eglBase$Context, null);
+    public HardwareVideoDecoderFactory(@Nullable EglBase.Context context) {
+        this(context, null);
     }
 
     /* JADX WARN: Illegal instructions before constructor call */
-    public HardwareVideoDecoderFactory(@Nullable EglBase$Context eglBase$Context, @Nullable Predicate<MediaCodecInfo> predicate) {
+    public HardwareVideoDecoderFactory(@Nullable EglBase.Context context, @Nullable Predicate<MediaCodecInfo> predicate) {
         Predicate<MediaCodecInfo> predicateAnd;
         if (predicate == null) {
             predicateAnd = defaultAllowedPredicate;
         } else {
             predicateAnd = predicate.and(defaultAllowedPredicate);
         }
-        super(eglBase$Context, predicateAnd);
+        super(context, predicateAnd);
     }
 }

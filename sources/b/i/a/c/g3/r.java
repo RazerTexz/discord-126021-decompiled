@@ -3,13 +3,13 @@ package b.i.a.c.g3;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Point;
-import android.media.MediaCodecInfo$CodecCapabilities;
-import android.media.MediaCodecInfo$CodecProfileLevel;
-import android.media.MediaCodecInfo$VideoCapabilities;
+import android.media.MediaCodecInfo;
 import android.media.MediaCrypto;
 import android.media.MediaFormat;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.os.SystemClock;
 import android.util.Log;
 import android.util.Pair;
@@ -17,20 +17,17 @@ import android.view.Surface;
 import androidx.annotation.CallSuper;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.RecyclerView;
 import b.i.a.c.a3.i0;
 import b.i.a.c.f3.e0;
 import b.i.a.c.h2;
 import b.i.a.c.j1;
-import b.i.a.c.j1$b;
 import b.i.a.c.k1;
-import b.i.a.c.y2.t$a;
-import b.i.a.c.y2.t$b;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.decoder.DecoderInputBuffer;
 import com.google.android.exoplayer2.mediacodec.MediaCodecDecoderException;
 import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer;
 import com.google.android.exoplayer2.mediacodec.MediaCodecUtil;
-import com.google.android.exoplayer2.mediacodec.MediaCodecUtil$DecoderQueryException;
 import com.google.android.exoplayer2.video.DummySurface;
 import com.google.android.exoplayer2.video.MediaCodecVideoDecoderException;
 import java.nio.ByteBuffer;
@@ -48,11 +45,11 @@ public class r extends MediaCodecRenderer {
     public static boolean P0;
     public final Context Q0;
     public final v R0;
-    public final x$a S0;
+    public final x.a S0;
     public final long T0;
     public final int U0;
     public final boolean V0;
-    public r$a W0;
+    public a W0;
     public boolean X0;
     public boolean Y0;
 
@@ -87,19 +84,82 @@ public class r extends MediaCodecRenderer {
     public int w1;
 
     @Nullable
-    public r$b x1;
+    public b x1;
 
     @Nullable
     public u y1;
 
-    public r(Context context, t$b t_b, b.i.a.c.y2.v vVar, long j, boolean z2, @Nullable Handler handler, @Nullable x xVar, int i) {
-        super(2, t_b, vVar, z2, 30.0f);
+    /* JADX INFO: compiled from: MediaCodecVideoRenderer.java */
+    public final class a {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f990b;
+        public final int c;
+
+        public a(int i, int i2, int i3) {
+            this.a = i;
+            this.f990b = i2;
+            this.c = i3;
+        }
+    }
+
+    /* JADX INFO: compiled from: MediaCodecVideoRenderer.java */
+    @RequiresApi(23)
+    public final class b implements b.i.a.c.y2.t.c, Handler.Callback {
+        public final Handler j;
+
+        public b(b.i.a.c.y2.t tVar) {
+            int i = e0.a;
+            Looper looperMyLooper = Looper.myLooper();
+            b.c.a.a0.d.H(looperMyLooper);
+            Handler handler = new Handler(looperMyLooper, this);
+            this.j = handler;
+            tVar.f(this, handler);
+        }
+
+        public final void a(long j) {
+            r rVar = r.this;
+            if (this != rVar.x1) {
+                return;
+            }
+            if (j == RecyclerView.FOREVER_NS) {
+                rVar.H0 = true;
+                return;
+            }
+            try {
+                rVar.N0(j);
+            } catch (ExoPlaybackException e) {
+                r.this.I0 = e;
+            }
+        }
+
+        public void b(b.i.a.c.y2.t tVar, long j, long j2) {
+            if (e0.a >= 30) {
+                a(j);
+            } else {
+                this.j.sendMessageAtFrontOfQueue(Message.obtain(this.j, 0, (int) (j >> 32), (int) j));
+            }
+        }
+
+        @Override // android.os.Handler.Callback
+        public boolean handleMessage(Message message) {
+            if (message.what != 0) {
+                return false;
+            }
+            a((e0.L(message.arg1) << 32) | e0.L(message.arg2));
+            return true;
+        }
+    }
+
+    public r(Context context, b.i.a.c.y2.t.b bVar, b.i.a.c.y2.v vVar, long j, boolean z2, @Nullable Handler handler, @Nullable x xVar, int i) {
+        super(2, bVar, vVar, z2, 30.0f);
         this.T0 = j;
         this.U0 = i;
         Context applicationContext = context.getApplicationContext();
         this.Q0 = applicationContext;
         this.R0 = new v(applicationContext);
-        this.S0 = new x$a(handler, xVar);
+        this.S0 = new x.a(handler, xVar);
         this.V0 = "NVIDIA".equals(e0.c);
         this.h1 = -9223372036854775807L;
         this.q1 = -1;
@@ -112,35 +172,35 @@ public class r extends MediaCodecRenderer {
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, b.i.a.c.v0
     public void B() {
-        x$a x_a;
+        x.a aVar;
         b.i.a.c.v2.e eVar;
         this.u1 = null;
         C0();
         this.b1 = false;
         v vVar = this.R0;
-        v$b v_b = vVar.f993b;
-        if (v_b != null) {
-            v_b.unregister();
-            v$e v_e = vVar.c;
-            Objects.requireNonNull(v_e);
-            v_e.l.sendEmptyMessage(2);
+        v.b bVar = vVar.f993b;
+        if (bVar != null) {
+            bVar.unregister();
+            v.e eVar2 = vVar.c;
+            Objects.requireNonNull(eVar2);
+            eVar2.l.sendEmptyMessage(2);
         }
         this.x1 = null;
         try {
             super.B();
-            x_a = this.S0;
+            aVar = this.S0;
             eVar = this.J0;
-            Objects.requireNonNull(x_a);
+            Objects.requireNonNull(aVar);
             synchronized (eVar) {
             }
         } finally {
-            x_a = this.S0;
+            aVar = this.S0;
             eVar = this.J0;
-            Objects.requireNonNull(x_a);
+            Objects.requireNonNull(aVar);
             synchronized (eVar) {
-                Handler handler = x_a.a;
+                Handler handler = aVar.a;
                 if (handler != null) {
-                    handler.post(new c(x_a, eVar));
+                    handler.post(new c(aVar, eVar));
                 }
             }
         }
@@ -157,18 +217,18 @@ public class r extends MediaCodecRenderer {
             this.v1 = z4;
             o0();
         }
-        x$a x_a = this.S0;
+        x.a aVar = this.S0;
         b.i.a.c.v2.e eVar = this.J0;
-        Handler handler = x_a.a;
+        Handler handler = aVar.a;
         if (handler != null) {
-            handler.post(new f(x_a, eVar));
+            handler.post(new f(aVar, eVar));
         }
         v vVar = this.R0;
         if (vVar.f993b != null) {
-            v$e v_e = vVar.c;
-            Objects.requireNonNull(v_e);
-            v_e.l.sendEmptyMessage(1);
-            vVar.f993b.a(new b(vVar));
+            v.e eVar2 = vVar.c;
+            Objects.requireNonNull(eVar2);
+            eVar2.l.sendEmptyMessage(1);
+            vVar.f993b.a(new b.i.a.c.g3.b(vVar));
         }
         this.e1 = z3;
         this.f1 = false;
@@ -180,7 +240,7 @@ public class r extends MediaCodecRenderer {
         if (e0.a < 23 || !this.v1 || (tVar = this.S) == null) {
             return;
         }
-        this.x1 = new r$b(this, tVar);
+        this.x1 = new b(tVar);
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer, b.i.a.c.v0
@@ -349,11 +409,11 @@ public class r extends MediaCodecRenderer {
         J0();
         int i = this.p1;
         if (i != 0) {
-            x$a x_a = this.S0;
+            x.a aVar = this.S0;
             long j = this.o1;
-            Handler handler = x_a.a;
+            Handler handler = aVar.a;
             if (handler != null) {
-                handler.post(new l(x_a, j, i));
+                handler.post(new l(aVar, j, i));
             }
             this.o1 = 0L;
             this.p1 = 0;
@@ -363,7 +423,7 @@ public class r extends MediaCodecRenderer {
         vVar.a();
     }
 
-    public static List<b.i.a.c.y2.u> G0(b.i.a.c.y2.v vVar, j1 j1Var, boolean z2, boolean z3) throws MediaCodecUtil$DecoderQueryException {
+    public static List<b.i.a.c.y2.u> G0(b.i.a.c.y2.v vVar, j1 j1Var, boolean z2, boolean z3) throws MediaCodecUtil.DecoderQueryException {
         Pair<Integer, Integer> pairC;
         String str = j1Var.w;
         if (str == null) {
@@ -404,11 +464,11 @@ public class r extends MediaCodecRenderer {
         if (this.j1 > 0) {
             long jElapsedRealtime = SystemClock.elapsedRealtime();
             long j = jElapsedRealtime - this.i1;
-            x$a x_a = this.S0;
+            x.a aVar = this.S0;
             int i = this.j1;
-            Handler handler = x_a.a;
+            Handler handler = aVar.a;
             if (handler != null) {
-                handler.post(new h(x_a, i, j));
+                handler.post(new h(aVar, i, j));
             }
             this.j1 = 0;
             this.i1 = jElapsedRealtime;
@@ -420,8 +480,8 @@ public class r extends MediaCodecRenderer {
         b.i.a.c.v2.g gVarC = uVar.c(j1Var, j1Var2);
         int i = gVarC.e;
         int i2 = j1Var2.B;
-        r$a r_a = this.W0;
-        if (i2 > r_a.a || j1Var2.C > r_a.f990b) {
+        a aVar = this.W0;
+        if (i2 > aVar.a || j1Var2.C > aVar.f990b) {
             i |= 256;
         }
         if (H0(uVar, j1Var2) > this.W0.c) {
@@ -437,10 +497,10 @@ public class r extends MediaCodecRenderer {
             return;
         }
         this.d1 = true;
-        x$a x_a = this.S0;
+        x.a aVar = this.S0;
         Surface surface = this.Z0;
-        if (x_a.a != null) {
-            x_a.a.post(new g(x_a, surface, SystemClock.elapsedRealtime()));
+        if (aVar.a != null) {
+            aVar.a.post(new g(aVar, surface, SystemClock.elapsedRealtime()));
         }
         this.b1 = true;
     }
@@ -461,10 +521,10 @@ public class r extends MediaCodecRenderer {
         }
         y yVar2 = new y(i, this.r1, this.s1, this.t1);
         this.u1 = yVar2;
-        x$a x_a = this.S0;
-        Handler handler = x_a.a;
+        x.a aVar = this.S0;
+        Handler handler = aVar.a;
         if (handler != null) {
-            handler.post(new j(x_a, yVar2));
+            handler.post(new j(aVar, yVar2));
         }
     }
 
@@ -579,16 +639,16 @@ public class r extends MediaCodecRenderer {
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
-    public List<b.i.a.c.y2.u> W(b.i.a.c.y2.v vVar, j1 j1Var, boolean z2) throws MediaCodecUtil$DecoderQueryException {
+    public List<b.i.a.c.y2.u> W(b.i.a.c.y2.v vVar, j1 j1Var, boolean z2) throws MediaCodecUtil.DecoderQueryException {
         return G0(vVar, j1Var, z2, this.v1);
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
     @TargetApi(17)
-    public t$a Y(b.i.a.c.y2.u uVar, j1 j1Var, @Nullable MediaCrypto mediaCrypto, float f) {
-        r$a r_a;
+    public b.i.a.c.y2.t.a Y(b.i.a.c.y2.u uVar, j1 j1Var, @Nullable MediaCrypto mediaCrypto, float f) {
+        a aVar;
         Point point;
-        MediaCodecInfo$VideoCapabilities videoCapabilities;
+        MediaCodecInfo.VideoCapabilities videoCapabilities;
         boolean z2;
         Pair<Integer, Integer> pairC;
         int iF0;
@@ -607,16 +667,16 @@ public class r extends MediaCodecRenderer {
             if (iH0 != -1 && (iF0 = F0(uVar, j1Var)) != -1) {
                 iH0 = Math.min((int) (iH0 * 1.5f), iF0);
             }
-            r_a = new r$a(iMax, iMax2, iH0);
+            aVar = new a(iMax, iMax2, iH0);
         } else {
             int length = j1VarArr.length;
             boolean z3 = false;
             for (int i = 0; i < length; i++) {
                 j1 j1VarA = j1VarArr[i];
                 if (j1Var2.I != null && j1VarA.I == null) {
-                    j1$b j1_bA = j1VarA.a();
-                    j1_bA.w = j1Var2.I;
-                    j1VarA = j1_bA.a();
+                    j1.b bVarA = j1VarA.a();
+                    bVarA.w = j1Var2.I;
+                    j1VarA = bVarA.a();
                 }
                 if (uVar.c(j1Var2, j1VarA).d != 0) {
                     int i2 = j1VarA.B;
@@ -667,7 +727,7 @@ public class r extends MediaCodecRenderer {
                                     iArr = iArr2;
                                     i3 = i10;
                                     f2 = f3;
-                                } catch (MediaCodecUtil$DecoderQueryException unused) {
+                                } catch (MediaCodecUtil.DecoderQueryException unused) {
                                     point = pointA;
                                     break;
                                 }
@@ -676,8 +736,8 @@ public class r extends MediaCodecRenderer {
                                 if (!z4) {
                                     i8 = i9;
                                 }
-                                MediaCodecInfo$CodecCapabilities mediaCodecInfo$CodecCapabilities = uVar.d;
-                                if (mediaCodecInfo$CodecCapabilities != null && (videoCapabilities = mediaCodecInfo$CodecCapabilities.getVideoCapabilities()) != null) {
+                                MediaCodecInfo.CodecCapabilities codecCapabilities = uVar.d;
+                                if (codecCapabilities != null && (videoCapabilities = codecCapabilities.getVideoCapabilities()) != null) {
                                     pointA = b.i.a.c.y2.u.a(videoCapabilities, i12, i8);
                                 }
                                 Point point2 = pointA;
@@ -699,16 +759,16 @@ public class r extends MediaCodecRenderer {
                 if (point != null) {
                     iMax = Math.max(iMax, point.x);
                     iMax2 = Math.max(iMax2, point.y);
-                    j1$b j1_bA2 = j1Var.a();
-                    j1_bA2.p = iMax;
-                    j1_bA2.q = iMax2;
-                    iH0 = Math.max(iH0, F0(uVar, j1_bA2.a()));
+                    j1.b bVarA2 = j1Var.a();
+                    bVarA2.p = iMax;
+                    bVarA2.q = iMax2;
+                    iH0 = Math.max(iH0, F0(uVar, bVarA2.a()));
                     Log.w("MediaCodecVideoRenderer", b.d.b.a.a.h(57, "Codec max resolution adjusted to: ", iMax, "x", iMax2));
                 }
             }
-            r_a = new r$a(iMax, iMax2, iH0);
+            aVar = new a(iMax, iMax2, iH0);
         }
-        this.W0 = r_a;
+        this.W0 = aVar;
         boolean z5 = this.V0;
         int i13 = this.v1 ? this.w1 : 0;
         MediaFormat mediaFormat = new MediaFormat();
@@ -734,9 +794,9 @@ public class r extends MediaCodecRenderer {
         if ("video/dolby-vision".equals(j1Var.w) && (pairC = MediaCodecUtil.c(j1Var)) != null) {
             b.c.a.a0.d.j1(mediaFormat, "profile", ((Integer) pairC.first).intValue());
         }
-        mediaFormat.setInteger("max-width", r_a.a);
-        mediaFormat.setInteger("max-height", r_a.f990b);
-        b.c.a.a0.d.j1(mediaFormat, "max-input-size", r_a.c);
+        mediaFormat.setInteger("max-width", aVar.a);
+        mediaFormat.setInteger("max-height", aVar.f990b);
+        b.c.a.a0.d.j1(mediaFormat, "max-input-size", aVar.c);
         if (e0.a >= 23) {
             mediaFormat.setInteger("priority", 0);
             if (f != -1.0f) {
@@ -763,7 +823,7 @@ public class r extends MediaCodecRenderer {
             }
             this.Z0 = this.a1;
         }
-        return new t$a(uVar, mediaFormat, j1Var, this.Z0, mediaCrypto, 0, false);
+        return new b.i.a.c.y2.t.a(uVar, mediaFormat, j1Var, this.Z0, mediaCrypto, 0, false);
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
@@ -812,27 +872,27 @@ public class r extends MediaCodecRenderer {
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
     public void d0(Exception exc) {
         b.i.a.c.f3.q.b("MediaCodecVideoRenderer", "Video codec error", exc);
-        x$a x_a = this.S0;
-        Handler handler = x_a.a;
+        x.a aVar = this.S0;
+        Handler handler = aVar.a;
         if (handler != null) {
-            handler.post(new e(x_a, exc));
+            handler.post(new e(aVar, exc));
         }
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
     public void e0(String str, long j, long j2) {
-        x$a x_a = this.S0;
-        Handler handler = x_a.a;
+        x.a aVar = this.S0;
+        Handler handler = aVar.a;
         if (handler != null) {
-            handler.post(new i(x_a, str, j, j2));
+            handler.post(new i(aVar, str, j, j2));
         }
         this.X0 = D0(str);
         b.i.a.c.y2.u uVar = this.Z;
         Objects.requireNonNull(uVar);
         boolean z2 = false;
         if (e0.a >= 29 && "video/x-vnd.on2.vp9".equals(uVar.f1315b)) {
-            for (MediaCodecInfo$CodecProfileLevel mediaCodecInfo$CodecProfileLevel : uVar.d()) {
-                if (mediaCodecInfo$CodecProfileLevel.profile == 16384) {
+            for (MediaCodecInfo.CodecProfileLevel codecProfileLevel : uVar.d()) {
+                if (codecProfileLevel.profile == 16384) {
                     z2 = true;
                     break;
                 }
@@ -844,15 +904,15 @@ public class r extends MediaCodecRenderer {
         }
         b.i.a.c.y2.t tVar = this.S;
         Objects.requireNonNull(tVar);
-        this.x1 = new r$b(this, tVar);
+        this.x1 = new b(tVar);
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
     public void f0(String str) {
-        x$a x_a = this.S0;
-        Handler handler = x_a.a;
+        x.a aVar = this.S0;
+        Handler handler = aVar.a;
         if (handler != null) {
-            handler.post(new d(x_a, str));
+            handler.post(new d(aVar, str));
         }
     }
 
@@ -860,11 +920,11 @@ public class r extends MediaCodecRenderer {
     @Nullable
     public b.i.a.c.v2.g g0(k1 k1Var) throws ExoPlaybackException {
         b.i.a.c.v2.g gVarG0 = super.g0(k1Var);
-        x$a x_a = this.S0;
+        x.a aVar = this.S0;
         j1 j1Var = k1Var.f1027b;
-        Handler handler = x_a.a;
+        Handler handler = aVar.a;
         if (handler != null) {
-            handler.post(new k(x_a, j1Var, gVarG0));
+            handler.post(new k(aVar, j1Var, gVarG0));
         }
         return gVarG0;
     }
@@ -969,9 +1029,9 @@ public class r extends MediaCodecRenderer {
                 pVar.c = false;
             } else if (pVar.d != -9223372036854775807L) {
                 if (pVar.c) {
-                    p$a p_a = pVar.f987b;
-                    long j9 = p_a.d;
-                    if (j9 == 0 ? false : p_a.g[(int) ((j9 - 1) % 15)]) {
+                    p.a aVar = pVar.f987b;
+                    long j9 = aVar.d;
+                    if (j9 == 0 ? false : aVar.g[(int) ((j9 - 1) % 15)]) {
                         pVar.f987b.c();
                         pVar.f987b.b(pVar.d);
                     }
@@ -983,9 +1043,9 @@ public class r extends MediaCodecRenderer {
                 pVar.f987b.b(j8);
             }
             if (pVar.c && pVar.f987b.a()) {
-                p$a p_a2 = pVar.a;
+                p.a aVar2 = pVar.a;
                 pVar.a = pVar.f987b;
-                pVar.f987b = p_a2;
+                pVar.f987b = aVar2;
                 pVar.c = false;
             }
             pVar.d = j8;
@@ -1050,14 +1110,14 @@ public class r extends MediaCodecRenderer {
         } else {
             p pVar2 = vVar2.a;
             if (pVar2.a()) {
-                p$a p_a3 = pVar2.a;
-                long j15 = p_a3.e;
+                p.a aVar3 = pVar2.a;
+                long j15 = aVar3.e;
                 if (j15 == 0) {
                     j6 = 0;
                     j4 = j11;
                 } else {
                     j4 = j11;
-                    j6 = p_a3.f / j15;
+                    j6 = aVar3.f / j15;
                 }
             } else {
                 j4 = j11;
@@ -1072,9 +1132,9 @@ public class r extends MediaCodecRenderer {
         }
         vVar2.n = vVar2.m;
         vVar2.o = j14;
-        v$e v_e = vVar2.c;
-        if (v_e != null && vVar2.k != -9223372036854775807L) {
-            long j17 = v_e.k;
+        v.e eVar = vVar2.c;
+        if (eVar != null && vVar2.k != -9223372036854775807L) {
+            long j17 = eVar.k;
             if (j17 != -9223372036854775807L) {
                 long j18 = vVar2.k;
                 long j19 = (((j14 - j17) / j18) * j18) + j17;
@@ -1099,11 +1159,11 @@ public class r extends MediaCodecRenderer {
             if (iC == 0) {
                 z6 = false;
             } else {
-                b.i.a.c.v2.e eVar = this.J0;
-                eVar.i++;
+                b.i.a.c.v2.e eVar2 = this.J0;
+                eVar2.i++;
                 int i4 = this.l1 + iC;
                 if (z9) {
-                    eVar.f += i4;
+                    eVar2.f += i4;
                 } else {
                     U0(i4);
                 }
@@ -1195,11 +1255,11 @@ public class r extends MediaCodecRenderer {
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
     	at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
      */
-    @Override // b.i.a.c.v0, b.i.a.c.b2$b
+    @Override // b.i.a.c.v0, b.i.a.c.b2.b
     public void r(int i, @Nullable Object obj) throws ExoPlaybackException {
-        x$a x_a;
+        x.a aVar;
         Handler handler;
-        x$a x_a2;
+        x.a aVar2;
         Handler handler2;
         if (i != 1) {
             if (i == 7) {
@@ -1258,14 +1318,14 @@ public class r extends MediaCodecRenderer {
                 return;
             }
             y yVar = this.u1;
-            if (yVar != null && (handler = (x_a = this.S0).a) != null) {
-                handler.post(new j(x_a, yVar));
+            if (yVar != null && (handler = (aVar = this.S0).a) != null) {
+                handler.post(new j(aVar, yVar));
             }
             if (this.b1) {
-                x$a x_a3 = this.S0;
+                x.a aVar3 = this.S0;
                 Surface surface = this.Z0;
-                if (x_a3.a != null) {
-                    x_a3.a.post(new g(x_a3, surface, SystemClock.elapsedRealtime()));
+                if (aVar3.a != null) {
+                    aVar3.a.post(new g(aVar3, surface, SystemClock.elapsedRealtime()));
                     return;
                 }
                 return;
@@ -1298,8 +1358,8 @@ public class r extends MediaCodecRenderer {
             return;
         }
         y yVar2 = this.u1;
-        if (yVar2 != null && (handler2 = (x_a2 = this.S0).a) != null) {
-            handler2.post(new j(x_a2, yVar2));
+        if (yVar2 != null && (handler2 = (aVar2 = this.S0).a) != null) {
+            handler2.post(new j(aVar2, yVar2));
         }
         C0();
         if (i2 == 2) {
@@ -1313,7 +1373,7 @@ public class r extends MediaCodecRenderer {
     }
 
     @Override // com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
-    public int y0(b.i.a.c.y2.v vVar, j1 j1Var) throws MediaCodecUtil$DecoderQueryException {
+    public int y0(b.i.a.c.y2.v vVar, j1 j1Var) throws MediaCodecUtil.DecoderQueryException {
         int i = 0;
         if (!b.i.a.c.f3.t.j(j1Var.w)) {
             return 0;

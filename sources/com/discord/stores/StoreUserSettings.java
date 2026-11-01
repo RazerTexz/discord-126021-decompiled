@@ -1,18 +1,19 @@
 package com.discord.stores;
 
 import android.content.Context;
-import android.content.SharedPreferences$Editor;
+import android.content.SharedPreferences;
 import androidx.appcompat.widget.ActivityChooserModel;
+import androidx.core.app.NotificationCompat;
+import com.discord.R;
 import com.discord.app.AppActivity;
 import com.discord.models.domain.Consents;
 import com.discord.models.domain.ModelCustomStatusSetting;
 import com.discord.models.domain.ModelGuildFolder;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.domain.ModelUserSettings;
-import com.discord.models.domain.ModelUserSettings$FriendSourceFlags;
-import com.discord.restapi.RestAPIParams$UserSettings;
-import com.discord.restapi.RestAPIParams$UserSettingsCustomStatus;
+import com.discord.restapi.RestAPIParams;
 import com.discord.utilities.analytics.AnalyticsTracker;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.persister.Persister;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
@@ -20,21 +21,28 @@ import com.discord.utilities.time.ClockFactory;
 import com.discord.utilities.time.TimeUtils;
 import d0.d0.f;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
 import rx.Subscription;
+import rx.functions.Action1;
 import rx.subjects.BehaviorSubject;
 import rx.subjects.SerializedSubject;
 
 /* JADX INFO: compiled from: StoreUserSettings.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreUserSettings extends Store {
-    public static final StoreUserSettings$Companion Companion = new StoreUserSettings$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final StoreAccessibility accessibilityStore;
     private final Persister<Boolean> allowAccessibilityDetectionPublisher;
     private final Persister<Boolean> allowAnimatedEmojisPublisher;
@@ -46,13 +54,178 @@ public final class StoreUserSettings extends Store {
     private Subscription expireCustomStatusSubscription;
     private final SerializedSubject<Integer, Integer> explicitContentFilterSubject;
     private final SerializedSubject<Integer, Integer> friendDiscoveryFlagsSubject;
-    private final SerializedSubject<ModelUserSettings$FriendSourceFlags, ModelUserSettings$FriendSourceFlags> friendSourceFlagsSubject;
+    private final SerializedSubject<ModelUserSettings.FriendSourceFlags, ModelUserSettings.FriendSourceFlags> friendSourceFlagsSubject;
     private final Persister<List<ModelGuildFolder>> guildFoldersPublisher;
     private final Persister<List<Long>> restrictedGuildIdsPublisher;
     private final SerializedSubject<Boolean, Boolean> shouldRenderEmbedsSubject;
     private final Persister<Boolean> showCurrentGame;
     private final Persister<Integer> stickerAnimationSettingsPublisher;
     private final Persister<Boolean> stickerSuggestionsPublisher;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$expireCustomStatus$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserSettings.kt */
+    public final class AnonymousClass1 extends o implements Function1<ModelUserSettings, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelUserSettings modelUserSettings) {
+            invoke2(modelUserSettings);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelUserSettings modelUserSettings) {
+            m.checkNotNullParameter(modelUserSettings, "it");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$observeConsents$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserSettings.kt */
+    public final class AnonymousClass1<T, R> implements b<Throwable, Consents> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Consents call(Throwable th) {
+            return call2(th);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Consents call2(Throwable th) {
+            return Consents.INSTANCE.getDEFAULT();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$setIsAccessibilityDetectionAllowed$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserSettings.kt */
+    public final class AnonymousClass1<T> implements Action1<ModelUserSettings> {
+        public final /* synthetic */ boolean $allowAccessibilityDetection;
+
+        public AnonymousClass1(boolean z2) {
+            this.$allowAccessibilityDetection = z2;
+        }
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(ModelUserSettings modelUserSettings) {
+            call2(modelUserSettings);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(ModelUserSettings modelUserSettings) {
+            StoreUserSettings.access$updateAllowAccessibilityDetectionInternal(StoreUserSettings.this, this.$allowAccessibilityDetection);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$updateAllowAccessibilityDetectionInternal$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserSettings.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ boolean $allowAccessibilityDetection;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(boolean z2) {
+            super(0);
+            this.$allowAccessibilityDetection = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreUserSettings.access$getAccessibilityStore$p(StoreUserSettings.this).updateDetectionAllowed(this.$allowAccessibilityDetection);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$updateContactSyncShown$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserSettings.kt */
+    public final class AnonymousClass1 extends o implements Function1<ModelUserSettings, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelUserSettings modelUserSettings) {
+            invoke2(modelUserSettings);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelUserSettings modelUserSettings) {
+            m.checkNotNullParameter(modelUserSettings, "it");
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$updateLocalCustomStatus$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserSettings.kt */
+    public final class AnonymousClass1 extends o implements Function1<Subscription, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            StoreUserSettings.access$setExpireCustomStatusSubscription$p(StoreUserSettings.this, subscription);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$updateLocalCustomStatus$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUserSettings.kt */
+    public final class AnonymousClass2 extends o implements Function1<Long, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke2(l);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Long l) {
+            StoreUserSettings.access$expireCustomStatus(StoreUserSettings.this);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreUserSettings.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static final /* synthetic */ void access$updateUserSettings(Companion companion, AppActivity appActivity, RestAPIParams.UserSettings userSettings, Integer num) {
+            companion.updateUserSettings(appActivity, userSettings, num);
+        }
+
+        public static /* synthetic */ void updateUserSettings$default(Companion companion, AppActivity appActivity, RestAPIParams.UserSettings userSettings, Integer num, int i, Object obj) {
+            if ((i & 2) != 0) {
+                num = null;
+            }
+            companion.updateUserSettings(appActivity, userSettings, num);
+        }
+
+        private final void updateUserSettings(AppActivity appActivity, RestAPIParams.UserSettings userSettings, Integer num) {
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateUserSettings(userSettings), false, 1, null), appActivity, null, 2, null), StoreUserSettings.class, appActivity, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreUserSettings$Companion$updateUserSettings$1(appActivity, num), 60, (Object) null);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public StoreUserSettings(Dispatcher dispatcher, StoreAccessibility storeAccessibility) {
         m.checkNotNullParameter(dispatcher, "dispatcher");
@@ -97,7 +270,7 @@ public final class StoreUserSettings extends Store {
     }
 
     private final void expireCustomStatus() {
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(updateCustomStatus(null), false, 1, null), StoreUserSettings.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, StoreUserSettings$expireCustomStatus$1.INSTANCE, 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(updateCustomStatus(null), false, 1, null), StoreUserSettings.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, AnonymousClass1.INSTANCE, 62, (Object) null);
     }
 
     public final Boolean getContactSyncUpsellShown() {
@@ -211,7 +384,7 @@ public final class StoreUserSettings extends Store {
             serializedSubject.k.onNext(userSettings.getExplicitContentFilter());
         }
         if (userSettings.getFriendSourceFlags() != null) {
-            SerializedSubject<ModelUserSettings$FriendSourceFlags, ModelUserSettings$FriendSourceFlags> serializedSubject2 = this.friendSourceFlagsSubject;
+            SerializedSubject<ModelUserSettings.FriendSourceFlags, ModelUserSettings.FriendSourceFlags> serializedSubject2 = this.friendSourceFlagsSubject;
             serializedSubject2.k.onNext(userSettings.getFriendSourceFlags());
         }
         if (userSettings.getDefaultGuildsRestricted() != null) {
@@ -246,7 +419,7 @@ public final class StoreUserSettings extends Store {
     }
 
     public final Observable<Consents> observeConsents() {
-        Observable<Consents> observableM = RestAPI.Companion.getApi().getConsents().M(StoreUserSettings$observeConsents$1.INSTANCE);
+        Observable<Consents> observableM = RestAPI.INSTANCE.getApi().getConsents().M(AnonymousClass1.INSTANCE);
         m.checkNotNullExpressionValue(observableM, "RestAPI\n          .api\n …turn { Consents.DEFAULT }");
         return ObservableExtensionsKt.restSubscribeOn$default(observableM, false, 1, null);
     }
@@ -269,8 +442,8 @@ public final class StoreUserSettings extends Store {
         return observableR;
     }
 
-    public final Observable<ModelUserSettings$FriendSourceFlags> observeFriendSourceFlags() {
-        Observable<ModelUserSettings$FriendSourceFlags> observableR = ObservableExtensionsKt.computationLatest(this.friendSourceFlagsSubject).r();
+    public final Observable<ModelUserSettings.FriendSourceFlags> observeFriendSourceFlags() {
+        Observable<ModelUserSettings.FriendSourceFlags> observableR = ObservableExtensionsKt.computationLatest(this.friendSourceFlagsSubject).r();
         m.checkNotNullExpressionValue(observableR, "friendSourceFlagsSubject…  .distinctUntilChanged()");
         return observableR;
     }
@@ -370,7 +543,7 @@ public final class StoreUserSettings extends Store {
 
     public final void setDefaultGuildsRestricted(AppActivity activity, boolean defaultGuildsRestricted, Collection<Long> restrictedGuilds) {
         if (activity != null) {
-            StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithRestrictedGuilds(Boolean.valueOf(defaultGuildsRestricted), restrictedGuilds), null, 2, null);
+            Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithRestrictedGuilds(Boolean.valueOf(defaultGuildsRestricted), restrictedGuilds), null, 2, null);
         }
     }
 
@@ -380,24 +553,24 @@ public final class StoreUserSettings extends Store {
 
     public final void setExplicitContentFilter(AppActivity activity, int explicitContentFilter) {
         if (activity != null) {
-            StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithExplicitContentFilter(explicitContentFilter), null, 2, null);
+            Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithExplicitContentFilter(explicitContentFilter), null, 2, null);
         }
     }
 
     public final void setFriendDiscoveryFlags(AppActivity activity, int flags) {
         if (activity != null) {
-            StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithFriendDiscoveryFlags(Integer.valueOf(flags)), null, 2, null);
+            Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithFriendDiscoveryFlags(Integer.valueOf(flags)), null, 2, null);
         }
     }
 
     public final void setFriendSourceFlags(AppActivity activity, Boolean all, Boolean mutualGuilds, Boolean mutualFriends) {
         if (activity != null) {
-            StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithFriendSourceFlags(all, mutualGuilds, mutualFriends), null, 2, null);
+            Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithFriendSourceFlags(all, mutualGuilds, mutualFriends), null, 2, null);
         }
     }
 
     public final Observable<ModelUserSettings> setIsAccessibilityDetectionAllowed(boolean allowAccessibilityDetection) {
-        Observable<ModelUserSettings> observableU = RestAPI.Companion.getApi().updateUserSettings(RestAPIParams$UserSettings.Companion.createWithAllowAccessibilityDetection(Boolean.valueOf(allowAccessibilityDetection))).u(new StoreUserSettings$setIsAccessibilityDetectionAllowed$1(this, allowAccessibilityDetection));
+        Observable<ModelUserSettings> observableU = RestAPI.INSTANCE.getApi().updateUserSettings(RestAPIParams.UserSettings.INSTANCE.createWithAllowAccessibilityDetection(Boolean.valueOf(allowAccessibilityDetection))).u(new AnonymousClass1(allowAccessibilityDetection));
         m.checkNotNullExpressionValue(observableU, "RestAPI\n          .api\n …AccessibilityDetection) }");
         return observableU;
     }
@@ -407,7 +580,7 @@ public final class StoreUserSettings extends Store {
         if (!getIsSyncTextAndImagesEnabled() || activity == null) {
             return;
         }
-        StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithAllowAnimatedEmojis(Boolean.valueOf(isAnimatedEmojisEnabled)), null, 2, null);
+        Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithAllowAnimatedEmojis(Boolean.valueOf(isAnimatedEmojisEnabled)), null, 2, null);
     }
 
     public final void setIsAttachmentMediaInline(AppActivity activity, boolean isAttachmentMediaInline) {
@@ -417,7 +590,7 @@ public final class StoreUserSettings extends Store {
         if (!getIsSyncTextAndImagesEnabled() || activity == null) {
             return;
         }
-        StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithInlineAttachmentMedia(isAttachmentMediaInline), null, 2, null);
+        Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithInlineAttachmentMedia(isAttachmentMediaInline), null, 2, null);
     }
 
     public final void setIsAutoImageCompressionEnabled(boolean isAutoImageCompressionEnabled) {
@@ -431,16 +604,16 @@ public final class StoreUserSettings extends Store {
     }
 
     public final void setIsChromeCustomTabsEnabled(boolean isUseChromeCustomTabsEnabled) {
-        SharedPreferences$Editor sharedPreferences$EditorEdit = getPrefs().edit();
-        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
-        sharedPreferences$EditorEdit.putBoolean("CACHE_KEY_USE_CHROME_CUSTOM_TABS", isUseChromeCustomTabsEnabled);
-        sharedPreferences$EditorEdit.apply();
+        SharedPreferences.Editor editorEdit = getPrefs().edit();
+        m.checkNotNullExpressionValue(editorEdit, "editor");
+        editorEdit.putBoolean("CACHE_KEY_USE_CHROME_CUSTOM_TABS", isUseChromeCustomTabsEnabled);
+        editorEdit.apply();
     }
 
     public final void setIsDeveloperMode(AppActivity activity, boolean isDeveloperMode) {
         if (getIsDeveloperMode() != isDeveloperMode) {
             if (activity != null) {
-                StoreUserSettings$Companion.access$updateUserSettings(Companion, activity, RestAPIParams$UserSettings.Companion.createWithDeveloperMode(isDeveloperMode), 2131896338);
+                Companion.access$updateUserSettings(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithDeveloperMode(isDeveloperMode), Integer.valueOf(R.string.theme_updated));
             }
             setDeveloperModeInternal(isDeveloperMode);
         }
@@ -453,17 +626,17 @@ public final class StoreUserSettings extends Store {
         if (!getIsSyncTextAndImagesEnabled() || activity == null) {
             return;
         }
-        StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithInlineEmbedMedia(isInlineEmbedMediaEnabled), null, 2, null);
+        Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithInlineEmbedMedia(isInlineEmbedMediaEnabled), null, 2, null);
     }
 
     public final void setIsMobileOverlayEnabled(boolean isMobileOverlayEnabled) {
-        SharedPreferences$Editor sharedPreferences$EditorEdit = getPrefs().edit();
-        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
+        SharedPreferences.Editor editorEdit = getPrefs().edit();
+        m.checkNotNullExpressionValue(editorEdit, "editor");
         if (getIsMobileOverlayEnabled() != isMobileOverlayEnabled) {
-            sharedPreferences$EditorEdit.putBoolean("CACHE_KEY_MOBILE_OVERLAY", isMobileOverlayEnabled);
+            editorEdit.putBoolean("CACHE_KEY_MOBILE_OVERLAY", isMobileOverlayEnabled);
             AnalyticsTracker.overlayToggled(isMobileOverlayEnabled);
         }
-        sharedPreferences$EditorEdit.apply();
+        editorEdit.apply();
     }
 
     public final void setIsRenderEmbedsEnabled(AppActivity activity, boolean isRenderEmbedsEnabled) {
@@ -475,22 +648,22 @@ public final class StoreUserSettings extends Store {
         if (!getIsSyncTextAndImagesEnabled() || activity == null) {
             return;
         }
-        StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithRenderEmbeds(isRenderEmbedsEnabled), null, 2, null);
+        Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithRenderEmbeds(isRenderEmbedsEnabled), null, 2, null);
     }
 
     public final void setIsShiftEnterToSendEnabled(boolean isShiftEnterToSendEnabled) {
-        SharedPreferences$Editor sharedPreferences$EditorEdit = getPrefs().edit();
-        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
+        SharedPreferences.Editor editorEdit = getPrefs().edit();
+        m.checkNotNullExpressionValue(editorEdit, "editor");
         if (getIsShiftEnterToSendEnabled() != isShiftEnterToSendEnabled) {
-            sharedPreferences$EditorEdit.putBoolean("CACHE_KEY_SHIFT_ENTER_TO_SEND", isShiftEnterToSendEnabled);
+            editorEdit.putBoolean("CACHE_KEY_SHIFT_ENTER_TO_SEND", isShiftEnterToSendEnabled);
         }
-        sharedPreferences$EditorEdit.apply();
+        editorEdit.apply();
     }
 
     public final void setIsShowCurrentGameEnabled(AppActivity activity, boolean isShowCurrentGameEnabled) {
         Persister.set$default(this.showCurrentGame, Boolean.valueOf(isShowCurrentGameEnabled), false, 2, null);
         if (activity != null) {
-            StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithShowCurrentGame(isShowCurrentGameEnabled), null, 2, null);
+            Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithShowCurrentGame(isShowCurrentGameEnabled), null, 2, null);
         }
     }
 
@@ -511,7 +684,7 @@ public final class StoreUserSettings extends Store {
             arrayList.remove(Long.valueOf(guildId));
         }
         if (activity != null) {
-            StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithRestrictedGuilds(null, arrayList), null, 2, null);
+            Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithRestrictedGuilds(null, arrayList), null, 2, null);
         }
     }
 
@@ -520,20 +693,20 @@ public final class StoreUserSettings extends Store {
         if (!getIsSyncTextAndImagesEnabled() || activity == null) {
             return;
         }
-        StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithStickerAnimationSettings(Integer.valueOf(stickerAnimationSettings)), null, 2, null);
+        Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithStickerAnimationSettings(Integer.valueOf(stickerAnimationSettings)), null, 2, null);
     }
 
     private final void updateAllowAccessibilityDetectionInternal(boolean allowAccessibilityDetection) {
         Persister.set$default(this.allowAccessibilityDetectionPublisher, Boolean.valueOf(allowAccessibilityDetection), false, 2, null);
-        this.dispatcher.schedule(new StoreUserSettings$updateAllowAccessibilityDetectionInternal$1(this, allowAccessibilityDetection));
+        this.dispatcher.schedule(new AnonymousClass1(allowAccessibilityDetection));
     }
 
     public final void updateContactSyncShown() {
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().updateUserSettings(RestAPIParams$UserSettings.Companion.createWithContactSyncUpsellShown()), false, 1, null), StoreUserSettings.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, StoreUserSettings$updateContactSyncShown$1.INSTANCE, 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateUserSettings(RestAPIParams.UserSettings.INSTANCE.createWithContactSyncUpsellShown()), false, 1, null), StoreUserSettings.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, AnonymousClass1.INSTANCE, 62, (Object) null);
     }
 
     public final Observable<ModelUserSettings> updateCustomStatus(ModelCustomStatusSetting customStatus) {
-        return RestAPI.Companion.getApiSerializeNulls().updateUserSettingsCustomStatus(new RestAPIParams$UserSettingsCustomStatus(customStatus));
+        return RestAPI.INSTANCE.getApiSerializeNulls().updateUserSettingsCustomStatus(new RestAPIParams.UserSettingsCustomStatus(customStatus));
     }
 
     private final synchronized void updateLocalCustomStatus(ModelCustomStatusSetting customStatus) {
@@ -543,22 +716,22 @@ public final class StoreUserSettings extends Store {
             subscription.unsubscribe();
         }
         this.customStatusSubject.k.onNext(customStatus);
-        if (!m.areEqual(customStatus, ModelCustomStatusSetting.Companion.getCLEAR())) {
+        if (!m.areEqual(customStatus, ModelCustomStatusSetting.INSTANCE.getCLEAR())) {
             m.checkNotNull(customStatus);
             if (customStatus.getExpiresAt() != null) {
                 Observable<Long> observableD0 = Observable.d0(f.coerceAtLeast(TimeUtils.parseUTCDate(customStatus.getExpiresAt()) - ClockFactory.get().currentTimeMillis(), 0L), TimeUnit.MILLISECONDS);
                 m.checkNotNullExpressionValue(observableD0, "Observable\n            .…l, TimeUnit.MILLISECONDS)");
-                ObservableExtensionsKt.appSubscribe$default(observableD0, getClass(), (Context) null, new StoreUserSettings$updateLocalCustomStatus$1(this), (Function1) null, (Function0) null, (Function0) null, new StoreUserSettings$updateLocalCustomStatus$2(this), 58, (Object) null);
+                ObservableExtensionsKt.appSubscribe$default(observableD0, getClass(), (Context) null, new AnonymousClass1(), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 58, (Object) null);
             }
         }
     }
 
     public final void getIsSyncTextAndImagesEnabled(boolean isSyncTextAndImagesEnabled) {
-        SharedPreferences$Editor sharedPreferences$EditorEdit = getPrefs().edit();
-        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
+        SharedPreferences.Editor editorEdit = getPrefs().edit();
+        m.checkNotNullExpressionValue(editorEdit, "editor");
         if (getIsSyncTextAndImagesEnabled() != isSyncTextAndImagesEnabled) {
-            sharedPreferences$EditorEdit.putBoolean("CACHE_KEY_SYNC_TEXT_AND_IMAGES", isSyncTextAndImagesEnabled);
+            editorEdit.putBoolean("CACHE_KEY_SYNC_TEXT_AND_IMAGES", isSyncTextAndImagesEnabled);
         }
-        sharedPreferences$EditorEdit.apply();
+        editorEdit.apply();
     }
 }

@@ -8,11 +8,24 @@ import d0.t.h0;
 import d0.z.d.m;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map$Entry;
+import java.util.Map;
 
 /* JADX INFO: compiled from: LocalizedString.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class LocalizedStringTypeAdapter extends TypeAdapter<LocalizedString> {
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            JsonToken.values();
+            int[] iArr = new int[10];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[2] = 1;
+            iArr[5] = 2;
+        }
+    }
+
     @Override // com.google.gson.TypeAdapter
     public LocalizedString read(JsonReader jsonReader) throws IOException {
         m.checkNotNullParameter(jsonReader, "in");
@@ -70,9 +83,9 @@ public final class LocalizedStringTypeAdapter extends TypeAdapter<LocalizedStrin
         jsonWriter.H(localizedString2.getDefault());
         jsonWriter.n("localizations");
         jsonWriter.c();
-        for (Map$Entry<String, String> map$Entry : localizedString2.b().entrySet()) {
-            String key = map$Entry.getKey();
-            String value = map$Entry.getValue();
+        for (Map.Entry<String, String> entry : localizedString2.b().entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
             jsonWriter.n(key);
             jsonWriter.H(value);
         }

@@ -10,6 +10,7 @@ import android.os.RemoteException;
 import android.widget.RemoteViews;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
 import androidx.annotation.VisibleForTesting;
 import java.util.List;
 import x.a.a.a;
@@ -25,6 +26,88 @@ public final class CustomTabsSession {
     private final PendingIntent mId;
     private final b mService;
     private final Object mLock = new Object();
+
+    public class MockSession extends b.a {
+        @Override // x.a.a.b
+        public Bundle extraCommand(String str, Bundle bundle) throws RemoteException {
+            return null;
+        }
+
+        @Override // x.a.a.b
+        public boolean mayLaunchUrl(a aVar, Uri uri, Bundle bundle, List<Bundle> list) throws RemoteException {
+            return false;
+        }
+
+        @Override // x.a.a.b
+        public boolean newSession(a aVar) throws RemoteException {
+            return false;
+        }
+
+        @Override // x.a.a.b
+        public boolean newSessionWithExtras(a aVar, Bundle bundle) throws RemoteException {
+            return false;
+        }
+
+        @Override // x.a.a.b
+        public int postMessage(a aVar, String str, Bundle bundle) throws RemoteException {
+            return 0;
+        }
+
+        @Override // x.a.a.b
+        public boolean receiveFile(a aVar, Uri uri, int i, Bundle bundle) throws RemoteException {
+            return false;
+        }
+
+        @Override // x.a.a.b
+        public boolean requestPostMessageChannel(a aVar, Uri uri) throws RemoteException {
+            return false;
+        }
+
+        @Override // x.a.a.b
+        public boolean requestPostMessageChannelWithExtras(a aVar, Uri uri, Bundle bundle) throws RemoteException {
+            return false;
+        }
+
+        @Override // x.a.a.b
+        public boolean updateVisuals(a aVar, Bundle bundle) throws RemoteException {
+            return false;
+        }
+
+        @Override // x.a.a.b
+        public boolean validateRelationship(a aVar, int i, Uri uri, Bundle bundle) throws RemoteException {
+            return false;
+        }
+
+        @Override // x.a.a.b
+        public boolean warmup(long j) throws RemoteException {
+            return false;
+        }
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    public class PendingSession {
+
+        @Nullable
+        private final CustomTabsCallback mCallback;
+
+        @Nullable
+        private final PendingIntent mId;
+
+        public PendingSession(@Nullable CustomTabsCallback customTabsCallback, @Nullable PendingIntent pendingIntent) {
+            this.mCallback = customTabsCallback;
+            this.mId = pendingIntent;
+        }
+
+        @Nullable
+        public CustomTabsCallback getCallback() {
+            return this.mCallback;
+        }
+
+        @Nullable
+        public PendingIntent getId() {
+            return this.mId;
+        }
+    }
 
     public CustomTabsSession(b bVar, a aVar, ComponentName componentName, @Nullable PendingIntent pendingIntent) {
         this.mService = bVar;
@@ -52,7 +135,7 @@ public final class CustomTabsSession {
     @NonNull
     @VisibleForTesting
     public static CustomTabsSession createMockSessionForTesting(@NonNull ComponentName componentName) {
-        return new CustomTabsSession(new CustomTabsSession$MockSession(), new CustomTabsSessionToken$MockCallback(), componentName, null);
+        return new CustomTabsSession(new MockSession(), new CustomTabsSessionToken.MockCallback(), componentName, null);
     }
 
     public IBinder getBinder() {

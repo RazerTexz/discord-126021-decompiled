@@ -3,40 +3,38 @@ package com.google.android.material.ripple;
 import android.content.res.ColorStateList;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Drawable$ConstantState;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.core.graphics.drawable.TintAwareDrawable;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.ShapeAppearanceModel;
 import com.google.android.material.shape.Shapeable;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class RippleDrawableCompat extends Drawable implements Shapeable, TintAwareDrawable {
-    private RippleDrawableCompat$b drawableState;
+    private b drawableState;
 
-    public /* synthetic */ RippleDrawableCompat(RippleDrawableCompat$b rippleDrawableCompat$b, RippleDrawableCompat$a rippleDrawableCompat$a) {
-        this(rippleDrawableCompat$b);
+    public /* synthetic */ RippleDrawableCompat(b bVar, a aVar) {
+        this(bVar);
     }
 
     @Override // android.graphics.drawable.Drawable
     public void draw(Canvas canvas) {
-        RippleDrawableCompat$b rippleDrawableCompat$b = this.drawableState;
-        if (rippleDrawableCompat$b.f3052b) {
-            rippleDrawableCompat$b.a.draw(canvas);
+        b bVar = this.drawableState;
+        if (bVar.f3052b) {
+            bVar.a.draw(canvas);
         }
     }
 
     @Override // android.graphics.drawable.Drawable
     @Nullable
-    public Drawable$ConstantState getConstantState() {
+    public Drawable.ConstantState getConstantState() {
         return this.drawableState;
     }
 
@@ -75,11 +73,11 @@ public class RippleDrawableCompat extends Drawable implements Shapeable, TintAwa
             zOnStateChange = true;
         }
         boolean zShouldDrawRippleCompat = RippleUtils.shouldDrawRippleCompat(iArr);
-        RippleDrawableCompat$b rippleDrawableCompat$b = this.drawableState;
-        if (rippleDrawableCompat$b.f3052b == zShouldDrawRippleCompat) {
+        b bVar = this.drawableState;
+        if (bVar.f3052b == zShouldDrawRippleCompat) {
             return zOnStateChange;
         }
-        rippleDrawableCompat$b.f3052b = zShouldDrawRippleCompat;
+        bVar.f3052b = zShouldDrawRippleCompat;
         return true;
     }
 
@@ -109,22 +107,52 @@ public class RippleDrawableCompat extends Drawable implements Shapeable, TintAwa
     }
 
     @Override // android.graphics.drawable.Drawable, androidx.core.graphics.drawable.TintAwareDrawable
-    public void setTintMode(@Nullable PorterDuff$Mode porterDuff$Mode) {
-        this.drawableState.a.setTintMode(porterDuff$Mode);
+    public void setTintMode(@Nullable PorterDuff.Mode mode) {
+        this.drawableState.a.setTintMode(mode);
     }
 
     public RippleDrawableCompat(ShapeAppearanceModel shapeAppearanceModel) {
-        this(new RippleDrawableCompat$b(new MaterialShapeDrawable(shapeAppearanceModel)));
+        this(new b(new MaterialShapeDrawable(shapeAppearanceModel)));
     }
 
     @Override // android.graphics.drawable.Drawable
     @NonNull
     public RippleDrawableCompat mutate() {
-        this.drawableState = new RippleDrawableCompat$b(this.drawableState);
+        this.drawableState = new b(this.drawableState);
         return this;
     }
 
-    private RippleDrawableCompat(RippleDrawableCompat$b rippleDrawableCompat$b) {
-        this.drawableState = rippleDrawableCompat$b;
+    public final class b extends Drawable.ConstantState {
+
+        @NonNull
+        public MaterialShapeDrawable a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public boolean f3052b;
+
+        public b(MaterialShapeDrawable materialShapeDrawable) {
+            this.a = materialShapeDrawable;
+            this.f3052b = false;
+        }
+
+        @Override // android.graphics.drawable.Drawable.ConstantState
+        public int getChangingConfigurations() {
+            return 0;
+        }
+
+        @Override // android.graphics.drawable.Drawable.ConstantState
+        @NonNull
+        public Drawable newDrawable() {
+            return new RippleDrawableCompat(new b(this), null);
+        }
+
+        public b(@NonNull b bVar) {
+            this.a = (MaterialShapeDrawable) bVar.a.getConstantState().newDrawable();
+            this.f3052b = bVar.f3052b;
+        }
+    }
+
+    private RippleDrawableCompat(b bVar) {
+        this.drawableState = bVar;
     }
 }

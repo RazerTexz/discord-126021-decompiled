@@ -16,12 +16,12 @@ public final class h implements g {
 
     @Override // d0.e0.p.d.m0.c.g1.g
     public c findAnnotation(d0.e0.p.d.m0.g.b bVar) {
-        return g$b.findAnnotation(this, bVar);
+        return g.b.findAnnotation(this, bVar);
     }
 
     @Override // d0.e0.p.d.m0.c.g1.g
     public boolean hasAnnotation(d0.e0.p.d.m0.g.b bVar) {
-        return g$b.hasAnnotation(this, bVar);
+        return g.b.hasAnnotation(this, bVar);
     }
 
     @Override // d0.e0.p.d.m0.c.g1.g

@@ -11,16 +11,129 @@ import kotlin.reflect.KProperty;
 /* JADX INFO: loaded from: classes3.dex */
 public final class f extends d0.e0.p.d.m0.b.h {
     public static final /* synthetic */ KProperty<Object>[] f = {a0.property1(new y(a0.getOrCreateKotlinClass(f.class), "customizer", "getCustomizer()Lorg/jetbrains/kotlin/builtins/jvm/JvmBuiltInsCustomizer;"))};
-    public Function0<f$b> g;
+    public Function0<b> g;
     public final d0.e0.p.d.m0.m.j h;
 
+    /* JADX INFO: compiled from: JvmBuiltIns.kt */
+    public enum a {
+        FROM_DEPENDENCIES,
+        FROM_CLASS_LOADER,
+        FALLBACK;
+
+        /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
+        public static a[] valuesCustom() {
+            a[] aVarArrValuesCustom = values();
+            a[] aVarArr = new a[aVarArrValuesCustom.length];
+            System.arraycopy(aVarArrValuesCustom, 0, aVarArr, 0, aVarArrValuesCustom.length);
+            return aVarArr;
+        }
+    }
+
+    /* JADX INFO: compiled from: JvmBuiltIns.kt */
+    public final class b {
+        public final c0 a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final boolean f3239b;
+
+        public b(c0 c0Var, boolean z2) {
+            d0.z.d.m.checkNotNullParameter(c0Var, "ownerModuleDescriptor");
+            this.a = c0Var;
+            this.f3239b = z2;
+        }
+
+        public final c0 getOwnerModuleDescriptor() {
+            return this.a;
+        }
+
+        public final boolean isAdditionalBuiltInsFeatureSupported() {
+            return this.f3239b;
+        }
+    }
+
+    /* JADX INFO: compiled from: JvmBuiltIns.kt */
+    public final class c extends d0.z.d.o implements Function0<g> {
+        public final /* synthetic */ d0.e0.p.d.m0.m.o $storageManager;
+
+        /* JADX INFO: compiled from: JvmBuiltIns.kt */
+        public final class a extends d0.z.d.o implements Function0<b> {
+            public final /* synthetic */ f this$0;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public a(f fVar) {
+                super(0);
+                this.this$0 = fVar;
+            }
+
+            @Override // kotlin.jvm.functions.Function0
+            public /* bridge */ /* synthetic */ b invoke() {
+                return invoke();
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // kotlin.jvm.functions.Function0
+            public final b invoke() {
+                Function0 function0Access$getSettingsComputation$p = f.access$getSettingsComputation$p(this.this$0);
+                if (function0Access$getSettingsComputation$p == null) {
+                    throw new AssertionError("JvmBuiltins instance has not been initialized properly");
+                }
+                b bVar = (b) function0Access$getSettingsComputation$p.invoke();
+                f.access$setSettingsComputation$p(this.this$0, null);
+                return bVar;
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public c(d0.e0.p.d.m0.m.o oVar) {
+            super(0);
+            this.$storageManager = oVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ g invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final g invoke() {
+            d0.e0.p.d.m0.c.i1.y builtInsModule = f.this.getBuiltInsModule();
+            d0.z.d.m.checkNotNullExpressionValue(builtInsModule, "builtInsModule");
+            return new g(builtInsModule, this.$storageManager, new a(f.this));
+        }
+    }
+
+    /* JADX INFO: compiled from: JvmBuiltIns.kt */
+    public final class d extends d0.z.d.o implements Function0<b> {
+        public final /* synthetic */ boolean $isAdditionalBuiltInsFeatureSupported;
+        public final /* synthetic */ c0 $moduleDescriptor;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public d(c0 c0Var, boolean z2) {
+            super(0);
+            this.$moduleDescriptor = c0Var;
+            this.$isAdditionalBuiltInsFeatureSupported = z2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ b invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final b invoke() {
+            return new b(this.$moduleDescriptor, this.$isAdditionalBuiltInsFeatureSupported);
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public f(d0.e0.p.d.m0.m.o oVar, f$a f_a) {
+    public f(d0.e0.p.d.m0.m.o oVar, a aVar) {
         super(oVar);
         d0.z.d.m.checkNotNullParameter(oVar, "storageManager");
-        d0.z.d.m.checkNotNullParameter(f_a, "kind");
-        this.h = oVar.createLazyValue(new f$c(this, oVar));
-        int iOrdinal = f_a.ordinal();
+        d0.z.d.m.checkNotNullParameter(aVar, "kind");
+        this.h = oVar.createLazyValue(new c(oVar));
+        int iOrdinal = aVar.ordinal();
         if (iOrdinal == 1) {
             d(false);
         } else {
@@ -70,12 +183,12 @@ public final class f extends d0.e0.p.d.m0.b.h {
 
     public final void initialize(c0 c0Var, boolean z2) {
         d0.z.d.m.checkNotNullParameter(c0Var, "moduleDescriptor");
-        setPostponedSettingsComputation(new f$d(c0Var, z2));
+        setPostponedSettingsComputation(new d(c0Var, z2));
     }
 
-    public final void setPostponedSettingsComputation(Function0<f$b> function0) {
+    public final void setPostponedSettingsComputation(Function0<b> function0) {
         d0.z.d.m.checkNotNullParameter(function0, "computation");
-        Function0<f$b> function1 = this.g;
+        Function0<b> function1 = this.g;
         this.g = function0;
     }
 }

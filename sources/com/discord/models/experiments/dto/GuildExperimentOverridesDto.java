@@ -1,14 +1,38 @@
 package com.discord.models.experiments.dto;
 
 import b.d.b.a.a;
+import com.discord.models.domain.Model;
+import d0.t.n;
 import d0.z.d.m;
+import java.io.IOException;
 import java.util.List;
+import kotlin.jvm.internal.Ref$IntRef;
+import kotlin.jvm.internal.Ref$ObjectRef;
 
 /* JADX INFO: compiled from: GuildExperimentDto.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class GuildExperimentOverridesDto {
     private final int bucket;
     private final List<Long> guilds;
+
+    /* JADX INFO: compiled from: GuildExperimentDto.kt */
+    public final class Parser {
+        public static final Parser INSTANCE = new Parser();
+
+        private Parser() {
+        }
+
+        /* JADX WARN: Type inference failed for: r2v0, types: [T, java.util.List] */
+        public final GuildExperimentOverridesDto parse(Model.JsonReader reader) throws IOException {
+            m.checkNotNullParameter(reader, "reader");
+            Ref$IntRef ref$IntRef = new Ref$IntRef();
+            ref$IntRef.element = -1;
+            Ref$ObjectRef ref$ObjectRef = new Ref$ObjectRef();
+            ref$ObjectRef.element = n.emptyList();
+            reader.nextObject(new GuildExperimentOverridesDto$Parser$parse$1(ref$IntRef, reader, ref$ObjectRef));
+            return new GuildExperimentOverridesDto(ref$IntRef.element, (List) ref$ObjectRef.element);
+        }
+    }
 
     public GuildExperimentOverridesDto(int i, List<Long> list) {
         m.checkNotNullParameter(list, "guilds");

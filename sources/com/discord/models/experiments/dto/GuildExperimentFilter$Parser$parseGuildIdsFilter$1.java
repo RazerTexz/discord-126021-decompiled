@@ -1,6 +1,6 @@
 package com.discord.models.experiments.dto;
 
-import com.discord.models.domain.Model$JsonReader;
+import com.discord.models.domain.Model;
 import java.io.IOException;
 import kotlin.jvm.internal.Ref$ObjectRef;
 
@@ -8,15 +8,60 @@ import kotlin.jvm.internal.Ref$ObjectRef;
 /* JADX INFO: loaded from: classes.dex */
 public final class GuildExperimentFilter$Parser$parseGuildIdsFilter$1 implements Runnable {
     public final /* synthetic */ Ref$ObjectRef $guildIds;
-    public final /* synthetic */ Model$JsonReader $reader;
+    public final /* synthetic */ Model.JsonReader $reader;
 
-    public GuildExperimentFilter$Parser$parseGuildIdsFilter$1(Model$JsonReader model$JsonReader, Ref$ObjectRef ref$ObjectRef) {
-        this.$reader = model$JsonReader;
+    /* JADX INFO: renamed from: com.discord.models.experiments.dto.GuildExperimentFilter$Parser$parseGuildIdsFilter$1$1, reason: invalid class name */
+    /* JADX INFO: compiled from: GuildExperimentFilter.kt */
+    public final class AnonymousClass1 implements Runnable {
+        public AnonymousClass1() {
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() throws IOException {
+            GuildExperimentFilter$Parser$parseGuildIdsFilter$1.this.$reader.skipValue();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.models.experiments.dto.GuildExperimentFilter$Parser$parseGuildIdsFilter$1$2, reason: invalid class name */
+    /* JADX INFO: compiled from: GuildExperimentFilter.kt */
+    public final class AnonymousClass2 implements Runnable {
+
+        /* JADX INFO: renamed from: com.discord.models.experiments.dto.GuildExperimentFilter$Parser$parseGuildIdsFilter$1$2$1, reason: invalid class name */
+        /* JADX INFO: compiled from: GuildExperimentFilter.kt */
+        public final class AnonymousClass1<T> implements Model.JsonReader.ItemFactory<Long> {
+            public AnonymousClass1() {
+            }
+
+            @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+            public /* bridge */ /* synthetic */ Long get() {
+                return get();
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
+            public final Long get() {
+                return GuildExperimentFilter$Parser$parseGuildIdsFilter$1.this.$reader.nextLongOrNull();
+            }
+        }
+
+        public AnonymousClass2() {
+        }
+
+        /* JADX WARN: Type inference failed for: r0v2, types: [T, java.util.List] */
+        @Override // java.lang.Runnable
+        public final void run() {
+            GuildExperimentFilter$Parser$parseGuildIdsFilter$1 guildExperimentFilter$Parser$parseGuildIdsFilter$1 = GuildExperimentFilter$Parser$parseGuildIdsFilter$1.this;
+            guildExperimentFilter$Parser$parseGuildIdsFilter$1.$guildIds.element = guildExperimentFilter$Parser$parseGuildIdsFilter$1.$reader.nextList(new AnonymousClass1());
+        }
+    }
+
+    public GuildExperimentFilter$Parser$parseGuildIdsFilter$1(Model.JsonReader jsonReader, Ref$ObjectRef ref$ObjectRef) {
+        this.$reader = jsonReader;
         this.$guildIds = ref$ObjectRef;
     }
 
     @Override // java.lang.Runnable
     public final void run() throws IOException {
-        this.$reader.nextListIndexed(new GuildExperimentFilter$Parser$parseGuildIdsFilter$1$1(this), new GuildExperimentFilter$Parser$parseGuildIdsFilter$1$2(this));
+        this.$reader.nextListIndexed(new AnonymousClass1(), new AnonymousClass2());
     }
 }

@@ -8,8 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewGuildRoleSubscriptionSectionHeaderItemBinding implements ViewBinding {
@@ -28,15 +27,15 @@ public final class ViewGuildRoleSubscriptionSectionHeaderItemBinding implements 
 
     @NonNull
     public static ViewGuildRoleSubscriptionSectionHeaderItemBinding a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
-        View viewInflate = layoutInflater.inflate(R$layout.view_guild_role_subscription_section_header_item, viewGroup, false);
+        View viewInflate = layoutInflater.inflate(R.layout.view_guild_role_subscription_section_header_item, viewGroup, false);
         if (z2) {
             viewGroup.addView(viewInflate);
         }
-        int i = R$id.guild_role_subscription_section_description;
-        TextView textView = (TextView) viewInflate.findViewById(R$id.guild_role_subscription_section_description);
+        int i = R.id.guild_role_subscription_section_description;
+        TextView textView = (TextView) viewInflate.findViewById(R.id.guild_role_subscription_section_description);
         if (textView != null) {
-            i = R$id.guild_role_subscription_section_header;
-            TextView textView2 = (TextView) viewInflate.findViewById(R$id.guild_role_subscription_section_header);
+            i = R.id.guild_role_subscription_section_header;
+            TextView textView2 = (TextView) viewInflate.findViewById(R.id.guild_role_subscription_section_header);
             if (textView2 != null) {
                 return new ViewGuildRoleSubscriptionSectionHeaderItemBinding((LinearLayout) viewInflate, textView, textView2);
             }

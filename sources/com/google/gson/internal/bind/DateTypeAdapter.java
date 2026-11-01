@@ -3,8 +3,10 @@ package com.google.gson.internal.bind;
 import b.i.a.f.e.o.f;
 import b.i.d.o;
 import b.i.d.q.x.d.a;
+import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.TypeAdapter;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
@@ -23,7 +25,18 @@ public final class DateTypeAdapter extends TypeAdapter<Date> {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final List<DateFormat> f3119b;
-    public static final o a = new DateTypeAdapter$1();
+    public static final o a = new AnonymousClass1();
+
+    /* JADX INFO: renamed from: com.google.gson.internal.bind.DateTypeAdapter$1, reason: invalid class name */
+    public class AnonymousClass1 implements o {
+        @Override // b.i.d.o
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {
+            if (typeToken.getRawType() == Date.class) {
+                return new DateTypeAdapter();
+            }
+            return null;
+        }
+    }
 
     public DateTypeAdapter() {
         ArrayList arrayList = new ArrayList();

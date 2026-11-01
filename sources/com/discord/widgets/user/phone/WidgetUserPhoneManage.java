@@ -6,22 +6,26 @@ import android.content.res.Resources;
 import android.view.View;
 import android.widget.TextView;
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import b.a.d.j;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.databinding.WidgetUserPhoneManageBinding;
+import com.discord.models.phone.PhoneCountryCode;
 import com.discord.models.user.MeUser;
-import com.discord.restapi.RestAPIParams$Phone;
+import com.discord.restapi.RestAPIParams;
 import com.discord.stores.StorePhone;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUser;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
-import com.discord.utilities.captcha.CaptchaHelper$CaptchaPayload;
+import com.discord.utilities.captcha.CaptchaHelper;
 import com.discord.utilities.drawable.DrawableCompat;
+import com.discord.utilities.error.Error;
+import com.discord.utilities.features.GrowthTeamFeatures;
 import com.discord.utilities.intent.IntentUtilsKt;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
@@ -30,25 +34,29 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.discord.widgets.captcha.WidgetCaptcha;
 import com.discord.widgets.notice.WidgetNoticeDialog;
-import com.discord.widgets.notice.WidgetNoticeDialog$Companion;
 import com.discord.widgets.user.WidgetUserPasswordVerify;
 import com.discord.widgets.user.account.WidgetUserAccountVerifyBase;
-import com.discord.widgets.user.account.WidgetUserAccountVerifyBase$Mode;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.button.MaterialButton;
 import d0.g0.t;
-import d0.o;
 import d0.t.g0;
+import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
+import java.util.Collection;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetUserPhoneManage extends WidgetUserAccountVerifyBase {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetUserPhoneManage.class, "binding", "getBinding()Lcom/discord/databinding/WidgetUserPhoneManageBinding;", 0)};
-    public static final WidgetUserPhoneManage$Companion Companion = new WidgetUserPhoneManage$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -57,12 +65,231 @@ public final class WidgetUserPhoneManage extends WidgetUserAccountVerifyBase {
     private final ActivityResultLauncher<Intent> phoneVerificationLauncher;
     private String source;
 
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$onViewBound$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
+    public final class AnonymousClass1 extends o implements Function0<PhoneCountryCode> {
+        public final /* synthetic */ StorePhone $phoneStore;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(StorePhone storePhone) {
+            super(0);
+            this.$phoneStore = storePhone;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ PhoneCountryCode invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final PhoneCountryCode invoke() {
+            return this.$phoneStore.getCountryCode();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$onViewBoundOrOnResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
+    public final class AnonymousClass1 extends o implements Function1<MeUser, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(MeUser meUser) {
+            invoke2(meUser);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(MeUser meUser) {
+            m.checkNotNullParameter(meUser, "it");
+            WidgetUserPhoneManage.access$configureUI(WidgetUserPhoneManage.this, meUser);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$removePhoneNumber$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
+    public final class AnonymousClass1 extends o implements Function1<View, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(View view) {
+            invoke2(view);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(View view) {
+            m.checkNotNullParameter(view, "it");
+            WidgetUserPasswordVerify.INSTANCE.launchRemovePhoneNumber(WidgetUserPhoneManage.this.requireContext(), WidgetUserPhoneManage.access$getPasswordVerifyLauncher$p(WidgetUserPhoneManage.this));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$updatePhoneNumber$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
+    public final class AnonymousClass1 extends o implements Function1<Error, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            m.checkNotNullParameter(error, "error");
+            if (GrowthTeamFeatures.INSTANCE.isPhoneVerifyCaptchaEnabled()) {
+                WidgetCaptcha.Companion companion = WidgetCaptcha.INSTANCE;
+                Context contextRequireContext = WidgetUserPhoneManage.this.requireContext();
+                ActivityResultLauncher<Intent> activityResultLauncherAccess$getCaptchaLauncher$p = WidgetUserPhoneManage.access$getCaptchaLauncher$p(WidgetUserPhoneManage.this);
+                Error.Response response = error.getResponse();
+                m.checkNotNullExpressionValue(response, "error.response");
+                companion.processErrorsForCaptcha(contextRequireContext, activityResultLauncherAccess$getCaptchaLauncher$p, u.toMutableList((Collection) response.getMessages().keySet()), error);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$onViewBound$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
+    public final class AnonymousClass2 extends o implements Function1<PhoneCountryCode, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(PhoneCountryCode phoneCountryCode) {
+            invoke2(phoneCountryCode);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(PhoneCountryCode phoneCountryCode) {
+            m.checkNotNullParameter(phoneCountryCode, "it");
+            WidgetUserPhoneManage.access$getBinding$p(WidgetUserPhoneManage.this).f.setCountryCode(phoneCountryCode);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$updatePhoneNumber$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
+    public final class AnonymousClass2 extends o implements Function1<Void, Unit> {
+        public final /* synthetic */ String $phoneNumber;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(String str) {
+            super(1);
+            this.$phoneNumber = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r7) {
+            WidgetUserPhoneVerify.INSTANCE.launch(WidgetUserPhoneManage.this.requireContext(), WidgetUserPhoneManage.access$getPhoneVerificationLauncher$p(WidgetUserPhoneManage.this), WidgetUserPhoneManage.access$getMode$p(WidgetUserPhoneManage.this), this.$phoneNumber, WidgetUserPhoneManage.access$getSource$p(WidgetUserPhoneManage.this));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$onViewBound$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
+    public final class AnonymousClass3 extends o implements Function0<Unit> {
+        public AnonymousClass3() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            WidgetUserPhoneManage.access$handlePhoneNumberTextChanged(WidgetUserPhoneManage.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$onViewBound$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
+    public final class AnonymousClass4 implements View.OnClickListener {
+        public AnonymousClass4() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetUserPhoneManage.updatePhoneNumber$default(WidgetUserPhoneManage.this, null, 1, null);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.user.phone.WidgetUserPhoneManage$onViewBound$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
+    public final class AnonymousClass5 implements View.OnClickListener {
+        public AnonymousClass5() {
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetUserPhoneManage.access$removePhoneNumber(WidgetUserPhoneManage.this);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
+    public final class Companion {
+
+        /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
+        public enum Source {
+            USER_ACTION_REQUIRED("user_action_required"),
+            USER_SETTINGS_UPDATE("user_settings_update"),
+            GUILD_PHONE_REQUIRED("guild_phone_required"),
+            MFA_PHONE_UPDATE("mfa_phone_update"),
+            CONTACT_SYNC("contact_sync"),
+            DEFAULT("update_phone");
+
+            private final String source;
+
+            Source(String str) {
+                this.source = str;
+            }
+
+            public final String getSource() {
+                return this.source;
+            }
+        }
+
+        private Companion() {
+        }
+
+        public final void launch(Context context, WidgetUserAccountVerifyBase.Mode mode, Source source) {
+            m.checkNotNullParameter(context, "context");
+            m.checkNotNullParameter(mode, "mode");
+            m.checkNotNullParameter(source, "source");
+            Intent launchIntent = WidgetUserAccountVerifyBase.INSTANCE.getLaunchIntent(mode, true, false);
+            if (mode == WidgetUserAccountVerifyBase.Mode.NO_HISTORY_FROM_USER_SETTINGS) {
+                launchIntent.addFlags(BasicMeasure.EXACTLY);
+            }
+            launchIntent.putExtra("intent_args_key", source.getSource());
+            j.d(context, WidgetUserPhoneManage.class, launchIntent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     public WidgetUserPhoneManage() {
-        super(R$layout.widget_user_phone_manage);
+        super(R.layout.widget_user_phone_manage);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetUserPhoneManage$binding$2.INSTANCE, null, 2, null);
-        this.passwordVerifyLauncher = WidgetUserPasswordVerify.Companion.registerForResult(this, new WidgetUserPhoneManage$passwordVerifyLauncher$1(this));
-        this.phoneVerificationLauncher = WidgetUserPhoneVerify.Companion.registerForResult(this, new WidgetUserPhoneManage$phoneVerificationLauncher$1(this));
-        this.captchaLauncher = WidgetCaptcha.Companion.registerForResult(this, new WidgetUserPhoneManage$captchaLauncher$1(this));
+        this.passwordVerifyLauncher = WidgetUserPasswordVerify.INSTANCE.registerForResult(this, new WidgetUserPhoneManage$passwordVerifyLauncher$1(this));
+        this.phoneVerificationLauncher = WidgetUserPhoneVerify.INSTANCE.registerForResult(this, new WidgetUserPhoneManage$phoneVerificationLauncher$1(this));
+        this.captchaLauncher = WidgetCaptcha.INSTANCE.registerForResult(this, new WidgetUserPhoneManage$captchaLauncher$1(this));
     }
 
     public static final /* synthetic */ void access$configureUI(WidgetUserPhoneManage widgetUserPhoneManage, MeUser meUser) {
@@ -77,7 +304,7 @@ public final class WidgetUserPhoneManage extends WidgetUserAccountVerifyBase {
         return widgetUserPhoneManage.captchaLauncher;
     }
 
-    public static final /* synthetic */ WidgetUserAccountVerifyBase$Mode access$getMode$p(WidgetUserPhoneManage widgetUserPhoneManage) {
+    public static final /* synthetic */ WidgetUserAccountVerifyBase.Mode access$getMode$p(WidgetUserPhoneManage widgetUserPhoneManage) {
         return widgetUserPhoneManage.getMode();
     }
 
@@ -105,30 +332,30 @@ public final class WidgetUserPhoneManage extends WidgetUserAccountVerifyBase {
         widgetUserPhoneManage.removePhoneNumber();
     }
 
-    public static final /* synthetic */ void access$setMode$p(WidgetUserPhoneManage widgetUserPhoneManage, WidgetUserAccountVerifyBase$Mode widgetUserAccountVerifyBase$Mode) {
-        widgetUserPhoneManage.setMode(widgetUserAccountVerifyBase$Mode);
+    public static final /* synthetic */ void access$setMode$p(WidgetUserPhoneManage widgetUserPhoneManage, WidgetUserAccountVerifyBase.Mode mode) {
+        widgetUserPhoneManage.setMode(mode);
     }
 
     public static final /* synthetic */ void access$setSource$p(WidgetUserPhoneManage widgetUserPhoneManage, String str) {
         widgetUserPhoneManage.source = str;
     }
 
-    public static final /* synthetic */ void access$updatePhoneNumber(WidgetUserPhoneManage widgetUserPhoneManage, CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload) {
-        widgetUserPhoneManage.updatePhoneNumber(captchaHelper$CaptchaPayload);
+    public static final /* synthetic */ void access$updatePhoneNumber(WidgetUserPhoneManage widgetUserPhoneManage, CaptchaHelper.CaptchaPayload captchaPayload) {
+        widgetUserPhoneManage.updatePhoneNumber(captchaPayload);
     }
 
     private final void configureUI(MeUser meUser) {
         if (meUser.getPhoneNumber() != null) {
-            getBinding().g.setText(2131893795);
+            getBinding().g.setText(R.string.phone_verification_update_title);
             TextView textView = getBinding().d;
             m.checkNotNullExpressionValue(textView, "binding.userPhoneAddDescriptionNote");
-            b.n(textView, 2131893791, new Object[]{meUser.getPhoneNumber()}, null, 4);
+            b.n(textView, R.string.phone_verification_current_phone, new Object[]{meUser.getPhoneNumber()}, null, 4);
             TextView textView2 = getBinding().c;
             m.checkNotNullExpressionValue(textView2, "binding.removePhone");
             textView2.setVisibility(0);
         } else {
-            getBinding().g.setText(2131888879);
-            getBinding().d.setText(2131888876);
+            getBinding().g.setText(R.string.enter_phone_title);
+            getBinding().d.setText(R.string.enter_phone_description);
             TextView textView3 = getBinding().c;
             m.checkNotNullExpressionValue(textView3, "binding.removePhone");
             textView3.setVisibility(8);
@@ -155,58 +382,58 @@ public final class WidgetUserPhoneManage extends WidgetUserAccountVerifyBase {
     public void onViewBound(View view) {
         m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
-        setActionBarDisplayHomeAsUpEnabled(!isForced(), Integer.valueOf(DrawableCompat.getThemedDrawableRes$default(view, 2130969455, 0, 2, (Object) null)), !isForced() ? 2131887680 : null);
-        this.source = IntentUtilsKt.getStringExtraOrDefault(getMostRecentIntent(), "intent_args_key", WidgetUserPhoneManage$Companion$Source.DEFAULT.getSource());
+        setActionBarDisplayHomeAsUpEnabled(!isForced(), Integer.valueOf(DrawableCompat.getThemedDrawableRes$default(view, R.attr.ic_action_bar_close, 0, 2, (Object) null)), !isForced() ? Integer.valueOf(R.string.close) : null);
+        this.source = IntentUtilsKt.getStringExtraOrDefault(getMostRecentIntent(), "intent_args_key", Companion.Source.DEFAULT.getSource());
         getBinding().f.b(this);
-        StorePhone phone = StoreStream.Companion.getPhone();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck$UpdateSource[]{phone}, false, null, null, new WidgetUserPhoneManage$onViewBound$1(phone), 14, null), this, null, 2, null), WidgetUserPhoneManage.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetUserPhoneManage$onViewBound$2(this), 62, (Object) null);
-        getBinding().f.a(this, new WidgetUserPhoneManage$onViewBound$3(this));
-        getBinding().e.setOnClickListener(new WidgetUserPhoneManage$onViewBound$4(this));
-        getBinding().c.setOnClickListener(new WidgetUserPhoneManage$onViewBound$5(this));
+        StorePhone phone = StoreStream.INSTANCE.getPhone();
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{phone}, false, null, null, new AnonymousClass1(phone), 14, null), this, null, 2, null), WidgetUserPhoneManage.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
+        getBinding().f.a(this, new AnonymousClass3());
+        getBinding().e.setOnClickListener(new AnonymousClass4());
+        getBinding().c.setOnClickListener(new AnonymousClass5());
     }
 
     @Override // com.discord.widgets.user.account.WidgetUserAccountVerifyBase, com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(StoreUser.observeMe$default(StoreStream.Companion.getUsers(), false, 1, null), this, null, 2, null), WidgetUserPhoneManage.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetUserPhoneManage$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(StoreUser.observeMe$default(StoreStream.INSTANCE.getUsers(), false, 1, null), this, null, 2, null), WidgetUserPhoneManage.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(), 62, (Object) null);
     }
 
     private final void removePhoneNumber() {
-        if (!UserUtils.INSTANCE.isMfaSMSEnabled(StoreStream.Companion.getUsers().getMeSnapshot())) {
-            WidgetUserPasswordVerify.Companion.launchRemovePhoneNumber(requireContext(), this.passwordVerifyLauncher);
+        if (!UserUtils.INSTANCE.isMfaSMSEnabled(StoreStream.INSTANCE.getUsers().getMeSnapshot())) {
+            WidgetUserPasswordVerify.INSTANCE.launchRemovePhoneNumber(requireContext(), this.passwordVerifyLauncher);
             return;
         }
-        WidgetNoticeDialog$Companion widgetNoticeDialog$Companion = WidgetNoticeDialog.Companion;
+        WidgetNoticeDialog.Companion companion = WidgetNoticeDialog.INSTANCE;
         FragmentManager parentFragmentManager = getParentFragmentManager();
         m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
         Resources resources = getResources();
         m.checkNotNullExpressionValue(resources, "resources");
-        CharSequence charSequenceI = b.i(resources, 2131896832, new Object[0], null, 4);
+        CharSequence charSequenceI = b.i(resources, R.string.user_settings_account_remove_phone_number_warning_title, new Object[0], null, 4);
         Resources resources2 = getResources();
         m.checkNotNullExpressionValue(resources2, "resources");
-        CharSequence charSequenceI2 = b.i(resources2, 2131896831, new Object[0], null, 4);
+        CharSequence charSequenceI2 = b.i(resources2, R.string.user_settings_account_remove_phone_number_warning_body, new Object[0], null, 4);
         Resources resources3 = getResources();
         m.checkNotNullExpressionValue(resources3, "resources");
-        CharSequence charSequenceI3 = b.i(resources3, 2131894737, new Object[0], null, 4);
+        CharSequence charSequenceI3 = b.i(resources3, R.string.remove, new Object[0], null, 4);
         Resources resources4 = getResources();
         m.checkNotNullExpressionValue(resources4, "resources");
-        WidgetNoticeDialog$Companion.show$default(widgetNoticeDialog$Companion, parentFragmentManager, charSequenceI, charSequenceI2, charSequenceI3, b.i(resources4, 2131887437, new Object[0], null, 4), g0.mapOf(o.to(2131364555, new WidgetUserPhoneManage$removePhoneNumber$1(this))), null, null, null, 2130969885, null, null, 0, null, 15808, null);
+        WidgetNoticeDialog.Companion.show$default(companion, parentFragmentManager, charSequenceI, charSequenceI2, charSequenceI3, b.i(resources4, R.string.cancel, new Object[0], null, 4), g0.mapOf(d0.o.to(Integer.valueOf(R.id.notice_ok), new AnonymousClass1())), null, null, null, Integer.valueOf(R.attr.notice_theme_positive_red), null, null, 0, null, 15808, null);
     }
 
-    public static /* synthetic */ void updatePhoneNumber$default(WidgetUserPhoneManage widgetUserPhoneManage, CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload, int i, Object obj) {
+    public static /* synthetic */ void updatePhoneNumber$default(WidgetUserPhoneManage widgetUserPhoneManage, CaptchaHelper.CaptchaPayload captchaPayload, int i, Object obj) {
         if ((i & 1) != 0) {
-            captchaHelper$CaptchaPayload = null;
+            captchaPayload = null;
         }
-        widgetUserPhoneManage.updatePhoneNumber(captchaHelper$CaptchaPayload);
+        widgetUserPhoneManage.updatePhoneNumber(captchaPayload);
     }
 
-    private final void updatePhoneNumber(CaptchaHelper$CaptchaPayload captchaPayload) {
+    private final void updatePhoneNumber(CaptchaHelper.CaptchaPayload captchaPayload) {
         String textOrEmpty = getBinding().f.getTextOrEmpty();
-        RestAPI api = RestAPI.Companion.getApi();
+        RestAPI api = RestAPI.INSTANCE.getApi();
         String str = this.source;
         if (str == null) {
             m.throwUninitializedPropertyAccessException("source");
         }
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.restSubscribeOn$default(api.userAddPhone(new RestAPIParams$Phone(textOrEmpty, str, captchaPayload != null ? captchaPayload.getCaptchaKey() : null, captchaPayload != null ? captchaPayload.getCaptchaRqtoken() : null)), false, 1, null), getBinding().f2687b, 0L, 2, null), this, null, 2, null), WidgetUserPhoneManage.class, (Context) null, (Function1) null, new WidgetUserPhoneManage$updatePhoneNumber$1(this), (Function0) null, (Function0) null, new WidgetUserPhoneManage$updatePhoneNumber$2(this, textOrEmpty), 54, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.withDimmer$default(ObservableExtensionsKt.restSubscribeOn$default(api.userAddPhone(new RestAPIParams.Phone(textOrEmpty, str, captchaPayload != null ? captchaPayload.getCaptchaKey() : null, captchaPayload != null ? captchaPayload.getCaptchaRqtoken() : null)), false, 1, null), getBinding().f2687b, 0L, 2, null), this, null, 2, null), WidgetUserPhoneManage.class, (Context) null, (Function1) null, new AnonymousClass1(), (Function0) null, (Function0) null, new AnonymousClass2(textOrEmpty), 54, (Object) null);
     }
 }

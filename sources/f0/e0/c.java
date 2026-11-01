@@ -14,7 +14,6 @@ import f0.x;
 import g0.e;
 import g0.g;
 import g0.o;
-import g0.o$a;
 import java.io.Closeable;
 import java.io.EOFException;
 import java.io.IOException;
@@ -38,11 +37,9 @@ import kotlin.TypeCastException;
 import kotlin.text.Regex;
 import okhttp3.Headers;
 import okhttp3.RequestBody;
-import okhttp3.RequestBody$Companion;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import okio.ByteString;
-import okio.ByteString$a;
 
 /* JADX INFO: compiled from: Util.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -55,7 +52,7 @@ public final class c {
     public static final String g;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final Headers f3605b = Headers.j.c(new String[0]);
+    public static final Headers f3605b = Headers.INSTANCE.c(new String[0]);
 
     static {
         byte[] bArr = new byte[0];
@@ -65,10 +62,10 @@ public final class c {
         eVar.R(bArr);
         m.checkParameterIsNotNull(eVar, "$this$asResponseBody");
         c = new b0(eVar, null, 0);
-        RequestBody$Companion.d(RequestBody.Companion, bArr, null, 0, 0, 7);
-        o$a o_a = o.k;
-        ByteString$a byteString$a = ByteString.k;
-        d = o_a.c(byteString$a.a("efbbbf"), byteString$a.a("feff"), byteString$a.a("fffe"), byteString$a.a("0000ffff"), byteString$a.a("ffff0000"));
+        RequestBody.Companion.d(RequestBody.INSTANCE, bArr, null, 0, 0, 7);
+        o.a aVar = o.k;
+        ByteString.Companion companion = ByteString.INSTANCE;
+        d = aVar.c(companion.a("efbbbf"), companion.a("feff"), companion.a("fffe"), companion.a("0000ffff"), companion.a("ffff0000"));
         TimeZone timeZone = TimeZone.getTimeZone("GMT");
         if (timeZone == null) {
             m.throwNpe();

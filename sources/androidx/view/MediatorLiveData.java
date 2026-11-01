@@ -3,30 +3,31 @@ package androidx.view;
 import androidx.annotation.CallSuper;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.arch.core.internal.SafeIterableMap;
 import java.util.Iterator;
-import java.util.Map$Entry;
+import java.util.Map;
 
 /* JADX INFO: loaded from: classes.dex */
 public class MediatorLiveData<T> extends MutableLiveData<T> {
-    private SafeIterableMap<LiveData<?>, MediatorLiveData$Source<?>> mSources = new SafeIterableMap<>();
+    private SafeIterableMap<LiveData<?>, Source<?>> mSources = new SafeIterableMap<>();
 
     @MainThread
     public <S> void addSource(@NonNull LiveData<S> liveData, @NonNull Observer<? super S> observer) {
-        MediatorLiveData$Source<?> mediatorLiveData$Source = new MediatorLiveData$Source<>(liveData, observer);
-        MediatorLiveData$Source<?> mediatorLiveData$SourcePutIfAbsent = this.mSources.putIfAbsent(liveData, mediatorLiveData$Source);
-        if (mediatorLiveData$SourcePutIfAbsent != null && mediatorLiveData$SourcePutIfAbsent.mObserver != observer) {
+        Source<?> source = new Source<>(liveData, observer);
+        Source<?> sourcePutIfAbsent = this.mSources.putIfAbsent(liveData, source);
+        if (sourcePutIfAbsent != null && sourcePutIfAbsent.mObserver != observer) {
             throw new IllegalArgumentException("This source was already added with the different observer");
         }
-        if (mediatorLiveData$SourcePutIfAbsent == null && hasActiveObservers()) {
-            mediatorLiveData$Source.plug();
+        if (sourcePutIfAbsent == null && hasActiveObservers()) {
+            source.plug();
         }
     }
 
     @Override // androidx.view.LiveData
     @CallSuper
     public void onActive() {
-        Iterator<Map$Entry<LiveData<?>, MediatorLiveData$Source<?>>> it = this.mSources.iterator();
+        Iterator<Map.Entry<LiveData<?>, Source<?>>> it = this.mSources.iterator();
         while (it.hasNext()) {
             it.next().getValue().plug();
         }
@@ -35,7 +36,7 @@ public class MediatorLiveData<T> extends MutableLiveData<T> {
     @Override // androidx.view.LiveData
     @CallSuper
     public void onInactive() {
-        Iterator<Map$Entry<LiveData<?>, MediatorLiveData$Source<?>>> it = this.mSources.iterator();
+        Iterator<Map.Entry<LiveData<?>, Source<?>>> it = this.mSources.iterator();
         while (it.hasNext()) {
             it.next().getValue().unplug();
         }
@@ -43,9 +44,36 @@ public class MediatorLiveData<T> extends MutableLiveData<T> {
 
     @MainThread
     public <S> void removeSource(@NonNull LiveData<S> liveData) {
-        MediatorLiveData$Source<?> mediatorLiveData$SourceRemove = this.mSources.remove(liveData);
-        if (mediatorLiveData$SourceRemove != null) {
-            mediatorLiveData$SourceRemove.unplug();
+        Source<?> sourceRemove = this.mSources.remove(liveData);
+        if (sourceRemove != null) {
+            sourceRemove.unplug();
+        }
+    }
+
+    public class Source<V> implements Observer<V> {
+        public final LiveData<V> mLiveData;
+        public final Observer<? super V> mObserver;
+        public int mVersion = -1;
+
+        public Source(LiveData<V> liveData, Observer<? super V> observer) {
+            this.mLiveData = liveData;
+            this.mObserver = observer;
+        }
+
+        @Override // androidx.view.Observer
+        public void onChanged(@Nullable V v) {
+            if (this.mVersion != this.mLiveData.getVersion()) {
+                this.mVersion = this.mLiveData.getVersion();
+                this.mObserver.onChanged(v);
+            }
+        }
+
+        public void plug() {
+            this.mLiveData.observeForever(this);
+        }
+
+        public void unplug() {
+            this.mLiveData.removeObserver(this);
         }
     }
 }

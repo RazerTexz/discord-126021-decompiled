@@ -6,12 +6,12 @@ import com.lytefast.flexinput.fragment.MediaFragment;
 
 /* JADX INFO: compiled from: AddContentPagerAdapter.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class a extends d$a {
+public final class a extends d.a {
     public a(Context context, int i, int i2) {
         super(i, i2);
     }
 
-    @Override // b.b.a.d.d$a
+    @Override // b.b.a.d.d.a
     public Fragment createFragment() {
         return new MediaFragment();
     }

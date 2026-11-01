@@ -1,6 +1,5 @@
 package d0.e0.p.d.m0.l.b;
 
-import d0.e0.p.d.m0.c.b$a;
 import d0.e0.p.d.m0.c.c1;
 import d0.e0.p.d.m0.c.e0;
 import d0.e0.p.d.m0.c.i1.d0;
@@ -11,10 +10,6 @@ import d0.e0.p.d.m0.c.t0;
 import d0.e0.p.d.m0.c.u0;
 import d0.e0.p.d.m0.c.y0;
 import d0.e0.p.d.m0.c.z0;
-import d0.e0.p.d.m0.f.v$d;
-import d0.e0.p.d.m0.f.z.b$b;
-import d0.e0.p.d.m0.f.z.b$d;
-import d0.e0.p.d.m0.l.b.e0.g$a;
 import d0.e0.p.d.m0.n.w0;
 import d0.t.h0;
 import java.util.ArrayList;
@@ -23,6 +18,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import kotlin.Pair;
+import kotlin.jvm.functions.Function0;
+import kotlin.reflect.KDeclarationContainer;
 
 /* JADX INFO: compiled from: MemberDeserializer.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -30,17 +27,170 @@ public final class u {
     public final l a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final e f3508b;
+    public final d0.e0.p.d.m0.l.b.e f3508b;
+
+    /* JADX INFO: compiled from: MemberDeserializer.kt */
+    public final /* synthetic */ class a extends d0.z.d.x {
+        public static final a j = new a();
+
+        @Override // d0.e0.g
+        public Object get(Object obj) {
+            return Boolean.valueOf(d0.e0.p.d.m0.b.g.isSuspendFunctionType((d0.e0.p.d.m0.n.c0) obj));
+        }
+
+        @Override // d0.z.d.d, kotlin.reflect.KCallable
+        public String getName() {
+            return "isSuspendFunctionType";
+        }
+
+        @Override // d0.z.d.d
+        public KDeclarationContainer getOwner() {
+            return d0.z.d.a0.getOrCreateKotlinPackage(d0.e0.p.d.m0.b.g.class, "deserialization");
+        }
+
+        @Override // d0.z.d.d
+        public String getSignature() {
+            return "isSuspendFunctionType(Lorg/jetbrains/kotlin/types/KotlinType;)Z";
+        }
+    }
+
+    /* JADX INFO: compiled from: MemberDeserializer.kt */
+    public final class b extends d0.z.d.o implements Function0<List<? extends d0.e0.p.d.m0.c.g1.c>> {
+        public final /* synthetic */ d0.e0.p.d.m0.l.b.b $kind;
+        public final /* synthetic */ d0.e0.p.d.m0.i.n $proto;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public b(d0.e0.p.d.m0.i.n nVar, d0.e0.p.d.m0.l.b.b bVar) {
+            super(0);
+            this.$proto = nVar;
+            this.$kind = bVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<? extends d0.e0.p.d.m0.c.g1.c> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<? extends d0.e0.p.d.m0.c.g1.c> invoke2() {
+            List<? extends d0.e0.p.d.m0.c.g1.c> list;
+            u uVar = u.this;
+            y yVarAccess$asProtoContainer = u.access$asProtoContainer(uVar, u.access$getC$p(uVar).getContainingDeclaration());
+            if (yVarAccess$asProtoContainer == null) {
+                list = null;
+            } else {
+                list = d0.t.u.toList(u.access$getC$p(u.this).getComponents().getAnnotationAndConstantLoader().loadCallableAnnotations(yVarAccess$asProtoContainer, this.$proto, this.$kind));
+            }
+            return list != null ? list : d0.t.n.emptyList();
+        }
+    }
+
+    /* JADX INFO: compiled from: MemberDeserializer.kt */
+    public final class c extends d0.z.d.o implements Function0<List<? extends d0.e0.p.d.m0.c.g1.c>> {
+        public final /* synthetic */ boolean $isDelegate;
+        public final /* synthetic */ d0.e0.p.d.m0.f.n $proto;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public c(boolean z2, d0.e0.p.d.m0.f.n nVar) {
+            super(0);
+            this.$isDelegate = z2;
+            this.$proto = nVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<? extends d0.e0.p.d.m0.c.g1.c> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<? extends d0.e0.p.d.m0.c.g1.c> invoke2() {
+            List<? extends d0.e0.p.d.m0.c.g1.c> list;
+            u uVar = u.this;
+            y yVarAccess$asProtoContainer = u.access$asProtoContainer(uVar, u.access$getC$p(uVar).getContainingDeclaration());
+            if (yVarAccess$asProtoContainer == null) {
+                list = null;
+            } else {
+                boolean z2 = this.$isDelegate;
+                u uVar2 = u.this;
+                d0.e0.p.d.m0.f.n nVar = this.$proto;
+                list = z2 ? d0.t.u.toList(u.access$getC$p(uVar2).getComponents().getAnnotationAndConstantLoader().loadPropertyDelegateFieldAnnotations(yVarAccess$asProtoContainer, nVar)) : d0.t.u.toList(u.access$getC$p(uVar2).getComponents().getAnnotationAndConstantLoader().loadPropertyBackingFieldAnnotations(yVarAccess$asProtoContainer, nVar));
+            }
+            return list != null ? list : d0.t.n.emptyList();
+        }
+    }
+
+    /* JADX INFO: compiled from: MemberDeserializer.kt */
+    public final class d extends d0.z.d.o implements Function0<d0.e0.p.d.m0.k.v.g<?>> {
+        public final /* synthetic */ d0.e0.p.d.m0.l.b.e0.j $property;
+        public final /* synthetic */ d0.e0.p.d.m0.f.n $proto;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public d(d0.e0.p.d.m0.f.n nVar, d0.e0.p.d.m0.l.b.e0.j jVar) {
+            super(0);
+            this.$proto = nVar;
+            this.$property = jVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.k.v.g<?> invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final d0.e0.p.d.m0.k.v.g<?> invoke() {
+            u uVar = u.this;
+            y yVarAccess$asProtoContainer = u.access$asProtoContainer(uVar, u.access$getC$p(uVar).getContainingDeclaration());
+            d0.z.d.m.checkNotNull(yVarAccess$asProtoContainer);
+            d0.e0.p.d.m0.l.b.c<d0.e0.p.d.m0.c.g1.c, d0.e0.p.d.m0.k.v.g<?>> annotationAndConstantLoader = u.access$getC$p(u.this).getComponents().getAnnotationAndConstantLoader();
+            d0.e0.p.d.m0.f.n nVar = this.$proto;
+            d0.e0.p.d.m0.n.c0 returnType = this.$property.getReturnType();
+            d0.z.d.m.checkNotNullExpressionValue(returnType, "property.returnType");
+            return annotationAndConstantLoader.loadPropertyConstant(yVarAccess$asProtoContainer, nVar, returnType);
+        }
+    }
+
+    /* JADX INFO: compiled from: MemberDeserializer.kt */
+    public final class e extends d0.z.d.o implements Function0<List<? extends d0.e0.p.d.m0.c.g1.c>> {
+        public final /* synthetic */ d0.e0.p.d.m0.i.n $callable;
+        public final /* synthetic */ y $containerOfCallable;
+        public final /* synthetic */ int $i;
+        public final /* synthetic */ d0.e0.p.d.m0.l.b.b $kind;
+        public final /* synthetic */ d0.e0.p.d.m0.f.u $proto;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public e(y yVar, d0.e0.p.d.m0.i.n nVar, d0.e0.p.d.m0.l.b.b bVar, int i, d0.e0.p.d.m0.f.u uVar) {
+            super(0);
+            this.$containerOfCallable = yVar;
+            this.$callable = nVar;
+            this.$kind = bVar;
+            this.$i = i;
+            this.$proto = uVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<? extends d0.e0.p.d.m0.c.g1.c> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<? extends d0.e0.p.d.m0.c.g1.c> invoke2() {
+            return d0.t.u.toList(u.access$getC$p(u.this).getComponents().getAnnotationAndConstantLoader().loadValueParameterAnnotations(this.$containerOfCallable, this.$callable, this.$kind, this.$i, this.$proto));
+        }
+    }
 
     public u(l lVar) {
         d0.z.d.m.checkNotNullParameter(lVar, "c");
         this.a = lVar;
-        this.f3508b = new e(lVar.getComponents().getModuleDescriptor(), lVar.getComponents().getNotFoundClasses());
+        this.f3508b = new d0.e0.p.d.m0.l.b.e(lVar.getComponents().getModuleDescriptor(), lVar.getComponents().getNotFoundClasses());
     }
 
     public final y a(d0.e0.p.d.m0.c.m mVar) {
         if (mVar instanceof e0) {
-            return new y$b(((e0) mVar).getFqName(), this.a.getNameResolver(), this.a.getTypeTable(), this.a.getContainerSource());
+            return new y.b(((e0) mVar).getFqName(), this.a.getNameResolver(), this.a.getTypeTable(), this.a.getContainerSource());
         }
         if (mVar instanceof d0.e0.p.d.m0.l.b.e0.d) {
             return ((d0.e0.p.d.m0.l.b.e0.d) mVar).getThisAsProtoContainer$deserialization();
@@ -56,29 +206,29 @@ public final class u {
         return uVar.a;
     }
 
-    public final g$a b(d0.e0.p.d.m0.l.b.e0.g gVar, c0 c0Var) {
-        g$a g_a = g$a.COMPATIBLE;
+    public final d0.e0.p.d.m0.l.b.e0.g.a b(d0.e0.p.d.m0.l.b.e0.g gVar, c0 c0Var) {
+        d0.e0.p.d.m0.l.b.e0.g.a aVar = d0.e0.p.d.m0.l.b.e0.g.a.COMPATIBLE;
         if (!i(gVar)) {
-            return g_a;
+            return aVar;
         }
         Iterator<T> it = c0Var.getOwnTypeParameters().iterator();
         while (it.hasNext()) {
             ((z0) it.next()).getUpperBounds();
         }
-        return c0Var.getExperimentalSuspendFunctionTypeEncountered() ? g$a.INCOMPATIBLE : g_a;
+        return c0Var.getExperimentalSuspendFunctionTypeEncountered() ? d0.e0.p.d.m0.l.b.e0.g.a.INCOMPATIBLE : aVar;
     }
 
     /* JADX WARN: Code duplicated, block: B:72:0x0124  */
-    public final g$a c(d0.e0.p.d.m0.l.b.e0.b bVar, q0 q0Var, Collection<? extends c1> collection, Collection<? extends z0> collection2, d0.e0.p.d.m0.n.c0 c0Var, boolean z2) {
+    public final d0.e0.p.d.m0.l.b.e0.g.a c(d0.e0.p.d.m0.l.b.e0.b bVar, q0 q0Var, Collection<? extends c1> collection, Collection<? extends z0> collection2, d0.e0.p.d.m0.n.c0 c0Var, boolean z2) {
         boolean z3;
         boolean z4;
-        g$a g_a;
+        d0.e0.p.d.m0.l.b.e0.g.a aVar;
         boolean z5;
-        g$a g_a2 = g$a.NEEDS_WRAPPER;
-        g$a g_a3 = g$a.INCOMPATIBLE;
-        g$a g_a4 = g$a.COMPATIBLE;
+        d0.e0.p.d.m0.l.b.e0.g.a aVar2 = d0.e0.p.d.m0.l.b.e0.g.a.NEEDS_WRAPPER;
+        d0.e0.p.d.m0.l.b.e0.g.a aVar3 = d0.e0.p.d.m0.l.b.e0.g.a.INCOMPATIBLE;
+        d0.e0.p.d.m0.l.b.e0.g.a aVar4 = d0.e0.p.d.m0.l.b.e0.g.a.COMPATIBLE;
         if (!i(bVar) || d0.z.d.m.areEqual(d0.e0.p.d.m0.k.x.a.fqNameOrNull(bVar), b0.a)) {
-            return g_a4;
+            return aVar4;
         }
         ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(collection, 10));
         Iterator<T> it = collection.iterator();
@@ -87,7 +237,7 @@ public final class u {
         }
         List<d0.e0.p.d.m0.n.c0> listPlus = d0.t.u.plus((Collection) arrayList, (Iterable) d0.t.n.listOfNotNull(q0Var == null ? null : q0Var.getType()));
         if (d0.z.d.m.areEqual(c0Var != null ? Boolean.valueOf(d(c0Var)) : null, Boolean.TRUE)) {
-            return g_a3;
+            return aVar3;
         }
         if (!(collection2 instanceof Collection) || !collection2.isEmpty()) {
             Iterator<T> it2 = collection2.iterator();
@@ -127,7 +277,7 @@ public final class u {
             break;
         }
         if (z4) {
-            return g_a3;
+            return aVar3;
         }
         ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(listPlus, 10));
         for (d0.e0.p.d.m0.n.c0 c0Var3 : listPlus) {
@@ -153,33 +303,33 @@ public final class u {
                     break;
                 }
                 if (z5) {
-                    g_a = g_a3;
+                    aVar = aVar3;
                 } else {
-                    g_a = g_a2;
+                    aVar = aVar2;
                 }
             } else if (d(c0Var3)) {
-                g_a = g_a3;
+                aVar = aVar3;
             } else {
-                g_a = g_a4;
+                aVar = aVar4;
             }
-            arrayList2.add(g_a);
+            arrayList2.add(aVar);
         }
-        g$a g_a5 = (g$a) d0.t.u.maxOrNull((Iterable) arrayList2);
-        if (g_a5 == null) {
-            g_a5 = g_a4;
+        d0.e0.p.d.m0.l.b.e0.g.a aVar5 = (d0.e0.p.d.m0.l.b.e0.g.a) d0.t.u.maxOrNull((Iterable) arrayList2);
+        if (aVar5 == null) {
+            aVar5 = aVar4;
         }
         if (!z2) {
-            g_a2 = g_a4;
+            aVar2 = aVar4;
         }
-        return (g$a) d0.u.b.maxOf(g_a2, g_a5);
+        return (d0.e0.p.d.m0.l.b.e0.g.a) d0.u.b.maxOf(aVar2, aVar5);
     }
 
     public final boolean d(d0.e0.p.d.m0.n.c0 c0Var) {
-        return d0.e0.p.d.m0.n.o1.a.contains(c0Var, u$a.j);
+        return d0.e0.p.d.m0.n.o1.a.contains(c0Var, a.j);
     }
 
-    public final d0.e0.p.d.m0.c.g1.g e(d0.e0.p.d.m0.i.n nVar, int i, b bVar) {
-        return !d0.e0.p.d.m0.f.z.b.f3412b.get(i).booleanValue() ? d0.e0.p.d.m0.c.g1.g.f.getEMPTY() : new d0.e0.p.d.m0.l.b.e0.n(this.a.getStorageManager(), new u$b(this, nVar, bVar));
+    public final d0.e0.p.d.m0.c.g1.g e(d0.e0.p.d.m0.i.n nVar, int i, d0.e0.p.d.m0.l.b.b bVar) {
+        return !d0.e0.p.d.m0.f.z.b.f3412b.get(i).booleanValue() ? d0.e0.p.d.m0.c.g1.g.f.getEMPTY() : new d0.e0.p.d.m0.l.b.e0.n(this.a.getStorageManager(), new b(nVar, bVar));
     }
 
     public final q0 f() {
@@ -192,10 +342,10 @@ public final class u {
     }
 
     public final d0.e0.p.d.m0.c.g1.g g(d0.e0.p.d.m0.f.n nVar, boolean z2) {
-        return !d0.e0.p.d.m0.f.z.b.f3412b.get(nVar.getFlags()).booleanValue() ? d0.e0.p.d.m0.c.g1.g.f.getEMPTY() : new d0.e0.p.d.m0.l.b.e0.n(this.a.getStorageManager(), new u$c(this, z2, nVar));
+        return !d0.e0.p.d.m0.f.z.b.f3412b.get(nVar.getFlags()).booleanValue() ? d0.e0.p.d.m0.c.g1.g.f.getEMPTY() : new d0.e0.p.d.m0.l.b.e0.n(this.a.getStorageManager(), new c(z2, nVar));
     }
 
-    public final List<c1> h(List<d0.e0.p.d.m0.f.u> list, d0.e0.p.d.m0.i.n nVar, b bVar) {
+    public final List<c1> h(List<d0.e0.p.d.m0.f.u> list, d0.e0.p.d.m0.i.n nVar, d0.e0.p.d.m0.l.b.b bVar) {
         d0.e0.p.d.m0.c.a aVar = (d0.e0.p.d.m0.c.a) this.a.getContainingDeclaration();
         d0.e0.p.d.m0.c.m containingDeclaration = aVar.getContainingDeclaration();
         d0.z.d.m.checkNotNullExpressionValue(containingDeclaration, "callableDescriptor.containingDeclaration");
@@ -209,7 +359,7 @@ public final class u {
             }
             d0.e0.p.d.m0.f.u uVar = (d0.e0.p.d.m0.f.u) obj;
             int flags = uVar.hasFlags() ? uVar.getFlags() : 0;
-            d0.e0.p.d.m0.c.g1.g empty = (yVarA == null || !b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.f3412b, flags, "HAS_ANNOTATIONS.get(flags)")) ? d0.e0.p.d.m0.c.g1.g.f.getEMPTY() : new d0.e0.p.d.m0.l.b.e0.n(this.a.getStorageManager(), new u$e(this, yVarA, nVar, bVar, i, uVar));
+            d0.e0.p.d.m0.c.g1.g empty = (yVarA == null || !b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.f3412b, flags, "HAS_ANNOTATIONS.get(flags)")) ? d0.e0.p.d.m0.c.g1.g.f.getEMPTY() : new d0.e0.p.d.m0.l.b.e0.n(this.a.getStorageManager(), new e(yVarA, nVar, bVar, i, uVar));
             d0.e0.p.d.m0.g.e name = w.getName(this.a.getNameResolver(), uVar.getName());
             d0.e0.p.d.m0.n.c0 c0VarType = this.a.getTypeDeserializer().type(d0.e0.p.d.m0.f.z.f.type(uVar, this.a.getTypeTable()));
             boolean zU0 = b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.F, flags, "DECLARES_DEFAULT_VALUE.get(flags)");
@@ -237,7 +387,7 @@ public final class u {
             z2 = true;
         } else {
             for (d0.e0.p.d.m0.f.z.h hVar : versionRequirements) {
-                if (d0.z.d.m.areEqual(hVar.getVersion(), new d0.e0.p.d.m0.f.z.h$b(1, 3, 0, 4, null)) && hVar.getKind() == v$d.LANGUAGE_VERSION) {
+                if (d0.z.d.m.areEqual(hVar.getVersion(), new d0.e0.p.d.m0.f.z.h.b(1, 3, 0, 4, null)) && hVar.getKind() == d0.e0.p.d.m0.f.v.d.LANGUAGE_VERSION) {
                     z2 = false;
                 }
             }
@@ -247,13 +397,13 @@ public final class u {
     }
 
     public final d0.e0.p.d.m0.c.d loadConstructor(d0.e0.p.d.m0.f.d dVar, boolean z2) {
-        g$a g_aC;
+        d0.e0.p.d.m0.l.b.e0.g.a aVarC;
         c0 typeDeserializer;
         d0.z.d.m.checkNotNullParameter(dVar, "proto");
         d0.e0.p.d.m0.c.e eVar = (d0.e0.p.d.m0.c.e) this.a.getContainingDeclaration();
         int flags = dVar.getFlags();
-        b bVar = b.FUNCTION;
-        d0.e0.p.d.m0.l.b.e0.c cVar = new d0.e0.p.d.m0.l.b.e0.c(eVar, null, e(dVar, flags, bVar), z2, b$a.DECLARATION, dVar, this.a.getNameResolver(), this.a.getTypeTable(), this.a.getVersionRequirementTable(), this.a.getContainerSource(), null, 1024, null);
+        d0.e0.p.d.m0.l.b.b bVar = d0.e0.p.d.m0.l.b.b.FUNCTION;
+        d0.e0.p.d.m0.l.b.e0.c cVar = new d0.e0.p.d.m0.l.b.e0.c(eVar, null, e(dVar, flags, bVar), z2, d0.e0.p.d.m0.c.b.a.DECLARATION, dVar, this.a.getNameResolver(), this.a.getTypeTable(), this.a.getVersionRequirementTable(), this.a.getContainerSource(), null, 1024, null);
         u memberDeserializer = l.childContext$default(this.a, cVar, d0.t.n.emptyList(), null, null, null, null, 60, null).getMemberDeserializer();
         List<d0.e0.p.d.m0.f.u> valueParameterList = dVar.getValueParameterList();
         d0.z.d.m.checkNotNullExpressionValue(valueParameterList, "proto.valueParameterList");
@@ -263,20 +413,20 @@ public final class u {
         d0.e0.p.d.m0.c.m containingDeclaration = this.a.getContainingDeclaration();
         Boolean boolValueOf = null;
         d0.e0.p.d.m0.l.b.e0.d dVar2 = containingDeclaration instanceof d0.e0.p.d.m0.l.b.e0.d ? (d0.e0.p.d.m0.l.b.e0.d) containingDeclaration : null;
-        l c = dVar2 == null ? null : dVar2.getC();
-        if (c != null && (typeDeserializer = c.getTypeDeserializer()) != null) {
+        l c2 = dVar2 == null ? null : dVar2.getC();
+        if (c2 != null && (typeDeserializer = c2.getTypeDeserializer()) != null) {
             boolValueOf = Boolean.valueOf(typeDeserializer.getExperimentalSuspendFunctionTypeEncountered());
         }
         if (d0.z.d.m.areEqual(boolValueOf, Boolean.TRUE) && i(cVar)) {
-            g_aC = g$a.INCOMPATIBLE;
+            aVarC = d0.e0.p.d.m0.l.b.e0.g.a.INCOMPATIBLE;
         } else {
             Collection<? extends c1> valueParameters = cVar.getValueParameters();
             d0.z.d.m.checkNotNullExpressionValue(valueParameters, "descriptor.valueParameters");
             Collection<? extends z0> typeParameters = cVar.getTypeParameters();
             d0.z.d.m.checkNotNullExpressionValue(typeParameters, "descriptor.typeParameters");
-            g_aC = c(cVar, null, valueParameters, typeParameters, cVar.getReturnType(), false);
+            aVarC = c(cVar, null, valueParameters, typeParameters, cVar.getReturnType(), false);
         }
-        cVar.setCoroutinesExperimentalCompatibilityMode$deserialization(g_aC);
+        cVar.setCoroutinesExperimentalCompatibilityMode$deserialization(aVarC);
         return cVar;
     }
 
@@ -291,7 +441,7 @@ public final class u {
             flags = ((oldFlags >> 8) << 6) + (oldFlags & 63);
         }
         int i = flags;
-        b bVar = b.FUNCTION;
+        d0.e0.p.d.m0.l.b.b bVar = d0.e0.p.d.m0.l.b.b.FUNCTION;
         d0.e0.p.d.m0.c.g1.g gVarE = e(iVar, i, bVar);
         d0.e0.p.d.m0.c.g1.g aVar = d0.e0.p.d.m0.f.z.f.hasReceiver(iVar) ? new d0.e0.p.d.m0.l.b.e0.a(this.a.getStorageManager(), new v(this, iVar, bVar)) : d0.e0.p.d.m0.c.g1.g.f.getEMPTY();
         d0.e0.p.d.m0.f.z.i empty = d0.z.d.m.areEqual(d0.e0.p.d.m0.k.x.a.getFqNameSafe(this.a.getContainingDeclaration()).child(w.getName(this.a.getNameResolver(), iVar.getName())), b0.a) ? d0.e0.p.d.m0.f.z.i.a.getEMPTY() : this.a.getVersionRequirementTable();
@@ -314,9 +464,9 @@ public final class u {
         d0.e0.p.d.m0.n.c0 c0VarType2 = lVarChildContext$default.getTypeDeserializer().type(d0.e0.p.d.m0.f.z.f.returnType(iVar, this.a.getTypeTable()));
         d0.e0.p.d.m0.c.z zVarModality = zVar.modality(d0.e0.p.d.m0.f.z.b.d.get(i));
         d0.e0.p.d.m0.c.u uVarDescriptorVisibility = a0.descriptorVisibility(zVar, d0.e0.p.d.m0.f.z.b.c.get(i));
-        Map<? extends d0.e0.p.d.m0.c.a$a<?>, ?> mapEmptyMap = h0.emptyMap();
-        b$b b_b = d0.e0.p.d.m0.f.z.b.t;
-        kVar.initialize(q0VarCreateExtensionReceiverParameterForCallable, q0VarF, ownTypeParameters, listH, c0VarType2, zVarModality, uVarDescriptorVisibility, mapEmptyMap, c(kVar, q0VarCreateExtensionReceiverParameterForCallable, listH, ownTypeParameters, c0VarType2, b.d.b.a.a.u0(b_b, i, "IS_SUSPEND.get(flags)")));
+        Map<? extends d0.e0.p.d.m0.c.a.InterfaceC0511a<?>, ?> mapEmptyMap = h0.emptyMap();
+        d0.e0.p.d.m0.f.z.b.C0555b c0555b = d0.e0.p.d.m0.f.z.b.t;
+        kVar.initialize(q0VarCreateExtensionReceiverParameterForCallable, q0VarF, ownTypeParameters, listH, c0VarType2, zVarModality, uVarDescriptorVisibility, mapEmptyMap, c(kVar, q0VarCreateExtensionReceiverParameterForCallable, listH, ownTypeParameters, c0VarType2, b.d.b.a.a.u0(c0555b, i, "IS_SUSPEND.get(flags)")));
         Boolean bool = d0.e0.p.d.m0.f.z.b.o.get(i);
         d0.z.d.m.checkNotNullExpressionValue(bool, "IS_OPERATOR.get(flags)");
         kVar.setOperator(bool.booleanValue());
@@ -332,14 +482,14 @@ public final class u {
         Boolean bool5 = d0.e0.p.d.m0.f.z.b.r.get(i);
         d0.z.d.m.checkNotNullExpressionValue(bool5, "IS_TAILREC.get(flags)");
         kVar.setTailrec(bool5.booleanValue());
-        Boolean bool6 = b_b.get(i);
+        Boolean bool6 = c0555b.get(i);
         d0.z.d.m.checkNotNullExpressionValue(bool6, "IS_SUSPEND.get(flags)");
         kVar.setSuspend(bool6.booleanValue());
         Boolean bool7 = d0.e0.p.d.m0.f.z.b.u.get(i);
         d0.z.d.m.checkNotNullExpressionValue(bool7, "IS_EXPECT_FUNCTION.get(flags)");
         kVar.setExpect(bool7.booleanValue());
         kVar.setHasStableParameterNames(!d0.e0.p.d.m0.f.z.b.v.get(i).booleanValue());
-        Pair<d0.e0.p.d.m0.c.a$a<?>, Object> pairDeserializeContractFromFunction = this.a.getComponents().getContractDeserializer().deserializeContractFromFunction(iVar, kVar, this.a.getTypeTable(), lVarChildContext$default.getTypeDeserializer());
+        Pair<d0.e0.p.d.m0.c.a.InterfaceC0511a<?>, Object> pairDeserializeContractFromFunction = this.a.getComponents().getContractDeserializer().deserializeContractFromFunction(iVar, kVar, this.a.getTypeTable(), lVarChildContext$default.getTypeDeserializer());
         if (pairDeserializeContractFromFunction != null) {
             kVar.putInUserDataMap(pairDeserializeContractFromFunction.getFirst(), pairDeserializeContractFromFunction.getSecond());
         }
@@ -349,7 +499,7 @@ public final class u {
     public final n0 loadProperty(d0.e0.p.d.m0.f.n nVar) {
         int flags;
         d0.e0.p.d.m0.f.n nVar2;
-        b bVar;
+        d0.e0.p.d.m0.l.b.b bVar;
         d0.e0.p.d.m0.c.g1.g empty;
         q0 q0VarCreateExtensionReceiverParameterForCallable;
         d0.e0.p.d.m0.l.b.e0.j jVar;
@@ -358,7 +508,7 @@ public final class u {
         d0.e0.p.d.m0.c.i1.e0 e0Var;
         d0 d0VarCreateDefaultGetter;
         d0.e0.p.d.m0.n.c0 c0VarType;
-        b bVar2 = b.PROPERTY_GETTER;
+        d0.e0.p.d.m0.l.b.b bVar2 = d0.e0.p.d.m0.l.b.b.PROPERTY_GETTER;
         d0.z.d.m.checkNotNullParameter(nVar, "proto");
         if (nVar.hasFlags()) {
             flags = nVar.getFlags();
@@ -368,12 +518,12 @@ public final class u {
         }
         int i = flags;
         d0.e0.p.d.m0.c.m containingDeclaration = this.a.getContainingDeclaration();
-        d0.e0.p.d.m0.c.g1.g gVarE = e(nVar, i, b.PROPERTY);
+        d0.e0.p.d.m0.c.g1.g gVarE = e(nVar, i, d0.e0.p.d.m0.l.b.b.PROPERTY);
         z zVar2 = z.a;
-        b$d<d0.e0.p.d.m0.f.k> b_d = d0.e0.p.d.m0.f.z.b.d;
-        d0.e0.p.d.m0.c.z zVarModality = zVar2.modality(b_d.get(i));
-        b$d<d0.e0.p.d.m0.f.x> b_d2 = d0.e0.p.d.m0.f.z.b.c;
-        d0.e0.p.d.m0.l.b.e0.j jVar2 = new d0.e0.p.d.m0.l.b.e0.j(containingDeclaration, null, gVarE, zVarModality, a0.descriptorVisibility(zVar2, b_d2.get(i)), b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.w, i, "IS_VAR.get(flags)"), w.getName(this.a.getNameResolver(), nVar.getName()), a0.memberKind(zVar2, d0.e0.p.d.m0.f.z.b.n.get(i)), b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.A, i, "IS_LATEINIT.get(flags)"), b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.f3416z, i, "IS_CONST.get(flags)"), b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.C, i, "IS_EXTERNAL_PROPERTY.get(flags)"), b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.D, i, "IS_DELEGATED.get(flags)"), b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.E, i, "IS_EXPECT_PROPERTY.get(flags)"), nVar, this.a.getNameResolver(), this.a.getTypeTable(), this.a.getVersionRequirementTable(), this.a.getContainerSource());
+        d0.e0.p.d.m0.f.z.b.d<d0.e0.p.d.m0.f.k> dVar = d0.e0.p.d.m0.f.z.b.d;
+        d0.e0.p.d.m0.c.z zVarModality = zVar2.modality(dVar.get(i));
+        d0.e0.p.d.m0.f.z.b.d<d0.e0.p.d.m0.f.x> dVar2 = d0.e0.p.d.m0.f.z.b.c;
+        d0.e0.p.d.m0.l.b.e0.j jVar2 = new d0.e0.p.d.m0.l.b.e0.j(containingDeclaration, null, gVarE, zVarModality, a0.descriptorVisibility(zVar2, dVar2.get(i)), b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.w, i, "IS_VAR.get(flags)"), w.getName(this.a.getNameResolver(), nVar.getName()), a0.memberKind(zVar2, d0.e0.p.d.m0.f.z.b.n.get(i)), b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.A, i, "IS_LATEINIT.get(flags)"), b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.f3416z, i, "IS_CONST.get(flags)"), b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.C, i, "IS_EXTERNAL_PROPERTY.get(flags)"), b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.D, i, "IS_DELEGATED.get(flags)"), b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.E, i, "IS_EXPECT_PROPERTY.get(flags)"), nVar, this.a.getNameResolver(), this.a.getTypeTable(), this.a.getVersionRequirementTable(), this.a.getContainerSource());
         l lVar = this.a;
         List<d0.e0.p.d.m0.f.s> typeParameterList = nVar.getTypeParameterList();
         d0.z.d.m.checkNotNullExpressionValue(typeParameterList, "proto.typeParameterList");
@@ -400,7 +550,7 @@ public final class u {
             q0VarCreateExtensionReceiverParameterForCallable = d0.e0.p.d.m0.k.d.createExtensionReceiverParameterForCallable(jVar, c0VarType, empty);
         }
         jVar.setType(c0VarType2, ownTypeParameters, q0VarF, q0VarCreateExtensionReceiverParameterForCallable);
-        int accessorFlags = d0.e0.p.d.m0.f.z.b.getAccessorFlags(b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.f3412b, i, "HAS_ANNOTATIONS.get(flags)"), b_d2.get(i), b_d.get(i), false, false, false);
+        int accessorFlags = d0.e0.p.d.m0.f.z.b.getAccessorFlags(b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.f3412b, i, "HAS_ANNOTATIONS.get(flags)"), dVar2.get(i), dVar.get(i), false, false, false);
         if (zU0) {
             int getterFlags = nVar.hasGetterFlags() ? nVar.getGetterFlags() : accessorFlags;
             boolean zU1 = b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.I, getterFlags, "IS_NOT_DEFAULT.get(getterFlags)");
@@ -409,7 +559,7 @@ public final class u {
             d0.e0.p.d.m0.c.g1.g gVarE2 = e(nVar2, getterFlags, bVar);
             if (zU1) {
                 zVar = zVar2;
-                d0VarCreateDefaultGetter = new d0(jVar, gVarE2, zVar2.modality(b_d.get(getterFlags)), a0.descriptorVisibility(zVar2, b_d2.get(getterFlags)), !zU1, zU2, zU3, jVar.getKind(), null, u0.a);
+                d0VarCreateDefaultGetter = new d0(jVar, gVarE2, zVar2.modality(dVar.get(getterFlags)), a0.descriptorVisibility(zVar2, dVar2.get(getterFlags)), !zU1, zU2, zU3, jVar.getKind(), null, u0.a);
             } else {
                 zVar = zVar2;
                 d0VarCreateDefaultGetter = d0.e0.p.d.m0.k.d.createDefaultGetter(jVar, gVarE2);
@@ -428,10 +578,10 @@ public final class u {
             boolean zU4 = b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.I, accessorFlags, "IS_NOT_DEFAULT.get(setterFlags)");
             boolean zU5 = b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.J, accessorFlags, "IS_EXTERNAL_ACCESSOR.get(setterFlags)");
             boolean zU6 = b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.K, accessorFlags, "IS_INLINE_ACCESSOR.get(setterFlags)");
-            b bVar3 = b.PROPERTY_SETTER;
+            d0.e0.p.d.m0.l.b.b bVar3 = d0.e0.p.d.m0.l.b.b.PROPERTY_SETTER;
             d0.e0.p.d.m0.c.g1.g gVarE3 = e(nVar2, accessorFlags, bVar3);
             if (zU4) {
-                d0.e0.p.d.m0.c.i1.e0 e0Var2 = new d0.e0.p.d.m0.c.i1.e0(jVar, gVarE3, zVar.modality(b_d.get(accessorFlags)), a0.descriptorVisibility(zVar, b_d2.get(accessorFlags)), !zU4, zU5, zU6, jVar.getKind(), null, u0.a);
+                d0.e0.p.d.m0.c.i1.e0 e0Var2 = new d0.e0.p.d.m0.c.i1.e0(jVar, gVarE3, zVar.modality(dVar.get(accessorFlags)), a0.descriptorVisibility(zVar, dVar2.get(accessorFlags)), !zU4, zU5, zU6, jVar.getKind(), null, u0.a);
                 e0Var2.initialize((c1) d0.t.u.single((List) l.childContext$default(lVarChildContext$default, e0Var2, d0.t.n.emptyList(), null, null, null, null, 60, null).getMemberDeserializer().h(d0.t.m.listOf(nVar.getSetterValueParameter()), nVar2, bVar3)));
                 e0Var = e0Var2;
             } else {
@@ -443,7 +593,7 @@ public final class u {
             e0Var = null;
         }
         if (b.d.b.a.a.u0(d0.e0.p.d.m0.f.z.b.B, i, "HAS_CONSTANT.get(flags)")) {
-            jVar.setCompileTimeInitializer(this.a.getStorageManager().createNullableLazyValue(new u$d(this, nVar2, jVar)));
+            jVar.setCompileTimeInitializer(this.a.getStorageManager().createNullableLazyValue(new d(nVar2, jVar)));
         }
         jVar.initialize(d0Var, e0Var, new d0.e0.p.d.m0.c.i1.p(g(nVar2, false), jVar), new d0.e0.p.d.m0.c.i1.p(g(nVar2, true), jVar), b(jVar, lVarChildContext$default.getTypeDeserializer()));
         return jVar;
@@ -451,16 +601,16 @@ public final class u {
 
     public final y0 loadTypeAlias(d0.e0.p.d.m0.f.r rVar) {
         d0.z.d.m.checkNotNullParameter(rVar, "proto");
-        d0.e0.p.d.m0.c.g1.g$a g_a = d0.e0.p.d.m0.c.g1.g.f;
+        d0.e0.p.d.m0.c.g1.g.a aVar = d0.e0.p.d.m0.c.g1.g.f;
         List<d0.e0.p.d.m0.f.b> annotationList = rVar.getAnnotationList();
         d0.z.d.m.checkNotNullExpressionValue(annotationList, "proto.annotationList");
         ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(annotationList, 10));
         for (d0.e0.p.d.m0.f.b bVar : annotationList) {
-            e eVar = this.f3508b;
+            d0.e0.p.d.m0.l.b.e eVar = this.f3508b;
             d0.z.d.m.checkNotNullExpressionValue(bVar, "it");
             arrayList.add(eVar.deserializeAnnotation(bVar, this.a.getNameResolver()));
         }
-        d0.e0.p.d.m0.l.b.e0.l lVar = new d0.e0.p.d.m0.l.b.e0.l(this.a.getStorageManager(), this.a.getContainingDeclaration(), g_a.create(arrayList), w.getName(this.a.getNameResolver(), rVar.getName()), a0.descriptorVisibility(z.a, d0.e0.p.d.m0.f.z.b.c.get(rVar.getFlags())), rVar, this.a.getNameResolver(), this.a.getTypeTable(), this.a.getVersionRequirementTable(), this.a.getContainerSource());
+        d0.e0.p.d.m0.l.b.e0.l lVar = new d0.e0.p.d.m0.l.b.e0.l(this.a.getStorageManager(), this.a.getContainingDeclaration(), aVar.create(arrayList), w.getName(this.a.getNameResolver(), rVar.getName()), a0.descriptorVisibility(z.a, d0.e0.p.d.m0.f.z.b.c.get(rVar.getFlags())), rVar, this.a.getNameResolver(), this.a.getTypeTable(), this.a.getVersionRequirementTable(), this.a.getContainerSource());
         l lVar2 = this.a;
         List<d0.e0.p.d.m0.f.s> typeParameterList = rVar.getTypeParameterList();
         d0.z.d.m.checkNotNullExpressionValue(typeParameterList, "proto.typeParameterList");

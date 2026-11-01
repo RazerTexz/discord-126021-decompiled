@@ -10,13 +10,13 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: UrlNode.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class UrlNode$render$style$1 extends o implements Function1<View, Unit> {
-    public final /* synthetic */ UrlNode$RenderContext $renderContext;
+    public final /* synthetic */ UrlNode.RenderContext $renderContext;
     public final /* synthetic */ String $safeUrl;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public UrlNode$render$style$1(UrlNode$RenderContext urlNode$RenderContext, String str) {
+    public UrlNode$render$style$1(UrlNode.RenderContext renderContext, String str) {
         super(1);
-        this.$renderContext = urlNode$RenderContext;
+        this.$renderContext = renderContext;
         this.$safeUrl = str;
     }
 

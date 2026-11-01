@@ -1,6 +1,5 @@
 package b.c.a.a0;
 
-import b.c.a.a0.i0.c$a;
 import java.io.IOException;
 
 /* JADX INFO: compiled from: DocumentDataParser.java */
@@ -9,7 +8,7 @@ public class h implements h0<b.c.a.y.c> {
     public static final h a = new h();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static final c$a f332b = c$a.a("t", "f", "s", "j", "tr", "lh", "ls", "fc", "sc", "sw", "of");
+    public static final b.c.a.a0.i0.c.a f332b = b.c.a.a0.i0.c.a.a("t", "f", "s", "j", "tr", "lh", "ls", "fc", "sc", "sw", "of");
 
     @Override // b.c.a.a0.h0
     public b.c.a.y.c a(b.c.a.a0.i0.c cVar, float f) throws IOException {

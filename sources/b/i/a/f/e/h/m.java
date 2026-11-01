@@ -2,14 +2,14 @@ package b.i.a.f.e.h;
 
 import android.app.PendingIntent;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.Status;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class m implements Parcelable$Creator<Status> {
-    @Override // android.os.Parcelable$Creator
+public final class m implements Parcelable.Creator<Status> {
+    @Override // android.os.Parcelable.Creator
     public final Status createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         String strR = null;
@@ -38,7 +38,7 @@ public final class m implements Parcelable$Creator<Status> {
         return new Status(iG1, iG2, strR, pendingIntent, connectionResult);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* bridge */ /* synthetic */ Status[] newArray(int i) {
         return new Status[i];
     }

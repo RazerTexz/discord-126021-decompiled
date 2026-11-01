@@ -1,7 +1,7 @@
 package com.google.android.gms.auth.api.credentials;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.c.a.a0.d;
 import b.i.a.f.c.a.d.f;
 import com.google.android.gms.common.internal.ReflectedParcelable;
@@ -14,7 +14,7 @@ public final class CredentialPickerConfig extends AbstractSafeParcelable impleme
     public final boolean k;
     public final boolean l;
     public final int m;
-    public static final Parcelable$Creator<CredentialPickerConfig> CREATOR = new f();
+    public static final Parcelable.Creator<CredentialPickerConfig> CREATOR = new f();
 
     public CredentialPickerConfig(int i, boolean z2, boolean z3, boolean z4, int i2) {
         this.j = i;

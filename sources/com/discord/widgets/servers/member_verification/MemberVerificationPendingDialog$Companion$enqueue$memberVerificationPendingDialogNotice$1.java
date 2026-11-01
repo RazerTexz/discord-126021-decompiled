@@ -13,16 +13,16 @@ import kotlin.jvm.functions.Function1;
 /* JADX INFO: compiled from: MemberVerificationPendingDialog.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class MemberVerificationPendingDialog$Companion$enqueue$memberVerificationPendingDialogNotice$1 extends o implements Function1<FragmentActivity, Boolean> {
-    public final /* synthetic */ MemberVerificationPendingViewModel$DialogState $dialogState;
+    public final /* synthetic */ MemberVerificationPendingViewModel.DialogState $dialogState;
     public final /* synthetic */ long $guildId;
     public final /* synthetic */ String $noticeName;
     public final /* synthetic */ StoreNotices $storeNotices;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public MemberVerificationPendingDialog$Companion$enqueue$memberVerificationPendingDialogNotice$1(long j, MemberVerificationPendingViewModel$DialogState memberVerificationPendingViewModel$DialogState, StoreNotices storeNotices, String str) {
+    public MemberVerificationPendingDialog$Companion$enqueue$memberVerificationPendingDialogNotice$1(long j, MemberVerificationPendingViewModel.DialogState dialogState, StoreNotices storeNotices, String str) {
         super(1);
         this.$guildId = j;
-        this.$dialogState = memberVerificationPendingViewModel$DialogState;
+        this.$dialogState = dialogState;
         this.$storeNotices = storeNotices;
         this.$noticeName = str;
     }

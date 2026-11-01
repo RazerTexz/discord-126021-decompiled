@@ -3,7 +3,6 @@ package b.i.a.f.h.l;
 import b.i.a.f.h.l.l3;
 import b.i.a.f.h.l.n3;
 import com.google.android.gms.internal.measurement.zzhi;
-import com.google.android.gms.internal.measurement.zzhi$a;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -25,9 +24,9 @@ public abstract class l3<MessageType extends l3<MessageType, BuilderType>, Build
             t3 t3Var = t3.j;
             byte[] bArr = new byte[iG];
             Logger logger = zzhi.a;
-            zzhi$a zzhi_a = new zzhi$a(bArr, iG);
-            u4Var.i(zzhi_a);
-            if (zzhi_a.a() == 0) {
+            zzhi.a aVar = new zzhi.a(bArr, iG);
+            u4Var.i(aVar);
+            if (aVar.a() == 0) {
                 return new z3(bArr);
             }
             throw new IllegalStateException("Did not write as much data as expected.");
@@ -106,9 +105,9 @@ public abstract class l3<MessageType extends l3<MessageType, BuilderType>, Build
             int iG = u4Var.g();
             byte[] bArr = new byte[iG];
             Logger logger = zzhi.a;
-            zzhi$a zzhi_a = new zzhi$a(bArr, iG);
-            u4Var.i(zzhi_a);
-            if (zzhi_a.a() == 0) {
+            zzhi.a aVar = new zzhi.a(bArr, iG);
+            u4Var.i(aVar);
+            if (aVar.a() == 0) {
                 return bArr;
             }
             throw new IllegalStateException("Did not write as much data as expected.");

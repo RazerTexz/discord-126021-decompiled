@@ -16,11 +16,11 @@ public final class PhoneTypeAdapter extends TypeAdapter<Phone> {
         m.checkNotNullParameter(jsonReader, "in");
         if (jsonReader.N() == JsonToken.NULL) {
             jsonReader.H();
-            return Phone$NoPhoneNumber.INSTANCE;
+            return Phone.NoPhoneNumber.INSTANCE;
         }
         String strJ = jsonReader.J();
         m.checkNotNullExpressionValue(strJ, "number");
-        return new Phone$PhoneNumber(strJ);
+        return new Phone.PhoneNumber(strJ);
     }
 
     @Override // com.google.gson.TypeAdapter
@@ -28,10 +28,10 @@ public final class PhoneTypeAdapter extends TypeAdapter<Phone> {
         JsonWriter jsonWriterS;
         Phone phone2 = phone;
         m.checkNotNullParameter(jsonWriter, "out");
-        if (phone2 instanceof Phone$PhoneNumber) {
-            jsonWriterS = jsonWriter.H(((Phone$PhoneNumber) phone2).getNumber());
+        if (phone2 instanceof Phone.PhoneNumber) {
+            jsonWriterS = jsonWriter.H(((Phone.PhoneNumber) phone2).getNumber());
         } else {
-            if (!m.areEqual(phone2, Phone$NoPhoneNumber.INSTANCE) && phone2 != null) {
+            if (!m.areEqual(phone2, Phone.NoPhoneNumber.INSTANCE) && phone2 != null) {
                 throw new NoWhenBranchMatchedException();
             }
             jsonWriterS = jsonWriter.s();

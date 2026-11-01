@@ -1,7 +1,7 @@
 package b.i.a.f.i.b;
 
 import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import androidx.annotation.NonNull;
@@ -61,7 +61,7 @@ public final class c extends s5 {
             }
             g().f.a("Failed to load metadata: ApplicationInfo is null");
             return null;
-        } catch (PackageManager$NameNotFoundException e) {
+        } catch (PackageManager.NameNotFoundException e) {
             g().f.b("Failed to load metadata: Package name not found", e);
             return null;
         }

@@ -4,7 +4,7 @@ import androidx.exifinterface.media.ExifInterface;
 
 /* JADX INFO: compiled from: DefaultImageFormatChecker.java */
 /* JADX INFO: loaded from: classes.dex */
-public class a implements c$a {
+public class a implements c.a {
     public static final byte[] a;
     public static final byte[] c;
     public static final int d;
@@ -57,12 +57,12 @@ public class a implements c$a {
         this.p = i2;
     }
 
-    @Override // b.f.i.c$a
+    @Override // b.f.i.c.a
     public int a() {
         return this.p;
     }
 
-    @Override // b.f.i.c$a
+    @Override // b.f.i.c.a
     public final c b(byte[] bArr, int i2) {
         boolean z2;
         boolean z3 = false;

@@ -7,13 +7,13 @@ import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.fragment.R$styleable;
+import androidx.fragment.R;
 import b.d.b.a.a;
 import java.util.ArrayList;
 
@@ -40,18 +40,18 @@ public final class FragmentContainerView extends FrameLayout {
     }
 
     @Override // android.view.ViewGroup
-    public void addView(@NonNull View view, int i, @Nullable ViewGroup$LayoutParams viewGroup$LayoutParams) {
+    public void addView(@NonNull View view, int i, @Nullable ViewGroup.LayoutParams layoutParams) {
         if (FragmentManager.getViewFragment(view) != null) {
-            super.addView(view, i, viewGroup$LayoutParams);
+            super.addView(view, i, layoutParams);
             return;
         }
         throw new IllegalStateException("Views added to a FragmentContainerView must be associated with a Fragment. View " + view + " is not associated with a Fragment.");
     }
 
     @Override // android.view.ViewGroup
-    public boolean addViewInLayout(@NonNull View view, int i, @Nullable ViewGroup$LayoutParams viewGroup$LayoutParams, boolean z2) {
+    public boolean addViewInLayout(@NonNull View view, int i, @Nullable ViewGroup.LayoutParams layoutParams, boolean z2) {
         if (FragmentManager.getViewFragment(view) != null) {
-            return super.addViewInLayout(view, i, viewGroup$LayoutParams, z2);
+            return super.addViewInLayout(view, i, layoutParams, z2);
         }
         throw new IllegalStateException("Views added to a FragmentContainerView must be associated with a Fragment. View " + view + " is not associated with a Fragment.");
     }
@@ -178,9 +178,9 @@ public final class FragmentContainerView extends FrameLayout {
         this.mDrawDisappearingViewsFirst = true;
         if (attributeSet != null) {
             String classAttribute = attributeSet.getClassAttribute();
-            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$styleable.FragmentContainerView);
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.FragmentContainerView);
             if (classAttribute == null) {
-                classAttribute = typedArrayObtainStyledAttributes.getString(R$styleable.FragmentContainerView_android_name);
+                classAttribute = typedArrayObtainStyledAttributes.getString(R.styleable.FragmentContainerView_android_name);
                 str = "android:name";
             } else {
                 str = "class";
@@ -197,9 +197,9 @@ public final class FragmentContainerView extends FrameLayout {
         super(context, attributeSet);
         this.mDrawDisappearingViewsFirst = true;
         String classAttribute = attributeSet.getClassAttribute();
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$styleable.FragmentContainerView);
-        classAttribute = classAttribute == null ? typedArrayObtainStyledAttributes.getString(R$styleable.FragmentContainerView_android_name) : classAttribute;
-        String string = typedArrayObtainStyledAttributes.getString(R$styleable.FragmentContainerView_android_tag);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.FragmentContainerView);
+        classAttribute = classAttribute == null ? typedArrayObtainStyledAttributes.getString(R.styleable.FragmentContainerView_android_name) : classAttribute;
+        String string = typedArrayObtainStyledAttributes.getString(R.styleable.FragmentContainerView_android_tag);
         typedArrayObtainStyledAttributes.recycle();
         int id2 = getId();
         Fragment fragmentFindFragmentById = fragmentManager.findFragmentById(id2);

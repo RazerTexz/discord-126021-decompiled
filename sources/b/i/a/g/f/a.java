@@ -1,23 +1,20 @@
 package b.i.a.g.f;
 
-import android.os.Build$VERSION;
-import android.text.Layout$Alignment;
+import android.os.Build;
+import android.text.Layout;
 import android.text.StaticLayout;
-import android.text.StaticLayout$Builder;
 import android.text.TextDirectionHeuristic;
 import android.text.TextDirectionHeuristics;
 import android.text.TextPaint;
 import android.text.TextUtils;
-import android.text.TextUtils$TruncateAt;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.core.util.Preconditions;
 import java.lang.reflect.Constructor;
 
 /* JADX INFO: compiled from: StaticLayoutBuilderCompat.java */
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public final class a {
     public static boolean a;
 
@@ -32,12 +29,23 @@ public final class a {
     public final int f;
     public int g;
     public boolean k;
-    public Layout$Alignment h = Layout$Alignment.ALIGN_NORMAL;
+    public Layout.Alignment h = Layout.Alignment.ALIGN_NORMAL;
     public int i = Integer.MAX_VALUE;
     public boolean j = true;
 
     @Nullable
-    public TextUtils$TruncateAt l = null;
+    public TextUtils.TruncateAt l = null;
+
+    /* JADX INFO: renamed from: b.i.a.g.f.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: StaticLayoutBuilderCompat.java */
+    public class C0123a extends Exception {
+        /* JADX WARN: Illegal instructions before constructor call */
+        public C0123a(Throwable th) {
+            StringBuilder sbU = b.d.b.a.a.U("Error thrown initializing StaticLayout ");
+            sbU.append(th.getMessage());
+            super(sbU.toString(), th);
+        }
+    }
 
     public a(CharSequence charSequence, TextPaint textPaint, int i) {
         this.d = charSequence;
@@ -46,7 +54,7 @@ public final class a {
         this.g = charSequence.length();
     }
 
-    public StaticLayout a() throws a$a {
+    public StaticLayout a() throws C0123a {
         if (this.d == null) {
             this.d = "";
         }
@@ -57,39 +65,39 @@ public final class a {
         }
         int iMin = Math.min(charSequenceEllipsize.length(), this.g);
         this.g = iMin;
-        int i = Build$VERSION.SDK_INT;
+        int i = Build.VERSION.SDK_INT;
         if (i >= 23) {
             if (this.k) {
-                this.h = Layout$Alignment.ALIGN_OPPOSITE;
+                this.h = Layout.Alignment.ALIGN_OPPOSITE;
             }
-            StaticLayout$Builder staticLayout$BuilderObtain = StaticLayout$Builder.obtain(charSequenceEllipsize, 0, iMin, this.e, iMax);
-            staticLayout$BuilderObtain.setAlignment(this.h);
-            staticLayout$BuilderObtain.setIncludePad(this.j);
-            staticLayout$BuilderObtain.setTextDirection(this.k ? TextDirectionHeuristics.RTL : TextDirectionHeuristics.LTR);
-            TextUtils$TruncateAt textUtils$TruncateAt = this.l;
-            if (textUtils$TruncateAt != null) {
-                staticLayout$BuilderObtain.setEllipsize(textUtils$TruncateAt);
+            StaticLayout.Builder builderObtain = StaticLayout.Builder.obtain(charSequenceEllipsize, 0, iMin, this.e, iMax);
+            builderObtain.setAlignment(this.h);
+            builderObtain.setIncludePad(this.j);
+            builderObtain.setTextDirection(this.k ? TextDirectionHeuristics.RTL : TextDirectionHeuristics.LTR);
+            TextUtils.TruncateAt truncateAt = this.l;
+            if (truncateAt != null) {
+                builderObtain.setEllipsize(truncateAt);
             }
-            staticLayout$BuilderObtain.setMaxLines(this.i);
-            return staticLayout$BuilderObtain.build();
+            builderObtain.setMaxLines(this.i);
+            return builderObtain.build();
         }
         if (!a) {
             try {
                 c = this.k && i >= 23 ? TextDirectionHeuristics.RTL : TextDirectionHeuristics.LTR;
                 Class cls = Integer.TYPE;
                 Class cls2 = Float.TYPE;
-                Constructor<StaticLayout> declaredConstructor = StaticLayout.class.getDeclaredConstructor(CharSequence.class, cls, cls, TextPaint.class, cls, Layout$Alignment.class, TextDirectionHeuristic.class, cls2, cls2, Boolean.TYPE, TextUtils$TruncateAt.class, cls, cls);
+                Constructor<StaticLayout> declaredConstructor = StaticLayout.class.getDeclaredConstructor(CharSequence.class, cls, cls, TextPaint.class, cls, Layout.Alignment.class, TextDirectionHeuristic.class, cls2, cls2, Boolean.TYPE, TextUtils.TruncateAt.class, cls, cls);
                 f1621b = declaredConstructor;
                 declaredConstructor.setAccessible(true);
                 a = true;
             } catch (Exception e) {
-                throw new a$a(e);
+                throw new C0123a(e);
             }
         }
         try {
             return (StaticLayout) ((Constructor) Preconditions.checkNotNull(f1621b)).newInstance(charSequenceEllipsize, 0, Integer.valueOf(this.g), this.e, Integer.valueOf(iMax), this.h, Preconditions.checkNotNull(c), Float.valueOf(1.0f), Float.valueOf(0.0f), Boolean.valueOf(this.j), null, Integer.valueOf(iMax), Integer.valueOf(this.i));
         } catch (Exception e2) {
-            throw new a$a(e2);
+            throw new C0123a(e2);
         }
     }
 }

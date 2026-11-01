@@ -4,8 +4,11 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.util.Map;
-import java.util.Map$Entry;
 
 /* JADX INFO: loaded from: classes.dex */
 public class MapSerializer extends Serializer<Map> {
@@ -17,6 +20,22 @@ public class MapSerializer extends Serializer<Map> {
     private Serializer valueSerializer;
     private boolean valuesCanBeNull = true;
     private boolean keysCanBeNull = true;
+
+    @Target({ElementType.FIELD})
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface BindMap {
+        Class<?> keyClass() default Object.class;
+
+        Class<? extends Serializer> keySerializer() default Serializer.class;
+
+        boolean keysCanBeNull() default true;
+
+        Class<?> valueClass() default Object.class;
+
+        Class<? extends Serializer> valueSerializer() default Serializer.class;
+
+        boolean valuesCanBeNull() default true;
+    }
 
     @Override // com.esotericsoftware.kryo.Serializer
     public /* bridge */ /* synthetic */ Map copy(Kryo kryo, Map map) {
@@ -78,8 +97,8 @@ public class MapSerializer extends Serializer<Map> {
     /* JADX INFO: renamed from: copy, reason: avoid collision after fix types in other method */
     public Map copy2(Kryo kryo, Map map) {
         Map mapCreateCopy = createCopy(kryo, map);
-        for (Map$Entry map$Entry : map.entrySet()) {
-            mapCreateCopy.put(kryo.copy(map$Entry.getKey()), kryo.copy(map$Entry.getValue()));
+        for (Map.Entry entry : map.entrySet()) {
+            mapCreateCopy.put(kryo.copy(entry.getKey()), kryo.copy(entry.getValue()));
         }
         return mapCreateCopy;
     }
@@ -135,20 +154,20 @@ public class MapSerializer extends Serializer<Map> {
             }
             this.valueGenericType = null;
         }
-        for (Map$Entry map$Entry : map.entrySet()) {
+        for (Map.Entry entry : map.entrySet()) {
             if (serializer == null) {
-                kryo.writeClassAndObject(output, map$Entry.getKey());
+                kryo.writeClassAndObject(output, entry.getKey());
             } else if (this.keysCanBeNull) {
-                kryo.writeObjectOrNull(output, map$Entry.getKey(), serializer);
+                kryo.writeObjectOrNull(output, entry.getKey(), serializer);
             } else {
-                kryo.writeObject(output, map$Entry.getKey(), serializer);
+                kryo.writeObject(output, entry.getKey(), serializer);
             }
             if (serializer2 == null) {
-                kryo.writeClassAndObject(output, map$Entry.getValue());
+                kryo.writeClassAndObject(output, entry.getValue());
             } else if (this.valuesCanBeNull) {
-                kryo.writeObjectOrNull(output, map$Entry.getValue(), serializer2);
+                kryo.writeObjectOrNull(output, entry.getValue(), serializer2);
             } else {
-                kryo.writeObject(output, map$Entry.getValue(), serializer2);
+                kryo.writeObject(output, entry.getValue(), serializer2);
             }
         }
     }

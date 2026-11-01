@@ -1,5 +1,6 @@
 package com.discord.stores;
 
+import androidx.core.app.NotificationCompat;
 import com.discord.BuildConfig;
 import com.discord.api.embeddedactivities.EmbeddedActivityInGuild;
 import com.discord.api.embeddedactivities.EmbeddedActivityInboundUpdate;
@@ -7,16 +8,17 @@ import com.discord.api.guild.Guild;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.embeddedactivities.EmbeddedActivity;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
 import d0.t.h0;
 import d0.t.n;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
 
@@ -26,6 +28,46 @@ public final class StoreEmbeddedActivities extends StoreV2 {
     private final Map<Long, Map<Long, EmbeddedActivity>> embeddedActivitiesByChannel;
     private Map<Long, ? extends Map<Long, EmbeddedActivity>> embeddedActivitiesByChannelSnapshot;
     private final ObservationDeck observationDeck;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEmbeddedActivities$observeEmbeddedActivities$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreEmbeddedActivities.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Map<Long, ? extends EmbeddedActivity>>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Map<Long, ? extends EmbeddedActivity>> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Map<Long, ? extends EmbeddedActivity>> invoke2() {
+            return StoreEmbeddedActivities.this.getEmbeddedActivities();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEmbeddedActivities$observeEmbeddedActivitiesForChannel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreEmbeddedActivities.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Map<Long, ? extends EmbeddedActivity>>, Map<Long, ? extends EmbeddedActivity>> {
+        public final /* synthetic */ long $channelId;
+
+        public AnonymousClass1(long j) {
+            this.$channelId = j;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Map<Long, ? extends EmbeddedActivity> call(Map<Long, ? extends Map<Long, ? extends EmbeddedActivity>> map) {
+            return call2((Map<Long, ? extends Map<Long, EmbeddedActivity>>) map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Map<Long, EmbeddedActivity> call2(Map<Long, ? extends Map<Long, EmbeddedActivity>> map) {
+            Map<Long, EmbeddedActivity> map2 = map.get(Long.valueOf(this.$channelId));
+            return map2 != null ? map2 : h0.emptyMap();
+        }
+    }
 
     public StoreEmbeddedActivities() {
         this(null, 1, null);
@@ -74,7 +116,7 @@ public final class StoreEmbeddedActivities extends StoreV2 {
     private final void handleEmbeddedActivityForChannel(long channelId, List<Long> userIds, com.discord.api.embeddedactivities.EmbeddedActivity apiEmbeddedActivity, long guildId) {
         String urlForApplication = getUrlForApplication(apiEmbeddedActivity.getApplicationId());
         if (urlForApplication != null) {
-            EmbeddedActivity embeddedActivityFromApiEmbeddedActivity = EmbeddedActivity.Companion.fromApiEmbeddedActivity(apiEmbeddedActivity, userIds, urlForApplication, guildId);
+            EmbeddedActivity embeddedActivityFromApiEmbeddedActivity = EmbeddedActivity.INSTANCE.fromApiEmbeddedActivity(apiEmbeddedActivity, userIds, urlForApplication, guildId);
             Map<Long, EmbeddedActivity> linkedHashMap = this.embeddedActivitiesByChannel.get(Long.valueOf(channelId));
             if (linkedHashMap == null) {
                 linkedHashMap = new LinkedHashMap<>();
@@ -103,11 +145,11 @@ public final class StoreEmbeddedActivities extends StoreV2 {
     }
 
     public final Observable<Map<Long, Map<Long, EmbeddedActivity>>> observeEmbeddedActivities() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreEmbeddedActivities$observeEmbeddedActivities$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     public final Observable<Map<Long, EmbeddedActivity>> observeEmbeddedActivitiesForChannel(long channelId) {
-        Observable observableG = observeEmbeddedActivities().G(new StoreEmbeddedActivities$observeEmbeddedActivitiesForChannel$1(channelId));
+        Observable observableG = observeEmbeddedActivities().G(new AnonymousClass1(channelId));
         m.checkNotNullExpressionValue(observableG, "observeEmbeddedActivitie…] ?: emptyMap()\n        }");
         return observableG;
     }
@@ -117,8 +159,8 @@ public final class StoreEmbeddedActivities extends StoreV2 {
     public void snapshotData() {
         super.snapshotData();
         HashMap map = new HashMap();
-        for (Map$Entry<Long, Map<Long, EmbeddedActivity>> map$Entry : this.embeddedActivitiesByChannel.entrySet()) {
-            map.put(map$Entry.getKey(), new HashMap(map$Entry.getValue()));
+        for (Map.Entry<Long, Map<Long, EmbeddedActivity>> entry : this.embeddedActivitiesByChannel.entrySet()) {
+            map.put(entry.getKey(), new HashMap(entry.getValue()));
         }
         this.embeddedActivitiesByChannelSnapshot = map;
     }

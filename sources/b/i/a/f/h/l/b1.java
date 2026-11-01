@@ -2,12 +2,19 @@ package b.i.a.f.h.l;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class b1 extends u4<b1, b1$a> implements d6 {
+public final class b1 extends u4<b1, a> implements d6 {
     private int zzc;
     private long zze;
     private static final b1 zzf;
     private static volatile j6<b1> zzg;
     private String zzd = "";
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement@@18.0.0 */
+    public final class a extends u4.b<b1, a> implements d6 {
+        public a(k1 k1Var) {
+            super(b1.u());
+        }
+    }
 
     static {
         b1 b1Var = new b1();
@@ -21,24 +28,24 @@ public final class b1 extends u4<b1, b1$a> implements d6 {
             case 1:
                 return new b1();
             case 2:
-                return new b1$a(null);
+                return new a(null);
             case 3:
                 return new o6(zzf, "\u0001\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001ဈ\u0000\u0002ဂ\u0001", new Object[]{"zzc", "zzd", "zze"});
             case 4:
                 return zzf;
             case 5:
-                j6<b1> u4_a = zzg;
-                if (u4_a == null) {
+                j6<b1> aVar = zzg;
+                if (aVar == null) {
                     synchronized (b1.class) {
-                        u4_a = zzg;
-                        if (u4_a == null) {
-                            u4_a = new u4$a<>(zzf);
-                            zzg = u4_a;
+                        aVar = zzg;
+                        if (aVar == null) {
+                            aVar = new u4.a<>(zzf);
+                            zzg = aVar;
                         }
                         break;
                     }
                 }
-                return u4_a;
+                return aVar;
             case 6:
                 return (byte) 1;
             case 7:

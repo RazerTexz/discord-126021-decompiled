@@ -2,7 +2,6 @@ package com.discord.widgets.servers;
 
 import androidx.fragment.app.FragmentManager;
 import com.discord.widgets.settings.WidgetMuteSettingsSheet;
-import com.discord.widgets.settings.WidgetMuteSettingsSheet$Companion;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -29,10 +28,10 @@ public final class WidgetServerNotifications$configureUI$onMute$1 extends o impl
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2() {
-        WidgetMuteSettingsSheet$Companion widgetMuteSettingsSheet$Companion = WidgetMuteSettingsSheet.Companion;
+        WidgetMuteSettingsSheet.Companion companion = WidgetMuteSettingsSheet.INSTANCE;
         long j = this.$guildId;
         FragmentManager parentFragmentManager = this.this$0.getParentFragmentManager();
         m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        widgetMuteSettingsSheet$Companion.showForGuild(j, parentFragmentManager);
+        companion.showForGuild(j, parentFragmentManager);
     }
 }

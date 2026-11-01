@@ -1,7 +1,7 @@
 package b.i.a.f.h.j;
 
 import android.content.Context;
-import android.content.SharedPreferences$Editor;
+import android.content.SharedPreferences;
 import java.util.Objects;
 
 /* JADX INFO: loaded from: classes3.dex */
@@ -46,9 +46,9 @@ public final class u implements Runnable {
             } else {
                 Objects.requireNonNull((b.i.a.f.e.o.c) p0VarU.j.d);
                 long jCurrentTimeMillis = System.currentTimeMillis();
-                SharedPreferences$Editor sharedPreferences$EditorEdit = p0VarU.l.edit();
-                sharedPreferences$EditorEdit.putLong("first_run", jCurrentTimeMillis);
-                if (!sharedPreferences$EditorEdit.commit()) {
+                SharedPreferences.Editor editorEdit = p0VarU.l.edit();
+                editorEdit.putLong("first_run", jCurrentTimeMillis);
+                if (!editorEdit.commit()) {
                     p0VarU.D("Failed to commit first run time");
                 }
                 p0VarU.m = jCurrentTimeMillis;

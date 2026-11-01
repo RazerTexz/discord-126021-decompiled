@@ -4,16 +4,14 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.View$OnKeyListener;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TextView$OnEditorActionListener;
 import com.google.android.material.timepicker.ChipTextInputComboView;
 import com.google.android.material.timepicker.TimeModel;
 
 /* JADX INFO: compiled from: TimePickerTextInputKeyController.java */
 /* JADX INFO: loaded from: classes3.dex */
-public class h implements TextView$OnEditorActionListener, View$OnKeyListener {
+public class h implements TextView.OnEditorActionListener, View.OnKeyListener {
     public final ChipTextInputComboView j;
     public final ChipTextInputComboView k;
     public final TimeModel l;
@@ -31,7 +29,7 @@ public class h implements TextView$OnEditorActionListener, View$OnKeyListener {
         this.l.o = i;
     }
 
-    @Override // android.widget.TextView$OnEditorActionListener
+    @Override // android.widget.TextView.OnEditorActionListener
     public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
         boolean z2 = i == 5;
         if (z2) {
@@ -41,7 +39,7 @@ public class h implements TextView$OnEditorActionListener, View$OnKeyListener {
     }
 
     /* JADX WARN: Code duplicated, block: B:17:0x0032  */
-    @Override // android.view.View$OnKeyListener
+    @Override // android.view.View.OnKeyListener
     public boolean onKey(View view, int i, KeyEvent keyEvent) {
         if (this.m) {
             return false;

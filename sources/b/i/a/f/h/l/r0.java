@@ -7,6 +7,6 @@ public final class r0 implements a5 {
 
     @Override // b.i.a.f.h.l.a5
     public final boolean f(int i) {
-        return n0$a.f(i) != null;
+        return n0.a.f(i) != null;
     }
 }

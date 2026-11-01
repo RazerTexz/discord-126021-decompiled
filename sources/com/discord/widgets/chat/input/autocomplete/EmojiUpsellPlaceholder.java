@@ -8,7 +8,6 @@ import java.util.List;
 /* JADX INFO: compiled from: Autocompletable.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class EmojiUpsellPlaceholder extends Autocompletable {
-    public static final EmojiUpsellPlaceholder$Companion Companion = new EmojiUpsellPlaceholder$Companion(null);
     public static final int EMOJI_PREVIEW_COUNT = 3;
     private final boolean allowEmojiToAnimate;
     private final List<Emoji> lockedFirstThree;

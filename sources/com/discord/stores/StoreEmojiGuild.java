@@ -4,15 +4,18 @@ import android.content.Context;
 import com.discord.api.emoji.GuildEmojisUpdate;
 import com.discord.models.domain.emoji.ModelEmojiGuild;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.t.h0;
+import d0.t.n;
 import d0.z.d.m;
+import d0.z.d.o;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import rx.Observable;
@@ -26,6 +29,159 @@ public final class StoreEmojiGuild extends StoreV2 {
     private Map<Long, ? extends List<ModelEmojiGuild>> guildEmojiSnapshot;
     private final ObservationDeck observationDeck;
     private final RestAPI restAPI;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEmojiGuild$activate$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreEmojiGuild.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$guildId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreEmojiGuild.access$setActiveGuildId$p(StoreEmojiGuild.this, this.$guildId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEmojiGuild$deactivate$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreEmojiGuild.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreEmojiGuild.access$setActiveGuildId$p(StoreEmojiGuild.this, -1L);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEmojiGuild$deleteEmoji$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreEmojiGuild.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ long $emojiId;
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, long j2) {
+            super(0);
+            this.$guildId = j;
+            this.$emojiId = j2;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Map mapAccess$getGuildEmoji$p = StoreEmojiGuild.access$getGuildEmoji$p(StoreEmojiGuild.this);
+            Long lValueOf = Long.valueOf(this.$guildId);
+            List listEmptyList = (List) StoreEmojiGuild.access$getGuildEmoji$p(StoreEmojiGuild.this).get(Long.valueOf(this.$guildId));
+            if (listEmptyList == null) {
+                listEmptyList = n.emptyList();
+            }
+            ArrayList arrayList = new ArrayList();
+            for (Object obj : listEmptyList) {
+                if (this.$emojiId != ((ModelEmojiGuild) obj).getId()) {
+                    arrayList.add(obj);
+                }
+            }
+            mapAccess$getGuildEmoji$p.put(lValueOf, arrayList);
+            StoreEmojiGuild.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEmojiGuild$fetchGuildEmoji$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreEmojiGuild.kt */
+    public final class AnonymousClass1 extends o implements Function1<List<? extends ModelEmojiGuild>, Unit> {
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(1);
+            this.$guildId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ModelEmojiGuild> list) {
+            invoke2((List<ModelEmojiGuild>) list);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<ModelEmojiGuild> list) {
+            m.checkNotNullParameter(list, "emojis");
+            StoreEmojiGuild.access$handleGuildEmojisLoaded(StoreEmojiGuild.this, this.$guildId, list);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEmojiGuild$handleGuildEmojisLoaded$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreEmojiGuild.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ List $emojis;
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(List list, long j) {
+            super(0);
+            this.$emojis = list;
+            this.$guildId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreEmojiGuild.access$getGuildEmoji$p(StoreEmojiGuild.this).put(Long.valueOf(this.$guildId), this.$emojis);
+            StoreEmojiGuild.this.markChanged();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEmojiGuild$observeGuildEmoji$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreEmojiGuild.kt */
+    public final class AnonymousClass1 extends o implements Function0<List<? extends ModelEmojiGuild>> {
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(0);
+            this.$guildId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ List<? extends ModelEmojiGuild> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final List<? extends ModelEmojiGuild> invoke2() {
+            return StoreEmojiGuild.this.getGuildEmoji(this.$guildId);
+        }
+    }
 
     public StoreEmojiGuild(ObservationDeck observationDeck, Dispatcher dispatcher, RestAPI restAPI) {
         m.checkNotNullParameter(observationDeck, "observationDeck");
@@ -56,19 +212,19 @@ public final class StoreEmojiGuild extends StoreV2 {
     }
 
     public final void activate(long guildId) {
-        this.dispatcher.schedule(new StoreEmojiGuild$activate$1(this, guildId));
+        this.dispatcher.schedule(new AnonymousClass1(guildId));
     }
 
     public final void deactivate() {
-        this.dispatcher.schedule(new StoreEmojiGuild$deactivate$1(this));
+        this.dispatcher.schedule(new AnonymousClass1());
     }
 
     public final void deleteEmoji(long guildId, long emojiId) {
-        this.dispatcher.schedule(new StoreEmojiGuild$deleteEmoji$1(this, guildId, emojiId));
+        this.dispatcher.schedule(new AnonymousClass1(guildId, emojiId));
     }
 
     public final void fetchGuildEmoji(long guildId) {
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.getGuildEmojis(guildId), false, 1, null), StoreEmojiGuild.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreEmojiGuild$fetchGuildEmoji$1(this, guildId), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.getGuildEmojis(guildId), false, 1, null), StoreEmojiGuild.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(guildId), 62, (Object) null);
     }
 
     public final List<ModelEmojiGuild> getGuildEmoji(long guildId) {
@@ -87,11 +243,11 @@ public final class StoreEmojiGuild extends StoreV2 {
 
     @StoreThread
     private final void handleGuildEmojisLoaded(long guildId, List<ModelEmojiGuild> emojis) {
-        this.dispatcher.schedule(new StoreEmojiGuild$handleGuildEmojisLoaded$1(this, emojis, guildId));
+        this.dispatcher.schedule(new AnonymousClass1(emojis, guildId));
     }
 
     public final Observable<List<ModelEmojiGuild>> observeGuildEmoji(long guildId) {
-        Observable<List<ModelEmojiGuild>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreEmojiGuild$observeGuildEmoji$1(this, guildId), 14, null).r();
+        Observable<List<ModelEmojiGuild>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(guildId), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
         return observableR;
     }

@@ -4,42 +4,42 @@ import androidx.annotation.NonNull;
 
 /* JADX INFO: compiled from: AutoValue_CrashlyticsReport_Session_Event_Application_Execution.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class l extends v$d$d$a$b {
-    public final w<v$d$d$a$b$d> a;
+public final class l extends v.d.AbstractC0143d.a.b {
+    public final w<v.d.AbstractC0143d.a.b.AbstractC0147d> a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final v$d$d$a$b$b f1726b;
-    public final v$d$d$a$b$c c;
-    public final w<v$d$d$a$b$a> d;
+    public final v.d.AbstractC0143d.a.b.AbstractC0146b f1726b;
+    public final v.d.AbstractC0143d.a.b.c c;
+    public final w<v.d.AbstractC0143d.a.b.AbstractC0145a> d;
 
-    public l(w wVar, v$d$d$a$b$b v_d_d_a_b_b, v$d$d$a$b$c v_d_d_a_b_c, w wVar2, l$a l_a) {
+    public l(w wVar, v.d.AbstractC0143d.a.b.AbstractC0146b abstractC0146b, v.d.AbstractC0143d.a.b.c cVar, w wVar2, a aVar) {
         this.a = wVar;
-        this.f1726b = v_d_d_a_b_b;
-        this.c = v_d_d_a_b_c;
+        this.f1726b = abstractC0146b;
+        this.c = cVar;
         this.d = wVar2;
     }
 
-    @Override // b.i.c.m.d.m.v$d$d$a$b
+    @Override // b.i.c.m.d.m.v.d.AbstractC0143d.a.b
     @NonNull
-    public w<v$d$d$a$b$a> a() {
+    public w<v.d.AbstractC0143d.a.b.AbstractC0145a> a() {
         return this.d;
     }
 
-    @Override // b.i.c.m.d.m.v$d$d$a$b
+    @Override // b.i.c.m.d.m.v.d.AbstractC0143d.a.b
     @NonNull
-    public v$d$d$a$b$b b() {
+    public v.d.AbstractC0143d.a.b.AbstractC0146b b() {
         return this.f1726b;
     }
 
-    @Override // b.i.c.m.d.m.v$d$d$a$b
+    @Override // b.i.c.m.d.m.v.d.AbstractC0143d.a.b
     @NonNull
-    public v$d$d$a$b$c c() {
+    public v.d.AbstractC0143d.a.b.c c() {
         return this.c;
     }
 
-    @Override // b.i.c.m.d.m.v$d$d$a$b
+    @Override // b.i.c.m.d.m.v.d.AbstractC0143d.a.b
     @NonNull
-    public w<v$d$d$a$b$d> d() {
+    public w<v.d.AbstractC0143d.a.b.AbstractC0147d> d() {
         return this.a;
     }
 
@@ -47,11 +47,11 @@ public final class l extends v$d$d$a$b {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof v$d$d$a$b)) {
+        if (!(obj instanceof v.d.AbstractC0143d.a.b)) {
             return false;
         }
-        v$d$d$a$b v_d_d_a_b = (v$d$d$a$b) obj;
-        return this.a.equals(v_d_d_a_b.d()) && this.f1726b.equals(v_d_d_a_b.b()) && this.c.equals(v_d_d_a_b.c()) && this.d.equals(v_d_d_a_b.a());
+        v.d.AbstractC0143d.a.b bVar = (v.d.AbstractC0143d.a.b) obj;
+        return this.a.equals(bVar.d()) && this.f1726b.equals(bVar.b()) && this.c.equals(bVar.c()) && this.d.equals(bVar.a());
     }
 
     public int hashCode() {

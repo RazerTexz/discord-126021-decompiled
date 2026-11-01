@@ -4,14 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.media.AudioFormat$Builder;
+import android.media.AudioFormat;
 import android.media.AudioPlaybackCaptureConfiguration;
-import android.media.AudioPlaybackCaptureConfiguration$Builder;
 import android.media.AudioRecord;
-import android.media.AudioRecord$Builder;
 import android.media.projection.MediaProjection;
-import android.media.projection.MediaProjection$Callback;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -26,13 +23,16 @@ import d0.z.d.m;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import org.webrtc.CapturerObserver;
 import org.webrtc.JniCommon;
 import org.webrtc.ScreenCapturerAndroid;
 import org.webrtc.SurfaceTextureHelper;
+import org.webrtc.TimestampAligner;
 import org.webrtc.VideoFrame;
 import rx.Observable;
 import rx.Subscription;
+import rx.functions.Action1;
 
 /* JADX INFO: compiled from: ScreenCapturer.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -46,8 +46,8 @@ public final class b extends ScreenCapturerAndroid {
 
     /* JADX INFO: renamed from: y, reason: collision with root package name */
     public final ThumbnailEmitter f269y;
-    public static final b$a j = new b$a(null);
-    public final b$b k;
+    public static final a j = new a(null);
+    public final RunnableC0042b k;
     public NativeCapturerObserver l;
     public SurfaceTextureHelper m;
     public Context n;
@@ -60,15 +60,68 @@ public final class b extends ScreenCapturerAndroid {
     public int v;
     public Subscription w;
 
+    /* JADX INFO: renamed from: b.a.q.m0.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: ScreenCapturer.kt */
+    public final class RunnableC0042b implements Runnable {
+        public RunnableC0042b() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            b bVar = b.this;
+            if (bVar.p > 0) {
+                Long l = bVar.r;
+                if (l != null) {
+                    long rtcTimeNanos = TimestampAligner.getRtcTimeNanos() - l.longValue();
+                    b bVar2 = b.this;
+                    if (rtcTimeNanos > bVar2.q) {
+                        NativeCapturerObserver nativeCapturerObserver = bVar2.l;
+                        if (nativeCapturerObserver == null) {
+                            m.throwUninitializedPropertyAccessException("nativeObserver");
+                        }
+                        nativeCapturerObserver.repeatLastFrame();
+                    }
+                }
+                b.this.c();
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: ScreenCapturer.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
+
+    /* JADX INFO: compiled from: ScreenCapturer.kt */
+    public final class c<T> implements Action1<Long> {
+        public c() {
+        }
+
+        @Override // rx.functions.Action1
+        public void call(Long l) {
+            b.this.k.run();
+        }
+    }
+
+    /* JADX INFO: compiled from: ScreenCapturer.kt */
+    public final class d<T> implements Action1<Throwable> {
+        public static final d j = new d();
+
+        @Override // rx.functions.Action1
+        public void call(Throwable th) {
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public b(Intent intent, MediaProjection$Callback mediaProjection$Callback, Logger logger, ThumbnailEmitter thumbnailEmitter) {
-        super(intent, mediaProjection$Callback);
+    public b(Intent intent, MediaProjection.Callback callback, Logger logger, ThumbnailEmitter thumbnailEmitter) {
+        super(intent, callback);
         m.checkNotNullParameter(intent, "mediaProjectionPermissionResultData");
-        m.checkNotNullParameter(mediaProjection$Callback, "mediaProjectionCallback");
+        m.checkNotNullParameter(callback, "mediaProjectionCallback");
         m.checkNotNullParameter(logger, "logger");
         this.f268x = logger;
         this.f269y = thumbnailEmitter;
-        this.k = new b$b(this);
+        this.k = new RunnableC0042b();
         this.o = new SoundshareAudioSource();
         this.f267s = new Rect();
         this.t = new Rect();
@@ -105,10 +158,10 @@ public final class b extends ScreenCapturerAndroid {
         if (mediaProjection == null) {
             return null;
         }
-        AudioPlaybackCaptureConfiguration audioPlaybackCaptureConfigurationBuild = new AudioPlaybackCaptureConfiguration$Builder(mediaProjection).addMatchingUsage(1).addMatchingUsage(14).addMatchingUsage(0).build();
+        AudioPlaybackCaptureConfiguration audioPlaybackCaptureConfigurationBuild = new AudioPlaybackCaptureConfiguration.Builder(mediaProjection).addMatchingUsage(1).addMatchingUsage(14).addMatchingUsage(0).build();
         m.checkNotNullExpressionValue(audioPlaybackCaptureConfigurationBuild, "AudioPlaybackCaptureConf…KNOWN)\n          .build()");
         try {
-            return new AudioRecord$Builder().setAudioFormat(new AudioFormat$Builder().setEncoding(2).setSampleRate(44100).setChannelMask(16).build()).setAudioPlaybackCaptureConfig(audioPlaybackCaptureConfigurationBuild).build();
+            return new AudioRecord.Builder().setAudioFormat(new AudioFormat.Builder().setEncoding(2).setSampleRate(44100).setChannelMask(16).build()).setAudioPlaybackCaptureConfig(audioPlaybackCaptureConfigurationBuild).build();
         } catch (SecurityException unused) {
             Log.w(b.class.getName(), "Failed to record audio");
             return null;
@@ -131,7 +184,7 @@ public final class b extends ScreenCapturerAndroid {
             Looper looper = handler.getLooper();
             AtomicReference<j0.j.b.a> atomicReference = j0.j.b.a.a;
             Objects.requireNonNull(looper, "looper == null");
-            this.w = observableD0.X(new j0.j.b.b(looper)).W(new b$c(this), b$d.j);
+            this.w = observableD0.X(new j0.j.b.b(looper)).W(new c(), d.j);
         }
     }
 
@@ -224,7 +277,7 @@ public final class b extends ScreenCapturerAndroid {
         super.startCapture(i, i2, i3);
         this.v = Math.max(i, i2);
         d(i3);
-        if (Build$VERSION.SDK_INT >= 29 && (audioRecordB = b()) != null) {
+        if (Build.VERSION.SDK_INT >= 29 && (audioRecordB = b()) != null) {
             this.o.startRecording(audioRecordB);
         }
         c();

@@ -2,6 +2,7 @@ package com.google.android.material.bottomsheet;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,6 +11,22 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 /* JADX INFO: loaded from: classes3.dex */
 public class BottomSheetDialogFragment extends AppCompatDialogFragment {
     private boolean waitingForDismissAllowingStateLoss;
+
+    public class b extends BottomSheetBehavior.BottomSheetCallback {
+        public b(a aVar) {
+        }
+
+        @Override // com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
+        public void onSlide(@NonNull View view, float f) {
+        }
+
+        @Override // com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
+        public void onStateChanged(@NonNull View view, int i) {
+            if (i == 5) {
+                BottomSheetDialogFragment.access$100(BottomSheetDialogFragment.this);
+            }
+        }
+    }
 
     public static /* synthetic */ void access$100(BottomSheetDialogFragment bottomSheetDialogFragment) {
         bottomSheetDialogFragment.dismissAfterAnimation();
@@ -48,7 +65,7 @@ public class BottomSheetDialogFragment extends AppCompatDialogFragment {
         if (getDialog() instanceof BottomSheetDialog) {
             ((BottomSheetDialog) getDialog()).removeDefaultCallback();
         }
-        bottomSheetBehavior.addBottomSheetCallback(new BottomSheetDialogFragment$b(this, null));
+        bottomSheetBehavior.addBottomSheetCallback(new b(null));
         bottomSheetBehavior.setState(5);
     }
 

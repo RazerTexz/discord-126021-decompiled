@@ -9,7 +9,6 @@ import j0.k.b;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map$Entry;
 
 /* JADX INFO: compiled from: StoreNotifications.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -25,9 +24,9 @@ public final class StoreNotifications$configureNotificationClient$completedSetti
     public final HashSet<Long> call2(Map<Long, Long> map) {
         m.checkNotNullExpressionValue(map, "channelPermissions");
         LinkedHashMap linkedHashMap = new LinkedHashMap();
-        for (Map$Entry<Long, Long> map$Entry : map.entrySet()) {
-            if (!PermissionUtils.can(Permission.SEND_MESSAGES, Long.valueOf(map$Entry.getValue().longValue()))) {
-                linkedHashMap.put(map$Entry.getKey(), map$Entry.getValue());
+        for (Map.Entry<Long, Long> entry : map.entrySet()) {
+            if (!PermissionUtils.can(Permission.SEND_MESSAGES, Long.valueOf(entry.getValue().longValue()))) {
+                linkedHashMap.put(entry.getKey(), entry.getValue());
             }
         }
         return u.toHashSet(linkedHashMap.keySet());

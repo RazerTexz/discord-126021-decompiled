@@ -3,18 +3,16 @@ package com.discord.utilities.string;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.content.res.Resources$NotFoundException;
-import android.os.Build$VERSION;
+import android.os.Build;
 import b.a.k.b;
 import com.discord.utilities.locale.LocaleManager;
-import com.discord.utils.R$a;
+import com.discord.utils.R;
 import com.discord.widgets.chat.input.MentionUtilsKt;
 import d0.t.n;
 import d0.z.d.m;
 import java.net.IDN;
 import java.net.URL;
 import java.text.Normalizer;
-import java.text.Normalizer$Form;
 import java.text.NumberFormat;
 import java.util.Locale;
 import kotlin.jvm.functions.Function1;
@@ -27,7 +25,7 @@ public final class StringUtilsKt {
     private static final Regex STRIP_ACCENTS_REGEX = new Regex("[\\p{InCombiningDiacriticalMarks}]");
 
     static {
-        STATIC_IMAGE_EXTENSION = n.listOf((Object[]) new Integer[]{28, 29}).contains(Integer.valueOf(Build$VERSION.SDK_INT)) ? "png" : "webp";
+        STATIC_IMAGE_EXTENSION = n.listOf((Object[]) new Integer[]{28, 29}).contains(Integer.valueOf(Build.VERSION.SDK_INT)) ? "png" : "webp";
     }
 
     public static final String encodeToBase32String(byte[] bArr) {
@@ -93,14 +91,14 @@ public final class StringUtilsKt {
             Resources resources2 = contextCreateConfigurationContext.getResources();
             m.checkNotNullExpressionValue(resources2, "createConfigurationConte…(configuration).resources");
             return b.i(resources2, i, new Object[0], null, 4);
-        } catch (Resources$NotFoundException unused) {
+        } catch (Resources.NotFoundException unused) {
             return null;
         }
     }
 
     public static final String stripAccents(String str) {
         m.checkNotNullParameter(str, "$this$stripAccents");
-        String strNormalize = Normalizer.normalize(str, Normalizer$Form.NFKD);
+        String strNormalize = Normalizer.normalize(str, Normalizer.Form.NFKD);
         m.checkNotNullExpressionValue(strNormalize, "normalizedString");
         return STRIP_ACCENTS_REGEX.replace(strNormalize, "");
     }
@@ -108,8 +106,8 @@ public final class StringUtilsKt {
     public static final void test(Context context, Resources resources) {
         m.checkNotNullParameter(context, "context");
         m.checkNotNullParameter(resources, "resources");
-        context.getString(R$a.common_google_play_services_unknown_issue, 1);
-        resources.getString(R$a.common_google_play_services_enable_button, 1);
+        context.getString(R.a.common_google_play_services_unknown_issue, 1);
+        resources.getString(R.a.common_google_play_services_enable_button, 1);
     }
 
     public static final String toPunyCodeASCIIUrl(String str) {

@@ -2,10 +2,68 @@ package d0.e0.p.d.m0.c;
 
 import com.discord.models.domain.ModelAuditLogEntry;
 import java.util.List;
+import kotlin.jvm.functions.Function1;
+import kotlin.reflect.KDeclarationContainer;
 
 /* JADX INFO: compiled from: findClassInModule.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class w {
+
+    /* JADX INFO: compiled from: findClassInModule.kt */
+    public final /* synthetic */ class a extends d0.z.d.j implements Function1<d0.e0.p.d.m0.g.a, d0.e0.p.d.m0.g.a> {
+        public static final a j = new a();
+
+        public a() {
+            super(1);
+        }
+
+        @Override // d0.z.d.d, kotlin.reflect.KCallable
+        public final String getName() {
+            return "getOuterClassId";
+        }
+
+        @Override // d0.z.d.d
+        public final KDeclarationContainer getOwner() {
+            return d0.z.d.a0.getOrCreateKotlinClass(d0.e0.p.d.m0.g.a.class);
+        }
+
+        @Override // d0.z.d.d
+        public final String getSignature() {
+            return "getOuterClassId()Lorg/jetbrains/kotlin/name/ClassId;";
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.g.a invoke(d0.e0.p.d.m0.g.a aVar) {
+            return invoke2(aVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final d0.e0.p.d.m0.g.a invoke2(d0.e0.p.d.m0.g.a aVar) {
+            d0.z.d.m.checkNotNullParameter(aVar, "p0");
+            return aVar.getOuterClassId();
+        }
+    }
+
+    /* JADX INFO: compiled from: findClassInModule.kt */
+    public final class b extends d0.z.d.o implements Function1<d0.e0.p.d.m0.g.a, Integer> {
+        public static final b j = new b();
+
+        public b() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Integer invoke(d0.e0.p.d.m0.g.a aVar) {
+            return Integer.valueOf(invoke2(aVar));
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final int invoke2(d0.e0.p.d.m0.g.a aVar) {
+            d0.z.d.m.checkNotNullParameter(aVar, "it");
+            return 0;
+        }
+    }
+
     public static final e findClassAcrossModuleDependencies(c0 c0Var, d0.e0.p.d.m0.g.a aVar) {
         d0.z.d.m.checkNotNullParameter(c0Var, "<this>");
         d0.z.d.m.checkNotNullParameter(aVar, "classId");
@@ -108,7 +166,7 @@ public final class w {
         d0.z.d.m.checkNotNullParameter(aVar, "classId");
         d0.z.d.m.checkNotNullParameter(d0Var, "notFoundClasses");
         e eVarFindClassAcrossModuleDependencies = findClassAcrossModuleDependencies(c0Var, aVar);
-        return eVarFindClassAcrossModuleDependencies != null ? eVarFindClassAcrossModuleDependencies : d0Var.getClass(aVar, d0.f0.q.toList(d0.f0.q.map(d0.f0.n.generateSequence(aVar, w$a.j), w$b.j)));
+        return eVarFindClassAcrossModuleDependencies != null ? eVarFindClassAcrossModuleDependencies : d0Var.getClass(aVar, d0.f0.q.toList(d0.f0.q.map(d0.f0.n.generateSequence(aVar, a.j), b.j)));
     }
 
     public static final y0 findTypeAliasAcrossModuleDependencies(c0 c0Var, d0.e0.p.d.m0.g.a aVar) {

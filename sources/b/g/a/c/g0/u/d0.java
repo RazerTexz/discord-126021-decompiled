@@ -1,9 +1,5 @@
 package b.g.a.c.g0.u;
 
-import b.g.a.a.i$a;
-import b.g.a.a.i$d;
-import b.g.a.c.g0.t.l$b;
-import b.g.a.c.g0.t.l$d;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import java.io.IOException;
 import java.util.Objects;
@@ -23,7 +19,7 @@ public class d0 extends a<Object[]> implements b.g.a.c.g0.i {
         this._elementType = jVar;
         this._staticTyping = z2;
         this._valueTypeSerializer = gVar;
-        this._dynamicSerializers = l$b.f706b;
+        this._dynamicSerializers = b.g.a.c.g0.t.l.b.f706b;
         this._elementSerializer = nVar;
     }
 
@@ -49,8 +45,8 @@ public class d0 extends a<Object[]> implements b.g.a.c.g0.i {
         } else {
             nVarH = null;
         }
-        i$d i_dL = l(xVar, dVar, this._handledType);
-        Boolean boolB = i_dL != null ? i_dL.b(i$a.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED) : null;
+        b.g.a.a.i.d dVarL = l(xVar, dVar, this._handledType);
+        Boolean boolB = dVarL != null ? dVarL.b(b.g.a.a.i.a.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED) : null;
         if (nVarH == null) {
             nVarH = this._elementSerializer;
         }
@@ -173,12 +169,12 @@ public class d0 extends a<Object[]> implements b.g.a.c.g0.i {
                             b.g.a.c.n<Object> nVarC2 = lVar2.c(cls2);
                             if (nVarC2 == null) {
                                 if (this._elementType.r()) {
-                                    l$d l_dA = lVar2.a(xVar.k(this._elementType, cls2), xVar, this._property);
-                                    b.g.a.c.g0.t.l lVar3 = l_dA.f708b;
+                                    b.g.a.c.g0.t.l.d dVarA = lVar2.a(xVar.k(this._elementType, cls2), xVar, this._property);
+                                    b.g.a.c.g0.t.l lVar3 = dVarA.f708b;
                                     if (lVar2 != lVar3) {
                                         this._dynamicSerializers = lVar3;
                                     }
-                                    nVarC2 = l_dA.a;
+                                    nVarC2 = dVarA.a;
                                 } else {
                                     nVarC2 = xVar.n(cls2, this._property);
                                     b.g.a.c.g0.t.l lVarB2 = lVar2.b(cls2, nVarC2);
@@ -208,7 +204,7 @@ public class d0 extends a<Object[]> implements b.g.a.c.g0.i {
         this._elementType = d0Var._elementType;
         this._valueTypeSerializer = gVar;
         this._staticTyping = d0Var._staticTyping;
-        this._dynamicSerializers = l$b.f706b;
+        this._dynamicSerializers = b.g.a.c.g0.t.l.b.f706b;
         this._elementSerializer = nVar;
     }
 }

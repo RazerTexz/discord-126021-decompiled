@@ -22,12 +22,12 @@ public class a implements d0.e0.p.d.m0.c.g1.g {
 
     @Override // d0.e0.p.d.m0.c.g1.g
     public d0.e0.p.d.m0.c.g1.c findAnnotation(d0.e0.p.d.m0.g.b bVar) {
-        return d0.e0.p.d.m0.c.g1.g$b.findAnnotation(this, bVar);
+        return d0.e0.p.d.m0.c.g1.g.b.findAnnotation(this, bVar);
     }
 
     @Override // d0.e0.p.d.m0.c.g1.g
     public boolean hasAnnotation(d0.e0.p.d.m0.g.b bVar) {
-        return d0.e0.p.d.m0.c.g1.g$b.hasAnnotation(this, bVar);
+        return d0.e0.p.d.m0.c.g1.g.b.hasAnnotation(this, bVar);
     }
 
     @Override // d0.e0.p.d.m0.c.g1.g

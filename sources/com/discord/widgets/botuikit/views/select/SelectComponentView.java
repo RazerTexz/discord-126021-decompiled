@@ -9,11 +9,10 @@ import android.widget.ImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import b.a.i.b5;
 import b.a.i.c5;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.botuikit.ComponentType;
 import com.discord.api.botuikit.SelectItem;
-import com.discord.models.botuikit.ActionInteractionComponentState$Disabled;
-import com.discord.models.botuikit.ActionInteractionComponentState$Loading;
+import com.discord.models.botuikit.ActionInteractionComponentState;
 import com.discord.models.botuikit.MessageComponent;
 import com.discord.models.botuikit.SelectMessageComponent;
 import com.discord.utilities.color.ColorCompat;
@@ -30,11 +29,53 @@ import d0.t.u;
 import d0.z.d.m;
 import java.util.List;
 import java.util.Objects;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: SelectComponentView.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class SelectComponentView extends ConstraintLayout implements ComponentView<SelectMessageComponent> {
-    public static final SelectComponentView$Companion Companion = new SelectComponentView$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
+
+    /* JADX INFO: renamed from: com.discord.widgets.botuikit.views.select.SelectComponentView$configure$3, reason: invalid class name */
+    /* JADX INFO: compiled from: SelectComponentView.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public final /* synthetic */ SelectMessageComponent $component;
+        public final /* synthetic */ ComponentActionListener $componentActionListener;
+        public final /* synthetic */ String $placeholder;
+
+        public AnonymousClass3(ComponentActionListener componentActionListener, SelectMessageComponent selectMessageComponent, String str) {
+            this.$componentActionListener = componentActionListener;
+            this.$component = selectMessageComponent;
+            this.$placeholder = str;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$componentActionListener.onSelectComponentClick(this.$component.getIndex(), this.$component.getCustomId(), this.$placeholder, this.$component.getOptions(), this.$component.getSelectedOptions(), this.$component.getMinValues(), this.$component.getMaxValues(), this.$component.getEmojiAnimationsEnabled());
+        }
+    }
+
+    /* JADX INFO: compiled from: SelectComponentView.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final SelectComponentView inflateComponent(Context context, ViewGroup root) {
+            m.checkNotNullParameter(context, "context");
+            m.checkNotNullParameter(root, "root");
+            b5 b5VarA = b5.a(LayoutInflater.from(context).inflate(R.layout.widget_chat_list_bot_ui_select_component, root, false));
+            m.checkNotNullExpressionValue(b5VarA, "WidgetChatListBotUiSelec…om(context), root, false)");
+            SelectComponentView selectComponentView = b5VarA.a;
+            m.checkNotNullExpressionValue(selectComponentView, "WidgetChatListBotUiSelec…ntext), root, false).root");
+            return selectComponentView;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public SelectComponentView(Context context, AttributeSet attributeSet, int i) {
@@ -68,7 +109,7 @@ public final class SelectComponentView extends ConstraintLayout implements Compo
         m.checkNotNullExpressionValue(b5VarA, "WidgetChatListBotUiSelec…mponentBinding.bind(this)");
         String placeholder = component.getPlaceholder();
         if (placeholder == null) {
-            placeholder = getResources().getString(2131892970);
+            placeholder = getResources().getString(R.string.message_select_component_default_placeholder);
             m.checkNotNullExpressionValue(placeholder, "resources.getString(R.st…nent_default_placeholder)");
         }
         if (!(!component.getSelectedOptions().isEmpty())) {
@@ -78,7 +119,7 @@ public final class SelectComponentView extends ConstraintLayout implements Compo
             FlexboxLayout flexboxLayout = b5VarA.f;
             m.checkNotNullExpressionValue(flexboxLayout, "binding.selectComponentSelectionsRoot");
             flexboxLayout.setVisibility(8);
-            b5VarA.e.setTextColor(ColorCompat.getThemedColor(getContext(), 2130969008));
+            b5VarA.e.setTextColor(ColorCompat.getThemedColor(getContext(), R.attr.colorInteractiveNormal));
             MaterialTextView materialTextView2 = b5VarA.e;
             m.checkNotNullExpressionValue(materialTextView2, "binding.selectComponentSelectionText");
             materialTextView2.setText(placeholder);
@@ -89,7 +130,7 @@ public final class SelectComponentView extends ConstraintLayout implements Compo
             FlexboxLayout flexboxLayout2 = b5VarA.f;
             m.checkNotNullExpressionValue(flexboxLayout2, "binding.selectComponentSelectionsRoot");
             flexboxLayout2.setVisibility(8);
-            b5VarA.e.setTextColor(ColorCompat.getThemedColor(getContext(), 2130969057));
+            b5VarA.e.setTextColor(ColorCompat.getThemedColor(getContext(), R.attr.colorTextNormal));
             SelectItem selectItem = (SelectItem) u.firstOrNull((List) component.getSelectedOptions());
             if (selectItem != null) {
                 MaterialTextView materialTextView4 = b5VarA.e;
@@ -110,7 +151,7 @@ public final class SelectComponentView extends ConstraintLayout implements Compo
             flexboxLayout3.removeAllViews();
             LayoutInflater layoutInflaterFrom = LayoutInflater.from(getContext());
             for (SelectItem selectItem2 : component.getSelectedOptions()) {
-                View viewInflate = layoutInflaterFrom.inflate(R$layout.widget_chat_list_bot_ui_select_component_pill, (ViewGroup) null, false);
+                View viewInflate = layoutInflaterFrom.inflate(R.layout.widget_chat_list_bot_ui_select_component_pill, (ViewGroup) null, false);
                 Objects.requireNonNull(viewInflate, "rootView");
                 MaterialTextView materialTextView6 = (MaterialTextView) viewInflate;
                 m.checkNotNullExpressionValue(new c5(materialTextView6), "WidgetChatListBotUiSelec…Binding.inflate(inflater)");
@@ -119,8 +160,8 @@ public final class SelectComponentView extends ConstraintLayout implements Compo
                 flexboxLayout3.addView(materialTextView6);
             }
         }
-        boolean z2 = !(component.getStateInteraction() instanceof ActionInteractionComponentState$Disabled);
-        boolean z3 = component.getStateInteraction() instanceof ActionInteractionComponentState$Loading;
+        boolean z2 = !(component.getStateInteraction() instanceof ActionInteractionComponentState.Disabled);
+        boolean z3 = component.getStateInteraction() instanceof ActionInteractionComponentState.Loading;
         TypingDots typingDots = b5VarA.c;
         if (z3) {
             typingDots.a(false);
@@ -136,7 +177,7 @@ public final class SelectComponentView extends ConstraintLayout implements Compo
         SelectComponentView selectComponentView = b5VarA.a;
         m.checkNotNullExpressionValue(selectComponentView, "binding.root");
         ViewExtensions.setEnabledAlpha(selectComponentView, z2, 0.3f);
-        b5VarA.a.setOnClickListener(new SelectComponentView$configure$3(componentActionListener, component, placeholder));
+        b5VarA.a.setOnClickListener(new AnonymousClass3(componentActionListener, component, placeholder));
         SelectComponentView selectComponentView2 = b5VarA.a;
         m.checkNotNullExpressionValue(selectComponentView2, "binding.root");
         selectComponentView2.setClickable(!z3 && z2);

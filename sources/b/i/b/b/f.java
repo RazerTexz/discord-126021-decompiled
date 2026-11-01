@@ -1,27 +1,27 @@
 package b.i.b.b;
 
-import java.util.Map$Entry;
+import java.util.Map;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
 /* JADX INFO: compiled from: AbstractMapEntry.java */
 /* JADX INFO: loaded from: classes3.dex */
-public abstract class f<K, V> implements Map$Entry<K, V> {
-    @Override // java.util.Map$Entry
+public abstract class f<K, V> implements Map.Entry<K, V> {
+    @Override // java.util.Map.Entry
     public boolean equals(@NullableDecl Object obj) {
-        if (!(obj instanceof Map$Entry)) {
+        if (!(obj instanceof Map.Entry)) {
             return false;
         }
-        Map$Entry map$Entry = (Map$Entry) obj;
-        return b.i.a.f.e.o.f.V(getKey(), map$Entry.getKey()) && b.i.a.f.e.o.f.V(getValue(), map$Entry.getValue());
+        Map.Entry entry = (Map.Entry) obj;
+        return b.i.a.f.e.o.f.V(getKey(), entry.getKey()) && b.i.a.f.e.o.f.V(getValue(), entry.getValue());
     }
 
-    @Override // java.util.Map$Entry
+    @Override // java.util.Map.Entry
     public abstract K getKey();
 
-    @Override // java.util.Map$Entry
+    @Override // java.util.Map.Entry
     public abstract V getValue();
 
-    @Override // java.util.Map$Entry
+    @Override // java.util.Map.Entry
     public int hashCode() {
         K key = getKey();
         V value = getValue();

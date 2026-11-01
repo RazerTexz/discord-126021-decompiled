@@ -2,10 +2,11 @@ package com.discord.utilities.user;
 
 import android.content.Context;
 import com.discord.api.user.User;
-import com.discord.utilities.analytics.Traits$Payment$Type;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -20,6 +21,74 @@ import rx.Subscription;
 public final class UserRequestManager {
     private final Function1<User, Unit> onFlush;
     private final HashMap<Long, Subscription> userRequests;
+
+    /* JADX INFO: renamed from: com.discord.utilities.user.UserRequestManager$requestUser$1, reason: invalid class name */
+    /* JADX INFO: compiled from: UserRequestManager.kt */
+    public final class AnonymousClass1 extends o implements Function1<User, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(User user) {
+            invoke2(user);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(User user) {
+            if (user != null) {
+                UserRequestManager.access$getOnFlush$p(UserRequestManager.this).invoke(user);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.user.UserRequestManager$requestUser$2, reason: invalid class name */
+    /* JADX INFO: compiled from: UserRequestManager.kt */
+    public final class AnonymousClass2 extends o implements Function0<Unit> {
+        public final /* synthetic */ long $userId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(long j) {
+            super(0);
+            this.$userId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            UserRequestManager.access$onRequestEnded(UserRequestManager.this, this.$userId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.user.UserRequestManager$requestUser$3, reason: invalid class name */
+    /* JADX INFO: compiled from: UserRequestManager.kt */
+    public final class AnonymousClass3 extends o implements Function1<Subscription, Unit> {
+        public final /* synthetic */ long $userId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass3(long j) {
+            super(1);
+            this.$userId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            m.checkNotNullParameter(subscription, "it");
+            UserRequestManager.access$onRequestStarted(UserRequestManager.this, this.$userId, subscription);
+        }
+    }
 
     /* JADX WARN: Multi-variable type inference failed */
     public UserRequestManager(Function1<? super User, Unit> function1) {
@@ -55,10 +124,10 @@ public final class UserRequestManager {
         if (this.userRequests.containsKey(Long.valueOf(userId))) {
             return;
         }
-        Observable observableRestSubscribeOn$default = ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().userGet(userId), false, 1, null);
+        Observable observableRestSubscribeOn$default = ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().userGet(userId), false, 1, null);
         Class<?> cls = getClass();
-        UserRequestManager$requestUser$1 userRequestManager$requestUser$1 = new UserRequestManager$requestUser$1(this);
-        ObservableExtensionsKt.appSubscribe$default(observableRestSubscribeOn$default, cls, (Context) null, new UserRequestManager$requestUser$3(this, userId), (Function1) null, (Function0) null, new UserRequestManager$requestUser$2(this, userId), userRequestManager$requestUser$1, 26, (Object) null);
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1();
+        ObservableExtensionsKt.appSubscribe$default(observableRestSubscribeOn$default, cls, (Context) null, new AnonymousClass3(userId), (Function1) null, (Function0) null, new AnonymousClass2(userId), anonymousClass1, 26, (Object) null);
     }
 
     public final synchronized void requestUsers(Collection<Long> userIds) {

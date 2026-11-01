@@ -3,7 +3,7 @@ package b.f.j.c;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.Map$Entry;
+import java.util.Map;
 
 /* JADX INFO: compiled from: CountingLruMap.java */
 /* JADX INFO: loaded from: classes.dex */
@@ -52,9 +52,9 @@ public class l<K, V> {
     public synchronized ArrayList<V> f(b.f.d.d.j<K> jVar) {
         ArrayList<V> arrayList;
         arrayList = new ArrayList<>();
-        Iterator<Map$Entry<K, V>> it = this.f557b.entrySet().iterator();
+        Iterator<Map.Entry<K, V>> it = this.f557b.entrySet().iterator();
         while (it.hasNext()) {
-            Map$Entry<K, V> next = it.next();
+            Map.Entry<K, V> next = it.next();
             if (jVar != null) {
             }
             arrayList.add(next.getValue());

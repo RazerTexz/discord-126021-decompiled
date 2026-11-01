@@ -13,28 +13,50 @@ public final class a {
     public static final a a = new a();
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public static a$a f3289b;
+    public static C0517a f3289b;
 
-    public final a$a buildCache(Member member) {
+    /* JADX INFO: renamed from: d0.e0.p.d.m0.c.k1.b.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: ReflectJavaMember.kt */
+    public final class C0517a {
+        public final Method a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final Method f3290b;
+
+        public C0517a(Method method, Method method2) {
+            this.a = method;
+            this.f3290b = method2;
+        }
+
+        public final Method getGetName() {
+            return this.f3290b;
+        }
+
+        public final Method getGetParameters() {
+            return this.a;
+        }
+    }
+
+    public final C0517a buildCache(Member member) {
         d0.z.d.m.checkNotNullParameter(member, "member");
         Class<?> cls = member.getClass();
         try {
-            return new a$a(cls.getMethod("getParameters", new Class[0]), b.getSafeClassLoader(cls).loadClass("java.lang.reflect.Parameter").getMethod("getName", new Class[0]));
+            return new C0517a(cls.getMethod("getParameters", new Class[0]), b.getSafeClassLoader(cls).loadClass("java.lang.reflect.Parameter").getMethod("getName", new Class[0]));
         } catch (NoSuchMethodException unused) {
-            return new a$a(null, null);
+            return new C0517a(null, null);
         }
     }
 
     public final List<String> loadParameterNames(Member member) throws IllegalAccessException, InvocationTargetException {
         Method getName;
         d0.z.d.m.checkNotNullParameter(member, "member");
-        a$a a_aBuildCache = f3289b;
-        if (a_aBuildCache == null) {
-            a_aBuildCache = buildCache(member);
-            f3289b = a_aBuildCache;
+        C0517a c0517aBuildCache = f3289b;
+        if (c0517aBuildCache == null) {
+            c0517aBuildCache = buildCache(member);
+            f3289b = c0517aBuildCache;
         }
-        Method getParameters = a_aBuildCache.getGetParameters();
-        if (getParameters == null || (getName = a_aBuildCache.getGetName()) == null) {
+        Method getParameters = c0517aBuildCache.getGetParameters();
+        if (getParameters == null || (getName = c0517aBuildCache.getGetName()) == null) {
             return null;
         }
         Object objInvoke = getParameters.invoke(member, new Object[0]);

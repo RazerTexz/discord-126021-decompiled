@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetGuildSelectorBinding;
 import d0.z.d.k;
 import d0.z.d.m;
@@ -27,11 +27,11 @@ public final /* synthetic */ class WidgetGuildSelector$binding$2 extends k imple
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetGuildSelectorBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.guild_actions_overview_header_tv;
-        TextView textView = (TextView) view.findViewById(R$id.guild_actions_overview_header_tv);
+        int i = R.id.guild_actions_overview_header_tv;
+        TextView textView = (TextView) view.findViewById(R.id.guild_actions_overview_header_tv);
         if (textView != null) {
-            i = R$id.guild_selector_list;
-            RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.guild_selector_list);
+            i = R.id.guild_selector_list;
+            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.guild_selector_list);
             if (recyclerView != null) {
                 return new WidgetGuildSelectorBinding((NestedScrollView) view, textView, recyclerView);
             }

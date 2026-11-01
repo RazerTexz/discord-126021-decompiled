@@ -3,20 +3,19 @@ package androidx.work.impl.foreground;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Intent;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.view.LifecycleService;
 import androidx.work.Logger;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
-public class SystemForegroundService extends LifecycleService implements SystemForegroundDispatcher$Callback {
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+public class SystemForegroundService extends LifecycleService implements SystemForegroundDispatcher.Callback {
     public SystemForegroundDispatcher mDispatcher;
     private Handler mHandler;
     private boolean mIsShutdown;
@@ -26,9 +25,72 @@ public class SystemForegroundService extends LifecycleService implements SystemF
     @Nullable
     private static SystemForegroundService sForegroundService = null;
 
-    @Override // androidx.work.impl.foreground.SystemForegroundDispatcher$Callback
+    /* JADX INFO: renamed from: androidx.work.impl.foreground.SystemForegroundService$1, reason: invalid class name */
+    public class AnonymousClass1 implements Runnable {
+        public AnonymousClass1() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            SystemForegroundService.this.mDispatcher.handleStop();
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.work.impl.foreground.SystemForegroundService$2, reason: invalid class name */
+    public class AnonymousClass2 implements Runnable {
+        public final /* synthetic */ Notification val$notification;
+        public final /* synthetic */ int val$notificationId;
+        public final /* synthetic */ int val$notificationType;
+
+        public AnonymousClass2(int i, Notification notification, int i2) {
+            this.val$notificationId = i;
+            this.val$notification = notification;
+            this.val$notificationType = i2;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            if (Build.VERSION.SDK_INT >= 29) {
+                SystemForegroundService.this.startForeground(this.val$notificationId, this.val$notification, this.val$notificationType);
+            } else {
+                SystemForegroundService.this.startForeground(this.val$notificationId, this.val$notification);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.work.impl.foreground.SystemForegroundService$3, reason: invalid class name */
+    public class AnonymousClass3 implements Runnable {
+        public final /* synthetic */ Notification val$notification;
+        public final /* synthetic */ int val$notificationId;
+
+        public AnonymousClass3(int i, Notification notification) {
+            this.val$notificationId = i;
+            this.val$notification = notification;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            SystemForegroundService.this.mNotificationManager.notify(this.val$notificationId, this.val$notification);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.work.impl.foreground.SystemForegroundService$4, reason: invalid class name */
+    public class AnonymousClass4 implements Runnable {
+        public final /* synthetic */ int val$notificationId;
+
+        public AnonymousClass4(int i) {
+            this.val$notificationId = i;
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            SystemForegroundService.this.mNotificationManager.cancel(this.val$notificationId);
+        }
+    }
+
+    @Override // androidx.work.impl.foreground.SystemForegroundDispatcher.Callback
     public void cancelNotification(int i) {
-        this.mHandler.post(new SystemForegroundService$4(this, i));
+        this.mHandler.post(new AnonymousClass4(i));
     }
 
     @Nullable
@@ -45,9 +107,9 @@ public class SystemForegroundService extends LifecycleService implements SystemF
         systemForegroundDispatcher.setCallback(this);
     }
 
-    @Override // androidx.work.impl.foreground.SystemForegroundDispatcher$Callback
+    @Override // androidx.work.impl.foreground.SystemForegroundDispatcher.Callback
     public void notify(int i, @NonNull Notification notification) {
-        this.mHandler.post(new SystemForegroundService$3(this, i, notification));
+        this.mHandler.post(new AnonymousClass3(i, notification));
     }
 
     @Override // androidx.view.LifecycleService, android.app.Service
@@ -79,17 +141,17 @@ public class SystemForegroundService extends LifecycleService implements SystemF
         return 3;
     }
 
-    @Override // androidx.work.impl.foreground.SystemForegroundDispatcher$Callback
+    @Override // androidx.work.impl.foreground.SystemForegroundDispatcher.Callback
     public void startForeground(int i, int i2, @NonNull Notification notification) {
-        this.mHandler.post(new SystemForegroundService$2(this, i, notification, i2));
+        this.mHandler.post(new AnonymousClass2(i, notification, i2));
     }
 
-    @Override // androidx.work.impl.foreground.SystemForegroundDispatcher$Callback
+    @Override // androidx.work.impl.foreground.SystemForegroundDispatcher.Callback
     @MainThread
     public void stop() {
         this.mIsShutdown = true;
         Logger.get().debug(TAG, "All commands completed.", new Throwable[0]);
-        if (Build$VERSION.SDK_INT >= 26) {
+        if (Build.VERSION.SDK_INT >= 26) {
             stopForeground(true);
         }
         sForegroundService = null;
@@ -97,6 +159,6 @@ public class SystemForegroundService extends LifecycleService implements SystemF
     }
 
     public void stopForegroundService() {
-        this.mHandler.post(new SystemForegroundService$1(this));
+        this.mHandler.post(new AnonymousClass1());
     }
 }

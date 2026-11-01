@@ -1,7 +1,6 @@
 package d0.e0.p.d.m0.c.i1;
 
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.e0.p.d.m0.k.a0.c$b;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -35,7 +34,7 @@ public class h0 extends d0.e0.p.d.m0.k.a0.j {
         if (!dVar.acceptsKinds(d0.e0.p.d.m0.k.a0.d.a.getPACKAGES_MASK())) {
             return d0.t.n.emptyList();
         }
-        if (this.c.isRoot() && dVar.getExcludes().contains(c$b.a)) {
+        if (this.c.isRoot() && dVar.getExcludes().contains(d0.e0.p.d.m0.k.a0.c.b.a)) {
             return d0.t.n.emptyList();
         }
         Collection<d0.e0.p.d.m0.g.b> subPackagesOf = this.f3266b.getSubPackagesOf(this.c, function1);

@@ -16,12 +16,12 @@ public final class LifecycleController$observer$1 implements LifecycleEventObser
     }
 
     @Override // androidx.view.LifecycleEventObserver
-    public final void onStateChanged(LifecycleOwner lifecycleOwner, Lifecycle$Event lifecycle$Event) {
+    public final void onStateChanged(LifecycleOwner lifecycleOwner, Lifecycle.Event event) {
         m.checkNotNullParameter(lifecycleOwner, "source");
-        m.checkNotNullParameter(lifecycle$Event, "<anonymous parameter 1>");
+        m.checkNotNullParameter(event, "<anonymous parameter 1>");
         Lifecycle lifecycle = lifecycleOwner.getLifecycle();
         m.checkNotNullExpressionValue(lifecycle, "source.lifecycle");
-        if (lifecycle.getCurrentState() == Lifecycle$State.DESTROYED) {
+        if (lifecycle.getCurrentState() == Lifecycle.State.DESTROYED) {
             LifecycleController lifecycleController = this.this$0;
             f.t(this.$parentJob, null, 1, null);
             lifecycleController.finish();

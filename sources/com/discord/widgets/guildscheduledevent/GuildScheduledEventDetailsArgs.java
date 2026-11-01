@@ -3,7 +3,6 @@ package com.discord.widgets.guildscheduledevent;
 import a0.a.a.b;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable$Creator;
 import b.d.b.a.a;
 import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -11,11 +10,36 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: WidgetGuildScheduledEventDetailsBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class GuildScheduledEventDetailsArgs implements Parcelable {
-    public static final Parcelable$Creator<GuildScheduledEventDetailsArgs> CREATOR = new GuildScheduledEventDetailsArgs$Creator();
+    public static final Parcelable.Creator<GuildScheduledEventDetailsArgs> CREATOR = new Creator();
     private final Long channelId;
     private final long eventId;
     private final Long guildId;
     private final GuildScheduledEventDetailsSource source;
+
+    public final class Creator implements Parcelable.Creator<GuildScheduledEventDetailsArgs> {
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final GuildScheduledEventDetailsArgs createFromParcel(Parcel parcel) {
+            m.checkNotNullParameter(parcel, "in");
+            return new GuildScheduledEventDetailsArgs(parcel.readLong(), parcel.readInt() != 0 ? Long.valueOf(parcel.readLong()) : null, parcel.readInt() != 0 ? Long.valueOf(parcel.readLong()) : null, (GuildScheduledEventDetailsSource) Enum.valueOf(GuildScheduledEventDetailsSource.class, parcel.readString()));
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ GuildScheduledEventDetailsArgs createFromParcel(Parcel parcel) {
+            return createFromParcel(parcel);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // android.os.Parcelable.Creator
+        public final GuildScheduledEventDetailsArgs[] newArray(int i) {
+            return new GuildScheduledEventDetailsArgs[i];
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public /* bridge */ /* synthetic */ GuildScheduledEventDetailsArgs[] newArray(int i) {
+            return newArray(i);
+        }
+    }
 
     public GuildScheduledEventDetailsArgs(long j, Long l, Long l2, GuildScheduledEventDetailsSource guildScheduledEventDetailsSource) {
         m.checkNotNullParameter(guildScheduledEventDetailsSource, "source");

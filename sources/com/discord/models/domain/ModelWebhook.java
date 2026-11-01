@@ -14,27 +14,27 @@ public class ModelWebhook implements Model {
     private String name;
 
     @Override // com.discord.models.domain.Model
-    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
-        String strNextName = model$JsonReader.nextName();
+    public void assignField(Model.JsonReader jsonReader) throws IOException {
+        String strNextName = jsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "channel_id":
-                this.channelId = model$JsonReader.nextLong(this.channelId);
+                this.channelId = jsonReader.nextLong(this.channelId);
                 break;
             case "avatar":
-                this.avatar = model$JsonReader.nextString(this.avatar);
+                this.avatar = jsonReader.nextString(this.avatar);
                 break;
             case "guild_id":
-                this.guildId = model$JsonReader.nextLong(this.guildId);
+                this.guildId = jsonReader.nextLong(this.guildId);
                 break;
             case "id":
-                this.f2737id = model$JsonReader.nextLong(this.f2737id);
+                this.f2737id = jsonReader.nextLong(this.f2737id);
                 break;
             case "name":
-                this.name = model$JsonReader.nextString(this.name);
+                this.name = jsonReader.nextString(this.name);
                 break;
             default:
-                model$JsonReader.skipValue();
+                jsonReader.skipValue();
                 break;
         }
     }

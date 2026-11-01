@@ -1,60 +1,231 @@
 package d0.e0.p.d;
 
 import com.discord.models.domain.ModelAuditLogEntry;
-import d0.e0.p.d.l0.e$e;
-import d0.e0.p.d.l0.e$h;
-import d0.e0.p.d.l0.e$h$a;
-import d0.e0.p.d.l0.e$h$b;
-import d0.e0.p.d.l0.e$h$c;
-import d0.e0.p.d.l0.e$h$d;
-import d0.e0.p.d.l0.e$h$e;
-import d0.e0.p.d.l0.e$h$f;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.GenericDeclaration;
+import java.lang.reflect.Member;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
+import kotlin.NoWhenBranchMatchedException;
+import kotlin.jvm.functions.Function0;
 import kotlin.reflect.KFunction;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: KFunctionImpl.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class j extends f<Object> implements d0.z.d.i<Object>, KFunction<Object>, c {
+public final class j extends f<Object> implements d0.z.d.i<Object>, KFunction<Object>, d0.e0.p.d.c {
 
     /* JADX INFO: renamed from: s, reason: collision with root package name */
     public final String f3200s;
     public static final /* synthetic */ KProperty[] n = {d0.z.d.a0.property1(new d0.z.d.y(d0.z.d.a0.getOrCreateKotlinClass(j.class), "descriptor", "getDescriptor()Lorg/jetbrains/kotlin/descriptors/FunctionDescriptor;")), d0.z.d.a0.property1(new d0.z.d.y(d0.z.d.a0.getOrCreateKotlinClass(j.class), "caller", "getCaller()Lkotlin/reflect/jvm/internal/calls/Caller;")), d0.z.d.a0.property1(new d0.z.d.y(d0.z.d.a0.getOrCreateKotlinClass(j.class), "defaultCaller", "getDefaultCaller()Lkotlin/reflect/jvm/internal/calls/Caller;"))};
-    public final c0$a o;
-    public final c0$b p;
-    public final c0$b q;
+    public final c0.a o;
+    public final c0.b p;
+    public final c0.b q;
     public final i r;
     public final Object t;
+
+    /* JADX INFO: compiled from: KFunctionImpl.kt */
+    public final class a extends d0.z.d.o implements Function0<d0.e0.p.d.l0.d<? extends Member>> {
+        public a() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public /* bridge */ /* synthetic */ d0.e0.p.d.l0.d<? extends Member> invoke2() {
+            return invoke();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final d0.e0.p.d.l0.d<? extends Member> invoke() {
+            Object constructor;
+            d0.e0.p.d.l0.d dVarAccess$createJvmStaticInObjectCaller;
+            d0.e0.p.d.l0.a.EnumC0500a enumC0500a = d0.e0.p.d.l0.a.EnumC0500a.POSITIONAL_CALL;
+            d dVarMapSignature = f0.f3198b.mapSignature(j.this.getDescriptor());
+            if (dVarMapSignature instanceof d.C0495d) {
+                if (j.this.b()) {
+                    Class<?> jClass = j.this.getContainer().getJClass();
+                    List<d0.e0.f> parameters = j.this.getParameters();
+                    ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(parameters, 10));
+                    Iterator<T> it = parameters.iterator();
+                    while (it.hasNext()) {
+                        String name = ((d0.e0.f) it.next()).getName();
+                        d0.z.d.m.checkNotNull(name);
+                        arrayList.add(name);
+                    }
+                    return new d0.e0.p.d.l0.a(jClass, arrayList, enumC0500a, d0.e0.p.d.l0.a.b.KOTLIN, null, 16, null);
+                }
+                constructor = j.this.getContainer().findConstructorBySignature(((d.C0495d) dVarMapSignature).getConstructorDesc());
+            } else if (dVarMapSignature instanceof d.e) {
+                d.e eVar = (d.e) dVarMapSignature;
+                constructor = j.this.getContainer().findMethodBySignature(eVar.getMethodName(), eVar.getMethodDesc());
+            } else if (dVarMapSignature instanceof d.c) {
+                constructor = ((d.c) dVarMapSignature).getMethod();
+            } else {
+                if (!(dVarMapSignature instanceof d.b)) {
+                    if (!(dVarMapSignature instanceof d.a)) {
+                        throw new NoWhenBranchMatchedException();
+                    }
+                    List<Method> methods = ((d.a) dVarMapSignature).getMethods();
+                    Class<?> jClass2 = j.this.getContainer().getJClass();
+                    ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(methods, 10));
+                    for (Method method : methods) {
+                        d0.z.d.m.checkNotNullExpressionValue(method, "it");
+                        arrayList2.add(method.getName());
+                    }
+                    return new d0.e0.p.d.l0.a(jClass2, arrayList2, enumC0500a, d0.e0.p.d.l0.a.b.JAVA, methods);
+                }
+                constructor = ((d.b) dVarMapSignature).getConstructor();
+            }
+            if (constructor instanceof Constructor) {
+                j jVar = j.this;
+                dVarAccess$createJvmStaticInObjectCaller = j.access$createConstructorCaller(jVar, (Constructor) constructor, jVar.getDescriptor());
+            } else {
+                if (!(constructor instanceof Method)) {
+                    StringBuilder sbU = b.d.b.a.a.U("Could not compute caller for function: ");
+                    sbU.append(j.this.getDescriptor());
+                    sbU.append(" (member = ");
+                    sbU.append(constructor);
+                    sbU.append(')');
+                    throw new a0(sbU.toString());
+                }
+                Method method2 = (Method) constructor;
+                dVarAccess$createJvmStaticInObjectCaller = Modifier.isStatic(method2.getModifiers()) ? j.this.getDescriptor().getAnnotations().findAnnotation(j0.getJVM_STATIC()) != null ? j.access$createJvmStaticInObjectCaller(j.this, method2) : j.access$createStaticMethodCaller(j.this, method2) : j.access$createInstanceMethodCaller(j.this, method2);
+            }
+            return d0.e0.p.d.l0.h.createInlineClassAwareCallerIfNeeded$default(dVarAccess$createJvmStaticInObjectCaller, j.this.getDescriptor(), false, 2, null);
+        }
+    }
+
+    /* JADX INFO: compiled from: KFunctionImpl.kt */
+    public final class b extends d0.z.d.o implements Function0<d0.e0.p.d.l0.d<? extends Member>> {
+        public b() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public /* bridge */ /* synthetic */ d0.e0.p.d.l0.d<? extends Member> invoke2() {
+            return invoke();
+        }
+
+        /* JADX WARN: Code duplicated, block: B:35:0x012e  */
+        @Override // kotlin.jvm.functions.Function0
+        public final d0.e0.p.d.l0.d<? extends Member> invoke() {
+            GenericDeclaration genericDeclarationFindDefaultConstructor;
+            d0.e0.p.d.l0.d dVarAccess$createStaticMethodCaller;
+            d0.e0.p.d.l0.a.EnumC0500a enumC0500a = d0.e0.p.d.l0.a.EnumC0500a.CALL_BY_NAME;
+            d dVarMapSignature = f0.f3198b.mapSignature(j.this.getDescriptor());
+            if (dVarMapSignature instanceof d.e) {
+                i container = j.this.getContainer();
+                d.e eVar = (d.e) dVarMapSignature;
+                String methodName = eVar.getMethodName();
+                String methodDesc = eVar.getMethodDesc();
+                Member memberMo80getMember = j.this.getCaller().mo80getMember();
+                d0.z.d.m.checkNotNull(memberMo80getMember);
+                genericDeclarationFindDefaultConstructor = container.findDefaultMethod(methodName, methodDesc, !Modifier.isStatic(memberMo80getMember.getModifiers()));
+            } else if (dVarMapSignature instanceof d.C0495d) {
+                if (j.this.b()) {
+                    Class<?> jClass = j.this.getContainer().getJClass();
+                    List<d0.e0.f> parameters = j.this.getParameters();
+                    ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(parameters, 10));
+                    Iterator<T> it = parameters.iterator();
+                    while (it.hasNext()) {
+                        String name = ((d0.e0.f) it.next()).getName();
+                        d0.z.d.m.checkNotNull(name);
+                        arrayList.add(name);
+                    }
+                    return new d0.e0.p.d.l0.a(jClass, arrayList, enumC0500a, d0.e0.p.d.l0.a.b.KOTLIN, null, 16, null);
+                }
+                genericDeclarationFindDefaultConstructor = j.this.getContainer().findDefaultConstructor(((d.C0495d) dVarMapSignature).getConstructorDesc());
+            } else {
+                if (dVarMapSignature instanceof d.a) {
+                    List<Method> methods = ((d.a) dVarMapSignature).getMethods();
+                    Class<?> jClass2 = j.this.getContainer().getJClass();
+                    ArrayList arrayList2 = new ArrayList(d0.t.o.collectionSizeOrDefault(methods, 10));
+                    for (Method method : methods) {
+                        d0.z.d.m.checkNotNullExpressionValue(method, "it");
+                        arrayList2.add(method.getName());
+                    }
+                    return new d0.e0.p.d.l0.a(jClass2, arrayList2, enumC0500a, d0.e0.p.d.l0.a.b.JAVA, methods);
+                }
+                genericDeclarationFindDefaultConstructor = null;
+            }
+            if (genericDeclarationFindDefaultConstructor instanceof Constructor) {
+                j jVar = j.this;
+                dVarAccess$createStaticMethodCaller = j.access$createConstructorCaller(jVar, (Constructor) genericDeclarationFindDefaultConstructor, jVar.getDescriptor());
+            } else if (!(genericDeclarationFindDefaultConstructor instanceof Method)) {
+                dVarAccess$createStaticMethodCaller = null;
+            } else if (j.this.getDescriptor().getAnnotations().findAnnotation(j0.getJVM_STATIC()) != null) {
+                d0.e0.p.d.m0.c.m containingDeclaration = j.this.getDescriptor().getContainingDeclaration();
+                Objects.requireNonNull(containingDeclaration, "null cannot be cast to non-null type org.jetbrains.kotlin.descriptors.ClassDescriptor");
+                if (((d0.e0.p.d.m0.c.e) containingDeclaration).isCompanionObject()) {
+                    dVarAccess$createStaticMethodCaller = j.access$createStaticMethodCaller(j.this, (Method) genericDeclarationFindDefaultConstructor);
+                } else {
+                    dVarAccess$createStaticMethodCaller = j.access$createJvmStaticInObjectCaller(j.this, (Method) genericDeclarationFindDefaultConstructor);
+                }
+            } else {
+                dVarAccess$createStaticMethodCaller = j.access$createStaticMethodCaller(j.this, (Method) genericDeclarationFindDefaultConstructor);
+            }
+            if (dVarAccess$createStaticMethodCaller != null) {
+                return d0.e0.p.d.l0.h.createInlineClassAwareCallerIfNeeded(dVarAccess$createStaticMethodCaller, j.this.getDescriptor(), true);
+            }
+            return null;
+        }
+    }
+
+    /* JADX INFO: compiled from: KFunctionImpl.kt */
+    public final class c extends d0.z.d.o implements Function0<d0.e0.p.d.m0.c.x> {
+        public final /* synthetic */ String $name;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public c(String str) {
+            super(0);
+            this.$name = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.c.x invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final d0.e0.p.d.m0.c.x invoke() {
+            return j.this.getContainer().findFunctionDescriptor(this.$name, j.access$getSignature$p(j.this));
+        }
+    }
 
     public j(i iVar, String str, String str2, d0.e0.p.d.m0.c.x xVar, Object obj) {
         this.r = iVar;
         this.f3200s = str2;
         this.t = obj;
-        this.o = c0.lazySoft(xVar, new j$c(this, str));
-        this.p = c0.lazy(new j$a(this));
-        this.q = c0.lazy(new j$b(this));
+        this.o = c0.lazySoft(xVar, new c(str));
+        this.p = c0.lazy(new a());
+        this.q = c0.lazy(new b());
     }
 
     public static final d0.e0.p.d.l0.e access$createConstructorCaller(j jVar, Constructor constructor, d0.e0.p.d.m0.c.x xVar) {
         Objects.requireNonNull(jVar);
         if (d0.e0.p.d.m0.k.y.a.shouldHideConstructorDueToInlineClassTypeValueParameters(xVar)) {
-            return jVar.isBound() ? new d0.e0.p.d.l0.e$a(constructor, jVar.getBoundReceiver()) : new d0.e0.p.d.l0.e$b(constructor);
+            return jVar.isBound() ? new d0.e0.p.d.l0.e.a(constructor, jVar.getBoundReceiver()) : new d0.e0.p.d.l0.e.b(constructor);
         }
-        return jVar.isBound() ? new d0.e0.p.d.l0.e$c(constructor, jVar.getBoundReceiver()) : new e$e(constructor);
+        return jVar.isBound() ? new d0.e0.p.d.l0.e.c(constructor, jVar.getBoundReceiver()) : new d0.e0.p.d.l0.e.C0502e(constructor);
     }
 
-    public static final e$h access$createInstanceMethodCaller(j jVar, Method method) {
-        return jVar.isBound() ? new e$h$a(method, jVar.getBoundReceiver()) : new e$h$d(method);
+    public static final d0.e0.p.d.l0.e.h access$createInstanceMethodCaller(j jVar, Method method) {
+        return jVar.isBound() ? new d0.e0.p.d.l0.e.h.a(method, jVar.getBoundReceiver()) : new d0.e0.p.d.l0.e.h.d(method);
     }
 
-    public static final e$h access$createJvmStaticInObjectCaller(j jVar, Method method) {
-        return jVar.isBound() ? new e$h$b(method) : new e$h$e(method);
+    public static final d0.e0.p.d.l0.e.h access$createJvmStaticInObjectCaller(j jVar, Method method) {
+        return jVar.isBound() ? new d0.e0.p.d.l0.e.h.b(method) : new d0.e0.p.d.l0.e.h.C0505e(method);
     }
 
-    public static final e$h access$createStaticMethodCaller(j jVar, Method method) {
-        return jVar.isBound() ? new e$h$c(method, jVar.getBoundReceiver()) : new e$h$f(method);
+    public static final d0.e0.p.d.l0.e.h access$createStaticMethodCaller(j jVar, Method method) {
+        return jVar.isBound() ? new d0.e0.p.d.l0.e.h.c(method, jVar.getBoundReceiver()) : new d0.e0.p.d.l0.e.h.f(method);
     }
 
     public static final /* synthetic */ String access$getSignature$p(j jVar) {
@@ -113,7 +284,7 @@ public final class j extends f<Object> implements d0.z.d.i<Object>, KFunction<Ob
 
     @Override // kotlin.jvm.functions.Function0
     public Object invoke() {
-        return c$a.invoke(this);
+        return d0.e0.p.d.c.a.invoke(this);
     }
 
     @Override // d0.e0.p.d.f
@@ -152,17 +323,17 @@ public final class j extends f<Object> implements d0.z.d.i<Object>, KFunction<Ob
 
     @Override // kotlin.jvm.functions.Function1
     public Object invoke(Object obj) {
-        return c$a.invoke(this, obj);
+        return d0.e0.p.d.c.a.invoke(this, obj);
     }
 
     @Override // kotlin.jvm.functions.Function2
     public Object invoke(Object obj, Object obj2) {
-        return c$a.invoke(this, obj, obj2);
+        return d0.e0.p.d.c.a.invoke(this, obj, obj2);
     }
 
     @Override // kotlin.jvm.functions.Function3
     public Object invoke(Object obj, Object obj2, Object obj3) {
-        return c$a.invoke(this, obj, obj2, obj3);
+        return d0.e0.p.d.c.a.invoke(this, obj, obj2, obj3);
     }
 
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
@@ -175,7 +346,7 @@ public final class j extends f<Object> implements d0.z.d.i<Object>, KFunction<Ob
 
     @Override // kotlin.jvm.functions.Function4
     public Object invoke(Object obj, Object obj2, Object obj3, Object obj4) {
-        return c$a.invoke(this, obj, obj2, obj3, obj4);
+        return d0.e0.p.d.c.a.invoke(this, obj, obj2, obj3, obj4);
     }
 
     /* JADX WARN: Illegal instructions before constructor call */
@@ -189,71 +360,71 @@ public final class j extends f<Object> implements d0.z.d.i<Object>, KFunction<Ob
 
     @Override // kotlin.jvm.functions.Function5
     public Object invoke(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        return c$a.invoke(this, obj, obj2, obj3, obj4, obj5);
+        return d0.e0.p.d.c.a.invoke(this, obj, obj2, obj3, obj4, obj5);
     }
 
     @Override // kotlin.jvm.functions.Function6
     public Object invoke(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6) {
-        return c$a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6);
+        return d0.e0.p.d.c.a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6);
     }
 
     @Override // kotlin.jvm.functions.Function7
     public Object invoke(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7) {
-        return c$a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7);
+        return d0.e0.p.d.c.a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7);
     }
 
     @Override // kotlin.jvm.functions.Function8
     public Object invoke(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8) {
-        return c$a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8);
+        return d0.e0.p.d.c.a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8);
     }
 
     @Override // kotlin.jvm.functions.Function9
     public Object invoke(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, Object obj9) {
-        return c$a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9);
+        return d0.e0.p.d.c.a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9);
     }
 
     @Override // kotlin.jvm.functions.Function10
     public Object invoke(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, Object obj9, Object obj10) {
-        return c$a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10);
+        return d0.e0.p.d.c.a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10);
     }
 
     @Override // kotlin.jvm.functions.Function11
     public Object invoke(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, Object obj9, Object obj10, Object obj11) {
-        return c$a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11);
+        return d0.e0.p.d.c.a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11);
     }
 
     @Override // kotlin.jvm.functions.Function12
     public Object invoke(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, Object obj9, Object obj10, Object obj11, Object obj12) {
-        return c$a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12);
+        return d0.e0.p.d.c.a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12);
     }
 
     @Override // kotlin.jvm.functions.Function13
     public Object invoke(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, Object obj9, Object obj10, Object obj11, Object obj12, Object obj13) {
-        return c$a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13);
+        return d0.e0.p.d.c.a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13);
     }
 
     @Override // kotlin.jvm.functions.Function14
     public Object invoke(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, Object obj9, Object obj10, Object obj11, Object obj12, Object obj13, Object obj14) {
-        return c$a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14);
+        return d0.e0.p.d.c.a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14);
     }
 
     @Override // kotlin.jvm.functions.Function15
     public Object invoke(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, Object obj9, Object obj10, Object obj11, Object obj12, Object obj13, Object obj14, Object obj15) {
-        return c$a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14, obj15);
+        return d0.e0.p.d.c.a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14, obj15);
     }
 
     @Override // kotlin.jvm.functions.Function16
     public Object invoke(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, Object obj9, Object obj10, Object obj11, Object obj12, Object obj13, Object obj14, Object obj15, Object obj16) {
-        return c$a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14, obj15, obj16);
+        return d0.e0.p.d.c.a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14, obj15, obj16);
     }
 
     @Override // kotlin.jvm.functions.Function17
     public Object invoke(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, Object obj9, Object obj10, Object obj11, Object obj12, Object obj13, Object obj14, Object obj15, Object obj16, Object obj17) {
-        return c$a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14, obj15, obj16, obj17);
+        return d0.e0.p.d.c.a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14, obj15, obj16, obj17);
     }
 
     @Override // kotlin.jvm.functions.Function22
     public Object invoke(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, Object obj9, Object obj10, Object obj11, Object obj12, Object obj13, Object obj14, Object obj15, Object obj16, Object obj17, Object obj18, Object obj19, Object obj20, Object obj21, Object obj22) {
-        return c$a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14, obj15, obj16, obj17, obj18, obj19, obj20, obj21, obj22);
+        return d0.e0.p.d.c.a.invoke(this, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14, obj15, obj16, obj17, obj18, obj19, obj20, obj21, obj22);
     }
 }

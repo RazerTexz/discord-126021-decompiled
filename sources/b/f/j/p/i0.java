@@ -2,7 +2,6 @@ package b.f.j.p;
 
 import android.content.res.AssetFileDescriptor;
 import android.content.res.Resources;
-import android.content.res.Resources$NotFoundException;
 import com.facebook.imagepipeline.request.ImageRequest;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,7 +33,7 @@ public class i0 extends g0 {
                 Objects.requireNonNull(path2);
                 assetFileDescriptorOpenRawResourceFd = resources2.openRawResourceFd(Integer.parseInt(path2.substring(1)));
                 length = (int) assetFileDescriptorOpenRawResourceFd.getLength();
-            } catch (Resources$NotFoundException unused) {
+            } catch (Resources.NotFoundException unused) {
                 length = -1;
                 if (assetFileDescriptorOpenRawResourceFd != null) {
                 }

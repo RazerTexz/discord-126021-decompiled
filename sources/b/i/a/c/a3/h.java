@@ -1,7 +1,5 @@
 package b.i.a.c.a3;
 
-import b.i.a.c.x2.t$b;
-
 /* JADX INFO: compiled from: lambda */
 /* JADX INFO: loaded from: classes3.dex */
 public final /* synthetic */ class h implements Runnable {
@@ -17,7 +15,7 @@ public final /* synthetic */ class h implements Runnable {
     public final void run() {
         e0 e0Var = this.j;
         b.i.a.c.x2.t tVar = this.k;
-        e0Var.J = e0Var.C == null ? tVar : new t$b(-9223372036854775807L, 0L);
+        e0Var.J = e0Var.C == null ? tVar : new b.i.a.c.x2.t.b(-9223372036854775807L, 0L);
         e0Var.K = tVar.i();
         boolean z2 = e0Var.Q == -1 && tVar.i() == -9223372036854775807L;
         e0Var.L = z2;

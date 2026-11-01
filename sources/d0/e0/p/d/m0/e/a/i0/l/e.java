@@ -8,12 +8,16 @@ import d0.e0.p.d.m0.n.e0;
 import d0.e0.p.d.m0.n.j0;
 import d0.e0.p.d.m0.n.j1;
 import d0.e0.p.d.m0.n.t;
+import d0.t.h0;
 import d0.z.d.a0;
 import d0.z.d.y;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import kotlin.Pair;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
@@ -32,15 +36,99 @@ public final class e implements d0.e0.p.d.m0.c.g1.c, d0.e0.p.d.m0.e.a.h0.i {
     public final boolean h;
     public final boolean i;
 
+    /* JADX INFO: compiled from: LazyJavaAnnotationDescriptor.kt */
+    public final class a extends d0.z.d.o implements Function0<Map<d0.e0.p.d.m0.g.e, ? extends d0.e0.p.d.m0.k.v.g<?>>> {
+        public a() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<d0.e0.p.d.m0.g.e, ? extends d0.e0.p.d.m0.k.v.g<?>> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<d0.e0.p.d.m0.g.e, ? extends d0.e0.p.d.m0.k.v.g<?>> invoke2() {
+            Collection<d0.e0.p.d.m0.e.a.k0.b> arguments = e.access$getJavaAnnotation$p(e.this).getArguments();
+            e eVar = e.this;
+            ArrayList arrayList = new ArrayList();
+            for (d0.e0.p.d.m0.e.a.k0.b bVar : arguments) {
+                d0.e0.p.d.m0.g.e name = bVar.getName();
+                if (name == null) {
+                    name = d0.e0.p.d.m0.e.a.a0.f3305b;
+                }
+                d0.e0.p.d.m0.k.v.g gVarAccess$resolveAnnotationArgument = e.access$resolveAnnotationArgument(eVar, bVar);
+                Pair pair = gVarAccess$resolveAnnotationArgument == null ? null : d0.o.to(name, gVarAccess$resolveAnnotationArgument);
+                if (pair != null) {
+                    arrayList.add(pair);
+                }
+            }
+            return h0.toMap(arrayList);
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaAnnotationDescriptor.kt */
+    public final class b extends d0.z.d.o implements Function0<d0.e0.p.d.m0.g.b> {
+        public b() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.g.b invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final d0.e0.p.d.m0.g.b invoke() {
+            d0.e0.p.d.m0.g.a classId = e.access$getJavaAnnotation$p(e.this).getClassId();
+            if (classId == null) {
+                return null;
+            }
+            return classId.asSingleFqName();
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaAnnotationDescriptor.kt */
+    public final class c extends d0.z.d.o implements Function0<j0> {
+        public c() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ j0 invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final j0 invoke() {
+            d0.e0.p.d.m0.g.b fqName = e.this.getFqName();
+            if (fqName == null) {
+                return t.createErrorType(d0.z.d.m.stringPlus("No fqName: ", e.access$getJavaAnnotation$p(e.this)));
+            }
+            d0.e0.p.d.m0.c.e eVarMapJavaToKotlin$default = d0.e0.p.d.m0.b.q.d.mapJavaToKotlin$default(d0.e0.p.d.m0.b.q.d.a, fqName, e.access$getC$p(e.this).getModule().getBuiltIns(), null, 4, null);
+            if (eVarMapJavaToKotlin$default == null) {
+                d0.e0.p.d.m0.e.a.k0.g gVarResolve = e.access$getJavaAnnotation$p(e.this).resolve();
+                eVarMapJavaToKotlin$default = gVarResolve == null ? null : e.access$getC$p(e.this).getComponents().getModuleClassResolver().resolveClass(gVarResolve);
+                if (eVarMapJavaToKotlin$default == null) {
+                    eVarMapJavaToKotlin$default = e.access$createTypeForMissingDependencies(e.this, fqName);
+                }
+            }
+            return eVarMapJavaToKotlin$default.getDefaultType();
+        }
+    }
+
     public e(d0.e0.p.d.m0.e.a.i0.g gVar, d0.e0.p.d.m0.e.a.k0.a aVar, boolean z2) {
         d0.z.d.m.checkNotNullParameter(gVar, "c");
         d0.z.d.m.checkNotNullParameter(aVar, "javaAnnotation");
         this.f3327b = gVar;
         this.c = aVar;
-        this.d = gVar.getStorageManager().createNullableLazyValue(new e$b(this));
-        this.e = gVar.getStorageManager().createLazyValue(new e$c(this));
+        this.d = gVar.getStorageManager().createNullableLazyValue(new b());
+        this.e = gVar.getStorageManager().createLazyValue(new c());
         this.f = gVar.getComponents().getSourceElementFactory().source(aVar);
-        this.g = gVar.getStorageManager().createLazyValue(new e$a(this));
+        this.g = gVar.getStorageManager().createLazyValue(new a());
         this.h = aVar.isIdeExternalAnnotation();
         this.i = aVar.isFreshlySupportedTypeUseAnnotation() || z2;
     }

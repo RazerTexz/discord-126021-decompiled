@@ -1,10 +1,8 @@
 package b.a.a.a;
 
+import com.discord.R;
 import com.discord.models.domain.ModelSubscription;
-import com.discord.stores.StoreSubscriptions$SubscriptionsState;
-import com.discord.stores.StoreSubscriptions$SubscriptionsState$Failure;
-import com.discord.stores.StoreSubscriptions$SubscriptionsState$Loaded;
-import com.discord.stores.StoreSubscriptions$SubscriptionsState$Loading;
+import com.discord.stores.StoreSubscriptions;
 import d0.z.d.m;
 import d0.z.d.o;
 import kotlin.Unit;
@@ -12,7 +10,7 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: GuildBoostUncancelViewModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class i extends o implements Function1<k$b, Unit> {
+public final class i extends o implements Function1<k.b, Unit> {
     public final /* synthetic */ k this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -22,24 +20,24 @@ public final class i extends o implements Function1<k$b, Unit> {
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public Unit invoke(k$b k_b) {
-        Object k_c_a;
-        k$b k_b2 = k_b;
-        m.checkNotNullParameter(k_b2, "storeState");
+    public Unit invoke(k.b bVar) {
+        Object aVar;
+        k.b bVar2 = bVar;
+        m.checkNotNullParameter(bVar2, "storeState");
         k kVar = this.this$0;
-        if (!(kVar.getViewState() instanceof k$c$d) && !(kVar.getViewState() instanceof k$c$a)) {
-            StoreSubscriptions$SubscriptionsState storeSubscriptions$SubscriptionsState = k_b2.a;
-            if (storeSubscriptions$SubscriptionsState instanceof StoreSubscriptions$SubscriptionsState$Loading) {
-                k_c_a = k$c$c.a;
-            } else if (storeSubscriptions$SubscriptionsState instanceof StoreSubscriptions$SubscriptionsState$Failure) {
-                k_c_a = new k$c$a(2131894091);
-            } else if (storeSubscriptions$SubscriptionsState instanceof StoreSubscriptions$SubscriptionsState$Loaded) {
-                ModelSubscription premiumSubscription = ((StoreSubscriptions$SubscriptionsState$Loaded) storeSubscriptions$SubscriptionsState).getPremiumSubscription();
-                k_c_a = premiumSubscription == null ? new k$c$a(2131894091) : new k$c$b(premiumSubscription, false, false);
+        if (!(kVar.getViewState() instanceof k.c.d) && !(kVar.getViewState() instanceof k.c.a)) {
+            StoreSubscriptions.SubscriptionsState subscriptionsState = bVar2.a;
+            if (subscriptionsState instanceof StoreSubscriptions.SubscriptionsState.Loading) {
+                aVar = k.c.C0013c.a;
+            } else if (subscriptionsState instanceof StoreSubscriptions.SubscriptionsState.Failure) {
+                aVar = new k.c.a(Integer.valueOf(R.string.premium_guild_subscription_cancel_error_mobile));
+            } else if (subscriptionsState instanceof StoreSubscriptions.SubscriptionsState.Loaded) {
+                ModelSubscription premiumSubscription = ((StoreSubscriptions.SubscriptionsState.Loaded) subscriptionsState).getPremiumSubscription();
+                aVar = premiumSubscription == null ? new k.c.a(Integer.valueOf(R.string.premium_guild_subscription_cancel_error_mobile)) : new k.c.b(premiumSubscription, false, false);
             } else {
-                k_c_a = new k$c$a(null, 1);
+                aVar = new k.c.a(null, 1);
             }
-            kVar.updateViewState(k_c_a);
+            kVar.updateViewState(aVar);
         }
         return Unit.a;
     }

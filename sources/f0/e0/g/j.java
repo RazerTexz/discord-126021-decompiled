@@ -6,10 +6,8 @@ import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.widgets.chat.input.MentionUtilsKt;
 import d0.t.u;
 import f0.c0;
-import f0.e0.i.b$d;
 import f0.e0.j.o;
 import f0.e0.j.s;
-import f0.e0.k.h$a;
 import f0.t;
 import f0.v;
 import f0.w;
@@ -24,7 +22,6 @@ import java.net.ConnectException;
 import java.net.InetSocketAddress;
 import java.net.ProtocolException;
 import java.net.Proxy;
-import java.net.Proxy$Type;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
@@ -50,18 +47,14 @@ import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import kotlin.TypeCastException;
 import okhttp3.Headers;
-import okhttp3.Headers$a;
-import okhttp3.Headers$b;
 import okhttp3.Request;
-import okhttp3.Request$a;
 import okhttp3.Response;
-import okhttp3.Response$a;
 import okhttp3.internal.connection.RouteException;
 import okio.BufferedSink;
 
 /* JADX INFO: compiled from: RealConnection.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class j extends f0.e0.j.e$c implements f0.k {
+public final class j extends f0.e0.j.e.c implements f0.k {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public Socket f3620b;
@@ -90,14 +83,14 @@ public final class j extends f0.e0.j.e$c implements f0.k {
         this.p = RecyclerView.FOREVER_NS;
     }
 
-    @Override // f0.e0.j.e$c
+    @Override // f0.e0.j.e.c
     public synchronized void a(f0.e0.j.e eVar, s sVar) {
         d0.z.d.m.checkParameterIsNotNull(eVar, "connection");
         d0.z.d.m.checkParameterIsNotNull(sVar, "settings");
         this.n = (sVar.a & 16) != 0 ? sVar.f3647b[4] : Integer.MAX_VALUE;
     }
 
-    @Override // f0.e0.j.e$c
+    @Override // f0.e0.j.e.c
     public void b(f0.e0.j.n nVar) throws IOException {
         d0.z.d.m.checkParameterIsNotNull(nVar, "stream");
         nVar.c(f0.e0.j.a.REFUSED_STREAM, null);
@@ -129,7 +122,7 @@ public final class j extends f0.e0.j.e$c implements f0.k {
                 throw new RouteException(new UnknownServiceException("CLEARTEXT communication not enabled for client"));
             }
             String str = this.q.a.a.g;
-            h$a h_a = f0.e0.k.h.c;
+            f0.e0.k.h.a aVar2 = f0.e0.k.h.c;
             if (!f0.e0.k.h.a.h(str)) {
                 throw new RouteException(new UnknownServiceException(b.d.b.a.a.y("CLEARTEXT communication to ", str, " not permitted by network security policy")));
             }
@@ -262,7 +255,7 @@ public final class j extends f0.e0.j.e$c implements f0.k {
         d0.z.d.m.checkParameterIsNotNull(xVar, "client");
         d0.z.d.m.checkParameterIsNotNull(c0Var, "failedRoute");
         d0.z.d.m.checkParameterIsNotNull(iOException, "failure");
-        if (c0Var.f3603b.type() != Proxy$Type.DIRECT) {
+        if (c0Var.f3603b.type() != Proxy.Type.DIRECT) {
             f0.a aVar = c0Var.a;
             aVar.k.connectFailed(aVar.a.i(), c0Var.f3603b.address(), iOException);
         }
@@ -279,8 +272,8 @@ public final class j extends f0.e0.j.e$c implements f0.k {
         c0 c0Var = this.q;
         Proxy proxy = c0Var.f3603b;
         f0.a aVar = c0Var.a;
-        Proxy$Type proxy$TypeType = proxy.type();
-        if (proxy$TypeType != null && ((i3 = f.a[proxy$TypeType.ordinal()]) == 1 || i3 == 2)) {
+        Proxy.Type type = proxy.type();
+        if (type != null && ((i3 = f.a[type.ordinal()]) == 1 || i3 == 2)) {
             socket = aVar.e.createSocket();
             if (socket == null) {
                 d0.z.d.m.throwNpe();
@@ -296,7 +289,7 @@ public final class j extends f0.e0.j.e$c implements f0.k {
         d0.z.d.m.checkParameterIsNotNull(proxy, "proxy");
         socket.setSoTimeout(i2);
         try {
-            h$a h_a = f0.e0.k.h.c;
+            f0.e0.k.h.a aVar2 = f0.e0.k.h.c;
             f0.e0.k.h.a.e(socket, this.q.c, i);
             try {
                 g0.x xVarD1 = b.i.a.f.e.o.f.d1(socket);
@@ -320,35 +313,35 @@ public final class j extends f0.e0.j.e$c implements f0.k {
     }
 
     public final void f(int i, int i2, int i3, f0.e eVar, t tVar) throws IOException {
-        Request$a request$a = new Request$a();
-        request$a.g(this.q.a.a);
+        Request.a aVar = new Request.a();
+        aVar.g(this.q.a.a);
         x xVar = null;
-        request$a.c("CONNECT", null);
+        aVar.c("CONNECT", null);
         boolean z2 = true;
-        request$a.b("Host", f0.e0.c.y(this.q.a.a, true));
-        request$a.b("Proxy-Connection", "Keep-Alive");
-        request$a.b("User-Agent", "okhttp/4.8.0");
-        Request requestA = request$a.a();
-        Response$a response$a = new Response$a();
-        response$a.g(requestA);
-        response$a.f(y.HTTP_1_1);
-        response$a.c = 407;
-        response$a.e("Preemptive Authenticate");
-        response$a.g = f0.e0.c.c;
-        response$a.k = -1L;
-        response$a.l = -1L;
+        aVar.b("Host", f0.e0.c.y(this.q.a.a, true));
+        aVar.b("Proxy-Connection", "Keep-Alive");
+        aVar.b("User-Agent", "okhttp/4.8.0");
+        Request requestA = aVar.a();
+        Response.a aVar2 = new Response.a();
+        aVar2.g(requestA);
+        aVar2.f(y.HTTP_1_1);
+        aVar2.c = 407;
+        aVar2.e("Preemptive Authenticate");
+        aVar2.g = f0.e0.c.c;
+        aVar2.k = -1L;
+        aVar2.l = -1L;
         d0.z.d.m.checkParameterIsNotNull("Proxy-Authenticate", ModelAuditLogEntry.CHANGE_KEY_NAME);
         d0.z.d.m.checkParameterIsNotNull("OkHttp-Preemptive", "value");
-        Headers$a headers$a = response$a.f;
-        Objects.requireNonNull(headers$a);
+        Headers.a aVar3 = aVar2.f;
+        Objects.requireNonNull(aVar3);
         d0.z.d.m.checkParameterIsNotNull("Proxy-Authenticate", ModelAuditLogEntry.CHANGE_KEY_NAME);
         d0.z.d.m.checkParameterIsNotNull("OkHttp-Preemptive", "value");
-        Headers$b headers$b = Headers.j;
-        headers$b.a("Proxy-Authenticate");
-        headers$b.b("OkHttp-Preemptive", "Proxy-Authenticate");
-        headers$a.d("Proxy-Authenticate");
-        headers$a.b("Proxy-Authenticate", "OkHttp-Preemptive");
-        Response responseA = response$a.a();
+        Headers.Companion companion = Headers.INSTANCE;
+        companion.a("Proxy-Authenticate");
+        companion.b("OkHttp-Preemptive", "Proxy-Authenticate");
+        aVar3.d("Proxy-Authenticate");
+        aVar3.b("Proxy-Authenticate", "OkHttp-Preemptive");
+        Response responseA = aVar2.a();
         c0 c0Var = this.q;
         Request requestA2 = c0Var.a.i.a(c0Var, responseA);
         if (requestA2 != null) {
@@ -374,18 +367,18 @@ public final class j extends f0.e0.j.e$c implements f0.k {
                 bufferedSink.timeout().g(i3, timeUnit);
                 bVar.k(requestA.headers, str);
                 bVar.g.flush();
-                Response$a response$aD = bVar.d(false);
-                if (response$aD == null) {
+                Response.a aVarD = bVar.d(false);
+                if (aVarD == null) {
                     d0.z.d.m.throwNpe();
                 }
-                response$aD.g(requestA);
-                Response responseA2 = response$aD.a();
+                aVarD.g(requestA);
+                Response responseA2 = aVarD.a();
                 d0.z.d.m.checkParameterIsNotNull(responseA2, "response");
                 long jL = f0.e0.c.l(responseA2);
                 if (jL != -1) {
                     g0.x xVarJ = bVar.j(jL);
                     f0.e0.c.v(xVarJ, Integer.MAX_VALUE, timeUnit);
-                    ((b$d) xVarJ).close();
+                    ((f0.e0.i.b.d) xVarJ).close();
                 }
                 int i5 = responseA2.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_CODE java.lang.String;
                 if (i5 == 200) {
@@ -468,7 +461,7 @@ public final class j extends f0.e0.j.e$c implements f0.k {
                 th = th;
                 sSLSocket = null;
                 if (sSLSocket != null) {
-                    h$a h_a = f0.e0.k.h.c;
+                    f0.e0.k.h.a aVar3 = f0.e0.k.h.c;
                     f0.e0.k.h.a.a(sSLSocket);
                 }
                 if (sSLSocket != null) {
@@ -487,7 +480,7 @@ public final class j extends f0.e0.j.e$c implements f0.k {
         try {
             f0.m mVarA = bVar.a(sSLSocket);
             if (mVarA.f) {
-                h$a h_a2 = f0.e0.k.h.c;
+                f0.e0.k.h.a aVar4 = f0.e0.k.h.c;
                 f0.e0.k.h.a.d(sSLSocket, aVar2.a.g, aVar2.f3601b);
             }
             sSLSocket.startHandshake();
@@ -506,7 +499,7 @@ public final class j extends f0.e0.j.e$c implements f0.k {
                 this.d = new v(vVarA.f3680b, vVarA.c, vVarA.d, new g(gVar, vVarA, aVar2));
                 gVar.a(aVar2.a.g, new h(this));
                 if (mVarA.f) {
-                    h$a h_a3 = f0.e0.k.h.c;
+                    f0.e0.k.h.a aVar5 = f0.e0.k.h.c;
                     strF = f0.e0.k.h.a.f(sSLSocket);
                 } else {
                     strF = null;
@@ -522,7 +515,7 @@ public final class j extends f0.e0.j.e$c implements f0.k {
                     yVarA = y.q.a(strF);
                 }
                 this.e = yVarA;
-                h$a h_a4 = f0.e0.k.h.c;
+                f0.e0.k.h.a aVar6 = f0.e0.k.h.c;
                 f0.e0.k.h.a.a(sSLSocket);
                 d0.z.d.m.checkParameterIsNotNull(eVar, NotificationCompat.CATEGORY_CALL);
                 if (this.e == y.HTTP_2) {
@@ -558,7 +551,7 @@ public final class j extends f0.e0.j.e$c implements f0.k {
         } catch (Throwable th2) {
             th = th2;
             if (sSLSocket != null) {
-                h$a h_a5 = f0.e0.k.h.c;
+                f0.e0.k.h.a aVar7 = f0.e0.k.h.c;
                 f0.e0.k.h.a.a(sSLSocket);
             }
             if (sSLSocket != null) {
@@ -591,7 +584,7 @@ public final class j extends f0.e0.j.e$c implements f0.k {
                         break;
                     }
                     c0 c0Var = (c0) it.next();
-                    if (c0Var.f3603b.type() == Proxy$Type.DIRECT && this.q.f3603b.type() == Proxy$Type.DIRECT && d0.z.d.m.areEqual(this.q.c, c0Var.c)) {
+                    if (c0Var.f3603b.type() == Proxy.Type.DIRECT && this.q.f3603b.type() == Proxy.Type.DIRECT && d0.z.d.m.areEqual(this.q.c, c0Var.c)) {
                         z2 = true;
                         break;
                     }
@@ -782,25 +775,25 @@ public final class j extends f0.e0.j.e$c implements f0.k {
         }
         socket.setSoTimeout(0);
         f0.e0.f.d dVar = f0.e0.f.d.a;
-        f0.e0.j.e$b e_b = new f0.e0.j.e$b(true, dVar);
+        f0.e0.j.e.b bVar = new f0.e0.j.e.b(true, dVar);
         String str = this.q.a.a.g;
         d0.z.d.m.checkParameterIsNotNull(socket, "socket");
         d0.z.d.m.checkParameterIsNotNull(str, "peerName");
         d0.z.d.m.checkParameterIsNotNull(gVar, "source");
         d0.z.d.m.checkParameterIsNotNull(bufferedSink, "sink");
-        e_b.a = socket;
-        if (e_b.h) {
+        bVar.a = socket;
+        if (bVar.h) {
             strW = f0.e0.c.g + ' ' + str;
         } else {
             strW = b.d.b.a.a.w("MockWebServer ", str);
         }
-        e_b.f3642b = strW;
-        e_b.c = gVar;
-        e_b.d = bufferedSink;
+        bVar.f3642b = strW;
+        bVar.c = gVar;
+        bVar.d = bufferedSink;
         d0.z.d.m.checkParameterIsNotNull(this, "listener");
-        e_b.e = this;
-        e_b.g = i;
-        f0.e0.j.e eVar = new f0.e0.j.e(e_b);
+        bVar.e = this;
+        bVar.g = i;
+        f0.e0.j.e eVar = new f0.e0.j.e(bVar);
         this.f = eVar;
         f0.e0.j.e eVar2 = f0.e0.j.e.k;
         s sVar = f0.e0.j.e.j;

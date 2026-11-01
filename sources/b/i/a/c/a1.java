@@ -7,7 +7,7 @@ import java.util.Objects;
 /* JADX INFO: loaded from: classes3.dex */
 public final class a1 implements b.i.a.c.f3.s {
     public final b.i.a.c.f3.z j;
-    public final a1$a k;
+    public final a k;
 
     @Nullable
     public f2 l;
@@ -17,8 +17,12 @@ public final class a1 implements b.i.a.c.f3.s {
     public boolean o;
     public boolean n = true;
 
-    public a1(a1$a a1_a, b.i.a.c.f3.g gVar) {
-        this.k = a1_a;
+    /* JADX INFO: compiled from: DefaultMediaClock.java */
+    public interface a {
+    }
+
+    public a1(a aVar, b.i.a.c.f3.g gVar) {
+        this.k = aVar;
         this.j = new b.i.a.c.f3.z(gVar);
     }
 

@@ -2,13 +2,13 @@ package b.i.a.f.h.l;
 
 import android.os.Bundle;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.internal.measurement.zzae;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-base@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class h implements Parcelable$Creator<zzae> {
-    @Override // android.os.Parcelable$Creator
+public final class h implements Parcelable.Creator<zzae> {
+    @Override // android.os.Parcelable.Creator
     public final zzae createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         long jH1 = 0;
@@ -51,7 +51,7 @@ public final class h implements Parcelable$Creator<zzae> {
         return new zzae(jH1, jH2, zE1, strR, strR2, strR3, bundleM);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ zzae[] newArray(int i) {
         return new zzae[i];
     }

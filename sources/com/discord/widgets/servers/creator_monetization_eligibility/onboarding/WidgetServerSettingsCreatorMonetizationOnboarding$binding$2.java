@@ -4,7 +4,7 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetServerSettingsCreatorMonetizationOnboardingBinding;
 import d0.z.d.k;
@@ -28,17 +28,17 @@ public final /* synthetic */ class WidgetServerSettingsCreatorMonetizationOnboar
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetServerSettingsCreatorMonetizationOnboardingBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.error_notice_text;
-        TextView textView = (TextView) view.findViewById(R$id.error_notice_text);
+        int i = R.id.error_notice_text;
+        TextView textView = (TextView) view.findViewById(R.id.error_notice_text);
         if (textView != null) {
-            i = R$id.onboarding_accept_terms;
-            ViewStub viewStub = (ViewStub) view.findViewById(R$id.onboarding_accept_terms);
+            i = R.id.onboarding_accept_terms;
+            ViewStub viewStub = (ViewStub) view.findViewById(R.id.onboarding_accept_terms);
             if (viewStub != null) {
-                i = R$id.onboarding_create_request;
-                ViewStub viewStub2 = (ViewStub) view.findViewById(R$id.onboarding_create_request);
+                i = R.id.onboarding_create_request;
+                ViewStub viewStub2 = (ViewStub) view.findViewById(R.id.onboarding_create_request);
                 if (viewStub2 != null) {
-                    i = R$id.view_flipper;
-                    AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R$id.view_flipper);
+                    i = R.id.view_flipper;
+                    AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R.id.view_flipper);
                     if (appViewFlipper != null) {
                         return new WidgetServerSettingsCreatorMonetizationOnboardingBinding((CoordinatorLayout) view, textView, viewStub, viewStub2, appViewFlipper);
                     }

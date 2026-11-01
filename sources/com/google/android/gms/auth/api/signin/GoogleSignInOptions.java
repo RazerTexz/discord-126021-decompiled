@@ -2,14 +2,14 @@ package com.google.android.gms.auth.api.signin;
 
 import android.accounts.Account;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import android.text.TextUtils;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import b.c.a.a0.d;
 import b.i.a.f.c.a.f.e;
 import b.i.a.f.c.a.f.f;
-import b.i.a.f.e.h.a$d;
 import com.google.android.gms.auth.api.signin.internal.GoogleSignInOptionsExtensionParcelable;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.common.internal.ReflectedParcelable;
@@ -22,14 +22,15 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public class GoogleSignInOptions extends AbstractSafeParcelable implements a$d, ReflectedParcelable {
-    public static final Parcelable$Creator<GoogleSignInOptions> CREATOR;
+public class GoogleSignInOptions extends AbstractSafeParcelable implements b.i.a.f.e.h.a.d, ReflectedParcelable {
+    public static final Parcelable.Creator<GoogleSignInOptions> CREATOR;
     public static final Scope j;
     public static final Scope k;
     public static final Scope l;
@@ -223,5 +224,61 @@ public class GoogleSignInOptions extends AbstractSafeParcelable implements a$d, 
             map.put(Integer.valueOf(googleSignInOptionsExtensionParcelable.k), googleSignInOptionsExtensionParcelable);
         }
         return map;
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
+    public final class a {
+        public Set<Scope> a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public boolean f3001b;
+        public boolean c;
+        public boolean d;
+
+        @Nullable
+        public String e;
+
+        @Nullable
+        public Account f;
+
+        @Nullable
+        public String g;
+        public Map<Integer, GoogleSignInOptionsExtensionParcelable> h;
+
+        @Nullable
+        public String i;
+
+        public a() {
+            this.a = new HashSet();
+            this.h = new HashMap();
+        }
+
+        public final GoogleSignInOptions a() {
+            if (this.a.contains(GoogleSignInOptions.m)) {
+                Set<Scope> set = this.a;
+                Scope scope = GoogleSignInOptions.l;
+                if (set.contains(scope)) {
+                    this.a.remove(scope);
+                }
+            }
+            if (this.d && (this.f == null || !this.a.isEmpty())) {
+                this.a.add(GoogleSignInOptions.k);
+            }
+            return new GoogleSignInOptions(3, new ArrayList(this.a), this.f, this.d, this.f3001b, this.c, this.e, this.g, this.h, this.i);
+        }
+
+        public a(@NonNull GoogleSignInOptions googleSignInOptions) {
+            this.a = new HashSet();
+            this.h = new HashMap();
+            this.a = new HashSet(googleSignInOptions.q);
+            this.f3001b = googleSignInOptions.t;
+            this.c = googleSignInOptions.u;
+            this.d = googleSignInOptions.f2997s;
+            this.e = googleSignInOptions.v;
+            this.f = googleSignInOptions.r;
+            this.g = googleSignInOptions.w;
+            this.h = GoogleSignInOptions.y0(googleSignInOptions.f2998x);
+            this.i = googleSignInOptions.f2999y;
+        }
     }
 }

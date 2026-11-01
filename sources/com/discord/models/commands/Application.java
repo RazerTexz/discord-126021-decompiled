@@ -10,7 +10,9 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: Application.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class Application {
-    public static final Application$Companion Companion = new Application$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final User bot;
     private final boolean builtIn;
     private final int commandCount;
@@ -18,6 +20,21 @@ public final /* data */ class Application {
     private final Integer iconRes;
     private final long id;
     private final String name;
+
+    /* JADX INFO: compiled from: Application.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final Application fromApiApplication(com.discord.api.application.Application apiApplication) {
+            m.checkNotNullParameter(apiApplication, "apiApplication");
+            return new Application(apiApplication.getId(), apiApplication.getName(), apiApplication.getIcon(), null, 0, null, false, 104, null);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public Application(long j, String str, String str2, Integer num, int i, User user, boolean z2) {
         m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);

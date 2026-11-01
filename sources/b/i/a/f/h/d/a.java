@@ -7,27 +7,25 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Looper;
 import android.text.TextUtils;
-import b.i.a.f.e.h.c$a;
-import b.i.a.f.e.h.c$b;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class a extends b.i.a.f.e.k.d<b> {
     public final Bundle A;
 
-    public a(Context context, Looper looper, b.i.a.f.e.k.c cVar, b.i.a.f.c.a.c cVar2, c$a c_a, c$b c_b) {
-        super(context, looper, 16, cVar, c_a, c_b);
+    public a(Context context, Looper looper, b.i.a.f.e.k.c cVar, b.i.a.f.c.a.c cVar2, b.i.a.f.e.h.c.a aVar, b.i.a.f.e.h.c.b bVar) {
+        super(context, looper, 16, cVar, aVar, bVar);
         if (cVar2 != null) {
             throw new NoSuchMethodError();
         }
         this.A = new Bundle();
     }
 
-    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a$f
+    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a.f
     public final int l() {
         return 12451000;
     }
 
-    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a$f
+    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a.f
     public final boolean o() {
         b.i.a.f.e.k.c cVar = this.f1382x;
         Account account = cVar.a;

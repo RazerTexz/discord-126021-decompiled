@@ -22,6 +22,27 @@ public final class a {
     public int f;
     public int g;
 
+    /* JADX INFO: renamed from: b.i.e.m.d.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: Detector.java */
+    public final class C0158a {
+        public final int a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final int f1829b;
+
+        public C0158a(int i, int i2) {
+            this.a = i;
+            this.f1829b = i2;
+        }
+
+        public String toString() {
+            StringBuilder sb = new StringBuilder("<");
+            sb.append(this.a);
+            sb.append(' ');
+            return b.d.b.a.a.A(sb, this.f1829b, '>');
+        }
+    }
+
     public a(b bVar) {
         this.f1828b = bVar;
     }
@@ -221,37 +242,37 @@ public final class a {
             kVar7 = kVar14;
             kVar8 = kVar13;
         }
-        a$a a_a = new a$a(f.Z0((((kVar6.a + kVar5.a) + kVar8.a) + kVar7.a) / 4.0f), f.Z0((((kVar6.f1826b + kVar5.f1826b) + kVar8.f1826b) + kVar7.f1826b) / 4.0f));
+        C0158a c0158a = new C0158a(f.Z0((((kVar6.a + kVar5.a) + kVar8.a) + kVar7.a) / 4.0f), f.Z0((((kVar6.f1826b + kVar5.f1826b) + kVar8.f1826b) + kVar7.f1826b) / 4.0f));
         this.f = 1;
-        a$a a_a2 = a_a;
-        a$a a_a3 = a_a2;
-        a$a a_a4 = a_a3;
+        C0158a c0158a2 = c0158a;
+        C0158a c0158a3 = c0158a2;
+        C0158a c0158a4 = c0158a3;
         boolean z3 = true;
         while (this.f < 9) {
-            a$a a_aE = e(a_a, z3, i5, i4);
-            a$a a_aE2 = e(a_a2, z3, i5, i5);
-            a$a a_aE3 = e(a_a3, z3, i4, i5);
-            a$a a_aE4 = e(a_a4, z3, i4, i4);
+            C0158a c0158aE = e(c0158a, z3, i5, i4);
+            C0158a c0158aE2 = e(c0158a2, z3, i5, i5);
+            C0158a c0158aE3 = e(c0158a3, z3, i4, i5);
+            C0158a c0158aE4 = e(c0158a4, z3, i4, i4);
             if (this.f > i3) {
-                double dR = (f.R(a_aE4.a, a_aE4.f1829b, a_aE.a, a_aE.f1829b) * this.f) / (f.R(a_a4.a, a_a4.f1829b, a_a.a, a_a.f1829b) * (this.f + i3));
+                double dR = (f.R(c0158aE4.a, c0158aE4.f1829b, c0158aE.a, c0158aE.f1829b) * this.f) / (f.R(c0158a4.a, c0158a4.f1829b, c0158a.a, c0158a.f1829b) * (this.f + i3));
                 if (dR < 0.75d || dR > 1.25d) {
                     break;
                 }
-                a$a a_a5 = new a$a(a_aE.a - 3, a_aE.f1829b + 3);
-                a$a a_a6 = new a$a(a_aE2.a - 3, a_aE2.f1829b - 3);
-                a$a a_a7 = new a$a(a_aE3.a + 3, a_aE3.f1829b - 3);
-                a$a a_a8 = new a$a(a_aE4.a + 3, a_aE4.f1829b + 3);
-                int iC = c(a_a8, a_a5);
-                if (!(iC != 0 && c(a_a5, a_a6) == iC && c(a_a6, a_a7) == iC && c(a_a7, a_a8) == iC)) {
+                C0158a c0158a5 = new C0158a(c0158aE.a - 3, c0158aE.f1829b + 3);
+                C0158a c0158a6 = new C0158a(c0158aE2.a - 3, c0158aE2.f1829b - 3);
+                C0158a c0158a7 = new C0158a(c0158aE3.a + 3, c0158aE3.f1829b - 3);
+                C0158a c0158a8 = new C0158a(c0158aE4.a + 3, c0158aE4.f1829b + 3);
+                int iC = c(c0158a8, c0158a5);
+                if (!(iC != 0 && c(c0158a5, c0158a6) == iC && c(c0158a6, c0158a7) == iC && c(c0158a7, c0158a8) == iC)) {
                     break;
                 }
             }
             z3 = !z3;
             this.f++;
-            a_a4 = a_aE4;
-            a_a2 = a_aE2;
-            a_a3 = a_aE3;
-            a_a = a_aE;
+            c0158a4 = c0158aE4;
+            c0158a2 = c0158aE2;
+            c0158a3 = c0158aE3;
+            c0158a = c0158aE;
             i3 = 2;
             i4 = -1;
             i5 = 1;
@@ -262,7 +283,7 @@ public final class a {
         }
         this.c = i48 == 5;
         int i49 = i48 * 2;
-        k[] kVarArrB3 = b(new k[]{new k(a_a.a + 0.5f, a_a.f1829b - 0.5f), new k(a_a2.a + 0.5f, a_a2.f1829b + 0.5f), new k(a_a3.a - 0.5f, a_a3.f1829b + 0.5f), new k(a_a4.a - 0.5f, a_a4.f1829b - 0.5f)}, i49 - 3, i49);
+        k[] kVarArrB3 = b(new k[]{new k(c0158a.a + 0.5f, c0158a.f1829b - 0.5f), new k(c0158a2.a + 0.5f, c0158a2.f1829b + 0.5f), new k(c0158a3.a - 0.5f, c0158a3.f1829b + 0.5f), new k(c0158a4.a - 0.5f, c0158a4.f1829b - 0.5f)}, i49 - 3, i49);
         if (z2) {
             k kVar15 = kVarArrB3[0];
             kVarArrB3[0] = kVarArrB3[2];
@@ -364,13 +385,13 @@ public final class a {
         return new k[]{kVar, new k(f10 + f12, f11 + f13), kVar2, new k(f10 - f12, f11 - f13)};
     }
 
-    public final int c(a$a a_a, a$a a_a2) {
-        float fR = f.R(a_a.a, a_a.f1829b, a_a2.a, a_a2.f1829b);
-        int i = a_a2.a;
-        int i2 = a_a.a;
+    public final int c(C0158a c0158a, C0158a c0158a2) {
+        float fR = f.R(c0158a.a, c0158a.f1829b, c0158a2.a, c0158a2.f1829b);
+        int i = c0158a2.a;
+        int i2 = c0158a.a;
         float f = (i - i2) / fR;
-        int i3 = a_a2.f1829b;
-        int i4 = a_a.f1829b;
+        int i3 = c0158a2.f1829b;
+        int i4 = c0158a.f1829b;
         float f2 = (i3 - i4) / fR;
         float f3 = i2;
         float f4 = i4;
@@ -402,9 +423,9 @@ public final class a {
         return ((((i - 4) / 8) + 1) * 2) + (i * 4) + 15;
     }
 
-    public final a$a e(a$a a_a, boolean z2, int i, int i2) {
-        int i3 = a_a.a + i;
-        int i4 = a_a.f1829b;
+    public final C0158a e(C0158a c0158a, boolean z2, int i, int i2) {
+        int i3 = c0158a.a + i;
+        int i4 = c0158a.f1829b;
         while (true) {
             i4 += i2;
             if (!f(i3, i4) || this.f1828b.f(i3, i4) != z2) {
@@ -421,7 +442,7 @@ public final class a {
         while (f(i7, i6) && this.f1828b.f(i7, i6) == z2) {
             i6 += i2;
         }
-        return new a$a(i7, i6 - i2);
+        return new C0158a(i7, i6 - i2);
     }
 
     public final boolean f(int i, int i2) {

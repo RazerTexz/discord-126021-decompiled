@@ -3,8 +3,6 @@ package b.i.a.c.x2.k0;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import b.i.a.c.j1;
-import b.i.a.c.j1$b;
-import b.i.a.c.t2.l$b;
 import com.google.android.exoplayer2.ParserException;
 import java.util.Arrays;
 import java.util.Collections;
@@ -240,16 +238,16 @@ public final class k implements o {
                                 int iG4 = this.c.g(3);
                                 int i18 = this.o;
                                 byte[] bArr4 = {(byte) (((iG3 << 3) & 248) | ((i18 >> 1) & 7)), (byte) (((i18 << 7) & 128) | ((iG4 << 3) & 120))};
-                                l$b l_bB = b.i.a.c.t2.l.b(new b.i.a.c.f3.w(bArr4), false);
-                                j1$b j1_b = new j1$b();
-                                j1_b.a = this.f;
-                                j1_b.k = "audio/mp4a-latm";
-                                j1_b.h = l_bB.c;
-                                j1_b.f1023x = l_bB.f1122b;
-                                j1_b.f1024y = l_bB.a;
-                                j1_b.m = Collections.singletonList(bArr4);
-                                j1_b.c = this.e;
-                                j1 j1VarA = j1_b.a();
+                                b.i.a.c.t2.l.b bVarB = b.i.a.c.t2.l.b(new b.i.a.c.f3.w(bArr4), false);
+                                j1.b bVar = new j1.b();
+                                bVar.a = this.f;
+                                bVar.k = "audio/mp4a-latm";
+                                bVar.h = bVarB.c;
+                                bVar.f1023x = bVarB.f1122b;
+                                bVar.f1024y = bVarB.a;
+                                bVar.m = Collections.singletonList(bArr4);
+                                bVar.c = this.e;
+                                j1 j1VarA = bVar.a();
                                 this.r = 1024000000 / ((long) j1VarA.K);
                                 this.g.e(j1VarA);
                                 this.q = true;
@@ -330,23 +328,23 @@ public final class k implements o {
     }
 
     @Override // b.i.a.c.x2.k0.o
-    public void e(b.i.a.c.x2.j jVar, i0$d i0_d) {
-        i0_d.a();
-        this.f = i0_d.b();
-        b.i.a.c.x2.w wVarP = jVar.p(i0_d.c(), 1);
+    public void e(b.i.a.c.x2.j jVar, i0.d dVar) {
+        dVar.a();
+        this.f = dVar.b();
+        b.i.a.c.x2.w wVarP = jVar.p(dVar.c(), 1);
         this.g = wVarP;
         this.u = wVarP;
         if (!this.f1262b) {
             this.h = new b.i.a.c.x2.g();
             return;
         }
-        i0_d.a();
-        b.i.a.c.x2.w wVarP2 = jVar.p(i0_d.c(), 5);
+        dVar.a();
+        b.i.a.c.x2.w wVarP2 = jVar.p(dVar.c(), 5);
         this.h = wVarP2;
-        j1$b j1_b = new j1$b();
-        j1_b.a = i0_d.b();
-        j1_b.k = "application/id3";
-        wVarP2.e(j1_b.a());
+        j1.b bVar = new j1.b();
+        bVar.a = dVar.b();
+        bVar.k = "application/id3";
+        wVarP2.e(bVar.a());
     }
 
     @Override // b.i.a.c.x2.k0.o

@@ -1,8 +1,12 @@
 package d0.e0.p.d.m0.c.g1;
 
+import d0.e0.p.d.m0.c.c0;
 import d0.e0.p.d.m0.k.v.w;
-import d0.o;
+import d0.e0.p.d.m0.n.j0;
+import d0.e0.p.d.m0.n.j1;
 import d0.t.h0;
+import d0.z.d.o;
+import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: annotationUtil.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -14,6 +18,30 @@ public final class f {
     public static final d0.e0.p.d.m0.g.e c;
     public static final d0.e0.p.d.m0.g.e d;
     public static final d0.e0.p.d.m0.g.e e;
+
+    /* JADX INFO: compiled from: annotationUtil.kt */
+    public final class a extends o implements Function1<c0, d0.e0.p.d.m0.n.c0> {
+        public final /* synthetic */ d0.e0.p.d.m0.b.h $this_createDeprecatedAnnotation;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(d0.e0.p.d.m0.b.h hVar) {
+            super(1);
+            this.$this_createDeprecatedAnnotation = hVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ d0.e0.p.d.m0.n.c0 invoke(c0 c0Var) {
+            return invoke2(c0Var);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final d0.e0.p.d.m0.n.c0 invoke2(c0 c0Var) {
+            d0.z.d.m.checkNotNullParameter(c0Var, "module");
+            j0 arrayType = c0Var.getBuiltIns().getArrayType(j1.INVARIANT, this.$this_createDeprecatedAnnotation.getStringType());
+            d0.z.d.m.checkNotNullExpressionValue(arrayType, "module.builtIns.getArrayType(Variance.INVARIANT, stringType)");
+            return arrayType;
+        }
+    }
 
     static {
         d0.e0.p.d.m0.g.e eVarIdentifier = d0.e0.p.d.m0.g.e.identifier("message");
@@ -48,13 +76,13 @@ public final class f {
         d0.z.d.m.checkNotNullParameter(str, "message");
         d0.z.d.m.checkNotNullParameter(str2, "replaceWith");
         d0.z.d.m.checkNotNullParameter(str3, "level");
-        j jVar = new j(hVar, d0.e0.p.d.m0.b.k$a.w, h0.mapOf(o.to(d, new w(str2)), o.to(e, new d0.e0.p.d.m0.k.v.b(d0.t.n.emptyList(), new f$a(hVar)))));
-        d0.e0.p.d.m0.g.b bVar = d0.e0.p.d.m0.b.k$a.u;
+        j jVar = new j(hVar, d0.e0.p.d.m0.b.k.a.w, h0.mapOf(d0.o.to(d, new w(str2)), d0.o.to(e, new d0.e0.p.d.m0.k.v.b(d0.t.n.emptyList(), new a(hVar)))));
+        d0.e0.p.d.m0.g.b bVar = d0.e0.p.d.m0.b.k.a.u;
         d0.e0.p.d.m0.g.e eVar = c;
-        d0.e0.p.d.m0.g.a aVar = d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k$a.v);
+        d0.e0.p.d.m0.g.a aVar = d0.e0.p.d.m0.g.a.topLevel(d0.e0.p.d.m0.b.k.a.v);
         d0.z.d.m.checkNotNullExpressionValue(aVar, "topLevel(StandardNames.FqNames.deprecationLevel)");
         d0.e0.p.d.m0.g.e eVarIdentifier = d0.e0.p.d.m0.g.e.identifier(str3);
         d0.z.d.m.checkNotNullExpressionValue(eVarIdentifier, "identifier(level)");
-        return new j(hVar, bVar, h0.mapOf(o.to(a, new w(str)), o.to(f3250b, new d0.e0.p.d.m0.k.v.a(jVar)), o.to(eVar, new d0.e0.p.d.m0.k.v.j(aVar, eVarIdentifier))));
+        return new j(hVar, bVar, h0.mapOf(d0.o.to(a, new w(str)), d0.o.to(f3250b, new d0.e0.p.d.m0.k.v.a(jVar)), d0.o.to(eVar, new d0.e0.p.d.m0.k.v.j(aVar, eVarIdentifier))));
     }
 }

@@ -1,7 +1,6 @@
 package d0.e0.p.d.m0.l.b;
 
 import d0.e0.p.d.m0.c.d0;
-import d0.e0.p.d.m0.f.b$b$c;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -60,16 +59,16 @@ public final class d implements c<d0.e0.p.d.m0.c.g1.c, d0.e0.p.d.m0.k.v.g<?>> {
     }
 
     @Override // d0.e0.p.d.m0.l.b.c
-    public List<d0.e0.p.d.m0.c.g1.c> loadClassAnnotations(y$a y_a) {
-        d0.z.d.m.checkNotNullParameter(y_a, "container");
-        List listEmptyList = (List) y_a.getClassProto().getExtension(this.a.getClassAnnotation());
+    public List<d0.e0.p.d.m0.c.g1.c> loadClassAnnotations(y.a aVar) {
+        d0.z.d.m.checkNotNullParameter(aVar, "container");
+        List listEmptyList = (List) aVar.getClassProto().getExtension(this.a.getClassAnnotation());
         if (listEmptyList == null) {
             listEmptyList = d0.t.n.emptyList();
         }
         ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(listEmptyList, 10));
         Iterator it = listEmptyList.iterator();
         while (it.hasNext()) {
-            arrayList.add(this.f3484b.deserializeAnnotation((d0.e0.p.d.m0.f.b) it.next(), y_a.getNameResolver()));
+            arrayList.add(this.f3484b.deserializeAnnotation((d0.e0.p.d.m0.f.b) it.next(), aVar.getNameResolver()));
         }
         return arrayList;
     }
@@ -173,10 +172,10 @@ public final class d implements c<d0.e0.p.d.m0.c.g1.c, d0.e0.p.d.m0.k.v.g<?>> {
         d0.z.d.m.checkNotNullParameter(yVar, "container");
         d0.z.d.m.checkNotNullParameter(nVar, "proto");
         d0.z.d.m.checkNotNullParameter(c0Var, "expectedType");
-        b$b$c b_b_c = (b$b$c) d0.e0.p.d.m0.f.z.e.getExtensionOrNull(nVar, this.a.getCompileTimeValue());
-        if (b_b_c == null) {
+        d0.e0.p.d.m0.f.b.C0546b.c cVar = (d0.e0.p.d.m0.f.b.C0546b.c) d0.e0.p.d.m0.f.z.e.getExtensionOrNull(nVar, this.a.getCompileTimeValue());
+        if (cVar == null) {
             return null;
         }
-        return this.f3484b.resolveValue(c0Var, b_b_c, yVar.getNameResolver());
+        return this.f3484b.resolveValue(c0Var, cVar, yVar.getNameResolver());
     }
 }

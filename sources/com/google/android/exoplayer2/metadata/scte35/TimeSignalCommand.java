@@ -1,14 +1,26 @@
 package com.google.android.exoplayer2.metadata.scte35;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import b.i.a.c.f3.x;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class TimeSignalCommand extends SpliceCommand {
     public final long j;
     public final long k;
-    public static final Parcelable$Creator<TimeSignalCommand> CREATOR = new TimeSignalCommand$a();
+    public static final Parcelable.Creator<TimeSignalCommand> CREATOR = new a();
+
+    public class a implements Parcelable.Creator<TimeSignalCommand> {
+        @Override // android.os.Parcelable.Creator
+        public TimeSignalCommand createFromParcel(Parcel parcel) {
+            return new TimeSignalCommand(parcel.readLong(), parcel.readLong(), null);
+        }
+
+        @Override // android.os.Parcelable.Creator
+        public TimeSignalCommand[] newArray(int i) {
+            return new TimeSignalCommand[i];
+        }
+    }
 
     public TimeSignalCommand(long j, long j2) {
         this.j = j;
@@ -29,7 +41,7 @@ public final class TimeSignalCommand extends SpliceCommand {
         parcel.writeLong(this.k);
     }
 
-    public TimeSignalCommand(long j, long j2, TimeSignalCommand$a timeSignalCommand$a) {
+    public TimeSignalCommand(long j, long j2, a aVar) {
         this.j = j;
         this.k = j2;
     }

@@ -1,6 +1,8 @@
 package com.discord.widgets.channels.list;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.exifinterface.media.ExifInterface;
@@ -8,16 +10,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.thread.ThreadMetadata;
 import com.discord.app.AppBottomSheet;
 import com.discord.databinding.WidgetThreadArchiveActionsSheetBinding;
-import com.discord.restapi.RestAPIParams$ThreadSettings;
-import com.discord.utilities.analytics.Traits$Location;
-import com.discord.utilities.analytics.Traits$Location$Obj;
-import com.discord.utilities.analytics.Traits$Location$Page;
-import com.discord.utilities.analytics.Traits$Location$Section;
+import com.discord.models.guild.Guild;
+import com.discord.restapi.RestAPIParams;
+import com.discord.stores.StoreStream;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.threads.ThreadUtils;
@@ -25,22 +26,303 @@ import com.discord.utilities.time.TimeUtils;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.google.android.material.radiobutton.MaterialRadioButton;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
+import rx.Observable;
 import rx.subscriptions.CompositeSubscription;
 
 /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetThreadArchiveActions extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetThreadArchiveActions.class, "binding", "getBinding()Lcom/discord/databinding/WidgetThreadArchiveActionsSheetBinding;", 0)};
-    public static final WidgetThreadArchiveActions$Companion Companion = new WidgetThreadArchiveActions$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final String INTENT_EXTRA_CHANNEL_ID = "INTENT_EXTRA_CHANNEL_ID";
     private static final String INTENT_EXTRA_GUILD_ID = "INTENT_EXTRA_GUILD_ID";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetThreadArchiveActions$archiveThread$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
+    public final class AnonymousClass1 extends o implements Function1<Channel, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
+            invoke2(channel);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Channel channel) {
+            m.checkNotNullParameter(channel, "it");
+            WidgetThreadArchiveActions.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetThreadArchiveActions$bindSubscriptions$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<Model, Unit> {
+        public AnonymousClass1(WidgetThreadArchiveActions widgetThreadArchiveActions) {
+            super(1, widgetThreadArchiveActions, WidgetThreadArchiveActions.class, "configureUI", "configureUI(Lcom/discord/widgets/channels/list/WidgetThreadArchiveActions$Model;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            WidgetThreadArchiveActions.access$configureUI((WidgetThreadArchiveActions) this.receiver, model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetThreadArchiveActions$configureUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ Channel $channel;
+        public final /* synthetic */ Model $model;
+
+        public AnonymousClass1(Channel channel, Model model) {
+            this.$channel = channel;
+            this.$model = model;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetThreadArchiveActions.access$archiveThread(WidgetThreadArchiveActions.this, this.$channel, this.$model.isModerator());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetThreadArchiveActions$setAutoArchiveDuration$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
+    public final class AnonymousClass1 extends o implements Function1<Channel, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
+            invoke2(channel);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Channel channel) {
+            m.checkNotNullParameter(channel, "it");
+            WidgetThreadArchiveActions.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetThreadArchiveActions$configureUI$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ Channel $channel;
+
+        public AnonymousClass2(Channel channel) {
+            this.$channel = channel;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetThreadArchiveActions.access$setAutoArchiveDuration(WidgetThreadArchiveActions.this, this.$channel, 60);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetThreadArchiveActions$configureUI$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public final /* synthetic */ Channel $channel;
+
+        public AnonymousClass3(Channel channel) {
+            this.$channel = channel;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetThreadArchiveActions.access$setAutoArchiveDuration(WidgetThreadArchiveActions.this, this.$channel, 1440);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetThreadArchiveActions$configureUI$4, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
+    public final class AnonymousClass4 implements View.OnClickListener {
+        public final /* synthetic */ Channel $channel;
+
+        public AnonymousClass4(Channel channel) {
+            this.$channel = channel;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetThreadArchiveActions.access$setAutoArchiveDuration(WidgetThreadArchiveActions.this, this.$channel, ThreadUtils.ThreadArchiveDurations.THREE_DAYS_IN_MINUTES);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.list.WidgetThreadArchiveActions$configureUI$5, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
+    public final class AnonymousClass5 implements View.OnClickListener {
+        public final /* synthetic */ Channel $channel;
+
+        public AnonymousClass5(Channel channel) {
+            this.$channel = channel;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            WidgetThreadArchiveActions.access$setAutoArchiveDuration(WidgetThreadArchiveActions.this, this.$channel, ThreadUtils.ThreadArchiveDurations.SEVEN_DAYS_IN_MINUTES);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, long channelId, long guildId) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            WidgetThreadArchiveActions widgetThreadArchiveActions = new WidgetThreadArchiveActions();
+            Bundle bundleT = a.T(WidgetThreadArchiveActions.INTENT_EXTRA_CHANNEL_ID, channelId);
+            bundleT.putLong("INTENT_EXTRA_GUILD_ID", guildId);
+            widgetThreadArchiveActions.setArguments(bundleT);
+            widgetThreadArchiveActions.show(fragmentManager, WidgetThreadArchiveActions.class.getName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
+    public final /* data */ class Model {
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
+        private final Channel channel;
+        private final Guild guild;
+        private final boolean isModerator;
+
+        /* JADX INFO: compiled from: WidgetThreadArchiveActions.kt */
+        public final class Companion {
+            private Companion() {
+            }
+
+            public final Observable<Model> get(long channelId, long guildId) {
+                StoreStream.Companion companion = StoreStream.INSTANCE;
+                Observable observableI = Observable.i(companion.getChannels().observeChannel(channelId), companion.getGuilds().observeGuild(guildId), companion.getPermissions().observePermissionsForChannel(channelId), WidgetThreadArchiveActions$Model$Companion$get$1.INSTANCE);
+                m.checkNotNullExpressionValue(observableI, "Observable.combineLatest…            }\n          }");
+                Observable<Model> observableR = ObservableExtensionsKt.computationLatest(observableI).r();
+                m.checkNotNullExpressionValue(observableR, "Observable.combineLatest…  .distinctUntilChanged()");
+                return observableR;
+            }
+
+            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+                this();
+            }
+        }
+
+        public Model(Channel channel, Guild guild, boolean z2) {
+            m.checkNotNullParameter(channel, "channel");
+            this.channel = channel;
+            this.guild = guild;
+            this.isModerator = z2;
+        }
+
+        public static /* synthetic */ Model copy$default(Model model, Channel channel, Guild guild, boolean z2, int i, Object obj) {
+            if ((i & 1) != 0) {
+                channel = model.channel;
+            }
+            if ((i & 2) != 0) {
+                guild = model.guild;
+            }
+            if ((i & 4) != 0) {
+                z2 = model.isModerator;
+            }
+            return model.copy(channel, guild, z2);
+        }
+
+        public final Model copy(Channel channel, Guild guild, boolean isModerator) {
+            m.checkNotNullParameter(channel, "channel");
+            return new Model(channel, guild, isModerator);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof Model)) {
+                return false;
+            }
+            Model model = (Model) other;
+            return m.areEqual(this.channel, model.channel) && m.areEqual(this.guild, model.guild) && this.isModerator == model.isModerator;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        public final Channel getChannel() {
+            return this.channel;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        public final Guild getGuild() {
+            return this.guild;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsModerator() {
+            return this.isModerator;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v6, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v3, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v4 */
+        /* JADX WARN: Type inference failed for: r1v6 */
+        public int hashCode() {
+            Channel channel = this.channel;
+            int iHashCode = (channel != null ? channel.hashCode() : 0) * 31;
+            Guild guild = this.guild;
+            int iHashCode2 = (iHashCode + (guild != null ? guild.hashCode() : 0)) * 31;
+            boolean z2 = this.isModerator;
+            ?? r1 = z2;
+            if (z2) {
+                r1 = 1;
+            }
+            return iHashCode2 + r1;
+        }
+
+        public final boolean isModerator() {
+            return this.isModerator;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("Model(channel=");
+            sbU.append(this.channel);
+            sbU.append(", guild=");
+            sbU.append(this.guild);
+            sbU.append(", isModerator=");
+            return a.O(sbU, this.isModerator, ")");
+        }
+    }
 
     public WidgetThreadArchiveActions() {
         super(false, 1, null);
@@ -51,8 +333,8 @@ public final class WidgetThreadArchiveActions extends AppBottomSheet {
         widgetThreadArchiveActions.archiveThread(channel, z2);
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetThreadArchiveActions widgetThreadArchiveActions, WidgetThreadArchiveActions$Model widgetThreadArchiveActions$Model) {
-        widgetThreadArchiveActions.configureUI(widgetThreadArchiveActions$Model);
+    public static final /* synthetic */ void access$configureUI(WidgetThreadArchiveActions widgetThreadArchiveActions, Model model) {
+        widgetThreadArchiveActions.configureUI(model);
     }
 
     public static final /* synthetic */ void access$setAutoArchiveDuration(WidgetThreadArchiveActions widgetThreadArchiveActions, Channel channel, int i) {
@@ -60,20 +342,20 @@ public final class WidgetThreadArchiveActions extends AppBottomSheet {
     }
 
     private final void archiveThread(Channel channel, boolean lockThread) {
-        RestAPI api = RestAPI.Companion.getApi();
+        RestAPI api = RestAPI.INSTANCE.getApi();
         long id2 = channel.getId();
         Boolean bool = Boolean.TRUE;
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(api.editThread(id2, new RestAPIParams$ThreadSettings(bool, lockThread ? bool : null, null, 4, null)), false, 1, null), this, null, 2, null), getContext(), "REST: archiveThread", (Function1) null, new WidgetThreadArchiveActions$archiveThread$1(this), (Function1) null, (Function0) null, (Function0) null, 116, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(api.editThread(id2, new RestAPIParams.ThreadSettings(bool, lockThread ? bool : null, null, 4, null)), false, 1, null), this, null, 2, null), getContext(), "REST: archiveThread", (Function1) null, new AnonymousClass1(), (Function1) null, (Function0) null, (Function0) null, 116, (Object) null);
     }
 
     @Override // com.discord.app.AppBottomSheet
     public void bindSubscriptions(CompositeSubscription compositeSubscription) {
         m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
         super.bindSubscriptions(compositeSubscription);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(WidgetThreadArchiveActions$Model.Companion.get(getArgumentsOrDefault().getLong(INTENT_EXTRA_CHANNEL_ID, -1L), getArgumentsOrDefault().getLong("INTENT_EXTRA_GUILD_ID", -1L)), this, null, 2, null), WidgetThreadArchiveActions.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetThreadArchiveActions$bindSubscriptions$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(Model.INSTANCE.get(getArgumentsOrDefault().getLong(INTENT_EXTRA_CHANNEL_ID, -1L), getArgumentsOrDefault().getLong("INTENT_EXTRA_GUILD_ID", -1L)), this, null, 2, null), WidgetThreadArchiveActions.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
     }
 
-    private final void configureUI(WidgetThreadArchiveActions$Model model) {
+    private final void configureUI(Model model) {
         if (model == null) {
             dismiss();
             return;
@@ -82,7 +364,7 @@ public final class WidgetThreadArchiveActions extends AppBottomSheet {
         m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
         Channel channel = model.getChannel();
         model.getGuild();
-        new Traits$Location(Traits$Location$Page.GUILD_CHANNEL, Traits$Location$Section.THREAD_ARCHIVAL_DURATION_SHEET, Traits$Location$Obj.LIST_ITEM, null, null, 24, null);
+        new Traits.Location(Traits.Location.Page.GUILD_CHANNEL, Traits.Location.Section.THREAD_ARCHIVAL_DURATION_SHEET, Traits.Location.Obj.LIST_ITEM, null, null, 24, null);
         LinearLayout linearLayout = getBinding().c;
         m.checkNotNullExpressionValue(linearLayout, "binding.autoArchiveHeader");
         boolean z2 = false;
@@ -90,26 +372,26 @@ public final class WidgetThreadArchiveActions extends AppBottomSheet {
         long jComputeThreadAutoArchiveTimeMs = ThreadUtils.INSTANCE.computeThreadAutoArchiveTimeMs(channel);
         TextView textView = getBinding().l;
         m.checkNotNullExpressionValue(textView, "binding.subtitle");
-        textView.setText(b.h(contextRequireContext, 2131886941, new Object[]{TimeUtils.toReadableTimeString$default(contextRequireContext, jComputeThreadAutoArchiveTimeMs, null, 4, null)}, null, 4));
+        textView.setText(b.h(contextRequireContext, R.string.auto_archive_thread_at_long, new Object[]{TimeUtils.toReadableTimeString$default(contextRequireContext, jComputeThreadAutoArchiveTimeMs, null, 4, null)}, null, 4));
         ThreadMetadata threadMetadata = channel.getThreadMetadata();
         Integer numValueOf = threadMetadata != null ? Integer.valueOf(threadMetadata.getAutoArchiveDuration()) : null;
         TextView textView2 = getBinding().f2667b;
         m.checkNotNullExpressionValue(textView2, "binding.archiveNow");
         textView2.setVisibility(0);
-        getBinding().f2667b.setOnClickListener(new WidgetThreadArchiveActions$configureUI$1(this, channel, model));
-        getBinding().d.setOnClickListener(new WidgetThreadArchiveActions$configureUI$2(this, channel));
+        getBinding().f2667b.setOnClickListener(new AnonymousClass1(channel, model));
+        getBinding().d.setOnClickListener(new AnonymousClass2(channel));
         MaterialRadioButton materialRadioButton = getBinding().e;
         m.checkNotNullExpressionValue(materialRadioButton, "binding.optionOneHourRadio");
         materialRadioButton.setChecked(numValueOf != null && numValueOf.intValue() == 60);
-        getBinding().j.setOnClickListener(new WidgetThreadArchiveActions$configureUI$3(this, channel));
+        getBinding().j.setOnClickListener(new AnonymousClass3(channel));
         MaterialRadioButton materialRadioButton2 = getBinding().k;
         m.checkNotNullExpressionValue(materialRadioButton2, "binding.optionTwentyFourHoursRadio");
         materialRadioButton2.setChecked(numValueOf != null && numValueOf.intValue() == 1440);
-        getBinding().h.setOnClickListener(new WidgetThreadArchiveActions$configureUI$4(this, channel));
+        getBinding().h.setOnClickListener(new AnonymousClass4(channel));
         MaterialRadioButton materialRadioButton3 = getBinding().i;
         m.checkNotNullExpressionValue(materialRadioButton3, "binding.optionThreeDaysRadio");
         materialRadioButton3.setChecked(numValueOf != null && numValueOf.intValue() == 4320);
-        getBinding().f.setOnClickListener(new WidgetThreadArchiveActions$configureUI$5(this, channel));
+        getBinding().f.setOnClickListener(new AnonymousClass5(channel));
         MaterialRadioButton materialRadioButton4 = getBinding().g;
         m.checkNotNullExpressionValue(materialRadioButton4, "binding.optionSevenDaysRadio");
         if (numValueOf != null && numValueOf.intValue() == 10080) {
@@ -124,7 +406,7 @@ public final class WidgetThreadArchiveActions extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
-        return R$layout.widget_thread_archive_actions_sheet;
+        return R.layout.widget_thread_archive_actions_sheet;
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
@@ -134,10 +416,10 @@ public final class WidgetThreadArchiveActions extends AppBottomSheet {
     }
 
     private final void setAutoArchiveDuration(Channel channel, int minutes) {
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().editThread(channel.getId(), new RestAPIParams$ThreadSettings(null, null, Integer.valueOf(minutes), 3, null)), false, 1, null), this, null, 2, null), getContext(), "REST: setAutoArchiveDuration", (Function1) null, new WidgetThreadArchiveActions$setAutoArchiveDuration$1(this), (Function1) null, (Function0) null, (Function0) null, 116, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().editThread(channel.getId(), new RestAPIParams.ThreadSettings(null, null, Integer.valueOf(minutes), 3, null)), false, 1, null), this, null, 2, null), getContext(), "REST: setAutoArchiveDuration", (Function1) null, new AnonymousClass1(), (Function1) null, (Function0) null, (Function0) null, 116, (Object) null);
     }
 
     public static final void show(FragmentManager fragmentManager, long j, long j2) {
-        Companion.show(fragmentManager, j, j2);
+        INSTANCE.show(fragmentManager, j, j2);
     }
 }

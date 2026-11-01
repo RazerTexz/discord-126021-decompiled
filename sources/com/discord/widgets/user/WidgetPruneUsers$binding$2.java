@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetPruneUsersBinding;
 import com.discord.views.CheckedSetting;
 import com.google.android.material.button.MaterialButton;
@@ -29,26 +29,26 @@ public final /* synthetic */ class WidgetPruneUsers$binding$2 extends k implemen
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetPruneUsersBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.prune_user_cancel;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.prune_user_cancel);
+        int i = R.id.prune_user_cancel;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.prune_user_cancel);
         if (materialButton != null) {
-            i = R$id.prune_user_header;
-            TextView textView = (TextView) view.findViewById(R$id.prune_user_header);
+            i = R.id.prune_user_header;
+            TextView textView = (TextView) view.findViewById(R.id.prune_user_header);
             if (textView != null) {
-                i = R$id.prune_user_prune;
-                MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.prune_user_prune);
+                i = R.id.prune_user_prune;
+                MaterialButton materialButton2 = (MaterialButton) view.findViewById(R.id.prune_user_prune);
                 if (materialButton2 != null) {
-                    i = R$id.prune_users_estimate_text;
-                    TextView textView2 = (TextView) view.findViewById(R$id.prune_users_estimate_text);
+                    i = R.id.prune_users_estimate_text;
+                    TextView textView2 = (TextView) view.findViewById(R.id.prune_users_estimate_text);
                     if (textView2 != null) {
-                        i = R$id.prune_users_history_1_radio;
-                        CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R$id.prune_users_history_1_radio);
+                        i = R.id.prune_users_history_1_radio;
+                        CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R.id.prune_users_history_1_radio);
                         if (checkedSetting != null) {
-                            i = R$id.prune_users_history_2_radio;
-                            CheckedSetting checkedSetting2 = (CheckedSetting) view.findViewById(R$id.prune_users_history_2_radio);
+                            i = R.id.prune_users_history_2_radio;
+                            CheckedSetting checkedSetting2 = (CheckedSetting) view.findViewById(R.id.prune_users_history_2_radio);
                             if (checkedSetting2 != null) {
-                                i = R$id.prune_users_loading_progressbar;
-                                ProgressBar progressBar = (ProgressBar) view.findViewById(R$id.prune_users_loading_progressbar);
+                                i = R.id.prune_users_loading_progressbar;
+                                ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.prune_users_loading_progressbar);
                                 if (progressBar != null) {
                                     return new WidgetPruneUsersBinding((ScrollView) view, materialButton, textView, materialButton2, textView2, checkedSetting, checkedSetting2, progressBar);
                                 }

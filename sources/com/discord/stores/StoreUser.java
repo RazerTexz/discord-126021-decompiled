@@ -1,7 +1,7 @@
 package com.discord.stores;
 
 import android.content.Context;
-import b.a.d.o;
+import androidx.core.app.NotificationCompat;
 import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
@@ -25,9 +25,8 @@ import com.discord.models.domain.ModelUserRelationship;
 import com.discord.models.user.CoreUser;
 import com.discord.models.user.MeUser;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
-import com.discord.utilities.collections.SnowflakePartitionMap$CopiablePartitionMap;
+import com.discord.utilities.collections.SnowflakePartitionMap;
 import com.discord.utilities.persister.Persister;
 import com.discord.utilities.user.UserRequestManager;
 import com.discord.utilities.user.UserUtils;
@@ -35,6 +34,8 @@ import d0.d0.f;
 import d0.t.g0;
 import d0.t.h0;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -44,14 +45,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
+import rx.functions.Action1;
 
 /* JADX INFO: compiled from: StoreUser.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreUser extends StoreV2 {
-    public static final StoreUser$Companion Companion = new StoreUser$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final Dispatcher dispatcher;
     private MeUser me;
     private final Persister<MeUser> meCache;
@@ -59,11 +64,195 @@ public final class StoreUser extends StoreV2 {
     private final Function1<User, Unit> notifyUserUpdated;
     private final ObservationDeck observationDeck;
     private final UserRequestManager userRequestManager;
-    private final SnowflakePartitionMap$CopiablePartitionMap<com.discord.models.user.User> users;
+    private final SnowflakePartitionMap.CopiablePartitionMap<com.discord.models.user.User> users;
     private Map<Long, ? extends com.discord.models.user.User> usersSnapshot;
-    private static final ObservationDeck$UpdateSource MeUpdate = new StoreUser$Companion$MeUpdate$1();
-    private static final ObservationDeck$UpdateSource UsersUpdate = new StoreUser$Companion$UsersUpdate$1();
+    private static final ObservationDeck.UpdateSource MeUpdate = new StoreUser$Companion$MeUpdate$1();
+    private static final ObservationDeck.UpdateSource UsersUpdate = new StoreUser$Companion$UsersUpdate$1();
     private static final MeUser EMPTY_ME_USER = new MeUser(0, "EMPTY_USERNAME", null, null, false, false, 0, PremiumTier.NONE, null, false, false, null, 0, 0, null, NsfwAllowance.UNKNOWN, null, null, 204800, null);
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUser$fetchUsers$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUser.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ List $users;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(List list) {
+            super(0);
+            this.$users = list;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreUser storeUser = StoreUser.this;
+            StoreUser.access$fetchMissing(storeUser, this.$users, storeUser.getUsers().keySet());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUser$observeAllUsers$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUser.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends com.discord.models.user.User>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends com.discord.models.user.User> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends com.discord.models.user.User> invoke2() {
+            return StoreUser.this.getUsers();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUser$observeMe$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUser.kt */
+    public final class AnonymousClass1 extends o implements Function0<MeUser> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ MeUser invoke() {
+            return invoke();
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final MeUser invoke() {
+            return StoreUser.access$getMe$p(StoreUser.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUser$observeMeId$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUser.kt */
+    public final class AnonymousClass1 extends o implements Function0<Long> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Long invoke() {
+            return Long.valueOf(invoke2());
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final long invoke2() {
+            return StoreUser.access$getMe$p(StoreUser.this).getId();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUser$observeUser$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUser.kt */
+    public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends com.discord.models.user.User>, com.discord.models.user.User> {
+        public final /* synthetic */ long $userId;
+
+        public AnonymousClass1(long j) {
+            this.$userId = j;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ com.discord.models.user.User call(Map<Long, ? extends com.discord.models.user.User> map) {
+            return call2(map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final com.discord.models.user.User call2(Map<Long, ? extends com.discord.models.user.User> map) {
+            m.checkNotNullParameter(map, "user");
+            return map.get(Long.valueOf(this.$userId));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUser$observeUsernames$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUser.kt */
+    public final class AnonymousClass1 extends o implements Function1<com.discord.models.user.User, String> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ String invoke(com.discord.models.user.User user) {
+            return invoke2(user);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final String invoke2(com.discord.models.user.User user) {
+            m.checkNotNull(user);
+            return user.getUsername();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUser$observeUsers$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUser.kt */
+    public final class AnonymousClass1<T> implements Action1<Map<Long, ? extends com.discord.models.user.User>> {
+        public final /* synthetic */ boolean $fetchUserIfMissing;
+        public final /* synthetic */ Collection $userIds;
+
+        public AnonymousClass1(boolean z2, Collection collection) {
+            this.$fetchUserIfMissing = z2;
+            this.$userIds = collection;
+        }
+
+        @Override // rx.functions.Action1
+        public /* bridge */ /* synthetic */ void call(Map<Long, ? extends com.discord.models.user.User> map) {
+            call2(map);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final void call2(Map<Long, ? extends com.discord.models.user.User> map) {
+            if (this.$fetchUserIfMissing) {
+                StoreUser.access$fetchMissing(StoreUser.this, this.$userIds, map.keySet());
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreUser$observeMe$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreUser.kt */
+    public final class AnonymousClass2<T, R> implements b<MeUser, Boolean> {
+        public final /* synthetic */ boolean $emitEmpty;
+
+        public AnonymousClass2(boolean z2) {
+            this.$emitEmpty = z2;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Boolean call(MeUser meUser) {
+            return call2(meUser);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Boolean call2(MeUser meUser) {
+            return Boolean.valueOf(meUser != StoreUser.access$getEMPTY_ME_USER$cp() || this.$emitEmpty);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreUser.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final ObservationDeck.UpdateSource getMeUpdate() {
+            return StoreUser.access$getMeUpdate$cp();
+        }
+
+        public final ObservationDeck.UpdateSource getUsersUpdate() {
+            return StoreUser.access$getUsersUpdate$cp();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public /* synthetic */ StoreUser(Function1 function1, Dispatcher dispatcher, ObservationDeck observationDeck, Persister persister, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(function1, dispatcher, (i & 4) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 8) != 0 ? new Persister("STORE_USERS_ME_V13", EMPTY_ME_USER) : persister);
@@ -85,7 +274,7 @@ public final class StoreUser extends StoreV2 {
         return storeUser.me;
     }
 
-    public static final /* synthetic */ ObservationDeck$UpdateSource access$getMeUpdate$cp() {
+    public static final /* synthetic */ ObservationDeck.UpdateSource access$getMeUpdate$cp() {
         return MeUpdate;
     }
 
@@ -93,7 +282,7 @@ public final class StoreUser extends StoreV2 {
         return storeUser.notifyUserUpdated;
     }
 
-    public static final /* synthetic */ ObservationDeck$UpdateSource access$getUsersUpdate$cp() {
+    public static final /* synthetic */ ObservationDeck.UpdateSource access$getUsersUpdate$cp() {
         return UsersUpdate;
     }
 
@@ -116,7 +305,7 @@ public final class StoreUser extends StoreV2 {
 
     public final void fetchUsers(List<Long> users) {
         m.checkNotNullParameter(users, "users");
-        this.dispatcher.schedule(new StoreUser$fetchUsers$1(this, users));
+        this.dispatcher.schedule(new AnonymousClass1(users));
     }
 
     @StoreThread
@@ -177,11 +366,11 @@ public final class StoreUser extends StoreV2 {
         for (ModelUserRelationship modelUserRelationship : payload.getRelationships()) {
             m.checkNotNullExpressionValue(modelUserRelationship, "relationship");
             if (modelUserRelationship.getUser() != null) {
-                SnowflakePartitionMap$CopiablePartitionMap<com.discord.models.user.User> snowflakePartitionMap$CopiablePartitionMap = this.users;
+                SnowflakePartitionMap.CopiablePartitionMap<com.discord.models.user.User> copiablePartitionMap = this.users;
                 Long lValueOf = Long.valueOf(modelUserRelationship.getUser().getId());
                 User user2 = modelUserRelationship.getUser();
                 m.checkNotNullExpressionValue(user2, "relationship.user");
-                snowflakePartitionMap$CopiablePartitionMap.put(lValueOf, new CoreUser(user2));
+                copiablePartitionMap.put(lValueOf, new CoreUser(user2));
             }
         }
         Iterator<Guild> it = payload.getGuilds().iterator();
@@ -273,7 +462,7 @@ public final class StoreUser extends StoreV2 {
     }
 
     @StoreThread
-    public final void handleMessagesLoaded(StoreMessagesLoader$ChannelChunk chunk) {
+    public final void handleMessagesLoaded(StoreMessagesLoader.ChannelChunk chunk) {
         m.checkNotNullParameter(chunk, "chunk");
         for (com.discord.models.message.Message message : chunk.getMessages()) {
             User author = message.getAuthor();
@@ -350,7 +539,7 @@ public final class StoreUser extends StoreV2 {
         m.checkNotNullParameter(user, "user");
         updateUser(user);
         if (this.me.getId() == user.getId()) {
-            this.me = MeUser.Companion.merge(this.me, user);
+            this.me = MeUser.INSTANCE.merge(this.me, user);
             markChanged(MeUpdate);
         }
     }
@@ -364,7 +553,7 @@ public final class StoreUser extends StoreV2 {
     }
 
     public final Observable<Map<Long, com.discord.models.user.User>> observeAllUsers() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreUser$observeAllUsers$1(this), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
     }
 
     public static /* synthetic */ Observable observeMe$default(StoreUser storeUser, boolean z2, int i, Object obj) {
@@ -379,26 +568,26 @@ public final class StoreUser extends StoreV2 {
     }
 
     public final Observable<MeUser> observeMe(boolean emitEmpty) {
-        Observable<MeUser> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{MeUpdate}, false, null, null, new StoreUser$observeMe$1(this), 14, null).y(new StoreUser$observeMe$2(emitEmpty)).r();
+        Observable<MeUser> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{MeUpdate}, false, null, null, new AnonymousClass1(), 14, null).y(new AnonymousClass2(emitEmpty)).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Long> observeMeId() {
-        Observable<Long> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{MeUpdate}, false, null, null, new StoreUser$observeMeId$1(this), 14, null).r();
+        Observable<Long> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{MeUpdate}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<com.discord.models.user.User> observeUser(long userId) {
-        Observable<com.discord.models.user.User> observableR = observeAllUsers().G(new StoreUser$observeUser$1(userId)).r();
+        Observable<com.discord.models.user.User> observableR = observeAllUsers().G(new AnonymousClass1(userId)).r();
         m.checkNotNullExpressionValue(observableR, "observeAllUsers()\n      …  .distinctUntilChanged()");
         return observableR;
     }
 
     public final Observable<Map<Long, String>> observeUsernames(Collection<Long> userIds) {
         m.checkNotNullParameter(userIds, "userIds");
-        Observable observableK = observeAllUsers().k(o.b(userIds, StoreUser$observeUsernames$1.INSTANCE));
+        Observable observableK = observeAllUsers().k(b.a.d.o.b(userIds, AnonymousClass1.INSTANCE));
         m.checkNotNullExpressionValue(observableK, "observeAllUsers()\n      …er!!.username }\n        )");
         return observableK;
     }
@@ -453,7 +642,7 @@ public final class StoreUser extends StoreV2 {
 
     public final Observable<Map<Long, com.discord.models.user.User>> observeUsers(Collection<Long> userIds, boolean fetchUserIfMissing) {
         m.checkNotNullParameter(userIds, "userIds");
-        Observable<Map<Long, com.discord.models.user.User>> observableU = observeAllUsers().k(o.a(userIds)).u(new StoreUser$observeUsers$1(this, fetchUserIfMissing, userIds));
+        Observable<Map<Long, com.discord.models.user.User>> observableU = observeAllUsers().k(b.a.d.o.a(userIds)).u(new AnonymousClass1(fetchUserIfMissing, userIds));
         m.checkNotNullExpressionValue(observableU, "observeAllUsers()\n      …ys)\n          }\n        }");
         return observableU;
     }
@@ -470,7 +659,7 @@ public final class StoreUser extends StoreV2 {
         this.meCache = persister;
         MeUser meUser = EMPTY_ME_USER;
         this.me = meUser;
-        this.users = new SnowflakePartitionMap$CopiablePartitionMap<>(0, 1, null);
+        this.users = new SnowflakePartitionMap.CopiablePartitionMap<>(0, 1, null);
         this.meSnapshot = meUser;
         this.usersSnapshot = h0.emptyMap();
         this.userRequestManager = new UserRequestManager(new StoreUser$userRequestManager$1(this));

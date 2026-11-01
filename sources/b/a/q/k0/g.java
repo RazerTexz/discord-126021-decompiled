@@ -1,9 +1,11 @@
 package b.a.q.k0;
 
+import kotlin.jvm.internal.DefaultConstructorMarker;
+
 /* JADX INFO: compiled from: EchoCancellation.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class g {
-    public static final g$a c = new g$a(null);
+    public static final a c = new a(null);
     public volatile boolean d;
     public final boolean e;
     public final boolean f;
@@ -12,6 +14,12 @@ public final class g {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final g f264b = new g(true, false, false);
+
+    /* JADX INFO: compiled from: EchoCancellation.kt */
+    public final class a {
+        public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+    }
 
     public g(boolean z2, boolean z3, boolean z4) {
         this.e = z2;

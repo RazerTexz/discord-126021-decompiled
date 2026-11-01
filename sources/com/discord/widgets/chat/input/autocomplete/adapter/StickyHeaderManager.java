@@ -3,7 +3,7 @@ package com.discord.widgets.chat.input.autocomplete.adapter;
 import android.view.LayoutInflater;
 import androidx.recyclerview.widget.RecyclerView;
 import com.discord.databinding.WidgetChatInputCommandApplicationHeaderItemBinding;
-import com.discord.utilities.views.StickyHeaderItemDecoration$LayoutManager;
+import com.discord.utilities.views.StickyHeaderItemDecoration;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: StickyHeaderManager.kt */
@@ -37,6 +37,6 @@ public final class StickyHeaderManager {
 
     public final void layoutViews(RecyclerView recyclerView) {
         m.checkNotNullParameter(recyclerView, "recyclerView");
-        StickyHeaderItemDecoration$LayoutManager.layoutHeaderView(recyclerView, this.stickyHeaderHolder.getItemView());
+        StickyHeaderItemDecoration.LayoutManager.layoutHeaderView(recyclerView, this.stickyHeaderHolder.getItemView());
     }
 }

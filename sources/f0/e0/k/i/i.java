@@ -1,7 +1,6 @@
 package f0.e0.k.i;
 
 import d0.z.d.m;
-import f0.e0.k.d$a;
 import f0.y;
 import java.util.List;
 import javax.net.ssl.SSLSocket;
@@ -11,7 +10,23 @@ import org.conscrypt.Conscrypt;
 /* JADX INFO: compiled from: ConscryptSocketAdapter.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class i implements k {
-    public static final j$a a = new i$a();
+    public static final j.a a = new a();
+
+    /* JADX INFO: compiled from: ConscryptSocketAdapter.kt */
+    public final class a implements j.a {
+        @Override // f0.e0.k.i.j.a
+        public boolean a(SSLSocket sSLSocket) {
+            m.checkParameterIsNotNull(sSLSocket, "sslSocket");
+            f0.e0.k.d.a aVar = f0.e0.k.d.e;
+            return f0.e0.k.d.d && Conscrypt.isConscrypt(sSLSocket);
+        }
+
+        @Override // f0.e0.k.i.j.a
+        public k b(SSLSocket sSLSocket) {
+            m.checkParameterIsNotNull(sSLSocket, "sslSocket");
+            return new i();
+        }
+    }
 
     @Override // f0.e0.k.i.k
     public boolean a(SSLSocket sSLSocket) {
@@ -21,7 +36,7 @@ public final class i implements k {
 
     @Override // f0.e0.k.i.k
     public boolean b() {
-        d$a d_a = f0.e0.k.d.e;
+        f0.e0.k.d.a aVar = f0.e0.k.d.e;
         return f0.e0.k.d.d;
     }
 

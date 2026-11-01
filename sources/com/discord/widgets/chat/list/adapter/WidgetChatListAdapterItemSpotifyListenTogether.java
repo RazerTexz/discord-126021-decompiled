@@ -9,38 +9,53 @@ import androidx.exifinterface.media.ExifInterface;
 import androidx.recyclerview.widget.RecyclerView;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.activity.Activity;
 import com.discord.api.activity.ActivityAssets;
 import com.discord.api.activity.ActivityParty;
 import com.discord.databinding.WidgetChatListAdapterItemSpotifyListenTogetherBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.presence.Presence;
-import com.discord.utilities.analytics.Traits$Payment$Type;
+import com.discord.models.user.MeUser;
+import com.discord.models.user.User;
+import com.discord.stores.StoreStream;
+import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
+import com.discord.utilities.integrations.SpotifyHelper;
 import com.discord.utilities.platform.Platform;
 import com.discord.utilities.presence.PresenceUtils;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.ClockFactory;
 import com.discord.utilities.time.TimeUtils;
 import com.discord.widgets.channels.list.WidgetCollapsedUsersListAdapter;
+import com.discord.widgets.channels.list.items.CollapsedUser;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
 import com.discord.widgets.chat.list.entries.SpotifyListenTogetherEntry;
 import com.facebook.drawee.view.SimpleDraweeView;
+import d0.d0.f;
 import d0.g;
 import d0.g0.w;
+import d0.t.d0;
+import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import rx.Observable;
 import rx.Subscription;
 
 /* JADX INFO: compiled from: WidgetChatListAdapterItemSpotifyListenTogether.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChatListAdapterItemSpotifyListenTogether extends WidgetChatListItem {
-    public static final WidgetChatListAdapterItemSpotifyListenTogether$Companion Companion = new WidgetChatListAdapterItemSpotifyListenTogether$Companion(null);
     private static final long EMBED_LIFETIME_MILLIS = 7200000;
     private static final long MAX_USERS_SHOWN = 6;
     private final WidgetChatListAdapterItemSpotifyListenTogetherBinding binding;
@@ -49,35 +64,273 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
     /* JADX INFO: renamed from: userAdapter$delegate, reason: from kotlin metadata */
     private final Lazy userAdapter;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSpotifyListenTogether$onConfigure$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemSpotifyListenTogether.kt */
+    public final class AnonymousClass1 extends o implements Function1<Subscription, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            m.checkNotNullParameter(subscription, "it");
+            WidgetChatListAdapterItemSpotifyListenTogether.access$setSubscription$p(WidgetChatListAdapterItemSpotifyListenTogether.this, subscription);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSpotifyListenTogether$configureUI$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemSpotifyListenTogether.kt */
+    public final class AnonymousClass2 implements View.OnClickListener {
+        public final /* synthetic */ Activity $listeningActivity;
+
+        public AnonymousClass2(Activity activity) {
+            this.$listeningActivity = activity;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            SpotifyHelper.INSTANCE.launchTrack(a.x(view, "it", "it.context"), this.$listeningActivity);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSpotifyListenTogether$onConfigure$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemSpotifyListenTogether.kt */
+    public final class AnonymousClass2 extends o implements Function1<Model, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Model model) {
+            invoke2(model);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Model model) {
+            m.checkNotNullParameter(model, "it");
+            WidgetChatListAdapterItemSpotifyListenTogether.access$configureUI(WidgetChatListAdapterItemSpotifyListenTogether.this, model);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSpotifyListenTogether$configureUI$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemSpotifyListenTogether.kt */
+    public final class AnonymousClass3 implements View.OnClickListener {
+        public final /* synthetic */ Activity $listeningActivity;
+        public final /* synthetic */ Model $this_configureUI;
+
+        public AnonymousClass3(Model model, Activity activity) {
+            this.$this_configureUI = model;
+            this.$listeningActivity = activity;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            SpotifyHelper.INSTANCE.launchAlbum(a.x(view, "it", "it.context"), this.$listeningActivity, this.$this_configureUI.getItem().getUserId(), this.$this_configureUI.isMe());
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetChatListAdapterItemSpotifyListenTogether.kt */
+    public final /* data */ class Model {
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
+        private final boolean isMe;
+        private final SpotifyListenTogetherEntry item;
+        private final Presence presence;
+        private final List<CollapsedUser> users;
+
+        /* JADX INFO: compiled from: WidgetChatListAdapterItemSpotifyListenTogether.kt */
+        public final class Companion {
+            private Companion() {
+            }
+
+            public static final /* synthetic */ Model access$create(Companion companion, Presence presence, Map map, SpotifyListenTogetherEntry spotifyListenTogetherEntry, boolean z2) {
+                return companion.create(presence, map, spotifyListenTogetherEntry, z2);
+            }
+
+            private final Model create(Presence presence, Map<Long, ? extends User> userMap, SpotifyListenTogetherEntry item, boolean isMe) {
+                ActivityParty party;
+                HashMap map = new HashMap();
+                for (User user : userMap.values()) {
+                    map.put(Long.valueOf(user.getId()), new CollapsedUser(user, false, 0L, 6, null));
+                }
+                if (isMe) {
+                    MeUser meSnapshot = StoreStream.INSTANCE.getUsers().getMeSnapshot();
+                    map.put(Long.valueOf(meSnapshot.getId()), new CollapsedUser(meSnapshot, false, 0L, 6, null));
+                }
+                Activity spotifyListeningActivity = presence != null ? PresenceUtils.INSTANCE.getSpotifyListeningActivity(presence) : null;
+                long maxSize = (spotifyListeningActivity == null || (party = spotifyListeningActivity.getParty()) == null) ? 0L : PresenceUtils.INSTANCE.getMaxSize(party);
+                Collection collectionValues = map.values();
+                m.checkNotNullExpressionValue(collectionValues, "collapsedUserMap.values");
+                List mutableList = u.toMutableList(collectionValues);
+                Iterator<Long> it = f.until(userMap.size(), Math.min(WidgetChatListAdapterItemSpotifyListenTogether.MAX_USERS_SHOWN, maxSize)).iterator();
+                while (it.hasNext()) {
+                    mutableList.add(CollapsedUser.INSTANCE.createEmptyUser(((d0) it).nextLong() == 5 ? maxSize - WidgetChatListAdapterItemSpotifyListenTogether.MAX_USERS_SHOWN : 0L));
+                }
+                return new Model(presence, mutableList, item, isMe);
+            }
+
+            public final Observable<Model> get(SpotifyListenTogetherEntry item) {
+                m.checkNotNullParameter(item, "item");
+                StoreStream.Companion companion = StoreStream.INSTANCE;
+                Observable observableI = Observable.i(companion.getPresences().observePresenceForUser(item.getUserId()), companion.getGameParty().observeUsersForPartyId(item.getActivity().getPartyId()), companion.getUsers().observeMeId(), new WidgetChatListAdapterItemSpotifyListenTogether$Model$Companion$get$1(item));
+                m.checkNotNullExpressionValue(observableI, "Observable\n             …m.userId)\n              }");
+                Observable<Model> observableR = ObservableExtensionsKt.computationLatest(observableI).r();
+                m.checkNotNullExpressionValue(observableR, "Observable\n             …  .distinctUntilChanged()");
+                return observableR;
+            }
+
+            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+                this();
+            }
+        }
+
+        public Model(Presence presence, List<CollapsedUser> list, SpotifyListenTogetherEntry spotifyListenTogetherEntry, boolean z2) {
+            m.checkNotNullParameter(list, "users");
+            m.checkNotNullParameter(spotifyListenTogetherEntry, "item");
+            this.presence = presence;
+            this.users = list;
+            this.item = spotifyListenTogetherEntry;
+            this.isMe = z2;
+        }
+
+        public final List<CollapsedUser> component2() {
+            return this.users;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ Model copy$default(Model model, Presence presence, List list, SpotifyListenTogetherEntry spotifyListenTogetherEntry, boolean z2, int i, Object obj) {
+            if ((i & 1) != 0) {
+                presence = model.presence;
+            }
+            if ((i & 2) != 0) {
+                list = model.users;
+            }
+            if ((i & 4) != 0) {
+                spotifyListenTogetherEntry = model.item;
+            }
+            if ((i & 8) != 0) {
+                z2 = model.isMe;
+            }
+            return model.copy(presence, list, spotifyListenTogetherEntry, z2);
+        }
+
+        public final Model copy(Presence presence, List<CollapsedUser> users, SpotifyListenTogetherEntry item, boolean isMe) {
+            m.checkNotNullParameter(users, "users");
+            m.checkNotNullParameter(item, "item");
+            return new Model(presence, users, item, isMe);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof Model)) {
+                return false;
+            }
+            Model model = (Model) other;
+            return m.areEqual(this.presence, model.presence) && m.areEqual(this.users, model.users) && m.areEqual(this.item, model.item) && this.isMe == model.isMe;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getIsMe() {
+            return this.isMe;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final SpotifyListenTogetherEntry getItem() {
+            return this.item;
+        }
+
+        public final SpotifyListenTogetherEntry getItem() {
+            return this.item;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Presence getPresence() {
+            return this.presence;
+        }
+
+        public final Presence getPresence() {
+            return this.presence;
+        }
+
+        public final List<CollapsedUser> getUsers() {
+            return this.users;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v8, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v3, types: [int] */
+        /* JADX WARN: Type inference failed for: r1v4 */
+        /* JADX WARN: Type inference failed for: r1v6 */
+        public int hashCode() {
+            Presence presence = this.presence;
+            int iHashCode = (presence != null ? presence.hashCode() : 0) * 31;
+            List<CollapsedUser> list = this.users;
+            int iHashCode2 = (iHashCode + (list != null ? list.hashCode() : 0)) * 31;
+            SpotifyListenTogetherEntry spotifyListenTogetherEntry = this.item;
+            int iHashCode3 = (iHashCode2 + (spotifyListenTogetherEntry != null ? spotifyListenTogetherEntry.hashCode() : 0)) * 31;
+            boolean z2 = this.isMe;
+            ?? r1 = z2;
+            if (z2) {
+                r1 = 1;
+            }
+            return iHashCode3 + r1;
+        }
+
+        public final boolean isMe() {
+            return this.isMe;
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("Model(presence=");
+            sbU.append(this.presence);
+            sbU.append(", users=");
+            sbU.append(this.users);
+            sbU.append(", item=");
+            sbU.append(this.item);
+            sbU.append(", isMe=");
+            return a.O(sbU, this.isMe, ")");
+        }
+    }
+
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemSpotifyListenTogether(WidgetChatListAdapter widgetChatListAdapter) {
-        super(R$layout.widget_chat_list_adapter_item_spotify_listen_together, widgetChatListAdapter);
+        super(R.layout.widget_chat_list_adapter_item_spotify_listen_together, widgetChatListAdapter);
         m.checkNotNullParameter(widgetChatListAdapter, "adapter");
         View view = this.itemView;
-        int i = 2131362146;
-        Barrier barrier = (Barrier) view.findViewById(2131362146);
+        int i = R.id.barrier;
+        Barrier barrier = (Barrier) view.findViewById(R.id.barrier);
         if (barrier != null) {
-            i = R$id.item_listen_together_album_image;
-            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.item_listen_together_album_image);
+            i = R.id.item_listen_together_album_image;
+            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.item_listen_together_album_image);
             if (simpleDraweeView != null) {
-                i = R$id.item_listen_together_artist;
-                TextView textView = (TextView) view.findViewById(R$id.item_listen_together_artist);
+                i = R.id.item_listen_together_artist;
+                TextView textView = (TextView) view.findViewById(R.id.item_listen_together_artist);
                 if (textView != null) {
                     ConstraintLayout constraintLayout = (ConstraintLayout) view;
-                    i = R$id.item_listen_together_header;
-                    TextView textView2 = (TextView) view.findViewById(R$id.item_listen_together_header);
+                    i = R.id.item_listen_together_header;
+                    TextView textView2 = (TextView) view.findViewById(R.id.item_listen_together_header);
                     if (textView2 != null) {
-                        i = R$id.item_listen_together_join;
-                        TextView textView3 = (TextView) view.findViewById(R$id.item_listen_together_join);
+                        i = R.id.item_listen_together_join;
+                        TextView textView3 = (TextView) view.findViewById(R.id.item_listen_together_join);
                         if (textView3 != null) {
-                            i = R$id.item_listen_together_recycler;
-                            RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.item_listen_together_recycler);
+                            i = R.id.item_listen_together_recycler;
+                            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.item_listen_together_recycler);
                             if (recyclerView != null) {
-                                i = R$id.item_listen_together_session_ended;
-                                TextView textView4 = (TextView) view.findViewById(R$id.item_listen_together_session_ended);
+                                i = R.id.item_listen_together_session_ended;
+                                TextView textView4 = (TextView) view.findViewById(R.id.item_listen_together_session_ended);
                                 if (textView4 != null) {
-                                    i = R$id.item_listen_together_track;
-                                    TextView textView5 = (TextView) view.findViewById(R$id.item_listen_together_track);
+                                    i = R.id.item_listen_together_track;
+                                    TextView textView5 = (TextView) view.findViewById(R.id.item_listen_together_track);
                                     if (textView5 != null) {
                                         WidgetChatListAdapterItemSpotifyListenTogetherBinding widgetChatListAdapterItemSpotifyListenTogetherBinding = new WidgetChatListAdapterItemSpotifyListenTogetherBinding(constraintLayout, barrier, simpleDraweeView, textView, constraintLayout, textView2, textView3, recyclerView, textView4, textView5);
                                         m.checkNotNullExpressionValue(widgetChatListAdapterItemSpotifyListenTogetherBinding, "WidgetChatListAdapterIte…herBinding.bind(itemView)");
@@ -95,8 +348,8 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
     }
 
-    public static final /* synthetic */ void access$configureUI(WidgetChatListAdapterItemSpotifyListenTogether widgetChatListAdapterItemSpotifyListenTogether, WidgetChatListAdapterItemSpotifyListenTogether$Model widgetChatListAdapterItemSpotifyListenTogether$Model) {
-        widgetChatListAdapterItemSpotifyListenTogether.configureUI(widgetChatListAdapterItemSpotifyListenTogether$Model);
+    public static final /* synthetic */ void access$configureUI(WidgetChatListAdapterItemSpotifyListenTogether widgetChatListAdapterItemSpotifyListenTogether, Model model) {
+        widgetChatListAdapterItemSpotifyListenTogether.configureUI(model);
     }
 
     public static final /* synthetic */ WidgetChatListAdapterItemSpotifyListenTogetherBinding access$getBinding$p(WidgetChatListAdapterItemSpotifyListenTogether widgetChatListAdapterItemSpotifyListenTogether) {
@@ -111,13 +364,13 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
         widgetChatListAdapterItemSpotifyListenTogether.subscription = subscription;
     }
 
-    private final void configureUI(WidgetChatListAdapterItemSpotifyListenTogether$Model widgetChatListAdapterItemSpotifyListenTogether$Model) {
+    private final void configureUI(Model model) {
         String largeImage;
         TextView textView = this.binding.e;
         m.checkNotNullExpressionValue(textView, "binding.itemListenTogetherHeader");
-        textView.setText(b.h(a.I(this.binding.e, "binding.itemListenTogetherHeader", "binding.itemListenTogetherHeader.context"), 2131892263, new Object[]{getActivityName(a.I(this.binding.e, "binding.itemListenTogetherHeader", "binding.itemListenTogetherHeader.context"), widgetChatListAdapterItemSpotifyListenTogether$Model.getItem())}, null, 4));
-        boolean zIsDeadInvite = isDeadInvite(widgetChatListAdapterItemSpotifyListenTogether$Model.getPresence(), widgetChatListAdapterItemSpotifyListenTogether$Model.getItem());
-        Presence presence = widgetChatListAdapterItemSpotifyListenTogether$Model.getPresence();
+        textView.setText(b.h(a.I(this.binding.e, "binding.itemListenTogetherHeader", "binding.itemListenTogetherHeader.context"), R.string.invite_embed_invite_to_listen, new Object[]{getActivityName(a.I(this.binding.e, "binding.itemListenTogetherHeader", "binding.itemListenTogetherHeader.context"), model.getItem())}, null, 4));
+        boolean zIsDeadInvite = isDeadInvite(model.getPresence(), model.getItem());
+        Presence presence = model.getPresence();
         Activity spotifyListeningActivity = presence != null ? PresenceUtils.INSTANCE.getSpotifyListeningActivity(presence) : null;
         TextView textView2 = this.binding.g;
         m.checkNotNullExpressionValue(textView2, "binding.itemListenTogetherSessionEnded");
@@ -140,7 +393,7 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
         if (zIsDeadInvite) {
             return;
         }
-        getUserAdapter().setData(widgetChatListAdapterItemSpotifyListenTogether$Model.getUsers());
+        getUserAdapter().setData(model.getUsers());
         TextView textView5 = this.binding.h;
         m.checkNotNullExpressionValue(textView5, "binding.itemListenTogetherTrack");
         textView5.setText(spotifyListeningActivity != null ? spotifyListeningActivity.getDetails() : null);
@@ -148,7 +401,7 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
         m.checkNotNullExpressionValue(textView6, "binding.itemListenTogetherArtist");
         Object[] objArr = new Object[1];
         objArr[0] = spotifyListeningActivity != null ? spotifyListeningActivity.getState() : null;
-        b.n(textView6, 2131896737, objArr, null, 4);
+        b.n(textView6, R.string.user_activity_listening_artists, objArr, null, 4);
         ActivityAssets assets = spotifyListeningActivity != null ? spotifyListeningActivity.getAssets() : null;
         if (assets != null && (largeImage = assets.getLargeImage()) != null) {
             SimpleDraweeView simpleDraweeView2 = this.binding.f2331b;
@@ -158,8 +411,8 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
         SimpleDraweeView simpleDraweeView3 = this.binding.f2331b;
         m.checkNotNullExpressionValue(simpleDraweeView3, "binding.itemListenTogetherAlbumImage");
         simpleDraweeView3.setContentDescription(assets != null ? assets.getLargeText() : null);
-        this.binding.h.setOnClickListener(new WidgetChatListAdapterItemSpotifyListenTogether$configureUI$2(spotifyListeningActivity));
-        this.binding.f2331b.setOnClickListener(new WidgetChatListAdapterItemSpotifyListenTogether$configureUI$3(widgetChatListAdapterItemSpotifyListenTogether$Model, spotifyListeningActivity));
+        this.binding.h.setOnClickListener(new AnonymousClass2(spotifyListeningActivity));
+        this.binding.f2331b.setOnClickListener(new AnonymousClass3(model, spotifyListeningActivity));
     }
 
     private final String getActivityName(Context context, SpotifyListenTogetherEntry spotifyListenTogetherEntry) {
@@ -168,7 +421,7 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
         if (w.contains((CharSequence) partyId, (CharSequence) platform.getPlatformId(), true)) {
             return platform.getProperName();
         }
-        String string = context.getString(2131889160);
+        String string = context.getString(R.string.form_label_desktop_only);
         m.checkNotNullExpressionValue(string, "context.getString(R.stri….form_label_desktop_only)");
         return string;
     }
@@ -199,6 +452,6 @@ public final class WidgetChatListAdapterItemSpotifyListenTogether extends Widget
     public void onConfigure(int position, ChatListEntry data) {
         m.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(WidgetChatListAdapterItemSpotifyListenTogether$Model.Companion.get((SpotifyListenTogetherEntry) data)), WidgetChatListAdapterItemSpotifyListenTogether.class, (Context) null, new WidgetChatListAdapterItemSpotifyListenTogether$onConfigure$1(this), (Function1) null, (Function0) null, (Function0) null, new WidgetChatListAdapterItemSpotifyListenTogether$onConfigure$2(this), 58, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui(Model.INSTANCE.get((SpotifyListenTogetherEntry) data)), WidgetChatListAdapterItemSpotifyListenTogether.class, (Context) null, new AnonymousClass1(), (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 58, (Object) null);
     }
 }

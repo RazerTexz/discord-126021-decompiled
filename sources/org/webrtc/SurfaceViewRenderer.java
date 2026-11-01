@@ -1,32 +1,31 @@
 package org.webrtc;
 
 import android.content.Context;
-import android.content.res.Resources$NotFoundException;
+import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
-import android.view.SurfaceHolder$Callback;
 import android.view.SurfaceView;
 import b.d.b.a.a;
 import h0.c.y;
 
 /* JADX INFO: loaded from: classes3.dex */
-public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder$Callback, VideoSink, RendererCommon$RendererEvents {
+public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Callback, VideoSink, RendererCommon.RendererEvents {
     private static final String TAG = "SurfaceViewRenderer";
     private final SurfaceEglRenderer eglRenderer;
     private boolean enableFixedSize;
-    private RendererCommon$RendererEvents rendererEvents;
+    private RendererCommon.RendererEvents rendererEvents;
     private final String resourceName;
     private int rotatedFrameHeight;
     private int rotatedFrameWidth;
     private int surfaceHeight;
     private int surfaceWidth;
-    private final RendererCommon$VideoLayoutMeasure videoLayoutMeasure;
+    private final RendererCommon.VideoLayoutMeasure videoLayoutMeasure;
 
     public SurfaceViewRenderer(Context context) {
         super(context);
-        this.videoLayoutMeasure = new RendererCommon$VideoLayoutMeasure();
+        this.videoLayoutMeasure = new RendererCommon.VideoLayoutMeasure();
         String resourceName = getResourceName();
         this.resourceName = resourceName;
         SurfaceEglRenderer surfaceEglRenderer = new SurfaceEglRenderer(resourceName);
@@ -42,8 +41,8 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder$Ca
         requestLayout();
     }
 
-    public void addFrameListener(EglRenderer$FrameListener eglRenderer$FrameListener, float f, RendererCommon$GlDrawer rendererCommon$GlDrawer) {
-        this.eglRenderer.addFrameListener(eglRenderer$FrameListener, f, rendererCommon$GlDrawer);
+    public void addFrameListener(EglRenderer.FrameListener frameListener, float f, RendererCommon.GlDrawer glDrawer) {
+        this.eglRenderer.addFrameListener(frameListener, f, glDrawer);
     }
 
     public void clearImage() {
@@ -57,24 +56,24 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder$Ca
     private String getResourceName() {
         try {
             return getResources().getResourceEntryName(getId());
-        } catch (Resources$NotFoundException unused) {
+        } catch (Resources.NotFoundException unused) {
             return "";
         }
     }
 
-    public void init(EglBase$Context eglBase$Context, RendererCommon$RendererEvents rendererCommon$RendererEvents) {
-        init(eglBase$Context, rendererCommon$RendererEvents, EglBase.CONFIG_PLAIN, new GlRectDrawer());
+    public void init(EglBase.Context context, RendererCommon.RendererEvents rendererEvents) {
+        init(context, rendererEvents, EglBase.CONFIG_PLAIN, new GlRectDrawer());
     }
 
     private void logD(String str) {
         Logging.d(TAG, this.resourceName + ": " + str);
     }
 
-    @Override // org.webrtc.RendererCommon$RendererEvents
+    @Override // org.webrtc.RendererCommon.RendererEvents
     public void onFirstFrameRendered() {
-        RendererCommon$RendererEvents rendererCommon$RendererEvents = this.rendererEvents;
-        if (rendererCommon$RendererEvents != null) {
-            rendererCommon$RendererEvents.onFirstFrameRendered();
+        RendererCommon.RendererEvents rendererEvents = this.rendererEvents;
+        if (rendererEvents != null) {
+            rendererEvents.onFirstFrameRendered();
         }
     }
 
@@ -83,11 +82,11 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder$Ca
         this.eglRenderer.onFrame(videoFrame);
     }
 
-    @Override // org.webrtc.RendererCommon$RendererEvents
+    @Override // org.webrtc.RendererCommon.RendererEvents
     public void onFrameResolutionChanged(int i, int i2, int i3) {
-        RendererCommon$RendererEvents rendererCommon$RendererEvents = this.rendererEvents;
-        if (rendererCommon$RendererEvents != null) {
-            rendererCommon$RendererEvents.onFrameResolutionChanged(i, i2, i3);
+        RendererCommon.RendererEvents rendererEvents = this.rendererEvents;
+        if (rendererEvents != null) {
+            rendererEvents.onFrameResolutionChanged(i, i2, i3);
         }
         int i4 = (i3 == 0 || i3 == 180) ? i : i2;
         if (i3 == 0 || i3 == 180) {
@@ -131,8 +130,8 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder$Ca
         this.eglRenderer.release();
     }
 
-    public void removeFrameListener(EglRenderer$FrameListener eglRenderer$FrameListener) {
-        this.eglRenderer.removeFrameListener(eglRenderer$FrameListener);
+    public void removeFrameListener(EglRenderer.FrameListener frameListener) {
+        this.eglRenderer.removeFrameListener(frameListener);
     }
 
     public void setEnableHardwareScaler(boolean z2) {
@@ -149,17 +148,17 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder$Ca
         this.eglRenderer.setMirror(z2);
     }
 
-    public void setScalingType(RendererCommon$ScalingType rendererCommon$ScalingType) {
+    public void setScalingType(RendererCommon.ScalingType scalingType) {
         ThreadUtils.checkIsOnMainThread();
-        this.videoLayoutMeasure.setScalingType(rendererCommon$ScalingType);
+        this.videoLayoutMeasure.setScalingType(scalingType);
         requestLayout();
     }
 
-    @Override // android.view.SurfaceHolder$Callback
+    @Override // android.view.SurfaceHolder.Callback
     public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i2, int i3) {
     }
 
-    @Override // android.view.SurfaceHolder$Callback
+    @Override // android.view.SurfaceHolder.Callback
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         ThreadUtils.checkIsOnMainThread();
         this.surfaceHeight = 0;
@@ -167,7 +166,7 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder$Ca
         updateSurfaceSize();
     }
 
-    @Override // android.view.SurfaceHolder$Callback
+    @Override // android.view.SurfaceHolder.Callback
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
     }
 
@@ -214,27 +213,27 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder$Ca
         getHolder().setFixedSize(iMin, iMin2);
     }
 
-    public void addFrameListener(EglRenderer$FrameListener eglRenderer$FrameListener, float f) {
-        this.eglRenderer.addFrameListener(eglRenderer$FrameListener, f);
+    public void addFrameListener(EglRenderer.FrameListener frameListener, float f) {
+        this.eglRenderer.addFrameListener(frameListener, f);
     }
 
-    public void init(EglBase$Context eglBase$Context, RendererCommon$RendererEvents rendererCommon$RendererEvents, int[] iArr, RendererCommon$GlDrawer rendererCommon$GlDrawer) {
+    public void init(EglBase.Context context, RendererCommon.RendererEvents rendererEvents, int[] iArr, RendererCommon.GlDrawer glDrawer) {
         ThreadUtils.checkIsOnMainThread();
-        this.rendererEvents = rendererCommon$RendererEvents;
+        this.rendererEvents = rendererEvents;
         this.rotatedFrameWidth = 0;
         this.rotatedFrameHeight = 0;
-        this.eglRenderer.init(eglBase$Context, this, iArr, rendererCommon$GlDrawer);
+        this.eglRenderer.init(context, this, iArr, glDrawer);
     }
 
-    public void setScalingType(RendererCommon$ScalingType rendererCommon$ScalingType, RendererCommon$ScalingType rendererCommon$ScalingType2) {
+    public void setScalingType(RendererCommon.ScalingType scalingType, RendererCommon.ScalingType scalingType2) {
         ThreadUtils.checkIsOnMainThread();
-        this.videoLayoutMeasure.setScalingType(rendererCommon$ScalingType, rendererCommon$ScalingType2);
+        this.videoLayoutMeasure.setScalingType(scalingType, scalingType2);
         requestLayout();
     }
 
     public SurfaceViewRenderer(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        this.videoLayoutMeasure = new RendererCommon$VideoLayoutMeasure();
+        this.videoLayoutMeasure = new RendererCommon.VideoLayoutMeasure();
         String resourceName = getResourceName();
         this.resourceName = resourceName;
         SurfaceEglRenderer surfaceEglRenderer = new SurfaceEglRenderer(resourceName);

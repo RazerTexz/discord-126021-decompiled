@@ -14,13 +14,13 @@ public abstract class b extends s0 implements c {
     @Override // b.i.a.f.h.l.s0
     public final boolean c(int i, Parcel parcel, Parcel parcel2, int i2) throws RemoteException {
         if (i == 1) {
-            ((g$c) this).Z(parcel.readString(), parcel.readString(), (Bundle) v.a(parcel, Bundle.CREATOR), parcel.readLong());
+            ((g.c) this).Z(parcel.readString(), parcel.readString(), (Bundle) v.a(parcel, Bundle.CREATOR), parcel.readLong());
             parcel2.writeNoException();
         } else {
             if (i != 2) {
                 return false;
             }
-            int iA = ((g$c) this).a();
+            int iA = ((g.c) this).a();
             parcel2.writeNoException();
             parcel2.writeInt(iA);
         }

@@ -12,7 +12,15 @@ public class b extends FileOutputStream {
     public final String k;
     public File l;
     public boolean m;
-    public static final FilenameFilter j = new b$a();
+    public static final FilenameFilter j = new a();
+
+    /* JADX INFO: compiled from: ClsFileOutputStream.java */
+    public class a implements FilenameFilter {
+        @Override // java.io.FilenameFilter
+        public boolean accept(File file, String str) {
+            return str.endsWith(".cls_temp");
+        }
+    }
 
     public b(File file, String str) throws FileNotFoundException {
         super(new File(file, b.d.b.a.a.w(str, ".cls_temp")));

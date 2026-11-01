@@ -29,7 +29,7 @@ public final class WidgetDirectoryChannelViewPagerAdapter extends FragmentStateA
         return createFragment(i);
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     /* JADX INFO: renamed from: getItemCount */
     public int getPageSize() {
         return this.tabs.size();

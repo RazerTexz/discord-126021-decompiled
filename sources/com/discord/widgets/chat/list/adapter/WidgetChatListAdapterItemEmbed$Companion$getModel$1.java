@@ -6,7 +6,6 @@ import d0.z.d.m;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map$Entry;
 import rx.functions.Func2;
 
 /* JADX INFO: compiled from: WidgetChatListAdapterItemEmbed.kt */
@@ -24,15 +23,15 @@ public final class WidgetChatListAdapterItemEmbed$Companion$getModel$1<T1, T2, R
     public final HashMap<Long, String> call2(Map<Long, GuildMember> map, Map<Long, String> map2) {
         m.checkNotNullExpressionValue(map, "members");
         LinkedHashMap linkedHashMap = new LinkedHashMap();
-        for (Map$Entry<Long, GuildMember> map$Entry : map.entrySet()) {
-            if (map$Entry.getValue().getNick() != null) {
-                linkedHashMap.put(map$Entry.getKey(), map$Entry.getValue());
+        for (Map.Entry<Long, GuildMember> entry : map.entrySet()) {
+            if (entry.getValue().getNick() != null) {
+                linkedHashMap.put(entry.getKey(), entry.getValue());
             }
         }
         HashMap<Long, String> map3 = new HashMap<>(map2);
-        for (Map$Entry map$Entry2 : linkedHashMap.entrySet()) {
-            Object key = map$Entry2.getKey();
-            String nick = ((GuildMember) map$Entry2.getValue()).getNick();
+        for (Map.Entry entry2 : linkedHashMap.entrySet()) {
+            Object key = entry2.getKey();
+            String nick = ((GuildMember) entry2.getValue()).getNick();
             m.checkNotNull(nick);
             map3.put(key, nick);
         }

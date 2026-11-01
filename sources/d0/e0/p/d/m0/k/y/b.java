@@ -3,7 +3,6 @@ package d0.e0.p.d.m0.k.y;
 import d0.e0.p.d.m0.c.e;
 import d0.e0.p.d.m0.c.h;
 import d0.e0.p.d.m0.e.a.g0.g;
-import d0.e0.p.d.m0.e.a.g0.g$a;
 import d0.e0.p.d.m0.e.a.i0.f;
 import d0.e0.p.d.m0.e.a.k0.c0;
 import d0.e0.p.d.m0.k.a0.i;
@@ -34,7 +33,7 @@ public final class b {
         m.checkNotNullParameter(gVar, "javaClass");
         d0.e0.p.d.m0.g.b fqName = gVar.getFqName();
         if (fqName != null && gVar.getLightClassOriginKind() == c0.SOURCE) {
-            return ((g$a) this.f3478b).getClassResolvedFromSource(fqName);
+            return ((g.a) this.f3478b).getClassResolvedFromSource(fqName);
         }
         d0.e0.p.d.m0.e.a.k0.g outerClass = gVar.getOuterClass();
         if (outerClass != null) {

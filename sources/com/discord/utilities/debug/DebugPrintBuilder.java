@@ -5,7 +5,6 @@ import d0.z.d.m;
 /* JADX INFO: compiled from: DebugPrintable.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class DebugPrintBuilder {
-    public static final DebugPrintBuilder$Companion Companion = new DebugPrintBuilder$Companion(null);
     private int indentation;
     private static final int maxDepth = 10;
     private final StringBuilder sb;

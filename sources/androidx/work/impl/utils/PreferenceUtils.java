@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
+import androidx.arch.core.util.Function;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import androidx.view.LiveData;
 import androidx.view.Transformations;
@@ -13,12 +13,28 @@ import androidx.work.impl.WorkDatabaseMigrations;
 import androidx.work.impl.model.Preference;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class PreferenceUtils {
     public static final String KEY_LAST_CANCEL_ALL_TIME_MS = "last_cancel_all_time_ms";
     public static final String KEY_RESCHEDULE_NEEDED = "reschedule_needed";
     public static final String PREFERENCES_FILE_NAME = "androidx.work.util.preferences";
     private final WorkDatabase mWorkDatabase;
+
+    /* JADX INFO: renamed from: androidx.work.impl.utils.PreferenceUtils$1, reason: invalid class name */
+    public class AnonymousClass1 implements Function<Long, Long> {
+        public AnonymousClass1() {
+        }
+
+        @Override // androidx.arch.core.util.Function
+        public /* bridge */ /* synthetic */ Long apply(Long l) {
+            return apply2(l);
+        }
+
+        /* JADX INFO: renamed from: apply, reason: avoid collision after fix types in other method */
+        public Long apply2(Long l) {
+            return Long.valueOf(l != null ? l.longValue() : 0L);
+        }
+    }
 
     public PreferenceUtils(@NonNull WorkDatabase workDatabase) {
         this.mWorkDatabase = workDatabase;
@@ -34,7 +50,7 @@ public class PreferenceUtils {
 
     @NonNull
     public LiveData<Long> getLastCancelAllTimeMillisLiveData() {
-        return Transformations.map(this.mWorkDatabase.preferenceDao().getObservableLongValue(KEY_LAST_CANCEL_ALL_TIME_MS), new PreferenceUtils$1(this));
+        return Transformations.map(this.mWorkDatabase.preferenceDao().getObservableLongValue(KEY_LAST_CANCEL_ALL_TIME_MS), new AnonymousClass1());
     }
 
     public boolean getNeedsReschedule() {

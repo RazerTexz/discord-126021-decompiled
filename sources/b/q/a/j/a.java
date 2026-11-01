@@ -3,7 +3,6 @@ package b.q.a.j;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap$CompressFormat;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.net.Uri;
@@ -37,7 +36,7 @@ public class a extends AsyncTask<Void, Void, Throwable> {
     public float f;
     public final int g;
     public final int h;
-    public final Bitmap$CompressFormat i;
+    public final Bitmap.CompressFormat i;
     public final int j;
     public final String k;
     public final String l;
@@ -195,7 +194,7 @@ public class a extends AsyncTask<Void, Void, Throwable> {
                                 if (byteArrayOutputStream != null) {
                                     byteArrayOutputStream.close();
                                 }
-                                if (this.i.equals(Bitmap$CompressFormat.JPEG)) {
+                                if (this.i.equals(Bitmap.CompressFormat.JPEG)) {
                                     int i2 = this.n;
                                     int i3 = this.o;
                                     String str4 = this.l;
@@ -266,7 +265,7 @@ public class a extends AsyncTask<Void, Void, Throwable> {
             }
         } catch (IOException unused5) {
         }
-        if (this.i.equals(Bitmap$CompressFormat.JPEG)) {
+        if (this.i.equals(Bitmap.CompressFormat.JPEG)) {
             int i5 = this.n;
             int i6 = this.o;
             String str5 = this.l;

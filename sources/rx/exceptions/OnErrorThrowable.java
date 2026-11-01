@@ -1,12 +1,70 @@
 package rx.exceptions;
 
+import j0.o.o;
+import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class OnErrorThrowable extends RuntimeException {
     private static final long serialVersionUID = -569558213262703934L;
     private final boolean hasValue;
     private final Object value;
+
+    public class OnNextValue extends RuntimeException {
+        private static final long serialVersionUID = -3454462756050397899L;
+        private final Object value;
+
+        public final class a {
+            public static final Set<Class<?>> a;
+
+            static {
+                HashSet hashSet = new HashSet();
+                hashSet.add(Boolean.class);
+                hashSet.add(Character.class);
+                hashSet.add(Byte.class);
+                hashSet.add(Short.class);
+                hashSet.add(Integer.class);
+                hashSet.add(Long.class);
+                hashSet.add(Float.class);
+                hashSet.add(Double.class);
+                a = hashSet;
+            }
+        }
+
+        /* JADX WARN: Illegal instructions before constructor call */
+        public OnNextValue(Object obj) {
+            String strName;
+            StringBuilder sbU = b.d.b.a.a.U("OnError while emitting onNext value: ");
+            if (obj == null) {
+                strName = "null";
+            } else if (a.a.contains(obj.getClass())) {
+                strName = obj.toString();
+            } else if (obj instanceof String) {
+                strName = (String) obj;
+            } else if (obj instanceof Enum) {
+                strName = ((Enum) obj).name();
+            } else {
+                Objects.requireNonNull(o.a.b());
+                strName = obj.getClass().getName() + ".class";
+            }
+            sbU.append(strName);
+            super(sbU.toString());
+            if (!(obj instanceof Serializable)) {
+                try {
+                    obj = String.valueOf(obj);
+                } catch (Throwable th) {
+                    obj = th.getMessage();
+                }
+            }
+            this.value = obj;
+        }
+
+        public Object a() {
+            return this.value;
+        }
+    }
 
     public static Throwable a(Throwable th, Object obj) {
         if (th == null) {
@@ -24,10 +82,10 @@ public final class OnErrorThrowable extends RuntimeException {
             runtimeException = runtimeException.getCause();
             i2 = i3;
         }
-        if ((runtimeException instanceof OnErrorThrowable$OnNextValue) && ((OnErrorThrowable$OnNextValue) runtimeException).a() == obj) {
+        if ((runtimeException instanceof OnNextValue) && ((OnNextValue) runtimeException).a() == obj) {
             return th;
         }
-        OnErrorThrowable$OnNextValue onErrorThrowable$OnNextValue = new OnErrorThrowable$OnNextValue(obj);
+        OnNextValue onNextValue = new OnNextValue(obj);
         HashSet hashSet = new HashSet();
         Throwable cause = th;
         try {
@@ -43,7 +101,7 @@ public final class OnErrorThrowable extends RuntimeException {
                 }
                 return th;
             }
-            cause.initCause(onErrorThrowable$OnNextValue);
+            cause.initCause(onNextValue);
         } catch (Throwable unused) {
         }
         return th;

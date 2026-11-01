@@ -1,15 +1,33 @@
 package b.g.a.c.g0.t;
 
 import java.util.Map;
-import java.util.Map$Entry;
 
 /* JADX INFO: compiled from: ReadOnlyClassToSerializerMap.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class m {
-    public final m$a[] a;
+    public final a[] a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final int f711b;
+
+    /* JADX INFO: compiled from: ReadOnlyClassToSerializerMap.java */
+    public final class a {
+        public final b.g.a.c.n<Object> a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public final a f712b;
+        public final Class<?> c;
+        public final b.g.a.c.j d;
+        public final boolean e;
+
+        public a(a aVar, b.g.a.c.i0.u uVar, b.g.a.c.n<Object> nVar) {
+            this.f712b = aVar;
+            this.a = nVar;
+            this.e = uVar.d;
+            this.c = uVar.f730b;
+            this.d = uVar.c;
+        }
+    }
 
     public m(Map<b.g.a.c.i0.u, b.g.a.c.n<Object>> map) {
         int size = map.size();
@@ -18,46 +36,46 @@ public final class m {
             i += i;
         }
         this.f711b = i - 1;
-        m$a[] m_aArr = new m$a[i];
-        for (Map$Entry<b.g.a.c.i0.u, b.g.a.c.n<Object>> map$Entry : map.entrySet()) {
-            b.g.a.c.i0.u key = map$Entry.getKey();
+        a[] aVarArr = new a[i];
+        for (Map.Entry<b.g.a.c.i0.u, b.g.a.c.n<Object>> entry : map.entrySet()) {
+            b.g.a.c.i0.u key = entry.getKey();
             int i2 = key.a & this.f711b;
-            m_aArr[i2] = new m$a(m_aArr[i2], key, map$Entry.getValue());
+            aVarArr[i2] = new a(aVarArr[i2], key, entry.getValue());
         }
-        this.a = m_aArr;
+        this.a = aVarArr;
     }
 
     public b.g.a.c.n<Object> a(b.g.a.c.j jVar) {
-        m$a m_a = this.a[(jVar._hash - 1) & this.f711b];
-        if (m_a == null) {
+        a aVar = this.a[(jVar._hash - 1) & this.f711b];
+        if (aVar == null) {
             return null;
         }
-        if (!m_a.e && jVar.equals(m_a.d)) {
-            return m_a.a;
+        if (!aVar.e && jVar.equals(aVar.d)) {
+            return aVar.a;
         }
         do {
-            m_a = m_a.f712b;
-            if (m_a == null) {
+            aVar = aVar.f712b;
+            if (aVar == null) {
                 return null;
             }
-        } while (!(!m_a.e && jVar.equals(m_a.d)));
-        return m_a.a;
+        } while (!(!aVar.e && jVar.equals(aVar.d)));
+        return aVar.a;
     }
 
     public b.g.a.c.n<Object> b(Class<?> cls) {
-        m$a m_a = this.a[cls.getName().hashCode() & this.f711b];
-        if (m_a == null) {
+        a aVar = this.a[cls.getName().hashCode() & this.f711b];
+        if (aVar == null) {
             return null;
         }
-        if (m_a.c == cls && !m_a.e) {
-            return m_a.a;
+        if (aVar.c == cls && !aVar.e) {
+            return aVar.a;
         }
         do {
-            m_a = m_a.f712b;
-            if (m_a == null) {
+            aVar = aVar.f712b;
+            if (aVar == null) {
                 return null;
             }
-        } while (!(m_a.c == cls && !m_a.e));
-        return m_a.a;
+        } while (!(aVar.c == cls && !aVar.e));
+        return aVar.a;
     }
 }

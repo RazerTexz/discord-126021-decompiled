@@ -1,16 +1,18 @@
 package com.google.android.gms.common.api.internal;
 
 import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
+import android.util.Pair;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import b.i.a.f.e.h.c;
 import b.i.a.f.e.h.d;
-import b.i.a.f.e.h.d$a;
 import b.i.a.f.e.h.f;
 import b.i.a.f.e.h.h;
+import b.i.a.f.e.h.i;
 import b.i.a.f.e.h.j.l0;
 import b.i.a.f.e.h.j.w0;
+import b.i.a.f.h.e.c;
 import com.google.android.gms.common.annotation.KeepName;
 import com.google.android.gms.common.api.Status;
 import java.lang.ref.WeakReference;
@@ -23,9 +25,9 @@ import java.util.concurrent.atomic.AtomicReference;
 /* JADX INFO: loaded from: classes3.dex */
 @KeepName
 public abstract class BasePendingResult<R extends h> extends d<R> {
-    public final BasePendingResult$a<R> c;
+    public final a<R> c;
     public final CountDownLatch d;
-    public final ArrayList<d$a> e;
+    public final ArrayList<d.a> e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final Object f3004b;
@@ -39,8 +41,50 @@ public abstract class BasePendingResult<R extends h> extends d<R> {
     public boolean k;
 
     @KeepName
-    public BasePendingResult$b mResultGuardian;
+    public b mResultGuardian;
     public static final ThreadLocal<Boolean> a = new w0();
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
+    public class a<R extends h> extends c {
+        public a(Looper looper) {
+            super(looper);
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // android.os.Handler
+        public void handleMessage(Message message) {
+            int i = message.what;
+            if (i != 1) {
+                if (i != 2) {
+                    Log.wtf("BasePendingResult", b.d.b.a.a.g(45, "Don't know how to handle message: ", i), new Exception());
+                    return;
+                } else {
+                    ((BasePendingResult) message.obj).e(Status.m);
+                    return;
+                }
+            }
+            Pair pair = (Pair) message.obj;
+            i iVar = (i) pair.first;
+            h hVar = (h) pair.second;
+            try {
+                iVar.a(hVar);
+            } catch (RuntimeException e) {
+                BasePendingResult.h(hVar);
+                throw e;
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
+    public final class b {
+        public b(w0 w0Var) {
+        }
+
+        public final void finalize() throws Throwable {
+            BasePendingResult.h(BasePendingResult.this.g);
+            super.finalize();
+        }
+    }
 
     @Deprecated
     public BasePendingResult() {
@@ -49,7 +93,7 @@ public abstract class BasePendingResult<R extends h> extends d<R> {
         this.e = new ArrayList<>();
         this.f = new AtomicReference<>();
         this.k = false;
-        this.c = new BasePendingResult$a<>(Looper.getMainLooper());
+        this.c = new a<>(Looper.getMainLooper());
         new WeakReference(null);
     }
 
@@ -58,13 +102,13 @@ public abstract class BasePendingResult<R extends h> extends d<R> {
     }
 
     @Override // b.i.a.f.e.h.d
-    public final void c(d$a d_a) {
+    public final void c(d.a aVar) {
         b.c.a.a0.d.o(true, "Callback cannot be null.");
         synchronized (this.f3004b) {
             if (f()) {
-                d_a.a(this.h);
+                aVar.a(this.h);
             } else {
-                this.e.add(d_a);
+                this.e.add(aVar);
             }
         }
     }
@@ -122,15 +166,15 @@ public abstract class BasePendingResult<R extends h> extends d<R> {
         this.h = r.b0();
         this.d.countDown();
         if (this.g instanceof f) {
-            this.mResultGuardian = new BasePendingResult$b(this, null);
+            this.mResultGuardian = new b(null);
         }
-        ArrayList<d$a> arrayList = this.e;
+        ArrayList<d.a> arrayList = this.e;
         int size = arrayList.size();
         int i = 0;
         while (i < size) {
-            d$a d_a = arrayList.get(i);
+            d.a aVar = arrayList.get(i);
             i++;
-            d_a.a(this.h);
+            aVar.a(this.h);
         }
         this.e.clear();
     }
@@ -152,13 +196,13 @@ public abstract class BasePendingResult<R extends h> extends d<R> {
         return r;
     }
 
-    public BasePendingResult(@Nullable c cVar) {
+    public BasePendingResult(@Nullable b.i.a.f.e.h.c cVar) {
         this.f3004b = new Object();
         this.d = new CountDownLatch(1);
         this.e = new ArrayList<>();
         this.f = new AtomicReference<>();
         this.k = false;
-        this.c = new BasePendingResult$a<>(cVar != null ? cVar.c() : Looper.getMainLooper());
+        this.c = new a<>(cVar != null ? cVar.c() : Looper.getMainLooper());
         new WeakReference(cVar);
     }
 }

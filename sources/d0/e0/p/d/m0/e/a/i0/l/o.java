@@ -1,8 +1,8 @@
 package d0.e0.p.d.m0.e.a.i0.l;
 
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.e0.p.d.m0.c.n0;
 import d0.e0.p.d.m0.c.t0;
-import d0.t.n0;
 import d0.t.u;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map$Entry;
+import java.util.Map;
 import java.util.Set;
 import kotlin.jvm.functions.Function1;
 
@@ -19,6 +19,48 @@ import kotlin.jvm.functions.Function1;
 public final class o extends r {
     public final d0.e0.p.d.m0.e.a.k0.g n;
     public final f o;
+
+    /* JADX INFO: compiled from: LazyJavaStaticClassScope.kt */
+    public final class a extends d0.z.d.o implements Function1<d0.e0.p.d.m0.k.a0.i, Collection<? extends n0>> {
+        public final /* synthetic */ d0.e0.p.d.m0.g.e $name;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(d0.e0.p.d.m0.g.e eVar) {
+            super(1);
+            this.$name = eVar;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Collection<? extends n0> invoke(d0.e0.p.d.m0.k.a0.i iVar) {
+            return invoke2(iVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Collection<? extends n0> invoke2(d0.e0.p.d.m0.k.a0.i iVar) {
+            d0.z.d.m.checkNotNullParameter(iVar, "it");
+            return iVar.getContributedVariables(this.$name, d0.e0.p.d.m0.d.b.d.WHEN_GET_SUPER_MEMBERS);
+        }
+    }
+
+    /* JADX INFO: compiled from: LazyJavaStaticClassScope.kt */
+    public final class b extends d0.z.d.o implements Function1<d0.e0.p.d.m0.k.a0.i, Collection<? extends d0.e0.p.d.m0.g.e>> {
+        public static final b j = new b();
+
+        public b() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Collection<? extends d0.e0.p.d.m0.g.e> invoke(d0.e0.p.d.m0.k.a0.i iVar) {
+            return invoke2(iVar);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Collection<d0.e0.p.d.m0.g.e> invoke2(d0.e0.p.d.m0.k.a0.i iVar) {
+            d0.z.d.m.checkNotNullParameter(iVar, "it");
+            return iVar.getVariableNames();
+        }
+    }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public o(d0.e0.p.d.m0.e.a.i0.g gVar, d0.e0.p.d.m0.e.a.k0.g gVar2, f fVar) {
@@ -33,7 +75,7 @@ public final class o extends r {
     @Override // d0.e0.p.d.m0.e.a.i0.l.k
     public Set<d0.e0.p.d.m0.g.e> a(d0.e0.p.d.m0.k.a0.d dVar, Function1<? super d0.e0.p.d.m0.g.e, Boolean> function1) {
         d0.z.d.m.checkNotNullParameter(dVar, "kindFilter");
-        return n0.emptySet();
+        return d0.t.n0.emptySet();
     }
 
     @Override // d0.e0.p.d.m0.e.a.i0.l.k
@@ -43,7 +85,7 @@ public final class o extends r {
         o parentJavaStaticClassScope = d0.e0.p.d.m0.e.a.h0.k.getParentJavaStaticClassScope(this.o);
         Set<d0.e0.p.d.m0.g.e> functionNames = parentJavaStaticClassScope == null ? null : parentJavaStaticClassScope.getFunctionNames();
         if (functionNames == null) {
-            functionNames = n0.emptySet();
+            functionNames = d0.t.n0.emptySet();
         }
         mutableSet.addAll(functionNames);
         if (this.n.isEnum()) {
@@ -53,8 +95,8 @@ public final class o extends r {
     }
 
     @Override // d0.e0.p.d.m0.e.a.i0.l.k
-    public b d() {
-        return new a(this.n, n.j);
+    public d0.e0.p.d.m0.e.a.i0.l.b d() {
+        return new d0.e0.p.d.m0.e.a.i0.l.a(this.n, n.j);
     }
 
     @Override // d0.e0.p.d.m0.e.a.i0.l.k
@@ -62,7 +104,7 @@ public final class o extends r {
         d0.z.d.m.checkNotNullParameter(collection, "result");
         d0.z.d.m.checkNotNullParameter(eVar, ModelAuditLogEntry.CHANGE_KEY_NAME);
         o parentJavaStaticClassScope = d0.e0.p.d.m0.e.a.h0.k.getParentJavaStaticClassScope(this.o);
-        Collection<? extends t0> collectionResolveOverridesForStaticMembers = d0.e0.p.d.m0.e.a.g0.a.resolveOverridesForStaticMembers(eVar, parentJavaStaticClassScope == null ? n0.emptySet() : u.toSet(parentJavaStaticClassScope.getContributedFunctions(eVar, d0.e0.p.d.m0.d.b.d.WHEN_GET_SUPER_MEMBERS)), collection, this.o, this.c.getComponents().getErrorReporter(), this.c.getComponents().getKotlinTypeChecker().getOverridingUtil());
+        Collection<? extends t0> collectionResolveOverridesForStaticMembers = d0.e0.p.d.m0.e.a.g0.a.resolveOverridesForStaticMembers(eVar, parentJavaStaticClassScope == null ? d0.t.n0.emptySet() : u.toSet(parentJavaStaticClassScope.getContributedFunctions(eVar, d0.e0.p.d.m0.d.b.d.WHEN_GET_SUPER_MEMBERS)), collection, this.o, this.c.getComponents().getErrorReporter(), this.c.getComponents().getKotlinTypeChecker().getOverridingUtil());
         d0.z.d.m.checkNotNullExpressionValue(collectionResolveOverridesForStaticMembers, "resolveOverridesForStaticMembers(\n            name,\n            functionsFromSupertypes,\n            result,\n            ownerDescriptor,\n            c.components.errorReporter,\n            c.components.kotlinTypeChecker.overridingUtil\n        )");
         collection.addAll(collectionResolveOverridesForStaticMembers);
         if (this.n.isEnum()) {
@@ -79,21 +121,21 @@ public final class o extends r {
     }
 
     @Override // d0.e0.p.d.m0.e.a.i0.l.r, d0.e0.p.d.m0.e.a.i0.l.k
-    public void g(d0.e0.p.d.m0.g.e eVar, Collection<d0.e0.p.d.m0.c.n0> collection) {
+    public void g(d0.e0.p.d.m0.g.e eVar, Collection<n0> collection) {
         d0.z.d.m.checkNotNullParameter(eVar, ModelAuditLogEntry.CHANGE_KEY_NAME);
         d0.z.d.m.checkNotNullParameter(collection, "result");
         f fVar = this.o;
         LinkedHashSet linkedHashSet = new LinkedHashSet();
-        d0.e0.p.d.m0.p.b.dfs(d0.t.m.listOf(fVar), p.a, new q(fVar, linkedHashSet, new o$a(eVar)));
+        d0.e0.p.d.m0.p.b.dfs(d0.t.m.listOf(fVar), p.a, new q(fVar, linkedHashSet, new a(eVar)));
         if (!collection.isEmpty()) {
-            Collection<? extends d0.e0.p.d.m0.c.n0> collectionResolveOverridesForStaticMembers = d0.e0.p.d.m0.e.a.g0.a.resolveOverridesForStaticMembers(eVar, linkedHashSet, collection, this.o, this.c.getComponents().getErrorReporter(), this.c.getComponents().getKotlinTypeChecker().getOverridingUtil());
+            Collection<? extends n0> collectionResolveOverridesForStaticMembers = d0.e0.p.d.m0.e.a.g0.a.resolveOverridesForStaticMembers(eVar, linkedHashSet, collection, this.o, this.c.getComponents().getErrorReporter(), this.c.getComponents().getKotlinTypeChecker().getOverridingUtil());
             d0.z.d.m.checkNotNullExpressionValue(collectionResolveOverridesForStaticMembers, "resolveOverridesForStaticMembers(\n                    name,\n                    propertiesFromSupertypes,\n                    result,\n                    ownerDescriptor,\n                    c.components.errorReporter,\n                    c.components.kotlinTypeChecker.overridingUtil\n                )");
             collection.addAll(collectionResolveOverridesForStaticMembers);
             return;
         }
         LinkedHashMap linkedHashMap = new LinkedHashMap();
         for (Object obj : linkedHashSet) {
-            d0.e0.p.d.m0.c.n0 n0VarO = o((d0.e0.p.d.m0.c.n0) obj);
+            n0 n0VarO = o((n0) obj);
             Object arrayList = linkedHashMap.get(n0VarO);
             if (arrayList == null) {
                 arrayList = new ArrayList();
@@ -104,7 +146,7 @@ public final class o extends r {
         ArrayList arrayList2 = new ArrayList();
         Iterator it = linkedHashMap.entrySet().iterator();
         while (it.hasNext()) {
-            Collection collectionResolveOverridesForStaticMembers2 = d0.e0.p.d.m0.e.a.g0.a.resolveOverridesForStaticMembers(eVar, (Collection) ((Map$Entry) it.next()).getValue(), collection, this.o, this.c.getComponents().getErrorReporter(), this.c.getComponents().getKotlinTypeChecker().getOverridingUtil());
+            Collection collectionResolveOverridesForStaticMembers2 = d0.e0.p.d.m0.e.a.g0.a.resolveOverridesForStaticMembers(eVar, (Collection) ((Map.Entry) it.next()).getValue(), collection, this.o, this.c.getComponents().getErrorReporter(), this.c.getComponents().getKotlinTypeChecker().getOverridingUtil());
             d0.z.d.m.checkNotNullExpressionValue(collectionResolveOverridesForStaticMembers2, "resolveOverridesForStaticMembers(\n                    name, it.value, result, ownerDescriptor, c.components.errorReporter,\n                    c.components.kotlinTypeChecker.overridingUtil\n                )");
             d0.t.r.addAll(arrayList2, collectionResolveOverridesForStaticMembers2);
         }
@@ -123,7 +165,7 @@ public final class o extends r {
         d0.z.d.m.checkNotNullParameter(dVar, "kindFilter");
         Set<d0.e0.p.d.m0.g.e> mutableSet = u.toMutableSet(this.f.invoke().getFieldNames());
         f fVar = this.o;
-        d0.e0.p.d.m0.p.b.dfs(d0.t.m.listOf(fVar), p.a, new q(fVar, mutableSet, o$b.j));
+        d0.e0.p.d.m0.p.b.dfs(d0.t.m.listOf(fVar), p.a, new q(fVar, mutableSet, b.j));
         return mutableSet;
     }
 
@@ -132,17 +174,17 @@ public final class o extends r {
         return this.o;
     }
 
-    public final d0.e0.p.d.m0.c.n0 o(d0.e0.p.d.m0.c.n0 n0Var) {
+    public final n0 o(n0 n0Var) {
         if (n0Var.getKind().isReal()) {
             return n0Var;
         }
-        Collection<? extends d0.e0.p.d.m0.c.n0> overriddenDescriptors = n0Var.getOverriddenDescriptors();
+        Collection<? extends n0> overriddenDescriptors = n0Var.getOverriddenDescriptors();
         d0.z.d.m.checkNotNullExpressionValue(overriddenDescriptors, "this.overriddenDescriptors");
         ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(overriddenDescriptors, 10));
-        for (d0.e0.p.d.m0.c.n0 n0Var2 : overriddenDescriptors) {
+        for (n0 n0Var2 : overriddenDescriptors) {
             d0.z.d.m.checkNotNullExpressionValue(n0Var2, "it");
             arrayList.add(o(n0Var2));
         }
-        return (d0.e0.p.d.m0.c.n0) u.single(u.distinct(arrayList));
+        return (n0) u.single(u.distinct(arrayList));
     }
 }

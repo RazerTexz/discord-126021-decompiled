@@ -2,25 +2,80 @@ package com.discord.stores;
 
 import com.discord.api.botuikit.SelectItem;
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
 import d0.t.h0;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
 
 /* JADX INFO: compiled from: StoreLocalActionComponentState.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreLocalActionComponentState extends StoreV2 {
-    private final Map<String, StoreApplicationInteractions$ComponentLocation> componentInteractions;
+    private final Map<String, StoreApplicationInteractions.ComponentLocation> componentInteractions;
     private final Dispatcher dispatcher;
     private final ObservationDeck observationDeck;
     private final Map<Long, Map<Integer, List<SelectItem>>> selectComponentSelections;
     private Map<Long, ? extends Map<Integer, ? extends List<SelectItem>>> selectComponentSelectionsSnapshot;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreLocalActionComponentState$observeSelectComponentSelections$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreLocalActionComponentState.kt */
+    public final class AnonymousClass1 extends o implements Function0<Map<Long, ? extends Map<Integer, ? extends List<? extends SelectItem>>>> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Map<Long, ? extends Map<Integer, ? extends List<? extends SelectItem>>> invoke() {
+            return invoke2();
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final Map<Long, ? extends Map<Integer, ? extends List<? extends SelectItem>>> invoke2() {
+            return StoreLocalActionComponentState.this.getSelectComponentSelectionsData();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreLocalActionComponentState$setSelectComponentSelection$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreLocalActionComponentState.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ int $componentIndex;
+        public final /* synthetic */ long $messageId;
+        public final /* synthetic */ List $selectedItems;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, List list, int i) {
+            super(0);
+            this.$messageId = j;
+            this.$selectedItems = list;
+            this.$componentIndex = i;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Map<Integer, List<SelectItem>> linkedHashMap;
+            Map<Integer, List<SelectItem>> map = StoreLocalActionComponentState.this.getSelectComponentSelections().get(Long.valueOf(this.$messageId));
+            if (map == null || (linkedHashMap = h0.toMutableMap(map)) == null) {
+                linkedHashMap = new LinkedHashMap<>();
+            }
+            linkedHashMap.put(Integer.valueOf(this.$componentIndex), this.$selectedItems);
+            StoreLocalActionComponentState.this.getSelectComponentSelections().put(Long.valueOf(this.$messageId), linkedHashMap);
+            StoreLocalActionComponentState.this.markChanged();
+        }
+    }
 
     public /* synthetic */ StoreLocalActionComponentState(Dispatcher dispatcher, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck);
@@ -43,7 +98,7 @@ public final class StoreLocalActionComponentState extends StoreV2 {
         }
     }
 
-    public final Map<String, StoreApplicationInteractions$ComponentLocation> getComponentInteractions() {
+    public final Map<String, StoreApplicationInteractions.ComponentLocation> getComponentInteractions() {
         return this.componentInteractions;
     }
 
@@ -64,14 +119,14 @@ public final class StoreLocalActionComponentState extends StoreV2 {
     }
 
     public final Observable<Map<Long, Map<Integer, List<SelectItem>>>> observeSelectComponentSelections() {
-        Observable<Map<Long, Map<Integer, List<SelectItem>>>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreLocalActionComponentState$observeSelectComponentSelections$1(this), 14, null).r();
+        Observable<Map<Long, Map<Integer, List<SelectItem>>>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null).r();
         m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
         return observableR;
     }
 
     public final void setSelectComponentSelection(long messageId, int componentIndex, List<SelectItem> selectedItems) {
         m.checkNotNullParameter(selectedItems, "selectedItems");
-        this.dispatcher.schedule(new StoreLocalActionComponentState$setSelectComponentSelection$1(this, messageId, selectedItems, componentIndex));
+        this.dispatcher.schedule(new AnonymousClass1(messageId, selectedItems, componentIndex));
     }
 
     public final void setSelectComponentSelectionsSnapshot(Map<Long, ? extends Map<Integer, ? extends List<SelectItem>>> map) {

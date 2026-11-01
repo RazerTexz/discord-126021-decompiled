@@ -2,27 +2,35 @@ package com.discord.widgets.servers.guildboost;
 
 import android.content.Context;
 import androidx.annotation.MainThread;
+import androidx.core.app.NotificationCompat;
 import b.a.d.d0;
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAppliedGuildBoost;
 import com.discord.models.domain.ModelGuildBoostSlot;
+import com.discord.models.guild.Guild;
+import com.discord.restapi.RestAPIParams;
 import com.discord.stores.StoreGuildBoost;
-import com.discord.stores.StoreGuildBoost$State$Loaded;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
+import com.discord.utilities.error.Error;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
 import rx.Subscription;
+import rx.functions.Func3;
 
 /* JADX INFO: compiled from: GuildBoostTransferInProgressViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class GuildBoostTransferInProgressViewModel extends d0<GuildBoostTransferInProgressViewModel$ViewState> {
+public final class GuildBoostTransferInProgressViewModel extends d0<ViewState> {
     private final long boostId;
     private Subscription guildBoostingSubscription;
     private final long previousGuildId;
@@ -31,14 +39,422 @@ public final class GuildBoostTransferInProgressViewModel extends d0<GuildBoostTr
     private final StoreGuildBoost storeGuildBoost;
     private final long targetGuildId;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.GuildBoostTransferInProgressViewModel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: GuildBoostTransferInProgressViewModel.kt */
+    public final class AnonymousClass1<T1, T2, T3, R> implements Func3<Guild, Guild, StoreGuildBoost.State, StoreState> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // rx.functions.Func3
+        public /* bridge */ /* synthetic */ StoreState call(Guild guild, Guild guild2, StoreGuildBoost.State state) {
+            return call2(guild, guild2, state);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final StoreState call2(Guild guild, Guild guild2, StoreGuildBoost.State state) {
+            m.checkNotNullExpressionValue(state, "guildBoostState");
+            return new StoreState(guild, guild2, state);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.GuildBoostTransferInProgressViewModel$transferGuildBoost$1, reason: invalid class name */
+    /* JADX INFO: compiled from: GuildBoostTransferInProgressViewModel.kt */
+    public final class AnonymousClass1<T, R> implements b<Void, Observable<? extends List<? extends ModelAppliedGuildBoost>>> {
+        public AnonymousClass1() {
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends List<? extends ModelAppliedGuildBoost>> call(Void r1) {
+            return call2(r1);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends List<ModelAppliedGuildBoost>> call2(Void r6) {
+            return GuildBoostTransferInProgressViewModel.this.getRestAPI().subscribeToGuild(GuildBoostTransferInProgressViewModel.this.getTargetGuildId(), new RestAPIParams.GuildBoosting(d0.t.m.listOf(Long.valueOf(GuildBoostTransferInProgressViewModel.this.getSlotId()))));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.GuildBoostTransferInProgressViewModel$2, reason: invalid class name */
+    /* JADX INFO: compiled from: GuildBoostTransferInProgressViewModel.kt */
+    public final class AnonymousClass2 extends o implements Function1<StoreState, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
+            invoke2(storeState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(StoreState storeState) {
+            m.checkNotNullParameter(storeState, "storeState");
+            GuildBoostTransferInProgressViewModel.access$handleStoreState(GuildBoostTransferInProgressViewModel.this, storeState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.GuildBoostTransferInProgressViewModel$transferGuildBoost$2, reason: invalid class name */
+    /* JADX INFO: compiled from: GuildBoostTransferInProgressViewModel.kt */
+    public final class AnonymousClass2 extends o implements Function1<Error, Unit> {
+        public AnonymousClass2() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
+            invoke2(error);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Error error) {
+            m.checkNotNullParameter(error, "it");
+            GuildBoostTransferInProgressViewModel.access$handleGuildBoostingError(GuildBoostTransferInProgressViewModel.this);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.guildboost.GuildBoostTransferInProgressViewModel$transferGuildBoost$3, reason: invalid class name */
+    /* JADX INFO: compiled from: GuildBoostTransferInProgressViewModel.kt */
+    public final class AnonymousClass3 extends o implements Function1<List<? extends ModelAppliedGuildBoost>, Unit> {
+        public AnonymousClass3() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ModelAppliedGuildBoost> list) {
+            invoke2((List<ModelAppliedGuildBoost>) list);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<ModelAppliedGuildBoost> list) {
+            GuildBoostTransferInProgressViewModel.access$handleGuildBoostingCompleted(GuildBoostTransferInProgressViewModel.this);
+        }
+    }
+
+    /* JADX INFO: compiled from: GuildBoostTransferInProgressViewModel.kt */
+    public final /* data */ class StoreState {
+        private final StoreGuildBoost.State guildBoostState;
+        private final Guild previousGuild;
+        private final Guild targetGuild;
+
+        public StoreState(Guild guild, Guild guild2, StoreGuildBoost.State state) {
+            m.checkNotNullParameter(state, "guildBoostState");
+            this.previousGuild = guild;
+            this.targetGuild = guild2;
+            this.guildBoostState = state;
+        }
+
+        public static /* synthetic */ StoreState copy$default(StoreState storeState, Guild guild, Guild guild2, StoreGuildBoost.State state, int i, Object obj) {
+            if ((i & 1) != 0) {
+                guild = storeState.previousGuild;
+            }
+            if ((i & 2) != 0) {
+                guild2 = storeState.targetGuild;
+            }
+            if ((i & 4) != 0) {
+                state = storeState.guildBoostState;
+            }
+            return storeState.copy(guild, guild2, state);
+        }
+
+        public final StoreState copy(Guild previousGuild, Guild targetGuild, StoreGuildBoost.State guildBoostState) {
+            m.checkNotNullParameter(guildBoostState, "guildBoostState");
+            return new StoreState(previousGuild, targetGuild, guildBoostState);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof StoreState)) {
+                return false;
+            }
+            StoreState storeState = (StoreState) other;
+            return m.areEqual(this.previousGuild, storeState.previousGuild) && m.areEqual(this.targetGuild, storeState.targetGuild) && m.areEqual(this.guildBoostState, storeState.guildBoostState);
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final StoreGuildBoost.State getGuildBoostState() {
+            return this.guildBoostState;
+        }
+
+        public final StoreGuildBoost.State getGuildBoostState() {
+            return this.guildBoostState;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Guild getPreviousGuild() {
+            return this.previousGuild;
+        }
+
+        public final Guild getPreviousGuild() {
+            return this.previousGuild;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Guild getTargetGuild() {
+            return this.targetGuild;
+        }
+
+        public final Guild getTargetGuild() {
+            return this.targetGuild;
+        }
+
+        public int hashCode() {
+            Guild guild = this.previousGuild;
+            int iHashCode = (guild != null ? guild.hashCode() : 0) * 31;
+            Guild guild2 = this.targetGuild;
+            int iHashCode2 = (iHashCode + (guild2 != null ? guild2.hashCode() : 0)) * 31;
+            StoreGuildBoost.State state = this.guildBoostState;
+            return iHashCode2 + (state != null ? state.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("StoreState(previousGuild=");
+            sbU.append(this.previousGuild);
+            sbU.append(", targetGuild=");
+            sbU.append(this.targetGuild);
+            sbU.append(", guildBoostState=");
+            sbU.append(this.guildBoostState);
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
+
+    /* JADX INFO: compiled from: GuildBoostTransferInProgressViewModel.kt */
+    public abstract class ViewState {
+
+        /* JADX INFO: compiled from: GuildBoostTransferInProgressViewModel.kt */
+        public final class ErrorLoading extends ViewState {
+            public static final ErrorLoading INSTANCE = new ErrorLoading();
+
+            private ErrorLoading() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: GuildBoostTransferInProgressViewModel.kt */
+        public final class ErrorTransfer extends ViewState {
+            public static final ErrorTransfer INSTANCE = new ErrorTransfer();
+
+            private ErrorTransfer() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: GuildBoostTransferInProgressViewModel.kt */
+        public final class Loading extends ViewState {
+            public static final Loading INSTANCE = new Loading();
+
+            private Loading() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: GuildBoostTransferInProgressViewModel.kt */
+        public final /* data */ class PostTransfer extends ViewState {
+            private final Guild targetGuild;
+            private final int targetGuildSubscriptionCount;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public PostTransfer(Guild guild, int i) {
+                super(null);
+                m.checkNotNullParameter(guild, "targetGuild");
+                this.targetGuild = guild;
+                this.targetGuildSubscriptionCount = i;
+            }
+
+            public static /* synthetic */ PostTransfer copy$default(PostTransfer postTransfer, Guild guild, int i, int i2, Object obj) {
+                if ((i2 & 1) != 0) {
+                    guild = postTransfer.targetGuild;
+                }
+                if ((i2 & 2) != 0) {
+                    i = postTransfer.targetGuildSubscriptionCount;
+                }
+                return postTransfer.copy(guild, i);
+            }
+
+            public final PostTransfer copy(Guild targetGuild, int targetGuildSubscriptionCount) {
+                m.checkNotNullParameter(targetGuild, "targetGuild");
+                return new PostTransfer(targetGuild, targetGuildSubscriptionCount);
+            }
+
+            public boolean equals(Object other) {
+                if (this == other) {
+                    return true;
+                }
+                if (!(other instanceof PostTransfer)) {
+                    return false;
+                }
+                PostTransfer postTransfer = (PostTransfer) other;
+                return m.areEqual(this.targetGuild, postTransfer.targetGuild) && this.targetGuildSubscriptionCount == postTransfer.targetGuildSubscriptionCount;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Guild getTargetGuild() {
+                return this.targetGuild;
+            }
+
+            public final Guild getTargetGuild() {
+                return this.targetGuild;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final int getTargetGuildSubscriptionCount() {
+                return this.targetGuildSubscriptionCount;
+            }
+
+            public final int getTargetGuildSubscriptionCount() {
+                return this.targetGuildSubscriptionCount;
+            }
+
+            public int hashCode() {
+                Guild guild = this.targetGuild;
+                return ((guild != null ? guild.hashCode() : 0) * 31) + this.targetGuildSubscriptionCount;
+            }
+
+            public String toString() {
+                StringBuilder sbU = a.U("PostTransfer(targetGuild=");
+                sbU.append(this.targetGuild);
+                sbU.append(", targetGuildSubscriptionCount=");
+                return a.B(sbU, this.targetGuildSubscriptionCount, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: GuildBoostTransferInProgressViewModel.kt */
+        public final /* data */ class PreTransfer extends ViewState {
+            private final boolean isTransferInProgress;
+            private final Guild previousGuild;
+            private final Guild targetGuild;
+            private final int targetGuildSubscriptionCount;
+
+            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+            public PreTransfer(Guild guild, Guild guild2, int i, boolean z2) {
+                super(null);
+                m.checkNotNullParameter(guild, "previousGuild");
+                m.checkNotNullParameter(guild2, "targetGuild");
+                this.previousGuild = guild;
+                this.targetGuild = guild2;
+                this.targetGuildSubscriptionCount = i;
+                this.isTransferInProgress = z2;
+            }
+
+            public static /* synthetic */ PreTransfer copy$default(PreTransfer preTransfer, Guild guild, Guild guild2, int i, boolean z2, int i2, Object obj) {
+                if ((i2 & 1) != 0) {
+                    guild = preTransfer.previousGuild;
+                }
+                if ((i2 & 2) != 0) {
+                    guild2 = preTransfer.targetGuild;
+                }
+                if ((i2 & 4) != 0) {
+                    i = preTransfer.targetGuildSubscriptionCount;
+                }
+                if ((i2 & 8) != 0) {
+                    z2 = preTransfer.isTransferInProgress;
+                }
+                return preTransfer.copy(guild, guild2, i, z2);
+            }
+
+            public final PreTransfer copy(Guild previousGuild, Guild targetGuild, int targetGuildSubscriptionCount, boolean isTransferInProgress) {
+                m.checkNotNullParameter(previousGuild, "previousGuild");
+                m.checkNotNullParameter(targetGuild, "targetGuild");
+                return new PreTransfer(previousGuild, targetGuild, targetGuildSubscriptionCount, isTransferInProgress);
+            }
+
+            public boolean equals(Object other) {
+                if (this == other) {
+                    return true;
+                }
+                if (!(other instanceof PreTransfer)) {
+                    return false;
+                }
+                PreTransfer preTransfer = (PreTransfer) other;
+                return m.areEqual(this.previousGuild, preTransfer.previousGuild) && m.areEqual(this.targetGuild, preTransfer.targetGuild) && this.targetGuildSubscriptionCount == preTransfer.targetGuildSubscriptionCount && this.isTransferInProgress == preTransfer.isTransferInProgress;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final boolean getIsTransferInProgress() {
+                return this.isTransferInProgress;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Guild getPreviousGuild() {
+                return this.previousGuild;
+            }
+
+            public final Guild getPreviousGuild() {
+                return this.previousGuild;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final Guild getTargetGuild() {
+                return this.targetGuild;
+            }
+
+            public final Guild getTargetGuild() {
+                return this.targetGuild;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final int getTargetGuildSubscriptionCount() {
+                return this.targetGuildSubscriptionCount;
+            }
+
+            public final int getTargetGuildSubscriptionCount() {
+                return this.targetGuildSubscriptionCount;
+            }
+
+            /* JADX WARN: Multi-variable type inference failed */
+            /* JADX WARN: Type inference failed for: r0v8, types: [int] */
+            /* JADX WARN: Type inference failed for: r1v4, types: [int] */
+            /* JADX WARN: Type inference failed for: r1v5 */
+            /* JADX WARN: Type inference failed for: r1v7 */
+            public int hashCode() {
+                Guild guild = this.previousGuild;
+                int iHashCode = (guild != null ? guild.hashCode() : 0) * 31;
+                Guild guild2 = this.targetGuild;
+                int iHashCode2 = (((iHashCode + (guild2 != null ? guild2.hashCode() : 0)) * 31) + this.targetGuildSubscriptionCount) * 31;
+                boolean z2 = this.isTransferInProgress;
+                ?? r1 = z2;
+                if (z2) {
+                    r1 = 1;
+                }
+                return iHashCode2 + r1;
+            }
+
+            public final boolean isTransferInProgress() {
+                return this.isTransferInProgress;
+            }
+
+            public String toString() {
+                StringBuilder sbU = a.U("PreTransfer(previousGuild=");
+                sbU.append(this.previousGuild);
+                sbU.append(", targetGuild=");
+                sbU.append(this.targetGuild);
+                sbU.append(", targetGuildSubscriptionCount=");
+                sbU.append(this.targetGuildSubscriptionCount);
+                sbU.append(", isTransferInProgress=");
+                return a.O(sbU, this.isTransferInProgress, ")");
+            }
+        }
+
+        private ViewState() {
+        }
+
+        public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     /* JADX WARN: Illegal instructions before constructor call */
     public /* synthetic */ GuildBoostTransferInProgressViewModel(long j, long j2, long j3, long j4, RestAPI restAPI, StoreGuildBoost storeGuildBoost, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         Observable observable2;
-        RestAPI api = (i & 16) != 0 ? RestAPI.Companion.getApi() : restAPI;
-        StoreGuildBoost guildBoosts = (i & 32) != 0 ? StoreStream.Companion.getGuildBoosts() : storeGuildBoost;
+        RestAPI api = (i & 16) != 0 ? RestAPI.INSTANCE.getApi() : restAPI;
+        StoreGuildBoost guildBoosts = (i & 32) != 0 ? StoreStream.INSTANCE.getGuildBoosts() : storeGuildBoost;
         if ((i & 64) != 0) {
-            StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-            Observable observableI = Observable.i(storeStream$Companion.getGuilds().observeGuild(j3), storeStream$Companion.getGuilds().observeGuild(j4), StoreGuildBoost.observeGuildBoostState$default(storeStream$Companion.getGuildBoosts(), null, 1, null), GuildBoostTransferInProgressViewModel$1.INSTANCE);
+            StoreStream.Companion companion = StoreStream.INSTANCE;
+            Observable observableI = Observable.i(companion.getGuilds().observeGuild(j3), companion.getGuilds().observeGuild(j4), StoreGuildBoost.observeGuildBoostState$default(companion.getGuildBoosts(), null, 1, null), AnonymousClass1.INSTANCE);
             m.checkNotNullExpressionValue(observableI, "Observable.combineLatest…guildBoostState\n    )\n  }");
             observable2 = observableI;
         } else {
@@ -55,8 +471,8 @@ public final class GuildBoostTransferInProgressViewModel extends d0<GuildBoostTr
         guildBoostTransferInProgressViewModel.handleGuildBoostingError();
     }
 
-    public static final /* synthetic */ void access$handleStoreState(GuildBoostTransferInProgressViewModel guildBoostTransferInProgressViewModel, GuildBoostTransferInProgressViewModel$StoreState guildBoostTransferInProgressViewModel$StoreState) {
-        guildBoostTransferInProgressViewModel.handleStoreState(guildBoostTransferInProgressViewModel$StoreState);
+    public static final /* synthetic */ void access$handleStoreState(GuildBoostTransferInProgressViewModel guildBoostTransferInProgressViewModel, StoreState storeState) {
+        guildBoostTransferInProgressViewModel.handleStoreState(storeState);
     }
 
     public final long getBoostId() {
@@ -86,37 +502,37 @@ public final class GuildBoostTransferInProgressViewModel extends d0<GuildBoostTr
     @MainThread
     private final void handleGuildBoostingCompleted() {
         this.storeGuildBoost.fetchUserGuildBoostState();
-        GuildBoostTransferInProgressViewModel$ViewState guildBoostTransferInProgressViewModel$ViewStateRequireViewState = requireViewState();
-        if (guildBoostTransferInProgressViewModel$ViewStateRequireViewState instanceof GuildBoostTransferInProgressViewModel$ViewState$PreTransfer) {
-            GuildBoostTransferInProgressViewModel$ViewState$PreTransfer guildBoostTransferInProgressViewModel$ViewState$PreTransfer = (GuildBoostTransferInProgressViewModel$ViewState$PreTransfer) guildBoostTransferInProgressViewModel$ViewStateRequireViewState;
-            guildBoostTransferInProgressViewModel$ViewStateRequireViewState = new GuildBoostTransferInProgressViewModel$ViewState$PostTransfer(guildBoostTransferInProgressViewModel$ViewState$PreTransfer.getTargetGuild(), guildBoostTransferInProgressViewModel$ViewState$PreTransfer.getTargetGuildSubscriptionCount());
+        ViewState viewStateRequireViewState = requireViewState();
+        if (viewStateRequireViewState instanceof ViewState.PreTransfer) {
+            ViewState.PreTransfer preTransfer = (ViewState.PreTransfer) viewStateRequireViewState;
+            viewStateRequireViewState = new ViewState.PostTransfer(preTransfer.getTargetGuild(), preTransfer.getTargetGuildSubscriptionCount());
         }
-        updateViewState(guildBoostTransferInProgressViewModel$ViewStateRequireViewState);
+        updateViewState(viewStateRequireViewState);
     }
 
     @MainThread
     private final void handleGuildBoostingError() {
-        updateViewState(GuildBoostTransferInProgressViewModel$ViewState$ErrorTransfer.INSTANCE);
+        updateViewState(ViewState.ErrorTransfer.INSTANCE);
     }
 
     @MainThread
     private final void handleGuildBoostingStarted() {
-        Object objCopy$default = (GuildBoostTransferInProgressViewModel$ViewState) requireViewState();
-        if (objCopy$default instanceof GuildBoostTransferInProgressViewModel$ViewState$PreTransfer) {
-            objCopy$default = GuildBoostTransferInProgressViewModel$ViewState$PreTransfer.copy$default((GuildBoostTransferInProgressViewModel$ViewState$PreTransfer) objCopy$default, null, null, 0, true, 7, null);
+        Object objCopy$default = (ViewState) requireViewState();
+        if (objCopy$default instanceof ViewState.PreTransfer) {
+            objCopy$default = ViewState.PreTransfer.copy$default((ViewState.PreTransfer) objCopy$default, null, null, 0, true, 7, null);
         }
         updateViewState(objCopy$default);
     }
 
     @MainThread
-    private final void handleStoreState(GuildBoostTransferInProgressViewModel$StoreState storeState) {
+    private final void handleStoreState(StoreState storeState) {
         int size;
         if (storeState.getPreviousGuild() == null || storeState.getTargetGuild() == null) {
-            updateViewState(GuildBoostTransferInProgressViewModel$ViewState$ErrorLoading.INSTANCE);
+            updateViewState(ViewState.ErrorLoading.INSTANCE);
             return;
         }
-        if (storeState.getGuildBoostState() instanceof StoreGuildBoost$State$Loaded) {
-            Collection<ModelGuildBoostSlot> collectionValues = ((StoreGuildBoost$State$Loaded) storeState.getGuildBoostState()).getBoostSlotMap().values();
+        if (storeState.getGuildBoostState() instanceof StoreGuildBoost.State.Loaded) {
+            Collection<ModelGuildBoostSlot> collectionValues = ((StoreGuildBoost.State.Loaded) storeState.getGuildBoostState()).getBoostSlotMap().values();
             ArrayList arrayList = new ArrayList();
             for (Object obj : collectionValues) {
                 ModelAppliedGuildBoost premiumGuildSubscription = ((ModelGuildBoostSlot) obj).getPremiumGuildSubscription();
@@ -128,7 +544,7 @@ public final class GuildBoostTransferInProgressViewModel extends d0<GuildBoostTr
         } else {
             size = 0;
         }
-        updateViewState(new GuildBoostTransferInProgressViewModel$ViewState$PreTransfer(storeState.getPreviousGuild(), storeState.getTargetGuild(), size, false));
+        updateViewState(new ViewState.PreTransfer(storeState.getPreviousGuild(), storeState.getTargetGuild(), size, false));
     }
 
     @Override // b.a.d.d0, androidx.view.ViewModel
@@ -143,14 +559,14 @@ public final class GuildBoostTransferInProgressViewModel extends d0<GuildBoostTr
     @MainThread
     public final void transferGuildBoost() {
         handleGuildBoostingStarted();
-        Observable<R> observableA = this.restAPI.unsubscribeToGuild(this.previousGuildId, this.boostId).A(new GuildBoostTransferInProgressViewModel$transferGuildBoost$1(this));
+        Observable<R> observableA = this.restAPI.unsubscribeToGuild(this.previousGuildId, this.boostId).A(new AnonymousClass1());
         m.checkNotNullExpressionValue(observableA, "restAPI\n        .unsubsc…              )\n        }");
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(observableA, false, 1, null), this, null, 2, null), GuildBoostTransferInProgressViewModel.class, (Context) null, (Function1) null, new GuildBoostTransferInProgressViewModel$transferGuildBoost$2(this), (Function0) null, (Function0) null, new GuildBoostTransferInProgressViewModel$transferGuildBoost$3(this), 54, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(observableA, false, 1, null), this, null, 2, null), GuildBoostTransferInProgressViewModel.class, (Context) null, (Function1) null, new AnonymousClass2(), (Function0) null, (Function0) null, new AnonymousClass3(), 54, (Object) null);
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public GuildBoostTransferInProgressViewModel(long j, long j2, long j3, long j4, RestAPI restAPI, StoreGuildBoost storeGuildBoost, Observable<GuildBoostTransferInProgressViewModel$StoreState> observable) {
-        super(GuildBoostTransferInProgressViewModel$ViewState$Loading.INSTANCE);
+    public GuildBoostTransferInProgressViewModel(long j, long j2, long j3, long j4, RestAPI restAPI, StoreGuildBoost storeGuildBoost, Observable<StoreState> observable) {
+        super(ViewState.Loading.INSTANCE);
         m.checkNotNullParameter(restAPI, "restAPI");
         m.checkNotNullParameter(storeGuildBoost, "storeGuildBoost");
         m.checkNotNullParameter(observable, "storeObservable");
@@ -160,6 +576,6 @@ public final class GuildBoostTransferInProgressViewModel extends d0<GuildBoostTr
         this.targetGuildId = j4;
         this.restAPI = restAPI;
         this.storeGuildBoost = storeGuildBoost;
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observable), this, null, 2, null), GuildBoostTransferInProgressViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new GuildBoostTransferInProgressViewModel$2(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observable), this, null, 2, null), GuildBoostTransferInProgressViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass2(), 62, (Object) null);
     }
 }

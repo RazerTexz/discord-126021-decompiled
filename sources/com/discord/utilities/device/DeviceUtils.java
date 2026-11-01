@@ -3,7 +3,6 @@ package com.discord.utilities.device;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
-import android.os.Build$VERSION;
 import android.provider.Settings;
 import d0.g0.w;
 import d0.t.m0;
@@ -22,7 +21,7 @@ public final class DeviceUtils {
 
     public final boolean canDrawOverlays(Context context) {
         m.checkNotNullParameter(context, "context");
-        return Build$VERSION.SDK_INT <= 22 || Settings.canDrawOverlays(context);
+        return Build.VERSION.SDK_INT <= 22 || Settings.canDrawOverlays(context);
     }
 
     public static /* synthetic */ boolean isDevice$default(DeviceUtils deviceUtils, String str, Integer num, String str2, int i, Object obj) {
@@ -95,7 +94,7 @@ public final class DeviceUtils {
                 Iterator<T> it2 = versionCodes.iterator();
                 while (true) {
                     if (it2.hasNext()) {
-                        if (Build$VERSION.SDK_INT == ((Number) it2.next()).intValue()) {
+                        if (Build.VERSION.SDK_INT == ((Number) it2.next()).intValue()) {
                             z3 = true;
                         }
                     }

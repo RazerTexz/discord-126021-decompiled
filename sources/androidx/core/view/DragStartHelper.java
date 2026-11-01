@@ -3,22 +3,46 @@ package androidx.core.view;
 import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View$OnLongClickListener;
-import android.view.View$OnTouchListener;
 
 /* JADX INFO: loaded from: classes.dex */
 public class DragStartHelper {
     private boolean mDragging;
     private int mLastTouchX;
     private int mLastTouchY;
-    private final DragStartHelper$OnDragStartListener mListener;
+    private final OnDragStartListener mListener;
     private final View mView;
-    private final View$OnLongClickListener mLongClickListener = new DragStartHelper$1(this);
-    private final View$OnTouchListener mTouchListener = new DragStartHelper$2(this);
+    private final View.OnLongClickListener mLongClickListener = new AnonymousClass1();
+    private final View.OnTouchListener mTouchListener = new AnonymousClass2();
 
-    public DragStartHelper(View view, DragStartHelper$OnDragStartListener dragStartHelper$OnDragStartListener) {
+    /* JADX INFO: renamed from: androidx.core.view.DragStartHelper$1, reason: invalid class name */
+    public class AnonymousClass1 implements View.OnLongClickListener {
+        public AnonymousClass1() {
+        }
+
+        @Override // android.view.View.OnLongClickListener
+        public boolean onLongClick(View view) {
+            return DragStartHelper.this.onLongClick(view);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.core.view.DragStartHelper$2, reason: invalid class name */
+    public class AnonymousClass2 implements View.OnTouchListener {
+        public AnonymousClass2() {
+        }
+
+        @Override // android.view.View.OnTouchListener
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            return DragStartHelper.this.onTouch(view, motionEvent);
+        }
+    }
+
+    public interface OnDragStartListener {
+        boolean onDragStart(View view, DragStartHelper dragStartHelper);
+    }
+
+    public DragStartHelper(View view, OnDragStartListener onDragStartListener) {
         this.mView = view;
-        this.mListener = dragStartHelper$OnDragStartListener;
+        this.mListener = onDragStartListener;
     }
 
     public void attach() {

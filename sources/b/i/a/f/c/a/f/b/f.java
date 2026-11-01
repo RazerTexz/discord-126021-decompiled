@@ -6,10 +6,7 @@ import android.os.IInterface;
 import android.os.Looper;
 import android.util.Base64;
 import androidx.annotation.Nullable;
-import b.i.a.f.e.h.c$a;
-import b.i.a.f.e.h.c$b;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions$a;
 import com.google.android.gms.common.api.Scope;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -19,23 +16,23 @@ import java.util.Iterator;
 public final class f extends b.i.a.f.e.k.d<o> {
     public final GoogleSignInOptions A;
 
-    public f(Context context, Looper looper, b.i.a.f.e.k.c cVar, @Nullable GoogleSignInOptions googleSignInOptions, c$a c_a, c$b c_b) {
-        super(context, looper, 91, cVar, c_a, c_b);
-        GoogleSignInOptions$a googleSignInOptions$a = googleSignInOptions != null ? new GoogleSignInOptions$a(googleSignInOptions) : new GoogleSignInOptions$a();
+    public f(Context context, Looper looper, b.i.a.f.e.k.c cVar, @Nullable GoogleSignInOptions googleSignInOptions, b.i.a.f.e.h.c.a aVar, b.i.a.f.e.h.c.b bVar) {
+        super(context, looper, 91, cVar, aVar, bVar);
+        GoogleSignInOptions.a aVar2 = googleSignInOptions != null ? new GoogleSignInOptions.a(googleSignInOptions) : new GoogleSignInOptions.a();
         byte[] bArr = new byte[16];
         b.i.a.f.h.c.a.a.nextBytes(bArr);
-        googleSignInOptions$a.i = Base64.encodeToString(bArr, 11);
+        aVar2.i = Base64.encodeToString(bArr, 11);
         if (!cVar.c.isEmpty()) {
             Iterator<Scope> it = cVar.c.iterator();
             while (it.hasNext()) {
-                googleSignInOptions$a.a.add(it.next());
-                googleSignInOptions$a.a.addAll(Arrays.asList(new Scope[0]));
+                aVar2.a.add(it.next());
+                aVar2.a.addAll(Arrays.asList(new Scope[0]));
             }
         }
-        this.A = googleSignInOptions$a.a();
+        this.A = aVar2.a();
     }
 
-    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a$f
+    @Override // b.i.a.f.e.k.b, b.i.a.f.e.h.a.f
     public final int l() {
         return 12451000;
     }

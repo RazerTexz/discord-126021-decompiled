@@ -10,12 +10,45 @@ import com.discord.widgets.botuikit.views.ComponentView;
 import com.discord.widgets.botuikit.views.select.SelectComponentView;
 import d0.z.d.m;
 import kotlin.NoWhenBranchMatchedException;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ComponentInflater.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ComponentInflater {
-    public static final ComponentInflater$Companion Companion = new ComponentInflater$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final Context context;
+
+    /* JADX INFO: compiled from: ComponentInflater.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final ComponentInflater from(Context context) {
+            m.checkNotNullParameter(context, "context");
+            return new ComponentInflater(context);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+
+        static {
+            ComponentType.values();
+            int[] iArr = new int[5];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[ComponentType.ACTION_ROW.ordinal()] = 1;
+            iArr[ComponentType.BUTTON.ordinal()] = 2;
+            iArr[ComponentType.SELECT.ordinal()] = 3;
+            iArr[ComponentType.TEXT.ordinal()] = 4;
+            iArr[ComponentType.UNKNOWN.ordinal()] = 5;
+        }
+    }
 
     public ComponentInflater(Context context) {
         m.checkNotNullParameter(context, "context");
@@ -34,13 +67,13 @@ public final class ComponentInflater {
             return null;
         }
         if (iOrdinal == 1) {
-            return ActionRowComponentView.Companion.inflateComponent(this.context, root);
+            return ActionRowComponentView.INSTANCE.inflateComponent(this.context, root);
         }
         if (iOrdinal == 2) {
-            return ButtonComponentView.Companion.inflateComponent(this.context, root);
+            return ButtonComponentView.INSTANCE.inflateComponent(this.context, root);
         }
         if (iOrdinal == 3) {
-            return SelectComponentView.Companion.inflateComponent(this.context, root);
+            return SelectComponentView.INSTANCE.inflateComponent(this.context, root);
         }
         if (iOrdinal == 4) {
             return null;

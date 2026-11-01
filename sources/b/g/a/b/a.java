@@ -10,11 +10,19 @@ public final class a implements Serializable {
     private final int _maxLineLength;
     public final String _name;
     private final char _paddingChar;
-    private final a$a _paddingReadBehaviour;
+    private final EnumC0079a _paddingReadBehaviour;
     private final boolean _writePadding;
     public final transient int[] j;
     public final transient char[] k;
     public final transient byte[] l;
+
+    /* JADX INFO: renamed from: b.g.a.b.a$a, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: Base64Variant.java */
+    public enum EnumC0079a {
+        PADDING_FORBIDDEN,
+        PADDING_REQUIRED,
+        PADDING_ALLOWED
+    }
 
     public a(String str, String str2, boolean z2, char c, int i) {
         int[] iArr = new int[128];
@@ -40,7 +48,7 @@ public final class a implements Serializable {
         if (z2) {
             this.j[c] = -2;
         }
-        this._paddingReadBehaviour = z2 ? a$a.PADDING_REQUIRED : a$a.PADDING_FORBIDDEN;
+        this._paddingReadBehaviour = z2 ? EnumC0079a.PADDING_REQUIRED : EnumC0079a.PADDING_FORBIDDEN;
     }
 
     public String a(byte[] bArr) {
@@ -172,7 +180,7 @@ public final class a implements Serializable {
         this(aVar, str, z2, c, aVar._paddingReadBehaviour, i);
     }
 
-    public a(a aVar, String str, boolean z2, char c, a$a a_a, int i) {
+    public a(a aVar, String str, boolean z2, char c, EnumC0079a enumC0079a, int i) {
         int[] iArr = new int[128];
         this.j = iArr;
         char[] cArr = new char[64];
@@ -189,6 +197,6 @@ public final class a implements Serializable {
         this._writePadding = z2;
         this._paddingChar = c;
         this._maxLineLength = i;
-        this._paddingReadBehaviour = a_a;
+        this._paddingReadBehaviour = enumC0079a;
     }
 }

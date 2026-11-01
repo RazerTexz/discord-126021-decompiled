@@ -15,11 +15,11 @@ public class Room {
     }
 
     @NonNull
-    public static <T extends RoomDatabase> RoomDatabase$Builder<T> databaseBuilder(@NonNull Context context, @NonNull Class<T> cls, @NonNull String str) {
+    public static <T extends RoomDatabase> RoomDatabase.Builder<T> databaseBuilder(@NonNull Context context, @NonNull Class<T> cls, @NonNull String str) {
         if (str == null || str.trim().length() == 0) {
             throw new IllegalArgumentException("Cannot build a database with null or empty name. If you are trying to create an in memory database, use Room.inMemoryDatabaseBuilder");
         }
-        return new RoomDatabase$Builder<>(context, cls, str);
+        return new RoomDatabase.Builder<>(context, cls, str);
     }
 
     @NonNull
@@ -57,7 +57,7 @@ public class Room {
     }
 
     @NonNull
-    public static <T extends RoomDatabase> RoomDatabase$Builder<T> inMemoryDatabaseBuilder(@NonNull Context context, @NonNull Class<T> cls) {
-        return new RoomDatabase$Builder<>(context, cls, null);
+    public static <T extends RoomDatabase> RoomDatabase.Builder<T> inMemoryDatabaseBuilder(@NonNull Context context, @NonNull Class<T> cls) {
+        return new RoomDatabase.Builder<>(context, cls, null);
     }
 }

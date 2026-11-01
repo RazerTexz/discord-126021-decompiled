@@ -2,19 +2,41 @@ package com.discord.utilities.search.suggestion.entries;
 
 import b.d.b.a.a;
 import com.discord.utilities.search.query.node.answer.HasAnswerOption;
+import com.discord.utilities.search.strings.SearchStringProvider;
+import d0.g0.w;
 import d0.z.d.m;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: HasSuggestion.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class HasSuggestion implements SearchSuggestion {
-    public static final HasSuggestion$Companion Companion = new HasSuggestion$Companion(null);
-    private final SearchSuggestion$Category category;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
+    private final SearchSuggestion.Category category;
     private final HasAnswerOption hasAnswerOption;
+
+    /* JADX INFO: compiled from: HasSuggestion.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final boolean canComplete(CharSequence currentInput, HasAnswerOption hasAnswerOption, SearchStringProvider searchStringProvider) {
+            m.checkNotNullParameter(currentInput, "currentInput");
+            m.checkNotNullParameter(hasAnswerOption, "hasAnswerOption");
+            m.checkNotNullParameter(searchStringProvider, "searchStringProvider");
+            return w.contains$default((CharSequence) hasAnswerOption.getLocalizedInputText(searchStringProvider), currentInput, false, 2, (Object) null);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public HasSuggestion(HasAnswerOption hasAnswerOption) {
         m.checkNotNullParameter(hasAnswerOption, "hasAnswerOption");
         this.hasAnswerOption = hasAnswerOption;
-        this.category = SearchSuggestion$Category.HAS;
+        this.category = SearchSuggestion.Category.HAS;
     }
 
     public static /* synthetic */ HasSuggestion copy$default(HasSuggestion hasSuggestion, HasAnswerOption hasAnswerOption, int i, Object obj) {
@@ -37,7 +59,7 @@ public final /* data */ class HasSuggestion implements SearchSuggestion {
     }
 
     @Override // com.discord.utilities.search.suggestion.entries.SearchSuggestion
-    public SearchSuggestion$Category getCategory() {
+    public SearchSuggestion.Category getCategory() {
         return this.category;
     }
 

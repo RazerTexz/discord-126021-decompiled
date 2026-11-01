@@ -4,7 +4,7 @@ import android.content.ContentResolver;
 import android.content.res.AssetFileDescriptor;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
-import android.provider.ContactsContract$Contacts;
+import android.provider.ContactsContract;
 import com.facebook.imagepipeline.request.ImageRequest;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -61,7 +61,7 @@ public class e0 extends g0 {
                 throw new IOException("Contact photo does not exist: " + uri);
             }
         } else {
-            InputStream inputStreamOpenContactPhotoInputStream = ContactsContract$Contacts.openContactPhotoInputStream(this.c, uri);
+            InputStream inputStreamOpenContactPhotoInputStream = ContactsContract.Contacts.openContactPhotoInputStream(this.c, uri);
             if (inputStreamOpenContactPhotoInputStream == null) {
                 throw new IOException("Contact photo does not exist: " + uri);
             }

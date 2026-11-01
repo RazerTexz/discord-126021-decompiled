@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase$CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import b.i.a.c.f3.q;
 import com.discord.models.domain.ModelAuditLogEntry;
@@ -13,7 +12,7 @@ import com.discord.models.domain.ModelAuditLogEntry;
 /* JADX INFO: loaded from: classes3.dex */
 public class c extends SQLiteOpenHelper implements a {
     public c(Context context) {
-        super(context.getApplicationContext(), "exoplayer_internal.db", (SQLiteDatabase$CursorFactory) null, 1);
+        super(context.getApplicationContext(), "exoplayer_internal.db", (SQLiteDatabase.CursorFactory) null, 1);
     }
 
     @Override // android.database.sqlite.SQLiteOpenHelper

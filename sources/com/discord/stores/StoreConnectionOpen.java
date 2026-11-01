@@ -1,12 +1,13 @@
 package com.discord.stores;
 
 import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import d0.z.d.s;
 import java.util.concurrent.TimeUnit;
+import kotlin.jvm.functions.Function0;
 import kotlin.reflect.KProperty;
 import rx.Observable;
 
@@ -16,7 +17,25 @@ public final class StoreConnectionOpen extends StoreV2 {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a0.mutableProperty1(new s(StoreConnectionOpen.class, "isConnectionOpen", "isConnectionOpen()Z", 0))};
 
     /* JADX INFO: renamed from: isConnectionOpen$delegate, reason: from kotlin metadata */
-    private final StoreV2$MarkChangedDelegate isConnectionOpen = new StoreV2$MarkChangedDelegate(Boolean.FALSE, null, 2, null);
+    private final StoreV2.MarkChangedDelegate isConnectionOpen = new StoreV2.MarkChangedDelegate(Boolean.FALSE, null, 2, null);
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreConnectionOpen$observeConnectionOpen$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreConnectionOpen.kt */
+    public final class AnonymousClass1 extends o implements Function0<Boolean> {
+        public AnonymousClass1() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Boolean invoke() {
+            return Boolean.valueOf(invoke2());
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final boolean invoke2() {
+            return StoreConnectionOpen.access$isConnectionOpen$p(StoreConnectionOpen.this);
+        }
+    }
 
     public static final /* synthetic */ boolean access$isConnectionOpen$p(StoreConnectionOpen storeConnectionOpen) {
         return storeConnectionOpen.isConnectionOpen();
@@ -51,7 +70,7 @@ public final class StoreConnectionOpen extends StoreV2 {
     }
 
     public final Observable<Boolean> observeConnectionOpen(boolean delayForUI) {
-        Observable<Boolean> observableConnectRx$default = ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreConnectionOpen$observeConnectionOpen$1(this), 14, null);
+        Observable<Boolean> observableConnectRx$default = ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{this}, false, null, null, new AnonymousClass1(), 14, null);
         if (delayForUI) {
             observableConnectRx$default = observableConnectRx$default.q(100L, TimeUnit.MILLISECONDS);
         }

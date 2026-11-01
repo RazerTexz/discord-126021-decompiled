@@ -3,7 +3,6 @@ package androidx.media.session;
 import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
-import android.content.BroadcastReceiver$PendingResult;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -11,22 +10,87 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.support.v4.media.MediaBrowserCompat;
-import android.support.v4.media.MediaBrowserCompat$e;
+import android.support.v4.media.session.MediaControllerCompat$MediaControllerImplApi21;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.core.content.ContextCompat;
 import androidx.media.MediaBrowserServiceCompat;
 import b.d.b.a.a;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: loaded from: classes.dex */
 public class MediaButtonReceiver extends BroadcastReceiver {
     private static final String TAG = "MediaButtonReceiver";
+
+    public class MediaButtonConnectionCallback extends MediaBrowserCompat.c {
+        private final Context mContext;
+        private final Intent mIntent;
+        private MediaBrowserCompat mMediaBrowser;
+        private final BroadcastReceiver.PendingResult mPendingResult;
+
+        public MediaButtonConnectionCallback(Context context, Intent intent, BroadcastReceiver.PendingResult pendingResult) {
+            this.mContext = context;
+            this.mIntent = intent;
+            this.mPendingResult = pendingResult;
+        }
+
+        private void finish() {
+            Messenger messenger;
+            MediaBrowserCompat.e eVar = (MediaBrowserCompat.e) this.mMediaBrowser.f14b;
+            MediaBrowserCompat.i iVar = eVar.f;
+            if (iVar != null && (messenger = eVar.g) != null) {
+                try {
+                    iVar.a(7, null, messenger);
+                } catch (RemoteException unused) {
+                    Log.i("MediaBrowserCompat", "Remote error unregistering client messenger.");
+                }
+            }
+            eVar.f16b.disconnect();
+            this.mPendingResult.finish();
+        }
+
+        @Override // android.support.v4.media.MediaBrowserCompat.c
+        public void onConnected() {
+            Context context = this.mContext;
+            MediaBrowserCompat.e eVar = (MediaBrowserCompat.e) this.mMediaBrowser.f14b;
+            if (eVar.h == null) {
+                eVar.h = MediaSessionCompat.Token.a(eVar.f16b.getSessionToken(), null);
+            }
+            MediaSessionCompat.Token token = eVar.h;
+            new ConcurrentHashMap();
+            if (token == null) {
+                throw new IllegalArgumentException("sessionToken must not be null");
+            }
+            MediaControllerCompat$MediaControllerImplApi21 mediaControllerCompat$MediaControllerImplApi21 = new MediaControllerCompat$MediaControllerImplApi21(context, token);
+            KeyEvent keyEvent = (KeyEvent) this.mIntent.getParcelableExtra("android.intent.extra.KEY_EVENT");
+            if (keyEvent == null) {
+                throw new IllegalArgumentException("KeyEvent may not be null");
+            }
+            mediaControllerCompat$MediaControllerImplApi21.a.dispatchMediaButtonEvent(keyEvent);
+            finish();
+        }
+
+        @Override // android.support.v4.media.MediaBrowserCompat.c
+        public void onConnectionFailed() {
+            finish();
+        }
+
+        @Override // android.support.v4.media.MediaBrowserCompat.c
+        public void onConnectionSuspended() {
+            finish();
+        }
+
+        public void setMediaBrowser(MediaBrowserCompat mediaBrowserCompat) {
+            this.mMediaBrowser = mediaBrowserCompat;
+        }
+    }
 
     public static PendingIntent buildMediaButtonPendingIntent(Context context, long j) {
         ComponentName mediaButtonReceiverComponent = getMediaButtonReceiverComponent(context);
@@ -37,7 +101,7 @@ public class MediaButtonReceiver extends BroadcastReceiver {
         return null;
     }
 
-    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
     public static ComponentName getMediaButtonReceiverComponent(Context context) {
         Intent intent = new Intent("android.intent.action.MEDIA_BUTTON");
         intent.setPackage(context.getPackageName());
@@ -93,13 +157,13 @@ public class MediaButtonReceiver extends BroadcastReceiver {
         if (serviceComponentByAction2 == null) {
             throw new IllegalStateException("Could not find any Service that handles android.intent.action.MEDIA_BUTTON or implements a media browser service.");
         }
-        BroadcastReceiver$PendingResult broadcastReceiver$PendingResultGoAsync = goAsync();
+        BroadcastReceiver.PendingResult pendingResultGoAsync = goAsync();
         Context applicationContext = context.getApplicationContext();
-        MediaButtonReceiver$MediaButtonConnectionCallback mediaButtonReceiver$MediaButtonConnectionCallback = new MediaButtonReceiver$MediaButtonConnectionCallback(applicationContext, intent, broadcastReceiver$PendingResultGoAsync);
-        MediaBrowserCompat mediaBrowserCompat = new MediaBrowserCompat(applicationContext, serviceComponentByAction2, mediaButtonReceiver$MediaButtonConnectionCallback, null);
-        mediaButtonReceiver$MediaButtonConnectionCallback.setMediaBrowser(mediaBrowserCompat);
+        MediaButtonConnectionCallback mediaButtonConnectionCallback = new MediaButtonConnectionCallback(applicationContext, intent, pendingResultGoAsync);
+        MediaBrowserCompat mediaBrowserCompat = new MediaBrowserCompat(applicationContext, serviceComponentByAction2, mediaButtonConnectionCallback, null);
+        mediaButtonConnectionCallback.setMediaBrowser(mediaBrowserCompat);
         Log.d("MediaBrowserCompat", "Connecting to a MediaBrowserService.");
-        ((MediaBrowserCompat$e) mediaBrowserCompat.f14b).f16b.connect();
+        ((MediaBrowserCompat.e) mediaBrowserCompat.f14b).f16b.connect();
     }
 
     @SuppressLint({"WrongConstant"})

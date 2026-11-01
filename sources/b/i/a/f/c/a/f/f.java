@@ -2,7 +2,7 @@ package b.i.a.f.c.a.f;
 
 import android.accounts.Account;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.internal.GoogleSignInOptionsExtensionParcelable;
 import com.google.android.gms.common.api.Scope;
@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-base@@17.3.0 */
 /* JADX INFO: loaded from: classes3.dex */
-public final class f implements Parcelable$Creator<GoogleSignInOptions> {
-    @Override // android.os.Parcelable$Creator
+public final class f implements Parcelable.Creator<GoogleSignInOptions> {
+    @Override // android.os.Parcelable.Creator
     public final GoogleSignInOptions createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         ArrayList arrayListV = null;
@@ -66,7 +66,7 @@ public final class f implements Parcelable$Creator<GoogleSignInOptions> {
         return new GoogleSignInOptions(iG1, arrayListV2, account, zE1, zE2, zE3, strR, strR2, GoogleSignInOptions.y0(arrayListV), strR3);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ GoogleSignInOptions[] newArray(int i) {
         return new GoogleSignInOptions[i];
     }

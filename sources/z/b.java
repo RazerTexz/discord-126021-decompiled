@@ -21,8 +21,8 @@ public final class b {
         ExecutorService executorServiceNewCachedThreadPool;
         String property = System.getProperty("java.runtime.name");
         if (property == null ? false : property.toLowerCase(Locale.US).contains("android")) {
-            a aVar = a.a;
-            ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(a.c, a.d, 1L, TimeUnit.SECONDS, new LinkedBlockingQueue());
+            z.a aVar = z.a.a;
+            ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(z.a.c, z.a.d, 1L, TimeUnit.SECONDS, new LinkedBlockingQueue());
             threadPoolExecutor.allowCoreThreadTimeOut(true);
             executorServiceNewCachedThreadPool = threadPoolExecutor;
         } else {
@@ -30,6 +30,50 @@ public final class b {
         }
         this.f3858b = executorServiceNewCachedThreadPool;
         Executors.newSingleThreadScheduledExecutor();
-        this.c = new b$b(null);
+        this.c = new ExecutorC0664b(null);
+    }
+
+    /* JADX INFO: renamed from: z.b$b, reason: collision with other inner class name */
+    /* JADX INFO: compiled from: BoltsExecutors.java */
+    public class ExecutorC0664b implements Executor {
+        public ThreadLocal<Integer> j = new ThreadLocal<>();
+
+        public ExecutorC0664b(a aVar) {
+        }
+
+        public final int a() {
+            Integer num = this.j.get();
+            if (num == null) {
+                num = 0;
+            }
+            int iIntValue = num.intValue() - 1;
+            if (iIntValue == 0) {
+                this.j.remove();
+            } else {
+                this.j.set(Integer.valueOf(iIntValue));
+            }
+            return iIntValue;
+        }
+
+        @Override // java.util.concurrent.Executor
+        public void execute(Runnable runnable) {
+            Integer num = this.j.get();
+            if (num == null) {
+                num = 0;
+            }
+            int iIntValue = num.intValue() + 1;
+            this.j.set(Integer.valueOf(iIntValue));
+            try {
+                if (iIntValue <= 15) {
+                    runnable.run();
+                } else {
+                    b.a.f3858b.execute(runnable);
+                }
+                a();
+            } catch (Throwable th) {
+                a();
+                throw th;
+            }
+        }
     }
 }

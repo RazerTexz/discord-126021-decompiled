@@ -2,6 +2,7 @@ package b.a.y;
 
 import android.graphics.drawable.Drawable;
 import androidx.core.content.ContextCompat;
+import com.discord.R;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.views.VoiceUserLimitView;
 import kotlin.jvm.functions.Function0;
@@ -19,9 +20,9 @@ public final class f0 extends d0.z.d.o implements Function0<Drawable> {
 
     @Override // kotlin.jvm.functions.Function0
     public Drawable invoke() {
-        Drawable drawable = ContextCompat.getDrawable(this.this$0.getContext(), 2131232246);
+        Drawable drawable = ContextCompat.getDrawable(this.this$0.getContext(), R.drawable.ic_videocam_white_12dp);
         if (drawable != null) {
-            drawable.setTint(ColorCompat.getThemedColor(this.this$0.getContext(), 2130969008));
+            drawable.setTint(ColorCompat.getThemedColor(this.this$0.getContext(), R.attr.colorInteractiveNormal));
         }
         return drawable;
     }

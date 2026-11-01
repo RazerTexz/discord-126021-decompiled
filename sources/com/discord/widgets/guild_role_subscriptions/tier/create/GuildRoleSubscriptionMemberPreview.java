@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.annotation.ColorInt;
+import com.discord.R;
 import com.discord.api.role.GuildRole;
 import com.discord.databinding.WidgetChatListAdapterItemTextBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
@@ -33,17 +34,17 @@ public final class GuildRoleSubscriptionMemberPreview extends FrameLayout {
         this.binding = widgetChatListAdapterItemTextBindingB;
         this.defaultColor = g.lazy(new GuildRoleSubscriptionMemberPreview$defaultColor$2(this));
         if (isInEditMode()) {
-            widgetChatListAdapterItemTextBindingB.c.setImageResource(2131232372);
+            widgetChatListAdapterItemTextBindingB.c.setImageResource(R.drawable.img_guild_role_subscription_default_avatar_40dp);
         } else {
-            widgetChatListAdapterItemTextBindingB.c.setActualImageResource(2131232372);
+            widgetChatListAdapterItemTextBindingB.c.setActualImageResource(R.drawable.img_guild_role_subscription_default_avatar_40dp);
         }
         TextView textView = widgetChatListAdapterItemTextBindingB.f;
         m.checkNotNullExpressionValue(textView, "binding.chatListAdapterItemTextTag");
         textView.setVisibility(8);
-        widgetChatListAdapterItemTextBindingB.d.setText(2131897265);
-        widgetChatListAdapterItemTextBindingB.g.setText(2131895216);
-        widgetChatListAdapterItemTextBindingB.f2338b.setText(2131890662);
-        setBackgroundColor(ColorCompat.getThemedColor(this, 2130968911));
+        widgetChatListAdapterItemTextBindingB.d.setText(R.string.wumpus);
+        widgetChatListAdapterItemTextBindingB.g.setText(R.string.sample_time_pm);
+        widgetChatListAdapterItemTextBindingB.f2338b.setText(R.string.guild_role_subscription_tier_design_member_preview_placeholder_message);
+        setBackgroundColor(ColorCompat.getThemedColor(this, R.attr.colorBackgroundPrimary));
         widgetChatListAdapterItemTextBindingB.h.setPadding(0, 0, 0, 0);
         widgetChatListAdapterItemTextBindingB.e.setRole((GuildRole) null, (Long) null);
     }
@@ -80,17 +81,17 @@ public final class GuildRoleSubscriptionMemberPreview extends FrameLayout {
         this.binding = widgetChatListAdapterItemTextBindingB;
         this.defaultColor = g.lazy(new GuildRoleSubscriptionMemberPreview$defaultColor$2(this));
         if (isInEditMode()) {
-            widgetChatListAdapterItemTextBindingB.c.setImageResource(2131232372);
+            widgetChatListAdapterItemTextBindingB.c.setImageResource(R.drawable.img_guild_role_subscription_default_avatar_40dp);
         } else {
-            widgetChatListAdapterItemTextBindingB.c.setActualImageResource(2131232372);
+            widgetChatListAdapterItemTextBindingB.c.setActualImageResource(R.drawable.img_guild_role_subscription_default_avatar_40dp);
         }
         TextView textView = widgetChatListAdapterItemTextBindingB.f;
         m.checkNotNullExpressionValue(textView, "binding.chatListAdapterItemTextTag");
         textView.setVisibility(8);
-        widgetChatListAdapterItemTextBindingB.d.setText(2131897265);
-        widgetChatListAdapterItemTextBindingB.g.setText(2131895216);
-        widgetChatListAdapterItemTextBindingB.f2338b.setText(2131890662);
-        setBackgroundColor(ColorCompat.getThemedColor(this, 2130968911));
+        widgetChatListAdapterItemTextBindingB.d.setText(R.string.wumpus);
+        widgetChatListAdapterItemTextBindingB.g.setText(R.string.sample_time_pm);
+        widgetChatListAdapterItemTextBindingB.f2338b.setText(R.string.guild_role_subscription_tier_design_member_preview_placeholder_message);
+        setBackgroundColor(ColorCompat.getThemedColor(this, R.attr.colorBackgroundPrimary));
         widgetChatListAdapterItemTextBindingB.h.setPadding(0, 0, 0, 0);
         widgetChatListAdapterItemTextBindingB.e.setRole((GuildRole) null, (Long) null);
     }
@@ -108,17 +109,17 @@ public final class GuildRoleSubscriptionMemberPreview extends FrameLayout {
         this.binding = widgetChatListAdapterItemTextBindingB;
         this.defaultColor = g.lazy(new GuildRoleSubscriptionMemberPreview$defaultColor$2(this));
         if (isInEditMode()) {
-            widgetChatListAdapterItemTextBindingB.c.setImageResource(2131232372);
+            widgetChatListAdapterItemTextBindingB.c.setImageResource(R.drawable.img_guild_role_subscription_default_avatar_40dp);
         } else {
-            widgetChatListAdapterItemTextBindingB.c.setActualImageResource(2131232372);
+            widgetChatListAdapterItemTextBindingB.c.setActualImageResource(R.drawable.img_guild_role_subscription_default_avatar_40dp);
         }
         TextView textView = widgetChatListAdapterItemTextBindingB.f;
         m.checkNotNullExpressionValue(textView, "binding.chatListAdapterItemTextTag");
         textView.setVisibility(8);
-        widgetChatListAdapterItemTextBindingB.d.setText(2131897265);
-        widgetChatListAdapterItemTextBindingB.g.setText(2131895216);
-        widgetChatListAdapterItemTextBindingB.f2338b.setText(2131890662);
-        setBackgroundColor(ColorCompat.getThemedColor(this, 2130968911));
+        widgetChatListAdapterItemTextBindingB.d.setText(R.string.wumpus);
+        widgetChatListAdapterItemTextBindingB.g.setText(R.string.sample_time_pm);
+        widgetChatListAdapterItemTextBindingB.f2338b.setText(R.string.guild_role_subscription_tier_design_member_preview_placeholder_message);
+        setBackgroundColor(ColorCompat.getThemedColor(this, R.attr.colorBackgroundPrimary));
         widgetChatListAdapterItemTextBindingB.h.setPadding(0, 0, 0, 0);
         widgetChatListAdapterItemTextBindingB.e.setRole((GuildRole) null, (Long) null);
     }

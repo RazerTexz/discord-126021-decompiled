@@ -5,7 +5,21 @@ import java.util.Set;
 /* JADX INFO: compiled from: DescriptorRenderer.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public interface h {
-    a getAnnotationArgumentsRenderingPolicy();
+
+    /* JADX INFO: compiled from: DescriptorRenderer.kt */
+    public final class a {
+        public static boolean getIncludeAnnotationArguments(h hVar) {
+            d0.z.d.m.checkNotNullParameter(hVar, "this");
+            return hVar.getAnnotationArgumentsRenderingPolicy().getIncludeAnnotationArguments();
+        }
+
+        public static boolean getIncludeEmptyAnnotationArguments(h hVar) {
+            d0.z.d.m.checkNotNullParameter(hVar, "this");
+            return hVar.getAnnotationArgumentsRenderingPolicy().getIncludeEmptyAnnotationArguments();
+        }
+    }
+
+    d0.e0.p.d.m0.j.a getAnnotationArgumentsRenderingPolicy();
 
     boolean getDebugMode();
 
@@ -13,7 +27,7 @@ public interface h {
 
     Set<d0.e0.p.d.m0.g.b> getExcludedTypeAnnotationClasses();
 
-    void setAnnotationArgumentsRenderingPolicy(a aVar);
+    void setAnnotationArgumentsRenderingPolicy(d0.e0.p.d.m0.j.a aVar);
 
     void setClassifierNamePolicy(b bVar);
 

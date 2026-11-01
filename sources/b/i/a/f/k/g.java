@@ -2,12 +2,12 @@ package b.i.a.f.k;
 
 import android.os.Parcel;
 import android.os.ParcelFileDescriptor;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import com.google.android.gms.common.data.DataHolder;
 import com.google.android.gms.safetynet.SafeBrowsingData;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class g implements Parcelable$Creator<SafeBrowsingData> {
+public final class g implements Parcelable.Creator<SafeBrowsingData> {
     public static void a(SafeBrowsingData safeBrowsingData, Parcel parcel, int i) {
         int iY2 = b.c.a.a0.d.y2(parcel, 20293);
         b.c.a.a0.d.t2(parcel, 2, safeBrowsingData.j, false);
@@ -20,7 +20,7 @@ public final class g implements Parcelable$Creator<SafeBrowsingData> {
         b.c.a.a0.d.A2(parcel, iY2);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final SafeBrowsingData createFromParcel(Parcel parcel) {
         int iM2 = b.c.a.a0.d.m2(parcel);
         String strR = null;
@@ -49,7 +49,7 @@ public final class g implements Parcelable$Creator<SafeBrowsingData> {
         return new SafeBrowsingData(strR, dataHolder, parcelFileDescriptor, jH1, bArrN);
     }
 
-    @Override // android.os.Parcelable$Creator
+    @Override // android.os.Parcelable.Creator
     public final /* synthetic */ SafeBrowsingData[] newArray(int i) {
         return new SafeBrowsingData[i];
     }

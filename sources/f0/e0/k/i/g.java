@@ -1,7 +1,6 @@
 package f0.e0.k.i;
 
 import d0.z.d.m;
-import f0.e0.k.c$a;
 import f0.y;
 import java.util.List;
 import javax.net.ssl.SSLSocket;
@@ -12,7 +11,23 @@ import org.bouncycastle.jsse.BCSSLSocket;
 /* JADX INFO: compiled from: BouncyCastleSocketAdapter.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class g implements k {
-    public static final j$a a = new g$a();
+    public static final j.a a = new a();
+
+    /* JADX INFO: compiled from: BouncyCastleSocketAdapter.kt */
+    public final class a implements j.a {
+        @Override // f0.e0.k.i.j.a
+        public boolean a(SSLSocket sSLSocket) {
+            m.checkParameterIsNotNull(sSLSocket, "sslSocket");
+            f0.e0.k.c.a aVar = f0.e0.k.c.e;
+            return f0.e0.k.c.d && (sSLSocket instanceof BCSSLSocket);
+        }
+
+        @Override // f0.e0.k.i.j.a
+        public k b(SSLSocket sSLSocket) {
+            m.checkParameterIsNotNull(sSLSocket, "sslSocket");
+            return new g();
+        }
+    }
 
     @Override // f0.e0.k.i.k
     public boolean a(SSLSocket sSLSocket) {
@@ -22,7 +37,7 @@ public final class g implements k {
 
     @Override // f0.e0.k.i.k
     public boolean b() {
-        c$a c_a = f0.e0.k.c.e;
+        f0.e0.k.c.a aVar = f0.e0.k.c.e;
         return f0.e0.k.c.d;
     }
 

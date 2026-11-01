@@ -8,16 +8,20 @@ import java.util.Objects;
 /* JADX INFO: compiled from: Splitter.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class k {
-    public final b a;
+    public final b.i.b.a.b a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final k$b f1645b;
+    public final b f1645b;
     public final int c;
 
-    public k(k$b k_b) {
-        b$d b_d = b$d.f1641b;
-        this.f1645b = k_b;
-        this.a = b_d;
+    /* JADX INFO: compiled from: Splitter.java */
+    public interface b {
+    }
+
+    public k(b bVar) {
+        b.i.b.a.b.d dVar = b.i.b.a.b.d.f1641b;
+        this.f1645b = bVar;
+        this.a = dVar;
         this.c = Integer.MAX_VALUE;
     }
 
@@ -31,5 +35,20 @@ public final class k {
             arrayList.add(iVar.next());
         }
         return Collections.unmodifiableList(arrayList);
+    }
+
+    /* JADX INFO: compiled from: Splitter.java */
+    public abstract class a extends b.i.b.a.a<String> {
+        public final CharSequence l;
+        public final b.i.b.a.b m;
+        public int p;
+        public int o = 0;
+        public final boolean n = false;
+
+        public a(k kVar, CharSequence charSequence) {
+            this.m = kVar.a;
+            this.p = kVar.c;
+            this.l = charSequence;
+        }
     }
 }

@@ -6,18 +6,18 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
+import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import com.google.android.material.R$style;
-import com.google.android.material.R$styleable;
+import com.google.android.material.R;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class ScrimInsetsFrameLayout extends FrameLayout {
     private boolean drawBottomInsetForeground;
     private boolean drawTopInsetForeground;
@@ -26,6 +26,24 @@ public class ScrimInsetsFrameLayout extends FrameLayout {
     public Drawable insetForeground;
     public Rect insets;
     private Rect tempRect;
+
+    public class a implements OnApplyWindowInsetsListener {
+        public a() {
+        }
+
+        @Override // androidx.core.view.OnApplyWindowInsetsListener
+        public WindowInsetsCompat onApplyWindowInsets(View view, @NonNull WindowInsetsCompat windowInsetsCompat) {
+            ScrimInsetsFrameLayout scrimInsetsFrameLayout = ScrimInsetsFrameLayout.this;
+            if (scrimInsetsFrameLayout.insets == null) {
+                scrimInsetsFrameLayout.insets = new Rect();
+            }
+            ScrimInsetsFrameLayout.this.insets.set(windowInsetsCompat.getSystemWindowInsetLeft(), windowInsetsCompat.getSystemWindowInsetTop(), windowInsetsCompat.getSystemWindowInsetRight(), windowInsetsCompat.getSystemWindowInsetBottom());
+            ScrimInsetsFrameLayout.this.onInsetsChanged(windowInsetsCompat);
+            ScrimInsetsFrameLayout.this.setWillNotDraw(!windowInsetsCompat.hasSystemWindowInsets() || ScrimInsetsFrameLayout.this.insetForeground == null);
+            ViewCompat.postInvalidateOnAnimation(ScrimInsetsFrameLayout.this);
+            return windowInsetsCompat.consumeSystemWindowInsets();
+        }
+    }
 
     public ScrimInsetsFrameLayout(@NonNull Context context) {
         this(context, null);
@@ -106,10 +124,10 @@ public class ScrimInsetsFrameLayout extends FrameLayout {
         this.tempRect = new Rect();
         this.drawTopInsetForeground = true;
         this.drawBottomInsetForeground = true;
-        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R$styleable.ScrimInsetsFrameLayout, i, R$style.Widget_Design_ScrimInsetsFrameLayout, new int[0]);
-        this.insetForeground = typedArrayObtainStyledAttributes.getDrawable(R$styleable.ScrimInsetsFrameLayout_insetForeground);
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R.styleable.ScrimInsetsFrameLayout, i, R.style.Widget_Design_ScrimInsetsFrameLayout, new int[0]);
+        this.insetForeground = typedArrayObtainStyledAttributes.getDrawable(R.styleable.ScrimInsetsFrameLayout_insetForeground);
         typedArrayObtainStyledAttributes.recycle();
         setWillNotDraw(true);
-        ViewCompat.setOnApplyWindowInsetsListener(this, new ScrimInsetsFrameLayout$a(this));
+        ViewCompat.setOnApplyWindowInsetsListener(this, new a());
     }
 }

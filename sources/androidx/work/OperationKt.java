@@ -13,7 +13,7 @@ import kotlin.coroutines.Continuation;
 /* JADX INFO: loaded from: classes.dex */
 public final class OperationKt {
     private static final Object await$$forInline(Operation operation, Continuation continuation) throws Throwable {
-        a<Operation$State$SUCCESS> result = operation.getResult();
+        a<Operation.State.SUCCESS> result = operation.getResult();
         m.checkExpressionValueIsNotNull(result, "result");
         if (result.isDone()) {
             try {
@@ -37,8 +37,8 @@ public final class OperationKt {
         return objU;
     }
 
-    public static final Object await(Operation operation, Continuation<? super Operation$State$SUCCESS> continuation) throws Throwable {
-        a<Operation$State$SUCCESS> result = operation.getResult();
+    public static final Object await(Operation operation, Continuation<? super Operation.State.SUCCESS> continuation) throws Throwable {
+        a<Operation.State.SUCCESS> result = operation.getResult();
         m.checkExpressionValueIsNotNull(result, "result");
         if (result.isDone()) {
             try {

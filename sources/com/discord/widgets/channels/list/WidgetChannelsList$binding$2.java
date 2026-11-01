@@ -8,7 +8,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetChannelsListBinding;
 import com.discord.utilities.view.rounded.RoundedCoordinatorLayout;
 import com.discord.views.CustomAppBarLayout;
@@ -37,63 +37,63 @@ public final /* synthetic */ class WidgetChannelsList$binding$2 extends k implem
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetChannelsListBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.app_bar_layout;
-        CustomAppBarLayout customAppBarLayout = (CustomAppBarLayout) view.findViewById(R$id.app_bar_layout);
+        int i = R.id.app_bar_layout;
+        CustomAppBarLayout customAppBarLayout = (CustomAppBarLayout) view.findViewById(R.id.app_bar_layout);
         if (customAppBarLayout != null) {
-            i = R$id.channels_list;
-            RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.channels_list);
+            i = R.id.channels_list;
+            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.channels_list);
             if (recyclerView != null) {
-                i = R$id.channels_list_banner;
-                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.channels_list_banner);
+                i = R.id.channels_list_banner;
+                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.channels_list_banner);
                 if (simpleDraweeView != null) {
-                    i = R$id.channels_list_banner_foreground;
-                    FrameLayout frameLayout = (FrameLayout) view.findViewById(R$id.channels_list_banner_foreground);
+                    i = R.id.channels_list_banner_foreground;
+                    FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.channels_list_banner_foreground);
                     if (frameLayout != null) {
-                        i = R$id.channels_list_direct_messages_title;
-                        TextView textView = (TextView) view.findViewById(R$id.channels_list_direct_messages_title);
+                        i = R.id.channels_list_direct_messages_title;
+                        TextView textView = (TextView) view.findViewById(R.id.channels_list_direct_messages_title);
                         if (textView != null) {
-                            i = R$id.channels_list_header;
-                            TextView textView2 = (TextView) view.findViewById(R$id.channels_list_header);
+                            i = R.id.channels_list_header;
+                            TextView textView2 = (TextView) view.findViewById(R.id.channels_list_header);
                             if (textView2 != null) {
-                                i = R$id.channels_list_premium_guild_hint;
-                                ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(R$id.channels_list_premium_guild_hint);
+                                i = R.id.channels_list_premium_guild_hint;
+                                ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(R.id.channels_list_premium_guild_hint);
                                 if (constraintLayout != null) {
-                                    i = R$id.channels_list_premium_guild_hint_button;
-                                    MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.channels_list_premium_guild_hint_button);
+                                    i = R.id.channels_list_premium_guild_hint_button;
+                                    MaterialButton materialButton = (MaterialButton) view.findViewById(R.id.channels_list_premium_guild_hint_button);
                                     if (materialButton != null) {
-                                        i = R$id.channels_list_premium_guild_hint_subtitle;
-                                        TextView textView3 = (TextView) view.findViewById(R$id.channels_list_premium_guild_hint_subtitle);
+                                        i = R.id.channels_list_premium_guild_hint_subtitle;
+                                        TextView textView3 = (TextView) view.findViewById(R.id.channels_list_premium_guild_hint_subtitle);
                                         if (textView3 != null) {
-                                            i = R$id.channels_list_premium_guild_hint_title;
-                                            TextView textView4 = (TextView) view.findViewById(R$id.channels_list_premium_guild_hint_title);
+                                            i = R.id.channels_list_premium_guild_hint_title;
+                                            TextView textView4 = (TextView) view.findViewById(R.id.channels_list_premium_guild_hint_title);
                                             if (textView4 != null) {
-                                                i = R$id.channels_list_private_channels_header;
-                                                Toolbar toolbar = (Toolbar) view.findViewById(R$id.channels_list_private_channels_header);
+                                                i = R.id.channels_list_private_channels_header;
+                                                Toolbar toolbar = (Toolbar) view.findViewById(R.id.channels_list_private_channels_header);
                                                 if (toolbar != null) {
-                                                    i = R$id.channels_list_search;
-                                                    TextView textView5 = (TextView) view.findViewById(R$id.channels_list_search);
+                                                    i = R.id.channels_list_search;
+                                                    TextView textView5 = (TextView) view.findViewById(R.id.channels_list_search);
                                                     if (textView5 != null) {
-                                                        i = R$id.channels_list_start_group;
-                                                        AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(R$id.channels_list_start_group);
+                                                        i = R.id.channels_list_start_group;
+                                                        AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(R.id.channels_list_start_group);
                                                         if (appCompatImageView != null) {
-                                                            i = R$id.channels_list_tooltip_background;
-                                                            View viewFindViewById = view.findViewById(R$id.channels_list_tooltip_background);
+                                                            i = R.id.channels_list_tooltip_background;
+                                                            View viewFindViewById = view.findViewById(R.id.channels_list_tooltip_background);
                                                             if (viewFindViewById != null) {
-                                                                i = R$id.channels_list_tooltip_top_tail;
-                                                                View viewFindViewById2 = view.findViewById(R$id.channels_list_tooltip_top_tail);
+                                                                i = R.id.channels_list_tooltip_top_tail;
+                                                                View viewFindViewById2 = view.findViewById(R.id.channels_list_tooltip_top_tail);
                                                                 if (viewFindViewById2 != null) {
-                                                                    i = R$id.channels_list_unreads_stub;
-                                                                    ViewStub viewStub = (ViewStub) view.findViewById(R$id.channels_list_unreads_stub);
+                                                                    i = R.id.channels_list_unreads_stub;
+                                                                    ViewStub viewStub = (ViewStub) view.findViewById(R.id.channels_list_unreads_stub);
                                                                     if (viewStub != null) {
-                                                                        i = R$id.channels_toolbar;
-                                                                        Toolbar toolbar2 = (Toolbar) view.findViewById(R$id.channels_toolbar);
+                                                                        i = R.id.channels_toolbar;
+                                                                        Toolbar toolbar2 = (Toolbar) view.findViewById(R.id.channels_toolbar);
                                                                         if (toolbar2 != null) {
-                                                                            i = R$id.collapsing_toolbar;
-                                                                            CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) view.findViewById(R$id.collapsing_toolbar);
+                                                                            i = R.id.collapsing_toolbar;
+                                                                            CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_toolbar);
                                                                             if (collapsingToolbarLayout != null) {
                                                                                 RoundedCoordinatorLayout roundedCoordinatorLayout = (RoundedCoordinatorLayout) view;
-                                                                                i = R$id.widget_channels_list_empty_friends_state_view;
-                                                                                EmptyFriendsStateView emptyFriendsStateView = (EmptyFriendsStateView) view.findViewById(R$id.widget_channels_list_empty_friends_state_view);
+                                                                                i = R.id.widget_channels_list_empty_friends_state_view;
+                                                                                EmptyFriendsStateView emptyFriendsStateView = (EmptyFriendsStateView) view.findViewById(R.id.widget_channels_list_empty_friends_state_view);
                                                                                 if (emptyFriendsStateView != null) {
                                                                                     return new WidgetChannelsListBinding(roundedCoordinatorLayout, customAppBarLayout, recyclerView, simpleDraweeView, frameLayout, textView, textView2, constraintLayout, materialButton, textView3, textView4, toolbar, textView5, appCompatImageView, viewFindViewById, viewFindViewById2, viewStub, toolbar2, collapsingToolbarLayout, roundedCoordinatorLayout, emptyFriendsStateView);
                                                                                 }

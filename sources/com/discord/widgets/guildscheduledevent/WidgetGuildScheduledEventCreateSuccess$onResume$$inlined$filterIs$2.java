@@ -13,6 +13,6 @@ public final class WidgetGuildScheduledEventCreateSuccess$onResume$$inlined$filt
     @Override // j0.k.b
     public final T call(Object obj) {
         Objects.requireNonNull(obj, "null cannot be cast to non-null type com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventCreateSuccessViewModel.ViewState.Loaded");
-        return (T) ((WidgetGuildScheduledEventCreateSuccessViewModel$ViewState$Loaded) obj);
+        return (T) ((WidgetGuildScheduledEventCreateSuccessViewModel.ViewState.Loaded) obj);
     }
 }

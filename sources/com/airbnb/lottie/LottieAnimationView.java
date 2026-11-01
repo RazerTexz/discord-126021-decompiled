@@ -5,15 +5,14 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.PathMeasure;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Drawable$Callback;
-import android.os.Build$VERSION;
+import android.os.Build;
+import android.os.Parcel;
 import android.os.Parcelable;
-import android.provider.Settings$Global;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ImageView$ScaleType;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.FloatRange;
 import androidx.annotation.MainThread;
@@ -22,15 +21,12 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RawRes;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.view.ViewCompat;
-import b.c.a.b;
 import b.c.a.b0.g;
-import b.c.a.c0.c;
 import b.c.a.d;
 import b.c.a.e;
 import b.c.a.h;
 import b.c.a.i;
 import b.c.a.j;
-import b.c.a.j$o;
 import b.c.a.l;
 import b.c.a.n;
 import b.c.a.o;
@@ -40,15 +36,21 @@ import b.c.a.t;
 import b.c.a.u;
 import b.c.a.v;
 import b.c.a.y.f;
-import b.d.b.a.a;
 import java.io.ByteArrayInputStream;
+import java.io.InterruptedIOException;
 import java.lang.ref.WeakReference;
+import java.net.ProtocolException;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.net.UnknownServiceException;
+import java.nio.channels.ClosedChannelException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import javax.net.ssl.SSLException;
 
 /* JADX INFO: loaded from: classes.dex */
 public class LottieAnimationView extends AppCompatImageView {
@@ -88,13 +90,104 @@ public class LottieAnimationView extends AppCompatImageView {
     public boolean v;
     public boolean w;
     public static final String j = LottieAnimationView.class.getSimpleName();
-    public static final l<Throwable> k = new LottieAnimationView$a();
+    public static final l<Throwable> k = new a();
+
+    public class SavedState extends View.BaseSavedState {
+        public String j;
+        public int k;
+        public float l;
+        public boolean m;
+        public String n;
+        public int o;
+        public int p;
+        public static final Parcelable.Creator<SavedState> CREATOR = new a();
+
+        public class a implements Parcelable.Creator<SavedState> {
+            @Override // android.os.Parcelable.Creator
+            public SavedState createFromParcel(Parcel parcel) {
+                return new SavedState(parcel, null);
+            }
+
+            @Override // android.os.Parcelable.Creator
+            public SavedState[] newArray(int i) {
+                return new SavedState[i];
+            }
+        }
+
+        public SavedState(Parcelable parcelable) {
+            super(parcelable);
+        }
+
+        @Override // android.view.View.BaseSavedState, android.view.AbsSavedState, android.os.Parcelable
+        public void writeToParcel(Parcel parcel, int i) {
+            super.writeToParcel(parcel, i);
+            parcel.writeString(this.j);
+            parcel.writeFloat(this.l);
+            parcel.writeInt(this.m ? 1 : 0);
+            parcel.writeString(this.n);
+            parcel.writeInt(this.o);
+            parcel.writeInt(this.p);
+        }
+
+        public SavedState(Parcel parcel, a aVar) {
+            super(parcel);
+            this.j = parcel.readString();
+            this.l = parcel.readFloat();
+            this.m = parcel.readInt() == 1;
+            this.n = parcel.readString();
+            this.o = parcel.readInt();
+            this.p = parcel.readInt();
+        }
+    }
+
+    public class a implements l<Throwable> {
+        @Override // b.c.a.l
+        public void a(Throwable th) {
+            Throwable th2 = th;
+            PathMeasure pathMeasure = g.a;
+            if (!((th2 instanceof SocketException) || (th2 instanceof ClosedChannelException) || (th2 instanceof InterruptedIOException) || (th2 instanceof ProtocolException) || (th2 instanceof SSLException) || (th2 instanceof UnknownHostException) || (th2 instanceof UnknownServiceException))) {
+                throw new IllegalStateException("Unable to parse composition", th2);
+            }
+            b.c.a.b0.c.c("Unable to load composition.", th2);
+        }
+    }
+
+    public class b implements l<d> {
+        public b() {
+        }
+
+        @Override // b.c.a.l
+        public void a(d dVar) {
+            LottieAnimationView.this.setComposition(dVar);
+        }
+    }
+
+    public class c implements l<Throwable> {
+        public c() {
+        }
+
+        @Override // b.c.a.l
+        public void a(Throwable th) {
+            Throwable th2 = th;
+            LottieAnimationView lottieAnimationView = LottieAnimationView.this;
+            int i = lottieAnimationView.o;
+            if (i != 0) {
+                lottieAnimationView.setImageResource(i);
+            }
+            l<Throwable> lVar = LottieAnimationView.this.n;
+            if (lVar == null) {
+                String str = LottieAnimationView.j;
+                lVar = LottieAnimationView.k;
+            }
+            lVar.a(th2);
+        }
+    }
 
     public LottieAnimationView(Context context, AttributeSet attributeSet) {
         String string;
         super(context, attributeSet);
-        this.l = new LottieAnimationView$b(this);
-        this.m = new LottieAnimationView$c(this);
+        this.l = new b();
+        this.m = new c();
         this.o = 0;
         j jVar = new j();
         this.p = jVar;
@@ -106,14 +199,14 @@ public class LottieAnimationView extends AppCompatImageView {
         this.f1999y = t.AUTOMATIC;
         this.f2000z = new HashSet();
         this.A = 0;
-        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R$b.LottieAnimationView, R$a.lottieAnimationViewStyle, 0);
+        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R.b.LottieAnimationView, R.a.lottieAnimationViewStyle, 0);
         if (!isInEditMode()) {
-            this.f1998x = typedArrayObtainStyledAttributes.getBoolean(R$b.LottieAnimationView_lottie_cacheComposition, true);
-            int i = R$b.LottieAnimationView_lottie_rawRes;
+            this.f1998x = typedArrayObtainStyledAttributes.getBoolean(R.b.LottieAnimationView_lottie_cacheComposition, true);
+            int i = R.b.LottieAnimationView_lottie_rawRes;
             boolean zHasValue = typedArrayObtainStyledAttributes.hasValue(i);
-            int i2 = R$b.LottieAnimationView_lottie_fileName;
+            int i2 = R.b.LottieAnimationView_lottie_fileName;
             boolean zHasValue2 = typedArrayObtainStyledAttributes.hasValue(i2);
-            int i3 = R$b.LottieAnimationView_lottie_url;
+            int i3 = R.b.LottieAnimationView_lottie_url;
             boolean zHasValue3 = typedArrayObtainStyledAttributes.hasValue(i3);
             if (zHasValue && zHasValue2) {
                 throw new IllegalArgumentException("lottie_rawRes and lottie_fileName cannot be used at the same time. Please use only one at once.");
@@ -131,46 +224,46 @@ public class LottieAnimationView extends AppCompatImageView {
             } else if (zHasValue3 && (string = typedArrayObtainStyledAttributes.getString(i3)) != null) {
                 setAnimationFromUrl(string);
             }
-            setFallbackResource(typedArrayObtainStyledAttributes.getResourceId(R$b.LottieAnimationView_lottie_fallbackRes, 0));
+            setFallbackResource(typedArrayObtainStyledAttributes.getResourceId(R.b.LottieAnimationView_lottie_fallbackRes, 0));
         }
-        if (typedArrayObtainStyledAttributes.getBoolean(R$b.LottieAnimationView_lottie_autoPlay, false)) {
+        if (typedArrayObtainStyledAttributes.getBoolean(R.b.LottieAnimationView_lottie_autoPlay, false)) {
             this.v = true;
             this.w = true;
         }
-        if (typedArrayObtainStyledAttributes.getBoolean(R$b.LottieAnimationView_lottie_loop, false)) {
+        if (typedArrayObtainStyledAttributes.getBoolean(R.b.LottieAnimationView_lottie_loop, false)) {
             jVar.l.setRepeatCount(-1);
         }
-        int i4 = R$b.LottieAnimationView_lottie_repeatMode;
+        int i4 = R.b.LottieAnimationView_lottie_repeatMode;
         if (typedArrayObtainStyledAttributes.hasValue(i4)) {
             setRepeatMode(typedArrayObtainStyledAttributes.getInt(i4, 1));
         }
-        int i5 = R$b.LottieAnimationView_lottie_repeatCount;
+        int i5 = R.b.LottieAnimationView_lottie_repeatCount;
         if (typedArrayObtainStyledAttributes.hasValue(i5)) {
             setRepeatCount(typedArrayObtainStyledAttributes.getInt(i5, -1));
         }
-        int i6 = R$b.LottieAnimationView_lottie_speed;
+        int i6 = R.b.LottieAnimationView_lottie_speed;
         if (typedArrayObtainStyledAttributes.hasValue(i6)) {
             setSpeed(typedArrayObtainStyledAttributes.getFloat(i6, 1.0f));
         }
-        setImageAssetsFolder(typedArrayObtainStyledAttributes.getString(R$b.LottieAnimationView_lottie_imageAssetsFolder));
-        setProgress(typedArrayObtainStyledAttributes.getFloat(R$b.LottieAnimationView_lottie_progress, 0.0f));
-        boolean z2 = typedArrayObtainStyledAttributes.getBoolean(R$b.LottieAnimationView_lottie_enableMergePathsForKitKatAndAbove, false);
+        setImageAssetsFolder(typedArrayObtainStyledAttributes.getString(R.b.LottieAnimationView_lottie_imageAssetsFolder));
+        setProgress(typedArrayObtainStyledAttributes.getFloat(R.b.LottieAnimationView_lottie_progress, 0.0f));
+        boolean z2 = typedArrayObtainStyledAttributes.getBoolean(R.b.LottieAnimationView_lottie_enableMergePathsForKitKatAndAbove, false);
         if (jVar.w != z2) {
             jVar.w = z2;
             if (jVar.k != null) {
                 jVar.b();
             }
         }
-        int i7 = R$b.LottieAnimationView_lottie_colorFilter;
+        int i7 = R.b.LottieAnimationView_lottie_colorFilter;
         if (typedArrayObtainStyledAttributes.hasValue(i7)) {
-            jVar.a(new f("**"), o.C, new c(new u(typedArrayObtainStyledAttributes.getColor(i7, 0))));
+            jVar.a(new f("**"), o.C, new b.c.a.c0.c(new u(typedArrayObtainStyledAttributes.getColor(i7, 0))));
         }
-        int i8 = R$b.LottieAnimationView_lottie_scale;
+        int i8 = R.b.LottieAnimationView_lottie_scale;
         if (typedArrayObtainStyledAttributes.hasValue(i8)) {
             jVar.m = typedArrayObtainStyledAttributes.getFloat(i8, 1.0f);
             jVar.v();
         }
-        int i9 = R$b.LottieAnimationView_lottie_renderMode;
+        int i9 = R.b.LottieAnimationView_lottie_renderMode;
         if (typedArrayObtainStyledAttributes.hasValue(i9)) {
             int i10 = typedArrayObtainStyledAttributes.getInt(i9, 0);
             t.values();
@@ -182,7 +275,7 @@ public class LottieAnimationView extends AppCompatImageView {
         typedArrayObtainStyledAttributes.recycle();
         Context context2 = getContext();
         PathMeasure pathMeasure = g.a;
-        Boolean boolValueOf = Boolean.valueOf(Settings$Global.getFloat(context2.getContentResolver(), "animator_duration_scale", 1.0f) != 0.0f);
+        Boolean boolValueOf = Boolean.valueOf(Settings.Global.getFloat(context2.getContentResolver(), "animator_duration_scale", 1.0f) != 0.0f);
         Objects.requireNonNull(jVar);
         jVar.n = boolValueOf.booleanValue();
         b();
@@ -211,7 +304,7 @@ public class LottieAnimationView extends AppCompatImageView {
         if (iOrdinal == 0) {
             d dVar = this.C;
             boolean z2 = false;
-            if ((dVar == null || !dVar.n || Build$VERSION.SDK_INT >= 28) && (dVar == null || dVar.o <= 4)) {
+            if ((dVar == null || !dVar.n || Build.VERSION.SDK_INT >= 28) && (dVar == null || dVar.o <= 4)) {
                 z2 = true;
             }
             if (!z2) {
@@ -318,7 +411,7 @@ public class LottieAnimationView extends AppCompatImageView {
         return this.p.l.l;
     }
 
-    @Override // android.widget.ImageView, android.view.View, android.graphics.drawable.Drawable$Callback
+    @Override // android.widget.ImageView, android.view.View, android.graphics.drawable.Drawable.Callback
     public void invalidateDrawable(@NonNull Drawable drawable) {
         Drawable drawable2 = getDrawable();
         j jVar = this.p;
@@ -337,7 +430,7 @@ public class LottieAnimationView extends AppCompatImageView {
             this.w = false;
             this.v = false;
         }
-        if (Build$VERSION.SDK_INT < 23) {
+        if (Build.VERSION.SDK_INT < 23) {
             onVisibilityChanged(this, getVisibility());
         }
     }
@@ -359,43 +452,43 @@ public class LottieAnimationView extends AppCompatImageView {
 
     @Override // android.view.View
     public void onRestoreInstanceState(Parcelable parcelable) {
-        if (!(parcelable instanceof LottieAnimationView$SavedState)) {
+        if (!(parcelable instanceof SavedState)) {
             super.onRestoreInstanceState(parcelable);
             return;
         }
-        LottieAnimationView$SavedState lottieAnimationView$SavedState = (LottieAnimationView$SavedState) parcelable;
-        super.onRestoreInstanceState(lottieAnimationView$SavedState.getSuperState());
-        String str = lottieAnimationView$SavedState.j;
+        SavedState savedState = (SavedState) parcelable;
+        super.onRestoreInstanceState(savedState.getSuperState());
+        String str = savedState.j;
         this.r = str;
         if (!TextUtils.isEmpty(str)) {
             setAnimation(this.r);
         }
-        int i = lottieAnimationView$SavedState.k;
+        int i = savedState.k;
         this.f1997s = i;
         if (i != 0) {
             setAnimation(i);
         }
-        setProgress(lottieAnimationView$SavedState.l);
-        if (lottieAnimationView$SavedState.m) {
+        setProgress(savedState.l);
+        if (savedState.m) {
             d();
         }
-        this.p.t = lottieAnimationView$SavedState.n;
-        setRepeatMode(lottieAnimationView$SavedState.o);
-        setRepeatCount(lottieAnimationView$SavedState.p);
+        this.p.t = savedState.n;
+        setRepeatMode(savedState.o);
+        setRepeatCount(savedState.p);
     }
 
     @Override // android.view.View
     public Parcelable onSaveInstanceState() {
-        LottieAnimationView$SavedState lottieAnimationView$SavedState = new LottieAnimationView$SavedState(super.onSaveInstanceState());
-        lottieAnimationView$SavedState.j = this.r;
-        lottieAnimationView$SavedState.k = this.f1997s;
-        lottieAnimationView$SavedState.l = this.p.g();
-        lottieAnimationView$SavedState.m = this.p.i() || (!ViewCompat.isAttachedToWindow(this) && this.v);
+        SavedState savedState = new SavedState(super.onSaveInstanceState());
+        savedState.j = this.r;
+        savedState.k = this.f1997s;
+        savedState.l = this.p.g();
+        savedState.m = this.p.i() || (!ViewCompat.isAttachedToWindow(this) && this.v);
         j jVar = this.p;
-        lottieAnimationView$SavedState.n = jVar.t;
-        lottieAnimationView$SavedState.o = jVar.l.getRepeatMode();
-        lottieAnimationView$SavedState.p = this.p.h();
-        return lottieAnimationView$SavedState;
+        savedState.n = jVar.t;
+        savedState.o = jVar.l.getRepeatMode();
+        savedState.p = this.p.h();
+        return savedState;
     }
 
     @Override // android.view.View
@@ -450,7 +543,7 @@ public class LottieAnimationView extends AppCompatImageView {
         if (this.f1998x) {
             Context context = getContext();
             Map<String, r<d>> map = e.a;
-            String strW = a.w("url_", str);
+            String strW = b.d.b.a.a.w("url_", str);
             rVarA = e.a(strW, new b.c.a.f(context, str, strW));
         } else {
             rVarA = e.a(null, new b.c.a.f(getContext(), str, null));
@@ -494,12 +587,12 @@ public class LottieAnimationView extends AppCompatImageView {
             jVar.v();
             Iterator it = new ArrayList(jVar.p).iterator();
             while (it.hasNext()) {
-                ((j$o) it.next()).a(dVar);
+                ((j.o) it.next()).a(dVar);
                 it.remove();
             }
             jVar.p.clear();
             dVar.a.a = jVar.f355z;
-            Drawable$Callback callback = jVar.getCallback();
+            Drawable.Callback callback = jVar.getCallback();
             if (callback instanceof ImageView) {
                 ImageView imageView = (ImageView) callback;
                 imageView.setImageDrawable(null);
@@ -543,7 +636,7 @@ public class LottieAnimationView extends AppCompatImageView {
         this.p.l(i);
     }
 
-    public void setImageAssetDelegate(b bVar) {
+    public void setImageAssetDelegate(b.c.a.b bVar) {
         j jVar = this.p;
         jVar.u = bVar;
         b.c.a.x.b bVar2 = jVar.f352s;
@@ -635,11 +728,11 @@ public class LottieAnimationView extends AppCompatImageView {
     }
 
     @Override // android.widget.ImageView
-    public void setScaleType(ImageView$ScaleType imageView$ScaleType) {
-        super.setScaleType(imageView$ScaleType);
+    public void setScaleType(ImageView.ScaleType scaleType) {
+        super.setScaleType(scaleType);
         j jVar = this.p;
         if (jVar != null) {
-            jVar.r = imageView$ScaleType;
+            jVar.r = scaleType;
         }
     }
 
@@ -666,7 +759,7 @@ public class LottieAnimationView extends AppCompatImageView {
         if (this.f1998x) {
             Context context = getContext();
             Map<String, r<d>> map = e.a;
-            String strW = a.w("asset_", str);
+            String strW = b.d.b.a.a.w("asset_", str);
             rVarA = e.a(strW, new b.c.a.g(context.getApplicationContext(), str, strW));
         } else {
             Context context2 = getContext();

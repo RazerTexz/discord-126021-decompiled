@@ -38,7 +38,7 @@ public class HandleData extends EclipseAnnotationHandler<Data> {
         this.handleSetter.generateSetterForType(typeNode, annotationNode, AccessLevel.PUBLIC, true, Collections.emptyList(), Collections.emptyList());
         this.handleEqualsAndHashCode.generateEqualsAndHashCodeForType(typeNode, annotationNode);
         this.handleToString.generateToStringForType(typeNode, annotationNode);
-        this.handleConstructor.generateRequiredArgsConstructor(typeNode, AccessLevel.PUBLIC, ann.staticConstructor(), HandleConstructor$SkipIfConstructorExists.YES, Collections.emptyList(), annotationNode);
+        this.handleConstructor.generateRequiredArgsConstructor(typeNode, AccessLevel.PUBLIC, ann.staticConstructor(), HandleConstructor.SkipIfConstructorExists.YES, Collections.emptyList(), annotationNode);
         this.handleConstructor.generateExtraNoArgsConstructor(typeNode, annotationNode);
     }
 }

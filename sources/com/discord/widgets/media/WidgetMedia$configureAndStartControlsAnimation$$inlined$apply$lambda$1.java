@@ -1,7 +1,6 @@
 package com.discord.widgets.media;
 
 import android.animation.ValueAnimator;
-import android.animation.ValueAnimator$AnimatorUpdateListener;
 import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.material.appbar.AppBarLayout;
 import d0.z.d.m;
@@ -9,14 +8,14 @@ import java.util.Objects;
 
 /* JADX INFO: compiled from: WidgetMedia.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetMedia$configureAndStartControlsAnimation$$inlined$apply$lambda$1 implements ValueAnimator$AnimatorUpdateListener {
+public final class WidgetMedia$configureAndStartControlsAnimation$$inlined$apply$lambda$1 implements ValueAnimator.AnimatorUpdateListener {
     public final /* synthetic */ WidgetMedia this$0;
 
     public WidgetMedia$configureAndStartControlsAnimation$$inlined$apply$lambda$1(WidgetMedia widgetMedia) {
         this.this$0 = widgetMedia;
     }
 
-    @Override // android.animation.ValueAnimator$AnimatorUpdateListener
+    @Override // android.animation.ValueAnimator.AnimatorUpdateListener
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         m.checkNotNullExpressionValue(valueAnimator, "animator");
         Object animatedValue = valueAnimator.getAnimatedValue();

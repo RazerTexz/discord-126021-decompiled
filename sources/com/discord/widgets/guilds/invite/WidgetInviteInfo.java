@@ -4,20 +4,21 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import b.a.k.b;
 import b.d.b.a.a;
-import com.discord.R$a;
-import com.discord.R$id;
-import com.discord.R$layout;
+import com.discord.R;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.guild.Guild;
 import com.discord.api.guild.GuildFeature;
 import com.discord.api.user.User;
 import com.discord.databinding.WidgetGuildInviteInfoViewBinding;
+import com.discord.i18n.RenderContext;
 import com.discord.models.domain.ModelInvite;
 import com.discord.models.user.CoreUser;
 import com.discord.models.user.MeUser;
@@ -25,17 +26,17 @@ import com.discord.stores.StoreStream;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.utilities.error.Error;
-import com.discord.utilities.error.Error$Response;
 import com.discord.utilities.guilds.GuildUtilsKt;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
-import com.discord.utilities.images.MGImages$ChangeDetector;
+import com.discord.utilities.user.UserUtils;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.views.GuildView;
 import com.discord.views.guilds.ServerMemberCount;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.List;
 import java.util.Objects;
 import kotlin.Unit;
@@ -47,6 +48,57 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetInviteInfo extends ConstraintLayout {
     private final WidgetGuildInviteInfoViewBinding binding;
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetInviteInfo$configureUI$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetInviteInfo.kt */
+    public final class AnonymousClass1 implements View.OnClickListener {
+        public final /* synthetic */ Function0 $onAcceptClick;
+
+        public AnonymousClass1(Function0 function0) {
+            this.$onAcceptClick = function0;
+        }
+
+        @Override // android.view.View.OnClickListener
+        public final void onClick(View view) {
+            this.$onAcceptClick.invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetInviteInfo$parseAttributeSet$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetInviteInfo.kt */
+    public final class AnonymousClass1 implements Runnable {
+        public final /* synthetic */ int $size;
+        public final /* synthetic */ int $userSize;
+
+        public AnonymousClass1(int i, int i2) {
+            this.$size = i;
+            this.$userSize = i2;
+        }
+
+        @Override // java.lang.Runnable
+        public final void run() {
+            if (this.$size != 0) {
+                GuildView guildView = WidgetInviteInfo.access$getBinding$p(WidgetInviteInfo.this).c;
+                m.checkNotNullExpressionValue(guildView, "binding.inviteAvatar");
+                ViewGroup.LayoutParams layoutParams = guildView.getLayoutParams();
+                Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type android.view.ViewGroup.LayoutParams");
+                int i = this.$size;
+                layoutParams.height = i;
+                layoutParams.width = i;
+                guildView.setLayoutParams(layoutParams);
+            }
+            if (this.$userSize != 0) {
+                SimpleDraweeView simpleDraweeView = WidgetInviteInfo.access$getBinding$p(WidgetInviteInfo.this).d;
+                m.checkNotNullExpressionValue(simpleDraweeView, "binding.inviteAvatarSmall");
+                ViewGroup.LayoutParams layoutParams2 = simpleDraweeView.getLayoutParams();
+                Objects.requireNonNull(layoutParams2, "null cannot be cast to non-null type android.view.ViewGroup.LayoutParams");
+                int i2 = this.$userSize;
+                layoutParams2.height = i2;
+                layoutParams2.width = i2;
+                simpleDraweeView.setLayoutParams(layoutParams2);
+            }
+        }
+    }
 
     public WidgetInviteInfo(Context context) {
         this(context, null, 0, 6, null);
@@ -113,7 +165,7 @@ public final class WidgetInviteInfo extends ConstraintLayout {
             SimpleDraweeView simpleDraweeView = this.binding.d;
             m.checkNotNullExpressionValue(simpleDraweeView, "binding.inviteAvatarSmall");
             User inviter = model.getInviter();
-            IconUtils.setIcon$default(simpleDraweeView, inviter != null ? new CoreUser(inviter) : null, 2131165291, null, null, null, 56, null);
+            IconUtils.setIcon$default(simpleDraweeView, inviter != null ? new CoreUser(inviter) : null, R.dimen.avatar_size_hero, null, null, null, 56, null);
             User inviter2 = model.getInviter();
             String username = inviter2 != null ? inviter2.getUsername() : null;
             if (username == null) {
@@ -152,7 +204,7 @@ public final class WidgetInviteInfo extends ConstraintLayout {
             SimpleDraweeView simpleDraweeView = this.binding.d;
             m.checkNotNullExpressionValue(simpleDraweeView, "binding.inviteAvatarSmall");
             User inviter = model.getInviter();
-            IconUtils.setIcon$default(simpleDraweeView, IconUtils.getForUser$default(inviter != null ? new CoreUser(inviter) : null, true, null, 4, null), 2131165294, (Function1) null, (MGImages$ChangeDetector) null, 24, (Object) null);
+            IconUtils.setIcon$default(simpleDraweeView, IconUtils.getForUser$default(inviter != null ? new CoreUser(inviter) : null, true, null, 4, null), R.dimen.avatar_size_medium, (Function1) null, (MGImages.ChangeDetector) null, 24, (Object) null);
         }
         this.binding.e.setMembers(!z2 ? Integer.valueOf(model.getApproximateMemberCount()) : null);
         this.binding.e.setOnline(!z2 ? Integer.valueOf(model.getApproximatePresenceCount()) : null);
@@ -173,12 +225,12 @@ public final class WidgetInviteInfo extends ConstraintLayout {
             if (guild4 != null && (listM = guild4.m()) != null && listM.contains(GuildFeature.PARTNERED)) {
                 TextView textView2 = this.binding.f;
                 m.checkNotNullExpressionValue(textView2, "binding.inviteMessage");
-                ViewExtensions.setCompoundDrawableWithIntrinsicBounds$default(textView2, 2131231995, 0, 0, 0, 14, null);
+                ViewExtensions.setCompoundDrawableWithIntrinsicBounds$default(textView2, R.drawable.ic_partnered_badge, 0, 0, 0, 14, null);
             }
         } else {
             TextView textView3 = this.binding.f;
             m.checkNotNullExpressionValue(textView3, "binding.inviteMessage");
-            ViewExtensions.setCompoundDrawableWithIntrinsicBounds$default(textView3, 2131232241, 0, 0, 0, 14, null);
+            ViewExtensions.setCompoundDrawableWithIntrinsicBounds$default(textView3, R.drawable.ic_verified_badge, 0, 0, 0, 14, null);
         }
         TextView textView4 = this.binding.g;
         m.checkNotNullExpressionValue(textView4, "binding.inviteTitle");
@@ -193,7 +245,7 @@ public final class WidgetInviteInfo extends ConstraintLayout {
         MaterialButton materialButton = this.binding.f2415b;
         m.checkNotNullExpressionValue(materialButton, "binding.guildInviteAccept");
         materialButton.setVisibility(0);
-        this.binding.f2415b.setOnClickListener(new WidgetInviteInfo$configureUI$1(onAcceptClick));
+        this.binding.f2415b.setOnClickListener(new AnonymousClass1(onAcceptClick));
         if (model.guild == null && model.getChannel() == null && model.getInviter() != null) {
             configureForDirectFriend(model);
         } else if (model.guild == null) {
@@ -204,21 +256,21 @@ public final class WidgetInviteInfo extends ConstraintLayout {
     }
 
     public final void configureUIFailure(Error e) {
-        this.binding.g.setText(2131892063);
-        this.binding.f.setText(2131892227);
+        this.binding.g.setText(R.string.instant_invite_expired);
+        this.binding.f.setText(R.string.invite_button_expired);
         MaterialButton materialButton = this.binding.f2415b;
         m.checkNotNullExpressionValue(materialButton, "binding.guildInviteAccept");
         materialButton.setVisibility(8);
         if (e != null) {
-            Error$Response response = e.getResponse();
+            Error.Response response = e.getResponse();
             m.checkNotNullExpressionValue(response, "e.response");
             if (response.getCode() == 30001) {
-                MeUser meSnapshot = StoreStream.Companion.getUsers().getMeSnapshot();
+                MeUser meSnapshot = StoreStream.INSTANCE.getUsers().getMeSnapshot();
                 TextView textView = this.binding.g;
                 m.checkNotNullExpressionValue(textView, "binding.inviteTitle");
-                b.m(textView, 2131896458, new Object[0], new WidgetInviteInfo$configureUIFailure$1(meSnapshot));
-                this.binding.f.setText(2131896460);
-                this.binding.f.setTextSize(0, getResources().getDimension(2131165796));
+                b.m(textView, R.string.too_many_user_guilds_alert_description, new Object[0], new AnonymousClass1(meSnapshot));
+                this.binding.f.setText(R.string.too_many_user_guilds_description);
+                this.binding.f.setTextSize(0, getResources().getDimension(R.dimen.uikit_textsize_medium));
             }
         }
         TextView textView2 = this.binding.f;
@@ -230,12 +282,12 @@ public final class WidgetInviteInfo extends ConstraintLayout {
         GuildView guildView = this.binding.c;
         Context context = getContext();
         m.checkNotNullExpressionValue(context, "context");
-        int themedDrawableRes = DrawableCompat.getThemedDrawableRes(context, 2130969610, 2131232414);
+        int themedDrawableRes = DrawableCompat.getThemedDrawableRes(context, R.attr.img_poop, R.drawable.img_poop_dark);
         Objects.requireNonNull(guildView);
         MGImages mGImages = MGImages.INSTANCE;
         SimpleDraweeView simpleDraweeView = guildView.binding.f146b;
         m.checkNotNullExpressionValue(simpleDraweeView, "binding.guildAvatar");
-        MGImages.setImage$default(mGImages, simpleDraweeView, themedDrawableRes, (MGImages$ChangeDetector) null, 4, (Object) null);
+        MGImages.setImage$default(mGImages, simpleDraweeView, themedDrawableRes, (MGImages.ChangeDetector) null, 4, (Object) null);
         TextView textView3 = guildView.binding.c;
         m.checkNotNullExpressionValue(textView3, "binding.guildText");
         textView3.setVisibility(8);
@@ -249,58 +301,58 @@ public final class WidgetInviteInfo extends ConstraintLayout {
     }
 
     private final CharSequence getIntroText(String userName) {
-        return userName == null ? b.j(this, 2131892082, new Object[0], null, 4) : b.j(this, 2131886920, new Object[]{userName}, null, 4);
+        return userName == null ? b.j(this, R.string.instant_invite_you_have_been_invited_to_join, new Object[0], null, 4) : b.j(this, R.string.auth_message_invited_by, new Object[]{userName}, null, 4);
     }
 
     private final CharSequence getIntroTextForGroup(String userName, String channelName) {
-        return channelName.length() > 0 ? b.j(this, 2131886920, new Object[]{userName}, null, 4) : b.j(this, 2131892084, new Object[0], null, 4);
+        return channelName.length() > 0 ? b.j(this, R.string.auth_message_invited_by, new Object[]{userName}, null, 4) : b.j(this, R.string.instant_invite_you_have_been_invited_to_join_group_dm, new Object[0], null, 4);
     }
 
     private final CharSequence getInviteSubtitleForDirectFriend(String userName) {
-        return b.j(this, 2131892058, new Object[]{userName}, null, 4);
+        return b.j(this, R.string.instant_invite_direct_friend_description, new Object[]{userName}, null, 4);
     }
 
     private final CharSequence getInviteTitleForDirectFriend(String userName) {
-        return b.j(this, 2131892080, new Object[]{userName}, null, 4);
+        return b.j(this, R.string.instant_invite_you_have_been_invited_to_chat, new Object[]{userName}, null, 4);
     }
 
     private final void parseAttributeSet(Context context, AttributeSet attributeSet, int defStyleAttr) {
         if (attributeSet == null) {
             return;
         }
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$a.WidgetInviteInfo, defStyleAttr, 0);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.a.WidgetInviteInfo, defStyleAttr, 0);
         m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…iteInfo, defStyleAttr, 0)");
         int dimension = (int) typedArrayObtainStyledAttributes.getDimension(0, 0.0f);
         int dimension2 = (int) typedArrayObtainStyledAttributes.getDimension(1, 0.0f);
         typedArrayObtainStyledAttributes.recycle();
-        post(new WidgetInviteInfo$parseAttributeSet$1(this, dimension, dimension2));
+        post(new AnonymousClass1(dimension, dimension2));
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetInviteInfo(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
         m.checkNotNullParameter(context, "ctx");
-        LayoutInflater.from(getContext()).inflate(R$layout.widget_guild_invite_info_view, this);
-        int i2 = R$id.guild_invite_accept;
-        MaterialButton materialButton = (MaterialButton) findViewById(R$id.guild_invite_accept);
+        LayoutInflater.from(getContext()).inflate(R.layout.widget_guild_invite_info_view, this);
+        int i2 = R.id.guild_invite_accept;
+        MaterialButton materialButton = (MaterialButton) findViewById(R.id.guild_invite_accept);
         if (materialButton != null) {
-            i2 = R$id.invite_avatar;
-            GuildView guildView = (GuildView) findViewById(R$id.invite_avatar);
+            i2 = R.id.invite_avatar;
+            GuildView guildView = (GuildView) findViewById(R.id.invite_avatar);
             if (guildView != null) {
-                i2 = R$id.invite_avatar_small;
-                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R$id.invite_avatar_small);
+                i2 = R.id.invite_avatar_small;
+                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) findViewById(R.id.invite_avatar_small);
                 if (simpleDraweeView != null) {
-                    i2 = R$id.invite_member_container_layout;
-                    ServerMemberCount serverMemberCount = (ServerMemberCount) findViewById(R$id.invite_member_container_layout);
+                    i2 = R.id.invite_member_container_layout;
+                    ServerMemberCount serverMemberCount = (ServerMemberCount) findViewById(R.id.invite_member_container_layout);
                     if (serverMemberCount != null) {
-                        i2 = R$id.invite_message;
-                        TextView textView = (TextView) findViewById(R$id.invite_message);
+                        i2 = R.id.invite_message;
+                        TextView textView = (TextView) findViewById(R.id.invite_message);
                         if (textView != null) {
-                            i2 = R$id.invite_title;
-                            TextView textView2 = (TextView) findViewById(R$id.invite_title);
+                            i2 = R.id.invite_title;
+                            TextView textView2 = (TextView) findViewById(R.id.invite_title);
                             if (textView2 != null) {
-                                i2 = R$id.title_layout;
-                                LinearLayout linearLayout = (LinearLayout) findViewById(R$id.title_layout);
+                                i2 = R.id.title_layout;
+                                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.title_layout);
                                 if (linearLayout != null) {
                                     WidgetGuildInviteInfoViewBinding widgetGuildInviteInfoViewBinding = new WidgetGuildInviteInfoViewBinding(this, materialButton, guildView, simpleDraweeView, serverMemberCount, textView, textView2, linearLayout);
                                     m.checkNotNullExpressionValue(widgetGuildInviteInfoViewBinding, "WidgetGuildInviteInfoVie…ater.from(context), this)");
@@ -308,7 +360,7 @@ public final class WidgetInviteInfo extends ConstraintLayout {
                                     Context context2 = getContext();
                                     m.checkNotNullExpressionValue(context2, "context");
                                     parseAttributeSet(context2, attributeSet, i);
-                                    setBackgroundResource(2131231011);
+                                    setBackgroundResource(R.drawable.bg_guild_scheduled_event_list_item_primary);
                                     int iDpToPixels = DimenUtils.dpToPixels(24);
                                     setPadding(iDpToPixels, iDpToPixels, iDpToPixels, iDpToPixels);
                                     return;
@@ -320,5 +372,29 @@ public final class WidgetInviteInfo extends ConstraintLayout {
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(getResources().getResourceName(i2)));
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.invite.WidgetInviteInfo$configureUIFailure$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetInviteInfo.kt */
+    public final class AnonymousClass1 extends o implements Function1<RenderContext, Unit> {
+        public final /* synthetic */ MeUser $meUser;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(MeUser meUser) {
+            super(1);
+            this.$meUser = meUser;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RenderContext renderContext) {
+            m.checkNotNullParameter(renderContext, "$receiver");
+            renderContext.args.put("quantity", String.valueOf(UserUtils.INSTANCE.isPremiumTier2(this.$meUser) ? 200 : 100));
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RenderContext renderContext) {
+            invoke2(renderContext);
+            return Unit.a;
+        }
     }
 }

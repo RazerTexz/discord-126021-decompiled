@@ -5,7 +5,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CaptureRequest;
-import android.hardware.camera2.CaptureRequest$Builder;
 import android.hardware.camera2.params.MeteringRectangle;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -22,16 +21,16 @@ public class b implements c<MeteringRectangle> {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final b.o.a.n.t.a f1939b;
     public final CameraCharacteristics f;
-    public final CaptureRequest$Builder g;
+    public final CaptureRequest.Builder g;
     public static final b.o.a.b a = new b.o.a.b(b.class.getSimpleName());
 
-    public b(@NonNull b.o.a.n.t.a aVar, @NonNull b.o.a.x.b bVar, @NonNull b.o.a.x.b bVar2, boolean z2, @NonNull CameraCharacteristics cameraCharacteristics, @NonNull CaptureRequest$Builder captureRequest$Builder) {
+    public b(@NonNull b.o.a.n.t.a aVar, @NonNull b.o.a.x.b bVar, @NonNull b.o.a.x.b bVar2, boolean z2, @NonNull CameraCharacteristics cameraCharacteristics, @NonNull CaptureRequest.Builder builder) {
         this.f1939b = aVar;
         this.c = bVar;
         this.d = bVar2;
         this.e = z2;
         this.f = cameraCharacteristics;
-        this.g = captureRequest$Builder;
+        this.g = builder;
     }
 
     @Override // b.o.a.t.c

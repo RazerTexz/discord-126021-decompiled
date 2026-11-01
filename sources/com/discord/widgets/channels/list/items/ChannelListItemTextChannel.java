@@ -2,12 +2,12 @@ package com.discord.widgets.channels.list.items;
 
 import b.d.b.a.a;
 import com.discord.api.channel.Channel;
-import com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem;
+import com.discord.widgets.channels.list.WidgetChannelListUnreads;
 import d0.z.d.m;
 
 /* JADX INFO: compiled from: ChannelListItemTextChannel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* data */ class ChannelListItemTextChannel implements ChannelListItem, WidgetChannelListUnreads$UnreadItem {
+public final /* data */ class ChannelListItemTextChannel implements ChannelListItem, WidgetChannelListUnreads.UnreadItem {
     private final Channel channel;
     private final boolean hasActiveThreads;
     private final boolean isGuildRoleSubscriptionChannel;
@@ -95,7 +95,7 @@ public final /* data */ class ChannelListItemTextChannel implements ChannelListI
         return this.isLocked;
     }
 
-    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem
+    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
     /* JADX INFO: renamed from: isUnread, reason: from getter */
     public boolean getIsUnread() {
         return this.isUnread;
@@ -106,7 +106,7 @@ public final /* data */ class ChannelListItemTextChannel implements ChannelListI
         return this.key;
     }
 
-    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem
+    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
     public int getMentionCount() {
         return this.mentionCount;
     }

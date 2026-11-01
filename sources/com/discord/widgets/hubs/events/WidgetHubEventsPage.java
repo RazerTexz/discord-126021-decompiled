@@ -5,14 +5,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import b.a.d.g0;
 import b.a.d.i0;
+import b.c.a.a0.d;
 import b.d.b.a.a;
-import com.discord.R$layout;
-import com.discord.R$plurals;
+import com.discord.R;
 import com.discord.api.directory.DirectoryEntryEvent;
 import com.discord.app.AppBottomSheet;
 import com.discord.app.LoggingConfig;
@@ -26,24 +27,29 @@ import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import d0.g;
 import d0.t.n;
-import d0.t.o;
 import d0.t.u;
 import d0.z.d.a0;
+import d0.z.d.k;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.Lazy;
+import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
 
 /* JADX INFO: compiled from: WidgetHubEventsPage.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetHubEventsPage extends AppBottomSheet {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetHubEventsPage.class, "binding", "getBinding()Lcom/discord/databinding/WidgetHubEventsPageBinding;", 0)};
-    public static final WidgetHubEventsPage$Companion Companion = new WidgetHubEventsPage$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: adapter$delegate, reason: from kotlin metadata */
     private final Lazy adapter;
@@ -58,6 +64,64 @@ public final class WidgetHubEventsPage extends AppBottomSheet {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.events.WidgetHubEventsPage$onResume$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubEventsPage.kt */
+    public final /* synthetic */ class AnonymousClass1 extends k implements Function1<WidgetHubEventsState, Unit> {
+        public AnonymousClass1(WidgetHubEventsPage widgetHubEventsPage) {
+            super(1, widgetHubEventsPage, WidgetHubEventsPage.class, "configUI", "configUI(Lcom/discord/widgets/hubs/events/WidgetHubEventsState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetHubEventsState widgetHubEventsState) {
+            invoke2(widgetHubEventsState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetHubEventsState widgetHubEventsState) {
+            m.checkNotNullParameter(widgetHubEventsState, "p1");
+            WidgetHubEventsPage.access$configUI((WidgetHubEventsPage) this.receiver, widgetHubEventsState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.events.WidgetHubEventsPage$configUI$3, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubEventsPage.kt */
+    public final class AnonymousClass3 extends o implements Function1<Success<? extends List<? extends DirectoryEntryEvent>>, Unit> {
+        public AnonymousClass3() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Success<? extends List<? extends DirectoryEntryEvent>> success) {
+            invoke2((Success<? extends List<DirectoryEntryEvent>>) success);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Success<? extends List<DirectoryEntryEvent>> success) {
+            m.checkNotNullParameter(success, "it");
+            WidgetHubEventsPage.this.getBinding().f2477b.smoothScrollToPosition(0);
+            WidgetHubEventsPage.this.getViewModel().reset();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetHubEventsPage.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void show(FragmentManager fragmentManager, long guildId, long directoryChannelId) {
+            m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            WidgetHubEventsPage widgetHubEventsPage = new WidgetHubEventsPage();
+            widgetHubEventsPage.setArguments(d.e2(new HubEventsArgs(guildId, directoryChannelId)));
+            widgetHubEventsPage.show(fragmentManager, WidgetHubEventsPage.class.getName());
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public WidgetHubEventsPage() {
         super(false, 1, null);
@@ -78,26 +142,26 @@ public final class WidgetHubEventsPage extends AppBottomSheet {
     private final void configUI(WidgetHubEventsState state) {
         if (!state.getEventsData().isEmpty() || (state.getEventsAsync() instanceof Success)) {
             WidgetHubEventsPageAdapter adapter = getAdapter();
-            HubEventsPage$Header hubEventsPage$Header = HubEventsPage$Header.INSTANCE;
+            HubEventsPage.Header header = HubEventsPage.Header.INSTANCE;
             if (!state.getShowHeader()) {
-                hubEventsPage$Header = null;
+                header = null;
             }
-            List listListOfNotNull = n.listOfNotNull(hubEventsPage$Header);
+            List listListOfNotNull = n.listOfNotNull(header);
             List<HubGuildScheduledEventData> eventsData = state.getEventsData();
-            ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(eventsData, 10));
+            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(eventsData, 10));
             Iterator<T> it = eventsData.iterator();
             while (it.hasNext()) {
-                arrayList.add(new HubEventsPage$Event((HubGuildScheduledEventData) it.next()));
+                arrayList.add(new HubEventsPage.Event((HubGuildScheduledEventData) it.next()));
             }
-            adapter.setItems(u.plus((Collection<? extends HubEventsPage$Footer>) u.plus((Collection) listListOfNotNull, (Iterable) arrayList), new HubEventsPage$Footer(state.getEventsAsync())));
+            adapter.setItems(u.plus((Collection<? extends HubEventsPage.Footer>) u.plus((Collection) listListOfNotNull, (Iterable) arrayList), new HubEventsPage.Footer(state.getEventsAsync())));
             TextView textView = getBinding().c;
             m.checkNotNullExpressionValue(textView, "binding.title");
             Context context = getContext();
-            textView.setText(context != null ? StringResourceUtilsKt.getI18nPluralString(context, R$plurals.guild_events_plural_number, state.getEventsData().size(), Integer.valueOf(state.getEventsData().size())) : null);
+            textView.setText(context != null ? StringResourceUtilsKt.getI18nPluralString(context, R.plurals.guild_events_plural_number, state.getEventsData().size(), Integer.valueOf(state.getEventsData().size())) : null);
             RestCallState<List<DirectoryEntryEvent>> eventsAsync = state.getEventsAsync();
             Context contextRequireContext = requireContext();
             m.checkNotNullExpressionValue(contextRequireContext, "requireContext()");
-            RestCallStateKt.handleResponse$default(eventsAsync, contextRequireContext, null, null, new WidgetHubEventsPage$configUI$3(this), 6, null);
+            RestCallStateKt.handleResponse$default(eventsAsync, contextRequireContext, null, null, new AnonymousClass3(), 6, null);
         }
     }
 
@@ -115,14 +179,14 @@ public final class WidgetHubEventsPage extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
-        return R$layout.widget_hub_events_page;
+        return R.layout.widget_hub_events_page;
     }
 
     public final HubEventsEventListener getListener() {
         return this.listener;
     }
 
-    @Override // com.discord.app.AppBottomSheet, com.discord.app.AppLogger$a
+    @Override // com.discord.app.AppBottomSheet, com.discord.app.AppLogger.a
     public LoggingConfig getLoggingConfig() {
         return this.loggingConfig;
     }
@@ -134,7 +198,7 @@ public final class WidgetHubEventsPage extends AppBottomSheet {
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetHubEventsPage.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetHubEventsPage$onResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetHubEventsPage.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
     }
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment

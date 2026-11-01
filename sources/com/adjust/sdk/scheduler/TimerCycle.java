@@ -18,6 +18,18 @@ public class TimerCycle {
     private boolean isPaused = true;
     private ILogger logger = AdjustFactory.getLogger();
 
+    /* JADX INFO: renamed from: com.adjust.sdk.scheduler.TimerCycle$1, reason: invalid class name */
+    public class AnonymousClass1 implements Runnable {
+        public AnonymousClass1() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            TimerCycle.access$100(TimerCycle.this).verbose("%s fired", TimerCycle.access$000(TimerCycle.this));
+            TimerCycle.access$200(TimerCycle.this).run();
+        }
+    }
+
     public TimerCycle(Runnable runnable, long j, long j2, String str) {
         this.scheduler = new SingleThreadFutureScheduler(str, true);
         this.name = str;
@@ -54,7 +66,7 @@ public class TimerCycle {
             return;
         }
         this.logger.verbose("%s starting", this.name);
-        this.waitingTask = this.scheduler.scheduleFutureWithFixedDelay(new TimerCycle$1(this), this.initialDelay, this.cycleDelay);
+        this.waitingTask = this.scheduler.scheduleFutureWithFixedDelay(new AnonymousClass1(), this.initialDelay, this.cycleDelay);
         this.isPaused = false;
     }
 

@@ -9,9 +9,12 @@ import com.discord.utilities.friendsuggestions.FriendSuggestionsFetcher;
 import d0.t.h0;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: StoreFriendSuggestions.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -21,6 +24,29 @@ public final class StoreFriendSuggestions extends StoreV2 {
     private final StoreStream storeStream;
     private final Map<Long, FriendSuggestion> suggestions;
     private Map<Long, FriendSuggestion> suggestionsSnapshot;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreFriendSuggestions$updateFriendSuggestions$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreFriendSuggestions.kt */
+    public final class AnonymousClass1 extends o implements Function0<Unit> {
+        public final /* synthetic */ List $suggestions;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(List list) {
+            super(0);
+            this.$suggestions = list;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreFriendSuggestions.access$getStoreStream$p(StoreFriendSuggestions.this).handleFriendSuggestionsLoaded(this.$suggestions);
+        }
+    }
 
     public StoreFriendSuggestions(StoreStream storeStream, Dispatcher dispatcher, FriendSuggestionsFetcher friendSuggestionsFetcher) {
         m.checkNotNullParameter(storeStream, "storeStream");
@@ -104,6 +130,6 @@ public final class StoreFriendSuggestions extends StoreV2 {
 
     public final void updateFriendSuggestions(List<com.discord.api.friendsuggestions.FriendSuggestion> suggestions) {
         m.checkNotNullParameter(suggestions, "suggestions");
-        this.dispatcher.schedule(new StoreFriendSuggestions$updateFriendSuggestions$1(this, suggestions));
+        this.dispatcher.schedule(new AnonymousClass1(suggestions));
     }
 }

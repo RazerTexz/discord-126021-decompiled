@@ -13,7 +13,7 @@ public final class MessageActivityTypeTypeAdapter extends TypeAdapter<MessageAct
     @Override // com.google.gson.TypeAdapter
     public MessageActivityType read(JsonReader jsonReader) {
         m.checkNotNullParameter(jsonReader, "in");
-        return MessageActivityType.Companion.a(d.n1(jsonReader));
+        return MessageActivityType.INSTANCE.a(d.n1(jsonReader));
     }
 
     @Override // com.google.gson.TypeAdapter

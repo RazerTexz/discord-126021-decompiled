@@ -4,13 +4,10 @@ import android.os.Bundle;
 import androidx.fragment.app.FragmentManager;
 import b.d.b.a.a;
 import com.discord.stores.StoreNotices;
-import com.discord.stores.StoreNotices$Notice;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import com.discord.utilities.time.Clock;
 import com.discord.utilities.time.ClockFactory;
 import com.discord.widgets.feedback.WidgetFeedbackSheet;
-import com.discord.widgets.feedback.WidgetFeedbackSheet$FeedbackType;
 import d0.z.d.m;
 import java.util.Random;
 import org.objectweb.asm.Opcodes;
@@ -37,11 +34,11 @@ public final class CallFeedbackSheetNavigator {
         if (triggerRateDenominator < 1 || random.nextInt(triggerRateDenominator) != 0) {
             return;
         }
-        StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-        StoreNotices notices = storeStream$Companion.getNotices();
+        StoreStream.Companion companion = StoreStream.INSTANCE;
+        StoreNotices notices = companion.getNotices();
         String noticeName = getNoticeName(rtcConnectionId);
         long jCurrentTimeMillis = clock.currentTimeMillis();
-        storeStream$Companion.getNotices().requestToShow(new StoreNotices$Notice(noticeName, null, jCurrentTimeMillis, 0, false, null, 0L, false, 0L, new CallFeedbackSheetNavigator$enqueueNotice$showCallFeedbackSheetNotice$1(jCurrentTimeMillis, channelId, rtcConnectionId, mediaSessionId, callDurationMs, notices, noticeName), Opcodes.GETSTATIC, null));
+        companion.getNotices().requestToShow(new StoreNotices.Notice(noticeName, null, jCurrentTimeMillis, 0, false, null, 0L, false, 0L, new CallFeedbackSheetNavigator$enqueueNotice$showCallFeedbackSheetNotice$1(jCurrentTimeMillis, channelId, rtcConnectionId, mediaSessionId, callDurationMs, notices, noticeName), Opcodes.GETSTATIC, null));
     }
 
     private final String getNoticeName(String rtcConnectionId) {
@@ -49,11 +46,11 @@ public final class CallFeedbackSheetNavigator {
     }
 
     private final void show(FragmentManager fragmentManager, long channelId, String rtcConnectionId, String mediaSessionId, Long callDurationMs) {
-        CallFeedbackSheetViewModel$Config callFeedbackSheetViewModel$Config = new CallFeedbackSheetViewModel$Config(channelId, rtcConnectionId, mediaSessionId, callDurationMs);
-        WidgetFeedbackSheet widgetFeedbackSheetNewInstance = WidgetFeedbackSheet.Companion.newInstance(WidgetFeedbackSheet$FeedbackType.CALL);
+        CallFeedbackSheetViewModel.Config config = new CallFeedbackSheetViewModel.Config(channelId, rtcConnectionId, mediaSessionId, callDurationMs);
+        WidgetFeedbackSheet widgetFeedbackSheetNewInstance = WidgetFeedbackSheet.INSTANCE.newInstance(WidgetFeedbackSheet.FeedbackType.CALL);
         Bundle arguments = widgetFeedbackSheetNewInstance.getArguments();
         m.checkNotNull(arguments);
-        arguments.putParcelable(WidgetFeedbackSheet.ARG_CALL_FEEDBACK_CONFIG, callFeedbackSheetViewModel$Config);
+        arguments.putParcelable(WidgetFeedbackSheet.ARG_CALL_FEEDBACK_CONFIG, config);
         widgetFeedbackSheetNewInstance.show(fragmentManager, WidgetFeedbackSheet.class.getName());
     }
 }

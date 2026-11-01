@@ -1,6 +1,6 @@
 package b.i.a.f.i.b;
 
-import android.content.SharedPreferences$Editor;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import com.google.android.gms.internal.measurement.zzae;
@@ -166,9 +166,9 @@ public final class w4 implements Runnable {
                         d4VarO2 = u4Var2.o();
                         d4VarO2.b();
                         boolX = d4VarO2.x();
-                        SharedPreferences$Editor sharedPreferences$EditorEdit = d4VarO2.w().edit();
-                        sharedPreferences$EditorEdit.clear();
-                        sharedPreferences$EditorEdit.apply();
+                        SharedPreferences.Editor editorEdit = d4VarO2.w().edit();
+                        editorEdit.clear();
+                        editorEdit.apply();
                         if (boolX != null) {
                             d4VarO2.s(boolX);
                         }
@@ -184,17 +184,17 @@ public final class w4 implements Runnable {
                     n3VarZ6.t();
                     String str4 = n3VarZ6.k;
                     d4VarO5.b();
-                    SharedPreferences$Editor sharedPreferences$EditorEdit2 = d4VarO5.w().edit();
-                    sharedPreferences$EditorEdit2.putString("gmp_app_id", str4);
-                    sharedPreferences$EditorEdit2.apply();
+                    SharedPreferences.Editor editorEdit2 = d4VarO5.w().edit();
+                    editorEdit2.putString("gmp_app_id", str4);
+                    editorEdit2.apply();
                     d4 d4VarO6 = u4Var2.o();
                     n3 n3VarZ7 = u4Var2.z();
                     n3VarZ7.t();
                     String str5 = n3VarZ7.l;
                     d4VarO6.b();
-                    SharedPreferences$Editor sharedPreferences$EditorEdit3 = d4VarO6.w().edit();
-                    sharedPreferences$EditorEdit3.putString("admob_app_id", str5);
-                    sharedPreferences$EditorEdit3.apply();
+                    SharedPreferences.Editor editorEdit3 = d4VarO6.w().edit();
+                    editorEdit3.putString("admob_app_id", str5);
+                    editorEdit3.apply();
                 }
             } else {
                 u4Var2.t();
@@ -214,9 +214,9 @@ public final class w4 implements Runnable {
                     d4VarO2 = u4Var2.o();
                     d4VarO2.b();
                     boolX = d4VarO2.x();
-                    SharedPreferences$Editor sharedPreferences$EditorEdit4 = d4VarO2.w().edit();
-                    sharedPreferences$EditorEdit4.clear();
-                    sharedPreferences$EditorEdit4.apply();
+                    SharedPreferences.Editor editorEdit4 = d4VarO2.w().edit();
+                    editorEdit4.clear();
+                    editorEdit4.apply();
                     if (boolX != null) {
                         d4VarO2.s(boolX);
                     }
@@ -232,17 +232,17 @@ public final class w4 implements Runnable {
                 n3VarZ10.t();
                 String str6 = n3VarZ10.k;
                 d4VarO8.b();
-                SharedPreferences$Editor sharedPreferences$EditorEdit5 = d4VarO8.w().edit();
-                sharedPreferences$EditorEdit5.putString("gmp_app_id", str6);
-                sharedPreferences$EditorEdit5.apply();
+                SharedPreferences.Editor editorEdit5 = d4VarO8.w().edit();
+                editorEdit5.putString("gmp_app_id", str6);
+                editorEdit5.apply();
                 d4 d4VarO9 = u4Var2.o();
                 n3 n3VarZ11 = u4Var2.z();
                 n3VarZ11.t();
                 String str7 = n3VarZ11.l;
                 d4VarO9.b();
-                SharedPreferences$Editor sharedPreferences$EditorEdit6 = d4VarO9.w().edit();
-                sharedPreferences$EditorEdit6.putString("admob_app_id", str7);
-                sharedPreferences$EditorEdit6.apply();
+                SharedPreferences.Editor editorEdit6 = d4VarO9.w().edit();
+                editorEdit6.putString("admob_app_id", str7);
+                editorEdit6.apply();
             }
             if (b.i.a.f.h.l.t8.b() && u4Var2.h.o(p.H0) && !u4Var2.o().y().k()) {
                 u4Var2.o().m.b(null);

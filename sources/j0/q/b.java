@@ -5,12 +5,12 @@ import rx.functions.Action0;
 /* JADX INFO: compiled from: SubjectSubscriptionManager.java */
 /* JADX INFO: loaded from: classes3.dex */
 public class b implements Action0 {
-    public final /* synthetic */ c$b j;
+    public final /* synthetic */ c.b j;
     public final /* synthetic */ c k;
 
-    public b(c cVar, c$b c_b) {
+    public b(c cVar, c.b bVar) {
         this.k = cVar;
-        this.j = c_b;
+        this.j = bVar;
     }
 
     @Override // rx.functions.Action0

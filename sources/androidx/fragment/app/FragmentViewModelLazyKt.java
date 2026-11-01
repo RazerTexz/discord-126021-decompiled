@@ -3,18 +3,115 @@ package androidx.fragment.app;
 import androidx.annotation.MainThread;
 import androidx.view.ViewModel;
 import androidx.view.ViewModelLazy;
-import androidx.view.ViewModelProvider$Factory;
+import androidx.view.ViewModelProvider;
 import androidx.view.ViewModelStore;
 import androidx.view.ViewModelStoreOwner;
+import b.d.b.a.a;
 import d0.e0.c;
 import d0.z.d.a0;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Lazy;
 import kotlin.jvm.functions.Function0;
 
 /* JADX INFO: compiled from: FragmentViewModelLazy.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class FragmentViewModelLazyKt {
+
+    /* JADX INFO: renamed from: androidx.fragment.app.FragmentViewModelLazyKt$activityViewModels$1, reason: invalid class name */
+    /* JADX INFO: compiled from: FragmentViewModelLazy.kt */
+    public final class AnonymousClass1 extends o implements Function0<ViewModelStore> {
+        public final /* synthetic */ Fragment $this_activityViewModels;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Fragment fragment) {
+            super(0);
+            this.$this_activityViewModels = fragment;
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final ViewModelStore invoke() {
+            return a.p0(this.$this_activityViewModels, "requireActivity()", "requireActivity().viewModelStore");
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ ViewModelStore invoke() {
+            return invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.fragment.app.FragmentViewModelLazyKt$viewModels$1, reason: invalid class name */
+    /* JADX INFO: compiled from: FragmentViewModelLazy.kt */
+    public final class AnonymousClass1 extends o implements Function0<Fragment> {
+        public final /* synthetic */ Fragment $this_viewModels;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Fragment fragment) {
+            super(0);
+            this.$this_viewModels = fragment;
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final Fragment invoke() {
+            return this.$this_viewModels;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Fragment invoke() {
+            return invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.fragment.app.FragmentViewModelLazyKt$activityViewModels$2, reason: invalid class name */
+    /* JADX INFO: compiled from: FragmentViewModelLazy.kt */
+    public final class AnonymousClass2 extends o implements Function0<ViewModelProvider.Factory> {
+        public final /* synthetic */ Fragment $this_activityViewModels;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(Fragment fragment) {
+            super(0);
+            this.$this_activityViewModels = fragment;
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final ViewModelProvider.Factory invoke() {
+            return a.e0(this.$this_activityViewModels, "requireActivity()");
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ ViewModelProvider.Factory invoke() {
+            return invoke();
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.fragment.app.FragmentViewModelLazyKt$viewModels$2, reason: invalid class name */
+    /* JADX INFO: compiled from: FragmentViewModelLazy.kt */
+    public final class AnonymousClass2 extends o implements Function0<ViewModelStore> {
+        public final /* synthetic */ Function0 $ownerProducer;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(Function0 function0) {
+            super(0);
+            this.$ownerProducer = function0;
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final ViewModelStore invoke() {
+            ViewModelStore viewModelStore = ((ViewModelStoreOwner) this.$ownerProducer.invoke()).getViewModelStore();
+            m.checkNotNullExpressionValue(viewModelStore, "ownerProducer().viewModelStore");
+            return viewModelStore;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ ViewModelStore invoke() {
+            return invoke();
+        }
+    }
+
     public static /* synthetic */ Lazy activityViewModels$default(Fragment fragment, Function0 function0, int i, Object obj) {
         if ((i & 1) != 0) {
             function0 = null;
@@ -22,23 +119,23 @@ public final class FragmentViewModelLazyKt {
         m.checkNotNullParameter(fragment, "$this$activityViewModels");
         m.reifiedOperationMarker(4, "VM");
         c orCreateKotlinClass = a0.getOrCreateKotlinClass(ViewModel.class);
-        FragmentViewModelLazyKt$activityViewModels$1 fragmentViewModelLazyKt$activityViewModels$1 = new FragmentViewModelLazyKt$activityViewModels$1(fragment);
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1(fragment);
         if (function0 == null) {
-            function0 = new FragmentViewModelLazyKt$activityViewModels$2(fragment);
+            function0 = new AnonymousClass2(fragment);
         }
-        return createViewModelLazy(fragment, orCreateKotlinClass, fragmentViewModelLazyKt$activityViewModels$1, function0);
+        return createViewModelLazy(fragment, orCreateKotlinClass, anonymousClass1, function0);
     }
 
     @MainThread
-    public static final /* synthetic */ <VM extends ViewModel> Lazy<VM> activityViewModels(Fragment fragment, Function0<? extends ViewModelProvider$Factory> function0) {
+    public static final /* synthetic */ <VM extends ViewModel> Lazy<VM> activityViewModels(Fragment fragment, Function0<? extends ViewModelProvider.Factory> function0) {
         m.checkNotNullParameter(fragment, "$this$activityViewModels");
         m.reifiedOperationMarker(4, "VM");
         c orCreateKotlinClass = a0.getOrCreateKotlinClass(ViewModel.class);
-        FragmentViewModelLazyKt$activityViewModels$1 fragmentViewModelLazyKt$activityViewModels$1 = new FragmentViewModelLazyKt$activityViewModels$1(fragment);
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1(fragment);
         if (function0 == null) {
-            function0 = new FragmentViewModelLazyKt$activityViewModels$2(fragment);
+            function0 = new AnonymousClass2(fragment);
         }
-        return createViewModelLazy(fragment, orCreateKotlinClass, fragmentViewModelLazyKt$activityViewModels$1, function0);
+        return createViewModelLazy(fragment, orCreateKotlinClass, anonymousClass1, function0);
     }
 
     public static /* synthetic */ Lazy createViewModelLazy$default(Fragment fragment, c cVar, Function0 function0, Function0 function1, int i, Object obj) {
@@ -49,7 +146,7 @@ public final class FragmentViewModelLazyKt {
     }
 
     @MainThread
-    public static final <VM extends ViewModel> Lazy<VM> createViewModelLazy(Fragment fragment, c<VM> cVar, Function0<? extends ViewModelStore> function0, Function0<? extends ViewModelProvider$Factory> function1) {
+    public static final <VM extends ViewModel> Lazy<VM> createViewModelLazy(Fragment fragment, c<VM> cVar, Function0<? extends ViewModelStore> function0, Function0<? extends ViewModelProvider.Factory> function1) {
         m.checkNotNullParameter(fragment, "$this$createViewModelLazy");
         m.checkNotNullParameter(cVar, "viewModelClass");
         m.checkNotNullParameter(function0, "storeProducer");
@@ -61,7 +158,7 @@ public final class FragmentViewModelLazyKt {
 
     public static /* synthetic */ Lazy viewModels$default(Fragment fragment, Function0 function0, Function0 function1, int i, Object obj) {
         if ((i & 1) != 0) {
-            function0 = new FragmentViewModelLazyKt$viewModels$1(fragment);
+            function0 = new AnonymousClass1(fragment);
         }
         if ((i & 2) != 0) {
             function1 = null;
@@ -69,14 +166,14 @@ public final class FragmentViewModelLazyKt {
         m.checkNotNullParameter(fragment, "$this$viewModels");
         m.checkNotNullParameter(function0, "ownerProducer");
         m.reifiedOperationMarker(4, "VM");
-        return createViewModelLazy(fragment, a0.getOrCreateKotlinClass(ViewModel.class), new FragmentViewModelLazyKt$viewModels$2(function0), function1);
+        return createViewModelLazy(fragment, a0.getOrCreateKotlinClass(ViewModel.class), new AnonymousClass2(function0), function1);
     }
 
     @MainThread
-    public static final /* synthetic */ <VM extends ViewModel> Lazy<VM> viewModels(Fragment fragment, Function0<? extends ViewModelStoreOwner> function0, Function0<? extends ViewModelProvider$Factory> function1) {
+    public static final /* synthetic */ <VM extends ViewModel> Lazy<VM> viewModels(Fragment fragment, Function0<? extends ViewModelStoreOwner> function0, Function0<? extends ViewModelProvider.Factory> function1) {
         m.checkNotNullParameter(fragment, "$this$viewModels");
         m.checkNotNullParameter(function0, "ownerProducer");
         m.reifiedOperationMarker(4, "VM");
-        return createViewModelLazy(fragment, a0.getOrCreateKotlinClass(ViewModel.class), new FragmentViewModelLazyKt$viewModels$2(function0), function1);
+        return createViewModelLazy(fragment, a0.getOrCreateKotlinClass(ViewModel.class), new AnonymousClass2(function0), function1);
     }
 }

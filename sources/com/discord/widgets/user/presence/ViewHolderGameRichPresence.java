@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.MainThread;
 import androidx.fragment.app.FragmentManager;
 import b.a.k.b;
+import com.discord.R;
 import com.discord.api.activity.Activity;
 import com.discord.api.activity.ActivityParty;
 import com.discord.api.activity.ActivityTimestamps;
@@ -55,7 +56,7 @@ public final class ViewHolderGameRichPresence extends ViewHolderUserRichPresence
             ActivityParty party = model.getParty();
             if (party != null) {
                 PresenceUtils presenceUtils = PresenceUtils.INSTANCE;
-                charSequenceH = (presenceUtils.getMaxSize(party) == 0 || (context = getRoot().getContext()) == null) ? null : b.h(context, 2131896743, new Object[]{String.valueOf(presenceUtils.getCurrentSize(party)), String.valueOf(presenceUtils.getMaxSize(party))}, null, 4);
+                charSequenceH = (presenceUtils.getMaxSize(party) == 0 || (context = getRoot().getContext()) == null) ? null : b.h(context, R.string.user_activity_state_size, new Object[]{String.valueOf(presenceUtils.getCurrentSize(party)), String.valueOf(presenceUtils.getMaxSize(party))}, null, 4);
                 if (charSequenceH == null) {
                     charSequenceH = "";
                 }

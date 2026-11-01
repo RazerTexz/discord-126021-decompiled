@@ -3,7 +3,7 @@ package androidx.appcompat.widget;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.AttributeSet;
@@ -12,7 +12,6 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import androidx.core.view.TintableBackgroundView;
 import androidx.core.widget.TintableImageSourceView;
 
@@ -40,7 +39,7 @@ public class AppCompatImageView extends ImageView implements TintableBackgroundV
 
     @Override // androidx.core.view.TintableBackgroundView
     @Nullable
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public ColorStateList getSupportBackgroundTintList() {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
@@ -51,8 +50,8 @@ public class AppCompatImageView extends ImageView implements TintableBackgroundV
 
     @Override // androidx.core.view.TintableBackgroundView
     @Nullable
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
-    public PorterDuff$Mode getSupportBackgroundTintMode() {
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public PorterDuff.Mode getSupportBackgroundTintMode() {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
             return appCompatBackgroundHelper.getSupportBackgroundTintMode();
@@ -62,7 +61,7 @@ public class AppCompatImageView extends ImageView implements TintableBackgroundV
 
     @Override // androidx.core.widget.TintableImageSourceView
     @Nullable
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public ColorStateList getSupportImageTintList() {
         AppCompatImageHelper appCompatImageHelper = this.mImageHelper;
         if (appCompatImageHelper != null) {
@@ -73,8 +72,8 @@ public class AppCompatImageView extends ImageView implements TintableBackgroundV
 
     @Override // androidx.core.widget.TintableImageSourceView
     @Nullable
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
-    public PorterDuff$Mode getSupportImageTintMode() {
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public PorterDuff.Mode getSupportImageTintMode() {
         AppCompatImageHelper appCompatImageHelper = this.mImageHelper;
         if (appCompatImageHelper != null) {
             return appCompatImageHelper.getSupportImageTintMode();
@@ -141,7 +140,7 @@ public class AppCompatImageView extends ImageView implements TintableBackgroundV
     }
 
     @Override // androidx.core.view.TintableBackgroundView
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void setSupportBackgroundTintList(@Nullable ColorStateList colorStateList) {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
@@ -150,16 +149,16 @@ public class AppCompatImageView extends ImageView implements TintableBackgroundV
     }
 
     @Override // androidx.core.view.TintableBackgroundView
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
-    public void setSupportBackgroundTintMode(@Nullable PorterDuff$Mode porterDuff$Mode) {
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public void setSupportBackgroundTintMode(@Nullable PorterDuff.Mode mode) {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
-            appCompatBackgroundHelper.setSupportBackgroundTintMode(porterDuff$Mode);
+            appCompatBackgroundHelper.setSupportBackgroundTintMode(mode);
         }
     }
 
     @Override // androidx.core.widget.TintableImageSourceView
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void setSupportImageTintList(@Nullable ColorStateList colorStateList) {
         AppCompatImageHelper appCompatImageHelper = this.mImageHelper;
         if (appCompatImageHelper != null) {
@@ -168,11 +167,11 @@ public class AppCompatImageView extends ImageView implements TintableBackgroundV
     }
 
     @Override // androidx.core.widget.TintableImageSourceView
-    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
-    public void setSupportImageTintMode(@Nullable PorterDuff$Mode porterDuff$Mode) {
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public void setSupportImageTintMode(@Nullable PorterDuff.Mode mode) {
         AppCompatImageHelper appCompatImageHelper = this.mImageHelper;
         if (appCompatImageHelper != null) {
-            appCompatImageHelper.setSupportImageTintMode(porterDuff$Mode);
+            appCompatImageHelper.setSupportImageTintMode(mode);
         }
     }
 

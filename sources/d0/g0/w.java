@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.Pair;
+import kotlin.jvm.functions.Function1;
 import kotlin.ranges.IntProgression;
 import kotlin.ranges.IntRange;
 import kotlin.sequences.Sequence;
@@ -12,6 +13,29 @@ import kotlin.sequences.Sequence;
 /* JADX INFO: compiled from: Strings.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class w extends t {
+
+    /* JADX INFO: compiled from: Strings.kt */
+    public final class a extends d0.z.d.o implements Function1<IntRange, String> {
+        public final /* synthetic */ CharSequence $this_splitToSequence;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public a(CharSequence charSequence) {
+            super(1);
+            this.$this_splitToSequence = charSequence;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ String invoke(IntRange intRange) {
+            return invoke2(intRange);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final String invoke2(IntRange intRange) {
+            d0.z.d.m.checkNotNullParameter(intRange, "it");
+            return w.substring(this.$this_splitToSequence, intRange);
+        }
+    }
+
     public static final Pair access$findAnyOf(CharSequence charSequence, Collection collection, int i, boolean z2, boolean z3) {
         Object next;
         String str;
@@ -432,7 +456,7 @@ public class w extends t {
     public static final Sequence<String> splitToSequence(CharSequence charSequence, String[] strArr, boolean z2, int i) {
         d0.z.d.m.checkNotNullParameter(charSequence, "$this$splitToSequence");
         d0.z.d.m.checkNotNullParameter(strArr, "delimiters");
-        return d0.f0.q.map(d(charSequence, strArr, 0, z2, i, 2), new w$a(charSequence));
+        return d0.f0.q.map(d(charSequence, strArr, 0, z2, i, 2), new a(charSequence));
     }
 
     public static /* synthetic */ boolean startsWith$default(CharSequence charSequence, char c, boolean z2, int i, Object obj) {
@@ -535,7 +559,7 @@ public class w extends t {
         int i = 0;
         boolean z2 = false;
         while (i <= length) {
-            boolean zIsWhitespace = a.isWhitespace(charSequence.charAt(!z2 ? i : length));
+            boolean zIsWhitespace = d0.g0.a.isWhitespace(charSequence.charAt(!z2 ? i : length));
             if (z2) {
                 if (!zIsWhitespace) {
                     break;

@@ -3,7 +3,7 @@ package com.discord.widgets.auth;
 import android.view.View;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetAuthPhoneVerifyBinding;
 import com.discord.utilities.dimmer.DimmerView;
 import com.discord.views.CodeVerificationView;
@@ -28,23 +28,23 @@ public final /* synthetic */ class WidgetAuthPhoneVerify$binding$2 extends k imp
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetAuthPhoneVerifyBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.auth_phone_bailout;
-        TextView textView = (TextView) view.findViewById(R$id.auth_phone_bailout);
+        int i = R.id.auth_phone_bailout;
+        TextView textView = (TextView) view.findViewById(R.id.auth_phone_bailout);
         if (textView != null) {
-            i = R$id.auth_phone_verify_code;
-            CodeVerificationView codeVerificationView = (CodeVerificationView) view.findViewById(R$id.auth_phone_verify_code);
+            i = R.id.auth_phone_verify_code;
+            CodeVerificationView codeVerificationView = (CodeVerificationView) view.findViewById(R.id.auth_phone_verify_code);
             if (codeVerificationView != null) {
-                i = R$id.auth_phone_verify_resend;
-                TextView textView2 = (TextView) view.findViewById(R$id.auth_phone_verify_resend);
+                i = R.id.auth_phone_verify_resend;
+                TextView textView2 = (TextView) view.findViewById(R.id.auth_phone_verify_resend);
                 if (textView2 != null) {
-                    i = R$id.auth_phone_verify_subtitle;
-                    TextView textView3 = (TextView) view.findViewById(R$id.auth_phone_verify_subtitle);
+                    i = R.id.auth_phone_verify_subtitle;
+                    TextView textView3 = (TextView) view.findViewById(R.id.auth_phone_verify_subtitle);
                     if (textView3 != null) {
-                        i = R$id.auth_phone_verify_title;
-                        TextView textView4 = (TextView) view.findViewById(R$id.auth_phone_verify_title);
+                        i = R.id.auth_phone_verify_title;
+                        TextView textView4 = (TextView) view.findViewById(R.id.auth_phone_verify_title);
                         if (textView4 != null) {
-                            i = 2131363051;
-                            DimmerView dimmerView = (DimmerView) view.findViewById(2131363051);
+                            i = R.id.dimmer_view;
+                            DimmerView dimmerView = (DimmerView) view.findViewById(R.id.dimmer_view);
                             if (dimmerView != null) {
                                 return new WidgetAuthPhoneVerifyBinding((CoordinatorLayout) view, textView, codeVerificationView, textView2, textView3, textView4, dimmerView);
                             }

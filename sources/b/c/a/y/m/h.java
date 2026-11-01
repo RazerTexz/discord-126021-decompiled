@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Paint$Style;
 import android.graphics.Path;
 import android.graphics.RectF;
 import androidx.annotation.Nullable;
@@ -40,7 +39,7 @@ public class h extends b {
         this.A = new Path();
         this.B = eVar;
         aVar.setAlpha(0);
-        aVar.setStyle(Paint$Style.FILL);
+        aVar.setStyle(Paint.Style.FILL);
         aVar.setColor(eVar.l);
     }
 

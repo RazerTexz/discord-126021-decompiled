@@ -4,8 +4,8 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageInstaller$SessionInfo;
-import android.content.pm.PackageManager$NameNotFoundException;
+import android.content.pm.PackageInstaller;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.UserManager;
@@ -36,7 +36,7 @@ public class e {
                     f1347b = true;
                 }
             }
-        } catch (PackageManager$NameNotFoundException e) {
+        } catch (PackageManager.NameNotFoundException e) {
             Log.w("GooglePlayServicesUtil", "Cannot find Google Play services package name.", e);
         } finally {
             c = true;
@@ -45,10 +45,10 @@ public class e {
     }
 
     @TargetApi(21)
-    public static boolean b(Context context, String str) throws PackageManager$NameNotFoundException {
+    public static boolean b(Context context, String str) throws PackageManager.NameNotFoundException {
         boolean zEquals = str.equals("com.google.android.gms");
         try {
-            Iterator<PackageInstaller$SessionInfo> it = context.getPackageManager().getPackageInstaller().getAllSessions().iterator();
+            Iterator<PackageInstaller.SessionInfo> it = context.getPackageManager().getPackageInstaller().getAllSessions().iterator();
             while (it.hasNext()) {
                 if (str.equals(it.next().getAppPackageName())) {
                     return true;
@@ -67,7 +67,7 @@ public class e {
                 }
             }
             return false;
-        } catch (PackageManager$NameNotFoundException | Exception unused) {
+        } catch (PackageManager.NameNotFoundException | Exception unused) {
         }
     }
 }

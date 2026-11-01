@@ -5,7 +5,6 @@ import androidx.appcompat.widget.ActivityChooserModel;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import b.a.a.g.a;
-import b.a.a.g.a$b;
 import d0.z.d.m;
 import d0.z.d.o;
 import java.util.Objects;
@@ -30,11 +29,11 @@ public final class UriHandler$handleOrUntrusted$notice$1 extends o implements Fu
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(FragmentActivity fragmentActivity) {
         m.checkNotNullParameter(fragmentActivity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
-        a$b a_b = a.k;
+        a.Companion companion = a.INSTANCE;
         FragmentManager supportFragmentManager = fragmentActivity.getSupportFragmentManager();
         m.checkNotNullExpressionValue(supportFragmentManager, "activity.supportFragmentManager");
         String str = this.$url;
-        Objects.requireNonNull(a_b);
+        Objects.requireNonNull(companion);
         m.checkNotNullParameter(supportFragmentManager, "fragmentManager");
         m.checkNotNullParameter(str, "url");
         a aVar = new a();

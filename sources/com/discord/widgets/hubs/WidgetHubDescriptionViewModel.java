@@ -2,17 +2,24 @@ package com.discord.widgets.hubs;
 
 import android.content.Context;
 import b.a.d.d0;
+import com.discord.analytics.generated.events.network_action.TrackNetworkActionDirectoryGuildEntryCreate;
+import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
+import com.discord.api.directory.DirectoryEntryGuild;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.hubs.DirectoryEntryCategory;
-import com.discord.restapi.RestAPIParams$AddServerBody;
+import com.discord.restapi.RestAPIParams;
+import com.discord.stores.StoreChannels;
+import com.discord.stores.StoreGuilds;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreStream$Companion;
 import com.discord.stores.updates.ObservationDeck;
 import com.discord.stores.updates.ObservationDeckProvider;
+import com.discord.stores.utilities.RestCallState;
 import com.discord.stores.utilities.RestCallStateKt;
 import com.discord.utilities.rest.RestAPI;
 import com.discord.utilities.rx.ObservableExtensionsKt;
+import d0.z.d.a;
 import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -22,21 +29,110 @@ import rx.Observable;
 /* JADX INFO: compiled from: WidgetHubDescriptionViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetHubDescriptionViewModel extends d0<HubDescriptionState> {
-    public static final WidgetHubDescriptionViewModel$Companion Companion = new WidgetHubDescriptionViewModel$Companion(null);
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private final long channelId;
     private final long guildId;
     private final boolean isEditing;
     private final RestAPI restAPI;
 
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDescriptionViewModel$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubDescriptionViewModel.kt */
+    public final /* synthetic */ class AnonymousClass1 extends a implements Function1<HubDescriptionState, Unit> {
+        public AnonymousClass1(WidgetHubDescriptionViewModel widgetHubDescriptionViewModel) {
+            super(1, widgetHubDescriptionViewModel, WidgetHubDescriptionViewModel.class, "handleStoreUpdate", "handleStoreUpdate(Lcom/discord/widgets/hubs/HubDescriptionState;)Lkotlin/Unit;", 8);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(HubDescriptionState hubDescriptionState) {
+            invoke2(hubDescriptionState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(HubDescriptionState hubDescriptionState) {
+            m.checkNotNullParameter(hubDescriptionState, "p1");
+            WidgetHubDescriptionViewModel.access$handleStoreUpdate((WidgetHubDescriptionViewModel) this.receiver, hubDescriptionState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDescriptionViewModel$addServer$1, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubDescriptionViewModel.kt */
+    public final class AnonymousClass1 extends o implements Function1<DirectoryEntryGuild, TrackNetworkMetadataReceiver> {
+        public final /* synthetic */ DirectoryEntryCategory $category;
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ long $guildId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, long j2, DirectoryEntryCategory directoryEntryCategory) {
+            super(1);
+            this.$channelId = j;
+            this.$guildId = j2;
+            this.$category = directoryEntryCategory;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ TrackNetworkMetadataReceiver invoke(DirectoryEntryGuild directoryEntryGuild) {
+            return invoke2(directoryEntryGuild);
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final TrackNetworkMetadataReceiver invoke2(DirectoryEntryGuild directoryEntryGuild) {
+            return new TrackNetworkActionDirectoryGuildEntryCreate(Long.valueOf(this.$channelId), Long.valueOf(this.$guildId), Long.valueOf(this.$category.getKey()));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubDescriptionViewModel$addServer$2, reason: invalid class name */
+    /* JADX INFO: compiled from: WidgetHubDescriptionViewModel.kt */
+    public final class AnonymousClass2 extends o implements Function1<RestCallState<? extends DirectoryEntryGuild>, Unit> {
+        public final /* synthetic */ HubDescriptionState $state;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(HubDescriptionState hubDescriptionState) {
+            super(1);
+            this.$state = hubDescriptionState;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RestCallState<? extends DirectoryEntryGuild> restCallState) {
+            invoke2((RestCallState<DirectoryEntryGuild>) restCallState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RestCallState<DirectoryEntryGuild> restCallState) {
+            m.checkNotNullParameter(restCallState, "it");
+            WidgetHubDescriptionViewModel.access$updateViewState(WidgetHubDescriptionViewModel.this, HubDescriptionState.copy$default(this.$state, null, null, null, restCallState, 7, null));
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetHubDescriptionViewModel.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final Observable<HubDescriptionState> observeStores(long channelId, long guildId, ObservationDeck observationDeck, StoreChannels channelStore, StoreGuilds guildStore) {
+            m.checkNotNullParameter(observationDeck, "observationDeck");
+            m.checkNotNullParameter(channelStore, "channelStore");
+            m.checkNotNullParameter(guildStore, "guildStore");
+            return ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{channelStore, guildStore}, false, null, null, new WidgetHubDescriptionViewModel$Companion$observeStores$1(channelStore, channelId, guildStore, guildId), 14, null);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
     /* JADX WARN: Illegal instructions before constructor call */
     public /* synthetic */ WidgetHubDescriptionViewModel(long j, long j2, boolean z2, Integer num, RestAPI restAPI, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         Observable observableObserveStores;
-        RestAPI api = (i & 16) != 0 ? RestAPI.Companion.getApi() : restAPI;
+        RestAPI api = (i & 16) != 0 ? RestAPI.INSTANCE.getApi() : restAPI;
         if ((i & 32) != 0) {
-            WidgetHubDescriptionViewModel$Companion widgetHubDescriptionViewModel$Companion = Companion;
+            Companion companion = INSTANCE;
             ObservationDeck observationDeck = ObservationDeckProvider.get();
-            StoreStream$Companion storeStream$Companion = StoreStream.Companion;
-            observableObserveStores = widgetHubDescriptionViewModel$Companion.observeStores(j, j2, observationDeck, storeStream$Companion.getChannels(), storeStream$Companion.getGuilds());
+            StoreStream.Companion companion2 = StoreStream.INSTANCE;
+            observableObserveStores = companion.observeStores(j, j2, observationDeck, companion2.getChannels(), companion2.getGuilds());
         } else {
             observableObserveStores = observable;
         }
@@ -58,7 +154,7 @@ public final class WidgetHubDescriptionViewModel extends d0<HubDescriptionState>
         if (viewState == null || (selectedCategory = viewState.getSelectedCategory()) == null) {
             return;
         }
-        RestCallStateKt.executeRequest(this.isEditing ? this.restAPI.modifyServerInHub(channelId, guildId, new RestAPIParams$AddServerBody(description, selectedCategory.getKey())) : RestCallStateKt.logNetworkAction(this.restAPI.addServerToHub(channelId, guildId, new RestAPIParams$AddServerBody(description, selectedCategory.getKey())), new WidgetHubDescriptionViewModel$addServer$1(channelId, guildId, selectedCategory)), new WidgetHubDescriptionViewModel$addServer$2(this, viewState));
+        RestCallStateKt.executeRequest(this.isEditing ? this.restAPI.modifyServerInHub(channelId, guildId, new RestAPIParams.AddServerBody(description, selectedCategory.getKey())) : RestCallStateKt.logNetworkAction(this.restAPI.addServerToHub(channelId, guildId, new RestAPIParams.AddServerBody(description, selectedCategory.getKey())), new AnonymousClass1(channelId, guildId, selectedCategory)), new AnonymousClass2(viewState));
     }
 
     public final DirectoryEntryCategory getCategory() {
@@ -113,6 +209,6 @@ public final class WidgetHubDescriptionViewModel extends d0<HubDescriptionState>
         this.guildId = j2;
         this.isEditing = z2;
         this.restAPI = restAPI;
-        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observable), this, null, 2, null), WidgetHubDescriptionViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetHubDescriptionViewModel$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observable), this, null, 2, null), WidgetHubDescriptionViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new AnonymousClass1(this), 62, (Object) null);
     }
 }

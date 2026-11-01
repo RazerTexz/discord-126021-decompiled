@@ -1,13 +1,13 @@
 package b.i.a.c.x2.k0;
 
-import b.i.a.c.j1$b;
+import b.i.a.c.j1;
 import java.util.Collections;
 import java.util.List;
 
 /* JADX INFO: compiled from: DvbSubtitleReader.java */
 /* JADX INFO: loaded from: classes3.dex */
 public final class n implements o {
-    public final List<i0$a> a;
+    public final List<i0.a> a;
     public boolean c;
     public int d;
     public int e;
@@ -16,7 +16,7 @@ public final class n implements o {
     public final b.i.a.c.x2.w[] f1266b;
     public long f = -9223372036854775807L;
 
-    public n(List<i0$a> list) {
+    public n(List<i0.a> list) {
         this.a = list;
         this.f1266b = new b.i.a.c.x2.w[list.size()];
     }
@@ -68,17 +68,17 @@ public final class n implements o {
     }
 
     @Override // b.i.a.c.x2.k0.o
-    public void e(b.i.a.c.x2.j jVar, i0$d i0_d) {
+    public void e(b.i.a.c.x2.j jVar, i0.d dVar) {
         for (int i = 0; i < this.f1266b.length; i++) {
-            i0$a i0_a = this.a.get(i);
-            i0_d.a();
-            b.i.a.c.x2.w wVarP = jVar.p(i0_d.c(), 3);
-            j1$b j1_b = new j1$b();
-            j1_b.a = i0_d.b();
-            j1_b.k = "application/dvbsubs";
-            j1_b.m = Collections.singletonList(i0_a.f1257b);
-            j1_b.c = i0_a.a;
-            wVarP.e(j1_b.a());
+            i0.a aVar = this.a.get(i);
+            dVar.a();
+            b.i.a.c.x2.w wVarP = jVar.p(dVar.c(), 3);
+            j1.b bVar = new j1.b();
+            bVar.a = dVar.b();
+            bVar.k = "application/dvbsubs";
+            bVar.m = Collections.singletonList(aVar.f1257b);
+            bVar.c = aVar.a;
+            wVarP.e(bVar.a());
             this.f1266b[i] = wVarP;
         }
     }

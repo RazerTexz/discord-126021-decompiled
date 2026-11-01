@@ -5,9 +5,19 @@ import androidx.annotation.Nullable;
 /* JADX INFO: compiled from: TimeBar.java */
 /* JADX INFO: loaded from: classes3.dex */
 public interface o {
+
+    /* JADX INFO: compiled from: TimeBar.java */
+    public interface a {
+        void k(o oVar, long j);
+
+        void l(o oVar, long j, boolean z2);
+
+        void m(o oVar, long j);
+    }
+
     void a(@Nullable long[] jArr, @Nullable boolean[] zArr, int i);
 
-    void b(o$a o_a);
+    void b(a aVar);
 
     long getPreferredUpdateDelay();
 

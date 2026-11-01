@@ -20,6 +20,6 @@ public final class StoreStream$Companion$initialize$3 extends o implements Funct
     @Override // kotlin.jvm.functions.Function0
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final String invoke2() {
-        return StoreStream$Companion.access$getCollector$p(StoreStream.Companion).getUserSettingsSystem().getLocale();
+        return StoreStream.Companion.access$getCollector$p(StoreStream.INSTANCE).getUserSettingsSystem().getLocale();
     }
 }

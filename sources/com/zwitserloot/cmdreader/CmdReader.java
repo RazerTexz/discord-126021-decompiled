@@ -316,7 +316,7 @@ public class CmdReader<T> {
             in = new String[0];
         }
         int seq = 0;
-        CmdReader$1State state = new CmdReader$1State(this, obj);
+        C1State state = new C1State(obj);
         int i = 0;
         while (i < in.length) {
             if (in[i].startsWith("--")) {
@@ -377,6 +377,108 @@ public class CmdReader<T> {
         }
         state.finish();
         return obj;
+    }
+
+    /* JADX INFO: renamed from: com.zwitserloot.cmdreader.CmdReader$1State, reason: invalid class name */
+    /* JADX INFO: loaded from: discord-126021.apk:com/zwitserloot/cmdreader/CmdReader$1State.SCL.lombok */
+    class C1State {
+        final /* synthetic */ Object val$obj;
+        List<ParseItem> used = new ArrayList();
+
+        C1State(Object obj) {
+            this.val$obj = obj;
+        }
+
+        void handle(ParseItem item, String value) {
+            item.set(this.val$obj, value);
+            this.used.add(item);
+        }
+
+        void finish() throws InvalidCommandLineException {
+            checkForGlobalMandatories();
+            checkForExcludes();
+            checkForRequires();
+            checkForMandatoriesIf();
+            checkForMandatoriesIfNot();
+        }
+
+        private void checkForGlobalMandatories() throws InvalidCommandLineException {
+            for (ParseItem item : CmdReader.access$000(CmdReader.this)) {
+                if (item.isMandatory() && !this.used.contains(item)) {
+                    throw new InvalidCommandLineException("You did not specify mandatory parameter " + item.getFullName());
+                }
+            }
+        }
+
+        private void checkForExcludes() throws InvalidCommandLineException {
+            for (ParseItem item : CmdReader.access$000(CmdReader.this)) {
+                if (this.used.contains(item)) {
+                    for (String n : item.getExcludes()) {
+                        for (ParseItem i : CmdReader.access$000(CmdReader.this)) {
+                            if (i.getFullName().equals(n) && this.used.contains(i)) {
+                                throw new InvalidCommandLineException("You specified parameter " + i.getFullName() + " which cannot be used together with " + item.getFullName());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void checkForRequires() throws InvalidCommandLineException {
+            for (ParseItem item : CmdReader.access$000(CmdReader.this)) {
+                if (this.used.contains(item)) {
+                    for (String n : item.getRequires()) {
+                        for (ParseItem i : CmdReader.access$000(CmdReader.this)) {
+                            if (i.getFullName().equals(n) && !this.used.contains(i)) {
+                                throw new InvalidCommandLineException("You specified parameter " + item.getFullName() + " which requires that you also supply " + i.getFullName());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void checkForMandatoriesIf() throws InvalidCommandLineException {
+            for (ParseItem item : CmdReader.access$000(CmdReader.this)) {
+                if (!this.used.contains(item) && item.getMandatoryIf().size() != 0) {
+                    for (String n : item.getMandatoryIf()) {
+                        for (ParseItem i : CmdReader.access$000(CmdReader.this)) {
+                            if (i.getFullName().equals(n) && this.used.contains(i)) {
+                                throw new InvalidCommandLineException("You did not specify parameter " + item.getFullName() + " which is mandatory if you use " + i.getFullName());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void checkForMandatoriesIfNot() throws InvalidCommandLineException {
+            for (ParseItem item : CmdReader.access$000(CmdReader.this)) {
+                if (!this.used.contains(item) && item.getMandatoryIfNot().size() != 0) {
+                    Iterator<String> it = item.getMandatoryIfNot().iterator();
+                    while (true) {
+                        if (it.hasNext()) {
+                            String n = it.next();
+                            for (ParseItem i : CmdReader.access$000(CmdReader.this)) {
+                                if (i.getFullName().equals(n) && this.used.contains(i)) {
+                                    break;
+                                }
+                            }
+                        } else {
+                            StringBuilder alternatives = new StringBuilder();
+                            if (item.getMandatoryIfNot().size() > 1) {
+                                alternatives.append("one of ");
+                            }
+                            for (String n2 : item.getMandatoryIfNot()) {
+                                alternatives.append(n2).append(", ");
+                            }
+                            alternatives.setLength(alternatives.length() - 2);
+                            throw new InvalidCommandLineException("You did not specify parameter " + item.getFullName() + " which is mandatory unless you use " + ((Object) alternatives));
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private T construct() {

@@ -2,6 +2,10 @@ package com.discord.stores;
 
 import android.content.Context;
 import androidx.exifinterface.media.ExifInterface;
+import b.a.d.k;
+import b.a.d.l;
+import b.a.e.d;
+import b.d.b.a.a;
 import com.discord.BuildConfig;
 import com.discord.api.activity.Activity;
 import com.discord.api.channel.Channel;
@@ -41,35 +45,30 @@ import com.discord.api.user.User;
 import com.discord.api.voice.server.VoiceServer;
 import com.discord.api.voice.state.VoiceState;
 import com.discord.app.App;
-import com.discord.app.App$a;
 import com.discord.app.AppLog;
 import com.discord.gateway.GatewayEventHandler;
 import com.discord.gateway.GatewaySocket;
-import com.discord.gateway.GatewaySocket$IdentifyData;
-import com.discord.gateway.io.OutgoingPayload$GuildSubscriptions;
+import com.discord.gateway.io.OutgoingPayload;
 import com.discord.gateway.rest.RestConfig;
 import com.discord.models.domain.ModelApplicationStream;
 import com.discord.models.domain.ModelBan;
 import com.discord.models.domain.ModelCall;
 import com.discord.models.domain.ModelChannelUnreadUpdate;
-import com.discord.models.domain.ModelGuildIntegration$Update;
+import com.discord.models.domain.ModelGuildIntegration;
 import com.discord.models.domain.ModelGuildMemberListUpdate;
 import com.discord.models.domain.ModelMessageDelete;
 import com.discord.models.domain.ModelNotificationSettings;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.domain.ModelReadState;
 import com.discord.models.domain.ModelSession;
-import com.discord.models.domain.ModelUserNote$Update;
+import com.discord.models.domain.ModelUserNote;
 import com.discord.models.domain.ModelUserRelationship;
 import com.discord.models.domain.ModelUserSettings;
 import com.discord.models.domain.StreamCreateOrUpdate;
 import com.discord.models.domain.StreamDelete;
 import com.discord.models.domain.StreamServerUpdate;
 import com.discord.models.thread.dto.ModelThreadListSync;
-import com.discord.rtcconnection.RtcConnection$Metadata;
-import com.discord.rtcconnection.RtcConnection$State;
-import com.discord.rtcconnection.RtcConnection$State$d;
-import com.discord.rtcconnection.RtcConnection$StateChange;
+import com.discord.rtcconnection.RtcConnection;
 import com.discord.stores.utilities.BatchManager;
 import com.discord.stores.utilities.Batched;
 import com.discord.utilities.analytics.AnalyticSuperProperties;
@@ -78,15 +77,15 @@ import com.discord.utilities.lazy.subscriptions.GuildSubscriptions;
 import com.discord.utilities.logging.AppGatewaySocketLogger;
 import com.discord.utilities.networking.NetworkMonitor;
 import com.discord.utilities.rest.RestAPI;
-import com.discord.utilities.rest.RestAPI$AppHeadersProvider;
-import com.discord.utilities.rest.RestAPI$Companion;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.ssl.SecureSocketsLayerUtils;
 import com.discord.utilities.time.Clock;
 import d0.t.n;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
 import j0.l.c.c;
-import j0.p.a;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -97,6 +96,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import javax.net.ssl.SSLSocketFactory;
 import kotlin.Pair;
 import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlinx.coroutines.ExecutorCoroutineDispatcher;
@@ -120,7 +120,7 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
     private final SerializedSubject<ChannelRecipient, ChannelRecipient> channelRecipientAdd;
     private final SerializedSubject<ChannelRecipient, ChannelRecipient> channelRecipientRemove;
     private final SerializedSubject<ModelChannelUnreadUpdate, ModelChannelUnreadUpdate> channelUnreadUpdate;
-    private StoreGatewayConnection$ClientState clientState;
+    private ClientState clientState;
     private final Clock clock;
     private final SerializedSubject<Boolean, Boolean> connected;
     private final SerializedSubject<Boolean, Boolean> connectionReady;
@@ -137,7 +137,7 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
     private final SerializedSubject<Guild, Guild> guildCreate;
     private final SerializedSubject<Guild, Guild> guildDeleted;
     private final SerializedSubject<GuildEmojisUpdate, GuildEmojisUpdate> guildEmojisUpdate;
-    private final SerializedSubject<ModelGuildIntegration$Update, ModelGuildIntegration$Update> guildIntegrationsUpdate;
+    private final SerializedSubject<ModelGuildIntegration.Update, ModelGuildIntegration.Update> guildIntegrationsUpdate;
     private final SerializedSubject<GuildJoinRequestCreateOrUpdate, GuildJoinRequestCreateOrUpdate> guildJoinRequestCreateOrUpdate;
     private final SerializedSubject<GuildJoinRequestDelete, GuildJoinRequestDelete> guildJoinRequestDelete;
     private final SerializedSubject<ModelGuildMemberListUpdate, ModelGuildMemberListUpdate> guildMemberListUpdate;
@@ -191,7 +191,7 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
     private final SerializedSubject<TypingUser, TypingUser> typingStart;
     private final SerializedSubject<Unit, Unit> userConnectionUpdate;
     private final SerializedSubject<ModelNotificationSettings, ModelNotificationSettings> userGuildSettingsUpdate;
-    private final SerializedSubject<ModelUserNote$Update, ModelUserNote$Update> userNoteUpdate;
+    private final SerializedSubject<ModelUserNote.Update, ModelUserNote.Update> userNoteUpdate;
     private final SerializedSubject<Unit, Unit> userPaymentSourcesUpdate;
     private final SerializedSubject<UserRequiredActionUpdate, UserRequiredActionUpdate> userRequiredActionUpdate;
     private final SerializedSubject<ModelUserSettings, ModelUserSettings> userSettingsUpdate;
@@ -199,6 +199,526 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
     private final SerializedSubject<User, User> userUpdate;
     private final SerializedSubject<VoiceServer, VoiceServer> voiceServerUpdate;
     private final Batched<VoiceState> voiceStateUpdate;
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGatewayConnection$callConnect$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGatewayConnection.kt */
+    public final class AnonymousClass1 extends o implements Function1<GatewaySocket, Unit> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j) {
+            super(1);
+            this.$channelId = j;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GatewaySocket gatewaySocket) {
+            invoke2(gatewaySocket);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GatewaySocket gatewaySocket) {
+            m.checkNotNullParameter(gatewaySocket, "it");
+            gatewaySocket.callConnect(this.$channelId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGatewayConnection$init$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGatewayConnection.kt */
+    public final class AnonymousClass1 extends o implements Function1<ClientState, Unit> {
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ClientState clientState) {
+            invoke2(clientState);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ClientState clientState) {
+            m.checkNotNullParameter(clientState, "it");
+            StoreGatewayConnection.access$handleClientStateUpdate(StoreGatewayConnection.this, clientState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGatewayConnection$presenceUpdate$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGatewayConnection.kt */
+    public final class AnonymousClass1 extends o implements Function1<GatewaySocket, Unit> {
+        public final /* synthetic */ List $activities;
+        public final /* synthetic */ Boolean $afk;
+        public final /* synthetic */ Long $since;
+        public final /* synthetic */ ClientStatus $status;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(ClientStatus clientStatus, Long l, List list, Boolean bool) {
+            super(1);
+            this.$status = clientStatus;
+            this.$since = l;
+            this.$activities = list;
+            this.$afk = bool;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GatewaySocket gatewaySocket) {
+            invoke2(gatewaySocket);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GatewaySocket gatewaySocket) {
+            m.checkNotNullParameter(gatewaySocket, "it");
+            gatewaySocket.presenceUpdate(this.$status, this.$since, this.$activities, this.$afk);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGatewayConnection$requestApplicationCommands$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGatewayConnection.kt */
+    public final class AnonymousClass1 extends o implements Function1<GatewaySocket, Unit> {
+        public final /* synthetic */ boolean $applications;
+        public final /* synthetic */ List $commandIds;
+        public final /* synthetic */ int $commandLimit;
+        public final /* synthetic */ long $guildId;
+        public final /* synthetic */ String $nonce;
+        public final /* synthetic */ Integer $offset;
+        public final /* synthetic */ String $query;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, String str, boolean z2, Integer num, String str2, int i, List list) {
+            super(1);
+            this.$guildId = j;
+            this.$nonce = str;
+            this.$applications = z2;
+            this.$offset = num;
+            this.$query = str2;
+            this.$commandLimit = i;
+            this.$commandIds = list;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GatewaySocket gatewaySocket) {
+            invoke2(gatewaySocket);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GatewaySocket gatewaySocket) {
+            m.checkNotNullParameter(gatewaySocket, "it");
+            long j = this.$guildId;
+            String str = this.$nonce;
+            boolean z2 = this.$applications;
+            gatewaySocket.requestApplicationCommands(new OutgoingPayload.ApplicationCommandRequest(j, this.$query, this.$offset, Integer.valueOf(this.$commandLimit), z2, str, this.$commandIds));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGatewayConnection$requestForumUnreads$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGatewayConnection.kt */
+    public final class AnonymousClass1 extends o implements Function1<GatewaySocket, Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ long $guildId;
+        public final /* synthetic */ List $threadMessagePairs;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, long j2, List list) {
+            super(1);
+            this.$guildId = j;
+            this.$channelId = j2;
+            this.$threadMessagePairs = list;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GatewaySocket gatewaySocket) {
+            invoke2(gatewaySocket);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GatewaySocket gatewaySocket) {
+            m.checkNotNullParameter(gatewaySocket, "it");
+            long j = this.$guildId;
+            long j2 = this.$channelId;
+            List<Pair> list = this.$threadMessagePairs;
+            ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(list, 10));
+            for (Pair pair : list) {
+                arrayList.add(new OutgoingPayload.ForumUnreadsRequestThread(((Number) pair.component1()).longValue(), ((Number) pair.component2()).longValue()));
+            }
+            gatewaySocket.requestForumUnreads(new OutgoingPayload.ForumUnreadsRequest(j, j2, arrayList));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGatewayConnection$requestGuildMembers$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGatewayConnection.kt */
+    public final class AnonymousClass1 extends o implements Function1<GatewaySocket, Unit> {
+        public final /* synthetic */ long $guildId;
+        public final /* synthetic */ Integer $limit;
+        public final /* synthetic */ String $query;
+        public final /* synthetic */ List $userIds;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, String str, List list, Integer num) {
+            super(1);
+            this.$guildId = j;
+            this.$query = str;
+            this.$userIds = list;
+            this.$limit = num;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GatewaySocket gatewaySocket) {
+            invoke2(gatewaySocket);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GatewaySocket gatewaySocket) {
+            m.checkNotNullParameter(gatewaySocket, "it");
+            gatewaySocket.requestGuildMembers(d0.t.m.listOf(Long.valueOf(this.$guildId)), this.$query, this.$userIds, this.$limit);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGatewayConnection$streamCreate$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGatewayConnection.kt */
+    public final class AnonymousClass1 extends o implements Function1<GatewaySocket, Unit> {
+        public final /* synthetic */ ModelApplicationStream $newStream;
+        public final /* synthetic */ String $preferredRegion;
+        public final /* synthetic */ String $streamKey;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(String str, ModelApplicationStream modelApplicationStream, String str2) {
+            super(1);
+            this.$streamKey = str;
+            this.$newStream = modelApplicationStream;
+            this.$preferredRegion = str2;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GatewaySocket gatewaySocket) {
+            invoke2(gatewaySocket);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GatewaySocket gatewaySocket) {
+            m.checkNotNullParameter(gatewaySocket, "gatewaySocket");
+            String activeApplicationStreamKeyInternal$app_productionGoogleRelease = StoreGatewayConnection.access$getStream$p(StoreGatewayConnection.this).getApplicationStreaming().getActiveApplicationStreamKeyInternal$app_productionGoogleRelease();
+            if (activeApplicationStreamKeyInternal$app_productionGoogleRelease != null && (!m.areEqual(activeApplicationStreamKeyInternal$app_productionGoogleRelease, this.$streamKey))) {
+                StoreGatewayConnection.this.streamDelete(activeApplicationStreamKeyInternal$app_productionGoogleRelease);
+            }
+            ModelApplicationStream modelApplicationStream = this.$newStream;
+            gatewaySocket.streamCreate(this.$newStream.getType(), this.$newStream.getChannelId(), modelApplicationStream instanceof ModelApplicationStream.GuildStream ? Long.valueOf(((ModelApplicationStream.GuildStream) modelApplicationStream).getGuildId()) : null, this.$preferredRegion);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGatewayConnection$streamDelete$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGatewayConnection.kt */
+    public final class AnonymousClass1 extends o implements Function1<GatewaySocket, Unit> {
+        public final /* synthetic */ String $streamKey;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(String str) {
+            super(1);
+            this.$streamKey = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GatewaySocket gatewaySocket) {
+            invoke2(gatewaySocket);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GatewaySocket gatewaySocket) {
+            m.checkNotNullParameter(gatewaySocket, "it");
+            gatewaySocket.streamDelete(this.$streamKey);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGatewayConnection$streamPing$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGatewayConnection.kt */
+    public final class AnonymousClass1 extends o implements Function1<GatewaySocket, Unit> {
+        public final /* synthetic */ String $streamKey;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(String str) {
+            super(1);
+            this.$streamKey = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GatewaySocket gatewaySocket) {
+            invoke2(gatewaySocket);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GatewaySocket gatewaySocket) {
+            m.checkNotNullParameter(gatewaySocket, "it");
+            gatewaySocket.streamPing(this.$streamKey);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGatewayConnection$streamWatch$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGatewayConnection.kt */
+    public final class AnonymousClass1 extends o implements Function1<GatewaySocket, Unit> {
+        public final /* synthetic */ String $streamKey;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(String str) {
+            super(1);
+            this.$streamKey = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GatewaySocket gatewaySocket) {
+            invoke2(gatewaySocket);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GatewaySocket gatewaySocket) {
+            m.checkNotNullParameter(gatewaySocket, "it");
+            String activeApplicationStreamKeyInternal$app_productionGoogleRelease = StoreGatewayConnection.access$getStream$p(StoreGatewayConnection.this).getApplicationStreaming().getActiveApplicationStreamKeyInternal$app_productionGoogleRelease();
+            if (activeApplicationStreamKeyInternal$app_productionGoogleRelease != null && (!m.areEqual(activeApplicationStreamKeyInternal$app_productionGoogleRelease, this.$streamKey))) {
+                StoreGatewayConnection.this.streamDelete(activeApplicationStreamKeyInternal$app_productionGoogleRelease);
+            }
+            gatewaySocket.streamWatch(this.$streamKey);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGatewayConnection$updateGuildSubscriptions$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGatewayConnection.kt */
+    public final class AnonymousClass1 extends o implements Function1<GatewaySocket, Unit> {
+        public final /* synthetic */ long $guildId;
+        public final /* synthetic */ OutgoingPayload.GuildSubscriptions $payload;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(long j, OutgoingPayload.GuildSubscriptions guildSubscriptions) {
+            super(1);
+            this.$guildId = j;
+            this.$payload = guildSubscriptions;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GatewaySocket gatewaySocket) {
+            invoke2(gatewaySocket);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GatewaySocket gatewaySocket) {
+            m.checkNotNullParameter(gatewaySocket, "it");
+            gatewaySocket.updateGuildSubscriptions(this.$guildId, this.$payload);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGatewayConnection$voiceServerPing$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGatewayConnection.kt */
+    public final class AnonymousClass1 extends o implements Function1<GatewaySocket, Unit> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        public AnonymousClass1() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GatewaySocket gatewaySocket) {
+            invoke2(gatewaySocket);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GatewaySocket gatewaySocket) {
+            m.checkNotNullParameter(gatewaySocket, "it");
+            gatewaySocket.voiceServerPing();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreGatewayConnection$voiceStateUpdate$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreGatewayConnection.kt */
+    public final class AnonymousClass1 extends o implements Function1<GatewaySocket, Unit> {
+        public final /* synthetic */ Long $channelId;
+        public final /* synthetic */ Long $guildId;
+        public final /* synthetic */ String $preferredRegion;
+        public final /* synthetic */ boolean $selfDeaf;
+        public final /* synthetic */ boolean $selfMute;
+        public final /* synthetic */ boolean $selfVideo;
+        public final /* synthetic */ boolean $shouldIncludePreferredRegion;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(Long l, Long l2, boolean z2, boolean z3, boolean z4, String str, boolean z5) {
+            super(1);
+            this.$guildId = l;
+            this.$channelId = l2;
+            this.$selfMute = z2;
+            this.$selfDeaf = z3;
+            this.$selfVideo = z4;
+            this.$preferredRegion = str;
+            this.$shouldIncludePreferredRegion = z5;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(GatewaySocket gatewaySocket) {
+            invoke2(gatewaySocket);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(GatewaySocket gatewaySocket) {
+            m.checkNotNullParameter(gatewaySocket, "it");
+            gatewaySocket.voiceStateUpdate(this.$guildId, this.$channelId, this.$selfMute, this.$selfDeaf, this.$selfVideo, this.$preferredRegion, this.$shouldIncludePreferredRegion);
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreGatewayConnection.kt */
+    public final /* data */ class ClientState {
+
+        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+        public static final Companion INSTANCE = new Companion(null);
+        private final boolean authed;
+        private final StoreClientDataState.ClientDataState clientDataState;
+        private final String tokenIfAvailable;
+
+        /* JADX INFO: compiled from: StoreGatewayConnection.kt */
+        public final class Companion {
+            private Companion() {
+            }
+
+            public static final /* synthetic */ ClientState access$create(Companion companion, boolean z2, String str, long j, boolean z3, StoreClientDataState.ClientDataState clientDataState) {
+                return companion.create(z2, str, j, z3, clientDataState);
+            }
+
+            private final ClientState create(boolean backgrounded, String token, long selectedVoiceChannelId, boolean hasGatewayConnectionConsumers, StoreClientDataState.ClientDataState clientDataState) {
+                boolean z2 = token != null;
+                if (backgrounded && selectedVoiceChannelId <= 0 && !hasGatewayConnectionConsumers) {
+                    token = null;
+                }
+                return new ClientState(token, z2, clientDataState);
+            }
+
+            public final void initialize(StoreStream stream, Scheduler scheduler, Function1<? super ClientState, Unit> callback) {
+                m.checkNotNullParameter(stream, "stream");
+                m.checkNotNullParameter(scheduler, "scheduler");
+                m.checkNotNullParameter(callback, "callback");
+                Observable<Boolean> observableA = d.d.a();
+                Observable<String> authedToken$app_productionGoogleRelease = stream.getAuthentication().getAuthedToken$app_productionGoogleRelease();
+                Observable<Long> observableObserveSelectedVoiceChannelId = stream.getVoiceChannelSelected().observeSelectedVoiceChannelId();
+                l lVar = l.c;
+                Observable observableR = l.f59b.G(k.j).r();
+                m.checkNotNullExpressionValue(observableR, "numGatewayConnectionCons…  .distinctUntilChanged()");
+                Observable observableG = Observable.g(observableA, authedToken$app_productionGoogleRelease, observableObserveSelectedVoiceChannelId, observableR, stream.getClientDataState().observeClientState(), new StoreGatewayConnection$sam$rx_functions_Func5$0(new StoreGatewayConnection$ClientState$Companion$initialize$1(this)));
+                m.checkNotNullExpressionValue(observableG, "Observable\n            .…   ::create\n            )");
+                Observable observableJ = ObservableExtensionsKt.computationLatest(observableG).J(scheduler);
+                m.checkNotNullExpressionValue(observableJ, "Observable\n            .…    .observeOn(scheduler)");
+                ObservableExtensionsKt.appSubscribe$default(observableJ, (Context) null, "clientState", (Function1) null, callback, (Function1) null, (Function0) null, (Function0) null, 117, (Object) null);
+            }
+
+            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+                this();
+            }
+        }
+
+        public ClientState(String str, boolean z2, StoreClientDataState.ClientDataState clientDataState) {
+            m.checkNotNullParameter(clientDataState, "clientDataState");
+            this.tokenIfAvailable = str;
+            this.authed = z2;
+            this.clientDataState = clientDataState;
+        }
+
+        public static /* synthetic */ ClientState copy$default(ClientState clientState, String str, boolean z2, StoreClientDataState.ClientDataState clientDataState, int i, Object obj) {
+            if ((i & 1) != 0) {
+                str = clientState.tokenIfAvailable;
+            }
+            if ((i & 2) != 0) {
+                z2 = clientState.authed;
+            }
+            if ((i & 4) != 0) {
+                clientDataState = clientState.clientDataState;
+            }
+            return clientState.copy(str, z2, clientDataState);
+        }
+
+        public final ClientState copy(String tokenIfAvailable, boolean authed, StoreClientDataState.ClientDataState clientDataState) {
+            m.checkNotNullParameter(clientDataState, "clientDataState");
+            return new ClientState(tokenIfAvailable, authed, clientDataState);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof ClientState)) {
+                return false;
+            }
+            ClientState clientState = (ClientState) other;
+            return m.areEqual(this.tokenIfAvailable, clientState.tokenIfAvailable) && this.authed == clientState.authed && m.areEqual(this.clientDataState, clientState.clientDataState);
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final boolean getAuthed() {
+            return this.authed;
+        }
+
+        public final boolean getAuthed() {
+            return this.authed;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final StoreClientDataState.ClientDataState getClientDataState() {
+            return this.clientDataState;
+        }
+
+        public final StoreClientDataState.ClientDataState getClientDataState() {
+            return this.clientDataState;
+        }
+
+        public final GatewaySocket.IdentifyData getIdentifyData() {
+            String str = this.tokenIfAvailable;
+            if (str != null) {
+                return new GatewaySocket.IdentifyData(str, this.clientDataState.toIdentifyData());
+            }
+            return null;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getTokenIfAvailable() {
+            return this.tokenIfAvailable;
+        }
+
+        public final String getTokenIfAvailable() {
+            return this.tokenIfAvailable;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        /* JADX WARN: Type inference failed for: r0v4, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v1, types: [int] */
+        /* JADX WARN: Type inference failed for: r2v3 */
+        /* JADX WARN: Type inference failed for: r2v4 */
+        public int hashCode() {
+            String str = this.tokenIfAvailable;
+            int iHashCode = (str != null ? str.hashCode() : 0) * 31;
+            boolean z2 = this.authed;
+            ?? r2 = z2;
+            if (z2) {
+                r2 = 1;
+            }
+            int i = (iHashCode + r2) * 31;
+            StoreClientDataState.ClientDataState clientDataState = this.clientDataState;
+            return i + (clientDataState != null ? clientDataState.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbU = a.U("ClientState(tokenIfAvailable=");
+            sbU.append(this.tokenIfAvailable);
+            sbU.append(", authed=");
+            sbU.append(this.authed);
+            sbU.append(", clientDataState=");
+            sbU.append(this.clientDataState);
+            sbU.append(")");
+            return sbU.toString();
+        }
+    }
 
     public StoreGatewayConnection(StoreStream storeStream, Clock clock, AppGatewaySocketLogger appGatewaySocketLogger) {
         this(storeStream, clock, null, null, appGatewaySocketLogger, 12, null);
@@ -305,7 +825,7 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
         this.forumUnreads = new SerializedSubject<>(BehaviorSubject.k0());
     }
 
-    public static final /* synthetic */ GatewaySocket$IdentifyData access$getIdentifyData(StoreGatewayConnection storeGatewayConnection) {
+    public static final /* synthetic */ GatewaySocket.IdentifyData access$getIdentifyData(StoreGatewayConnection storeGatewayConnection) {
         return storeGatewayConnection.getIdentifyData();
     }
 
@@ -313,24 +833,24 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
         return storeGatewayConnection.stream;
     }
 
-    public static final /* synthetic */ void access$handleClientStateUpdate(StoreGatewayConnection storeGatewayConnection, StoreGatewayConnection$ClientState storeGatewayConnection$ClientState) {
-        storeGatewayConnection.handleClientStateUpdate(storeGatewayConnection$ClientState);
+    public static final /* synthetic */ void access$handleClientStateUpdate(StoreGatewayConnection storeGatewayConnection, ClientState clientState) {
+        storeGatewayConnection.handleClientStateUpdate(clientState);
     }
 
     private final GatewaySocket buildGatewaySocket(Context context, NetworkMonitor networkMonitor) {
-        RestAPI$Companion restAPI$Companion = RestAPI.Companion;
-        List listListOf = n.listOf((Object[]) new Interceptor[]{restAPI$Companion.buildAnalyticsInterceptor(), restAPI$Companion.buildLoggingInterceptor()});
-        App$a app$a = App.Companion;
-        Objects.requireNonNull(app$a);
+        RestAPI.Companion companion = RestAPI.INSTANCE;
+        List listListOf = n.listOf((Object[]) new Interceptor[]{companion.buildAnalyticsInterceptor(), companion.buildLoggingInterceptor()});
+        App.Companion aVar = App.INSTANCE;
+        Objects.requireNonNull(aVar);
         SSLSocketFactory sSLSocketFactoryCreateSocketFactory$default = App.access$getIS_LOCAL$cp() ? null : SecureSocketsLayerUtils.createSocketFactory$default(null, 1, null);
-        Objects.requireNonNull(app$a);
-        GatewaySocket gatewaySocket = new GatewaySocket(new StoreGatewayConnection$buildGatewaySocket$socket$1(this), StoreGatewayConnection$buildGatewaySocket$socket$2.INSTANCE, this, this.scheduler, AppLog.g, networkMonitor, new RestConfig(BuildConfig.HOST_API, RestAPI$AppHeadersProvider.INSTANCE, listListOf), context, App.access$getIS_LOCAL$cp() ? StoreGatewayConnection$buildGatewaySocket$gatewayUrlTransform$1.INSTANCE : null, sSLSocketFactoryCreateSocketFactory$default, AnalyticSuperProperties.INSTANCE.getSuperProperties(), this.gatewaySocketLogger);
+        Objects.requireNonNull(aVar);
+        GatewaySocket gatewaySocket = new GatewaySocket(new StoreGatewayConnection$buildGatewaySocket$socket$1(this), StoreGatewayConnection$buildGatewaySocket$socket$2.INSTANCE, this, this.scheduler, AppLog.g, networkMonitor, new RestConfig(BuildConfig.HOST_API, RestAPI.AppHeadersProvider.INSTANCE, listListOf), context, App.access$getIS_LOCAL$cp() ? StoreGatewayConnection$buildGatewaySocket$gatewayUrlTransform$1.INSTANCE : null, sSLSocketFactoryCreateSocketFactory$default, AnalyticSuperProperties.INSTANCE.getSuperProperties(), this.gatewaySocketLogger);
         this.stream.getConnectionTimeStats().addListener(gatewaySocket);
         return gatewaySocket;
     }
 
     public final boolean callConnect(long channelId) {
-        return requestIfSessionEstablished(new StoreGatewayConnection$callConnect$1(channelId));
+        return requestIfSessionEstablished(new AnonymousClass1(channelId));
     }
 
     public final SerializedSubject<ApplicationCommandAutocompleteResult, ApplicationCommandAutocompleteResult> getApplicationCommandAutocompleteResult() {
@@ -421,7 +941,7 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
         return this.guildEmojisUpdate;
     }
 
-    public final SerializedSubject<ModelGuildIntegration$Update, ModelGuildIntegration$Update> getGuildIntegrationsUpdate() {
+    public final SerializedSubject<ModelGuildIntegration.Update, ModelGuildIntegration.Update> getGuildIntegrationsUpdate() {
         return this.guildIntegrationsUpdate;
     }
 
@@ -489,10 +1009,10 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
         return this.guildUpdate;
     }
 
-    private final GatewaySocket$IdentifyData getIdentifyData() {
-        StoreGatewayConnection$ClientState storeGatewayConnection$ClientState = this.clientState;
-        if (storeGatewayConnection$ClientState != null) {
-            return storeGatewayConnection$ClientState.getIdentifyData();
+    private final GatewaySocket.IdentifyData getIdentifyData() {
+        ClientState clientState = this.clientState;
+        if (clientState != null) {
+            return clientState.getIdentifyData();
         }
         return null;
     }
@@ -633,7 +1153,7 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
         return this.userGuildSettingsUpdate;
     }
 
-    public final SerializedSubject<ModelUserNote$Update, ModelUserNote$Update> getUserNoteUpdate() {
+    public final SerializedSubject<ModelUserNote.Update, ModelUserNote.Update> getUserNoteUpdate() {
         return this.userNoteUpdate;
     }
 
@@ -665,7 +1185,7 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
         return this.voiceStateUpdate;
     }
 
-    private final void handleClientStateUpdate(StoreGatewayConnection$ClientState clientState) {
+    private final void handleClientStateUpdate(ClientState clientState) {
         this.clientState = clientState;
         if (clientState.getTokenIfAvailable() != null) {
             GatewaySocket gatewaySocket = this.socket;
@@ -1132,12 +1652,12 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
         voiceStateUpdate$default(this, null, null, false, false, false, null, false, 96, null);
     }
 
-    public final void handleRtcConnectionStateChanged(RtcConnection$StateChange stateChange) {
+    public final void handleRtcConnectionStateChanged(RtcConnection.StateChange stateChange) {
         m.checkNotNullParameter(stateChange, "stateChange");
-        RtcConnection$State rtcConnection$State = stateChange.state;
-        if ((rtcConnection$State instanceof RtcConnection$State$d) && ((RtcConnection$State$d) rtcConnection$State).a) {
-            RtcConnection$Metadata rtcConnection$Metadata = stateChange.metadata;
-            String str = rtcConnection$Metadata != null ? rtcConnection$Metadata.streamKey : null;
+        RtcConnection.State state = stateChange.state;
+        if ((state instanceof RtcConnection.State.d) && ((RtcConnection.State.d) state).a) {
+            RtcConnection.Metadata metadata = stateChange.metadata;
+            String str = metadata != null ? metadata.streamKey : null;
             if (str instanceof String) {
                 streamPing(str);
             } else {
@@ -1150,7 +1670,7 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
         m.checkNotNullParameter(context, "context");
         m.checkNotNullParameter(networkMonitor, "networkMonitor");
         this.socket = buildGatewaySocket(context, networkMonitor);
-        StoreGatewayConnection$ClientState.Companion.initialize(this.stream, this.scheduler, new StoreGatewayConnection$init$1(this));
+        ClientState.INSTANCE.initialize(this.stream, this.scheduler, new AnonymousClass1());
     }
 
     private final <T> void onNext(SerializedSubject<T, T> serializedSubject, Object obj) {
@@ -1172,7 +1692,7 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
     }
 
     public final boolean presenceUpdate(ClientStatus status, Long since, List<Activity> activities, Boolean afk) {
-        return requestIfSessionEstablished(new StoreGatewayConnection$presenceUpdate$1(status, since, activities, afk));
+        return requestIfSessionEstablished(new AnonymousClass1(status, since, activities, afk));
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -1182,12 +1702,12 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
 
     public final boolean requestApplicationCommands(long guildId, String nonce, boolean applications, String query, Integer offset, int commandLimit, List<String> commandIds) {
         m.checkNotNullParameter(nonce, "nonce");
-        return requestIfSessionEstablished(new StoreGatewayConnection$requestApplicationCommands$1(guildId, nonce, applications, offset, query, commandLimit, commandIds));
+        return requestIfSessionEstablished(new AnonymousClass1(guildId, nonce, applications, offset, query, commandLimit, commandIds));
     }
 
     public final boolean requestForumUnreads(long guildId, long channelId, List<Pair<Long, Long>> threadMessagePairs) {
         m.checkNotNullParameter(threadMessagePairs, "threadMessagePairs");
-        return requestIfSessionEstablished(new StoreGatewayConnection$requestForumUnreads$1(guildId, channelId, threadMessagePairs));
+        return requestIfSessionEstablished(new AnonymousClass1(guildId, channelId, threadMessagePairs));
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -1213,7 +1733,7 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
     }
 
     public final boolean requestGuildMembers(long guildId, String query, List<Long> userIds, Integer limit) {
-        return requestIfSessionEstablished(new StoreGatewayConnection$requestGuildMembers$1(guildId, query, userIds, limit));
+        return requestIfSessionEstablished(new AnonymousClass1(guildId, query, userIds, limit));
     }
 
     private final boolean requestIfSessionEstablished(Function1<? super GatewaySocket, Unit> socketCallback) {
@@ -1247,22 +1767,22 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
     @StoreThread
     public final void streamCreate(String streamKey, String preferredRegion) {
         m.checkNotNullParameter(streamKey, "streamKey");
-        requestIfSessionEstablished(new StoreGatewayConnection$streamCreate$1(this, streamKey, ModelApplicationStream.Companion.decodeStreamKey(streamKey), preferredRegion));
+        requestIfSessionEstablished(new AnonymousClass1(streamKey, ModelApplicationStream.INSTANCE.decodeStreamKey(streamKey), preferredRegion));
     }
 
     public final void streamDelete(String streamKey) {
         m.checkNotNullParameter(streamKey, "streamKey");
-        requestIfSessionEstablished(new StoreGatewayConnection$streamDelete$1(streamKey));
+        requestIfSessionEstablished(new AnonymousClass1(streamKey));
     }
 
     private final void streamPing(String streamKey) {
-        requestIfSessionEstablished(new StoreGatewayConnection$streamPing$1(streamKey));
+        requestIfSessionEstablished(new AnonymousClass1(streamKey));
     }
 
     @StoreThread
     public final void streamWatch(String streamKey) {
         m.checkNotNullParameter(streamKey, "streamKey");
-        requestIfSessionEstablished(new StoreGatewayConnection$streamWatch$1(this, streamKey));
+        requestIfSessionEstablished(new AnonymousClass1(streamKey));
     }
 
     public final boolean updateGuildSubscriptions(long guildId, GuildSubscriptions guildSubscriptions) {
@@ -1272,11 +1792,11 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
         Boolean activities = guildSubscriptions.getActivities();
         Boolean threads = guildSubscriptions.getThreads();
         Set<Long> members = guildSubscriptions.getMembers();
-        return requestIfSessionEstablished(new StoreGatewayConnection$updateGuildSubscriptions$1(guildId, new OutgoingPayload$GuildSubscriptions(serializedRanges, typing, activities, members != null ? u.toList(members) : null, threads, guildSubscriptions.getThreadMemberLists())));
+        return requestIfSessionEstablished(new AnonymousClass1(guildId, new OutgoingPayload.GuildSubscriptions(serializedRanges, typing, activities, members != null ? u.toList(members) : null, threads, guildSubscriptions.getThreadMemberLists())));
     }
 
     private final void voiceServerPing() {
-        requestIfSessionEstablished(StoreGatewayConnection$voiceServerPing$1.INSTANCE);
+        requestIfSessionEstablished(AnonymousClass1.INSTANCE);
     }
 
     public static /* synthetic */ boolean voiceStateUpdate$default(StoreGatewayConnection storeGatewayConnection, Long l, Long l2, boolean z2, boolean z3, boolean z4, String str, boolean z5, int i, Object obj) {
@@ -1284,7 +1804,7 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
     }
 
     public final boolean voiceStateUpdate(Long guildId, Long channelId, boolean selfMute, boolean selfDeaf, boolean selfVideo, String preferredRegion, boolean shouldIncludePreferredRegion) {
-        return requestIfSessionEstablished(new StoreGatewayConnection$voiceStateUpdate$1(guildId, channelId, selfMute, selfDeaf, selfVideo, preferredRegion, shouldIncludePreferredRegion));
+        return requestIfSessionEstablished(new AnonymousClass1(guildId, channelId, selfMute, selfDeaf, selfVideo, preferredRegion, shouldIncludePreferredRegion));
     }
 
     public StoreGatewayConnection(StoreStream storeStream, Clock clock, ExecutorService executorService, Scheduler scheduler, AppGatewaySocketLogger appGatewaySocketLogger, int i, DefaultConstructorMarker defaultConstructorMarker) {
@@ -1294,7 +1814,7 @@ public final class StoreGatewayConnection implements GatewayEventHandler {
         }
         ExecutorService executorService2 = executorService;
         if ((i & 8) != 0) {
-            AtomicReference<a> atomicReference = a.a;
+            AtomicReference<j0.p.a> atomicReference = j0.p.a.a;
             scheduler = new c(executorService2);
             m.checkNotNullExpressionValue(scheduler, "Schedulers.from(executor)");
         }

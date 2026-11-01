@@ -2,6 +2,7 @@ package b.i.c.u.o;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import java.util.Objects;
 
 /* JADX INFO: compiled from: AutoValue_PersistedInstallationEntry.java */
 /* JADX INFO: loaded from: classes3.dex */
@@ -9,16 +10,75 @@ public final class a extends d {
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public final String f1784b;
-    public final c$a c;
+    public final c.a c;
     public final String d;
     public final String e;
     public final long f;
     public final long g;
     public final String h;
 
-    public a(String str, c$a c_a, String str2, String str3, long j, long j2, String str4, a$a a_a) {
+    /* JADX INFO: compiled from: AutoValue_PersistedInstallationEntry.java */
+    public final class b extends d.a {
+        public String a;
+
+        /* JADX INFO: renamed from: b, reason: collision with root package name */
+        public c.a f1785b;
+        public String c;
+        public String d;
+        public Long e;
+        public Long f;
+        public String g;
+
+        public b() {
+        }
+
+        @Override // b.i.c.u.o.d.a
+        public d a() {
+            String strW = this.f1785b == null ? " registrationStatus" : "";
+            if (this.e == null) {
+                strW = b.d.b.a.a.w(strW, " expiresInSecs");
+            }
+            if (this.f == null) {
+                strW = b.d.b.a.a.w(strW, " tokenCreationEpochInSecs");
+            }
+            if (strW.isEmpty()) {
+                return new a(this.a, this.f1785b, this.c, this.d, this.e.longValue(), this.f.longValue(), this.g, null);
+            }
+            throw new IllegalStateException(b.d.b.a.a.w("Missing required properties:", strW));
+        }
+
+        @Override // b.i.c.u.o.d.a
+        public d.a b(c.a aVar) {
+            Objects.requireNonNull(aVar, "Null registrationStatus");
+            this.f1785b = aVar;
+            return this;
+        }
+
+        public d.a c(long j) {
+            this.e = Long.valueOf(j);
+            return this;
+        }
+
+        public d.a d(long j) {
+            this.f = Long.valueOf(j);
+            return this;
+        }
+
+        public b(d dVar, C0152a c0152a) {
+            a aVar = (a) dVar;
+            this.a = aVar.f1784b;
+            this.f1785b = aVar.c;
+            this.c = aVar.d;
+            this.d = aVar.e;
+            this.e = Long.valueOf(aVar.f);
+            this.f = Long.valueOf(aVar.g);
+            this.g = aVar.h;
+        }
+    }
+
+    public a(String str, c.a aVar, String str2, String str3, long j, long j2, String str4, C0152a c0152a) {
         this.f1784b = str;
-        this.c = c_a;
+        this.c = aVar;
         this.d = str2;
         this.e = str3;
         this.f = j;
@@ -83,7 +143,7 @@ public final class a extends d {
 
     @Override // b.i.c.u.o.d
     @NonNull
-    public c$a f() {
+    public c.a f() {
         return this.c;
     }
 
@@ -108,8 +168,8 @@ public final class a extends d {
     }
 
     @Override // b.i.c.u.o.d
-    public d$a k() {
-        return new a$b(this, null);
+    public d.a k() {
+        return new b(this, null);
     }
 
     public String toString() {

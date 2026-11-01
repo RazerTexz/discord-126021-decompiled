@@ -1,11 +1,10 @@
 package b.i.a.b.j.t;
 
 import b.i.a.b.j.i;
-import b.i.a.b.j.u.a$a;
 
 /* JADX INFO: compiled from: DefaultScheduler.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final /* synthetic */ class b implements a$a {
+public final /* synthetic */ class b implements b.i.a.b.j.u.a.InterfaceC0091a {
     public final c a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
@@ -18,7 +17,7 @@ public final /* synthetic */ class b implements a$a {
         this.c = fVar;
     }
 
-    @Override // b.i.a.b.j.u.a$a
+    @Override // b.i.a.b.j.u.a.InterfaceC0091a
     public Object execute() {
         c cVar = this.a;
         i iVar = this.f780b;

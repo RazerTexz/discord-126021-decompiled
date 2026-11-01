@@ -2,7 +2,6 @@ package b.i.a.c;
 
 import android.content.Context;
 import android.media.AudioFocusRequest;
-import android.media.AudioFocusRequest$Builder;
 import android.media.AudioManager;
 import android.os.Handler;
 import androidx.annotation.Nullable;
@@ -15,24 +14,42 @@ public final class t0 {
     public final AudioManager a;
 
     @Nullable
-    public t0$b c;
+    public b c;
 
     @Nullable
     public b.i.a.c.t2.o d;
     public int e;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
-    public final t0$a f1114b;
+    public final a f1114b;
     public int f;
     public AudioFocusRequest h;
     public float g = 1.0f;
 
-    public t0(Context context, Handler handler, t0$b t0_b) {
+    /* JADX INFO: compiled from: AudioFocusManager.java */
+    public class a implements AudioManager.OnAudioFocusChangeListener {
+        public final Handler j;
+
+        public a(Handler handler) {
+            this.j = handler;
+        }
+
+        @Override // android.media.AudioManager.OnAudioFocusChangeListener
+        public void onAudioFocusChange(int i) {
+            this.j.post(new c(this, i));
+        }
+    }
+
+    /* JADX INFO: compiled from: AudioFocusManager.java */
+    public interface b {
+    }
+
+    public t0(Context context, Handler handler, b bVar) {
         AudioManager audioManager = (AudioManager) context.getApplicationContext().getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
         Objects.requireNonNull(audioManager);
         this.a = audioManager;
-        this.c = t0_b;
-        this.f1114b = new t0$a(this, handler);
+        this.c = bVar;
+        this.f1114b = new a(handler);
         this.e = 0;
     }
 
@@ -52,11 +69,11 @@ public final class t0 {
     }
 
     public final void b(int i) {
-        t0$b t0_b = this.c;
-        if (t0_b != null) {
-            k2$b k2_b = (k2$b) t0_b;
-            boolean zJ = k2_b.j.j();
-            k2_b.j.m0(zJ, i, k2.g0(zJ, i));
+        b bVar = this.c;
+        if (bVar != null) {
+            k2.b bVar2 = (k2.b) bVar;
+            boolean zJ = k2.this.j();
+            k2.this.m0(zJ, i, k2.g0(zJ, i));
         }
     }
 
@@ -79,9 +96,9 @@ public final class t0 {
             return;
         }
         this.g = f;
-        t0$b t0_b = this.c;
-        if (t0_b != null) {
-            k2 k2Var = ((k2$b) t0_b).j;
+        b bVar = this.c;
+        if (bVar != null) {
+            k2 k2Var = k2.this;
             k2Var.j0(1, 2, Float.valueOf(k2Var.B * k2Var.k.g));
         }
     }
@@ -100,19 +117,19 @@ public final class t0 {
             if (b.i.a.c.f3.e0.a >= 26) {
                 AudioFocusRequest audioFocusRequest = this.h;
                 if (audioFocusRequest == null) {
-                    AudioFocusRequest$Builder audioFocusRequest$Builder = audioFocusRequest == null ? new AudioFocusRequest$Builder(this.f) : new AudioFocusRequest$Builder(this.h);
+                    AudioFocusRequest.Builder builder = audioFocusRequest == null ? new AudioFocusRequest.Builder(this.f) : new AudioFocusRequest.Builder(this.h);
                     b.i.a.c.t2.o oVar = this.d;
                     boolean z3 = oVar != null && oVar.k == 1;
                     Objects.requireNonNull(oVar);
-                    this.h = audioFocusRequest$Builder.setAudioAttributes(oVar.a()).setWillPauseWhenDucked(z3).setOnAudioFocusChangeListener(this.f1114b).build();
+                    this.h = builder.setAudioAttributes(oVar.a()).setWillPauseWhenDucked(z3).setOnAudioFocusChangeListener(this.f1114b).build();
                 }
                 iRequestAudioFocus = this.a.requestAudioFocus(this.h);
             } else {
                 AudioManager audioManager = this.a;
-                t0$a t0_a = this.f1114b;
+                a aVar = this.f1114b;
                 b.i.a.c.t2.o oVar2 = this.d;
                 Objects.requireNonNull(oVar2);
-                iRequestAudioFocus = audioManager.requestAudioFocus(t0_a, b.i.a.c.f3.e0.t(oVar2.m), this.f);
+                iRequestAudioFocus = audioManager.requestAudioFocus(aVar, b.i.a.c.f3.e0.t(oVar2.m), this.f);
             }
             if (iRequestAudioFocus == 1) {
                 d(1);

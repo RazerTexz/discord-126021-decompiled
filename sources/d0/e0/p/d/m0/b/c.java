@@ -24,13 +24,13 @@ public final class c {
         while (it.hasNext()) {
             arrayList.add(k.getPrimitiveFqName((i) it.next()));
         }
-        d0.e0.p.d.m0.g.b safe = k$a.g.toSafe();
+        d0.e0.p.d.m0.g.b safe = k.a.g.toSafe();
         d0.z.d.m.checkNotNullExpressionValue(safe, "string.toSafe()");
         List listPlus = u.plus((Collection<? extends d0.e0.p.d.m0.g.b>) arrayList, safe);
-        d0.e0.p.d.m0.g.b safe2 = k$a.i.toSafe();
+        d0.e0.p.d.m0.g.b safe2 = k.a.i.toSafe();
         d0.z.d.m.checkNotNullExpressionValue(safe2, "_boolean.toSafe()");
         List listPlus2 = u.plus((Collection<? extends d0.e0.p.d.m0.g.b>) listPlus, safe2);
-        d0.e0.p.d.m0.g.b safe3 = k$a.r.toSafe();
+        d0.e0.p.d.m0.g.b safe3 = k.a.r.toSafe();
         d0.z.d.m.checkNotNullExpressionValue(safe3, "_enum.toSafe()");
         List listPlus3 = u.plus((Collection<? extends d0.e0.p.d.m0.g.b>) listPlus2, safe3);
         LinkedHashSet linkedHashSet = new LinkedHashSet();

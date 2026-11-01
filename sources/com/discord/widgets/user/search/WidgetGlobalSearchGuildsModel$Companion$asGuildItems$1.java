@@ -14,7 +14,7 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: WidgetGlobalSearchGuildsModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGlobalSearchGuildsModel$Companion$asGuildItems$1 extends o implements Function1<Guild, WidgetGlobalSearchGuildsModel$Item> {
+public final class WidgetGlobalSearchGuildsModel$Companion$asGuildItems$1 extends o implements Function1<Guild, WidgetGlobalSearchGuildsModel.Item> {
     public final /* synthetic */ Map $channelIds;
     public final /* synthetic */ Map $guildSettings;
     public final /* synthetic */ Map $mentionCounts;
@@ -34,12 +34,12 @@ public final class WidgetGlobalSearchGuildsModel$Companion$asGuildItems$1 extend
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public /* bridge */ /* synthetic */ WidgetGlobalSearchGuildsModel$Item invoke(Guild guild) {
+    public /* bridge */ /* synthetic */ WidgetGlobalSearchGuildsModel.Item invoke(Guild guild) {
         return invoke2(guild);
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final WidgetGlobalSearchGuildsModel$Item invoke2(Guild guild) {
+    public final WidgetGlobalSearchGuildsModel.Item invoke2(Guild guild) {
         int iSumOfInt;
         boolean z2;
         m.checkNotNullParameter(guild, "guild");
@@ -73,6 +73,6 @@ public final class WidgetGlobalSearchGuildsModel$Companion$asGuildItems$1 extend
             }
             z2 = false;
         }
-        return WidgetGlobalSearchGuildsModel$Item.Companion.createGuild$app_productionGoogleRelease(guild, iSumOfInt, zContains, z3, z2);
+        return WidgetGlobalSearchGuildsModel.Item.INSTANCE.createGuild$app_productionGoogleRelease(guild, iSumOfInt, zContains, z3, z2);
     }
 }

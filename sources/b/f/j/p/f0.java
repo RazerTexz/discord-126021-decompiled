@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.graphics.Rect;
 import android.media.ExifInterface;
 import android.net.Uri;
-import android.provider.MediaStore$Images$Thumbnails;
+import android.provider.MediaStore;
 import com.facebook.imagepipeline.request.ImageRequest;
 import java.io.File;
 import java.io.FileInputStream;
@@ -80,7 +80,7 @@ public class f0 extends g0 implements k1<b.f.j.j.e> {
             Rect rect2 = e;
             i = b.c.a.a0.d.S0(rect2.width(), rect2.height(), eVar) ? 1 : 0;
         }
-        if (i == 0 || (cursorQueryMiniThumbnail = MediaStore$Images$Thumbnails.queryMiniThumbnail(this.g, j, i, d)) == null) {
+        if (i == 0 || (cursorQueryMiniThumbnail = MediaStore.Images.Thumbnails.queryMiniThumbnail(this.g, j, i, d)) == null) {
             return null;
         }
         try {

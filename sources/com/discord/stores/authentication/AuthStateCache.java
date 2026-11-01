@@ -1,7 +1,6 @@
 package com.discord.stores.authentication;
 
 import android.content.SharedPreferences;
-import android.content.SharedPreferences$Editor;
 import b.i.a.f.e.o.f;
 import com.discord.models.authentication.AuthState;
 import com.google.gson.Gson;
@@ -14,6 +13,16 @@ public final class AuthStateCache {
     private final Gson gson;
     private final SharedPreferences prefs;
 
+    /* JADX INFO: compiled from: AuthStateCache.kt */
+    public final class Keys {
+        public static final String AUTH_STATE = "STORE_AUTH_STATE";
+        public static final String TOKEN = "STORE_AUTHED_TOKEN";
+        public static final Keys INSTANCE = new Keys();
+
+        private Keys() {
+        }
+    }
+
     public AuthStateCache(SharedPreferences sharedPreferences) {
         m.checkNotNullParameter(sharedPreferences, "prefs");
         this.prefs = sharedPreferences;
@@ -22,32 +31,32 @@ public final class AuthStateCache {
 
     public final void cacheAuthState(AuthState authState) {
         if (authState == null) {
-            SharedPreferences$Editor sharedPreferences$EditorEdit = this.prefs.edit();
-            m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
-            sharedPreferences$EditorEdit.remove(AuthStateCache$Keys.AUTH_STATE);
-            sharedPreferences$EditorEdit.remove(AuthStateCache$Keys.TOKEN);
-            sharedPreferences$EditorEdit.apply();
+            SharedPreferences.Editor editorEdit = this.prefs.edit();
+            m.checkNotNullExpressionValue(editorEdit, "editor");
+            editorEdit.remove(Keys.AUTH_STATE);
+            editorEdit.remove(Keys.TOKEN);
+            editorEdit.apply();
             return;
         }
         String strM = this.gson.m(authState);
-        SharedPreferences$Editor sharedPreferences$EditorEdit2 = this.prefs.edit();
-        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit2, "editor");
-        sharedPreferences$EditorEdit2.putString(AuthStateCache$Keys.AUTH_STATE, strM);
-        sharedPreferences$EditorEdit2.putString(AuthStateCache$Keys.TOKEN, authState.getToken());
-        sharedPreferences$EditorEdit2.apply();
+        SharedPreferences.Editor editorEdit2 = this.prefs.edit();
+        m.checkNotNullExpressionValue(editorEdit2, "editor");
+        editorEdit2.putString(Keys.AUTH_STATE, strM);
+        editorEdit2.putString(Keys.TOKEN, authState.getToken());
+        editorEdit2.apply();
     }
 
     public final AuthState getCachedAuthState() {
-        String string = this.prefs.getString(AuthStateCache$Keys.AUTH_STATE, null);
+        String string = this.prefs.getString(Keys.AUTH_STATE, null);
         if (string != null) {
             try {
                 return (AuthState) f.E1(AuthState.class).cast(this.gson.g(string, AuthState.class));
             } catch (Exception unused) {
             }
         }
-        String string2 = this.prefs.getString(AuthStateCache$Keys.TOKEN, null);
+        String string2 = this.prefs.getString(Keys.TOKEN, null);
         if (string2 != null) {
-            return AuthState.Companion.from(string2, n0.emptySet());
+            return AuthState.INSTANCE.from(string2, n0.emptySet());
         }
         return null;
     }

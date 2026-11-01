@@ -2,14 +2,12 @@ package d0.e0.p.d;
 
 import d0.e0.p.d.m0.c.q0;
 import d0.e0.p.d.m0.c.u0;
-import d0.e0.p.d.m0.k.v.r$b$a;
-import d0.e0.p.d.m0.k.v.r$b$b;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map$Entry;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import kotlin.NoWhenBranchMatchedException;
@@ -128,13 +126,13 @@ public final class j0 {
         if (javaClass == null) {
             return null;
         }
-        Set<Map$Entry<d0.e0.p.d.m0.g.e, d0.e0.p.d.m0.k.v.g<?>>> setEntrySet = cVar.getAllValueArguments().entrySet();
+        Set<Map.Entry<d0.e0.p.d.m0.g.e, d0.e0.p.d.m0.k.v.g<?>>> setEntrySet = cVar.getAllValueArguments().entrySet();
         ArrayList arrayList = new ArrayList();
         Iterator<T> it = setEntrySet.iterator();
         while (it.hasNext()) {
-            Map$Entry map$Entry = (Map$Entry) it.next();
-            d0.e0.p.d.m0.g.e eVar = (d0.e0.p.d.m0.g.e) map$Entry.getKey();
-            d0.e0.p.d.m0.k.v.g gVar = (d0.e0.p.d.m0.k.v.g) map$Entry.getValue();
+            Map.Entry entry = (Map.Entry) it.next();
+            d0.e0.p.d.m0.g.e eVar = (d0.e0.p.d.m0.g.e) entry.getKey();
+            d0.e0.p.d.m0.k.v.g gVar = (d0.e0.p.d.m0.k.v.g) entry.getValue();
             ClassLoader classLoader = javaClass.getClassLoader();
             d0.z.d.m.checkNotNullExpressionValue(classLoader, "annotationClass.classLoader");
             Object objC = c(gVar, classLoader);
@@ -177,15 +175,15 @@ public final class j0 {
             }
             return gVar.getValue();
         }
-        d0.e0.p.d.m0.k.v.r$b value3 = ((d0.e0.p.d.m0.k.v.r) gVar).getValue();
-        if (value3 instanceof r$b$b) {
-            r$b$b r_b_b = (r$b$b) value3;
-            return a(classLoader, r_b_b.getClassId(), r_b_b.getArrayDimensions());
+        d0.e0.p.d.m0.k.v.r.b value3 = ((d0.e0.p.d.m0.k.v.r) gVar).getValue();
+        if (value3 instanceof d0.e0.p.d.m0.k.v.r.b.C0566b) {
+            d0.e0.p.d.m0.k.v.r.b.C0566b c0566b = (d0.e0.p.d.m0.k.v.r.b.C0566b) value3;
+            return a(classLoader, c0566b.getClassId(), c0566b.getArrayDimensions());
         }
-        if (!(value3 instanceof r$b$a)) {
+        if (!(value3 instanceof d0.e0.p.d.m0.k.v.r.b.a)) {
             throw new NoWhenBranchMatchedException();
         }
-        d0.e0.p.d.m0.c.h declarationDescriptor = ((r$b$a) value3).getType().getConstructor().getDeclarationDescriptor();
+        d0.e0.p.d.m0.c.h declarationDescriptor = ((d0.e0.p.d.m0.k.v.r.b.a) value3).getType().getConstructor().getDeclarationDescriptor();
         if (!(declarationDescriptor instanceof d0.e0.p.d.m0.c.e)) {
             declarationDescriptor = null;
         }
@@ -205,8 +203,8 @@ public final class j0 {
             Annotation annotationB = null;
             if (source instanceof d0.e0.p.d.m0.c.k1.a.b) {
                 annotationB = ((d0.e0.p.d.m0.c.k1.a.b) source).getAnnotation();
-            } else if (source instanceof d0.e0.p.d.m0.c.k1.a.m$a) {
-                d0.e0.p.d.m0.c.k1.b.n javaElement = ((d0.e0.p.d.m0.c.k1.a.m$a) source).getJavaElement();
+            } else if (source instanceof d0.e0.p.d.m0.c.k1.a.m.a) {
+                d0.e0.p.d.m0.c.k1.b.n javaElement = ((d0.e0.p.d.m0.c.k1.a.m.a) source).getJavaElement();
                 if (!(javaElement instanceof d0.e0.p.d.m0.c.k1.b.c)) {
                     javaElement = null;
                 }
@@ -317,8 +315,8 @@ public final class j0 {
             Objects.requireNonNull(binaryClass, "null cannot be cast to non-null type org.jetbrains.kotlin.descriptors.runtime.components.ReflectKotlinClass");
             return ((d0.e0.p.d.m0.c.k1.a.f) binaryClass).getKlass();
         }
-        if (source instanceof d0.e0.p.d.m0.c.k1.a.m$a) {
-            d0.e0.p.d.m0.c.k1.b.n javaElement = ((d0.e0.p.d.m0.c.k1.a.m$a) source).getJavaElement();
+        if (source instanceof d0.e0.p.d.m0.c.k1.a.m.a) {
+            d0.e0.p.d.m0.c.k1.b.n javaElement = ((d0.e0.p.d.m0.c.k1.a.m.a) source).getJavaElement();
             Objects.requireNonNull(javaElement, "null cannot be cast to non-null type org.jetbrains.kotlin.descriptors.runtime.structure.ReflectJavaClass");
             return ((d0.e0.p.d.m0.c.k1.b.j) javaElement).getElement();
         }

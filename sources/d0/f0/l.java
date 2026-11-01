@@ -9,6 +9,22 @@ import kotlin.sequences.Sequence;
 /* JADX INFO: compiled from: SequenceBuilder.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class l {
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: compiled from: Sequences.kt */
+    public final class a<T> implements Sequence<T> {
+        public final /* synthetic */ Function2 a;
+
+        public a(Function2 function2) {
+            this.a = function2;
+        }
+
+        @Override // kotlin.sequences.Sequence
+        public Iterator<T> iterator() {
+            return l.iterator(this.a);
+        }
+    }
+
     public static final <T> Iterator<T> iterator(Function2<? super k<? super T>, ? super Continuation<? super Unit>, ? extends Object> function2) {
         d0.z.d.m.checkNotNullParameter(function2, "block");
         j jVar = new j();
@@ -18,6 +34,6 @@ public class l {
 
     public static final <T> Sequence<T> sequence(Function2<? super k<? super T>, ? super Continuation<? super Unit>, ? extends Object> function2) {
         d0.z.d.m.checkNotNullParameter(function2, "block");
-        return new l$a(function2);
+        return new a(function2);
     }
 }

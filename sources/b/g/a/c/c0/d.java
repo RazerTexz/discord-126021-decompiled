@@ -14,7 +14,7 @@ import java.util.Map;
 public class d {
     public final b.g.a.c.z.l<?> c;
     public final b.g.a.c.b d;
-    public final t$a e;
+    public final t.a e;
     public final b.g.a.c.h0.m f;
     public final b.g.a.c.j g;
     public final Class<?> h;
@@ -25,16 +25,16 @@ public class d {
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public static final Class<?> f689b = Map.class;
 
-    public d(b.g.a.c.z.l<?> lVar, b.g.a.c.j jVar, t$a t_a) {
+    public d(b.g.a.c.z.l<?> lVar, b.g.a.c.j jVar, t.a aVar) {
         this.c = lVar;
         this.g = jVar;
         Class<?> cls = jVar._class;
         this.h = cls;
-        this.e = t_a;
+        this.e = aVar;
         this.f = jVar.j();
         b.g.a.c.b bVarE = lVar.p() ? lVar.e() : null;
         this.d = bVarE;
-        this.i = t_a != null ? t_a.a(cls) : null;
+        this.i = aVar != null ? aVar.a(cls) : null;
         this.j = (bVarE == null || (b.g.a.c.i0.d.r(cls) && jVar.v())) ? false : true;
     }
 
@@ -128,12 +128,12 @@ public class d {
         if (this.d == null) {
             return o.a;
         }
-        t$a t_a = this.e;
-        boolean z2 = t_a != null && (!(t_a instanceof d0) || ((d0) t_a).b());
+        t.a aVar = this.e;
+        boolean z2 = aVar != null && (!(aVar instanceof d0) || ((d0) aVar).b());
         if (!z2 && !this.j) {
             return o.a;
         }
-        o oVarB = o$a.c;
+        o oVarB = o.a.c;
         Class<?> cls = this.i;
         if (cls != null) {
             oVarB = b(oVarB, this.h, cls);
@@ -169,18 +169,18 @@ public class d {
         return lVar == null || ((b.g.a.c.z.m) lVar)._mixIns.a(cls) == null;
     }
 
-    public d(b.g.a.c.z.l<?> lVar, Class<?> cls, t$a t_a) {
+    public d(b.g.a.c.z.l<?> lVar, Class<?> cls, t.a aVar) {
         this.c = lVar;
         this.g = null;
         this.h = cls;
-        this.e = t_a;
+        this.e = aVar;
         this.f = b.g.a.c.h0.m.l;
         if (lVar == null) {
             this.d = null;
             this.i = null;
         } else {
             this.d = lVar.p() ? lVar.e() : null;
-            this.i = t_a != null ? t_a.a(cls) : null;
+            this.i = aVar != null ? aVar.a(cls) : null;
         }
         this.j = this.d != null;
     }

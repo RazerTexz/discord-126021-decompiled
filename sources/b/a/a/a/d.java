@@ -1,16 +1,11 @@
 package b.a.a.a;
 
+import com.discord.R;
 import com.discord.models.domain.ModelAppliedGuildBoost;
 import com.discord.models.domain.ModelGuildBoostSlot;
 import com.discord.models.domain.ModelSubscription;
-import com.discord.stores.StoreGuildBoost$State;
-import com.discord.stores.StoreGuildBoost$State$Failure;
-import com.discord.stores.StoreGuildBoost$State$Loaded;
-import com.discord.stores.StoreGuildBoost$State$Loading;
-import com.discord.stores.StoreSubscriptions$SubscriptionsState;
-import com.discord.stores.StoreSubscriptions$SubscriptionsState$Failure;
-import com.discord.stores.StoreSubscriptions$SubscriptionsState$Loaded;
-import com.discord.stores.StoreSubscriptions$SubscriptionsState$Loading;
+import com.discord.stores.StoreGuildBoost;
+import com.discord.stores.StoreSubscriptions;
 import d0.z.d.m;
 import d0.z.d.o;
 import java.util.Objects;
@@ -19,7 +14,7 @@ import kotlin.jvm.functions.Function1;
 
 /* JADX INFO: compiled from: GuildBoostCancelViewModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class d extends o implements Function1<f$b, Unit> {
+public final class d extends o implements Function1<f.b, Unit> {
     public final /* synthetic */ f this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -29,28 +24,28 @@ public final class d extends o implements Function1<f$b, Unit> {
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public Unit invoke(f$b f_b) {
-        f$c f_c_c;
+    public Unit invoke(f.b bVar) {
+        f.c c0011c;
         ModelSubscription premiumSubscription;
         ModelAppliedGuildBoost premiumGuildSubscription;
-        f$b f_b2 = f_b;
-        m.checkNotNullParameter(f_b2, "storeState");
+        f.b bVar2 = bVar;
+        m.checkNotNullParameter(bVar2, "storeState");
         f fVar = this.this$0;
         Objects.requireNonNull(fVar);
-        StoreGuildBoost$State storeGuildBoost$State = f_b2.a;
-        StoreSubscriptions$SubscriptionsState storeSubscriptions$SubscriptionsState = f_b2.f41b;
-        if (!(fVar.getViewState() instanceof f$c$b) && !(fVar.getViewState() instanceof f$c$c)) {
-            if ((storeGuildBoost$State instanceof StoreGuildBoost$State$Loading) || (storeSubscriptions$SubscriptionsState instanceof StoreSubscriptions$SubscriptionsState$Loading)) {
-                f_c_c = f$c$f.f;
-            } else if ((storeGuildBoost$State instanceof StoreGuildBoost$State$Failure) || (storeSubscriptions$SubscriptionsState instanceof StoreSubscriptions$SubscriptionsState$Failure) || !(storeGuildBoost$State instanceof StoreGuildBoost$State$Loaded) || !(storeSubscriptions$SubscriptionsState instanceof StoreSubscriptions$SubscriptionsState$Loaded) || (premiumSubscription = ((StoreSubscriptions$SubscriptionsState$Loaded) storeSubscriptions$SubscriptionsState).getPremiumSubscription()) == null) {
-                f_c_c = new f$c$c(2131894091);
-            } else if (fVar.getViewState() instanceof f$c$b) {
-                f_c_c = new f$c$b(premiumSubscription);
+        StoreGuildBoost.State state = bVar2.a;
+        StoreSubscriptions.SubscriptionsState subscriptionsState = bVar2.f41b;
+        if (!(fVar.getViewState() instanceof f.c.b) && !(fVar.getViewState() instanceof f.c.C0011c)) {
+            if ((state instanceof StoreGuildBoost.State.Loading) || (subscriptionsState instanceof StoreSubscriptions.SubscriptionsState.Loading)) {
+                c0011c = f.c.C0012f.f;
+            } else if ((state instanceof StoreGuildBoost.State.Failure) || (subscriptionsState instanceof StoreSubscriptions.SubscriptionsState.Failure) || !(state instanceof StoreGuildBoost.State.Loaded) || !(subscriptionsState instanceof StoreSubscriptions.SubscriptionsState.Loaded) || (premiumSubscription = ((StoreSubscriptions.SubscriptionsState.Loaded) subscriptionsState).getPremiumSubscription()) == null) {
+                c0011c = new f.c.C0011c(Integer.valueOf(R.string.premium_guild_subscription_cancel_error_mobile));
+            } else if (fVar.getViewState() instanceof f.c.b) {
+                c0011c = new f.c.b(premiumSubscription);
             } else {
-                ModelGuildBoostSlot modelGuildBoostSlot = ((StoreGuildBoost$State$Loaded) storeGuildBoost$State).getBoostSlotMap().get(Long.valueOf(fVar.k));
-                f_c_c = new f$c$e(premiumSubscription, ((modelGuildBoostSlot == null || (premiumGuildSubscription = modelGuildBoostSlot.getPremiumGuildSubscription()) == null) ? null : Long.valueOf(premiumGuildSubscription.getGuildId())) != null);
+                ModelGuildBoostSlot modelGuildBoostSlot = ((StoreGuildBoost.State.Loaded) state).getBoostSlotMap().get(Long.valueOf(fVar.k));
+                c0011c = new f.c.e(premiumSubscription, ((modelGuildBoostSlot == null || (premiumGuildSubscription = modelGuildBoostSlot.getPremiumGuildSubscription()) == null) ? null : Long.valueOf(premiumGuildSubscription.getGuildId())) != null);
             }
-            fVar.updateViewState(f_c_c);
+            fVar.updateViewState(c0011c);
         }
         return Unit.a;
     }

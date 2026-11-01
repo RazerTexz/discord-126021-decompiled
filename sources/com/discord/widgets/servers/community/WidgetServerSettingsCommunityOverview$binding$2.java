@@ -3,7 +3,7 @@ package com.discord.widgets.servers.community;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import com.discord.R$id;
+import com.discord.R;
 import com.discord.databinding.WidgetServerSettingsCommunityOverviewBinding;
 import com.discord.views.LoadingButton;
 import d0.z.d.k;
@@ -27,23 +27,23 @@ public final /* synthetic */ class WidgetServerSettingsCommunityOverview$binding
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final WidgetServerSettingsCommunityOverviewBinding invoke2(View view) {
         m.checkNotNullParameter(view, "p1");
-        int i = R$id.community_rules_channel;
-        CommunitySelectorView communitySelectorView = (CommunitySelectorView) view.findViewById(R$id.community_rules_channel);
+        int i = R.id.community_rules_channel;
+        CommunitySelectorView communitySelectorView = (CommunitySelectorView) view.findViewById(R.id.community_rules_channel);
         if (communitySelectorView != null) {
-            i = R$id.community_updates_channel;
-            CommunitySelectorView communitySelectorView2 = (CommunitySelectorView) view.findViewById(R$id.community_updates_channel);
+            i = R.id.community_updates_channel;
+            CommunitySelectorView communitySelectorView2 = (CommunitySelectorView) view.findViewById(R.id.community_updates_channel);
             if (communitySelectorView2 != null) {
-                i = R$id.server_settings_community_locale;
-                CommunitySelectorView communitySelectorView3 = (CommunitySelectorView) view.findViewById(R$id.server_settings_community_locale);
+                i = R.id.server_settings_community_locale;
+                CommunitySelectorView communitySelectorView3 = (CommunitySelectorView) view.findViewById(R.id.server_settings_community_locale);
                 if (communitySelectorView3 != null) {
-                    i = R$id.server_settings_community_overview_scroll;
-                    ScrollView scrollView = (ScrollView) view.findViewById(R$id.server_settings_community_overview_scroll);
+                    i = R.id.server_settings_community_overview_scroll;
+                    ScrollView scrollView = (ScrollView) view.findViewById(R.id.server_settings_community_overview_scroll);
                     if (scrollView != null) {
-                        i = R$id.server_settings_disable_community_button;
-                        LoadingButton loadingButton = (LoadingButton) view.findViewById(R$id.server_settings_disable_community_button);
+                        i = R.id.server_settings_disable_community_button;
+                        LoadingButton loadingButton = (LoadingButton) view.findViewById(R.id.server_settings_disable_community_button);
                         if (loadingButton != null) {
-                            i = R$id.server_settings_disable_community_message;
-                            CommunitySelectorView communitySelectorView4 = (CommunitySelectorView) view.findViewById(R$id.server_settings_disable_community_message);
+                            i = R.id.server_settings_disable_community_message;
+                            CommunitySelectorView communitySelectorView4 = (CommunitySelectorView) view.findViewById(R.id.server_settings_disable_community_message);
                             if (communitySelectorView4 != null) {
                                 return new WidgetServerSettingsCommunityOverviewBinding((LinearLayout) view, communitySelectorView, communitySelectorView2, communitySelectorView3, scrollView, loadingButton, communitySelectorView4);
                             }

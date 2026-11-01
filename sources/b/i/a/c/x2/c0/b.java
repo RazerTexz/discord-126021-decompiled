@@ -2,13 +2,12 @@ package b.i.a.c.x2.c0;
 
 import b.c.a.a0.d;
 import b.i.a.c.f3.e0;
-import b.i.a.c.j1$b;
+import b.i.a.c.j1;
 import b.i.a.c.x2.h;
 import b.i.a.c.x2.i;
 import b.i.a.c.x2.j;
 import b.i.a.c.x2.s;
 import b.i.a.c.x2.t;
-import b.i.a.c.x2.t$b;
 import b.i.a.c.x2.w;
 import com.google.android.exoplayer2.ParserException;
 import java.io.EOFException;
@@ -137,12 +136,12 @@ public final class b implements h {
             String str = z2 ? "audio/amr-wb" : "audio/3gpp";
             int i4 = z2 ? 16000 : 8000;
             w wVar = this.r;
-            j1$b j1_b = new j1$b();
-            j1_b.k = str;
-            j1_b.l = e;
-            j1_b.f1023x = 1;
-            j1_b.f1024y = i4;
-            wVar.e(j1_b.a());
+            j1.b bVar = new j1.b();
+            bVar.k = str;
+            bVar.l = e;
+            bVar.f1023x = 1;
+            bVar.f1024y = i4;
+            wVar.e(bVar.a());
         }
         if (this.k == 0) {
             try {
@@ -188,9 +187,9 @@ public final class b implements h {
         if (!this.l) {
             int i5 = this.g;
             if ((i5 & 1) == 0 || jB == -1 || !((i2 = this.n) == -1 || i2 == this.j)) {
-                t$b t_b = new t$b(-9223372036854775807L, 0L);
-                this.f1166s = t_b;
-                this.q.a(t_b);
+                t.b bVar2 = new t.b(-9223372036854775807L, 0L);
+                this.f1166s = bVar2;
+                this.q.a(bVar2);
                 this.l = true;
             } else if (this.o >= 20 || i == -1) {
                 b.i.a.c.x2.d dVar = new b.i.a.c.x2.d(jB, this.m, (int) ((((long) (i2 * 8)) * 1000000) / 20000), i2, (i5 & 2) != 0);

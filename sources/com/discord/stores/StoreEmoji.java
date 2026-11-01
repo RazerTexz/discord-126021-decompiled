@@ -1,25 +1,35 @@
 package com.discord.stores;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import androidx.core.app.NotificationCompat;
+import androidx.exifinterface.media.ExifInterface;
+import b.d.b.a.a;
 import com.adjust.sdk.Constants;
 import com.discord.models.domain.Model;
-import com.discord.models.domain.Model$JsonReader;
 import com.discord.models.domain.emoji.Emoji;
 import com.discord.models.domain.emoji.EmojiCategory;
 import com.discord.models.domain.emoji.EmojiSet;
 import com.discord.models.domain.emoji.ModelEmojiCustom;
 import com.discord.models.domain.emoji.ModelEmojiUnicode;
-import com.discord.models.domain.emoji.ModelEmojiUnicode$Bundle;
+import com.discord.models.guild.Guild;
+import com.discord.models.user.MeUser;
+import com.discord.utilities.Quad;
 import com.discord.utilities.collections.ShallowPartitionMap;
-import com.discord.utilities.collections.ShallowPartitionMap$Companion;
 import com.discord.utilities.frecency.FrecencyTracker;
 import com.discord.utilities.media.MediaFrecencyTracker;
 import com.discord.utilities.persister.Persister;
-import com.discord.utilities.textprocessing.Rules$EmojiDataProvider;
+import com.discord.utilities.rx.ObservableExtensionsKt;
+import com.discord.utilities.textprocessing.Rules;
+import com.discord.utilities.user.UserUtils;
 import d0.f0.q;
+import d0.g0.t;
+import d0.g0.w;
 import d0.t.n;
 import d0.t.u;
 import d0.z.d.m;
+import d0.z.d.o;
+import j0.k.b;
 import j0.l.e.k;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -27,17 +37,25 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map$Entry;
 import java.util.Set;
 import java.util.regex.Pattern;
+import kotlin.NoWhenBranchMatchedException;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function2;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import rx.Observable;
+import rx.functions.Func4;
 
 /* JADX INFO: compiled from: StoreEmoji.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StoreEmoji implements Rules$EmojiDataProvider {
-    public static final StoreEmoji$Companion Companion = new StoreEmoji$Companion(null);
+public final class StoreEmoji implements Rules.EmojiDataProvider {
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     private static final int MAX_FREQUENTLY_USED_EMOJIS = 40;
     private final StoreEmojiCustom customEmojiStore;
     private final MediaFrecencyTracker frecency;
@@ -51,6 +69,534 @@ public final class StoreEmoji implements Rules$EmojiDataProvider {
     private Pattern unicodeEmojisPattern;
     private final StoreUser userStore;
     private static final String[] DEFAULT_FREQUENT_EMOJIS = {"bread", "fork_and_knife", "yum", "weary", "tired_face", "poop", "thumbsup", "100"};
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEmoji$buildUsableEmojiSet$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreEmoji.kt */
+    public final class AnonymousClass1 extends o implements Function1<Long, Boolean> {
+        public final /* synthetic */ EmojiContext $emojiContext;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(EmojiContext emojiContext) {
+            super(1);
+            this.$emojiContext = emojiContext;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(Long l) {
+            return Boolean.valueOf(invoke(l.longValue()));
+        }
+
+        public final boolean invoke(long j) {
+            EmojiContext emojiContext = this.$emojiContext;
+            if (emojiContext instanceof EmojiContext.Chat) {
+                if (((EmojiContext.Chat) emojiContext).getGuildId() == j) {
+                    return false;
+                }
+            } else if (!(emojiContext instanceof EmojiContext.Global)) {
+                if (emojiContext instanceof EmojiContext.GuildProfile) {
+                    if (((EmojiContext.GuildProfile) emojiContext).getGuildId() == j) {
+                        return false;
+                    }
+                } else {
+                    if (!(emojiContext instanceof EmojiContext.Guild)) {
+                        throw new NoWhenBranchMatchedException();
+                    }
+                    if (((EmojiContext.Guild) emojiContext).getGuildId() == j) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEmoji$getEmojiSet$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreEmoji.kt */
+    public final class AnonymousClass1<T, R> implements b<MeUser, Boolean> {
+        public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Boolean call(MeUser meUser) {
+            return call2(meUser);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Boolean call2(MeUser meUser) {
+            UserUtils userUtils = UserUtils.INSTANCE;
+            m.checkNotNullExpressionValue(meUser, "it");
+            return Boolean.valueOf(userUtils.isPremium(meUser));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEmoji$handleLoadedUnicodeEmojis$1, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreEmoji.kt */
+    public final class AnonymousClass1 extends o implements Function1<ModelEmojiUnicode, Unit> {
+        public final /* synthetic */ HashMap $unicodeEmojiSurrogateMap;
+        public final /* synthetic */ HashMap $unicodeEmojisNamesMap;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass1(HashMap map, HashMap map2) {
+            super(1);
+            this.$unicodeEmojiSurrogateMap = map;
+            this.$unicodeEmojisNamesMap = map2;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(ModelEmojiUnicode modelEmojiUnicode) {
+            invoke2(modelEmojiUnicode);
+            return Unit.a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(ModelEmojiUnicode modelEmojiUnicode) {
+            m.checkNotNullParameter(modelEmojiUnicode, "emoji");
+            HashMap map = this.$unicodeEmojiSurrogateMap;
+            String surrogates = modelEmojiUnicode.getSurrogates();
+            m.checkNotNullExpressionValue(surrogates, "emoji.surrogates");
+            map.put(surrogates, modelEmojiUnicode);
+            List<String> names = modelEmojiUnicode.getNames();
+            m.checkNotNullExpressionValue(names, "emoji\n          .names");
+            for (String str : names) {
+                HashMap map2 = this.$unicodeEmojisNamesMap;
+                m.checkNotNullExpressionValue(str, "emojiName");
+                map2.put(str, modelEmojiUnicode);
+            }
+            String surrogates2 = modelEmojiUnicode.getSurrogates();
+            m.checkNotNullExpressionValue(surrogates2, "emoji.surrogates");
+            if (w.indexOf$default((CharSequence) surrogates2, (char) 8205, 0, false, 6, (Object) null) < 0) {
+                String surrogates3 = modelEmojiUnicode.getSurrogates();
+                m.checkNotNullExpressionValue(surrogates3, "emoji.surrogates");
+                String strReplace$default = t.replace$default(surrogates3, "️", "", false, 4, (Object) null);
+                if (!m.areEqual(strReplace$default, modelEmojiUnicode.getSurrogates())) {
+                    this.$unicodeEmojiSurrogateMap.put(strReplace$default, modelEmojiUnicode);
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEmoji$buildUsableEmojiSet$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreEmoji.kt */
+    public final class AnonymousClass2 extends o implements Function1<Boolean, Boolean> {
+        public final /* synthetic */ EmojiContext $emojiContext;
+        public final /* synthetic */ boolean $hasExternalEmojiPermission;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass2(boolean z2, EmojiContext emojiContext) {
+            super(1);
+            this.$hasExternalEmojiPermission = z2;
+            this.$emojiContext = emojiContext;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Boolean invoke(Boolean bool) {
+            return Boolean.valueOf(invoke(bool.booleanValue()));
+        }
+
+        public final boolean invoke(boolean z2) {
+            EmojiContext emojiContext = this.$emojiContext;
+            return ((emojiContext instanceof EmojiContext.Chat) || (emojiContext instanceof EmojiContext.Guild)) && z2 && !this.$hasExternalEmojiPermission;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEmoji$getEmojiSet$2, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreEmoji.kt */
+    public final class AnonymousClass2<T, R> implements b<LinkedHashMap<Long, Guild>, List<? extends Long>> {
+        public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ List<? extends Long> call(LinkedHashMap<Long, Guild> linkedHashMap) {
+            return call2(linkedHashMap);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final List<Long> call2(LinkedHashMap<Long, Guild> linkedHashMap) {
+            Set<Long> setKeySet = linkedHashMap.keySet();
+            m.checkNotNullExpressionValue(setKeySet, "it.keys");
+            return u.toList(setKeySet);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEmoji$getEmojiSet$3, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreEmoji.kt */
+    public final class AnonymousClass3<T1, T2, T3, T4, R> implements Func4<Boolean, Boolean, List<? extends Long>, Set<? extends StoreMediaFavorites.Favorite>, Quad<? extends Boolean, ? extends Boolean, ? extends List<? extends Long>, ? extends Set<? extends StoreMediaFavorites.Favorite>>> {
+        public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
+
+        @Override // rx.functions.Func4
+        public /* bridge */ /* synthetic */ Quad<? extends Boolean, ? extends Boolean, ? extends List<? extends Long>, ? extends Set<? extends StoreMediaFavorites.Favorite>> call(Boolean bool, Boolean bool2, List<? extends Long> list, Set<? extends StoreMediaFavorites.Favorite> set) {
+            return call2(bool, bool2, (List<Long>) list, set);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Quad<Boolean, Boolean, List<Long>, Set<StoreMediaFavorites.Favorite>> call2(Boolean bool, Boolean bool2, List<Long> list, Set<? extends StoreMediaFavorites.Favorite> set) {
+            return new Quad<>(bool, bool2, list, set);
+        }
+    }
+
+    /* JADX INFO: Add missing generic type declarations: [T] */
+    /* JADX INFO: renamed from: com.discord.stores.StoreEmoji$buildUsableEmojiSet$4, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreEmoji.kt */
+    public final class AnonymousClass4<T> extends o implements Function2<Map<T, Integer>, T, Unit> {
+        public static final AnonymousClass4 INSTANCE = new AnonymousClass4();
+
+        public AnonymousClass4() {
+            super(2);
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Object obj, Object obj2) {
+            invoke((Map<Object, Integer>) obj, obj2);
+            return Unit.a;
+        }
+
+        public final <T> void invoke(Map<T, Integer> map, T t) {
+            m.checkNotNullParameter(map, "$this$increment");
+            Integer num = map.get(t);
+            map.put(t, Integer.valueOf(num != null ? 1 + num.intValue() : 1));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEmoji$getEmojiSet$4, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreEmoji.kt */
+    public final class AnonymousClass4<T, R> implements b<Quad<? extends Boolean, ? extends Boolean, ? extends List<? extends Long>, ? extends Set<? extends StoreMediaFavorites.Favorite>>, Observable<? extends EmojiSet>> {
+        public final /* synthetic */ EmojiContext $emojiContext;
+        public final /* synthetic */ boolean $includeUnavailableEmojis;
+        public final /* synthetic */ boolean $includeUnusableEmojis;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreEmoji$getEmojiSet$4$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreEmoji.kt */
+        public final class AnonymousClass1<T, R> implements b<Map<Long, ? extends Map<Long, ? extends ModelEmojiCustom>>, EmojiSet> {
+            public final /* synthetic */ Set $favorites;
+            public final /* synthetic */ Boolean $hasExternalEmojiPermission;
+            public final /* synthetic */ Boolean $isPremium;
+            public final /* synthetic */ List $sortedGuildIds;
+
+            public AnonymousClass1(List list, Boolean bool, Boolean bool2, Set set) {
+                this.$sortedGuildIds = list;
+                this.$isPremium = bool;
+                this.$hasExternalEmojiPermission = bool2;
+                this.$favorites = set;
+            }
+
+            @Override // j0.k.b
+            public /* bridge */ /* synthetic */ EmojiSet call(Map<Long, ? extends Map<Long, ? extends ModelEmojiCustom>> map) {
+                return call2(map);
+            }
+
+            /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+            public final EmojiSet call2(Map<Long, ? extends Map<Long, ? extends ModelEmojiCustom>> map) {
+                StoreEmoji storeEmoji = StoreEmoji.this;
+                m.checkNotNullExpressionValue(map, "allowedCustomEmoji");
+                EmojiContext emojiContext = AnonymousClass4.this.$emojiContext;
+                List list = this.$sortedGuildIds;
+                m.checkNotNullExpressionValue(list, "sortedGuildIds");
+                Boolean bool = this.$isPremium;
+                m.checkNotNullExpressionValue(bool, "isPremium");
+                boolean zBooleanValue = bool.booleanValue();
+                AnonymousClass4 anonymousClass4 = AnonymousClass4.this;
+                boolean z2 = anonymousClass4.$includeUnavailableEmojis;
+                boolean z3 = anonymousClass4.$includeUnusableEmojis;
+                Boolean bool2 = this.$hasExternalEmojiPermission;
+                m.checkNotNullExpressionValue(bool2, "hasExternalEmojiPermission");
+                boolean zBooleanValue2 = bool2.booleanValue();
+                Set set = this.$favorites;
+                m.checkNotNullExpressionValue(set, "favorites");
+                return StoreEmoji.access$buildUsableEmojiSet(storeEmoji, map, emojiContext, list, zBooleanValue, z3, z2, zBooleanValue2, set);
+            }
+        }
+
+        public AnonymousClass4(EmojiContext emojiContext, boolean z2, boolean z3) {
+            this.$emojiContext = emojiContext;
+            this.$includeUnavailableEmojis = z2;
+            this.$includeUnusableEmojis = z3;
+        }
+
+        @Override // j0.k.b
+        public /* bridge */ /* synthetic */ Observable<? extends EmojiSet> call(Quad<? extends Boolean, ? extends Boolean, ? extends List<? extends Long>, ? extends Set<? extends StoreMediaFavorites.Favorite>> quad) {
+            return call2((Quad<Boolean, Boolean, ? extends List<Long>, ? extends Set<? extends StoreMediaFavorites.Favorite>>) quad);
+        }
+
+        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
+        public final Observable<? extends EmojiSet> call2(Quad<Boolean, Boolean, ? extends List<Long>, ? extends Set<? extends StoreMediaFavorites.Favorite>> quad) {
+            Boolean boolComponent1 = quad.component1();
+            Boolean boolComponent2 = quad.component2();
+            return ObservableExtensionsKt.computationLatest(StoreEmoji.access$getCustomEmojiStore$p(StoreEmoji.this).observeAllowedGuildEmoji()).G(new AnonymousClass1(quad.component3(), boolComponent1, boolComponent2, quad.component4()));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreEmoji$buildUsableEmojiSet$5, reason: invalid class name */
+    /* JADX INFO: compiled from: StoreEmoji.kt */
+    public final class AnonymousClass5 extends o implements Function1<Long, Unit> {
+        public final /* synthetic */ Map $allCustomEmojis;
+        public final /* synthetic */ EmojiContext $emojiContext;
+        public final /* synthetic */ ShallowPartitionMap $emojiIdsMap;
+        public final /* synthetic */ ShallowPartitionMap $emojiNameCounts;
+        public final /* synthetic */ boolean $includeUnavailableEmojis;
+        public final /* synthetic */ boolean $includeUnusableEmojis;
+        public final /* synthetic */ AnonymousClass1 $isExternalEmoji$1;
+        public final /* synthetic */ AnonymousClass2 $isExternalEmojiRestricted$2;
+        public final /* synthetic */ boolean $isMePremium;
+        public final /* synthetic */ HashMap $usableCustomEmojis;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public AnonymousClass5(Map map, AnonymousClass1 anonymousClass1, AnonymousClass2 anonymousClass2, boolean z2, EmojiContext emojiContext, boolean z3, boolean z4, ShallowPartitionMap shallowPartitionMap, ShallowPartitionMap shallowPartitionMap2, HashMap map2) {
+            super(1);
+            this.$allCustomEmojis = map;
+            this.$isExternalEmoji$1 = anonymousClass1;
+            this.$isExternalEmojiRestricted$2 = anonymousClass2;
+            this.$includeUnavailableEmojis = z2;
+            this.$emojiContext = emojiContext;
+            this.$isMePremium = z3;
+            this.$includeUnusableEmojis = z4;
+            this.$emojiNameCounts = shallowPartitionMap;
+            this.$emojiIdsMap = shallowPartitionMap2;
+            this.$usableCustomEmojis = map2;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke(l.longValue());
+            return Unit.a;
+        }
+
+        @SuppressLint({"DefaultLocale"})
+        public final void invoke(long j) {
+            ModelEmojiCustom modelEmojiCustom;
+            Map map = (Map) this.$allCustomEmojis.get(Long.valueOf(j));
+            if (map != null) {
+                boolean zInvoke = this.$isExternalEmoji$1.invoke(j);
+                if (this.$isExternalEmojiRestricted$2.invoke(zInvoke)) {
+                    return;
+                }
+                ArrayList arrayList = new ArrayList();
+                Iterator it = map.values().iterator();
+                while (true) {
+                    boolean z2 = true;
+                    if (!it.hasNext()) {
+                        break;
+                    }
+                    ModelEmojiCustom modelEmojiCustom2 = (ModelEmojiCustom) it.next();
+                    if (this.$includeUnavailableEmojis || modelEmojiCustom2.isAvailable()) {
+                        boolean z3 = modelEmojiCustom2.isManaged() && ((this.$emojiContext instanceof EmojiContext.Global) ^ true);
+                        if (!this.$isMePremium && (modelEmojiCustom2.isAnimated() || (zInvoke && !z3))) {
+                            z2 = false;
+                        }
+                        if (this.$includeUnusableEmojis || z2) {
+                            Integer num = (Integer) this.$emojiNameCounts.get(modelEmojiCustom2.getName());
+                            if (num == null && z2) {
+                                modelEmojiCustom = modelEmojiCustom2;
+                            } else {
+                                modelEmojiCustom = new ModelEmojiCustom(modelEmojiCustom2, num != null ? num.intValue() : 0, z2);
+                            }
+                            arrayList.add(modelEmojiCustom);
+                            AnonymousClass4 anonymousClass4 = AnonymousClass4.INSTANCE;
+                            ShallowPartitionMap shallowPartitionMap = this.$emojiNameCounts;
+                            String name = modelEmojiCustom2.getName();
+                            m.checkNotNullExpressionValue(name, "emoji.name");
+                            anonymousClass4.invoke((Map<String, Integer>) shallowPartitionMap, name);
+                            ShallowPartitionMap shallowPartitionMap2 = this.$emojiIdsMap;
+                            String uniqueId = modelEmojiCustom2.getUniqueId();
+                            m.checkNotNullExpressionValue(uniqueId, "emoji.uniqueId");
+                            shallowPartitionMap2.put(uniqueId, modelEmojiCustom);
+                        }
+                    }
+                }
+                if (!arrayList.isEmpty()) {
+                    this.$usableCustomEmojis.put(Long.valueOf(j), u.sortedWith(arrayList, new StoreEmoji$buildUsableEmojiSet$5$processGuildEmojis$$inlined$sortedByDescending$1()));
+                }
+            }
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreEmoji.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final String[] getDEFAULT_FREQUENT_EMOJIS() {
+            return StoreEmoji.access$getDEFAULT_FREQUENT_EMOJIS$cp();
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreEmoji.kt */
+    public abstract class EmojiContext {
+
+        /* JADX INFO: compiled from: StoreEmoji.kt */
+        public final /* data */ class Chat extends EmojiContext {
+            private final long channelId;
+            private final long guildId;
+
+            public Chat(long j, long j2) {
+                super(null);
+                this.guildId = j;
+                this.channelId = j2;
+            }
+
+            public static /* synthetic */ Chat copy$default(Chat chat, long j, long j2, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    j = chat.guildId;
+                }
+                if ((i & 2) != 0) {
+                    j2 = chat.channelId;
+                }
+                return chat.copy(j, j2);
+            }
+
+            public final Chat copy(long guildId, long channelId) {
+                return new Chat(guildId, channelId);
+            }
+
+            public boolean equals(Object other) {
+                if (this == other) {
+                    return true;
+                }
+                if (!(other instanceof Chat)) {
+                    return false;
+                }
+                Chat chat = (Chat) other;
+                return this.guildId == chat.guildId && this.channelId == chat.channelId;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final long getChannelId() {
+                return this.channelId;
+            }
+
+            public final long getChannelId() {
+                return this.channelId;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            public int hashCode() {
+                return a0.a.a.b.a(this.channelId) + (a0.a.a.b.a(this.guildId) * 31);
+            }
+
+            public String toString() {
+                StringBuilder sbU = a.U("Chat(guildId=");
+                sbU.append(this.guildId);
+                sbU.append(", channelId=");
+                return a.C(sbU, this.channelId, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreEmoji.kt */
+        public final class Global extends EmojiContext {
+            public static final Global INSTANCE = new Global();
+
+            private Global() {
+                super(null);
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreEmoji.kt */
+        public final /* data */ class Guild extends EmojiContext {
+            private final long guildId;
+
+            public Guild(long j) {
+                super(null);
+                this.guildId = j;
+            }
+
+            public static /* synthetic */ Guild copy$default(Guild guild, long j, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    j = guild.guildId;
+                }
+                return guild.copy(j);
+            }
+
+            public final Guild copy(long guildId) {
+                return new Guild(guildId);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof Guild) && this.guildId == ((Guild) other).guildId;
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            public int hashCode() {
+                return a0.a.a.b.a(this.guildId);
+            }
+
+            public String toString() {
+                return a.C(a.U("Guild(guildId="), this.guildId, ")");
+            }
+        }
+
+        /* JADX INFO: compiled from: StoreEmoji.kt */
+        public final /* data */ class GuildProfile extends EmojiContext {
+            private final long guildId;
+
+            public GuildProfile(long j) {
+                super(null);
+                this.guildId = j;
+            }
+
+            public static /* synthetic */ GuildProfile copy$default(GuildProfile guildProfile, long j, int i, Object obj) {
+                if ((i & 1) != 0) {
+                    j = guildProfile.guildId;
+                }
+                return guildProfile.copy(j);
+            }
+
+            public final GuildProfile copy(long guildId) {
+                return new GuildProfile(guildId);
+            }
+
+            public boolean equals(Object other) {
+                if (this != other) {
+                    return (other instanceof GuildProfile) && this.guildId == ((GuildProfile) other).guildId;
+                }
+                return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            public final long getGuildId() {
+                return this.guildId;
+            }
+
+            public int hashCode() {
+                return a0.a.a.b.a(this.guildId);
+            }
+
+            public String toString() {
+                return a.C(a.U("GuildProfile(guildId="), this.guildId, ")");
+            }
+        }
+
+        private EmojiContext() {
+        }
+
+        public /* synthetic */ EmojiContext(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public StoreEmoji(StoreEmojiCustom storeEmojiCustom, StoreUser storeUser, StorePermissions storePermissions, StoreGuildsSorted storeGuildsSorted, StoreMediaFavorites storeMediaFavorites) {
         m.checkNotNullParameter(storeEmojiCustom, "customEmojiStore");
@@ -68,8 +614,8 @@ public final class StoreEmoji implements Rules$EmojiDataProvider {
         this.frecency = persister.get();
     }
 
-    public static final /* synthetic */ EmojiSet access$buildUsableEmojiSet(StoreEmoji storeEmoji, Map map, StoreEmoji$EmojiContext storeEmoji$EmojiContext, List list, boolean z2, boolean z3, boolean z4, boolean z5, Set set) {
-        return storeEmoji.buildUsableEmojiSet(map, storeEmoji$EmojiContext, list, z2, z3, z4, z5, set);
+    public static final /* synthetic */ EmojiSet access$buildUsableEmojiSet(StoreEmoji storeEmoji, Map map, EmojiContext emojiContext, List list, boolean z2, boolean z3, boolean z4, boolean z5, Set set) {
+        return storeEmoji.buildUsableEmojiSet(map, emojiContext, list, z2, z3, z4, z5, set);
     }
 
     public static final /* synthetic */ StoreEmojiCustom access$getCustomEmojiStore$p(StoreEmoji storeEmoji) {
@@ -80,9 +626,9 @@ public final class StoreEmoji implements Rules$EmojiDataProvider {
         return DEFAULT_FREQUENT_EMOJIS;
     }
 
-    private final EmojiSet buildUsableEmojiSet(Map<Long, ? extends Map<Long, ? extends ModelEmojiCustom>> allCustomEmojis, StoreEmoji$EmojiContext emojiContext, List<Long> sortedGuildIds, boolean isMePremium, boolean includeUnusableEmojis, boolean includeUnavailableEmojis, boolean hasExternalEmojiPermission, Set<? extends StoreMediaFavorites$Favorite> favorites) {
-        StoreEmoji$buildUsableEmojiSet$1 storeEmoji$buildUsableEmojiSet$1 = new StoreEmoji$buildUsableEmojiSet$1(emojiContext);
-        StoreEmoji$buildUsableEmojiSet$2 storeEmoji$buildUsableEmojiSet$2 = new StoreEmoji$buildUsableEmojiSet$2(hasExternalEmojiPermission, emojiContext);
+    private final EmojiSet buildUsableEmojiSet(Map<Long, ? extends Map<Long, ? extends ModelEmojiCustom>> allCustomEmojis, EmojiContext emojiContext, List<Long> sortedGuildIds, boolean isMePremium, boolean includeUnusableEmojis, boolean includeUnavailableEmojis, boolean hasExternalEmojiPermission, Set<? extends StoreMediaFavorites.Favorite> favorites) {
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1(emojiContext);
+        AnonymousClass2 anonymousClass2 = new AnonymousClass2(hasExternalEmojiPermission, emojiContext);
         Set<Long> setKeySet = allCustomEmojis.keySet();
         ArrayList arrayList = new ArrayList();
         for (Object obj : setKeySet) {
@@ -99,7 +645,7 @@ public final class StoreEmoji implements Rules$EmojiDataProvider {
             while (it2.hasNext()) {
                 long jLongValue = ((Number) it2.next()).longValue();
                 Map<Long, ? extends ModelEmojiCustom> map = allCustomEmojis.get(Long.valueOf(jLongValue));
-                size2 += (map == null || storeEmoji$buildUsableEmojiSet$2.invoke(storeEmoji$buildUsableEmojiSet$1.invoke(jLongValue))) ? 0 : map.size();
+                size2 += (map == null || anonymousClass2.invoke(anonymousClass1.invoke(jLongValue))) ? 0 : map.size();
             }
             i += size2;
         }
@@ -117,11 +663,11 @@ public final class StoreEmoji implements Rules$EmojiDataProvider {
         while (it3.hasNext()) {
             size4 += ((List) it3.next()).size();
         }
-        ShallowPartitionMap$Companion shallowPartitionMap$Companion = ShallowPartitionMap.Companion;
-        ShallowPartitionMap shallowPartitionMapCreate$default = ShallowPartitionMap$Companion.create$default(shallowPartitionMap$Companion, i + size3, 0, 0, null, 14, null);
+        ShallowPartitionMap.Companion companion = ShallowPartitionMap.INSTANCE;
+        ShallowPartitionMap shallowPartitionMapCreate$default = ShallowPartitionMap.Companion.create$default(companion, i + size3, 0, 0, null, 14, null);
         HashMap map4 = new HashMap(size);
-        ShallowPartitionMap shallowPartitionMapCreate$default2 = ShallowPartitionMap$Companion.create$default(shallowPartitionMap$Companion, i + size4, 0, 0, null, 14, null);
-        if (!(emojiContext instanceof StoreEmoji$EmojiContext$GuildProfile)) {
+        ShallowPartitionMap shallowPartitionMapCreate$default2 = ShallowPartitionMap.Companion.create$default(companion, i + size4, 0, 0, null, 14, null);
+        if (!(emojiContext instanceof EmojiContext.GuildProfile)) {
             Map<EmojiCategory, ? extends List<? extends Emoji>> map5 = this.unicodeEmojis;
             if (map5 == null) {
                 m.throwUninitializedPropertyAccessException("unicodeEmojis");
@@ -135,19 +681,19 @@ public final class StoreEmoji implements Rules$EmojiDataProvider {
                 }
             }
         }
-        StoreEmoji$buildUsableEmojiSet$4 storeEmoji$buildUsableEmojiSet$4 = StoreEmoji$buildUsableEmojiSet$4.INSTANCE;
+        AnonymousClass4 anonymousClass4 = AnonymousClass4.INSTANCE;
         ShallowPartitionMap shallowPartitionMap = shallowPartitionMapCreate$default2;
-        StoreEmoji$buildUsableEmojiSet$5 storeEmoji$buildUsableEmojiSet$5 = new StoreEmoji$buildUsableEmojiSet$5(allCustomEmojis, storeEmoji$buildUsableEmojiSet$1, storeEmoji$buildUsableEmojiSet$2, includeUnavailableEmojis, emojiContext, isMePremium, includeUnusableEmojis, shallowPartitionMapCreate$default, shallowPartitionMap, map4);
+        AnonymousClass5 anonymousClass5 = new AnonymousClass5(allCustomEmojis, anonymousClass1, anonymousClass2, includeUnavailableEmojis, emojiContext, isMePremium, includeUnusableEmojis, shallowPartitionMapCreate$default, shallowPartitionMap, map4);
         Map<String, ? extends ModelEmojiUnicode> map6 = this.unicodeEmojisNamesMap;
         if (map6 == null) {
             m.throwUninitializedPropertyAccessException("unicodeEmojisNamesMap");
         }
         Iterator<T> it5 = map6.keySet().iterator();
         while (it5.hasNext()) {
-            StoreEmoji$buildUsableEmojiSet$4.INSTANCE.invoke((Map<String, Integer>) shallowPartitionMapCreate$default, (String) it5.next());
+            AnonymousClass4.INSTANCE.invoke((Map<String, Integer>) shallowPartitionMapCreate$default, (String) it5.next());
         }
-        long guildId = emojiContext instanceof StoreEmoji$EmojiContext$Chat ? ((StoreEmoji$EmojiContext$Chat) emojiContext).getGuildId() : 0L;
-        storeEmoji$buildUsableEmojiSet$5.invoke(guildId);
+        long guildId = emojiContext instanceof EmojiContext.Chat ? ((EmojiContext.Chat) emojiContext).getGuildId() : 0L;
+        anonymousClass5.invoke(guildId);
         ArrayList arrayList2 = new ArrayList();
         for (Object obj2 : sortedGuildIds) {
             if (((Number) obj2).longValue() != guildId) {
@@ -156,15 +702,15 @@ public final class StoreEmoji implements Rules$EmojiDataProvider {
         }
         Iterator it6 = arrayList2.iterator();
         while (it6.hasNext()) {
-            storeEmoji$buildUsableEmojiSet$5.invoke(((Number) it6.next()).longValue());
+            anonymousClass5.invoke(((Number) it6.next()).longValue());
         }
         Iterator it7 = arrayList.iterator();
         while (it7.hasNext()) {
-            storeEmoji$buildUsableEmojiSet$5.invoke(((Number) it7.next()).longValue());
+            anonymousClass5.invoke(((Number) it7.next()).longValue());
         }
         ArrayList arrayList3 = new ArrayList();
         for (Object obj3 : favorites) {
-            if (obj3 instanceof StoreMediaFavorites$FavoriteEmoji) {
+            if (obj3 instanceof StoreMediaFavorites.FavoriteEmoji) {
                 arrayList3.add(obj3);
             }
         }
@@ -172,7 +718,7 @@ public final class StoreEmoji implements Rules$EmojiDataProvider {
         Iterator it8 = arrayList3.iterator();
         while (it8.hasNext()) {
             ShallowPartitionMap shallowPartitionMap2 = shallowPartitionMap;
-            Emoji emoji2 = (Emoji) shallowPartitionMap2.get(((StoreMediaFavorites$FavoriteEmoji) it8.next()).getEmojiUniqueId());
+            Emoji emoji2 = (Emoji) shallowPartitionMap2.get(((StoreMediaFavorites.FavoriteEmoji) it8.next()).getEmojiUniqueId());
             if (emoji2 != null) {
                 arrayList4.add(emoji2);
             }
@@ -199,7 +745,7 @@ public final class StoreEmoji implements Rules$EmojiDataProvider {
 
     @StoreThread
     public final ModelEmojiCustom getCustomEmojiInternal(long emojiId) {
-        Iterator<Map$Entry<Long, Map<Long, ModelEmojiCustom>>> it = this.customEmojiStore.getAllGuildEmojiInternal().entrySet().iterator();
+        Iterator<Map.Entry<Long, Map<Long, ModelEmojiCustom>>> it = this.customEmojiStore.getAllGuildEmojiInternal().entrySet().iterator();
         while (it.hasNext()) {
             ModelEmojiCustom modelEmojiCustom = it.next().getValue().get(Long.valueOf(emojiId));
             if (modelEmojiCustom != null) {
@@ -214,7 +760,7 @@ public final class StoreEmoji implements Rules$EmojiDataProvider {
     }
 
     public final Observable<EmojiSet> getEmojiSet(long guildId, long channelId, boolean includeUnusableEmojis, boolean includeUnavailableEmojis) {
-        return getEmojiSet(new StoreEmoji$EmojiContext$Chat(guildId, channelId), includeUnusableEmojis, includeUnavailableEmojis);
+        return getEmojiSet(new EmojiContext.Chat(guildId, channelId), includeUnusableEmojis, includeUnavailableEmojis);
     }
 
     private final List<Emoji> getFrequentlyUsedEmojis(Map<String, ? extends Emoji> emojiIdsMap) {
@@ -246,7 +792,7 @@ public final class StoreEmoji implements Rules$EmojiDataProvider {
         return u.distinct(q.toList(d0.f0.n.flattenSequenceOfIterable(d0.f0.n.sequenceOf(listTake, u.take(arrayList2, 40 - listTake.size())))));
     }
 
-    @Override // com.discord.utilities.textprocessing.Rules$EmojiDataProvider
+    @Override // com.discord.utilities.textprocessing.Rules.EmojiDataProvider
     public Map<String, ModelEmojiUnicode> getUnicodeEmojiSurrogateMap() {
         Map map = this.unicodeEmojiSurrogateMap;
         if (map == null) {
@@ -255,7 +801,7 @@ public final class StoreEmoji implements Rules$EmojiDataProvider {
         return map;
     }
 
-    @Override // com.discord.utilities.textprocessing.Rules$EmojiDataProvider
+    @Override // com.discord.utilities.textprocessing.Rules.EmojiDataProvider
     public Map<String, ModelEmojiUnicode> getUnicodeEmojisNamesMap() {
         Map map = this.unicodeEmojisNamesMap;
         if (map == null) {
@@ -264,7 +810,7 @@ public final class StoreEmoji implements Rules$EmojiDataProvider {
         return map;
     }
 
-    @Override // com.discord.utilities.textprocessing.Rules$EmojiDataProvider
+    @Override // com.discord.utilities.textprocessing.Rules.EmojiDataProvider
     public Pattern getUnicodeEmojisPattern() {
         Pattern pattern = this.unicodeEmojisPattern;
         if (pattern == null) {
@@ -273,27 +819,27 @@ public final class StoreEmoji implements Rules$EmojiDataProvider {
         return pattern;
     }
 
-    private final void handleLoadedUnicodeEmojis(ModelEmojiUnicode$Bundle unicodeEmojisBundle) {
+    private final void handleLoadedUnicodeEmojis(ModelEmojiUnicode.Bundle unicodeEmojisBundle) {
         HashMap map = new HashMap();
         HashMap map2 = new HashMap();
         HashMap map3 = new HashMap();
-        StoreEmoji$handleLoadedUnicodeEmojis$1 storeEmoji$handleLoadedUnicodeEmojis$1 = new StoreEmoji$handleLoadedUnicodeEmojis$1(map3, map2);
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1(map3, map2);
         Map<EmojiCategory, List<ModelEmojiUnicode>> emojis = unicodeEmojisBundle.getEmojis();
         m.checkNotNullExpressionValue(emojis, "unicodeEmojisBundle.emojis");
-        for (Map$Entry<EmojiCategory, List<ModelEmojiUnicode>> map$Entry : emojis.entrySet()) {
-            EmojiCategory key = map$Entry.getKey();
-            List<ModelEmojiUnicode> value = map$Entry.getValue();
+        for (Map.Entry<EmojiCategory, List<ModelEmojiUnicode>> entry : emojis.entrySet()) {
+            EmojiCategory key = entry.getKey();
+            List<ModelEmojiUnicode> value = entry.getValue();
             m.checkNotNullExpressionValue(key, "category");
             m.checkNotNullExpressionValue(value, "categoryEmojis");
             map.put(key, value);
             for (ModelEmojiUnicode modelEmojiUnicode : value) {
                 m.checkNotNullExpressionValue(modelEmojiUnicode, "unicodeEmoji");
-                storeEmoji$handleLoadedUnicodeEmojis$1.invoke2(modelEmojiUnicode);
+                anonymousClass1.invoke2(modelEmojiUnicode);
                 List<ModelEmojiUnicode> asDiverse = modelEmojiUnicode.getAsDiverse();
                 m.checkNotNullExpressionValue(asDiverse, "unicodeEmoji\n                .asDiverse");
                 for (ModelEmojiUnicode modelEmojiUnicode2 : asDiverse) {
                     m.checkNotNullExpressionValue(modelEmojiUnicode2, "diverseEmoji");
-                    storeEmoji$handleLoadedUnicodeEmojis$1.invoke2(modelEmojiUnicode2);
+                    anonymousClass1.invoke2(modelEmojiUnicode2);
                 }
             }
         }
@@ -313,10 +859,10 @@ public final class StoreEmoji implements Rules$EmojiDataProvider {
         handleLoadedUnicodeEmojis(loadUnicodeEmojisFromDisk(context));
     }
 
-    private final ModelEmojiUnicode$Bundle loadUnicodeEmojisFromDisk(Context context) throws IOException {
-        Model model = new Model$JsonReader(new InputStreamReader(context.getAssets().open("data/emojis.json"), Constants.ENCODING)).parse(new ModelEmojiUnicode$Bundle());
+    private final ModelEmojiUnicode.Bundle loadUnicodeEmojisFromDisk(Context context) throws IOException {
+        Model model = new Model.JsonReader(new InputStreamReader(context.getAssets().open("data/emojis.json"), Constants.ENCODING)).parse(new ModelEmojiUnicode.Bundle());
         m.checkNotNullExpressionValue(model, "jsonReader.parse(ModelEmojiUnicode.Bundle())");
-        return (ModelEmojiUnicode$Bundle) model;
+        return (ModelEmojiUnicode.Bundle) model;
     }
 
     public final void onEmojiUsed(Emoji emoji) {
@@ -335,16 +881,16 @@ public final class StoreEmoji implements Rules$EmojiDataProvider {
     /* JADX WARN: Code duplicated, block: B:10:0x0033  */
     /* JADX WARN: Code duplicated, block: B:7:0x0027  */
     /* JADX WARN: Code duplicated, block: B:9:0x002b  */
-    public final Observable<EmojiSet> getEmojiSet(StoreEmoji$EmojiContext emojiContext, boolean includeUnusableEmojis, boolean includeUnavailableEmojis) {
+    public final Observable<EmojiSet> getEmojiSet(EmojiContext emojiContext, boolean includeUnusableEmojis, boolean includeUnavailableEmojis) {
         k kVar;
         Observable observableG;
         m.checkNotNullParameter(emojiContext, "emojiContext");
-        if (emojiContext instanceof StoreEmoji$EmojiContext$Chat) {
-            StoreEmoji$EmojiContext$Chat storeEmoji$EmojiContext$Chat = (StoreEmoji$EmojiContext$Chat) emojiContext;
-            if (storeEmoji$EmojiContext$Chat.getGuildId() != 0) {
-                observableG = this.permissionsStore.observePermissionsForChannel(storeEmoji$EmojiContext$Chat.getChannelId()).G(StoreEmoji$getEmojiSet$hasExternalEmojiPermissionObservable$1.INSTANCE);
+        if (emojiContext instanceof EmojiContext.Chat) {
+            EmojiContext.Chat chat = (EmojiContext.Chat) emojiContext;
+            if (chat.getGuildId() != 0) {
+                observableG = this.permissionsStore.observePermissionsForChannel(chat.getChannelId()).G(StoreEmoji$getEmojiSet$hasExternalEmojiPermissionObservable$1.INSTANCE);
             } else {
-                if (emojiContext instanceof StoreEmoji$EmojiContext$Guild) {
+                if (emojiContext instanceof EmojiContext.Guild) {
                     kVar = new k(Boolean.FALSE);
                 } else {
                     kVar = new k(Boolean.TRUE);
@@ -352,14 +898,14 @@ public final class StoreEmoji implements Rules$EmojiDataProvider {
                 observableG = kVar;
             }
         } else {
-            if (emojiContext instanceof StoreEmoji$EmojiContext$Guild) {
+            if (emojiContext instanceof EmojiContext.Guild) {
                 kVar = new k(Boolean.FALSE);
             } else {
                 kVar = new k(Boolean.TRUE);
             }
             observableG = kVar;
         }
-        Observable<EmojiSet> observableY = Observable.h(StoreUser.observeMe$default(this.userStore, false, 1, null).G(StoreEmoji$getEmojiSet$1.INSTANCE), observableG, this.sortedGuildsStore.observeOrderedGuilds().G(StoreEmoji$getEmojiSet$2.INSTANCE), this.mediaFavoritesStore.observeFavorites(StoreMediaFavorites$Favorite.Companion.getEmojiTypes()), StoreEmoji$getEmojiSet$3.INSTANCE).r().Y(new StoreEmoji$getEmojiSet$4(this, emojiContext, includeUnavailableEmojis, includeUnusableEmojis));
+        Observable<EmojiSet> observableY = Observable.h(StoreUser.observeMe$default(this.userStore, false, 1, null).G(AnonymousClass1.INSTANCE), observableG, this.sortedGuildsStore.observeOrderedGuilds().G(AnonymousClass2.INSTANCE), this.mediaFavoritesStore.observeFavorites(StoreMediaFavorites.Favorite.INSTANCE.getEmojiTypes()), AnonymousClass3.INSTANCE).r().Y(new AnonymousClass4(emojiContext, includeUnavailableEmojis, includeUnusableEmojis));
         m.checkNotNullExpressionValue(observableY, "Observable\n        .comb…              }\n        }");
         return observableY;
     }

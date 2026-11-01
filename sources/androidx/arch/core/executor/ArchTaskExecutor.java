@@ -3,11 +3,10 @@ package androidx.arch.core.executor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.RestrictTo$Scope;
 import java.util.concurrent.Executor;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class ArchTaskExecutor extends TaskExecutor {
 
     @NonNull
@@ -18,10 +17,26 @@ public class ArchTaskExecutor extends TaskExecutor {
     private static volatile ArchTaskExecutor sInstance;
 
     @NonNull
-    private static final Executor sMainThreadExecutor = new ArchTaskExecutor$1();
+    private static final Executor sMainThreadExecutor = new AnonymousClass1();
 
     @NonNull
-    private static final Executor sIOThreadExecutor = new ArchTaskExecutor$2();
+    private static final Executor sIOThreadExecutor = new AnonymousClass2();
+
+    /* JADX INFO: renamed from: androidx.arch.core.executor.ArchTaskExecutor$1, reason: invalid class name */
+    public final class AnonymousClass1 implements Executor {
+        @Override // java.util.concurrent.Executor
+        public void execute(Runnable runnable) {
+            ArchTaskExecutor.getInstance().postToMainThread(runnable);
+        }
+    }
+
+    /* JADX INFO: renamed from: androidx.arch.core.executor.ArchTaskExecutor$2, reason: invalid class name */
+    public final class AnonymousClass2 implements Executor {
+        @Override // java.util.concurrent.Executor
+        public void execute(Runnable runnable) {
+            ArchTaskExecutor.getInstance().executeOnDiskIO(runnable);
+        }
+    }
 
     private ArchTaskExecutor() {
         DefaultTaskExecutor defaultTaskExecutor = new DefaultTaskExecutor();

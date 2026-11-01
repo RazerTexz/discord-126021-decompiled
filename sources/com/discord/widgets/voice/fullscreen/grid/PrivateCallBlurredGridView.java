@@ -4,11 +4,10 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
-import android.widget.FrameLayout$LayoutParams;
 import android.widget.GridLayout;
-import android.widget.GridLayout$LayoutParams;
 import androidx.core.graphics.ColorUtils;
-import com.discord.stores.StoreVoiceParticipants$VoiceUser;
+import com.discord.R;
+import com.discord.stores.StoreVoiceParticipants;
 import com.discord.utilities.collections.CollectionExtensionsKt;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.dimen.DimenUtils;
@@ -26,7 +25,7 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: loaded from: classes.dex */
 public final class PrivateCallBlurredGridView extends FrameLayout {
     private final RealtimeBlurView blurView;
-    private List<StoreVoiceParticipants$VoiceUser> callUsers;
+    private List<StoreVoiceParticipants.VoiceUser> callUsers;
     private final GridLayout gridView;
     private final LinkedHashMap<Long, SimpleDraweeView> gridViewItems;
 
@@ -40,17 +39,17 @@ public final class PrivateCallBlurredGridView extends FrameLayout {
         GridLayout gridLayout = new GridLayout(getContext());
         this.gridView = gridLayout;
         this.gridViewItems = new LinkedHashMap<>();
-        gridLayout.setLayoutParams(new FrameLayout$LayoutParams(-1, -1));
+        gridLayout.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
         gridLayout.setColumnCount(getColumnSize());
-        int alphaComponent = ColorUtils.setAlphaComponent(ColorCompat.getColor(getContext(), 2131100219), (int) 204.0d);
-        realtimeBlurView.setLayoutParams(new FrameLayout$LayoutParams(-1, -1));
+        int alphaComponent = ColorUtils.setAlphaComponent(ColorCompat.getColor(getContext(), R.color.primary_dark_600), (int) 204.0d);
+        realtimeBlurView.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
         realtimeBlurView.setBlurRadius(DimenUtils.dpToPixels(64));
         realtimeBlurView.setOverlayColor(alphaComponent);
         addView(gridLayout);
         addView(realtimeBlurView);
     }
 
-    public final void configure(List<StoreVoiceParticipants$VoiceUser> callUsers) {
+    public final void configure(List<StoreVoiceParticipants.VoiceUser> callUsers) {
         m.checkNotNullParameter(callUsers, "callUsers");
         List listTake = u.take(callUsers, getMaxShownParticipants());
         boolean z2 = listTake.size() == 2;
@@ -64,17 +63,17 @@ public final class PrivateCallBlurredGridView extends FrameLayout {
             if (i < 0) {
                 n.throwIndexOverflow();
             }
-            StoreVoiceParticipants$VoiceUser storeVoiceParticipants$VoiceUser = (StoreVoiceParticipants$VoiceUser) obj;
+            StoreVoiceParticipants.VoiceUser voiceUser = (StoreVoiceParticipants.VoiceUser) obj;
             boolean z4 = (i == listTake.size() - 1) && (i + (-1)) % 2 != 0;
             LinkedHashMap<Long, SimpleDraweeView> linkedHashMap = this.gridViewItems;
-            Long lValueOf = Long.valueOf(storeVoiceParticipants$VoiceUser.getUser().getId());
+            Long lValueOf = Long.valueOf(voiceUser.getUser().getId());
             SimpleDraweeView simpleDraweeViewCreateGridViewItem = linkedHashMap.get(lValueOf);
             if (simpleDraweeViewCreateGridViewItem == null) {
                 simpleDraweeViewCreateGridViewItem = createGridViewItem(z4 || z2);
                 linkedHashMap.put(lValueOf, simpleDraweeViewCreateGridViewItem);
             }
             SimpleDraweeView simpleDraweeView = simpleDraweeViewCreateGridViewItem;
-            IconUtils.setIcon$default(simpleDraweeView, storeVoiceParticipants$VoiceUser.getUser(), 0, null, null, null, 60, null);
+            IconUtils.setIcon$default(simpleDraweeView, voiceUser.getUser(), 0, null, null, null, 60, null);
             if (z3) {
                 this.gridView.addView(simpleDraweeView);
             }
@@ -85,7 +84,7 @@ public final class PrivateCallBlurredGridView extends FrameLayout {
 
     private final SimpleDraweeView createGridViewItem(boolean isFullWidth) {
         SimpleDraweeView simpleDraweeView = new SimpleDraweeView(getContext());
-        simpleDraweeView.setLayoutParams(new GridLayout$LayoutParams(GridLayout.spec(Integer.MIN_VALUE, 1.0f), GridLayout.spec(Integer.MIN_VALUE, isFullWidth ? getColumnSize() : 1, 1.0f)));
+        simpleDraweeView.setLayoutParams(new GridLayout.LayoutParams(GridLayout.spec(Integer.MIN_VALUE, 1.0f), GridLayout.spec(Integer.MIN_VALUE, isFullWidth ? getColumnSize() : 1, 1.0f)));
         return simpleDraweeView;
     }
 
@@ -115,10 +114,10 @@ public final class PrivateCallBlurredGridView extends FrameLayout {
         GridLayout gridLayout = new GridLayout(getContext());
         this.gridView = gridLayout;
         this.gridViewItems = new LinkedHashMap<>();
-        gridLayout.setLayoutParams(new FrameLayout$LayoutParams(-1, -1));
+        gridLayout.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
         gridLayout.setColumnCount(getColumnSize());
-        int alphaComponent = ColorUtils.setAlphaComponent(ColorCompat.getColor(getContext(), 2131100219), (int) 204.0d);
-        realtimeBlurView.setLayoutParams(new FrameLayout$LayoutParams(-1, -1));
+        int alphaComponent = ColorUtils.setAlphaComponent(ColorCompat.getColor(getContext(), R.color.primary_dark_600), (int) 204.0d);
+        realtimeBlurView.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
         realtimeBlurView.setBlurRadius(DimenUtils.dpToPixels(64));
         realtimeBlurView.setOverlayColor(alphaComponent);
         addView(gridLayout);

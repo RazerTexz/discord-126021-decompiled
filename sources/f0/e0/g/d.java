@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
-import java.net.Proxy$Type;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.SocketException;
@@ -26,7 +25,7 @@ import okhttp3.internal.http2.StreamResetException;
 /* JADX INFO: compiled from: ExchangeFinder.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class d {
-    public m$a a;
+    public m.a a;
 
     /* JADX INFO: renamed from: b, reason: collision with root package name */
     public m f3615b;
@@ -75,10 +74,10 @@ public final class d {
     /* JADX WARN: Code duplicated, block: B:73:0x013e  */
     public final j a(int i, int i2, int i3, int i4, boolean z2, boolean z3) throws IOException {
         c0 c0VarB;
-        m$a m_a;
+        m.a aVar;
         m mVar;
         ArrayList arrayList;
-        m$a m_a2;
+        m.a aVar2;
         List<c0> list;
         Proxy proxy;
         String hostName;
@@ -123,19 +122,19 @@ public final class d {
                             if (c0VarB != null) {
                                 this.f = null;
                             } else {
-                                m_a = this.a;
-                                if (m_a == null && m_a.a()) {
-                                    m$a m_a3 = this.a;
-                                    if (m_a3 == null) {
+                                aVar = this.a;
+                                if (aVar == null && aVar.a()) {
+                                    m.a aVar3 = this.a;
+                                    if (aVar3 == null) {
                                         d0.z.d.m.throwNpe();
                                     }
-                                    c0VarB = m_a3.b();
+                                    c0VarB = aVar3.b();
                                 } else {
                                     mVar = this.f3615b;
                                     if (mVar == null) {
-                                        f0.a aVar = this.h;
+                                        f0.a aVar4 = this.h;
                                         e eVar2 = this.i;
-                                        mVar = new m(aVar, eVar2.f3618y.O, eVar2, this.j);
+                                        mVar = new m(aVar4, eVar2.f3618y.O, eVar2, this.j);
                                         this.f3615b = mVar;
                                     }
                                     if (mVar.a()) {
@@ -156,7 +155,7 @@ public final class d {
                                         proxy = list2.get(i5);
                                         ArrayList arrayList2 = new ArrayList();
                                         mVar.c = arrayList2;
-                                        if (proxy.type() != Proxy$Type.DIRECT || proxy.type() == Proxy$Type.SOCKS) {
+                                        if (proxy.type() != Proxy.Type.DIRECT || proxy.type() == Proxy.Type.SOCKS) {
                                             w wVar = mVar.e.a;
                                             hostName = wVar.g;
                                             port = wVar.h;
@@ -182,7 +181,7 @@ public final class d {
                                         if (1 <= port || 65535 < port) {
                                             throw new SocketException("No route to " + hostName + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + port + "; port is out of range");
                                         }
-                                        if (proxy.type() == Proxy$Type.SOCKS) {
+                                        if (proxy.type() == Proxy.Type.SOCKS) {
                                             arrayList2.add(InetSocketAddress.createUnresolved(hostName, port));
                                         } else {
                                             t tVar2 = mVar.h;
@@ -227,9 +226,9 @@ public final class d {
                                         r.addAll(arrayList, mVar.d);
                                         mVar.d.clear();
                                     }
-                                    m_a2 = new m$a(arrayList);
-                                    this.a = m_a2;
-                                    list = m_a2.f3623b;
+                                    aVar2 = new m.a(arrayList);
+                                    this.a = aVar2;
+                                    list = aVar2.f3623b;
                                     if (!this.i.v) {
                                         throw new IOException("Canceled");
                                     }
@@ -240,7 +239,7 @@ public final class d {
                                         }
                                         this.j.a(this.i, jVar3);
                                     } else {
-                                        c0VarB = m_a2.b();
+                                        c0VarB = aVar2.b();
                                         jVar = new j(this.g, c0VarB);
                                         this.i.f3617x = jVar;
                                         jVar.c(i, i2, i3, i4, z2, this.i, this.j);
@@ -338,14 +337,14 @@ public final class d {
                     if (c0VarB != null) {
                         this.f = null;
                     } else {
-                        m_a = this.a;
-                        if (m_a == null) {
+                        aVar = this.a;
+                        if (aVar == null) {
                         }
                         mVar = this.f3615b;
                         if (mVar == null) {
-                            f0.a aVar2 = this.h;
+                            f0.a aVar5 = this.h;
                             e eVar7 = this.i;
-                            mVar = new m(aVar2, eVar7.f3618y.O, eVar7, this.j);
+                            mVar = new m(aVar5, eVar7.f3618y.O, eVar7, this.j);
                             this.f3615b = mVar;
                         }
                         if (mVar.a()) {
@@ -366,7 +365,7 @@ public final class d {
                             proxy = list3.get(i6);
                             ArrayList arrayList3 = new ArrayList();
                             mVar.c = arrayList3;
-                            if (proxy.type() != Proxy$Type.DIRECT) {
+                            if (proxy.type() != Proxy.Type.DIRECT) {
                                 w wVar2 = mVar.e.a;
                                 hostName = wVar2.g;
                                 port = wVar2.h;
@@ -383,9 +382,9 @@ public final class d {
                             r.addAll(arrayList, mVar.d);
                             mVar.d.clear();
                         }
-                        m_a2 = new m$a(arrayList);
-                        this.a = m_a2;
-                        list = m_a2.f3623b;
+                        aVar2 = new m.a(arrayList);
+                        this.a = aVar2;
+                        list = aVar2.f3623b;
                         if (!this.i.v) {
                             throw new IOException("Canceled");
                         }
@@ -396,7 +395,7 @@ public final class d {
                             }
                             this.j.a(this.i, jVar3);
                         } else {
-                            c0VarB = m_a2.b();
+                            c0VarB = aVar2.b();
                             jVar = new j(this.g, c0VarB);
                             this.i.f3617x = jVar;
                             jVar.c(i, i2, i3, i4, z2, this.i, this.j);
@@ -479,8 +478,8 @@ public final class d {
             }
             jVar3.l();
             if (this.f == null) {
-                m$a m_a4 = this.a;
-                if (m_a4 != null ? m_a4.a() : true) {
+                m.a aVar6 = this.a;
+                if (aVar6 != null ? aVar6.a() : true) {
                     continue;
                 } else {
                     m mVar2 = this.f3615b;

@@ -1,6 +1,6 @@
 package b.i.a.f.i.b;
 
-import android.content.SharedPreferences$Editor;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.recyclerview.widget.RecyclerView;
@@ -86,19 +86,19 @@ public final class t3 implements Runnable {
         }
         long j2 = k4Var.e.w().getLong(k4Var.f1541b, 0L);
         if (j2 <= 0) {
-            SharedPreferences$Editor sharedPreferences$EditorEdit = k4Var.e.w().edit();
-            sharedPreferences$EditorEdit.putString(k4Var.c, string);
-            sharedPreferences$EditorEdit.putLong(k4Var.f1541b, 1L);
-            sharedPreferences$EditorEdit.apply();
+            SharedPreferences.Editor editorEdit = k4Var.e.w().edit();
+            editorEdit.putString(k4Var.c, string);
+            editorEdit.putLong(k4Var.f1541b, 1L);
+            editorEdit.apply();
             return;
         }
         long j3 = j2 + 1;
         boolean z2 = (k4Var.e.e().v0().nextLong() & RecyclerView.FOREVER_NS) < RecyclerView.FOREVER_NS / j3;
-        SharedPreferences$Editor sharedPreferences$EditorEdit2 = k4Var.e.w().edit();
+        SharedPreferences.Editor editorEdit2 = k4Var.e.w().edit();
         if (z2) {
-            sharedPreferences$EditorEdit2.putString(k4Var.c, string);
+            editorEdit2.putString(k4Var.c, string);
         }
-        sharedPreferences$EditorEdit2.putLong(k4Var.f1541b, j3);
-        sharedPreferences$EditorEdit2.apply();
+        editorEdit2.putLong(k4Var.f1541b, j3);
+        editorEdit2.apply();
     }
 }

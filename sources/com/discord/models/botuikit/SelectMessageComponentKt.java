@@ -3,7 +3,7 @@ package com.discord.models.botuikit;
 import com.discord.api.botuikit.ComponentType;
 import com.discord.api.botuikit.SelectComponent;
 import com.discord.api.botuikit.SelectItem;
-import com.discord.widgets.botuikit.ComponentChatListState$ComponentStoreState;
+import com.discord.widgets.botuikit.ComponentChatListState;
 import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +12,11 @@ import java.util.Map;
 /* JADX INFO: compiled from: SelectMessageComponent.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class SelectMessageComponentKt {
-    public static final SelectMessageComponent mergeToMessageComponent(SelectComponent selectComponent, int i, ActionInteractionComponentState actionInteractionComponentState, ComponentChatListState$ComponentStoreState componentChatListState$ComponentStoreState) {
+    public static final SelectMessageComponent mergeToMessageComponent(SelectComponent selectComponent, int i, ActionInteractionComponentState actionInteractionComponentState, ComponentChatListState.ComponentStoreState componentStoreState) {
         m.checkNotNullParameter(selectComponent, "$this$mergeToMessageComponent");
         m.checkNotNullParameter(actionInteractionComponentState, "actionInteractionComponentState");
-        m.checkNotNullParameter(componentChatListState$ComponentStoreState, "componentStoreState");
-        Map<Integer, List<SelectItem>> selections = componentChatListState$ComponentStoreState.getSelections();
+        m.checkNotNullParameter(componentStoreState, "componentStoreState");
+        Map<Integer, List<SelectItem>> selections = componentStoreState.getSelections();
         List arrayList = selections != null ? selections.get(Integer.valueOf(i)) : null;
         ComponentType type = selectComponent.getType();
         String customId = selectComponent.getCustomId();
@@ -25,7 +25,7 @@ public final class SelectMessageComponentKt {
         int maxValues = selectComponent.getMaxValues();
         List<SelectItem> listE = selectComponent.e();
         if (selectComponent.getDisabled()) {
-            actionInteractionComponentState = ActionInteractionComponentState$Disabled.INSTANCE;
+            actionInteractionComponentState = ActionInteractionComponentState.Disabled.INSTANCE;
         }
         ActionInteractionComponentState actionInteractionComponentState2 = actionInteractionComponentState;
         if (arrayList == null) {
@@ -37,6 +37,6 @@ public final class SelectMessageComponentKt {
                 }
             }
         }
-        return new SelectMessageComponent(type, i, actionInteractionComponentState2, customId, placeholder, minValues, maxValues, listE, arrayList, componentChatListState$ComponentStoreState.getAnimateEmojis());
+        return new SelectMessageComponent(type, i, actionInteractionComponentState2, customId, placeholder, minValues, maxValues, listE, arrayList, componentStoreState.getAnimateEmojis());
     }
 }

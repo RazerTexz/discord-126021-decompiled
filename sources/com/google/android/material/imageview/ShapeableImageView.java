@@ -1,17 +1,20 @@
 package com.google.android.material.imageview;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Outline;
 import android.graphics.Paint;
-import android.graphics.Paint$Style;
 import android.graphics.Path;
-import android.graphics.Path$Direction;
-import android.graphics.PorterDuff$Mode;
+import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewOutlineProvider;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DimenRes;
 import androidx.annotation.Dimension;
@@ -20,8 +23,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatImageView;
-import com.google.android.material.R$style;
-import com.google.android.material.R$styleable;
+import com.google.android.material.R;
 import com.google.android.material.resources.MaterialResources;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.ShapeAppearanceModel;
@@ -68,7 +70,7 @@ public class ShapeableImageView extends AppCompatImageView implements Shapeable 
 
     @Dimension
     private int topContentPadding;
-    private static final int DEF_STYLE_RES = R$style.Widget_MaterialComponents_ShapeableImageView;
+    private static final int DEF_STYLE_RES = R.style.Widget_MaterialComponents_ShapeableImageView;
 
     public ShapeableImageView(Context context) {
         this(context, null, 0);
@@ -330,7 +332,28 @@ public class ShapeableImageView extends AppCompatImageView implements Shapeable 
         this.maskPath.rewind();
         this.maskPath.addPath(this.path);
         this.maskRect.set(0.0f, 0.0f, i, i2);
-        this.maskPath.addRect(this.maskRect, Path$Direction.CCW);
+        this.maskPath.addRect(this.maskRect, Path.Direction.CCW);
+    }
+
+    @TargetApi(21)
+    public class a extends ViewOutlineProvider {
+        public final Rect a = new Rect();
+
+        public a() {
+        }
+
+        @Override // android.view.ViewOutlineProvider
+        public void getOutline(View view, Outline outline) {
+            if (ShapeableImageView.access$000(ShapeableImageView.this) == null) {
+                return;
+            }
+            if (ShapeableImageView.access$100(ShapeableImageView.this) == null) {
+                ShapeableImageView.access$102(ShapeableImageView.this, new MaterialShapeDrawable(ShapeableImageView.access$000(ShapeableImageView.this)));
+            }
+            ShapeableImageView.access$200(ShapeableImageView.this).round(this.a);
+            ShapeableImageView.access$100(ShapeableImageView.this).setBounds(this.a);
+            ShapeableImageView.access$100(ShapeableImageView.this).getOutline(outline);
+        }
     }
 
     public ShapeableImageView(Context context, @Nullable AttributeSet attributeSet) {
@@ -349,30 +372,30 @@ public class ShapeableImageView extends AppCompatImageView implements Shapeable 
         this.clearPaint = paint;
         paint.setAntiAlias(true);
         paint.setColor(-1);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff$Mode.DST_OUT));
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         this.destination = new RectF();
         this.maskRect = new RectF();
         this.maskPath = new Path();
-        TypedArray typedArrayObtainStyledAttributes = context2.obtainStyledAttributes(attributeSet, R$styleable.ShapeableImageView, i, i2);
-        this.strokeColor = MaterialResources.getColorStateList(context2, typedArrayObtainStyledAttributes, R$styleable.ShapeableImageView_strokeColor);
-        this.strokeWidth = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$styleable.ShapeableImageView_strokeWidth, 0);
-        int dimensionPixelSize = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$styleable.ShapeableImageView_contentPadding, 0);
+        TypedArray typedArrayObtainStyledAttributes = context2.obtainStyledAttributes(attributeSet, R.styleable.ShapeableImageView, i, i2);
+        this.strokeColor = MaterialResources.getColorStateList(context2, typedArrayObtainStyledAttributes, R.styleable.ShapeableImageView_strokeColor);
+        this.strokeWidth = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.ShapeableImageView_strokeWidth, 0);
+        int dimensionPixelSize = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.ShapeableImageView_contentPadding, 0);
         this.leftContentPadding = dimensionPixelSize;
         this.topContentPadding = dimensionPixelSize;
         this.rightContentPadding = dimensionPixelSize;
         this.bottomContentPadding = dimensionPixelSize;
-        this.leftContentPadding = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$styleable.ShapeableImageView_contentPaddingLeft, dimensionPixelSize);
-        this.topContentPadding = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$styleable.ShapeableImageView_contentPaddingTop, dimensionPixelSize);
-        this.rightContentPadding = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$styleable.ShapeableImageView_contentPaddingRight, dimensionPixelSize);
-        this.bottomContentPadding = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$styleable.ShapeableImageView_contentPaddingBottom, dimensionPixelSize);
-        this.startContentPadding = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$styleable.ShapeableImageView_contentPaddingStart, Integer.MIN_VALUE);
-        this.endContentPadding = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$styleable.ShapeableImageView_contentPaddingEnd, Integer.MIN_VALUE);
+        this.leftContentPadding = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.ShapeableImageView_contentPaddingLeft, dimensionPixelSize);
+        this.topContentPadding = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.ShapeableImageView_contentPaddingTop, dimensionPixelSize);
+        this.rightContentPadding = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.ShapeableImageView_contentPaddingRight, dimensionPixelSize);
+        this.bottomContentPadding = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.ShapeableImageView_contentPaddingBottom, dimensionPixelSize);
+        this.startContentPadding = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.ShapeableImageView_contentPaddingStart, Integer.MIN_VALUE);
+        this.endContentPadding = typedArrayObtainStyledAttributes.getDimensionPixelSize(R.styleable.ShapeableImageView_contentPaddingEnd, Integer.MIN_VALUE);
         typedArrayObtainStyledAttributes.recycle();
         Paint paint2 = new Paint();
         this.borderPaint = paint2;
-        paint2.setStyle(Paint$Style.STROKE);
+        paint2.setStyle(Paint.Style.STROKE);
         paint2.setAntiAlias(true);
         this.shapeAppearanceModel = ShapeAppearanceModel.builder(context2, attributeSet, i, i2).build();
-        setOutlineProvider(new ShapeableImageView$a(this));
+        setOutlineProvider(new a());
     }
 }

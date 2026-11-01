@@ -5,7 +5,15 @@ import kotlin.reflect.KType;
 /* JADX INFO: compiled from: KParameter.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public interface f extends b {
-    f$a getKind();
+
+    /* JADX INFO: compiled from: KParameter.kt */
+    public enum a {
+        INSTANCE,
+        EXTENSION_RECEIVER,
+        VALUE
+    }
+
+    a getKind();
 
     String getName();
 

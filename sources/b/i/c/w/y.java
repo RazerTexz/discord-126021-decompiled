@@ -1,7 +1,7 @@
 package b.i.c.w;
 
 import android.content.Context;
-import android.os.Build$VERSION;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.annotation.GuardedBy;
@@ -105,7 +105,7 @@ public class y {
         if (Log.isLoggable("FirebaseMessaging", 3)) {
             return true;
         }
-        return Build$VERSION.SDK_INT == 23 && Log.isLoggable("FirebaseMessaging", 3);
+        return Build.VERSION.SDK_INT == 23 && Log.isLoggable("FirebaseMessaging", 3);
     }
 
     public synchronized void e(boolean z2) {

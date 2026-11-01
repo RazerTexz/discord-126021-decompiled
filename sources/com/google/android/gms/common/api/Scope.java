@@ -1,7 +1,7 @@
 package com.google.android.gms.common.api;
 
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import androidx.annotation.RecentlyNonNull;
 import b.c.a.a0.d;
@@ -14,7 +14,7 @@ import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 public final class Scope extends AbstractSafeParcelable implements ReflectedParcelable {
 
     @RecentlyNonNull
-    public static final Parcelable$Creator<Scope> CREATOR = new l();
+    public static final Parcelable.Creator<Scope> CREATOR = new l();
     public final int j;
     public final String k;
 

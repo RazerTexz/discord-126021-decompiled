@@ -25,6 +25,6 @@ public final class GatewaySocket$handleWebSocketMessage$incomingParser$1 extends
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(String str) {
         m.checkNotNullParameter(str, "it");
-        GatewaySocket$Companion.log$default(GatewaySocket.Companion, GatewaySocket.access$getLogger$p(this.this$0), str, false, 2, null);
+        GatewaySocket.Companion.log$default(GatewaySocket.INSTANCE, GatewaySocket.access$getLogger$p(this.this$0), str, false, 2, null);
     }
 }

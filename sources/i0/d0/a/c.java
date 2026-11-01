@@ -1,12 +1,12 @@
 package i0.d0.a;
 
 import retrofit2.Response;
-import rx.Observable$a;
+import rx.Observable;
 import rx.Subscriber;
 
 /* JADX INFO: compiled from: CallExecuteOnSubscribe.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class c<T> implements Observable$a<Response<T>> {
+public final class c<T> implements Observable.a<Response<T>> {
     public final i0.d<T> j;
 
     public c(i0.d<T> dVar) {

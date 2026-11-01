@@ -1,7 +1,6 @@
 package b.i.a.c.z2;
 
 import android.os.Handler;
-import android.os.Handler$Callback;
 import android.os.Looper;
 import android.os.Message;
 import androidx.annotation.Nullable;
@@ -10,7 +9,6 @@ import b.i.a.c.j1;
 import b.i.a.c.k1;
 import b.i.a.c.v0;
 import com.google.android.exoplayer2.metadata.Metadata;
-import com.google.android.exoplayer2.metadata.Metadata$Entry;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +16,7 @@ import java.util.Objects;
 
 /* JADX INFO: compiled from: MetadataRenderer.java */
 /* JADX INFO: loaded from: classes3.dex */
-public final class f extends v0 implements Handler$Callback {
+public final class f extends v0 implements Handler.Callback {
     public boolean A;
     public long B;
     public long C;
@@ -80,14 +78,14 @@ public final class f extends v0 implements Handler$Callback {
         this.f1320y = this.u.b(j1VarArr[0]);
     }
 
-    public final void J(Metadata metadata, List<Metadata$Entry> list) {
+    public final void J(Metadata metadata, List<Metadata.Entry> list) {
         int i = 0;
         while (true) {
-            Metadata$Entry[] metadata$EntryArr = metadata.j;
-            if (i >= metadata$EntryArr.length) {
+            Metadata.Entry[] entryArr = metadata.j;
+            if (i >= entryArr.length) {
                 return;
             }
-            j1 j1VarY = metadata$EntryArr[i].y();
+            j1 j1VarY = entryArr[i].y();
             if (j1VarY == null || !this.u.a(j1VarY)) {
                 list.add(metadata.j[i]);
             } else {
@@ -132,7 +130,7 @@ public final class f extends v0 implements Handler$Callback {
         return "MetadataRenderer";
     }
 
-    @Override // android.os.Handler$Callback
+    @Override // android.os.Handler.Callback
     public boolean handleMessage(Message message) {
         if (message.what != 0) {
             throw new IllegalStateException();

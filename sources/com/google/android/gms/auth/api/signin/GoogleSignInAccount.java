@@ -2,7 +2,7 @@ package com.google.android.gms.auth.api.signin;
 
 import android.net.Uri;
 import android.os.Parcel;
-import android.os.Parcelable$Creator;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -54,7 +54,7 @@ public class GoogleSignInAccount extends AbstractSafeParcelable implements Refle
 
     @Nullable
     public String u;
-    public static final Parcelable$Creator<GoogleSignInAccount> CREATOR = new d();
+    public static final Parcelable.Creator<GoogleSignInAccount> CREATOR = new d();
     public Set<Scope> v = new HashSet();
 
     public GoogleSignInAccount(int i, @Nullable String str, @Nullable String str2, @Nullable String str3, @Nullable String str4, @Nullable Uri uri, @Nullable String str5, long j, String str6, List<Scope> list, @Nullable String str7, @Nullable String str8) {

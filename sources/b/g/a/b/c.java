@@ -17,10 +17,46 @@ public class c extends n implements Serializable {
     public final char _quoteChar;
     public k _rootValueSeparator;
     private static final long serialVersionUID = 2;
-    public static final int j = c$a.h();
-    public static final int k = f$a.f();
-    public static final int l = d$a.f();
+    public static final int j = a.h();
+    public static final int k = f.a.f();
+    public static final int l = d.a.f();
     public static final k m = b.g.a.b.t.d.j;
+
+    /* JADX INFO: compiled from: JsonFactory.java */
+    public enum a implements b.g.a.b.t.g {
+        INTERN_FIELD_NAMES(true),
+        CANONICALIZE_FIELD_NAMES(true),
+        FAIL_ON_SYMBOL_HASH_OVERFLOW(true),
+        USE_THREAD_LOCAL_FOR_BUFFER_RECYCLING(true);
+
+        private final boolean _defaultState;
+
+        a(boolean z2) {
+            this._defaultState = z2;
+        }
+
+        @Override // b.g.a.b.t.g
+        public boolean f() {
+            return this._defaultState;
+        }
+
+        @Override // b.g.a.b.t.g
+        public int g() {
+            return 1 << ordinal();
+        }
+
+        public static int h() {
+            a[] aVarArrValues = values();
+            int iG = 0;
+            for (int i = 0; i < 4; i++) {
+                a aVar = aVarArrValues[i];
+                if (aVar._defaultState) {
+                    iG |= aVar.g();
+                }
+            }
+            return iG;
+        }
+    }
 
     public c() {
         this(null);
@@ -28,7 +64,7 @@ public class c extends n implements Serializable {
 
     public b.g.a.b.t.a a() {
         SoftReference<b.g.a.b.t.a> softReference;
-        if (!((c$a.USE_THREAD_LOCAL_FOR_BUFFER_RECYCLING.g() & this._factoryFeatures) != 0)) {
+        if (!((a.USE_THREAD_LOCAL_FOR_BUFFER_RECYCLING.g() & this._factoryFeatures) != 0)) {
             return new b.g.a.b.t.a();
         }
         SoftReference<b.g.a.b.t.a> softReference2 = b.g.a.b.t.b.f677b.get();

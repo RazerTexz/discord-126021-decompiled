@@ -39,7 +39,7 @@ public class u {
     }
 
     public final o c(Annotation[] annotationArr) {
-        o oVarA = o$a.c;
+        o oVarA = o.a.c;
         for (Annotation annotation : annotationArr) {
             oVarA = oVarA.a(annotation);
             if (this.c.b0(annotation)) {

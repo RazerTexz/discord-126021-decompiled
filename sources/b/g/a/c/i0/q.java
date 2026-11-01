@@ -1,7 +1,5 @@
 package b.g.a.c.i0;
 
-import b.g.a.a.p$a;
-import b.g.a.a.p$b;
 import java.util.Objects;
 
 /* JADX INFO: compiled from: SimpleBeanPropertyDefinition.java */
@@ -11,18 +9,18 @@ public class q extends b.g.a.c.c0.s {
     public final b.g.a.c.c0.i l;
     public final b.g.a.c.s m;
     public final b.g.a.c.t n;
-    public final p$b o;
+    public final b.g.a.a.p.b o;
 
-    public q(b.g.a.c.b bVar, b.g.a.c.c0.i iVar, b.g.a.c.t tVar, b.g.a.c.s sVar, p$b p_b) {
+    public q(b.g.a.c.b bVar, b.g.a.c.c0.i iVar, b.g.a.c.t tVar, b.g.a.c.s sVar, b.g.a.a.p.b bVar2) {
         this.k = bVar;
         this.l = iVar;
         this.n = tVar;
         this.m = sVar == null ? b.g.a.c.s.k : sVar;
-        this.o = p_b;
+        this.o = bVar2;
     }
 
     @Override // b.g.a.c.c0.s
-    public p$b g() {
+    public b.g.a.a.p.b g() {
         return this.o;
     }
 
@@ -102,14 +100,14 @@ public class q extends b.g.a.c.c0.s {
         return false;
     }
 
-    public static q w(b.g.a.c.z.l<?> lVar, b.g.a.c.c0.i iVar, b.g.a.c.t tVar, b.g.a.c.s sVar, p$a p_a) {
-        p$b p_b;
-        p$a p_a2;
-        if (p_a == null || p_a == (p_a2 = p$a.USE_DEFAULTS)) {
-            p_b = b.g.a.c.c0.s.j;
+    public static q w(b.g.a.c.z.l<?> lVar, b.g.a.c.c0.i iVar, b.g.a.c.t tVar, b.g.a.c.s sVar, b.g.a.a.p.a aVar) {
+        b.g.a.a.p.b bVar;
+        b.g.a.a.p.a aVar2;
+        if (aVar == null || aVar == (aVar2 = b.g.a.a.p.a.USE_DEFAULTS)) {
+            bVar = b.g.a.c.c0.s.j;
         } else {
-            p_b = p_a != p_a2 ? new p$b(p_a, null, null, null) : p$b.j;
+            bVar = aVar != aVar2 ? new b.g.a.a.p.b(aVar, null, null, null) : b.g.a.a.p.b.j;
         }
-        return new q(lVar.e(), iVar, tVar, sVar, p_b);
+        return new q(lVar.e(), iVar, tVar, sVar, bVar);
     }
 }

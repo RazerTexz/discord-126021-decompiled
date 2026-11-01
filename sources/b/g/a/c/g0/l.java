@@ -1,9 +1,6 @@
 package b.g.a.c.g0;
 
-import b.g.a.a.p$a;
-import b.g.a.a.p$b;
 import b.g.a.c.v;
-import b.g.a.c.y.e$b;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 /* JADX INFO: compiled from: PropertyBuilder.java */
@@ -15,20 +12,20 @@ public class l {
     public final b.g.a.c.c f702b;
     public final b.g.a.c.b c;
     public Object d;
-    public final p$b e;
+    public final b.g.a.a.p.b e;
     public final boolean f;
 
     public l(v vVar, b.g.a.c.c cVar) {
         this.a = vVar;
         this.f702b = cVar;
-        p$b p_b = p$b.j;
-        p$b p_bA = p$b.j;
-        p$b p_bC = cVar.c(p_bA);
-        vVar.k(cVar.a._class, p_bA);
-        p_bA = p_bC != null ? p_bC.a(p_bA) : p_bA;
-        p$b p_b2 = vVar._configOverrides._defaultInclusion;
-        this.e = p_b2 == null ? p_bA : p_b2.a(p_bA);
-        this.f = p_bA._valueInclusion == p$a.NON_DEFAULT;
+        b.g.a.a.p.b bVar = b.g.a.a.p.b.j;
+        b.g.a.a.p.b bVarA = b.g.a.a.p.b.j;
+        b.g.a.a.p.b bVarC = cVar.c(bVarA);
+        vVar.k(cVar.a._class, bVarA);
+        bVarA = bVarC != null ? bVarC.a(bVarA) : bVarA;
+        b.g.a.a.p.b bVar2 = vVar._configOverrides._defaultInclusion;
+        this.e = bVar2 == null ? bVarA : bVar2.a(bVarA);
+        this.f = bVarA._valueInclusion == b.g.a.a.p.a.NON_DEFAULT;
         this.c = vVar.e();
     }
 
@@ -49,9 +46,9 @@ public class l {
             z2 = true;
             jVar = jVarE0;
         }
-        e$b e_bK = this.c.K(bVar);
-        if (e_bK != null && e_bK != e$b.DEFAULT_TYPING) {
-            z2 = e_bK == e$b.STATIC;
+        b.g.a.c.y.e.b bVarK = this.c.K(bVar);
+        if (bVarK != null && bVarK != b.g.a.c.y.e.b.DEFAULT_TYPING) {
+            z2 = bVarK == b.g.a.c.y.e.b.STATIC;
         }
         if (z2) {
             return jVar.G();
